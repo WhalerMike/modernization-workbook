@@ -1,1104 +1,1041 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.201
-This briefing comes from Book 13 of the
-Federal Modernization Workbook, Governance,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:05.201 --> 00:00:09.174
-Drift and Evidence: why compliance
-decays the day after the audit,
+00:00:00.763 --> 00:00:05.231
+This briefing is Book 13 of the
+Federal Modernization Workbook,
 
 3
-00:00:09.174 --> 00:00:11.087
-and the governance that doesn't.
+00:00:05.231 --> 00:00:07.424
+Governance, Drift and Evidence.
 
 4
-00:00:11.087 --> 00:00:15.093
-I'll take four questions: why a
-signed package starts aging at once,
+00:00:07.424 --> 00:00:10.949
+It's about why compliance starts
+to decay the day after the audit,
 
 5
-00:00:15.093 --> 00:00:19.024
-what keeps governance true between
-assessments, who governs it,
+00:00:10.949 --> 00:00:13.675
+and what governance that
+doesn't decay looks like.
 
 6
-00:00:19.024 --> 00:00:23.326
-and how to run it at machine tempo,
-reuse it across agencies and scale it.
+00:00:13.675 --> 00:00:15.050
+We'll take four questions.
 
 7
-00:00:23.326 --> 00:00:27.657
+00:00:15.050 --> 00:00:17.725
+Why does a signed package
+start aging at once?
+
+8
+00:00:17.725 --> 00:00:20.388
+What keeps governance
+true between assessments?
+
+9
+00:00:20.388 --> 00:00:21.425
+Who governs it?
+
+10
+00:00:21.425 --> 00:00:26.162
+And how do you run it at machine tempo,
+reuse it across agencies, and scale it?
+
+11
+00:00:26.162 --> 00:00:30.495
 The short version: keep one authoritative
 record, let the systems prove
 
-8
-00:00:27.657 --> 00:00:32.410
+12
+00:00:30.495 --> 00:00:34.901
 they still match it, and keep people
 on the decisions only people can make.
 
-9
-00:00:33.160 --> 00:00:36.222
+13
+00:00:34.901 --> 00:00:39.975
+The slides and notes carry every detail
+and source; I'll stick to what matters.
+
+14
+00:00:39.975 --> 00:00:42.800
+Let's start with the day
+the package is signed.
+
+15
+00:00:43.550 --> 00:00:46.612
 Picture the week an
 authorization package is signed.
 
-10
-00:00:36.222 --> 00:00:38.122
-On that day the package is true.
+16
+00:00:46.612 --> 00:00:48.824
+On that day, the package is true.
 
-11
-00:00:38.122 --> 00:00:42.833
-The next morning an administrator
-changes a firewall rule to fix an outage,
+17
+00:00:48.824 --> 00:00:53.600
+The next morning, an administrator
+changes a firewall rule to fix an outage.
 
-12
-00:00:42.833 --> 00:00:47.998
-a contractor's account outlives the contract,
-a cloud provider ships a new default.
+18
+00:00:53.600 --> 00:00:56.613
+A contractor's account
+outlives the contract.
 
-13
-00:00:47.998 --> 00:00:49.772
+19
+00:00:56.613 --> 00:00:59.126
+A cloud provider ships a new default.
+
+20
+00:00:59.126 --> 00:01:00.900
 None of it reaches the package.
 
-14
-00:00:49.772 --> 00:00:53.273
+21
+00:01:00.900 --> 00:01:04.400
 Federal guidance already
 points away from the snapshot.
 
-15
-00:00:53.273 --> 00:00:57.948
-FISMA sets a floor: test at least
-annually, with automated tools.
-
-16
-00:00:57.948 --> 00:01:03.385
-There's no federal three-year rule; the
-authorization's term is the agency's to set.
-
-17
-00:01:03.385 --> 00:01:08.172
-NIST defines continuous monitoring as
-ongoing awareness, not a calendar.
-
-18
-00:01:08.172 --> 00:01:12.659
-The Risk Management Framework calls
-reauthorization the static, single
-
-19
-00:01:12.659 --> 00:01:17.734
-point-in-time decision, and asks agencies
-to make ongoing authorization a priority.
-
-20
-00:01:17.734 --> 00:01:23.047
-OMB's Circular A-130 tells them to
-make that transition when eligible.
-
-21
-00:01:23.047 --> 00:01:25.186
-So why do so few systems get there?
-
 22
-00:01:25.186 --> 00:01:28.358
-NIST answers it: without
-substantial automation,
+00:01:04.400 --> 00:01:06.817
+FISMA sets an annual testing floor,
 
 23
-00:01:28.358 --> 00:01:31.685
-ongoing authorization isn't
-feasible or practical.
+00:01:06.817 --> 00:01:11.400
+and there's no federal three-year
+rule; the term is the agency's to set.
 
 24
-00:01:31.685 --> 00:01:36.435
-And adding checkboxes makes reporting
-heavier while leaving the change untouched.
+00:01:11.400 --> 00:01:15.699
+NIST and OMB both push agencies
+toward ongoing authorization,
 
 25
-00:01:36.435 --> 00:01:38.690
-That's the compliance paradox.
+00:01:15.699 --> 00:01:18.675
+rather than a single
+point-in-time decision.
 
 26
-00:01:39.440 --> 00:01:41.815
-The mechanism has a name: drift.
+00:01:18.675 --> 00:01:20.813
+So why do so few systems get there?
 
 27
-00:01:41.815 --> 00:01:44.807
-Drift is any difference
-between what the authoritative
+00:01:20.813 --> 00:01:24.422
+NIST answers that too: without
+substantial automation,
 
 28
-00:01:44.807 --> 00:01:47.927
-record says should be true and
-what the running estate does.
+00:01:24.422 --> 00:01:27.012
+ongoing authorization isn't practical.
 
 29
-00:01:47.927 --> 00:01:52.581
-A setting changed and never recorded,
-an account that outlived its owner,
+00:01:27.012 --> 00:01:29.442
+And adding checkboxes makes the reporting
 
 30
-00:01:52.581 --> 00:01:55.140
-a rule that quietly stopped evaluating.
+00:01:29.442 --> 00:01:31.938
+heavier while leaving
+the change untouched.
 
 31
-00:01:55.140 --> 00:01:58.096
-NIST names the sources:
-unauthorized change,
+00:01:31.938 --> 00:01:33.838
+That's the compliance paradox.
 
 32
-00:01:58.096 --> 00:02:03.368
-from attackers or from honest errors by
-authorized staff; changes made outside
+00:01:33.838 --> 00:01:36.460
+Next, the name for what's going wrong.
 
 33
-00:02:03.368 --> 00:02:07.123
-change control; provider
-changes that are hard to detect;
+00:01:37.210 --> 00:01:39.585
+The mechanism has a name: drift.
 
 34
-00:02:07.123 --> 00:02:09.040
-staff turnover; and upgrades.
+00:01:39.585 --> 00:01:42.948
+Drift is any difference between
+what the authoritative record
 
 35
-00:02:09.040 --> 00:02:13.452
-The program ranks drift first among
-governance threats for three reasons.
+00:01:42.948 --> 00:01:46.185
+says should be true and what the
+running estate actually does.
 
 36
-00:02:13.452 --> 00:02:16.764
+00:01:46.185 --> 00:01:48.448
+A setting changed and never recorded.
+
+37
+00:01:48.448 --> 00:01:50.447
+An account that outlived its owner.
+
+38
+00:01:50.447 --> 00:01:52.934
+A rule that quietly stopped evaluating.
+
+39
+00:01:52.934 --> 00:01:56.867
+NIST names the sources, from
+attackers to honest mistakes,
+
+40
+00:01:56.867 --> 00:02:02.273
+changes outside change control, provider
+changes, staff turnover and upgrades.
+
+41
+00:02:02.273 --> 00:02:06.911
+The program ranks drift first among
+governance threats, for three reasons.
+
+42
+00:02:06.911 --> 00:02:10.222
 It's continuous, a gradient
 rather than an event.
 
-37
-00:02:16.764 --> 00:02:21.150
-It's silent: the directory reports
-the rule as configured and the console
-
-38
-00:02:21.150 --> 00:02:25.315
-reports the policy as assigned,
-because each reports what it was told.
-
-39
-00:02:25.315 --> 00:02:27.465
-And it's the opening other threats use.
-
-40
-00:02:27.465 --> 00:02:31.079
-NSA and CISA called the most
-common misconfigurations
-
-41
-00:02:31.079 --> 00:02:33.540
-their teams find systemic weaknesses.
-
-42
-00:02:33.540 --> 00:02:37.681
-NIST's controls describe drift
-detection without the word: a baseline,
-
 43
-00:02:37.681 --> 00:02:42.330
-controlled change, approved deviations,
-and someone who keeps checking.
+00:02:10.222 --> 00:02:14.959
+It's silent, because every console
+reports what it was told, not what's true.
 
 44
-00:02:43.080 --> 00:02:45.505
+00:02:14.959 --> 00:02:17.405
+And it's the opening other threats use;
+
+45
+00:02:17.405 --> 00:02:21.822
+NSA and CISA call common
+misconfigurations systemic weaknesses.
+
+46
+00:02:21.822 --> 00:02:26.169
+NIST's controls already describe drift
+detection without using the word:
+
+47
+00:02:26.169 --> 00:02:31.085
+a baseline, controlled change, approved
+deviations, and someone who keeps checking.
+
+48
+00:02:31.085 --> 00:02:33.980
+Next, what drift is measured against.
+
+49
+00:02:34.730 --> 00:02:37.155
 Drift can only be measured
 against something.
 
-45
-00:02:45.505 --> 00:02:48.979
-For twenty years many enterprises
-kept their governance,
+50
+00:02:37.155 --> 00:02:40.792
+For twenty years, many
+enterprises kept their governance,
 
-46
-00:02:48.979 --> 00:02:51.367
+51
+00:02:40.792 --> 00:02:43.293
 unwritten, in the Active Directory tree.
 
-47
-00:02:51.367 --> 00:02:53.729
+52
+00:02:43.293 --> 00:02:45.654
 A flat cloud directory doesn't carry it,
 
-48
-00:02:53.729 --> 00:02:58.081
+53
+00:02:45.654 --> 00:02:50.006
 so the program writes the governance
 down, in one authoritative record.
 
-49
-00:02:58.081 --> 00:03:02.399
-The record is a version-controlled
+54
+00:02:50.006 --> 00:02:54.332
+That record is a version-controlled
 repository of policies,
 
-50
-00:03:02.399 --> 00:03:04.867
+55
+00:02:54.332 --> 00:02:56.755
 plans, evidence, schemas and rules.
 
-51
-00:03:04.867 --> 00:03:06.979
-It doesn't master every fact.
+56
+00:02:56.755 --> 00:03:01.193
+It doesn't master every fact;
+HR still owns who a worker is.
 
-52
-00:03:06.979 --> 00:03:11.568
-HR owns who a worker is; the identity
-platform issues credentials.
-
-53
-00:03:11.568 --> 00:03:16.930
-The record holds the authority: which system
+57
+00:03:01.193 --> 00:03:06.630
+What it holds is the authority: which system
 owns each fact, and who may write it.
 
-54
-00:03:16.930 --> 00:03:19.630
+58
+00:03:06.630 --> 00:03:09.330
 Runtime systems read
 it and never write it.
 
-55
-00:03:19.630 --> 00:03:23.562
+59
+00:03:09.330 --> 00:03:13.262
 Private copies are forbidden,
 because a local copy someone reads
 
-56
-00:03:23.562 --> 00:03:27.130
+60
+00:03:13.262 --> 00:03:16.830
 because the repository was slow
 is a second source of truth.
 
-57
-00:03:27.130 --> 00:03:32.143
-Every derived report carries its
+61
+00:03:16.830 --> 00:03:22.043
+And every derived report carries its
 source, version, time and producer.
 
-58
-00:03:32.143 --> 00:03:34.574
-The record covers six control planes,
-
-59
-00:03:34.574 --> 00:03:39.204
-each authoritative for one domain, so
-every finding has one owning team.
-
-60
-00:03:39.204 --> 00:03:44.630
-NIST's CM-2 baseline is this record,
+62
+00:03:22.043 --> 00:03:27.180
+In NIST terms, this record is the baseline,
 kept in a form machines can compare.
 
-61
-00:03:45.380 --> 00:03:48.355
+63
+00:03:27.180 --> 00:03:29.720
+Next, how changes get into it.
+
+64
+00:03:30.470 --> 00:03:33.445
 A record is only as good
 as the path into it.
 
-62
-00:03:48.355 --> 00:03:52.305
+65
+00:03:33.445 --> 00:03:37.395
 Most drift isn't malicious;
 it's a hotfix during an outage.
 
-63
-00:03:52.305 --> 00:03:57.559
-So the program allows one path for every
-operational change, whether it moves,
-
-64
-00:03:57.559 --> 00:04:02.730
-adds, changes, deletes or resets something,
-and no second path for urgent work.
-
-65
-00:04:02.730 --> 00:04:04.593
-The path has five clauses.
-
 66
-00:04:04.593 --> 00:04:06.817
-Originate from the source of truth.
+00:03:37.395 --> 00:03:41.217
+So the program allows one path
+for every operational change,
 
 67
-00:04:06.817 --> 00:04:10.718
-Authorize from the authority
-model, not from whoever is nearby.
+00:03:41.217 --> 00:03:43.358
+and no second path for urgent work.
 
 68
-00:04:10.718 --> 00:04:14.442
-Execute under least privilege,
-elevated just in time.
+00:03:43.358 --> 00:03:47.277
+The path has five clauses:
+originate from the source of truth,
 
 69
-00:04:14.442 --> 00:04:17.268
-Close with the verification
-that justified it.
+00:03:47.277 --> 00:03:52.371
+authorize from the authority model,
+execute with just-in-time least privilege,
 
 70
-00:04:17.268 --> 00:04:19.556
-And emit the evidence automatically.
+00:03:52.371 --> 00:03:56.446
+close with verification, and
+emit the evidence automatically.
 
 71
-00:04:19.556 --> 00:04:22.437
-Skip a clause and the
-operation isn't a change
+00:03:56.446 --> 00:03:59.657
+Skip a clause, and it's not
+a change with a missing form.
 
 72
-00:04:22.437 --> 00:04:24.930
-with a missing form; it's a drift finding.
+00:03:59.657 --> 00:04:00.995
+It's a drift finding.
 
 73
-00:04:24.930 --> 00:04:29.184
-Changes to the record travel as
-reviewed pull requests: two people,
+00:04:00.995 --> 00:04:04.776
+Changes to the record itself
+travel as reviewed pull requests,
 
 74
-00:04:29.184 --> 00:04:33.592
-a signed merge, and branch protection
-that binds administrators too.
+00:04:04.776 --> 00:04:08.557
+with two people and protections
+that bind administrators too.
 
 75
-00:04:33.592 --> 00:04:37.017
+00:04:08.557 --> 00:04:11.982
 Emergencies are back-ported
 within one business day,
 
 76
-00:04:37.017 --> 00:04:39.118
+00:04:11.982 --> 00:04:14.083
 and reported as drift until then.
 
 77
-00:04:39.118 --> 00:04:44.006
+00:04:14.083 --> 00:04:15.358
+Two rules sum it up.
+
+78
+00:04:15.358 --> 00:04:20.246
 The identity that decides never acts,
 and the one that acts never decides.
 
-78
-00:04:44.006 --> 00:04:47.330
+79
+00:04:20.246 --> 00:04:23.207
 And no closure counts unless
 it carries its proof.
 
-79
-00:04:48.080 --> 00:04:52.430
+80
+00:04:23.207 --> 00:04:25.200
+Next, determinism.
+
+81
+00:04:25.950 --> 00:04:30.300
 When the program says a control is
 satisfied, how does anyone know it's right?
 
-80
-00:04:52.430 --> 00:04:54.317
+82
+00:04:30.300 --> 00:04:32.187
 The usual answer is trust.
 
-81
-00:04:54.317 --> 00:04:59.133
-The program's answer is determinism:
-given the same version of the record and
-
-82
-00:04:59.133 --> 00:05:04.255
-the same collected inputs, the platform
-produces the same evidence, byte for byte.
-
 83
-00:05:04.255 --> 00:05:06.880
-Then an assessor doesn't
-have to trust the run.
+00:04:32.187 --> 00:04:34.575
+The program's answer is determinism.
 
 84
-00:05:06.880 --> 00:05:09.305
-They repeat it and compare the hashes.
+00:04:34.575 --> 00:04:38.182
+Give it the same version of
+the record and the same inputs,
 
 85
-00:05:09.305 --> 00:05:11.430
-Automation isn't the same thing.
+00:04:38.182 --> 00:04:41.175
+and it produces the same
+evidence, byte for byte.
 
 86
-00:05:11.430 --> 00:05:14.328
-Automation makes the answer arrive faster;
+00:04:41.175 --> 00:04:43.675
+So an assessor doesn't
+have to trust the run.
 
 87
-00:05:14.328 --> 00:05:18.030
+00:04:43.675 --> 00:04:46.100
+They repeat it and compare the hashes.
+
+88
+00:04:46.100 --> 00:04:47.812
+That's different from automation.
+
+89
+00:04:47.812 --> 00:04:50.711
+Automation makes the answer arrive faster;
+
+90
+00:04:50.711 --> 00:04:54.413
 determinism makes it the same
 answer no matter who asks.
 
-88
-00:05:18.030 --> 00:05:21.992
-The rules live in three layers,
-each with its own reviewer.
-
-89
-00:05:21.992 --> 00:05:26.842
-Rules say what exists and what it means,
-and change only through governance review.
-
-90
-00:05:26.842 --> 00:05:29.867
-Mappings say which rules
-apply to which controls.
-
 91
-00:05:29.867 --> 00:05:34.942
-Runtime code evaluates them, and is
-the only layer allowed to change state.
+00:04:54.413 --> 00:04:58.012
+The rules live in three layers,
+each with its own reviewer:
 
 92
-00:05:34.942 --> 00:05:39.555
-One limit: determinism is faithful
-to the record, not a check on it.
+00:04:58.012 --> 00:05:02.455
+rules that say what things mean,
+mappings that say which rules apply to
 
 93
-00:05:39.555 --> 00:05:43.100
+00:05:02.455 --> 00:05:06.974
+which controls, and runtime code, the
+only layer allowed to change state.
+
+94
+00:05:06.974 --> 00:05:11.988
+One honest limit: determinism is faithful
+to the record, not a check on it.
+
+95
+00:05:11.988 --> 00:05:15.175
 A wrong rule gives the same
 wrong answer every time.
 
-94
-00:05:43.850 --> 00:05:47.752
-The drift engine compares observed
-state with a versioned record,
-
-95
-00:05:47.752 --> 00:05:49.525
-not a last-known-good snapshot.
-
 96
-00:05:49.525 --> 00:05:53.413
+00:05:15.175 --> 00:05:17.250
+Next, the drift engine.
+
+97
+00:05:18.000 --> 00:05:21.933
+The drift engine compares what it
+observes with the versioned record,
+
+98
+00:05:21.933 --> 00:05:23.900
+not with a last-known-good snapshot.
+
+99
+00:05:23.900 --> 00:05:27.788
 An approved change updates the
 record first, so it isn't drift.
 
-97
-00:05:53.413 --> 00:05:57.263
-There's one drift model, with
-five classes, each a question.
-
-98
-00:05:57.263 --> 00:05:59.500
-Schema: is the shape still valid?
-
-99
-00:05:59.500 --> 00:06:01.837
-Semantic: is the value still true?
-
 100
-00:06:01.837 --> 00:06:05.825
-Provenance: does every change
-trace to an authorized source?
+00:05:27.788 --> 00:05:33.019
+There's one drift model, with five classes,
+each asking one question, like whether
 
 101
-00:06:05.825 --> 00:06:09.900
-Authorization: did anything act
-outside what it was authorized to do?
+00:05:33.019 --> 00:05:38.013
+a value is still true, or whether every
+change traces to an authorized source.
 
 102
-00:06:09.900 --> 00:06:13.400
-Identity: does every object
-resolve to the record?
-
-103
-00:06:13.400 --> 00:06:18.212
+00:05:38.013 --> 00:05:42.824
 The drift checks in the other books are
 instances of these five, not separate lists.
 
-104
-00:06:18.212 --> 00:06:20.561
+103
+00:05:42.824 --> 00:05:45.173
 Severity is computed, not argued,
 
-105
-00:06:20.561 --> 00:06:24.301
+104
+00:05:45.173 --> 00:05:48.913
 from the class and whether
 the claim is in active use.
 
+105
+00:05:48.913 --> 00:05:51.831
+The top severity halts
+and alerts a named role,
+
 106
-00:06:24.301 --> 00:06:28.850
-P1 halts and alerts a named role,
-and is never fixed automatically.
+00:05:51.831 --> 00:05:56.287
+and is never fixed automatically;
+the others get set response windows.
 
 107
-00:06:28.850 --> 00:06:32.837
-P2 has an hour, P3 a day, P4 three days.
-
-108
-00:06:32.837 --> 00:06:37.363
-Severity sets the clock; the
+00:05:56.287 --> 00:06:00.937
+Severity sets the clock, and the
 actuation ladder decides who may act.
 
+108
+00:06:00.937 --> 00:06:04.147
+And be precise with an
+assessor about what's built:
+
 109
-00:06:37.363 --> 00:06:42.518
-And be precise with an assessor about what's
-built: schema and provenance detection
+00:06:04.147 --> 00:06:08.062
+two classes are built, one is
+partial, and two are still design.
 
 110
-00:06:42.518 --> 00:06:47.820
-are built, semantic is partial, and
-authorization and identity are still design.
+00:06:08.062 --> 00:06:10.980
+Next, evidence versus attestation.
 
 111
-00:06:48.570 --> 00:06:53.245
+00:06:11.730 --> 00:06:16.405
 An attestation is a person signing that
 a system was in a stated condition.
 
 112
-00:06:53.245 --> 00:06:57.495
+00:06:16.405 --> 00:06:20.655
 It answers who is accountable, and
 federal authorization needs that answer.
 
 113
-00:06:57.495 --> 00:07:01.945
+00:06:20.655 --> 00:06:25.105
 Evidence answers a different question:
 is the claim true, and can I check it?
 
 114
-00:07:01.945 --> 00:07:04.532
+00:06:25.105 --> 00:06:27.692
 The program inverts the usual package.
 
 115
-00:07:04.532 --> 00:07:09.412
+00:06:27.692 --> 00:06:32.484
 Evidence is the substance, and
-attestation is the accountability wrapper:
+attestation is the accountability wrapper,
 
 116
-00:07:09.412 --> 00:07:13.819
-people sign for the rules, the
+00:06:32.484 --> 00:06:36.967
+so people sign for the rules, the
 exceptions and the acceptance of risk.
 
 117
-00:07:13.819 --> 00:07:18.561
-NIST's assessment guide says that when the
-intended state is expressed as data and
+00:06:36.967 --> 00:06:38.855
+Federal guidance supports this.
 
 118
-00:07:18.561 --> 00:07:21.281
-compared automatically
-with the actual state,
+00:06:38.855 --> 00:06:44.367
+NIST treats automated comparison of
+intended and actual state as equivalent to
 
 119
-00:07:21.281 --> 00:07:24.558
-the output is equivalent to
-control assessment results.
+00:06:44.367 --> 00:06:47.739
+assessment results, and
+FedRAMP's 2026 rules tell
 
 120
-00:07:24.558 --> 00:07:29.321
-The Risk Management Framework lets a tool's
-report serve as the assessment report.
-
-121
-00:07:29.321 --> 00:07:32.219
-And FedRAMP's 2026 rules tell assessors:
-
-122
-00:07:32.219 --> 00:07:35.908
-don't simply review
+00:06:47.739 --> 00:06:52.017
+assessors not to simply review
 documentation or screenshots.
 
+121
+00:06:52.017 --> 00:06:53.680
+But be careful what you claim.
+
+122
+00:06:53.680 --> 00:06:55.505
+A hash shows something changed.
+
 123
-00:07:35.908 --> 00:07:37.408
-Be careful what you claim.
-
-124
-00:07:37.408 --> 00:07:39.495
-A hash shows that something changed.
-
-125
-00:07:39.495 --> 00:07:42.195
+00:06:55.505 --> 00:06:58.205
 A hash chain shows removal or reordering.
 
-126
-00:07:42.195 --> 00:07:44.520
+124
+00:06:58.205 --> 00:07:00.530
 Only a signature shows who produced it.
 
-127
-00:07:44.520 --> 00:07:50.330
+125
+00:07:00.530 --> 00:07:05.980
 And some controls, like a training record
 or a contract clause, stay attestations.
 
-128
-00:07:51.080 --> 00:07:54.743
+126
+00:07:05.980 --> 00:07:09.200
+Next, how the program
+reaches each platform.
+
+127
+00:07:09.950 --> 00:07:13.613
 The program doesn't replace
 the platforms an agency runs.
 
+128
+00:07:13.613 --> 00:07:17.685
+It reaches each one through an
+adapter: a translator that reads the
+
 129
-00:07:54.743 --> 00:07:57.010
-It reaches each one through an adapter:
+00:07:17.685 --> 00:07:22.424
+platform's native state and writes it
+into the common record, with provenance.
 
 130
-00:07:57.010 --> 00:08:00.980
-a translator that reads the platform's
-native state through its own
-
-131
-00:08:00.980 --> 00:08:05.304
-interface and writes it into the
-program's common record, with provenance.
-
-132
-00:08:05.304 --> 00:08:09.331
+00:07:22.424 --> 00:07:26.451
 The rules, the drift engine and
 the evidence chain see one record,
 
-133
-00:08:09.331 --> 00:08:11.230
+131
+00:07:26.451 --> 00:07:28.350
 whichever vendor produced it.
 
-134
-00:08:11.230 --> 00:08:14.493
-Adapters hold no rules
+132
+00:07:28.350 --> 00:07:31.662
+And adapters hold no rules
 and make no decisions.
 
-135
-00:08:14.493 --> 00:08:18.117
-Adapters come in two kinds,
+133
+00:07:31.662 --> 00:07:34.612
+There are two kinds,
 kept in separate lists.
 
+134
+00:07:34.612 --> 00:07:36.887
+Conformance adapters are read-only.
+
+135
+00:07:36.887 --> 00:07:39.455
+Modernization adapters change state,
+
 136
-00:08:18.117 --> 00:08:21.942
-Conformance adapters are
-read-only and sit at L1.
+00:07:39.455 --> 00:07:43.226
+only on authorized plans, and
+with an approver by default.
 
 137
-00:08:21.942 --> 00:08:28.143
-Modernization adapters change state, only
-on authorized plans, at L3 by default.
-
-138
-00:08:28.143 --> 00:08:32.954
-Each declares one of five missions,
-and every one inherits four invariants.
-
-139
-00:08:32.954 --> 00:08:36.130
+00:07:43.226 --> 00:07:46.400
 Read-only comes first,
 and it has to be verified.
 
+138
+00:07:46.400 --> 00:07:48.478
+ScubaGear is read-only in purpose,
+
+139
+00:07:48.478 --> 00:07:52.411
+yet a Global Administrator always
+has the permissions it needs,
+
 140
-00:08:36.130 --> 00:08:40.241
-CISA's ScubaGear is read-only in
-purpose, yet its documentation
+00:07:52.411 --> 00:07:56.937
+so the program compares what an identity
+is granted with what it declares.
 
 141
-00:08:40.241 --> 00:08:44.818
-notes that a Global Administrator
-always has the permissions it needs.
-
-142
-00:08:44.818 --> 00:08:49.531
-So the program compares what an identity
-is actually granted with what it declares.
-
-143
-00:08:49.531 --> 00:08:51.367
+00:07:56.937 --> 00:07:58.775
 Lock-in doesn't disappear.
 
-144
-00:08:51.367 --> 00:08:56.750
-It moves to small, replaceable adapters
+142
+00:07:58.775 --> 00:08:03.850
+It moves to small, replaceable adapters,
 and to a record the agency owns.
 
-145
-00:08:57.500 --> 00:08:59.888
+143
+00:08:03.850 --> 00:08:05.810
+Next, who decides.
+
+144
+00:08:06.560 --> 00:08:08.948
 None of this machinery decides anything.
 
+145
+00:08:08.948 --> 00:08:12.306
+A drift finding asks a
+question: change the estate,
+
 146
-00:08:59.888 --> 00:09:05.550
-A drift finding asks: change the estate,
-change the record, or carry the difference?
+00:08:12.306 --> 00:08:15.173
+change the record, or
+carry the difference?
 
 147
-00:09:05.550 --> 00:09:10.313
+00:08:15.173 --> 00:08:19.935
 Only people can answer the last two, so
 the program names one decider for each.
 
 148
-00:09:10.313 --> 00:09:15.763
-The steward keeps the record: its protections,
-merge rights, checks and backups.
+00:08:19.935 --> 00:08:23.529
+The steward keeps the record,
+its protections and backups,
 
 149
-00:09:15.763 --> 00:09:21.275
-The steward doesn't decide what the facts
-mean; HR, application and data owners do.
+00:08:23.529 --> 00:08:27.273
+but doesn't decide what the facts
+mean; the business owners do.
 
 150
-00:09:21.275 --> 00:09:23.874
+00:08:27.273 --> 00:08:31.747
 The CISO decides control requirements,
+even when they're written as code.
 
 151
-00:09:23.874 --> 00:09:27.850
-even when they're written as code,
-and decides on drift evidence.
+00:08:31.747 --> 00:08:35.582
+The governance board is the change
+control body NIST calls for,
 
 152
-00:09:27.850 --> 00:09:32.875
-The governance board is the change
-control element NIST's CM-3 calls for.
+00:08:35.582 --> 00:08:40.448
+and it reviews rather than votes, so every
+decision keeps one accountable owner.
 
 153
-00:09:32.875 --> 00:09:36.168
-It meets every two weeks and
-reviews rather than votes,
+00:08:40.448 --> 00:08:44.239
+The authorizing official, the
+only one who can accept risk,
 
 154
-00:09:36.168 --> 00:09:38.875
-so every decision has
-one accountable owner.
+00:08:44.239 --> 00:08:49.373
+signs every open-ended gap and every
+class of change allowed to run unattended.
 
 155
-00:09:38.875 --> 00:09:43.193
-The authorizing official, the only
-official who can accept risk,
+00:08:49.373 --> 00:08:55.234
+A bounded exception, with an end date, is
+the CISO's, and none renews automatically.
 
 156
-00:09:43.193 --> 00:09:48.000
-signs every open-ended gap and every
-class of change allowed to run at L4.
+00:08:55.234 --> 00:08:58.078
+And because the repository
+is a federal record,
 
 157
-00:09:48.000 --> 00:09:52.314
-A bounded exception, with an end
-date and a compensating control,
+00:08:58.078 --> 00:09:01.722
+its history is never rewritten
+without the records officer.
 
 158
-00:09:52.314 --> 00:09:55.325
-is the CISO's, and none
-renews automatically.
+00:09:01.722 --> 00:09:03.350
+Next, tempo.
 
 159
-00:09:55.325 --> 00:10:00.259
-And the repository is a federal record:
-the records officer decides retention,
+00:09:04.100 --> 00:09:07.471
+A platform that detects
+perfectly but closes slowly
 
 160
-00:10:00.259 --> 00:10:04.040
-and history is never rewritten
-without that decision.
-
-161
-00:10:04.790 --> 00:10:08.168
-A platform that detects
-perfectly and closes slowly
-
-162
-00:10:08.168 --> 00:10:11.315
+00:09:07.471 --> 00:09:10.613
 produces an accurate list
 of things nobody fixed.
 
-163
-00:10:11.315 --> 00:10:13.040
+161
+00:09:10.613 --> 00:09:12.337
 Tempo keeps that list short.
 
+162
+00:09:12.337 --> 00:09:17.137
+The program sets a response window for
+each severity, and external clocks win,
+
+163
+00:09:17.137 --> 00:09:20.962
+like the vulnerability directive
+or CISA's incident notice.
+
 164
-00:10:13.040 --> 00:10:17.383
-The program declares a response
-window for each severity:
-
-165
-00:10:17.383 --> 00:10:21.003
-immediate for P1, then an
-hour, a day and three days.
-
-166
-00:10:21.003 --> 00:10:26.923
-External clocks win: a known exploited
-vulnerability runs on BOD 26-04,
-
-167
-00:10:26.923 --> 00:10:30.802
-and an incident runs on
-CISA's one-hour notice.
-
-168
-00:10:30.802 --> 00:10:33.674
+00:09:20.962 --> 00:09:23.813
 The usual ticket sends
 a person to a console,
 
-169
-00:10:33.674 --> 00:10:36.227
-and their reply of done is an assertion.
+165
+00:09:23.813 --> 00:09:26.663
+and their reply of done
+is just an assertion.
 
-170
-00:10:36.227 --> 00:10:40.336
+166
+00:09:26.663 --> 00:09:30.771
 The program's rule is that wherever
 a machine can reach the surface,
 
-171
-00:10:40.336 --> 00:10:42.353
+167
+00:09:30.771 --> 00:09:32.788
 the ticket authorizes a machine.
 
+168
+00:09:32.788 --> 00:09:37.477
+A person approves, and the platform
+executes from a versioned plan,
+
+169
+00:09:37.477 --> 00:09:40.888
+after a dry run, then re-reads
+the object to verify.
+
+170
+00:09:40.888 --> 00:09:44.612
+By default, a named approver
+releases each instance.
+
+171
+00:09:44.612 --> 00:09:49.589
+Only classes the authorizing official
+accepts in advance run on their own,
+
 172
-00:10:42.353 --> 00:10:47.091
-A person approves; the platform
-executes from a versioned plan under
+00:09:49.589 --> 00:09:52.399
+and some, like Conditional
+Access, never do.
 
 173
-00:10:47.091 --> 00:10:51.664
-a service identity, after a dry run,
-and re-reads the object to verify.
-
-174
-00:10:51.664 --> 00:10:54.665
-A class qualifies when
-it passes six tests.
-
-175
-00:10:54.665 --> 00:10:59.540
-At L3, the default, a named
-approver releases each instance.
-
-176
-00:10:59.540 --> 00:11:03.790
-At L4 the authorizing official
-accepts the whole class in advance.
-
-177
-00:11:03.790 --> 00:11:08.490
-Conditional Access and tenant-wide
-role changes stay at L3 permanently.
-
-178
-00:11:08.490 --> 00:11:11.876
+00:09:52.399 --> 00:09:55.786
 Where no machine can reach,
 the fallback is a declared,
 
-179
-00:11:11.876 --> 00:11:16.250
+174
+00:09:55.786 --> 00:09:59.788
 recorded privileged session,
 never a quiet trip to the console.
 
-180
-00:11:17.000 --> 00:11:21.638
-A platform that twenty agencies use is
+175
+00:09:59.788 --> 00:10:01.850
+Next, reciprocity.
+
+176
+00:10:02.600 --> 00:10:07.219
+A platform that twenty agencies use gets
 examined by twenty assessment teams,
 
-181
-00:11:21.638 --> 00:11:25.025
+177
+00:10:07.219 --> 00:10:10.488
 producing twenty snapshots
 at twenty different times.
 
-182
-00:11:25.025 --> 00:11:27.288
-Reciprocity is the alternative.
+178
+00:10:10.488 --> 00:10:15.376
+Reciprocity is the alternative: agencies
+accept each other's assessments.
 
-183
-00:11:27.288 --> 00:11:30.500
-NIST defines it as accepting
-each other's assessments.
-
-184
-00:11:30.500 --> 00:11:35.200
-Nothing in it lets one authorizing
+179
+00:10:15.376 --> 00:10:20.213
+But nothing in it lets one authorizing
 official accept risk for another agency.
 
+180
+00:10:20.213 --> 00:10:23.956
+NIST gives mechanisms for this,
+like an authorization to use,
+
+181
+00:10:23.956 --> 00:10:29.047
+where an agency accepts another's package
+and carries full responsibility for it,
+
+182
+00:10:29.047 --> 00:10:34.288
+or a joint authorization, where several
+officials accept one system's risk together.
+
+183
+00:10:34.288 --> 00:10:39.357
+For cloud services, OMB makes reuse
+the default: agencies presume a FedRAMP
+
+184
+00:10:39.357 --> 00:10:44.263
+package is adequate, but only while
+continuous monitoring maintains it.
+
 185
-00:11:35.200 --> 00:11:37.262
-NIST gives three mechanisms.
+00:10:44.263 --> 00:10:47.437
+And each agency still
+authorizes its own systems.
 
 186
-00:11:37.262 --> 00:11:41.208
-An authorization to use accepts
-another federal entity's package,
+00:10:47.437 --> 00:10:51.101
+So the program corrects its old
+single-authorization wording.
 
 187
-00:11:41.208 --> 00:11:43.863
-and the customer's
-official carries the same
+00:10:51.101 --> 00:10:56.712
+It's one package, and many decisions, with
+each agency signing for its own risk.
 
 188
-00:11:43.863 --> 00:11:47.450
-responsibility as one issuing
-an authorization to operate.
+00:10:56.712 --> 00:10:58.340
+Next, scale.
 
 189
-00:11:47.450 --> 00:11:52.237
-A joint authorization has several officials
-accept one system's risk together.
-
-190
-00:11:52.237 --> 00:11:56.391
-For cloud services, OMB's
-M-24-15 makes reuse the default:
-
-191
-00:11:56.391 --> 00:12:01.928
-agencies presume a FedRAMP package
-adequate, but only while continuous
-
-192
-00:12:01.928 --> 00:12:07.188
-monitoring maintains it, and asking
-for more needs a documented need.
-
-193
-00:12:07.188 --> 00:12:11.674
-FedRAMP is plain that each agency
-still authorizes its own systems.
-
-194
-00:12:11.674 --> 00:12:16.104
-Its 46 Key Security Indicators
-bind providers, not agencies;
-
-195
-00:12:16.104 --> 00:12:19.825
-agencies review each
-provider's quarterly report.
-
-196
-00:12:19.825 --> 00:12:24.244
-So the program's old single-authorization
-wording is corrected:
-
-197
-00:12:24.244 --> 00:12:29.030
-one package, many decisions, each
-agency signing for its own risk.
-
-198
-00:12:29.780 --> 00:12:32.280
+00:10:59.090 --> 00:11:01.590
 A real agency doesn't have one estate.
 
-199
-00:12:32.280 --> 00:12:35.392
+190
+00:11:01.590 --> 00:11:04.688
 It has hundreds of systems
-and several boundaries.
+and several boundaries,
 
-200
-00:12:35.392 --> 00:12:40.706
-NIST draws the line: each system's monitoring
-strategy follows an organization-wide
+191
+00:11:04.688 --> 00:11:09.852
+and NIST expects each system's monitoring
+to follow one organization-wide strategy.
 
-201
-00:12:40.706 --> 00:12:43.818
-one, approved by the senior
-accountable official
+192
+00:11:09.852 --> 00:11:12.300
+The program's scaling rule is simple:
 
-202
-00:12:43.818 --> 00:12:46.779
-for risk management, with
-minimum frequencies.
+193
+00:11:12.300 --> 00:11:15.565
+hold the definitions small,
+and let the uses grow.
 
-203
-00:12:46.779 --> 00:12:51.580
-The program's scaling rule is to hold the
-definitions small and let the uses grow.
+194
+00:11:15.565 --> 00:11:19.978
+The record's core, the drift classes
+and the severities stay fixed,
 
-204
-00:12:51.580 --> 00:12:56.942
-The record's core, the five drift classes
-and the four severities stay fixed,
+195
+00:11:19.978 --> 00:11:24.227
+so a top-severity finding means
+the same thing in every program.
 
-205
-00:12:56.942 --> 00:13:00.055
-so a P1 means the same
-thing in every program.
-
-206
-00:13:00.055 --> 00:13:04.480
+196
+00:11:24.227 --> 00:11:28.653
 Adapters, mappings and evidence
 grow, each validated on entry.
 
-207
-00:13:04.480 --> 00:13:07.195
+197
+00:11:28.653 --> 00:11:31.368
 Boundaries are recorded
 as governed objects,
 
-208
-00:13:07.195 --> 00:13:09.767
+198
+00:11:31.368 --> 00:11:33.940
 so findings cite the
 boundary they crossed.
 
-209
-00:13:09.767 --> 00:13:11.768
-Coverage is reported honestly.
+199
+00:11:33.940 --> 00:11:36.078
+And coverage is reported honestly.
 
-210
-00:13:11.768 --> 00:13:16.118
+200
+00:11:36.078 --> 00:11:40.428
 Every control is covered,
 partial, a gap, or out of scope.
 
-211
-00:13:16.118 --> 00:13:19.442
-Every partial or gap enters
+201
+00:11:40.428 --> 00:11:43.897
+Every partial or gap goes into
 a register with an owner,
 
-212
-00:13:19.442 --> 00:13:22.456
+202
+00:11:43.897 --> 00:11:46.903
 the evidence that will
 prove closure, and a date.
 
-213
-00:13:22.456 --> 00:13:26.049
-It closes by configuration,
-by a compensating control,
+203
+00:11:46.903 --> 00:11:48.789
+Closed items stay for audit.
 
-214
-00:13:26.049 --> 00:13:31.450
-or by the authorizing official's
-acceptance, and closed items stay for audit.
+204
+00:11:48.789 --> 00:11:50.990
+Let's close with the decisions.
 
-215
-00:13:32.200 --> 00:13:33.575
+205
+00:11:51.740 --> 00:11:53.115
 So, four decisions.
 
-216
-00:13:33.575 --> 00:13:37.136
+206
+00:11:53.115 --> 00:11:56.676
 Charter the governance board in
 writing and name the steward,
 
-217
-00:13:37.136 --> 00:13:39.650
+207
+00:11:56.676 --> 00:11:59.190
 with one decider for
 every kind of decision.
 
-218
-00:13:39.650 --> 00:13:44.936
+208
+00:11:59.190 --> 00:12:04.530
 Settle the record before the next migration:
 which system owns each fact, the rules,
 
-219
-00:13:44.936 --> 00:13:47.424
+209
+00:12:04.530 --> 00:12:07.042
 and the provenance each value carries,
 
-220
-00:13:47.424 --> 00:13:51.388
-so the migration changes who
-supplies a fact, not what it means.
+210
+00:12:07.042 --> 00:12:10.890
+so a migration changes who supplies
+a fact, not what it means.
 
-221
-00:13:51.388 --> 00:13:56.881
+211
+00:12:10.890 --> 00:12:15.201
 Set the tempo: response windows by
-severity, gated actuation at L3 by default,
+severity, an approver by default,
 
-222
-00:13:56.881 --> 00:14:02.025
+212
+00:12:15.201 --> 00:12:20.140
 and the authorizing official's signature
-on every class that runs at L4.
+on every class that runs on its own.
 
-223
-00:14:02.025 --> 00:14:04.507
+213
+00:12:20.140 --> 00:12:22.622
 And plan the move to
 ongoing authorization,
 
-224
-00:14:04.507 --> 00:14:08.850
+214
+00:12:22.622 --> 00:12:26.965
 on evidence the systems produce rather
 than attestations people assemble.
 
-225
-00:14:08.850 --> 00:14:11.050
+215
+00:12:26.965 --> 00:12:29.165
 The next step needs no procurement.
 
-226
-00:14:11.050 --> 00:14:14.864
+216
+00:12:29.165 --> 00:12:32.990
 Classify every control's
 coverage, open the gap register,
 
-227
-00:14:14.864 --> 00:14:20.138
-and record every drift finding in the same
-contract shape, however it was found.
+217
+00:12:32.990 --> 00:12:37.628
+and record every drift finding in
+the same shape, however it was found.
 
-228
-00:14:20.138 --> 00:14:22.012
+218
+00:12:37.628 --> 00:12:39.503
 A package describes one day.
 
-229
-00:14:22.012 --> 00:14:26.412
+219
+00:12:39.503 --> 00:12:43.902
 Governance that doesn't decay keeps
 proving itself every day after.
 
-230
-00:14:26.412 --> 00:14:32.263
-The Federal Modernization Workbook's Book
-13 has the detail, every claim footnoted.
+220
+00:12:43.902 --> 00:12:47.614
+Book 13 has the detail,
+every claim footnoted.
 
-231
-00:14:32.263 --> 00:14:33.090
+221
+00:12:47.614 --> 00:12:48.430
 Thank you.

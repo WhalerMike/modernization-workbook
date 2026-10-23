@@ -5,81 +5,69 @@ WEBVTT
 SD-WAN is the governor's first layer.
 
 2
-00:00:02.550 --> 00:00:08.032
-It splits traffic into a lean class, consensus,
-voice and sign-in, and a bulk class,
+00:00:02.550 --> 00:00:07.652
+It splits traffic into a lean class, like
+voice and sign-in, and a bulk class, like
 
 3
-00:00:08.032 --> 00:00:10.056
-backups, patches and re-syncs,
+00:00:07.652 --> 00:00:12.913
+backups and patches, so big transfers
+don't queue ahead of time-critical packets.
 
 4
-00:00:10.056 --> 00:00:15.200
-and keeps bulk transfers from queuing
-ahead of latency-critical packets.
+00:00:12.913 --> 00:00:17.066
+It also recovers wasted routing:
+Microsoft measured paths well
 
 5
-00:00:15.200 --> 00:00:19.951
-It recovers route inflation:
-Microsoft measured a median 78
+00:00:17.066 --> 00:00:20.750
+above the fiber floor, and SD-WAN
+can close much of that gap.
 
 6
-00:00:19.951 --> 00:00:25.462
-milliseconds from UK South to East
-US, against a fiber floor of about 62.
-
-7
-00:00:25.462 --> 00:00:28.919
-And it tightens the tail with
-forward error correction,
-
-8
-00:00:28.919 --> 00:00:31.324
-packet duplication and fast failover.
-
-9
-00:00:31.324 --> 00:00:34.238
+00:00:20.750 --> 00:00:23.663
 It reaches the floor;
 it never goes below it.
 
-10
-00:00:34.238 --> 00:00:37.472
-SASE sits above it: secure web gateway,
+7
+00:00:23.663 --> 00:00:28.926
+SASE sits on top, with web gateway,
+firewall and zero trust access.
 
-11
-00:00:37.472 --> 00:00:41.212
-CASB, firewall and zero
-trust network access.
+8
+00:00:28.926 --> 00:00:33.014
+CISA mentions SD-WAN as part
+of SASE but mandates neither,
 
-12
-00:00:41.212 --> 00:00:46.247
-CISA lists SD-WAN among SASE's
-networking tools, but mandates neither,
-
-13
-00:00:46.247 --> 00:00:51.112
+9
+00:00:33.014 --> 00:00:37.687
 and SD-WAN alone doesn't close the
-boundary, flow and malware controls.
+boundary and inspection controls.
 
-14
-00:00:51.112 --> 00:00:52.275
+10
+00:00:37.687 --> 00:00:38.851
 Two cautions.
 
-15
-00:00:52.275 --> 00:00:54.480
+11
+00:00:38.851 --> 00:00:41.030
 The enforcement point has a location,
 
-16
-00:00:54.480 --> 00:00:58.250
+12
+00:00:41.030 --> 00:00:45.038
 so a distant point of presence is
-a hairpin with a different name.
+just a hairpin with a different name.
 
-17
-00:00:58.250 --> 00:01:01.387
+13
+00:00:45.038 --> 00:00:48.090
 And FedRAMP status differs
 by offering, not by vendor,
 
-18
-00:01:01.387 --> 00:01:04.800
-so read the Marketplace when
-the requirement is written.
+14
+00:00:48.090 --> 00:00:51.350
+so check the Marketplace when
+you write the requirement.
+
+15
+00:00:51.350 --> 00:00:54.720
+Re-routing also breaks
+things, for known reasons.

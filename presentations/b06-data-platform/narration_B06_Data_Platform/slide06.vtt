@@ -1,78 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.838
-The logins themselves move to
-Entra principals, in parallel.
+00:00:00.050 --> 00:00:05.488
+The logins move to Entra principals, and
+they move in parallel, never in one jump.
 
 2
-00:00:03.838 --> 00:00:07.698
+00:00:05.488 --> 00:00:09.338
 People become Entra users,
 ideally granted through groups,
 
 3
-00:00:07.698 --> 00:00:11.637
-and they get phishing-resistant
+00:00:09.338 --> 00:00:13.425
+so they pick up phishing-resistant
 MFA and Conditional Access.
 
 4
-00:00:11.637 --> 00:00:16.455
-Groups become Entra group logins, which
-SQL Server records as type X, with
+00:00:13.425 --> 00:00:16.020
+Windows groups become Entra groups,
 
 5
-00:00:16.455 --> 00:00:19.426
-membership driven by
-HR attributes from the
+00:00:16.020 --> 00:00:19.825
+with membership driven by
+HR attributes from Book 03.
 
 6
-00:00:19.426 --> 00:00:22.237
-Federal Modernization Workbook's Book 03.
-
-7
-00:00:22.237 --> 00:00:25.926
+00:00:19.825 --> 00:00:23.513
 Applications become service
 principals and managed identities,
 
-8
-00:00:25.926 --> 00:00:30.351
+7
+00:00:23.513 --> 00:00:27.938
 and the book is clear that Conditional
 Access doesn't cover managed identities.
 
+8
+00:00:27.938 --> 00:00:29.726
+The parallel run is simple.
+
 9
-00:00:30.351 --> 00:00:32.650
-The migration is a parallel run.
+00:00:29.726 --> 00:00:34.250
+Create the Entra user beside the
+Windows user and copy its permissions.
 
 10
-00:00:32.650 --> 00:00:37.725
-Create the Entra user beside the Windows
-user and copy its roles and permissions.
-
-11
-00:00:37.725 --> 00:00:41.561
+00:00:34.250 --> 00:00:38.086
 Keep both until the audit shows
 no remaining Windows sessions,
 
-12
-00:00:41.561 --> 00:00:43.037
+11
+00:00:38.086 --> 00:00:39.562
 then disable the old one.
 
+12
+00:00:39.562 --> 00:00:42.861
+The old runbook had a
+one-step conversion shortcut,
+
 13
-00:00:43.037 --> 00:00:48.624
-Never convert in one step; and the old
-runbook's shortcut, ALTER USER with LOGIN,
+00:00:42.861 --> 00:00:47.025
+but it only works on Azure SQL
+Managed Instance, not on SQL Server.
 
 14
-00:00:48.624 --> 00:00:53.075
-only converts on Azure SQL Managed
-Instance, not on SQL Server.
+00:00:47.025 --> 00:00:51.178
+And one trap: when you change the
+instance's Entra administrator,
 
 15
-00:00:53.075 --> 00:00:57.973
-One trap: the instance's Entra
-administrator becomes sysadmin, and changing
+00:00:51.178 --> 00:00:54.312
+the old one stays sysadmin
+until a DBA removes it.
 
 16
-00:00:57.973 --> 00:01:02.690
-that administrator leaves the old
-login as sysadmin until a DBA drops it.
+00:00:54.312 --> 00:00:55.800
+So who does all this?

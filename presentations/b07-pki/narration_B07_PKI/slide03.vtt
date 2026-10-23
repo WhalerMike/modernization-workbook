@@ -15,65 +15,64 @@ First, public TLS lifetimes are
 shrinking on a fixed schedule.
 
 4
-00:00:10.375 --> 00:00:17.713
-Under the CA/Browser Forum's ballot
-SC-081v3, adopted in April 2025,
+00:00:10.375 --> 00:00:14.688
+The maximum fell to
+200 days in March 2026,
 
 5
-00:00:17.713 --> 00:00:25.187
-the maximum validity fell from 398
-days to 200 days on March 15, 2026.
+00:00:14.688 --> 00:00:20.650
+drops to 100 days in March 2027,
+and to 47 days in March 2029.
 
 6
-00:00:25.187 --> 00:00:33.376
-It drops to 100 days on March 15,
-2027, and to 47 days on March 15, 2029.
-
-7
-00:00:33.376 --> 00:00:37.876
+00:00:20.650 --> 00:00:25.075
 On the book's arithmetic, a thousand
 certificates means about seven
 
-8
-00:00:37.876 --> 00:00:41.975
-renewals every working day now,
+7
+00:00:25.075 --> 00:00:29.263
+renewals every working day today,
 and about thirty-one at 47 days.
 
+8
+00:00:29.263 --> 00:00:32.100
+Second, the rules for
+mapping certificates to
+
 9
-00:00:41.975 --> 00:00:46.125
-Second, mapping rules changed
-under certificates already in use.
+00:00:32.100 --> 00:00:35.387
+accounts changed under
+certificates already in use.
 
 10
-00:00:46.125 --> 00:00:53.541
-Under KB5014754, domain controllers
-moved to Full Enforcement on February 11,
+00:00:35.387 --> 00:00:40.550
+Domain controllers moved to full
+enforcement in 2025, with no way back.
 
 11
-00:00:53.541 --> 00:00:58.675
-2025, with no way back after
-the September 9, 2025 update.
-
-12
-00:00:58.675 --> 00:01:01.287
+00:00:40.550 --> 00:00:43.162
 Third, the algorithms have a horizon.
 
-13
-00:01:01.287 --> 00:01:06.333
-NIST's draft transition plan
-would deprecate RSA-2048
+12
+00:00:43.162 --> 00:00:47.892
+NIST's draft plan would
+deprecate RSA-2048 after
 
-14
-00:01:06.333 --> 00:01:11.938
-after 2030 and disallow RSA and
+13
+00:00:47.892 --> 00:00:53.213
+2030 and disallow RSA and
 ECDSA signatures after 2035.
 
+14
+00:00:53.213 --> 00:00:56.335
+Put together, manual
+renewal can't keep up,
+
 15
-00:01:11.938 --> 00:01:15.226
-So manual lifecycle
-management can't keep up,
+00:00:56.335 --> 00:00:59.550
+so the move off AD CS
+runs as its own program.
 
 16
-00:01:15.226 --> 00:01:18.480
-and the move off AD CS
-runs as its own program.
+00:00:59.550 --> 00:01:02.090
+First, what does AD CS hold up?

@@ -1,78 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.725
-What's the structure underneath?
+00:00:00.050 --> 00:00:04.000
+Underneath sit two structures:
+privilege and applications.
 
 2
-00:00:01.725 --> 00:00:04.350
-Two parts: privilege and applications.
+00:00:04.000 --> 00:00:07.743
+For privilege, use the
+least-privileged role for each task,
 
 3
-00:00:04.350 --> 00:00:08.311
-For privilege: use the least-privileged
-built-in role for each task;
+00:00:07.743 --> 00:00:12.500
+and keep fewer than five Global
+Administrators, as Microsoft recommends.
 
 4
-00:00:08.311 --> 00:00:12.488
-keep fewer than five Global
-Administrators, as Microsoft recommends;
+00:00:12.500 --> 00:00:17.342
+Use role-assignable groups, and tier
+everything along Microsoft's enterprise access
 
 5
-00:00:12.488 --> 00:00:14.145
-use role-assignable groups,
+00:00:17.342 --> 00:00:21.912
+model, which builds on the old Active
+Directory tiers rather than replacing them.
 
 6
-00:00:14.145 --> 00:00:18.898
-which take assigned membership only and
-are limited to five hundred per tenant;
+00:00:21.912 --> 00:00:25.932
+For applications, the surprise is
+that app owners hold real admin
 
 7
-00:00:18.898 --> 00:00:22.716
-and tier everything along
-Microsoft's enterprise access model,
-
-8
-00:00:22.716 --> 00:00:27.325
-which builds on the old Active Directory
-tier model rather than replacing it.
-
-9
-00:00:27.325 --> 00:00:31.587
-For applications: application
-owners actually hold administrator
-
-10
-00:00:31.587 --> 00:00:35.850
+00:00:25.932 --> 00:00:30.175
 rights over their app, including
 adding a credential, so keep them few.
 
-11
-00:00:35.850 --> 00:00:38.587
+8
+00:00:30.175 --> 00:00:33.033
 Admin consent goes through
-a governed workflow.
+a governed workflow,
 
-12
-00:00:38.587 --> 00:00:42.896
-Applications authenticate with
-certificates or federated credentials
+9
+00:00:33.033 --> 00:00:38.250
+and apps authenticate with certificates or
+federated credentials instead of secrets.
 
-13
-00:00:42.896 --> 00:00:46.649
-rather than secrets, and Azure
-workloads use managed identities.
-
-14
-00:00:46.649 --> 00:00:50.020
-What people get wrong:
+10
+00:00:38.250 --> 00:00:42.057
+And here's what people get wrong:
 consent grants never expire,
 
-15
-00:00:50.020 --> 00:00:53.550
-and revoking one leaves
-already-issued tokens valid.
+11
+00:00:42.057 --> 00:00:45.787
+and revoking one leaves tokens
+already issued still valid.
 
-16
-00:00:53.550 --> 00:00:57.500
+12
+00:00:45.787 --> 00:00:49.688
 So application access needs the
 same review discipline as people.
+
+13
+00:00:49.688 --> 00:00:51.340
+Next, who decides.

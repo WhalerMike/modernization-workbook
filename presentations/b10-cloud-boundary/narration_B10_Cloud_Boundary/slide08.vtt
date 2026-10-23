@@ -1,83 +1,67 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.387
-Chapter 06 makes the
-address plan the join key.
+00:00:00.050 --> 00:00:04.475
+Chapter 06 makes the address plan
+the join key for the evidence.
 
 2
-00:00:03.387 --> 00:00:07.514
-A scan finds what answered; the
-IPAM records what was allocated,
+00:00:04.475 --> 00:00:08.525
+A scan tells you what answered; the
+IPAM tells you what was allocated.
 
 3
-00:00:07.514 --> 00:00:10.188
-so every inventory reconciles against it.
+00:00:08.525 --> 00:00:12.035
+So every inventory reconciles against it,
 
 4
-00:00:10.188 --> 00:00:15.189
-BOD 23-01 already asks for
-automated discovery every
+00:00:12.035 --> 00:00:17.650
+and BOD 23-01 already asks for
+automated discovery every seven days.
 
 5
-00:00:15.189 --> 00:00:19.963
-7 days across the entire
-IPv4 space the agency uses.
-
-6
-00:00:19.963 --> 00:00:23.337
-In Azure the enterprise
+00:00:17.650 --> 00:00:21.225
+In Azure, the enterprise
 IPAM stays the authority.
 
+6
+00:00:21.225 --> 00:00:26.079
+Reserve the block there first, mirror
+it into Virtual Network Manager pools,
+
 7
-00:00:23.337 --> 00:00:25.125
-Reserve the block there first.
+00:00:26.079 --> 00:00:30.316
+then use policy to deny any virtual
+network without an allocation,
 
 8
-00:00:25.125 --> 00:00:28.158
-Mirror it into Virtual
-Network Manager pools,
-
-9
-00:00:28.158 --> 00:00:31.350
-entering ranges used
-elsewhere as static CIDRs.
-
-10
-00:00:31.350 --> 00:00:35.225
-Then assign an Azure Policy
-that denies any virtual network
-
-11
-00:00:35.225 --> 00:00:38.712
-without a pool allocation,
+00:00:30.316 --> 00:00:32.088
 and reconcile by discovery.
 
-12
-00:00:38.712 --> 00:00:43.681
-Virtual Network Manager isn't named in
-Microsoft's FedRAMP audit-scope tables,
+9
+00:00:32.088 --> 00:00:36.630
+Virtual Network Manager isn't named
+in Microsoft's FedRAMP audit scope,
 
-13
-00:00:43.681 --> 00:00:47.274
+10
+00:00:36.630 --> 00:00:40.249
 so record it as a dependency
 until coverage is confirmed.
 
-14
-00:00:47.274 --> 00:00:52.087
-Build it as five layered modules,
+11
+00:00:40.249 --> 00:00:45.650
+The book builds all this as layered modules,
 each writing its state as evidence.
 
-15
-00:00:52.087 --> 00:00:54.262
-And treat outside inputs as code.
+12
+00:00:45.650 --> 00:00:48.628
+And it treats outside inputs as code too,
 
-16
-00:00:54.262 --> 00:01:00.428
-There's no separate GCC endpoint list: a
-GCC tenant uses the Worldwide instance,
+13
+00:00:48.628 --> 00:00:53.050
+like the monthly Microsoft
+endpoint list a GCC tenant uses.
 
-17
-00:01:00.428 --> 00:01:04.660
-updated monthly, with 30
-days' notice of new endpoints.
+14
+00:00:53.050 --> 00:00:54.700
+Next, the front door.

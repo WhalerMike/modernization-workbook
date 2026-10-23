@@ -1,75 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.175
+00:00:00.050 --> 00:00:04.905
 The compliance track is for the people
 who read evidence rather than build it:
 
 2
-00:00:05.175 --> 00:00:09.900
-I S S Os, compliance staff, control
-assessors and authorizing officials.
+00:00:04.905 --> 00:00:08.850
+ISSOs, compliance staff, assessors
+and authorizing officials.
 
 3
-00:00:09.900 --> 00:00:12.975
-It teaches one skill
-above the others, tracing.
+00:00:08.850 --> 00:00:11.675
+It teaches one skill above all, tracing.
 
 4
-00:00:12.975 --> 00:00:17.466
+00:00:11.675 --> 00:00:16.118
 Given a control, name the mechanism
 that closes it, the book that built it,
 
 5
-00:00:17.466 --> 00:00:22.262
-the record it emits and where that record
-sits in the authorization package.
+00:00:16.118 --> 00:00:20.863
+the record it emits, and where that
+record sits in the authorization package.
 
 6
-00:00:22.262 --> 00:00:26.549
-Given a record, work back to its
-control and say whether it's current.
+00:00:20.863 --> 00:00:25.413
+Given a record, work back to its control
+and say whether it's still current.
 
 7
-00:00:26.549 --> 00:00:29.481
-The orientation module carries four ideas:
+00:00:25.413 --> 00:00:30.285
+Orientation covers the essentials,
+like the Risk Management Framework,
 
 8
-00:00:29.481 --> 00:00:33.878
-the Risk Management Framework's
-seven steps; who owes which proof,
+00:00:30.285 --> 00:00:35.563
+who owes which proof, and why Moderate and
+FedRAMP's Class C are two facts, not one.
 
 9
-00:00:33.878 --> 00:00:38.031
-with only the authorizing
-official accepting residual risk;
+00:00:35.563 --> 00:00:40.250
+Then the modules follow the program's evidence
+areas, and each teaches a discipline.
 
 10
-00:00:38.031 --> 00:00:41.369
-Moderate and FedRAMP's Class
-C as two facts, not one;
+00:00:40.250 --> 00:00:43.706
+For example, a policy
+screenshot can't show a sign-in
 
 11
-00:00:41.369 --> 00:00:46.825
-and FedRAMP's forty-six key security
-indicators binding providers, not agencies.
+00:00:43.706 --> 00:00:47.162
+was phishing-resistant; only
+the sign-in record can.
 
 12
-00:00:46.825 --> 00:00:52.050
-Eight modules then follow the program's
-evidence areas, from identity to training.
-
-13
-00:00:52.050 --> 00:00:55.897
-Each one teaches a discipline:
-a policy screenshot can't show
-
-14
-00:00:55.897 --> 00:00:59.975
-that a sign-in was phishing-resistant;
-only the sign-in record can.
-
-15
-00:00:59.975 --> 00:01:04.030
+00:00:47.162 --> 00:00:51.150
 The capstone is a continuous-monitoring
 narrative for one system.
+
+13
+00:00:51.150 --> 00:00:52.850
+Next, the builders.

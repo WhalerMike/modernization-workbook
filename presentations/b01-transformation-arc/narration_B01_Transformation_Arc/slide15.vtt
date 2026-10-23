@@ -1,79 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.350
-Chapter 12 sequences everything as an
-illustrative fifty-two-week program: seven
+00:00:00.050 --> 00:00:04.973
+Chapter 12 puts it all in sequence: an
+illustrative fifty-two-week program,
 
 2
-00:00:05.350 --> 00:00:10.650
-phases, from pre-flight to steady state,
-with five workstreams running in parallel.
+00:00:04.973 --> 00:00:10.300
+seven phases from pre-flight to steady
+state, with five workstreams in parallel.
 
 3
-00:00:10.650 --> 00:00:13.730
+00:00:10.300 --> 00:00:13.574
 Large federal estates
-typically run multi-year;
+usually take several years;
 
 4
-00:00:13.730 --> 00:00:16.887
+00:00:13.574 --> 00:00:16.537
 the weeks are a sequencing
-model, not a commitment.
+model, not a promise.
 
 5
-00:00:16.887 --> 00:00:21.794
-A phase opens only when the last gate
-clears, and gates read from data:
+00:00:16.537 --> 00:00:21.338
+A phase opens only when the previous
+gate clears, and gates read from data.
 
 6
-00:00:21.794 --> 00:00:25.737
-"zero drift for fourteen days"
+00:00:21.338 --> 00:00:25.637
+“Zero drift for fourteen days”
 is a query, not a signature.
 
 7
-00:00:25.737 --> 00:00:27.865
-The steward clears most gates;
+00:00:25.637 --> 00:00:30.537
+Underneath it all is one structural
+move: separate truth from enforcement.
 
 8
-00:00:27.865 --> 00:00:32.800
-the sponsor and CIO sign the one that
-says Active Directory is retired.
+00:00:30.537 --> 00:00:34.561
+A governance layer holds and
+reconciles the authoritative state,
 
 9
-00:00:32.800 --> 00:00:37.375
-Under it all is one structural move:
-separate truth from enforcement.
+00:00:34.561 --> 00:00:38.876
+while the identity, network and device
+platforms enforce it at runtime.
 
 10
-00:00:37.375 --> 00:00:41.232
-A governance layer holds and
-reconciles authoritative state,
+00:00:38.876 --> 00:00:41.013
+And read one clock carefully:
 
 11
-00:00:41.232 --> 00:00:45.237
-while identity, network and device
-platforms enforce at runtime.
+00:00:41.013 --> 00:00:45.200
+FedRAMP's 2027 date is about
+certifying cloud providers.
 
 12
-00:00:45.237 --> 00:00:50.427
-Five principles follow: one authoritative
-source, application-aware networking,
-
-13
-00:00:50.427 --> 00:00:55.312
-token-based identity, governing actively,
-and fewer synchronous round trips.
-
-14
-00:00:55.312 --> 00:00:57.396
-And read one clock correctly:
-
-15
-00:00:57.396 --> 00:01:01.737
-FedRAMP's 2027 date governs
-cloud providers' certification.
-
-16
-00:01:01.737 --> 00:01:04.750
+00:00:45.200 --> 00:00:48.150
 The agency still authorizes
 its own systems.
+
+13
+00:00:48.150 --> 00:00:50.060
+That brings us to the decisions.

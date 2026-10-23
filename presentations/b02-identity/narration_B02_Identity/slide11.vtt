@@ -1,91 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.275
-So, four asks.
+00:00:00.050 --> 00:00:01.000
+Four asks.
 
 2
-00:00:01.275 --> 00:00:05.452
-Name the owners: the sponsor, the
-CISO, the authorizing official,
-
-3
-00:00:05.452 --> 00:00:10.575
-the identity engineering lead, and someone
+00:00:01.000 --> 00:00:05.263
+Name the owners, including someone
 who owns the gaps between the tools.
 
-4
-00:00:10.575 --> 00:00:12.675
+3
+00:00:05.263 --> 00:00:07.363
 Start read-only discovery now.
 
+4
+00:00:07.363 --> 00:00:09.696
+It needs no elevated access to begin,
+
 5
-00:00:12.675 --> 00:00:16.160
-It needs no elevated access
-to begin, and the request for
+00:00:09.696 --> 00:00:14.287
+so any request for more can follow
+the evidence instead of coming first.
 
 6
-00:00:16.160 --> 00:00:20.175
-more access then follows the
-evidence rather than preceding it.
+00:00:14.287 --> 00:00:19.839
+Put the dates on the plan: Connect Sync
+has to be upgraded by April 7, 2027,
 
 7
-00:00:20.175 --> 00:00:21.663
-Put the dates on the plan.
+00:00:19.839 --> 00:00:26.349
+and NTLM and legacy authentication should
+come off wave by wave, not in one weekend.
 
 8
-00:00:21.663 --> 00:00:26.126
-Connect Sync has to be
-upgraded by April 7, 2027.
-
-9
-00:00:26.126 --> 00:00:32.537
-NTLM and legacy authentication should come
-off wave by wave, not in one weekend.
-
-10
-00:00:32.537 --> 00:00:35.770
+00:00:26.349 --> 00:00:29.582
 And agree what done means:
 every control backed by
 
-11
-00:00:35.770 --> 00:00:39.238
+9
+00:00:29.582 --> 00:00:33.050
 evidence an assessor can read,
 not a status in a ticket.
 
-12
-00:00:39.238 --> 00:00:43.500
-Identity matters because it is now
-where every access decision is made.
+10
+00:00:33.050 --> 00:00:37.350
+Identity matters because it's now
+where every access decision gets made.
 
-13
-00:00:43.500 --> 00:00:47.536
+11
+00:00:37.350 --> 00:00:41.534
 Getting it right once, while the
 platform is being rebuilt anyway,
 
-14
-00:00:47.536 --> 00:00:50.675
-is far cheaper than rebuilding
+12
+00:00:41.534 --> 00:00:44.788
+costs far less than rebuilding
 the same gaps twice.
 
+13
+00:00:44.788 --> 00:00:49.354
+Book 02 has the full argument and
+the runbooks, every claim footnoted,
+
+14
+00:00:49.354 --> 00:00:53.600
+and Book 03 picks up where the
+directory's facts should come from.
+
 15
-00:00:50.675 --> 00:00:54.311
-The Federal Modernization
-Workbook's Book 02 has the full
-
-16
-00:00:54.311 --> 00:00:58.325
-argument and the runbooks, with
-every external claim footnoted.
-
-17
-00:00:58.325 --> 00:01:00.226
-Book 03, HR-Driven Identity,
-
-18
-00:01:00.226 --> 00:01:04.375
-picks up where the facts in
-the directory should come from.
-
-19
-00:01:04.375 --> 00:01:05.210
+00:00:53.600 --> 00:00:54.430
 Thank you.

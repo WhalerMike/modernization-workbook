@@ -1,86 +1,76 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.738
-What does the policy
-engine actually evaluate?
+00:00:00.050 --> 00:00:02.762
+So what does Conditional
+Access actually evaluate?
 
 2
-00:00:02.738 --> 00:00:07.367
-Signals first: the user, their
-groups and roles; the device;
+00:00:02.762 --> 00:00:06.696
+First, signals: who the user
+is and what roles they hold,
 
 3
-00:00:07.367 --> 00:00:11.799
-the application; the location;
-and sign-in and user risk.
+00:00:06.696 --> 00:00:11.075
+their device, the application,
+the location, and sign-in risk.
 
 4
-00:00:11.799 --> 00:00:15.825
+00:00:11.075 --> 00:00:15.100
 Conditions decide which policies
 apply to this particular request.
 
 5
-00:00:15.825 --> 00:00:21.476
-Then controls: block, or grant with requirements
-such as multifactor authentication,
+00:00:15.100 --> 00:00:18.891
+Then controls: block, or
+allow with requirements,
 
 6
-00:00:21.476 --> 00:00:25.216
-a specific authentication
-strength, a compliant device,
+00:00:18.891 --> 00:00:23.250
+like MFA, a compliant device
+or an app protection policy.
 
 7
-00:00:25.216 --> 00:00:28.400
-an app protection policy,
-or acceptance of terms.
+00:00:23.250 --> 00:00:26.875
+And session controls, such as
+how often to sign in again.
 
 8
-00:00:28.400 --> 00:00:32.000
-And session controls, like
-how often to re-authenticate.
-
-9
-00:00:32.000 --> 00:00:34.700
+00:00:26.875 --> 00:00:29.575
 Three operating rules
 run through the library.
 
-10
-00:00:34.700 --> 00:00:37.863
+9
+00:00:29.575 --> 00:00:32.503
 Every policy runs in
 report-only mode first,
 
+10
+00:00:32.503 --> 00:00:35.838
+so you see its impact before
+it enforces anything.
+
 11
-00:00:37.863 --> 00:00:41.025
-so its impact is visible
-before it enforces.
+00:00:35.838 --> 00:00:39.081
+Policies target personas,
+like admins, staff,
 
 12
-00:00:41.025 --> 00:00:44.587
-Policies target personas,
-admins, internal staff,
-
-13
-00:00:44.587 --> 00:00:48.150
+00:00:39.081 --> 00:00:42.675
 guests and workload
 identities, not individuals.
 
+13
+00:00:42.675 --> 00:00:45.938
+And deleted policies can be
+recovered for thirty days.
+
 14
-00:00:48.150 --> 00:00:52.914
-And deletion isn't final: deleted
-policies are recoverable for thirty days,
+00:00:45.938 --> 00:00:51.913
+One recent change is worth knowing: the
+approved client app grant went read-only
 
 15
-00:00:52.914 --> 00:00:56.525
-and a tenant can hold up to
-two hundred and forty policies.
-
-16
-00:00:56.525 --> 00:01:02.025
-One recent platform change matters:
-the approved client app grant became
-
-17
-00:01:02.025 --> 00:01:08.040
-read-only on June 30, 2026, so mobile access
+00:00:51.913 --> 00:00:57.220
+on June 30, 2026, so mobile access
 now relies on app protection policies.

@@ -6,70 +6,63 @@ Chapter 04 reads GCC from
 Microsoft's own documents.
 
 2
-00:00:04.450 --> 00:00:08.341
-It's the worldwide service with
-a published list of exclusions,
+00:00:04.450 --> 00:00:09.550
+GCC is the worldwide service, minus
+a published list of exclusions.
 
 3
-00:00:08.341 --> 00:00:09.913
-and the list isn't a ladder.
+00:00:09.550 --> 00:00:11.350
+And that list isn't a ladder.
 
 4
-00:00:09.913 --> 00:00:16.017
-Network connectivity in the admin
-center, Adoption Score, the Office 365
+00:00:11.350 --> 00:00:17.589
+Some features, like network connectivity
+in the admin center and Adoption Score,
 
 5
-00:00:16.017 --> 00:00:22.224
-CDN and informed network routing are
-missing in GCC, GCC High and DoD alike.
+00:00:17.589 --> 00:00:20.662
+are missing in GCC,
+GCC High and DoD alike.
 
 6
-00:00:22.224 --> 00:00:27.037
-Windows release health and Excel Office
-Scripts reach GCC and stop there.
+00:00:20.662 --> 00:00:23.313
+Others reach GCC and stop there.
 
 7
-00:00:27.037 --> 00:00:31.239
-The largest documented loss is
-the network connectivity layer:
+00:00:23.313 --> 00:00:28.055
+The biggest documented loss is the
+network connectivity layer: a daily score
 
 8
-00:00:31.239 --> 00:00:36.550
-a daily assessment from 0 to 100 for each
-location, with 80 as the healthy baseline,
+00:00:28.055 --> 00:00:32.724
+for each location, with performance
+attributed to named network providers.
 
 9
-00:00:36.550 --> 00:00:40.276
-and performance attributed
-to named network providers.
+00:00:32.724 --> 00:00:36.562
+A GCC agency has to fund
+its own measurement instead.
 
 10
-00:00:40.276 --> 00:00:44.075
-A GCC agency funds its
-own measurement instead.
+00:00:36.562 --> 00:00:41.201
+On the Marketplace, the GCC package
+is certified at Class C, Moderate,
 
 11
-00:00:44.075 --> 00:00:50.627
-On the Marketplace, read October
-21, 2026, the GCC package, MSO365MT,
+00:00:41.201 --> 00:00:45.425
+and a second package with the same
+name is in process at Class D.
 
 12
-00:00:50.627 --> 00:00:57.300
-is FedRAMP Certified at Class C,
-Moderate, with 100 authorizations.
+00:00:45.425 --> 00:00:50.675
+But GCC High is already Class D, and
+it still lacks network connectivity.
 
 13
-00:00:57.300 --> 00:01:01.500
-A second package with the identical
-name is In Process at Class D.
+00:00:50.675 --> 00:00:53.963
+A higher class doesn't bring
+back an excluded feature.
 
 14
-00:01:01.500 --> 00:01:06.638
-But GCC High is already Class D, and
-still lacks network connectivity.
-
-15
-00:01:06.638 --> 00:01:09.860
-A higher class doesn't
-restore an excluded feature.
+00:00:53.963 --> 00:00:55.800
+Next, the landing zone.

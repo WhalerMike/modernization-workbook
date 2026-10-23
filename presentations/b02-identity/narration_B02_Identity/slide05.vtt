@@ -11,75 +11,58 @@ Most migration plans
 count users and groups.
 
 3
-00:00:06.112 --> 00:00:09.562
-But Active Directory has also
-been holding the estate together.
+00:00:06.112 --> 00:00:11.534
+But Active Directory has also been
+holding the rest of the estate together:
 
 4
-00:00:09.562 --> 00:00:15.849
-DNS, DHCP and IP address management,
-with the zones applications depend on.
+00:00:11.534 --> 00:00:17.218
+DNS and DHCP, the certificate services
+behind smart cards, Wi-Fi, VPN and servers,
 
 5
-00:00:15.849 --> 00:00:21.137
-Certificate Services, behind smart
-cards, Wi-Fi, VPN and servers.
+00:00:17.218 --> 00:00:20.803
+RADIUS sign-in, applications
+that bind over LDAP,
 
 6
-00:00:21.137 --> 00:00:25.662
-RADIUS through the Network Policy
-Server for Wi-Fi and VPN sign-in.
+00:00:20.803 --> 00:00:26.050
+the sync engine itself, domain-joined
+devices, time, and file permissions.
 
 7
-00:00:25.662 --> 00:00:29.125
-Applications that bind to
-the directory over LDAP.
+00:00:26.050 --> 00:00:28.050
+You don't need to memorize the list.
 
 8
-00:00:29.125 --> 00:00:32.625
-The sync engine itself,
-which is a tier zero asset.
+00:00:28.050 --> 00:00:32.188
+The point is that none of it moves
+just because users sync to the cloud.
 
 9
-00:00:32.625 --> 00:00:36.325
-Devices that are domain-joined
-and governed by Group Policy.
+00:00:32.188 --> 00:00:36.713
+Some interim steps, like the
+NPS extension for Entra MFA,
 
 10
-00:00:36.325 --> 00:00:39.988
-Time, because Kerberos depends
-on synchronized clocks.
+00:00:36.713 --> 00:00:39.763
+are useful, but they still depend on AD.
 
 11
-00:00:39.988 --> 00:00:43.837
-And file services, whose
-permissions are bound to AD groups.
+00:00:39.763 --> 00:00:43.576
+So the program gives each
+dependency its own adapter:
 
 12
-00:00:43.837 --> 00:00:47.262
-None of those move just because
-users sync to the cloud.
+00:00:43.576 --> 00:00:47.476
+an owner, a target, a cutover
+test and a validation check.
 
 13
-00:00:47.262 --> 00:00:51.798
-Some, like the NPS extension for
-Entra multifactor authentication,
+00:00:47.476 --> 00:00:50.850
+And they retire in priority
+order, not all at once.
 
 14
-00:00:51.798 --> 00:00:55.038
-are useful interim steps
-that still depend on AD.
-
-15
-00:00:55.038 --> 00:01:00.076
-The program's answer is an adapter for
-each dependency: an owner, a target, a
-
-16
-00:01:00.076 --> 00:01:02.595
-cutover test and a validation check,
-
-17
-00:01:02.595 --> 00:01:06.100
-retired in priority order
-rather than all at once.
+00:00:50.850 --> 00:00:52.440
+Next, delegation.

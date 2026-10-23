@@ -5,85 +5,73 @@ WEBVTT
 Who.
 
 2
-00:00:00.650 --> 00:00:05.029
-A directory migration fails more
-often on ownership than on technology,
+00:00:00.650 --> 00:00:05.075
+Directory migrations fail more often
+on ownership than on technology,
 
 3
-00:00:05.029 --> 00:00:08.387
+00:00:05.075 --> 00:00:08.525
 so the book separates who
 decides from who does the work.
 
 4
-00:00:08.387 --> 00:00:14.112
-Deciding: the CIO and executive sponsor
-set scope, funding and sequence.
+00:00:08.525 --> 00:00:12.408
+Deciding: the CIO and sponsor
+set scope, funding and sequence;
 
 5
-00:00:14.112 --> 00:00:17.813
-The CISO sets the control
-requirements the target has to meet.
+00:00:12.408 --> 00:00:15.048
+the CISO sets the control requirements;
 
 6
-00:00:17.813 --> 00:00:22.507
-And the authorizing official accepts
-any risk the program proposes to carry
+00:00:15.048 --> 00:00:19.396
+and the authorizing official
+accepts any risk the program carries
 
 7
-00:00:22.507 --> 00:00:26.762
-instead of remove, such as a service
+00:00:19.396 --> 00:00:23.900
+instead of removing, like a service
 account that can't be converted yet.
 
 8
-00:00:26.762 --> 00:00:31.857
+00:00:23.900 --> 00:00:28.085
 Building and running: identity
-engineering designs and builds the target:
+engineering builds the target,
 
 9
-00:00:31.857 --> 00:00:36.787
-sync, authentication, Conditional
-Access, PIM and administrative units.
+00:00:28.085 --> 00:00:33.558
+from sync and authentication to PIM and
+administrative units; AD administrators
 
 10
-00:00:36.787 --> 00:00:41.501
-AD administrators clean the source
-and, at the end, retire it.
+00:00:33.558 --> 00:00:38.950
+clean up the source and eventually retire
+it, and the ISSO assembles the evidence.
 
 11
-00:00:41.501 --> 00:00:46.025
-The ISSO assembles the evidence
-and tracks findings to closure.
+00:00:38.950 --> 00:00:42.144
+Then come the people
+who supply and accept:
 
 12
-00:00:46.025 --> 00:00:50.714
-Supplying and accepting: HR supplies
-the facts the directory can't
+00:00:42.144 --> 00:00:45.612
+HR, application owners,
+the help desk and users.
 
 13
-00:00:50.714 --> 00:00:55.488
-verify on its own, which is the
-subject of the HR-driven identity book.
+00:00:45.612 --> 00:00:47.662
+But one owner is usually missing.
 
 14
-00:00:55.488 --> 00:00:59.599
-Application owners accept test
-results and cutover windows.
+00:00:47.662 --> 00:00:50.638
+Microsoft's tools each own
+a slice of the picture,
 
 15
-00:00:59.599 --> 00:01:04.863
-And the help desk and users carry
-recovery, registration and wave readiness.
+00:00:50.638 --> 00:00:55.025
+and nobody owns the gaps between them
+unless the program names someone.
 
 16
-00:01:04.863 --> 00:01:06.637
-One owner is usually missing.
-
-17
-00:01:06.637 --> 00:01:10.426
-Microsoft's native tools each
-own a slice of the picture.
-
-18
-00:01:10.426 --> 00:01:14.400
-Nobody owns the gaps between them
-unless the program names someone.
+00:00:55.025 --> 00:00:56.710
+Next, how it's done.

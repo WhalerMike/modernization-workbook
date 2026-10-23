@@ -1,0 +1,72 @@
+[
+ {
+  "slide": 1,
+  "title": "Why Is Zero Trust a Whole-Agency Property, Not a Product?",
+  "say": "Welcome. This briefing is Book 11 of the Federal Modernization Workbook, Zero Trust and Assessment. It's about how an agency measures its Zero Trust posture across every estate it runs, and then turns what the tools find into a real program. We'll take four questions. Why is Zero Trust a whole-agency property? What do the mandates and tools actually cover? Who owns the posture? And how do you assess it? If you keep one idea, keep this one: unify first, assess second, and treat every tool as evidence, never as the verdict. The slides and notes carry every detail and source; I'll stick to what matters. Let's start with why one score has to cover the whole agency."
+ },
+ {
+  "slide": 2,
+  "title": "Three reports stapled together are not one score",
+  "say": "Picture the usual assessment calendar. The network team reviews the boundary, keyed by address. The cloud team runs each provider's posture scan, keyed by resource tags. The virtualization team works a hypervisor checklist, keyed by whatever the management plane calls a machine. At year end, someone puts the three reports behind one cover page and calls it the agency's maturity. It's really three partial assessments with one title. And the failure is architectural. One database server, running as a virtual machine, on an agency subnet, backing up to a cloud bucket, can show up as three unrelated objects scored by three tools. The guidance describes the enterprise, not a tenant. So unify first, then assess, and defend that unified plane, because it becomes a complete map of the attack surface. Next, two incidents that show why."
+ },
+ {
+  "slide": 3,
+  "title": "Evidence, not verdicts: failures beneath any one tool",
+  "say": "Two documented incidents show that the whole-agency view is a security property, not a reporting preference. In May and June 2023, an actor used a Microsoft consumer signing key to forge tokens and read Exchange Online mail across many organizations, in some cases for weeks. The tokens were valid to every system that checked them. What caught it was a custom alert one federal department had built on mailbox logs it paid for. The second sits beneath the guest. ESXiArgs compromised thousands of ESXi servers, and a later flaw handed full hypervisor control to anyone in a directory group with the right name. Even one vendor's two tools don't add up. ScubaGear is CISA's, the Zero Trust Assessment is Microsoft's, and neither sees past Microsoft's platform. Tools are evidence inputs. The agency owns the verdict. Next, the principles behind that."
+ },
+ {
+  "slide": 4,
+  "title": "Five governance principles, none of them a purchase",
+  "say": "Why do so many programs stall at Initial or low Advanced? Because they read CISA's maturity model as a five-pillar shopping list. But the model runs those pillars through cross-cutting capabilities, and the one programs fund least is Governance: defining and enforcing policy within and across the pillars. Its Traditional stage reads like a failure list, with siloed enforcement and little correlation of logs. The book answers with five principles, and none of them is a purchase. Identity is the anchor, but it isn't self-authenticating, so sessions are re-evaluated and the identity plane is defended. Privileged identity gets controls of its own, with no standing admin assignments outside tested emergency accounts. Evidence must be reproducible and machine-readable. Governance enforces; a policy that only produces next quarter's finding is just a report. And the cloud boundary is modeled, gap by gap. Next, what the mandates actually say."
+ },
+ {
+  "slide": 5,
+  "title": "Only one Zero Trust document sets requirements",
+  "say": "Four documents get cited as if they were one, and they're not. Executive Order 14028 is binding, and required each agency to plan its Zero Trust architecture. OMB M-22-09 is binding too, and it's the one that sets specific actions by pillar, like phishing-resistant MFA and reliable device inventories. CISA's maturity model is guidance; it says so itself, and CISA's page for it is now archived. NIST SP 800-207 supplies the architecture. M-22-09's deadlines have passed, but it hasn't been rescinded, and a passed deadline doesn't retire an action. One adjustment: its logging action pointed to a memo that was rescinded in May 2026. And here's the point people miss. No federal document defines a Zero Trust score, or requires a maturity stage. Next, the directive that is concrete: BOD 25-01."
+ },
+ {
+  "slide": 6,
+  "title": "BOD 25-01: six actions and 50 required policies",
+  "say": "BOD 25-01 is narrower and much more concrete. CISA issued it in December 2024 for every production cloud tenant with a finalized SCuBA baseline. It has six required actions, from inventorying tenants and deploying the SCuBA tools, to implementing the mandatory policies and explaining deviations with each report; the slide has the dates. The mandatory list is a subset of the baselines: for Microsoft 365 it's 50 policies. Google Workspace is in scope now too, with its policies due December 1, 2026. Scope is limited to software as a service, so Azure subscriptions are out even when they share the tenant, and on-premises Active Directory is untouched. Inventory, deployment and explanations take days. Implementing the policies is architecture, and that's what the directive really exists for. Next, the two tools that measure it."
+ },
+ {
+  "slide": 7,
+  "title": "Two assessment tools answer two different questions",
+  "say": "Agencies run two free, read-only assessments of their Microsoft cloud, and often drop one because both seem to cover identity. But they answer different questions. ScubaGear is CISA's tool, and asks whether the tenant meets the federal baseline. Microsoft's Zero Trust Assessment asks how mature the environment is against Microsoft's guidance. It's a community project maintained by Microsoft employees, not an official product, and no support program covers it. They overlap on Entra ID and some Defender policies. But only ScubaGear covers Exchange Online, Teams, SharePoint and Power Platform, and 22 of the 50 mandatory policies live there. Drop ScubaGear and you leave mandatory policies unassessed, and stop the reporting the directive requires. So run both, and reconcile at the control level: the tenant setting, and the SP 800-53 control it supports. Next, everything beyond Microsoft 365."
+ },
+ {
+  "slide": 8,
+  "title": "Beyond Microsoft 365: networks, clouds, hypervisors",
+  "say": "Everything so far stops at the edge of Microsoft 365. Nothing on BOD 25-01's list covers infrastructure accounts, the agency network or the virtualized estate. So the whole-agency argument rests on the Zero Trust documents, and on the SP 800-53 controls every security plan already asserts. Three things get reconciled before you assess. One inventory, with no component counted twice. One naming authority, because each cloud and VMware ships its own private DNS. And no implicit trust from any boundary: a site-to-site VPN, a default virtual network and a flat virtualized segment are the same mistake. The hypervisor is its own threat class, so its management plane is assessed as its own surface, not inferred from its guests. And every provider's tool answers only for its own platform. Next, who owns the posture."
+ },
+ {
+  "slide": 9,
+  "title": "Who owns the posture, not just the pillars",
+  "say": "Every pillar already has an owner. What most agencies lack is an owner for the posture itself. M-22-09 already required a Zero Trust implementation lead, and many agencies will give this role to that person. The program lead owns the definition of the whole-agency score, what it covers and what it leaves out, plus cross-pillar correlation and the assessment calendar. The lead decides priority but doesn't accept risk, and shouldn't also own the relationship with the agency's largest cloud vendor. The CIO decides scope and sequence. The CISO sets the evidence standard and approves the tools. The authorizing official accepts residual risk. Exceptions split on time: one with an expiration date is a CISO decision; one with no end date goes to the authorizing official. And pillar owners decide how to fix a finding, never that it doesn't need fixing. Next, how to get there."
+ },
+ {
+  "slide": 10,
+  "title": "Close before you assess: assessors run at step five",
+  "say": "How do you get there? First, close before you assess. Many agencies met BOD 25-01's early dates and now treat ScubaGear reporting as the answer. But ScubaGear measures deviation from a baseline; it doesn't close any. A thermometer that reports a fever every day isn't a treatment plan. So the program's six-phase sequence puts the assessors at step five, as confirmation rather than discovery: understand, design, implement, govern, validate, and then the authorizing official decides. That's the Risk Management Framework's own order. Before validating, build the layers a finding depends on, like naming, certificates, workload identity and governed exceptions. Meanwhile, route every current finding to exactly one response: a configuration change now, architectural work with an owner and a date, or a risk acceptance. A finding with no response is the only failure. Next, running the assessment."
+ },
+ {
+  "slide": 11,
+  "title": "Run the assessment: pin it, record it, never edit it",
+  "say": "Then run the assessment, and keep the evidence clean. A few things are decided before either tool touches a production tenant. Scope comes from the BOD 25-01 tenant inventory. Each tool gets its own dedicated host inside the boundary, because their dependencies conflict, and its own reader account. Output is handled as controlled data, and the assessment accounts belong in the agency's logging plan. For ScubaGear, the configuration file is the exception record: omissions with a rationale and an expiration date. It's versioned, and its hash is recorded with every run, along with the tool version. The results file is never renamed or edited, only hashed and copied. The Zero Trust Assessment can take more than a day to run. And one caution: install the program's toolkit only from its own repository, because a public Python package with the same name is unrelated. Next, ingesting the evidence."
+ },
+ {
+  "slide": 12,
+  "title": "Ingest the evidence: four stages to OSCAL",
+  "say": "Most agencies run ScubaGear, save the HTML report, and reopen it when an assessor asks. The program treats each tool as an adapter instead: one input to one evidence chain, with the tools left exactly as their publishers ship them. Each run flows through four stages. The tool writes its raw output. Each result becomes a claim, stamped with who issued it, when, and a lineage hash. Claims from one interval are sealed into a bundle. And the bundle emits OSCAL assessment results and POA&M items. Take one example: the policy that blocks legacy authentication fails. The claim ties back to the raw result, and the bundle opens a POA&M item. Months later, an assessor can rebuild the bundle and walk back to the raw output without re-running anything. The limits are stated too: it runs on an interval, and Google Workspace is still a gap. Next, turning findings into a program."
+ },
+ {
+  "slide": 13,
+  "title": "From findings to a program the AO can see",
+  "say": "Last, turn findings into a program. Read each result before counting it. Only failures and warnings are findings. A skipped check isn't a gap and isn't a pass. It's absence of evidence, recorded with the reason, often a license or a government-cloud feature that isn't available. Findings are scored with a documented method, priority weighs severity against effort, and the buckets run from P1 down to P4. Quick wins go into the next change window; major projects go on a pillar owner's roadmap. Both tools' findings are reconciled against the same SP 800-53 control, so two pieces of evidence become one finding for one owner. Anything not fixed and not excepted becomes a POA&M item the authorizing official approves, and drift goes to the authorizing official too. Then re-run after every wave, so a finding is closed by evidence, not by a ticket status. Let's close with the decisions."
+ },
+ {
+  "slide": 14,
+  "title": "Decisions to make, and next steps",
+  "say": "So, four decisions. Name an agency-level owner of the Zero Trust posture, separate from every cloud provider relationship. Reconcile the network, every cloud and the virtualization estate to one authoritative record before scoring any of them. Close the BOD 25-01 mandatory findings before measuring maturity, with Google Workspace due December 1, 2026. And move every exception into the versioned configuration file, with an expiration, routing each standing one to the authorizing official. The next step needs no procurement. Find out, pillar by pillar, which evidence can be re-run without the operator's help, because every no marks the adoption boundary. And put the assessment hosts and accounts in the logging plan now. Unify first, assess second, and let named people make the decisions the evidence supports. Book 11 has the detail, every claim footnoted. Thank you."
+ }
+]

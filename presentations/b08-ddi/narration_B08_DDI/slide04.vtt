@@ -1,89 +1,82 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.468
+00:00:00.050 --> 00:00:02.568
 The federal mandates never name a product,
 
 2
-00:00:02.468 --> 00:00:05.300
-but together they describe
-a governed name layer.
+00:00:02.568 --> 00:00:05.950
+but read together they describe
+one governed name layer.
 
 3
-00:00:05.300 --> 00:00:08.050
+00:00:05.950 --> 00:00:08.700
 It's worth being precise
 about who requires what.
 
 4
-00:00:08.050 --> 00:00:13.826
-OMB M-22-09 requires encrypted DNS
-wherever it's technically supported,
+00:00:08.700 --> 00:00:12.520
+OMB requires encrypted DNS
+wherever it's supported,
 
 5
-00:00:13.826 --> 00:00:19.025
-with endpoints explicitly configured
-to use agency-designated resolvers.
+00:00:12.520 --> 00:00:16.163
+with endpoints pointed
+at designated resolvers.
 
 6
-00:00:19.025 --> 00:00:24.425
-It also notes that DNS must already be
-routed through CISA-operated infrastructure.
+00:00:16.163 --> 00:00:19.739
+The requirement to send
+outbound resolution through
 
 7
-00:00:24.425 --> 00:00:28.945
-The requirement that all egress
-resolution go through Protective
+00:00:19.739 --> 00:00:22.838
+Protective DNS comes from
+CISA's own guidance.
 
 8
-00:00:28.945 --> 00:00:32.900
-DNS comes from CISA's own
-guidance, which cites the statute.
+00:00:22.838 --> 00:00:26.854
+The current logging memo,
+M-26-14, doesn't name DNS,
 
 9
-00:00:32.900 --> 00:00:38.206
-OMB M-26-14, which rescinded M-21-31
-in May 2026, doesn't name DNS,
+00:00:26.854 --> 00:00:32.312
+but its logging and retention
+requirements land squarely on it.
 
 10
-00:00:38.206 --> 00:00:45.028
-but it requires logs that show source
-and destination addresses, protocols,
+00:00:32.312 --> 00:00:34.346
+Other sources carry DNSSEC,
 
 11
-00:00:45.028 --> 00:00:51.525
-ports and sessions, searchable for
-six months and retrievable for a year.
+00:00:34.346 --> 00:00:39.562
+and the latest TIC 3.0 catalog
+lists five DNS capabilities.
 
 12
-00:00:51.525 --> 00:00:57.863
-M-08-23 and SP 800-53 carry DNSSEC.
+00:00:39.562 --> 00:00:41.362
+The slide has the full list.
 
 13
-00:00:57.863 --> 00:01:04.241
-And version 3.3 of the TIC 3.0
-catalog, published in September 2026,
+00:00:41.362 --> 00:00:46.963
+NIST's March 2026 revision of its DNS
+deployment guide ties it together,
 
 14
-00:01:04.241 --> 00:01:09.524
-lists five DNS capabilities, from
-sinkholing to Protective DNS.
+00:00:46.963 --> 00:00:49.337
+but it's guidance, not a mandate.
 
 15
-00:01:09.524 --> 00:01:14.543
-NIST SP 800-81 Revision 3,
-final on March 19, 2026,
+00:00:49.337 --> 00:00:53.291
+And FedRAMP certifies a cloud
+service, not an architecture,
 
 16
-00:01:14.543 --> 00:01:21.013
-is the practical guide to all of
-this: guidance, not a mandate.
+00:00:53.291 --> 00:00:56.600
+so the agency still authorizes
+its own DDI system.
 
 17
-00:01:21.013 --> 00:01:24.980
-And FedRAMP certifies a cloud
-service, not an architecture;
-
-18
-00:01:24.980 --> 00:01:28.200
-the agency still authorizes
-its own DDI system.
+00:00:56.600 --> 00:01:00.480
+Now, the biggest thing that has
+to change: Active Directory.

@@ -1,91 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.075
-Three more streams share the queue.
+00:00:00.050 --> 00:00:02.463
+Three more streams share the same queue.
 
 2
-00:00:02.075 --> 00:00:07.413
+00:00:02.463 --> 00:00:07.800
 Configuration first: a patched host that
 drifts from its baseline isn't remediated.
 
 3
-00:00:07.413 --> 00:00:11.274
-Baselines come from
-SCuBA, CIS or DISA STIGs.
+00:00:07.800 --> 00:00:11.805
+And watch auto-correct features that
+fix drift without recording it;
 
 4
-00:00:11.274 --> 00:00:16.410
-Azure machine configuration's auto-correct
-mode fixes drift without recording it,
-
-5
-00:00:16.410 --> 00:00:19.163
-so the program keeps it
+00:00:11.805 --> 00:00:14.475
+the program keeps those
 for low-risk settings.
 
-6
-00:00:19.163 --> 00:00:20.601
+5
+00:00:14.475 --> 00:00:15.913
 Cloud posture next.
 
-7
-00:00:20.601 --> 00:00:24.115
+6
+00:00:15.913 --> 00:00:19.288
 A storage account open to the
 internet has no missing patch,
 
+7
+00:00:19.288 --> 00:00:21.837
+so a vulnerability
+scanner never reports it.
+
 8
-00:00:24.115 --> 00:00:25.837
-so a scanner never reports it.
+00:00:21.837 --> 00:00:25.711
+Each provider's native posture tool
+is primary for its own platform,
 
 9
-00:00:25.837 --> 00:00:29.837
-Each provider's native posture tool
-is primary for its own platform.
+00:00:25.711 --> 00:00:29.100
+and the notes cover where
+cross-cloud coverage falls short.
 
 10
-00:00:29.837 --> 00:00:32.969
-Defender for Cloud doesn't
-cover Oracle Cloud,
-
-11
-00:00:32.969 --> 00:00:36.925
-and its AWS connector isn't
-available in Azure Government.
-
-12
-00:00:36.925 --> 00:00:37.837
+00:00:29.100 --> 00:00:30.012
 Then data.
 
+11
+00:00:30.012 --> 00:00:35.352
+Controlled unclassified information
+comes in two levels, Basic and Specified,
+
+12
+00:00:35.352 --> 00:00:40.612
+decided by the CUI Registry, and labels
+drive data loss prevention everywhere.
+
 13
-00:00:37.837 --> 00:00:41.476
-The CUI framework has two
-levels, Basic and Specified,
+00:00:40.612 --> 00:00:43.262
+Finally, check what
+actually reaches the queue.
 
 14
-00:00:41.476 --> 00:00:44.536
-decided by the authority
-in the CUI Registry:
+00:00:43.262 --> 00:00:47.573
+Since October 2026, a built-in
+Microsoft tuning rule keeps data loss
 
 15
-00:00:44.536 --> 00:00:49.912
-Privacy Act records are Basic, and
-federal taxpayer information is Specified.
-
-16
-00:00:49.912 --> 00:00:54.975
-Labels drive data loss prevention on
-the service, the endpoint and the CASB.
-
-17
-00:00:54.975 --> 00:00:56.425
-And check queue membership.
-
-18
-00:00:56.425 --> 00:01:01.039
-Since early October 2026, a built-in
-Microsoft tuning rule keeps DLP
-
-19
-00:01:01.039 --> 00:01:05.950
+00:00:47.573 --> 00:00:52.113
 signals out of the incident queue
 unless an administrator turns it off.
+
+16
+00:00:52.113 --> 00:00:54.000
+Next, who runs all this.

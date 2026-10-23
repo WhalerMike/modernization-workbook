@@ -1,91 +1,78 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.818
+00:00:00.050 --> 00:00:03.850
 People join through a pipeline
 the identity program built,
 
 2
-00:00:03.818 --> 00:00:06.125
-from an HR record to a leaver process.
+00:00:03.850 --> 00:00:06.875
+from an HR record all the
+way to a leaver process.
 
 3
-00:00:06.125 --> 00:00:07.975
+00:00:06.875 --> 00:00:08.725
 AI mostly came in another way.
 
 4
-00:00:07.975 --> 00:00:10.488
+00:00:08.725 --> 00:00:11.238
 A mission office ran
 a pilot with a vendor.
 
 5
-00:00:10.488 --> 00:00:14.413
-A developer put an A P I
-key in a configuration file.
+00:00:11.238 --> 00:00:14.513
+A developer put an API
+key in a config file.
 
 6
-00:00:14.413 --> 00:00:18.187
+00:00:14.513 --> 00:00:18.287
 A product the agency already
 licensed shipped an assistant.
 
 7
-00:00:18.187 --> 00:00:21.261
-None of those paths produces
-an owner of record,
+00:00:18.287 --> 00:00:20.804
+None of those paths produces an owner,
 
 8
-00:00:21.261 --> 00:00:24.413
+00:00:20.804 --> 00:00:24.051
 a placement, a governed
 credential or an end date.
 
 9
-00:00:24.413 --> 00:00:26.413
-The risk is identity-shaped.
+00:00:24.051 --> 00:00:26.188
+And the risk is identity-shaped.
 
 10
-00:00:26.413 --> 00:00:30.250
-NIST's generative AI profile
-describes prompt injection,
+00:00:26.188 --> 00:00:30.675
+Take prompt injection, where planted
+input makes a system misbehave.
 
 11
-00:00:30.250 --> 00:00:33.288
-where planted input
-makes a system misbehave.
-
-12
-00:00:33.288 --> 00:00:38.143
+00:00:30.675 --> 00:00:35.530
 Against an agent with broad permissions,
 a successful injection is an action,
 
-13
-00:00:38.143 --> 00:00:42.088
+12
+00:00:35.530 --> 00:00:39.475
 a message sent or a record changed,
 under a legitimate identity.
 
+13
+00:00:39.475 --> 00:00:42.562
+The blast radius is
+whatever access it holds.
+
 14
-00:00:42.088 --> 00:00:44.962
-The blast radius is the access it holds.
+00:00:42.562 --> 00:00:45.674
+The good news is that no new
+control family is needed.
 
 15
-00:00:44.962 --> 00:00:46.987
-No new control family is needed.
+00:00:45.674 --> 00:00:48.847
+The gap is coverage: the AI
+system's account is often
 
 16
-00:00:46.987 --> 00:00:50.620
-Account management, identifier
-and authenticator management,
-
-17
-00:00:50.620 --> 00:00:55.212
-least privilege and service authentication
-already cover non-person accounts.
-
-18
-00:00:55.212 --> 00:00:58.875
-The gap is coverage: the AI
-system's account is often missing
-
-19
-00:00:58.875 --> 00:01:02.660
-from the account inventory the
+00:00:48.847 --> 00:00:52.820
+missing from the inventory those
 controls are tested against.

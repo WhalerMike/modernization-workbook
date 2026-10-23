@@ -6,80 +6,71 @@ Inside the program run seven
 complementary projects.
 
 2
-00:00:03.600 --> 00:00:08.389
-Each has its own charter, sponsor,
-lead and pilot-scale success criteria,
+00:00:03.600 --> 00:00:07.325
+Each has its own charter,
+sponsor and success criteria,
 
 3
-00:00:08.389 --> 00:00:12.772
-and each turns a gap the program
-finds often into executable work:
+00:00:07.325 --> 00:00:12.705
+and each turns a gap the program often
+finds into real work: identity lifecycle,
 
 4
-00:00:12.772 --> 00:00:17.804
-identity lifecycle, endpoints, network
-and access, continuous monitoring,
+00:00:12.705 --> 00:00:15.602
+endpoints, network and access, monitoring,
 
 5
-00:00:17.804 --> 00:00:21.700
+00:00:15.602 --> 00:00:19.575
 privileged access, the data
 platform, and the supply chain.
 
 6
-00:00:21.700 --> 00:00:27.200
+00:00:19.575 --> 00:00:24.538
 Identity goes first, because everything
-else consumes its attributes and owners.
+else uses its attributes and owners.
 
 7
-00:00:27.200 --> 00:00:31.025
-Privileged access is chartered
-fifth but starts early,
+00:00:24.538 --> 00:00:29.775
+Privileged access starts early too,
+for Tier 0 and emergency access.
 
 8
-00:00:31.025 --> 00:00:34.850
-in the Foundation phase, for
-Tier 0 and emergency access.
+00:00:29.775 --> 00:00:31.350
+And there's a catch worth knowing.
 
 9
-00:00:34.850 --> 00:00:39.924
-One detail matters there: Microsoft's
-guidance is at least two cloud-only emergency
+00:00:31.350 --> 00:00:36.255
+Microsoft recommends at least two cloud-only
+emergency accounts with permanent
 
 10
-00:00:39.924 --> 00:00:43.306
-access accounts with permanent
-Global Administrator,
+00:00:36.255 --> 00:00:39.356
+Global Administrator, so
+a target of zero permanent
 
 11
-00:00:43.306 --> 00:00:48.012
-so a target of zero permanent Global
-Administrators must exempt them by name.
+00:00:39.356 --> 00:00:42.313
+Global Administrators has
+to exempt them by name.
 
 12
-00:00:48.012 --> 00:00:49.751
-Two source claims have moved.
+00:00:42.313 --> 00:00:44.561
+Two source claims have also moved,
 
 13
-00:00:49.751 --> 00:00:55.304
-OMB rescinded the secure-development
-attestation requirement in January 2026,
+00:00:44.561 --> 00:00:48.737
+around software attestation and
+FedRAMP; the notes cover both.
 
 14
-00:00:55.304 --> 00:01:00.775
-so a software bill of materials is now an
-agency choice backed by contract terms.
+00:00:48.737 --> 00:00:53.718
+And two rules hold for every project:
+none creates a second source of truth,
 
 15
-00:01:00.775 --> 00:01:05.725
-And FedRAMP certifies a service, while
-the agency authorizes its own system.
+00:00:53.718 --> 00:00:56.412
+and none clears a program gate on its own.
 
 16
-00:01:05.725 --> 00:01:09.235
-Finally, no project creates
-a second source of truth,
-
-17
-00:01:09.235 --> 00:01:12.410
-and no project clears a
-program gate on its own.
+00:00:56.412 --> 00:00:57.890
+So who makes the calls?

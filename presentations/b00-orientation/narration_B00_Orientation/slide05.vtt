@@ -1,84 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.813
-A word on how the workbook works,
-because this briefing comes from it.
+00:00:00.050 --> 00:00:02.662
+A quick word on how the
+workbook itself works.
 
 2
-00:00:03.813 --> 00:00:06.907
-It's organized as eighteen
-books, B00 to B17,
+00:00:02.662 --> 00:00:07.763
+It's eighteen books, numbered along the
+same dependency chain the program follows:
 
 3
-00:00:06.907 --> 00:00:11.152
-numbered along the same
-dependency chain: identity first,
+00:00:07.763 --> 00:00:10.838
+identity first, then the
+estate's infrastructure,
 
 4
-00:00:11.152 --> 00:00:16.900
-then the estate's infrastructure, then
-the boundary, assurance and operations.
+00:00:10.838 --> 00:00:13.613
+then the boundary,
+assurance and operations.
 
 5
-00:00:16.900 --> 00:00:21.144
+00:00:13.613 --> 00:00:18.028
 Every book asks the same four
 questions, why, what, who and how,
 
 6
-00:00:21.144 --> 00:00:25.475
-so a reader who knows one can
-find their way through any other.
+00:00:18.028 --> 00:00:22.263
+so once you know one, you can
+find your way around any other.
 
 7
-00:00:25.475 --> 00:00:30.825
-One book is the authoritative home for
-each topic; the Federal Modernization
+00:00:22.263 --> 00:00:28.362
+And each topic has one home; Book 01,
+for example, owns the phases and gates.
 
 8
-00:00:30.825 --> 00:00:36.175
-Workbook's Book 01, for example, is
-canonical for the program's phases and gates.
-
-9
-00:00:36.175 --> 00:00:38.213
+00:00:28.362 --> 00:00:30.401
 Statements come in three kinds.
 
-10
-00:00:38.213 --> 00:00:42.161
-An external fact is footnoted
+9
+00:00:30.401 --> 00:00:33.619
+External facts are footnoted
 to a primary source,
 
+10
+00:00:33.619 --> 00:00:35.975
+checked on the day the book was built.
+
 11
-00:00:42.161 --> 00:00:46.687
-checked on the day the book was
-built, here October 21, 2026.
+00:00:35.975 --> 00:00:40.137
+Program positions are the program's
+own view, open to argument.
 
 12
-00:00:46.687 --> 00:00:49.926
-A program design position
-is the program's own view,
+00:00:40.137 --> 00:00:43.140
+And illustrative examples
+are labeled as such;
 
 13
-00:00:49.926 --> 00:00:52.701
-open to argument rather
-than fact-checking.
+00:00:43.140 --> 00:00:46.450
+the case studies are patterns,
+not real engagements.
 
 14
-00:00:52.701 --> 00:00:55.680
-And an illustrative
-example is labeled as one;
+00:00:46.450 --> 00:00:51.600
+Each chapter also keeps a verification
+file, so every correction is visible.
 
 15
-00:00:55.680 --> 00:00:59.600
-the case studies are framing
-patterns, not real engagements.
-
-16
-00:00:59.600 --> 00:01:02.136
-Each chapter keeps a verification file,
-
-17
-00:01:02.136 --> 00:01:06.960
-with a claims log and a carry-forward
-ledger, so every correction is visible.
+00:00:51.600 --> 00:00:53.060
+Now, what is the program?

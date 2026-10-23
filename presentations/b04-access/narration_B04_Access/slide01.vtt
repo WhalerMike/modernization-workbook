@@ -1,48 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.156
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.893
 This briefing comes from
 Book 04 of the Federal
 
-2
-00:00:03.156 --> 00:00:06.263
+3
+00:00:03.893 --> 00:00:07.025
 Modernization Workbook,
 Access and Privilege.
 
-3
-00:00:06.263 --> 00:00:08.750
-Book 02 moved the identity.
-
 4
-00:00:08.750 --> 00:00:11.788
+00:00:07.025 --> 00:00:12.600
+Book 02 moved the identity, and
 Book 03 made its facts trustworthy.
 
 5
-00:00:11.788 --> 00:00:16.683
-This book is about what happens with them
-on every sign-in: who gets access to what,
+00:00:12.600 --> 00:00:16.524
+This book is about what happens
+with those facts on every sign-in:
 
 6
-00:00:16.683 --> 00:00:18.167
+00:00:16.524 --> 00:00:19.412
+who gets access to what,
 under which conditions,
 
 7
-00:00:18.167 --> 00:00:22.025
+00:00:19.412 --> 00:00:23.262
 and how administrator power is
 kept from becoming an open door.
 
 8
-00:00:22.025 --> 00:00:24.512
-I'll take it through
+00:00:23.262 --> 00:00:25.800
+We'll take it through
 why, what, who and how.
 
 9
-00:00:24.512 --> 00:00:29.723
-The short version: in Zero Trust, every
-access decision is a policy decision,
+00:00:25.800 --> 00:00:31.212
+And the short version is this: in Zero
+Trust, every access decision is a policy
 
 10
-00:00:29.723 --> 00:00:34.320
-and the policy library is the
-agency's access control in practice.
+00:00:31.212 --> 00:00:36.538
+decision, and the policy library is, in
+practice, the agency's access control.
+
+11
+00:00:36.538 --> 00:00:37.850
+Let's start with why.

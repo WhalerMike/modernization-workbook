@@ -1,83 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.958
+00:00:00.050 --> 00:00:03.224
 The agency's cloud
 decides what it can use,
 
 2
-00:00:02.958 --> 00:00:07.063
-so the book dates every product
+00:00:03.224 --> 00:00:07.612
+so Book 17 dates every product
 statement to October 2026.
 
 3
-00:00:07.063 --> 00:00:12.787
-Microsoft announced the Agent ID platform,
-with blueprints, agent identities and
+00:00:07.612 --> 00:00:13.096
+The core Agent ID platform, with
+blueprints, agent identities and sponsors,
 
 4
-00:00:12.787 --> 00:00:16.071
-sponsors, as generally
-available in April 2026,
+00:00:13.096 --> 00:00:16.899
+was announced as generally
+available in April 2026.
 
 5
-00:00:16.071 --> 00:00:18.849
-and sponsor lifecycle workflows in May.
+00:00:16.899 --> 00:00:19.446
+But several controls are still preview,
 
 6
-00:00:18.849 --> 00:00:21.025
-Several controls are still preview.
+00:00:19.446 --> 00:00:22.687
+including agent targeting
+in Conditional Access.
 
 7
-00:00:21.025 --> 00:00:25.927
-The policy builder labels agent targeting
-in Conditional Access as preview,
+00:00:22.687 --> 00:00:23.976
+The slide lists them.
 
 8
-00:00:25.927 --> 00:00:30.599
-agent identities support only Block,
-the agent risk condition is preview,
+00:00:23.976 --> 00:00:26.187
+The government clouds
+are the bigger issue.
 
 9
-00:00:30.599 --> 00:00:34.812
-and agents' user accounts are
-limited to Frontier program tenants.
-
-10
-00:00:34.812 --> 00:00:40.425
+00:00:26.187 --> 00:00:31.801
 GCC has a partial, documented subset:
 identity and access governance for agents,
 
-11
-00:00:40.425 --> 00:00:45.187
+10
+00:00:31.801 --> 00:00:36.563
 but not Microsoft's audit, data loss
 prevention or network controls.
 
-12
-00:00:45.187 --> 00:00:48.473
-GCC High and D O D have no
+11
+00:00:36.563 --> 00:00:39.834
+GCC High and DOD have no
 published availability,
 
-13
-00:00:48.473 --> 00:00:52.907
+12
+00:00:39.834 --> 00:00:44.250
 so treat agent identities as
 unavailable there until Microsoft
 
-14
-00:00:52.907 --> 00:00:57.588
+13
+00:00:44.250 --> 00:00:48.912
 confirms otherwise in writing, and
 govern AI as workload identities.
 
+14
+00:00:48.912 --> 00:00:53.204
+The rule is simple: build on what's
+generally available in your own cloud,
+
 15
-00:00:57.588 --> 00:01:02.275
-And Agent 365's FedRAMP High
-authorization is still pending.
+00:00:53.204 --> 00:00:55.676
+and keep preview features as watch items.
 
 16
-00:01:02.275 --> 00:01:06.749
-The program builds on what is generally
-available in the agency's own cloud,
-
-17
-00:01:06.749 --> 00:01:09.340
-and keeps preview features as watch items.
+00:00:55.676 --> 00:00:58.220
+Next, the person behind each agent.

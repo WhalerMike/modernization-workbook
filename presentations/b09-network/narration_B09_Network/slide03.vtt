@@ -1,79 +1,74 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.238
-Chapter 02 pulls apart two decisions
-that programs keep merging.
+00:00:00.050 --> 00:00:03.537
+Programs keep merging two decisions
+that should stay separate.
 
 2
-00:00:04.238 --> 00:00:08.425
+00:00:03.537 --> 00:00:07.312
 Choosing a pipe, whether
-fiber, MPLS, low earth orbit,
+fiber, MPLS, satellite,
 
 3
-00:00:08.425 --> 00:00:12.612
-5G or direct internet access,
+00:00:07.312 --> 00:00:10.888
+5G or direct internet,
 is a physics decision.
 
 4
-00:00:12.612 --> 00:00:15.863
+00:00:10.888 --> 00:00:14.137
 Choosing what governs the pipe
 is a compliance decision.
 
 5
-00:00:15.863 --> 00:00:20.188
-Direct internet access solves one
-problem, the geographic hairpin.
+00:00:14.137 --> 00:00:18.350
+Direct internet access solves
+exactly one problem, the hairpin.
 
 6
-00:00:20.188 --> 00:00:25.380
-It satisfies none of the protection controls:
-boundary protection, flow enforcement,
+00:00:18.350 --> 00:00:21.154
+It satisfies none of
+the protection controls,
 
 7
-00:00:25.380 --> 00:00:27.355
-transmission confidentiality,
+00:00:21.154 --> 00:00:24.475
+like boundary protection,
+inspection and monitoring.
 
 8
-00:00:27.355 --> 00:00:31.450
-malware inspection and monitoring
-all come from the control layer.
-
-9
-00:00:31.450 --> 00:00:36.913
-Transport closes exactly one control
-family, telecommunications diversity.
-
-10
-00:00:36.913 --> 00:00:40.034
-So a branch moved from a
+00:00:24.475 --> 00:00:27.680
+So moving a branch from a
 governed hairpin to bare local
 
-11
-00:00:40.034 --> 00:00:43.363
+9
+00:00:27.680 --> 00:00:31.025
 breakout is a compliance
 regression with better latency.
 
-12
-00:00:43.363 --> 00:00:46.012
+10
+00:00:31.025 --> 00:00:33.675
 And the governor is itself attack surface.
 
+11
+00:00:33.675 --> 00:00:37.743
+Federal directives already target
+end-of-support edge devices,
+
+12
+00:00:37.743 --> 00:00:41.580
+and an emergency directive in
+February 2026 ordered action
+
 13
-00:00:46.012 --> 00:00:52.276
-BOD 26-02 targets end-of-support
-edge devices on the agency boundary.
+00:00:41.580 --> 00:00:45.187
+on SD-WAN systems after
+attackers were found inside them.
 
 14
-00:00:52.276 --> 00:00:58.219
-On February 25, 2026, Emergency Directive
-26-03 ordered action on Cisco SD-WAN
+00:00:45.187 --> 00:00:49.313
+So protect the controller and every
+edge before they carry traffic.
 
 15
-00:00:58.219 --> 00:01:05.013
-systems after actors were found compromising
-them and keeping long-term persistence.
-
-16
-00:01:05.013 --> 00:01:09.020
-Protect the controller and every
-edge before they carry traffic.
+00:00:49.313 --> 00:00:51.940
+Next, what policy actually requires.

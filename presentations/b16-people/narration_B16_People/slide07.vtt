@@ -1,79 +1,71 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.844
+00:00:00.050 --> 00:00:04.684
 The implementation track teaches the
 same estate from the engineer's chair,
 
 2
-00:00:04.844 --> 00:00:09.562
-in ten build modules from D N S and
-address management to day-two operations.
+00:00:04.684 --> 00:00:09.538
+in build modules from DNS and address
+management through to day-two operations.
 
 3
-00:00:09.562 --> 00:00:13.773
-The order is a real dependency
-chain: address before you identify,
+00:00:09.538 --> 00:00:11.812
+The order is a real dependency chain.
 
 4
-00:00:13.773 --> 00:00:18.296
+00:00:11.812 --> 00:00:16.357
+You address before you identify,
 identify before you shape transport,
-transport before you place data,
 
 5
-00:00:18.296 --> 00:00:21.337
-and certificates before
-the network enforces.
+00:00:16.357 --> 00:00:21.137
+and so on, and day two comes last because
+it runs what everything else built.
 
 6
-00:00:21.337 --> 00:00:24.154
-Devices, the cloud platform and security
+00:00:21.137 --> 00:00:24.550
+Every module ends the same
+way: done means it works and
 
 7
-00:00:24.154 --> 00:00:27.550
-operations run in parallel
-once identity exists.
+00:00:24.550 --> 00:00:27.962
+its evidence has landed where
+an assessor can read it.
 
 8
-00:00:27.550 --> 00:00:31.300
-Day two comes last, because it
-runs what everything else built.
+00:00:27.962 --> 00:00:30.362
+And every lab teaches three habits.
 
 9
-00:00:31.300 --> 00:00:33.488
-Every module ends the same way.
+00:00:30.362 --> 00:00:32.200
+Observe before you enforce.
 
 10
-00:00:33.488 --> 00:00:37.950
-Done means it works and its evidence has
-landed where an assessor can read it.
+00:00:32.200 --> 00:00:36.463
+Keep a way back in, with emergency
+access accounts created first.
 
 11
-00:00:37.950 --> 00:00:43.258
-Every lab teaches three habits: observe
-before you enforce, with report-only,
+00:00:36.463 --> 00:00:39.125
+And export the record, not a screenshot.
 
 12
-00:00:43.258 --> 00:00:47.807
-monitor and shadow modes; keep a
-way back in, with emergency access
-
-13
-00:00:47.807 --> 00:00:52.188
-accounts created first; and export
-the record, not a screenshot.
-
-14
-00:00:52.188 --> 00:00:56.038
+00:00:39.125 --> 00:00:42.975
 Certifications are examples,
 not proof, and they change.
 
-15
-00:00:56.038 --> 00:01:04.438
-Microsoft retired AZ-500 on August
-31, 2026, and SC-500 replaced it.
+13
+00:00:42.975 --> 00:00:47.173
+One major Microsoft security exam
+was just retired and replaced,
 
-16
-00:01:04.438 --> 00:01:08.590
-So the program re-checks its
-certification table at every gate.
+14
+00:00:47.173 --> 00:00:51.137
+so the program re-checks its
+certification list at every gate.
+
+15
+00:00:51.137 --> 00:00:53.350
+So how does the program certify people?

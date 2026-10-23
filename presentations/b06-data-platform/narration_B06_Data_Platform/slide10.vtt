@@ -1,90 +1,81 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.736
+00:00:00.050 --> 00:00:03.707
 The book's last idea is that a
-transformation doesn't complete;
+transformation doesn't finish;
 
 2
-00:00:03.736 --> 00:00:07.638
-it achieves a posture, and a posture
+00:00:03.707 --> 00:00:07.662
+it reaches a posture, and a posture
 is something you keep proving.
 
 3
-00:00:07.638 --> 00:00:11.467
+00:00:07.662 --> 00:00:10.687
 The closed state has five
-conditions that hold together:
+conditions that hold together.
 
 4
-00:00:11.467 --> 00:00:15.133
-every in-scope instance on
-Entra-only authentication;
+00:00:10.687 --> 00:00:16.044
+Every in-scope instance uses Entra-only
+authentication, SQL logins exist
 
 5
-00:00:15.133 --> 00:00:20.835
-no SQL logins outside approved exceptions;
-no NTLM sessions in the continuous audit,
+00:00:16.044 --> 00:00:21.663
+only as approved exceptions, and the
+continuous audit shows no NTLM sessions.
 
 6
-00:00:20.835 --> 00:00:25.723
-counting remote sessions, because
-local ones always show NTLM; any drift,
-
-7
-00:00:25.723 --> 00:00:29.389
-such as an administrator
+00:00:21.663 --> 00:00:24.998
+Any drift, like someone
 switching back to mixed mode,
 
+7
+00:00:24.998 --> 00:00:27.325
+is caught and treated as a violation.
+
 8
-00:00:29.389 --> 00:00:34.195
-detected and treated as a violation;
-and evidence regenerated from SQL
+00:00:27.325 --> 00:00:31.150
+And the evidence is regenerated
+from the instance's own audit,
 
 9
-00:00:34.195 --> 00:00:38.676
-Server Audit and the auth_scheme
-field, not assembled into a binder.
+00:00:31.150 --> 00:00:32.875
+not assembled into a binder.
 
 10
-00:00:38.676 --> 00:00:40.912
+00:00:32.875 --> 00:00:35.112
 One correction matters for assessors.
 
 11
-00:00:40.912 --> 00:00:46.083
+00:00:35.112 --> 00:00:39.858
 Entra sign-in logs can't prove per-instance
 access or the absence of NTLM,
 
 12
-00:00:46.083 --> 00:00:50.026
-because every SQL resource
-shares one token audience.
-
-13
-00:00:50.026 --> 00:00:52.525
-The proof has to come
+00:00:39.858 --> 00:00:43.075
+so the proof has to come
 from the instance itself.
 
-14
-00:00:52.525 --> 00:00:54.725
+13
+00:00:43.075 --> 00:00:45.275
 And there's a certificate
 layer underneath.
 
+14
+00:00:45.275 --> 00:00:50.964
+SQL Server's TLS certificates usually
+still come from AD Certificate Services,
+
 15
-00:00:54.725 --> 00:00:58.212
-SQL Server's TLS certificates
-still come from Active
+00:00:50.964 --> 00:00:53.463
+and Cloud PKI can't issue to servers.
 
 16
-00:00:58.212 --> 00:01:01.462
-Directory Certificate
-Services in most estates.
+00:00:53.463 --> 00:00:56.512
+So the server certificate
+issuer is its own decision.
 
 17
-00:01:01.462 --> 00:01:06.703
-Microsoft Cloud PKI issues only to
-Intune-managed devices, and Intune doesn't
-
-18
-00:01:06.703 --> 00:01:11.930
-manage Windows Server, so the
-server-certificate issuer is its own decision.
+00:00:56.512 --> 00:00:58.130
+That leads to the asks.

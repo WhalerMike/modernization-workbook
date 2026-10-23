@@ -2,521 +2,526 @@
  "1": [
   [
    0.05,
-   9.3,
-   "This briefing comes from Book 06 of the Federal Modernization Workbook: the SQL Server estate's move from Windows Authentication to cloud identity."
+   0.713,
+   "Welcome."
   ],
   [
-   9.35,
-   8.537,
-   "Every identity program eventually reaches the database, and the database is where it finds the most Windows authentication still in use."
+   0.762,
+   5.537,
+   "This briefing is Book 06 of the Federal Modernization Workbook, the Data Platform."
   ],
   [
-   17.887,
-   9.037,
-   "I'll take it through why that is, what replaces it, who owns the work, and how to do it, from the estate inventory to a closure condition you can keep proving."
+   6.3,
+   4.975,
+   "It's about moving the SQL Server estate from Windows Authentication to cloud identity."
+  ],
+  [
+   11.275,
+   1.688,
+   "Here's why it gets its own book."
+  ],
+  [
+   12.963,
+   7.625,
+   "Every identity program eventually reaches the database, and that's where it finds the most Windows authentication still in use."
+  ],
+  [
+   20.587,
+   12.525,
+   "We'll go in four steps: why the database is where legacy authentication hides, what replaces it, who owns the work, and how to do it, from the first inventory of the estate to a closed state you can keep proving."
+  ],
+  [
+   33.112,
+   2.987,
+   "Let's start with how SQL Server decides who you are."
   ]
  ],
  "2": [
   [
    0.05,
-   3.525,
-   "Why is the database where legacy authentication hides?"
+   4.025,
+   "The short answer is that SQL Server trusts whatever Windows tells it."
   ],
   [
-   3.575,
-   3.325,
-   "Because SQL Server trusts whatever Windows tells it."
+   4.075,
+   8.963,
+   "A connection reaches the engine in one of four ways: Kerberos, N T L M, a SQL login with a password, or Entra authentication."
   ],
   [
-   6.9,
-   3.087,
-   "A connection reaches the engine in one of four ways."
+   13.037,
+   3.175,
+   "Only Entra is ever seen by Conditional Access."
   ],
   [
-   9.988,
-   3.212,
-   "Kerberos, when the service principal name is right."
+   16.212,
+   2.025,
+   "Three facts make this hard to see."
   ],
   [
-   13.2,
-   4.125,
-   "N T L M, silently, when the SPN is missing."
+   18.238,
+   5.8,
+   "You can't turn Windows Authentication off in SQL Server, because the engine hands it to Windows."
   ],
   [
-   17.325,
-   3.6,
-   "A SQL login, where the engine checks a password itself."
+   24.038,
+   5.963,
+   "The protocol a connection used isn't written to any log; you only see it in a live system view."
   ],
   [
-   20.925,
-   5.763,
-   "Or Microsoft Entra authentication, which is the only one Conditional Access ever sees."
+   30.0,
+   6.1,
+   "And N T L M shows up silently, for example when a service principal name is missing."
   ],
   [
-   26.688,
-   2.638,
-   "Three facts make the inheritance hard to see."
+   36.1,
+   1.9,
+   "The book is fair about one thing."
   ],
   [
-   29.325,
-   7.275,
-   "Windows Authentication can't be turned off in SQL Server, because the engine delegates it to the Windows security subsystem."
+   38.0,
+   4.25,
+   "Windows Authentication was good engineering for a domain-joined estate."
   ],
   [
-   36.6,
-   9.175,
-   "Which protocol a connection used isn't written to any log; it shows only in a dynamic management view, sys.dm_exec_connections."
+   42.25,
+   4.775,
+   "The case for replacing it is that that world is ending, not that it was a mistake."
   ],
   [
-   45.775,
-   9.463,
-   "And local connections use N T L M even when the SPN is right, while an SPN registered on the wrong account makes the login fail outright."
-  ],
-  [
-   55.237,
-   6.612,
-   "The book is careful about one thing: Windows Authentication was good engineering for a domain-joined estate."
-  ],
-  [
-   61.85,
-   5.513,
-   "The case for replacing it rests on that world no longer existing, not on calling it a mistake."
+   47.025,
+   1.5,
+   "So what's pushing it to end?"
   ]
  ],
  "3": [
   [
    0.05,
-   2.288,
-   "Three drivers make the inheritance end."
+   2.6,
+   "Three drivers make the change unavoidable."
   ],
   [
-   2.337,
-   3.175,
-   "First, N T L M elimination."
+   2.65,
+   3.013,
+   "First, N T L M is on its way out."
   ],
   [
-   5.513,
-   9.262,
-   "Microsoft deprecated all versions of N T L M in June 2024 and plans to disable it by default in a future Windows release."
+   5.662,
+   11.925,
+   "Microsoft deprecated it in 2024 and plans to disable it by default someday, and the program sets its own backstop, April 1, 2027, for the domain-wide block."
   ],
   [
-   14.775,
-   6.45,
-   "The program sets its own backstop, April 1, 2027, for the domain-wide block."
+   17.587,
+   1.887,
+   "Second, Zero Trust."
   ],
   [
-   21.225,
-   3.475,
-   "Second, Zero Trust in the authentication path."
+   19.475,
+   9.4,
+   "Federal policy puts phishing-resistant M F A and the Entra identity plane in front of human access, and Windows Authentication goes around both."
   ],
   [
-   24.7,
-   10.475,
-   "O M B M twenty-two oh-nine puts phishing-resistant M F A and the Entra identity plane in front of human access, and Windows Authentication bypasses both."
+   28.875,
+   6.95,
+   "Third, the directory modernization in Book 02 ends the domain-joined world that the service accounts depend on."
   ],
   [
-   35.175,
-   2.375,
-   "Third, service-account credentials."
+   35.825,
+   3.125,
+   "There's no external N T L M deadline."
   ],
   [
-   37.55,
-   8.012,
-   "The directory modernization in the Federal Modernization Workbook's Book 02 ends the domain-joined world those service accounts depend on."
+   38.95,
+   9.475,
+   "The real dates are support dates for older SQL Server and Windows Server versions, running through 2026 and 2027, and the slide lists them."
   ],
   [
-   45.562,
-   2.7,
-   "The book is precise about 2027."
+   48.425,
+   9.588,
+   "SQL Server 2014 and 2017 can't use Entra authentication at all, so they only get to the closed state by upgrade or retirement."
   ],
   [
-   48.263,
-   6.138,
-   "There's no external N T L M deadline; Microsoft hasn't dated the disable-by-default step."
-  ],
-  [
-   54.4,
-   22.788,
-   "The dates that are real are support dates: SQL Server 2016 went out of support in July 2026, Windows Server 2016 follows in January 2027, the last SQL Server 2014 extended-security year ends in July 2027, and SQL Server 2017 goes out of support in October 2027."
-  ],
-  [
-   77.188,
-   9.787,
-   "SQL Server 2014 and 2017 can't use Entra authentication at all, so they reach the closed state only by upgrade or retirement."
+   58.013,
+   2.263,
+   "The work starts with the estate itself."
   ]
  ],
  "4": [
   [
    0.05,
-   2.425,
-   "What changes starts with the estate itself."
-  ],
-  [
-   2.475,
-   4.487,
+   4.438,
    "Before touching authentication, every instance gets one of three verdicts."
   ],
   [
-   6.963,
-   10.075,
-   "Retain: it's supported or can be upgraded in place to SQL Server 2022 or later, it carries load-bearing work, and nothing argues for collapsing it."
+   4.487,
+   4.225,
+   "Retain it, if it's supported or can be upgraded and carries real work."
   ],
   [
-   17.038,
-   5.625,
-   "Consolidate: its workload moves into a target platform and the old instance retires."
+   8.713,
+   5.438,
+   "Consolidate it, moving its workload to a target platform and retiring the old instance."
   ],
   [
-   22.663,
-   4.825,
-   "Retire: there's no live workload, so it's decommissioned instead of migrated."
+   14.15,
+   3.112,
+   "Or retire it, if there's no live workload left."
   ],
   [
-   27.488,
-   2.625,
-   "The inventory has to cover the whole forest."
+   17.262,
+   3.913,
+   "The inventory has to cover the whole forest, not one domain."
   ],
   [
-   30.113,
-   4.562,
-   "The setspn tool needs its -F switch to search beyond a single domain."
+   21.175,
+   3.562,
+   "Usage, versions and dependencies are read together."
   ],
   [
-   34.675,
-   10.675,
-   "Usage, versions and dependencies are read together, and the book warns that index-usage counters reset when SQL Server restarts, so they can't prove disuse on their own."
+   24.738,
+   7.625,
+   "And the book warns that usage counters reset when SQL Server restarts, so they can't prove an instance is unused on their own."
   ],
   [
-   45.35,
-   10.037,
-   "And the assessment uses the migration component in SQL Server Management Studio, because Microsoft retired the Data Migration Assistant in July 2025."
+   32.362,
+   8.588,
+   "The assessment uses the migration tooling in SQL Server Management Studio, because the older Data Migration Assistant has been retired."
   ],
   [
-   55.388,
+   40.95,
    2.0,
    "This is the gate for the whole program."
   ],
   [
-   57.388,
+   42.95,
    5.225,
    "Migrating an instance that should have been retired is the most expensive mistake it can make."
+  ],
+  [
+   48.175,
+   3.638,
+   "Once we know what stays, each instance needs a cloud identity."
   ]
  ],
  "5": [
   [
    0.05,
-   1.9,
-   "What replaces the domain join?"
+   5.85,
+   "What replaces the domain join is Azure Arc, which gives each instance an Entra identity."
   ],
   [
-   1.95,
-   3.413,
-   "Azure Arc gives each instance an Entra identity."
+   5.9,
+   8.062,
+   "On SQL Server 2025, that's a managed identity; on 2022, it's an app registration with a certificate."
   ],
   [
-   5.362,
-   4.3,
-   "On SQL Server 2025, that's the Arc managed identity."
-  ],
-  [
-   9.662,
-   4.912,
-   "On SQL Server 2022, it's an app registration with a certificate."
-  ],
-  [
-   14.575,
-   7.862,
-   "The Azure extension for SQL Server installs automatically when the host connects to Arc, and Entra connections are always encrypted."
-  ],
-  [
-   22.438,
+   13.963,
    3.3,
    "The limits matter, and the old documents missed several."
   ],
   [
-   25.738,
-   5.088,
-   "Failover cluster instances can't use Entra authentication on any version."
+   17.262,
+   4.3,
+   "Failover cluster instances can't use Entra authentication at all."
   ],
   [
-   30.825,
-   14.275,
-   "Entra authentication through Arc isn't available in the US Government Virginia region, so a G C C tenant uses a commercial subscription in the same tenant; the old runbook's Azure Government setup would never have produced Entra logins."
+   21.562,
+   9.825,
+   "Entra authentication through Arc isn't available in the US Government Virginia region, so a G C C tenant uses a commercial subscription in the same tenant."
   ],
   [
-   45.1,
-   3.263,
-   "fido two isn't supported for SQL Server on Arc."
+   31.387,
+   4.662,
+   "The old runbook's government-cloud setup would never have produced Entra logins."
   ],
   [
-   48.362,
-   7.713,
-   "And granting the instance identity its Graph permissions needs a Privileged Role Administrator, so that step can't sit with the DBAs."
+   36.05,
+   2.062,
+   "fido two isn't supported here."
   ],
   [
-   56.075,
-   9.35,
-   "Arc is the program's chosen path, not the only one: Microsoft documents a manual setup for SQL Server 2022 and later on Windows."
+   38.112,
+   7.125,
+   "And granting the instance its Graph permissions takes a privileged role administrator, so that step can't sit with the DBAs."
   ],
   [
-   65.425,
-   9.175,
-   "Arc wins because it also carries inventory, policy, updates and Defender for the host, which is the Federal Modernization Workbook's Book 05."
+   45.237,
+   8.85,
+   "Arc isn't the only path, but it wins because it also brings inventory, policy, updates and Defender for the host, which is Book 05."
+  ],
+  [
+   54.087,
+   2.237,
+   "Next, the logins themselves."
   ]
  ],
  "6": [
   [
    0.05,
-   3.788,
-   "The logins themselves move to Entra principals, in parallel."
+   5.438,
+   "The logins move to Entra principals, and they move in parallel, never in one jump."
   ],
   [
-   3.837,
-   7.8,
-   "People become Entra users, ideally granted through groups, and they get phishing-resistant M F A and Conditional Access."
+   5.487,
+   7.938,
+   "People become Entra users, ideally granted through groups, so they pick up phishing-resistant M F A and Conditional Access."
   ],
   [
-   11.637,
-   10.6,
-   "Groups become Entra group logins, which SQL Server records as type X, with membership driven by HR attributes from the Federal Modernization Workbook's Book 03."
+   13.425,
+   6.4,
+   "Windows groups become Entra groups, with membership driven by HR attributes from Book 03."
   ],
   [
-   22.238,
+   19.825,
    8.113,
    "Applications become service principals and managed identities, and the book is clear that Conditional Access doesn't cover managed identities."
   ],
   [
-   30.35,
-   2.3,
-   "The migration is a parallel run."
+   27.938,
+   1.788,
+   "The parallel run is simple."
   ],
   [
-   32.65,
-   5.075,
-   "Create the Entra user beside the Windows user and copy its roles and permissions."
+   29.725,
+   4.525,
+   "Create the Entra user beside the Windows user and copy its permissions."
   ],
   [
-   37.725,
+   34.25,
    5.312,
    "Keep both until the audit shows no remaining Windows sessions, then disable the old one."
   ],
   [
-   43.038,
-   10.037,
-   "Never convert in one step; and the old runbook's shortcut, ALTER USER with LOGIN, only converts on Azure SQL Managed Instance, not on SQL Server."
+   39.562,
+   7.463,
+   "The old runbook had a one-step conversion shortcut, but it only works on Azure SQL Managed Instance, not on SQL Server."
   ],
   [
-   53.075,
-   9.562,
-   "One trap: the instance's Entra administrator becomes sysadmin, and changing that administrator leaves the old login as sysadmin until a DBA drops it."
+   47.025,
+   7.287,
+   "And one trap: when you change the instance's Entra administrator, the old one stays sysadmin until a DBA removes it."
+  ],
+  [
+   54.312,
+   1.425,
+   "So who does all this?"
   ]
  ],
  "7": [
   [
    0.05,
-   0.85,
-   "Who owns it?"
+   3.15,
+   "The book's ownership chapter separates deciding from doing."
   ],
   [
-   0.9,
-   3.513,
-   "The book's new Chapter 13 separates deciding from doing."
+   3.2,
+   8.037,
+   "On the deciding side, the C I O and data leadership decide whether each instance is retained, consolidated or retired."
   ],
   [
-   4.412,
-   5.725,
-   "Deciding: the C I O and data leadership decide retain, consolidate or retire."
+   11.238,
+   8.387,
+   "The see-so, I S S O and authorizing official decide exceptions for N T L M and SQL logins, and sign off closure."
   ],
   [
-   10.137,
-   8.8,
-   "The see-so, the I S S O and the authorizing official decide N T L M and SQL-login exceptions and sign off closure."
+   19.625,
+   4.263,
+   "Application and data owners pick each application's cutover window."
   ],
   [
-   18.938,
-   4.938,
-   "Application and data owners decide the cutover window for each application."
+   23.887,
+   6.388,
+   "On the doing side, the data platform team runs logins, roles, the audit and the parallel run."
   ],
   [
-   23.875,
-   5.75,
-   "Doing: the data platform team runs logins, roles, the audit and the parallel run."
+   30.275,
+   6.1,
+   "The identity team creates Entra logins and groups, and grants the permissions the DBAs can't."
   ],
   [
-   29.625,
-   6.287,
-   "The identity team creates Entra logins and groups and grants the Graph consent the DBAs can't."
+   36.375,
+   6.088,
+   "The server team onboards hosts to Arc. Developers, the help desk and security operations support."
   ],
   [
-   35.913,
-   2.562,
-   "The server team onboards hosts to Arc."
+   42.462,
+   2.163,
+   "And watch for hidden administrators."
   ],
   [
-   38.475,
-   10.525,
-   "Supporting: developers change connection strings and drivers, the help desk handles sign-in issues during cutover, and security operations watches Defender for SQL alerts."
+   44.625,
+   9.488,
+   "Someone with contributor rights on an Arc server is, in effect, an administrator of SQL Server on that host, and can even switch password logins back on."
   ],
   [
-   49.0,
-   1.875,
-   "And there are hidden administrators."
+   54.112,
+   2.663,
+   "Azure roles need the same care as sysadmin."
   ],
   [
-   50.875,
-   11.062,
-   "Azure Contributor on an Arc server is an indirect administrator of SQL Server on that host, and Owner or Contributor on the SQL resource can switch SQL authentication back on."
-  ],
-  [
-   61.938,
-   3.425,
-   "Azure role assignments need the same care as sysadmin."
+   56.775,
+   2.25,
+   "Now, the N T L M plan."
   ]
  ],
  "8": [
   [
    0.05,
-   0.613,
-   "How."
-  ],
-  [
-   0.662,
-   3.237,
+   3.188,
    "N T L M is eliminated in three phases."
   ],
   [
-   3.9,
-   7.412,
-   "Phase A discovers: the authentication audit, together with Windows N T L M logging and auditing events."
+   3.237,
+   5.275,
+   "First discover, with the authentication audit and Windows N T L M logging."
   ],
   [
-   11.312,
-   7.688,
-   "Phase B restricts: fix SPNs, convert connections to Kerberos or Entra, and migrate the remaining patterns."
+   8.512,
+   7.25,
+   "Then restrict: fix service principal names, move connections to Kerberos or Entra, and migrate what's left."
   ],
   [
-   19.0,
-   8.262,
-   "Phase C eliminates: the domain-wide Restrict N T L M block, on the program's April 2027 backstop."
+   15.762,
+   5.787,
+   "Then eliminate, with the domain-wide block on the program's April 2027 backstop."
   ],
   [
-   27.262,
-   1.375,
-   "The details matter."
+   21.55,
+   11.363,
+   "The highest LAN Manager authentication level still accepts N T L M version two, so it isn't an N T L M block; the real block is the Restrict N T L M policies."
   ],
   [
-   28.637,
-   13.025,
-   "LAN Manager authentication level five refuses LM and N T L M version one but still accepts version two, so it isn't an N T L M block; the block is the Restrict N T L M policies."
+   32.913,
+   6.763,
+   "Their exceptions are server-name lists on clients and domain controllers, not the program's own exception register."
   ],
   [
-   41.663,
-   6.6,
-   "Their exceptions are lists of server names on clients and domain controllers, not the program's exception registry."
+   39.675,
+   6.8,
+   "And Microsoft's upcoming N T L M change for Wi-Fi and VPN doesn't touch SQL Server traffic."
   ],
   [
-   48.263,
-   11.238,
-   "And Microsoft's October 2026 change blocks N T L M-version-one-derived single sign-on credentials for Wi-Fi and VPN; it doesn't touch SQL Server traffic."
+   46.475,
+   4.013,
+   "The good news is that the fastest exit is the migration itself."
   ],
   [
-   59.5,
-   2.737,
-   "The fastest exit is migration itself."
+   50.487,
+   8.637,
+   "An instance whose logins have moved to Entra isn't affected by the block, so login migration and N T L M elimination are the same work."
   ],
   [
-   62.237,
-   9.175,
-   "An instance whose logins have moved to Entra ID isn't affected by the block, so login migration and N T L M elimination are the same work."
+   59.125,
+   2.325,
+   "Then access and applications follow."
   ]
  ],
  "9": [
   [
    0.05,
-   5.775,
-   "With the logins moved, access is granted by attribute and applications move by driver."
+   5.963,
+   "With the logins moved, access is granted by attribute, and applications move by driver."
   ],
   [
-   5.825,
-   9.113,
-   "Access control: dynamic Entra groups, driven by HR attributes, grant database access, so no DBA provisions it by hand."
+   6.013,
+   8.137,
+   "On access, dynamic Entra groups driven by HR attributes grant database access, so no DBA hands it out manually."
   ],
   [
-   14.938,
-   11.637,
-   "Administrative units delegate group management, privileged database roles go through pim from the Federal Modernization Workbook's Book 04, and reviews cover the groups, not just the logins."
+   14.15,
+   8.05,
+   "Privileged database roles go through just-in-time elevation from Book 04, and reviews cover the groups, not just the logins."
   ],
   [
-   26.575,
-   7.6,
-   "The application chain: the book sorts SQL-consuming applications into four classes, each with its own migration path."
+   22.2,
+   5.85,
+   "On applications, the book sorts them into four classes, each with its own migration path."
   ],
   [
-   34.175,
-   6.25,
-   "Connection strings name a specific Entra authentication mode in production rather than the catch-all default."
+   28.05,
+   6.537,
+   "Connection strings name a specific Entra authentication mode in production, rather than a catch-all default."
   ],
   [
-   40.425,
-   10.6,
-   "Microsoft.Data.SqlClient, ODBC, OLE DB and JDBC all support Entra modes, and the book has a driver table with the minimum versions."
+   34.587,
+   5.6,
+   "All the common database drivers support Entra, and the book has a table of minimum versions."
   ],
   [
-   51.025,
-   4.638,
-   "Managed identities on Arc hosts get their tokens from the local agent service."
-  ],
-  [
-   55.663,
+   40.188,
    2.225,
    "The last mile is the connection string."
   ],
   [
-   57.888,
-   9.463,
-   "Every application that still says Integrated Security keeps the Windows path alive, so the application inventory is part of closure, not a follow-up."
+   42.413,
+   5.312,
+   "Any application that still says Integrated Security keeps the Windows path alive."
+  ],
+  [
+   47.725,
+   4.237,
+   "So the application inventory is part of closure, not a follow-up."
+  ],
+  [
+   51.962,
+   2.237,
+   "And closure is the last big idea."
   ]
  ],
  "10": [
   [
    0.05,
-   7.588,
-   "The book's last idea is that a transformation doesn't complete; it achieves a posture, and a posture is something you keep proving."
+   7.612,
+   "The book's last idea is that a transformation doesn't finish; it reaches a posture, and a posture is something you keep proving."
   ],
   [
-   7.638,
-   31.038,
-   "The closed state has five conditions that hold together: every in-scope instance on Entra-only authentication; no SQL logins outside approved exceptions; no N T L M sessions in the continuous audit, counting remote sessions, because local ones always show N T L M; any drift, such as an administrator switching back to mixed mode, detected and treated as a violation; and evidence regenerated from SQL Server Audit and the auth_scheme field, not assembled into a binder."
+   7.662,
+   3.025,
+   "The closed state has five conditions that hold together."
   ],
   [
-   38.675,
+   10.688,
+   10.975,
+   "Every in-scope instance uses Entra-only authentication, SQL logins exist only as approved exceptions, and the continuous audit shows no N T L M sessions."
+  ],
+  [
+   21.663,
+   5.662,
+   "Any drift, like someone switching back to mixed mode, is caught and treated as a violation."
+  ],
+  [
+   27.325,
+   5.55,
+   "And the evidence is regenerated from the instance's own audit, not assembled into a binder."
+  ],
+  [
+   32.875,
    2.237,
    "One correction matters for assessors."
   ],
   [
-   40.913,
-   9.113,
-   "Entra sign-in logs can't prove per-instance access or the absence of N T L M, because every SQL resource shares one token audience."
+   35.112,
+   7.963,
+   "Entra sign-in logs can't prove per-instance access or the absence of N T L M, so the proof has to come from the instance itself."
   ],
   [
-   50.025,
-   2.5,
-   "The proof has to come from the instance itself."
-  ],
-  [
-   52.525,
+   43.075,
    2.2,
    "And there's a certificate layer underneath."
   ],
   [
-   54.725,
-   6.737,
-   "SQL Server's TLS certificates still come from Active Directory Certificate Services in most estates."
+   45.275,
+   8.188,
+   "SQL Server's TLS certificates usually still come from A D Certificate Services, and Cloud P K I can't issue to servers."
   ],
   [
-   61.462,
-   10.4,
-   "Microsoft Cloud P K I issues only to Intune-managed devices, and Intune doesn't manage Windows Server, so the server-certificate issuer is its own decision."
+   53.462,
+   3.05,
+   "So the server certificate issuer is its own decision."
+  ],
+  [
+   56.513,
+   1.55,
+   "That leads to the asks."
   ]
  ],
  "11": [
@@ -527,46 +532,46 @@
   ],
   [
    1.275,
-   8.688,
-   "Run the inventory and the gate: a retain, consolidate or retire verdict for every instance before any authentication work starts."
+   9.287,
+   "First, run the inventory and the gate: a retain, consolidate or retire verdict for every instance before any authentication work starts."
   ],
   [
-   9.963,
-   8.5,
-   "Fund the Arc bridge: a commercial subscription in the G C C tenant, with SQL Server 2022 or later as the target."
+   10.562,
+   9.475,
+   "Second, fund the Arc bridge, which means a commercial subscription in the G C C tenant, with SQL Server 2022 or later as the target."
   ],
   [
-   18.462,
-   11.812,
-   "Plan the support dates: upgrade or retire the 2014, 2016 and 2017 instances on their real dates, because they can't use Entra authentication."
+   20.038,
+   11.963,
+   "Third, plan for the support dates, upgrading or retiring the 2014, 2016 and 2017 instances on time, because they can't use Entra authentication."
   ],
   [
-   30.275,
-   7.725,
-   "And decide the certificate issuer: the Active Directory Certificate Services dependency for server TLS needs its own answer."
+   32.0,
+   8.088,
+   "And fourth, decide the certificate issuer for server TLS, because the A D Certificate Services dependency needs its own answer."
   ],
   [
-   38.0,
+   40.087,
    3.925,
    "The database is where legacy authentication hides longest."
   ],
   [
-   41.925,
-   8.488,
-   "Bringing it into Entra ID is what lets Conditional Access, phishing-resistant authentication and continuous evidence finally reach the data."
+   44.013,
+   7.562,
+   "Bringing it into Entra is what finally lets Conditional Access, phishing-resistant sign-in and continuous evidence reach the data."
   ],
   [
-   50.413,
-   7.713,
-   "The Federal Modernization Workbook's Book 06 has the narrative and ten runbooks, with every external claim footnoted."
+   51.575,
+   5.85,
+   "Book 06 has the narrative and ten runbooks, with every external claim footnoted."
   ],
   [
-   58.125,
+   57.425,
    5.95,
    "Book 05 covers Arc on servers, and Book 04 the access policy it plugs into."
   ],
   [
-   64.075,
+   63.375,
    0.762,
    "Thank you."
   ]

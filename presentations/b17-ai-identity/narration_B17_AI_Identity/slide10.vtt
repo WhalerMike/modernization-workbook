@@ -1,78 +1,71 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.678
-Every AI identity drifts once it
-exists: a sponsor changes jobs,
+00:00:00.050 --> 00:00:03.025
+Every AI identity drifts once it exists.
 
 2
-00:00:04.678 --> 00:00:08.238
-a developer adds a secret,
-an agent gets a new tool.
+00:00:03.025 --> 00:00:08.262
+A sponsor changes jobs, a developer adds
+a secret, an agent gets a new tool.
 
 3
-00:00:08.238 --> 00:00:13.237
-M twenty-five twenty-one asks monitoring
-of high-impact AI to detect changes to a
+00:00:08.262 --> 00:00:13.327
+Federal policy asks that high-impact AI be
+monitored for changes after deployment,
 
 4
-00:00:13.237 --> 00:00:18.388
-system after deployment, and the identity
-logs are where those changes land first.
+00:00:13.327 --> 00:00:16.924
+and the identity logs are where
+those changes show up first.
 
 5
-00:00:18.388 --> 00:00:23.770
+00:00:16.924 --> 00:00:22.308
 So the program collects every AI identity's
 sign-ins, audit events and risk signals,
 
 6
-00:00:23.770 --> 00:00:26.383
+00:00:22.308 --> 00:00:24.921
 and ties each one to its identity record,
 
 7
-00:00:26.383 --> 00:00:30.262
+00:00:24.921 --> 00:00:28.800
 because nothing in a service
 principal's sign-in says it's AI.
 
 8
-00:00:30.262 --> 00:00:32.425
-Discovery is a standing input.
+00:00:28.800 --> 00:00:31.225
+Discovery is a standing input too.
 
 9
-00:00:32.425 --> 00:00:37.430
-Shadow AI shows up in four places:
-services people use, apps holding
+00:00:31.225 --> 00:00:35.483
+Shadow AI turns up in several
+places, from services people use to
 
 10
-00:00:37.430 --> 00:00:43.163
-consented access, agents on endpoints,
-and AI built in the agency's own clouds.
+00:00:35.483 --> 00:00:40.063
+agents on endpoints, and anything
+found without a record is a finding.
 
 11
-00:00:43.163 --> 00:00:46.088
-Anything found without
-a record is a finding.
-
-12
-00:00:46.088 --> 00:00:49.374
-An agentic AI system with
+00:00:40.063 --> 00:00:43.010
+An agentic system with
 no governed identity
 
-13
-00:00:49.374 --> 00:00:52.324
+12
+00:00:43.010 --> 00:00:45.799
 is the finding this
 book exists to prevent.
 
-14
-00:00:52.324 --> 00:00:55.781
-It's high priority: it halts,
-alerts a named person,
-
-15
-00:00:55.781 --> 00:00:58.200
+13
+00:00:45.799 --> 00:00:50.388
+It halts, alerts a named person,
 and is never fixed automatically.
 
-16
-00:00:58.200 --> 00:01:01.320
-And A P I keys stay
-invisible to all of it.
+14
+00:00:50.388 --> 00:00:53.326
+And API keys stay invisible to all of it.
+
+15
+00:00:53.326 --> 00:00:55.250
+So who owns these decisions?

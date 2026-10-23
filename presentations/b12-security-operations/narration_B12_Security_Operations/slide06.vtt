@@ -6,68 +6,60 @@ A workspace full of tables
 is still a warehouse.
 
 2
-00:00:03.112 --> 00:00:06.684
-Rules, incidents and automation
-make it a detection engine,
+00:00:03.112 --> 00:00:07.825
+Rules, incidents and automation are
+what turn it into a detection engine.
 
 3
-00:00:06.684 --> 00:00:11.422
-and the program's rule is strict: no source
+00:00:07.825 --> 00:00:12.643
+And the program's rule is strict: no source
 counts as monitored until an enabled
 
 4
-00:00:11.422 --> 00:00:16.087
+00:00:12.643 --> 00:00:17.387
 rule reads it, and no rule counts until
 its output reaches a queue someone owns.
 
 5
-00:00:16.087 --> 00:00:19.212
-The engine also sets a
-floor on time to detect.
+00:00:17.387 --> 00:00:20.787
+The engine also sets a floor
+on how fast you can detect.
 
 6
-00:00:19.212 --> 00:00:22.309
-A scheduled rule runs
-every five minutes at best,
+00:00:20.787 --> 00:00:23.688
+Scheduled rules run every
+few minutes at best,
 
 7
-00:00:22.309 --> 00:00:24.787
-with a five-minute delay for ingestion.
+00:00:23.688 --> 00:00:27.047
+near-real-time rules are
+faster but limited in number,
 
 8
-00:00:24.787 --> 00:00:28.802
-A near-real-time rule runs every
-minute on a two-minute delay,
+00:00:27.047 --> 00:00:31.626
+and behavioral baselines are slower
+by design; the slide has the figures.
 
 9
-00:00:28.802 --> 00:00:31.588
-and a workspace can
-enable only 50 of them.
-
-10
-00:00:31.588 --> 00:00:34.324
-Behavioral baselines are slower by design.
-
-11
-00:00:34.324 --> 00:00:40.263
+00:00:31.626 --> 00:00:37.563
 Defender XDR detects what its own sensors
 see on endpoints, identities and email.
 
+10
+00:00:37.563 --> 00:00:42.712
+Sentinel rules cover what Defender
+can't see, like DNS and other clouds.
+
+11
+00:00:42.712 --> 00:00:46.275
+Then prepare for the assessor's
+test: show a recent alert,
+
 12
-00:00:40.263 --> 00:00:47.075
-Sentinel rules cover what Defender can't
-see: DNS, SASE, SQL audit and other clouds.
+00:00:46.275 --> 00:00:50.225
+the incident it opened, and what
+was done, from alert to closure.
 
 13
-00:00:47.075 --> 00:00:51.473
-Then prepare for the assessor's test:
-show an alert from the last 30 days,
-
-14
-00:00:51.473 --> 00:00:53.975
-the incident it opened and what was done.
-
-15
-00:00:53.975 --> 00:00:59.540
-That takes four records: the alert, the
-ticket, the response notes and the closure.
+00:00:50.225 --> 00:00:52.250
+Next, the federal clocks.

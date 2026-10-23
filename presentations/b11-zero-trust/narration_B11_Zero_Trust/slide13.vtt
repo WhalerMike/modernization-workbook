@@ -9,85 +9,72 @@ Last, turn findings into a program.
 Read each result before counting it.
 
 3
-00:00:05.025 --> 00:00:07.178
-Only ScubaGear's Fail and Warning,
+00:00:05.025 --> 00:00:07.550
+Only failures and warnings are findings.
 
 4
-00:00:07.178 --> 00:00:11.562
-and the Zero Trust Assessment's
-Failed and Investigate, are findings.
-
-5
-00:00:11.562 --> 00:00:14.562
+00:00:07.550 --> 00:00:10.550
 A skipped check isn't
 a gap and isn't a pass.
 
+5
+00:00:10.550 --> 00:00:13.599
+It's absence of evidence,
+recorded with the reason,
+
 6
-00:00:14.562 --> 00:00:18.414
-It's absence of evidence, recorded
-with the reason, which is often a
+00:00:13.599 --> 00:00:17.688
+often a license or a government-cloud
+feature that isn't available.
 
 7
-00:00:18.414 --> 00:00:22.837
-license or a government-cloud feature
-that isn't available in the boundary.
+00:00:17.688 --> 00:00:20.695
+Findings are scored with
+a documented method,
 
 8
-00:00:22.837 --> 00:00:28.542
-The program scores findings with a
-documented method: severity from 0 to 100,
+00:00:20.695 --> 00:00:25.838
+priority weighs severity against effort,
+and the buckets run from P1 down to P4.
 
 9
-00:00:28.542 --> 00:00:31.530
-priority as severity divided by effort,
-
-10
-00:00:31.530 --> 00:00:34.700
-and buckets from P1 at
-50 or above down to P4.
-
-11
-00:00:34.700 --> 00:00:37.466
+00:00:25.838 --> 00:00:28.579
 Quick wins go into the next change window;
 
-12
-00:00:37.466 --> 00:00:40.638
-major projects go onto a
+10
+00:00:28.579 --> 00:00:31.562
+major projects go on a
 pillar owner's roadmap.
 
-13
-00:00:40.638 --> 00:00:47.037
+11
+00:00:31.562 --> 00:00:37.961
 Both tools' findings are reconciled
 against the same SP 800-53 control,
 
-14
-00:00:47.037 --> 00:00:50.413
+12
+00:00:37.961 --> 00:00:41.337
 so two pieces of evidence become
 one finding for one owner.
 
+13
+00:00:41.337 --> 00:00:45.843
+Anything not fixed and not excepted
+becomes a POA&M item the authorizing
+
+14
+00:00:45.843 --> 00:00:49.974
+official approves, and drift goes
+to the authorizing official too.
+
 15
-00:00:50.413 --> 00:00:55.233
-Anything not fixed and not excepted becomes
-a plan of action and milestones item,
+00:00:49.974 --> 00:00:52.054
+Then re-run after every wave,
 
 16
-00:00:55.233 --> 00:00:57.751
-which the authorizing official approves.
-
-17
-00:00:57.751 --> 00:01:01.749
-Drift between intervals goes to
-the authorizing official too,
-
-18
-00:01:01.749 --> 00:01:03.825
-not only to security operations.
-
-19
-00:01:03.825 --> 00:01:06.655
-And re-run after every remediation wave,
-
-20
-00:01:06.655 --> 00:01:10.660
+00:00:52.054 --> 00:00:56.212
 so a finding is closed by
 evidence, not by a ticket status.
+
+17
+00:00:56.212 --> 00:00:58.100
+Let's close with the decisions.

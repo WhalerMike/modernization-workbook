@@ -20,61 +20,56 @@ is the claim true, and can I check it?
 The program inverts the usual package.
 
 5
-00:00:16.012 --> 00:00:20.892
+00:00:16.012 --> 00:00:20.804
 Evidence is the substance, and
-attestation is the accountability wrapper:
+attestation is the accountability wrapper,
 
 6
-00:00:20.892 --> 00:00:25.299
-people sign for the rules, the
+00:00:20.804 --> 00:00:25.287
+so people sign for the rules, the
 exceptions and the acceptance of risk.
 
 7
-00:00:25.299 --> 00:00:30.041
-NIST's assessment guide says that when the
-intended state is expressed as data and
+00:00:25.287 --> 00:00:27.175
+Federal guidance supports this.
 
 8
-00:00:30.041 --> 00:00:32.761
-compared automatically
-with the actual state,
+00:00:27.175 --> 00:00:32.687
+NIST treats automated comparison of
+intended and actual state as equivalent to
 
 9
-00:00:32.761 --> 00:00:36.038
-the output is equivalent to
-control assessment results.
+00:00:32.687 --> 00:00:36.059
+assessment results, and
+FedRAMP's 2026 rules tell
 
 10
-00:00:36.038 --> 00:00:40.801
-The Risk Management Framework lets a tool's
-report serve as the assessment report.
-
-11
-00:00:40.801 --> 00:00:43.699
-And FedRAMP's 2026 rules tell assessors:
-
-12
-00:00:43.699 --> 00:00:47.388
-don't simply review
+00:00:36.059 --> 00:00:40.337
+assessors not to simply review
 documentation or screenshots.
 
+11
+00:00:40.337 --> 00:00:42.000
+But be careful what you claim.
+
+12
+00:00:42.000 --> 00:00:43.825
+A hash shows something changed.
+
 13
-00:00:47.388 --> 00:00:48.888
-Be careful what you claim.
-
-14
-00:00:48.888 --> 00:00:50.975
-A hash shows that something changed.
-
-15
-00:00:50.975 --> 00:00:53.675
+00:00:43.825 --> 00:00:46.525
 A hash chain shows removal or reordering.
 
-16
-00:00:53.675 --> 00:00:56.000
+14
+00:00:46.525 --> 00:00:48.850
 Only a signature shows who produced it.
 
-17
-00:00:56.000 --> 00:01:01.510
+15
+00:00:48.850 --> 00:00:54.300
 And some controls, like a training record
 or a contract clause, stay attestations.
+
+16
+00:00:54.300 --> 00:00:57.220
+Next, how the program
+reaches each platform.

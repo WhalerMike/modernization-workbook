@@ -1,92 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.537
-The second reason is the calendar,
-and it isn't the agency's any more.
+00:00:00.050 --> 00:00:02.988
+And the calendar isn't
+the agency's any more.
 
 2
-00:00:04.537 --> 00:00:07.162
-Federal policy sets dates from outside.
+00:00:02.988 --> 00:00:05.837
+Policy and vendors set
+the dates from outside.
 
 3
-00:00:07.162 --> 00:00:12.270
+00:00:05.837 --> 00:00:10.749
+Some have already passed:
 M-22-09's Zero Trust actions were
-due by the end of fiscal 2024;
 
 4
-00:00:12.270 --> 00:00:16.187
-the deadline has passed, but
-the actions remain in force.
+00:00:10.749 --> 00:00:14.475
+due by the end of fiscal 2024,
+and they're still in force.
 
 5
-00:00:16.187 --> 00:00:23.288
-BOD 25-01's mandatory cloud-tenant
-policies were due June 20, 2025.
+00:00:14.475 --> 00:00:15.725
+Others are close.
 
 6
-00:00:23.288 --> 00:00:27.529
-BOD 26-02 requires listed
-end-of-support edge
+00:00:15.725 --> 00:00:21.387
+FedRAMP's Consolidated Rules become
+mandatory on January 1, 2027.
 
 7
-00:00:27.529 --> 00:00:32.113
-devices to be decommissioned
-by February 5, 2027.
+00:00:21.387 --> 00:00:29.199
+BOD 26-02 wants listed end-of-support
+edge devices gone by February 5, 2027.
 
 8
-00:00:32.113 --> 00:00:38.706
-M-26-14 rescinded M-21-31, and asks
-for an Agency Logging Plan within 90
+00:00:29.199 --> 00:00:34.404
+And by the program's own count,
+not a date OMB published,
 
 9
-00:00:38.706 --> 00:00:46.124
-days of CISA's Logging Reference
-Architecture, published on August 20, 2026.
+00:00:34.404 --> 00:00:40.200
+the Agency Logging Plan under
+M-26-14 is due November 18, 2026.
 
 10
-00:00:46.124 --> 00:00:50.532
-Counted from that date, the
-plan is due November 18, 2026;
+00:00:40.200 --> 00:00:44.513
+Vendors add their own
+clock: Windows Server 2016,
 
 11
-00:00:50.532 --> 00:00:55.037
-that's the program's arithmetic,
-not a date OMB published.
+00:00:44.513 --> 00:00:50.550
+which runs many domain controllers,
+ends support on January 12, 2027.
 
 12
-00:00:55.037 --> 00:01:00.913
-And FedRAMP's Consolidated Rules
-become mandatory on January 1, 2027.
+00:00:50.550 --> 00:00:52.225
+The slide lists the rest.
 
 13
-00:01:00.913 --> 00:01:03.313
-Vendor support adds its own clock.
-
-14
-00:01:03.313 --> 00:01:09.924
-Windows 10 and Exchange Server 2016
-and 2019 ended in October 2025.
-
-15
-00:01:09.924 --> 00:01:14.038
-Windows Server 2016,
-the operating system of
-
-16
-00:01:14.038 --> 00:01:18.263
-many domain controllers,
-ends January 12, 2027.
-
-17
-00:01:18.263 --> 00:01:20.100
+00:00:52.225 --> 00:00:54.062
 Nothing fails on a single date.
 
-18
-00:01:20.100 --> 00:01:23.714
-But every deadline assumes
-the agency knows what it runs,
+14
+00:00:54.062 --> 00:00:58.420
+But every one of these deadlines
+assumes the agency knows what it runs,
 
-19
-00:01:23.714 --> 00:01:25.700
-who owns it and what governs it.
+15
+00:00:58.420 --> 00:01:00.360
+who owns it, and what governs it.

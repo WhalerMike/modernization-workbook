@@ -11,69 +11,54 @@ so its lifecycle has to hang
 from a person who does.
 
 3
-00:00:06.400 --> 00:00:11.328
-Agent ID separates the owner, who manages
-credentials, from the sponsor, who is
+00:00:06.400 --> 00:00:09.898
+Agent ID separates the owner,
+who manages credentials,
 
 4
-00:00:11.328 --> 00:00:16.488
-accountable for purpose and lifecycle and
-can switch an agent off but not back on.
+00:00:09.898 --> 00:00:13.863
+from the sponsor, who's accountable
+for purpose and lifecycle.
 
 5
-00:00:16.488 --> 00:00:20.063
-Left to defaults, the sponsor
-is whoever built the agent.
+00:00:13.863 --> 00:00:17.713
+Left to defaults, the sponsor is
+just whoever built the agent.
 
 6
-00:00:20.063 --> 00:00:24.938
+00:00:17.713 --> 00:00:22.666
 The program decides instead: the sponsor
-is a federal employee mastered in HR,
+is a federal employee mastered in HR, a
 
 7
-00:00:24.938 --> 00:00:28.443
-a small dynamic group of
-stewards is the second sponsor,
+00:00:22.666 --> 00:00:27.849
+small group of stewards is the backup, and
+the technical owner is never the sponsor.
 
 8
-00:00:28.443 --> 00:00:31.262
-and the technical owner
-is never the sponsor.
+00:00:27.849 --> 00:00:30.062
+The lifecycle then follows that person.
 
 9
-00:00:31.262 --> 00:00:33.275
-The lifecycle follows that person.
-
-10
-00:00:33.275 --> 00:00:37.342
+00:00:30.062 --> 00:00:34.176
 When the sponsor moves or leaves,
 the HR event triggers a transfer,
 
-11
-00:00:37.342 --> 00:00:42.162
-and the new sponsor has ten business days
+10
+00:00:34.176 --> 00:00:38.824
+and the new sponsor has a short window
 to confirm the agent is still needed.
 
+11
+00:00:38.824 --> 00:00:42.800
+Access comes with end dates, so a
+sponsor who does nothing removes it.
+
 12
-00:00:42.162 --> 00:00:45.218
-Access comes through
-packages with end dates,
+00:00:42.800 --> 00:00:47.488
+And an orphaned agent is disabled by
+a person, never by an automatic rule.
 
 13
-00:00:45.218 --> 00:00:49.801
-so expiry is the review: a sponsor
-who does nothing removes the access.
-
-14
-00:00:49.801 --> 00:00:52.800
-Retirement is disable first, then delete.
-
-15
-00:00:52.800 --> 00:00:58.251
-Once an orphaned agent is confirmed, a
-person disables it, never an automatic rule,
-
-16
-00:00:58.251 --> 00:01:02.300
-and its office has thirty days
-to name a sponsor or retire it.
+00:00:47.488 --> 00:00:49.940
+Next, credentials and privilege.

@@ -6,85 +6,76 @@ Detection without response shortens
 the investigation, not the exposure.
 
 2
-00:00:04.688 --> 00:00:09.685
-So every playbook is confidence-gated:
+00:00:04.688 --> 00:00:10.060
+So every playbook is gated by confidence:
 high confidence prepares containment,
 
 3
-00:00:09.685 --> 00:00:14.913
-medium confidence enriches and tickets for
-a human, and low confidence never acts.
+00:00:10.060 --> 00:00:13.909
+medium confidence enriches and
+opens a ticket for a human,
 
 4
-00:00:14.913 --> 00:00:17.987
-Responses sit on the
-workbook's actuation ladder.
+00:00:13.909 --> 00:00:15.913
+and low confidence never acts.
 
 5
-00:00:17.987 --> 00:00:19.300
-L1 observes.
+00:00:15.913 --> 00:00:20.810
+Responses sit on the workbook's actuation
+ladder, from observing and advising,
 
 6
-00:00:19.300 --> 00:00:20.600
-L2 advises.
+00:00:20.810 --> 00:00:23.975
+up to gated actuation,
+where the playbook prepares
 
 7
-00:00:20.600 --> 00:00:25.443
-L3, gated actuation, is the default
-for anything with a large blast radius:
+00:00:23.975 --> 00:00:26.612
+an action and a named
+approver releases it.
 
 8
-00:00:25.443 --> 00:00:29.721
-the playbook checks its preconditions
-and prepares the action,
+00:00:26.612 --> 00:00:30.175
+That's the default for anything
+with a large blast radius.
 
 9
-00:00:29.721 --> 00:00:31.900
-and a named approver releases it.
+00:00:30.175 --> 00:00:35.025
+Only listed, low-risk classes run on
+their own, logged and reversible.
 
 10
-00:00:31.900 --> 00:00:34.534
-L4 runs alone, logged and reversible,
+00:00:35.025 --> 00:00:39.245
+A few, like isolating a server or
+disabling a privileged account,
 
 11
-00:00:34.534 --> 00:00:39.187
-for enumerated classes such as
-closing known-benign incidents.
+00:00:39.245 --> 00:00:40.837
+always need an approver.
 
 12
-00:00:39.187 --> 00:00:43.246
-Three classes stay at L3
-permanently: isolating a server,
-
-13
-00:00:43.246 --> 00:00:48.426
-disabling a privileged or emergency
-account, and any tenant-wide change.
-
-14
-00:00:48.426 --> 00:00:51.871
-Defender XDR's attack
+00:00:40.837 --> 00:00:44.152
+And because Defender's attack
 disruption acts on its own,
 
+13
+00:00:44.152 --> 00:00:47.537
+the authorizing official
+decides whether to accept that.
+
+14
+00:00:47.537 --> 00:00:49.338
+Latency is real too.
+
 15
-00:00:51.871 --> 00:00:56.350
-so the authorizing official
-decides whether to accept it as L4.
+00:00:49.338 --> 00:00:53.154
+A hybrid user must be disabled
+in Active Directory as well,
 
 16
-00:00:56.350 --> 00:00:57.812
-Latency is real.
+00:00:53.154 --> 00:00:54.824
+or the next sync undoes it.
 
 17
-00:00:57.812 --> 00:01:02.980
-Session revocation can take up to 15
-minutes in services that support continuous
-
-18
-00:01:02.980 --> 00:01:07.843
-access evaluation, and a hybrid user must
-be disabled in Active Directory too,
-
-19
-00:01:07.843 --> 00:01:10.340
-or the next synchronization undoes it.
+00:00:54.824 --> 00:00:56.740
+Next, proving it works.

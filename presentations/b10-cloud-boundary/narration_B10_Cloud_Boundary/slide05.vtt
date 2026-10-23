@@ -1,90 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.475
-What changed at FedRAMP?
+00:00:00.050 --> 00:00:04.738
+FedRAMP itself changed in 2026,
+and three changes matter here.
 
 2
-00:00:01.475 --> 00:00:02.513
-Three things.
+00:00:04.738 --> 00:00:08.350
+First, services are now certified
+in classes, A through D.
 
 3
-00:00:02.513 --> 00:00:05.950
-First, services are now
-certified, in Classes A to D.
+00:00:08.350 --> 00:00:13.377
+Class C covers today's Moderate baseline
+and Class D today's High, and agencies
 
 4
-00:00:05.950 --> 00:00:11.818
-FedRAMP's February 2026 notice says Class
-C includes the current Moderate baseline
+00:00:13.377 --> 00:00:18.325
+can still authorize at whatever security
+category they judge appropriate.
 
 5
-00:00:11.818 --> 00:00:15.255
-and Class D the current
-High, and that agencies may
+00:00:18.325 --> 00:00:22.588
+Second, the new rules have no provider
+authorization boundary at all.
 
 6
-00:00:15.255 --> 00:00:19.363
-authorize at any security
-category they deem appropriate.
+00:00:22.588 --> 00:00:26.568
+The phrase doesn't appear once
+in the machine-readable ruleset,
 
 7
-00:00:19.363 --> 00:00:23.051
-Second, the rules have no
-provider authorization boundary.
+00:00:26.568 --> 00:00:29.324
+and security category
+may vary by resource.
 
 8
-00:00:23.051 --> 00:00:26.728
-In the machine-readable ruleset,
+00:00:29.324 --> 00:00:32.413
+Third, change is notified
+rather than re-approved,
 
 9
-00:00:26.728 --> 00:00:32.450
-version 2026.10.13.01, that
-phrase occurs zero times.
+00:00:32.413 --> 00:00:35.350
+and the deadlines are
+counted in business days.
 
 10
-00:00:32.450 --> 00:00:37.208
-The word boundary appears eight times,
-four of them as a tag on rule families:
+00:00:35.350 --> 00:00:37.390
+Routine changes need no notice;
 
 11
-00:00:37.208 --> 00:00:40.584
-minimum assessment scope,
-cryptographic module use,
+00:00:37.390 --> 00:00:41.313
+bigger ones have set notice
+windows, and the slide lists them.
 
 12
-00:00:40.584 --> 00:00:45.188
-vulnerability detection and response,
-and certification data sharing.
+00:00:41.313 --> 00:00:47.723
+Two dates are worth writing down:
+adoption is mandatory on January 1,
 
 13
-00:00:45.188 --> 00:00:48.300
-Security category may vary by resource.
+00:00:47.723 --> 00:00:52.074
+2027, and new Rev5 requests
+stop on June 11, 2027.
 
 14
-00:00:48.300 --> 00:00:53.750
-Third, change is notified, not re-approved,
-and the deadlines are in business days.
-
-15
-00:00:53.750 --> 00:00:56.462
-Routine recurring changes need no notice.
-
-16
-00:00:56.462 --> 00:01:00.187
-Adaptive changes, within 10
-business days after finishing.
-
-17
-00:01:00.187 --> 00:01:04.626
-Transformative changes, initial
-plans 30 business days before.
-
-18
-00:01:04.626 --> 00:01:08.806
-Adoption is mandatory on January 1, 2027,
-
-19
-00:01:08.806 --> 00:01:13.180
-and new Rev5 requests
-stop on June 11, 2027.
+00:00:52.074 --> 00:00:54.940
+Now let's read what GCC actually is.

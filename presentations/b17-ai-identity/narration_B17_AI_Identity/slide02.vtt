@@ -15,62 +15,58 @@ a person reads the draft and acts.
 An agent is different.
 
 4
-00:00:08.813 --> 00:00:13.762
-It sends replies from a mailbox, closes
-tickets and updates case records.
+00:00:08.813 --> 00:00:13.849
+It sends replies from a mailbox,
+closes tickets, updates case records.
 
 5
-00:00:13.762 --> 00:00:16.297
-Each step is an action
+00:00:13.849 --> 00:00:16.549
+Each of those is an action
 against agency data,
 
 6
-00:00:16.297 --> 00:00:19.700
+00:00:16.549 --> 00:00:19.887
 taken by something that signed
 in and holds permissions.
 
 7
-00:00:19.700 --> 00:00:21.638
-That makes an agent an identity.
+00:00:19.887 --> 00:00:21.399
+That makes it an identity.
 
 8
-00:00:21.638 --> 00:00:26.946
-An AI system that acts reaches data
-in one of four ways: on behalf of a
+00:00:21.399 --> 00:00:26.566
+An AI system can reach data in one
+of four ways: for a signed-in user,
 
 9
-00:00:26.946 --> 00:00:32.062
-signed-in user, as itself, as its own
-user account, or with an A P I key.
+00:00:26.566 --> 00:00:30.562
+as itself, as its own user
+account, or with an API key.
 
 10
-00:00:32.062 --> 00:00:35.112
+00:00:30.562 --> 00:00:33.612
 The first three run through
 the identity provider.
 
 11
-00:00:35.112 --> 00:00:37.365
-The fourth bypasses it entirely,
+00:00:33.612 --> 00:00:38.075
+The fourth skips it entirely, so
+no sign-in is ever evaluated.
 
 12
-00:00:37.365 --> 00:00:41.787
-so Conditional Access never applies
-and no sign-in is evaluated.
+00:00:38.075 --> 00:00:41.098
+Today the agentic share
+of federal AI is small,
 
 13
-00:00:41.787 --> 00:00:44.051
-Today the agentic share is small.
+00:00:41.098 --> 00:00:45.075
+only a small fraction of the
+thousands of reported use cases.
 
 14
-00:00:44.051 --> 00:00:52.375
-OMB's 2025 inventory holds 3,611
-use cases, 445 of them high-impact.
+00:00:45.075 --> 00:00:47.238
+But it's the share growing fastest.
 
 15
-00:00:52.375 --> 00:00:57.862
-117 are classified agentic, and 38
-of those are in pilot or deployed.
-
-16
-00:00:57.862 --> 00:01:00.340
-It's also the share that grows fastest.
+00:00:47.238 --> 00:00:48.700
+So how did AI get in?

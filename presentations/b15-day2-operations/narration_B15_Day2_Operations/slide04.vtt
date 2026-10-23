@@ -1,84 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.700
-The same argument holds from the
-side of the authorization package.
-
-2
-00:00:03.700 --> 00:00:07.225
+00:00:00.050 --> 00:00:03.525
 An authorization describes
 the system as it was assessed.
 
+2
+00:00:03.525 --> 00:00:08.580
+The day after, the help desk resets
+passwords, onboards people, changes groups
+
 3
-00:00:07.225 --> 00:00:11.325
-The day after, the help desk
-resets passwords, onboards people,
+00:00:08.580 --> 00:00:13.162
+and fixes a sync error, and every one
+of those changes touches a control.
 
 4
-00:00:11.325 --> 00:00:16.952
-changes groups and fixes a synchronization
-error, and each change touches a control:
-
-5
-00:00:16.952 --> 00:00:20.570
-account management, least
-privilege, authenticators,
-
-6
-00:00:20.570 --> 00:00:23.625
-change control, the
-inventory, the audit trail.
-
-7
-00:00:23.625 --> 00:00:28.066
-Done as portal clicks, each leaves
+00:00:13.162 --> 00:00:17.490
+Done as portal clicks, they leave
 no record the control recognizes,
 
+5
+00:00:17.490 --> 00:00:19.850
+so the package ages with every click.
+
+6
+00:00:19.850 --> 00:00:23.760
+The baseline only asks for
+automation in specific places,
+
+7
+00:00:23.760 --> 00:00:27.425
+so Book 15's push for automation
+is really about volume.
+
 8
-00:00:28.066 --> 00:00:30.525
-and the package ages with every click.
-
-9
-00:00:30.525 --> 00:00:34.750
-The moderate baseline asks for
-automation only in specific places,
-
-10
-00:00:34.750 --> 00:00:39.125
-so the book's emphasis on automation
-is a design position about volume.
-
-11
-00:00:39.125 --> 00:00:43.386
+00:00:27.425 --> 00:00:31.686
 At day-two volume, people assembling
 the record by hand can't keep up,
 
-12
-00:00:43.386 --> 00:00:46.950
+9
+00:00:31.686 --> 00:00:35.250
 and what they produce is a
 reconstruction, not evidence.
 
-13
-00:00:46.950 --> 00:00:51.341
-A control passes three layers:
+10
+00:00:35.250 --> 00:00:39.610
+So a control has three layers:
 designed, deployed as code,
 
-14
-00:00:51.341 --> 00:00:56.012
+11
+00:00:39.610 --> 00:00:44.350
 and operated, with an owner, a
 gate, a clock and an evidence feed.
 
-15
-00:00:56.012 --> 00:01:01.506
-Every operation starts from the source of
-truth, carries the approval its control
+12
+00:00:44.350 --> 00:00:47.894
+Every operation should start
+from the source of truth,
 
-16
-00:01:01.506 --> 00:01:06.838
-requires, runs under a just-in-time role,
-closes with proof and emits its evidence.
+13
+00:00:47.894 --> 00:00:51.675
+carry its approval, close with
+proof and emit its evidence.
 
-17
-00:01:06.838 --> 00:01:09.530
+14
+00:00:51.675 --> 00:00:54.300
 Miss one, and the work can't be attested.
+
+15
+00:00:54.300 --> 00:00:55.750
+Let's look at the front door.

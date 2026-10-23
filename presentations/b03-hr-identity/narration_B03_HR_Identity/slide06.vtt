@@ -1,88 +1,79 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.100
-Provisioning turns personnel
-records into governed identities.
+00:00:00.050 --> 00:00:04.450
+Provisioning is where personnel
+records turn into governed identities.
 
 2
-00:00:04.100 --> 00:00:08.563
-Core HCM publishes worker
+00:00:04.450 --> 00:00:08.737
+The HR platform publishes worker
 records and personnel actions.
 
 3
-00:00:08.563 --> 00:00:12.638
+00:00:08.737 --> 00:00:13.094
 A small middleware, inside the
-agency's authorization boundary,
+agency's own authorization boundary,
 
 4
-00:00:12.638 --> 00:00:17.792
-does five things for every event: it
-validates the record, applies events in order,
+00:00:13.094 --> 00:00:18.460
+validates each event, applies events in
+order, normalizes them to the SCIM standard,
 
 5
-00:00:17.792 --> 00:00:20.176
-normalizes them to the SCIM standard,
-
-6
-00:00:20.176 --> 00:00:23.637
-writes a provenance record,
+00:00:18.460 --> 00:00:22.038
+records where they came from,
 and reconciles the result.
 
+6
+00:00:22.038 --> 00:00:26.983
+Entra ID's inbound provisioning then
+creates and updates the accounts,
+
 7
-00:00:23.637 --> 00:00:28.355
-Then Entra ID's API-driven inbound
-provisioning creates and updates the
+00:00:26.983 --> 00:00:29.413
+in Entra ID and in Active Directory.
 
 8
-00:00:28.355 --> 00:00:33.387
-accounts in Entra ID and, through the
-provisioning agent, in Active Directory.
+00:00:29.413 --> 00:00:34.113
+The book sizes that interface's daily
+limits against the agency's population.
 
 9
-00:00:33.387 --> 00:00:37.156
-That interface has daily call
-limits that scale with the license,
+00:00:34.113 --> 00:00:36.962
+The key design choice is
+that it fails closed.
 
 10
-00:00:37.156 --> 00:00:40.226
-which the book sizes against
-the agency's population.
-
-11
-00:00:40.226 --> 00:00:42.050
-The design fails closed.
-
-12
-00:00:42.050 --> 00:00:44.100
+00:00:36.962 --> 00:00:39.012
 Unknown worker types are refused.
 
-13
-00:00:44.100 --> 00:00:48.313
+11
+00:00:39.012 --> 00:00:43.226
 A failed record is retried and
 recorded, never silently skipped.
 
-14
-00:00:48.313 --> 00:00:52.030
-And every event leaves a provenance
-record before the call returns,
+12
+00:00:43.226 --> 00:00:45.574
+And every event leaves
+a provenance record,
 
-15
-00:00:52.030 --> 00:00:54.487
+13
+00:00:45.574 --> 00:00:47.988
 which is where the
 evidence comes from later.
 
-16
-00:00:54.487 --> 00:00:57.474
+14
+00:00:47.988 --> 00:00:50.974
 The technology is the
 example, not the point.
 
-17
-00:00:57.474 --> 00:01:01.475
+15
+00:00:50.974 --> 00:00:54.975
 Today it's Oracle Core
 HCM feeding Entra ID.
 
-18
-00:01:01.475 --> 00:01:06.720
-If the vendors change, the model and the
-rules hold; only the boundary changes.
+16
+00:00:54.975 --> 00:00:58.540
+If the vendors change, the
+model and the rules still hold.

@@ -1,88 +1,70 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.762
-Chapter 04 separates two
+00:00:00.050 --> 00:00:02.887
+The book separates two
 meanings of centralize.
 
 2
-00:00:03.762 --> 00:00:07.706
-Logical centralization, one
-authoritative source of truth
+00:00:02.887 --> 00:00:07.039
+Logical centralization means one
+authoritative source of truth,
 
 3
-00:00:07.706 --> 00:00:11.175
+00:00:07.039 --> 00:00:10.813
 with every other copy derived,
-is almost always right.
+and that's almost always right.
 
 4
-00:00:11.175 --> 00:00:16.184
-Physical centralization, one server
-in one place, stops at three walls:
+00:00:10.813 --> 00:00:14.687
+Physical centralization means
+one server in one place,
 
 5
-00:00:16.184 --> 00:00:19.812
-the speed of light, blast
-radius and data residency.
+00:00:14.687 --> 00:00:20.162
+and it runs into three walls: the speed of
+light, blast radius and data residency.
 
 6
-00:00:19.812 --> 00:00:24.487
-Token-based security removes the
-strongest old reason to fragment.
+00:00:20.162 --> 00:00:23.938
+Tokens remove the strongest
+old reason to fragment.
 
 7
-00:00:24.487 --> 00:00:28.198
+00:00:23.938 --> 00:00:27.652
 When every request carries
 a verifiable identity,
 
 8
-00:00:28.198 --> 00:00:31.025
-one store can serve many trust domains.
+00:00:27.652 --> 00:00:31.013
+one store can safely
+serve many trust domains.
 
 9
-00:00:31.025 --> 00:00:34.569
-Inbound, a multitenant service
-checks each Entra token's
+00:00:31.013 --> 00:00:35.495
+Going out, a service can sign in to
+its database with a short-lived token,
 
 10
-00:00:34.569 --> 00:00:37.963
-tenant ID against the tenant
-the data was stored under.
-
-11
-00:00:37.963 --> 00:00:42.912
-Outbound, the service signs in to its
-database with a short-lived token in the
-
-12
-00:00:42.912 --> 00:00:45.269
-password field, valid 5 to 60 minutes,
-
-13
-00:00:45.269 --> 00:00:48.412
+00:00:35.495 --> 00:00:38.587
 so the long-lived database
 password disappears.
 
+11
+00:00:38.587 --> 00:00:41.437
+The price is that isolation
+now lives in code.
+
+12
+00:00:41.437 --> 00:00:45.181
+Then pick the weakest consistency
+each flow can tolerate,
+
+13
+00:00:45.181 --> 00:00:48.925
+because strong consistency
+across regions is expensive.
+
 14
-00:00:48.412 --> 00:00:50.988
-The price is that isolation lives in code.
-
-15
-00:00:50.988 --> 00:00:54.587
-Then choose the weakest
-consistency each flow tolerates.
-
-16
-00:00:54.587 --> 00:00:57.525
-Azure Cosmos DB, as
-one documented example,
-
-17
-00:00:57.525 --> 00:01:03.064
-puts multi-region strong write latency
-at twice the farthest round trip plus 10
-
-18
-00:01:03.064 --> 00:01:08.740
-milliseconds, and blocks strong consistency
-beyond 8,000 kilometers by default.
+00:00:48.925 --> 00:00:51.550
+Next, the tools that govern the path.

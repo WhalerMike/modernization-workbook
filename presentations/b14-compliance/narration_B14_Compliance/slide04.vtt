@@ -1,88 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.925
-Most civilian cloud systems are authorized
-at Moderate, and the word does real work.
+00:00:00.050 --> 00:00:03.527
+Most civilian cloud systems
+are authorized at Moderate,
 
 2
-00:00:04.925 --> 00:00:10.260
-Under FIPS 199, the agency rates the
-impact of losing confidentiality,
+00:00:03.527 --> 00:00:05.450
+and that word is doing real work.
 
 3
-00:00:10.260 --> 00:00:14.675
-integrity and availability
-for each kind of information.
+00:00:05.450 --> 00:00:09.190
+The agency rates the impact
+of losing confidentiality,
 
 4
-00:00:14.675 --> 00:00:16.876
-FIPS 200 takes the high-water mark:
+00:00:09.190 --> 00:00:13.012
+integrity and availability,
+and the highest rating wins.
 
 5
-00:00:16.876 --> 00:00:21.750
-at least one objective at moderate and
-none at high makes a moderate system.
+00:00:13.012 --> 00:00:17.412
+If nothing is high and at least one thing
+is moderate, it's a Moderate system.
 
 6
-00:00:21.750 --> 00:00:26.032
-The agency then selects and
-tailors NIST's Moderate baseline,
+00:00:17.412 --> 00:00:20.482
+The agency then tailors
+NIST's Moderate baseline,
 
 7
-00:00:26.032 --> 00:00:30.650
-which in the current release holds
-287 controls and enhancements.
+00:00:20.482 --> 00:00:23.551
+which is the size of the
+promise that system makes.
 
 8
-00:00:30.650 --> 00:00:33.762
-That's the size of the promise
-a Moderate system makes.
-
-9
-00:00:33.762 --> 00:00:36.500
+00:00:23.551 --> 00:00:26.287
 FedRAMP's Class C is a separate fact.
 
+9
+00:00:26.287 --> 00:00:30.278
+It includes the Moderate baseline,
+but it lists more controls,
+
 10
-00:00:36.500 --> 00:00:41.695
-It includes the current Moderate
-baseline, but FedRAMP lists 322 controls
+00:00:30.278 --> 00:00:33.251
+a few dozen of them outside
+NIST's Moderate set.
 
 11
-00:00:41.695 --> 00:00:46.387
-and enhancements for it, 36 of them
-outside NIST's Moderate baseline.
-
-12
-00:00:46.387 --> 00:00:50.361
-Automated access enforcement
-for changes, for example,
-
-13
-00:00:50.361 --> 00:00:53.815
-is NIST High only, yet
-FedRAMP lists it for Class C.
-
-14
-00:00:53.815 --> 00:00:56.838
-Non-repudiation is High
-only on both lists.
-
-15
-00:00:56.838 --> 00:00:58.575
+00:00:33.251 --> 00:00:34.988
 So cite the two separately.
 
-16
-00:00:58.575 --> 00:01:01.769
+12
+00:00:34.988 --> 00:00:38.181
 A Moderate system built on
 a Class C service inherits
 
-17
-00:01:01.769 --> 00:01:04.600
+13
+00:00:38.181 --> 00:00:41.012
 the provider's evidence
 for the provider's side.
 
-18
-00:01:04.600 --> 00:01:09.100
+14
+00:00:41.012 --> 00:00:45.451
 It still has to prove its own side,
 against its own tailored baseline.
+
+15
+00:00:45.451 --> 00:00:49.440
+Which raises the real question:
+when is a control actually closed?

@@ -1,99 +1,71 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.338
-Three drivers make the inheritance end.
+00:00:00.050 --> 00:00:02.650
+Three drivers make the change unavoidable.
 
 2
-00:00:02.338 --> 00:00:05.512
-First, NTLM elimination.
+00:00:02.650 --> 00:00:05.663
+First, NTLM is on its way out.
 
 3
-00:00:05.512 --> 00:00:10.192
-Microsoft deprecated all versions
-of NTLM in June 2024 and
+00:00:05.663 --> 00:00:11.625
+Microsoft deprecated it in 2024 and
+plans to disable it by default someday,
 
 4
-00:00:10.192 --> 00:00:14.775
-plans to disable it by default
-in a future Windows release.
+00:00:11.625 --> 00:00:17.587
+and the program sets its own backstop,
+April 1, 2027, for the domain-wide block.
 
 5
-00:00:14.775 --> 00:00:21.225
-The program sets its own backstop, April
-1, 2027, for the domain-wide block.
+00:00:17.587 --> 00:00:19.474
+Second, Zero Trust.
 
 6
-00:00:21.225 --> 00:00:24.700
-Second, Zero Trust in
-the authentication path.
-
-7
-00:00:24.700 --> 00:00:30.406
-OMB M-22-09 puts phishing-resistant
+00:00:19.474 --> 00:00:24.293
+Federal policy puts phishing-resistant
 MFA and the Entra identity plane
 
+7
+00:00:24.293 --> 00:00:28.875
+in front of human access, and Windows
+Authentication goes around both.
+
 8
-00:00:30.406 --> 00:00:35.175
-in front of human access, and
-Windows Authentication bypasses both.
+00:00:28.875 --> 00:00:32.274
+Third, the directory
+modernization in Book 02 ends the
 
 9
-00:00:35.175 --> 00:00:37.550
-Third, service-account credentials.
+00:00:32.274 --> 00:00:35.825
+domain-joined world that the
+service accounts depend on.
 
 10
-00:00:37.550 --> 00:00:41.590
-The directory modernization in the
-Federal Modernization Workbook's
+00:00:35.825 --> 00:00:38.950
+There's no external NTLM deadline.
 
 11
-00:00:41.590 --> 00:00:45.562
-Book 02 ends the domain-joined world
-those service accounts depend on.
+00:00:38.950 --> 00:00:44.652
+The real dates are support dates for older
+SQL Server and Windows Server versions,
 
 12
-00:00:45.562 --> 00:00:48.262
-The book is precise about 2027.
+00:00:44.652 --> 00:00:48.425
+running through 2026 and 2027,
+and the slide lists them.
 
 13
-00:00:48.262 --> 00:00:50.718
-There's no external NTLM deadline;
-
-14
-00:00:50.718 --> 00:00:54.401
-Microsoft hasn't dated the
-disable-by-default step.
-
-15
-00:00:54.401 --> 00:00:58.107
-The dates that are real are support dates:
-
-16
-00:00:58.107 --> 00:01:02.359
-SQL Server 2016 went out
-of support in July 2026,
-
-17
-00:01:02.359 --> 00:01:08.574
-Windows Server 2016 follows in
-January 2027, the last SQL Server 2014
-
-18
-00:01:08.574 --> 00:01:12.281
-extended-security year ends in July 2027,
-
-19
-00:01:12.281 --> 00:01:17.188
-and SQL Server 2017 goes out
-of support in October 2027.
-
-20
-00:01:17.188 --> 00:01:22.130
+00:00:48.425 --> 00:00:53.266
 SQL Server 2014 and 2017 can't
 use Entra authentication at all,
 
-21
-00:01:22.130 --> 00:01:27.020
-so they reach the closed state
-only by upgrade or retirement.
+14
+00:00:53.266 --> 00:00:58.013
+so they only get to the closed
+state by upgrade or retirement.
+
+15
+00:00:58.013 --> 00:01:00.340
+The work starts with the estate itself.

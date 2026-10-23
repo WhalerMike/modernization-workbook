@@ -1,951 +1,794 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.251
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.988
 This briefing comes from
 Book 03 of the Federal
 
-2
-00:00:03.251 --> 00:00:06.287
+3
+00:00:03.988 --> 00:00:07.049
 Modernization Workbook,
 HR-Driven Identity.
 
-3
-00:00:06.287 --> 00:00:09.930
-It has one proposal, and I'll
+4
+00:00:07.049 --> 00:00:10.812
+It makes one proposal, and we'll
 take it through four questions,
 
-4
-00:00:09.930 --> 00:00:13.877
-the way I'd take it to leadership:
-why it matters, what we should do,
-
 5
-00:00:13.877 --> 00:00:17.975
-who has to be involved, and how we'd
-carry it out and know it's working.
+00:00:10.812 --> 00:00:14.353
+the way you'd take it to leadership:
+why it matters, what to do,
 
 6
-00:00:17.975 --> 00:00:23.287
-Book 02 made the case that identity is
-now where every access decision is made.
+00:00:14.353 --> 00:00:18.263
+who has to be involved, and how to
+carry it out and know it's working.
 
 7
-00:00:23.287 --> 00:00:27.025
-This book asks where the facts behind
-that identity should come from.
+00:00:18.263 --> 00:00:23.924
+Book 02 made the case that identity is
+now where every access decision gets made.
 
 8
-00:00:27.025 --> 00:00:30.760
-The answer is the HR system
-of record, starting now.
+00:00:23.924 --> 00:00:26.082
+This book asks the follow-up question:
 
 9
-00:00:31.510 --> 00:00:32.160
-Why.
+00:00:26.082 --> 00:00:29.212
+where should the facts behind
+that identity come from?
 
 10
-00:00:32.160 --> 00:00:36.160
-In many agencies today, nothing
-connects HR to identity.
+00:00:29.212 --> 00:00:33.237
+The answer is the HR system of
+record, and the time to start is now.
 
 11
-00:00:36.160 --> 00:00:40.679
+00:00:33.237 --> 00:00:36.300
+Let's begin with how
+identity gets built today.
+
+12
+00:00:37.050 --> 00:00:40.675
+In many agencies, nothing
+connects HR to identity.
+
+13
+00:00:40.675 --> 00:00:45.194
 Accounts, access and credentials
 are created and removed by ticket,
 
-12
-00:00:40.679 --> 00:00:42.373
-and that costs three ways.
-
-13
-00:00:42.373 --> 00:00:44.209
-Access outlives the job.
-
 14
-00:00:44.209 --> 00:00:48.348
-When someone leaves or changes
-roles, removal waits for a ticket.
+00:00:45.194 --> 00:00:47.050
+and that costs in three ways.
 
 15
-00:00:48.348 --> 00:00:53.050
-Yet the federal PIV standard, FIPS
-201-3, requires a card that can't
+00:00:47.050 --> 00:00:49.450
+First, access outlives the job.
 
 16
-00:00:53.050 --> 00:00:58.197
-be collected to be terminated within
-eighteen hours of notification.
+00:00:49.450 --> 00:00:54.197
+When someone leaves, removal waits for a
+ticket, yet the PIV standard says a card
 
 17
-00:00:58.197 --> 00:01:01.136
-A ticket-driven process
-struggles to meet that.
+00:00:54.197 --> 00:00:59.163
+that can't be collected must be terminated
+within eighteen hours of notification.
 
 18
-00:01:01.136 --> 00:01:04.095
-Records drift: the phone
-book, the manager and the
+00:00:59.163 --> 00:01:01.050
+A ticket queue struggles with that.
 
 19
-00:01:04.095 --> 00:01:07.573
-approval routing are wrong
-until someone files a ticket.
+00:01:01.050 --> 00:01:03.364
+Second, records drift: the phone book,
 
 20
-00:01:07.573 --> 00:01:11.134
-And every joiner, mover and
-leaver is help-desk work.
+00:01:03.364 --> 00:01:08.300
+the manager and the approval routing
+stay wrong until someone files a ticket.
 
 21
-00:01:11.134 --> 00:01:13.585
-Zero Trust makes the gap visible.
+00:01:08.300 --> 00:01:12.563
+And third, every joiner, mover
+and leaver is help-desk work.
 
 22
-00:01:13.585 --> 00:01:16.373
-A token proves
-cryptographically who signed it.
+00:01:12.563 --> 00:01:15.024
+Zero Trust makes the gap obvious.
 
 23
-00:01:16.373 --> 00:01:20.148
-It can't prove the claim is true:
-that the person still works here,
+00:01:15.024 --> 00:01:19.076
+A token proves who signed it, but
+not that the claim is still true:
 
 24
-00:01:20.148 --> 00:01:23.269
-still holds the position
-the access was granted for,
+00:01:19.076 --> 00:01:24.062
+that the person still works here, in the
+same position, for the same supervisor.
 
 25
-00:01:23.269 --> 00:01:26.173
-still reports to the
-supervisor who approved it.
+00:01:24.062 --> 00:01:25.699
+Those are HR facts.
 
 26
-00:01:26.173 --> 00:01:29.197
-Those are workforce facts,
-and they live in HR.
+00:01:25.699 --> 00:01:28.435
+And if we do nothing,
+we'll rebuild the same
 
 27
-00:01:29.197 --> 00:01:34.135
-If we do nothing, HR moves to Core
-HCM, identity moves to Entra ID,
+00:01:28.435 --> 00:01:31.610
+manual process twice,
+on two new platforms.
 
 28
-00:01:34.135 --> 00:01:39.440
-and we rebuild the same manual
-process twice, on new platforms.
-
-29
-00:01:40.190 --> 00:01:40.977
+00:01:32.360 --> 00:01:33.147
 Why now?
 
-30
-00:01:40.977 --> 00:01:44.190
+29
+00:01:33.147 --> 00:01:36.360
 Because two migrations
 open one design window.
 
+30
+00:01:36.360 --> 00:01:41.405
+On the HR side, an OMB and OPM
+memo creates Federal HR 2.0,
+
 31
-00:01:44.190 --> 00:01:51.232
-On the HR side: the December 10, 2025 memo
-from OMB and OPM creates Federal HR 2.0,
+00:01:41.405 --> 00:01:44.960
+one government-wide core HR platform.
 
 32
-00:01:51.232 --> 00:01:55.815
-one government-wide core
-human capital platform.
+00:01:44.960 --> 00:01:49.039
+OPM awarded the platform
+contract in June 2026,
 
 33
-00:01:55.815 --> 00:02:00.091
-OPM awarded the platform
-contract on June 10, 2026,
+00:01:49.039 --> 00:01:54.060
+and the first agencies start
+moving as fiscal 2027 begins.
 
 34
-00:02:00.091 --> 00:02:05.515
-and the first agencies begin
-moving as fiscal year 2027 starts.
+00:01:54.060 --> 00:01:57.197
+The sample timeline is about
+eight months per agency,
 
 35
-00:02:05.515 --> 00:02:09.176
-The memo's sample timeline runs
-about eight months per agency,
-
-36
-00:02:09.176 --> 00:02:13.052
+00:01:57.197 --> 00:02:01.047
 with the agency's interconnections
 going live around month five.
 
+36
+00:02:01.047 --> 00:02:07.110
+On the identity side, agencies are already
+moving to Entra ID, which is Book 02.
+
 37
-00:02:13.052 --> 00:02:18.763
-On the identity side: agencies are moving
-from Active Directory to Entra ID anyway,
-
-38
-00:02:18.763 --> 00:02:22.541
-which is the Federal
-Modernization Workbook's Book 02.
-
-39
-00:02:22.541 --> 00:02:27.452
-In Entra ID, attributes drive Conditional
+00:02:07.110 --> 00:02:11.492
+There, attributes drive Conditional
 Access, groups and delegation,
 
+38
+00:02:11.492 --> 00:02:14.935
+and feeding them from an HR
+system is a supported path.
+
+39
+00:02:14.935 --> 00:02:19.448
+So the window is this: design the
+identity feed in during HR onboarding,
+
 40
-00:02:27.452 --> 00:02:32.528
-and inbound provisioning from an HR
-system is a documented, supported path.
-
-41
-00:02:32.528 --> 00:02:33.678
-So there's a window.
-
-42
-00:02:33.678 --> 00:02:37.182
-The identity feed has to be
-designed in during onboarding,
-
-43
-00:02:37.182 --> 00:02:40.978
-before the interconnection goes
+00:02:19.448 --> 00:02:23.572
+before those interconnections go
 live, not bolted on afterward.
 
-44
-00:02:40.978 --> 00:02:46.302
-One honest limit: Federal HR 2.0
+41
+00:02:23.572 --> 00:02:28.473
+One honest limit: HR 2.0
 covers federal employees only.
 
+42
+00:02:28.473 --> 00:02:31.504
+Contractors need their
+own authoritative source,
+
+43
+00:02:31.504 --> 00:02:34.890
+and onboarding is the right
+time to decide that too.
+
+44
+00:02:35.640 --> 00:02:36.777
+So what should we do?
+
 45
-00:02:46.302 --> 00:02:50.017
-Contractors and vendors need
-their own authoritative source,
-
-46
-00:02:50.017 --> 00:02:53.450
-and the onboarding is the
-right time to decide it too.
-
-47
-00:02:54.200 --> 00:02:55.200
-What should we do?
-
-48
-00:02:55.200 --> 00:03:00.522
+00:02:36.777 --> 00:02:42.100
 There are four realistic options, weighed
 against what leadership has to balance:
 
-49
-00:03:00.522 --> 00:03:04.200
+46
+00:02:42.100 --> 00:02:45.778
 the mission and the public,
 security, cost and resilience.
 
-50
-00:03:04.200 --> 00:03:08.400
+47
+00:02:45.778 --> 00:02:49.978
 Compliance matters, but on its
 own it isn't a reason to invest.
 
+48
+00:02:49.978 --> 00:02:53.655
+Option A keeps ticket-driven
+identity: no new spending,
+
+49
+00:02:53.655 --> 00:02:56.352
+but the risk and the manual work stay put.
+
+50
+00:02:56.352 --> 00:02:59.777
+Option B scripts automation
+inside the directories.
+
 51
-00:03:08.400 --> 00:03:11.000
-Option A keeps ticket-driven identity.
+00:02:59.777 --> 00:03:02.559
+It's quick and cheap,
+but it automates a source
 
 52
-00:03:11.000 --> 00:03:13.775
-No new investment, but
-the risk and the manual
+00:03:02.559 --> 00:03:05.791
+that isn't authoritative,
+so bad data spreads faster.
 
 53
-00:03:13.775 --> 00:03:16.850
-work stay where they are:
-the cost of doing nothing.
-
-54
-00:03:16.850 --> 00:03:21.375
-Option B automates inside the
-directories with scripts and exports.
-
-55
-00:03:21.375 --> 00:03:25.914
-It's quick and cheap, but it automates
-a source that isn't authoritative,
-
-56
-00:03:25.914 --> 00:03:31.000
-so it spreads bad data faster, and it has
-to be rebuilt when HR changes platforms.
-
-57
-00:03:31.000 --> 00:03:35.362
+00:03:05.791 --> 00:03:10.152
 Option C waits for HR 2.0
 and integrates afterward.
 
+54
+00:03:10.152 --> 00:03:13.241
+That's defensible, but the
+interconnection decisions are
+
+55
+00:03:13.241 --> 00:03:16.202
+made during onboarding, so
+waiting means retrofitting.
+
+56
+00:03:16.202 --> 00:03:22.590
+Option D starts now, with HR as the source
+of truth, designed into both migrations.
+
+57
+00:03:22.590 --> 00:03:24.802
+It costs design effort up front.
+
 58
-00:03:35.362 --> 00:03:38.062
-That's defensible, and
-it's less work this year.
-
-59
-00:03:38.062 --> 00:03:41.427
-But the interconnection decisions
-are made during onboarding,
-
-60
-00:03:41.427 --> 00:03:43.776
-so waiting means
-retrofitting after go-live.
-
-61
-00:03:43.776 --> 00:03:48.966
-Option D starts now: HR as the source
-of truth, expressed in OPM's standard
-
-62
-00:03:48.966 --> 00:03:55.037
-personnel data and designed into both the
-HR onboarding and the Entra ID migration.
-
-63
-00:03:55.037 --> 00:03:58.804
-It costs design effort up front
-and needs shared governance,
-
-64
-00:03:58.804 --> 00:04:01.063
-which is why it's only partial on cost.
-
-65
-00:04:01.063 --> 00:04:06.537
+00:03:24.802 --> 00:03:30.277
 The judgment call: if HR 2.0 slipped
 a long way, C becomes reasonable.
 
-66
-00:04:06.537 --> 00:04:09.007
+59
+00:03:30.277 --> 00:03:32.814
 But D's first step, data standards,
 
-67
-00:04:09.007 --> 00:04:13.290
-ownership and the person key,
+60
+00:03:32.814 --> 00:03:37.020
+ownership and a person key,
 is no-regret either way.
 
-68
-00:04:14.040 --> 00:04:17.440
-What does "HR as the source
-of truth" actually mean?
+61
+00:03:37.770 --> 00:03:41.170
+What does “HR as the source
+of truth” actually mean?
 
-69
-00:04:17.440 --> 00:04:19.802
-It means one owner for every fact.
+62
+00:03:41.170 --> 00:03:43.057
+One owner for every fact.
 
-70
-00:04:19.802 --> 00:04:24.002
-The HR system of record is
-authoritative for employment status,
+63
+00:03:43.057 --> 00:03:46.676
+HR is authoritative for
+employment status, position,
 
-71
-00:04:24.002 --> 00:04:27.727
-position, organization,
-supervisor and effective dates.
+64
+00:03:46.676 --> 00:03:49.883
+organization, supervisor
+and effective dates.
 
-72
-00:04:27.727 --> 00:04:31.495
+65
+00:03:49.883 --> 00:03:53.649
 The identity platform stays
 authoritative for what it does:
 
-73
-00:04:31.495 --> 00:04:35.865
+66
+00:03:53.649 --> 00:03:58.019
 credentials, authentication, sessions,
 directory objects and policy.
 
-74
-00:04:35.865 --> 00:04:38.845
+67
+00:03:58.019 --> 00:04:01.303
 And contractors, whom
 HR 2.0 doesn't cover,
 
-75
-00:04:38.845 --> 00:04:43.540
-get their own authoritative source
+68
+00:04:01.303 --> 00:04:05.182
+get their own source,
 mapped into the same model.
 
-76
-00:04:43.540 --> 00:04:46.640
-That model is the canonical
-workforce identity model.
+69
+00:04:05.182 --> 00:04:09.547
+That model uses OPM's standard
+personnel data elements as its contract,
 
-77
-00:04:46.640 --> 00:04:50.981
-Its contract is OPM's standard data
-elements and nature-of-action codes,
+70
+00:04:09.547 --> 00:04:13.469
+so vendor field names stay at the
+boundary and can be swapped out.
 
-78
-00:04:50.981 --> 00:04:53.851
-the government-wide
-personnel data standards,
+71
+00:04:13.469 --> 00:04:17.912
+It's keyed on a person key the agency
+controls, and that key has to fit
 
-79
-00:04:53.851 --> 00:04:57.603
-so vendor field names stay at
-the boundary and can be replaced.
+72
+00:04:17.912 --> 00:04:22.757
+Entra ID's employeeId attribute, which
+holds at most sixteen characters.
 
-80
-00:04:57.603 --> 00:05:02.407
-It's keyed on an enterprise person key
-the agency controls, and that key has
+73
+00:04:22.757 --> 00:04:26.659
+The rule that makes it all work:
+every attribute has one name,
 
-81
-00:05:02.407 --> 00:05:07.527
-to fit Entra ID's employeeId attribute,
-which holds at most sixteen characters.
-
-82
-00:05:07.527 --> 00:05:11.218
-The rule that makes it work:
-every attribute gets one name,
-
-83
-00:05:11.218 --> 00:05:13.966
+74
+00:04:26.659 --> 00:04:29.446
 one definition and one accountable owner.
 
-84
-00:05:13.966 --> 00:05:19.190
-When a fact is wrong, it gets fixed in its
+75
+00:04:29.446 --> 00:04:34.610
+When a fact is wrong, it gets fixed at the
 source, never patched in the directory.
 
-85
-00:05:19.940 --> 00:05:23.990
-Provisioning turns personnel
-records into governed identities.
+76
+00:04:35.360 --> 00:04:39.760
+Provisioning is where personnel
+records turn into governed identities.
 
-86
-00:05:23.990 --> 00:05:28.453
-Core HCM publishes worker
+77
+00:04:39.760 --> 00:04:44.047
+The HR platform publishes worker
 records and personnel actions.
 
-87
-00:05:28.453 --> 00:05:32.528
+78
+00:04:44.047 --> 00:04:48.404
 A small middleware, inside the
-agency's authorization boundary,
+agency's own authorization boundary,
 
-88
-00:05:32.528 --> 00:05:37.682
-does five things for every event: it
-validates the record, applies events in order,
+79
+00:04:48.404 --> 00:04:53.770
+validates each event, applies events in
+order, normalizes them to the SCIM standard,
 
-89
-00:05:37.682 --> 00:05:40.066
-normalizes them to the SCIM standard,
-
-90
-00:05:40.066 --> 00:05:43.527
-writes a provenance record,
+80
+00:04:53.770 --> 00:04:57.348
+records where they came from,
 and reconciles the result.
 
-91
-00:05:43.527 --> 00:05:48.245
-Then Entra ID's API-driven inbound
-provisioning creates and updates the
+81
+00:04:57.348 --> 00:05:02.293
+Entra ID's inbound provisioning then
+creates and updates the accounts,
 
-92
-00:05:48.245 --> 00:05:53.277
-accounts in Entra ID and, through the
-provisioning agent, in Active Directory.
+82
+00:05:02.293 --> 00:05:04.723
+in Entra ID and in Active Directory.
 
-93
-00:05:53.277 --> 00:05:57.046
-That interface has daily call
-limits that scale with the license,
+83
+00:05:04.723 --> 00:05:09.423
+The book sizes that interface's daily
+limits against the agency's population.
 
-94
-00:05:57.046 --> 00:06:00.116
-which the book sizes against
-the agency's population.
+84
+00:05:09.423 --> 00:05:12.272
+The key design choice is
+that it fails closed.
 
-95
-00:06:00.116 --> 00:06:01.940
-The design fails closed.
-
-96
-00:06:01.940 --> 00:06:03.990
+85
+00:05:12.272 --> 00:05:14.322
 Unknown worker types are refused.
 
-97
-00:06:03.990 --> 00:06:08.203
+86
+00:05:14.322 --> 00:05:18.536
 A failed record is retried and
 recorded, never silently skipped.
 
-98
-00:06:08.203 --> 00:06:11.920
-And every event leaves a provenance
-record before the call returns,
+87
+00:05:18.536 --> 00:05:20.884
+And every event leaves
+a provenance record,
 
-99
-00:06:11.920 --> 00:06:14.377
+88
+00:05:20.884 --> 00:05:23.298
 which is where the
 evidence comes from later.
 
-100
-00:06:14.377 --> 00:06:17.364
+89
+00:05:23.298 --> 00:05:26.284
 The technology is the
 example, not the point.
 
-101
-00:06:17.364 --> 00:06:21.365
+90
+00:05:26.284 --> 00:05:30.285
 Today it's Oracle Core
 HCM feeding Entra ID.
 
+91
+00:05:30.285 --> 00:05:34.150
+If the vendors change, the
+model and the rules still hold.
+
+92
+00:05:34.900 --> 00:05:36.225
+Who has to be involved?
+
+93
+00:05:36.225 --> 00:05:39.800
+This is an organizational change
+as much as a technical one,
+
+94
+00:05:39.800 --> 00:05:41.988
+and it helps to think in three groups.
+
+95
+00:05:41.988 --> 00:05:47.292
+Owners: HR owns the personnel data and
+its quality, the HR 2.0 program owns
+
+96
+00:05:47.292 --> 00:05:53.226
+the platform and the standards, and each
+contractor source owns its own records.
+
+97
+00:05:53.226 --> 00:05:57.880
+Users: the identity team runs the
+directories and access from that data,
+
+98
+00:05:57.880 --> 00:06:01.509
+security owns the Zero Trust
+policy and the leaver path,
+
+99
+00:06:01.509 --> 00:06:05.375
+and the help desk moves from
+routine tickets to exceptions.
+
+100
+00:06:05.375 --> 00:06:06.387
+And guards.
+
+101
+00:06:06.387 --> 00:06:08.796
+The privacy office is in from the start,
+
 102
-00:06:21.365 --> 00:06:26.910
-If the vendors change, the model and the
-rules hold; only the boundary changes.
+00:06:08.796 --> 00:06:13.537
+and decides the legal basis for each
+leg of sharing HR records with identity,
 
 103
-00:06:27.660 --> 00:06:28.985
-Who has to be involved.
-
-104
-00:06:28.985 --> 00:06:32.648
-This is an organizational change
-as much as a technical one.
-
-105
-00:06:32.648 --> 00:06:33.497
-Owners.
-
-106
-00:06:33.497 --> 00:06:37.498
-HR owns the personnel data and
-its quality, at the source.
-
-107
-00:06:37.498 --> 00:06:43.835
-The OPM HR 2.0 program owns the platform,
-the standards and the interconnection.
-
-108
-00:06:43.835 --> 00:06:46.485
-And each contractor source
-owns its own record.
-
-109
-00:06:46.485 --> 00:06:47.385
-Users.
-
-110
-00:06:47.385 --> 00:06:53.460
-The CIO's identity team runs Entra ID,
-Active Directory and access from that data.
-
-111
-00:06:53.460 --> 00:06:57.735
-Security sets the Zero Trust
-policy and owns the leaver path.
-
-112
-00:06:57.735 --> 00:07:01.772
-And the help desk moves from routine
-tickets to handling exceptions.
-
-113
-00:07:01.772 --> 00:07:02.585
-Guards.
-
-114
-00:07:02.585 --> 00:07:05.085
-The privacy office is in from the start.
-
-115
-00:07:05.085 --> 00:07:10.262
-Sharing HR records with identity inside
-the agency normally rests on the Privacy
-
-116
-00:07:10.262 --> 00:07:12.013
-Act's need-to-know provision,
-
-117
-00:07:12.013 --> 00:07:15.592
-while disclosures outside the
-agency need a routine use,
-
-118
-00:07:15.592 --> 00:07:18.865
-so the privacy office decides
-the basis for each leg,
-
-119
-00:07:18.865 --> 00:07:22.672
+00:06:13.537 --> 00:06:17.300
 along with the privacy impact
 assessment and minimization.
 
-120
-00:07:22.672 --> 00:07:25.835
+104
+00:06:17.300 --> 00:06:20.746
 The PIV office owns
-issuance and termination.
+issuance and termination,
 
-121
-00:07:25.835 --> 00:07:31.760
-And the ISSO and authorizing official
+105
+00:06:20.746 --> 00:06:26.550
+and the ISSO and authorizing official
 own the evidence and any accepted risk.
 
-122
-00:07:31.760 --> 00:07:35.270
-The data architect ties it
-together: owning the standards,
+106
+00:06:26.550 --> 00:06:31.770
+A data architect ties it together,
+owning the standards and the person key.
 
-123
-00:07:35.270 --> 00:07:40.242
-the crosswalk and the person key, making
-sure every attribute has one accountable
+107
+00:06:32.520 --> 00:06:33.320
+Now, how.
 
-124
-00:07:40.242 --> 00:07:45.290
-owner, and carrying the standard to the
-interagency forums where it's adopted.
-
-125
-00:07:46.040 --> 00:07:46.653
-How.
-
-126
-00:07:46.653 --> 00:07:51.677
+108
+00:06:33.320 --> 00:06:38.345
 Personnel actions drive the three
 identity events, by code, not by ticket.
 
-127
-00:07:51.677 --> 00:07:55.403
+109
+00:06:38.345 --> 00:06:42.307
 A joiner gets an account and
-baseline access ready on day one.
+baseline access, ready on day one.
 
-128
-00:07:55.403 --> 00:07:58.443
-A mover has the old
-assignment's access removed,
+110
+00:06:42.307 --> 00:06:45.009
+A mover loses the old assignment's access,
 
-129
-00:07:58.443 --> 00:08:01.952
-the new baseline applied,
-and any exceptions reviewed.
+111
+00:06:45.009 --> 00:06:48.583
+gets the new baseline, and
+has any exceptions reviewed.
 
-130
-00:08:01.952 --> 00:08:03.859
-And a leaver is blocked first:
+112
+00:06:48.583 --> 00:06:53.593
+And a leaver is blocked first, the account
+disabled and sessions revoked at the
 
-131
-00:08:03.859 --> 00:08:08.941
-the account disabled and sessions
-revoked at the effective separation time,
+113
+00:06:53.593 --> 00:06:56.521
+effective separation
+time; then credentials,
 
-132
-00:08:08.941 --> 00:08:14.103
-then credentials, devices and access
-removed in parallel, each one reconciled.
+114
+00:06:56.521 --> 00:06:59.296
+devices and access are
+removed in parallel.
 
-133
-00:08:14.103 --> 00:08:17.278
+115
+00:06:59.296 --> 00:07:02.308
 The book is precise about what
-the platform actually does.
+the platform really does.
 
-134
-00:08:17.278 --> 00:08:20.171
-Lifecycle Workflows run on one tenant-wide
+116
+00:07:02.308 --> 00:07:04.811
+Revoking sessions stops new tokens,
 
-135
-00:08:20.171 --> 00:08:23.466
-schedule and need an Entra
-ID Governance license.
-
-136
-00:08:23.466 --> 00:08:26.740
-Revoking sessions stops
-new tokens being issued,
-
-137
-00:08:26.740 --> 00:08:30.015
+117
+00:07:04.811 --> 00:07:08.232
 but tokens already issued
 last until they expire.
 
-138
-00:08:30.015 --> 00:08:33.411
-Privileged leavers need their
-own verified block path,
+118
+00:07:08.232 --> 00:07:11.035
+Privileged leavers need
+their own block path,
 
-139
-00:08:33.411 --> 00:08:37.840
+119
+00:07:11.035 --> 00:07:15.458
 because the built-in disable task
 doesn't support users with admin roles.
 
-140
-00:08:37.840 --> 00:08:41.226
-And synced users must be
-deleted in Active Directory,
+120
+00:07:15.458 --> 00:07:19.075
+And synced users have to be
+deleted in Active Directory too,
 
-141
-00:08:41.226 --> 00:08:43.303
+121
+00:07:19.075 --> 00:07:21.069
 or the next sync brings them back.
 
-142
-00:08:43.303 --> 00:08:48.179
-Credentials follow the same events:
-PIV issuance, certificate binding and
+122
+00:07:21.069 --> 00:07:26.460
+Credentials follow the same events, from
+PIV issuance through to termination.
 
-143
-00:08:48.179 --> 00:08:53.590
-termination, and device certificates
-retired before the account is deleted.
-
-144
-00:08:54.340 --> 00:08:55.590
+123
+00:07:27.210 --> 00:07:28.460
 Next, access.
 
-145
-00:08:55.590 --> 00:08:59.827
-Once the attributes are trustworthy,
+124
+00:07:28.460 --> 00:07:32.710
+Once the attributes can be trusted,
 access is derived from them.
 
-146
-00:08:59.827 --> 00:09:04.536
-A personnel record becomes a canonical
+125
+00:07:32.710 --> 00:07:36.898
+A personnel record becomes an
 attribute, a rule or access package
 
-147
-00:09:04.536 --> 00:09:08.790
-turns that into an entitlement, and
+126
+00:07:36.898 --> 00:07:41.085
+turns it into an entitlement, and
 an evidence record captures why.
 
-148
-00:09:08.790 --> 00:09:13.160
-Every entitlement then traces back
-to a rule, an approved exception,
+127
+00:07:41.085 --> 00:07:45.941
+So every entitlement traces back to
+something: a rule, an approved exception,
 
-149
-00:09:13.160 --> 00:09:17.140
+128
+00:07:45.941 --> 00:07:49.872
 an authoritative attribute, or
 a privileged-access decision.
 
-150
-00:09:17.140 --> 00:09:19.390
+129
+00:07:49.872 --> 00:07:52.122
 That's what makes access explainable.
 
-151
-00:09:19.390 --> 00:09:22.399
+130
+00:07:52.122 --> 00:07:55.131
 Drift is found by
 comparison, not by complaint:
 
-152
-00:09:22.399 --> 00:09:26.278
+131
+00:07:55.131 --> 00:07:59.010
 scheduled checks compare HR,
 the model and the directories.
 
-153
-00:09:26.278 --> 00:09:30.927
-It's measured in business terms
-leadership can read: time from separation
+132
+00:07:59.010 --> 00:08:01.653
+And it's measured in
+terms leadership can read,
 
-154
-00:09:30.927 --> 00:09:34.966
-to blocked access, orphaned accounts,
-and access ready on day one.
+133
+00:08:01.653 --> 00:08:04.435
+like the time from separation
+to blocked access.
 
-155
-00:09:34.966 --> 00:09:37.290
-And the records have to
-be kept long enough.
+134
+00:08:04.435 --> 00:08:08.816
+One practical catch: Entra ID keeps
+audit and provisioning logs for
 
-156
-00:09:37.290 --> 00:09:42.278
-Entra ID keeps audit and provisioning
-logs for thirty days with P1 or P2,
+135
+00:08:08.816 --> 00:08:12.885
+only thirty days, so the book
+exports them from the pilot onward.
 
-157
-00:09:42.278 --> 00:09:45.490
-so the book exports them
-from the pilot onward.
+136
+00:08:12.885 --> 00:08:15.122
+And the evidence is a byproduct.
 
-158
-00:09:45.490 --> 00:09:47.690
-The evidence comes as a byproduct.
+137
+00:08:15.122 --> 00:08:18.452
+The same records answer the
+auditor's oldest question:
 
-159
-00:09:47.690 --> 00:09:52.190
-The same records that run the lifecycle
-answer the auditor's oldest question:
-
-160
-00:09:52.190 --> 00:09:56.490
+138
+00:08:18.452 --> 00:08:22.950
 does every account belong to a
-current person with a current reason?
+current person, with a current reason?
 
-161
-00:09:57.240 --> 00:10:02.715
+139
+00:08:23.700 --> 00:08:29.175
 The execution plan has seven phases, and
 each gate is the next phase's precondition.
 
-162
-00:10:02.715 --> 00:10:08.702
-Phase zero aligns the program, naming
-identity as a consumer in both migrations.
+140
+00:08:29.175 --> 00:08:33.900
+It runs from aligning the program,
+through settling who owns each attribute,
 
-163
-00:10:08.702 --> 00:10:12.202
-Phase one settles attribute
-authority and the schema.
+141
+00:08:33.900 --> 00:08:36.750
+building and testing the
+pipeline, and a pilot,
 
-164
-00:10:12.202 --> 00:10:14.702
-Phase two builds and tests the pipeline.
+142
+00:08:36.750 --> 00:08:40.800
+to automating the lifecycle, cutting
+over, and then sustaining it.
 
-165
-00:10:14.702 --> 00:10:16.539
-Phase three is the pilot.
-
-166
-00:10:16.539 --> 00:10:20.865
-Phase four turns on lifecycle automation
-and attribute-derived access.
-
-167
-00:10:20.865 --> 00:10:24.165
-Phase five cuts over
-population by population.
-
-168
-00:10:24.165 --> 00:10:25.965
-And phase six sustains it.
-
-169
-00:10:25.965 --> 00:10:27.427
+143
+00:08:40.800 --> 00:08:42.262
 Four rules run through it.
 
-170
-00:10:27.427 --> 00:10:31.084
-Start now, from the HR data
+144
+00:08:42.262 --> 00:08:45.412
+Start now, with the HR data
 the agency already has,
 
-171
-00:10:31.084 --> 00:10:34.740
-and switch the source to
-Core HCM when it arrives.
+145
+00:08:45.412 --> 00:08:49.113
+and switch the source to the
+new platform when it arrives.
 
-172
-00:10:34.740 --> 00:10:37.815
-Run in shadow mode first,
-comparing what HR says
+146
+00:08:49.113 --> 00:08:54.062
+Run in shadow mode first, comparing what
+HR says with what the directories hold.
 
-173
-00:10:37.815 --> 00:10:40.890
-with what the directories
-hold, and fix the gaps.
-
-174
-00:10:40.890 --> 00:10:46.278
+147
+00:08:54.062 --> 00:08:59.451
 Cut over one population at a time, with a
 signed validation report and a rollback.
 
-175
-00:10:46.278 --> 00:10:49.088
-And close the ticket path for a population
+148
+00:08:59.451 --> 00:09:04.150
+And close the ticket path only when
+the data proves HR is the sole source.
 
-176
-00:10:49.088 --> 00:10:52.139
-only when the data proves
-HR is the sole source.
+149
+00:09:04.150 --> 00:09:07.831
+The gate thresholds, like
+ninety-nine percent correlation,
 
-177
-00:10:52.139 --> 00:10:56.790
-The gate thresholds, like ninety-nine
-percent correlation, are proposals.
+150
+00:09:07.831 --> 00:09:11.962
+are proposals for the agency to
+approve, not federal requirements.
 
-178
-00:10:56.790 --> 00:11:00.076
-They're starting criteria
-the agency approves through
-
-179
-00:11:00.076 --> 00:11:03.077
-its own risk governance,
-not federal requirements.
-
-180
-00:11:03.077 --> 00:11:07.980
+151
+00:09:11.962 --> 00:09:16.870
 Chapter 13 walks an illustrative
 agency through all seven phases.
 
-181
-00:11:08.730 --> 00:11:11.080
-How we'll know it's
-working, and what we need.
+152
+00:09:17.620 --> 00:09:20.232
+So how will we know it's
+working, and what do we need?
 
-182
-00:11:11.080 --> 00:11:13.688
-Five measures, each
-baselined in phase one,
+153
+00:09:20.232 --> 00:09:25.508
+Five measures, each baselined in phase
+one and each one something leadership can
 
-183
-00:11:13.688 --> 00:11:16.892
-and each one a business
-measure leadership can read.
+154
+00:09:25.508 --> 00:09:30.861
+read: hours from separation to blocked
+access, orphaned accounts trending to zero,
 
-184
-00:11:16.892 --> 00:11:20.343
-Time from separation to
-blocked access, in hours.
+155
+00:09:30.861 --> 00:09:35.191
+fewer joiner and mover tickets,
+managers and organizations in the
 
-185
-00:11:20.343 --> 00:11:24.642
-Accounts tied to a person, with
-orphaned accounts trending to zero.
+156
+00:09:35.191 --> 00:09:39.521
+directory matching HR, and every
+exception with an owner and an age.
 
-186
-00:11:24.642 --> 00:11:28.880
-Joiner and mover tickets going
-down, with access ready on day one.
+157
+00:09:39.521 --> 00:09:44.384
+From leadership, we need one decision:
+start HR-driven identity now,
 
-187
-00:11:28.880 --> 00:11:32.893
-The manager and organization
-in the directory matching HR.
+158
+00:09:44.384 --> 00:09:50.133
+as a design requirement of both the HR
+2.0 onboarding and the Entra ID migration.
 
-188
-00:11:32.893 --> 00:11:35.692
-And every exception with
-an owner and an age.
+159
+00:09:50.133 --> 00:09:53.885
+To act on it: a sponsor across
+HR, identity and privacy;
 
-189
-00:11:35.692 --> 00:11:40.954
-What we need from leadership is one
-decision: start HR-driven identity now,
-
-190
-00:11:40.954 --> 00:11:46.217
-as a design requirement of the HR 2.0
-onboarding and the Entra ID migration.
-
-191
-00:11:46.217 --> 00:11:50.821
-And to act on it: a sponsor across
-HR, the identity team and privacy;
-
-192
-00:11:50.821 --> 00:11:56.205
+160
+00:09:53.885 --> 00:09:59.298
 identity named as a consumer in the HR
 2.0 interconnection plan; data owners
 
-193
-00:11:56.205 --> 00:11:59.157
+161
+00:09:59.298 --> 00:10:02.265
 designated and the person key confirmed;
 
-194
-00:11:59.157 --> 00:12:02.631
+162
+00:10:02.265 --> 00:10:05.757
 and a small team for the
 pre-onboarding data work.
 
-195
-00:12:02.631 --> 00:12:07.704
-The Federal Modernization Workbook's
-Book 03 has the full design, with every
+163
+00:10:05.757 --> 00:10:09.493
+Book 03 has the full design,
+every claim footnoted,
 
-196
-00:12:07.704 --> 00:12:13.180
-external claim footnoted, and Book 02 covers
-the directory migration it builds on.
+164
+00:10:09.493 --> 00:10:13.683
+and Book 02 covers the directory
+migration it builds on.
 
-197
-00:12:13.180 --> 00:12:14.010
+165
+00:10:13.683 --> 00:10:14.500
 Thank you.

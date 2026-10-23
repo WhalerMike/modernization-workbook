@@ -1,36 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.463
-This briefing comes from Book 10 of
-the Federal Modernization Workbook,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:04.463 --> 00:00:08.435
-Cloud Boundary and Landing Zone:
-how the authorization boundary,
+00:00:00.763 --> 00:00:04.828
+This briefing is Book 10 of the
+Federal Modernization Workbook,
 
 3
-00:00:08.435 --> 00:00:12.775
-not the product catalog, decides which
-cloud features an agency can use,.
+00:00:04.828 --> 00:00:06.900
+Cloud Boundary and Landing Zone.
 
 4
-00:00:12.775 --> 00:00:16.812
-I'll take four questions: why the
-boundary decides what you can use,
+00:00:06.900 --> 00:00:11.668
+Its argument is simple: the authorization
+boundary, not the product catalog,
 
 5
-00:00:16.812 --> 00:00:20.475
-what has to change, who owns the
-boundary, and how to get there.
+00:00:11.668 --> 00:00:15.225
+decides which cloud features
+an agency can actually use.
 
 6
-00:00:20.475 --> 00:00:24.127
-The short version: treat the
-boundary as a list you can read,
+00:00:15.225 --> 00:00:17.037
+We'll take four questions in turn.
 
 7
-00:00:24.127 --> 00:00:29.280
+00:00:17.037 --> 00:00:19.576
+Why does the boundary
+decide what you can use?
+
+8
+00:00:19.576 --> 00:00:20.825
+What has to change?
+
+9
+00:00:20.825 --> 00:00:22.225
+Who owns the boundary?
+
+10
+00:00:22.225 --> 00:00:23.413
+And how do you get there?
+
+11
+00:00:23.413 --> 00:00:28.347
+If you remember one thing, make it this:
+treat the boundary as a list you can read,
+
+12
+00:00:28.347 --> 00:00:33.513
 not a perimeter you can only accept, and
 evidence every choice in your own package.
+
+13
+00:00:33.513 --> 00:00:38.675
+The slides and notes carry every detail
+and citation; I'll stick to what matters.
+
+14
+00:00:38.675 --> 00:00:41.090
+Let's start with why the boundary decides.

@@ -1,82 +1,81 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.790
-Run those platforms independently
+00:00:00.050 --> 00:00:03.539
+Run those platforms separately
 and you get split-brain DNS:
 
 2
-00:00:03.790 --> 00:00:08.538
-the same name returning different answers
+00:00:03.539 --> 00:00:08.025
+the same name giving different answers
 depending on where the query starts.
 
 3
-00:00:08.538 --> 00:00:10.649
-Designed split-horizon is fine.
+00:00:08.025 --> 00:00:09.638
+A designed split is fine.
 
 4
-00:00:10.649 --> 00:00:15.387
-The problem is unintentional drift
+00:00:09.638 --> 00:00:14.087
+The problem is unplanned drift
 between systems with no shared state.
 
 5
-00:00:15.387 --> 00:00:17.024
-It takes three forms.
+00:00:14.087 --> 00:00:15.675
+Here's the classic case.
 
 6
-00:00:17.024 --> 00:00:21.117
-Private-IP split-brain: an EC2
-instance gets an Azure private
+00:00:15.675 --> 00:00:18.414
+A workload in AWS only
+gets an Azure private
 
 7
-00:00:21.117 --> 00:00:25.700
-endpoint's private address only
-through a Route 53 forwarding rule.
+00:00:18.414 --> 00:00:21.837
+endpoint's private address
+through a forwarding rule.
 
 8
-00:00:25.700 --> 00:00:31.088
-If the rule is missing or stale, the name
-still resolves, to the public address.
+00:00:21.837 --> 00:00:24.002
+If that rule is missing or stale,
 
 9
-00:00:31.088 --> 00:00:34.054
-Microsoft attributes roughly 70 percent of
+00:00:24.002 --> 00:00:27.499
+the name still resolves,
+just to the public address.
 
 10
-00:00:34.054 --> 00:00:37.662
+00:00:27.499 --> 00:00:30.674
+Microsoft attributes
+roughly seventy percent of
+
+11
+00:00:30.674 --> 00:00:34.075
 private-endpoint access-denied
 cases to exactly that.
 
-11
-00:00:37.662 --> 00:00:42.715
-SaaS split-brain: GCC uses the
-Worldwide endpoint list, so the risk is
-
 12
-00:00:42.715 --> 00:00:48.038
-path consistency, a stale forwarder
-or browser DoH to a public resolver.
+00:00:34.075 --> 00:00:36.337
+The same drift happens with SaaS paths,
 
 13
-00:00:48.038 --> 00:00:53.249
-And security-policy split-brain: a block
-applies only on the resolver that answers,
+00:00:36.337 --> 00:00:40.437
+and with security blocks that only
+apply on the resolver that answers.
 
 14
-00:00:53.249 --> 00:00:56.850
-so the posture is the weakest
-resolver a client can reach.
+00:00:40.437 --> 00:00:44.750
+Either way, the failure is silent,
+and it shows up as something else.
 
 15
-00:00:56.850 --> 00:01:01.242
-The failure is silent, the change
-rate outruns any manual process,
+00:00:44.750 --> 00:00:48.362
+Changes come faster than any
+manual process can track.
 
 16
-00:01:01.242 --> 00:01:03.600
-and every system has its own timing.
+00:00:48.362 --> 00:00:52.387
+Only a control plane that holds the
+policy keeps everything in step.
 
 17
-00:01:03.600 --> 00:01:07.750
-Only a control plane that holds the
-policy objects keeps them in step.
+00:00:52.387 --> 00:00:54.720
+So what do the mandates actually require?

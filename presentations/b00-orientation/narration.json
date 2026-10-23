@@ -1,0 +1,67 @@
+[
+  {
+    "slide": 1,
+    "title": "Why Modernize, and Why Now?",
+    "say": "Welcome. This briefing comes from Book 00 of the Federal Modernization Workbook, Orientation and Program. It's the front door to the series. It makes the case for modernizing the client/server estate now, and it sets out the program that the other books carry out. One thing to know before we start: the workbook is independent technical guidance, not federal policy. When it says a law or a memo requires something, it cites the source. Everything else, the phases, the gates, the principles, who decides what, is the workbook's recommendation: one way to meet those requirements, not a requirement itself. We'll take four questions, why now, what the program is, who decides, and how it runs, and finish with the decisions to make next."
+  },
+  {
+    "slide": 2,
+    "title": "Active Directory did governance nobody wrote down",
+    "say": "Start with why. Most federal estates still run the client/server model they built in the early 2000s, with Active Directory at the center. And the directory has been doing more than anyone wrote down. Putting a user or a computer in an organizational unit, an OU, quietly decided several things at once: who administers it, which Group Policy applies, what it can reach, how it's named in DNS, and whether it's trusted through its certificates. None of that was wrong. It just was never recorded anywhere else, and the cloud doesn't inherit it. Entra ID's administrative units can't be nested, and policy follows groups, not containers. So an agency that moves the users and retires the forest without recovering those decisions isn't modernizing its governance. It's deleting it. The second reason is the calendar."
+  },
+  {
+    "slide": 3,
+    "title": "The schedule now belongs to OMB, CISA, FedRAMP and vendors",
+    "say": "And the calendar isn't the agency's any more. Policy and vendors set the dates from outside. Some have already passed: M-22-09's Zero Trust actions were due by the end of fiscal 2024, and they're still in force. Others are close. FedRAMP's Consolidated Rules become mandatory on January 1, 2027. BOD 26-02 wants listed end-of-support edge devices gone by February 5, 2027. And by the program's own count, not a date OMB published, the Agency Logging Plan under M-26-14 is due November 18, 2026. Vendors add their own clock: Windows Server 2016, which runs many domain controllers, ends support on January 12, 2027. The slide lists the rest. Nothing fails on a single date. But every one of these deadlines assumes the agency knows what it runs, who owns it, and what governs it."
+  },
+  {
+    "slide": 4,
+    "title": "Read the clocks exactly, then run one program",
+    "say": "Those clocks often get quoted for more than they say, so the program plans against the documents themselves. For example, FedRAMP certifies cloud services, but each agency still authorizes its own systems. No federal document requires a particular Zero Trust maturity stage. And BOD 25-01 covers cloud tenants, not the on-premises forest. So why one program instead of a set of projects? Because every project touches the same hidden decisions. Intune needs the policy that Group Policy carried. Retiring directory DNS needs the names the forest registered. Left to each project, those get answered differently, or fall between projects until something breaks. A program can sequence the work against the dates; separate projects can only race them. It starts with identity, because everything else decides based on who's asking. So: fund it as one sequence, gate on evidence rather than the calendar, and be honest about maturity."
+  },
+  {
+    "slide": 5,
+    "title": "How the workbook works: eighteen books, four questions",
+    "say": "A quick word on how the workbook itself works. It's eighteen books, numbered along the same dependency chain the program follows: identity first, then the estate's infrastructure, then the boundary, assurance and operations. Every book asks the same four questions, why, what, who and how, so once you know one, you can find your way around any other. And each topic has one home; Book 01, for example, owns the phases and gates. Statements come in three kinds. External facts are footnoted to a primary source, checked on the day the book was built. Program positions are the program's own view, open to argument. And illustrative examples are labeled as such; the case studies are patterns, not real engagements. Each chapter also keeps a verification file, so every correction is visible. Now, what is the program?"
+  },
+  {
+    "slide": 6,
+    "title": "The charter: the page the sponsor signs",
+    "say": "The program starts with a charter. It's short on purpose: it's the page the sponsor signs, and the page every later decision gets checked against. Its purpose is to move the organization from fragmented, legacy-dependent identity, policy and addressing to a governed, attribute-driven hybrid-cloud model, without rip-and-replace. It has six objectives, and the slide lists them. At their heart: one authoritative source for structure and identity attributes, governance rebuilt explicitly instead of implied, drift treated as a real finding, and change in controlled waves that close with evidence. The scope is the method: discovery, the target model, wave plans, change control, drift detection and gates. Inline enforcement and the agency's own cutover are out, at least at first. And one platform fact shapes the whole plan: for synced users, the extension attributes are mastered in Active Directory and read-only in the cloud."
+  },
+  {
+    "slide": 7,
+    "title": "Six success criteria, each tested at a gate",
+    "say": "A sponsor can't sign off on an outcome that has no test, so each of the charter's six success criteria comes with a measure, the evidence that shows it, and the gate where it's checked. Two examples. The current-state assessment is done when it covers every forest in scope and all eleven types of dependency, with no open priority-one findings, checked at G0. And the target model is agreed when every attribute that drives access has exactly one designated source, checked at G1. The others cover a working pilot playbook, change control on every pilot change, a response for every kind of drift, and leadership being able to explain the path in plain terms. The numbers are illustrative defaults. The agency sets its own, writes them down, and never quietly changes them later. And these criteria stop at the pilot; Chapter 10 measures the rest."
+  },
+  {
+    "slide": 8,
+    "title": "Fifteen principles in five groups",
+    "say": "Behind the charter sit fifteen principles, in five groups, each tied to the book that carries it in depth. The foundation group applies to every change: one source of truth, change control with provenance, and drift detection. The change rule is the strict one. Every move, add, change, deletion or reset starts at the source of truth, carries a real authorization, runs with just-in-time least privilege, closes with proof, and produces its evidence automatically. Put simply, no closure counts unless it carries its proof. The other groups say what replaces the OU tree, how devices and policy move, how the HR feed and SQL Server fit in, and how the program itself runs. Two source rules were also corrected against Microsoft's documentation, including token lifetimes; the details are in the notes. Next, the phases and gates."
+  },
+  {
+    "slide": 9,
+    "title": "Seven phases and six gates: Book 01's model",
+    "say": "The plan follows Book 01's model: seven phases and six gates. It runs from pre-flight, through foundation, a pilot division, general rollout and legacy retirement, to retiring AD DS itself. Then comes steady state, which has no gate; it's a standing rhythm. Each gate has a plain name, like Pilot Clean or Legacy Quiet, and the slide shows them all. Every phase is bound by the same constraints: change starts at the authoritative source and closes with provenance, privilege is time-bound, copies stay non-authoritative, drift stays visible, and nothing needs rip-and-replace. Underneath is one rule: assess before you act. The master plan's illustrative fifty-two weeks stop short of retiring AD DS, and large federal estates usually take several years. Five workstreams run in parallel, and one dependency never relaxes: PKI waits for identity. The gates, not the calendar, decide when the next phase starts."
+  },
+  {
+    "slide": 10,
+    "title": "Seven complementary projects, run inside the program",
+    "say": "Inside the program run seven complementary projects. Each has its own charter, sponsor and success criteria, and each turns a gap the program often finds into real work: identity lifecycle, endpoints, network and access, monitoring, privileged access, the data platform, and the supply chain. Identity goes first, because everything else uses its attributes and owners. Privileged access starts early too, for Tier 0 and emergency access. And there's a catch worth knowing. Microsoft recommends at least two cloud-only emergency accounts with permanent Global Administrator, so a target of zero permanent Global Administrators has to exempt them by name. Two source claims have also moved, around software attestation and FedRAMP; the notes cover both. And two rules hold for every project: none creates a second source of truth, and none clears a program gate on its own. So who makes the calls?"
+  },
+  {
+    "slide": 11,
+    "title": "Who decides: one owner for every decision",
+    "say": "Every decision gets one owner. The executive sponsor and the CIO own scope, funding and sequence, and they decide when Active Directory components retire. The CISO sets the control requirements. The steward runs the program office and owns the plan and the repository. Each gate is signed by whoever matches what it ends: the steward clears most of them, and the sponsor and CIO sign the last one, the one that says AD is retired. The book corrects the plans on three decisions, and one matters most: residual risk belongs to the authorizing official alone. Under the Risk Management Framework no one else can accept it, and for federal agencies it's an inherently governmental role. And plan for people. The core team is about five and a half full-time staff, and the budget has to cover others too, like application owners, the help desk and HR."
+  },
+  {
+    "slide": 12,
+    "title": "From pre-flight to steady state: what each stretch proves",
+    "say": "How does it run? Each stretch has something to prove. Pre-flight builds the platform host as a Tier 0 system and runs a read-only assessment of the estate. It produces twenty-three deliverables, and G0 passes only with no open critical finding. Foundation turns on the Conditional Access baseline, but only after at least seven days in report-only mode. The pilot is one division, measured against eight numeric criteria, such as authentication success above 99 percent, and held drift-free for an agreed period. Rollout then moves in waves. Retirement takes things away, so nothing is retired unless its rollback still works. And retired disks get sanitized, because they hold password hashes. In steady state, reassessment runs weekly and drift detection daily, and every severity has a clock: by default, a critical finding is fixed within four hours. That leaves the decisions."
+  },
+  {
+    "slide": 13,
+    "title": "Decisions to make, and next steps",
+    "say": "So, four decisions to make next. First, charter the program and name its people, starting with the sponsor and the steward, building on the Zero Trust lead and identity governance the agency already has. Second, scope the read-only assessment: which forests, which tenants, which accounts. Third, designate the authoritative sources: usually HR for employees, and a separate source for contractors, whom HR usually doesn't hold. And fourth, set the thresholds and evidence rules before the first change, and never change them quietly. The recommended first wave is identity structure and dynamic membership, because every later wave scopes itself with them. And one clock is close: by the program's count, the Agency Logging Plan is due November 18, 2026, so confirm that date with the CISO's office now. Recover the governance once, in one program. Book 00 has the detail, with every claim footnoted. Thank you."
+  }
+]

@@ -1,86 +1,79 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.650
+00:00:00.050 --> 00:00:03.626
 Re-routing a branch breaks things
 for a short list of reasons,
 
 2
-00:00:03.650 --> 00:00:05.162
-so design around the list.
+00:00:03.626 --> 00:00:05.200
+so design around that list.
 
 3
-00:00:05.162 --> 00:00:06.951
-Proxies reap idle connections,
+00:00:05.200 --> 00:00:09.740
+Proxies drop idle connections, TLS
+inspection breaks pinned certificates,
 
 4
-00:00:06.951 --> 00:00:11.491
-TLS inspection breaks pinned certificates
-and channel-bound authentication,
+00:00:09.740 --> 00:00:14.063
+and changing a client's apparent
+source address resets its connections.
 
 5
-00:00:11.491 --> 00:00:16.375
-and a change in the client's apparent source
-address resets established connections.
+00:00:14.063 --> 00:00:16.524
+Address continuity is what matters.
 
 6
-00:00:16.375 --> 00:00:19.975
-A path change doesn't
-break TCP sequence numbers.
+00:00:16.524 --> 00:00:18.225
+Two myths get cleared up here.
 
 7
-00:00:19.975 --> 00:00:23.113
-Address continuity is the
-property that matters.
+00:00:18.225 --> 00:00:22.537
+Kerberos works through address
+translation under Windows defaults.
 
 8
-00:00:23.113 --> 00:00:26.230
-Kerberos tolerates NAT
-under Windows defaults:
-
-9
-00:00:26.230 --> 00:00:31.138
-the domain controller doesn't put client
-addresses in tickets or check them.
-
-10
-00:00:31.138 --> 00:00:33.866
+00:00:22.537 --> 00:00:25.267
 And there's no
 five-millisecond requirement;
 
-11
-00:00:33.866 --> 00:00:36.374
+9
+00:00:25.267 --> 00:00:27.775
 the five is minutes of allowed clock skew.
 
+10
+00:00:27.775 --> 00:00:31.188
+What really needs a reachable
+domain controller is short,
+
+11
+00:00:31.188 --> 00:00:33.250
+like first sign-in and Group Policy.
+
 12
-00:00:36.374 --> 00:00:41.914
-What genuinely needs a reachable domain
-controller is short: initial logon, service
-
-13
-00:00:41.914 --> 00:00:47.137
-tickets for on-premises services, Group
-Policy, password change and hybrid join.
-
-14
-00:00:47.137 --> 00:00:51.360
+00:00:33.250 --> 00:00:37.472
 Leave that path out and everything
 works except signing in,
 
-15
-00:00:51.360 --> 00:00:54.375
+13
+00:00:37.472 --> 00:00:40.487
 while Kerberos quietly falls back to NTLM.
 
+14
+00:00:40.487 --> 00:00:43.762
+And for chatty applications,
+round trips dominate.
+
+15
+00:00:43.762 --> 00:00:47.861
+On the book's illustrative numbers,
+a better path saves maybe a fifth,
+
 16
-00:00:54.375 --> 00:00:57.150
-Round trips dominate chatty applications.
+00:00:47.861 --> 00:00:52.325
+but cutting thirty round trips to three
+saves about an order of magnitude.
 
 17
-00:00:57.150 --> 00:01:02.603
-In the book's illustrative arithmetic, a
-better branch path saves 17 to 25 percent;
-
-18
-00:01:02.603 --> 00:01:07.870
-cutting 30 sequential round trips to
-three saves about an order of magnitude.
+00:00:52.325 --> 00:00:54.890
+Next, proving the device on the wire.

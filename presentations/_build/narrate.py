@@ -124,13 +124,30 @@ async def main():
     timings = json.loads(timing_file.read_text(encoding="utf-8")) if timing_file.exists() else {}
     prs = Presentation(DECK)
     introduced = set()
+    # Spoken narration written for the deck (narration.json next to it): one entry per narrated slide,
+    # {"slide": n, "title": "...", "say": "..."}. When it exists, the voice says that instead of the
+    # speaker notes, which keep their full detail for presenters. The title must match the slide's, so
+    # a deck rebuilt with slides added or moved fails loudly instead of narrating the wrong slide.
+    spoken_file = DECK.parent / "narration.json"
+    say = {}
+    if spoken_file.exists():
+        for e in json.loads(spoken_file.read_text(encoding="utf-8")):
+            say[int(e["slide"])] = e
     script, durations = [f"# {prs.core_properties.title or DECK.stem} — narration script (practice copy)\n"], {}
     for i, slide in enumerate(prs.slides, 1):
         title = next((sh.text_frame.text for sh in slide.shapes if sh.is_placeholder and sh.placeholder_format.idx == 0 and sh.has_text_frame), None)             or next((sh.text_frame.text for sh in slide.shapes if sh.has_text_frame and sh.text_frame.text.strip()), f"Slide {i}")
         if title.strip() == "Backup":  # executive cut: the backup section is not narrated
             break
         notes = slide.notes_slide.notes_text_frame.text if slide.has_notes_slide else ""
-        text = clean(notes)
+        if say:
+            entry = say.get(i)
+            if not entry:
+                raise SystemExit(f"narration.json has no entry for slide {i}: {title!r}")
+            if " ".join(entry["title"].split()) != " ".join(title.split()):
+                raise SystemExit(f"narration.json slide {i} title {entry['title']!r} doesn't match {title!r}")
+            text = entry["say"].strip()
+        else:
+            text = clean(notes)
         text = expand_first(text, introduced)
         text = name_workbook(text, introduced)
         if title.startswith("More modernizations"):  # teaser: drop the stage direction

@@ -1,79 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.400
-Why does physics decide the architecture?
+00:00:00.050 --> 00:00:04.138
+Physics decides the architecture
+because part of every delay on a
 
 2
-00:00:02.400 --> 00:00:05.299
-Because part of every
-delay on a wide-area path
+00:00:04.138 --> 00:00:08.375
+wide-area path is simply the time
+light takes to travel through glass.
 
 3
-00:00:05.299 --> 00:00:08.275
-is the time light takes
-to travel through glass.
+00:00:08.375 --> 00:00:13.475
+Roughly, it's one millisecond for every
+two hundred kilometers of fiber, one way.
 
 4
-00:00:08.275 --> 00:00:12.981
-ITU-T G.114 plans on 5 microseconds
-per kilometer of fiber,
+00:00:13.475 --> 00:00:16.663
+New York to London has a
+round-trip floor of fifty-six
 
 5
-00:00:12.981 --> 00:00:17.587
-about one millisecond for
-every 200 kilometers, one way.
-
-6
-00:00:17.587 --> 00:00:20.562
-New York to London has
-a round-trip floor of 56
-
-7
-00:00:20.562 --> 00:00:24.100
+00:00:16.663 --> 00:00:19.925
 milliseconds before any
 equipment touches a packet.
 
-8
-00:00:24.100 --> 00:00:28.250
+6
+00:00:19.925 --> 00:00:24.412
 Optimization works on the gap above
-that floor, never on the floor.
+that floor, never on the floor itself.
+
+7
+00:00:24.412 --> 00:00:26.201
+There's a common misreading too.
+
+8
+00:00:26.201 --> 00:00:30.125
+The often-quoted 150-millisecond
+voice budget is mouth to ear,
 
 9
-00:00:28.250 --> 00:00:34.400
-G.114's 150 milliseconds is often
-quoted as the network's voice budget.
+00:00:30.125 --> 00:00:33.050
+and the phones themselves
+use a big share of it.
 
 10
-00:00:34.400 --> 00:00:35.225
-It isn't.
+00:00:33.050 --> 00:00:36.319
+So a West Coast office hairpinning
+through northern Virginia
 
 11
-00:00:35.225 --> 00:00:40.011
-It's mouth to ear, and the terminals
-take 50 to 80 milliseconds of it,
+00:00:36.319 --> 00:00:39.462
+can spend most of the network's
+allowance on the detour alone.
 
 12
-00:00:40.011 --> 00:00:43.113
-which leaves the network
-roughly 70 to 100.
+00:00:39.462 --> 00:00:43.962
+And a synchronous commit pays a round
+trip every time, whatever the bandwidth.
 
 13
-00:00:43.113 --> 00:00:47.748
-On the book's worked arithmetic, a Seattle
-office hairpinning through northern
+00:00:43.962 --> 00:00:48.862
+The answer is needing less global
+synchronization, not faster synchronization.
 
 14
-00:00:47.748 --> 00:00:52.524
-Virginia spends about 60 milliseconds one
-way on the detour: most of the allowance.
-
-15
-00:00:52.524 --> 00:00:57.425
-A synchronous commit pays a round trip
-every time, and no bandwidth changes that.
-
-16
-00:00:57.425 --> 00:01:02.590
-So the answer is to need less global
-synchronization, not faster synchronization.
+00:00:48.862 --> 00:00:50.900
+Which leads to a key distinction.

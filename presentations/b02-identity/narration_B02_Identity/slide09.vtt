@@ -1,100 +1,78 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.663
-How.
+00:00:00.050 --> 00:00:03.306
+The book's How chapters follow five steps:
 
 2
-00:00:00.663 --> 00:00:03.262
-The book's How chapters follow five steps.
+00:00:03.306 --> 00:00:06.563
+discover, assess, build,
+migrate and prove.
 
 3
-00:00:03.262 --> 00:00:04.475
-One, discover.
+00:00:06.563 --> 00:00:11.068
+Discovery starts with the read-only
+access every employee already has,
 
 4
-00:00:04.475 --> 00:00:08.938
-Start with read-only access,
-which every employee already has,
+00:00:11.068 --> 00:00:15.650
+and only then asks for narrow, time-bound
+access to what you still can't see.
 
 5
-00:00:08.938 --> 00:00:13.313
-and learn the topology, OU tree,
-groups and Group Policy links.
+00:00:15.650 --> 00:00:18.461
+The assessment covers
+the whole forest without
 
 6
-00:00:13.313 --> 00:00:17.537
-Then ask for narrow, time-bound access
-for only what you couldn't see.
+00:00:18.461 --> 00:00:21.062
+ever requesting rights
+that expose secrets.
 
 7
-00:00:17.537 --> 00:00:22.407
-Two, assess: the full forest inventory,
-including certificate templates,
+00:00:21.062 --> 00:00:26.094
+For the build, the book recommends Cloud
+Sync unless something needs Connect Sync,
 
 8
-00:00:22.407 --> 00:00:27.763
-trusts and delegation, without ever
-requesting the rights that expose secrets.
+00:00:26.094 --> 00:00:29.497
+password hash sync everywhere,
+PIM for every admin role,
 
 9
-00:00:27.763 --> 00:00:29.487
-Three, build the target.
-
-10
-00:00:29.487 --> 00:00:33.889
-The book recommends Cloud Sync unless
-a Connect-only requirement applies,
-
-11
-00:00:33.889 --> 00:00:38.929
-password hash sync everywhere, Privileged
-Identity Management for every admin role,
-
-12
-00:00:38.929 --> 00:00:41.413
+00:00:29.497 --> 00:00:32.087
 and a tested Conditional Access baseline.
 
+10
+00:00:32.087 --> 00:00:35.573
+Migration runs in waves,
+moving to phishing-resistant
+
+11
+00:00:35.573 --> 00:00:38.749
+sign-in and switching off
+legacy authentication.
+
+12
+00:00:38.749 --> 00:00:41.444
+And proof means drift
+checks and an evidence
+
 13
-00:00:41.413 --> 00:00:46.500
-Four, migrate in waves: phishing-resistant
-authentication, including PIV and CAC
+00:00:41.444 --> 00:00:44.138
+bundle the authorizing
+official can rely on.
 
 14
-00:00:46.500 --> 00:00:51.738
-through certificate-based authentication,
-and legacy authentication turned off.
+00:00:44.138 --> 00:00:49.046
+A few rules hold every time: never
+enforce an untested policy on everyone,
 
 15
-00:00:51.738 --> 00:00:55.135
-Five, prove it: drift checks
-against the baseline and
+00:00:49.046 --> 00:00:51.827
+keep two cloud-only break-glass accounts,
 
 16
-00:00:55.135 --> 00:00:58.849
-an evidence bundle the
-authorizing official can rely on.
-
-17
-00:00:58.849 --> 00:01:01.100
-A few rules hold for every wave.
-
-18
-00:01:01.100 --> 00:01:04.538
-Never enforce an untested
-policy on all users.
-
-19
-00:01:04.538 --> 00:01:09.050
-Keep two cloud-only break-glass accounts
-on phishing-resistant credentials.
-
-20
-00:01:09.050 --> 00:01:12.912
-Convert service accounts to
-managed or workload identities.
-
-21
-00:01:12.912 --> 00:01:17.140
-And treat every closure as unproven
+00:00:51.827 --> 00:00:56.230
+and treat any closure as unproven
 until it carries its evidence.

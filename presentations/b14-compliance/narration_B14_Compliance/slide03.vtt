@@ -1,85 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.377
-The dates that drive this
-work belong to FedRAMP,
+00:00:00.050 --> 00:00:03.189
+The dates driving this
+work come from FedRAMP,
 
 2
-00:00:03.377 --> 00:00:06.537
-CISA and OMB, and each
+00:00:03.189 --> 00:00:06.575
+CISA and OMB, and each one
 binds a different party.
 
 3
-00:00:06.537 --> 00:00:12.762
-Every date here was checked against its
-issuing document on October 21, 2026.
+00:00:06.575 --> 00:00:10.421
+Every date on the slide was checked
+against its issuing document,
 
 4
-00:00:12.762 --> 00:00:17.475
-Where a document gives a period rather
-than a date, the date is counted from it.
+00:00:10.421 --> 00:00:15.050
+and where a document gives a period instead
+of a date, the date is counted from it.
 
 5
-00:00:17.475 --> 00:00:23.393
-The nearest is OMB's M-26-15:
-each agency's post-quantum
+00:00:15.050 --> 00:00:21.138
+The nearest one is the post-quantum
+migration plan, due October 22, 2026.
 
 6
-00:00:23.393 --> 00:00:30.413
-migration plan is due within 120
-days, which is October 22, 2026.
+00:00:21.138 --> 00:00:27.698
+Logging plans, CISA's remediation timelines
+and FedRAMP's vulnerability rules follow
 
 7
-00:00:30.413 --> 00:00:35.164
-The same memorandum sets TLS
-1.3 support by January 2, 2030,
+00:00:27.698 --> 00:00:29.495
+over the next few months,
 
 8
-00:00:35.164 --> 00:00:40.825
-and mitigation of as much quantum
-risk as feasible by the end of 2030.
+00:00:29.495 --> 00:00:33.899
+and FedRAMP's 2026 rules become
+mandatory on January 1, 2027.
 
 9
-00:00:40.825 --> 00:00:47.788
-Under M-26-14, on logging, the Agency
-Logging Plan falls on November 18.
+00:00:33.899 --> 00:00:38.300
+Further out, there's
+TLS 1.3 support by 2030.
 
 10
-00:00:47.788 --> 00:00:53.521
-On December 7, CISA's BOD 26-04 holds
-agencies to its remediation timelines,
+00:00:38.300 --> 00:00:39.725
+Some things also moved.
 
 11
-00:00:53.521 --> 00:00:58.700
-and FedRAMP's vulnerability rules
-become mandatory for providers.
+00:00:39.725 --> 00:00:43.088
+Software bills of materials
+became a contract choice,
 
 12
-00:00:58.700 --> 00:01:04.043
-FedRAMP's 2026 rules take mandatory
-effect on January 1, 2027,
+00:00:43.088 --> 00:00:46.750
+but the software and hardware
+inventory is still required.
 
 13
-00:01:04.043 --> 00:01:09.600
-and listed end-of-support edge
-devices must be out by February 5.
+00:00:46.750 --> 00:00:48.956
+The practical advice is simple:
 
 14
-00:01:09.600 --> 00:01:10.775
-Some things moved.
+00:00:48.956 --> 00:00:52.688
+keep one dated register, and
+re-verify it at every gate.
 
 15
-00:01:10.775 --> 00:01:16.869
-M-26-05 made software bills of materials
-and attestation forms contract choices,
-
-16
-00:01:16.869 --> 00:01:20.325
-but kept the software
-and hardware inventory.
-
-17
-00:01:20.325 --> 00:01:24.480
-So keep one dated register,
-and re-verify it at every gate.
+00:00:52.688 --> 00:00:54.770
+Now, what does Moderate actually mean?

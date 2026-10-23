@@ -1,92 +1,78 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.963
-Choose the platform on the evidence
-it produces for your own boundary.
+00:00:00.050 --> 00:00:02.925
+Choose the platform on
+the evidence it produces
 
 2
-00:00:03.963 --> 00:00:07.243
-Commercial DDI licensing
-is quoted per agency,
+00:00:02.925 --> 00:00:05.225
+for your own boundary, not on a brochure.
 
 3
-00:00:07.243 --> 00:00:10.187
+00:00:05.225 --> 00:00:08.295
+Commercial DDI pricing
+is quoted per agency,
+
+4
+00:00:08.295 --> 00:00:11.200
 so get every quote on
 the same assumptions.
 
-4
-00:00:10.187 --> 00:00:14.863
-The cloud-native pieces have public
-meters, and appear in every model.
-
 5
-00:00:14.863 --> 00:00:20.615
-Azure DNS Private Resolver charges per
-endpoint: 180 dollars a month for each
+00:00:11.200 --> 00:00:15.762
+The cloud-native pieces have public
+prices and show up in every model.
 
 6
-00:00:20.615 --> 00:00:26.188
-inbound endpoint and each outbound
-endpoint, plus 2 dollars 50 per ruleset.
+00:00:15.762 --> 00:00:21.138
+As one example, a hub with one inbound
+and one outbound Azure resolver endpoint
 
 7
-00:00:26.188 --> 00:00:30.844
-A hub with one of each is about
-362 dollars 50 a month per region,
+00:00:21.138 --> 00:00:26.100
+costs about 362 dollars a month per
+region, and a second region doubles it.
 
 8
-00:00:30.844 --> 00:00:33.126
-and a second region doubles it.
+00:00:26.100 --> 00:00:30.587
+Remember that authorization belongs
+to a specific offering, not a vendor.
 
 9
-00:00:33.126 --> 00:00:36.413
-Authorization belongs to
-an offering, not a vendor.
+00:00:30.587 --> 00:00:33.669
+The slide shows which DDI
+offerings have a FedRAMP
 
 10
-00:00:36.413 --> 00:00:40.118
-As one example, Infoblox
-Government Cloud has been
+00:00:33.669 --> 00:00:37.412
+authorization and which run
+inside the agency's own boundary.
 
 11
-00:00:40.118 --> 00:00:44.088
-FedRAMP Certified at Moderate
-since December 15, 2022.
-
-12
-00:00:44.088 --> 00:00:47.584
-BlueCat and EfficientIP have
-no Marketplace listing,
-
-13
-00:00:47.584 --> 00:00:50.149
-so they run inside the agency's boundary.
-
-14
-00:00:50.149 --> 00:00:54.500
+00:00:37.412 --> 00:00:41.763
 And a Moderate authorization
 doesn't cover GCC High or DoD.
 
-15
-00:00:54.500 --> 00:00:55.913
-Some risk remains.
+12
+00:00:41.763 --> 00:00:43.626
+Some risk remains either way.
 
-16
-00:00:55.913 --> 00:00:59.025
+13
+00:00:43.626 --> 00:00:46.737
 Sync lag becomes the new
 source of divergence.
 
-17
-00:00:59.025 --> 00:01:01.537
-A management-plane outage blocks changes,
+14
+00:00:46.737 --> 00:00:50.762
+A management outage blocks changes,
+though resolution keeps working.
 
-18
-00:01:01.537 --> 00:01:04.337
-though resolution
-continues from local state.
-
-19
-00:01:04.337 --> 00:01:10.180
+15
+00:00:50.762 --> 00:00:56.276
 And encrypted DNS bypass stays possible
-wherever endpoint controls are incomplete.
+where endpoint controls are incomplete.
+
+16
+00:00:56.276 --> 00:00:57.960
+So, the decisions.

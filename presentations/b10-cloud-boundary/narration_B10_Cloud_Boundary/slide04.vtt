@@ -1,77 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.962
-The book models a boundary as any
-surface across which four things change.
+00:00:00.050 --> 00:00:03.750
+To reason about any boundary,
+the book uses its own model.
 
 2
-00:00:04.962 --> 00:00:09.213
-It's the book's own model, not a
-FedRAMP or Microsoft construct.
+00:00:03.750 --> 00:00:07.663
+A boundary is any surface across
+which four things change.
 
 3
-00:00:09.213 --> 00:00:13.601
-Telemetry fidelity asks which
-signals actually arrive on this side.
+00:00:07.663 --> 00:00:11.149
+Telemetry: which signals
+actually arrive on your side.
 
 4
-00:00:13.601 --> 00:00:16.539
-In GCC, admin-center network connectivity,
+00:00:11.149 --> 00:00:16.345
+Identity: who a claim's issuer resolves
+to, and GCC pairs with Entra ID
 
 5
-00:00:16.539 --> 00:00:21.912
-informed network routing and Adoption
-Score are documented as unavailable.
+00:00:16.345 --> 00:00:21.725
+in commercial Azure, while GCC High
+and DoD pair with Azure Government.
 
 6
-00:00:21.912 --> 00:00:26.358
-Identity authority asks who
-a claim's issuer resolves to:
+00:00:21.725 --> 00:00:24.807
+Enforcement: who has to enforce a control,
 
 7
-00:00:26.358 --> 00:00:32.788
-GCC pairs with Entra ID in commercial Azure,
-GCC High and DoD with Azure Government.
+00:00:24.807 --> 00:00:28.887
+which in GCC often means the
+agency's own measurements.
 
 8
-00:00:32.788 --> 00:00:37.975
-Enforcement responsibility asks who must
-enforce a control: without Microsoft's
+00:00:28.887 --> 00:00:33.424
+And provenance: whether a claim is
+still authoritative, or only derived.
 
 9
-00:00:37.975 --> 00:00:43.163
-per-circuit feedback, path selection rests
-on the agency's own SD-WAN measurements.
+00:00:33.424 --> 00:00:35.992
+Each of these raises
+its own kind of drift,
 
 10
-00:00:43.163 --> 00:00:45.784
-Provenance classification asks whether a
+00:00:35.992 --> 00:00:40.975
+and detection for them is at different
+stages; the slide shows where each stands.
 
 11
-00:00:45.784 --> 00:00:48.551
-claim is still authoritative,
-or only derived.
+00:00:40.975 --> 00:00:42.925
+One more point worth holding onto.
 
 12
-00:00:48.551 --> 00:00:51.475
-Each dimension raises its own drift class.
+00:00:42.925 --> 00:00:45.717
+FedRAMP's definition of
+federal customer data
 
 13
-00:00:51.475 --> 00:00:56.650
-Detection is shipped for two classes,
-partial for one and design only for two.
+00:00:45.717 --> 00:00:48.438
+excludes the telemetry
+a provider generates.
 
 14
-00:00:56.650 --> 00:00:59.697
-And FedRAMP's definition
-of federal customer data
+00:00:48.438 --> 00:00:50.951
+No certification promises you a signal.
 
 15
-00:00:59.697 --> 00:01:03.325
-excludes the analytics and
-telemetry a provider generates.
-
-16
-00:01:03.325 --> 00:01:05.900
-No certification promises you a signal.
+00:00:50.951 --> 00:00:53.180
+Next, what changed at FedRAMP.

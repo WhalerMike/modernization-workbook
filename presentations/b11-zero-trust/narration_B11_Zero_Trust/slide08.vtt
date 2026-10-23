@@ -16,75 +16,55 @@ the agency network or
 the virtualized estate.
 
 4
-00:00:11.900 --> 00:00:15.574
+00:00:11.900 --> 00:00:15.599
 So the whole-agency argument
 rests on the Zero Trust documents,
 
 5
-00:00:15.574 --> 00:00:21.650
-and on the SP 800-53 controls
-every system security plan asserts.
+00:00:15.599 --> 00:00:21.787
+and on the SP 800-53 controls every
+security plan already asserts.
 
 6
-00:00:21.650 --> 00:00:24.200
+00:00:21.787 --> 00:00:24.563
 Three things get reconciled
-before assessing.
+before you assess.
 
 7
-00:00:24.200 --> 00:00:29.974
-One inventory: CM-8 forbids
-duplicate accounting of components,
+00:00:24.563 --> 00:00:27.837
+One inventory, with no
+component counted twice.
 
 8
-00:00:29.974 --> 00:00:34.550
-and BOD 23-01 requires asset
-discovery every 7 days.
+00:00:27.837 --> 00:00:33.749
+One naming authority, because each cloud
+and VMware ships its own private DNS.
 
 9
-00:00:34.550 --> 00:00:36.131
-One naming authority,
-
-10
-00:00:36.131 --> 00:00:40.875
-because each cloud provider and
-VMware ships its own private DNS.
-
-11
-00:00:40.875 --> 00:00:44.783
+00:00:33.749 --> 00:00:37.658
 And no implicit trust from any
 boundary: a site-to-site VPN,
 
-12
-00:00:44.783 --> 00:00:50.187
+10
+00:00:37.658 --> 00:00:43.062
 a default virtual network and a flat
 virtualized segment are the same mistake.
 
-13
-00:00:50.187 --> 00:00:53.974
-The hypervisor is a distinct
-threat class, so its management
+11
+00:00:43.062 --> 00:00:47.168
+The hypervisor is its own threat
+class, so its management plane
 
-14
-00:00:53.974 --> 00:00:58.063
-plane is assessed as its own surface,
+12
+00:00:47.168 --> 00:00:51.037
+is assessed as its own surface,
 not inferred from its guests.
 
-15
-00:00:58.063 --> 00:01:01.062
-And every provider's tool
-answers for its own platform.
+13
+00:00:51.037 --> 00:00:54.688
+And every provider's tool answers
+only for its own platform.
 
-16
-00:01:01.062 --> 00:01:05.474
-AWS says its NIST standard
-supports a subset of requirements.
-
-17
-00:01:05.474 --> 00:01:09.512
-Microsoft calls Azure Policy
-compliance only a partial view.
-
-18
-00:01:09.512 --> 00:01:14.710
-FedRAMP certifies the service; the
-agency authorizes its own use of it.
+14
+00:00:54.688 --> 00:00:56.780
+Next, who owns the posture.

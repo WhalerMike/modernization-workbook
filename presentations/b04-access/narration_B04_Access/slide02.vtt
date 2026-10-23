@@ -11,78 +11,66 @@ Because federal Zero Trust policy says
 so, and the platform works that way.
 
 3
-00:00:07.838 --> 00:00:12.227
-OMB M-22-09 requires that
-every access request be
+00:00:07.838 --> 00:00:14.463
+M-22-09 requires every request to be evaluated,
+with no trust from network location.
 
 4
-00:00:12.227 --> 00:00:16.013
-evaluated and that network
-location confer no trust.
+00:00:14.463 --> 00:00:19.512
+NIST describes a policy decision point,
+separate from where access is enforced,
 
 5
-00:00:16.013 --> 00:00:20.962
-NIST Special Publication 800-207
-describes the architecture:
+00:00:19.512 --> 00:00:22.113
+and in Entra ID that's Conditional Access.
 
 6
-00:00:20.962 --> 00:00:25.475
-a policy decision point, separate from
-the places where access is enforced.
+00:00:22.113 --> 00:00:26.667
+Its rules are simple: every policy
+that applies must be satisfied,
 
 7
-00:00:25.475 --> 00:00:29.925
-In Microsoft Entra ID, that decision
-point is Conditional Access.
-
-8
-00:00:29.925 --> 00:00:34.492
-It decides by rule: every applicable
-policy must be satisfied,
-
-9
-00:00:34.492 --> 00:00:38.163
+00:00:26.667 --> 00:00:30.125
 a block wins, and exclusions
 override everything.
 
-10
-00:00:38.163 --> 00:00:42.088
+8
+00:00:30.125 --> 00:00:34.050
 What it replaces is access decided
 once and trusted afterward.
 
+9
+00:00:34.050 --> 00:00:36.250
+Inside the network, so trusted.
+
+10
+00:00:36.250 --> 00:00:38.888
+In the group, so allowed, forever.
+
 11
-00:00:42.088 --> 00:00:44.537
-Inside the network, therefore trusted.
-
-12
-00:00:44.537 --> 00:00:47.350
-In the group, therefore allowed, forever.
-
-13
-00:00:47.350 --> 00:00:49.934
+00:00:38.888 --> 00:00:41.472
 Those assumptions survive
 a migration unless
 
-14
-00:00:49.934 --> 00:00:52.650
+12
+00:00:41.472 --> 00:00:44.188
 someone deliberately
 replaces them with policy.
 
-15
-00:00:52.650 --> 00:00:54.938
+13
+00:00:44.188 --> 00:00:46.476
 Two consequences run through the book.
 
-16
-00:00:54.938 --> 00:00:59.951
+14
+00:00:46.476 --> 00:00:51.488
 Every exclusion is a standing hole, so
 each one needs an owner and a review.
 
-17
-00:00:59.951 --> 00:01:03.349
+15
+00:00:51.488 --> 00:00:55.288
 And policy is only as good
 as the attributes it reads,
 
-18
-00:01:03.349 --> 00:01:08.060
-which is why the Federal Modernization
-Workbook's Book 03 matters here.
+16
+00:00:55.288 --> 00:00:57.740
+which is why Book 03 matters here.

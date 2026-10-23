@@ -1,84 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.400
-How we'll know it's
-working, and what we need.
+00:00:00.050 --> 00:00:02.662
+So how will we know it's
+working, and what do we need?
 
 2
-00:00:02.400 --> 00:00:05.008
-Five measures, each
-baselined in phase one,
+00:00:02.662 --> 00:00:07.938
+Five measures, each baselined in phase
+one and each one something leadership can
 
 3
-00:00:05.008 --> 00:00:08.212
-and each one a business
-measure leadership can read.
+00:00:07.938 --> 00:00:13.291
+read: hours from separation to blocked
+access, orphaned accounts trending to zero,
 
 4
-00:00:08.212 --> 00:00:11.663
-Time from separation to
-blocked access, in hours.
+00:00:13.291 --> 00:00:17.621
+fewer joiner and mover tickets,
+managers and organizations in the
 
 5
-00:00:11.663 --> 00:00:15.962
-Accounts tied to a person, with
-orphaned accounts trending to zero.
+00:00:17.621 --> 00:00:21.951
+directory matching HR, and every
+exception with an owner and an age.
 
 6
-00:00:15.962 --> 00:00:20.200
-Joiner and mover tickets going
-down, with access ready on day one.
+00:00:21.951 --> 00:00:26.814
+From leadership, we need one decision:
+start HR-driven identity now,
 
 7
-00:00:20.200 --> 00:00:24.213
-The manager and organization
-in the directory matching HR.
+00:00:26.814 --> 00:00:32.563
+as a design requirement of both the HR
+2.0 onboarding and the Entra ID migration.
 
 8
-00:00:24.213 --> 00:00:27.012
-And every exception with
-an owner and an age.
+00:00:32.563 --> 00:00:36.315
+To act on it: a sponsor across
+HR, identity and privacy;
 
 9
-00:00:27.012 --> 00:00:32.275
-What we need from leadership is one
-decision: start HR-driven identity now,
-
-10
-00:00:32.275 --> 00:00:37.537
-as a design requirement of the HR 2.0
-onboarding and the Entra ID migration.
-
-11
-00:00:37.537 --> 00:00:42.141
-And to act on it: a sponsor across
-HR, the identity team and privacy;
-
-12
-00:00:42.141 --> 00:00:47.525
+00:00:36.315 --> 00:00:41.728
 identity named as a consumer in the HR
 2.0 interconnection plan; data owners
 
-13
-00:00:47.525 --> 00:00:50.477
+10
+00:00:41.728 --> 00:00:44.695
 designated and the person key confirmed;
 
-14
-00:00:50.477 --> 00:00:53.951
+11
+00:00:44.695 --> 00:00:48.187
 and a small team for the
 pre-onboarding data work.
 
-15
-00:00:53.951 --> 00:00:59.024
-The Federal Modernization Workbook's
-Book 03 has the full design, with every
+12
+00:00:48.187 --> 00:00:51.923
+Book 03 has the full design,
+every claim footnoted,
 
-16
-00:00:59.024 --> 00:01:04.500
-external claim footnoted, and Book 02 covers
-the directory migration it builds on.
+13
+00:00:51.923 --> 00:00:56.113
+and Book 02 covers the directory
+migration it builds on.
 
-17
-00:01:04.500 --> 00:01:05.330
+14
+00:00:56.113 --> 00:00:56.930
 Thank you.

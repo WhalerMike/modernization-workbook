@@ -2,246 +2,261 @@
  "1": [
   [
    0.05,
-   12.688,
-   "This briefing comes from Book 09 of the Federal Modernization Workbook, Network and Transport: how to move branch traffic off the long hairpin without turning a latency gain into a compliance loss."
+   0.713,
+   "Welcome."
   ],
   [
-   12.738,
-   7.525,
-   "I'll take four questions: why physics decides the architecture, what has to change, who owns the network, and how to get there."
+   0.762,
+   6.0,
+   "This briefing is Book 09 of the Federal Modernization Workbook, Network and Transport."
   ],
   [
-   20.262,
-   6.9,
-   "The short version: no product shortens a fiber path, so buy transport on physics, and govern it as compliance."
+   6.763,
+   8.463,
+   "It's about moving branch traffic off the long hairpin through a distant data center, without turning a latency gain into a compliance loss."
+  ],
+  [
+   15.225,
+   3.875,
+   "Faster and governed are different things, and the branch needs both."
+  ],
+  [
+   19.1,
+   7.55,
+   "We'll go in four steps: why physics decides the architecture, what has to change, who owns the network, and how to get there."
+  ],
+  [
+   26.65,
+   1.812,
+   "Here's the short version up front."
+  ],
+  [
+   28.462,
+   2.337,
+   "No product shortens a fiber path."
+  ],
+  [
+   30.8,
+   3.487,
+   "So buy transport on physics, and govern it as compliance."
+  ],
+  [
+   34.288,
+   1.575,
+   "Let's start with the physics."
   ]
  ],
  "2": [
   [
    0.05,
-   2.35,
-   "Why does physics decide the architecture?"
+   8.325,
+   "Physics decides the architecture because part of every delay on a wide-area path is simply the time light takes to travel through glass."
   ],
   [
-   2.4,
-   5.875,
-   "Because part of every delay on a wide-area path is the time light takes to travel through glass."
-  ],
-  [
-   8.275,
-   9.312,
-   "ITU-T G.114 plans on 5 microseconds per kilometer of fiber, about one millisecond for every 200 kilometers, one way."
-  ],
-  [
-   17.587,
-   6.513,
-   "New York to London has a round-trip floor of 56 milliseconds before any equipment touches a packet."
-  ],
-  [
-   24.1,
-   4.15,
-   "Optimization works on the gap above that floor, never on the floor."
-  ],
-  [
-   28.25,
-   6.15,
-   "G.114's 150 milliseconds is often quoted as the network's voice budget."
-  ],
-  [
-   34.4,
-   0.825,
-   "It isn't."
-  ],
-  [
-   35.225,
-   7.888,
-   "It's mouth to ear, and the terminals take 50 to 80 milliseconds of it, which leaves the network roughly 70 to 100."
-  ],
-  [
-   43.112,
-   9.412,
-   "On the book's worked arithmetic, a Seattle office hairpinning through northern Virginia spends about 60 milliseconds one way on the detour: most of the allowance."
-  ],
-  [
-   52.525,
-   4.9,
-   "A synchronous commit pays a round trip every time, and no bandwidth changes that."
-  ],
-  [
-   57.425,
+   8.375,
    5.1,
-   "So the answer is to need less global synchronization, not faster synchronization."
+   "Roughly, it's one millisecond for every two hundred kilometers of fiber, one way."
+  ],
+  [
+   13.475,
+   6.45,
+   "New York to London has a round-trip floor of fifty-six milliseconds before any equipment touches a packet."
+  ],
+  [
+   19.925,
+   4.487,
+   "Optimization works on the gap above that floor, never on the floor itself."
+  ],
+  [
+   24.413,
+   1.788,
+   "There's a common misreading too."
+  ],
+  [
+   26.2,
+   6.85,
+   "The often-quoted 150-millisecond voice budget is mouth to ear, and the phones themselves use a big share of it."
+  ],
+  [
+   33.05,
+   6.412,
+   "So a West Coast office hairpinning through northern Virginia can spend most of the network's allowance on the detour alone."
+  ],
+  [
+   39.462,
+   4.5,
+   "And a synchronous commit pays a round trip every time, whatever the bandwidth."
+  ],
+  [
+   43.962,
+   4.9,
+   "The answer is needing less global synchronization, not faster synchronization."
+  ],
+  [
+   48.862,
+   1.975,
+   "Which leads to a key distinction."
   ]
  ],
  "3": [
   [
    0.05,
-   4.188,
-   "Chapter 02 pulls apart two decisions that programs keep merging."
+   3.487,
+   "Programs keep merging two decisions that should stay separate."
   ],
   [
-   4.237,
-   8.375,
-   "Choosing a pipe, whether fiber, MPLS, low earth orbit, 5G or direct internet access, is a physics decision."
+   3.538,
+   7.35,
+   "Choosing a pipe, whether fiber, MPLS, satellite, 5G or direct internet, is a physics decision."
   ],
   [
-   12.613,
+   10.887,
    3.25,
    "Choosing what governs the pipe is a compliance decision."
   ],
   [
-   15.863,
-   4.325,
-   "Direct internet access solves one problem, the geographic hairpin."
+   14.137,
+   4.213,
+   "Direct internet access solves exactly one problem, the hairpin."
   ],
   [
-   20.188,
-   11.262,
-   "It satisfies none of the protection controls: boundary protection, flow enforcement, transmission confidentiality, malware inspection and monitoring all come from the control layer."
+   18.35,
+   6.125,
+   "It satisfies none of the protection controls, like boundary protection, inspection and monitoring."
   ],
   [
-   31.45,
-   5.463,
-   "Transport closes exactly one control family, telecommunications diversity."
+   24.475,
+   6.55,
+   "So moving a branch from a governed hairpin to bare local breakout is a compliance regression with better latency."
   ],
   [
-   36.913,
-   6.45,
-   "So a branch moved from a governed hairpin to bare local breakout is a compliance regression with better latency."
-  ],
-  [
-   43.362,
+   31.025,
    2.65,
    "And the governor is itself attack surface."
   ],
   [
-   46.013,
-   6.263,
-   "BOD 26-02 targets end-of-support edge devices on the agency boundary."
+   33.675,
+   11.512,
+   "Federal directives already target end-of-support edge devices, and an emergency directive in February 2026 ordered action on SD-WAN systems after attackers were found inside them."
   ],
   [
-   52.275,
-   12.738,
-   "On February 25, 2026, Emergency Directive 26-03 ordered action on Cisco SD-WAN systems after actors were found compromising them and keeping long-term persistence."
+   45.188,
+   4.125,
+   "So protect the controller and every edge before they carry traffic."
   ],
   [
-   65.013,
-   3.962,
-   "Protect the controller and every edge before they carry traffic."
+   49.312,
+   2.562,
+   "Next, what policy actually requires."
   ]
  ],
  "4": [
   [
    0.05,
-   2.4,
-   "What does federal policy actually require?"
+   5.787,
+   "Read from the documents, tick three point oh describes goals; it doesn't prescribe methods."
   ],
   [
-   2.45,
-   5.162,
-   "Read from the documents, tick three point oh is descriptive, not prescriptive."
+   5.838,
+   3.025,
+   "It has four use cases, and none of them is sassy."
   ],
   [
-   7.612,
-   6.925,
-   "There are four use cases, Traditional, Branch Office, Remote User and Cloud, and no sassy use case."
+   8.863,
+   9.325,
+   "Two statements matter most for a branch: the same policy enforcement on every path, and keeping sis-uh's visibility as branches connect directly."
   ],
   [
-   14.537,
+   18.188,
+   1.637,
+   "Logging is the other half."
+  ],
+  [
+   19.825,
+   9.0,
+   "The current federal logging memo sets retention and content rules, and the first agency logging plan is due November 18, 2026."
+  ],
+  [
+   28.825,
+   1.075,
+   "Here's the trap."
+  ],
+  [
+   29.9,
    6.05,
-   "The Security Capabilities Catalog, version 3.3, sets goals, not methods."
+   "When branches leave the managed trusted internet service, the telemetry sis-uh was receiving stops."
   ],
   [
-   20.587,
-   9.525,
-   "Two statements constrain a branch: policy enforcement parity on every path, and preserving sis-uh's visibility as branches connect directly."
+   35.95,
+   7.7,
+   "The replacement is sis-uh's log aggregation warehouse, and onboarding needs the agency, sis-uh and the provider working together."
   ],
   [
-   30.113,
-   8.637,
-   "O M B M-26-14 rescinded M-21-31 on May 22, 2026."
+   43.65,
+   3.337,
+   "So keep the old service until sis-uh confirms parity."
   ],
   [
-   38.75,
-   8.738,
-   "Logs must be searchable for six months and retrievable for a year, and must show source and destination addresses, ports and session attributes."
+   46.987,
+   2.625,
+   "Technology-neutral isn't requirement-free."
   ],
   [
-   47.487,
-   5.0,
-   "The first agency logging plan is due November 18, 2026."
+   49.612,
+   3.438,
+   "Four binding obligations still land on branch equipment."
   ],
   [
-   52.487,
-   4.763,
-   "When branches leave MTIPS, the sensor telemetry sis-uh received stops."
-  ],
-  [
-   57.25,
-   8.775,
-   "The replacement is CLAW, sis-uh's Comprehensive Log Aggregation Warehouse, and onboarding needs the agency, sis-uh and the provider together."
-  ],
-  [
-   66.025,
-   2.812,
-   "Keep MTIPS until sis-uh confirms parity."
-  ],
-  [
-   68.838,
-   6.188,
-   "Technology-neutral isn't requirement-free: four binding obligations still land on branch equipment."
+   53.05,
+   2.562,
+   "Now, where data and trust should live."
   ]
  ],
  "5": [
   [
    0.05,
-   3.712,
-   "Chapter 04 separates two meanings of centralize."
+   2.837,
+   "The book separates two meanings of centralize."
   ],
   [
-   3.763,
-   7.412,
-   "Logical centralization, one authoritative source of truth with every other copy derived, is almost always right."
+   2.888,
+   7.925,
+   "Logical centralization means one authoritative source of truth, with every other copy derived, and that's almost always right."
   ],
   [
-   11.175,
-   8.637,
-   "Physical centralization, one server in one place, stops at three walls: the speed of light, blast radius and data residency."
+   10.812,
+   9.35,
+   "Physical centralization means one server in one place, and it runs into three walls: the speed of light, blast radius and data residency."
   ],
   [
-   19.812,
-   4.675,
-   "Token-based security removes the strongest old reason to fragment."
+   20.163,
+   3.775,
+   "Tokens remove the strongest old reason to fragment."
   ],
   [
-   24.488,
-   6.537,
-   "When every request carries a verifiable identity, one store can serve many trust domains."
+   23.938,
+   7.075,
+   "When every request carries a verifiable identity, one store can safely serve many trust domains."
   ],
   [
-   31.025,
-   6.938,
-   "Inbound, a multitenant service checks each Entra token's tenant ID against the tenant the data was stored under."
+   31.012,
+   7.575,
+   "Going out, a service can sign in to its database with a short-lived token, so the long-lived database password disappears."
   ],
   [
-   37.962,
-   10.45,
-   "Outbound, the service signs in to its database with a short-lived token in the password field, valid 5 to 60 minutes, so the long-lived database password disappears."
+   38.587,
+   2.85,
+   "The price is that isolation now lives in code."
   ],
   [
-   48.413,
+   41.438,
+   7.487,
+   "Then pick the weakest consistency each flow can tolerate, because strong consistency across regions is expensive."
+  ],
+  [
+   48.925,
    2.575,
-   "The price is that isolation lives in code."
-  ],
-  [
-   50.987,
-   3.6,
-   "Then choose the weakest consistency each flow tolerates."
-  ],
-  [
-   54.587,
-   14.1,
-   "Azure Cosmos DB, as one documented example, puts multi-region strong write latency at twice the farthest round trip plus 10 milliseconds, and blocks strong consistency beyond 8,000 kilometers by default."
+   "Next, the tools that govern the path."
   ]
  ],
  "6": [
@@ -252,100 +267,105 @@
   ],
   [
    2.55,
-   12.65,
-   "It splits traffic into a lean class, consensus, voice and sign-in, and a bulk class, backups, patches and re-syncs, and keeps bulk transfers from queuing ahead of latency-critical packets."
+   10.363,
+   "It splits traffic into a lean class, like voice and sign-in, and a bulk class, like backups and patches, so big transfers don't queue ahead of time-critical packets."
   ],
   [
-   15.2,
-   10.262,
-   "It recovers route inflation: Microsoft measured a median 78 milliseconds from UK South to East US, against a fiber floor of about 62."
+   12.912,
+   7.838,
+   "It also recovers wasted routing: Microsoft measured paths well above the fiber floor, and SD-WAN can close much of that gap."
   ],
   [
-   25.462,
-   5.862,
-   "And it tightens the tail with forward error correction, packet duplication and fast failover."
-  ],
-  [
-   31.325,
+   20.75,
    2.913,
    "It reaches the floor; it never goes below it."
   ],
   [
-   34.237,
-   6.975,
-   "sassy sits above it: secure web gateway, CASB, firewall and zero trust network access."
+   23.663,
+   5.263,
+   "sassy sits on top, with web gateway, firewall and zero trust access."
   ],
   [
-   41.212,
-   9.9,
-   "sis-uh lists SD-WAN among sassy's networking tools, but mandates neither, and SD-WAN alone doesn't close the boundary, flow and malware controls."
+   28.925,
+   8.762,
+   "sis-uh mentions SD-WAN as part of sassy but mandates neither, and SD-WAN alone doesn't close the boundary and inspection controls."
   ],
   [
-   51.112,
+   37.688,
    1.163,
    "Two cautions."
   ],
   [
-   52.275,
-   5.975,
-   "The enforcement point has a location, so a distant point of presence is a hairpin with a different name."
+   38.85,
+   6.188,
+   "The enforcement point has a location, so a distant point of presence is just a hairpin with a different name."
   ],
   [
-   58.25,
-   6.487,
-   "And fed-ramp status differs by offering, not by vendor, so read the Marketplace when the requirement is written."
+   45.038,
+   6.312,
+   "And fed-ramp status differs by offering, not by vendor, so check the Marketplace when you write the requirement."
+  ],
+  [
+   51.35,
+   3.3,
+   "Re-routing also breaks things, for known reasons."
   ]
  ],
  "7": [
   [
    0.05,
-   5.112,
-   "Re-routing a branch breaks things for a short list of reasons, so design around the list."
+   5.15,
+   "Re-routing a branch breaks things for a short list of reasons, so design around that list."
   ],
   [
-   5.162,
-   11.213,
-   "Proxies reap idle connections, TLS inspection breaks pinned certificates and channel-bound authentication, and a change in the client's apparent source address resets established connections."
+   5.2,
+   8.863,
+   "Proxies drop idle connections, TLS inspection breaks pinned certificates, and changing a client's apparent source address resets its connections."
   ],
   [
-   16.375,
-   3.6,
-   "A path change doesn't break TCP sequence numbers."
+   14.062,
+   2.462,
+   "Address continuity is what matters."
   ],
   [
-   19.975,
-   3.138,
-   "Address continuity is the property that matters."
+   16.525,
+   1.7,
+   "Two myths get cleared up here."
   ],
   [
-   23.113,
-   8.025,
-   "Kerberos tolerates NAT under Windows defaults: the domain controller doesn't put client addresses in tickets or check them."
+   18.225,
+   4.312,
+   "Kerberos works through address translation under Windows defaults."
   ],
   [
-   31.137,
+   22.538,
    5.237,
    "And there's no five-millisecond requirement; the five is minutes of allowed clock skew."
   ],
   [
-   36.375,
-   10.762,
-   "What genuinely needs a reachable domain controller is short: initial logon, service tickets for on-premises services, Group Policy, password change and hybrid join."
+   27.775,
+   5.475,
+   "What really needs a reachable domain controller is short, like first sign-in and Group Policy."
   ],
   [
-   47.138,
+   33.25,
    7.237,
    "Leave that path out and everything works except signing in, while Kerberos quietly falls back to N T L M."
   ],
   [
-   54.375,
-   2.775,
-   "Round trips dominate chatty applications."
+   40.487,
+   3.275,
+   "And for chatty applications, round trips dominate."
   ],
   [
-   57.15,
-   10.662,
-   "In the book's illustrative arithmetic, a better branch path saves 17 to 25 percent; cutting 30 sequential round trips to three saves about an order of magnitude."
+   43.763,
+   8.562,
+   "On the book's illustrative numbers, a better path saves maybe a fifth, but cutting thirty round trips to three saves about an order of magnitude."
+  ],
+  [
+   52.325,
+   2.5,
+   "Next, proving the device on the wire."
   ]
  ],
  "8": [
@@ -356,308 +376,313 @@
   ],
   [
    5.188,
-   4.912,
-   "802.1X turns that assumption into a proof at the switch port."
+   4.975,
+   "802.1X turns that assumption into proof at the switch port."
   ],
   [
-   10.1,
-   5.8,
-   "Use EAP-TLS, mutual certificate authentication, for every managed device."
+   10.162,
+   8.113,
+   "Use certificate-based authentication for every managed device; the password methods are already being broken by Windows security changes."
   ],
   [
-   15.9,
-   13.725,
-   "Password methods are failing on their own: Credential Guard blocks PEAP-MSCHAPv2 single sign-on, and the October 2026 Windows update restricts NTLMv1-derived credentials too."
+   18.275,
+   5.612,
+   "The radius server is usually the last piece of the network still standing on Active Directory."
   ],
   [
-   29.625,
-   5.338,
-   "The radius server is usually the last piece of the network standing on Active Directory."
+   23.887,
+   6.05,
+   "Windows NPS checks against A D computer objects, which Entra-joined devices don't have."
   ],
   [
-   34.962,
-   6.7,
-   "Windows NPS authorizes against A D computer objects, and Entra joined devices don't support that."
+   29.938,
+   4.4,
+   "There's no Entra radius product, and NPS has no device health engine."
   ],
   [
-   41.663,
-   8.287,
-   "There's no Entra radius product; the NPS extension adds M F A, but NPS still authenticates against A D."
+   34.337,
+   12.562,
+   "So posture comes from Intune compliance, read by a network access control platform, and each device lands in the right place: production, remediation, quarantine, guest or IoT."
   ],
   [
-   49.95,
-   7.987,
-   "And NPS has no posture engine: Network Access Protection was deprecated back in Windows Server 2012 R2."
+   46.9,
+   4.7,
+   "And after the Blast-radius attack, require message authentication everywhere."
   ],
   [
-   57.938,
-   11.438,
-   "So posture comes from Intune's compliance retrieval service, read by a NAC platform, and each device lands in production, remediation, quarantine, guest or IoT."
-  ],
-  [
-   69.375,
-   4.513,
-   "After the Blast-radius attack, require Message-Authenticator everywhere."
+   51.6,
+   1.9,
+   "Now we can put the pieces together."
   ]
  ],
  "9": [
   [
    0.05,
-   7.513,
-   "Chapter 08 puts the pieces together with one rule: align each flow's consistency class with its transport class."
+   6.388,
+   "The pieces come together under one rule: match each flow's consistency needs to its transport class."
   ],
   [
-   7.562,
+   6.438,
    7.237,
    "Only authoritative writes and in-region quorum ride the lean path, and neither crosses a region synchronously."
   ],
   [
-   14.8,
+   13.675,
    2.737,
    "At the branch, four patterns cover practice."
   ],
   [
-   17.538,
-   4.6,
-   "A, the hairpin: assessed, but every flow pays the detour."
+   16.413,
+   3.9,
+   "The hairpin is assessed, but every flow pays the detour."
   ],
   [
-   22.137,
-   4.575,
-   "B, bare local breakout: not an option in the TIC use case at all."
+   20.312,
+   4.062,
+   "Bare local breakout isn't an option in the TIC use case at all."
   ],
   [
-   26.712,
-   7.088,
-   "C, governed local breakout, an SD-WAN edge plus a nearby sassy point of presence: the reference pattern."
+   24.375,
+   5.975,
+   "Governed local breakout, an SD-WAN edge plus a nearby sassy point, is the reference pattern."
   ],
   [
-   33.8,
-   7.625,
-   "D, agent-delivered sassy, for small and roaming sites, if the point of presence is close and agentless devices are covered."
+   30.35,
+   3.825,
+   "And agent-delivered sassy suits small and roaming sites."
   ],
   [
-   41.425,
-   15.475,
-   "Five decisions carry most of the risk: one writer per region; a written path policy, which SC-7(4) already asks for; the boundary change before cutover; the governor protected before it carries traffic; and the path made evidence."
+   34.175,
+   12.887,
+   "Then five decisions carry most of the risk: one writer per region, a written path policy, the boundary change before cutover, the governor protected before it carries traffic, and the path made into evidence."
   ],
   [
-   56.9,
+   47.062,
    2.913,
    "Each fails quietly, so each comes with a check."
+  ],
+  [
+   49.975,
+   1.6,
+   "Who makes those decisions?"
   ]
  ],
  "10": [
   [
    0.05,
-   0.85,
-   "Who owns it?"
+   3.625,
+   "The most expensive mistakes in this book are ownership gaps."
   ],
   [
-   0.9,
-   13.787,
-   "The most expensive mistakes in this book are ownership gaps: a circuit bought before anyone owned the governor, a cutover before anyone filed the boundary change, a telemetry contract cancelled before its replacement was confirmed."
+   3.675,
+   2.875,
+   "A circuit bought before anyone owned the governor."
   ],
   [
-   14.688,
-   2.388,
-   "So the rule is one decider per row."
+   6.55,
+   3.35,
+   "A cutover before anyone filed the boundary change."
   ],
   [
-   17.075,
-   5.3,
-   "The sponsor and C I O decide the governor platforms and the order of branch waves."
+   9.9,
+   3.962,
+   "A telemetry contract cancelled before its replacement was confirmed."
   ],
   [
-   22.375,
-   8.025,
-   "The authorizing official decides the boundary change, the SC-7(4) exception and every standing exception."
+   13.863,
+   2.625,
+   "So the rule is one decider per decision."
   ],
   [
-   30.4,
-   5.388,
-   "The see-so sets the control requirements and owns confirming sis-uh telemetry parity."
+   16.488,
+   5.263,
+   "The sponsor and C I O choose the governor platforms and the order of branch waves."
   ],
   [
-   35.788,
+   21.75,
+   5.037,
+   "The authorizing official decides the boundary change and every standing exception."
+  ],
+  [
+   26.788,
+   4.938,
+   "The see-so sets the control requirements and confirms sis-uh telemetry parity."
+  ],
+  [
+   31.725,
    6.688,
    "The system owner decides, site by site, whether the governor is live and logging before traffic moves."
   ],
   [
-   42.475,
+   38.413,
+   6.25,
+   "Security architecture decides TIC conformance and writes the target into every refresh."
+  ],
+  [
+   44.663,
    6.775,
-   "Security architecture decides TIC conformance and writes target attributes into every refresh."
+   "And only a contracting officer can enter into or end a contract, so no engineer can cancel a circuit."
   ],
   [
-   49.25,
-   9.363,
-   "And under the Federal Acquisition Regulation only a contracting officer can enter into or terminate a contract, so no engineer can cancel a circuit."
-  ],
-  [
-   58.612,
-   3.7,
-   "Network engineering and security operations do the work."
+   51.438,
+   3.212,
+   "Next, how to get there when the target is years away."
   ]
  ],
  "11": [
   [
    0.05,
-   2.663,
-   "How do you get there when the target is years away?"
+   4.388,
+   "When the target is years away, the book makes the case by elimination."
   ],
   [
-   2.712,
-   1.875,
-   "Make the case by elimination."
+   4.438,
+   2.638,
+   "The legacy telecom contracts have ended."
   ],
   [
-   4.588,
-   5.55,
-   "The legacy telecom contracts had all ended by May 31, 2026."
+   7.075,
+   5.388,
+   "The hairpin is still allowed, but sis-uh itself says it raises the cost of using the cloud."
   ],
   [
-   10.137,
-   6.1,
-   "The hairpin is still permitted, but sis-uh's own guidebook says it raised the cost of using cloud services."
+   12.463,
+   5.95,
+   "A new access point is a big capital commitment, and VPN backhaul is just another hairpin."
   ],
   [
-   16.238,
-   9.625,
-   "A new access point is a capital commitment, VPN backhaul is a hairpin, and Microsoft no longer recommends ExpressRoute for Microsoft 365."
+   18.413,
+   5.425,
+   "What's left is local breakout, a cloud security stack and a policy layer at the branch edge."
   ],
   [
-   25.863,
-   5.088,
-   "What's left is local breakout, a cloud security stack and a branch-edge policy layer."
+   23.837,
+   3.95,
+   "Meanwhile several federal deadlines compete for the same staff."
   ],
   [
-   30.95,
-   13.15,
-   "Meanwhile three deadlines compete for the same staff: the M-26-14 logging plan, the M-26-15 post-quantum plan and BOD 26-04."
+   27.788,
+   1.163,
+   "Here's the fork."
   ],
   [
-   44.1,
-   3.562,
-   "BOD 26-02 is the fork."
+   28.95,
+   8.738,
+   "A directive requires end-of-support edge devices off agency networks by about August 2027, so a refresh is happening anyway."
   ],
   [
-   47.663,
-   8.188,
-   "End-of-support edge devices must be off agency networks by about August 5, 2027, so a refresh happens anyway."
-  ],
-  [
-   55.85,
+   37.688,
    3.775,
    "Tell whoever scopes it, in writing, what the target needs."
   ],
   [
-   59.625,
-   5.15,
-   "Like-for-like spends the same money and closes the question for the life of the equipment."
+   41.462,
+   6.025,
+   "A like-for-like refresh spends the same money and locks in the old design for the life of the equipment."
+  ],
+  [
+   47.487,
+   2.337,
+   "A worked example shows what's at stake."
   ]
  ],
  "12": [
   [
    0.05,
-   15.1,
-   "Chapter 11 is a worked case: a large field-office estate, about 1,500 offices and 70,000 endpoints, asked to fund a 50-million-dollar refresh of a Configuration Manager distribution point in every office."
+   11.025,
+   "This worked case is a large field-office estate, about fifteen hundred offices, asked to fund a fifty-million-dollar refresh of a software distribution server in every office."
   ],
   [
-   15.15,
-   4.438,
-   "Microsoft's published limit is 4,000 clients per distribution point."
+   11.075,
+   6.625,
+   "Microsoft's published limit means the whole estate needs only about two dozen of those servers, at a dozen hubs."
   ],
   [
-   19.587,
-   7.05,
-   "On capacity, the estate needs 24, two at each of 12 hubs, for 96,000 clients."
+   17.7,
+   3.475,
+   "The rest exist only to make up for slow branch circuits."
   ],
   [
-   26.637,
-   6.0,
-   "The other 1,476 exist only to compensate for slow branch circuits."
+   21.175,
+   6.938,
+   "So fix the circuit instead: right-sized internet access, a 5G backup path and an SD-WAN overlay."
   ],
   [
-   32.638,
-   7.8,
-   "So fix the circuit: dedicated internet access sized to seats, a 5G continuity path, and an SD-WAN overlay."
+   28.113,
+   7.787,
+   "On the book's planning assumptions, the network program needs about ten million dollars of first-year capital and pays back in year four."
   ],
   [
-   40.438,
-   9.525,
-   "On the book's planning assumptions, the network program needs about 10 million dollars of first-year capital and reaches a positive cumulative position in year four."
+   35.9,
+   4.325,
+   "But the case turns on one number, the current MPLS cost per office."
   ],
   [
-   49.962,
-   2.55,
-   "But the financial case turns on one number."
+   40.225,
+   4.0,
+   "Below the breakeven, argue capability, not savings."
   ],
   [
-   52.513,
-   9.075,
-   "Breakeven is 873 dollars of current MPLS cost per office per month; below that, argue capability, not savings."
-  ],
-  [
-   61.587,
+   44.225,
    5.3,
    "And no office's MPLS is retired until its replacement telemetry is confirmed."
+  ],
+  [
+   49.525,
+   2.763,
+   "Next, one exception that needs a signature."
   ]
  ],
  "13": [
   [
    0.05,
-   5.95,
-   "Microsoft says to send its Optimize traffic straight to Microsoft, without TLS inspection."
+   7.025,
+   "Microsoft says to send its most latency-sensitive traffic straight to Microsoft, without TLS inspection."
   ],
   [
-   6.0,
+   7.075,
    2.212,
    "The boundary says inspect everything."
   ],
   [
-   8.213,
-   4.312,
-   "Both positions hold up, so the gap is a decision someone signs."
+   9.287,
+   4.275,
+   "Both positions hold up, so the gap is a decision someone has to sign."
   ],
   [
-   12.525,
-   10.812,
-   "Optimize is small: three endpoint sets, for Exchange Online, SharePoint and OneDrive, and Teams media, which has no names and must be steered by IP prefix."
+   13.562,
+   5.612,
+   "The Optimize traffic is small: Exchange, SharePoint and OneDrive, and Teams media."
   ],
   [
-   23.337,
-   6.5,
-   "Exempting only Optimize is narrower than Microsoft asks, and it leaves sign-in on the inspected path."
+   19.175,
+   5.938,
+   "Exempting only that is narrower than Microsoft asks, and it keeps sign-in on the inspected path."
   ],
   [
-   29.837,
-   9.025,
-   "Name what the bypass punctures: SI-3, SI-4(10) where it's selected, AC-4 and AU-3."
+   25.113,
+   9.475,
+   "The book names exactly which controls the bypass weakens, and the vehicle is a documented boundary exception, with mission need, duration and review."
   ],
   [
-   38.862,
-   2.075,
-   "SC-8 is not a gap."
+   34.587,
+   3.763,
+   "An assessor's main worry will be data leaving to another tenant."
   ],
   [
-   40.938,
-   7.362,
-   "The vehicle is SC-7(4): each exception documented with its mission need and duration, and reviewed."
+   38.35,
+   5.688,
+   "Only device-side tenant restrictions reach that data path, so they're a precondition to cutover."
   ],
   [
-   48.3,
-   3.425,
-   "The assessor's attack is tenant-to-tenant exfiltration."
+   44.038,
+   3.775,
+   "Three signed documents carry the decision, and the notes name them."
   ],
   [
-   51.725,
-   8.05,
-   "Only Windows device-side tenant restrictions v2 reaches the SharePoint and Exchange data plane, so it's a precondition to cutover."
-  ],
-  [
-   59.775,
-   9.312,
-   "Three instruments carry the decision: the authorizing official's memo, the system owner's site register and the architecture review board's determination."
+   47.812,
+   2.362,
+   "All of this depends on getting the order right."
   ]
  ],
  "14": [
@@ -668,88 +693,88 @@
   ],
   [
    3.938,
-   6.013,
-   "Step zero: bring the governor under vulnerability management, privileged access and logging."
+   6.287,
+   "Step zero is bringing the governor under vulnerability management, privileged access and logging."
   ],
   [
-   9.95,
-   17.45,
-   "Then buy the pipe on measured physics, deploy the governor before production traffic, decide the boundary change before the first cutover, handle Microsoft 365 through its own exception, and register the evidence, confirming sis-uh telemetry parity before any legacy circuit ends."
+   10.225,
+   15.537,
+   "Then buy the pipe on measured physics, deploy the governor before production traffic, decide the boundary change before the first cutover, handle Microsoft 365 through its own exception, and confirm sis-uh telemetry before any legacy circuit ends."
   ],
   [
-   27.4,
+   25.762,
    3.913,
    "No memo mandates that order; it's an engineering dependency."
   ],
   [
-   31.312,
-   4.45,
-   "Phase inversion is what happens when cloud migration runs ahead of transport."
+   29.675,
+   11.35,
+   "Get it wrong and you get phase inversion: cloud migration runs ahead of transport, slowness gets blamed on the cloud, cloud spend goes up, and the real cause never shows up in the data."
   ],
   [
-   35.763,
-   8.412,
-   "With no transport metrics, slowness is attributed to the cloud, the remedies raise cloud spend, and the cause never enters the data."
+   41.025,
+   3.9,
+   "The book is careful to call that an inference, not a proven fact."
   ],
   [
-   44.175,
-   5.838,
-   "The book labels that an inference built on documented parts, and names better-evidenced competitors."
-  ],
-  [
-   50.013,
+   44.925,
    1.762,
    "So measure in your own estate."
   ],
   [
-   51.775,
-   9.65,
-   "A paired-branch study, two comparable branches instrumented for 30 days before and after a change at one, gives an effect size a budget examiner will accept."
+   46.688,
+   8.15,
+   "Instrument two comparable branches for thirty days before and after a change at one, and you get evidence a budget examiner will accept."
+  ],
+  [
+   54.837,
+   1.625,
+   "So, the decisions."
   ]
  ],
  "15": [
   [
    0.05,
-   1.375,
-   "So, four decisions."
+   1.6,
+   "Here are the four decisions."
   ],
   [
-   1.425,
-   12.925,
-   "Adopt the sequence as policy: the governor secured and live before traffic, the boundary change decided before cutover, and sis-uh telemetry parity confirmed before any MTIPS or MPLS circuit ends."
+   1.65,
+   12.812,
+   "First, adopt the sequence as policy: the governor secured and live before traffic, the boundary change decided before cutover, and sis-uh telemetry parity confirmed before any legacy circuit ends."
   ],
   [
-   14.35,
-   10.637,
-   "Put the target attributes in writing for every BOD 26-02 replacement, before the August 2027 deadline spends the money like for like."
+   14.463,
+   8.725,
+   "Second, put the target in writing for every edge-device replacement, before the August 2027 deadline spends the money like for like."
   ],
   [
-   24.988,
-   7.85,
-   "Decide the Microsoft 365 Optimize exception with tenant restrictions v2 from the device as a precondition."
+   23.188,
+   8.338,
+   "Third, decide the Microsoft 365 Optimize exception, with device-side tenant restrictions as a precondition."
   ],
   [
-   32.837,
-   5.263,
-   "And name one decider per row, from the authorizing official to the contracting officer."
+   31.525,
+   6.162,
+   "And fourth, name one decider per decision, from the authorizing official to the contracting officer."
   ],
   [
-   38.1,
-   13.537,
-   "The next step needs no award: write the application-to-path policy that SC-7(4) already asks for, and instrument a sample of branches before the next migration wave, because that baseline can't be rebuilt afterward."
+   37.688,
+   12.55,
+   "The next step is to write the application-to-path policy the boundary controls already ask for, and to instrument a sample of branches before the next migration wave, because that baseline can't be rebuilt afterward."
   ],
   [
-   51.638,
+   50.237,
    5.938,
    "Buy transport on physics and govern it as compliance, and the branch gets faster without getting weaker."
   ],
   [
-   57.575,
-   5.787,
-   "The Federal Modernization Workbook's Book 09 has the detail, every claim footnoted."
+   56.175,
+   4.025,
+   "Book 09 has the detail, every claim footnoted."
   ],
   [
-   63.362,
+   60.2,
    0.762,
    "Thank you."
   ]

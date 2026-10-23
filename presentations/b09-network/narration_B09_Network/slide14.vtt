@@ -6,77 +6,72 @@ Order decides whether modernization
 is a gain or a regression.
 
 2
-00:00:03.938 --> 00:00:07.947
-Step zero: bring the governor
+00:00:03.938 --> 00:00:08.256
+Step zero is bringing the governor
 under vulnerability management,
 
 3
-00:00:07.947 --> 00:00:09.951
+00:00:08.256 --> 00:00:10.225
 privileged access and logging.
 
 4
-00:00:09.951 --> 00:00:12.272
+00:00:10.225 --> 00:00:12.574
 Then buy the pipe on measured physics,
 
 5
-00:00:12.272 --> 00:00:15.267
+00:00:12.574 --> 00:00:15.606
 deploy the governor before
 production traffic,
 
 6
-00:00:15.267 --> 00:00:18.563
-decide the boundary change
-before the first cutover,
+00:00:15.606 --> 00:00:20.836
+decide the boundary change before the
+first cutover, handle Microsoft 365 through
 
 7
-00:00:18.563 --> 00:00:23.206
-handle Microsoft 365 through its own
-exception, and register the evidence,
+00:00:20.836 --> 00:00:25.762
+its own exception, and confirm CISA
+telemetry before any legacy circuit ends.
 
 8
-00:00:23.206 --> 00:00:27.400
-confirming CISA telemetry parity
-before any legacy circuit ends.
-
-9
-00:00:27.400 --> 00:00:31.313
+00:00:25.762 --> 00:00:29.675
 No memo mandates that order;
 it's an engineering dependency.
 
+9
+00:00:29.675 --> 00:00:34.848
+Get it wrong and you get phase inversion:
+cloud migration runs ahead of transport,
+
 10
-00:00:31.313 --> 00:00:35.762
-Phase inversion is what happens when
-cloud migration runs ahead of transport.
+00:00:34.848 --> 00:00:38.245
+slowness gets blamed on the
+cloud, cloud spend goes up,
 
 11
-00:00:35.762 --> 00:00:39.851
-With no transport metrics, slowness
-is attributed to the cloud,
+00:00:38.245 --> 00:00:41.025
+and the real cause never
+shows up in the data.
 
 12
-00:00:39.851 --> 00:00:44.175
-the remedies raise cloud spend, and
-the cause never enters the data.
+00:00:41.025 --> 00:00:44.925
+The book is careful to call that
+an inference, not a proven fact.
 
 13
-00:00:44.175 --> 00:00:47.650
-The book labels that an inference
-built on documented parts,
-
-14
-00:00:47.650 --> 00:00:50.013
-and names better-evidenced competitors.
-
-15
-00:00:50.013 --> 00:00:51.775
+00:00:44.925 --> 00:00:46.687
 So measure in your own estate.
 
-16
-00:00:51.775 --> 00:00:56.751
-A paired-branch study, two comparable
-branches instrumented for 30 days before
+14
+00:00:46.687 --> 00:00:51.782
+Instrument two comparable branches for thirty
+days before and after a change at one,
 
-17
-00:00:56.751 --> 00:01:01.490
-and after a change at one, gives an effect
-size a budget examiner will accept.
+15
+00:00:51.782 --> 00:00:54.838
+and you get evidence a
+budget examiner will accept.
+
+16
+00:00:54.838 --> 00:00:56.520
+So, the decisions.

@@ -2,80 +2,120 @@
  "1": [
   [
    0.05,
-   14.613,
-   "This briefing comes from Book 12 of the Federal Modernization Workbook, Security Operations and Telemetry: how an agency makes every part of its estate emit evidence, turns it into detection and response, and proves that it works."
+   0.713,
+   "Welcome."
   ],
   [
-   14.662,
-   12.287,
-   "I'll take four questions: why you can't defend what you can't see, what each plane must emit and how findings reach one queue, who runs security operations, and how to run detection, response and monitoring."
+   0.762,
+   6.575,
+   "This briefing is Book 12 of the Federal Modernization Workbook, Security Operations and Telemetry."
   ],
   [
-   26.95,
-   7.638,
-   "The short version: design visibility instead of assuming it, and close a finding only when the thing is fixed, with proof."
+   7.338,
+   9.6,
+   "It's about how an agency makes every part of its estate emit evidence, turns that evidence into detection and response, and then proves it all works."
+  ],
+  [
+   16.938,
+   1.375,
+   "We'll take four questions."
+  ],
+  [
+   18.312,
+   2.163,
+   "Why can't you defend what you can't see?"
+  ],
+  [
+   20.475,
+   3.95,
+   "What must each plane emit, and how do findings reach one queue?"
+  ],
+  [
+   24.425,
+   2.062,
+   "Who runs security operations?"
+  ],
+  [
+   26.488,
+   3.15,
+   "And how do you run detection, response and monitoring?"
+  ],
+  [
+   29.637,
+   8.175,
+   "The short version: design visibility instead of assuming it, and close a finding only when the thing is actually fixed, with proof."
+  ],
+  [
+   37.812,
+   5.075,
+   "The slides and notes carry every detail and source; I'll stick to what matters."
+  ],
+  [
+   42.888,
+   2.85,
+   "Let's start with why visibility can't be assumed."
   ]
  ],
  "2": [
   [
    0.05,
-   2.112,
-   "Why can't you defend what you can't see?"
-  ],
-  [
-   2.163,
-   6.013,
+   5.963,
    "Most agencies run a sim, pay for log storage, and can show an auditor millions of events a day."
   ],
   [
-   8.175,
-   2.025,
-   "But each of those measures what arrived."
+   6.013,
+   2.7,
+   "But every one of those numbers measures what arrived."
   ],
   [
-   10.2,
+   8.713,
    1.6,
    "None of them measures what didn't."
   ],
   [
-   11.8,
+   10.312,
    3.337,
    "nist keeps apart two things that are easy to buy as one."
   ],
   [
-   15.137,
-   3.263,
-   "AU-12 says generate the audit records."
+   13.65,
+   2.75,
+   "One control says generate the audit records."
   ],
   [
-   18.4,
-   8.95,
-   "AU-6 says review and analyze them for unusual activity and report what you find, and SI-4 adds detecting attacks."
+   16.4,
+   3.663,
+   "Others say review them, analyze them and detect attacks."
   ],
   [
-   27.35,
-   4.475,
-   "An agency can satisfy the first completely and still fail the other two."
+   20.062,
+   4.362,
+   "An agency can satisfy the first completely and still fail the rest."
   ],
   [
-   31.825,
-   4.6,
-   "O M B M-26-14 measures the same way."
+   24.425,
+   5.763,
+   "O M B's logging memo, M-26-14, measures the same way."
   ],
   [
-   36.425,
-   13.75,
-   "Logs must be searchable for six months and retrievable for a year, but its maturity model scores collection by alerting: under half of the baseline covered by actionable alerts at Level 1, at least 70 percent at Level 3."
+   30.188,
+   8.363,
+   "It sets retention floors, but its maturity model scores collection by alerting, by how much of the baseline is covered by actionable alerts."
   ],
   [
-   50.175,
-   6.175,
-   "And Microsoft says logs ingested only into the Sentinel data lake tier don't generate alerts."
+   38.55,
+   7.2,
+   "And here's the sharp example: Microsoft says logs sent only to the Sentinel data lake tier don't generate alerts."
   ],
   [
-   56.35,
+   45.75,
    2.788,
    "That source meets retention and detects nothing."
+  ],
+  [
+   48.538,
+   2.188,
+   "Next, why gaps stay silent."
   ]
  ],
  "3": [
@@ -86,147 +126,142 @@
   ],
   [
    4.675,
-   7.15,
-   "Some sources are never connected: Azure resource logs aren't collected until each resource has a diagnostic setting."
+   7.138,
+   "Some sources are never connected; Azure resource logs aren't collected until each resource gets a diagnostic setting."
   ],
   [
-   11.825,
-   9.125,
-   "Some connected sources aren't flowing: Microsoft says the AWS connector's green status means a collection rule exists, not that data arrived."
+   11.812,
+   6.787,
+   "Some connected sources aren't flowing; a green connector status can mean a rule exists, not that data arrived."
   ],
   [
-   20.95,
+   18.6,
    2.788,
    "Some collected data is never analyzed."
   ],
   [
-   23.738,
-   6.775,
-   "And some sources are switched off on purpose; sis-uh calls tampering with logging well-documented threat actor behavior."
+   21.387,
+   5.65,
+   "And some sources are switched off on purpose, which sis-uh calls well-documented attacker behavior."
   ],
   [
-   30.512,
-   11.125,
-   "In the 2023 Exchange Online intrusion, a federal victim caught it with its own alert on mailbox-access events that, at the time, came only with a premium audit license."
+   27.038,
+   10.075,
+   "In the 2023 Exchange Online intrusion, a federal victim caught it with its own alert on mailbox events that, at the time, came only with a premium license."
   ],
   [
-   41.638,
+   37.112,
    3.125,
    "Agencies without those events had nothing to look at."
   ],
   [
-   44.763,
-   5.875,
-   "None of these gaps shows up in what arrived, only in comparing what arrived with what was expected."
+   40.237,
+   5.325,
+   "None of these gaps shows up in what arrived, only in comparing it with what was expected."
   ],
   [
-   50.638,
-   13.012,
-   "That's why M-26-14 tells agencies to use CDM and asset data to confirm log coverage, and why BOD 23-01 calls asset visibility a basic pre-condition."
+   45.562,
+   2.65,
+   "That's why the inventory is the denominator."
   ],
   [
-   63.65,
-   2.312,
-   "The inventory is the denominator."
+   48.212,
+   2.112,
+   "Next, the evidence contract."
   ]
  ],
  "4": [
   [
    0.05,
-   11.613,
-   "A multi-cloud agency runs several stacks: Azure Update Manager, AWS Systems Manager, a virtualization lifecycle manager, firewall syslog, a Linux host agent."
+   9.375,
+   "A multi-cloud agency runs several stacks at once: Azure, AWS, a virtualization manager, firewall syslog, a Linux agent."
   ],
   [
-   11.662,
-   4.388,
-   "Five partial views can't prove one vulnerability is fixed everywhere."
+   9.425,
+   4.588,
+   "Five partial views can't prove that one vulnerability is fixed everywhere."
   ],
   [
-   16.05,
-   8.412,
-   "The program's answer is an evidence contract: one record shape every source emits, with eight fields fixed before any data flows."
+   14.012,
+   8.662,
+   "The program's answer is an evidence contract: one record shape that every source emits, with eight fields fixed before any data flows."
   ],
   [
-   24.462,
-   8.588,
-   "They carry the six things nist's AU-3 asks a record to establish, plus the control it evidences, a verdict and a disposition."
+   22.675,
+   7.225,
+   "They carry what nist asks an audit record to establish, plus the control it evidences, a verdict and a disposition."
   ],
   [
-   33.05,
+   29.9,
    3.775,
    "The join key is authoritative asset identity plus time."
   ],
   [
-   36.825,
-   2.288,
-   "Every stack has its own identifier."
+   33.675,
+   6.662,
+   "Every stack has its own identifier, so the key comes from the naming plane, which has to exist before the pipeline."
   ],
   [
-   39.112,
-   6.975,
-   "Even Microsoft's normalization model lists separate device IDs per product and calls a hostname a last resort."
+   40.337,
+   6.8,
+   "And time means when the state was observed, because joining on arrival time silently matches the wrong records."
   ],
   [
-   46.087,
-   4.425,
-   "So the key comes from the naming plane, which has to exist before the pipeline."
+   47.138,
+   8.238,
+   "One caution: the system-wide, time-correlated trail is a High-baseline control, so at Moderate the program selects it by design."
   ],
   [
-   50.513,
-   5.9,
-   "And time means when the state was observed, because arrival time joins the wrong records silently."
-  ],
-  [
-   56.413,
-   7.763,
-   "One caution: the system-wide, time-correlated trail, AU-12(1), is a High-baseline control."
-  ],
-  [
-   64.175,
-   2.95,
-   "At Moderate, the program selects it by design."
+   55.375,
+   2.3,
+   "Next, what each plane must emit."
   ]
  ],
  "5": [
   [
    0.05,
-   1.488,
-   "What must each plane emit?"
-  ],
-  [
-   1.538,
-   9.4,
+   9.35,
    "The program treats the estate as six planes: identity, cloud platform, Microsoft 365, endpoints, network and data."
   ],
   [
-   10.938,
-   8.125,
-   "No one plane covers M-26-14's baseline, and systems a third party runs for the agency are in scope too."
+   9.4,
+   6.562,
+   "No single plane covers the logging baseline, and systems a third party runs for the agency are in scope too."
   ],
   [
-   19.062,
+   15.963,
    3.663,
    "Each plane has a default that looks instrumented and isn't."
   ],
   [
-   22.725,
-   12.887,
-   "Entra ID shows sign-ins but keeps them only 30 days with P1 or P2, so the program streams all four sign-in streams, not just the interactive one, plus Microsoft Graph activity."
+   19.625,
+   8.9,
+   "Entra ID shows sign-ins, but keeps them only 30 days, so the program streams every sign-in stream, not just the interactive one."
   ],
   [
-   35.612,
-   8.512,
-   "Azure deletes its activity log after 90 days, and resource logs aren't collected at all until each resource has a diagnostic setting."
+   28.525,
+   7.175,
+   "Azure drops its activity log after 90 days, and resource logs aren't collected at all without a diagnostic setting."
   ],
   [
-   44.125,
-   14.088,
-   "Microsoft 365 audit records last 180 days on the Standard tier; the one-year default applies only to users with an E5-level license, everyone else, guests included, stays at 180."
+   35.7,
+   7.862,
+   "Microsoft 365 audit retention depends on license, and many users, guests included, get the shorter window."
   ],
   [
-   58.212,
-   10.312,
-   "So emission is enforced by policy, and verified by a query that names every expected table, so a missing one shows up as a row instead of silently disappearing."
+   43.562,
+   6.263,
+   "So emission is enforced by policy, and verified by a query that names every expected table."
+  ],
+  [
+   49.825,
+   5.4,
+   "That way, a missing table shows up as a row, instead of silently disappearing."
+  ],
+  [
+   55.225,
+   2.987,
+   "Next, turning the warehouse into detection."
   ]
  ],
  "6": [
@@ -237,48 +272,43 @@
   ],
   [
    3.112,
-   12.975,
-   "Rules, incidents and automation make it a detection engine, and the program's rule is strict: no source counts as monitored until an enabled rule reads it, and no rule counts until its output reaches a queue someone owns."
+   4.713,
+   "Rules, incidents and automation are what turn it into a detection engine."
   ],
   [
-   16.087,
-   3.125,
-   "The engine also sets a floor on time to detect."
+   7.825,
+   9.562,
+   "And the program's rule is strict: no source counts as monitored until an enabled rule reads it, and no rule counts until its output reaches a queue someone owns."
   ],
   [
-   19.212,
-   5.575,
-   "A scheduled rule runs every five minutes at best, with a five-minute delay for ingestion."
+   17.387,
+   3.4,
+   "The engine also sets a floor on how fast you can detect."
   ],
   [
-   24.788,
-   6.8,
-   "A near-real-time rule runs every minute on a two-minute delay, and a workspace can enable only 50 of them."
+   20.788,
+   10.838,
+   "Scheduled rules run every few minutes at best, near-real-time rules are faster but limited in number, and behavioral baselines are slower by design; the slide has the figures."
   ],
   [
-   31.587,
-   2.737,
-   "Behavioral baselines are slower by design."
-  ],
-  [
-   34.325,
+   31.625,
    5.938,
    "Defender XDR detects what its own sensors see on endpoints, identities and email."
   ],
   [
-   40.263,
-   6.812,
-   "Sentinel rules cover what Defender can't see: D N S, sassy, SQL audit and other clouds."
+   37.562,
+   5.15,
+   "Sentinel rules cover what Defender can't see, like D N S and other clouds."
   ],
   [
-   47.075,
-   6.9,
-   "Then prepare for the assessor's test: show an alert from the last 30 days, the incident it opened and what was done."
+   42.712,
+   7.513,
+   "Then prepare for the assessor's test: show a recent alert, the incident it opened, and what was done, from alert to closure."
   ],
   [
-   53.975,
-   5.5,
-   "That takes four records: the alert, the ticket, the response notes and the closure."
+   50.225,
+   1.962,
+   "Next, the federal clocks."
   ]
  ],
  "7": [
@@ -289,296 +319,246 @@
   ],
   [
    2.5,
-   24.688,
-   "sis-uh's BOD 26-04, issued June 10, 2026, revoked BOD 22-01 and BOD 19-02, and replaced severity buckets with four questions about each vulnerable asset: is it publicly exposed, is the flaw in the Known Exploited Vulnerabilities catalog, can exploitation be automated, and does it give partial or total control?"
+   6.713,
+   "The first is sis-uh's BOD 26-04, issued in June 2026."
   ],
   [
-   27.188,
-   2.438,
-   "The answers set a maximum timeline."
+   9.213,
+   14.725,
+   "It replaced the older vulnerability directives, and swapped severity buckets for four questions about each vulnerable asset: is it publicly exposed, is the flaw known to be exploited, can exploitation be automated, and how much control does it give?"
   ],
   [
-   29.625,
-   8.875,
-   "Three days, with forensic triage on the worst rows, because, in sis-uh's words, applying a patch generally does not evict a threat actor."
+   23.938,
+   9.45,
+   "The answers set a maximum timeline, as short as three days, with forensic triage on the worst cases, because applying a patch doesn't evict an attacker."
   ],
   [
-   38.5,
-   4.062,
-   "Then 14 days, 60 days, or the next system upgrade."
+   33.388,
+   6.912,
+   "The clock starts when sis-uh lists the flaw or the agency finds it, whichever comes first, and there are no waivers."
   ],
   [
-   42.562,
-   8.5,
-   "The clock starts when sis-uh lists the flaw or when the agency finds it and updates CDM, whichever comes first, and there are no waivers."
+   40.3,
+   3.675,
+   "Remediation within the table applies from December 7."
   ],
   [
-   51.062,
-   4.912,
-   "Phase III, remediation within the table, applies from December 7."
+   43.975,
+   10.275,
+   "The second clock is M-26-14's: a logging plan within 90 days of sis-uh's reference architecture, then maturity levels on a set schedule."
   ],
   [
-   55.975,
-   18.375,
-   "M-26-14's clock runs from sis-uh's Logging Reference Architecture, published August 20, 2026: the Agency Logging Plan within 90 days, and maturity Levels 1, 2 and 3 within 120, 180 and 320 days."
+   54.25,
+   2.575,
+   "Next, vulnerability and patch."
   ]
  ],
  "8": [
   [
    0.05,
-   10.238,
-   "Vulnerability management fails at three points assessors probe: a stale inventory, prioritization by score alone, and no record of found, due and fixed."
+   10.85,
+   "Vulnerability management fails at three points assessors probe: a stale inventory, prioritizing by score alone, and no record of when something was found, due and fixed."
   ],
   [
-   10.287,
+   10.9,
    2.35,
    "The program's answer is a daily queue."
   ],
   [
-   12.637,
-   2.587,
-   "Pull the KEV feed before the morning review."
+   13.25,
+   13.637,
+   "Pull the Known Exploited Vulnerabilities feed and the scanner's findings, join each device to the authoritative asset record and its exposure tag, apply the directive's table, and keep the first-detected date, never resetting it."
   ],
   [
-   15.225,
-   2.975,
-   "Pull findings from Defender Vulnerability Management."
+   26.887,
+   8.863,
+   "Two practical rules: treat an asset with no exposure tag as publicly exposed, and keep your own history, because the scanner's exports don't."
   ],
   [
-   18.2,
-   4.775,
-   "Join each device to the authoritative asset record and its exposure tag."
+   35.75,
+   4.737,
+   "The key idea is that a scanner authors no state; it just measures a gap."
   ],
   [
-   22.975,
-   8.037,
-   "Look up sis-uh's automation and impact data, apply the directive's table, and keep the first-detected date, never resetting it."
+   40.487,
+   7.987,
+   "Each platform patches with its own native tools, but every one returns the same remediation record, keyed to the same asset."
   ],
   [
-   31.012,
-   5.862,
-   "Use the catalog's due date, because Defender's vulnerability data carries no KEV flag."
-  ],
-  [
-   36.875,
-   3.975,
-   "Treat an asset with no exposure tag as publicly exposed."
-  ],
-  [
-   40.85,
-   4.537,
-   "And Defender's exports carry no history, so the program keeps its own."
-  ],
-  [
-   45.388,
-   3.237,
-   "A scanner authors no state; it measures a gap."
-  ],
-  [
-   48.625,
-   8.037,
-   "Each platform patches with its own native stack, and every stack returns the same remediation record, keyed to the same asset."
-  ],
-  [
-   56.663,
+   48.475,
    4.638,
    "A finding closes when the fix is recorded and the next scan no longer sees it."
+  ],
+  [
+   53.112,
+   2.025,
+   "Next, three more streams."
   ]
  ],
  "9": [
   [
    0.05,
-   2.025,
-   "Three more streams share the queue."
+   2.413,
+   "Three more streams share the same queue."
   ],
   [
-   2.075,
+   2.462,
    5.338,
    "Configuration first: a patched host that drifts from its baseline isn't remediated."
   ],
   [
-   7.412,
-   3.862,
-   "Baselines come from scuba, CIS or DISA STIGs."
+   7.8,
+   6.675,
+   "And watch auto-correct features that fix drift without recording it; the program keeps those for low-risk settings."
   ],
   [
-   11.275,
-   7.888,
-   "Azure machine configuration's auto-correct mode fixes drift without recording it, so the program keeps it for low-risk settings."
-  ],
-  [
-   19.163,
+   14.475,
    1.438,
    "Cloud posture next."
   ],
   [
-   20.6,
-   5.237,
-   "A storage account open to the internet has no missing patch, so a scanner never reports it."
+   15.912,
+   5.925,
+   "A storage account open to the internet has no missing patch, so a vulnerability scanner never reports it."
   ],
   [
-   25.837,
-   4.0,
-   "Each provider's native posture tool is primary for its own platform."
+   21.837,
+   7.263,
+   "Each provider's native posture tool is primary for its own platform, and the notes cover where cross-cloud coverage falls short."
   ],
   [
-   29.837,
-   7.088,
-   "Defender for Cloud doesn't cover Oracle Cloud, and its AWS connector isn't available in Azure Government."
-  ],
-  [
-   36.925,
+   29.1,
    0.912,
    "Then data."
   ],
   [
-   37.837,
-   12.075,
-   "The CUI framework has two levels, Basic and Specified, decided by the authority in the CUI Registry: Privacy Act records are Basic, and federal taxpayer information is Specified."
+   30.012,
+   10.6,
+   "Controlled unclassified information comes in two levels, Basic and Specified, decided by the CUI Registry, and labels drive data loss prevention everywhere."
   ],
   [
-   49.913,
-   5.062,
-   "Labels drive data loss prevention on the service, the endpoint and the CASB."
+   40.612,
+   2.65,
+   "Finally, check what actually reaches the queue."
   ],
   [
-   54.975,
-   1.45,
-   "And check queue membership."
+   43.263,
+   8.85,
+   "Since October 2026, a built-in Microsoft tuning rule keeps data loss signals out of the incident queue unless an administrator turns it off."
   ],
   [
-   56.425,
-   9.475,
-   "Since early October 2026, a built-in Microsoft tuning rule keeps DLP signals out of the incident queue unless an administrator turns it off."
+   52.112,
+   1.825,
+   "Next, who runs all this."
   ]
  ],
  "10": [
   [
    0.05,
-   2.013,
-   "Who runs security operations?"
-  ],
-  [
-   2.062,
-   10.375,
+   10.325,
    "Most agencies can name their SOC. Fewer can say who decided that a log source is collected, how long it's kept, or who accepted the risk when it went quiet for three weeks."
   ],
   [
-   12.438,
-   1.488,
-   "The program assigns them."
+   10.375,
+   2.413,
+   "The program assigns those decisions."
   ],
   [
-   13.925,
-   4.737,
-   "The C I O sets scope and funding and designates the top-level SOC."
+   12.787,
+   2.337,
+   "The C I O sets scope and funding."
   ],
   [
-   18.663,
-   8.175,
-   "The see-so decides what each plane must emit, owns the Agency Logging Plan, and approves any playbook that acts on production."
+   15.125,
+   7.612,
+   "The see-so decides what each plane must emit, owns the logging plan, and approves any playbook that acts on production."
   ],
   [
-   26.837,
-   2.675,
-   "Platform owners keep their own planes emitting."
+   22.738,
+   6.85,
+   "Platform owners keep their planes emitting, security engineering builds the tooling, and the SOC runs the queue."
   ],
   [
-   29.512,
-   5.95,
-   "Security engineering builds the sim, the rules, the playbooks and the evidence pipeline."
-  ],
-  [
-   35.462,
-   4.325,
-   "The SOC runs the queue, and sis-uh's one-hour clock starts there."
-  ],
-  [
-   39.788,
+   29.587,
    1.913,
    "Two roles are easy to forget."
   ],
   [
-   41.7,
-   8.175,
-   "The records officer decides disposition, and must concur before anyone shortens retention, because evidence that's gone can't come back."
+   31.5,
+   6.625,
+   "The records officer must agree before anyone shortens retention, because evidence that's gone can't come back."
   ],
   [
-   49.875,
-   11.925,
-   "And the authorizing official, the only official who can accept risk, accepts the risk of not seeing: a gap carried rather than closed, a suppression with no end date, a missed deadline."
+   38.125,
+   11.575,
+   "And the authorizing official, the only one who can accept risk, accepts the risk of not seeing: a gap carried rather than closed, a suppression with no end date, a missed deadline."
+  ],
+  [
+   49.7,
+   2.237,
+   "Next, how detections get built."
   ]
  ],
  "11": [
   [
    0.05,
-   1.613,
-   "How do detections get built?"
+   1.95,
+   "Detections are built as code."
   ],
   [
-   1.663,
-   0.925,
-   "As code."
+   2.0,
+   7.975,
+   "The rule library lives in version control, nobody edits a production rule in the portal, and every change is a reviewed commit."
   ],
   [
-   2.587,
-   7.713,
-   "The rule library lives in version control, and nobody edits a production rule in the portal; a change is a reviewed commit."
+   9.975,
+   4.075,
+   "Each rule has one named owner, a test and a review date."
   ],
   [
-   10.3,
-   4.362,
-   "Every rule has one named owner, a test and a review date."
+   14.05,
+   8.125,
+   "Every rule moves through five steps: author it, test it, run it alert-only, promote it, and review it at least quarterly."
   ],
   [
-   14.662,
-   2.438,
-   "Each rule moves through five steps."
+   22.175,
+   1.587,
+   "The test matters most."
   ],
   [
-   17.1,
-   3.75,
-   "Author it, starting from Microsoft's template where one exists."
+   23.762,
+   5.125,
+   "Replay a known-bad sample, because a rule that can't be shown to fire isn't finished."
   ],
   [
-   20.85,
-   6.975,
-   "Test it against history and replay a known-bad sample, because a rule that can't be shown to fire isn't finished."
+   28.887,
+   5.338,
+   "And run it alert-only for at least two weeks, until its false positives are documented."
   ],
   [
-   27.825,
-   5.162,
-   "Run it alert-only for at least two weeks, and until its false positives are documented."
+   34.225,
+   9.463,
+   "Where a vendor analytic isn't available in the agency's cloud, the program builds an equivalent inside its own boundary, and says plainly it isn't parity."
   ],
   [
-   32.987,
-   0.863,
-   "Promote it."
+   43.688,
+   1.325,
+   "Then plan for rot."
   ],
   [
-   33.85,
-   1.9,
-   "Then review it at least quarterly."
+   45.013,
+   5.25,
+   "Thresholds drift, sources stop without an error, and failing rules get disabled."
   ],
   [
-   35.75,
-   8.825,
-   "Where a vendor analytic isn't available in the agency's cloud, the program rebuilds an equivalent inside its own boundary, and says it isn't parity."
+   50.263,
+   3.612,
+   "That standing tuning effort is the real cost of a library."
   ],
   [
-   44.575,
-   1.062,
-   "Plan for rot."
-  ],
-  [
-   45.638,
-   8.4,
-   "Thresholds drift, sources stop without an error, and Sentinel disables a rule after repeated failures and marks it auto disabled."
-  ],
-  [
-   54.038,
-   3.8,
-   "The standing tuning effort is the real cost of having a library."
+   53.875,
+   1.525,
+   "Next, response."
   ]
  ],
  "12": [
@@ -589,53 +569,48 @@
   ],
   [
    4.688,
-   10.225,
-   "So every playbook is confidence-gated: high confidence prepares containment, medium confidence enriches and tickets for a human, and low confidence never acts."
+   11.225,
+   "So every playbook is gated by confidence: high confidence prepares containment, medium confidence enriches and opens a ticket for a human, and low confidence never acts."
   ],
   [
-   14.912,
-   3.075,
-   "Responses sit on the workbook's actuation ladder."
+   15.912,
+   10.7,
+   "Responses sit on the workbook's actuation ladder, from observing and advising, up to gated actuation, where the playbook prepares an action and a named approver releases it."
   ],
   [
-   17.988,
-   1.312,
-   "L1 observes."
+   26.613,
+   3.562,
+   "That's the default for anything with a large blast radius."
   ],
   [
-   19.3,
-   1.3,
-   "L2 advises."
+   30.175,
+   4.85,
+   "Only listed, low-risk classes run on their own, logged and reversible."
   ],
   [
-   20.6,
-   11.3,
-   "L3, gated actuation, is the default for anything with a large blast radius: the playbook checks its preconditions and prepares the action, and a named approver releases it."
+   35.025,
+   5.812,
+   "A few, like isolating a server or disabling a privileged account, always need an approver."
   ],
   [
-   31.9,
-   7.287,
-   "L4 runs alone, logged and reversible, for enumerated classes such as closing known-benign incidents."
+   40.837,
+   6.7,
+   "And because Defender's attack disruption acts on its own, the authorizing official decides whether to accept that."
   ],
   [
-   39.188,
-   9.238,
-   "Three classes stay at L3 permanently: isolating a server, disabling a privileged or emergency account, and any tenant-wide change."
+   47.538,
+   1.8,
+   "Latency is real too."
   ],
   [
-   48.425,
-   7.925,
-   "Defender XDR's attack disruption acts on its own, so the authorizing official decides whether to accept it as L4."
+   49.337,
+   5.487,
+   "A hybrid user must be disabled in Active Directory as well, or the next sync undoes it."
   ],
   [
-   56.35,
-   1.462,
-   "Latency is real."
-  ],
-  [
-   57.812,
-   12.463,
-   "Session revocation can take up to 15 minutes in services that support continuous access evaluation, and a hybrid user must be disabled in Active Directory too, or the next synchronization undoes it."
+   54.825,
+   1.863,
+   "Next, proving it works."
   ]
  ],
  "13": [
@@ -656,43 +631,43 @@
   ],
   [
    13.188,
-   11.262,
-   "Detection coverage counts how many of M-26-14's eleven baseline activities have an enabled, tested rule over a fresh source, not how many rules exist."
+   8.375,
+   "Detection coverage counts how many baseline activities have an enabled, tested rule over a fresh source, not how many rules exist."
   ],
   [
-   24.45,
-   5.838,
-   "Telemetry completeness treats a stale required source as an AU-5 failure."
+   21.562,
+   2.862,
+   "A stale required source counts as a failure."
   ],
   [
-   30.288,
-   12.387,
-   "KEV remediation counts closures within the BOD 26-04 timeline, plus open items past it, because a share of the open queue improves every time new findings arrive."
+   24.425,
+   9.062,
+   "Vulnerability metrics count closures on time plus items past due, because a percentage of the open queue improves every time new findings arrive."
   ],
   [
-   42.675,
+   33.487,
    4.662,
    "And configuration reports passing, failing and excepted settings separately."
   ],
   [
-   47.337,
-   1.887,
-   "Read outside scores carefully."
+   38.15,
+   2.138,
+   "Read outside scores carefully, too."
   ],
   [
-   49.225,
-   9.05,
-   "M-26-14 scores each system at its lowest element, and a system can reach Advanced while missing the six-month searchable floor."
+   40.288,
+   8.262,
+   "The logging memo scores a system at its weakest element, and fed-ramp's Key Security Indicators bind cloud providers, not agencies."
   ],
   [
-   58.275,
-   9.213,
-   "fed-ramp's 46 Key Security Indicators bind cloud providers, not agencies; the agency reviews each provider's quarterly report."
+   48.55,
+   6.787,
+   "In the end, a finding closes on re-test evidence, or the authorizing official carries it with an end date."
   ],
   [
-   67.487,
-   5.975,
-   "A finding closes on re-test evidence, or the authorizing official carries it with an end date."
+   55.337,
+   1.837,
+   "Let's close with the decisions."
   ]
  ],
  "14": [
@@ -713,36 +688,36 @@
   ],
   [
    13.475,
-   5.987,
-   "Fund the Agency Logging Plan as the program's visibility plan, not as a storage purchase."
+   5.25,
+   "Fund the logging plan as the program's visibility plan, not as a storage purchase."
   ],
   [
-   19.462,
-   11.662,
-   "And send every blind spot to the authorizing official: a telemetry gap, a suppression with no end date, a missed BOD 26-04 deadline, each with an end date."
+   18.725,
+   9.35,
+   "And send every blind spot to the authorizing official, whether it's a telemetry gap, an open-ended suppression or a missed deadline, each with an end date."
   ],
   [
-   31.125,
+   28.075,
    2.2,
    "The next step needs no procurement."
   ],
   [
-   33.325,
+   30.275,
    11.325,
    "Run the coverage check against the inventory, tag the exposure of every externally reachable asset before December 7, and count a source as covered only when a tested rule reads it."
   ],
   [
-   44.65,
+   41.6,
    6.088,
    "You can't defend what you can't see, and a finding closes only when the thing is fixed, with proof."
   ],
   [
-   50.737,
-   5.875,
-   "The Federal Modernization Workbook's Book 12 has the detail, every claim footnoted."
+   47.688,
+   3.688,
+   "Book 12 has the detail, every claim footnoted."
   ],
   [
-   56.612,
+   51.375,
    0.762,
    "Thank you."
   ]

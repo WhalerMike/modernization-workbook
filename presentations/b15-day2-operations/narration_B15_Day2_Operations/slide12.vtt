@@ -1,84 +1,68 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.150
+00:00:00.050 --> 00:00:05.087
 The runbook turns all of this into a
-cadence, and each step says what it proves.
+rhythm, and each step says what it proves.
 
 2
-00:00:05.150 --> 00:00:10.558
-Daily, a read-only synchronization probe
-replaces the morning interactive logon to
+00:00:05.087 --> 00:00:10.302
+Daily, a read-only sync probe replaces the
+habit of logging on to the sync servers
 
 3
-00:00:10.558 --> 00:00:14.885
-the sync servers, and each error
-becomes a task; a completeness check
+00:00:10.302 --> 00:00:12.908
+each morning, every error becomes a task,
 
 4
-00:00:14.885 --> 00:00:19.675
-confirms every log source is still
-sending; catalog tasks close with proof.
+00:00:12.908 --> 00:00:16.463
+and a check confirms every
+log source is still sending.
 
 5
-00:00:19.675 --> 00:00:24.083
+00:00:16.463 --> 00:00:20.998
 Weekly, detection rules are tested
 against replayed known-bad events,
 
 6
-00:00:24.083 --> 00:00:29.100
-and every task closed without automated
-proof is either evidenced or reopened.
+00:00:20.998 --> 00:00:25.300
+and any task closed without proof
+is either evidenced or reopened.
 
 7
-00:00:29.100 --> 00:00:33.226
-Monthly, results and the plan
-of action are regenerated,
+00:00:25.300 --> 00:00:29.275
+Monthly and quarterly reviews
+follow, and the slide lists them.
 
 8
-00:00:33.226 --> 00:00:36.275
-and the I S S O reviews
-the harness results.
+00:00:29.275 --> 00:00:32.350
+The runbook also rewrites everyday tasks.
 
 9
-00:00:36.275 --> 00:00:39.700
-Quarterly, privileged access
-and trends are reviewed.
-
-10
-00:00:39.700 --> 00:00:43.262
-The runbook also rewrites
-eight everyday tasks.
-
-11
-00:00:43.262 --> 00:00:47.201
-A password reset is delivered on a
+00:00:32.350 --> 00:00:36.125
+A reset password goes out on a
 channel separate from the request.
 
+10
+00:00:36.125 --> 00:00:41.687
+And a requester's script is never pasted
+and run: parameters travel, commands don't.
+
+11
+00:00:41.687 --> 00:00:44.826
+Finally, harnesses check
+the automation itself.
+
 12
-00:00:47.201 --> 00:00:52.638
-A requester's script is never pasted and
-run: parameters travel, commands don't.
+00:00:44.826 --> 00:00:47.854
+The catch is that a harness
+that stops running looks
 
 13
-00:00:52.638 --> 00:00:55.200
-The harnesses check the automation itself.
+00:00:47.854 --> 00:00:50.812
+just like one that passes,
+so check that each one ran.
 
 14
-00:00:55.200 --> 00:00:59.062
-A source past its freshness limit
-raises a high-severity alert.
-
-15
-00:00:59.062 --> 00:01:02.862
-A deployment that doesn't close
-its control fails the pipeline.
-
-16
-00:01:02.862 --> 00:01:06.336
-And a harness that stops running
-looks like one that passes,
-
-17
-00:01:06.336 --> 00:01:07.900
-so check that each one ran.
+00:00:50.812 --> 00:00:52.730
+That brings us to the decisions.

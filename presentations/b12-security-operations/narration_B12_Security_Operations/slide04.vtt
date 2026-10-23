@@ -1,84 +1,74 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:06.262
-A multi-cloud agency runs several stacks:
-Azure Update Manager, AWS Systems Manager,
+00:00:00.050 --> 00:00:04.491
+A multi-cloud agency runs
+several stacks at once: Azure,
 
 2
-00:00:06.262 --> 00:00:11.663
-a virtualization lifecycle manager,
-firewall syslog, a Linux host agent.
+00:00:04.491 --> 00:00:09.425
+AWS, a virtualization manager,
+firewall syslog, a Linux agent.
 
 3
-00:00:11.663 --> 00:00:16.050
-Five partial views can't prove one
-vulnerability is fixed everywhere.
+00:00:09.425 --> 00:00:14.013
+Five partial views can't prove that
+one vulnerability is fixed everywhere.
 
 4
-00:00:16.050 --> 00:00:19.014
-The program's answer is
-an evidence contract:
+00:00:14.013 --> 00:00:18.383
+The program's answer is an evidence
+contract: one record shape that
 
 5
-00:00:19.014 --> 00:00:24.462
-one record shape every source emits, with
-eight fields fixed before any data flows.
+00:00:18.383 --> 00:00:22.674
+every source emits, with eight
+fields fixed before any data flows.
 
 6
-00:00:24.462 --> 00:00:28.886
-They carry the six things NIST's
-AU-3 asks a record to establish,
+00:00:22.674 --> 00:00:26.171
+They carry what NIST asks an
+audit record to establish,
 
 7
-00:00:28.886 --> 00:00:33.050
+00:00:26.171 --> 00:00:29.900
 plus the control it evidences,
 a verdict and a disposition.
 
 8
-00:00:33.050 --> 00:00:36.825
+00:00:29.900 --> 00:00:33.675
 The join key is authoritative
 asset identity plus time.
 
 9
-00:00:36.825 --> 00:00:39.113
-Every stack has its own identifier.
+00:00:33.675 --> 00:00:38.020
+Every stack has its own identifier, so
+the key comes from the naming plane,
 
 10
-00:00:39.113 --> 00:00:42.524
-Even Microsoft's normalization
-model lists separate
-
-11
-00:00:42.524 --> 00:00:46.087
-device IDs per product and
-calls a hostname a last resort.
-
-12
-00:00:46.087 --> 00:00:50.512
-So the key comes from the naming plane,
+00:00:38.020 --> 00:00:40.337
 which has to exist before the pipeline.
 
-13
-00:00:50.512 --> 00:00:53.062
+11
+00:00:40.337 --> 00:00:42.924
 And time means when
 the state was observed,
 
+12
+00:00:42.924 --> 00:00:47.137
+because joining on arrival time
+silently matches the wrong records.
+
+13
+00:00:47.137 --> 00:00:52.257
+One caution: the system-wide, time-correlated
+trail is a High-baseline control,
+
 14
-00:00:53.062 --> 00:00:56.413
-because arrival time joins
-the wrong records silently.
+00:00:52.257 --> 00:00:55.376
+so at Moderate the program
+selects it by design.
 
 15
-00:00:56.413 --> 00:01:01.138
-One caution: the system-wide,
-time-correlated trail,
-
-16
-00:01:01.138 --> 00:01:04.176
-AU-12(1), is a High-baseline control.
-
-17
-00:01:04.176 --> 00:01:07.180
-At Moderate, the program
-selects it by design.
+00:00:55.376 --> 00:00:57.740
+Next, what each plane must emit.

@@ -2,80 +2,115 @@
  "1": [
   [
    0.05,
-   7.062,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.112,
    "This briefing comes from Book 15 of the Federal Modernization Workbook, Compliance Automation and Day-Two Operations."
   ],
   [
-   7.112,
-   6.65,
-   "It's written for C I Os, service desk and operations leads, and information system security officers."
+   7.875,
+   6.338,
+   "It's written for CIOs, service desk and operations leads, and information system security officers."
   ],
   [
-   13.762,
-   9.75,
-   "I'll take four questions: why modernization succeeds or fails at the help desk; what day two runs on; who runs it; and how to run it and prove it works."
+   14.213,
+   1.413,
+   "I'll take four questions."
   ],
   [
-   23.512,
-   3.712,
-   "The short version: cutover proves the new estate can be built."
+   15.625,
+   3.513,
+   "Why does modernization succeed or fail at the help desk?"
   ],
   [
-   27.225,
+   19.137,
+   1.587,
+   "What does day two run on?"
+  ],
+  [
+   20.725,
+   0.912,
+   "Who runs it?"
+  ],
+  [
+   21.637,
+   2.263,
+   "And how do you run it, and prove it works?"
+  ],
+  [
+   23.9,
+   1.55,
+   "The short version is this."
+  ],
+  [
+   25.45,
+   2.7,
+   "Cutover proves the new estate can be built."
+  ],
+  [
+   28.15,
    4.0,
    "The first locked-out user on Monday morning proves whether it can be run."
+  ],
+  [
+   32.15,
+   3.013,
+   "Let's start with why the help desk holds the keys."
   ]
  ],
  "2": [
   [
    0.05,
-   8.45,
-   "A modernization program spends most of its attention on day one: the tenant is built, identities synchronize, the cutover runs."
+   7.987,
+   "Modernization programs spend most of their attention on day one: the tenant is built, identities sync, the cutover runs."
   ],
   [
-   8.5,
-   6.662,
-   "The estate is judged on day two, when every reset, unlock and new hire lands at the help desk."
+   8.037,
+   6.825,
+   "But the estate is judged on day two, when every reset, unlock and new hire lands at the help desk."
   ],
   [
-   15.162,
-   3.375,
-   "In Entra ID the help desk's power is explicit."
+   14.863,
+   3.05,
+   "In Entra ID the help desk's power is real."
   ],
   [
-   18.538,
-   9.438,
-   "Microsoft labels the Helpdesk Administrator role privileged, and warns that changing a user's password may mean the ability to assume that user's identity."
+   17.913,
+   8.338,
+   "Microsoft calls the Helpdesk Administrator role privileged, and warns that changing a user's password can mean taking over that user's identity."
   ],
   [
-   27.975,
-   11.55,
-   "Requiring M F A re-registration deletes the user's phones, Authenticator registrations and software tokens, and whoever signs in next and registers a method controls the account."
+   26.25,
+   7.375,
+   "Forcing M F A re-registration wipes the user's methods, and whoever registers next controls the account."
   ],
   [
-   39.525,
+   33.625,
    4.225,
    "So a reset on an unverified request isn't a support task."
   ],
   [
-   43.75,
-   2.812,
-   "It's a transfer of the account to whoever asked."
+   37.85,
+   2.5,
+   "It's handing the account to whoever asked."
   ],
   [
-   46.562,
-   1.2,
-   "Attackers know it."
+   40.35,
+   5.888,
+   "Attackers know this; sis-uh has described groups that talked help desk staff into exactly that."
   ],
   [
-   47.763,
-   9.3,
-   "sis-uh's advisory on the Scattered Spider group describes calls that convinced help desk staff to reset passwords and transfer M F A tokens."
+   46.237,
+   3.6,
+   "And when the governed path is hard, the desk works around it."
   ],
   [
-   57.062,
-   11.137,
-   "And when the governed path is hard, the desk works around it: an emergency admin account, an email treated as a request, a temporary password sent back to the same inbox."
+   49.837,
+   2.913,
+   "Next, what federal guidance says about recovery."
   ]
  ],
  "3": [
@@ -86,209 +121,174 @@
   ],
   [
    3.625,
-   15.45,
-   "O M B's zero trust memorandum, M twenty-two oh-nine, requires phishing-resistant M F A, and then names the hole: recovery processes are a potential bypass of standard authentication, and a significant threat vector if not mitigated."
+   11.537,
+   "O M B's zero trust memo requires phishing-resistant M F A, and then names the hole: recovery is a potential bypass of all that, and a serious threat if it isn't handled."
   ],
   [
-   19.075,
-   6.938,
-   "It asks for high-friction methods that are costly for an adversary, such as in-person verification or live video."
+   15.162,
+   6.25,
+   "It asks for high-friction methods that are costly for an attacker, like in-person checks or live video."
   ],
   [
-   26.012,
-   6.775,
-   "nist's digital identity guidelines, revised in July 2025, give recovery its own section."
+   21.413,
+   4.188,
+   "nist's digital identity guidelines give recovery its own section."
   ],
   [
-   32.788,
-   8.4,
-   "They recognize four methods: saved recovery codes, issued recovery codes, recovery contacts, and repeated identity proofing."
+   25.6,
+   11.012,
+   "They allow a help desk agent only on the basis of a documented risk analysis, repeated proofing has to match the original, and every recovery must notify the account holder."
   ],
   [
-   41.188,
-   11.35,
-   "A help desk agent is allowed only on the basis of a documented risk analysis, repeated proofing has to be consistent with the original, and every recovery must notify the account holder."
+   36.612,
+   9.525,
+   "Put together, the help desk reset should be the exception, not the main path, at least as strong as the original proofing, and always followed by a notice."
   ],
   [
-   52.538,
-   11.65,
-   "Read together, the help desk reset has to be an exception, not the main path; high-friction for the account's risk; at least as strong as the original proofing; and always followed by a notice."
+   46.138,
+   3.837,
+   "Email, caller ID and knowledge questions verify no one."
   ],
   [
-   64.188,
-   3.763,
-   "Email, caller I D and knowledge questions verify no one."
+   49.975,
+   2.663,
+   "Now look at the same problem from the compliance side."
   ]
  ],
  "4": [
   [
    0.05,
-   3.65,
-   "The same argument holds from the side of the authorization package."
-  ],
-  [
-   3.7,
-   3.525,
+   3.475,
    "An authorization describes the system as it was assessed."
   ],
   [
-   7.225,
-   16.4,
-   "The day after, the help desk resets passwords, onboards people, changes groups and fixes a synchronization error, and each change touches a control: account management, least privilege, authenticators, change control, the inventory, the audit trail."
+   3.525,
+   9.637,
+   "The day after, the help desk resets passwords, onboards people, changes groups and fixes a sync error, and every one of those changes touches a control."
   ],
   [
-   23.625,
-   6.9,
-   "Done as portal clicks, each leaves no record the control recognizes, and the package ages with every click."
+   13.162,
+   6.688,
+   "Done as portal clicks, they leave no record the control recognizes, so the package ages with every click."
   ],
   [
-   30.525,
-   8.6,
-   "The moderate baseline asks for automation only in specific places, so the book's emphasis on automation is a design position about volume."
+   19.85,
+   7.575,
+   "The baseline only asks for automation in specific places, so Book 15's push for automation is really about volume."
   ],
   [
-   39.125,
+   27.425,
    7.825,
    "At day-two volume, people assembling the record by hand can't keep up, and what they produce is a reconstruction, not evidence."
   ],
   [
-   46.95,
-   9.062,
-   "A control passes three layers: designed, deployed as code, and operated, with an owner, a gate, a clock and an evidence feed."
+   35.25,
+   9.1,
+   "So a control has three layers: designed, deployed as code, and operated, with an owner, a gate, a clock and an evidence feed."
   ],
   [
-   56.013,
-   10.825,
-   "Every operation starts from the source of truth, carries the approval its control requires, runs under a just-in-time role, closes with proof and emits its evidence."
+   44.35,
+   7.325,
+   "Every operation should start from the source of truth, carry its approval, close with proof and emit its evidence."
   ],
   [
-   66.838,
+   51.675,
    2.625,
    "Miss one, and the work can't be attested."
+  ],
+  [
+   54.3,
+   1.387,
+   "Let's look at the front door."
   ]
  ],
  "5": [
   [
    0.05,
-   3.1,
-   "Now what day two runs on, starting at the front door."
+   6.987,
+   "Day two starts at the front door, and the rule is that nothing is handled as ad hoc email to the cloud services team."
   ],
   [
-   3.15,
-   4.037,
-   "Nothing is handled as ad hoc email to the cloud services team."
+   7.037,
+   9.35,
+   "Self-service requests, the team mailbox, the governance platform and monitoring alerts all land in one triage queue in the service management platform."
   ],
   [
-   7.188,
-   9.775,
-   "Self-service requests, the team mailbox, the identity governance platform and monitoring alerts all land in one triage queue in the service management platform."
+   16.387,
+   4.963,
+   "The mailbox rule has to redirect, not copy, or you end up with two queues."
   ],
   [
-   16.962,
-   7.25,
-   "The mailbox rule has to redirect, not blind-copy, or there are two queues; pilot it in audit mode first."
+   21.35,
+   4.45,
+   "Triage then asks one question: what authority does this task need?"
   ],
   [
-   24.212,
-   4.25,
-   "A reroute rule pulls back anything assigned straight to cloud services."
+   25.8,
+   11.325,
+   "The book sorts requests into classes, from no access change at all, through changes the requester's manager approves, up to governance actions like admin consent, which are never automated."
   ],
   [
-   28.462,
-   4.088,
-   "Triage asks one question: what authority does this task need?"
+   37.125,
+   9.55,
+   "The checks run in a fixed order, so the dangerous cases get caught first, such as anything claiming to come from Microsoft, or a target holding a directory role."
   ],
   [
-   32.55,
-   2.475,
-   "No access change is class A0."
-  ],
-  [
-   35.025,
-   4.575,
-   "A change to the requester's own account is A1, and the manager approves."
-  ],
-  [
-   39.6,
-   2.2,
-   "Access an owner governs is A2."
-  ],
-  [
-   41.8,
-   5.1,
-   "Governance actions, such as admin consent, are A3 and never automated."
-  ],
-  [
-   46.9,
-   3.188,
-   "Conditional Access and directory roles escalate."
-  ],
-  [
-   50.087,
-   9.537,
-   "The checks run in a fixed order, so the dangerous cases are caught first: anything claiming to come from Microsoft, then any target holding a directory role."
-  ],
-  [
-   59.625,
+   46.675,
    4.425,
    "And an approval nobody answers expires to reject, never to approve."
+  ],
+  [
+   51.1,
+   1.125,
+   "Next, roles."
   ]
  ],
  "6": [
   [
    0.05,
-   10.688,
-   "In Entra ID, three things decide what a technician can do: the role decides the action, the target decides whether it applies, and the administrative unit narrows the population."
+   11.025,
+   "In Entra ID, what a technician can do depends on three things: the role decides the action, the target decides whether it applies, and the administrative unit narrows who it applies to."
   ],
   [
-   10.738,
-   5.112,
-   "The least-privileged role for a non-admin password reset is Password Administrator."
+   11.075,
+   8.5,
+   "The program gives each task its least-privileged role, and keeps the role that can reset privileged administrators outside the desk entirely."
   ],
   [
-   15.85,
-   5.537,
-   "Authentication Administrator handles methods and Temporary Access Passes for members."
+   19.575,
+   2.163,
+   "But capability isn't authority."
   ],
   [
-   21.387,
-   7.112,
-   "Only the Privileged Authentication Administrator can reset a privileged administrator, so that role sits outside the desk."
+   21.738,
+   6.862,
+   "Some built-in roles can do far more than the task needs, so the program narrows them, sometimes with a custom role."
   ],
   [
-   28.5,
-   1.975,
-   "Capability isn't authority."
+   28.6,
+   7.15,
+   "Executives sit in restricted units the general desk can't reach, and roles are eligible through pim, not standing."
   ],
   [
-   30.475,
-   11.562,
-   "Authentication Administrator can delete and disable users, and Application Administrator can grant consent, so the program replaces it with a custom role that only assigns groups to applications."
-  ],
-  [
-   42.038,
-   4.925,
-   "Executives sit in restricted management units the general desk can't reach."
-  ],
-  [
-   46.962,
-   5.112,
-   "Roles reach technicians through role-assignable groups, eligible through P I M."
-  ],
-  [
-   52.075,
+   35.75,
    2.625,
    "And approval isn't identity verification."
   ],
   [
-   54.7,
-   12.012,
-   "The ladder is the see-so's decision: a phishing-resistant sign-in first; identity proofing, in person against a piv card or through Entra account recovery, when every method is lost."
+   38.375,
+   8.5,
+   "The verification ladder is the see-so's decision: a phishing-resistant sign-in first, and identity proofing when every method is lost."
   ],
   [
-   66.713,
-   8.713,
-   "Then a one-time pass with the shortest lifetime, a notice on a separate channel, and for high-risk tasks, two approvers besides the executor."
+   46.875,
+   6.513,
+   "Then a short-lived one-time pass, a notice on a separate channel, and two approvers for high-risk tasks."
+  ],
+  [
+   53.388,
+   1.3,
+   "Now, the catalog."
   ]
  ],
  "7": [
@@ -299,43 +299,38 @@
   ],
   [
    3.087,
-   14.725,
-   "The help desk catalog has ten items, for joiners, movers, leavers, credentials, groups, licenses, Conditional Access exceptions and guests, each bound to the control it exercises and the approval that control needs."
+   13.05,
+   "The help desk catalog covers joiners, movers, leavers, credentials, groups, licenses, guests and a few more, each tied to the control it exercises and the approval that control needs."
   ],
   [
-   17.812,
-   4.188,
-   "Each item closes only when a read of the target confirms the change."
+   16.137,
+   4.5,
+   "And each item closes only when a read of the target confirms the change."
   ],
   [
-   22.0,
-   9.625,
-   "The leaver fails audits most often: disable the account, revoke sessions, deprovision every connected application, and reassign what the person owned."
+   20.637,
+   10.075,
+   "The leaver fails audits most often, because it means disabling the account, revoking sessions, deprovisioning every connected app, and reassigning what the person owned."
   ],
   [
-   31.625,
-   8.175,
-   "And federal 911 rules bind whoever operates the phone system, so a validated emergency address gates every number assignment."
+   30.712,
+   2.737,
+   "SaaS integration is the riskiest moment."
   ],
   [
-   39.8,
-   2.6,
-   "SaaS integration is the densest moment."
+   33.45,
+   10.525,
+   "In G C C, an administrator can federate a third-party service in about fifteen minutes, and nothing in that path asks whether the service is authorized to hold federal data."
   ],
   [
-   42.4,
-   11.75,
-   "In G C C, an administrator sees the full commercial application gallery and can federate a third-party service in about fifteen minutes, and nothing in the vendor's path asks about authorization."
+   43.975,
+   9.012,
+   "So the catalog records a fed-ramp Marketplace verdict before anything is configured, with Class C or higher as the default for identity data."
   ],
   [
-   54.15,
-   5.438,
-   "Restricting consent decides who may approve, not whether the service may hold federal data."
-  ],
-  [
-   59.587,
-   9.65,
-   "So the catalog records a fed-ramp Marketplace verdict before anything is configured, with Class C or higher as the program's default for identity data."
+   52.987,
+   3.075,
+   "Next, the inventory everything routes to."
   ]
  ],
  "8": [
@@ -351,48 +346,38 @@
   ],
   [
    13.113,
-   5.675,
-   "Discovery and connectors populate it; the naming and addressing record governs identity."
+   4.638,
+   "Discovery fills it in; the naming and addressing record governs identity."
   ],
   [
-   18.788,
+   17.75,
    5.162,
    "Where the two disagree, the database is wrong, and the disagreement is a finding."
   ],
   [
-   23.95,
-   4.162,
-   "The inventory control asks for no duplicate accounting of components."
+   22.913,
+   5.487,
+   "ServiceNow already prevents duplicates and controls which source writes each attribute."
   ],
   [
-   28.113,
-   8.55,
-   "ServiceNow's identification and reconciliation engine already prevents duplicates and lets only authorized sources write each attribute."
+   28.4,
+   11.287,
+   "The program adds one pass: match each asset to the naming record, bind it, and flag the rest, either a shadow asset nobody approved or a gap to fix at the source."
   ],
   [
-   36.663,
-   13.938,
-   "The program adds one pass: match each asset to the naming record first, bind it, and flag the rest, either a shadow asset nobody approved, or a gap that's fixed in address management, never in the database."
-  ],
-  [
-   50.6,
+   39.688,
    5.862,
    "Duplicates are resolved by binding, not deleting, so no open finding loses its asset."
   ],
   [
-   56.462,
-   3.65,
-   "Stale items are disabled and attested before they're retired."
+   45.55,
+   4.888,
+   "Otherwise a fix can land on one copy while the finding stays open on the other."
   ],
   [
-   60.112,
-   5.075,
-   "It matters because a fix that lands on one duplicate leaves the finding open on the other."
-  ],
-  [
-   65.188,
-   4.213,
-   "And watch the connector that quietly returns half its usual records."
+   50.438,
+   3.112,
+   "Next, automating the controls in each cloud."
   ]
  ],
  "9": [
@@ -408,43 +393,38 @@
   ],
   [
    13.575,
-   14.012,
-   "The program runs one loop everywhere: the native tool tests, drift is detected, a typed task is raised against the configuration item, the owning team fixes it natively, and the task closes on a re-test, not a click."
+   11.7,
+   "So the program runs one loop everywhere: the native tool tests, drift is detected, a task is raised, the owning team fixes it, and the task closes on a re-test, not a click."
   ],
   [
-   27.587,
+   25.275,
    4.237,
    "The service management platform reads control state; it never writes it."
   ],
   [
-   31.825,
-   1.688,
-   "The government clouds differ."
+   29.512,
+   5.925,
+   "But the government clouds differ, and several tools are missing, still rolling out, or being retired."
   ],
   [
-   33.513,
-   4.875,
-   "Defender for Cloud's ServiceNow integration isn't available in Azure Government."
+   35.438,
+   8.075,
+   "The one with a firm deadline is AWS's ServiceNow connector, which loses support on March 31, 2027."
   ],
   [
-   38.388,
-   12.2,
-   "Compliance Manager's continuous assessments are still rolling out in G C C. AWS Audit Manager closed to new customers on April 30, 2026, and has no GovCloud endpoint."
+   43.513,
+   1.675,
+   "The slide lists the rest."
   ],
   [
-   50.587,
-   8.725,
-   "AWS's ServiceNow connector loses support on March 31, 2027, and Security Hub keeps findings only ninety days."
+   45.188,
+   4.787,
+   "And on premises, the agency produces every piece of evidence itself."
   ],
   [
-   59.312,
-   8.762,
-   "In VMware Cloud Foundation 9.1, the compliance benchmarks were replaced by a posture tool that lists no nist or DISA benchmark."
-  ],
-  [
-   68.075,
-   4.737,
-   "On premises, the agency produces every piece of evidence itself."
+   49.975,
+   3.612,
+   "Before building anything, look at what ServiceNow already does."
   ]
  ],
  "10": [
@@ -455,162 +435,137 @@
   ],
   [
    4.775,
-   6.188,
-   "ServiceNow's Policy and Compliance Management schedules control tests and turns gaps into issues."
+   14.588,
+   "ServiceNow's native compliance applications schedule control tests, turn gaps into issues, walk the steps of the Risk Management Framework, give one view of every plan of action, and exchange security plans and assessment results in OSCAL."
   ],
   [
-   10.963,
-   14.938,
-   "Continuous Authorization and Monitoring walks the seven steps of the Risk Management Framework, gives one view of every plan of action, and in recent releases imports and exports security plans, plans of action and assessment results in OSCAL."
+   19.363,
+   3.562,
+   "The government offering is listed as fed-ramp Certified at High."
   ],
   [
-   25.9,
-   6.35,
-   "Configuration Compliance imports Defender for Cloud results and matches them to configuration items."
+   22.925,
+   16.05,
+   "So the recommendation is to buy the native applications first, and build only what they don't do: join every finding to the authoritative asset identity, close only with proof, flag human-only closures, and check the platform's control set against the control map."
   ],
   [
-   32.25,
-   4.425,
-   "The government offering is listed as fed-ramp Certified at Class D, High."
+   38.975,
+   10.088,
+   "The principle underneath is this: a control is proven by system evidence wherever a system can see it, and people attest only to what no system can observe."
   ],
   [
-   36.675,
-   15.938,
-   "So the recommendation is to buy the native applications first and build only what they don't do: join every finding to the authoritative asset identity, close only with proof and flag human-only closures, and check the platform's control set against the control map."
-  ],
-  [
-   52.612,
-   7.925,
-   "A control is proven by system evidence wherever a system can see it; people attest only to what no system can observe."
-  ],
-  [
-   60.538,
-   6.3,
-   "And fed-ramp's indicators bind providers; for the agency they're vocabulary, not a deliverable."
+   49.062,
+   3.225,
+   "Next, who decides, and who holds the keyboard."
   ]
  ],
  "11": [
   [
    0.05,
-   11.738,
-   "Day two is run by the people who touch the estate most often and decide the least, so every decision sits with someone who isn't holding the keyboard, and every artifact has one owner and a review date."
+   4.638,
+   "Day two is run by the people who touch the estate most and decide the least."
   ],
   [
-   11.787,
-   2.138,
-   "The service desk has three lines."
+   4.688,
+   7.138,
+   "So every decision sits with someone who isn't holding the keyboard, and every artifact has one owner and a review date."
   ],
   [
-   13.925,
-   7.1,
-   "The first takes every request, classifies it, verifies the person and executes against an approved ticket."
+   11.825,
+   7.537,
+   "The service desk takes every request, classifies it, verifies the person and executes against an approved ticket."
   ],
   [
-   21.025,
+   19.363,
    3.812,
    "Cloud services is the escalation tier, not a second queue."
   ],
   [
-   24.837,
-   1.6,
-   "Technicians approve nothing."
+   23.175,
+   5.075,
+   "Technicians approve nothing, and a supervisor never approves a ticket they execute."
   ],
   [
-   26.438,
-   6.25,
-   "The supervisor approves routine credential work for ordinary users, never a ticket they execute."
+   28.25,
+   2.487,
+   "Platform owners own the runbooks."
   ],
   [
-   32.688,
-   4.025,
-   "Platform owners own the runbooks and what each catalog item does."
+   30.738,
+   2.475,
+   "The control owner owns the approval gate."
   ],
   [
-   36.712,
-   5.463,
-   "The control owner, the see-so or the identity governance officer, owns the approval gate."
+   33.212,
+   8.037,
+   "The service management team builds both and decides neither; changing an approval rule is itself a change the change board authorizes."
   ],
   [
-   42.175,
-   8.588,
-   "The service management team builds both and decides neither: changing an approval rule is a normal change the change advisory board authorizes."
+   41.25,
+   6.812,
+   "The board authorizes changes but doesn't accept risk; that goes to the see-so or the authorizing official."
   ],
   [
-   50.763,
-   3.987,
-   "The configuration database owner keeps the model, not the facts."
-  ],
-  [
-   54.75,
-   9.125,
-   "The board has security and privacy members and authorizes changes, but doesn't accept risk; that goes to the see-so or the authorizing official."
-  ],
-  [
-   63.875,
+   48.062,
    6.325,
    "A contracted desk fits, because contractors prepare and execute while government officials decide."
+  ],
+  [
+   54.388,
+   1.512,
+   "Now, the runbook."
   ]
  ],
  "12": [
   [
    0.05,
-   5.1,
-   "The runbook turns all of this into a cadence, and each step says what it proves."
+   5.037,
+   "The runbook turns all of this into a rhythm, and each step says what it proves."
   ],
   [
-   5.15,
-   14.525,
-   "Daily, a read-only synchronization probe replaces the morning interactive logon to the sync servers, and each error becomes a task; a completeness check confirms every log source is still sending; catalog tasks close with proof."
+   5.088,
+   11.375,
+   "Daily, a read-only sync probe replaces the habit of logging on to the sync servers each morning, every error becomes a task, and a check confirms every log source is still sending."
   ],
   [
-   19.675,
-   9.425,
-   "Weekly, detection rules are tested against replayed known-bad events, and every task closed without automated proof is either evidenced or reopened."
+   16.462,
+   8.838,
+   "Weekly, detection rules are tested against replayed known-bad events, and any task closed without proof is either evidenced or reopened."
   ],
   [
-   29.1,
-   7.175,
-   "Monthly, results and the plan of action are regenerated, and the I S S O reviews the harness results."
+   25.3,
+   3.975,
+   "Monthly and quarterly reviews follow, and the slide lists them."
   ],
   [
-   36.275,
-   3.425,
-   "Quarterly, privileged access and trends are reviewed."
+   29.275,
+   3.075,
+   "The runbook also rewrites everyday tasks."
   ],
   [
-   39.7,
-   3.562,
-   "The runbook also rewrites eight everyday tasks."
+   32.35,
+   3.775,
+   "A reset password goes out on a channel separate from the request."
   ],
   [
-   43.263,
-   3.938,
-   "A password reset is delivered on a channel separate from the request."
+   36.125,
+   5.562,
+   "And a requester's script is never pasted and run: parameters travel, commands don't."
   ],
   [
-   47.2,
-   5.438,
-   "A requester's script is never pasted and run: parameters travel, commands don't."
+   41.688,
+   3.138,
+   "Finally, harnesses check the automation itself."
   ],
   [
-   52.638,
-   2.562,
-   "The harnesses check the automation itself."
+   44.825,
+   5.987,
+   "The catch is that a harness that stops running looks just like one that passes, so check that each one ran."
   ],
   [
-   55.2,
-   3.862,
-   "A source past its freshness limit raises a high-severity alert."
-  ],
-  [
-   59.062,
-   3.8,
-   "A deployment that doesn't close its control fails the pipeline."
-  ],
-  [
-   62.862,
-   4.963,
-   "And a harness that stops running looks like one that passes, so check that each one ran."
+   50.812,
+   1.863,
+   "That brings us to the decisions."
   ]
  ],
  "13": [
@@ -621,56 +576,46 @@
   ],
   [
    1.425,
-   12.037,
-   "Put the identity-verification procedure under the see-so, and treat every authenticator reset as an account transfer: the most friction on the most sensitive accounts, and an alert on every reset."
+   11.662,
+   "Put identity verification under the see-so, and treat every authenticator reset as an account transfer, with the most friction on the most sensitive accounts and an alert on every reset."
   ],
   [
-   13.463,
-   1.387,
-   "Build one front door."
+   13.088,
+   7.888,
+   "Build one front door: redirect the team mailbox, triage by authority, and let unanswered approvals expire to reject."
   ],
   [
-   14.85,
-   6.338,
-   "Redirect the team mailbox, triage by authority, and let unanswered approvals expire to reject."
+   20.975,
+   9.375,
+   "Buy the platform's native compliance applications first, record an authorization verdict before any SaaS integration, and check every feature in your own cloud."
   ],
   [
-   21.188,
-   5.1,
-   "Buy the platform's native compliance applications first, and build only what they lack."
-  ],
-  [
-   26.288,
-   7.125,
-   "Record an authorization verdict before any SaaS integration is configured, and check every feature in your own cloud."
-  ],
-  [
-   33.413,
+   30.35,
    6.213,
    "And fund the third layer: an owner, a gate, a clock and an evidence feed for every control."
   ],
   [
-   39.625,
+   36.562,
    2.2,
    "The next step needs no procurement."
   ],
   [
-   41.825,
-   15.088,
-   "Measure before you build: run the read-only integration inventory and synchronization probe in a test tenant, size the catalog from what they find, and plan the move off AWS's ServiceNow connector before March 31, 2027."
+   38.763,
+   11.312,
+   "Measure before you build, with a read-only inventory and sync probe in a test tenant, and plan the move off AWS's ServiceNow connector before March 31, 2027."
   ],
   [
-   56.913,
+   50.075,
    4.7,
    "Operations is where modernization becomes routine or quietly reverts."
   ],
   [
-   61.612,
-   5.612,
-   "The Federal Modernization Workbook's Book 15 has the detail, every claim footnoted."
+   54.775,
+   3.725,
+   "Book 15 has the detail, every claim footnoted."
   ],
   [
-   67.225,
+   58.5,
    0.762,
    "Thank you."
   ]

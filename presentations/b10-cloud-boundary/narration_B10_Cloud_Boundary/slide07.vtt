@@ -1,79 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.563
-The landing zone is where the
-boundary stops being a diagram.
+00:00:00.050 --> 00:00:04.725
+The landing zone is where the boundary
+stops being a diagram and becomes policy.
 
 2
-00:00:03.563 --> 00:00:06.533
-Each workload landing zone
-is a subscription placed
+00:00:04.725 --> 00:00:06.729
+Each workload gets a subscription,
 
 3
-00:00:06.533 --> 00:00:09.099
-in a management group
-that carries its policy.
+00:00:06.729 --> 00:00:09.700
+placed in a management group
+that carries its rules.
 
 4
-00:00:09.099 --> 00:00:13.303
+00:00:09.700 --> 00:00:13.923
 The baseline hierarchy puts an
 intermediate root under the tenant root,
 
 5
-00:00:13.303 --> 00:00:15.475
-and that's where boundary policy goes.
+00:00:13.923 --> 00:00:16.175
+and that's where boundary policy lives.
 
 6
-00:00:15.475 --> 00:00:20.212
-Platform groups hold security,
-management, connectivity and identity.
+00:00:16.175 --> 00:00:20.424
+Platform groups hold shared services
+like security and connectivity;
 
 7
-00:00:20.212 --> 00:00:24.487
-Landing zone groups hold corporate,
-online and local workloads.
+00:00:20.424 --> 00:00:22.800
+landing zone groups hold the workloads.
 
 8
-00:00:24.487 --> 00:00:29.850
+00:00:22.800 --> 00:00:28.162
 Make Sandbox the default, so no new
 subscription lands outside the boundary policy.
 
 9
-00:00:29.850 --> 00:00:33.541
-Each boundary decision gets a
-mechanism: the cloud choice;
+00:00:28.162 --> 00:00:32.682
+Each boundary decision then gets a
+mechanism, from allowed locations and
 
 10
-00:00:33.541 --> 00:00:36.924
-Allowed locations with Deny;
-allowed resource types,
+00:00:32.682 --> 00:00:37.276
+resource types to exemptions that carry
+an expiry date; the slide maps them.
 
 11
-00:00:36.924 --> 00:00:39.846
-checked against Microsoft's
-audit-scope list;
+00:00:37.276 --> 00:00:40.362
+Roll every policy out in audit mode first.
 
 12
-00:00:39.846 --> 00:00:44.690
-the FedRAMP regulatory compliance
-initiative, which Microsoft calls only
+00:00:40.362 --> 00:00:44.932
+One catch: Microsoft's accelerators
+are supported only in public Azure,
 
 13
-00:00:44.690 --> 00:00:49.150
-a partial view; and exemptions,
-Mitigated or Waiver, with an expiry date.
+00:00:44.932 --> 00:00:49.037
+so in Azure Government the platform
+team adapts the code by hand.
 
 14
-00:00:49.150 --> 00:00:52.125
-Roll each policy out in audit mode first.
-
-15
-00:00:52.125 --> 00:00:56.875
-One catch: Microsoft's accelerators
-are supported only in public Azure.
-
-16
-00:00:56.875 --> 00:01:00.980
-In Azure Government, the platform
-team adapts the code by hand.
+00:00:49.037 --> 00:00:50.860
+Next, the address plan.

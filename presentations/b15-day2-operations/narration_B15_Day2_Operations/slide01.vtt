@@ -1,40 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.330
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:05.072
 This briefing comes from Book 15 of
 the Federal Modernization Workbook,
 
-2
-00:00:04.330 --> 00:00:07.112
+3
+00:00:05.072 --> 00:00:07.874
 Compliance Automation
 and Day-Two Operations.
 
-3
-00:00:07.112 --> 00:00:10.842
-It's written for C I Os, service
+4
+00:00:07.874 --> 00:00:11.430
+It's written for CIOs, service
 desk and operations leads,
 
-4
-00:00:10.842 --> 00:00:13.762
+5
+00:00:11.430 --> 00:00:14.213
 and information system security officers.
 
-5
-00:00:13.762 --> 00:00:19.095
-I'll take four questions: why modernization
-succeeds or fails at the help desk;
-
 6
-00:00:19.095 --> 00:00:23.512
-what day two runs on; who runs it;
-and how to run it and prove it works.
+00:00:14.213 --> 00:00:15.626
+I'll take four questions.
 
 7
-00:00:23.512 --> 00:00:27.224
-The short version: cutover proves
-the new estate can be built.
+00:00:15.626 --> 00:00:19.138
+Why does modernization succeed
+or fail at the help desk?
 
 8
-00:00:27.224 --> 00:00:31.300
+00:00:19.138 --> 00:00:20.724
+What does day two run on?
+
+9
+00:00:20.724 --> 00:00:21.637
+Who runs it?
+
+10
+00:00:21.637 --> 00:00:23.900
+And how do you run it, and prove it works?
+
+11
+00:00:23.900 --> 00:00:25.450
+The short version is this.
+
+12
+00:00:25.450 --> 00:00:28.150
+Cutover proves the new
+estate can be built.
+
+13
+00:00:28.150 --> 00:00:32.150
 The first locked-out user on Monday
 morning proves whether it can be run.
+
+14
+00:00:32.150 --> 00:00:35.230
+Let's start with why the
+help desk holds the keys.

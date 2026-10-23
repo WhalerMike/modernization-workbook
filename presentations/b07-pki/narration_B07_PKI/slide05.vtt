@@ -11,82 +11,62 @@ so the CA you're leaving has to be the
 best-defended system you own until it's gone.
 
 3
-00:00:09.325 --> 00:00:13.187
-The book frames hardening strictly
-as a detect-and-fix checklist.
+00:00:09.325 --> 00:00:11.929
+The book treats hardening
+as a detect-and-fix
 
 4
-00:00:13.187 --> 00:00:18.388
-The eight classes carry the ESC labels
-that Microsoft Defender for Identity also
+00:00:11.929 --> 00:00:14.463
+checklist of eight known weakness classes.
 
 5
-00:00:18.388 --> 00:00:22.518
-uses: requester-supplied subjects
-on authentication templates;
+00:00:14.463 --> 00:00:18.120
+Think of things like templates that
+let a requester name any subject,
 
 6
-00:00:22.518 --> 00:00:26.648
-Any Purpose or no-EKU templates;
-open enrollment agent templates;
+00:00:18.120 --> 00:00:21.263
+or permissions that let the
+wrong people change a template.
 
 7
-00:00:26.648 --> 00:00:32.077
-writable template permissions; writable
-Public Key Services objects such as NTAuth;
+00:00:21.263 --> 00:00:23.012
+The slide lists all eight.
 
 8
-00:00:32.077 --> 00:00:36.666
-the CA-wide flag that lets any request
-supply a subject alternative name;
+00:00:23.012 --> 00:00:28.025
+Defender for Identity detects most of
+them, as long as its sensor is on the CA.
 
 9
-00:00:36.666 --> 00:00:38.578
-unprivileged CA permissions;
+00:00:28.025 --> 00:00:31.750
+One class has no automated
+check, so it's a manual review.
 
 10
-00:00:38.578 --> 00:00:42.325
-and web enrollment without
-HTTPS and Extended Protection.
+00:00:31.750 --> 00:00:33.025
+The gate is simple.
 
 11
-00:00:42.325 --> 00:00:44.953
-Defender for Identity
-detects most of them,
+00:00:33.025 --> 00:00:38.241
+Every Critical and High finding is fixed
+and verified before any workload migrates,
 
 12
-00:00:44.953 --> 00:00:47.800
-and the CA-level checks
-need its sensor on the CA.
+00:00:38.241 --> 00:00:42.488
+because the recommended cloud issuer
+chains to this same hierarchy.
 
 13
-00:00:47.800 --> 00:00:50.281
-The fifth class has no assessment,
+00:00:42.488 --> 00:00:46.012
+And none of it has evidence
+until CA auditing is turned on,
 
 14
-00:00:50.281 --> 00:00:54.712
-so it's a manual review backed
-by directory-change event 5136.
+00:00:46.012 --> 00:00:48.187
+which takes two settings together.
 
 15
-00:00:54.712 --> 00:00:56.799
-The ratings are the program's own scoring.
-
-16
-00:00:56.799 --> 00:01:02.019
-The gate is simple: every Critical and High
-finding is fixed and verified before any
-
-17
-00:01:02.019 --> 00:01:07.238
-workload migrates, because the recommended
-cloud issuer chains to this hierarchy.
-
-18
-00:01:07.238 --> 00:01:10.437
-And none of it has evidence
-until CA auditing is on,
-
-19
-00:01:10.437 --> 00:01:12.770
-which takes two settings together.
+00:00:48.187 --> 00:00:51.020
+With the old side secured,
+what are we moving to?

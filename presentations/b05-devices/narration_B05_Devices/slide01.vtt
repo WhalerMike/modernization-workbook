@@ -1,44 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.672
-This briefing comes from Book 05 of
-the Federal Modernization Workbook,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:04.672 --> 00:00:07.830
-Devices and Endpoints:
-the move from Group Policy
+00:00:00.763 --> 00:00:05.271
+This briefing is Book 05 of the
+Federal Modernization Workbook,
 
 3
-00:00:07.830 --> 00:00:10.988
-to Intune for devices, and
-to Azure Arc for servers.
+00:00:05.271 --> 00:00:06.887
+Devices and Endpoints.
 
 4
-00:00:10.988 --> 00:00:12.995
-I'll take it through four questions:
+00:00:06.887 --> 00:00:10.447
+It's about moving devices
+from Group Policy to Intune,
 
 5
-00:00:12.995 --> 00:00:16.940
-why Group Policy can't simply be
-carried to the cloud, what replaces it,
+00:00:10.447 --> 00:00:12.550
+and moving servers to Azure Arc.
 
 6
-00:00:16.940 --> 00:00:20.124
-who owns the endpoint, and
-how to migrate a fleet without
+00:00:12.550 --> 00:00:14.938
+The question in the
+title sounds technical,
 
 7
-00:00:20.124 --> 00:00:23.238
-losing the governance Group
-Policy quietly provided.
+00:00:14.938 --> 00:00:17.525
+but the answer turns out
+to be about governance.
 
 8
-00:00:23.238 --> 00:00:26.213
-The short version: this is
-not a settings migration.
+00:00:17.525 --> 00:00:21.025
+Group Policy did a lot of quiet
+work that nobody wrote down,
 
 9
-00:00:26.213 --> 00:00:27.840
+00:00:21.025 --> 00:00:23.650
+and that work doesn't
+come along for the ride.
+
+10
+00:00:23.650 --> 00:00:28.172
+So we'll go in four steps: why Group Policy
+can't simply be carried to the cloud,
+
+11
+00:00:28.172 --> 00:00:30.505
+what replaces it, who owns the endpoint,
+
+12
+00:00:30.505 --> 00:00:35.100
+and how to migrate a fleet without losing
+what Group Policy quietly gave you.
+
+13
+00:00:35.100 --> 00:00:36.912
+Here's the short version up front.
+
+14
+00:00:36.912 --> 00:00:38.763
+This isn't a settings migration.
+
+15
+00:00:38.763 --> 00:00:40.338
 It's a governance rebuild.
+
+16
+00:00:40.338 --> 00:00:41.640
+Let's start with why.

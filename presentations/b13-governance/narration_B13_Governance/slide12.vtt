@@ -1,89 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.688
-A platform that twenty agencies use is
+00:00:00.050 --> 00:00:04.669
+A platform that twenty agencies use gets
 examined by twenty assessment teams,
 
 2
-00:00:04.688 --> 00:00:08.075
+00:00:04.669 --> 00:00:07.938
 producing twenty snapshots
 at twenty different times.
 
 3
-00:00:08.075 --> 00:00:10.338
-Reciprocity is the alternative.
+00:00:07.938 --> 00:00:12.826
+Reciprocity is the alternative: agencies
+accept each other's assessments.
 
 4
-00:00:10.338 --> 00:00:13.550
-NIST defines it as accepting
-each other's assessments.
-
-5
-00:00:13.550 --> 00:00:18.250
-Nothing in it lets one authorizing
+00:00:12.826 --> 00:00:17.663
+But nothing in it lets one authorizing
 official accept risk for another agency.
 
+5
+00:00:17.663 --> 00:00:21.406
+NIST gives mechanisms for this,
+like an authorization to use,
+
 6
-00:00:18.250 --> 00:00:20.312
-NIST gives three mechanisms.
+00:00:21.406 --> 00:00:26.497
+where an agency accepts another's package
+and carries full responsibility for it,
 
 7
-00:00:20.312 --> 00:00:24.258
-An authorization to use accepts
-another federal entity's package,
+00:00:26.497 --> 00:00:31.738
+or a joint authorization, where several
+officials accept one system's risk together.
 
 8
-00:00:24.258 --> 00:00:26.913
-and the customer's
-official carries the same
+00:00:31.738 --> 00:00:36.807
+For cloud services, OMB makes reuse
+the default: agencies presume a FedRAMP
 
 9
-00:00:26.913 --> 00:00:30.500
-responsibility as one issuing
-an authorization to operate.
+00:00:36.807 --> 00:00:41.713
+package is adequate, but only while
+continuous monitoring maintains it.
 
 10
-00:00:30.500 --> 00:00:35.287
-A joint authorization has several officials
-accept one system's risk together.
+00:00:41.713 --> 00:00:44.887
+And each agency still
+authorizes its own systems.
 
 11
-00:00:35.287 --> 00:00:39.441
-For cloud services, OMB's
-M-24-15 makes reuse the default:
+00:00:44.887 --> 00:00:48.551
+So the program corrects its old
+single-authorization wording.
 
 12
-00:00:39.441 --> 00:00:44.978
-agencies presume a FedRAMP package
-adequate, but only while continuous
+00:00:48.551 --> 00:00:54.162
+It's one package, and many decisions, with
+each agency signing for its own risk.
 
 13
-00:00:44.978 --> 00:00:50.238
-monitoring maintains it, and asking
-for more needs a documented need.
-
-14
-00:00:50.238 --> 00:00:54.724
-FedRAMP is plain that each agency
-still authorizes its own systems.
-
-15
-00:00:54.724 --> 00:00:59.154
-Its 46 Key Security Indicators
-bind providers, not agencies;
-
-16
-00:00:59.154 --> 00:01:02.875
-agencies review each
-provider's quarterly report.
-
-17
-00:01:02.875 --> 00:01:07.294
-So the program's old single-authorization
-wording is corrected:
-
-18
-00:01:07.294 --> 00:01:11.780
-one package, many decisions, each
-agency signing for its own risk.
+00:00:54.162 --> 00:00:55.490
+Next, scale.

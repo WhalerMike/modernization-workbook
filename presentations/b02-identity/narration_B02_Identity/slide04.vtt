@@ -1,91 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.075
-What changes.
+00:00:00.050 --> 00:00:01.187
+So what changes?
 
 2
-00:00:01.075 --> 00:00:04.637
+00:00:01.187 --> 00:00:04.750
 These are two different models,
 not two versions of one product.
 
 3
-00:00:04.637 --> 00:00:11.013
-Active Directory is a hierarchy: a forest,
-domains, and nested organizational units.
+00:00:04.750 --> 00:00:10.438
+Active Directory is a hierarchy:
+a forest, domains, and nested OUs.
 
 4
-00:00:11.013 --> 00:00:13.462
-Entra ID is one flat tenant.
+00:00:10.438 --> 00:00:12.291
+Entra ID is one flat tenant,
 
 5
-00:00:13.462 --> 00:00:17.376
-Structure comes from attributes
-and administrative units instead.
+00:00:12.291 --> 00:00:16.925
+where structure comes from
+attributes and administrative units.
 
 6
-00:00:17.376 --> 00:00:21.375
-In AD, much of what you are is
-where you sit in the OU tree.
+00:00:16.925 --> 00:00:20.350
+In AD, much of who you are is
+where you sit in the tree.
 
 7
-00:00:21.375 --> 00:00:25.392
-In Entra ID it should be attributes
-from an authoritative source,
+00:00:20.350 --> 00:00:23.936
+In Entra ID, it should come
+from attributes supplied by an
 
 8
-00:00:25.392 --> 00:00:27.400
-which for the workforce means HR.
+00:00:23.936 --> 00:00:27.598
+authoritative source, and for
+the workforce that means HR.
 
 9
-00:00:27.400 --> 00:00:31.338
-Policy in AD is Group
-Policy linked to OUs.
+00:00:27.598 --> 00:00:31.718
+Policy moves from Group Policy to
+Conditional Access and Intune,
 
 10
-00:00:31.338 --> 00:00:36.412
-In the cloud it's Conditional Access and
-Intune, targeted by those attributes.
+00:00:31.718 --> 00:00:33.625
+targeted by those attributes.
 
 11
-00:00:36.412 --> 00:00:39.685
-The protocols change too: Kerberos,
+00:00:33.625 --> 00:00:38.451
+The protocols change, standing Domain
+Admin gives way to just-in-time roles,
 
 12
-00:00:39.685 --> 00:00:45.438
-NTLM and LDAP give way to OpenID
-Connect, OAuth, SAML and SCIM.
+00:00:38.451 --> 00:00:42.887
+and management moves to Microsoft
+Graph; the slide lays out each pair.
 
 13
-00:00:45.438 --> 00:00:49.105
-Standing Domain Admin membership
-gives way to least-privilege
+00:00:42.887 --> 00:00:45.225
+But the key idea is the bottom line.
 
 14
-00:00:49.105 --> 00:00:53.188
-roles activated just in time through
-Privileged Identity Management.
-
-15
-00:00:53.188 --> 00:00:57.651
-And management moves from the
-ActiveDirectory module to Microsoft Graph.
-
-16
-00:00:57.651 --> 00:00:59.850
-The key idea is the bottom line.
-
-17
-00:00:59.850 --> 00:01:04.087
+00:00:45.225 --> 00:00:49.462
 In Active Directory, governance is
 implied by where an object sits.
 
-18
-00:01:04.087 --> 00:01:07.303
+15
+00:00:49.462 --> 00:00:52.677
 In Entra ID it has to
 be stated explicitly,
 
-19
-00:01:07.303 --> 00:01:10.680
+16
+00:00:52.677 --> 00:00:56.040
 as data and rules, or it
 simply doesn't exist.

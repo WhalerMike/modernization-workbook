@@ -5,88 +5,65 @@ WEBVTT
 The third change is delegation.
 
 2
-00:00:02.088 --> 00:00:06.562
-In Active Directory, who can manage
-what was largely expressed by OUs.
+00:00:02.088 --> 00:00:06.699
+In Active Directory, who could manage
+what was mostly expressed through OUs.
 
 3
-00:00:06.562 --> 00:00:11.900
-Entra ID has no OUs, so delegation
+00:00:06.699 --> 00:00:11.550
+Entra ID has none, so delegation
 has to be rebuilt on purpose.
 
 4
-00:00:11.900 --> 00:00:14.112
-The program uses three tiers.
+00:00:11.550 --> 00:00:15.413
+The program uses three tiers:
+tenant-wide control at Tier 0,
 
 5
-00:00:14.112 --> 00:00:19.138
-Tier zero is tenant-wide control:
-Global Administrator and similar roles,
+00:00:15.413 --> 00:00:19.277
+service administration like
+Exchange or Intune at Tier 1,
 
 6
-00:00:19.138 --> 00:00:22.763
-plus break-glass accounts,
-all activated just in time.
+00:00:19.277 --> 00:00:24.750
+and departmental work like the help desk
+at Tier 2, scoped to administrative units.
 
 7
-00:00:22.763 --> 00:00:27.725
-Tier one is service administration,
-such as Exchange, Intune and security.
+00:00:24.750 --> 00:00:26.424
+The platform has real limits,
 
 8
-00:00:27.725 --> 00:00:30.412
-Tier two is departmental administration,
+00:00:26.424 --> 00:00:29.562
+and the old design documents
+got several of them wrong.
 
 9
-00:00:30.412 --> 00:00:33.637
-like the help desk, scoped
-to administrative units.
+00:00:29.562 --> 00:00:34.323
+Administrative units can't be nested,
+role-holding groups can't be dynamic,
 
 10
-00:00:33.637 --> 00:00:38.313
-The platform sets real limits, and the
-old design documents got several wrong.
+00:00:34.323 --> 00:00:38.537
+and restricted management has to
+be chosen when a unit is created.
 
 11
-00:00:38.313 --> 00:00:40.725
-Administrative units can't be nested.
+00:00:38.537 --> 00:00:42.441
+That last one also takes its
+users out of Entra ID Governance,
 
 12
-00:00:40.725 --> 00:00:43.738
-Groups that hold roles can't
-have dynamic membership.
-
-13
-00:00:43.738 --> 00:00:47.099
-Reader roles like Global Reader
-apply to the whole tenant.
-
-14
-00:00:47.099 --> 00:00:52.462
-And restricted management is chosen when a
-unit is created; it can't be added later.
-
-15
-00:00:52.462 --> 00:00:56.708
-It also takes those users and
-groups out of Entra ID Governance:
-
-16
-00:00:56.708 --> 00:01:00.137
-no access reviews or
+00:00:42.441 --> 00:00:45.876
+so no access reviews or
 lifecycle workflows for them.
 
-17
-00:01:00.137 --> 00:01:05.125
-So the program's decision is that administrative
-units are unrestricted by default.
+13
+00:00:45.876 --> 00:00:48.692
+So the program's default
+is unrestricted units,
 
-18
-00:01:05.125 --> 00:01:09.237
-Restricted management is a per-unit
-choice for sensitive accounts,
-
-19
-00:01:09.237 --> 00:01:12.240
-recorded in the registry
-before the unit exists.
+14
+00:00:48.692 --> 00:00:53.740
+with restricted management a deliberate,
+recorded choice for sensitive accounts.

@@ -1,79 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.070
-DNS, DHCP and address management are what
+00:00:00.050 --> 00:00:03.834
+DNS, DHCP and address
+management are what agencies
 
 2
-00:00:03.070 --> 00:00:06.800
-agencies most often defer,
+00:00:03.834 --> 00:00:06.988
+most often put off,
 because they still work.
 
 3
-00:00:06.800 --> 00:00:09.287
-That's how they keep
+00:00:06.988 --> 00:00:10.125
+That's exactly how they keep
 the old directory alive.
 
 4
-00:00:09.287 --> 00:00:12.918
+00:00:10.125 --> 00:00:13.765
 AD-integrated zones replicate
 with Active Directory,
 
 5
-00:00:12.918 --> 00:00:18.163
-and domain-joined clients find domain
-controllers through records Netlogon
+00:00:13.765 --> 00:00:19.184
+and domain-joined clients find their
+domain controllers through records in DNS,
 
 6
-00:00:18.163 --> 00:00:22.762
-registers in DNS, so DNS and AD
-retirement must be sequenced together.
+00:00:19.184 --> 00:00:22.662
+so DNS and AD have to be
+retired together, in sequence.
 
 7
-00:00:22.762 --> 00:00:27.713
-The target is a governed authority outside
-AD, Azure DNS Private Resolver as a
+00:00:22.662 --> 00:00:26.352
+The target is a governed
+DNS authority outside AD.
 
 8
-00:00:27.713 --> 00:00:30.575
-forwarding bridge rather
-than an authority,
+00:00:26.352 --> 00:00:29.951
+Windows DHCP servers check
+in with AD every hour,
 
 9
-00:00:30.575 --> 00:00:33.437
-and Azure private zones
-for cloud workloads.
+00:00:29.951 --> 00:00:34.450
+but that only stops a rogue
+Windows server, not a rogue device.
 
 10
-00:00:33.437 --> 00:00:38.513
-A Windows DHCP server checks its
-authorization in AD every hour.
+00:00:34.450 --> 00:00:38.976
+And one address-management
+authority owns the address space,
 
 11
-00:00:38.513 --> 00:00:42.638
-That stops an unauthorized Windows
-server, not a rogue device.
+00:00:38.976 --> 00:00:41.550
+with DNS and DHCP following from it.
 
 12
-00:00:42.638 --> 00:00:48.613
-And one IPAM authority owns the address
-space; DNS and DHCP derive from it.
+00:00:41.550 --> 00:00:45.438
+Leave these three for “Phase
+2,” and it rarely comes.
 
 13
-00:00:48.613 --> 00:00:52.099
-Leave the three for "Phase
-2" and it rarely comes.
-
-14
-00:00:52.099 --> 00:00:56.075
+00:00:45.438 --> 00:00:49.413
 A forest that still hosts
 DNS hasn't been retired.
 
-15
-00:00:56.075 --> 00:01:00.963
-The Federal Modernization Workbook's
-Book 08 covers the design in depth,
-
-16
-00:01:00.963 --> 00:01:03.380
-and Book 09 the network underneath.
+14
+00:00:49.413 --> 00:00:52.700
+Books 08 and 09 carry the detail.

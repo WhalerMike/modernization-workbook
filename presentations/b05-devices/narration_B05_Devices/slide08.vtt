@@ -1,92 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.663
-How.
+00:00:00.050 --> 00:00:04.303
+The Group Policy sunset runs as
+a program, one setting at a time,
 
 2
-00:00:00.663 --> 00:00:05.798
-The book runs the Group Policy sunset
-as a program, setting by setting,
+00:00:04.303 --> 00:00:07.388
+in seven steps from
+inventory to retirement.
 
 3
-00:00:05.798 --> 00:00:11.114
-in seven steps: inventory and parse,
-classify each setting, crosswalk it,
-
-4
-00:00:11.114 --> 00:00:16.250
-decide, sequence by population, freeze
-and unlink, and finally retire.
-
-5
-00:00:16.250 --> 00:00:19.986
-Every setting goes one of three
+00:00:07.388 --> 00:00:11.224
+Every setting ends one of three
 ways: migrate it to Intune,
 
-6
-00:00:19.986 --> 00:00:23.325
+4
+00:00:11.224 --> 00:00:14.651
 replace it with a cloud-native
 pattern, or retire it.
 
-7
-00:00:23.325 --> 00:00:27.025
-The coexistence rules matter, and
-the old guides had them wrong.
+5
+00:00:14.651 --> 00:00:18.700
+The coexistence rules matter most,
+and the old guides had them wrong.
 
-8
-00:00:27.025 --> 00:00:31.150
+6
+00:00:18.700 --> 00:00:22.825
 While a device is under both,
 Group Policy wins by default.
 
-9
-00:00:31.150 --> 00:00:33.726
-The MDMWinsOverGP setting reverses that,
+7
+00:00:22.825 --> 00:00:27.250
+There's a setting that flips that, but it
+only covers part of the policy surface.
 
-10
-00:00:33.726 --> 00:00:37.920
-but only for settings in the Policy
-configuration service provider;
-
-11
-00:00:37.920 --> 00:00:41.011
+8
+00:00:27.250 --> 00:00:30.258
 Defender settings and
 Windows Hello for Business
 
-12
-00:00:41.011 --> 00:00:44.175
+9
+00:00:30.258 --> 00:00:33.338
 have to be removed from
 Group Policy, not overridden.
 
-13
-00:00:44.175 --> 00:00:49.439
-Group Policy preferences can leave their
+10
+00:00:33.338 --> 00:00:38.550
+Group Policy preferences can leave
 settings behind after a GPO is unlinked,
 
+11
+00:00:38.550 --> 00:00:40.949
+so each one needs a planned cleanup.
+
+12
+00:00:40.949 --> 00:00:45.950
+And populations are unlinked one at a
+time, because that's scoped and reversible.
+
+13
+00:00:45.950 --> 00:00:48.375
+Finally, measure, don't assume.
+
 14
-00:00:49.439 --> 00:00:52.613
-so every preference item
-needs a planned cleanup.
+00:00:48.375 --> 00:00:52.263
+The program runs Group Policy
+analytics on its own exports.
 
 15
-00:00:52.613 --> 00:00:57.265
-And the book unlinks one population at
-a time rather than blocking inheritance,
-
-16
-00:00:57.265 --> 00:00:59.450
-because that's scoped and reversible.
-
-17
-00:00:59.450 --> 00:01:02.187
-One more thing: measure, don't assume.
-
-18
-00:01:02.187 --> 00:01:06.430
-Microsoft publishes no typical
-percentage of settings that migrate,
-
-19
-00:01:06.430 --> 00:01:11.090
-so the program runs Group Policy analytics
-against the estate's own exports.
+00:00:52.263 --> 00:00:54.310
+Then the fleet itself migrates.

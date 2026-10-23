@@ -6,73 +6,72 @@ Code anyone can apply from a
 laptop isn't change control.
 
 2
-00:00:03.588 --> 00:00:08.455
-Chapter 07 adds the front door: the
+00:00:03.588 --> 00:00:08.514
+So Chapter 07 adds a front door: a
 governed request into the landing zone,
 
 3
-00:00:08.455 --> 00:00:11.487
+00:00:08.514 --> 00:00:11.687
 which Microsoft calls
 subscription vending.
 
 4
-00:00:11.487 --> 00:00:17.788
-The loop has six steps: request, approve,
-plan, apply, reconcile and close.
+00:00:11.687 --> 00:00:17.800
+The loop runs from request, through approval,
+plan, apply and reconcile, to close.
 
 5
-00:00:17.788 --> 00:00:24.113
-The requester can't approve their own
-request, which is AC-5, separation of duties.
+00:00:17.800 --> 00:00:20.461
+The requester can't
+approve their own request,
 
 6
-00:00:24.113 --> 00:00:28.088
-The approver reviews the actual
+00:00:20.461 --> 00:00:24.313
+and the approver reviews the actual
 plan before anything changes.
 
 7
-00:00:28.088 --> 00:00:30.189
-And step 5 carries the most weight:
+00:00:24.313 --> 00:00:26.987
+The reconcile step
+carries the most weight.
 
 8
-00:00:30.189 --> 00:00:35.669
-the pipeline writes the address allocation
-back to the enterprise IPAM and fails the
+00:00:26.987 --> 00:00:31.669
+The pipeline writes the address
+allocation back to the enterprise IPAM,
 
 9
-00:00:35.669 --> 00:00:38.671
-run if the two disagree,
-because an unreconciled
+00:00:31.669 --> 00:00:33.933
+and fails the run if the two disagree,
 
 10
-00:00:38.671 --> 00:00:41.599
-block is shadow inventory
-the moment it exists.
+00:00:33.933 --> 00:00:38.463
+because an unreconciled block is
+shadow inventory the moment it exists.
 
 11
-00:00:41.599 --> 00:00:44.488
-The pipeline is inside
+00:00:38.463 --> 00:00:41.475
+The pipeline sits inside
 the boundary question too.
 
 12
-00:00:44.488 --> 00:00:46.824
-Terraform state is sensitive data.
+00:00:41.475 --> 00:00:43.704
+Terraform state is sensitive data,
 
 13
-00:00:46.824 --> 00:00:52.705
-On October 21, 2026, the Marketplace
-had no listing for HCP Terraform; GitHub
+00:00:43.704 --> 00:00:47.087
+and not every pipeline
+service is on the Marketplace.
 
 14
-00:00:52.705 --> 00:00:55.739
-Enterprise Cloud was listed at Class B,
+00:00:47.087 --> 00:00:49.531
+So the default is a self-hosted runner,
 
 15
-00:00:55.739 --> 00:00:59.438
-and GitLab Dedicated for
-Government at Class C.
+00:00:49.531 --> 00:00:52.449
+with state kept inside
+the agency's boundary.
 
 16
-00:00:59.438 --> 00:01:04.250
-The default is a self-hosted runner
-and state inside the agency's boundary.
+00:00:52.449 --> 00:00:54.290
+Next, who owns all this.

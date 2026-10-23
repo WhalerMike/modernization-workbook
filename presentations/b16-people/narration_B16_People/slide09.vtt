@@ -1,78 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.938
+00:00:00.050 --> 00:00:02.112
 Vendors teach their products,
 
 2
-00:00:01.938 --> 00:00:05.412
-and the book names them as
+00:00:02.112 --> 00:00:05.825
+and Book 16 names them as
 examples, never endorsements.
 
 3
-00:00:05.412 --> 00:00:08.988
-A vendor course earns a place
-only if it passes four tests:
+00:00:05.825 --> 00:00:10.373
+A vendor course earns a place only if it
+maps to a book procedure, it's current,
 
 4
-00:00:08.988 --> 00:00:12.869
-it maps to a book procedure; it's
-current; the agency can keep its
+00:00:10.373 --> 00:00:12.940
+the agency can keep the completion record,
 
 5
-00:00:12.869 --> 00:00:17.662
-completion record; and the agency knows
-how the vendor handles learner data.
+00:00:12.940 --> 00:00:16.387
+and the agency knows how the
+vendor handles learner data.
 
 6
-00:00:17.662 --> 00:00:21.937
-Exam records tied to a work account
-are lost when the person leaves,
+00:00:16.387 --> 00:00:19.261
+That record point matters,
+because exam records
 
 7
-00:00:21.937 --> 00:00:24.113
-so the agency keeps its own record.
+00:00:19.261 --> 00:00:22.350
+tied to a work account vanish
+when the person leaves.
 
 8
-00:00:24.113 --> 00:00:27.700
+00:00:22.350 --> 00:00:25.937
 Lab environments are harder to
 get than most programs expect.
 
 9
-00:00:27.700 --> 00:00:30.412
-Microsoft Learn's free sandboxes are gone.
+00:00:25.937 --> 00:00:27.663
+The free sandboxes are gone,
 
 10
-00:00:30.412 --> 00:00:35.135
-The developer sandbox has eligibility
-limits and isn't offered in any
+00:00:27.663 --> 00:00:31.638
+and the developer sandbox isn't
+offered in any government cloud.
 
 11
-00:00:35.135 --> 00:00:39.288
-government cloud, and there's no
-free sandbox in G C C High at all.
-
-12
-00:00:39.288 --> 00:00:43.237
+00:00:31.638 --> 00:00:35.586
 So the program office arranges lab
 tenants, and before each gate the
 
-13
-00:00:43.237 --> 00:00:47.538
+12
+00:00:35.586 --> 00:00:39.887
 team rehearses once in the agency's
 own non-production government tenant.
 
+13
+00:00:39.887 --> 00:00:44.208
+And every lab follows the same rules,
+starting with never production,
+
 14
-00:00:47.538 --> 00:00:52.847
-Every lab follows the same rules: never
-production; emergency access first;
+00:00:44.208 --> 00:00:47.088
+synthetic data only, and
+tear it down at the end.
 
 15
-00:00:52.847 --> 00:00:57.472
-observe before enforcing; no sync
-or federation with production;
-
-16
-00:00:57.472 --> 00:01:00.790
-synthetic data only; and
-tear it down at the end.
+00:00:47.088 --> 00:00:48.600
+Now, everyone else.

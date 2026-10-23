@@ -1,90 +1,74 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.950
-What replaces the domain join?
+00:00:00.050 --> 00:00:02.894
+What replaces the domain
+join is Azure Arc,
 
 2
-00:00:01.950 --> 00:00:05.363
-Azure Arc gives each
-instance an Entra identity.
+00:00:02.894 --> 00:00:05.900
+which gives each instance
+an Entra identity.
 
 3
-00:00:05.363 --> 00:00:09.662
+00:00:05.900 --> 00:00:09.621
 On SQL Server 2025, that's
-the Arc managed identity.
+a managed identity;
 
 4
-00:00:09.662 --> 00:00:14.574
-On SQL Server 2022, it's an app
+00:00:09.621 --> 00:00:13.962
+on 2022, it's an app
 registration with a certificate.
 
 5
-00:00:14.574 --> 00:00:18.612
-The Azure extension for SQL Server
-installs automatically when the
-
-6
-00:00:18.612 --> 00:00:22.437
-host connects to Arc, and Entra
-connections are always encrypted.
-
-7
-00:00:22.437 --> 00:00:25.738
+00:00:13.962 --> 00:00:17.263
 The limits matter, and the
 old documents missed several.
 
-8
-00:00:25.738 --> 00:00:30.826
-Failover cluster instances can't use
-Entra authentication on any version.
+6
+00:00:17.263 --> 00:00:21.562
+Failover cluster instances can't
+use Entra authentication at all.
 
-9
-00:00:30.826 --> 00:00:35.755
+7
+00:00:21.562 --> 00:00:26.745
 Entra authentication through Arc isn't
 available in the US Government Virginia
 
-10
-00:00:35.755 --> 00:00:40.170
+8
+00:00:26.745 --> 00:00:31.387
 region, so a GCC tenant uses a commercial
-subscription in the same tenant;
+subscription in the same tenant.
 
-11
-00:00:40.170 --> 00:00:45.100
-the old runbook's Azure Government setup
+9
+00:00:31.387 --> 00:00:36.049
+The old runbook's government-cloud setup
 would never have produced Entra logins.
 
+10
+00:00:36.049 --> 00:00:38.112
+FIDO2 isn't supported here.
+
+11
+00:00:38.112 --> 00:00:42.094
+And granting the instance its Graph
+permissions takes a privileged
+
 12
-00:00:45.100 --> 00:00:48.363
-FIDO2 isn't supported
-for SQL Server on Arc.
+00:00:42.094 --> 00:00:45.237
+role administrator, so that
+step can't sit with the DBAs.
 
 13
-00:00:48.363 --> 00:00:52.218
-And granting the instance identity
-its Graph permissions needs a
+00:00:45.237 --> 00:00:50.009
+Arc isn't the only path, but it wins
+because it also brings inventory,
 
 14
-00:00:52.218 --> 00:00:56.075
-Privileged Role Administrator, so
-that step can't sit with the DBAs.
+00:00:50.009 --> 00:00:54.087
+policy, updates and Defender
+for the host, which is Book 05.
 
 15
-00:00:56.075 --> 00:00:59.650
-Arc is the program's chosen
-path, not the only one:
-
-16
-00:00:59.650 --> 00:01:05.425
-Microsoft documents a manual setup for
-SQL Server 2022 and later on Windows.
-
-17
-00:01:05.425 --> 00:01:10.212
-Arc wins because it also carries
-inventory, policy, updates and Defender
-
-18
-00:01:10.212 --> 00:01:14.660
-for the host, which is the Federal
-Modernization Workbook's Book 05.
+00:00:54.087 --> 00:00:56.380
+Next, the logins themselves.

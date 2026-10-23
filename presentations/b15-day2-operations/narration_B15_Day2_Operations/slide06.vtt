@@ -1,98 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.441
-In Entra ID, three things decide
-what a technician can do:
+00:00:00.050 --> 00:00:03.676
+In Entra ID, what a technician
+can do depends on three things:
 
 2
-00:00:03.441 --> 00:00:07.495
+00:00:03.676 --> 00:00:07.745
 the role decides the action, the
 target decides whether it applies,
 
 3
-00:00:07.495 --> 00:00:10.738
+00:00:07.745 --> 00:00:11.075
 and the administrative unit
-narrows the population.
+narrows who it applies to.
 
 4
-00:00:10.738 --> 00:00:15.850
-The least-privileged role for a non-admin
-password reset is Password Administrator.
+00:00:11.075 --> 00:00:15.109
+The program gives each task its
+least-privileged role, and keeps the
 
 5
-00:00:15.850 --> 00:00:18.877
-Authentication Administrator
-handles methods
+00:00:15.109 --> 00:00:19.575
+role that can reset privileged
+administrators outside the desk entirely.
 
 6
-00:00:18.877 --> 00:00:21.387
-and Temporary Access Passes for members.
+00:00:19.575 --> 00:00:21.738
+But capability isn't authority.
 
 7
-00:00:21.387 --> 00:00:25.011
-Only the Privileged Authentication
-Administrator can reset a
+00:00:21.738 --> 00:00:25.056
+Some built-in roles can do
+far more than the task needs,
 
 8
-00:00:25.011 --> 00:00:28.499
-privileged administrator, so
-that role sits outside the desk.
+00:00:25.056 --> 00:00:28.600
+so the program narrows them,
+sometimes with a custom role.
 
 9
-00:00:28.499 --> 00:00:30.475
-Capability isn't authority.
+00:00:28.600 --> 00:00:32.675
+Executives sit in restricted units
+the general desk can't reach,
 
 10
-00:00:30.475 --> 00:00:34.049
-Authentication Administrator
-can delete and disable users,
+00:00:32.675 --> 00:00:35.750
+and roles are eligible
+through PIM, not standing.
 
 11
-00:00:34.049 --> 00:00:37.833
-and Application Administrator
-can grant consent, so the program
-
-12
-00:00:37.833 --> 00:00:42.037
-replaces it with a custom role that
-only assigns groups to applications.
-
-13
-00:00:42.037 --> 00:00:46.963
-Executives sit in restricted management
-units the general desk can't reach.
-
-14
-00:00:46.963 --> 00:00:52.074
-Roles reach technicians through
-role-assignable groups, eligible through P I M.
-
-15
-00:00:52.074 --> 00:00:54.700
+00:00:35.750 --> 00:00:38.375
 And approval isn't identity verification.
 
+12
+00:00:38.375 --> 00:00:41.494
+The verification ladder
+is the CISO's decision:
+
+13
+00:00:41.494 --> 00:00:46.875
+a phishing-resistant sign-in first, and
+identity proofing when every method is lost.
+
+14
+00:00:46.875 --> 00:00:50.926
+Then a short-lived one-time pass,
+a notice on a separate channel,
+
+15
+00:00:50.926 --> 00:00:53.388
+and two approvers for high-risk tasks.
+
 16
-00:00:54.700 --> 00:00:59.390
-The ladder is the CISO's decision:
-a phishing-resistant sign-in first;
-
-17
-00:00:59.390 --> 00:01:02.763
-identity proofing, in person
-against a PIV card or
-
-18
-00:01:02.763 --> 00:01:06.712
-through Entra account recovery,
-when every method is lost.
-
-19
-00:01:06.712 --> 00:01:11.648
-Then a one-time pass with the shortest
-lifetime, a notice on a separate channel,
-
-20
-00:01:11.648 --> 00:01:15.480
-and for high-risk tasks, two
-approvers besides the executor.
+00:00:53.388 --> 00:00:54.740
+Now, the catalog.

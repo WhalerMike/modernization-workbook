@@ -5,88 +5,72 @@ WEBVTT
 How does it run?
 
 2
-00:00:00.988 --> 00:00:06.309
-Pre-flight builds the platform host as
-a Tier 0 system and runs the read-only
+00:00:00.988 --> 00:00:02.963
+Each stretch has something to prove.
 
 3
-00:00:06.309 --> 00:00:10.171
-assessment: the master plan's
-twelve domains, plus DHCP,
+00:00:02.963 --> 00:00:06.058
+Pre-flight builds the
+platform host as a Tier 0
 
 4
-00:00:10.171 --> 00:00:13.775
-LDAP bindings and the
-service principal name map.
+00:00:06.058 --> 00:00:09.562
+system and runs a read-only
+assessment of the estate.
 
 5
-00:00:13.775 --> 00:00:18.211
-It produces twenty-three deliverables:
-fifteen committed before G0,
+00:00:09.562 --> 00:00:12.348
+It produces twenty-three deliverables,
 
 6
-00:00:18.211 --> 00:00:21.713
-and eight modernization
-plans approved just after it.
+00:00:12.348 --> 00:00:15.724
+and G0 passes only with
+no open critical finding.
 
 7
-00:00:21.713 --> 00:00:25.012
-G0 passes with no open critical finding.
+00:00:15.724 --> 00:00:19.043
+Foundation turns on the
+Conditional Access baseline,
 
 8
-00:00:25.012 --> 00:00:27.892
-Foundation enforces the Conditional Access
+00:00:19.043 --> 00:00:22.287
+but only after at least seven
+days in report-only mode.
 
 9
-00:00:27.892 --> 00:00:30.999
-baseline after at least
-seven days in report-only.
-
-10
-00:00:30.999 --> 00:00:35.799
+00:00:22.287 --> 00:00:27.087
 The pilot is one division, measured
 against eight numeric criteria, such as
 
-11
-00:00:35.799 --> 00:00:41.062
+10
+00:00:27.087 --> 00:00:32.350
 authentication success above 99 percent,
 and held drift-free for an agreed period.
 
+11
+00:00:32.350 --> 00:00:34.300
+Rollout then moves in waves.
+
 12
-00:00:41.062 --> 00:00:44.725
-Rollout then moves in waves
-chosen by attribute value.
+00:00:34.300 --> 00:00:39.537
+Retirement takes things away, so nothing is
+retired unless its rollback still works.
 
 13
-00:00:44.725 --> 00:00:46.663
-Retirement takes things away,
+00:00:39.537 --> 00:00:43.888
+And retired disks get sanitized,
+because they hold password hashes.
 
 14
-00:00:46.663 --> 00:00:50.462
-so an action is retired only
-while its rollback still works.
+00:00:43.888 --> 00:00:49.154
+In steady state, reassessment runs weekly
+and drift detection daily, and every
 
 15
-00:00:50.462 --> 00:00:56.499
-Domain controller certificates and the
-domain's own DNS zones stay until Phase 5.
+00:00:49.154 --> 00:00:54.338
+severity has a clock: by default, a critical
+finding is fixed within four hours.
 
 16
-00:00:56.499 --> 00:01:00.060
-Consult the records officer
-before any hardware goes,
-
-17
-00:01:00.060 --> 00:01:03.700
-and sanitize retired disks,
-which hold password hashes.
-
-18
-00:01:03.700 --> 00:01:09.199
-In steady state, reassessment runs weekly
-and drift detection daily, with a clock
-
-19
-00:01:09.199 --> 00:01:14.350
-for each severity: by default, a critical
-finding is fixed within four hours.
+00:00:54.338 --> 00:00:56.040
+That leaves the decisions.

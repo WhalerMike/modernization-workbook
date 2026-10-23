@@ -1,89 +1,80 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.100
-What does AD CS hold up today?
+00:00:00.050 --> 00:00:03.508
+Before you can move AD CS, you
+need to know what it holds up,
 
 2
-00:00:02.100 --> 00:00:03.463
-It isn't one server.
+00:00:03.508 --> 00:00:05.162
+and it isn't just one server.
 
 3
-00:00:03.463 --> 00:00:07.825
-It's a hierarchy, usually an offline
-root and enterprise issuing CAs;
+00:00:05.162 --> 00:00:09.793
+It's a hierarchy of CAs, a set of
+forest-wide objects like templates and
 
 4
-00:00:07.825 --> 00:00:12.032
-a set of forest-wide objects in
-the Public Key Services container,
+00:00:09.793 --> 00:00:14.750
+the NTAuth store, and Group Policy
+autoenrollment on every domain member.
 
 5
-00:00:12.032 --> 00:00:17.174
-including the templates and the NTAuth
-store; and Group Policy autoenrollment,
-
-6
-00:00:17.174 --> 00:00:20.212
-which runs on domain
-members every eight hours.
-
-7
-00:00:20.212 --> 00:00:23.759
+00:00:14.750 --> 00:00:18.297
 The inventory has four layers:
 the CAs, the templates,
 
-8
-00:00:23.759 --> 00:00:27.800
+6
+00:00:18.297 --> 00:00:22.338
 the certificates actually
 issued, and the relying parties.
 
-9
-00:00:27.800 --> 00:00:31.740
+7
+00:00:22.338 --> 00:00:26.180
 The relying parties set the order
 of work, because a new issuer is
 
-10
-00:00:31.740 --> 00:00:36.200
+8
+00:00:26.180 --> 00:00:30.312
 useful only once everything that
-validates its certificates trusts it.
+checks its certificates trusts it.
 
-11
-00:00:36.200 --> 00:00:39.888
+9
+00:00:30.312 --> 00:00:34.000
 Then every template and use
 case gets one of four verdicts.
 
+10
+00:00:34.000 --> 00:00:35.488
+Migrate it to the cloud.
+
+11
+00:00:35.488 --> 00:00:37.617
+Bridge it, running both issuers,
+
 12
-00:00:39.888 --> 00:00:45.663
-MIGRATE, where Cloud PKI or Entra
-certificate-based authentication replaces it.
+00:00:37.617 --> 00:00:41.549
+where the consumer depends on
+AD, like domain controllers.
 
 13
-00:00:45.663 --> 00:00:49.816
-BRIDGE, where both issuers
-run because the consumer
-
-14
-00:00:49.816 --> 00:00:54.163
-depends on AD or a server:
-domain controllers, LDAPS, NPS.
-
-15
-00:00:54.163 --> 00:00:58.888
-RETAIN, where there's no cloud
+00:00:41.549 --> 00:00:45.938
+Retain it where there's no cloud
 equivalent, like HSM-held code signing.
 
+14
+00:00:45.938 --> 00:00:47.063
+Or retire it.
+
+15
+00:00:47.063 --> 00:00:50.046
+The book also corrects its source here:
+
 16
-00:00:58.888 --> 00:01:01.725
-And RETIRE, where the
-consumer is going away.
+00:00:50.046 --> 00:00:54.150
+internal web and SQL Server
+TLS can't move to Cloud PKI.
 
 17
-00:01:01.725 --> 00:01:07.201
-The book corrects its source here:
-internal web and SQL Server TLS can't move
-
-18
-00:01:07.201 --> 00:01:12.650
-to Cloud PKI, and S/MIME stays BRIDGE
-because its key history has to survive.
+00:00:54.150 --> 00:00:56.260
+And whatever stays has to be hardened.

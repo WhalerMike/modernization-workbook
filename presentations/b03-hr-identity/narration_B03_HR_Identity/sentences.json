@@ -2,100 +2,95 @@
  "1": [
   [
    0.05,
-   6.237,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   6.287,
    "This briefing comes from Book 03 of the Federal Modernization Workbook, HR-Driven Identity."
   ],
   [
-   6.287,
-   11.688,
-   "It has one proposal, and I'll take it through four questions, the way I'd take it to leadership: why it matters, what we should do, who has to be involved, and how we'd carry it out and know it's working."
+   7.05,
+   11.213,
+   "It makes one proposal, and we'll take it through four questions, the way you'd take it to leadership: why it matters, what to do, who has to be involved, and how to carry it out and know it's working."
   ],
   [
-   17.975,
-   5.312,
-   "Book 02 made the case that identity is now where every access decision is made."
+   18.262,
+   5.662,
+   "Book 02 made the case that identity is now where every access decision gets made."
   ],
   [
-   23.288,
-   3.737,
-   "This book asks where the facts behind that identity should come from."
+   23.925,
+   5.287,
+   "This book asks the follow-up question: where should the facts behind that identity come from?"
   ],
   [
-   27.025,
-   3.362,
-   "The answer is the HR system of record, starting now."
+   29.212,
+   4.025,
+   "The answer is the HR system of record, and the time to start is now."
+  ],
+  [
+   33.237,
+   2.7,
+   "Let's begin with how identity gets built today."
   ]
  ],
  "2": [
   [
    0.05,
-   0.65,
-   "Why."
+   3.625,
+   "In many agencies, nothing connects HR to identity."
   ],
   [
-   0.7,
-   4.0,
-   "In many agencies today, nothing connects HR to identity."
+   3.675,
+   6.375,
+   "Accounts, access and credentials are created and removed by ticket, and that costs in three ways."
   ],
   [
-   4.7,
-   6.213,
-   "Accounts, access and credentials are created and removed by ticket, and that costs three ways."
+   10.05,
+   2.4,
+   "First, access outlives the job."
   ],
   [
-   10.912,
-   1.837,
-   "Access outlives the job."
+   12.45,
+   9.713,
+   "When someone leaves, removal waits for a ticket, yet the piv standard says a card that can't be collected must be terminated within eighteen hours of notification."
   ],
   [
-   12.75,
-   4.138,
-   "When someone leaves or changes roles, removal waits for a ticket."
+   22.163,
+   1.887,
+   "A ticket queue struggles with that."
   ],
   [
-   16.887,
-   9.85,
-   "Yet the federal piv standard, FIPS 201-3, requires a card that can't be collected to be terminated within eighteen hours of notification."
+   24.05,
+   7.25,
+   "Second, records drift: the phone book, the manager and the approval routing stay wrong until someone files a ticket."
   ],
   [
-   26.738,
-   2.938,
-   "A ticket-driven process struggles to meet that."
+   31.3,
+   4.263,
+   "And third, every joiner, mover and leaver is help-desk work."
   ],
   [
-   29.675,
-   6.438,
-   "Records drift: the phone book, the manager and the approval routing are wrong until someone files a ticket."
+   35.562,
+   2.462,
+   "Zero Trust makes the gap obvious."
   ],
   [
-   36.112,
-   3.562,
-   "And every joiner, mover and leaver is help-desk work."
+   38.025,
+   9.037,
+   "A token proves who signed it, but not that the claim is still true: that the person still works here, in the same position, for the same supervisor."
   ],
   [
-   39.675,
-   2.45,
-   "Zero Trust makes the gap visible."
+   47.062,
+   1.637,
+   "Those are HR facts."
   ],
   [
-   42.125,
-   2.788,
-   "A token proves cryptographically who signed it."
-  ],
-  [
-   44.913,
-   9.8,
-   "It can't prove the claim is true: that the person still works here, still holds the position the access was granted for, still reports to the supervisor who approved it."
-  ],
-  [
-   54.712,
-   3.025,
-   "Those are workforce facts, and they live in HR."
-  ],
-  [
-   57.737,
-   9.875,
-   "If we do nothing, HR moves to Core H C M, identity moves to Entra ID, and we rebuild the same manual process twice, on new platforms."
+   48.7,
+   5.55,
+   "And if we do nothing, we'll rebuild the same manual process twice, on two new platforms."
   ]
  ],
  "3": [
@@ -111,373 +106,308 @@
   ],
   [
    4.05,
-   11.625,
-   "On the HR side: the December 10, 2025 memo from O M B and OPM creates Federal HR 2.0, one government-wide core human capital platform."
+   8.6,
+   "On the HR side, an O M B and OPM memo creates Federal HR 2.0, one government-wide core HR platform."
   ],
   [
-   15.675,
-   9.7,
-   "OPM awarded the platform contract on June 10, 2026, and the first agencies begin moving as fiscal year 2027 starts."
+   12.65,
+   9.1,
+   "OPM awarded the platform contract in June 2026, and the first agencies start moving as fiscal 2027 begins."
   ],
   [
-   25.375,
-   7.537,
-   "The memo's sample timeline runs about eight months per agency, with the agency's interconnections going live around month five."
+   21.75,
+   6.987,
+   "The sample timeline is about eight months per agency, with the agency's interconnections going live around month five."
   ],
   [
-   32.913,
-   9.488,
-   "On the identity side: agencies are moving from Active Directory to Entra ID anyway, which is the Federal Modernization Workbook's Book 02."
+   28.738,
+   6.062,
+   "On the identity side, agencies are already moving to Entra ID, which is Book 02."
   ],
   [
-   42.4,
-   9.988,
-   "In Entra ID, attributes drive Conditional Access, groups and delegation, and inbound provisioning from an HR system is a documented, supported path."
+   34.8,
+   7.825,
+   "There, attributes drive Conditional Access, groups and delegation, and feeding them from an HR system is a supported path."
   ],
   [
-   52.388,
-   1.15,
-   "So there's a window."
+   42.625,
+   8.637,
+   "So the window is this: design the identity feed in during HR onboarding, before those interconnections go live, not bolted on afterward."
   ],
   [
-   53.538,
-   7.3,
-   "The identity feed has to be designed in during onboarding, before the interconnection goes live, not bolted on afterward."
+   51.263,
+   4.9,
+   "One honest limit: HR 2.0 covers federal employees only."
   ],
   [
-   60.837,
-   5.325,
-   "One honest limit: Federal HR 2.0 covers federal employees only."
-  ],
-  [
-   66.162,
-   6.787,
-   "Contractors and vendors need their own authoritative source, and the onboarding is the right time to decide it too."
+   56.163,
+   6.062,
+   "Contractors need their own authoritative source, and onboarding is the right time to decide that too."
   ]
  ],
  "4": [
   [
    0.05,
-   1.0,
-   "What should we do?"
+   1.137,
+   "So what should we do?"
   ],
   [
-   1.05,
+   1.188,
    9.0,
    "There are four realistic options, weighed against what leadership has to balance: the mission and the public, security, cost and resilience."
   ],
   [
-   10.05,
+   10.188,
    4.2,
    "Compliance matters, but on its own it isn't a reason to invest."
   ],
   [
-   14.25,
-   2.6,
-   "Option A keeps ticket-driven identity."
+   14.387,
+   6.375,
+   "Option A keeps ticket-driven identity: no new spending, but the risk and the manual work stay put."
   ],
   [
-   16.85,
-   5.85,
-   "No new investment, but the risk and the manual work stay where they are: the cost of doing nothing."
+   20.762,
+   3.425,
+   "Option B scripts automation inside the directories."
   ],
   [
-   22.7,
-   4.525,
-   "Option B automates inside the directories with scripts and exports."
+   24.188,
+   6.013,
+   "It's quick and cheap, but it automates a source that isn't authoritative, so bad data spreads faster."
   ],
   [
-   27.225,
-   9.625,
-   "It's quick and cheap, but it automates a source that isn't authoritative, so it spreads bad data faster, and it has to be rebuilt when HR changes platforms."
-  ],
-  [
-   36.85,
+   30.2,
    4.362,
    "Option C waits for HR 2.0 and integrates afterward."
   ],
   [
-   41.212,
-   2.7,
-   "That's defensible, and it's less work this year."
+   34.562,
+   6.05,
+   "That's defensible, but the interconnection decisions are made during onboarding, so waiting means retrofitting."
   ],
   [
-   43.913,
-   5.713,
-   "But the interconnection decisions are made during onboarding, so waiting means retrofitting after go-live."
+   40.612,
+   6.388,
+   "Option D starts now, with HR as the source of truth, designed into both migrations."
   ],
   [
-   49.625,
-   11.262,
-   "Option D starts now: HR as the source of truth, expressed in OPM's standard personnel data and designed into both the HR onboarding and the Entra ID migration."
+   47.0,
+   2.212,
+   "It costs design effort up front."
   ],
   [
-   60.888,
-   6.025,
-   "It costs design effort up front and needs shared governance, which is why it's only partial on cost."
-  ],
-  [
-   66.912,
+   49.212,
    5.475,
    "The judgment call: if HR 2.0 slipped a long way, C becomes reasonable."
   ],
   [
-   72.388,
-   6.4,
-   "But D's first step, data standards, ownership and the person key, is no-regret either way."
+   54.688,
+   6.388,
+   "But D's first step, data standards, ownership and a person key, is no-regret either way."
   ]
  ],
  "5": [
   [
    0.05,
    3.4,
-   "What does \"HR as the source of truth\" actually mean?"
+   "What does \u201cHR as the source of truth\u201d actually mean?"
   ],
   [
    3.45,
-   2.362,
-   "It means one owner for every fact."
+   1.887,
+   "One owner for every fact."
   ],
   [
-   5.812,
-   7.925,
-   "The HR system of record is authoritative for employment status, position, organization, supervisor and effective dates."
+   5.338,
+   6.825,
+   "HR is authoritative for employment status, position, organization, supervisor and effective dates."
   ],
   [
-   13.738,
+   12.162,
    8.137,
    "The identity platform stays authoritative for what it does: credentials, authentication, sessions, directory objects and policy."
   ],
   [
-   21.875,
-   7.675,
-   "And contractors, whom HR 2.0 doesn't cover, get their own authoritative source mapped into the same model."
+   20.3,
+   7.162,
+   "And contractors, whom HR 2.0 doesn't cover, get their own source, mapped into the same model."
   ],
   [
-   29.55,
-   3.1,
-   "That model is the canonical workforce identity model."
+   27.462,
+   8.287,
+   "That model uses OPM's standard personnel data elements as its contract, so vendor field names stay at the boundary and can be swapped out."
   ],
   [
-   32.65,
-   10.963,
-   "Its contract is OPM's standard data elements and nature-of-action codes, the government-wide personnel data standards, so vendor field names stay at the boundary and can be replaced."
+   35.75,
+   9.287,
+   "It's keyed on a person key the agency controls, and that key has to fit Entra ID's employeeId attribute, which holds at most sixteen characters."
   ],
   [
-   43.612,
-   9.925,
-   "It's keyed on an enterprise person key the agency controls, and that key has to fit Entra ID's employeeId attribute, which holds at most sixteen characters."
+   45.038,
+   6.688,
+   "The rule that makes it all work: every attribute has one name, one definition and one accountable owner."
   ],
   [
-   53.538,
-   6.438,
-   "The rule that makes it work: every attribute gets one name, one definition and one accountable owner."
-  ],
-  [
-   59.975,
-   4.862,
-   "When a fact is wrong, it gets fixed in its source, never patched in the directory."
+   51.725,
+   4.8,
+   "When a fact is wrong, it gets fixed at the source, never patched in the directory."
   ]
  ],
  "6": [
   [
    0.05,
-   4.05,
-   "Provisioning turns personnel records into governed identities."
+   4.4,
+   "Provisioning is where personnel records turn into governed identities."
   ],
   [
-   4.1,
-   4.463,
-   "Core H C M publishes worker records and personnel actions."
+   4.45,
+   4.287,
+   "The HR platform publishes worker records and personnel actions."
   ],
   [
-   8.562,
-   15.075,
-   "A small middleware, inside the agency's authorization boundary, does five things for every event: it validates the record, applies events in order, normalizes them to the skim standard, writes a provenance record, and reconciles the result."
+   8.738,
+   13.3,
+   "A small middleware, inside the agency's own authorization boundary, validates each event, applies events in order, normalizes them to the skim standard, records where they came from, and reconciles the result."
   ],
   [
-   23.637,
-   9.75,
-   "Then Entra ID's API-driven inbound provisioning creates and updates the accounts in Entra ID and, through the provisioning agent, in Active Directory."
+   22.038,
+   7.375,
+   "Entra ID's inbound provisioning then creates and updates the accounts, in Entra ID and in Active Directory."
   ],
   [
-   33.388,
-   6.838,
-   "That interface has daily call limits that scale with the license, which the book sizes against the agency's population."
+   29.413,
+   4.7,
+   "The book sizes that interface's daily limits against the agency's population."
   ],
   [
-   40.225,
-   1.825,
-   "The design fails closed."
+   34.112,
+   2.85,
+   "The key design choice is that it fails closed."
   ],
   [
-   42.05,
+   36.962,
    2.05,
    "Unknown worker types are refused."
   ],
   [
-   44.1,
+   39.013,
    4.213,
    "A failed record is retried and recorded, never silently skipped."
   ],
   [
-   48.312,
-   6.175,
-   "And every event leaves a provenance record before the call returns, which is where the evidence comes from later."
+   43.225,
+   4.763,
+   "And every event leaves a provenance record, which is where the evidence comes from later."
   ],
   [
-   54.487,
+   47.987,
    2.987,
    "The technology is the example, not the point."
   ],
   [
-   57.475,
+   50.975,
    4.0,
    "Today it's Oracle Core H C M feeding Entra ID."
   ],
   [
-   61.475,
-   5.175,
-   "If the vendors change, the model and the rules hold; only the boundary changes."
+   54.975,
+   3.513,
+   "If the vendors change, the model and the rules still hold."
   ]
  ],
  "7": [
   [
    0.05,
    1.325,
-   "Who has to be involved."
+   "Who has to be involved?"
   ],
   [
    1.375,
-   3.663,
-   "This is an organizational change as much as a technical one."
+   5.763,
+   "This is an organizational change as much as a technical one, and it helps to think in three groups."
   ],
   [
-   5.037,
-   0.85,
-   "Owners."
+   7.138,
+   11.238,
+   "Owners: HR owns the personnel data and its quality, the HR 2.0 program owns the platform and the standards, and each contractor source owns its own records."
   ],
   [
-   5.888,
-   4.0,
-   "HR owns the personnel data and its quality, at the source."
+   18.375,
+   12.15,
+   "Users: the identity team runs the directories and access from that data, security owns the Zero Trust policy and the leaver path, and the help desk moves from routine tickets to exceptions."
   ],
   [
-   9.887,
-   6.338,
-   "The OPM HR 2.0 program owns the platform, the standards and the interconnection."
+   30.525,
+   1.012,
+   "And guards."
   ],
   [
-   16.225,
-   2.65,
-   "And each contractor source owns its own record."
+   31.538,
+   10.912,
+   "The privacy office is in from the start, and decides the legal basis for each leg of sharing HR records with identity, along with the privacy impact assessment and minimization."
   ],
   [
-   18.875,
-   0.9,
-   "Users."
+   42.45,
+   9.25,
+   "The piv office owns issuance and termination, and the I S S O and authorizing official own the evidence and any accepted risk."
   ],
   [
-   19.775,
-   6.075,
-   "The C I O's identity team runs Entra ID, Active Directory and access from that data."
-  ],
-  [
-   25.85,
-   4.275,
-   "Security sets the Zero Trust policy and owns the leaver path."
-  ],
-  [
-   30.125,
-   4.037,
-   "And the help desk moves from routine tickets to handling exceptions."
-  ],
-  [
-   34.163,
-   0.812,
-   "Guards."
-  ],
-  [
-   34.975,
-   2.5,
-   "The privacy office is in from the start."
-  ],
-  [
-   37.475,
-   17.587,
-   "Sharing HR records with identity inside the agency normally rests on the Privacy Act's need-to-know provision, while disclosures outside the agency need a routine use, so the privacy office decides the basis for each leg, along with the privacy impact assessment and minimization."
-  ],
-  [
-   55.062,
-   3.163,
-   "The piv office owns issuance and termination."
-  ],
-  [
-   58.225,
-   5.925,
-   "And the I S S O and authorizing official own the evidence and any accepted risk."
-  ],
-  [
-   64.15,
-   13.162,
-   "The data architect ties it together: owning the standards, the crosswalk and the person key, making sure every attribute has one accountable owner, and carrying the standard to the interagency forums where it's adopted."
+   51.7,
+   4.85,
+   "A data architect ties it together, owning the standards and the person key."
   ]
  ],
  "8": [
   [
    0.05,
-   0.613,
-   "How."
+   0.8,
+   "Now, how."
   ],
   [
-   0.662,
+   0.85,
    5.025,
    "Personnel actions drive the three identity events, by code, not by ticket."
   ],
   [
-   5.688,
-   3.725,
-   "A joiner gets an account and baseline access ready on day one."
+   5.875,
+   3.962,
+   "A joiner gets an account and baseline access, ready on day one."
   ],
   [
-   9.412,
-   6.55,
-   "A mover has the old assignment's access removed, the new baseline applied, and any exceptions reviewed."
+   9.838,
+   6.275,
+   "A mover loses the old assignment's access, gets the new baseline, and has any exceptions reviewed."
   ],
   [
-   15.963,
-   12.15,
-   "And a leaver is blocked first: the account disabled and sessions revoked at the effective separation time, then credentials, devices and access removed in parallel, each one reconciled."
+   16.113,
+   10.713,
+   "And a leaver is blocked first, the account disabled and sessions revoked at the effective separation time; then credentials, devices and access are removed in parallel."
   ],
   [
-   28.113,
-   3.175,
-   "The book is precise about what the platform actually does."
+   26.825,
+   3.013,
+   "The book is precise about what the platform really does."
   ],
   [
-   31.288,
-   6.188,
-   "Lifecycle Workflows run on one tenant-wide schedule and need an Entra ID Governance license."
+   29.837,
+   5.925,
+   "Revoking sessions stops new tokens, but tokens already issued last until they expire."
   ],
   [
-   37.475,
-   6.55,
-   "Revoking sessions stops new tokens being issued, but tokens already issued last until they expire."
+   35.763,
+   7.225,
+   "Privileged leavers need their own block path, because the built-in disable task doesn't support users with admin roles."
   ],
   [
-   44.025,
-   7.825,
-   "Privileged leavers need their own verified block path, because the built-in disable task doesn't support users with admin roles."
+   42.987,
+   5.612,
+   "And synced users have to be deleted in Active Directory too, or the next sync brings them back."
   ],
   [
-   51.85,
-   5.463,
-   "And synced users must be deleted in Active Directory, or the next sync brings them back."
-  ],
-  [
-   57.312,
-   9.912,
-   "Credentials follow the same events: piv issuance, certificate binding and termination, and device certificates retired before the account is deleted."
+   48.6,
+   5.037,
+   "Credentials follow the same events, from piv issuance through to termination."
   ]
  ],
  "9": [
@@ -488,53 +418,48 @@
   ],
   [
    1.3,
-   4.237,
-   "Once the attributes are trustworthy, access is derived from them."
+   4.25,
+   "Once the attributes can be trusted, access is derived from them."
   ],
   [
-   5.537,
-   8.963,
-   "A personnel record becomes a canonical attribute, a rule or access package turns that into an entitlement, and an evidence record captures why."
+   5.55,
+   8.375,
+   "A personnel record becomes an attribute, a rule or access package turns it into an entitlement, and an evidence record captures why."
   ],
   [
-   14.5,
-   8.35,
-   "Every entitlement then traces back to a rule, an approved exception, an authoritative attribute, or a privileged-access decision."
+   13.925,
+   8.787,
+   "So every entitlement traces back to something: a rule, an approved exception, an authoritative attribute, or a privileged-access decision."
   ],
   [
-   22.85,
+   22.712,
    2.25,
    "That's what makes access explainable."
   ],
   [
-   25.1,
+   24.962,
    6.888,
    "Drift is found by comparison, not by complaint: scheduled checks compare HR, the model and the directories."
   ],
   [
-   31.988,
-   8.688,
-   "It's measured in business terms leadership can read: time from separation to blocked access, orphaned accounts, and access ready on day one."
+   31.85,
+   5.425,
+   "And it's measured in terms leadership can read, like the time from separation to blocked access."
   ],
   [
-   40.675,
-   2.325,
-   "And the records have to be kept long enough."
+   37.275,
+   8.45,
+   "One practical catch: Entra ID keeps audit and provisioning logs for only thirty days, so the book exports them from the pilot onward."
   ],
   [
-   43.0,
-   8.2,
-   "Entra ID keeps audit and provisioning logs for thirty days with P1 or P2, so the book exports them from the pilot onward."
+   45.725,
+   2.237,
+   "And the evidence is a byproduct."
   ],
   [
-   51.2,
-   2.2,
-   "The evidence comes as a byproduct."
-  ],
-  [
-   53.4,
-   8.438,
-   "The same records that run the lifecycle answer the auditor's oldest question: does every account belong to a current person with a current reason?"
+   47.962,
+   7.475,
+   "The same records answer the auditor's oldest question: does every account belong to a current person, with a current reason?"
   ]
  ],
  "10": [
@@ -545,76 +470,41 @@
   ],
   [
    5.525,
-   5.987,
-   "Phase zero aligns the program, naming identity as a consumer in both migrations."
+   11.625,
+   "It runs from aligning the program, through settling who owns each attribute, building and testing the pipeline, and a pilot, to automating the lifecycle, cutting over, and then sustaining it."
   ],
   [
-   11.512,
-   3.5,
-   "Phase one settles attribute authority and the schema."
-  ],
-  [
-   15.012,
-   2.5,
-   "Phase two builds and tests the pipeline."
-  ],
-  [
-   17.512,
-   1.837,
-   "Phase three is the pilot."
-  ],
-  [
-   19.35,
-   4.325,
-   "Phase four turns on lifecycle automation and attribute-derived access."
-  ],
-  [
-   23.675,
-   3.3,
-   "Phase five cuts over population by population."
-  ],
-  [
-   26.975,
-   1.8,
-   "And phase six sustains it."
-  ],
-  [
-   28.775,
+   17.15,
    1.462,
    "Four rules run through it."
   ],
   [
-   30.238,
-   7.312,
-   "Start now, from the HR data the agency already has, and switch the source to Core H C M when it arrives."
+   18.613,
+   6.85,
+   "Start now, with the HR data the agency already has, and switch the source to the new platform when it arrives."
   ],
   [
-   37.55,
-   6.15,
-   "Run in shadow mode first, comparing what HR says with what the directories hold, and fix the gaps."
+   25.462,
+   4.95,
+   "Run in shadow mode first, comparing what HR says with what the directories hold."
   ],
   [
-   43.7,
+   30.413,
    5.388,
    "Cut over one population at a time, with a signed validation report and a rollback."
   ],
   [
-   49.087,
-   5.862,
-   "And close the ticket path for a population only when the data proves HR is the sole source."
+   35.8,
+   4.7,
+   "And close the ticket path only when the data proves HR is the sole source."
   ],
   [
-   54.95,
-   4.65,
-   "The gate thresholds, like ninety-nine percent correlation, are proposals."
+   40.5,
+   7.812,
+   "The gate thresholds, like ninety-nine percent correlation, are proposals for the agency to approve, not federal requirements."
   ],
   [
-   59.6,
-   6.287,
-   "They're starting criteria the agency approves through its own risk governance, not federal requirements."
-  ],
-  [
-   65.888,
+   48.312,
    4.537,
    "Chapter 13 walks an illustrative agency through all seven phases."
   ]
@@ -622,56 +512,31 @@
  "11": [
   [
    0.05,
-   2.35,
-   "How we'll know it's working, and what we need."
+   2.612,
+   "So how will we know it's working, and what do we need?"
   ],
   [
-   2.4,
-   5.812,
-   "Five measures, each baselined in phase one, and each one a business measure leadership can read."
+   2.663,
+   19.288,
+   "Five measures, each baselined in phase one and each one something leadership can read: hours from separation to blocked access, orphaned accounts trending to zero, fewer joiner and mover tickets, managers and organizations in the directory matching HR, and every exception with an owner and an age."
   ],
   [
-   8.213,
-   3.45,
-   "Time from separation to blocked access, in hours."
+   21.95,
+   10.613,
+   "From leadership, we need one decision: start HR-driven identity now, as a design requirement of both the HR 2.0 onboarding and the Entra ID migration."
   ],
   [
-   11.662,
-   4.3,
-   "Accounts tied to a person, with orphaned accounts trending to zero."
+   32.562,
+   15.625,
+   "To act on it: a sponsor across HR, identity and privacy; identity named as a consumer in the HR 2.0 interconnection plan; data owners designated and the person key confirmed; and a small team for the pre-onboarding data work."
   ],
   [
-   15.963,
-   4.237,
-   "Joiner and mover tickets going down, with access ready on day one."
+   48.188,
+   7.925,
+   "Book 03 has the full design, every claim footnoted, and Book 02 covers the directory migration it builds on."
   ],
   [
-   20.2,
-   4.013,
-   "The manager and organization in the directory matching HR."
-  ],
-  [
-   24.212,
-   2.8,
-   "And every exception with an owner and an age."
-  ],
-  [
-   27.012,
-   10.525,
-   "What we need from leadership is one decision: start HR-driven identity now, as a design requirement of the HR 2.0 onboarding and the Entra ID migration."
-  ],
-  [
-   37.538,
-   16.413,
-   "And to act on it: a sponsor across HR, the identity team and privacy; identity named as a consumer in the HR 2.0 interconnection plan; data owners designated and the person key confirmed; and a small team for the pre-onboarding data work."
-  ],
-  [
-   53.95,
-   10.55,
-   "The Federal Modernization Workbook's Book 03 has the full design, with every external claim footnoted, and Book 02 covers the directory migration it builds on."
-  ],
-  [
-   64.5,
+   56.112,
    0.762,
    "Thank you."
   ]

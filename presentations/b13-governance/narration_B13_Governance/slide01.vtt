@@ -1,40 +1,67 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.201
-This briefing comes from Book 13 of the
-Federal Modernization Workbook, Governance,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:05.201 --> 00:00:09.174
-Drift and Evidence: why compliance
-decays the day after the audit,
+00:00:00.763 --> 00:00:05.231
+This briefing is Book 13 of the
+Federal Modernization Workbook,
 
 3
-00:00:09.174 --> 00:00:11.087
-and the governance that doesn't.
+00:00:05.231 --> 00:00:07.424
+Governance, Drift and Evidence.
 
 4
-00:00:11.087 --> 00:00:15.093
-I'll take four questions: why a
-signed package starts aging at once,
+00:00:07.424 --> 00:00:10.949
+It's about why compliance starts
+to decay the day after the audit,
 
 5
-00:00:15.093 --> 00:00:19.024
-what keeps governance true between
-assessments, who governs it,
+00:00:10.949 --> 00:00:13.675
+and what governance that
+doesn't decay looks like.
 
 6
-00:00:19.024 --> 00:00:23.326
-and how to run it at machine tempo,
-reuse it across agencies and scale it.
+00:00:13.675 --> 00:00:15.050
+We'll take four questions.
 
 7
-00:00:23.326 --> 00:00:27.657
+00:00:15.050 --> 00:00:17.725
+Why does a signed package
+start aging at once?
+
+8
+00:00:17.725 --> 00:00:20.388
+What keeps governance
+true between assessments?
+
+9
+00:00:20.388 --> 00:00:21.425
+Who governs it?
+
+10
+00:00:21.425 --> 00:00:26.162
+And how do you run it at machine tempo,
+reuse it across agencies, and scale it?
+
+11
+00:00:26.162 --> 00:00:30.495
 The short version: keep one authoritative
 record, let the systems prove
 
-8
-00:00:27.657 --> 00:00:32.110
+12
+00:00:30.495 --> 00:00:34.901
 they still match it, and keep people
 on the decisions only people can make.
+
+13
+00:00:34.901 --> 00:00:39.975
+The slides and notes carry every detail
+and source; I'll stick to what matters.
+
+14
+00:00:39.975 --> 00:00:42.500
+Let's start with the day
+the package is signed.

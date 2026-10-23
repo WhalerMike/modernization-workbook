@@ -5,67 +5,62 @@ WEBVTT
 Who leads it?
 
 2
-00:00:00.913 --> 00:00:05.465
-Chapter 09 puts it in one line:
-Microsoft provides the instruments;
+00:00:00.913 --> 00:00:03.090
+Chapter 09 sums it up in one line:
 
 3
-00:00:05.465 --> 00:00:07.949
+00:00:03.090 --> 00:00:08.199
+Microsoft provides the instruments;
 the program provides the orchestra.
 
 4
-00:00:07.949 --> 00:00:09.611
+00:00:08.199 --> 00:00:09.884
 The tools are each excellent,
 
 5
-00:00:09.611 --> 00:00:13.903
+00:00:09.884 --> 00:00:14.166
 but none of them decides what the
-organizational structure should become,
+organization's structure should become,
 
 6
-00:00:13.903 --> 00:00:18.125
-or what to do with the findings, and no
-vendor deadline forces the decision.
+00:00:14.166 --> 00:00:18.587
+or what to do with what they find, and
+no vendor deadline forces that decision.
 
 7
-00:00:18.125 --> 00:00:19.925
-So name one decider per row.
+00:00:18.587 --> 00:00:21.399
+So name one decider for
+each kind of decision.
 
 8
-00:00:19.925 --> 00:00:26.013
+00:00:21.399 --> 00:00:27.712
 The sponsor and CIO own scope, funding,
-sequence and when AD components retire.
+sequence, and when AD components retire.
 
 9
-00:00:26.013 --> 00:00:29.932
+00:00:27.712 --> 00:00:31.261
 The authorizing official is the
-only official who can accept risk,
+only one who can accept risk,
 
 10
-00:00:29.932 --> 00:00:33.424
-so every deferred cutoff and
-Kerberos island reaches them.
+00:00:31.261 --> 00:00:33.675
+so every deferred cutoff lands with them.
 
 11
-00:00:33.424 --> 00:00:35.825
-The CISO sets control requirements.
+00:00:33.675 --> 00:00:36.073
+The CISO sets control requirements,
 
 12
-00:00:35.825 --> 00:00:40.637
-The program office and its steward hold
-the repository and clear most gates.
+00:00:36.073 --> 00:00:39.863
+and the steward holds the
+repository and clears most gates.
 
 13
-00:00:40.637 --> 00:00:45.845
-HR decides what worker attributes mean,
-application owners sign off their cutovers,
+00:00:39.863 --> 00:00:43.706
+Then, each month, ask three
+things: how drift is trending,
 
 14
-00:00:45.845 --> 00:00:51.200
-and the records officer is consulted before
-any domain controller is decommissioned.
-
-15
-00:00:51.200 --> 00:00:56.860
-Each month, ask about the drift trend,
-signed changes and open risk acceptances.
+00:00:43.706 --> 00:00:48.220
+whether changes are signed, and
+what risk acceptances are open.

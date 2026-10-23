@@ -1,97 +1,79 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.189
-The plan follows the Federal Modernization
+00:00:00.050 --> 00:00:04.950
+The plan follows Book 01's model:
+seven phases and six gates.
 
 2
-00:00:03.189 --> 00:00:06.412
-Workbook's Book 01's seven
-phases and six gates.
+00:00:04.950 --> 00:00:09.362
+It runs from pre-flight, through
+foundation, a pilot division,
 
 3
-00:00:06.412 --> 00:00:10.675
-Phase 0, Pre-flight, ends
-at G0, Ready to Plan.
+00:00:09.362 --> 00:00:14.038
+general rollout and legacy
+retirement, to retiring AD DS itself.
 
 4
-00:00:10.675 --> 00:00:14.125
-Foundation ends at G1,
-Foundation Complete.
+00:00:14.038 --> 00:00:18.312
+Then comes steady state, which has
+no gate; it's a standing rhythm.
 
 5
-00:00:14.125 --> 00:00:17.450
-A pilot division ends at G2, Pilot Clean.
+00:00:18.312 --> 00:00:22.090
+Each gate has a plain name, like
+Pilot Clean or Legacy Quiet,
 
 6
-00:00:17.450 --> 00:00:21.025
-General rollout ends at
-G3, Rollout Complete.
+00:00:22.090 --> 00:00:23.900
+and the slide shows them all.
 
 7
-00:00:21.025 --> 00:00:24.600
-Legacy retirement ends
-at G4, Legacy Quiet.
+00:00:23.900 --> 00:00:26.626
+Every phase is bound by
+the same constraints:
 
 8
-00:00:24.600 --> 00:00:28.788
-AD DS retirement ends at G5, AD Retired.
+00:00:26.626 --> 00:00:30.972
+change starts at the authoritative
+source and closes with provenance,
 
 9
-00:00:28.788 --> 00:00:32.188
-And steady state has no gate;
-it's a standing cadence.
-
-10
-00:00:32.188 --> 00:00:34.365
-Five constraints bind every phase:
-
-11
-00:00:34.365 --> 00:00:39.169
-changes originate from the authoritative
-source and close with provenance,
-
-12
-00:00:39.169 --> 00:00:42.622
+00:00:30.972 --> 00:00:34.360
 privilege is time-bound,
 copies stay non-authoritative,
 
+10
+00:00:34.360 --> 00:00:37.675
+drift stays visible, and
+nothing needs rip-and-replace.
+
+11
+00:00:37.675 --> 00:00:41.075
+Underneath is one rule:
+assess before you act.
+
+12
+00:00:41.075 --> 00:00:45.826
+The master plan's illustrative fifty-two
+weeks stop short of retiring AD DS,
+
 13
-00:00:42.622 --> 00:00:46.225
-drift stays visible, and nothing
-requires rip-and-replace.
+00:00:45.826 --> 00:00:49.275
+and large federal estates
+usually take several years.
 
 14
-00:00:46.225 --> 00:00:49.988
-Underneath them is one rule:
-assessment before action.
+00:00:49.275 --> 00:00:51.758
+Five workstreams run in parallel,
 
 15
-00:00:49.988 --> 00:00:54.397
-The program's detailed master plan
-numbers its phases differently,
+00:00:51.758 --> 00:00:55.925
+and one dependency never
+relaxes: PKI waits for identity.
 
 16
-00:00:54.397 --> 00:00:58.649
-and its illustrative fifty-two
-weeks stop short of retiring AD DS.
-
-17
-00:00:58.649 --> 00:01:01.962
-Large federal estates
-typically run multi-year.
-
-18
-00:01:01.962 --> 00:01:06.575
-Five workstreams run in parallel,
-identity, policy, services,
-
-19
-00:01:06.575 --> 00:01:12.387
-compute and access, and one dependency
-never relaxes: PKI waits for identity.
-
-20
-00:01:12.387 --> 00:01:16.610
+00:00:55.925 --> 00:01:00.140
 The gates, not the calendar,
 decide when the next phase starts.

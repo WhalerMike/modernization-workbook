@@ -5,78 +5,66 @@ WEBVTT
 Finally, governance, code and evidence.
 
 2
-00:00:03.213 --> 00:00:08.790
-Governance: access is requested through
-access packages with approval and expiry;
+00:00:03.213 --> 00:00:08.311
+Governance means access is requested
+through packages with approval and an expiry
 
 3
-00:00:08.790 --> 00:00:14.287
-reviews run on a tiered cadence; and the
-book reviews groups, not just applications.
+00:00:08.311 --> 00:00:10.569
+date, reviews run on a tiered schedule,
 
 4
-00:00:14.287 --> 00:00:16.812
-Guests have sponsors and are reviewed too.
+00:00:10.569 --> 00:00:13.337
+and guests have sponsors
+and get reviewed too.
 
 5
-00:00:16.812 --> 00:00:18.667
-As code: Conditional Access,
+00:00:13.337 --> 00:00:15.406
+As code means Conditional Access,
 
 6
-00:00:18.667 --> 00:00:22.537
+00:00:15.406 --> 00:00:18.950
 PIM settings and access packages
 live in version control.
 
 7
-00:00:22.537 --> 00:00:25.437
+00:00:18.950 --> 00:00:21.717
 Changes go through review
-rather than the portal,
+instead of the portal,
 
 8
-00:00:25.437 --> 00:00:29.608
-drift is monitored against a baseline,
-and results are exported before
+00:00:21.717 --> 00:00:24.000
+and drift is watched against a baseline.
 
 9
-00:00:29.608 --> 00:00:33.850
-a baseline is changed, because changing
-it erases that monitor's history.
+00:00:24.000 --> 00:00:28.974
+Evidence means all of this maps to the
+federal access-control and monitoring
 
 10
-00:00:33.850 --> 00:00:39.208
-Evidence: the book maps all of
-this to the access-control,
+00:00:28.974 --> 00:00:34.025
+controls, with every elevation and every
+review on record; the slide lists them.
 
 11
-00:00:39.208 --> 00:00:45.381
-identification and continuous-monitoring
-controls, AC-2, AC-3,
+00:00:34.025 --> 00:00:36.063
+And there are two traps in the tooling.
 
 12
-00:00:45.381 --> 00:00:51.437
-AC-6, IA-2 and CA-7, with every
-elevation and every review on record.
-
-13
-00:00:51.437 --> 00:00:53.013
-Two traps in the tooling.
-
-14
-00:00:53.013 --> 00:00:57.330
+00:00:36.063 --> 00:00:40.466
 Reviewing an application doesn't remove
 members of the groups assigned to it,
 
+13
+00:00:40.466 --> 00:00:42.462
+so the groups need their own review.
+
+14
+00:00:42.462 --> 00:00:46.257
+And Entra keeps sign-in and
+audit logs for only thirty days,
+
 15
-00:00:57.330 --> 00:00:59.825
-so the groups themselves
-have to be reviewed.
-
-16
-00:00:59.825 --> 00:01:04.674
-And Entra keeps sign-in and audit
-logs only thirty days with P1 or P2,
-
-17
-00:01:04.674 --> 00:01:08.090
+00:00:46.257 --> 00:00:49.320
 so the evidence has to be
 exported from day one.

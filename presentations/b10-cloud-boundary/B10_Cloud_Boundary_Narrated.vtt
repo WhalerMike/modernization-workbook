@@ -1,1141 +1,1036 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.463
-This briefing comes from Book 10 of
-the Federal Modernization Workbook,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:04.463 --> 00:00:08.435
-Cloud Boundary and Landing Zone:
-how the authorization boundary,
+00:00:00.763 --> 00:00:04.828
+This briefing is Book 10 of the
+Federal Modernization Workbook,
 
 3
-00:00:08.435 --> 00:00:12.775
-not the product catalog, decides which
-cloud features an agency can use,.
+00:00:04.828 --> 00:00:06.900
+Cloud Boundary and Landing Zone.
 
 4
-00:00:12.775 --> 00:00:16.812
-I'll take four questions: why the
-boundary decides what you can use,
+00:00:06.900 --> 00:00:11.668
+Its argument is simple: the authorization
+boundary, not the product catalog,
 
 5
-00:00:16.812 --> 00:00:20.475
-what has to change, who owns the
-boundary, and how to get there.
+00:00:11.668 --> 00:00:15.225
+decides which cloud features
+an agency can actually use.
 
 6
-00:00:20.475 --> 00:00:24.127
-The short version: treat the
-boundary as a list you can read,
+00:00:15.225 --> 00:00:17.037
+We'll take four questions in turn.
 
 7
-00:00:24.127 --> 00:00:29.580
+00:00:17.037 --> 00:00:19.576
+Why does the boundary
+decide what you can use?
+
+8
+00:00:19.576 --> 00:00:20.825
+What has to change?
+
+9
+00:00:20.825 --> 00:00:22.225
+Who owns the boundary?
+
+10
+00:00:22.225 --> 00:00:23.413
+And how do you get there?
+
+11
+00:00:23.413 --> 00:00:28.347
+If you remember one thing, make it this:
+treat the boundary as a list you can read,
+
+12
+00:00:28.347 --> 00:00:33.513
 not a perimeter you can only accept, and
 evidence every choice in your own package.
 
-8
-00:00:30.330 --> 00:00:33.530
-Why does the authorization
-boundary decide what you can use?
-
-9
-00:00:33.530 --> 00:00:38.630
-Start with two agencies holding
-the same Microsoft 365 license.
-
-10
-00:00:38.630 --> 00:00:42.935
-One runs a commercial tenant and sees
-per-location network assessments,
-
-11
-00:00:42.935 --> 00:00:45.805
-informed network routing
-and an Adoption Score.
-
-12
-00:00:45.805 --> 00:00:49.217
-The other runs a GCC tenant
-and sees none of them,
-
 13
-00:00:49.217 --> 00:00:53.592
+00:00:33.513 --> 00:00:38.675
+The slides and notes carry every detail
+and citation; I'll stick to what matters.
+
+14
+00:00:38.675 --> 00:00:41.390
+Let's start with why the boundary decides.
+
+15
+00:00:42.140 --> 00:00:45.015
+Here's why the boundary
+matters, in one example.
+
+16
+00:00:45.015 --> 00:00:49.353
+Two agencies hold the same
+Microsoft 365 license.
+
+17
+00:00:49.353 --> 00:00:52.935
+One runs a commercial tenant
+and gets network assessments,
+
+18
+00:00:52.935 --> 00:00:55.128
+smarter routing and Adoption Score.
+
+19
+00:00:55.128 --> 00:00:57.727
+The other runs GCC and gets none of them,
+
+20
+00:00:57.727 --> 00:01:01.789
 because Microsoft documents
 each one as unavailable there.
 
-14
-00:00:53.592 --> 00:00:57.304
-Three decisions, made by three
-parties, have to line up.
+21
+00:01:01.789 --> 00:01:03.902
+Same license, different product.
 
-15
-00:00:57.304 --> 00:01:01.363
-FedRAMP certifies a specific
-offering at a certification class,
+22
+00:01:03.902 --> 00:01:07.727
+That happens because three parties
+make three separate decisions.
 
-16
-00:01:01.363 --> 00:01:03.467
+23
+00:01:07.727 --> 00:01:12.490
+FedRAMP certifies a specific offering,
 and the Marketplace is the record.
 
-17
-00:01:03.467 --> 00:01:05.992
+24
+00:01:12.490 --> 00:01:15.014
 The provider publishes,
 feature by feature,
 
-18
-00:01:05.992 --> 00:01:08.656
+25
+00:01:15.014 --> 00:01:17.678
 what each government
 environment leaves out.
 
-19
-00:01:08.656 --> 00:01:13.217
-And the agency authorizes its own
-system: its authorizing official accepts
-
-20
-00:01:13.217 --> 00:01:17.417
-the risk of the configuration selected
-and the integrations enabled.
-
-21
-00:01:17.417 --> 00:01:20.274
-FedRAMP says an agency
-should never create a
-
-22
-00:01:20.274 --> 00:01:23.980
-standalone authorization to
-operate for a cloud service.
-
-23
-00:01:23.980 --> 00:01:27.630
-What the agency can use is
-the overlap of all three.
-
-24
-00:01:27.630 --> 00:01:32.090
-A feature with no citation is
-unverified, not available.
-
-25
-00:01:32.840 --> 00:01:37.890
-Chapter 02 explains why the gap stays
-invisible until a design depends on it.
-
 26
-00:01:37.890 --> 00:01:44.103
-Surfaces are shared: Intune in GCC is
-the same instance as commercial Intune.
+00:01:17.678 --> 00:01:20.065
+And the agency authorizes its own system,
 
 27
-00:01:44.103 --> 00:01:47.714
-Exclusions are scattered, one
-sentence per feature page.
+00:01:20.065 --> 00:01:25.052
+with its authorizing official accepting the
+risk of what it configures and connects.
 
 28
-00:01:47.714 --> 00:01:51.363
-Features move: Microsoft
-retired Adoption Score's
+00:01:25.052 --> 00:01:27.527
+What you can use is
+where all three overlap.
 
 29
-00:01:51.363 --> 00:01:56.140
-technology-experience categories
-for every tenant in early 2026.
+00:01:27.527 --> 00:01:30.541
+So a feature with no
+citation isn't available.
 
 30
-00:01:56.140 --> 00:01:58.340
-And absence doesn't announce itself.
+00:01:30.541 --> 00:01:31.815
+It's unverified.
 
 31
-00:01:58.340 --> 00:02:02.540
+00:01:31.815 --> 00:01:35.120
+Next, why that gap stays
+hidden for so long.
+
+32
+00:01:35.870 --> 00:01:37.845
+So why don't people see the gap sooner?
+
+33
+00:01:37.845 --> 00:01:40.832
+Because it's invisible until
+a design depends on it.
+
+34
+00:01:40.832 --> 00:01:47.096
+The surfaces are shared: Intune in GCC is
+the same instance as commercial Intune.
+
+35
+00:01:47.096 --> 00:01:50.807
+The exclusions are scattered,
+one sentence per feature page.
+
+36
+00:01:50.807 --> 00:01:53.008
+And absence doesn't announce itself.
+
+37
+00:01:53.008 --> 00:01:57.208
 A detection whose input never arrives
 looks exactly like a quiet day.
 
-32
-00:02:02.540 --> 00:02:05.703
-The book then corrects a
-widely repeated example.
+38
+00:01:57.208 --> 00:02:00.249
+The book then tests a
+widely repeated example,
 
-33
-00:02:05.703 --> 00:02:09.390
-Five features were said to be
+39
+00:02:00.249 --> 00:02:03.531
+that five features are
 silently missing from GCC.
 
-34
-00:02:09.390 --> 00:02:12.755
+40
+00:02:03.531 --> 00:02:07.214
 Checked against Microsoft's
-documentation, one is:
+documentation, only one is:
 
-35
-00:02:12.755 --> 00:02:17.003
+41
+00:02:07.214 --> 00:02:11.457
 the Locations view of network
 connectivity in the admin center.
 
-36
-00:02:17.003 --> 00:02:22.652
-Device Health Attestation and expedited
-updates are GCC High and DoD gaps.
-
-37
-00:02:22.652 --> 00:02:26.290
-Endpoint analytics isn't
-a documented GCC gap.
-
-38
-00:02:26.290 --> 00:02:30.615
-And Azure Arc is an Azure service,
-in Azure's FedRAMP High scope.
-
-39
-00:02:30.615 --> 00:02:36.790
-An unverified boundary story sends an agency
-to build compensations it doesn't need.
-
-40
-00:02:37.540 --> 00:02:42.452
-The book models a boundary as any
-surface across which four things change.
-
-41
-00:02:42.452 --> 00:02:46.703
-It's the book's own model, not a
-FedRAMP or Microsoft construct.
-
 42
-00:02:46.703 --> 00:02:51.091
-Telemetry fidelity asks which
-signals actually arrive on this side.
+00:02:11.457 --> 00:02:15.078
+The others turn out to be
+GCC High and DoD gaps,
 
 43
-00:02:51.091 --> 00:02:54.029
-In GCC, admin-center network connectivity,
+00:02:15.078 --> 00:02:19.383
+not documented gaps at all,
+or inside Azure's own scope.
 
 44
-00:02:54.029 --> 00:02:59.402
-informed network routing and Adoption
-Score are documented as unavailable.
+00:02:19.383 --> 00:02:22.732
+The lesson: an unverified
+boundary story sends an
 
 45
-00:02:59.402 --> 00:03:03.848
-Identity authority asks who
-a claim's issuer resolves to:
+00:02:22.732 --> 00:02:26.082
+agency off to build
+compensations it doesn't need.
 
 46
-00:03:03.848 --> 00:03:10.278
-GCC pairs with Entra ID in commercial Azure,
-GCC High and DoD with Azure Government.
+00:02:26.082 --> 00:02:29.300
+Now, what actually
+changes across a boundary.
 
 47
-00:03:10.278 --> 00:03:15.466
-Enforcement responsibility asks who must
-enforce a control: without Microsoft's
+00:02:30.050 --> 00:02:33.750
+To reason about any boundary,
+the book uses its own model.
 
 48
-00:03:15.466 --> 00:03:20.653
-per-circuit feedback, path selection rests
-on the agency's own SD-WAN measurements.
+00:02:33.750 --> 00:02:37.663
+A boundary is any surface across
+which four things change.
 
 49
-00:03:20.653 --> 00:03:23.274
-Provenance classification asks whether a
+00:02:37.663 --> 00:02:41.149
+Telemetry: which signals
+actually arrive on your side.
 
 50
-00:03:23.274 --> 00:03:26.041
-claim is still authoritative,
-or only derived.
+00:02:41.149 --> 00:02:46.345
+Identity: who a claim's issuer resolves
+to, and GCC pairs with Entra ID
 
 51
-00:03:26.041 --> 00:03:28.965
-Each dimension raises its own drift class.
+00:02:46.345 --> 00:02:51.725
+in commercial Azure, while GCC High
+and DoD pair with Azure Government.
 
 52
-00:03:28.965 --> 00:03:34.140
-Detection is shipped for two classes,
-partial for one and design only for two.
+00:02:51.725 --> 00:02:54.807
+Enforcement: who has to enforce a control,
 
 53
-00:03:34.140 --> 00:03:37.187
-And FedRAMP's definition
-of federal customer data
+00:02:54.807 --> 00:02:58.887
+which in GCC often means the
+agency's own measurements.
 
 54
-00:03:37.187 --> 00:03:40.815
-excludes the analytics and
-telemetry a provider generates.
+00:02:58.887 --> 00:03:03.424
+And provenance: whether a claim is
+still authoritative, or only derived.
 
 55
-00:03:40.815 --> 00:03:43.690
-No certification promises you a signal.
+00:03:03.424 --> 00:03:05.992
+Each of these raises
+its own kind of drift,
 
 56
-00:03:44.440 --> 00:03:45.865
-What changed at FedRAMP?
+00:03:05.992 --> 00:03:10.975
+and detection for them is at different
+stages; the slide shows where each stands.
 
 57
-00:03:45.865 --> 00:03:46.903
-Three things.
+00:03:10.975 --> 00:03:12.925
+One more point worth holding onto.
 
 58
-00:03:46.903 --> 00:03:50.340
-First, services are now
-certified, in Classes A to D.
+00:03:12.925 --> 00:03:15.717
+FedRAMP's definition of
+federal customer data
 
 59
-00:03:50.340 --> 00:03:56.208
-FedRAMP's February 2026 notice says Class
-C includes the current Moderate baseline
+00:03:15.717 --> 00:03:18.438
+excludes the telemetry
+a provider generates.
 
 60
-00:03:56.208 --> 00:03:59.645
-and Class D the current
-High, and that agencies may
+00:03:18.438 --> 00:03:20.951
+No certification promises you a signal.
 
 61
-00:03:59.645 --> 00:04:03.753
-authorize at any security
-category they deem appropriate.
+00:03:20.951 --> 00:03:23.480
+Next, what changed at FedRAMP.
 
 62
-00:04:03.753 --> 00:04:07.441
-Second, the rules have no
-provider authorization boundary.
+00:03:24.230 --> 00:03:28.918
+FedRAMP itself changed in 2026,
+and three changes matter here.
 
 63
-00:04:07.441 --> 00:04:11.118
-In the machine-readable ruleset,
+00:03:28.918 --> 00:03:32.530
+First, services are now certified
+in classes, A through D.
 
 64
-00:04:11.118 --> 00:04:16.840
-version 2026.10.13.01, that
-phrase occurs zero times.
+00:03:32.530 --> 00:03:37.557
+Class C covers today's Moderate baseline
+and Class D today's High, and agencies
 
 65
-00:04:16.840 --> 00:04:21.598
-The word boundary appears eight times,
-four of them as a tag on rule families:
+00:03:37.557 --> 00:03:42.505
+can still authorize at whatever security
+category they judge appropriate.
 
 66
-00:04:21.598 --> 00:04:24.974
-minimum assessment scope,
-cryptographic module use,
+00:03:42.505 --> 00:03:46.768
+Second, the new rules have no provider
+authorization boundary at all.
 
 67
-00:04:24.974 --> 00:04:29.578
-vulnerability detection and response,
-and certification data sharing.
+00:03:46.768 --> 00:03:50.748
+The phrase doesn't appear once
+in the machine-readable ruleset,
 
 68
-00:04:29.578 --> 00:04:32.690
-Security category may vary by resource.
+00:03:50.748 --> 00:03:53.504
+and security category
+may vary by resource.
 
 69
-00:04:32.690 --> 00:04:38.140
-Third, change is notified, not re-approved,
-and the deadlines are in business days.
+00:03:53.504 --> 00:03:56.593
+Third, change is notified
+rather than re-approved,
 
 70
-00:04:38.140 --> 00:04:40.852
-Routine recurring changes need no notice.
+00:03:56.593 --> 00:03:59.530
+and the deadlines are
+counted in business days.
 
 71
-00:04:40.852 --> 00:04:44.577
-Adaptive changes, within 10
-business days after finishing.
+00:03:59.530 --> 00:04:01.570
+Routine changes need no notice;
 
 72
-00:04:44.577 --> 00:04:49.016
-Transformative changes, initial
-plans 30 business days before.
+00:04:01.570 --> 00:04:05.493
+bigger ones have set notice
+windows, and the slide lists them.
 
 73
-00:04:49.016 --> 00:04:53.196
-Adoption is mandatory on January 1, 2027,
+00:04:05.493 --> 00:04:11.903
+Two dates are worth writing down:
+adoption is mandatory on January 1,
 
 74
-00:04:53.196 --> 00:04:57.870
-and new Rev5 requests
+00:04:11.903 --> 00:04:16.254
+2027, and new Rev5 requests
 stop on June 11, 2027.
 
 75
-00:04:58.620 --> 00:05:03.020
+00:04:16.254 --> 00:04:19.420
+Now let's read what GCC actually is.
+
+76
+00:04:20.170 --> 00:04:24.570
 Chapter 04 reads GCC from
 Microsoft's own documents.
 
-76
-00:05:03.020 --> 00:05:06.911
-It's the worldwide service with
-a published list of exclusions,
-
 77
-00:05:06.911 --> 00:05:08.483
-and the list isn't a ladder.
+00:04:24.570 --> 00:04:29.670
+GCC is the worldwide service, minus
+a published list of exclusions.
 
 78
-00:05:08.483 --> 00:05:14.587
-Network connectivity in the admin
-center, Adoption Score, the Office 365
+00:04:29.670 --> 00:04:31.470
+And that list isn't a ladder.
 
 79
-00:05:14.587 --> 00:05:20.794
-CDN and informed network routing are
-missing in GCC, GCC High and DoD alike.
+00:04:31.470 --> 00:04:37.709
+Some features, like network connectivity
+in the admin center and Adoption Score,
 
 80
-00:05:20.794 --> 00:05:25.607
-Windows release health and Excel Office
-Scripts reach GCC and stop there.
+00:04:37.709 --> 00:04:40.782
+are missing in GCC,
+GCC High and DoD alike.
 
 81
-00:05:25.607 --> 00:05:29.809
-The largest documented loss is
-the network connectivity layer:
+00:04:40.782 --> 00:04:43.433
+Others reach GCC and stop there.
 
 82
-00:05:29.809 --> 00:05:35.120
-a daily assessment from 0 to 100 for each
-location, with 80 as the healthy baseline,
+00:04:43.433 --> 00:04:48.175
+The biggest documented loss is the
+network connectivity layer: a daily score
 
 83
-00:05:35.120 --> 00:05:38.846
-and performance attributed
-to named network providers.
+00:04:48.175 --> 00:04:52.844
+for each location, with performance
+attributed to named network providers.
 
 84
-00:05:38.846 --> 00:05:42.645
-A GCC agency funds its
-own measurement instead.
+00:04:52.844 --> 00:04:56.682
+A GCC agency has to fund
+its own measurement instead.
 
 85
-00:05:42.645 --> 00:05:49.197
-On the Marketplace, read October
-21, 2026, the GCC package, MSO365MT,
+00:04:56.682 --> 00:05:01.321
+On the Marketplace, the GCC package
+is certified at Class C, Moderate,
 
 86
-00:05:49.197 --> 00:05:55.870
-is FedRAMP Certified at Class C,
-Moderate, with 100 authorizations.
+00:05:01.321 --> 00:05:05.545
+and a second package with the same
+name is in process at Class D.
 
 87
-00:05:55.870 --> 00:06:00.070
-A second package with the identical
-name is In Process at Class D.
+00:05:05.545 --> 00:05:10.795
+But GCC High is already Class D, and
+it still lacks network connectivity.
 
 88
-00:06:00.070 --> 00:06:05.208
-But GCC High is already Class D, and
-still lacks network connectivity.
+00:05:10.795 --> 00:05:14.083
+A higher class doesn't bring
+back an excluded feature.
 
 89
-00:06:05.208 --> 00:06:08.730
-A higher class doesn't
-restore an excluded feature.
+00:05:14.083 --> 00:05:16.220
+Next, the landing zone.
 
 90
-00:06:09.480 --> 00:06:12.993
-The landing zone is where the
-boundary stops being a diagram.
+00:05:16.970 --> 00:05:21.645
+The landing zone is where the boundary
+stops being a diagram and becomes policy.
 
 91
-00:06:12.993 --> 00:06:15.963
-Each workload landing zone
-is a subscription placed
+00:05:21.645 --> 00:05:23.649
+Each workload gets a subscription,
 
 92
-00:06:15.963 --> 00:06:18.529
-in a management group
-that carries its policy.
+00:05:23.649 --> 00:05:26.620
+placed in a management group
+that carries its rules.
 
 93
-00:06:18.529 --> 00:06:22.733
+00:05:26.620 --> 00:05:30.843
 The baseline hierarchy puts an
 intermediate root under the tenant root,
 
 94
-00:06:22.733 --> 00:06:24.905
-and that's where boundary policy goes.
+00:05:30.843 --> 00:05:33.095
+and that's where boundary policy lives.
 
 95
-00:06:24.905 --> 00:06:29.642
-Platform groups hold security,
-management, connectivity and identity.
+00:05:33.095 --> 00:05:37.344
+Platform groups hold shared services
+like security and connectivity;
 
 96
-00:06:29.642 --> 00:06:33.917
-Landing zone groups hold corporate,
-online and local workloads.
+00:05:37.344 --> 00:05:39.720
+landing zone groups hold the workloads.
 
 97
-00:06:33.917 --> 00:06:39.280
+00:05:39.720 --> 00:05:45.082
 Make Sandbox the default, so no new
 subscription lands outside the boundary policy.
 
 98
-00:06:39.280 --> 00:06:42.971
-Each boundary decision gets a
-mechanism: the cloud choice;
+00:05:45.082 --> 00:05:49.602
+Each boundary decision then gets a
+mechanism, from allowed locations and
 
 99
-00:06:42.971 --> 00:06:46.354
-Allowed locations with Deny;
-allowed resource types,
+00:05:49.602 --> 00:05:54.196
+resource types to exemptions that carry
+an expiry date; the slide maps them.
 
 100
-00:06:46.354 --> 00:06:49.276
-checked against Microsoft's
-audit-scope list;
+00:05:54.196 --> 00:05:57.282
+Roll every policy out in audit mode first.
 
 101
-00:06:49.276 --> 00:06:54.120
-the FedRAMP regulatory compliance
-initiative, which Microsoft calls only
+00:05:57.282 --> 00:06:01.852
+One catch: Microsoft's accelerators
+are supported only in public Azure,
 
 102
-00:06:54.120 --> 00:06:58.580
-a partial view; and exemptions,
-Mitigated or Waiver, with an expiry date.
-
-103
-00:06:58.580 --> 00:07:01.555
-Roll each policy out in audit mode first.
-
-104
-00:07:01.555 --> 00:07:06.305
-One catch: Microsoft's accelerators
-are supported only in public Azure.
-
-105
-00:07:06.305 --> 00:07:10.710
-In Azure Government, the platform
+00:06:01.852 --> 00:06:05.957
+so in Azure Government the platform
 team adapts the code by hand.
 
+103
+00:06:05.957 --> 00:06:08.080
+Next, the address plan.
+
+104
+00:06:08.830 --> 00:06:13.255
+Chapter 06 makes the address plan
+the join key for the evidence.
+
+105
+00:06:13.255 --> 00:06:17.305
+A scan tells you what answered; the
+IPAM tells you what was allocated.
+
 106
-00:07:11.460 --> 00:07:14.797
-Chapter 06 makes the
-address plan the join key.
+00:06:17.305 --> 00:06:20.815
+So every inventory reconciles against it,
 
 107
-00:07:14.797 --> 00:07:18.924
-A scan finds what answered; the
-IPAM records what was allocated,
+00:06:20.815 --> 00:06:26.430
+and BOD 23-01 already asks for
+automated discovery every seven days.
 
 108
-00:07:18.924 --> 00:07:21.598
-so every inventory reconciles against it.
-
-109
-00:07:21.598 --> 00:07:26.599
-BOD 23-01 already asks for
-automated discovery every
-
-110
-00:07:26.599 --> 00:07:31.373
-7 days across the entire
-IPv4 space the agency uses.
-
-111
-00:07:31.373 --> 00:07:34.747
-In Azure the enterprise
+00:06:26.430 --> 00:06:30.005
+In Azure, the enterprise
 IPAM stays the authority.
 
-112
-00:07:34.747 --> 00:07:36.535
-Reserve the block there first.
+109
+00:06:30.005 --> 00:06:34.859
+Reserve the block there first, mirror
+it into Virtual Network Manager pools,
 
-113
-00:07:36.535 --> 00:07:39.568
-Mirror it into Virtual
-Network Manager pools,
+110
+00:06:34.859 --> 00:06:39.096
+then use policy to deny any virtual
+network without an allocation,
 
-114
-00:07:39.568 --> 00:07:42.760
-entering ranges used
-elsewhere as static CIDRs.
-
-115
-00:07:42.760 --> 00:07:46.635
-Then assign an Azure Policy
-that denies any virtual network
-
-116
-00:07:46.635 --> 00:07:50.122
-without a pool allocation,
+111
+00:06:39.096 --> 00:06:40.868
 and reconcile by discovery.
 
-117
-00:07:50.122 --> 00:07:55.091
-Virtual Network Manager isn't named in
-Microsoft's FedRAMP audit-scope tables,
+112
+00:06:40.868 --> 00:06:45.410
+Virtual Network Manager isn't named
+in Microsoft's FedRAMP audit scope,
 
-118
-00:07:55.091 --> 00:07:58.684
+113
+00:06:45.410 --> 00:06:49.029
 so record it as a dependency
 until coverage is confirmed.
 
-119
-00:07:58.684 --> 00:08:03.497
-Build it as five layered modules,
+114
+00:06:49.029 --> 00:06:54.430
+The book builds all this as layered modules,
 each writing its state as evidence.
 
-120
-00:08:03.497 --> 00:08:05.672
-And treat outside inputs as code.
+115
+00:06:54.430 --> 00:06:57.408
+And it treats outside inputs as code too,
 
-121
-00:08:05.672 --> 00:08:11.838
-There's no separate GCC endpoint list: a
-GCC tenant uses the Worldwide instance,
+116
+00:06:57.408 --> 00:07:01.830
+like the monthly Microsoft
+endpoint list a GCC tenant uses.
 
-122
-00:08:11.838 --> 00:08:16.370
-updated monthly, with 30
-days' notice of new endpoints.
+117
+00:07:01.830 --> 00:07:03.780
+Next, the front door.
 
-123
-00:08:17.120 --> 00:08:20.658
+118
+00:07:04.530 --> 00:07:08.068
 Code anyone can apply from a
 laptop isn't change control.
 
-124
-00:08:20.658 --> 00:08:25.525
-Chapter 07 adds the front door: the
+119
+00:07:08.068 --> 00:07:12.994
+So Chapter 07 adds a front door: a
 governed request into the landing zone,
 
-125
-00:08:25.525 --> 00:08:28.557
+120
+00:07:12.994 --> 00:07:16.167
 which Microsoft calls
 subscription vending.
 
-126
-00:08:28.557 --> 00:08:34.858
-The loop has six steps: request, approve,
-plan, apply, reconcile and close.
+121
+00:07:16.167 --> 00:07:22.280
+The loop runs from request, through approval,
+plan, apply and reconcile, to close.
 
-127
-00:08:34.858 --> 00:08:41.183
-The requester can't approve their own
-request, which is AC-5, separation of duties.
+122
+00:07:22.280 --> 00:07:24.941
+The requester can't
+approve their own request,
 
-128
-00:08:41.183 --> 00:08:45.158
-The approver reviews the actual
+123
+00:07:24.941 --> 00:07:28.793
+and the approver reviews the actual
 plan before anything changes.
 
-129
-00:08:45.158 --> 00:08:47.259
-And step 5 carries the most weight:
+124
+00:07:28.793 --> 00:07:31.467
+The reconcile step
+carries the most weight.
 
-130
-00:08:47.259 --> 00:08:52.739
-the pipeline writes the address allocation
-back to the enterprise IPAM and fails the
+125
+00:07:31.467 --> 00:07:36.149
+The pipeline writes the address
+allocation back to the enterprise IPAM,
 
-131
-00:08:52.739 --> 00:08:55.741
-run if the two disagree,
-because an unreconciled
+126
+00:07:36.149 --> 00:07:38.413
+and fails the run if the two disagree,
 
-132
-00:08:55.741 --> 00:08:58.669
-block is shadow inventory
-the moment it exists.
+127
+00:07:38.413 --> 00:07:42.943
+because an unreconciled block is
+shadow inventory the moment it exists.
 
-133
-00:08:58.669 --> 00:09:01.558
-The pipeline is inside
+128
+00:07:42.943 --> 00:07:45.955
+The pipeline sits inside
 the boundary question too.
 
+129
+00:07:45.955 --> 00:07:48.184
+Terraform state is sensitive data,
+
+130
+00:07:48.184 --> 00:07:51.567
+and not every pipeline
+service is on the Marketplace.
+
+131
+00:07:51.567 --> 00:07:54.011
+So the default is a self-hosted runner,
+
+132
+00:07:54.011 --> 00:07:56.929
+with state kept inside
+the agency's boundary.
+
+133
+00:07:56.929 --> 00:07:59.070
+Next, who owns all this.
+
 134
-00:09:01.558 --> 00:09:03.894
-Terraform state is sensitive data.
-
-135
-00:09:03.894 --> 00:09:09.775
-On October 21, 2026, the Marketplace
-had no listing for HCP Terraform; GitHub
-
-136
-00:09:09.775 --> 00:09:12.809
-Enterprise Cloud was listed at Class B,
-
-137
-00:09:12.809 --> 00:09:16.508
-and GitLab Dedicated for
-Government at Class C.
-
-138
-00:09:16.508 --> 00:09:21.620
-The default is a self-hosted runner
-and state inside the agency's boundary.
-
-139
-00:09:22.370 --> 00:09:23.720
+00:07:59.820 --> 00:08:01.170
 Who owns the boundary?
 
-140
-00:09:23.720 --> 00:09:25.932
+135
+00:08:01.170 --> 00:08:03.382
 The rule is one decider per row.
 
-141
-00:09:25.932 --> 00:09:30.300
+136
+00:08:03.382 --> 00:08:07.761
 The authorizing official determines
-the boundary, signs every documented
+the boundary, signs every exception,
 
-142
-00:09:30.300 --> 00:09:34.182
-exception and decides whether a
-change requires reauthorization.
+137
+00:08:07.761 --> 00:08:10.869
+and decides whether a change
+needs reauthorization.
 
-143
-00:09:34.182 --> 00:09:38.476
-Under SP 800-37, explicit risk
-acceptance can't be delegated,
+138
+00:08:10.869 --> 00:08:13.287
+That risk acceptance can't be delegated,
 
-144
-00:09:38.476 --> 00:09:43.995
-and for federal agencies the role is
-assigned to government personnel only.
+139
+00:08:13.287 --> 00:08:17.095
+and in federal agencies it's held
+by government personnel only.
 
-145
-00:09:43.995 --> 00:09:46.324
-The system owner is the boundary owner:
+140
+00:08:17.095 --> 00:08:19.520
+The system owner is the boundary owner.
 
-146
-00:09:46.324 --> 00:09:49.090
-keeper of the boundary
+141
+00:08:19.520 --> 00:08:22.350
+They keep the boundary
 record and the package,
 
-147
-00:09:49.090 --> 00:09:53.457
-and the decider on placing a new
-workload, because vending an unrecorded
+142
+00:08:22.350 --> 00:08:24.882
+and they decide where a new workload goes.
 
-148
-00:09:53.457 --> 00:09:56.077
-subscription is the
-cheapest way to turn an
+143
+00:08:24.882 --> 00:08:28.792
+That matters, because vending an
+unrecorded subscription is the
 
-149
-00:09:56.077 --> 00:09:58.770
-authorized system into
-an unauthorized one.
+144
+00:08:28.792 --> 00:08:32.846
+cheapest way to turn an authorized
+system into an unauthorized one.
 
-150
-00:09:58.770 --> 00:10:01.203
+145
+00:08:32.846 --> 00:08:35.278
 The CISO sets control requirements,
 
-151
-00:10:01.203 --> 00:10:05.283
+146
+00:08:35.278 --> 00:08:39.358
 and the ISSO reads provider change
 notices against the record.
 
-152
-00:10:05.283 --> 00:10:08.467
-The platform team builds
-the hierarchy, policy,
+147
+00:08:39.358 --> 00:08:44.607
+The platform team builds everything, but
+doesn't decide whether a gap is acceptable.
 
-153
-00:10:08.467 --> 00:10:12.795
-vending and probe, but doesn't
-decide whether a gap is acceptable.
+148
+00:08:44.607 --> 00:08:47.265
+And the contract is a
+boundary decision too:
 
-154
-00:10:12.795 --> 00:10:15.800
-And the contract is a boundary decision:
-
-155
-00:10:15.800 --> 00:10:20.445
-the GCC listing says customers
-must buy a GCC SKU to be covered.
-
-156
-00:10:20.445 --> 00:10:24.060
-Only a contracting officer
+149
+00:08:47.265 --> 00:08:50.882
+only a contracting officer
 changes what the agency bought.
 
-157
-00:10:24.810 --> 00:10:27.285
-How do you handle a
-capability that's outside?
+150
+00:08:50.882 --> 00:08:53.280
+Next, handling what's outside.
 
-158
-00:10:27.285 --> 00:10:31.674
-NIST SP 800-37 names four
-options: compensating controls,
+151
+00:08:54.030 --> 00:08:57.205
+So what do you do with a capability
+that's outside the boundary?
 
-159
-00:10:31.674 --> 00:10:38.023
-accepting greater risk, a more trustworthy
-provider, or not obtaining the service.
+152
+00:08:57.205 --> 00:09:01.037
+NIST gives four options:
+compensate, accept more risk,
 
-160
-00:10:38.023 --> 00:10:42.772
-Build a register, one feature per row,
-each with the provider's own statement.
+153
+00:09:01.037 --> 00:09:05.305
+choose a more trustworthy
+provider, or don't use the service.
 
-161
-00:10:42.772 --> 00:10:47.210
+154
+00:09:05.305 --> 00:09:08.475
+The work starts with a
+register, one feature per row,
+
+155
+00:09:08.475 --> 00:09:11.042
+each tied to the provider's own statement.
+
+156
+00:09:11.042 --> 00:09:15.480
 Only vendor-confirmed rows support a
 claim to a provider or an assessor.
 
-162
-00:10:47.210 --> 00:10:50.388
-Probe what actually works in
-your tenant, on a schedule,
+157
+00:09:15.480 --> 00:09:18.090
+Then probe what actually
+works in your tenant,
 
-163
-00:10:50.388 --> 00:10:53.072
-testing for the output
-rather than the switch.
+158
+00:09:18.090 --> 00:09:21.455
+on a schedule, testing for the
+output rather than the switch.
 
-164
-00:10:53.072 --> 00:10:57.960
+159
+00:09:21.455 --> 00:09:26.343
 Where a gap is real, build an in-boundary
 equivalent and say it's derived.
 
+160
+00:09:26.343 --> 00:09:31.392
+Or take an exception, where the authorizing
+official signs a dated risk acceptance.
+
+161
+00:09:31.392 --> 00:09:35.406
+And one practical warning: buy
+the capability, not the badge.
+
+162
+00:09:35.406 --> 00:09:40.618
+Microsoft's Network Provider Program,
+for example, is closed to new providers.
+
+163
+00:09:40.618 --> 00:09:42.500
+Next, a third path.
+
+164
+00:09:43.250 --> 00:09:46.859
+The third answer is an alternative
+path: move the workload to a
+
 165
-00:10:57.960 --> 00:10:59.310
-Or take an exception.
+00:09:46.859 --> 00:09:50.963
+different certified service, and
+leave the identity plane where it is.
 
 166
-00:10:59.310 --> 00:11:04.802
-ExpressRoute for Microsoft 365 is authorized
-only when a regulatory requirement
+00:09:50.963 --> 00:09:55.440
+Google Workspace and Gemini for Government
+are separate listings at different
 
 167
-00:11:04.802 --> 00:11:06.871
-mandates direct connectivity,
+00:09:55.440 --> 00:09:57.979
+classes, so which AI
+features sit inside which
 
 168
-00:11:06.871 --> 00:11:11.010
-and the book found no FedRAMP rule
-or FISMA provision that does.
+00:09:57.979 --> 00:10:00.451
+certification is a
+question for the package.
 
 169
-00:11:11.010 --> 00:11:15.160
-Otherwise the authorizing official
-signs a dated risk acceptance.
-
-170
-00:11:15.160 --> 00:11:19.760
-The 2026 rules add four scope
-arguments, each with a limit.
-
-171
-00:11:19.760 --> 00:11:22.077
-And buy the capability, not the badge:
-
-172
-00:11:22.077 --> 00:11:26.600
-Microsoft's Network Provider
-Program is closed to new providers.
-
-173
-00:11:27.350 --> 00:11:31.029
-The third answer is an alternative
-path: a different certified
-
-174
-00:11:31.029 --> 00:11:34.850
-service for the workload, with the
-identity plane left where it is.
-
-175
-00:11:34.850 --> 00:11:37.337
-Read the Marketplace,
-not the announcement.
-
-176
-00:11:37.337 --> 00:11:39.925
-Google Workspace is listed at Class D,
-
-177
-00:11:39.925 --> 00:11:44.100
-while Gemini for Government is
-a separate listing at Class B.
-
-178
-00:11:44.100 --> 00:11:49.025
-Which AI features sit inside which
-certification is a question for the package.
-
-179
-00:11:49.025 --> 00:11:51.375
+00:10:00.451 --> 00:10:02.800
 The public record shows both outcomes.
 
-180
-00:11:51.375 --> 00:11:57.267
-In September 2025 a cabinet-level department
-awarded a five-year agreement worth up
+170
+00:10:02.800 --> 00:10:06.245
+One cabinet-level
+department moved more than
 
-181
-00:11:57.267 --> 00:12:02.570
-to 89 million dollars to move more than
-50,000 employees to Google Workspace,
+171
+00:10:06.245 --> 00:10:09.600
+50,000 employees to
+Google Workspace in 2025.
 
-182
-00:12:02.570 --> 00:12:07.200
-under a GSA agreement with a
-temporary 71 percent price reduction.
+172
+00:10:09.600 --> 00:10:12.499
+A military department went the other way,
 
-183
-00:12:07.200 --> 00:12:11.573
-A military department went the
-other way, ending about 150,000
+173
+00:10:12.499 --> 00:10:17.700
+ending about 150,000 Google email
+licenses after an audit found few in use.
 
-184
-00:12:11.573 --> 00:12:16.288
-Google email licenses after an
-audit found about 16 percent in use.
+174
+00:10:17.700 --> 00:10:21.225
+Whichever way you go, keep
+Entra ID as the source.
 
-185
-00:12:16.288 --> 00:12:19.513
-Keep Entra ID as the
-source: provision users,
+175
+00:10:21.225 --> 00:10:25.712
+Provision users, federate sign-in
+and apply Conditional Access there.
 
-186
-00:12:19.513 --> 00:12:23.187
-federate sign-in, apply
-Conditional Access there.
-
-187
-00:12:23.187 --> 00:12:27.813
+176
+00:10:25.712 --> 00:10:30.338
 Then close the gaps: Google super
 administrators sign in outside it,
 
-188
-00:12:27.813 --> 00:12:31.560
+177
+00:10:30.338 --> 00:10:33.725
 and Google's directory is
 derived, so report drift.
 
+178
+00:10:33.725 --> 00:10:35.750
+Next, the evidence.
+
+179
+00:10:36.500 --> 00:10:40.537
+Finally, the boundary has to show
+up in the agency's own package.
+
+180
+00:10:40.537 --> 00:10:43.686
+The agency never authorizes
+a cloud service;
+
+181
+00:10:43.686 --> 00:10:46.663
+it authorizes its own
+system that uses one.
+
+182
+00:10:46.663 --> 00:10:50.794
+So its plan should hold only what
+the agency is responsible for,
+
+183
+00:10:50.794 --> 00:10:55.163
+and FedRAMP is blunt: don't copy
+and paste provider controls into it.
+
+184
+00:10:55.163 --> 00:10:59.892
+Instead, write the boundary down once,
+as a record the system owner keeps,
+
+185
+00:10:59.892 --> 00:11:04.542
+and cite it everywhere: the system
+description, each external service,
+
+186
+00:11:04.542 --> 00:11:08.150
+each crossing, the POA&M and
+the component definitions.
+
+187
+00:11:08.150 --> 00:11:10.262
+Know whose package you're reading, too.
+
+188
+00:11:10.262 --> 00:11:12.174
+GCC runs on Azure Government,
+
 189
-00:12:32.310 --> 00:12:36.297
-Finally, evidence the boundary
-in the agency's own package.
-
-190
-00:12:36.297 --> 00:12:41.617
-The agency never authorizes a cloud service;
-it authorizes its system that uses one,
-
-191
-00:12:41.617 --> 00:12:45.934
-and its plan should only contain
-what the agency is responsible for.
-
-192
-00:12:45.934 --> 00:12:48.431
-FedRAMP's Rev5 guidance is blunt:
-
-193
-00:12:48.431 --> 00:12:52.960
-don't copy and paste provider
-controls into the agency plan.
-
-194
-00:12:52.960 --> 00:12:58.071
-Write the boundary down once, as a
-boundary record the system owner keeps,
-
-195
-00:12:58.071 --> 00:13:02.074
-and cite it everywhere: the
-system description under PL-2,
-
-196
-00:13:02.074 --> 00:13:07.440
-each external service under SA-9 with
-its Marketplace package, class and SKU,
-
-197
-00:13:07.440 --> 00:13:12.040
-each crossing under CA-3, the gaps
-the agency will close on the POA&M,
-
-198
-00:13:12.040 --> 00:13:15.873
-and each equivalent in an
-OSCAL component definition.
-
-199
-00:13:15.873 --> 00:13:17.522
-Know whose package you're reading.
-
-200
-00:13:17.522 --> 00:13:22.592
-The GCC listing says the service leverages
-Azure Government as its infrastructure,
-
-201
-00:13:22.592 --> 00:13:26.285
+00:11:12.174 --> 00:11:16.237
 so the inheritance chain runs
 through two provider packages.
 
-202
-00:13:26.285 --> 00:13:30.725
-A compensating narrative takes four
-sentences: what the control needs,
+190
+00:11:16.237 --> 00:11:21.384
+And a compensating narrative takes just
+four sentences: what the control needs,
 
-203
-00:13:30.725 --> 00:13:35.165
-what's unavailable with its citation,
-what runs instead marked derived,
-
-204
-00:13:35.165 --> 00:13:38.010
+191
+00:11:21.384 --> 00:11:26.375
+what's unavailable, what runs instead,
 and where the remaining gap is recorded.
 
-205
-00:13:38.760 --> 00:13:41.910
-Appendix A turns all
-of this into requests.
+192
+00:11:26.375 --> 00:11:29.170
+Next, what to ask your provider for.
 
-206
-00:13:41.910 --> 00:13:46.124
+193
+00:11:29.920 --> 00:11:33.845
+Appendix A turns all of this
+into requests to the provider.
+
+194
+00:11:33.845 --> 00:11:38.059
 Three habits make a request
 hard to deflect: name one item,
 
-207
-00:13:46.124 --> 00:13:50.248
+195
+00:11:38.059 --> 00:11:42.183
 cite the basis with a link, and
 ask for data, not documents.
 
-208
-00:13:50.248 --> 00:13:51.709
-Eight requests follow.
+196
+00:11:42.183 --> 00:11:45.544
+The book makes eight requests,
+and the slide lists them.
 
-209
-00:13:51.709 --> 00:13:54.797
-Publish the per-feature
-exclusion list as data.
+197
+00:11:45.544 --> 00:11:50.498
+One number shows why trust centers
+made the list: when the book checked,
 
-210
-00:13:54.797 --> 00:13:57.259
-Name the exception path for each feature.
-
-211
-00:13:57.259 --> 00:14:03.310
-Restore the network observability layer
-in GCC, or publish the specific obstacle.
-
-212
-00:14:03.310 --> 00:14:09.160
-Explain the two same-named GCC packages,
-and what Class D would and wouldn't change.
-
-213
-00:14:09.160 --> 00:14:13.210
-List the agents and clients that
-sit outside the certified offering.
-
-214
-00:14:13.210 --> 00:14:19.684
-Provide a FedRAMP-compatible trust center
-with programmatic access: on October 21,
-
-215
-00:14:19.684 --> 00:14:24.844
-2026, only 110 of 781 Marketplace
+198
+00:11:50.498 --> 00:11:54.852
+only 110 of 781 Marketplace
 listings had a trust-center entry,
 
-216
-00:14:24.844 --> 00:14:29.535
-and none of the three Microsoft
+199
+00:11:54.852 --> 00:11:58.695
+and none of the Microsoft
 365 government packages did.
 
-217
-00:14:29.535 --> 00:14:32.460
-Deliver change notices as a JSON feed.
-
-218
-00:14:32.460 --> 00:14:35.985
-And document the cryptographic
-modules for each service.
-
-219
-00:14:35.985 --> 00:14:40.647
-Five of the eight rest on obligations
+200
+00:11:58.695 --> 00:12:04.057
+Five of the eight requests rest on obligations
 the rules already place on providers.
 
-220
-00:14:40.647 --> 00:14:43.470
-A documented no is evidence too.
+201
+00:12:04.057 --> 00:12:08.183
+And if the answer is no, a
+documented no is evidence too.
 
-221
-00:14:44.220 --> 00:14:45.595
+202
+00:12:08.183 --> 00:12:10.370
+Let's close with the decisions.
+
+203
+00:12:11.120 --> 00:12:12.495
 So, four decisions.
 
-222
-00:14:45.595 --> 00:14:51.066
-Build the feature register on cited rows
-only, one row per feature and environment,
+204
+00:12:12.495 --> 00:12:15.624
+Build the feature register
+on cited rows only,
 
-223
-00:14:51.066 --> 00:14:54.445
+205
+00:12:15.624 --> 00:12:19.083
 and drop or relabel anything
 without a vendor page.
 
-224
-00:14:54.445 --> 00:14:58.611
+206
+00:12:19.083 --> 00:12:23.248
 Name the boundary owner: the authorizing
 official decides the boundary,
 
-225
-00:14:58.611 --> 00:15:02.707
+207
+00:12:23.248 --> 00:12:27.344
 and the system owner keeps the record
 and gates every new subscription.
 
-226
-00:15:02.707 --> 00:15:07.275
-Enforce the boundary in the landing
-zone: policy at the intermediate root,
+208
+00:12:27.344 --> 00:12:32.149
+Enforce the boundary in the landing zone,
+with policy at the intermediate root,
 
-227
-00:15:07.275 --> 00:15:10.120
+209
+00:12:32.149 --> 00:12:34.957
 audit before deny, and
 the governed front door.
 
-228
-00:15:10.120 --> 00:15:13.621
+210
+00:12:34.957 --> 00:12:38.653
 And evidence every response,
-whether equivalent,
+whether it's an equivalent,
 
-229
-00:15:13.621 --> 00:15:17.720
-exception or alternative path,
-in the agency's own package.
+211
+00:12:38.653 --> 00:12:42.832
+an exception or an alternative
+path, in the agency's own package.
 
-230
-00:15:17.720 --> 00:15:21.797
-The next step needs no award: before
-the next architecture review,
+212
+00:12:42.832 --> 00:12:45.209
+Before your next architecture review,
 
-231
-00:15:21.797 --> 00:15:26.706
-list every cloud feature your designs
-depend on, with its Marketplace package,
+213
+00:12:45.209 --> 00:12:49.220
+list every cloud feature your
+designs depend on, with its package,
 
-232
-00:15:26.706 --> 00:15:30.632
-its availability in your environment
+214
+00:12:49.220 --> 00:12:53.082
+its availability in your environment,
 and the page that says so.
 
-233
-00:15:30.632 --> 00:15:33.594
+215
+00:12:53.082 --> 00:12:56.045
 Then put Appendix A's
 requests to your provider.
 
-234
-00:15:33.594 --> 00:15:37.595
+216
+00:12:56.045 --> 00:13:00.045
 The license says what you bought;
 the boundary says what you may use.
 
-235
-00:15:37.595 --> 00:15:43.020
-The Federal Modernization Workbook's Book
-10 has the detail, every claim footnoted.
+217
+00:13:00.045 --> 00:13:03.570
+Book 10 has the detail,
+every claim footnoted.
 
-236
-00:15:43.020 --> 00:15:43.830
+218
+00:13:03.570 --> 00:13:04.400
 Thank you.

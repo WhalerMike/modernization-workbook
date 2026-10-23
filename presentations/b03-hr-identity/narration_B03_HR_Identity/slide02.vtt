@@ -1,97 +1,75 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.700
-Why.
-
-2
-00:00:00.700 --> 00:00:04.700
-In many agencies today, nothing
+00:00:00.050 --> 00:00:03.675
+In many agencies, nothing
 connects HR to identity.
 
-3
-00:00:04.700 --> 00:00:09.219
+2
+00:00:03.675 --> 00:00:08.194
 Accounts, access and credentials
 are created and removed by ticket,
 
+3
+00:00:08.194 --> 00:00:10.050
+and that costs in three ways.
+
 4
-00:00:09.219 --> 00:00:10.913
-and that costs three ways.
+00:00:10.050 --> 00:00:12.450
+First, access outlives the job.
 
 5
-00:00:10.913 --> 00:00:12.749
-Access outlives the job.
+00:00:12.450 --> 00:00:17.197
+When someone leaves, removal waits for a
+ticket, yet the PIV standard says a card
 
 6
-00:00:12.749 --> 00:00:16.888
-When someone leaves or changes
-roles, removal waits for a ticket.
+00:00:17.197 --> 00:00:22.163
+that can't be collected must be terminated
+within eighteen hours of notification.
 
 7
-00:00:16.888 --> 00:00:21.590
-Yet the federal PIV standard, FIPS
-201-3, requires a card that can't
+00:00:22.163 --> 00:00:24.050
+A ticket queue struggles with that.
 
 8
-00:00:21.590 --> 00:00:26.737
-be collected to be terminated within
-eighteen hours of notification.
+00:00:24.050 --> 00:00:26.364
+Second, records drift: the phone book,
 
 9
-00:00:26.737 --> 00:00:29.676
-A ticket-driven process
-struggles to meet that.
+00:00:26.364 --> 00:00:31.300
+the manager and the approval routing
+stay wrong until someone files a ticket.
 
 10
-00:00:29.676 --> 00:00:32.635
-Records drift: the phone
-book, the manager and the
+00:00:31.300 --> 00:00:35.563
+And third, every joiner, mover
+and leaver is help-desk work.
 
 11
-00:00:32.635 --> 00:00:36.113
-approval routing are wrong
-until someone files a ticket.
+00:00:35.563 --> 00:00:38.024
+Zero Trust makes the gap obvious.
 
 12
-00:00:36.113 --> 00:00:39.674
-And every joiner, mover and
-leaver is help-desk work.
+00:00:38.024 --> 00:00:42.076
+A token proves who signed it, but
+not that the claim is still true:
 
 13
-00:00:39.674 --> 00:00:42.125
-Zero Trust makes the gap visible.
+00:00:42.076 --> 00:00:47.062
+that the person still works here, in the
+same position, for the same supervisor.
 
 14
-00:00:42.125 --> 00:00:44.913
-A token proves
-cryptographically who signed it.
+00:00:47.062 --> 00:00:48.699
+Those are HR facts.
 
 15
-00:00:44.913 --> 00:00:48.688
-It can't prove the claim is true:
-that the person still works here,
+00:00:48.699 --> 00:00:51.435
+And if we do nothing,
+we'll rebuild the same
 
 16
-00:00:48.688 --> 00:00:51.809
-still holds the position
-the access was granted for,
-
-17
-00:00:51.809 --> 00:00:54.713
-still reports to the
-supervisor who approved it.
-
-18
-00:00:54.713 --> 00:00:57.737
-Those are workforce facts,
-and they live in HR.
-
-19
-00:00:57.737 --> 00:01:02.675
-If we do nothing, HR moves to Core
-HCM, identity moves to Entra ID,
-
-20
-00:01:02.675 --> 00:01:07.680
-and we rebuild the same manual
-process twice, on new platforms.
+00:00:51.435 --> 00:00:54.310
+manual process twice,
+on two new platforms.

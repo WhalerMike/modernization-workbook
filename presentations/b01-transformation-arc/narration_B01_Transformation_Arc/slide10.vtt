@@ -1,73 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.005
+00:00:00.050 --> 00:00:03.105
 Once identity, policy
 and services have moved,
 
 2
-00:00:03.005 --> 00:00:07.438
-domain-joined PCs and servers are
-the largest remaining dependency.
+00:00:03.105 --> 00:00:07.125
+the biggest remaining dependency
+is the domain join itself.
 
 3
-00:00:07.438 --> 00:00:10.826
-User PCs end Entra joined and in Intune.
+00:00:07.125 --> 00:00:10.612
+User PCs end up Entra
+joined and in Intune.
 
 4
-00:00:10.826 --> 00:00:14.250
+00:00:10.612 --> 00:00:14.038
 Servers come under Azure Arc
 and machine configuration.
 
 5
-00:00:14.250 --> 00:00:16.225
-Hybrid join is a waypoint.
+00:00:14.038 --> 00:00:17.200
+Hybrid join is a waypoint,
+not a destination.
 
 6
-00:00:16.225 --> 00:00:19.241
-Microsoft says it shouldn't
-be anyone's end state,
+00:00:17.200 --> 00:00:20.855
+And there's no supported way to
+convert a hybrid-joined device
 
 7
-00:00:19.241 --> 00:00:23.614
-and there's no supported way to
-convert a hybrid-joined device to Entra
+00:00:20.855 --> 00:00:24.725
+without resetting Windows, so time
+the move to a hardware refresh.
 
 8
-00:00:23.614 --> 00:00:27.987
-join without resetting Windows, so
-time the move to a hardware refresh.
-
-9
-00:00:27.987 --> 00:00:32.857
+00:00:24.725 --> 00:00:29.608
 Every service principal name is an
 application that expects Kerberos,
 
-10
-00:00:32.857 --> 00:00:37.149
-and each needs a decision: migrate
+9
+00:00:29.608 --> 00:00:33.663
+and each needs a decision: move
 it to modern authentication,
 
-11
-00:00:37.149 --> 00:00:41.275
+10
+00:00:33.663 --> 00:00:37.387
 retire it, or, as a last resort,
-island it with an end-of-life date.
+isolate it with an end date.
+
+11
+00:00:37.387 --> 00:00:41.504
+No server leaves the domain
+until every one is resolved,
 
 12
-00:00:41.275 --> 00:00:45.861
-No server leaves the domain until
-every SPN on it is resolved,
-
-13
-00:00:45.861 --> 00:00:48.062
+00:00:41.504 --> 00:00:43.651
 and NTLM goes in the same pass.
 
-14
-00:00:48.062 --> 00:00:52.974
-And compute stays with its data until
-profiling shows the round trips are reduced.
+13
+00:00:43.651 --> 00:00:47.525
+And compute stays with its data
+until the round trips are cut down.
 
-15
-00:00:52.974 --> 00:00:59.420
-The Federal Modernization Workbook's
-Books 05 and 06 carry the detail in depth.
+14
+00:00:47.525 --> 00:00:50.780
+Books 05 and 06 have the detail.

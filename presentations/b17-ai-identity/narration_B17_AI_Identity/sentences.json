@@ -2,28 +2,58 @@
  "1": [
   [
    0.05,
-   8.188,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   8.238,
    "This briefing comes from Book 17 of the Federal Modernization Workbook, AI Identity Governance, the last book in the series."
   ],
   [
-   8.238,
-   10.062,
-   "It's written for Chief AI Officers, C I Os and CISOs, identity and security operations teams, I S S Os, and authorizing officials."
+   9.0,
+   9.338,
+   "It's written for Chief AI Officers, CIOs and CISOs, identity and security operations teams, ISSOs, and authorizing officials."
   ],
   [
-   18.3,
-   12.65,
-   "I'll take four questions: why AI agents need identities and owners; what governing them involves; who owns AI identity; and how to scan the inventory and evidence AI systems for authorization."
+   18.337,
+   1.413,
+   "I'll take four questions."
   ],
   [
-   30.95,
+   19.75,
+   2.962,
+   "Why do AI agents need identities and owners?"
+  ],
+  [
+   22.712,
+   1.7,
+   "What does governing them involve?"
+  ],
+  [
+   24.413,
+   1.7,
+   "Who owns AI identity?"
+  ],
+  [
+   26.113,
+   4.513,
+   "And how do you scan the inventory and evidence AI systems for authorization?"
+  ],
+  [
+   30.625,
    4.55,
    "The short version: an AI system that can act is an account with permissions."
   ],
   [
-   35.5,
+   35.175,
    6.362,
    "Most were deployed outside the identity program, and there's no separate AI authorization to fall back on."
+  ],
+  [
+   41.538,
+   2.362,
+   "Let's start with what makes an agent an account."
   ]
  ],
  "2": [
@@ -44,120 +74,110 @@
   ],
   [
    8.812,
-   4.95,
-   "It sends replies from a mailbox, closes tickets and updates case records."
+   5.037,
+   "It sends replies from a mailbox, closes tickets, updates case records."
   ],
   [
-   13.762,
-   5.938,
-   "Each step is an action against agency data, taken by something that signed in and holds permissions."
+   13.85,
+   6.037,
+   "Each of those is an action against agency data, taken by something that signed in and holds permissions."
   ],
   [
-   19.7,
-   1.938,
-   "That makes an agent an identity."
+   19.887,
+   1.512,
+   "That makes it an identity."
   ],
   [
-   21.637,
-   10.425,
-   "An AI system that acts reaches data in one of four ways: on behalf of a signed-in user, as itself, as its own user account, or with an A P I key."
+   21.4,
+   9.162,
+   "An AI system can reach data in one of four ways: for a signed-in user, as itself, as its own user account, or with an API key."
   ],
   [
-   32.062,
+   30.562,
    3.05,
    "The first three run through the identity provider."
   ],
   [
-   35.112,
-   6.675,
-   "The fourth bypasses it entirely, so Conditional Access never applies and no sign-in is evaluated."
+   33.612,
+   4.463,
+   "The fourth skips it entirely, so no sign-in is ever evaluated."
   ],
   [
-   41.788,
-   2.263,
-   "Today the agentic share is small."
+   38.075,
+   7.0,
+   "Today the agentic share of federal AI is small, only a small fraction of the thousands of reported use cases."
   ],
   [
-   44.05,
-   8.325,
-   "O M B's 2025 inventory holds 3,611 use cases, 445 of them high-impact."
+   45.075,
+   2.163,
+   "But it's the share growing fastest."
   ],
   [
-   52.375,
-   5.487,
-   "117 are classified agentic, and 38 of those are in pilot or deployed."
-  ],
-  [
-   57.862,
-   2.425,
-   "It's also the share that grows fastest."
+   47.237,
+   1.4,
+   "So how did AI get in?"
   ]
  ],
  "3": [
   [
    0.05,
-   6.075,
-   "People join through a pipeline the identity program built, from an HR record to a leaver process."
+   6.825,
+   "People join through a pipeline the identity program built, from an HR record all the way to a leaver process."
   ],
   [
-   6.125,
+   6.875,
    1.85,
    "AI mostly came in another way."
   ],
   [
-   7.975,
+   8.725,
    2.513,
    "A mission office ran a pilot with a vendor."
   ],
   [
-   10.488,
-   3.925,
-   "A developer put an A P I key in a configuration file."
+   11.238,
+   3.275,
+   "A developer put an API key in a config file."
   ],
   [
-   14.412,
+   14.512,
    3.775,
    "A product the agency already licensed shipped an assistant."
   ],
   [
-   18.188,
-   6.225,
-   "None of those paths produces an owner of record, a placement, a governed credential or an end date."
+   18.288,
+   5.763,
+   "None of those paths produces an owner, a placement, a governed credential or an end date."
   ],
   [
-   24.413,
-   2.0,
-   "The risk is identity-shaped."
+   24.05,
+   2.138,
+   "And the risk is identity-shaped."
   ],
   [
-   26.413,
-   6.875,
-   "nist's generative AI profile describes prompt injection, where planted input makes a system misbehave."
+   26.188,
+   4.487,
+   "Take prompt injection, where planted input makes a system misbehave."
   ],
   [
-   33.288,
+   30.675,
    8.8,
    "Against an agent with broad permissions, a successful injection is an action, a message sent or a record changed, under a legitimate identity."
   ],
   [
-   42.087,
-   2.875,
-   "The blast radius is the access it holds."
+   39.475,
+   3.087,
+   "The blast radius is whatever access it holds."
   ],
   [
-   44.962,
-   2.025,
-   "No new control family is needed."
+   42.562,
+   3.112,
+   "The good news is that no new control family is needed."
   ],
   [
-   46.987,
-   8.225,
-   "Account management, identifier and authenticator management, least privilege and service authentication already cover non-person accounts."
-  ],
-  [
-   55.212,
-   7.4,
-   "The gap is coverage: the AI system's account is often missing from the account inventory the controls are tested against."
+   45.675,
+   7.1,
+   "The gap is coverage: the AI system's account is often missing from the inventory those controls are tested against."
   ]
  ],
  "4": [
@@ -168,199 +188,189 @@
   ],
   [
    3.462,
-   11.875,
-   "O M B memo M twenty-five twenty-one governs use: a Chief AI Officer, an annual use-case inventory, compliance plans, and seven minimum practices for high-impact AI."
+   9.225,
+   "One O M B memo governs use, with a Chief AI Officer, an annual use-case inventory, and minimum practices for high-impact AI."
   ],
   [
-   15.338,
-   10.637,
-   "Its companion, M twenty-five twenty-two, governs acquisition, and says AI operated as an information system must receive an authorization to operate before deployment."
+   12.688,
+   8.5,
+   "Its companion governs acquisition, and says AI run as an information system needs an authorization to operate before it deploys."
   ],
   [
-   25.975,
-   2.275,
-   "What the rules don't do matters as much."
+   21.188,
+   2.638,
+   "What the rules don't do matters just as much."
   ],
   [
-   28.25,
-   2.538,
-   "There is no AI-specific authorization."
+   23.825,
+   2.45,
+   "There's no AI-specific authorization."
   ],
   [
-   30.788,
-   10.5,
-   "Agencies must keep following Circular A-130 for AI systems, and the memo's own risk acceptance is separate from, and doesn't supersede, system authorization."
+   26.275,
+   9.387,
+   "Agencies keep following their existing authorization process, the memo's own risk acceptance doesn't replace it, and it sets no identity requirements at all."
   ],
   [
-   41.288,
-   2.425,
-   "It sets no identity requirements at all."
-  ],
-  [
-   43.712,
+   35.663,
    8.75,
    "So a high-impact use case needs two decisions before it deploys: the signed risk acceptance on its impact assessment, and the system's authorization."
   ],
   [
-   52.462,
-   1.025,
-   "One more note."
+   44.413,
+   10.113,
+   "One footnote: a recent executive order changes the preferred term in some documents, but Book 17 keeps saying AI, because the instruments it applies still do."
   ],
   [
-   53.487,
-   7.225,
-   "Executive Order fourteen four thirty-four tells agencies to say Super Intelligence in non-statutory documents."
-  ],
-  [
-   60.712,
-   6.625,
-   "The definition hasn't changed, and the book keeps the term AI, because the instruments it applies still use it."
+   54.525,
+   1.712,
+   "Next, the inventory."
   ]
  ],
  "5": [
   [
    0.05,
-   6.763,
-   "The inventory is the only government-wide list of federal AI, so the program reads it as identity data."
+   7.287,
+   "The use-case inventory is the only government-wide list of federal AI, so the program reads it as identity data."
   ],
   [
-   6.812,
-   1.663,
-   "A few fields are anchors."
+   7.338,
+   2.087,
+   "A few fields are solid anchors."
   ],
   [
-   8.475,
+   9.425,
    4.475,
    "The use-case ID is stable and never reused, so it can key a record."
   ],
   [
-   12.95,
+   13.9,
    1.663,
    "The bureau gives a placement."
   ],
   [
-   14.613,
-   4.4,
-   "The stage is a lifecycle state, and Retired is a leaver event."
+   15.562,
+   2.862,
+   "And a stage of Retired is a leaver event."
   ],
   [
-   19.012,
-   7.013,
-   "Other fields are leads to check: the contact may be a public inbox, and the authorization field points to a boundary."
+   18.425,
+   5.338,
+   "Other fields are only leads; the contact, for example, may be a public inbox."
   ],
   [
-   26.025,
-   9.0,
-   "The facts that decide access aren't there at all: the principal the system signs in as, its credential, its permissions, and the person accountable."
+   23.762,
+   8.537,
+   "But the facts that decide access aren't there at all: what the system signs in as, its credential, its permissions, and the person accountable."
   ],
   [
-   35.025,
-   3.362,
-   "The high-impact fields report status, not evidence."
+   32.3,
+   8.5,
+   "The high-impact fields report status, not evidence, and in the published file a large share of deployed high-impact use cases answered none of them."
   ],
   [
-   38.388,
-   5.05,
-   "Each of the seven practices has a field, but each holds the agency's own answer."
+   40.8,
+   5.412,
+   "And a use case isn't an identity, so the program records the link on the directory side."
   ],
   [
-   43.438,
-   6.612,
-   "In the published file, 101 of 227 deployed high-impact use cases answered none of them."
-  ],
-  [
-   50.05,
-   5.5,
-   "And a use case isn't an identity, so the program records the join on the directory side."
+   46.212,
+   3.712,
+   "Next, how to tell what kind of identity an AI system is."
   ]
  ],
  "6": [
   [
    0.05,
-   6.213,
-   "An AI system's kind of identity is decided by whose token it presents, not by the model it runs."
+   7.75,
+   "Here's the key idea: an AI system's kind of identity is decided by whose token it presents, not by the model it runs."
   ],
   [
-   6.263,
-   1.413,
-   "There are four answers."
+   7.8,
+   6.537,
+   "Acting for a signed-in user, the user's policies apply, and the agent can reach everything that user can."
   ],
   [
-   7.675,
-   10.35,
-   "Acting for a signed-in user, the user is the token's subject and the agent is the actor, so the user's policies apply, and the agent can reach everything the user can."
+   14.338,
+   4.4,
+   "Acting as itself, the only Conditional Access option is to block it."
   ],
   [
-   18.025,
-   7.487,
-   "Acting as itself, the agent's own identity is the subject, and the only Conditional Access control is to block it."
+   18.738,
+   4.987,
+   "Acting as its own user account, it slips past policies aimed at all users."
   ],
   [
-   25.512,
-   5.075,
-   "Acting as its own user account, it isn't covered by policies aimed at all users."
+   23.725,
+   4.725,
+   "And with a stored API key, Entra ID issues no token at all."
   ],
   [
-   30.587,
-   4.787,
-   "And with a stored A P I key, Entra ID issues no token at all."
+   28.45,
+   8.963,
+   "Microsoft Entra Agent ID adds identity types built for agents, including a blueprint that holds the credentials and a required human sponsor."
   ],
   [
-   35.375,
-   10.988,
-   "Microsoft Entra Agent ID adds identity types built for agents: a blueprint that holds the credentials, agent identities created from it, and a required human sponsor."
+   37.413,
+   2.263,
+   "But it only governs agents that use it."
   ],
   [
-   46.362,
-   2.4,
-   "It governs only agents that use it."
-  ],
-  [
-   48.763,
+   39.675,
    7.0,
    "Most AI still runs as ordinary service principals and managed identities, and the same governance applies to them."
+  ],
+  [
+   46.675,
+   2.812,
+   "Next, what's actually available, and where."
   ]
  ],
  "7": [
   [
    0.05,
-   7.013,
-   "The agency's cloud decides what it can use, so the book dates every product statement to October 2026."
+   7.562,
+   "The agency's cloud decides what it can use, so Book 17 dates every product statement to October 2026."
   ],
   [
-   7.062,
-   11.787,
-   "Microsoft announced the Agent ID platform, with blueprints, agent identities and sponsors, as generally available in April 2026, and sponsor lifecycle workflows in May."
+   7.612,
+   9.287,
+   "The core Agent ID platform, with blueprints, agent identities and sponsors, was announced as generally available in April 2026."
   ],
   [
-   18.85,
-   2.175,
-   "Several controls are still preview."
+   16.9,
+   5.787,
+   "But several controls are still preview, including agent targeting in Conditional Access."
   ],
   [
-   21.025,
-   13.787,
-   "The policy builder labels agent targeting in Conditional Access as preview, agent identities support only Block, the agent risk condition is preview, and agents' user accounts are limited to Frontier program tenants."
+   22.688,
+   1.288,
+   "The slide lists them."
   ],
   [
-   34.812,
+   23.975,
+   2.212,
+   "The government clouds are the bigger issue."
+  ],
+  [
+   26.188,
    10.375,
    "G C C has a partial, documented subset: identity and access governance for agents, but not Microsoft's audit, data loss prevention or network controls."
   ],
   [
-   45.188,
-   12.4,
-   "G C C High and D O D have no published availability, so treat agent identities as unavailable there until Microsoft confirms otherwise in writing, and govern AI as workload identities."
+   36.562,
+   12.35,
+   "G C C High and DOD have no published availability, so treat agent identities as unavailable there until Microsoft confirms otherwise in writing, and govern AI as workload identities."
   ],
   [
-   57.587,
-   4.688,
-   "And Agent 365's fed-ramp High authorization is still pending."
+   48.913,
+   6.763,
+   "The rule is simple: build on what's generally available in your own cloud, and keep preview features as watch items."
   ],
   [
-   62.275,
-   7.0,
-   "The program builds on what is generally available in the agency's own cloud, and keeps preview features as watch items."
+   55.675,
+   2.5,
+   "Next, the person behind each agent."
   ]
  ],
  "8": [
@@ -371,137 +381,142 @@
   ],
   [
    6.4,
-   10.088,
-   "Agent ID separates the owner, who manages credentials, from the sponsor, who is accountable for purpose and lifecycle and can switch an agent off but not back on."
+   7.463,
+   "Agent ID separates the owner, who manages credentials, from the sponsor, who's accountable for purpose and lifecycle."
   ],
   [
-   16.488,
-   3.575,
-   "Left to defaults, the sponsor is whoever built the agent."
+   13.863,
+   3.85,
+   "Left to defaults, the sponsor is just whoever built the agent."
   ],
   [
-   20.062,
-   11.2,
-   "The program decides instead: the sponsor is a federal employee mastered in HR, a small dynamic group of stewards is the second sponsor, and the technical owner is never the sponsor."
+   17.712,
+   10.137,
+   "The program decides instead: the sponsor is a federal employee mastered in HR, a small group of stewards is the backup, and the technical owner is never the sponsor."
   ],
   [
-   31.262,
-   2.013,
-   "The lifecycle follows that person."
+   27.85,
+   2.212,
+   "The lifecycle then follows that person."
   ],
   [
-   33.275,
-   8.887,
-   "When the sponsor moves or leaves, the HR event triggers a transfer, and the new sponsor has ten business days to confirm the agent is still needed."
+   30.062,
+   8.762,
+   "When the sponsor moves or leaves, the HR event triggers a transfer, and the new sponsor has a short window to confirm the agent is still needed."
   ],
   [
-   42.163,
-   7.638,
-   "Access comes through packages with end dates, so expiry is the review: a sponsor who does nothing removes the access."
+   38.825,
+   3.975,
+   "Access comes with end dates, so a sponsor who does nothing removes it."
   ],
   [
-   49.8,
-   3.0,
-   "Retirement is disable first, then delete."
+   42.8,
+   4.688,
+   "And an orphaned agent is disabled by a person, never by an automatic rule."
   ],
   [
-   52.8,
-   9.438,
-   "Once an orphaned agent is confirmed, a person disables it, never an automatic rule, and its office has thirty days to name a sponsor or retire it."
+   47.487,
+   2.4,
+   "Next, credentials and privilege."
   ]
  ],
  "9": [
   [
    0.05,
-   5.7,
-   "An agent can't be asked for a second factor, so everything it may do is decided in advance."
+   5.925,
+   "An agent can't be asked for a second factor, so everything it may do has to be decided in advance."
   ],
   [
-   5.75,
+   5.975,
    1.438,
    "Start with the credential."
   ],
   [
-   7.188,
-   7.987,
-   "In Agent ID it lives on the blueprint and is shared by every agent created from it, so the blueprint is the credential boundary."
+   7.412,
+   7.7,
+   "In Agent ID it lives on the blueprint and is shared by every agent made from it, so the blueprint is the credential boundary."
   ],
   [
-   15.175,
-   15.412,
-   "The order is settled: a managed identity federated to the blueprint where the agent runs on Azure, workload identity federation from its own platform elsewhere, a certificate in a vault only where neither applies, and a client secret only for development and test."
+   15.113,
+   10.088,
+   "The order of preference is settled: federated credentials first, a certificate in a vault only where that won't work, and a client secret only for development and test."
   ],
   [
-   30.587,
+   25.2,
    1.175,
    "Then privilege."
   ],
   [
-   31.762,
-   6.612,
-   "Microsoft blocks agents from Global Administrator, but still allows Exchange and SharePoint Administrator."
+   26.375,
+   6.138,
+   "Microsoft blocks agents from Global Administrator, but still allows some other powerful admin roles."
   ],
   [
-   38.375,
+   32.513,
    7.162,
    "That's a floor, not least privilege, so the program's rule is that no AI identity holds a standing privileged role."
   ],
   [
-   45.538,
-   6.1,
-   "Last, an agent's reach is bounded by its tokens, its approved tools, and data protection."
+   39.675,
+   6.475,
+   "And in G C C, where Purview's agent controls aren't available, scoped permissions are the data boundary."
   ],
   [
-   51.638,
-   6.338,
-   "In G C C, Purview's agent controls aren't available, so scoped permissions are the data boundary."
+   46.15,
+   1.887,
+   "Next, watching for drift."
   ]
  ],
  "10": [
   [
    0.05,
-   8.188,
-   "Every AI identity drifts once it exists: a sponsor changes jobs, a developer adds a secret, an agent gets a new tool."
+   2.975,
+   "Every AI identity drifts once it exists."
   ],
   [
-   8.238,
-   10.15,
-   "M twenty-five twenty-one asks monitoring of high-impact AI to detect changes to a system after deployment, and the identity logs are where those changes land first."
+   3.025,
+   5.237,
+   "A sponsor changes jobs, a developer adds a secret, an agent gets a new tool."
   ],
   [
-   18.387,
+   8.262,
+   8.662,
+   "Federal policy asks that high-impact AI be monitored for changes after deployment, and the identity logs are where those changes show up first."
+  ],
+  [
+   16.925,
    11.875,
    "So the program collects every AI identity's sign-ins, audit events and risk signals, and ties each one to its identity record, because nothing in a service principal's sign-in says it's AI."
   ],
   [
-   30.262,
-   2.163,
-   "Discovery is a standing input."
+   28.8,
+   2.425,
+   "Discovery is a standing input too."
   ],
   [
-   32.425,
-   10.738,
-   "Shadow AI shows up in four places: services people use, apps holding consented access, agents on endpoints, and AI built in the agency's own clouds."
+   31.225,
+   8.838,
+   "Shadow AI turns up in several places, from services people use to agents on endpoints, and anything found without a record is a finding."
   ],
   [
-   43.163,
-   2.925,
-   "Anything found without a record is a finding."
+   40.062,
+   5.737,
+   "An agentic system with no governed identity is the finding this book exists to prevent."
   ],
   [
-   46.087,
-   6.237,
-   "An agentic AI system with no governed identity is the finding this book exists to prevent."
+   45.8,
+   4.588,
+   "It halts, alerts a named person, and is never fixed automatically."
   ],
   [
-   52.325,
-   5.875,
-   "It's high priority: it halts, alerts a named person, and is never fixed automatically."
+   50.388,
+   2.938,
+   "And API keys stay invisible to all of it."
   ],
   [
-   58.2,
-   3.062,
-   "And A P I keys stay invisible to all of it."
+   53.325,
+   1.863,
+   "So who owns these decisions?"
   ]
  ],
  "11": [
@@ -522,142 +537,142 @@
   ],
   [
    12.688,
-   7.35,
-   "The Chief AI Officer owns the inventory, high-impact determinations and waivers, and can't delegate the waiver authority."
+   5.725,
+   "The Chief AI Officer owns the inventory, the high-impact determinations and waivers."
   ],
   [
-   20.038,
+   18.413,
    4.35,
    "The official accountable for the mission signs the use-case risk acceptance."
   ],
   [
-   24.387,
-   1.9,
-   "Neither authorizes the system."
+   22.762,
+   6.95,
+   "Neither one authorizes the system; the authorizing official alone accepts its security and privacy risk."
   ],
   [
-   26.288,
-   10.25,
-   "The authorizing official alone accepts its residual security and privacy risk, and the system owner owns the AI system and decides what its identities may reach."
+   29.712,
+   6.312,
+   "For the identity itself, the sponsor, an agency employee, decides whether the agent should exist."
   ],
   [
-   36.538,
-   15.025,
-   "For the identity itself, the sponsor, an agency employee, decides whether the agent should exist; the technical owner, who may be a contractor, keeps it running; and the identity governance officer decides consent, transfers and orphans."
+   36.025,
+   3.763,
+   "The technical owner, who may be a contractor, keeps it running."
   ],
   [
-   51.562,
+   39.788,
+   4.875,
+   "And the identity governance officer decides consent, transfers and orphans."
+  ],
+  [
+   44.663,
    4.3,
    "Two signatures stay two, even when one person holds both roles."
+  ],
+  [
+   48.962,
+   1.975,
+   "Now, the inventory scan."
   ]
  ],
  "12": [
   [
    0.05,
-   7.938,
-   "The inventory scan is the program's method, not a federal requirement, and it's cheap because it reads answers agencies already gave."
+   8.238,
+   "The inventory scan is the program's own method, not a federal requirement, and it's cheap because it reads answers agencies already gave."
   ],
   [
-   7.987,
-   2.675,
-   "Load one vintage and record what's missing."
+   8.287,
+   9.15,
+   "Load the file, detect the gaps, put agentic systems first, route each finding to a named role, and close it only on a later observation."
   ],
   [
-   10.662,
-   3.487,
-   "Detect gaps, from the answers and then the directory."
-  ],
-  [
-   14.15,
-   2.013,
-   "Put agentic systems first."
-  ],
-  [
-   16.163,
-   3.688,
-   "Report one row per finding, routed to a named role."
-  ],
-  [
-   19.85,
-   3.038,
-   "And close a finding only on a later observation."
-  ],
-  [
-   22.887,
+   17.438,
    1.312,
    "The scale is real."
   ],
   [
-   24.2,
-   15.963,
-   "Of the 1,480 use cases recorded as piloted or deployed in the published 2025 file, 799 give no authorization answer and 488 have no contact; 72 percent trip at least one check."
+   18.75,
+   10.012,
+   "In the published 2025 file, most piloted or deployed use cases trip at least one check, often a missing authorization answer or a missing contact."
   ],
   [
-   40.163,
-   4.088,
-   "These are answers to reconcile, not findings against agencies."
+   28.762,
+   4.138,
+   "Those are answers to reconcile, not findings against agencies."
   ],
   [
-   44.25,
-   14.3,
-   "The checks that matter most need the directory, so only the agency can run them: no identity record, no accountable sponsor, an identity with no inventory row, and a retired use case whose identities still hold access."
+   32.9,
+   4.588,
+   "The checks that matter most need the directory, so only the agency can run them."
   ],
   [
-   58.55,
+   37.487,
+   1.587,
+   "Is there an identity record?"
+  ],
+  [
+   39.075,
+   1.45,
+   "An accountable sponsor?"
+  ],
+  [
+   40.525,
+   3.65,
+   "A retired use case whose identities still hold access?"
+  ],
+  [
+   44.175,
    5.338,
    "A central scan of the public file could start that conversation, but it can't see a credential."
+  ],
+  [
+   49.513,
+   1.762,
+   "Finally, the evidence."
   ]
  ],
  "13": [
   [
    0.05,
-   2.775,
-   "Everything ends in the authorization package."
+   12.838,
+   "Everything ends in the authorization package, and it has to answer five questions about each AI system's identity: who owns it, how it authenticates, what it can reach, who's watching it, and when its access ends."
   ],
   [
-   2.825,
-   10.162,
-   "It has to answer five questions about each AI system's identity: who owns it, how it authenticates, what it can reach, who's watching it, and when its access ends."
+   12.887,
+   3.212,
+   "Each answer has an artifact and controls behind it."
   ],
   [
-   12.988,
-   2.75,
-   "Each has an artifact and controls behind it."
-  ],
-  [
-   15.738,
+   16.1,
    1.35,
    "Two points stand out."
   ],
   [
-   17.087,
-   12.238,
-   "First, service identification and authentication, control I A nine, describes an AI system calling a tool with its own identity, and it's in no nist baseline and no fed-ramp class."
+   17.45,
+   13.488,
+   "First, the control for service identification and authentication describes exactly an AI system calling a tool with its own identity, yet it's in no nist baseline and no fed-ramp class, so the program tailors it in."
   ],
   [
-   29.325,
-   1.775,
-   "So the program tailors it in."
+   30.938,
+   8.5,
+   "Second, the identity program can evidence three of the high-impact practices, for example a fail-safe that's simply a tested disable."
   ],
   [
-   31.1,
-   12.312,
-   "Second, three of the seven high-impact practices can be evidenced by the identity program: monitoring from the system's own logs, training checked against the operators' group, and a fail-safe that's a tested disable."
+   39.438,
+   4.713,
+   "The package can be machine-readable in OSCAL, with nothing AI-specific needed."
   ],
   [
-   43.413,
-   5.263,
-   "The package can be machine-readable in OSCAL, with no AI-specific structures needed."
+   44.15,
+   6.15,
+   "nist's AI overlays aren't drafted yet, so tailor the baseline now and compare when they're final."
   ],
   [
-   48.675,
-   6.463,
-   "nist's overlays for AI systems, renamed under the new executive order, have no public draft yet."
-  ],
-  [
-   55.138,
-   3.45,
-   "So tailor the baseline now, and compare when they're final."
+   50.3,
+   1.863,
+   "That brings us to the decisions."
   ]
  ],
  "14": [
@@ -668,51 +683,46 @@
   ],
   [
    1.425,
-   2.962,
-   "Count AI identities, not AI projects."
+   11.475,
+   "Count AI identities, not AI projects: no use case is recorded as piloted or deployed without a link to its identity record, created before any credential is issued."
   ],
   [
-   4.388,
-   8.475,
-   "No use case is recorded as piloted or deployed without a link to its identity record, created before any credential is issued."
+   12.9,
+   7.787,
+   "Put a person's name on every one, an agency employee as sponsor, with HR's mover and leaver events reaching the agent."
   ],
   [
-   12.863,
-   7.925,
-   "Put a person's name on every one: an agency employee as sponsor, with HR's mover and leaver events reaching the agent."
+   20.688,
+   8.6,
+   "Take away stored secrets and standing privilege, and keep the block-unless-approved policy in report-only mode while agent targeting is preview."
   ],
   [
-   20.788,
-   12.387,
-   "Take away stored secrets and standing privilege: federated credentials first, no standing privileged roles, and a block-unless-approved policy kept in report-only mode while agent targeting is preview."
+   29.288,
+   8.85,
+   "And authorize AI through the process you already run, with two signatures for high-impact AI and the service authentication control tailored in."
   ],
   [
-   33.175,
-   7.625,
-   "And authorize AI through the process you already run: two signatures for high-impact AI, with I A nine tailored in."
-  ],
-  [
-   40.8,
+   38.138,
    2.15,
    "The next step needs no new tooling."
   ],
   [
-   42.95,
-   11.287,
-   "Run the inventory checks on the agency's own submission, start with agentic systems and missing authorizations, and confirm each agent capability for your own cloud before planning on it."
+   40.288,
+   10.65,
+   "Run the inventory checks on the agency's own submission, start with agentic systems and missing authorizations, and confirm each agent capability in your own cloud first."
   ],
   [
-   54.237,
+   50.938,
    3.45,
    "Every AI system needs an identity and an owner."
   ],
   [
-   57.688,
-   5.825,
-   "The Federal Modernization Workbook's Book 17 has the detail, every claim footnoted."
+   54.388,
+   3.95,
+   "Book 17 has the detail, every claim footnoted."
   ],
   [
-   63.513,
+   58.337,
    0.762,
    "Thank you."
   ]

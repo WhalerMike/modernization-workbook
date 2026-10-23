@@ -1,91 +1,84 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.905
-The clocks are often quoted
+00:00:00.050 --> 00:00:02.973
+Those clocks often get quoted
 for more than they say,
 
 2
-00:00:02.905 --> 00:00:05.412
-so the program plans
-against the documents.
+00:00:02.973 --> 00:00:06.100
+so the program plans against
+the documents themselves.
 
 3
-00:00:05.412 --> 00:00:11.162
-FedRAMP certifies cloud services; each
-agency still authorizes its own systems.
+00:00:06.100 --> 00:00:09.281
+For example, FedRAMP
+certifies cloud services,
 
 4
-00:00:11.162 --> 00:00:14.600
-Moderate is now a
-certification class, Class C.
+00:00:09.281 --> 00:00:12.625
+but each agency still
+authorizes its own systems.
 
 5
-00:00:14.600 --> 00:00:18.562
-No federal document requires
-a Zero Trust maturity stage.
+00:00:12.625 --> 00:00:17.025
+No federal document requires a
+particular Zero Trust maturity stage.
 
 6
-00:00:18.562 --> 00:00:24.362
+00:00:17.025 --> 00:00:22.825
 And BOD 25-01 covers cloud tenants,
 not the on-premises forest.
 
 7
-00:00:24.362 --> 00:00:27.350
-Why one program rather
-than a set of projects?
+00:00:22.825 --> 00:00:25.825
+So why one program instead
+of a set of projects?
 
 8
-00:00:27.350 --> 00:00:31.075
+00:00:25.825 --> 00:00:29.338
 Because every project touches
-the same implicit decisions.
+the same hidden decisions.
 
 9
-00:00:31.075 --> 00:00:34.613
+00:00:29.338 --> 00:00:32.574
 Intune needs the policy
-that GPO links carried.
+that Group Policy carried.
 
 10
-00:00:34.613 --> 00:00:39.000
+00:00:32.574 --> 00:00:36.963
 Retiring directory DNS needs
 the names the forest registered.
 
 11
-00:00:39.000 --> 00:00:42.871
-Rediscovered project by project,
-they're answered differently;
+00:00:36.963 --> 00:00:40.133
+Left to each project, those
+get answered differently,
 
 12
-00:00:42.871 --> 00:00:46.888
-owned by no project, they fall
-between them until something breaks.
+00:00:40.133 --> 00:00:43.087
+or fall between projects
+until something breaks.
 
 13
-00:00:46.888 --> 00:00:50.450
-A program can sequence the work
-against the external dates.
+00:00:43.087 --> 00:00:45.977
+A program can sequence the
+work against the dates;
 
 14
-00:00:50.450 --> 00:00:53.025
-A collection of projects
-can only race them.
+00:00:45.977 --> 00:00:48.162
+separate projects can only race them.
 
 15
-00:00:53.025 --> 00:00:57.065
-The sequence starts with
-identity, because policy, access,
+00:00:48.162 --> 00:00:52.738
+It starts with identity, because everything
+else decides based on who's asking.
 
 16
-00:00:57.065 --> 00:01:00.937
-devices and data all decide on
-the basis of who is asking.
+00:00:52.738 --> 00:00:54.601
+So: fund it as one sequence,
 
 17
-00:01:00.937 --> 00:01:04.385
-So, three conclusions: fund
-the work as one sequence,
-
-18
-00:01:04.385 --> 00:01:09.700
-hold gates on evidence rather than the
+00:00:54.601 --> 00:00:59.900
+gate on evidence rather than the
 calendar, and be honest about maturity.

@@ -1,98 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.850
-Microsoft isn't retiring Active Directory.
+00:00:00.050 --> 00:00:04.813
+Microsoft isn't retiring Active Directory;
+it still supports and develops it.
 
 2
-00:00:02.850 --> 00:00:06.150
-It still supports and
-develops Windows Server AD.
+00:00:04.813 --> 00:00:08.887
+But every road now points to the
+cloud, and some of the dates are real.
 
 3
-00:00:06.150 --> 00:00:09.987
-But every road now points to the
-cloud, and the dates are real.
+00:00:08.887 --> 00:00:13.545
+NTLM is deprecated, and its
+first version is already
 
 4
-00:00:09.987 --> 00:00:15.391
-In June 2024 Microsoft
-deprecated all versions of NTLM,
+00:00:13.545 --> 00:00:17.987
+gone from Windows 11 24H2
+and Windows Server 2025.
 
 5
-00:00:15.391 --> 00:00:21.851
-and NTLMv1 is removed from Windows
-11 24H2 and Windows Server 2025.
+00:00:17.987 --> 00:00:22.513
+Entra ID now blocks sync from taking
+over privileged cloud accounts.
 
 6
-00:00:21.851 --> 00:00:25.582
-On July 1, 2026, Entra ID
-began blocking sync from
+00:00:22.513 --> 00:00:25.055
+And the date to circle is April 7, 2027:
 
 7
-00:00:25.582 --> 00:00:30.175
-taking over privileged or
-already-mapped cloud accounts.
+00:00:25.055 --> 00:00:29.464
+by then every Connect Sync server
+has to be on a current version
 
 8
-00:00:30.175 --> 00:00:34.176
-This month's security update
-restricts NTLMv1-derived single
+00:00:29.464 --> 00:00:34.212
+with application-based authentication,
+or synchronization stops.
 
 9
-00:00:34.176 --> 00:00:38.562
-sign-on credentials by default on
-devices without Credential Guard.
-
-10
-00:00:38.562 --> 00:00:44.515
-And by April 7, 2027, every Connect
-Sync server must run version 2.6.84.0
-
-11
-00:00:44.515 --> 00:00:51.212
-or later with application-based
-authentication, or synchronization stops.
-
-12
-00:00:51.212 --> 00:00:55.792
-Behind those dates is a direction:
+00:00:34.212 --> 00:00:38.940
+Behind the dates is a direction:
 Cloud Sync replacing Connect Sync,
 
+10
+00:00:38.940 --> 00:00:41.949
+and cloud authentication instead of AD FS.
+
+11
+00:00:41.949 --> 00:00:43.850
+The trap is lift and shift.
+
+12
+00:00:43.850 --> 00:00:49.397
+Sync the forest as it stands, and twenty-five
+years of organizational units (OUs),
+
 13
-00:00:55.792 --> 00:00:58.363
-cloud authentication instead of AD FS,
-
-14
-00:00:58.363 --> 00:01:02.862
-and sources of authority converted
-to the cloud one object at a time.
-
-15
-00:01:02.862 --> 00:01:04.924
-The trap is the lift and shift.
-
-16
-00:01:04.924 --> 00:01:10.265
-Synchronize the forest as it stands, and
-twenty-five years of organizational units,
-
-17
-00:01:10.265 --> 00:01:14.212
+00:00:49.397 --> 00:00:53.750
 stale accounts and undocumented
 trusts arrive in the tenant.
 
-18
-00:01:14.212 --> 00:01:17.869
-Meanwhile the governance
-that the hierarchy carried,
+14
+00:00:53.750 --> 00:00:58.936
+Meanwhile the governance that hierarchy
+carried, who could manage what and where
 
-19
-00:01:17.869 --> 00:01:22.013
-who could manage what and where
-policy applied, is left behind,
-
-20
-00:01:22.013 --> 00:01:26.300
-because Entra ID has no organizational
-unit (OU) tree to carry it.
+15
+00:00:58.936 --> 00:01:03.650
+policy applied, gets left behind, because
+Entra ID has no OU tree to carry it.
