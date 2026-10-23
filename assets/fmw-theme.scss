@@ -30,9 +30,10 @@ $link-color: $fmw-teal-text;
 $link-hover-color: $fmw-teal;
 $code-color: $fmw-navy;
 
-$navbar-bg: #ffffff;
-$navbar-fg: $fmw-navy;
-$navbar-hl: $fmw-teal-text;
+// Dark top bar with white text (the site's original navbar).
+$navbar-bg: #000000;
+$navbar-fg: #ffffff;
+$navbar-hl: #ffffff;
 $sidebar-fg: $fmw-ink;
 $sidebar-hl: $fmw-teal-text;
 $toc-color: $fmw-teal-text;
@@ -59,21 +60,25 @@ a:focus-visible {
   border-radius: 3px;
 }
 
-// Navbar: white, with the brand set in the serif.
+// Navbar: dark with white text, the brand set in the serif.
 .navbar {
-  border-bottom: 1px solid $fmw-line;
+  border-bottom: 1px solid #2a2d30;
   box-shadow: none;
 }
 .navbar-brand .navbar-title {
   font-family: $headings-font-family;
   font-size: 1.3rem;
-  color: $fmw-navy;
+  color: #ffffff;
 }
 .navbar .nav-link {
   font-weight: 500;
 }
 .navbar .nav-link.active {
-  box-shadow: inset 0 -2px 0 $fmw-teal;
+  box-shadow: inset 0 -2px 0 #5fc4bf;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible {
+  color: #d9f2f0;
 }
 
 // Page header: the Inspiration page's hero, scaled to a content column.
