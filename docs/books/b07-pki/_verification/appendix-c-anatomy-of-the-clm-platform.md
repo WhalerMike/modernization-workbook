@@ -34,3 +34,9 @@ New appendix, written October 23, 2026, at the user's request: "describe each co
 | Outbound certificate verification defaults to None | In the research guide's hardening slide |
 | Answer-file `TrustServerCertificate` wording | Vendor wording conflicts with Microsoft's meaning; left for the vendor ask list |
 | JavaKeyHost service | Purpose not documented |
+
+## Addition, October 23, 2026
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Links to each book's certificate section, with counts of kinds the platform renews | Where the other books' certificates meet the platform | restated (internal links; counts from the sections) | The 17 sections |

@@ -148,6 +148,23 @@ Custom tasks must be idempotent and use bounded retry with backoff for transient
 For each leaver: the HR effective date; the disable and token-revocation timestamps; the device actions and their completion; the CMS revocation record and the CRL that published it; the access removals; any exceptions and how they closed; and the disposition date. Two intervals come out of it: HR effective date to the block (steps 1–2), and HR effective date to the last confirmed revocation. They are what an assessor asks for under PS-4, which requires disabling system access within an organization-defined period and revoking the person's authenticators and credentials (Chapter 11).[^c09-sp80053]
 
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| PIV authentication certificates bound to the Entra user | PIV | Federal PKI shared service provider | PIV card system | Nothing: the card management system issues and renews |
+| Derived PIV credentials | PIV | Federal PKI | PIV card system | Nothing |
+| Device certificates through Intune | Device and user auth (Intune) | Cloud PKI or AD CS through the connector | Intune | Nothing: Intune renews and revokes them |
+| TLS on agency-hosted HR middleware (Core HCM to Graph) | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews it on the host, if the middleware is agency-hosted (inference) |
+| Middleware service principal certificate | Not a Book 07 class | The app's owner | Entra ID or the app's owner | Nothing: an Entra credential |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b03-hr-identity/svg/certs-clm.svg){fig-alt="PIV authentication certificates bound to the Entra user, Derived PIV credentials go to PIV card system (renews piv credentials); Device certificates through Intune go to Intune (renews device certificates); TLS on agency-hosted HR middleware (Core HCM to Graph) go to CyberArk Certificate Manager (renews and installs); Middleware service principal certificate go to Entra ID or the app's owner (outside book 07's classes)."}
+
+The leaver sequence's certificate steps touch PIV and Intune only; the CLM platform holds none of a worker's personal certificates. Book 07 owns the issuer and renewal decisions for every class above ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)).
+
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 08 — Joiner, Mover, Leaver](08-joiner-mover-leaver.md) · [Book index](index.md) · [Next: Chapter 10 — From Attributes to Access →](10-from-attributes-to-access.md)

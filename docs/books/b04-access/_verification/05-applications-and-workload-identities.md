@@ -105,3 +105,12 @@ identities, workload identity federation and Conditional Access for workload ide
 | EAAG — Assigning and updating Application Owners in Entra ID (portal steps) | — | Click-path runbook stays in the linked Help Desk guide |
 
 | SC1 | The program's user-consent setting meets SCuBA MS.AAD.5.2v1 ("User consent to applications SHALL be restricted"), via CISA's flexible option (verified publishers, admin-classified low-risk permissions) | §User consent | verified (added) | https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md (opened Oct 21, 2026) |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+| 2 | CyberArk mechanism (drivers) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-drivers |

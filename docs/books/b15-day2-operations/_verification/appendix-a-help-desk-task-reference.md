@@ -75,3 +75,11 @@ Method, October 21, 2026: every role claim checked against Microsoft Learn's "Le
 | Claim | Result | Source |
 |---|---|---|
 | Synchronized-account password reset is not help-desk work in Entra ID | corrected: with password writeback enabled, an admin reset in the Microsoft Entra admin center is written back to AD (not from the Microsoft 365 admin center); now consistent with Chapter 03 | Microsoft Learn, concept-sspr-writeback (item 4); password-writeback-microsoft-365-admin-center troubleshooting article |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |

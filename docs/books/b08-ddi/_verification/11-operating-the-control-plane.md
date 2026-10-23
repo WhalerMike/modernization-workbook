@@ -124,3 +124,13 @@ The complete guide ledger, every section, is in `_verification/10-migration-sequ
 |---|---|
 | `ch11-delegated-administration.flow.yaml` | Kept; comment corrected to Chapter 11 |
 | `ch11-evidence-flow.flow.yaml` | New: three evidence streams and their consumers |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+| 2 | CyberArk mechanism (acme) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-acme |
+| 3 | ACME clients named (Posh-ACME, lego) aren't CyberArk-tested; non-FIPS ACME servers | Certificate automation; new section | added: CyberArk tested certbot, win-acme, acme.sh; ACME servers not in FIPS mode | CyberArk 26.1 ACME; Deploying on Windows Server |

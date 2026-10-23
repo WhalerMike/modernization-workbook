@@ -87,3 +87,14 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | 6 | Migrate before retirement; backups not the archive; keep full names on directories | Records checklist | verified (quoted) | 36 CFR 1236.14(a), (b)(3); 1236.20(c); 1236.22(a)(3) |
 | 7 | Permanent records transferred electronically with metadata since June 30, 2024 | Records checklist | verified | M-23-07 §1.2 (archives.gov copy) |
 | 8 | Checklist ordering | Records checklist | restated-as-design | — |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+| 2 | CyberArk mechanism (capi) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-capi |
+| 3 | CyberArk mechanism (revmon) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-revmon |
+| 4 | Operating cadence and outcome rows monitored Cloud PKI only | Operating cadence; scorecard | corrected: three engines, CLM inventory | Book 07 Ch08 |

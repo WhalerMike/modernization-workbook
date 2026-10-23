@@ -528,6 +528,23 @@ Every plane in the six families is one of four kinds:
 
 Anything outside that list is a finding: `DRIFT-SCHEMA` if a plane appeared without a recorded decision, `DRIFT-PROVENANCE` if its origin can't be traced, `DRIFT-AUTHZ` if its authorization drifted from the group mapping. The host is governed by the closure of this list, not by the absence of incidents.
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| HTTPS Git (Gitea) TLS on 443 | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews it; the CAPI driver binds IIS and grants the app pool read access to the key |
+| Optional API TLS and WinRM over HTTPS | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews them |
+| Gitea's LDAPS connection to domain controllers | Domain controller and LDAPS | Retained AD CS | AD CS autoenrollment | Watches the DC certificates |
+| Hook signing | Code signing | CA chosen by the CISO | Platform-managed, or not X.509 | At most watches; signing is a separate CyberArk product |
+| Google's trust of Entra's SAML signing certificate | Not a Book 07 class | Entra | Entra ID or the app's owner | Nothing |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b10-cloud-boundary/svg/certs-clm.svg){fig-alt="HTTPS Git (Gitea) TLS on 443, Optional API TLS and WinRM over HTTPS go to CyberArk Certificate Manager (renews and installs); Gitea's LDAPS connection to domain controllers go to AD CS autoenrollment (renews; the platform only watches); Hook signing go to Platform-managed, or not X.509 (no clm lifecycle); Google's trust of Entra's SAML signing certificate go to Entra ID or the app's owner (outside book 07's classes)."}
+
+The conformance adapter's TLS inventory (D.4) duplicates what the CLM platform already holds; reconcile the two, or read the platform's inventory through its API (inference).[^clm-capi]
+
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Appendix A — What to Ask a Cloud Provider For](appendix-a-what-to-ask-for.md) · [Book index](index.md)
@@ -570,3 +587,4 @@ Anything outside that list is a finding: `DRIFT-SCHEMA` if a plane appeared with
 [^aB-appcontrol]: Microsoft Learn, "App Control for Business and AppLocker Overview," section "Choose when to use App Control or AppLocker," <https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/appcontrol-and-applocker-overview> (accessed Oct 21, 2026).
 [^aB-ado-server]: Microsoft Learn, "Azure DevOps Server Release Notes," Azure DevOps Server release date December 9, 2025, <https://learn.microsoft.com/azure/devops/server/release-notes/azuredevopsserver?view=azure-devops> (accessed Oct 21, 2026).
 [^aB-nist]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020; minor release 5.2.0, August 27, 2025), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 21, 2026).
+[^clm-capi]: CyberArk, Certificate Manager, Self-Hosted 26.1, "CAPI" application driver (installs certificates and keys into the Windows CAPI store over WinRM, optionally binds IIS, and can grant a named Windows identity read access to the private key), <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/cco-CAPI-AppDriverConfig-tpp.php> and <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/r-CAPI-AppObjSettings-tpp.php> (accessed Oct 23, 2026).

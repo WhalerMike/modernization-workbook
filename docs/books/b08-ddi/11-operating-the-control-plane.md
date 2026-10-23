@@ -80,7 +80,7 @@ DDI platforms generally do not provide full certificate lifecycle management. Wh
 - ACME clients and plug-ins call the DDI API to create and remove the TXT records that DNS-01 validation needs. Posh-ACME and lego, for example, both ship Infoblox plug-ins that work through the NIOS WAPI,[^c11-poshacme][^c11-lego] so check support for the management plane actually in use.
 - Issuance and renewal can then be automated without exposing web servers, provided the automation account's permissions are scoped to the names it serves. Both plug-ins expect an account limited to modifying TXT records in the relevant zones or view.[^c11-poshacme][^c11-lego]
 - DNSSEC, CAA records and consistent private endpoint resolution ([Chapter 06](06-dns-identity-and-dnssec.md) and [Chapter 07](07-cloud-private-endpoints-and-ipam.md)) remain prerequisites for trustworthy certificate validation after issuance.
-- Certificate inventory, multi-CA orchestration and post-issuance deployment still need a dedicated certificate lifecycle platform or process that uses the DDI policy plane ([Book 07](../b07-pki/index.md)).
+- Certificate inventory, multi-CA orchestration and post-issuance deployment still need a dedicated certificate lifecycle platform that uses the DDI policy plane: in this program, CyberArk Certificate Manager ([Book 07](../b07-pki/index.md); see [Certificates in this book and the CLM platform](#certificates-and-the-clm-platform)).
 
 ## Identity governance integration
 
@@ -207,6 +207,23 @@ For a program office or an authorization package. The first five items are the f
 - Rogue DHCP and router advertisement detection, and option 6 and RDNSS consistency controls, documented.
 - Delegated roles and scopes reviewed, with DnsAdmins and equivalent privileged memberships justified.
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| DoH and DoT resolver certificates | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews them; CAPI driver for Windows DNS, an Adaptable driver or vendor API for appliances (inference) |
+| Public names issued through ACME dns-01 | Public TLS | Public CA authorized by CAA | CyberArk Certificate Manager | Its ACME service issues; the DDI API writes the TXT records |
+| CRL and OCSP names resolvable from every origin | CA certificates and CRLs | The hierarchy | AD CS autoenrollment | Revocation monitoring checks the endpoints |
+| MTA-STS policy host and TLSA-pinned services | Internal server TLS | Retained AD CS or public CA | CyberArk Certificate Manager | Renews the leaf; TLSA records must change with it (inference) |
+| DNSSEC KSK and ZSK | Not a Book 07 class | The DNS platform | Platform-managed, or not X.509 | Nothing: DNSSEC keys aren't X.509 certificates |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b08-ddi/svg/certs-clm.svg){fig-alt="DoH and DoT resolver certificates, Public names issued through ACME dns-01, MTA-STS policy host and TLSA-pinned services go to CyberArk Certificate Manager (renews and installs); CRL and OCSP names resolvable from every origin go to AD CS autoenrollment (renews; the platform only watches); DNSSEC KSK and ZSK go to Platform-managed, or not X.509 (no clm lifecycle)."}
+
+The program's ACME server is CyberArk Certificate Manager's ACME service. CyberArk tested it with certbot, win-acme and acme.sh, and it must run on servers that aren't in FIPS mode; validate any other client, such as Posh-ACME or lego, before relying on it.[^clm-acme]
+
+
 ::: {.callout-note}
 ## What this chapter establishes
 1. A single policy plane must still give each division scoped autonomy, with one audit trail, and any DNS left on Windows or Azure needs the same discipline.
@@ -248,3 +265,4 @@ For a program office or an authorization package. The first five items are the f
 [^c11-vnet-manage]: Microsoft Learn, "Create, change, or delete a virtual network" (Change DNS servers), <https://learn.microsoft.com/azure/virtual-network/manage-virtual-network> (accessed Oct 20, 2026).
 [^c11-dangling]: Microsoft Learn, "Prevent dangling DNS entries and avoid subdomain takeover," <https://learn.microsoft.com/azure/security/fundamentals/subdomain-takeover> (accessed Oct 20, 2026).
 [^c11-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026).
+[^clm-acme]: CyberArk, 26.1, "ACME" (RFC 8555 with http-01 and dns-01; tested with certbot, win-acme and acme.sh), <https://docs.venafi.com/Docs/current/TopNav/Content/ACME/cco-ACME-about.php>, and "Deploying on Windows Server" ("you cannot have FIPS enabled on any server that is used for ACMEv2"), <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-deploy-windows-server.php> (accessed Oct 23, 2026).

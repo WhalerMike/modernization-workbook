@@ -127,3 +127,16 @@ Writer: W5. Verified 2026-10-21. Sources: `docs/operational-guides/network-trans
 | — Closing series paragraph | — | Not carried: series-internal |
 | Network access charter — §4 in-scope "customer-edge enforcement (802.1X, boundary controls)"; §6 success criterion "customer-edge enforcement approach documented with accreditation path" | Opening (customer-edge half), Rolling it out | Charter otherwise carried in Chapter 09 |
 | Network access plan — Phase 4 customer-edge enforcement | Rolling it out; Chapter 09 plan table | — |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+| 2 | CyberArk mechanism (capi) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-capi |
+| 3 | CyberArk mechanism (est) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-est |
+| 4 | CyberArk mechanism (drivers) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-drivers |
+| 5 | CyberArk mechanism (pan) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-pan |
+| 6 | RADIUS server certificate issuer stated, renewal owner not | Certificates and supplicant profiles | added: renewed through CyberArk Certificate Manager, network team owns it | Book 07 Ch05 |

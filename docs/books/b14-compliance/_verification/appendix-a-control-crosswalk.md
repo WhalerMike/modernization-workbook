@@ -204,3 +204,12 @@ Method, all on October 21, 2026:
 | FedRAMP 20x KSI view | Corrections table | Pilot-era theme mappings superseded by the 2026 indicators |
 | Notes and caveats | How to read (enhancement rows; dated status) | Regeneration instructions are internal |
 | Controls addressed but not yet closed | Status column (partly closed, open); "What the crosswalk shows" | Family counts and back-fill-queue framing dropped |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+| 2 | CyberArk mechanism (acme) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-acme |

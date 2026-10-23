@@ -133,7 +133,7 @@ The program's registry lists Infoblox, BlueCat Address Manager, and a generic RF
 
 ### PKI and certificate services (DM_020, critical)
 
-Active Directory Certificate Services (AD CS) is embedded deeply in most federal environments. Auto-enrollment flows through Group Policy, machine certificates support 802.1X and VPN, and smart card logon to Windows relies on trust configuration anchored in the domain. The failure mode is the reason this adapter is critical: certificates keep working until they expire. If the replacement CA isn't issuing before the first expiry wave, authentication fails across the organization weeks or months after the migration was declared complete.
+Active Directory Certificate Services (AD CS) is embedded deeply in most federal environments. Auto-enrollment flows through Group Policy, machine certificates support 802.1X and VPN, and smart card logon to Windows relies on trust configuration anchored in the domain. The failure mode is the reason this adapter is critical: certificates keep working until they expire. If the target issuers aren't issuing before the first expiry wave, authentication fails across the organization weeks or months after the migration was declared complete.
 
 Required capabilities:
 
@@ -148,10 +148,10 @@ Migration sequence:
 
 1. Inventory every issued certificate and its expiry date.
 2. Map certificates to identity objects.
-3. Stand up the replacement CA **before** any AD retirement begins.
+3. Confirm Book 07's target issuers are issuing **before** any AD retirement begins: the retained AD CS through the CLM platform for server certificates, Cloud PKI for Intune devices, and AD CS autoenrollment for domain controllers until the last one retires ([Book 07, Chapter 04](../b07-pki/04-the-target-pki.md)). There is no single replacement CA.
 4. Move auto-enrollment to Intune certificate profiles.
-5. Validate the certificate chain through the new CA.
-6. Retire AD CS only after every renewal is confirmed through the new CA.
+5. Validate each certificate's chain through the target issuer for its class.
+6. Retire each AD CS role only when Book 07's decommissioning gate is met ([Book 07, Chapter 08](../b07-pki/08-lifecycle-monitoring-and-decommissioning.md#decommissioning-ad-cs)).
 
 Three corrections to the target architecture:
 
@@ -247,7 +247,7 @@ Retirement criteria (all must be true):
 - No application uses on-premises AD authentication.
 - Every device is managed by Intune with no AD dependency.
 - Every service account has moved to an Entra ID workload identity.
-- AD CS is replaced; DNS, RADIUS, and LDAP applications are migrated and validated.
+- Certificate issuance has moved to Book 07's target issuers, with AD CS retained where Book 07 keeps it; DNS, RADIUS, and LDAP applications are migrated and validated.
 
 These six conditions are the core of the 12-point retirement readiness checklist in the program's adapter specification. HR-sourced provisioning is the subject of [the provisioning pipeline in the HR-driven IAM series](../b03-hr-identity/05-the-provisioning-pipeline.md).
 
@@ -329,7 +329,7 @@ After all adapters have moved, the program's validation checklist (DM_090) is th
 | Service | Passes when |
 |---|---|
 | DNS and DHCP | Zones resolve without AD-integrated storage; no client still depends on DC locator records; no rogue DHCP |
-| PKI | Every renewal in the expiry window issued by the new CA; trust chain validated on every platform |
+| PKI | Every renewal in the expiry window issued by the target issuer for its class ([Book 07, Chapter 04](../b07-pki/04-the-target-pki.md)); trust chain validated on every platform |
 | RADIUS | Every RADIUS client points at the new service; 30-day parallel window closed with no failures |
 | LDAP | Every application in the dependency map validated against its target; no bind traffic to domain controllers |
 | Sync engine | All six retirement criteria true |
@@ -354,6 +354,25 @@ The adapters need data, and that data comes from the identity and directory tran
 | Dependencies | Systems that break if a domain controller, GPO, or trust is removed |
 
 The output is a decision-ready inventory that feeds identity transformation sequencing, GPO sunset planning, application remediation, and residual-risk acceptance. [Chapter 07](07-read-only-discovery.md) explains how to collect it without changing the forest, and [Chapter 08](08-assessing-the-forest.md) turns it into an assessment.
+
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| Server certificates now on autoenrollment (web, SQL, NPS, VPN) | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Takes over renewal from server autoenrollment |
+| RADIUS and NPS server certificates (DM_030) | RADIUS and 802.1X servers | Retained AD CS | CyberArk Certificate Manager | Renews them; the CAPI driver installs them on NPS |
+| AD FS and Web Application Proxy service TLS | Internal server TLS | Retained AD CS or a public CA | CyberArk Certificate Manager | Renews them until AD FS retires |
+| Domain controller and LDAPS certificates | Domain controller and LDAPS | Retained AD CS | AD CS autoenrollment | Watches; autoenrollment renews until the last DC retires |
+| Intune device certificates (SCEP or PKCS) | Device and user auth (Intune) | Cloud PKI, or AD CS through the connector | Intune | Nothing: Intune renews them |
+| AD FS token-signing and decrypting | Not a Book 07 class | AD FS | Platform-managed, or not X.509 | Nothing: AD FS manages them, and they retire with AD FS |
+| Service principal certificates | Not a Book 07 class | Key Vault or the pipeline | Entra ID or the app's owner | Nothing: rotated by the app's owner |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b02-identity/svg/certs-clm.svg){fig-alt="Server certificates now on autoenrollment (web, SQL, NPS, VPN), RADIUS and NPS server certificates (DM_030), AD FS and Web Application Proxy service TLS go to CyberArk Certificate Manager (renews and installs); Domain controller and LDAPS certificates go to AD CS autoenrollment (renews; the platform only watches); Intune device certificates (SCEP or PKCS) go to Intune (renews device certificates); AD FS token-signing and decrypting go to Platform-managed, or not X.509 (no clm lifecycle); Service principal certificates go to Entra ID or the app's owner (outside book 07's classes)."}
+
+There is no single replacement CA. Book 07 keeps AD CS for domain controllers and LDAPS while the domain exists, issues internal server certificates from the retained AD CS through the CLM platform, and moves server issuance to a standalone AD CS issuing CA under the same root after the forest retires ([Book 07, Chapter 04](../b07-pki/04-the-target-pki.md#the-issuer-decision-for-internal-server-certificates)).[^clm-capi]
+
 
 ::: {.callout-tip}
 ## Continue the book
@@ -389,3 +408,4 @@ The output is a decision-ready inventory that feeds identity transformation sequ
 [^c04-azfiles-kerb]: Microsoft Learn, "Enable Microsoft Entra Kerberos authentication for hybrid and cloud-only identities on Azure Files," <https://learn.microsoft.com/azure/storage/files/storage-files-identity-auth-hybrid-identities-enable> (accessed Oct 20, 2026).
 [^c04-azfiles-dfs]: Microsoft Learn, "How to use DFS Namespaces with Azure Files," <https://learn.microsoft.com/azure/storage/files/files-manage-namespaces> (accessed Oct 20, 2026).
 [^c04-entra-kerberos]: Microsoft Learn, "Introduction to Microsoft Entra Kerberos," <https://learn.microsoft.com/entra/identity/authentication/kerberos> (accessed Oct 20, 2026).
+[^clm-capi]: CyberArk, Certificate Manager, Self-Hosted 26.1, "CAPI" application driver (installs certificates and keys into the Windows CAPI store over WinRM, optionally binds IIS, and can grant a named Windows identity read access to the private key), <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/cco-CAPI-AppDriverConfig-tpp.php> and <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/r-CAPI-AppObjSettings-tpp.php> (accessed Oct 23, 2026).
