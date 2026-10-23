@@ -6,135 +6,101 @@ Now turn the worklist into a program
 the authorizing official can see.
 
 2
-00:00:04.488 --> 00:00:08.707
-Every finding that isn't fixed in the
-next change window and isn't covered
+00:00:04.488 --> 00:00:08.936
+Every finding that isn't fixed in the next
+change window and isn't covered by an
 
 3
-00:00:08.707 --> 00:00:12.787
-by an approved exception becomes a
-plan of action and milestones item.
+00:00:08.936 --> 00:00:12.691
+approved exception becomes a plan
+of action and milestones item,
 
 4
-00:00:12.787 --> 00:00:18.617
-SP 800-53 requires one for each
-system, updated from assessments
+00:00:12.691 --> 00:00:15.124
+which the authorizing official approves.
 
 5
-00:00:18.617 --> 00:00:22.549
-and continuous monitoring, and the
-authorizing official approves it.
+00:00:15.124 --> 00:00:17.442
+Each item names the owner, the control,
 
 6
-00:00:22.549 --> 00:00:26.609
-Each item names the pillar owner,
-the control it bears on, the evidence
+00:00:17.442 --> 00:00:22.150
+the evidence that will show it closed,
+and the re-assessment that will test it.
 
 7
-00:00:26.609 --> 00:00:31.025
-that will show it closed, and the
-re-assessment that will test that evidence.
+00:00:22.150 --> 00:00:26.703
+Behind those items, the program
+seals each tool's unaltered output,
 
 8
-00:00:31.025 --> 00:00:34.753
-Behind those items, the program
-wraps each tool's unaltered
+00:00:26.703 --> 00:00:30.925
+with its provenance, into a bundle
+that rebuilds byte for byte.
 
 9
-00:00:34.753 --> 00:00:38.100
-output with its provenance
-and seals it into a bundle.
+00:00:30.925 --> 00:00:33.561
+An assessor can rebuild
+it months later and
 
 10
-00:00:38.100 --> 00:00:41.478
-Because the same inputs produce
-a byte-identical bundle,
+00:00:33.561 --> 00:00:36.050
+walk back from a finding
+to the raw result.
 
 11
-00:00:41.478 --> 00:00:44.928
-an assessor can rebuild it
-months later and walk back from
-
-12
-00:00:44.928 --> 00:00:48.162
-a finding to the raw result
-without re-running the tool.
-
-13
-00:00:48.162 --> 00:00:51.775
+00:00:36.050 --> 00:00:39.662
 That's the difference between an
 archived opinion and evidence.
 
-14
-00:00:51.775 --> 00:00:56.352
+12
+00:00:39.662 --> 00:00:44.240
 Re-assessment runs on a calendar the
 program lead owns, and after each
 
-15
-00:00:56.352 --> 00:01:01.250
+13
+00:00:44.240 --> 00:00:49.138
 remediation wave, so a finding is closed
 by evidence, not by a ticket status.
 
+14
+00:00:49.138 --> 00:00:51.163
+ScubaGear's floor is quarterly.
+
+15
+00:00:51.163 --> 00:00:56.011
+And drift goes to the authorizing
+official, not only to security operations,
+
 16
-00:01:01.250 --> 00:01:06.713
-BOD 25-01's reporting routes set the
-floor for ScubaGear at quarterly.
+00:00:56.011 --> 00:01:00.475
+because a control that newly fails
+is a change to an authorized system.
 
 17
-00:01:06.713 --> 00:01:10.420
-A Zero Trust Assessment score
-is compared across runs only
+00:01:00.475 --> 00:01:04.312
+The book calls that the cheapest
+adoption step in its final chapter.
 
 18
-00:01:10.420 --> 00:01:13.976
-on the same tool version, or
-after a review of what changed.
-
-19
-00:01:13.976 --> 00:01:18.925
-And drift goes to the authorizing
-official, not only to security operations.
-
-20
-00:01:18.925 --> 00:01:21.805
-A control that passed
-every interval and failed
-
-21
-00:01:21.805 --> 00:01:24.613
-the last one is a change
-to an authorized system.
-
-22
-00:01:24.613 --> 00:01:28.088
-The book calls treating that
-drift as something the official
-
-23
-00:01:28.088 --> 00:01:31.087
-sees the cheapest adoption
-step in its final chapter.
-
-24
-00:01:31.087 --> 00:01:34.141
+00:01:04.312 --> 00:01:07.349
 So the decision sits with
 the authorizing official:
 
-25
-00:01:34.141 --> 00:01:36.840
-receive interval-to-interval
-drift findings,
+19
+00:01:07.349 --> 00:01:11.799
+receive drift findings every assessment
+interval, prepared by the program
 
-26
-00:01:36.840 --> 00:01:40.035
-prepared by the program lead
-and security operations,
+20
+00:01:11.799 --> 00:01:16.037
+lead and security operations, and
+decide which are significant changes.
 
-27
-00:01:40.035 --> 00:01:44.438
-every assessment interval, and decide
-which ones are significant changes.
-
-28
-00:01:44.438 --> 00:01:45.910
+21
+00:01:16.037 --> 00:01:17.462
 Stand it up this quarter.
+
+22
+00:01:17.462 --> 00:01:20.210
+To close, the decisions in one place.

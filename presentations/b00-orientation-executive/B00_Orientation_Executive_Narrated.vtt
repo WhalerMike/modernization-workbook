@@ -1,2247 +1,1764 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.314
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.048
 This is the executive
 briefing for Book 00 of the
 
-2
-00:00:03.314 --> 00:00:07.313
+3
+00:00:04.048 --> 00:00:08.074
 Federal Modernization Workbook,
 Orientation and Program.
 
-3
-00:00:07.313 --> 00:00:12.097
+4
+00:00:08.074 --> 00:00:12.860
 It runs about thirty minutes, and it's
 for the people who sponsor, fund and
 
-4
-00:00:12.097 --> 00:00:17.612
+5
+00:00:12.860 --> 00:00:18.375
 answer for modernization: executive
 sponsors, CIOs, CISOs and program executives.
 
-5
-00:00:17.612 --> 00:00:18.825
-One point first.
-
 6
-00:00:18.825 --> 00:00:23.062
+00:00:18.375 --> 00:00:19.563
+One point up front.
+
+7
+00:00:19.563 --> 00:00:23.799
 The workbook is independent technical
 guidance, not federal policy.
 
-7
-00:00:23.062 --> 00:00:25.826
-Where it says a law,
-memorandum or directive
-
 8
-00:00:25.826 --> 00:00:28.437
-requires something, it cites that source.
+00:00:23.799 --> 00:00:28.162
+Where it says a law or directive
+requires something, it cites the source.
 
 9
-00:00:28.437 --> 00:00:31.986
-Everything else, including
-the program's phases, gates,
+00:00:28.162 --> 00:00:32.852
+The phases, gates, principles and
+decision rights are the workbook's own
 
 10
-00:00:31.986 --> 00:00:36.558
-principles and decision rights, is
-the workbook's own recommendation:
+00:00:32.852 --> 00:00:37.938
+recommendation: one way to meet those
+requirements, not a requirement itself.
 
 11
-00:00:36.558 --> 00:00:40.500
-one way to meet those requirements,
-not a requirement itself.
-
-12
-00:00:40.500 --> 00:00:41.925
+00:00:37.938 --> 00:00:39.363
 The argument is short.
 
-13
-00:00:41.925 --> 00:00:46.462
+12
+00:00:39.363 --> 00:00:43.899
 For twenty years Active Directory
 quietly did governance nobody wrote down.
 
-14
-00:00:46.462 --> 00:00:51.612
-Federal policy and vendor lifecycles
+13
+00:00:43.899 --> 00:00:49.163
+Federal policy and vendor support dates
 now set clocks the estate can't ignore.
 
-15
-00:00:51.612 --> 00:00:56.950
-Meeting them one product at a time rebuilds
-the same governance gaps in a new place,
+14
+00:00:49.163 --> 00:00:53.848
+Meeting them one product at a time
+rebuilds the same gaps somewhere new,
 
-16
-00:00:56.950 --> 00:01:00.325
+15
+00:00:53.848 --> 00:00:57.263
 so modernization has to run
 as one governed program.
 
+16
+00:00:57.263 --> 00:01:01.951
+I'll cover why now, what the program
+is, who decides, and how it runs.
+
 17
-00:01:00.325 --> 00:01:04.265
-I'll take four questions in order:
-why now, what the program is,
-
-18
-00:01:04.265 --> 00:01:08.125
-who decides, and how it runs
-from pre-flight to steady state.
-
-19
-00:01:08.125 --> 00:01:13.040
+00:01:01.951 --> 00:01:06.500
 Every decision slide names the decision,
 its owner, and when it's needed.
 
-20
-00:01:13.790 --> 00:01:14.828
+18
+00:01:06.500 --> 00:01:08.100
+Let's start with why.
+
+19
+00:01:08.850 --> 00:01:09.888
 Start with why.
 
-21
-00:01:14.828 --> 00:01:19.124
+20
+00:01:09.888 --> 00:01:14.184
 Most federal estates still run
 the client/server model they built
 
-22
-00:01:19.124 --> 00:01:23.265
+21
+00:01:14.184 --> 00:01:18.325
 in the early 2000s, with an Active
 Directory forest at the center.
 
+22
+00:01:18.325 --> 00:01:21.407
+Placing a user or a computer
+in the tree decided,
+
 23
-00:01:23.265 --> 00:01:27.411
-Since Windows 2000, the organizational
-unit has grouped objects
+00:01:21.407 --> 00:01:25.200
+all at once and with no separate
+record, who administers it,
 
 24
-00:01:27.411 --> 00:01:31.327
-for delegating administrative
-rights and assigning policy.
+00:01:25.200 --> 00:01:28.678
+which Group Policy applies,
+what its groups can reach,
 
 25
-00:01:31.327 --> 00:01:34.426
-So placing a user or a
-computer in the tree decided,
+00:01:28.678 --> 00:01:32.313
+how it's named in DNS, and
+which certificates it receives.
 
 26
-00:01:34.426 --> 00:01:38.509
-at the same moment and with no
-separate record, who administers it,
-
-27
-00:01:38.509 --> 00:01:42.288
-which Group Policy applies to
-it, what its groups let it reach,
-
-28
-00:01:42.288 --> 00:01:47.202
-how it's named in directory-integrated
-DNS, and which certificates it receives.
-
-29
-00:01:47.202 --> 00:01:50.134
-It was efficient, and for
-a quarter century agencies
-
-30
-00:01:50.134 --> 00:01:53.202
-got governance as a side
+00:01:32.313 --> 00:01:35.987
+Agencies got governance as a side
 effect of running a directory.
 
+27
+00:01:35.987 --> 00:01:38.388
+The cost is that it
+was never written down.
+
+28
+00:01:38.388 --> 00:01:40.175
+The cloud doesn't inherit it.
+
+29
+00:01:40.175 --> 00:01:43.225
+Entra ID's administrative
+units can't be nested,
+
+30
+00:01:43.225 --> 00:01:46.745
+and Intune applies policy to
+groups with no hierarchy,
+
 31
-00:01:53.202 --> 00:01:55.302
-The cost is that it was never stated.
+00:01:46.745 --> 00:01:51.750
+where two policies that disagree produce
+a conflict, not an inheritance rule.
 
 32
-00:01:55.302 --> 00:01:57.440
-The cloud estate doesn't inherit it.
-
-33
-00:01:57.440 --> 00:02:00.802
-Entra ID's administrative
-units can't be nested.
-
-34
-00:02:00.802 --> 00:02:05.188
-Intune applies policy to groups
-with no hierarchy, and two policies
-
-35
-00:02:05.188 --> 00:02:09.652
-that disagree produce a conflict to
-resolve, not an inheritance rule.
-
-36
-00:02:09.652 --> 00:02:16.353
-Access, names and trust move to Conditional
-Access, a DDI platform and a target PKI.
-
-37
-00:02:16.353 --> 00:02:19.939
-Each replacement needs someone to
+00:01:51.750 --> 00:01:55.700
+So every replacement needs someone to
 decide what the old placement meant.
 
+33
+00:01:55.700 --> 00:01:58.837
+Retire the forest without
+recovering those decisions,
+
+34
+00:01:58.837 --> 00:02:01.088
+and you don't modernize your governance.
+
+35
+00:02:01.088 --> 00:02:02.088
+You delete it.
+
+36
+00:02:02.088 --> 00:02:05.981
+The first decision is the sponsor's,
+when the charter is signed:
+
+37
+00:02:05.981 --> 00:02:10.638
+treat this as governance reconstruction,
+not only a technical migration.
+
 38
-00:02:19.939 --> 00:02:23.420
-An agency that moves users
-and retires the forest without
+00:02:10.638 --> 00:02:13.300
+Next, the dates that make it urgent.
 
 39
-00:02:23.420 --> 00:02:27.190
-recovering those decisions
-doesn't modernize its governance.
+00:02:14.050 --> 00:02:18.750
+The second reason is the schedule, and
+the first set of clocks is federal policy.
 
 40
-00:02:27.190 --> 00:02:28.240
-It deletes it.
-
-41
-00:02:28.240 --> 00:02:32.177
-So the first decision is the
-sponsor's, when the charter is signed:
-
-42
-00:02:32.177 --> 00:02:37.377
-treat modernization as governance
-reconstruction, not only a technical migration.
-
-43
-00:02:37.377 --> 00:02:40.723
-If stakeholders don't accept
-that, the charter says,
-
-44
-00:02:40.723 --> 00:02:43.940
-resistance becomes the
-program's main risk.
-
-45
-00:02:44.690 --> 00:02:46.652
-The second reason is the schedule.
-
-46
-00:02:46.652 --> 00:02:51.640
-Two kinds of clock now set dates from
-outside, and the first is federal policy.
-
-47
-00:02:51.640 --> 00:02:55.454
-OMB M-22-09, from January 2022,
-
-48
-00:02:55.454 --> 00:03:00.277
-set Zero Trust objectives
+00:02:18.750 --> 00:02:24.300
+M-22-09 set Zero Trust objectives
 for the end of fiscal 2024.
 
-49
-00:03:00.277 --> 00:03:03.925
+41
+00:02:24.300 --> 00:02:28.000
 That date has passed, but
-the actions remain in force,
+the actions remain in force.
 
-50
-00:03:03.925 --> 00:03:06.639
-on-premises and hybrid as well as cloud.
-
-51
-00:03:06.639 --> 00:03:12.344
+42
+00:02:28.000 --> 00:02:34.434
 CISA's BOD 25-01 set mandatory
-configurations for cloud tenants,
+cloud tenant configurations,
 
-52
-00:03:12.344 --> 00:03:14.800
-with the policies due June 20, 2025,
+43
+00:02:34.434 --> 00:02:37.387
+with the policies due June 20, 2025.
 
-53
-00:03:14.800 --> 00:03:19.802
-and every new tenant baselined
-before its authorization to operate.
+44
+00:02:37.387 --> 00:02:42.245
+BOD 26-02 directs agencies
+to remove internet-facing
 
-54
-00:03:19.802 --> 00:03:26.706
-BOD 26-02, from February 2026, directs
-agencies to remove internet-facing
+45
+00:02:42.245 --> 00:02:47.875
+end-of-support edge devices, the
+listed ones by February 5, 2027.
 
-55
-00:03:26.706 --> 00:03:32.803
-end-of-support edge devices; the
-listed ones go by February 5, 2027.
+46
+00:02:47.875 --> 00:02:54.728
+FedRAMP's Consolidated Rules for 2026
+take mandatory effect on January 1, 2027,
 
-56
-00:03:32.803 --> 00:03:36.553
-OMB M-26-14, issued May 22, 2026,
-
-57
-00:03:36.553 --> 00:03:44.215
-rescinded M-21-31 and set a
-risk-based approach to logging.
-
-58
-00:03:44.215 --> 00:03:48.529
-And FedRAMP's Consolidated Rules
-for 2026, launched June 25,
-
-59
-00:03:48.529 --> 00:03:53.019
-take mandatory effect for all
-stakeholders on January 1, 2027,
-
-60
-00:03:53.019 --> 00:03:58.390
-and providers then have a year to follow
-them to keep their certification.
-
-61
-00:03:58.390 --> 00:04:04.915
-FedRAMP accepts no new Rev5 certification
+47
+00:02:54.728 --> 00:03:01.687
+and FedRAMP accepts no new Rev5 certification
 applications after June 11, 2027.
 
-62
-00:04:04.915 --> 00:04:09.244
-M-26-14 counts its deadlines
-from CISA's Logging
+48
+00:03:01.687 --> 00:03:04.188
+The one that needs
+attention first is logging.
 
-63
-00:04:09.244 --> 00:04:13.790
-Reference Architecture,
+49
+00:03:04.188 --> 00:03:09.995
+OMB M-26-14 rescinded M-21-31,
+and its deadlines count from
+
+50
+00:03:09.995 --> 00:03:16.938
+CISA's Logging Reference Architecture,
 published August 20, 2026.
 
-64
-00:04:13.790 --> 00:04:21.130
+51
+00:03:16.938 --> 00:03:22.076
 Counted from that date, the Agency Logging
-Plan falls on November 18 of this year,
+Plan falls on November 18 of this year.
 
-65
-00:04:21.130 --> 00:04:27.802
-Level 1 on December 18, Level 2 on February
-16, 2027, and Level 3 on July 6, 2027.
+52
+00:03:22.076 --> 00:03:26.075
+That's the program's arithmetic,
+not a date OMB published.
 
-66
-00:04:27.802 --> 00:04:32.390
-Those four dates are the program's
-arithmetic, not dates OMB published.
+53
+00:03:26.075 --> 00:03:29.899
+So the nearest decision: the CISO's
+office confirms those dates,
 
-67
-00:04:32.390 --> 00:04:36.163
-So the nearest decision: confirm
-them with the CISO's office,
+54
+00:03:29.899 --> 00:03:31.775
+starting with the logging plan.
 
-68
-00:04:36.163 --> 00:04:40.840
-starting with the logging plan, due
-November 18 by the program's count.
+55
+00:03:31.775 --> 00:03:34.030
+Next, the vendor clocks.
 
-69
-00:04:41.590 --> 00:04:44.202
+56
+00:03:34.780 --> 00:03:37.392
 The second set of clocks
 is vendor support.
 
-70
-00:04:44.202 --> 00:04:49.449
+57
+00:03:37.392 --> 00:03:42.639
 After end of support there are no new
 security updates and no assisted support,
 
-71
-00:04:49.449 --> 00:04:53.403
+58
+00:03:42.639 --> 00:03:46.593
 and for an estate built in the
 early 2000s, the dates cluster.
 
-72
-00:04:53.403 --> 00:05:01.064
-Windows 10 and Exchange Server 2016 and 2019
-ended in October 2025; SQL Server 2016,
+59
+00:03:46.593 --> 00:03:53.205
+Windows 10 and Exchange Server 2016
+and 2019 ended in October 2025.
 
-73
-00:05:01.064 --> 00:05:04.106
-SharePoint Server 2016 and 2019,
+60
+00:03:53.205 --> 00:03:57.912
+SQL Server 2016, SharePoint
+Server 2016 and 2019,
 
-74
-00:05:04.106 --> 00:05:10.303
-and the last Windows Server 2012
-security updates ended this year.
+61
+00:03:57.912 --> 00:04:03.443
+and the last Windows Server
+2012 updates ended this year.
 
-75
-00:05:10.303 --> 00:05:15.447
-Windows Server 2016 ends on January
-12, 2027, under three months away,
+62
+00:04:03.443 --> 00:04:06.926
+The one to watch is Windows Server 2016,
 
-76
-00:05:15.447 --> 00:05:21.602
-and it's the operating system of many domain
+63
+00:04:06.926 --> 00:04:11.717
+which ends on January 12,
+2027, under three months away.
+
+64
+00:04:11.717 --> 00:04:15.692
+It runs many of the domain
 controllers built in the last decade.
 
-77
-00:05:21.602 --> 00:05:29.889
-Windows Server 2019 and Microsoft Identity
-Manager 2016 end on January 9, 2029.
+65
+00:04:15.692 --> 00:04:20.648
+And Microsoft Identity Manager
+2016 ends on January 9, 2029,
 
-78
-00:05:29.889 --> 00:05:33.399
-Identity Manager's date
-was extended from 2026,
+66
+00:04:20.648 --> 00:04:26.717
+so an agency syncing HR data through it
+has a date, not an open-ended bridge.
 
-79
-00:05:33.399 --> 00:05:38.978
-so an agency that syncs HR data through
-it has a date, not an open-ended bridge.
-
-80
-00:05:38.978 --> 00:05:43.303
+67
+00:04:26.717 --> 00:04:31.042
 A vendor date isn't a federal mandate
 on its own, but the two connect.
 
-81
-00:05:43.303 --> 00:05:48.737
+68
+00:04:31.042 --> 00:04:36.996
 BOD 26-02 turns end of support into a
-directed action for internet-facing edge
+directed action for edge devices, and every
 
-82
-00:05:48.737 --> 00:05:52.472
-devices, and every system
-security plan asserts flaw
+69
+00:04:36.996 --> 00:04:43.042
+security plan promises flaw remediation
+an unsupported product can't deliver.
 
-83
-00:05:52.472 --> 00:05:56.378
-remediation that an unsupported
-product can't deliver.
-
-84
-00:05:56.378 --> 00:05:59.078
+70
+00:04:43.042 --> 00:04:46.082
 So running past end of
-support is a decision,
+support is a decision for the
 
-85
-00:05:59.078 --> 00:06:03.953
-and it belongs to the authorizing official,
-who has to sign the risk acceptance.
+71
+00:04:46.082 --> 00:04:49.267
+authorizing official, who
+signs the risk acceptance.
 
-86
-00:06:03.953 --> 00:06:09.750
-The first of those falls due with
-Windows Server 2016, on January 12.
+72
+00:04:49.267 --> 00:04:51.867
+The first falls due on January 12.
 
-87
-00:06:10.500 --> 00:06:13.125
-The clocks are often quoted
-for more than they say.
+73
+00:04:51.867 --> 00:04:54.400
+Next, how to read these clocks.
 
-88
-00:06:13.125 --> 00:06:14.650
-Four corrections recur.
+74
+00:04:55.150 --> 00:04:59.475
+The clocks are often quoted for more
+than they say, so read them exactly.
 
-89
-00:06:14.650 --> 00:06:20.301
+75
+00:04:59.475 --> 00:05:05.163
 FedRAMP certifies cloud services, and each
-agency still authorizes its own systems,
+agency still authorizes its own systems.
 
-90
-00:06:20.301 --> 00:06:23.531
-so the 2027 date changes
-what providers publish,
-
-91
-00:06:23.531 --> 00:06:26.437
-not whether the agency's
-own systems comply.
-
-92
-00:06:26.437 --> 00:06:28.961
+76
+00:05:05.163 --> 00:05:07.690
 Moderate is now a certification class:
 
-93
-00:06:28.961 --> 00:06:33.376
-Class C includes the current Moderate
-baseline, and Class D the High.
+77
+00:05:07.690 --> 00:05:10.850
+Class C includes the
+current Moderate baseline.
 
-94
-00:06:33.376 --> 00:06:37.337
+78
+00:05:10.850 --> 00:05:14.812
 No federal document requires
 a Zero Trust maturity stage.
 
-95
-00:06:37.337 --> 00:06:43.068
+79
+00:05:14.812 --> 00:05:21.250
 And BOD 25-01 covers production cloud
-tenants, not on-premises Active Directory,
+tenants, not on-premises Active Directory.
 
-96
-00:06:43.068 --> 00:06:47.087
-though the forest still decides
-much of what a tenant can enforce.
-
-97
-00:06:47.087 --> 00:06:49.988
+80
+00:05:21.250 --> 00:05:24.150
 Nothing makes the estate
 fail on a single date.
 
-98
-00:06:49.988 --> 00:06:53.974
+81
+00:05:24.150 --> 00:05:28.136
 It's surrounded by deadlines, each
 binding a different part of it,
 
-99
-00:06:53.974 --> 00:06:58.788
+82
+00:05:28.136 --> 00:05:32.950
 and each assuming the agency knows what
 it runs, who owns it and what governs it.
 
-100
-00:06:58.788 --> 00:07:01.012
-That's why it can't be a set of projects.
+83
+00:05:32.950 --> 00:05:35.238
+That's why this can't
+be a set of projects.
 
-101
-00:07:01.012 --> 00:07:05.201
-Moving devices to Intune needs
-the policy GPO links carried;
+84
+00:05:35.238 --> 00:05:38.676
+Moving devices to Intune
+needs the policy carried over;
 
-102
-00:07:05.201 --> 00:07:08.887
-Conditional Access needs
-the access groups granted.
+85
+00:05:38.676 --> 00:05:42.263
+Conditional Access needs the
+access groups carried over.
 
-103
-00:07:08.887 --> 00:07:13.263
+86
+00:05:42.263 --> 00:05:46.638
 Separate projects rediscover those
 decisions differently, or not at all.
 
-104
-00:07:13.263 --> 00:07:16.257
+87
+00:05:46.638 --> 00:05:49.633
 A program can sequence the
 work against the dates;
 
-105
-00:07:16.257 --> 00:07:18.887
+88
+00:05:49.633 --> 00:05:52.263
 a collection of projects
 can only race them.
 
-106
-00:07:18.887 --> 00:07:23.708
-Hence the decision for the sponsor and
-CIO, before the budget lines are set:
+89
+00:05:52.263 --> 00:05:57.495
+So the decision for the sponsor and CIO,
+before the budget lines are set: fund and
 
-107
-00:07:23.708 --> 00:07:27.422
-fund and govern modernization
-as one sequenced program,
+90
+00:05:57.495 --> 00:05:59.991
+govern this as one sequenced program,
 
-108
-00:07:27.422 --> 00:07:30.790
+91
+00:05:59.991 --> 00:06:03.050
 with one dependency chain
 and one set of gates.
 
-109
-00:07:31.540 --> 00:07:33.015
+92
+00:06:03.050 --> 00:06:05.310
+Next, what that program is.
+
+93
+00:06:06.060 --> 00:06:07.535
 Now, what the program is.
 
-110
-00:07:33.015 --> 00:07:36.306
+94
+00:06:07.535 --> 00:06:10.892
 It starts with a short charter:
 the page the sponsor signs,
 
-111
-00:07:36.306 --> 00:07:40.928
-and the page every later decision is
-checked against: is this inside the scope we
+95
+00:06:10.892 --> 00:06:14.035
+and the page every later
+decision is checked against.
 
-112
-00:07:40.928 --> 00:07:43.589
-chartered, does it serve
-one of the objectives,
+96
+00:06:14.035 --> 00:06:18.998
+Is this in scope, does it serve an
+objective, does it move a success criterion?
 
-113
-00:07:43.589 --> 00:07:45.690
-and does it move a success criterion?
+97
+00:06:18.998 --> 00:06:22.102
+The charter names the costs
+it sets out to remove:
 
-114
-00:07:45.690 --> 00:07:48.728
-The problem it sets out
-to remove has four costs:
+98
+00:06:22.102 --> 00:06:27.300
+migration risk hidden in dependencies,
+drift between intended and actual state,
 
-115
-00:07:48.728 --> 00:07:52.233
-migration risk concentrated
-in hidden dependencies;
-
-116
-00:07:52.233 --> 00:07:56.517
-ongoing drift between intended
-and actual state; weak evidence of
-
-117
-00:07:56.517 --> 00:08:01.190
-change and compliance; and a high cost
+99
+00:06:27.300 --> 00:06:32.111
+weak evidence of change, and the expense
 of reconciling fragmented stores.
 
-118
-00:08:01.190 --> 00:08:03.515
-Against those, six objectives.
+100
+00:06:32.111 --> 00:06:34.560
+Against those it sets six objectives.
 
-119
-00:08:03.515 --> 00:08:07.092
-One authoritative origin for
-organizational structure,
+101
+00:06:34.560 --> 00:06:39.930
+At their heart is one authoritative origin
+for organizational structure and identity
 
-120
-00:08:07.092 --> 00:08:11.190
-identity attributes and key claims,
-with every other copy derived.
+102
+00:06:39.930 --> 00:06:42.504
+attributes, with every other copy derived,
 
-121
-00:08:11.190 --> 00:08:14.613
-Governance rebuilt explicitly,
-through attributes,
+103
+00:06:42.504 --> 00:06:46.035
+and governance rebuilt
+explicitly instead of inherited.
 
-122
-00:08:14.613 --> 00:08:17.102
-dynamic membership and scoped policy.
+104
+00:06:46.035 --> 00:06:51.285
+Change runs in controlled waves that close
+with evidence, without rip-and-replace.
 
-123
-00:08:17.102 --> 00:08:19.577
-Drift treated as a classified finding.
-
-124
-00:08:19.577 --> 00:08:23.717
-Change in controlled waves that
-start from the authoritative source,
-
-125
-00:08:23.717 --> 00:08:26.715
-run under least privilege,
-and close with evidence.
-
-126
-00:08:26.715 --> 00:08:29.728
-Domain transformations
-without rip-and-replace.
-
-127
-00:08:29.728 --> 00:08:32.490
-And continuous, machine-usable evidence.
-
-128
-00:08:32.490 --> 00:08:34.140
+105
+00:06:51.285 --> 00:06:52.935
 The scope is deliberate.
 
-129
-00:08:34.140 --> 00:08:37.903
+106
+00:06:52.935 --> 00:06:56.547
 The program feeds compliance
-frameworks; it doesn't replace them.
+frameworks rather than replacing them.
 
-130
-00:08:37.903 --> 00:08:41.536
-Identity providers, network
-fabrics and device managers
+107
+00:06:56.547 --> 00:07:01.123
+Identity providers, networks and
+device managers stay the enforcers.
 
-131
-00:08:41.536 --> 00:08:44.564
-stay the enforcers, and
-the program governs them.
+108
+00:07:01.123 --> 00:07:03.760
+And the agency executes its own cutover.
 
-132
-00:08:44.564 --> 00:08:47.753
-And the adopting agency
-executes its own cutover.
+109
+00:07:03.760 --> 00:07:09.008
+The decision: the sponsor signs the charter
+and puts names in its governance table,
 
-133
-00:08:47.753 --> 00:08:50.453
-An agency can adopt
-the charter as written.
-
-134
-00:08:50.453 --> 00:08:55.146
-The decision: the sponsor signs it,
-and names go into its governance table,
-
-135
-00:08:55.146 --> 00:08:59.650
+110
+00:07:09.008 --> 00:07:13.098
 starting with the sponsor and the
 steward, as Phase 0's entry work.
 
-136
-00:09:00.400 --> 00:09:03.236
+111
+00:07:13.098 --> 00:07:16.390
+Next, how the charter's
+success gets tested.
+
+112
+00:07:17.140 --> 00:07:20.102
 A sponsor can't sign off
-an outcome with no test,
+an outcome with no test.
 
-137
-00:09:03.236 --> 00:09:06.893
-so the charter turns each
-success criterion into a measure,
+113
+00:07:20.102 --> 00:07:24.153
+So the charter turns each of its
+six success criteria into a measure,
 
-138
-00:09:06.893 --> 00:09:10.400
+114
+00:07:24.153 --> 00:07:27.553
 the evidence that shows it, and
 the gate where it's checked.
 
-139
-00:09:10.400 --> 00:09:16.091
-First, a current-state assessment that
-covers every forest in scope and all eleven
+115
+00:07:27.553 --> 00:07:28.853
+A few examples.
 
-140
-00:09:16.091 --> 00:09:21.363
-dependency object types, with zero open
-priority-one findings, checked at G0.
+116
+00:07:28.853 --> 00:07:33.099
+The current-state assessment
+covers every forest in scope,
 
-141
-00:09:21.363 --> 00:09:25.314
-Second, a target structure in
-which every attribute that
+117
+00:07:33.099 --> 00:07:36.740
+with zero open priority-one
+findings, checked at G0.
 
-142
-00:09:25.314 --> 00:09:29.687
-drives access has exactly one
-designated source, checked at G1.
+118
+00:07:36.740 --> 00:07:42.953
+Every attribute that drives access has
+exactly one designated source, checked at G1.
 
-143
-00:09:29.687 --> 00:09:34.850
-Third, a domain playbook whose entry and
-exit criteria are written as queries,
+119
+00:07:42.953 --> 00:07:47.269
+The pilot division clears G2 with
+zero drift for a hold period;
 
-144
-00:09:34.850 --> 00:09:39.771
-proven when the pilot division clears
-G2 with zero drift for a hold period;
-
-145
-00:09:39.771 --> 00:09:42.675
+120
+00:07:47.269 --> 00:07:50.315
 fourteen days is the illustrative example.
 
-146
-00:09:42.675 --> 00:09:48.056
-Fourth, a change-control pattern in use:
-every pilot change carries all five clauses
+121
+00:07:50.315 --> 00:07:55.052
+And drift detection is itself watched:
+a missed run is a halt condition.
 
-147
-00:09:48.056 --> 00:09:53.125
-of the change lifecycle, and every human-only
-closure is logged as an exception.
+122
+00:07:55.052 --> 00:07:57.252
+The numbers are illustrative defaults.
 
-148
-00:09:53.125 --> 00:09:56.231
-Fifth, drift classes
-with a detection signal,
+123
+00:07:57.252 --> 00:08:02.016
+The agency sets its own, records them,
+and doesn't change them silently.
 
-149
-00:09:56.231 --> 00:10:01.100
-a severity and a response, where a
-missed run is itself a halt condition.
-
-150
-00:10:01.100 --> 00:10:03.493
-Sixth, leadership can describe the path,
-
-151
-00:10:03.493 --> 00:10:07.700
-the risks and the measures without
-citing internal decision records.
-
-152
-00:10:07.700 --> 00:10:11.860
-The numbers are illustrative
-defaults: the agency sets its own,
-
-153
-00:10:11.860 --> 00:10:14.900
-records them, and doesn't
-change them silently.
-
-154
-00:10:14.900 --> 00:10:17.650
+124
+00:08:02.016 --> 00:08:04.765
 And the criteria stop at
 the pilot on purpose.
 
-155
-00:10:17.650 --> 00:10:20.262
-The sixth criterion is the sponsor's own.
+125
+00:08:04.765 --> 00:08:09.263
+The sixth criterion is the sponsor's
+own: leadership can describe the path,
 
-156
-00:10:20.262 --> 00:10:23.724
+126
+00:08:09.263 --> 00:08:13.540
+the risks and the measures without
+citing internal decision records.
+
+127
+00:08:13.540 --> 00:08:17.002
 The sponsor answers yes to
 each pre-start question by G0,
 
-157
-00:10:23.724 --> 00:10:27.840
+128
+00:08:17.002 --> 00:08:20.765
 and the steering committee
 reviews the drift trend monthly.
 
-158
-00:10:28.590 --> 00:10:32.803
-The charter's six guiding principles
-expand to fifteen in Chapter 04,
+129
+00:08:20.765 --> 00:08:23.410
+Next, the principles underneath.
 
-159
-00:10:32.803 --> 00:10:35.095
-and one idea runs underneath them all:
+130
+00:08:24.160 --> 00:08:29.322
+The charter's principles expand to fifteen,
+but one idea runs under all of them.
 
-160
-00:10:35.095 --> 00:10:39.752
-keep the record of what should be true
+131
+00:08:29.322 --> 00:08:33.528
+Keep the record of what should be true
 apart from the systems that enforce it,
 
-161
-00:10:39.752 --> 00:10:43.152
+132
+00:08:33.528 --> 00:08:36.598
 and make every change prove
 itself against that record.
 
-162
-00:10:43.152 --> 00:10:46.403
-The foundation principles
-apply to every change.
+133
+00:08:36.598 --> 00:08:40.286
+In practice, every claim has
+one authoritative origin.
 
-163
-00:10:46.403 --> 00:10:49.053
-Every claim has one authoritative origin.
-
-164
-00:10:49.053 --> 00:10:53.386
-Every move, add, change, deletion
-and reset travels five clauses:
-
-165
-00:10:53.386 --> 00:10:58.971
-it originates with the source of truth,
+134
+00:08:40.286 --> 00:08:45.135
+Every change starts from that source,
 carries an authoritative authorization,
 
-166
-00:10:58.971 --> 00:11:02.055
-executes under just-in-time
-least privilege,
+135
+00:08:45.135 --> 00:08:49.985
+runs with just-in-time least privilege,
+and closes with provenance and evidence.
 
-167
-00:11:02.055 --> 00:11:06.139
-closes with provenance, and
-emits evidence automatically.
-
-168
-00:11:06.139 --> 00:11:08.952
+136
+00:08:49.985 --> 00:08:52.797
 No closure counts unless
 it carries its proof.
 
-169
-00:11:08.952 --> 00:11:11.428
+137
+00:08:52.797 --> 00:08:55.273
 And drift detection
 re-checks on a schedule.
 
-170
-00:11:11.428 --> 00:11:16.692
-The structure and estate principles replace
-the organizational unit (OU) tree with
+138
+00:08:55.273 --> 00:08:57.885
+One rule deserves an
+executive's attention.
 
-171
-00:11:16.692 --> 00:11:21.652
-attributes, and they carry one rule
-executives should hear: a user with an empty
+139
+00:08:57.885 --> 00:09:02.527
+The program replaces the organizational
+unit (OU) tree with attributes,
 
-172
-00:11:21.652 --> 00:11:24.246
-attribute falls out of the dynamic group,
+140
+00:09:02.527 --> 00:09:06.698
+and a user with an empty attribute
+falls out of the dynamic group,
 
-173
-00:11:24.246 --> 00:11:26.840
+141
+00:09:06.698 --> 00:09:09.373
 and so out of every
 policy that targets it.
 
-174
-00:11:26.840 --> 00:11:29.790
+142
+00:09:09.373 --> 00:09:12.323
 Attribute completeness
 is a security control.
 
-175
-00:11:29.790 --> 00:11:32.035
-The program principles cover people,
-
-176
-00:11:32.035 --> 00:11:35.077
-Zero Trust governance and
-the direction of travel.
-
-177
-00:11:35.077 --> 00:11:39.941
-Two source rules were corrected on the
-way: Intune policy conflicts, and token
-
-178
-00:11:39.941 --> 00:11:42.829
-lifetimes, where the
-principle that survives
-
-179
-00:11:42.829 --> 00:11:45.565
-is continuous evaluation,
-not a short clock.
-
-180
-00:11:45.565 --> 00:11:50.255
+143
+00:09:12.323 --> 00:09:17.166
 The decision here is the steward's, and
 it comes before the first change is made:
 
-181
-00:11:50.255 --> 00:11:55.530
-set the evidence and provenance expectations
-that every later change must meet.
+144
+00:09:17.166 --> 00:09:21.935
+set the evidence and provenance
+expectations every later change must meet.
 
-182
-00:11:56.280 --> 00:11:59.612
+145
+00:09:21.935 --> 00:09:24.430
+Next, the phases and gates.
+
+146
+00:09:25.180 --> 00:09:28.512
 A plan earns its keep by saying
 what has to be true before
 
-183
-00:11:59.612 --> 00:12:02.655
+147
+00:09:28.512 --> 00:09:31.555
 the next step starts, not by
 putting dates on a chart.
 
-184
-00:12:02.655 --> 00:12:06.335
-The Federal Modernization
-Workbook's Book 01 of the
+148
+00:09:31.555 --> 00:09:37.565
+Book 01 sets seven phases and six gates:
+pre-flight, foundation, a pilot division,
 
-185
-00:12:06.335 --> 00:12:09.843
-workbook is canonical:
-seven phases and six gates.
+149
+00:09:37.565 --> 00:09:42.374
+general rollout, legacy retirement,
+retirement of AD DS itself,
 
-186
-00:12:09.843 --> 00:12:14.106
-Phase 0, Pre-flight, ends
-at G0, Ready to Plan.
+150
+00:09:42.374 --> 00:09:45.980
+and then steady state,
+which runs indefinitely.
 
-187
-00:12:14.106 --> 00:12:18.667
-Phase 1, Foundation, ends
-at G1, Foundation Complete.
-
-188
-00:12:18.667 --> 00:12:23.068
-Phase 2, the pilot division,
-ends at G2, Pilot Clean.
-
-189
-00:12:23.068 --> 00:12:27.667
-Phase 3, general rollout,
-at G3, Rollout Complete.
-
-190
-00:12:27.667 --> 00:12:32.080
-Phase 4, legacy retirement,
-at G4, Legacy Quiet.
-
-191
-00:12:32.080 --> 00:12:37.117
-Phase 5, AD DS retirement,
-at G5, AD Retired.
-
-192
-00:12:37.117 --> 00:12:41.268
-Phase 6, steady state, runs
-on a cadence indefinitely.
-
-193
-00:12:41.268 --> 00:12:43.956
+151
+00:09:45.980 --> 00:09:48.668
 The gates are owned in
 proportion to what they end.
 
-194
-00:12:43.956 --> 00:12:50.780
-The steward clears G0, G1 and G4, and
-co-signs G2 with the executive sponsor.
+152
+00:09:48.668 --> 00:09:51.092
+The steward clears G0, G1 and G4,
 
-195
-00:12:50.780 --> 00:12:53.943
+153
+00:09:51.092 --> 00:09:55.455
+and co-signs the pilot gate
+with the executive sponsor.
+
+154
+00:09:55.455 --> 00:09:58.505
 The sponsor and steering
-committee clear G3.
+committee clear rollout.
 
-196
-00:12:53.943 --> 00:12:57.230
-The sponsor and the CIO clear G5.
+155
+00:09:58.505 --> 00:10:02.617
+The sponsor and CIO clear
+the retirement of AD DS.
 
-197
-00:12:57.230 --> 00:12:59.904
-And five constraints bind every phase,
+156
+00:10:02.617 --> 00:10:04.142
+Here's the budget catch.
 
-198
-00:12:59.904 --> 00:13:03.580
-from provenance on every
-change to no rip-and-replace.
+157
+00:10:04.142 --> 00:10:10.045
+The program's master plan sequences 48
+milestones over an illustrative 52 weeks,
 
-199
-00:13:03.580 --> 00:13:08.455
-The program's detailed master plan
-sequences 48 milestones over an
+158
+00:10:10.045 --> 00:10:13.305
+but its cutover ends with
+AD DS still running.
 
-200
-00:13:08.455 --> 00:13:13.330
-illustrative 52 weeks, but its
-cutover ends with AD DS still running.
+159
+00:10:13.305 --> 00:10:16.646
+And Book 01's 52-week
+model assumes a mid-size,
 
-201
-00:13:13.330 --> 00:13:17.118
-Book 01's own fifty-two-week
-sequence models a mid-size,
-
-202
-00:13:17.118 --> 00:13:21.768
-clean forest, and large federal
+160
+00:10:16.646 --> 00:10:21.380
+clean forest; large federal
 estates typically run multi-year.
 
-203
-00:13:21.768 --> 00:13:26.338
+161
+00:10:21.380 --> 00:10:26.037
 So the decision for the sponsor
 and CIO, when they accept the plan:
 
-204
-00:13:26.338 --> 00:13:31.520
-budget the AD DS retirement phase on
-top of the master plan's 52 weeks.
+162
+00:10:26.037 --> 00:10:30.167
+budget the AD DS retirement
+phase on top of those 52 weeks.
 
-205
-00:13:32.270 --> 00:13:36.175
-Inside the phases, five
-workstreams carry the work:
+163
+00:10:30.167 --> 00:10:33.450
+Next, the workstreams inside the phases.
 
-206
-00:13:36.175 --> 00:13:39.708
-identity, policy, services,
-compute and access.
+164
+00:10:34.200 --> 00:10:40.238
+Five workstreams carry the work: identity,
+policy, services, compute and access.
 
-207
-00:13:39.708 --> 00:13:42.044
-They run together; finishing one before
+165
+00:10:40.238 --> 00:10:42.954
+They run together, because
+finishing one before
 
-208
-00:13:42.044 --> 00:13:44.807
+166
+00:10:42.954 --> 00:10:45.571
 starting the next roughly
 doubles the program.
 
-209
-00:13:44.807 --> 00:13:46.120
+167
+00:10:45.571 --> 00:10:46.867
 They still have an order.
 
-210
-00:13:46.120 --> 00:13:49.052
-Identity comes first, the attribute model,
+168
+00:10:46.867 --> 00:10:50.183
+Identity comes first,
+because policy, access,
 
-211
-00:13:49.052 --> 00:13:53.826
-dynamic membership and the lifecycle
-origin, because policy, access,
+169
+00:10:50.183 --> 00:10:54.502
+devices and data all decide
+based on who or what is asking.
 
-212
-00:13:53.826 --> 00:13:58.182
-devices and data all decide on the
-basis of who or what is asking.
-
-213
-00:13:58.182 --> 00:13:59.894
+170
+00:10:54.502 --> 00:10:56.239
 Policy follows identity.
 
-214
-00:13:59.894 --> 00:14:04.745
-Services, naming and addressing,
-can run in parallel and may bridge.
+171
+00:10:56.239 --> 00:10:59.959
+Services, naming and
+addressing, can run in parallel.
 
-215
-00:14:04.745 --> 00:14:08.395
-Compute, the device and server
-work, comes mid to late.
+172
+00:10:59.959 --> 00:11:03.241
+Compute comes mid to late,
+and access comes later,
 
-216
-00:14:08.395 --> 00:14:12.157
-Access, token-based and
-application-aware, comes later,
-
-217
-00:14:12.157 --> 00:14:15.333
+173
+00:11:03.241 --> 00:11:06.326
 because it consumes both
 identity and policy.
 
-218
-00:14:15.333 --> 00:14:19.506
+174
+00:11:06.326 --> 00:11:10.517
 The master plan organized the same
 work as five technology pillars,
 
-219
-00:14:19.506 --> 00:14:21.295
-and that view leaves two gaps.
+175
+00:11:10.517 --> 00:11:13.989
+and that left two gaps: nobody
+owned the question of which
 
-220
-00:14:21.295 --> 00:14:25.339
-Nobody owns the question of which
+176
+00:11:13.989 --> 00:11:17.683
 policy surface owns a setting,
+and access had no pillar at all.
 
-221
-00:14:25.339 --> 00:14:27.857
-and the access plane has no pillar at all.
+177
+00:11:17.683 --> 00:11:21.523
+Book 01 closes them, with a
+security-engineering lead for
 
-222
-00:14:27.857 --> 00:14:32.870
-The Federal Modernization Workbook's
-Book 01 closes them by giving policy
+178
+00:11:21.523 --> 00:11:25.462
+policy and a joint identity
+and security lead for access.
 
-223
-00:14:32.870 --> 00:14:37.883
-a security-engineering lead and access
-a joint identity and security lead.
-
-224
-00:14:37.883 --> 00:14:41.680
-The critical path runs through
-the platform, the assessment,
-
-225
-00:14:41.680 --> 00:14:46.694
-attribute and group design, the pilot,
-each rollout wave, and cutover validation.
-
-226
-00:14:46.694 --> 00:14:51.583
+179
+00:11:25.462 --> 00:11:30.628
 Every week lost in assessment or
-attribute design moves every later gate.
+attribute design moves every later gate,
 
-227
-00:14:51.583 --> 00:14:55.882
-And one dependency never
+180
+00:11:30.628 --> 00:11:34.618
+and one dependency never
 relaxes: PKI waits for identity.
 
-228
-00:14:55.882 --> 00:15:01.028
-The decision, made while Phase 0's stakeholders
-and decision rights are confirmed:
+181
+00:11:34.618 --> 00:11:40.323
+The decision, during Phase 0: name the five
+workstream leads, including those two.
 
-229
-00:15:01.028 --> 00:15:04.630
-name the five workstream
-leads, including those two.
+182
+00:11:40.323 --> 00:11:41.926
+Next, the projects.
 
-230
-00:15:05.380 --> 00:15:10.011
-Seven complementary projects turn
-the program's most common gaps
+183
+00:11:42.520 --> 00:11:47.714
+Seven projects turn the program's most
+common gaps into executable work,
 
-231
-00:15:10.011 --> 00:15:14.305
-into executable work, each with
-its own sponsor, lead and pilot.
+184
+00:11:47.714 --> 00:11:50.570
+each with its own sponsor, lead and pilot.
 
-232
-00:15:14.305 --> 00:15:18.766
-In their suggested starting order:
-Identity Lifecycle and Provisioning;
+185
+00:11:50.570 --> 00:11:56.054
+They cover identity lifecycle, devices,
+network and access, continuous monitoring
 
-233
-00:15:18.766 --> 00:15:23.082
-Endpoint and Device Modernization;
-Network and Access Modernization;
+186
+00:11:56.054 --> 00:12:01.220
+and evidence, privileged access, data
+platforms, and the software supply chain.
 
-234
-00:15:23.082 --> 00:15:26.007
-Continuous Monitoring
-and the Evidence Fabric;
+187
+00:12:01.220 --> 00:12:03.220
+The suggested order matters.
 
-235
-00:15:26.007 --> 00:15:30.469
-Privileged Access and Administrative
-Identity; Data Platform Identity
-
-236
-00:15:30.469 --> 00:15:34.418
-Transformation; and Supply Chain
-and Software Bill of Materials.
-
-237
-00:15:34.418 --> 00:15:36.831
-The order says which project has to be far
-
-238
-00:15:36.831 --> 00:15:39.529
-enough along before the
-next can show results.
-
-239
-00:15:39.529 --> 00:15:44.749
-Identity is first, because everything
+188
+00:12:03.220 --> 00:12:08.502
+Identity goes first, because everything
 else consumes its attributes and owners;
 
-240
-00:15:44.749 --> 00:15:49.730
+189
+00:12:08.502 --> 00:12:13.395
 a device project started on unreliable
 attributes produces policy bypass.
 
-241
-00:15:49.730 --> 00:15:52.974
-Monitoring comes fourth,
-because an evidence fabric
+190
+00:12:13.395 --> 00:12:17.922
+Privileged access is chartered fifth
+but isn't fifth in practice, because the
 
-242
-00:15:52.974 --> 00:15:56.217
-needs at least two sources
-already emitting records.
+191
+00:12:17.922 --> 00:12:22.520
+Foundation gate already needs emergency
+access accounts vaulted and tested.
 
-243
-00:15:56.217 --> 00:16:00.280
-Privileged access is chartered fifth,
-but it isn't fifth in practice:
-
-244
-00:16:00.280 --> 00:16:05.211
-the Foundation gate already needs emergency
-access accounts vaulted and tested,
-
-245
-00:16:05.211 --> 00:16:09.418
-and Tier 0 administrators registered
-for phishing-resistant sign-in.
-
-246
-00:16:09.418 --> 00:16:13.268
+192
+00:12:22.520 --> 00:12:26.370
 Every charter asks for a working
 pilot, not a finished estate.
 
-247
-00:16:13.268 --> 00:16:15.718
+193
+00:12:26.370 --> 00:12:28.820
 Two rules keep the portfolio coherent.
 
-248
-00:16:15.718 --> 00:16:18.487
+194
+00:12:28.820 --> 00:12:31.589
 No project designates
 a second authoritative
 
-249
-00:16:18.487 --> 00:16:21.043
+195
+00:12:31.589 --> 00:12:34.145
 source for something another project owns.
 
-250
-00:16:21.043 --> 00:16:26.056
+196
+00:12:34.145 --> 00:12:39.158
 And every project emits evidence in the
 shape the monitoring project defines.
 
-251
-00:16:26.056 --> 00:16:29.281
-The projects don't form a
-second governance structure,
+197
+00:12:39.158 --> 00:12:41.808
+The projects aren't a second
+governance structure.
 
-252
-00:16:29.281 --> 00:16:32.005
-and no project clears a
-program gate on its own.
+198
+00:12:41.808 --> 00:12:44.642
+No project clears a
+program gate on its own,
 
-253
-00:16:32.005 --> 00:16:35.151
-Filling in their names is
-each project's first act,
-
-254
-00:16:35.151 --> 00:16:38.440
+199
+00:12:44.642 --> 00:12:47.719
 and every project lead
 reports to the steward.
 
-255
-00:16:39.190 --> 00:16:40.215
+200
+00:12:47.719 --> 00:12:49.660
+Next, who decides.
+
+201
+00:12:50.410 --> 00:12:51.435
 Who decides?
 
-256
-00:16:40.215 --> 00:16:43.354
+202
+00:12:51.435 --> 00:12:54.574
 The book's advice: name the
 people allowed to say no,
 
-257
-00:16:43.354 --> 00:16:48.178
+203
+00:12:54.574 --> 00:12:59.398
 give each decision one of them, and make
 the repository remember who said yes.
 
-258
-00:16:48.178 --> 00:16:53.452
-The book uses the Federal Modernization
-Workbook's Book 01's program-wide model.
-
-259
-00:16:53.452 --> 00:16:58.207
+204
+00:12:59.398 --> 00:13:04.152
 The executive sponsor, with the CIO,
 owns scope, funding and sequence,
 
-260
-00:16:58.207 --> 00:17:02.877
+205
+00:13:04.152 --> 00:13:08.822
 breaks ties, and decides when
 Active Directory components retire.
 
-261
-00:17:02.877 --> 00:17:07.397
+206
+00:13:08.822 --> 00:13:13.472
 The CISO sets the control requirements
-every target surface must meet:
+every target surface must meet.
 
-262
-00:17:07.397 --> 00:17:11.690
-authentication strength, the
-Conditional Access baseline, logging.
-
-263
-00:17:11.690 --> 00:17:14.621
+207
+00:13:13.472 --> 00:13:16.404
 The authorizing official
 is the only official
 
-264
-00:17:14.621 --> 00:17:17.177
+208
+00:13:16.404 --> 00:13:18.960
 who can accept security and privacy risk.
 
-265
-00:17:17.177 --> 00:17:20.737
-The steward leads the program
-office and owns the plan,
+209
+00:13:18.960 --> 00:13:23.497
+The steward leads the program office
+and owns the plan and the repository.
 
-266
-00:17:20.737 --> 00:17:24.928
-wave sequencing, cross-domain
-dependencies and the repository.
-
-267
-00:17:24.928 --> 00:17:29.560
-A change to the target architecture, or
-to the rules for authoritative origin,
-
-268
-00:17:29.560 --> 00:17:32.165
-needs the steward and
-the sponsor together.
-
-269
-00:17:32.165 --> 00:17:35.703
+210
+00:13:23.497 --> 00:13:27.036
 HR decides what each
 organizational attribute means.
 
-270
-00:17:35.703 --> 00:17:40.514
+211
+00:13:27.036 --> 00:13:31.847
 And workstream leads own their designs,
 inside the CISO's requirements.
 
-271
-00:17:40.514 --> 00:17:44.790
-Two federal requirements already name
-people who belong in these rows.
+212
+00:13:31.847 --> 00:13:34.922
+Federal requirements already
+name some of these people.
 
-272
-00:17:44.790 --> 00:17:50.225
-M-22-09 required a zero trust
-implementation lead within 30 days,
+213
+00:13:34.922 --> 00:13:38.915
+M-22-09 required a zero
+trust implementation lead,
 
-273
-00:17:50.225 --> 00:17:51.753
-and an aligned C-suite.
+214
+00:13:38.915 --> 00:13:43.984
+and M-19-17 requires an agency-wide
+ICAM governance structure.
 
-274
-00:17:51.753 --> 00:17:57.677
-M-19-17 requires an integrated,
-agency-wide ICAM governance structure.
-
-275
-00:17:57.677 --> 00:18:01.978
+215
+00:13:43.984 --> 00:13:48.286
 So the decision for the sponsor and
 CIO, in Phase 0: name the sponsor,
 
-276
-00:18:01.978 --> 00:18:04.607
+216
+00:13:48.286 --> 00:13:50.915
 the steward and the steering committee,
 
-277
-00:18:04.607 --> 00:18:08.960
+217
+00:13:50.915 --> 00:13:54.897
 and build them from those existing
 roles, not alongside them.
 
-278
-00:18:09.710 --> 00:18:13.098
+218
+00:13:54.897 --> 00:13:58.700
+Next, three decisions the
+plans put on the wrong desk.
+
+219
+00:13:59.450 --> 00:14:02.838
 Most of what the program's plans
 said about decisions holds.
 
-279
-00:18:13.098 --> 00:18:14.360
+220
+00:14:02.838 --> 00:14:04.100
 Three items don't.
 
-280
-00:18:14.360 --> 00:18:15.672
-Residual risk.
+221
+00:14:04.100 --> 00:14:05.750
+Residual risk first.
 
-281
-00:18:15.672 --> 00:18:19.423
+222
+00:14:05.750 --> 00:14:09.500
 The plans let the security lead
 and the steward accept it jointly.
 
-282
-00:18:19.423 --> 00:18:22.963
-Under the Risk Management
-Framework, only the authorizing
+223
+00:14:09.500 --> 00:14:13.850
+Under the Risk Management Framework,
+only the authorizing official can.
 
-283
-00:18:22.963 --> 00:18:27.010
-official can accept security and
-privacy risk to the organization.
+224
+00:14:13.850 --> 00:14:19.019
+The others prepare and recommend, and
+the acceptance carries a justification,
 
-284
-00:18:27.010 --> 00:18:30.605
-So the security lead and
-steward prepare and recommend,
-
-285
-00:18:30.605 --> 00:18:35.998
-and the acceptance carries a justification,
+225
+00:14:19.019 --> 00:14:21.563
 compensating controls and an end date.
 
-286
-00:18:35.998 --> 00:18:37.459
-Budget and licenses.
+226
+00:14:21.563 --> 00:14:25.690
+Second, budget and licenses
+belong to the sponsor and CIO,
 
-287
-00:18:37.459 --> 00:18:41.060
-They belong to the sponsor
-and CIO, who own funding.
+227
+00:14:25.690 --> 00:14:29.026
+who own funding; the
+steward prepares the case.
 
-288
-00:18:41.060 --> 00:18:42.985
-The steward prepares the case.
-
-289
-00:18:42.985 --> 00:18:44.235
-Gate decisions.
-
-290
-00:18:44.235 --> 00:18:48.510
-The master plan made the steward
+228
+00:14:29.026 --> 00:14:34.062
+Third, the master plan made the steward
 the sole signatory at every gate.
 
-291
-00:18:48.510 --> 00:18:53.854
-The Federal Modernization Workbook's Book
-01 spreads the gates across the steward,
+229
+00:14:34.062 --> 00:14:37.185
+Book 01 spreads the
+gates across the steward,
 
-292
-00:18:53.854 --> 00:18:56.875
+230
+00:14:37.185 --> 00:14:40.475
 the sponsor, the steering
-committee and the CIO,
+committee and the CIO.
 
-293
-00:18:56.875 --> 00:18:59.198
-in proportion to what each gate ends.
-
-294
-00:18:59.198 --> 00:19:01.711
-Four separations keep
+231
+00:14:40.475 --> 00:14:43.113
+A few separations keep
 the governance honest.
 
-295
-00:19:01.711 --> 00:19:06.775
+232
+00:14:43.113 --> 00:14:47.625
 The authorizing official is a government
-official, the decision can't be delegated,
+official, and the decision can't
 
-296
-00:19:06.775 --> 00:19:09.565
-and the role stays outside
-the program office:
+233
+00:14:47.625 --> 00:14:52.137
+be delegated: contractors can prepare
+a risk acceptance, but can't sign one.
 
-297
-00:19:09.565 --> 00:19:13.235
-contractors can prepare a risk
-acceptance, but can't sign one.
+234
+00:14:52.137 --> 00:14:54.862
+And requesters don't
+approve their own changes.
 
-298
-00:19:13.235 --> 00:19:15.635
-No one holds two roles
-that check each other.
+235
+00:14:54.862 --> 00:14:58.213
+So from G0 onward, every
+risk acceptance comes from
 
-299
-00:19:15.635 --> 00:19:18.210
-Requesters don't approve
-their own changes.
+236
+00:14:58.213 --> 00:15:01.724
+the authorizing official in
+writing, with an end date.
 
-300
-00:19:18.210 --> 00:19:21.660
-And the component that decides
-isn't the one that acts.
+237
+00:15:01.724 --> 00:15:04.380
+Next, the people and the rhythm.
 
-301
-00:19:21.660 --> 00:19:25.581
-The decision sits with the
-authorizing official from G0 onward,
-
-302
-00:19:25.581 --> 00:19:30.095
-where an unremediated Critical finding
-needs the official's acceptance:
-
-303
-00:19:30.095 --> 00:19:33.860
-every risk acceptance comes
-in writing, with an end date.
-
-304
-00:19:34.610 --> 00:19:35.635
+238
+00:15:05.130 --> 00:15:06.155
 Who does the work?
 
-305
-00:19:35.635 --> 00:19:41.165
+239
+00:15:06.155 --> 00:15:10.513
 The master plan estimated the program
-office and workstreams at about five and a
+office and workstreams at about
 
-306
-00:19:41.165 --> 00:19:46.530
-half full-time equivalents, for an
-illustrative 52-week program: half a steward;
+240
+00:15:10.513 --> 00:15:15.018
+five and a half full-time equivalents
+for an illustrative 52-week program.
 
-307
-00:19:46.530 --> 00:19:50.987
-a full-time infrastructure lead,
-identity lead and endpoint lead;
-
-308
-00:19:50.987 --> 00:19:55.197
-and half-time DNS, PKI and security
-leads and a project manager.
-
-309
-00:19:55.197 --> 00:19:57.909
+241
+00:15:15.018 --> 00:15:17.730
 It's a planning model,
 not a staffing standard.
 
-310
-00:19:57.909 --> 00:20:01.023
+242
+00:15:17.730 --> 00:15:20.899
 What matters more is what
 the estimate leaves out:
 
-311
-00:20:01.023 --> 00:20:04.440
+243
+00:15:20.899 --> 00:15:24.377
 application owners for every
 application that moves,
 
-312
-00:20:04.440 --> 00:20:08.616
-help desk capacity for every wave,
-HR and contractor-source owners,
+244
+00:15:24.377 --> 00:15:29.168
+help desk capacity for every wave, HR
+and contractor-source owners, records
 
-313
-00:20:08.616 --> 00:20:11.881
-records and privacy, and
-the CISO's and authorizing
+245
+00:15:29.168 --> 00:15:34.192
+and privacy, and the CISO's and authorizing
+official's time for risk decisions.
 
-314
-00:20:11.881 --> 00:20:15.222
-official's time for requirements
-and risk decisions.
-
-315
-00:20:15.222 --> 00:20:19.285
+246
+00:15:34.192 --> 00:15:38.070
 The program can't run without them,
-so budget for them explicitly.
+so budget for them explicitly,
 
-316
-00:20:19.285 --> 00:20:21.610
-And cross-train two people per workstream.
+247
+00:15:38.070 --> 00:15:40.631
+and cross-train two people per workstream.
 
-317
-00:20:21.610 --> 00:20:23.516
-The rhythm: daily standups,
+248
+00:15:40.631 --> 00:15:42.055
+The rhythm is simple.
 
-318
-00:20:23.516 --> 00:20:28.022
-and a weekly report rating each
+249
+00:15:42.055 --> 00:15:46.243
+A weekly report rates each
 workstream green, yellow or red.
 
-319
-00:20:28.022 --> 00:20:30.910
-The steering committee
-meets every two weeks,
+250
+00:15:46.243 --> 00:15:51.685
+The steering committee meets every two
+weeks, gate readiness is reviewed monthly,
 
-320
-00:20:30.910 --> 00:20:34.407
-the steward and sponsor review
-gate readiness monthly,
+251
+00:15:51.685 --> 00:15:55.206
+and each gate review ends in
+go, no-go or conditional go.
 
-321
-00:20:34.407 --> 00:20:39.347
-and each gate gets a ninety-minute review
-that ends in go, no-go or conditional go.
-
-322
-00:20:39.347 --> 00:20:43.334
-And two consecutive red weeks for
+252
+00:15:55.206 --> 00:15:59.143
+Two consecutive red weeks for
 any workstream go to the sponsor.
 
-323
-00:20:43.334 --> 00:20:48.664
+253
+00:15:59.143 --> 00:16:04.471
 The decision for the sponsor and CIO: put
 those people in the Phase 0 business case,
 
-324
-00:20:48.664 --> 00:20:53.560
+254
+00:16:04.471 --> 00:16:09.005
 alongside the licenses, and approve
 the budget before design begins.
 
-325
-00:20:54.310 --> 00:20:57.210
-Now, how it runs,
-starting with pre-flight.
+255
+00:16:09.005 --> 00:16:11.430
+Now, how the program runs.
 
-326
-00:20:57.210 --> 00:21:01.898
-The program adopts one rule
-unchanged: assessment before action.
+256
+00:16:12.180 --> 00:16:16.518
+It starts with pre-flight, and one
+rule: assessment before action.
 
-327
-00:21:01.898 --> 00:21:06.560
+257
+00:16:16.518 --> 00:16:21.180
 No migration work starts until the
 whole forest is inventoried, classified
 
-328
-00:21:06.560 --> 00:21:11.148
+258
+00:16:21.180 --> 00:16:25.768
 and committed to the repository, and
 every plan is generated from that data.
 
-329
-00:21:11.148 --> 00:21:15.876
-First, the program builds the place where
-every decision will be written down:
+259
+00:16:25.768 --> 00:16:30.396
+First, the program builds the place
+where every decision gets written down:
 
-330
-00:21:15.876 --> 00:21:19.422
+260
+00:16:30.396 --> 00:16:33.980
 a platform host with one
 authoritative, protected writer.
 
-331
-00:21:19.422 --> 00:21:23.187
-The reference design is
-Gitea on Windows Server 2025,
+261
+00:16:33.980 --> 00:16:37.594
+It's a Tier 0 system, and a
+branch protection the steward
 
-332
-00:21:23.187 --> 00:21:26.523
-one way to meet the
-requirement, not the only one.
+262
+00:16:37.594 --> 00:16:40.967
+can quietly override is a
+convention, not a control.
 
-333
-00:21:26.523 --> 00:21:30.166
-The host is a Tier 0 system,
-and a branch protection the
+263
+00:16:40.967 --> 00:16:43.680
+Then it reads the estate, read-only first,
 
-334
-00:21:30.166 --> 00:21:34.223
-steward can quietly override is
-a convention, not a control.
+264
+00:16:43.680 --> 00:16:49.354
+and the phase delivers twenty-three artifacts,
+fifteen of them committed before G0.
 
-335
-00:21:34.223 --> 00:21:38.073
-Then it reads the estate:
-read-only first, at default rights,
-
-336
-00:21:38.073 --> 00:21:42.084
-then narrow delegated additions
-and a security assessment.
-
-337
-00:21:42.084 --> 00:21:46.825
-The master plan's twelve Active
-Directory domains are joined by the DHCP,
-
-338
-00:21:46.825 --> 00:21:52.277
-LDAP-binding and service-principal-name
-streams that the Federal Modernization
-
-339
-00:21:52.277 --> 00:21:56.148
-Workbook's Book 01 adds, and by
-an inventory of RADIUS and NPS,
-
-340
-00:21:56.148 --> 00:21:58.360
-which depend on the directory too.
-
-341
-00:21:58.360 --> 00:22:03.112
-The phase delivers twenty-three
-artifacts: fifteen committed before G0,
-
-342
-00:22:03.112 --> 00:22:06.360
-and eight generated plans
-approved just after it.
-
-343
-00:22:06.360 --> 00:22:10.340
+265
+00:16:49.354 --> 00:16:53.335
 G0 has three conditions: the
 platform host is operational,
 
-344
-00:22:10.340 --> 00:22:14.735
+266
+00:16:53.335 --> 00:16:57.730
 the assessment is committed, and
 no priority-one finding is open.
 
-345
-00:22:14.735 --> 00:22:17.655
+267
+00:16:57.730 --> 00:17:00.650
 Every finding is classed Critical, High,
 
-346
-00:22:17.655 --> 00:22:21.460
+268
+00:17:00.650 --> 00:17:04.455
 Medium or Low, and each class
 has a gate that closes it.
 
-347
-00:22:21.460 --> 00:22:24.448
-A Critical finding is
-remediated before G0,
+269
+00:17:04.455 --> 00:17:06.980
+The decision point is
+the Critical finding.
 
-348
-00:22:24.448 --> 00:22:27.935
-or formally accepted by
-the authorizing official.
+270
+00:17:06.980 --> 00:17:12.401
+It's remediated before G0, or formally
+accepted by the authorizing official,
 
-349
-00:22:27.935 --> 00:22:33.390
-The steward clears G0 on that basis,
-with the executive sponsor as backup.
+271
+00:17:12.401 --> 00:17:15.155
+and the steward clears G0 on that basis.
 
-350
-00:22:34.140 --> 00:22:37.133
-Phase 1, Foundation, opens
-by generating the eight
+272
+00:17:15.155 --> 00:17:17.710
+Next, foundation and pilot.
 
-351
-00:22:37.133 --> 00:22:40.565
-plans from the committed
-assessment and approving them.
+273
+00:17:18.460 --> 00:17:24.682
+Phase 1, Foundation, generates the plans
+from the committed assessment and designs
 
-352
-00:22:40.565 --> 00:22:46.225
-It then designs every surface from
-those plans, attributes, dynamic groups,
+274
+00:17:24.682 --> 00:17:28.560
+every surface from them:
+attributes, dynamic groups,
 
-353
-00:22:46.225 --> 00:22:50.060
+275
+00:17:28.560 --> 00:17:32.347
 Intune policy, Conditional
-Access, sync, DNS and PKI,
+Access, sync, DNS and PKI.
 
-354
-00:22:50.060 --> 00:22:53.803
-and builds the shared
-foundation the pilot needs.
+276
+00:17:32.347 --> 00:17:36.773
+One planning note: group processing
+is planned in hours, not minutes.
 
-355
-00:22:53.803 --> 00:22:57.052
-Group processing is planned
-in hours, not minutes.
+277
+00:17:36.773 --> 00:17:40.059
+The steward clears G1 when
+the designs are approved,
 
-356
-00:22:57.052 --> 00:23:00.939
-The steward clears G1 when the
-plans and designs are approved,
-
-357
-00:23:00.939 --> 00:23:05.968
+278
+00:17:40.059 --> 00:17:45.104
 the baseline Conditional Access policies
 are enforced after at least a week in
 
-358
-00:23:05.968 --> 00:23:10.160
+279
+00:17:45.104 --> 00:17:49.307
 report-only, the emergency access
 accounts are vaulted and tested,
 
-359
-00:23:10.160 --> 00:23:13.665
+280
+00:17:49.307 --> 00:17:52.823
 the HR feed is live, and every
 High finding is remediated.
 
-360
-00:23:13.665 --> 00:23:16.440
+281
+00:17:52.823 --> 00:17:56.099
 Phase 2 proves the whole
-pattern on real people.
+pattern on real people:
 
-361
-00:23:16.440 --> 00:23:21.917
-The Federal Modernization Workbook's Book
-01 sets the pilot's scope as one division,
+282
+00:17:56.099 --> 00:18:00.298
+one division, typically IT,
+which tolerates disruption best.
 
-362
-00:23:21.917 --> 00:23:25.013
-typically IT, which
-tolerates disruption best,
-
-363
-00:23:25.013 --> 00:23:29.140
-and the master plan's sizes are a
-floor for what it must exercise.
-
-364
-00:23:29.140 --> 00:23:34.065
+283
+00:18:00.298 --> 00:18:05.223
 It's measured against eight criteria,
 from sign-in success to help desk volume.
 
-365
-00:23:34.065 --> 00:23:38.985
-The values are illustrative: set them in
-the decision log before the pilot opens,
+284
+00:18:05.223 --> 00:18:08.900
+Set the thresholds in the decision
+log before the pilot opens,
 
-366
-00:23:38.985 --> 00:23:42.190
-and evaluate them from the
+285
+00:18:08.900 --> 00:18:11.784
+and judge them from the
 systems, not from opinion.
 
-367
-00:23:42.190 --> 00:23:45.590
-Every surface has a rollback
-trigger and a procedure.
+286
+00:18:11.784 --> 00:18:14.122
+Every surface has a rollback trigger.
 
-368
-00:23:45.590 --> 00:23:51.098
+287
+00:18:14.122 --> 00:18:19.630
 G2 is signed jointly by the steward and
 the executive sponsor: zero drift for the
 
-369
-00:23:51.098 --> 00:23:57.050
+288
+00:18:19.630 --> 00:18:25.222
 agreed hold period, every criterion met,
 and no hybrid-joined PC without a cut date.
 
-370
-00:23:57.800 --> 00:24:03.675
-Phase 3, general rollout, repeats the proven
-pattern until every division has moved.
+289
+00:18:25.222 --> 00:18:27.810
+Next, rollout and retirement.
 
-371
-00:24:03.675 --> 00:24:07.228
-A wave is a set of divisions
-chosen by attribute value,
+290
+00:18:28.560 --> 00:18:33.764
+Phase 3 repeats the proven pattern in
+waves until every division has moved,
 
-372
-00:24:07.228 --> 00:24:10.700
-usually by region, with the
+291
+00:18:33.764 --> 00:18:36.785
+usually by region,
 lowest-risk region first.
 
-373
-00:24:10.700 --> 00:24:13.767
+292
+00:18:36.785 --> 00:18:39.710
 Group Policy links stay
 in place during a wave,
 
-374
-00:24:13.767 --> 00:24:18.288
-and come off a migrated OU only
-after seven days of clean compliance.
+293
+00:18:39.710 --> 00:18:43.173
+and come off only after seven
+days of clean compliance.
 
-375
-00:24:18.288 --> 00:24:21.165
+294
+00:18:43.173 --> 00:18:46.049
 The sponsor and steering
 committee clear G3
 
-376
-00:24:21.165 --> 00:24:24.275
+295
+00:18:46.049 --> 00:18:49.159
 when every division has
 passed its own exit gate.
 
-377
-00:24:24.275 --> 00:24:28.400
+296
+00:18:49.159 --> 00:18:53.285
 Then the work changes character:
 these phases take old things away.
 
-378
-00:24:28.400 --> 00:24:33.872
-Phase 4 retires AD FS, user and device
-certificate issuance from AD CS,
+297
+00:18:53.285 --> 00:18:59.353
+Phase 4 retires legacy pieces such as AD
+FS, DNS forwarders, Group Policy links and
 
-379
-00:24:33.872 --> 00:24:36.657
-DNS forwarders, Group Policy links,
+298
+00:18:59.353 --> 00:19:05.422
+legacy servers, each through its own plan,
+and only while its rollback still works.
 
-380
-00:24:36.657 --> 00:24:41.937
-non-essential trusts and legacy
-servers, each through its own plan.
-
-381
-00:24:41.937 --> 00:24:45.726
-A component is retired only
-while its rollback still works.
-
-382
-00:24:45.726 --> 00:24:50.763
-Some things stay until the domain itself
-retires: its own DNS zones, the domain
-
-383
-00:24:50.763 --> 00:24:55.800
-controller and LDAPS certificates, and
-the default domain account policies.
-
-384
-00:24:55.800 --> 00:24:57.725
+299
+00:19:05.422 --> 00:19:07.348
 The steward clears G4.
 
-385
-00:24:57.725 --> 00:25:02.497
+300
+00:19:07.348 --> 00:19:12.119
 Phase 5 retires AD DS itself, which
 the master plan never reached,
 
-386
-00:25:02.497 --> 00:25:07.088
+301
+00:19:12.119 --> 00:19:16.710
 or reduces it to a documented
 Kerberos island with an end date.
 
-387
-00:25:07.088 --> 00:25:09.076
+302
+00:19:16.710 --> 00:19:18.698
 Two steps are easy to forget.
 
-388
-00:25:09.076 --> 00:25:10.912
+303
+00:19:18.698 --> 00:19:20.535
 Records come before hardware.
 
-389
-00:25:10.912 --> 00:25:15.047
-And domain controllers store the
-password hashes of every account,
+304
+00:19:20.535 --> 00:19:24.625
+And because domain controllers
+store every account's password hash,
 
-390
-00:25:15.047 --> 00:25:18.074
-so retired hosts and their
+305
+00:19:24.625 --> 00:19:27.423
+retired hosts and their
 storage are sanitized.
 
-391
-00:25:18.074 --> 00:25:23.325
-The sponsor and CIO clear G5, and they
+306
+00:19:27.423 --> 00:19:32.449
+The sponsor and CIO clear G5, and
 decide when each component retires,
 
-392
-00:25:23.325 --> 00:25:26.560
+307
+00:19:32.449 --> 00:19:35.410
 after the records officer is consulted.
 
-393
-00:25:27.310 --> 00:25:30.647
+308
+00:19:35.410 --> 00:19:37.450
+Next, steady state.
+
+309
+00:19:38.200 --> 00:19:41.537
 Phase 6, steady state, has no exit gate.
 
-394
-00:25:30.647 --> 00:25:35.593
+310
+00:19:41.537 --> 00:19:46.526
 The modernized estate runs under continuous
-governance: reassessment weekly,
+governance: drift detection daily,
 
-395
-00:25:35.593 --> 00:25:38.815
-drift detection daily, a
+311
+00:19:46.526 --> 00:19:49.653
+reassessment weekly, a
 monthly compliance report,
 
-396
-00:25:38.815 --> 00:25:42.636
+312
+00:19:49.653 --> 00:19:53.450
 quarterly access reviews and
 an annual architecture review.
 
-397
-00:25:42.636 --> 00:25:45.110
-The finish line is zero drift findings,
-
-398
-00:25:45.110 --> 00:25:50.060
-zero actions from the nightly plan run,
+313
+00:19:53.450 --> 00:19:58.362
+The finish line is zero drift findings
 and signed evidence flowing to the SIEM.
 
-399
-00:25:50.060 --> 00:25:53.897
+314
+00:19:58.362 --> 00:20:02.199
 Every finding gets a severity,
 and every severity a clock.
 
-400
-00:25:53.897 --> 00:25:57.210
+315
+00:20:02.199 --> 00:20:05.236
 The master plan's defaults
-run from a Critical finding
+run from four hours for
 
-401
-00:25:57.210 --> 00:26:00.522
-fixed within four hours to a
-Low one within thirty days.
+316
+00:20:05.236 --> 00:20:08.050
+a Critical finding to
+thirty days for a Low one.
 
-402
-00:26:00.522 --> 00:26:05.633
+317
+00:20:08.050 --> 00:20:13.160
 The agency sets its own values; what the
 program insists on is that there are some,
 
-403
-00:26:05.633 --> 00:26:09.736
+318
+00:20:13.160 --> 00:20:17.263
 written into its continuous
 monitoring strategy and measured.
 
-404
-00:26:09.736 --> 00:26:11.735
+319
+00:20:17.263 --> 00:20:19.262
 Success is measured twice.
 
-405
-00:26:11.735 --> 00:26:17.179
-Delivery measures turn green gate by
-gate: the assessment accepted at G0,
+320
+00:20:19.262 --> 00:20:22.175
+Delivery measures turn green gate by gate.
 
-406
-00:26:17.179 --> 00:26:23.349
-the target model agreed at G1, the first
-wave run with full provenance and evidence
-
-407
-00:26:23.349 --> 00:26:29.247
-at G2, drift detection operating by G2 and
-G3, and every residual risk owned by G5.
-
-408
-00:26:29.247 --> 00:26:33.559
+321
+00:20:22.175 --> 00:20:26.487
 Outcome measures are what operations
 keeps green after the project ends.
 
-409
-00:26:33.559 --> 00:26:36.928
+322
+00:20:26.487 --> 00:20:29.706
 A program can meet every
-delivery measure and still fail
+delivery measure and still
 
-410
-00:26:36.928 --> 00:26:40.510
-if the outcome measures drift
-after the project team leaves.
+323
+00:20:29.706 --> 00:20:32.625
+fail if the outcomes drift
+once the team leaves.
 
-411
-00:26:40.510 --> 00:26:43.023
+324
+00:20:32.625 --> 00:20:35.138
 That's why the handover
 is part of the scorecard.
 
-412
-00:26:43.023 --> 00:26:47.672
-The steward records it before the
-team leaves: who owns the repository
+325
+00:20:35.138 --> 00:20:39.720
+Before the team leaves, the steward
+records who owns the repository,
 
-413
-00:26:47.672 --> 00:26:52.520
-and its protections, each drift
-class, each severity and each review.
+326
+00:20:39.720 --> 00:20:42.912
+each drift class, each
+severity and each review.
 
-414
-00:26:53.270 --> 00:26:56.370
-The risk register starts
-with five program risks.
+327
+00:20:42.912 --> 00:20:44.740
+Next, the risks.
 
-415
-00:26:56.370 --> 00:27:00.068
-Hidden dependencies are missed
-in discovery: the answer is a
+328
+00:20:45.490 --> 00:20:50.352
+The risk register names what can sink the
+program, starting with five program risks.
 
-416
-00:27:00.068 --> 00:27:04.432
-structured assessment and a pilot
-designed to surface unknowns early.
+329
+00:20:50.352 --> 00:20:52.352
+Hidden dependencies get missed,
 
-417
-00:27:04.432 --> 00:27:06.851
-Competing sources of truth persist:
+330
+00:20:52.352 --> 00:20:56.352
+so a structured assessment and
+the pilot surface unknowns early.
 
-418
-00:27:06.851 --> 00:27:10.720
-one authoritative origin is
-designated per object class.
+331
+00:20:56.352 --> 00:20:58.669
+Competing sources of truth persist,
 
-419
-00:27:10.720 --> 00:27:14.000
+332
+00:20:58.669 --> 00:21:01.990
+so each object class gets
+one authoritative origin.
+
+333
+00:21:01.990 --> 00:21:05.379
 The organization resists
-making authority explicit:
+making authority explicit,
 
-420
-00:27:14.000 --> 00:27:18.520
-the answer is early alignment, and
-decision rights with one decider per row.
+334
+00:21:05.379 --> 00:21:08.015
+so decision rights get
+one decider per row.
 
-421
-00:27:18.520 --> 00:27:22.075
-Tooling leads the design:
-the target model comes first,
+335
+00:21:08.015 --> 00:21:12.442
+And tooling leads the design, which
+is why the target model comes first:
 
-422
-00:27:22.075 --> 00:27:26.182
-because tools bought first
-automate the old ambiguity faster.
+336
+00:21:12.442 --> 00:21:15.877
+tools bought first automate
+the old ambiguity faster.
 
-423
-00:27:26.182 --> 00:27:29.838
-And physics or data residency
-limits centralization,
+337
+00:21:15.877 --> 00:21:20.878
+Beneath them sit twenty-five delivery risks,
+and a few deserve executive attention.
 
-424
-00:27:29.838 --> 00:27:34.795
-so truth is centralized logically,
-not necessarily in one physical store.
+338
+00:21:20.878 --> 00:21:26.223
+Legacy applications that depend on NTLM
+can't be evaluated by Conditional Access,
 
-425
-00:27:34.795 --> 00:27:37.645
-Beneath them sit
-twenty-five delivery risks.
-
-426
-00:27:37.645 --> 00:27:39.833
-A few deserve executive attention.
-
-427
-00:27:39.833 --> 00:27:45.307
-Critical certificate-services
-misconfigurations can force emergency PKI work.
-
-428
-00:27:45.307 --> 00:27:50.345
-Legacy applications depend on NTLM,
-which Conditional Access can't evaluate,
-
-429
-00:27:50.345 --> 00:27:55.069
+339
+00:21:26.223 --> 00:21:30.940
 so each dependency becomes a finding
 with an owner and a dated exception.
 
-430
-00:27:55.069 --> 00:27:58.596
+340
+00:21:30.940 --> 00:21:34.000
 Strong certificate mapping
-is no longer a future risk:
+isn't a future risk:
 
-431
-00:27:58.596 --> 00:28:01.182
+341
+00:21:34.000 --> 00:21:36.590
 domain controllers already enforce it.
 
-432
-00:28:01.182 --> 00:28:04.860
-And at the end, access records
-can be lost at decommission,
-
-433
-00:28:04.860 --> 00:28:07.833
-and governance can decay
+342
+00:21:36.590 --> 00:21:39.415
+And governance can decay
 once the team leaves.
 
-434
-00:28:07.833 --> 00:28:10.382
-The register doesn't satisfy a control.
+343
+00:21:39.415 --> 00:21:43.547
+The register doesn't satisfy a
+control, but it tells the agency
 
-435
-00:28:10.382 --> 00:28:13.920
-It tells the agency when its
-system security plan and its
+344
+00:21:43.547 --> 00:21:48.003
+when to update its security plan
+and risk assessment: at every gate.
 
-436
-00:28:13.920 --> 00:28:17.457
-risk assessment have to be
-updated, which is at every gate.
-
-437
-00:28:17.457 --> 00:28:19.920
-The project manager keeps the register,
-
-438
-00:28:19.920 --> 00:28:24.101
-the authorizing official accepts
+345
+00:21:48.003 --> 00:21:52.298
+The authorizing official accepts
 residual risk, and security risk
 
-439
-00:28:24.101 --> 00:28:28.490
+346
+00:21:52.298 --> 00:21:56.440
 left open past a gate becomes a
 plan of action and milestones item.
 
-440
-00:28:29.240 --> 00:28:31.940
+347
+00:21:56.440 --> 00:21:59.400
+Finally, the decisions in one place.
+
+348
+00:22:00.150 --> 00:22:02.850
 So, the decisions, with their owners.
 
-441
-00:28:31.940 --> 00:28:36.651
-The executive sponsor charters the
-program as governance reconstruction,
+349
+00:22:02.850 --> 00:22:06.426
+The executive sponsor charters
+the program as governance
 
-442
-00:28:36.651 --> 00:28:40.315
-signs the charter, and puts names
-in it as Phase 0's entry work.
+350
+00:22:06.426 --> 00:22:10.075
+reconstruction and signs the
+charter as Phase 0's entry work.
 
-443
-00:28:40.315 --> 00:28:43.475
-The sponsor and CIO fund
-one sequenced program,
+351
+00:22:10.075 --> 00:22:15.527
+The sponsor and CIO fund one sequenced
+program, with the AD DS retirement phase
 
-444
-00:28:43.475 --> 00:28:47.284
-with the AD DS retirement
-phase and the people beyond the
+352
+00:22:15.527 --> 00:22:21.063
+and the people beyond the core team in
+the budget, approved before design begins.
 
-445
-00:28:47.284 --> 00:28:52.065
-five-and-a-half-person core in the
-budget, approved before design begins.
-
-446
-00:28:52.065 --> 00:28:55.829
+353
+00:22:21.063 --> 00:22:24.602
 And they build the steward and
-steering committee from the zero
+steering committee from the
 
-447
-00:28:55.829 --> 00:28:59.665
-trust lead and the ICAM governance
+354
+00:22:24.602 --> 00:22:28.575
+zero trust lead and ICAM governance
 body the agency already has.
 
-448
-00:28:59.665 --> 00:29:03.192
+355
+00:22:28.575 --> 00:22:32.102
 The CISO's office confirms
 the M-26-14 dates,
 
-449
-00:29:03.192 --> 00:29:09.365
+356
+00:22:32.102 --> 00:22:38.275
 starting with the Agency Logging Plan,
 due November 18 by the program's count.
 
-450
-00:29:09.365 --> 00:29:14.668
+357
+00:22:38.275 --> 00:22:43.578
 The authorizing official decides whether
 anything runs past end of support,
 
-451
-00:29:14.668 --> 00:29:18.065
+358
+00:22:43.578 --> 00:22:46.975
 beginning with Windows
 Server 2016 on January 12.
 
-452
-00:29:18.065 --> 00:29:23.315
-The steward sets the evidence and provenance
+359
+00:22:46.975 --> 00:22:51.485
+The steward sets the evidence
 expectations before the first change,
 
-453
-00:29:23.315 --> 00:29:26.240
-and clears G0 only when
-every Critical finding
+360
+00:22:51.485 --> 00:22:55.757
+clears G0 only when every Critical
+finding is closed or accepted,
 
-454
-00:29:26.240 --> 00:29:29.390
-is closed or accepted by
-the authorizing official.
+361
+00:22:55.757 --> 00:23:00.188
+and, with the sponsor, records the
+pilot's thresholds before it opens.
 
-455
-00:29:29.390 --> 00:29:32.125
-The steward and sponsor record the pilot's
+362
+00:23:00.188 --> 00:23:03.462
+And the steward records the
+handover before the team leaves.
 
-456
-00:29:32.125 --> 00:29:35.328
-thresholds before it opens,
-and sign G2 on the data.
-
-457
-00:29:35.328 --> 00:29:40.081
-The sponsor and CIO decide when each
-Active Directory component retires,
-
-458
-00:29:40.081 --> 00:29:42.653
-after the records officer is consulted.
-
-459
-00:29:42.653 --> 00:29:47.315
-And the steward records the handover to
-operations before the project team leaves.
-
-460
-00:29:47.315 --> 00:29:48.965
+363
+00:23:03.462 --> 00:23:05.112
 None of these is a purchase.
 
-461
-00:29:48.965 --> 00:29:54.074
-The case for modernizing now is that the
-estate's governance was never written down,
+364
+00:23:05.112 --> 00:23:08.106
+The estate's governance
+was never written down,
 
-462
-00:29:54.074 --> 00:29:58.368
+365
+00:23:08.106 --> 00:23:12.557
 the dates that bind it now belong to
 others, and the only way to meet them
 
-463
-00:29:58.368 --> 00:30:03.403
+366
+00:23:12.557 --> 00:23:17.775
 without losing that governance is to recover
 it deliberately, once, in one program.
 
-464
-00:30:03.403 --> 00:30:04.230
+367
+00:23:17.775 --> 00:23:18.600
 Thank you.

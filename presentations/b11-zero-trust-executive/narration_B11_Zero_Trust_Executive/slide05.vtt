@@ -1,137 +1,112 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.575
-Now, what the mandates actually require.
-
-2
-00:00:02.575 --> 00:00:05.607
+00:00:00.050 --> 00:00:03.198
 Zero Trust programs are
 usually argued by citation,
 
-3
-00:00:05.607 --> 00:00:09.838
-and most of the citations fail when
-you check them against the documents.
+2
+00:00:03.198 --> 00:00:06.200
+and most of the citations
+fail when you check them.
 
-4
-00:00:09.838 --> 00:00:12.501
+3
+00:00:06.200 --> 00:00:08.863
 Four documents get cited
 as if they were one.
 
+4
+00:00:08.863 --> 00:00:11.645
+Executive Order 14028 is binding,
+
 5
-00:00:12.501 --> 00:00:16.446
-Executive Order 14028,
-from May 2021, is binding,
+00:00:11.645 --> 00:00:16.713
+and required each agency to plan
+for Zero Trust Architecture.
 
 6
-00:00:16.446 --> 00:00:23.225
-and required each agency to develop a plan
-to implement Zero Trust Architecture.
+00:00:16.713 --> 00:00:21.987
+OMB M-22-09 is binding, and sets
+specific actions by pillar.
 
 7
-00:00:23.225 --> 00:00:30.800
-OMB M-22-09, from January 2022, is binding
-and sets specific actions by pillar.
+00:00:21.987 --> 00:00:25.963
+CISA's maturity model is guidance;
+it says it shouldn't be viewed
 
 8
-00:00:30.800 --> 00:00:35.813
-CISA's Zero Trust Maturity
-Model, version 2.0, is guidance.
+00:00:25.963 --> 00:00:30.088
+as a strict set of requirements,
+and its page is now marked archived.
 
 9
-00:00:35.813 --> 00:00:40.522
-It says it should not be viewed as a strict
-set of requirements but as a general
+00:00:30.088 --> 00:00:34.237
+NIST SP 800-207 is guidance too.
 
 10
-00:00:40.522 --> 00:00:44.937
-guide, and CISA's page for it is now
-marked archived, with no later version.
+00:00:34.237 --> 00:00:38.739
+M-22-09 borrows the model's
+pillars to organize its actions,
 
 11
-00:00:44.937 --> 00:00:49.102
-NIST SP 800-207 is guidance too:
-
-12
-00:00:49.102 --> 00:00:52.901
-it supplies the tenets and the
-architecture the others assume.
-
-13
-00:00:52.901 --> 00:00:55.038
-The relationship runs one way.
-
-14
-00:00:55.038 --> 00:00:59.551
-M-22-09 borrows the model's
-pillars to organize its actions;
-
-15
-00:00:59.551 --> 00:01:02.763
-it doesn't adopt the model's
+00:00:38.739 --> 00:00:41.562
+but doesn't adopt its
 stages as requirements.
 
-16
-00:01:02.763 --> 00:01:06.451
+12
+00:00:41.562 --> 00:00:45.250
 That leaves several requirements
 that circulate but don't exist.
 
-17
-00:01:06.451 --> 00:01:12.838
-Neither M-22-09 nor FedRAMP requires a
-particular maturity stage, such as Advanced.
+13
+00:00:45.250 --> 00:00:49.862
+No federal document requires a particular
+maturity stage, such as Advanced.
 
-18
-00:01:12.838 --> 00:01:15.936
+14
+00:00:49.862 --> 00:00:53.026
 No federal document
 defines a Zero Trust score,
 
-19
-00:01:15.936 --> 00:01:21.338
-so a tool whose output certifies maturity
+15
+00:00:53.026 --> 00:00:58.462
+so a tool that claims to certify maturity
 is citing a requirement that isn't there.
 
-20
-00:01:21.338 --> 00:01:28.226
-M-22-09 doesn't require ScubaGear;
-that obligation comes from BOD 25-01.
+16
+00:00:58.462 --> 00:01:04.887
+And M-22-09 doesn't require
+ScubaGear; that comes from BOD 25-01.
 
-21
-00:01:28.226 --> 00:01:32.750
-And inline decryption of all traffic
-is neither required nor prohibited.
-
-22
-00:01:32.750 --> 00:01:34.650
+17
+00:01:04.887 --> 00:01:06.788
 None of that makes the target vague.
 
-23
-00:01:34.650 --> 00:01:38.825
+18
+00:01:06.788 --> 00:01:10.962
 It means the target is a choice
 the agency makes and has to defend.
 
-24
-00:01:38.825 --> 00:01:42.523
+19
+00:01:10.962 --> 00:01:14.600
 So the decision: set a maturity
 target for each pillar,
 
-25
-00:01:42.523 --> 00:01:45.800
+20
+00:01:14.600 --> 00:01:17.575
 written down as program
-design, not as a mandate.
+design, not mandate.
 
-26
-00:01:45.800 --> 00:01:50.480
-In the book's responsibility matrix
-the Zero Trust program lead decides it,
+21
+00:01:17.575 --> 00:01:21.368
+The Zero Trust program lead
+decides it, consulting the CIO,
 
-27
-00:01:50.480 --> 00:01:54.179
-consulting the CIO, the CISO
-and the authorizing official,
+22
+00:01:21.368 --> 00:01:26.425
+the CISO and the authorizing official,
+before the next assessment is scored.
 
-28
-00:01:54.179 --> 00:01:57.480
-and it's needed before the
-next assessment is scored.
+23
+00:01:26.425 --> 00:01:29.140
+Next, the one memo that still binds.

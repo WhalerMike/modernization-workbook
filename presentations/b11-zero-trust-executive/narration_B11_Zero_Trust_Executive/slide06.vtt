@@ -1,149 +1,120 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.122
-M-22-09 is the only one of the
-four that sets dated actions
+00:00:00.050 --> 00:00:03.976
+M-22-09 is the only one of
+these that sets dated actions
 
 2
-00:00:04.122 --> 00:00:07.337
+00:00:03.976 --> 00:00:07.188
 for the program itself, and it
 isn't limited to the cloud.
 
 3
-00:00:07.337 --> 00:00:10.813
-It also addresses on-premises
-and hybrid systems.
+00:00:07.188 --> 00:00:10.300
+It covers on-premises
+and hybrid systems too.
 
 4
-00:00:10.813 --> 00:00:13.187
-By pillar, the actions are specific.
+00:00:10.300 --> 00:00:11.963
+Its actions are specific.
 
 5
-00:00:13.187 --> 00:00:15.941
-Identity: centralized identity management,
+00:00:11.963 --> 00:00:16.048
+Phishing-resistant MFA for
+staff, contractors and partners,
 
 6
-00:00:15.941 --> 00:00:19.885
-and phishing-resistant multi-factor
-authentication for staff,
+00:00:16.048 --> 00:00:20.379
+which means agency systems stop
+supporting SMS and voice codes,
 
 7
-00:00:19.885 --> 00:00:24.499
-contractors and partners, which means
-agency systems stop supporting SMS
+00:00:20.379 --> 00:00:24.301
+one-time codes and push
+notifications for routine access.
 
 8
-00:00:24.499 --> 00:00:29.038
-and voice codes, one-time codes and
-push notifications for routine access.
+00:00:24.301 --> 00:00:27.850
+Reliable device inventories
+and endpoint detection.
 
 9
-00:00:29.038 --> 00:00:34.044
-Devices: reliable asset inventories
-through CISA's Continuous Diagnostics
+00:00:27.850 --> 00:00:31.865
+Encrypted DNS, HTTPS for
+all web and API traffic,
 
 10
-00:00:34.044 --> 00:00:39.050
-and Mitigation program, and endpoint
-detection and response deployed widely.
+00:00:31.865 --> 00:00:36.188
+and moving away from one
+broad enterprise network.
 
 11
-00:00:39.050 --> 00:00:44.324
-Networks: encrypted DNS, HTTPS for
-all web and API traffic, and a plan
+00:00:36.188 --> 00:00:39.988
+Security testing for applications,
+and comprehensive logging.
 
 12
-00:00:44.324 --> 00:00:50.462
-for environmental isolation, moving
-away from one broad enterprise network.
-
-13
-00:00:50.462 --> 00:00:55.845
-Applications: dedicated security testing,
-a public vulnerability disclosure program,
-
-14
-00:00:55.845 --> 00:00:59.164
-and at least one internal
-FISMA Moderate application
-
-15
-00:00:59.164 --> 00:01:02.187
-made fully operational
-over the public internet.
-
-16
-00:01:02.187 --> 00:01:07.000
-Data: initial automation of data
-categorization, and comprehensive logging.
-
-17
-00:01:07.000 --> 00:01:10.163
+00:00:39.988 --> 00:00:43.150
 Its fiscal 2024 deadlines have passed.
 
-18
-00:01:10.163 --> 00:01:14.791
-OMB hasn't rescinded it: its
-memoranda index lists no rescission,
+13
+00:00:43.150 --> 00:00:48.137
+But OMB hasn't rescinded it, and a passed
+deadline doesn't retire an action.
 
-19
-00:01:14.791 --> 00:01:17.062
-and the memo is still published.
-
-20
-00:01:17.062 --> 00:01:19.812
-A passed deadline
-doesn't retire an action.
-
-21
-00:01:19.812 --> 00:01:22.890
+14
+00:00:48.137 --> 00:00:51.216
 Agencies are now measured
 against these actions as
 
-22
-00:01:22.890 --> 00:01:25.825
+15
+00:00:51.216 --> 00:00:54.151
 an existing obligation
 rather than a target date.
 
-23
-00:01:25.825 --> 00:01:27.113
+16
+00:00:54.151 --> 00:00:55.438
 There's one adjustment.
 
-24
-00:01:27.113 --> 00:01:33.511
-The logging action points to M-21-31,
+17
+00:00:55.438 --> 00:01:02.164
+The logging action pointed to M-21-31,
 which M-26-14 rescinded on May 22, 2026,
 
-25
-00:01:33.511 --> 00:01:41.212
-replacing its tiers with a risk-based approach
+18
+00:01:02.164 --> 00:01:09.450
+replacing it with a risk-based approach
 and a Logging Reference Architecture.
 
-26
-00:01:41.212 --> 00:01:46.262
-CISA published that architecture on
-August 20, 2026, and the memo gives
+19
+00:01:09.450 --> 00:01:13.275
+CISA published that architecture
+on August 20, 2026,
 
-27
-00:01:46.262 --> 00:01:51.225
-agencies 90 days from its release
+20
+00:01:13.275 --> 00:01:18.925
+and agencies have 90 days from its release
 for their first Agency Logging Plan.
 
-28
-00:01:51.225 --> 00:01:53.513
+21
+00:01:18.925 --> 00:01:21.213
 That's the decision with the nearest date.
 
-29
-00:01:53.513 --> 00:01:58.226
-The CISO decides how the Agency Logging
-Plan covers Zero Trust telemetry,
+22
+00:01:21.213 --> 00:01:25.313
+The CISO decides how the logging
+plan covers Zero Trust telemetry,
 
-30
-00:01:58.226 --> 00:02:01.951
+23
+00:01:25.313 --> 00:01:28.901
 including the hosts and accounts
 that run the assessments.
 
-31
-00:02:01.951 --> 00:02:05.930
+24
+00:01:28.901 --> 00:01:32.825
 It's due 90 days after August 20, 2026.
+
+25
+00:01:32.825 --> 00:01:36.120
+Next, BOD 25-01.

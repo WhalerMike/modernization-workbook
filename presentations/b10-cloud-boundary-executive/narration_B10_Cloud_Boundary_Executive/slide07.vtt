@@ -1,136 +1,107 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.713
-Now the feature gap itself.
+00:00:00.050 --> 00:00:03.065
+Microsoft's own documents
+don't describe GCC
 
 2
-00:00:01.713 --> 00:00:05.005
-Chapter 04 reads GCC from
-Microsoft's own documents,
+00:00:03.065 --> 00:00:06.162
+as a dimmed version of
+the commercial service.
 
 3
-00:00:05.005 --> 00:00:10.137
-and they don't describe a compliance
-perimeter that dims the commercial service.
+00:00:06.162 --> 00:00:11.262
+GCC is the worldwide service, minus
+a published list of exclusions.
 
 4
-00:00:10.137 --> 00:00:12.960
-GCC has no endpoint list of its own:
-
-5
-00:00:12.960 --> 00:00:17.900
-Microsoft publishes one list
-for Worldwide, including GCC.
-
-6
-00:00:17.900 --> 00:00:22.637
+00:00:11.262 --> 00:00:15.999
 The restricted, separately networked
 environment begins at GCC High.
 
+5
+00:00:15.999 --> 00:00:17.800
+And that list isn't a ladder.
+
+6
+00:00:17.800 --> 00:00:22.452
+Several features are missing in
+GCC, GCC High and DoD alike,
+
 7
-00:00:22.637 --> 00:00:27.362
-What GCC has is a list of exclusions,
-and the list isn't a ladder.
+00:00:22.452 --> 00:00:25.650
+so moving up doesn't restore everything.
 
 8
-00:00:27.362 --> 00:00:31.794
-Network connectivity in the
-admin center, Adoption Score,
-
-9
-00:00:31.794 --> 00:00:35.949
-the Office 365 content
-delivery network and informed
-
-10
-00:00:35.949 --> 00:00:40.288
-network routing are missing in
-GCC, GCC High and DoD alike.
-
-11
-00:00:40.288 --> 00:00:43.538
-Windows release health,
-Word version history and
-
-12
-00:00:43.538 --> 00:00:46.551
-Excel Office Scripts
-reach GCC and stop there.
-
-13
-00:00:46.551 --> 00:00:48.725
-Moving up doesn't restore everything.
-
-14
-00:00:48.725 --> 00:00:52.725
+00:00:25.650 --> 00:00:29.650
 The largest documented loss is
 the network connectivity layer.
 
-15
-00:00:52.725 --> 00:00:56.172
+9
+00:00:29.650 --> 00:00:32.829
 A commercial tenant gets,
 at no extra license cost,
 
-16
-00:00:56.172 --> 00:01:00.208
-a daily network assessment from
-0 to 100 for each location,
+10
+00:00:32.829 --> 00:00:37.635
+a daily network score for each location,
+a view of its egress and front doors,
 
-17
-00:01:00.208 --> 00:01:05.674
-with 80 as the healthy baseline; a view of
-each location's egress and front doors;
+11
+00:00:37.635 --> 00:00:40.581
+insights such as detecting
+TLS interception,
 
-18
-00:01:05.674 --> 00:01:10.887
-insights such as detecting TLS
-interception; and performance attributed
+12
+00:00:40.581 --> 00:00:44.225
+and performance attributed
+to named network providers.
 
-19
-00:01:10.887 --> 00:01:15.175
-to named network providers,
-whether ISP, overlay or corporate.
-
-20
-00:01:15.175 --> 00:01:19.594
+13
+00:00:44.225 --> 00:00:48.473
 An agency choosing between SASE or
 transport providers in a commercial
 
-21
-00:01:19.594 --> 00:01:24.013
-tenant gets comparative evidence from
-Microsoft, in its own admin center.
+14
+00:00:48.473 --> 00:00:53.000
+tenant gets that comparative evidence
+from Microsoft, in its own admin center.
 
-22
-00:01:24.013 --> 00:01:27.288
+15
+00:00:53.000 --> 00:00:56.275
 The same agency in GCC gets none of it.
 
-23
-00:01:27.288 --> 00:01:32.565
-Microsoft's network connectivity test
-tool does support GCC, run locally from
+16
+00:00:56.275 --> 00:00:59.653
+Microsoft's connectivity
+test tool does run in GCC,
 
-24
-00:01:32.565 --> 00:01:37.599
-each location, and it closes part of the
-gap, but not the provider comparison.
+17
+00:00:59.653 --> 00:01:03.675
+and it closes part of the gap,
+but not the provider comparison.
 
-25
-00:01:37.599 --> 00:01:39.850
+18
+00:01:03.675 --> 00:01:05.925
 So this decision is a budget line.
 
-26
-00:01:39.850 --> 00:01:43.222
+19
+00:01:05.925 --> 00:01:09.355
 Fund the independent measurement
-that replaces the layer,
+that replaces that layer,
 
-27
-00:01:43.222 --> 00:01:45.837
+20
+00:01:09.355 --> 00:01:11.962
 before you pick a
 transport or SASE provider.
 
-28
-00:01:45.837 --> 00:01:49.920
+21
+00:01:11.962 --> 00:01:15.976
 That's the sponsor and CIO's call,
 because they fund the platform.
+
+22
+00:01:15.976 --> 00:01:19.010
+Next, why a higher
+certification won't fix it.

@@ -1,130 +1,97 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.625
-Then the cycle that turns
-analysis into delivered change.
+00:00:00.050 --> 00:00:04.020
+The rule here is simple: nothing
+touches the target without a plan,
 
 2
-00:00:03.625 --> 00:00:06.050
-Nothing touches the target without a plan,
+00:00:04.020 --> 00:00:07.475
+and no plan touches it until
+someone of record has read it.
 
 3
-00:00:06.050 --> 00:00:10.000
-and no plan touches it without someone
-of record having read it first.
+00:00:07.475 --> 00:00:12.404
+The cycle compares current state with the
+target, then turns the difference into
 
 4
-00:00:10.000 --> 00:00:13.042
-Analyze compares the current
-state with the target
+00:00:12.404 --> 00:00:17.112
+a plan of small actions, each with its own
+inverse, so the plan can run backwards.
 
 5
-00:00:13.042 --> 00:00:15.588
-and produces a diff and
-a blast-radius score.
+00:00:17.112 --> 00:00:20.332
+Validation rejects plans
+that break safety rules,
 
 6
-00:00:15.588 --> 00:00:20.749
-Plan turns the diff into a sequence of
-actions, each bounded to a single object,
+00:00:20.332 --> 00:00:22.938
+such as deleting too many objects at once.
 
 7
-00:00:20.749 --> 00:00:24.378
-ordered by dependency and
-paired with its own inverse,
+00:00:22.938 --> 00:00:26.726
+Authorization needs at least one
+approver who isn't the author.
 
 8
-00:00:24.378 --> 00:00:26.313
-so the plan can run backwards.
+00:00:26.726 --> 00:00:29.051
+Only then does the execution layer,
 
 9
-00:00:26.313 --> 00:00:27.537
-Then two gates.
+00:00:29.051 --> 00:00:32.900
+under a separate identity,
+deliver and record each action.
 
 10
-00:00:27.537 --> 00:00:30.793
-Validation rejects any
-plan that breaks naming,
+00:00:32.900 --> 00:00:35.831
+When something fails,
+the default is to halt,
 
 11
-00:00:30.793 --> 00:00:35.025
-scope or safety rules, such as
-deleting too many objects at once.
+00:00:35.831 --> 00:00:38.925
+and every run ends in a
+signed evidence packet.
 
 12
-00:00:35.025 --> 00:00:37.594
-Authorization needs a review and at least
+00:00:38.925 --> 00:00:41.860
+A separate rule caps how
+far automation may go,
 
 13
-00:00:37.594 --> 00:00:40.163
-one approver of record
-who isn't the author.
+00:00:41.860 --> 00:00:46.263
+from simply recording up to autonomy
+for named low-risk classes only.
 
 14
-00:00:40.163 --> 00:00:44.496
-Only then does the execution
-layer, under a separate identity,
-
-15
-00:00:44.496 --> 00:00:48.150
-deliver each action, verify
-it and record the result.
-
-16
-00:00:48.150 --> 00:00:52.962
-When something fails, the default is
-to halt, and rollback is explicit.
-
-17
-00:00:52.962 --> 00:00:55.928
-Every run ends in a
-signed evidence packet,
-
-18
-00:00:55.928 --> 00:01:00.249
-and when nothing has drifted, the
-next run is a zero-action plan.
-
-19
-00:01:00.249 --> 00:01:05.055
-A separate rule caps how far
-automation may go: record, observe,
-
-20
-00:01:05.055 --> 00:01:10.425
-advise, gated actuation, and autonomy
-only for named low-risk classes.
-
-21
-00:01:10.425 --> 00:01:14.065
+00:00:46.263 --> 00:00:49.903
 Tenant-wide role changes,
 Conditional Access enforcement
 
-22
-00:01:14.065 --> 00:01:17.037
+15
+00:00:49.903 --> 00:00:52.875
 and bulk device changes
 stay gated permanently.
 
-23
-00:01:17.037 --> 00:01:19.562
-No federal document requires that ceiling.
+16
+00:00:52.875 --> 00:00:55.423
+No federal document requires that ceiling;
 
-24
-00:01:19.562 --> 00:01:23.937
-The book chooses it because it's a
-posture an authorizing official can sign.
+17
+00:00:55.423 --> 00:00:59.175
+the book chooses it because an
+authorizing official can sign it.
 
-25
-00:01:23.937 --> 00:01:26.476
+18
+00:00:59.175 --> 00:01:04.044
 So before the first production delivery,
-
-26
-00:01:26.476 --> 00:01:30.805
 the authorizing official agrees the
-ceiling for each class of change,
 
-27
-00:01:30.805 --> 00:01:34.300
-with its dry run, its approver
-and its rollback on record.
+19
+00:01:04.044 --> 00:01:09.062
+ceiling for each class of change, with its
+dry run, approver and rollback on record.
+
+20
+00:01:09.062 --> 00:01:10.700
+Next, the roadmap.

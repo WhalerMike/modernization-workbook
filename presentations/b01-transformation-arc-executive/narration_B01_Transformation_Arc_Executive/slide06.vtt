@@ -1,109 +1,94 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.362
-Identity comes first in
-the chain, because policy,
+00:00:00.050 --> 00:00:06.025
+Identity comes first, because policy, devices
+and access all target identity groups.
 
 2
-00:00:03.362 --> 00:00:06.513
-devices and access all
-target identity groups.
-
-3
-00:00:06.513 --> 00:00:12.175
+00:00:06.025 --> 00:00:11.687
 The OU tree carried delegation, policy
 scope and accountability in one structure.
 
-4
-00:00:12.175 --> 00:00:16.175
+3
+00:00:11.687 --> 00:00:15.688
 A flat cloud directory has none of
 that until the program writes it down.
 
+4
+00:00:15.688 --> 00:00:19.074
+The book rebuilds it with
+attributes, dynamic groups,
+
 5
-00:00:16.175 --> 00:00:21.078
-The book rebuilds it with four Microsoft
-mechanisms bound into one model:
+00:00:19.074 --> 00:00:22.076
+administrative units
+and Conditional Access.
 
 6
-00:00:21.078 --> 00:00:26.062
-attributes, dynamic groups, administrative
-units and Conditional Access.
+00:00:22.076 --> 00:00:27.153
+Setting a user's attributes from the
+HR record drives group membership,
 
 7
-00:00:26.062 --> 00:00:31.429
-Setting a user's attributes from the HR
-record produces every downstream effect:
+00:00:27.153 --> 00:00:31.112
+delegated scope, policy,
+licenses and drift visibility.
 
 8
-00:00:31.429 --> 00:00:37.037
-group membership, delegated scope, policy
-targeting, licenses and drift visibility.
-
-9
-00:00:37.037 --> 00:00:39.100
+00:00:31.112 --> 00:00:33.175
 One stamp, five outcomes.
 
-10
-00:00:39.100 --> 00:00:41.725
+9
+00:00:33.175 --> 00:00:35.800
 That only works if the
 attributes are true.
 
-11
-00:00:41.725 --> 00:00:47.212
-M-22-09 requires centralized identity
-management for agency users.
-
-12
-00:00:47.212 --> 00:00:51.737
+10
+00:00:35.800 --> 00:00:40.325
 For the workforce, the authoritative
 source is the HR system of record.
 
-13
-00:00:51.737 --> 00:00:56.137
-HR owns who works for the agency,
-where they sit and who they report to.
-
-14
-00:00:56.137 --> 00:01:01.088
+11
+00:00:40.325 --> 00:00:45.295
 A dynamic rule is only as trustworthy as
 whoever can write the attribute it reads,
 
-15
-00:01:01.088 --> 00:01:04.561
+12
+00:00:45.295 --> 00:00:48.781
 so the help-desk and self-service
 write paths are removed,
 
-16
-00:01:04.561 --> 00:01:06.925
-and HR provisioning is the only writer.
+13
+00:00:48.781 --> 00:00:51.525
+and HR provisioning
+becomes the only writer.
 
-17
-00:01:06.925 --> 00:01:10.137
-Then joiner, mover and
-leaver run on their own.
-
-18
-00:01:10.137 --> 00:01:14.938
+14
+00:00:51.525 --> 00:00:56.325
 Tokens don't fix a wrong model; they
 sign broken authorizations efficiently.
 
-19
-00:01:14.938 --> 00:01:18.254
+15
+00:00:56.325 --> 00:00:59.641
 So HR decides what the
 authoritative attributes mean,
 
-20
-00:01:18.254 --> 00:01:21.201
+16
+00:00:59.641 --> 00:01:02.588
 and identity engineering
 decides how they flow.
 
-21
-00:01:21.201 --> 00:01:24.225
+17
+00:01:02.588 --> 00:01:05.612
 Contractors need an authoritative
 source of their own.
 
-22
-00:01:24.225 --> 00:01:28.680
+18
+00:01:05.612 --> 00:01:10.000
 Gate G1 requires the HR feed
 working before any rollout.
+
+19
+00:01:10.000 --> 00:01:11.330
+Next, policy.

@@ -1,141 +1,112 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.238
-Then the evidence.
-
-2
-00:00:01.238 --> 00:00:04.140
+00:00:00.050 --> 00:00:02.925
 The two tools use different
 words for the same outcomes,
 
-3
-00:00:04.140 --> 00:00:06.663
+2
+00:00:02.925 --> 00:00:05.425
 and some of their outcomes
 aren't findings at all.
 
-4
-00:00:06.663 --> 00:00:10.588
+3
+00:00:05.425 --> 00:00:09.351
 Only four results are findings:
 ScubaGear's Fail and Warning,
 
-5
-00:00:10.588 --> 00:00:14.199
+4
+00:00:09.351 --> 00:00:12.962
 and the Zero Trust Assessment's
 Failed and Investigate.
 
+5
+00:00:12.962 --> 00:00:14.213
+The rest need care.
+
 6
-00:00:14.199 --> 00:00:17.557
-A not-applicable result
-is usually a manual check
+00:00:14.213 --> 00:00:19.913
+A not-applicable result is usually a manual
+check to verify by hand, not a pass.
 
 7
-00:00:17.557 --> 00:00:20.750
-for the pillar owner to
-verify by hand, not a pass.
+00:00:19.913 --> 00:00:23.500
+An error means the run
+failed: fix it and re-run.
 
 8
-00:00:20.750 --> 00:00:24.925
-An error is absence of evidence:
-fix the run and re-run.
+00:00:23.500 --> 00:00:26.612
+And a skipped check is
+neither a gap nor a pass.
 
 9
-00:00:24.925 --> 00:00:28.088
-And a skipped check isn't
-a gap and isn't a pass.
-
-10
-00:00:28.088 --> 00:00:31.974
-The tool's own guide says missing
-prerequisites produce skipped checks,
-
-11
-00:00:31.974 --> 00:00:34.824
-not evidence that the tenant
-meets a recommendation.
-
-12
-00:00:34.824 --> 00:00:36.621
+00:00:26.612 --> 00:00:28.409
 Often the reason is a license,
 
-13
-00:00:36.621 --> 00:00:40.887
+10
+00:00:28.409 --> 00:00:32.675
 or a feature that isn't available or
 authorized in a government cloud.
 
-14
-00:00:40.887 --> 00:00:43.624
+11
+00:00:32.675 --> 00:00:35.411
 Scoring it as a failure
 overstates the gap;
 
-15
-00:00:43.624 --> 00:00:46.438
+12
+00:00:35.411 --> 00:00:38.225
 scoring it as a pass
 overstates the posture.
 
-16
-00:00:46.438 --> 00:00:48.964
+13
+00:00:38.225 --> 00:00:40.751
 So it's recorded as absence of evidence,
 
-17
-00:00:48.964 --> 00:00:52.201
+14
+00:00:40.751 --> 00:00:43.988
 with the reason, and it
 becomes a boundary finding.
 
-18
-00:00:52.201 --> 00:00:57.870
-The program then scores the real findings
-with a documented method: severity
+15
+00:00:43.988 --> 00:00:49.687
+The program then ranks the real findings
+with a documented method, P1 down to P4.
 
-19
-00:00:57.870 --> 00:01:03.362
-from 0 to 100, priority as severity over
-effort, and buckets from P1 down to P4.
-
-20
-00:01:03.362 --> 00:01:05.812
-Quick wins go into the next change window.
-
-21
-00:01:05.812 --> 00:01:09.534
-The method is the program's,
+16
+00:00:49.687 --> 00:00:53.540
+That method is the program's,
 not a federal standard,
 
-22
-00:01:09.534 --> 00:01:12.712
+17
+00:00:53.540 --> 00:00:56.750
 and a P1 is a priority,
 not a risk acceptance.
 
-23
-00:01:12.712 --> 00:01:16.351
-Last, reconcile at the
-control, not tool to tool.
+18
+00:00:56.750 --> 00:01:01.219
+And findings are reconciled at the
+control: two tools failing the same
 
-24
-00:01:16.351 --> 00:01:21.297
-A ScubaGear failure and a Zero Trust
-Assessment failure on the same setting and the
+19
+00:01:01.219 --> 00:01:05.688
+setting is one finding with two pieces
+of evidence, routed to one owner.
 
-25
-00:01:21.297 --> 00:01:27.535
-same SP 800-53 control are one
-finding with two pieces of evidence,
+20
+00:01:05.688 --> 00:01:10.910
+Underneath it all sits the CISO's
+evidence standard: a pinned tool version,
 
-26
-00:01:27.535 --> 00:01:29.112
-routed to one pillar owner.
+21
+00:01:10.910 --> 00:01:14.700
+a recorded run time, an
+unaltered output file and a hash.
 
-27
-00:01:29.112 --> 00:01:33.144
-Underneath all of this sits
-the CISO's evidence standard:
-
-28
-00:01:33.144 --> 00:01:38.437
-a pinned tool version, a recorded run
-time, an unaltered output file and a hash.
-
-29
-00:01:38.437 --> 00:01:41.950
+22
+00:01:14.700 --> 00:01:18.162
 It's needed before any result
 is scored or reported.
+
+23
+00:01:18.162 --> 00:01:21.000
+Next, turning findings into a program.

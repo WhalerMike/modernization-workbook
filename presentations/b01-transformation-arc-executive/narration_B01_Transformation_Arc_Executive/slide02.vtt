@@ -1,133 +1,99 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.050
-Start with how the estate got here.
+00:00:00.050 --> 00:00:03.363
+Federal IT reached its
+current shape in four eras,
 
 2
-00:00:02.050 --> 00:00:07.438
-Federal IT reached its current shape in
-four eras, and each solved a real problem.
+00:00:03.363 --> 00:00:05.625
+and each one solved a real problem.
 
 3
-00:00:07.438 --> 00:00:12.272
-The mainframe held all the data
-and also enforced access to it:
+00:00:05.625 --> 00:00:11.100
+The mainframe held the data and enforced
+access to it: one truth, in one box.
 
 4
-00:00:12.272 --> 00:00:13.788
-one truth, in one box.
-
-5
-00:00:13.788 --> 00:00:18.111
+00:00:11.100 --> 00:00:15.435
 Distributed systems put a database
 and a directory in every region,
 
+5
+00:00:15.435 --> 00:00:17.912
+and nobody replaced that single truth.
+
 6
-00:00:18.111 --> 00:00:21.199
-and nobody replaced that
-single source of truth.
+00:00:17.912 --> 00:00:20.613
+Then email and workloads
+moved to the cloud
 
 7
-00:00:21.199 --> 00:00:25.966
-From 2010, OMB set a target of closing
-at least eight hundred data centers,
-
-8
-00:00:25.966 --> 00:00:29.302
-and agencies stacked
-inspection devices between
-
-9
-00:00:29.302 --> 00:00:32.400
-field offices and the
-systems they depended on.
-
-10
-00:00:32.400 --> 00:00:37.390
-Then email moved to Microsoft 365
-and workloads spread across clouds,
-
-11
-00:00:37.390 --> 00:00:40.488
+00:00:20.613 --> 00:00:23.313
 while identity stayed in regional domains.
 
-12
-00:00:40.488 --> 00:00:43.444
+8
+00:00:23.313 --> 00:00:26.291
 Now the same person can
 appear as several records,
 
-13
-00:00:43.444 --> 00:00:46.112
-and no one can say which
-one is authoritative.
+9
+00:00:26.291 --> 00:00:28.762
+and no one can say which is authoritative.
 
-14
-00:00:46.112 --> 00:00:48.112
+10
+00:00:28.762 --> 00:00:30.762
 That's why modernization stalls.
 
-15
-00:00:48.112 --> 00:00:51.012
+11
+00:00:30.762 --> 00:00:33.662
 Each step assumes the one
 before it is finished.
 
+12
+00:00:33.662 --> 00:00:38.510
+Zero Trust assumes authoritative cloud
+identity, which assumes a clean directory,
+
+13
+00:00:38.510 --> 00:00:42.163
+which assumes governed groups,
+which assume someone owns them.
+
+14
+00:00:42.163 --> 00:00:45.163
+That last step is where
+many agencies are stuck.
+
+15
+00:00:45.163 --> 00:00:47.710
+Meanwhile the mandates arrive with dates,
+
 16
-00:00:51.012 --> 00:00:54.288
-Zero Trust assumes
-authoritative cloud identity.
-
-17
-00:00:54.288 --> 00:00:57.038
-Cloud identity assumes a clean directory.
-
-18
-00:00:57.038 --> 00:00:59.863
-A clean directory assumes governed groups.
-
-19
-00:00:59.863 --> 00:01:02.346
-And governed groups
-assume someone owns them,
-
-20
-00:01:02.346 --> 00:01:04.437
-which is where many agencies are stuck.
-
-21
-00:01:04.437 --> 00:01:12.806
-Meanwhile the mandates arrive with dates:
-M-22-09's Zero Trust goals for fiscal
-
-22
-00:01:12.806 --> 00:01:17.269
-2024, BOD 25-01's baselines by June 20,
-
-23
-00:01:17.269 --> 00:01:21.063
-2025, and M-26-14's
-logging reset in May 2026.
-
-24
-00:01:21.063 --> 00:01:24.087
-Each assumes a foundation
+00:00:47.710 --> 00:00:50.913
+and each assumes a foundation
 the estate never built.
 
-25
-00:01:24.087 --> 00:01:27.726
+17
+00:00:50.913 --> 00:00:54.551
 So the first decision is about
 ownership, not technology.
 
-26
-00:01:27.726 --> 00:01:31.137
+18
+00:00:54.551 --> 00:00:57.962
 Before anything is planned,
 name the executive sponsor,
 
-27
-00:01:31.137 --> 00:01:35.438
+19
+00:00:57.962 --> 00:01:02.263
 the steward who runs the program
 office, and the authorizing official.
 
-28
-00:01:35.438 --> 00:01:38.880
+20
+00:01:02.263 --> 00:01:05.651
 The roadmap makes that the entry
 condition for its first phase.
+
+21
+00:01:05.651 --> 00:01:08.330
+Next, the problem in precise terms.

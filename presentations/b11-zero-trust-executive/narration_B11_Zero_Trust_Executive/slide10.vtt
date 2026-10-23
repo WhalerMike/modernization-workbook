@@ -16,122 +16,102 @@ the agency network or
 the virtualized estate.
 
 4
-00:00:13.262 --> 00:00:16.947
+00:00:13.262 --> 00:00:17.174
 So the whole-agency argument
 rests on the Zero Trust documents,
 
 5
-00:00:16.947 --> 00:00:23.537
-and on the SP 800-53 controls every
-system security plan already asserts.
+00:00:17.174 --> 00:00:21.162
+and on the controls every system
+security plan already asserts.
 
 6
-00:00:23.537 --> 00:00:27.150
+00:00:21.162 --> 00:00:24.775
 Three things get reconciled before
 those estates are assessed.
 
 7
-00:00:27.150 --> 00:00:33.444
-One inventory: control CM-8 forbids
-duplicate accounting of components, and BOD
+00:00:24.775 --> 00:00:28.050
+One inventory, with no
+component counted twice.
 
 8
-00:00:33.444 --> 00:00:37.735
-23-01 requires automated
-asset discovery every 7 days,
-
-9
-00:00:37.735 --> 00:00:40.500
-including cloud virtual machines.
-
-10
-00:00:40.500 --> 00:00:42.081
+00:00:28.050 --> 00:00:29.631
 One naming authority,
 
-11
-00:00:42.081 --> 00:00:46.825
+9
+00:00:29.631 --> 00:00:34.375
 because each cloud provider and
 VMware ships its own private DNS.
 
+10
+00:00:34.375 --> 00:00:38.542
+And no implicit trust from any
+boundary: a site-to-site VPN and
+
+11
+00:00:38.542 --> 00:00:43.125
+a flat virtualized segment are
+architecturally the same mistake.
+
 12
-00:00:46.825 --> 00:00:51.866
-And no implicit trust from any boundary:
-a site-to-site VPN, a default virtual
+00:00:43.125 --> 00:00:46.002
+The hypervisor is a
+threat class of its own,
 
 13
-00:00:51.866 --> 00:00:57.150
-network and a flat virtualized segment
-are architecturally the same mistake.
+00:00:46.002 --> 00:00:49.700
+so its management plane is
+assessed as its own surface.
 
 14
-00:00:57.150 --> 00:01:01.769
-The hypervisor is a distinct threat class,
-so its management plane is assessed
+00:00:49.700 --> 00:00:53.638
+Then the providers' own tools, each
+of which states its own limits.
 
 15
-00:01:01.769 --> 00:01:06.175
-as its own surface, not inferred from
-the posture of the guests running on it.
+00:00:53.638 --> 00:00:57.326
+AWS says its checks cover
+a subset of requirements.
 
 16
-00:01:06.175 --> 00:01:10.363
-Then the providers' own tools, each
-of which describes its own limits.
+00:00:57.326 --> 00:01:00.950
+Microsoft calls Azure Policy
+compliance a partial view.
 
 17
-00:01:10.363 --> 00:01:13.314
-AWS says its NIST standard
-supports a subset
+00:01:00.950 --> 00:01:05.038
+Broadcom calls its VMware hardening
+material general guidance.
 
 18
-00:01:13.314 --> 00:01:16.187
-of requirements through automated checks.
+00:01:05.038 --> 00:01:07.637
+And FedRAMP certifies the cloud service,
 
 19
-00:01:16.187 --> 00:01:21.888
-Microsoft says Azure Policy compliance is
-only a partial view of overall compliance.
+00:01:07.637 --> 00:01:10.925
+while each agency still
+authorizes its own systems.
 
 20
-00:01:21.888 --> 00:01:25.136
-Broadcom calls its VMware
-hardening material general
-
-21
-00:01:25.136 --> 00:01:28.738
-guidance whose assumptions may
-not hold in your environment.
-
-22
-00:01:28.738 --> 00:01:31.723
-And FedRAMP certifies the
-cloud service offering,
-
-23
-00:01:31.723 --> 00:01:34.780
-while each agency still
-authorizes its own systems,
-
-24
-00:01:34.780 --> 00:01:39.187
-including the configuration it selected
-and the integrations it enabled.
-
-25
-00:01:39.187 --> 00:01:41.362
+00:01:10.925 --> 00:01:13.099
 The decision is the program lead's:
 
-26
-00:01:41.362 --> 00:01:45.631
+21
+00:01:13.099 --> 00:01:17.368
 admit each native tool's findings
 as evidence for its own platform,
 
-27
-00:01:45.631 --> 00:01:49.901
+22
+00:01:17.368 --> 00:01:21.638
 under the CISO's evidence standard,
 and never as the agency's score.
 
-28
-00:01:49.901 --> 00:01:53.330
+23
+00:01:21.638 --> 00:01:25.000
 It's needed before any
 whole-agency figure is reported.
+
+24
+00:01:25.000 --> 00:01:27.100
+Next, who owns the posture.

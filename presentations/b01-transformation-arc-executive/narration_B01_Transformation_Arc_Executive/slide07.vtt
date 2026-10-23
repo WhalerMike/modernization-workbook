@@ -1,116 +1,98 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.413
-Policy is next.
-
-2
-00:00:01.413 --> 00:00:06.348
+00:00:00.050 --> 00:00:04.959
 Group Policy was Active Directory's most
 ambitious delivery system, and its most
 
-3
-00:00:06.348 --> 00:00:10.988
+2
+00:00:04.959 --> 00:00:09.575
 network-bound: a client applies it only
 when it can reach a domain controller.
 
-4
-00:00:10.988 --> 00:00:15.138
-A cloud-native endpoint gets its
-configuration from the cloud instead.
-
-5
-00:00:15.138 --> 00:00:18.881
-The replacement is several
+3
+00:00:09.575 --> 00:00:13.133
+Its replacement is several
 surfaces: Intune for devices,
 
-6
-00:00:18.881 --> 00:00:23.741
-Conditional Access for access control,
-and Azure machine configuration,
+4
+00:00:13.133 --> 00:00:17.221
+Conditional Access for access,
+and Azure machine configuration
 
-7
-00:00:23.741 --> 00:00:28.362
-through Arc, for servers, because
+5
+00:00:17.221 --> 00:00:21.612
+through Arc for servers, because
 Intune doesn't manage Windows Server.
 
-8
-00:00:28.362 --> 00:00:31.388
+6
+00:00:21.612 --> 00:00:24.638
 The program's pattern is
 regenerate, not copy.
 
-9
-00:00:31.388 --> 00:00:34.215
+7
+00:00:24.638 --> 00:00:27.465
 Porting a fifty-setting
 policy as fifty modern
 
-10
-00:00:34.215 --> 00:00:37.624
+8
+00:00:27.465 --> 00:00:30.874
 settings carries forward dead
 weight and old conflicts.
 
-11
-00:00:37.624 --> 00:00:41.713
+9
+00:00:30.874 --> 00:00:34.963
 Microsoft's own recommendation is
 to start new rather than migrate.
 
-12
-00:00:41.713 --> 00:00:43.987
-Four rules govern every change.
+10
+00:00:34.963 --> 00:00:37.324
+A few rules govern every change.
 
-13
-00:00:43.987 --> 00:00:46.887
+11
+00:00:37.324 --> 00:00:40.225
 Each setting has exactly one owning layer.
 
-14
-00:00:46.887 --> 00:00:48.790
+12
+00:00:40.225 --> 00:00:43.747
 Require is preferred to block,
+because a bad block locks
+
+13
+00:00:43.747 --> 00:00:46.887
+people out and a bad require
+adds a step you can fix.
+
+14
+00:00:46.887 --> 00:00:51.750
+Every change goes through validation and
+a report-only pilot before production.
 
 15
-00:00:48.790 --> 00:00:53.430
-because a bad block locks users out and
-a bad require adds a step you can fix;
-
-16
-00:00:53.430 --> 00:00:57.006
-blocks are kept for cases such
-as legacy authentication,
-
-17
-00:00:57.006 --> 00:00:59.288
-which the federal baseline demands.
-
-18
-00:00:59.288 --> 00:01:03.212
-Every change passes plan
-validation, a simulated tenant,
-
-19
-00:01:03.212 --> 00:01:06.301
-a report-only pilot, and
-only then production.
-
-20
-00:01:06.301 --> 00:01:10.875
+00:00:51.750 --> 00:00:56.325
 And the emergency access accounts are
 excluded from every blocking policy.
 
-21
-00:01:10.875 --> 00:01:16.202
+16
+00:00:56.325 --> 00:01:01.652
 The decision is the CISO's: the control
 requirements every surface must meet,
 
-22
-00:01:16.202 --> 00:01:20.863
+17
+00:01:01.652 --> 00:01:06.313
 meaning the Conditional Access
 baseline, MFA strength and logging.
 
-23
-00:01:20.863 --> 00:01:25.151
+18
+00:01:06.313 --> 00:01:10.601
 Gate G1 needs that baseline
 enforced, with no user outside
 
-24
-00:01:25.151 --> 00:01:29.950
+19
+00:01:10.601 --> 00:01:15.337
 the MFA requirement except the
 documented emergency accounts.
+
+20
+00:01:15.337 --> 00:01:17.350
+Next, network services.

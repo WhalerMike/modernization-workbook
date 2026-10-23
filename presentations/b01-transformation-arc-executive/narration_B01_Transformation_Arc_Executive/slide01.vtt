@@ -1,102 +1,82 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.045
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.779
 This is the executive
 briefing for Book 01 of the
 
-2
-00:00:03.045 --> 00:00:06.638
+3
+00:00:03.779 --> 00:00:07.400
 Federal Modernization Workbook,
 The Transformation Arc.
 
-3
-00:00:06.638 --> 00:00:11.020
+4
+00:00:07.400 --> 00:00:11.499
 It runs about thirty minutes, and it's
 for the people who sponsor, fund,
 
-4
-00:00:11.020 --> 00:00:16.497
-secure and authorize the move from a
-domain-joined client and server estate to cloud
-
 5
-00:00:16.497 --> 00:00:20.879
-identity, cloud device management
-and governed hybrid operations:
+00:00:11.499 --> 00:00:16.111
+secure and authorize the move from a
+domain-joined estate to cloud identity,
 
 6
-00:00:20.879 --> 00:00:24.713
-executive sponsors, CIOs, CISOs
-and authorizing officials.
+00:00:16.111 --> 00:00:19.625
+cloud device management and
+governed hybrid operations.
 
 7
-00:00:24.713 --> 00:00:27.524
-The book's argument fits
-in three sentences.
+00:00:19.625 --> 00:00:22.337
+The argument fits in three sentences.
 
 8
-00:00:27.524 --> 00:00:32.760
-For twenty years Active Directory quietly
-did governance that nobody wrote down,
+00:00:22.337 --> 00:00:27.352
+For twenty years Active Directory
+quietly did governance nobody wrote down,
 
 9
-00:00:32.760 --> 00:00:36.687
+00:00:27.352 --> 00:00:31.349
 so modernization is a governance
 rebuild, not a platform swap.
 
 10
-00:00:36.687 --> 00:00:39.989
+00:00:31.349 --> 00:00:34.651
 The estate has to be analyzed
 before anything moves,
 
 11
-00:00:39.989 --> 00:00:44.288
+00:00:34.651 --> 00:00:38.950
 and the work delivered in gated
 phases with a rollback at every step.
 
 12
-00:00:44.288 --> 00:00:48.850
+00:00:38.950 --> 00:00:43.512
 And leadership's job is to conduct the
 orchestra, not to play the instruments.
 
 13
-00:00:48.850 --> 00:00:50.687
-I'll take four questions in order.
+00:00:43.512 --> 00:00:46.686
+I'll cover why this is hard,
+what changes, who leads,
 
 14
-00:00:50.687 --> 00:00:52.650
-Why modernization is so hard.
+00:00:46.686 --> 00:00:51.288
+and how to deliver it, all the way to
+the retirement of Active Directory.
 
 15
-00:00:52.650 --> 00:00:55.862
-What changes across
-the platform, identity,
-
-16
-00:00:55.862 --> 00:00:59.163
-policy, network services,
-compute and access.
-
-17
-00:00:59.163 --> 00:01:00.875
-Who leads the transformation.
-
-18
-00:01:00.875 --> 00:01:05.245
-And how to analyze the estate, turn
-the analysis into delivered change,
-
-19
-00:01:05.245 --> 00:01:09.313
-and follow a gated roadmap to the
-retirement of Active Directory.
-
-20
-00:01:09.313 --> 00:01:11.799
+00:00:51.288 --> 00:00:53.775
 There's no configuration on these slides.
 
-21
-00:01:11.799 --> 00:01:16.490
+16
+00:00:53.775 --> 00:00:58.400
 Each decision slide names the decision,
 who owns it, and when it's needed.
+
+17
+00:00:58.400 --> 00:01:00.600
+Let's start with how the estate got here.

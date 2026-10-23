@@ -11,104 +11,78 @@ the next step starts, not by
 putting dates on a chart.
 
 3
-00:00:06.425 --> 00:00:10.105
-The Federal Modernization
-Workbook's Book 01 of the
+00:00:06.425 --> 00:00:12.435
+Book 01 sets seven phases and six gates:
+pre-flight, foundation, a pilot division,
 
 4
-00:00:10.105 --> 00:00:13.613
-workbook is canonical:
-seven phases and six gates.
+00:00:12.435 --> 00:00:17.244
+general rollout, legacy retirement,
+retirement of AD DS itself,
 
 5
-00:00:13.613 --> 00:00:17.876
-Phase 0, Pre-flight, ends
-at G0, Ready to Plan.
+00:00:17.244 --> 00:00:20.850
+and then steady state,
+which runs indefinitely.
 
 6
-00:00:17.876 --> 00:00:22.437
-Phase 1, Foundation, ends
-at G1, Foundation Complete.
-
-7
-00:00:22.437 --> 00:00:26.838
-Phase 2, the pilot division,
-ends at G2, Pilot Clean.
-
-8
-00:00:26.838 --> 00:00:31.437
-Phase 3, general rollout,
-at G3, Rollout Complete.
-
-9
-00:00:31.437 --> 00:00:35.850
-Phase 4, legacy retirement,
-at G4, Legacy Quiet.
-
-10
-00:00:35.850 --> 00:00:40.887
-Phase 5, AD DS retirement,
-at G5, AD Retired.
-
-11
-00:00:40.887 --> 00:00:45.038
-Phase 6, steady state, runs
-on a cadence indefinitely.
-
-12
-00:00:45.038 --> 00:00:47.726
+00:00:20.850 --> 00:00:23.538
 The gates are owned in
 proportion to what they end.
 
+7
+00:00:23.538 --> 00:00:25.962
+The steward clears G0, G1 and G4,
+
+8
+00:00:25.962 --> 00:00:30.325
+and co-signs the pilot gate
+with the executive sponsor.
+
+9
+00:00:30.325 --> 00:00:33.375
+The sponsor and steering
+committee clear rollout.
+
+10
+00:00:33.375 --> 00:00:37.487
+The sponsor and CIO clear
+the retirement of AD DS.
+
+11
+00:00:37.487 --> 00:00:39.012
+Here's the budget catch.
+
+12
+00:00:39.012 --> 00:00:44.915
+The program's master plan sequences 48
+milestones over an illustrative 52 weeks,
+
 13
-00:00:47.726 --> 00:00:54.550
-The steward clears G0, G1 and G4, and
-co-signs G2 with the executive sponsor.
+00:00:44.915 --> 00:00:48.175
+but its cutover ends with
+AD DS still running.
 
 14
-00:00:54.550 --> 00:00:57.713
-The sponsor and steering
-committee clear G3.
+00:00:48.175 --> 00:00:51.516
+And Book 01's 52-week
+model assumes a mid-size,
 
 15
-00:00:57.713 --> 00:01:01.000
-The sponsor and the CIO clear G5.
-
-16
-00:01:01.000 --> 00:01:03.674
-And five constraints bind every phase,
-
-17
-00:01:03.674 --> 00:01:07.350
-from provenance on every
-change to no rip-and-replace.
-
-18
-00:01:07.350 --> 00:01:12.225
-The program's detailed master plan
-sequences 48 milestones over an
-
-19
-00:01:12.225 --> 00:01:17.100
-illustrative 52 weeks, but its
-cutover ends with AD DS still running.
-
-20
-00:01:17.100 --> 00:01:20.888
-Book 01's own fifty-two-week
-sequence models a mid-size,
-
-21
-00:01:20.888 --> 00:01:25.538
-clean forest, and large federal
+00:00:51.516 --> 00:00:56.250
+clean forest; large federal
 estates typically run multi-year.
 
-22
-00:01:25.538 --> 00:01:30.108
+16
+00:00:56.250 --> 00:01:00.907
 So the decision for the sponsor
 and CIO, when they accept the plan:
 
-23
-00:01:30.108 --> 00:01:34.990
-budget the AD DS retirement phase on
-top of the master plan's 52 weeks.
+17
+00:01:00.907 --> 00:01:05.037
+budget the AD DS retirement
+phase on top of those 52 weeks.
+
+18
+00:01:05.037 --> 00:01:08.020
+Next, the workstreams inside the phases.

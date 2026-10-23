@@ -1,153 +1,99 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.100
-Start with two agencies holding
-the same Microsoft 365 license.
+00:00:00.050 --> 00:00:04.825
+Picture two agencies with the
+same Microsoft 365 license.
 
 2
-00:00:05.100 --> 00:00:06.838
-One runs a commercial tenant.
+00:00:04.825 --> 00:00:08.790
+One runs a commercial tenant, and
+its admin center shows per-location
 
 3
-00:00:06.838 --> 00:00:10.380
-Its admin center shows
-per-location network assessments,
+00:00:08.790 --> 00:00:12.825
+network assessments, informed network
+routing and an Adoption Score.
 
 4
-00:00:10.380 --> 00:00:15.176
-informed network routing to its SD-WAN,
-and an Adoption Score for its workforce.
-
-5
-00:00:15.176 --> 00:00:18.587
+00:00:12.825 --> 00:00:16.085
 The other runs a GCC tenant
 and sees none of them,
 
-6
-00:00:18.587 --> 00:00:22.962
+5
+00:00:16.085 --> 00:00:20.013
 because Microsoft documents
-each one as unavailable there.
+each as unavailable there.
+
+6
+00:00:20.013 --> 00:00:24.112
+Nothing in the license or the price
+list tells the second agency that.
 
 7
-00:00:22.962 --> 00:00:25.554
-Nothing in the license,
-the price list or the
+00:00:24.112 --> 00:00:27.604
+The book's explanation is that
+three separate decisions,
 
 8
-00:00:25.554 --> 00:00:28.937
-commercial documentation
-tells the second agency that.
+00:00:27.604 --> 00:00:31.838
+by three different parties, have to
+line up before a feature is usable.
 
 9
-00:00:28.937 --> 00:00:33.679
-The book's explanation is that three
-separate decisions, made by three different
+00:00:31.838 --> 00:00:36.600
+FedRAMP certifies a specific offering,
+and the Marketplace is the record.
 
 10
-00:00:33.679 --> 00:00:37.713
-parties, have to line up before a
-feature is usable in a federal system.
+00:00:36.600 --> 00:00:40.327
+Microsoft decides what each
+government environment includes,
 
 11
-00:00:37.713 --> 00:00:39.587
-First, the certification.
+00:00:40.327 --> 00:00:44.475
+and publishes the differences one
+feature at a time, with no single list.
 
 12
-00:00:39.587 --> 00:00:44.390
-FedRAMP certifies a specific cloud
-service offering at a certification class,
+00:00:44.475 --> 00:00:49.438
+And the agency's authorizing official
+accepts the risk of the agency's own use.
 
 13
-00:00:44.390 --> 00:00:46.937
-and the FedRAMP Marketplace is the record.
-
-14
-00:00:46.937 --> 00:00:50.541
-A feature outside the certified
-offering isn't covered by it,
-
-15
-00:00:50.541 --> 00:00:52.126
-whatever the portal shows.
-
-16
-00:00:52.126 --> 00:00:54.000
-Second, the environment.
-
-17
-00:00:54.000 --> 00:00:59.528
-Microsoft runs GCC, GCC High and DoD with
-features that differ from commercial,
-
-18
-00:00:59.528 --> 00:01:04.800
-and it publishes those differences one
-feature at a time, on separate pages.
-
-19
-00:01:04.800 --> 00:01:07.150
-There's no single machine-readable list.
-
-20
-00:01:07.150 --> 00:01:09.987
-Third, the agency's own authorization.
-
-21
-00:01:09.987 --> 00:01:14.405
-The authorizing official accepts the
-risk of the agency's specific use:
-
-22
-00:01:14.405 --> 00:01:18.075
-the configuration selected
-and the integrations enabled.
-
-23
-00:01:18.075 --> 00:01:20.931
-FedRAMP says an agency
-should never create a
-
-24
-00:01:20.931 --> 00:01:24.637
-standalone authorization to
-operate for a cloud service.
-
-25
-00:01:24.637 --> 00:01:28.113
-It authorizes its own system,
-which uses the service.
-
-26
-00:01:28.113 --> 00:01:31.400
+00:00:49.438 --> 00:00:52.726
 What you can actually use is
 the overlap of all three.
 
-27
-00:01:31.400 --> 00:01:34.100
+14
+00:00:52.726 --> 00:00:55.425
 So the first decision is simple and cheap.
 
-28
-00:01:34.100 --> 00:01:38.108
+15
+00:00:55.425 --> 00:00:59.433
 Before the next architecture
 review or authorization milestone,
 
-29
-00:01:38.108 --> 00:01:43.063
+16
+00:00:59.433 --> 00:01:04.388
 require every cloud feature a design
 depends on to be listed with its Marketplace
 
-30
-00:01:43.063 --> 00:01:47.362
+17
+00:01:04.388 --> 00:01:08.687
 package, its availability in your
 environment, and the page that says so.
 
-31
-00:01:47.362 --> 00:01:52.112
-Workload owners declare the dependencies,
-and the system owner checks each one.
+18
+00:01:08.687 --> 00:01:13.576
+Workload owners declare the dependencies;
+the system owner checks each one.
 
-32
-00:01:52.112 --> 00:01:56.280
+19
+00:01:13.576 --> 00:01:17.687
 A feature with no citation is
 unverified, not available.
+
+20
+00:01:17.687 --> 00:01:20.140
+Next, why nobody sees this coming.

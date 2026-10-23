@@ -1,149 +1,111 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.594
+00:00:00.050 --> 00:00:02.566
 Under the old model, a
-significant change to a
+significant change to
 
 2
-00:00:02.594 --> 00:00:05.412
-certified service went
-back through an approval.
+00:00:02.566 --> 00:00:05.362
+a certified service went
+back through approval.
 
 3
-00:00:05.412 --> 00:00:09.849
-The Significant Change Notification
-rules replace that with notification,
+00:00:05.362 --> 00:00:09.174
+The new rules replace that with
+notification, scaled to risk.
 
 4
-00:00:09.849 --> 00:00:12.899
-scaled to risk, and the
-deadlines are in business days.
+00:00:09.174 --> 00:00:12.737
+Routine changes like patching
+need no formal notice at all.
 
 5
-00:00:12.899 --> 00:00:15.962
-The provider classifies
-every potential change.
+00:00:12.737 --> 00:00:16.384
+Bigger changes are notified
+within set business-day windows,
 
 6
-00:00:15.962 --> 00:00:19.534
-A change of certification
-class needs a new assessment;
+00:00:16.384 --> 00:00:20.888
+and the most transformative ones need
+plans filed weeks before work starts.
 
 7
-00:00:19.534 --> 00:00:21.863
-it can't be handled as a notification.
+00:00:20.888 --> 00:00:24.499
+A change of certification class
+still needs a new assessment.
 
 8
-00:00:21.863 --> 00:00:26.009
-Routine recurring changes, such as
-patching and signature updates,
-
-9
-00:00:26.009 --> 00:00:27.638
-get no formal notice at all.
-
-10
-00:00:27.638 --> 00:00:31.987
-Adaptive changes are notified within
-10 business days after they finish.
-
-11
-00:00:31.987 --> 00:00:35.748
-Transformative changes, the
-ones with substantive new risk,
-
-12
-00:00:35.748 --> 00:00:39.733
-need initial plans at least 30
-business days before work starts,
-
-13
-00:00:39.733 --> 00:00:41.989
-final plans 10 business days before,
-
-14
-00:00:41.989 --> 00:00:46.726
-and notices within 5 business days
-after finishing and after verification.
-
-15
-00:00:46.726 --> 00:00:52.075
-Every notice must be human-readable and
-JSON, and providers keep 12 months of them.
-
-16
-00:00:52.075 --> 00:00:53.950
+00:00:24.499 --> 00:00:26.375
 Evidence becomes a feed too.
 
-17
-00:00:53.950 --> 00:00:57.365
-Providers must use a
-FedRAMP-compatible trust center,
+9
+00:00:26.375 --> 00:00:29.838
+Providers must run a
+FedRAMP-compatible trust center
 
-18
-00:00:57.365 --> 00:01:01.463
-with documented programmatic
-access to all certification data.
+10
+00:00:29.838 --> 00:00:33.225
+with programmatic access
+to all certification data.
 
-19
-00:01:01.463 --> 00:01:09.700
+11
+00:00:33.225 --> 00:00:41.463
 On October 21, 2026, only 110 of 781
 Marketplace listings had a trust-center entry.
 
-20
-00:01:09.700 --> 00:01:11.600
+12
+00:00:41.463 --> 00:00:43.362
 There are two consequences for you.
 
-21
-00:01:11.600 --> 00:01:16.169
+13
+00:00:43.362 --> 00:00:47.918
 A provider that ships continuously can
 treat most releases as routine and file
 
-22
-00:01:16.169 --> 00:01:18.869
-nothing, so keeping
-current with commercial no
+14
+00:00:47.918 --> 00:00:52.612
+nothing, so keeping current with commercial
+no longer costs it a compliance cycle.
 
-23
-00:01:18.869 --> 00:01:21.500
-longer costs the provider
-a compliance cycle.
-
-24
-00:01:21.500 --> 00:01:23.837
+15
+00:00:52.612 --> 00:00:54.949
 But your review duty doesn't shrink.
 
-25
-00:01:23.837 --> 00:01:27.519
+16
+00:00:54.949 --> 00:00:58.064
 Agencies must review each
-Ongoing Certification Report for
+ongoing certification
 
-26
-00:01:27.519 --> 00:01:31.488
-changes that affect the risk
-accepted in their own authorization.
+17
+00:00:58.064 --> 00:01:01.400
+report for changes that affect
+the risk they accepted.
 
-27
-00:01:31.488 --> 00:01:33.037
+18
+00:01:01.400 --> 00:01:02.950
 So name the reviewer now.
 
-28
-00:01:33.037 --> 00:01:38.130
-FedRAMP recommends designating a federal
-senior information security official;
+19
+00:01:02.950 --> 00:01:07.300
+FedRAMP recommends a federal senior
+information security official;
 
-29
-00:01:38.130 --> 00:01:41.599
+20
+00:01:07.300 --> 00:01:10.825
 in the program's model that's
 the CISO or a named delegate.
 
-30
-00:01:41.599 --> 00:01:45.268
+21
+00:01:10.825 --> 00:01:14.493
 The ISSO reads each notice
 against the boundary record,
 
-31
-00:01:45.268 --> 00:01:50.280
+22
+00:01:14.493 --> 00:01:19.438
 and the authorizing official decides
 whether it changes the agency's risk.
+
+23
+00:01:19.438 --> 00:01:21.700
+Next, the feature gap itself.

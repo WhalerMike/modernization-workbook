@@ -5,149 +5,102 @@ WEBVTT
 What does TIC 3.0 actually require?
 
 2
-00:00:02.500 --> 00:00:04.618
-The book reads it from
-the current documents
+00:00:02.500 --> 00:00:06.513
+The book reads it from the current
+documents, not from what's said about them.
 
 3
-00:00:04.618 --> 00:00:06.450
-rather than from what's said about them.
+00:00:06.513 --> 00:00:11.572
+CISA republished the whole set in
+September 2026, but the only changes
 
 4
-00:00:06.450 --> 00:00:10.450
-CISA republished the whole
-set in September 2026.
+00:00:11.572 --> 00:00:16.288
+were updated footnote links, so
+the substance dates from July 2025.
 
 5
-00:00:10.450 --> 00:00:15.947
-The revision tables say the only 2026
-changes were updated footnote links,
-
-6
-00:00:15.947 --> 00:00:21.888
-so the substance dates from July 2025, and
-April 2021 for the Traditional use case.
-
-7
-00:00:21.888 --> 00:00:25.514
-One practical note for
-anyone writing a package:
-
-8
-00:00:25.514 --> 00:00:30.500
-CISA's landing page labels three
-volumes 1.1, but the covers read 1.2.
-
-9
-00:00:30.500 --> 00:00:31.562
-Cite the cover.
-
-10
-00:00:31.562 --> 00:00:36.775
+00:00:16.288 --> 00:00:21.501
 There are four use cases: Traditional,
 Branch Office, Remote User and Cloud.
 
-11
-00:00:36.775 --> 00:00:38.737
-There is no SASE use case.
+6
+00:00:21.501 --> 00:00:23.325
+There's no SASE use case.
 
-12
-00:00:38.737 --> 00:00:42.023
+7
+00:00:23.325 --> 00:00:26.611
 An agency deploying SASE
 at its branches operates
 
-13
-00:00:42.023 --> 00:00:44.774
+8
+00:00:26.611 --> 00:00:29.362
 under the Branch Office
 and Cloud use cases.
 
-14
-00:00:44.774 --> 00:00:48.668
-The program guidebook
-calls TIC 3.0 descriptive,
+9
+00:00:29.362 --> 00:00:32.363
+TIC 3.0 sets goals, not methods.
 
-15
-00:00:48.668 --> 00:00:52.713
-not prescriptive, and the catalog
-says it sets goals, not methods.
-
-16
-00:00:52.713 --> 00:00:55.062
+10
+00:00:32.363 --> 00:00:34.712
 But two statements constrain a branch.
 
-17
-00:00:55.062 --> 00:00:59.453
+11
+00:00:34.712 --> 00:00:39.341
 Policy enforcement parity: once
 you decide a capability is needed,
 
-18
-00:00:59.453 --> 00:01:02.567
-you apply it on every
-path, and the Branch Office
+12
+00:00:39.341 --> 00:00:42.624
+you apply it on every path,
+SD-WAN paths included.
 
-19
-00:01:02.567 --> 00:01:06.000
-use case names SD-WAN paths
-as one place that applies.
-
-20
-00:01:06.000 --> 00:01:11.713
+13
+00:00:42.624 --> 00:00:48.300
 And preserve CISA's visibility as branches
-connect directly to external services.
+connect directly to outside services.
 
-21
-00:01:11.713 --> 00:01:17.329
-Discretion also carries an obligation: where
-TIC controls don't cover residual risk,
+14
+00:00:48.300 --> 00:00:53.665
+CISA's June 2026 SASE guide adds that
+traffic doesn't have to route through TIC
 
-22
-00:01:17.329 --> 00:01:21.100
-agencies must apply controls
-or compensating controls.
+15
+00:00:53.665 --> 00:00:56.592
+access points if an alternative gives both
 
-23
-00:01:21.100 --> 00:01:26.175
-CISA's June 2026 SASE guide
-states the consequence plainly.
+16
+00:00:56.592 --> 00:00:59.600
+the agency and CISA situational awareness.
 
-24
-00:01:26.175 --> 00:01:31.406
-TIC 3.0 doesn't require routing
-traffic through TIC access points if
+17
+00:00:59.600 --> 00:01:01.350
+That guide permits SASE.
 
-25
-00:01:31.406 --> 00:01:36.013
-an alternative gives both the agency
-and CISA situational awareness.
-
-26
-00:01:36.013 --> 00:01:38.513
-That guide permits and describes SASE.
-
-27
-00:01:38.513 --> 00:01:39.938
+18
+00:01:01.350 --> 00:01:02.775
 It doesn't require it.
 
-28
-00:01:39.938 --> 00:01:42.830
+19
+00:01:02.775 --> 00:01:05.798
 So when someone says TIC requires SD-WAN,
 
-29
-00:01:42.830 --> 00:01:47.300
-or that TIC forbids local breakout,
-both claims fail the check.
+20
+00:01:05.798 --> 00:01:09.738
+or that TIC forbids local
+breakout, both claims fail.
 
-30
-00:01:47.300 --> 00:01:51.579
-The honest position is narrower
-and stronger: TIC sets goals,
+21
+00:01:09.738 --> 00:01:14.645
+The honest position is narrower and
+stronger: local breakout is allowed,
 
-31
-00:01:51.579 --> 00:01:55.174
-local breakout is allowed,
-and the agency must show
+22
+00:01:14.645 --> 00:01:19.962
+and the agency must show parity and preserve
+CISA's view on every path it opens.
 
-32
-00:01:55.174 --> 00:01:59.090
-parity and preserve CISA's
-view on every path it opens.
+23
+00:01:19.962 --> 00:01:22.030
+Next, the opposite mistake.

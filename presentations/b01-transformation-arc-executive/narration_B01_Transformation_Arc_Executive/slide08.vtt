@@ -20,98 +20,85 @@ the old directory alive.
 The three form one surface.
 
 5
-00:00:13.526 --> 00:00:17.687
+00:00:13.526 --> 00:00:18.023
 DNS usually lives in zones
 integrated with Active Directory,
 
 6
-00:00:17.687 --> 00:00:21.767
-so every domain controller sits
-in the name-resolution path,
-
-7
-00:00:21.767 --> 00:00:25.113
-and Active Directory can't
+00:00:18.023 --> 00:00:21.550
+so Active Directory can't
 retire until DNS moves.
 
+7
+00:00:21.550 --> 00:00:24.433
+The forest's DHCP authorization stops an
+
 8
-00:00:25.113 --> 00:00:29.701
-DHCP servers are authorized in the
-forest, but that check is Windows
+00:00:24.433 --> 00:00:27.825
+unauthorized Windows
+server, not a rogue device.
 
 9
-00:00:29.701 --> 00:00:34.863
-policing itself: it stops an unauthorized
-Windows server, not a rogue device.
-
-10
-00:00:34.863 --> 00:00:37.883
+00:00:27.825 --> 00:00:30.846
 And address management,
 in many organizations,
 
-11
-00:00:37.883 --> 00:00:40.362
+10
+00:00:30.846 --> 00:00:33.325
 is a spreadsheet one person maintains.
 
-12
-00:00:40.362 --> 00:00:43.662
+11
+00:00:33.325 --> 00:00:36.625
 Without it, DNS and DHCP drift.
 
-13
-00:00:43.662 --> 00:00:45.738
+12
+00:00:36.625 --> 00:00:38.700
 So the program moves them together.
 
-14
-00:00:45.738 --> 00:00:50.307
-One governed IPAM authority
+13
+00:00:38.700 --> 00:00:44.015
+One governed address management authority
 covers the whole address surface,
 
-15
-00:00:50.307 --> 00:00:54.962
+14
+00:00:44.015 --> 00:00:48.512
 on-premises and cloud, and DNS and
 DHCP derive their records from it.
 
+15
+00:00:48.512 --> 00:00:50.838
+Disagreement between them is drift.
+
 16
-00:00:54.962 --> 00:00:59.862
-Disagreement between them is drift,
-and there's no DNS-only run.
-
-17
-00:00:59.862 --> 00:01:06.181
-Federal controls point the same
-way: SP 800-53 treats secure name
-
-18
-00:01:06.181 --> 00:01:10.149
-resolution and the component
-inventory as controls of their own.
-
-19
-00:01:10.149 --> 00:01:13.767
+00:00:50.838 --> 00:00:54.261
 The common failure is to
 modernize identity and policy
 
-20
-00:01:13.767 --> 00:01:16.913
-and leave these for a Phase
-2 that rarely happens.
+17
+00:00:54.261 --> 00:00:57.537
+and leave these for a later
+phase that rarely happens.
 
-21
-00:01:16.913 --> 00:01:20.874
+18
+00:00:57.537 --> 00:01:01.500
 A forest that still hosts
 DNS has not been retired.
 
-22
-00:01:20.874 --> 00:01:25.924
+19
+00:01:01.500 --> 00:01:06.549
 That makes it a scope and funding
 decision for the sponsor and the CIO:
 
-23
-00:01:25.924 --> 00:01:31.238
+20
+00:01:06.549 --> 00:01:11.863
 put DNS, DHCP and IPAM in the core
 program now, with one IPAM authority.
 
-24
-00:01:31.238 --> 00:01:34.200
+21
+00:01:11.863 --> 00:01:14.775
 The pilot division's
 zones move in Phase 2.
+
+22
+00:01:14.775 --> 00:01:16.200
+Next, compute.

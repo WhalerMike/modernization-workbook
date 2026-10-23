@@ -1,117 +1,80 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.263
-The charter's six guiding principles
-expand to fifteen in Chapter 04,
+00:00:00.050 --> 00:00:05.212
+The charter's principles expand to fifteen,
+but one idea runs under all of them.
 
 2
-00:00:04.263 --> 00:00:06.555
-and one idea runs underneath them all:
-
-3
-00:00:06.555 --> 00:00:11.212
-keep the record of what should be true
+00:00:05.212 --> 00:00:09.418
+Keep the record of what should be true
 apart from the systems that enforce it,
 
-4
-00:00:11.212 --> 00:00:14.612
+3
+00:00:09.418 --> 00:00:12.488
 and make every change prove
 itself against that record.
 
+4
+00:00:12.488 --> 00:00:16.176
+In practice, every claim has
+one authoritative origin.
+
 5
-00:00:14.612 --> 00:00:17.863
-The foundation principles
-apply to every change.
-
-6
-00:00:17.863 --> 00:00:20.513
-Every claim has one authoritative origin.
-
-7
-00:00:20.513 --> 00:00:24.846
-Every move, add, change, deletion
-and reset travels five clauses:
-
-8
-00:00:24.846 --> 00:00:30.431
-it originates with the source of truth,
+00:00:16.176 --> 00:00:21.025
+Every change starts from that source,
 carries an authoritative authorization,
 
-9
-00:00:30.431 --> 00:00:33.515
-executes under just-in-time
-least privilege,
+6
+00:00:21.025 --> 00:00:25.875
+runs with just-in-time least privilege,
+and closes with provenance and evidence.
 
-10
-00:00:33.515 --> 00:00:37.599
-closes with provenance, and
-emits evidence automatically.
-
-11
-00:00:37.599 --> 00:00:40.412
+7
+00:00:25.875 --> 00:00:28.687
 No closure counts unless
 it carries its proof.
 
-12
-00:00:40.412 --> 00:00:42.888
+8
+00:00:28.687 --> 00:00:31.163
 And drift detection
 re-checks on a schedule.
 
-13
-00:00:42.888 --> 00:00:48.152
-The structure and estate principles replace
-the organizational unit (OU) tree with
+9
+00:00:31.163 --> 00:00:33.775
+One rule deserves an
+executive's attention.
 
-14
-00:00:48.152 --> 00:00:53.112
-attributes, and they carry one rule
-executives should hear: a user with an empty
+10
+00:00:33.775 --> 00:00:38.417
+The program replaces the organizational
+unit (OU) tree with attributes,
 
-15
-00:00:53.112 --> 00:00:55.706
-attribute falls out of the dynamic group,
+11
+00:00:38.417 --> 00:00:42.588
+and a user with an empty attribute
+falls out of the dynamic group,
 
-16
-00:00:55.706 --> 00:00:58.300
+12
+00:00:42.588 --> 00:00:45.263
 and so out of every
 policy that targets it.
 
-17
-00:00:58.300 --> 00:01:01.250
+13
+00:00:45.263 --> 00:00:48.213
 Attribute completeness
 is a security control.
 
-18
-00:01:01.250 --> 00:01:03.495
-The program principles cover people,
-
-19
-00:01:03.495 --> 00:01:06.537
-Zero Trust governance and
-the direction of travel.
-
-20
-00:01:06.537 --> 00:01:11.401
-Two source rules were corrected on the
-way: Intune policy conflicts, and token
-
-21
-00:01:11.401 --> 00:01:14.289
-lifetimes, where the
-principle that survives
-
-22
-00:01:14.289 --> 00:01:17.025
-is continuous evaluation,
-not a short clock.
-
-23
-00:01:17.025 --> 00:01:21.715
+14
+00:00:48.213 --> 00:00:53.056
 The decision here is the steward's, and
 it comes before the first change is made:
 
-24
-00:01:21.715 --> 00:01:26.690
-set the evidence and provenance expectations
-that every later change must meet.
+15
+00:00:53.056 --> 00:00:57.825
+set the evidence and provenance
+expectations every later change must meet.
+
+16
+00:00:57.825 --> 00:01:00.020
+Next, the phases and gates.

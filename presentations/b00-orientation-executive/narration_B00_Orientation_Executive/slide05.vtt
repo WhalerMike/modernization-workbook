@@ -1,108 +1,93 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.675
-The clocks are often quoted
-for more than they say.
+00:00:00.050 --> 00:00:04.375
+The clocks are often quoted for more
+than they say, so read them exactly.
 
 2
-00:00:02.675 --> 00:00:04.200
-Four corrections recur.
+00:00:04.375 --> 00:00:10.063
+FedRAMP certifies cloud services, and each
+agency still authorizes its own systems.
 
 3
-00:00:04.200 --> 00:00:09.851
-FedRAMP certifies cloud services, and each
-agency still authorizes its own systems,
-
-4
-00:00:09.851 --> 00:00:13.081
-so the 2027 date changes
-what providers publish,
-
-5
-00:00:13.081 --> 00:00:15.987
-not whether the agency's
-own systems comply.
-
-6
-00:00:15.987 --> 00:00:18.511
+00:00:10.063 --> 00:00:12.590
 Moderate is now a certification class:
 
-7
-00:00:18.511 --> 00:00:22.926
-Class C includes the current Moderate
-baseline, and Class D the High.
+4
+00:00:12.590 --> 00:00:15.750
+Class C includes the
+current Moderate baseline.
 
-8
-00:00:22.926 --> 00:00:26.887
+5
+00:00:15.750 --> 00:00:19.712
 No federal document requires
 a Zero Trust maturity stage.
 
-9
-00:00:26.887 --> 00:00:32.618
+6
+00:00:19.712 --> 00:00:26.150
 And BOD 25-01 covers production cloud
-tenants, not on-premises Active Directory,
+tenants, not on-premises Active Directory.
 
-10
-00:00:32.618 --> 00:00:36.637
-though the forest still decides
-much of what a tenant can enforce.
-
-11
-00:00:36.637 --> 00:00:39.538
+7
+00:00:26.150 --> 00:00:29.050
 Nothing makes the estate
 fail on a single date.
 
-12
-00:00:39.538 --> 00:00:43.524
+8
+00:00:29.050 --> 00:00:33.036
 It's surrounded by deadlines, each
 binding a different part of it,
 
-13
-00:00:43.524 --> 00:00:48.338
+9
+00:00:33.036 --> 00:00:37.850
 and each assuming the agency knows what
 it runs, who owns it and what governs it.
 
-14
-00:00:48.338 --> 00:00:50.562
-That's why it can't be a set of projects.
+10
+00:00:37.850 --> 00:00:40.138
+That's why this can't
+be a set of projects.
 
-15
-00:00:50.562 --> 00:00:54.751
-Moving devices to Intune needs
-the policy GPO links carried;
+11
+00:00:40.138 --> 00:00:43.576
+Moving devices to Intune
+needs the policy carried over;
 
-16
-00:00:54.751 --> 00:00:58.437
-Conditional Access needs
-the access groups granted.
+12
+00:00:43.576 --> 00:00:47.163
+Conditional Access needs the
+access groups carried over.
 
-17
-00:00:58.437 --> 00:01:02.813
+13
+00:00:47.163 --> 00:00:51.538
 Separate projects rediscover those
 decisions differently, or not at all.
 
-18
-00:01:02.813 --> 00:01:05.807
+14
+00:00:51.538 --> 00:00:54.533
 A program can sequence the
 work against the dates;
 
-19
-00:01:05.807 --> 00:01:08.437
+15
+00:00:54.533 --> 00:00:57.163
 a collection of projects
 can only race them.
 
-20
-00:01:08.437 --> 00:01:13.258
-Hence the decision for the sponsor and
-CIO, before the budget lines are set:
+16
+00:00:57.163 --> 00:01:02.395
+So the decision for the sponsor and CIO,
+before the budget lines are set: fund and
 
-21
-00:01:13.258 --> 00:01:16.972
-fund and govern modernization
-as one sequenced program,
+17
+00:01:02.395 --> 00:01:04.891
+govern this as one sequenced program,
 
-22
-00:01:16.972 --> 00:01:20.040
+18
+00:01:04.891 --> 00:01:07.950
 with one dependency chain
 and one set of gates.
+
+19
+00:01:07.950 --> 00:01:09.910
+Next, what that program is.

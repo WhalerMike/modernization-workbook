@@ -30,83 +30,64 @@ and BOD 25-01 makes blocking
 it a mandatory baseline.
 
 7
-00:00:22.926 --> 00:00:25.636
-Authorizing officials may accept risk for
-
-8
-00:00:25.636 --> 00:00:28.950
-deviations from those
-policies, under agency policy.
-
-9
-00:00:28.950 --> 00:00:32.475
+00:00:22.926 --> 00:00:26.450
 Second, the help desk's
 identity-verification procedure.
 
-10
-00:00:32.475 --> 00:00:36.988
+8
+00:00:26.450 --> 00:00:30.963
 The help desk supports users through
 every wave, and that makes it a target.
 
+9
+00:00:30.963 --> 00:00:34.978
+CISA's advisory on Scattered
+Spider describes attackers
+
+10
+00:00:34.978 --> 00:00:38.749
+phoning help desks to get
+passwords reset and MFA moved.
+
 11
-00:00:36.988 --> 00:00:41.374
-CISA's advisory on the Scattered
-Spider group describes attackers
+00:00:38.749 --> 00:00:43.446
+So the procedure for resets and temporary
+access passes is a CISO decision,
 
 12
-00:00:41.374 --> 00:00:45.837
-phoning help desks to get passwords
-reset and MFA tokens transferred.
-
-13
-00:00:45.837 --> 00:00:50.712
-So the procedure for resets and temporary
-access passes is a CISO decision.
-
-14
-00:00:50.712 --> 00:00:54.000
-The help desk carries it out
+00:00:43.446 --> 00:00:46.875
+carried out by the help desk
 with narrowly scoped roles.
 
-15
-00:00:54.000 --> 00:00:55.587
+13
+00:00:46.875 --> 00:00:48.462
 Third, records.
 
+14
+00:00:48.462 --> 00:00:52.562
+Retiring Active Directory
+retires years of access records.
+
+15
+00:00:52.562 --> 00:00:56.907
+NARA's schedule keeps some for six
+years after an account is terminated,
+
 16
-00:00:55.587 --> 00:01:00.887
-Retiring Active Directory retires the
-systems that hold years of access records.
+00:00:56.907 --> 00:01:00.737
+and once a domain controller is
+gone, its logs can't be recovered.
 
 17
-00:01:00.887 --> 00:01:06.204
-NARA's General Records Schedule 3.2 keeps
-some system access records for six years
+00:01:00.737 --> 00:01:05.550
+So the records officer decides retention
+before anything is decommissioned, and
 
 18
-00:01:06.204 --> 00:01:10.661
-after the account is terminated, and
-once a domain controller is gone,
+00:01:05.550 --> 00:01:10.575
+the privacy office is consulted before any
+new attribute flow carries personal data.
 
 19
-00:01:10.661 --> 00:01:14.101
-its logs can't be recovered
-for an audit or a legal hold.
-
-20
-00:01:14.101 --> 00:01:19.108
-So the records officer decides retention
-before anything is decommissioned:
-
-21
-00:01:19.108 --> 00:01:23.500
-any domain controller, federation
-farm, sync server or SIEM connector.
-
-22
-00:01:23.500 --> 00:01:26.218
-And the privacy office is consulted before
-
-23
-00:01:26.218 --> 00:01:29.140
-any new attribute flow
-carries personal data.
+00:01:10.575 --> 00:01:12.380
+Now, how to deliver it.

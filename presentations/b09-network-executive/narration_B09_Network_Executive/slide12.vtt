@@ -6,135 +6,113 @@ Field offices are where these
 decisions become a budget line.
 
 2
-00:00:03.688 --> 00:00:08.235
-Chapter 11 works a case many
+00:00:03.688 --> 00:00:07.985
+The book works a case many
 civilian agencies will recognize:
 
 3
-00:00:08.235 --> 00:00:13.568
+00:00:07.985 --> 00:00:13.228
 about 1,500 field offices, about 70,000
 endpoints, and a request for about 50
 
 4
-00:00:13.568 --> 00:00:16.803
+00:00:13.228 --> 00:00:16.408
 million dollars to refresh a Configuration
 
 5
-00:00:16.803 --> 00:00:20.038
+00:00:16.408 --> 00:00:19.588
 Manager distribution
 point in every office.
 
 6
-00:00:20.038 --> 00:00:21.238
+00:00:19.588 --> 00:00:20.787
 Three findings.
 
 7
-00:00:21.238 --> 00:00:24.075
+00:00:20.787 --> 00:00:23.625
 First, the unit cost doesn't reconcile.
 
 8
-00:00:24.075 --> 00:00:29.331
-Fifty million over 1,500
-offices is 33,333 dollars each,
+00:00:23.625 --> 00:00:29.559
+That's 33,333 dollars per office, about
+twice the book's fully loaded server case,
 
 9
-00:00:29.331 --> 00:00:33.887
-about twice the book's
-fully loaded server case.
+00:00:29.559 --> 00:00:34.762
+so the request needs to say whether
+it's acquisition or five-year cost.
 
 10
-00:00:33.887 --> 00:00:37.835
-So the sponsor needs to say whether
-that figure is acquisition cost
-
-11
-00:00:37.835 --> 00:00:41.500
-or five-year cost of ownership,
-and itemize anything bundled in.
-
-12
-00:00:41.500 --> 00:00:43.038
+00:00:34.762 --> 00:00:36.301
 Second, capacity.
 
-13
-00:00:43.038 --> 00:00:48.240
+11
+00:00:36.301 --> 00:00:41.574
 Microsoft's published limit is 4,000
 clients per distribution point,
 
-14
-00:00:48.240 --> 00:00:51.800
-so the estate needs 24, two
-at each of 12 hub sites.
+12
+00:00:41.574 --> 00:00:44.812
+so the estate needs 24,
+two at each of 12 hubs.
 
-15
-00:00:51.800 --> 00:00:57.800
+13
+00:00:44.812 --> 00:00:50.525
 The other 1,476 exist only to
-compensate for slow branch circuits.
+make up for slow branch circuits.
 
-16
-00:00:57.800 --> 00:00:59.225
+14
+00:00:50.525 --> 00:00:51.950
 Third, timing.
 
-17
-00:00:59.225 --> 00:01:04.528
-Microsoft has moved Configuration Manager
-to an annual release cadence and says new
+15
+00:00:51.950 --> 00:00:56.440
+Microsoft says new device-management
+innovation happens in Intune,
 
-18
-00:01:04.528 --> 00:01:07.590
-device-management innovation
-happens in Intune,
-
-19
-00:01:07.590 --> 00:01:11.025
+16
+00:00:56.440 --> 00:01:00.063
 so hardware bought now
 depreciates past its likely use.
 
-20
-00:01:11.025 --> 00:01:15.855
-The alternative fixes the circuit:
-internet access sized to seats,
+17
+00:01:00.063 --> 00:01:02.612
+The alternative fixes the circuit instead.
 
-21
-00:01:15.855 --> 00:01:21.125
-a 5G continuity path, and an SD-WAN
-overlay, with breakout at the hubs first.
+18
+00:01:02.612 --> 00:01:06.490
+On the book's planning assumptions,
+it needs about 10 million dollars
 
-22
-00:01:21.125 --> 00:01:25.078
-On the book's labeled planning
-assumptions, that needs about 10 million
-
-23
-00:01:25.078 --> 00:01:29.300
-dollars of first-year capital and turns
+19
+00:01:06.490 --> 00:01:10.300
+of first-year capital and turns
 cumulatively positive in year four.
 
-24
-00:01:29.300 --> 00:01:33.612
-But the financial case turns on one
-number the analysis doesn't hold.
+20
+00:01:10.300 --> 00:01:12.371
+But it hinges on one number:
 
-25
-00:01:33.612 --> 00:01:39.362
-Breakeven is 873 dollars of current
+21
+00:01:12.371 --> 00:01:17.550
+breakeven is 873 dollars of current
 MPLS cost per office per month.
 
-26
-00:01:39.362 --> 00:01:41.944
-Above it the program pays for itself;
-
-27
-00:01:41.944 --> 00:01:45.300
-below it, argue capability
+22
+00:01:17.550 --> 00:01:20.925
+Below that, argue capability
 rather than savings.
 
-28
-00:01:45.300 --> 00:01:50.275
-So the decision for the sponsor and CIO
-is to decompose the request and validate
+23
+00:01:20.925 --> 00:01:24.748
+So the sponsor and CIO decompose
+the request and validate
 
-29
-00:01:50.275 --> 00:01:55.460
-that MPLS figure before any comparison,
-and before the refresh money is committed.
+24
+00:01:24.748 --> 00:01:28.412
+that MPLS figure before the
+refresh money is committed.
+
+25
+00:01:28.412 --> 00:01:30.790
+Next, network access control.

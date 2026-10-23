@@ -5,99 +5,88 @@ WEBVTT
 Phase 6, steady state, has no exit gate.
 
 2
-00:00:03.387 --> 00:00:08.333
+00:00:03.387 --> 00:00:08.376
 The modernized estate runs under continuous
-governance: reassessment weekly,
+governance: drift detection daily,
 
 3
-00:00:08.333 --> 00:00:11.555
-drift detection daily, a
+00:00:08.376 --> 00:00:11.503
+reassessment weekly, a
 monthly compliance report,
 
 4
-00:00:11.555 --> 00:00:15.376
+00:00:11.503 --> 00:00:15.300
 quarterly access reviews and
 an annual architecture review.
 
 5
-00:00:15.376 --> 00:00:17.850
-The finish line is zero drift findings,
-
-6
-00:00:17.850 --> 00:00:22.800
-zero actions from the nightly plan run,
+00:00:15.300 --> 00:00:20.212
+The finish line is zero drift findings
 and signed evidence flowing to the SIEM.
 
-7
-00:00:22.800 --> 00:00:26.637
+6
+00:00:20.212 --> 00:00:24.049
 Every finding gets a severity,
 and every severity a clock.
 
-8
-00:00:26.637 --> 00:00:29.950
+7
+00:00:24.049 --> 00:00:27.086
 The master plan's defaults
-run from a Critical finding
+run from four hours for
+
+8
+00:00:27.086 --> 00:00:29.900
+a Critical finding to
+thirty days for a Low one.
 
 9
-00:00:29.950 --> 00:00:33.262
-fixed within four hours to a
-Low one within thirty days.
-
-10
-00:00:33.262 --> 00:00:38.373
+00:00:29.900 --> 00:00:35.010
 The agency sets its own values; what the
 program insists on is that there are some,
 
-11
-00:00:38.373 --> 00:00:42.476
+10
+00:00:35.010 --> 00:00:39.113
 written into its continuous
 monitoring strategy and measured.
 
-12
-00:00:42.476 --> 00:00:44.475
+11
+00:00:39.113 --> 00:00:41.112
 Success is measured twice.
 
+12
+00:00:41.112 --> 00:00:44.025
+Delivery measures turn green gate by gate.
+
 13
-00:00:44.475 --> 00:00:49.919
-Delivery measures turn green gate by
-gate: the assessment accepted at G0,
-
-14
-00:00:49.919 --> 00:00:56.089
-the target model agreed at G1, the first
-wave run with full provenance and evidence
-
-15
-00:00:56.089 --> 00:01:01.987
-at G2, drift detection operating by G2 and
-G3, and every residual risk owned by G5.
-
-16
-00:01:01.987 --> 00:01:06.299
+00:00:44.025 --> 00:00:48.337
 Outcome measures are what operations
 keeps green after the project ends.
 
-17
-00:01:06.299 --> 00:01:09.668
+14
+00:00:48.337 --> 00:00:51.556
 A program can meet every
-delivery measure and still fail
+delivery measure and still
 
-18
-00:01:09.668 --> 00:01:13.250
-if the outcome measures drift
-after the project team leaves.
+15
+00:00:51.556 --> 00:00:54.475
+fail if the outcomes drift
+once the team leaves.
 
-19
-00:01:13.250 --> 00:01:15.763
+16
+00:00:54.475 --> 00:00:56.988
 That's why the handover
 is part of the scorecard.
 
-20
-00:01:15.763 --> 00:01:20.412
-The steward records it before the
-team leaves: who owns the repository
+17
+00:00:56.988 --> 00:01:01.570
+Before the team leaves, the steward
+records who owns the repository,
 
-21
-00:01:20.412 --> 00:01:24.960
-and its protections, each drift
-class, each severity and each review.
+18
+00:01:01.570 --> 00:01:04.762
+each drift class, each
+severity and each review.
+
+19
+00:01:04.762 --> 00:01:06.290
+Next, the risks.
