@@ -1,152 +1,45 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.702
-Here's the build mapped onto the Federal
+00:00:00.050 --> 00:00:02.738
+This slide is about one
+dangerous permission.
 
 2
-00:00:02.702 --> 00:00:05.675
-Modernization Workbook's
-Book 07's six waves.
+00:00:02.738 --> 00:00:05.296
+To issue certificates on the agency's CAs,
 
 3
-00:00:05.675 --> 00:00:10.245
-This is the platform work that runs
-alongside the Cloud PKI waves,
+00:00:05.296 --> 00:00:09.360
+the platform needs a right called
+Issue and Manage Certificates,
 
 4
-00:00:10.245 --> 00:00:11.938
-with a gate added to each.
+00:00:09.360 --> 00:00:13.274
+and with it an account can approve,
+deny or revoke certificates.
 
 5
-00:00:11.938 --> 00:00:13.900
-It's program design guidance.
+00:00:13.274 --> 00:00:17.512
+Attackers know this; it's a
+known attack path called ESC7.
 
 6
-00:00:13.900 --> 00:00:16.875
-Wave 1, Assess, weeks one to four.
+00:00:17.512 --> 00:00:21.056
+Here's the honest part: Microsoft
+doesn't give you a switch that
 
 7
-00:00:16.875 --> 00:00:22.025
-Stand up a two-server test cluster and
-its SQL database inside the boundary.
+00:00:21.056 --> 00:00:24.600
+limits that right to a few templates,
+so we don't pretend it does.
 
 8
-00:00:22.025 --> 00:00:27.363
-Run read-only network discovery and
-import the AD CS templates in scope.
+00:00:24.600 --> 00:00:28.235
+We limit what the account can
+request, prove in the lab that a
 
 9
-00:00:27.363 --> 00:00:30.693
-That import needs the
-privileged CA account,
-
-10
-00:00:30.693 --> 00:00:33.663
-so create it now, under the ESC7 controls.
-
-11
-00:00:33.663 --> 00:00:38.968
-Gate: every certificate without an
-issuance record is logged as a finding,
-
-12
-00:00:38.968 --> 00:00:41.925
-and the CA account is
-in the ESC7 baseline.
-
-13
-00:00:41.925 --> 00:00:43.663
-Wave 2, Foundation.
-
-14
-00:00:43.663 --> 00:00:47.306
-Build production: at least
-two servers per role,
-
-15
-00:00:47.306 --> 00:00:50.388
-a load balancer, Always
-On, keys backed up.
-
-16
-00:00:50.388 --> 00:00:55.038
-Decide FIPS mode per server,
-with ACME on its own servers.
-
-17
-00:00:55.038 --> 00:00:58.003
-Replace the operational certificates,
-
-18
-00:00:58.003 --> 00:01:03.034
-set up Entra single sign-on and syslog
-over TLS, build the policy tree,
-
-19
-00:01:03.034 --> 00:01:06.717
-one CA template object per
-AD CS template, a CA pool,
-
-20
-00:01:06.717 --> 00:01:10.850
-the public CA driver and the
-password-vault connection.
-
-21
-00:01:10.850 --> 00:01:16.462
-Gate: a rehearsed restore, a passing
-negative test, and IIS hardening applied.
-
-22
-00:01:16.462 --> 00:01:18.050
-Wave 3, Pilot.
-
-23
-00:01:18.050 --> 00:01:24.237
-Move pilot servers onto platform renewal,
-IIS, Apache, F5, NetScaler and one NPS
-
-24
-00:01:24.237 --> 00:01:27.717
-server, assign Server
-Owners, and pilot ACME,
-
-25
-00:01:27.717 --> 00:01:31.100
-with autoenrollment left on for rollback.
-
-26
-00:01:31.100 --> 00:01:35.925
-Wave 4, Scale, moves servers
-ring by ring off autoenrollment.
-
-27
-00:01:35.925 --> 00:01:39.363
-Wave 5 puts all public
-TLS on the platform.
-
-28
-00:01:39.363 --> 00:01:42.912
-Wave 6 retires CAs on
-the inventory's evidence.
-
-29
-00:01:42.912 --> 00:01:48.373
-Sources: Research brief section 9
-(program design guidance); Book 07,
-
-30
-00:01:48.373 --> 00:01:53.039
-Chapter 07 (migration playbook,
-waves 1 to 6 and exit gates),
-
-31
-00:01:53.039 --> 00:01:58.202
-Chapter 04 (issuer decision for
-internal server certificates),
-
-32
-00:01:58.202 --> 00:02:02.230
-Chapter 08 (drift patterns
-and decommissioning).
+00:00:28.235 --> 00:00:32.590
+request outside those templates fails,
+and alert if one ever succeeds.

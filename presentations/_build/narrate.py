@@ -67,18 +67,22 @@ def expand_first(text: str, introduced: set) -> str:
     return text
 
 
-# Name the workbook with the first book reference on each slide, so a slide watched or shared on its own
-# says where "Book 08" lives: "the Federal Modernization Workbook's Book 08". Later references on the
-# slide stay short, and a slide that already names the workbook is left alone.
+# Name the workbook once per deck, at its first book reference: "the Federal Modernization Workbook's
+# Book 08". Later slides say just "Book 08", which reads naturally. A deck whose narration names the
+# workbook itself is left alone.
 WORKBOOK = "Federal Modernization Workbook"
 
 
-def name_workbook(text: str) -> str:
+def name_workbook(text: str, introduced: set) -> str:
+    if "workbook" in introduced:
+        return text
     if WORKBOOK in text:
+        introduced.add("workbook")
         return text
     m = re.search(r"\bBooks? \d\d\b", text)
     if not m:
         return text
+    introduced.add("workbook")
     before = text[:m.start()]
     if re.search(r"\b[Tt]he $", before):  # "the Book 08 deck" -> "the Federal Modernization Workbook's Book 08 deck"
         return before + f"{WORKBOOK}'s " + text[m.start():]
@@ -88,7 +92,9 @@ def name_workbook(text: str) -> str:
 
 def clean(notes: str) -> str:
     t = re.sub(r"^\[[^\]]*\]\s*", "", notes.strip())          # timing cue
-    t = t.split("\n\nWorkbook:")[0]                             # workbook reference
+    # Only the narration is spoken: a Workbook reference, the Detail block (the full speaker-note
+    # detail) and the Sources line stay in the notes.
+    t = re.split(r"\n\n(?:Workbook|Detail|Sources):", t)[0]
     t = re.sub(r"\n?\[[^\]]*\]\s*$", "", t.strip())             # trailing [Stop by 15:00.]
     t = re.sub(r"\n\([^)]*\)\s*$", "", t.strip())                # trailing (Verify ...)
     t = re.sub(r"\s*\((Confirm|Verify)[^)]*\)", "", t)          # inline (Confirm ...)
@@ -126,7 +132,7 @@ async def main():
         notes = slide.notes_slide.notes_text_frame.text if slide.has_notes_slide else ""
         text = clean(notes)
         text = expand_first(text, introduced)
-        text = name_workbook(text)
+        text = name_workbook(text, introduced)
         if title.startswith("More modernizations"):  # teaser: drop the stage direction
             text = re.sub(r"^Leave up during questions.*?\n", "", text).strip()
         script.append(f"\n## Slide {i} — {title}\n\n{text}\n")

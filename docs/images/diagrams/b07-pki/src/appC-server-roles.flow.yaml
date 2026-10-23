@@ -1,0 +1,26 @@
+# Appendix C — the server roles of a CyberArk Certificate Manager, Self-Hosted cluster: every server runs
+# the same software against one active database, and each role is the set of components switched on.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  lb: {kind: pill, tone: slate, text: "Load balancer: one name for the web console, API, agents and SCEP"}
+  web: {tone: blue, width: 230, tag: "2 or more", title: "Web services servers", body: ["Web console and Policy Tree", "Web SDK (REST API) and Authentication Server", "Agent check-in (Client REST); EST on 50443; SCEP on 80 if used"], size: 12}
+  acme: {tone: amber, width: 230, tag: "Separate, not in FIPS mode", title: "ACME servers", body: ["ACME service only", "Own load-balancer name", "CyberArk: no FIPS on any server used for ACMEv2"], size: 12}
+  be: {tone: green, width: 230, tag: "2 or more", title: "Back-end processing servers", body: ["Certificate lifecycle: issue, renew, install, revoke", "CA Import, discovery, validation, revocation monitoring", "Processing engines keep work on chosen servers"], size: 12}
+  log: {tone: violet, width: 230, tag: "2 at larger sizes", title: "Log and event servers", body: ["Logging service: audit trail and notifications", "The only servers that send to the SIEM, email and SNMP"], size: 12}
+  bus: {kind: pill, tone: slate, text: "Message Bus: MQTT over TLS on 8883, every server to every other, across sites too"}
+  sql: {tone: slate, width: 230, tag: "One active database", title: "SQL Server Always On", body: ["Every server connects to the same instance", "FULL recovery; Enterprise edition recommended"], size: 12}
+  hsm: {tone: red, width: 230, tag: "Or a software key", title: "HSM pair", body: ["Protects the database's secrets", "Same partition label on every server", "Unreachable HSM: the platform shuts down"], size: 12}
+order:
+  - [web, acme]
+  - [be, log]
+  - [sql, hsm]
+edges:
+  - [lb, web]
+  - [lb, acme]
+  - [web, be, {style: invis}]
+  - [acme, log, {style: invis}]
+  - [be, bus, {none: true}]
+  - [log, bus, {none: true}]
+  - [bus, sql, {label: "all servers", lw: 80}]
+  - [bus, hsm, {label: "all servers", lw: 80}]

@@ -1,144 +1,52 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.225
-Why self-hosted?
+00:00:00.050 --> 00:00:02.025
+Two things to settle before you build.
 
 2
-00:00:01.225 --> 00:00:04.872
-In the FedRAMP Marketplace data
-as of October twenty-second,
+00:00:02.025 --> 00:00:03.688
+First, where it runs.
 
 3
-00:00:04.872 --> 00:00:08.957
-there's no certificate-management
-package from Palo Alto Networks,
+00:00:03.688 --> 00:00:07.049
+There's no FedRAMP package
+for CyberArk's cloud edition,
 
 4
-00:00:08.957 --> 00:00:11.655
-CyberArk or Venafi: not
-Certificate Manager,
+00:00:07.049 --> 00:00:11.652
+so the program runs the self-hosted
+edition inside the agency's own boundary,
 
 5
-00:00:11.655 --> 00:00:15.813
-not Next-Gen Trust Security, and
-not the Trust Protection Foundation.
+00:00:11.652 --> 00:00:14.575
+next to the certificate
+authorities it manages.
 
 6
-00:00:15.813 --> 00:00:19.354
-Palo Alto's authorized packages
-cover privileged access,
+00:00:14.575 --> 00:00:18.873
+Second, what it runs on: Windows
+servers, English-language builds,
 
 7
-00:00:19.354 --> 00:00:22.674
-endpoint privilege management
-and network security.
+00:00:18.873 --> 00:00:24.063
+all on the same version, with a SQL Server
+database that lives on its own server.
 
 8
-00:00:22.674 --> 00:00:27.245
-So the Federal Modernization
-Workbook's Book 07's decision stands:
+00:00:24.063 --> 00:00:26.830
+Plan for an upgrade
+roughly every six months,
 
 9
-00:00:27.245 --> 00:00:31.150
-run Certificate Manager,
-Self-Hosted inside the agency's
+00:00:26.830 --> 00:00:29.374
+because that's CyberArk's release rhythm.
 
 10
-00:00:31.150 --> 00:00:35.138
-own authorization boundary,
-alongside the CAs it manages.
+00:00:29.374 --> 00:00:31.400
+The full requirements are on the slide.
 
 11
-00:00:35.138 --> 00:00:38.097
-The program's design
-guidance adds a corollary:
-
-12
-00:00:38.097 --> 00:00:42.726
-avoid any feature that depends on the
-SaaS, and we'll meet two of those later.
-
-13
-00:00:42.726 --> 00:00:45.789
-The product runs on the
-Trust Protection Foundation,
-
-14
-00:00:45.789 --> 00:00:48.575
-formerly the Venafi Trust
-Protection Platform.
-
-15
-00:00:48.575 --> 00:00:54.007
-The current release is 26.1, from July
-2026, and CyberArk typically ships
-
-16
-00:00:54.007 --> 00:00:59.438
-major releases every six months, so
-plan an upgrade cadence from day one.
-
-17
-00:00:59.438 --> 00:01:04.885
-The servers run Windows Server 2016
-through 2025, with the desktop experience,
-
-18
-00:01:04.885 --> 00:01:10.500
-from English installation media only, and
-the same OS version across the cluster.
-
-19
-00:01:10.500 --> 00:01:16.875
-They need IIS, .NET 4.8, the
-Visual C++ runtimes and WebView2.
-
-20
-00:01:16.875 --> 00:01:20.570
-The database is SQL
-Server 2014 through 2022,
-
-21
-00:01:20.570 --> 00:01:25.563
-also English only, and not on a
-platform server except in test.
-
-22
-00:01:25.563 --> 00:01:30.474
-CyberArk strongly recommends the FULL
-recovery model, and recommends Enterprise
-
-23
-00:01:30.474 --> 00:01:34.675
-edition because Standard needs an
-outage for the weekly index rebuild.
-
-24
-00:01:34.675 --> 00:01:38.463
-For high availability, use
-Always On availability groups.
-
-25
-00:01:38.463 --> 00:01:43.655
-Sources: FedRAMP Marketplace
-products.json (last_change Oct.
-
-26
-00:01:43.655 --> 00:01:49.781
-22, 2026); CyberArk 26.1 System
-Requirements, Always On high availability,
-
-27
-00:01:49.781 --> 00:01:56.011
-Choosing SQL Server Enterprise or
-Standard, Important Considerations,
-
-28
-00:01:56.011 --> 00:01:58.814
-Installation and Upgrade Guide;
-
-29
-00:01:58.814 --> 00:02:04.580
-Palo Alto Networks Next-Gen Trust
-Security page; Book 07, Chapter 04.
+00:00:31.400 --> 00:00:35.640
+Next, let's open the box and see what
+the platform is actually made of.

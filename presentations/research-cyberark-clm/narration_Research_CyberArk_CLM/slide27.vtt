@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.262
+Automation is how renewals
+stop depending on people.
+
+2
+00:00:03.262 --> 00:00:06.200
+Web servers can renew
+themselves using ACME,
+
+3
+00:00:06.200 --> 00:00:09.375
+the same protocol public
+certificate sites use.
+
+4
+00:00:09.375 --> 00:00:12.925
+Network devices can use EST or SCEP.
+
+5
+00:00:12.925 --> 00:00:17.825
+Scripts and pipelines use the REST
+API or CyberArk's command-line tool.
+
+6
+00:00:17.825 --> 00:00:22.413
+And for everything else, the drivers renew
+the certificate and install it for you.
+
+7
+00:00:22.413 --> 00:00:26.997
+The one design rule to carry
+forward is the one we've seen twice:
+
+8
+00:00:26.997 --> 00:00:30.480
+ACME runs on its own
+servers, outside FIPS mode.

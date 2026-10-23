@@ -44,8 +44,11 @@ try {
     $shp.AlternativeText = "Narration for this slide; captions available"
     $shp.AnimationSettings.PlaySettings.HideWhileNotPlaying = -1
     $eff = $slide.TimeLine.MainSequence.AddEffect($shp, 83, 0, 2)   # media play, with previous = automatic
-    $secs = [double]$dur.("$i") + 1.0
     $t = $slide.SlideShowTransition
+    # The clip starts only after the slide's transition finishes, but the advance timer runs from the
+    # start of the slide. So the slide stays up for the transition, the clip, and a 2-second pause
+    # (which also covers media load lag). The old "clip + 1 s" cut off the end of every clip.
+    $secs = [double]$t.Duration + [double]$dur.("$i") + 2.0
     $t.AdvanceOnClick = -1
     $t.AdvanceOnTime = -1
     $t.AdvanceTime = $secs

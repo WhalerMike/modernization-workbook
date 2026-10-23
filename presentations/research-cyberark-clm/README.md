@@ -1,25 +1,26 @@
 # Research: Certificate Lifecycle on CyberArk Certificate Manager — implementation guide
 
-A 35-minute implementation guide for building Book 07's certificate lifecycle on CyberArk Certificate Manager, Self-Hosted (version 26.1, on the Trust Protection Foundation). It's built with the shared deck kit in [`../_build/`](../_build/README.md). It's a **Research — under review** item for the workbook's Research section, not part of the vendor-neutral workbook books. The title slide labels it "Implementation guide · Research — under review", and the closing notes say it's the program's research, not an endorsement by any federal agency. No specific federal agency is named. This folder sits outside `docs/`, so the site doesn't render it.
+A 20-minute implementation guide for building Book 07's certificate lifecycle on CyberArk Certificate Manager, Self-Hosted (version 26.1, on the Trust Protection Foundation). It's built with the shared deck kit in [`../_build/`](../_build/README.md). It's a **Research — under review** item for the workbook's Research section, not part of the vendor-neutral workbook books. The title slide labels it "Implementation guide · Research — under review", and the closing notes say it's the program's research, not an endorsement by any federal agency. No specific federal agency is named. This folder sits outside `docs/`, so the site doesn't render it.
 
 CyberArk is the program's chosen CLM vendor (the agency's existing machine-identity vendor, per Book 07 Ch 04), so the deck recommends it plainly and states its risks openly. Self-hosted is the deployment because the FedRAMP Marketplace lists no certificate-management package for the SaaS edition.
 
-The deck has a 4-minute orientation and four parts that follow Book 07's phases and waves. Each part opens with a divider slide, so the parts can be watched separately:
+The deck has a 2-minute orientation, a 6-minute section on what the platform is made of, and four parts that follow Book 07's phases and waves. Each part opens with a divider slide, so the parts can be watched separately:
 
 | Part | Content | Minutes |
 |---|---|---|
-| Orientation | Title; what the guide implements (Book 07's issuer map, with the CLM as the system of record for what Intune and the PIV system don't manage); prerequisites and decisions | 4 |
-| 1 — Build the platform | Architecture and high availability; FIPS posture (what you can and can't claim); console sign-in through Entra SSO with CBA; hardening and service accounts; backup and disaster recovery | 8 |
-| 2 — Connect the issuers | AD CS driver; scoping its account under ESC7; public and cloud CA drivers in 26.1; Intune coexistence | 7 |
-| 3 — Discover, own and automate | Discovery and CA import; ownership through policy folders, owners and the CMDB; enrollment automation (ACME, EST, SCEP, REST, agents); Kubernetes, ServiceNow and SIEM | 7 |
-| 4 — Migrate and operate | Build sequence mapped to Book 07's six waves; renewal as public TLS lifetimes shrink; monitoring and drift; decommissioning; decisions, vendor asks and next steps | 9 |
+| Orientation | Title; what the guide implements (Book 07's issuer map, with the CLM as the system of record for what Intune and the PIV system don't manage); prerequisites and decisions | 2 |
+| Inside the platform | Server roles, web tier, back end (processing engines, log servers, Message Bus), components, drivers, agents, database and keys, integrations, a two-site reference topology, and one certificate's journey, with four diagrams shared with Book 07 Appendix C | 6 |
+| 1 — Build the platform | Architecture and high availability; FIPS posture (what you can and can't claim); console sign-in through Entra SSO with CBA; hardening and service accounts; backup and disaster recovery | 3 |
+| 2 — Connect the issuers | AD CS driver; scoping its account under ESC7; public and cloud CA drivers in 26.1; Intune coexistence | 3 |
+| 3 — Discover, own and automate | Discovery and CA import; ownership through policy folders, owners and the CMDB; enrollment automation (ACME, EST, SCEP, REST, agents); Kubernetes, ServiceNow and SIEM | 3 |
+| 4 — Migrate and operate | Build sequence mapped to Book 07's six waves; renewal as public TLS lifetimes shrink; monitoring and drift; decommissioning; decisions, vendor asks and next steps | 3 |
 
 | File | Use |
 |---|---|
-| `Research_CyberArk_CLM.pptx` | The deck: 25 narrated slides (4 of them dividers), then a backup section: assessor evidence checklist, risks register, what couldn't be verified, and the full source lists |
+| `Research_CyberArk_CLM.pptx` | The deck: 34 narrated slides (5 of them dividers), then a backup section: assessor evidence checklist, risks register, what couldn't be verified, and the full source lists |
 | `build.js` | Slide content and speaker notes; it stops if a slide title is over 58 characters or duplicated |
 
-The narrated version, narration script, per-slide audio and captions aren't built yet. The editor runs `narrate.py`, `captions.py` and `build_narrated.ps1` from `../_build/`.
+Narration: `narration.js` holds each slide's spoken narration, written to convey the slide's intent and highpoints conversationally; the full detail stays in the notes as a non-spoken `Detail:` block. This deck is the pilot for that style. Then run `narrate.py`, `captions.py` and `build_narrated.ps1` from `../_build/`.
 
 ## Build
 

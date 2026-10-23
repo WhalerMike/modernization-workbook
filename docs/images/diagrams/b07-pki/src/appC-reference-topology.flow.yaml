@@ -1,0 +1,38 @@
+# Appendix C — a two-site reference topology built only from CyberArk's documented constraints
+# (program design guidance, not vendor procedure).
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+clusters:
+  - {id: sa, label: "Site A (primary database)", tone: blue, nodes: [wa, aa, ba, la]}
+  - {id: sb, label: "Site B", tone: blue, nodes: [wb, ab, bb, lb2]}
+nodes:
+  vip: {kind: pill, tone: slate, text: "Load-balancer names: one for the web console and API, one for ACME"}
+  wa: {tone: blue, width: 165, title: "WEB-A1", body: ["Web services; FIPS mode per policy"], size: 12}
+  aa: {tone: amber, width: 165, title: "ACME-A1", body: ["ACME only; FIPS mode off"], size: 12}
+  ba: {tone: green, width: 165, title: "BE-A1", body: ["Back end; site A engines and public-CA egress"], size: 12}
+  la: {tone: violet, width: 165, title: "LOG-A1", body: ["Logging to SIEM, email, SNMP"], size: 12}
+  wb: {tone: blue, width: 165, title: "WEB-B1", body: ["Web services; FIPS mode per policy"], size: 12}
+  ab: {tone: amber, width: 165, title: "ACME-B1", body: ["ACME only; FIPS mode off"], size: 12}
+  bb: {tone: green, width: 165, title: "BE-B1", body: ["Back end; site B engines"], size: 12}
+  lb2: {tone: violet, width: 165, title: "LOG-B1", body: ["Logging to SIEM, email, SNMP"], size: 12}
+  bus: {kind: pill, tone: slate, text: "Message Bus mesh: TLS 8883 open between all eight servers, across sites"}
+  sql: {tone: slate, width: 360, tag: "One active database", title: "SQL Server Always On availability group", body: ["Primary in site A, secondary in site B, one listener every server uses", "About 15 seconds per renewal at a 30 ms delay to the primary"], size: 12}
+  hsm: {tone: red, width: 360, tag: "Vendor HA group", title: "HSM-A and HSM-B", body: ["Same partition label on every server"], size: 12}
+order:
+  - [wa, aa, wb, ab]
+  - [ba, la, bb, lb2]
+edges:
+  - [vip, wa]
+  - [vip, aa]
+  - [vip, wb]
+  - [vip, ab]
+  - [wa, ba, {style: invis}]
+  - [aa, la, {style: invis}]
+  - [wb, bb, {style: invis}]
+  - [ab, lb2, {style: invis}]
+  - [ba, bus, {none: true}]
+  - [la, bus, {none: true}]
+  - [bb, bus, {none: true}]
+  - [lb2, bus, {none: true}]
+  - [bus, sql]
+  - [sql, hsm, {both: true, label: "keys", lw: 60}]

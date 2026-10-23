@@ -1,129 +1,44 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.225
-Why renewal automation can't wait.
+00:00:00.050 --> 00:00:04.489
+For public certificates, the platform
+has drivers for the major public CAs,
 
 2
-00:00:02.225 --> 00:00:07.148
-In April 2025 the CA/Browser Forum
-adopted a ballot that cuts the
+00:00:04.489 --> 00:00:07.925
+and two changes in this release
+matter before you upgrade.
 
 3
-00:00:07.148 --> 00:00:12.163
-maximum validity of publicly
-trusted TLS certificates in steps.
+00:00:07.925 --> 00:00:10.950
+Entrust is no longer
+supported as a public CA,
 
 4
-00:00:12.163 --> 00:00:17.724
-From March fifteenth, 2026, it's two
-hundred days, and that's in force now.
+00:00:10.950 --> 00:00:13.975
+so if that's your provider,
+plan the path first.
 
 5
-00:00:17.724 --> 00:00:21.450
-From March fifteenth,
-2027, a hundred days.
+00:00:13.975 --> 00:00:19.188
+And DigiCert client certificates now
+need an email address, or renewals fail.
 
 6
-00:00:21.450 --> 00:00:25.375
-From March fifteenth,
-2029, forty-seven days.
+00:00:19.188 --> 00:00:21.910
+On the cloud side, the platform can issue
 
 7
-00:00:25.375 --> 00:00:30.509
-The Federal Modernization Workbook's
-Book 07 works out what that means for a
+00:00:21.910 --> 00:00:24.963
+through AWS and install
+into Azure Key Vault.
 
 8
-00:00:30.509 --> 00:00:35.236
-thousand certificates: about seven
-renewals every working day today,
+00:00:24.963 --> 00:00:28.889
+What I couldn't confirm is Key
+Vault support in Azure Government,
 
 9
-00:00:35.236 --> 00:00:37.925
-fifteen next year, and thirty-one in 2029.
-
-10
-00:00:37.925 --> 00:00:41.601
-The reuse period for domain
-validation falls to ten days,
-
-11
-00:00:41.601 --> 00:00:44.025
-so validation has to be automated too.
-
-12
-00:00:44.025 --> 00:00:47.574
-That's why Book 07 Chapter
-08 sets one design rule:
-
-13
-00:00:47.574 --> 00:00:52.187
-no certificate class may depend
-on a person remembering a date.
-
-14
-00:00:52.187 --> 00:00:56.632
-Every class runs through one of
-three engines: Intune profiles,
-
-15
-00:00:56.632 --> 00:01:01.075
-AD CS autoenrollment for domain
-controllers, or this platform.
-
-16
-00:01:01.075 --> 00:01:03.875
-On the platform, renewal works two ways.
-
-17
-00:01:03.875 --> 00:01:08.682
-Drivers renew the certificate
-and push it to the endpoint,
-
-18
-00:01:08.682 --> 00:01:11.887
-IIS, Apache, F5, NetScaler and the others.
-
-19
-00:01:11.887 --> 00:01:14.504
-And ACME clients on web listeners renew
-
-20
-00:01:14.504 --> 00:01:17.675
-themselves against the
-platform's ACME service.
-
-21
-00:01:17.675 --> 00:01:23.438
-When you use the dns-01 challenge, the
-authoritative DNS zone becomes the gate
-
-22
-00:01:23.438 --> 00:01:29.200
-for automated issuance, which is why the
-DNS team is consulted on ACME rollout.
-
-23
-00:01:29.200 --> 00:01:33.000
-The program aligns internal
-lifetimes with the schedule too,
-
-24
-00:01:33.000 --> 00:01:35.012
-as the automation proves itself.
-
-25
-00:01:35.012 --> 00:01:41.212
-Sources: Book 07, Chapter 01
-(CA/Browser Forum Ballot SC-081v3;
-
-26
-00:01:41.212 --> 00:01:49.562
-Baseline Requirements 2.3.1; renewal
-arithmetic) and Chapter 08 (renewal at scale,
-
-27
-00:01:49.562 --> 00:01:58.100
-ACME where it applies); CyberArk 26.1
-provisioning driver and ACME documentation.
+00:00:28.889 --> 00:00:31.180
+so test it or ask before you rely on it.

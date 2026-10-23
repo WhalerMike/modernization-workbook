@@ -1,142 +1,49 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.038
-Be exact about FIPS.
+00:00:00.050 --> 00:00:02.000
+The web tier is how anyone gets in.
 
 2
-00:00:02.038 --> 00:00:07.500
-What CyberArk documents: the Trust Protection
-Foundation supports Windows servers
+00:00:02.000 --> 00:00:05.723
+People use the web console for
+daily work and the Policy Tree,
 
 3
-00:00:07.500 --> 00:00:10.270
-with FIPS mode enabled,
-through the Windows
+00:00:05.723 --> 00:00:09.000
+which is also a web page,
+for the deeper configuration.
 
 4
-00:00:10.270 --> 00:00:13.501
-policy that says to use
-FIPS-compliant algorithms.
+00:00:09.000 --> 00:00:10.912
+Automation uses the REST API,
 
 5
-00:00:13.501 --> 00:00:18.511
-The installation guide also says to enable
-it only if your industry requires it,
+00:00:10.912 --> 00:00:15.612
+and sign-ins for both go through the
+platform's authentication service.
 
 6
-00:00:18.511 --> 00:00:23.825
-and links Microsoft's post explaining why
-Microsoft no longer recommends FIPS mode.
+00:00:15.612 --> 00:00:18.769
+There's one more console,
+the Configuration Console,
 
 7
-00:00:23.825 --> 00:00:28.538
-For a federal deployment, decide
-FIPS mode per server, deliberately.
+00:00:18.769 --> 00:00:23.100
+that administrators run on each server
+to switch components on and off.
 
 8
-00:00:28.538 --> 00:00:33.698
-The database's secrets are encrypted
-with an AES-256 software key kept
+00:00:23.100 --> 00:00:26.466
+The thing to remember for the
+build is the load balancer:
 
 9
-00:00:33.698 --> 00:00:38.325
-in the registry, a key held in a
-hardware security module, or both.
+00:00:26.466 --> 00:00:30.344
+every web service sits behind one
+name, and that name has to match
 
 10
-00:00:38.325 --> 00:00:39.412
-What not to claim.
-
-11
-00:00:39.412 --> 00:00:43.501
-I searched NIST's validated-modules
-list on October twenty-second.
-
-12
-00:00:43.501 --> 00:00:45.862
-Under the vendor name
-Venafi there's nothing.
-
-13
-00:00:45.862 --> 00:00:52.178
-Under CyberArk there are two FIPS 140-3
-Level 1 certificates, number 5205,
-
-14
-00:00:52.178 --> 00:00:58.600
-the CyberArk Cryptographic Module,
-and number 5122, its Java counterpart.
-
-15
-00:00:58.600 --> 00:01:02.709
-Neither names the Trust Protection
-Foundation or Certificate Manager,
-
-16
-00:01:02.709 --> 00:01:06.750
-and I found no CyberArk statement
-saying which module the product uses.
-
-17
-00:01:06.750 --> 00:01:10.775
-So don't cite either certificate for
-this product without a vendor letter.
-
-18
-00:01:10.775 --> 00:01:15.776
-There's also no current Common
-Criteria certificate; the last one,
-
-19
-00:01:15.776 --> 00:01:21.425
-for Trust Protection Platform 23.1, was
-archived on July twenty-ninth, 2026.
-
-20
-00:01:21.425 --> 00:01:26.602
-The defensible evidence path, and this
-is my inference, is FIPS-mode Windows,
-
-21
-00:01:26.602 --> 00:01:29.525
-which uses Microsoft's validated modules,
-
-22
-00:01:29.525 --> 00:01:33.700
-plus the HSM's own CMVP certificate
-for the database secrets.
-
-23
-00:01:33.700 --> 00:01:36.038
-One catch, which Part 3 covers:
-
-24
-00:01:36.038 --> 00:01:40.812
-servers running the ACME service
-can't be in FIPS mode at all.
-
-25
-00:01:40.812 --> 00:01:45.897
-Sources: CyberArk 26.1
-Installation and Upgrade Guide pp.
-
-26
-00:01:45.897 --> 00:01:50.658
-49–55 (FIPS, encryption keys);
-System Requirements (HSMs);
-
-27
-00:01:50.658 --> 00:01:58.232
-System encryption keys overview; NIST CMVP
-validated-modules search (Vendor Venafi;
-
-28
-00:01:58.232 --> 00:02:02.561
-Vendor CyberArk) and
-certificates #5205 and #5122;
-
-29
-00:02:02.561 --> 00:02:08.260
-Common Criteria Portal certified
-and archived product lists.
+00:00:30.344 --> 00:00:34.130
+the certificate the servers
+present, or single sign-on breaks.

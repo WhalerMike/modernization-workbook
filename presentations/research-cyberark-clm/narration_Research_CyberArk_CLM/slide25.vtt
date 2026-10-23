@@ -1,144 +1,38 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.025
-To close: decisions, vendor
-asks, and next steps.
+00:00:00.050 --> 00:00:02.151
+You can't manage what you can't see,
 
 2
-00:00:04.025 --> 00:00:05.500
-The decisions to take.
+00:00:02.151 --> 00:00:05.263
+and a CA's database only
+shows what that CA issued.
 
 3
-00:00:05.500 --> 00:00:10.312
-Which servers run in FIPS mode, and
-which separate servers run ACME.
+00:00:05.263 --> 00:00:09.376
+So the platform finds certificates
+two ways: it scans the network for
 
 4
-00:00:10.312 --> 00:00:14.886
-Whether database secrets are protected
-by an HSM or by the software key,
+00:00:09.376 --> 00:00:14.138
+anything presenting a certificate, and
+it imports what your CAs already issued.
 
 5
-00:00:14.886 --> 00:00:17.599
-and whether SQL is Enterprise or Standard.
+00:00:14.138 --> 00:00:17.062
+Agents and API feeds fill in the rest.
 
 6
-00:00:17.599 --> 00:00:22.412
-Console sign-in through Entra single sign-on
-with certificate-based authentication.
+00:00:17.062 --> 00:00:18.919
+The program's rule is blunt:
 
 7
-00:00:22.412 --> 00:00:26.163
-The public CA path, if the
-agency uses Entrust today.
+00:00:18.919 --> 00:00:23.224
+any certificate found with no
+record and no owner is a finding.
 
 8
-00:00:26.163 --> 00:00:29.318
-Whether to build the Cloud
-PKI feed on a beta API,
-
-9
-00:00:29.318 --> 00:00:31.988
-and whether to adopt the ServiceNow app.
-
-10
-00:00:31.988 --> 00:00:36.376
-Ask CyberArk, in writing: which
-statement governs ACME and FIPS;
-
-11
-00:00:36.376 --> 00:00:41.354
-whether AD CS on Windows Server 2025
-is supported, given the stale table;
-
-12
-00:00:41.354 --> 00:00:44.560
-which cryptographic
-module the product uses,
-
-13
-00:00:44.560 --> 00:00:50.044
-and whether any CMVP certificate covers
-it; whether the Key Vault driver works
-
-14
-00:00:50.044 --> 00:00:55.613
-with Azure Government; and whether PIV or
-CAC console login is supported as such.
-
-15
-00:00:55.613 --> 00:01:00.466
-Next steps: stand up the Wave 1
-test cluster, create the CA account
-
-16
-00:01:00.466 --> 00:01:05.412
-under the ESC7 controls, and lab-test
-allowed and denied requests.
-
-17
-00:01:05.412 --> 00:01:12.669
-The Federal Modernization Workbook's Book
-07 has been updated in Chapters 03 and 05
-
-18
-00:01:12.669 --> 00:01:17.402
-for the ESC7 caveat, Chapter
-04 for Cloud PKI reporting,
-
-19
-00:01:17.402 --> 00:01:20.137
-and Chapter 08 for ACME and FIPS.
-
-20
-00:01:20.137 --> 00:01:24.937
-The program's recommendation is
-plain: CyberArk Certificate Manager,
-
-21
-00:01:24.937 --> 00:01:28.826
-Self-Hosted, is the right
-platform for Book 07's lifecycle.
-
-22
-00:01:28.826 --> 00:01:33.072
-It's the agency's existing
-machine-identity vendor, it covers every
-
-23
-00:01:33.072 --> 00:01:37.550
-issuer the design assigns to it, and
-its risks are known and manageable.
-
-24
-00:01:37.550 --> 00:01:39.614
-The backup slides list the risks,
-
-25
-00:01:39.614 --> 00:01:42.900
-the assessor evidence and
-what couldn't be verified.
-
-26
-00:01:42.900 --> 00:01:45.940
-This is the program's
-research, under review,
-
-27
-00:01:45.940 --> 00:01:48.812
-not an endorsement by any federal agency.
-
-28
-00:01:48.812 --> 00:01:49.574
-Thank you.
-
-29
-00:01:49.574 --> 00:01:57.842
-Sources: Research brief sections 0,
-12 and 13; Book 07, Chapters 03,
-
-30
-00:01:57.842 --> 00:02:06.000
-04, 05, 07 and 08; CyberArk 26.1
-documentation cited in Parts 1 to 3.
+00:00:23.224 --> 00:00:28.700
+In the first wave, run read-only scans
+and imports, and log every surprise.

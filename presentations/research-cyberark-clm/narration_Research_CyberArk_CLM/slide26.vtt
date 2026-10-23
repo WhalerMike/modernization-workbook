@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.628
+An expired certificate is almost always an
+
+2
+00:00:02.628 --> 00:00:05.350
+ownership problem before
+it's a technical one.
+
+3
+00:00:05.350 --> 00:00:08.525
+So every certificate gets
+a home and a named owner.
+
+4
+00:00:08.525 --> 00:00:12.923
+The platform's policy folders mirror
+Book 07's certificate classes,
+
+5
+00:00:12.923 --> 00:00:16.300
+so where a certificate lives
+tells you how it renews.
+
+6
+00:00:16.300 --> 00:00:19.954
+Owners come from Entra groups,
+and, if the agency uses it,
+
+7
+00:00:19.954 --> 00:00:25.638
+the ServiceNow app can tie certificates to
+the same configuration items as the CMDB.
+
+8
+00:00:25.638 --> 00:00:29.702
+And one alert matters most: a
+certificate nearing expiry with no
+
+9
+00:00:29.702 --> 00:00:33.600
+renewal path is an incident while
+there's still time to fix it.

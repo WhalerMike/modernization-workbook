@@ -1,123 +1,53 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.225
-The architecture.
+00:00:00.050 --> 00:00:02.387
+Here's the whole platform on one page.
 
 2
-00:00:01.225 --> 00:00:07.878
-Several Trust Protection Foundation servers
-sharing one SQL database form a cluster,
+00:00:02.387 --> 00:00:07.425
+Every server runs the same software and
+talks to the same database; what makes
 
 3
-00:00:07.878 --> 00:00:12.775
-and a message bus, an MQTT broker
-using TLS on port 8883, links them.
+00:00:07.425 --> 00:00:12.226
+a server a "web server" or a "back-end
+server" is which components you switch on.
 
 4
-00:00:12.775 --> 00:00:17.387
-Each server runs the components you switch
-on for it in the Configuration Console.
+00:00:12.226 --> 00:00:17.350
+The web servers sit behind a load balancer
+and give people and automation a way in.
 
 5
-00:00:17.387 --> 00:00:22.574
-The ones this guide uses are CA Import,
-Certificate Lifecycle and Monitoring,
+00:00:17.350 --> 00:00:19.771
+The ACME servers are kept separate,
 
 6
-00:00:22.574 --> 00:00:27.437
-Certificate Revocation Monitoring,
-Network Discovery, the EST service,
+00:00:19.771 --> 00:00:24.613
+because CyberArk doesn't allow FIPS
+mode on a server that handles ACME.
 
 7
-00:00:27.437 --> 00:00:31.975
-Network Device Enrollment for SCEP,
-the ACME service and Reporting.
+00:00:24.613 --> 00:00:26.922
+The back-end servers do the real work —
 
 8
-00:00:31.975 --> 00:00:37.273
-You can keep work on particular servers
-with processing engines, discovery zones,
+00:00:26.922 --> 00:00:30.001
+issuing, renewing and
+installing certificates.
 
 9
-00:00:37.273 --> 00:00:40.623
-or by turning components
-off, and that matters later,
+00:00:30.001 --> 00:00:33.888
+The log servers keep the audit
+trail and send events to the SIEM.
 
 10
-00:00:40.623 --> 00:00:43.350
-when we keep ACME off
-the FIPS-mode servers.
+00:00:33.888 --> 00:00:38.105
+And underneath: one SQL Server
+database, the keys that protect it,
 
 11
-00:00:43.350 --> 00:00:45.788
-Sizing comes from CyberArk's tables.
-
-12
-00:00:45.788 --> 00:00:49.476
-Two servers handle up to fifty
-thousand active certificates.
-
-13
-00:00:49.476 --> 00:00:54.430
-Up to two hundred fifty thousand takes
-six: two for log and event processing,
-
-14
-00:00:54.430 --> 00:00:57.387
-two for web services and
-two back-end servers.
-
-15
-00:00:57.387 --> 00:01:02.388
-Past a million, CyberArk designs it with
-you, and SQL Enterprise is required.
-
-16
-00:01:02.388 --> 00:01:04.338
-Each server needs four cores,
-
-17
-00:01:04.338 --> 00:01:08.076
-sixteen gigabytes of memory
-and five gigabytes of disk.
-
-18
-00:01:08.076 --> 00:01:12.662
-For availability: Always On for the
-database, at least two servers per role,
-
-19
-00:01:12.662 --> 00:01:17.625
-and a load balancer in front of the web
-services, which rolling upgrades require.
-
-20
-00:01:17.625 --> 00:01:22.831
-For the CAs, a Microsoft CA Pool holds
-up to three CA templates; if the first
-
-21
-00:01:22.831 --> 00:01:28.037
-CA fails, the platform stops querying
-it for sixty minutes and fails over.
-
-22
-00:01:28.037 --> 00:01:33.500
-Sources: CyberArk 26.1 System
-Requirements (cluster, Message Bus,
-
-23
-00:01:33.500 --> 00:01:39.066
-sizing, ports, network scoping);
-Installation and Upgrade Guide pp.
-
-24
-00:01:39.066 --> 00:01:42.571
-54 and 86–94 (components);
-Rolling upgrades;
-
-25
-00:01:42.571 --> 00:01:48.600
-Always On high availability; Create
-and configure a Microsoft CA Pool.
+00:00:38.105 --> 00:00:41.350
+and a message bus that
+keeps every server in step.

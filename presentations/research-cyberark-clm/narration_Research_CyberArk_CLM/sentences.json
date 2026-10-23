@@ -2,1220 +2,753 @@
  "1": [
   [
    0.05,
-   2.038,
-   "This is an implementation guide."
+   0.713,
+   "Welcome."
   ],
   [
-   2.087,
-   12.062,
-   "The Federal Modernization Workbook's Book 07 decided that the program's certificate lifecycle platform is CyberArk Certificate Manager, from the vendor the agency already uses for machine identity."
+   0.762,
+   7.575,
+   "This is an implementation guide from the Federal Modernization Workbook, and it's about one product: CyberArk Certificate Manager."
   ],
   [
-   14.15,
-   6.7,
-   "This guide shows how to build it, self-hosted, and connect it to Book 07's design, phase by phase."
+   8.338,
+   8.475,
+   "Book 07 of the workbook chose it as the program's certificate lifecycle platform, so whenever you hear me say \"the platform,\" that's what I mean."
   ],
   [
-   20.85,
-   3.212,
-   "It runs in four parts after a short orientation."
+   16.812,
+   8.3,
+   "Its job is simple to say and hard to do: keep track of every certificate nobody else is renewing, and renew it before it expires."
   ],
   [
-   24.062,
-   7.263,
-   "Part 1 builds the platform: architecture, the FIPS posture, console sign-in, hardening, and backup."
+   25.113,
+   10.65,
+   "We'll start with what the platform is and what it's made of, then build it, connect it to the certificate authorities, automate it, and finally fit it into Book 07's migration waves."
   ],
   [
-   31.325,
-   8.25,
-   "Part 2 connects the issuers: Active Directory Certificate Services, the public certificate authorities, the cloud, and Intune."
-  ],
-  [
-   39.575,
-   4.438,
-   "Part 3 covers discovery, ownership and enrollment automation."
-  ],
-  [
-   44.013,
-   6.05,
-   "And Part 4 maps the build onto Book 07's six migration waves and covers running it."
-  ],
-  [
-   50.062,
-   1.312,
-   "Three ground rules."
-  ],
-  [
-   51.375,
-   9.45,
-   "Every fact comes from a primary source opened on October twenty-second, 2026, mostly CyberArk's version 26.1 documentation."
-  ],
-  [
-   60.825,
-   2.913,
-   "Recommendations are labeled design guidance."
-  ],
-  [
-   63.737,
-   9.825,
-   "And in three places the research corrects Book 07; I'll state the corrected fact each time, and Book 07 has been updated to match to match."
-  ],
-  [
-   73.562,
-   23.462,
-   "Sources: Research brief, Implementing Book 07's certificate lifecycle on CyberArk Certificate Manager, Self-Hosted (verified Oct. 22, 2026); CyberArk Trust Protection Foundation 26.1 documentation; Book 07, Chapters 01, 04, 05, 07 and 08."
+   35.763,
+   5.075,
+   "The slides and notes carry every detail and source; I'll stick to what matters."
   ]
  ],
  "2": [
   [
    0.05,
-   11.312,
-   "The Federal Modernization Workbook's Book 07's target gives each class of subject its own issuer, and a lifecycle platform covers the issuers that don't renew their own certificates."
+   4.188,
+   "Before we build anything, here's the idea that frames this whole guide."
   ],
   [
-   11.363,
-   10.838,
-   "Intune-managed devices get user and device certificates from Microsoft Cloud P K I through SCEP, or during the bridge period from A D CS through the Intune connector."
+   4.237,
+   4.275,
+   "Book 07 doesn't use one certificate authority for everything."
   ],
   [
-   22.2,
-   4.062,
-   "Intune renews them, so the CLM platform doesn't manage them."
+   8.512,
+   4.575,
+   "It gives each kind of certificate its own source and its own way of renewing."
   ],
   [
-   26.262,
-   5.9,
-   "piv cards come from a Federal P K I shared service provider through the card management system."
+   13.088,
+   2.425,
+   "Intune looks after device certificates."
   ],
   [
-   32.163,
-   9.613,
-   "Domain controller, KDC and LDAPS certificates stay on retained A D CS with autoenrollment; the platform watches them but never renews them."
+   15.512,
+   2.388,
+   "piv cards have their own card system."
   ],
   [
-   41.775,
-   2.212,
-   "Everything else lands on the platform."
+   17.9,
+   3.825,
+   "Domain controllers keep renewing themselves the way they always have."
   ],
   [
-   43.987,
-   18.425,
-   "radius and NPS servers, VPN and Remote Desktop gateways, SQL Server, internal web servers and appliances get certificates from the retained A D CS hierarchy, which becomes a standalone CA after Active Directory, requested and renewed through CyberArk Certificate Manager."
+   21.725,
+   12.275,
+   "What's left ,  servers, VPN and radius, SQL, internal websites, appliances, and anything public-facing ,  has nobody renewing it today except a person with a calendar reminder."
   ],
   [
-   62.413,
-   10.175,
-   "Public-facing TLS comes from a public CA the agency authorizes in its CAA records, renewed by the platform, with ACME where the endpoint supports it."
+   34.0,
+   2.1,
+   "That's the gap the platform fills."
   ],
   [
-   72.588,
-   6.763,
-   "And for the hierarchy itself, the platform's revocation monitoring checks CRL and OCSP endpoints."
-  ],
-  [
-   79.35,
-   8.262,
-   "So the platform's job is simple to state: it's the system of record for every certificate Intune and the piv system don't manage."
-  ],
-  [
-   87.612,
-   21.488,
-   "Sources: Book 07, Chapter 04 (issuer map; certificate lifecycle management), Chapter 05 (renewal ownership per certificate class), Chapter 08 (renewal engines); research brief section 10; CyberArk 26.1 Installation and Upgrade Guide (Certificate Revocation Monitoring)."
+   36.1,
+   5.787,
+   "It becomes the system of record for every certificate Intune and piv don't already manage."
   ]
  ],
  "3": [
   [
    0.05,
-   1.175,
-   "Why self-hosted?"
+   1.975,
+   "Two things to settle before you build."
   ],
   [
-   1.225,
-   14.588,
-   "In the fed-ramp Marketplace data as of October twenty-second, there's no certificate-management package from Palo Alto Networks, CyberArk or Venafi: not Certificate Manager, not Next-Gen Trust Security, and not the Trust Protection Foundation."
+   2.025,
+   1.663,
+   "First, where it runs."
   ],
   [
-   15.812,
-   6.862,
-   "Palo Alto's authorized packages cover privileged access, endpoint privilege management and network security."
+   3.688,
+   10.887,
+   "There's no fed-ramp package for CyberArk's cloud edition, so the program runs the self-hosted edition inside the agency's own boundary, next to the certificate authorities it manages."
   ],
   [
-   22.675,
-   12.463,
-   "So the Federal Modernization Workbook's Book 07's decision stands: run Certificate Manager, Self-Hosted inside the agency's own authorization boundary, alongside the CAs it manages."
+   14.575,
+   9.488,
+   "Second, what it runs on: Windows servers, English-language builds, all on the same version, with a SQL Server database that lives on its own server."
   ],
   [
-   35.138,
-   7.588,
-   "The program's design guidance adds a corollary: avoid any feature that depends on the SaaS, and we'll meet two of those later."
+   24.062,
+   5.312,
+   "Plan for an upgrade roughly every six months, because that's CyberArk's release rhythm."
   ],
   [
-   42.725,
-   5.85,
-   "The product runs on the Trust Protection Foundation, formerly the Venafi Trust Protection Platform."
+   29.375,
+   2.025,
+   "The full requirements are on the slide."
   ],
   [
-   48.575,
-   10.863,
-   "The current release is 26.1, from July 2026, and CyberArk typically ships major releases every six months, so plan an upgrade cadence from day one."
-  ],
-  [
-   59.438,
-   11.062,
-   "The servers run Windows Server 2016 through 2025, with the desktop experience, from English installation media only, and the same OS version across the cluster."
-  ],
-  [
-   70.5,
-   6.375,
-   "They need IIS, .NET 4.8, the Visual C++ runtimes and WebView2."
-  ],
-  [
-   76.875,
-   8.688,
-   "The database is SQL Server 2014 through 2022, also English only, and not on a platform server except in test."
-  ],
-  [
-   85.562,
-   9.113,
-   "CyberArk strongly recommends the FULL recovery model, and recommends Enterprise edition because Standard needs an outage for the weekly index rebuild."
-  ],
-  [
-   94.675,
-   3.788,
-   "For high availability, use Always On availability groups."
-  ],
-  [
-   98.463,
-   26.062,
-   "Sources: fed-ramp Marketplace products.json (last_change Oct. 22, 2026); CyberArk 26.1 System Requirements, Always On high availability, Choosing SQL Server Enterprise or Standard, Important Considerations, Installation and Upgrade Guide; Palo Alto Networks Next-Gen Trust Security page; Book 07, Chapter 04."
+   31.4,
+   4.175,
+   "Next, let's open the box and see what the platform is actually made of."
   ]
  ],
  "4": [
   [
    0.05,
-   1.95,
-   "Part 1: build the platform."
+   5.1,
+   "This short section answers the question people ask first: what actually is the platform?"
   ],
   [
-   2.0,
-   6.175,
-   "We'll start with the architecture: the cluster, its components, how to size it and make it highly available."
+   5.15,
+   2.225,
+   "Not a box, and not one server."
   ],
   [
-   8.175,
-   4.088,
-   "Then the FIPS posture, where you have to be careful about what you claim."
+   7.375,
+   8.35,
+   "It's a set of Windows servers running the same CyberArk software against one shared database, with different jobs switched on in different places."
   ],
   [
-   12.262,
-   2.812,
-   "Then how administrators sign in to the console."
-  ],
-  [
-   15.075,
-   6.825,
-   "And finally hardening, least-privilege service accounts, and backup and recovery for the database and its keys."
-  ],
-  [
-   21.9,
-   15.637,
-   "Sources: CyberArk 26.1 System Requirements, Installation and Upgrade Guide, security hardening and disaster recovery documentation; nist CMVP; the Federal Modernization Workbook's Book 07, Chapter 05."
+   15.725,
+   14.912,
+   "We'll look at those server roles, the web tier you sign in to, the back end that does the work, the components, the drivers that reach other systems, what it all connects to, a reference layout for two sites, and finally one certificate's journey from start to finish."
   ]
  ],
  "5": [
   [
    0.05,
-   1.175,
-   "The architecture."
+   2.337,
+   "Here's the whole platform on one page."
   ],
   [
-   1.225,
-   11.55,
-   "Several Trust Protection Foundation servers sharing one SQL database form a cluster, and a message bus, an MQTT broker using TLS on port 8883, links them."
+   2.388,
+   9.838,
+   "Every server runs the same software and talks to the same database; what makes a server a \"web server\" or a \"back-end server\" is which components you switch on."
   ],
   [
-   12.775,
-   4.612,
-   "Each server runs the components you switch on for it in the Configuration Console."
+   12.225,
+   5.125,
+   "The web servers sit behind a load balancer and give people and automation a way in."
   ],
   [
-   17.387,
-   14.588,
-   "The ones this guide uses are CA Import, Certificate Lifecycle and Monitoring, Certificate Revocation Monitoring, Network Discovery, the EST service, Network Device Enrollment for SCEP, the ACME service and Reporting."
+   17.35,
+   7.263,
+   "The ACME servers are kept separate, because CyberArk doesn't allow FIPS mode on a server that handles ACME."
   ],
   [
-   31.975,
-   11.375,
-   "You can keep work on particular servers with processing engines, discovery zones, or by turning components off, and that matters later, when we keep ACME off the FIPS-mode servers."
+   24.613,
+   5.388,
+   "The back-end servers do the real work ,  issuing, renewing and installing certificates."
   ],
   [
-   43.35,
-   2.438,
-   "Sizing comes from CyberArk's tables."
+   30.0,
+   3.888,
+   "The log servers keep the audit trail and send events to the sim."
   ],
   [
-   45.788,
-   3.688,
-   "Two servers handle up to fifty thousand active certificates."
-  ],
-  [
-   49.475,
-   7.912,
-   "Up to two hundred fifty thousand takes six: two for log and event processing, two for web services and two back-end servers."
-  ],
-  [
-   57.388,
-   5.0,
-   "Past a million, CyberArk designs it with you, and SQL Enterprise is required."
-  ],
-  [
-   62.388,
-   5.688,
-   "Each server needs four cores, sixteen gigabytes of memory and five gigabytes of disk."
-  ],
-  [
-   68.075,
-   9.55,
-   "For availability: Always On for the database, at least two servers per role, and a load balancer in front of the web services, which rolling upgrades require."
-  ],
-  [
-   77.625,
-   10.412,
-   "For the CAs, a Microsoft CA Pool holds up to three CA templates; if the first CA fails, the platform stops querying it for sixty minutes and fails over."
-  ],
-  [
-   88.037,
-   20.512,
-   "Sources: CyberArk 26.1 System Requirements (cluster, Message Bus, sizing, ports, network scoping); Installation and Upgrade Guide pp. 54 and 86\u201394 (components); Rolling upgrades; Always On high availability; Create and configure a Microsoft CA Pool."
+   33.888,
+   7.4,
+   "And underneath: one SQL Server database, the keys that protect it, and a message bus that keeps every server in step."
   ]
  ],
  "6": [
   [
    0.05,
-   1.988,
-   "Be exact about FIPS."
+   1.95,
+   "The web tier is how anyone gets in."
   ],
   [
-   2.038,
-   11.463,
-   "What CyberArk documents: the Trust Protection Foundation supports Windows servers with FIPS mode enabled, through the Windows policy that says to use FIPS-compliant algorithms."
+   2.0,
+   7.0,
+   "People use the web console for daily work and the Policy Tree, which is also a web page, for the deeper configuration."
   ],
   [
-   13.5,
-   10.325,
-   "The installation guide also says to enable it only if your industry requires it, and links Microsoft's post explaining why Microsoft no longer recommends FIPS mode."
+   9.0,
+   6.612,
+   "Automation uses the REST API, and sign-ins for both go through the platform's authentication service."
   ],
   [
-   23.825,
-   4.713,
-   "For a federal deployment, decide FIPS mode per server, deliberately."
+   15.613,
+   7.487,
+   "There's one more console, the Configuration Console, that administrators run on each server to switch components on and off."
   ],
   [
-   28.538,
-   9.787,
-   "The database's secrets are encrypted with an AES-256 software key kept in the registry, a key held in a hardware security module, or both."
-  ],
-  [
-   38.325,
-   1.087,
-   "What not to claim."
-  ],
-  [
-   39.413,
-   4.088,
-   "I searched nist's validated-modules list on October twenty-second."
-  ],
-  [
-   43.5,
-   2.362,
-   "Under the vendor name Venafi there's nothing."
-  ],
-  [
-   45.862,
-   12.738,
-   "Under CyberArk there are two FIPS 140-3 Level 1 certificates, number 5205, the CyberArk Cryptographic Module, and number 5122, its Java counterpart."
-  ],
-  [
-   58.6,
-   8.15,
-   "Neither names the Trust Protection Foundation or Certificate Manager, and I found no CyberArk statement saying which module the product uses."
-  ],
-  [
-   66.75,
-   4.025,
-   "So don't cite either certificate for this product without a vendor letter."
-  ],
-  [
-   70.775,
-   10.65,
-   "There's also no current Common Criteria certificate; the last one, for Trust Protection Platform 23.1, was archived on July twenty-ninth, 2026."
-  ],
-  [
-   81.425,
-   12.275,
-   "The defensible evidence path, and this is my inference, is FIPS-mode Windows, which uses Microsoft's validated modules, plus the HSM's own CMVP certificate for the database secrets."
-  ],
-  [
-   93.7,
-   7.112,
-   "One catch, which Part 3 covers: servers running the ACME service can't be in FIPS mode at all."
-  ],
-  [
-   100.812,
-   27.375,
-   "Sources: CyberArk 26.1 Installation and Upgrade Guide pp. 49\u201355 (FIPS, encryption keys); System Requirements (HSMs); System encryption keys overview; nist CMVP validated-modules search (Vendor Venafi; Vendor CyberArk) and certificates #5205 and #5122; Common Criteria Portal certified and archived product lists."
+   23.1,
+   10.975,
+   "The thing to remember for the build is the load balancer: every web service sits behind one name, and that name has to match the certificate the servers present, or single sign-on breaks."
   ]
  ],
  "7": [
   [
    0.05,
+   2.3,
+   "Behind the scenes, three things matter."
+  ],
+  [
    2.35,
-   "Who signs in to the console, and how."
+   9.012,
+   "Processing engines decide which server does which work, so you can keep, say, public certificate requests on one server that's allowed out to the internet."
   ],
   [
-   2.4,
-   13.137,
-   "Version 26.1 supports single sign-on to the web console through O I D C or sam-ul, and CyberArk's vendor table lists Microsoft Entra ID as supported for sam-ul, O I D C and skim."
+   11.363,
+   6.175,
+   "The log servers record every event and are the only servers that need a path to the sim and email."
   ],
   [
-   15.537,
-   4.275,
-   "The MMC snap-ins sign in with the O I D C device flow."
+   17.538,
+   11.5,
+   "And the message bus keeps every server informed about changes, which means one firewall rule people miss: port 8883 has to be open between every server, across sites too."
   ],
   [
-   19.812,
-   17.95,
-   "CyberArk also documents client-certificate login: you enable certificate authentication, choose the trusted CAs, and set the IIS site to require client certificates; the platform takes the identity from the certificate's U P N, email, common name, or SID extension."
-  ],
-  [
-   37.763,
-   4.1,
-   "What CyberArk doesn't document is piv or CAC by name."
-  ],
-  [
-   41.862,
-   15.012,
-   "So the program's design guidance is to federate the web console to Entra ID, and let administrators present their piv card through Entra certificate-based authentication, as the Federal Modernization Workbook's Book 07 Chapter 06 configures it."
-  ],
-  [
-   56.875,
-   8.762,
-   "That keeps one CBA trust store and Conditional Access in front of the console, rather than a second, separate trust store in IIS."
-  ],
-  [
-   65.638,
-   3.325,
-   "The native client-certificate login stays a fallback."
-  ],
-  [
-   68.963,
-   6.0,
-   "Master Admin is eligible, not standing, and the local master admin is the break-glass."
-  ],
-  [
-   74.963,
-   1.175,
-   "Then the API."
-  ],
-  [
-   76.138,
-   5.388,
-   "Automation authenticates with OAuth tokens from the platform's authentication server."
-  ],
-  [
-   81.525,
-   6.725,
-   "The defaults are a ninety-day access token and a one-year grant, and the program's guidance is to shorten both."
-  ],
-  [
-   88.25,
-   2.225,
-   "API keys are no longer supported."
-  ],
-  [
-   90.475,
-   22.438,
-   "Sources: CyberArk 26.1 What's New; Login experience; Vendor support for SSO; Configuration Console Authentication node; Configuring certificate authentication in the platform and IIS; Setting up OAuth; Authentication options; Deprecated features; Book 07, Chapters 05 and 06."
+   29.038,
+   9.262,
+   "Watch distance as well ,  every server works against one active database, and at a thirty-millisecond delay a single renewal takes about fifteen seconds."
   ]
  ],
  "8": [
   [
    0.05,
-   0.688,
-   "Hardening."
+   2.312,
+   "This table is the platform's parts list."
   ],
   [
-   0.738,
-   21.538,
-   "CyberArk's hardening section currently covers IIS only: a rewrite rule against host-header injection; web configuration settings with debugging off, cookies marked HTTP-only and secure, request filtering to GET and POST, strict transport security, frame and content security policy headers; and the X-Powered-By header removed."
+   2.362,
+   22.75,
+   "Each component is a job you switch on per server: the lifecycle engine that issues and renews, CA Import that pulls in what your CAs already issued, discovery that finds certificates on the network, validation and revocation monitoring that keep checking, and the enrollment services ,  ACME, EST and SCEP ,  that devices and scripts use to ask for certificates."
   ],
   [
-   22.275,
-   1.15,
-   "Apply all of it."
+   25.113,
+   2.0,
+   "You don't need to memorize the list."
   ],
   [
-   23.425,
-   5.838,
-   "Every platform server ships with a self-signed certificate called the Venafi Operational Certificate."
-  ],
-  [
-   29.262,
-   4.575,
-   "Replace it on every server with one issued by your CA before production."
-  ],
-  [
-   33.837,
-   8.725,
-   "The database needs two accounts: a DBO account used only to install and upgrade, and an operational account the services run as."
-  ],
-  [
-   42.562,
-   10.275,
-   "CyberArk documents that the operational account needs Log on as a Service and local administrator rights on every platform server, and group managed service accounts are supported."
-  ],
-  [
-   52.837,
-   3.288,
-   "The provisioning drivers need privilege on the targets too."
-  ],
-  [
-   56.125,
-   7.088,
-   "For Windows CAPI and IIS, CyberArk says the account must be a Windows administrator on the target."
-  ],
-  [
-   63.212,
-   8.338,
-   "The program's guidance is to keep those credentials in CyberArk's Enterprise Password Vault, which the platform can query through the Credential Provider."
-  ],
-  [
-   71.55,
-   7.55,
-   "And the installation answer files contain the admin password, the database credentials and the software key, so encrypt them."
-  ],
-  [
-   79.1,
-   9.375,
-   "So the platform concentrates privilege: certificate-manager rights on CAs, administrator on Windows targets, and private keys in its database."
-  ],
-  [
-   88.475,
-   6.6,
-   "The program therefore treats the Master Admins, the software key and the database backups as Tier 0."
-  ],
-  [
-   95.075,
-   22.387,
-   "Sources: CyberArk 26.1 Security hardening best practices and IIS hardening; Securing the web server; Windows authentication requirements; Group managed service accounts; Rolling upgrades; CAPI permissions; CyberArk credential best-practice example; Securing credential objects; Installation and Upgrade Guide p. 86."
+   27.113,
+   6.75,
+   "The point is that the design is modular, so you place each job where its network access and its security rules fit."
   ]
  ],
  "9": [
   [
    0.05,
-   1.5,
-   "Backup and recovery."
+   3.087,
+   "Drivers are how the platform reaches the outside world."
   ],
   [
-   1.55,
-   3.112,
-   "The database and its encryption key are a pair."
+   3.138,
+   5.8,
+   "CA drivers request certificates from A D CS, public CAs or AWS."
   ],
   [
-   4.662,
-   3.038,
-   "Back up the database on the FULL recovery model."
+   8.938,
+   8.85,
+   "Application drivers install certificates on IIS, F5, NetScaler, Key Vault and the rest, usually without any agent."
   ],
   [
-   7.7,
-   9.725,
-   "Export the software key with the configuration tool's key-export option, and keep it safe: CyberArk says that without it, you cannot access data in the database."
+   17.788,
+   4.9,
+   "Where a driver can't reach, a small Server Agent checks in and does the work locally."
   ],
   [
-   17.425,
-   12.875,
-   "If an HSM holds the key, use the HSM vendor's backup, and run the HSMs in high availability, because if the HSM stays unreachable the platform retries, logs, and then shuts down."
+   22.688,
+   10.688,
+   "Everything is stored in one SQL Server database, and that database's secrets are protected by a key ,  either a software key you must back up, or a hardware security module."
   ],
   [
-   30.3,
-   3.612,
-   "CyberArk's disaster recovery procedure has five steps."
-  ],
-  [
-   33.913,
-   10.113,
-   "First, the prerequisites: local master admin credentials, the database backup, the database connection details, and the software key or HSM access."
-  ],
-  [
-   44.025,
-   3.475,
-   "Second, stop the services on every platform server."
-  ],
-  [
-   47.5,
-   3.663,
-   "Third, restore the database and recover its users."
-  ],
-  [
-   51.163,
-   7.562,
-   "Fourth, re-enable SQL Service Broker on the restored database, which is easy to forget and stops the platform working if you do."
-  ],
-  [
-   58.725,
-   8.787,
-   "Fifth, import the software key, or reconnect the HSM through the Configuration Console or the configuration tool's HSM pin option."
-  ],
-  [
-   67.513,
-   9.912,
-   "On the CA side, Microsoft recommends backing up the CA with Backup-CARoleService before you change its permissions, which you're about to do for the platform's CA account."
-  ],
-  [
-   77.425,
-   14.775,
-   "The program's guidance is to rehearse a full restore before Wave 2 exits, and the Federal Modernization Workbook's Book 07 Chapter 08's rule applies to every key backup: store the backup and its password through separate approved channels."
-  ],
-  [
-   92.2,
-   22.65,
-   "Sources: CyberArk 26.1 Software key backup; HSM configuration; Using HSM-protected keys; Disaster recovery prerequisites, database recovery and HSM recovery; System Requirements; Microsoft Learn, Secure, delegate and audit a certification authority; Book 07, Chapter 08."
+   33.375,
+   4.575,
+   "Lose that key and you lose the data, which is why it's treated as Tier 0."
   ]
  ],
  "10": [
   [
    0.05,
-   2.163,
-   "Part 2: connect the issuers."
+   3.25,
+   "Now the bigger picture: everything the platform touches."
   ],
   [
-   2.212,
-   7.675,
-   "First the A D CS driver: what it needs on the CA, how templates map, and which Windows Server versions are confirmed."
+   3.3,
+   3.837,
+   "On the left, the certificate authorities it asks for certificates."
   ],
   [
-   9.887,
-   9.25,
-   "Then how to scope its privileged account under the ESC7 review, which includes the first correction to the Federal Modernization Workbook's Book 07."
+   7.138,
+   2.8,
+   "On the right, the systems it installs them on."
   ],
   [
-   19.137,
-   5.5,
-   "Then the public and cloud CA drivers, where release 26.1 changed one."
+   9.938,
+   6.725,
+   "Above, Entra ID for signing in to the console, and CyberArk's own vault for the passwords its drivers need."
   ],
   [
-   24.637,
-   5.175,
-   "And finally how the platform coexists with Intune, which owns device certificates."
+   16.663,
+   4.225,
+   "Below, the sim for events and ServiceNow for owners and tickets."
   ],
   [
-   29.812,
-   16.512,
-   "Sources: CyberArk 26.1 CA driver documentation, Supported integrations, Deprecated features; Microsoft Learn A D CS, Intune and Microsoft Graph pages; Book 07, Chapters 03 to 07."
+   20.887,
+   11.375,
+   "Two lines are dashed on purpose: Kubernetes and ServiceNow both need extra care, because one depends on a cloud service outside the boundary and the other is a third-party app."
+  ],
+  [
+   32.263,
+   1.325,
+   "We'll come back to both."
   ]
  ],
  "11": [
   [
    0.05,
-   1.913,
-   "The A D CS driver."
+   3.163,
+   "Here's how those pieces could be laid out across two sites."
   ],
   [
-   1.962,
-   7.775,
-   "In the platform it's a CA template object called Microsoft Active Directory Certificate Services, Enterprise and Standalone."
+   3.212,
+   6.3,
+   "This is the program's design, built only from CyberArk's documented rules, not a vendor blueprint."
   ],
   [
-   9.738,
-   6.062,
-   "It needs Microsoft CA Support installed on the platform servers, and it talks to the CA over DCOM."
+   9.512,
+   6.412,
+   "Each site has a web server, a separate ACME server, a back-end server and a log server."
   ],
   [
-   15.8,
-   6.175,
-   "The account it uses needs Read, Issue and Manage Certificates, and Request Certificates on the CA."
+   15.925,
+   8.925,
+   "One database runs in an availability group across both sites, with one listener everyone uses, and the HSMs are paired the same way."
   ],
   [
-   21.975,
-   3.95,
-   "That matches the Federal Modernization Workbook's Book 07."
+   24.85,
+   1.163,
+   "Two cautions."
   ],
   [
-   25.925,
-   2.375,
-   "Template mapping is done by policy."
+   26.012,
+   6.938,
+   "CyberArk doesn't say whether FIPS and non-FIPS servers can share one cluster, so get that in writing."
   ],
   [
-   28.3,
-   6.25,
-   "A certificate gets its CA template object from the policy on its folder, or directly on the certificate."
-  ],
-  [
-   34.55,
-   7.987,
-   "CyberArk's vCert tool expects the template to come from policy and calls choosing it per request against CyberArk's recommendations."
-  ],
-  [
-   42.538,
-   8.438,
-   "So, by inference, the natural pattern is one CyberArk CA template object for each A D CS template the platform issues from."
-  ],
-  [
-   50.975,
-   3.225,
-   "Enterprise and standalone CAs are both supported."
-  ],
-  [
-   54.2,
-   12.762,
-   "Only enterprise CAs use Active Directory templates, which is exactly why Book 07 moves server issuance to a standalone CA after the forest retires, with template policy living in the platform."
-  ],
-  [
-   66.963,
-   14.012,
-   "Letting requesters set end dates may need a CA policy flag turned on; that raises event 4892 under Book 07 Chapter 03, so the program's guidance is to leave it off unless you need it."
-  ],
-  [
-   80.975,
-   1.062,
-   "One open item."
-  ],
-  [
-   82.037,
-   7.375,
-   "The driver page says it supports CAs on all supported Windows Server versions, and the platform runs on 2025."
-  ],
-  [
-   89.412,
-   6.675,
-   "But CyberArk's supported-integrations table lists A D CS only through Windows Server 2022."
-  ],
-  [
-   96.088,
-   6.612,
-   "If any retained CA runs Windows Server 2025, get written confirmation before Wave 2."
-  ],
-  [
-   102.7,
-   23.712,
-   "Sources: CyberArk 26.1 Microsoft ADCS Enterprise and Standalone CA template; MSCA certificate object settings; CA chaining; Configuring certificate import from a Microsoft CA; Microsoft CA Pool; Supported integrations; Deprecated features; System Requirements; vCert README; Microsoft Learn, Manage certificate templates."
+   32.95,
+   5.65,
+   "And keep the sites close, because the remote site pays for every round trip to the database."
   ]
  ],
  "12": [
   [
    0.05,
-   1.387,
-   "Now the sensitive part."
+   2.65,
+   "Let's follow one certificate through all of that."
   ],
   [
-   1.438,
-   4.763,
-   "Issue and Manage Certificates is the A D CS certificate-manager right."
+   2.7,
+   4.7,
+   "First the platform finds it, by scanning the network or importing from a CA."
   ],
   [
-   6.2,
-   7.638,
-   "Microsoft says it lets the holder issue, deny, revoke and reinstate certificates without the broader Manage CA permission."
+   7.4,
+   3.413,
+   "Then it gives it a home in a policy folder and a named owner."
   ],
   [
-   13.838,
-   5.388,
-   "Defender for Identity's ESC7 assessment flags unprivileged holders of it."
+   10.812,
+   6.237,
+   "When it's time, the lifecycle engine asks the CA for a new one, and a driver installs it on the server."
   ],
   [
-   19.225,
-   4.888,
-   "Here's the first correction to the Federal Modernization Workbook's Book 07."
+   17.05,
+   3.725,
+   "Validation keeps checking that it's really there and still trusted."
   ],
   [
-   24.113,
-   8.338,
-   "Chapter 05 says the program scopes the account to the templates the platform is meant to issue, as if the CA had a control for that."
+   20.775,
+   4.55,
+   "Before it expires, the cycle repeats ,  no one has to remember a date."
   ],
   [
-   32.45,
-   21.425,
-   "Microsoft's current guidance says to define each certificate manager's templates and requesters and to run positive and negative authorization tests, but it also says Microsoft Learn doesn't publish a Windows Server 2025 step-by-step procedure for configuring certificate-manager restrictions, and to validate any existing restriction in a lab first."
+   25.325,
+   4.375,
+   "And when the system it belongs to is retired, the certificate is revoked."
   ],
   [
-   53.875,
-   6.013,
-   "So the scoping rests on template permissions, plus allowed and denied test requests proven in the lab."
+   29.7,
+   4.812,
+   "Every step leaves a log entry, and that trail is what an assessor reads."
   ],
   [
-   59.888,
-   3.525,
-   "Book 07 has been updated to match to say so."
-  ],
-  [
-   63.413,
-   5.375,
-   "My inference about why that matters: template permissions limit what the account can request."
-  ],
-  [
-   68.787,
-   6.438,
-   "They don't narrow the certificate-manager right itself, which is why the negative test and the alerts carry the weight."
-  ],
-  [
-   75.225,
-   2.975,
-   "The program's controls, as design guidance."
-  ],
-  [
-   78.2,
-   6.25,
-   "A dedicated account, a group managed service account where the CA allows it, denied interactive logon."
-  ],
-  [
-   84.45,
-   4.1,
-   "DCOM to the CA allowed only from the platform's engine servers."
-  ],
-  [
-   88.55,
-   3.175,
-   "Read and Enroll only on the platform's templates."
-  ],
-  [
-   91.725,
-   10.387,
-   "Alerts on event 4887 when this requester gets a certificate outside those templates, and on 4882, 4890 and 4892."
-  ],
-  [
-   102.112,
-   6.213,
-   "And the account goes into the quarterly ESC7 review, with the negative test result on record."
-  ],
-  [
-   108.325,
-   25.175,
-   "Sources: Microsoft Learn, Secure, delegate and audit a certification authority; Review and dispose of pending certificate requests; Defender for Identity certificate posture assessments; CyberArk 26.1 Microsoft ADCS CA template and Securing credential objects; Book 07, Chapter 03 (ESC7) and Chapter 05 (four permission systems)."
+   34.513,
+   2.375,
+   "With that picture in mind, let's build it."
   ]
  ],
  "13": [
   [
    0.05,
-   2.425,
-   "The public and cloud CA drivers."
+   1.312,
+   "Part 1 is the build."
   ],
   [
-   2.475,
-   11.162,
-   "For public TLS, 26.1 documents drivers for DigiCert, Sectigo, GlobalSign, HID, QuoVadis, VikingCloud and Amazon."
-  ],
-  [
-   13.637,
-   3.425,
-   "Two 26.1 changes matter before you upgrade."
-  ],
-  [
-   17.062,
-   14.588,
-   "Entrust Certificate Services is no longer supported as a standalone CA; CyberArk says those customers migrated to Sectigo Certificate Manager, though the Entrust CA Gateway driver for Entrust's own CA software is still documented."
-  ],
-  [
-   31.65,
-   5.475,
-   "So if the agency's public CA is Entrust, plan the issuing path before the upgrade."
-  ],
-  [
-   37.125,
-   11.05,
-   "And for DigiCert client and S/MIME certificates, an email subject alternative name is now required; automated renewals without one fail after the upgrade."
-  ],
-  [
-   48.175,
-   1.35,
-   "Note one absence."
-  ],
-  [
-   49.525,
-   6.862,
-   "There's no documented ACME client driver for public CAs, so no Let's Encrypt-style path out to the internet."
-  ],
-  [
-   56.388,
-   6.188,
-   "The platform is an ACME server for your own clients, not an ACME client to public CAs."
-  ],
-  [
-   62.575,
-   3.525,
-   "On the cloud side, I'm stating only what's documented."
-  ],
-  [
-   66.1,
-   16.025,
-   "The AWS Certificate Manager driver issues public and private certificates and works with Amazon Private CA, and CA Import can pull Private CA certificates through audit reports written to S3, which AWS limits to once every thirty minutes."
-  ],
-  [
-   82.125,
-   8.787,
-   "Azure Key Vault is a provisioning target, not a CA: the platform stores certificates, keys and chains there and can bind them to web apps."
-  ],
-  [
-   90.912,
-   5.7,
-   "What I couldn't find is any statement that the Key Vault driver supports Azure Government endpoints."
-  ],
-  [
-   96.612,
-   3.587,
-   "Test that, or ask CyberArk, before you rely on it."
-  ],
-  [
-   100.2,
-   22.35,
-   "Sources: CyberArk 26.1 System Requirements; Supported integrations; Deprecated features; Important considerations; DigiCert, GlobalSign and Entrust CA Gateway driver pages; AWS Certificate Manager CA template; Configuring import from Amazon Private CA; Azure integration prerequisites and permissions."
+   1.363,
+   10.213,
+   "We'll size the cluster and make it highly available, be careful about what we claim for FIPS, set up how administrators sign in, harden it, and make sure it can be recovered."
   ]
  ],
  "14": [
   [
    0.05,
-   1.75,
-   "Intune coexistence."
+   2.15,
+   "Sizing is refreshingly simple."
   ],
   [
-   1.8,
-   2.362,
-   "Intune owns device certificates."
+   2.2,
+   3.587,
+   "Two servers handle up to about fifty thousand certificates."
   ],
   [
-   4.162,
-   7.037,
-   "Cloud P K I issues to Intune-managed devices through SCEP, and Intune's profiles renew them."
+   5.787,
+   10.162,
+   "Past that, CyberArk's guide splits the work across six ,  two each for web, back end and logging ,  and beyond a million certificates CyberArk designs it with you."
   ],
   [
-   11.2,
-   2.038,
-   "The platform's role there is narrow."
+   15.95,
+   10.25,
+   "For availability, the rules are what you'd expect: at least two servers per role, a load balancer in front of the web services, and an availability group for the database."
   ],
   [
-   13.238,
-   5.95,
-   "During the bridge period, some Intune certificates still come from A D CS through the connector."
-  ],
-  [
-   19.188,
-   8.8,
-   "Because a Microsoft CA import brings in mobile, user and client certificates the platform didn't enroll, those will appear in its inventory."
-  ],
-  [
-   27.988,
-   7.412,
-   "The program's guidance is to import them as monitor-only, with no renewal binding, so Intune stays the renewal engine."
-  ],
-  [
-   35.4,
-   3.562,
-   "There's an option CyberArk documents that the program rejects."
-  ],
-  [
-   38.962,
-   10.325,
-   "The platform can act as an Intune third-party SCEP CA: Intune profiles point at its SCEP endpoint, and it validates challenges with Intune through an Entra app."
-  ],
-  [
-   49.288,
-   13.375,
-   "But the Federal Modernization Workbook's Book 07 chose Cloud P K I for these devices, and this would make the platform a second issuer for a migrating population, which breaks Chapter 07's first coexistence rule."
-  ],
-  [
-   62.663,
-   7.588,
-   "It also adds a tenant-wide consent, and Microsoft notes that revocation after a wipe depends on each third party's API."
-  ],
-  [
-   70.25,
-   1.575,
-   "Here's the second correction."
-  ],
-  [
-   71.825,
-   6.888,
-   "Book 07 Chapter 04 says the platform reads Cloud P K I's inventory for reporting."
-  ],
-  [
-   78.713,
-   3.438,
-   "CyberArk documents no Cloud P K I import."
-  ],
-  [
-   82.15,
-   8.05,
-   "What exists is Microsoft Graph's beta Cloud P K I leaf-certificate report, and the platform's Discovery Import API."
-  ],
-  [
-   90.2,
-   3.413,
-   "Joining them is a custom job, on a beta API."
-  ],
-  [
-   93.612,
-   6.838,
-   "Book 07 has been updated to say that, and that Intune's certificates report remains the system of record."
-  ],
-  [
-   100.45,
-   26.55,
-   "Sources: CyberArk 26.1 Integrating with Microsoft Intune; Importing certificates from a CA; WebSDK POST Discovery/Import; Microsoft Learn, Third-party CA SCEP partners; Graph beta retrieveCloudPkiLeafCertificateReport; Create SCEP certificate profiles in Intune; device-naming research brief; Book 07, Chapters 04 to 07."
+   26.2,
+   8.0,
+   "One nice touch for the certificate authorities: a CA pool lets the platform fail over to a second CA if the first one stops answering."
   ]
  ],
  "15": [
   [
    0.05,
-   3.163,
-   "Part 3: discover, own and automate."
+   4.225,
+   "FIPS is where it's easy to overclaim, so let's be precise."
   ],
   [
-   3.212,
-   5.338,
-   "First, how the platform finds certificates: discovery scans and CA import."
+   4.275,
+   5.412,
+   "The platform runs on Windows servers that can be in FIPS mode, and that's documented."
   ],
   [
-   8.55,
-   6.125,
-   "Then how each certificate gets an owner, through policy folders tied to identity and to the CMDB."
+   9.688,
+   7.525,
+   "What isn't documented is a FIPS certificate for the platform itself ,  none of CyberArk's validated modules names this product."
   ],
   [
-   14.675,
-   6.85,
-   "Then the enrollment protocols, where the third correction to the Federal Modernization Workbook's Book 07 sits."
+   17.212,
+   7.175,
+   "So the honest evidence is FIPS-mode Windows, plus the HSM's own certificate for the database secrets."
   ],
   [
-   21.525,
-   7.0,
-   "And finally three integrations: Kubernetes, ServiceNow and the sim, each with a boundary question."
-  ],
-  [
-   28.525,
-   15.463,
-   "Sources: CyberArk 26.1 discovery, policy, permissions, ACME, EST, SCEP, OAuth, Kubernetes discovery and logging documentation; vCert; cert-manager; ServiceNow Store."
+   24.387,
+   7.013,
+   "And remember the catch from earlier: the ACME servers can't be in FIPS mode at all, which is why they're kept separate."
   ]
  ],
  "16": [
   [
    0.05,
-   0.887,
-   "Discovery."
+   2.525,
+   "Next, how administrators sign in."
   ],
   [
-   0.938,
-   8.3,
-   "The Federal Modernization Workbook's Book 07 Chapter 02 points out that a CA database shows only what that CA issued."
+   2.575,
+   11.863,
+   "The platform supports single sign-on with Entra ID, so the program's approach is to put the console behind Entra and let administrators use their piv card through Entra's certificate-based authentication."
   ],
   [
-   9.238,
-   7.588,
-   "Certificates from public CAs, appliances or self-signing don't appear there, and finding them takes network discovery."
+   14.438,
+   7.062,
+   "That way there's one trust store and one set of Conditional Access rules, instead of a second login system to maintain."
   ],
   [
-   16.825,
-   1.95,
-   "The platform has five ways in."
-  ],
-  [
-   18.775,
-   10.05,
-   "Network Discovery scans IPv4 ranges and ports for TLS listeners, and can instantly check a single IPv4 or IPv6 address."
-  ],
-  [
-   28.825,
-   9.8,
-   "CA Import pulls what a Microsoft CA or Amazon Private CA issued, template by template, optionally including expired and revoked certificates."
-  ],
-  [
-   38.625,
-   5.175,
-   "Onboard Discovery is agentless and brings the application configuration with it."
-  ],
-  [
-   43.8,
-   6.112,
-   "And the Discovery Import API takes results from a collector you write, such as the Graph job from Part 2."
-  ],
-  [
-   49.913,
-   5.45,
-   "Reconciliation decides whether a discovered certificate is one the platform already knows."
-  ],
-  [
-   55.362,
-   10.113,
-   "It matches on subject, key usage, extended key usage and the D N S names in the subject alternative name, and the newer certificate becomes the active one."
-  ],
-  [
-   65.475,
-   3.4,
-   "It doesn't apply to CA Import or Onboard Discovery."
-  ],
-  [
-   68.875,
-   9.312,
-   "The program's rule, from Book 07 Chapter 08: every certificate found on a listener with no issuance record and no owner is a finding."
-  ],
-  [
-   78.188,
-   9.062,
-   "As design guidance for Wave 1, run read-only network scans of server and appliance ranges, and import the in-scope A D CS templates."
-  ],
-  [
-   87.25,
-   6.162,
-   "That import needs the privileged CA account, so create it under the ESC7 controls first."
-  ],
-  [
-   93.412,
-   22.337,
-   "Sources: CyberArk 26.1 Certificate discovery overview; Configuring Network Discovery; Certificate reconciliation; Onboard Discovery; Agent discovery; Importing certificates from a CA; WebSDK POST Discovery/Import; Book 07, Chapter 02 and Chapter 08; research brief section 9."
+   21.5,
+   10.425,
+   "Keep the platform's own certificate login as a fallback, keep a local break-glass account, and shorten the default token lifetimes for automation ,  ninety days is too long."
   ]
  ],
  "17": [
   [
    0.05,
-   0.85,
-   "Ownership."
+   5.438,
+   "Hardening comes down to one uncomfortable fact: this platform concentrates privilege."
   ],
   [
-   0.9,
-   15.075,
-   "The Federal Modernization Workbook's Book 07 Chapter 05 says an expired certificate is almost always an ownership failure first, so every certificate class has one renewal owner, who answers for it even when automation does the renewing."
+   5.487,
+   8.787,
+   "It holds rights on your certificate authorities, administrator access on the servers it installs certificates on, and private keys in its database."
   ],
   [
-   15.975,
-   2.163,
-   "The platform is where that's recorded."
+   14.275,
+   13.637,
+   "So apply CyberArk's web server hardening, replace the self-signed certificate every server ships with, switch outbound certificate checking from its default of \"none\" to strict, and keep driver passwords in the CyberArk vault."
   ],
   [
-   18.137,
-   6.638,
-   "What the platform provides: placement rules and placement jobs move discovered certificates into policy folders."
-  ],
-  [
-   24.775,
-   5.775,
-   "A folder's policy sets inherited configuration, such as the CA template and key size."
-  ],
-  [
-   30.55,
-   4.8,
-   "Object permissions are granted on folders and objects, and Teams group the people."
-  ],
-  [
-   35.35,
-   8.825,
-   "The documented roles are Master Admin, Server Owner, Certificate Approver and Team Owner, and workflows can require approvals at lifecycle stages."
-  ],
-  [
-   44.175,
-   3.263,
-   "The program's design guidance turns that into ownership."
-  ],
-  [
-   47.438,
-   9.325,
-   "Build the policy tree to mirror Book 07 Chapter 05's certificate classes, so a certificate's folder tells you its class and its renewal engine."
-  ],
-  [
-   56.763,
-   2.837,
-   "Give every certificate a named Server Owner."
-  ],
-  [
-   59.6,
-   8.825,
-   "Map Teams to Entra groups; release 26.1 adds skim 2.0, and CyberArk lists Entra ID as supported for it."
-  ],
-  [
-   68.425,
-   9.887,
-   "If the agency adopts the ServiceNow app, which we'll see next, associate certificates with configuration items so the CMDB owner and the platform's owner agree."
-  ],
-  [
-   78.312,
-   10.275,
-   "And follow Chapter 08's alert: any certificate within two renewal windows of expiry with no renewal path bound to it is an incident while it can still be fixed."
-  ],
-  [
-   88.588,
-   27.788,
-   "Sources: CyberArk 26.1 Placement rules; Policies overview; Permissions and abilities; Teams and policy folder permissions; Workflows; Configuring expiration event intervals; Notifications and logging; Notification channels; What's New (skim 2.0); Vendor support for SSO; ServiceNow Store, Machine Identity Protection; Book 07, Chapters 05 and 08."
+   27.913,
+   4.638,
+   "Then treat the admins, the key and the database backups as Tier 0."
   ]
  ],
  "18": [
   [
    0.05,
-   6.475,
-   "Enrollment automation, starting with the third correction to the Federal Modernization Workbook's Book 07."
+   4.388,
+   "Recovery hinges on a pair: the database and the key that protects it."
   ],
   [
-   6.525,
-   12.262,
-   "Book 07 Chapter 08 says CyberArk documents that the win-acme client needs FIPS mode off, and advises using another tested client where the server must run in FIPS mode."
+   4.438,
+   9.613,
+   "Back up both, store them separately, and if an HSM holds the key, run the HSMs as a pair, because the platform shuts down when it can't reach one."
   ],
   [
-   18.788,
-   4.075,
-   "The 26.1 Installation and Upgrade Guide is broader."
+   14.05,
+   8.988,
+   "CyberArk's recovery steps are on the slide; the one people forget is re-enabling SQL Service Broker after a restore, which quietly stops everything."
   ],
   [
-   22.863,
-   8.562,
-   "It says that because FIPS is not supported for ACMEv2, you can't have FIPS enabled on any server used for ACMEv2."
+   23.038,
+   5.2,
+   "The program's rule is to rehearse a full restore before the second migration wave ends."
   ],
   [
-   31.425,
-   6.638,
-   "The topic page still names only win-acme; the stricter text governs until CyberArk says otherwise."
+   28.238,
+   1.038,
+   "That's the build."
   ],
   [
-   38.062,
-   10.738,
-   "The program's design guidance: run the ACME service on dedicated servers that aren't in FIPS mode, kept out of the FIPS-mode set, or get a written vendor statement."
-  ],
-  [
-   48.8,
-   2.85,
-   "Book 07 has been updated to match."
-  ],
-  [
-   51.65,
-   14.2,
-   "The ACME service itself implements RFC 8555 with http-01 and dns-01 challenges, and was designed and tested with certbot, win-acme and acme.sh."
-  ],
-  [
-   65.85,
-   4.737,
-   "The page both lists wildcard issuance and calls it future work, so test it."
-  ],
-  [
-   70.588,
-   12.375,
-   "EST runs on port 50443 with client-certificate authentication, and a CA label in the URL selects the CA template; three optional EST functions aren't supported."
-  ],
-  [
-   82.963,
-   3.525,
-   "SCEP, for network devices, needs port 80."
-  ],
-  [
-   86.487,
-   13.1,
-   "For everything else there's the REST API with OAuth tokens, and CyberArk's vCert command-line tool, currently version 5.13.9, which needs view, read, write and create on its zone."
-  ],
-  [
-   99.588,
-   8.363,
-   "Agentless drivers push certificates to the endpoints, licensed per instance in 26.1, and the Server Agent covers the rest."
-  ],
-  [
-   107.95,
-   22.087,
-   "Sources: CyberArk 26.1 Installation and Upgrade Guide p. 50; ACME overview; EST overview, limitations and reference; Configuring SCEP; NDE rules; Setting up OAuth; System Requirements; What's New; vCert README and latest release; Book 07, Chapter 08."
+   29.275,
+   2.638,
+   "Now let's connect it to the certificate authorities."
   ]
  ],
  "19": [
+  [
+   0.05,
+   10.975,
+   "Part 2 connects the platform to the places certificates come from: the agency's own A D CS, public certificate authorities, the cloud, and how it lives alongside Intune."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   5.662,
+   "The most important connection is to A D CS, the agency's own certificate authority."
+  ],
+  [
+   5.713,
+   6.112,
+   "The platform talks to it over DCOM, using an account with the right to issue and manage certificates."
+  ],
+  [
+   11.825,
+   7.713,
+   "The cleanest pattern is one platform template for each A D CS template it issues from, so policy is easy to read."
+  ],
+  [
+   19.538,
+   8.2,
+   "After Active Directory retires, Book 07 moves server certificates to a standalone CA, and the platform handles that fine."
+  ],
+  [
+   27.738,
+   9.3,
+   "One open item: CyberArk's support table stops at Windows Server 2022, so if your CA runs 2025, get that confirmed in writing."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   2.688,
+   "This slide is about one dangerous permission."
+  ],
+  [
+   2.737,
+   10.537,
+   "To issue certificates on the agency's CAs, the platform needs a right called Issue and Manage Certificates, and with it an account can approve, deny or revoke certificates."
+  ],
+  [
+   13.275,
+   4.237,
+   "Attackers know this; it's a known attack path called ESC7."
+  ],
+  [
+   17.512,
+   7.088,
+   "Here's the honest part: Microsoft doesn't give you a switch that limits that right to a few templates, so we don't pretend it does."
+  ],
+  [
+   24.6,
+   7.938,
+   "We limit what the account can request, prove in the lab that a request outside those templates fails, and alert if one ever succeeds."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   7.875,
+   "For public certificates, the platform has drivers for the major public CAs, and two changes in this release matter before you upgrade."
+  ],
+  [
+   7.925,
+   6.05,
+   "Entrust is no longer supported as a public CA, so if that's your provider, plan the path first."
+  ],
+  [
+   13.975,
+   5.213,
+   "And DigiCert client certificates now need an email address, or renewals fail."
+  ],
+  [
+   19.188,
+   5.775,
+   "On the cloud side, the platform can issue through AWS and install into Azure Key Vault."
+  ],
+  [
+   24.962,
+   6.15,
+   "What I couldn't confirm is Key Vault support in Azure Government, so test it or ask before you rely on it."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   6.4,
+   "The rule with Intune is simple: Intune owns device certificates, and the platform stays out of its way."
+  ],
+  [
+   6.45,
+   8.488,
+   "If some Intune certificates still come from A D CS during the transition, the platform will see them, and it just watches ,  it doesn't renew them."
+  ],
+  [
+   14.938,
+   9.1,
+   "CyberArk can also act as Intune's certificate authority, but the program says no, because that would create a second issuer for devices that are mid-migration."
+  ],
+  [
+   24.038,
+   8.438,
+   "And there's no built-in way to pull in Cloud P K I's inventory; it would take a custom job, so Intune's own report stays the record."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   9.863,
+   "Part 3 is where the platform earns its keep: finding every certificate, giving each one an owner, and automating renewal so nobody has to remember a date."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   5.213,
+   "You can't manage what you can't see, and a CA's database only shows what that CA issued."
+  ],
+  [
+   5.263,
+   8.875,
+   "So the platform finds certificates two ways: it scans the network for anything presenting a certificate, and it imports what your CAs already issued."
+  ],
+  [
+   14.137,
+   2.925,
+   "Agents and API feeds fill in the rest."
+  ],
+  [
+   17.062,
+   6.162,
+   "The program's rule is blunt: any certificate found with no record and no owner is a finding."
+  ],
+  [
+   23.225,
+   5.412,
+   "In the first wave, run read-only scans and imports, and log every surprise."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   5.3,
+   "An expired certificate is almost always an ownership problem before it's a technical one."
+  ],
+  [
+   5.35,
+   3.175,
+   "So every certificate gets a home and a named owner."
+  ],
+  [
+   8.525,
+   7.775,
+   "The platform's policy folders mirror Book 07's certificate classes, so where a certificate lives tells you how it renews."
+  ],
+  [
+   16.3,
+   9.338,
+   "Owners come from Entra groups, and, if the agency uses it, the ServiceNow app can tie certificates to the same configuration items as the CMDB."
+  ],
+  [
+   25.637,
+   7.9,
+   "And one alert matters most: a certificate nearing expiry with no renewal path is an incident while there's still time to fix it."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   3.212,
+   "Automation is how renewals stop depending on people."
+  ],
+  [
+   3.263,
+   6.112,
+   "Web servers can renew themselves using ACME, the same protocol public certificate sites use."
+  ],
+  [
+   9.375,
+   3.55,
+   "Network devices can use EST or SCEP."
+  ],
+  [
+   12.925,
+   4.9,
+   "Scripts and pipelines use the REST API or CyberArk's command-line tool."
+  ],
+  [
+   17.825,
+   4.588,
+   "And for everything else, the drivers renew the certificate and install it for you."
+  ],
+  [
+   22.413,
+   8.0,
+   "The one design rule to carry forward is the one we've seen twice: ACME runs on its own servers, outside FIPS mode."
+  ]
+ ],
+ "28": [
   [
    0.05,
    3.15,
@@ -1223,490 +756,160 @@
   ],
   [
    3.2,
-   1.087,
-   "Kubernetes."
+   10.812,
+   "Kubernetes discovery only works through CyberArk's cloud service, which isn't authorized, so inside the boundary we use cert-manager, which talks straight to the self-hosted platform."
   ],
   [
-   4.287,
-   10.6,
-   "The platform has a Kubernetes Discovery component, but it imports certificates from clusters registered to the SaaS edition, and it needs outbound HTTPS to the SaaS service."
+   14.012,
+   6.938,
+   "ServiceNow has no CyberArk-built app, only a third-party one, so assess it like any supply-chain component."
   ],
   [
-   14.887,
-   6.0,
-   "With no fed-ramp package for the SaaS, the program's guidance is not to plan on it inside the boundary."
-  ],
-  [
-   20.887,
-   2.413,
-   "The in-boundary path is cert-manager."
-  ],
-  [
-   23.3,
-   6.7,
-   "Its CyberArk issuer, formerly the Venafi issuer, talks directly to the self-hosted WebSDK."
-  ],
-  [
-   30.0,
-   9.287,
-   "You configure one issuer per zone, with an access token or username and password, and refresh tokens aren't supported, so plan token rotation."
-  ],
-  [
-   39.288,
-   1.012,
-   "ServiceNow."
-  ],
-  [
-   40.3,
-   3.688,
-   "I found no first-party CyberArk app in the ServiceNow Store."
-  ],
-  [
-   43.987,
-   15.25,
-   "There is a third-party app from AEYRiX, called Machine Identity Protection, released July twenty-ninth, 2026, that supports the self-hosted edition through a MID Server and associates certificates with CMDB configuration items."
-  ],
-  [
-   59.237,
-   4.9,
-   "That's a third-party supply-chain component, so assess it like one before adopting it."
-  ],
-  [
-   64.138,
-   0.725,
-   "sim."
-  ],
-  [
-   64.862,
-   7.688,
-   "The platform's log server has a syslog channel with BSD, CEF or JSON formats, and it supports TLS."
-  ],
-  [
-   72.55,
-   13.025,
-   "There's a catch worth knowing before you build: the collector's server certificate must carry an IP address subject alternative name that matches the connection IP, plus the server authentication extended key usage."
-  ],
-  [
-   85.575,
-   6.162,
-   "So issue the collector certificate with an IP address SAN even if you configure the collector by name."
-  ],
-  [
-   91.737,
-   21.2,
-   "Sources: CyberArk 26.1 Configuring Kubernetes discovery; Syslog channel configuration; cert-manager documentation, CyberArk (formerly Venafi) issuer; ServiceNow Store, AEYRiX Machine Identity Protection and Lite editions; fed-ramp Marketplace products.json; device-naming research brief."
+   20.95,
+   10.238,
+   "And the sim gets the platform's events over syslog with TLS ,  with one gotcha: the sim collector's certificate needs its IP address in it, even if you connect by name."
   ]
  ],
- "20": [
+ "29": [
   [
    0.05,
-   2.312,
-   "Part 4: migrate and operate."
-  ],
-  [
-   2.362,
-   8.912,
-   "First, how the platform build fits into the Federal Modernization Workbook's Book 07's six migration waves, as program design guidance."
-  ],
-  [
-   11.275,
-   6.737,
-   "Then renewal as public TLS lifetimes shrink, and how the platform feeds monitoring and drift detection."
-  ],
-  [
-   18.012,
-   3.125,
-   "Then its role in decommissioning A D CS."
-  ],
-  [
-   21.137,
-   4.725,
-   "And finally the decisions to take, the questions for the vendor, and next steps."
-  ],
-  [
-   25.863,
-   10.512,
-   "Sources: Book 07, Chapters 01, 05, 07 and 08; CyberArk 26.1 documentation."
+   11.6,
+   "Part 4 puts it all on a timeline and keeps it running: the build mapped to Book 07's six waves, renewal as certificate lifetimes shrink, monitoring, and retiring the old CAs."
   ]
  ],
- "21": [
+ "30": [
   [
    0.05,
-   5.625,
-   "Here's the build mapped onto the Federal Modernization Workbook's Book 07's six waves."
+   3.525,
+   "Here's the build laid onto Book 07's six waves."
   ],
   [
-   5.675,
-   6.263,
-   "This is the platform work that runs alongside the Cloud P K I waves, with a gate added to each."
+   3.575,
+   5.162,
+   "Wave one is a small test cluster and read-only discovery, so you learn what you have."
   ],
   [
-   11.938,
-   1.962,
-   "It's program design guidance."
+   8.738,
+   9.45,
+   "Wave two builds production properly ,  two of everything, keys backed up, sign-in and logging done ,  and doesn't close until a restore has been rehearsed."
   ],
   [
-   13.9,
-   2.975,
-   "Wave 1, Assess, weeks one to four."
+   18.188,
+   7.075,
+   "Wave three pilots automatic renewal on a handful of servers, with the old method left on as a safety net."
   ],
   [
-   16.875,
-   5.15,
-   "Stand up a two-server test cluster and its SQL database inside the boundary."
-  ],
-  [
-   22.025,
-   5.338,
-   "Run read-only network discovery and import the A D CS templates in scope."
-  ],
-  [
-   27.363,
-   6.3,
-   "That import needs the privileged CA account, so create it now, under the ESC7 controls."
-  ],
-  [
-   33.663,
-   8.262,
-   "Gate: every certificate without an issuance record is logged as a finding, and the CA account is in the ESC7 baseline."
-  ],
-  [
-   41.925,
-   1.738,
-   "Wave 2, Foundation."
-  ],
-  [
-   43.663,
-   6.725,
-   "Build production: at least two servers per role, a load balancer, Always On, keys backed up."
-  ],
-  [
-   50.388,
-   4.65,
-   "Decide FIPS mode per server, with ACME on its own servers."
-  ],
-  [
-   55.038,
-   15.812,
-   "Replace the operational certificates, set up Entra single sign-on and syslog over TLS, build the policy tree, one CA template object per A D CS template, a CA pool, the public CA driver and the password-vault connection."
-  ],
-  [
-   70.85,
-   5.612,
-   "Gate: a rehearsed restore, a passing negative test, and IIS hardening applied."
-  ],
-  [
-   76.463,
-   1.587,
-   "Wave 3, Pilot."
-  ],
-  [
-   78.05,
-   13.05,
-   "Move pilot servers onto platform renewal, IIS, Apache, F5, NetScaler and one NPS server, assign Server Owners, and pilot ACME, with autoenrollment left on for rollback."
-  ],
-  [
-   91.1,
-   4.825,
-   "Wave 4, Scale, moves servers ring by ring off autoenrollment."
-  ],
-  [
-   95.925,
-   3.438,
-   "Wave 5 puts all public TLS on the platform."
-  ],
-  [
-   99.362,
-   3.55,
-   "Wave 6 retires CAs on the inventory's evidence."
-  ],
-  [
-   102.912,
-   19.262,
-   "Sources: Research brief section 9 (program design guidance); Book 07, Chapter 07 (migration playbook, waves 1 to 6 and exit gates), Chapter 04 (issuer decision for internal server certificates), Chapter 08 (drift patterns and decommissioning)."
+   25.262,
+   8.0,
+   "Then you scale ring by ring, move public certificates over, and finally retire CAs using the platform's inventory as proof."
   ]
  ],
- "22": [
+ "31": [
   [
    0.05,
-   2.175,
-   "Why renewal automation can't wait."
+   1.438,
+   "Here's why this can't wait."
   ],
   [
-   2.225,
+   1.488,
+   8.45,
+   "Public certificate lifetimes are shrinking fast: two hundred days today, a hundred next year, and forty-seven days by 2029."
+  ],
+  [
    9.938,
-   "In April 2025 the CA/Browser Forum adopted a ballot that cuts the maximum validity of publicly trusted TLS certificates in steps."
+   7.35,
+   "For a thousand certificates, that's roughly seven renewals every working day now, and over thirty in 2029."
   ],
   [
-   12.162,
-   5.562,
-   "From March fifteenth, 2026, it's two hundred days, and that's in force now."
+   17.288,
+   2.0,
+   "No team can keep that up by hand."
   ],
   [
-   17.725,
-   3.725,
-   "From March fifteenth, 2027, a hundred days."
-  ],
-  [
-   21.45,
-   3.925,
-   "From March fifteenth, 2029, forty-seven days."
-  ],
-  [
-   25.375,
-   12.55,
-   "The Federal Modernization Workbook's Book 07 works out what that means for a thousand certificates: about seven renewals every working day today, fifteen next year, and thirty-one in 2029."
-  ],
-  [
-   37.925,
-   6.1,
-   "The reuse period for domain validation falls to ten days, so validation has to be automated too."
-  ],
-  [
-   44.025,
-   8.162,
-   "That's why Book 07 Chapter 08 sets one design rule: no certificate class may depend on a person remembering a date."
-  ],
-  [
-   52.188,
-   8.887,
-   "Every class runs through one of three engines: Intune profiles, A D CS autoenrollment for domain controllers, or this platform."
-  ],
-  [
-   61.075,
-   2.8,
-   "On the platform, renewal works two ways."
-  ],
-  [
-   63.875,
-   8.012,
-   "Drivers renew the certificate and push it to the endpoint, IIS, Apache, F5, NetScaler and the others."
-  ],
-  [
-   71.888,
-   5.787,
-   "And ACME clients on web listeners renew themselves against the platform's ACME service."
-  ],
-  [
-   77.675,
-   11.525,
-   "When you use the dns-01 challenge, the authoritative D N S zone becomes the gate for automated issuance, which is why the D N S team is consulted on ACME rollout."
-  ],
-  [
-   89.2,
-   5.812,
-   "The program aligns internal lifetimes with the schedule too, as the automation proves itself."
-  ],
-  [
-   95.013,
-   23.025,
-   "Sources: Book 07, Chapter 01 (CA/Browser Forum Ballot SC-081v3; Baseline Requirements 2.3.1; renewal arithmetic) and Chapter 08 (renewal at scale, ACME where it applies); CyberArk 26.1 provisioning driver and ACME documentation."
-  ]
- ],
- "23": [
-  [
-   0.05,
-   1.7,
-   "Monitoring and drift."
-  ],
-  [
-   1.75,
-   10.963,
-   "The Federal Modernization Workbook's Book 07 Chapter 08 collects certificate signals from many places into one view, and security operations owns the alerts."
-  ],
-  [
-   12.713,
-   10.738,
-   "The platform contributes the inventory, every certificate it knows with its owner, expiry and renewal status, and sends its events to the sim over syslog with TLS."
-  ],
-  [
-   23.45,
-   4.05,
-   "Four of Chapter 08's drift patterns are the platform's to catch."
-  ],
-  [
-   27.5,
-   7.662,
-   "Expiring with no renewal path: a certificate within two renewal windows of expiry with no engine bound to it."
-  ],
-  [
-   35.163,
-   12.938,
-   "Issuance outside policy: a discovered certificate with no enrollment record, or, from Part 2, event 4887 showing the platform's CA account received a certificate outside its templates."
-  ],
-  [
-   48.1,
-   11.5,
-   "CRLs near their next update or served stale: the platform's Certificate Revocation Monitoring component checks CRL distribution points and OCSP endpoints, at least daily."
-  ],
-  [
-   59.6,
-   11.238,
-   "And trust store drift: the program's guidance is to keep the platform's Roots tree limited to approved trust anchors, which is the SC-17 part b question an assessor asks."
-  ],
-  [
-   70.838,
-   1.712,
-   "And persist the evidence."
-  ],
-  [
-   72.55,
-   6.45,
-   "In the program's model the drift checks run at least weekly, and their outputs are committed to the evidence repository."
-  ],
-  [
-   79.0,
-   7.787,
-   "History matters more than any single run, because an assessor asks how long a finding stayed open, not only whether it's open now."
-  ],
-  [
-   86.787,
-   21.275,
-   "Sources: Book 07, Chapter 05 (security operations role) and Chapter 08 (monitoring, drift patterns, persisting the evidence); CyberArk 26.1 Installation and Upgrade Guide p. 89 (Certificate Revocation Monitoring); Syslog channel configuration; research brief section 11."
-  ]
- ],
- "24": [
-  [
-   0.05,
-   7.4,
-   "Decommissioning is the Federal Modernization Workbook's Book 07's Wave 6, and the platform has a defined part in it."
-  ],
-  [
-   7.45,
-   11.1,
-   "The gate comes first: cutover complete, the thirty-day rollback window passed with no incidents, and every retained certificate class documented and running on the CAs that remain."
-  ],
-  [
-   18.55,
+   19.288,
    10.1,
-   "Step one of Book 07's procedure is to confirm nothing depends on the CA, and the platform's inventory is the main evidence, together with the CA database."
-  ],
-  [
-   28.65,
-   5.287,
-   "It has to show that no unexpired certificate in a migrated class is still in use."
-  ],
-  [
-   33.938,
-   14.637,
-   "Steps two to five retire the CA itself: stop new issuance, back up and archive the database and key, revoke outstanding certificates for cessation of operation and publish the final CRL, and uninstall the role services."
-  ],
-  [
-   48.575,
-   8.613,
-   "Before you stop issuance, repoint any CyberArk CA template objects that used this CA to a retained CA, so renewals don't fail."
-  ],
-  [
-   57.188,
-   9.175,
-   "Step six cleans up trust: the Entra trust store, Intune trusted certificate profiles, NTAuth, and the CA object in the platform."
-  ],
-  [
-   66.362,
-   6.125,
-   "Retiring that CA object is the platform owner's task, and the decommission record should say it was done."
-  ],
-  [
-   72.487,
-   7.925,
-   "Steps seven to nine keep the CRL and AIA endpoints serving until the last certificate expires, and commit the record."
-  ],
-  [
-   80.412,
-   13.45,
-   "After Active Directory retires, Book 07 moves server issuance to a standalone A D CS issuing CA under the same root, still driven by the platform, which supports standalone Microsoft CAs."
-  ],
-  [
-   93.862,
-   5.112,
-   "Template policy then lives in the platform, and there's no new root to distribute."
-  ],
-  [
-   98.975,
-   21.75,
-   "Sources: Book 07, Chapter 08 (Decommissioning A D CS, steps 1 to 9), Chapter 07 (Wave 6), Chapter 04 (after Active Directory); CyberArk 26.1 Microsoft ADCS Enterprise and Standalone CA template; Microsoft Learn, Manage certificate templates."
+   "That's why Book 07's rule is that no certificate may depend on a person remembering a date ,  every one runs through Intune, autoenrollment, or this platform."
   ]
  ],
- "25": [
+ "32": [
   [
    0.05,
-   3.975,
-   "To close: decisions, vendor asks, and next steps."
+   2.8,
+   "Monitoring is where the inventory pays off."
   ],
   [
-   4.025,
-   1.475,
-   "The decisions to take."
+   2.85,
+   15.738,
+   "The platform sends its events to the sim and watches for four kinds of drift: a certificate close to expiry with no way to renew it, a certificate issued outside policy, a revocation list that's going stale, and trust stores that have picked up roots they shouldn't have."
   ],
   [
-   5.5,
+   18.587,
+   8.375,
+   "The checks run at least weekly, and the results are kept, because an assessor will ask how long a problem stayed open, not just whether it's open today."
+  ]
+ ],
+ "33": [
+  [
+   0.05,
+   5.725,
+   "Eventually the old certificate authorities retire, and the platform is the evidence that it's safe."
+  ],
+  [
+   5.775,
    4.812,
-   "Which servers run in FIPS mode, and which separate servers run ACME."
+   "Before a CA goes, its inventory has to show that nothing still depends on it."
   ],
   [
-   10.312,
-   7.287,
-   "Whether database secrets are protected by an HSM or by the software key, and whether SQL is Enterprise or Standard."
+   10.588,
+   8.787,
+   "Then you stop new issuance ,  after pointing the platform's templates at a CA that's staying ,  publish the last revocation list, and remove the service."
+  ],
+  [
+   19.375,
+   4.263,
+   "The records and endpoints stay up until the last certificate expires."
+  ],
+  [
+   23.637,
+   7.35,
+   "After Active Directory, server certificates come from a standalone CA under the same root, still driven by the platform."
+  ]
+ ],
+ "34": [
+  [
+   0.05,
+   0.875,
+   "To wrap up."
+  ],
+  [
+   0.925,
+   8.488,
+   "The decisions are yours: which servers run in FIPS mode, HSM or software key, and a handful of integration choices."
+  ],
+  [
+   9.412,
+   8.188,
+   "There are a few questions to put to CyberArk in writing, mainly around FIPS, Windows Server 2025, and Azure Government."
   ],
   [
    17.6,
-   4.812,
-   "Console sign-in through Entra single sign-on with certificate-based authentication."
+   10.088,
+   "And the next steps are concrete: stand up the test cluster, create the CA account under the ESC7 controls, and prove in the lab that it can't do more than it should."
   ],
   [
-   22.413,
-   3.75,
-   "The public CA path, if the agency uses Entrust today."
+   27.688,
+   7.75,
+   "The program's view is clear ,  this is the right platform for Book 07's design, and its risks are known and manageable."
   ],
   [
-   26.163,
-   5.825,
-   "Whether to build the Cloud P K I feed on a beta API, and whether to adopt the ServiceNow app."
+   35.438,
+   5.862,
+   "This is the program's research, under review, and not an endorsement by any federal agency."
   ],
   [
-   31.988,
-   23.625,
-   "Ask CyberArk, in writing: which statement governs ACME and FIPS; whether A D CS on Windows Server 2025 is supported, given the stale table; which cryptographic module the product uses, and whether any CMVP certificate covers it; whether the Key Vault driver works with Azure Government; and whether piv or CAC console login is supported as such."
-  ],
-  [
-   55.612,
-   9.8,
-   "Next steps: stand up the Wave 1 test cluster, create the CA account under the ESC7 controls, and lab-test allowed and denied requests."
-  ],
-  [
-   65.412,
-   14.725,
-   "The Federal Modernization Workbook's Book 07 has been updated in Chapters 03 and 05 for the ESC7 caveat, Chapter 04 for Cloud P K I reporting, and Chapter 08 for ACME and FIPS."
-  ],
-  [
-   80.138,
-   8.688,
-   "The program's recommendation is plain: CyberArk Certificate Manager, Self-Hosted, is the right platform for Book 07's lifecycle."
-  ],
-  [
-   88.825,
-   8.725,
-   "It's the agency's existing machine-identity vendor, it covers every issuer the design assigns to it, and its risks are known and manageable."
-  ],
-  [
-   97.55,
-   5.35,
-   "The backup slides list the risks, the assessor evidence and what couldn't be verified."
-  ],
-  [
-   102.9,
-   5.912,
-   "This is the program's research, under review, not an endorsement by any federal agency."
-  ],
-  [
-   108.812,
-   0.762,
-   "Thank you."
-  ],
-  [
-   109.575,
-   16.375,
-   "Sources: Research brief sections 0, 12 and 13; Book 07, Chapters 03, 04, 05, 07 and 08; CyberArk 26.1 documentation cited in Parts 1 to 3."
+   41.3,
+   1.1,
+   "Thanks for watching."
   ]
  ]
 }

@@ -1,160 +1,57 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.963
-The AD CS driver.
+00:00:00.050 --> 00:00:03.213
+Here's how those pieces could
+be laid out across two sites.
 
 2
-00:00:01.963 --> 00:00:05.516
-In the platform it's a CA
-template object called Microsoft
+00:00:03.213 --> 00:00:05.046
+This is the program's design,
 
 3
-00:00:05.516 --> 00:00:09.737
-Active Directory Certificate
-Services, Enterprise and Standalone.
+00:00:05.046 --> 00:00:09.512
+built only from CyberArk's documented
+rules, not a vendor blueprint.
 
 4
-00:00:09.737 --> 00:00:13.882
-It needs Microsoft CA Support
-installed on the platform servers,
+00:00:09.512 --> 00:00:13.340
+Each site has a web server,
+a separate ACME server,
 
 5
-00:00:13.882 --> 00:00:15.800
-and it talks to the CA over DCOM.
+00:00:13.340 --> 00:00:15.924
+a back-end server and a log server.
 
 6
-00:00:15.800 --> 00:00:19.737
-The account it uses needs Read,
-Issue and Manage Certificates,
+00:00:15.924 --> 00:00:20.179
+One database runs in an availability
+group across both sites,
 
 7
-00:00:19.737 --> 00:00:21.975
-and Request Certificates on the CA.
+00:00:20.179 --> 00:00:24.850
+with one listener everyone uses, and
+the HSMs are paired the same way.
 
 8
-00:00:21.975 --> 00:00:25.925
-That matches the Federal
-Modernization Workbook's Book 07.
+00:00:24.850 --> 00:00:26.013
+Two cautions.
 
 9
-00:00:25.925 --> 00:00:28.300
-Template mapping is done by policy.
+00:00:26.013 --> 00:00:29.267
+CyberArk doesn't say
+whether FIPS and non-FIPS
 
 10
-00:00:28.300 --> 00:00:32.638
-A certificate gets its CA template
-object from the policy on its folder,
+00:00:29.267 --> 00:00:32.950
+servers can share one cluster,
+so get that in writing.
 
 11
-00:00:32.638 --> 00:00:34.550
-or directly on the certificate.
+00:00:32.950 --> 00:00:34.477
+And keep the sites close,
 
 12
-00:00:34.550 --> 00:00:38.508
-CyberArk's vCert tool expects the
-template to come from policy and
-
-13
-00:00:38.508 --> 00:00:42.537
-calls choosing it per request
-against CyberArk's recommendations.
-
-14
-00:00:42.537 --> 00:00:46.373
-So, by inference, the natural
-pattern is one CyberArk CA
-
-15
-00:00:46.373 --> 00:00:50.976
-template object for each AD CS
-template the platform issues from.
-
-16
-00:00:50.976 --> 00:00:54.200
-Enterprise and standalone
-CAs are both supported.
-
-17
-00:00:54.200 --> 00:00:57.732
-Only enterprise CAs use
-Active Directory templates,
-
-18
-00:00:57.732 --> 00:01:02.307
-which is exactly why Book 07 moves
-server issuance to a standalone CA
-
-19
-00:01:02.307 --> 00:01:06.962
-after the forest retires, with template
-policy living in the platform.
-
-20
-00:01:06.962 --> 00:01:12.375
-Letting requesters set end dates
-may need a CA policy flag turned on;
-
-21
-00:01:12.375 --> 00:01:16.143
-that raises event 4892
-under Book 07 Chapter 03,
-
-22
-00:01:16.143 --> 00:01:20.975
-so the program's guidance is to
-leave it off unless you need it.
-
-23
-00:01:20.975 --> 00:01:22.037
-One open item.
-
-24
-00:01:22.037 --> 00:01:25.683
-The driver page says it
-supports CAs on all supported
-
-25
-00:01:25.683 --> 00:01:29.412
-Windows Server versions, and
-the platform runs on 2025.
-
-26
-00:01:29.412 --> 00:01:32.794
-But CyberArk's
-supported-integrations table
-
-27
-00:01:32.794 --> 00:01:36.087
-lists AD CS only through
-Windows Server 2022.
-
-28
-00:01:36.087 --> 00:01:42.700
-If any retained CA runs Windows Server 2025,
-get written confirmation before Wave 2.
-
-29
-00:01:42.700 --> 00:01:48.321
-Sources: CyberArk 26.1 Microsoft ADCS
-Enterprise and Standalone CA template;
-
-30
-00:01:48.321 --> 00:01:51.746
-MSCA certificate object
-settings; CA chaining;
-
-31
-00:01:51.746 --> 00:01:56.927
-Configuring certificate import from
-a Microsoft CA; Microsoft CA Pool;
-
-32
-00:01:56.927 --> 00:02:01.933
-Supported integrations; Deprecated
-features; System Requirements;
-
-33
-00:02:01.933 --> 00:02:06.480
-vCert README; Microsoft Learn,
-Manage certificate templates.
+00:00:34.477 --> 00:00:38.660
+because the remote site pays for
+every round trip to the database.
