@@ -108,6 +108,22 @@ That is what turns "remediate deviations" and "continuous reporting" from a narr
 
 BOD 25-01 asks agencies to do two structurally different things: run an assessor, and remediate what it finds. ScubaGear and the Zero Trust Assessment do the first job well. Neither does, or is designed to do, the second. The order that satisfies the directive is architecture, then assessment, then continuous reassessment: build what closes the gap, measure that it's closed, and keep measuring.
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| HTTPS for every web and API endpoint (M-22-09) | C5 and C6 | Retained AD CS; public CA | CyberArk Certificate Manager | Discovers and renews them |
+| PIV and derived PIV for phishing-resistant MFA | PIV | Federal PKI | PIV card system | Nothing |
+| Device certificates | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
+| DNSSEC validation | Not a Book 07 class | The DNS platform | Platform-managed, or not X.509 | Nothing: not X.509 |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b11-zero-trust/svg/certs-clm.svg){fig-alt="HTTPS for every web and API endpoint (M-22-09) go to CyberArk Certificate Manager (renews and installs); PIV and derived PIV for phishing-resistant MFA go to PIV card system (renews piv credentials); Device certificates go to Intune (renews device certificates); DNSSEC validation go to Platform-managed, or not X.509 (no clm lifecycle)."}
+
+The governed certificate lifecycle that certificate-based authentication and device identity rest on is three engines: Intune, AD CS autoenrollment for domain controllers, and CyberArk Certificate Manager for server and public TLS ([Book 07, Chapter 08](../b07-pki/08-lifecycle-monitoring-and-decommissioning.md)).[^clm-disc]
+
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 07 — Who Owns Zero Trust](07-who-owns-zero-trust.md) · [Book index](index.md) · [Next: Chapter 09 — Running the Assessment and Ingesting the Evidence →](09-running-the-assessment.md)
@@ -120,3 +136,4 @@ BOD 25-01 asks agencies to do two structurally different things: run an assessor
 [^c08-ksi]: FedRAMP, "Key Security Indicators," FedRAMP Consolidated Rules for 2026, <https://fedramp.gov/2026/reference/key-security-indicators/> (accessed Oct 21, 2026). 46 indicators across ten themes, including KSI-SVC-ACM (configuration management automated and reviewed for drift), KSI-SCR-MON and the Recovery Planning theme.
 [^c08-sp80037]: National Institute of Standards and Technology, SP 800-37 Rev. 2, *Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy*, December 2018, <https://csrc.nist.gov/pubs/sp/800/37/r2/final> (accessed Oct 21, 2026).
 [^c08-guidance]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01 Implementation Guidance: Implementing Secure Practices for Cloud Services," updated July 27, 2026, <https://www.cisa.gov/news-events/directives/bod-25-01-implementation-guidance-implementing-secure-practices-cloud-services> (accessed Oct 21, 2026).
+[^clm-disc]: CyberArk, 26.1, "Importing certificates from a CA" and "Certificate discovery," <https://docs.venafi.com/Docs/current/TopNav/Content/Discovery/cco-Discovery-importingCertsfromCA.php> (accessed Oct 23, 2026).

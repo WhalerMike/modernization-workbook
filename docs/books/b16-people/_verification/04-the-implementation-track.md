@@ -64,3 +64,11 @@ Writer W2. Source: `docs/compliance/Vol_V_Book_02_Implementation_Track.md` (all 
 | Closing italic colophon | — | Internal KSI statement dropped |
 | (new) Modules 5 devices, 8 cloud platform, 10 day-two | Added | Brief requires devices, cloud and day-two operations (Books 05, 10, 15) |
 | (new) Example certifications table | Added | Microsoft certifications verified on Microsoft Learn |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |

@@ -118,7 +118,7 @@ Clause 1 needs a source of truth for every kind of object a closure can touch, i
 | Service accounts, workload identities, app registrations | A non-human identity registry recording purpose, scope, expiry and owner | Directory service principals, key vault entries |
 | AI systems | The agency's AI use case inventory, with a joiner, mover and leaver lifecycle | Deployment manifests, model endpoints |
 | Applications | The application portfolio registry | App registrations, service-catalog entries |
-| Certificates | The PKI's issuance ledger | Local certificate stores, binding configurations |
+| Certificates | The CLM platform's inventory, reconciled with the PKI's issuance records ([Book 07, Chapter 08](../b07-pki/08-lifecycle-monitoring-and-decommissioning.md)) | Local certificate stores, binding configurations |
 | Organizational structure and physical location | The governed organization and location attributes | Directory OU trees, site topology |
 
 : Further sources of truth the compliance closures depend on {.striped .hover}

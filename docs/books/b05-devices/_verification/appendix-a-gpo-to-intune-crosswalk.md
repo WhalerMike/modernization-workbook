@@ -84,3 +84,11 @@ The body now states the guidance directly. These were the earlier positions it u
 
 - Rows 7, 8, 48 and 49 were mapped in the source to SC-002; row 50 to SC-008.
 - The source mapped account lockout threshold to `MaxDevicePasswordFailedAttempts` and Audit Logon to an `Audit/AccountLogon_` path.
+
+## Additions, October 23, 2026 (certificate statements aligned with Book 07)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | PKI side pointed to Book 02 Ch04 | Wi-Fi, VPN and certificates row | corrected pointer to Book 07 Ch06 | Book 07 |

@@ -78,6 +78,28 @@ Two points need written confirmation from CyberArk before this is built. CyberAr
 
 The steps follow the stages CyberArk's engine partitioning describes: certificate work, then enrollment through the CA template, then provisioning through each application object, with revocation through the CA template at the end.[^aC-part] Every event reaches the log server's default channel and, through the syslog channel, the SIEM ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md)).[^aC-log]
 
+## Where the other books' certificates meet the platform
+
+Every book whose systems depend on certificates has a section that maps them to this platform: which Book 07 class each certificate is, who issues it, which engine renews it, and what the platform does for it, with a diagram.
+
+- [Book 00 — Orientation & Program, Chapter 10 — Retirement, Steady State and Measuring Success](../b00-orientation/10-retirement-steady-state-and-success.md#certificates-and-the-clm-platform): 2 of 5 certificate kinds renewed by the platform
+- [Book 01 — The Transformation Arc, Chapter 10 — Analyzing the Estate](../b01-transformation-arc/10-analyzing-the-estate.md#certificates-and-the-clm-platform): 2 of 5 certificate kinds renewed by the platform
+- [Book 02 — Identity & Directory, Chapter 04 — The Hidden Migration Surface](../b02-identity/04-the-hidden-migration-surface.md#certificates-and-the-clm-platform): 3 of 7 certificate kinds renewed by the platform
+- [Book 03 — HR-Driven Identity, Chapter 09 — Credentials and Certificates Across Joiner, Mover, Leaver](../b03-hr-identity/09-credentials-and-certificates.md#certificates-and-the-clm-platform): 1 of 5 certificate kinds renewed by the platform
+- [Book 04 — Access & Privilege, Chapter 05 — Applications and Workload Identities](../b04-access/05-applications-and-workload-identities.md#certificates-and-the-clm-platform): 0 of 3 certificate kinds renewed by the platform
+- [Book 05 — Devices & Endpoints, Chapter 09 — Servers Under Azure Arc](../b05-devices/09-servers-under-azure-arc.md#certificates-and-the-clm-platform): 2 of 5 certificate kinds renewed by the platform
+- [Book 06 — Data Platform: SQL Server Identity, Chapter 22 — Where SQL Server Touches AD CS](../b06-data-platform/22-where-sql-server-touches-adcs.md#certificates-and-the-clm-platform): 1 of 5 certificate kinds renewed by the platform
+- [Book 08 — DNS, DHCP & IPAM, Chapter 11 — Operating the Control Plane: Delegation, Automation and Evidence](../b08-ddi/11-operating-the-control-plane.md#certificates-and-the-clm-platform): 3 of 5 certificate kinds renewed by the platform
+- [Book 09 — Network & Transport, Chapter 07 — Network Access Control: 802.1X and RADIUS](../b09-network/07-network-access-control.md#certificates-and-the-clm-platform): 4 of 6 certificate kinds renewed by the platform
+- [Book 10 — Cloud Boundary & Landing Zone, Appendix B — Platform Host Interface Reference](../b10-cloud-boundary/appendix-b-platform-host-interfaces.md#certificates-and-the-clm-platform): 2 of 5 certificate kinds renewed by the platform
+- [Book 11 — Zero Trust & Assessment, Chapter 08 — Close Before You Assess](../b11-zero-trust/08-close-before-you-assess.md#certificates-and-the-clm-platform): 1 of 4 certificate kinds renewed by the platform
+- [Book 12 — Security Operations & Telemetry, Chapter 05 — From Log Warehouse to Detection: SIEM and XDR](../b12-security-operations/05-from-log-warehouse-to-detection.md#certificates-and-the-clm-platform): 3 of 4 certificate kinds renewed by the platform
+- [Book 13 — Governance, Drift & Evidence, Appendix B — Ticket-to-Machine Reference](../b13-governance/appendix-b-ticket-to-machine-reference.md#certificates-and-the-clm-platform): 2 of 5 certificate kinds renewed by the platform
+- [Book 14 — Federal Compliance & Authorization, Appendix A — Control Crosswalk](../b14-compliance/appendix-a-control-crosswalk.md#certificates-and-the-clm-platform): 1 of 4 certificate kinds renewed by the platform
+- [Book 15 — Compliance Automation & Day-2 Operations, Appendix A — Help Desk Task Reference](../b15-day2-operations/appendix-a-help-desk-task-reference.md#certificates-and-the-clm-platform): 1 of 4 certificate kinds renewed by the platform
+- [Book 16 — People: Training & Education, Chapter 04 — The Implementation Track](../b16-people/04-the-implementation-track.md#certificates-and-the-clm-platform): 1 of 3 certificate kinds renewed by the platform
+- [Book 17 — AI Identity Governance, Chapter 06 — Credentials, Least Privilege and Access Policy for AI](../b17-ai-identity/06-credentials-and-least-privilege.md#certificates-and-the-clm-platform): 0 of 3 certificate kinds renewed by the platform
+
 ## Key takeaways
 
 - The platform is a cluster of Windows servers on one SQL Server database; a server's role is the set of components switched on.

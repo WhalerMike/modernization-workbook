@@ -68,7 +68,7 @@ The frameworks the workbook relies on most are not on the usual modernization li
 
 ## Coverage matrix
 
-| Framework | B00 | B01 | B02 | B03 | B04 | B05 | B06 | B07 | B08 | B09 | B10 | B11 | B12 | B13 | B14 | B15 | B16 | B17 |
+| Framework | 00 Orientation & Program | 01 The Transformation Arc | 02 Identity & Directory | 03 HR-Driven Identity | 04 Access & Privilege | 05 Devices & Endpoints | 06 Data Platform: SQL Server Identity | 07 PKI & Certificates | 08 DNS, DHCP & IPAM | 09 Network & Transport | 10 Cloud Boundary & Landing Zone | 11 Zero Trust & Assessment | 12 Security Operations & Telemetry | 13 Governance, Drift & Evidence | 14 Federal Compliance & Authorization | 15 Compliance Automation & Day-2 Operations | 16 People: Training & Education | 17 AI Identity Governance |
 |--------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | NIST SP 800-53 Rev. 5 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
 | FedRAMP | 2 | 3 | 2 | 1 | 3 | 3 | 3 | 1 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 |
@@ -125,34 +125,34 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| 15 U.S.C. §7443 | National cybersecurity awareness and education program | B16 | Cited as current |
-| 21st Century IDEA (Pub. L. 115-336) | Website and digital-service criteria; §3(c) intranets | B00, B15 | Cited as current |
-| 26 U.S.C. §6103 | Confidentiality of federal tax information | B12 | Cited as current |
-| 31 U.S.C. §1105(a) | President's budget submission | B09 | Cited as current |
-| 40 U.S.C. §11331 | Federal information systems standards (NIST standards made compulsory) | B14 | Cited as current |
-| 44 U.S.C. §3101 (and chapters 31, 33) | Records management by agency heads | B00 | Cited as current |
-| 5 U.S.C. §4118 | Authority for training regulations | B14, B16 | Cited as current |
-| 6 U.S.C. §1523 | Federal cybersecurity requirements: single sign-on for public websites; MFA for remote and privileged access | B00 | Cited as current |
-| Advancing American AI Act | AI use-case inventory statute | B17 | Cited as current |
-| Chief Financial Officers Act of 1990 | Defines the covered 'CFO Act agencies' | B00, B03, B09, B16, B17 | Cited as current |
-| Chief Human Capital Officers Act (5 U.S.C. §§1401-1402) | CHCO Act | B16 | Cited as current |
-| Clinger-Cohen Act (40 U.S.C. §11312, §11313) | Capital planning and investment control | B00, B09 | Cited as current |
-| Computer Matching and Privacy Protection Act (Privacy Act matching provisions) | Computer matching agreements and notices | B14 | Cited as current |
-| E-Government Act of 2002 (Pub. L. 107-347), incl. §208 | E-Government Act; §208 privacy impact assessments and web privacy policies | B03, B14, B16 | Cited as current |
-| Federal Acquisition Supply Chain Security Act of 2018 (41 U.S.C. §1326 et seq.) | FASCSA; FASC exclusion and removal orders | B03, B14 | Cited as current |
-| Federal Cybersecurity Enhancement Act of 2015 (6 U.S.C. §663 note) | Basis for CISA intrusion detection/prevention, incl. Protective DNS | B08, B09 | Cited as current |
-| Federal Cybersecurity Workforce Assessment Act of 2015 (Pub. L. 114-113, div. N, title III; 5 U.S.C. 301 note) | Cybersecurity position coding | B16 | Cited as current |
-| FedRAMP Authorization Act (2022) | Codified FedRAMP; requires OMB guidance on agency use | B13, B14 | Cited as current |
-| FISMA 2014 (44 U.S.C. ch. 35 subch. II; §§3553, 3554) | Federal Information Security Modernization Act of 2014 | B09, B10, B11, B12, B13, B14, B15, B16, B17 | Cited as current |
-| FITARA (40 U.S.C. §11319) | Federal IT Acquisition Reform Act: CIO approval of IT budgets and contracts | B00, B17 | Cited as current |
-| Foundations for Evidence-Based Policymaking Act of 2018 (Pub. L. 115-435; 44 U.S.C. 3502, 3511, 3520) | Evidence Act: data inventory, Chief Data Officer | B01, B02, B03, B17 | Cited as current |
-| Kari's Law and RAY BAUM'S Act §506 (47 CFR part 9, §§9.3, 9.16) | Direct 911 dialing and dispatchable location for multi-line telephone systems | B15 | Cited as current |
-| Modernizing Government Technology Act (Pub. L. 115-91, §1078) | MGT Act; created the Technology Modernization Fund | B00 | Cited as current |
-| NDAA for FY2021 (Pub. L. 116-283), §9401(g) | Amended the Workforce Assessment Act | B16 | Cited as current |
-| OPEN Government Data Act (Evidence Act Title II) | Open, Public, Electronic and Necessary Government Data Act | B02 | Cited as current |
-| Privacy Act of 1974 (5 U.S.C. §552a; Pub. L. 93-579) | Privacy Act | B03, B12, B14 | Cited as current |
-| Section 508 of the Rehabilitation Act (29 U.S.C. §794d) | Accessibility of federal ICT | B00, B04, B15, B16 | Cited as current |
-| Social Security Number Fraud Prevention Act of 2017 (Pub. L. 115-59) | Limits SSNs on mailed documents | B14 | Cited as current |
+| 15 U.S.C. §7443 | National cybersecurity awareness and education program | Book 16 (People: Training & Education) | Cited as current |
+| 21st Century IDEA (Pub. L. 115-336) | Website and digital-service criteria; §3(c) intranets | Book 00 (Orientation & Program); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| 26 U.S.C. §6103 | Confidentiality of federal tax information | Book 12 (Security Operations & Telemetry) | Cited as current |
+| 31 U.S.C. §1105(a) | President's budget submission | Book 09 (Network & Transport) | Cited as current |
+| 40 U.S.C. §11331 | Federal information systems standards (NIST standards made compulsory) | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| 44 U.S.C. §3101 (and chapters 31, 33) | Records management by agency heads | Book 00 (Orientation & Program) | Cited as current |
+| 5 U.S.C. §4118 | Authority for training regulations | Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| 6 U.S.C. §1523 | Federal cybersecurity requirements: single sign-on for public websites; MFA for remote and privileged access | Book 00 (Orientation & Program) | Cited as current |
+| Advancing American AI Act | AI use-case inventory statute | Book 17 (AI Identity Governance) | Cited as current |
+| Chief Financial Officers Act of 1990 | Defines the covered 'CFO Act agencies' | Book 00 (Orientation & Program); Book 03 (HR-Driven Identity); Book 09 (Network & Transport); Book 16 (People: Training & Education); Book 17 (AI Identity Governance) | Cited as current |
+| Chief Human Capital Officers Act (5 U.S.C. §§1401-1402) | CHCO Act | Book 16 (People: Training & Education) | Cited as current |
+| Clinger-Cohen Act (40 U.S.C. §11312, §11313) | Capital planning and investment control | Book 00 (Orientation & Program); Book 09 (Network & Transport) | Cited as current |
+| Computer Matching and Privacy Protection Act (Privacy Act matching provisions) | Computer matching agreements and notices | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| E-Government Act of 2002 (Pub. L. 107-347), incl. §208 | E-Government Act; §208 privacy impact assessments and web privacy policies | Book 03 (HR-Driven Identity); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| Federal Acquisition Supply Chain Security Act of 2018 (41 U.S.C. §1326 et seq.) | FASCSA; FASC exclusion and removal orders | Book 03 (HR-Driven Identity); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| Federal Cybersecurity Enhancement Act of 2015 (6 U.S.C. §663 note) | Basis for CISA intrusion detection/prevention, incl. Protective DNS | Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport) | Cited as current |
+| Federal Cybersecurity Workforce Assessment Act of 2015 (Pub. L. 114-113, div. N, title III; 5 U.S.C. 301 note) | Cybersecurity position coding | Book 16 (People: Training & Education) | Cited as current |
+| FedRAMP Authorization Act (2022) | Codified FedRAMP; requires OMB guidance on agency use | Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| FISMA 2014 (44 U.S.C. ch. 35 subch. II; §§3553, 3554) | Federal Information Security Modernization Act of 2014 | Book 09 (Network & Transport); Book 10 (Cloud Boundary & Landing Zone); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education); Book 17 (AI Identity Governance) | Cited as current |
+| FITARA (40 U.S.C. §11319) | Federal IT Acquisition Reform Act: CIO approval of IT budgets and contracts | Book 00 (Orientation & Program); Book 17 (AI Identity Governance) | Cited as current |
+| Foundations for Evidence-Based Policymaking Act of 2018 (Pub. L. 115-435; 44 U.S.C. 3502, 3511, 3520) | Evidence Act: data inventory, Chief Data Officer | Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 17 (AI Identity Governance) | Cited as current |
+| Kari's Law and RAY BAUM'S Act §506 (47 CFR part 9, §§9.3, 9.16) | Direct 911 dialing and dispatchable location for multi-line telephone systems | Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| Modernizing Government Technology Act (Pub. L. 115-91, §1078) | MGT Act; created the Technology Modernization Fund | Book 00 (Orientation & Program) | Cited as current |
+| NDAA for FY2021 (Pub. L. 116-283), §9401(g) | Amended the Workforce Assessment Act | Book 16 (People: Training & Education) | Cited as current |
+| OPEN Government Data Act (Evidence Act Title II) | Open, Public, Electronic and Necessary Government Data Act | Book 02 (Identity & Directory) | Cited as current |
+| Privacy Act of 1974 (5 U.S.C. §552a; Pub. L. 93-579) | Privacy Act | Book 03 (HR-Driven Identity); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| Section 508 of the Rehabilitation Act (29 U.S.C. §794d) | Accessibility of federal ICT | Book 00 (Orientation & Program); Book 04 (Access & Privilege); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
+| Social Security Number Fraud Prevention Act of 2017 (Pub. L. 115-59) | Limits SSNs on mailed documents | Book 14 (Federal Compliance & Authorization) | Cited as current |
 
 :::
 
@@ -161,15 +161,15 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| 32 CFR Part 2002 | Controlled Unclassified Information | B12 | Cited as current |
-| 36 CFR Part 1194 | Section 508 ICT Standards | B04, B15, B16 | Cited as current |
-| 36 CFR part 1236 (incl. §§1236.10, 1236.14, 1236.20, 1236.22) | NARA: electronic records management | B00, B01, B13 | Cited as current |
-| 36 CFR parts 1225, 1226 and 1230 | NARA: scheduling, disposition, unlawful destruction | B00 | Cited as current |
-| 36 CFR §1220.34 | NARA: agency records management program requirements | B01, B13 | Cited as current |
-| 5 CFR 930.301 | OPM: information security awareness and training | B14, B16 | Cited as current |
-| 5 CFR part 410 (§410.201, §410.202) | OPM: training | B16 | Cited as current |
-| FAR 48 CFR 1.602-1 | Federal Acquisition Regulation: contracting officer authority | B09, B10 | Cited as current |
-| HIPAA Privacy Rule (45 CFR 164.500) | Health Insurance Portability and Accountability Act | B14, B15 | Cited as current |
+| 32 CFR Part 2002 | Controlled Unclassified Information | Book 12 (Security Operations & Telemetry) | Cited as current |
+| 36 CFR Part 1194 | Section 508 ICT Standards | Book 04 (Access & Privilege); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
+| 36 CFR part 1236 (incl. §§1236.10, 1236.14, 1236.20, 1236.22) | NARA: electronic records management | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 13 (Governance, Drift & Evidence) | Cited as current |
+| 36 CFR parts 1225, 1226 and 1230 | NARA: scheduling, disposition, unlawful destruction | Book 00 (Orientation & Program) | Cited as current |
+| 36 CFR §1220.34 | NARA: agency records management program requirements | Book 01 (The Transformation Arc); Book 13 (Governance, Drift & Evidence) | Cited as current |
+| 5 CFR 930.301 | OPM: information security awareness and training | Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| 5 CFR part 410 (§410.201, §410.202) | OPM: training | Book 16 (People: Training & Education) | Cited as current |
+| FAR 48 CFR 1.602-1 | Federal Acquisition Regulation: contracting officer authority | Book 09 (Network & Transport); Book 10 (Cloud Boundary & Landing Zone) | Cited as current |
+| HIPAA Privacy Rule (45 CFR 164.500) | Health Insurance Portability and Accountability Act | Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
 
 :::
 
@@ -178,23 +178,23 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| EO 13556 | Controlled Unclassified Information | B12 | Cited as current |
-| EO 13587 | Classified-network safeguarding; insider threat programs | B14 | Cited as current |
-| EO 13694 | Sanctions for significant malicious cyber-enabled activities | B09, B14 | Amended by EO 14306 |
-| EO 13960 | Promoting the use of trustworthy AI in the federal government (2020) | B17 | Cited as current |
-| EO 14028 | Improving the Nation's Cybersecurity | B01, B09, B11, B14 | In effect; books note EO 14306 amends EO 13694 and EO 14144, not EO 14028 |
-| EO 14110 | Safe, secure and trustworthy AI (2023) | B17 | Revoked |
-| EO 14144 | Strengthening and promoting innovation in the Nation's cybersecurity (Jan 2025) | B09, B14 | Amended by EO 14306 (struck §5, rewrote software provisions) |
-| EO 14179 | Removing barriers to American leadership in AI | B17 | Cited as current |
-| EO 14306 | Sustaining select efforts to strengthen the Nation's cybersecurity | B09, B14 | Cited as current |
-| EO 14319 | Preventing woke AI in the federal government | B17 | Cited as current |
-| EO 14409 | Promoting advanced AI innovation and security (June 2, 2026) | B17 | Cited as current |
-| EO 14412 | Securing the Nation against advanced cryptographic attacks (June 22, 2026) | B09 | Cited as current |
-| EO 14434 | AI terminology order (Sept 29, 2026) | B17 | Cited as current |
-| Federal Continuity Directive 1 | Continuity of mission essential functions | B14 | Cited as current |
-| HSPD-12 | Common identification standard for federal employees and contractors | B03 | Cited as current |
-| NITTF Insider Threat Minimum Standards | National insider threat policy minimum standards | B14 | Cited as current |
-| White House AI Action Plan (July 2025) | America's AI Action Plan; NIST AI RMF revision is tied to it | B17 | Cited as current |
+| EO 13556 | Controlled Unclassified Information | Book 12 (Security Operations & Telemetry) | Cited as current |
+| EO 13587 | Classified-network safeguarding; insider threat programs | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| EO 13694 | Sanctions for significant malicious cyber-enabled activities | Book 09 (Network & Transport); Book 14 (Federal Compliance & Authorization) | Amended by EO 14306 |
+| EO 13960 | Promoting the use of trustworthy AI in the federal government (2020) | Book 17 (AI Identity Governance) | Cited as current |
+| EO 14028 | Improving the Nation's Cybersecurity | Book 01 (The Transformation Arc); Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 14 (Federal Compliance & Authorization) | In effect; books note EO 14306 amends EO 13694 and EO 14144, not EO 14028 |
+| EO 14110 | Safe, secure and trustworthy AI (2023) | Book 17 (AI Identity Governance) | Revoked |
+| EO 14144 | Strengthening and promoting innovation in the Nation's cybersecurity (Jan 2025) | Book 09 (Network & Transport); Book 14 (Federal Compliance & Authorization) | Amended by EO 14306 (struck §5, rewrote software provisions) |
+| EO 14179 | Removing barriers to American leadership in AI | Book 17 (AI Identity Governance) | Cited as current |
+| EO 14306 | Sustaining select efforts to strengthen the Nation's cybersecurity | Book 09 (Network & Transport); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| EO 14319 | Preventing woke AI in the federal government | Book 17 (AI Identity Governance) | Cited as current |
+| EO 14409 | Promoting advanced AI innovation and security (June 2, 2026) | Book 17 (AI Identity Governance) | Cited as current |
+| EO 14412 | Securing the Nation against advanced cryptographic attacks (June 22, 2026) | Book 09 (Network & Transport) | Cited as current |
+| EO 14434 | AI terminology order (Sept 29, 2026) | Book 17 (AI Identity Governance) | Cited as current |
+| Federal Continuity Directive 1 | Continuity of mission essential functions | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| HSPD-12 | Common identification standard for federal employees and contractors | Book 03 (HR-Driven Identity) | Cited as current |
+| NITTF Insider Threat Minimum Standards | National insider threat policy minimum standards | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| White House AI Action Plan (July 2025) | America's AI Action Plan; NIST AI RMF revision is tied to it | Book 17 (AI Identity Governance) | Cited as current |
 
 :::
 
@@ -203,41 +203,41 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| 25-Point Implementation Plan to Reform Federal IT Management (2010), incl. 'Cloud First' | OMB IT reform plan | B01 | Cited as history |
-| M-03-22 | Privacy provisions of the E-Government Act (PIAs, web privacy policies) | B03, B14 | Tracking rules (§III(D)(2)(v)) rescinded by M-10-22; rest cited as in force |
-| M-08-05 | Implementation of Trusted Internet Connections | B09 | Rescinded by M-19-26 |
-| M-08-16 | TIC guidance | B09 | Rescinded by M-19-26 |
-| M-08-23 | Securing the federal government's DNS infrastructure (DNSSEC) | B08 | Cited as current |
-| M-08-27 | TIC compliance guidance | B09 | Rescinded by M-19-26 |
-| M-09-32 | Update on the TIC initiative | B09 | Rescinded by M-19-26 |
-| M-10-22 | Online use of web measurement and customization technologies | B14 | Cited as current |
-| M-17-12 | Preparing for and responding to a breach of PII | B14 | Cited as current |
-| M-19-16 | Centralized mission support capabilities (QSMOs) | B03 | Cited as current |
-| M-19-17 | Improved identity, credential and access management | B00, B01, B02, B03, B13, B15 | Cited as current |
-| M-19-18 (Federal Data Strategy) | Federal Data Strategy: a framework for consistency | B01, B03 | Memo not rescinded; the strategy's website is being retired |
-| M-19-23 | Phase 1 implementation of the Evidence Act | B03 | Cited as current |
-| M-19-26 | Update to the TIC initiative (TIC 3.0) | B03, B09, B12 | Operative; no rescinding instrument found |
-| M-21-07 | Completing the transition to IPv6 | B08, B14 | Cited as current |
-| M-21-31 | Event logging (EL0-EL3) | B00, B01, B02, B08, B09, B11, B12, B14 | Rescinded by M-26-14 (May 22, 2026) |
-| M-22-01 | Improving detection through endpoint detection and response | B11 | Cited as current |
-| M-22-09 | Federal Zero Trust strategy | B00, B01, B02, B03, B04, B06, B07, B08, B09, B11, B15, B16 | Not rescinded; FY2024 deadlines passed; logging action read through M-26-14 |
-| M-22-18 | Secure software supply chain (attestation) | B00, B14 | Rescinded by M-26-05 (Jan 23, 2026) |
-| M-23-07 | Update to transition to electronic records (with NARA) | B00 | Cited as current |
-| M-23-16 | Update to M-22-18 | B00, B14 | Rescinded by M-26-05 (Jan 23, 2026) |
-| M-23-22 | Delivering a digital-first public experience | B00 | Cited as current |
-| M-24-08 | Digital accessibility and Section 508 management | B04, B15, B16 | Cited as current |
-| M-24-10 | Governance and risk management for agency use of AI | B17 | Replaced by M-25-21 (Apr 3, 2025) |
-| M-24-15 | Modernizing FedRAMP | B10, B13, B14 | In force; rescinded and replaced the 2011 FedRAMP memorandum |
-| M-24-18 | Responsible acquisition of AI | B17 | Rescinded by M-25-22 (Apr 3, 2025) |
-| M-25-21 | Federal use of AI: innovation, governance, public trust | B14, B17 | Cited as current |
-| M-25-22 | Efficient acquisition of AI | B17 | Cited as current |
-| M-26-04 | Unbiased AI principles (LLM procurement) | B17 | Cited as current |
-| M-26-05 | Risk-based approach to software and hardware security | B00, B14 | Cited as current |
-| M-26-10 | Transparency, accountability and oversight of federal technology (FITARA) | B00, B14, B17 | In force; monthly contract reporting sunsets after the October 2026 report |
-| M-26-14 | Agency logging and network visibility | B00, B01, B02, B08, B09, B11, B12, B13, B14 | Cited as current |
-| M-26-15 | Migration to post-quantum cryptography | B07, B09, B14 | Cited as current |
-| M-26-18 | Login.gov as the universal sign-on for public services | B00 | Cited as current |
-| OMB FedRAMP memorandum of Dec 8, 2011 | Original FedRAMP policy memorandum | B13 | Rescinded and replaced by M-24-15 |
+| 25-Point Implementation Plan to Reform Federal IT Management (2010), incl. 'Cloud First' | OMB IT reform plan | Book 01 (The Transformation Arc) | Cited as history |
+| M-03-22 | Privacy provisions of the E-Government Act (PIAs, web privacy policies) | Book 03 (HR-Driven Identity); Book 14 (Federal Compliance & Authorization) | Tracking rules (§III(D)(2)(v)) rescinded by M-10-22; rest cited as in force |
+| M-08-05 | Implementation of Trusted Internet Connections | Book 09 (Network & Transport) | Rescinded by M-19-26 |
+| M-08-16 | TIC guidance | Book 09 (Network & Transport) | Rescinded by M-19-26 |
+| M-08-23 | Securing the federal government's DNS infrastructure (DNSSEC) | Book 08 (DNS, DHCP & IPAM) | Cited as current |
+| M-08-27 | TIC compliance guidance | Book 09 (Network & Transport) | Rescinded by M-19-26 |
+| M-09-32 | Update on the TIC initiative | Book 09 (Network & Transport) | Rescinded by M-19-26 |
+| M-10-22 | Online use of web measurement and customization technologies | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| M-17-12 | Preparing for and responding to a breach of PII | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| M-19-16 | Centralized mission support capabilities (QSMOs) | Book 03 (HR-Driven Identity) | Cited as current |
+| M-19-17 | Improved identity, credential and access management | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 13 (Governance, Drift & Evidence); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| M-19-18 (Federal Data Strategy) | Federal Data Strategy: a framework for consistency | Book 01 (The Transformation Arc); Book 03 (HR-Driven Identity) | Memo not rescinded; the strategy's website is being retired |
+| M-19-23 | Phase 1 implementation of the Evidence Act | Book 03 (HR-Driven Identity) | Cited as current |
+| M-19-26 | Update to the TIC initiative (TIC 3.0) | Book 03 (HR-Driven Identity); Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry) | Operative; no rescinding instrument found |
+| M-21-07 | Completing the transition to IPv6 | Book 08 (DNS, DHCP & IPAM); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| M-21-31 | Event logging (EL0-EL3) | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Rescinded by M-26-14 (May 22, 2026) |
+| M-22-01 | Improving detection through endpoint detection and response | Book 11 (Zero Trust & Assessment) | Cited as current |
+| M-22-09 | Federal Zero Trust strategy | All except Book 05 (Devices & Endpoints); Book 10 (Cloud Boundary & Landing Zone); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 17 (AI Identity Governance) | Not rescinded; FY2024 deadlines passed; logging action read through M-26-14 |
+| M-22-18 | Secure software supply chain (attestation) | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization) | Rescinded by M-26-05 (Jan 23, 2026) |
+| M-23-07 | Update to transition to electronic records (with NARA) | Book 00 (Orientation & Program) | Cited as current |
+| M-23-16 | Update to M-22-18 | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization) | Rescinded by M-26-05 (Jan 23, 2026) |
+| M-23-22 | Delivering a digital-first public experience | Book 00 (Orientation & Program) | Cited as current |
+| M-24-08 | Digital accessibility and Section 508 management | Book 04 (Access & Privilege); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
+| M-24-10 | Governance and risk management for agency use of AI | Book 17 (AI Identity Governance) | Replaced by M-25-21 (Apr 3, 2025) |
+| M-24-15 | Modernizing FedRAMP | Book 10 (Cloud Boundary & Landing Zone); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | In force; rescinded and replaced the 2011 FedRAMP memorandum |
+| M-24-18 | Responsible acquisition of AI | Book 17 (AI Identity Governance) | Rescinded by M-25-22 (Apr 3, 2025) |
+| M-25-21 | Federal use of AI: innovation, governance, public trust | Book 14 (Federal Compliance & Authorization); Book 17 (AI Identity Governance) | Cited as current |
+| M-25-22 | Efficient acquisition of AI | Book 17 (AI Identity Governance) | Cited as current |
+| M-26-04 | Unbiased AI principles (LLM procurement) | Book 17 (AI Identity Governance) | Cited as current |
+| M-26-05 | Risk-based approach to software and hardware security | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| M-26-10 | Transparency, accountability and oversight of federal technology (FITARA) | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization); Book 17 (AI Identity Governance) | In force; monthly contract reporting sunsets after the October 2026 report |
+| M-26-14 | Agency logging and network visibility | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| M-26-15 | Migration to post-quantum cryptography | Book 07 (PKI & Certificates); Book 09 (Network & Transport); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| M-26-18 | Login.gov as the universal sign-on for public services | Book 00 (Orientation & Program) | Cited as current |
+| OMB FedRAMP memorandum of Dec 8, 2011 | Original FedRAMP policy memorandum | Book 13 (Governance, Drift & Evidence) | Rescinded and replaced by M-24-15 |
 
 :::
 
@@ -246,9 +246,9 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| Circular A-108 | Privacy Act review, reporting and publication (SORNs, matching notices) | B03, B14 | Cited as current |
-| Circular A-11 (2025), incl. §51, §55 and the Capital Programming Guide v3.0 | Preparation, submission and execution of the budget | B00, B09 | 2025 edition has no Exhibit 300 or Section 300 |
-| Circular A-130 (2016) | Managing information as a strategic resource | B00, B03, B10, B13, B14, B16, B17 | Cited as current |
+| Circular A-108 | Privacy Act review, reporting and publication (SORNs, matching notices) | Book 03 (HR-Driven Identity); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| Circular A-11 (2025), incl. §51, §55 and the Capital Programming Guide v3.0 | Preparation, submission and execution of the budget | Book 00 (Orientation & Program); Book 09 (Network & Transport) | 2025 edition has no Exhibit 300 or Section 300 |
+| Circular A-130 (2016) | Managing information as a strategic resource | Book 00 (Orientation & Program); Book 03 (HR-Driven Identity); Book 10 (Cloud Boundary & Landing Zone); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education); Book 17 (AI Identity Governance) | Cited as current |
 
 :::
 
@@ -257,40 +257,40 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| BOD 18-01 | Enhance email and web security | B08, B09, B14 | Cited as current |
-| BOD 19-02 | Vulnerability remediation for internet-accessible systems | B09, B12, B13, B14 | Revoked by BOD 26-04 (June 10, 2026) |
-| BOD 22-01 | Known exploited vulnerabilities | B09, B12, B13, B14 | Revoked by BOD 26-04 (June 10, 2026) |
-| BOD 23-01 | Asset visibility and vulnerability detection | B10, B11, B12, B14, B15, B17 | Cited as current |
-| BOD 23-02 | Internet-exposed management interfaces | B09, B14 | Cited as current |
-| BOD 25-01 (incl. Required Configurations) | Secure practices for cloud services | B00, B01, B02, B04, B11, B12, B13, B14, B15, B17 | Cited as current |
-| BOD 26-02 | End-of-support edge devices | B00, B09, B12, B14 | Cited as current |
-| BOD 26-04 | Prioritizing security updates based on risk | B09, B12, B13, B14, B15, B16, B17 | Cited as current |
-| CISA Cloud Interface Reference Architecture (NCPS/CLAW) | Cloud interface reference architecture | B09, B12 | Cited as current |
-| CISA Comprehensive Log Aggregation Warehouse (CLAW) | CISA log ingestion | B09, B11, B12 | Cited as current |
-| CISA Cyber Hygiene scanning | Vulnerability scanning service | B12, B14 | Cited as current |
-| CISA Encrypted DNS Implementation Guidance | Encrypted DNS under M-22-09 | B08, B09 | Cited as current |
-| CISA Federal Incident Notification Guidelines (2017) | Federal incident reporting | B12, B13, B14 | Cited as current |
-| CISA Logging Reference Architecture (with M-26-14 minimum logging baseline and maturity model) | Logging reference architecture | B00, B01, B02, B08, B09, B11, B12, B13, B14 | Cited as current |
-| CISA Microsoft Expanded Cloud Logs Implementation Playbook | Expanded cloud logs | B12 | Cited as current |
-| CISA Protective DNS | Protective DNS resolver (required for all egress resolution) | B08, B09, B10, B12 | Cited as current |
-| CISA SASE guidance (June 2026) | SASE guidance for TIC | B01, B09 | Cited as current |
-| CISA SBOM minimum elements (2025 draft) and HBOM framework | Bill-of-materials guidance | B14 | Cited as current |
-| CISA SCuBA Secure Configuration Baselines (M365, Entra ID) and ScubaGear | Secure Cloud Business Applications | B00, B01, B02, B04, B11, B12, B13, B14, B15, B17 | Cited as current |
-| CISA Vulnrichment / SSVC | Exploitation and impact metadata on CVE records | B12 | Cited as current |
-| CISA Zero Trust Maturity Model v2.0 | ZTMM | B00, B01, B02, B03, B04, B06, B08, B09, B11, B13 | Cited as current |
-| Continuous Diagnostics and Mitigation (CDM) | CDM program and dashboards | B08, B09, B11, B12, B13, B14, B15, B17 | Cited as current |
-| DHS TIC Compliance Validation | Legacy manual TIC validation | B09, B12 | Replaced by continuous validation through CDM |
-| ED 25-03 (V1) | Compromise of Cisco devices | B14 | Original required actions superseded by V1 (Apr 23, 2026) |
-| ED 26-01 | Mitigate vulnerabilities in F5 devices | B14 | Cited as current |
-| ED 26-03 (V1) | Cisco SD-WAN vulnerabilities | B09, B12, B14 | Original required actions superseded by V1 (Mar 11, 2026) |
-| Known Exploited Vulnerabilities (KEV) catalog | KEV catalog | B09, B11, B12, B13, B14, B15 | Cited as current |
-| NCPS / EINSTEIN (incl. E3A) | National Cybersecurity Protection System | B08, B09, B12 | E3A DNS sinkholing succeeded by Protective DNS |
-| Ten emergency directives of 2019-2024 (SolarWinds Orion, on-prem Exchange, Print Spooler, VMware, ...) | Retired legacy EDs | B14 | Retired by CISA Jan 8, 2026 |
-| TIC 2.x (legacy TIC) | Legacy TIC architecture | B09 | Superseded by TIC 3.0 (M-19-26) |
-| TIC 3.0 (program and core guidance) | Trusted Internet Connections 3.0 | B00, B01, B03, B08, B09, B10, B11, B12, B14, B16 | Cited as current |
-| TIC 3.0 Program Guidebook (v1.2, Sept 2026) | TIC program guidebook | B09, B12 | Cited as current |
-| TIC 3.0 Security Capabilities Catalog (v3.3) | TIC security capabilities and PEP capabilities | B08, B09, B12 | Cited as current |
-| TIC 3.0 use cases (Traditional, Branch Office, Remote User, Cloud) and Use Case Handbook | TIC use cases | B09 | Cited as current |
+| BOD 18-01 | Enhance email and web security | Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| BOD 19-02 | Vulnerability remediation for internet-accessible systems | Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | Revoked by BOD 26-04 (June 10, 2026) |
+| BOD 22-01 | Known exploited vulnerabilities | Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | Revoked by BOD 26-04 (June 10, 2026) |
+| BOD 23-01 | Asset visibility and vulnerability detection | Book 10 (Cloud Boundary & Landing Zone); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Cited as current |
+| BOD 23-02 | Internet-exposed management interfaces | Book 09 (Network & Transport); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| BOD 25-01 (incl. Required Configurations) | Secure practices for cloud services | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 04 (Access & Privilege); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Cited as current |
+| BOD 26-02 | End-of-support edge devices | Book 00 (Orientation & Program); Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| BOD 26-04 | Prioritizing security updates based on risk | Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education); Book 17 (AI Identity Governance) | Cited as current |
+| CISA Cloud Interface Reference Architecture (NCPS/CLAW) | Cloud interface reference architecture | Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry) | Cited as current |
+| CISA Comprehensive Log Aggregation Warehouse (CLAW) | CISA log ingestion | Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry) | Cited as current |
+| CISA Cyber Hygiene scanning | Vulnerability scanning service | Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| CISA Encrypted DNS Implementation Guidance | Encrypted DNS under M-22-09 | Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport) | Cited as current |
+| CISA Federal Incident Notification Guidelines (2017) | Federal incident reporting | Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| CISA Logging Reference Architecture (with M-26-14 minimum logging baseline and maturity model) | Logging reference architecture | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| CISA Microsoft Expanded Cloud Logs Implementation Playbook | Expanded cloud logs | Book 12 (Security Operations & Telemetry) | Cited as current |
+| CISA Protective DNS | Protective DNS resolver (required for all egress resolution) | Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 10 (Cloud Boundary & Landing Zone); Book 12 (Security Operations & Telemetry) | Cited as current |
+| CISA SASE guidance (June 2026) | SASE guidance for TIC | Book 01 (The Transformation Arc); Book 09 (Network & Transport) | Cited as current |
+| CISA SBOM minimum elements (2025 draft) and HBOM framework | Bill-of-materials guidance | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| CISA SCuBA Secure Configuration Baselines (M365, Entra ID) and ScubaGear | Secure Cloud Business Applications | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 04 (Access & Privilege); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Cited as current |
+| CISA Vulnrichment / SSVC | Exploitation and impact metadata on CVE records | Book 12 (Security Operations & Telemetry) | Cited as current |
+| CISA Zero Trust Maturity Model v2.0 | ZTMM | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 04 (Access & Privilege); Book 06 (Data Platform: SQL Server Identity); Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 13 (Governance, Drift & Evidence) | Cited as current |
+| Continuous Diagnostics and Mitigation (CDM) | CDM program and dashboards | Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Cited as current |
+| DHS TIC Compliance Validation | Legacy manual TIC validation | Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry) | Replaced by continuous validation through CDM |
+| ED 25-03 (V1) | Compromise of Cisco devices | Book 14 (Federal Compliance & Authorization) | Original required actions superseded by V1 (Apr 23, 2026) |
+| ED 26-01 | Mitigate vulnerabilities in F5 devices | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| ED 26-03 (V1) | Cisco SD-WAN vulnerabilities | Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Original required actions superseded by V1 (Mar 11, 2026) |
+| Known Exploited Vulnerabilities (KEV) catalog | KEV catalog | Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| NCPS / EINSTEIN (incl. E3A) | National Cybersecurity Protection System | Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry) | E3A DNS sinkholing succeeded by Protective DNS |
+| Ten emergency directives of 2019-2024 (SolarWinds Orion, on-prem Exchange, Print Spooler, VMware, ...) | Retired legacy EDs | Book 14 (Federal Compliance & Authorization) | Retired by CISA Jan 8, 2026 |
+| TIC 2.x (legacy TIC) | Legacy TIC architecture | Book 09 (Network & Transport) | Superseded by TIC 3.0 (M-19-26) |
+| TIC 3.0 (program and core guidance) | Trusted Internet Connections 3.0 | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 03 (HR-Driven Identity); Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 10 (Cloud Boundary & Landing Zone); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| TIC 3.0 Program Guidebook (v1.2, Sept 2026) | TIC program guidebook | Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry) | Cited as current |
+| TIC 3.0 Security Capabilities Catalog (v3.3) | TIC security capabilities and PEP capabilities | Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry) | Cited as current |
+| TIC 3.0 use cases (Traditional, Branch Office, Remote User, Cloud) and Use Case Handbook | TIC use cases | Book 09 (Network & Transport) | Cited as current |
 
 :::
 
@@ -299,58 +299,58 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| FIPS 140-2 | Cryptographic modules (prior) | B07, B09, B10, B12, B14 | Certificates moved to CMVP Historical List Sept 22, 2026; existing systems only |
-| FIPS 140-3 (and FIPS 140 generally), CMVP | Cryptographic module security requirements and validation | B04, B07, B09, B10, B12, B14 | Cited as current |
-| FIPS 186-5 | Digital Signature Standard | B13 | Cited as current |
-| FIPS 198-1 | HMAC | B13 | Cited as current |
-| FIPS 199 | Security categorization | B13, B14, B16 | Cited as current |
-| FIPS 200 | Minimum security requirements | B14, B16 | Cited as current |
-| FIPS 201-3 | Personal Identity Verification (PIV) | B03, B06, B07 | Cited as current |
-| FIPS 203 | ML-KEM | B09 | Cited as current |
-| NIST AI 100-1 (AI RMF) | AI Risk Management Framework | B17 | Under revision; no revised version published |
-| NIST AI 600-1 | Generative AI Profile | B17 | Cited as current |
-| NIST Cybersecurity Framework 2.0 | CSF 2.0 | B00, B09, B12, B14, B16 | Cited as current |
-| NIST IR 8547 (initial public draft) | Transition to post-quantum cryptography standards | B07 | Draft |
-| NIST National Checklist Program | Configuration checklist repository | B12 | Cited as current |
-| NIST National Vulnerability Database | NVD | B11, B14 | Cited as current |
-| NIST OSCAL | Open Security Controls Assessment Language | B00, B01, B02, B03, B04, B05, B06, B07, B08, B09, B10, B11, B12, B13, B14, B15, B16, B17 | Cited as current |
-| SP 1800-35 | Implementing a Zero Trust Architecture | B09, B11 | Cited as current |
-| SP 800-120 | EAP methods for wireless authentication | B09 | Withdrawn Oct 19, 2018 |
-| SP 800-128 | Security-focused configuration management | B13, B15, B16 | Cited as current |
-| SP 800-137 | Information security continuous monitoring | B00, B12, B13, B14, B15, B16 | Cited as current |
-| SP 800-153 | Securing WLANs | B09 | Cited as current |
-| SP 800-157 | Derived PIV credentials (2014, current final) | B03 | Cited as current |
-| SP 800-157 Rev. 1 (final public draft) | Derived PIV credentials (draft) | B03 | Draft only (Nov 2024) |
-| SP 800-16 | IT security training requirements (1998) | B14, B16 | Withdrawn; superseded by SP 800-50 Rev. 1 (Sept 2024) |
-| SP 800-161 Rev. 1 | Cybersecurity supply chain risk management | B14 | Cited as current |
-| SP 800-171 | CUI in nonfederal systems | B12, B15 | Cited as current |
-| SP 800-181 Rev. 1 (NICE Framework) | Workforce Framework for Cybersecurity | B14, B16 | Supersedes SP 800-181 (2017) |
-| SP 800-190 | Application container security | B12 | Cited as current |
-| SP 800-207 | Zero Trust Architecture | B00, B01, B02, B03, B04, B06, B08, B09, B11, B13 | Cited as current |
-| SP 800-218 (SSDF v1.1) | Secure Software Development Framework | B12, B14 | Cited as current |
-| SP 800-218 Rev. 1 (SSDF v1.2 draft) | SSDF v1.2 initial public draft | B12, B14 | Draft only (Dec 2025) |
-| SP 800-30 Rev. 1 | Risk assessments | B00 | Cited as current |
-| SP 800-34 Rev. 1 | Contingency planning guide | B14 | Cited as current |
-| SP 800-37 Rev. 2 (RMF) | Risk Management Framework | B00, B01, B02, B03, B05, B06, B07, B08, B09, B10, B11, B12, B13, B14, B15, B16, B17 | Cited as current |
-| SP 800-39 | Managing information security risk | B14 | Cited as current |
-| SP 800-47 Rev. 1 | Information exchanges | B03 | Cited as current |
-| SP 800-50 (2003) | IT security awareness and training program | B14, B16 | Superseded by SP 800-50 Rev. 1 (Sept 2024) |
-| SP 800-50 Rev. 1 | Cybersecurity and privacy learning program | B14, B16 | Supersedes the 2003 SP 800-50 and SP 800-16 |
-| SP 800-52 Rev. 2 | TLS guidelines | B09 | Cited as current |
-| SP 800-53 Rev. 4 / FedRAMP Rev. 4 baseline | Prior control catalog | B15, B17 | Superseded by Rev. 5 |
-| SP 800-53 Rev. 5 (release 5.2.0) | Security and privacy controls | B00, B01, B02, B03, B04, B05, B06, B07, B08, B09, B10, B11, B12, B13, B14, B15, B16, B17 | Cited as current |
-| SP 800-53A Rev. 5 | Control assessment procedures | B12, B13, B14, B15, B16 | Cited as current |
-| SP 800-53B | Control baselines | B01, B03, B04, B06, B08, B09, B10, B11, B12, B13, B14, B15, B16, B17 | Cited as current |
-| SP 800-60 | Information types to security categories | B14 | Cited as current |
-| SP 800-61 Rev. 2 | Incident handling guide (prior) | B12 | Superseded by Rev. 3 (Apr 2025) |
-| SP 800-61 Rev. 3 | Incident response (CSF 2.0 community profile) | B12, B14 | Supersedes Rev. 2 |
-| SP 800-63-3 | Digital Identity Guidelines (prior) | B01, B02, B03 | Superseded by SP 800-63-4 (July 2025) |
-| SP 800-63-4 (incl. 63A-4, 63B-4) | Digital Identity Guidelines | B01, B02, B03, B09, B15, B16 | Cited as current |
-| SP 800-79 | PIV card and derived credential issuer authorization | B03 | Cited as current |
-| SP 800-81 Rev. 3 | Secure DNS deployment guide (Mar 2026) | B08 | Supersedes SP 800-81-2 |
-| SP 800-81-2 | Secure DNS deployment guide (2013) | B08 | Superseded by SP 800-81r3 |
-| SP 800-84 | Test, training and exercise programs | B14 | Cited as current |
-| SP 800-88 Rev. 2 | Media sanitization | B00, B14 | Supersedes Rev. 1 (2014) |
+| FIPS 140-2 | Cryptographic modules (prior) | Book 07 (PKI & Certificates); Book 09 (Network & Transport); Book 10 (Cloud Boundary & Landing Zone); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Certificates moved to CMVP Historical List Sept 22, 2026; existing systems only |
+| FIPS 140-3 (and FIPS 140 generally), CMVP | Cryptographic module security requirements and validation | Book 04 (Access & Privilege); Book 07 (PKI & Certificates); Book 09 (Network & Transport); Book 10 (Cloud Boundary & Landing Zone); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| FIPS 186-5 | Digital Signature Standard | Book 13 (Governance, Drift & Evidence) | Cited as current |
+| FIPS 198-1 | HMAC | Book 13 (Governance, Drift & Evidence) | Cited as current |
+| FIPS 199 | Security categorization | Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| FIPS 200 | Minimum security requirements | Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| FIPS 201-3 | Personal Identity Verification (PIV) | Book 03 (HR-Driven Identity); Book 06 (Data Platform: SQL Server Identity); Book 07 (PKI & Certificates) | Cited as current |
+| FIPS 203 | ML-KEM | Book 09 (Network & Transport) | Cited as current |
+| NIST AI 100-1 (AI RMF) | AI Risk Management Framework | Book 17 (AI Identity Governance) | Under revision; no revised version published |
+| NIST AI 600-1 | Generative AI Profile | Book 17 (AI Identity Governance) | Cited as current |
+| NIST Cybersecurity Framework 2.0 | CSF 2.0 | Book 00 (Orientation & Program); Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| NIST IR 8547 (initial public draft) | Transition to post-quantum cryptography standards | Book 07 (PKI & Certificates) | Draft |
+| NIST National Checklist Program | Configuration checklist repository | Book 12 (Security Operations & Telemetry) | Cited as current |
+| NIST National Vulnerability Database | NVD | Book 11 (Zero Trust & Assessment); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| NIST OSCAL | Open Security Controls Assessment Language | All 18 books | Cited as current |
+| SP 1800-35 | Implementing a Zero Trust Architecture | Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment) | Cited as current |
+| SP 800-120 | EAP methods for wireless authentication | Book 09 (Network & Transport) | Withdrawn Oct 19, 2018 |
+| SP 800-128 | Security-focused configuration management | Book 13 (Governance, Drift & Evidence); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
+| SP 800-137 | Information security continuous monitoring | Book 00 (Orientation & Program); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
+| SP 800-153 | Securing WLANs | Book 09 (Network & Transport) | Cited as current |
+| SP 800-157 | Derived PIV credentials (2014, current final) | Book 03 (HR-Driven Identity) | Cited as current |
+| SP 800-157 Rev. 1 (final public draft) | Derived PIV credentials (draft) | Book 03 (HR-Driven Identity) | Draft only (Nov 2024) |
+| SP 800-16 | IT security training requirements (1998) | Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Withdrawn; superseded by SP 800-50 Rev. 1 (Sept 2024) |
+| SP 800-161 Rev. 1 | Cybersecurity supply chain risk management | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| SP 800-171 | CUI in nonfederal systems | Book 12 (Security Operations & Telemetry); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| SP 800-181 Rev. 1 (NICE Framework) | Workforce Framework for Cybersecurity | Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Supersedes SP 800-181 (2017) |
+| SP 800-190 | Application container security | Book 12 (Security Operations & Telemetry) | Cited as current |
+| SP 800-207 | Zero Trust Architecture | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 04 (Access & Privilege); Book 06 (Data Platform: SQL Server Identity); Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 13 (Governance, Drift & Evidence) | Cited as current |
+| SP 800-218 (SSDF v1.1) | Secure Software Development Framework | Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| SP 800-218 Rev. 1 (SSDF v1.2 draft) | SSDF v1.2 initial public draft | Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Draft only (Dec 2025) |
+| SP 800-30 Rev. 1 | Risk assessments | Book 00 (Orientation & Program) | Cited as current |
+| SP 800-34 Rev. 1 | Contingency planning guide | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| SP 800-37 Rev. 2 (RMF) | Risk Management Framework | All except Book 04 (Access & Privilege) | Cited as current |
+| SP 800-39 | Managing information security risk | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| SP 800-47 Rev. 1 | Information exchanges | Book 03 (HR-Driven Identity) | Cited as current |
+| SP 800-50 (2003) | IT security awareness and training program | Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Superseded by SP 800-50 Rev. 1 (Sept 2024) |
+| SP 800-50 Rev. 1 | Cybersecurity and privacy learning program | Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Supersedes the 2003 SP 800-50 and SP 800-16 |
+| SP 800-52 Rev. 2 | TLS guidelines | Book 09 (Network & Transport) | Cited as current |
+| SP 800-53 Rev. 4 / FedRAMP Rev. 4 baseline | Prior control catalog | Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Superseded by Rev. 5 |
+| SP 800-53 Rev. 5 (release 5.2.0) | Security and privacy controls | All 18 books | Cited as current |
+| SP 800-53A Rev. 5 | Control assessment procedures | Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
+| SP 800-53B | Control baselines | All except Book 00 (Orientation & Program); Book 02 (Identity & Directory); Book 05 (Devices & Endpoints); Book 07 (PKI & Certificates) | Cited as current |
+| SP 800-60 | Information types to security categories | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| SP 800-61 Rev. 2 | Incident handling guide (prior) | Book 12 (Security Operations & Telemetry) | Superseded by Rev. 3 (Apr 2025) |
+| SP 800-61 Rev. 3 | Incident response (CSF 2.0 community profile) | Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Supersedes Rev. 2 |
+| SP 800-63-3 | Digital Identity Guidelines (prior) | Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity) | Superseded by SP 800-63-4 (July 2025) |
+| SP 800-63-4 (incl. 63A-4, 63B-4) | Digital Identity Guidelines | Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 09 (Network & Transport); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
+| SP 800-79 | PIV card and derived credential issuer authorization | Book 03 (HR-Driven Identity) | Cited as current |
+| SP 800-81 Rev. 3 | Secure DNS deployment guide (Mar 2026) | Book 08 (DNS, DHCP & IPAM) | Supersedes SP 800-81-2 |
+| SP 800-81-2 | Secure DNS deployment guide (2013) | Book 08 (DNS, DHCP & IPAM) | Superseded by SP 800-81r3 |
+| SP 800-84 | Test, training and exercise programs | Book 14 (Federal Compliance & Authorization) | Cited as current |
+| SP 800-88 Rev. 2 | Media sanitization | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization) | Supersedes Rev. 1 (2014) |
 
 :::
 
@@ -359,28 +359,28 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| FedRAMP (program, generally) | Federal Risk and Authorization Management Program | B00, B01, B02, B03, B04, B05, B06, B07, B08, B09, B10, B11, B12, B13, B14, B15, B16, B17 | Cited as current |
-| FedRAMP 20x and Key Security Indicators | 20x certification; KSI families | B00, B01, B02, B04, B05, B10, B11, B12, B13, B14, B15, B16, B17 | Cited as current |
-| FedRAMP AI Prioritization Initiative | AI service prioritization | B17 | Cited as current |
-| FedRAMP Consolidated Rules for 2026 (Certification Classes A-D) | 2026 rule set | B00, B01, B02, B04, B05, B08, B09, B10, B11, B12, B13, B14, B15, B16, B17 | Cited as current |
-| FedRAMP Marketplace | Marketplace product data | B01, B02, B03, B06, B07, B08, B09, B10, B11, B12, B14, B15, B16, B17 | Cited as current |
-| FedRAMP Notice NTC-0004 | Outcome of RFC-0020 authorization designations | B00, B09, B10, B14, B16 | Cited as current |
-| FedRAMP Notice NTC-0013 | Outcome of Rev5 baseline RFCs 0026-0030 | B09, B10 | Cited as current |
-| FedRAMP Notice NTC-0014 | VDR/VER alignment with BOD 26-04 | B12, B14, B16 | Cited as current |
-| FedRAMP P-ATO / JAB path | Provisional authorization | B01, B06, B09 | Pre-2026 term; FedRAMP's 2026 rules replace authorization designations with certification classes |
-| FedRAMP Ready designation | Readiness designation | B01, B14 | Legacy from July 28, 2026 |
-| FedRAMP Rev5 baselines (baseline workbook) | Rev. 5 Low/Moderate/High baselines | B01, B02, B03, B04, B05, B06, B08, B09, B10, B11, B12, B13, B14, B15, B17 | Workbook marked legacy June 23, 2026; replaced by Consolidated Rules |
-| FedRAMP RFC-0020 | Authorization designations | B00, B10, B14, B16 | Cited as current |
-| FedRAMP RFC-0026 to RFC-0030 | Rev5 baseline RFCs | B10 | Cited as current |
-| FedRAMP rules: Agency Use (AGU) | Agency obligations | B01, B10, B13, B14, B16 | Cited as current |
-| FedRAMP rules: Certification Data Sharing (CDS) | CDS | B10 | Cited as current |
-| FedRAMP rules: Collaborative Continuous Monitoring (CCM) | CCM; Ongoing Certification Reports | B10, B12, B13, B14, B16 | Cited as current |
-| FedRAMP rules: Cryptographic Module Use (CMU) | CMU | B10 | Cited as current |
-| FedRAMP rules: Minimum Assessment Scope (MAS) | Scope rules | B10 | Cited as current |
-| FedRAMP rules: SDR, FRC, IVV and CPO families | Security Decision Record, FedRAMP Certification, Independent Verification and Validation, Certification Package Overview | B13, B15 | Cited as current |
-| FedRAMP rules: Significant Change Notification (SCN) | SCN | B10, B13 | Cited as current |
-| FedRAMP rules: Vulnerability Detection and Response (VDR) | VDR | B10, B12, B13, B14, B15, B16 | Cited as current |
-| FedRAMP rules: Vulnerability Evaluation and Reporting (VER) | VER | B12, B14, B16 | Cited as current |
+| FedRAMP (program, generally) | Federal Risk and Authorization Management Program | All 18 books | Cited as current |
+| FedRAMP 20x and Key Security Indicators | 20x certification; KSI families | All except Book 03 (HR-Driven Identity); Book 06 (Data Platform: SQL Server Identity); Book 07 (PKI & Certificates); Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport) | Cited as current |
+| FedRAMP AI Prioritization Initiative | AI service prioritization | Book 17 (AI Identity Governance) | Cited as current |
+| FedRAMP Consolidated Rules for 2026 (Certification Classes A-D) | 2026 rule set | All except Book 03 (HR-Driven Identity); Book 06 (Data Platform: SQL Server Identity); Book 07 (PKI & Certificates) | Cited as current |
+| FedRAMP Marketplace | Marketplace product data | All except Book 00 (Orientation & Program); Book 04 (Access & Privilege); Book 05 (Devices & Endpoints); Book 13 (Governance, Drift & Evidence) | Cited as current |
+| FedRAMP Notice NTC-0004 | Outcome of RFC-0020 authorization designations | Book 00 (Orientation & Program); Book 09 (Network & Transport); Book 10 (Cloud Boundary & Landing Zone); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| FedRAMP Notice NTC-0013 | Outcome of Rev5 baseline RFCs 0026-0030 | Book 09 (Network & Transport); Book 10 (Cloud Boundary & Landing Zone) | Cited as current |
+| FedRAMP Notice NTC-0014 | VDR/VER alignment with BOD 26-04 | Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| FedRAMP P-ATO / JAB path | Provisional authorization | Book 01 (The Transformation Arc); Book 06 (Data Platform: SQL Server Identity); Book 09 (Network & Transport) | Pre-2026 term; FedRAMP's 2026 rules replace authorization designations with certification classes |
+| FedRAMP Ready designation | Readiness designation | Book 01 (The Transformation Arc); Book 14 (Federal Compliance & Authorization) | Legacy from July 28, 2026 |
+| FedRAMP Rev5 baselines (baseline workbook) | Rev. 5 Low/Moderate/High baselines | All except Book 00 (Orientation & Program); Book 07 (PKI & Certificates); Book 16 (People: Training & Education) | Workbook marked legacy June 23, 2026; replaced by Consolidated Rules |
+| FedRAMP RFC-0020 | Authorization designations | Book 00 (Orientation & Program); Book 10 (Cloud Boundary & Landing Zone); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| FedRAMP RFC-0026 to RFC-0030 | Rev5 baseline RFCs | Book 10 (Cloud Boundary & Landing Zone) | Cited as current |
+| FedRAMP rules: Agency Use (AGU) | Agency obligations | Book 01 (The Transformation Arc); Book 10 (Cloud Boundary & Landing Zone); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| FedRAMP rules: Certification Data Sharing (CDS) | CDS | Book 10 (Cloud Boundary & Landing Zone) | Cited as current |
+| FedRAMP rules: Collaborative Continuous Monitoring (CCM) | CCM; Ongoing Certification Reports | Book 10 (Cloud Boundary & Landing Zone); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
+| FedRAMP rules: Cryptographic Module Use (CMU) | CMU | Book 10 (Cloud Boundary & Landing Zone) | Cited as current |
+| FedRAMP rules: Minimum Assessment Scope (MAS) | Scope rules | Book 10 (Cloud Boundary & Landing Zone) | Cited as current |
+| FedRAMP rules: SDR, FRC, IVV and CPO families | Security Decision Record, FedRAMP Certification, Independent Verification and Validation, Certification Package Overview | Book 13 (Governance, Drift & Evidence); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| FedRAMP rules: Significant Change Notification (SCN) | SCN | Book 10 (Cloud Boundary & Landing Zone); Book 13 (Governance, Drift & Evidence) | Cited as current |
+| FedRAMP rules: Vulnerability Detection and Response (VDR) | VDR | Book 10 (Cloud Boundary & Landing Zone); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
+| FedRAMP rules: Vulnerability Evaluation and Reporting (VER) | VER | Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
 
 :::
 
@@ -389,10 +389,10 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| GRS 3.1 | General Technology Management Records | B00, B08, B13 | Cited as current |
-| GRS 3.2 | Information Systems Security Records | B00, B01, B03, B07, B08, B12, B13 | Items 035-036 under revision (Transmittal 38) after M-21-31's rescission |
-| NARA CUI Registry | CUI categories | B12 | Cited as current |
-| NARA General Records Schedules (generic) | GRS, unspecified | B00, B12, B14 | Cited as current |
+| GRS 3.1 | General Technology Management Records | Book 00 (Orientation & Program); Book 08 (DNS, DHCP & IPAM); Book 13 (Governance, Drift & Evidence) | Cited as current |
+| GRS 3.2 | Information Systems Security Records | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 03 (HR-Driven Identity); Book 07 (PKI & Certificates); Book 08 (DNS, DHCP & IPAM); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence) | Items 035-036 under revision (Transmittal 38) after M-21-31's rescission |
+| NARA CUI Registry | CUI categories | Book 12 (Security Operations & Telemetry) | Cited as current |
+| NARA General Records Schedules (generic) | GRS, unspecified | Book 00 (Orientation & Program); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization) | Cited as current |
 
 :::
 
@@ -401,31 +401,31 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| CMMC | Cybersecurity Maturity Model Certification | B02, B15 | Cited as current |
-| CUI program (generic) | Controlled Unclassified Information | B00, B12 | Cited as current |
-| DISA STIGs | Security technical implementation guides | B09, B11, B12, B15 | Cited as current |
-| DoD 8140 / DoDM 8140.03 | DoD cyber workforce qualification | B16 | In force; it replaced DoD 8570.01-M |
-| DoD 8570.01-M | DoD IA workforce (legacy) | B16 | Replaced by DoD 8140 |
-| DoD Cloud Computing SRG (IL4/IL5) | DoD cloud security requirements guide | B08 | Cited as current |
-| DoD Zero Trust Strategy (2022) | DoD ZT capability target | B04, B09 | Cited as current |
-| FBI CJIS Security Policy | Criminal Justice Information Services | B15 | Cited as current |
-| FCC 19-76 | Report and Order implementing Kari's Law and RAY BAUM'S Act | B15 | Cited as current |
-| Federal Enterprise Architecture Framework | FEAF | B00 | Historical: survives on an archived 2013 page; A-130 §5.a(2) is the live requirement |
-| Federal PKI Common Policy (Federal Common Policy CA G2) | X.509 Certificate Policy for the Federal PKI Common Policy Framework | B01, B03, B06, B07 | Cited as current |
-| GSA EIS, Networx and Multiple Award Schedule | GSA acquisition vehicles | B09, B10, B17 | Cited as current |
-| GSA FICAM Identity Lifecycle Management Playbook and FICAM Architecture | FICAM guidance (stated as not official policy) | B03, B07 | Cited as current |
-| IRS Publication 1075 | Tax information security | B15 | Cited as current |
-| Login.gov | GSA shared sign-in | B00, B01, B16 | Cited as current |
-| MTIPS | Managed Trusted Internet Protocol Services | B09, B12 | Cited as current |
-| NSA CNSA 2.0 | Commercial National Security Algorithm Suite | B09, B14 | Cited as current |
-| OMB/OPM Federal HR 2.0 / Core HCM memo (Dec 2025) and HR QSMO | Government-wide HR platform direction | B01, B03 | Cited as current |
-| OPM EHRI and eOPF | Government-wide HR data | B03, B16 | Cited as current |
-| OPM Guide to Data Standards (EHRI Data Standards) | HR data standards | B03, B16 | Cited as current |
-| OPM Guide to Processing Personnel Actions | Nature-of-action codes; SF-50 | B03 | Cited as current |
-| OPM Interpretive Guidance for Cybersecurity Positions (2018) | Position coding guidance | B16 | Cited as current |
-| OPM/GOVT-1 SORN | General Personnel Records | B03 | Cited as current |
-| SF-50 Notification of Personnel Action | OPM standard form | B03 | Cited as current |
-| Technology Modernization Fund guidance (2026 Call for Proposals; fit and repayment) | TMF | B00, B09 | Cited as current |
+| CMMC | Cybersecurity Maturity Model Certification | Book 02 (Identity & Directory); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| CUI program (generic) | Controlled Unclassified Information | Book 00 (Orientation & Program); Book 12 (Security Operations & Telemetry) | Cited as current |
+| DISA STIGs | Security technical implementation guides | Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| DoD 8140 / DoDM 8140.03 | DoD cyber workforce qualification | Book 16 (People: Training & Education) | In force; it replaced DoD 8570.01-M |
+| DoD 8570.01-M | DoD IA workforce (legacy) | Book 16 (People: Training & Education) | Replaced by DoD 8140 |
+| DoD Cloud Computing SRG (IL4/IL5) | DoD cloud security requirements guide | Book 08 (DNS, DHCP & IPAM) | Cited as current |
+| DoD Zero Trust Strategy (2022) | DoD ZT capability target | Book 04 (Access & Privilege); Book 09 (Network & Transport) | Cited as current |
+| FBI CJIS Security Policy | Criminal Justice Information Services | Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| FCC 19-76 | Report and Order implementing Kari's Law and RAY BAUM'S Act | Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| Federal Enterprise Architecture Framework | FEAF | Book 00 (Orientation & Program) | Historical: survives on an archived 2013 page; A-130 §5.a(2) is the live requirement |
+| Federal PKI Common Policy (Federal Common Policy CA G2) | X.509 Certificate Policy for the Federal PKI Common Policy Framework | Book 01 (The Transformation Arc); Book 03 (HR-Driven Identity); Book 06 (Data Platform: SQL Server Identity); Book 07 (PKI & Certificates) | Cited as current |
+| GSA EIS, Networx and Multiple Award Schedule | GSA acquisition vehicles | Book 09 (Network & Transport); Book 10 (Cloud Boundary & Landing Zone); Book 17 (AI Identity Governance) | Cited as current |
+| GSA FICAM Identity Lifecycle Management Playbook and FICAM Architecture | FICAM guidance (stated as not official policy) | Book 03 (HR-Driven Identity); Book 07 (PKI & Certificates) | Cited as current |
+| IRS Publication 1075 | Tax information security | Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| Login.gov | GSA shared sign-in | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 16 (People: Training & Education) | Cited as current |
+| MTIPS | Managed Trusted Internet Protocol Services | Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry) | Cited as current |
+| NSA CNSA 2.0 | Commercial National Security Algorithm Suite | Book 09 (Network & Transport); Book 14 (Federal Compliance & Authorization) | Cited as current |
+| OMB/OPM Federal HR 2.0 / Core HCM memo (Dec 2025) and HR QSMO | Government-wide HR platform direction | Book 01 (The Transformation Arc); Book 03 (HR-Driven Identity) | Cited as current |
+| OPM EHRI and eOPF | Government-wide HR data | Book 03 (HR-Driven Identity); Book 16 (People: Training & Education) | Cited as current |
+| OPM Guide to Data Standards (EHRI Data Standards) | HR data standards | Book 03 (HR-Driven Identity); Book 16 (People: Training & Education) | Cited as current |
+| OPM Guide to Processing Personnel Actions | Nature-of-action codes; SF-50 | Book 03 (HR-Driven Identity) | Cited as current |
+| OPM Interpretive Guidance for Cybersecurity Positions (2018) | Position coding guidance | Book 16 (People: Training & Education) | Cited as current |
+| OPM/GOVT-1 SORN | General Personnel Records | Book 03 (HR-Driven Identity) | Cited as current |
+| SF-50 Notification of Personnel Action | OPM standard form | Book 03 (HR-Driven Identity) | Cited as current |
+| Technology Modernization Fund guidance (2026 Call for Proposals; fit and repayment) | TMF | Book 00 (Orientation & Program); Book 09 (Network & Transport) | Cited as current |
 
 :::
 

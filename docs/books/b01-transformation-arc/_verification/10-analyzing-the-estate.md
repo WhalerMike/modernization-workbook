@@ -51,3 +51,12 @@ Editor: W5. Sources: the series chapter in place (old Chapter 02, "Analyzing the
 | Previous/Next links (old numbering) | "Continue the book" callout in reading order (Ch 09 → Ch 11) | — |
 | Figure `../../images/cshc/analysis-pipeline.svg` (Discover, Inventory, Map, Risk Report) | `ch10-assessment-pipeline.flow.yaml` | Same content plus the tier split |
 | Whitepaper Principle 5 (rule, techniques table, dependence on Principle 1, gated check) | "Profiling transactions before separation" | The network-physics argument stays with Ch 07 and Book 09 |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+| 2 | CyberArk mechanism (disc) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-disc |

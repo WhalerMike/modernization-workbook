@@ -39,3 +39,11 @@ Writer W7. Source: `docs/compliance/Vol_0_Book_01_Product_Inventory_Questionnair
 | Note on Volumes V and VI | IaC row; training platforms row | — |
 | Flags and gaps summary | Flags and gaps (illustrative rows) | Product-specific rows removed (claim 13) |
 | References — FedRAMP status sources | Recording FedRAMP status (Marketplace and its data file) | Vendor press links not carried |
+
+## Additions, October 23, 2026 (certificate statements aligned with Book 07)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | 'Venafi' | Certificates and PKI row | corrected: CyberArk Certificate Manager (formerly Venafi) | CyberArk 26.1; Palo Alto Networks page |

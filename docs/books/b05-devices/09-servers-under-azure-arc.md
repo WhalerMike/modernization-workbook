@@ -295,6 +295,23 @@ On the governed path, the same scripts run with `-ApprovalRef` on every state-ch
 
 [Chapter 10](10-operating-and-evidencing-the-fleet.md) brings the server and workstation signals together. The compute side of the same transition, from the application's point of view, is in the Client-Server to Hybrid-Cloud series, [Book 01, Chapter 07 — Compute Transformation](../b01-transformation-arc/07-compute-transformation.md).
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| Server TLS certificates once servers leave the domain | Internal server TLS | Standalone AD CS under the same root | CyberArk Certificate Manager | Renews them; CAPI driver on Windows, Apache/PEM or the Server Agent on Linux |
+| WinRM over HTTPS listener certificates | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews them (inference) |
+| Intune device certificates (SCEP or PKCS) | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
+| Arc agent managed-identity certificate | Not a Book 07 class | Azure | Platform-managed, or not X.509 | Nothing: the agent renews it |
+| Hybrid-join device certificate | Not a Book 07 class | Self-signed or Entra | Platform-managed, or not X.509 | Nothing: platform-managed |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b05-devices/svg/certs-clm.svg){fig-alt="Server TLS certificates once servers leave the domain, WinRM over HTTPS listener certificates go to CyberArk Certificate Manager (renews and installs); Intune device certificates (SCEP or PKCS) go to Intune (renews device certificates); Arc agent managed-identity certificate, Hybrid-join device certificate go to Platform-managed, or not X.509 (no clm lifecycle)."}
+
+Servers aren't Intune-managed, so they can't get certificates from Cloud PKI. After AD, their certificates come from a standalone AD CS issuing CA under the existing root, still requested and renewed by the CLM platform ([Book 07, Chapter 04](../b07-pki/04-the-target-pki.md#the-issuer-decision-for-internal-server-certificates)).[^clm-capi][^clm-drivers]
+
+
 ## What this chapter establishes
 
 1. Arc attaches the management plane: an Azure resource ID, RBAC, tags, policy and extensions. It doesn't change domain membership or authentication by itself.
@@ -341,3 +358,5 @@ On the governed path, the same scripts run with `-ApprovalRef` on every state-ch
 [^c09-linux-login]: Microsoft Learn, "Sign in to a Linux virtual machine in Azure by using Microsoft Entra ID and OpenSSH," supported distributions, <https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-linux#supported-linux-distributions-and-azure-regions> (accessed Oct 20, 2026).
 [^c09-uninstall]: Microsoft Learn, "Uninstall the Azure Connected Machine agent from Arc-enabled servers," <https://learn.microsoft.com/azure/azure-arc/servers/uninstall-agent> (accessed Oct 20, 2026).
 [^c09-azcm-disconnect]: Microsoft Learn, "`azcmagent disconnect`," <https://learn.microsoft.com/azure/azure-arc/servers/azcmagent-disconnect> (accessed Oct 20, 2026).
+[^clm-capi]: CyberArk, Certificate Manager, Self-Hosted 26.1, "CAPI" application driver (installs certificates and keys into the Windows CAPI store over WinRM, optionally binds IIS, and can grant a named Windows identity read access to the private key), <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/cco-CAPI-AppDriverConfig-tpp.php> and <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/r-CAPI-AppObjSettings-tpp.php> (accessed Oct 23, 2026).
+[^clm-drivers]: CyberArk, 26.1, "System requirements," supported applications (F5 BIG-IP LTM Advanced, NetScaler, Palo Alto NGFW, Apache/PEM, Java keystores, PKCS#12, Azure Key Vault, AWS and others) and the Server Agent, <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-install-SysReq-ALLVenProducts.php> (accessed Oct 23, 2026).

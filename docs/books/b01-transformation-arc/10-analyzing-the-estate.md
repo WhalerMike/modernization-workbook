@@ -193,6 +193,23 @@ The output of this chapter is the input to the next. The transformation engine t
 
 Assessment and planning are deliberately separate steps. An assessment without a plan is a report; a plan without an assessment is a guess. Only together do they produce governed modernization.
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| Platform host TLS behind the IIS reverse proxy | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews it; the CAPI driver installs and binds it |
+| RADIUS and NPS server certificates | RADIUS and 802.1X servers | Retained AD CS | CyberArk Certificate Manager | Renews them on the NPS hosts |
+| AD CS templates, CAs and issued-certificate inventory (Stream 10) | CA certificates and CRLs | AD CS | AD CS autoenrollment | CA Import becomes the long-term inventory the stream starts |
+| Smart-card sign-in to Entra CBA | PIV | Federal PKI | PIV card system | Nothing: the card system renews PIV |
+| Arc onboarding service principal certificate | Not a Book 07 class | Generated for onboarding | Entra ID or the app's owner | Nothing: an Entra credential, rotated by its owner |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b01-transformation-arc/svg/certs-clm.svg){fig-alt="Platform host TLS behind the IIS reverse proxy, RADIUS and NPS server certificates go to CyberArk Certificate Manager (renews and installs); AD CS templates, CAs and issued-certificate inventory (Stream 10) go to AD CS autoenrollment (renews; the platform only watches); Smart-card sign-in to Entra CBA go to PIV card system (renews piv credentials); Arc onboarding service principal certificate go to Entra ID or the app's owner (outside book 07's classes)."}
+
+Stream 10's read-only inventory is a snapshot; the CLM platform keeps it current after the assessment through CA Import and network discovery.[^clm-disc]
+
+
 ## Key takeaways
 
 1. Nothing is retired until it has been inventoried, read-only, across all eleven categories.
@@ -216,3 +233,4 @@ Assessment and planning are deliberately separate steps. An assessment without a
 [^c10-esu]: Microsoft Learn, "Cloud-native licensing and cost management with Azure Arc-enabled servers," Extended Security Updates, <https://learn.microsoft.com/azure/azure-arc/servers/cloud-native/licensing-cost-management> (accessed Oct 21, 2026).
 [^c10-svcaccts]: Microsoft Learn, "Introduction to Active Directory service accounts," <https://learn.microsoft.com/entra/architecture/service-accounts-on-premises> (accessed Oct 21, 2026).
 [^c10-mdi-adcs]: Microsoft Learn, "Security assessment: Certificates" (ESC1 and related template and CA assessments), <https://learn.microsoft.com/defender-for-identity/security-posture-assessments/certificates>, and "What's new archive for Microsoft Defender for Identity" (ESC15, December 2024), <https://learn.microsoft.com/defender-for-identity/whats-new-archive> (both accessed Oct 21, 2026).
+[^clm-disc]: CyberArk, 26.1, "Importing certificates from a CA" and "Certificate discovery," <https://docs.venafi.com/Docs/current/TopNav/Content/Discovery/cco-Discovery-importingCertsfromCA.php> (accessed Oct 23, 2026).

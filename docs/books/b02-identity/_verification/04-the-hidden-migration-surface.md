@@ -100,3 +100,13 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | R1 | Sync retirement criterion names the authoritative source per population: HR for employees, the agency-designated source for contractors and vendors (Book 03 Ch06), invitation and entitlement management for guests | Sync engine retirement criteria | restated-as-design | Book 03 Ch06 (internal) |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+| 2 | CyberArk mechanism (capi) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-capi |
+| 3 | 'Stand up the replacement CA'; 'AD CS is replaced'; 'issued by the new CA' | DM_020; exit criteria; validation | corrected: Book 07's target issuers, no single replacement CA; AD CS retained for DCs and servers | Book 07 Ch04, Ch08 |
