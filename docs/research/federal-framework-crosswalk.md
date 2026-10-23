@@ -31,27 +31,45 @@ Three frameworks commonly listed for federal modernization have changed, and two
 
 | Framework | Status | What the workbook should cite |
 |---|---|---|
-| OMB M-22-18 (secure software attestation) | **Rescinded** by OMB M-26-05, January 23, 2026, together with its companion M-23-16. Agencies "shall continue to maintain a complete inventory of software and hardware" and set risk-based assurance policies; the attestation form and SBOM clauses become optional.[^m2605] | M-26-05 (the workbook already does, in Books 00 and 14) |
-| Federal Data Strategy | **Being retired**: its site says "This website is being retired", and its last action plan is from 2021.[^fds] | The Evidence Act and OMB M-25-05 |
-| Federal Enterprise Architecture Framework v2 | **Historical**: it survives on an archived 2013 page.[^feaf] The requirement behind it is live: Circular A-130 §5.a(2) says agencies "shall develop an enterprise architecture" with a baseline, a target and a transition plan.[^a130] | A-130 §5.a(2) and SP 800-53 control PM-7 |
-| Executive Order 14028 | **In force as amended**: EO 14144 (January 2025) amended it, and EO 14306 (June 2025) amended EO 14144.[^eo] | EO 14028 with its amendment chain |
-| FITARA | **In force, with a new memo**: OMB M-26-10 (March 31, 2026) restates that a covered CFO Act agency can't contract for IT unless the CIO approves, required monthly reports of approved contracts from May 2026 that "shall sunset in October 2026" after the sixth report unless OMB extends them, and requires vendor utilization and pricing clauses in new IT contracts.[^m2610] | M-26-10 |
-| OMB Circular A-130 | **In force**: no rescission found, though it isn't on OMB's current Circulars page; its 2016 PDF still resolves.[^a130] | A-130 (2016 revision) |
-| Clinger-Cohen Act and capital planning | **In force**: 40 U.S.C. §11312 requires each agency head to "design and implement ... a process for maximizing the value" of IT acquisitions and assessing their risks.[^cca] | 40 U.S.C. §11312, Circular A-11, A-130 §5.d |
-| Technology Modernization Fund | **Current**: the 2026 call for proposals prioritizes legacy modernization and cybersecurity, expects full repayment, and says "Competitive projects are less than $25M and take no more than three years."[^tmf] | TMF fit criteria |
-| 21st Century IDEA | **In force**: Pub. L. 115-336 sets criteria for new or redesigned websites and digital services, digital forms and e-signatures; OMB M-23-22 implements it.[^idea] | IDEA and M-23-22; OMB M-26-18 (August 31, 2026) adds Login.gov as the universal sign-on for public-facing services[^m2618] |
-| NIST CSF 2.0 and the RMF (SP 800-37 Rev. 2) | **Current**[^nist] | As cited |
-| Section 508 | **In force**: 29 U.S.C. §794d, the revised 508 Standards, and OMB M-24-08[^s508] | As cited |
-| Privacy Act; E-Government Act §208 | **In force**: A-130 §5.f and Appendix II direct privacy impact assessments and the handling of personal information[^a130] | As cited |
-| Federal records (44 U.S.C. chapters 31 and 33) | **In force**: agency heads "shall make and preserve records containing adequate and proper documentation"; NARA lists M-23-07 as current OMB guidance[^records] | 44 U.S.C. §3101, M-23-07, NARA General Records Schedules |
+| OMB M-22-18 (secure software attestation) | **Rescinded** by OMB M-26-05, January 23, 2026, together with its companion M-23-16. Agencies "shall continue to maintain a complete inventory of software and hardware" and set risk-based assurance policies; the attestation form and SBOM clauses become optional.^[a](#tn-a)^ | M-26-05 (the workbook already does, in Books 00 and 14) |
+| Federal Data Strategy | **Being retired**: its site says "This website is being retired", and its last action plan is from 2021.^[b](#tn-b)^ | The Evidence Act and OMB M-25-05 |
+| Federal Enterprise Architecture Framework v2 | **Historical**: it survives on an archived 2013 page.^[c](#tn-c)^ The requirement behind it is live: Circular A-130 §5.a(2) says agencies "shall develop an enterprise architecture" with a baseline, a target and a transition plan.^[d](#tn-d)^ | A-130 §5.a(2) and SP 800-53 control PM-7 |
+| Executive Order 14028 | **In force as amended**: EO 14144 (January 2025) amended it, and EO 14306 (June 2025) amended EO 14144.^[e](#tn-e)^ | EO 14028 with its amendment chain |
+| FITARA | **In force, with a new memo**: OMB M-26-10 (March 31, 2026) restates that a covered CFO Act agency can't contract for IT unless the CIO approves, required monthly reports of approved contracts from May 2026 that "shall sunset in October 2026" after the sixth report unless OMB extends them, and requires vendor utilization and pricing clauses in new IT contracts.^[f](#tn-f)^ | M-26-10 |
+| OMB Circular A-130 | **In force**: no rescission found, though it isn't on OMB's current Circulars page; its 2016 PDF still resolves.^[d](#tn-d)^ | A-130 (2016 revision) |
+| Clinger-Cohen Act and capital planning | **In force**: 40 U.S.C. §11312 requires each agency head to "design and implement ... a process for maximizing the value" of IT acquisitions and assessing their risks.^[g](#tn-g)^ | 40 U.S.C. §11312, Circular A-11, A-130 §5.d |
+| Technology Modernization Fund | **Current**: the 2026 call for proposals prioritizes legacy modernization and cybersecurity, expects full repayment, and says "Competitive projects are less than $25M and take no more than three years."^[h](#tn-h)^ | TMF fit criteria |
+| 21st Century IDEA | **In force**: Pub. L. 115-336 sets eight criteria for new or redesigned public websites and digital services, and §3(c) asks that any intranet established after December 20, 2018 meet them "to the greatest extent practicable"; it also requires digital forms and an e-signature plan. OMB M-23-22 implements it for public services.^[i](#tn-i)^ | IDEA and M-23-22; OMB M-26-18 (August 31, 2026) adds Login.gov as the universal sign-on for public-facing services^[j](#tn-j)^ |
+| NIST CSF 2.0 and the RMF (SP 800-37 Rev. 2) | **Current**^[k](#tn-k)^ | As cited |
+| Section 508 | **In force**: 29 U.S.C. §794d, the revised 508 Standards, and OMB M-24-08^[l](#tn-l)^ | As cited |
+| Privacy Act; E-Government Act §208 | **In force**: A-130 §5.f and Appendix II direct privacy impact assessments and the handling of personal information^[d](#tn-d)^ | As cited |
+| Federal records (44 U.S.C. chapters 31 and 33) | **In force**: agency heads "shall make and preserve records containing adequate and proper documentation"; NARA lists M-23-07 as current OMB guidance^[m](#tn-m)^ | 44 U.S.C. §3101, M-23-07, NARA General Records Schedules |
 | Cloud Smart (2019) | **Couldn't verify**: the strategy's page on cio.gov failed to load, and no successor was found | Kept provisionally |
 
+**Notes to the table**
+
+- [**a.**]{#tn-a} Office of Management and Budget, M-26-05, *Adopting a Risk-based Approach to Software and Hardware Security*, January 23, 2026, <https://www.whitehouse.gov/wp-content/uploads/2026/01/M-26-05-Adopting-a-Risk-based-Approach-to-Software-and-Hardware-Security.pdf> (accessed Oct 23, 2026).
+- [**b.**]{#tn-b} Federal Data Strategy, <https://strategy.data.gov/> (retirement notice), and <https://resources.data.gov/> (accessed Oct 23, 2026).
+- [**c.**]{#tn-c} The White House (archived), Federal Enterprise Architecture, including FEAF v2 (January 29, 2013) and the Common Approach to Federal EA (May 2, 2012), <https://obamawhitehouse.archives.gov/node/17927> (accessed Oct 23, 2026).
+- [**d.**]{#tn-d} Office of Management and Budget, Circular A-130, *Managing Information as a Strategic Resource* (2016 revision), §5.a(2), §5.d, §5.f and Appendix II, <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf>; OMB Circulars index, <https://www.whitehouse.gov/omb/information-resources/guidance/circulars/> (both accessed Oct 23, 2026).
+- [**e.**]{#tn-e} Federal Register API, presidential documents citing Executive Order 14028, <https://www.federalregister.gov/api/v1/documents.json?conditions[term]=%22Executive+Order+14028%22&conditions[type][]=PRESDOCU&order=newest>; Executive Order 14306 text, <https://www.govinfo.gov/content/pkg/DCPD-202500669/html/DCPD-202500669.htm> (both accessed Oct 23, 2026).
+- [**f.**]{#tn-f} Office of Management and Budget, M-26-10, *Reinforcing Transparency, Accountability, and Oversight of Federal Technology*, March 31, 2026, §1 and Requirements, <https://www.whitehouse.gov/wp-content/uploads/2026/03/M-26-10-Reinforcing-Transparency-Accountability-and-Oversight-of-Federal-Technology.pdf> (accessed Oct 23, 2026).
+- [**g.**]{#tn-g} 40 U.S.C. §11312, Capital planning and investment control (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title40/html/USCODE-2023-title40-subtitleIII-chap113-subchapII-sec11312.htm> (accessed Oct 23, 2026).
+- [**h.**]{#tn-h} Technology Modernization Fund, <https://tmf.cio.gov/>, agency and project fit <https://tmf.cio.gov/fit/>, process <https://tmf.cio.gov/process/>, and 2026 Call for Proposals <https://tmf.cio.gov/2026-call-for-proposals/> (accessed Oct 23, 2026).
+- [**i.**]{#tn-i} 21st Century Integrated Digital Experience Act, Pub. L. 115-336, <https://www.govinfo.gov/content/pkg/PLAW-115publ336/html/PLAW-115publ336.htm>; OMB M-23-22, *Delivering a Digital-First Public Experience* (archived page), <https://bidenwhitehouse.archives.gov/omb/management/ofcio/delivering-a-digital-first-public-experience> (both accessed Oct 23, 2026).
+- [**j.**]{#tn-j} Office of Management and Budget, M-26-18, *Scaling Use of Login.gov to Deliver a Universal Sign-on for Public Services*, August 31, 2026, <https://www.whitehouse.gov/wp-content/uploads/2026/08/M-26-18-Scaling-Use-of-Login.gov-to-Deliver-a-Universal-Sign-on-for-Public-Services.pdf> (accessed Oct 23, 2026).
+- [**k.**]{#tn-k} NIST, Cybersecurity Framework, <https://www.nist.gov/cyberframework>; NIST SP 800-37 Rev. 2, <https://csrc.nist.gov/pubs/sp/800/37/r2/final> (both accessed Oct 23, 2026).
+- [**l.**]{#tn-l} Section508.gov, Laws and policies, <https://www.section508.gov/manage/laws-and-policies/> (accessed Oct 23, 2026).
+- [**m.**]{#tn-m} 44 U.S.C. §3101 (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title44/html/USCODE-2023-title44-chap31-sec3101.htm>; National Archives, Records management policy, <https://www.archives.gov/records-mgmt/policy> (both accessed Oct 23, 2026).
+
 The frameworks the workbook relies on most are not on the usual modernization lists at all: NIST SP 800-53 Rev. 5 (release 5.2.0), FedRAMP, OMB M-26-14 on logging (which rescinded M-21-31), the CISA Zero Trust Maturity Model 2.0, FIPS 201 and HSPD-12, and FISMA.[^also] They're included in the matrix below.
+
+::: {.landscape}
 
 ## Coverage matrix
 
 | Framework | B00 | B01 | B02 | B03 | B04 | B05 | B06 | B07 | B08 | B09 | B10 | B11 | B12 | B13 | B14 | B15 | B16 | B17 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|--------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | NIST SP 800-53 Rev. 5 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
 | FedRAMP | 2 | 3 | 2 | 1 | 3 | 3 | 3 | 1 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 |
 | NIST RMF (SP 800-37 Rev. 2) | 2 | 2 | 2 | 2 | 0 | 1 | 3 | 2 | 2 | 2 | 3 | 2 | 3 | 3 | 3 | 2 | 2 | 3 |
@@ -75,6 +93,8 @@ The frameworks the workbook relies on most are not on the usual modernization li
 | 21st Century IDEA and M-23-22 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 Notes: Book 14's enterprise architecture score rests on A-130 §5.a(2) and control PM-7, with architecture artifacts and review gates as the evidence; no book names FEAF. Book 01's Cloud Smart score is a mention of its 2010 predecessor, Cloud First, as history. Book 12 relies on M-22-09 through other books rather than citing it directly.
+
+:::
 
 ## What the matrix shows
 
@@ -107,17 +127,12 @@ The 0-to-3 depth would be derived rather than typed by hand: 3 where a requireme
 
 **In review.** Each framework's status was checked at its primary source on October 23, 2026, and every score comes from reading the chapters. Some sources couldn't be reached: the cio.gov pages for Cloud Smart and FITARA (certificate and 404 errors), Federal Register document pages (bot protection, which wasn't bypassed; its API and govinfo were used instead), and the OMB PDF of M-23-07 (404). To move this page to **Proved**, a reviewer confirms the scores against the books and the planned additions are either made or declined. Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
 
-[^m2605]: Office of Management and Budget, M-26-05, *Adopting a Risk-based Approach to Software and Hardware Security*, January 23, 2026, <https://www.whitehouse.gov/wp-content/uploads/2026/01/M-26-05-Adopting-a-Risk-based-Approach-to-Software-and-Hardware-Security.pdf> (accessed Oct 23, 2026).
-[^fds]: Federal Data Strategy, <https://strategy.data.gov/> (retirement notice), and <https://resources.data.gov/> (accessed Oct 23, 2026).
-[^feaf]: The White House (archived), Federal Enterprise Architecture, including FEAF v2 (January 29, 2013) and the Common Approach to Federal EA (May 2, 2012), <https://obamawhitehouse.archives.gov/node/17927> (accessed Oct 23, 2026).
 [^a130]: Office of Management and Budget, Circular A-130, *Managing Information as a Strategic Resource* (2016 revision), §5.a(2), §5.d, §5.f and Appendix II, <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf>; OMB Circulars index, <https://www.whitehouse.gov/omb/information-resources/guidance/circulars/> (both accessed Oct 23, 2026).
-[^eo]: Federal Register API, presidential documents citing Executive Order 14028, <https://www.federalregister.gov/api/v1/documents.json?conditions[term]=%22Executive+Order+14028%22&conditions[type][]=PRESDOCU&order=newest>; Executive Order 14306 text, <https://www.govinfo.gov/content/pkg/DCPD-202500669/html/DCPD-202500669.htm> (both accessed Oct 23, 2026).
 [^m2610]: Office of Management and Budget, M-26-10, *Reinforcing Transparency, Accountability, and Oversight of Federal Technology*, March 31, 2026, §1 and Requirements, <https://www.whitehouse.gov/wp-content/uploads/2026/03/M-26-10-Reinforcing-Transparency-Accountability-and-Oversight-of-Federal-Technology.pdf> (accessed Oct 23, 2026).
 [^cca]: 40 U.S.C. §11312, Capital planning and investment control (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title40/html/USCODE-2023-title40-subtitleIII-chap113-subchapII-sec11312.htm> (accessed Oct 23, 2026).
 [^tmf]: Technology Modernization Fund, <https://tmf.cio.gov/>, agency and project fit <https://tmf.cio.gov/fit/>, process <https://tmf.cio.gov/process/>, and 2026 Call for Proposals <https://tmf.cio.gov/2026-call-for-proposals/> (accessed Oct 23, 2026).
 [^idea]: 21st Century Integrated Digital Experience Act, Pub. L. 115-336, <https://www.govinfo.gov/content/pkg/PLAW-115publ336/html/PLAW-115publ336.htm>; OMB M-23-22, *Delivering a Digital-First Public Experience* (archived page), <https://bidenwhitehouse.archives.gov/omb/management/ofcio/delivering-a-digital-first-public-experience> (both accessed Oct 23, 2026).
 [^m2618]: Office of Management and Budget, M-26-18, *Scaling Use of Login.gov to Deliver a Universal Sign-on for Public Services*, August 31, 2026, <https://www.whitehouse.gov/wp-content/uploads/2026/08/M-26-18-Scaling-Use-of-Login.gov-to-Deliver-a-Universal-Sign-on-for-Public-Services.pdf> (accessed Oct 23, 2026).
-[^nist]: NIST, Cybersecurity Framework, <https://www.nist.gov/cyberframework>; NIST SP 800-37 Rev. 2, <https://csrc.nist.gov/pubs/sp/800/37/r2/final> (both accessed Oct 23, 2026).
 [^s508]: Section508.gov, Laws and policies, <https://www.section508.gov/manage/laws-and-policies/> (accessed Oct 23, 2026).
 [^records]: 44 U.S.C. §3101 (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title44/html/USCODE-2023-title44-chap31-sec3101.htm>; National Archives, Records management policy, <https://www.archives.gov/records-mgmt/policy> (both accessed Oct 23, 2026).
 [^also]: NIST SP 800-53 Rev. 5, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; FedRAMP, <https://www.fedramp.gov/>, and 44 U.S.C. §3607, <https://www.govinfo.gov/content/pkg/USCODE-2023-title44/html/USCODE-2023-title44-chap36-sec3607.htm>; OMB M-26-14, May 22, 2026, <https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf>; CISA, Zero Trust Maturity Model, <https://www.cisa.gov/zero-trust-maturity-model>; NIST FIPS 201-3, <https://csrc.nist.gov/pubs/fips/201-3/final> (all accessed Oct 23, 2026).
