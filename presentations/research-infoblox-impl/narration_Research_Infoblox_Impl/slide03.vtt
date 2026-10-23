@@ -1,0 +1,130 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.888
+Before Phase 1, four decisions,
+because each is expensive to reverse.
+
+2
+00:00:04.888 --> 00:00:06.763
+First, FIPS mode.
+
+3
+00:00:06.763 --> 00:00:10.050
+On NIOS you can set it only
+from the command line,
+
+4
+00:00:10.050 --> 00:00:13.675
+and only after a factory
+reset, the reset all command.
+
+5
+00:00:13.675 --> 00:00:17.763
+On a Grid you set it on the Grid Master,
+and members take it when they join.
+
+6
+00:00:17.763 --> 00:00:20.462
+Turning it off again also needs reset all.
+
+7
+00:00:20.462 --> 00:00:25.462
+And enabling it disables every cloud
+connection, including the Infoblox Portal.
+
+8
+00:00:25.462 --> 00:00:29.472
+So a FIPS-mode Grid can't use
+Universal DDI hybrid management,
+
+9
+00:00:29.472 --> 00:00:34.124
+and by my inference it loses the
+portal-managed Data Connector as well.
+
+10
+00:00:34.124 --> 00:00:36.603
+Be precise about the claim, too:
+
+11
+00:00:36.603 --> 00:00:43.044
+Infoblox says NIOS 9.0.7 and later is
+supported in FIPS and Common Criteria mode,
+
+12
+00:00:43.044 --> 00:00:49.387
+but that the FIPS 140-3 and Common
+Criteria certifications are still pending.
+
+13
+00:00:49.387 --> 00:00:54.000
+Running in FIPS mode isn't the same
+as holding a validated module.
+
+14
+00:00:54.000 --> 00:00:56.462
+Second, the Long Term Support train.
+
+15
+00:00:56.462 --> 00:00:59.851
+One of the STIG's category one
+rules measures you against the
+
+16
+00:00:59.851 --> 00:01:03.512
+current approved long-term-support
+version for federal systems.
+
+17
+00:01:03.512 --> 00:01:05.801
+Third, the DNSSEC defaults.
+
+18
+00:01:05.801 --> 00:01:12.462
+NIOS defaults to RSA with SHA-1,
+and a 1024-bit zone-signing key.
+
+19
+00:01:12.462 --> 00:01:16.174
+Change both before you sign
+anything, because fixing it later
+
+20
+00:01:16.174 --> 00:01:19.813
+means an algorithm rollover and
+new DS records at the parent.
+
+21
+00:01:19.813 --> 00:01:22.475
+And fourth, the hardware security module.
+
+22
+00:01:22.475 --> 00:01:27.112
+The STIG wants the Grid Master hidden
+from every zone's name server list,
+
+23
+00:01:27.112 --> 00:01:29.863
+and HSM signing, or a
+documented exception.
+
+24
+00:01:29.863 --> 00:01:38.312
+Sources: Infoblox NIOS FIPS and CC
+mode: Enabling FIPS or CC mode,
+
+25
+00:01:38.312 --> 00:01:48.062
+and Guidelines for FIPS/CC mode; NIOS
+9.1.x Configuring DNSSEC parameters;
+
+26
+00:01:48.062 --> 00:01:54.237
+DISA Infoblox NIOS 9.x
+STIG V1R1, rules V-285229,
+
+27
+00:01:54.237 --> 00:02:01.440
+V-285269 and V-285308; research
+brief sections 0.1 to 0.3.

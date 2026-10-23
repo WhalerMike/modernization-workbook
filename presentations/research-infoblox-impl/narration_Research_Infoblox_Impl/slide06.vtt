@@ -1,0 +1,143 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.300
+Next, the Grid Master Candidate.
+
+2
+00:00:02.300 --> 00:00:06.375
+You designate it in the member's properties
+with the Master Candidate option.
+
+3
+00:00:06.375 --> 00:00:08.550
+It holds a full copy of the database,
+
+4
+00:00:08.550 --> 00:00:11.550
+and it should be the same
+model as the Grid Master.
+
+5
+00:00:11.550 --> 00:00:13.517
+Infoblox gives you a promote test,
+
+6
+00:00:13.517 --> 00:00:17.662
+which sends crafted packets from the
+candidate to the members you pick.
+
+7
+00:00:17.662 --> 00:00:20.426
+It runs for at most a
+hundred twenty seconds,
+
+8
+00:00:20.426 --> 00:00:24.801
+only one candidate can be tested at
+a time, and never during an upgrade.
+
+9
+00:00:24.801 --> 00:00:30.112
+One quirk: behind NAT in Azure, the test
+fails but the real promotion works.
+
+10
+00:00:30.112 --> 00:00:31.325
+Joining members.
+
+11
+00:00:31.325 --> 00:00:35.538
+Define each member on the Grid Master
+before you configure the appliance.
+
+12
+00:00:35.538 --> 00:00:39.591
+Then join it with the Grid Master's
+virtual address, the Grid name and
+
+13
+00:00:39.591 --> 00:00:43.788
+the shared secret, through the wizard,
+Grid Manager or the command line.
+
+14
+00:00:43.788 --> 00:00:49.176
+Status icons show green for joined, yellow
+for joining and red for not joined.
+
+15
+00:00:49.176 --> 00:00:52.313
+A dual-mode Grid needs
+a dual-mode candidate.
+
+16
+00:00:52.313 --> 00:00:53.287
+The ports.
+
+17
+00:00:53.287 --> 00:00:58.022
+Members need UDP 2114 for
+key exchange and UDP 1194 for
+
+18
+00:00:58.022 --> 00:01:02.651
+the Grid's VPN tunnel to the
+Grid Master and candidate.
+
+19
+00:01:02.651 --> 00:01:05.987
+HA pairs use VRRP and must share a subnet.
+
+20
+00:01:05.987 --> 00:01:13.337
+DHCP failover uses TCP 647,
+and 7911 for partner down.
+
+21
+00:01:13.337 --> 00:01:20.113
+Managing Windows servers needs 135,
+445 and the dynamic RPC range.
+
+22
+00:01:20.113 --> 00:01:23.300
+And secure syslog uses 6514.
+
+23
+00:01:23.300 --> 00:01:25.438
+But FIPS mode changes this.
+
+24
+00:01:25.438 --> 00:01:33.238
+The Grid's OpenVPN runs over TCP 22, and
+port 1023 carries HA passive to active.
+
+25
+00:01:33.238 --> 00:01:37.387
+So, my inference, firewall
+rules written only
+
+26
+00:01:37.387 --> 00:01:41.537
+for 1194 and 2114 won't
+be enough on a FIPS Grid.
+
+27
+00:01:41.537 --> 00:01:49.277
+Sources: Infoblox NIOS 9.1.x Designating
+a Grid Master Candidate; GMC Promote Test;
+
+28
+00:01:49.277 --> 00:01:54.014
+Joining appliances to the
+Grid; Defining members;
+
+29
+00:01:54.014 --> 00:02:00.021
+Source and destination ports for
+services (version 2, dated Oct.
+
+30
+00:02:00.021 --> 00:02:06.890
+6, 2026); NIOS FIPS/CC Enabling FIPS or
+CC mode; vNIOS for Azure limitations.

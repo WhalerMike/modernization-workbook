@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.488
+Part 3: sign and harden.
+
+2
+00:00:02.488 --> 00:00:06.034
+First DNSSEC on NIOS: how
+signing works on a Grid,
+
+3
+00:00:06.034 --> 00:00:11.037
+the parameters to set before you
+sign, and how to publish DS records.
+
+4
+00:00:11.037 --> 00:00:13.099
+Then the hardware security module.
+
+5
+00:00:13.099 --> 00:00:16.175
+Then what the DISA STIG
+for NIOS 9 actually checks,
+
+6
+00:00:16.175 --> 00:00:18.500
+which is narrower than people assume.
+
+7
+00:00:18.500 --> 00:00:22.968
+Then the FIPS mode procedure, and
+finally hardening administrator access,
+
+8
+00:00:22.968 --> 00:00:26.138
+including two upgrade gates
+that can lock people out.
+
+9
+00:00:26.138 --> 00:00:31.883
+Sources: Infoblox NIOS 9.1.x
+DNSSEC and HSM documentation;
+
+10
+00:00:31.883 --> 00:00:38.728
+NIOS FIPS and CC mode documentation;
+DISA Infoblox NIOS 9.x STIG V1R1;
+
+11
+00:00:38.728 --> 00:00:44.540
+the Federal Modernization
+Workbook's Book 08, Chapter 06.

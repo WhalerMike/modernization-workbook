@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.850
+The DHCP takeover, which
+has one destructive trap.
+
+2
+00:00:03.850 --> 00:00:09.221
+Infoblox documents that when you remove
+a managed Windows DHCP server from Grid
+
+3
+00:00:09.221 --> 00:00:12.748
+management, Grid Manager
+deletes all the DHCP ranges,
+
+4
+00:00:12.748 --> 00:00:15.875
+leases and fixed addresses
+associated with it.
+
+5
+00:00:15.875 --> 00:00:18.528
+So the order is: take
+the scopes over first,
+
+6
+00:00:18.528 --> 00:00:21.338
+and remove the server
+from management last.
+
+7
+00:00:21.338 --> 00:00:23.873
+The takeover itself is five steps,
+
+8
+00:00:23.873 --> 00:00:28.312
+from Infoblox's page on modifying
+DHCP server assignments.
+
+9
+00:00:28.312 --> 00:00:31.799
+Set every fixed address in
+the scope to the server None.
+
+10
+00:00:31.799 --> 00:00:35.338
+Set every range served by
+the Windows server to None.
+
+11
+00:00:35.338 --> 00:00:39.987
+In the network's member assignment, replace
+the Windows server with a Grid member.
+
+12
+00:00:39.987 --> 00:00:42.025
+Assign the ranges to that member.
+
+13
+00:00:42.025 --> 00:00:43.688
+Then restart services.
+
+14
+00:00:43.688 --> 00:00:46.667
+Infoblox says you don't need
+to clear the old leases,
+
+15
+00:00:46.667 --> 00:00:50.213
+because the member clears them
+when the assignment changes.
+
+16
+00:00:50.213 --> 00:00:53.524
+Now the client side, from
+Microsoft's documentation.
+
+17
+00:00:53.524 --> 00:00:58.537
+Windows clients renew by unicast to the
+server that issued the lease at half the
+
+18
+00:00:58.537 --> 00:01:01.118
+lease time, and rebind by broadcast to any
+
+19
+00:01:01.118 --> 00:01:03.700
+server at eighty-seven and a half percent.
+
+20
+00:01:03.700 --> 00:01:06.456
+So the old Windows scope
+must stop answering,
+
+21
+00:01:06.456 --> 00:01:10.553
+deactivated or with the service
+stopped, or clients keep renewing
+
+22
+00:01:10.553 --> 00:01:14.725
+with it and keep its options, including
+the DNS servers in option six.
+
+23
+00:01:14.725 --> 00:01:17.117
+What isn't documented is whether a client
+
+24
+00:01:17.117 --> 00:01:19.650
+keeps the same address
+across the takeover.
+
+25
+00:01:19.650 --> 00:01:21.831
+My inference: pilot it on one scope,
+
+26
+00:01:21.831 --> 00:01:25.725
+and lower lease times beforehand
+to shorten the transition.
+
+27
+00:01:25.725 --> 00:01:30.426
+Then follow the Federal Modernization
+Workbook's Book 08's last step,
+
+28
+00:01:30.426 --> 00:01:32.488
+de-authorizing the old server.
+
+29
+00:01:32.488 --> 00:01:37.856
+Sources: Infoblox NIOS 9.1.x
+Modifying DHCP server assignments;
+
+30
+00:01:37.856 --> 00:01:44.257
+Removing a Microsoft server from Grid
+management; Synchronized DHCP data;
+
+31
+00:01:44.257 --> 00:01:51.071
+Microsoft Learn Troubleshoot problems on
+the DHCP client (renewal at 50 and 87.5
+
+32
+00:01:51.071 --> 00:01:57.220
+percent); Book 08, Chapter 10 (Phase 3
+DHCP scopes, Phase 5 de-authorization).

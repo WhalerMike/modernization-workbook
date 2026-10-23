@@ -1,0 +1,161 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.962
+Upgrades.
+
+2
+00:00:00.962 --> 00:00:04.291
+Infoblox's process has
+five steps: download,
+
+3
+00:00:04.291 --> 00:00:08.450
+upload to the Grid Master,
+distribute, test, and upgrade.
+
+4
+00:00:08.450 --> 00:00:11.988
+Read the release notes first;
+they list the addressed CVEs,
+
+5
+00:00:11.988 --> 00:00:14.200
+and they're behind the support login.
+
+6
+00:00:14.200 --> 00:00:17.037
+Upload goes to the
+active Grid Master node.
+
+7
+00:00:17.037 --> 00:00:20.338
+If it fails over before
+distribution, upload again.
+
+8
+00:00:20.338 --> 00:00:23.012
+Distribution is the point of no return.
+
+9
+00:00:23.012 --> 00:00:26.140
+It loads the new software
+into the alternate partition,
+
+10
+00:00:26.140 --> 00:00:29.812
+which removes the ability to revert
+to the version you had before.
+
+11
+00:00:29.812 --> 00:00:34.362
+And once it starts, you can't
+add, remove or regroup members.
+
+12
+00:00:34.362 --> 00:00:38.512
+The test upgrade is
+mandatory from 9.1.0 onward.
+
+13
+00:00:38.512 --> 00:00:40.056
+It doesn't affect services,
+
+14
+00:00:40.056 --> 00:00:43.563
+and it reports data translation
+errors before they hurt you.
+
+15
+00:00:43.563 --> 00:00:46.424
+Then the upgrade itself
+runs by upgrade group.
+
+16
+00:00:46.424 --> 00:00:47.869
+During a full upgrade,
+
+17
+00:00:47.869 --> 00:00:52.200
+scheduled and approval tasks are
+deleted, so recreate them after.
+
+18
+00:00:52.200 --> 00:00:55.403
+Don't change member
+DNS or DHCP properties,
+
+19
+00:00:55.403 --> 00:00:59.338
+restart members not yet
+upgraded, or rename members.
+
+20
+00:00:59.338 --> 00:01:03.034
+HA pairs fail over, and if
+DNSSEC operations are in flight,
+
+21
+00:01:03.034 --> 00:01:06.337
+upgrade the candidate right
+after the Grid Master.
+
+22
+00:01:06.337 --> 00:01:10.713
+Infoblox expects you to finish within
+a couple of days, and warns at nine.
+
+23
+00:01:10.713 --> 00:01:14.762
+Reverting one member is possible
+only while the upgrade is paused,
+
+24
+00:01:14.762 --> 00:01:18.075
+within its revert window,
+twenty-four hours by default.
+
+25
+00:01:18.075 --> 00:01:21.322
+Reverting the whole Grid
+restarts it at once and
+
+26
+00:01:21.322 --> 00:01:24.487
+loses every change since,
+including new leases.
+
+27
+00:01:24.487 --> 00:01:30.441
+Long-term support: 9.0.6 in April 2025
+started a twenty-four-month train,
+
+28
+00:01:30.441 --> 00:01:35.037
+so by my inference its window
+runs to about April 2027.
+
+29
+00:01:35.037 --> 00:01:38.387
+Confirm the approved federal
+build on the support portal.
+
+30
+00:01:38.387 --> 00:01:44.556
+Sources: Infoblox NIOS upgrade guide:
+Upgrading NIOS (five steps), Uploading,
+
+31
+00:01:44.556 --> 00:01:50.028
+Distributing, Test upgrade, Full
+and lite upgrades, Upgrade groups,
+
+32
+00:01:50.028 --> 00:01:54.804
+During the upgrade, Reverting
+a member, Reverting the Grid;
+
+33
+00:01:54.804 --> 00:02:00.530
+Upgrade guidelines for NIOS 9.1.0;
+earlier platform brief (LTS program).
