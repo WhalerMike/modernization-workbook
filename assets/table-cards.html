@@ -1,0 +1,31 @@
+<script>
+/* Tables that adapt to the screen. On a desktop a table stays a table. On a phone, a table of 4 to 10
+   columns becomes stacked cards: each row a card, each value labelled with its column name. Wider
+   tables (more than 10 columns, such as a coverage matrix) stay a grid and scroll sideways inside their
+   own box. CSS in assets/fmw-theme.scss does the switch at phone width; this script adds the labels
+   and the scroll box. */
+(function () {
+  document.querySelectorAll("main table").forEach(function (table) {
+    var head = table.querySelector("thead tr");
+    if (!head) return;
+    var names = Array.prototype.map.call(head.children, function (th) { return th.textContent.trim(); });
+    var cols = names.length;
+    if (cols > 10) {
+      if (!table.parentElement.classList.contains("fmw-table-scroll")) {
+        var box = document.createElement("div");
+        box.className = "fmw-table-scroll";
+        table.parentNode.insertBefore(box, table);
+        box.appendChild(table);
+      }
+      return;
+    }
+    if (cols < 4) return;
+    table.classList.add("fmw-stack");
+    table.querySelectorAll("tbody tr").forEach(function (tr) {
+      Array.prototype.forEach.call(tr.children, function (td, i) {
+        if (names[i]) td.setAttribute("data-label", names[i]);
+      });
+    });
+  });
+})();
+</script>

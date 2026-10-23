@@ -40,6 +40,7 @@ fails if one does not.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import concurrent.futures as cf
 import json
 import os
@@ -59,6 +60,7 @@ import yaml
 REPO = Path(__file__).resolve().parent.parent
 CONFIG = REPO / "scripts/bundles.yml"
 FILTER = REPO / "scripts/bundle-filter.lua"
+TABLES = REPO / "assets/landscape.lua"   # balanced table widths; landscape for wide tables
 DEFAULT_OUT = REPO / "_site/downloads"
 IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".bmp", ".tif", ".tiff", ".emf", ".wmf"}
 GLOB_CHARS = set("*?[")
@@ -465,6 +467,56 @@ def word_png(src: Path) -> Path | None:
     return png.resolve() if png.is_file() else None
 
 
+SVG_EXT = ('<a:extLst><a:ext uri="{96DAC541-7B7A-43D3-8B79-37D633B846F1}">'
+           '<asvg:svgBlip xmlns:asvg="http://schemas.microsoft.com/office/drawing/2016/SVG/main" r:embed="%s"/>'
+           '</a:ext></a:extLst>')
+
+
+def add_svg_vectors(docx: Path, svg_to_png: dict) -> int:
+    """Give every committed-PNG diagram its SVG as a vector version Word draws at any zoom.
+
+    pandoc embeds the committed 2x PNG (the QA'd image, and what older Word shows). This adds the
+    matching SVG to the package and an svgBlip extension on the picture, which is how Word stores
+    a vector image with a raster fallback. Diagrams are matched by the PNG's bytes.
+    """
+    by_hash = {hashlib.sha1(png.read_bytes()).hexdigest(): svg for svg, png in svg_to_png.items()}
+    tmp = docx.with_suffix(".svg.tmp")
+    added = 0
+    with zipfile.ZipFile(docx) as zin:
+        rels = zin.read("word/_rels/document.xml.rels").decode("utf-8")
+        doc = zin.read("word/document.xml").decode("utf-8")
+        types = zin.read("[Content_Types].xml").decode("utf-8")
+        new_parts = {}
+        for rid, target in re.findall(r'Id="(rId\d+)"[^>]*Target="(media/[^"]+\.png)"', rels) +                 [(b, a) for a, b in re.findall(r'Target="(media/[^"]+\.png)"[^>]*Id="(rId\d+)"', rels)]:
+            svg = by_hash.get(hashlib.sha1(zin.read("word/" + target)).hexdigest())
+            if not svg:
+                continue
+            svg_rid = rid + "svg"
+            svg_target = target[:-4] + ".svg"
+            new_parts["word/" + svg_target] = svg.read_bytes()
+            rels = rels.replace("</Relationships>",
+                                f'<Relationship Id="{svg_rid}" Type="http://schemas.openxmlformats.org/'
+                                f'officeDocument/2006/relationships/image" Target="{svg_target}"/></Relationships>')
+            doc, n = re.subn(rf'<a:blip r:embed="{rid}"\s*/>', f'<a:blip r:embed="{rid}">{SVG_EXT % svg_rid}</a:blip>', doc)
+            added += n
+        if new_parts and 'Extension="svg"' not in types:
+            types = types.replace("</Types>", '<Default Extension="svg" ContentType="image/svg+xml"/></Types>')
+        with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as zout:
+            for item in zin.infolist():
+                data = zin.read(item.filename)
+                if item.filename == "word/_rels/document.xml.rels":
+                    data = rels.encode("utf-8")
+                elif item.filename == "word/document.xml":
+                    data = doc.encode("utf-8")
+                elif item.filename == "[Content_Types].xml":
+                    data = types.encode("utf-8")
+                zout.writestr(item, data)
+            for name, data in new_parts.items():
+                zout.writestr(name, data)
+    tmp.replace(docx)
+    return added
+
+
 @dataclass
 class Prepared:
     staged: Path                         # prepared copy in the work folder
@@ -577,6 +629,7 @@ class Builder:
             *(["--metadata", f"abstract={self.disclaimer}"] if self.disclaimer else []),
             "--toc", f"--toc-depth={b.toc_depth}",
             "--lua-filter", str(FILTER),
+            "--lua-filter", str(TABLES),
             "--reference-doc", str(self.reference_doc),
             "--resource-path", str(REPO),
             "--fail-if-warnings",
@@ -586,6 +639,7 @@ class Builder:
             raise BuildError(f"{b.output}: pandoc failed (exit {res.returncode})\n{res.stderr}")
         if not fill_toc(output, b.toc_depth):
             raise BuildError(f"{b.output}: table of contents has no entries")
+        add_svg_vectors(output, {r: word_png(r) for r in unique if word_png(r)})
         with zipfile.ZipFile(output) as z:
             media = [n for n in z.namelist() if n.startswith("word/media/")]
             doc = z.read("word/document.xml").decode("utf-8")

@@ -204,6 +204,8 @@ format:
     include-after-body:
       # Copy-link buttons: page links, and share links beside downloads (assets/copy-link.html).
       - file: assets/copy-link.html
+      # Tables become stacked cards on phones; very wide ones scroll (assets/table-cards.html).
+      - file: assets/table-cards.html
       - text: |
           <script>
             document.querySelectorAll("section#footnotes").forEach(function (s) {
@@ -239,6 +241,8 @@ format:
           </div>
     toc: true
     fig-responsive: true
+    # Click any figure to open it full screen and zoom.
+    lightbox: auto
     fig-align: center
     link-external-newwindow: true
     link-external-icon: true
