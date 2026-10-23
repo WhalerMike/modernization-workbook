@@ -281,6 +281,22 @@ Get-MgAuditLogSignIn -Filter "userPrincipalName eq '$Upn'" -Top 25 |
 
 Copy the relevant rows into the ticket as text. Don't export log data to files outside the SIEM.
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| Expired or missing device certificate; quarantined 802.1X device | Device and user auth (Intune) | Cloud PKI | Intune | Nothing: resync the Intune profile |
+| CBA sign-in failure with a PIV card | PIV | Federal PKI | PIV card system | Nothing: route to the PIV issuer's process |
+| Server certificate expiring or failing | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Route to the certificate's Server Owner in the platform, not a manual renewal |
+| SAML signing certificate rotation for an enterprise app | Not a Book 07 class | Entra | Entra ID or the app's owner | Nothing, unless the agency uploads a CA-issued certificate |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b15-day2-operations/svg/certs-clm.svg){fig-alt="Expired or missing device certificate; quarantined 802.1X device go to Intune (renews device certificates); CBA sign-in failure with a PIV card go to PIV card system (renews piv credentials); Server certificate expiring or failing go to CyberArk Certificate Manager (renews and installs); SAML signing certificate rotation for an enterprise app go to Entra ID or the app's owner (outside book 07's classes)."}
+
+The help desk renews no certificates by hand: device certificates come back through Intune, PIV through its card system, and server certificates through the CLM platform's owner and drivers ([Book 07, Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)).
+
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 12 — The Day-Two Operator Runbook and Validation](12-the-day-two-runbook.md) · [Book index](index.md) · [Back to Chapter 04 — Help Desk Authority in Entra ID](04-help-desk-authority-in-entra.md)

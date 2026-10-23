@@ -27,6 +27,11 @@ The three distinct SQL Server capabilities that can depend on certificates issue
 The transformation inventory classifies the move from AD CS to Microsoft Cloud PKI as **"Not Yet Defined."** Most SQL Server transformation documents ignore the certificate infrastructure, but this series can't be complete without it. This chapter identifies the dependencies, names the gap, and describes what the as-yet-unwritten AD CS migration architecture decision must address. `Get-CertBasedAuthAudit.ps1` is the discovery instrument ([Runbook R10](r10-certificate-discovery-for-adcs.md)). Don't cite this chapter as normative governance for AD CS migration decisions.
 :::
 
+::: {.callout-important}
+## Book 07 has since made the decision
+This chapter was written before the workbook's PKI book. [Book 07, Chapter 04](../b07-pki/04-the-target-pki.md#the-issuer-decision-for-internal-server-certificates) now decides the issuers. SQL Server's TLS certificate, like every internal server certificate, comes from the retained AD CS hierarchy, requested and renewed through CyberArk Certificate Manager, and moves to a standalone AD CS issuing CA under the same root when the forest retires. Domain controller certificates stay on AD CS autoenrollment until the last domain controller retires ([Book 07, Chapter 07](../b07-pki/07-coexistence-and-migration.md)), so the certificate-based interim posture keeps the certificates it depends on. The analysis below still holds; where it calls the decision open, read Book 07. [Certificates in this book and the CLM platform](#certificates-and-the-clm-platform) maps each SQL Server certificate.
+:::
+
 ![The three places SQL Server depends on AD CS-issued certificates.](../../images/sql-server/diagrams/svg/book-10-adcs-dependencies.svg){fig-alt="ADCS, being decommissioned, issues TLS server certificates, the certificates behind certificate-mapped type C logins, and the certificates for certificate-based authentication used as an interim posture."}
 
 The transformation inventory identifies the Active Directory Certificate Services to Microsoft Cloud PKI transformation as "Not Yet Defined." As the series opening established, that label means the destination may be known but the normative canon governing how to reach it has not been authored.[^c22-cloudpki] For most of this series, the missing record has been the substrate architecture decision; for this chapter, the gap is more fundamental still. No architecture decision record governs the certificate authority transformation at all.
@@ -47,7 +52,7 @@ When AD CS is decommissioned, that certificate will not be renewed automatically
 
 The certificate-audit script captures the TLS certificate for every instance in scope: the subject, the SAN, the issuing CA, and the expiration date. Any instance whose TLS certificate is AD CS-issued is a dependency the migration plan must address. The replacement certificate must come from the new CA and must be installed and bound before the AD CS-issued certificate expires or before AD CS goes offline, whichever comes first.
 
-Which new CA is an open question, and Microsoft Cloud PKI doesn't answer it for servers. Cloud PKI, licensed as an add-on to Intune Plan 1 or Plan 2, issues certificates only through SCEP to devices enrolled in Intune.[^c22-cloudpki] Intune's supported platforms don't include Windows Server,[^c22-intune-platforms] so a SQL Server host can't receive its TLS certificate from Cloud PKI directly. Cloud PKI can still anchor its issuing CA to an existing private root ("bring your own CA"),[^c22-cloudpki] which lets workstation and server certificates share a trust anchor, but the server-certificate issuer is a separate choice the unwritten decision has to make. The same applies to the government cloud question: Cloud PKI is available in GCC High but not in DoD environments.[^c22-cloudpki]
+Which CA issues the replacement is now settled: [Book 07, Chapter 04](../b07-pki/04-the-target-pki.md#the-issuer-decision-for-internal-server-certificates) names the retained AD CS hierarchy, through the CLM platform. Microsoft Cloud PKI doesn't answer it for servers. Cloud PKI, licensed as an add-on to Intune Plan 1 or Plan 2, issues certificates only through SCEP to devices enrolled in Intune.[^c22-cloudpki] Intune's supported platforms don't include Windows Server,[^c22-intune-platforms] so a SQL Server host can't receive its TLS certificate from Cloud PKI directly. Cloud PKI can still anchor its issuing CA to an existing private root ("bring your own CA"),[^c22-cloudpki] which lets workstation and server certificates share a trust anchor, but the server-certificate issuer is a separate choice the unwritten decision has to make. The same applies to the government cloud question: Cloud PKI is available in GCC High but not in DoD environments.[^c22-cloudpki]
 
 ## Certificate-mapped SQL Server logins
 
@@ -80,12 +85,29 @@ The three dependencies converge on a single sequencing question. TLS certificate
 
 If the AD CS decommission timeline runs earlier than the replacement-CA and CBA-deployment timeline, the program loses the interim posture the Kerberos/NTLM-elimination program depends on at precisely the moment it is most needed: connections that could not migrate to Entra authentication in time would have no compliant fallback. The sequencing of the AD CS decommission against the 2027-04-01 NTLM backstop is therefore a critical dependency, and it is one the as-yet-unwritten AD CS migration architecture decision must explicitly address before any decommission date is set. The forest-wide view of the same problem, with the other services that ride on AD CS, is in [Book 02, Chapter 04](../b02-identity/04-the-hidden-migration-surface.md).
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| SQL Server TLS engine certificate | Internal server TLS | Retained AD CS, then standalone AD CS | CyberArk Certificate Manager | Renews it; the CAPI driver installs it and grants the SQL service account read access to the key |
+| Domain controller certificates for smart card sign-in | Domain controller and LDAPS | Retained AD CS | AD CS autoenrollment | Watches; autoenrollment renews until the last DC retires |
+| PIV certificates for the interim posture | PIV | Federal PKI | PIV card system | Nothing |
+| Certificates behind type-C logins and endpoints | Not a Book 07 class | In-engine or AD CS | Platform-managed, or not X.509 | Discovery only; certificates created inside the engine aren't in the Windows store (inference) |
+| SQL Server 2022 app-registration certificate in Key Vault | Not a Book 07 class | Key Vault | Entra ID or the app's owner | Nothing: rotated by its named owner |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b06-data-platform/svg/certs-clm.svg){fig-alt="SQL Server TLS engine certificate go to CyberArk Certificate Manager (renews and installs); Domain controller certificates for smart card sign-in go to AD CS autoenrollment (renews; the platform only watches); PIV certificates for the interim posture go to PIV card system (renews piv credentials); Certificates behind type-C logins and endpoints go to Platform-managed, or not X.509 (no clm lifecycle); SQL Server 2022 app-registration certificate in Key Vault go to Entra ID or the app's owner (outside book 07's classes)."}
+
+The CAPI driver doesn't document re-pointing SQL Server's configured certificate thumbprint, so a renewal either needs a post-install step (an Adaptable driver or a script) or relies on SQL Server selecting the certificate itself when no thumbprint is set (inference).[^clm-capi]
+
+
 ## What this chapter establishes
 
 1. SQL Server can depend on AD CS in three places: the TLS server certificate, certificates behind type-C logins and endpoints, and the certificate-based interim posture, where the dependency is usually the domain controller certificates rather than the PIV card.
 2. Microsoft Cloud PKI issues only to Intune-enrolled devices, which excludes Windows Server, so the server-certificate issuer is a separate decision.
 3. `Get-CertBasedAuthAudit.ps1` discovers all three dependencies.
-4. The sequencing of the AD CS decommission against the program's 2027-04-01 backstop is a dependency the as-yet-unwritten AD CS migration decision must resolve.
+4. The sequencing of the AD CS decommission against the program's 2027-04-01 backstop was a dependency the AD CS migration decision had to resolve; Book 07 resolves it by keeping domain controller certificates on AD CS autoenrollment until the last domain controller retires ([Book 07, Chapter 07](../b07-pki/07-coexistence-and-migration.md)).
 
 ::: {.callout-tip}
 ## Continue the book
@@ -105,3 +127,4 @@ If the AD CS decommission timeline runs earlier than the replacement-CA and CBA-
 [^c22-fips201]: NIST, FIPS 201-3, *Personal Identity Verification (PIV) of Federal Employees and Contractors*, January 2022, §5 (PKI architecture and certificates), <https://csrc.nist.gov/pubs/fips/201-3/final> (accessed Oct 20, 2026).
 [^c22-sclogon]: Microsoft Learn, "Guidelines for enabling smart card logon with third-party certification authorities" (issuing CA must be in the NTAuth store; each domain controller needs a domain controller certificate; Enterprise CAs enroll domain controllers automatically), <https://learn.microsoft.com/en-us/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/enabling-smart-card-logon-third-party-certification-authorities> (accessed Oct 20, 2026).
 [^c22-entra-cba]: Microsoft Learn, "Overview of Microsoft Entra certificate-based authentication" (phishing-resistant authentication with X.509 certificates against your PKI; trusted CAs with HTTP CRL distribution points), <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication> (accessed Oct 20, 2026).
+[^clm-capi]: CyberArk, Certificate Manager, Self-Hosted 26.1, "CAPI" application driver (installs certificates and keys into the Windows CAPI store over WinRM, optionally binds IIS, and can grant a named Windows identity read access to the private key), <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/cco-CAPI-AppDriverConfig-tpp.php> and <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/r-CAPI-AppObjSettings-tpp.php> (accessed Oct 23, 2026).

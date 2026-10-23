@@ -98,3 +98,12 @@ Writer W3. Source: `docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md` (the 
 | NIST Control Closure: Closure Necessity (SI-4(4)) | Ch05 SASE section, last paragraph | Restated as design (claim 35) |
 | NIST Control Closure table | Ch05 Controls table; Ch11 Controls table | Split by chapter; AU-7, AU-8 rows not carried (AU-8 point kept as the timestamp note in DNS section) |
 | FedRAMP 20x KSI Alignment | Ch05 What AU-6 requires (KSI-MLA); Ch11 IR plan (KSI-INR) | Automation claims removed (claim 9) |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+| 2 | CyberArk mechanism (syslog) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-syslog |

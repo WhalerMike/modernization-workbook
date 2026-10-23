@@ -58,3 +58,12 @@ Source: `docs/whitepapers/bod-25-01-close-before-assess.md` (shared with Chapter
 |---|---|
 | `ch08-close-then-assess.flow.yaml` | `docs/images/whitepapers/bod-25-01-close-before-assess-diagram-01-six-phase-sequence.svg` |
 | `ch08-finding-triage.flow.yaml` | New (three-response routing from the source's ask) |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+| 2 | CyberArk mechanism (disc) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-disc |

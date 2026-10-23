@@ -252,6 +252,21 @@ Microsoft's associate, expert and specialty certifications expire every year and
 - **One certification was retired and another replaced.** The earlier curriculum recommended the Azure Security Engineer Associate (AZ-500), which retired on August 31, 2026; the current certification is SC-500.[^c04-retired] Windows Server administrators now take AZ-802.
 - **Internal labels are gone.** The earlier labs ended by binding an artifact to a numbered slot and an internal indicator rule. Each lab now ends by landing a named record that a named compliance module reads.
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| Lab: issue, rotate and retire a device certificate | Device and user auth (Intune) | Cloud PKI or a lab CA | Intune | Nothing |
+| Lab: 802.1X and EAP-TLS, including the RADIUS server certificate | RADIUS and 802.1X servers | Lab CA | CyberArk Certificate Manager | A lab exercise can renew it through the platform (inference) |
+| PIV and CBA sign-in | PIV | Federal PKI | PIV card system | Nothing |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b16-people/svg/certs-clm.svg){fig-alt="Lab: issue, rotate and retire a device certificate go to Intune (renews device certificates); Lab: 802.1X and EAP-TLS, including the RADIUS server certificate go to CyberArk Certificate Manager (renews and installs); PIV and CBA sign-in go to PIV card system (renews piv credentials)."}
+
+The CLM platform owner is a role Book 07 assigns ([Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)); the implementation track can add a server-certificate lab that renews a certificate through the platform and installs it with a driver ([Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md)).
+
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 03 — The Compliance Track](03-the-compliance-track.md) · [Book index](index.md) · [Next: Chapter 05 — Assessment and Certification →](05-assessment-and-certification.md)

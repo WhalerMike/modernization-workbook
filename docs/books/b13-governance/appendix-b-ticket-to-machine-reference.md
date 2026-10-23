@@ -187,7 +187,7 @@ The exception is visible, approved before the work, and temporary. A silent cons
 
 Certificates are a large share of operational work, so it's tempting to route them through the same front door. The program doesn't, for routine lifecycle events, and the reason is volume. A configuration-drift finding is occasional and each one deserves a decision. A certificate estate with short validity periods generates renewals continuously, and publicly trusted TLS certificates are moving from a maximum of 398 days to 47 days in steps from March 2026 to March 2029.[^aB-cabf] Routing every renewal through an approval ticket wouldn't add rigor; it would train approvers to approve without reading.
 
-So routine issuance is protocol-enforced. ACME automates issuance once a client proves control of a name, with no person in the loop.[^aB-rfc8555] CAA records let a domain holder name the CAs allowed to issue for it, which puts part of the issuance policy in DNS where machines check it.[^aB-rfc8659] Short-lived certificates make expiry, not revocation, the normal end of a certificate's life. The anomalies, listed in the lanes table, still come through the front door, because they are rare, consequential and need a human. [Book 07, Chapter 08](../b07-pki/08-lifecycle-monitoring-and-decommissioning.md) covers the certificate lifecycle and the tooling.
+So routine issuance is protocol-enforced and engine-driven (see [Certificates in this book and the CLM platform](#certificates-and-the-clm-platform)). ACME automates issuance once a client proves control of a name, with no person in the loop.[^aB-rfc8555] CAA records let a domain holder name the CAs allowed to issue for it, which puts part of the issuance policy in DNS where machines check it.[^aB-rfc8659] Short-lived certificates make expiry, not revocation, the normal end of a certificate's life. The anomalies, listed in the lanes table, still come through the front door, because they are rare, consequential and need a human. [Book 07, Chapter 08](../b07-pki/08-lifecycle-monitoring-and-decommissioning.md) covers the certificate lifecycle and the tooling.
 
 ## One front door for detection tools
 
@@ -210,6 +210,23 @@ The program built a reference implementation of the five-clause chain on an IT s
 
 The same review supports two kinds of automated check. Negative tests prove the chain refuses what it must: self-approval, standing privilege, an unreconciled target, a missing origin and hostile parameter names. Build-time gates fail a build when a catalog item claims autonomous write without a recorded decision behind it, or when a control map names an actuator method that doesn't exist. Neither proves the code does everything this appendix describes; they prove the specific refusals and mappings they test. The reference implementation is a starting point to build and test from, not evidence that any agency's instance runs it.
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| Routine server and public TLS renewals | C5 and C6 | Retained AD CS; public CA | CyberArk Certificate Manager | Drivers renew and install; ACME where the endpoint supports it |
+| Device certificates | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
+| Domain controller certificates | Domain controller and LDAPS | Retained AD CS | AD CS autoenrollment | Watches |
+| Unknown-issuer and out-of-policy certificates (the anomaly lane) | Internal server TLS | Any | CyberArk Certificate Manager | Network discovery finds them; placement and owners bring them under policy |
+| Evidence signing certificate | Not a Book 07 class | Agency CA | Platform-managed, or not X.509 | At most watches |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b13-governance/svg/certs-clm.svg){fig-alt="Routine server and public TLS renewals, Unknown-issuer and out-of-policy certificates (the anomaly lane) go to CyberArk Certificate Manager (renews and installs); Device certificates go to Intune (renews device certificates); Domain controller certificates go to AD CS autoenrollment (renews; the platform only watches); Evidence signing certificate go to Platform-managed, or not X.509 (no clm lifecycle)."}
+
+"Protocol-enforced" means engine-driven: Intune profiles, AD CS autoenrollment and the CLM platform's drivers renew most certificates, and ACME automates issuance only where the endpoint supports it ([Book 07, Chapter 08](../b07-pki/08-lifecycle-monitoring-and-decommissioning.md)).[^clm-acme][^clm-disc]
+
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Appendix A — Requirements Mapping](appendix-a-requirements-mapping.md) · [Book index](index.md)
@@ -223,3 +240,5 @@ The same review supports two kinds of automated check. Negative tests prove the 
 [^aB-cabf]: CA/Browser Forum, "Ballot SC-081v3: Introduce Schedule of Reducing Validity and Data Reuse Periods," April 11, 2025, <https://cabforum.org/2025/04/11/ballot-sc081v3-introduce-schedule-of-reducing-validity-and-data-reuse-periods/> (accessed Oct 21, 2026).
 [^aB-rfc8555]: R. Barnes et al., RFC 8555, *Automatic Certificate Management Environment (ACME)*, March 2019, <https://www.rfc-editor.org/rfc/rfc8555> (accessed Oct 21, 2026).
 [^aB-rfc8659]: P. Hallam-Baker, R. Stradling and J. Hoffman-Andrews, RFC 8659, *DNS Certification Authority Authorization (CAA) Resource Record*, November 2019, <https://www.rfc-editor.org/rfc/rfc8659> (accessed Oct 21, 2026).
+[^clm-acme]: CyberArk, 26.1, "ACME" (RFC 8555 with http-01 and dns-01; tested with certbot, win-acme and acme.sh), <https://docs.venafi.com/Docs/current/TopNav/Content/ACME/cco-ACME-about.php>, and "Deploying on Windows Server" ("you cannot have FIPS enabled on any server that is used for ACMEv2"), <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-deploy-windows-server.php> (accessed Oct 23, 2026).
+[^clm-disc]: CyberArk, 26.1, "Importing certificates from a CA" and "Certificate discovery," <https://docs.venafi.com/Docs/current/TopNav/Content/Discovery/cco-Discovery-importingCertsfromCA.php> (accessed Oct 23, 2026).

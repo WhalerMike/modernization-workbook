@@ -58,3 +58,11 @@ Method, October 21, 2026: control statements from the NIST OSCAL catalog 5.2.0 a
 | DIA Is a Pipe box | Ch04 one-paragraph pointer to Book 09 Ch02 | Book 09 carries it in full |
 | What "Closed" Means Under FedRAMP 20x | Ch04 "What 'closed' means when the evidence is continuous" (corrected) | Per-product evidence bullets and the "IS the posture" claim removed |
 | Combined Control Closure Summary and Control Count Comparison (adjacent tables) | — | Chapter 12's scope (series map); internal counts |
+
+## Additions, October 23, 2026 (certificate statements aligned with Book 07)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificate source of truth = 'The PKI's issuance ledger' | Sources of truth | corrected: the CLM inventory reconciled with issuance records | Book 07 Ch08 |

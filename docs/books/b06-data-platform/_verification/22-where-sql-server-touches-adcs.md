@@ -46,3 +46,13 @@ Sources: the existing page `22-where-sql-server-touches-adcs.md` (former narrati
 | Book_10.md Authoritative references (Cloud PKI, Intune Government, encrypt connections, CREATE LOGIN, Entra CBA) | Footnoted where used; Intune Government page not cited because the Cloud PKI page itself states GCC High/DoD availability | kept (as footnotes) |
 | Book_10.md Continue-the-series links | Chapter 21 / index / Chapter 23 | edited |
 | Diagram sources `book-10-*.flow.yaml` | Not changed: they say "ADCS issues ... certificates for certificate-based authentication", which is still true where AD CS issues DC or non-PIV certificates; editor may wish to say "DC and smart-card certificates" on next render | kept |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+| 2 | CyberArk mechanism (capi) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-capi |
+| 3 | Issuer decision 'Not Yet Defined'; 'Which new CA is an open question' | Callout; TLS section; takeaway 4 | corrected by a callout and two sentences: retained AD CS through the CLM, standalone after AD; DCs keep autoenrollment | Book 07 Ch04, Ch07 |

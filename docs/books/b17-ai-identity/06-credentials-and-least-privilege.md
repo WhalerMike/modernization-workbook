@@ -204,6 +204,21 @@ The Conditional Access rows for GCC need care. Microsoft's Agent 365 service des
 4. **The data layer isn't in GCC.** Until Purview's agent capabilities reach the government clouds, scoped permissions are the only data boundary, and they are coarse.
 5. **The higher clouds are a gap.** Agencies in GCC High and DoD govern AI systems as workload identities today, with Workload ID Premium where licensed, and should say so in the authorization package ([Chapter 10](10-evidence-and-authorization.md)).
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| Agent blueprint and service principal certificates | Not a Book 07 class | A CA, key in Key Vault or an HSM | Entra ID or the app's owner | Can provision into Key Vault (inference); doesn't renew Entra credentials |
+| Global Secure Access TLS inspection | Not a Book 07 class | Not stated | Platform-managed, or not X.509 | Not a Book 07 class |
+| Google agent identities (SPIFFE certificates) | Not a Book 07 class | Google | Platform-managed, or not X.509 | Nothing: vendor-managed |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b17-ai-identity/svg/certs-clm.svg){fig-alt="Agent blueprint and service principal certificates go to Entra ID or the app's owner (outside book 07's classes); Global Secure Access TLS inspection, Google agent identities (SPIFFE certificates) go to Platform-managed, or not X.509 (no clm lifecycle)."}
+
+None of this book's certificates is renewed by the CLM platform. Agent and service-principal certificates aren't one of Book 07's classes; this book's annual rotation and the 180-day app policy govern them, and the platform at most places the certificate in Key Vault (inference).[^clm-drivers]
+
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 05 — Owners, Sponsors and the AI Identity Lifecycle](05-owners-sponsors-and-lifecycle.md) · [Book index](index.md) · [Next: Chapter 07 — Monitoring, Drift and Shadow AI →](07-monitoring-drift-and-shadow-ai.md)
@@ -245,3 +260,4 @@ The Conditional Access rows for GCC need care. Microsoft's Agent 365 service des
 [^c06-apim]: Microsoft Learn, "Govern tools with Microsoft Agent 365 and Azure API Management (preview)," <https://learn.microsoft.com/azure/api-management/agent-365> (accessed Oct 22, 2026).
 [^c06-tools-gateway]: Microsoft Learn, "Manage Tools Gateway," <https://learn.microsoft.com/microsoft-365/admin/manage/manage-tools-gateway> (accessed Oct 22, 2026).
 [^c06-a365-cli]: Microsoft Learn, "Configure the Agent 365 CLI for US Government clouds," <https://learn.microsoft.com/microsoft-agent-365/developer/configure-cloud-endpoints> (accessed Oct 22, 2026).
+[^clm-drivers]: CyberArk, 26.1, "System requirements," supported applications (F5 BIG-IP LTM Advanced, NetScaler, Palo Alto NGFW, Apache/PEM, Java keystores, PKCS#12, Azure Key Vault, AWS and others) and the Server Agent, <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-install-SysReq-ALLVenProducts.php> (accessed Oct 23, 2026).

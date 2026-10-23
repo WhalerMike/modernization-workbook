@@ -288,6 +288,22 @@ Detection needs recent data at hand; investigation needs older data retrievable.
 
 The control-by-control treatment, including the incident-response controls, is in the Federal Compliance volume [Vol III Book 06, SIEM, XDR, and Detection Engineering](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md). [Chapter 11](11-detection-engineering-and-response.md) builds the rule library and the response that these connectors feed.
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| The CLM platform's own events and expiry findings | - | - | CyberArk Certificate Manager | Sends them to the SIEM over syslog with TLS |
+| Syslog collector certificate, if TLS is used | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews it; it needs the collector's IP address in the SAN |
+| Private keys in local stores with no owner | Internal server TLS | Mixed | CyberArk Certificate Manager | Network and agent discovery find them |
+| Service principal and Graph app certificates | Not a Book 07 class | The app's owner | Entra ID or the app's owner | Nothing |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b12-security-operations/svg/certs-clm.svg){fig-alt="The CLM platform's own events and expiry findings, Syslog collector certificate, if TLS is used, Private keys in local stores with no owner go to CyberArk Certificate Manager (renews and installs); Service principal and Graph app certificates go to Entra ID or the app's owner (outside book 07's classes)."}
+
+Book 07 gives security operations the certificate alerts ([Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)), so the CLM platform is a SIEM source like any other. Its syslog channel sends BSD, CEF or JSON over TCP with TLS, and the receiving collector's certificate must carry an IP-address subject alternative name.[^clm-syslog]
+
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 04 — Azure Platform and Microsoft 365 Audit Telemetry](04-platform-and-m365-telemetry.md) · [Book index](index.md) · [Next: Chapter 06 — Vulnerability Management →](06-vulnerability-management.md)
@@ -323,3 +339,4 @@ The control-by-control treatment, including the incident-response controls, is i
 [^c05-ueba]: Microsoft Learn, "Advanced threat detection with User and Entity Behavior Analytics (UEBA) in Microsoft Sentinel," <https://learn.microsoft.com/azure/sentinel/identify-threats-with-entity-behavior-analytics> (accessed Oct 21, 2026).
 [^c05-ueba-enable]: Microsoft Learn, "Enable User and Entity Behavior Analytics (UEBA) in Microsoft Sentinel," <https://learn.microsoft.com/azure/sentinel/enable-entity-behavior-analytics> (accessed Oct 21, 2026).
 [^c05-disruption]: Microsoft Learn, "Automatic attack disruption in Microsoft Defender," <https://learn.microsoft.com/defender-xdr/automatic-attack-disruption>, and "Exclude assets from automated responses in automatic attack disruption," <https://learn.microsoft.com/defender-xdr/automatic-attack-disruption-exclusions> (both accessed Oct 21, 2026).
+[^clm-syslog]: CyberArk, 26.1, "Syslog channel" (TCP with TLS; the receiver certificate needs an iPAddress subject alternative name), <https://docs.venafi.com/Docs/current/TopNav/Content/Logging/c-logging-sysLogChannelConfig-tpp.php> (accessed Oct 23, 2026).

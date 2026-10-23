@@ -49,3 +49,14 @@ Writer W7. Sources: `docs/whitepapers/ticket-to-machine-appendices.md` (Appendic
 | References table | Not carried | Internal repository paths; external URLs not needed once vendor claims were removed |
 | ch07 tempo: SLA table, commitments, auto vs escalation, ops and leadership views, does-not-require, honest limits | Tempo section and lanes table (shared with Chapter 10) | Internal CLI and role names translated |
 | Core paper: three questions, coordination pattern, ticket-to-machine, declared exception | Coordination loop; lanes; worked example 4 | — |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+| 2 | CyberArk mechanism (acme) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-acme |
+| 3 | CyberArk mechanism (disc) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-disc |
+| 4 | Routine issuance 'protocol-enforced' via ACME | The certificate exception | clarified: engine-driven (Intune, autoenrollment, CLM drivers); ACME where supported | Book 07 Ch08 |

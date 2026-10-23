@@ -323,6 +323,21 @@ $report | Sort-Object NeedsAttention, AppPermissionCount -Descending |
 
 Rows flagged `NeedsAttention` have fewer than two owners, hold a client secret, or hold application permissions. Each is a candidate for Tier 1 handling until classified. Service principals with no app registration in the tenant, such as third-party SaaS apps and managed identities, need a second pass over `Get-MgServicePrincipal` with the same permission queries.
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| Certificate credentials on app registrations and service principals | Not a Book 07 class | A trusted CA, kept in a key vault | Entra ID or the app's owner | Can place the certificate in Azure Key Vault; documents no driver that uploads it to the app registration |
+| PIV and CAC in authentication strengths and break-glass | PIV | Federal PKI | PIV card system | Nothing |
+| Device certificates behind compliance checks | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b04-access/svg/certs-clm.svg){fig-alt="Certificate credentials on app registrations and service principals go to Entra ID or the app's owner (outside book 07's classes); PIV and CAC in authentication strengths and break-glass go to PIV card system (renews piv credentials); Device certificates behind compliance checks go to Intune (renews device certificates)."}
+
+None of this book's certificates is renewed by the CLM platform. App-registration certificates are not one of Book 07's certificate classes; their lifetime is this book's 180-day policy, and their rotation belongs to the app's owner. Where they come from a CA, Book 07 is the authority for which one ([Chapter 04](../b07-pki/04-the-target-pki.md)), and the platform can at most provision them into Key Vault (inference).[^clm-drivers]
+
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 04 — Privileged Roles and Tiers](04-privileged-roles-and-tiers.md) · [Book index](index.md) · [Next: Chapter 06 — Who Decides Access →](06-who-decides-access.md)
@@ -358,3 +373,4 @@ Rows flagged `NeedsAttention` have fewer than two owners, hold a client secret, 
 [^c05-ca-wid]: Microsoft Learn, "Conditional Access for workload identities," <https://learn.microsoft.com/entra/identity/conditional-access/workload-identity> (accessed Oct 20, 2026).
 [^c05-lock]: Microsoft Learn, "How to configure app instance property lock for your applications," <https://learn.microsoft.com/entra/identity-platform/howto-configure-app-instance-property-locks> (accessed Oct 20, 2026).
 [^c05-nist]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, control AC-6, September 2020 (updated December 10, 2020), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026).
+[^clm-drivers]: CyberArk, 26.1, "System requirements," supported applications (F5 BIG-IP LTM Advanced, NetScaler, Palo Alto NGFW, Apache/PEM, Java keystores, PKCS#12, Azure Key Vault, AWS and others) and the Server Agent, <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-install-SysReq-ALLVenProducts.php> (accessed Oct 23, 2026).

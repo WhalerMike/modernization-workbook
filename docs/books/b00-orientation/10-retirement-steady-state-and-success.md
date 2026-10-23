@@ -171,7 +171,7 @@ Steady state has no exit gate. The master plan's objective for it holds: operate
 | Reassessment | Weekly | The assessment runs on a schedule and commits its diff to the repository. While AD runs it reads the forest; afterward it reads the cloud surfaces (Entra ID, Intune, Arc, DNS and PKI) | A weekly delta in the repository |
 | Drift detection | Daily | Current state compared with the approved plans | A tracked finding per drift, with an owner and a severity SLA |
 | Compliance monitoring | Continuous | Intune compliance, Azure Policy and machine configuration compliance, Entra sign-in health | A monthly compliance report committed to the repository |
-| Certificate lifecycle | Daily | Cloud PKI renewal monitoring; certificate-based authentication binding checks | Expiry alerts at 30, 14 and 7 days |
+| Certificate lifecycle | Daily | Renewal monitoring on all three engines: Intune for device certificates, AD CS autoenrollment for domain controllers, and the CLM platform for everything else; certificate-based authentication binding checks | Expiry alerts at 30, 14 and 7 days |
 | DNS health | Continuous | Service-location record probes, resolver health checks, query analytics | Alert when the resolution failure rate exceeds 0.1% |
 | Access reviews | Quarterly | Privileged role reviews, group attestation, application consent reviews | Review results committed to the repository |
 
@@ -229,11 +229,28 @@ These are the program's own design measures, read from the repository and the dr
 | AD authentication volume | Below the agreed G4 threshold, then zero or confined to dated Kerberos islands | Domain controller logs, then none |
 | Evidence packets | Every delivery emits one; every packet signed and forwarded to the SIEM | Repository and SIEM |
 | Access reviews | Completed on schedule, with decisions applied | Review results in the repository |
-| Certificate expiries | None missed; every alert answered before the 7-day mark | Cloud PKI monitoring |
+| Certificate expiries | None missed; every alert answered before the 7-day mark | The CLM platform's inventory, with Intune and domain controller monitoring ([Book 07, Chapter 08](../b07-pki/08-lifecycle-monitoring-and-decommissioning.md)) |
 | Gate decisions | Every criterion evaluated from data; every decision recorded with its maker | Gate review records |
 | Ownership | Every drift class, severity and periodic review has a named operational owner | Handover record |
 
 A program can meet every delivery measure and still fail if the outcome measures drift after the project team leaves. That is why the handover is part of the scorecard, not an afterthought, and why the architecture review is annual and owned by the steward.
+
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| Platform host (Gitea and IIS) TLS on 443 | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Requests and renews it; the CAPI driver installs it and binds IIS |
+| RADIUS and NPS server certificates in the G0 inventory | RADIUS and 802.1X servers | Retained AD CS | CyberArk Certificate Manager | Renews them; installs through the CAPI driver on NPS |
+| Domain controller and LDAPS certificates | Domain controller and LDAPS | Retained AD CS | AD CS autoenrollment | Watches through CA Import and discovery; never renews |
+| CRL and OCSP endpoints checked at cutover | CA certificates and CRLs | The hierarchy | AD CS autoenrollment | Revocation monitoring checks them at least daily |
+| Wi-Fi, VPN and CBA certificates from the pilot | Device and user auth (Intune) | Cloud PKI | Intune | Nothing: Intune renews them |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b00-orientation/svg/certs-clm.svg){fig-alt="Platform host (Gitea and IIS) TLS on 443, RADIUS and NPS server certificates in the G0 inventory go to CyberArk Certificate Manager (renews and installs); Domain controller and LDAPS certificates, CRL and OCSP endpoints checked at cutover go to AD CS autoenrollment (renews; the platform only watches); Wi-Fi, VPN and CBA certificates from the pilot go to Intune (renews device certificates)."}
+
+The operating cadence's certificate row therefore watches three engines, not one: Intune for device certificates, AD CS autoenrollment for domain controllers, and the CLM platform for everything else, which also holds the inventory.[^clm-capi][^clm-revmon]
+
 
 ## Key takeaways
 
@@ -268,3 +285,5 @@ A program can meet every delivery measure and still fail if the outcome measures
 [^c10-grs-status]: National Archives, "GRS Status Updates" (as of October 2026), Transmittal 38: "GRS 3.2, Information Systems Security Records — Revision to items 035-036 (related to rescission of OMB Memo M-21-31 and issuance of OMB M-26-14) — Drafting," <https://www.archives.gov/records-mgmt/grs/grs-status-updates> (accessed Oct 23, 2026).
 [^c10-1236]: 36 CFR 1236.14(a) and (b)(3) (migration), 1236.20(c) (backup systems) and 1236.22(a)(3) (email directories), <https://www.ecfr.gov/current/title-36/chapter-XII/subchapter-B/part-1236> (accessed Oct 23, 2026).
 [^c10-m2307]: Office of Management and Budget and National Archives, M-23-07, *Update to Transition to Electronic Records*, December 23, 2022, §1.2 ("After June 30, 2024, Federal agencies must transfer all permanent records in an electronic format and with appropriate metadata"), <https://www.archives.gov/files/records-mgmt/policy/m-23-07.pdf> (accessed Oct 23, 2026).
+[^clm-capi]: CyberArk, Certificate Manager, Self-Hosted 26.1, "CAPI" application driver (installs certificates and keys into the Windows CAPI store over WinRM, optionally binds IIS, and can grant a named Windows identity read access to the private key), <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/cco-CAPI-AppDriverConfig-tpp.php> and <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/r-CAPI-AppObjSettings-tpp.php> (accessed Oct 23, 2026).
+[^clm-revmon]: CyberArk, 26.1, "Selecting components" (Certificate Revocation Monitoring checks CRL distribution points at least daily and monitors OCSP), <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-install-select-components.php> (accessed Oct 23, 2026).

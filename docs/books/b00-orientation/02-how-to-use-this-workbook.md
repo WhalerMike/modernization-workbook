@@ -177,12 +177,12 @@ NIST's Cybersecurity Framework 2.0 organizes cybersecurity outcomes under six Fu
 
 | Function | NIST's definition | Primary books |
 |---|---|---|
-| GOVERN | "The organization's cybersecurity risk management strategy, expectations, and policy are established, communicated, and monitored." | B00, B01, B10, B13, B14, B17 |
-| IDENTIFY | "The organization's current cybersecurity risks are understood." | B01, B11, B17 |
-| PROTECT | "Safeguards to manage the organization's cybersecurity risks are used." | B02 to B09, B16 |
-| DETECT | "Possible cybersecurity attacks and compromises are found and analyzed." | B12 |
-| RESPOND | "Actions regarding a detected cybersecurity incident are taken." | B12 |
-| RECOVER | "Assets and operations affected by a cybersecurity incident are restored." | B14 ([Chapter 06](../b14-compliance/06-contingency-and-continuity.md)) |
+| GOVERN | "The organization's cybersecurity risk management strategy, expectations, and policy are established, communicated, and monitored." | [Book 00 — Orientation & Program](../b00-orientation/index.md); [Book 01 — The Transformation Arc](../b01-transformation-arc/index.md); [Book 10 — Cloud Boundary & Landing Zone](../b10-cloud-boundary/index.md); [Book 13 — Governance, Drift & Evidence](../b13-governance/index.md); [Book 14 — Federal Compliance & Authorization](../b14-compliance/index.md); [Book 17 — AI Identity Governance](../b17-ai-identity/index.md) |
+| IDENTIFY | "The organization's current cybersecurity risks are understood." | [Book 01 — The Transformation Arc](../b01-transformation-arc/index.md); [Book 11 — Zero Trust & Assessment](../b11-zero-trust/index.md); [Book 17 — AI Identity Governance](../b17-ai-identity/index.md) |
+| PROTECT | "Safeguards to manage the organization's cybersecurity risks are used." | [Book 02 — Identity & Directory](../b02-identity/index.md); [Book 03 — HR-Driven Identity](../b03-hr-identity/index.md); [Book 04 — Access & Privilege](../b04-access/index.md); [Book 05 — Devices & Endpoints](../b05-devices/index.md); [Book 06 — Data Platform: SQL Server Identity](../b06-data-platform/index.md); [Book 07 — PKI & Certificates](../b07-pki/index.md); [Book 08 — DNS, DHCP & IPAM](../b08-ddi/index.md); [Book 09 — Network & Transport](../b09-network/index.md); [Book 16 — People: Training & Education](../b16-people/index.md) |
+| DETECT | "Possible cybersecurity attacks and compromises are found and analyzed." | [Book 12 — Security Operations & Telemetry](../b12-security-operations/index.md) |
+| RESPOND | "Actions regarding a detected cybersecurity incident are taken." | [Book 12 — Security Operations & Telemetry](../b12-security-operations/index.md) |
+| RECOVER | "Assets and operations affected by a cybersecurity incident are restored." | [Book 14 — Federal Compliance & Authorization](../b14-compliance/index.md) ([Chapter 06](../b14-compliance/06-contingency-and-continuity.md)) |
 
 RECOVER is the thinnest. The program's rollback points and gates recover from a failed change, not from an incident, so incident recovery rests on Book 14's contingency planning.
 

@@ -364,6 +364,22 @@ Every source below was opened on October 21, 2026.
 - FedRAMP, Key Security Indicators. <https://www.fedramp.gov/2026/reference/key-security-indicators/>
 - FedRAMP, Using a FedRAMP Certified Cloud Service. <https://www.fedramp.gov/2026/agencies/use/>
 
+## Certificates in this book and the CLM platform {#certificates-and-the-clm-platform}
+
+[Book 07](../b07-pki/index.md) gives each class of certificate one issuer and one renewal engine, and makes CyberArk Certificate Manager, Self-Hosted the system of record for every certificate that Intune and the PIV system don't manage ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The certificates this book's systems depend on map to it as follows; [Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes the platform itself.
+
+| Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
+|---|---|---|---|---|
+| Server, appliance and public TLS (SC-8, SC-12, SC-17) | C4 to C6 | Retained AD CS; public CA | CyberArk Certificate Manager | Inventory, owners, renewal and installation are the evidence |
+| CA certificates and CRLs (SC-17) | CA certificates and CRLs | The hierarchy | AD CS autoenrollment | Revocation monitoring |
+| PIV (IA-2, IA-5(2)) | PIV | Federal PKI | PIV card system | Nothing |
+| Device certificates (IA-5(2)) | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
+
+![This book's certificates and the engine that renews each.](../../images/diagrams/b14-compliance/svg/certs-clm.svg){fig-alt="Server, appliance and public TLS (SC-8, SC-12, SC-17) go to CyberArk Certificate Manager (renews and installs); CA certificates and CRLs (SC-17) go to AD CS autoenrollment (renews; the platform only watches); PIV (IA-2, IA-5(2)) go to PIV card system (renews piv credentials); Device certificates (IA-5(2)) go to Intune (renews device certificates)."}
+
+For SC-13, no CMVP certificate names the CLM platform itself; the evidence is FIPS-mode Windows plus the HSM's own validation, and the ACME servers can't run in FIPS mode ([Book 07, Appendix C](../b07-pki/appendix-c-anatomy-of-the-clm-platform.md)).[^clm-acme]
+
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 12 — The Series as a Map](12-the-series-as-a-map.md) · [Book index](index.md) · [Next: Appendix B — Product Inventory Questionnaire →](appendix-b-product-inventory-questionnaire.md)
@@ -377,3 +393,4 @@ Every source below was opened on October 21, 2026.
 [^aA-ntc0004]: FedRAMP, Notice NTC-0004, *Initial Outcome from RFC-0020 FedRAMP Authorization Designations*, February 25, 2026, <https://www.fedramp.gov/notices/0004/> (accessed Oct 21, 2026).
 [^aA-agency-use]: FedRAMP, "Using a FedRAMP Certified Cloud Service," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/agencies/use/> (accessed Oct 21, 2026).
 [^aA-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator identifiers, themes and "Related SP 800-53 Controls," including the control mapping updates of October 13, 2026, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Oct 21, 2026).
+[^clm-acme]: CyberArk, 26.1, "ACME" (RFC 8555 with http-01 and dns-01; tested with certbot, win-acme and acme.sh), <https://docs.venafi.com/Docs/current/TopNav/Content/ACME/cco-ACME-about.php>, and "Deploying on Windows Server" ("you cannot have FIPS enabled on any server that is used for ACMEv2"), <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-deploy-windows-server.php> (accessed Oct 23, 2026).

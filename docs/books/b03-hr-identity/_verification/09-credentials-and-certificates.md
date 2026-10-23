@@ -84,3 +84,11 @@ Verified: 2026-10-20. Every kept footnote was re-opened; all URLs resolved and s
 | What the evidence must show | edited | PS-4 text and footnote added |
 | Continue callout | edited | "Continue the book", "Book index" |
 | Footnotes | edited | keys `c07-*` → `c09-*`; added SP 800-53 and Cloud PKI overview; titles and access dates updated |
+
+## Additions, October 23, 2026 (certificates and the CLM platform)
+
+At the user's request, every certificate-dependent book maps its certificates to Book 07 and the CLM platform. Source: the certificate-touchpoints research brief (program working file), Book 07 Ch04/Ch05/Ch07/Ch08 and CyberArk 26.1 documentation (accessed Oct 23, 2026).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
