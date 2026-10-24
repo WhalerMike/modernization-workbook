@@ -30,6 +30,8 @@ The loop in Book 13 has five steps: test, detect drift, raise a typed task, actu
 
 The vendor-neutral original has its own narrated deck, linked from [Book 13, Appendix B](../books/b13-governance/appendix-b-ticket-to-machine-reference.md).
 
+**Scripts:** the [integration kit](snow-sailpoint-integration-kit.md) implements this example in PowerShell and Python, with the SailPoint workflows and ServiceNow scripts (illustrative, unit-tested, not yet proven against live tenants).
+
 ## The products in this example
 
 | Slot in the loop | Product | Federal status (FedRAMP Marketplace, October 24, 2026) |
