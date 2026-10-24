@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.888
+Book 09 expects decision records that
+become boundary-change evidence.
+
+2
+00:00:04.888 --> 00:00:10.050
+On Catalyst, they're derived from the
+Manager's APIs, and labeled as derived.
+
+3
+00:00:10.050 --> 00:00:15.745
+Device inventory, the audit log, alarms and
+path statistics give you the controller,
+
+4
+00:00:15.745 --> 00:00:20.450
+the selected path, the SLA state,
+failovers and the policy references.
+
+5
+00:00:20.450 --> 00:00:23.546
+Logs leave the box over
+TLS syslog to the SIEM,
+
+6
+00:00:23.546 --> 00:00:26.900
+and all SD-WAN syslog goes
+to CISA through CLAW.
+
+7
+00:00:26.900 --> 00:00:29.163
+One caveat for Sentinel users.
+
+8
+00:00:29.163 --> 00:00:34.251
+The documented connector's syslog path,
+through the Azure Monitor Agent, is fine.
+
+9
+00:00:34.251 --> 00:00:38.550
+Its NetFlow path uses an API
+whose support ended in September.
+
+10
+00:00:38.550 --> 00:00:42.313
+Ingestion continues, but
+treat that path as legacy.
+
+11
+00:00:42.313 --> 00:00:44.760
+Next, how the build is sequenced.

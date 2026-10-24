@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.450
+Emergency Directive 26-03
+landed on February 25, 2026,
+
+2
+00:00:04.450 --> 00:00:11.250
+and it was strict about order: identify
+every Manager and Controller, collect logs
+
+3
+00:00:11.250 --> 00:00:17.550
+and forensic images, update to Cisco's
+fixed releases, hunt, harden, and report.
+
+4
+00:00:17.550 --> 00:00:19.137
+The clock ran in hours.
+
+5
+00:00:19.137 --> 00:00:22.430
+The inventory was due
+to CISA the next night,
+
+6
+00:00:22.430 --> 00:00:25.900
+and the fixed releases by
+five PM on February 27.
+
+7
+00:00:25.900 --> 00:00:28.662
+A March update added log delivery to CLAW,
+
+8
+00:00:28.662 --> 00:00:31.425
+CISA's log warehouse, and a fourth report.
+
+9
+00:00:31.425 --> 00:00:32.970
+Those deadlines are past,
+
+10
+00:00:32.970 --> 00:00:36.575
+and whether a new fabric must
+report is a question for CISA.
+
+11
+00:00:36.575 --> 00:00:41.192
+The program's position is simpler: a
+new build runs the same sequence anyway,
+
+12
+00:00:41.192 --> 00:00:45.362
+because it's the best published
+definition of a clean control plane.
+
+13
+00:00:45.362 --> 00:00:47.520
+And the list of flaws kept growing.

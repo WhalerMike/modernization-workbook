@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:06.109
+This is Book 09's SD-WAN design on Cisco
+Catalyst SD-WAN, an implementation guide
+
+3
+00:00:06.109 --> 00:00:11.950
+from the research section of the Federal
+Modernization Workbook, still under review.
+
+4
+00:00:11.950 --> 00:00:16.274
+Book 09 sets a vendor-neutral design
+for governed branch transport,
+
+5
+00:00:16.274 --> 00:00:21.525
+and its field-office chapter already uses
+Catalyst edges as its costable example.
+
+6
+00:00:21.525 --> 00:00:24.120
+So this guide builds on
+the program's platform,
+
+7
+00:00:24.120 --> 00:00:26.988
+consolidating rather than
+adding another vendor.
+
+8
+00:00:26.988 --> 00:00:30.501
+It's an example, not an
+endorsement by any agency.
+
+9
+00:00:30.501 --> 00:00:35.988
+In about fifteen minutes we'll cover the
+emergency directive that gates the build,
+
+10
+00:00:35.988 --> 00:00:40.507
+the hosted-or-on-premises decision,
+the twelve-hub fabric, hardening,
+
+11
+00:00:40.507 --> 00:00:45.188
+the TIC and Microsoft 365 paths, and
+the evidence the fabric has to emit.
+
+12
+00:00:45.188 --> 00:00:47.500
+First, why start with a directive?

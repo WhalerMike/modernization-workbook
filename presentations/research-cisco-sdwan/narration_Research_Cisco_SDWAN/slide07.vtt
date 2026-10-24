@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.887
+First, decide where the
+control plane lives.
+
+2
+00:00:02.887 --> 00:00:08.331
+Cisco's FedRAMP environment, Catalyst
+SD-WAN for Government, is certified at
+
+3
+00:00:08.331 --> 00:00:13.688
+Moderate, runs in AWS GovCloud, and is
+run by a Cisco federal operations team.
+
+4
+00:00:13.688 --> 00:00:15.701
+The guide recommends it by default.
+
+5
+00:00:15.701 --> 00:00:20.489
+CISA's own hardening guidance points
+there, Cisco patches the control plane,
+
+6
+00:00:20.489 --> 00:00:23.032
+the boundary question gets an inherited,
+
+7
+00:00:23.032 --> 00:00:26.175
+certified answer, and a
+fourteen-VM build goes away.
+
+8
+00:00:26.175 --> 00:00:31.423
+Choose on-premises if the system is High
+or isolated, if the authorizing official
+
+9
+00:00:31.423 --> 00:00:33.617
+needs custody of forensic images,
+
+10
+00:00:33.617 --> 00:00:36.750
+or if Cisco can't commit to
+the catalog's due dates.
+
+11
+00:00:36.750 --> 00:00:38.900
+But hosting doesn't remove the gate.
+
+12
+00:00:38.900 --> 00:00:42.753
+The hosted environment was
+affected too, and the edges,
+
+13
+00:00:42.753 --> 00:00:46.863
+logs, allow-lists, roles and
+single sign-on stay the agency's.
+
+14
+00:00:46.863 --> 00:00:48.530
+Next, the fabric.

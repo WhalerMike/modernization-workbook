@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.391
+Reading Cisco's advisories together
+gives a floor: a minimum release per
+
+2
+00:00:04.391 --> 00:00:08.950
+software train, one for the Manager and
+one for the Controller and Validator.
+
+3
+00:00:08.950 --> 00:00:13.788
+That's the program's inference from Cisco's
+tables, so re-read them at build time.
+
+4
+00:00:13.788 --> 00:00:15.150
+A few things stand out.
+
+5
+00:00:15.150 --> 00:00:20.275
+Several older trains have no fix of their
+own, and Cisco's answer is to migrate.
+
+6
+00:00:20.275 --> 00:00:23.326
+The newest train isn't
+listed for the Controller
+
+7
+00:00:23.326 --> 00:00:26.300
+and Validator in three
+advisories, so ask Cisco.
+
+8
+00:00:26.300 --> 00:00:32.173
+And the edges have their own catalog
+entries, for the web interface and SNMP,
+
+9
+00:00:32.173 --> 00:00:37.288
+so the HTTP server stays off and
+SNMPv3 sits behind an access list.
+
+10
+00:00:37.288 --> 00:00:39.988
+Cisco's Live Protect
+shields can bridge a gap,
+
+11
+00:00:39.988 --> 00:00:43.126
+but Cisco calls them
+temporary partial protection.
+
+12
+00:00:43.126 --> 00:00:44.500
+Next, the hunt.

@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.713
+Two risks are rated high.
+
+2
+00:00:01.713 --> 00:00:05.352
+The control plane collects new
+exploited flaws faster than
+
+3
+00:00:05.352 --> 00:00:09.137
+most agencies can patch, and a
+compromise may predate the build.
+
+4
+00:00:09.137 --> 00:00:13.022
+The answers are the hosted fabric
+with a written patch commitment,
+
+5
+00:00:13.022 --> 00:00:16.341
+or a standing patch crew on
+Cisco's publication schedule,
+
+6
+00:00:16.341 --> 00:00:19.237
+and hunting before you
+trust any existing fabric.
+
+7
+00:00:19.237 --> 00:00:24.189
+The medium risks are ones we've met:
+forensic custody on a hosted fabric,
+
+8
+00:00:24.189 --> 00:00:29.737
+static addressing against zero-touch and
+5G, a single-region security service,
+
+9
+00:00:29.737 --> 00:00:34.176
+manual certificate renewal, and
+unconfirmed edge FIPS status.
+
+10
+00:00:34.176 --> 00:00:37.387
+The vendor asks turn those
+into questions with owners.
+
+11
+00:00:37.387 --> 00:00:42.513
+Cisco gets most of them; Microsoft,
+the carriers and CISA get one each.
+
+12
+00:00:42.513 --> 00:00:44.450
+Next, the example code.

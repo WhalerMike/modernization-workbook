@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.688
+Three findings update Book
+09's planning inputs.
+
+2
+00:00:03.688 --> 00:00:07.638
+First, CISA expects a static
+address on every edge.
+
+3
+00:00:07.638 --> 00:00:12.036
+That conflicts with zero-touch
+provisioning from dynamic addresses,
+
+4
+00:00:12.036 --> 00:00:14.538
+and probably with the 5G secondary path.
+
+5
+00:00:14.538 --> 00:00:18.274
+It reinforces Book 09's
+deterministic-egress action,
+
+6
+00:00:18.274 --> 00:00:20.737
+and it belongs in the circuit order.
+
+7
+00:00:20.737 --> 00:00:25.180
+Second, Book 09's cost model assumes
+an on-premises control plane,
+
+8
+00:00:25.180 --> 00:00:28.113
+while CISA's guidance points to GovCloud.
+
+9
+00:00:28.113 --> 00:00:30.832
+Hosting replaces the fourteen-VM line with
+
+10
+00:00:30.832 --> 00:00:33.475
+a subscription the
+model doesn't price yet.
+
+11
+00:00:33.475 --> 00:00:35.627
+Third, the catalog keeps growing,
+
+12
+00:00:35.627 --> 00:00:40.488
+with the Validator now in scope and a
+floor that moves with every addition.
+
+13
+00:00:40.488 --> 00:00:44.540
+And one planning number: about four
+hundred seventy-six more edges,
+
+14
+00:00:44.540 --> 00:00:46.750
+and the fleet needs a second overlay.
+
+15
+00:00:46.750 --> 00:00:48.260
+Next, the risks.

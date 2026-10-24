@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.212
+The build follows Book 09's own
+sequence, and each step leaves evidence.
+
+2
+00:00:05.212 --> 00:00:07.538
+Step zero is the gate we've covered.
+
+3
+00:00:07.538 --> 00:00:11.633
+Phase zero, the first six months,
+decides hosted or on-premises,
+
+4
+00:00:11.633 --> 00:00:14.766
+sets the release baseline,
+runs a ten-site pilot,
+
+5
+00:00:14.766 --> 00:00:18.862
+and starts the CLAW coordination
+and the static-address plan.
+
+6
+00:00:18.862 --> 00:00:20.839
+Phase one builds the twelve hubs,
+
+7
+00:00:20.839 --> 00:00:25.378
+with SLA classes set from the pilot's
+measurements, and no office gets local
+
+8
+00:00:25.378 --> 00:00:30.063
+internet until its security tunnel is
+up and its boundary change is approved.
+
+9
+00:00:30.063 --> 00:00:33.627
+Phase two moves offices
+in waves at MPLS renewal,
+
+10
+00:00:33.627 --> 00:00:37.637
+retiring MPLS only after that
+office's logs reach CLAW.
+
+11
+00:00:37.637 --> 00:00:43.851
+Phase three adds the Microsoft 365 direct
+path and tracks the five retirement gates.
+
+12
+00:00:43.851 --> 00:00:45.340
+So what does this change?

@@ -113,3 +113,13 @@ Found by the workbook-wide sweep of federal citations for the Federal Framework 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | TIC Program Guidebook cited as v1.2, July 2025 | Note c10-guidebook | corrected to the September 2026 reissue (v1.2); quoted passage confirmed unchanged in the new PDF | CISA TIC 3.0 Program Guidebook, Sept 2026 |
+
+## Addition, October 24, 2026: SD-WAN platform and Cisco implementation research
+
+Applied from the two research briefs behind the workbook's SD-WAN platform deep dive and Cisco Catalyst SD-WAN implementation guide. Each claim was checked against the primary source on October 24, 2026; every new or changed sentence carries its own footnote.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | Cisco documents hybrid ML-KEM for IKEv2 on Catalyst 8000 edges only in autonomous mode, not SD-WAN mode | "BOD 26-02 pulls the refresh forward", new paragraph after the attribute list | added | `[^c10-ciscopqc]` |
+| 2 | SD-WAN controllers covered by active FIPS 140-3 module #4747; current Catalyst 8200/8300 letters cite library certificates (#5356, #5430) without naming SD-WAN mode; Catalyst 8300 platform certificate #4461 historical | Same paragraph | added | `[^c10-ciscofips]` |
+| 3 | M-26-15 requires PQC-capable key exchange on infrastructure terminating TLS or IPsec | Attribute list | confirmed (no change) | `[^c10-m2615]` |

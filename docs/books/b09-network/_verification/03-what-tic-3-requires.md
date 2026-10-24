@@ -155,3 +155,12 @@ Source: CISA, *TIC 3.0 Core Guidance Volume 1: Program Guidebook*, Version 1.2, 
 | G6 | Revision history v1.2 July 2025 changed "Cloud" to "Comprehensive" for CLAW | §Logging (existing) | re-verified | Guidebook Table 1, p. ii |
 | G7 | Note: §4 says "seven strategic goals" but lists six (Boundary-Focused; Descriptive, Not Prescriptive; Risk-Based; Environment-Agnostic; Dynamic and Readily Adaptable; Automated and Streamlined Verification); the chapter doesn't state a count | — | noted | Guidebook §4, pp. 4–5 |
 | G8 | Revision-history aside in "The document set" reworded to a plain statement | §The document set | wording-only | — |
+
+## Addition, October 24, 2026: SD-WAN platform and Cisco implementation research
+
+Applied from the two research briefs behind the workbook's SD-WAN platform deep dive and Cisco Catalyst SD-WAN implementation guide. Each claim was checked against the primary source on October 24, 2026; every new or changed sentence carries its own footnote.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | ED 26-03 issued February 25, 2026, actions superseded by V1 on March 11, 2026; required SD-WAN syslog to CISA through CLAW | Policy-currency table, ED 26-03 row | confirmed (no change) | `[^c03-ed2603]` |
+| 2 | Nine Cisco Catalyst SD-WAN CVEs added to KEV during 2026, newest September 30, 2026; the directive's sequence is a standing posture | Policy-currency table, ED 26-03 row | added | `[^c03-kev2026]` (KEV JSON, catalog 2026.10.23) |

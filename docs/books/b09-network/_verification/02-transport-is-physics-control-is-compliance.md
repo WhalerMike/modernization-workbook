@@ -84,3 +84,13 @@ Applied from the verified review findings (critique claims re-checked against pr
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | RF-1 | Order of operations gains step 0, "Secure the governor first", so it matches Chapters 05, 09 and 13 | Order of operations | restated-as-design (program sequence; the controls and ED 26-03 are sourced in Chapter 05) | — |
+
+## Addition, October 24, 2026: SD-WAN platform and Cisco implementation research
+
+Applied from the two research briefs behind the workbook's SD-WAN platform deep dive and Cisco Catalyst SD-WAN implementation guide. Each claim was checked against the primary source on October 24, 2026; every new or changed sentence carries its own footnote.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | ED 26-03 issued February 25, 2026; V1 of March 11, 2026 added SD-WAN syslog delivery to CISA through CLAW | "The governor is itself attack surface" | confirmed (no change) | `[^c02-ed2603]`; CISA V1 ED 26-03 page |
+| 2 | Cisco added the validator to the scope of the CVE-2026-20127 advisory (v2.0, June 16, 2026) | Same paragraph, after "The controller and manager are the components named" | added | `[^c02-ciscorpa]` |
+| 3 | KEV lists nine Cisco Catalyst SD-WAN CVEs added in 2026, the newest September 30 with a three-day due date (October 3) | Same paragraph | added | `[^c02-kev2026]` (KEV JSON, catalog 2026.10.23) |

@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.188
+Most build plans start with hardware.
+
+2
+00:00:02.188 --> 00:00:05.744
+This one starts with a directive,
+because the product we're
+
+3
+00:00:05.744 --> 00:00:09.300
+building on was the subject of
+a 2026 emergency directive.
+
+4
+00:00:09.300 --> 00:00:14.329
+Book 09 already says the governor has
+its own exposure: one control plane
+
+5
+00:00:14.329 --> 00:00:19.525
+with authority over every edge, and an
+internet-facing edge in every office.
+
+6
+00:00:19.525 --> 00:00:22.563
+On Catalyst SD-WAN that
+isn't hypothetical.
+
+7
+00:00:22.563 --> 00:00:27.810
+CISA's catalog now lists nine exploited
+flaws in the platform, and every 2026
+
+8
+00:00:27.810 --> 00:00:33.550
+advisory names Cisco's hosted FedRAMP
+environment among the affected deployments.
+
+9
+00:00:33.550 --> 00:00:36.916
+So the first gate is proving
+the control plane is patched,
+
+10
+00:00:36.916 --> 00:00:40.712
+hunted and hardened, before it
+carries a single production flow.
+
+11
+00:00:40.712 --> 00:00:42.620
+Here's what the directive required.

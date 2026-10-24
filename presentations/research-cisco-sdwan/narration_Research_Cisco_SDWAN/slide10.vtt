@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.775
+Segmentation follows Book
+09's admission design.
+
+2
+00:00:03.775 --> 00:00:08.675
+Transport and management each get their
+own VPN, with management out of band.
+
+3
+00:00:08.675 --> 00:00:12.175
+Then each admission segment
+becomes a service VPN.
+
+4
+00:00:12.175 --> 00:00:15.438
+Production reaches the hubs
+and the security service.
+
+5
+00:00:15.438 --> 00:00:19.351
+Remediation reaches only update
+and antivirus endpoints.
+
+6
+00:00:19.351 --> 00:00:20.963
+Quarantine stays local.
+
+7
+00:00:20.963 --> 00:00:24.600
+IoT and OT reach only their
+own management systems.
+
+8
+00:00:24.600 --> 00:00:28.525
+And guests go out through the security
+service, with no route inward.
+
+9
+00:00:28.525 --> 00:00:32.820
+Cisco ISE plugs in two ways:
+security group tags on the edge,
+
+10
+00:00:32.820 --> 00:00:35.325
+or identity-based firewall rules.
+
+11
+00:00:35.325 --> 00:00:41.325
+One catch to remember: Cisco says TrustSec
+isn't supported with FIPS mode on.
+
+12
+00:00:41.325 --> 00:00:43.432
+So if the edges must run FIPS,
+
+13
+00:00:43.432 --> 00:00:48.288
+segment by VPN and leave tag
+enforcement to the access switches.
+
+14
+00:00:48.288 --> 00:00:49.820
+Now, certificates.

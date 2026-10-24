@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.588
+Book 09 splits branch
+traffic into two classes.
+
+2
+00:00:03.588 --> 00:00:10.025
+Lean is the latency-sensitive kind: sign-in,
+voice, clock sync and interactive work.
+
+3
+00:00:10.025 --> 00:00:13.225
+Bulk is backups, patch waves and re-syncs.
+
+4
+00:00:13.225 --> 00:00:16.875
+On Catalyst, both become
+application-aware routing.
+
+5
+00:00:16.875 --> 00:00:21.138
+Lean gets a custom SLA class built
+from the pilot's measurements,
+
+6
+00:00:21.138 --> 00:00:26.125
+not Cisco's defaults; it prefers the
+internet circuit and can fall back to 5G.
+
+7
+00:00:26.125 --> 00:00:28.745
+Bulk stays on the internet circuit,
+
+8
+00:00:28.745 --> 00:00:32.900
+kept off 5G by data policy and
+behind lean traffic by QoS.
+
+9
+00:00:32.900 --> 00:00:36.147
+Every path that can reach
+the internet lands on the
+
+10
+00:00:36.147 --> 00:00:39.163
+same security policy, so
+no path gets less rigor.
+
+11
+00:00:39.163 --> 00:00:44.704
+And lane discipline carries over unchanged:
+the program observes and emits evidence,
+
+12
+00:00:44.704 --> 00:00:48.138
+while the Manager and
+Controllers route and enforce.
+
+13
+00:00:48.138 --> 00:00:49.970
+Next, segmentation.

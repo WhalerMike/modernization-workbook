@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.442
+Patching doesn't tell you whether
+someone already came through,
+
+2
+00:00:03.442 --> 00:00:05.938
+and CISA's supplemental
+guidance is sobering.
+
+3
+00:00:05.938 --> 00:00:09.108
+The original bypass was
+exploited as a zero-day,
+
+4
+00:00:09.108 --> 00:00:13.823
+the attacker's rogue device looked
+like a legitimate SD-WAN component,
+
+5
+00:00:13.823 --> 00:00:18.538
+and the activity likely began in 2023,
+so the hunt reaches back that far.
+
+6
+00:00:18.538 --> 00:00:23.905
+The six-part hunt looks for downgrades
+and reboots, rogue peering, SSH key abuse,
+
+7
+00:00:23.905 --> 00:00:25.969
+root sign-ins and cleared logs,
+
+8
+00:00:25.969 --> 00:00:30.263
+and any root compromise means
+rebuilding from patched images.
+
+9
+00:00:30.263 --> 00:00:34.752
+The hardening is concrete: five-minute
+timeouts, pairwise IPsec keys,
+
+10
+00:00:34.752 --> 00:00:39.950
+an enterprise certificate on the Manager,
+and SIEM alerts on unexpected peering.
+
+11
+00:00:39.950 --> 00:00:42.764
+The fabric carries no
+production traffic until
+
+12
+00:00:42.764 --> 00:00:45.437
+every line of the gate
+is closed and evidenced.
+
+13
+00:00:45.437 --> 00:00:47.300
+Now, the first decision.
