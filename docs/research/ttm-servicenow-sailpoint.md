@@ -19,6 +19,17 @@ The loop in Book 13 has five steps: test, detect drift, raise a typed task, actu
 
 ![The loop on ServiceNow and SailPoint: Core HCM is the source of authority and feeds SailPoint Identity Security Cloud by aggregation; SailPoint governs identities and entitlements and provisions Entra ID and AD through connectors; SailPoint and ServiceNow exchange tickets and requests; ServiceNow is the front door and the record, and uses its Entra spoke for simple tasks; a re-read on the next aggregation or native-change event, not the ticket status, closes the record; disconnected applications become declared exceptions through Service Desk tickets.](../images/diagrams/b13-governance/svg/ttm-snow-sailpoint.svg){fig-alt="Diagram. Core HCM, the source of authority where HR corrects facts, feeds SailPoint Identity Security Cloud by aggregation. SailPoint (identity governance: aggregates HR and runs lifecycle states, access requests and certifications, and native change detection) exchanges tickets and requests with ServiceNow (the front door and record: catalog, cases and change records, approvals per authority class, one closure record). SailPoint provisions Entra ID and AD through connectors; ServiceNow reaches Entra through its Entra spoke for A0 and A1 tasks. Entra and AD lead to a re-read on the next aggregation or a native-change event, not ticket status, and the evidence closes the ServiceNow record. A dashed red line from SailPoint leads to a declared exception: a disconnected application handled by a Service Desk ticket, a recorded session and an end date."}
 
+## Watch or download
+
+| Edition | File |
+|---|---|
+| Video (MP4, 1080p, about 10 minutes) | [Research_TTM_ServiceNow_SailPoint_Narrated.mp4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_TTM_ServiceNow_SailPoint_Narrated.mp4) |
+| Narrated, self-running deck (about 10 minutes, captions) | [Research_TTM_ServiceNow_SailPoint_Narrated.pptx](../../presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated.pptx) |
+| Deck, for presenting live | [Research_TTM_ServiceNow_SailPoint.pptx](../../presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint.pptx) |
+| Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated.vtt) |
+
+The vendor-neutral original has its own narrated deck, linked from [Book 13, Appendix B](../books/b13-governance/appendix-b-ticket-to-machine-reference.md).
+
 ## The products in this example
 
 | Slot in the loop | Product | Federal status (FedRAMP Marketplace, October 24, 2026) |

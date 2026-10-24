@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.142
+To move this example from
+under review to proved,
+
+2
+00:00:03.142 --> 00:00:07.238
+build the loop in a lab with a test
+tenant, and record the evidence.
+
+3
+00:00:07.238 --> 00:00:10.434
+Start by confirming what the
+vendors haven't said publicly,
+
+4
+00:00:10.434 --> 00:00:15.000
+like feature parity in the FedRAMP environment
+and the apps in the government Store.
+
+5
+00:00:15.000 --> 00:00:20.081
+The decisions are the four gaps restated:
+what closes a record, one approver system
+
+6
+00:00:20.081 --> 00:00:25.012
+per authority class, how change records
+get raised, and one writer per attribute.
+
+7
+00:00:25.012 --> 00:00:28.481
+And remember, this is an
+example, not an endorsement;
+
+8
+00:00:28.481 --> 00:00:31.124
+other products can fill the same slots.
+
+9
+00:00:31.124 --> 00:00:36.022
+For the design itself, read Book 13's
+vendor-neutral Appendix B, or watch its
+
+10
+00:00:36.022 --> 00:00:38.912
+narrated deck, and then
+the draft on keeping
+
+11
+00:00:38.912 --> 00:00:41.963
+identity correct after
+HR becomes the source.
+
+12
+00:00:41.963 --> 00:00:43.150
+Thanks for listening.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.387
+Federal availability is
+where you need the most care.
+
+2
+00:00:03.387 --> 00:00:08.746
+For a Microsoft 365 GCC tenant, the
+worldwide Graph endpoints apply,
+
+3
+00:00:08.746 --> 00:00:13.338
+and SailPoint documents endpoint
+overrides for GCC High.
+
+4
+00:00:13.338 --> 00:00:17.569
+ServiceNow's Entra spoke fits
+GCC through its default endpoint,
+
+5
+00:00:17.569 --> 00:00:22.838
+but its page doesn't cover GCC High, and
+it needs an Integration Hub subscription.
+
+6
+00:00:22.838 --> 00:00:27.487
+SailPoint's ServiceNow apps aren't
+confirmed in ServiceNow's government Store.
+
+7
+00:00:27.487 --> 00:00:29.075
+Then three cautions.
+
+8
+00:00:29.075 --> 00:00:32.842
+SailPoint's cloud connectors call
+Graph from SailPoint's cloud,
+
+9
+00:00:32.842 --> 00:00:36.752
+and only Active Directory runs
+through its on-premises appliance,
+
+10
+00:00:36.752 --> 00:00:39.737
+so record which actions run
+from the vendor's cloud.
+
+11
+00:00:39.737 --> 00:00:44.737
+A vendor's MFA feature isn't a help
+desk reset with identity proofing.
+
+12
+00:00:44.737 --> 00:00:49.000
+And confirm what's in the FedRAMP
+environment before relying on any of it.
+
+13
+00:00:49.000 --> 00:00:50.280
+So, what's next?
