@@ -1,0 +1,14 @@
+[
+  {"drift_class": "attribute_drift", "system": "entra", "employee_id": "E1004", "attribute": "department"},
+  {"drift_class": "attribute_drift", "system": "entra", "employee_id": "E1004", "attribute": "manager"},
+  {"drift_class": "attribute_drift", "system": "isc", "employee_id": "E1001", "attribute": "department"},
+  {"drift_class": "attribute_drift", "system": "isc", "employee_id": "E1004", "attribute": "manager"},
+  {"drift_class": "missing_identity", "system": "entra", "employee_id": "E1003", "attribute": ""},
+  {"drift_class": "missing_identity", "system": "isc", "employee_id": "E1005", "attribute": ""},
+  {"drift_class": "orphan_account", "system": "entra", "employee_id": "", "attribute": "employeeId"},
+  {"drift_class": "orphan_account", "system": "entra", "employee_id": "X9999", "attribute": "employeeId"},
+  {"drift_class": "orphan_account", "system": "isc", "employee_id": "", "attribute": "identity"},
+  {"drift_class": "stale_access", "system": "entra", "employee_id": "E1002", "attribute": "accountEnabled"},
+  {"drift_class": "stale_access", "system": "isc", "employee_id": "E1002", "attribute": "disabled"},
+  {"drift_class": "unauthorized_write", "system": "entra", "employee_id": "E1004", "attribute": "Department"}
+]
