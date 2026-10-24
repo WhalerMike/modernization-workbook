@@ -1,0 +1,15 @@
+{
+  "value": [
+    {"id": "audit-0001", "category": "UserManagement", "activityDisplayName": "Update user", "activityDateTime": "2026-10-20T14:05:00Z",
+     "initiatedBy": {"user": {"id": "00000000-0000-0000-0000-00000000b001", "userPrincipalName": "helpdesk.admin@contoso.example"}, "app": null},
+     "targetResources": [{"id": "00000000-0000-0000-0000-000000001004", "type": "User", "userPrincipalName": "erin@contoso.example",
+       "modifiedProperties": [{"displayName": "Department", "oldValue": "[\"HR\"]", "newValue": "[\"Finance\"]"}, {"displayName": "Included Updated Properties", "oldValue": null, "newValue": "\"Department\""}]}]},
+    {"id": "audit-0002", "category": "UserManagement", "activityDisplayName": "Update user", "activityDateTime": "2026-10-20T15:00:00Z",
+     "initiatedBy": {"user": null, "app": {"appId": "11111111-2222-3333-4444-555555555555", "displayName": "HR inbound provisioning"}},
+     "targetResources": [{"id": "00000000-0000-0000-0000-000000001001", "type": "User", "userPrincipalName": "alice@contoso.example",
+       "modifiedProperties": [{"displayName": "Department", "oldValue": "[\"Sales\"]", "newValue": "[\"Finance\"]"}]}]},
+    {"id": "audit-0003", "category": "UserManagement", "activityDisplayName": "Add user", "activityDateTime": "2026-10-20T16:00:00Z",
+     "initiatedBy": {"user": {"userPrincipalName": "helpdesk.admin@contoso.example"}},
+     "targetResources": [{"id": "00000000-0000-0000-0000-00000000a001", "type": "User", "modifiedProperties": [{"displayName": "Department", "oldValue": null, "newValue": "[\"IT\"]"}]}]}
+  ]
+}

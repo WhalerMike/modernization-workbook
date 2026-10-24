@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Drift to ServiceNow - native change (provenance)",
+    "description": "Illustrative. An account was updated outside SailPoint ISC (Native Change Account Updated). Raise an unauthorized_write identity finding in ServiceNow; the finding's intended state is the reverted value.",
+    "owner": {
+      "type": "IDENTITY",
+      "id": "REPLACE-WITH-OWNER-IDENTITY-ID",
+      "name": "REPLACE-WITH-OWNER-NAME"
+    },
+    "enabled": false,
+    "trigger": {
+      "type": "EVENT",
+      "attributes": {
+        "id": "idn:native-change-account-updated",
+        "description": "Account updated outside ISC on a source with Native Change Detection enabled"
+      }
+    },
+    "definition": {
+      "start": "Post identity finding",
+      "steps": {
+        "Post identity finding": {
+          "actionId": "sp:http",
+          "type": "action",
+          "displayName": "Post identity finding to ServiceNow",
+          "attributes": {
+            "method": "post",
+            "url": "https://contoso.service-now.com/api/x_example_idkit/identity_findings/finding",
+            "requestContentType": "json",
+            "authenticationType": "OAuth",
+            "oAuthTokenUrl": "https://contoso.service-now.com/oauth_token.do",
+            "oAuthClientId": "REPLACE-IN-THE-UI",
+            "oAuthClientSecret": "REPLACE-IN-THE-UI",
+            "oAuthCredentialLocation": "oAuthInBody",
+            "jsonRequestBody": {
+              "kind": "finding",
+              "source": "sailpoint-isc",
+              "drift_class": "unauthorized_write",
+              "system": "isc_account",
+              "origin": {
+                "trigger_id": "idn:native-change-account-updated",
+                "workflow": "Drift to ServiceNow - native change (provenance)"
+              },
+              "account_id.$": "$.account.id",
+              "native_identity.$": "$.account.nativeIdentity",
+              "account_correlated.$": "$.account.correlated",
+              "identity_id.$": "$.identity.id",
+              "identity_name.$": "$.identity.name",
+              "source_id.$": "$.source.id",
+              "source_name.$": "$.source.name",
+              "change_types.$": "$.accountChangeTypes",
+              "single_value_changes.$": "$.singleValueAttributeChanges",
+              "entitlement_changes.$": "$.entitlementChanges"
+            }
+          },
+          "nextStep": "End"
+        },
+        "End": {
+          "type": "success"
+        }
+      }
+    }
+  },
+  {
+    "name": "Drift to ServiceNow - identity attributes changed (mover)",
+    "description": "Illustrative. Authoritative-source attributes changed on an identity (Identity Attributes Changed). Raise an attribute_drift finding so the mover review is owned and clocked.",
+    "owner": {
+      "type": "IDENTITY",
+      "id": "REPLACE-WITH-OWNER-IDENTITY-ID",
+      "name": "REPLACE-WITH-OWNER-NAME"
+    },
+    "enabled": false,
+    "trigger": {
+      "type": "EVENT",
+      "attributes": {
+        "id": "idn:identity-attributes-changed",
+        "filter.$": "$.changes[?(@.attribute == 'department')]",
+        "description": "Department changed on the authoritative source; add one workflow per HR-mastered attribute you watch"
+      }
+    },
+    "definition": {
+      "start": "Post identity finding",
+      "steps": {
+        "Post identity finding": {
+          "actionId": "sp:http",
+          "type": "action",
+          "displayName": "Post identity finding to ServiceNow",
+          "attributes": {
+            "method": "post",
+            "url": "https://contoso.service-now.com/api/x_example_idkit/identity_findings/finding",
+            "requestContentType": "json",
+            "authenticationType": "OAuth",
+            "oAuthTokenUrl": "https://contoso.service-now.com/oauth_token.do",
+            "oAuthClientId": "REPLACE-IN-THE-UI",
+            "oAuthClientSecret": "REPLACE-IN-THE-UI",
+            "oAuthCredentialLocation": "oAuthInBody",
+            "jsonRequestBody": {
+              "kind": "finding",
+              "source": "sailpoint-isc",
+              "drift_class": "attribute_drift",
+              "system": "isc_identity",
+              "origin": {
+                "trigger_id": "idn:identity-attributes-changed",
+                "workflow": "Drift to ServiceNow - identity attributes changed (mover)"
+              },
+              "identity_id.$": "$.identity.id",
+              "identity_name.$": "$.identity.name",
+              "changes.$": "$.changes"
+            }
+          },
+          "nextStep": "End"
+        },
+        "End": {
+          "type": "success"
+        }
+      }
+    }
+  },
+  {
+    "name": "Drift to ServiceNow - provisioning completed (closure signal)",
+    "description": "Illustrative. A provisioning action completed (Provisioning Action Completed). Tell ServiceNow so matching findings move to Awaiting verification. This is not closure: only the re-read client closes a finding.",
+    "owner": {
+      "type": "IDENTITY",
+      "id": "REPLACE-WITH-OWNER-IDENTITY-ID",
+      "name": "REPLACE-WITH-OWNER-NAME"
+    },
+    "enabled": false,
+    "trigger": {
+      "type": "EVENT",
+      "attributes": {
+        "id": "idn:post-provisioning",
+        "description": "A provisioning action completed on a source"
+      }
+    },
+    "definition": {
+      "start": "Post closure signal",
+      "steps": {
+        "Post closure signal": {
+          "actionId": "sp:http",
+          "type": "action",
+          "displayName": "Post closure signal to ServiceNow",
+          "attributes": {
+            "method": "post",
+            "url": "https://contoso.service-now.com/api/x_example_idkit/identity_findings/finding",
+            "requestContentType": "json",
+            "authenticationType": "OAuth",
+            "oAuthTokenUrl": "https://contoso.service-now.com/oauth_token.do",
+            "oAuthClientId": "REPLACE-IN-THE-UI",
+            "oAuthClientSecret": "REPLACE-IN-THE-UI",
+            "oAuthCredentialLocation": "oAuthInBody",
+            "jsonRequestBody": {
+              "kind": "closure_signal",
+              "source": "sailpoint-isc",
+              "origin": {
+                "trigger_id": "idn:post-provisioning"
+              },
+              "tracking_number.$": "$.trackingNumber",
+              "recipient_id.$": "$.recipient.id",
+              "account_requests.$": "$.accountRequests",
+              "errors.$": "$.errors"
+            }
+          },
+          "nextStep": "End"
+        },
+        "End": {
+          "type": "success"
+        }
+      }
+    }
+  }
+]

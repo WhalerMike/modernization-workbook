@@ -1,0 +1,4 @@
+[
+  {"id": "2c91800000000000000000000a0rph1", "name": "tempadmin", "nativeIdentity": "CN=tempadmin,OU=Users,DC=contoso,DC=example", "sourceId": "src-ad", "sourceName": "Corp AD", "uncorrelated": true, "disabled": false},
+  {"id": "2c91800000000000000000000a0rph2", "name": "oldtest", "nativeIdentity": "CN=oldtest,OU=Users,DC=contoso,DC=example", "sourceId": "src-ad", "sourceName": "Corp AD", "uncorrelated": true, "disabled": true}
+]

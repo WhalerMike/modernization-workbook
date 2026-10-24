@@ -1,0 +1,6 @@
+{
+  "isc_employee_id_attribute": "employeeNumber",
+  "isc_authoritative_sources": ["Core HCM"],
+  "allowed_writer_app_ids": ["11111111-2222-3333-4444-555555555555"],
+  "orphan_exclude_upn_prefixes": []
+}

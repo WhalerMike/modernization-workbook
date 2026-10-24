@@ -1,0 +1,13 @@
+{
+  "value": [
+    {"id": "00000000-0000-0000-0000-000000001000", "userPrincipalName": "bob@contoso.example", "displayName": "Bob Example", "employeeId": "E1000", "accountEnabled": true, "department": "Finance", "userType": "Member", "manager": null},
+    {"id": "00000000-0000-0000-0000-000000001001", "userPrincipalName": "alice@contoso.example", "displayName": "Alice Example", "employeeId": "E1001", "accountEnabled": true, "department": "Finance", "userType": "Member", "manager": {"id": "00000000-0000-0000-0000-000000001000", "employeeId": "E1000"}},
+    {"id": "00000000-0000-0000-0000-000000001002", "userPrincipalName": "carol@contoso.example", "displayName": "Carol Example", "employeeId": "E1002", "accountEnabled": true, "department": "Sales", "userType": "Member", "manager": {"id": "00000000-0000-0000-0000-000000001000", "employeeId": "E1000"}},
+    {"id": "00000000-0000-0000-0000-000000001004", "userPrincipalName": "erin@contoso.example", "displayName": "Erin Example", "employeeId": "E1004", "accountEnabled": true, "department": "Finance", "userType": "Member", "manager": {"id": "00000000-0000-0000-0000-000000001001", "employeeId": "E1001"}},
+    {"id": "00000000-0000-0000-0000-000000001005", "userPrincipalName": "frank@contoso.example", "displayName": "Frank Example", "employeeId": "E1005", "accountEnabled": true, "department": "Sales", "userType": "Member", "manager": {"id": "00000000-0000-0000-0000-000000001000", "employeeId": "E1000"}},
+    {"id": "00000000-0000-0000-0000-000000001006", "userPrincipalName": "grace@contoso.example", "displayName": "Grace Example", "employeeId": "E1006", "accountEnabled": false, "department": "IT", "userType": "Member", "manager": null},
+    {"id": "00000000-0000-0000-0000-00000000a001", "userPrincipalName": "svc-backup@contoso.example", "displayName": "Backup service", "employeeId": null, "accountEnabled": true, "department": null, "userType": "Member", "manager": null},
+    {"id": "00000000-0000-0000-0000-00000000a002", "userPrincipalName": "old.contractor@contoso.example", "displayName": "Old Contractor", "employeeId": "X9999", "accountEnabled": true, "department": "IT", "userType": "Member", "manager": null},
+    {"id": "00000000-0000-0000-0000-00000000a003", "userPrincipalName": "partner_fabrikam.example#EXT#@contoso.example", "displayName": "Partner Guest", "employeeId": null, "accountEnabled": true, "department": null, "userType": "Guest", "manager": null}
+  ]
+}

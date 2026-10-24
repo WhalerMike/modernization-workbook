@@ -1,0 +1,13 @@
+[
+  {"id": "2c9180000000000000000000000e1000", "name": "bob.example", "displayName": "Bob Example", "employeeNumber": "E1000", "attributes": {"department": "Finance", "cloudLifecycleState": "active"}, "manager": null, "accounts": []},
+  {"id": "2c9180000000000000000000000e1001", "name": "alice.example", "displayName": "Alice Example", "employeeNumber": "E1001", "attributes": {"department": "Accounting", "cloudLifecycleState": "active"}, "manager": {"id": "2c9180000000000000000000000e1000", "name": "bob.example"}, "accounts": []},
+  {"id": "2c9180000000000000000000000e1002", "name": "carol.example", "displayName": "Carol Example", "employeeNumber": "E1002", "attributes": {"department": "Sales", "cloudLifecycleState": "inactive"}, "manager": {"id": "2c9180000000000000000000000e1000", "name": "bob.example"},
+    "accounts": [
+      {"id": "2c91800000000000000000000a1002hr", "name": "E1002", "accountId": "E1002", "disabled": false, "source": {"id": "src-hr", "name": "Core HCM", "type": "Oracle HCM Cloud"}},
+      {"id": "2c91800000000000000000000a1002ad", "name": "carol.example", "accountId": "CN=Carol Example,OU=Users,DC=contoso,DC=example", "disabled": false, "source": {"id": "src-ad", "name": "Corp AD", "type": "Active Directory - Direct"}}
+    ]},
+  {"id": "2c9180000000000000000000000e1003", "name": "dan.example", "displayName": "Dan Example", "employeeNumber": "E1003", "attributes": {"department": "Marketing"}, "manager": {"id": "2c9180000000000000000000000e1000", "name": "bob.example"}, "accounts": []},
+  {"id": "2c9180000000000000000000000e1004", "name": "erin.example", "displayName": "Erin Example", "employeeNumber": "E1004", "attributes": {"department": "HR"}, "manager": {"id": "2c9180000000000000000000000e1001", "name": "alice.example"}, "accounts": []},
+  {"id": "2c9180000000000000000000000e1006", "name": "grace.example", "displayName": "Grace Example", "employeeNumber": "E1006", "attributes": {"department": "IT"}, "manager": null,
+    "accounts": [{"id": "2c91800000000000000000000a1006ad", "name": "grace.example", "accountId": "CN=Grace Example,OU=Users,DC=contoso,DC=example", "disabled": true, "source": {"id": "src-ad", "name": "Corp AD"}}]}
+]
