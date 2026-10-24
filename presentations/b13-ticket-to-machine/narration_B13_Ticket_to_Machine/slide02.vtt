@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.650
+Here's the idea the
+whole appendix rests on.
+
+2
+00:00:02.650 --> 00:00:06.533
+A ticket that sends a person to
+a console doesn't prove anything;
+
+3
+00:00:06.533 --> 00:00:08.325
+it just changes who's to blame.
+
+4
+00:00:08.325 --> 00:00:13.088
+The person does the work, replies
+"done," and the record holds a claim.
+
+5
+00:00:13.088 --> 00:00:17.088
+Now flip it: the person approves,
+a machine runs a versioned
+
+6
+00:00:17.088 --> 00:00:21.088
+plan under its own identity,
+and a re-read proves the result.
+
+7
+00:00:21.088 --> 00:00:25.275
+The person keeps the one job a
+machine can't do, which is to decide.
+
+8
+00:00:25.275 --> 00:00:28.476
+And this matters because a
+platform that finds drift
+
+9
+00:00:28.476 --> 00:00:32.113
+perfectly but closes it slowly
+is just documenting neglect.
+
+10
+00:00:32.113 --> 00:00:34.660
+So what does the machine
+path look like end to end?

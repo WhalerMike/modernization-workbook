@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.900
+The tempo puts a clock on every severity.
+
+2
+00:00:02.900 --> 00:00:05.586
+Critical findings never get a machine fix;
+
+3
+00:00:05.586 --> 00:00:08.962
+the run halts and a named
+person decides immediately.
+
+4
+00:00:08.962 --> 00:00:12.988
+High findings get an hour, medium
+a day, and low three days.
+
+5
+00:00:12.988 --> 00:00:16.563
+These windows bound the
+response, not the drift itself;
+
+6
+00:00:16.563 --> 00:00:20.376
+a program with no findings is
+more likely blind than clean.
+
+7
+00:00:20.376 --> 00:00:21.750
+Two things to remember.
+
+8
+00:00:21.750 --> 00:00:25.787
+Automatic fixes hold only for
+classes accepted in advance.
+
+9
+00:00:25.787 --> 00:00:29.856
+And when an outside clock is
+shorter, like CISA's vulnerability
+
+10
+00:00:29.856 --> 00:00:34.001
+timelines or the one-hour incident
+notice, the outside clock wins.
+
+11
+00:00:34.001 --> 00:00:36.100
+So how does leadership know it's working?

@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.050
+These two show the harder paths.
+
+2
+00:00:02.050 --> 00:00:03.307
+In the third example,
+
+3
+00:00:03.307 --> 00:00:07.375
+the inventory finds a certificate
+from an issuer nobody approved.
+
+4
+00:00:07.375 --> 00:00:08.765
+There's no automatic fix,
+
+5
+00:00:08.765 --> 00:00:12.450
+because replacing it blindly
+could break whoever depends on it.
+
+6
+00:00:12.450 --> 00:00:16.360
+The PKI owner decides to replace
+it through the approved issuer
+
+7
+00:00:16.360 --> 00:00:19.975
+and block the rogue one, and then
+the gated lane does the work.
+
+8
+00:00:19.975 --> 00:00:24.738
+In the fourth, an old appliance has only
+a console, so no machine can reach it.
+
+9
+00:00:24.738 --> 00:00:26.448
+The owner approves a short,
+
+10
+00:00:26.448 --> 00:00:30.413
+recorded session with a compensating
+control and an end date.
+
+11
+00:00:30.413 --> 00:00:33.351
+It's visible, approved
+first and temporary.
+
+12
+00:00:33.351 --> 00:00:36.170
+Certificates deserve a
+closer look of their own.

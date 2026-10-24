@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.083
+This slide is worth slowing down on,
+
+2
+00:00:02.083 --> 00:00:05.938
+because every row is a way the
+pattern fails while looking correct.
+
+3
+00:00:05.938 --> 00:00:10.668
+A security review of a reference build
+found origins that weren't checked,
+
+4
+00:00:10.668 --> 00:00:15.321
+commands built from unescaped strings,
+input that could swap the target,
+
+5
+00:00:15.321 --> 00:00:17.958
+a password crossing a queue in plain text,
+
+6
+00:00:17.958 --> 00:00:22.688
+a leg that treated "sent" as "done," and
+tests that never touched the risky path.
+
+7
+00:00:22.688 --> 00:00:24.638
+Each fix became a design rule.
+
+8
+00:00:24.638 --> 00:00:28.786
+The lesson is humbling: tests
+prove only the refusals they test,
+
+9
+00:00:28.786 --> 00:00:32.137
+and a reference build is a
+starting point, not proof.
+
+10
+00:00:32.137 --> 00:00:33.820
+So, what's left to decide?

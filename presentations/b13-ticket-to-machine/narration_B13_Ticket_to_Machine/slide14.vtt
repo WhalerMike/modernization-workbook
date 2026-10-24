@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.138
+Certificates are the deliberate
+exception, and the reason is volume.
+
+2
+00:00:04.138 --> 00:00:08.793
+Public TLS lifetimes are shrinking
+from three hundred ninety-eight
+
+3
+00:00:08.793 --> 00:00:12.713
+days to forty-seven by 2029,
+so renewals come continuously.
+
+4
+00:00:12.713 --> 00:00:15.672
+Putting each one through an
+approval wouldn't add rigor;
+
+5
+00:00:15.672 --> 00:00:18.825
+it would just teach approvers
+to click yes without reading.
+
+6
+00:00:18.825 --> 00:00:23.056
+So routine renewal runs on
+protocol and renewal engines,
+
+7
+00:00:23.056 --> 00:00:25.487
+with policy partly living in DNS.
+
+8
+00:00:25.487 --> 00:00:29.198
+The anomalies still come through
+the front door, like a new issuing
+
+9
+00:00:29.198 --> 00:00:33.313
+authority or an unknown issuer, because
+they're rare and they need a person.
+
+10
+00:00:33.313 --> 00:00:36.380
+Speaking of the front door,
+there should only be one.

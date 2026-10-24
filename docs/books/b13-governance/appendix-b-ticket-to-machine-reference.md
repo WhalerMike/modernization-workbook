@@ -27,6 +27,8 @@ The tables that [Chapter 10](10-ticket-to-machine.md) relies on: the coordinatio
 The lanes, ceilings, severities and response windows in this appendix are the Federal Modernization Program's design, not federal requirements. Where a federal document says something relevant, it is cited. The worked examples are illustrative patterns, not records of a real engagement, and every identifier in them is invented. Product capabilities change quickly; confirm current behavior with each vendor before a plan, procurement or acquisition decision rests on this appendix.
 :::
 
+**Watch or present it:** a [narrated, self-running edition of this appendix](../../../presentations/b13-ticket-to-machine/B13_Ticket_to_Machine_Narrated.pptx) (about 10 minutes, captions) walks through the loop, the lanes, the tempo and the worked examples; the deck, script and video are on the [Presentations](../../presentations/index.md#reference-b13) page.
+
 ## The coordination loop
 
 Native consoles can detect drift and change state, and their dashboards show current posture inside their own boundary. What a console can't do on its own is answer the four questions an assessor asks about a finding: who owns it, by when, under whose approval, and with what evidence of closure. The program puts a coordination layer in front of the native tools to answer them, and keeps every change on the native surface:

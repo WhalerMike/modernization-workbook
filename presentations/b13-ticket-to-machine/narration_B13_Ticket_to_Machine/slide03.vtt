@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.725
+It's a loop of five steps.
+
+2
+00:00:01.725 --> 00:00:06.868
+A rule tests actual state against the
+record, a difference becomes a typed finding,
+
+3
+00:00:06.868 --> 00:00:11.028
+the finding becomes a task with an
+owner and a clock, the change runs
+
+4
+00:00:11.028 --> 00:00:15.112
+on the platform's own surface, and
+a re-read closes it with evidence.
+
+5
+00:00:15.112 --> 00:00:18.660
+The important part is what the
+coordination layer doesn't do:
+
+6
+00:00:18.660 --> 00:00:20.576
+it never makes the change itself.
+
+7
+00:00:20.576 --> 00:00:25.038
+Its job is to make every drift
+owned, clocked, approved and proven.
+
+8
+00:00:25.038 --> 00:00:28.744
+Federal policy is heading the
+same way for cloud providers,
+
+9
+00:00:28.744 --> 00:00:32.450
+and the program applies that
+logic to an agency's own estate.
+
+10
+00:00:32.450 --> 00:00:35.660
+Inside that loop, every
+request runs a chain.

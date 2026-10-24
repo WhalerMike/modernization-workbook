@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.319
+Lots of tools detect
+problems: posture engines,
+
+2
+00:00:03.319 --> 00:00:07.175
+scanners, entitlement tools,
+certificate inventories.
+
+3
+00:00:07.175 --> 00:00:08.500
+The rule is simple.
+
+4
+00:00:08.500 --> 00:00:12.608
+Each one is a detection engine
+feeding the one coordination layer,
+
+5
+00:00:12.608 --> 00:00:14.475
+never a second queue of its own.
+
+6
+00:00:14.475 --> 00:00:19.604
+That way an over-privileged role and an open
+storage account land in the same place,
+
+7
+00:00:19.604 --> 00:00:21.338
+under the same five clauses,
+
+8
+00:00:21.338 --> 00:00:25.713
+and access requests from a governance
+front end close the same way too.
+
+9
+00:00:25.713 --> 00:00:30.217
+Two cautions keep this honest: check
+each tool's real platform coverage,
+
+10
+00:00:30.217 --> 00:00:33.806
+since on-premises virtualization
+kept coming up as a gap,
+
+11
+00:00:33.806 --> 00:00:36.937
+and give the alternatives
+a fair build-or-buy look.
+
+12
+00:00:36.937 --> 00:00:38.740
+So where does this pattern break?

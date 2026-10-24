@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+The second half covers the
+changes that need the most care.
+
+2
+00:00:03.362 --> 00:00:08.068
+Anything with a big blast radius, like
+a tenant-wide role or a Conditional
+
+3
+00:00:08.068 --> 00:00:12.774
+Access change, stays gated permanently,
+however mature the program gets.
+
+4
+00:00:12.774 --> 00:00:17.262
+Changes to the record itself are always
+a human decision through review.
+
+5
+00:00:17.262 --> 00:00:19.746
+Routine certificates run on protocol,
+
+6
+00:00:19.746 --> 00:00:22.850
+and emergencies act first
+and record afterward.
+
+7
+00:00:22.850 --> 00:00:24.775
+Two rules hold across all of it.
+
+8
+00:00:24.775 --> 00:00:28.611
+A machine never edits the
+record to make drift disappear,
+
+9
+00:00:28.611 --> 00:00:31.713
+and no gap quietly goes
+to a person at a console.
+
+10
+00:00:31.713 --> 00:00:34.920
+Now let's look at drift from
+the other side, by class.

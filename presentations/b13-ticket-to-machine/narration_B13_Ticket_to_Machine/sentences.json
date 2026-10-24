@@ -1,0 +1,611 @@
+{
+ "1": [
+  [
+   0.05,
+   6.525,
+   "Welcome to the Ticket-to-Machine Reference, Appendix B of Book 13 in the Federal Modernization Workbook."
+  ],
+  [
+   6.575,
+   6.25,
+   "Chapter 10 makes an argument about operational tempo; this appendix is the reference that backs it up."
+  ],
+  [
+   12.825,
+   11.312,
+   "Over the next twelve minutes we'll walk the loop, the five clauses every change passes through, the lanes each kind of change takes, the clocks, the evidence record, and four worked examples."
+  ],
+  [
+   24.137,
+   9.662,
+   "One caution up front: the lanes, ceilings, severities and windows are the program's design, not federal requirements, and the examples are illustrative."
+  ],
+  [
+   33.8,
+   2.225,
+   "Let's start with why any of this matters."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.6,
+   "Here's the idea the whole appendix rests on."
+  ],
+  [
+   2.65,
+   5.675,
+   "A ticket that sends a person to a console doesn't prove anything; it just changes who's to blame."
+  ],
+  [
+   8.325,
+   4.763,
+   "The person does the work, replies \"done,\" and the record holds a claim."
+  ],
+  [
+   13.088,
+   8.0,
+   "Now flip it: the person approves, a machine runs a versioned plan under its own identity, and a re-read proves the result."
+  ],
+  [
+   21.087,
+   4.188,
+   "The person keeps the one job a machine can't do, which is to decide."
+  ],
+  [
+   25.275,
+   6.838,
+   "And this matters because a platform that finds drift perfectly but closes it slowly is just documenting neglect."
+  ],
+  [
+   32.112,
+   2.475,
+   "So what does the machine path look like end to end?"
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.675,
+   "It's a loop of five steps."
+  ],
+  [
+   1.725,
+   13.387,
+   "A rule tests actual state against the record, a difference becomes a typed finding, the finding becomes a task with an owner and a clock, the change runs on the platform's own surface, and a re-read closes it with evidence."
+  ],
+  [
+   15.113,
+   5.463,
+   "The important part is what the coordination layer doesn't do: it never makes the change itself."
+  ],
+  [
+   20.575,
+   4.463,
+   "Its job is to make every drift owned, clocked, approved and proven."
+  ],
+  [
+   25.038,
+   7.412,
+   "Federal policy is heading the same way for cloud providers, and the program applies that logic to an agency's own estate."
+  ],
+  [
+   32.45,
+   3.163,
+   "Inside that loop, every request runs a chain."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   8.375,
+   "Every governed change, whether it's an add, a move, a deletion or a reset, passes the same five clauses, in order."
+  ],
+  [
+   8.425,
+   11.425,
+   "It has to trace to a real origin, carry an approval from someone who isn't the requester, run under a short-lived scoped role, prove its result with a re-read, and write its own evidence."
+  ],
+  [
+   19.85,
+   5.088,
+   "If any clause fails, the chain stops, and the task isn't treated as closed."
+  ],
+  [
+   24.938,
+   7.463,
+   "And here's the highpoint: a refusal is recorded just like a success, so a blocked self-approval becomes evidence too."
+  ],
+  [
+   32.4,
+   2.288,
+   "Next question: who approves what?"
+  ],
+  [
+   34.688,
+   1.512,
+   "That's where the lanes come in."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   8.812,
+   "Every kind of change takes one of five lanes, and the lane settles three things: who approves, what actually runs, and what evidence comes out."
+  ],
+  [
+   8.863,
+   1.875,
+   "Two lanes run on machines."
+  ],
+  [
+   10.738,
+   5.013,
+   "The gated lane, where a named person approves each instance, is the default."
+  ],
+  [
+   15.75,
+   7.713,
+   "The autonomous lane is only for narrow, low-risk classes the authorizing official has accepted in writing, ahead of time."
+  ],
+  [
+   23.462,
+   7.537,
+   "Then there's a human-decision lane, a protocol lane with no ticket at all, and the declared exception for when no machine can reach."
+  ],
+  [
+   31.0,
+   2.587,
+   "Remember, this is the program's design."
+  ],
+  [
+   33.587,
+   1.637,
+   "So which changes land where?"
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   11.875,
+   "Before any class goes to a machine, it has to pass six tests from Chapter 10: reachable, deterministic, bounded, reversible, verifiable, and not on the permanently-gated list."
+  ],
+  [
+   11.925,
+   4.125,
+   "With that filter in place, the starting assignment falls out naturally."
+  ],
+  [
+   16.05,
+   4.662,
+   "Routine configuration drift and patching run on machines behind an approval."
+  ],
+  [
+   20.712,
+   6.35,
+   "Anything critical, or anything touching authorization or provenance, halts and goes to a person."
+  ],
+  [
+   27.062,
+   6.362,
+   "Access requests ride the five clauses, and an idle entitlement goes to its owner to decide first."
+  ],
+  [
+   33.425,
+   3.05,
+   "An agency tunes all of this in its own record."
+  ],
+  [
+   36.475,
+   1.562,
+   "Here's the rest of the table."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.312,
+   "The second half covers the changes that need the most care."
+  ],
+  [
+   3.362,
+   9.412,
+   "Anything with a big blast radius, like a tenant-wide role or a Conditional Access change, stays gated permanently, however mature the program gets."
+  ],
+  [
+   12.775,
+   4.487,
+   "Changes to the record itself are always a human decision through review."
+  ],
+  [
+   17.262,
+   5.588,
+   "Routine certificates run on protocol, and emergencies act first and record afterward."
+  ],
+  [
+   22.85,
+   1.925,
+   "Two rules hold across all of it."
+  ],
+  [
+   24.775,
+   6.938,
+   "A machine never edits the record to make drift disappear, and no gap quietly goes to a person at a console."
+  ],
+  [
+   31.712,
+   3.15,
+   "Now let's look at drift from the other side, by class."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.475,
+   "Drift comes in five classes, and each has a default lane."
+  ],
+  [
+   3.525,
+   4.625,
+   "A schema problem, where the format's wrong, can often be fixed by a machine."
+  ],
+  [
+   8.15,
+   7.438,
+   "Provenance and authorization drift are different: when the claim is in active use, the run halts and a person decides."
+  ],
+  [
+   15.588,
+   4.0,
+   "Semantic and identity drift usually need human judgment too."
+  ],
+  [
+   19.587,
+   7.987,
+   "The honest limit here is that the classes whose fixes depend on context reach a person more often, and that's by design, not a failure."
+  ],
+  [
+   27.575,
+   4.2,
+   "Which brings us to the clock: how fast does each finding have to be handled?"
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.85,
+   "The tempo puts a clock on every severity."
+  ],
+  [
+   2.9,
+   6.062,
+   "Critical findings never get a machine fix; the run halts and a named person decides immediately."
+  ],
+  [
+   8.963,
+   4.025,
+   "High findings get an hour, medium a day, and low three days."
+  ],
+  [
+   12.988,
+   7.388,
+   "These windows bound the response, not the drift itself; a program with no findings is more likely blind than clean."
+  ],
+  [
+   20.375,
+   1.375,
+   "Two things to remember."
+  ],
+  [
+   21.75,
+   4.037,
+   "Automatic fixes hold only for classes accepted in advance."
+  ],
+  [
+   25.788,
+   8.213,
+   "And when an outside clock is shorter, like sis-uh's vulnerability timelines or the one-hour incident notice, the outside clock wins."
+  ],
+  [
+   34.0,
+   2.025,
+   "So how does leadership know it's working?"
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.037,
+   "These five measures belong to leadership, not just operations."
+  ],
+  [
+   4.088,
+   2.325,
+   "How much of the estate can we even see?"
+  ],
+  [
+   6.412,
+   2.45,
+   "Do findings close inside their windows?"
+  ],
+  [
+   8.863,
+   2.188,
+   "How often does a person have to step in?"
+  ],
+  [
+   11.05,
+   2.212,
+   "What share of closures did a machine do?"
+  ],
+  [
+   13.262,
+   2.587,
+   "And how many tasks still have no machine at all?"
+  ],
+  [
+   15.85,
+   5.5,
+   "Each bad value tells you something specific, like manual work quietly becoming permanent."
+  ],
+  [
+   21.35,
+   3.413,
+   "The good news is that none of this needs round-the-clock staffing."
+  ],
+  [
+   24.762,
+   5.588,
+   "What it does need is named people in the escalation roles, because tooling can't create authority."
+  ],
+  [
+   30.35,
+   2.225,
+   "Now, what does all that work leave behind?"
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.538,
+   "It leaves one record, in one shape, whatever the lane."
+  ],
+  [
+   3.587,
+   13.475,
+   "A machine fix, a recorded human session and an automated certificate renewal all fill the same fields: where it came from, who owned it, who approved it, what identity ran it, what ran, and what the re-read showed."
+  ],
+  [
+   17.062,
+   1.038,
+   "That's the point."
+  ],
+  [
+   18.1,
+   13.675,
+   "Nobody assembles evidence by hand at audit time, and an assessor reads one format whatever the platform, and checks four things: a prior approval, a controlled artifact, a logged execution and a result they can re-test."
+  ],
+  [
+   31.775,
+   5.975,
+   "Even the human session lane fills the same fields, just with a recording where the run log would be."
+  ],
+  [
+   37.75,
+   3.112,
+   "To make this concrete, let's walk through some examples."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.775,
+   "Here are the first two examples, both invented to show the pattern."
+  ],
+  [
+   3.825,
+   4.05,
+   "In the first, a sharing setting drifts to allow anonymous links."
+  ],
+  [
+   7.875,
+   11.412,
+   "The authorizing official has accepted that one narrow fix in advance, so the machine restores it, re-reads it, and closes the task with one record, with no one waiting on an approval."
+  ],
+  [
+   19.288,
+   4.662,
+   "If it drifts again, that's a question for the steward, not another silent fix."
+  ],
+  [
+   23.95,
+   7.175,
+   "In the second, an access request walks all five clauses, and the role is granted as eligible, not standing."
+  ],
+  [
+   31.125,
+   3.862,
+   "What happens when a machine shouldn't, or can't, make the fix?"
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.088,
+   "Certificates are the deliberate exception, and the reason is volume."
+  ],
+  [
+   4.138,
+   8.575,
+   "Public TLS lifetimes are shrinking from three hundred ninety-eight days to forty-seven by 2029, so renewals come continuously."
+  ],
+  [
+   12.713,
+   6.112,
+   "Putting each one through an approval wouldn't add rigor; it would just teach approvers to click yes without reading."
+  ],
+  [
+   18.825,
+   6.662,
+   "So routine renewal runs on protocol and renewal engines, with policy partly living in D N S."
+  ],
+  [
+   25.488,
+   7.825,
+   "The anomalies still come through the front door, like a new issuing authority or an unknown issuer, because they're rare and they need a person."
+  ],
+  [
+   33.312,
+   3.013,
+   "Speaking of the front door, there should only be one."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   7.125,
+   "Lots of tools detect problems: posture engines, scanners, entitlement tools, certificate inventories."
+  ],
+  [
+   7.175,
+   1.325,
+   "The rule is simple."
+  ],
+  [
+   8.5,
+   5.975,
+   "Each one is a detection engine feeding the one coordination layer, never a second queue of its own."
+  ],
+  [
+   14.475,
+   11.238,
+   "That way an over-privileged role and an open storage account land in the same place, under the same five clauses, and access requests from a governance front end close the same way too."
+  ],
+  [
+   25.712,
+   11.225,
+   "Two cautions keep this honest: check each tool's real platform coverage, since on-premises virtualization kept coming up as a gap, and give the alternatives a fair build-or-buy look."
+  ],
+  [
+   36.938,
+   1.738,
+   "So where does this pattern break?"
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.888,
+   "This slide is worth slowing down on, because every row is a way the pattern fails while looking correct."
+  ],
+  [
+   5.938,
+   16.75,
+   "A security review of a reference build found origins that weren't checked, commands built from unescaped strings, input that could swap the target, a password crossing a queue in plain text, a leg that treated \"sent\" as \"done,\" and tests that never touched the risky path."
+  ],
+  [
+   22.688,
+   1.95,
+   "Each fix became a design rule."
+  ],
+  [
+   24.637,
+   7.5,
+   "The lesson is humbling: tests prove only the refusals they test, and a reference build is a starting point, not proof."
+  ],
+  [
+   32.138,
+   1.613,
+   "So, what's left to decide?"
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   3.5,
+   "The reference leaves a short list of decisions to the agency."
+  ],
+  [
+   3.55,
+   5.625,
+   "Which narrow classes, if any, the authorizing official accepts for autonomous closure."
+  ],
+  [
+   9.175,
+   2.337,
+   "Who actually holds the escalation roles."
+  ],
+  [
+   11.512,
+   2.925,
+   "How classes map to lanes in your own record."
+  ],
+  [
+   14.438,
+   2.55,
+   "What targets you set for the five measures."
+  ],
+  [
+   16.988,
+   2.65,
+   "And an end date for every declared exception."
+  ],
+  [
+   19.637,
+   7.612,
+   "For the full argument, read Chapter 10, then the drift engine, the evidence chapter and the control mapping in Appendix A."
+  ],
+  [
+   27.25,
+   1.1,
+   "Thanks for watching."
+  ],
+  [
+   28.35,
+   6.312,
+   "Remember: a ticket is evidence only when it authorized something that ran, and a re-read proved it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.0,
+   "These two show the harder paths."
+  ],
+  [
+   2.05,
+   5.325,
+   "In the third example, the inventory finds a certificate from an issuer nobody approved."
+  ],
+  [
+   7.375,
+   5.075,
+   "There's no automatic fix, because replacing it blindly could break whoever depends on it."
+  ],
+  [
+   12.45,
+   7.525,
+   "The P K I owner decides to replace it through the approved issuer and block the rogue one, and then the gated lane does the work."
+  ],
+  [
+   19.975,
+   4.763,
+   "In the fourth, an old appliance has only a console, so no machine can reach it."
+  ],
+  [
+   24.738,
+   5.675,
+   "The owner approves a short, recorded session with a compensating control and an end date."
+  ],
+  [
+   30.413,
+   2.938,
+   "It's visible, approved first and temporary."
+  ],
+  [
+   33.35,
+   2.75,
+   "Certificates deserve a closer look of their own."
+  ]
+ ]
+}

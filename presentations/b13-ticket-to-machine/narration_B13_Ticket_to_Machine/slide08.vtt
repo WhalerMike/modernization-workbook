@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.525
+Drift comes in five classes,
+and each has a default lane.
+
+2
+00:00:03.525 --> 00:00:08.150
+A schema problem, where the format's
+wrong, can often be fixed by a machine.
+
+3
+00:00:08.150 --> 00:00:11.482
+Provenance and authorization
+drift are different:
+
+4
+00:00:11.482 --> 00:00:15.588
+when the claim is in active use,
+the run halts and a person decides.
+
+5
+00:00:15.588 --> 00:00:19.588
+Semantic and identity drift
+usually need human judgment too.
+
+6
+00:00:19.588 --> 00:00:23.469
+The honest limit here is that
+the classes whose fixes depend on
+
+7
+00:00:23.469 --> 00:00:27.574
+context reach a person more often,
+and that's by design, not a failure.
+
+8
+00:00:27.574 --> 00:00:31.820
+Which brings us to the clock: how fast
+does each finding have to be handled?
