@@ -100,4 +100,6 @@ Book 03 Chapter 11's six lifecycle measures already cover the outcomes: separati
 
 **Draft.** Built from Books 03, 13 and 15 on October 24, 2026; no new external sources yet. Each row in the fix catalog cites the chapter it comes from; the windows, the steward function, the help desk catalog items, the time-boxed access package and the source-correction measure are proposals. Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
 
+A vendor-named companion works this catalog through ServiceNow and SailPoint: [Ticket-to-Machine on ServiceNow and SailPoint: An Example](ttm-servicenow-sailpoint.md).
+
 Related: [Book 03 — HR-Driven Identity](../books/b03-hr-identity/index.md), [Book 13, Appendix B — Ticket-to-Machine Reference](../books/b13-governance/appendix-b-ticket-to-machine-reference.md), [Book 15 — Compliance Automation & Day-2 Operations](../books/b15-day2-operations/index.md), and the [Start Here](../start-here.md) series.
