@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.162
+Every round trip has two parts.
+
+2
+00:00:02.162 --> 00:00:05.737
+One is propagation, light in
+fiber covering the distance,
+
+3
+00:00:05.737 --> 00:00:07.638
+and nothing you buy changes it.
+
+4
+00:00:07.638 --> 00:00:10.847
+The other is everything
+else: queueing, jitter,
+
+5
+00:00:10.847 --> 00:00:13.888
+loss, and routes longer
+than a straight line.
+
+6
+00:00:13.888 --> 00:00:17.975
+That second part is the only thing
+any SD-WAN feature can touch.
+
+7
+00:00:17.975 --> 00:00:20.312
+So the test for a proposal is simple.
+
+8
+00:00:20.312 --> 00:00:23.250
+Claim to beat the floor,
+and it hasn't been checked.
+
+9
+00:00:23.250 --> 00:00:27.087
+Claim to shrink the gap, and it
+might be true, so measure it.
+
+10
+00:00:27.087 --> 00:00:30.487
+The book also asks you to
+label every number you use.
+
+11
+00:00:30.487 --> 00:00:32.160
+Now, how big is that gap?

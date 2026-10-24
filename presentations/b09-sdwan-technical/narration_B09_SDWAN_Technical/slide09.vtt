@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.200
+Every underlay, fiber, MPLS, satellite,
+cellular or broadband, is a pipe.
+
+2
+00:00:06.200 --> 00:00:10.684
+Their physics differ enormously,
+and the table makes that concrete: a
+
+3
+00:00:10.684 --> 00:00:16.112
+geostationary satellite path alone blows
+the voice budget, while low orbit doesn't.
+
+4
+00:00:16.112 --> 00:00:20.801
+But their contribution to the security
+controls is the same, which is nothing.
+
+5
+00:00:20.801 --> 00:00:23.925
+MPLS is separation, not encryption.
+
+6
+00:00:23.925 --> 00:00:26.494
+What a second pipe does
+give you is diversity,
+
+7
+00:00:26.494 --> 00:00:30.313
+and a branch with local internet
+plus diverse cellular can show it.
+
+8
+00:00:30.313 --> 00:00:34.149
+Just remember each new circuit
+is another interface to govern.
+
+9
+00:00:34.149 --> 00:00:38.725
+So diversity closes one family
+and quietly enlarges another.
+
+10
+00:00:38.725 --> 00:00:40.440
+That wraps up Module 1.

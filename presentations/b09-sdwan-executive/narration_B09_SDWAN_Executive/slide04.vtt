@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.000
+The target fits in one picture.
+
+2
+00:00:02.000 --> 00:00:05.438
+Two data centers hold the
+full content library and
+
+3
+00:00:05.438 --> 00:00:08.875
+feed ten regional hubs,
+all in existing facilities.
+
+4
+00:00:08.875 --> 00:00:11.957
+Each hub carries two
+servers, twenty-four in all,
+
+5
+00:00:11.957 --> 00:00:17.488
+enough for ninety-six thousand clients, so
+about seventy-three percent utilization.
+
+6
+00:00:17.488 --> 00:00:22.174
+Offices reach the hubs over the SD-WAN
+overlay with no server in the closet,
+
+7
+00:00:22.174 --> 00:00:24.863
+and peer caching keeps most content local.
+
+8
+00:00:24.863 --> 00:00:30.307
+One limit is settled: Microsoft's informed
+routing feature isn't available in GCC,
+
+9
+00:00:30.307 --> 00:00:35.588
+so the design uses direct breakout and
+application-aware routing from day one.
+
+10
+00:00:35.588 --> 00:00:37.060
+Now, what does it cost?

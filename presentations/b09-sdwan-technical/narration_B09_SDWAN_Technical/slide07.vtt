@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.688
+SD-WAN's core move is putting each class
+of traffic on the path built for it.
+
+2
+00:00:04.688 --> 00:00:07.330
+Lean traffic is the small, urgent stuff:
+
+3
+00:00:07.330 --> 00:00:13.026
+database heartbeats and commit acknowledgements,
+and at a branch, voice and sign-in.
+
+4
+00:00:13.026 --> 00:00:16.350
+Bulk is backups, re-syncs and patch waves.
+
+5
+00:00:16.350 --> 00:00:20.825
+The insight is that this mirrors a
+choice the data layer already makes,
+
+6
+00:00:20.825 --> 00:00:23.525
+between strong and eventual consistency.
+
+7
+00:00:23.525 --> 00:00:27.713
+When the two agree, you get the best
+synchronization physics allows.
+
+8
+00:00:27.713 --> 00:00:32.437
+And there's a neat clock angle: spend
+clock certainty instead of round trips.
+
+9
+00:00:32.437 --> 00:00:34.788
+Clock sync rides the lean path too.
+
+10
+00:00:34.788 --> 00:00:37.610
+Next, the part of SD-WAN people underrate.

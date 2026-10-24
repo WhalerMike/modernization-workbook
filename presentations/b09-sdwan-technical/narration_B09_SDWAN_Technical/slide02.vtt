@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.600
+Here's the frame for
+everything that follows.
+
+2
+00:00:02.600 --> 00:00:06.050
+People say SD-WAN when they
+mean three different things.
+
+3
+00:00:06.050 --> 00:00:11.162
+SD-WAN decides which path traffic takes
+and measures how each path is doing.
+
+4
+00:00:11.162 --> 00:00:15.850
+SASE, above it, decides whether a
+flow is allowed and inspects it.
+
+5
+00:00:15.850 --> 00:00:18.724
+And the governed path,
+which is still a proposal,
+
+6
+00:00:18.724 --> 00:00:21.450
+asks whether the path
+itself was authorized.
+
+7
+00:00:21.450 --> 00:00:24.200
+The pipes underneath close almost nothing.
+
+8
+00:00:24.200 --> 00:00:28.311
+Then there's the question most sources
+skip: who protects the governor,
+
+9
+00:00:28.311 --> 00:00:31.075
+now that one controller
+can steer every branch?
+
+10
+00:00:31.075 --> 00:00:33.125
+So the honest claim is narrow.
+
+11
+00:00:33.125 --> 00:00:35.280
+Let's see how everything fits in order.

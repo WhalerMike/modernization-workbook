@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.162
+Let's be honest about the limits first.
+
+2
+00:00:02.162 --> 00:00:05.568
+Part of every delay is the time
+light takes through fiber,
+
+3
+00:00:05.568 --> 00:00:09.626
+about five microseconds per kilometer,
+and no product changes that.
+
+4
+00:00:09.626 --> 00:00:14.457
+What SD-WAN does is close the gap above
+that floor: better paths, a tighter tail
+
+5
+00:00:14.457 --> 00:00:15.914
+through fast failover,
+
+6
+00:00:15.914 --> 00:00:19.825
+and bulk downloads kept away from
+traffic that has to be quick.
+
+7
+00:00:19.825 --> 00:00:23.606
+Each office gets two paths,
+an internet circuit sized
+
+8
+00:00:23.606 --> 00:00:27.387
+to its seats and a 5G link
+for continuity, not capacity.
+
+9
+00:00:27.387 --> 00:00:29.712
+It's a better road, not a shorter one.
+
+10
+00:00:29.712 --> 00:00:31.490
+Here's what the target looks like.

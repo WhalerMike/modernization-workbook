@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.775
+Every branch ends up in
+one of four patterns.
+
+2
+00:00:02.775 --> 00:00:04.950
+The hairpin is assessed but slow.
+
+3
+00:00:04.950 --> 00:00:07.600
+Bare breakout is fast, and a regression.
+
+4
+00:00:07.600 --> 00:00:11.266
+Governed breakout, with an edge
+and a nearby security service,
+
+5
+00:00:11.266 --> 00:00:12.775
+is the reference pattern.
+
+6
+00:00:12.775 --> 00:00:16.130
+And agent-based SASE suits
+small or roaming sites,
+
+7
+00:00:16.130 --> 00:00:18.687
+if the point of presence really is near.
+
+8
+00:00:18.687 --> 00:00:23.162
+The guidance is to choose per site
+from measured latency and device mix,
+
+9
+00:00:23.162 --> 00:00:26.801
+never bare breakout, and to
+file the boundary change first.
+
+10
+00:00:26.801 --> 00:00:31.438
+Whatever you pick, DNS still has
+to reach the agency's resolver.
+
+11
+00:00:31.438 --> 00:00:35.880
+And Microsoft 365 needs its
+own exception, which is next.

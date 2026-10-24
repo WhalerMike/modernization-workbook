@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.938
+Here's why a branch-edge layer
+still matters once SASE is in place.
+
+2
+00:00:03.938 --> 00:00:06.359
+With just an internet
+circuit and a router,
+
+3
+00:00:06.359 --> 00:00:10.026
+nothing at the branch notices a
+link going bad short of an outage.
+
+4
+00:00:10.026 --> 00:00:13.637
+Sign-in and backups share
+the same unmanaged queue.
+
+5
+00:00:13.637 --> 00:00:15.387
+A second circuit sits idle.
+
+6
+00:00:15.387 --> 00:00:19.475
+And interface counters can't tell you
+which application saw which delay.
+
+7
+00:00:19.475 --> 00:00:23.799
+The governed branch isn't more secure
+at the point of presence; it's governed
+
+8
+00:00:23.799 --> 00:00:28.262
+and measured on the way there, which is
+the least instrumented part of the path.
+
+9
+00:00:28.262 --> 00:00:31.490
+Next, what TIC 3.0 asks of that edge.

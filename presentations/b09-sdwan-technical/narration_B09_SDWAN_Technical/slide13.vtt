@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.112
+Three practical points before
+you name a SASE service.
+
+2
+00:00:03.112 --> 00:00:08.332
+First, CISA's model: the security services
+handle traffic to the outside world,
+
+3
+00:00:08.332 --> 00:00:12.749
+SD-WAN routes internal traffic,
+and telemetry flows to CISA's CLAW.
+
+4
+00:00:12.749 --> 00:00:15.638
+Second, the enforcement
+point has a location.
+
+5
+00:00:15.638 --> 00:00:20.729
+A distant or poorly peered point of
+presence is just a hairpin with a new name,
+
+6
+00:00:20.729 --> 00:00:23.962
+so measure branch-to-PoP
+latency before cutover.
+
+7
+00:00:23.962 --> 00:00:29.180
+Third, buying: FedRAMP status is per
+offering and covers the cloud service,
+
+8
+00:00:29.180 --> 00:00:34.312
+not your boxes, and you should confirm
+the EIS line items with GSA up front.
+
+9
+00:00:34.312 --> 00:00:36.700
+Next, choosing a pattern per site.

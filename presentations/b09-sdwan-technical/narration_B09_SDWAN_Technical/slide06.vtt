@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.525
+This is how much of the gap path
+selection can actually win back.
+
+2
+00:00:03.525 --> 00:00:07.950
+Measured internet paths run at roughly
+twice the straight-fiber floor.
+
+3
+00:00:07.950 --> 00:00:11.659
+A premium provider backbone,
+on the book's worked example
+
+4
+00:00:11.659 --> 00:00:15.525
+from London to Virginia, runs
+at about one point three times.
+
+5
+00:00:15.525 --> 00:00:18.273
+That ratio, not a vendor's
+claim, is the ceiling:
+
+6
+00:00:18.273 --> 00:00:22.656
+steering lean traffic onto a better
+underlay recovers the difference
+
+7
+00:00:22.656 --> 00:00:27.113
+between an internet path and a backbone
+path, and nothing below the floor.
+
+8
+00:00:27.113 --> 00:00:30.613
+And remember, a faster circuit
+doesn't straighten the route.
+
+9
+00:00:30.613 --> 00:00:32.563
+Only where the traffic goes does.
+
+10
+00:00:32.563 --> 00:00:34.420
+So which traffic should go where?

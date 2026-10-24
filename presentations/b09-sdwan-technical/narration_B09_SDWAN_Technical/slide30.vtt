@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.082
+The cost structure
+changes what you pay for:
+
+2
+00:00:03.082 --> 00:00:08.050
+MPLS scales with sites and ports,
+internet plus SASE scales with users.
+
+3
+00:00:08.050 --> 00:00:11.875
+Price your own circuits rather than
+trusting a marketing multiple.
+
+4
+00:00:11.875 --> 00:00:14.849
+Then a warning the book
+labels as its own inference:
+
+5
+00:00:14.849 --> 00:00:17.822
+migrate to cloud before
+you can measure transport,
+
+6
+00:00:17.822 --> 00:00:21.787
+and slowness gets blamed on the cloud,
+so the fixes raise cloud spend.
+
+7
+00:00:21.787 --> 00:00:23.338
+The cure is measurement.
+
+8
+00:00:23.338 --> 00:00:29.062
+Pair two similar branches, instrument both
+for thirty days, change one, and compare.
+
+9
+00:00:29.062 --> 00:00:31.975
+That's a number a budget
+examiner can't take apart.
+
+10
+00:00:31.975 --> 00:00:33.550
+Let's finish with what to do.

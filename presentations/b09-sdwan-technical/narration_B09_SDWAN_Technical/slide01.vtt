@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.836
+This is the SD-WAN deep
+dive for Book 09 of the
+
+3
+00:00:03.836 --> 00:00:07.850
+Federal Modernization Workbook,
+Network and Transport.
+
+4
+00:00:07.850 --> 00:00:11.000
+It's for the engineers and
+architects who'll design,
+
+5
+00:00:11.000 --> 00:00:15.875
+secure and evidence a branch fabric, and
+it stays on SD-WAN the whole way through.
+
+6
+00:00:15.875 --> 00:00:21.312
+Part 1 is transport and the branch
+edge: the physics SD-WAN works against,
+
+7
+00:00:21.312 --> 00:00:26.012
+then what TIC 3.0 and
+Microsoft 365 ask of a branch.
+
+8
+00:00:26.012 --> 00:00:30.337
+Part 2 is governing and transforming:
+protecting the fabric itself,
+
+9
+00:00:30.337 --> 00:00:35.049
+and a worked field-office estate with
+real sizing and an honest cost model.
+
+10
+00:00:35.049 --> 00:00:38.420
+Let's start with what SD-WAN
+actually is, and isn't.

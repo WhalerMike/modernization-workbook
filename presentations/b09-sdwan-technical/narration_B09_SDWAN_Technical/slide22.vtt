@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.275
+The obligations run both ways.
+
+2
+00:00:02.275 --> 00:00:05.460
+Re-routing a branch doesn't
+break TCP on its own;
+
+3
+00:00:05.460 --> 00:00:10.238
+changing the source address does, so
+keep each branch's egress stable.
+
+4
+00:00:10.238 --> 00:00:13.964
+Give every branch a defined
+path to a domain controller,
+
+5
+00:00:13.964 --> 00:00:16.394
+or sign-ins quietly fall back to NTLM.
+
+6
+00:00:16.394 --> 00:00:21.255
+Keep sign-in and resource traffic
+leaving from the same known addresses,
+
+7
+00:00:21.255 --> 00:00:24.738
+or location policies weaken
+and tokens get shorter.
+
+8
+00:00:24.738 --> 00:00:28.263
+Prioritize small identity
+exchanges over backups.
+
+9
+00:00:28.263 --> 00:00:31.249
+And watch for stalled
+transfers after a path change.
+
+10
+00:00:31.249 --> 00:00:36.225
+The thread is address continuity, the one
+fix here a branch edge really delivers.
+
+11
+00:00:36.225 --> 00:00:38.140
+That closes Module 3.

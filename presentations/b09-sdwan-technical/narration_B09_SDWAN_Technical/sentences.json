@@ -1,0 +1,1099 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.088,
+   "This is the SD-WAN deep dive for Book 09 of the Federal Modernization Workbook, Network and Transport."
+  ],
+  [
+   7.85,
+   8.025,
+   "It's for the engineers and architects who'll design, secure and evidence a branch fabric, and it stays on SD-WAN the whole way through."
+  ],
+  [
+   15.875,
+   10.137,
+   "Part 1 is transport and the branch edge: the physics SD-WAN works against, then what tick three point oh and Microsoft 365 ask of a branch."
+  ],
+  [
+   26.012,
+   9.037,
+   "Part 2 is governing and transforming: protecting the fabric itself, and a worked field-office estate with real sizing and an honest cost model."
+  ],
+  [
+   35.05,
+   3.312,
+   "Let's start with what SD-WAN actually is, and isn't."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.55,
+   "Here's the frame for everything that follows."
+  ],
+  [
+   2.6,
+   3.45,
+   "People say SD-WAN when they mean three different things."
+  ],
+  [
+   6.05,
+   5.112,
+   "SD-WAN decides which path traffic takes and measures how each path is doing."
+  ],
+  [
+   11.162,
+   4.688,
+   "sassy, above it, decides whether a flow is allowed and inspects it."
+  ],
+  [
+   15.85,
+   5.6,
+   "And the governed path, which is still a proposal, asks whether the path itself was authorized."
+  ],
+  [
+   21.45,
+   2.75,
+   "The pipes underneath close almost nothing."
+  ],
+  [
+   24.2,
+   6.875,
+   "Then there's the question most sources skip: who protects the governor, now that one controller can steer every branch?"
+  ],
+  [
+   31.075,
+   2.05,
+   "So the honest claim is narrow."
+  ],
+  [
+   33.125,
+   2.1,
+   "Let's see how everything fits in order."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.525,
+   "The book's practical rule is an order of operations, and each module hangs off one step."
+  ],
+  [
+   5.575,
+   1.712,
+   "Secure the governor first."
+  ],
+  [
+   7.287,
+   2.0,
+   "Buy the pipe on measured physics."
+  ],
+  [
+   9.287,
+   3.525,
+   "Have the governor live and logging before production traffic."
+  ],
+  [
+   12.812,
+   2.663,
+   "Decide the boundary change before cutover."
+  ],
+  [
+   15.475,
+   3.788,
+   "Handle Microsoft 365 through its own exception."
+  ],
+  [
+   19.262,
+   5.888,
+   "And register the evidence, including sis-uh's telemetry, before any old circuit goes away."
+  ],
+  [
+   25.15,
+   7.112,
+   "The book is clear that this is an engineering dependency, not a mandate, which is exactly why it holds up in review."
+  ],
+  [
+   32.263,
+   3.575,
+   "Module 1 starts with the physics the pipe is bought against."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.325,
+   "Module 1 is transport physics."
+  ],
+  [
+   2.375,
+   8.85,
+   "SD-WAN claims tend to fail in one of two ways: promising the impossible, or underselling what's real, which is mostly in the latency tail."
+  ],
+  [
+   11.225,
+   9.312,
+   "We'll separate the floor nothing moves from the gap where SD-WAN does its work, and finish with what a pipe closes on its own, which turns out to be just one thing."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.112,
+   "Every round trip has two parts."
+  ],
+  [
+   2.163,
+   5.475,
+   "One is propagation, light in fiber covering the distance, and nothing you buy changes it."
+  ],
+  [
+   7.638,
+   6.25,
+   "The other is everything else: queueing, jitter, loss, and routes longer than a straight line."
+  ],
+  [
+   13.887,
+   4.088,
+   "That second part is the only thing any SD-WAN feature can touch."
+  ],
+  [
+   17.975,
+   2.337,
+   "So the test for a proposal is simple."
+  ],
+  [
+   20.312,
+   2.938,
+   "Claim to beat the floor, and it hasn't been checked."
+  ],
+  [
+   23.25,
+   3.837,
+   "Claim to shrink the gap, and it might be true, so measure it."
+  ],
+  [
+   27.087,
+   3.4,
+   "The book also asks you to label every number you use."
+  ],
+  [
+   30.488,
+   1.613,
+   "Now, how big is that gap?"
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.475,
+   "This is how much of the gap path selection can actually win back."
+  ],
+  [
+   3.525,
+   4.425,
+   "Measured internet paths run at roughly twice the straight-fiber floor."
+  ],
+  [
+   7.95,
+   7.575,
+   "A premium provider backbone, on the book's worked example from London to Virginia, runs at about one point three times."
+  ],
+  [
+   15.525,
+   11.588,
+   "That ratio, not a vendor's claim, is the ceiling: steering lean traffic onto a better underlay recovers the difference between an internet path and a backbone path, and nothing below the floor."
+  ],
+  [
+   27.113,
+   3.5,
+   "And remember, a faster circuit doesn't straighten the route."
+  ],
+  [
+   30.613,
+   1.95,
+   "Only where the traffic goes does."
+  ],
+  [
+   32.562,
+   1.8,
+   "So which traffic should go where?"
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.638,
+   "SD-WAN's core move is putting each class of traffic on the path built for it."
+  ],
+  [
+   4.688,
+   8.338,
+   "Lean traffic is the small, urgent stuff: database heartbeats and commit acknowledgements, and at a branch, voice and sign-in."
+  ],
+  [
+   13.025,
+   3.325,
+   "Bulk is backups, re-syncs and patch waves."
+  ],
+  [
+   16.35,
+   7.175,
+   "The insight is that this mirrors a choice the data layer already makes, between strong and eventual consistency."
+  ],
+  [
+   23.525,
+   4.188,
+   "When the two agree, you get the best synchronization physics allows."
+  ],
+  [
+   27.712,
+   4.725,
+   "And there's a neat clock angle: spend clock certainty instead of round trips."
+  ],
+  [
+   32.438,
+   2.35,
+   "Clock sync rides the lean path too."
+  ],
+  [
+   34.788,
+   2.763,
+   "Next, the part of SD-WAN people underrate."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.837,
+   "This is where SD-WAN quietly earns its keep."
+  ],
+  [
+   2.888,
+   7.638,
+   "A quorum commit or a voice call is only as good as its unluckiest packet, so what matters is the tail, not the average."
+  ],
+  [
+   10.525,
+   6.388,
+   "Forward error correction rebuilds lost packets without waiting for a retry, at the cost of bandwidth."
+  ],
+  [
+   16.913,
+   4.987,
+   "Packet duplication sends critical packets down two paths, if you have two links."
+  ],
+  [
+   21.9,
+   4.375,
+   "Fast failover moves traffic before TCP even notices trouble."
+  ],
+  [
+   26.275,
+   3.962,
+   "And class separation stops a backup from queuing ahead of a call."
+  ],
+  [
+   30.238,
+   2.712,
+   "A ragged path can end up close to the floor."
+  ],
+  [
+   32.95,
+   1.65,
+   "Now, the pipes themselves."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.15,
+   "Every underlay, fiber, MPLS, satellite, cellular or broadband, is a pipe."
+  ],
+  [
+   6.2,
+   9.912,
+   "Their physics differ enormously, and the table makes that concrete: a geostationary satellite path alone blows the voice budget, while low orbit doesn't."
+  ],
+  [
+   16.113,
+   4.688,
+   "But their contribution to the security controls is the same, which is nothing."
+  ],
+  [
+   20.8,
+   3.125,
+   "MPLS is separation, not encryption."
+  ],
+  [
+   23.925,
+   6.388,
+   "What a second pipe does give you is diversity, and a branch with local internet plus diverse cellular can show it."
+  ],
+  [
+   30.312,
+   3.837,
+   "Just remember each new circuit is another interface to govern."
+  ],
+  [
+   34.15,
+   4.575,
+   "So diversity closes one family and quietly enlarges another."
+  ],
+  [
+   38.725,
+   1.663,
+   "That wraps up Module 1."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.25,
+   "Module 2 is the branch edge."
+  ],
+  [
+   2.3,
+   5.325,
+   "Most agencies with local breakout already pair it with sassy, and that's the right direction."
+  ],
+  [
+   7.625,
+   5.138,
+   "But sassy changes where inspection happens, not whether the stretch before it is governed."
+  ],
+  [
+   12.762,
+   12.125,
+   "We'll cover that gap, what tick three point oh asks of the steering policy, where sassy should sit, how to pick a pattern for each site, and the Microsoft 365 decision every branch faces."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.888,
+   "Here's why a branch-edge layer still matters once sassy is in place."
+  ],
+  [
+   3.938,
+   6.088,
+   "With just an internet circuit and a router, nothing at the branch notices a link going bad short of an outage."
+  ],
+  [
+   10.025,
+   3.612,
+   "Sign-in and backups share the same unmanaged queue."
+  ],
+  [
+   13.637,
+   1.75,
+   "A second circuit sits idle."
+  ],
+  [
+   15.387,
+   4.088,
+   "And interface counters can't tell you which application saw which delay."
+  ],
+  [
+   19.475,
+   8.787,
+   "The governed branch isn't more secure at the point of presence; it's governed and measured on the way there, which is the least instrumented part of the path."
+  ],
+  [
+   28.262,
+   3.163,
+   "Next, what tick three point oh asks of that edge."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.9,
+   "tick three point oh never requires SD-WAN; it names it once, as something to govern."
+  ],
+  [
+   5.95,
+   6.55,
+   "But two sentences in the Branch Office Use Case bind any steering policy, and they're worth reading closely."
+  ],
+  [
+   12.5,
+   5.925,
+   "Every path, across redundant links or SD-WAN, has to keep the same security parity."
+  ],
+  [
+   18.425,
+   4.9,
+   "And the points deciding where flows go mustn't be easy to bypass or manipulate."
+  ],
+  [
+   23.325,
+   4.438,
+   "Put together, that makes the steering decision itself a security control."
+  ],
+  [
+   27.762,
+   7.95,
+   "The planning consequence matters too: circuits arrive in about a quarter, but an authorized breakout architecture takes far longer."
+  ],
+  [
+   35.712,
+   1.55,
+   "So where does sassy sit?"
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.062,
+   "Three practical points before you name a sassy service."
+  ],
+  [
+   3.112,
+   9.637,
+   "First, sis-uh's model: the security services handle traffic to the outside world, SD-WAN routes internal traffic, and telemetry flows to sis-uh's CLAW."
+  ],
+  [
+   12.75,
+   2.888,
+   "Second, the enforcement point has a location."
+  ],
+  [
+   15.637,
+   8.325,
+   "A distant or poorly peered point of presence is just a hairpin with a new name, so measure branch-to-PoP latency before cutover."
+  ],
+  [
+   23.962,
+   10.35,
+   "Third, buying: fed-ramp status is per offering and covers the cloud service, not your boxes, and you should confirm the EIS line items with GSA up front."
+  ],
+  [
+   34.312,
+   2.325,
+   "Next, choosing a pattern per site."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.725,
+   "Every branch ends up in one of four patterns."
+  ],
+  [
+   2.775,
+   2.175,
+   "The hairpin is assessed but slow."
+  ],
+  [
+   4.95,
+   2.65,
+   "Bare breakout is fast, and a regression."
+  ],
+  [
+   7.6,
+   5.175,
+   "Governed breakout, with an edge and a nearby security service, is the reference pattern."
+  ],
+  [
+   12.775,
+   5.912,
+   "And agent-based sassy suits small or roaming sites, if the point of presence really is near."
+  ],
+  [
+   18.688,
+   8.113,
+   "The guidance is to choose per site from measured latency and device mix, never bare breakout, and to file the boundary change first."
+  ],
+  [
+   26.8,
+   4.638,
+   "Whatever you pick, D N S still has to reach the agency's resolver."
+  ],
+  [
+   31.438,
+   4.388,
+   "And Microsoft 365 needs its own exception, which is next."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.788,
+   "This is the most argued decision at a branch."
+  ],
+  [
+   2.837,
+   5.725,
+   "Microsoft says don't inspect its Optimize traffic; the boundary says inspect everything."
+  ],
+  [
+   8.562,
+   5.438,
+   "Both hold up, so it's a decision someone signs, not a setting someone quietly changes."
+  ],
+  [
+   14.0,
+   8.475,
+   "Optimize is small: mail, SharePoint and OneDrive, and Teams media, which has no names and must be steered by IP address."
+  ],
+  [
+   22.475,
+   6.6,
+   "The program exempts only that, narrower than Microsoft asks, and keeps sign-in on the inspected path."
+  ],
+  [
+   29.075,
+   5.7,
+   "And it names the specific controls the bypass affects, rather than writing inspection forgone."
+  ],
+  [
+   34.775,
+   2.125,
+   "So how is that decision made safely?"
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   6.138,
+   "The attack an assessor will try is moving agency data to some other tenant over the uninspected path."
+  ],
+  [
+   6.188,
+   11.488,
+   "Tenant restrictions are the control, and only the version signaled from the Windows device protects the data plane for SharePoint and Exchange, so the program makes it a precondition to cutover."
+  ],
+  [
+   17.675,
+   9.012,
+   "Then three documents, each signed by the person whose question it answers: the authorizing official, the system owner and the architecture review board."
+  ],
+  [
+   26.688,
+   6.362,
+   "And the register's egress addresses have to be the real post-NAT ones, verified from the branch itself."
+  ],
+  [
+   33.05,
+   1.4,
+   "That closes Part 1."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.962,
+   "Module 3 turns to the governor itself."
+  ],
+  [
+   3.013,
+   5.037,
+   "If we credit SD-WAN with closing controls, we owe the controls that protect it."
+  ],
+  [
+   8.05,
+   11.738,
+   "We'll walk its attack surface, make step zero checkable, look ahead to the governed path, pin down the evidence it has to emit, and end with what the fabric owes the applications that ride on it."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   3.388,
+   "SD-WAN changes the attack surface in two ways."
+  ],
+  [
+   3.438,
+   8.863,
+   "A single control plane now has authority over every branch's routing, and a fleet of internet-facing edges replaces a few hardened egress points."
+  ],
+  [
+   12.3,
+   2.325,
+   "This is real, not hypothetical."
+  ],
+  [
+   14.625,
+   9.5,
+   "In February 2026 sis-uh issued an emergency directive for one vendor's SD-WAN manager and controller, after an authentication bypass."
+  ],
+  [
+   24.125,
+   8.025,
+   "Two standing directives cover the fleet: one for end-of-support edge devices, one setting patch windows as short as three days."
+  ],
+  [
+   32.15,
+   4.075,
+   "So the working assumption is that edge flaws land in the shortest window."
+  ],
+  [
+   36.225,
+   1.988,
+   "Let's make step zero concrete."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   7.4,
+   "Step zero is easy to say and hard to check, so this slide pairs each control area with the evidence to ask for."
+  ],
+  [
+   7.45,
+   4.625,
+   "Keep management interfaces off the internet, behind phishing-resistant sign-in."
+  ],
+  [
+   12.075,
+   3.812,
+   "Onboard edges with certificates, so a rogue box can't join."
+  ],
+  [
+   15.887,
+   4.862,
+   "Treat any routing-policy change as a reviewed change, not a console edit."
+  ],
+  [
+   20.75,
+   3.825,
+   "Patch on the federal clocks and track every edge's support date."
+  ],
+  [
+   24.575,
+   1.875,
+   "Keep logs off the devices."
+  ],
+  [
+   26.45,
+   5.787,
+   "The best single test is whether you could inventory, pull logs and patch the whole fleet within a day."
+  ],
+  [
+   32.237,
+   2.4,
+   "Now, where the path itself is heading."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   2.788,
+   "This one is a proposal, and it's labeled that way."
+  ],
+  [
+   2.837,
+   9.975,
+   "Put a well-tuned edge on a flat network and its value is capped: its identity signals have nowhere to land, and a hijacked session inherits all the trust."
+  ],
+  [
+   12.812,
+   8.988,
+   "The proposal treats the path like a token: leased for one purpose and expiring with it, so a flow with no token behind it shows up as drift."
+  ],
+  [
+   21.8,
+   2.438,
+   "It's careful about lane discipline, too."
+  ],
+  [
+   24.238,
+   4.888,
+   "The program observes and records; it doesn't route packets or pick a vendor."
+  ],
+  [
+   29.125,
+   2.862,
+   "But one part applies right now: the evidence."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   11.113,
+   "Whether or not the governed path is adopted, every SD-WAN and sassy decision should land as a record: who decided, under which policy, for which identity, and when."
+  ],
+  [
+   11.162,
+   8.162,
+   "Each adapter declares what it does and where it sits relative to the boundary, and one that fits nowhere needs a decision before it's registered."
+  ],
+  [
+   19.325,
+   6.312,
+   "The table shows the drift worth watching, like a telemetry chain that quietly breaks at a boundary crossing."
+  ],
+  [
+   25.637,
+   8.137,
+   "The book is candid about the limits: some products don't emit records, so you may have to derive them from logs, and label them that way."
+  ],
+  [
+   33.775,
+   2.025,
+   "Next, what applications need."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   2.225,
+   "The obligations run both ways."
+  ],
+  [
+   2.275,
+   7.963,
+   "Re-routing a branch doesn't break TCP on its own; changing the source address does, so keep each branch's egress stable."
+  ],
+  [
+   10.238,
+   14.5,
+   "Give every branch a defined path to a domain controller, or sign-ins quietly fall back to N T L M. Keep sign-in and resource traffic leaving from the same known addresses, or location policies weaken and tokens get shorter."
+  ],
+  [
+   24.738,
+   3.525,
+   "Prioritize small identity exchanges over backups."
+  ],
+  [
+   28.262,
+   2.987,
+   "And watch for stalled transfers after a path change."
+  ],
+  [
+   31.25,
+   4.975,
+   "The thread is address continuity, the one fix here a branch edge really delivers."
+  ],
+  [
+   36.225,
+   1.863,
+   "That closes Module 3."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   10.275,
+   "Module 4 is the book's worked case: about fifteen hundred field offices, and a proposal to spend fifty million dollars refreshing a content server in every one."
+  ],
+  [
+   10.325,
+   3.288,
+   "Every cost here is an illustrative planning estimate."
+  ],
+  [
+   13.613,
+   9.012,
+   "We'll test the request, lay out the network alternative, walk through its sizing, cost and roadmap, and then look at the interim most agencies are really in."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   1.1,
+   "Here's the case."
+  ],
+  [
+   1.15,
+   6.438,
+   "The proposal works out to about thirty-three thousand dollars an office, roughly twice a fully loaded server."
+  ],
+  [
+   7.588,
+   3.225,
+   "So the first question is what that number really includes."
+  ],
+  [
+   10.812,
+   1.85,
+   "But the published limits settle it."
+  ],
+  [
+   12.662,
+   7.6,
+   "One distribution point serves up to four thousand clients, so seventy thousand endpoints need about twenty-four, not fifteen hundred."
+  ],
+  [
+   20.262,
+   5.688,
+   "The other fourteen hundred and seventy-six exist only because the branch circuits were once too slow."
+  ],
+  [
+   25.95,
+   6.175,
+   "The timing is off too, since the money lands on a tier the device strategy is already shrinking."
+  ],
+  [
+   32.125,
+   2.987,
+   "The role isn't obsolete; one per office is."
+  ],
+  [
+   35.112,
+   1.887,
+   "So what does the alternative look like?"
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   6.312,
+   "The alternative sizes content to clients, not offices, and fixes transport at the transport layer."
+  ],
+  [
+   6.362,
+   11.787,
+   "Twelve hubs in existing facilities carry SD-WAN aggregation, regional breakout, security inspection and two content servers each: twenty-four in all, about three quarters utilized."
+  ],
+  [
+   18.15,
+   5.425,
+   "Offices get a right-sized internet circuit, a five G backup and no local server."
+  ],
+  [
+   23.575,
+   12.238,
+   "Peer caching keeps most bytes off the WAN, with one SD-WAN detail worth catching: behind a hub, Delivery Optimization needs group or subnet mode, or every office looks like one site."
+  ],
+  [
+   35.812,
+   2.913,
+   "Next, the branch hardware and its cost."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   7.175,
+   "Offices fall into three tiers by seat count, and the book uses one vendor's line purely as a costable example."
+  ],
+  [
+   7.225,
+   6.912,
+   "Year one capital, edges, hubs, the control plane and services, comes to about ten million dollars."
+  ],
+  [
+   14.137,
+   3.175,
+   "The design rules are where these projects usually go wrong."
+  ],
+  [
+   17.312,
+   4.55,
+   "A small office needs a symmetric, SLA-backed circuit, not a gigabit."
+  ],
+  [
+   21.863,
+   3.725,
+   "Five G is for continuity, not feature-update waves."
+  ],
+  [
+   25.587,
+   3.4,
+   "Check that two fiber providers aren't sharing one conduit."
+  ],
+  [
+   28.988,
+   7.562,
+   "And license encrypted throughput to match the circuit, because that's the most expensive costing mistake in this class of edge."
+  ],
+  [
+   36.55,
+   1.788,
+   "Now, the running costs."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   11.338,
+   "On the program's assumptions, the new network costs about fifteen point seven million a year to run, and retiring MPLS saves about twenty-one point six, so it pays back by year four."
+  ],
+  [
+   11.387,
+   6.3,
+   "Notice the security service line: per-user sassy licensing is the cost most comparisons leave out."
+  ],
+  [
+   17.688,
+   6.037,
+   "But the whole case turns on one number the analysis doesn't have, what MPLS costs per office today."
+  ],
+  [
+   23.725,
+   3.425,
+   "Breakeven is about eight hundred seventy-three dollars a month."
+  ],
+  [
+   27.15,
+   2.475,
+   "Above it, the program funds itself."
+  ],
+  [
+   29.625,
+   2.663,
+   "Below it, argue capability instead."
+  ],
+  [
+   32.288,
+   1.538,
+   "Validate that first."
+  ],
+  [
+   33.825,
+   1.875,
+   "Then, the order of work."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   5.938,
+   "The roadmap starts with accreditation, because that, not buying equipment, is the critical path."
+  ],
+  [
+   5.987,
+   7.162,
+   "Hubs come first: twelve sites instead of fifteen hundred shrinks the accreditation problem by two orders of magnitude."
+  ],
+  [
+   13.15,
+   8.162,
+   "Offices then move in waves as their MPLS contracts renew, and no circuit ends until its replacement telemetry is confirmed."
+  ],
+  [
+   21.312,
+   3.663,
+   "And the last content server retires on gates, not a date."
+  ],
+  [
+   24.975,
+   5.875,
+   "Apps, updates, imaging, caching and compliance evidence all have to move off it first."
+  ],
+  [
+   30.85,
+   3.15,
+   "Close the gates in month thirty, retire it then."
+  ],
+  [
+   34.0,
+   1.988,
+   "But what if no program is funded?"
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   8.8,
+   "For many agencies the target is years away: acquisition, budget cycles, site logistics, and the same staff on three other deadlines."
+  ],
+  [
+   8.85,
+   1.525,
+   "That interval isn't empty."
+  ],
+  [
+   10.375,
+   6.55,
+   "Four of the six things a branch edge provides are partly available now, like path measurement and stable egress."
+  ],
+  [
+   16.925,
+   8.363,
+   "And there's a fork coming whether you plan for it or not: a directive requires end-of-support edge devices out by August 2027."
+  ],
+  [
+   25.288,
+   4.1,
+   "Replace like for like, and you've closed the architecture question for years."
+  ],
+  [
+   29.387,
+   5.775,
+   "Write the target attributes into that purchase instead; it costs almost nothing at requirements time."
+  ],
+  [
+   35.163,
+   1.762,
+   "Finally, proving it paid."
+  ]
+ ],
+ "30": [
+  [
+   0.05,
+   8.0,
+   "The cost structure changes what you pay for: MPLS scales with sites and ports, internet plus sassy scales with users."
+  ],
+  [
+   8.05,
+   3.825,
+   "Price your own circuits rather than trusting a marketing multiple."
+  ],
+  [
+   11.875,
+   9.912,
+   "Then a warning the book labels as its own inference: migrate to cloud before you can measure transport, and slowness gets blamed on the cloud, so the fixes raise cloud spend."
+  ],
+  [
+   21.788,
+   1.55,
+   "The cure is measurement."
+  ],
+  [
+   23.337,
+   5.725,
+   "Pair two similar branches, instrument both for thirty days, change one, and compare."
+  ],
+  [
+   29.062,
+   2.913,
+   "That's a number a budget examiner can't take apart."
+  ],
+  [
+   31.975,
+   1.512,
+   "Let's finish with what to do."
+  ]
+ ],
+ "31": [
+  [
+   0.05,
+   2.788,
+   "To close: each decision has one owner."
+  ],
+  [
+   2.837,
+   11.562,
+   "The see-so on the governor's controls and leaving MTIPS, the authorizing official on the boundary change and the Microsoft 365 exception, the system owner on each site's readiness."
+  ],
+  [
+   14.4,
+   7.487,
+   "The evidence is the path policy, failover results, telemetry, decision records and honest limitations."
+  ],
+  [
+   21.887,
+   12.475,
+   "And plenty starts without a contract: write the path policy, stabilize egress, put the right attributes in the refresh, validate your MPLS cost, start CLAW onboarding, and measure a pair of branches."
+  ],
+  [
+   34.362,
+   6.675,
+   "Physics for the pipe, governor before traffic, boundary before cutover, evidence before a circuit ends."
+  ],
+  [
+   41.038,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

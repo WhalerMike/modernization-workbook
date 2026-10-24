@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.438
+SD-WAN changes the attack
+surface in two ways.
+
+2
+00:00:03.438 --> 00:00:07.683
+A single control plane now has
+authority over every branch's routing,
+
+3
+00:00:07.683 --> 00:00:12.301
+and a fleet of internet-facing edges
+replaces a few hardened egress points.
+
+4
+00:00:12.301 --> 00:00:14.625
+This is real, not hypothetical.
+
+5
+00:00:14.625 --> 00:00:19.634
+In February 2026 CISA issued an
+emergency directive for one vendor's
+
+6
+00:00:19.634 --> 00:00:24.125
+SD-WAN manager and controller,
+after an authentication bypass.
+
+7
+00:00:24.125 --> 00:00:29.033
+Two standing directives cover the fleet:
+one for end-of-support edge devices,
+
+8
+00:00:29.033 --> 00:00:32.150
+one setting patch windows
+as short as three days.
+
+9
+00:00:32.150 --> 00:00:36.225
+So the working assumption is that edge
+flaws land in the shortest window.
+
+10
+00:00:36.225 --> 00:00:38.280
+Let's make step zero concrete.
