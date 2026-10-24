@@ -1,0 +1,563 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   6.85,
+   "This is Ticket-to-Machine on ServiceNow and SailPoint, a research example from the Federal Modernization Workbook."
+  ],
+  [
+   7.612,
+   7.625,
+   "It's the vendor-named companion to Book 13's Appendix B, the Ticket-to-Machine Reference, which is vendor-neutral on purpose."
+  ],
+  [
+   15.238,
+   13.15,
+   "Here we take the same loop, the same lanes and the same identity fixes, and work them through two named products: ServiceNow as the front door and the record, and SailPoint Identity Security Cloud for identity governance."
+  ],
+  [
+   28.387,
+   3.938,
+   "It's an example, not an endorsement, and it's still under review."
+  ],
+  [
+   32.325,
+   4.975,
+   "In about ten minutes we'll see where the products fit the loop, and four places where they don't."
+  ],
+  [
+   37.3,
+   2.0,
+   "First, why name products at all?"
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   6.463,
+   "Appendix B is written so the loop runs on whatever service management platform an agency already has."
+  ],
+  [
+   6.513,
+   2.95,
+   "That's the right default, but it can feel abstract."
+  ],
+  [
+   9.463,
+   5.675,
+   "Naming two products shows what the loop looks like in practice, down to which feature does which step."
+  ],
+  [
+   15.137,
+   3.65,
+   "So treat this as an illustration, not an endorsement."
+  ],
+  [
+   18.788,
+   7.775,
+   "ServiceNow fills the front-door slot and SailPoint fills the identity-governance slot, but other products can fill the same slots."
+  ],
+  [
+   26.562,
+   6.537,
+   "Every product fact here is the vendor's own statement, checked on October 24, 2026."
+  ],
+  [
+   33.1,
+   5.425,
+   "Anything marked inference or design guidance is the program's reasoning, not the vendor's."
+  ],
+  [
+   38.525,
+   3.725,
+   "With that framing, let's meet the products and their federal status."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.138,
+   "Here are the two products, and what the fed-ramp Marketplace shows for each."
+  ],
+  [
+   4.188,
+   3.712,
+   "ServiceNow's Government Community Cloud is authorized at High."
+  ],
+  [
+   7.9,
+   3.938,
+   "SailPoint Identity Security Cloud is authorized at Moderate."
+  ],
+  [
+   11.838,
+   5.775,
+   "Why Identity Security Cloud rather than IdentityIQ, SailPoint's self-hosted product?"
+  ],
+  [
+   17.613,
+   9.375,
+   "Because it has a public listing anyone can check, it reaches both Entra ID and Active Directory, and SailPoint documents its ServiceNow integrations."
+  ],
+  [
+   26.988,
+   9.6,
+   "IdentityIQ still fits an agency that has to run governance inside its own boundary, needs a High system, or wants change-request tickets from the governance tool."
+  ],
+  [
+   36.587,
+   6.737,
+   "One caution: SailPoint now markets the product as Human Fabric, while the Marketplace uses the older name."
+  ],
+  [
+   43.325,
+   2.913,
+   "So confirm that what you buy is what was authorized."
+  ],
+  [
+   46.237,
+   1.438,
+   "Now, the picture."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.3,
+   "This is the whole design on one page."
+  ],
+  [
+   2.35,
+   5.263,
+   "Core H C M is the source of authority, and it's where HR corrects facts."
+  ],
+  [
+   7.612,
+   9.938,
+   "SailPoint aggregates from it, runs lifecycle states, requests and certifications, and provisions Entra ID and Active Directory through its connectors."
+  ],
+  [
+   17.55,
+   8.725,
+   "ServiceNow is the front door and the one closure record, and it can reach Entra directly through its Entra spoke for simple, low-authority tasks."
+  ],
+  [
+   26.275,
+   7.9,
+   "Now notice what closes the record: a re-read, meaning the next aggregation or a native-change event, not a ticket status."
+  ],
+  [
+   34.175,
+   5.338,
+   "And the dashed red line is the declared exception, for applications SailPoint can't reach."
+  ],
+  [
+   39.513,
+   2.95,
+   "So how do the two products pass work back and forth?"
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.338,
+   "SailPoint publishes its ServiceNow integrations as its own ServiceNow apps, each licensed separately."
+  ],
+  [
+   6.388,
+   4.6,
+   "ServiceNow's documentation shows no SailPoint integration of its own."
+  ],
+  [
+   10.988,
+   1.35,
+   "There are three apps."
+  ],
+  [
+   12.338,
+   9.225,
+   "The Service Desk integration turns provisioning that SailPoint can't do directly into ServiceNow requests or incidents, for disconnected applications."
+  ],
+  [
+   21.562,
+   7.388,
+   "The Service Catalog app lets people request SailPoint access inside ServiceNow, with approval defined in ServiceNow."
+  ],
+  [
+   28.95,
+   4.562,
+   "And the Identity Governance app lets certifiers review inside ServiceNow."
+  ],
+  [
+   33.513,
+   9.463,
+   "The fourth path skips SailPoint entirely: ServiceNow's Entra ID spoke, working through Microsoft Graph, for simple, low-authority tasks."
+  ],
+  [
+   42.975,
+   3.9,
+   "Two of these handoffs turn out to be gaps, and we'll come back to them."
+  ],
+  [
+   46.875,
+   1.825,
+   "First, the loop itself."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.25,
+   "Walk the five steps, and most of the loop is documented by the vendors."
+  ],
+  [
+   4.3,
+   3.9,
+   "SailPoint tests on its scheduled refreshes and aggregations."
+  ],
+  [
+   8.2,
+   8.662,
+   "It detects drift in two useful ways: when attributes from the authoritative source change, and when someone changes an account outside SailPoint."
+  ],
+  [
+   16.863,
+   3.65,
+   "Calling those Book 13's drift classes is our inference."
+  ],
+  [
+   20.512,
+   5.1,
+   "Actuation runs through SailPoint's connectors, or through the ServiceNow Entra spoke."
+  ],
+  [
+   25.613,
+   2.462,
+   "The weak spots are steps three and five."
+  ],
+  [
+   28.075,
+   7.062,
+   "Turning a drift event into a typed ServiceNow task is something you build with a SailPoint workflow; it isn't shipped."
+  ],
+  [
+   35.138,
+   4.225,
+   "And closing with evidence is only partial, which is the first gap."
+  ],
+  [
+   39.362,
+   3.05,
+   "Before the gaps, though, let's place the lanes."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.688,
+   "Book 13 sorts every change into lanes, and each lane lands somewhere on these products."
+  ],
+  [
+   5.737,
+   4.175,
+   "Most of this mapping is our inference, so read it as a proposal."
+  ],
+  [
+   9.912,
+   8.125,
+   "The autonomous lane maps to SailPoint lifecycle states and birthright access, and to ServiceNow's pre-authorized standard changes."
+  ],
+  [
+   18.038,
+   5.875,
+   "The gated lane is a SailPoint access request with an approver, or a ServiceNow normal change."
+  ],
+  [
+   23.913,
+   8.275,
+   "Human decisions are certifications and the change board, and one highpoint there is documented: unsigned revoke decisions aren't applied."
+  ],
+  [
+   32.188,
+   4.425,
+   "Certificates sit with neither product; they stay with the certificate platform."
+  ],
+  [
+   36.612,
+   6.812,
+   "And a disconnected application becomes a declared exception, with a ticket, a recorded session and an end date."
+  ],
+  [
+   43.425,
+   1.137,
+   "Now the gaps."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.025,
+   "Here are the first two places where the products, used as shipped, fall short of the loop."
+  ],
+  [
+   5.075,
+   1.55,
+   "Gap one is the big one."
+  ],
+  [
+   6.625,
+   6.963,
+   "SailPoint's own best practices say the mapped ServiceNow status decides when a provisioning task counts as complete."
+  ],
+  [
+   13.588,
+   3.55,
+   "That's exactly what Book 13 calls closure by assertion."
+  ],
+  [
+   17.137,
+   8.65,
+   "Our guidance: close the ServiceNow record only on evidence, the next aggregation or a native-change event showing the intended state."
+  ],
+  [
+   25.788,
+   2.163,
+   "Gap two is about who approves."
+  ],
+  [
+   27.95,
+   8.762,
+   "Book 15 says access an owner governs is decided in the identity governance platform, but the catalog app moves approval into ServiceNow."
+  ],
+  [
+   36.712,
+   4.362,
+   "The fix is to choose one approver system per authority class and write it down."
+  ],
+  [
+   41.075,
+   1.387,
+   "Two more gaps to go."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.825,
+   "Gap three is narrower."
+  ],
+  [
+   1.875,
+   8.1,
+   "Identity Security Cloud's Service Desk integration creates service requests and incidents only; it can't create change requests."
+  ],
+  [
+   9.975,
+   1.675,
+   "IdentityIQ's can."
+  ],
+  [
+   11.65,
+   5.475,
+   "So where a change class needs a change record, a ServiceNow flow raises it from the request."
+  ],
+  [
+   17.125,
+   2.75,
+   "Gap four is about who writes to the directory."
+  ],
+  [
+   19.875,
+   8.625,
+   "SailPoint reads Oracle H C M Cloud directly and writes back only user name and work email, which fits Book 03."
+  ],
+  [
+   28.5,
+   5.525,
+   "But Book 03 makes Entra inbound provisioning the one writer into the directory."
+  ],
+  [
+   34.025,
+   2.112,
+   "So pick one writer per attribute."
+  ],
+  [
+   36.138,
+   7.5,
+   "Either inbound provisioning stays the door and SailPoint governs entitlements, or SailPoint takes on the provisioning duties."
+  ],
+  [
+   43.638,
+   0.975,
+   "Not both."
+  ],
+  [
+   44.612,
+   2.0,
+   "Now, the identity fixes."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.338,
+   "The identity-maintenance draft lists the fixes that still happen once HR is the source."
+  ],
+  [
+   5.388,
+   4.312,
+   "Here's how the first five land on these products, mostly as our inference."
+  ],
+  [
+   9.7,
+   9.438,
+   "A wrong fact in HR goes to HR as a ServiceNow case; HR corrects it in Core H C M, and SailPoint picks it up on the next aggregation."
+  ],
+  [
+   19.137,
+   8.113,
+   "A late personnel action, or an urgent leaver HR hasn't entered, runs the leaver sequence through a ServiceNow emergency change."
+  ],
+  [
+   27.25,
+   5.062,
+   "A record the pipeline couldn't apply is re-run through SailPoint, never by hand."
+  ],
+  [
+   32.312,
+   3.087,
+   "And the standout is a write made outside the pipeline."
+  ],
+  [
+   35.4,
+   4.912,
+   "SailPoint's native change detection catches it, and SailPoint restores the value."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.362,
+   "The remaining fixes lean more on people."
+  ],
+  [
+   2.413,
+   5.787,
+   "An account that matches nobody goes to its owner, who correlates it to a person or disables it."
+  ],
+  [
+   8.2,
+   7.175,
+   "The same person twice is a correlation-rule change, and SailPoint notes that it supports some mover cases only partially."
+  ],
+  [
+   15.375,
+   3.725,
+   "Contractors come from a separate source, corrected by the sponsor."
+  ],
+  [
+   19.1,
+   9.6,
+   "SailPoint says its Non-Employee Risk Management product is inside the fed-ramp authorization, but confirm that from the authorization package, not the press release."
+  ],
+  [
+   28.7,
+   5.875,
+   "A rule that derives the wrong access surfaces in a certification and goes to the governance body."
+  ],
+  [
+   34.575,
+   4.9,
+   "And a credential that outlives the person sits outside both products entirely."
+  ],
+  [
+   39.475,
+   2.075,
+   "Next, federal availability."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   7.188,
+   "To move this example from under review to proved, build the loop in a lab with a test tenant, and record the evidence."
+  ],
+  [
+   7.237,
+   7.763,
+   "Start by confirming what the vendors haven't said publicly, like feature parity in the fed-ramp environment and the apps in the government Store."
+  ],
+  [
+   15.0,
+   10.012,
+   "The decisions are the four gaps restated: what closes a record, one approver system per authority class, how change records get raised, and one writer per attribute."
+  ],
+  [
+   25.012,
+   6.112,
+   "And remember, this is an example, not an endorsement; other products can fill the same slots."
+  ],
+  [
+   31.125,
+   10.838,
+   "For the design itself, read Book 13's vendor-neutral Appendix B, or watch its narrated deck, and then the draft on keeping identity correct after HR becomes the source."
+  ],
+  [
+   41.962,
+   1.125,
+   "Thanks for listening."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.337,
+   "Federal availability is where you need the most care."
+  ],
+  [
+   3.388,
+   9.95,
+   "For a Microsoft 365 G C C tenant, the worldwide Graph endpoints apply, and SailPoint documents endpoint overrides for G C C High."
+  ],
+  [
+   13.338,
+   9.5,
+   "ServiceNow's Entra spoke fits G C C through its default endpoint, but its page doesn't cover G C C High, and it needs an Integration Hub subscription."
+  ],
+  [
+   22.837,
+   4.65,
+   "SailPoint's ServiceNow apps aren't confirmed in ServiceNow's government Store."
+  ],
+  [
+   27.488,
+   1.587,
+   "Then three cautions."
+  ],
+  [
+   29.075,
+   10.662,
+   "SailPoint's cloud connectors call Graph from SailPoint's cloud, and only Active Directory runs through its on-premises appliance, so record which actions run from the vendor's cloud."
+  ],
+  [
+   39.737,
+   5.0,
+   "A vendor's M F A feature isn't a help desk reset with identity proofing."
+  ],
+  [
+   44.737,
+   4.263,
+   "And confirm what's in the fed-ramp environment before relying on any of it."
+  ],
+  [
+   49.0,
+   1.225,
+   "So, what's next?"
+  ]
+ ]
+}

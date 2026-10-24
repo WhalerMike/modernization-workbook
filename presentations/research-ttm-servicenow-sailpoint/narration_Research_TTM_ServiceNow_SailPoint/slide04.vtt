@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.350
+This is the whole design on one page.
+
+2
+00:00:02.350 --> 00:00:07.613
+Core HCM is the source of authority,
+and it's where HR corrects facts.
+
+3
+00:00:07.613 --> 00:00:13.011
+SailPoint aggregates from it, runs lifecycle
+states, requests and certifications,
+
+4
+00:00:13.011 --> 00:00:17.550
+and provisions Entra ID and Active
+Directory through its connectors.
+
+5
+00:00:17.550 --> 00:00:21.913
+ServiceNow is the front door and the
+one closure record, and it can reach
+
+6
+00:00:21.913 --> 00:00:26.275
+Entra directly through its Entra
+spoke for simple, low-authority tasks.
+
+7
+00:00:26.275 --> 00:00:29.155
+Now notice what closes
+the record: a re-read,
+
+8
+00:00:29.155 --> 00:00:34.175
+meaning the next aggregation or a
+native-change event, not a ticket status.
+
+9
+00:00:34.175 --> 00:00:37.133
+And the dashed red line is
+the declared exception,
+
+10
+00:00:37.133 --> 00:00:39.513
+for applications SailPoint can't reach.
+
+11
+00:00:39.513 --> 00:00:42.530
+So how do the two products
+pass work back and forth?

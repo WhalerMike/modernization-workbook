@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.881
+Here are the first two
+places where the products,
+
+2
+00:00:02.881 --> 00:00:05.075
+used as shipped, fall short of the loop.
+
+3
+00:00:05.075 --> 00:00:06.625
+Gap one is the big one.
+
+4
+00:00:06.625 --> 00:00:10.035
+SailPoint's own best practices
+say the mapped ServiceNow
+
+5
+00:00:10.035 --> 00:00:13.588
+status decides when a provisioning
+task counts as complete.
+
+6
+00:00:13.588 --> 00:00:17.138
+That's exactly what Book 13
+calls closure by assertion.
+
+7
+00:00:17.138 --> 00:00:20.990
+Our guidance: close the ServiceNow
+record only on evidence,
+
+8
+00:00:20.990 --> 00:00:25.787
+the next aggregation or a native-change
+event showing the intended state.
+
+9
+00:00:25.787 --> 00:00:27.951
+Gap two is about who approves.
+
+10
+00:00:27.951 --> 00:00:33.378
+Book 15 says access an owner governs is
+decided in the identity governance platform,
+
+11
+00:00:33.378 --> 00:00:36.712
+but the catalog app moves
+approval into ServiceNow.
+
+12
+00:00:36.712 --> 00:00:41.074
+The fix is to choose one approver system
+per authority class and write it down.
+
+13
+00:00:41.074 --> 00:00:42.530
+Two more gaps to go.

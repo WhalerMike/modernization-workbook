@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.406
+The identity-maintenance draft lists the
+
+2
+00:00:02.406 --> 00:00:04.896
+fixes that still happen
+once HR is the source.
+
+3
+00:00:04.896 --> 00:00:08.817
+Here's how the first five land on these
+products, mostly as our inference.
+
+4
+00:00:08.817 --> 00:00:11.880
+A wrong fact in HR goes to
+HR as a ServiceNow case;
+
+5
+00:00:11.880 --> 00:00:17.139
+HR corrects it in Core HCM, and SailPoint
+picks it up on the next aggregation.
+
+6
+00:00:17.139 --> 00:00:21.009
+A late personnel action, or an
+urgent leaver HR hasn't entered,
+
+7
+00:00:21.009 --> 00:00:24.833
+runs the leaver sequence through
+a ServiceNow emergency change.
+
+8
+00:00:24.833 --> 00:00:29.395
+A record the pipeline couldn't apply is
+re-run through SailPoint, never by hand.
+
+9
+00:00:29.395 --> 00:00:32.527
+And the standout is a write
+made outside the pipeline.
+
+10
+00:00:32.527 --> 00:00:36.902
+SailPoint's native change detection catches
+it, and SailPoint restores the value.
+
+11
+00:00:36.902 --> 00:00:39.394
+That's the closest one-to-one
+fit in the catalog.
+
+12
+00:00:39.394 --> 00:00:40.440
+Here are the rest.

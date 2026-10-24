@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.328
+SailPoint publishes its
+ServiceNow integrations as
+
+2
+00:00:03.328 --> 00:00:06.388
+its own ServiceNow apps,
+each licensed separately.
+
+3
+00:00:06.388 --> 00:00:10.988
+ServiceNow's documentation shows no
+SailPoint integration of its own.
+
+4
+00:00:10.988 --> 00:00:12.338
+There are three apps.
+
+5
+00:00:12.338 --> 00:00:16.700
+The Service Desk integration turns
+provisioning that SailPoint can't do
+
+6
+00:00:16.700 --> 00:00:21.563
+directly into ServiceNow requests or
+incidents, for disconnected applications.
+
+7
+00:00:21.563 --> 00:00:25.443
+The Service Catalog app lets
+people request SailPoint access
+
+8
+00:00:25.443 --> 00:00:28.950
+inside ServiceNow, with
+approval defined in ServiceNow.
+
+9
+00:00:28.950 --> 00:00:33.512
+And the Identity Governance app lets
+certifiers review inside ServiceNow.
+
+10
+00:00:33.512 --> 00:00:38.413
+The fourth path skips SailPoint
+entirely: ServiceNow's Entra ID spoke,
+
+11
+00:00:38.413 --> 00:00:42.976
+working through Microsoft Graph,
+for simple, low-authority tasks.
+
+12
+00:00:42.976 --> 00:00:46.875
+Two of these handoffs turn out to be
+gaps, and we'll come back to them.
+
+13
+00:00:46.875 --> 00:00:48.770
+First, the loop itself.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.973
+This is Ticket-to-Machine on
+ServiceNow and SailPoint,
+
+3
+00:00:03.973 --> 00:00:07.612
+a research example from the
+Federal Modernization Workbook.
+
+4
+00:00:07.612 --> 00:00:10.967
+It's the vendor-named companion
+to Book 13's Appendix B,
+
+5
+00:00:10.967 --> 00:00:15.237
+the Ticket-to-Machine Reference,
+which is vendor-neutral on purpose.
+
+6
+00:00:15.237 --> 00:00:19.329
+Here we take the same loop, the same
+lanes and the same identity fixes,
+
+7
+00:00:19.329 --> 00:00:23.785
+and work them through two named products:
+ServiceNow as the front door and
+
+8
+00:00:23.785 --> 00:00:28.388
+the record, and SailPoint Identity
+Security Cloud for identity governance.
+
+9
+00:00:28.388 --> 00:00:32.325
+It's an example, not an endorsement,
+and it's still under review.
+
+10
+00:00:32.325 --> 00:00:35.598
+In about ten minutes we'll see
+where the products fit the loop,
+
+11
+00:00:35.598 --> 00:00:37.300
+and four places where they don't.
+
+12
+00:00:37.300 --> 00:00:39.360
+First, why name products at all?

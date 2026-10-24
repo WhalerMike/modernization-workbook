@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.300
+Walk the five steps, and most of the
+loop is documented by the vendors.
+
+2
+00:00:04.300 --> 00:00:08.200
+SailPoint tests on its scheduled
+refreshes and aggregations.
+
+3
+00:00:08.200 --> 00:00:12.710
+It detects drift in two useful ways:
+when attributes from the authoritative
+
+4
+00:00:12.710 --> 00:00:16.862
+source change, and when someone
+changes an account outside SailPoint.
+
+5
+00:00:16.862 --> 00:00:20.513
+Calling those Book 13's drift
+classes is our inference.
+
+6
+00:00:20.513 --> 00:00:23.345
+Actuation runs through
+SailPoint's connectors,
+
+7
+00:00:23.345 --> 00:00:25.612
+or through the ServiceNow Entra spoke.
+
+8
+00:00:25.612 --> 00:00:28.075
+The weak spots are steps three and five.
+
+9
+00:00:28.075 --> 00:00:31.312
+Turning a drift event into
+a typed ServiceNow task is
+
+10
+00:00:31.312 --> 00:00:35.137
+something you build with a SailPoint
+workflow; it isn't shipped.
+
+11
+00:00:35.137 --> 00:00:39.363
+And closing with evidence is only
+partial, which is the first gap.
+
+12
+00:00:39.363 --> 00:00:42.480
+Before the gaps, though,
+let's place the lanes.
