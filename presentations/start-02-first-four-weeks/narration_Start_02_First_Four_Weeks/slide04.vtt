@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.173
+The platform host is one governed
+server, with a standby for recovery,
+
+2
+00:00:04.173 --> 00:00:07.138
+and it's where the program
+writes everything down.
+
+3
+00:00:07.138 --> 00:00:09.623
+What matters is one authoritative writer,
+
+4
+00:00:09.623 --> 00:00:12.463
+so there's never a question
+of which copy is right.
+
+5
+00:00:12.463 --> 00:00:15.413
+The host reads the old
+directory without changing it,
+
+6
+00:00:15.413 --> 00:00:19.101
+and it writes to the cloud only
+through plans someone has approved.
+
+7
+00:00:19.101 --> 00:00:22.412
+It's protected like the most
+sensitive identity systems.
+
+8
+00:00:22.412 --> 00:00:26.588
+And it's a reference design built from
+standard parts, not a product to buy.
+
+9
+00:00:26.588 --> 00:00:28.010
+Now, the reading.

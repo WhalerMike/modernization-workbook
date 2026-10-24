@@ -1,0 +1,468 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Welcome back to the Federal
+Modernization Workbook.
+
+2
+00:00:02.963 --> 00:00:05.549
+This is Episode 2 of the Start series.
+
+3
+00:00:05.549 --> 00:00:10.925
+Episode 1 asked leadership to approve a
+four-week pre-flight, called Phase zero.
+
+4
+00:00:10.925 --> 00:00:14.681
+This episode opens that box:
+what has to be true on day one,
+
+5
+00:00:14.681 --> 00:00:18.028
+what the team builds and
+reads in those four weeks,
+
+6
+00:00:18.028 --> 00:00:22.437
+and what the first gate, G zero,
+checks before anyone plans a change.
+
+7
+00:00:22.437 --> 00:00:25.463
+By the end, you'll know what
+you're holding at week four.
+
+8
+00:00:25.463 --> 00:00:27.900
+Let's start with the shape of the phase.
+
+9
+00:00:28.650 --> 00:00:31.438
+Phase zero has one goal and one exit.
+
+10
+00:00:31.438 --> 00:00:33.787
+The goal is to produce
+the planning artifacts
+
+11
+00:00:33.787 --> 00:00:36.075
+and stand up the platform
+that will hold them.
+
+12
+00:00:36.075 --> 00:00:39.978
+The exit is gate G zero, Ready
+to Plan: the platform works,
+
+13
+00:00:39.978 --> 00:00:44.575
+the assessment is committed, and
+no priority-one finding is open.
+
+14
+00:00:44.575 --> 00:00:45.738
+Two cautions.
+
+15
+00:00:45.738 --> 00:00:50.899
+Four weeks is illustrative, so plan from
+the milestones, not the week count.
+
+16
+00:00:50.899 --> 00:00:55.825
+And nothing moves before the assessment
+is done; a plan without one is a guess.
+
+17
+00:00:55.825 --> 00:00:58.130
+So what has to be true on day one?
+
+18
+00:00:58.880 --> 00:01:01.330
+Three things have to
+exist before week one.
+
+19
+00:01:01.330 --> 00:01:06.606
+First, two names: an executive sponsor,
+who owns scope, funding and sequence,
+
+20
+00:01:06.606 --> 00:01:10.930
+and a steward, who runs the
+program and decides the first gate.
+
+21
+00:01:10.930 --> 00:01:13.280
+Second, a server to hold the work.
+
+22
+00:01:13.280 --> 00:01:18.267
+Third, a read-only account for the assessment,
+with no administrator rights at all.
+
+23
+00:01:18.267 --> 00:01:20.281
+The names may already exist.
+
+24
+00:01:20.281 --> 00:01:25.605
+Federal policy already required a zero
+trust lead and an identity governance group,
+
+25
+00:01:25.605 --> 00:01:28.267
+so build from those
+people, not beside them.
+
+26
+00:01:28.267 --> 00:01:30.230
+Next, that server.
+
+27
+00:01:30.980 --> 00:01:35.103
+The platform host is one governed
+server, with a standby for recovery,
+
+28
+00:01:35.103 --> 00:01:38.068
+and it's where the program
+writes everything down.
+
+29
+00:01:38.068 --> 00:01:40.553
+What matters is one authoritative writer,
+
+30
+00:01:40.553 --> 00:01:43.393
+so there's never a question
+of which copy is right.
+
+31
+00:01:43.393 --> 00:01:46.343
+The host reads the old
+directory without changing it,
+
+32
+00:01:46.343 --> 00:01:50.031
+and it writes to the cloud only
+through plans someone has approved.
+
+33
+00:01:50.031 --> 00:01:53.342
+It's protected like the most
+sensitive identity systems.
+
+34
+00:01:53.342 --> 00:01:57.518
+And it's a reference design built from
+standard parts, not a product to buy.
+
+35
+00:01:57.518 --> 00:01:59.240
+Now, the reading.
+
+36
+00:01:59.990 --> 00:02:03.378
+The assessment reads the whole
+estate and changes nothing.
+
+37
+00:02:03.378 --> 00:02:06.673
+That's enforced three ways:
+the account can't write,
+
+38
+00:02:06.673 --> 00:02:10.290
+the code has no write commands,
+and every call is logged.
+
+39
+00:02:10.290 --> 00:02:11.990
+It runs in two tiers.
+
+40
+00:02:11.990 --> 00:02:15.124
+A plain account reads what
+default permissions expose,
+
+41
+00:02:15.124 --> 00:02:17.440
+which is usually more than people expect.
+
+42
+00:02:17.440 --> 00:02:21.552
+Then a few narrow, read-only
+additions fill the gaps it recorded,
+
+43
+00:02:21.552 --> 00:02:24.953
+and nothing that exposes
+secrets is ever requested.
+
+44
+00:02:24.953 --> 00:02:27.247
+And tell security operations first:
+
+45
+00:02:27.247 --> 00:02:30.689
+a full directory read looks
+a lot like reconnaissance.
+
+46
+00:02:30.689 --> 00:02:32.450
+So what does it inventory?
+
+47
+00:02:33.200 --> 00:02:37.040
+Here's what it reads: the directory's
+structure, every kind of account,
+
+48
+00:02:37.040 --> 00:02:41.291
+every Group Policy Object, the network
+services that lean on the directory,
+
+49
+00:02:41.291 --> 00:02:44.170
+the certificate authorities
+and their templates,
+
+50
+00:02:44.170 --> 00:02:46.913
+and the applications that
+bind to the directory.
+
+51
+00:02:46.913 --> 00:02:50.237
+For any application that
+might move away from its data,
+
+52
+00:02:50.237 --> 00:02:51.937
+it measures how chatty it is.
+
+53
+00:02:51.937 --> 00:02:56.045
+Out of this come risk findings,
+like unsafe delegation or
+
+54
+00:02:56.045 --> 00:03:00.676
+servers on Windows Server 2016,
+and every one gets a disposition.
+
+55
+00:03:00.676 --> 00:03:04.050
+But a list only helps if you
+can prove where it came from.
+
+56
+00:03:04.800 --> 00:03:08.729
+Every assessment run carries its
+own receipt: who ran it, when,
+
+57
+00:03:08.729 --> 00:03:12.030
+against which forest and
+which domain controller,
+
+58
+00:03:12.030 --> 00:03:16.038
+with which rights, and a fingerprint
+of every file it produced.
+
+59
+00:03:16.038 --> 00:03:18.649
+A run without that receipt is rejected.
+
+60
+00:03:18.649 --> 00:03:22.525
+The receipt lands in the
+repository, which this phase seeds.
+
+61
+00:03:22.525 --> 00:03:26.300
+From here on, every artifact is
+a reviewed change with a status,
+
+62
+00:03:26.300 --> 00:03:30.000
+and nothing becomes official
+until the steward approves it.
+
+63
+00:03:30.000 --> 00:03:33.495
+The inventory itself is sensitive,
+so it's stored encrypted,
+
+64
+00:03:33.495 --> 00:03:36.562
+and the assessment workstation
+is wiped afterward.
+
+65
+00:03:36.562 --> 00:03:39.300
+Next, the program's own access.
+
+66
+00:03:40.050 --> 00:03:44.862
+The program practices what it asks of
+everyone else, starting with its own access.
+
+67
+00:03:44.862 --> 00:03:49.412
+The directory reader is an ordinary
+account, never a domain administrator.
+
+68
+00:03:49.412 --> 00:03:53.956
+The connections to cloud identity,
+device management and server management
+
+69
+00:03:53.956 --> 00:03:58.500
+each get their own service identity, with
+only the permissions that job needs.
+
+70
+00:03:58.500 --> 00:04:03.242
+And the part of the platform that approves
+a change runs under different credentials
+
+71
+00:04:03.242 --> 00:04:07.450
+from the part that carries it out, so no
+single account can both decide and act.
+
+72
+00:04:07.450 --> 00:04:08.980
+Then come the people.
+
+73
+00:04:09.730 --> 00:04:13.305
+By week four, every finding
+has a class and an owner.
+
+74
+00:04:13.305 --> 00:04:18.030
+Critical findings block the gate: each
+one is fixed, or formally accepted
+
+75
+00:04:18.030 --> 00:04:22.518
+by the authorizing official, the only
+person who can accept that risk.
+
+76
+00:04:22.518 --> 00:04:25.818
+High findings get an owner and
+a date before the next gate.
+
+77
+00:04:25.818 --> 00:04:27.242
+The people are named too.
+
+78
+00:04:27.242 --> 00:04:30.407
+The steward decides the gate,
+with the sponsor as backup,
+
+79
+00:04:30.407 --> 00:04:33.917
+and the workstream leads review
+what was found in their areas.
+
+80
+00:04:33.917 --> 00:04:37.693
+The steering committee advises; it
+doesn't add a second signature.
+
+81
+00:04:37.693 --> 00:04:39.520
+So what does the gate check?
+
+82
+00:04:40.270 --> 00:04:45.757
+Gate G zero is a checklist, answered from
+the repository, not from a status meeting.
+
+83
+00:04:45.757 --> 00:04:47.208
+Is the platform working,
+
+84
+00:04:47.208 --> 00:04:51.270
+with its service identities scoped
+and its logs in central logging?
+
+85
+00:04:51.270 --> 00:04:55.570
+Is the assessment committed, covering
+every area, with its receipts?
+
+86
+00:04:55.570 --> 00:04:59.333
+Is every finding classified,
+with nothing critical left open?
+
+87
+00:04:59.333 --> 00:05:03.170
+And is the decision itself recorded,
+with the name of whoever made it?
+
+88
+00:05:03.170 --> 00:05:06.695
+The answer can be go, no-go,
+or go with conditions.
+
+89
+00:05:06.695 --> 00:05:11.460
+A gate passed on a date without the
+evidence just moves the failure later.
+
+90
+00:05:12.210 --> 00:05:15.910
+At week four, leadership holds
+facts instead of estimates.
+
+91
+00:05:15.910 --> 00:05:19.735
+An inventory of the whole estate,
+with proof of how it was read.
+
+92
+00:05:19.735 --> 00:05:23.385
+A findings list where every
+item has an owner and a date.
+
+93
+00:05:23.385 --> 00:05:26.835
+A platform that records every
+decision and who made it.
+
+94
+00:05:26.835 --> 00:05:29.010
+And a gate decision, on the record.
+
+95
+00:05:29.010 --> 00:05:33.412
+Right after the gate, the assessment
+becomes eight modernization plans,
+
+96
+00:05:33.412 --> 00:05:38.035
+generated from data rather than drawn up
+by hand, and approved by the steward.
+
+97
+00:05:38.035 --> 00:05:40.906
+That's where the foundation work begins,
+
+98
+00:05:40.906 --> 00:05:44.800
+and it's the subject of Episode
+3: Foundation to Gate G1.

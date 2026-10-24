@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.050
+Evidence has a shelf-life problem.
+
+2
+00:00:02.050 --> 00:00:06.715
+Most of what Entra ID records, from
+provisioning logs to workflow history
+
+3
+00:00:06.715 --> 00:00:11.150
+and audit events, is kept for thirty
+days at best, and some of it for seven.
+
+4
+00:00:11.150 --> 00:00:13.953
+Federal records schedules run far longer,
+
+5
+00:00:13.953 --> 00:00:19.238
+and Entra's retention isn't retroactive:
+whatever expires before export is gone.
+
+6
+00:00:19.238 --> 00:00:22.083
+So route the logs out from
+the first day of the pilot,
+
+7
+00:00:22.083 --> 00:00:26.688
+keep them for the records schedule, and
+keep personal data out of operational logs.
+
+8
+00:00:26.688 --> 00:00:30.988
+The account is disposed of on schedule;
+the evidence has to outlive it.
+
+9
+00:00:30.988 --> 00:00:34.420
+Next, what all this evidence
+does and doesn't prove.

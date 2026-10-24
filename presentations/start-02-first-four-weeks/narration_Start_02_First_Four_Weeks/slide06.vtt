@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.890
+Here's what it reads: the directory's
+structure, every kind of account,
+
+2
+00:00:03.890 --> 00:00:08.141
+every Group Policy Object, the network
+services that lean on the directory,
+
+3
+00:00:08.141 --> 00:00:11.020
+the certificate authorities
+and their templates,
+
+4
+00:00:11.020 --> 00:00:13.763
+and the applications that
+bind to the directory.
+
+5
+00:00:13.763 --> 00:00:17.087
+For any application that
+might move away from its data,
+
+6
+00:00:17.087 --> 00:00:18.787
+it measures how chatty it is.
+
+7
+00:00:18.787 --> 00:00:22.895
+Out of this come risk findings,
+like unsafe delegation or
+
+8
+00:00:22.895 --> 00:00:27.526
+servers on Windows Server 2016,
+and every one gets a disposition.
+
+9
+00:00:27.526 --> 00:00:30.600
+But a list only helps if you
+can prove where it came from.

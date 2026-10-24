@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.954
+On the source side, a full extract seeds
+the population and event feeds carry the
+
+2
+00:00:04.954 --> 00:00:07.851
+changes, and the feeds
+have to start right after
+
+3
+00:00:07.851 --> 00:00:10.600
+the initial load or
+changes fall into the gap.
+
+4
+00:00:10.600 --> 00:00:13.700
+The middleware then does
+five things for every event.
+
+5
+00:00:13.700 --> 00:00:15.225
+Two deserve emphasis.
+
+6
+00:00:15.225 --> 00:00:18.349
+Sequencing, because a
+mover and a leaver applied
+
+7
+00:00:18.349 --> 00:00:21.238
+out of order is a correctness
+bug, not a glitch.
+
+8
+00:00:21.238 --> 00:00:24.120
+And provenance, written
+before the call returns,
+
+9
+00:00:24.120 --> 00:00:27.650
+because without that record
+there's no verifiable outcome.
+
+10
+00:00:27.650 --> 00:00:31.083
+One more rule: send the
+complete record every time,
+
+11
+00:00:31.083 --> 00:00:33.762
+or an empty field can clear a real value.
+
+12
+00:00:33.762 --> 00:00:36.890
+Next, the contract that endpoint enforces.

@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.172
+This is the technical deep
+dive for Book 03 of the
+
+3
+00:00:04.172 --> 00:00:07.924
+Federal Modernization
+Workbook, HR-Driven Identity.
+
+4
+00:00:07.924 --> 00:00:10.637
+It's for the people
+who'll actually build it:
+
+5
+00:00:10.637 --> 00:00:14.975
+identity engineers, HR systems
+integrators and ICAM architects.
+
+6
+00:00:14.975 --> 00:00:19.400
+The short briefing makes the case for
+letting the personnel record drive identity.
+
+7
+00:00:19.400 --> 00:00:21.300
+This session goes underneath it.
+
+8
+00:00:21.300 --> 00:00:26.212
+Part 1 is the data and the pipe: who
+owns each fact, how a person is keyed,
+
+9
+00:00:26.212 --> 00:00:31.650
+and how records move from the new
+government-wide HR platform into Entra ID.
+
+10
+00:00:31.650 --> 00:00:36.725
+Part 2 is lifecycle, access and evidence,
+and the plan that ties it together.
+
+11
+00:00:36.725 --> 00:00:39.580
+Let's start with why the
+data matters so much now.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.089
+Two services share the lifecycle,
+
+2
+00:00:02.089 --> 00:00:05.075
+and mixing them up is the
+most common design error.
+
+3
+00:00:05.075 --> 00:00:09.413
+Provisioning creates and updates
+accounts and turns them on or off.
+
+4
+00:00:09.413 --> 00:00:13.451
+Lifecycle Workflows act on
+accounts that already exist:
+
+5
+00:00:13.451 --> 00:00:16.974
+the welcome, the access
+packages, the leaver tasks.
+
+6
+00:00:16.974 --> 00:00:20.075
+The schedule is the
+engineering detail that bites.
+
+7
+00:00:20.075 --> 00:00:24.714
+Workflows run every three hours by
+default, on one tenant-wide setting,
+
+8
+00:00:24.714 --> 00:00:28.313
+so that interval is part of
+how fast a leaver is blocked.
+
+9
+00:00:28.313 --> 00:00:31.435
+And a separation recorded
+more than three days late
+
+10
+00:00:31.435 --> 00:00:34.775
+misses the window entirely
+and needs the on-demand path.
+
+11
+00:00:34.775 --> 00:00:36.875
+Notice the gap at the bottom, too.
+
+12
+00:00:36.875 --> 00:00:38.740
+That brings us to credentials.

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.813
+Two infrastructure pieces
+join the foundation.
+
+2
+00:00:02.813 --> 00:00:04.637
+First, address management.
+
+3
+00:00:04.637 --> 00:00:07.627
+Many agencies track IP
+ranges in a spreadsheet,
+
+4
+00:00:07.627 --> 00:00:11.076
+and that's where conflicts
+and ghost records come from.
+
+5
+00:00:11.076 --> 00:00:16.291
+Phase one puts the platform host and
+the most critical infrastructure under
+
+6
+00:00:16.291 --> 00:00:21.100
+one governed address authority, so
+DNS and DHCP can later derive from it.
+
+7
+00:00:21.100 --> 00:00:22.662
+Second, servers.
+
+8
+00:00:22.662 --> 00:00:25.040
+Intune doesn't manage Windows Server,
+
+9
+00:00:25.040 --> 00:00:29.488
+so the platform host and a few pilot
+servers connect through Azure Arc.
+
+10
+00:00:29.488 --> 00:00:32.459
+Each gets a cloud identity,
+a security baseline,
+
+11
+00:00:32.459 --> 00:00:36.720
+patching and protection, without
+changing its domain membership.

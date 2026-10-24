@@ -1,0 +1,24 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.246
+Module 2 is the provisioning pipeline:
+how records travel from the HR platform,
+
+2
+00:00:05.246 --> 00:00:09.244
+through middleware the agency
+runs inside its own boundary,
+
+3
+00:00:09.244 --> 00:00:11.562
+into Entra ID and Active Directory.
+
+4
+00:00:11.562 --> 00:00:13.424
+We start with Federal HR 2.0,
+
+5
+00:00:13.424 --> 00:00:18.220
+because its schedule decides when
+the identity feed has to be ready.

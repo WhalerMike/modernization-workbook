@@ -1,0 +1,377 @@
+{
+ "1": [
+  [
+   0.05,
+   4.888,
+   "Welcome to Episode 3 of the Start series from the Federal Modernization Workbook."
+  ],
+  [
+   4.938,
+   6.388,
+   "Episode 2 ended at gate G zero, with the estate inventoried and the plans about to be generated."
+  ],
+  [
+   11.325,
+   2.538,
+   "Now the work reaches the live environment."
+  ],
+  [
+   13.863,
+   14.95,
+   "Over roughly four weeks, Phase one puts the identity building blocks in place: groups and scoped administration, a sign-in baseline, emergency accounts, the first HR feed, address management, and the first servers under cloud management."
+  ],
+  [
+   28.812,
+   2.638,
+   "Then gate G one checks all of it from data."
+  ],
+  [
+   31.45,
+   1.637,
+   "Let's see how the pieces fit."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   5.362,
+   "Phase one has one goal: put the identity basics in place before anything else moves."
+  ],
+  [
+   5.412,
+   5.812,
+   "It opens with the plans approved, and then five workstreams move together, not one after another."
+  ],
+  [
+   11.225,
+   4.325,
+   "Identity builds groups, scoped administration and the HR feed."
+  ],
+  [
+   15.55,
+   2.337,
+   "Policy sets the sign-in baseline."
+  ],
+  [
+   17.887,
+   3.925,
+   "Services brings the core infrastructure under address management."
+  ],
+  [
+   21.812,
+   2.263,
+   "Compute connects the first servers."
+  ],
+  [
+   24.075,
+   4.4,
+   "And access opens strong sign-in for the most privileged administrators."
+  ],
+  [
+   28.475,
+   2.212,
+   "Running them in parallel is the point."
+  ],
+  [
+   30.688,
+   1.913,
+   "First, groups and scope."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.713,
+   "In the old directory, where an account sat in the tree decided who could manage it."
+  ],
+  [
+   4.763,
+   4.375,
+   "The cloud directory is flat, so scope has to be declared on purpose."
+  ],
+  [
+   9.137,
+   8.725,
+   "Phase one does that with dynamic groups and administrative units (A U's), whose membership comes from attributes like department, fed by HR."
+  ],
+  [
+   17.863,
+   1.125,
+   "Two things to know."
+  ],
+  [
+   18.988,
+   3.425,
+   "A U's limit who can change an account, not who can see it."
+  ],
+  [
+   22.413,
+   5.95,
+   "And membership updates take hours, sometimes more than a day, so plan in hours, not minutes."
+  ],
+  [
+   28.363,
+   3.288,
+   "Next, the baseline every sign-in has to meet."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   10.525,
+   "The sign-in baseline is short: multifactor authentication for everyone, legacy sign-in methods blocked, and emergency accounts excluded from anything that could lock them out."
+  ],
+  [
+   10.575,
+   4.938,
+   "Blocking legacy authentication is also a mandatory federal cloud baseline."
+  ],
+  [
+   15.512,
+   2.375,
+   "What matters most is how it's switched on."
+  ],
+  [
+   17.887,
+   7.425,
+   "Every policy runs in report-only mode first, for at least a week, so you can see who would be blocked before anyone is."
+  ],
+  [
+   25.312,
+   5.588,
+   "Then it's enforced ring by ring, and rolled back by turning it off, never by deleting it."
+  ],
+  [
+   30.9,
+   2.438,
+   "That makes the emergency accounts critical."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   8.113,
+   "Emergency access accounts are how you get back in when everything else fails: sign-in, multifactor, or a policy mistake."
+  ],
+  [
+   8.162,
+   5.75,
+   "They're the only standing administrator rights the program accepts by design, so they're governed tightly."
+  ],
+  [
+   13.912,
+   9.238,
+   "At least two cloud-only accounts, with phishing-resistant sign-in, excluded from blocking policies through one group, and an alert on every use."
+  ],
+  [
+   23.15,
+   2.438,
+   "They're tested at least every ninety days."
+  ],
+  [
+   25.587,
+   7.263,
+   "And they must work before any administrator role becomes just-in-time, or the agency can lock itself out of its own tenant."
+  ],
+  [
+   32.85,
+   2.075,
+   "Next, the first HR feed."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.213,
+   "This is where HR starts to drive identity, for a first, limited group of people."
+  ],
+  [
+   5.263,
+   1.25,
+   "The order matters."
+  ],
+  [
+   6.513,
+   4.537,
+   "The feed is named as one of the agency's HR integration points."
+  ],
+  [
+   11.05,
+   11.287,
+   "The attribute authority map is signed, and HR data is checked against reality and fixed at the source, because a drifted feed produces drifted access faster than any ticket queue."
+  ],
+  [
+   22.337,
+   4.688,
+   "Joiner, mover and leaver are proven end to end in a test tenant."
+  ],
+  [
+   27.025,
+   6.162,
+   "Then the pilot group runs in shadow mode, where the feed shows what it would do, before it's allowed to act."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.763,
+   "Two infrastructure pieces join the foundation."
+  ],
+  [
+   2.812,
+   1.825,
+   "First, address management."
+  ],
+  [
+   4.638,
+   6.438,
+   "Many agencies track IP ranges in a spreadsheet, and that's where conflicts and ghost records come from."
+  ],
+  [
+   11.075,
+   10.025,
+   "Phase one puts the platform host and the most critical infrastructure under one governed address authority, so D N S and DHCP can later derive from it."
+  ],
+  [
+   21.1,
+   1.562,
+   "Second, servers."
+  ],
+  [
+   22.663,
+   6.825,
+   "Intune doesn't manage Windows Server, so the platform host and a few pilot servers connect through Azure Arc."
+  ],
+  [
+   29.488,
+   7.162,
+   "Each gets a cloud identity, a security baseline, patching and protection, without changing its domain membership."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.938,
+   "Gate G one has a short list, and each line is a query, not an opinion."
+  ],
+  [
+   4.987,
+   4.312,
+   "Groups and administrative units match their registry, with no drift."
+  ],
+  [
+   9.3,
+   5.0,
+   "The sign-in logs show no one outside multifactor except the emergency accounts."
+  ],
+  [
+   14.3,
+   3.413,
+   "The emergency accounts have recent, logged tests."
+  ],
+  [
+   17.712,
+   3.3,
+   "The address inventory covers the critical infrastructure."
+  ],
+  [
+   21.012,
+   4.275,
+   "The provisioning logs show the HR feed running for the foundation group."
+  ],
+  [
+   25.288,
+   2.575,
+   "And high findings are fixed and re-scanned."
+  ],
+  [
+   27.863,
+   3.513,
+   "The steward decides, but only after the data says green."
+  ],
+  [
+   31.375,
+   1.262,
+   "So what can go wrong?"
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.475,
+   "Most foundation failures are predictable."
+  ],
+  [
+   2.525,
+   7.912,
+   "A broad multifactor policy blocks an unusual but critical sign-in, which is why everything runs report-only first."
+  ],
+  [
+   10.438,
+   6.438,
+   "An administrator role goes just-in-time before the emergency accounts work, and the tenant locks itself out."
+  ],
+  [
+   16.875,
+   4.95,
+   "A policy aimed at a group silently misses everyone whose attribute is empty."
+  ],
+  [
+   21.825,
+   3.125,
+   "The HR feed automates on data nobody checked."
+  ],
+  [
+   24.95,
+   6.525,
+   "And if the HR connector breaks mid-rollout, the program stalls, which is why the gate requires the feed first."
+  ],
+  [
+   31.475,
+   3.538,
+   "Rollback triggers halt the work before a problem spreads."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.3,
+   "When gate G one passes, leadership can see a foundation that holds."
+  ],
+  [
+   4.35,
+   2.462,
+   "Everyone signs in with multifactor."
+  ],
+  [
+   6.812,
+   4.787,
+   "Administration is scoped by attributes instead of a tree nobody wrote down."
+  ],
+  [
+   11.6,
+   2.925,
+   "Emergency access is governed and tested."
+  ],
+  [
+   14.525,
+   8.088,
+   "HR is driving identity for a first group of people, and the core servers and addresses are under management, all with zero drift."
+  ],
+  [
+   22.613,
+   2.538,
+   "That's what the pilot division builds on next."
+  ],
+  [
+   25.15,
+   4.188,
+   "The last episode steps back from the mechanics to the meeting itself."
+  ],
+  [
+   29.337,
+   5.875,
+   "Episode 4, Making the Case at Your Agency, turns all of this into a one-page ask."
+  ]
+ ]
+}

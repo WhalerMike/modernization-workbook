@@ -1,0 +1,455 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.938
+Welcome to Episode 3 of the Start series
+from the Federal Modernization Workbook.
+
+2
+00:00:04.938 --> 00:00:06.929
+Episode 2 ended at gate G zero,
+
+3
+00:00:06.929 --> 00:00:11.326
+with the estate inventoried and
+the plans about to be generated.
+
+4
+00:00:11.326 --> 00:00:13.863
+Now the work reaches the live environment.
+
+5
+00:00:13.863 --> 00:00:18.795
+Over roughly four weeks, Phase one puts
+the identity building blocks in place:
+
+6
+00:00:18.795 --> 00:00:23.496
+groups and scoped administration, a
+sign-in baseline, emergency accounts,
+
+7
+00:00:23.496 --> 00:00:28.813
+the first HR feed, address management, and
+the first servers under cloud management.
+
+8
+00:00:28.813 --> 00:00:31.450
+Then gate G one checks
+all of it from data.
+
+9
+00:00:31.450 --> 00:00:33.440
+Let's see how the pieces fit.
+
+10
+00:00:34.190 --> 00:00:39.552
+Phase one has one goal: put the identity
+basics in place before anything else moves.
+
+11
+00:00:39.552 --> 00:00:41.538
+It opens with the plans approved,
+
+12
+00:00:41.538 --> 00:00:45.364
+and then five workstreams move
+together, not one after another.
+
+13
+00:00:45.364 --> 00:00:49.690
+Identity builds groups, scoped
+administration and the HR feed.
+
+14
+00:00:49.690 --> 00:00:52.027
+Policy sets the sign-in baseline.
+
+15
+00:00:52.027 --> 00:00:55.952
+Services brings the core infrastructure
+under address management.
+
+16
+00:00:55.952 --> 00:00:58.215
+Compute connects the first servers.
+
+17
+00:00:58.215 --> 00:01:02.615
+And access opens strong sign-in for
+the most privileged administrators.
+
+18
+00:01:02.615 --> 00:01:04.827
+Running them in parallel is the point.
+
+19
+00:01:04.827 --> 00:01:07.100
+First, groups and scope.
+
+20
+00:01:07.850 --> 00:01:12.563
+In the old directory, where an account sat
+in the tree decided who could manage it.
+
+21
+00:01:12.563 --> 00:01:16.938
+The cloud directory is flat, so
+scope has to be declared on purpose.
+
+22
+00:01:16.938 --> 00:01:21.415
+Phase one does that with dynamic
+groups and administrative units (AUs),
+
+23
+00:01:21.415 --> 00:01:25.662
+whose membership comes from attributes
+like department, fed by HR.
+
+24
+00:01:25.662 --> 00:01:26.788
+Two things to know.
+
+25
+00:01:26.788 --> 00:01:30.213
+AUs limit who can change an
+account, not who can see it.
+
+26
+00:01:30.213 --> 00:01:32.577
+And membership updates take hours,
+
+27
+00:01:32.577 --> 00:01:36.163
+sometimes more than a day, so
+plan in hours, not minutes.
+
+28
+00:01:36.163 --> 00:01:39.800
+Next, the baseline every
+sign-in has to meet.
+
+29
+00:01:40.550 --> 00:01:44.875
+The sign-in baseline is short:
+multifactor authentication for everyone,
+
+30
+00:01:44.875 --> 00:01:46.750
+legacy sign-in methods blocked,
+
+31
+00:01:46.750 --> 00:01:51.075
+and emergency accounts excluded from
+anything that could lock them out.
+
+32
+00:01:51.075 --> 00:01:56.013
+Blocking legacy authentication is also
+a mandatory federal cloud baseline.
+
+33
+00:01:56.013 --> 00:01:58.387
+What matters most is how it's switched on.
+
+34
+00:01:58.387 --> 00:02:02.459
+Every policy runs in report-only
+mode first, for at least a week,
+
+35
+00:02:02.459 --> 00:02:05.812
+so you can see who would be
+blocked before anyone is.
+
+36
+00:02:05.812 --> 00:02:07.837
+Then it's enforced ring by ring,
+
+37
+00:02:07.837 --> 00:02:11.400
+and rolled back by turning it
+off, never by deleting it.
+
+38
+00:02:11.400 --> 00:02:14.210
+That makes the emergency
+accounts critical.
+
+39
+00:02:14.960 --> 00:02:20.313
+Emergency access accounts are how you
+get back in when everything else fails:
+
+40
+00:02:20.313 --> 00:02:23.073
+sign-in, multifactor, or a policy mistake.
+
+41
+00:02:23.073 --> 00:02:25.882
+They're the only standing
+administrator rights the
+
+42
+00:02:25.882 --> 00:02:28.822
+program accepts by design,
+so they're governed tightly.
+
+43
+00:02:28.822 --> 00:02:33.086
+At least two cloud-only accounts,
+with phishing-resistant sign-in,
+
+44
+00:02:33.086 --> 00:02:38.060
+excluded from blocking policies through
+one group, and an alert on every use.
+
+45
+00:02:38.060 --> 00:02:40.498
+They're tested at least every ninety days.
+
+46
+00:02:40.498 --> 00:02:44.752
+And they must work before any
+administrator role becomes just-in-time,
+
+47
+00:02:44.752 --> 00:02:47.760
+or the agency can lock itself
+out of its own tenant.
+
+48
+00:02:47.760 --> 00:02:50.200
+Next, the first HR feed.
+
+49
+00:02:50.950 --> 00:02:56.163
+This is where HR starts to drive identity,
+for a first, limited group of people.
+
+50
+00:02:56.163 --> 00:02:57.413
+The order matters.
+
+51
+00:02:57.413 --> 00:03:01.950
+The feed is named as one of the
+agency's HR integration points.
+
+52
+00:03:01.950 --> 00:03:04.407
+The attribute authority map is signed,
+
+53
+00:03:04.407 --> 00:03:08.323
+and HR data is checked against
+reality and fixed at the source,
+
+54
+00:03:08.323 --> 00:03:13.237
+because a drifted feed produces drifted
+access faster than any ticket queue.
+
+55
+00:03:13.237 --> 00:03:17.925
+Joiner, mover and leaver are proven
+end to end in a test tenant.
+
+56
+00:03:17.925 --> 00:03:20.346
+Then the pilot group runs in shadow mode,
+
+57
+00:03:20.346 --> 00:03:24.440
+where the feed shows what it would
+do, before it's allowed to act.
+
+58
+00:03:25.190 --> 00:03:27.953
+Two infrastructure pieces
+join the foundation.
+
+59
+00:03:27.953 --> 00:03:29.777
+First, address management.
+
+60
+00:03:29.777 --> 00:03:32.767
+Many agencies track IP
+ranges in a spreadsheet,
+
+61
+00:03:32.767 --> 00:03:36.216
+and that's where conflicts
+and ghost records come from.
+
+62
+00:03:36.216 --> 00:03:41.431
+Phase one puts the platform host and
+the most critical infrastructure under
+
+63
+00:03:41.431 --> 00:03:46.240
+one governed address authority, so
+DNS and DHCP can later derive from it.
+
+64
+00:03:46.240 --> 00:03:47.802
+Second, servers.
+
+65
+00:03:47.802 --> 00:03:50.180
+Intune doesn't manage Windows Server,
+
+66
+00:03:50.180 --> 00:03:54.628
+so the platform host and a few pilot
+servers connect through Azure Arc.
+
+67
+00:03:54.628 --> 00:03:57.599
+Each gets a cloud identity,
+a security baseline,
+
+68
+00:03:57.599 --> 00:04:02.160
+patching and protection, without
+changing its domain membership.
+
+69
+00:04:02.910 --> 00:04:07.848
+Gate G one has a short list, and each
+line is a query, not an opinion.
+
+70
+00:04:07.848 --> 00:04:12.159
+Groups and administrative units
+match their registry, with no drift.
+
+71
+00:04:12.159 --> 00:04:17.160
+The sign-in logs show no one outside
+multifactor except the emergency accounts.
+
+72
+00:04:17.160 --> 00:04:20.573
+The emergency accounts
+have recent, logged tests.
+
+73
+00:04:20.573 --> 00:04:23.872
+The address inventory covers
+the critical infrastructure.
+
+74
+00:04:23.872 --> 00:04:28.147
+The provisioning logs show the HR feed
+running for the foundation group.
+
+75
+00:04:28.147 --> 00:04:30.723
+And high findings are
+fixed and re-scanned.
+
+76
+00:04:30.723 --> 00:04:34.236
+The steward decides, but only
+after the data says green.
+
+77
+00:04:34.236 --> 00:04:35.850
+So what can go wrong?
+
+78
+00:04:36.600 --> 00:04:39.075
+Most foundation failures are predictable.
+
+79
+00:04:39.075 --> 00:04:43.704
+A broad multifactor policy blocks
+an unusual but critical sign-in,
+
+80
+00:04:43.704 --> 00:04:46.987
+which is why everything
+runs report-only first.
+
+81
+00:04:46.987 --> 00:04:50.026
+An administrator role goes
+just-in-time before the
+
+82
+00:04:50.026 --> 00:04:53.426
+emergency accounts work, and
+the tenant locks itself out.
+
+83
+00:04:53.426 --> 00:04:58.375
+A policy aimed at a group silently misses
+everyone whose attribute is empty.
+
+84
+00:04:58.375 --> 00:05:01.500
+The HR feed automates
+on data nobody checked.
+
+85
+00:05:01.500 --> 00:05:05.282
+And if the HR connector breaks
+mid-rollout, the program stalls,
+
+86
+00:05:05.282 --> 00:05:08.025
+which is why the gate
+requires the feed first.
+
+87
+00:05:08.025 --> 00:05:11.910
+Rollback triggers halt the
+work before a problem spreads.
+
+88
+00:05:12.660 --> 00:05:16.960
+When gate G one passes, leadership
+can see a foundation that holds.
+
+89
+00:05:16.960 --> 00:05:19.422
+Everyone signs in with multifactor.
+
+90
+00:05:19.422 --> 00:05:24.209
+Administration is scoped by attributes
+instead of a tree nobody wrote down.
+
+91
+00:05:24.209 --> 00:05:27.135
+Emergency access is governed and tested.
+
+92
+00:05:27.135 --> 00:05:30.324
+HR is driving identity for
+a first group of people,
+
+93
+00:05:30.324 --> 00:05:35.223
+and the core servers and addresses are
+under management, all with zero drift.
+
+94
+00:05:35.223 --> 00:05:37.761
+That's what the pilot
+division builds on next.
+
+95
+00:05:37.761 --> 00:05:41.948
+The last episode steps back from
+the mechanics to the meeting itself.
+
+96
+00:05:41.948 --> 00:05:47.890
+Episode 4, Making the Case at Your Agency,
+turns all of this into a one-page ask.

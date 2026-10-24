@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.862
+The program practices what it asks of
+everyone else, starting with its own access.
+
+2
+00:00:04.862 --> 00:00:09.412
+The directory reader is an ordinary
+account, never a domain administrator.
+
+3
+00:00:09.412 --> 00:00:13.956
+The connections to cloud identity,
+device management and server management
+
+4
+00:00:13.956 --> 00:00:18.500
+each get their own service identity, with
+only the permissions that job needs.
+
+5
+00:00:18.500 --> 00:00:23.242
+And the part of the platform that approves
+a change runs under different credentials
+
+6
+00:00:23.242 --> 00:00:27.450
+from the part that carries it out, so no
+single account can both decide and act.
+
+7
+00:00:27.450 --> 00:00:28.680
+Then come the people.

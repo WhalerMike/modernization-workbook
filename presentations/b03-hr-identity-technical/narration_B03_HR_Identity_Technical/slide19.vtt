@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.975
+Here's the uncomfortable fact: disabling
+an account doesn't revoke a certificate.
+
+2
+00:00:04.975 --> 00:00:09.452
+The PIV card is bound to the Entra
+user through an attribute holding the
+
+3
+00:00:09.452 --> 00:00:12.107
+certificate's identifiers, and the strong,
+
+4
+00:00:12.107 --> 00:00:15.825
+high-affinity bindings identify
+exactly one certificate.
+
+5
+00:00:15.825 --> 00:00:20.950
+So every reissue or renewal means the
+card system has to rewrite the binding.
+
+6
+00:00:20.950 --> 00:00:23.650
+Who can write it depends on
+where the user is mastered.
+
+7
+00:00:23.650 --> 00:00:28.588
+Today, for synced users, only Entra
+Connect can, from Active Directory.
+
+8
+00:00:28.588 --> 00:00:31.987
+Once the account moves to the
+cloud, the design guidance is
+
+9
+00:00:31.987 --> 00:00:35.600
+that the card system's issuance
+event writes it through Graph.
+
+10
+00:00:35.600 --> 00:00:40.050
+And the warning in red: whoever writes
+that value decides who signs in.
+
+11
+00:00:40.050 --> 00:00:41.640
+Next, revocation.

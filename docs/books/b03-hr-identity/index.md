@@ -36,6 +36,8 @@ One chapter at a time: [01](../../../downloads/b03-hr-identity-01.docx) · [02](
 
 **15-minute presentation (about 10 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-03) page.
 
+**Technical deep dive (about 50 minutes live, 19 narrated)**: attribute authority, the provisioning pipeline, lifecycle and the PIV binding, and evidence and the execution plan, in modules on the [Presentations](../../presentations/index.md#technical-b03) page.
+
 **Research (under review)**: [DNS for HR-Driven Identity Across Clouds](../../research/hr-identity-dns.md) explains what the HR-to-identity pipeline must resolve across Oracle, Azure, AWS and on-premises; it's on the [Research](../../research/index.md) page.
 :::
 

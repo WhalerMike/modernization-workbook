@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.162
+Here's the Microsoft realization.
+
+2
+00:00:02.162 --> 00:00:06.980
+Middleware inside the agency's boundary
+reads the HR events and posts them to a
+
+3
+00:00:06.980 --> 00:00:09.945
+single Graph endpoint,
+and Entra's provisioning
+
+4
+00:00:09.945 --> 00:00:12.613
+service decides what to
+do with each record.
+
+5
+00:00:12.613 --> 00:00:13.901
+That split matters.
+
+6
+00:00:13.901 --> 00:00:18.811
+The client doesn't decide whether to
+create or update; the service does, and it
+
+7
+00:00:18.811 --> 00:00:23.800
+reports results asynchronously, so the
+client has to go back and read the logs.
+
+8
+00:00:23.800 --> 00:00:24.900
+Why this pattern?
+
+9
+00:00:24.900 --> 00:00:29.037
+Oracle's HR platform has no native
+Entra connector, Microsoft's own
+
+10
+00:00:29.037 --> 00:00:33.625
+guidance is this pattern, and one entry
+point gives one provenance stream.
+
+11
+00:00:33.625 --> 00:00:37.900
+If a native connector ships later,
+it slots in as an optimization.
+
+12
+00:00:37.900 --> 00:00:40.440
+Next, what the middleware actually does.

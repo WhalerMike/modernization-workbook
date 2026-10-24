@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.250
+The architecture is a straight
+line with a stable middle.
+
+2
+00:00:03.250 --> 00:00:05.549
+The HR source on the left can change,
+
+3
+00:00:05.549 --> 00:00:09.673
+and so can the Microsoft products
+on the right, but the governed
+
+4
+00:00:09.673 --> 00:00:14.113
+identity model in the center, one
+schema and one person key, stays put.
+
+5
+00:00:14.113 --> 00:00:16.702
+That's what lets an
+agency survive a vendor
+
+6
+00:00:16.702 --> 00:00:19.438
+change without rewriting
+its access policy.
+
+7
+00:00:19.438 --> 00:00:23.741
+The boundaries matter just as
+much: HR owns employment facts,
+
+8
+00:00:23.741 --> 00:00:29.163
+Entra ID owns credentials and sessions,
+and the card system owns the PIV card.
+
+9
+00:00:29.163 --> 00:00:32.788
+No system becomes authoritative
+just because it holds a copy.
+
+10
+00:00:32.788 --> 00:00:36.213
+The principles on the right
+come back in every module.
+
+11
+00:00:36.213 --> 00:00:38.300
+So let's start with the data itself.

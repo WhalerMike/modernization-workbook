@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.700
+For federal employees, the real
+contract isn't Oracle's field names.
+
+2
+00:00:04.700 --> 00:00:10.078
+It's OPM's standard personnel data: the
+same elements and codes in every agency,
+
+3
+00:00:10.078 --> 00:00:13.775
+and a nature-of-action code
+on every personnel action.
+
+4
+00:00:13.775 --> 00:00:18.763
+Mapping identity to the standard means
+one crosswalk works for every employee
+
+5
+00:00:18.763 --> 00:00:23.675
+population, survives the next vendor
+change, and can be reused across agencies.
+
+6
+00:00:23.675 --> 00:00:28.320
+OPM requires the coded blocks of the
+SF-50 to use only standard codes,
+
+7
+00:00:28.320 --> 00:00:31.863
+which is why they're dependable
+enough to drive access.
+
+8
+00:00:31.863 --> 00:00:36.525
+One limit is worth remembering: the
+standard covers federal employees only.
+
+9
+00:00:36.525 --> 00:00:39.890
+Next, how those values
+land in the directories.

@@ -1,0 +1,357 @@
+{
+ "1": [
+  [
+   0.05,
+   5.812,
+   "This is Episode 4 of the Start series, the last one, from the Federal Modernization Workbook."
+  ],
+  [
+   5.862,
+   4.263,
+   "The first three episodes made the case and walked through the first eight weeks."
+  ],
+  [
+   10.125,
+   3.25,
+   "This one is about the meeting where you ask for the go-ahead."
+  ],
+  [
+   13.375,
+   9.812,
+   "It turns the case into one page: four local numbers, a pitch shaped for each person at the table, one decision with an owner and a date, and the roles that sign."
+  ],
+  [
+   23.188,
+   4.088,
+   "The framing and the numbers are design guidance, so adapt them freely."
+  ],
+  [
+   27.275,
+   1.55,
+   "Let's start with the page."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.163,
+   "The one-page ask has three parts."
+  ],
+  [
+   2.212,
+   7.312,
+   "A short reminder of why now: deadlines set outside the agency, and identity as the thing everything else depends on."
+  ],
+  [
+   9.525,
+   2.712,
+   "Then your own numbers, which make the case local."
+  ],
+  [
+   12.238,
+   5.9,
+   "Then one decision: approve the four-week pre-flight, with a named owner and a start date."
+  ],
+  [
+   18.137,
+   1.5,
+   "It's deliberately small."
+  ],
+  [
+   19.637,
+   4.425,
+   "It needs no vendor choice, just an inventory, an owner and a date."
+  ],
+  [
+   24.062,
+   3.462,
+   "Everything after that is decided at gates, from evidence."
+  ],
+  [
+   27.525,
+   1.325,
+   "So, which numbers?"
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.462,
+   "Four numbers do more than any slide."
+  ],
+  [
+   2.513,
+   8.688,
+   "How many Windows Server 2016 servers you run, since support ends in January 2027 and many domain controllers run on it."
+  ],
+  [
+   11.2,
+   6.825,
+   "How many contractors sit outside the HR system, because HR 2.0 covers federal employees only."
+  ],
+  [
+   18.025,
+   6.875,
+   "How long a departing person keeps access, from the day HR records the separation to the last account disabled."
+  ],
+  [
+   24.9,
+   8.287,
+   "And your Federal HR 2.0 wave and dates, because the chance to design identity in closes when your HR connections go live."
+  ],
+  [
+   33.188,
+   2.562,
+   "Each person at the table hears these differently."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.75,
+   "For the C I O, lead with the clocks, and the cost of meeting them piecemeal."
+  ],
+  [
+   4.8,
+   6.662,
+   "Server end-of-support dates, the edge-device directive and the new logging plan all land on the same estate."
+  ],
+  [
+   11.463,
+   5.362,
+   "A set of separate projects can only race those dates; one program can sequence them."
+  ],
+  [
+   16.825,
+   3.55,
+   "The first step costs four weeks and no vendor decision."
+  ],
+  [
+   20.375,
+   6.7,
+   "Be straight about later costs: the program has no license of its own, but the cloud services it uses do."
+  ],
+  [
+   27.075,
+   4.575,
+   "And running past end of support becomes a risk someone must formally accept."
+  ],
+  [
+   31.65,
+   1.413,
+   "Next, the see-so."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.288,
+   "For the see-so, lead with leavers."
+  ],
+  [
+   2.337,
+   3.587,
+   "When HR records a separation, nothing else is listening."
+  ],
+  [
+   5.925,
+   6.638,
+   "A ticket disables the main account days later, other accounts stay live, and a review months on finds a few of them."
+  ],
+  [
+   12.562,
+   2.562,
+   "That's not carelessness; it's the wiring."
+  ],
+  [
+   15.125,
+   7.263,
+   "It's also where account-management findings come from, since the controls expect accounts to follow termination and transfer."
+  ],
+  [
+   22.387,
+   7.625,
+   "HR-driven identity fixes the cause, starting with leavers, and measures the time from separation to block from day one."
+  ],
+  [
+   30.012,
+   2.212,
+   "That number is your before and after."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.237,
+   "For the chief human capital officer, lead with timing."
+  ],
+  [
+   3.288,
+   7.15,
+   "HR 2.0 moves the agency onto one government-wide platform whether or not identity rides along."
+  ],
+  [
+   10.438,
+   6.55,
+   "During onboarding, the agency designs its new connections, and that's the moment to add the identity feed."
+  ],
+  [
+   16.988,
+   3.6,
+   "Once those connections go live, adding it means reopening them."
+  ],
+  [
+   20.587,
+   2.087,
+   "The second point is contractors."
+  ],
+  [
+   22.675,
+   8.225,
+   "HR 2.0 covers federal employees, so contractors need a source of their own, and onboarding is the right time to choose it."
+  ],
+  [
+   30.9,
+   4.65,
+   "HR decides what the attributes mean; identity decides how they flow."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.025,
+   "For the authorizing official, lead with evidence."
+  ],
+  [
+   3.075,
+   9.775,
+   "They're the only official who can accept risk for the agency, and every risk the program carries, rather than removes, reaches them in writing, with an end date."
+  ],
+  [
+   12.85,
+   3.188,
+   "In return, they get something better than attestation."
+  ],
+  [
+   16.038,
+   8.625,
+   "Every gate is checked from data, every change is a signed plan, and evidence comes out of the work instead of being assembled before an assessment."
+  ],
+  [
+   24.663,
+   5.05,
+   "Automated changes stay gated, with a person approving before anything runs."
+  ],
+  [
+   29.712,
+   2.95,
+   "That's a posture an authorizing official can sign."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.413,
+   "Write the decision as one sentence someone can say yes to."
+  ],
+  [
+   3.462,
+   11.075,
+   "Approve the four-week pre-flight, sponsored by a named executive, run by a named steward, starting on a set date, with the first gate on the calendar beside the external deadlines."
+  ],
+  [
+   14.537,
+   4.062,
+   "Before saying yes, a sponsor should be able to answer a few questions."
+  ],
+  [
+   18.6,
+   2.513,
+   "Is the source of truth under version control?"
+  ],
+  [
+   21.113,
+   1.762,
+   "Can every change be traced?"
+  ],
+  [
+   22.875,
+   2.462,
+   "Does every decision have one named decider?"
+  ],
+  [
+   25.337,
+   3.7,
+   "If the room hesitates on any of those, that's useful too."
+  ],
+  [
+   29.038,
+   1.7,
+   "Next, who signs what."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.325,
+   "The charter fixes the shape and leaves the names blank for you."
+  ],
+  [
+   3.375,
+   7.95,
+   "The executive sponsor, with the C I O, owns scope, funding and sequence, and decides when directory components retire."
+  ],
+  [
+   11.325,
+   5.188,
+   "The steward owns the target design and the repository, and clears the early gates."
+  ],
+  [
+   16.512,
+   3.038,
+   "Workstream leads say when their area is ready."
+  ],
+  [
+   19.55,
+   8.637,
+   "Around them, the see-so sets the control requirements, the authorizing official accepts risk, and HR owns what the workforce data means."
+  ],
+  [
+   28.188,
+   6.325,
+   "Many of these people already hold the zero trust and identity governance roles federal policy required."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.212,
+   "Bring the one-page ask, with your four numbers filled in."
+  ],
+  [
+   3.263,
+   8.863,
+   "Bring the external deadlines that apply to your estate, candidate names for sponsor and steward, a proposed start date, and a date for the first gate."
+  ],
+  [
+   12.125,
+   3.638,
+   "And leave the room with one decision recorded, whatever it is."
+  ],
+  [
+   15.762,
+   10.762,
+   "To go deeper, go back to the Start Here page, then Book 00 for the charter and the decisions, Book 01 for the roadmap, and Book 03 for HR-driven identity."
+  ],
+  [
+   26.525,
+   2.025,
+   "Every claim is footnoted there."
+  ],
+  [
+   28.55,
+   2.05,
+   "Thank you for watching the Start series."
+  ]
+ ]
+}

@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.818
+The other books need more slots,
+so there's one program-wide
+
+2
+00:00:03.818 --> 00:00:07.900
+map of all fifteen extension
+attributes, and every page uses it.
+
+3
+00:00:07.900 --> 00:00:10.300
+But the slide's real
+point is on the right.
+
+4
+00:00:10.300 --> 00:00:12.882
+A dynamic group hands the access decision
+
+5
+00:00:12.882 --> 00:00:15.537
+to whoever can write
+the attribute it reads.
+
+6
+00:00:15.537 --> 00:00:21.012
+So each slot gets exactly one writer,
+almost always the provisioning service, and
+
+7
+00:00:21.012 --> 00:00:23.790
+every other write path, whether help desk,
+
+8
+00:00:23.790 --> 00:00:26.650
+self-service or mail
+tooling, gets removed.
+
+9
+00:00:26.650 --> 00:00:28.788
+A write by anyone else is drift.
+
+10
+00:00:28.788 --> 00:00:30.638
+That's the end of the data model.
+
+11
+00:00:30.638 --> 00:00:33.020
+Module 2 is how the data moves.
