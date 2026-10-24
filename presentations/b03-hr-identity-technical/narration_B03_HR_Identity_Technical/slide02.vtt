@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.515
+Here's the problem in one sentence:
+a token can prove who signed a claim,
+
+2
+00:00:04.515 --> 00:00:06.787
+but not that the claim is still true.
+
+3
+00:00:06.787 --> 00:00:09.675
+The timeline shows how an
+orphaned account happens.
+
+4
+00:00:09.675 --> 00:00:14.159
+HR knows about a separation two weeks
+early, and nothing else is listening,
+
+5
+00:00:14.159 --> 00:00:18.863
+so the last forgotten account turns up
+in a penetration test six months later.
+
+6
+00:00:18.863 --> 00:00:22.038
+Nobody was careless;
+there was simply no wire.
+
+7
+00:00:22.038 --> 00:00:23.526
+And the cost has gone up.
+
+8
+00:00:23.526 --> 00:00:29.139
+Under Zero Trust, access is decided per
+session from attributes and dynamic groups,
+
+9
+00:00:29.139 --> 00:00:32.638
+so a wrong department isn't
+a phone-book typo any more.
+
+10
+00:00:32.638 --> 00:00:33.938
+It's wrong access.
+
+11
+00:00:33.938 --> 00:00:37.010
+Next, the architecture
+that fixes the wiring.

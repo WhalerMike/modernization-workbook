@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.375
+The sign-in baseline is short:
+multifactor authentication for everyone,
+
+2
+00:00:04.375 --> 00:00:06.250
+legacy sign-in methods blocked,
+
+3
+00:00:06.250 --> 00:00:10.575
+and emergency accounts excluded from
+anything that could lock them out.
+
+4
+00:00:10.575 --> 00:00:15.513
+Blocking legacy authentication is also
+a mandatory federal cloud baseline.
+
+5
+00:00:15.513 --> 00:00:17.887
+What matters most is how it's switched on.
+
+6
+00:00:17.887 --> 00:00:21.959
+Every policy runs in report-only
+mode first, for at least a week,
+
+7
+00:00:21.959 --> 00:00:25.312
+so you can see who would be
+blocked before anyone is.
+
+8
+00:00:25.312 --> 00:00:27.337
+Then it's enforced ring by ring,
+
+9
+00:00:27.337 --> 00:00:30.900
+and rolled back by turning it
+off, never by deleting it.
+
+10
+00:00:30.900 --> 00:00:33.410
+That makes the emergency
+accounts critical.

@@ -1,0 +1,369 @@
+{
+ "1": [
+  [
+   0.05,
+   2.913,
+   "Welcome back to the Federal Modernization Workbook."
+  ],
+  [
+   2.962,
+   2.587,
+   "This is Episode 2 of the Start series."
+  ],
+  [
+   5.55,
+   5.375,
+   "Episode 1 asked leadership to approve a four-week pre-flight, called Phase zero."
+  ],
+  [
+   10.925,
+   11.512,
+   "This episode opens that box: what has to be true on day one, what the team builds and reads in those four weeks, and what the first gate, G zero, checks before anyone plans a change."
+  ],
+  [
+   22.438,
+   3.025,
+   "By the end, you'll know what you're holding at week four."
+  ],
+  [
+   25.462,
+   2.087,
+   "Let's start with the shape of the phase."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.788,
+   "Phase zero has one goal and one exit."
+  ],
+  [
+   2.837,
+   4.638,
+   "The goal is to produce the planning artifacts and stand up the platform that will hold them."
+  ],
+  [
+   7.475,
+   8.5,
+   "The exit is gate G zero, Ready to Plan: the platform works, the assessment is committed, and no priority-one finding is open."
+  ],
+  [
+   15.975,
+   1.163,
+   "Two cautions."
+  ],
+  [
+   17.137,
+   5.162,
+   "Four weeks is illustrative, so plan from the milestones, not the week count."
+  ],
+  [
+   22.3,
+   4.925,
+   "And nothing moves before the assessment is done; a plan without one is a guess."
+  ],
+  [
+   27.225,
+   1.95,
+   "So what has to be true on day one?"
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.45,
+   "Three things have to exist before week one."
+  ],
+  [
+   2.5,
+   9.6,
+   "First, two names: an executive sponsor, who owns scope, funding and sequence, and a steward, who runs the program and decides the first gate."
+  ],
+  [
+   12.1,
+   2.35,
+   "Second, a server to hold the work."
+  ],
+  [
+   14.45,
+   4.987,
+   "Third, a read-only account for the assessment, with no administrator rights at all."
+  ],
+  [
+   19.438,
+   2.013,
+   "The names may already exist."
+  ],
+  [
+   21.45,
+   7.987,
+   "Federal policy already required a zero trust lead and an identity governance group, so build from those people, not beside them."
+  ],
+  [
+   29.438,
+   1.613,
+   "Next, that server."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   7.088,
+   "The platform host is one governed server, with a standby for recovery, and it's where the program writes everything down."
+  ],
+  [
+   7.138,
+   5.325,
+   "What matters is one authoritative writer, so there's never a question of which copy is right."
+  ],
+  [
+   12.463,
+   6.638,
+   "The host reads the old directory without changing it, and it writes to the cloud only through plans someone has approved."
+  ],
+  [
+   19.1,
+   3.312,
+   "It's protected like the most sensitive identity systems."
+  ],
+  [
+   22.413,
+   4.175,
+   "And it's a reference design built from standard parts, not a product to buy."
+  ],
+  [
+   26.587,
+   1.35,
+   "Now, the reading."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.388,
+   "The assessment reads the whole estate and changes nothing."
+  ],
+  [
+   3.438,
+   6.912,
+   "That's enforced three ways: the account can't write, the code has no write commands, and every call is logged."
+  ],
+  [
+   10.35,
+   1.7,
+   "It runs in two tiers."
+  ],
+  [
+   12.05,
+   5.45,
+   "A plain account reads what default permissions expose, which is usually more than people expect."
+  ],
+  [
+   17.5,
+   7.513,
+   "Then a few narrow, read-only additions fill the gaps it recorded, and nothing that exposes secrets is ever requested."
+  ],
+  [
+   25.012,
+   5.737,
+   "And tell security operations first: a full directory read looks a lot like reconnaissance."
+  ],
+  [
+   30.75,
+   1.4,
+   "So what does it inventory?"
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   13.713,
+   "Here's what it reads: the directory's structure, every kind of account, every Group Policy Object, the network services that lean on the directory, the certificate authorities and their templates, and the applications that bind to the directory."
+  ],
+  [
+   13.762,
+   5.025,
+   "For any application that might move away from its data, it measures how chatty it is."
+  ],
+  [
+   18.788,
+   8.738,
+   "Out of this come risk findings, like unsafe delegation or servers on Windows Server 2016, and every one gets a disposition."
+  ],
+  [
+   27.525,
+   3.025,
+   "But a list only helps if you can prove where it came from."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   11.238,
+   "Every assessment run carries its own receipt: who ran it, when, against which forest and which domain controller, with which rights, and a fingerprint of every file it produced."
+  ],
+  [
+   11.287,
+   2.612,
+   "A run without that receipt is rejected."
+  ],
+  [
+   13.9,
+   3.875,
+   "The receipt lands in the repository, which this phase seeds."
+  ],
+  [
+   17.775,
+   7.475,
+   "From here on, every artifact is a reviewed change with a status, and nothing becomes official until the steward approves it."
+  ],
+  [
+   25.25,
+   6.562,
+   "The inventory itself is sensitive, so it's stored encrypted, and the assessment workstation is wiped afterward."
+  ],
+  [
+   31.812,
+   2.388,
+   "Next, the program's own access."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.812,
+   "The program practices what it asks of everyone else, starting with its own access."
+  ],
+  [
+   4.862,
+   4.55,
+   "The directory reader is an ordinary account, never a domain administrator."
+  ],
+  [
+   9.412,
+   9.088,
+   "The connections to cloud identity, device management and server management each get their own service identity, with only the permissions that job needs."
+  ],
+  [
+   18.5,
+   8.95,
+   "And the part of the platform that approves a change runs under different credentials from the part that carries it out, so no single account can both decide and act."
+  ],
+  [
+   27.45,
+   1.175,
+   "Then come the people."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.575,
+   "By week four, every finding has a class and an owner."
+  ],
+  [
+   3.625,
+   9.213,
+   "Critical findings block the gate: each one is fixed, or formally accepted by the authorizing official, the only person who can accept that risk."
+  ],
+  [
+   12.838,
+   3.3,
+   "High findings get an owner and a date before the next gate."
+  ],
+  [
+   16.137,
+   1.425,
+   "The people are named too."
+  ],
+  [
+   17.562,
+   6.675,
+   "The steward decides the gate, with the sponsor as backup, and the workstream leads review what was found in their areas."
+  ],
+  [
+   24.238,
+   3.775,
+   "The steering committee advises; it doesn't add a second signature."
+  ],
+  [
+   28.012,
+   1.475,
+   "So what does the gate check?"
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.487,
+   "Gate G zero is a checklist, answered from the repository, not from a status meeting."
+  ],
+  [
+   5.537,
+   5.513,
+   "Is the platform working, with its service identities scoped and its logs in central logging?"
+  ],
+  [
+   11.05,
+   4.3,
+   "Is the assessment committed, covering every area, with its receipts?"
+  ],
+  [
+   15.35,
+   3.763,
+   "Is every finding classified, with nothing critical left open?"
+  ],
+  [
+   19.113,
+   3.837,
+   "And is the decision itself recorded, with the name of whoever made it?"
+  ],
+  [
+   22.95,
+   3.525,
+   "The answer can be go, no-go, or go with conditions."
+  ],
+  [
+   26.475,
+   4.412,
+   "A gate passed on a date without the evidence just moves the failure later."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.7,
+   "At week four, leadership holds facts instead of estimates."
+  ],
+  [
+   3.75,
+   3.825,
+   "An inventory of the whole estate, with proof of how it was read."
+  ],
+  [
+   7.575,
+   3.65,
+   "A findings list where every item has an owner and a date."
+  ],
+  [
+   11.225,
+   3.45,
+   "A platform that records every decision and who made it."
+  ],
+  [
+   14.675,
+   2.175,
+   "And a gate decision, on the record."
+  ],
+  [
+   16.85,
+   9.025,
+   "Right after the gate, the assessment becomes eight modernization plans, generated from data rather than drawn up by hand, and approved by the steward."
+  ],
+  [
+   25.875,
+   6.7,
+   "That's where the foundation work begins, and it's the subject of Episode 3: Foundation to Gate G1."
+  ]
+ ]
+}

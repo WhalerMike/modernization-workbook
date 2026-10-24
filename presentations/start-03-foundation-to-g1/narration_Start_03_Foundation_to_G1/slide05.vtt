@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.403
+Emergency access accounts are how you
+get back in when everything else fails:
+
+2
+00:00:05.403 --> 00:00:08.163
+sign-in, multifactor, or a policy mistake.
+
+3
+00:00:08.163 --> 00:00:10.972
+They're the only standing
+administrator rights the
+
+4
+00:00:10.972 --> 00:00:13.912
+program accepts by design,
+so they're governed tightly.
+
+5
+00:00:13.912 --> 00:00:18.176
+At least two cloud-only accounts,
+with phishing-resistant sign-in,
+
+6
+00:00:18.176 --> 00:00:23.150
+excluded from blocking policies through
+one group, and an alert on every use.
+
+7
+00:00:23.150 --> 00:00:25.588
+They're tested at least every ninety days.
+
+8
+00:00:25.588 --> 00:00:29.842
+And they must work before any
+administrator role becomes just-in-time,
+
+9
+00:00:29.842 --> 00:00:32.850
+or the agency can lock itself
+out of its own tenant.
+
+10
+00:00:32.850 --> 00:00:34.990
+Next, the first HR feed.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.979
+Every assessment run carries its
+own receipt: who ran it, when,
+
+2
+00:00:03.979 --> 00:00:07.280
+against which forest and
+which domain controller,
+
+3
+00:00:07.280 --> 00:00:11.288
+with which rights, and a fingerprint
+of every file it produced.
+
+4
+00:00:11.288 --> 00:00:13.899
+A run without that receipt is rejected.
+
+5
+00:00:13.899 --> 00:00:17.775
+The receipt lands in the
+repository, which this phase seeds.
+
+6
+00:00:17.775 --> 00:00:21.550
+From here on, every artifact is
+a reviewed change with a status,
+
+7
+00:00:21.550 --> 00:00:25.250
+and nothing becomes official
+until the steward approves it.
+
+8
+00:00:25.250 --> 00:00:28.745
+The inventory itself is sensitive,
+so it's stored encrypted,
+
+9
+00:00:28.745 --> 00:00:31.812
+and the assessment workstation
+is wiped afterward.
+
+10
+00:00:31.812 --> 00:00:34.250
+Next, the program's own access.

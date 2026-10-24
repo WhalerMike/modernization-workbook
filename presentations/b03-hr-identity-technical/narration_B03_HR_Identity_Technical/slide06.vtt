@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.850
+One person has several identifiers,
+because each layer has its own lifecycle.
+
+2
+00:00:04.850 --> 00:00:08.700
+The HR system's number changes
+if the HR system changes.
+
+3
+00:00:08.700 --> 00:00:11.787
+The account ID changes if
+the account is rebuilt.
+
+4
+00:00:11.787 --> 00:00:14.950
+A card's identifiers
+change on every reissue.
+
+5
+00:00:14.950 --> 00:00:18.447
+So the agency needs one enterprise
+person key it controls,
+
+6
+00:00:18.447 --> 00:00:20.487
+with everything else mapped to it.
+
+7
+00:00:20.487 --> 00:00:23.796
+That's a real decision,
+made before Phase 1 closes,
+
+8
+00:00:23.796 --> 00:00:29.338
+because the move to the new HR platform is
+exactly the moment a source key changes.
+
+9
+00:00:29.338 --> 00:00:32.637
+Get it right and a rehire
+re-links to the same person,
+
+10
+00:00:32.637 --> 00:00:37.037
+a contractor who converts keeps
+their key, and audit joins just work.
+
+11
+00:00:37.037 --> 00:00:39.170
+Now, where the values come from.

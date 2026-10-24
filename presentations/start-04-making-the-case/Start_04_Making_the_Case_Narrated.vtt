@@ -1,0 +1,442 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.150
+This is Episode 4 of the
+Start series, the last one,
+
+2
+00:00:03.150 --> 00:00:05.862
+from the Federal Modernization Workbook.
+
+3
+00:00:05.862 --> 00:00:10.125
+The first three episodes made the case
+and walked through the first eight weeks.
+
+4
+00:00:10.125 --> 00:00:13.375
+This one is about the meeting
+where you ask for the go-ahead.
+
+5
+00:00:13.375 --> 00:00:18.085
+It turns the case into one page: four
+local numbers, a pitch shaped for each
+
+6
+00:00:18.085 --> 00:00:23.187
+person at the table, one decision with an
+owner and a date, and the roles that sign.
+
+7
+00:00:23.187 --> 00:00:27.276
+The framing and the numbers are design
+guidance, so adapt them freely.
+
+8
+00:00:27.276 --> 00:00:29.200
+Let's start with the page.
+
+9
+00:00:29.950 --> 00:00:32.113
+The one-page ask has three parts.
+
+10
+00:00:32.113 --> 00:00:36.001
+A short reminder of why now:
+deadlines set outside the agency,
+
+11
+00:00:36.001 --> 00:00:39.424
+and identity as the thing
+everything else depends on.
+
+12
+00:00:39.424 --> 00:00:42.137
+Then your own numbers,
+which make the case local.
+
+13
+00:00:42.137 --> 00:00:45.678
+Then one decision: approve
+the four-week pre-flight,
+
+14
+00:00:45.678 --> 00:00:48.038
+with a named owner and a start date.
+
+15
+00:00:48.038 --> 00:00:49.537
+It's deliberately small.
+
+16
+00:00:49.537 --> 00:00:53.962
+It needs no vendor choice, just an
+inventory, an owner and a date.
+
+17
+00:00:53.962 --> 00:00:57.424
+Everything after that is
+decided at gates, from evidence.
+
+18
+00:00:57.424 --> 00:00:59.120
+So, which numbers?
+
+19
+00:00:59.870 --> 00:01:02.332
+Four numbers do more than any slide.
+
+20
+00:01:02.332 --> 00:01:05.647
+How many Windows Server
+2016 servers you run,
+
+21
+00:01:05.647 --> 00:01:11.021
+since support ends in January 2027
+and many domain controllers run on it.
+
+22
+00:01:11.021 --> 00:01:14.522
+How many contractors sit
+outside the HR system,
+
+23
+00:01:14.522 --> 00:01:17.845
+because HR 2.0 covers
+federal employees only.
+
+24
+00:01:17.845 --> 00:01:20.442
+How long a departing person keeps access,
+
+25
+00:01:20.442 --> 00:01:24.720
+from the day HR records the separation
+to the last account disabled.
+
+26
+00:01:24.720 --> 00:01:27.283
+And your Federal HR 2.0 wave and dates,
+
+27
+00:01:27.283 --> 00:01:33.007
+because the chance to design identity in
+closes when your HR connections go live.
+
+28
+00:01:33.007 --> 00:01:35.930
+Each person at the table
+hears these differently.
+
+29
+00:01:36.680 --> 00:01:41.430
+For the CIO, lead with the clocks, and
+the cost of meeting them piecemeal.
+
+30
+00:01:41.430 --> 00:01:44.876
+Server end-of-support dates,
+the edge-device directive
+
+31
+00:01:44.876 --> 00:01:48.092
+and the new logging plan
+all land on the same estate.
+
+32
+00:01:48.092 --> 00:01:53.455
+A set of separate projects can only race
+those dates; one program can sequence them.
+
+33
+00:01:53.455 --> 00:01:57.005
+The first step costs four
+weeks and no vendor decision.
+
+34
+00:01:57.005 --> 00:02:01.499
+Be straight about later costs: the
+program has no license of its own,
+
+35
+00:02:01.499 --> 00:02:03.705
+but the cloud services it uses do.
+
+36
+00:02:03.705 --> 00:02:08.280
+And running past end of support becomes
+a risk someone must formally accept.
+
+37
+00:02:08.280 --> 00:02:10.050
+Next, the CISO.
+
+38
+00:02:10.800 --> 00:02:13.088
+For the CISO, lead with leavers.
+
+39
+00:02:13.088 --> 00:02:16.674
+When HR records a separation,
+nothing else is listening.
+
+40
+00:02:16.674 --> 00:02:19.417
+A ticket disables the
+main account days later,
+
+41
+00:02:19.417 --> 00:02:23.313
+other accounts stay live, and a
+review months on finds a few of them.
+
+42
+00:02:23.313 --> 00:02:25.874
+That's not carelessness; it's the wiring.
+
+43
+00:02:25.874 --> 00:02:28.988
+It's also where account-management
+findings come from,
+
+44
+00:02:28.988 --> 00:02:33.138
+since the controls expect accounts
+to follow termination and transfer.
+
+45
+00:02:33.138 --> 00:02:36.910
+HR-driven identity fixes the
+cause, starting with leavers,
+
+46
+00:02:36.910 --> 00:02:40.762
+and measures the time from
+separation to block from day one.
+
+47
+00:02:40.762 --> 00:02:43.330
+That number is your before and after.
+
+48
+00:02:44.080 --> 00:02:47.317
+For the chief human capital
+officer, lead with timing.
+
+49
+00:02:47.317 --> 00:02:50.939
+HR 2.0 moves the agency
+onto one government-wide
+
+50
+00:02:50.939 --> 00:02:54.468
+platform whether or not
+identity rides along.
+
+51
+00:02:54.468 --> 00:02:58.200
+During onboarding, the agency
+designs its new connections,
+
+52
+00:02:58.200 --> 00:03:01.018
+and that's the moment to
+add the identity feed.
+
+53
+00:03:01.018 --> 00:03:04.618
+Once those connections go live,
+adding it means reopening them.
+
+54
+00:03:04.618 --> 00:03:06.704
+The second point is contractors.
+
+55
+00:03:06.704 --> 00:03:11.793
+HR 2.0 covers federal employees, so
+contractors need a source of their own,
+
+56
+00:03:11.793 --> 00:03:14.930
+and onboarding is the
+right time to choose it.
+
+57
+00:03:14.930 --> 00:03:19.950
+HR decides what the attributes mean;
+identity decides how they flow.
+
+58
+00:03:20.700 --> 00:03:23.725
+For the authorizing
+official, lead with evidence.
+
+59
+00:03:23.725 --> 00:03:28.613
+They're the only official who can accept
+risk for the agency, and every risk the
+
+60
+00:03:28.613 --> 00:03:33.500
+program carries, rather than removes,
+reaches them in writing, with an end date.
+
+61
+00:03:33.500 --> 00:03:36.688
+In return, they get something
+better than attestation.
+
+62
+00:03:36.688 --> 00:03:40.312
+Every gate is checked from data,
+every change is a signed plan,
+
+63
+00:03:40.312 --> 00:03:45.313
+and evidence comes out of the work instead
+of being assembled before an assessment.
+
+64
+00:03:45.313 --> 00:03:50.363
+Automated changes stay gated, with a
+person approving before anything runs.
+
+65
+00:03:50.363 --> 00:03:53.660
+That's a posture an
+authorizing official can sign.
+
+66
+00:03:54.410 --> 00:03:57.823
+Write the decision as one
+sentence someone can say yes to.
+
+67
+00:03:57.823 --> 00:04:01.898
+Approve the four-week pre-flight,
+sponsored by a named executive,
+
+68
+00:04:01.898 --> 00:04:04.667
+run by a named steward,
+starting on a set date,
+
+69
+00:04:04.667 --> 00:04:08.897
+with the first gate on the calendar
+beside the external deadlines.
+
+70
+00:04:08.897 --> 00:04:12.959
+Before saying yes, a sponsor should
+be able to answer a few questions.
+
+71
+00:04:12.959 --> 00:04:15.473
+Is the source of truth
+under version control?
+
+72
+00:04:15.473 --> 00:04:17.235
+Can every change be traced?
+
+73
+00:04:17.235 --> 00:04:19.697
+Does every decision
+have one named decider?
+
+74
+00:04:19.697 --> 00:04:23.397
+If the room hesitates on any
+of those, that's useful too.
+
+75
+00:04:23.397 --> 00:04:25.450
+Next, who signs what.
+
+76
+00:04:26.200 --> 00:04:29.525
+The charter fixes the shape and
+leaves the names blank for you.
+
+77
+00:04:29.525 --> 00:04:32.705
+The executive sponsor,
+with the CIO, owns scope,
+
+78
+00:04:32.705 --> 00:04:37.475
+funding and sequence, and decides
+when directory components retire.
+
+79
+00:04:37.475 --> 00:04:42.663
+The steward owns the target design and the
+repository, and clears the early gates.
+
+80
+00:04:42.663 --> 00:04:45.700
+Workstream leads say when
+their area is ready.
+
+81
+00:04:45.700 --> 00:04:49.124
+Around them, the CISO sets
+the control requirements,
+
+82
+00:04:49.124 --> 00:04:54.337
+the authorizing official accepts risk,
+and HR owns what the workforce data means.
+
+83
+00:04:54.337 --> 00:04:57.464
+Many of these people already
+hold the zero trust and
+
+84
+00:04:57.464 --> 00:05:01.030
+identity governance roles
+federal policy required.
+
+85
+00:05:01.780 --> 00:05:04.992
+Bring the one-page ask, with
+your four numbers filled in.
+
+86
+00:05:04.992 --> 00:05:09.608
+Bring the external deadlines that apply
+to your estate, candidate names for
+
+87
+00:05:09.608 --> 00:05:13.856
+sponsor and steward, a proposed start
+date, and a date for the first gate.
+
+88
+00:05:13.856 --> 00:05:17.493
+And leave the room with one
+decision recorded, whatever it is.
+
+89
+00:05:17.493 --> 00:05:22.647
+To go deeper, go back to the Start Here
+page, then Book 00 for the charter
+
+90
+00:05:22.647 --> 00:05:28.254
+and the decisions, Book 01 for the roadmap,
+and Book 03 for HR-driven identity.
+
+91
+00:05:28.254 --> 00:05:30.280
+Every claim is footnoted there.
+
+92
+00:05:30.280 --> 00:05:32.380
+Thank you for watching the Start series.

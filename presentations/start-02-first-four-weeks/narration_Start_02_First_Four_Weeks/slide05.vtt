@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.438
+The assessment reads the whole
+estate and changes nothing.
+
+2
+00:00:03.438 --> 00:00:06.733
+That's enforced three ways:
+the account can't write,
+
+3
+00:00:06.733 --> 00:00:10.350
+the code has no write commands,
+and every call is logged.
+
+4
+00:00:10.350 --> 00:00:12.050
+It runs in two tiers.
+
+5
+00:00:12.050 --> 00:00:15.184
+A plain account reads what
+default permissions expose,
+
+6
+00:00:15.184 --> 00:00:17.500
+which is usually more than people expect.
+
+7
+00:00:17.500 --> 00:00:21.612
+Then a few narrow, read-only
+additions fill the gaps it recorded,
+
+8
+00:00:21.612 --> 00:00:25.013
+and nothing that exposes
+secrets is ever requested.
+
+9
+00:00:25.013 --> 00:00:27.307
+And tell security operations first:
+
+10
+00:00:27.307 --> 00:00:30.749
+a full directory read looks
+a lot like reconnaissance.
+
+11
+00:00:30.749 --> 00:00:32.210
+So what does it inventory?

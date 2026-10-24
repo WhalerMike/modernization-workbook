@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.711
+The endpoint has a contract worth
+designing around: batches of up to fifty,
+
+2
+00:00:04.711 --> 00:00:08.685
+a daily call cap that depends on
+licensing, and a rate limit that
+
+3
+00:00:08.685 --> 00:00:12.888
+two Microsoft pages state differently,
+so pace to the stricter one.
+
+4
+00:00:12.888 --> 00:00:16.514
+Give the client only the upload
+and log-reading permissions,
+
+5
+00:00:16.514 --> 00:00:19.924
+ideally the scoped version that
+limits it to apps it owns.
+
+6
+00:00:19.924 --> 00:00:23.884
+Three design rules sit underneath:
+one provisioning app per source,
+
+7
+00:00:23.884 --> 00:00:28.055
+no client secrets, and a pause switch
+held by an operator rather than the
+
+8
+00:00:28.055 --> 00:00:32.863
+middleware, so a bad batch can be stopped
+before it disables thousands of accounts.
+
+9
+00:00:32.863 --> 00:00:35.040
+Next, where the users land.

@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.525
+Most foundation failures are predictable.
+
+2
+00:00:02.525 --> 00:00:07.154
+A broad multifactor policy blocks
+an unusual but critical sign-in,
+
+3
+00:00:07.154 --> 00:00:10.437
+which is why everything
+runs report-only first.
+
+4
+00:00:10.437 --> 00:00:13.476
+An administrator role goes
+just-in-time before the
+
+5
+00:00:13.476 --> 00:00:16.876
+emergency accounts work, and
+the tenant locks itself out.
+
+6
+00:00:16.876 --> 00:00:21.825
+A policy aimed at a group silently misses
+everyone whose attribute is empty.
+
+7
+00:00:21.825 --> 00:00:24.950
+The HR feed automates
+on data nobody checked.
+
+8
+00:00:24.950 --> 00:00:28.732
+And if the HR connector breaks
+mid-rollout, the program stalls,
+
+9
+00:00:28.732 --> 00:00:31.475
+which is why the gate
+requires the feed first.
+
+10
+00:00:31.475 --> 00:00:35.060
+Rollback triggers halt the
+work before a problem spreads.
