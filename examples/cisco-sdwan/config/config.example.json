@@ -1,0 +1,24 @@
+{
+  "_comment": "Placeholders only. Copy to config.json and edit. The loader refuses any key that looks like a secret; credentials come from environment variables.",
+  "manager_url": "https://sdwan-manager.contoso.example",
+  "controller_id": "sdwan-manager-01.contoso.example",
+  "auth_mode": "jwt",
+  "username_env": "SDWAN_API_USERNAME",
+  "password_env": "SDWAN_API_PASSWORD",
+  "ca_bundle": "",
+  "timeout_seconds": 30,
+  "audit_lookback_hours": 24,
+  "fixed_release_file": "../data/ed-26-03-fixed-releases.json",
+  "expected_control_components": [
+    {"system_ip": "10.255.0.1", "device_type": "manager"},
+    {"system_ip": "10.255.0.2", "device_type": "manager"},
+    {"system_ip": "10.255.0.3", "device_type": "manager"},
+    {"system_ip": "10.255.0.11", "device_type": "controller"},
+    {"system_ip": "10.255.0.12", "device_type": "controller"},
+    {"system_ip": "10.255.0.21", "device_type": "validator"},
+    {"system_ip": "10.255.0.22", "device_type": "validator"}
+  ],
+  "management_source_cidrs": ["10.250.10.0/24"],
+  "policy_refs": ["SC-7(4)-traffic-flow-policy-v1", "branch-hardening-baseline-v1"],
+  "output_dir": "./out"
+}

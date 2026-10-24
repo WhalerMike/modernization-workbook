@@ -1,0 +1,1 @@
+{"token": "example-jwt-access-token", "refresh": "example-jwt-refresh-token", "sub": "evidence-reader", "iss": "vmanage", "aud": "vmanage", "userGroup": ["operator"], "tenant": "default", "duration": 900, "exp": 1793002500, "csrf": "example-csrf-value", "isAPIKey": false, "tenantId": "default"}

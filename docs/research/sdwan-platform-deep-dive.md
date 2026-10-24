@@ -242,6 +242,9 @@ Its limits are a Moderate-only SD-WAN at the High level, CSV-only audit export, 
 
 Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
 
+
+The build on the program's platform is in the companion implementation guide, [Building Book 09's SD-WAN Design on Cisco Catalyst SD-WAN](cisco-sdwan-implementation.md).
+
 Related: [Book 09 — Network & Transport](../books/b09-network/index.md), [Appendix B — Requirements Mapping](../books/b09-network/appendix-b-requirements-mapping.md), and [Certificate Lifecycle on CyberArk Certificate Manager](cyberark-certificate-lifecycle.md), the precedent for building on an existing vendor.
 
 [^fr]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json> (data last changed October 24, 2026; accessed October 24, 2026). Listings: Cisco Catalyst SD-WAN for Government (SDWAN-G), FR2012534927, Class C, certified March 14, 2024; Cisco Security Cloud for Government, FR2304757473A, Class D, August 6, 2026; Palo Alto Networks Government Cloud Services, FR1913470600, Class C, January 21, 2021; GCS-HIGH, FR2317253567, Class D, December 9, 2024; Juniper Mist, FR2102758152, Class C, March 28, 2025; Zscaler Internet Access – Government – High, FR2227062482, Class D; Zscaler Private Access – Government, FR1719759604, Class D; Azure Commercial Cloud, F1209051525, Class D (lists "Global Secure Access" among its services). No listing found for Fortinet, HPE Aruba, Arista or VeloCloud, Cato or Versa.
