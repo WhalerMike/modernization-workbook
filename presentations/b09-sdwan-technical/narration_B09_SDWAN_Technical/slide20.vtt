@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.838
+This one is a proposal,
+and it's labeled that way.
+
+2
+00:00:02.838 --> 00:00:07.784
+Put a well-tuned edge on a flat network
+and its value is capped: its identity
+
+3
+00:00:07.784 --> 00:00:12.812
+signals have nowhere to land, and a
+hijacked session inherits all the trust.
+
+4
+00:00:12.812 --> 00:00:17.388
+The proposal treats the path like
+a token: leased for one purpose and
+
+5
+00:00:17.388 --> 00:00:21.800
+expiring with it, so a flow with no
+token behind it shows up as drift.
+
+6
+00:00:21.800 --> 00:00:24.238
+It's careful about lane discipline, too.
+
+7
+00:00:24.238 --> 00:00:29.126
+The program observes and records; it
+doesn't route packets or pick a vendor.
+
+8
+00:00:29.126 --> 00:00:32.040
+But one part applies
+right now: the evidence.

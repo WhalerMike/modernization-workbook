@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.125
+The twenty-four-server tier is an
+interim state, not a new floor.
+
+2
+00:00:04.125 --> 00:00:06.865
+The last one retires
+when five gates close:
+
+3
+00:00:06.865 --> 00:00:12.345
+application and update content have moved
+to Intune, imaging has moved to Autopilot,
+
+4
+00:00:12.345 --> 00:00:14.694
+no cache still runs on that hardware,
+
+5
+00:00:14.694 --> 00:00:19.000
+and no compliance evidence still
+comes from the old site database.
+
+6
+00:00:19.000 --> 00:00:23.725
+An estate that closes them in month
+thirty retires the tier in month thirty.
+
+7
+00:00:23.725 --> 00:00:26.066
+One that hasn't by month sixty keeps it,
+
+8
+00:00:26.066 --> 00:00:29.238
+rather than forcing a
+cutover against an open gate.
+
+9
+00:00:29.238 --> 00:00:30.960
+Next, what could go wrong.

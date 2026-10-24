@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.557
+The alternative sizes content
+to clients, not offices,
+
+2
+00:00:03.557 --> 00:00:06.362
+and fixes transport at
+the transport layer.
+
+3
+00:00:06.362 --> 00:00:11.627
+Twelve hubs in existing facilities carry
+SD-WAN aggregation, regional breakout,
+
+4
+00:00:11.627 --> 00:00:14.927
+security inspection and
+two content servers each:
+
+5
+00:00:14.927 --> 00:00:18.149
+twenty-four in all, about
+three quarters utilized.
+
+6
+00:00:18.149 --> 00:00:23.575
+Offices get a right-sized internet circuit,
+a five G backup and no local server.
+
+7
+00:00:23.575 --> 00:00:29.023
+Peer caching keeps most bytes off the WAN,
+with one SD-WAN detail worth catching:
+
+8
+00:00:29.023 --> 00:00:33.382
+behind a hub, Delivery Optimization
+needs group or subnet mode,
+
+9
+00:00:33.382 --> 00:00:35.813
+or every office looks like one site.
+
+10
+00:00:35.813 --> 00:00:38.780
+Next, the branch hardware and its cost.

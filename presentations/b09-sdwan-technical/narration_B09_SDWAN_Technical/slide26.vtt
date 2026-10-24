@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.985
+Offices fall into three
+tiers by seat count,
+
+2
+00:00:02.985 --> 00:00:07.225
+and the book uses one vendor's
+line purely as a costable example.
+
+3
+00:00:07.225 --> 00:00:11.567
+Year one capital, edges, hubs,
+the control plane and services,
+
+4
+00:00:11.567 --> 00:00:14.137
+comes to about ten million dollars.
+
+5
+00:00:14.137 --> 00:00:17.312
+The design rules are where
+these projects usually go wrong.
+
+6
+00:00:17.312 --> 00:00:21.862
+A small office needs a symmetric,
+SLA-backed circuit, not a gigabit.
+
+7
+00:00:21.862 --> 00:00:25.588
+Five G is for continuity,
+not feature-update waves.
+
+8
+00:00:25.588 --> 00:00:28.987
+Check that two fiber providers
+aren't sharing one conduit.
+
+9
+00:00:28.987 --> 00:00:32.301
+And license encrypted throughput
+to match the circuit,
+
+10
+00:00:32.301 --> 00:00:36.550
+because that's the most expensive
+costing mistake in this class of edge.
+
+11
+00:00:36.550 --> 00:00:38.400
+Now, the running costs.

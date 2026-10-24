@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.838
+This is the most argued
+decision at a branch.
+
+2
+00:00:02.838 --> 00:00:06.086
+Microsoft says don't inspect
+its Optimize traffic;
+
+3
+00:00:06.086 --> 00:00:08.562
+the boundary says inspect everything.
+
+4
+00:00:08.562 --> 00:00:11.441
+Both hold up, so it's a
+decision someone signs,
+
+5
+00:00:11.441 --> 00:00:14.000
+not a setting someone quietly changes.
+
+6
+00:00:14.000 --> 00:00:18.728
+Optimize is small: mail, SharePoint
+and OneDrive, and Teams media,
+
+7
+00:00:18.728 --> 00:00:22.475
+which has no names and must
+be steered by IP address.
+
+8
+00:00:22.475 --> 00:00:26.499
+The program exempts only that,
+narrower than Microsoft asks,
+
+9
+00:00:26.499 --> 00:00:29.075
+and keeps sign-in on the inspected path.
+
+10
+00:00:29.075 --> 00:00:32.322
+And it names the specific
+controls the bypass affects,
+
+11
+00:00:32.322 --> 00:00:34.775
+rather than writing inspection forgone.
+
+12
+00:00:34.775 --> 00:00:36.960
+So how is that decision made safely?

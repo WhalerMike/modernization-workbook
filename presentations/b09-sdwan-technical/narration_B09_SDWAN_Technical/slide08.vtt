@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.887
+This is where SD-WAN
+quietly earns its keep.
+
+2
+00:00:02.887 --> 00:00:07.651
+A quorum commit or a voice call is
+only as good as its unluckiest packet,
+
+3
+00:00:07.651 --> 00:00:10.526
+so what matters is the
+tail, not the average.
+
+4
+00:00:10.526 --> 00:00:13.643
+Forward error correction
+rebuilds lost packets
+
+5
+00:00:13.643 --> 00:00:16.913
+without waiting for a retry,
+at the cost of bandwidth.
+
+6
+00:00:16.913 --> 00:00:21.900
+Packet duplication sends critical packets
+down two paths, if you have two links.
+
+7
+00:00:21.900 --> 00:00:26.275
+Fast failover moves traffic
+before TCP even notices trouble.
+
+8
+00:00:26.275 --> 00:00:30.237
+And class separation stops a backup
+from queuing ahead of a call.
+
+9
+00:00:30.237 --> 00:00:32.950
+A ragged path can end
+up close to the floor.
+
+10
+00:00:32.950 --> 00:00:34.660
+Now, the pipes themselves.

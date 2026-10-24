@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.863
+Whether or not the governed path is adopted,
+every SD-WAN and SASE decision should
+
+2
+00:00:05.863 --> 00:00:11.163
+land as a record: who decided, under which
+policy, for which identity, and when.
+
+3
+00:00:11.163 --> 00:00:15.589
+Each adapter declares what it does and
+where it sits relative to the boundary,
+
+4
+00:00:15.589 --> 00:00:19.324
+and one that fits nowhere needs a
+decision before it's registered.
+
+5
+00:00:19.324 --> 00:00:21.736
+The table shows the drift worth watching,
+
+6
+00:00:21.736 --> 00:00:25.637
+like a telemetry chain that quietly
+breaks at a boundary crossing.
+
+7
+00:00:25.637 --> 00:00:29.896
+The book is candid about the limits:
+some products don't emit records,
+
+8
+00:00:29.896 --> 00:00:33.774
+so you may have to derive them from
+logs, and label them that way.
+
+9
+00:00:33.774 --> 00:00:35.860
+Next, what applications need.

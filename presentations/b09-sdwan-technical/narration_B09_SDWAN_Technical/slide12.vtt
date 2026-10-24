@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.950
+TIC 3.0 never requires SD-WAN; it
+names it once, as something to govern.
+
+2
+00:00:05.950 --> 00:00:10.416
+But two sentences in the Branch Office
+Use Case bind any steering policy,
+
+3
+00:00:10.416 --> 00:00:12.500
+and they're worth reading closely.
+
+4
+00:00:12.500 --> 00:00:18.425
+Every path, across redundant links or
+SD-WAN, has to keep the same security parity.
+
+5
+00:00:18.425 --> 00:00:23.325
+And the points deciding where flows go
+mustn't be easy to bypass or manipulate.
+
+6
+00:00:23.325 --> 00:00:27.763
+Put together, that makes the steering
+decision itself a security control.
+
+7
+00:00:27.763 --> 00:00:32.171
+The planning consequence matters too:
+circuits arrive in about a quarter,
+
+8
+00:00:32.171 --> 00:00:35.712
+but an authorized breakout
+architecture takes far longer.
+
+9
+00:00:35.712 --> 00:00:37.320
+So where does SASE sit?

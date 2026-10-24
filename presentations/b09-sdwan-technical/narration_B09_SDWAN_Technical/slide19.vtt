@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.857
+Step zero is easy to
+say and hard to check,
+
+2
+00:00:02.857 --> 00:00:07.450
+so this slide pairs each control
+area with the evidence to ask for.
+
+3
+00:00:07.450 --> 00:00:12.075
+Keep management interfaces off the
+internet, behind phishing-resistant sign-in.
+
+4
+00:00:12.075 --> 00:00:15.887
+Onboard edges with certificates,
+so a rogue box can't join.
+
+5
+00:00:15.887 --> 00:00:20.749
+Treat any routing-policy change as a
+reviewed change, not a console edit.
+
+6
+00:00:20.749 --> 00:00:24.575
+Patch on the federal clocks and
+track every edge's support date.
+
+7
+00:00:24.575 --> 00:00:26.450
+Keep logs off the devices.
+
+8
+00:00:26.450 --> 00:00:29.485
+The best single test is
+whether you could inventory,
+
+9
+00:00:29.485 --> 00:00:32.237
+pull logs and patch the
+whole fleet within a day.
+
+10
+00:00:32.237 --> 00:00:34.700
+Now, where the path itself is heading.
