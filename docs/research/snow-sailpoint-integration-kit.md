@@ -141,6 +141,15 @@ Mocks prove the logic, not the integration. To move this example past *illustrat
 4. The drift client's findings on a synthetic HR extract matching a hand count.
 5. Each item on the README's verify list resolved: chiefly the native-change trigger ID, the HTTP Request step's JSON attribute names and JSONPath handling, the ServiceNow client-credentials setup on your release, and the identity `gs.getUserName()` returns for an OAuth call.
 
+## Planned for Pass 2
+
+- **One approver per authority class** (gap 2): routing table and catalog variables; ServiceNow approves A0 and A1, SailPoint approves A2 and A3.
+- **Change records on demand** (gap 3): a flow that raises a standard, normal or emergency change from the request item by change class.
+- **One writer per attribute** (gap 4): a read-only check of SailPoint and Entra provisioning mappings that flags any attribute with two writers.
+- **Evidence export:** a nightly bundle of SailPoint events and ServiceNow records in Book 13's evidence shape.
+- **Optional: email intake.** An Exchange Online mail-flow rule redirects a team mailbox to the ServiceNow inbound address; an inbound email action turns structured messages ("my information is wrong", "access I don't recognize", "possible unauthorized change") into an unassigned triage record; after triage and any required approval, a ServiceNow flow calls a SailPoint workflow's external trigger (examples in PowerShell and Python). Email starts intake only: it never approves, verifies a person or closes a record (Book 15, Chapter 03).
+- Further tasks added as they're defined.
+
 ## What couldn't be verified
 
 From public documentation on October 24, 2026: the trigger ID for Native Change Account Updated (SailPoint's trigger table lists the attribute-change and provisioning triggers but not the native-change ones);[^sp-triggers] the HTTP Request step's JSON attribute names (SailPoint documents its user-interface fields);[^sp-http] whether `.$` JSONPath keys resolve inside the step's request body; the values of `provisioningResult` beyond the sample's `SUCCESS`;[^sp-prov] the API domain for an ISC FedRAMP tenant;[^sp-auth] whether `$expand=manager` works with application permissions;[^ms-manager] which ServiceNow client-credentials setup applies on a given release (the Zurich pages document the Machine Identity Console and the token request; the Xanadu page documents a system property that is false by default);[^sn-cc-config][^sn-cc-flow][^sn-cc-xanadu] and whether Workflows and Native Change Detection are available in the ISC FedRAMP environment. SailPoint's workflow and HTTP Request reference pages on the developer site returned "not found" or redirect pages; the workflow JSON shape was read from SailPoint's published OpenAPI specification instead.[^sp-wf]

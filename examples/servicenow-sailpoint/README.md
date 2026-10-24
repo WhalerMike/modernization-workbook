@@ -238,3 +238,12 @@ These couldn't be confirmed from public documentation on October 24, 2026. Check
 ## Not in Pass 1
 
 Actuation (the fix itself), the change record that authorizes it, signing the closure record, credential and schema drift, and the Book 13 lanes beyond identity. Each needs its own proof in a lab before this example moves past *illustrative*.
+
+## Planned for Pass 2
+
+- **One approver per authority class** (gap 2): routing table and catalog variables; ServiceNow approves A0 and A1, SailPoint approves A2 and A3.
+- **Change records on demand** (gap 3): a flow that raises a standard, normal or emergency change from the request item by change class.
+- **One writer per attribute** (gap 4): a read-only check of SailPoint and Entra provisioning mappings that flags any attribute with two writers.
+- **Evidence export:** a nightly bundle of SailPoint events and ServiceNow records in Book 13's evidence shape.
+- **Optional: email intake.** An Exchange Online mail-flow rule redirects a team mailbox to the ServiceNow inbound address; an inbound email action turns structured messages ("my information is wrong", "access I don't recognize", "possible unauthorized change") into an unassigned triage record; after triage and any required approval, a ServiceNow flow calls a SailPoint workflow's external trigger (examples in PowerShell and Python). Email starts intake only: it never approves, verifies a person or closes a record (Book 15, Chapter 03).
+- Further tasks added as they're defined.
