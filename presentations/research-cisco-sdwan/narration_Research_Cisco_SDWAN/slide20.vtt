@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.019
+To move this guide from
+under review to proved,
+
+2
+00:00:03.019 --> 00:00:06.925
+build the gate and the ten-site
+pilot in a lab or a pilot fabric,
+
+3
+00:00:06.925 --> 00:00:10.675
+run the example script against
+it, and record the evidence.
+
+4
+00:00:10.675 --> 00:00:15.131
+Some things couldn't be verified,
+like a Cisco recommended release
+
+5
+00:00:15.131 --> 00:00:19.263
+and edge FIPS status in SD-WAN
+mode, so confirm those with Cisco.
+
+6
+00:00:19.263 --> 00:00:23.278
+The decisions are hosted or
+on-premises, the release baseline,
+
+7
+00:00:23.278 --> 00:00:27.687
+static addressing, which security
+service, and the renewal runbook.
+
+8
+00:00:27.687 --> 00:00:32.413
+For why the program builds on this platform,
+read the SD-WAN platform deep dive.
+
+9
+00:00:32.413 --> 00:00:36.801
+For the design itself, read Book
+09's chapters on governed transport
+
+10
+00:00:36.801 --> 00:00:41.425
+and the field-office transformation,
+or watch the SD-WAN technical deck.
+
+11
+00:00:41.425 --> 00:00:42.600
+Thanks for listening.

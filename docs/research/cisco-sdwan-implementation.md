@@ -19,6 +19,15 @@ This guide names one product to make Book 09's vendor-neutral design concrete. I
 
 **The example code:** [examples/cisco-sdwan on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/cisco-sdwan). It's a read-only Python script that checks every control component against the fixed releases for the directive and the catalog, and exports inventory and audit-log evidence. It's **illustrative: unit-tested against mocked responses, not proven against a live fabric**.
 
+## Watch or download
+
+| Edition | File |
+|---|---|
+| Video (MP4, 1080p, about 16 minutes) | [Research_Cisco_SDWAN_Narrated.mp4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_Cisco_SDWAN_Narrated.mp4) |
+| Narrated, self-running deck (about 16 minutes, captions) | [Research_Cisco_SDWAN_Narrated.pptx](../../presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narrated.pptx) |
+| Deck, for presenting live | [Research_Cisco_SDWAN.pptx](../../presentations/research-cisco-sdwan/Research_Cisco_SDWAN.pptx) |
+| Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narrated.vtt) |
+
 ## What it covers
 
 | Part | Content |

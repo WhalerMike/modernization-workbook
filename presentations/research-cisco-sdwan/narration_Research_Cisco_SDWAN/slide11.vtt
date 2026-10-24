@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.931
+Out of the box, Catalyst
+trusts Cisco's own PKI,
+
+2
+00:00:02.931 --> 00:00:07.837
+and hardware edges prove who they are
+with a certificate in their trust chip.
+
+3
+00:00:07.837 --> 00:00:11.888
+An edge joins only if its serial
+number is on the authorized list.
+
+4
+00:00:11.888 --> 00:00:17.489
+Book 09 wants edges onboarded with certificates
+from the agency's PKI, and Cisco's
+
+5
+00:00:17.489 --> 00:00:22.924
+Enterprise Certificate option makes that
+possible on recent IOS XE releases.
+
+6
+00:00:22.924 --> 00:00:24.475
+The catch is renewal.
+
+7
+00:00:24.475 --> 00:00:26.250
+It's automatic at onboarding,
+
+8
+00:00:26.250 --> 00:00:29.725
+but Cisco says later renewals
+need manual intervention.
+
+9
+00:00:29.725 --> 00:00:34.745
+So this is a build plus a procedure, not
+a setting: issue through the CLM platform,
+
+10
+00:00:34.745 --> 00:00:37.757
+inventory certificates
+from the Manager's API,
+
+11
+00:00:37.757 --> 00:00:42.237
+and write renewal as a runbook
+triggered by the Manager's expiry alarm.
+
+12
+00:00:42.237 --> 00:00:45.337
+The CyberArk certificate
+guide covers that platform.
+
+13
+00:00:45.337 --> 00:00:47.060
+Next, FIPS.

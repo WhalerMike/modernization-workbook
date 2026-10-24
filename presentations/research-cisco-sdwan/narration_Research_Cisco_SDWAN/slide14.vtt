@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.993
+For the security service, Cisco's government
+option is Secure Access for Government,
+
+2
+00:00:04.993 --> 00:00:09.513
+certified at High, with automatic tunnels
+documented from a Catalyst branch.
+
+3
+00:00:09.513 --> 00:00:14.387
+But it runs in one region, Virginia, and
+a western office pays that round trip.
+
+4
+00:00:14.387 --> 00:00:18.687
+Measure it in the pilot, or choose a
+service with nearer points of presence.
+
+5
+00:00:18.687 --> 00:00:22.468
+Microsoft's Global Secure
+Access is available in GCC,
+
+6
+00:00:22.468 --> 00:00:28.053
+and Catalyst is a listed partner, but
+Cisco's guide forwards only the Microsoft
+
+7
+00:00:28.053 --> 00:00:33.551
+365 profile, and Conditional Access
+applies only to users running the client.
+
+8
+00:00:33.551 --> 00:00:38.850
+So it carries branch Microsoft
+365 traffic, not a full Pattern C.
+
+9
+00:00:38.850 --> 00:00:42.990
+And in GCC, informed network
+routing is still closed,
+
+10
+00:00:42.990 --> 00:00:47.612
+so Microsoft 365 path choice
+rests on the edge's own probes.
+
+11
+00:00:47.612 --> 00:00:49.060
+Next, evidence.

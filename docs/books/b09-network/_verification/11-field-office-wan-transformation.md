@@ -121,3 +121,15 @@ Found by the workbook-wide sweep of federal citations for the Federal Framework 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Intune in scope for the Azure commercial FedRAMP High P-ATO | Authorization boundary row | restated: 'High authorization (a P-ATO, in Microsoft's pre-2026 term)' | B10 Ch03 |
+
+## Addition, October 24, 2026: SD-WAN platform and Cisco implementation research
+
+Applied from the two research briefs behind the workbook's SD-WAN platform deep dive and Cisco Catalyst SD-WAN implementation guide. Each claim was checked against the primary source on October 24, 2026; every new or changed sentence carries its own footnote.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | CISA's ED 26-03 hardening guidance says to host the infrastructure in GovCloud and migrate to FedRAMP-compliant cloud; the on-premises control-plane line may change | "Branch network", controller paragraph; risks table (new row) | added (cost model unchanged; flagged) | `[^c11-edsupp]`, `[^c11-edv1]` |
+| 2 | CISA expects a controller firewall allow-listing known edge, controller, validator and manager IPs, so edges need static IPs; conflicts with zero-touch from dynamic addresses and probably the 5G path | Risks table (new row) | added (5G conflict marked as probable) | `[^c11-edsupp]`, `[^c11-ciscoharden]` |
+| 3 | No FIPS 140-3 certificate found covering Catalyst 8200/8300 in SD-WAN mode; controllers covered by #4747 | Risks table (new row) | added | `[^c11-ciscofips]` |
+| 4 | Cisco documents ML-KEM IKEv2 only in autonomous mode; record the gap in the M-26-15 plan | Risks table (new row) | added | `[^c11-ciscopqc]` |
+| 5 | "14 virtual machines" matches Cisco 20.18 sizing (3-node Medium Manager cluster, 2 Controllers, 2 Validators per site, two sites); cluster ceiling 2,000 devices; ~1,524 edges is about 76% | "Control plane and services", new note after the table | confirmed (note added) | `[^c11-ciscosizing]`; 1,524 and 76% are chapter arithmetic |

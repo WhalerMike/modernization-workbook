@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.350
+Book 09 names four branch egress
+patterns, and each has a Catalyst build.
+
+2
+00:00:05.350 --> 00:00:09.393
+Pattern A, the hairpin, sends
+internet traffic to the regional hub,
+
+3
+00:00:09.393 --> 00:00:12.462
+which breaks out through
+its own security tunnel.
+
+4
+00:00:12.462 --> 00:00:16.038
+That's every office's starting
+state, and its fallback.
+
+5
+00:00:16.038 --> 00:00:19.369
+Pattern B, bare local
+breakout, is never allowed,
+
+6
+00:00:19.369 --> 00:00:22.700
+so audit the policy group
+for it on every change.
+
+7
+00:00:22.700 --> 00:00:28.528
+Pattern C, the reference, is automatic
+IPsec tunnels from each edge to a security
+
+8
+00:00:28.528 --> 00:00:31.619
+service edge, with Microsoft 365 Optimize
+
+9
+00:00:31.619 --> 00:00:35.063
+traffic going direct only
+under its exception.
+
+10
+00:00:35.063 --> 00:00:38.205
+Pattern D puts policy
+in the endpoint agent,
+
+11
+00:00:38.205 --> 00:00:41.436
+and the edge keeps
+agentless devices on A or C.
+
+12
+00:00:41.436 --> 00:00:47.112
+Cisco's own TIC guide predates the current
+use case, so build to Book 09's reading.
+
+13
+00:00:47.112 --> 00:00:49.340
+Next, the security service.

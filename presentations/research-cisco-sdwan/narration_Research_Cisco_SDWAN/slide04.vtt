@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.813
+The directive started
+with two catalog entries.
+
+2
+00:00:02.813 --> 00:00:08.724
+Today CISA's Known Exploited Vulnerabilities
+catalog lists nine for Catalyst SD-WAN.
+
+3
+00:00:08.724 --> 00:00:11.883
+Six carry the directive's
+mitigation instructions,
+
+4
+00:00:11.883 --> 00:00:14.600
+and three more arrived
+in June and September.
+
+5
+00:00:14.600 --> 00:00:18.015
+Two are authentication bypasses
+that reach the Manager,
+
+6
+00:00:18.015 --> 00:00:20.050
+the Controller and the Validator.
+
+7
+00:00:20.050 --> 00:00:24.450
+The newest, added on September 30,
+came with a three-day due date.
+
+8
+00:00:24.450 --> 00:00:26.463
+So this isn't a one-time cleanup.
+
+9
+00:00:26.463 --> 00:00:30.110
+Nine exploited flaws in eight
+months is a patch tempo,
+
+10
+00:00:30.110 --> 00:00:33.675
+not an event; treat the
+catalog as a standing posture.
+
+11
+00:00:33.675 --> 00:00:38.399
+Cisco now publishes advisories on the
+first and third Wednesday of each month,
+
+12
+00:00:38.399 --> 00:00:42.687
+with a week's notice, and still goes
+out of cycle for active exploitation.
+
+13
+00:00:42.687 --> 00:00:44.330
+So which release do you need?

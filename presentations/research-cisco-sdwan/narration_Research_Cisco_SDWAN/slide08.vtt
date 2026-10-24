@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.175
+Here's Book 09's target: two
+data centers, ten regional hubs,
+
+2
+00:00:04.175 --> 00:00:08.125
+and about fifteen hundred
+field offices on an overlay.
+
+3
+00:00:08.125 --> 00:00:12.977
+On Catalyst, that's one edge per office,
+a high-availability pair at each hub,
+
+4
+00:00:12.977 --> 00:00:17.113
+and hub-and-spoke to a regional
+hub, with a second hub as fallback.
+
+5
+00:00:17.113 --> 00:00:21.773
+In plain terms, the Manager is where
+you configure and monitor, the Validator
+
+6
+00:00:21.773 --> 00:00:23.400
+decides which edges get in,
+
+7
+00:00:23.400 --> 00:00:26.951
+and the Controller hands every
+edge its routes and policy.
+
+8
+00:00:26.951 --> 00:00:32.013
+On-premises, Cisco's sizing for this
+fleet is seven VMs per data center,
+
+9
+00:00:32.013 --> 00:00:36.188
+fourteen in all, which matches
+Book 09's bill of materials.
+
+10
+00:00:36.188 --> 00:00:39.372
+The Manager cluster tops
+out at two thousand devices,
+
+11
+00:00:39.372 --> 00:00:42.050
+so this fleet uses about
+three quarters of it.
+
+12
+00:00:42.050 --> 00:00:43.650
+Plan the growth trigger now.
+
+13
+00:00:43.650 --> 00:00:44.980
+Next, policy.

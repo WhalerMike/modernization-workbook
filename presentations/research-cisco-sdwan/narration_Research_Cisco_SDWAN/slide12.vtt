@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.394
+If an acquisition has to state
+a FIPS 140-3 expectation,
+
+2
+00:00:04.394 --> 00:00:07.000
+the honest answer has two halves.
+
+3
+00:00:07.000 --> 00:00:09.921
+The control components are in good shape:
+
+4
+00:00:09.921 --> 00:00:15.246
+FIPS mode is on by default on recent
+releases and in the hosted environment,
+
+5
+00:00:15.246 --> 00:00:20.400
+and Cisco's letter for the current
+train cites an active FIPS 140-3 module.
+
+6
+00:00:20.400 --> 00:00:21.763
+The edges are different.
+
+7
+00:00:21.763 --> 00:00:24.069
+Their crypto modules are validated,
+
+8
+00:00:24.069 --> 00:00:28.606
+but Cisco's current letters don't name
+SD-WAN mode, NIAP's router listings
+
+9
+00:00:28.606 --> 00:00:33.450
+don't mention it, and Cisco's own example
+shows an edge with FIPS mode disabled.
+
+10
+00:00:33.450 --> 00:00:38.725
+So get edge validation in SD-WAN mode as
+a written vendor commitment before award.
+
+11
+00:00:38.725 --> 00:00:40.487
+There's no SD-WAN STIG either;
+
+12
+00:00:40.487 --> 00:00:44.163
+the router STIGs are a reference
+baseline, not a checklist.
+
+13
+00:00:44.163 --> 00:00:46.080
+Next, TIC 3.0.

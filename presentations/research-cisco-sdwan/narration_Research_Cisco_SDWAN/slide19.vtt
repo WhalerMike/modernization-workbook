@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.963
+The guide comes with a small
+example, a read-only Python script.
+
+2
+00:00:03.963 --> 00:00:08.792
+It checks every control component against
+the fixed releases for the directive
+
+3
+00:00:08.792 --> 00:00:13.262
+and the catalog, and writes a gate file
+that must show no fail or confirm rows.
+
+4
+00:00:13.262 --> 00:00:17.535
+It exports a fleet inventory record
+per device, and an audit record per
+
+5
+00:00:17.535 --> 00:00:22.324
+audit-log entry, flagging sign-ins and
+sources outside the management network.
+
+6
+00:00:22.324 --> 00:00:27.387
+It doesn't build path-decision records;
+those need the policy and statistics reads.
+
+7
+00:00:27.387 --> 00:00:31.228
+And it's read-only on purpose,
+because of lane discipline:
+
+8
+00:00:31.228 --> 00:00:34.150
+the program observes, the fabric enforces.
+
+9
+00:00:34.150 --> 00:00:36.100
+Be clear about its status, though.
+
+10
+00:00:36.100 --> 00:00:39.879
+It's illustrative: unit-tested
+against mocked responses,
+
+11
+00:00:39.879 --> 00:00:42.050
+not proven against a live fabric.
+
+12
+00:00:42.050 --> 00:00:44.380
+Finally, what to do with all of this.

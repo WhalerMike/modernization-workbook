@@ -112,3 +112,18 @@ Applied from the verified review findings (critique claims re-checked against pr
 |---|---|---|---|---|
 | RF-1 | GSA lists SD-WAN among EIS services for the non-traditional TIC 3.0 use cases | line 127 | verified (kept); `[^c05-gsatic]` now uses the canonical URL (the old one 301-redirects to it) and quotes the page | <https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/enterprise-infrastructure-solutions/trusted-internet-connections> |
 | RF-2 | Zscaler Internet Access – Government (FR1720454205, Class C, certified December 14, 2018) and the High offering (FR2227062482, Class D, certified July 2, 2022) are separate listings; new footnote `[^c05-fr-zia]` | Cautions after the Marketplace table (line 127) | verified | <https://www.fedramp.gov/marketplace/products.json> |
+
+## Addition, October 24, 2026: SD-WAN platform and Cisco implementation research
+
+Applied from the two research briefs behind the workbook's SD-WAN platform deep dive and Cisco Catalyst SD-WAN implementation guide. Each claim was checked against the primary source on October 24, 2026; every new or changed sentence carries its own footnote.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | Palo Alto GCS-HIGH listing describes Prisma SD-WAN, but Palo Alto's FedRAMP support table marks Prisma SD-WAN and its controller as supported at Moderate only | "Authorization status is not uniform" table, GCS-HIGH row | corrected (listing text kept; vendor limit added) | `[^c05-pafedramp]` |
+| 2 | A FedRAMP-certified, vendor-hosted controller doesn't move directive obligations off the agency: ED 26-03 V1 has off-premises (cloud) required actions | First caution after the Marketplace table | added | `[^c05-edv1cloud]` |
+| 3 | Cisco's 2026 SD-WAN advisories list the FedRAMP environment (Cisco SD-WAN for Government) among affected deployment types | First caution after the Marketplace table | added | `[^c05-ciscorpa2]` (CVE-2026-20182 advisory; same list in -20127, -20245, -20262) |
+| 4 | Supplemental Direction extends the hunt to CVE-2026-20133 and CVE-2026-20182; activity likely began in 2023 | "Securing the controller and the edges", ED 26-03 paragraph | added | `[^c05-edsupp]` |
+| 5 | Cisco added the Validator (formerly vBond) to the CVE-2026-20127 advisory on June 16, 2026 | Same paragraph | added | `[^c05-ciscorpa]` |
+| 6 | KEV lists nine Cisco Catalyst SD-WAN CVEs added in 2026; newest CVE-2026-76504, added September 30, due October 3 | Same paragraph | added | `[^c05-kev2026]` (KEV JSON, catalog 2026.10.23) |
+| 7 | ED 26-03 names Manager and Controller, CVE-2026-20127 and CVE-2022-20775; directive sequence | Same paragraph | confirmed (no change) | `[^c05-ed2603]` |
+| 8 | Diagram ch05-governor-attack-surface: "ED 26-03 (2026): authentication bypass in a widely used SD-WAN manager and controller, actively exploited" | Figure | confirmed (still accurate; not edited) | `[^c05-ed2603]` |
