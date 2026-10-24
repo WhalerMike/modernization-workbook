@@ -1,0 +1,7 @@
+{
+  "header": {"generatedOn": 1793001600000},
+  "data": [
+    {"logid": "918c6d64-729c-4304-b2c7-955a7c0e6a61", "entry_time": 1793000000000, "statcycletime": 1793000000000, "loguser": "netops-admin@contoso.example", "logusersrcip": "10.250.10.25", "logmodule": "user", "logfeature": "login", "logdeviceid": "10.255.0.1", "logmessage": "Authentication succeeded for user netops-admin@contoso.example", "auditdetails": [], "tenant": "default"},
+    {"logid": "0b8f3e2a-1111-4c2d-9e1f-2a3b4c5d6e7f", "entry_time": 1793000300000, "statcycletime": 1793000300000, "loguser": "admin", "logusersrcip": "203.0.113.50", "logmodule": "template", "logfeature": "device template", "logdeviceid": "10.255.0.1", "logmessage": "Template attached to device fo-0101-edge", "auditdetails": ["attach"], "tenant": "default"}
+  ]
+}

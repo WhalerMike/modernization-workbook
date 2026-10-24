@@ -1,0 +1,12 @@
+{
+  "header": {"generatedOn": 1793001600000},
+  "data": [
+    {"deviceId": "10.255.0.1", "system-ip": "10.255.0.1", "host-name": "sdwan-manager-01", "reachability": "reachable", "status": "normal", "personality": "vmanage", "device-type": "vmanage", "uuid": "11111111-0000-4000-8000-000000000001", "site-id": "100", "device-model": "vmanage", "board-serial": "", "version": "20.18.4.1"},
+    {"deviceId": "10.255.0.2", "system-ip": "10.255.0.2", "host-name": "sdwan-manager-02", "reachability": "reachable", "status": "normal", "personality": "vmanage", "device-type": "vmanage", "uuid": "11111111-0000-4000-8000-000000000002", "site-id": "100", "device-model": "vmanage", "board-serial": "", "version": "20.18.4.1"},
+    {"deviceId": "10.255.0.3", "system-ip": "10.255.0.3", "host-name": "sdwan-manager-03", "reachability": "reachable", "status": "normal", "personality": "vmanage", "device-type": "vmanage", "uuid": "11111111-0000-4000-8000-000000000003", "site-id": "100", "device-model": "vmanage", "board-serial": "", "version": "20.18.4.1"},
+    {"deviceId": "10.255.0.11", "system-ip": "10.255.0.11", "host-name": "sdwan-controller-01", "reachability": "reachable", "status": "normal", "personality": "vsmart", "device-type": "vsmart", "uuid": "22222222-0000-4000-8000-000000000011", "site-id": "100", "device-model": "vsmart", "board-serial": "", "version": "20.18.3.1"},
+    {"deviceId": "10.255.0.21", "system-ip": "10.255.0.21", "host-name": "sdwan-validator-01", "reachability": "reachable", "status": "normal", "personality": "vbond", "device-type": "vbond", "uuid": "33333333-0000-4000-8000-000000000021", "site-id": "100", "device-model": "vedge-cloud", "board-serial": "", "version": "20.15.5.2"},
+    {"deviceId": "10.255.0.99", "system-ip": "10.255.0.99", "host-name": "unknown-peer", "reachability": "reachable", "status": "normal", "personality": "vsmart", "device-type": "vsmart", "uuid": "99999999-0000-4000-8000-000000000099", "site-id": "0", "device-model": "vsmart", "board-serial": "", "version": "20.18.3.1"},
+    {"deviceId": "10.1.101.1", "system-ip": "10.1.101.1", "host-name": "fo-0101-edge", "reachability": "reachable", "status": "normal", "personality": "vedge", "device-type": "vedge", "uuid": "C8200L-1N-4T-FGL000000AA", "site-id": "10101", "device-model": "vedge-C8200L-1N-4T", "board-serial": "0000AA00", "version": "17.18.02.0.1234"}
+  ]
+}
