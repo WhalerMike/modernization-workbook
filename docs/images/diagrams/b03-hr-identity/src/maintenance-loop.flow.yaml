@@ -1,0 +1,23 @@
+# Research draft — keeping identity correct after HR becomes the source: the maintenance loop.
+# Every fix is detected, routed to the owner of the fact, made at the source, and carried back by the pipeline.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  detect: {tone: violet, width: 175, tag: "1 Detect", title: "Find the difference", body: ["Drift comparison, quarantine, help desk call, audit log"], size: 12}
+  classify: {tone: slate, width: 175, tag: "2 Classify", title: "What kind of fix?", body: ["Fact, rule, pipeline, match, credential or exception"], size: 12}
+  route: {tone: blue, width: 175, tag: "3 Route", title: "To the owner of the fact", body: ["HR, the contractor source, the data architect, security, the PKI office"], size: 12}
+  fix: {tone: amber, width: 175, tag: "4 Fix at the source", title: "Correct the record or the rule", body: ["Never the copy in the directory"], size: 12}
+  carry: {tone: green, width: 175, tag: "5 Carry back", title: "The pipeline re-applies it", body: ["Provisioning and workflows, not a console edit"], size: 12}
+  prove: {tone: green, width: 175, tag: "6 Prove", title: "Re-read and record", body: ["The difference is gone; the evidence stays"], size: 12}
+  exc: {tone: red, width: 200, tag: "When the source can't move fast enough", title: "Declared, time-boxed exception", body: ["Owner approves, expiry set, removed when the source catches up"], size: 12}
+order:
+  - [detect, classify, route]
+  - [prove, carry, fix]
+edges:
+  - [detect, classify]
+  - [classify, route]
+  - [route, fix]
+  - [carry, fix, {attrs: "dir=back"}]
+  - [prove, carry, {attrs: "dir=back"}]
+  - [route, exc, {style: dashed, tone: red}]
+  - [prove, exc, {style: dashed, tone: red, attrs: "dir=back"}]
