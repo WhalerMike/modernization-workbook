@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.139
+Before any class goes to a machine, it
+has to pass six tests from Chapter 10:
+
+2
+00:00:05.139 --> 00:00:08.447
+reachable, deterministic,
+bounded, reversible,
+
+3
+00:00:08.447 --> 00:00:11.925
+verifiable, and not on the
+permanently-gated list.
+
+4
+00:00:11.925 --> 00:00:16.050
+With that filter in place, the starting
+assignment falls out naturally.
+
+5
+00:00:16.050 --> 00:00:20.712
+Routine configuration drift and patching
+run on machines behind an approval.
+
+6
+00:00:20.712 --> 00:00:25.395
+Anything critical, or anything
+touching authorization or provenance,
+
+7
+00:00:25.395 --> 00:00:27.062
+halts and goes to a person.
+
+8
+00:00:27.062 --> 00:00:29.639
+Access requests ride the five clauses,
+
+9
+00:00:29.639 --> 00:00:33.424
+and an idle entitlement goes
+to its owner to decide first.
+
+10
+00:00:33.424 --> 00:00:36.475
+An agency tunes all of
+this in its own record.
+
+11
+00:00:36.475 --> 00:00:38.090
+Here's the rest of the table.

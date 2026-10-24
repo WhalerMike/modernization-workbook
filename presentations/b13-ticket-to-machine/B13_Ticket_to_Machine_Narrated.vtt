@@ -1,0 +1,851 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.781
+Welcome to the
+Ticket-to-Machine Reference,
+
+2
+00:00:02.781 --> 00:00:06.575
+Appendix B of Book 13 in the
+Federal Modernization Workbook.
+
+3
+00:00:06.575 --> 00:00:09.923
+Chapter 10 makes an argument
+about operational tempo;
+
+4
+00:00:09.923 --> 00:00:12.825
+this appendix is the
+reference that backs it up.
+
+5
+00:00:12.825 --> 00:00:15.708
+Over the next twelve
+minutes we'll walk the loop,
+
+6
+00:00:15.708 --> 00:00:20.662
+the five clauses every change passes through,
+the lanes each kind of change takes,
+
+7
+00:00:20.662 --> 00:00:24.137
+the clocks, the evidence record,
+and four worked examples.
+
+8
+00:00:24.137 --> 00:00:28.734
+One caution up front: the lanes,
+ceilings, severities and windows are the
+
+9
+00:00:28.734 --> 00:00:33.799
+program's design, not federal requirements,
+and the examples are illustrative.
+
+10
+00:00:33.799 --> 00:00:36.400
+Let's start with why any of this matters.
+
+11
+00:00:37.150 --> 00:00:39.750
+Here's the idea the
+whole appendix rests on.
+
+12
+00:00:39.750 --> 00:00:43.633
+A ticket that sends a person to
+a console doesn't prove anything;
+
+13
+00:00:43.633 --> 00:00:45.425
+it just changes who's to blame.
+
+14
+00:00:45.425 --> 00:00:50.188
+The person does the work, replies
+"done," and the record holds a claim.
+
+15
+00:00:50.188 --> 00:00:54.188
+Now flip it: the person approves,
+a machine runs a versioned
+
+16
+00:00:54.188 --> 00:00:58.188
+plan under its own identity,
+and a re-read proves the result.
+
+17
+00:00:58.188 --> 00:01:02.375
+The person keeps the one job a
+machine can't do, which is to decide.
+
+18
+00:01:02.375 --> 00:01:05.576
+And this matters because a
+platform that finds drift
+
+19
+00:01:05.576 --> 00:01:09.213
+perfectly but closes it slowly
+is just documenting neglect.
+
+20
+00:01:09.213 --> 00:01:12.060
+So what does the machine
+path look like end to end?
+
+21
+00:01:12.810 --> 00:01:14.485
+It's a loop of five steps.
+
+22
+00:01:14.485 --> 00:01:19.628
+A rule tests actual state against the
+record, a difference becomes a typed finding,
+
+23
+00:01:19.628 --> 00:01:23.788
+the finding becomes a task with an
+owner and a clock, the change runs
+
+24
+00:01:23.788 --> 00:01:27.872
+on the platform's own surface, and
+a re-read closes it with evidence.
+
+25
+00:01:27.872 --> 00:01:31.420
+The important part is what the
+coordination layer doesn't do:
+
+26
+00:01:31.420 --> 00:01:33.336
+it never makes the change itself.
+
+27
+00:01:33.336 --> 00:01:37.798
+Its job is to make every drift
+owned, clocked, approved and proven.
+
+28
+00:01:37.798 --> 00:01:41.504
+Federal policy is heading the
+same way for cloud providers,
+
+29
+00:01:41.504 --> 00:01:45.210
+and the program applies that
+logic to an agency's own estate.
+
+30
+00:01:45.210 --> 00:01:48.720
+Inside that loop, every
+request runs a chain.
+
+31
+00:01:49.470 --> 00:01:53.224
+Every governed change,
+whether it's an add, a move,
+
+32
+00:01:53.224 --> 00:01:57.845
+a deletion or a reset, passes
+the same five clauses, in order.
+
+33
+00:01:57.845 --> 00:01:59.801
+It has to trace to a real origin,
+
+34
+00:01:59.801 --> 00:02:04.810
+carry an approval from someone who isn't
+the requester, run under a short-lived
+
+35
+00:02:04.810 --> 00:02:09.270
+scoped role, prove its result with a
+re-read, and write its own evidence.
+
+36
+00:02:09.270 --> 00:02:14.358
+If any clause fails, the chain stops,
+and the task isn't treated as closed.
+
+37
+00:02:14.358 --> 00:02:18.645
+And here's the highpoint: a refusal
+is recorded just like a success,
+
+38
+00:02:18.645 --> 00:02:21.821
+so a blocked self-approval
+becomes evidence too.
+
+39
+00:02:21.821 --> 00:02:24.108
+Next question: who approves what?
+
+40
+00:02:24.108 --> 00:02:25.980
+That's where the lanes come in.
+
+41
+00:02:26.730 --> 00:02:31.677
+Every kind of change takes one of five
+lanes, and the lane settles three things:
+
+42
+00:02:31.677 --> 00:02:35.542
+who approves, what actually runs,
+and what evidence comes out.
+
+43
+00:02:35.542 --> 00:02:37.418
+Two lanes run on machines.
+
+44
+00:02:37.418 --> 00:02:42.431
+The gated lane, where a named person
+approves each instance, is the default.
+
+45
+00:02:42.431 --> 00:02:44.923
+The autonomous lane is only for narrow,
+
+46
+00:02:44.923 --> 00:02:50.143
+low-risk classes the authorizing official
+has accepted in writing, ahead of time.
+
+47
+00:02:50.143 --> 00:02:54.305
+Then there's a human-decision lane, a
+protocol lane with no ticket at all,
+
+48
+00:02:54.305 --> 00:02:57.679
+and the declared exception
+for when no machine can reach.
+
+49
+00:02:57.679 --> 00:03:00.267
+Remember, this is the program's design.
+
+50
+00:03:00.267 --> 00:03:02.260
+So which changes land where?
+
+51
+00:03:03.010 --> 00:03:08.099
+Before any class goes to a machine, it
+has to pass six tests from Chapter 10:
+
+52
+00:03:08.099 --> 00:03:11.407
+reachable, deterministic,
+bounded, reversible,
+
+53
+00:03:11.407 --> 00:03:14.885
+verifiable, and not on the
+permanently-gated list.
+
+54
+00:03:14.885 --> 00:03:19.010
+With that filter in place, the starting
+assignment falls out naturally.
+
+55
+00:03:19.010 --> 00:03:23.672
+Routine configuration drift and patching
+run on machines behind an approval.
+
+56
+00:03:23.672 --> 00:03:28.355
+Anything critical, or anything
+touching authorization or provenance,
+
+57
+00:03:28.355 --> 00:03:30.022
+halts and goes to a person.
+
+58
+00:03:30.022 --> 00:03:32.599
+Access requests ride the five clauses,
+
+59
+00:03:32.599 --> 00:03:36.384
+and an idle entitlement goes
+to its owner to decide first.
+
+60
+00:03:36.384 --> 00:03:39.435
+An agency tunes all of
+this in its own record.
+
+61
+00:03:39.435 --> 00:03:41.350
+Here's the rest of the table.
+
+62
+00:03:42.100 --> 00:03:45.412
+The second half covers the
+changes that need the most care.
+
+63
+00:03:45.412 --> 00:03:50.118
+Anything with a big blast radius, like
+a tenant-wide role or a Conditional
+
+64
+00:03:50.118 --> 00:03:54.824
+Access change, stays gated permanently,
+however mature the program gets.
+
+65
+00:03:54.824 --> 00:03:59.312
+Changes to the record itself are always
+a human decision through review.
+
+66
+00:03:59.312 --> 00:04:01.796
+Routine certificates run on protocol,
+
+67
+00:04:01.796 --> 00:04:04.900
+and emergencies act first
+and record afterward.
+
+68
+00:04:04.900 --> 00:04:06.825
+Two rules hold across all of it.
+
+69
+00:04:06.825 --> 00:04:10.661
+A machine never edits the
+record to make drift disappear,
+
+70
+00:04:10.661 --> 00:04:13.763
+and no gap quietly goes
+to a person at a console.
+
+71
+00:04:13.763 --> 00:04:17.270
+Now let's look at drift from
+the other side, by class.
+
+72
+00:04:18.020 --> 00:04:21.495
+Drift comes in five classes,
+and each has a default lane.
+
+73
+00:04:21.495 --> 00:04:26.120
+A schema problem, where the format's
+wrong, can often be fixed by a machine.
+
+74
+00:04:26.120 --> 00:04:29.452
+Provenance and authorization
+drift are different:
+
+75
+00:04:29.452 --> 00:04:33.558
+when the claim is in active use,
+the run halts and a person decides.
+
+76
+00:04:33.558 --> 00:04:37.558
+Semantic and identity drift
+usually need human judgment too.
+
+77
+00:04:37.558 --> 00:04:41.439
+The honest limit here is that
+the classes whose fixes depend on
+
+78
+00:04:41.439 --> 00:04:45.544
+context reach a person more often,
+and that's by design, not a failure.
+
+79
+00:04:45.544 --> 00:04:50.090
+Which brings us to the clock: how fast
+does each finding have to be handled?
+
+80
+00:04:50.840 --> 00:04:53.690
+The tempo puts a clock on every severity.
+
+81
+00:04:53.690 --> 00:04:56.376
+Critical findings never get a machine fix;
+
+82
+00:04:56.376 --> 00:04:59.752
+the run halts and a named
+person decides immediately.
+
+83
+00:04:59.752 --> 00:05:03.778
+High findings get an hour, medium
+a day, and low three days.
+
+84
+00:05:03.778 --> 00:05:07.353
+These windows bound the
+response, not the drift itself;
+
+85
+00:05:07.353 --> 00:05:11.166
+a program with no findings is
+more likely blind than clean.
+
+86
+00:05:11.166 --> 00:05:12.540
+Two things to remember.
+
+87
+00:05:12.540 --> 00:05:16.577
+Automatic fixes hold only for
+classes accepted in advance.
+
+88
+00:05:16.577 --> 00:05:20.646
+And when an outside clock is
+shorter, like CISA's vulnerability
+
+89
+00:05:20.646 --> 00:05:24.791
+timelines or the one-hour incident
+notice, the outside clock wins.
+
+90
+00:05:24.791 --> 00:05:27.190
+So how does leadership know it's working?
+
+91
+00:05:27.940 --> 00:05:31.977
+These five measures belong to
+leadership, not just operations.
+
+92
+00:05:31.977 --> 00:05:34.303
+How much of the estate can we even see?
+
+93
+00:05:34.303 --> 00:05:36.752
+Do findings close inside their windows?
+
+94
+00:05:36.752 --> 00:05:38.941
+How often does a person have to step in?
+
+95
+00:05:38.941 --> 00:05:41.152
+What share of closures did a machine do?
+
+96
+00:05:41.152 --> 00:05:43.739
+And how many tasks still
+have no machine at all?
+
+97
+00:05:43.739 --> 00:05:46.453
+Each bad value tells
+you something specific,
+
+98
+00:05:46.453 --> 00:05:49.240
+like manual work quietly
+becoming permanent.
+
+99
+00:05:49.240 --> 00:05:52.653
+The good news is that none of this
+needs round-the-clock staffing.
+
+100
+00:05:52.653 --> 00:05:55.935
+What it does need is named
+people in the escalation roles,
+
+101
+00:05:55.935 --> 00:05:58.240
+because tooling can't create authority.
+
+102
+00:05:58.240 --> 00:06:00.830
+Now, what does all that work leave behind?
+
+103
+00:06:01.580 --> 00:06:05.118
+It leaves one record, in one
+shape, whatever the lane.
+
+104
+00:06:05.118 --> 00:06:10.491
+A machine fix, a recorded human session
+and an automated certificate renewal all
+
+105
+00:06:10.491 --> 00:06:14.902
+fill the same fields: where it came
+from, who owned it, who approved it,
+
+106
+00:06:14.902 --> 00:06:18.592
+what identity ran it, what ran,
+and what the re-read showed.
+
+107
+00:06:18.592 --> 00:06:19.630
+That's the point.
+
+108
+00:06:19.630 --> 00:06:22.720
+Nobody assembles evidence
+by hand at audit time,
+
+109
+00:06:22.720 --> 00:06:27.742
+and an assessor reads one format whatever
+the platform, and checks four things:
+
+110
+00:06:27.742 --> 00:06:30.292
+a prior approval, a controlled artifact,
+
+111
+00:06:30.292 --> 00:06:33.305
+a logged execution and a
+result they can re-test.
+
+112
+00:06:33.305 --> 00:06:36.367
+Even the human session lane
+fills the same fields,
+
+113
+00:06:36.367 --> 00:06:39.280
+just with a recording
+where the run log would be.
+
+114
+00:06:39.280 --> 00:06:42.750
+To make this concrete, let's
+walk through some examples.
+
+115
+00:06:43.500 --> 00:06:47.275
+Here are the first two examples,
+both invented to show the pattern.
+
+116
+00:06:47.275 --> 00:06:51.325
+In the first, a sharing setting
+drifts to allow anonymous links.
+
+117
+00:06:51.325 --> 00:06:55.859
+The authorizing official has accepted
+that one narrow fix in advance,
+
+118
+00:06:55.859 --> 00:06:58.282
+so the machine restores it, re-reads it,
+
+119
+00:06:58.282 --> 00:07:02.737
+and closes the task with one record,
+with no one waiting on an approval.
+
+120
+00:07:02.737 --> 00:07:07.400
+If it drifts again, that's a question
+for the steward, not another silent fix.
+
+121
+00:07:07.400 --> 00:07:11.199
+In the second, an access
+request walks all five clauses,
+
+122
+00:07:11.199 --> 00:07:14.575
+and the role is granted as
+eligible, not standing.
+
+123
+00:07:14.575 --> 00:07:18.790
+What happens when a machine
+shouldn't, or can't, make the fix?
+
+124
+00:07:19.540 --> 00:07:21.540
+These two show the harder paths.
+
+125
+00:07:21.540 --> 00:07:22.797
+In the third example,
+
+126
+00:07:22.797 --> 00:07:26.865
+the inventory finds a certificate
+from an issuer nobody approved.
+
+127
+00:07:26.865 --> 00:07:28.255
+There's no automatic fix,
+
+128
+00:07:28.255 --> 00:07:31.940
+because replacing it blindly
+could break whoever depends on it.
+
+129
+00:07:31.940 --> 00:07:35.850
+The PKI owner decides to replace
+it through the approved issuer
+
+130
+00:07:35.850 --> 00:07:39.465
+and block the rogue one, and then
+the gated lane does the work.
+
+131
+00:07:39.465 --> 00:07:44.228
+In the fourth, an old appliance has only
+a console, so no machine can reach it.
+
+132
+00:07:44.228 --> 00:07:45.938
+The owner approves a short,
+
+133
+00:07:45.938 --> 00:07:49.903
+recorded session with a compensating
+control and an end date.
+
+134
+00:07:49.903 --> 00:07:52.841
+It's visible, approved
+first and temporary.
+
+135
+00:07:52.841 --> 00:07:55.960
+Certificates deserve a
+closer look of their own.
+
+136
+00:07:56.710 --> 00:08:00.798
+Certificates are the deliberate
+exception, and the reason is volume.
+
+137
+00:08:00.798 --> 00:08:05.453
+Public TLS lifetimes are shrinking
+from three hundred ninety-eight
+
+138
+00:08:05.453 --> 00:08:09.373
+days to forty-seven by 2029,
+so renewals come continuously.
+
+139
+00:08:09.373 --> 00:08:12.332
+Putting each one through an
+approval wouldn't add rigor;
+
+140
+00:08:12.332 --> 00:08:15.485
+it would just teach approvers
+to click yes without reading.
+
+141
+00:08:15.485 --> 00:08:19.716
+So routine renewal runs on
+protocol and renewal engines,
+
+142
+00:08:19.716 --> 00:08:22.147
+with policy partly living in DNS.
+
+143
+00:08:22.147 --> 00:08:25.858
+The anomalies still come through
+the front door, like a new issuing
+
+144
+00:08:25.858 --> 00:08:29.973
+authority or an unknown issuer, because
+they're rare and they need a person.
+
+145
+00:08:29.973 --> 00:08:33.340
+Speaking of the front door,
+there should only be one.
+
+146
+00:08:34.090 --> 00:08:37.359
+Lots of tools detect
+problems: posture engines,
+
+147
+00:08:37.359 --> 00:08:41.215
+scanners, entitlement tools,
+certificate inventories.
+
+148
+00:08:41.215 --> 00:08:42.540
+The rule is simple.
+
+149
+00:08:42.540 --> 00:08:46.648
+Each one is a detection engine
+feeding the one coordination layer,
+
+150
+00:08:46.648 --> 00:08:48.515
+never a second queue of its own.
+
+151
+00:08:48.515 --> 00:08:53.644
+That way an over-privileged role and an open
+storage account land in the same place,
+
+152
+00:08:53.644 --> 00:08:55.378
+under the same five clauses,
+
+153
+00:08:55.378 --> 00:08:59.753
+and access requests from a governance
+front end close the same way too.
+
+154
+00:08:59.753 --> 00:09:04.257
+Two cautions keep this honest: check
+each tool's real platform coverage,
+
+155
+00:09:04.257 --> 00:09:07.846
+since on-premises virtualization
+kept coming up as a gap,
+
+156
+00:09:07.846 --> 00:09:10.977
+and give the alternatives
+a fair build-or-buy look.
+
+157
+00:09:10.977 --> 00:09:13.080
+So where does this pattern break?
+
+158
+00:09:13.830 --> 00:09:15.863
+This slide is worth slowing down on,
+
+159
+00:09:15.863 --> 00:09:19.718
+because every row is a way the
+pattern fails while looking correct.
+
+160
+00:09:19.718 --> 00:09:24.448
+A security review of a reference build
+found origins that weren't checked,
+
+161
+00:09:24.448 --> 00:09:29.101
+commands built from unescaped strings,
+input that could swap the target,
+
+162
+00:09:29.101 --> 00:09:31.738
+a password crossing a queue in plain text,
+
+163
+00:09:31.738 --> 00:09:36.468
+a leg that treated "sent" as "done," and
+tests that never touched the risky path.
+
+164
+00:09:36.468 --> 00:09:38.418
+Each fix became a design rule.
+
+165
+00:09:38.418 --> 00:09:42.566
+The lesson is humbling: tests
+prove only the refusals they test,
+
+166
+00:09:42.566 --> 00:09:45.917
+and a reference build is a
+starting point, not proof.
+
+167
+00:09:45.917 --> 00:09:47.900
+So, what's left to decide?
+
+168
+00:09:48.650 --> 00:09:52.150
+The reference leaves a short
+list of decisions to the agency.
+
+169
+00:09:52.150 --> 00:09:53.947
+Which narrow classes, if any,
+
+170
+00:09:53.947 --> 00:09:57.775
+the authorizing official
+accepts for autonomous closure.
+
+171
+00:09:57.775 --> 00:10:00.112
+Who actually holds the escalation roles.
+
+172
+00:10:00.112 --> 00:10:03.037
+How classes map to lanes
+in your own record.
+
+173
+00:10:03.037 --> 00:10:05.588
+What targets you set
+for the five measures.
+
+174
+00:10:05.588 --> 00:10:08.238
+And an end date for
+every declared exception.
+
+175
+00:10:08.238 --> 00:10:12.043
+For the full argument, read
+Chapter 10, then the drift engine,
+
+176
+00:10:12.043 --> 00:10:15.849
+the evidence chapter and the
+control mapping in Appendix A.
+
+177
+00:10:15.849 --> 00:10:16.950
+Thanks for watching.
+
+178
+00:10:16.950 --> 00:10:19.746
+Remember: a ticket is
+evidence only when it
+
+179
+00:10:19.746 --> 00:10:23.330
+authorized something that
+ran, and a re-read proved it.
