@@ -1,0 +1,19 @@
+# Research example — the Ticket-to-Machine loop on ServiceNow and SailPoint Identity Security Cloud.
+# HR is the source; SailPoint governs identities and entitlements; ServiceNow is the front door and the record.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.55}
+nodes:
+  hr: {tone: amber, width: 175, tag: "Source of authority", title: "Core HCM", body: ["HR corrects facts at the source"], size: 12}
+  isc: {tone: blue, width: 215, tag: "Identity governance", title: "SailPoint Identity Security Cloud", body: ["Aggregates HR; lifecycle states", "Access requests, certifications", "Native change detection"], size: 12}
+  snow: {tone: violet, width: 215, tag: "Front door and record", title: "ServiceNow", body: ["Catalog, cases and change records", "Approvals per authority class", "One closure record"], size: 12}
+  entra: {tone: green, width: 185, tag: "Native surfaces", title: "Entra ID and AD", body: ["SailPoint connectors; ServiceNow Entra spoke for A0/A1"], size: 12}
+  reread: {tone: green, width: 185, tag: "Closes the loop", title: "Re-read", body: ["Next aggregation or a native-change event, not ticket status"], size: 12}
+  manual: {tone: red, width: 185, tag: "Declared exception", title: "Disconnected application", body: ["Service Desk ticket, recorded session, end date"], size: 12}
+edges:
+  - [hr, isc, {label: "aggregation", lw: 70}]
+  - [isc, snow, {both: true, label: "tickets and requests", lw: 90}]
+  - [isc, entra, {label: "connectors", lw: 70}]
+  - [snow, entra, {style: dashed, label: "Entra spoke", lw: 70}]
+  - [entra, reread]
+  - [reread, snow, {style: dashed, label: "evidence closes the record", lw: 110}]
+  - [isc, manual, {style: dashed, tone: red}]
