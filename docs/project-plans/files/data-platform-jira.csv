@@ -1,0 +1,179 @@
+﻿Work item ID,Work type,Parent,Summary,Description,Labels,Labels,Labels,Labels,Labels,Labels,Start date,Due date,Blocks,Blocks,Blocks,Blocks,Blocks
+1,Epic,,Data Platform Identity Transformation: Phase 0 — Prerequisites and the consolidation gate,"Phase 0 — Prerequisites and the consolidation gate of the sample plan Data Platform Identity Transformation: SQL Server from Windows Authentication to Entra ID.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/data-platform.html",fmw,fmw-data-platform,phase,,,,2027-01-04,2027-02-02,,,,,
+2,Task,1,D0.1 Toolchain installed; evidence model and dated output directories under version control,"D0.1 · Task · owner or approver: Data platform team
+Duration 5 working days · wk 1 · total float 8 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r01-prerequisites.html#step-2-the-evidence-model",fmw,fmw-data-platform,fmw-id-d0.1,task,owner-data-platform-team,,2027-01-04,2027-01-08,3,,,,
+3,Task,1,"D0.2 Estate inventory, read-only: the audit seed, the SPN trail and the wider sweep, fused into one inventory","D0.2 · Task · owner or approver: Data platform team
+Duration 10 working days · wk 1–3 · total float 8 d · predecessors: D0.1 (SS) +2 d
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.html#step-1-build-the-estate-inventory-read-only",fmw,fmw-data-platform,fmw-id-d0.2,task,owner-data-platform-team,,2027-01-06,2027-01-19,4,,,,
+4,Task,1,D0.3 Three rationalization lenses applied; consolidation constraints recorded,"D0.3 · Task · owner or approver: Data platform team
+Duration 10 working days · wk 3–5 · total float 8 d · predecessors: D0.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.html#step-2-apply-the-three-rationalization-lenses-read-only",fmw,fmw-data-platform,fmw-id-d0.3,task,owner-data-platform-team,,2027-01-20,2027-02-02,5,6,,,
+5,Task,1,"D-D1 Retain, consolidate or retire, instance by instance","D-D1 · Decision · owner or approver: CIO and data leadership
+Duration 0 working days · end of wk 5 · total float 8 d · predecessors: D0.3
+Options: Retain; consolidate into a target (the source is then retired); retire
+If decided late: No login may be touched: the audit, Arc and login work all wait on the classified inventory
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/06-retain-consolidate-retire.html#the-three-classifications",fmw,fmw-data-platform,fmw-id-d-d1,decision,owner-cio-and-data-leadership,,2027-02-03,2027-02-02,7,,,,
+6,Task,1,D-D2 Consolidation target for each consolidated workload,"D-D2 · Decision · owner or approver: CIO and data leadership
+Duration 0 working days · end of wk 5 · total float 8 d · predecessors: D0.3
+Options: SQL Server 2022 or 2025 on an Arc-enabled host; Azure SQL Managed Instance; Azure SQL Database or elastic pools. A dedicated target where a constraint blocks shared hosting
+If decided late: Authentication would be migrated twice, once on the source and again on the target
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/06-retain-consolidate-retire.html#target-state-options",fmw,fmw-data-platform,fmw-id-d-d2,decision,owner-cio-and-data-leadership,,2027-02-03,2027-02-02,7,,,,
+7,Task,1,DG0 Gate 0 — Consolidation gate passed,"DG0 · Gate · owner or approver: CIO and data leadership
+Duration 0 working days · end of wk 5 · total float 8 d · predecessors: D-D1, D-D2
+Criteria: One row per instance, classified retain, consolidate or retire and justified by the three lenses; a target named for every consolidated workload; collation, vendor-version, compliance-isolation, failover-cluster and dependency constraints recorded; only retain instances and targets go on
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.html#step-3-the-retain-consolidate-retire-decision-the-gate",fmw,fmw-data-platform,fmw-id-dg0,gate,owner-cio-and-data-leadership,,2027-02-03,2027-02-02,9,11,,,
+8,Epic,,Data Platform Identity Transformation: Phase 1 — The authentication audit,"Phase 1 — The authentication audit of the sample plan Data Platform Identity Transformation: SQL Server from Windows Authentication to Entra ID.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/data-platform.html",fmw,fmw-data-platform,phase,,,,2027-02-03,2027-03-02,,,,,
+9,Task,8,"D1.1 Authentication audit of the surviving set: discovery pass, then the deep audit","D1.1 · Task · owner or approver: Data platform team
+Duration 8 working days · wk 5–6 · total float 16 d · predecessors: DG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r03-the-authentication-audit.html#the-primary-script-spec3-d1.8-get-sqlserverauthaudit.ps1",fmw,fmw-data-platform,fmw-id-d1.1,task,owner-data-platform-team,,2027-02-03,2027-02-12,10,,,,
+10,Task,8,"D1.2 Audit read: Category 1, 2 or 3 per instance; blockers listed; failover cluster instances flagged","D1.2 · Task · owner or approver: Data platform team
+Duration 4 working days · wk 7 · total float 16 d · predecessors: D1.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r03-the-authentication-audit.html#reading-the-result-migration-readiness",fmw,fmw-data-platform,fmw-id-d1.2,task,owner-data-platform-team,,2027-02-15,2027-02-18,12,13,,,
+11,Task,8,"D1.3 NTLM Phase A baseline: SPN map and collisions, auth_scheme, host Security logs, Restrict NTLM audit policies, enhanced NTLM logging","D1.3 · Task · owner or approver: Data platform team
+Duration 20 working days · wk 5–9 · total float 8 d · predecessors: DG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html#phase-a-discovery",fmw,fmw-data-platform,fmw-id-d1.3,task,owner-data-platform-team,,2027-02-03,2027-03-02,14,,,,
+12,Task,8,D-D3 Upgrade or retire each pre-2022 retain instance,"D-D3 · Decision · owner or approver: CIO and data leadership
+Duration 0 working days · end of wk 7 · total float 16 d · predecessors: D1.2
+Options: Upgrade to SQL Server 2022 or later and follow the Category 2-to-1 path; retire or consolidate it; keep it on a sunset-dated exception with the certificate-based interim posture (the authorizing official decides the exception)
+If decided late: Category 3 instances have no path to Entra logins, and the exception long tail can't be sized
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/12-the-engine-authentication-decision.html#decision-4-pre-2022-instances-are-upgrade-or-except",fmw,fmw-data-platform,fmw-id-d-d3,decision,owner-cio-and-data-leadership,,2027-02-19,2027-02-18,14,50,,,
+13,Task,8,D-D4 The engine authentication standard,"D-D4 · Decision · owner or approver: CISO
+Duration 0 working days · end of wk 7 · total float 16 d · predecessors: D1.2
+Options: SQL authentication refused and sa disabled and renamed on every production instance, with break-glass as an empty Windows group; a type-S login kept past migration only as a dated exception with a named compensating control. Open-ended retention isn't an option
+If decided late: Instances have no standard to cut over against, and the pilot can't be signed off
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/12-the-engine-authentication-decision.html#decision-3-sql-authentication-eliminated-sa-disabled-and-renamed",fmw,fmw-data-platform,fmw-id-d-d4,decision,owner-ciso,,2027-02-19,2027-02-18,14,,,,
+14,Task,8,DG1 Gate 1 — Audit read and NTLM baselined,"DG1 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 9 · total float 8 d · predecessors: D1.3, D-D3, D-D4
+Criteria: Every retain instance and target audited and placed in Category 1, 2 or 3 with its blockers; failover cluster instances treated as Category 3; the Phase A NTLM baseline ingested by compliance monitoring; the authentication standard set
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/08-reading-the-audit.html",fmw,fmw-data-platform,fmw-id-dg1,gate,owner-isso,,2027-03-03,2027-03-02,17,26,29,35,44
+15,Epic,,Data Platform Identity Transformation: Phase 2 — The pilot instance,"Phase 2 — The pilot instance of the sample plan Data Platform Identity Transformation: SQL Server from Windows Authentication to Entra ID.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/data-platform.html",fmw,fmw-data-platform,phase,,,,2027-03-15,2027-05-04,,,,,
+16,Task,15,X-ARC Pilot servers under Arc with machine configuration (program P2.9),"X-ARC · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 10 · total float 0 · predecessors: —
+If decided late: The pilot SQL Server host has no Arc pattern to follow, and the pilot waits
+Comes from program-master-schedule:P2.9 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-data-platform,fmw-id-x-arc,external,owner-platform-teams-program,,2027-03-15,2027-03-12,17,,,,
+17,Task,15,"D2.1 Pilot host on Arc: egress confirmed, onboarding service principal, managed-identity token validated, SQL Server extension deployed","D2.1 · Task · owner or approver: Server infrastructure
+Duration 5 working days · wk 11 · total float 0 · predecessors: DG1, X-ARC
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r04-arc-deployment-and-managed-identity.html#step-1-enroll-the-host",fmw,fmw-data-platform,fmw-id-d2.1,task,owner-server-infrastructure,critical-path,2027-03-15,2027-03-19,18,,,,
+18,Task,15,D2.2 Graph permissions (SQL Server 2025) or admin consent (SQL Server 2022) granted by a Privileged Role Administrator,"D2.2 · Task · owner or approver: Identity team
+Duration 2 working days · wk 12 · total float 0 · predecessors: D2.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r04-arc-deployment-and-managed-identity.html#roles-and-permissions",fmw,fmw-data-platform,fmw-id-d2.2,task,owner-identity-team,critical-path,2027-03-22,2027-03-23,19,,,,
+19,Task,15,D2.3 Entra authentication on; Entra admin group set; Entra logins and users created beside the Windows ones,"D2.3 · Task · owner or approver: Data platform team
+Duration 5 working days · wk 12–13 · total float 0 · predecessors: D2.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r05-login-migration-and-parallel-run.html#step-2-create-the-entra-database-users-beside-the-windows-users",fmw,fmw-data-platform,fmw-id-d2.3,task,owner-data-platform-team,critical-path,2027-03-24,2027-03-30,20,,,,
+20,Task,15,"D2.4 Parallel run: 30-day observation, recorded with SQL Server Audit","D2.4 · Task · owner or approver: Data platform team
+Duration 22 working days · wk 13–17 · total float 0 · predecessors: D2.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r05-login-migration-and-parallel-run.html#step-3-the-parallel-run",fmw,fmw-data-platform,fmw-id-d2.4,task,owner-data-platform-team,critical-path,2027-03-31,2027-04-29,21,,,,
+21,Task,15,D-D5 Disable the superseded Windows logins on the pilot instance,"D-D5 · Decision · owner or approver: Data platform team
+Duration 0 working days · end of wk 17 · total float 0 · predecessors: D2.4
+Options: Disable, don't drop, once the window's exit criteria are met; extend the observation window
+If decided late: The pilot can't cut over, and the estate waves have no proven pattern
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r05-login-migration-and-parallel-run.html#step-4-cutover",fmw,fmw-data-platform,fmw-id-d-d5,decision,owner-data-platform-team,critical-path,2027-04-30,2027-04-29,22,,,,
+22,Task,15,"D2.5 Cutover: Windows logins disabled, not dropped; sa disabled and renamed; scheduled audit started","D2.5 · Task · owner or approver: Data platform team
+Duration 3 working days · wk 17–18 · total float 0 · predecessors: D-D5
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r05-login-migration-and-parallel-run.html#the-sa-account",fmw,fmw-data-platform,fmw-id-d2.5,task,owner-data-platform-team,critical-path,2027-04-30,2027-05-04,23,,,,
+23,Task,15,DG2 Gate 2 — Pilot instance on Entra authentication,"DG2 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 18 · total float 0 · predecessors: D2.5
+Criteria: Arc agent Connected; token audience https://database.windows.net/; SQL Server extension Succeeded; Entra admin set; every application and job seen on its Entra login; no remote NTLM rows; no connection arriving only on a legacy Windows login
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r04-arc-deployment-and-managed-identity.html#verification-checklist",fmw,fmw-data-platform,fmw-id-dg2,gate,owner-isso,critical-path,2027-05-05,2027-05-04,27,28,37,,
+24,Epic,,"Data Platform Identity Transformation: Phase 3 — The estate: logins, NTLM restriction, access layer","Phase 3 — The estate: logins, NTLM restriction, access layer of the sample plan Data Platform Identity Transformation: SQL Server from Windows Authentication to Entra ID.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/data-platform.html",fmw,fmw-data-platform,phase,,,,2027-03-01,2027-07-27,,,,,
+25,Task,24,"X-G1 G1 — Foundation Complete: groups and AUs drift-clean, Conditional Access baseline enforced (program)","X-G1 · External · owner or approver: Steward (program)
+Duration 0 working days · end of wk 8 · total float 94 d · predecessors: —
+If decided late: The DBA administrative unit and the SQL group logins have no foundation to build on
+Comes from program-master-schedule:G1 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-data-platform,fmw-id-x-g1,external,owner-steward-program,,2027-03-01,2027-02-26,26,,,,
+26,Task,24,"D3.1 DBA administrative unit with restricted management; Groups Administrator scoped to it, eligible through PIM","D3.1 · Task · owner or approver: Identity team
+Duration 3 working days · wk 9 · total float 92 d · predecessors: X-G1, DG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.html#sequencing-the-administrative-unit-comes-first",fmw,fmw-data-platform,fmw-id-d3.1,task,owner-identity-team,,2027-03-03,2027-03-05,27,,,,
+27,Task,24,D3.2 Access groups and dynamic rules verified; group logins bound; Conditional Access perimeter confirmed on the pilot,"D3.2 · Task · owner or approver: Identity team
+Duration 15 working days · wk 18–21 · total float 50 d · predecessors: D3.1, DG2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.html#provision-attribute-based-dynamic-groups-entra-dynamic-groups",fmw,fmw-data-platform,fmw-id-d3.2,task,owner-identity-team,,2027-05-05,2027-05-25,33,,,,
+28,Task,24,"D3.3 Estate waves: every retain instance and target through Arc, Entra authentication, the parallel run and cutover","D3.3 · Task · owner or approver: Data platform team
+Duration 60 working days · wk 18–30 · total float 0 · predecessors: DG2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/11-three-principal-types.html#the-parallel-run-migration-pattern",fmw,fmw-data-platform,fmw-id-d3.3,task,owner-data-platform-team,critical-path,2027-05-05,2027-07-27,33,38,,,
+29,Task,24,"D3.4 Phase B, step 1: SPNs registered and collisions repaired, linked-server passthrough replaced, LM and NTLMv1 refused","D3.4 · Task · owner or approver: Data platform team
+Duration 20 working days · wk 9–13 · total float 75 d · predecessors: DG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r06-ntlm-detection-and-remediation.html#phase-2-remediation-review-required-patterns",fmw,fmw-data-platform,fmw-id-d3.4,task,owner-data-platform-team,,2027-03-03,2027-03-30,31,,,,
+30,Task,24,X-D08 End dates for legacy authentication and NTLM (program D08),"X-D08 · External · owner or approver: Authorizing official (program)
+Duration 0 working days · end of wk 16 · total float 57 d · predecessors: —
+If decided late: Phase B's deny step and the Phase C block have no date to plan against
+Comes from program-master-schedule:D08 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-data-platform,fmw-id-x-d08,external,owner-authorizing-official-program,,2027-04-26,2027-04-23,31,48,,,
+31,Task,24,"D-D6 Move Restrict NTLM from audit to deny, with exceptions from the Phase A baseline","D-D6 · Decision · owner or approver: Authorizing official
+Duration 0 working days · end of wk 16 · total float 57 d · predecessors: D3.4, X-D08
+Options: Deny, with the excepted instances in the domain controller and client lists; stay in audit; if a missed dependency surfaces, relax to audit or add a scoped exception
+If decided late: NTLMv2 stays open, and Phase C has no restricted baseline to tighten
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html#phase-b-restriction",fmw,fmw-data-platform,fmw-id-d-d6,decision,owner-authorizing-official,,2027-04-26,2027-04-23,32,,,,
+32,Task,24,"D3.5 Phase B, step 2: Restrict NTLM deny settings staged on clients, servers and domain controllers","D3.5 · Task · owner or approver: Server infrastructure
+Duration 15 working days · wk 17–19 · total float 57 d · predecessors: D-D6
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r06-ntlm-detection-and-remediation.html#phased-group-policy-restriction",fmw,fmw-data-platform,fmw-id-d3.5,task,owner-server-infrastructure,,2027-04-26,2027-05-14,33,,,,
+33,Task,24,"DG3 Gate 3 — Estate on Entra logins, NTLM restricted","DG3 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 30 · total float 5 d · predecessors: D3.2, D3.3, D3.5
+Criteria: Every retain instance and target cut over after a clean parallel run; zero critical SPN collisions; Restrict NTLM deny in place with only documented exceptions; DBA administrative unit and group logins verified; a non-compliant sign-in to the SQL resource denied a token
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html#phase-b-restriction",fmw,fmw-data-platform,fmw-id-dg3,gate,owner-isso,,2027-07-28,2027-07-27,47,,,,
+34,Epic,,Data Platform Identity Transformation: Phase 4 — The application chain,"Phase 4 — The application chain of the sample plan Data Platform Identity Transformation: SQL Server from Windows Authentication to Entra ID.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/data-platform.html",fmw,fmw-data-platform,phase,,,,2027-03-03,2027-10-22,,,,,
+35,Task,34,D4.1 LDAP-bind inventory over 30 days; each application placed on both axes,"D4.1 · Task · owner or approver: Application owners
+Duration 27 working days · wk 9–14 · total float 23 d · predecessors: DG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r08-application-chain-and-connection-strings.html#phase-1-inventory-the-ldap-bind-dependency-read-only-script-backed",fmw,fmw-data-platform,fmw-id-d4.1,task,owner-application-owners,,2027-03-03,2027-04-08,36,,,,
+36,Task,34,D-D7 Class and database-axis column for each application,"D-D7 · Decision · owner or approver: Application owners
+Duration 0 working days · end of wk 14 · total float 23 d · predecessors: D4.1
+Options: User axis: Class 3 OIDC, Class 2 SAML, Class 1 Application Proxy, Class 4 Entra Domain Services (last resort). Database axis: A configuration only, B code change, C vendor-dependent, D no Entra path today
+If decided late: Neither migration track can be sequenced for the application
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.html#two-axes-user-sign-in-and-the-database-connection",fmw,fmw-data-platform,fmw-id-d-d7,decision,owner-application-owners,,2027-04-09,2027-04-08,37,40,,,
+37,Task,34,D4.2 Gate conditions prepared: identity holds its database role; change tested on a production-matching Arc stack,"D4.2 · Task · owner or approver: Application owners
+Duration 15 working days · wk 18–21 · total float 5 d · predecessors: D-D7, DG2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r08-application-chain-and-connection-strings.html#the-three-gate-conditions",fmw,fmw-data-platform,fmw-id-d4.2,task,owner-application-owners,,2027-05-05,2027-05-25,38,,,,
+38,Task,34,"D-D8 Connection-string cutover, application by application","D-D8 · Decision · owner or approver: Application owners
+Duration 0 working days · end of wk 22 · total float 0 · predecessors: D4.2, D3.3 (SS) +20 d
+Options: Cut over in a change window once all three gate conditions hold; fund the code change (column B); carry a dated exception (columns C and D, and Class 4)
+If decided late: The application keeps its stored credential, and its host instance can't close
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/19-connection-string-migration.html#the-gate-conditions",fmw,fmw-data-platform,fmw-id-d-d8,decision,owner-application-owners,critical-path,2027-06-02,2027-06-01,39,,,,
+39,Task,34,"D4.3 Connection strings cut over; prior configuration kept; legacy logins disabled, not dropped","D4.3 · Task · owner or approver: Application owners
+Duration 45 working days · wk 22–31 · total float 0 · predecessors: D-D8
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r08-application-chain-and-connection-strings.html#verification-and-rollback",fmw,fmw-data-platform,fmw-id-d4.3,task,owner-application-owners,critical-path,2027-06-02,2027-08-03,41,,,,
+40,Task,34,"D4.4 Exceptions filed for Class 4 and deferred applications, sunset dates reconciled against the NTLM block","D4.4 · Task · owner or approver: ISSO
+Duration 5 working days · wk 14–15 · total float 78 d · predecessors: D-D7
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r08-application-chain-and-connection-strings.html#the-four-class-triage",fmw,fmw-data-platform,fmw-id-d4.4,task,owner-isso,,2027-04-09,2027-04-15,41,46,,,
+41,Task,34,DG4 Gate 4 — Application chain on Entra principals,"DG4 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 31 · total float 0 · predecessors: D4.3, D4.4
+Criteria: Every application in Classes 1 to 3 connects as its Entra principal, with no NTLM or KERBEROS rows; every Class 4 or deferred application's host instance carries a dated exception; no stored secret left in a production connection string outside a documented exception
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r08-application-chain-and-connection-strings.html#verification-and-rollback",fmw,fmw-data-platform,fmw-id-dg4,gate,owner-isso,critical-path,2027-08-04,2027-08-03,42,47,,,
+42,Task,34,"X-P46 AD-bound service principal names migrated, retired or islanded (program P4.6)","X-P46 · External · owner or approver: Application owners (program)
+Duration 0 working days · end of wk 42 · total float fixed date · predecessors: DG4
+If decided late: SQL Server's applications still hold Windows-authenticated connections when the program measures AD authentication for G4
+Comes from program-master-schedule:P4.6 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-data-platform,fmw-id-x-p46,external,owner-application-owners-program,,2027-10-25,2027-10-22,,,,,
+43,Epic,,"Data Platform Identity Transformation: Phase 5 — Elimination, closure and the long tail","Phase 5 — Elimination, closure and the long tail of the sample plan Data Platform Identity Transformation: SQL Server from Windows Authentication to Entra ID.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/data-platform.html",fmw,fmw-data-platform,phase,,,,2027-03-03,2027-12-14,,,,,
+44,Task,43,D5.1 Certificate audit; SQL Server's three AD CS dependencies mapped; CA-migration order derived,"D5.1 · Task · owner or approver: Server infrastructure
+Duration 10 working days · wk 9–11 · total float 100 d · predecessors: DG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r10-certificate-discovery-for-adcs.html#step-2-map-the-audit-to-sql-servers-three-dependencies",fmw,fmw-data-platform,fmw-id-d5.1,task,owner-server-infrastructure,,2027-03-03,2027-03-16,45,,,,
+45,Task,43,D-D9 Replacement CA and the AD CS decommission date for SQL Server's certificates,"D-D9 · Decision · owner or approver: CIO and data leadership
+Duration 0 working days · end of wk 11 · total float 100 d · predecessors: D5.1
+Options: Book 07's issuers: the retained AD CS hierarchy through CyberArk Certificate Manager, moving to a standalone AD CS issuing CA under the same root when the forest retires; Microsoft Cloud PKI, which would need another enrollment path for SQL Server hosts. Either way, no decommission date until the replacement is issuing
+If decided late: No decommission date can be set, and the certificate-based interim posture has no assured issuer
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/22-where-sql-server-touches-adcs.html#book-07-has-since-made-the-decision",fmw,fmw-data-platform,fmw-id-d-d9,decision,owner-cio-and-data-leadership,,2027-03-17,2027-03-16,46,,,,
+46,Task,43,D-D10 Phase C rule for instances whose interim posture isn't in place,"D-D10 · Decision · owner or approver: Authorizing official
+Duration 0 working days · end of wk 15 · total float 78 d · predecessors: D4.4, D-D9
+Options: The Phase C date holds for them; dated exceptions with network-level isolation
+If decided late: The long tail has no rule on the block date, and its exceptions can't be closed
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html#phase-c-elimination",fmw,fmw-data-platform,fmw-id-d-d10,decision,owner-authorizing-official,,2027-04-16,2027-04-15,47,,,,
+47,Task,43,D5.2 Validation period: closure records and the six evidence sets live and satisfied; drift treated as a violation,"D5.2 · Task · owner or approver: Data platform team
+Duration 40 working days · wk 31–39 · total float 0 · predecessors: DG3, DG4, D-D10
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/r09-continuous-monitoring-and-closure.html#the-six-live-evidence-sets",fmw,fmw-data-platform,fmw-id-d5.2,task,owner-data-platform-team,critical-path,2027-08-04,2027-09-28,48,,,,
+48,Task,43,D5.3 Phase C: Restrict NTLM set to deny across the estate,"D5.3 · Task · owner or approver: Server infrastructure
+Duration 5 working days · wk 39–40 · total float 0 · predecessors: D5.2, X-D08
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html#phase-c-elimination",fmw,fmw-data-platform,fmw-id-d5.3,task,owner-server-infrastructure,critical-path,2027-09-29,2027-10-05,49,,,,
+49,Task,43,DG5 Gate 5 — Estate closed,"DG5 · Gate · owner or approver: CIO and data leadership
+Duration 0 working days · end of wk 40 · total float 0 · predecessors: D5.3
+Criteria: All five closure conditions hold at once on every production instance; the six evidence sets satisfied across the validation period; every excepted instance in the registry with its justification, sunset date and own closure record; the scheduled audit still running
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/20-the-closure-condition.html#the-five-closure-conditions",fmw,fmw-data-platform,fmw-id-dg5,gate,owner-cio-and-data-leadership,critical-path,2027-10-06,2027-10-05,50,,,,
+50,Task,43,"D5.4 Exception long tail: pre-2022 and Class 4 instances upgraded, re-platformed or retired by their sunset dates","D5.4 · Task · owner or approver: Data platform team
+Duration 50 working days · wk 40–50 · total float 0 · predecessors: DG5, D-D3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/21-what-done-looks-like.html#a-consequence-not-a-completion-date",fmw,fmw-data-platform,fmw-id-d5.4,task,owner-data-platform-team,critical-path,2027-10-06,2027-12-14,,,,,

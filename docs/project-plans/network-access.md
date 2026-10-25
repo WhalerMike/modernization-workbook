@@ -252,6 +252,7 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 | [network-access.csv](files/network-access.csv) | Excel or any other scheduling tool: every row with its dependencies, early and late dates and float |
 | [network-access-azure-boards.csv](files/network-access-azure-boards.csv) | Azure DevOps Boards: an Epic per phase and a Feature per task, gate and decision, with dates and tags (see below) |
 | [network-access-dependencies.csv](files/network-access-dependencies.csv) · [add-azure-boards-links.ps1](files/add-azure-boards-links.ps1) | The plan's predecessor links, and a script that adds them in Azure Boards after the import |
+| [network-access-jira.csv](files/network-access-jira.csv) | Jira: an Epic per phase and a Task per task, gate and decision, with dates, labels and Blocks links (see below) |
 | [network-access.yaml](https://github.com/WhalerMike/modernization-workbook/blob/main/data/project-plans/network-access.yaml) | The source. Edit the durations, owners and dependencies, then run `python scripts/project_plans/build.py` to recompute the critical path and regenerate this page, the chart and the downloads. |
 
 : Downloads {.striped}
@@ -263,6 +264,15 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 3. Assign people in Boards: each item carries its owner role as an *Owner - …* tag, and critical-path items carry *Critical path*. Azure Boards links don't hold lag or start-to-start timing; each item's description keeps them.
 
 The dates count from the plan's placeholder start; shift them when you set the real start. The script hasn't been run against a live organization yet: test it on a scratch project first.
+:::
+
+::: {.callout-tip}
+## Importing this plan into Jira
+1. Run the CSV importer (in Jira Cloud, **Settings** > **System** > **External system import** > **CSV**) with [network-access-jira.csv](files/network-access-jira.csv). On the second step, set **Date format in import file** to `yyyy-MM-dd`.
+2. Map the columns: *Work item ID* to Work item ID, *Work type* to Work type, *Parent* to Parent, *Summary*, *Description* and every *Labels* column to their fields, *Start date* to the Start date field, *Due date* to Due date, and every *Blocks* column to the **Blocks** link type. Each phase becomes an Epic with a Task under it for each task, gate and decision; each Blocks column makes that row's item block the item it names, which carries the plan's dependencies.
+3. Assign people in Jira: each item carries its owner role as an `owner-…` label, and critical-path items carry `critical-path`. Jira links don't hold lag or start-to-start timing; each description keeps them.
+
+Test the import on a scratch project with a few rows first: the importer doesn't remove duplicate links and Jira has no bulk delete for them. If the Blocks links don't come through on your site, import the items first and add the links from the plan's dependency list in a second pass, as Atlassian recommends. The dates count from the plan's placeholder start.
 :::
 
 ::: {.callout-tip}

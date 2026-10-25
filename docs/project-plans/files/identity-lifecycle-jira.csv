@@ -1,0 +1,143 @@
+﻿Work item ID,Work type,Parent,Summary,Description,Labels,Labels,Labels,Labels,Labels,Labels,Start date,Due date,Blocks,Blocks,Blocks,Blocks
+1,Epic,,Identity Lifecycle & Provisioning: Phase 0 — Program alignment,"Phase 0 — Program alignment of the sample plan Identity Lifecycle & Provisioning: HR-Driven Identity.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-identity-lifecycle,phase,,,,2027-01-04,2027-02-05,,,,
+2,Task,1,"I0.1 Integration-point inventory, naming the HR-driven identity feed","I0.1 · Task · owner or approver: HR 2.0 project team point of contact
+Duration 5 working days · wk 1 · total float 0 · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-0-program-alignment",fmw,fmw-identity-lifecycle,fmw-id-i0.1,task,owner-hr-2.0-project-team-point-of-contact,critical-path,2027-01-04,2027-01-08,3,6,,
+3,Task,1,I0.2 Entra migration plan names HR as the source for each population,"I0.2 · Task · owner or approver: Program office
+Duration 3 working days · wk 1 · total float 0 · predecessors: I0.1 (SS) +2 d
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-0-program-alignment",fmw,fmw-identity-lifecycle,fmw-id-i0.2,task,owner-program-office,critical-path,2027-01-06,2027-01-08,6,,,
+4,Task,1,I0.3 Legacy identity data to retain identified,"I0.3 · Task · owner or approver: Records officer
+Duration 4 working days · wk 1 · total float 1 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-0-program-alignment",fmw,fmw-identity-lifecycle,fmw-id-i0.3,task,owner-records-officer,,2027-01-04,2027-01-07,6,,,
+5,Task,1,"I0.4 Privacy basis: routine use, PIA update, minimized attribute set","I0.4 · Task · owner or approver: Privacy officer
+Duration 25 working days · wk 1–5 · total float 2 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/appendix-b-security-and-privacy.html",fmw,fmw-identity-lifecycle,fmw-id-i0.4,task,owner-privacy-officer,,2027-01-04,2027-02-05,25,,,
+6,Task,1,IG0 Gate 0 — Inventory signed and submitted,"IG0 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 1 · total float 0 · predecessors: I0.1, I0.2, I0.3
+Criteria: The integration-point inventory is signed by the ISSO and submitted to the agency's HR 2.0 team
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-0-program-alignment",fmw,fmw-identity-lifecycle,fmw-id-ig0,gate,owner-isso,critical-path,2027-01-11,2027-01-08,8,9,14,15
+7,Epic,,Identity Lifecycle & Provisioning: Phase 1 — Attribute authority and schema,"Phase 1 — Attribute authority and schema of the sample plan Identity Lifecycle & Provisioning: HR-Driven Identity.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-identity-lifecycle,phase,,,,2027-01-11,2027-01-26,,,,
+8,Task,7,"D-I1 Enterprise person key, and how source keys map to it","D-I1 · Decision · owner or approver: HR, with identity engineering
+Duration 0 working days · end of wk 1 · total float 5 d · predecessors: IG0
+Options: The HCM person number; another HR key; a minted enterprise key
+If decided late: The authority map can't be signed; the critical path waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html",fmw,fmw-identity-lifecycle,fmw-id-d-i1,decision,owner-hr-with-identity-engineering,,2027-01-11,2027-01-08,10,,,
+9,Task,7,I1.1 Standard-attribute crosswalk and nature-of-action trigger table,"I1.1 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 2 · total float 0 · predecessors: IG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html",fmw,fmw-identity-lifecycle,fmw-id-i1.1,task,owner-identity-engineering,critical-path,2027-01-11,2027-01-15,10,,,
+10,Task,7,I1.2 Attribute authority map signed,"I1.2 · Task · owner or approver: HR
+Duration 3 working days · wk 3 · total float 0 · predecessors: I1.1, D-I1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/04-attribute-authority.html",fmw,fmw-identity-lifecycle,fmw-id-i1.2,task,owner-hr,critical-path,2027-01-18,2027-01-20,11,12,,
+11,Task,7,I1.3 Canonical schema finalized and validated against a sandbox extract,"I1.3 · Task · owner or approver: Identity engineering
+Duration 4 working days · wk 3–4 · total float 0 · predecessors: I1.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html",fmw,fmw-identity-lifecycle,fmw-id-i1.3,task,owner-identity-engineering,critical-path,2027-01-21,2027-01-26,16,18,19,
+12,Task,7,D-I2 Worker-type taxonomy and the three access-attribute code lists,"D-I2 · Decision · owner or approver: HR
+Duration 0 working days · end of wk 3 · total float 1 d · predecessors: I1.2
+Options: Employee, contractor, intern, volunteer, vendor, external, each with a license, access ceiling and retention
+If decided late: Naming, placement and scoping rules wait
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-1-attribute-authority-and-schema",fmw,fmw-identity-lifecycle,fmw-id-d-i2,decision,owner-hr,,2027-01-21,2027-01-20,13,,,
+13,Task,7,"I1.4 UPN, sAMAccountName, OU placement and scoping rules","I1.4 · Task · owner or approver: Identity engineering
+Duration 3 working days · wk 3–4 · total float 1 d · predecessors: D-I2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-1-attribute-authority-and-schema",fmw,fmw-identity-lifecycle,fmw-id-i1.4,task,owner-identity-engineering,,2027-01-21,2027-01-25,16,20,,
+14,Task,7,I1.5 HR data baselined; employeeId populated; orphan candidates owned,"I1.5 · Task · owner or approver: HR
+Duration 12 working days · wk 2–4 · total float 6 d · predecessors: IG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-1-attribute-authority-and-schema",fmw,fmw-identity-lifecycle,fmw-id-i1.5,task,owner-hr,,2027-01-11,2027-01-26,16,,,
+15,Task,7,I1.6 PIV issuing CAs' CRLs checked against Entra's limits,"I1.6 · Task · owner or approver: PIV credentialing office
+Duration 3 working days · wk 2 · total float 15 d · predecessors: IG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html",fmw,fmw-identity-lifecycle,fmw-id-i1.6,task,owner-piv-credentialing-office,,2027-01-11,2027-01-13,16,,,
+16,Task,7,IG1 Gate 1 — Authority and schema signed,"IG1 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 4 · total float 6 d · predecessors: I1.3, I1.4, I1.5, I1.6
+Criteria: Identifier decision, authority map and schema signed; correlation meets the approved threshold on the pilot cohort; every enabled account correlated or on a dated exception list
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-1-attribute-authority-and-schema",fmw,fmw-identity-lifecycle,fmw-id-ig1,gate,owner-isso,,2027-01-27,2027-01-26,21,24,39,
+17,Epic,,Identity Lifecycle & Provisioning: Phase 2 — Pipeline build and test,"Phase 2 — Pipeline build and test of the sample plan Identity Lifecycle & Provisioning: HR-Driven Identity.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-identity-lifecycle,phase,,,,2027-01-26,2027-02-09,,,,
+18,Task,17,I2.1 Workforce identity service (middleware) built in-boundary,"I2.1 · Task · owner or approver: Identity engineering
+Duration 6 working days · wk 4–5 · total float 0 · predecessors: I1.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html",fmw,fmw-identity-lifecycle,fmw-id-i2.1,task,owner-identity-engineering,critical-path,2027-01-27,2027-02-03,21,,,
+19,Task,17,I2.2 API-driven provisioning apps; least-privilege permissions; throttling sized,"I2.2 · Task · owner or approver: Identity engineering
+Duration 3 working days · wk 4 · total float 3 d · predecessors: I1.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html",fmw,fmw-identity-lifecycle,fmw-id-i2.2,task,owner-identity-engineering,,2027-01-27,2027-01-29,21,,,
+20,Task,17,"I2.3 Joiner, mover and leaver workflows and custom task extensions","I2.3 · Task · owner or approver: Identity engineering
+Duration 6 working days · wk 4–5 · total float 1 d · predecessors: I1.4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html",fmw,fmw-identity-lifecycle,fmw-id-i2.3,task,owner-identity-engineering,,2027-01-26,2027-02-02,21,,,
+21,Task,17,"I2.4 End-to-end proof in the test tenant, including device retire and test-CA revocation","I2.4 · Task · owner or approver: Identity engineering
+Duration 4 working days · wk 5–6 · total float 0 · predecessors: I2.1, I2.2, I2.3, IG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-2-pipeline-build-and-test",fmw,fmw-identity-lifecycle,fmw-id-i2.4,task,owner-identity-engineering,critical-path,2027-02-04,2027-02-09,22,,,
+22,Task,17,IG2 Gate 2 — Pipeline proven end to end,"IG2 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 6 · total float 0 · predecessors: I2.4
+Criteria: Joiner, mover and leaver each run end to end in the test tenant with a provenance record and a workflow run
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-2-pipeline-build-and-test",fmw,fmw-identity-lifecycle,fmw-id-ig2,gate,owner-isso,critical-path,2027-02-10,2027-02-09,25,,,
+23,Epic,,Identity Lifecycle & Provisioning: Phase 3 — Hybrid go-live (pilot),"Phase 3 — Hybrid go-live (pilot) of the sample plan Identity Lifecycle & Provisioning: HR-Driven Identity.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-identity-lifecycle,phase,,,,2027-01-27,2027-02-24,,,,
+24,Task,23,I3.1 Two provisioning agents under a gMSA with OU-scoped rights,"I3.1 · Task · owner or approver: Platform teams
+Duration 2 working days · wk 4 · total float 8 d · predecessors: IG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/05-the-provisioning-pipeline.html",fmw,fmw-identity-lifecycle,fmw-id-i3.1,task,owner-platform-teams,,2027-01-27,2027-01-28,25,,,
+25,Task,23,I3.2 Initial full sync with scoping filters; mismatches reconciled,"I3.2 · Task · owner or approver: Identity engineering
+Duration 3 working days · wk 6 · total float 0 · predecessors: IG2, I3.1, I0.4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-3-hybrid-go-live-pilot",fmw,fmw-identity-lifecycle,fmw-id-i3.2,task,owner-identity-engineering,critical-path,2027-02-10,2027-02-12,26,,,
+26,Task,23,I3.3 Shadow mode on the pilot cohort; every difference explained,"I3.3 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 7 · total float 0 · predecessors: I3.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-3-hybrid-go-live-pilot",fmw,fmw-identity-lifecycle,fmw-id-i3.3,task,owner-identity-engineering,critical-path,2027-02-15,2027-02-19,27,,,
+27,Task,23,D-I4 Let the pipeline act on the pilot cohort,"D-I4 · Decision · owner or approver: ISSO
+Duration 0 working days · end of wk 7 · total float 0 · predecessors: I3.3
+Options: Act; extend shadow mode
+If decided late: The go-live waits, and with it the program's G1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-3-hybrid-go-live-pilot",fmw,fmw-identity-lifecycle,fmw-id-d-i4,decision,owner-isso,critical-path,2027-02-22,2027-02-19,28,,,
+28,Task,23,I3.4 Delta feeds live; first joiner/mover/leaver cycle closes with evidence,"I3.4 · Task · owner or approver: Identity engineering
+Duration 3 working days · wk 8 · total float 0 · predecessors: D-I4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-3-hybrid-go-live-pilot",fmw,fmw-identity-lifecycle,fmw-id-i3.4,task,owner-identity-engineering,critical-path,2027-02-22,2027-02-24,29,,,
+29,Task,23,IG3 Gate 3 — HR feed live for the foundation scope,"IG3 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 8 · total float 0 · predecessors: I3.4
+Criteria: The observation period's differences explained and fixed; a full joiner/mover/leaver cycle on the pilot cohort closed with evidence; zero unmatched-record creations
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-3-hybrid-go-live-pilot",fmw,fmw-identity-lifecycle,fmw-id-ig3,gate,owner-isso,critical-path,2027-02-25,2027-02-24,31,32,,
+30,Epic,,Identity Lifecycle & Provisioning: Phase 4 — Lifecycle automation and derived access,"Phase 4 — Lifecycle automation and derived access of the sample plan Identity Lifecycle & Provisioning: HR-Driven Identity.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-identity-lifecycle,phase,,,,2027-02-25,2027-04-21,,,,
+31,Task,30,I4.1 Leaver automation on for covered populations; block and revocation intervals measured,"I4.1 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 8–10 · total float 0 · predecessors: IG3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-4-lifecycle-automation-and-attribute-derived-access",fmw,fmw-identity-lifecycle,fmw-id-i4.1,task,owner-identity-engineering,critical-path,2027-02-25,2027-03-10,33,34,,
+32,Task,30,"I4.2 Exception routes: emergency terminations, litigation holds","I4.2 · Task · owner or approver: Help desk
+Duration 5 working days · wk 8–9 · total float 25 d · predecessors: IG3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-4-lifecycle-automation-and-attribute-derived-access",fmw,fmw-identity-lifecycle,fmw-id-i4.2,task,owner-help-desk,,2027-02-25,2027-03-03,36,,,
+33,Task,30,I4.3 Joiner and mover automation; rehire and conversion matching validated,"I4.3 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 10–12 · total float 0 · predecessors: I4.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/08-joiner-mover-leaver.html",fmw,fmw-identity-lifecycle,fmw-id-i4.3,task,owner-identity-engineering,critical-path,2027-03-11,2027-03-24,35,36,,
+34,Task,30,"I4.4 Hand-kept groups converted to rules, shadow-compared one by one","I4.4 · Task · owner or approver: Platform teams
+Duration 25 working days · wk 9–14 · total float 0 · predecessors: I4.1 (SS) +5 d
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/10-from-attributes-to-access.html",fmw,fmw-identity-lifecycle,fmw-id-i4.4,task,owner-platform-teams,critical-path,2027-03-04,2027-04-07,36,,,
+35,Task,30,I4.5 Access packages re-based on the supervisor of record,"I4.5 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 12–14 · total float 0 · predecessors: I4.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-4-lifecycle-automation-and-attribute-derived-access",fmw,fmw-identity-lifecycle,fmw-id-i4.5,task,owner-identity-engineering,critical-path,2027-03-25,2027-04-07,36,,,
+36,Task,30,I4.6 A full pay-period cycle with zero missed leavers; test reorganization,"I4.6 · Task · owner or approver: ISSO
+Duration 10 working days · wk 14–16 · total float 0 · predecessors: I4.3, I4.4, I4.5, I4.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-4-lifecycle-automation-and-attribute-derived-access",fmw,fmw-identity-lifecycle,fmw-id-i4.6,task,owner-isso,critical-path,2027-04-08,2027-04-21,37,,,
+37,Task,30,IG4 Gate 4 — Lifecycle automated,"IG4 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 16 · total float 0 · predecessors: I4.6
+Criteria: Zero missed leavers across a pay period; block within threshold; account-creation tickets retired for covered populations; a test reorganization propagates with zero manual changes
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-4-lifecycle-automation-and-attribute-derived-access",fmw,fmw-identity-lifecycle,fmw-id-ig4,gate,owner-isso,critical-path,2027-04-22,2027-04-21,40,,,
+38,Epic,,"Identity Lifecycle & Provisioning: Phase 5 — Cutover, population by population","Phase 5 — Cutover, population by population of the sample plan Identity Lifecycle & Provisioning: HR-Driven Identity.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-identity-lifecycle,phase,,,,2027-01-27,2027-06-30,,,,
+39,Task,38,D-I3 Source of authority for contractors and other non-employees,"D-I3 · Decision · owner or approver: HR
+Duration 0 working days · end of wk 4 · total float 71 d · predecessors: IG1
+Options: Core HCM contingent workers; the PIV sponsorship system; the contractor suitability register; a combination with one authority per fact
+If decided late: Contractors stay on COR spreadsheets; their cutover can't be planned
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html",fmw,fmw-identity-lifecycle,fmw-id-d-i3,decision,owner-hr,,2027-01-27,2027-01-26,42,,,
+40,Task,38,"D-I5 Order of populations to cut over, aligned to the Core HCM onboarding","D-I5 · Decision · owner or approver: Executive sponsor and CIO
+Duration 0 working days · end of wk 16 · total float 0 · predecessors: IG4
+Options: Follow the program's waves; follow the agency's Core HCM go-live
+If decided late: Retargeting can't be scheduled
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-5-cutover-population-by-population",fmw,fmw-identity-lifecycle,fmw-id-d-i5,decision,owner-executive-sponsor-and-cio,critical-path,2027-04-22,2027-04-21,41,,,
+41,Task,38,"I5.1 Employee populations retargeted to the Entra app, one by one, evidence-gated","I5.1 · Task · owner or approver: Identity engineering
+Duration 40 working days · wk 16–24 · total float 0 · predecessors: D-I5
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-5-cutover-population-by-population",fmw,fmw-identity-lifecycle,fmw-id-i5.1,task,owner-identity-engineering,critical-path,2027-04-22,2027-06-16,42,43,,
+42,Task,38,I5.2 Contractor populations onboarded from their decided source and retargeted,"I5.2 · Task · owner or approver: Identity engineering
+Duration 30 working days · wk 18–24 · total float 0 · predecessors: D-I3, I5.1 (SS) +10 d
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/06-canonical-attribute-schema.html",fmw,fmw-identity-lifecycle,fmw-id-i5.2,task,owner-identity-engineering,critical-path,2027-05-06,2027-06-16,43,,,
+43,Task,38,I5.3 OU-bound policy retired; rollback path tested once,"I5.3 · Task · owner or approver: Platform teams
+Duration 10 working days · wk 24–26 · total float 0 · predecessors: I5.1, I5.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-5-cutover-population-by-population",fmw,fmw-identity-lifecycle,fmw-id-i5.3,task,owner-platform-teams,critical-path,2027-06-17,2027-06-30,44,,,
+44,Task,38,IG5 Gate 5 — Populations cloud-mastered,"IG5 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 26 · total float 0 · predecessors: I5.3
+Criteria: Cloud-mastered populations run the full lifecycle cloud-native with evidence; no AD writes for migrated populations; rollback tested once
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/12-execution-plan.html#phase-5-cutover-population-by-population",fmw,fmw-identity-lifecycle,fmw-id-ig5,gate,owner-isso,critical-path,2027-07-01,2027-06-30,,,,

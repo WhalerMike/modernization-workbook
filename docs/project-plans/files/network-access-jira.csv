@@ -1,0 +1,188 @@
+﻿Work item ID,Work type,Parent,Summary,Description,Labels,Labels,Labels,Labels,Labels,Labels,Start date,Due date,Blocks,Blocks,Blocks,Blocks,Blocks
+1,Epic,,"Network & Access Modernization: Phase 0 — Charter, alignment and inventory","Phase 0 — Charter, alignment and inventory of the sample plan Network & Access Modernization: Naming Plane, Governed Transport and Edge Enforcement.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-network-access,phase,,,,2027-01-04,2027-01-26,,,,,
+2,Task,1,N0.1 Naming-plane owner confirmed; pilot population defined; remote-access paths and residual VPN use inventoried,"N0.1 · Task · owner or approver: Sponsor and CIO
+Duration 5 working days · wk 1 · total float 15 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/09-who-owns-the-network.html#the-charters-plan-in-one-table",fmw,fmw-network-access,fmw-id-n0.1,task,owner-sponsor-and-cio,,2027-01-04,2027-01-08,4,23,29,37,
+3,Task,1,"N0.2 AD DNS and DHCP inventory, read-only, committed as JSON; DnsAdmins emptied of non-domain-administrators","N0.2 · Task · owner or approver: AD administrators
+Duration 10 working days · wk 1–2 · total float 22 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-1-inventory-and-baseline",fmw,fmw-network-access,fmw-id-n0.2,task,owner-ad-administrators,,2027-01-04,2027-01-15,6,,,,
+4,Task,1,"N0.3 DDI candidates scored on evidence: Marketplace status, policy-plane coverage, the five decisions, vendor questions in writing","N0.3 · Task · owner or approver: DNS/DDI team
+Duration 12 working days · wk 2–4 · total float 15 d · predecessors: N0.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html#selection-criteria",fmw,fmw-network-access,fmw-id-n0.3,task,owner-dns-ddi-team,,2027-01-11,2027-01-26,5,,,,
+5,Task,1,D-N1 DDI platform model,"D-N1 · Decision · owner or approver: Sponsor and CIO
+Duration 0 working days · end of wk 4 · total float 15 d · predecessors: N0.3
+Options: SaaS policy plane; agency-operated DDI inside the boundary; cloud-native services managed as code (enough on its own for a single-cloud agency with no divisional delegation)
+If decided late: Coexistence can't be deployed, and the pilot division's DNS move (program P2.6) has nothing to move onto
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/12-selection-cost-and-residual-risk.html#comparing-the-platform-models",fmw,fmw-network-access,fmw-id-d-n1,decision,owner-sponsor-and-cio,,2027-01-27,2027-01-26,6,,,,
+6,Task,1,NG0 Gate 0 — Inventory committed and decisions owned,"NG0 · Gate · owner or approver: DNS/DDI team
+Duration 0 working days · end of wk 4 · total float 15 d · predecessors: N0.2, D-N1
+Criteria: AD DNS inventory dated, committed and reviewed (Decision 4); every branch's redirect-dns target read from the running configuration; platform model decided; one named decider for every row of the DNS and network matrices
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html#decision-4-ad-dns-inventory-before-retirement",fmw,fmw-network-access,fmw-id-ng0,gate,owner-dns-ddi-team,,2027-01-27,2027-01-26,9,11,20,22,26
+7,Epic,,Network & Access Modernization: Phase 1 — Naming and addressing,"Phase 1 — Naming and addressing of the sample plan Network & Access Modernization: Naming Plane, Governed Transport and Edge Enforcement.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-network-access,phase,,,,2027-01-27,2027-08-13,,,,,
+8,Task,7,X-P17 Cloud DNS Private Resolver deployed (program P1.7),"X-P17 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 6 · total float 2 d · predecessors: —
+If decided late: Coexistence has no cloud resolver to forward to, and Phase 1 waits
+Comes from program-master-schedule:P1.7 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-network-access,fmw-id-x-p17,external,owner-platform-teams-program,,2027-02-15,2027-02-12,9,,,,
+9,Task,7,"N1.1 Coexistence: DDI resolvers deployed, Microsoft DNS and DHCP synchronized read-only, forwarding both ways with one path per namespace","N1.1 · Task · owner or approver: DNS/DDI team
+Duration 8 working days · wk 7–8 · total float 2 d · predecessors: NG0, X-P17
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-2-deploy-coexistence",fmw,fmw-network-access,fmw-id-n1.1,task,owner-dns-ddi-team,,2027-02-15,2027-02-24,10,12,13,,
+10,Task,7,X-P26S Program starts the pilot division's DNS move (start of P2.6),"X-P26S · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 8 · total float fixed date · predecessors: N1.1
+If decided late: The pilot division's zones and scopes have no coexistence to move through, and the program's pilot slips
+Comes from program-master-schedule:P2.6:start in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-network-access,fmw-id-x-p26s,external,owner-platform-teams-program,,2027-03-01,2027-02-26,,,,,
+11,Task,7,D-N2 Resolver path: the redirect-dns target and the forwarding chain order (Decisions 1 and 2),"D-N2 · Decision · owner or approver: DNS/DDI team
+Duration 0 working days · end of wk 4 · total float 178 d · predecessors: NG0
+Options: A DDI resolver at the branch; a forwarding proxy in a regional hub. Never a client loopback stub, and any SASE resolver is a forwarding target of the agency resolver, never the redirect target
+If decided late: Branch edges can't be retargeted; Protective DNS, logging and response policy stay off the branch path
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/08-reference-architecture.html#decision-1-the-redirect-dns-destination",fmw,fmw-network-access,fmw-id-d-n2,decision,owner-dns-ddi-team,,2027-01-27,2027-01-26,12,,,,
+12,Task,7,"N1.2 Edge retargeted: redirect-dns to agency resolvers, SASE DNS as a forwarding target, order verified in the running configuration","N1.2 · Task · owner or approver: Network engineering
+Duration 10 working days · wk 8–10 · total float 157 d · predecessors: D-N2, N1.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#retargeting-the-edge",fmw,fmw-network-access,fmw-id-n1.2,task,owner-network-engineering,,2027-02-25,2027-03-10,18,,,,
+13,Task,7,"D-N3 Order of zones to move, and the cutover pattern for each","D-N3 · Decision · owner or approver: DNS/DDI team
+Duration 0 working days · end of wk 8 · total float 66 d · predecessors: N1.1
+Options: Per zone: split horizon, subdomain delegation, or progressive migration with conditional forwarding. AD locator records stay where domain controllers can register them, and move last
+If decided late: Authority can't move zone by zone; the pilot division's zones wait
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#three-cutover-patterns",fmw,fmw-network-access,fmw-id-d-n3,decision,owner-dns-ddi-team,,2027-02-25,2027-02-24,15,,,,
+14,Task,7,X-P26 Pilot division's DNS migrated and DHCP re-homed (program P2.6),"X-P26 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 11 · total float 49 d · predecessors: —
+If decided late: The cutover loop hasn't been proven on a division, so the remaining zone moves wait
+Comes from program-master-schedule:P2.6 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-network-access,fmw-id-x-p26,external,owner-platform-teams-program,,2027-03-22,2027-03-19,15,,,,
+15,Task,7,"N1.3 Non-AD zones, forwarders, GlobalNames and reverse zones moved through the cutover loop","N1.3 · Task · owner or approver: DNS/DDI team
+Duration 15 working days · wk 12–14 · total float 49 d · predecessors: D-N3, X-P26
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#zones-and-records",fmw,fmw-network-access,fmw-id-n1.3,task,owner-dns-ddi-team,,2027-03-22,2027-04-09,16,17,,,
+16,Task,7,"N1.4 Clients and DHCP scopes moved in waves with the program's divisions (option 6, VNet DNS settings)","N1.4 · Task · owner or approver: DNS/DDI team
+Duration 90 working days · wk 15–32 · total float 49 d · predecessors: N1.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#moving-clients-in-waves",fmw,fmw-network-access,fmw-id-n1.4,task,owner-dns-ddi-team,,2027-04-12,2027-08-13,47,48,,,
+17,Task,7,"N1.5 Cloud federation: IPAM federation, private endpoint zones published once, validation matrix run from every origin","N1.5 · Task · owner or approver: Cloud platform teams
+Duration 15 working days · wk 15–17 · total float 120 d · predecessors: N1.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-4-cloud-federation",fmw,fmw-network-access,fmw-id-n1.5,task,owner-cloud-platform-teams,,2027-04-12,2027-04-30,18,,,,
+18,Task,7,NG1 Gate 1 — Naming plane authoritative for the pilot scope,"NG1 · Gate · owner or approver: DNS/DDI team
+Duration 0 working days · end of wk 17 · total float 120 d · predecessors: N1.2, N1.5
+Criteria: Every name class in the validation matrix resolves correctly from on-premises, each cloud and the branch path; no private endpoint name returns a public address; OCSP and CRL endpoints resolve from every origin; every branch's redirect-dns target is an agency resolver; resolution-path consistency baselined
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-4-cloud-federation",fmw,fmw-network-access,fmw-id-ng1,gate,owner-dns-ddi-team,,2027-05-03,2027-04-30,33,,,,
+19,Epic,,Network & Access Modernization: Phase 2 — Securing the governor,"Phase 2 — Securing the governor of the sample plan Network & Access Modernization: Naming Plane, Governed Transport and Edge Enforcement.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-network-access,phase,,,,2027-01-11,2027-04-09,,,,,
+20,Task,19,"D-N4 Control-plane hosting model, recorded as the boundary disposition","D-N4 · Decision · owner or approver: Sponsor and CIO
+Duration 0 working days · end of wk 4 · total float 138 d · predecessors: NG0
+Options: An on-premises control plane; Cisco Catalyst SD-WAN for Government, cloud-hosted and FedRAMP Certified at Class C (Moderate). A hosted controller doesn't remove the directive's obligations
+If decided late: The control plane can't be built or hardened, and the pilot waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#risks-and-mitigations",fmw,fmw-network-access,fmw-id-d-n4,decision,owner-sponsor-and-cio,,2027-01-27,2027-01-26,21,,,,
+21,Task,19,"N2.1 Control plane built and taken through the ED 26-03 sequence: inventory, off-box logs, patch, hunt, harden, syslog to CISA through CLAW","N2.1 · Task · owner or approver: Network engineering
+Duration 25 working days · wk 4–9 · total float 138 d · predecessors: D-N4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html#securing-the-controller-and-the-edges",fmw,fmw-network-access,fmw-id-n2.1,task,owner-network-engineering,,2027-01-27,2027-03-02,24,,,,
+22,Task,19,"N2.2 Pilot circuits bought on measured physics: per-site latency and loss recorded, diversity, static addressing confirmed with carriers","N2.2 · Task · owner or approver: Network engineering
+Duration 20 working days · wk 4–8 · total float 143 d · predecessors: NG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/13-sequencing-cost-and-evidence.html#the-decision-sequence",fmw,fmw-network-access,fmw-id-n2.2,task,owner-network-engineering,,2027-01-27,2027-02-23,27,28,,,
+23,Task,19,"N2.3 Boundary change and branch use-case package prepared as a significant change, with the evidence the authorization package needs","N2.3 · Task · owner or approver: System owner
+Duration 65 working days · wk 2–14 · total float 135 d · predecessors: N0.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/13-sequencing-cost-and-evidence.html#evidence-for-the-boundary-change",fmw,fmw-network-access,fmw-id-n2.3,task,owner-system-owner,,2027-01-11,2027-04-09,31,,,,
+24,Task,19,NG2 Gate 2 — Governor secured before it carries traffic,"NG2 · Gate · owner or approver: CISO and ISSO
+Duration 0 working days · end of wk 9 · total float 138 d · predecessors: N2.1
+Criteria: Controller and edges under vulnerability management on BOD 26-04 windows, privileged-access control and off-box logging; every edge in the fleet inventory with its software version and support date; an ED 26-03-style inventory, log collection and patch sequence executable within a day; SD-WAN syslog reaching CISA through CLAW
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/08-reference-architecture.html#decision-4-bring-the-governor-under-control-before-it-carries-traffic",fmw,fmw-network-access,fmw-id-ng2,gate,owner-ciso-and-isso,,2027-03-03,2027-03-02,30,33,,,
+25,Epic,,Network & Access Modernization: Phase 3 — Identity-driven access pilot,"Phase 3 — Identity-driven access pilot of the sample plan Network & Access Modernization: Naming Plane, Governed Transport and Edge Enforcement.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-network-access,phase,,,,2027-01-11,2027-06-01,,,,,
+26,Task,25,N3.1 Identity claims reachable by every access decision point; gaps listed,"N3.1 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 4–5 · total float 158 d · predecessors: NG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/09-who-owns-the-network.html#the-charters-plan-in-one-table",fmw,fmw-network-access,fmw-id-n3.1,task,owner-identity-engineering,,2027-01-27,2027-02-02,30,,,,
+27,Task,25,"N3.2 Application-to-path routing policy (the SC-7(4) traffic-flow policy), site register and architecture review determination","N3.2 · Task · owner or approver: System owner
+Duration 10 working days · wk 8–10 · total float 158 d · predecessors: N2.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/12-microsoft-365-traffic.html#the-three-instruments",fmw,fmw-network-access,fmw-id-n3.2,task,owner-system-owner,,2027-02-24,2027-03-09,31,32,,,
+28,Task,25,D-N5 Egress pattern for each pilot site,"D-N5 · Decision · owner or approver: Network engineering
+Duration 0 working days · end of wk 8 · total float 143 d · predecessors: N2.2
+Options: A, hairpin; C, governed local breakout (the program's reference pattern); D, agent-delivered SASE. Never B, bare local breakout
+If decided late: Pilot sites can't be built, and the boundary change can't name its enforcement points
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/08-reference-architecture.html#decision-3-choose-the-egress-pattern-per-site-and-change-the-boundary-first",fmw,fmw-network-access,fmw-id-d-n5,decision,owner-network-engineering,,2027-02-24,2027-02-23,30,31,,,
+29,Task,25,D-N6 Path to a domain controller for each branch class,"D-N6 · Decision · owner or approver: Network engineering
+Duration 0 working days · end of wk 1 · total float 175 d · predecessors: N0.1
+Options: A private path (MPLS, IPsec or the SD-WAN overlay); a ZTNA connector that publishes the domain controllers (single sign-on only); a Kerberos KDC proxy
+If decided late: Pilot branches on local breakout lose sign-in, Group Policy and password change while cloud applications keep working
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.html#ways-to-provide-the-path",fmw,fmw-network-access,fmw-id-d-n6,decision,owner-network-engineering,,2027-01-11,2027-01-08,30,,,,
+30,Task,25,"N3.3 Ten pilot sites built: edges, regional breakout, security service edge, deterministic egress, a monitored path to a domain controller","N3.3 · Task · owner or approver: Network engineering
+Duration 25 working days · wk 9–14 · total float 138 d · predecessors: NG2, D-N5, D-N6, N3.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#implementation-roadmap",fmw,fmw-network-access,fmw-id-n3.3,task,owner-network-engineering,,2027-03-03,2027-04-06,33,,,,
+31,Task,25,"D-N7 Boundary change for local egress, decided before the first production cutover","D-N7 · Decision · owner or approver: Authorizing official
+Duration 0 working days · end of wk 14 · total float 135 d · predecessors: N2.3, N3.2, D-N5
+Options: Approve the significant change through reauthorization or ongoing authorization; refuse, and the sites stay on their current path
+If decided late: No production cutover can start: the boundary change comes first
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/13-sequencing-cost-and-evidence.html#the-decision-sequence",fmw,fmw-network-access,fmw-id-d-n7,decision,owner-authorizing-official,,2027-04-12,2027-04-09,33,,,,
+32,Task,25,D-N8 Microsoft 365 Optimize exemption (the SC-7(4) traffic-flow exception),"D-N8 · Decision · owner or approver: Authorizing official
+Duration 0 working days · end of wk 10 · total float 158 d · predecessors: N3.2
+Options: Grant it for a stated duration and review cadence, on named and compensating controls; refuse it
+If decided late: Optimize traffic stays on the inspected path at the pilot sites, and the cutover waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/12-microsoft-365-traffic.html#the-sc-74-documented-traffic-flow-exception",fmw,fmw-network-access,fmw-id-d-n8,decision,owner-authorizing-official,,2027-03-10,2027-03-09,34,,,,
+33,Task,25,"D-N9 Fabric go-live, site by site: governor live, inspecting and logging","D-N9 · Decision · owner or approver: System owner
+Duration 0 working days · end of wk 17 · total float 120 d · predecessors: N3.3, D-N7, NG1, NG2
+Options: Turn on the site's new egress; hold the site on its current path
+If decided late: Pilot traffic stays on the old path, and the 30-day stability clock doesn't start
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/09-who-owns-the-network.html#an-owner-for-each-step",fmw,fmw-network-access,fmw-id-d-n9,decision,owner-system-owner,,2027-05-03,2027-04-30,34,,,,
+34,Task,25,N3.4 Pilot cutover; 30 stable days; CISA telemetry parity confirmed per site; one path decision emitted as a claim,"N3.4 · Task · owner or approver: Network engineering
+Duration 22 working days · wk 18–22 · total float 120 d · predecessors: D-N9, D-N8
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html#the-evidence-the-fabric-must-emit",fmw,fmw-network-access,fmw-id-n3.4,task,owner-network-engineering,,2027-05-03,2027-06-01,35,,,,
+35,Task,25,NG3 Gate 3 — Pilot governed and evidenced,"NG3 · Gate · owner or approver: CISO
+Duration 0 working days · end of wk 22 · total float 120 d · predecessors: N3.4
+Criteria: Pilot sites stable for 30 days with the control layer live, inspecting and logging to the SIEM; boundary change decided before cutover; SC-7(4) memo signed and site register current; CISA telemetry parity confirmed per site before any legacy circuit ends; one path decision emitted as a claim; the VPN path documented as residual
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/09-who-owns-the-network.html#an-owner-for-each-step",fmw,fmw-network-access,fmw-id-ng3,gate,owner-ciso,,2027-06-02,2027-06-01,51,,,,
+36,Epic,,Network & Access Modernization: Phase 4 — Customer-edge enforcement,"Phase 4 — Customer-edge enforcement of the sample plan Network & Access Modernization: Naming Plane, Governed Transport and Edge Enforcement.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-network-access,phase,,,,2027-01-11,2027-09-10,,,,,
+37,Task,36,"D-N10 RADIUS and NAC platform, and the trigger that retires NPS (D3)","D-N10 · Decision · owner or approver: Sponsor and CIO
+Duration 0 working days · end of wk 1 · total float 112 d · predecessors: N0.1
+Options: NPS through the hybrid-joined phase only; an on-premises NAC platform reading Intune compliance; a cloud-delivered NAC or RADIUS service with the right FedRAMP authorization; VPN or ZTNA federated to Entra ID for remote access
+If decided late: Enforcement can't be designed, and Entra-joined devices can't be admitted before cloud-native cutover removes the AD objects NPS relies on
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/07-network-access-control.html#what-can-replace-it",fmw,fmw-network-access,fmw-id-d-n10,decision,owner-sponsor-and-cio,,2027-01-11,2027-01-08,39,,,,
+38,Task,36,X-P27 Cloud PKI certificates issued; Wi-Fi and VPN verified (program P2.7),"X-P27 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 14 · total float 47 d · predecessors: —
+If decided late: Monitor mode has no device certificates to authenticate, and the NAC rollout waits
+Comes from program-master-schedule:P2.7 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-network-access,fmw-id-x-p27,external,owner-platform-teams-program,,2027-04-12,2027-04-09,39,,,,
+39,Task,36,N4.1 NAC platform registered for Intune compliance retrieval; policy tiers built; monitor mode on pilot ports with a baseline report,"N4.1 · Task · owner or approver: Network engineering
+Duration 30 working days · wk 15–20 · total float 47 d · predecessors: D-N10, X-P27
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/07-network-access-control.html#posture-comes-from-intune-not-from-a-probe",fmw,fmw-network-access,fmw-id-n4.1,task,owner-network-engineering,,2027-04-12,2027-05-21,40,,,,
+40,Task,36,D-N11 Move the pilot sites from monitor mode to wired enforcement,"D-N11 · Decision · owner or approver: Network engineering
+Duration 0 working days · end of wk 20 · total float 47 d · predecessors: N4.1
+Options: Enforce on workstation ports; stay in monitor mode until the baseline's exceptions are closed
+If decided late: Wired and wireless enforcement wait, and devices are still admitted before they authenticate
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/07-network-access-control.html#rolling-it-out",fmw,fmw-network-access,fmw-id-d-n11,decision,owner-network-engineering,,2027-05-24,2027-05-21,41,,,,
+41,Task,36,"N4.2 Wired enforcement: open mode removed, CoA tested, captive portal up, IoT devices registered in IPAM, detections routed to the SOC","N4.2 · Task · owner or approver: Network engineering
+Duration 30 working days · wk 21–26 · total float 47 d · predecessors: D-N11
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/07-network-access-control.html#rolling-it-out",fmw,fmw-network-access,fmw-id-n4.2,task,owner-network-engineering,,2027-05-24,2027-07-02,42,,,,
+42,Task,36,"N4.3 Wireless enforcement on WPA3-Enterprise, then IoT segmentation and a rogue-device tabletop","N4.3 · Task · owner or approver: Network engineering
+Duration 50 working days · wk 27–36 · total float 47 d · predecessors: N4.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/07-network-access-control.html#rolling-it-out",fmw,fmw-network-access,fmw-id-n4.3,task,owner-network-engineering,,2027-07-05,2027-09-10,43,,,,
+43,Task,36,NG4 Gate 4 — Customer edge enforced for the pilot,"NG4 · Gate · owner or approver: CISO and ISSO
+Duration 0 working days · end of wk 36 · total float 47 d · predecessors: N4.3
+Criteria: Monitor-mode baseline report filed; wired and wireless enforcement live at the pilot sites; the three minimum detections alerting the SOC; RADIUS accounting, Intune compliance reports and DHCP audit logs kept for assessors; every MAB exception dated
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/07-network-access-control.html#inventory-profiling-and-logs",fmw,fmw-network-access,fmw-id-ng4,gate,owner-ciso-and-isso,,2027-09-13,2027-09-10,51,,,,
+44,Epic,,Network & Access Modernization: Phase 5 — AD DNS and DHCP decommission,"Phase 5 — AD DNS and DHCP decommission of the sample plan Network & Access Modernization: Naming Plane, Governed Transport and Edge Enforcement.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-network-access,phase,,,,2027-08-16,2027-11-16,,,,,
+45,Task,44,"X-P43 AD-integrated zones moved, except the domain's own (program P4.3)","X-P43 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 39 · total float 0 · predecessors: —
+If decided late: The 30-day SRV hold and the decommission gates can't start
+Comes from program-master-schedule:P4.3 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-network-access,fmw-id-x-p43,external,owner-platform-teams-program,,2027-10-04,2027-10-01,46,47,,,
+46,Task,44,"N5.1 SRV hold: every critical locator record resolves from every VNet and site, every 15 minutes, for 30 clean days","N5.1 · Task · owner or approver: DNS/DDI team
+Duration 22 working days · wk 40–44 · total float 0 · predecessors: X-P43
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/11-operating-the-control-plane.html#srv-record-monitoring",fmw,fmw-network-access,fmw-id-n5.1,task,owner-dns-ddi-team,critical-path,2027-10-04,2027-11-02,49,,,,
+47,Task,44,N5.2 Inventory reconciled both ways; failover tested on the new resolvers and DHCP; query logs show the old servers idle,"N5.2 · Task · owner or approver: DNS/DDI team
+Duration 8 working days · wk 40–41 · total float 14 d · predecessors: X-P43, N1.4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-5-decommission-ad-dns-and-dhcp",fmw,fmw-network-access,fmw-id-n5.2,task,owner-dns-ddi-team,,2027-10-04,2027-10-13,49,,,,
+48,Task,44,"N5.3 Hardening: Protective DNS forwarding, encrypted DNS, DNSSEC signing and validation where required, monitoring dashboards","N5.3 · Task · owner or approver: DNS/DDI team
+Duration 15 working days · wk 33–35 · total float 52 d · predecessors: N1.4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-6-policy-and-compliance-hardening",fmw,fmw-network-access,fmw-id-n5.3,task,owner-dns-ddi-team,,2027-08-16,2027-09-03,51,,,,
+49,Task,44,D-N12 Decommission AD DNS and Windows DHCP,"D-N12 · Decision · owner or approver: Sponsor and CIO
+Duration 0 working days · end of wk 44 · total float 0 · predecessors: N5.1, N5.2
+Options: Decommission once all five gates pass, including 90 days of parallel operation; hold the legacy servers. Never on a date alone
+If decided late: Legacy DNS servers and their DnsAdmins exposure stay in service into the program's AD retirement phase
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-5-decommission-ad-dns-and-dhcp",fmw,fmw-network-access,fmw-id-d-n12,decision,owner-sponsor-and-cio,critical-path,2027-11-03,2027-11-02,50,,,,
+50,Task,44,N5.4 Legacy DNS servers retired in order; exports archived; records officer confirms disposition; 7-day burn-in,"N5.4 · Task · owner or approver: AD administrators
+Duration 10 working days · wk 44–46 · total float 0 · predecessors: D-N12
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html#phase-5-decommission-ad-dns-and-dhcp",fmw,fmw-network-access,fmw-id-n5.4,task,owner-ad-administrators,critical-path,2027-11-03,2027-11-16,51,,,,
+51,Task,44,"NG5 Gate 5 — Legacy name services retired, evidence complete","NG5 · Gate · owner or approver: DNS/DDI team
+Duration 0 working days · end of wk 46 · total float 0 · predecessors: N5.3, N5.4, NG3, NG4
+Criteria: Gates 3 and 4 passed; Chapter 11's evidence checklist complete, the five decisions checked first; no client impact through the burn-in; logs searchable for six months and retrievable for a year; DnsAdmins and delegated roles reviewed; only the domain's own zones left on AD DNS, reached by forwarding, until the last domain controllers go
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/11-operating-the-control-plane.html#sample-evidence-checklist",fmw,fmw-network-access,fmw-id-ng5,gate,owner-dns-ddi-team,critical-path,2027-11-17,2027-11-16,,,,,
