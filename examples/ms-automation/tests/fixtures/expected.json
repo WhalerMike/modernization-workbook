@@ -1,0 +1,145 @@
+{
+  "staleUsers": [
+    {
+      "id": "u3",
+      "userPrincipalName": "cy@contoso.example",
+      "lastSignIn": null,
+      "daysIdle": null
+    },
+    {
+      "id": "u2",
+      "userPrincipalName": "ben@contoso.example",
+      "lastSignIn": "2026-07-01T00:00:00Z",
+      "daysIdle": 116
+    },
+    {
+      "id": "u7",
+      "userPrincipalName": "fay@contoso.example",
+      "lastSignIn": "2026-07-27T00:00:00Z",
+      "daysIdle": 90
+    }
+  ],
+  "ca": {
+    "summary": [
+      {
+        "id": "p-legacy",
+        "displayName": "CA001 Block legacy authentication",
+        "state": "enabled",
+        "grant": [
+          "block"
+        ],
+        "reportOnly": false
+      },
+      {
+        "id": "p-pr",
+        "displayName": "CA022 Phishing-resistant MFA, all users",
+        "state": "enabledForReportingButNotEnforced",
+        "grant": [
+          "authenticationStrength"
+        ],
+        "reportOnly": true
+      },
+      {
+        "id": "p-old",
+        "displayName": "CA099 Old pilot",
+        "state": "disabled",
+        "grant": [
+          "compliantDevice",
+          "mfa"
+        ],
+        "reportOnly": false
+      }
+    ],
+    "counts": {
+      "enabled": 1,
+      "enabledForReportingButNotEnforced": 1,
+      "disabled": 1
+    }
+  },
+  "pim": {
+    "globalAdministrators": 3,
+    "MS.AAD.7.1v1": "pass",
+    "permanentActive": [
+      {
+        "principalId": "bg1",
+        "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10",
+        "role": "Global Administrator",
+        "memberType": "Direct"
+      },
+      {
+        "principalId": "x9",
+        "roleDefinitionId": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+        "role": "Privileged Role Administrator",
+        "memberType": "Direct"
+      }
+    ],
+    "MS.AAD.7.4v1": "fail"
+  },
+  "appCredentials": [
+    {
+      "appId": "app-3",
+      "displayName": "Legacy report",
+      "kind": "password",
+      "keyId": "k4",
+      "lifetimeDays": 92,
+      "daysLeft": -54,
+      "flags": [
+        "MS.AAD.5.5v1",
+        "expired"
+      ]
+    },
+    {
+      "appId": "app-2",
+      "displayName": "Evidence collector",
+      "kind": "certificate",
+      "keyId": "k3",
+      "lifetimeDays": 374,
+      "daysLeft": 16,
+      "flags": [
+        "MS.AAD.5.7v1",
+        "expiring"
+      ]
+    },
+    {
+      "appId": "app-1",
+      "displayName": "HR connector",
+      "kind": "password",
+      "keyId": "k1",
+      "lifetimeDays": 365,
+      "daysLeft": 68,
+      "flags": [
+        "MS.AAD.5.5v1",
+        "MS.AAD.5.6v1"
+      ]
+    },
+    {
+      "appId": "app-2",
+      "displayName": "Evidence collector",
+      "kind": "certificate",
+      "keyId": "k2",
+      "lifetimeDays": 365,
+      "daysLeft": 127,
+      "flags": []
+    },
+    {
+      "appId": "app-3",
+      "displayName": "Legacy report",
+      "kind": "certificate",
+      "keyId": "k5",
+      "lifetimeDays": 1827,
+      "daysLeft": 799,
+      "flags": [
+        "MS.AAD.5.7v1"
+      ]
+    }
+  ],
+  "mfa": {
+    "members": 4,
+    "notMfaRegistered": 1,
+    "noPhishingResistantMethod": 2,
+    "admins": 2,
+    "adminsNoPhishingResistantMethod": [
+      "ben@contoso.example"
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "policies": [
+    {
+      "id": "p-legacy",
+      "displayName": "CA001 Block legacy authentication",
+      "state": "enabled",
+      "conditions": {
+        "clientAppTypes": [
+          "exchangeActiveSync",
+          "other"
+        ],
+        "users": {
+          "includeUsers": [
+            "All"
+          ]
+        }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+          "block"
+        ]
+      }
+    },
+    {
+      "id": "p-pr",
+      "displayName": "CA022 Phishing-resistant MFA, all users",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "users": {
+          "includeUsers": [
+            "All"
+          ]
+        }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": [],
+        "authenticationStrength": {
+          "id": "00000000-0000-0000-0000-000000000004"
+        }
+      }
+    },
+    {
+      "id": "p-old",
+      "displayName": "CA099 Old pilot",
+      "state": "disabled",
+      "conditions": {
+        "users": {
+          "includeGroups": [
+            "g1"
+          ]
+        }
+      },
+      "grantControls": {
+        "operator": "AND",
+        "builtInControls": [
+          "mfa",
+          "compliantDevice"
+        ]
+      }
+    }
+  ],
+  "namedLocations": [
+    {
+      "id": "loc1",
+      "displayName": "Agency egress",
+      "@odata.type": "#microsoft.graph.ipNamedLocation",
+      "isTrusted": true,
+      "ipRanges": [
+        {
+          "cidrAddress": "192.0.2.0/24"
+        }
+      ]
+    }
+  ]
+}
