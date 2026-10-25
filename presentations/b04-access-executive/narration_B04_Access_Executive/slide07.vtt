@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.636
+The end state is phishing-resistant
+MFA for everyone,
+
+2
+00:00:03.636 --> 00:00:06.162
+and the directive makes it mandatory.
+
+3
+00:00:06.162 --> 00:00:08.999
+Ordinary MFA is allowed only until then,
+
+4
+00:00:08.999 --> 00:00:12.437
+so every policy that
+accepts it is transitional.
+
+5
+00:00:12.437 --> 00:00:17.529
+The phishing-resistant methods are Windows
+Hello, FIDO2 passkeys and certificates,
+
+6
+00:00:17.529 --> 00:00:21.276
+and administrators get a stricter
+version on a separate device.
+
+7
+00:00:21.276 --> 00:00:25.066
+The end-state policy goes in on
+day one in report-only mode,
+
+8
+00:00:25.066 --> 00:00:28.050
+so the logs build a history
+of who'd be blocked.
+
+9
+00:00:28.050 --> 00:00:30.950
+Then enforcement follows
+measured readiness:
+
+10
+00:00:30.950 --> 00:00:35.188
+the program's gates are 95 percent
+of users registered and 90 percent
+
+11
+00:00:35.188 --> 00:00:39.500
+of devices compliant, and every
+not-ready exception carries an expiry.
+
+12
+00:00:39.500 --> 00:00:41.363
+The CISO owns that schedule.
+
+13
+00:00:41.363 --> 00:00:44.640
+Next, two platform behaviors
+that surprise people.

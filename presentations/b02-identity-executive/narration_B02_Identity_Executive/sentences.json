@@ -1,0 +1,898 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.037,
+   "This is the executive briefing for Book 02 of the Federal Modernization Workbook, Identity and Directory."
+  ],
+  [
+   7.8,
+   6.963,
+   "It's for the people who make the calls: the C I O, the see-so, the identity program lead and the sponsors."
+  ],
+  [
+   14.762,
+   1.425,
+   "The argument is short."
+  ],
+  [
+   16.188,
+   7.85,
+   "Zero Trust moved the access decision onto identity, so whatever the directory believes, every application enforces."
+  ],
+  [
+   24.038,
+   5.275,
+   "Active Directory isn't being retired, but every road now points to Entra ID,."
+  ],
+  [
+   29.312,
+   5.362,
+   "And syncing the forest as it stands just copies twenty-five years of risk into the cloud."
+  ],
+  [
+   34.675,
+   3.237,
+   "I'll take four questions: why, what, who and how."
+  ],
+  [
+   37.913,
+   4.375,
+   "Each decision slide names the decision, its owner and when it's needed."
+  ],
+  [
+   42.288,
+   2.7,
+   "Let's start with where access gets decided now."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   4.65,
+   "For most of the directory era, the network made the first access decision."
+  ],
+  [
+   4.7,
+   3.225,
+   "If you were inside, you reached what the perimeter allowed."
+  ],
+  [
+   7.925,
+   3.5,
+   "Federal policy moved that decision onto identity."
+  ],
+  [
+   11.425,
+   14.35,
+   "M twenty-two oh-nine says log into applications, not networks, with phishing-resistant M F A. nist's Zero Trust architecture gives no trust for simply being on the network, and sis-uh puts identity first among its pillars."
+  ],
+  [
+   25.775,
+   5.562,
+   "So the identity provider decides every request, from whatever the directory says about you."
+  ],
+  [
+   31.337,
+   3.975,
+   "That's why a wrong attribute is no longer a typo in a phone book."
+  ],
+  [
+   35.312,
+   2.737,
+   "It's the wrong access, enforced everywhere."
+  ],
+  [
+   38.05,
+   4.412,
+   "And a stale account becomes a valid identity, usable from anywhere."
+  ],
+  [
+   42.462,
+   2.325,
+   "So, is Active Directory going away?"
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.863,
+   "Here's the common misconception."
+  ],
+  [
+   1.913,
+   4.9,
+   "Microsoft isn't retiring Active Directory; it still supports and improves it."
+  ],
+  [
+   6.812,
+   1.837,
+   "The pressure comes from direction."
+  ],
+  [
+   8.65,
+   2.612,
+   "Cloud Sync is replacing Connect Sync."
+  ],
+  [
+   11.262,
+   3.6,
+   "Microsoft wants federation moved to cloud authentication."
+  ],
+  [
+   14.863,
+   5.612,
+   "N T L M is deprecated, and its first version is already gone from current Windows."
+  ],
+  [
+   20.475,
+   5.025,
+   "And since January, synced users can be converted to cloud-managed, one at a time."
+  ],
+  [
+   25.5,
+   1.475,
+   "Some dates are fixed."
+  ],
+  [
+   26.975,
+   5.662,
+   "The October 2026 Windows update can break older Wi-Fi and VPN sign-in."
+  ],
+  [
+   32.638,
+   7.638,
+   "And by April 7, 2027, every Connect Sync server has to be upgraded and reconfigured, or sync stops."
+  ],
+  [
+   40.275,
+   6.562,
+   "So the first decision: the sponsor and C I O put those clocks on the plan, and set scope and sequence against them."
+  ],
+  [
+   46.837,
+   2.013,
+   "Next, the trap to avoid."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.625,
+   "The tempting plan is to install a sync engine, copy the forest as it stands, and call it done."
+  ],
+  [
+   5.675,
+   2.737,
+   "The sync works; what it carries is the problem."
+  ],
+  [
+   8.412,
+   8.088,
+   "Twenty-five years of old organization charts, layered policy, forgotten service accounts and ownerless trusts land in the tenant."
+  ],
+  [
+   16.5,
+   2.0,
+   "Delegation has nowhere to go."
+  ],
+  [
+   18.5,
+   8.05,
+   "A synced admin account lets an on-premises breach reach the cloud, which is why Microsoft wants privileged roles on cloud-only accounts."
+  ],
+  [
+   26.55,
+   5.175,
+   "The worst outcome is paying for a cloud platform and running it as a copy of the old directory."
+  ],
+  [
+   31.725,
+   5.0,
+   "So the decision for the sponsor and C I O: treat this as a governance event."
+  ],
+  [
+   36.725,
+   3.75,
+   "Discover, rebuild explicitly, and prove it survived."
+  ],
+  [
+   40.475,
+   2.388,
+   "Here's why that rebuild is structural."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.013,
+   "In Active Directory, where an object sits decides how it's governed."
+  ],
+  [
+   4.062,
+   8.15,
+   "Move a user to another organizational unit (O U), and their administrators and policies change without anyone touching the account."
+  ],
+  [
+   12.213,
+   7.338,
+   "Entra ID has no tree; it governs by what an object carries: attributes, memberships and roles."
+  ],
+  [
+   19.55,
+   3.85,
+   "So every placement-based rule has to be rewritten explicitly."
+  ],
+  [
+   23.4,
+   9.825,
+   "Administrative units (A U's) help, but they can't nest, and for synced users the attributes are still written on-premises, so every change waits on sync."
+  ],
+  [
+   33.225,
+   7.312,
+   "That makes one decision come early: which attributes are authoritative, what they mean, and where each one is mastered."
+  ],
+  [
+   40.538,
+   4.438,
+   "HR decides the meaning, and identity engineering decides the flow."
+  ],
+  [
+   44.975,
+   2.75,
+   "Now, the part Conditional Access can't see."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.875,
+   "Conditional Access is the cloud's policy engine, and it runs when someone signs in to Entra ID."
+  ],
+  [
+   5.925,
+   7.037,
+   "A Kerberos ticket or an N T L M exchange is settled between a computer and a domain controller, and never gets there."
+  ],
+  [
+   12.963,
+   8.0,
+   "That means every remaining Kerberos or N T L M dependency is an access path with no cloud policy decision at all."
+  ],
+  [
+   20.962,
+   10.475,
+   "And those protocols are on a clock: N T L M is deprecated, and Microsoft plans to switch network N T L M off by default in the next major Windows release."
+  ],
+  [
+   31.438,
+   2.812,
+   "Wait for cutover, and you'll find them in production."
+  ],
+  [
+   34.25,
+   4.525,
+   "So the decision: start N T L M auditing in discovery."
+  ],
+  [
+   38.775,
+   7.25,
+   "Application owners move each path, and anything that stays is an exception the authorizing official accepts."
+  ],
+  [
+   46.025,
+   1.7,
+   "And the surface is wider."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.975,
+   "Most migration plans count users and groups."
+  ],
+  [
+   3.025,
+   11.05,
+   "But Active Directory has been quietly holding the rest of the estate together: name resolution, certificates, network sign-in, application logins, time and file paths."
+  ],
+  [
+   14.075,
+   5.388,
+   "The program counts eleven kinds of dependent object, and the worst of them don't fail loudly."
+  ],
+  [
+   19.462,
+   4.438,
+   "Certificates stop renewing weeks after the migration is declared done."
+  ],
+  [
+   23.9,
+   3.575,
+   "Wi-Fi and VPN sign-in fail at the network edge."
+  ],
+  [
+   27.475,
+   4.213,
+   "Applications bound to a domain controller just stop letting people in."
+  ],
+  [
+   31.688,
+   1.738,
+   "Each looks like a local outage."
+  ],
+  [
+   33.425,
+   5.475,
+   "That's why three adapters are critical: certificates, network access and el-dap."
+  ],
+  [
+   38.9,
+   6.312,
+   "The decision for the sponsor: nothing in Active Directory is decommissioned until those three pass validation."
+  ],
+  [
+   45.212,
+   1.863,
+   "Then, who can manage whom."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.587,
+   "Delegation used to come free with the tree."
+  ],
+  [
+   2.638,
+   3.5,
+   "Without it, agencies fall into one of two traps."
+  ],
+  [
+   6.138,
+   5.213,
+   "They over-delegate, handing out tenant-wide admin roles because nothing narrower exists."
+  ],
+  [
+   11.35,
+   5.075,
+   "Or they under-delegate, and every password reset becomes a ticket in a central queue."
+  ],
+  [
+   16.425,
+   12.738,
+   "Administrative units fix that, in three tiers: tenant-wide readers for security and compliance, department units for full administration, and narrow units for the help desk, driven by HR attributes."
+  ],
+  [
+   29.163,
+   1.163,
+   "Two cautions."
+  ],
+  [
+   30.325,
+   6.088,
+   "The groups that hold admin roles can't be dynamic, so they're assigned and made eligible just in time."
+  ],
+  [
+   36.413,
+   7.275,
+   "And locking a unit down also blocks lifecycle and review features, so that's chosen unit by unit, default no."
+  ],
+  [
+   43.688,
+   2.575,
+   "Identity engineering decides the model."
+  ],
+  [
+   46.263,
+   2.038,
+   "Next, who decides the rest."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.912,
+   "In Active Directory, one small team ran the domain and made most of the calls."
+  ],
+  [
+   4.963,
+   7.188,
+   "Once identity is the control plane, those decisions belong to more people, and some carry legal accountability."
+  ],
+  [
+   12.15,
+   4.312,
+   "Federal policy already asks for an agency-wide governance body."
+  ],
+  [
+   16.462,
+   6.775,
+   "The book adds a simple rule: every decision has exactly one decider, even when many people do the work."
+  ],
+  [
+   23.238,
+   5.588,
+   "That matters because the old habit was letting whoever could make a change also decide whether to make it."
+  ],
+  [
+   28.825,
+   5.8,
+   "That's how an engineer ends up setting the agency's risk posture by leaving legacy sign-in open."
+  ],
+  [
+   34.625,
+   3.062,
+   "Only the authorizing official can accept that risk."
+  ],
+  [
+   37.688,
+   3.587,
+   "So the sponsor and C I O adopt this matrix at the start."
+  ],
+  [
+   41.275,
+   1.238,
+   "Here's what it says."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.575,
+   "Here's the matrix, one decider per row."
+  ],
+  [
+   2.625,
+   6.7,
+   "The sponsor and C I O own scope, funding, sequence, and when Active Directory components retire."
+  ],
+  [
+   9.325,
+   5.25,
+   "Identity engineering owns the technical design and each wave's go or no-go."
+  ],
+  [
+   14.575,
+   4.388,
+   "The see-so sets the security requirements and the privileged-access model."
+  ],
+  [
+   18.962,
+   2.163,
+   "HR owns what worker data means."
+  ],
+  [
+   21.125,
+   3.45,
+   "Application owners decide for their own applications."
+  ],
+  [
+   24.575,
+   3.212,
+   "And the authorizing official accepts residual risk."
+  ],
+  [
+   27.788,
+   7.05,
+   "Then each team gets only the role its work needs, with admin roles held by a small group and activated just in time."
+  ],
+  [
+   34.837,
+   1.913,
+   "One row deserves emphasis."
+  ],
+  [
+   36.75,
+   7.088,
+   "Cutting off legacy sign-in belongs to the authorizing official, because keeping it open is itself a risk acceptance."
+  ],
+  [
+   43.837,
+   4.95,
+   "Next, a question every sponsor asks: doesn't Microsoft already do this?"
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.975,
+   "Doesn't Microsoft already do this?"
+  ],
+  [
+   2.025,
+   8.637,
+   "Microsoft's tools do their individual jobs well: sync, attack detection, policy analysis, tenant baselines, governance."
+  ],
+  [
+   10.662,
+   4.775,
+   "But each one keeps its results in its own portal, and none of them connects the picture."
+  ],
+  [
+   15.438,
+   8.787,
+   "No native tool inventories the O U tree and its delegation, the trusts, D N S, the full Group Policy estate or certificate health."
+  ],
+  [
+   24.225,
+   5.188,
+   "And none keeps one record of the old estate, the new one and the drift between them."
+  ],
+  [
+   29.413,
+   4.775,
+   "So the program uses what Microsoft does well and builds only that missing layer."
+  ],
+  [
+   34.188,
+   2.212,
+   "Every tool already has an owner."
+  ],
+  [
+   36.4,
+   3.237,
+   "The gaps between them don't, unless someone names one."
+  ],
+  [
+   39.638,
+   4.838,
+   "The see-so owns evidence and drift, so the see-so names that owner."
+  ],
+  [
+   44.475,
+   1.275,
+   "Now, how to begin."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.8,
+   "An assessment team rarely gets privileged access on day one, and it doesn't need to."
+  ],
+  [
+   4.85,
+   9.238,
+   "An ordinary domain account can read most of what the plan needs: the forest's shape, the O U tree, groups, policy links and certificate templates."
+  ],
+  [
+   14.088,
+   5.862,
+   "Read-only discovery changes nothing, and it applies least privilege to the assessors themselves."
+  ],
+  [
+   19.95,
+   9.675,
+   "Whatever it can't see becomes a short written request: read only, specific, time-bound, for one named account, and an export wherever one will do."
+  ],
+  [
+   29.625,
+   10.213,
+   "Never a blanket request for Domain Admin. Tell security operations first, because this looks like reconnaissance, and protect the output, because it's a map of the estate."
+  ],
+  [
+   39.837,
+   4.812,
+   "The decision: start now, and elevate only through that narrow request."
+  ],
+  [
+   44.65,
+   1.438,
+   "Then build the target."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.75,
+   "Building the target comes down to three choices."
+  ],
+  [
+   2.8,
+   10.363,
+   "First, the sync engine: Cloud Sync by default, Connect Sync only where a forest genuinely needs it, and any Connect server upgraded before April 2027."
+  ],
+  [
+   13.162,
+   12.075,
+   "Second, sign-in: keep password hash sync on everywhere, because it's the fallback when other methods fail, and Microsoft says agencies that had it recovered from ransomware in hours, not weeks."
+  ],
+  [
+   25.238,
+   2.888,
+   "Federation servers become a retirement target."
+  ],
+  [
+   28.125,
+   4.013,
+   "Third, and this one is the see-so's: privileged access."
+  ],
+  [
+   32.138,
+   2.275,
+   "No one holds an admin role permanently."
+  ],
+  [
+   34.413,
+   8.925,
+   "Roles are activated just in time, on cloud-only accounts, with fewer than five Global Administrators and two tested break-glass accounts."
+  ],
+  [
+   43.337,
+   2.675,
+   "The see-so sets that model before the rollout."
+  ],
+  [
+   46.013,
+   1.9,
+   "Next, how people sign in."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.875,
+   "Sign-in is where users feel the migration."
+  ],
+  [
+   2.925,
+   9.825,
+   "M twenty-two oh-nine requires phishing-resistant M F A, and its targets were due at the end of fiscal 2024, so this is a requirement now, not a goal."
+  ],
+  [
+   12.75,
+   2.562,
+   "It names piv as the simplest route."
+  ],
+  [
+   15.312,
+   4.062,
+   "That flips the old roadmap, which saved smart cards for last."
+  ],
+  [
+   19.375,
+   5.425,
+   "Your workforce already carries the cards, so certificate-based sign-in is the fastest win."
+  ],
+  [
+   24.8,
+   4.075,
+   "Administrators go first, on security keys or piv."
+  ],
+  [
+   28.875,
+   8.3,
+   "Then card holders, managed Windows devices, and everyone else on passkeys, in parallel, in roughly twelve to eighteen weeks."
+  ],
+  [
+   37.175,
+   3.225,
+   "Text messages and voice calls go away for staff."
+  ],
+  [
+   40.4,
+   3.525,
+   "The see-so sets that requirement, administrators first."
+  ],
+  [
+   43.925,
+   1.925,
+   "So how does the whole migration run?"
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   10.75,
+   "The migration runs as eleven phases in five waves: foundation, then objects, then privilege and policy, then authentication, then steady-state governance."
+  ],
+  [
+   10.8,
+   5.05,
+   "Each phase has a rollback, and the next one doesn't start until its criteria are met."
+  ],
+  [
+   15.85,
+   6.675,
+   "The program estimates forty-three to sixty-eight weeks in total, and those are planning estimates, not measurements."
+  ],
+  [
+   22.525,
+   2.112,
+   "What leadership watches are the gates."
+  ],
+  [
+   24.637,
+   4.475,
+   "Policies aren't enforced until registration passes ninety-five percent."
+  ],
+  [
+   29.113,
+   4.263,
+   "Help desk volume has to return to normal within a week of each wave."
+  ],
+  [
+   33.375,
+   6.987,
+   "And no policy aimed at everyone ever goes straight from off to on, because one mistake can lock out the whole agency."
+  ],
+  [
+   40.362,
+   3.5,
+   "Identity engineering approves each wave on its gate."
+  ],
+  [
+   43.862,
+   2.862,
+   "And the last step is retiring Active Directory."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.838,
+   "The sync engine is both the bridge to Entra ID and the tether that keeps Active Directory alive."
+  ],
+  [
+   5.888,
+   3.962,
+   "As long as it runs, Active Directory is still in production."
+  ],
+  [
+   9.85,
+   3.5,
+   "So it goes last, and only when six things are all true."
+  ],
+  [
+   13.35,
+   3.525,
+   "Every user comes from HR or the designated source."
+  ],
+  [
+   16.875,
+   2.425,
+   "Every group lives in Entra ID."
+  ],
+  [
+   19.3,
+   3.1,
+   "No application uses on-premises sign-in."
+  ],
+  [
+   22.4,
+   2.413,
+   "Every device is managed in the cloud."
+  ],
+  [
+   24.812,
+   2.625,
+   "Every service account is a cloud identity."
+  ],
+  [
+   27.438,
+   6.213,
+   "And certificates, D N S, network access and el-dap applications are moved and validated."
+  ],
+  [
+   33.65,
+   5.675,
+   "The good news is that authority now moves one object at a time, so this happens gradually."
+  ],
+  [
+   39.325,
+   3.688,
+   "The sponsor retires each component only after its gate."
+  ],
+  [
+   43.013,
+   1.812,
+   "Finally, proving it worked."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   4.2,
+   "Everything ends in evidence, and the question is when it gets produced."
+  ],
+  [
+   4.25,
+   5.625,
+   "In the book's reference deployment, it's produced as the work happens, not assembled afterward."
+  ],
+  [
+   9.875,
+   9.125,
+   "Each phase ends in a signed readiness bundle, and those bundles, with every drift finding and its fix, build the evidence as the work happens."
+  ],
+  [
+   19.0,
+   7.662,
+   "It goes to the agency's own assessor and authorizing official, and it lines up with the federal logging and cloud baseline rules."
+  ],
+  [
+   26.663,
+   8.525,
+   "Most important, it belongs to the agency, so the next authorization, and the next engagement, start from the current record instead of from zero."
+  ],
+  [
+   35.188,
+   4.175,
+   "The see-so owns that evidence, and the I S S O assembles it."
+  ],
+  [
+   39.362,
+   1.875,
+   "Let's bring the decisions together."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   2.1,
+   "Here are the decisions in one place."
+  ],
+  [
+   2.15,
+   8.5,
+   "The sponsor and C I O go first: plan against the dates, treat this as a governance event, and adopt the one-decider matrix."
+  ],
+  [
+   10.65,
+   3.925,
+   "HR settles what the attributes mean before anything is mapped."
+  ],
+  [
+   14.575,
+   3.5,
+   "Application owners chase down their old sign-in paths."
+  ],
+  [
+   18.075,
+   4.062,
+   "Identity engineering approves the delegation model and each wave."
+  ],
+  [
+   22.137,
+   6.825,
+   "The see-so names the gap owner, sets privileged access and phishing-resistant sign-in, and owns the evidence."
+  ],
+  [
+   28.962,
+   3.163,
+   "The authorizing official keeps the legacy cutoff."
+  ],
+  [
+   32.125,
+   4.862,
+   "And the sponsor retires Active Directory one gate at a time, sync engine last."
+  ],
+  [
+   36.987,
+   2.25,
+   "None of this is a directory upgrade."
+  ],
+  [
+   39.237,
+   5.475,
+   "Discover what Active Directory encodes, rebuild it explicitly, and prove it survived."
+  ],
+  [
+   44.712,
+   2.112,
+   "Book 02 has the detail."
+  ],
+  [
+   46.825,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

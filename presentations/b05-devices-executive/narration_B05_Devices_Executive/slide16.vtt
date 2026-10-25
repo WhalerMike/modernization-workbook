@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.375
+Windows Server 2012's extended
+updates ended on October 13, 2026.
+
+2
+00:00:06.375 --> 00:00:11.522
+Any of those hosts still running gets
+no more security fixes from anywhere,
+
+3
+00:00:11.522 --> 00:00:16.088
+so the book treats them as a red
+finding: migrate, upgrade or isolate.
+
+4
+00:00:16.088 --> 00:00:21.599
+Windows Server 2016 reaches end of support
+on January 12, 2027, so any you can't
+
+5
+00:00:21.599 --> 00:00:27.462
+upgrade in time should be enrolled for
+extended updates through Arc before then.
+
+6
+00:00:27.462 --> 00:00:33.009
+Windows 11 version 23H2 stops getting
+updates on November 10, and Windows 10 is
+
+7
+00:00:33.009 --> 00:00:38.300
+already out of support, so each one left
+is an exception with an upgrade date.
+
+8
+00:00:38.300 --> 00:00:43.164
+The decision can't wait: server
+infrastructure acts on the 2012 hosts now,
+
+9
+00:00:43.164 --> 00:00:46.975
+and the authorizing official
+accepts any that must stay.
+
+10
+00:00:46.975 --> 00:00:48.340
+Next, patching.

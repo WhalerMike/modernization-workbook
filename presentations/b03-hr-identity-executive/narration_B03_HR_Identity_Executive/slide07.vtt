@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.225
+The platform uses Oracle's field
+names, but they aren't the contract.
+
+2
+00:00:04.225 --> 00:00:09.656
+The durable contract is OPM's standard
+personnel data: the same data elements
+
+3
+00:00:09.656 --> 00:00:14.663
+and codes in every agency, and a
+standard code on every personnel action.
+
+4
+00:00:14.663 --> 00:00:20.145
+If you map identity to the standard once,
+that one crosswalk covers every employee,
+
+5
+00:00:20.145 --> 00:00:25.387
+survives the next vendor change, and can
+be reused by any agency on the platform.
+
+6
+00:00:25.387 --> 00:00:26.937
+A few rules keep it clean.
+
+7
+00:00:26.937 --> 00:00:30.413
+Use the attributes Entra
+already understands first.
+
+8
+00:00:30.413 --> 00:00:35.650
+Put codes in access rules, never display
+names, because names get retyped.
+
+9
+00:00:35.650 --> 00:00:38.788
+And remember the standard
+covers federal employees only.
+
+10
+00:00:38.788 --> 00:00:43.119
+The decision: the data architect
+builds one governed crosswalk,
+
+11
+00:00:43.119 --> 00:00:45.325
+and HR owns the code lists it uses.
+
+12
+00:00:45.325 --> 00:00:46.940
+Now, the data flow.

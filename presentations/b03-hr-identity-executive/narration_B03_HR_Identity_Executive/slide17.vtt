@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+You can measure it.
+
+2
+00:00:01.112 --> 00:00:05.286
+The book proposes six numbers: how
+fast a separation blocks access,
+
+3
+00:00:05.286 --> 00:00:07.639
+how fast every credential is revoked,
+
+4
+00:00:07.639 --> 00:00:10.750
+how fast a transfer's
+leftover access is reviewed,
+
+5
+00:00:10.750 --> 00:00:15.454
+how many new hires are ready on day one,
+how many accounts match a real worker,
+
+6
+00:00:15.454 --> 00:00:19.476
+and how much access comes from
+rules instead of hand assignment.
+
+7
+00:00:19.476 --> 00:00:22.613
+None of those numbers exists
+in a ticket-driven estate.
+
+8
+00:00:22.613 --> 00:00:25.376
+Expect a spike of findings
+in the first month.
+
+9
+00:00:25.376 --> 00:00:28.519
+That's the measurement finally
+seeing what was already there,
+
+10
+00:00:28.519 --> 00:00:29.813
+not the pipeline failing.
+
+11
+00:00:29.813 --> 00:00:32.488
+And keep the evidence
+outside the directory,
+
+12
+00:00:32.488 --> 00:00:35.887
+because Entra keeps most logs
+for only about thirty days.
+
+13
+00:00:35.887 --> 00:00:41.213
+The ISSO owns the evidence, and
+security sets the leaver thresholds.
+
+14
+00:00:41.213 --> 00:00:43.150
+Let's bring the decisions together.

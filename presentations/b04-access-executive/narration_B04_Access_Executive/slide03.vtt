@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Two habits survive almost every migration.
+
+2
+00:00:02.963 --> 00:00:05.162
+Inside the network means trusted.
+
+3
+00:00:05.162 --> 00:00:07.649
+And in the group means allowed, forever.
+
+4
+00:00:07.649 --> 00:00:11.487
+Policy replaces both, but it
+leans hard on directory data.
+
+5
+00:00:11.487 --> 00:00:15.653
+The program targets policies at
+groups built from attributes,
+
+6
+00:00:15.653 --> 00:00:19.738
+the way Group Policy once targeted
+organizational units (OUs).
+
+7
+00:00:19.738 --> 00:00:24.096
+So a user with an empty attribute
+simply falls outside the policy:
+
+8
+00:00:24.096 --> 00:00:26.113
+an exclusion nobody approved.
+
+9
+00:00:26.113 --> 00:00:28.635
+And group changes can
+take more than a day,
+
+10
+00:00:28.635 --> 00:00:32.938
+so urgent removals mean disabling
+the account and revoking sessions.
+
+11
+00:00:32.938 --> 00:00:38.578
+The decision for the CISO: baseline policies
+cover all users and exclude narrowly,
+
+12
+00:00:38.578 --> 00:00:43.238
+and no attribute-based policy is
+enforced until its data is verified.
+
+13
+00:00:43.238 --> 00:00:45.100
+HR owns those attributes.
+
+14
+00:00:45.100 --> 00:00:47.020
+Next, administrators.

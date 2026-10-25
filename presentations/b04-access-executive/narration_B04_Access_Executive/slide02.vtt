@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.088
+Access used to be settled once.
+
+2
+00:00:02.088 --> 00:00:05.042
+You joined a group, your
+desk sat inside the network,
+
+3
+00:00:05.042 --> 00:00:08.137
+and every request after that
+was approved by default.
+
+4
+00:00:08.137 --> 00:00:11.012
+Federal policy doesn't
+accept that any more.
+
+5
+00:00:11.012 --> 00:00:14.726
+M-22-09 says every request gets evaluated,
+
+6
+00:00:14.726 --> 00:00:17.450
+and the network earns no trust on its own.
+
+7
+00:00:17.450 --> 00:00:21.675
+In Entra ID, the thing that
+evaluates is Conditional Access.
+
+8
+00:00:21.675 --> 00:00:23.000
+Its rules are simple.
+
+9
+00:00:23.000 --> 00:00:25.600
+Every policy that applies has to be met.
+
+10
+00:00:25.600 --> 00:00:27.288
+A block always wins.
+
+11
+00:00:27.288 --> 00:00:29.875
+And an exclusion overrides everything.
+
+12
+00:00:29.875 --> 00:00:34.787
+That last one is the dangerous rule,
+because each exclusion is a standing hole.
+
+13
+00:00:34.787 --> 00:00:38.766
+Only the emergency access
+accounts are excluded by design;
+
+14
+00:00:38.766 --> 00:00:42.338
+everything else needs an
+owner, a reason and an expiry.
+
+15
+00:00:42.338 --> 00:00:44.900
+Next, why the old habits survive.

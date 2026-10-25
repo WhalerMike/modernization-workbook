@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.913
+Here's the common misconception.
+
+2
+00:00:01.913 --> 00:00:06.813
+Microsoft isn't retiring Active Directory;
+it still supports and improves it.
+
+3
+00:00:06.813 --> 00:00:08.649
+The pressure comes from direction.
+
+4
+00:00:08.649 --> 00:00:11.262
+Cloud Sync is replacing Connect Sync.
+
+5
+00:00:11.262 --> 00:00:14.862
+Microsoft wants federation
+moved to cloud authentication.
+
+6
+00:00:14.862 --> 00:00:20.475
+NTLM is deprecated, and its first version
+is already gone from current Windows.
+
+7
+00:00:20.475 --> 00:00:25.500
+And since January, synced users can be
+converted to cloud-managed, one at a time.
+
+8
+00:00:25.500 --> 00:00:26.975
+Some dates are fixed.
+
+9
+00:00:26.975 --> 00:00:32.637
+The October 2026 Windows update can
+break older Wi-Fi and VPN sign-in.
+
+10
+00:00:32.637 --> 00:00:36.261
+And by April 7, 2027,
+every Connect Sync server
+
+11
+00:00:36.261 --> 00:00:40.276
+has to be upgraded and
+reconfigured, or sync stops.
+
+12
+00:00:40.276 --> 00:00:44.431
+So the first decision: the sponsor
+and CIO put those clocks on the plan,
+
+13
+00:00:44.431 --> 00:00:46.837
+and set scope and sequence against them.
+
+14
+00:00:46.837 --> 00:00:48.910
+Next, the trap to avoid.

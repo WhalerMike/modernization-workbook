@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.512
+The principle is that
+deciding isn't doing.
+
+2
+00:00:02.512 --> 00:00:06.709
+Approvers don't make changes, the
+people who make changes don't approve,
+
+3
+00:00:06.709 --> 00:00:08.951
+and nobody approves their own access.
+
+4
+00:00:08.951 --> 00:00:12.175
+Here's the catch: Entra
+doesn't enforce any of that.
+
+5
+00:00:12.175 --> 00:00:15.052
+Application Administrator can grant most
+
+6
+00:00:15.052 --> 00:00:17.850
+kinds of consent and
+can even act as any app.
+
+7
+00:00:17.850 --> 00:00:20.031
+So if the help desk holds that role,
+
+8
+00:00:20.031 --> 00:00:23.925
+the rule that it never approves
+consent exists only on paper.
+
+9
+00:00:23.925 --> 00:00:25.262
+The fix is design.
+
+10
+00:00:25.262 --> 00:00:28.407
+Every request is triaged
+by the authority it needs,
+
+11
+00:00:28.407 --> 00:00:33.500
+and the help desk gets a custom role that
+manages app assignments and nothing else.
+
+12
+00:00:33.500 --> 00:00:36.409
+The decision for the
+identity governance officer:
+
+13
+00:00:36.409 --> 00:00:40.287
+narrow that role before the help
+desk takes its first access ticket.
+
+14
+00:00:40.287 --> 00:00:42.260
+Next, how apps are tiered.

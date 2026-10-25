@@ -1,0 +1,92 @@
+[
+  {
+    "slide": 1,
+    "title": "Identity & Directory: the executive briefing",
+    "say": "Welcome. This is the executive briefing for Book 02 of the Federal Modernization Workbook, Identity and Directory. It's for the people who make the calls: the CIO, the CISO, the identity program lead and the sponsors. The argument is short. Zero Trust moved the access decision onto identity, so whatever the directory believes, every application enforces. Active Directory isn't being retired, but every road now points to Entra ID,. And syncing the forest as it stands just copies twenty-five years of risk into the cloud. I'll take four questions: why, what, who and how. Each decision slide names the decision, its owner and when it's needed. Let's start with where access gets decided now."
+  },
+  {
+    "slide": 2,
+    "title": "The access decision has moved to identity",
+    "say": "For most of the directory era, the network made the first access decision. If you were inside, you reached what the perimeter allowed. Federal policy moved that decision onto identity. M-22-09 says log into applications, not networks, with phishing-resistant MFA. NIST's Zero Trust architecture gives no trust for simply being on the network, and CISA puts identity first among its pillars. So the identity provider decides every request, from whatever the directory says about you. That's why a wrong attribute is no longer a typo in a phone book. It's the wrong access, enforced everywhere. And a stale account becomes a valid identity, usable from anywhere. So, is Active Directory going away?"
+  },
+  {
+    "slide": 3,
+    "title": "AD isn't retiring, but the dates are already set",
+    "say": "Here's the common misconception. Microsoft isn't retiring Active Directory; it still supports and improves it. The pressure comes from direction. Cloud Sync is replacing Connect Sync. Microsoft wants federation moved to cloud authentication. NTLM is deprecated, and its first version is already gone from current Windows. And since January, synced users can be converted to cloud-managed, one at a time. Some dates are fixed. The October 2026 Windows update can break older Wi-Fi and VPN sign-in. And by April 7, 2027, every Connect Sync server has to be upgraded and reconfigured, or sync stops. So the first decision: the sponsor and CIO put those clocks on the plan, and set scope and sequence against them. Next, the trap to avoid."
+  },
+  {
+    "slide": 4,
+    "title": "Lift-and-shift copies the risk into the tenant",
+    "say": "The tempting plan is to install a sync engine, copy the forest as it stands, and call it done. The sync works; what it carries is the problem. Twenty-five years of old organization charts, layered policy, forgotten service accounts and ownerless trusts land in the tenant. Delegation has nowhere to go. A synced admin account lets an on-premises breach reach the cloud, which is why Microsoft wants privileged roles on cloud-only accounts. The worst outcome is paying for a cloud platform and running it as a copy of the old directory. So the decision for the sponsor and CIO: treat this as a governance event. Discover, rebuild explicitly, and prove it survived. Here's why that rebuild is structural."
+  },
+  {
+    "slide": 5,
+    "title": "Placement becomes attributes: governance by rule",
+    "say": "In Active Directory, where an object sits decides how it's governed. Move a user to another organizational unit (OU), and their administrators and policies change without anyone touching the account. Entra ID has no tree; it governs by what an object carries: attributes, memberships and roles. So every placement-based rule has to be rewritten explicitly. Administrative units (AUs) help, but they can't nest, and for synced users the attributes are still written on-premises, so every change waits on sync. That makes one decision come early: which attributes are authoritative, what they mean, and where each one is mastered. HR decides the meaning, and identity engineering decides the flow. Now, the part Conditional Access can't see."
+  },
+  {
+    "slide": 6,
+    "title": "Kerberos and NTLM never reach Conditional Access",
+    "say": "Conditional Access is the cloud's policy engine, and it runs when someone signs in to Entra ID. A Kerberos ticket or an NTLM exchange is settled between a computer and a domain controller, and never gets there. That means every remaining Kerberos or NTLM dependency is an access path with no cloud policy decision at all. And those protocols are on a clock: NTLM is deprecated, and Microsoft plans to switch network NTLM off by default in the next major Windows release. Wait for cutover, and you'll find them in production. So the decision: start NTLM auditing in discovery. Application owners move each path, and anything that stays is an exception the authorizing official accepts. And the surface is wider."
+  },
+  {
+    "slide": 7,
+    "title": "The hidden surface: eleven object types, not two",
+    "say": "Most migration plans count users and groups. But Active Directory has been quietly holding the rest of the estate together: name resolution, certificates, network sign-in, application logins, time and file paths. The program counts eleven kinds of dependent object, and the worst of them don't fail loudly. Certificates stop renewing weeks after the migration is declared done. Wi-Fi and VPN sign-in fail at the network edge. Applications bound to a domain controller just stop letting people in. Each looks like a local outage. That's why three adapters are critical: certificates, network access and LDAP. The decision for the sponsor: nothing in Active Directory is decommissioned until those three pass validation. Then, who can manage whom."
+  },
+  {
+    "slide": 8,
+    "title": "Delegation without OUs: scope by attribute",
+    "say": "Delegation used to come free with the tree. Without it, agencies fall into one of two traps. They over-delegate, handing out tenant-wide admin roles because nothing narrower exists. Or they under-delegate, and every password reset becomes a ticket in a central queue. Administrative units fix that, in three tiers: tenant-wide readers for security and compliance, department units for full administration, and narrow units for the help desk, driven by HR attributes. Two cautions. The groups that hold admin roles can't be dynamic, so they're assigned and made eligible just in time. And locking a unit down also blocks lifecycle and review features, so that's chosen unit by unit, default no. Identity engineering decides the model. Next, who decides the rest."
+  },
+  {
+    "slide": 9,
+    "title": "One decider per decision, many doers",
+    "say": "In Active Directory, one small team ran the domain and made most of the calls. Once identity is the control plane, those decisions belong to more people, and some carry legal accountability. Federal policy already asks for an agency-wide governance body. The book adds a simple rule: every decision has exactly one decider, even when many people do the work. That matters because the old habit was letting whoever could make a change also decide whether to make it. That's how an engineer ends up setting the agency's risk posture by leaving legacy sign-in open. Only the authorizing official can accept that risk. So the sponsor and CIO adopt this matrix at the start. Here's what it says."
+  },
+  {
+    "slide": 10,
+    "title": "Who decides what in the migration",
+    "say": "Here's the matrix, one decider per row. The sponsor and CIO own scope, funding, sequence, and when Active Directory components retire. Identity engineering owns the technical design and each wave's go or no-go. The CISO sets the security requirements and the privileged-access model. HR owns what worker data means. Application owners decide for their own applications. And the authorizing official accepts residual risk. Then each team gets only the role its work needs, with admin roles held by a small group and activated just in time. One row deserves emphasis. Cutting off legacy sign-in belongs to the authorizing official, because keeping it open is itself a risk acceptance. Next, a question every sponsor asks: doesn't Microsoft already do this?"
+  },
+  {
+    "slide": 11,
+    "title": "Microsoft supplies the tools; someone owns the gaps",
+    "say": "Doesn't Microsoft already do this? Microsoft's tools do their individual jobs well: sync, attack detection, policy analysis, tenant baselines, governance. But each one keeps its results in its own portal, and none of them connects the picture. No native tool inventories the OU tree and its delegation, the trusts, DNS, the full Group Policy estate or certificate health. And none keeps one record of the old estate, the new one and the drift between them. So the program uses what Microsoft does well and builds only that missing layer. Every tool already has an owner. The gaps between them don't, unless someone names one. The CISO owns evidence and drift, so the CISO names that owner. Now, how to begin."
+  },
+  {
+    "slide": 12,
+    "title": "Start read-only, then ask for exactly what's missing",
+    "say": "An assessment team rarely gets privileged access on day one, and it doesn't need to. An ordinary domain account can read most of what the plan needs: the forest's shape, the OU tree, groups, policy links and certificate templates. Read-only discovery changes nothing, and it applies least privilege to the assessors themselves. Whatever it can't see becomes a short written request: read only, specific, time-bound, for one named account, and an export wherever one will do. Never a blanket request for Domain Admin. Tell security operations first, because this looks like reconnaissance, and protect the output, because it's a map of the estate. The decision: start now, and elevate only through that narrow request. Then build the target."
+  },
+  {
+    "slide": 13,
+    "title": "Build the target: Cloud Sync, PHS, no standing admin",
+    "say": "Building the target comes down to three choices. First, the sync engine: Cloud Sync by default, Connect Sync only where a forest genuinely needs it, and any Connect server upgraded before April 2027. Second, sign-in: keep password hash sync on everywhere, because it's the fallback when other methods fail, and Microsoft says agencies that had it recovered from ransomware in hours, not weeks. Federation servers become a retirement target. Third, and this one is the CISO's: privileged access. No one holds an admin role permanently. Roles are activated just in time, on cloud-only accounts, with fewer than five Global Administrators and two tested break-glass accounts. The CISO sets that model before the rollout. Next, how people sign in."
+  },
+  {
+    "slide": 14,
+    "title": "Phishing-resistant sign-in: PIV first, not last",
+    "say": "Sign-in is where users feel the migration. M-22-09 requires phishing-resistant MFA, and its targets were due at the end of fiscal 2024, so this is a requirement now, not a goal. It names PIV as the simplest route. That flips the old roadmap, which saved smart cards for last. Your workforce already carries the cards, so certificate-based sign-in is the fastest win. Administrators go first, on security keys or PIV. Then card holders, managed Windows devices, and everyone else on passkeys, in parallel, in roughly twelve to eighteen weeks. Text messages and voice calls go away for staff. The CISO sets that requirement, administrators first. So how does the whole migration run?"
+  },
+  {
+    "slide": 15,
+    "title": "Eleven phases in five waves, each one gated",
+    "say": "The migration runs as eleven phases in five waves: foundation, then objects, then privilege and policy, then authentication, then steady-state governance. Each phase has a rollback, and the next one doesn't start until its criteria are met. The program estimates forty-three to sixty-eight weeks in total, and those are planning estimates, not measurements. What leadership watches are the gates. Policies aren't enforced until registration passes ninety-five percent. Help desk volume has to return to normal within a week of each wave. And no policy aimed at everyone ever goes straight from off to on, because one mistake can lock out the whole agency. Identity engineering approves each wave on its gate. And the last step is retiring Active Directory."
+  },
+  {
+    "slide": 16,
+    "title": "Retire Active Directory last, on six conditions",
+    "say": "The sync engine is both the bridge to Entra ID and the tether that keeps Active Directory alive. As long as it runs, Active Directory is still in production. So it goes last, and only when six things are all true. Every user comes from HR or the designated source. Every group lives in Entra ID. No application uses on-premises sign-in. Every device is managed in the cloud. Every service account is a cloud identity. And certificates, DNS, network access and LDAP applications are moved and validated. The good news is that authority now moves one object at a time, so this happens gradually. The sponsor retires each component only after its gate. Finally, proving it worked."
+  },
+  {
+    "slide": 17,
+    "title": "Evidence that comes out of operations",
+    "say": "Everything ends in evidence, and the question is when it gets produced. In the book's reference deployment, it's produced as the work happens, not assembled afterward. Each phase ends in a signed readiness bundle, and those bundles, with every drift finding and its fix, build the evidence as the work happens. It goes to the agency's own assessor and authorizing official, and it lines up with the federal logging and cloud baseline rules. Most important, it belongs to the agency, so the next authorization, and the next engagement, start from the current record instead of from zero. The CISO owns that evidence, and the ISSO assembles it. Let's bring the decisions together."
+  },
+  {
+    "slide": 18,
+    "title": "Decisions to make, owners and timing",
+    "say": "Here are the decisions in one place. The sponsor and CIO go first: plan against the dates, treat this as a governance event, and adopt the one-decider matrix. HR settles what the attributes mean before anything is mapped. Application owners chase down their old sign-in paths. Identity engineering approves the delegation model and each wave. The CISO names the gap owner, sets privileged access and phishing-resistant sign-in, and owns the evidence. The authorizing official keeps the legacy cutoff. And the sponsor retires Active Directory one gate at a time, sync engine last. None of this is a directory upgrade. Discover what Active Directory encodes, rebuild it explicitly, and prove it survived. Book 02 has the detail. Thank you."
+  }
+]

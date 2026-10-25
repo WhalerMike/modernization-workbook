@@ -60,3 +60,21 @@ Searches on 2026-10-20 for Federal HR 2.0 news after September 1, 2026 found not
 | Continue the series | edited: "Continue the book"; Book index | — |
 | Third-party sources comment and bold "Third-party source" label | edited: HTML comment removed; trade-press sources labeled "(trade press)" in plain text inside each footnote | — |
 | Footnotes | edited: `c02-mt` → `c03-mt` with corrected attribution; 17 new footnotes | — |
+
+## Addition, October 25, 2026: Oracle Core HCM to Entra implementation research
+
+Applied from the research page `docs/research/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | Opportunity table: "The reverse direction — HR events driving Entra ID — is not in the solicitation" | Why this is the opportunity | corrected: the solicitation lists an "Identity Management Solution" interconnection, Core HCM as authoritative source, as a *sample*; no protocol, product or directory named | c03-pws-appb (PWS Appendix B p. 95) |
+| 2 | "No OPM document mandates or specifies Entra ID integration" | What OPM requires | corrected (narrowed): nothing specifies the agency's directory integration; PWS §5.1.1(3) specifies "OPM approved identity management solution using OPM MS Entra-based solution" for OPM's platform | c03-pws-core (PWS §5.1.1(3) p. 26) |
+| 3 | "Nothing in it makes the platform the source for the agency's directory" | What OPM requires | corrected: sample interconnection quoted; Core HCM Steering Committee reviews and approves agency-specific integrations | c03-pws-appb (pp. 88, 95) |
+| 4 | Phase 0: take the HR-to-identity feed to the Steering Committee | What OPM requires | added (design guidance) | c03-pws-appb |
+| 5 | Interconnection go-live ≈ month 5; cutover at month 8 | Program facts; Consequence 1 | confirmed | c03-memo-appb (memo Appendix B) |
+| 6 | Data migration for obfuscation at month 5; UAT in shadow mode months 6–8 | Program facts; Consequence 1 | added | c03-memo-appb |
+| 7 | Obfuscated test data may defer correlation testing to cutover; platform shadow-mode UAT is the window for the pipeline's shadow run | Consequence 1 | added (inference from the timeline, stated as such) | c03-memo-appb |
+| 8 | SCIM 2.0 requirement, PWS Appendix A Req. 5, p. 59 | Program facts | confirmed; page added to the source cell | c03-pws-req5 |
+| 9 | Platform identity: OPM MS Entra-based solution | Program facts (new row) | added | c03-pws-core |
+| 10 | Agency-specific integrations approved by the Steering Committee; sample identity interconnection | Program facts (new row) | added | c03-pws-appb |
+| 11 | Diagram ch03-hr20-window: "onboarding months 1 to 5, the window" | Figure | not changed; still consistent (no wrong fact) | — |

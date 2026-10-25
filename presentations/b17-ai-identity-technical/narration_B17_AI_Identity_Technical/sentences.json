@@ -1,0 +1,1161 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.425,
+   "This is the technical deep dive for Book 17 of the Federal Modernization Workbook, AI Identity Governance."
+  ],
+  [
+   8.188,
+   8.675,
+   "It's for identity engineers, security engineers and platform owners, the people who issue the credentials AI signs in with and watch what it does."
+  ],
+  [
+   16.863,
+   6.75,
+   "The book's idea is simple: an AI agent that can act is an account, and it needs what every account needs."
+  ],
+  [
+   23.613,
+   3.587,
+   "An owner, a credential, limits, and an end."
+  ],
+  [
+   27.2,
+   3.0,
+   "Part 1 is the identity and the inventory."
+  ],
+  [
+   30.2,
+   2.562,
+   "Part 2 is governing it and proving it."
+  ],
+  [
+   32.763,
+   6.562,
+   "One note before we start: the product details here are dated October 2026, and they move fast."
+  ],
+  [
+   39.325,
+   1.35,
+   "Let's begin with why."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.387,
+   "Here's why this matters."
+  ],
+  [
+   1.438,
+   4.15,
+   "A chat assistant drafts something and a person decides what to do with it."
+  ],
+  [
+   5.588,
+   1.475,
+   "An agent doesn't wait."
+  ],
+  [
+   7.062,
+   7.287,
+   "It reads the mailbox, sends the reply and closes the ticket, under an identity that signed in and holds permissions."
+  ],
+  [
+   14.35,
+   5.6,
+   "Only a small share of federal AI is agentic today, but it's the share that grows fastest."
+  ],
+  [
+   19.95,
+   6.75,
+   "Notice the red path: an API key skips the identity provider, so no policy ever sees the call."
+  ],
+  [
+   26.7,
+   2.138,
+   "And the risk is identity-shaped."
+  ],
+  [
+   28.837,
+   2.75,
+   "A manipulated chatbot gives a bad answer."
+  ],
+  [
+   31.587,
+   5.275,
+   "A manipulated agent takes an action, and the damage is whatever its identity can reach."
+  ],
+  [
+   36.862,
+   1.312,
+   "So, Module 1."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.913,
+   "Module 1 sets the ground."
+  ],
+  [
+   1.962,
+   16.788,
+   "We'll look at how AI got into agencies without the identity program noticing, why the controls you already have cover it, the seven things every AI identity needs, and what the federal AI rules actually ask of you, including the one thing people most often get wrong about authorization."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.05,
+   "Most AI didn't come through the front door."
+  ],
+  [
+   2.1,
+   6.325,
+   "It came as a vendor pilot, a key in a config file, or a feature switched on in software you already had."
+  ],
+  [
+   8.425,
+   9.562,
+   "So it arrived without what an employee's account gets automatically: an owner, a place in the organization, a governed credential, reviews and an end date."
+  ],
+  [
+   17.988,
+   2.475,
+   "The good news is you don't need new controls."
+  ],
+  [
+   20.462,
+   7.075,
+   "The account, identifier, authenticator and least-privilege controls you already meet apply to non-person accounts too."
+  ],
+  [
+   27.538,
+   1.875,
+   "The real gap is coverage."
+  ],
+  [
+   29.413,
+   4.9,
+   "The AI's account just isn't in the inventory those controls are tested against."
+  ],
+  [
+   34.312,
+   2.112,
+   "Here's what closing that gap looks like."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   15.688,
+   "The program's answer is seven things every AI identity needs: one record, a named human owner, a place in the organization, credentials with no stored secrets, monitoring, a lifecycle that ends, and evidence the authorizing official can use."
+  ],
+  [
+   15.738,
+   3.962,
+   "Each one maps to a chapter, and to controls you already meet."
+  ],
+  [
+   19.7,
+   4.075,
+   "Be clear that this is the program's design, not a new federal rule."
+  ],
+  [
+   23.775,
+   1.738,
+   "And keep the order practical."
+  ],
+  [
+   25.512,
+   7.925,
+   "Start with agents, the systems that can act, because that's where the damage would be, then work outward to the systems that only answer."
+  ],
+  [
+   33.438,
+   2.562,
+   "Now, what do the federal rules actually say?"
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   9.188,
+   "Federal AI rules changed a lot in two years, and one order even changed the vocabulary to super intelligence, though the legal definition didn't move."
+  ],
+  [
+   9.238,
+   3.788,
+   "On the left are the documents that bind you, on the right the guidance."
+  ],
+  [
+   13.025,
+   8.1,
+   "The main memo gives you a Chief AI Officer, an annual inventory, compliance plans and seven practices for high-impact AI."
+  ],
+  [
+   21.125,
+   2.763,
+   "For engineers, what it leaves out matters more."
+  ],
+  [
+   23.887,
+   6.45,
+   "It creates no AI authorization, and it says nothing about accounts, credentials or permissions."
+  ],
+  [
+   30.337,
+   3.6,
+   "Those stay with the controls of the system the AI runs in."
+  ],
+  [
+   33.938,
+   3.237,
+   "And nist's AI overlays aren't even drafted yet."
+  ],
+  [
+   37.175,
+   1.425,
+   "So, authorization."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.038,
+   "There's no AI-specific authorization to operate."
+  ],
+  [
+   3.087,
+   5.037,
+   "An AI system goes through your agency's existing process, before it's deployed."
+  ],
+  [
+   8.125,
+   8.325,
+   "What high-impact AI adds is a second, separate signature: someone accepts the risk of the AI use case after an independent review."
+  ],
+  [
+   16.45,
+   5.638,
+   "That's two decisions, possibly by two different people, and neither one replaces the other."
+  ],
+  [
+   22.087,
+   7.725,
+   "The program ties both to one identity record, so both people read the same facts about what the system is and what it can reach."
+  ],
+  [
+   29.812,
+   5.925,
+   "And if the inventory says a deployed system has no authorization, that's a finding against your own policy."
+  ],
+  [
+   35.737,
+   1.812,
+   "That brings us to the inventory."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.625,
+   "Module 2 is about knowing what you have."
+  ],
+  [
+   2.675,
+   15.662,
+   "We'll read the AI use-case inventory as identity data, see why a use case isn't an identity, sort AI by whose token it presents, look inside Agent ID, check what each government cloud really has today, and end with six kinds of AI identity."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   7.625,
+   "The inventory is the only government-wide list of federal AI, but it was built to inform the public, not to run identity."
+  ],
+  [
+   7.675,
+   4.537,
+   "Read it with an identity team's eyes and its fields sort three ways."
+  ],
+  [
+   12.213,
+   6.188,
+   "A few are anchors you can key a record on, like a stable ID, the bureau and the lifecycle stage."
+  ],
+  [
+   18.4,
+   4.588,
+   "Some are leads you have to verify, like the contact and the authorization answer."
+  ],
+  [
+   22.988,
+   3.7,
+   "And everything that decides what an AI can touch simply isn't there."
+  ],
+  [
+   26.688,
+   3.75,
+   "Even the contact often names a shared mailbox, not an owner."
+  ],
+  [
+   30.438,
+   2.75,
+   "And the unit is wrong, which is the next slide."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.725,
+   "A use case is a scenario, and scenarios don't sign in."
+  ],
+  [
+   3.775,
+   7.65,
+   "One assistant can run on four different identities, and one shared platform can serve dozens of use cases under a single identity."
+  ],
+  [
+   11.425,
+   3.913,
+   "The public file doesn't even have a stable key on every row."
+  ],
+  [
+   15.338,
+   3.013,
+   "So the program puts the join on the identity side."
+  ],
+  [
+   18.35,
+   7.787,
+   "Each AI system's identity record carries the inventory ID, and every directory object it uses points back to that record."
+  ],
+  [
+   26.137,
+   2.413,
+   "That same tag can later drive policy."
+  ],
+  [
+   28.55,
+   3.875,
+   "Join against your agency's own submission, not the public file."
+  ],
+  [
+   32.425,
+   4.125,
+   "Next, what the inventory can say about the high-impact practices."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.037,
+   "The inventory now has a field for every one of the seven high-impact practices."
+  ],
+  [
+   5.088,
+   2.75,
+   "But those fields hold answers, not proof."
+  ],
+  [
+   7.838,
+   4.775,
+   "A yes for monitoring tells you the agency believes it monitors, not what it found."
+  ],
+  [
+   12.613,
+   8.887,
+   "In the published data, many high-impact systems answered nothing, and in progress outnumbers yes everywhere, which fits agencies still part way through."
+  ],
+  [
+   21.5,
+   1.887,
+   "Here's the useful part for this room."
+  ],
+  [
+   23.387,
+   11.5,
+   "Three practices are ones the identity program proves as a by-product: monitoring from the system's own logs, operator training checked against a real group, and a fail-safe that's a tested disable."
+  ],
+  [
+   34.888,
+   2.425,
+   "Now let's sort the identities themselves."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.375,
+   "What kind of identity an AI has comes down to one question: whose token does it present?"
+  ],
+  [
+   5.425,
+   6.787,
+   "If it acts for a signed-in user, the user's policies and consent apply, and it can do everything that user can."
+  ],
+  [
+   12.213,
+   3.612,
+   "If it acts as itself, its policy surface is thin."
+  ],
+  [
+   15.825,
+   3.8,
+   "All you can do is block it, so least privilege does the real work."
+  ],
+  [
+   19.625,
+   5.638,
+   "If it has its own user account, be careful, because your all-users policies don't reach it."
+  ],
+  [
+   25.262,
+   4.013,
+   "That's why Microsoft says to write a policy for each token subject."
+  ],
+  [
+   29.275,
+   5.062,
+   "And the red path again, a key outside the identity provider, is invisible."
+  ],
+  [
+   34.337,
+   1.837,
+   "Let's look inside Agent ID."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.7,
+   "Agent ID adds a small object model."
+  ],
+  [
+   2.75,
+   3.3,
+   "The blueprint is the template, and it holds the credential."
+  ],
+  [
+   6.05,
+   4.987,
+   "The agent identities created from it hold permissions but no credential of their own."
+  ],
+  [
+   11.037,
+   3.862,
+   "The big consequence is that the blueprint is a credential boundary."
+  ],
+  [
+   14.9,
+   7.513,
+   "One credential serves every agent of that kind, and one action on the blueprint reaches all of them, including future ones."
+  ],
+  [
+   22.413,
+   7.075,
+   "Second, what a blueprint declares isn't granted until someone consents, so real access is a sum you have to read."
+  ],
+  [
+   29.488,
+   3.625,
+   "Third, every agent gets a human sponsor at creation."
+  ],
+  [
+   33.112,
+   2.112,
+   "Now, which clouds actually have this?"
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.875,
+   "Your cloud decides what you can use, and this picture changes monthly."
+  ],
+  [
+   3.925,
+   2.25,
+   "The platform is generally available."
+  ],
+  [
+   6.175,
+   9.588,
+   "G C C has a documented subset: you can govern agent identity and access, but not yet get Microsoft's audit and data protection for agent activity."
+  ],
+  [
+   15.762,
+   8.312,
+   "G C C High and DoD have nothing published, so treat agent identities as unavailable there until Microsoft confirms it in writing."
+  ],
+  [
+   24.075,
+   4.938,
+   "Licensing is its own trap, and the fed-ramp High authorization is still pending."
+  ],
+  [
+   29.012,
+   7.0,
+   "The program's rule is to build on what's generally available in your own cloud, and to treat preview as something you watch."
+  ],
+  [
+   36.013,
+   1.962,
+   "So how do we classify all this?"
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   15.188,
+   "Putting it together, the program sorts every AI system into six kinds of identity: a delegated assistant, workload-identity AI, an agent identity, an agent with its own user account, a vendor-hosted service, and an unmanaged key."
+  ],
+  [
+   15.238,
+   6.275,
+   "Each kind tells you who owns it, how it should authenticate, what policy can reach it, and how it ends."
+  ],
+  [
+   21.512,
+   2.3,
+   "Most of the risk sits in the last two."
+  ],
+  [
+   23.812,
+   3.975,
+   "A vendor's service is visible but outside your workload policy."
+  ],
+  [
+   27.788,
+   5.45,
+   "A raw key isn't in the directory at all, so it has no owner and no end until you find it."
+  ],
+  [
+   33.237,
+   3.862,
+   "Everything else can be governed, and Part 2 does exactly that."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   2.413,
+   "Module 3 makes governance real."
+  ],
+  [
+   2.462,
+   15.637,
+   "We'll attach every agent to accountable people, run its lifecycle from the sponsor's own HR events, give it credentials with no stored secrets and only the access it needs, and then bound what it can call, through policy, tool registration and data."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   4.987,
+   "An agent has no hire date, so its lifecycle has to hang from a person who does."
+  ],
+  [
+   5.037,
+   2.312,
+   "Agent ID gives you three roles."
+  ],
+  [
+   7.35,
+   2.237,
+   "The owner holds the technical keys."
+  ],
+  [
+   9.588,
+   6.1,
+   "The sponsor answers for why the agent exists, and can switch it off but deliberately can't switch it back on."
+  ],
+  [
+   15.688,
+   3.825,
+   "The manager places an agent's user account in the organization."
+  ],
+  [
+   19.512,
+   6.263,
+   "The catch is the defaults: left alone, whoever built the agent ends up sponsoring and owning it."
+  ],
+  [
+   25.775,
+   2.237,
+   "So the program sets it on purpose."
+  ],
+  [
+   28.012,
+   8.075,
+   "An HR-mastered federal sponsor, a small group of stewards as backup, a separate technical owner, and administrators sponsor nothing."
+  ],
+  [
+   36.087,
+   2.062,
+   "Here's how that drives the lifecycle."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   2.1,
+   "The lifecycle mirrors a person's."
+  ],
+  [
+   2.15,
+   4.525,
+   "Nothing goes to production without an approved inventory entry and a handshake."
+  ],
+  [
+   6.675,
+   4.825,
+   "The event that matters most is the sponsor leaving, because the agent never does."
+  ],
+  [
+   11.5,
+   9.812,
+   "Lifecycle workflows can hand sponsorship to the manager, and the program hangs that off HR's own events and gives the manager a short window to actually confirm."
+  ],
+  [
+   21.312,
+   1.55,
+   "Then there's a neat inversion."
+  ],
+  [
+   22.863,
+   7.025,
+   "Access comes in packages with end dates, so if the sponsor ignores the renewal, the access simply expires."
+  ],
+  [
+   29.887,
+   3.6,
+   "Ignoring the review removes access instead of keeping it."
+  ],
+  [
+   33.487,
+   1.938,
+   "Now, how an agent ends."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   6.338,
+   "Ending an agent takes two steps, and the program keeps them apart: disable first, then delete."
+  ],
+  [
+   6.388,
+   10.725,
+   "Deleting a blueprint cascades to all its agents, slowly, and restores only work for thirty days, so disable, record the decision, wait, and then delete."
+  ],
+  [
+   17.113,
+   10.3,
+   "An agent is orphaned when any of its anchors fails: no confirmed sponsor, no owner, no activity, no inventory record, or a deleted blueprint."
+  ],
+  [
+   27.413,
+   5.275,
+   "A person disables it, never automation, and the office gets thirty days to decide."
+  ],
+  [
+   32.688,
+   6.987,
+   "Where agent features aren't available, run the same lifecycle on application objects, and say honestly that it's weaker."
+  ],
+  [
+   39.675,
+   1.525,
+   "Next, credentials."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   5.575,
+   "An agent can't do multifactor authentication, so its credential has to be right from the start."
+  ],
+  [
+   5.625,
+   15.075,
+   "Because the blueprint holds the credential for every agent made from it, the order matters: a managed identity first, federation from the agent's own platform next, a certificate in a vault only if neither works, and a client secret never in production."
+  ],
+  [
+   20.7,
+   7.25,
+   "The program enforces that with an app management policy that already covers blueprints, so a production secret is a finding."
+  ],
+  [
+   27.95,
+   2.925,
+   "And watch the keys an agent uses for its tools."
+  ],
+  [
+   30.875,
+   4.4,
+   "An unavoidable key needs a vault, an owner and a rotation date."
+  ],
+  [
+   35.275,
+   1.225,
+   "Now, privilege."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   11.613,
+   "Least privilege starts with choosing how the agent acts: for a user when someone's present, as itself only when there's a reason, and with its own user account only when it truly needs a mailbox."
+  ],
+  [
+   11.662,
+   6.812,
+   "Microsoft blocks the most dangerous roles and permissions for agents, but that's a floor, not least privilege."
+  ],
+  [
+   18.475,
+   5.675,
+   "Agents can still hold roles that are privileged in your tenant, so apply your own risk classification."
+  ],
+  [
+   24.15,
+   7.588,
+   "Keep inherited permissions narrow, because one broad setting turns every future grant into a grant to every agent."
+  ],
+  [
+   31.738,
+   2.688,
+   "And no agent holds a standing privileged role."
+  ],
+  [
+   34.425,
+   3.737,
+   "If it seems to need one permanently, that's a design defect."
+  ],
+  [
+   38.163,
+   1.262,
+   "Next, policy."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   5.338,
+   "Conditional Access follows the token's subject, so one policy rarely covers an agent."
+  ],
+  [
+   5.388,
+   7.4,
+   "For autonomous agents, the recommended pattern is simple: block every agent identity except the ones you've approved."
+  ],
+  [
+   12.787,
+   9.037,
+   "The program builds that in report-only mode and sets the approval tag only during the production handshake, so the report shows every agent that skipped it."
+  ],
+  [
+   21.825,
+   4.862,
+   "It stays in report-only until the agent targets leave preview in your cloud."
+  ],
+  [
+   26.688,
+   4.688,
+   "Plan around the known gaps, like the token exchange step that policy can't see."
+  ],
+  [
+   31.375,
+   5.825,
+   "And when risk detection flags an agent, tell its sponsor too, because they know what normal looks like."
+  ],
+  [
+   37.2,
+   1.688,
+   "Now, tools and data."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   5.375,
+   "An agent's reach is the sum of the tools it can call, so the program draws three boundaries."
+  ],
+  [
+   5.425,
+   3.513,
+   "First, identity: what the agent can get a token for."
+  ],
+  [
+   8.938,
+   6.225,
+   "But the protocol many agent tools use makes authorization optional, so some tools sit outside that layer."
+  ],
+  [
+   15.162,
+   5.588,
+   "Second, a registry of approved tools, so a call to anything unregistered is drift."
+  ],
+  [
+   20.75,
+   10.125,
+   "Third, data protection, which isn't available for agents in G C C yet, so there your only data boundary is narrow permissions, and you should record that gap."
+  ],
+  [
+   30.875,
+   4.7,
+   "Anything outside all three, like a raw key, becomes a finding."
+  ],
+  [
+   35.575,
+   1.587,
+   "That takes us to monitoring."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   2.837,
+   "Module 4 is about watching and proving."
+  ],
+  [
+   2.888,
+   12.7,
+   "We'll find where AI shows up in the logs, hunt shadow AI on four surfaces, turn gaps into findings, run the inventory scan, and package the evidence an authorizing official actually needs."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   5.7,
+   "Monitoring starts with knowing where AI shows up in the logs, and that's less obvious than you'd think."
+  ],
+  [
+   5.75,
+   5.888,
+   "An AI built on an ordinary app or managed identity looks exactly like any other workload."
+  ],
+  [
+   11.637,
+   3.225,
+   "Nothing in the log says it's AI or who sponsors it."
+  ],
+  [
+   14.863,
+   1.95,
+   "Only your identity record can."
+  ],
+  [
+   16.812,
+   9.188,
+   "Agent ID objects are easier to spot, but some logs still don't separate agents from apps, so your detections belong on the sign-in and audit tables."
+  ],
+  [
+   26.0,
+   4.975,
+   "Alert on things that happen outside your pipeline, like new credentials or grants."
+  ],
+  [
+   30.975,
+   4.787,
+   "And export everything on day one, because history starts when export does."
+  ],
+  [
+   35.763,
+   1.975,
+   "Next, what nobody declared."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   6.85,
+   "For AI, a lot of what matters was never declared, so discovery has to be standing, not a one-time cleanup."
+  ],
+  [
+   6.9,
+   10.125,
+   "Shadow AI shows up in four places: services people use, apps holding consented access, agents on endpoints, and AI built in your own clouds."
+  ],
+  [
+   17.025,
+   3.087,
+   "Each needs a different tool, and none sees everything."
+  ],
+  [
+   20.113,
+   4.338,
+   "The test is the same everywhere: does this match an identity record?"
+  ],
+  [
+   24.45,
+   3.225,
+   "Match on the record's key, never on a display name."
+  ],
+  [
+   27.675,
+   1.637,
+   "And remember the blind spot."
+  ],
+  [
+   29.312,
+   7.037,
+   "An agent using a raw key produces no identity signal at all, which is why endpoint and network views aren't optional."
+  ],
+  [
+   36.35,
+   1.363,
+   "Now, the findings."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   4.375,
+   "Every gap becomes a finding with a class, a severity and an owner."
+  ],
+  [
+   4.425,
+   5.912,
+   "The top one is the reason this book exists: an agentic system with no governed identity."
+  ],
+  [
+   10.338,
+   10.775,
+   "It's the highest priority, and it's never fixed automatically, because the right answer might be issuing an identity, disabling the agent, or fixing a mislabeled inventory entry."
+  ],
+  [
+   21.113,
+   2.263,
+   "That's a decision, not a repair."
+  ],
+  [
+   23.375,
+   6.487,
+   "A missing authorization starts lower because the inventory can be wrong, then rises once the records confirm it."
+  ],
+  [
+   29.863,
+   7.775,
+   "Each finding becomes one evidence record, keyed on the identity record, and it closes only when a later look shows it's fixed."
+  ],
+  [
+   37.638,
+   1.475,
+   "Next, the scan."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   3.837,
+   "The scan is cheap because it reads answers agencies already gave."
+  ],
+  [
+   3.888,
+   5.737,
+   "Load one year's inventory as a fixed input, and report rows you can't read instead of skipping them."
+  ],
+  [
+   9.625,
+   6.537,
+   "Then run two kinds of checks: some on inventory answers alone, and the important ones that need your directory."
+  ],
+  [
+   16.163,
+   8.25,
+   "On the public file, most live entries trip at least one check, but those are answers to reconcile, not findings and not systems."
+  ],
+  [
+   24.413,
+   7.475,
+   "Prioritize agentic first, route every row to a named person, and close only when a later look shows the fix."
+  ],
+  [
+   31.887,
+   2.788,
+   "Then each year, compare the two vintages."
+  ],
+  [
+   34.675,
+   1.425,
+   "Could this run centrally?"
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   4.925,
+   "In principle, one operator could run the answer checks for every agency at once."
+  ],
+  [
+   4.975,
+   4.112,
+   "People call that CDM for AI, but CDM works differently."
+  ],
+  [
+   9.088,
+   3.9,
+   "Its tools run inside each agency and summaries flow up."
+  ],
+  [
+   12.988,
+   5.125,
+   "What carries over is the split between who sees across agencies and who fixes inside them."
+  ],
+  [
+   18.113,
+   8.95,
+   "A central scan sees only what was published, so it can't tell whether a credential exists, rotated or was revoked, and it can't see shadow AI at all."
+  ],
+  [
+   27.062,
+   4.75,
+   "That last tier, governing the credential itself, belongs to each agency."
+  ],
+  [
+   31.812,
+   2.5,
+   "A central scan starts the conversation."
+  ],
+  [
+   34.312,
+   1.3,
+   "It doesn't finish it."
+  ],
+  [
+   35.612,
+   1.275,
+   "Now, the package."
+  ]
+ ],
+ "30": [
+  [
+   0.05,
+   7.375,
+   "Everything ends in the authorization package, because that's what the authorizing official reads, and only they can accept the risk."
+  ],
+  [
+   7.425,
+   7.412,
+   "First ask where the AI runs: inside an existing system, as a new one, or on a provider's certified service."
+  ],
+  [
+   14.838,
+   4.338,
+   "Even then, the identities that service creates in your tenant are yours."
+  ],
+  [
+   19.175,
+   8.65,
+   "Then the package should answer five questions: who owns it, how it authenticates, what it can reach, who's watching, and when its access ends."
+  ],
+  [
+   27.825,
+   2.425,
+   "One control deserves special attention."
+  ],
+  [
+   30.25,
+   6.45,
+   "Service authentication isn't in any baseline, so a plan built only from the baseline never checks it."
+  ],
+  [
+   36.7,
+   0.925,
+   "Tailor it in."
+  ],
+  [
+   37.625,
+   2.062,
+   "Next, format and clocks."
+  ]
+ ],
+ "31": [
+  [
+   0.05,
+   5.575,
+   "The package should be machine-readable, and the current version of OSCAL needs nothing AI-specific."
+  ],
+  [
+   5.625,
+   8.3,
+   "The AI system is a component, each identity it uses is a user with its privileges, and the sponsor and owner are named roles."
+  ],
+  [
+   13.925,
+   6.15,
+   "Just remember that privileges in the plan are a description; the proof is an observation from the directory."
+  ],
+  [
+   20.075,
+   9.088,
+   "AI adds a few clocks beside annual security testing: the yearly inventory, a compliance plan every two years, and annual waiver certification."
+  ],
+  [
+   29.163,
+   3.775,
+   "And nist's AI overlays aren't drafted yet, so don't wait."
+  ],
+  [
+   32.938,
+   3.312,
+   "Tailor your baseline now and compare when they arrive."
+  ],
+  [
+   36.25,
+   1.7,
+   "Let's close with decisions."
+  ]
+ ],
+ "32": [
+  [
+   0.05,
+   2.325,
+   "Every decision here has one owner."
+  ],
+  [
+   2.375,
+   5.65,
+   "The Chief AI Officer requires every live inventory entry to link to an identity record."
+  ],
+  [
+   8.025,
+   5.375,
+   "The identity governance officer makes sure that record exists before any credential does."
+  ],
+  [
+   13.4,
+   10.963,
+   "The see-so sets the credential, policy and logging rules, the system owner decides what an AI may reach, and the authorizing official decides when a change needs reauthorization."
+  ],
+  [
+   24.363,
+   12.45,
+   "And you can start Monday without buying anything: list your agents and their owners, scan your own inventory, build the block policy in report-only, export your logs, and tailor service authentication in."
+  ],
+  [
+   36.812,
+   2.175,
+   "An agent that acts is an account."
+  ],
+  [
+   38.987,
+   1.775,
+   "Give it an owner and an end."
+  ],
+  [
+   40.763,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

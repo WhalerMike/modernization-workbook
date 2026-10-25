@@ -55,3 +55,13 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 |---|---|---|---|---|
 | R1 | Defines *source of authority* once: HR owns personnel facts; Microsoft's object-level Source of Authority (SOA) is called *object SOA* in this book | System of record versus identity provider | verified | c04-soa <https://learn.microsoft.com/en-us/entra/identity/hybrid/user-source-of-authority-overview> |
 | R2 | OMB Circular A-108 cited with the same whitehouse.gov URL used in Ch07 and Appendix B | c04-a108 footnote | verified (URL unified) | <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A108/omb_circular_a-108.pdf> |
+
+## Addition, October 25, 2026: Oracle Core HCM to Entra implementation research
+
+Applied from the research page `docs/research/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | Lifecycle Workflows' Enable, Disable and Delete user tasks can write account state for synced AD accounts through the provisioning agent | Operating rules | added | c04-lcw-tasks; c04-lcw-onprem |
+| 2 | Rule: one writer per state transition, recorded in the authority map | Operating rules | added (design guidance) | c04-lcw-tasks; c04-lcw-onprem |
+| 3 | Oracle Fusion Cloud "FedRAMP Authorized, Moderate" (c04-fedramp-fusion) | What a human capital system owns | not changed (out of this pass's scope): Marketplace now shows F1603257882 as FedRAMP Certified, Class C / Moderate, certified Jan 13, 2020; whether OPM's Core HCM instance runs under this package wasn't verified | research page he-fr |

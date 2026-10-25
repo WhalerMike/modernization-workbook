@@ -1,0 +1,890 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   6.838,
+   "This is the executive briefing for Book 04 of the Federal Modernization Workbook, Access and Privilege."
+  ],
+  [
+   7.6,
+   2.487,
+   "It's for the people who make the calls on access."
+  ],
+  [
+   10.088,
+   1.425,
+   "The argument is short."
+  ],
+  [
+   11.512,
+   8.25,
+   "Under Zero Trust, every access request is decided by policy, so your Conditional Access policy set is your access control."
+  ],
+  [
+   19.762,
+   7.638,
+   "Standing administrator rights turn one stolen credential into control of the tenant, and a stronger sign-in doesn't fix that."
+  ],
+  [
+   27.4,
+   3.413,
+   "And the platform won't separate deciding from doing for you."
+  ],
+  [
+   30.812,
+   3.237,
+   "I'll take four questions: why, what, who and how."
+  ],
+  [
+   34.05,
+   4.375,
+   "Each decision slide names the decision, its owner and when it's needed."
+  ],
+  [
+   38.425,
+   2.4,
+   "Let's start with how access gets decided."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.038,
+   "Access used to be settled once."
+  ],
+  [
+   2.087,
+   6.05,
+   "You joined a group, your desk sat inside the network, and every request after that was approved by default."
+  ],
+  [
+   8.137,
+   2.875,
+   "Federal policy doesn't accept that any more."
+  ],
+  [
+   11.012,
+   6.438,
+   "M twenty-two oh-nine says every request gets evaluated, and the network earns no trust on its own."
+  ],
+  [
+   17.45,
+   4.225,
+   "In Entra ID, the thing that evaluates is Conditional Access."
+  ],
+  [
+   21.675,
+   1.325,
+   "Its rules are simple."
+  ],
+  [
+   23.0,
+   2.6,
+   "Every policy that applies has to be met."
+  ],
+  [
+   25.6,
+   1.688,
+   "A block always wins."
+  ],
+  [
+   27.288,
+   2.587,
+   "And an exclusion overrides everything."
+  ],
+  [
+   29.875,
+   4.912,
+   "That last one is the dangerous rule, because each exclusion is a standing hole."
+  ],
+  [
+   34.788,
+   7.55,
+   "Only the emergency access accounts are excluded by design; everything else needs an owner, a reason and an expiry."
+  ],
+  [
+   42.337,
+   2.5,
+   "Next, why the old habits survive."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Two habits survive almost every migration."
+  ],
+  [
+   2.962,
+   2.2,
+   "Inside the network means trusted."
+  ],
+  [
+   5.162,
+   2.487,
+   "And in the group means allowed, forever."
+  ],
+  [
+   7.65,
+   3.837,
+   "Policy replaces both, but it leans hard on directory data."
+  ],
+  [
+   11.488,
+   8.25,
+   "The program targets policies at groups built from attributes, the way Group Policy once targeted organizational units (O U's)."
+  ],
+  [
+   19.738,
+   6.375,
+   "So a user with an empty attribute simply falls outside the policy: an exclusion nobody approved."
+  ],
+  [
+   26.113,
+   6.825,
+   "And group changes can take more than a day, so urgent removals mean disabling the account and revoking sessions."
+  ],
+  [
+   32.938,
+   10.3,
+   "The decision for the see-so: baseline policies cover all users and exclude narrowly, and no attribute-based policy is enforced until its data is verified."
+  ],
+  [
+   43.237,
+   1.863,
+   "HR owns those attributes."
+  ],
+  [
+   45.1,
+   1.85,
+   "Next, administrators."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.65,
+   "Here's where it matters most."
+  ],
+  [
+   1.7,
+   4.638,
+   "A Global Administrator can rewrite the policies that protect everyone else."
+  ],
+  [
+   6.338,
+   6.025,
+   "If that role is always on, it's exposed all 8,760 hours of the year."
+  ],
+  [
+   12.363,
+   6.562,
+   "NSA and sis-uh rank weak separation of admin privilege second among the misconfigurations they find."
+  ],
+  [
+   18.925,
+   6.888,
+   "And it's not only people; Midnight Blizzard used a forgotten application with standing access to reach mailboxes."
+  ],
+  [
+   25.812,
+   2.3,
+   "A fido two key proves who you are."
+  ],
+  [
+   28.113,
+   2.925,
+   "It doesn't limit what you can do, or for how long."
+  ],
+  [
+   31.038,
+   5.787,
+   "So the decision: every human admin role is eligible and activated just in time through pim."
+  ],
+  [
+   36.825,
+   5.475,
+   "The see-so sets that model, and the authorizing official accepts whatever has to stay standing."
+  ],
+  [
+   42.3,
+   1.725,
+   "Next, what the rules ask."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   10.787,
+   "nist's AC-6 asks for only the access a task needs, with privileges reviewed on a schedule and every privileged action logged, all in the Moderate baseline."
+  ],
+  [
+   10.838,
+   6.188,
+   "M twenty-two oh-nine doesn't actually mandate time-bound privilege, and it's often quoted as if it did."
+  ],
+  [
+   17.025,
+   9.463,
+   "sis-uh's maturity model is the clearest: it runs from permanent access with a periodic review, to automated just-in-time, just-enough access."
+  ],
+  [
+   26.488,
+   4.062,
+   "Most estates with standing administrators are still at the first stage."
+  ],
+  [
+   30.55,
+   4.638,
+   "Microsoft's numbers are short: fewer than five Global Administrators."
+  ],
+  [
+   35.188,
+   8.575,
+   "The takeaway is that time is the dimension most estates never limited, and limiting it gives you the review and log evidence as a by-product."
+  ],
+  [
+   43.763,
+   1.925,
+   "Now, the baseline itself."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   10.787,
+   "The book's policy library is built to sis-uh's Binding Operational Directive 25-01, which made a set of cloud configurations mandatory for civilian agencies."
+  ],
+  [
+   10.838,
+   12.1,
+   "Each required Entra item maps to a named policy: block legacy sign-in, block high-risk users and sign-ins, and phishing-resistant M F A for everyone and for privileged roles."
+  ],
+  [
+   22.938,
+   1.812,
+   "One choice needs your attention."
+  ],
+  [
+   24.75,
+   5.625,
+   "Microsoft recommends asking high-risk users to fix their own risk; sis-uh says block."
+  ],
+  [
+   30.375,
+   6.375,
+   "They can't both win, so in a directive-scoped tenant the program blocks, and the help desk handles recovery."
+  ],
+  [
+   36.75,
+   5.213,
+   "The policies roll out in five gated waves, each clean for a week before the next."
+  ],
+  [
+   41.962,
+   6.025,
+   "The decision for the see-so: adopt the library and its waves before wave one is enforced."
+  ],
+  [
+   47.987,
+   1.663,
+   "Next, the end state."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.112,
+   "The end state is phishing-resistant M F A for everyone, and the directive makes it mandatory."
+  ],
+  [
+   6.162,
+   6.275,
+   "Ordinary M F A is allowed only until then, so every policy that accepts it is transitional."
+  ],
+  [
+   12.438,
+   8.838,
+   "The phishing-resistant methods are Windows Hello, fido two passkeys and certificates, and administrators get a stricter version on a separate device."
+  ],
+  [
+   21.275,
+   6.775,
+   "The end-state policy goes in on day one in report-only mode, so the logs build a history of who'd be blocked."
+  ],
+  [
+   28.05,
+   11.45,
+   "Then enforcement follows measured readiness: the program's gates are 95 percent of users registered and 90 percent of devices compliant, and every not-ready exception carries an expiry."
+  ],
+  [
+   39.5,
+   1.863,
+   "The see-so owns that schedule."
+  ],
+  [
+   41.362,
+   3.225,
+   "Next, two platform behaviors that surprise people."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   7.188,
+   "First, a policy that says Finance must use strong M F A to reach payroll says nothing about anyone else."
+  ],
+  [
+   7.237,
+   3.475,
+   "If no policy applies, the platform issues a token."
+  ],
+  [
+   10.713,
+   6.888,
+   "So restricting an app takes a pair: one policy that grants with conditions, and one that blocks everyone else."
+  ],
+  [
+   17.6,
+   3.987,
+   "Second, Microsoft creates some policies in your tenant itself."
+  ],
+  [
+   21.587,
+   6.0,
+   "They arrive in report-only mode and switch on at least thirty days later, unless someone turns them off."
+  ],
+  [
+   27.587,
+   2.288,
+   "That's a change the agency didn't make."
+  ],
+  [
+   29.875,
+   11.613,
+   "So the decision: the identity team records, for each one, whether to adopt it or supersede it with a library policy, inside that thirty-day window, under the see-so's baseline."
+  ],
+  [
+   41.487,
+   2.1,
+   "Next, how privilege is tiered."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.15,
+   "Privileged roles are tiered by what their holder could take over."
+  ],
+  [
+   3.2,
+   8.95,
+   "Tier 0 is the control plane: Global Administrator and the roles that grant roles, reset admin credentials or change sign-in policy."
+  ],
+  [
+   12.15,
+   3.9,
+   "Tier 1 runs a whole service, like Exchange or Intune."
+  ],
+  [
+   16.05,
+   6.088,
+   "Tier 2 works inside a bounded population, scoped to administrative units (A U's)."
+  ],
+  [
+   22.137,
+   6.275,
+   "Conditional Access Administrator is Tier 0, because it can weaken the gate on elevation itself."
+  ],
+  [
+   28.413,
+   5.013,
+   "Exchange Administrator isn't labeled privileged, yet it can reach every mailbox."
+  ],
+  [
+   33.425,
+   4.713,
+   "And readers are tiered, because the security setup is a map for an attacker."
+  ],
+  [
+   38.138,
+   8.688,
+   "The decision for the see-so: approve each role's tier and gate, and keep Global Administrators under five, before any role converts."
+  ],
+  [
+   46.825,
+   1.262,
+   "Next, the gate."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   8.5,
+   "An eligible administrator asks for the role, gives a reason, proves who they are again with a phishing-resistant sign-in, and waits for approval."
+  ],
+  [
+   8.55,
+   5.312,
+   "The role then lasts only the window: four hours at Tier 0, eight at Tier 1."
+  ],
+  [
+   13.863,
+   4.675,
+   "Eligibility itself expires too, so it has to be re-authorized."
+  ],
+  [
+   18.538,
+   6.15,
+   "The platform stops self-approval, but it won't stop you making the approvers and the requesters the same group."
+  ],
+  [
+   24.688,
+   5.55,
+   "So approvers sit outside the tier they approve, and Tier 0's sit in the security office."
+  ],
+  [
+   30.238,
+   2.8,
+   "And approvers have twenty-four hours, fixed."
+  ],
+  [
+   33.038,
+   7.675,
+   "The decision for the see-so: staff each approver group from outside its tier, at least two people, sized for real hours."
+  ],
+  [
+   40.712,
+   2.85,
+   "Next, what can quietly undo all this."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.425,
+   "A good gate can be undone quietly, in four ways."
+  ],
+  [
+   3.475,
+   6.25,
+   "If your premium licenses lapse, eligible roles are removed and expiring grants become permanent."
+  ],
+  [
+   9.725,
+   8.475,
+   "Whoever can edit Conditional Access can weaken the gate, so those roles sit in Tier 0, and policy changes need a fresh strong sign-in."
+  ],
+  [
+   18.2,
+   8.35,
+   "If approval is on but nobody's named, the default approvers are the very admins you made eligible, and Microsoft documents that as a lockout."
+  ],
+  [
+   26.55,
+   7.862,
+   "And Microsoft retires the older pim interface on October 28, 2026, so old scripts simply break."
+  ],
+  [
+   34.413,
+   2.05,
+   "The first one is a funding call."
+  ],
+  [
+   36.462,
+   6.125,
+   "The sponsor and C I O treat these licenses as a control dependency, renewed without a gap."
+  ],
+  [
+   42.587,
+   1.788,
+   "Next, the one exception."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.675,
+   "Every control that blocks an admin path also creates a way to lock yourself out."
+  ],
+  [
+   4.725,
+   5.388,
+   "So there's one standing exception: emergency access, or break-glass, accounts."
+  ],
+  [
+   10.113,
+   11.475,
+   "Two or more cloud-only accounts, permanently Global Administrator, with phishing-resistant sign-in of their own, excluded only from blocking policies, and alerted on every use."
+  ],
+  [
+   21.587,
+   11.787,
+   "Using them is strict: two senior administrators together, only when pim is down and the problem can't wait, out within four hours, reviewed within a day, and tested every ninety days."
+  ],
+  [
+   33.375,
+   1.225,
+   "Two decisions."
+  ],
+  [
+   34.6,
+   3.1,
+   "Build and test them before any role goes eligible."
+  ],
+  [
+   37.7,
+   7.487,
+   "And be honest in the security plan: nist expects emergency accounts to expire, so record these as a deviation."
+  ],
+  [
+   45.188,
+   3.575,
+   "The see-so builds; the authorizing official accepts."
+  ],
+  [
+   48.763,
+   1.387,
+   "Now, who decides."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.462,
+   "The principle is that deciding isn't doing."
+  ],
+  [
+   2.513,
+   6.438,
+   "Approvers don't make changes, the people who make changes don't approve, and nobody approves their own access."
+  ],
+  [
+   8.95,
+   3.225,
+   "Here's the catch: Entra doesn't enforce any of that."
+  ],
+  [
+   12.175,
+   5.675,
+   "Application Administrator can grant most kinds of consent and can even act as any app."
+  ],
+  [
+   17.85,
+   6.075,
+   "So if the help desk holds that role, the rule that it never approves consent exists only on paper."
+  ],
+  [
+   23.925,
+   1.337,
+   "The fix is design."
+  ],
+  [
+   25.262,
+   8.238,
+   "Every request is triaged by the authority it needs, and the help desk gets a custom role that manages app assignments and nothing else."
+  ],
+  [
+   33.5,
+   6.787,
+   "The decision for the identity governance officer: narrow that role before the help desk takes its first access ticket."
+  ],
+  [
+   40.288,
+   1.925,
+   "Next, how apps are tiered."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.6,
+   "For applications, risk sets the chain."
+  ],
+  [
+   2.65,
+   13.338,
+   "Every app gets a risk tier from the identity governance officer before anyone gets access, and one high-risk trait is enough to make it Tier 1: an application permission, sensitive data, an outside operator, or no owner."
+  ],
+  [
+   15.988,
+   5.787,
+   "The tier then decides who approves access, who approves consent, and how often it's reviewed."
+  ],
+  [
+   21.775,
+   7.0,
+   "Consent is the riskiest request you'll see, because a grant covers the whole tenant at once and never expires."
+  ],
+  [
+   28.775,
+   7.25,
+   "So any application permission gets Tier 1 handling, and critical scopes need the governance officer and the see-so together."
+  ],
+  [
+   36.025,
+   7.188,
+   "The decision: tier every app before the first grant, and treat anything untiered or ownerless as Tier 1."
+  ],
+  [
+   43.212,
+   2.175,
+   "Next, apps as identities."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.275,
+   "Applications need the same lifecycle people get, including an end."
+  ],
+  [
+   4.325,
+   1.325,
+   "Three facts drive it."
+  ],
+  [
+   5.65,
+   5.713,
+   "Consent grants don't expire, and revoking one doesn't cancel the tokens already issued."
+  ],
+  [
+   11.363,
+   7.4,
+   "Owners aren't just contacts: an owner can add a credential and become the app, so the list holds two named technical people."
+  ],
+  [
+   18.762,
+   7.775,
+   "And stored secrets are the weak spot, so the order is a managed identity, then federation, then a short-lived certificate."
+  ],
+  [
+   26.538,
+   8.863,
+   "Microsoft's recommended policy blocks new secrets and caps certificates at 180 days, and the program adopts it for every new app."
+  ],
+  [
+   35.4,
+   6.088,
+   "The see-so sets that rule, and any exception for a secret needs the governance officer and the see-so."
+  ],
+  [
+   41.487,
+   2.638,
+   "Next, the whole map of who decides."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.325,
+   "One decider per row."
+  ],
+  [
+   1.375,
+   3.763,
+   "The see-so sets the access baseline and the privilege model."
+  ],
+  [
+   5.138,
+   7.213,
+   "The identity governance officer tiers applications, decides consent above the lowest tier, and rules on exceptions."
+  ],
+  [
+   12.35,
+   3.175,
+   "Application owners decide who gets into their apps."
+  ],
+  [
+   15.525,
+   2.163,
+   "Business approvers confirm the need."
+  ],
+  [
+   17.688,
+   3.45,
+   "Security operations can pull consent during an incident."
+  ],
+  [
+   21.137,
+   2.1,
+   "The sponsor and C I O fund it."
+  ],
+  [
+   23.238,
+   3.112,
+   "And the authorizing official owns residual risk."
+  ],
+  [
+   26.35,
+   9.963,
+   "Exceptions run on a clock: six months at most, never renewed automatically, and one renewed more than twice goes up to the see-so and the authorizing official."
+  ],
+  [
+   36.312,
+   7.1,
+   "The decision: any exception that leaves a control unmet with nothing compensating goes to the authorizing official."
+  ],
+  [
+   43.413,
+   1.225,
+   "Now, how to run it."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.938,
+   "Policy decides whether a session goes ahead, not whether someone should still hold last year's access."
+  ],
+  [
+   5.987,
+   1.163,
+   "That's governance."
+  ],
+  [
+   7.15,
+   7.737,
+   "People request access through packages, with named approvers and an end date from day one; the program never uses never."
+  ],
+  [
+   14.887,
+   8.537,
+   "Reviews run on a calendar set by risk: monthly for Tier 0 roles, quarterly for the rest, and guests quarterly by their sponsors."
+  ],
+  [
+   23.425,
+   3.825,
+   "A mover loses the old access, and a leaver loses it all."
+  ],
+  [
+   27.25,
+   5.612,
+   "One trap: reviewing an app doesn't remove the members of its groups, so review the groups."
+  ],
+  [
+   32.862,
+   2.175,
+   "The executive call is licensing."
+  ],
+  [
+   35.038,
+   7.838,
+   "Partial licensing governs some people and leaves the rest alone, so the sponsor and C I O license governance for the whole workforce."
+  ],
+  [
+   42.875,
+   1.375,
+   "Next, evidence."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   2.15,
+   "Finally, how decisions are held."
+  ],
+  [
+   2.2,
+   3.95,
+   "Every policy and setting lives as a file in a repository."
+  ],
+  [
+   6.15,
+   3.7,
+   "A change is a reviewed request, and its author can't approve it."
+  ],
+  [
+   9.85,
+   3.425,
+   "New policies run in report-only for at least a week."
+  ],
+  [
+   13.275,
+   4.362,
+   "The pipeline has no stored secret, and it's treated as Tier 0."
+  ],
+  [
+   17.637,
+   9.025,
+   "Emergency edits in the portal are allowed, but they're back in code within a day, and a monitor checks the tenant against the repository every six hours."
+  ],
+  [
+   26.663,
+   1.462,
+   "Then keep the evidence."
+  ],
+  [
+   28.125,
+   7.312,
+   "Entra holds its logs for only thirty days, so the program keeps a year, and three for consent and break-glass."
+  ],
+  [
+   35.438,
+   6.025,
+   "The decision for the see-so: make the repository the only normal path, from the first policy."
+  ],
+  [
+   41.462,
+   1.262,
+   "Let's pull it together."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   1.575,
+   "So, the decisions."
+  ],
+  [
+   1.625,
+   13.025,
+   "The see-so sets the baseline: all users covered, attribute-based policies only on verified data, the library adopted before wave one, and phishing-resistant M F A in report-only from day one."
+  ],
+  [
+   14.65,
+   13.363,
+   "The see-so also owns the privilege model: every admin role eligible, tiers approved, approvers from outside the tier, and break-glass built and tested first, with the authorizing official accepting what stays standing."
+  ],
+  [
+   28.012,
+   3.913,
+   "The sponsor and C I O fund the licenses, without a gap."
+  ],
+  [
+   31.925,
+   5.0,
+   "The identity governance officer narrows the help desk role and tiers every app."
+  ],
+  [
+   36.925,
+   3.65,
+   "Uncompensated exceptions go to the authorizing official."
+  ],
+  [
+   40.575,
+   2.875,
+   "And the repository becomes the only path."
+  ],
+  [
+   43.45,
+   3.15,
+   "Write the policy down, test it, prove it ran."
+  ],
+  [
+   46.6,
+   4.0,
+   "Book 04 has the detail, every claim footnoted."
+  ],
+  [
+   50.6,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

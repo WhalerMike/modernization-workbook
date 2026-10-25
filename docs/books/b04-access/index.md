@@ -35,6 +35,8 @@ This book consolidates the workbook's access-plane pages (the Conditional Access
 **15-minute presentation (about 9 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-04) page.
 
 **Technical deep dive (about 50 minutes live, 21 narrated)**: the Conditional Access library, PIM and access governance, in modules on the [Presentations](../../presentations/index.md#technical-b04) page.
+
+**Executive briefing (about 30 minutes live, 14 narrated)**: for the CISO, CIO and identity governance officer: access as policy, the Conditional Access baseline, phishing-resistant MFA, privileged tiers and just-in-time access, applications as identities and access governance, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b04) page.
 :::
 
 Zero Trust moves every access decision to a policy engine and makes it on every request. In Microsoft Entra ID that engine is Conditional Access: it reads who is signing in, from what device, to what, with what risk, and decides block, grant, or grant with conditions. Access that used to follow from group membership and network location now follows from policy, so the policy library becomes the agency's access control in practice. The same is true of privilege. A standing administrator is an open door; an eligible one, activated just in time with approval and a fresh strong sign-in, is a decision made and recorded each time. This book is the policy, the privilege model and the governance that keep both honest.

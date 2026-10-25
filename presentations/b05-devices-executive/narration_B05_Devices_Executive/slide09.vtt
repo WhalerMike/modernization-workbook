@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.386
+The book allows four carve-outs: personal
+devices, Linux that Intune can't manage,
+
+2
+00:00:05.386 --> 00:00:08.700
+older servers, and devices
+that can't enroll at all.
+
+3
+00:00:08.700 --> 00:00:12.567
+That last group, lab instruments,
+factory-floor systems,
+
+4
+00:00:12.567 --> 00:00:16.350
+PCs locked to a vendor's
+certified image, is the hard one.
+
+5
+00:00:16.350 --> 00:00:20.587
+They can't pass a compliant-device
+policy, so their users are blocked.
+
+6
+00:00:20.587 --> 00:00:25.070
+The program handles them in order:
+put them on their own network segment,
+
+7
+00:00:25.070 --> 00:00:29.628
+protect them where they connect, and
+only then, if people must reach cloud
+
+8
+00:00:29.628 --> 00:00:34.187
+resources, a named exclusion with an
+owner and a review every ninety days.
+
+9
+00:00:34.187 --> 00:00:38.063
+Because that leaves a control
+unmet, it's a risk acceptance.
+
+10
+00:00:38.063 --> 00:00:42.362
+So the authorizing official decides
+it, before those users get access.
+
+11
+00:00:42.362 --> 00:00:44.380
+Next, the existing fleet.

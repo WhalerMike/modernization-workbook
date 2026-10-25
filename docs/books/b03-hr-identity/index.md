@@ -38,7 +38,11 @@ One chapter at a time: [01](../../../downloads/b03-hr-identity-01.docx) · [02](
 
 **Technical deep dive (about 50 minutes live, 19 narrated)**: attribute authority, the provisioning pipeline, lifecycle and the PIV binding, and evidence and the execution plan, in modules on the [Presentations](../../presentations/index.md#technical-b03) page.
 
+**Executive briefing (about 30 minutes live, 14 narrated)**: for the CIO, HR leadership, CISO and privacy officer: HR as the source of authority, the Federal HR 2.0 window, attribute authority, joiner-mover-leaver, the open contractor decision and Gate G1's HR feed, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b03) page.
+
 **Research (under review)**: [DNS for HR-Driven Identity Across Clouds](../../research/hr-identity-dns.md) explains what the HR-to-identity pipeline must resolve across Oracle, Azure, AWS and on-premises; it's on the [Research](../../research/index.md) page.
+
+**Research (under review)**: [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../../research/hcm-entra-implementation.md) is an implementation guide that builds this book's pipeline from the Core HCM platform Federal HR 2.0 awarded to Entra ID, with illustrative Python and PowerShell; it's on the [Research](../../research/index.md) page.
 :::
 
 An agency's identity platform can prove, cryptographically and at every hop, that a claim was signed by the party allowed to sign it. It can't tell you whether the claim is *true*: whether the person behind the credential still works for the agency, still holds the position the access was granted for, still reports to the supervisor who approved it. Those are workforce facts. They originate in workforce business processes and are recorded in the human capital system of record; identity services consume governed projections of them and remain authoritative for credentials, authentication, sessions, directory objects, and policy enforcement.

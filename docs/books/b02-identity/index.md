@@ -35,6 +35,8 @@ This book consolidates twenty-two earlier workbook pages on identity and directo
 **15-minute presentation (about 10 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-02) page.
 
 **Technical deep dive (about 50 minutes live, 21 narrated)**: assessing the forest, then building the Entra ID target and migrating, in modules on the [Presentations](../../presentations/index.md#technical-b02) page.
+
+**Executive briefing (about 30 minutes live, 14 narrated)**: for the CIO, CISO and identity program lead: the case for Entra ID as the identity plane, the hidden migration surface, delegation without OUs, the phased migration and retiring AD last, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b02) page.
 :::
 
 Every access decision in a modern federal estate starts with a question about identity: who is this, is the claim about them still true, and what is this device or workload allowed to do? For twenty-five years Active Directory answered those questions inside the network perimeter, and it quietly took on much more: DNS, certificates, Wi-Fi and VPN authentication, file shares, time, application logins, and the organization chart encoded as OUs. Zero Trust moves the decision to the identity provider and evaluates it on every request. Moving from Active Directory to Entra ID is therefore not a directory upgrade. It decides whether every later control works.

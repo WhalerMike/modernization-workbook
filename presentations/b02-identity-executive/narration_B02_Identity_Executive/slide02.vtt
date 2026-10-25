@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.700
+For most of the directory era, the
+network made the first access decision.
+
+2
+00:00:04.700 --> 00:00:07.925
+If you were inside, you reached
+what the perimeter allowed.
+
+3
+00:00:07.925 --> 00:00:11.425
+Federal policy moved that
+decision onto identity.
+
+4
+00:00:11.425 --> 00:00:17.391
+M-22-09 says log into applications, not
+networks, with phishing-resistant MFA.
+
+5
+00:00:17.391 --> 00:00:22.550
+NIST's Zero Trust architecture gives no
+trust for simply being on the network,
+
+6
+00:00:22.550 --> 00:00:25.775
+and CISA puts identity
+first among its pillars.
+
+7
+00:00:25.775 --> 00:00:28.702
+So the identity provider
+decides every request,
+
+8
+00:00:28.702 --> 00:00:31.337
+from whatever the
+directory says about you.
+
+9
+00:00:31.337 --> 00:00:35.312
+That's why a wrong attribute is
+no longer a typo in a phone book.
+
+10
+00:00:35.312 --> 00:00:38.049
+It's the wrong access,
+enforced everywhere.
+
+11
+00:00:38.049 --> 00:00:42.462
+And a stale account becomes a valid
+identity, usable from anywhere.
+
+12
+00:00:42.462 --> 00:00:44.860
+So, is Active Directory going away?

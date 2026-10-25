@@ -1,0 +1,938 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.088,
+   "This is the executive briefing for Book 03 of the Federal Modernization Workbook, HR-Driven Identity."
+  ],
+  [
+   7.85,
+   9.575,
+   "It's for the people who make the calls: the C I O, the Chief Human Capital Officer and HR leadership, the see-so, the privacy officer and the sponsors."
+  ],
+  [
+   17.425,
+   9.412,
+   "Access is now decided by identity, and the facts it reads, like organization, position, status and supervisor, only HR originates."
+  ],
+  [
+   26.837,
+   3.712,
+   "In most agencies those facts reach the directory by ticket."
+  ],
+  [
+   30.55,
+   6.75,
+   "And two migrations already under way rebuild both ends of that connection, so this is the cheapest moment you'll get."
+  ],
+  [
+   37.3,
+   3.237,
+   "I'll take four questions: why, what, who and how."
+  ],
+  [
+   40.538,
+   4.375,
+   "Each decision slide names the decision, its owner and when it's needed."
+  ],
+  [
+   44.913,
+   2.0,
+   "First, what access runs on."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   6.725,
+   "A sign-in token makes claims: this person works here, holds this job, reports to this supervisor."
+  ],
+  [
+   6.775,
+   3.1,
+   "The identity platform can prove who signed the claim."
+  ],
+  [
+   9.875,
+   1.812,
+   "It can't prove the claim is true."
+  ],
+  [
+   11.688,
+   6.062,
+   "That matters now, because under Zero Trust every request is evaluated against those facts."
+  ],
+  [
+   17.75,
+   6.263,
+   "Conditional Access and dynamic groups read organization, position, status and supervisor."
+  ],
+  [
+   24.012,
+   4.412,
+   "So a wrong department isn't a typo anymore; it's the wrong access."
+  ],
+  [
+   28.425,
+   5.425,
+   "And a stale status is a working token for someone who has left, usable from anywhere."
+  ],
+  [
+   33.85,
+   5.2,
+   "Federal guidance points to HR as the authoritative source, without naming a product."
+  ],
+  [
+   39.05,
+   4.35,
+   "So the accuracy of employee data is now the accuracy of access."
+  ],
+  [
+   43.4,
+   2.075,
+   "So why do orphans keep coming back?"
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.088,
+   "Ask who works here, what they do and who they report to, and no single system answers."
+  ],
+  [
+   5.138,
+   8.938,
+   "The answers are scattered across regional organizational unit (O U) trees, application account stores, spreadsheets and slide decks."
+  ],
+  [
+   14.075,
+   4.338,
+   "HR records a separation two weeks early, but nothing is listening."
+  ],
+  [
+   18.413,
+   2.712,
+   "On the day, every account is still live."
+  ],
+  [
+   21.125,
+   3.987,
+   "A ticket gets the main account days later, but not the applications."
+  ],
+  [
+   25.113,
+   3.925,
+   "Months on, a penetration test signs in with a leftover account."
+  ],
+  [
+   29.038,
+   1.137,
+   "Nobody failed."
+  ],
+  [
+   30.175,
+   3.538,
+   "There's simply no channel from HR to the systems that act."
+  ],
+  [
+   33.712,
+   4.213,
+   "Cleaning up, or reviewing harder, can't fix a missing channel."
+  ],
+  [
+   37.925,
+   6.188,
+   "So the decision: designate HR as the source of authority, and build it into both migrations now."
+  ],
+  [
+   44.112,
+   0.838,
+   "Why now?"
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.413,
+   "Federal HR 2.0 is coming regardless."
+  ],
+  [
+   3.462,
+   9.512,
+   "One government-wide platform replaces more than a hundred HR systems, Oracle won the award in June, and the second wave moves in fiscal 2027."
+  ],
+  [
+   12.975,
+   2.0,
+   "You don't choose whether to implement it."
+  ],
+  [
+   14.975,
+   2.462,
+   "You choose whether identity rides along."
+  ],
+  [
+   17.438,
+   7.537,
+   "And this is the cheapest moment, because HR 2.0 rebuilds the interconnections and cleans the HR data anyway."
+  ],
+  [
+   24.975,
+   3.525,
+   "But nothing in the program makes HR drive your directory."
+  ],
+  [
+   28.5,
+   1.512,
+   "That's yours to propose."
+  ],
+  [
+   30.012,
+   5.775,
+   "The window closes when your interconnection goes live, around month five in the sample timeline."
+  ],
+  [
+   35.788,
+   8.175,
+   "So in the first phase, name the identity feed as one of your integration points, and name HR as the source in your Entra ID plan."
+  ],
+  [
+   43.962,
+   1.4,
+   "Next, the data."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   7.075,
+   "The HR system is where four facts are created: the worker, the position, the assignment and the reporting line."
+  ],
+  [
+   7.125,
+   2.95,
+   "HR doesn't compete with the identity platform."
+  ],
+  [
+   10.075,
+   7.35,
+   "HR owns who a person is and where they sit; the identity platform owns how they prove it and what they can reach now."
+  ],
+  [
+   17.425,
+   7.85,
+   "HR also knows about hires and separations before they happen, which is what makes day-one readiness and same-day removal possible."
+  ],
+  [
+   25.275,
+   3.6,
+   "The rule that holds it together: corrections flow upstream."
+  ],
+  [
+   28.875,
+   7.575,
+   "A wrong department is fixed in HR, never by hand in the directory, because a hand edit is just a new copy that drifts."
+  ],
+  [
+   36.45,
+   6.475,
+   "So the governance body signs one map: every attribute, its owner and its quality expectation."
+  ],
+  [
+   42.925,
+   1.3,
+   "Next, keys."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.438,
+   "Every person needs one key the agency controls and never changes."
+  ],
+  [
+   4.487,
+   0.912,
+   "Here's why."
+  ],
+  [
+   5.4,
+   4.225,
+   "It's tempting to use the HR system's own person number as the key."
+  ],
+  [
+   9.625,
+   6.1,
+   "But that number changes when the HR system changes, and Core H C M is exactly that change."
+  ],
+  [
+   15.725,
+   1.825,
+   "Contractors come from elsewhere."
+  ],
+  [
+   17.55,
+   6.388,
+   "So pick an enterprise key, often an identifier you already have, and map every other number to it."
+  ],
+  [
+   23.938,
+   4.412,
+   "Then the move to the new platform changes one mapping, and nothing downstream."
+  ],
+  [
+   28.35,
+   6.938,
+   "A returning employee is the same person, not a new identity, and a contractor who converts keeps one record."
+  ],
+  [
+   35.288,
+   3.15,
+   "And the Social Security number is never the join key."
+  ],
+  [
+   38.438,
+   3.913,
+   "The governance body makes this call before Phase 1 closes."
+  ],
+  [
+   42.35,
+   1.6,
+   "Next, the standard."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.175,
+   "The platform uses Oracle's field names, but they aren't the contract."
+  ],
+  [
+   4.225,
+   10.438,
+   "The durable contract is OPM's standard personnel data: the same data elements and codes in every agency, and a standard code on every personnel action."
+  ],
+  [
+   14.662,
+   10.725,
+   "If you map identity to the standard once, that one crosswalk covers every employee, survives the next vendor change, and can be reused by any agency on the platform."
+  ],
+  [
+   25.387,
+   1.55,
+   "A few rules keep it clean."
+  ],
+  [
+   26.938,
+   3.475,
+   "Use the attributes Entra already understands first."
+  ],
+  [
+   30.413,
+   5.237,
+   "Put codes in access rules, never display names, because names get retyped."
+  ],
+  [
+   35.65,
+   3.138,
+   "And remember the standard covers federal employees only."
+  ],
+  [
+   38.788,
+   6.537,
+   "The decision: the data architect builds one governed crosswalk, and HR owns the code lists it uses."
+  ],
+  [
+   45.325,
+   1.562,
+   "Now, the data flow."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.25,
+   "Here's the pipeline at leadership level."
+  ],
+  [
+   2.3,
+   9.812,
+   "HR publishes worker records, a small service translates them into one standard model, and Entra's provisioning service creates and updates the accounts."
+  ],
+  [
+   12.113,
+   8.2,
+   "Oracle's platform has no ready-made Entra connector, so Microsoft's own guidance is this pattern, with a service the agency runs."
+  ],
+  [
+   20.312,
+   1.35,
+   "That service matters."
+  ],
+  [
+   21.663,
+   9.262,
+   "It checks every record and refuses bad ones, processes changes in order, and keeps a record of every event, so every account has a paper trail."
+  ],
+  [
+   30.925,
+   6.775,
+   "Accounts land in Active Directory for now, and directly in Entra ID as each group of users moves."
+  ],
+  [
+   37.7,
+   5.338,
+   "Because this service handles personnel data inside your boundary, it needs an authorization."
+  ],
+  [
+   43.038,
+   3.075,
+   "The authorizing official grants it before the pilot."
+  ],
+  [
+   46.112,
+   1.4,
+   "Next, the people."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.7,
+   "This is an organizational change first, and most owners sit outside IT."
+  ],
+  [
+   4.75,
+   11.4,
+   "Owners create the facts: HR owns personnel data and its quality, OPM owns the platform and the standards, and contractor sources own the people HR doesn't cover."
+  ],
+  [
+   16.15,
+   11.363,
+   "Users consume the facts but never change them: the identity team, security, application owners, and the help desk, which now routes data errors to their owner instead of fixing them."
+  ],
+  [
+   27.512,
+   5.85,
+   "Guards decide what can be used: privacy, the piv office, and the authorizing official."
+  ],
+  [
+   33.362,
+   6.025,
+   "A data architect keeps it all consistent: one name, one meaning, one owner per attribute."
+  ],
+  [
+   39.388,
+   5.763,
+   "The decision for HR leadership: name an owner, and a quality bar, for each attribute."
+  ],
+  [
+   45.15,
+   1.387,
+   "Now, who decides."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.325,
+   "One decider per row."
+  ],
+  [
+   1.375,
+   8.2,
+   "The governance body takes the decisions that bind several offices at once: the attribute map, the person key and the contractor source."
+  ],
+  [
+   9.575,
+   1.988,
+   "HR owns what its data means."
+  ],
+  [
+   11.562,
+   2.087,
+   "The data architect, the model."
+  ],
+  [
+   13.65,
+   2.513,
+   "Privacy owns the disclosure decision."
+  ],
+  [
+   16.163,
+   2.5,
+   "Contracting owns contractor sponsorship."
+  ],
+  [
+   18.663,
+   2.025,
+   "The piv office owns the card."
+  ],
+  [
+   20.688,
+   3.562,
+   "Application owners decide access to their applications."
+  ],
+  [
+   24.25,
+   3.288,
+   "And the authorizing official accepts the remaining risk."
+  ],
+  [
+   27.538,
+   7.213,
+   "The failures on the right share one root: in a ticket-driven estate, whoever can make a change ends up owning the data."
+  ],
+  [
+   34.75,
+   2.487,
+   "That's how a leaver ends up owned by nobody."
+  ],
+  [
+   37.237,
+   6.875,
+   "So security owns the leaver path end to end, and the authorizing official weighs in on any looser timing."
+  ],
+  [
+   44.112,
+   1.512,
+   "Then, two guards."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.4,
+   "Two guards bring clocks you can't compress."
+  ],
+  [
+   2.45,
+   7.112,
+   "First, privacy: moving HR records into identity systems is a disclosure, and needs a legal basis."
+  ],
+  [
+   9.562,
+   7.263,
+   "If records leave the agency, a new routine use has to be published, and it can't be relied on for at least thirty days."
+  ],
+  [
+   16.825,
+   7.775,
+   "The privacy impact assessment needs updating, and the feed should carry only the attributes access decisions actually read."
+  ],
+  [
+   24.6,
+   3.312,
+   "That's the privacy office's call, not the project's."
+  ],
+  [
+   27.913,
+   1.587,
+   "Then the piv office."
+  ],
+  [
+   29.5,
+   7.312,
+   "Only the agency can sponsor and approve a card, and a card that can't be collected must be terminated within eighteen hours."
+  ],
+  [
+   36.812,
+   3.65,
+   "In this model, the separation record is the notification."
+  ],
+  [
+   40.462,
+   2.288,
+   "So bring privacy in at Phase 1."
+  ],
+  [
+   42.75,
+   1.325,
+   "Now, how it runs."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.763,
+   "The shift: nobody remembers to disable a leaver; the separation record does it, on the effective date."
+  ],
+  [
+   6.812,
+   2.612,
+   "Every lifecycle event comes from HR."
+  ],
+  [
+   9.425,
+   2.4,
+   "A new hire is ready before day one."
+  ],
+  [
+   11.825,
+   4.125,
+   "A mover loses the old job's access as the new job's arrives."
+  ],
+  [
+   15.95,
+   1.775,
+   "A leaver is blocked first."
+  ],
+  [
+   17.725,
+   4.9,
+   "A rehire comes back as the same person, and a conversion keeps one identity."
+  ],
+  [
+   22.625,
+   8.175,
+   "For federal employees, the triggers already exist: every personnel action carries a standard code that says what kind of action it is."
+  ],
+  [
+   30.8,
+   2.038,
+   "A few rules prevent real harm."
+  ],
+  [
+   32.837,
+   2.475,
+   "Leave without pay is not a separation."
+  ],
+  [
+   35.312,
+   2.225,
+   "A separation wins any tie."
+  ],
+  [
+   37.538,
+   3.663,
+   "And a cancelled separation restores access, with evidence."
+  ],
+  [
+   41.2,
+   3.362,
+   "HR validates those rules before anything automates."
+  ],
+  [
+   44.562,
+   1.425,
+   "Then, credentials."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   5.8,
+   "The trap: disabling an account doesn't revoke a piv certificate or a device certificate."
+  ],
+  [
+   5.85,
+   2.538,
+   "Both stay valid until someone revokes them."
+  ],
+  [
+   8.387,
+   6.138,
+   "So a lifecycle that stops at the account leaves a former employee's credentials working wherever they're trusted."
+  ],
+  [
+   14.525,
+   1.925,
+   "The leaver sequence fixes that."
+  ],
+  [
+   16.45,
+   4.963,
+   "Block sign-in and end sessions first, which closes Entra immediately."
+  ],
+  [
+   21.413,
+   7.162,
+   "Then revoke the card, wipe or retire devices, and remove access, in parallel, confirming each."
+  ],
+  [
+   28.575,
+   1.613,
+   "Delete the account last."
+  ],
+  [
+   30.188,
+   5.487,
+   "One more decision: the link between a piv card and its account decides who signs in."
+  ],
+  [
+   35.675,
+   4.95,
+   "So only one automated system, the card-management integration, may write it."
+  ],
+  [
+   40.625,
+   4.425,
+   "Security sets that rule, and the piv office runs the card system."
+  ],
+  [
+   45.05,
+   2.737,
+   "Now, the open question about contractors."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.188,
+   "One decision is still open: where contractor identities come from."
+  ],
+  [
+   4.237,
+   4.2,
+   "The new HR platform covers federal employees, not contractors."
+  ],
+  [
+   8.438,
+   7.438,
+   "Today they usually live in spreadsheets kept by contracting officers' representatives, and a spreadsheet can't be a source of authority."
+  ],
+  [
+   15.875,
+   9.9,
+   "Candidates include the new platform's contingent worker record, the piv sponsorship system, a contractor suitability register, or a separate lifecycle service."
+  ],
+  [
+   25.775,
+   1.738,
+   "None is complete on its own."
+  ],
+  [
+   27.512,
+   5.925,
+   "So give each fact one authority, and make a federal sponsor accountable for every contractor."
+  ],
+  [
+   33.438,
+   8.312,
+   "Access then ends at the first end condition: the contract ends, vetting is withdrawn, the card is revoked, or the sponsor leaves."
+  ],
+  [
+   41.75,
+   3.075,
+   "Start by reconciling what exists, read-only."
+  ],
+  [
+   44.825,
+   2.562,
+   "The governance body decides in Phase 1."
+  ],
+  [
+   47.388,
+   1.05,
+   "Here's the plan."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.725,
+   "The plan has seven phases, each gated on the one before."
+  ],
+  [
+   3.775,
+   5.438,
+   "One caution runs through all of it: the source has to be correct, not just designated."
+  ],
+  [
+   9.213,
+   5.013,
+   "A bad HR feed produces bad access faster than any ticket queue ever could."
+  ],
+  [
+   14.225,
+   5.112,
+   "That's why the early phases fix data at the source, though users see nothing change."
+  ],
+  [
+   19.337,
+   8.412,
+   "The gate numbers, like ninety-nine percent matching and zero missed leavers in a pay period, are proposed starting points that the agency approves."
+  ],
+  [
+   27.75,
+   4.675,
+   "The pilot runs in shadow mode first, and automation starts with leavers."
+  ],
+  [
+   32.425,
+   6.963,
+   "The wider program's foundation gate requires the HR feed to be live, so a broken connector can't stall the rollout."
+  ],
+  [
+   39.388,
+   1.637,
+   "The steward holds that gate."
+  ],
+  [
+   41.025,
+   1.4,
+   "Then, cutover."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.325,
+   "Cutover happens one group of users at a time, as each group moves to Entra ID."
+  ],
+  [
+   5.375,
+   11.775,
+   "Before a group cuts over, acceptance tests in plain business language are signed: a new hire, a transfer, a separation, leave without pay, a cancelled action, a conversion."
+  ],
+  [
+   17.15,
+   6.162,
+   "Anything that could leave a separated person with access, or lock out someone active, stops the cutover."
+  ],
+  [
+   23.312,
+   5.312,
+   "Then there's a dry run on real data with no changes written, and a rollback plan ready."
+  ],
+  [
+   28.625,
+   4.138,
+   "For seven days afterward, every change must trace back to HR."
+  ],
+  [
+   32.763,
+   2.788,
+   "When that holds, the ticket path closes."
+  ],
+  [
+   35.55,
+   3.075,
+   "Nobody requests an account for a new hire anymore."
+  ],
+  [
+   38.625,
+   3.75,
+   "HR, the I S S O and the business owner sign."
+  ],
+  [
+   42.375,
+   1.413,
+   "How will you know it works?"
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   1.062,
+   "You can measure it."
+  ],
+  [
+   1.113,
+   18.363,
+   "The book proposes six numbers: how fast a separation blocks access, how fast every credential is revoked, how fast a transfer's leftover access is reviewed, how many new hires are ready on day one, how many accounts match a real worker, and how much access comes from rules instead of hand assignment."
+  ],
+  [
+   19.475,
+   3.138,
+   "None of those numbers exists in a ticket-driven estate."
+  ],
+  [
+   22.613,
+   2.763,
+   "Expect a spike of findings in the first month."
+  ],
+  [
+   25.375,
+   4.438,
+   "That's the measurement finally seeing what was already there, not the pipeline failing."
+  ],
+  [
+   29.812,
+   6.075,
+   "And keep the evidence outside the directory, because Entra keeps most logs for only about thirty days."
+  ],
+  [
+   35.888,
+   5.325,
+   "The I S S O owns the evidence, and security sets the leaver thresholds."
+  ],
+  [
+   41.212,
+   1.875,
+   "Let's bring the decisions together."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   2.112,
+   "The decisions, in one place."
+  ],
+  [
+   2.163,
+   8.675,
+   "The governance body designates HR as the source now, signs the attribute map, chooses the person key and settles the contractor source."
+  ],
+  [
+   10.838,
+   5.138,
+   "Your HR 2.0 contact names the identity feed in the first phase."
+  ],
+  [
+   15.975,
+   5.362,
+   "HR leadership names attribute owners, and the data architect builds the crosswalk."
+  ],
+  [
+   21.337,
+   3.025,
+   "Privacy settles the disclosure basis early."
+  ],
+  [
+   24.363,
+   3.763,
+   "The authorizing official authorizes the feed before the pilot."
+  ],
+  [
+   28.125,
+   3.325,
+   "Security owns the leaver path and the card binding."
+  ],
+  [
+   31.45,
+   3.525,
+   "The steward holds the rollout until the HR feed is live."
+  ],
+  [
+   34.975,
+   3.825,
+   "And each population's ticket path closes once the proof holds."
+  ],
+  [
+   38.8,
+   2.725,
+   "Nobody requests an account for a new hire."
+  ],
+  [
+   41.525,
+   3.062,
+   "The hire causes it, and the separation ends it."
+  ],
+  [
+   44.587,
+   2.25,
+   "Book 03 has the detail."
+  ],
+  [
+   46.837,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

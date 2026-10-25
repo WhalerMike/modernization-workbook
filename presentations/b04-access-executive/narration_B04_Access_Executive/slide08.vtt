@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.514
+First, a policy that says
+Finance must use strong
+
+2
+00:00:03.514 --> 00:00:07.238
+MFA to reach payroll says
+nothing about anyone else.
+
+3
+00:00:07.238 --> 00:00:10.712
+If no policy applies, the
+platform issues a token.
+
+4
+00:00:10.712 --> 00:00:12.880
+So restricting an app takes a pair:
+
+5
+00:00:12.880 --> 00:00:17.601
+one policy that grants with conditions,
+and one that blocks everyone else.
+
+6
+00:00:17.601 --> 00:00:21.587
+Second, Microsoft creates some
+policies in your tenant itself.
+
+7
+00:00:21.587 --> 00:00:24.373
+They arrive in report-only
+mode and switch on at
+
+8
+00:00:24.373 --> 00:00:27.587
+least thirty days later,
+unless someone turns them off.
+
+9
+00:00:27.587 --> 00:00:29.875
+That's a change the agency didn't make.
+
+10
+00:00:29.875 --> 00:00:33.635
+So the decision: the identity
+team records, for each one,
+
+11
+00:00:33.635 --> 00:00:37.561
+whether to adopt it or supersede
+it with a library policy,
+
+12
+00:00:37.561 --> 00:00:41.488
+inside that thirty-day window,
+under the CISO's baseline.
+
+13
+00:00:41.488 --> 00:00:43.660
+Next, how privilege is tiered.

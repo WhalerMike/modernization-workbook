@@ -1,0 +1,116 @@
+[
+  {
+    "person_key": "100000",
+    "status": "ready",
+    "leaver": false,
+    "payload_sha256": "d83cc559d652454d74188d8ee7ac1ee43ee67fa4f0877a2feea96aa1cf6a1eee"
+  },
+  {
+    "person_key": "100001",
+    "status": "ready",
+    "leaver": false,
+    "payload_sha256": "88d8020dc711320939c5d6fcc79319138ae77854286417d960c2d8432a11c358"
+  },
+  {
+    "person_key": "100002",
+    "status": "ready",
+    "leaver": false,
+    "payload_sha256": "8eb88c406cdc8cb856e408e6c47df496b4d7c4281bb16d62ab1251f9759a345e"
+  },
+  {
+    "person_key": "100003",
+    "status": "ready",
+    "leaver": true,
+    "payload_sha256": "9e6a924fe294184f77e6911b08c95024cf107728986eb74ae48d8cfa60778a7b"
+  },
+  {
+    "person_key": "100004",
+    "status": "ready",
+    "leaver": false,
+    "payload_sha256": "35037ba531a990500d6e7915bdce0bb1660efd12bf30fe78480dfb3543c9fea4"
+  },
+  {
+    "person_key": "100005",
+    "status": "ready",
+    "leaver": false,
+    "payload_sha256": "0fccda51cfd4aa2dfd06590c9e5bd8ed1bc9f526356d297c8584c9517d8f2607"
+  },
+  {
+    "person_key": "100006",
+    "status": "quarantined",
+    "leaver": false,
+    "payload_sha256": ""
+  },
+  {
+    "person_key": "100007",
+    "status": "quarantined",
+    "leaver": false,
+    "payload_sha256": ""
+  },
+  {
+    "person_key": "(missing)",
+    "status": "quarantined",
+    "leaver": false,
+    "payload_sha256": ""
+  },
+  {
+    "person_key": "12345678901234567",
+    "status": "quarantined",
+    "leaver": false,
+    "payload_sha256": ""
+  },
+  {
+    "person_key": "100008",
+    "status": "superseded",
+    "leaver": false,
+    "payload_sha256": "92cb30ff6d3b14340b8477409dd393f4db8a5232f7d15a0130ac15112057bab2"
+  },
+  {
+    "person_key": "100008",
+    "status": "ready",
+    "leaver": true,
+    "payload_sha256": "ca5d0bca9d3991892ecdf4f8ecbda0f4c1862726476cc5e69adf269c2f4cfb81"
+  },
+  {
+    "person_key": "100009",
+    "status": "quarantined",
+    "leaver": false,
+    "payload_sha256": ""
+  },
+  {
+    "person_key": "100010",
+    "status": "quarantined",
+    "leaver": false,
+    "payload_sha256": ""
+  },
+  {
+    "person_key": "100011",
+    "status": "ready",
+    "leaver": false,
+    "payload_sha256": "b01445fdd42e8805773aeca66dadddb86f85a31a8eb58676f9d9d6e8f20f29cd"
+  },
+  {
+    "person_key": "100013",
+    "status": "ready",
+    "leaver": true,
+    "payload_sha256": "c334b205663b6dd0c9b47d627ec1638d2fcd12e671f4873f6c44914165205cf9"
+  },
+  {
+    "person_key": "100014",
+    "status": "quarantined",
+    "leaver": false,
+    "payload_sha256": ""
+  },
+  {
+    "person_key": "100015",
+    "status": "quarantined",
+    "leaver": false,
+    "payload_sha256": ""
+  },
+  {
+    "person_key": "100016",
+    "status": "quarantined",
+    "leaver": false,
+    "payload_sha256": ""
+  }
+]

@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.950
+Now the how.
+
+2
+00:00:00.950 --> 00:00:05.550
+The Group Policy sunset runs one
+setting and one population at a time.
+
+3
+00:00:05.550 --> 00:00:09.175
+Every setting gets asked, in
+order: is it still needed?
+
+4
+00:00:09.175 --> 00:00:11.250
+Is there a direct Intune equivalent?
+
+5
+00:00:11.250 --> 00:00:16.275
+Does a cloud service replace the need, the
+way OneDrive replaces redirected folders?
+
+6
+00:00:16.275 --> 00:00:17.750
+Can a script enforce it?
+
+7
+00:00:17.750 --> 00:00:22.112
+Anything that fails all four becomes
+a dated exception with an owner.
+
+8
+00:00:22.112 --> 00:00:26.577
+Then the rules that keep it honest:
+retire before you translate, one owner
+
+9
+00:00:26.577 --> 00:00:31.338
+per setting, and no GPO link switched
+off until its replacement shows success.
+
+10
+00:00:31.338 --> 00:00:35.887
+GPOs are disabled first and kept
+ninety days as a safety net.
+
+11
+00:00:35.887 --> 00:00:39.203
+The decision for the
+endpoint engineering lead:
+
+12
+00:00:39.203 --> 00:00:43.513
+freeze every inventoried GPO, so
+new requirements go to Intune.
+
+13
+00:00:43.513 --> 00:00:45.020
+Next, the timeline.

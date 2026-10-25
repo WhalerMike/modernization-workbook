@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.925
+Your cloud decides what you can use,
+and this picture changes monthly.
+
+2
+00:00:03.925 --> 00:00:06.175
+The platform is generally available.
+
+3
+00:00:06.175 --> 00:00:10.846
+GCC has a documented subset: you can
+govern agent identity and access,
+
+4
+00:00:10.846 --> 00:00:15.763
+but not yet get Microsoft's audit and
+data protection for agent activity.
+
+5
+00:00:15.763 --> 00:00:20.075
+GCC High and DoD have nothing
+published, so treat agent identities
+
+6
+00:00:20.075 --> 00:00:24.074
+as unavailable there until
+Microsoft confirms it in writing.
+
+7
+00:00:24.074 --> 00:00:29.013
+Licensing is its own trap, and the FedRAMP
+High authorization is still pending.
+
+8
+00:00:29.013 --> 00:00:33.467
+The program's rule is to build on what's
+generally available in your own cloud,
+
+9
+00:00:33.467 --> 00:00:36.012
+and to treat preview as
+something you watch.
+
+10
+00:00:36.012 --> 00:00:38.040
+So how do we classify all this?

@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.526
+Monitoring starts with knowing
+where AI shows up in the logs,
+
+2
+00:00:03.526 --> 00:00:05.750
+and that's less obvious than you'd think.
+
+3
+00:00:05.750 --> 00:00:08.412
+An AI built on an ordinary app or managed
+
+4
+00:00:08.412 --> 00:00:11.638
+identity looks exactly
+like any other workload.
+
+5
+00:00:11.638 --> 00:00:14.862
+Nothing in the log says
+it's AI or who sponsors it.
+
+6
+00:00:14.862 --> 00:00:16.813
+Only your identity record can.
+
+7
+00:00:16.813 --> 00:00:21.250
+Agent ID objects are easier to spot,
+but some logs still don't separate
+
+8
+00:00:21.250 --> 00:00:26.000
+agents from apps, so your detections
+belong on the sign-in and audit tables.
+
+9
+00:00:26.000 --> 00:00:30.975
+Alert on things that happen outside your
+pipeline, like new credentials or grants.
+
+10
+00:00:30.975 --> 00:00:35.762
+And export everything on day one,
+because history starts when export does.
+
+11
+00:00:35.762 --> 00:00:37.800
+Next, what nobody declared.

@@ -36,6 +36,8 @@ This book consolidates the workbook's device and server modernization pages (the
 
 **Technical deep dive (about 50 minutes live, 23 narrated)**: onboarding, the GPO sunset, Azure Arc and operating the fleet, in modules on the [Presentations](../../presentations/index.md#technical-b05) page.
 
+**Executive briefing (about 30 minutes live, 14 narrated)**: for the CIO, CISO and endpoint lead: why Group Policy can't come to the cloud, Intune-first onboarding, compliance as the access signal, the GPO sunset, servers under Azure Arc and the support dates, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b05) page.
+
 **Research (under review)**: [Who Names the Device After AD?](../../research/device-naming-after-ad.md) explains device naming and DNS registration once Active Directory retires; it's on the [Research](../../research/index.md) page.
 :::
 

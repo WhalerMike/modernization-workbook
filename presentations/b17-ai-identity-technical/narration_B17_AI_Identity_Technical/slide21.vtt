@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.571
+Least privilege starts with
+choosing how the agent acts:
+
+2
+00:00:03.571 --> 00:00:07.767
+for a user when someone's present, as
+itself only when there's a reason,
+
+3
+00:00:07.767 --> 00:00:11.663
+and with its own user account only
+when it truly needs a mailbox.
+
+4
+00:00:11.663 --> 00:00:16.128
+Microsoft blocks the most dangerous
+roles and permissions for agents,
+
+5
+00:00:16.128 --> 00:00:18.474
+but that's a floor, not least privilege.
+
+6
+00:00:18.474 --> 00:00:21.988
+Agents can still hold roles that
+are privileged in your tenant,
+
+7
+00:00:21.988 --> 00:00:24.150
+so apply your own risk classification.
+
+8
+00:00:24.150 --> 00:00:27.744
+Keep inherited permissions
+narrow, because one broad
+
+9
+00:00:27.744 --> 00:00:31.738
+setting turns every future grant
+into a grant to every agent.
+
+10
+00:00:31.738 --> 00:00:34.426
+And no agent holds a
+standing privileged role.
+
+11
+00:00:34.426 --> 00:00:38.162
+If it seems to need one permanently,
+that's a design defect.
+
+12
+00:00:38.162 --> 00:00:39.480
+Next, policy.

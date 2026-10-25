@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.375
+Cutover happens one group of users at a
+time, as each group moves to Entra ID.
+
+2
+00:00:05.375 --> 00:00:11.134
+Before a group cuts over, acceptance tests
+in plain business language are signed:
+
+3
+00:00:11.134 --> 00:00:13.540
+a new hire, a transfer, a separation,
+
+4
+00:00:13.540 --> 00:00:17.150
+leave without pay, a cancelled
+action, a conversion.
+
+5
+00:00:17.150 --> 00:00:20.630
+Anything that could leave a
+separated person with access,
+
+6
+00:00:20.630 --> 00:00:23.312
+or lock out someone
+active, stops the cutover.
+
+7
+00:00:23.312 --> 00:00:26.984
+Then there's a dry run on real
+data with no changes written,
+
+8
+00:00:26.984 --> 00:00:28.624
+and a rollback plan ready.
+
+9
+00:00:28.624 --> 00:00:32.763
+For seven days afterward, every
+change must trace back to HR.
+
+10
+00:00:32.763 --> 00:00:35.551
+When that holds, the ticket path closes.
+
+11
+00:00:35.551 --> 00:00:38.625
+Nobody requests an account
+for a new hire anymore.
+
+12
+00:00:38.625 --> 00:00:42.375
+HR, the ISSO and the business owner sign.
+
+13
+00:00:42.375 --> 00:00:43.850
+How will you know it works?

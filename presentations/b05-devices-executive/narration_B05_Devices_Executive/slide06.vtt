@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.312
+After modernization, one laptop
+shows up in five or six systems,
+
+2
+00:00:04.312 --> 00:00:06.525
+most of them editable by someone.
+
+3
+00:00:06.525 --> 00:00:11.200
+That only works if you decide, fact
+by fact, where the truth lives.
+
+4
+00:00:11.200 --> 00:00:14.401
+The business facts, who owns
+it, what it's for and where
+
+5
+00:00:14.401 --> 00:00:17.750
+it belongs in the organization,
+come from procurement.
+
+6
+00:00:17.750 --> 00:00:22.752
+The technical facts come from the
+services: Entra ID for identity, Intune for
+
+7
+00:00:22.752 --> 00:00:27.675
+management and compliance, Defender
+for threats, and Azure Arc for servers.
+
+8
+00:00:27.675 --> 00:00:28.750
+Then one rule.
+
+9
+00:00:28.750 --> 00:00:35.037
+Every derived value, a tag, a group, a
+category, has to trace back to its source.
+
+10
+00:00:35.037 --> 00:00:39.551
+If it can't, it's drift, and you fix
+it at the source, never at the copy.
+
+11
+00:00:39.551 --> 00:00:42.340
+Next, how new devices start out governed.

@@ -81,3 +81,18 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | R1 | Synchronized user: "Entra ID doesn't hold the object SOA for that account" (was "isn't the source of authority") | Deletion | restated | c08-deleted-users (unchanged) |
+
+## Addition, October 25, 2026: Oracle Core HCM to Entra implementation research
+
+Applied from the research page `docs/research/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | Joiner: "Account created ahead of the start date by provisioning" | Lifecycle table; Joiner | corrected (qualified): only if the pipeline receives the hire early; Atom feeds don't surface future-dated hires/separations by default | c08-ora-dated |
+| 2 | Pre-hire workflow set more than three days ahead never runs if the hire arrives on the start date | Joiner | added (inference from the three-day catch-up) | c08-lcw-exec; c08-ora-dated |
+| 3 | Recommendation: read the feed by published date so pre-hire and pre-separation steps run early | Joiner | added (design guidance; detail in Chapter 05) | c08-ora-dated |
+| 4 | 365-day (preview) trigger has no three-day catch-up | Triggers and schedule | added | c08-lcw-exec |
+| 5 | Enable/Disable/Delete user tasks act on synced AD accounts via the provisioning agent; account state is a two-writer field | Who does what | added | c08-lcw-tasks2; c08-lcw-onprem |
+| 6 | Rule: one writer per state transition, recorded; pipeline sends active false no later than the leaver workflow's first run; workflow disable is the backstop | Who does what | added (design guidance) | c08-lcw-tasks2; c08-lcw-onprem |
+| 7 | "For a synchronized user, the disposition happens in Active Directory" | Deletion | confirmed; added that Lifecycle Workflows can now carry deletion to AD (agent ≥ 1.1.1586.0 with HR-driven provisioning extension; gMSA permissions; AD Recycle Bin) | c08-lcw-tasks2; c08-lcw-onprem |
+| 8 | Diagram ch08-provisioning-and-workflows: provisioning box "enable or disable from HR status" | Figure | not changed; still true, but it doesn't show that Lifecycle Workflows can now also write account state for synced accounts | — |

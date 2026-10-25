@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.553
+In the run state, three
+records replace the old tree:
+
+2
+00:00:03.553 --> 00:00:08.475
+the policy library, what each device
+reports, and the log of every change.
+
+3
+00:00:08.475 --> 00:00:11.212
+Running the fleet means
+keeping them in agreement.
+
+4
+00:00:11.212 --> 00:00:15.035
+Proving it to an assessor means
+handing over those same records,
+
+5
+00:00:15.035 --> 00:00:19.650
+not a document written for the audit,
+including the versioned policy library,
+
+6
+00:00:19.650 --> 00:00:22.463
+per-setting status, a
+weekly reconciliation of
+
+7
+00:00:22.463 --> 00:00:25.275
+the device inventories,
+and the update results.
+
+8
+00:00:25.275 --> 00:00:30.205
+Retiring a device runs in order: save
+the encryption keys first, then wipe,
+
+9
+00:00:30.205 --> 00:00:35.300
+and delete the cloud device record last,
+since deleting it deletes the keys.
+
+10
+00:00:35.300 --> 00:00:40.313
+The decision for the CISO: own the drift
+findings and evidence from the first wave.
+
+11
+00:00:40.313 --> 00:00:41.640
+Let's pull it together.

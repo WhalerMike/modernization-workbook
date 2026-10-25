@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.650
+For applications, risk sets the chain.
+
+2
+00:00:02.650 --> 00:00:07.850
+Every app gets a risk tier from the identity
+governance officer before anyone gets
+
+3
+00:00:07.850 --> 00:00:11.316
+access, and one high-risk trait
+is enough to make it Tier 1:
+
+4
+00:00:11.316 --> 00:00:15.988
+an application permission, sensitive
+data, an outside operator, or no owner.
+
+5
+00:00:15.988 --> 00:00:18.689
+The tier then decides who approves access,
+
+6
+00:00:18.689 --> 00:00:21.775
+who approves consent, and
+how often it's reviewed.
+
+7
+00:00:21.775 --> 00:00:24.528
+Consent is the riskiest
+request you'll see,
+
+8
+00:00:24.528 --> 00:00:28.775
+because a grant covers the whole
+tenant at once and never expires.
+
+9
+00:00:28.775 --> 00:00:31.802
+So any application permission
+gets Tier 1 handling,
+
+10
+00:00:31.802 --> 00:00:36.025
+and critical scopes need the governance
+officer and the CISO together.
+
+11
+00:00:36.025 --> 00:00:39.619
+The decision: tier every
+app before the first grant,
+
+12
+00:00:39.619 --> 00:00:43.213
+and treat anything untiered
+or ownerless as Tier 1.
+
+13
+00:00:43.213 --> 00:00:45.460
+Next, apps as identities.

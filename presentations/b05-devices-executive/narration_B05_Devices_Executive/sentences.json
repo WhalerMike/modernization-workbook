@@ -1,0 +1,835 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   6.975,
+   "This is the executive briefing for Book 05 of the Federal Modernization Workbook, Devices and Endpoints."
+  ],
+  [
+   7.737,
+   2.788,
+   "It's for the people who decide how the fleet moves."
+  ],
+  [
+   10.525,
+   1.425,
+   "The argument is short."
+  ],
+  [
+   11.95,
+   6.35,
+   "Group Policy governed devices by where they sat in the directory, and that quietly did a lot of governance."
+  ],
+  [
+   18.3,
+   4.013,
+   "None of it comes to the cloud, so it has to be rebuilt on purpose."
+  ],
+  [
+   22.312,
+   3.163,
+   "Hybrid join is a waypoint, not a destination."
+  ],
+  [
+   25.475,
+   3.225,
+   "And servers take their own road, through Azure Arc."
+  ],
+  [
+   28.7,
+   3.237,
+   "I'll take four questions: why, what, who and how."
+  ],
+  [
+   31.938,
+   4.375,
+   "Each decision slide names the decision, its owner and when it's needed."
+  ],
+  [
+   36.312,
+   2.65,
+   "Let's start with what Group Policy was really doing."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   6.725,
+   "For twenty years, a device's settings came from where it sat in the tree of organizational units (O U's)."
+  ],
+  [
+   6.775,
+   9.45,
+   "That position quietly did five jobs: which settings applied, which one won, who could change it, how often it refreshed, and what evidence you had."
+  ],
+  [
+   16.225,
+   3.525,
+   "A cloud-joined, Intune-managed device has no position."
+  ],
+  [
+   19.75,
+   9.55,
+   "Policies are assigned flatly to groups, overlapping settings become reported conflicts that may not apply at all, and devices check in about every eight hours."
+  ],
+  [
+   29.3,
+   2.45,
+   "Intune can deliver most of the settings."
+  ],
+  [
+   31.75,
+   2.212,
+   "It can't deliver the governance around them."
+  ],
+  [
+   33.962,
+   4.075,
+   "So treat this as a governance rebuild, not a settings migration."
+  ],
+  [
+   38.038,
+   2.45,
+   "Next, why running both doesn't help."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.025,
+   "The tempting middle ground is to keep the GPOs and add Intune."
+  ],
+  [
+   4.075,
+   3.388,
+   "But when both touch a setting, nobody sees who wins."
+  ],
+  [
+   7.463,
+   2.062,
+   "By default Group Policy wins."
+  ],
+  [
+   9.525,
+   7.2,
+   "A switch reverses that, but only for some settings; for others, Microsoft warns it's a race with no guaranteed winner."
+  ],
+  [
+   16.725,
+   9.088,
+   "Microsoft's own tool can measure how much of your Group Policy maps to Intune, but it doesn't close the gap, and nobody can tell you the percentage in advance."
+  ],
+  [
+   25.812,
+   4.412,
+   "Microsoft's advice is to rebuild from today's requirements rather than copy."
+  ],
+  [
+   30.225,
+   9.887,
+   "So the decision for the endpoint engineering lead: write down every overlapping setting before Intune enforces it, and give each G P O copy a retirement date."
+  ],
+  [
+   40.112,
+   1.575,
+   "Next, the shortcut."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.763,
+   "The obvious shortcut is hybrid join, and it's almost a switch."
+  ],
+  [
+   3.812,
+   6.425,
+   "Change the sync scope, publish one setting per forest, and every domain-joined device registers itself."
+  ],
+  [
+   10.238,
+   2.462,
+   "No approval, no ownership check."
+  ],
+  [
+   12.7,
+   2.175,
+   "That effortlessness is the hazard."
+  ],
+  [
+   14.875,
+   7.763,
+   "Microsoft says new devices should be cloud joined, and hybrid join is fine for existing devices, but never as the end state."
+  ],
+  [
+   22.637,
+   6.612,
+   "And it's sticky: moving off it later means resetting the device, and it still needs a domain controller in sight."
+  ],
+  [
+   29.25,
+   6.638,
+   "So every hybrid device needs an exit: a target of Entra join and a trigger, like its refresh date."
+  ],
+  [
+   35.888,
+   6.513,
+   "The sponsor and C I O set the domain-unjoin waves, because unjoining ends everyone's fallback."
+  ],
+  [
+   42.4,
+   2.112,
+   "Next, what the shortcut costs."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   7.35,
+   "Done as an unattended switch, hybrid join keeps the single sign-on and quietly spends the governance underneath."
+  ],
+  [
+   7.4,
+   2.5,
+   "New device objects appear with no owner."
+  ],
+  [
+   9.9,
+   1.375,
+   "Duplicates pile up."
+  ],
+  [
+   11.275,
+   4.025,
+   "Turning on the managed-device policy too early locks people out."
+  ],
+  [
+   15.3,
+   2.938,
+   "Thousands of changes can't be traced to a decision."
+  ],
+  [
+   18.238,
+   3.275,
+   "And retired machines linger, padding the managed count."
+  ],
+  [
+   21.512,
+   3.688,
+   "Even a perfect rollout only covers domain-joined Windows."
+  ],
+  [
+   25.2,
+   6.45,
+   "Macs, phones, Linux, personal devices, kiosks and servers all need their own answer."
+  ],
+  [
+   31.65,
+   9.625,
+   "So the decision: fleet-wide changes go wave by wave, approved by a person, with the access policy in report-only mode until coverage is measured."
+  ],
+  [
+   41.275,
+   4.812,
+   "The endpoint lead calls each wave; the see-so decides the enforcement."
+  ],
+  [
+   46.087,
+   2.225,
+   "Now, what a governed device needs."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.475,
+   "After modernization, one laptop shows up in five or six systems, most of them editable by someone."
+  ],
+  [
+   6.525,
+   4.675,
+   "That only works if you decide, fact by fact, where the truth lives."
+  ],
+  [
+   11.2,
+   6.55,
+   "The business facts, who owns it, what it's for and where it belongs in the organization, come from procurement."
+  ],
+  [
+   17.75,
+   9.925,
+   "The technical facts come from the services: Entra ID for identity, Intune for management and compliance, Defender for threats, and Azure Arc for servers."
+  ],
+  [
+   27.675,
+   1.075,
+   "Then one rule."
+  ],
+  [
+   28.75,
+   6.287,
+   "Every derived value, a tag, a group, a category, has to trace back to its source."
+  ],
+  [
+   35.038,
+   4.513,
+   "If it can't, it's drift, and you fix it at the source, never at the copy."
+  ],
+  [
+   39.55,
+   2.725,
+   "Next, how new devices start out governed."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.9,
+   "For new devices, the doctrine is Intune-first: no ungoverned device, ever."
+  ],
+  [
+   5.95,
+   3.7,
+   "A new laptop is governed from the moment it first powers on."
+  ],
+  [
+   9.65,
+   6.987,
+   "It never joins the old domain, never gets co-managed later, and never runs without an organizational assignment."
+  ],
+  [
+   16.637,
+   5.287,
+   "The most important change is upstream: procurement becomes the first governance step."
+  ],
+  [
+   21.925,
+   7.188,
+   "The device's place in the organization is set when the purchase order goes out, the way HR records drive user accounts."
+  ],
+  [
+   29.113,
+   6.075,
+   "If anything fails along the way, the device goes to quarantine instead of quietly running degraded."
+  ],
+  [
+   35.188,
+   6.487,
+   "The decision for the sponsor and C I O: from the next purchase order, no new device takes the old path."
+  ],
+  [
+   41.675,
+   1.9,
+   "Next, the access signal."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.062,
+   "Device compliance is where devices meet access."
+  ],
+  [
+   3.112,
+   7.2,
+   "Intune decides whether a device is compliant, and Conditional Access, from Book 04, decides what it can reach."
+  ],
+  [
+   10.312,
+   4.463,
+   "Out of the box, a device with no compliance policy counts as compliant."
+  ],
+  [
+   14.775,
+   4.95,
+   "The program flips that, so a device that slips through every group can't pass."
+  ],
+  [
+   19.725,
+   3.6,
+   "A device that stops reporting for two weeks loses access."
+  ],
+  [
+   23.325,
+   6.213,
+   "And the grace period, how long a failing device keeps working, is a risk decision, not a technical one."
+  ],
+  [
+   29.538,
+   5.125,
+   "On the most privileged workstations, a security detection also costs access."
+  ],
+  [
+   34.663,
+   7.612,
+   "The decision for the see-so: make compliance fail closed, and set the grace period, before Conditional Access relies on it."
+  ],
+  [
+   42.275,
+   2.3,
+   "Next, devices that can't enroll."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   8.65,
+   "The book allows four carve-outs: personal devices, Linux that Intune can't manage, older servers, and devices that can't enroll at all."
+  ],
+  [
+   8.7,
+   7.65,
+   "That last group, lab instruments, factory-floor systems, PCs locked to a vendor's certified image, is the hard one."
+  ],
+  [
+   16.35,
+   4.237,
+   "They can't pass a compliant-device policy, so their users are blocked."
+  ],
+  [
+   20.587,
+   13.6,
+   "The program handles them in order: put them on their own network segment, protect them where they connect, and only then, if people must reach cloud resources, a named exclusion with an owner and a review every ninety days."
+  ],
+  [
+   34.188,
+   3.875,
+   "Because that leaves a control unmet, it's a risk acceptance."
+  ],
+  [
+   38.062,
+   4.3,
+   "So the authorizing official decides it, before those users get access."
+  ],
+  [
+   42.362,
+   1.962,
+   "Next, the existing fleet."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.162,
+   "The existing fleet can get to the same governed end state three ways."
+  ],
+  [
+   4.213,
+   2.975,
+   "The manual path uses the native tools by hand."
+  ],
+  [
+   7.188,
+   7.388,
+   "The governed path runs the same steps, but every high-impact change is previewed, approved by a person and recorded."
+  ],
+  [
+   14.575,
+   6.013,
+   "And the retrofit path adds that governance later, to an estate someone already modernized by hand."
+  ],
+  [
+   20.587,
+   5.537,
+   "All three start the same way: measure before you change anything, and give it at least two weeks."
+  ],
+  [
+   26.125,
+   2.562,
+   "Fully automatic change is refused."
+  ],
+  [
+   28.688,
+   2.775,
+   "Intune also has a built-in second approver."
+  ],
+  [
+   31.462,
+   9.4,
+   "The decision for the sponsor and C I O: use the governed path for anything over a few hundred devices, or wherever an authorizing official has to sign."
+  ],
+  [
+   40.862,
+   1.2,
+   "Now, who owns it."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.925,
+   "Under Group Policy, whoever could edit and link a G P O decided for every machine beneath it."
+  ],
+  [
+   5.975,
+   4.037,
+   "Now that job is split across several teams and three consoles."
+  ],
+  [
+   10.012,
+   7.125,
+   "And Group Policy taught a generation of administrators that being able to change something meant having the right to decide it."
+  ],
+  [
+   17.137,
+   4.45,
+   "That habit is how someone sets the agency's risk posture without noticing."
+  ],
+  [
+   21.587,
+   2.875,
+   "A thirty-day grace period is a risk decision."
+  ],
+  [
+   24.462,
+   5.1,
+   "So is leaving an old G P O in place, or exempting kiosks from encryption."
+  ],
+  [
+   29.562,
+   2.587,
+   "The book's rule is one decider per row."
+  ],
+  [
+   32.15,
+   9.65,
+   "And exceptions split by time: a temporary one with an end date is the see-so's call; a standing one goes to the authorizing official, on a schedule."
+  ],
+  [
+   41.8,
+   1.6,
+   "Next, the full map."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.537,
+   "The sponsor and C I O decide the path, the scope and when devices leave the domain."
+  ],
+  [
+   5.588,
+   7.787,
+   "The see-so decides the baselines, the compliance rules, the update schedule, and how the help desk verifies someone before a wipe."
+  ],
+  [
+   13.375,
+   5.487,
+   "Endpoint engineering decides when an old setting is retired and whether each wave goes."
+  ],
+  [
+   18.863,
+   5.15,
+   "Application owners decide for their own apps, because only they can tell if it still works."
+  ],
+  [
+   24.012,
+   3.375,
+   "And the authorizing official owns standing exceptions."
+  ],
+  [
+   27.387,
+   13.525,
+   "The permissions live in three separate role systems, and two warnings stand out: keep the all-powerful Intune administrator role out of daily work, and treat anyone who can push extensions to a server as that server's administrator."
+  ],
+  [
+   40.913,
+   4.612,
+   "The decision for the see-so: a second approver on high-impact changes."
+  ],
+  [
+   45.525,
+   0.85,
+   "Now, how."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.9,
+   "Now the how."
+  ],
+  [
+   0.95,
+   4.6,
+   "The Group Policy sunset runs one setting and one population at a time."
+  ],
+  [
+   5.55,
+   3.625,
+   "Every setting gets asked, in order: is it still needed?"
+  ],
+  [
+   9.175,
+   2.075,
+   "Is there a direct Intune equivalent?"
+  ],
+  [
+   11.25,
+   5.025,
+   "Does a cloud service replace the need, the way OneDrive replaces redirected folders?"
+  ],
+  [
+   16.275,
+   1.475,
+   "Can a script enforce it?"
+  ],
+  [
+   17.75,
+   4.362,
+   "Anything that fails all four becomes a dated exception with an owner."
+  ],
+  [
+   22.113,
+   9.225,
+   "Then the rules that keep it honest: retire before you translate, one owner per setting, and no G P O link switched off until its replacement shows success."
+  ],
+  [
+   31.337,
+   4.55,
+   "GPOs are disabled first and kept ninety days as a safety net."
+  ],
+  [
+   35.888,
+   7.625,
+   "The decision for the endpoint engineering lead: freeze every inventoried G P O, so new requirements go to Intune."
+  ],
+  [
+   43.513,
+   1.45,
+   "Next, the timeline."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.987,
+   "The migration runs in seven phases, each with an exit gate and a way back."
+  ],
+  [
+   5.037,
+   13.4,
+   "On the book's planning estimates for a large fleet: inventory and classify, then plan the overlap, write the baselines, pilot on about five percent, cut over in four waves, verify, and formally retire."
+  ],
+  [
+   18.438,
+   5.612,
+   "That's roughly thirty-four weeks, plus a ninety-day hold before the last GPOs are deleted."
+  ],
+  [
+   24.05,
+   1.5,
+   "Months, not weeks."
+  ],
+  [
+   25.55,
+   11.55,
+   "One sequencing rule matters under schedule pressure: on co-managed devices, the antivirus settings move before general device configuration, because moving configuration drags them along."
+  ],
+  [
+   37.1,
+   8.325,
+   "The decision: endpoint engineering makes each go or no-go on measured results, not the calendar, and the sponsor sets the sequence."
+  ],
+  [
+   45.425,
+   1.45,
+   "Next, servers."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.612,
+   "Servers take a different road, because Intune doesn't manage Windows Server."
+  ],
+  [
+   4.662,
+   5.35,
+   "Azure Arc gives each server an Azure resource, with roles, tags and policy."
+  ],
+  [
+   10.012,
+   3.462,
+   "But Arc is the management plane, not the identity plane."
+  ],
+  [
+   13.475,
+   4.688,
+   "Onboarding doesn't take a server off the domain or change how people sign in."
+  ],
+  [
+   18.163,
+   9.425,
+   "A connected server is only addressable, not governed, until three things are attached on day one: a configuration baseline, patching and Defender."
+  ],
+  [
+   27.587,
+   5.025,
+   "Licensing changes the bill, but only once each server's license is attested."
+  ],
+  [
+   32.612,
+   5.775,
+   "And cloud sign-in works only on Windows Server 2025, without Conditional Access."
+  ],
+  [
+   38.388,
+   6.625,
+   "The decision: each server leaves the domain as its own decision, after its sign-in dependencies are known."
+  ],
+  [
+   45.013,
+   1.462,
+   "Next, the dates."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   6.325,
+   "Windows Server 2012's extended updates ended on October 13, 2026."
+  ],
+  [
+   6.375,
+   9.713,
+   "Any of those hosts still running gets no more security fixes from anywhere, so the book treats them as a red finding: migrate, upgrade or isolate."
+  ],
+  [
+   16.087,
+   11.375,
+   "Windows Server 2016 reaches end of support on January 12, 2027, so any you can't upgrade in time should be enrolled for extended updates through Arc before then."
+  ],
+  [
+   27.462,
+   10.838,
+   "Windows 11 version 23H2 stops getting updates on November 10, and Windows 10 is already out of support, so each one left is an exception with an upgrade date."
+  ],
+  [
+   38.3,
+   8.675,
+   "The decision can't wait: server infrastructure acts on the 2012 hosts now, and the authorizing official accepts any that must stay."
+  ],
+  [
+   46.975,
+   1.3,
+   "Next, patching."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   4.338,
+   "Once Intune owns the fleet, update rings set the patch clock."
+  ],
+  [
+   4.388,
+   7.325,
+   "Each month's update flows through four rings: a lab, a small pilot, about a quarter of the fleet, then everyone."
+  ],
+  [
+   11.713,
+   8.637,
+   "With the book's values, an update reaches every online device in about sixteen days, and a bad one can be paused before it reaches the broad ring."
+  ],
+  [
+   20.35,
+   8.175,
+   "Windows Autopatch can run the rings for you, and it's included for G C C customers with the government G3 or G5 licenses."
+  ],
+  [
+   28.525,
+   8.438,
+   "Why assessors care: the federal patching control asks for updates within a period the agency defines, and these ring deadlines are that period."
+  ],
+  [
+   36.962,
+   5.287,
+   "So the decision for the see-so: approve the ring values as the agency's patch window."
+  ],
+  [
+   42.25,
+   1.65,
+   "Next, running the fleet."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   8.425,
+   "In the run state, three records replace the old tree: the policy library, what each device reports, and the log of every change."
+  ],
+  [
+   8.475,
+   2.737,
+   "Running the fleet means keeping them in agreement."
+  ],
+  [
+   11.213,
+   14.062,
+   "Proving it to an assessor means handing over those same records, not a document written for the audit, including the versioned policy library, per-setting status, a weekly reconciliation of the device inventories, and the update results."
+  ],
+  [
+   25.275,
+   10.025,
+   "Retiring a device runs in order: save the encryption keys first, then wipe, and delete the cloud device record last, since deleting it deletes the keys."
+  ],
+  [
+   35.3,
+   5.013,
+   "The decision for the see-so: own the drift findings and evidence from the first wave."
+  ],
+  [
+   40.312,
+   1.262,
+   "Let's pull it together."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   1.575,
+   "So, the decisions."
+  ],
+  [
+   1.625,
+   14.3,
+   "The sponsor and C I O set the shape: an exit plan for every hybrid-joined device, no new device on the old path from the next purchase order, the governed path for large estates, and each server's domain exit as its own decision."
+  ],
+  [
+   15.925,
+   7.388,
+   "Endpoint engineering freezes the GPOs, records every overlap, and calls each wave on measured results."
+  ],
+  [
+   23.312,
+   10.488,
+   "The see-so makes compliance fail closed, adds a second approver to high-impact changes, sets the patch window, owns the evidence, and decides temporary exceptions."
+  ],
+  [
+   33.8,
+   8.838,
+   "And the authorizing official accepts the rest: devices that can't enroll, standing exceptions, and any 2012 server that has to stay."
+  ],
+  [
+   42.638,
+   2.8,
+   "Rebuild on purpose what the tree did implicitly."
+  ],
+  [
+   45.438,
+   3.975,
+   "Book 05 has the detail, every claim footnoted."
+  ],
+  [
+   49.413,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+Finally, how decisions are held.
+
+2
+00:00:02.200 --> 00:00:06.150
+Every policy and setting lives
+as a file in a repository.
+
+3
+00:00:06.150 --> 00:00:09.850
+A change is a reviewed request,
+and its author can't approve it.
+
+4
+00:00:09.850 --> 00:00:13.275
+New policies run in report-only
+for at least a week.
+
+5
+00:00:13.275 --> 00:00:17.637
+The pipeline has no stored secret,
+and it's treated as Tier 0.
+
+6
+00:00:17.637 --> 00:00:22.333
+Emergency edits in the portal are allowed,
+but they're back in code within a day,
+
+7
+00:00:22.333 --> 00:00:26.662
+and a monitor checks the tenant
+against the repository every six hours.
+
+8
+00:00:26.662 --> 00:00:28.125
+Then keep the evidence.
+
+9
+00:00:28.125 --> 00:00:30.983
+Entra holds its logs for only thirty days,
+
+10
+00:00:30.983 --> 00:00:35.437
+so the program keeps a year, and
+three for consent and break-glass.
+
+11
+00:00:35.437 --> 00:00:37.229
+The decision for the CISO:
+
+12
+00:00:37.229 --> 00:00:41.463
+make the repository the only normal
+path, from the first policy.
+
+13
+00:00:41.463 --> 00:00:42.790
+Let's pull it together.

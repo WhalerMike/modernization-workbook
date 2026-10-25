@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+Here's why this matters.
+
+2
+00:00:01.437 --> 00:00:05.588
+A chat assistant drafts something and
+a person decides what to do with it.
+
+3
+00:00:05.588 --> 00:00:07.063
+An agent doesn't wait.
+
+4
+00:00:07.063 --> 00:00:10.783
+It reads the mailbox, sends the
+reply and closes the ticket,
+
+5
+00:00:10.783 --> 00:00:14.349
+under an identity that signed
+in and holds permissions.
+
+6
+00:00:14.349 --> 00:00:17.550
+Only a small share of
+federal AI is agentic today,
+
+7
+00:00:17.550 --> 00:00:19.950
+but it's the share that grows fastest.
+
+8
+00:00:19.950 --> 00:00:24.388
+Notice the red path: an API key
+skips the identity provider,
+
+9
+00:00:24.388 --> 00:00:26.700
+so no policy ever sees the call.
+
+10
+00:00:26.700 --> 00:00:28.838
+And the risk is identity-shaped.
+
+11
+00:00:28.838 --> 00:00:31.587
+A manipulated chatbot gives a bad answer.
+
+12
+00:00:31.587 --> 00:00:33.816
+A manipulated agent takes an action,
+
+13
+00:00:33.816 --> 00:00:36.862
+and the damage is whatever
+its identity can reach.
+
+14
+00:00:36.862 --> 00:00:38.230
+So, Module 1.

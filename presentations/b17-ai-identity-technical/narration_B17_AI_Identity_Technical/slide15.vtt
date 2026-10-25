@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.580
+Putting it together, the program sorts
+every AI system into six kinds of identity:
+
+2
+00:00:05.580 --> 00:00:09.873
+a delegated assistant,
+workload-identity AI, an agent identity,
+
+3
+00:00:09.873 --> 00:00:15.238
+an agent with its own user account, a
+vendor-hosted service, and an unmanaged key.
+
+4
+00:00:15.238 --> 00:00:19.003
+Each kind tells you who owns
+it, how it should authenticate,
+
+5
+00:00:19.003 --> 00:00:21.513
+what policy can reach it, and how it ends.
+
+6
+00:00:21.513 --> 00:00:23.812
+Most of the risk sits in the last two.
+
+7
+00:00:23.812 --> 00:00:27.787
+A vendor's service is visible
+but outside your workload policy.
+
+8
+00:00:27.787 --> 00:00:30.265
+A raw key isn't in the directory at all,
+
+9
+00:00:30.265 --> 00:00:33.238
+so it has no owner and no
+end until you find it.
+
+10
+00:00:33.238 --> 00:00:37.150
+Everything else can be governed,
+and Part 2 does exactly that.

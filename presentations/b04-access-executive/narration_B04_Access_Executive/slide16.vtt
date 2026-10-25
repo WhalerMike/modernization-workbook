@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+One decider per row.
+
+2
+00:00:01.375 --> 00:00:05.138
+The CISO sets the access baseline
+and the privilege model.
+
+3
+00:00:05.138 --> 00:00:08.484
+The identity governance
+officer tiers applications,
+
+4
+00:00:08.484 --> 00:00:12.351
+decides consent above the lowest
+tier, and rules on exceptions.
+
+5
+00:00:12.351 --> 00:00:15.525
+Application owners decide
+who gets into their apps.
+
+6
+00:00:15.525 --> 00:00:17.688
+Business approvers confirm the need.
+
+7
+00:00:17.688 --> 00:00:21.138
+Security operations can pull
+consent during an incident.
+
+8
+00:00:21.138 --> 00:00:23.237
+The sponsor and CIO fund it.
+
+9
+00:00:23.237 --> 00:00:26.350
+And the authorizing official
+owns residual risk.
+
+10
+00:00:26.350 --> 00:00:31.098
+Exceptions run on a clock: six months
+at most, never renewed automatically,
+
+11
+00:00:31.098 --> 00:00:36.313
+and one renewed more than twice goes up
+to the CISO and the authorizing official.
+
+12
+00:00:36.313 --> 00:00:39.679
+The decision: any exception
+that leaves a control unmet
+
+13
+00:00:39.679 --> 00:00:43.412
+with nothing compensating goes
+to the authorizing official.
+
+14
+00:00:43.412 --> 00:00:44.690
+Now, how to run it.

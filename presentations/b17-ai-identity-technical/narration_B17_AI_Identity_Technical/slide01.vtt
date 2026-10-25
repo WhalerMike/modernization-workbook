@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.137
+This is the technical deep
+dive for Book 17 of the
+
+3
+00:00:04.137 --> 00:00:08.187
+Federal Modernization Workbook,
+AI Identity Governance.
+
+4
+00:00:08.187 --> 00:00:12.343
+It's for identity engineers, security
+engineers and platform owners,
+
+5
+00:00:12.343 --> 00:00:16.863
+the people who issue the credentials AI
+signs in with and watch what it does.
+
+6
+00:00:16.863 --> 00:00:21.030
+The book's idea is simple: an AI
+agent that can act is an account,
+
+7
+00:00:21.030 --> 00:00:23.613
+and it needs what every account needs.
+
+8
+00:00:23.613 --> 00:00:27.200
+An owner, a credential,
+limits, and an end.
+
+9
+00:00:27.200 --> 00:00:30.200
+Part 1 is the identity and the inventory.
+
+10
+00:00:30.200 --> 00:00:32.762
+Part 2 is governing it and proving it.
+
+11
+00:00:32.762 --> 00:00:34.513
+One note before we start:
+
+12
+00:00:34.513 --> 00:00:39.325
+the product details here are dated
+October 2026, and they move fast.
+
+13
+00:00:39.325 --> 00:00:40.730
+Let's begin with why.

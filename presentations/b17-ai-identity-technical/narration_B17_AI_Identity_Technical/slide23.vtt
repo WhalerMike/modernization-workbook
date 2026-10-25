@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.036
+An agent's reach is the sum
+of the tools it can call,
+
+2
+00:00:03.036 --> 00:00:05.425
+so the program draws three boundaries.
+
+3
+00:00:05.425 --> 00:00:08.938
+First, identity: what the
+agent can get a token for.
+
+4
+00:00:08.938 --> 00:00:13.016
+But the protocol many agent tools
+use makes authorization optional,
+
+5
+00:00:13.016 --> 00:00:15.163
+so some tools sit outside that layer.
+
+6
+00:00:15.163 --> 00:00:20.750
+Second, a registry of approved tools, so
+a call to anything unregistered is drift.
+
+7
+00:00:20.750 --> 00:00:25.691
+Third, data protection, which isn't
+available for agents in GCC yet, so there
+
+8
+00:00:25.691 --> 00:00:30.875
+your only data boundary is narrow
+permissions, and you should record that gap.
+
+9
+00:00:30.875 --> 00:00:35.575
+Anything outside all three, like
+a raw key, becomes a finding.
+
+10
+00:00:35.575 --> 00:00:37.220
+That takes us to monitoring.

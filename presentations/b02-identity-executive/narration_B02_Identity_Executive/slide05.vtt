@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.063
+In Active Directory, where an object
+sits decides how it's governed.
+
+2
+00:00:04.063 --> 00:00:06.930
+Move a user to another
+organizational unit (OU),
+
+3
+00:00:06.930 --> 00:00:12.212
+and their administrators and policies
+change without anyone touching the account.
+
+4
+00:00:12.212 --> 00:00:16.714
+Entra ID has no tree; it governs
+by what an object carries:
+
+5
+00:00:16.714 --> 00:00:19.551
+attributes, memberships and roles.
+
+6
+00:00:19.551 --> 00:00:23.400
+So every placement-based rule
+has to be rewritten explicitly.
+
+7
+00:00:23.400 --> 00:00:28.149
+Administrative units (AUs) help, but
+they can't nest, and for synced users
+
+8
+00:00:28.149 --> 00:00:33.225
+the attributes are still written
+on-premises, so every change waits on sync.
+
+9
+00:00:33.225 --> 00:00:37.748
+That makes one decision come early:
+which attributes are authoritative,
+
+10
+00:00:37.748 --> 00:00:40.537
+what they mean, and where
+each one is mastered.
+
+11
+00:00:40.537 --> 00:00:44.976
+HR decides the meaning, and identity
+engineering decides the flow.
+
+12
+00:00:44.976 --> 00:00:47.780
+Now, the part Conditional
+Access can't see.
