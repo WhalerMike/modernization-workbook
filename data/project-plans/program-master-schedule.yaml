@@ -1,0 +1,208 @@
+# Sample project plan: the program's integrated master schedule.
+# scripts/project_plans/build.py reads this file and writes the page
+# (docs/project-plans/program-master-schedule.md), the Gantt chart and the
+# CSV and Microsoft Project downloads. Edit this file, never the outputs.
+#
+# Durations are working days (5 a week) and are illustrative: they are sized
+# so the gates land on the weeks Book 01, Chapter 12 gives. Predecessors are
+# finish-to-start unless written "ID:SS" (start-to-start); "+N" adds N days of
+# lag. Decisions and gates are zero-duration milestones.
+
+slug: program-master-schedule
+title: "Program Master Schedule: Phases 0 to 5 and Gates G0 to G5"
+short_title: "Program master schedule"
+subtitle: "A sample integrated master schedule for the whole program: seven phases, six gates, the critical path and the decisions that sit on it"
+description: "A sample PMP-style integrated master schedule for the Federal Modernization Program, built from Book 00, Chapters 05 and 09 and Book 01, Chapter 12: a work breakdown by phase and workstream, a computed critical path, every gate with its approver and criteria, and the intermediate decisions that hold the path, each with an owner, a decide-by week and the cost of deciding late."
+plan_type: "Program"
+covers: "Phases 0 to 5 (Phase 6 is steady state)"
+books: "Books 00 and 01"
+sponsor: "Executive sponsor and CIO"
+manager: "Steward (program office)"
+start_label: "Week 1 = the week Phase 0 is approved"
+project_start: 2027-01-04   # placeholder Monday for the Microsoft Project file only
+
+purpose: |
+  This is the program's top-level schedule: every phase, every gate and the decisions leadership has to make between them, as one network. It is the schedule the [complementary projects](index.md#the-plans) roll up to, and the one the steering committee tracks. It restates [Book 01, Chapter 12](../books/b01-transformation-arc/12-migration-roadmap.md) and [Book 00, Chapters 05](../books/b00-orientation/05-the-program-plan.md) and [09](../books/b00-orientation/09-design-pilot-and-rollout.md) as tasks with durations and dependencies, so the critical path is computed rather than asserted.
+
+critical_path_note: |
+  The computed path matches the one [Book 00, Chapter 05](../books/b00-orientation/05-the-program-plan.md#the-critical-path) traces: assessment, then the attribute taxonomy, dynamic groups and Intune design, then pilot devices, each rollout wave in turn, and the application-by-application retirement of AD-bound service principal names. Every week lost on it moves every later gate. Conditional Access, DNS, PKI and Arc work carry float: a slip there moves nothing until the float is used up, which is why they're tracked by float, not by date.
+
+assumptions:
+  - "One pilot division, then four waves of about a quarter of the estate each ([Book 00, Chapter 09](../books/b00-orientation/09-design-pilot-and-rollout.md#waves-defined-by-attribute-values))."
+  - "Durations are illustrative and sized to the roadmap's weeks; replace them with the agency's own estimates from the Phase 0 assessment."
+  - "The schedule assumes Phase 0 is approved without waiting for a vendor decision ([Start Here](../start-here.md))."
+  - "The HR-to-cloud feed for the foundation scope comes from the [Identity Lifecycle plan](identity-lifecycle.md); its privacy basis is that plan's longest task."
+  - "The source of authority for contractors is decided in the Identity Lifecycle plan (D-I3), which onboards contractor populations as their divisions move."
+
+risks:
+  - risk: "The assessment finds more than the plan assumed"
+    impact: "Every gate moves; the assessment is on the critical path"
+    response: "Run the read-only assessment in week 1; size Phase 1 from what it finds, and re-baseline at G0"
+  - risk: "Report-only Conditional Access shows unexpected impact"
+    impact: "Uses the CA track's float; G1 slips only if more than the float is used"
+    response: "Start report-only in week 5, not week 7; read the sign-in logs weekly"
+  - risk: "The privacy basis for the HR feed isn't ready"
+    impact: "G1's HR-feed criterion fails"
+    response: "Start the PIA update and the SORN routine-use check in Phase 0 (Identity Lifecycle plan)"
+  - risk: "Applications can't leave AD-bound service principal names on time"
+    impact: "G4 slips week for week"
+    response: "Set the legacy-authentication end date early (D08) so application owners plan against it"
+
+tasks:
+  # ---------------------------------------------------------------- Phase 0
+  - {id: D01, kind: decision, phase: 0, name: "Approve Phase 0 and name the sponsor and steward", owner: "Executive sponsor and CIO",
+     options: "Approve the four-week pre-flight; defer", late: "Nothing starts; the external clocks keep running",
+     source: "../start-here.md"}
+  - {id: P0.1, phase: 0, name: "Charter accepted; owners named in the decision matrix", dur: 3, after: [D01], owner: "Program office",
+     source: "../books/b00-orientation/03-the-charter.md"}
+  - {id: P0.2, phase: 0, name: "Platform host built, repository seeded, host connected through Arc", dur: 7, after: [P0.1], owner: "Platform teams",
+     source: "../books/b01-transformation-arc/03-platform-foundation.md"}
+  - {id: P0.3, phase: 0, name: "Least-privilege service principals for Entra ID, Intune and Arc", dur: 3, after: [P0.1], owner: "Platform teams",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-0-pre-flight-weeks-14"}
+  - {id: P0.4, phase: 0, name: "Read-only assessment run and committed", dur: 10, after: [P0.2, P0.3], owner: "Program office",
+     source: "../books/b00-orientation/08-pre-flight-and-assessment.md"}
+  - {id: P0.5, phase: 0, name: "Transactions profiled for applications proposed to move from their data", dur: 8, after: [P0.1], owner: "App owners",
+     source: "../books/b01-transformation-arc/10-analyzing-the-estate.md#profiling-transactions-before-separation"}
+  - {id: G0, kind: gate, phase: 0, name: "G0 — Ready to Plan", after: [P0.4, P0.5], owner: "Steward (backup: executive sponsor)",
+     criteria: "Platform host operational; assessment committed; no open priority-one findings",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority"}
+  # ---------------------------------------------------------------- Phase 1
+  - {id: D02, kind: decision, phase: 1, name: "Authoritative source for each attribute that drives access", after: [G0], owner: "HR",
+     options: "HR system per attribute; a named alternative with a dated exception", late: "The taxonomy can't be approved, and the whole critical path waits",
+     source: "../books/b01-transformation-arc/09-who-leads-the-transformation.md#decision-rights-across-the-program"}
+  - {id: P1.1, phase: 1, name: "Attribute taxonomy finalized (M-014)", dur: 5, after: [D02], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones"}
+  - {id: P1.2, phase: 1, name: "Dynamic group design tested; enterprise groups and administrative units built (M-015)", dur: 8, after: [P1.1], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones"}
+  - {id: P1.3, phase: 1, name: "Intune policy design complete; pilot profiles staged (M-016)", dur: 5, after: [P1.2], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones"}
+  - {id: X-IDL, kind: external, phase: 1, name: "HR-to-cloud provisioning live for the foundation scope", ref: "identity-lifecycle:IG3", owner: "Identity Lifecycle project",
+     late: "G1 fails its HR-feed criterion and waits",
+     source: "identity-lifecycle.md"}
+  - {id: P1.5, phase: 1, name: "Conditional Access design running in report-only (M-017)", dur: 10, after: [G0], owner: "CISO",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones"}
+  - {id: D03, kind: decision, phase: 1, name: "Enforce the Conditional Access baseline", after: [P1.5], owner: "CISO",
+     options: "Enforce; extend report-only; enforce with dated exceptions", late: "G1 can't pass: the baseline must be enforced",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-1-foundation-weeks-58"}
+  - {id: P1.6, phase: 1, name: "Baseline enforced; emergency access accounts vaulted and tested", dur: 3, after: [D03], owner: "Platform teams",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-1-foundation-weeks-58"}
+  - {id: P1.7, phase: 1, name: "Sync and DNS Private Resolver designs; resolver deployed (M-018, M-019)", dur: 10, after: [G0], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones"}
+  - {id: D04, kind: decision, phase: 1, name: "Root of trust for device certificates", after: [G0], owner: "Program office",
+     options: "Cloud PKI root; bring-your-own CA", late: "The PKI design and the pilot certificates wait",
+     source: "../books/b07-pki/index.md"}
+  - {id: P1.8, phase: 1, name: "Cloud PKI design; issuing CA created (M-020)", dur: 8, after: [D04, P1.1], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones"}
+  - {id: P1.9, phase: 1, name: "IPAM covers the platform host and Tier 0", dur: 10, after: [G0], owner: "Platform teams",
+     source: "../books/b08-ddi/10-migration-sequence.md"}
+  - {id: P1.10, phase: 1, name: "Single sign-on; FIDO2 and passkeys open to Tier 0 administrators", dur: 8, after: [G0], owner: "Platform teams",
+     source: "../books/b04-access/index.md"}
+  - {id: P1.11, phase: 1, name: "Every High assessment finding remediated and re-scanned", dur: 15, after: [G0], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#foundation-build-and-pre-pilot-readiness"}
+  - {id: D05, kind: decision, phase: 1, name: "Choose the pilot division", after: [G0], owner: "Program office",
+     options: "IT (tolerates disruption best); another division plus volunteers", late: "Pilot groups can't be built; G1 fails its pilot-readiness criterion",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#scope"}
+  - {id: P1.12, phase: 1, name: "Design review approved (M-021)", dur: 2, after: [P1.3, P1.7, P1.8, D05], owner: "Steward",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones"}
+  - {id: G1, kind: gate, phase: 1, name: "G1 — Foundation Complete", after: [P1.12, X-IDL, P1.6, P1.9, P1.10, P1.11], owner: "Steward",
+     criteria: "Designs approved; groups and AUs drift-clean; baseline Conditional Access enforced; emergency access tested; Tier 0 in IPAM; HR feed live for the foundation scope; High findings closed",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundation-complete"}
+  # ---------------------------------------------------------------- Phase 2
+  - {id: D06, kind: decision, phase: 2, name: "Device pattern for each pilot cohort", after: [G1], owner: "Program office",
+     options: "New devices Entra joined; existing devices reset and re-enrolled; hybrid joined only with a cut date", late: "Pilot devices can't move; the critical path waits",
+     source: "../books/b05-devices/02-the-hybrid-join-trap.md"}
+  - {id: P2.1, phase: 2, name: "Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022)", dur: 10, after: [G1], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
+  - {id: P2.2, phase: 2, name: "Pilot Conditional Access and Intune policies assigned (M-024, M-025)", dur: 5, after: [P2.1], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
+  - {id: P2.3, phase: 2, name: "Pilot devices moved by pattern (M-023)", dur: 8, after: [P2.2, D06], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
+  - {id: P2.4, phase: 2, name: "First migrated GPOs unlinked from the pilot OUs", dur: 5, after: [P2.3], owner: "Platform teams",
+     source: "../books/b05-devices/07-the-gpo-sunset-program.md"}
+  - {id: P2.5, phase: 2, name: "PIM for every pilot administrator (M-026)", dur: 5, after: [P2.1], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
+  - {id: P2.6, phase: 2, name: "Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027)", dur: 15, after: [G1], owner: "Platform teams",
+     source: "../books/b08-ddi/10-migration-sequence.md"}
+  - {id: P2.7, phase: 2, name: "Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028)", dur: 7, after: [P2.3], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
+  - {id: P2.8, phase: 2, name: "Certificate-based authentication for PIV and CAC holders (M-029)", dur: 8, after: [P2.1], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
+  - {id: P2.9, phase: 2, name: "Pilot servers under Arc with machine configuration (M-030)", dur: 10, after: [G1], owner: "Platform teams",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md"}
+  - {id: P2.10, phase: 2, name: "Rollback rehearsed surface by surface", dur: 3, after: [P2.3], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#rollback-surface-by-surface"}
+  - {id: P2.11, phase: 2, name: "Drift-clean hold (14 days, illustrative); success criteria met (M-031)", dur: 10, after: [P2.4, P2.5, P2.6, P2.7, P2.8, P2.9, P2.10], owner: "Program office",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean"}
+  - {id: P2.12, phase: 2, name: "Retrospective and runbook updates committed", dur: 5, after: ["P2.11:SS+5"], owner: "Program office",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean"}
+  - {id: G2, kind: gate, phase: 2, name: "G2 — Pilot Clean", after: [P2.11, P2.12], owner: "Steward and executive sponsor (co-signed)",
+     criteria: "Zero drift for the hold period; no AD-only users and no hybrid-joined PC without a cut date; no unresolved rollback trigger; retrospective committed",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean"}
+  # ---------------------------------------------------------------- Phase 3
+  - {id: D07, kind: decision, phase: 3, name: "Wave plan: which divisions, in which order", after: [G2], owner: "Executive sponsor and steering committee",
+     options: "By region, lowest risk first; by department", late: "Wave 1 can't start; the critical path waits",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#waves-defined-by-attribute-values"}
+  - {id: P3.1, phase: 3, name: "Wave 1, first region, about 25% (M-032)", dur: 22, after: [D07], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones-1"}
+  - {id: P3.2, phase: 3, name: "Wave 2, about 50% cumulative (M-033)", dur: 22, after: [P3.1], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones-1"}
+  - {id: P3.3, phase: 3, name: "Wave 3, about 75% cumulative (M-034)", dur: 22, after: [P3.2], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones-1"}
+  - {id: P3.4, phase: 3, name: "Wave 4, everything remaining or excepted (M-035)", dur: 22, after: [P3.3], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones-1"}
+  - {id: P3.5, phase: 3, name: "GPO links off migrated OUs after 7 clean days (M-036)", dur: 5, after: ["P3.4:SS+17"], owner: "Platform teams",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones-1"}
+  - {id: P3.6, phase: 3, name: "Attribute coverage at 100%; exception register reconciled (M-037)", dur: 12, after: [P3.4], owner: "Program office",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g3-rollout-complete"}
+  - {id: P3.7, phase: 3, name: "Every server Arc-connected or excepted", dur: 60, after: [G2], owner: "Platform teams",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md"}
+  - {id: G3, kind: gate, phase: 3, name: "G3 — Rollout Complete", after: [P3.5, P3.6, P3.7], owner: "Executive sponsor and steering committee",
+     criteria: "Every division past its exit gate; every HR-listed employee with valid attributes; every PC cloud-joined and every server Arc-connected, or excepted; zero cross-division drift",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-3-general-rollout-weeks-1736"}
+  # ---------------------------------------------------------------- Phase 4
+  - {id: D08, kind: decision, phase: 4, name: "End dates for legacy authentication and NTLM", after: [G2], owner: "Authorizing official",
+     options: "A dated end per protocol; a dated, risk-accepted exception per application", late: "Application owners have no date to plan against; SPN retirement slips",
+     source: "../books/b01-transformation-arc/09-who-leads-the-transformation.md#decision-rights-across-the-program"}
+  - {id: P4.1, phase: 4, name: "Migrated GPOs retired", dur: 5, after: [G3], owner: "Platform teams",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}
+  - {id: P4.2, phase: 4, name: "OU-based security groups retired", dur: 5, after: [P4.1], owner: "Platform teams",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}
+  - {id: P4.3, phase: 4, name: "AD-integrated DNS zones moved, except the domain's own zones", dur: 15, after: [G3], owner: "Platform teams",
+     source: "../books/b08-ddi/10-migration-sequence.md"}
+  - {id: P4.4, phase: 4, name: "AD-authorized DHCP retired", dur: 5, after: [P4.3], owner: "Platform teams",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}
+  - {id: P4.5, phase: 4, name: "User and device issuance off AD CS; smart-card logon GPO retired", dur: 15, after: [G3], owner: "Platform teams",
+     source: "../books/b07-pki/07-coexistence-and-migration.md"}
+  - {id: P4.6, phase: 4, name: "AD-bound service principal names migrated, retired or islanded, app by app", dur: 30, after: [G3, D08], owner: "App owners",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}
+  - {id: P4.7, phase: 4, name: "AD authentication volume measured below the agreed threshold", dur: 10, after: [P4.6, P4.2, P4.4, P4.5], owner: "Program office",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}
+  - {id: G4, kind: gate, phase: 4, name: "G4 — Legacy Quiet", after: [P4.7], owner: "Steward (backup: executive sponsor)",
+     criteria: "Only the minimum GPOs; no AD security groups in use; every zone but the domain's moved; user and device issuance off AD CS; every SPN migrated, retired or islanded; AD authentication below threshold",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}
+  # ---------------------------------------------------------------- Phase 5
+  - {id: D09, kind: decision, phase: 5, name: "Retain a Kerberos island, or retire AD completely", after: [G3], owner: "Executive sponsor and CIO",
+     options: "Retire completely; keep a documented island with an end-of-life date", late: "The demotion sequence can't be planned",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548"}
+  - {id: D10, kind: decision, phase: 5, name: "Retention of AD-era logs and records", after: [G3], owner: "Records officer",
+     options: "Retention schedule and archive location approved", late: "Domain controllers can't be decommissioned: their logs can't be recovered afterward",
+     source: "../books/b01-transformation-arc/09-who-leads-the-transformation.md#decision-rights-across-the-program"}
+  - {id: P5.1, phase: 5, name: "AD changes frozen; final assessment and evidence packet", dur: 5, after: [G4], owner: "Program office",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548"}
+  - {id: P5.2, phase: 5, name: "Domain controllers without operations master roles demoted", dur: 5, after: [P5.1, D09], owner: "Platform teams",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548"}
+  - {id: P5.3, phase: 5, name: "Remaining domain controllers demoted or islanded; domain zones moved or retired", dur: 5, after: [P5.2], owner: "Platform teams",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548"}
+  - {id: P5.4, phase: 5, name: "VMs decommissioned; final state archived; retirement record committed", dur: 5, after: [P5.3, D10], owner: "Platform teams",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548"}
+  - {id: G5, kind: gate, phase: 5, name: "G5 — AD Retired", after: [P5.4], owner: "Executive sponsor and CIO",
+     criteria: "Domain controllers decommissioned or a dated Kerberos island; evidence packet in the repository and the SIEM; no production dependency on AD authentication",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548"}
+
+phases:
+  0: "Phase 0 — Pre-flight"
+  1: "Phase 1 — Foundation"
+  2: "Phase 2 — Pilot division"
+  3: "Phase 3 — General rollout"
+  4: "Phase 4 — Legacy retirement"
+  5: "Phase 5 — AD DS retirement"

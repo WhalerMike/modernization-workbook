@@ -24,6 +24,9 @@ project:
     # Research under review: published in its own area, labeled, kept out of
     # the books (see docs/research/index.md and assets/research-banner.lua).
     - "docs/research/**/*.md"
+    # Sample project plans, generated from data/project-plans/ by
+    # scripts/project_plans/build.py (see docs/project-plans/index.md).
+    - "docs/project-plans/**/*.md"
   # Slide decks are published so the Presentations page can link them.
   resources:
     - "presentations/**/*.pptx"
@@ -31,6 +34,7 @@ project:
     - "presentations/start-here/Start_Here_Narrated.vtt"
     - "presentations/start-here/Start_Here_poster.png"
     - "docs/inspiration/*.pdf"
+    - "docs/project-plans/files/*"
 
 website:
   title: "Federal Modernization Workbook"
@@ -91,6 +95,8 @@ website:
             text: "Book 17 — AI Identity Governance"
           - href: docs/books/guides/effective-meetings.md
             text: "Guide: Effective Meetings"
+      - href: docs/project-plans/index.md
+        text: "Projects"
       - href: docs/presentations/index.md
         text: "Presentations"
       - href: docs/research/index.md
