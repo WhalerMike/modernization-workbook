@@ -6,6 +6,7 @@ research-status: in review
 research-type: implementation guide
 research-book: "Book 08"
 date-modified: 2026-10-23
+last-reviewed: 2026-10-23
 ---
 
 # Implementing Book 08 on Infoblox NIOS {.unnumbered}

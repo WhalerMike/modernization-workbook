@@ -5,7 +5,8 @@ description: "Research under review: a narrated explainer for architects learnin
 research-status: in review
 research-type: explainer
 research-book: "Book 08"
-date-modified: 2026-10-22
+date-modified: 2026-10-22
+last-reviewed: 2026-10-22
 ---
 
 # Trinzic Alone, or Trinzic Plus Cloud DDI? {.unnumbered}

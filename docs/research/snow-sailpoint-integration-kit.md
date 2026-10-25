@@ -6,6 +6,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Books 03, 13, 15"
 date-modified: 2026-10-24
+last-reviewed: 2026-10-24
 ---
 
 # Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1) {.unnumbered}

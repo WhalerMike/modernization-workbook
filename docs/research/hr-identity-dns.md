@@ -6,6 +6,7 @@ research-status: in review
 research-type: explainer
 research-book: "Books 03, 08"
 date-modified: 2026-10-22
+last-reviewed: 2026-10-22
 ---
 
 # DNS for HR-Driven Identity Across Clouds {.unnumbered}

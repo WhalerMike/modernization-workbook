@@ -6,6 +6,7 @@ research-status: in review
 research-type: product deep dive
 research-book: "Book 08"
 date-modified: 2026-10-22
+last-reviewed: 2026-10-22
 ---
 
 # Infoblox DDI for Federal Agencies {.unnumbered}

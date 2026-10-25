@@ -6,6 +6,7 @@ research-status: in review
 research-type: implementation guide
 research-book: "Book 03"
 date-modified: 2026-10-25
+last-reviewed: 2026-10-25
 ---
 
 # Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID {.unnumbered}

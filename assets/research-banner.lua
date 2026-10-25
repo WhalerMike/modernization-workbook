@@ -6,6 +6,11 @@
 -- so a reader never mistakes research for production guidance:
 --   * the eyebrow above the title reads "Research · <type> · <status>";
 --   * a status callout opens the page.
+-- An optional `last-reviewed: YYYY-MM-DD` adds "Last reviewed <date>." to the
+-- callout, and says the review is overdue when the date is more than
+-- REVIEW_DAYS before the render. The site re-renders on every push to main, and
+-- the weekly source watch (scripts/source_watch/review_dates.py) lists overdue
+-- pages between renders.
 -- Pages without `research-status` are left alone.
 
 local stringify = pandoc.utils.stringify
@@ -31,7 +36,10 @@ local TEXT = {
   ["Published"] = "This research has been reviewed, proved and published into the workbook's production guidance. This page is kept as the record of its sources, review and evidence.",
 }
 
+local REVIEW_DAYS = 90
+
 local status
+local reviewed -- "YYYY-MM-DD", or nil
 
 function Meta(meta)
   if meta["research-status"] == nil then return nil end
@@ -43,6 +51,9 @@ function Meta(meta)
     table.insert(parts, TYPE[t:lower()] or t)
   end
   table.insert(parts, status)
+  if meta["last-reviewed"] ~= nil then
+    reviewed = stringify(meta["last-reviewed"])
+  end
   meta["fmw-eyebrow"] = pandoc.Inlines(table.concat(parts, " · "))
   return meta
 end
@@ -50,6 +61,17 @@ end
 function Pandoc(doc)
   if status == nil or not quarto.doc.is_format("html") then return nil end
   local text = TEXT[status] or TEXT["In review"]
+  local y, m, d
+  if reviewed ~= nil then
+    y, m, d = reviewed:match("^(%d%d%d%d)%-(%d%d)%-(%d%d)")
+  end
+  if y ~= nil then
+    text = text .. " Last reviewed " .. reviewed .. "."
+    local age = os.difftime(os.time(), os.time({ year = tonumber(y), month = tonumber(m), day = tonumber(d), hour = 12 })) / 86400
+    if age > REVIEW_DAYS then
+      text = text .. " That is more than " .. REVIEW_DAYS .. " days ago, so this page is overdue for review: check its sources before relying on it."
+    end
+  end
   local callout = pandoc.Div(
     { pandoc.Header(2, "Research — " .. status), pandoc.Para(pandoc.Str(text)) },
     { class = (status == "Published" or status == "Proved") and "callout-note" or "callout-warning" }

@@ -159,8 +159,23 @@ def manual_rows(results: dict) -> list[str]:
     return rows
 
 
+def review_rows(results: dict) -> list[str]:
+    rows = []
+    for r in results.get("review_due", []):
+        when = f"{r['last_reviewed']} ({r['age_days']} days ago)" if r.get("last_reviewed") else "never"
+        link = f"https://github.com/{REPO}/blob/{BRANCH}/{quote(r['page'])}"
+        rows.append(f"| [{md(r['title'][:150])}]({link}) | {md(r.get('status', ''))} | {when} |")
+    return rows
+
+
 def has_findings(results: dict) -> bool:
-    return bool(results.get("baseline") or source_blocks(results) or results.get("feed_items") or manual_rows(results))
+    return bool(
+        results.get("baseline")
+        or source_blocks(results)
+        or results.get("feed_items")
+        or manual_rows(results)
+        or review_rows(results)
+    )
 
 
 def duration(seconds: int) -> str:
@@ -227,6 +242,7 @@ def render(results: dict, budget: int | None = None) -> str:
     if results.get("baseline"):
         return render_baseline(results)
     src, feeds, manual = source_blocks(results), feed_blocks(results), manual_rows(results)
+    reviews = review_rows(results)
     events = [e for e in results.get("events", []) if e["type"] in TYPE_LABEL]
     n = {t: sum(1 for e in events if e["type"] == t) for t in TYPE_LABEL}
     c = results.get("counts", {})
@@ -234,7 +250,7 @@ def render(results: dict, budget: int | None = None) -> str:
         f"# {title_for(results)}",
         "",
         f"**{n['changed']} changed, {n['moved']} moved, {n['gone']} gone** of {c.get('checked', 0):,} cited sources checked; "
-        f"**{len(results.get('feed_items', []))} new publications**; **{len(manual)} need a manual check**.",
+        f"**{len(results.get('feed_items', []))} new publications**; **{len(manual)} need a manual check**; **{len(reviews)} research pages due for review**.",
         "",
         "Each run compares against the previous one, so each change is reported once. Review the chapters below, "
         "then close this issue. See [how to read this issue](https://github.com/"
@@ -247,7 +263,7 @@ def render(results: dict, budget: int | None = None) -> str:
         head += ["", f"Workflow run (full report attached as an artifact): {run_url()}"]
     parts = ["\n".join(head)]
     size = len(parts[0])
-    omitted = {"sources": 0, "publications": 0, "manual": 0}
+    omitted = {"sources": 0, "publications": 0, "manual": 0, "reviews": 0}
 
     def add(text: str, key: str) -> bool:
         nonlocal size
@@ -283,10 +299,19 @@ def render(results: dict, budget: int | None = None) -> str:
         )
         for row in manual:
             add(row, "manual")
+    if reviews:
+        add(
+            "\n## Research due for review\n\nThese research pages were last reviewed more than 90 days ago, or never. "
+            "Check each against its sources and update its `last-reviewed` date; a page is listed every week until then.\n\n"
+            "| Page | Status | Last reviewed |\n|---|---|---|",
+            "reviews",
+        )
+        for row in reviews:
+            add(row, "reviews")
     if any(omitted.values()):
         parts.append(
             f"\n---\n**Truncated to fit an issue:** {omitted['sources']} more source entries, "
-            f"{omitted['publications']} more publications and {omitted['manual']} more manual checks are not shown. "
+            f"{omitted['publications']} more publications, {omitted['manual']} more manual checks and {omitted['reviews']} more research pages are not shown. "
             "The full report is attached to the workflow run as the `source-watch-report` artifact."
             + (f" {run_url()}" if run_url() else "")
         )

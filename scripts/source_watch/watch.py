@@ -61,6 +61,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import citations  # noqa: E402
 import feeds as feedlib  # noqa: E402
 import report  # noqa: E402
+import review_dates  # noqa: E402
 from netfetch import HostPacer, fetch  # noqa: E402
 
 ROOT = citations.ROOT
@@ -615,6 +616,7 @@ def main() -> int:
         "events": events,
         "feed_items": feed_items,
         "feed_errors": feed_errors,
+        "review_due": review_dates.due(now.date()),
         "books": citations.books(),
         "chapters": citations.chapter_titles(cited),
     }

@@ -5,7 +5,8 @@ description: "Research under review: a narrated, vendor-neutral briefing for CIO
 research-status: in review
 research-type: explainer
 research-book: "Book 08"
-date-modified: 2026-10-22
+date-modified: 2026-10-22
+last-reviewed: 2026-10-22
 ---
 
 # What a Federal DDI Platform Must Do {.unnumbered}

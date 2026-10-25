@@ -5,7 +5,8 @@ description: "Research under review: an implementation guide for building Book 0
 research-status: in review
 research-type: implementation guide
 research-book: "Book 09"
-date-modified: 2026-10-24
+date-modified: 2026-10-24
+last-reviewed: 2026-10-24
 ---
 
 # Building Book 09's SD-WAN Design on Cisco Catalyst SD-WAN {.unnumbered}

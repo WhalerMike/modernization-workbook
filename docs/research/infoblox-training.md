@@ -5,7 +5,8 @@ description: "Research under review: a verified catalog of official Infoblox tra
 research-status: in review
 research-type: explainer
 research-book: "Books 08, 16"
-date-modified: 2026-10-22
+date-modified: 2026-10-22
+last-reviewed: 2026-10-22
 ---
 
 # Infoblox Training and Learning Paths {.unnumbered}

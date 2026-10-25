@@ -6,6 +6,7 @@ research-status: draft
 research-type: explainer
 research-book: "Books 03, 13, 15"
 date-modified: 2026-10-24
+last-reviewed: 2026-10-24
 ---
 
 # Keeping Identity Correct After HR Becomes the Source {.unnumbered}
