@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.818
+If the boundary says a service
+is out of scope but the landing
+
+2
+00:00:03.818 --> 00:00:07.813
+zone lets a team deploy it anyway,
+the boundary is just a document.
+
+3
+00:00:07.813 --> 00:00:11.362
+The management group hierarchy
+is where it becomes a control.
+
+4
+00:00:11.362 --> 00:00:14.200
+Boundary policy goes on
+an intermediate root,
+
+5
+00:00:14.200 --> 00:00:16.963
+and every subscription
+beneath inherits it.
+
+6
+00:00:16.963 --> 00:00:21.957
+Keep the tree flat, separate environments
+by subscription so test faces the same
+
+7
+00:00:21.957 --> 00:00:24.865
+rules as production, and
+protect the hierarchy
+
+8
+00:00:24.865 --> 00:00:27.474
+so new subscriptions
+can't land outside it.
+
+9
+00:00:27.474 --> 00:00:29.917
+One trap for Azure Government teams:
+
+10
+00:00:29.917 --> 00:00:34.150
+Microsoft's accelerators only
+run unmodified in public Azure.
+
+11
+00:00:34.150 --> 00:00:36.430
+Next, the policies themselves.

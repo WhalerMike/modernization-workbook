@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.238
+Each tool becomes an input
+to one evidence chain.
+
+2
+00:00:03.238 --> 00:00:07.596
+Every result, passes included, gets
+wrapped with where it came from,
+
+3
+00:00:07.596 --> 00:00:10.212
+who issued it and a
+hash of the raw output.
+
+4
+00:00:10.212 --> 00:00:14.258
+The results from one run are sealed
+into a bundle that rebuilds byte
+
+5
+00:00:14.258 --> 00:00:18.375
+for byte from the same inputs, so an
+assessor can check it months later.
+
+6
+00:00:18.375 --> 00:00:21.888
+Then it's emitted in NIST's
+machine-readable assessment format.
+
+7
+00:00:21.888 --> 00:00:26.136
+Follow one failed legacy sign-in check
+through those four hops, and you can
+
+8
+00:00:26.136 --> 00:00:30.524
+walk back from the final record to the
+raw result without re-running the tool.
+
+9
+00:00:30.524 --> 00:00:33.770
+Next, how to read the
+results before counting them.

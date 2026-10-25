@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.887
+Automation makes the answer arrive faster.
+
+2
+00:00:02.887 --> 00:00:06.309
+Determinism makes it the same
+answer no matter who runs it,
+
+3
+00:00:06.309 --> 00:00:10.800
+and that's the only kind an assessor can
+check without taking your word for it.
+
+4
+00:00:10.800 --> 00:00:15.587
+Same record version, same inputs,
+same evidence, byte for byte.
+
+5
+00:00:15.587 --> 00:00:20.636
+That sounds easy and isn't: two runs can
+agree and still serialize differently,
+
+6
+00:00:20.636 --> 00:00:24.500
+so you need a fixed canonical
+format and a pinned toolchain.
+
+7
+00:00:24.500 --> 00:00:26.675
+The payoff is the picture on the left.
+
+8
+00:00:26.675 --> 00:00:30.268
+The assessor re-runs the
+window, and if the hashes match,
+
+9
+00:00:30.268 --> 00:00:33.063
+the evidence is verified by reproduction.
+
+10
+00:00:33.063 --> 00:00:35.662
+If they don't, that's a finding in itself.
+
+11
+00:00:35.662 --> 00:00:37.460
+Now, where the rules live.

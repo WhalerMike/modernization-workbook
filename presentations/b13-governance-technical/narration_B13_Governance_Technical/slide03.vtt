@@ -1,0 +1,24 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.162
+Module 1 is the foundation.
+
+2
+00:00:02.162 --> 00:00:04.859
+You can only measure
+drift against something,
+
+3
+00:00:04.859 --> 00:00:09.613
+and that something only stays trustworthy
+if every change goes through one path.
+
+4
+00:00:09.613 --> 00:00:13.679
+So we'll cover what drift is, the
+one record we measure it against,
+
+5
+00:00:13.679 --> 00:00:16.080
+and the path every change has to take.

@@ -1,0 +1,20 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.961
+Part 2 starts with the landing zone,
+
+2
+00:00:01.961 --> 00:00:05.850
+where the boundary becomes something
+the platform actually enforces.
+
+3
+00:00:05.850 --> 00:00:09.536
+We'll cover policy, AWS and
+GovCloud, the address plan,
+
+4
+00:00:09.536 --> 00:00:14.300
+network as code, and the front door
+every change has to pass through.

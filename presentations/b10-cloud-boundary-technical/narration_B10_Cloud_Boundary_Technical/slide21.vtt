@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.375
+An inventory needs a denominator.
+
+2
+00:00:02.375 --> 00:00:04.906
+A scan tells you what
+answered during a window;
+
+3
+00:00:04.906 --> 00:00:07.437
+the address plan tells
+you what was handed out.
+
+4
+00:00:07.437 --> 00:00:10.938
+Reconcile the two, or your
+scan is just a sample.
+
+5
+00:00:10.938 --> 00:00:14.083
+That's why the program
+treats IP address management
+
+6
+00:00:14.083 --> 00:00:16.863
+as the join key everything
+else correlates on.
+
+7
+00:00:16.863 --> 00:00:21.617
+But it isn't the boundary, and it isn't
+the asset record: it can't see software,
+
+8
+00:00:21.617 --> 00:00:26.213
+owners or classification, so a
+configuration database carries those.
+
+9
+00:00:26.213 --> 00:00:29.987
+And because cloud fabrics hand
+out addresses with no broadcast,
+
+10
+00:00:29.987 --> 00:00:32.124
+the plan has to live above all of them.
+
+11
+00:00:32.124 --> 00:00:34.250
+Next, how Azure mirrors it.

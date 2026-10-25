@@ -1,0 +1,1106 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.162,
+   "This is the technical deep dive for Book 10 of the Federal Modernization Workbook, Cloud Boundary and Landing Zone."
+  ],
+  [
+   7.925,
+   6.525,
+   "It's for the cloud and platform engineers who build the landing zone, and the ISSOs who have to evidence what's in it."
+  ],
+  [
+   14.45,
+   6.525,
+   "The whole book comes down to one idea: the license says what you bought, but the boundary says what you may use."
+  ],
+  [
+   20.975,
+   4.088,
+   "Part 1 is about the boundary itself and what it quietly takes away."
+  ],
+  [
+   25.062,
+   5.588,
+   "Part 2 is about building it into the landing zone and owning it in the authorization package."
+  ],
+  [
+   30.65,
+   2.013,
+   "The code stays in the chapters."
+  ],
+  [
+   32.663,
+   2.112,
+   "Let's start with why this bites so late."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.025,
+   "Here's the trap."
+  ],
+  [
+   1.075,
+   3.95,
+   "Two agencies can hold the same license and get different products."
+  ],
+  [
+   5.025,
+   6.588,
+   "The commercial tenant sees network scores per location, smart routing for its SD-WAN, and adoption reporting."
+  ],
+  [
+   11.613,
+   5.487,
+   "The G C C tenant sees none of it, and nothing in the license or the price list warns you."
+  ],
+  [
+   17.1,
+   10.525,
+   "Whether a feature is usable depends on three checks lining up: what fed-ramp certified, what the provider leaves out of your environment, and what your own authorizing official accepted."
+  ],
+  [
+   27.625,
+   4.688,
+   "Teams usually find the gap during an authorization cycle, when it's expensive."
+  ],
+  [
+   32.312,
+   3.75,
+   "So the rule is simple: no citation, no feature."
+  ],
+  [
+   36.062,
+   1.75,
+   "Let's look at those three checks."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.212,
+   "Module 1 builds the foundation."
+  ],
+  [
+   2.263,
+   3.15,
+   "First, the three checks and who owns each one."
+  ],
+  [
+   5.412,
+   5.638,
+   "Then why the gaps stay invisible, including a popular example that turns out to be mostly wrong."
+  ],
+  [
+   11.05,
+   4.7,
+   "Then what fed-ramp's 2026 rules actually changed about the word boundary."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.575,
+   "Each check answers a different question, and none of them can stand in for the others."
+  ],
+  [
+   4.625,
+   5.175,
+   "The Marketplace tells you what's certified, but not which features your environment switches off."
+  ],
+  [
+   9.8,
+   5.612,
+   "The provider's notes tell you about features, but not whether your agency authorized the integration."
+  ],
+  [
+   15.412,
+   4.75,
+   "And your own package covers your choices, but nothing outside the certified offering."
+  ],
+  [
+   20.163,
+   1.163,
+   "Two highpoints."
+  ],
+  [
+   21.325,
+   6.138,
+   "Agents you install on agency machines are outside fed-ramp entirely, so they're yours to assess."
+  ],
+  [
+   27.462,
+   7.412,
+   "And impact level and features are different axes: the features missing in G C C are missing in G C C High too."
+  ],
+  [
+   34.875,
+   2.025,
+   "Next, why nobody notices."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.45,
+   "Why don't teams see it coming?"
+  ],
+  [
+   1.5,
+   9.9,
+   "The consoles are shared, each exclusion hides in one sentence on its own page, features change underneath you, and a missing signal just looks like a quiet day."
+  ],
+  [
+   11.4,
+   2.475,
+   "But the correction matters just as much."
+  ],
+  [
+   13.875,
+   9.012,
+   "A widely repeated example listed five features as missing from G C C. Checked against the documentation, only one actually is."
+  ],
+  [
+   22.887,
+   4.35,
+   "The rest are G C C High gaps, or belong to Azure entirely."
+  ],
+  [
+   27.238,
+   4.2,
+   "An unverified story sends you to build compensations you don't need."
+  ],
+  [
+   31.438,
+   2.5,
+   "So only vendor-confirmed rows count."
+  ],
+  [
+   33.938,
+   3.587,
+   "Now, a way to describe what changes across any boundary."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   13.738,
+   "The program's model says a boundary is any place where one of four things changes: which signals arrive, who an identity resolves to, who has to enforce a control, and whether a claim is still authoritative or only derived."
+  ],
+  [
+   13.787,
+   5.037,
+   "That turns one boundary into one coherent story instead of a pile of findings."
+  ],
+  [
+   18.825,
+   8.637,
+   "It also matters because fed-ramp's definitions exclude provider telemetry from federal customer data, so no certification promises you a signal."
+  ],
+  [
+   27.462,
+   7.263,
+   "The answer is design guidance: probe what works, label substitutes as derived, and cite every row with a date."
+  ],
+  [
+   34.725,
+   2.138,
+   "Next, fed-ramp's new rules."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.237,
+   "fed-ramp changed its vocabulary in 2026, and the change is useful."
+  ],
+  [
+   5.287,
+   7.412,
+   "Cloud services are now certified, in Classes A through D, and Class C covers the old Moderate baseline."
+  ],
+  [
+   12.7,
+   8.35,
+   "The provider gets certified; your agency still authorizes its own system, and never issues a standalone ATO for a cloud service."
+  ],
+  [
+   21.05,
+   1.475,
+   "Here's a telling detail."
+  ],
+  [
+   22.525,
+   4.575,
+   "Because the rules ship as one machine-readable file, you can count the words."
+  ],
+  [
+   27.1,
+   3.625,
+   "The phrase authorization boundary appears zero times."
+  ],
+  [
+   30.725,
+   2.938,
+   "The only boundary the rules name is yours."
+  ],
+  [
+   33.663,
+   3.675,
+   "Mandatory adoption starts January 2027."
+  ],
+  [
+   37.337,
+   2.175,
+   "So what replaced the provider's boundary?"
+  ],
+  [
+   39.513,
+   0.775,
+   "Scope."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.362,
+   "Scope is now a data question, not a network diagram."
+  ],
+  [
+   3.413,
+   7.263,
+   "A resource is in the offering if it's likely to handle federal customer data or affect its security, wherever it sits."
+  ],
+  [
+   10.675,
+   7.925,
+   "And security category can vary by resource, which undercuts a lot of \"we can't have that, it would raise the whole environment\" reasoning."
+  ],
+  [
+   18.6,
+   3.125,
+   "Push back by asking which resource and which data."
+  ],
+  [
+   21.725,
+   6.713,
+   "One caution: the agents and clients you install are outside fed-ramp altogether, so they land in your package."
+  ],
+  [
+   28.438,
+   4.85,
+   "And providers have to publish what's in scope, though that's services, not features."
+  ],
+  [
+   33.288,
+   2.888,
+   "Next, how change and evidence now flow."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.513,
+   "Under the new rules, providers don't go back for approval when they change things."
+  ],
+  [
+   4.562,
+   8.525,
+   "Routine changes need no notice at all, everyday changes are reported afterward, and big ones get announced weeks ahead, all in JSON."
+  ],
+  [
+   13.088,
+   5.612,
+   "That means you can treat change notices as data and test each one against your own authorization."
+  ],
+  [
+   18.7,
+   9.125,
+   "Certification evidence moves into trust centers with programmatic access, though only a small share of listings showed one in October 2026."
+  ],
+  [
+   27.825,
+   4.25,
+   "And for years you'll hold old-style and new-style packages side by side."
+  ],
+  [
+   32.075,
+   2.025,
+   "Read each in its own terms."
+  ],
+  [
+   34.1,
+   1.312,
+   "That's Module 1."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   10.887,
+   "Module 2 gets specific about Microsoft 365 G C C: what it really is, what it verifiably loses, and what a High certification would and wouldn't change."
+  ],
+  [
+   10.938,
+   5.662,
+   "Then the playbook for a missing capability, and the option of changing the collaboration suite itself."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.15,
+   "The common picture of G C C is a fence around the commercial service."
+  ],
+  [
+   4.2,
+   8.925,
+   "Microsoft's own documentation describes something else: the worldwide service, on the same endpoints, with a list of specific features left out."
+  ],
+  [
+   13.125,
+   8.325,
+   "That's good news, because a list can be read, argued and worked one line at a time, while a fence can only be accepted or left."
+  ],
+  [
+   21.45,
+   1.788,
+   "And the list isn't a ladder."
+  ],
+  [
+   23.238,
+   3.013,
+   "Some features reach G C C and stop there."
+  ],
+  [
+   26.25,
+   5.888,
+   "One honest wrinkle: the Marketplace says G C C rides on Azure Government infrastructure."
+  ],
+  [
+   32.138,
+   2.888,
+   "Cite both statements and paraphrase neither."
+  ],
+  [
+   35.025,
+   2.525,
+   "So what does G C C actually lose?"
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.438,
+   "The biggest documented loss isn't a telemetry detail."
+  ],
+  [
+   3.487,
+   11.113,
+   "It's the whole network connectivity layer in the admin center: scores per location, insights like spotting TLS interception, and attribution of performance to named network providers."
+  ],
+  [
+   14.6,
+   4.575,
+   "A commercial agency compares its sassy and transport options from a dashboard."
+  ],
+  [
+   19.175,
+   2.362,
+   "A G C C agency gets none of that."
+  ],
+  [
+   21.538,
+   7.037,
+   "Some measurement survives: the connectivity test tool still works in G C C, run from each location."
+  ],
+  [
+   28.575,
+   2.263,
+   "But the practical message is budget."
+  ],
+  [
+   30.837,
+   4.325,
+   "If you need comparative network evidence, you'll be funding the measurement yourself."
+  ],
+  [
+   35.163,
+   3.025,
+   "Next, the question everyone asks about High."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   10.613,
+   "The Marketplace shows three Microsoft 365 government packages, and a new one stands out: a package with the same name as G C C, now pursuing High."
+  ],
+  [
+   10.662,
+   1.525,
+   "The fact is the listing."
+  ],
+  [
+   12.188,
+   7.2,
+   "The reading, that it's a High effort for G C C, is inference, so ask the provider rather than planning around it."
+  ],
+  [
+   19.387,
+   1.3,
+   "Here's the key point."
+  ],
+  [
+   20.688,
+   3.188,
+   "A higher class changes what data you can put in the service."
+  ],
+  [
+   23.875,
+   2.475,
+   "It doesn't bring excluded features back."
+  ],
+  [
+   26.35,
+   5.912,
+   "Network connectivity is already missing in G C C High, which is certified High today."
+  ],
+  [
+   32.263,
+   2.188,
+   "So never wait on a class for a feature."
+  ],
+  [
+   34.45,
+   1.75,
+   "Next, what to do instead."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.388,
+   "Start with a register, not an argument."
+  ],
+  [
+   2.438,
+   8.1,
+   "One row per feature, each with the provider's own sentence and a date, because a citation can't be dismissed and an inference can."
+  ],
+  [
+   10.537,
+   8.375,
+   "Then probe your own tenant, and test for output, not for whether a switch turns on, because the failure here is a report that never fills in."
+  ],
+  [
+   18.913,
+   5.062,
+   "Where there's a gap, build an in-boundary equivalent and say plainly that it's derived."
+  ],
+  [
+   23.975,
+   6.925,
+   "Scheduled network tests from each location close part of the network gap, not all of it, and the row should say so."
+  ],
+  [
+   30.9,
+   2.038,
+   "Some gaps have no equivalent."
+  ],
+  [
+   32.938,
+   1.038,
+   "That's next."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.275,
+   "When there's no equivalent, you take an exception, and there are two kinds."
+  ],
+  [
+   4.325,
+   10.262,
+   "The provider's own path, like ExpressRoute for Microsoft 365, wants a regulation that mandates it, quoted with a link, and fed-ramp alone isn't one."
+  ],
+  [
+   14.588,
+   7.612,
+   "Or your authorizing official accepts the risk in writing, with an end date, so permanent is a decision someone repeats."
+  ],
+  [
+   22.2,
+   5.612,
+   "The new rules also give you real arguments, each with a limit worth knowing before you use it."
+  ],
+  [
+   27.812,
+   6.287,
+   "And in acquisitions, specify the capability, not a program badge, because some programs are closed."
+  ],
+  [
+   34.1,
+   2.938,
+   "Then there's the third answer: change the service."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   3.425,
+   "Sometimes the honest answer is a different collaboration suite."
+  ],
+  [
+   3.475,
+   8.025,
+   "That's only safe if identity stays where it is: the suite is a workload that consumes identity, not a second source of truth."
+  ],
+  [
+   11.5,
+   6.075,
+   "Read the certification, not the press release, because announcements and listings don't always match."
+  ],
+  [
+   17.575,
+   9.613,
+   "The public record shows both outcomes: one department moved fifty thousand people on a steep temporary discount, and another dropped licenses almost nobody used."
+  ],
+  [
+   27.188,
+   8.925,
+   "Keep Entra ID provisioning and federating sign-in, watch the admin accounts that skip it, and treat stray edits in the second directory as drift."
+  ],
+  [
+   36.112,
+   1.0,
+   "That's Part 1."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.8,
+   "Part 2 starts with the landing zone, where the boundary becomes something the platform actually enforces."
+  ],
+  [
+   5.85,
+   8.4,
+   "We'll cover policy, AWS and GovCloud, the address plan, network as code, and the front door every change has to pass through."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   7.763,
+   "If the boundary says a service is out of scope but the landing zone lets a team deploy it anyway, the boundary is just a document."
+  ],
+  [
+   7.812,
+   3.55,
+   "The management group hierarchy is where it becomes a control."
+  ],
+  [
+   11.363,
+   5.6,
+   "Boundary policy goes on an intermediate root, and every subscription beneath inherits it."
+  ],
+  [
+   16.962,
+   10.512,
+   "Keep the tree flat, separate environments by subscription so test faces the same rules as production, and protect the hierarchy so new subscriptions can't land outside it."
+  ],
+  [
+   27.475,
+   6.675,
+   "One trap for Azure Government teams: Microsoft's accelerators only run unmodified in public Azure."
+  ],
+  [
+   34.15,
+   2.212,
+   "Next, the policies themselves."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   10.012,
+   "Every line in the package's boundary description should have a mechanism behind it: which cloud, which regions, which services, which settings, and which exceptions."
+  ],
+  [
+   10.062,
+   1.475,
+   "The fine print matters."
+  ],
+  [
+   11.537,
+   5.825,
+   "The built-in allowed-types policy skips some resource types unless you copy it and change its mode."
+  ],
+  [
+   17.363,
+   5.638,
+   "And the fed-ramp compliance initiative is, in Microsoft's own words, only a partial view."
+  ],
+  [
+   23.0,
+   8.938,
+   "The rollout is the real lesson: audit first, review with the system owner and I S S O, fix or exempt, and only then deny."
+  ],
+  [
+   31.938,
+   4.162,
+   "Block production on day one and teams learn to ask for exemptions."
+  ],
+  [
+   36.1,
+   2.837,
+   "Next, the same idea on AWS."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   10.5,
+   "AWS gets to the same place with accounts, organizational units and service control policies, but GovCloud works differently enough that you have to plan for it, not discover it."
+  ],
+  [
+   10.55,
+   5.675,
+   "Accounts are created in pairs from the commercial side, and some factory features simply aren't there."
+  ],
+  [
+   16.225,
+   3.237,
+   "The other half of this slide is about your own automation."
+  ],
+  [
+   19.462,
+   6.3,
+   "A collector calling a commercial-only API from inside the boundary is a crossing nobody approved."
+  ],
+  [
+   25.762,
+   7.362,
+   "So every adapter declares its boundary, resolves endpoints from it, and fails closed when it doesn't recognize the cloud."
+  ],
+  [
+   33.125,
+   1.762,
+   "Next, the address plan."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   2.325,
+   "An inventory needs a denominator."
+  ],
+  [
+   2.375,
+   5.062,
+   "A scan tells you what answered during a window; the address plan tells you what was handed out."
+  ],
+  [
+   7.438,
+   3.5,
+   "Reconcile the two, or your scan is just a sample."
+  ],
+  [
+   10.938,
+   5.925,
+   "That's why the program treats IP address management as the join key everything else correlates on."
+  ],
+  [
+   16.863,
+   9.35,
+   "But it isn't the boundary, and it isn't the asset record: it can't see software, owners or classification, so a configuration database carries those."
+  ],
+  [
+   26.212,
+   5.912,
+   "And because cloud fabrics hand out addresses with no broadcast, the plan has to live above all of them."
+  ],
+  [
+   32.125,
+   2.062,
+   "Next, how Azure mirrors it."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   4.15,
+   "The enterprise address authority stays in charge, and Azure mirrors it."
+  ],
+  [
+   4.2,
+   11.912,
+   "Reserve the range in the enterprise system first, mirror it into Azure's pools with outside ranges blocked off, and use a deny policy so no virtual network exists without a pool allocation."
+  ],
+  [
+   16.113,
+   3.775,
+   "Then reconcile, and treat any mismatch as a finding."
+  ],
+  [
+   19.887,
+   6.7,
+   "And here's the book's argument in miniature: the Azure pool service isn't named in Microsoft's fed-ramp scope tables."
+  ],
+  [
+   26.587,
+   5.713,
+   "So until that's confirmed in writing, record it as a dependency and choose a path deliberately."
+  ],
+  [
+   32.3,
+   2.413,
+   "Next, building the network from code."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   12.2,
+   "The network gets built from reviewed source as five modules, each owning one plane and depending only on the layers below it: platform, address plan, naming, network, and the enforcement edge."
+  ],
+  [
+   12.25,
+   6.85,
+   "Naming mechanisms rather than products is the point, because changing vendors should change syntax, not the design."
+  ],
+  [
+   19.1,
+   2.425,
+   "And some inputs change underneath your code."
+  ],
+  [
+   21.525,
+   9.387,
+   "Microsoft's endpoint list is the classic case, and G C C uses the worldwide list, so blocking commercial endpoints would block G C C itself."
+  ],
+  [
+   30.913,
+   3.325,
+   "Pull that list on a schedule and apply it through the pipeline."
+  ],
+  [
+   34.237,
+   3.1,
+   "Which raises the question of who gets to run that pipeline."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   5.1,
+   "Code that anyone with credentials can apply is just a click path with extra steps."
+  ],
+  [
+   5.15,
+   8.175,
+   "It becomes change control only behind a front door: request, approve, plan, apply, reconcile, close."
+  ],
+  [
+   13.325,
+   5.862,
+   "Each step leaves evidence for a named control, and the requester can never approve their own change."
+  ],
+  [
+   19.188,
+   3.125,
+   "The step that carries the most weight is reconcile."
+  ],
+  [
+   22.312,
+   6.4,
+   "An address block the code allocated but nobody recorded is shadow inventory the moment it exists."
+  ],
+  [
+   28.712,
+   7.213,
+   "So the pipeline writes the allocation back, with the request number and owner, and fails the run on any mismatch."
+  ],
+  [
+   35.925,
+   1.637,
+   "Next, how to build it."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   9.037,
+   "There are documented ways to build this loop on ServiceNow and Terraform, and whichever you choose, the approver has to see the actual plan that will run."
+  ],
+  [
+   9.088,
+   3.913,
+   "The bigger point is that the pipeline itself is inside the boundary."
+  ],
+  [
+   13.0,
+   10.738,
+   "Terraform state and plans hold secrets, even ones marked sensitive, so where the runner, the state and the repository live is a boundary decision, not a tooling preference."
+  ],
+  [
+   23.738,
+   4.7,
+   "The program's default is a self-hosted runner and state inside the boundary."
+  ],
+  [
+   28.438,
+   3.575,
+   "And after apply, drift goes back through the same front door."
+  ],
+  [
+   32.013,
+   1.375,
+   "That's Module 3."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   12.325,
+   "Module 4 is about people and paper: who decides each boundary question, and how the boundary gets written once into the authorization package, kept current, and backed by the right questions to the provider."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   2.888,
+   "Most boundary failures aren't engineering errors."
+  ],
+  [
+   2.938,
+   9.738,
+   "They're decisions nobody owned: a feature designed in before anyone checked it, a workload placed in an unrecorded subscription, a provider notice nobody read."
+  ],
+  [
+   12.675,
+   1.8,
+   "So name one decider per row."
+  ],
+  [
+   14.475,
+   4.463,
+   "The authorizing official decides the boundary, and that can't be delegated."
+  ],
+  [
+   18.938,
+   9.9,
+   "The system owner decides placement, not the platform team, because vending an unrecorded subscription is the cheapest way to make an authorized system unauthorized."
+  ],
+  [
+   28.837,
+   6.8,
+   "And acquisition matters more than people expect: the SKU you buy decides whether the certification even covers you."
+  ],
+  [
+   35.638,
+   1.462,
+   "Next, the record."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   3.0,
+   "Your agency never authorizes a cloud service."
+  ],
+  [
+   3.05,
+   3.125,
+   "It authorizes its own system that uses one."
+  ],
+  [
+   6.175,
+   8.037,
+   "So your package covers only what you implement, configure, operate or inherit, and you never paste the provider's control text into it."
+  ],
+  [
+   14.213,
+   8.463,
+   "The program's answer is a single boundary record: what's in scope, what the probe found, the gaps, the equivalents and the exceptions."
+  ],
+  [
+   22.675,
+   6.85,
+   "Everything else cites it, so when a capability changes, one record changes and every narrative stays current."
+  ],
+  [
+   29.525,
+   3.125,
+   "Information exchanges are where most crossings live."
+  ],
+  [
+   32.65,
+   2.212,
+   "Next, how to write the narratives."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   2.55,
+   "Most controls aren't touched by the boundary."
+  ],
+  [
+   2.6,
+   5.5,
+   "The ones that are fall into four patterns, and naming the pattern lets an assessor follow you."
+  ],
+  [
+   8.1,
+   1.788,
+   "The hard one is compensating."
+  ],
+  [
+   9.887,
+   4.638,
+   "Don't describe the missing feature as if you had it, and don't hide the substitute either."
+  ],
+  [
+   14.525,
+   8.675,
+   "Say what the control needs, what's unavailable with the citation, what you run instead and what it misses, and where the remaining gap is recorded."
+  ],
+  [
+   23.2,
+   8.225,
+   "Also know whose package you're reading: G C C inherits from Azure Government, so your chain runs through two packages, plus the SKU."
+  ],
+  [
+   31.425,
+   1.8,
+   "Next, keeping it current."
+  ]
+ ],
+ "30": [
+  [
+   0.05,
+   5.1,
+   "A package describes the system on the day it was signed, and the boundary keeps moving."
+  ],
+  [
+   5.15,
+   8.3,
+   "Three inputs feed one review: provider change notices, ongoing certification reports, and your own probe and drift findings."
+  ],
+  [
+   13.45,
+   5.513,
+   "Each gets one question: does this change a disposition, an equivalent or an exception?"
+  ],
+  [
+   18.962,
+   6.287,
+   "If it might change your risk, it goes to the authorizing official, who decides whether it's a significant change."
+  ],
+  [
+   25.25,
+   4.525,
+   "A provider removing a capability your narrative depends on is exactly that."
+  ],
+  [
+   29.775,
+   2.775,
+   "The table is what an assessor should be able to find."
+  ],
+  [
+   32.55,
+   2.1,
+   "Next, what to ask providers."
+  ]
+ ],
+ "31": [
+  [
+   0.05,
+   2.737,
+   "Asking for commercial parity can't be answered."
+  ],
+  [
+   2.788,
+   4.225,
+   "A specific question tied to a published rule or exclusion can."
+  ],
+  [
+   7.013,
+   4.912,
+   "So name the item, cite the basis, and ask for data rather than documents."
+  ],
+  [
+   11.925,
+   11.787,
+   "The eight requests on the slide follow that pattern, and most of them rest on obligations the 2026 rules already place on providers, like trust center access and machine-readable change notices."
+  ],
+  [
+   23.712,
+   4.125,
+   "Microsoft's own exception process sets the standard you can hold it to."
+  ],
+  [
+   27.837,
+   7.088,
+   "Record every request, its date and the answer in your package, because a documented no is evidence too."
+  ],
+  [
+   34.925,
+   1.7,
+   "Let's close with decisions."
+  ]
+ ],
+ "32": [
+  [
+   0.05,
+   3.763,
+   "Six decisions, each with an owner, and two matter most."
+  ],
+  [
+   3.812,
+   6.912,
+   "The authorizing official settles the boundary before workloads arrive, because discovering it later is expensive."
+  ],
+  [
+   10.725,
+   3.475,
+   "And every gap gets a deliberate response, recorded."
+  ],
+  [
+   14.2,
+   11.575,
+   "You can start this week without buying anything: re-cite your gap list, read each service's Marketplace class with the date, put allowed regions in audit, and name someone to read provider notices."
+  ],
+  [
+   25.775,
+   4.0,
+   "The license says what you bought; the boundary says what you may use."
+  ],
+  [
+   29.775,
+   3.288,
+   "Write it down once, cite it everywhere, keep it current."
+  ],
+  [
+   33.062,
+   3.288,
+   "The book has the detail, every claim footnoted."
+  ],
+  [
+   36.35,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.763
+Drift is any gap between what the record
+says and what the estate actually does.
+
+2
+00:00:04.763 --> 00:00:09.609
+NIST never uses the word, but its
+configuration controls, read together,
+
+3
+00:00:09.609 --> 00:00:14.701
+describe exactly this: a baseline,
+controlled change, and someone checking.
+
+4
+00:00:14.701 --> 00:00:18.350
+Drift comes from five places,
+and most of them are innocent.
+
+5
+00:00:18.350 --> 00:00:20.800
+An emergency fix nobody wrote back.
+
+6
+00:00:20.800 --> 00:00:22.713
+A provider changing a default.
+
+7
+00:00:22.713 --> 00:00:23.924
+People moving on.
+
+8
+00:00:23.924 --> 00:00:26.175
+The dangerous part is that it's silent.
+
+9
+00:00:26.175 --> 00:00:28.881
+Every system keeps
+reporting what it was told,
+
+10
+00:00:28.881 --> 00:00:31.587
+so nothing alarms unless
+something compares.
+
+11
+00:00:31.587 --> 00:00:35.020
+And a configuration that was
+right at assessment and wrong
+
+12
+00:00:35.020 --> 00:00:38.312
+six months later is exactly
+what attackers walk through.
+
+13
+00:00:38.312 --> 00:00:40.540
+Next, how the program sorts it.

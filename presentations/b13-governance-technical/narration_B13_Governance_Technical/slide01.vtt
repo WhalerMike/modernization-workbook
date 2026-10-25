@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.543
+This is the technical deep dive
+for Book 13 of the Federal
+
+3
+00:00:04.543 --> 00:00:08.324
+Modernization Workbook,
+Governance, Drift and Evidence.
+
+4
+00:00:08.324 --> 00:00:12.082
+It's for the people who keep
+governance true after the audit:
+
+5
+00:00:12.082 --> 00:00:15.225
+governance engineers,
+platform owners and ISSOs.
+
+6
+00:00:15.225 --> 00:00:17.587
+The whole book comes down to one idea.
+
+7
+00:00:17.587 --> 00:00:22.216
+A package that's assembled by hand
+starts going stale the day it's signed,
+
+8
+00:00:22.216 --> 00:00:27.237
+so the evidence has to keep arriving, from
+one record, in a form anyone can re-run.
+
+9
+00:00:27.237 --> 00:00:30.501
+Part 1 builds the record and
+the engine that watches it.
+
+10
+00:00:30.501 --> 00:00:35.037
+Part 2 is the evidence, the owners,
+and how authorization uses it.
+
+11
+00:00:35.037 --> 00:00:37.320
+Let's start with why governance decays.

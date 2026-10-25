@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.150
+Code that anyone with credentials can apply
+is just a click path with extra steps.
+
+2
+00:00:05.150 --> 00:00:09.496
+It becomes change control
+only behind a front door:
+
+3
+00:00:09.496 --> 00:00:13.325
+request, approve, plan,
+apply, reconcile, close.
+
+4
+00:00:13.325 --> 00:00:16.042
+Each step leaves evidence
+for a named control,
+
+5
+00:00:16.042 --> 00:00:19.187
+and the requester can never
+approve their own change.
+
+6
+00:00:19.187 --> 00:00:22.313
+The step that carries the
+most weight is reconcile.
+
+7
+00:00:22.313 --> 00:00:25.393
+An address block the code
+allocated but nobody
+
+8
+00:00:25.393 --> 00:00:28.712
+recorded is shadow inventory
+the moment it exists.
+
+9
+00:00:28.712 --> 00:00:31.565
+So the pipeline writes
+the allocation back,
+
+10
+00:00:31.565 --> 00:00:35.925
+with the request number and owner,
+and fails the run on any mismatch.
+
+11
+00:00:35.925 --> 00:00:37.630
+Next, how to build it.

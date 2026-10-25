@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.488
+For both tools, three habits matter.
+
+2
+00:00:02.488 --> 00:00:05.059
+Pin the version, and
+record it with every run,
+
+3
+00:00:05.059 --> 00:00:08.774
+along with the configuration
+file that holds your exceptions.
+
+4
+00:00:08.774 --> 00:00:11.737
+Keep the results file
+exactly as the tool wrote it.
+
+5
+00:00:11.737 --> 00:00:15.513
+Never edit or rename it;
+only hash it and copy it.
+
+6
+00:00:15.513 --> 00:00:16.925
+And expect quirks.
+
+7
+00:00:16.925 --> 00:00:20.037
+Microsoft's tool is a
+fast-moving community project,
+
+8
+00:00:20.037 --> 00:00:24.525
+it can run for more than a day on a big
+tenant, and you shouldn't stop it halfway.
+
+9
+00:00:24.525 --> 00:00:27.891
+One honest gap, too: the
+Google Workspace assessor
+
+10
+00:00:27.891 --> 00:00:31.175
+isn't wired into the
+program's evidence chain yet.
+
+11
+00:00:31.175 --> 00:00:34.060
+Next, how a result becomes evidence.

@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.412
+Scope is now a data question,
+not a network diagram.
+
+2
+00:00:03.412 --> 00:00:06.700
+A resource is in the offering
+if it's likely to handle
+
+3
+00:00:06.700 --> 00:00:10.676
+federal customer data or affect
+its security, wherever it sits.
+
+4
+00:00:10.676 --> 00:00:14.710
+And security category can vary by
+resource, which undercuts a lot of
+
+5
+00:00:14.710 --> 00:00:18.600
+"we can't have that, it would raise
+the whole environment" reasoning.
+
+6
+00:00:18.600 --> 00:00:21.725
+Push back by asking which
+resource and which data.
+
+7
+00:00:21.725 --> 00:00:24.893
+One caution: the agents
+and clients you install are
+
+8
+00:00:24.893 --> 00:00:28.438
+outside FedRAMP altogether,
+so they land in your package.
+
+9
+00:00:28.438 --> 00:00:33.288
+And providers have to publish what's in
+scope, though that's services, not features.
+
+10
+00:00:33.288 --> 00:00:36.240
+Next, how change and evidence now flow.

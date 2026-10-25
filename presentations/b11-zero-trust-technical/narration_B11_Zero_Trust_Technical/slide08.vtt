@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.959
+Zero Trust programs
+get argued by citation,
+
+2
+00:00:02.959 --> 00:00:05.625
+and most citations don't survive a check.
+
+3
+00:00:05.625 --> 00:00:09.525
+Only the executive order and
+the OMB memo are binding.
+
+4
+00:00:09.525 --> 00:00:12.948
+CISA's maturity model calls
+itself a general guide,
+
+5
+00:00:12.948 --> 00:00:15.575
+and NIST's architecture is guidance too.
+
+6
+00:00:15.575 --> 00:00:18.456
+Other instruments bind
+particular surfaces,
+
+7
+00:00:18.456 --> 00:00:21.338
+like cloud tenant
+configuration and logging.
+
+8
+00:00:21.338 --> 00:00:24.250
+And several popular claims
+simply don't exist.
+
+9
+00:00:24.250 --> 00:00:28.586
+There's no required maturity stage,
+no federal Zero Trust score,
+
+10
+00:00:28.586 --> 00:00:31.338
+and no rule that you decrypt all traffic.
+
+11
+00:00:31.338 --> 00:00:34.025
+Knowing that saves a
+lot of misdirected work.
+
+12
+00:00:34.025 --> 00:00:36.890
+So what does the OMB
+memo actually require?

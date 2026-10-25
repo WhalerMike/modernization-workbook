@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.460
+There are documented ways to build
+this loop on ServiceNow and Terraform,
+
+2
+00:00:04.460 --> 00:00:09.087
+and whichever you choose, the approver
+has to see the actual plan that will run.
+
+3
+00:00:09.087 --> 00:00:13.001
+The bigger point is that the pipeline
+itself is inside the boundary.
+
+4
+00:00:13.001 --> 00:00:17.295
+Terraform state and plans hold
+secrets, even ones marked sensitive,
+
+5
+00:00:17.295 --> 00:00:20.363
+so where the runner, the
+state and the repository
+
+6
+00:00:20.363 --> 00:00:23.738
+live is a boundary decision,
+not a tooling preference.
+
+7
+00:00:23.738 --> 00:00:28.438
+The program's default is a self-hosted
+runner and state inside the boundary.
+
+8
+00:00:28.438 --> 00:00:32.013
+And after apply, drift goes back
+through the same front door.
+
+9
+00:00:32.013 --> 00:00:33.460
+That's Module 3.

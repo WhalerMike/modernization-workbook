@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.075
+The tools overlap mostly on identity, and
+now partly on email threat protection.
+
+2
+00:00:05.075 --> 00:00:08.812
+But overlap means the same
+area, not the same checks.
+
+3
+00:00:08.812 --> 00:00:11.991
+Microsoft's tool goes
+much deeper on identity,
+
+4
+00:00:11.991 --> 00:00:15.337
+and it alone covers devices,
+networking and data.
+
+5
+00:00:15.337 --> 00:00:20.045
+CISA's tool alone covers mail flow,
+Teams, sharing and Power Platform,
+
+6
+00:00:20.045 --> 00:00:23.513
+and almost half the mandatory
+policies live there.
+
+7
+00:00:23.513 --> 00:00:26.043
+So dropping either one leaves real gaps,
+
+8
+00:00:26.043 --> 00:00:30.799
+and dropping CISA's tool also stops
+the reporting the directive requires.
+
+9
+00:00:30.799 --> 00:00:33.588
+Keep both, and reconcile them by control.
+
+10
+00:00:33.588 --> 00:00:37.440
+Next, everything outside Microsoft 365.

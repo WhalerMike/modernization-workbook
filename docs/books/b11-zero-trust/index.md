@@ -35,6 +35,8 @@ This book replaces the workbook's Zero Trust whitepapers (whole-agency unificati
 **15-minute presentation (about 13 minutes narrated)**: the Why / What / Who / How deck is on the [Presentations](../../presentations/index.md#book-11) page.
 
 **Executive briefing (about 30 minutes live, 22 narrated)**: for CISOs and authorizing officials, on the [Presentations](../../presentations/index.md#executive-b11) page.
+
+**Technical deep dive (about 50 minutes live, 18 narrated)**: the mandates, BOD 25-01 and the two assessment tools, ownership and closing before assessing, and running the assessment for evidence, in modules on the [Presentations](../../presentations/index.md#technical-b11) page.
 :::
 
 Zero Trust maturity is a property of the whole agency: its identities, devices, networks, applications and data, across every cloud, every on-premises system and every virtualized estate. No single product or tenant score can certify it, because each tool sees only the part of the estate it was built for, and an attacker needs only the part nobody assessed. A whole-agency picture needs one naming and identity plane underneath the tools. CISA's Zero Trust Maturity Model and OMB M-22-09 set the direction; CISA's SCuBA baselines and BOD 25-01 set the required configuration for the agency's cloud tenants. The order matters: close the known BOD 25-01 findings before assessing, so the assessment measures the target state rather than gaps everyone already knew about. And the assessment tools, CISA's ScubaGear and Microsoft's Zero Trust Assessment, produce evidence for the program to act on, not verdicts to report.

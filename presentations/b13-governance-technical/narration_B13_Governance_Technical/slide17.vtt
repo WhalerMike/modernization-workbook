@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.496
+Severity isn't debated; it's looked up,
+
+2
+00:00:02.496 --> 00:00:05.513
+from the class and whether
+the claim is in use.
+
+3
+00:00:05.513 --> 00:00:09.488
+So two people looking at the same
+finding always get the same answer.
+
+4
+00:00:09.488 --> 00:00:13.975
+But here's the most common design
+mistake: treating severity as permission.
+
+5
+00:00:13.975 --> 00:00:15.787
+Severity sets the clock.
+
+6
+00:00:15.787 --> 00:00:18.237
+The actuation ladder sets who may act.
+
+7
+00:00:18.237 --> 00:00:22.543
+A low-severity finding still waits
+for a person unless its class has been
+
+8
+00:00:22.543 --> 00:00:27.063
+explicitly approved to run on its own,
+and some kinds of change never qualify.
+
+9
+00:00:27.063 --> 00:00:31.812
+On the right, five things the engine
+never does, including accepting risk.
+
+10
+00:00:31.812 --> 00:00:32.925
+That ends Part 1.
+
+11
+00:00:32.925 --> 00:00:35.400
+Next, what all this evidence is worth.

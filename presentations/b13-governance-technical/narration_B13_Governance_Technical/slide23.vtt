@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.641
+An adapter is defined by its
+declaration, not its code,
+
+2
+00:00:03.641 --> 00:00:08.048
+and every one inherits four
+invariants: stay inside the boundary,
+
+3
+00:00:08.048 --> 00:00:12.782
+never edit the record, emit under
+its own certificate-backed identity,
+
+4
+00:00:12.782 --> 00:00:15.312
+and refer to real object identifiers.
+
+5
+00:00:15.312 --> 00:00:18.512
+Read-only comes first,
+but it has to be verified.
+
+6
+00:00:18.512 --> 00:00:22.913
+A tool built to observe can still run
+under an account that can change things,
+
+7
+00:00:22.913 --> 00:00:26.475
+so compare what the identity is
+granted with what it declares.
+
+8
+00:00:26.475 --> 00:00:29.372
+Adapters also pin the
+platform's production API,
+
+9
+00:00:29.372 --> 00:00:33.500
+and earn active status through
+testing before anyone relies on them.
+
+10
+00:00:33.500 --> 00:00:35.363
+That closes Module 3.
+
+11
+00:00:35.363 --> 00:00:36.820
+Next, the people.

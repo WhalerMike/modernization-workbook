@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.115
+The program's model says a boundary is any
+place where one of four things changes:
+
+2
+00:00:05.115 --> 00:00:10.027
+which signals arrive, who an identity
+resolves to, who has to enforce a control,
+
+3
+00:00:10.027 --> 00:00:13.788
+and whether a claim is still
+authoritative or only derived.
+
+4
+00:00:13.788 --> 00:00:18.824
+That turns one boundary into one coherent
+story instead of a pile of findings.
+
+5
+00:00:18.824 --> 00:00:23.322
+It also matters because FedRAMP's
+definitions exclude provider telemetry
+
+6
+00:00:23.322 --> 00:00:27.462
+from federal customer data, so no
+certification promises you a signal.
+
+7
+00:00:27.462 --> 00:00:30.681
+The answer is design
+guidance: probe what works,
+
+8
+00:00:30.681 --> 00:00:34.725
+label substitutes as derived,
+and cite every row with a date.
+
+9
+00:00:34.725 --> 00:00:36.910
+Next, FedRAMP's new rules.

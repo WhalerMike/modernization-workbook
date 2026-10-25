@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.512
+Five decisions come before
+either tool touches production.
+
+2
+00:00:03.512 --> 00:00:08.113
+Scope: which tenants and subscriptions
+this run covers, written down.
+
+3
+00:00:08.113 --> 00:00:11.954
+The host: a dedicated Windows
+machine inside your boundary,
+
+4
+00:00:11.954 --> 00:00:15.951
+a clean one for each tool, never
+a shared internet build runner.
+
+5
+00:00:15.951 --> 00:00:21.112
+Accounts: a dedicated reader for each
+tool, with consent granted separately.
+
+6
+00:00:21.112 --> 00:00:25.955
+Output: treat every report as sensitive,
+because it's a map of your weaknesses,
+
+7
+00:00:25.955 --> 00:00:30.413
+so move it unaltered into the evidence
+store and delete the local copy.
+
+8
+00:00:30.413 --> 00:00:33.331
+And logging: the assessment
+accounts' sign-ins
+
+9
+00:00:33.331 --> 00:00:35.788
+belong in your agency logging plan now.
+
+10
+00:00:35.788 --> 00:00:37.630
+Next, the run itself.

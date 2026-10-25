@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.112
+When the record itself changes,
+the pull request is the approval.
+
+2
+00:00:04.112 --> 00:00:09.133
+It updates the registry, carries a
+decision record for anything doctrinal,
+
+3
+00:00:09.133 --> 00:00:12.535
+runs its checks before merge,
+needs a second person,
+
+4
+00:00:12.535 --> 00:00:15.612
+and merges signed, so
+rollback is just a revert.
+
+5
+00:00:15.612 --> 00:00:20.108
+Most repository platforms can enforce
+this, with one catch worth knowing:
+
+6
+00:00:20.108 --> 00:00:23.350
+the rules often don't bind
+administrators by default.
+
+7
+00:00:23.350 --> 00:00:26.350
+Turn that on, or you've
+built a standing exception.
+
+8
+00:00:26.350 --> 00:00:30.711
+The identity that decides and the
+identity that acts are kept apart,
+
+9
+00:00:30.711 --> 00:00:32.813
+so neither can finish a job alone.
+
+10
+00:00:32.813 --> 00:00:35.637
+And emergencies get a path, not a pass.
+
+11
+00:00:35.637 --> 00:00:37.220
+Which brings us to closure.

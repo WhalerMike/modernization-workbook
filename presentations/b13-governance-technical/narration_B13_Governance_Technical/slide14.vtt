@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.338
+Rules as code isn't a new idea.
+
+2
+00:00:02.338 --> 00:00:06.515
+CISA's own secure-configuration
+tool already works this way:
+
+3
+00:00:06.515 --> 00:00:11.512
+read the tenant, compare against policy
+written as code, report the result.
+
+4
+00:00:11.512 --> 00:00:14.741
+Collection, decision and
+reporting stay separate,
+
+5
+00:00:14.741 --> 00:00:17.124
+and the policy is a file you can review.
+
+6
+00:00:17.124 --> 00:00:20.844
+The key property is that evaluation
+depends only on the rule,
+
+7
+00:00:20.844 --> 00:00:23.075
+the mapping and the collected input.
+
+8
+00:00:23.075 --> 00:00:25.263
+Never on who ran it, or when.
+
+9
+00:00:25.263 --> 00:00:29.693
+On the right, the program lines its
+artifacts up with NIST's machine-readable
+
+10
+00:00:29.693 --> 00:00:34.475
+package models, so what it produces drops
+straight into an authorization package.
+
+11
+00:00:34.475 --> 00:00:37.050
+That correspondence is the program's own.
+
+12
+00:00:37.050 --> 00:00:38.900
+Now, the engine itself.

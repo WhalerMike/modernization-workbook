@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.250
+The rules live in three layers, and
+keeping them apart is the point.
+
+2
+00:00:04.250 --> 00:00:06.163
+The first says what a rule means.
+
+3
+00:00:06.163 --> 00:00:08.062
+The second says where it applies.
+
+4
+00:00:08.062 --> 00:00:10.462
+The third is the code that evaluates it.
+
+5
+00:00:10.462 --> 00:00:13.550
+Each has its own reviewer
+and leaves its own evidence.
+
+6
+00:00:13.550 --> 00:00:14.812
+Why not combine them?
+
+7
+00:00:14.812 --> 00:00:18.670
+Because they change at different
+speeds, carry different blast radius,
+
+8
+00:00:18.670 --> 00:00:22.528
+and when something drifts you want
+to know whether the meaning shifted,
+
+9
+00:00:22.528 --> 00:00:25.275
+a mapping broke, or the code
+disagrees with the rule.
+
+10
+00:00:25.275 --> 00:00:28.688
+And only the runtime is ever
+allowed to change anything.
+
+11
+00:00:28.688 --> 00:00:31.850
+Next, what rules as code
+looks like in practice.

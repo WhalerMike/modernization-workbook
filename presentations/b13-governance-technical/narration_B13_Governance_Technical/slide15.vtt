@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.964
+The drift engine finds the gap
+between the record and the estate,
+
+2
+00:00:03.964 --> 00:00:06.475
+classifies it and records what happened.
+
+3
+00:00:06.475 --> 00:00:09.552
+The crucial choice is
+what it compares against:
+
+4
+00:00:09.552 --> 00:00:12.787
+a versioned record, not a
+last-known-good snapshot.
+
+5
+00:00:12.787 --> 00:00:14.437
+That gives you three things.
+
+6
+00:00:14.437 --> 00:00:16.726
+You can reproduce any finding later.
+
+7
+00:00:16.726 --> 00:00:21.637
+Approved changes don't show up as drift,
+because they update the record first.
+
+8
+00:00:21.637 --> 00:00:24.719
+And when the estate is right
+and the record is stale,
+
+9
+00:00:24.719 --> 00:00:29.049
+the engine still raises it, but the
+fix is a reviewed change to the record.
+
+10
+00:00:29.049 --> 00:00:32.229
+It checks on two clocks:
+every change to the record,
+
+11
+00:00:32.229 --> 00:00:34.400
+and scheduled reads of the estate.
+
+12
+00:00:34.400 --> 00:00:36.530
+Next, one model for all of it.
