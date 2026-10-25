@@ -96,6 +96,7 @@ Sources: `docs/operational-guides/access-plane/conditional-access-library.md` §
 | 71 | Source D.3: FIDO2 keys must be FIPS 140-2 Level 2 in GCC-Moderate | Government cloud notes | restated-as-design (program procurement standard; not a stated Microsoft or FedRAMP rule) | — |
 | 72 | Source D.2a "GCC-Moderate tenant enforces US data residency; CA-030 blocks…" | Not carried | removed (residency is a service property, location blocking a program choice; covered by Book 02 Ch09) | — |
 | 73 | Source §8 intro: "Microsoft Entra ID Protection P2 license" | Wave 4 | corrected (Entra ID P2) | overview |
+| 74 | MS.AAD.3.2: the BOD 25-01 list still says 3.2v1; ScubaGear 2.0.0's baseline renumbered it 3.2v2, "MFA SHALL be enforced for all users" (Feb 2026) | BOD 25-01 table | verified Oct 25, 2026; ID kept as the directive lists it, ScubaGear's ID added | cisa.gov BOD 25-01 required configurations; github.com/cisagov/ScubaGear baselines/aad.md |
 
 ## Carry-forward ledger
 

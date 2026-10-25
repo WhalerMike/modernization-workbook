@@ -36,6 +36,7 @@ Verified: 2026-10-20
 | 26 | Which control each item "supports" | Control mapping; crosswalk | restated-as-design (program mapping; assessors decide satisfaction) | — |
 | 27 | Source: "the identity domain closes controls related to account management, access enforcement, and continuous monitoring" | Control mapping | corrected (restated as "supports"; mapped to AC-2, AC-3, CA-7 and related) | — |
 | 28 | CBA turns PIV/CAC into a phishing-resistant credential without a federation server | Opening paragraph | verified | learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication |
+| 29 | MS.AAD.3.2: the BOD 25-01 list still says 3.2v1 (alternative MFA until phishing-resistant MFA is enforced); ScubaGear 2.0.0's baseline renumbered it 3.2v2, "MFA SHALL be enforced for all users" (Feb 2026) | BOD section table | verified Oct 25, 2026; ID kept as the directive lists it, ScubaGear's ID added | cisa.gov BOD 25-01 required configurations; github.com/cisagov/ScubaGear baselines/aad.md |
 
 ## Carry-forward ledger
 

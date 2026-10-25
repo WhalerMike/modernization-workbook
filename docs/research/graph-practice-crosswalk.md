@@ -22,18 +22,18 @@ Each row gives four things:
 
 ::: {.callout-note}
 ## Why the review date matters
-Microsoft pages, ScubaGear policy IDs and Azure Policy names all change. ScubaGear released version 2.0.0 on October 22, 2026, and one policy the books cite had already moved to a new version (see [What this found](#what-this-found)). A crosswalk row is only as good as its last review, so every row carries one, and the page's `last-reviewed` date drives the Reviewed column on the [Research](index.md) page and the weekly source-watch issue.
+Microsoft pages, ScubaGear policy IDs and Azure Policy names all change. ScubaGear released version 2.0.0 on October 22, 2026, and one policy the books cite now has a different version number in ScubaGear than in CISA's BOD 25-01 list (see [What this found](#what-this-found)). A crosswalk row is only as good as its last review, so every row carries one, and the page's `last-reviewed` date drives the Reviewed column on the [Research](index.md) page and the weekly source-watch issue.
 :::
 
 ## Entra ID
 
-The ScubaGear Entra ID baseline (`aad.md`) is the source for every ID below, as of the version published with ScubaGear 2.0.0.[^gpc-scuba] The IDs match the ones the books already cite, apart from the one listed under [What this found](#what-this-found).
+The ScubaGear Entra ID baseline (`aad.md`) is the source for every ID below, as of the version published with ScubaGear 2.0.0.[^gpc-scuba] The IDs match the ones the books already cite, apart from the one listed under [What this found](#what-this-found). Where the BOD 25-01 Required Configurations list, which binds federal civilian agencies, still uses an older ID, the row gives both.[^gpc-bodlist]
 
 | Practice | Book | Microsoft page | ScubaGear policy | Reviewed |
 |---|---|---|---|---|
 | Block legacy authentication | [Book 04, Ch 07](../books/b04-access/07-the-conditional-access-policy-library.md) | Block legacy authentication with Conditional Access[^gpc-legacy] | MS.AAD.1.1v1 (SHALL) | 2026-10-25 |
 | Block high-risk users and high-risk sign-ins; notify administrators of high-risk users | [Book 04, Ch 03](../books/b04-access/03-the-conditional-access-model.md) | Risk policies, Microsoft Entra ID Protection[^gpc-risk] | MS.AAD.2.1v1, MS.AAD.2.3v1 (SHALL); MS.AAD.2.2v1 (SHOULD) | 2026-10-25 |
-| Phishing-resistant MFA for all users, with MFA for everyone until then | [Book 04, Ch 07](../books/b04-access/07-the-conditional-access-policy-library.md) | Conditional Access authentication strengths[^gpc-strength] | MS.AAD.3.1v1, MS.AAD.3.2v2 (SHALL) | 2026-10-25 |
+| Phishing-resistant MFA for all users, with MFA for everyone until then | [Book 04, Ch 07](../books/b04-access/07-the-conditional-access-policy-library.md) | Conditional Access authentication strengths[^gpc-strength] | MS.AAD.3.1v1, MS.AAD.3.2v2 (SHALL); BOD 25-01 list: MS.AAD.3.2v1 | 2026-10-25 |
 | Phishing-resistant MFA for highly privileged roles | [Book 04, Ch 04](../books/b04-access/04-privileged-roles-and-tiers.md) | Conditional Access authentication strengths[^gpc-strength] | MS.AAD.3.6v1 (SHALL) | 2026-10-25 |
 | Finish the move to the Authentication methods policy; turn off SMS, voice and email one-time passcodes; show sign-in context in Authenticator | [Book 02, Ch 09](../books/b02-identity/09-building-the-entra-target.md) | How to migrate to the Authentication methods policy[^gpc-methods] | MS.AAD.3.4v1, MS.AAD.3.5v2, MS.AAD.3.3v2 (SHALL) | 2026-10-25 |
 | Require managed devices to sign in and to register MFA | [Book 04, Ch 07](../books/b04-access/07-the-conditional-access-policy-library.md) | Device compliance policies in Microsoft Intune[^gpc-compliance] | MS.AAD.3.7v1, MS.AAD.3.8v1 (SHOULD) | 2026-10-25 |
@@ -99,7 +99,7 @@ Two notes on the SQL names. The Entra administrator built-in still carries its A
 
 ## What this found
 
-- **One ScubaGear ID in the books is out of date.** [Book 02, Appendix A](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md) and [Book 04, Chapter 07](../books/b04-access/07-the-conditional-access-policy-library.md) cite **MS.AAD.3.2v1**, worded as "if phishing-resistant MFA isn't enforced yet, enforce an alternative MFA method". The current baseline has **MS.AAD.3.2v2**, "MFA SHALL be enforced for all users", last modified February 2026.[^gpc-scuba] Every other MS.AAD ID cited anywhere in the books and decks matches the current baseline. The books haven't been changed yet; that's a follow-up for review.
+- **One policy has two version numbers.** [Book 02, Appendix A](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md) and [Book 04, Chapter 07](../books/b04-access/07-the-conditional-access-policy-library.md) cite **MS.AAD.3.2v1**, "if phishing-resistant MFA isn't enforced yet, enforce an alternative MFA method", as CISA's BOD 25-01 Required Configurations list still gives it.[^gpc-bodlist] The ScubaGear 2.0.0 baseline has **MS.AAD.3.2v2**, "MFA SHALL be enforced for all users", last modified February 2026,[^gpc-scuba] so a ScubaGear report shows 3.2v2. Both books now keep the directive's ID and note ScubaGear's. Every other MS.AAD ID cited in the books and decks matches both.
 - **Intune has no ScubaGear coverage**, so the Intune rows depend on the Graph evidence approach in Book 15.
 - **Arc-enabled SQL Server has no built-in policy for Entra authentication.** Proving it needs a custom check, for example a query of the instance's logins, which is the authentication audit in [Book 06, Chapter 07](../books/b06-data-platform/07-the-authentication-audit.md) *(inference)*.
 
@@ -112,6 +112,7 @@ Two notes on the SQL names. The Entra administrator built-in still carries its A
 Related: [Book 04 — Access & Privilege](../books/b04-access/index.md), [Book 05 — Devices & Endpoints](../books/b05-devices/index.md), [Book 06 — Data Platform](../books/b06-data-platform/index.md), [Book 10 — Cloud Boundary](../books/b10-cloud-boundary/index.md) and [Book 15 — Day-2 Operations](../books/b15-day2-operations/index.md).
 
 [^gpc-scuba]: CISA, ScubaGear, "Microsoft Entra ID" secure configuration baseline (`aad.md`, policies MS.AAD.1.1v1 to MS.AAD.9.1v1; file last changed October 22, 2026, with release v2.0.0), <https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md>, accessed October 25, 2026.
+[^gpc-bodlist]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services, Required Configurations" (lists MS.AAD.3.2v1), <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations>, accessed October 25, 2026.
 [^gpc-scubarepo]: CISA, ScubaGear repository, baselines folder, <https://github.com/cisagov/ScubaGear/tree/main/PowerShell/ScubaGear/baselines>, accessed October 25, 2026.
 [^gpc-legacy]: Microsoft Learn, "Block legacy authentication with Conditional Access" (updated March 24, 2026), <https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-block-legacy-authentication>, accessed October 25, 2026.
 [^gpc-risk]: Microsoft Learn, "Risk policies" (updated October 30, 2025), <https://learn.microsoft.com/en-us/entra/id-protection/howto-identity-protection-configure-risk-policies>, accessed October 25, 2026.
