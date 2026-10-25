@@ -44,6 +44,12 @@ function Pandoc(doc)
     meta["fmw-eyebrow"] = pandoc.Inlines(table.concat(parts, " · "))
   end
 
+  -- Section landing pages (the books index, each book's landing page, Presentations,
+  -- Research, Start Here) get the dark header: black with white text.
+  if meta["doc-type"] and stringify(meta["doc-type"]) == "section-landing" then
+    meta["fmw-hero-dark"] = true
+  end
+
   local title = meta.title and norm(stringify(meta.title)) or nil
   if not title then return doc end
 
