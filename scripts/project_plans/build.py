@@ -451,6 +451,83 @@ def to_azure_boards(plan: dict) -> str:
     return "\ufeff" + buf.getvalue()
 
 
+def label(text: str) -> str:
+    # Jira labels can't contain spaces.
+    return re.sub(r"[^a-z0-9.]+", "-", text.lower()).strip("-")
+
+
+def to_jira(plan: dict) -> str:
+    """Jira Cloud CSV import: an Epic per phase, a Task per row, Blocks links.
+
+    Work item ID numbers every row; Parent points a Task at its phase's Epic,
+    whose row comes first, as the importer requires. Each predecessor's row
+    lists its successors in repeated Blocks columns ("this item blocks that
+    one"), referring to rows in the same file. Labels can't hold spaces, so
+    owner roles and kinds are hyphenated. Dates are yyyy-MM-dd: set that as
+    the date format in the import wizard.
+    """
+    start = plan["project_start"]
+    if isinstance(start, str):
+        start = dt.date.fromisoformat(start)
+    rows, number = [], {}
+    n = 0
+    for ph in plan["phases"]:
+        members = [t for t in plan["tasks"] if t["phase"] == ph]
+        if not members:
+            continue
+        n += 1
+        epic = n
+        rows.append(("epic", ph, epic))
+        for t in members:
+            n += 1
+            number[t["id"]] = n
+            rows.append(("task", t, epic))
+    successors: dict[str, list[str]] = {t["id"]: [] for t in plan["tasks"]}
+    for t in plan["tasks"]:
+        for p, _, _ in t["_preds"]:
+            successors[p].append(t["id"])
+    max_labels = 6
+    max_blocks = max([len(v) for v in successors.values()] + [1])
+    buf = io.StringIO()
+    w = csv.writer(buf, lineterminator="\r\n")
+    w.writerow(["Work item ID", "Work type", "Parent", "Summary", "Description"]
+               + ["Labels"] * max_labels + ["Start date", "Due date"] + ["Blocks"] * max_blocks)
+    plan_label = f"fmw-{plan['slug']}"
+    page = f"{SITE}docs/project-plans/{plan['slug']}.html"
+    for kind, item, epic in rows:
+        if kind == "epic":
+            members = [t for t in plan["tasks"] if t["phase"] == item]
+            es = min(t["_es"] for t in members)
+            ef = max(t["_ef"] for t in members)
+            labels = ["fmw", plan_label, "phase"]
+            w.writerow([epic, "Epic", "", f"{plan['short_title']}: {plan['phases'][item]}",
+                        f"{plan['phases'][item]} of the sample plan {plan['title']}.\n{page}"]
+                       + labels + [""] * (max_labels - len(labels))
+                       + [workday(start, es).isoformat(), workday(start, max(0, ef - 1)).isoformat()]
+                       + [""] * max_blocks)
+            continue
+        t = item
+        lines = [f"{t['id']} · {kind_label(t)} · owner or approver: {t.get('owner', '')}",
+                 f"Duration {t['dur']} working days · {weeks(t)} · total float {float_text(t).replace('**', '')} · predecessors: {pred_text(t)}"]
+        for key, title in (("criteria", "Criteria"), ("options", "Options"), ("late", "If decided late")):
+            if t.get(key):
+                lines.append(f"{title}: {t[key]}")
+        if t.get("kind") == "external":
+            lines.append(f"Comes from {t['ref']} in another plan; its date is set there.")
+        lines.append(f"Source: {site_url(t['source'])}")
+        labels = ["fmw", plan_label, label(f"fmw-id-{t['id']}"), label(kind_label(t)), label("owner " + t.get("owner", ""))]
+        if t["_crit"]:
+            labels.append("critical-path")
+        s = workday(start, t["_es"])
+        f = workday(start, max(t["_es"], t["_ef"] - 1)) if t["dur"] else workday(start, max(0, t["_ef"] - 1))
+        blocks = [number[x] for x in successors[t["id"]]]
+        w.writerow([number[t["id"]], "Task", epic, f"{t['id']} {t['name']}"[:255], "\n".join(lines)]
+                   + labels + [""] * (max_labels - len(labels))
+                   + [s.isoformat(), f.isoformat()]
+                   + blocks + [""] * (max_blocks - len(blocks)))
+    return "﻿" + buf.getvalue()
+
+
 def to_dependencies(plan: dict) -> str:
     """Every predecessor link, for add-azure-boards-links.ps1 (or any tool)."""
     buf = io.StringIO()
@@ -791,6 +868,7 @@ def page(plan: dict, plans: dict[str, dict]) -> str:
         f"| [{slug}.csv](files/{slug}.csv) | Excel or any other scheduling tool: every row with its dependencies, early and late dates and float |",
         f"| [{slug}-azure-boards.csv](files/{slug}-azure-boards.csv) | Azure DevOps Boards: an Epic per phase and a Feature per task, gate and decision, with dates and tags (see below) |",
         f"| [{slug}-dependencies.csv](files/{slug}-dependencies.csv) · [add-azure-boards-links.ps1](files/add-azure-boards-links.ps1) | The plan's predecessor links, and a script that adds them in Azure Boards after the import |",
+        f"| [{slug}-jira.csv](files/{slug}-jira.csv) | Jira: an Epic per phase and a Task per task, gate and decision, with dates, labels and Blocks links (see below) |",
         f"| [{Path(plan['_file']).name}]({GH}/{plan['_file']}) | The source. Edit the durations, owners and dependencies, then run `python scripts/project_plans/build.py` to recompute the critical path and regenerate this page, the chart and the downloads. |",
         "",
         ": Downloads {.striped}",
@@ -802,6 +880,15 @@ def page(plan: dict, plans: dict[str, dict]) -> str:
         "3. Assign people in Boards: each item carries its owner role as an *Owner - …* tag, and critical-path items carry *Critical path*. Azure Boards links don't hold lag or start-to-start timing; each item's description keeps them.",
         "",
         "The dates count from the plan's placeholder start; shift them when you set the real start. The script hasn't been run against a live organization yet: test it on a scratch project first.",
+        ":::",
+        "",
+        "::: {.callout-tip}",
+        "## Importing this plan into Jira",
+        f"1. Run the CSV importer (in Jira Cloud, **Settings** > **System** > **External system import** > **CSV**) with [{slug}-jira.csv](files/{slug}-jira.csv). On the second step, set **Date format in import file** to `yyyy-MM-dd`.",
+        "2. Map the columns: *Work item ID* to Work item ID, *Work type* to Work type, *Parent* to Parent, *Summary*, *Description* and every *Labels* column to their fields, *Start date* to the Start date field, *Due date* to Due date, and every *Blocks* column to the **Blocks** link type. Each phase becomes an Epic with a Task under it for each task, gate and decision; each Blocks column makes that row's item block the item it names, which carries the plan's dependencies.",
+        "3. Assign people in Jira: each item carries its owner role as an `owner-…` label, and critical-path items carry `critical-path`. Jira links don't hold lag or start-to-start timing; each description keeps them.",
+        "",
+        "Test the import on a scratch project with a few rows first: the importer doesn't remove duplicate links and Jira has no bulk delete for them. If the Blocks links don't come through on your site, import the items first and add the links from the plan's dependency list in a second pass, as Atlassian recommends. The dates count from the plan's placeholder start.",
         ":::",
         "",
         "::: {.callout-tip}",
@@ -833,6 +920,7 @@ def outputs(plans: dict[str, dict]) -> dict[Path, str]:
         files[OUT / "files" / f"{slug}.xml"] = to_mspdi(plan)
         files[OUT / "files" / f"{slug}-azure-boards.csv"] = to_azure_boards(plan)
         files[OUT / "files" / f"{slug}-dependencies.csv"] = to_dependencies(plan)
+        files[OUT / "files" / f"{slug}-jira.csv"] = to_jira(plan)
     return files
 
 

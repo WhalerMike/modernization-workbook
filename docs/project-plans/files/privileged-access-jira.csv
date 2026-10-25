@@ -1,0 +1,170 @@
+﻿Work item ID,Work type,Parent,Summary,Description,Labels,Labels,Labels,Labels,Labels,Labels,Start date,Due date,Blocks,Blocks,Blocks,Blocks,Blocks
+1,Epic,,Privileged Access & Administrative Identity: Phase 0 — Inventory,"Phase 0 — Inventory of the sample plan Privileged Access & Administrative Identity: Just-in-Time by Tier.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/privileged-access.html",fmw,fmw-privileged-access,phase,,,,2027-01-04,2027-01-29,,,,,
+2,Task,1,A0.1 Active directory-role assignments inventoried and classified by tier,"A0.1 · Task · owner or approver: Identity engineering
+Duration 8 working days · wk 1–2 · total float 36 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html#the-programs-privilege-tiers",fmw,fmw-privileged-access,fmw-id-a0.1,task,owner-identity-engineering,,2027-01-04,2027-01-13,6,7,,,
+3,Task,1,A0.2 Azure privileged role assignments and subscription owners inventoried,"A0.2 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 1 · total float 50 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html#azure-rbac",fmw,fmw-privileged-access,fmw-id-a0.2,task,owner-identity-engineering,,2027-01-04,2027-01-08,7,,,,
+4,Task,1,"A0.3 App registrations, owners, credentials and granted permissions inventoried, read-only; automation on the protected permissions found","A0.3 · Task · owner or approver: Identity engineering
+Duration 8 working days · wk 1–2 · total float 47 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html#a-read-only-inventory-to-start-from",fmw,fmw-privileged-access,fmw-id-a0.3,task,owner-identity-engineering,,2027-01-04,2027-01-13,7,26,,,
+5,Task,1,A0.4 Existing emergency access accounts located and checked against the standard,"A0.4 · Task · owner or approver: Identity engineering
+Duration 3 working days · wk 1 · total float 32 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html#emergency-access-accounts",fmw,fmw-privileged-access,fmw-id-a0.4,task,owner-identity-engineering,,2027-01-04,2027-01-06,7,10,,,
+6,Task,1,D-A1 Privilege tier model,"D-A1 · Decision · owner or approver: CISO
+Duration 0 working days · end of wk 2 · total float 36 d · predecessors: A0.1
+Options: The program's four tiers as published (T0 control plane, T1 management plane, T2 scoped operations, read-only); the same boundaries with hour counts adapted to the agency's role inventory
+If decided late: No role's settings can be written, and the PIM build waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html#the-programs-privilege-tiers",fmw,fmw-privileged-access,fmw-id-d-a1,decision,owner-ciso,,2027-01-14,2027-01-13,7,14,19,,
+7,Task,1,AG0 Gate 0 — Privilege inventoried,"AG0 · Gate · owner or approver: CISO
+Duration 0 working days · end of wk 2 · total float 47 d · predecessors: A0.1, A0.2, A0.3, A0.4, D-A1
+Criteria: Standing administrative privilege inventoried and classified by tier; app registrations listed with their owners and credentials; emergency access accounts located; tier model approved
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html#the-programs-privilege-tiers",fmw,fmw-privileged-access,fmw-id-ag0,gate,owner-ciso,,2027-01-14,2027-01-13,18,,,,
+8,Task,1,X-G0 Program G0 — Ready to Plan,"X-G0 · External · owner or approver: Steward
+Duration 0 working days · end of wk 4 · total float 10 d · predecessors: —
+If decided late: The foundation work can't start
+Comes from program-master-schedule:G0 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-privileged-access,fmw-id-x-g0,external,owner-steward,,2027-02-01,2027-01-29,11,12,13,15,17
+9,Epic,,Privileged Access & Administrative Identity: Phase 1 — Foundation: emergency access and the activation gate,"Phase 1 — Foundation: emergency access and the activation gate of the sample plan Privileged Access & Administrative Identity: Just-in-Time by Tier.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/privileged-access.html",fmw,fmw-privileged-access,phase,,,,2027-01-07,2027-03-01,,,,,
+10,Task,9,D-A2 Emergency access credentials and custody,"D-A2 · Decision · owner or approver: CISO
+Duration 0 working days · end of wk 1 · total float 32 d · predecessors: A0.4
+Options: Passkey (FIDO2) security keys or certificate-based authentication, different from the normal administrator methods; in either case retrieved only under dual custody by two senior administrators
+If decided late: Step 0 can't close, so no role can be made eligible and no approval switched on
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html#emergency-access",fmw,fmw-privileged-access,fmw-id-d-a2,decision,owner-ciso,,2027-01-07,2027-01-06,11,,,,
+11,Task,9,"A1.1 Two emergency accounts built to the standard, excluded by one group, alerted and tested","A1.1 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 5 · total float 15 d · predecessors: D-A2, X-G0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#step-0-establish-emergency-access-accounts-first",fmw,fmw-privileged-access,fmw-id-a1.1,task,owner-identity-engineering,,2027-02-01,2027-02-05,16,22,,,
+12,Task,9,A1.2 Phishing-resistant MFA registered for every eligible administrator,"A1.2 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 5–6 · total float 10 d · predecessors: X-G0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#prerequisites",fmw,fmw-privileged-access,fmw-id-a1.2,task,owner-identity-engineering,,2027-02-01,2027-02-12,16,22,,,
+13,Task,9,A1.3 Audit and sign-in logs exported to the workspace at 365-day retention,"A1.3 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 5 · total float 30 d · predecessors: X-G0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#step-9-export-audit-records-for-retention",fmw,fmw-privileged-access,fmw-id-a1.3,task,owner-identity-engineering,,2027-02-01,2027-02-05,21,,,,
+14,Task,9,"D-A3 Approvers for PIM activation, by tier","D-A3 · Decision · owner or approver: CISO
+Duration 0 working days · end of wk 2 · total float 36 d · predecessors: D-A1
+Options: The security office as PIM-Approvers-T0, outside the Tier 0 population; a governed group outside the Tier 1 population as PIM-Approvers-T1; for each Tier 2 role, approval or a documented risk acceptance
+If decided late: Approval can't be switched on without the lockout risk, and the role settings wait
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#approver-design-and-separation-of-duties",fmw,fmw-privileged-access,fmw-id-d-a3,decision,owner-ciso,,2027-01-14,2027-01-13,15,,,,
+15,Task,9,"A1.4 Approver groups built, at least two approvers per tier","A1.4 · Task · owner or approver: Identity engineering
+Duration 3 working days · wk 5 · total float 24 d · predecessors: D-A3, X-G0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#step-1-build-the-approver-groups",fmw,fmw-privileged-access,fmw-id-a1.4,task,owner-identity-engineering,,2027-02-01,2027-02-03,20,,,,
+16,Task,9,A1.5 Authentication context c1 and its policy PIM-Activation-c1 built and turned On,"A1.5 · Task · owner or approver: Identity engineering
+Duration 3 working days · wk 7 · total float 14 d · predecessors: A1.1, A1.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#step-2-build-the-authentication-context-and-its-policy",fmw,fmw-privileged-access,fmw-id-a1.5,task,owner-identity-engineering,,2027-02-15,2027-02-17,20,,,,
+17,Task,9,D-A4 Write path for access as code,"D-A4 · Decision · owner or approver: Identity engineering
+Duration 0 working days · end of wk 4 · total float 27 d · predecessors: X-G0
+Options: Microsoft365DSC for every object class (the program's reference); Terraform azuread for the classes it covers, with Graph PowerShell for PIM role settings, access reviews and Lifecycle Workflows
+If decided late: Role settings can't be held as code, and the drift baseline waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html#coverage-and-the-programs-choice",fmw,fmw-privileged-access,fmw-id-d-a4,decision,owner-identity-engineering,,2027-02-01,2027-01-29,20,,,,
+18,Task,9,D-A5 First role class under just-in-time elevation,"D-A5 · Decision · owner or approver: CISO
+Duration 0 working days · end of wk 2 · total float 47 d · predecessors: AG0
+Options: Tier 0 control-plane roles; Tier 1 management-plane roles
+If decided late: The pilot has no scope, and the program's Phase 2 PIM milestone waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/06-the-project-portfolio.html#privileged-access-administrative-identity",fmw,fmw-privileged-access,fmw-id-d-a5,decision,owner-ciso,,2027-01-14,2027-01-13,24,,,,
+19,Task,9,D-A6 Access review cadence for privileged roles,"D-A6 · Decision · owner or approver: CISO
+Duration 0 working days · end of wk 2 · total float 62 d · predecessors: D-A1
+Options: Monthly for Tier 0 and quarterly for every other privileged role (the program's design); another organization-defined frequency, which AC-6(7) leaves to the agency
+If decided late: Reviews can't be scheduled, and the pilot gate's first-review criterion fails
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#step-8-access-reviews-of-eligibility",fmw,fmw-privileged-access,fmw-id-d-a6,decision,owner-ciso,,2027-01-14,2027-01-13,31,,,,
+20,Task,9,A1.6 Role settings for every tier written as code from Appendix B and reviewed,"A1.6 · Task · owner or approver: Identity engineering
+Duration 8 working days · wk 7–9 · total float 14 d · predecessors: D-A4, A1.4, A1.5
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-b-pim-role-settings.html#settings-common-to-every-role",fmw,fmw-privileged-access,fmw-id-a1.6,task,owner-identity-engineering,,2027-02-18,2027-03-01,21,,,,
+21,Task,9,AG1 Gate 1 — Foundation ready,"AG1 · Gate · owner or approver: CISO
+Duration 0 working days · end of wk 9 · total float 14 d · predecessors: A1.6, A1.3
+Criteria: Emergency access accounts tested; PIM-Activation-c1 On; an approver group named on every role that requires approval; role settings in the repository and reviewed; logs exported beyond 30 days
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#build",fmw,fmw-privileged-access,fmw-id-ag1,gate,owner-ciso,,2027-03-02,2027-03-01,24,,,,
+22,Task,9,X-G1 Program G1 — Foundation Complete,"X-G1 · External · owner or approver: Steward
+Duration 0 working days · end of wk 8 · total float fixed date · predecessors: A1.1, A1.2
+If decided late: The pilot can't start
+Comes from program-master-schedule:G1 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-privileged-access,fmw-id-x-g1,external,owner-steward,,2027-03-01,2027-02-26,24,28,,,
+23,Epic,,Privileged Access & Administrative Identity: Phase 2 — Just-in-time pilot for one role class,"Phase 2 — Just-in-time pilot for one role class of the sample plan Privileged Access & Administrative Identity: Just-in-Time by Tier.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/privileged-access.html",fmw,fmw-privileged-access,phase,,,,2027-03-01,2027-04-23,,,,,
+24,Task,23,A2.1 Pilot class's role settings applied; PRV role-assignable groups hold the eligible assignments,"A2.1 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 9–10 · total float 14 d · predecessors: AG1, X-G1, D-A5
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html#how-a-role-reaches-a-person",fmw,fmw-privileged-access,fmw-id-a2.1,task,owner-identity-engineering,,2027-03-02,2027-03-08,25,26,27,,
+25,Task,23,"A2.2 Standing assignments in the pilot class converted: eligible first, activation confirmed, active removed","A2.2 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 10–12 · total float 14 d · predecessors: A2.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#step-5-convert-standing-assignments-to-eligible",fmw,fmw-privileged-access,fmw-id-a2.2,task,owner-identity-engineering,,2027-03-09,2027-03-22,31,32,,,
+26,Task,23,A2.3 Protected actions with context c2 on the Conditional Access permissions,"A2.3 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 10–11 · total float 26 d · predecessors: A2.1, A0.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#step-6-close-the-loop-with-protected-actions",fmw,fmw-privileged-access,fmw-id-a2.3,task,owner-identity-engineering,,2027-03-09,2027-03-15,32,,,,
+27,Task,23,A2.4 Notifications and PIM alerts routed; the assigned-outside-PIM alert reaches the SIEM,"A2.4 · Task · owner or approver: Security operations
+Duration 3 working days · wk 10 · total float 28 d · predecessors: A2.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#step-7-notifications-and-pim-alerts",fmw,fmw-privileged-access,fmw-id-a2.4,task,owner-security-operations,,2027-03-09,2027-03-11,32,,,,
+28,Task,23,"A2.5 Administrator policies (CA003 to CA005, CA025 to CA027) in report-only, then piloted on the identity team","A2.5 · Task · owner or approver: Identity engineering
+Duration 15 working days · wk 9–11 · total float 12 d · predecessors: X-G1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#wave-2-administrators",fmw,fmw-privileged-access,fmw-id-a2.5,task,owner-identity-engineering,,2027-03-01,2027-03-19,29,,,,
+29,Task,23,D-A7 PAW enforcement for the administrator persona,"D-A7 · Decision · owner or approver: CISO
+Duration 0 working days · end of wk 11 · total float 12 d · predecessors: A2.5
+Options: Enforce CA004 and CA025 for every administrator; enforce with a time-bound exclusion group for administrators whose PAW isn't issued; keep report-only and fix the causes first
+If decided late: Privileged roles stay usable from any device, and the pilot gate waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html#privileged-access-workstations",fmw,fmw-privileged-access,fmw-id-d-a7,decision,owner-ciso,,2027-03-22,2027-03-19,30,,,,
+30,Task,23,"A2.6 Administrator policies enforced ring by ring, an emergency sign-in tested before and after","A2.6 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 12–13 · total float 12 d · predecessors: D-A7
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#rollout-from-report-only-to-enforcement",fmw,fmw-privileged-access,fmw-id-a2.6,task,owner-identity-engineering,,2027-03-22,2027-04-02,32,46,,,
+31,Task,23,A2.7 First monthly review of Tier 0 eligibility and PRV-T0 membership closed,"A2.7 · Task · owner or approver: Identity governance officer
+Duration 10 working days · wk 12–14 · total float 14 d · predecessors: A2.2, D-A6
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/09-access-governance.html#cadence",fmw,fmw-privileged-access,fmw-id-a2.7,task,owner-identity-governance-officer,,2027-03-23,2027-04-05,33,,,,
+32,Task,23,A2.8 Validation test plan run for the pilot class,"A2.8 · Task · owner or approver: ISSO
+Duration 3 working days · wk 14 · total float 12 d · predecessors: A2.2, A2.3, A2.4, A2.6
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#validation-test-plan",fmw,fmw-privileged-access,fmw-id-a2.8,task,owner-isso,,2027-04-05,2027-04-07,33,,,,
+33,Task,23,AG2 Gate 2 — Just-in-time in use for the pilot class,"AG2 · Gate · owner or approver: CISO
+Duration 0 working days · end of wk 14 · total float 12 d · predecessors: A2.7, A2.8
+Criteria: Every human assignment in the pilot class eligible; only the emergency accounts and documented service principals standing; validation tests pass; the first review closed with removals applied; every elevation evidenced in the workspace
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#assessment-evidence",fmw,fmw-privileged-access,fmw-id-ag2,gate,owner-ciso,,2027-04-08,2027-04-07,34,36,38,39,41
+34,Task,23,X-G2 Program G2 — Pilot Clean,"X-G2 · External · owner or approver: Steward and executive sponsor
+Duration 0 working days · end of wk 16 · total float fixed date · predecessors: AG2
+If decided late: The remaining tiers can't start
+Comes from program-master-schedule:G2 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-privileged-access,fmw-id-x-g2,external,owner-steward-and-executive-sponsor,,2027-04-26,2027-04-23,36,38,39,,
+35,Epic,,Privileged Access & Administrative Identity: Phase 3 — Every tier,"Phase 3 — Every tier of the sample plan Privileged Access & Administrative Identity: Just-in-Time by Tier.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/privileged-access.html",fmw,fmw-privileged-access,phase,,,,2027-04-08,2027-09-10,,,,,
+36,Task,35,"A3.1 Remaining tiers converted to eligible, tier by tier","A3.1 · Task · owner or approver: Identity engineering
+Duration 30 working days · wk 17–22 · total float 65 d · predecessors: AG2, X-G2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#settings-by-tier",fmw,fmw-privileged-access,fmw-id-a3.1,task,owner-identity-engineering,,2027-04-26,2027-06-04,37,40,42,,
+37,Task,35,A3.2 Azure privileged roles eligible through PIM; three subscription owners at most,"A3.2 · Task · owner or approver: Identity engineering
+Duration 15 working days · wk 18–20 · total float 90 d · predecessors: A3.1 (SS) +5 d
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html#azure-rbac",fmw,fmw-privileged-access,fmw-id-a3.2,task,owner-identity-engineering,,2027-05-03,2027-05-21,43,,,,
+38,Task,35,"A3.3 PRV group membership published as access packages with approval, expiry and review","A3.3 · Task · owner or approver: Identity engineering
+Duration 15 working days · wk 17–19 · total float 80 d · predecessors: AG2, X-G2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html#layer-1-who-may-ever-hold-the-role",fmw,fmw-privileged-access,fmw-id-a3.3,task,owner-identity-engineering,,2027-04-26,2027-05-14,42,,,,
+39,Task,35,"A3.4 Non-human privileged identities: two named owners each, credentials off secrets, over-consented apps swept","A3.4 · Task · owner or approver: Identity governance officer
+Duration 40 working days · wk 17–24 · total float 70 d · predecessors: AG2, X-G2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html#governing-app-registrations",fmw,fmw-privileged-access,fmw-id-a3.4,task,owner-identity-governance-officer,,2027-04-26,2027-06-18,43,,,,
+40,Task,35,A3.5 Help desk privileged access group narrowed to a custom assignment role,"A3.5 · Task · owner or approver: Identity governance officer
+Duration 5 working days · wk 23 · total float 75 d · predecessors: A3.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html#what-each-entra-role-can-actually-do",fmw,fmw-privileged-access,fmw-id-a3.5,task,owner-identity-governance-officer,,2027-06-07,2027-06-11,43,,,,
+41,Task,35,"A3.6 Change control in force: two people per change, a security approver for Tier 0 objects, drift every six hours","A3.6 · Task · owner or approver: Identity engineering
+Duration 15 working days · wk 14–17 · total float 102 d · predecessors: AG2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html#change-control",fmw,fmw-privileged-access,fmw-id-a3.6,task,owner-identity-engineering,,2027-04-08,2027-04-28,43,48,,,
+42,Task,35,"A3.7 First quarterly review cycle closed for Tier 1, Tier 2 and read-only roles","A3.7 · Task · owner or approver: Identity governance officer
+Duration 15 working days · wk 23–25 · total float 65 d · predecessors: A3.1, A3.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-b-pim-role-settings.html#review-cadence-by-tier",fmw,fmw-privileged-access,fmw-id-a3.7,task,owner-identity-governance-officer,,2027-06-07,2027-06-25,43,,,,
+43,Task,35,AG3 Gate 3 — Every tier just-in-time,"AG3 · Gate · owner or approver: CISO
+Duration 0 working days · end of wk 25 · total float 65 d · predecessors: A3.2, A3.4, A3.5, A3.6, A3.7
+Criteria: Every human privileged assignment eligible; requester and approver distinct for Tier 0 changes; non-human privileged identities in scope have two named owners; reviews running on the approved cadence; a Tier 0 drift handled as an incident
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html#drift-detection-and-closure",fmw,fmw-privileged-access,fmw-id-ag3,gate,owner-ciso,,2027-06-28,2027-06-25,47,,,,
+44,Task,35,X-G3 Program G3 — Rollout Complete,"X-G3 · External · owner or approver: Executive sponsor and steering committee
+Duration 0 working days · end of wk 36 · total float 0 · predecessors: —
+If decided late: The access-related Group Policy can't be retired
+Comes from program-master-schedule:G3 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-privileged-access,fmw-id-x-g3,external,owner-executive-sponsor-and-steering-committee,,2027-09-13,2027-09-10,46,48,,,
+45,Epic,,Privileged Access & Administrative Identity: Phase 4 — Evidence and residual risk,"Phase 4 — Evidence and residual risk of the sample plan Privileged Access & Administrative Identity: Just-in-Time by Tier.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/privileged-access.html",fmw,fmw-privileged-access,phase,,,,2027-09-13,2027-10-01,,,,,
+46,Task,45,"A4.1 Access-related GPO settings (smart-card logon, logon rights) retired where the library policy is enforced","A4.1 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 37–38 · total float 0 · predecessors: X-G3, A2.6
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#retiring-group-policy-with-the-library",fmw,fmw-privileged-access,fmw-id-a4.1,task,owner-identity-engineering,critical-path,2027-09-13,2027-09-24,47,,,,
+47,Task,45,A4.2 Residual standing privilege named in the system security plan; residual risk to the authorizing official,"A4.2 · Task · owner or approver: ISSO
+Duration 5 working days · wk 39 · total float 0 · predecessors: AG3, A4.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html#step-5-convert-standing-assignments-to-eligible",fmw,fmw-privileged-access,fmw-id-a4.2,task,owner-isso,critical-path,2027-09-27,2027-10-01,49,,,,
+48,Task,45,A4.3 Monthly evidence package assembled and its metrics signed off,"A4.3 · Task · owner or approver: Identity governance officer
+Duration 10 working days · wk 37–38 · total float 5 d · predecessors: A3.6, X-G3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html#the-evidence-package-for-a-period",fmw,fmw-privileged-access,fmw-id-a4.3,task,owner-identity-governance-officer,,2027-09-13,2027-09-24,49,,,,
+49,Task,45,AG4 Gate 4 — Residual privilege owned,"AG4 · Gate · owner or approver: CISO
+Duration 0 working days · end of wk 39 · total float 0 · predecessors: A4.2, A4.3
+Criteria: Residual standing privilege named with a rationale and accepted by the authorizing official; evidence for every elevation in the period; exception register current; the replaced access-related GPO settings retired
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html#what-the-assessor-reads",fmw,fmw-privileged-access,fmw-id-ag4,gate,owner-ciso,critical-path,2027-10-04,2027-10-01,,,,,
