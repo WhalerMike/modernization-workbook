@@ -15,6 +15,8 @@ last-reviewed: 2026-10-23
 
 ## Watch or download
 
+{{< fmw-video Research_CyberArk_CLM_Narrated >}}
+
 | Edition | File |
 |---|---|
 | Deck | [Research_CyberArk_CLM.pptx](../../presentations/research-cyberark-clm/Research_CyberArk_CLM.pptx) |

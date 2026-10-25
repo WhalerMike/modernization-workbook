@@ -15,6 +15,8 @@ While a device is joined to Active Directory, AD quietly does two jobs at once: 
 
 ## Watch or download
 
+{{< fmw-video Research_Device_Naming_Narrated >}}
+
 | Edition | File |
 |---|---|
 | Deck, presented live (about 17 minutes) | [Research_Device_Naming.pptx](../../presentations/research-device-naming/Research_Device_Naming.pptx) |

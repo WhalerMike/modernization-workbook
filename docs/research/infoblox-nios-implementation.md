@@ -15,6 +15,8 @@ last-reviewed: 2026-10-23
 
 ## Watch or download
 
+{{< fmw-video Research_Infoblox_Impl_Narrated >}}
+
 | Edition | File |
 |---|---|
 | Deck, presented live (about 52 minutes) | [Research_Infoblox_Impl.pptx](../../presentations/research-infoblox-impl/Research_Infoblox_Impl.pptx) |

@@ -15,6 +15,8 @@ This research item asks a narrower question than [Book 08](../books/b08-ddi/inde
 
 ## Watch or download
 
+{{< fmw-video Infoblox_DDI_Federal_Deep_Dive_Narrated >}}
+
 | Edition | File |
 |---|---|
 | Deck, presented live (about 50 minutes) | [Infoblox_DDI_Federal_Deep_Dive.pptx](../../presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive.pptx) |

@@ -22,6 +22,8 @@ The loop in Book 13 has five steps: test, detect drift, raise a typed task, actu
 
 ## Watch or download
 
+{{< fmw-video Research_TTM_ServiceNow_SailPoint_Narrated >}}
+
 | Edition | File |
 |---|---|
 | Video (MP4, 1080p, about 10 minutes) | [Research_TTM_ServiceNow_SailPoint_Narrated.mp4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_TTM_ServiceNow_SailPoint_Narrated.mp4) |

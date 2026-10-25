@@ -34,7 +34,16 @@ project:
     - "presentations/start-here/Start_Here_Narrated.vtt"
     - "presentations/start-here/Start_Here_poster.png"
     - "docs/inspiration/*.pdf"
+    # Caption tracks and the manifest for the in-browser video players
+    # (docs/presentations/watch.md, assets/fmw-video.lua). The MP4s stream
+    # from the videos release; a caption track must come from the site itself.
+    - "presentations/**/*_Narrated.vtt"
+    - "docs/presentations/videos.json"
     - "docs/project-plans/files/*"
+
+# {{< fmw-video ID >}}: an in-browser video player (assets/fmw-video.lua).
+shortcodes:
+  - assets/fmw-video.lua
 
 website:
   title: "Federal Modernization Workbook"
@@ -99,6 +108,8 @@ website:
         text: "Projects"
       - href: docs/presentations/index.md
         text: "Presentations"
+      - href: docs/presentations/watch.md
+        text: "Videos"
       - href: docs/research/index.md
         text: "Research"
       - text: "About"

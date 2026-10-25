@@ -15,6 +15,8 @@ Federal HR 2.0 puts an agency's core HR records in Oracle Fusion Cloud HCM, a Sa
 
 ## Watch or download
 
+{{< fmw-video Research_HR_Identity_DNS_Narrated >}}
+
 | Edition | File |
 |---|---|
 | Deck, presented live (about 17 minutes) | [Research_HR_Identity_DNS.pptx](../../presentations/research-hr-identity-dns/Research_HR_Identity_DNS.pptx) |

@@ -22,6 +22,8 @@ This guide names one product to make Book 09's vendor-neutral design concrete. I
 
 ## Watch or download
 
+{{< fmw-video Research_Cisco_SDWAN_Narrated >}}
+
 | Edition | File |
 |---|---|
 | Video (MP4, 1080p, about 16 minutes) | [Research_Cisco_SDWAN_Narrated.mp4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_Cisco_SDWAN_Narrated.mp4) |

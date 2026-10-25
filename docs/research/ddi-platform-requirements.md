@@ -15,6 +15,8 @@ A companion briefing to [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md
 
 ## Watch or download
 
+{{< fmw-video B08_DDI_Requirements_Narrated >}}
+
 | Edition | File |
 |---|---|
 | Deck, presented live (about 25 minutes) | [B08_DDI_Requirements.pptx](../../presentations/research-ddi-requirements/B08_DDI_Requirements.pptx) |
