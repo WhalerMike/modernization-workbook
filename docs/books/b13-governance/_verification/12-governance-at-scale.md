@@ -38,6 +38,7 @@ Writer W6. Sources: `docs/executive-governance/ch08-governance-at-scale/index.md
 | 30 | Runtime detection partial (schema/provenance in CI; semantic/authz/identity via adapters); federation designed not built | Honest limits | restated-as-design (program's own status) | Source ch08 |
 | 31 | Package reflects evidence present | Honest limits | restated-as-design (consistent with Book 12 Ch12) | Book 12 Ch12 |
 | 32 | Coverage report: proven vs asserted, counts not a single percentage | Honest limits | restated-as-design | Charter objective 5 |
+| 33 | Full control assessment at least annually (was "quarterly"); quarterly evidence-quality review | The cadence after cutover | corrected Oct 25, 2026; aligned with Book 14 Ch11 | 44 U.S.C. § 3554(b)(5) |
 
 ## Carry-forward ledger
 

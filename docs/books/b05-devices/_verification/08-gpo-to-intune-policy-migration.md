@@ -66,6 +66,7 @@ Checked October 20, 2026. Source: `docs/operational-guides/target-surface/intune
 | 58 | deviceManagement/intents beta only, legacy | Graph | verified; source example removed | deviceManagementIntent (beta fallback) |
 | 59 | `windows10GeneralConfiguration` is the older device restrictions type | Graph | restated-as-design (inference from resource name; not footnoted) | — |
 | 60 | Update-MgDevice writes extensionAttributes | Templates | verified | dynamic membership page links device-update; Update-MgBetaDevice example |
+| 61 | Workload waves use the program's division waves as rings; each workload can have its own pilot collection; the Intune setting switches the workload for every co-managed device | Phase 5 | verified (added Oct 25, 2026, to reconcile with Book 00 Ch 09's division waves) | how-to-switch-workloads |
 
 ## Carry-forward ledger
 
