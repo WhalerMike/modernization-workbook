@@ -1,0 +1,73 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "userPrincipalName": "ana@contoso.example",
+      "accountEnabled": true,
+      "userType": "Member",
+      "createdDateTime": "2024-01-10T00:00:00Z",
+      "signInActivity": {
+        "lastSignInDateTime": "2026-10-20T08:00:00Z",
+        "lastNonInteractiveSignInDateTime": "2026-10-24T08:00:00Z"
+      }
+    },
+    {
+      "id": "u2",
+      "userPrincipalName": "ben@contoso.example",
+      "accountEnabled": true,
+      "userType": "Member",
+      "createdDateTime": "2024-01-10T00:00:00Z",
+      "signInActivity": {
+        "lastSignInDateTime": "2026-05-01T00:00:00Z",
+        "lastNonInteractiveSignInDateTime": "2026-07-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "u3",
+      "userPrincipalName": "cy@contoso.example",
+      "accountEnabled": true,
+      "userType": "Member",
+      "createdDateTime": "2025-01-10T00:00:00Z",
+      "signInActivity": null
+    },
+    {
+      "id": "u4",
+      "userPrincipalName": "dee@contoso.example",
+      "accountEnabled": true,
+      "userType": "Member",
+      "createdDateTime": "2026-10-01T00:00:00Z",
+      "signInActivity": null
+    },
+    {
+      "id": "u5",
+      "userPrincipalName": "eve@contoso.example",
+      "accountEnabled": false,
+      "userType": "Member",
+      "createdDateTime": "2024-01-10T00:00:00Z",
+      "signInActivity": {
+        "lastSignInDateTime": "2025-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "u6",
+      "userPrincipalName": "guest_partner.example#EXT#@contoso.example",
+      "accountEnabled": true,
+      "userType": "Guest",
+      "createdDateTime": "2024-01-10T00:00:00Z",
+      "signInActivity": {
+        "lastSignInDateTime": "2025-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "u7",
+      "userPrincipalName": "fay@contoso.example",
+      "accountEnabled": true,
+      "userType": "Member",
+      "createdDateTime": "2024-01-10T00:00:00Z",
+      "signInActivity": {
+        "lastSignInDateTime": "2026-07-27T00:00:00Z",
+        "lastNonInteractiveSignInDateTime": null
+      }
+    }
+  ]
+}

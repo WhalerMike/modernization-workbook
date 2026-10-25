@@ -1,0 +1,86 @@
+{
+  "roleDefinitions": [
+    {
+      "id": "62e90394-69f5-4237-9190-012177145e10",
+      "templateId": "62e90394-69f5-4237-9190-012177145e10",
+      "displayName": "Global Administrator",
+      "isBuiltIn": true
+    },
+    {
+      "id": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+      "templateId": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+      "displayName": "Privileged Role Administrator",
+      "isBuiltIn": true
+    }
+  ],
+  "eligibility": [
+    {
+      "principalId": "a1",
+      "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10",
+      "memberType": "Direct"
+    },
+    {
+      "principalId": "a2",
+      "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10",
+      "memberType": "Direct"
+    },
+    {
+      "principalId": "a3",
+      "roleDefinitionId": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+      "memberType": "Direct"
+    }
+  ],
+  "assignments": [
+    {
+      "principalId": "bg1",
+      "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10",
+      "assignmentType": "Assigned",
+      "memberType": "Direct",
+      "scheduleInfo": {
+        "startDateTime": "2025-01-01T00:00:00Z",
+        "expiration": {
+          "type": "noExpiration",
+          "endDateTime": null
+        }
+      }
+    },
+    {
+      "principalId": "a1",
+      "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10",
+      "assignmentType": "Activated",
+      "memberType": "Direct",
+      "scheduleInfo": {
+        "startDateTime": "2026-10-24T09:00:00Z",
+        "expiration": {
+          "type": "afterDateTime",
+          "endDateTime": "2026-10-24T17:00:00Z"
+        }
+      }
+    },
+    {
+      "principalId": "x9",
+      "roleDefinitionId": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+      "assignmentType": "Assigned",
+      "memberType": "Direct",
+      "scheduleInfo": {
+        "startDateTime": "2025-06-01T00:00:00Z",
+        "expiration": {
+          "type": "noExpiration"
+        }
+      }
+    },
+    {
+      "principalId": "x8",
+      "roleDefinitionId": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+      "assignmentType": "Assigned",
+      "memberType": "Direct",
+      "scheduleInfo": {
+        "startDateTime": "2026-10-01T00:00:00Z",
+        "expiration": {
+          "type": "afterDateTime",
+          "endDateTime": "2026-12-31T00:00:00Z"
+        }
+      }
+    }
+  ]
+}

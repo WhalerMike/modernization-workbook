@@ -1,0 +1,46 @@
+{
+  "registrationDetails": [
+    {
+      "userPrincipalName": "ana@contoso.example",
+      "userType": "member",
+      "isAdmin": true,
+      "isMfaRegistered": true,
+      "methodsRegistered": [
+        "passKeyDeviceBound",
+        "microsoftAuthenticatorPush"
+      ]
+    },
+    {
+      "userPrincipalName": "ben@contoso.example",
+      "userType": "member",
+      "isAdmin": true,
+      "isMfaRegistered": true,
+      "methodsRegistered": [
+        "microsoftAuthenticatorPush"
+      ]
+    },
+    {
+      "userPrincipalName": "cy@contoso.example",
+      "userType": "member",
+      "isAdmin": false,
+      "isMfaRegistered": false,
+      "methodsRegistered": []
+    },
+    {
+      "userPrincipalName": "fay@contoso.example",
+      "userType": "member",
+      "isAdmin": false,
+      "isMfaRegistered": true,
+      "methodsRegistered": [
+        "windowsHelloForBusiness"
+      ]
+    },
+    {
+      "userPrincipalName": "guest_partner.example#EXT#@contoso.example",
+      "userType": "guest",
+      "isAdmin": false,
+      "isMfaRegistered": false,
+      "methodsRegistered": []
+    }
+  ]
+}

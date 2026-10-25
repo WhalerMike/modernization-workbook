@@ -1,0 +1,60 @@
+{
+  "applications": [
+    {
+      "id": "o1",
+      "appId": "app-1",
+      "displayName": "HR connector",
+      "passwordCredentials": [
+        {
+          "keyId": "k1",
+          "startDateTime": "2026-01-01T00:00:00Z",
+          "endDateTime": "2027-01-01T00:00:00Z"
+        }
+      ],
+      "keyCredentials": []
+    },
+    {
+      "id": "o2",
+      "appId": "app-2",
+      "displayName": "Evidence collector",
+      "passwordCredentials": [],
+      "keyCredentials": [
+        {
+          "keyId": "k2",
+          "type": "AsymmetricX509Cert",
+          "usage": "Verify",
+          "startDateTime": "2026-03-01T00:00:00Z",
+          "endDateTime": "2027-03-01T00:00:00Z"
+        },
+        {
+          "keyId": "k3",
+          "type": "AsymmetricX509Cert",
+          "usage": "Verify",
+          "startDateTime": "2025-11-01T00:00:00Z",
+          "endDateTime": "2026-11-10T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "o3",
+      "appId": "app-3",
+      "displayName": "Legacy report",
+      "passwordCredentials": [
+        {
+          "keyId": "k4",
+          "startDateTime": "2026-06-01T00:00:00Z",
+          "endDateTime": "2026-09-01T00:00:00Z"
+        }
+      ],
+      "keyCredentials": [
+        {
+          "keyId": "k5",
+          "type": "AsymmetricX509Cert",
+          "usage": "Verify",
+          "startDateTime": "2024-01-01T00:00:00Z",
+          "endDateTime": "2029-01-01T00:00:00Z"
+        }
+      ]
+    }
+  ]
+}
