@@ -84,6 +84,8 @@ The pilot cohort is about 5% of the fleet, chosen to be representative across ti
 
 Each wave moves one workload for the whole population, in rings: the pilot cohort first (already done in Phase 4), then about a quarter of the population, then the rest. The ring sizes are a program design choice; what matters is that each ring is watched before the next starts.
 
+**How these waves meet the program's rollout waves.** The program rolls out division by division ([Book 00, Chapter 09](../b00-orientation/09-design-pilot-and-rollout.md#waves-defined-by-attribute-values)): its waves decide *which devices* move. The waves here decide *which workload* Intune takes over on the devices that stay co-managed while they move. The two run together, not one after the other. Use the program's division waves as this phase's rings: each workload's pilot collection grows by the divisions in the current program wave, since each workload can have its own pilot collection,[^c08-switch] and the 72-hour watch runs per ring. Once every division is in, set the slider to **Intune**, which switches that workload for every co-managed device.[^c08-switch] Devices that are reset and re-enrolled without the Configuration Manager client aren't co-managed, so the sliders don't apply to them: they take Intune policy from their group assignments as soon as they enroll.
+
 | Wave | Weeks | Workload | Work |
 |---|---|---|---|
 | 1 | 1–3 | Compliance policies | Move the compliance slider to Intune; assign CP-001 to CP-005 to production groups |

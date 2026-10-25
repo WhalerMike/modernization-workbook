@@ -125,7 +125,10 @@ Modernization doesn't end at cutover, and neither does monitoring. The program's
 | Compliance-policy and Conditional Access results | Daily | Weekly |
 | Attribute and group-membership changes | Daily | Weekly |
 | Residual risk register | — | Monthly, or on change |
-| Full control assessment | — | Quarterly |
+| Evidence-quality review: stale evidence, verdicts resting on derived or manual evidence | — | Quarterly |
+| Full assessment of every control by the independent assessor, covering those automation doesn't monitor | — | At least annually |
+
+The annual full assessment isn't a design choice. FISMA requires testing and evaluation "with a frequency depending on risk, but no less than annually,"[^c12-fisma] and continuous monitoring is how the agency meets that floor between assessments. [Book 14, Chapter 11](../b14-compliance/11-the-authorization-package.md#the-cadence) sets out the whole cadence, with an owner for each activity.
 
 Findings, approvals and verification results are kept long enough to support audit and incident review, and are immutable once written. Retention periods and tiers are [Book 12, Chapter 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md#retention-tiers-and-tamper-protected-copies).
 
@@ -224,6 +227,7 @@ The coverage report is how these limits reach the people who decide. It distingu
 :::
 
 [^c12-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls CA-5, CA-7, PM-4 and PM-31, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; control text checked against the release 5.2.0 OSCAL catalog, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (both accessed Oct 21, 2026).
+[^c12-fisma]: Federal Information Security Modernization Act of 2014, 44 U.S.C. § 3554(b)(5), United States Code, 2023 edition, <https://www.govinfo.gov/content/pkg/USCODE-2023-title44/html/USCODE-2023-title44-chap35-subchapII-sec3554.htm> (accessed Oct 25, 2026).
 [^c12-sp80037]: National Institute of Standards and Technology, SP 800-37 Rev. 2, *Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy*, December 2018, Task P-5 (common controls), Task P-7 (organization-wide continuous monitoring strategy), Task R-4 (risk acceptance) and Appendix F (information generation, collection and independence requirements), <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf> (accessed Oct 21, 2026).
 [^c12-a130]: Office of Management and Budget, Circular A-130, *Managing Information as a Strategic Resource*, July 2016, Appendix I, §4.c (items 12 and 15, with footnote 82) and §4.d (items 5–8), <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf> (accessed Oct 21, 2026).
 [^c12-sp800137]: National Institute of Standards and Technology, SP 800-137, *Information Security Continuous Monitoring (ISCM) for Federal Information Systems and Organizations*, September 2011, Executive Summary (steps; assessment of controls that can't be automated) and Chapter 3 introduction (process steps and responses to findings), <https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-137.pdf> (accessed Oct 21, 2026).

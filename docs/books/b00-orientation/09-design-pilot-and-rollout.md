@@ -157,6 +157,8 @@ The two fit together: the division is the scope, and the master plan's sizes are
 
 Three corrections apply. **Permanent Global Administrators.** The master plan wanted "zero permanent Global Admins." Microsoft's guidance is the opposite for one case: emergency access accounts hold Global Administrator as a permanent active assignment, not an eligible one.[^c09-breakglass] Every other privileged assignment is eligible through PIM. **Staged rollout is temporary.** Microsoft supports staged rollout for certificate-based authentication to test a few groups before converting a federated domain to managed authentication, but it isn't meant to be a permanent mixed state, and the domain cutover is still a separate step.[^c09-staged] **Hybrid join is a waypoint.** Every hybrid-joined pilot device carries a cut date ([Book 05, Chapter 02](../b05-devices/02-the-hybrid-join-trap.md)).
 
+**M-026 is wider than the privileged-access project's pilot.** That project's pilot-scale criterion is just-in-time elevation for at least one high-risk role class ([Chapter 06](06-the-project-portfolio.md#privileged-access-administrative-identity); [Book 04, Chapter 02](../b04-access/02-why-standing-privilege-fails.md)). M-026 asks for more: every privileged role a pilot administrator holds is eligible, not permanent. The two don't conflict. The project's criterion is the floor, proved on its first role class; M-026 is what the program's G2 checks, so the pilot exercises the whole pattern on real administrators before the rollout carries it to everyone else.
+
 ### Pilot success criteria
 
 The master plan measured the pilot against eight criteria, each with a target and a failure threshold. The values are illustrative; set them in the program's decision log before the pilot opens, and evaluate them from the systems named, not from opinion.
@@ -218,6 +220,8 @@ The master plan's scaling rules carry over unchanged:
 - Every wave passes the same validation the pilot did, against the same success criteria.
 - Drift detection runs daily against the migrated scope from the first wave.
 - GPO links stay in place during a wave and are removed from a migrated OU only after seven days of clean compliance; the GPO objects themselves are retired in Phase 4 ([Book 05, Chapter 07](../b05-devices/07-the-gpo-sunset-program.md)).
+
+Book 05 also talks about waves, but its waves are by workload, not by division: compliance, Endpoint Protection, device configuration, then Windows Update, each moved from Configuration Manager to Intune on co-managed devices. The two fit together. The division waves here decide which devices move; inside them, Book 05 uses each division wave as the next ring for every workload ([Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md#phase-5-workload-cutover-in-waves)).
 
 ### Milestones
 

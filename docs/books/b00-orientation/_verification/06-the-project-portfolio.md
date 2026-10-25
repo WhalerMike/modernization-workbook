@@ -64,3 +64,4 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | A charter is the natural unit for a TMF proposal | What the charters leave to the agency | restated-as-design | Appendix C; TMF FPP Appendix A |
+| 2 | The program's pilot (M-026) goes further than the privileged-access project's one-role-class criterion | Privileged Access success at pilot scale | added Oct 25, 2026; aligned with Ch09 | Internal |
