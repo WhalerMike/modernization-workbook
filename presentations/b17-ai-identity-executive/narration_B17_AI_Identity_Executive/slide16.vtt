@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.787
+Every record so far ends up in one
+place: the authorization package.
+
+2
+00:00:04.787 --> 00:00:08.262
+First question: whose
+boundary does the AI run in?
+
+3
+00:00:08.262 --> 00:00:13.662
+Inside an authorized system, it's a new
+component and a possible significant change.
+
+4
+00:00:13.662 --> 00:00:15.812
+On its own, it's a new system.
+
+5
+00:00:15.812 --> 00:00:20.538
+On a provider's certified cloud service,
+the certification covers the provider,
+
+6
+00:00:20.538 --> 00:00:25.050
+but the identities and grants that
+service creates in your tenant are yours.
+
+7
+00:00:25.050 --> 00:00:29.611
+Then the package answers five questions:
+who owns it, how it signs in,
+
+8
+00:00:29.611 --> 00:00:33.425
+what it can reach, who's watching,
+and when its access ends.
+
+9
+00:00:33.425 --> 00:00:36.243
+One gap to close: the control for services
+
+10
+00:00:36.243 --> 00:00:39.725
+authenticating to each
+other isn't in any baseline.
+
+11
+00:00:39.725 --> 00:00:44.780
+So the system owner tailors it in, and the
+authorizing official approves the plan.

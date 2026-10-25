@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.898
+A chat assistant that
+drafts a memo is a tool;
+
+2
+00:00:02.898 --> 00:00:05.825
+nothing reaches a record
+until a person acts.
+
+3
+00:00:05.825 --> 00:00:08.942
+An agent reads the mailbox,
+sends the replies,
+
+4
+00:00:08.942 --> 00:00:11.637
+closes the ticket and updates the case.
+
+5
+00:00:11.637 --> 00:00:16.525
+Each step is an action, taken by something
+that signed in and holds permissions.
+
+6
+00:00:16.525 --> 00:00:17.725
+That's an identity.
+
+7
+00:00:17.725 --> 00:00:20.514
+It can act for a signed-in
+user, or as itself,
+
+8
+00:00:20.514 --> 00:00:23.550
+and either way the
+identity provider sees it.
+
+9
+00:00:23.550 --> 00:00:25.686
+Or it can use a stored A P I key,
+
+10
+00:00:25.686 --> 00:00:29.400
+and then no policy and no
+sign-in log sees it at all.
+
+11
+00:00:29.400 --> 00:00:34.984
+Today only 117 of 3,611 reported
+federal use cases are agentic,
+
+12
+00:00:34.984 --> 00:00:38.488
+but that's the share that grows fastest.
+
+13
+00:00:38.488 --> 00:00:41.699
+So count AI identities, not AI projects.
+
+14
+00:00:41.699 --> 00:00:43.460
+Next, how they got here.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+No new control family is needed.
+
+2
+00:00:02.025 --> 00:00:06.313
+The security control catalog already
+covers system and service accounts,
+
+3
+00:00:06.313 --> 00:00:10.601
+identifiers and credentials for
+services, least privilege for processes,
+
+4
+00:00:10.601 --> 00:00:13.437
+and services that authenticate
+before they talk.
+
+5
+00:00:13.437 --> 00:00:18.263
+NIST's AI framework adds inventory,
+decommissioning and clear roles.
+
+6
+00:00:18.263 --> 00:00:20.237
+So the gap isn't the catalog.
+
+7
+00:00:20.237 --> 00:00:23.871
+It's coverage: the AI system's
+account is often simply missing
+
+8
+00:00:23.871 --> 00:00:27.650
+from the account inventory those
+controls are tested against.
+
+9
+00:00:27.650 --> 00:00:33.110
+The book's model gives every AI identity
+seven things, from an identity record and a
+
+10
+00:00:33.110 --> 00:00:38.650
+named owner to a lifecycle that ends and
+evidence the authorizing official can use.
+
+11
+00:00:38.650 --> 00:00:42.850
+That model is program design,
+built on controls you already meet.
+
+12
+00:00:42.850 --> 00:00:45.410
+Now, what the federal rules actually say.

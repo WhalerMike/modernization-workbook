@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.025
+“Is this required at Moderate?”
+sounds like one question.
+
+2
+00:00:03.025 --> 00:00:06.050
+It's two: NIST's baseline
+for the agency's system,
+
+3
+00:00:06.050 --> 00:00:09.075
+and FedRAMP's class for
+the provider's service.
+
+4
+00:00:09.075 --> 00:00:12.305
+The series crosswalk indexes 149 controls,
+
+5
+00:00:12.305 --> 00:00:18.137
+but it's a pointer to where each one is
+treated, not proof it's closed or inherited.
+
+6
+00:00:18.137 --> 00:00:21.069
+It covers fewer than half
+the Moderate baseline,
+
+7
+00:00:21.069 --> 00:00:23.487
+so it can't stand in
+for the security plan.
+
+8
+00:00:23.487 --> 00:00:28.560
+The decision: fill the product inventory
+questionnaire against the estate as it is,
+
+9
+00:00:28.560 --> 00:00:31.648
+verify each FedRAMP status
+on the day you record it,
+
+10
+00:00:31.648 --> 00:00:35.176
+and decide every flag before
+the security plan is written.
+
+11
+00:00:35.176 --> 00:00:40.000
+An uncertified service inside the boundary
+goes to the authorizing official.
+
+12
+00:00:40.000 --> 00:00:42.380
+Next, when a control is closed.

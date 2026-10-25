@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.086
+An agency can have tested failover,
+two circuits and good backups,
+
+2
+00:00:04.086 --> 00:00:07.150
+and still carry an open
+contingency plan finding.
+
+3
+00:00:07.150 --> 00:00:12.029
+The control asks for a plan, not a
+capability: who declares a contingency,
+
+4
+00:00:12.029 --> 00:00:16.825
+who's told, what comes back first, and
+when operations are back to normal.
+
+5
+00:00:16.825 --> 00:00:18.800
+The runbooks are its appendices.
+
+6
+00:00:18.800 --> 00:00:22.533
+For a Moderate system, NIST
+recommends a functional exercise
+
+7
+00:00:22.533 --> 00:00:25.900
+that includes a restore from
+backup, not just a tabletop.
+
+8
+00:00:25.900 --> 00:00:27.699
+And a replica isn't a backup;
+
+9
+00:00:27.699 --> 00:00:31.625
+it copies ransomware as
+faithfully as a good transaction.
+
+10
+00:00:31.625 --> 00:00:33.937
+The most important number isn't technical.
+
+11
+00:00:33.937 --> 00:00:38.562
+So the decision: each mission owner
+signs the maximum tolerable downtime,
+
+12
+00:00:38.562 --> 00:00:42.276
+and it's never lowered to fit
+a convenient technical answer.
+
+13
+00:00:42.276 --> 00:00:43.870
+Next, supply chain.
