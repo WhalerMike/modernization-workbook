@@ -1,0 +1,783 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.25,
+   "This is the executive briefing for Book 17 of the Federal Modernization Workbook, AI Identity Governance."
+  ],
+  [
+   8.012,
+   9.525,
+   "It's for the people who make the calls: the C I O, the see-so, the Chief AI Officer, authorizing officials, the privacy officer and sponsors."
+  ],
+  [
+   17.538,
+   1.425,
+   "The argument is short."
+  ],
+  [
+   18.962,
+   4.075,
+   "An AI system that can act, not just answer, is an account."
+  ],
+  [
+   23.038,
+   5.438,
+   "Most AI arrived outside the identity program, with no owner and no end date."
+  ],
+  [
+   28.475,
+   7.513,
+   "And there's no separate AI authorization, so those accounts belong in the boundary your authorizing official already reviews."
+  ],
+  [
+   35.987,
+   3.237,
+   "I'll take four questions: why, what, who and how."
+  ],
+  [
+   39.225,
+   4.375,
+   "Each decision slide names the decision, its owner and when it's needed."
+  ],
+  [
+   43.6,
+   2.362,
+   "Let's start with what makes an agent an account."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   5.775,
+   "A chat assistant that drafts a memo is a tool; nothing reaches a record until a person acts."
+  ],
+  [
+   5.825,
+   5.812,
+   "An agent reads the mailbox, sends the replies, closes the ticket and updates the case."
+  ],
+  [
+   11.637,
+   4.888,
+   "Each step is an action, taken by something that signed in and holds permissions."
+  ],
+  [
+   16.525,
+   1.2,
+   "That's an identity."
+  ],
+  [
+   17.725,
+   5.825,
+   "It can act for a signed-in user, or as itself, and either way the identity provider sees it."
+  ],
+  [
+   23.55,
+   5.85,
+   "Or it can use a stored A P I key, and then no policy and no sign-in log sees it at all."
+  ],
+  [
+   29.4,
+   9.088,
+   "Today only 117 of 3,611 reported federal use cases are agentic, but that's the share that grows fastest."
+  ],
+  [
+   38.487,
+   3.212,
+   "So count AI identities, not AI projects."
+  ],
+  [
+   41.7,
+   1.7,
+   "Next, how they got here."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   7.1,
+   "People join through a pipeline: an HR record, an account, access from their position, and a leaver process."
+  ],
+  [
+   7.15,
+   1.3,
+   "AI mostly didn't."
+  ],
+  [
+   8.45,
+   7.862,
+   "A vendor pilot, an A P I key in a configuration file, an assistant that shipped inside software you already license."
+  ],
+  [
+   16.312,
+   7.275,
+   "So it typically has no owner, no placement, a stored secret, access nobody reviews and no end date."
+  ],
+  [
+   23.587,
+   2.138,
+   "And the risk is identity-shaped."
+  ],
+  [
+   25.725,
+   7.25,
+   "A planted prompt against an agent doesn't produce a bad answer; it produces an action, under a legitimate identity."
+  ],
+  [
+   32.975,
+   3.462,
+   "The blast radius is whatever that identity can reach."
+  ],
+  [
+   36.438,
+   7.362,
+   "So the first decision: an agent with no governed identity is a high-priority finding, and a person decides its fate."
+  ],
+  [
+   43.8,
+   3.062,
+   "The good news: the controls already exist."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.975,
+   "No new control family is needed."
+  ],
+  [
+   2.025,
+   11.412,
+   "The security control catalog already covers system and service accounts, identifiers and credentials for services, least privilege for processes, and services that authenticate before they talk."
+  ],
+  [
+   13.438,
+   4.825,
+   "nist's AI framework adds inventory, decommissioning and clear roles."
+  ],
+  [
+   18.262,
+   1.975,
+   "So the gap isn't the catalog."
+  ],
+  [
+   20.238,
+   7.412,
+   "It's coverage: the AI system's account is often simply missing from the account inventory those controls are tested against."
+  ],
+  [
+   27.65,
+   11.0,
+   "The book's model gives every AI identity seven things, from an identity record and a named owner to a lifecycle that ends and evidence the authorizing official can use."
+  ],
+  [
+   38.65,
+   4.2,
+   "That model is program design, built on controls you already meet."
+  ],
+  [
+   42.85,
+   2.5,
+   "Now, what the federal rules actually say."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.413,
+   "Federal AI policy was rewritten in 2025."
+  ],
+  [
+   3.462,
+   10.912,
+   "One O M B memo, M twenty-five twenty-one, governs use: a Chief AI Officer, an annual use-case inventory, and minimum practices for high-impact AI."
+  ],
+  [
+   14.375,
+   11.012,
+   "Its companion, M twenty-five twenty-two, governs buying AI, and says plainly that AI run as an information system needs an authorization to operate before it deploys."
+  ],
+  [
+   25.387,
+   6.487,
+   "The 2026 executive orders harden federal systems and change vocabulary, not obligations."
+  ],
+  [
+   31.875,
+   2.638,
+   "What the rules don't do matters just as much."
+  ],
+  [
+   34.513,
+   5.325,
+   "There's no AI-specific authorization, and the memo sets no identity requirements at all."
+  ],
+  [
+   39.837,
+   2.237,
+   "So don't build a second approval track."
+  ],
+  [
+   42.075,
+   6.612,
+   "Put the AI system's accounts in the boundary your authorizing official already reviews, before it deploys."
+  ],
+  [
+   48.688,
+   2.663,
+   "High-impact AI adds one more signature."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.825,
+   "High-impact AI is the kind whose output drives decisions with real effects on rights or safety."
+  ],
+  [
+   5.875,
+   11.088,
+   "For it, the memo requires seven minimum practices: testing, an impact assessment, monitoring, training, oversight with a fail-safe, appeals, and feedback."
+  ],
+  [
+   16.962,
+   6.25,
+   "The impact assessment ends with a signature from the official accepting the risk, after an independent review."
+  ],
+  [
+   23.212,
+   1.175,
+   "Here's the catch."
+  ],
+  [
+   24.387,
+   3.962,
+   "That signature isn't an authorization, and the memo says so."
+  ],
+  [
+   28.35,
+   8.387,
+   "A high-impact use case needs both: the signed risk acceptance and the system's authorization to operate, often from two different people."
+  ],
+  [
+   36.737,
+   7.037,
+   "So the decision is to put both decision-makers on the same record of what the system is, who owns it and what it can reach."
+  ],
+  [
+   43.775,
+   1.538,
+   "Where does that record start?"
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.05,
+   "It starts with the use-case inventory, the one AI list every agency keeps."
+  ],
+  [
+   5.1,
+   8.225,
+   "Read as identity data, it gives you a stable ID, an office and a lifecycle stage, where retired means a leaver event."
+  ],
+  [
+   13.325,
+   9.688,
+   "It leaves blank everything that decides what an AI system can touch: the account it signs in as, its credential, its permissions and its accountable owner."
+  ],
+  [
+   23.012,
+   2.612,
+   "And its high-impact fields report status."
+  ],
+  [
+   25.625,
+   5.4,
+   "They say yes or in progress; they don't carry a log, a document or a name."
+  ],
+  [
+   31.025,
+   1.962,
+   "So treat it as the seed list."
+  ],
+  [
+   32.987,
+   8.675,
+   "The decision belongs to the Chief AI Officer: no use case is recorded as piloted or deployed without a link to its identity record."
+  ],
+  [
+   41.663,
+   1.925,
+   "Next, what kind of identity."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.763,
+   "An AI system's identity isn't the model."
+  ],
+  [
+   2.812,
+   3.737,
+   "It's the software around it, sorted by whose token it presents."
+  ],
+  [
+   6.55,
+   3.562,
+   "A signed-in user's, so it can do everything that user can."
+  ],
+  [
+   10.113,
+   6.737,
+   "Its own, as a workload or agent identity, where today the only policy control is to block it."
+  ],
+  [
+   16.85,
+   2.288,
+   "Or no token at all, just a key."
+  ],
+  [
+   19.137,
+   14.65,
+   "Microsoft's agent identity platform became generally available in April 2026, but the agent policies are still preview, G C C has a partial subset, and G C C High and DoD have no published availability."
+  ],
+  [
+   33.788,
+   3.8,
+   "And licensing governance for people doesn't license it for agents."
+  ],
+  [
+   37.587,
+   7.25,
+   "So the C I O budgets the licenses, and every capability is confirmed in your own cloud before anyone plans on it."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.35,
+   "An agent has no hire date and no separation date, so its lifecycle has to hang from a person who does."
+  ],
+  [
+   6.4,
+   4.625,
+   "Left to the defaults, the sponsor is whoever built it, often a developer."
+  ],
+  [
+   11.025,
+   12.287,
+   "The book's rule is two named humans and a record: a federal employee as sponsor, a technical owner who holds the credentials but never sponsors, and an inventory record that names the same sponsor."
+  ],
+  [
+   23.312,
+   8.438,
+   "When the sponsor leaves, sponsorship moves to their manager, who has ten business days to confirm, or the agent is orphaned and suspended."
+  ],
+  [
+   31.75,
+   3.225,
+   "And access expires unless the sponsor renews it."
+  ],
+  [
+   34.975,
+   7.075,
+   "The decision is the system owner's: name that sponsor at creation, and move it to the using program at publication."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.9,
+   "An agent can't be asked for a second factor, so everything it may do is decided before it asks."
+  ],
+  [
+   5.95,
+   10.4,
+   "Credentials first: a managed identity or federation, so there's no stored secret; a certificate only where neither works; and a client secret never in production."
+  ],
+  [
+   16.35,
+   1.25,
+   "Then permissions."
+  ],
+  [
+   17.6,
+   6.912,
+   "Microsoft blocks the very top roles for agents, but still lets one hold Exchange or SharePoint administrator."
+  ],
+  [
+   24.512,
+   2.325,
+   "That's a floor, not least privilege."
+  ],
+  [
+   26.837,
+   10.875,
+   "So the book's rule is no standing privileged role for any AI identity, and a policy that blocks every agent not yet approved, kept in report-only mode while it's preview."
+  ],
+  [
+   37.712,
+   6.287,
+   "The see-so sets those requirements, and identity engineering builds them, before the first production agent."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.112,
+   "An AI identity nobody watches drifts the day after it's issued, and AI nobody declared is drift from the start."
+  ],
+  [
+   7.162,
+   7.513,
+   "So the program compares three things: what was declared, what known identities are seen doing, and what discovery finds."
+  ],
+  [
+   14.675,
+   10.5,
+   "Shadow AI shows up in four places: AI services staff use, apps holding consented access, agents on endpoints, and AI built in your own clouds."
+  ],
+  [
+   25.175,
+   3.95,
+   "No single tool sees all four, and none sees a static key."
+  ],
+  [
+   29.125,
+   5.463,
+   "Each gap becomes a finding with an owner and a clock, and the serious ones halt for a person."
+  ],
+  [
+   34.587,
+   2.837,
+   "Security operations contains shadow AI."
+  ],
+  [
+   37.425,
+   5.737,
+   "Then the system owner decides its future, or the C I O, when it belongs to no system."
+  ],
+  [
+   43.163,
+   1.137,
+   "So who owns it?"
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   10.412,
+   "Ask who owns an agent's identity and the AI office points at the identity team, the identity team points back, and the program office says it already signed the impact assessment."
+  ],
+  [
+   10.463,
+   1.738,
+   "The answer is two tracks."
+  ],
+  [
+   12.2,
+   6.763,
+   "The Chief AI Officer owns the declared side: the inventory, high-impact determinations and waivers."
+  ],
+  [
+   18.962,
+   4.275,
+   "The authorizing official alone accepts the system's residual risk."
+  ],
+  [
+   23.238,
+   6.475,
+   "Neither stands in for the other, and AI adds no new authorizing official and no new account manager."
+  ],
+  [
+   29.712,
+   8.075,
+   "A few separations keep it honest; for example, the official who waived a practice shouldn't be that system's sole authorizing official."
+  ],
+  [
+   37.788,
+   6.638,
+   "And one rule underpins everything: the identity record exists before any credential is issued."
+  ],
+  [
+   44.425,
+   2.575,
+   "The identity governance officer decides that."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.737,
+   "Here's the matrix in one view, with one decider per row."
+  ],
+  [
+   3.788,
+   5.138,
+   "The Chief AI Officer owns the inventory, the high-impact calls and waivers."
+  ],
+  [
+   8.925,
+   6.65,
+   "The use-case risk acceptor signs the impact assessment; the authorizing official signs the authorization."
+  ],
+  [
+   15.575,
+   11.4,
+   "The see-so sets the control requirements, the C I O owns licenses and shadow AI that belongs to no system, and the system owner names the sponsor and decides what the AI may reach."
+  ],
+  [
+   26.975,
+   6.487,
+   "Contractors can build and run agents; government officials sponsor, authorize and accept risk."
+  ],
+  [
+   33.462,
+   3.65,
+   "And because agents change quickly, one decision recurs."
+  ],
+  [
+   37.112,
+   9.238,
+   "Every new tool, permission, user account or model is raised by the system owner as a possible significant change, and the authorizing official decides."
+  ],
+  [
+   46.35,
+   1.725,
+   "Now, finding the gaps."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.95,
+   "The inventory scan is cheap, because it reads answers agencies have already given."
+  ],
+  [
+   5.0,
+   5.088,
+   "It's useful only if every answer it questions ends with an owner who goes and looks."
+  ],
+  [
+   10.088,
+   10.838,
+   "Run over the published 2025 file, the simple checks hit 72 percent of the live entries: more than half give no authorization answer, and a third name no contact."
+  ],
+  [
+   20.925,
+   3.888,
+   "Those are answers to reconcile, not verdicts on agencies."
+  ],
+  [
+   24.812,
+   7.375,
+   "The checks that matter most, like an agent with no identity record, need the directory, so only the agency can run them."
+  ],
+  [
+   32.188,
+   10.213,
+   "The decision: run the checks on your own submission every vintage, agentic and authorization findings first, and close a finding only when a later look shows it fixed."
+  ],
+  [
+   42.4,
+   1.038,
+   "And centrally?"
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   5.475,
+   "The same answer checks could run once, centrally, over every agency's published file."
+  ],
+  [
+   5.525,
+   3.013,
+   "That's the book's proposal, not a federal program."
+  ],
+  [
+   8.537,
+   7.35,
+   "It borrows one thing from Continuous Diagnostics and Mitigation: a central view, with agencies doing the remediation."
+  ],
+  [
+   15.887,
+   10.062,
+   "But it reads public answers, not tool output, so it can't see whether a credential exists, rotated or was revoked, and it can't see AI nobody inventoried."
+  ],
+  [
+   25.95,
+   4.987,
+   "A central scan is a good way to start a conversation with every agency at once."
+  ],
+  [
+   30.938,
+   1.562,
+   "It isn't a way to finish one."
+  ],
+  [
+   32.5,
+   6.2,
+   "Governing the credential stays with the agency, which brings us to what the authorizing official needs to see."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.737,
+   "Every record so far ends up in one place: the authorization package."
+  ],
+  [
+   4.787,
+   3.475,
+   "First question: whose boundary does the AI run in?"
+  ],
+  [
+   8.262,
+   5.4,
+   "Inside an authorized system, it's a new component and a possible significant change."
+  ],
+  [
+   13.662,
+   2.15,
+   "On its own, it's a new system."
+  ],
+  [
+   15.812,
+   9.238,
+   "On a provider's certified cloud service, the certification covers the provider, but the identities and grants that service creates in your tenant are yours."
+  ],
+  [
+   25.05,
+   8.375,
+   "Then the package answers five questions: who owns it, how it signs in, what it can reach, who's watching, and when its access ends."
+  ],
+  [
+   33.425,
+   6.3,
+   "One gap to close: the control for services authenticating to each other isn't in any baseline."
+  ],
+  [
+   39.725,
+   4.987,
+   "So the system owner tailors it in, and the authorizing official approves the plan."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   1.212,
+   "Then keep it current."
+  ],
+  [
+   1.262,
+   5.325,
+   "AI governance adds three clocks beside the annual security testing you already run."
+  ],
+  [
+   6.588,
+   2.263,
+   "The inventory, at least once a year."
+  ],
+  [
+   8.85,
+   8.188,
+   "The compliance plan, every two years, with the next due in 2027, and it's easy to miss if you only track the inventory."
+  ],
+  [
+   17.038,
+   5.562,
+   "And waivers, certified every year and reported within thirty days of any change."
+  ],
+  [
+   22.6,
+   4.725,
+   "nist's control overlays for AI aren't out yet; there's no public draft."
+  ],
+  [
+   27.325,
+   1.038,
+   "So don't wait."
+  ],
+  [
+   28.363,
+   3.325,
+   "Tailor the baseline now and compare when they're final."
+  ],
+  [
+   31.688,
+   9.912,
+   "The decision: every waiver and pilot certification becomes a governed exception with an expiry date, and one with no end date goes to the authorizing official."
+  ],
+  [
+   41.6,
+   1.863,
+   "Let's pull the decisions together."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.575,
+   "So, the decisions."
+  ],
+  [
+   1.625,
+   6.85,
+   "System owners treat any agent with no governed identity as a high-priority finding the moment it's found."
+  ],
+  [
+   8.475,
+   8.162,
+   "Authorizing officials authorize AI through the existing process, before deployment, with both high-impact signatures on one record."
+  ],
+  [
+   16.637,
+   7.162,
+   "The Chief AI Officer links every live inventory entry to an identity record and runs the scan each vintage."
+  ],
+  [
+   23.8,
+   2.438,
+   "The C I O budgets the licenses."
+  ],
+  [
+   26.238,
+   7.675,
+   "System owners name an agency employee as every sponsor, and raise each new tool or model as a possible change."
+  ],
+  [
+   33.913,
+   4.838,
+   "The see-so sets the rules: no production secrets, no standing privilege."
+  ],
+  [
+   38.75,
+   3.9,
+   "And no credential is issued before its identity record exists."
+  ],
+  [
+   42.65,
+   2.2,
+   "None of this needs a new authorization."
+  ],
+  [
+   44.85,
+   3.95,
+   "Book 17 has the detail, every claim footnoted."
+  ],
+  [
+   48.8,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

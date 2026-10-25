@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.146
+An agent has no hire date
+and no separation date,
+
+2
+00:00:03.146 --> 00:00:06.400
+so its lifecycle has to hang
+from a person who does.
+
+3
+00:00:06.400 --> 00:00:11.025
+Left to the defaults, the sponsor is
+whoever built it, often a developer.
+
+4
+00:00:11.025 --> 00:00:15.893
+The book's rule is two named humans and
+a record: a federal employee as sponsor,
+
+5
+00:00:15.893 --> 00:00:19.989
+a technical owner who holds the
+credentials but never sponsors,
+
+6
+00:00:19.989 --> 00:00:23.312
+and an inventory record that
+names the same sponsor.
+
+7
+00:00:23.312 --> 00:00:27.079
+When the sponsor leaves,
+sponsorship moves to their manager,
+
+8
+00:00:27.079 --> 00:00:31.750
+who has ten business days to confirm,
+or the agent is orphaned and suspended.
+
+9
+00:00:31.750 --> 00:00:34.975
+And access expires unless
+the sponsor renews it.
+
+10
+00:00:34.975 --> 00:00:39.051
+The decision is the system owner's:
+name that sponsor at creation,
+
+11
+00:00:39.051 --> 00:00:42.120
+and move it to the using
+program at publication.

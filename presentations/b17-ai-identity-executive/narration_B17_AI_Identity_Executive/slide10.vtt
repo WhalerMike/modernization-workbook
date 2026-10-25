@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.761
+An agent can't be asked
+for a second factor,
+
+2
+00:00:02.761 --> 00:00:05.950
+so everything it may do is
+decided before it asks.
+
+3
+00:00:05.950 --> 00:00:11.150
+Credentials first: a managed identity or
+federation, so there's no stored secret;
+
+4
+00:00:11.150 --> 00:00:16.350
+a certificate only where neither works;
+and a client secret never in production.
+
+5
+00:00:16.350 --> 00:00:17.600
+Then permissions.
+
+6
+00:00:17.600 --> 00:00:20.562
+Microsoft blocks the very
+top roles for agents,
+
+7
+00:00:20.562 --> 00:00:24.512
+but still lets one hold Exchange
+or SharePoint administrator.
+
+8
+00:00:24.512 --> 00:00:26.837
+That's a floor, not least privilege.
+
+9
+00:00:26.837 --> 00:00:31.348
+So the book's rule is no standing
+privileged role for any AI identity,
+
+10
+00:00:31.348 --> 00:00:34.893
+and a policy that blocks
+every agent not yet approved,
+
+11
+00:00:34.893 --> 00:00:37.712
+kept in report-only mode
+while it's preview.
+
+12
+00:00:37.712 --> 00:00:39.738
+The CISO sets those requirements,
+
+13
+00:00:39.738 --> 00:00:44.060
+and identity engineering builds them,
+before the first production agent.

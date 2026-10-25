@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.813
+An AI system's identity isn't the model.
+
+2
+00:00:02.813 --> 00:00:06.549
+It's the software around it,
+sorted by whose token it presents.
+
+3
+00:00:06.549 --> 00:00:10.112
+A signed-in user's, so it can
+do everything that user can.
+
+4
+00:00:10.112 --> 00:00:13.066
+Its own, as a workload or agent identity,
+
+5
+00:00:13.066 --> 00:00:16.850
+where today the only policy
+control is to block it.
+
+6
+00:00:16.850 --> 00:00:19.138
+Or no token at all, just a key.
+
+7
+00:00:19.138 --> 00:00:25.069
+Microsoft's agent identity platform
+became generally available in April 2026,
+
+8
+00:00:25.069 --> 00:00:29.922
+but the agent policies are still
+preview, G C C has a partial subset,
+
+9
+00:00:29.922 --> 00:00:33.787
+and GCC High and DoD have
+no published availability.
+
+10
+00:00:33.787 --> 00:00:37.588
+And licensing governance for people
+doesn't license it for agents.
+
+11
+00:00:37.588 --> 00:00:41.131
+So the CIO budgets the
+licenses, and every capability
+
+12
+00:00:41.131 --> 00:00:44.900
+is confirmed in your own cloud
+before anyone plans on it.

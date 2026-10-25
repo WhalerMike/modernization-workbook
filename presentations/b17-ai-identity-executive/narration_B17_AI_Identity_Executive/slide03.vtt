@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.809
+People join through a pipeline:
+an HR record, an account,
+
+2
+00:00:03.809 --> 00:00:07.150
+access from their position,
+and a leaver process.
+
+3
+00:00:07.150 --> 00:00:08.450
+AI mostly didn't.
+
+4
+00:00:08.450 --> 00:00:11.832
+A vendor pilot, an A P I
+key in a configuration file,
+
+5
+00:00:11.832 --> 00:00:16.312
+an assistant that shipped inside
+software you already license.
+
+6
+00:00:16.312 --> 00:00:19.483
+So it typically has no
+owner, no placement,
+
+7
+00:00:19.483 --> 00:00:23.587
+a stored secret, access nobody
+reviews and no end date.
+
+8
+00:00:23.587 --> 00:00:25.725
+And the risk is identity-shaped.
+
+9
+00:00:25.725 --> 00:00:29.701
+A planted prompt against an agent
+doesn't produce a bad answer;
+
+10
+00:00:29.701 --> 00:00:32.975
+it produces an action,
+under a legitimate identity.
+
+11
+00:00:32.975 --> 00:00:36.437
+The blast radius is whatever
+that identity can reach.
+
+12
+00:00:36.437 --> 00:00:40.159
+So the first decision: an
+agent with no governed identity
+
+13
+00:00:40.159 --> 00:00:43.800
+is a high-priority finding,
+and a person decides its fate.
+
+14
+00:00:43.800 --> 00:00:46.920
+The good news: the controls already exist.
