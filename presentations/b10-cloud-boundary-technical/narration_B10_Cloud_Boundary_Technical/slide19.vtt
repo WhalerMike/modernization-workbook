@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.167
+Every line in the package's boundary
+description should have a mechanism behind it:
+
+2
+00:00:05.167 --> 00:00:10.062
+which cloud, which regions, which services,
+which settings, and which exceptions.
+
+3
+00:00:10.062 --> 00:00:11.537
+The fine print matters.
+
+4
+00:00:11.537 --> 00:00:14.198
+The built-in allowed-types
+policy skips some
+
+5
+00:00:14.198 --> 00:00:17.362
+resource types unless you
+copy it and change its mode.
+
+6
+00:00:17.362 --> 00:00:20.142
+And the FedRAMP compliance initiative is,
+
+7
+00:00:20.142 --> 00:00:23.001
+in Microsoft's own words,
+only a partial view.
+
+8
+00:00:23.001 --> 00:00:26.400
+The rollout is the real
+lesson: audit first,
+
+9
+00:00:26.400 --> 00:00:31.938
+review with the system owner and ISSO,
+fix or exempt, and only then deny.
+
+10
+00:00:31.938 --> 00:00:36.100
+Block production on day one and
+teams learn to ask for exemptions.
+
+11
+00:00:36.100 --> 00:00:39.000
+Next, the same idea on AWS.

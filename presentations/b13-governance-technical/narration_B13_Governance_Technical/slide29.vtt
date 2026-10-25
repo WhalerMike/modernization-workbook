@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.662
+Reciprocity reuses one
+package across agencies.
+
+2
+00:00:03.662 --> 00:00:09.176
+Ongoing authorization reuses it across
+time, and that's what makes reuse safe.
+
+3
+00:00:09.176 --> 00:00:13.429
+Once the conditions are met, the
+authorizing official stops working to
+
+4
+00:00:13.429 --> 00:00:17.538
+a termination date and reviews
+posture on a schedule and on triggers.
+
+5
+00:00:17.538 --> 00:00:20.484
+Everything in this book is
+what a robust monitoring
+
+6
+00:00:20.484 --> 00:00:22.950
+program looks like when
+it's actually built.
+
+7
+00:00:22.950 --> 00:00:24.113
+Two cautions.
+
+8
+00:00:24.113 --> 00:00:29.100
+FedRAMP's new security indicators
+bind cloud providers, not agencies.
+
+9
+00:00:29.100 --> 00:00:32.480
+And proving who produced a
+bundle takes a real signature,
+
+10
+00:00:32.480 --> 00:00:36.075
+because a shared-key code or a
+list of hashes can be rewritten.
+
+11
+00:00:36.075 --> 00:00:37.940
+Now, running this at scale.

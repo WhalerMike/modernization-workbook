@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.700
+The program doesn't
+replace your platforms.
+
+2
+00:00:02.700 --> 00:00:03.700
+It reads them.
+
+3
+00:00:03.700 --> 00:00:08.198
+An adapter translates one platform's
+native state into the common record,
+
+4
+00:00:08.198 --> 00:00:12.475
+so the rules and the drift engine
+never have to learn a vendor's dialect.
+
+5
+00:00:12.475 --> 00:00:15.737
+Adapters are deliberately
+narrow: no rules,
+
+6
+00:00:15.737 --> 00:00:18.637
+no decisions, and no edits to the record.
+
+7
+00:00:18.637 --> 00:00:19.974
+There are two kinds.
+
+8
+00:00:19.974 --> 00:00:21.825
+Read-only adapters observe.
+
+9
+00:00:21.825 --> 00:00:25.825
+Change-making adapters act,
+but only on an authorized plan.
+
+10
+00:00:25.825 --> 00:00:28.340
+They're kept in separate lists on purpose,
+
+11
+00:00:28.340 --> 00:00:32.925
+so the grant of write authority is
+visible in any change a reviewer looks at.
+
+12
+00:00:32.925 --> 00:00:36.050
+Next, the contract every adapter keeps.

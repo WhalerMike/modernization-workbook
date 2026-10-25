@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.977
+The evidence chain has four
+stages: capture a platform's state,
+
+2
+00:00:03.977 --> 00:00:08.365
+normalize it into a common claim, seal
+a window of claims into a bundle,
+
+3
+00:00:08.365 --> 00:00:13.062
+and emit the package artifacts from that
+one bundle, so they can't disagree.
+
+4
+00:00:13.062 --> 00:00:15.562
+Every claim carries a provenance envelope.
+
+5
+00:00:15.562 --> 00:00:20.013
+The fields that matter most say whether
+a value was read from its owner,
+
+6
+00:00:20.013 --> 00:00:24.310
+derived or made up by the program,
+record every transformation step,
+
+7
+00:00:24.310 --> 00:00:26.612
+and tie the claim to its exact source.
+
+8
+00:00:26.612 --> 00:00:31.413
+One subtle point: a certificate
+thumbprint only identifies a certificate.
+
+9
+00:00:31.413 --> 00:00:32.951
+It doesn't sign anything.
+
+10
+00:00:32.951 --> 00:00:35.325
+And drift findings ride the same chain.
+
+11
+00:00:35.325 --> 00:00:38.110
+Next, what each integrity check proves.

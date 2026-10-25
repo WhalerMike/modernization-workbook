@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.125
+Before you assess, reconcile three things.
+
+2
+00:00:03.125 --> 00:00:06.013
+One inventory, so
+nothing is counted twice.
+
+3
+00:00:06.013 --> 00:00:10.000
+One naming authority, so a workload
+has the same name everywhere.
+
+4
+00:00:10.000 --> 00:00:13.995
+And no implicit trust from any
+boundary, whether that's a VPN,
+
+5
+00:00:13.995 --> 00:00:17.338
+a default cloud network or
+a flat virtual segment.
+
+6
+00:00:17.338 --> 00:00:18.849
+Then harden two things.
+
+7
+00:00:18.849 --> 00:00:22.779
+The hypervisor management plane
+gets assessed as its own surface,
+
+8
+00:00:22.779 --> 00:00:24.637
+because guest tools can't see it.
+
+9
+00:00:24.637 --> 00:00:29.604
+And the unified plane you just built becomes
+the most valuable target in the estate,
+
+10
+00:00:29.604 --> 00:00:32.987
+so it gets top-tier admin
+controls and its own monitoring.
+
+11
+00:00:32.987 --> 00:00:34.387
+That closes Part 1.
+
+12
+00:00:34.387 --> 00:00:36.530
+Part 2 is about who owns it.

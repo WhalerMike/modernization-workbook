@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.005
+For years the directory tree
+quietly was the governance model,
+
+2
+00:00:04.005 --> 00:00:05.450
+and migrations lose it.
+
+3
+00:00:05.450 --> 00:00:10.373
+The program's answer is one authoritative
+record, kept in a governed repository,
+
+4
+00:00:10.373 --> 00:00:14.625
+where every other copy is just a
+pointer that knows where it came from.
+
+5
+00:00:14.625 --> 00:00:19.875
+Single means logically single; replicas
+are fine if only one accepts writes.
+
+6
+00:00:19.875 --> 00:00:23.498
+Code follows three simple
+rules: look it up by reference,
+
+7
+00:00:23.498 --> 00:00:27.200
+never write to it at runtime,
+and never keep a private copy.
+
+8
+00:00:27.200 --> 00:00:30.012
+That last one is where
+most real drift starts.
+
+9
+00:00:30.012 --> 00:00:32.570
+And every report carries
+a provenance block,
+
+10
+00:00:32.570 --> 00:00:35.612
+so you can always ask what
+the value was on a given date.
+
+11
+00:00:35.612 --> 00:00:37.990
+Next, how the record is divided.

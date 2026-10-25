@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.305
+This is the technical deep dive
+for Book 10 of the Federal
+
+3
+00:00:04.305 --> 00:00:07.924
+Modernization Workbook, Cloud
+Boundary and Landing Zone.
+
+4
+00:00:07.924 --> 00:00:11.854
+It's for the cloud and platform
+engineers who build the landing zone,
+
+5
+00:00:11.854 --> 00:00:14.450
+and the ISSOs who have to
+evidence what's in it.
+
+6
+00:00:14.450 --> 00:00:16.674
+The whole book comes down to one idea:
+
+7
+00:00:16.674 --> 00:00:20.975
+the license says what you bought, but
+the boundary says what you may use.
+
+8
+00:00:20.975 --> 00:00:25.063
+Part 1 is about the boundary itself
+and what it quietly takes away.
+
+9
+00:00:25.063 --> 00:00:27.709
+Part 2 is about building
+it into the landing
+
+10
+00:00:27.709 --> 00:00:30.650
+zone and owning it in the
+authorization package.
+
+11
+00:00:30.650 --> 00:00:32.663
+The code stays in the chapters.
+
+12
+00:00:32.663 --> 00:00:34.820
+Let's start with why this bites so late.

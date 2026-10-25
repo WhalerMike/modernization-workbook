@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.200
+The enterprise address authority
+stays in charge, and Azure mirrors it.
+
+2
+00:00:04.200 --> 00:00:07.371
+Reserve the range in the
+enterprise system first,
+
+3
+00:00:07.371 --> 00:00:11.239
+mirror it into Azure's pools
+with outside ranges blocked off,
+
+4
+00:00:11.239 --> 00:00:16.112
+and use a deny policy so no virtual
+network exists without a pool allocation.
+
+5
+00:00:16.112 --> 00:00:19.888
+Then reconcile, and treat
+any mismatch as a finding.
+
+6
+00:00:19.888 --> 00:00:22.409
+And here's the book's
+argument in miniature:
+
+7
+00:00:22.409 --> 00:00:26.587
+the Azure pool service isn't named
+in Microsoft's FedRAMP scope tables.
+
+8
+00:00:26.587 --> 00:00:28.813
+So until that's confirmed in writing,
+
+9
+00:00:28.813 --> 00:00:32.300
+record it as a dependency and
+choose a path deliberately.
+
+10
+00:00:32.300 --> 00:00:34.780
+Next, building the network from code.

@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.287
+FedRAMP changed its vocabulary in
+2026, and the change is useful.
+
+2
+00:00:05.287 --> 00:00:09.395
+Cloud services are now certified,
+in Classes A through D,
+
+3
+00:00:09.395 --> 00:00:12.699
+and Class C covers the
+old Moderate baseline.
+
+4
+00:00:12.699 --> 00:00:17.551
+The provider gets certified; your
+agency still authorizes its own system,
+
+5
+00:00:17.551 --> 00:00:21.050
+and never issues a standalone
+ATO for a cloud service.
+
+6
+00:00:21.050 --> 00:00:22.525
+Here's a telling detail.
+
+7
+00:00:22.525 --> 00:00:27.100
+Because the rules ship as one machine-readable
+file, you can count the words.
+
+8
+00:00:27.100 --> 00:00:30.725
+The phrase authorization
+boundary appears zero times.
+
+9
+00:00:30.725 --> 00:00:33.663
+The only boundary the rules name is yours.
+
+10
+00:00:33.663 --> 00:00:37.338
+Mandatory adoption starts January 2027.
+
+11
+00:00:37.338 --> 00:00:39.512
+So what replaced the provider's boundary?
+
+12
+00:00:39.512 --> 00:00:40.340
+Scope.

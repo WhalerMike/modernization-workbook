@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.750
+Two incidents make the case.
+
+2
+00:00:01.750 --> 00:00:06.516
+In 2023, tokens forged with a provider's
+own stolen signing key read federal
+
+3
+00:00:06.516 --> 00:00:11.512
+email for weeks, and every system that
+checked those tokens said they were fine.
+
+4
+00:00:11.512 --> 00:00:15.037
+What caught it was one department's
+own logging, not the provider.
+
+5
+00:00:15.037 --> 00:00:17.137
+Then there's the layer beneath the guest.
+
+6
+00:00:17.137 --> 00:00:21.613
+Ransomware crews went after hypervisors
+directly, and one flaw handed full
+
+7
+00:00:21.613 --> 00:00:25.875
+control to anyone who could create a
+directory group with the right name.
+
+8
+00:00:25.875 --> 00:00:29.612
+The security tools inside each
+virtual machine never saw it.
+
+9
+00:00:29.612 --> 00:00:33.588
+In both cases, the failure sat
+where no single tool was looking.
+
+10
+00:00:33.588 --> 00:00:35.640
+That's what Module 1 builds from.

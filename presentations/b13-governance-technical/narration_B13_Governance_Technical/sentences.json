@@ -1,0 +1,1216 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.562,
+   "This is the technical deep dive for Book 13 of the Federal Modernization Workbook, Governance, Drift and Evidence."
+  ],
+  [
+   8.325,
+   6.9,
+   "It's for the people who keep governance true after the audit: governance engineers, platform owners and ISSOs."
+  ],
+  [
+   15.225,
+   2.362,
+   "The whole book comes down to one idea."
+  ],
+  [
+   17.587,
+   9.65,
+   "A package that's assembled by hand starts going stale the day it's signed, so the evidence has to keep arriving, from one record, in a form anyone can re-run."
+  ],
+  [
+   27.238,
+   3.263,
+   "Part 1 builds the record and the engine that watches it."
+  ],
+  [
+   30.5,
+   4.537,
+   "Part 2 is the evidence, the owners, and how authorization uses it."
+  ],
+  [
+   35.038,
+   2.225,
+   "Let's start with why governance decays."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.562,
+   "On the day a package is signed, it's true."
+  ],
+  [
+   2.612,
+   6.85,
+   "The next morning someone fixes an outage, a role ends but the account stays on, a provider ships a new default."
+  ],
+  [
+   9.463,
+   1.775,
+   "None of it reaches the package."
+  ],
+  [
+   11.238,
+   8.838,
+   "The program sees four structural reasons this keeps happening, and none of them is fixed by buying another tool, because each fix sits underneath the tools."
+  ],
+  [
+   20.075,
+   4.8,
+   "Federal policy already points the other way, toward ongoing authorization."
+  ],
+  [
+   24.875,
+   6.4,
+   "What's missing is practice, and nist is blunt about why: without real automation, you can't get there."
+  ],
+  [
+   31.275,
+   2.325,
+   "So let's name the thing that does the damage."
+  ],
+  [
+   33.6,
+   1.087,
+   "That's drift."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.112,
+   "Module 1 is the foundation."
+  ],
+  [
+   2.163,
+   7.45,
+   "You can only measure drift against something, and that something only stays trustworthy if every change goes through one path."
+  ],
+  [
+   9.613,
+   6.412,
+   "So we'll cover what drift is, the one record we measure it against, and the path every change has to take."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.713,
+   "Drift is any gap between what the record says and what the estate actually does."
+  ],
+  [
+   4.763,
+   9.938,
+   "nist never uses the word, but its configuration controls, read together, describe exactly this: a baseline, controlled change, and someone checking."
+  ],
+  [
+   14.7,
+   3.65,
+   "Drift comes from five places, and most of them are innocent."
+  ],
+  [
+   18.35,
+   2.45,
+   "An emergency fix nobody wrote back."
+  ],
+  [
+   20.8,
+   1.913,
+   "A provider changing a default."
+  ],
+  [
+   22.712,
+   1.212,
+   "People moving on."
+  ],
+  [
+   23.925,
+   2.25,
+   "The dangerous part is that it's silent."
+  ],
+  [
+   26.175,
+   5.412,
+   "Every system keeps reporting what it was told, so nothing alarms unless something compares."
+  ],
+  [
+   31.587,
+   6.725,
+   "And a configuration that was right at assessment and wrong six months later is exactly what attackers walk through."
+  ],
+  [
+   38.312,
+   2.163,
+   "Next, how the program sorts it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.05,
+   "If you call everything configuration drift, you lose the ability to respond correctly."
+  ],
+  [
+   5.1,
+   16.562,
+   "So the program sorts every finding into one of five classes, each a simple question: is the shape valid, is the value still true, does the change trace to an authorized source, did anything act outside its authority, and does every object resolve to the record."
+  ],
+  [
+   21.663,
+   2.125,
+   "The payoff is in the response."
+  ],
+  [
+   23.788,
+   3.8,
+   "The first two get fixed, at the source, never in the copy."
+  ],
+  [
+   27.587,
+   5.725,
+   "The last three might mean someone acted without authority, so you investigate before touching anything."
+  ],
+  [
+   33.312,
+   3.35,
+   "Now, the record all of this is measured against."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.4,
+   "For years the directory tree quietly was the governance model, and migrations lose it."
+  ],
+  [
+   5.45,
+   9.175,
+   "The program's answer is one authoritative record, kept in a governed repository, where every other copy is just a pointer that knows where it came from."
+  ],
+  [
+   14.625,
+   5.25,
+   "Single means logically single; replicas are fine if only one accepts writes."
+  ],
+  [
+   19.875,
+   7.325,
+   "Code follows three simple rules: look it up by reference, never write to it at runtime, and never keep a private copy."
+  ],
+  [
+   27.2,
+   2.812,
+   "That last one is where most real drift starts."
+  ],
+  [
+   30.012,
+   5.6,
+   "And every report carries a provenance block, so you can always ask what the value was on a given date."
+  ],
+  [
+   35.612,
+   2.325,
+   "Next, how the record is divided."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   8.412,
+   "The record covers six control planes, from identity at the root through addressing, network, telemetry, security and management."
+  ],
+  [
+   8.463,
+   6.725,
+   "They're cut by authority, by who's allowed to say what's true, so every finding has exactly one owning team."
+  ],
+  [
+   15.188,
+   2.775,
+   "And the record doesn't master every fact."
+  ],
+  [
+   17.962,
+   2.1,
+   "HR still owns who a worker is."
+  ],
+  [
+   20.062,
+   5.763,
+   "What the record holds is the authority map: who owns each fact, and who may write the copy."
+  ],
+  [
+   25.825,
+   1.25,
+   "Two rules follow."
+  ],
+  [
+   27.075,
+   2.375,
+   "Corrections always flow upstream."
+  ],
+  [
+   29.45,
+   4.775,
+   "And where the platform says a value is read-only, the record has to know that too."
+  ],
+  [
+   34.225,
+   1.663,
+   "Now, how change gets in."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.938,
+   "Most drift isn't malicious."
+  ],
+  [
+   1.988,
+   4.4,
+   "It's a quick fix in the portal or a weekend script with a standing admin account."
+  ],
+  [
+   6.388,
+   7.787,
+   "So every change, whether a move, add, change, deletion or reset, travels the same five steps."
+  ],
+  [
+   14.175,
+   9.463,
+   "It starts from a source of truth, gets approved by the right authority, runs with just-in-time privilege, closes with proof, and emits its own evidence."
+  ],
+  [
+   23.637,
+   4.5,
+   "Skip a step and it isn't a change with missing paperwork; it's a drift finding."
+  ],
+  [
+   28.137,
+   7.1,
+   "Pre-approved lanes are allowed, but they're recorded grants with a scope and an expiry, never the absence of approval."
+  ],
+  [
+   35.237,
+   3.312,
+   "Next, the same path for changing the record itself."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.062,
+   "When the record itself changes, the pull request is the approval."
+  ],
+  [
+   4.112,
+   11.5,
+   "It updates the registry, carries a decision record for anything doctrinal, runs its checks before merge, needs a second person, and merges signed, so rollback is just a revert."
+  ],
+  [
+   15.613,
+   7.737,
+   "Most repository platforms can enforce this, with one catch worth knowing: the rules often don't bind administrators by default."
+  ],
+  [
+   23.35,
+   3.0,
+   "Turn that on, or you've built a standing exception."
+  ],
+  [
+   26.35,
+   6.463,
+   "The identity that decides and the identity that acts are kept apart, so neither can finish a job alone."
+  ],
+  [
+   32.812,
+   2.825,
+   "And emergencies get a path, not a pass."
+  ],
+  [
+   35.638,
+   1.538,
+   "Which brings us to closure."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.337,
+   "Here's the strictest rule in the book."
+  ],
+  [
+   2.388,
+   5.612,
+   "If someone clicks complete with nothing machine-readable attached, that's prose, not evidence."
+  ],
+  [
+   8.0,
+   2.638,
+   "Every closure carries the check that proved it."
+  ],
+  [
+   10.637,
+   8.025,
+   "A human-only closure is still allowed, as an escape hatch, but it's flagged and counted separately, never blended into your metrics."
+  ],
+  [
+   18.663,
+   4.987,
+   "And every report is regenerated from the closure stream, never compiled by hand."
+  ],
+  [
+   23.65,
+   9.75,
+   "One practical note: some of the controls this supports, like non-repudiation, are only required at the High baseline, so at Moderate the signing is a choice."
+  ],
+  [
+   33.4,
+   1.85,
+   "That closes Module 1."
+  ],
+  [
+   35.25,
+   2.7,
+   "Next, how we make the evidence checkable."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.938,
+   "Module 2 asks the obvious next question."
+  ],
+  [
+   2.987,
+   5.875,
+   "When the program turns the record into a statement about the estate, how does anyone know it's right?"
+  ],
+  [
+   8.863,
+   6.088,
+   "The answer is determinism, and the engine that uses it to find, classify and record drift."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.837,
+   "Automation makes the answer arrive faster."
+  ],
+  [
+   2.888,
+   7.912,
+   "Determinism makes it the same answer no matter who runs it, and that's the only kind an assessor can check without taking your word for it."
+  ],
+  [
+   10.8,
+   4.787,
+   "Same record version, same inputs, same evidence, byte for byte."
+  ],
+  [
+   15.588,
+   8.912,
+   "That sounds easy and isn't: two runs can agree and still serialize differently, so you need a fixed canonical format and a pinned toolchain."
+  ],
+  [
+   24.5,
+   2.175,
+   "The payoff is the picture on the left."
+  ],
+  [
+   26.675,
+   6.388,
+   "The assessor re-runs the window, and if the hashes match, the evidence is verified by reproduction."
+  ],
+  [
+   33.062,
+   2.6,
+   "If they don't, that's a finding in itself."
+  ],
+  [
+   35.663,
+   1.75,
+   "Now, where the rules live."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.2,
+   "The rules live in three layers, and keeping them apart is the point."
+  ],
+  [
+   4.25,
+   1.913,
+   "The first says what a rule means."
+  ],
+  [
+   6.162,
+   1.9,
+   "The second says where it applies."
+  ],
+  [
+   8.062,
+   2.4,
+   "The third is the code that evaluates it."
+  ],
+  [
+   10.463,
+   3.087,
+   "Each has its own reviewer and leaves its own evidence."
+  ],
+  [
+   13.55,
+   1.262,
+   "Why not combine them?"
+  ],
+  [
+   14.812,
+   10.463,
+   "Because they change at different speeds, carry different blast radius, and when something drifts you want to know whether the meaning shifted, a mapping broke, or the code disagrees with the rule."
+  ],
+  [
+   25.275,
+   3.413,
+   "And only the runtime is ever allowed to change anything."
+  ],
+  [
+   28.688,
+   3.112,
+   "Next, what rules as code looks like in practice."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.288,
+   "Rules as code isn't a new idea."
+  ],
+  [
+   2.337,
+   9.175,
+   "sis-uh's own secure-configuration tool already works this way: read the tenant, compare against policy written as code, report the result."
+  ],
+  [
+   11.512,
+   5.612,
+   "Collection, decision and reporting stay separate, and the policy is a file you can review."
+  ],
+  [
+   17.125,
+   5.95,
+   "The key property is that evaluation depends only on the rule, the mapping and the collected input."
+  ],
+  [
+   23.075,
+   2.188,
+   "Never on who ran it, or when."
+  ],
+  [
+   25.262,
+   9.213,
+   "On the right, the program lines its artifacts up with nist's machine-readable package models, so what it produces drops straight into an authorization package."
+  ],
+  [
+   34.475,
+   2.575,
+   "That correspondence is the program's own."
+  ],
+  [
+   37.05,
+   1.8,
+   "Now, the engine itself."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   6.425,
+   "The drift engine finds the gap between the record and the estate, classifies it and records what happened."
+  ],
+  [
+   6.475,
+   6.312,
+   "The crucial choice is what it compares against: a versioned record, not a last-known-good snapshot."
+  ],
+  [
+   12.787,
+   1.65,
+   "That gives you three things."
+  ],
+  [
+   14.438,
+   2.288,
+   "You can reproduce any finding later."
+  ],
+  [
+   16.725,
+   4.912,
+   "Approved changes don't show up as drift, because they update the record first."
+  ],
+  [
+   21.637,
+   7.412,
+   "And when the estate is right and the record is stale, the engine still raises it, but the fix is a reviewed change to the record."
+  ],
+  [
+   29.05,
+   5.35,
+   "It checks on two clocks: every change to the record, and scheduled reads of the estate."
+  ],
+  [
+   34.4,
+   2.075,
+   "Next, one model for all of it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   6.8,
+   "Every earlier book defined its own drift checks, for identity, delegation, HR and so on."
+  ],
+  [
+   6.85,
+   1.163,
+   "They don't compete."
+  ],
+  [
+   8.012,
+   6.45,
+   "Each one is an instance of the same five classes, so a finding means the same thing wherever it came from."
+  ],
+  [
+   14.463,
+   5.0,
+   "One finding is worth calling out: a write to a copy that was supposed to be retired."
+  ],
+  [
+   19.462,
+   3.487,
+   "That's the sign a second source of truth is growing back."
+  ],
+  [
+   22.95,
+   2.538,
+   "And be honest with your assessor about maturity."
+  ],
+  [
+   25.488,
+   2.538,
+   "The model is complete; the engine isn't."
+  ],
+  [
+   28.025,
+   3.337,
+   "Some classes are built, and some are still found by people."
+  ],
+  [
+   31.363,
+   1.8,
+   "Record those in the same shape."
+  ],
+  [
+   33.163,
+   1.363,
+   "Now, severity."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.463,
+   "Severity isn't debated; it's looked up, from the class and whether the claim is in use."
+  ],
+  [
+   5.513,
+   3.975,
+   "So two people looking at the same finding always get the same answer."
+  ],
+  [
+   9.488,
+   4.487,
+   "But here's the most common design mistake: treating severity as permission."
+  ],
+  [
+   13.975,
+   1.812,
+   "Severity sets the clock."
+  ],
+  [
+   15.787,
+   2.45,
+   "The actuation ladder sets who may act."
+  ],
+  [
+   18.238,
+   8.825,
+   "A low-severity finding still waits for a person unless its class has been explicitly approved to run on its own, and some kinds of change never qualify."
+  ],
+  [
+   27.062,
+   4.75,
+   "On the right, five things the engine never does, including accepting risk."
+  ],
+  [
+   31.812,
+   1.113,
+   "That ends Part 1."
+  ],
+  [
+   32.925,
+   2.413,
+   "Next, what all this evidence is worth."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.712,
+   "Part 2 starts with evidence."
+  ],
+  [
+   1.762,
+   10.475,
+   "We'll look at why system-produced evidence beats a signed statement, exactly what the integrity mechanisms prove, and the adapters that read every platform into one record."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   2.225,
+   "A signature tells you who's accountable."
+  ],
+  [
+   2.275,
+   3.975,
+   "It can't tell you whether the claim is still true, and you can't re-run it."
+  ],
+  [
+   6.25,
+   1.087,
+   "Evidence can."
+  ],
+  [
+   7.338,
+   10.7,
+   "The program flips the usual package: evidence becomes the substance, and people sign for the things machines can't decide, like rules, exceptions and accepting risk."
+  ],
+  [
+   18.038,
+   2.275,
+   "This isn't a stretch of federal guidance."
+  ],
+  [
+   20.312,
+   9.287,
+   "nist already says automated comparison against a desired state counts as assessment results, and fed-ramp tells assessors not to rely on screenshots."
+  ],
+  [
+   29.6,
+   3.587,
+   "Some controls stay human, and the package should say which."
+  ],
+  [
+   33.188,
+   2.8,
+   "Next, the chain that produces the evidence."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   13.012,
+   "The evidence chain has four stages: capture a platform's state, normalize it into a common claim, seal a window of claims into a bundle, and emit the package artifacts from that one bundle, so they can't disagree."
+  ],
+  [
+   13.062,
+   2.5,
+   "Every claim carries a provenance envelope."
+  ],
+  [
+   15.562,
+   11.05,
+   "The fields that matter most say whether a value was read from its owner, derived or made up by the program, record every transformation step, and tie the claim to its exact source."
+  ],
+  [
+   26.613,
+   4.8,
+   "One subtle point: a certificate thumbprint only identifies a certificate."
+  ],
+  [
+   31.413,
+   1.538,
+   "It doesn't sign anything."
+  ],
+  [
+   32.95,
+   2.375,
+   "And drift findings ride the same chain."
+  ],
+  [
+   35.325,
+   2.725,
+   "Next, what each integrity check proves."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   4.138,
+   "Integrity claims are easy to oversell, so be precise."
+  ],
+  [
+   4.188,
+   4.787,
+   "A hash tells you something changed, but anyone who changed the data can recompute it."
+  ],
+  [
+   8.975,
+   3.45,
+   "A hash chain tells you nothing was removed or reordered."
+  ],
+  [
+   12.425,
+   2.35,
+   "Only a signature tells you who produced it."
+  ],
+  [
+   14.775,
+   6.625,
+   "Together they let an assessor do something an interview never can: re-run a past window and compare."
+  ],
+  [
+   21.4,
+   1.913,
+   "And here's the practical advice."
+  ],
+  [
+   23.312,
+   9.1,
+   "The re-run only counts as independent if the assessor does it, not the operator, so give assessors their own read access to the archived inputs."
+  ],
+  [
+   32.413,
+   2.562,
+   "Now, the adapters that feed all this."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   2.65,
+   "The program doesn't replace your platforms."
+  ],
+  [
+   2.7,
+   1.0,
+   "It reads them."
+  ],
+  [
+   3.7,
+   8.775,
+   "An adapter translates one platform's native state into the common record, so the rules and the drift engine never have to learn a vendor's dialect."
+  ],
+  [
+   12.475,
+   6.162,
+   "Adapters are deliberately narrow: no rules, no decisions, and no edits to the record."
+  ],
+  [
+   18.637,
+   1.337,
+   "There are two kinds."
+  ],
+  [
+   19.975,
+   1.85,
+   "Read-only adapters observe."
+  ],
+  [
+   21.825,
+   4.0,
+   "Change-making adapters act, but only on an authorized plan."
+  ],
+  [
+   25.825,
+   7.1,
+   "They're kept in separate lists on purpose, so the grant of write authority is visible in any change a reviewer looks at."
+  ],
+  [
+   32.925,
+   3.062,
+   "Next, the contract every adapter keeps."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   15.262,
+   "An adapter is defined by its declaration, not its code, and every one inherits four invariants: stay inside the boundary, never edit the record, emit under its own certificate-backed identity, and refer to real object identifiers."
+  ],
+  [
+   15.312,
+   3.2,
+   "Read-only comes first, but it has to be verified."
+  ],
+  [
+   18.512,
+   7.963,
+   "A tool built to observe can still run under an account that can change things, so compare what the identity is granted with what it declares."
+  ],
+  [
+   26.475,
+   7.025,
+   "Adapters also pin the platform's production API, and earn active status through testing before anyone relies on them."
+  ],
+  [
+   33.5,
+   1.863,
+   "That closes Module 3."
+  ],
+  [
+   35.362,
+   1.4,
+   "Next, the people."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   2.0,
+   "The machine can't decide anything."
+  ],
+  [
+   2.05,
+   3.825,
+   "A drift finding is a question, and someone has to own the answer."
+  ],
+  [
+   5.875,
+   7.963,
+   "So Module 4 names the owners, then shows how one body of evidence serves many agencies and scales across a whole estate."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   2.812,
+   "Governance decays the same way compliance does."
+  ],
+  [
+   2.862,
+   2.625,
+   "If nobody owns a rule, it goes stale."
+  ],
+  [
+   5.487,
+   3.5,
+   "If nobody signs for an exception, it becomes permanent."
+  ],
+  [
+   8.988,
+   2.638,
+   "So each question gets exactly one owner."
+  ],
+  [
+   11.625,
+   10.15,
+   "Two jobs that are easy to blur are kept apart: the steward keeps the record, but the information owners, like HR or the see-so, decide what the facts mean."
+  ],
+  [
+   21.775,
+   5.237,
+   "A steward who edits a fact to make a finding disappear has made someone else's decision."
+  ],
+  [
+   27.012,
+   10.262,
+   "On the right, who decides each kind of rule change, including the one that matters most: only the authorizing official lets a class of change run without a person."
+  ],
+  [
+   37.275,
+   1.525,
+   "Next, exceptions."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   3.337,
+   "A finding you can't fix in time isn't quietly closed."
+  ],
+  [
+   3.388,
+   3.45,
+   "It's carried, by a named person, with an end date."
+  ],
+  [
+   6.838,
+   6.1,
+   "A bounded exception is the see-so's call; anything open-ended goes to the authorizing official."
+  ],
+  [
+   12.938,
+   5.9,
+   "Nothing renews automatically, and an exception never edits the rule, so the gap stays visible."
+  ],
+  [
+   18.837,
+   5.688,
+   "The governance board reviews, but it doesn't vote, because a consensus has no one accountable."
+  ],
+  [
+   24.525,
+   12.025,
+   "And because this platform holds the record of what everyone else did, its own separations matter most: no self-approval, assessors who never edit, and an authorizing official who stays outside."
+  ],
+  [
+   36.55,
+   2.312,
+   "Next, the tempo, in brief."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   6.45,
+   "A platform that detects perfectly but closes slowly just builds an accurate list of things nobody fixed."
+  ],
+  [
+   6.5,
+   6.15,
+   "And sending a person to a console because a ticket said so doesn't help; the closure is still an assertion."
+  ],
+  [
+   12.65,
+   6.487,
+   "So wherever a machine can reach, the ticket authorizes the machine, and the person's job stops at approval."
+  ],
+  [
+   19.137,
+   10.575,
+   "A class of change qualifies only if it passes six tests, and where no machine can reach, the fallback is a recorded, time-boxed session, never a quiet trip to the console."
+  ],
+  [
+   29.712,
+   2.525,
+   "The reference deck walks through the details."
+  ],
+  [
+   32.237,
+   2.975,
+   "Now, reusing evidence across agencies."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   5.487,
+   "Twenty agencies assessing the same platform produce twenty snapshots that are all out of date."
+  ],
+  [
+   5.537,
+   5.162,
+   "Reciprocity fixes the duplication, but it's worth being precise about what it means."
+  ],
+  [
+   10.7,
+   3.663,
+   "It's about reusing assessments, not handing off risk."
+  ],
+  [
+   14.363,
+   6.85,
+   "Federal policy now presumes a maintained package is adequate, and asks for more only with a documented reason."
+  ],
+  [
+   21.212,
+   2.95,
+   "But every agency still signs for its own system."
+  ],
+  [
+   24.163,
+   10.012,
+   "So the program's model is one package for a shared service, with each agency's own decision on top, and agencies differing in configuration rather than in packages."
+  ],
+  [
+   34.175,
+   2.638,
+   "Next, how that stays current over time."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   3.612,
+   "Reciprocity reuses one package across agencies."
+  ],
+  [
+   3.663,
+   5.513,
+   "Ongoing authorization reuses it across time, and that's what makes reuse safe."
+  ],
+  [
+   9.175,
+   8.363,
+   "Once the conditions are met, the authorizing official stops working to a termination date and reviews posture on a schedule and on triggers."
+  ],
+  [
+   17.538,
+   5.412,
+   "Everything in this book is what a robust monitoring program looks like when it's actually built."
+  ],
+  [
+   22.95,
+   1.163,
+   "Two cautions."
+  ],
+  [
+   24.113,
+   4.987,
+   "fed-ramp's new security indicators bind cloud providers, not agencies."
+  ],
+  [
+   29.1,
+   6.975,
+   "And proving who produced a bundle takes a real signature, because a shared-key code or a list of hashes can be rewritten."
+  ],
+  [
+   36.075,
+   1.8,
+   "Now, running this at scale."
+  ]
+ ],
+ "30": [
+  [
+   0.05,
+   4.312,
+   "A real agency has hundreds of systems and several programs at once."
+  ],
+  [
+   4.362,
+   5.2,
+   "The scaling rule is simple: keep the definitions small, and let the uses grow."
+  ],
+  [
+   9.562,
+   5.05,
+   "If every program could invent its own drift class, nobody's numbers would add up."
+  ],
+  [
+   14.613,
+   4.875,
+   "Boundaries are treated the same way, as recorded objects rather than assumptions."
+  ],
+  [
+   19.488,
+   10.438,
+   "And continuous monitoring is run as an actual chartered project, in five phases, each with a clear gate, starting with just two sources and one object class."
+  ],
+  [
+   29.925,
+   3.075,
+   "The risk to plan for is finding more than you can fix."
+  ],
+  [
+   33.0,
+   2.7,
+   "Next, how to report coverage honestly."
+  ]
+ ],
+ "31": [
+  [
+   0.05,
+   5.138,
+   "No platform covers every control, and pretending it does just hides risk."
+  ],
+  [
+   5.188,
+   5.638,
+   "So every control gets an honest label: covered, partial, gap or out of scope."
+  ],
+  [
+   10.825,
+   3.462,
+   "Partial is the one most often rounded up, so don't."
+  ],
+  [
+   14.287,
+   7.225,
+   "Every gap goes in a register with an owner and, crucially, the evidence that will prove it closed, named up front."
+  ],
+  [
+   21.512,
+   6.938,
+   "A gap closes one of three ways: fix it, compensate for it, or have the authorizing official accept it."
+  ],
+  [
+   28.45,
+   7.713,
+   "And report counts, proven and asserted, not one tidy percentage, so the decision maker can see the risk they're accepting."
+  ],
+  [
+   36.163,
+   1.0,
+   "Let's wrap up."
+  ]
+ ],
+ "32": [
+  [
+   0.05,
+   2.625,
+   "So here are the decisions, each with an owner."
+  ],
+  [
+   2.675,
+   2.275,
+   "Charter the board and name the steward."
+  ],
+  [
+   4.95,
+   4.175,
+   "Ratify which sources are authoritative and retire every other copy."
+  ],
+  [
+   9.125,
+   2.788,
+   "Make branch protection bind administrators."
+  ],
+  [
+   11.912,
+   5.987,
+   "Let only the authorizing official decide what runs without a person, and how independent the assessors are."
+  ],
+  [
+   17.9,
+   1.812,
+   "And report coverage honestly."
+  ],
+  [
+   19.712,
+   10.213,
+   "The first steps don't need a new platform: find the private copies, count human-only closures separately, check what your adapters can really do, and open the gap register."
+  ],
+  [
+   29.925,
+   5.688,
+   "Governance that doesn't decay is governance whose gaps are written down, owned and proven."
+  ],
+  [
+   35.612,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.985
+The network gets built from
+reviewed source as five modules,
+
+2
+00:00:03.985 --> 00:00:08.078
+each owning one plane and depending
+only on the layers below it:
+
+3
+00:00:08.078 --> 00:00:12.250
+platform, address plan, naming,
+network, and the enforcement edge.
+
+4
+00:00:12.250 --> 00:00:15.390
+Naming mechanisms rather
+than products is the point,
+
+5
+00:00:15.390 --> 00:00:19.100
+because changing vendors should
+change syntax, not the design.
+
+6
+00:00:19.100 --> 00:00:21.525
+And some inputs change
+underneath your code.
+
+7
+00:00:21.525 --> 00:00:26.889
+Microsoft's endpoint list is the classic
+case, and GCC uses the worldwide list,
+
+8
+00:00:26.889 --> 00:00:30.912
+so blocking commercial endpoints
+would block GCC itself.
+
+9
+00:00:30.912 --> 00:00:34.238
+Pull that list on a schedule and
+apply it through the pipeline.
+
+10
+00:00:34.238 --> 00:00:37.390
+Which raises the question of
+who gets to run that pipeline.

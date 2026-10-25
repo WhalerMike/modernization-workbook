@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.850
+Here's the discipline of this book.
+
+2
+00:00:01.850 --> 00:00:04.000
+The assessment tools are thermometers.
+
+3
+00:00:04.000 --> 00:00:06.612
+They measure deviation;
+they don't fix any.
+
+4
+00:00:06.612 --> 00:00:09.823
+Run them as your program before
+the architecture exists,
+
+5
+00:00:09.823 --> 00:00:12.487
+and you get an accurate
+list that never shrinks.
+
+6
+00:00:12.487 --> 00:00:15.488
+So the program's sequence
+puts them at step five.
+
+7
+00:00:15.488 --> 00:00:19.876
+First understand the gaps, design
+the fix, build it and govern it.
+
+8
+00:00:19.876 --> 00:00:24.400
+Then the tools confirm the built state,
+and the authorizing official decides.
+
+9
+00:00:24.400 --> 00:00:27.237
+That's the same order as
+NIST's risk framework.
+
+10
+00:00:27.237 --> 00:00:29.120
+And it means building naming,
+
+11
+00:00:29.120 --> 00:00:32.963
+device identity and the retirement
+of old protocols first.
+
+12
+00:00:32.963 --> 00:00:35.540
+Next, what to do with each finding today.

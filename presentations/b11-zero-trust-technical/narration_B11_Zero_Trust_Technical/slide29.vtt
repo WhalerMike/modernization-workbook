@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.978
+Findings get ranked by
+severity and effort,
+
+2
+00:00:02.978 --> 00:00:06.475
+so a serious problem with a
+cheap fix rises to the top.
+
+3
+00:00:06.475 --> 00:00:09.097
+Quick wins go into the next change window;
+
+4
+00:00:09.097 --> 00:00:12.337
+big projects go onto a
+pillar roadmap with funding.
+
+5
+00:00:12.337 --> 00:00:17.134
+That scoring is the program's own method,
+documented so anyone can check it,
+
+6
+00:00:17.134 --> 00:00:20.200
+and a top priority still
+isn't a risk acceptance.
+
+7
+00:00:20.200 --> 00:00:24.187
+Then reconcile the two tools
+by control, not tool to tool.
+
+8
+00:00:24.187 --> 00:00:26.199
+When both flag the same setting,
+
+9
+00:00:26.199 --> 00:00:29.988
+that's one finding with two
+pieces of evidence and one owner.
+
+10
+00:00:29.988 --> 00:00:32.620
+Next, exceptions and re-assessment.

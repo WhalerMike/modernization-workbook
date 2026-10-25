@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.287
+Before you count results, read them.
+
+2
+00:00:02.287 --> 00:00:06.788
+Only fails, warnings and items flagged
+for investigation are findings.
+
+3
+00:00:06.788 --> 00:00:09.787
+A skipped check isn't a
+pass, and it isn't a gap.
+
+4
+00:00:09.787 --> 00:00:14.550
+It's absence of evidence, often because
+a license or a connection was missing.
+
+5
+00:00:14.550 --> 00:00:18.714
+In a government cloud, some premium
+features simply aren't available,
+
+6
+00:00:18.714 --> 00:00:22.075
+so a skipped or failed premium
+check may not be a real gap.
+
+7
+00:00:22.075 --> 00:00:25.069
+Score it as failed and
+you overstate the problem;
+
+8
+00:00:25.069 --> 00:00:28.137
+score it as passed and you
+overstate your posture.
+
+9
+00:00:28.137 --> 00:00:30.787
+Record it as a boundary finding instead.
+
+10
+00:00:30.787 --> 00:00:33.380
+Next, scoring and reconciling.

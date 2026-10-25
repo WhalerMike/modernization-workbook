@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.425
+Decision rights don't change
+what a console lets someone do.
+
+2
+00:00:03.425 --> 00:00:07.825
+Roles do, and these tools need
+broad read access to every tenant.
+
+3
+00:00:07.825 --> 00:00:09.839
+So the operators run as readers,
+
+4
+00:00:09.839 --> 00:00:13.325
+with admin roles only where
+a product truly needs them.
+
+5
+00:00:13.325 --> 00:00:15.518
+The one-time consent is granted by an
+
+6
+00:00:15.518 --> 00:00:18.588
+administrator who doesn't
+then run the assessment.
+
+7
+00:00:18.588 --> 00:00:23.022
+Those assessment accounts are among
+the most sensitive identities you have,
+
+8
+00:00:23.022 --> 00:00:27.387
+so make them eligible rather than standing,
+and send their sign-ins to the SOC.
+
+9
+00:00:27.387 --> 00:00:30.618
+Even the tool's telemetry
+setting is a CISO decision,
+
+10
+00:00:30.618 --> 00:00:32.600
+not something decided on the day.
+
+11
+00:00:32.600 --> 00:00:34.610
+Next, the order of work.

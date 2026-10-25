@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.037
+Some findings won't be fixed soon,
+and that's fine if it's governed.
+
+2
+00:00:04.037 --> 00:00:07.062
+Exceptions live in the
+tool's configuration file,
+
+3
+00:00:07.062 --> 00:00:10.899
+under version control, with an
+expiry date and a named approver.
+
+4
+00:00:10.899 --> 00:00:15.290
+Whatever isn't fixed or excepted goes
+on the plan of action and milestones,
+
+5
+00:00:15.290 --> 00:00:18.600
+with an owner and the evidence
+that will prove it closed.
+
+6
+00:00:18.600 --> 00:00:22.574
+Then re-run on a calendar and
+after each remediation wave,
+
+7
+00:00:22.574 --> 00:00:26.125
+so findings close by evidence,
+not by ticket status.
+
+8
+00:00:26.125 --> 00:00:27.766
+Each run adds an interval,
+
+9
+00:00:27.766 --> 00:00:31.987
+and anything that newly breaks
+goes to the authorizing official.
+
+10
+00:00:31.987 --> 00:00:34.610
+Next, how this maps to controls.

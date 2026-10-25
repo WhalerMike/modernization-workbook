@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.387
+Here's the strictest rule in the book.
+
+2
+00:00:02.387 --> 00:00:06.489
+If someone clicks complete with
+nothing machine-readable attached,
+
+3
+00:00:06.489 --> 00:00:08.000
+that's prose, not evidence.
+
+4
+00:00:08.000 --> 00:00:10.638
+Every closure carries
+the check that proved it.
+
+5
+00:00:10.638 --> 00:00:14.120
+A human-only closure is still
+allowed, as an escape hatch,
+
+6
+00:00:14.120 --> 00:00:18.662
+but it's flagged and counted separately,
+never blended into your metrics.
+
+7
+00:00:18.662 --> 00:00:23.650
+And every report is regenerated from the
+closure stream, never compiled by hand.
+
+8
+00:00:23.650 --> 00:00:28.525
+One practical note: some of the controls
+this supports, like non-repudiation,
+
+9
+00:00:28.525 --> 00:00:33.400
+are only required at the High baseline,
+so at Moderate the signing is a choice.
+
+10
+00:00:33.400 --> 00:00:35.250
+That closes Module 1.
+
+11
+00:00:35.250 --> 00:00:38.020
+Next, how we make the evidence checkable.

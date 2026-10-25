@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.923
+Outside Microsoft 365,
+
+2
+00:00:01.923 --> 00:00:06.950
+every provider's tool tells you
+its own limits, in its own words.
+
+3
+00:00:06.950 --> 00:00:09.650
+One covers only a subset of controls.
+
+4
+00:00:09.650 --> 00:00:12.050
+Another calls its compliance view partial.
+
+5
+00:00:12.050 --> 00:00:16.450
+The hypervisor guidance warns its
+assumptions may not fit your environment.
+
+6
+00:00:16.450 --> 00:00:19.729
+And a FedRAMP certification
+covers the provider's service,
+
+7
+00:00:19.729 --> 00:00:23.075
+not how you configured it or
+connected it to everything else.
+
+8
+00:00:23.075 --> 00:00:27.875
+So running every vendor's tool gives
+you a pile of reports, one per vendor.
+
+9
+00:00:27.875 --> 00:00:32.075
+The agency is the only party that
+can hold one posture across them.
+
+10
+00:00:32.075 --> 00:00:36.100
+Next, what has to be reconciled
+before any score means something.

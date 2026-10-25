@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.999
+Principle three: evidence
+has to be something an
+
+2
+00:00:02.999 --> 00:00:05.875
+assessor can re-run and
+get the same answer from.
+
+3
+00:00:05.875 --> 00:00:08.700
+If it can't be reproduced,
+it's an assertion.
+
+4
+00:00:08.700 --> 00:00:14.325
+Principle four: a policy that only produces
+a dashboard is a report, not a control.
+
+5
+00:00:14.325 --> 00:00:16.972
+Enforcement can still wait
+for a human approval,
+
+6
+00:00:16.972 --> 00:00:20.612
+but something has to happen when
+the running state breaks the rule.
+
+7
+00:00:20.612 --> 00:00:23.350
+Principle five: model the cloud boundary.
+
+8
+00:00:23.350 --> 00:00:26.536
+Government clouds don't have
+every commercial feature,
+
+9
+00:00:26.536 --> 00:00:28.475
+and each mandate stops somewhere.
+
+10
+00:00:28.475 --> 00:00:31.050
+Write those gaps down
+as governed findings.
+
+11
+00:00:31.050 --> 00:00:34.100
+Now, which documents
+actually set requirements?

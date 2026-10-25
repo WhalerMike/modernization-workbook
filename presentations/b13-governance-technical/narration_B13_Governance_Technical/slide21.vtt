@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.188
+Integrity claims are easy
+to oversell, so be precise.
+
+2
+00:00:04.188 --> 00:00:06.200
+A hash tells you something changed,
+
+3
+00:00:06.200 --> 00:00:08.975
+but anyone who changed
+the data can recompute it.
+
+4
+00:00:08.975 --> 00:00:12.425
+A hash chain tells you nothing
+was removed or reordered.
+
+5
+00:00:12.425 --> 00:00:14.775
+Only a signature tells
+you who produced it.
+
+6
+00:00:14.775 --> 00:00:19.273
+Together they let an assessor do
+something an interview never can:
+
+7
+00:00:19.273 --> 00:00:21.400
+re-run a past window and compare.
+
+8
+00:00:21.400 --> 00:00:23.313
+And here's the practical advice.
+
+9
+00:00:23.313 --> 00:00:27.234
+The re-run only counts as
+independent if the assessor does it,
+
+10
+00:00:27.234 --> 00:00:32.412
+not the operator, so give assessors their
+own read access to the archived inputs.
+
+11
+00:00:32.412 --> 00:00:35.040
+Now, the adapters that feed all this.

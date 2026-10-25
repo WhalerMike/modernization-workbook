@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.350
+CISA's cloud directive
+has six required actions.
+
+2
+00:00:03.350 --> 00:00:06.376
+Half of them are paperwork:
+list your tenants,
+
+3
+00:00:06.376 --> 00:00:09.238
+deploy the tools, explain your deviations.
+
+4
+00:00:09.238 --> 00:00:10.926
+Agencies did those quickly.
+
+5
+00:00:10.926 --> 00:00:15.150
+The other half is the real point:
+implement the mandatory settings,
+
+6
+00:00:15.150 --> 00:00:19.913
+keep up as they change, and baseline
+every new tenant before it's authorized.
+
+7
+00:00:19.913 --> 00:00:22.028
+In practice that means remediation,
+
+8
+00:00:22.028 --> 00:00:25.413
+and much of it depends on
+architecture outside the tenant.
+
+9
+00:00:25.413 --> 00:00:27.913
+Scope is tighter than people think, too.
+
+10
+00:00:27.913 --> 00:00:30.737
+It's production
+software-as-a-service tenants only,
+
+11
+00:00:30.737 --> 00:00:33.426
+so cloud infrastructure
+subscriptions are out.
+
+12
+00:00:33.426 --> 00:00:37.050
+So measure compliance by what's
+fixed, not by what's reported.
+
+13
+00:00:37.050 --> 00:00:39.960
+Next, what the mandatory list contains.

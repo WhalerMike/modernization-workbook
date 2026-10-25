@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.200
+Agencies often run two free tools
+and then wonder if they need both.
+
+2
+00:00:04.200 --> 00:00:06.863
+They do, because they
+ask different questions.
+
+3
+00:00:06.863 --> 00:00:12.750
+CISA's tool asks whether your Microsoft
+365 tenant meets the federal baseline.
+
+4
+00:00:12.750 --> 00:00:15.880
+Microsoft's tool asks how
+mature your environment
+
+5
+00:00:15.880 --> 00:00:18.562
+is against Microsoft's
+Zero Trust guidance.
+
+6
+00:00:18.562 --> 00:00:23.174
+They run differently, label findings
+differently and score severity differently.
+
+7
+00:00:23.174 --> 00:00:25.487
+And read-only doesn't mean low privilege.
+
+8
+00:00:25.487 --> 00:00:30.738
+Both need broad read roles and an admin
+consent, and some products need admin roles.
+
+9
+00:00:30.738 --> 00:00:34.700
+Test the exact roles in your tenant
+before you write the run book.
+
+10
+00:00:34.700 --> 00:00:38.180
+Next, where the two tools
+overlap and where they don't.

@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.526
+The record covers six control planes, from
+identity at the root through addressing,
+
+2
+00:00:05.526 --> 00:00:08.462
+network, telemetry,
+security and management.
+
+3
+00:00:08.462 --> 00:00:12.226
+They're cut by authority, by
+who's allowed to say what's true,
+
+4
+00:00:12.226 --> 00:00:15.188
+so every finding has
+exactly one owning team.
+
+5
+00:00:15.188 --> 00:00:17.963
+And the record doesn't master every fact.
+
+6
+00:00:17.963 --> 00:00:20.062
+HR still owns who a worker is.
+
+7
+00:00:20.062 --> 00:00:22.903
+What the record holds
+is the authority map:
+
+8
+00:00:22.903 --> 00:00:25.825
+who owns each fact, and
+who may write the copy.
+
+9
+00:00:25.825 --> 00:00:27.075
+Two rules follow.
+
+10
+00:00:27.075 --> 00:00:29.450
+Corrections always flow upstream.
+
+11
+00:00:29.450 --> 00:00:34.225
+And where the platform says a value is
+read-only, the record has to know that too.
+
+12
+00:00:34.225 --> 00:00:35.950
+Now, how change gets in.
