@@ -145,7 +145,7 @@ The directive distinguishes mandatory "shall" policies from recommended "should"
 
 | SCuBA policy | Requirement (paraphrased) |
 |---|---|
-| MS.AAD.3.2v1 | If phishing-resistant MFA isn't yet enforced, enforce an alternative MFA method for all users |
+| MS.AAD.3.2v1 | If phishing-resistant MFA isn't yet enforced, enforce an alternative MFA method for all users. ScubaGear 2.0.0 checks this as MS.AAD.3.2v2, "MFA shall be enforced for all users"[^aA-scuba-32v2] |
 | MS.AAD.3.3v2 | If Microsoft Authenticator is enabled, show login context information |
 | MS.AAD.3.4v1 | Set the Authentication Methods Manage Migration feature to Migration Complete |
 | MS.AAD.7.1v1 | Assign the Global Administrator role to between two and eight users |
@@ -224,6 +224,7 @@ The specification supports account management, access enforcement, and continuou
 [^aA-configure-security]: Microsoft Learn, "Configure Microsoft Entra for increased security (Preview)," <https://learn.microsoft.com/entra/fundamentals/configure-security> (accessed Oct 20, 2026).
 [^aA-gsa-limits]: Microsoft Learn, "Known limitations for Global Secure Access," section "Global Secure Access In Government Cloud limitations," <https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations> (accessed Oct 20, 2026).
 [^aA-gcc-entra]: Microsoft Learn, "Dynamics 365 US Government," <https://learn.microsoft.com/power-platform/admin/microsoft-dynamics-365-government> (accessed Oct 20, 2026). The page contrasts GCC High and DoD, which use Microsoft Entra Government, with GCC, which uses the public Microsoft Entra ID service.
+[^aA-scuba-32v2]: Cybersecurity and Infrastructure Security Agency, ScubaGear Microsoft Entra ID secure configuration baseline (`aad.md`, released with ScubaGear v2.0.0 on October 22, 2026), policy MS.AAD.3.2v2, last modified February 2026, <https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md> (accessed Oct 25, 2026). The BOD 25-01 Required Configurations page still lists MS.AAD.3.2v1 on that date.
 [^aA-bod-required]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Oct 20, 2026).
 [^aA-phs]: Microsoft Learn, "Implement password hash synchronization with Microsoft Entra Connect Sync," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-password-hash-synchronization> (accessed Oct 20, 2026).
 [^aA-zt-identities]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities> (accessed Oct 20, 2026).
