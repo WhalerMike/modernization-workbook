@@ -230,9 +230,19 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 
 | File | Use it for |
 |---|---|
-| [privileged-access.xml](files/privileged-access.xml) | Microsoft Project (open the XML file; it keeps the dependencies, milestones and owners). The dates start on a placeholder Monday: change the project start date. |
+| [privileged-access.xml](files/privileged-access.xml) | Microsoft Project desktop (open the XML file; it keeps the dependencies, milestones and owners). The dates start on a placeholder Monday: change the project start date. |
 | [privileged-access.csv](files/privileged-access.csv) | Excel or any other scheduling tool: every row with its dependencies, early and late dates and float |
 | [privileged-access.yaml](https://github.com/WhalerMike/modernization-workbook/blob/main/data/project-plans/privileged-access.yaml) | The source. Edit the durations, owners and dependencies, then run `python scripts/project_plans/build.py` to recompute the critical path and regenerate this page, the chart and the downloads. |
 
 : Downloads {.striped}
+
+::: {.callout-tip}
+## Opening this plan in Project or Planner
+- **Microsoft Project desktop** opens the XML file directly, with every dependency, milestone and owner.
+- **Microsoft Planner** has no file import of its own: it doesn't read XML, CSV or Excel. To bring this plan into a Planner premium plan, open the XML file in Project desktop, save it as an `.mpp` file, and import that through the Project Power App. Tasks, durations, dependencies and milestones come across; resources and baselines don't, so assign owners again in Planner.
+- **Without Project desktop**, the CSV can feed a Power Automate flow that creates the tasks one by one, but dependencies in a premium plan need Microsoft's Project schedule APIs, so that's a build, not an import.
+- **In a government cloud tenant**, check that premium plans are available before relying on Planner for this schedule: Microsoft notes that converting a basic plan to a premium plan isn't available in GCC.
+
+Project for the web was retired on August 1, 2025, and Project Online on September 30, 2026; Planner is their successor. Project desktop is unaffected.
+:::
 
