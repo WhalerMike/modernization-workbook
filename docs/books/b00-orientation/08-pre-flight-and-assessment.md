@@ -243,6 +243,11 @@ G0 combines the platform checklist above with assessment milestones M-008 to M-0
 - [ ] Every High finding has an owner and a remediation date before G1.
 - [ ] The workstream leads and the steering committee have reviewed the assessment and the classified findings.
 
+**Direction**
+
+- [ ] A provisional target end state is recorded: AD retired, or a Kerberos island for named workloads with an end date. The executive sponsor and CIO confirm or revise it before Phase 5 ([Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md#phase-0-pre-flight-weeks-14)).
+- [ ] The change process asks of every change whether it adds a dependency on Active Directory, and routes a yes to the exception path ([Book 13, Chapter 04](../b13-governance/04-change-control-and-provenance.md#no-new-dependencies-on-active-directory)).
+
 **Gate record**
 
 - [ ] The G0 decision (go, no-go or conditional go, with any conditions and their dates) is merged by pull request, and the merge records who decided.

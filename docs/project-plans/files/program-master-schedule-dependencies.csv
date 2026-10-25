@@ -5,8 +5,12 @@ P0.3,P0.1,Finish-to-start,0
 P0.4,P0.2,Finish-to-start,0
 P0.4,P0.3,Finish-to-start,0
 P0.5,P0.1,Finish-to-start,0
+P0.6,P0.1,Finish-to-start,0
+D11,P0.4,Finish-to-start,0
 G0,P0.4,Finish-to-start,0
 G0,P0.5,Finish-to-start,0
+G0,P0.6,Finish-to-start,0
+G0,D11,Finish-to-start,0
 D02,G0,Finish-to-start,0
 P1.1,D02,Finish-to-start,0
 P1.2,P1.1,Finish-to-start,0
@@ -79,6 +83,7 @@ P4.7,P4.4,Finish-to-start,0
 P4.7,P4.5,Finish-to-start,0
 G4,P4.7,Finish-to-start,0
 D09,G3,Finish-to-start,0
+D09,D11,Finish-to-start,0
 D10,G3,Finish-to-start,0
 P5.1,G4,Finish-to-start,0
 P5.2,P5.1,Finish-to-start,0

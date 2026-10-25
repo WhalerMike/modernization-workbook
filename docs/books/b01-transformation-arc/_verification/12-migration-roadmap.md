@@ -36,6 +36,9 @@ Editor: W5. Sources: the series chapter in place (old Chapter 09, "Migration Roa
 | 28 | Review fix 2, Oct 21, 2026 (revision-history trim): "The source kept 'the forest in backup' as the fallback" | Rollback | wording-only | Now "'The forest in backup' isn't a lasting fallback". Tombstone-lifetime fact unchanged under [^c12-tsl]. No new claim. |
 | 29 | Review fix 2, Oct 21, 2026 (revision-history trim): "the source conflated them" and "the source's claim that agencies which haven't modernized 'will not be able to produce' FedRAMP evidence by 2027 is wrong as stated" | External clocks | wording-only | Now "they are easy to conflate" and "the 2027 date doesn't stop an agency that hasn't modernized from producing the evidence its own authorization needs", which follows from the cited [^c12-fedramp-use] (agency authorizes its own systems). No new claim. |
 
+| 30 | Addition, Oct 25, 2026: Microsoft's cloud-first phase is a process and policy phase to stop new AD DS dependencies; change approval should evaluate whether a change adds one; added as a G0 condition | Phase 0 | verified (added) | Microsoft Learn, Implement a cloud-first approach ([^c12-cloudfirst]) |
+| 31 | Addition, Oct 25, 2026: Microsoft leaves the end state to the organization (AD removed entirely, or some capability left in place); a provisional target end state is recorded at G0 and confirmed before Phase 5 | Phase 0; Phase 5 step 3 | verified (added); the G0 timing is program design | Microsoft Learn, Cloud transformation posture ([^c12-endstate]) |
+
 ## Carry-forward ledger — old Chapter 09
 
 | Source page § | Went to | Or why not carried |

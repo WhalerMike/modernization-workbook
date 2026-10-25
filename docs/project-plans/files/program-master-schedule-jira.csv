@@ -8,7 +8,7 @@ If decided late: Nothing starts; the external clocks keep running
 Source: https://whalermike.github.io/modernization-workbook/docs/start-here.html",fmw,fmw-program-master-schedule,fmw-id-d01,decision,owner-executive-sponsor-and-cio,critical-path,2027-01-04,2027-01-04,3,,,,,,,
 3,Task,1,P0.1 Charter accepted; owners named in the decision matrix,"P0.1 · Task · owner or approver: Program office
 Duration 3 working days · wk 1 · total float 0 · predecessors: D01
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html",fmw,fmw-program-master-schedule,fmw-id-p0.1,task,owner-program-office,critical-path,2027-01-04,2027-01-06,4,5,7,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/03-the-charter.html",fmw,fmw-program-master-schedule,fmw-id-p0.1,task,owner-program-office,critical-path,2027-01-04,2027-01-06,4,5,7,8,,,,
 4,Task,1,"P0.2 Platform host built, repository seeded, host connected through Arc","P0.2 · Task · owner or approver: Platform teams
 Duration 7 working days · wk 1–2 · total float 0 · predecessors: P0.1
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/03-platform-foundation.html",fmw,fmw-program-master-schedule,fmw-id-p0.2,task,owner-platform-teams,critical-path,2027-01-07,2027-01-15,6,,,,,,,
@@ -17,214 +17,222 @@ Duration 3 working days · wk 1–2 · total float 4 d · predecessors: P0.1
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-0-pre-flight-weeks-14",fmw,fmw-program-master-schedule,fmw-id-p0.3,task,owner-platform-teams,,2027-01-07,2027-01-11,6,,,,,,,
 6,Task,1,P0.4 Read-only assessment run and committed,"P0.4 · Task · owner or approver: Program office
 Duration 10 working days · wk 3–4 · total float 0 · predecessors: P0.2, P0.3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html",fmw,fmw-program-master-schedule,fmw-id-p0.4,task,owner-program-office,critical-path,2027-01-18,2027-01-29,8,,,,,,,
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/08-pre-flight-and-assessment.html",fmw,fmw-program-master-schedule,fmw-id-p0.4,task,owner-program-office,critical-path,2027-01-18,2027-01-29,9,10,,,,,,
 7,Task,1,P0.5 Transactions profiled for applications proposed to move from their data,"P0.5 · Task · owner or approver: App owners
 Duration 8 working days · wk 1–3 · total float 9 d · predecessors: P0.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#profiling-transactions-before-separation",fmw,fmw-program-master-schedule,fmw-id-p0.5,task,owner-app-owners,,2027-01-07,2027-01-18,8,,,,,,,
-8,Task,1,G0 G0 — Ready to Plan,"G0 · Gate · owner or approver: Steward (backup: executive sponsor)
-Duration 0 working days · end of wk 4 · total float 0 · predecessors: P0.4, P0.5
-Criteria: Platform host operational; assessment committed; no open priority-one findings
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#gates-rollback-and-authority",fmw,fmw-program-master-schedule,fmw-id-g0,gate,owner-steward-backup-executive-sponsor,critical-path,2027-02-01,2027-01-29,10,15,18,19,21,22,23,24
-9,Epic,,Program master schedule: Phase 1 — Foundation,"Phase 1 — Foundation of the sample plan Program Master Schedule: Phases 0 to 5 and Gates G0 to G5.
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/10-analyzing-the-estate.html#profiling-transactions-before-separation",fmw,fmw-program-master-schedule,fmw-id-p0.5,task,owner-app-owners,,2027-01-07,2027-01-18,10,,,,,,,
+8,Task,1,P0.6 Change process asks whether each change adds an AD dependency; exceptions to the AO,"P0.6 · Task · owner or approver: Program office
+Duration 3 working days · wk 1–2 · total float 14 d · predecessors: P0.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/04-change-control-and-provenance.html#no-new-dependencies-on-active-directory",fmw,fmw-program-master-schedule,fmw-id-p0.6,task,owner-program-office,,2027-01-07,2027-01-11,10,,,,,,,
+9,Task,1,"D11 Provisional target end state: AD retired, or a dated Kerberos island","D11 · Decision · owner or approver: Executive sponsor and CIO
+Duration 0 working days · end of wk 4 · total float 0 · predecessors: P0.4
+Options: AD retired completely; a Kerberos island for named workloads, with an end date
+If decided late: G0 can't pass: owners and budgets plan without a stated goal
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-0-pre-flight-weeks-14",fmw,fmw-program-master-schedule,fmw-id-d11,decision,owner-executive-sponsor-and-cio,critical-path,2027-02-01,2027-01-29,10,65,,,,,,
+10,Task,1,G0 G0 — Ready to Plan,"G0 · Gate · owner or approver: Steward (backup: executive sponsor)
+Duration 0 working days · end of wk 4 · total float 0 · predecessors: P0.4, P0.5, P0.6, D11
+Criteria: Platform host operational; assessment committed; no open priority-one findings; provisional target end state recorded; no-new-AD-dependency rule in force
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#gates-rollback-and-authority",fmw,fmw-program-master-schedule,fmw-id-g0,gate,owner-steward-backup-executive-sponsor,critical-path,2027-02-01,2027-01-29,12,17,20,21,23,24,25,26
+11,Epic,,Program master schedule: Phase 1 — Foundation,"Phase 1 — Foundation of the sample plan Program Master Schedule: Phases 0 to 5 and Gates G0 to G5.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-program-master-schedule,phase,,,,2027-02-01,2027-02-26,,,,,,,,
-10,Task,9,D02 Authoritative source for each attribute that drives access,"D02 · Decision · owner or approver: HR
+12,Task,11,D02 Authoritative source for each attribute that drives access,"D02 · Decision · owner or approver: HR
 Duration 0 working days · end of wk 4 · total float 0 · predecessors: G0
 Options: HR system per attribute; a named alternative with a dated exception
 If decided late: The taxonomy can't be approved, and the whole critical path waits
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#decision-rights-across-the-program",fmw,fmw-program-master-schedule,fmw-id-d02,decision,owner-hr,critical-path,2027-02-01,2027-01-29,11,,,,,,,
-11,Task,9,P1.1 Attribute taxonomy finalized (M-014),"P1.1 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#decision-rights-across-the-program",fmw,fmw-program-master-schedule,fmw-id-d02,decision,owner-hr,critical-path,2027-02-01,2027-01-29,13,,,,,,,
+13,Task,11,P1.1 Attribute taxonomy finalized (M-014),"P1.1 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 5 · total float 0 · predecessors: D02
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.1,task,owner-platform-teams,critical-path,2027-02-01,2027-02-05,12,20,,,,,,
-12,Task,9,P1.2 Dynamic group design tested; enterprise groups and administrative units built (M-015),"P1.2 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.1,task,owner-platform-teams,critical-path,2027-02-01,2027-02-05,14,22,,,,,,
+14,Task,11,P1.2 Dynamic group design tested; enterprise groups and administrative units built (M-015),"P1.2 · Task · owner or approver: Platform teams
 Duration 8 working days · wk 6–7 · total float 0 · predecessors: P1.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.2,task,owner-platform-teams,critical-path,2027-02-08,2027-02-17,13,,,,,,,
-13,Task,9,P1.3 Intune policy design complete; pilot profiles staged (M-016),"P1.3 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.2,task,owner-platform-teams,critical-path,2027-02-08,2027-02-17,15,,,,,,,
+15,Task,11,P1.3 Intune policy design complete; pilot profiles staged (M-016),"P1.3 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 7–8 · total float 0 · predecessors: P1.2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.3,task,owner-platform-teams,critical-path,2027-02-18,2027-02-24,25,,,,,,,
-14,Task,9,X-IDL HR-to-cloud provisioning live for the foundation scope,"X-IDL · External · owner or approver: Identity Lifecycle project
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.3,task,owner-platform-teams,critical-path,2027-02-18,2027-02-24,27,,,,,,,
+16,Task,11,X-IDL HR-to-cloud provisioning live for the foundation scope,"X-IDL · External · owner or approver: Identity Lifecycle project
 Duration 0 working days · end of wk 8 · total float 2 d · predecessors: —
 If decided late: G1 fails its HR-feed criterion and waits
 Comes from identity-lifecycle:IG3 in another plan; its date is set there.
-Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-program-master-schedule,fmw-id-x-idl,external,owner-identity-lifecycle-project,,2027-02-25,2027-02-24,26,,,,,,,
-15,Task,9,P1.5 Conditional Access design running in report-only (M-017),"P1.5 · Task · owner or approver: CISO
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-program-master-schedule,fmw-id-x-idl,external,owner-identity-lifecycle-project,,2027-02-25,2027-02-24,28,,,,,,,
+17,Task,11,P1.5 Conditional Access design running in report-only (M-017),"P1.5 · Task · owner or approver: CISO
 Duration 10 working days · wk 5–6 · total float 7 d · predecessors: G0
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.5,task,owner-ciso,,2027-02-01,2027-02-12,16,,,,,,,
-16,Task,9,D03 Enforce the Conditional Access baseline,"D03 · Decision · owner or approver: CISO
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.5,task,owner-ciso,,2027-02-01,2027-02-12,18,,,,,,,
+18,Task,11,D03 Enforce the Conditional Access baseline,"D03 · Decision · owner or approver: CISO
 Duration 0 working days · end of wk 6 · total float 7 d · predecessors: P1.5
 Options: Enforce; extend report-only; enforce with dated exceptions
 If decided late: G1 can't pass: the baseline must be enforced
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-1-foundation-weeks-58",fmw,fmw-program-master-schedule,fmw-id-d03,decision,owner-ciso,,2027-02-15,2027-02-12,17,,,,,,,
-17,Task,9,P1.6 Baseline enforced; emergency access accounts vaulted and tested,"P1.6 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-1-foundation-weeks-58",fmw,fmw-program-master-schedule,fmw-id-d03,decision,owner-ciso,,2027-02-15,2027-02-12,19,,,,,,,
+19,Task,11,P1.6 Baseline enforced; emergency access accounts vaulted and tested,"P1.6 · Task · owner or approver: Platform teams
 Duration 3 working days · wk 7 · total float 7 d · predecessors: D03
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-1-foundation-weeks-58",fmw,fmw-program-master-schedule,fmw-id-p1.6,task,owner-platform-teams,,2027-02-15,2027-02-17,26,,,,,,,
-18,Task,9,"P1.7 Sync and DNS Private Resolver designs; resolver deployed (M-018, M-019)","P1.7 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-1-foundation-weeks-58",fmw,fmw-program-master-schedule,fmw-id-p1.6,task,owner-platform-teams,,2027-02-15,2027-02-17,28,,,,,,,
+20,Task,11,"P1.7 Sync and DNS Private Resolver designs; resolver deployed (M-018, M-019)","P1.7 · Task · owner or approver: Platform teams
 Duration 10 working days · wk 5–6 · total float 8 d · predecessors: G0
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.7,task,owner-platform-teams,,2027-02-01,2027-02-12,25,,,,,,,
-19,Task,9,D04 Root of trust for device certificates,"D04 · Decision · owner or approver: Program office
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.7,task,owner-platform-teams,,2027-02-01,2027-02-12,27,,,,,,,
+21,Task,11,D04 Root of trust for device certificates,"D04 · Decision · owner or approver: Program office
 Duration 0 working days · end of wk 4 · total float 10 d · predecessors: G0
 Options: Cloud PKI root; bring-your-own CA
 If decided late: The PKI design and the pilot certificates wait
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/index.html",fmw,fmw-program-master-schedule,fmw-id-d04,decision,owner-program-office,,2027-02-01,2027-01-29,20,,,,,,,
-20,Task,9,P1.8 Cloud PKI design; issuing CA created (M-020),"P1.8 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/index.html",fmw,fmw-program-master-schedule,fmw-id-d04,decision,owner-program-office,,2027-02-01,2027-01-29,22,,,,,,,
+22,Task,11,P1.8 Cloud PKI design; issuing CA created (M-020),"P1.8 · Task · owner or approver: Platform teams
 Duration 8 working days · wk 6–7 · total float 5 d · predecessors: D04, P1.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.8,task,owner-platform-teams,,2027-02-08,2027-02-17,25,,,,,,,
-21,Task,9,P1.9 IPAM covers the platform host and Tier 0,"P1.9 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.8,task,owner-platform-teams,,2027-02-08,2027-02-17,27,,,,,,,
+23,Task,11,P1.9 IPAM covers the platform host and Tier 0,"P1.9 · Task · owner or approver: Platform teams
 Duration 10 working days · wk 5–6 · total float 10 d · predecessors: G0
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html",fmw,fmw-program-master-schedule,fmw-id-p1.9,task,owner-platform-teams,,2027-02-01,2027-02-12,26,,,,,,,
-22,Task,9,P1.10 Single sign-on; FIDO2 and passkeys open to Tier 0 administrators,"P1.10 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html",fmw,fmw-program-master-schedule,fmw-id-p1.9,task,owner-platform-teams,,2027-02-01,2027-02-12,28,,,,,,,
+24,Task,11,P1.10 Single sign-on; FIDO2 and passkeys open to Tier 0 administrators,"P1.10 · Task · owner or approver: Platform teams
 Duration 8 working days · wk 5–6 · total float 12 d · predecessors: G0
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html",fmw,fmw-program-master-schedule,fmw-id-p1.10,task,owner-platform-teams,,2027-02-01,2027-02-10,26,,,,,,,
-23,Task,9,P1.11 Every High assessment finding remediated and re-scanned,"P1.11 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/index.html",fmw,fmw-program-master-schedule,fmw-id-p1.10,task,owner-platform-teams,,2027-02-01,2027-02-10,28,,,,,,,
+25,Task,11,P1.11 Every High assessment finding remediated and re-scanned,"P1.11 · Task · owner or approver: Platform teams
 Duration 15 working days · wk 5–7 · total float 5 d · predecessors: G0
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#foundation-build-and-pre-pilot-readiness",fmw,fmw-program-master-schedule,fmw-id-p1.11,task,owner-platform-teams,,2027-02-01,2027-02-19,26,,,,,,,
-24,Task,9,D05 Choose the pilot division,"D05 · Decision · owner or approver: Program office
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#foundation-build-and-pre-pilot-readiness",fmw,fmw-program-master-schedule,fmw-id-p1.11,task,owner-platform-teams,,2027-02-01,2027-02-19,28,,,,,,,
+26,Task,11,D05 Choose the pilot division,"D05 · Decision · owner or approver: Program office
 Duration 0 working days · end of wk 4 · total float 18 d · predecessors: G0
 Options: IT (tolerates disruption best); another division plus volunteers
 If decided late: Pilot groups can't be built; G1 fails its pilot-readiness criterion
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#scope",fmw,fmw-program-master-schedule,fmw-id-d05,decision,owner-program-office,,2027-02-01,2027-01-29,25,,,,,,,
-25,Task,9,P1.12 Design review approved (M-021),"P1.12 · Task · owner or approver: Steward
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#scope",fmw,fmw-program-master-schedule,fmw-id-d05,decision,owner-program-office,,2027-02-01,2027-01-29,27,,,,,,,
+27,Task,11,P1.12 Design review approved (M-021),"P1.12 · Task · owner or approver: Steward
 Duration 2 working days · wk 8 · total float 0 · predecessors: P1.3, P1.7, P1.8, D05
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.12,task,owner-steward,critical-path,2027-02-25,2027-02-26,26,,,,,,,
-26,Task,9,G1 G1 — Foundation Complete,"G1 · Gate · owner or approver: Steward
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#design-milestones",fmw,fmw-program-master-schedule,fmw-id-p1.12,task,owner-steward,critical-path,2027-02-25,2027-02-26,28,,,,,,,
+28,Task,11,G1 G1 — Foundation Complete,"G1 · Gate · owner or approver: Steward
 Duration 0 working days · end of wk 8 · total float 0 · predecessors: P1.12, X-IDL, P1.6, P1.9, P1.10, P1.11
 Criteria: Designs approved; groups and AUs drift-clean; baseline Conditional Access enforced; emergency access tested; Tier 0 in IPAM; HR feed live for the foundation scope; High findings closed
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#gate-g1-foundation-complete",fmw,fmw-program-master-schedule,fmw-id-g1,gate,owner-steward,critical-path,2027-03-01,2027-02-26,28,29,34,37,,,,
-27,Epic,,Program master schedule: Phase 2 — Pilot division,"Phase 2 — Pilot division of the sample plan Program Master Schedule: Phases 0 to 5 and Gates G0 to G5.
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#gate-g1-foundation-complete",fmw,fmw-program-master-schedule,fmw-id-g1,gate,owner-steward,critical-path,2027-03-01,2027-02-26,30,31,36,39,,,,
+29,Epic,,Program master schedule: Phase 2 — Pilot division,"Phase 2 — Pilot division of the sample plan Program Master Schedule: Phases 0 to 5 and Gates G0 to G5.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-program-master-schedule,phase,,,,2027-03-01,2027-04-23,,,,,,,,
-28,Task,27,D06 Device pattern for each pilot cohort,"D06 · Decision · owner or approver: Program office
+30,Task,29,D06 Device pattern for each pilot cohort,"D06 · Decision · owner or approver: Program office
 Duration 0 working days · end of wk 8 · total float 15 d · predecessors: G1
 Options: New devices Entra joined; existing devices reset and re-enrolled; hybrid joined only with a cut date
 If decided late: Pilot devices can't move; the critical path waits
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html",fmw,fmw-program-master-schedule,fmw-id-d06,decision,owner-program-office,,2027-03-01,2027-02-26,31,,,,,,,
-29,Task,27,"P2.1 Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022)","P2.1 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/02-the-hybrid-join-trap.html",fmw,fmw-program-master-schedule,fmw-id-d06,decision,owner-program-office,,2027-03-01,2027-02-26,33,,,,,,,
+31,Task,29,"P2.1 Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022)","P2.1 · Task · owner or approver: Platform teams
 Duration 10 working days · wk 9–10 · total float 0 · predecessors: G1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.1,task,owner-platform-teams,critical-path,2027-03-01,2027-03-12,30,33,36,,,,,
-30,Task,27,"P2.2 Pilot Conditional Access and Intune policies assigned (M-024, M-025)","P2.2 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.1,task,owner-platform-teams,critical-path,2027-03-01,2027-03-12,32,35,38,,,,,
+32,Task,29,"P2.2 Pilot Conditional Access and Intune policies assigned (M-024, M-025)","P2.2 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 11 · total float 0 · predecessors: P2.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.2,task,owner-platform-teams,critical-path,2027-03-15,2027-03-19,31,,,,,,,
-31,Task,27,P2.3 Pilot devices moved by pattern (M-023),"P2.3 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.2,task,owner-platform-teams,critical-path,2027-03-15,2027-03-19,33,,,,,,,
+33,Task,29,P2.3 Pilot devices moved by pattern (M-023),"P2.3 · Task · owner or approver: Platform teams
 Duration 8 working days · wk 12–13 · total float 0 · predecessors: P2.2, D06
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.3,task,owner-platform-teams,critical-path,2027-03-22,2027-03-31,32,35,38,,,,,
-32,Task,27,P2.4 First migrated GPOs unlinked from the pilot OUs,"P2.4 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.3,task,owner-platform-teams,critical-path,2027-03-22,2027-03-31,34,37,40,,,,,
+34,Task,29,P2.4 First migrated GPOs unlinked from the pilot OUs,"P2.4 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 13–14 · total float 2 d · predecessors: P2.3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html",fmw,fmw-program-master-schedule,fmw-id-p2.4,task,owner-platform-teams,,2027-04-01,2027-04-07,39,,,,,,,
-33,Task,27,P2.5 PIM for every pilot administrator (M-026),"P2.5 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/07-the-gpo-sunset-program.html",fmw,fmw-program-master-schedule,fmw-id-p2.4,task,owner-platform-teams,,2027-04-01,2027-04-07,41,,,,,,,
+35,Task,29,P2.5 PIM for every pilot administrator (M-026),"P2.5 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 11 · total float 15 d · predecessors: P2.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.5,task,owner-platform-teams,,2027-03-15,2027-03-19,39,,,,,,,
-34,Task,27,"P2.6 Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027)","P2.6 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.5,task,owner-platform-teams,,2027-03-15,2027-03-19,41,,,,,,,
+36,Task,29,"P2.6 Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027)","P2.6 · Task · owner or approver: Platform teams
 Duration 15 working days · wk 9–11 · total float 15 d · predecessors: G1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html",fmw,fmw-program-master-schedule,fmw-id-p2.6,task,owner-platform-teams,,2027-03-01,2027-03-19,39,,,,,,,
-35,Task,27,P2.7 Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028),"P2.7 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html",fmw,fmw-program-master-schedule,fmw-id-p2.6,task,owner-platform-teams,,2027-03-01,2027-03-19,41,,,,,,,
+37,Task,29,P2.7 Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028),"P2.7 · Task · owner or approver: Platform teams
 Duration 7 working days · wk 13–14 · total float 0 · predecessors: P2.3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.7,task,owner-platform-teams,critical-path,2027-04-01,2027-04-09,39,,,,,,,
-36,Task,27,P2.8 Certificate-based authentication for PIV and CAC holders (M-029),"P2.8 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.7,task,owner-platform-teams,critical-path,2027-04-01,2027-04-09,41,,,,,,,
+38,Task,29,P2.8 Certificate-based authentication for PIV and CAC holders (M-029),"P2.8 · Task · owner or approver: Platform teams
 Duration 8 working days · wk 11–12 · total float 12 d · predecessors: P2.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.8,task,owner-platform-teams,,2027-03-15,2027-03-24,39,,,,,,,
-37,Task,27,P2.9 Pilot servers under Arc with machine configuration (M-030),"P2.9 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.8,task,owner-platform-teams,,2027-03-15,2027-03-24,41,,,,,,,
+39,Task,29,P2.9 Pilot servers under Arc with machine configuration (M-030),"P2.9 · Task · owner or approver: Platform teams
 Duration 10 working days · wk 9–10 · total float 20 d · predecessors: G1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html",fmw,fmw-program-master-schedule,fmw-id-p2.9,task,owner-platform-teams,,2027-03-01,2027-03-12,39,,,,,,,
-38,Task,27,P2.10 Rollback rehearsed surface by surface,"P2.10 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html",fmw,fmw-program-master-schedule,fmw-id-p2.9,task,owner-platform-teams,,2027-03-01,2027-03-12,41,,,,,,,
+40,Task,29,P2.10 Rollback rehearsed surface by surface,"P2.10 · Task · owner or approver: Platform teams
 Duration 3 working days · wk 13–14 · total float 4 d · predecessors: P2.3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#rollback-surface-by-surface",fmw,fmw-program-master-schedule,fmw-id-p2.10,task,owner-platform-teams,,2027-04-01,2027-04-05,39,,,,,,,
-39,Task,27,"P2.11 Drift-clean hold (14 days, illustrative); success criteria met (M-031)","P2.11 · Task · owner or approver: Program office
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#rollback-surface-by-surface",fmw,fmw-program-master-schedule,fmw-id-p2.10,task,owner-platform-teams,,2027-04-01,2027-04-05,41,,,,,,,
+41,Task,29,"P2.11 Drift-clean hold (14 days, illustrative); success criteria met (M-031)","P2.11 · Task · owner or approver: Program office
 Duration 10 working days · wk 15–16 · total float 0 · predecessors: P2.4, P2.5, P2.6, P2.7, P2.8, P2.9, P2.10
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#gate-g2-pilot-clean",fmw,fmw-program-master-schedule,fmw-id-p2.11,task,owner-program-office,critical-path,2027-04-12,2027-04-23,40,41,,,,,,
-40,Task,27,P2.12 Retrospective and runbook updates committed,"P2.12 · Task · owner or approver: Program office
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#gate-g2-pilot-clean",fmw,fmw-program-master-schedule,fmw-id-p2.11,task,owner-program-office,critical-path,2027-04-12,2027-04-23,42,43,,,,,,
+42,Task,29,P2.12 Retrospective and runbook updates committed,"P2.12 · Task · owner or approver: Program office
 Duration 5 working days · wk 16 · total float 0 · predecessors: P2.11 (SS) +5 d
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#gate-g2-pilot-clean",fmw,fmw-program-master-schedule,fmw-id-p2.12,task,owner-program-office,critical-path,2027-04-19,2027-04-23,41,,,,,,,
-41,Task,27,G2 G2 — Pilot Clean,"G2 · Gate · owner or approver: Steward and executive sponsor (co-signed)
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#gate-g2-pilot-clean",fmw,fmw-program-master-schedule,fmw-id-p2.12,task,owner-program-office,critical-path,2027-04-19,2027-04-23,43,,,,,,,
+43,Task,29,G2 G2 — Pilot Clean,"G2 · Gate · owner or approver: Steward and executive sponsor (co-signed)
 Duration 0 working days · end of wk 16 · total float 0 · predecessors: P2.11, P2.12
 Criteria: Zero drift for the hold period; no AD-only users and no hybrid-joined PC without a cut date; no unresolved rollback trigger; retrospective committed
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#gate-g2-pilot-clean",fmw,fmw-program-master-schedule,fmw-id-g2,gate,owner-steward-and-executive-sponsor-co-signed,critical-path,2027-04-26,2027-04-23,43,50,53,,,,,
-42,Epic,,Program master schedule: Phase 3 — General rollout,"Phase 3 — General rollout of the sample plan Program Master Schedule: Phases 0 to 5 and Gates G0 to G5.
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#gate-g2-pilot-clean",fmw,fmw-program-master-schedule,fmw-id-g2,gate,owner-steward-and-executive-sponsor-co-signed,critical-path,2027-04-26,2027-04-23,45,52,55,,,,,
+44,Epic,,Program master schedule: Phase 3 — General rollout,"Phase 3 — General rollout of the sample plan Program Master Schedule: Phases 0 to 5 and Gates G0 to G5.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-program-master-schedule,phase,,,,2027-04-26,2027-09-10,,,,,,,,
-43,Task,42,"D07 Wave plan: which divisions, in which order","D07 · Decision · owner or approver: Executive sponsor and steering committee
+45,Task,44,"D07 Wave plan: which divisions, in which order","D07 · Decision · owner or approver: Executive sponsor and steering committee
 Duration 0 working days · end of wk 16 · total float 0 · predecessors: G2
 Options: By region, lowest risk first; by department
 If decided late: Wave 1 can't start; the critical path waits
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#waves-defined-by-attribute-values",fmw,fmw-program-master-schedule,fmw-id-d07,decision,owner-executive-sponsor-and-steering-committee,critical-path,2027-04-26,2027-04-23,44,,,,,,,
-44,Task,42,"P3.1 Wave 1, first region, about 25% (M-032)","P3.1 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#waves-defined-by-attribute-values",fmw,fmw-program-master-schedule,fmw-id-d07,decision,owner-executive-sponsor-and-steering-committee,critical-path,2027-04-26,2027-04-23,46,,,,,,,
+46,Task,44,"P3.1 Wave 1, first region, about 25% (M-032)","P3.1 · Task · owner or approver: Platform teams
 Duration 22 working days · wk 17–21 · total float 0 · predecessors: D07
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones-1",fmw,fmw-program-master-schedule,fmw-id-p3.1,task,owner-platform-teams,critical-path,2027-04-26,2027-05-25,45,,,,,,,
-45,Task,42,"P3.2 Wave 2, about 50% cumulative (M-033)","P3.2 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones-1",fmw,fmw-program-master-schedule,fmw-id-p3.1,task,owner-platform-teams,critical-path,2027-04-26,2027-05-25,47,,,,,,,
+47,Task,44,"P3.2 Wave 2, about 50% cumulative (M-033)","P3.2 · Task · owner or approver: Platform teams
 Duration 22 working days · wk 21–25 · total float 0 · predecessors: P3.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones-1",fmw,fmw-program-master-schedule,fmw-id-p3.2,task,owner-platform-teams,critical-path,2027-05-26,2027-06-24,46,,,,,,,
-46,Task,42,"P3.3 Wave 3, about 75% cumulative (M-034)","P3.3 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones-1",fmw,fmw-program-master-schedule,fmw-id-p3.2,task,owner-platform-teams,critical-path,2027-05-26,2027-06-24,48,,,,,,,
+48,Task,44,"P3.3 Wave 3, about 75% cumulative (M-034)","P3.3 · Task · owner or approver: Platform teams
 Duration 22 working days · wk 25–30 · total float 0 · predecessors: P3.2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones-1",fmw,fmw-program-master-schedule,fmw-id-p3.3,task,owner-platform-teams,critical-path,2027-06-25,2027-07-26,47,,,,,,,
-47,Task,42,"P3.4 Wave 4, everything remaining or excepted (M-035)","P3.4 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones-1",fmw,fmw-program-master-schedule,fmw-id-p3.3,task,owner-platform-teams,critical-path,2027-06-25,2027-07-26,49,,,,,,,
+49,Task,44,"P3.4 Wave 4, everything remaining or excepted (M-035)","P3.4 · Task · owner or approver: Platform teams
 Duration 22 working days · wk 30–34 · total float 0 · predecessors: P3.3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones-1",fmw,fmw-program-master-schedule,fmw-id-p3.4,task,owner-platform-teams,critical-path,2027-07-27,2027-08-25,48,49,,,,,,
-48,Task,42,P3.5 GPO links off migrated OUs after 7 clean days (M-036),"P3.5 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones-1",fmw,fmw-program-master-schedule,fmw-id-p3.4,task,owner-platform-teams,critical-path,2027-07-27,2027-08-25,50,51,,,,,,
+50,Task,44,P3.5 GPO links off migrated OUs after 7 clean days (M-036),"P3.5 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 33–34 · total float 12 d · predecessors: P3.4 (SS) +17 d
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones-1",fmw,fmw-program-master-schedule,fmw-id-p3.5,task,owner-platform-teams,,2027-08-19,2027-08-25,51,,,,,,,
-49,Task,42,P3.6 Attribute coverage at 100%; exception register reconciled (M-037),"P3.6 · Task · owner or approver: Program office
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones-1",fmw,fmw-program-master-schedule,fmw-id-p3.5,task,owner-platform-teams,,2027-08-19,2027-08-25,53,,,,,,,
+51,Task,44,P3.6 Attribute coverage at 100%; exception register reconciled (M-037),"P3.6 · Task · owner or approver: Program office
 Duration 12 working days · wk 34–36 · total float 0 · predecessors: P3.4
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#gate-g3-rollout-complete",fmw,fmw-program-master-schedule,fmw-id-p3.6,task,owner-program-office,critical-path,2027-08-26,2027-09-10,51,,,,,,,
-50,Task,42,P3.7 Every server Arc-connected or excepted,"P3.7 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#gate-g3-rollout-complete",fmw,fmw-program-master-schedule,fmw-id-p3.6,task,owner-program-office,critical-path,2027-08-26,2027-09-10,53,,,,,,,
+52,Task,44,P3.7 Every server Arc-connected or excepted,"P3.7 · Task · owner or approver: Platform teams
 Duration 60 working days · wk 17–28 · total float 40 d · predecessors: G2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html",fmw,fmw-program-master-schedule,fmw-id-p3.7,task,owner-platform-teams,,2027-04-26,2027-07-16,51,,,,,,,
-51,Task,42,G3 G3 — Rollout Complete,"G3 · Gate · owner or approver: Executive sponsor and steering committee
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html",fmw,fmw-program-master-schedule,fmw-id-p3.7,task,owner-platform-teams,,2027-04-26,2027-07-16,53,,,,,,,
+53,Task,44,G3 G3 — Rollout Complete,"G3 · Gate · owner or approver: Executive sponsor and steering committee
 Duration 0 working days · end of wk 36 · total float 0 · predecessors: P3.5, P3.6, P3.7
 Criteria: Every division past its exit gate; every HR-listed employee with valid attributes; every PC cloud-joined and every server Arc-connected, or excepted; zero cross-division drift
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-3-general-rollout-weeks-1736",fmw,fmw-program-master-schedule,fmw-id-g3,gate,owner-executive-sponsor-and-steering-committee,critical-path,2027-09-13,2027-09-10,54,56,58,59,63,64,,
-52,Epic,,Program master schedule: Phase 4 — Legacy retirement,"Phase 4 — Legacy retirement of the sample plan Program Master Schedule: Phases 0 to 5 and Gates G0 to G5.
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-3-general-rollout-weeks-1736",fmw,fmw-program-master-schedule,fmw-id-g3,gate,owner-executive-sponsor-and-steering-committee,critical-path,2027-09-13,2027-09-10,56,58,60,61,65,66,,
+54,Epic,,Program master schedule: Phase 4 — Legacy retirement,"Phase 4 — Legacy retirement of the sample plan Program Master Schedule: Phases 0 to 5 and Gates G0 to G5.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-program-master-schedule,phase,,,,2027-04-26,2027-11-05,,,,,,,,
-53,Task,52,D08 End dates for legacy authentication and NTLM,"D08 · Decision · owner or approver: Authorizing official
+55,Task,54,D08 End dates for legacy authentication and NTLM,"D08 · Decision · owner or approver: Authorizing official
 Duration 0 working days · end of wk 16 · total float 100 d · predecessors: G2
 Options: A dated end per protocol; a dated, risk-accepted exception per application
 If decided late: Application owners have no date to plan against; SPN retirement slips
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#decision-rights-across-the-program",fmw,fmw-program-master-schedule,fmw-id-d08,decision,owner-authorizing-official,,2027-04-26,2027-04-23,59,,,,,,,
-54,Task,52,P4.1 Migrated GPOs retired,"P4.1 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#decision-rights-across-the-program",fmw,fmw-program-master-schedule,fmw-id-d08,decision,owner-authorizing-official,,2027-04-26,2027-04-23,61,,,,,,,
+56,Task,54,P4.1 Migrated GPOs retired,"P4.1 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 37 · total float 20 d · predecessors: G3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-p4.1,task,owner-platform-teams,,2027-09-13,2027-09-17,55,,,,,,,
-55,Task,52,P4.2 OU-based security groups retired,"P4.2 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-p4.1,task,owner-platform-teams,,2027-09-13,2027-09-17,57,,,,,,,
+57,Task,54,P4.2 OU-based security groups retired,"P4.2 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 38 · total float 20 d · predecessors: P4.1
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-p4.2,task,owner-platform-teams,,2027-09-20,2027-09-24,60,,,,,,,
-56,Task,52,"P4.3 AD-integrated DNS zones moved, except the domain's own zones","P4.3 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-p4.2,task,owner-platform-teams,,2027-09-20,2027-09-24,62,,,,,,,
+58,Task,54,"P4.3 AD-integrated DNS zones moved, except the domain's own zones","P4.3 · Task · owner or approver: Platform teams
 Duration 15 working days · wk 37–39 · total float 10 d · predecessors: G3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html",fmw,fmw-program-master-schedule,fmw-id-p4.3,task,owner-platform-teams,,2027-09-13,2027-10-01,57,,,,,,,
-57,Task,52,P4.4 AD-authorized DHCP retired,"P4.4 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/10-migration-sequence.html",fmw,fmw-program-master-schedule,fmw-id-p4.3,task,owner-platform-teams,,2027-09-13,2027-10-01,59,,,,,,,
+59,Task,54,P4.4 AD-authorized DHCP retired,"P4.4 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 40 · total float 10 d · predecessors: P4.3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-p4.4,task,owner-platform-teams,,2027-10-04,2027-10-08,60,,,,,,,
-58,Task,52,P4.5 User and device issuance off AD CS; smart-card logon GPO retired,"P4.5 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-p4.4,task,owner-platform-teams,,2027-10-04,2027-10-08,62,,,,,,,
+60,Task,54,P4.5 User and device issuance off AD CS; smart-card logon GPO retired,"P4.5 · Task · owner or approver: Platform teams
 Duration 15 working days · wk 37–39 · total float 15 d · predecessors: G3
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html",fmw,fmw-program-master-schedule,fmw-id-p4.5,task,owner-platform-teams,,2027-09-13,2027-10-01,60,,,,,,,
-59,Task,52,"P4.6 AD-bound service principal names migrated, retired or islanded, app by app","P4.6 · Task · owner or approver: App owners
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html",fmw,fmw-program-master-schedule,fmw-id-p4.5,task,owner-platform-teams,,2027-09-13,2027-10-01,62,,,,,,,
+61,Task,54,"P4.6 AD-bound service principal names migrated, retired or islanded, app by app","P4.6 · Task · owner or approver: App owners
 Duration 30 working days · wk 37–42 · total float 0 · predecessors: G3, D08
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-p4.6,task,owner-app-owners,critical-path,2027-09-13,2027-10-22,60,,,,,,,
-60,Task,52,P4.7 AD authentication volume measured below the agreed threshold,"P4.7 · Task · owner or approver: Program office
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-p4.6,task,owner-app-owners,critical-path,2027-09-13,2027-10-22,62,,,,,,,
+62,Task,54,P4.7 AD authentication volume measured below the agreed threshold,"P4.7 · Task · owner or approver: Program office
 Duration 10 working days · wk 43–44 · total float 0 · predecessors: P4.6, P4.2, P4.4, P4.5
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-p4.7,task,owner-program-office,critical-path,2027-10-25,2027-11-05,61,,,,,,,
-61,Task,52,G4 G4 — Legacy Quiet,"G4 · Gate · owner or approver: Steward (backup: executive sponsor)
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-p4.7,task,owner-program-office,critical-path,2027-10-25,2027-11-05,63,,,,,,,
+63,Task,54,G4 G4 — Legacy Quiet,"G4 · Gate · owner or approver: Steward (backup: executive sponsor)
 Duration 0 working days · end of wk 44 · total float 0 · predecessors: P4.7
 Criteria: Only the minimum GPOs; no AD security groups in use; every zone but the domain's moved; user and device issuance off AD CS; every SPN migrated, retired or islanded; AD authentication below threshold
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-g4,gate,owner-steward-backup-executive-sponsor,critical-path,2027-11-08,2027-11-05,65,,,,,,,
-62,Epic,,Program master schedule: Phase 5 — AD DS retirement,"Phase 5 — AD DS retirement of the sample plan Program Master Schedule: Phases 0 to 5 and Gates G0 to G5.
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-4-legacy-retirement-weeks-3744",fmw,fmw-program-master-schedule,fmw-id-g4,gate,owner-steward-backup-executive-sponsor,critical-path,2027-11-08,2027-11-05,67,,,,,,,
+64,Epic,,Program master schedule: Phase 5 — AD DS retirement,"Phase 5 — AD DS retirement of the sample plan Program Master Schedule: Phases 0 to 5 and Gates G0 to G5.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-program-master-schedule,phase,,,,2027-09-13,2027-12-03,,,,,,,,
-63,Task,62,"D09 Retain a Kerberos island, or retire AD completely","D09 · Decision · owner or approver: Executive sponsor and CIO
-Duration 0 working days · end of wk 36 · total float 45 d · predecessors: G3
-Options: Retire completely; keep a documented island with an end-of-life date
+65,Task,64,D09 Confirm or revise the target end state set at G0 (D11),"D09 · Decision · owner or approver: Executive sponsor and CIO
+Duration 0 working days · end of wk 36 · total float 45 d · predecessors: G3, D11
+Options: Confirm the G0 target; revise it with what Phase 4 left: retire completely, or keep a documented island with an end-of-life date
 If decided late: The demotion sequence can't be planned
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-5-ad-ds-retirement-weeks-4548",fmw,fmw-program-master-schedule,fmw-id-d09,decision,owner-executive-sponsor-and-cio,,2027-09-13,2027-09-10,66,,,,,,,
-64,Task,62,D10 Retention of AD-era logs and records,"D10 · Decision · owner or approver: Records officer
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-5-ad-ds-retirement-weeks-4548",fmw,fmw-program-master-schedule,fmw-id-d09,decision,owner-executive-sponsor-and-cio,,2027-09-13,2027-09-10,68,,,,,,,
+66,Task,64,D10 Retention of AD-era logs and records,"D10 · Decision · owner or approver: Records officer
 Duration 0 working days · end of wk 36 · total float 55 d · predecessors: G3
 Options: Retention schedule and archive location approved
 If decided late: Domain controllers can't be decommissioned: their logs can't be recovered afterward
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#decision-rights-across-the-program",fmw,fmw-program-master-schedule,fmw-id-d10,decision,owner-records-officer,,2027-09-13,2027-09-10,68,,,,,,,
-65,Task,62,P5.1 AD changes frozen; final assessment and evidence packet,"P5.1 · Task · owner or approver: Program office
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/09-who-leads-the-transformation.html#decision-rights-across-the-program",fmw,fmw-program-master-schedule,fmw-id-d10,decision,owner-records-officer,,2027-09-13,2027-09-10,70,,,,,,,
+67,Task,64,P5.1 AD changes frozen; final assessment and evidence packet,"P5.1 · Task · owner or approver: Program office
 Duration 5 working days · wk 45 · total float 0 · predecessors: G4
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-5-ad-ds-retirement-weeks-4548",fmw,fmw-program-master-schedule,fmw-id-p5.1,task,owner-program-office,critical-path,2027-11-08,2027-11-12,66,,,,,,,
-66,Task,62,P5.2 Domain controllers without operations master roles demoted,"P5.2 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-5-ad-ds-retirement-weeks-4548",fmw,fmw-program-master-schedule,fmw-id-p5.1,task,owner-program-office,critical-path,2027-11-08,2027-11-12,68,,,,,,,
+68,Task,64,P5.2 Domain controllers without operations master roles demoted,"P5.2 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 46 · total float 0 · predecessors: P5.1, D09
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-5-ad-ds-retirement-weeks-4548",fmw,fmw-program-master-schedule,fmw-id-p5.2,task,owner-platform-teams,critical-path,2027-11-15,2027-11-19,67,,,,,,,
-67,Task,62,P5.3 Remaining domain controllers demoted or islanded; domain zones moved or retired,"P5.3 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-5-ad-ds-retirement-weeks-4548",fmw,fmw-program-master-schedule,fmw-id-p5.2,task,owner-platform-teams,critical-path,2027-11-15,2027-11-19,69,,,,,,,
+69,Task,64,P5.3 Remaining domain controllers demoted or islanded; domain zones moved or retired,"P5.3 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 47 · total float 0 · predecessors: P5.2
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-5-ad-ds-retirement-weeks-4548",fmw,fmw-program-master-schedule,fmw-id-p5.3,task,owner-platform-teams,critical-path,2027-11-22,2027-11-26,68,,,,,,,
-68,Task,62,P5.4 VMs decommissioned; final state archived; retirement record committed,"P5.4 · Task · owner or approver: Platform teams
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-5-ad-ds-retirement-weeks-4548",fmw,fmw-program-master-schedule,fmw-id-p5.3,task,owner-platform-teams,critical-path,2027-11-22,2027-11-26,70,,,,,,,
+70,Task,64,P5.4 VMs decommissioned; final state archived; retirement record committed,"P5.4 · Task · owner or approver: Platform teams
 Duration 5 working days · wk 48 · total float 0 · predecessors: P5.3, D10
-Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-5-ad-ds-retirement-weeks-4548",fmw,fmw-program-master-schedule,fmw-id-p5.4,task,owner-platform-teams,critical-path,2027-11-29,2027-12-03,69,,,,,,,
-69,Task,62,G5 G5 — AD Retired,"G5 · Gate · owner or approver: Executive sponsor and CIO
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-5-ad-ds-retirement-weeks-4548",fmw,fmw-program-master-schedule,fmw-id-p5.4,task,owner-platform-teams,critical-path,2027-11-29,2027-12-03,71,,,,,,,
+71,Task,64,G5 G5 — AD Retired,"G5 · Gate · owner or approver: Executive sponsor and CIO
 Duration 0 working days · end of wk 48 · total float 0 · predecessors: P5.4
 Criteria: Domain controllers decommissioned or a dated Kerberos island; evidence packet in the repository and the SIEM; no production dependency on AD authentication
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/12-migration-roadmap.html#phase-5-ad-ds-retirement-weeks-4548",fmw,fmw-program-master-schedule,fmw-id-g5,gate,owner-executive-sponsor-and-cio,critical-path,2027-12-06,2027-12-03,,,,,,,,

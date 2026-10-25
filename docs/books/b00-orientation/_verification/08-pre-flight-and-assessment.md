@@ -46,6 +46,8 @@ Alignment note: Chapter 05 (W3) places plan generation and approval (master plan
 | 36 | Destroy assessment workstation after Phase 1 (R-021) | Deliverables | restated: rebuild or retire after initial assessment; continuous re-assessment from the platform host at Tier A | Book 01 Ch10 (settled) |
 | 37 | Week counts (3 weeks platform, 6 weeks assessment) | Where pre-flight sits | restated-as-design (illustrative), set beside Book 01's four-week Phase 0 | Book 01 Ch12 |
 
+| 38 | Addition, Oct 25, 2026: G0 checklist gains a Direction group: a provisional target end state, and the no-new-AD-dependency rule in the change process | G0 | verified against settled facts | Book 01 Ch12 Phase 0 (Microsoft Learn sources there); Book 13 Ch04 |
+
 ## Carry-forward ledger
 
 | Source page § | Went to | Or why not carried |

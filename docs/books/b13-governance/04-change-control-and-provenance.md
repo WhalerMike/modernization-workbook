@@ -77,6 +77,23 @@ Clause 1 needs a source of truth for every kind of object a modernization touche
 
 One rule ties the non-human classes back to people: **every item migrated must carry a human owner** who can be resolved in the HR source of truth. An item with no resolvable owner is an orphan finding (an identity finding in [Chapter 06](06-the-drift-engine.md)'s model) before it is a migration candidate. Ownership is what lets clause 2 find an approver.
 
+## No new dependencies on Active Directory
+
+A migration that retires Active Directory runs for most of a year, and the estate doesn't stop changing while it does. Every new domain-joined server, every application that binds over LDAP, every service account and every Group Policy setting added during that year is one more thing to unwind before the domain controllers can go. So from gate G0 the change process asks one question of every Add and Change: **does this create a new dependency on Active Directory?** Microsoft's guidance for leaving AD puts the same step first in its cloud-first phase: update change approval so it evaluates whether a change adds a dependency on AD DS, and evaluate Microsoft Entra alternatives when it does.[^c04-cloudfirst]
+
+What counts as a new dependency (design guidance):
+
+- a new server or device joined to the domain;
+- a new application that authenticates with Kerberos or NTLM, or reads or writes the directory over LDAP;
+- a new service principal name, group managed service account or other service account in AD;
+- a new Group Policy Object, or new settings in an existing one ([Book 05, Chapter 07](../b05-devices/07-the-gpo-sunset-program.md) already freezes each GPO once it's inventoried);
+- a new AD security group used to grant access;
+- a new AD-integrated DNS zone, a new trust, or a new AD CS template or consumer, other than the domain controller and LDAPS certificates that stay on AD CS until AD retires ([Book 07](../b07-pki/index.md)).
+
+A yes isn't automatically a no. Some workloads have no modern path yet, and Microsoft names Microsoft Entra Domain Services as an option for applications that still need legacy protocols when nothing more current works.[^c04-entrads] But a yes becomes an **exception**, not a routine approval: it carries an owner, a reason, an end date and the Entra alternative that was considered, it's approved by the authorizing official, because keeping AD dependencies open is a risk acceptance ([Book 01, Chapter 09](../b01-transformation-arc/09-who-leads-the-transformation.md#decision-rights-across-the-program)), and it goes on the list of dependencies Phase 4 has to retire ([Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744)).
+
+The rule is enforced by measurement as well as by the question. The weekly assessment compares the AD inventory with the G0 baseline: a new computer account, service principal name, group managed service account, GPO, trust or AD group that no approved change or exception explains is a drift finding ([Chapter 06](06-the-drift-engine.md)), handled like any other change that skipped the path.
+
 ## Changing the record: pull requests
 
 The path above governs changes to the estate. Changes to the record itself (a rule, a delegation matrix, a schema, a plan) travel the same path in repository form: the change is a pull request, and the pull request is the authorization.
@@ -206,3 +223,5 @@ Two points in the table are easy to get wrong. AU-10 isn't a Moderate control, s
 [^c04-fedramp-cm]: FedRAMP, "Configuration Management (CM)," Full Rev5 Control Reference, *FedRAMP Consolidated Rules for 2026* (CM-03 and CM-03(02): Class C, Class D; CM-05: Class B, C, D; CM-05(01): Class C, D; CM-05(04): no class listed), <https://www.fedramp.gov/2026/reference/controls/configuration-management/> (accessed Oct 21, 2026).
 [^c04-fedramp-au]: FedRAMP, "Audit and Accountability (AU)," Full Rev5 Control Reference, *FedRAMP Consolidated Rules for 2026* (AU-10: Class D; FedRAMP value for the actions parameter includes the addition, modification, deletion, approval, sending or receiving of data), <https://www.fedramp.gov/2026/reference/controls/audit-and-accountability/> (accessed Oct 21, 2026).
 [^c04-fedramp-sa]: FedRAMP, "System and Services Acquisition (SA)," Full Rev5 Control Reference, *FedRAMP Consolidated Rules for 2026* (SA-10: Class C, Class D), <https://www.fedramp.gov/2026/reference/controls/system-and-services-acquisition/> (accessed Oct 21, 2026).
+[^c04-cloudfirst]: Microsoft Learn, "Implement a cloud-first approach" (stop or limit new dependencies on AD DS; update change approval to include a step that evaluates whether a change adds new dependencies on AD DS, and to evaluate Microsoft Entra alternatives), <https://learn.microsoft.com/entra/architecture/road-to-the-cloud-implement> (accessed Oct 25, 2026).
+[^c04-entrads]: Microsoft Learn, "Implement a cloud-first approach," Applications (new applications that need legacy protocols by exception only; Microsoft Entra Domain Services when more current alternatives won't work), <https://learn.microsoft.com/entra/architecture/road-to-the-cloud-implement#applications> (accessed Oct 25, 2026).

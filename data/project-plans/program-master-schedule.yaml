@@ -25,7 +25,7 @@ purpose: |
   This is the program's top-level schedule: every phase, every gate and the decisions leadership has to make between them, as one network. It is the schedule the [complementary projects](index.md#the-plans) roll up to, and the one the steering committee tracks. It restates [Book 01, Chapter 12](../books/b01-transformation-arc/12-migration-roadmap.md) and [Book 00, Chapters 05](../books/b00-orientation/05-the-program-plan.md) and [09](../books/b00-orientation/09-design-pilot-and-rollout.md) as tasks with durations and dependencies, so the critical path is computed rather than asserted.
 
 critical_path_note: |
-  The computed path matches the one [Book 00, Chapter 05](../books/b00-orientation/05-the-program-plan.md#the-critical-path) traces: assessment, then the attribute taxonomy, dynamic groups and Intune design, then pilot devices, each rollout wave in turn, and the application-by-application retirement of AD-bound service principal names. Every week lost on it moves every later gate. Conditional Access, DNS, PKI and Arc work carry float: a slip there moves nothing until the float is used up, which is why they're tracked by float, not by date.
+  The computed path matches the one [Book 00, Chapter 05](../books/b00-orientation/05-the-program-plan.md#the-critical-path) traces: assessment, then the attribute taxonomy, dynamic groups and Intune design, then pilot devices, each rollout wave in turn, and the application-by-application retirement of AD-bound service principal names. Every week lost on it moves every later gate. The provisional target end state (D11) is decided with the assessment's results, so it sits on the path at G0: it needs the sponsor and CIO in the room in week 4. Conditional Access, DNS, PKI and Arc work carry float: a slip there moves nothing until the float is used up, which is why they're tracked by float, not by date.
 
 assumptions:
   - "One pilot division, then four waves of about a quarter of the estate each ([Book 00, Chapter 09](../books/b00-orientation/09-design-pilot-and-rollout.md#waves-defined-by-attribute-values))."
@@ -63,8 +63,13 @@ tasks:
      source: "../books/b00-orientation/08-pre-flight-and-assessment.md"}
   - {id: P0.5, phase: 0, name: "Transactions profiled for applications proposed to move from their data", dur: 8, after: [P0.1], owner: "App owners",
      source: "../books/b01-transformation-arc/10-analyzing-the-estate.md#profiling-transactions-before-separation"}
-  - {id: G0, kind: gate, phase: 0, name: "G0 — Ready to Plan", after: [P0.4, P0.5], owner: "Steward (backup: executive sponsor)",
-     criteria: "Platform host operational; assessment committed; no open priority-one findings",
+  - {id: P0.6, phase: 0, name: "Change process asks whether each change adds an AD dependency; exceptions to the AO", dur: 3, after: [P0.1], owner: "Program office",
+     source: "../books/b13-governance/04-change-control-and-provenance.md#no-new-dependencies-on-active-directory"}
+  - {id: D11, kind: decision, phase: 0, name: "Provisional target end state: AD retired, or a dated Kerberos island", after: [P0.4], owner: "Executive sponsor and CIO",
+     options: "AD retired completely; a Kerberos island for named workloads, with an end date", late: "G0 can't pass: owners and budgets plan without a stated goal",
+     source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-0-pre-flight-weeks-14"}
+  - {id: G0, kind: gate, phase: 0, name: "G0 — Ready to Plan", after: [P0.4, P0.5, P0.6, D11], owner: "Steward (backup: executive sponsor)",
+     criteria: "Platform host operational; assessment committed; no open priority-one findings; provisional target end state recorded; no-new-AD-dependency rule in force",
      source: "../books/b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority"}
   # ---------------------------------------------------------------- Phase 1
   - {id: D02, kind: decision, phase: 1, name: "Authoritative source for each attribute that drives access", after: [G0], owner: "HR",
@@ -181,8 +186,8 @@ tasks:
      criteria: "Only the minimum GPOs; no AD security groups in use; every zone but the domain's moved; user and device issuance off AD CS; every SPN migrated, retired or islanded; AD authentication below threshold",
      source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744"}
   # ---------------------------------------------------------------- Phase 5
-  - {id: D09, kind: decision, phase: 5, name: "Retain a Kerberos island, or retire AD completely", after: [G3], owner: "Executive sponsor and CIO",
-     options: "Retire completely; keep a documented island with an end-of-life date", late: "The demotion sequence can't be planned",
+  - {id: D09, kind: decision, phase: 5, name: "Confirm or revise the target end state set at G0 (D11)", after: [G3, D11], owner: "Executive sponsor and CIO",
+     options: "Confirm the G0 target; revise it with what Phase 4 left: retire completely, or keep a documented island with an end-of-life date", late: "The demotion sequence can't be planned",
      source: "../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548"}
   - {id: D10, kind: decision, phase: 5, name: "Retention of AD-era logs and records", after: [G3], owner: "Records officer",
      options: "Retention schedule and archive location approved", late: "Domain controllers can't be decommissioned: their logs can't be recovered afterward",

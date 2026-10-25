@@ -62,8 +62,10 @@ Five principles follow from it, and each phase below advances all five:
 **Goal.** Produce the planning artifacts and stand up the platform host.
 
 - **Entry:** executive sponsor and steward named; platform host provisioned; read-only assessment account created.
-- **Work:** build the platform host ([Chapter 03](03-platform-foundation.md)); run the assessment ([Chapter 10](10-analyzing-the-estate.md)); seed the repository; create least-privilege service principals for Microsoft Entra ID, Intune and Azure Arc; profile the transactions of any application proposed to move away from its data.
-- **Gate G0, Ready to Plan:** platform host operational; assessment committed; no open priority-one findings.
+- **Work:** build the platform host ([Chapter 03](03-platform-foundation.md)); run the assessment ([Chapter 10](10-analyzing-the-estate.md)); seed the repository; create least-privilege service principals for Microsoft Entra ID, Intune and Azure Arc; profile the transactions of any application proposed to move away from its data; record a provisional target end state from what the assessment finds; and add the no-new-AD-dependency rule to the change process ([Book 13, Chapter 04](../b13-governance/04-change-control-and-provenance.md#no-new-dependencies-on-active-directory)).
+- **Gate G0, Ready to Plan:** platform host operational; assessment committed; no open priority-one findings; provisional target end state recorded; no-new-AD-dependency rule in force.
+
+The last two G0 conditions come straight from Microsoft's guidance for leaving Active Directory. Its cloud-first phase is "mainly a process and policy-driven phase" to stop adding dependencies on AD DS, and it recommends updating change approval to evaluate whether each change adds one.[^c12-cloudfirst] Without that rule, the 48 weeks of migration compete with new domain joins, service principal names and Group Policy settings added by projects that never heard of the program. Microsoft also leaves the end state to the organization: the goal "might remove the need for Active Directory entirely," or some capability may stay in place.[^c12-endstate] The program writes that goal down at G0, as **AD retired** or **a Kerberos island for named workloads, with an end date**, so owners and budgets plan against it. It's provisional because the evidence comes later: the decision is confirmed or revised before Phase 5, once Phase 4 shows what's left.
 
 ### Phase 1 — Foundation (weeks 5–8)
 
@@ -120,7 +122,7 @@ This is the longest phase. Illustratively, budget two to three weeks per divisio
 
 1. Freeze AD changes and run a final assessment and evidence packet.
 2. Demote the domain controllers that hold no operations master roles.
-3. If a Kerberos island is retained, transfer the operations master roles to a surviving domain controller.
+3. If the confirmed end state keeps a Kerberos island, transfer the operations master roles to a surviving domain controller.
 4. Demote or isolate the remaining domain controllers. Demoting the last domain controller in a domain needs Enterprise Admins membership because it removes the domain itself, and the forest if it is the last domain.[^c12-demote] The domain's DNS zones move or retire with it.
 5. Decommission the VMs, archive the final state, and commit the retirement record.
 
@@ -234,3 +236,5 @@ None of this requires a vendor decision on day one. It requires three things, an
 [^c12-esu]: Microsoft Learn, "Cloud-native licensing and cost management with Azure Arc-enabled servers," Extended Security Updates, <https://learn.microsoft.com/azure/azure-arc/servers/cloud-native/licensing-cost-management> (accessed Oct 21, 2026).
 [^c12-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, §III.B (Devices), <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Oct 21, 2026).
 [^c12-agu]: FedRAMP, "Agency Use of FedRAMP Certified Cloud Services," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/reference/agency-use/> (accessed Oct 21, 2026); and the machine-readable ruleset `fedramp-consolidated-rules.json`, version 2026.10.13.01, family AGU, <https://github.com/FedRAMP/rules> (accessed Oct 21, 2026). The general (AGC) and use (USE) subsets apply to 20x and Rev5; for example, AGU-AGC-NAA (notify FedRAMP after authorizing, with the ATO letter) and AGU-USE-RSG (review the provider's Secure Configuration Guides and configure relevant settings).
+[^c12-cloudfirst]: Microsoft Learn, "Implement a cloud-first approach" (a process and policy phase to stop or limit new dependencies on AD DS; update change approval to evaluate whether a change adds one and to evaluate Microsoft Entra alternatives), <https://learn.microsoft.com/entra/architecture/road-to-the-cloud-implement> (accessed Oct 25, 2026).
+[^c12-endstate]: Microsoft Learn, "Cloud transformation posture" (five states of transformation; the goal might remove the need for Active Directory entirely, or leave some capability in place; the organization decides what end state to target), <https://learn.microsoft.com/entra/architecture/road-to-the-cloud-posture> (accessed Oct 25, 2026).

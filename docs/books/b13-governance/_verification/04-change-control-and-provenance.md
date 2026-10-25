@@ -44,6 +44,10 @@ No personal data was sent to any site.
 | 27 | Migration wave = batch of moves, JIT per action, per-object closure evidence | At migration scale | restated-as-design | Source; Book 01 Ch11 evidence packet linked |
 | 28 | A Global Administrator can still change the tenant directly; drift detection catches it | Honest limits | verified (in workbook) | Book 04 Ch10 drift section |
 
+| 29 | Addition, Oct 25, 2026: change approval should include a step evaluating whether a change adds a new AD DS dependency, and evaluate Microsoft Entra alternatives | No new dependencies on Active Directory | verified (added) | Microsoft Learn, Implement a cloud-first approach ([^c04-cloudfirst]) |
+| 30 | Addition, Oct 25, 2026: Microsoft Entra Domain Services is an option for apps that need legacy protocols when more current alternatives won't work | Same section | verified (added) | Microsoft Learn, Implement a cloud-first approach, Applications ([^c04-entrads]) |
+| 31 | Addition, Oct 25, 2026: the list of what counts as a new AD dependency, the AO-approved exception path and the weekly inventory comparison against the G0 baseline | Same section | restated-as-design | Program design; links to Book 01 Ch09 and Ch12, Book 05 Ch07, Book 07, Ch06 |
+
 ## Carry-forward ledger
 
 | Source page § | Went to | Or why not carried |

@@ -27,8 +27,8 @@ This is an illustrative plan built from the workbook's books, in the form a proj
 | **Sponsor** | Executive sponsor and CIO |
 | **Plan manager** | Steward (program office) |
 | **Duration** | 48 weeks (240 working days), computed from the network |
-| **Work** | 46 tasks, 6 gates, 10 decision points, 1 milestone from other plans |
-| **Critical path** | 33 of 63 items; 5 more within 5 days of it |
+| **Work** | 47 tasks, 6 gates, 11 decision points, 1 milestone from other plans |
+| **Critical path** | 34 of 65 items; 5 more within 5 days of it |
 | **Calendar** | Week 1 = the week Phase 0 is approved; five working days a week |
 
 : Plan at a glance {.striped}
@@ -41,7 +41,7 @@ This is the program's top-level schedule: every phase, every gate and the decisi
 
 ## Critical path
 
-The computed path matches the one [Book 00, Chapter 05](../books/b00-orientation/05-the-program-plan.md#the-critical-path) traces: assessment, then the attribute taxonomy, dynamic groups and Intune design, then pilot devices, each rollout wave in turn, and the application-by-application retirement of AD-bound service principal names. Every week lost on it moves every later gate. Conditional Access, DNS, PKI and Arc work carry float: a slip there moves nothing until the float is used up, which is why they're tracked by float, not by date.
+The computed path matches the one [Book 00, Chapter 05](../books/b00-orientation/05-the-program-plan.md#the-critical-path) traces: assessment, then the attribute taxonomy, dynamic groups and Intune design, then pilot devices, each rollout wave in turn, and the application-by-application retirement of AD-bound service principal names. Every week lost on it moves every later gate. The provisional target end state (D11) is decided with the assessment's results, so it sits on the path at G0: it needs the sponsor and CIO in the room in week 4. Conditional Access, DNS, PKI and Arc work carry float: a slip there moves nothing until the float is used up, which is why they're tracked by float, not by date.
 
 The critical path, in order. Each item has zero total float: a day lost on any of them is a day lost at the finish.
 
@@ -51,35 +51,36 @@ The critical path, in order. Each item has zero total float: a day lost on any o
 | 2 | P0.1 | Charter accepted; owners named in the decision matrix | Program office | wk 1 |
 | 3 | P0.2 | Platform host built, repository seeded, host connected through Arc | Platform teams | wk 1–2 |
 | 4 | P0.4 | Read-only assessment run and committed | Program office | wk 3–4 |
-| 5 | G0 | G0 — Ready to Plan | Steward (backup: executive sponsor) | end of wk 4 |
-| 6 | D02 | Authoritative source for each attribute that drives access | HR | end of wk 4 |
-| 7 | P1.1 | Attribute taxonomy finalized (M-014) | Platform teams | wk 5 |
-| 8 | P1.2 | Dynamic group design tested; enterprise groups and administrative units built (M-015) | Platform teams | wk 6–7 |
-| 9 | P1.3 | Intune policy design complete; pilot profiles staged (M-016) | Platform teams | wk 7–8 |
-| 10 | P1.12 | Design review approved (M-021) | Steward | wk 8 |
-| 11 | G1 | G1 — Foundation Complete | Steward | end of wk 8 |
-| 12 | P2.1 | Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022) | Platform teams | wk 9–10 |
-| 13 | P2.2 | Pilot Conditional Access and Intune policies assigned (M-024, M-025) | Platform teams | wk 11 |
-| 14 | P2.3 | Pilot devices moved by pattern (M-023) | Platform teams | wk 12–13 |
-| 15 | P2.7 | Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028) | Platform teams | wk 13–14 |
-| 16 | P2.11 | Drift-clean hold (14 days, illustrative); success criteria met (M-031) | Program office | wk 15–16 |
-| 17 | P2.12 | Retrospective and runbook updates committed | Program office | wk 16 |
-| 18 | G2 | G2 — Pilot Clean | Steward and executive sponsor (co-signed) | end of wk 16 |
-| 19 | D07 | Wave plan: which divisions, in which order | Executive sponsor and steering committee | end of wk 16 |
-| 20 | P3.1 | Wave 1, first region, about 25% (M-032) | Platform teams | wk 17–21 |
-| 21 | P3.2 | Wave 2, about 50% cumulative (M-033) | Platform teams | wk 21–25 |
-| 22 | P3.3 | Wave 3, about 75% cumulative (M-034) | Platform teams | wk 25–30 |
-| 23 | P3.4 | Wave 4, everything remaining or excepted (M-035) | Platform teams | wk 30–34 |
-| 24 | P3.6 | Attribute coverage at 100%; exception register reconciled (M-037) | Program office | wk 34–36 |
-| 25 | G3 | G3 — Rollout Complete | Executive sponsor and steering committee | end of wk 36 |
-| 26 | P4.6 | AD-bound service principal names migrated, retired or islanded, app by app | App owners | wk 37–42 |
-| 27 | P4.7 | AD authentication volume measured below the agreed threshold | Program office | wk 43–44 |
-| 28 | G4 | G4 — Legacy Quiet | Steward (backup: executive sponsor) | end of wk 44 |
-| 29 | P5.1 | AD changes frozen; final assessment and evidence packet | Program office | wk 45 |
-| 30 | P5.2 | Domain controllers without operations master roles demoted | Platform teams | wk 46 |
-| 31 | P5.3 | Remaining domain controllers demoted or islanded; domain zones moved or retired | Platform teams | wk 47 |
-| 32 | P5.4 | VMs decommissioned; final state archived; retirement record committed | Platform teams | wk 48 |
-| 33 | G5 | G5 — AD Retired | Executive sponsor and CIO | end of wk 48 |
+| 5 | D11 | Provisional target end state: AD retired, or a dated Kerberos island | Executive sponsor and CIO | end of wk 4 |
+| 6 | G0 | G0 — Ready to Plan | Steward (backup: executive sponsor) | end of wk 4 |
+| 7 | D02 | Authoritative source for each attribute that drives access | HR | end of wk 4 |
+| 8 | P1.1 | Attribute taxonomy finalized (M-014) | Platform teams | wk 5 |
+| 9 | P1.2 | Dynamic group design tested; enterprise groups and administrative units built (M-015) | Platform teams | wk 6–7 |
+| 10 | P1.3 | Intune policy design complete; pilot profiles staged (M-016) | Platform teams | wk 7–8 |
+| 11 | P1.12 | Design review approved (M-021) | Steward | wk 8 |
+| 12 | G1 | G1 — Foundation Complete | Steward | end of wk 8 |
+| 13 | P2.1 | Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022) | Platform teams | wk 9–10 |
+| 14 | P2.2 | Pilot Conditional Access and Intune policies assigned (M-024, M-025) | Platform teams | wk 11 |
+| 15 | P2.3 | Pilot devices moved by pattern (M-023) | Platform teams | wk 12–13 |
+| 16 | P2.7 | Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028) | Platform teams | wk 13–14 |
+| 17 | P2.11 | Drift-clean hold (14 days, illustrative); success criteria met (M-031) | Program office | wk 15–16 |
+| 18 | P2.12 | Retrospective and runbook updates committed | Program office | wk 16 |
+| 19 | G2 | G2 — Pilot Clean | Steward and executive sponsor (co-signed) | end of wk 16 |
+| 20 | D07 | Wave plan: which divisions, in which order | Executive sponsor and steering committee | end of wk 16 |
+| 21 | P3.1 | Wave 1, first region, about 25% (M-032) | Platform teams | wk 17–21 |
+| 22 | P3.2 | Wave 2, about 50% cumulative (M-033) | Platform teams | wk 21–25 |
+| 23 | P3.3 | Wave 3, about 75% cumulative (M-034) | Platform teams | wk 25–30 |
+| 24 | P3.4 | Wave 4, everything remaining or excepted (M-035) | Platform teams | wk 30–34 |
+| 25 | P3.6 | Attribute coverage at 100%; exception register reconciled (M-037) | Program office | wk 34–36 |
+| 26 | G3 | G3 — Rollout Complete | Executive sponsor and steering committee | end of wk 36 |
+| 27 | P4.6 | AD-bound service principal names migrated, retired or islanded, app by app | App owners | wk 37–42 |
+| 28 | P4.7 | AD authentication volume measured below the agreed threshold | Program office | wk 43–44 |
+| 29 | G4 | G4 — Legacy Quiet | Steward (backup: executive sponsor) | end of wk 44 |
+| 30 | P5.1 | AD changes frozen; final assessment and evidence packet | Program office | wk 45 |
+| 31 | P5.2 | Domain controllers without operations master roles demoted | Platform teams | wk 46 |
+| 32 | P5.3 | Remaining domain controllers demoted or islanded; domain zones moved or retired | Platform teams | wk 47 |
+| 33 | P5.4 | VMs decommissioned; final state archived; retirement record committed | Platform teams | wk 48 |
+| 34 | G5 | G5 — AD Retired | Executive sponsor and CIO | end of wk 48 |
 
 : The critical path {.striped .hover}
 
@@ -103,13 +104,14 @@ Each decision is a zero-duration milestone in the network. *Decide by* is its la
 |---|---|---|---|---|---|---|---|
 | D01 | Approve Phase 0 and name the sponsor and steward | Executive sponsor and CIO | P0.1 | end of wk 1 | **0 (critical)** | Approve the four-week pre-flight; defer | Nothing starts; the external clocks keep running |
 | D02 | Authoritative source for each attribute that drives access | HR | P1.1 | end of wk 4 | **0 (critical)** | HR system per attribute; a named alternative with a dated exception | The taxonomy can't be approved, and the whole critical path waits |
+| D11 | Provisional target end state: AD retired, or a dated Kerberos island | Executive sponsor and CIO | G0, D09 | end of wk 4 | **0 (critical)** | AD retired completely; a Kerberos island for named workloads, with an end date | G0 can't pass: owners and budgets plan without a stated goal |
 | D04 | Root of trust for device certificates | Program office | P1.8 | end of wk 6 | 10 d | Cloud PKI root; bring-your-own CA | The PKI design and the pilot certificates wait |
 | D03 | Enforce the Conditional Access baseline | CISO | P1.6 | end of wk 8 | 7 d | Enforce; extend report-only; enforce with dated exceptions | G1 can't pass: the baseline must be enforced |
 | D05 | Choose the pilot division | Program office | P1.12 | end of wk 8 | 18 d | IT (tolerates disruption best); another division plus volunteers | Pilot groups can't be built; G1 fails its pilot-readiness criterion |
 | D06 | Device pattern for each pilot cohort | Program office | P2.3 | end of wk 11 | 15 d | New devices Entra joined; existing devices reset and re-enrolled; hybrid joined only with a cut date | Pilot devices can't move; the critical path waits |
 | D07 | Wave plan: which divisions, in which order | Executive sponsor and steering committee | P3.1 | end of wk 16 | **0 (critical)** | By region, lowest risk first; by department | Wave 1 can't start; the critical path waits |
 | D08 | End dates for legacy authentication and NTLM | Authorizing official | P4.6 | end of wk 36 | 100 d | A dated end per protocol; a dated, risk-accepted exception per application | Application owners have no date to plan against; SPN retirement slips |
-| D09 | Retain a Kerberos island, or retire AD completely | Executive sponsor and CIO | P5.2 | end of wk 45 | 45 d | Retire completely; keep a documented island with an end-of-life date | The demotion sequence can't be planned |
+| D09 | Confirm or revise the target end state set at G0 (D11) | Executive sponsor and CIO | P5.2 | end of wk 45 | 45 d | Confirm the G0 target; revise it with what Phase 4 left: retire completely, or keep a documented island with an end-of-life date | The demotion sequence can't be planned |
 | D10 | Retention of AD-era logs and records | Records officer | P5.4 | end of wk 47 | 55 d | Retention schedule and archive location approved | Domain controllers can't be decommissioned: their logs can't be recovered afterward |
 
 : Decision points, by decide-by date {.striped .hover}
@@ -120,7 +122,7 @@ Each gate is the next phase's entry condition. The approver signs it against the
 
 | Gate | When | Approver | Criteria |
 |---|---|---|---|
-| [G0 — Ready to Plan](../books/b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority) | end of wk 4 | Steward (backup: executive sponsor) | Platform host operational; assessment committed; no open priority-one findings |
+| [G0 — Ready to Plan](../books/b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority) | end of wk 4 | Steward (backup: executive sponsor) | Platform host operational; assessment committed; no open priority-one findings; provisional target end state recorded; no-new-AD-dependency rule in force |
 | [G1 — Foundation Complete](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundation-complete) | end of wk 8 | Steward | Designs approved; groups and AUs drift-clean; baseline Conditional Access enforced; emergency access tested; Tier 0 in IPAM; HR feed live for the foundation scope; High findings closed |
 | [G2 — Pilot Clean](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean) | end of wk 16 | Steward and executive sponsor (co-signed) | Zero drift for the hold period; no AD-only users and no hybrid-joined PC without a cut date; no unresolved rollback trigger; retrospective committed |
 | [G3 — Rollout Complete](../books/b01-transformation-arc/12-migration-roadmap.md#phase-3-general-rollout-weeks-1736) | end of wk 36 | Executive sponsor and steering committee | Every division past its exit gate; every HR-listed employee with valid attributes; every PC cloud-joined and every server Arc-connected, or excepted; zero cross-division drift |
@@ -181,7 +183,9 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | P0.3 | [Least-privilege service principals for Entra ID, Intune and Arc](../books/b01-transformation-arc/12-migration-roadmap.md#phase-0-pre-flight-weeks-14) | Task | Platform teams | 3 | P0.1 | wk 1–2 | 4 d |
 | P0.4 | **[Read-only assessment run and committed](../books/b00-orientation/08-pre-flight-and-assessment.md)** | Task | Program office | 10 | P0.2, P0.3 | wk 3–4 | 0 |
 | P0.5 | [Transactions profiled for applications proposed to move from their data](../books/b01-transformation-arc/10-analyzing-the-estate.md#profiling-transactions-before-separation) | Task | App owners | 8 | P0.1 | wk 1–3 | 9 d |
-| G0 | **[G0 — Ready to Plan](../books/b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority)** | Gate | Steward (backup: executive sponsor) | — | P0.4, P0.5 | end of wk 4 | 0 |
+| P0.6 | [Change process asks whether each change adds an AD dependency; exceptions to the AO](../books/b13-governance/04-change-control-and-provenance.md#no-new-dependencies-on-active-directory) | Task | Program office | 3 | P0.1 | wk 1–2 | 14 d |
+| D11 | **[Provisional target end state: AD retired, or a dated Kerberos island](../books/b01-transformation-arc/12-migration-roadmap.md#phase-0-pre-flight-weeks-14)** | Decision | Executive sponsor and CIO | — | P0.4 | end of wk 4 | 0 |
+| G0 | **[G0 — Ready to Plan](../books/b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority)** | Gate | Steward (backup: executive sponsor) | — | P0.4, P0.5, P0.6, D11 | end of wk 4 | 0 |
 
 : Phase 0 — Pre-flight {.striped .hover}
 
@@ -266,7 +270,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
-| D09 | [Retain a Kerberos island, or retire AD completely](../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548) | Decision | Executive sponsor and CIO | — | G3 | end of wk 36 | 45 d |
+| D09 | [Confirm or revise the target end state set at G0 (D11)](../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548) | Decision | Executive sponsor and CIO | — | G3, D11 | end of wk 36 | 45 d |
 | D10 | [Retention of AD-era logs and records](../books/b01-transformation-arc/09-who-leads-the-transformation.md#decision-rights-across-the-program) | Decision | Records officer | — | G3 | end of wk 36 | 55 d |
 | P5.1 | **[AD changes frozen; final assessment and evidence packet](../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548)** | Task | Program office | 5 | G4 | wk 45 | 0 |
 | P5.2 | **[Domain controllers without operations master roles demoted](../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548)** | Task | Platform teams | 5 | P5.1, D09 | wk 46 | 0 |
@@ -283,8 +287,8 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 | Owner or approver | Tasks | Decisions | Gates |
 |---|---|---|---|
 | Platform teams | 35 | — | — |
-| Program office | 7 | 3 | — |
-| Executive sponsor and CIO | — | 2 | 1 |
+| Program office | 8 | 3 | — |
+| Executive sponsor and CIO | — | 3 | 1 |
 | App owners | 2 | — | — |
 | CISO | 1 | 1 | — |
 | Executive sponsor and steering committee | — | 1 | 1 |
