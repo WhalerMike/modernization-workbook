@@ -53,11 +53,11 @@ class PlanError(Exception):
 # ------------------------------------------------------------------ loading
 
 
-def load_plans() -> dict[str, dict]:
+def load_plans(extra: list[Path] | None = None) -> dict[str, dict]:
     plans = {}
-    for path in sorted(DATA.glob("*.yaml")):
+    for path in sorted(DATA.glob("*.yaml")) + list(extra or []):
         plan = yaml.safe_load(path.read_text(encoding="utf-8"))
-        plan["_file"] = path.relative_to(ROOT).as_posix()
+        plan["_file"] = path.resolve().relative_to(ROOT).as_posix()
         if plan["slug"] != path.stem:
             raise PlanError(f"{path.name}: slug {plan['slug']!r} must match the file name")
         plans[plan["slug"]] = plan
@@ -83,8 +83,8 @@ def validate(plan: dict) -> None:
             raise PlanError(f"{name}: {t['id']}: a decision needs owner, options and late")
         if kind == "gate" and not (t.get("owner") and t.get("criteria")):
             raise PlanError(f"{name}: {t['id']}: a gate needs owner and criteria")
-        if kind == "external" and (t.get("after") or ":" not in t.get("ref", "")):
-            raise PlanError(f"{name}: {t['id']}: an external milestone needs ref: slug:ID and no after")
+        if kind == "external" and ":" not in t.get("ref", ""):
+            raise PlanError(f"{name}: {t['id']}: an external milestone needs ref: slug:ID")
         if t.get("phase") not in plan["phases"]:
             raise PlanError(f"{name}: {t['id']}: phase {t.get('phase')!r} isn't in phases")
         for p in t.get("after", []):
@@ -158,11 +158,12 @@ def schedule(plan: dict, plans: dict[str, dict]) -> None:
     for tid in order:
         t = tasks[tid]
         if t.get("kind") == "external":
-            slug, ref = t["ref"].split(":")
+            slug, ref, *edge = t["ref"].split(":")
             other = {x["id"]: x for x in plans[slug]["tasks"]}
-            if ref not in other or "_ef" not in other[ref]:
+            if ref not in other or "_ef" not in other[ref] or edge not in ([], ["start"]):
                 raise PlanError(f"{plan['_file']}: {tid}: {t['ref']} not found or not scheduled")
-            t["_es"] = other[ref]["_ef"]
+            # "slug:ID" is the other item's finish; "slug:ID:start" its start.
+            t["_es"] = other[ref]["_es"] if edge else other[ref]["_ef"]
             t["_ref_title"] = plans[slug]["short_title"]
             t["_ref_name"] = other[ref]["name"]
         else:
@@ -172,23 +173,41 @@ def schedule(plan: dict, plans: dict[str, dict]) -> None:
                 es = max(es, (q["_ef"] if typ == "FS" else q["_es"]) + lag)
             t["_es"] = es
         t["_ef"] = t["_es"] + t["dur"]
-    finish = max(t["_ef"] for t in tasks.values())
-    # Backward pass.
     succs: dict[str, list[tuple[str, str, int]]] = {tid: [] for tid in tasks}
     for t in tasks.values():
         for p, typ, lag in t["_preds"]:
             succs[p].append((t["id"], typ, lag))
+    # An external milestone with predecessors is a deadline: its date is fixed
+    # by the other plan, and this plan's work must finish by it. One with
+    # successors is an input. One with neither is shown for reference. Only
+    # inputs extend this plan's finish.
+    for t in tasks.values():
+        if t.get("kind") == "external":
+            t["_role"] = "deadline" if t["_preds"] else "input" if succs[t["id"]] else "reference"
+    finish = max(t["_ef"] for t in tasks.values() if t.get("_role") in (None, "input"))
+    # Backward pass.
     for tid in reversed(order):
         t = tasks[tid]
-        lf = finish
-        for s, typ, lag in succs[tid]:
-            st = tasks[s]
-            lf = min(lf, st["_ls"] - lag if typ == "FS" else st["_ls"] - lag + t["dur"])
+        if t.get("_role") in ("deadline", "reference"):
+            lf = t["_es"]
+        else:
+            lf = finish
+            for s, typ, lag in succs[tid]:
+                st = tasks[s]
+                lf = min(lf, st["_ls"] - lag if typ == "FS" else st["_ls"] - lag + t["dur"])
         t["_lf"] = lf
         t["_ls"] = lf - t["dur"]
         t["_float"] = t["_ls"] - t["_es"]
-        t["_crit"] = t["_float"] == 0
+        t["_crit"] = t["_float"] <= 0 and t.get("kind") != "external"
         t["_succs"] = [s for s, _, _ in succs[tid]]
+    for t in tasks.values():
+        if t.get("_role") == "deadline":
+            # Margin: working days between the latest predecessor's finish and the fixed date.
+            t["_margin"] = min(
+                t["_es"] - ((tasks[p]["_ef"] if typ == "FS" else tasks[p]["_es"]) + lag) for p, typ, lag in t["_preds"]
+            )
+            if t["_margin"] < 0:
+                print(f"project plans: warning: {plan['slug']}: {t['id']} is missed by {-t['_margin']} working days", file=sys.stderr)
     for t in tasks.values():
         if t.get("kind") == "decision" and not t["_succs"]:
             raise PlanError(f"{plan['_file']}: decision {t['id']} isn't needed by anything; add it to a task's after")
@@ -217,6 +236,12 @@ def weeks(t: dict) -> str:
 
 def days(n: int) -> str:
     return "0" if n == 0 else f"{n} d"
+
+
+def float_text(t: dict) -> str:
+    if t.get("kind") == "external" and t["_role"] != "input":
+        return "fixed date"
+    return f"**{t['_float']} d (late)**" if t["_float"] < 0 else days(t["_float"])
 
 
 def esc(s: str) -> str:
@@ -499,7 +524,7 @@ def page(plan: dict, plans: dict[str, dict]) -> str:
     decisions = [t for t in tasks if t.get("kind") == "decision"]
     externals = [t for t in tasks if t.get("kind") == "external"]
     crit = [plan_t for plan_t in sorted(tasks, key=lambda t: (t["_es"], t["_ef"])) if plan_t["_crit"]]
-    near = [t for t in sorted(tasks, key=lambda t: (t["_float"], t["_es"])) if 0 < t["_float"] <= NEAR_CRITICAL]
+    near = [t for t in sorted(tasks, key=lambda t: (t["_float"], t["_es"])) if 0 < t["_float"] <= NEAR_CRITICAL and t.get("kind") != "external"]
     by_id = {t["id"]: t for t in tasks}
     # Plans that consume this plan's milestones.
     consumers = []
@@ -608,16 +633,38 @@ def page(plan: dict, plans: dict[str, dict]) -> str:
     if externals or consumers:
         L += ["## Links to other plans", ""]
         for t in externals:
-            L.append(
-                f"- **{t['id']}, {t['name']},** comes from the [{t['_ref_title']}]({t['ref'].split(':')[0]}.md) plan ({t['ref'].split(':')[1]}, {t['_ref_name']}). "
-                f"This plan expects it by {weeks(t)}; it has {days(t['_float'])} of float here. {t['late']}."
-            )
-        for other, t in consumers:
-            mine = by_id[t["ref"].split(":")[1]]
-            where = "on that plan's critical path" if t["_crit"] else f"with {days(t['_float'])} of float there"
-            L.append(
-                f"- **{mine['id']}, {mine['name']},** feeds the [{other['short_title']}]({other['slug']}.md) plan as its {t['id']}, {where}."
-            )
+            head = (f"- **{t['id']}, {t['name']},** is {'the start of ' if t['ref'].endswith(':start') else ''}{t['ref'].split(':')[1]} in the [{t['_ref_title']}]({t['ref'].split(':')[0]}.md) plan"
+                    f" ({t['_ref_name']}), {weeks(t)}.")
+            if t["_role"] == "input":
+                L.append(f"{head} This plan waits for it; it can slip {days(t['_float'])} before it moves this plan. {t['late']}.")
+            elif t["_role"] == "deadline":
+                margin = t["_margin"]
+                state = f"**missed by {-margin} working days**" if margin < 0 else "**no margin**" if margin == 0 else f"a margin of {days(margin)}"
+                waits = " Later work in this plan waits for it." if t["_succs"] else ""
+                L.append(f"{head} This plan must finish {link_list([p for p, _, _ in t['_preds']])} by then: {state}.{waits} {t['late']}.")
+            else:
+                L.append(f"{head} Shown for reference.")
+        if consumers:
+            L += [
+                "",
+                "Other plans that take a date from this one. *Waits for it*: that plan can't move until this item finishes, and its float says how far this item can slip before it moves that plan. *Must finish by it*: that plan's work has to be done before this item, and the margin says by how much.",
+                "",
+                "| This plan's item | When | Linked plan | Relationship | Float or margin |",
+                "|---|---|---|---|---|",
+            ]
+            for other, x in sorted(consumers, key=lambda c: (by_id[c[1]["ref"].split(":")[1]]["_ef"], c[0]["short_title"])):
+                mine = by_id[x["ref"].split(":")[1]]
+                edge = "start of " if x["ref"].endswith(":start") else ""
+                if x["_role"] == "deadline":
+                    rel = f"Must finish {link_list([p for p, _, _ in x['_preds']])} by it"
+                    m = x["_margin"]
+                    val = f"**missed by {-m} d**" if m < 0 else "**no margin**" if m == 0 else f"{days(m)} margin"
+                elif x["_role"] == "input":
+                    rel, val = "Waits for it", days(x["_float"])
+                else:
+                    rel, val = "Reference only", "—"
+                L.append(f"| {edge}{esc(full_name(mine))} | {weeks(mine)} | [{other['short_title']}]({other['slug']}.md) ({x['id']}) | {rel} | {val} |")
+            L += ["", ": Plans that take a date from this one {.striped .hover}"]
         L.append("")
     L += [
         "## Work breakdown and schedule",
@@ -635,7 +682,7 @@ def page(plan: dict, plans: dict[str, dict]) -> str:
             if t["_crit"]:
                 name = f"**{name}**"
             L.append(
-                f"| {t['id']} | {name} | {kind_label(t)} | {esc(t.get('owner', ''))} | {t['dur'] or '—'} | {esc(pred_text(t))} | {weeks(t)} | {days(t['_float'])} |"
+                f"| {t['id']} | {name} | {kind_label(t)} | {esc(t.get('owner', ''))} | {t['dur'] or '—'} | {esc(pred_text(t))} | {weeks(t)} | {float_text(t)} |"
             )
         L += ["", f": {label} {{.striped .hover}}", ""]
     owners: dict[str, list[int]] = {}
@@ -700,12 +747,27 @@ def outputs(plans: dict[str, dict]) -> dict[Path, str]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--check", action="store_true", help="exit 1 if any generated file differs from the YAML")
+    ap.add_argument("--draft", type=Path, action="append", default=[],
+                    help="dry run: validate and schedule this draft YAML with the committed plans, print a summary, write nothing")
     args = ap.parse_args()
     try:
-        files = outputs(load_plans())
+        plans = load_plans(args.draft)
+        files = outputs(plans)
     except PlanError as e:
         print(f"project plans: {e}", file=sys.stderr)
         return 2
+    if args.draft:
+        for d in args.draft:
+            plan = plans[d.stem]
+            print(f"{plan['slug']}: {math.ceil(plan['_finish'] / 5)} weeks ({plan['_finish']} working days)")
+            for t in plan["tasks"]:
+                if t.get("kind", "task") != "task" or t["_crit"] or t["_float"] <= NEAR_CRITICAL:
+                    if t.get("kind") == "external":
+                        flag = t["_role"] + (f" margin {t['_margin']}" if t["_role"] == "deadline" else f" float {t['_float']}" if t["_role"] == "input" else "")
+                    else:
+                        flag = "CRITICAL" if t["_crit"] else f"float {t['_float']} d"
+                    print(f"  {t['id']:8} {t.get('kind', 'task'):8} {weeks(t):16} {flag:12} {full_name(t)}")
+        return 0
     stale = []
     for path, text in files.items():
         data = text.encode("utf-8")

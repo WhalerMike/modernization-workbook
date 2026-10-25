@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="924" viewBox="0 0 980 924" role="img" aria-labelledby="t d" font-family="Inter, 'DM Sans', Arial, sans-serif">
+<title id="t">Endpoint &amp; Device Modernization: schedule</title>
+<desc id="d">Gantt chart of 45 tasks over 44 weeks. Critical-path tasks are red; other tasks are blue, with a grey line for their float. Gates are violet diamonds, decisions amber diamonds, and milestones from another plan green diamonds.</desc>
+<rect width="980" height="924" fill="#ffffff"/>
+<line x1="360.0" y1="28" x2="360.0" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<text x="362.0" y="22" font-size="10" fill="#64748b">wk 1</text>
+<line x1="414.5" y1="28" x2="414.5" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<text x="416.5" y="22" font-size="10" fill="#64748b">wk 5</text>
+<line x1="469.1" y1="28" x2="469.1" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<text x="471.1" y="22" font-size="10" fill="#64748b">wk 9</text>
+<line x1="523.6" y1="28" x2="523.6" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<text x="525.6" y="22" font-size="10" fill="#64748b">wk 13</text>
+<line x1="578.2" y1="28" x2="578.2" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<text x="580.2" y="22" font-size="10" fill="#64748b">wk 17</text>
+<line x1="632.7" y1="28" x2="632.7" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<text x="634.7" y="22" font-size="10" fill="#64748b">wk 21</text>
+<line x1="687.3" y1="28" x2="687.3" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<text x="689.3" y="22" font-size="10" fill="#64748b">wk 25</text>
+<line x1="741.8" y1="28" x2="741.8" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<text x="743.8" y="22" font-size="10" fill="#64748b">wk 29</text>
+<line x1="796.4" y1="28" x2="796.4" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<text x="798.4" y="22" font-size="10" fill="#64748b">wk 33</text>
+<line x1="850.9" y1="28" x2="850.9" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<text x="852.9" y="22" font-size="10" fill="#64748b">wk 37</text>
+<line x1="905.5" y1="28" x2="905.5" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<text x="907.5" y="22" font-size="10" fill="#64748b">wk 41</text>
+<line x1="960.0" y1="28" x2="960.0" y2="884" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="0" y="34" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="46.5" font-size="11" font-weight="600" fill="#1e293b">Phase 0 — Observe</text>
+<text x="14" y="63" font-size="10.5" fill="#64748b">E0.1  Hybrid-join state checked (SCP, sync scope); fleet…</text>
+<line x1="381.8" y1="59.5" x2="417.3" y2="59.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="55" width="21.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="80" font-size="10.5" fill="#64748b">E0.2  Every GPO exported to Group Policy analytics, tria…</text>
+<line x1="392.7" y1="76.5" x2="409.1" y2="76.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="72" width="32.7" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="97" font-size="10.5" fill="#64748b">E0.3  NTLM audit (stage 1) and SPN inventory, duplicates…</text>
+<line x1="414.5" y1="93.5" x2="417.3" y2="93.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="89" width="54.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="114" font-size="10.5" fill="#64748b">D-E1  Path: manual, governed or retrofit</text>
+<path d="M381.8 105.0 L387.3 110.5 L381.8 116.0 L376.3 110.5 Z" fill="#D97706"/>
+<text x="14" y="131" font-size="10.5" fill="#64748b">EG0  Gate 0 — Observation signed off</text>
+<path d="M414.5 122.0 L420.0 127.5 L414.5 133.0 L409.0 127.5 Z" fill="#7C3AED"/>
+<rect x="0" y="136" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="148.5" font-size="11" font-weight="600" fill="#1e293b">Phase 1 — Classify and author</text>
+<text x="14" y="165" font-size="10.5" fill="#64748b">E1.1  Every setting classified and given a disposition;…</text>
+<line x1="400.9" y1="161.5" x2="417.3" y2="161.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="373.6" y="157" width="27.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="182" font-size="10.5" fill="#64748b">D-E2  Settings with no Intune equivalent</text>
+<path d="M400.9 173.0 L406.4 178.5 L400.9 184.0 L395.4 178.5 Z" fill="#D97706"/>
+<text x="14" y="199" font-size="10.5" fill="#64748b">D-E3  Windows 10 posture</text>
+<path d="M414.5 190.0 L420.0 195.5 L414.5 201.0 L409.0 195.5 Z" fill="#D97706"/>
+<text x="14" y="216" font-size="10.5" fill="#64748b">D-E4  Windows provisioning for net-new devices</text>
+<path d="M414.5 207.0 L420.0 212.5 L414.5 218.0 L409.0 212.5 Z" fill="#D97706"/>
+<text x="14" y="233" font-size="10.5" fill="#64748b">D-E5  Arc onboarding method</text>
+<path d="M414.5 224.0 L420.0 229.5 L414.5 235.0 L409.0 229.5 Z" fill="#D97706"/>
+<text x="14" y="250" font-size="10.5" fill="#64748b">D-E6  Update model: Windows Autopatch or program-managed…</text>
+<path d="M414.5 241.0 L420.0 246.5 L414.5 252.0 L409.0 246.5 Z" fill="#D97706"/>
+<text x="14" y="267" font-size="10.5" fill="#64748b">E1.2  Policy library built unassigned: compliance, confi…</text>
+<line x1="455.5" y1="263.5" x2="458.2" y2="263.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="414.5" y="259" width="40.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="284" font-size="10.5" fill="#64748b">E1.3  Peer review against the decision records; lab ring…</text>
+<line x1="466.4" y1="280.5" x2="469.1" y2="280.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="455.5" y="276" width="10.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="301" font-size="10.5" fill="#64748b">E1.4  Co-management on for the pilot collection; MDMWins…</text>
+<line x1="428.2" y1="297.5" x2="474.5" y2="297.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="400.9" y="293" width="27.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="318" font-size="10.5" fill="#64748b">E1.5  Intune-first intake: procurement fields, Autopilot…</text>
+<line x1="441.8" y1="314.5" x2="474.5" y2="314.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="414.5" y="310" width="27.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="335" font-size="10.5" fill="#64748b">EG1  Gate 1 — Policy library authored and reviewed</text>
+<path d="M466.4 326.0 L471.9 331.5 L466.4 337.0 L460.9 331.5 Z" fill="#7C3AED"/>
+<text x="14" y="352" font-size="10.5" fill="#64748b">X-G1  Program G1 — Foundation Complete</text>
+<path d="M469.1 343.0 L474.6 348.5 L469.1 354.0 L463.6 348.5 Z" fill="#059669"/>
+<rect x="0" y="357" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="369.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Pilot</text>
+<text x="14" y="386" font-size="10.5" fill="#64748b">X-D06  Program decision D06: device pattern for each pil…</text>
+<path d="M469.1 377.0 L474.6 382.5 L469.1 388.0 L463.6 382.5 Z" fill="#059669"/>
+<text x="14" y="403" font-size="10.5" fill="#64748b">D-E7  Cut date for each hybrid-joined pilot device</text>
+<path d="M469.1 394.0 L474.6 399.5 L469.1 405.0 L463.6 399.5 Z" fill="#D97706"/>
+<text x="14" y="420" font-size="10.5" fill="#64748b">E2.1  Pilot devices moved by pattern, with device attrib…</text>
+<line x1="490.9" y1="416.5" x2="496.4" y2="416.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="469.1" y="412" width="21.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="437" font-size="10.5" fill="#64748b">E2.2  Sliders at Pilot Intune; policies assigned to the…</text>
+<line x1="504.5" y1="433.5" x2="510.0" y2="433.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="490.9" y="429" width="13.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="454" font-size="10.5" fill="#64748b">E2.3  Conflicts measured (gpresult against per-setting s…</text>
+<line x1="559.1" y1="450.5" x2="564.5" y2="450.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="504.5" y="446" width="54.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="471" font-size="10.5" fill="#64748b">E2.4  Compliant-device Conditional Access in report-only…</text>
+<line x1="531.8" y1="467.5" x2="578.2" y2="467.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="504.5" y="463" width="27.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="488" font-size="10.5" fill="#64748b">E2.5  First setting class retired: GPO backed up, eviden…</text>
+<line x1="572.7" y1="484.5" x2="578.2" y2="484.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="559.1" y="480" width="13.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="505" font-size="10.5" fill="#64748b">E2.6  Pilot server wave: resource group, tags, network c…</text>
+<line x1="490.9" y1="501.5" x2="559.1" y2="501.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="469.1" y="497" width="21.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="522" font-size="10.5" fill="#64748b">E2.7  Day-one baseline on pilot servers: machine configu…</text>
+<line x1="510.0" y1="518.5" x2="578.2" y2="518.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="490.9" y="514" width="19.1" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="539" font-size="10.5" fill="#64748b">E2.8  SPNs repaired for pilot applications; NTLM restric…</text>
+<line x1="518.2" y1="535.5" x2="578.2" y2="535.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="490.9" y="531" width="27.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="556" font-size="10.5" fill="#64748b">EG2  Gate 2 — Pilot clean</text>
+<path d="M572.7 547.0 L578.2 552.5 L572.7 558.0 L567.2 552.5 Z" fill="#7C3AED"/>
+<text x="14" y="573" font-size="10.5" fill="#64748b">X-G2  Program G2 — Pilot Clean</text>
+<path d="M578.2 564.0 L583.7 569.5 L578.2 575.0 L572.7 569.5 Z" fill="#059669"/>
+<rect x="0" y="578" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="590.5" font-size="11" font-weight="600" fill="#1e293b">Phase 3 — Workload cutover</text>
+<text x="14" y="607" font-size="10.5" fill="#1e293b">E3.1  Wave 1, compliance policies: slider to Intune; CP-…</text>
+<rect x="578.2" y="599" width="40.9" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="624" font-size="10.5" fill="#1e293b">E3.2  Wave 2, Endpoint Protection: ES-001 to ES-006; mat…</text>
+<rect x="619.1" y="616" width="40.9" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="641" font-size="10.5" fill="#1e293b">E3.3  Wave 3, device configuration: the settings catalog…</text>
+<rect x="660.0" y="633" width="40.9" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="658" font-size="10.5" fill="#1e293b">E3.4  Wave 4, Windows Update policies: update rings assi…</text>
+<rect x="700.9" y="650" width="40.9" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="675" font-size="10.5" fill="#64748b">E3.5  Every remaining server Arc-connected or excepted,…</text>
+<line x1="741.8" y1="671.5" x2="769.1" y2="671.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="578.2" y="667" width="163.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="692" font-size="10.5" fill="#64748b">E3.6  NTLM stage 2 per application, after owner sign-off…</text>
+<line x1="660.0" y1="688.5" x2="769.1" y2="688.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="578.2" y="684" width="81.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="709" font-size="10.5" fill="#64748b">E3.7  Weekly inventory reconciliation and daily drift ex…</text>
+<line x1="600.0" y1="705.5" x2="769.1" y2="705.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="572.7" y="701" width="27.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="726" font-size="10.5" fill="#1e293b">E3.8  Residual cleanup: remaining links disabled; tattoo…</text>
+<rect x="741.8" y="718" width="27.3" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="743" font-size="10.5" fill="#1e293b">EG3  Gate 3 — Workloads cut over</text>
+<path d="M769.1 734.0 L774.6 739.5 L769.1 745.0 L763.6 739.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="760" font-size="10.5" fill="#64748b">X-G3  Program G3 — Rollout Complete</text>
+<path d="M850.9 751.0 L856.4 756.5 L850.9 762.0 L845.4 756.5 Z" fill="#059669"/>
+<rect x="0" y="765" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="777.5" font-size="11" font-weight="600" fill="#1e293b">Phase 4 — Formal retirement</text>
+<text x="14" y="794" font-size="10.5" fill="#64748b">X-D08  Program decision D08: end dates for legacy authen…</text>
+<path d="M578.2 785.0 L583.7 790.5 L578.2 796.0 L572.7 790.5 Z" fill="#059669"/>
+<text x="14" y="811" font-size="10.5" fill="#1e293b">E4.1  Migrated GPOs disabled and held 90 days as the rol…</text>
+<rect x="769.1" y="803" width="174.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="828" font-size="10.5" fill="#1e293b">E4.2  Backups restore-tested; GPOs archived and deleted;…</text>
+<rect x="943.6" y="820" width="13.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="845" font-size="10.5" fill="#64748b">E4.3  NTLM stage 3: deny all; exceptions removed as each…</text>
+<line x1="905.5" y1="841.5" x2="957.3" y2="841.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="850.9" y="837" width="54.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="862" font-size="10.5" fill="#64748b">E4.4  Evidence for CM-2, CM-6, CM-7, CM-8 and SI-2 hande…</text>
+<line x1="864.5" y1="858.5" x2="957.3" y2="858.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="850.9" y="854" width="13.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="879" font-size="10.5" fill="#1e293b">EG4  Gate 4 — GPOs retired</text>
+<path d="M957.3 870.0 L962.8 875.5 L957.3 881.0 L951.8 875.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="14" y="897" width="18" height="9" rx="2" fill="#DC2626"/>
+<text x="38" y="906" font-size="10.5" fill="#1e293b">Critical path</text>
+<rect x="140.60000000000002" y="897" width="18" height="9" rx="2" fill="#2563EB"/>
+<text x="164.60000000000002" y="906" font-size="10.5" fill="#1e293b">Other task</text>
+<line x1="248.60000000000002" y1="901.5" x2="266.6" y2="901.5" stroke="#cbd5e1" stroke-width="2"/>
+<text x="272.6" y="906" font-size="10.5" fill="#1e293b">Float</text>
+<path d="M334.6 896 L340.1 901.5 L334.6 907 L329.1 901.5 Z" fill="#7C3AED"/>
+<text x="349.6" y="906" font-size="10.5" fill="#1e293b">Gate</text>
+<path d="M405.40000000000003 896 L410.90000000000003 901.5 L405.40000000000003 907 L399.90000000000003 901.5 Z" fill="#D97706"/>
+<text x="420.40000000000003" y="906" font-size="10.5" fill="#1e293b">Decision</text>
+<path d="M501.0 896 L506.5 901.5 L501.0 907 L495.5 901.5 Z" fill="#059669"/>
+<text x="516.0" y="906" font-size="10.5" fill="#1e293b">From another plan</text>
+<text x="966" y="906" font-size="10.5" fill="#64748b" text-anchor="end">A red outline marks a milestone on the critical path</text>
+</svg>

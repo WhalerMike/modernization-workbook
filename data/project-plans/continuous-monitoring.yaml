@@ -1,0 +1,183 @@
+# Sample project plan: Continuous Monitoring & Evidence Fabric.
+# scripts/project_plans/build.py reads this file and writes the page, the
+# Gantt chart and the downloads. Edit this file, never the outputs.
+#
+# Durations are working days and illustrative. The phases are Book 13,
+# Chapter 12's five project phases (charter, contract, emission,
+# aggregation, detection and assembly), plus a sixth for the first quarter
+# of the cadence after cutover. The plan starts in week 1, alongside the
+# program's Phase 0, because two program gates are "measured from data":
+# G1 needs the pilot groups and administrative units drift-clean, and G2
+# needs zero drift across the pilot for the hold period. The program plan
+# can't list this plan as a predecessor, so this plan references the
+# program milestones it has to beat (X-P02, X-P12, X-P23) and the gates
+# (X-G0, X-G1, X-G2), and the critical-path note states the margin.
+
+slug: continuous-monitoring
+title: "Continuous Monitoring & Evidence Fabric: Evidence From the Systems"
+short_title: "Continuous Monitoring & Evidence Fabric"
+subtitle: "A sample project plan for Book 13's continuous-monitoring project: from the evidence contract to a drift loop and a package generated from the stream, timed against the program gates that are measured from data"
+description: "A sample PMP-style project plan for the Continuous Monitoring & Evidence Fabric project, built from Book 13, Chapter 12: a work breakdown by project phase, a computed critical path timed against the program gates measured from data, every gate with its approver and criteria, and the decisions (repository, severity, actuation ceiling, engine, cadence, reciprocity) with owners and decide-by weeks."
+plan_type: "Project"
+covers: "Book 13, Chapter 12 phases 0 to 4, plus the first quarter of the cadence after cutover"
+books: "Book 13, with Books 14 and 15"
+sponsor: "Executive sponsor and CIO; the senior accountable official for risk management approves the strategy"
+manager: "Steward (program office), with domain leads for the evidence contract, aggregation, drift detection and the authorization package"
+start_label: "Week 1 = the program's Phase 0 approval"
+project_start: 2027-01-04
+
+purpose: |
+  This plan builds the evidence fabric [Book 13, Chapter 12](../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project) charters: one evidence contract, at least two sources emitting normalized records, one reconciled picture joined on asset identity, a drift loop for one object class, and authorization artifacts generated from the stream. It follows the chapter's phases gate for gate, and adds the first quarter of the cadence that [Book 14, Chapter 11](../books/b14-compliance/11-the-authorization-package.md#the-cadence) and [Book 15, Chapter 12](../books/b15-day2-operations/12-the-day-two-runbook.md) run after cutover. [Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md#continuous-monitoring-evidence-fabric) places this project fourth, but the [program master schedule](program-master-schedule.md) can't wait that long: its G1 and G2 criteria are drift-clean, measured from data, so this plan starts in week 1 and is timed against them.
+
+critical_path_note: |
+  The computed path doesn't start in this plan. It starts in the program: the first drift run on the pilot groups and administrative units can't begin until the program builds them (its P1.2, end of week 7, which is on the program's own critical path). From there the path runs through that drift run, the drift loop for identity attributes, Gate 4, the first quarter of the cadence and the quarterly review to Gate 5. The build chain from the charter to one reconciled picture (Gates 0 to 3) carries only 2 days of float against it, so a slip of more than 2 days in the contract, the adapters or the join moves Gate 4 and everything after it.
+
+  The margin against the program is the number to watch, because the program file can't show it. The drift run on the groups and administrative units ends in week 8, 4 working days before G1. On the G2 side, the pilot devices move at the end of week 13 (P2.3), and their posture findings land in contract shape 3 days later: 4 days before the program's 14-day drift-clean hold begins, and 14 days before G2 itself. The hold, not G2, is the real deadline, because G2's zero-drift criterion is measured across it. If either margin is spent, G1 or G2 is judged on findings people recorded by hand, which Book 13 allows only when they are written in the contract's shape. Both margins are computed: they're the deadlines listed under *Links to other plans*.
+
+assumptions:
+  - "The pilot object class for the drift loop is identity attributes; device posture follows for the program's G2 ([Book 13, Chapter 12](../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures) lets the agency pick either)."
+  - "Authorization and identity drift aren't detected by a runtime engine yet; the domain books' checks and people find them, and record them in the remediation contract's shape ([Book 13, Chapter 06](../books/b13-governance/06-the-drift-engine.md#what-is-built-today))."
+  - "An authoritative naming and addressing plane exists, or will, as the join key ([Book 13, Chapter 12](../books/b13-governance/12-governance-at-scale.md#risks-and-assumptions)); unjoinable records are counted, not dropped."
+  - "Stakeholders accept honest coverage reporting, proven separated from asserted; Book 13 calls this the assumption most often violated."
+  - "Durations are illustrative. Replacing the agency's monitoring tools and evidencing every FedRAMP indicator are out of scope for the first phase."
+
+risks:
+  - risk: "The program's P1.2 or P2.3 slips"
+    impact: "The drift run or the device findings move with it; G1 or G2 is judged on hand-recorded findings"
+    response: "Track the 4-day margin weekly; record any hand-found finding in the remediation contract's shape (Book 13, Chapter 06)"
+  - risk: "Sources emit proprietary telemetry that can't be normalized without synthesis"
+    impact: "Phase 2 can't close on two sources"
+    response: "An adapter per source translates to the contract; derived values are labeled derived (Book 13, Chapter 08)"
+  - risk: "Drift detection produces more findings than the agency can remediate"
+    impact: "Window adherence falls; the drift trend the board reviews rises"
+    response: "Severity sets the order; routine classes move to the machine tempo; the rest enter the gap register (Book 13, Chapters 10 and 12)"
+  - risk: "Authorization-package format requirements change"
+    impact: "Generated artifacts stop validating"
+    response: "Artifacts are generated from the stream, so a format change is a generator change, not a rewrite (Book 13, Chapter 12)"
+
+tasks:
+  # ------------------------------------------------- program milestones this plan is timed against
+  - {id: X-P02, kind: external, phase: 0, name: "Platform host built and repository seeded", ref: "program-master-schedule:P0.2", owner: "Platform teams",
+     late: "The contract has no record to be committed to; Gate 1 waits",
+     source: "../books/b13-governance/03-one-authoritative-record.md#where-the-record-lives"}
+  - {id: X-G0, kind: external, phase: 0, name: "Program G0: Ready to Plan", ref: "program-master-schedule:G0", owner: "Steward",
+     late: "This plan's Gate 0 should land before it; the pilot scope feeds the program's planning",
+     source: "../books/b00-orientation/06-the-project-portfolio.md#how-the-projects-fit-the-program"}
+  # ------------------------------------------------- Phase 0 — charter and alignment
+  - {id: M0.1, phase: 0, name: "Sponsor, lead and the four domain leads named", dur: 3, owner: "Executive sponsor and CIO",
+     source: "../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures"}
+  - {id: D-M1, kind: decision, phase: 0, name: "Where the record, schemas, rules and their code live", after: [M0.1], owner: "Program office (steward)",
+     options: "One repository and one merge gate for the record, schemas, runtime code and tests; several repositories", late: "The contract can't be committed; a whole class of drift between the record and the code that reads it stays possible",
+     source: "../books/b13-governance/12-governance-at-scale.md#one-repository-one-merge-gate"}
+  - {id: M0.2, phase: 0, name: "Record shape, pilot sources and naming-plane join key confirmed", dur: 5, after: [M0.1], owner: "Program office",
+     source: "../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures"}
+  - {id: D-M2, kind: decision, phase: 0, name: "Pilot scope: the two emitting sources and the drift object class", after: [M0.2], owner: "CISO",
+     options: "Two of the identity, endpoint, network and data-platform sources; identity attributes or device posture as the object class", late: "Emission and the drift loop can't be scoped; every later phase waits",
+     source: "../books/b13-governance/12-governance-at-scale.md#objectives-and-scope"}
+  - {id: M0.3, phase: 0, name: "Continuous monitoring strategy drafted, with minimum frequencies and manual assessment of what tools can't see", dur: 10, after: [M0.1], owner: "CISO",
+     source: "../books/b13-governance/09-who-governs.md#where-the-roles-come-from"}
+  - {id: MG0, kind: gate, phase: 0, name: "Gate 0 — Pilot scope agreed", after: [M0.2, D-M1, D-M2], owner: "CISO",
+     criteria: "Sponsor, lead and domain leads named; record shape, pilot sources and join key confirmed; pilot scope agreed",
+     source: "../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures"}
+  # ------------------------------------------------- Phase 1 — evidence contract
+  - {id: M1.1, phase: 1, name: "Normalized record documented: asset identity, time, control, verdict, evidence reference", dur: 5, after: [MG0], owner: "Evidence contract lead",
+     source: "../books/b15-day2-operations/11-attestation-and-the-compliance-app.md#one-record-every-source"}
+  - {id: M1.2, phase: 1, name: "Provenance envelope fixed: source classification, transformation chain, lineage hash", dur: 4, after: ["M1.1:SS+2"], owner: "Evidence contract lead",
+     source: "../books/b13-governance/07-evidence-over-attestation.md#the-provenance-envelope"}
+  - {id: D-M3, kind: decision, phase: 1, name: "Severity thresholds and halt triggers for the drift classifier", after: [MG0], owner: "Steward, after board review and an outside reviewer",
+     options: "The default rule (severity from drift class and whether the claim is in active use; P1 halts and is never remediated automatically); a severity pinned by the owning book's check", late: "The remediation contract has no severity or window, and can't be published",
+     source: "../books/b13-governance/09-who-governs.md#who-approves-rule-changes"}
+  - {id: M1.3, phase: 1, name: "Remediation contract shape: class, severity, record version, ladder ceiling, named escalation role", dur: 3, after: [M1.1, D-M3], owner: "Drift detection lead",
+     source: "../books/b13-governance/06-the-drift-engine.md#the-remediation-contract"}
+  - {id: M1.4, phase: 1, name: "Contract committed to the record by reviewed pull request, with a decision record", dur: 2, after: [M1.2, M1.3, X-P02], owner: "Steward",
+     source: "../books/b13-governance/04-change-control-and-provenance.md#changing-the-record-pull-requests"}
+  - {id: MG1, kind: gate, phase: 1, name: "Gate 1 — Evidence contract published", after: [M1.4], owner: "CISO",
+     criteria: "The normalized record and its binding to controls are documented; the contract is published and versioned in the authoritative record",
+     source: "../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures"}
+  # ------------------------------------------------- Phase 2 — emission
+  - {id: M2.1, phase: 2, name: "Read-only identity adapter declared: class, mission, pinned API version, permissions", dur: 5, after: [MG0], owner: "Platform teams",
+     source: "../books/b13-governance/08-the-adapter-model.md#the-contract"}
+  - {id: M2.2, phase: 2, name: "Read-only device-posture adapter declared", dur: 5, after: [MG0], owner: "Platform teams",
+     source: "../books/b13-governance/08-the-adapter-model.md#the-contract"}
+  - {id: M2.3, phase: 2, name: "Both adapters earn active status: recorded fixtures, live non-production tenant, reference deployment in the boundary", dur: 6, after: [M2.1, M2.2, MG1], owner: "Platform teams",
+     source: "../books/b13-governance/08-the-adapter-model.md#earning-active-status-and-retiring"}
+  - {id: M2.4, phase: 2, name: "Each adapter's granted permissions compared with its declaration", dur: 2, after: [M2.3], owner: "CISO's staff",
+     source: "../books/b13-governance/08-the-adapter-model.md#read-only-first"}
+  - {id: M2.5, phase: 2, name: "Telemetry-completeness check scheduled for each source", dur: 3, after: ["M2.3:SS+3"], owner: "Security operations",
+     source: "../books/b15-day2-operations/12-the-day-two-runbook.md#the-telemetry-completeness-check"}
+  - {id: MG2, kind: gate, phase: 2, name: "Gate 2 — Two sources emitting", after: [M2.4, M2.5], owner: "CISO",
+     criteria: "Two sources emitting normalized records on their own cadence; each adapter holds no more than its declaration; a silent source raises an alert",
+     source: "../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures"}
+  # ------------------------------------------------- Phase 3 — aggregation
+  - {id: M3.1, phase: 3, name: "Records joined on the naming-plane identity plus time for the pilot scope", dur: 5, after: [MG2], owner: "Aggregation lead",
+     source: "../books/b15-day2-operations/07-the-cmdb-and-asset-identity.md#the-join-key-identity-plus-time"}
+  - {id: M3.2, phase: 3, name: "Unjoinable records counted and reported as a coverage gap", dur: 3, after: [M3.1], owner: "Aggregation lead",
+     source: "../books/b13-governance/12-governance-at-scale.md#risks-and-assumptions"}
+  - {id: M3.3, phase: 3, name: "CMDB reconciliation rule applied; unmatched assets worked in the exception queue", dur: 5, after: ["M3.1:SS+2"], owner: "CMDB owner",
+     source: "../books/b15-day2-operations/07-the-cmdb-and-asset-identity.md#how-the-platform-reconciles-and-what-the-program-adds"}
+  - {id: MG3, kind: gate, phase: 3, name: "Gate 3 — One reconciled picture", after: [M3.2, M3.3], owner: "CISO",
+     criteria: "One reconciled picture for the pilot scope, joined on asset identity, with unjoinable records counted, not dropped",
+     source: "../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures"}
+  # ------------------------------------------------- Phase 4 — detection and assembly
+  - {id: X-P12, kind: external, phase: 4, name: "Enterprise groups and administrative units built", ref: "program-master-schedule:P1.2", owner: "Platform teams",
+     late: "There is nothing to drift-check before G1; the drift run moves day for day",
+     source: "../books/b13-governance/06-the-drift-engine.md#one-model-many-domain-checks"}
+  - {id: M4.1, phase: 4, name: "Pilot groups and administrative units checked against the record; findings written in contract shape", dur: 3, after: [X-P12, MG2, M1.3], owner: "Drift detection lead",
+     source: "../books/b13-governance/06-the-drift-engine.md#what-is-built-today"}
+  - {id: X-G1, kind: external, phase: 4, name: "Program G1: Foundation Complete (groups and AUs drift-clean)", ref: "program-master-schedule:G1", after: [M4.1], owner: "Steward",
+     late: "M4.1 must finish before it, or G1's drift-clean criterion rests on findings recorded by hand",
+     source: "../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project"}
+  - {id: D-M4, kind: decision, phase: 4, name: "Actuation ceiling for each pilot operation class", after: [M1.3], owner: "Authorizing official",
+     options: "Every class at L3 gated actuation, the default; a named low-blast-radius class at L4 under written conditions, such as re-applying a dynamic membership rule from the registry", late: "The loop's remediate step can't be configured; the drift loop waits",
+     source: "../books/b13-governance/10-ticket-to-machine.md#approval-gates-keep-humans-on-the-decisions-that-matter"}
+  - {id: M4.2, phase: 4, name: "Drift loop for identity attributes end to end: snapshot, compare, classify, alert, remediate, verify", dur: 10, after: [M4.1, D-M4, MG3], owner: "Drift detection lead",
+     source: "../books/b13-governance/06-the-drift-engine.md#what-the-engine-remediates-and-what-it-doesnt"}
+  - {id: D-M5, kind: decision, phase: 4, name: "Engine that realizes the evidence contract and emits the package", after: [MG1], owner: "Program office (steward)",
+     options: "A purpose-built governance platform; a commercial governance, risk and compliance product (buy the native applications first, build only the gaps); native OSCAL tooling", late: "Package artifacts can't be generated; Gate 4 waits",
+     source: "../books/b15-day2-operations/11-attestation-and-the-compliance-app.md#build-buy-or-both"}
+  - {id: M4.3, phase: 4, name: "Package artifacts generated from the stream for the pilot: SSP, assessment plan, results, POA&M in OSCAL", dur: 10, after: [D-M5, MG3], owner: "Authorization package lead",
+     source: "../books/b14-compliance/11-the-authorization-package.md#one-oscal-model-per-artifact"}
+  - {id: M4.4, phase: 4, name: "Coverage classified per control; gap closure register opened; proven and asserted counted", dur: 5, after: [M3.2, "M4.3:SS+5"], owner: "Authorization package lead",
+     source: "../books/b13-governance/12-governance-at-scale.md#classify-coverage"}
+  - {id: MG4, kind: gate, phase: 4, name: "Gate 4 — Drift loop running; package from the stream", after: [M4.2, M4.3, M4.4], owner: "CISO",
+     criteria: "Drift loop running for one class; package artifacts generated for the pilot; coverage report separates proven from asserted claims",
+     source: "../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures"}
+  # ------------------------------------------------- Phase 5 — the cadence after cutover
+  - {id: D-M6, kind: decision, phase: 5, name: "Minimum monitoring frequencies in the continuous monitoring strategy", after: [M0.3], owner: "Senior accountable official for risk management",
+     options: "The program's cadence as the minimums; agency-set minimums, which the program may exceed but not undercut", late: "The cadence can't start; Phase 5 waits",
+     source: "../books/b13-governance/09-who-governs.md#the-responsibility-matrix"}
+  - {id: M5.1, phase: 5, name: "Daily triage, weekly evidence and drift review, and the human-only closure review running", dur: 5, after: [MG4, D-M6], owner: "Program office",
+     source: "../books/b13-governance/09-who-governs.md#cadence"}
+  - {id: M5.2, phase: 5, name: "Months 1 to 3: assessment results and the POA&M regenerated, POA&M reviewed, posture report to the AO", dur: 60, after: ["M5.1:SS"], owner: "ISSO",
+     source: "../books/b14-compliance/11-the-authorization-package.md#the-cadence"}
+  - {id: X-P23, kind: external, phase: 5, name: "Pilot devices moved by pattern", ref: "program-master-schedule:P2.3", owner: "Platform teams",
+     late: "Device-posture findings can't start; the margin to the G2 hold shrinks day for day",
+     source: "../books/b13-governance/06-the-drift-engine.md#cadence"}
+  - {id: M5.3, phase: 5, name: "Pilot devices' posture findings written in contract shape, before the program's drift-clean hold", dur: 3, after: [X-P23, M2.3, M1.3], owner: "Platform teams",
+     source: "../books/b13-governance/06-the-drift-engine.md#what-is-built-today"}
+  - {id: X-HOLD, kind: external, phase: 5, name: "Program drift-clean hold begins (P2.11)", ref: "program-master-schedule:P2.11:start", after: [M5.3], owner: "Program office",
+     late: "The hold can't be measured from data, so G2 can't pass on evidence",
+     source: "../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean"}
+  - {id: X-G2, kind: external, phase: 5, name: "Program G2: Pilot Clean (zero drift for the hold period)", ref: "program-master-schedule:G2", owner: "Steward and executive sponsor",
+     late: "M5.3 must finish before the 14-day hold that ends at G2",
+     source: "../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project"}
+  - {id: M5.4, phase: 5, name: "Federal senior information security official named to review each provider's Ongoing Certification Report", dur: 3, after: [MG4], owner: "CISO",
+     source: "../books/b14-compliance/11-the-authorization-package.md#what-fedramps-2026-rules-expect"}
+  - {id: D-M7, kind: decision, phase: 5, name: "How the agency's decision reuses each external service's package", after: [MG4], owner: "Authorizing official",
+     options: "An ATO for the agency's own system using a FedRAMP Certified offering; an authorization to use for a shared service another federal entity authorized; a joint authorization under CA-6(2)", late: "The reciprocity records can't be written; Gate 5 waits",
+     source: "../books/b13-governance/11-reciprocity-and-one-authorization.md#one-package-for-a-shared-service"}
+  - {id: M5.5, phase: 5, name: "Reciprocity record per external service; first Ongoing Certification Report reviewed and recorded", dur: 10, after: [D-M7, M5.4], owner: "ISSM",
+     source: "../books/b13-governance/11-reciprocity-and-one-authorization.md#what-fedramps-2026-rules-add"}
+  - {id: M5.6, phase: 5, name: "Quarterly trend and evidence-quality review, covering the pilot's drift-clean hold", dur: 5, after: [M5.2, M5.3, X-G2], owner: "ISSM",
+     source: "../books/b15-day2-operations/12-the-day-two-runbook.md#weekly-monthly-and-quarterly"}
+  - {id: MG5, kind: gate, phase: 5, name: "Gate 5 — First quarter of the cadence closed from the stream", after: [M5.5, M5.6], owner: "Authorizing official",
+     criteria: "Three monthly regenerations from current evidence; every failing item open, excepted with an expiry or reverted to open; each provider report has a named reviewer and a record of review; controls tools can't monitor have a manual assessment at a stated frequency",
+     source: "../books/b14-compliance/11-the-authorization-package.md#what-the-authorizing-official-should-find"}
+
+phases:
+  0: "Phase 0 — Charter and alignment"
+  1: "Phase 1 — Evidence contract"
+  2: "Phase 2 — Emission"
+  3: "Phase 3 — Aggregation"
+  4: "Phase 4 — Detection and assembly"
+  5: "Phase 5 — The cadence after cutover"

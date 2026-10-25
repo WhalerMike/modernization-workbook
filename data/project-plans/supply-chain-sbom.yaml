@@ -1,0 +1,160 @@
+# Sample project plan: Supply Chain & Software Bill of Materials.
+# scripts/project_plans/build.py reads this file and writes the page, the
+# Gantt chart and the downloads. Edit this file, never the outputs.
+#
+# Durations are working days and illustrative. The phases are the five
+# steps Book 14, Chapter 07 ties to the program's phases (charter,
+# inventory, intake, remediate and gate, evidence), at pilot scale. The
+# product inventory questionnaire (Book 14, Appendix B) starts in week 1,
+# because a project's inventory step belongs to the program's Pre-flight
+# and feeds G0. The plan reports through the evidence fabric, so it
+# references the Continuous Monitoring plan's Gates 1 and 4, and it
+# re-verifies its dated register at the program's G0 and G1.
+
+slug: supply-chain-sbom
+title: "Supply Chain & Software Bill of Materials: From Inventory to Proof"
+short_title: "Supply Chain & SBOM"
+subtitle: "A sample project plan for Book 14's supply chain project: from the product inventory questionnaire to an SBOM pipeline, risk-based remediation and a provisioning gate on certification status"
+description: "A sample PMP-style project plan for the Supply Chain & Software Bill of Materials project, built from Book 14, Chapter 07: a work breakdown by the chapter's five steps, a computed critical path from the product inventory to one finding closed with proof, every gate with its approver and criteria, and the decisions (charter, remediation timelines, SBOM format, certification class, contract clauses) with owners and decide-by weeks."
+plan_type: "Project"
+covers: "Book 14, Chapter 07's five steps, at pilot scale"
+books: "Book 14"
+sponsor: "CISO, who owns the supply chain strategy; the CIO approves the charter"
+manager: "Supply chain risk lead, with the contracting officer for contract terms"
+start_label: "Week 1 = the program's Phase 0 approval"
+project_start: 2027-01-04
+
+purpose: |
+  This plan builds the supply chain discipline [Book 14, Chapter 07](../books/b14-compliance/07-supply-chain-risk-management.md) describes: inventory before remediation, an SBOM for each pilot release, vulnerability intake joined to the KEV catalog and the BOD 26-04 queue, exploitability decided by people, and new cloud services gated on a recorded certification status. It follows the chapter's [five steps](../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what), one gate each. [Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md#supply-chain-software-bill-of-materials) places this project last because it is the most independent of the identity chain and reports through the evidence fabric, so its evidence step waits on the [Continuous Monitoring plan](continuous-monitoring.md). Under OMB M-26-05 an SBOM is an agency choice made through contract terms, and the plan treats it that way.
+
+critical_path_note: |
+  The computed path runs from the product inventory questionnaire through the certification status of each cloud service, the supplier records, the SBOM-backed inventory gate, the vulnerability report and its join to the KEV catalog, the first exploitability decision, one finding tracked to closure under its deadline, and that finding reported in the POA&M the evidence fabric generates. The questionnaire, not the SBOM pipeline, starts the path: supplier records can't be completed until every in-boundary cloud service has a recorded status. The SBOM work and the build-provenance work carry float.
+
+  Two links reach outside the plan. The Continuous Monitoring plan's Gate 4 (package artifacts generated from the stream, end of week 10) is needed before the pilot's findings can appear in a generated POA&M; it has 4 days of margin, so a slip there of more than 4 days moves this plan's finish. Against the program, the questionnaire ends in week 2, two weeks before G0, and the plan finishes in week 11, five weeks before G2. The contract clauses are the task to watch: they ride the agency's next acquisitions, which this plan can't schedule, and their 5 days of float is a placeholder for the contracting officer's real dates.
+
+assumptions:
+  - "The pilot is one system and its production releases; scale-out is rollout work ([Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md#how-the-projects-fit-the-program))."
+  - "BOD 26-04's Phase III timelines are already in force when the plan starts (December 7, 2026), and FedRAMP's 2026 rules took mandatory effect on January 1, 2027 ([Book 14, Chapter 02](../books/b14-compliance/02-the-federal-clock.md#the-dates-still-ahead))."
+  - "SBOMs and attestations are agency choices under M-26-05; the software and hardware inventory is not ([Book 14, Chapter 07](../books/b14-compliance/07-supply-chain-risk-management.md#the-federal-position-in-october-2026))."
+  - "Certification status is read from the FedRAMP Marketplace at the time of each decision, not carried from the questionnaire ([Book 14, Appendix B](../books/b14-compliance/appendix-b-product-inventory-questionnaire.md#recording-fedramp-status))."
+  - "Durations are illustrative. Hardware tamper, counterfeit and disposal controls (SR-9 to SR-12) run through procurement and property processes, outside this plan."
+
+risks:
+  - risk: "A supplier or cloud service has no machine-readable advisory feed"
+    impact: "Every advisory costs analyst time; intake lags"
+    response: "Record it in the supplier record and weigh it in the SR-6 review (Book 14, Chapter 07)"
+  - risk: "A cloud service is certified below the system's categorization, or isn't certified yet"
+    impact: "The provisioning gate holds it; the system's authorization waits"
+    response: "Decide early (D-S4); plan as though an in-process certification may not arrive on time (Book 14, Appendix B)"
+  - risk: "A provider isn't following FedRAMP's VDR and VER rules after March 7, 2027"
+    impact: "Its certification is revoked; the agency's use of it becomes an open finding"
+    response: "Check each provider's status once the corrective-action window closes (S3.3)"
+  - risk: "The evidence fabric's Gate 4 slips"
+    impact: "Findings can't reach a generated POA&M; the plan's finish moves after 4 days"
+    response: "Track the Continuous Monitoring plan's Gate 4 weekly; keep the pilot's records in the contract's shape meanwhile"
+
+tasks:
+  # ------------------------------------------------- Phase 0 — charter
+  - {id: X-G0, kind: external, phase: 0, name: "Program G0: Ready to Plan", ref: "program-master-schedule:G0", owner: "Steward",
+     late: "The questionnaire should land before it; its answers feed the program's planning",
+     source: "../books/b14-compliance/appendix-b-product-inventory-questionnaire.md#why-the-questionnaire-comes-first"}
+  - {id: S0.1, phase: 0, name: "Charter drafted: pilot system, supply chain team, risk-acceptance owner, risk-based timelines", dur: 8, owner: "CISO",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what"}
+  - {id: D-S1, kind: decision, phase: 0, name: "Approve the supply chain charter and name the team (SR-2(1))", after: [S0.1], owner: "CIO",
+     options: "A dedicated supply chain program office; matrixed representatives from information security, procurement, risk management, engineering, software development, IT, legal and HR", late: "Supplier records and reviews have no owner; Phase 1 waits",
+     source: "../books/b14-compliance/10-who-owns-compliance.md#the-supply-chain-risk-lead"}
+  - {id: D-S2, kind: decision, phase: 0, name: "Remediation timelines: risk-based or uniform", after: [S0.1], owner: "CISO",
+     options: "Risk-based, from BOD 26-04's four questions (publicly exposed, in the KEV catalog, exploitation automatable, partial or total control); one uniform calendar for every finding", late: "Intake can't set a deadline per finding; Phase 2 waits",
+     source: "../books/b14-compliance/02-the-federal-clock.md#bod-26-04-risk-based-remediation"}
+  - {id: S0.2, phase: 0, name: "Product inventory questionnaire completed: in use, product and offering, FedRAMP status, surface", dur: 10, owner: "Program office",
+     source: "../books/b14-compliance/appendix-b-product-inventory-questionnaire.md#how-to-complete-it"}
+  - {id: S0.3, phase: 0, name: "Dated register of the federal dates the plan relies on, each with its source and last-checked day", dur: 3, owner: "Program office",
+     source: "../books/b14-compliance/02-the-federal-clock.md#how-the-program-keeps-the-clock"}
+  - {id: S0.4, phase: 0, name: "Supply chain strategy (PM-30) drafted for annual review; senior procurement executive consulted", dur: 15, after: [D-S1], owner: "CISO",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what"}
+  - {id: SG0, kind: gate, phase: 0, name: "Gate 0 — Charter approved", after: [D-S1, D-S2], owner: "CIO",
+     criteria: "Pilot system chosen; supply chain team named; the authorizing official recorded as the owner of supply chain risk acceptance; risk-based timelines agreed",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what"}
+  # ------------------------------------------------- Phase 1 — inventory
+  - {id: D-S3, kind: decision, phase: 1, name: "SBOM format the pipeline generates, and what intake accepts", after: [SG0], owner: "Engineering teams that build and release software",
+     options: "SPDX 3.0 (ISO/IEC 5962:2021); CycloneDX 1.7 (ECMA-424); intake accepts any widely used format and normalizes it", late: "The pipeline can't be built; the pilot SBOM waits",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#formats"}
+  - {id: S1.1, phase: 1, name: "SBOM generated in CI for every pilot production release, with the CISA 2026 minimum elements", dur: 10, after: [D-S3], owner: "Engineering teams",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#what-an-sbom-must-contain"}
+  - {id: S1.2, phase: 1, name: "Certification status per cloud service: FedRAMP ID, status, class, date checked; scope disposition", dur: 5, after: [S0.2], owner: "Supply chain risk lead",
+     source: "../books/b14-compliance/appendix-b-product-inventory-questionnaire.md#recording-fedramp-status"}
+  - {id: D-S4, kind: decision, phase: 1, name: "A cloud service certified below the system's categorization", after: [S1.2], owner: "Authorizing official",
+     options: "Decide the certification package supports this use, and record the decision; find an offering certified at the matching class", late: "The flagged service can't pass the provisioning gate; its system's authorization waits",
+     source: "../books/b14-compliance/appendix-b-product-inventory-questionnaire.md#the-scope-rule-for-cloud-dependencies"}
+  - {id: S1.3, phase: 1, name: "Supplier record for every producer in the pilot SBOM and every in-boundary cloud service", dur: 10, after: ["S1.1:SS+3", S1.2], owner: "Supply chain risk lead",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#supplier-disclosure"}
+  - {id: S1.4, phase: 1, name: "Dated register re-verified at the program's G0", dur: 2, after: [X-G0, S0.3], owner: "Program office",
+     source: "../books/b14-compliance/02-the-federal-clock.md#how-the-program-keeps-the-clock"}
+  - {id: SG1, kind: gate, phase: 1, name: "Gate 1 — Pilot inventoried", after: [S1.1, S1.3, S1.4], owner: "CISO",
+     criteria: "SBOMs generated for the pilot's production releases; every supplier and cloud service recorded with its certification status and the date checked",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what"}
+  # ------------------------------------------------- Phase 2 — intake
+  - {id: S2.1, phase: 2, name: "Vulnerability disclosure report produced from each pilot SBOM", dur: 5, after: [SG1], owner: "Engineering teams",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#vulnerability-disclosure-report"}
+  - {id: S2.2, phase: 2, name: "Reports joined to the KEV catalog; KEV components sent to the BOD 26-04 queue the same day", dur: 5, after: [S2.1, D-S2], owner: "Engineering teams",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#exploitability-statements"}
+  - {id: S2.3, phase: 2, name: "Supplier advisory feeds subscribed in machine-readable form where they exist", dur: 5, after: [S1.3], owner: "Supply chain risk lead",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#supplier-disclosure"}
+  - {id: S2.4, phase: 2, name: "Providers' vulnerability reports processed automatically into the same queue", dur: 5, after: [S1.2], owner: "ISSO",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#fedramp-what-binds-cloud-providers"}
+  - {id: SG2, kind: gate, phase: 2, name: "Gate 2 — Intake working", after: [S2.2, S2.3, S2.4], owner: "CISO",
+     criteria: "SBOMs joined to the KEV catalog and the BOD 26-04 queue; supplier advisory feeds subscribed in machine-readable form where they exist; provider reports land in the same queue",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what"}
+  # ------------------------------------------------- Phase 3 — remediate and gate
+  - {id: D-S5, kind: decision, phase: 3, name: "Exploitability of the pilot's first new vulnerability (VEX status)", after: [S2.2], owner: "Owning application team, reviewed by security",
+     options: "Not affected, with a justification; affected, with an action statement; fixed; under investigation", late: "No signed statement; the finding can't move to remediation or closure",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#exploitability-statements"}
+  - {id: S3.1, phase: 3, name: "One finding tracked to closure under its deadline, closed on re-test evidence", dur: 15, after: [D-S5, SG2], owner: "System owner",
+     source: "../books/b14-compliance/04-closure-with-proof.md#no-closure-counts-without-its-proof"}
+  - {id: D-S6, kind: decision, phase: 3, name: "Supply chain risk carried on the pilot system", after: [D-S5], owner: "Authorizing official",
+     options: "An open POA&M item with an owner, milestones and a deadline; a governed exception with an in-date acceptance and an expiry", late: "A finding that misses its deadline has no disposition; Gate 3 waits",
+     source: "../books/b14-compliance/10-who-owns-compliance.md#the-responsibility-matrix"}
+  - {id: S3.2, phase: 3, name: "Provisioning gate on for new SaaS: Marketplace certification and the agency's authorization of the using system", dur: 5, after: [S1.2, D-S4], owner: "Supply chain risk lead",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#fedramp-what-binds-cloud-providers"}
+  # S3.3 is pinned to March 8, 2027 (day 45), the first working day after
+  # FedRAMP's VDR and VER corrective-action window closes on March 7.
+  - {id: S3.3, phase: 3, name: "Each provider's VDR and VER status checked after FedRAMP's corrective-action window closes", dur: 3, after: ["S0.2:SS+45", S2.4], owner: "ISSO",
+     source: "../books/b14-compliance/02-the-federal-clock.md#the-dates-still-ahead"}
+  - {id: X-G1, kind: external, phase: 3, name: "Program G1: Foundation Complete", ref: "program-master-schedule:G1", owner: "Steward",
+     late: "The register's G1 re-verification moves with it",
+     source: "../books/b14-compliance/02-the-federal-clock.md#how-the-program-keeps-the-clock"}
+  - {id: S3.4, phase: 3, name: "Dated register re-verified at the program's G1", dur: 2, after: [X-G1, S1.4], owner: "Program office",
+     source: "../books/b14-compliance/02-the-federal-clock.md#how-the-program-keeps-the-clock"}
+  - {id: SG3, kind: gate, phase: 3, name: "Gate 3 — Remediation and the provisioning gate proven", after: [S3.1, D-S6, S3.2, S3.3, S3.4], owner: "CISO",
+     criteria: "At least one finding tracked to closure on its risk-based deadline, with re-test evidence; new SaaS provisioning gated on a recorded status for the pilot",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what"}
+  # ------------------------------------------------- Phase 4 — evidence
+  - {id: X-CM1, kind: external, phase: 4, name: "Evidence contract published", ref: "continuous-monitoring:MG1", owner: "Continuous Monitoring project",
+     late: "Supply chain records have no contract to emit to",
+     source: "../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures"}
+  - {id: S4.1, phase: 4, name: "SBOMs, reports and VEX statements signed, stored immutably and emitted in the contract's shape", dur: 5, after: [SG2, X-CM1, D-S5], owner: "Engineering teams",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#the-evidence-pipeline"}
+  - {id: S4.2, phase: 4, name: "Pilot release workflow at SLSA Build L2", dur: 5, after: [S1.1], owner: "Engineering teams",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#build-provenance"}
+  - {id: S4.3, phase: 4, name: "Build L3 through shared reusable workflows; two-party review on protected branches", dur: 10, after: [S4.2], owner: "Engineering teams",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#build-provenance"}
+  - {id: D-S7, kind: decision, phase: 4, name: "Which clauses each acquisition carries", after: [S1.3], owner: "Contracting officer, advised by the supply chain team",
+     options: "An SBOM on request; for a cloud platform, an SBOM of the runtime production environment; a supplier notification agreement (SR-8); the secure-development attestation form; utilization and pricing disclosure (M-26-10)", late: "The next acquisitions go out without them; SR-5 and SR-8 stay open",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#the-closure-record"}
+  - {id: S4.4, phase: 4, name: "Clauses written into the next acquisitions", dur: 25, after: [D-S7], owner: "Contracting officer",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#supplier-disclosure"}
+  - {id: X-CM4, kind: external, phase: 4, name: "Package artifacts generated from the stream", ref: "continuous-monitoring:MG4", owner: "Continuous Monitoring project",
+     late: "Supply chain findings can't appear in a generated POA&M; Gate 4 waits",
+     source: "../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures"}
+  - {id: S4.5, phase: 4, name: "Pilot findings in the generated POA&M; a closure record per SR control naming what closes it", dur: 5, after: [S4.1, S3.1, X-CM4], owner: "ISSO",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#the-closure-record"}
+  - {id: SG4, kind: gate, phase: 4, name: "Gate 4 — Evidence in the stream", after: [S4.3, S4.4, S4.5, S0.4, SG3], owner: "CISO",
+     criteria: "SBOMs, reports and statements signed and stored; Build L2 reached, then L3; contract clauses in the next acquisitions; residual supply chain risk owned by the authorizing official",
+     source: "../books/b14-compliance/07-supply-chain-risk-management.md#who-owns-what"}
+
+phases:
+  0: "Phase 0 — Charter"
+  1: "Phase 1 — Inventory"
+  2: "Phase 2 — Intake"
+  3: "Phase 3 — Remediate and gate"
+  4: "Phase 4 — Evidence"

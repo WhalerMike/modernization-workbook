@@ -1,0 +1,1208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+  <Name>network-access.xml</Name>
+  <Title>Network &amp; Access Modernization: Naming Plane, Governed Transport and Edge Enforcement</Title>
+  <ScheduleFromStart>1</ScheduleFromStart>
+  <StartDate>2027-01-04T08:00:00</StartDate>
+  <DefaultStartTime>08:00:00</DefaultStartTime>
+  <DefaultFinishTime>17:00:00</DefaultFinishTime>
+  <MinutesPerDay>480</MinutesPerDay>
+  <MinutesPerWeek>2400</MinutesPerWeek>
+  <DaysPerMonth>20</DaysPerMonth>
+  <DurationFormat>7</DurationFormat>
+  <CalendarUID>1</CalendarUID>
+  <Calendars>
+    <Calendar>
+      <UID>1</UID>
+      <Name>Standard</Name>
+      <IsBaseCalendar>1</IsBaseCalendar>
+      <BaseCalendarUID>-1</BaseCalendarUID>
+      <WeekDays>
+        <WeekDay>
+          <DayType>1</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+        <WeekDay>
+          <DayType>2</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>3</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>4</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>5</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>6</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>7</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+      </WeekDays>
+    </Calendar>
+  </Calendars>
+  <Tasks>
+    <Task>
+      <UID>1</UID>
+      <ID>1</ID>
+      <Name>Phase 0 — Charter, alignment and inventory</Name>
+      <OutlineNumber>1</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-26T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>2</UID>
+      <ID>2</ID>
+      <Name>N0.1 Naming-plane owner confirmed; pilot population defined; remote-access paths and residual VPN use inventoried</Name>
+      <OutlineNumber>1.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-08T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Sponsor and CIO</Contact>
+      <Notes>Owner or approver: Sponsor and CIO
+Source: ../books/b09-network/09-who-owns-the-network.md#the-charters-plan-in-one-table</Notes>
+    </Task>
+    <Task>
+      <UID>3</UID>
+      <ID>3</ID>
+      <Name>N0.2 AD DNS and DHCP inventory, read-only, committed as JSON; DnsAdmins emptied of non-domain-administrators</Name>
+      <OutlineNumber>1.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-15T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>AD administrators</Contact>
+      <Notes>Owner or approver: AD administrators
+Source: ../books/b08-ddi/10-migration-sequence.md#phase-1-inventory-and-baseline</Notes>
+    </Task>
+    <Task>
+      <UID>4</UID>
+      <ID>4</ID>
+      <Name>N0.3 DDI candidates scored on evidence: Marketplace status, policy-plane coverage, the five decisions, vendor questions in writing</Name>
+      <OutlineNumber>1.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-11T08:00:00</Start>
+      <Finish>2027-01-26T17:00:00</Finish>
+      <Duration>PT96H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Source: ../books/b08-ddi/12-selection-cost-and-residual-risk.md#selection-criteria</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>5</UID>
+      <ID>5</ID>
+      <Name>D-N1 DDI platform model</Name>
+      <OutlineNumber>1.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-26T17:00:00</Start>
+      <Finish>2027-01-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Sponsor and CIO</Contact>
+      <Notes>Owner or approver: Sponsor and CIO
+Options: SaaS policy plane; agency-operated DDI inside the boundary; cloud-native services managed as code (enough on its own for a single-cloud agency with no divisional delegation)
+If decided late: Coexistence can't be deployed, and the pilot division's DNS move (program P2.6) has nothing to move onto
+Source: ../books/b08-ddi/12-selection-cost-and-residual-risk.md#comparing-the-platform-models</Notes>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>6</UID>
+      <ID>6</ID>
+      <Name>NG0 Gate 0 — Inventory committed and decisions owned</Name>
+      <OutlineNumber>1.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-26T17:00:00</Start>
+      <Finish>2027-01-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Criteria: AD DNS inventory dated, committed and reviewed (Decision 4); every branch's redirect-dns target read from the running configuration; platform model decided; one named decider for every row of the DNS and network matrices
+Source: ../books/b08-ddi/08-reference-architecture.md#decision-4-ad-dns-inventory-before-retirement</Notes>
+      <PredecessorLink>
+        <PredecessorUID>3</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>7</UID>
+      <ID>7</ID>
+      <Name>Phase 1 — Naming and addressing</Name>
+      <OutlineNumber>2</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-27T08:00:00</Start>
+      <Finish>2027-08-13T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>8</UID>
+      <ID>8</ID>
+      <Name>X-P17 Cloud DNS Private Resolver deployed (program P1.7)</Name>
+      <OutlineNumber>2.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-12T17:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: Coexistence has no cloud resolver to forward to, and Phase 1 waits
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-12T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>9</UID>
+      <ID>9</ID>
+      <Name>N1.1 Coexistence: DDI resolvers deployed, Microsoft DNS and DHCP synchronized read-only, forwarding both ways with one path per namespace</Name>
+      <OutlineNumber>2.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-15T08:00:00</Start>
+      <Finish>2027-02-24T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Source: ../books/b08-ddi/10-migration-sequence.md#phase-2-deploy-coexistence</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>10</UID>
+      <ID>10</ID>
+      <Name>X-P26S Program starts the pilot division's DNS move (start of P2.6)</Name>
+      <OutlineNumber>2.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: The pilot division's zones and scopes have no coexistence to move through, and the program's pilot slips
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-26T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>9</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>11</UID>
+      <ID>11</ID>
+      <Name>D-N2 Resolver path: the redirect-dns target and the forwarding chain order (Decisions 1 and 2)</Name>
+      <OutlineNumber>2.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-26T17:00:00</Start>
+      <Finish>2027-01-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Options: A DDI resolver at the branch; a forwarding proxy in a regional hub. Never a client loopback stub, and any SASE resolver is a forwarding target of the agency resolver, never the redirect target
+If decided late: Branch edges can't be retargeted; Protective DNS, logging and response policy stay off the branch path
+Source: ../books/b08-ddi/08-reference-architecture.md#decision-1-the-redirect-dns-destination</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>12</UID>
+      <ID>12</ID>
+      <Name>N1.2 Edge retargeted: redirect-dns to agency resolvers, SASE DNS as a forwarding target, order verified in the running configuration</Name>
+      <OutlineNumber>2.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-25T08:00:00</Start>
+      <Finish>2027-03-10T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Source: ../books/b08-ddi/10-migration-sequence.md#retargeting-the-edge</Notes>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>9</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>13</UID>
+      <ID>13</ID>
+      <Name>D-N3 Order of zones to move, and the cutover pattern for each</Name>
+      <OutlineNumber>2.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-24T17:00:00</Start>
+      <Finish>2027-02-24T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Options: Per zone: split horizon, subdomain delegation, or progressive migration with conditional forwarding. AD locator records stay where domain controllers can register them, and move last
+If decided late: Authority can't move zone by zone; the pilot division's zones wait
+Source: ../books/b08-ddi/10-migration-sequence.md#three-cutover-patterns</Notes>
+      <PredecessorLink>
+        <PredecessorUID>9</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>14</UID>
+      <ID>14</ID>
+      <Name>X-P26 Pilot division's DNS migrated and DHCP re-homed (program P2.6)</Name>
+      <OutlineNumber>2.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-19T17:00:00</Start>
+      <Finish>2027-03-19T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: The cutover loop hasn't been proven on a division, so the remaining zone moves wait
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-03-19T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>15</UID>
+      <ID>15</ID>
+      <Name>N1.3 Non-AD zones, forwarders, GlobalNames and reverse zones moved through the cutover loop</Name>
+      <OutlineNumber>2.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-22T08:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Source: ../books/b08-ddi/10-migration-sequence.md#zones-and-records</Notes>
+      <PredecessorLink>
+        <PredecessorUID>13</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>16</UID>
+      <ID>16</ID>
+      <Name>N1.4 Clients and DHCP scopes moved in waves with the program's divisions (option 6, VNet DNS settings)</Name>
+      <OutlineNumber>2.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-12T08:00:00</Start>
+      <Finish>2027-08-13T17:00:00</Finish>
+      <Duration>PT720H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Source: ../books/b08-ddi/10-migration-sequence.md#moving-clients-in-waves</Notes>
+      <PredecessorLink>
+        <PredecessorUID>15</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>17</UID>
+      <ID>17</ID>
+      <Name>N1.5 Cloud federation: IPAM federation, private endpoint zones published once, validation matrix run from every origin</Name>
+      <OutlineNumber>2.10</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-12T08:00:00</Start>
+      <Finish>2027-04-30T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Cloud platform teams</Contact>
+      <Notes>Owner or approver: Cloud platform teams
+Source: ../books/b08-ddi/10-migration-sequence.md#phase-4-cloud-federation</Notes>
+      <PredecessorLink>
+        <PredecessorUID>15</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>18</UID>
+      <ID>18</ID>
+      <Name>NG1 Gate 1 — Naming plane authoritative for the pilot scope</Name>
+      <OutlineNumber>2.11</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-30T17:00:00</Start>
+      <Finish>2027-04-30T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Criteria: Every name class in the validation matrix resolves correctly from on-premises, each cloud and the branch path; no private endpoint name returns a public address; OCSP and CRL endpoints resolve from every origin; every branch's redirect-dns target is an agency resolver; resolution-path consistency baselined
+Source: ../books/b08-ddi/10-migration-sequence.md#phase-4-cloud-federation</Notes>
+      <PredecessorLink>
+        <PredecessorUID>12</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>17</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>19</UID>
+      <ID>19</ID>
+      <Name>Phase 2 — Securing the governor</Name>
+      <OutlineNumber>3</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-11T08:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>20</UID>
+      <ID>20</ID>
+      <Name>D-N4 Control-plane hosting model, recorded as the boundary disposition</Name>
+      <OutlineNumber>3.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-26T17:00:00</Start>
+      <Finish>2027-01-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Sponsor and CIO</Contact>
+      <Notes>Owner or approver: Sponsor and CIO
+Options: An on-premises control plane; Cisco Catalyst SD-WAN for Government, cloud-hosted and FedRAMP Certified at Class C (Moderate). A hosted controller doesn't remove the directive's obligations
+If decided late: The control plane can't be built or hardened, and the pilot waits
+Source: ../books/b09-network/11-field-office-wan-transformation.md#risks-and-mitigations</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>21</UID>
+      <ID>21</ID>
+      <Name>N2.1 Control plane built and taken through the ED 26-03 sequence: inventory, off-box logs, patch, hunt, harden, syslog to CISA through CLAW</Name>
+      <OutlineNumber>3.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-27T08:00:00</Start>
+      <Finish>2027-03-02T17:00:00</Finish>
+      <Duration>PT200H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Source: ../books/b09-network/05-sd-wan-sase-and-governed-transport.md#securing-the-controller-and-the-edges</Notes>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>22</UID>
+      <ID>22</ID>
+      <Name>N2.2 Pilot circuits bought on measured physics: per-site latency and loss recorded, diversity, static addressing confirmed with carriers</Name>
+      <OutlineNumber>3.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-27T08:00:00</Start>
+      <Finish>2027-02-23T17:00:00</Finish>
+      <Duration>PT160H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Source: ../books/b09-network/13-sequencing-cost-and-evidence.md#the-decision-sequence</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>23</UID>
+      <ID>23</ID>
+      <Name>N2.3 Boundary change and branch use-case package prepared as a significant change, with the evidence the authorization package needs</Name>
+      <OutlineNumber>3.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-11T08:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT520H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>System owner</Contact>
+      <Notes>Owner or approver: System owner
+Source: ../books/b09-network/13-sequencing-cost-and-evidence.md#evidence-for-the-boundary-change</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>24</UID>
+      <ID>24</ID>
+      <Name>NG2 Gate 2 — Governor secured before it carries traffic</Name>
+      <OutlineNumber>3.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-02T17:00:00</Start>
+      <Finish>2027-03-02T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO and ISSO</Contact>
+      <Notes>Owner or approver: CISO and ISSO
+Criteria: Controller and edges under vulnerability management on BOD 26-04 windows, privileged-access control and off-box logging; every edge in the fleet inventory with its software version and support date; an ED 26-03-style inventory, log collection and patch sequence executable within a day; SD-WAN syslog reaching CISA through CLAW
+Source: ../books/b09-network/08-reference-architecture.md#decision-4-bring-the-governor-under-control-before-it-carries-traffic</Notes>
+      <PredecessorLink>
+        <PredecessorUID>21</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>25</UID>
+      <ID>25</ID>
+      <Name>Phase 3 — Identity-driven access pilot</Name>
+      <OutlineNumber>4</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-11T08:00:00</Start>
+      <Finish>2027-06-01T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>26</UID>
+      <ID>26</ID>
+      <Name>N3.1 Identity claims reachable by every access decision point; gaps listed</Name>
+      <OutlineNumber>4.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-27T08:00:00</Start>
+      <Finish>2027-02-02T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b09-network/09-who-owns-the-network.md#the-charters-plan-in-one-table</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>27</UID>
+      <ID>27</ID>
+      <Name>N3.2 Application-to-path routing policy (the SC-7(4) traffic-flow policy), site register and architecture review determination</Name>
+      <OutlineNumber>4.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-24T08:00:00</Start>
+      <Finish>2027-03-09T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>System owner</Contact>
+      <Notes>Owner or approver: System owner
+Source: ../books/b09-network/12-microsoft-365-traffic.md#the-three-instruments</Notes>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>28</UID>
+      <ID>28</ID>
+      <Name>D-N5 Egress pattern for each pilot site</Name>
+      <OutlineNumber>4.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-23T17:00:00</Start>
+      <Finish>2027-02-23T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Options: A, hairpin; C, governed local breakout (the program's reference pattern); D, agent-delivered SASE. Never B, bare local breakout
+If decided late: Pilot sites can't be built, and the boundary change can't name its enforcement points
+Source: ../books/b09-network/08-reference-architecture.md#decision-3-choose-the-egress-pattern-per-site-and-change-the-boundary-first</Notes>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>29</UID>
+      <ID>29</ID>
+      <Name>D-N6 Path to a domain controller for each branch class</Name>
+      <OutlineNumber>4.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-08T17:00:00</Start>
+      <Finish>2027-01-08T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Options: A private path (MPLS, IPsec or the SD-WAN overlay); a ZTNA connector that publishes the domain controllers (single sign-on only); a Kerberos KDC proxy
+If decided late: Pilot branches on local breakout lose sign-in, Group Policy and password change while cloud applications keep working
+Source: ../books/b09-network/06-legacy-protocols-on-re-routed-paths.md#ways-to-provide-the-path</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>30</UID>
+      <ID>30</ID>
+      <Name>N3.3 Ten pilot sites built: edges, regional breakout, security service edge, deterministic egress, a monitored path to a domain controller</Name>
+      <OutlineNumber>4.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-03T08:00:00</Start>
+      <Finish>2027-04-06T17:00:00</Finish>
+      <Duration>PT200H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Source: ../books/b09-network/11-field-office-wan-transformation.md#implementation-roadmap</Notes>
+      <PredecessorLink>
+        <PredecessorUID>24</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>29</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>31</UID>
+      <ID>31</ID>
+      <Name>D-N7 Boundary change for local egress, decided before the first production cutover</Name>
+      <OutlineNumber>4.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-09T17:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Authorizing official</Contact>
+      <Notes>Owner or approver: Authorizing official
+Options: Approve the significant change through reauthorization or ongoing authorization; refuse, and the sites stay on their current path
+If decided late: No production cutover can start: the boundary change comes first
+Source: ../books/b09-network/13-sequencing-cost-and-evidence.md#the-decision-sequence</Notes>
+      <PredecessorLink>
+        <PredecessorUID>23</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>27</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>32</UID>
+      <ID>32</ID>
+      <Name>D-N8 Microsoft 365 Optimize exemption (the SC-7(4) traffic-flow exception)</Name>
+      <OutlineNumber>4.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-09T17:00:00</Start>
+      <Finish>2027-03-09T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Authorizing official</Contact>
+      <Notes>Owner or approver: Authorizing official
+Options: Grant it for a stated duration and review cadence, on named and compensating controls; refuse it
+If decided late: Optimize traffic stays on the inspected path at the pilot sites, and the cutover waits
+Source: ../books/b09-network/12-microsoft-365-traffic.md#the-sc-74-documented-traffic-flow-exception</Notes>
+      <PredecessorLink>
+        <PredecessorUID>27</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>33</UID>
+      <ID>33</ID>
+      <Name>D-N9 Fabric go-live, site by site: governor live, inspecting and logging</Name>
+      <OutlineNumber>4.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-30T17:00:00</Start>
+      <Finish>2027-04-30T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>System owner</Contact>
+      <Notes>Owner or approver: System owner
+Options: Turn on the site's new egress; hold the site on its current path
+If decided late: Pilot traffic stays on the old path, and the 30-day stability clock doesn't start
+Source: ../books/b09-network/09-who-owns-the-network.md#an-owner-for-each-step</Notes>
+      <PredecessorLink>
+        <PredecessorUID>30</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>18</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>24</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>34</UID>
+      <ID>34</ID>
+      <Name>N3.4 Pilot cutover; 30 stable days; CISA telemetry parity confirmed per site; one path decision emitted as a claim</Name>
+      <OutlineNumber>4.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-03T08:00:00</Start>
+      <Finish>2027-06-01T17:00:00</Finish>
+      <Duration>PT176H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Source: ../books/b09-network/05-sd-wan-sase-and-governed-transport.md#the-evidence-the-fabric-must-emit</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>32</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>35</UID>
+      <ID>35</ID>
+      <Name>NG3 Gate 3 — Pilot governed and evidenced</Name>
+      <OutlineNumber>4.10</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-01T17:00:00</Start>
+      <Finish>2027-06-01T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Criteria: Pilot sites stable for 30 days with the control layer live, inspecting and logging to the SIEM; boundary change decided before cutover; SC-7(4) memo signed and site register current; CISA telemetry parity confirmed per site before any legacy circuit ends; one path decision emitted as a claim; the VPN path documented as residual
+Source: ../books/b09-network/09-who-owns-the-network.md#an-owner-for-each-step</Notes>
+      <PredecessorLink>
+        <PredecessorUID>34</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>36</UID>
+      <ID>36</ID>
+      <Name>Phase 4 — Customer-edge enforcement</Name>
+      <OutlineNumber>5</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-11T08:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>37</UID>
+      <ID>37</ID>
+      <Name>D-N10 RADIUS and NAC platform, and the trigger that retires NPS (D3)</Name>
+      <OutlineNumber>5.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-08T17:00:00</Start>
+      <Finish>2027-01-08T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Sponsor and CIO</Contact>
+      <Notes>Owner or approver: Sponsor and CIO
+Options: NPS through the hybrid-joined phase only; an on-premises NAC platform reading Intune compliance; a cloud-delivered NAC or RADIUS service with the right FedRAMP authorization; VPN or ZTNA federated to Entra ID for remote access
+If decided late: Enforcement can't be designed, and Entra-joined devices can't be admitted before cloud-native cutover removes the AD objects NPS relies on
+Source: ../books/b09-network/07-network-access-control.md#what-can-replace-it</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>38</UID>
+      <ID>38</ID>
+      <Name>X-P27 Cloud PKI certificates issued; Wi-Fi and VPN verified (program P2.7)</Name>
+      <OutlineNumber>5.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-09T17:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: Monitor mode has no device certificates to authenticate, and the NAC rollout waits
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-04-09T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>39</UID>
+      <ID>39</ID>
+      <Name>N4.1 NAC platform registered for Intune compliance retrieval; policy tiers built; monitor mode on pilot ports with a baseline report</Name>
+      <OutlineNumber>5.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-12T08:00:00</Start>
+      <Finish>2027-05-21T17:00:00</Finish>
+      <Duration>PT240H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Source: ../books/b09-network/07-network-access-control.md#posture-comes-from-intune-not-from-a-probe</Notes>
+      <PredecessorLink>
+        <PredecessorUID>37</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>38</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>40</UID>
+      <ID>40</ID>
+      <Name>D-N11 Move the pilot sites from monitor mode to wired enforcement</Name>
+      <OutlineNumber>5.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-21T17:00:00</Start>
+      <Finish>2027-05-21T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Options: Enforce on workstation ports; stay in monitor mode until the baseline's exceptions are closed
+If decided late: Wired and wireless enforcement wait, and devices are still admitted before they authenticate
+Source: ../books/b09-network/07-network-access-control.md#rolling-it-out</Notes>
+      <PredecessorLink>
+        <PredecessorUID>39</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>41</UID>
+      <ID>41</ID>
+      <Name>N4.2 Wired enforcement: open mode removed, CoA tested, captive portal up, IoT devices registered in IPAM, detections routed to the SOC</Name>
+      <OutlineNumber>5.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-24T08:00:00</Start>
+      <Finish>2027-07-02T17:00:00</Finish>
+      <Duration>PT240H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Source: ../books/b09-network/07-network-access-control.md#rolling-it-out</Notes>
+      <PredecessorLink>
+        <PredecessorUID>40</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>42</UID>
+      <ID>42</ID>
+      <Name>N4.3 Wireless enforcement on WPA3-Enterprise, then IoT segmentation and a rogue-device tabletop</Name>
+      <OutlineNumber>5.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-07-05T08:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+      <Duration>PT400H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Network engineering</Contact>
+      <Notes>Owner or approver: Network engineering
+Source: ../books/b09-network/07-network-access-control.md#rolling-it-out</Notes>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>43</UID>
+      <ID>43</ID>
+      <Name>NG4 Gate 4 — Customer edge enforced for the pilot</Name>
+      <OutlineNumber>5.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-10T17:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO and ISSO</Contact>
+      <Notes>Owner or approver: CISO and ISSO
+Criteria: Monitor-mode baseline report filed; wired and wireless enforcement live at the pilot sites; the three minimum detections alerting the SOC; RADIUS accounting, Intune compliance reports and DHCP audit logs kept for assessors; every MAB exception dated
+Source: ../books/b09-network/07-network-access-control.md#inventory-profiling-and-logs</Notes>
+      <PredecessorLink>
+        <PredecessorUID>42</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>44</UID>
+      <ID>44</ID>
+      <Name>Phase 5 — AD DNS and DHCP decommission</Name>
+      <OutlineNumber>6</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-08-16T08:00:00</Start>
+      <Finish>2027-11-16T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>45</UID>
+      <ID>45</ID>
+      <Name>X-P43 AD-integrated zones moved, except the domain's own (program P4.3)</Name>
+      <OutlineNumber>6.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-01T17:00:00</Start>
+      <Finish>2027-10-01T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: The 30-day SRV hold and the decommission gates can't start
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-10-01T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>46</UID>
+      <ID>46</ID>
+      <Name>N5.1 SRV hold: every critical locator record resolves from every VNet and site, every 15 minutes, for 30 clean days</Name>
+      <OutlineNumber>6.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-04T08:00:00</Start>
+      <Finish>2027-11-02T17:00:00</Finish>
+      <Duration>PT176H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Source: ../books/b08-ddi/11-operating-the-control-plane.md#srv-record-monitoring</Notes>
+      <PredecessorLink>
+        <PredecessorUID>45</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>47</UID>
+      <ID>47</ID>
+      <Name>N5.2 Inventory reconciled both ways; failover tested on the new resolvers and DHCP; query logs show the old servers idle</Name>
+      <OutlineNumber>6.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-04T08:00:00</Start>
+      <Finish>2027-10-13T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Source: ../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp</Notes>
+      <PredecessorLink>
+        <PredecessorUID>45</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>48</UID>
+      <ID>48</ID>
+      <Name>N5.3 Hardening: Protective DNS forwarding, encrypted DNS, DNSSEC signing and validation where required, monitoring dashboards</Name>
+      <OutlineNumber>6.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-16T08:00:00</Start>
+      <Finish>2027-09-03T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Source: ../books/b08-ddi/10-migration-sequence.md#phase-6-policy-and-compliance-hardening</Notes>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>49</UID>
+      <ID>49</ID>
+      <Name>D-N12 Decommission AD DNS and Windows DHCP</Name>
+      <OutlineNumber>6.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-11-02T17:00:00</Start>
+      <Finish>2027-11-02T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Sponsor and CIO</Contact>
+      <Notes>Owner or approver: Sponsor and CIO
+Options: Decommission once all five gates pass, including 90 days of parallel operation; hold the legacy servers. Never on a date alone
+If decided late: Legacy DNS servers and their DnsAdmins exposure stay in service into the program's AD retirement phase
+Source: ../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp</Notes>
+      <PredecessorLink>
+        <PredecessorUID>46</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>47</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>50</UID>
+      <ID>50</ID>
+      <Name>N5.4 Legacy DNS servers retired in order; exports archived; records officer confirms disposition; 7-day burn-in</Name>
+      <OutlineNumber>6.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-11-03T08:00:00</Start>
+      <Finish>2027-11-16T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>AD administrators</Contact>
+      <Notes>Owner or approver: AD administrators
+Source: ../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp</Notes>
+      <PredecessorLink>
+        <PredecessorUID>49</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>51</UID>
+      <ID>51</ID>
+      <Name>NG5 Gate 5 — Legacy name services retired, evidence complete</Name>
+      <OutlineNumber>6.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-11-16T17:00:00</Start>
+      <Finish>2027-11-16T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>DNS/DDI team</Contact>
+      <Notes>Owner or approver: DNS/DDI team
+Criteria: Gates 3 and 4 passed; Chapter 11's evidence checklist complete, the five decisions checked first; no client impact through the burn-in; logs searchable for six months and retrievable for a year; DnsAdmins and delegated roles reviewed; only the domain's own zones left on AD DNS, reached by forwarding, until the last domain controllers go
+Source: ../books/b08-ddi/11-operating-the-control-plane.md#sample-evidence-checklist</Notes>
+      <PredecessorLink>
+        <PredecessorUID>48</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>50</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>35</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>43</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+  </Tasks>
+</Project>
