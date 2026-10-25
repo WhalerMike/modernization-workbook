@@ -1,0 +1,632 @@
+[
+ {
+  "id": "Start_Here_Narrated",
+  "title": "Start Here: Where Modernization Begins",
+  "group": "start",
+  "minutes": 6,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Start_Here_Narrated.mp4",
+  "vtt": "presentations/start-here/Start_Here_Narrated.vtt",
+  "deck": "presentations/start-here/Start_Here_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-here/Start_Here_Narration_Script.md"
+ },
+ {
+  "id": "Start_02_First_Four_Weeks_Narrated",
+  "title": "Start series, Episode 2 — The First Four Weeks",
+  "group": "start",
+  "minutes": 6,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Start_02_First_Four_Weeks_Narrated.mp4",
+  "vtt": "presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks_Narrated.vtt",
+  "deck": "presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks_Narration_Script.md"
+ },
+ {
+  "id": "Start_03_Foundation_to_G1_Narrated",
+  "title": "Start series, Episode 3 — Foundation to Gate G1",
+  "group": "start",
+  "minutes": 6,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Start_03_Foundation_to_G1_Narrated.mp4",
+  "vtt": "presentations/start-03-foundation-to-g1/Start_03_Foundation_to_G1_Narrated.vtt",
+  "deck": "presentations/start-03-foundation-to-g1/Start_03_Foundation_to_G1_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-03-foundation-to-g1/Start_03_Foundation_to_G1_Narration_Script.md"
+ },
+ {
+  "id": "Start_04_Making_the_Case_Narrated",
+  "title": "Start series, Episode 4 — Making the Case at Your Agency",
+  "group": "start",
+  "minutes": 6,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Start_04_Making_the_Case_Narrated.mp4",
+  "vtt": "presentations/start-04-making-the-case/Start_04_Making_the_Case_Narrated.vtt",
+  "deck": "presentations/start-04-making-the-case/Start_04_Making_the_Case_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-04-making-the-case/Start_04_Making_the_Case_Narration_Script.md"
+ },
+ {
+  "id": "B00_Orientation_Executive_Narrated",
+  "title": "Book 00 — Orientation & Program: executive briefing",
+  "group": "book",
+  "minutes": 24,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B00_Orientation_Executive_Narrated.mp4",
+  "vtt": "presentations/b00-orientation-executive/B00_Orientation_Executive_Narrated.vtt",
+  "deck": "presentations/b00-orientation-executive/B00_Orientation_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b00-orientation-executive/B00_Orientation_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B00_Orientation_Narrated",
+  "title": "Book 00 — Orientation & Program: presentation",
+  "group": "book",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B00_Orientation_Narrated.mp4",
+  "vtt": "presentations/b00-orientation/B00_Orientation_Narrated.vtt",
+  "deck": "presentations/b00-orientation/B00_Orientation_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b00-orientation/B00_Orientation_Narration_Script.md"
+ },
+ {
+  "id": "B01_Transformation_Arc_Executive_Narrated",
+  "title": "Book 01 — The Transformation Arc: executive briefing",
+  "group": "book",
+  "minutes": 24,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B01_Transformation_Arc_Executive_Narrated.mp4",
+  "vtt": "presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narrated.vtt",
+  "deck": "presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B01_Transformation_Arc_Narrated",
+  "title": "Book 01 — The Transformation Arc: presentation",
+  "group": "book",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B01_Transformation_Arc_Narrated.mp4",
+  "vtt": "presentations/b01-transformation-arc/B01_Transformation_Arc_Narrated.vtt",
+  "deck": "presentations/b01-transformation-arc/B01_Transformation_Arc_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b01-transformation-arc/B01_Transformation_Arc_Narration_Script.md"
+ },
+ {
+  "id": "B02_Identity_Executive_Narrated",
+  "title": "Book 02 — Identity & Directory: executive briefing",
+  "group": "book",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B02_Identity_Executive_Narrated.mp4",
+  "vtt": "presentations/b02-identity-executive/B02_Identity_Executive_Narrated.vtt",
+  "deck": "presentations/b02-identity-executive/B02_Identity_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity-executive/B02_Identity_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B02_Identity_Narrated",
+  "title": "Book 02 — Identity & Directory: presentation",
+  "group": "book",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B02_Identity_Narrated.mp4",
+  "vtt": "presentations/b02-identity/B02_Identity_Narrated.vtt",
+  "deck": "presentations/b02-identity/B02_Identity_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity/B02_Identity_Narration_Script.md"
+ },
+ {
+  "id": "B02_Identity_Technical_Narrated",
+  "title": "Book 02 — Identity & Directory: technical deep dive",
+  "group": "book",
+  "minutes": 23,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B02_Identity_Technical_Narrated.mp4",
+  "vtt": "presentations/b02-identity-technical/B02_Identity_Technical_Narrated.vtt",
+  "deck": "presentations/b02-identity-technical/B02_Identity_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity-technical/B02_Identity_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B03_HR_Identity_Executive_Narrated",
+  "title": "Book 03 — HR-Driven Identity: executive briefing",
+  "group": "book",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B03_HR_Identity_Executive_Narrated.mp4",
+  "vtt": "presentations/b03-hr-identity-executive/B03_HR_Identity_Executive_Narrated.vtt",
+  "deck": "presentations/b03-hr-identity-executive/B03_HR_Identity_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity-executive/B03_HR_Identity_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B03_HR_Identity_Narrated",
+  "title": "Book 03 — HR-Driven Identity: presentation",
+  "group": "book",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B03_HR_Identity_Narrated.mp4",
+  "vtt": "presentations/b03-hr-identity/B03_HR_Identity_Narrated.vtt",
+  "deck": "presentations/b03-hr-identity/B03_HR_Identity_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity/B03_HR_Identity_Narration_Script.md"
+ },
+ {
+  "id": "B03_HR_Identity_Technical_Narrated",
+  "title": "Book 03 — HR-Driven Identity: technical deep dive",
+  "group": "book",
+  "minutes": 21,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B03_HR_Identity_Technical_Narrated.mp4",
+  "vtt": "presentations/b03-hr-identity-technical/B03_HR_Identity_Technical_Narrated.vtt",
+  "deck": "presentations/b03-hr-identity-technical/B03_HR_Identity_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity-technical/B03_HR_Identity_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B04_Access_Executive_Narrated",
+  "title": "Book 04 — Access & Privilege: executive briefing",
+  "group": "book",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B04_Access_Executive_Narrated.mp4",
+  "vtt": "presentations/b04-access-executive/B04_Access_Executive_Narrated.vtt",
+  "deck": "presentations/b04-access-executive/B04_Access_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access-executive/B04_Access_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B04_Access_Narrated",
+  "title": "Book 04 — Access & Privilege: presentation",
+  "group": "book",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B04_Access_Narrated.mp4",
+  "vtt": "presentations/b04-access/B04_Access_Narrated.vtt",
+  "deck": "presentations/b04-access/B04_Access_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access/B04_Access_Narration_Script.md"
+ },
+ {
+  "id": "B04_Access_Technical_Narrated",
+  "title": "Book 04 — Access & Privilege: technical deep dive",
+  "group": "book",
+  "minutes": 23,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B04_Access_Technical_Narrated.mp4",
+  "vtt": "presentations/b04-access-technical/B04_Access_Technical_Narrated.vtt",
+  "deck": "presentations/b04-access-technical/B04_Access_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access-technical/B04_Access_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B05_Devices_Executive_Narrated",
+  "title": "Book 05 — Devices & Endpoints: executive briefing",
+  "group": "book",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B05_Devices_Executive_Narrated.mp4",
+  "vtt": "presentations/b05-devices-executive/B05_Devices_Executive_Narrated.vtt",
+  "deck": "presentations/b05-devices-executive/B05_Devices_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices-executive/B05_Devices_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B05_Devices_Narrated",
+  "title": "Book 05 — Devices & Endpoints: presentation",
+  "group": "book",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B05_Devices_Narrated.mp4",
+  "vtt": "presentations/b05-devices/B05_Devices_Narrated.vtt",
+  "deck": "presentations/b05-devices/B05_Devices_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices/B05_Devices_Narration_Script.md"
+ },
+ {
+  "id": "B05_Devices_Technical_Narrated",
+  "title": "Book 05 — Devices & Endpoints: technical deep dive",
+  "group": "book",
+  "minutes": 24,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B05_Devices_Technical_Narrated.mp4",
+  "vtt": "presentations/b05-devices-technical/B05_Devices_Technical_Narrated.vtt",
+  "deck": "presentations/b05-devices-technical/B05_Devices_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices-technical/B05_Devices_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B06_Data_Platform_Narrated",
+  "title": "Book 06 — Data Platform: SQL Server Identity: presentation",
+  "group": "book",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B06_Data_Platform_Narrated.mp4",
+  "vtt": "presentations/b06-data-platform/B06_Data_Platform_Narrated.vtt",
+  "deck": "presentations/b06-data-platform/B06_Data_Platform_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform/B06_Data_Platform_Narration_Script.md"
+ },
+ {
+  "id": "B06_Data_Platform_Technical_Narrated",
+  "title": "Book 06 — Data Platform: SQL Server Identity: technical deep dive",
+  "group": "book",
+  "minutes": 23,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B06_Data_Platform_Technical_Narrated.mp4",
+  "vtt": "presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narrated.vtt",
+  "deck": "presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B07_PKI_Narrated",
+  "title": "Book 07 — PKI & Certificates: presentation",
+  "group": "book",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B07_PKI_Narrated.mp4",
+  "vtt": "presentations/b07-pki/B07_PKI_Narrated.vtt",
+  "deck": "presentations/b07-pki/B07_PKI_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki/B07_PKI_Narration_Script.md"
+ },
+ {
+  "id": "B07_PKI_Technical_Narrated",
+  "title": "Book 07 — PKI & Certificates: technical deep dive",
+  "group": "book",
+  "minutes": 25,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B07_PKI_Technical_Narrated.mp4",
+  "vtt": "presentations/b07-pki-technical/B07_PKI_Technical_Narrated.vtt",
+  "deck": "presentations/b07-pki-technical/B07_PKI_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki-technical/B07_PKI_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B08_DDI_Narrated",
+  "title": "Book 08 — DNS, DHCP & IPAM: presentation",
+  "group": "book",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B08_DDI_Narrated.mp4",
+  "vtt": "presentations/b08-ddi/B08_DDI_Narrated.vtt",
+  "deck": "presentations/b08-ddi/B08_DDI_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi/B08_DDI_Narration_Script.md"
+ },
+ {
+  "id": "B08_DDI_Technical_Narrated",
+  "title": "Book 08 — DNS, DHCP & IPAM: technical deep dive",
+  "group": "book",
+  "minutes": 24,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B08_DDI_Technical_Narrated.mp4",
+  "vtt": "presentations/b08-ddi-technical/B08_DDI_Technical_Narrated.vtt",
+  "deck": "presentations/b08-ddi-technical/B08_DDI_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi-technical/B08_DDI_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B09_Network_Executive_Narrated",
+  "title": "Book 09 — Network & Transport: executive briefing",
+  "group": "book",
+  "minutes": 23,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B09_Network_Executive_Narrated.mp4",
+  "vtt": "presentations/b09-network-executive/B09_Network_Executive_Narrated.vtt",
+  "deck": "presentations/b09-network-executive/B09_Network_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network-executive/B09_Network_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B09_Network_Narrated",
+  "title": "Book 09 — Network & Transport: presentation",
+  "group": "book",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B09_Network_Narrated.mp4",
+  "vtt": "presentations/b09-network/B09_Network_Narrated.vtt",
+  "deck": "presentations/b09-network/B09_Network_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network/B09_Network_Narration_Script.md"
+ },
+ {
+  "id": "B09_Network_Technical_Narrated",
+  "title": "Book 09 — Network & Transport: technical deep dive",
+  "group": "book",
+  "minutes": 21,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B09_Network_Technical_Narrated.mp4",
+  "vtt": "presentations/b09-network-technical/B09_Network_Technical_Narrated.vtt",
+  "deck": "presentations/b09-network-technical/B09_Network_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network-technical/B09_Network_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B09_SDWAN_Technical_Narrated",
+  "title": "Book 09 — SD-WAN: technical deep dive",
+  "group": "book",
+  "minutes": 20,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B09_SDWAN_Technical_Narrated.mp4",
+  "vtt": "presentations/b09-sdwan-technical/B09_SDWAN_Technical_Narrated.vtt",
+  "deck": "presentations/b09-sdwan-technical/B09_SDWAN_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-sdwan-technical/B09_SDWAN_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B09_SDWAN_Executive_Narrated",
+  "title": "Book 09 — The Field-Office WAN Case: SD-WAN for Executives",
+  "group": "book",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B09_SDWAN_Executive_Narrated.mp4",
+  "vtt": "presentations/b09-sdwan-executive/B09_SDWAN_Executive_Narrated.vtt",
+  "deck": "presentations/b09-sdwan-executive/B09_SDWAN_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-sdwan-executive/B09_SDWAN_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B10_Cloud_Boundary_Executive_Narrated",
+  "title": "Book 10 — Cloud Boundary & Landing Zone: executive briefing",
+  "group": "book",
+  "minutes": 22,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B10_Cloud_Boundary_Executive_Narrated.mp4",
+  "vtt": "presentations/b10-cloud-boundary-executive/B10_Cloud_Boundary_Executive_Narrated.vtt",
+  "deck": "presentations/b10-cloud-boundary-executive/B10_Cloud_Boundary_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary-executive/B10_Cloud_Boundary_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B10_Cloud_Boundary_Narrated",
+  "title": "Book 10 — Cloud Boundary & Landing Zone: presentation",
+  "group": "book",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B10_Cloud_Boundary_Narrated.mp4",
+  "vtt": "presentations/b10-cloud-boundary/B10_Cloud_Boundary_Narrated.vtt",
+  "deck": "presentations/b10-cloud-boundary/B10_Cloud_Boundary_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary/B10_Cloud_Boundary_Narration_Script.md"
+ },
+ {
+  "id": "B10_Cloud_Boundary_Technical_Narrated",
+  "title": "Book 10 — Cloud Boundary & Landing Zone: technical deep dive",
+  "group": "book",
+  "minutes": 20,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B10_Cloud_Boundary_Technical_Narrated.mp4",
+  "vtt": "presentations/b10-cloud-boundary-technical/B10_Cloud_Boundary_Technical_Narrated.vtt",
+  "deck": "presentations/b10-cloud-boundary-technical/B10_Cloud_Boundary_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary-technical/B10_Cloud_Boundary_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B11_Zero_Trust_Executive_Narrated",
+  "title": "Book 11 — Zero Trust & Assessment: executive briefing",
+  "group": "book",
+  "minutes": 23,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B11_Zero_Trust_Executive_Narrated.mp4",
+  "vtt": "presentations/b11-zero-trust-executive/B11_Zero_Trust_Executive_Narrated.vtt",
+  "deck": "presentations/b11-zero-trust-executive/B11_Zero_Trust_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust-executive/B11_Zero_Trust_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B11_Zero_Trust_Narrated",
+  "title": "Book 11 — Zero Trust & Assessment: presentation",
+  "group": "book",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B11_Zero_Trust_Narrated.mp4",
+  "vtt": "presentations/b11-zero-trust/B11_Zero_Trust_Narrated.vtt",
+  "deck": "presentations/b11-zero-trust/B11_Zero_Trust_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust/B11_Zero_Trust_Narration_Script.md"
+ },
+ {
+  "id": "B11_Zero_Trust_Technical_Narrated",
+  "title": "Book 11 — Zero Trust & Assessment: technical deep dive",
+  "group": "book",
+  "minutes": 20,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B11_Zero_Trust_Technical_Narrated.mp4",
+  "vtt": "presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical_Narrated.vtt",
+  "deck": "presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B12_Security_Operations_Narrated",
+  "title": "Book 12 — Security Operations & Telemetry: presentation",
+  "group": "book",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B12_Security_Operations_Narrated.mp4",
+  "vtt": "presentations/b12-security-operations/B12_Security_Operations_Narrated.vtt",
+  "deck": "presentations/b12-security-operations/B12_Security_Operations_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations/B12_Security_Operations_Narration_Script.md"
+ },
+ {
+  "id": "B12_Security_Operations_Technical_Narrated",
+  "title": "Book 12 — Security Operations & Telemetry: technical deep dive",
+  "group": "book",
+  "minutes": 19,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B12_Security_Operations_Technical_Narrated.mp4",
+  "vtt": "presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narrated.vtt",
+  "deck": "presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B13_Governance_Narrated",
+  "title": "Book 13 — Governance, Drift & Evidence: presentation",
+  "group": "book",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B13_Governance_Narrated.mp4",
+  "vtt": "presentations/b13-governance/B13_Governance_Narrated.vtt",
+  "deck": "presentations/b13-governance/B13_Governance_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance/B13_Governance_Narration_Script.md"
+ },
+ {
+  "id": "B13_Governance_Technical_Narrated",
+  "title": "Book 13 — Governance, Drift & Evidence: technical deep dive",
+  "group": "book",
+  "minutes": 20,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B13_Governance_Technical_Narrated.mp4",
+  "vtt": "presentations/b13-governance-technical/B13_Governance_Technical_Narrated.vtt",
+  "deck": "presentations/b13-governance-technical/B13_Governance_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance-technical/B13_Governance_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B13_Ticket_to_Machine_Narrated",
+  "title": "Book 13 — Ticket-to-Machine Reference: narrated reference deck",
+  "group": "book",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B13_Ticket_to_Machine_Narrated.mp4",
+  "vtt": "presentations/b13-ticket-to-machine/B13_Ticket_to_Machine_Narrated.vtt",
+  "deck": "presentations/b13-ticket-to-machine/B13_Ticket_to_Machine_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-ticket-to-machine/B13_Ticket_to_Machine_Narration_Script.md"
+ },
+ {
+  "id": "B14_Compliance_Executive_Narrated",
+  "title": "Book 14 — Federal Compliance & Authorization: executive briefing",
+  "group": "book",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B14_Compliance_Executive_Narrated.mp4",
+  "vtt": "presentations/b14-compliance-executive/B14_Compliance_Executive_Narrated.vtt",
+  "deck": "presentations/b14-compliance-executive/B14_Compliance_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b14-compliance-executive/B14_Compliance_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B14_Compliance_Narrated",
+  "title": "Book 14 — Federal Compliance & Authorization: presentation",
+  "group": "book",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B14_Compliance_Narrated.mp4",
+  "vtt": "presentations/b14-compliance/B14_Compliance_Narrated.vtt",
+  "deck": "presentations/b14-compliance/B14_Compliance_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b14-compliance/B14_Compliance_Narration_Script.md"
+ },
+ {
+  "id": "B15_Day2_Operations_Narrated",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations: presentation",
+  "group": "book",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B15_Day2_Operations_Narrated.mp4",
+  "vtt": "presentations/b15-day2-operations/B15_Day2_Operations_Narrated.vtt",
+  "deck": "presentations/b15-day2-operations/B15_Day2_Operations_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations/B15_Day2_Operations_Narration_Script.md"
+ },
+ {
+  "id": "B15_Day2_Operations_Technical_Narrated",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations: technical deep dive",
+  "group": "book",
+  "minutes": 20,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B15_Day2_Operations_Technical_Narrated.mp4",
+  "vtt": "presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narrated.vtt",
+  "deck": "presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B16_People_Narrated",
+  "title": "Book 16 — People: Training & Education: presentation",
+  "group": "book",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B16_People_Narrated.mp4",
+  "vtt": "presentations/b16-people/B16_People_Narrated.vtt",
+  "deck": "presentations/b16-people/B16_People_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b16-people/B16_People_Narration_Script.md"
+ },
+ {
+  "id": "B17_AI_Identity_Executive_Narrated",
+  "title": "Book 17 — AI Identity Governance: executive briefing",
+  "group": "book",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B17_AI_Identity_Executive_Narrated.mp4",
+  "vtt": "presentations/b17-ai-identity-executive/B17_AI_Identity_Executive_Narrated.vtt",
+  "deck": "presentations/b17-ai-identity-executive/B17_AI_Identity_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity-executive/B17_AI_Identity_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B17_AI_Identity_Narrated",
+  "title": "Book 17 — AI Identity Governance: presentation",
+  "group": "book",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B17_AI_Identity_Narrated.mp4",
+  "vtt": "presentations/b17-ai-identity/B17_AI_Identity_Narrated.vtt",
+  "deck": "presentations/b17-ai-identity/B17_AI_Identity_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity/B17_AI_Identity_Narration_Script.md"
+ },
+ {
+  "id": "B17_AI_Identity_Technical_Narrated",
+  "title": "Book 17 — AI Identity Governance: technical deep dive",
+  "group": "book",
+  "minutes": 21,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B17_AI_Identity_Technical_Narrated.mp4",
+  "vtt": "presentations/b17-ai-identity-technical/B17_AI_Identity_Technical_Narrated.vtt",
+  "deck": "presentations/b17-ai-identity-technical/B17_AI_Identity_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity-technical/B17_AI_Identity_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B08_DDI_Requirements_Narrated",
+  "title": "Book 08 — DNS, DHCP & IPAM: what a federal DDI platform must do",
+  "group": "research",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B08_DDI_Requirements_Narrated.mp4",
+  "vtt": "presentations/research-ddi-requirements/B08_DDI_Requirements_Narrated.vtt",
+  "deck": "presentations/research-ddi-requirements/B08_DDI_Requirements_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ddi-requirements/B08_DDI_Requirements_Narration_Script.md"
+ },
+ {
+  "id": "Research_Cisco_SDWAN_Narrated",
+  "title": "Book 09's SD-WAN Design on Cisco Catalyst SD-WAN: narrated research deck",
+  "group": "research",
+  "minutes": 17,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_Cisco_SDWAN_Narrated.mp4",
+  "vtt": "presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narrated.vtt",
+  "deck": "presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narration_Script.md"
+ },
+ {
+  "id": "Research_CyberArk_CLM_Narrated",
+  "title": "Research: Certificate Lifecycle on CyberArk Certificate Manager — implementation guide",
+  "group": "research",
+  "minutes": 20,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_CyberArk_CLM_Narrated.mp4",
+  "vtt": "presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.vtt",
+  "deck": "presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cyberark-clm/Research_CyberArk_CLM_Narration_Script.md"
+ },
+ {
+  "id": "Research_Hybrid_Credentials_Narrated",
+  "title": "Research: Certificates, Tokens and Keys Across the Hybrid Estate — explainer",
+  "group": "research",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_Hybrid_Credentials_Narrated.mp4",
+  "vtt": "presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narrated.vtt",
+  "deck": "presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narration_Script.md"
+ },
+ {
+  "id": "Research_HR_Identity_DNS_Narrated",
+  "title": "Research: DNS for HR-Driven Identity Across Clouds — explainer",
+  "group": "research",
+  "minutes": 10,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_HR_Identity_DNS_Narrated.mp4",
+  "vtt": "presentations/research-hr-identity-dns/Research_HR_Identity_DNS_Narrated.vtt",
+  "deck": "presentations/research-hr-identity-dns/Research_HR_Identity_DNS_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-hr-identity-dns/Research_HR_Identity_DNS_Narration_Script.md"
+ },
+ {
+  "id": "Research_Infoblox_Impl_Narrated",
+  "title": "Research: Implementing Book 08 on Infoblox NIOS — implementation guide",
+  "group": "research",
+  "minutes": 21,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_Infoblox_Impl_Narrated.mp4",
+  "vtt": "presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.vtt",
+  "deck": "presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-impl/Research_Infoblox_Impl_Narration_Script.md"
+ },
+ {
+  "id": "Infoblox_DDI_Federal_Deep_Dive_Narrated",
+  "title": "Research: Infoblox DDI for Federal Agencies — technical deep dive",
+  "group": "research",
+  "minutes": 27,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Infoblox_DDI_Federal_Deep_Dive_Narrated.mp4",
+  "vtt": "presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narrated.vtt",
+  "deck": "presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narration_Script.md"
+ },
+ {
+  "id": "Research_Trinzic_MultiCloud_Narrated",
+  "title": "Research: Trinzic Alone, or Trinzic Plus Cloud DDI? — explainer",
+  "group": "research",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_Trinzic_MultiCloud_Narrated.mp4",
+  "vtt": "presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narrated.vtt",
+  "deck": "presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narration_Script.md"
+ },
+ {
+  "id": "Research_Device_Naming_Narrated",
+  "title": "Research: Who Names the Device After AD? — explainer",
+  "group": "research",
+  "minutes": 10,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_Device_Naming_Narrated.mp4",
+  "vtt": "presentations/research-device-naming/Research_Device_Naming_Narrated.vtt",
+  "deck": "presentations/research-device-naming/Research_Device_Naming_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-device-naming/Research_Device_Naming_Narration_Script.md"
+ },
+ {
+  "id": "Research_TTM_ServiceNow_SailPoint_Narrated",
+  "title": "Ticket-to-Machine on ServiceNow and SailPoint: narrated research deck",
+  "group": "research",
+  "minutes": 10,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_TTM_ServiceNow_SailPoint_Narrated.mp4",
+  "vtt": "presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated.vtt",
+  "deck": "presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narration_Script.md"
+ },
+ {
+  "id": "HR_Driven_Identity_AnyAgency_Narrated",
+  "title": "HR-Driven Identity: interview talk, detailed deck",
+  "group": "interview",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/HR_Driven_Identity_AnyAgency_Narrated.mp4",
+  "vtt": "presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency_Narrated.vtt",
+  "deck": "presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency_Narration_Script.md"
+ },
+ {
+  "id": "HR_Driven_Identity_Exec_AnyAgency_Narrated",
+  "title": "HR-Driven Identity: interview talk, executive cut",
+  "group": "interview",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/HR_Driven_Identity_Exec_AnyAgency_Narrated.mp4",
+  "vtt": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Exec_AnyAgency_Narrated.vtt",
+  "deck": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Exec_AnyAgency_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_Exec_AnyAgency_Narration_Script.md"
+ },
+ {
+  "id": "HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated",
+  "title": "HR-Driven Identity: who is authoritative for a contractor",
+  "group": "interview",
+  "minutes": 10,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.mp4",
+  "vtt": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.vtt",
+  "deck": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_Contractor_Source_AnyAgency_Narration_Script.md"
+ }
+]

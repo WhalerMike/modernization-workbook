@@ -17,6 +17,8 @@ It builds on [Book 07 — PKI & Certificates](../books/b07-pki/index.md), which 
 
 ## Watch or download
 
+{{< fmw-video Research_Hybrid_Credentials_Narrated >}}
+
 | Edition | File |
 |---|---|
 | Deck | [Research_Hybrid_Credentials.pptx](../../presentations/research-hybrid-credentials/Research_Hybrid_Credentials.pptx) |

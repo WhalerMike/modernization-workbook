@@ -1,0 +1,199 @@
+#!/usr/bin/env python3
+"""Build the video manifest and the video library from the narrated decks.
+
+Every narrated deck in presentations/<folder>/ has a caption track,
+<Name>_Narrated.vtt, and an MP4 of the same name attached to the videos
+release (too large for the repository or GitHub Pages). This script pairs
+them and writes:
+
+  docs/presentations/videos.json          read by the Watch page's player and
+                                          by the fmw-video shortcode
+  docs/presentations/_video-library.md    the library table on the Watch page
+
+The browser streams each MP4 from the release; the caption tracks are
+published with the site, because a <track> must come from the page's own
+origin.
+
+    python scripts/generate_video_manifest.py            # write both files
+    python scripts/generate_video_manifest.py --check    # exit 1 if either is stale
+    python scripts/generate_video_manifest.py --verify   # also confirm every MP4 is on the release (needs gh),
+                                                        and refresh data/video-durations.json from the MP4 headers
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import struct
+import subprocess
+import sys
+import urllib.request
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+PRES = ROOT / "presentations"
+OUT_JSON = ROOT / "docs" / "presentations" / "videos.json"
+OUT_LIB = ROOT / "docs" / "presentations" / "_video-library.md"
+# Each video's true length in seconds, read from its MP4 header by --verify.
+# The caption track ends before the closing slides, so it undercounts.
+DURATIONS = ROOT / "data" / "video-durations.json"
+REPO = "WhalerMike/modernization-workbook"
+RELEASE = "videos-2026-10-23"
+BASE = f"https://github.com/{REPO}/releases/download/{RELEASE}"
+GH = f"https://github.com/{REPO}/blob/main"
+
+# Titles the folder README doesn't give, or gives once for several videos.
+TITLES = {
+    "Start_Here_Narrated": "Start Here: Where Modernization Begins",
+    "HR_Driven_Identity_Exec_AnyAgency_Narrated": "HR-Driven Identity: interview talk, executive cut",
+    "HR_Driven_Identity_AnyAgency_Narrated": "HR-Driven Identity: interview talk, detailed deck",
+    "HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated": "HR-Driven Identity: who is authoritative for a contractor",
+}
+
+GROUPS = [
+    ("start", "The Start series"),
+    ("book", "Book presentations and briefings"),
+    ("research", "Research"),
+    ("interview", "HR-driven identity interview set"),
+]
+
+
+def group_of(folder: str) -> str:
+    if folder.startswith("start"):
+        return "start"
+    if folder.startswith("research-"):
+        return "research"
+    if folder.startswith("hr-driven"):
+        return "interview"
+    return "book"
+
+
+def title_of(vid: str, folder: Path) -> str:
+    if vid in TITLES:
+        return TITLES[vid]
+    readme = folder / "README.md"
+    if readme.exists():
+        for line in readme.read_text(encoding="utf-8").splitlines():
+            if line.startswith("# "):
+                return line[2:].strip()
+    raise SystemExit(f"video manifest: no title for {vid}: add a README heading or a TITLES entry")
+
+
+def minutes_of(vtt: Path) -> int:
+    ends = re.findall(r"--> (\d+):(\d+):(\d+)[.,](\d+)", vtt.read_text(encoding="utf-8"))
+    if not ends:
+        raise SystemExit(f"video manifest: {vtt} has no cues")
+    h, m, s, _ = (int(x) for x in ends[-1])
+    return max(1, round((h * 3600 + m * 60 + s) / 60))
+
+
+def probe_seconds(url: str, size: int) -> float:
+    """Read an MP4's duration from its mvhd box, fetching only the file's tail
+    (these MP4s keep the moov box at the end) and then, if needed, its head."""
+    tail = 4 * 1024 * 1024
+    # Explicit ranges: the release's blob storage refuses suffix ranges ("bytes=-N").
+    for rng in (f"bytes={max(0, size - tail)}-{size - 1}", f"bytes=0-{tail - 1}"):
+        req = urllib.request.Request(url, headers={"Range": rng, "User-Agent": "FederalModernizationWorkbook-VideoManifest/1.0"})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            data = r.read()
+        i = data.find(b"mvhd")
+        if i >= 0:
+            version = data[i + 4]
+            if version == 1:
+                scale, duration = struct.unpack(">IQ", data[i + 24 : i + 36])
+            else:
+                scale, duration = struct.unpack(">II", data[i + 16 : i + 24])
+            return duration / scale
+    raise SystemExit(f"video manifest: no mvhd box found in {url}")
+
+
+def collect() -> list[dict]:
+    seconds = json.loads(DURATIONS.read_text(encoding="utf-8")) if DURATIONS.exists() else {}
+    videos = []
+    for vtt in sorted(PRES.glob("*/*_Narrated.vtt")):
+        vid = vtt.stem
+        folder = vtt.parent
+        rel = folder.relative_to(ROOT).as_posix()
+        deck = folder / f"{vid}.pptx"
+        script = folder / f"{vid[: -len('_Narrated')]}_Narration_Script.md"
+        videos.append(
+            {
+                "id": vid,
+                "title": title_of(vid, folder),
+                "group": group_of(folder.name),
+                "minutes": max(1, round(seconds[vid] / 60)) if vid in seconds else minutes_of(vtt),
+                "mp4": f"{BASE}/{vid}.mp4",
+                "vtt": f"{rel}/{vtt.name}",
+                "deck": f"{rel}/{deck.name}" if deck.exists() else None,
+                "script": f"{GH}/{rel}/{script.name}" if script.exists() else None,
+            }
+        )
+    order = {g: i for i, (g, _) in enumerate(GROUPS)}
+    videos.sort(key=lambda v: (order[v["group"]], v["id"] != "Start_Here_Narrated", v["title"].lower()))
+    return videos
+
+
+def library(videos: list[dict]) -> str:
+    lines = [
+        "<!-- Generated by scripts/generate_video_manifest.py. Edit the script or the decks, not this file. -->",
+        "",
+    ]
+    for key, heading in GROUPS:
+        rows = [v for v in videos if v["group"] == key]
+        if not rows:
+            continue
+        lines += [f"### {heading}", "", "| Video | Length | Also |", "|---|---|---|"]
+        for v in rows:
+            extra = [f"[MP4]({v['mp4']})"]
+            if v["deck"]:
+                extra.append(f"[Narrated deck](../../{v['deck']})")
+            if v["script"]:
+                extra.append(f"[Script]({v['script']})")
+            lines.append(f"| [▶ {v['title']}](watch.html?v={v['id']}) | {v['minutes']} min | {' · '.join(extra)} |")
+        lines += ["", f": {heading} {{.striped .hover}}", ""]
+    return "\n".join(lines)
+
+
+def verify(videos: list[dict]) -> None:
+    assets = json.loads(subprocess.run(
+        ["gh", "release", "view", RELEASE, "--repo", REPO, "--json", "assets"],
+        check=True, capture_output=True, text=True,
+    ).stdout)["assets"]
+    sizes = {a["name"]: a["size"] for a in assets}
+    missing = [v["id"] for v in videos if f"{v['id']}.mp4" not in sizes]
+    if missing:
+        raise SystemExit("video manifest: not on the release: " + ", ".join(missing))
+    print(f"video manifest: all {len(videos)} MP4s are on {RELEASE}")
+    seconds = {v["id"]: round(probe_seconds(v["mp4"], sizes[f"{v['id']}.mp4"]), 1) for v in videos}
+    DURATIONS.write_bytes((json.dumps(seconds, indent=1, sort_keys=True) + "\n").encode("utf-8"))
+    print(f"video manifest: durations read from {len(seconds)} MP4 headers")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--check", action="store_true")
+    ap.add_argument("--verify", action="store_true")
+    args = ap.parse_args()
+    videos = collect()
+    if args.verify:
+        verify(videos)
+        videos = collect()
+    files = {
+        OUT_JSON: json.dumps(videos, indent=1, ensure_ascii=False) + "\n",
+        OUT_LIB: library(videos),
+    }
+    stale = [p for p, text in files.items() if not p.exists() or p.read_bytes() != text.encode("utf-8")]
+    if args.check:
+        if stale:
+            print("video manifest: stale: " + ", ".join(p.relative_to(ROOT).as_posix() for p in stale), file=sys.stderr)
+            return 1
+        return 0
+    for p in stale:
+        p.write_bytes(files[p].encode("utf-8"))
+    print(f"video manifest: {len(videos)} videos, {len(stale)} files written")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
