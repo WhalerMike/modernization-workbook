@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.224
+For AI, a lot of what
+matters was never declared,
+
+2
+00:00:03.224 --> 00:00:06.900
+so discovery has to be standing,
+not a one-time cleanup.
+
+3
+00:00:06.900 --> 00:00:10.878
+Shadow AI shows up in four
+places: services people use,
+
+4
+00:00:10.878 --> 00:00:17.025
+apps holding consented access, agents on
+endpoints, and AI built in your own clouds.
+
+5
+00:00:17.025 --> 00:00:20.112
+Each needs a different tool,
+and none sees everything.
+
+6
+00:00:20.112 --> 00:00:24.451
+The test is the same everywhere:
+does this match an identity record?
+
+7
+00:00:24.451 --> 00:00:27.675
+Match on the record's key,
+never on a display name.
+
+8
+00:00:27.675 --> 00:00:29.312
+And remember the blind spot.
+
+9
+00:00:29.312 --> 00:00:32.905
+An agent using a raw key produces
+no identity signal at all,
+
+10
+00:00:32.905 --> 00:00:36.349
+which is why endpoint and
+network views aren't optional.
+
+11
+00:00:36.349 --> 00:00:37.780
+Now, the findings.

@@ -31,3 +31,13 @@ Editor pass 2026-10-20. The appendix had no footnotes; external claims are now f
 | Manager links | edited (footnote) | — |
 | Rehire and conversion | edited (matching-pair sentence) | — |
 | Continue callout | edited to "Continue the book" / "Book index"; Previous title now "Chapter 13 — Reference Deployment (Illustrative)" | — |
+
+## Addition, October 25, 2026: Oracle Core HCM to Entra implementation research
+
+Applied from the research page `docs/research/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | Quarantine contract = middleware quarantine of failed records | The quarantine contract | confirmed; distinguished from Microsoft's provisioning-job quarantine | — |
+| 2 | Microsoft job quarantine: causes incl. empty notification email and accidental-deletion trips; notification email; cycles daily; disabled after four weeks | The quarantine contract | added | aA-ms-quar; aA-ms-config; aA-ms-accdel |
+| 3 | Each quarantine needs its own runbook | The quarantine contract | added (design guidance) | aA-ms-quar |

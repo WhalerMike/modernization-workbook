@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Doesn't Microsoft already do this?
+
+2
+00:00:02.025 --> 00:00:05.903
+Microsoft's tools do their
+individual jobs well: sync,
+
+3
+00:00:05.903 --> 00:00:10.662
+attack detection, policy analysis,
+tenant baselines, governance.
+
+4
+00:00:10.662 --> 00:00:13.322
+But each one keeps its
+results in its own portal,
+
+5
+00:00:13.322 --> 00:00:15.437
+and none of them connects the picture.
+
+6
+00:00:15.437 --> 00:00:19.533
+No native tool inventories the
+OU tree and its delegation,
+
+7
+00:00:19.533 --> 00:00:24.225
+the trusts, DNS, the full Group
+Policy estate or certificate health.
+
+8
+00:00:24.225 --> 00:00:29.413
+And none keeps one record of the old estate,
+the new one and the drift between them.
+
+9
+00:00:29.413 --> 00:00:34.188
+So the program uses what Microsoft does
+well and builds only that missing layer.
+
+10
+00:00:34.188 --> 00:00:36.400
+Every tool already has an owner.
+
+11
+00:00:36.400 --> 00:00:39.637
+The gaps between them don't,
+unless someone names one.
+
+12
+00:00:39.637 --> 00:00:44.476
+The CISO owns evidence and drift,
+so the CISO names that owner.
+
+13
+00:00:44.476 --> 00:00:45.820
+Now, how to begin.

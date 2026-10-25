@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.075
+The tempting middle ground is to
+keep the GPOs and add Intune.
+
+2
+00:00:04.075 --> 00:00:07.463
+But when both touch a setting,
+nobody sees who wins.
+
+3
+00:00:07.463 --> 00:00:09.525
+By default Group Policy wins.
+
+4
+00:00:09.525 --> 00:00:13.355
+A switch reverses that, but only
+for some settings; for others,
+
+5
+00:00:13.355 --> 00:00:16.725
+Microsoft warns it's a race
+with no guaranteed winner.
+
+6
+00:00:16.725 --> 00:00:21.269
+Microsoft's own tool can measure how much
+of your Group Policy maps to Intune,
+
+7
+00:00:21.269 --> 00:00:25.813
+but it doesn't close the gap, and nobody
+can tell you the percentage in advance.
+
+8
+00:00:25.813 --> 00:00:30.224
+Microsoft's advice is to rebuild from
+today's requirements rather than copy.
+
+9
+00:00:30.224 --> 00:00:35.360
+So the decision for the endpoint engineering
+lead: write down every overlapping
+
+10
+00:00:35.360 --> 00:00:40.112
+setting before Intune enforces it, and
+give each GPO copy a retirement date.
+
+11
+00:00:40.112 --> 00:00:41.740
+Next, the shortcut.

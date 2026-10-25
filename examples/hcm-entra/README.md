@@ -1,0 +1,106 @@
+# Oracle Fusion Cloud HCM to Microsoft Entra ID: extract-to-SCIM converter and validator
+
+> **Status: illustrative. Unit-tested against fixtures, not proven against live tenants.**
+> This is one way to build the middleware's validate and normalize duties from [Book 03, Chapter 05](../../docs/books/b03-hr-identity/05-the-provisioning-pipeline.md), using the canonical schema and program attribute map in [Chapter 06](../../docs/books/b03-hr-identity/06-canonical-attribute-schema.md). It isn't an endorsement of any product by any agency, and no agency has adopted it. Product and API facts were checked against Microsoft Learn and Oracle's documentation on October 25, 2026. The explanation, with sources, is the research page [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../../docs/research/hcm-entra-implementation.md).
+
+## What it does
+
+Two equivalent clients, `python/hcm_to_scim.py` and `powershell/Invoke-HcmToScim.ps1` (with `HcmToScim.psm1`), read an HCM Extract CSV, validate each row, and turn it into a SCIM bulk request for the API-driven inbound provisioning app. By default they only write files:
+
+| Output | Contents | Book 03 use |
+|---|---|---|
+| `bulk-request-NNN.json` | SCIM `BulkRequest` payloads, at most 50 operations each, leavers first, managers before their reports | The `/bulkUpload` contract (Chapter 05) |
+| `validation-report.json` | Counts, and per record: person key, status, leaver flag, payload SHA-256, reasons and warnings. **No names or payloads** | Operational log (Appendix B: person key and payload hash only) |
+| `quarantine.json` | Each refused record: reasons, the unchanged HR row and the attempted payload. **Contains personal data**: keep it in the access-controlled audit store | The quarantine contract (Appendix A) |
+| `apply-results.json` | Only with `--apply` / `-Apply`: per batch, the HTTP status, attempts, the `Location` header that points at the provisioning logs, and the batch hash | Reconcile duty (Chapter 05) |
+
+Both clients produce the same operations and the same payload hashes for the same input; the tests assert that against a shared fixture.
+
+## The mapping it applies
+
+`config/mapping.json` holds the mapping, the code lists and the validation rules; both clients read it. The column names are this example's extract layout, not Oracle field names: build your HCM Extract to emit them, or change the file.
+
+| Extract column | SCIM attribute | AD (provisioning agent) | Entra ID |
+|---|---|---|---|
+| `PersonNumber` | `externalId` (matching attribute) and enterprise `employeeNumber` | `employeeID` | `employeeId` |
+| `AssignmentStatusType` | `active` (`ACTIVE` and `SUSPENDED` true, `INACTIVE` false) | `accountDisabled` | `accountEnabled` |
+| `FirstName`, `LastName`, `DisplayName` | `name.givenName`, `name.familyName`, `displayName` | `givenName`, `sn`, `cn` | `givenName`, `surname`, `displayName` |
+| `JobName` | `title` | `title` | `jobTitle` |
+| `DepartmentName`, `BusinessUnit`, `CostCenter`, `LegalEmployer` | enterprise `department`, `division`, `costCenter`, `organization` | `department`, `division`, —, `company` | `department`, `employeeOrgData.division`, `employeeOrgData.costCenter`, `companyName` |
+| `ManagerPersonNumber` | enterprise `manager.value` (the manager's `externalId`) | `manager` (DN) | `manager` |
+| `WorkCountry` | `addresses[type eq "work"].country` | `co` | `country` |
+| `WorkerType` | extension `workerType` and `workerTypeCode` | `employeeType`, `extensionAttribute11` | `employeeType`, `extensionAttribute11` |
+| `JobCode` | extension `JobCode` | `extensionAttribute1` | `extensionAttribute1` |
+| `HireDate`, `TerminationDate` | extension `HireDate`, `TermDate` (UTC, ISO 8601) | `extensionAttribute2`, `extensionAttribute3` | `employeeHireDate`, `employeeLeaveDateTime` |
+| `DepartmentCode` | extension `orgCode` | `extensionAttribute10` | `extensionAttribute10` |
+| `PositionCategory` | extension `positionCategory` | `extensionAttribute12` | `extensionAttribute12` |
+
+The extension namespace is `urn:ietf:params:scim:schemas:extension:contoso:1.0:User`, a placeholder. Use one namespace string everywhere: in this file, in the provisioning app's attribute list and in its mappings. A typo in any of the three silently drops the attribute.
+
+The provisioning app, not this client, owns the target-side mapping. In particular:
+
+- **Dates for AD-landed users.** Microsoft's guidance is that a custom import to an AD string attribute must use the format `yyyyMMddHHmmss.fZ`. This client sends `2026-11-02T10:00:00Z`; convert it in the AD app's mapping with an expression such as `FormatDateTime([urn:ietf:params:scim:schemas:extension:contoso:1.0:User:HireDate], , "yyyy-MM-ddTHH:mm:ssZ", "yyyyMMddHHmmss.fZ")` *(inference: test the format string in your tenant)*.
+- **UPN and `samAccountName`.** Generate them in the app's mapping (for AD, `SelectUniqueValue` on object creation only), or add a `UserName` column. The provisioning service doesn't resolve UPN conflicts for you.
+- **Email.** Not sent. The directory generates it, as Book 03's crosswalk says.
+
+## The rules it enforces (fail closed)
+
+| Rule | Source in Book 03 |
+|---|---|
+| Required columns present; `PersonNumber` fits `employeeId` (at most 16 characters) | Chapter 04, Chapter 06 |
+| Worker type known; pending workers and nonworkers refused | Chapter 06 worker-type taxonomy (*design guidance*: provision from the hire, not the pending record) |
+| `SUSPENDED` keeps the account active, with a warning | Appendix A, "leave is not a leaver" |
+| A record whose hire date is after the run date is sent with `active` false (setting `prestart_disabled`), so the account exists disabled before day one; it isn't counted as a leaver. Enable it on the hire date with one writer: a scheduled re-send from the pipeline, or the Lifecycle Workflows day-one *Enable user account* task (which can enable synced AD users through the provisioning agent), not both unplanned | Appendix C, first acceptance row |
+| `INACTIVE` needs a termination date, so the leave date can be set | Chapter 08, Chapter 09 |
+| Codes match the code list; `department` and `companyName` at most 64 characters, `jobTitle` 128, `displayName` 256 | Chapter 06 design rule 3; the Graph user property limits |
+| One person, several rows: a separation wins; otherwise refuse both | Appendix A, precedence |
+| A worker can't be their own manager; a manager separating in this run is a warning, never a block | Appendix A, manager links |
+| A separation older than the catch-up window (3 days) is flagged for the on-demand leaver workflow | Chapter 08 |
+| More disables than `max_disables_per_run` holds the whole run (exit 3) until `--confirm-large-delta` | Appendix B, pause switch |
+
+Every record is sent complete, for full and delta runs alike, because an omitted attribute can clear the target value when attribute clearing is turned on.
+
+## Run it
+
+Requires Python 3.10 or later (standard library only), or PowerShell 7.2 or later.
+
+```text
+python python/hcm_to_scim.py --extract tests/fixtures/hcm_extract_sample.csv --as-of 2026-10-25 --out out
+pwsh -File powershell/Invoke-HcmToScim.ps1 -Extract tests/fixtures/hcm_extract_sample.csv -AsOf 2026-10-25 -Out out
+```
+
+Exit codes: `0` everything ready (or sent), `1` error, `2` some records quarantined, `3` run held.
+
+To send, copy `config/settings.example.json` to `config/settings.json`, put your provisioning app's **Provisioning API Endpoint** in `endpoint`, put a bearer token for Microsoft Graph in the `HCM_ENTRA_BEARER_TOKEN` environment variable, and add `--apply` (`-Apply`). Obtain the token outside the script, from a managed identity or a certificate credential; the settings loader refuses any key that looks like a secret. Grant the identity only `SynchronizationData-User.Upload` (or `SynchronizationData-User.Upload.OwnedBy`, if it owns the provisioning app) and, for the separate log reader, provisioning-log read. The endpoint must be an `https` Graph `/bulkUpload` URL on `graph.microsoft.com` (also used by Microsoft 365 GCC), `graph.microsoft.us` or `dod-graph.microsoft.us`. The sender paces calls at least 0.125 seconds apart (40 calls in any 5 seconds), honors `Retry-After` on 429 and 503, and stops at the first failed batch.
+
+Before the first real run, start the provisioning job (it must be listening), set the notification email (without it the job quarantines), turn on accidental-deletions prevention, and send five to ten records first, as Microsoft's Oracle HCM guide advises.
+
+## Test it
+
+```text
+python -m pytest -q -p no:cacheprovider tests/python
+pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
+```
+
+The tests use `tests/fixtures/hcm_extract_sample.csv` (fictional workers at a placeholder employer) and never call the network; sending is tested with a fake poster. They prove the code does what this README says against the fixtures. They don't prove that your extract, your provisioning app's schema or Microsoft's service behave the same way.
+
+## Known limits
+
+- **Not the whole middleware.** This covers validate and normalize, the start of sequence (ordering within a run) and the send. It doesn't read Atom feeds, hold future-dated events, write provenance to an evidence store, or read the provisioning logs back per record; the research page describes those duties.
+- **Fixed UTC offsets.** Hire and leave times are converted with a fixed offset per row (or the default). Emit the offset in force on each date from the extract; daylight saving time isn't computed here.
+- **Assignment status values are this example's.** Oracle's assignment status types and your extract's values may differ; map them in `assignment_status_types`.
+- **Pending workers are refused.** If your design provisions from the pending worker record, change `refused_worker_types` and the scoping rules together.
+- **The `Location` header** is recorded as returned. Reading per-record results from the provisioning logs is a separate component with its own permission.
+
+```
+examples/hcm-entra/
+  README.md
+  config/mapping.json            mapping, code lists, validation rules (shared)
+  config/settings.example.json   non-secret settings; placeholders only
+  python/hcm_to_scim.py          converter, validator, dry-run-first sender
+  powershell/HcmToScim.psm1      the same in PowerShell 7
+  powershell/Invoke-HcmToScim.ps1  wrapper script
+  tests/fixtures/                sample extract, expected payload, hashes
+  tests/python/                  pytest
+  tests/powershell/              Pester 5
+```

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.901
+The tempting plan is to
+install a sync engine,
+
+2
+00:00:02.901 --> 00:00:05.675
+copy the forest as it
+stands, and call it done.
+
+3
+00:00:05.675 --> 00:00:08.412
+The sync works; what it
+carries is the problem.
+
+4
+00:00:08.412 --> 00:00:12.231
+Twenty-five years of old
+organization charts, layered policy,
+
+5
+00:00:12.231 --> 00:00:16.500
+forgotten service accounts and
+ownerless trusts land in the tenant.
+
+6
+00:00:16.500 --> 00:00:18.500
+Delegation has nowhere to go.
+
+7
+00:00:18.500 --> 00:00:22.381
+A synced admin account lets an
+on-premises breach reach the cloud,
+
+8
+00:00:22.381 --> 00:00:26.550
+which is why Microsoft wants privileged
+roles on cloud-only accounts.
+
+9
+00:00:26.550 --> 00:00:29.274
+The worst outcome is paying
+for a cloud platform
+
+10
+00:00:29.274 --> 00:00:31.725
+and running it as a copy
+of the old directory.
+
+11
+00:00:31.725 --> 00:00:36.725
+So the decision for the sponsor and
+CIO: treat this as a governance event.
+
+12
+00:00:36.725 --> 00:00:40.475
+Discover, rebuild explicitly,
+and prove it survived.
+
+13
+00:00:40.475 --> 00:00:42.910
+Here's why that rebuild is structural.

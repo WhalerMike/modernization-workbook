@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.228
+NIST's AC-6 asks for only the access
+a task needs, with privileges reviewed
+
+2
+00:00:05.228 --> 00:00:10.837
+on a schedule and every privileged action
+logged, all in the Moderate baseline.
+
+3
+00:00:10.837 --> 00:00:15.040
+M-22-09 doesn't actually
+mandate time-bound privilege,
+
+4
+00:00:15.040 --> 00:00:17.026
+and it's often quoted as if it did.
+
+5
+00:00:17.026 --> 00:00:21.798
+CISA's maturity model is the clearest:
+it runs from permanent access
+
+6
+00:00:21.798 --> 00:00:26.488
+with a periodic review, to automated
+just-in-time, just-enough access.
+
+7
+00:00:26.488 --> 00:00:30.550
+Most estates with standing administrators
+are still at the first stage.
+
+8
+00:00:30.550 --> 00:00:35.188
+Microsoft's numbers are short: fewer
+than five Global Administrators.
+
+9
+00:00:35.188 --> 00:00:39.551
+The takeaway is that time is the
+dimension most estates never limited,
+
+10
+00:00:39.551 --> 00:00:43.763
+and limiting it gives you the review
+and log evidence as a by-product.
+
+11
+00:00:43.763 --> 00:00:45.740
+Now, the baseline itself.

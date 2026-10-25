@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.653
+The book's policy library is built to
+CISA's Binding Operational Directive 25-01,
+
+2
+00:00:05.653 --> 00:00:10.837
+which made a set of cloud configurations
+mandatory for civilian agencies.
+
+3
+00:00:10.837 --> 00:00:15.713
+Each required Entra item maps to a
+named policy: block legacy sign-in,
+
+4
+00:00:15.713 --> 00:00:18.150
+block high-risk users and sign-ins,
+
+5
+00:00:18.150 --> 00:00:22.938
+and phishing-resistant MFA for
+everyone and for privileged roles.
+
+6
+00:00:22.938 --> 00:00:24.750
+One choice needs your attention.
+
+7
+00:00:24.750 --> 00:00:30.375
+Microsoft recommends asking high-risk users
+to fix their own risk; CISA says block.
+
+8
+00:00:30.375 --> 00:00:34.600
+They can't both win, so in a
+directive-scoped tenant the program blocks,
+
+9
+00:00:34.600 --> 00:00:36.750
+and the help desk handles recovery.
+
+10
+00:00:36.750 --> 00:00:41.963
+The policies roll out in five gated waves,
+each clean for a week before the next.
+
+11
+00:00:41.963 --> 00:00:43.829
+The decision for the CISO:
+
+12
+00:00:43.829 --> 00:00:47.987
+adopt the library and its waves
+before wave one is enforced.
+
+13
+00:00:47.987 --> 00:00:49.700
+Next, the end state.

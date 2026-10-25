@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.325
+Applications need the same lifecycle
+people get, including an end.
+
+2
+00:00:04.325 --> 00:00:05.650
+Three facts drive it.
+
+3
+00:00:05.650 --> 00:00:07.501
+Consent grants don't expire,
+
+4
+00:00:07.501 --> 00:00:11.363
+and revoking one doesn't cancel
+the tokens already issued.
+
+5
+00:00:11.363 --> 00:00:15.997
+Owners aren't just contacts: an owner
+can add a credential and become the app,
+
+6
+00:00:15.997 --> 00:00:18.763
+so the list holds two
+named technical people.
+
+7
+00:00:18.763 --> 00:00:23.364
+And stored secrets are the weak spot,
+so the order is a managed identity,
+
+8
+00:00:23.364 --> 00:00:26.537
+then federation, then a
+short-lived certificate.
+
+9
+00:00:26.537 --> 00:00:32.475
+Microsoft's recommended policy blocks new
+secrets and caps certificates at 180 days,
+
+10
+00:00:32.475 --> 00:00:35.401
+and the program adopts
+it for every new app.
+
+11
+00:00:35.401 --> 00:00:38.331
+The CISO sets that rule,
+and any exception for a
+
+12
+00:00:38.331 --> 00:00:41.488
+secret needs the governance
+officer and the CISO.
+
+13
+00:00:41.488 --> 00:00:44.180
+Next, the whole map of who decides.

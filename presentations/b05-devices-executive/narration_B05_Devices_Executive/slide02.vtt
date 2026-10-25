@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.620
+For twenty years, a device's
+settings came from where
+
+2
+00:00:03.620 --> 00:00:06.775
+it sat in the tree of
+organizational units (OUs).
+
+3
+00:00:06.775 --> 00:00:11.702
+That position quietly did five jobs:
+which settings applied, which one won,
+
+4
+00:00:11.702 --> 00:00:16.225
+who could change it, how often it
+refreshed, and what evidence you had.
+
+5
+00:00:16.225 --> 00:00:19.750
+A cloud-joined, Intune-managed
+device has no position.
+
+6
+00:00:19.750 --> 00:00:24.525
+Policies are assigned flatly to groups,
+overlapping settings become reported
+
+7
+00:00:24.525 --> 00:00:29.300
+conflicts that may not apply at all, and
+devices check in about every eight hours.
+
+8
+00:00:29.300 --> 00:00:31.750
+Intune can deliver most of the settings.
+
+9
+00:00:31.750 --> 00:00:33.962
+It can't deliver the
+governance around them.
+
+10
+00:00:33.962 --> 00:00:38.037
+So treat this as a governance
+rebuild, not a settings migration.
+
+11
+00:00:38.037 --> 00:00:40.540
+Next, why running both doesn't help.

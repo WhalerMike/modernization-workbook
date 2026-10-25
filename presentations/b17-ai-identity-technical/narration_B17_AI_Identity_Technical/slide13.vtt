@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.750
+Agent ID adds a small object model.
+
+2
+00:00:02.750 --> 00:00:06.050
+The blueprint is the template,
+and it holds the credential.
+
+3
+00:00:06.050 --> 00:00:08.508
+The agent identities created from it hold
+
+4
+00:00:08.508 --> 00:00:11.037
+permissions but no
+credential of their own.
+
+5
+00:00:11.037 --> 00:00:14.899
+The big consequence is that the
+blueprint is a credential boundary.
+
+6
+00:00:14.899 --> 00:00:17.830
+One credential serves
+every agent of that kind,
+
+7
+00:00:17.830 --> 00:00:22.413
+and one action on the blueprint reaches
+all of them, including future ones.
+
+8
+00:00:22.413 --> 00:00:27.051
+Second, what a blueprint declares
+isn't granted until someone consents,
+
+9
+00:00:27.051 --> 00:00:29.488
+so real access is a sum you have to read.
+
+10
+00:00:29.488 --> 00:00:33.113
+Third, every agent gets a
+human sponsor at creation.
+
+11
+00:00:33.113 --> 00:00:35.280
+Now, which clouds actually have this?

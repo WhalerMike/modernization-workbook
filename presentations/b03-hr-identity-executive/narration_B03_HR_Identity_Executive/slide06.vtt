@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.488
+Every person needs one key the
+agency controls and never changes.
+
+2
+00:00:04.488 --> 00:00:05.399
+Here's why.
+
+3
+00:00:05.399 --> 00:00:09.625
+It's tempting to use the HR system's
+own person number as the key.
+
+4
+00:00:09.625 --> 00:00:13.233
+But that number changes
+when the HR system changes,
+
+5
+00:00:13.233 --> 00:00:15.725
+and Core HCM is exactly that change.
+
+6
+00:00:15.725 --> 00:00:17.550
+Contractors come from elsewhere.
+
+7
+00:00:17.550 --> 00:00:21.809
+So pick an enterprise key, often
+an identifier you already have,
+
+8
+00:00:21.809 --> 00:00:23.938
+and map every other number to it.
+
+9
+00:00:23.938 --> 00:00:28.350
+Then the move to the new platform changes
+one mapping, and nothing downstream.
+
+10
+00:00:28.350 --> 00:00:32.178
+A returning employee is the same
+person, not a new identity,
+
+11
+00:00:32.178 --> 00:00:35.288
+and a contractor who
+converts keeps one record.
+
+12
+00:00:35.288 --> 00:00:38.438
+And the Social Security
+number is never the join key.
+
+13
+00:00:38.438 --> 00:00:42.351
+The governance body makes this
+call before Phase 1 closes.
+
+14
+00:00:42.351 --> 00:00:44.020
+Next, the standard.

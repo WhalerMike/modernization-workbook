@@ -1,0 +1,415 @@
+{
+  "schemas": [
+    "urn:ietf:params:scim:api:messages:2.0:BulkRequest"
+  ],
+  "Operations": [
+    {
+      "method": "POST",
+      "bulkId": "100003",
+      "path": "/Users",
+      "data": {
+        "schemas": [
+          "urn:ietf:params:scim:schemas:core:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:contoso:1.0:User"
+        ],
+        "externalId": "100003",
+        "active": false,
+        "name": {
+          "givenName": "Riley",
+          "familyName": "Chen"
+        },
+        "displayName": "Riley Chen",
+        "title": "Management Analyst",
+        "addresses": [
+          {
+            "type": "work",
+            "country": "US",
+            "primary": true
+          }
+        ],
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+          "employeeNumber": "100003",
+          "organization": "Contoso Agency",
+          "department": "Program Operations",
+          "division": "Operations",
+          "costCenter": "CC-4100",
+          "manager": {
+            "value": "100000"
+          }
+        },
+        "urn:ietf:params:scim:schemas:extension:contoso:1.0:User": {
+          "workerType": "Employee",
+          "workerTypeCode": "EMP",
+          "orgCode": "ORG-100",
+          "positionCategory": "PRO",
+          "JobCode": "MA-0343",
+          "HireDate": "2018-01-08T10:00:00Z",
+          "TermDate": "2026-10-24T04:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "bulkId": "100008",
+      "path": "/Users",
+      "data": {
+        "schemas": [
+          "urn:ietf:params:scim:schemas:core:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:contoso:1.0:User"
+        ],
+        "externalId": "100008",
+        "active": false,
+        "name": {
+          "givenName": "Drew",
+          "familyName": "Novak"
+        },
+        "displayName": "Drew Novak",
+        "title": "Network Engineer",
+        "addresses": [
+          {
+            "type": "work",
+            "country": "US",
+            "primary": true
+          }
+        ],
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+          "employeeNumber": "100008",
+          "organization": "Contoso Agency",
+          "department": "Infrastructure Services",
+          "division": "Technology",
+          "costCenter": "CC-5200",
+          "manager": {
+            "value": "100000"
+          }
+        },
+        "urn:ietf:params:scim:schemas:extension:contoso:1.0:User": {
+          "workerType": "Employee",
+          "workerTypeCode": "EMP",
+          "orgCode": "ORG-210",
+          "positionCategory": "TEC",
+          "JobCode": "IT-2210",
+          "HireDate": "2020-05-11T10:00:00Z",
+          "TermDate": "2026-10-25T04:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "bulkId": "100013",
+      "path": "/Users",
+      "data": {
+        "schemas": [
+          "urn:ietf:params:scim:schemas:core:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:contoso:1.0:User"
+        ],
+        "externalId": "100013",
+        "active": false,
+        "name": {
+          "givenName": "Rowan",
+          "familyName": "Gray"
+        },
+        "displayName": "Rowan Gray",
+        "title": "Program Analyst",
+        "addresses": [
+          {
+            "type": "work",
+            "country": "US",
+            "primary": true
+          }
+        ],
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+          "employeeNumber": "100013",
+          "organization": "Contoso Agency",
+          "department": "Program Operations",
+          "division": "Operations",
+          "costCenter": "CC-4100",
+          "manager": {
+            "value": "100000"
+          }
+        },
+        "urn:ietf:params:scim:schemas:extension:contoso:1.0:User": {
+          "workerType": "Employee",
+          "workerTypeCode": "EMP",
+          "orgCode": "ORG-100",
+          "positionCategory": "PRO",
+          "JobCode": "PA-0343",
+          "HireDate": "2016-02-01T10:00:00Z",
+          "TermDate": "2026-10-16T04:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "bulkId": "100000",
+      "path": "/Users",
+      "data": {
+        "schemas": [
+          "urn:ietf:params:scim:schemas:core:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:contoso:1.0:User"
+        ],
+        "externalId": "100000",
+        "active": true,
+        "name": {
+          "givenName": "Morgan",
+          "familyName": "Lee"
+        },
+        "displayName": "Morgan Lee",
+        "userName": "morgan.lee@contoso.example",
+        "title": "Division Director",
+        "addresses": [
+          {
+            "type": "work",
+            "country": "US",
+            "primary": true
+          }
+        ],
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+          "employeeNumber": "100000",
+          "organization": "Contoso Agency",
+          "department": "Program Operations",
+          "division": "Operations",
+          "costCenter": "CC-4100"
+        },
+        "urn:ietf:params:scim:schemas:extension:contoso:1.0:User": {
+          "workerType": "Employee",
+          "workerTypeCode": "EMP",
+          "orgCode": "ORG-100",
+          "positionCategory": "EXE",
+          "JobCode": "EX-0101",
+          "HireDate": "2015-03-09T10:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "bulkId": "100001",
+      "path": "/Users",
+      "data": {
+        "schemas": [
+          "urn:ietf:params:scim:schemas:core:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:contoso:1.0:User"
+        ],
+        "externalId": "100001",
+        "active": false,
+        "name": {
+          "givenName": "Avery",
+          "familyName": "Kim"
+        },
+        "displayName": "Avery Kim",
+        "title": "Program Analyst",
+        "addresses": [
+          {
+            "type": "work",
+            "country": "US",
+            "primary": true
+          }
+        ],
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+          "employeeNumber": "100001",
+          "organization": "Contoso Agency",
+          "department": "Program Operations",
+          "division": "Operations",
+          "costCenter": "CC-4100",
+          "manager": {
+            "value": "100000"
+          }
+        },
+        "urn:ietf:params:scim:schemas:extension:contoso:1.0:User": {
+          "workerType": "Employee",
+          "workerTypeCode": "EMP",
+          "orgCode": "ORG-100",
+          "positionCategory": "PRO",
+          "JobCode": "PA-0343",
+          "HireDate": "2026-11-02T10:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "bulkId": "100004",
+      "path": "/Users",
+      "data": {
+        "schemas": [
+          "urn:ietf:params:scim:schemas:core:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:contoso:1.0:User"
+        ],
+        "externalId": "100004",
+        "active": true,
+        "name": {
+          "givenName": "Sam",
+          "familyName": "Patel"
+        },
+        "displayName": "Sam Patel",
+        "title": "Contract Developer",
+        "addresses": [
+          {
+            "type": "work",
+            "country": "US",
+            "primary": true
+          }
+        ],
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+          "employeeNumber": "100004",
+          "organization": "Contoso Agency",
+          "department": "Infrastructure Services",
+          "division": "Technology",
+          "costCenter": "CC-5200",
+          "manager": {
+            "value": "100000"
+          }
+        },
+        "urn:ietf:params:scim:schemas:extension:contoso:1.0:User": {
+          "workerType": "Contractor",
+          "workerTypeCode": "CTR",
+          "orgCode": "ORG-210",
+          "positionCategory": "TEC",
+          "JobCode": "CT-9001",
+          "HireDate": "2026-02-02T10:00:00Z",
+          "TermDate": "2027-01-01T04:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "bulkId": "100005",
+      "path": "/Users",
+      "data": {
+        "schemas": [
+          "urn:ietf:params:scim:schemas:core:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:contoso:1.0:User"
+        ],
+        "externalId": "100005",
+        "active": true,
+        "name": {
+          "givenName": "Jordan",
+          "familyName": "Fox"
+        },
+        "displayName": "Jordan Fox",
+        "title": "Records Clerk",
+        "addresses": [
+          {
+            "type": "work",
+            "country": "US",
+            "primary": true
+          }
+        ],
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+          "employeeNumber": "100005",
+          "organization": "Contoso Agency",
+          "department": "Program Operations",
+          "division": "Operations",
+          "costCenter": "CC-4100",
+          "manager": {
+            "value": "100000"
+          }
+        },
+        "urn:ietf:params:scim:schemas:extension:contoso:1.0:User": {
+          "workerType": "Employee",
+          "workerTypeCode": "EMP",
+          "orgCode": "ORG-100",
+          "positionCategory": "CLR",
+          "JobCode": "CL-0305",
+          "HireDate": "2012-09-04T10:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "bulkId": "100002",
+      "path": "/Users",
+      "data": {
+        "schemas": [
+          "urn:ietf:params:scim:schemas:core:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:contoso:1.0:User"
+        ],
+        "externalId": "100002",
+        "active": true,
+        "name": {
+          "givenName": "José",
+          "familyName": "Ramírez"
+        },
+        "displayName": "José Ramírez",
+        "title": "IT Specialist",
+        "addresses": [
+          {
+            "type": "work",
+            "country": "US",
+            "primary": true
+          }
+        ],
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+          "employeeNumber": "100002",
+          "organization": "Contoso Agency",
+          "department": "Infrastructure Services",
+          "division": "Technology",
+          "costCenter": "CC-5200",
+          "manager": {
+            "value": "100001"
+          }
+        },
+        "urn:ietf:params:scim:schemas:extension:contoso:1.0:User": {
+          "workerType": "Employee",
+          "workerTypeCode": "EMP",
+          "orgCode": "ORG-210",
+          "positionCategory": "TEC",
+          "JobCode": "IT-2210",
+          "HireDate": "2019-06-17T13:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "bulkId": "100011",
+      "path": "/Users",
+      "data": {
+        "schemas": [
+          "urn:ietf:params:scim:schemas:core:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+          "urn:ietf:params:scim:schemas:extension:contoso:1.0:User"
+        ],
+        "externalId": "100011",
+        "active": false,
+        "name": {
+          "givenName": "Hayden",
+          "familyName": "Ito"
+        },
+        "displayName": "Hayden Ito",
+        "title": "Program Analyst",
+        "addresses": [
+          {
+            "type": "work",
+            "country": "US",
+            "primary": true
+          }
+        ],
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+          "employeeNumber": "100011",
+          "organization": "Contoso Agency",
+          "department": "Program Operations",
+          "division": "Operations",
+          "costCenter": "CC-4100",
+          "manager": {
+            "value": "100003"
+          }
+        },
+        "urn:ietf:params:scim:schemas:extension:contoso:1.0:User": {
+          "workerType": "Employee",
+          "workerTypeCode": "EMP",
+          "orgCode": "ORG-100",
+          "positionCategory": "PRO",
+          "JobCode": "PA-0343",
+          "HireDate": "2026-10-26T10:00:00Z"
+        }
+      }
+    }
+  ],
+  "failOnErrors": null
+}

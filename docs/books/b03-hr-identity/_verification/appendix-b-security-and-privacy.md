@@ -39,3 +39,11 @@ Editor pass 2026-10-20. The appendix had no footnotes. The privacy-basis section
 | A pause switch | edited (pause permission; accidental-deletions threshold) | — |
 | ISSO review checklist | edited (first item: disclosure basis, SORN coverage) | — |
 | Continue callout | edited to "Continue the book" / "Book index" | — |
+
+## Addition, October 25, 2026: Oracle Core HCM to Entra implementation research
+
+Applied from the research page `docs/research/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | Provisioning-log read permission has two documented sets; separate log-reader identity if the broader pair is needed | Least privilege | added (second set sourced; separate identity is design guidance) | aB-grant-access; aB-provlist |

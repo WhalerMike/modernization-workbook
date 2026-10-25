@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.819
+The sync engine is both
+the bridge to Entra ID
+
+2
+00:00:02.819 --> 00:00:05.888
+and the tether that keeps
+Active Directory alive.
+
+3
+00:00:05.888 --> 00:00:09.850
+As long as it runs, Active
+Directory is still in production.
+
+4
+00:00:09.850 --> 00:00:13.350
+So it goes last, and only
+when six things are all true.
+
+5
+00:00:13.350 --> 00:00:16.875
+Every user comes from HR
+or the designated source.
+
+6
+00:00:16.875 --> 00:00:19.300
+Every group lives in Entra ID.
+
+7
+00:00:19.300 --> 00:00:22.400
+No application uses on-premises sign-in.
+
+8
+00:00:22.400 --> 00:00:24.813
+Every device is managed in the cloud.
+
+9
+00:00:24.813 --> 00:00:27.437
+Every service account is a cloud identity.
+
+10
+00:00:27.437 --> 00:00:33.651
+And certificates, DNS, network access and
+LDAP applications are moved and validated.
+
+11
+00:00:33.651 --> 00:00:37.591
+The good news is that authority
+now moves one object at a time,
+
+12
+00:00:37.591 --> 00:00:39.325
+so this happens gradually.
+
+13
+00:00:39.325 --> 00:00:43.013
+The sponsor retires each
+component only after its gate.
+
+14
+00:00:43.013 --> 00:00:44.880
+Finally, proving it worked.

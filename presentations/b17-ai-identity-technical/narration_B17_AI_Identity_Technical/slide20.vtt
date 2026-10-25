@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.801
+An agent can't do
+multifactor authentication,
+
+2
+00:00:02.801 --> 00:00:05.625
+so its credential has to
+be right from the start.
+
+3
+00:00:05.625 --> 00:00:10.037
+Because the blueprint holds the
+credential for every agent made from it,
+
+4
+00:00:10.037 --> 00:00:12.685
+the order matters: a
+managed identity first,
+
+5
+00:00:12.685 --> 00:00:16.582
+federation from the agent's own
+platform next, a certificate in a
+
+6
+00:00:16.582 --> 00:00:20.700
+vault only if neither works, and a
+client secret never in production.
+
+7
+00:00:20.700 --> 00:00:24.290
+The program enforces that with
+an app management policy that
+
+8
+00:00:24.290 --> 00:00:27.950
+already covers blueprints, so a
+production secret is a finding.
+
+9
+00:00:27.950 --> 00:00:30.875
+And watch the keys an
+agent uses for its tools.
+
+10
+00:00:30.875 --> 00:00:35.275
+An unavoidable key needs a vault,
+an owner and a rotation date.
+
+11
+00:00:35.275 --> 00:00:36.550
+Now, privilege.

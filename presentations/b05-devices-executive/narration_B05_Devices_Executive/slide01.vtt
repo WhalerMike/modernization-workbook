@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.969
+This is the executive
+briefing for Book 05 of the
+
+3
+00:00:03.969 --> 00:00:07.737
+Federal Modernization Workbook,
+Devices and Endpoints.
+
+4
+00:00:07.737 --> 00:00:10.525
+It's for the people who
+decide how the fleet moves.
+
+5
+00:00:10.525 --> 00:00:11.950
+The argument is short.
+
+6
+00:00:11.950 --> 00:00:15.891
+Group Policy governed devices by
+where they sat in the directory,
+
+7
+00:00:15.891 --> 00:00:18.300
+and that quietly did a lot of governance.
+
+8
+00:00:18.300 --> 00:00:22.313
+None of it comes to the cloud, so
+it has to be rebuilt on purpose.
+
+9
+00:00:22.313 --> 00:00:25.475
+Hybrid join is a waypoint,
+not a destination.
+
+10
+00:00:25.475 --> 00:00:28.700
+And servers take their own
+road, through Azure Arc.
+
+11
+00:00:28.700 --> 00:00:31.937
+I'll take four questions:
+why, what, who and how.
+
+12
+00:00:31.937 --> 00:00:36.313
+Each decision slide names the decision,
+its owner and when it's needed.
+
+13
+00:00:36.313 --> 00:00:39.020
+Let's start with what Group
+Policy was really doing.

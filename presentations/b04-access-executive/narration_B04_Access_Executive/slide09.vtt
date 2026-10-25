@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.200
+Privileged roles are tiered by
+what their holder could take over.
+
+2
+00:00:03.200 --> 00:00:08.721
+Tier 0 is the control plane: Global
+Administrator and the roles that grant roles,
+
+3
+00:00:08.721 --> 00:00:12.150
+reset admin credentials
+or change sign-in policy.
+
+4
+00:00:12.150 --> 00:00:16.050
+Tier 1 runs a whole service,
+like Exchange or Intune.
+
+5
+00:00:16.050 --> 00:00:22.138
+Tier 2 works inside a bounded population,
+scoped to administrative units (AUs).
+
+6
+00:00:22.138 --> 00:00:25.076
+Conditional Access
+Administrator is Tier 0,
+
+7
+00:00:25.076 --> 00:00:28.412
+because it can weaken the
+gate on elevation itself.
+
+8
+00:00:28.412 --> 00:00:33.426
+Exchange Administrator isn't labeled
+privileged, yet it can reach every mailbox.
+
+9
+00:00:33.426 --> 00:00:38.138
+And readers are tiered, because the
+security setup is a map for an attacker.
+
+10
+00:00:38.138 --> 00:00:42.154
+The decision for the CISO:
+approve each role's tier and gate,
+
+11
+00:00:42.154 --> 00:00:46.826
+and keep Global Administrators under
+five, before any role converts.
+
+12
+00:00:46.826 --> 00:00:48.140
+Next, the gate.

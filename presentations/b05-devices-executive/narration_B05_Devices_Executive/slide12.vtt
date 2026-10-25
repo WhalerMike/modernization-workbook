@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.587
+The sponsor and CIO decide the path, the
+scope and when devices leave the domain.
+
+2
+00:00:05.587 --> 00:00:08.925
+The CISO decides the baselines,
+the compliance rules,
+
+3
+00:00:08.925 --> 00:00:13.375
+the update schedule, and how the help
+desk verifies someone before a wipe.
+
+4
+00:00:13.375 --> 00:00:16.006
+Endpoint engineering decides when an old
+
+5
+00:00:16.006 --> 00:00:18.862
+setting is retired and
+whether each wave goes.
+
+6
+00:00:18.862 --> 00:00:21.508
+Application owners decide
+for their own apps,
+
+7
+00:00:21.508 --> 00:00:24.013
+because only they can
+tell if it still works.
+
+8
+00:00:24.013 --> 00:00:27.387
+And the authorizing official
+owns standing exceptions.
+
+9
+00:00:27.387 --> 00:00:32.085
+The permissions live in three separate
+role systems, and two warnings stand out:
+
+10
+00:00:32.085 --> 00:00:36.000
+keep the all-powerful Intune
+administrator role out of daily work,
+
+11
+00:00:36.000 --> 00:00:40.912
+and treat anyone who can push extensions to
+a server as that server's administrator.
+
+12
+00:00:40.912 --> 00:00:45.525
+The decision for the CISO: a second
+approver on high-impact changes.
+
+13
+00:00:45.525 --> 00:00:46.440
+Now, how.

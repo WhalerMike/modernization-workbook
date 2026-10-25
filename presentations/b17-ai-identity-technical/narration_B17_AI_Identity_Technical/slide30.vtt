@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.771
+Everything ends in the authorization
+package, because that's what
+
+2
+00:00:03.771 --> 00:00:07.425
+the authorizing official reads,
+and only they can accept the risk.
+
+3
+00:00:07.425 --> 00:00:11.354
+First ask where the AI runs:
+inside an existing system,
+
+4
+00:00:11.354 --> 00:00:14.837
+as a new one, or on a
+provider's certified service.
+
+5
+00:00:14.837 --> 00:00:19.176
+Even then, the identities that service
+creates in your tenant are yours.
+
+6
+00:00:19.176 --> 00:00:22.882
+Then the package should answer
+five questions: who owns it,
+
+7
+00:00:22.882 --> 00:00:27.825
+how it authenticates, what it can reach,
+who's watching, and when its access ends.
+
+8
+00:00:27.825 --> 00:00:30.250
+One control deserves special attention.
+
+9
+00:00:30.250 --> 00:00:33.239
+Service authentication
+isn't in any baseline,
+
+10
+00:00:33.239 --> 00:00:36.700
+so a plan built only from
+the baseline never checks it.
+
+11
+00:00:36.700 --> 00:00:37.625
+Tailor it in.
+
+12
+00:00:37.625 --> 00:00:39.740
+Next, format and clocks.

@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.025
+Most migration plans
+count users and groups.
+
+2
+00:00:03.025 --> 00:00:08.590
+But Active Directory has been quietly
+holding the rest of the estate together: name
+
+3
+00:00:08.590 --> 00:00:14.075
+resolution, certificates, network sign-in,
+application logins, time and file paths.
+
+4
+00:00:14.075 --> 00:00:17.236
+The program counts eleven
+kinds of dependent object,
+
+5
+00:00:17.236 --> 00:00:19.463
+and the worst of them don't fail loudly.
+
+6
+00:00:19.463 --> 00:00:23.900
+Certificates stop renewing weeks
+after the migration is declared done.
+
+7
+00:00:23.900 --> 00:00:27.475
+Wi-Fi and VPN sign-in
+fail at the network edge.
+
+8
+00:00:27.475 --> 00:00:31.688
+Applications bound to a domain
+controller just stop letting people in.
+
+9
+00:00:31.688 --> 00:00:33.426
+Each looks like a local outage.
+
+10
+00:00:33.426 --> 00:00:38.900
+That's why three adapters are critical:
+certificates, network access and LDAP.
+
+11
+00:00:38.900 --> 00:00:42.158
+The decision for the sponsor:
+nothing in Active Directory
+
+12
+00:00:42.158 --> 00:00:45.212
+is decommissioned until
+those three pass validation.
+
+13
+00:00:45.212 --> 00:00:47.140
+Then, who can manage whom.

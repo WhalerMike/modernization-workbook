@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.725
+Every control that blocks an admin path
+also creates a way to lock yourself out.
+
+2
+00:00:04.725 --> 00:00:10.113
+So there's one standing exception:
+emergency access, or break-glass, accounts.
+
+3
+00:00:10.113 --> 00:00:14.545
+Two or more cloud-only accounts,
+permanently Global Administrator,
+
+4
+00:00:14.545 --> 00:00:17.473
+with phishing-resistant
+sign-in of their own,
+
+5
+00:00:17.473 --> 00:00:21.588
+excluded only from blocking
+policies, and alerted on every use.
+
+6
+00:00:21.588 --> 00:00:25.462
+Using them is strict: two
+senior administrators together,
+
+7
+00:00:25.462 --> 00:00:29.983
+only when PIM is down and the problem
+can't wait, out within four hours,
+
+8
+00:00:29.983 --> 00:00:33.374
+reviewed within a day, and
+tested every ninety days.
+
+9
+00:00:33.374 --> 00:00:34.600
+Two decisions.
+
+10
+00:00:34.600 --> 00:00:37.700
+Build and test them before
+any role goes eligible.
+
+11
+00:00:37.700 --> 00:00:40.055
+And be honest in the security plan:
+
+12
+00:00:40.055 --> 00:00:45.187
+NIST expects emergency accounts to
+expire, so record these as a deviation.
+
+13
+00:00:45.187 --> 00:00:48.763
+The CISO builds; the
+authorizing official accepts.
+
+14
+00:00:48.763 --> 00:00:50.210
+Now, who decides.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.800
+Building the target comes
+down to three choices.
+
+2
+00:00:02.800 --> 00:00:07.682
+First, the sync engine: Cloud Sync by
+default, Connect Sync only where a
+
+3
+00:00:07.682 --> 00:00:13.163
+forest genuinely needs it, and any
+Connect server upgraded before April 2027.
+
+4
+00:00:13.163 --> 00:00:16.568
+Second, sign-in: keep password
+hash sync on everywhere,
+
+5
+00:00:16.568 --> 00:00:20.980
+because it's the fallback when other
+methods fail, and Microsoft says
+
+6
+00:00:20.980 --> 00:00:25.237
+agencies that had it recovered from
+ransomware in hours, not weeks.
+
+7
+00:00:25.237 --> 00:00:28.126
+Federation servers become
+a retirement target.
+
+8
+00:00:28.126 --> 00:00:32.138
+Third, and this one is the
+CISO's: privileged access.
+
+9
+00:00:32.138 --> 00:00:34.413
+No one holds an admin role permanently.
+
+10
+00:00:34.413 --> 00:00:38.046
+Roles are activated just in
+time, on cloud-only accounts,
+
+11
+00:00:38.046 --> 00:00:43.338
+with fewer than five Global Administrators
+and two tested break-glass accounts.
+
+12
+00:00:43.338 --> 00:00:46.012
+The CISO sets that model
+before the rollout.
+
+13
+00:00:46.012 --> 00:00:47.980
+Next, how people sign in.

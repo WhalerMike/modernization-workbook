@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.637
+Delegation used to come
+free with the tree.
+
+2
+00:00:02.637 --> 00:00:06.138
+Without it, agencies fall
+into one of two traps.
+
+3
+00:00:06.138 --> 00:00:08.674
+They over-delegate,
+handing out tenant-wide
+
+4
+00:00:08.674 --> 00:00:11.351
+admin roles because
+nothing narrower exists.
+
+5
+00:00:11.351 --> 00:00:12.747
+Or they under-delegate,
+
+6
+00:00:12.747 --> 00:00:16.425
+and every password reset becomes
+a ticket in a central queue.
+
+7
+00:00:16.425 --> 00:00:19.395
+Administrative units fix
+that, in three tiers:
+
+8
+00:00:19.395 --> 00:00:24.318
+tenant-wide readers for security and
+compliance, department units for full
+
+9
+00:00:24.318 --> 00:00:29.163
+administration, and narrow units for
+the help desk, driven by HR attributes.
+
+10
+00:00:29.163 --> 00:00:30.326
+Two cautions.
+
+11
+00:00:30.326 --> 00:00:33.331
+The groups that hold admin
+roles can't be dynamic,
+
+12
+00:00:33.331 --> 00:00:36.413
+so they're assigned and
+made eligible just in time.
+
+13
+00:00:36.413 --> 00:00:41.012
+And locking a unit down also blocks
+lifecycle and review features,
+
+14
+00:00:41.012 --> 00:00:43.688
+so that's chosen unit by unit, default no.
+
+15
+00:00:43.688 --> 00:00:46.263
+Identity engineering decides the model.
+
+16
+00:00:46.263 --> 00:00:48.360
+Next, who decides the rest.

@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.942
+This is the executive
+briefing for Book 04 of the
+
+3
+00:00:03.942 --> 00:00:07.600
+Federal Modernization
+Workbook, Access and Privilege.
+
+4
+00:00:07.600 --> 00:00:10.087
+It's for the people who
+make the calls on access.
+
+5
+00:00:10.087 --> 00:00:11.513
+The argument is short.
+
+6
+00:00:11.513 --> 00:00:15.555
+Under Zero Trust, every access
+request is decided by policy,
+
+7
+00:00:15.555 --> 00:00:19.762
+so your Conditional Access policy
+set is your access control.
+
+8
+00:00:19.762 --> 00:00:23.766
+Standing administrator rights
+turn one stolen credential into
+
+9
+00:00:23.766 --> 00:00:27.400
+control of the tenant, and a
+stronger sign-in doesn't fix that.
+
+10
+00:00:27.400 --> 00:00:30.813
+And the platform won't separate
+deciding from doing for you.
+
+11
+00:00:30.813 --> 00:00:34.049
+I'll take four questions:
+why, what, who and how.
+
+12
+00:00:34.049 --> 00:00:38.425
+Each decision slide names the decision,
+its owner and when it's needed.
+
+13
+00:00:38.425 --> 00:00:40.900
+Let's start with how access gets decided.

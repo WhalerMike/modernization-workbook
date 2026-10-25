@@ -1,0 +1,13 @@
+{
+  "_comment": "Non-secret settings only. The loader refuses keys that look like secrets. Copy to settings.json and edit. The endpoint is the Provisioning API Endpoint shown on the provisioning app's overview page; the IDs below are placeholders.",
+  "endpoint": "https://graph.microsoft.com/v1.0/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/API2AAD.00000000000000000000000000000000.00000000-0000-0000-0000-000000000000/bulkUpload",
+  "default_utc_offset": "-05:00",
+  "hire_local_time": "05:00",
+  "leave_local_time": "23:00",
+  "max_disables_per_run": 25,
+  "daily_call_budget": 2000,
+  "min_seconds_between_calls": 0.15,
+  "max_retries": 4,
+  "catch_up_days": 3,
+  "prestart_disabled": true
+}

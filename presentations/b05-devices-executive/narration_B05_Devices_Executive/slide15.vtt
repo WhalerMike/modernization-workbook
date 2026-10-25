@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.662
+Servers take a different road, because
+Intune doesn't manage Windows Server.
+
+2
+00:00:04.662 --> 00:00:10.012
+Azure Arc gives each server an Azure
+resource, with roles, tags and policy.
+
+3
+00:00:10.012 --> 00:00:13.474
+But Arc is the management
+plane, not the identity plane.
+
+4
+00:00:13.474 --> 00:00:18.163
+Onboarding doesn't take a server off
+the domain or change how people sign in.
+
+5
+00:00:18.163 --> 00:00:22.876
+A connected server is only addressable,
+not governed, until three things
+
+6
+00:00:22.876 --> 00:00:27.588
+are attached on day one: a configuration
+baseline, patching and Defender.
+
+7
+00:00:27.588 --> 00:00:32.612
+Licensing changes the bill, but only
+once each server's license is attested.
+
+8
+00:00:32.612 --> 00:00:38.387
+And cloud sign-in works only on Windows
+Server 2025, without Conditional Access.
+
+9
+00:00:38.387 --> 00:00:42.394
+The decision: each server leaves
+the domain as its own decision,
+
+10
+00:00:42.394 --> 00:00:45.013
+after its sign-in dependencies are known.
+
+11
+00:00:45.013 --> 00:00:46.540
+Next, the dates.

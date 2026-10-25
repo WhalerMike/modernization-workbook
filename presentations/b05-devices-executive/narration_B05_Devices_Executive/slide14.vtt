@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.037
+The migration runs in seven phases,
+each with an exit gate and a way back.
+
+2
+00:00:05.037 --> 00:00:10.146
+On the book's planning estimates for
+a large fleet: inventory and classify,
+
+3
+00:00:10.146 --> 00:00:15.003
+then plan the overlap, write the
+baselines, pilot on about five percent,
+
+4
+00:00:15.003 --> 00:00:18.437
+cut over in four waves,
+verify, and formally retire.
+
+5
+00:00:18.437 --> 00:00:20.542
+That's roughly thirty-four weeks,
+
+6
+00:00:20.542 --> 00:00:24.050
+plus a ninety-day hold before
+the last GPOs are deleted.
+
+7
+00:00:24.050 --> 00:00:25.550
+Months, not weeks.
+
+8
+00:00:25.550 --> 00:00:30.126
+One sequencing rule matters under
+schedule pressure: on co-managed devices,
+
+9
+00:00:30.126 --> 00:00:34.194
+the antivirus settings move before
+general device configuration,
+
+10
+00:00:34.194 --> 00:00:37.100
+because moving configuration
+drags them along.
+
+11
+00:00:37.100 --> 00:00:42.126
+The decision: endpoint engineering makes
+each go or no-go on measured results,
+
+12
+00:00:42.126 --> 00:00:45.425
+not the calendar, and the
+sponsor sets the sequence.
+
+13
+00:00:45.425 --> 00:00:46.940
+Next, servers.

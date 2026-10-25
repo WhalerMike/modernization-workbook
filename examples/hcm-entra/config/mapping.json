@@ -1,0 +1,53 @@
+{
+  "_comment": "Illustrative mapping from an Oracle Fusion Cloud HCM extract row to a SCIM bulk operation for Microsoft Entra API-driven inbound provisioning. Column names are this example's HCM Extract output, not Oracle field names; confirm every column and code list against your extract definition and Book 03, Chapter 06. Both the Python and PowerShell clients read this file.",
+  "scim_extension_namespace": "urn:ietf:params:scim:schemas:extension:contoso:1.0:User",
+  "batch_size": 50,
+  "required_columns": ["PersonNumber", "AssignmentStatusType", "FirstName", "LastName", "WorkerType", "DepartmentCode", "LegalEmployer"],
+  "person_key_pattern": "^[A-Za-z0-9-]{1,16}$",
+  "code_pattern": "^[A-Z0-9-]{1,32}$",
+  "max_lengths": {
+    "DepartmentName": 64,
+    "LegalEmployer": 64,
+    "DisplayName": 256,
+    "JobName": 128
+  },
+  "worker_types": {
+    "E": { "employeeType": "Employee", "code": "EMP" },
+    "EMP": { "employeeType": "Employee", "code": "EMP" },
+    "C": { "employeeType": "Contractor", "code": "CTR" },
+    "CWK": { "employeeType": "Contractor", "code": "CTR" }
+  },
+  "refused_worker_types": {
+    "P": "pending worker: provision from the hire record, not the pending record",
+    "PWK": "pending worker: provision from the hire record, not the pending record",
+    "N": "nonworker: no approved lifecycle owner for this population"
+  },
+  "assignment_status_types": {
+    "ACTIVE": { "active": true, "note": "" },
+    "SUSPENDED": { "active": true, "note": "nonpay or nonduty status: the account is kept; policy restricts it (leave is not a leaver)" },
+    "INACTIVE": { "active": false, "note": "separation: block first" }
+  },
+  "position_categories": ["ADM", "PRO", "TEC", "CLR", "EXE", "LAW"],
+  "attribute_map": [
+    { "column": "PersonNumber", "scim": "externalId", "canonical": "Person number (source correlation key)", "ad": "employeeID", "entra": "employeeId" },
+    { "column": "PersonNumber", "scim": "enterprise:employeeNumber", "canonical": "Person number (copy)", "ad": "(not mapped)", "entra": "(not mapped)" },
+    { "column": "AssignmentStatusType", "scim": "active", "canonical": "Employment active", "ad": "accountDisabled (inverted)", "entra": "accountEnabled" },
+    { "column": "FirstName", "scim": "name.givenName", "canonical": "Given name", "ad": "givenName", "entra": "givenName" },
+    { "column": "LastName", "scim": "name.familyName", "canonical": "Surname", "ad": "sn", "entra": "surname" },
+    { "column": "DisplayName", "scim": "displayName", "canonical": "Display name", "ad": "cn", "entra": "displayName" },
+    { "column": "JobName", "scim": "title", "canonical": "Job title", "ad": "title", "entra": "jobTitle" },
+    { "column": "DepartmentName", "scim": "enterprise:department", "canonical": "Department", "ad": "department", "entra": "department" },
+    { "column": "BusinessUnit", "scim": "enterprise:division", "canonical": "Division", "ad": "division", "entra": "employeeOrgData.division" },
+    { "column": "CostCenter", "scim": "enterprise:costCenter", "canonical": "Cost center", "ad": "(none)", "entra": "employeeOrgData.costCenter" },
+    { "column": "LegalEmployer", "scim": "enterprise:organization", "canonical": "Legal employer", "ad": "company", "entra": "companyName" },
+    { "column": "ManagerPersonNumber", "scim": "enterprise:manager.value", "canonical": "Manager (by person number)", "ad": "manager (DN reference)", "entra": "manager" },
+    { "column": "WorkCountry", "scim": "addresses[type eq \"work\"].country", "canonical": "Work country", "ad": "co", "entra": "country" },
+    { "column": "WorkerType", "scim": "ext:workerType", "canonical": "Worker type", "ad": "employeeType", "entra": "employeeType" },
+    { "column": "WorkerType", "scim": "ext:workerTypeCode", "canonical": "Worker type code", "ad": "extensionAttribute11", "entra": "extensionAttribute11" },
+    { "column": "JobCode", "scim": "ext:JobCode", "canonical": "Job code", "ad": "extensionAttribute1", "entra": "extensionAttribute1" },
+    { "column": "HireDate", "scim": "ext:HireDate", "canonical": "Hire date", "ad": "extensionAttribute2 (yyyyMMddHHmmss.fZ)", "entra": "employeeHireDate" },
+    { "column": "TerminationDate", "scim": "ext:TermDate", "canonical": "Leave date", "ad": "extensionAttribute3 (yyyyMMddHHmmss.fZ)", "entra": "employeeLeaveDateTime" },
+    { "column": "DepartmentCode", "scim": "ext:orgCode", "canonical": "Organization code", "ad": "extensionAttribute10", "entra": "extensionAttribute10" },
+    { "column": "PositionCategory", "scim": "ext:positionCategory", "canonical": "Position category", "ad": "extensionAttribute12", "entra": "extensionAttribute12" }
+  ]
+}

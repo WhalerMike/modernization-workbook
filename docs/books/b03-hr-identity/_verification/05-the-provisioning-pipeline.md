@@ -71,3 +71,21 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | R1 | Microsoft's directory-level SOA labelled *object SOA* in the diagram caption, fig-alt and the migration paragraph; HR remains the source of authority for the person | Two landing patterns figure; Over the Entra ID migration | restated | c05-soa <https://learn.microsoft.com/en-us/entra/identity/hybrid/user-source-of-authority-overview> |
+
+## Addition, October 25, 2026: Oracle Core HCM to Entra implementation research
+
+Applied from the research page `docs/research/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | Key on PersonNumber, never PersonId (PersonId varies across environments) | Source correlation key | added | c05-ora-ems |
+| 2 | Oracle advises against REST for change detection and bulk; don't use REST to sync from HCM | Oracle HCM source surfaces (Enrichment row) | added; enrichment-only use confirmed consistent | c05-ora-rest; c05-ora-ems |
+| 3 | Future-dated events not returned by default; appear early only by published-date reads; consumer chooses when to process | What the feeds do (new subsection) | added | c05-ora-dated; c05-ora-read; c05-ora-poll |
+| 4 | Lifecycle Workflows catch up only three days | What the feeds do | added | c05-lcw-exec |
+| 5 | Recommendation: published-min polling for newhire/termination/cancelworkrelship; middleware holds effective date; daily changes-only reconcile | What the feeds do | added (design guidance) | c05-ora-poll; c05-ora-read |
+| 6 | Feed entries archived at 60 days, purged at 90; reconcile with full extract after a gap | What the feeds do | added (retention sourced; reconcile rule is design guidance) | c05-ora-purge; c05-ora-read |
+| 7 | Oracle OAuth for Fusion REST paths: no client credentials; named integration user with a signing key | What the feeds do | added | c05-ora-oauth |
+| 8 | OPM-hosted API management gateway for persistent connections; whether mandatory for the agency feed unverified | What the feeds do | added; unverified part stated as such | c05-pws-appb |
+| 9 | Provisioning-log read permission: ProvisioningLog.Read.All (Entra pages) vs AuditLog.Read.All + Directory.Read.All (Graph v1.0 list page) | /bulkUpload contract table | added second permission set; separate-identity fallback is design guidance | c05-grant-access; c05-provlist |
+| 10 | Oracle FedRAMP status | — | not stated in this chapter; no change | — |
+| 11 | Diagram ch05-provisioning-services (Core HCM: extracts, ATOM feeds, REST, SCIM) | Figure | not changed; no wrong fact | — |

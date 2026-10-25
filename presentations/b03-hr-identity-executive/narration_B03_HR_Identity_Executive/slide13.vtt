@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.031
+The trap: disabling an
+account doesn't revoke
+
+2
+00:00:03.031 --> 00:00:05.850
+a PIV certificate or a device certificate.
+
+3
+00:00:05.850 --> 00:00:08.388
+Both stay valid until
+someone revokes them.
+
+4
+00:00:08.388 --> 00:00:11.391
+So a lifecycle that stops at
+the account leaves a former
+
+5
+00:00:11.391 --> 00:00:14.525
+employee's credentials working
+wherever they're trusted.
+
+6
+00:00:14.525 --> 00:00:16.450
+The leaver sequence fixes that.
+
+7
+00:00:16.450 --> 00:00:21.413
+Block sign-in and end sessions first,
+which closes Entra immediately.
+
+8
+00:00:21.413 --> 00:00:24.851
+Then revoke the card,
+wipe or retire devices,
+
+9
+00:00:24.851 --> 00:00:28.575
+and remove access, in
+parallel, confirming each.
+
+10
+00:00:28.575 --> 00:00:30.188
+Delete the account last.
+
+11
+00:00:30.188 --> 00:00:35.675
+One more decision: the link between a PIV
+card and its account decides who signs in.
+
+12
+00:00:35.675 --> 00:00:40.625
+So only one automated system, the
+card-management integration, may write it.
+
+13
+00:00:40.625 --> 00:00:45.050
+Security sets that rule, and the
+PIV office runs the card system.
+
+14
+00:00:45.050 --> 00:00:47.860
+Now, the open question about contractors.

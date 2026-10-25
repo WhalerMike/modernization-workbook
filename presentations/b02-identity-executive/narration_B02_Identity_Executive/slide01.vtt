@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.961
+This is the executive
+briefing for Book 02 of the
+
+3
+00:00:03.961 --> 00:00:07.799
+Federal Modernization Workbook,
+Identity and Directory.
+
+4
+00:00:07.799 --> 00:00:10.933
+It's for the people who
+make the calls: the CIO,
+
+5
+00:00:10.933 --> 00:00:14.763
+the CISO, the identity
+program lead and the sponsors.
+
+6
+00:00:14.763 --> 00:00:16.187
+The argument is short.
+
+7
+00:00:16.187 --> 00:00:19.668
+Zero Trust moved the access
+decision onto identity,
+
+8
+00:00:19.668 --> 00:00:24.038
+so whatever the directory believes,
+every application enforces.
+
+9
+00:00:24.038 --> 00:00:29.313
+Active Directory isn't being retired,
+but every road now points to Entra ID,.
+
+10
+00:00:29.313 --> 00:00:31.770
+And syncing the forest as it stands just
+
+11
+00:00:31.770 --> 00:00:34.674
+copies twenty-five years
+of risk into the cloud.
+
+12
+00:00:34.674 --> 00:00:37.912
+I'll take four questions:
+why, what, who and how.
+
+13
+00:00:37.912 --> 00:00:42.288
+Each decision slide names the decision,
+its owner and when it's needed.
+
+14
+00:00:42.288 --> 00:00:45.050
+Let's start with where
+access gets decided now.

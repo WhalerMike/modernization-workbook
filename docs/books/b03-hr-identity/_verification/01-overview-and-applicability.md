@@ -55,3 +55,11 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | R1 | Microsoft's object-level sense of SOA glossed as "which directory masters the account object" | The proposal, second bullet | restated | c01-soa <https://learn.microsoft.com/en-us/entra/identity/hybrid/user-source-of-authority-overview> |
+
+## Addition, October 25, 2026: Oracle Core HCM to Entra implementation research
+
+Applied from the research page `docs/research/hcm-entra-implementation.md`; every source below was opened on Oct 25, 2026.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | "No OPM document mandates or specifies Entra ID integration" | One caution, stated up front | corrected (narrowed): no OPM document specifies Entra integration *for the agency's own directory*; the solicitation names OPM's Entra-based solution for the platform's own sign-in and users and lists an HR-fed identity interconnection only as a sample | c01-pws (Solicitation Amd 4, PWS §5.1.1(3) p. 26; Appendix B p. 95) |

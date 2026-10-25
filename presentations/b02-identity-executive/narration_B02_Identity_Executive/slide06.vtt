@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.142
+Conditional Access is the
+cloud's policy engine,
+
+2
+00:00:03.142 --> 00:00:05.925
+and it runs when someone
+signs in to Entra ID.
+
+3
+00:00:05.925 --> 00:00:09.481
+A Kerberos ticket or an NTLM
+exchange is settled between
+
+4
+00:00:09.481 --> 00:00:12.962
+a computer and a domain
+controller, and never gets there.
+
+5
+00:00:12.962 --> 00:00:17.095
+That means every remaining
+Kerberos or NTLM dependency
+
+6
+00:00:17.095 --> 00:00:20.963
+is an access path with no
+cloud policy decision at all.
+
+7
+00:00:20.963 --> 00:00:26.287
+And those protocols are on a clock:
+NTLM is deprecated, and Microsoft plans
+
+8
+00:00:26.287 --> 00:00:31.437
+to switch network NTLM off by default
+in the next major Windows release.
+
+9
+00:00:31.437 --> 00:00:34.250
+Wait for cutover, and you'll
+find them in production.
+
+10
+00:00:34.250 --> 00:00:38.775
+So the decision: start NTLM
+auditing in discovery.
+
+11
+00:00:38.775 --> 00:00:41.085
+Application owners move each path,
+
+12
+00:00:41.085 --> 00:00:46.025
+and anything that stays is an exception
+the authorizing official accepts.
+
+13
+00:00:46.025 --> 00:00:47.780
+And the surface is wider.
