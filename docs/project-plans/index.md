@@ -34,18 +34,22 @@ Every plan here is an illustrative sample built from the books. The durations ar
 ::: {#project-plans}
 :::
 
-The program master schedule is the integrated plan. Each project plan rolls up to it, and where a project's milestone is something the program waits for, the program plan carries it as a linked milestone. The program's Gate G1, for example, waits on the Identity Lifecycle plan's HR feed, so both plans show the same date and the float between them.
+The program master schedule is the integrated plan, and the project plans link to it in both directions:
+
+- **A project waits for the program.** The Data Platform plan can't start its pilot until the program's pilot servers are under Arc, so it takes that date from the program and shows how far it can slip.
+- **The program waits for a project.** The program's Gate G1 waits on the Identity Lifecycle plan's HR feed, so the program takes that date and shows the float between them.
+- **A project must finish before a program gate.** The program's G1 needs the Intune policy design from the Endpoint plan, and its drift-clean criteria need evidence from the Continuous Monitoring plan. Each project plan carries those program gates as fixed deadlines and computes its margin against them, and the program plan lists every margin under *Links to other plans*. The tightest is the Endpoint plan's policy library, one working day before G1.
 
 | Plan | Status | Built from |
 |---|---|---|
 | [Program master schedule](program-master-schedule.md) | Sample ready | [Book 00, Chapters 05 and 09](../books/b00-orientation/05-the-program-plan.md); [Book 01, Chapter 12](../books/b01-transformation-arc/12-migration-roadmap.md) |
 | [Identity Lifecycle & Provisioning](identity-lifecycle.md) | Sample ready | [Book 03, Chapter 12](../books/b03-hr-identity/12-execution-plan.md) |
-| Endpoint & Device Modernization | Planned | [Book 05](../books/b05-devices/index.md) |
-| Network & Access Modernization | Planned | [Book 08](../books/b08-ddi/index.md), [Book 09](../books/b09-network/index.md) |
-| Privileged Access & Administrative Identity | Planned | [Book 04](../books/b04-access/index.md) |
-| Data Platform Identity Transformation | Planned | [Book 06](../books/b06-data-platform/index.md) |
-| Continuous Monitoring & Evidence Fabric | Planned | [Book 13](../books/b13-governance/index.md) |
-| Supply Chain & Software Bill of Materials | Planned | [Book 14](../books/b14-compliance/index.md) |
+| [Endpoint & Device Modernization](endpoint-device.md) | Sample ready | [Book 05](../books/b05-devices/index.md) |
+| [Network & Access Modernization](network-access.md) | Sample ready | [Book 08](../books/b08-ddi/index.md), [Book 09](../books/b09-network/index.md) |
+| [Privileged Access & Administrative Identity](privileged-access.md) | Sample ready | [Book 04](../books/b04-access/index.md) |
+| [Data Platform Identity Transformation](data-platform.md) | Sample ready | [Book 06](../books/b06-data-platform/index.md) |
+| [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) | Sample ready | [Book 13](../books/b13-governance/index.md) |
+| [Supply Chain & Software Bill of Materials](supply-chain-sbom.md) | Sample ready | [Book 14](../books/b14-compliance/index.md) |
 
 : The plan set, following the seven projects in [Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md) {.striped .hover}
 

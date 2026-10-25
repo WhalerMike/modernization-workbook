@@ -1,0 +1,193 @@
+# Sample project plan: Network & Access Modernization (DRAFT).
+# scripts/project_plans/build.py reads this file and writes the page, the
+# Gantt chart and the downloads. Edit this file, never the outputs.
+#
+# Durations are working days and illustrative. The plan runs from week 1,
+# alongside the program's Phase 0. Its naming work feeds the program's own
+# DNS tasks (P1.7, P2.6, P4.3), its pilot is Book 09 Chapter 11's ten-site
+# pilot, and its last phase is Book 08's gated decommission of AD DNS and
+# DHCP, which can't start until the program moves the AD-integrated zones.
+
+slug: network-access
+title: "Network & Access Modernization: Naming Plane, Governed Transport and Edge Enforcement"
+short_title: "Network & Access Modernization"
+subtitle: "A sample project plan for Books 08 and 09: the naming and addressing plane, a governed-transport pilot behind a secured governor, network access control, and the gated retirement of AD DNS and DHCP"
+description: "A sample PMP-style project plan for the Network & Access Modernization project, built from Books 08 and 09: a work breakdown by project phase, a computed critical path tied to the program's own DNS tasks, every gate with its approver and criteria, and the intermediate decisions (DDI platform, resolver path, egress pattern, boundary change, fabric go-live, NAC platform) with owners and decide-by weeks."
+plan_type: "Project"
+covers: "Project Phases 0 to 5, from naming-plane ownership to the decommission of AD DNS and DHCP"
+books: "Books 08 and 09"
+sponsor: "Executive sponsor and CIO"
+manager: "Network and access project lead, with the DNS/DDI team lead and the network engineering lead"
+start_label: "Week 1 = the program's Phase 0 approval"
+project_start: 2027-01-04
+
+purpose: |
+  This plan builds the [Network & Access Modernization](../projects/network-access-charter.md) project from [Book 08](../books/b08-ddi/index.md) (DNS, DHCP and IPAM) and [Book 09](../books/b09-network/index.md) (transport, TIC 3.0 and network access control). It follows the project's own phases, as [Book 09, Chapter 09](../books/b09-network/09-who-owns-the-network.md#the-charters-plan-in-one-table) assigns them: naming and addressing first, then a governed-transport pilot behind a secured governor, then enforcement at the customer edge, and last [Book 08's gated decommission](../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp) of AD DNS and DHCP. It runs inside the [program master schedule](program-master-schedule.md): it takes the cloud resolver from the program's P1.7, follows the pilot division's DNS move (P2.6) and the program's move of the AD-integrated zones (P4.3), and uses the device certificates from P2.7. Its success measures are the charter's, at pilot scale.
+
+critical_path_note: |
+  The computed path is short, and it sits at the end. It starts with the program's move of the AD-integrated zones (P4.3, week 39), then runs through the 30-day SRV hold, the decommission decision and the ordered retirement of the legacy DNS servers to Gate 5 in week 46, two weeks before the program's G5. Book 08 makes that tail a set of gates, not dates, so it can't be compressed: the 30 clean days count only from the last zone move. Most earlier work carries float against this plan's finish, but one program date binds it much sooner. Coexistence (N1.1) must be in place when the program starts moving the pilot division's DNS (the start of P2.6, end of week 8), and it finishes with two days to spare, so the cloud resolver from P1.7 and coexistence are tracked as near-critical, and the DDI platform decision (D-N1) has about three weeks of float. The pilot's own chain runs through the naming plane: the fabric goes live only after Gate 1, which follows the pilot-division move, so a slip in P2.6 moves the pilot cutover and Gate 3 week for week. The NAC chain carries about nine weeks of float once the program's device certificates (P2.7) arrive.
+
+assumptions:
+  - "The SD-WAN platform is the program's platform, Cisco Catalyst SD-WAN, bought on an existing contract vehicle. A new acquisition takes several quarters before a device ships ([Book 09, Chapter 10](../books/b09-network/10-the-long-interim.md#why-the-target-is-years-away)) and would move Phase 2 week for week."
+  - "The pilot is [Book 09, Chapter 11](../books/b09-network/11-field-office-wan-transformation.md#implementation-roadmap)'s ten-site pilot. The office waves that follow, keyed to circuit renewal dates over months 18 to 48, are outside this plan."
+  - "The tenant is GCC-Moderate, so Microsoft 365 informed network routing isn't available and path selection rests on the SD-WAN's own measurements ([Book 09, Chapter 12](../books/b09-network/12-microsoft-365-traffic.md#whats-different-for-gcc-moderate-tenants))."
+  - "Book 08's 90 days of parallel operation are counted from coexistence (N1.1). Counted from the last zone move instead (program P4.3), they end near week 52, past the program's G5."
+  - "Durations are illustrative. The NAC rollout follows [Book 09, Chapter 07](../books/b09-network/07-network-access-control.md#rolling-it-out)'s four phases over roughly 90 to 180 days."
+
+risks:
+  - risk: "Accreditation of branch breakout slips"
+    impact: "No production cutover can start; Gate 3 slips week for week"
+    response: "Start the boundary-change package in week 2 (N2.3); fall back to hub-only breakout (Book 09, Chapter 11)"
+  - risk: "The control plane is hit by another directive-class flaw"
+    impact: "Gate 2 reopens and the pilot halts until the governor is secured again"
+    response: "Keep the ED 26-03 sequence executable within a day and patch inside BOD 26-04 windows (Book 09, Chapters 05 and 08)"
+  - risk: "Replacement telemetry to CISA lags the cutover"
+    impact: "No legacy circuit can end; Gate 3 waits on telemetry parity"
+    response: "Start CLAW onboarding with the control plane (N2.1); gate each circuit's termination on confirmed parity (Book 09, Chapter 11)"
+  - risk: "Locator records are lost to an early decommission"
+    impact: "Forest-wide authentication and domain-join failures"
+    response: "Decommission through gates, never on a date; hold 30 clean SRV days and archive the exports first (Book 08, Chapter 10)"
+  - risk: "M-26-14, M-26-15 and BOD 26-04 draw on the same staff"
+    impact: "Every network task stretches; the pilot slips"
+    response: "Name the competing mandates in the plan and staff for them (Book 09, Chapter 10)"
+
+tasks:
+  # ------------------------------------------------- Phase 0 — charter, alignment and inventory
+  - {id: N0.1, phase: 0, name: "Naming-plane owner confirmed; pilot population defined; remote-access paths and residual VPN use inventoried", dur: 5, owner: "Sponsor and CIO",
+     source: "../books/b09-network/09-who-owns-the-network.md#the-charters-plan-in-one-table"}
+  - {id: N0.2, phase: 0, name: "AD DNS and DHCP inventory, read-only, committed as JSON; DnsAdmins emptied of non-domain-administrators", dur: 10, owner: "AD administrators",
+     source: "../books/b08-ddi/10-migration-sequence.md#phase-1-inventory-and-baseline"}
+  - {id: N0.3, phase: 0, name: "DDI candidates scored on evidence: Marketplace status, policy-plane coverage, the five decisions, vendor questions in writing", dur: 12, after: [N0.1], owner: "DNS/DDI team",
+     source: "../books/b08-ddi/12-selection-cost-and-residual-risk.md#selection-criteria"}
+  - {id: D-N1, kind: decision, phase: 0, name: "DDI platform model", after: [N0.3], owner: "Sponsor and CIO",
+     options: "SaaS policy plane; agency-operated DDI inside the boundary; cloud-native services managed as code (enough on its own for a single-cloud agency with no divisional delegation)",
+     late: "Coexistence can't be deployed, and the pilot division's DNS move (program P2.6) has nothing to move onto",
+     source: "../books/b08-ddi/12-selection-cost-and-residual-risk.md#comparing-the-platform-models"}
+  - {id: NG0, kind: gate, phase: 0, name: "Gate 0 — Inventory committed and decisions owned", after: [N0.2, D-N1], owner: "DNS/DDI team",
+     criteria: "AD DNS inventory dated, committed and reviewed (Decision 4); every branch's redirect-dns target read from the running configuration; platform model decided; one named decider for every row of the DNS and network matrices",
+     source: "../books/b08-ddi/08-reference-architecture.md#decision-4-ad-dns-inventory-before-retirement"}
+  # ------------------------------------------------- Phase 1 — naming and addressing
+  - {id: X-P17, kind: external, phase: 1, name: "Cloud DNS Private Resolver deployed (program P1.7)", ref: "program-master-schedule:P1.7", owner: "Platform teams (program)",
+     late: "Coexistence has no cloud resolver to forward to, and Phase 1 waits",
+     source: "program-master-schedule.md"}
+  - {id: N1.1, phase: 1, name: "Coexistence: DDI resolvers deployed, Microsoft DNS and DHCP synchronized read-only, forwarding both ways with one path per namespace", dur: 8, after: [NG0, X-P17], owner: "DNS/DDI team",
+     source: "../books/b08-ddi/10-migration-sequence.md#phase-2-deploy-coexistence"}
+  - {id: X-P26S, kind: external, phase: 1, name: "Program starts the pilot division's DNS move (start of P2.6)", ref: "program-master-schedule:P2.6:start", after: [N1.1], owner: "Platform teams (program)",
+     late: "The pilot division's zones and scopes have no coexistence to move through, and the program's pilot slips",
+     source: "program-master-schedule.md"}
+  - {id: D-N2, kind: decision, phase: 1, name: "Resolver path: the redirect-dns target and the forwarding chain order (Decisions 1 and 2)", after: [NG0], owner: "DNS/DDI team",
+     options: "A DDI resolver at the branch; a forwarding proxy in a regional hub. Never a client loopback stub, and any SASE resolver is a forwarding target of the agency resolver, never the redirect target",
+     late: "Branch edges can't be retargeted; Protective DNS, logging and response policy stay off the branch path",
+     source: "../books/b08-ddi/08-reference-architecture.md#decision-1-the-redirect-dns-destination"}
+  - {id: N1.2, phase: 1, name: "Edge retargeted: redirect-dns to agency resolvers, SASE DNS as a forwarding target, order verified in the running configuration", dur: 10, after: [D-N2, N1.1], owner: "Network engineering",
+     source: "../books/b08-ddi/10-migration-sequence.md#retargeting-the-edge"}
+  - {id: D-N3, kind: decision, phase: 1, name: "Order of zones to move, and the cutover pattern for each", after: [N1.1], owner: "DNS/DDI team",
+     options: "Per zone: split horizon, subdomain delegation, or progressive migration with conditional forwarding. AD locator records stay where domain controllers can register them, and move last",
+     late: "Authority can't move zone by zone; the pilot division's zones wait",
+     source: "../books/b08-ddi/10-migration-sequence.md#three-cutover-patterns"}
+  - {id: X-P26, kind: external, phase: 1, name: "Pilot division's DNS migrated and DHCP re-homed (program P2.6)", ref: "program-master-schedule:P2.6", owner: "Platform teams (program)",
+     late: "The cutover loop hasn't been proven on a division, so the remaining zone moves wait",
+     source: "program-master-schedule.md"}
+  - {id: N1.3, phase: 1, name: "Non-AD zones, forwarders, GlobalNames and reverse zones moved through the cutover loop", dur: 15, after: [D-N3, X-P26], owner: "DNS/DDI team",
+     source: "../books/b08-ddi/10-migration-sequence.md#zones-and-records"}
+  - {id: N1.4, phase: 1, name: "Clients and DHCP scopes moved in waves with the program's divisions (option 6, VNet DNS settings)", dur: 90, after: [N1.3], owner: "DNS/DDI team",
+     source: "../books/b08-ddi/10-migration-sequence.md#moving-clients-in-waves"}
+  - {id: N1.5, phase: 1, name: "Cloud federation: IPAM federation, private endpoint zones published once, validation matrix run from every origin", dur: 15, after: [N1.3], owner: "Cloud platform teams",
+     source: "../books/b08-ddi/10-migration-sequence.md#phase-4-cloud-federation"}
+  - {id: NG1, kind: gate, phase: 1, name: "Gate 1 — Naming plane authoritative for the pilot scope", after: [N1.2, N1.5], owner: "DNS/DDI team",
+     criteria: "Every name class in the validation matrix resolves correctly from on-premises, each cloud and the branch path; no private endpoint name returns a public address; OCSP and CRL endpoints resolve from every origin; every branch's redirect-dns target is an agency resolver; resolution-path consistency baselined",
+     source: "../books/b08-ddi/10-migration-sequence.md#phase-4-cloud-federation"}
+  # ------------------------------------------------- Phase 2 — securing the governor
+  - {id: D-N4, kind: decision, phase: 2, name: "Control-plane hosting model, recorded as the boundary disposition", after: [NG0], owner: "Sponsor and CIO",
+     options: "An on-premises control plane; Cisco Catalyst SD-WAN for Government, cloud-hosted and FedRAMP Certified at Class C (Moderate). A hosted controller doesn't remove the directive's obligations",
+     late: "The control plane can't be built or hardened, and the pilot waits",
+     source: "../books/b09-network/11-field-office-wan-transformation.md#risks-and-mitigations"}
+  - {id: N2.1, phase: 2, name: "Control plane built and taken through the ED 26-03 sequence: inventory, off-box logs, patch, hunt, harden, syslog to CISA through CLAW", dur: 25, after: [D-N4], owner: "Network engineering",
+     source: "../books/b09-network/05-sd-wan-sase-and-governed-transport.md#securing-the-controller-and-the-edges"}
+  - {id: N2.2, phase: 2, name: "Pilot circuits bought on measured physics: per-site latency and loss recorded, diversity, static addressing confirmed with carriers", dur: 20, after: [NG0], owner: "Network engineering",
+     source: "../books/b09-network/13-sequencing-cost-and-evidence.md#the-decision-sequence"}
+  - {id: N2.3, phase: 2, name: "Boundary change and branch use-case package prepared as a significant change, with the evidence the authorization package needs", dur: 65, after: [N0.1], owner: "System owner",
+     source: "../books/b09-network/13-sequencing-cost-and-evidence.md#evidence-for-the-boundary-change"}
+  - {id: NG2, kind: gate, phase: 2, name: "Gate 2 — Governor secured before it carries traffic", after: [N2.1], owner: "CISO and ISSO",
+     criteria: "Controller and edges under vulnerability management on BOD 26-04 windows, privileged-access control and off-box logging; every edge in the fleet inventory with its software version and support date; an ED 26-03-style inventory, log collection and patch sequence executable within a day; SD-WAN syslog reaching CISA through CLAW",
+     source: "../books/b09-network/08-reference-architecture.md#decision-4-bring-the-governor-under-control-before-it-carries-traffic"}
+  # ------------------------------------------------- Phase 3 — identity-driven access pilot
+  - {id: N3.1, phase: 3, name: "Identity claims reachable by every access decision point; gaps listed", dur: 5, after: [NG0], owner: "Identity engineering",
+     source: "../books/b09-network/09-who-owns-the-network.md#the-charters-plan-in-one-table"}
+  - {id: N3.2, phase: 3, name: "Application-to-path routing policy (the SC-7(4) traffic-flow policy), site register and architecture review determination", dur: 10, after: [N2.2], owner: "System owner",
+     source: "../books/b09-network/12-microsoft-365-traffic.md#the-three-instruments"}
+  - {id: D-N5, kind: decision, phase: 3, name: "Egress pattern for each pilot site", after: [N2.2], owner: "Network engineering",
+     options: "A, hairpin; C, governed local breakout (the program's reference pattern); D, agent-delivered SASE. Never B, bare local breakout",
+     late: "Pilot sites can't be built, and the boundary change can't name its enforcement points",
+     source: "../books/b09-network/08-reference-architecture.md#decision-3-choose-the-egress-pattern-per-site-and-change-the-boundary-first"}
+  - {id: D-N6, kind: decision, phase: 3, name: "Path to a domain controller for each branch class", after: [N0.1], owner: "Network engineering",
+     options: "A private path (MPLS, IPsec or the SD-WAN overlay); a ZTNA connector that publishes the domain controllers (single sign-on only); a Kerberos KDC proxy",
+     late: "Pilot branches on local breakout lose sign-in, Group Policy and password change while cloud applications keep working",
+     source: "../books/b09-network/06-legacy-protocols-on-re-routed-paths.md#ways-to-provide-the-path"}
+  - {id: N3.3, phase: 3, name: "Ten pilot sites built: edges, regional breakout, security service edge, deterministic egress, a monitored path to a domain controller", dur: 25, after: [NG2, D-N5, D-N6, N3.1], owner: "Network engineering",
+     source: "../books/b09-network/11-field-office-wan-transformation.md#implementation-roadmap"}
+  - {id: D-N7, kind: decision, phase: 3, name: "Boundary change for local egress, decided before the first production cutover", after: [N2.3, N3.2, D-N5], owner: "Authorizing official",
+     options: "Approve the significant change through reauthorization or ongoing authorization; refuse, and the sites stay on their current path",
+     late: "No production cutover can start: the boundary change comes first",
+     source: "../books/b09-network/13-sequencing-cost-and-evidence.md#the-decision-sequence"}
+  - {id: D-N8, kind: decision, phase: 3, name: "Microsoft 365 Optimize exemption (the SC-7(4) traffic-flow exception)", after: [N3.2], owner: "Authorizing official",
+     options: "Grant it for a stated duration and review cadence, on named and compensating controls; refuse it",
+     late: "Optimize traffic stays on the inspected path at the pilot sites, and the cutover waits",
+     source: "../books/b09-network/12-microsoft-365-traffic.md#the-sc-74-documented-traffic-flow-exception"}
+  - {id: D-N9, kind: decision, phase: 3, name: "Fabric go-live, site by site: governor live, inspecting and logging", after: [N3.3, D-N7, NG1, NG2], owner: "System owner",
+     options: "Turn on the site's new egress; hold the site on its current path",
+     late: "Pilot traffic stays on the old path, and the 30-day stability clock doesn't start",
+     source: "../books/b09-network/09-who-owns-the-network.md#an-owner-for-each-step"}
+  - {id: N3.4, phase: 3, name: "Pilot cutover; 30 stable days; CISA telemetry parity confirmed per site; one path decision emitted as a claim", dur: 22, after: [D-N9, D-N8], owner: "Network engineering",
+     source: "../books/b09-network/05-sd-wan-sase-and-governed-transport.md#the-evidence-the-fabric-must-emit"}
+  - {id: NG3, kind: gate, phase: 3, name: "Gate 3 — Pilot governed and evidenced", after: [N3.4], owner: "CISO",
+     criteria: "Pilot sites stable for 30 days with the control layer live, inspecting and logging to the SIEM; boundary change decided before cutover; SC-7(4) memo signed and site register current; CISA telemetry parity confirmed per site before any legacy circuit ends; one path decision emitted as a claim; the VPN path documented as residual",
+     source: "../books/b09-network/09-who-owns-the-network.md#an-owner-for-each-step"}
+  # ------------------------------------------------- Phase 4 — customer-edge enforcement
+  - {id: D-N10, kind: decision, phase: 4, name: "RADIUS and NAC platform, and the trigger that retires NPS (D3)", after: [N0.1], owner: "Sponsor and CIO",
+     options: "NPS through the hybrid-joined phase only; an on-premises NAC platform reading Intune compliance; a cloud-delivered NAC or RADIUS service with the right FedRAMP authorization; VPN or ZTNA federated to Entra ID for remote access",
+     late: "Enforcement can't be designed, and Entra-joined devices can't be admitted before cloud-native cutover removes the AD objects NPS relies on",
+     source: "../books/b09-network/07-network-access-control.md#what-can-replace-it"}
+  - {id: X-P27, kind: external, phase: 4, name: "Cloud PKI certificates issued; Wi-Fi and VPN verified (program P2.7)", ref: "program-master-schedule:P2.7", owner: "Platform teams (program)",
+     late: "Monitor mode has no device certificates to authenticate, and the NAC rollout waits",
+     source: "program-master-schedule.md"}
+  - {id: N4.1, phase: 4, name: "NAC platform registered for Intune compliance retrieval; policy tiers built; monitor mode on pilot ports with a baseline report", dur: 30, after: [D-N10, X-P27], owner: "Network engineering",
+     source: "../books/b09-network/07-network-access-control.md#posture-comes-from-intune-not-from-a-probe"}
+  - {id: D-N11, kind: decision, phase: 4, name: "Move the pilot sites from monitor mode to wired enforcement", after: [N4.1], owner: "Network engineering",
+     options: "Enforce on workstation ports; stay in monitor mode until the baseline's exceptions are closed",
+     late: "Wired and wireless enforcement wait, and devices are still admitted before they authenticate",
+     source: "../books/b09-network/07-network-access-control.md#rolling-it-out"}
+  - {id: N4.2, phase: 4, name: "Wired enforcement: open mode removed, CoA tested, captive portal up, IoT devices registered in IPAM, detections routed to the SOC", dur: 30, after: [D-N11], owner: "Network engineering",
+     source: "../books/b09-network/07-network-access-control.md#rolling-it-out"}
+  - {id: N4.3, phase: 4, name: "Wireless enforcement on WPA3-Enterprise, then IoT segmentation and a rogue-device tabletop", dur: 50, after: [N4.2], owner: "Network engineering",
+     source: "../books/b09-network/07-network-access-control.md#rolling-it-out"}
+  - {id: NG4, kind: gate, phase: 4, name: "Gate 4 — Customer edge enforced for the pilot", after: [N4.3], owner: "CISO and ISSO",
+     criteria: "Monitor-mode baseline report filed; wired and wireless enforcement live at the pilot sites; the three minimum detections alerting the SOC; RADIUS accounting, Intune compliance reports and DHCP audit logs kept for assessors; every MAB exception dated",
+     source: "../books/b09-network/07-network-access-control.md#inventory-profiling-and-logs"}
+  # ------------------------------------------------- Phase 5 — AD DNS and DHCP decommission
+  - {id: X-P43, kind: external, phase: 5, name: "AD-integrated zones moved, except the domain's own (program P4.3)", ref: "program-master-schedule:P4.3", owner: "Platform teams (program)",
+     late: "The 30-day SRV hold and the decommission gates can't start",
+     source: "program-master-schedule.md"}
+  - {id: N5.1, phase: 5, name: "SRV hold: every critical locator record resolves from every VNet and site, every 15 minutes, for 30 clean days", dur: 22, after: [X-P43], owner: "DNS/DDI team",
+     source: "../books/b08-ddi/11-operating-the-control-plane.md#srv-record-monitoring"}
+  - {id: N5.2, phase: 5, name: "Inventory reconciled both ways; failover tested on the new resolvers and DHCP; query logs show the old servers idle", dur: 8, after: [X-P43, N1.4], owner: "DNS/DDI team",
+     source: "../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp"}
+  - {id: N5.3, phase: 5, name: "Hardening: Protective DNS forwarding, encrypted DNS, DNSSEC signing and validation where required, monitoring dashboards", dur: 15, after: [N1.4], owner: "DNS/DDI team",
+     source: "../books/b08-ddi/10-migration-sequence.md#phase-6-policy-and-compliance-hardening"}
+  - {id: D-N12, kind: decision, phase: 5, name: "Decommission AD DNS and Windows DHCP", after: [N5.1, N5.2], owner: "Sponsor and CIO",
+     options: "Decommission once all five gates pass, including 90 days of parallel operation; hold the legacy servers. Never on a date alone",
+     late: "Legacy DNS servers and their DnsAdmins exposure stay in service into the program's AD retirement phase",
+     source: "../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp"}
+  - {id: N5.4, phase: 5, name: "Legacy DNS servers retired in order; exports archived; records officer confirms disposition; 7-day burn-in", dur: 10, after: [D-N12], owner: "AD administrators",
+     source: "../books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp"}
+  - {id: NG5, kind: gate, phase: 5, name: "Gate 5 — Legacy name services retired, evidence complete", after: [N5.3, N5.4, NG3, NG4], owner: "DNS/DDI team",
+     criteria: "Gates 3 and 4 passed; Chapter 11's evidence checklist complete, the five decisions checked first; no client impact through the burn-in; logs searchable for six months and retrievable for a year; DnsAdmins and delegated roles reviewed; only the domain's own zones left on AD DNS, reached by forwarding, until the last domain controllers go",
+     source: "../books/b08-ddi/11-operating-the-control-plane.md#sample-evidence-checklist"}
+
+phases:
+  0: "Phase 0 — Charter, alignment and inventory"
+  1: "Phase 1 — Naming and addressing"
+  2: "Phase 2 — Securing the governor"
+  3: "Phase 3 — Identity-driven access pilot"
+  4: "Phase 4 — Customer-edge enforcement"
+  5: "Phase 5 — AD DNS and DHCP decommission"

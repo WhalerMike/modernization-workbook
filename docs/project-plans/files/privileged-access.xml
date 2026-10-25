@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+  <Name>privileged-access.xml</Name>
+  <Title>Privileged Access &amp; Administrative Identity: Just-in-Time by Tier</Title>
+  <ScheduleFromStart>1</ScheduleFromStart>
+  <StartDate>2027-01-04T08:00:00</StartDate>
+  <DefaultStartTime>08:00:00</DefaultStartTime>
+  <DefaultFinishTime>17:00:00</DefaultFinishTime>
+  <MinutesPerDay>480</MinutesPerDay>
+  <MinutesPerWeek>2400</MinutesPerWeek>
+  <DaysPerMonth>20</DaysPerMonth>
+  <DurationFormat>7</DurationFormat>
+  <CalendarUID>1</CalendarUID>
+  <Calendars>
+    <Calendar>
+      <UID>1</UID>
+      <Name>Standard</Name>
+      <IsBaseCalendar>1</IsBaseCalendar>
+      <BaseCalendarUID>-1</BaseCalendarUID>
+      <WeekDays>
+        <WeekDay>
+          <DayType>1</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+        <WeekDay>
+          <DayType>2</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>3</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>4</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>5</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>6</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>7</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+      </WeekDays>
+    </Calendar>
+  </Calendars>
+  <Tasks>
+    <Task>
+      <UID>1</UID>
+      <ID>1</ID>
+      <Name>Phase 0 — Inventory</Name>
+      <OutlineNumber>1</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>2</UID>
+      <ID>2</ID>
+      <Name>A0.1 Active directory-role assignments inventoried and classified by tier</Name>
+      <OutlineNumber>1.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/04-privileged-roles-and-tiers.md#the-programs-privilege-tiers</Notes>
+    </Task>
+    <Task>
+      <UID>3</UID>
+      <ID>3</ID>
+      <Name>A0.2 Azure privileged role assignments and subscription owners inventoried</Name>
+      <OutlineNumber>1.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-08T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/04-privileged-roles-and-tiers.md#azure-rbac</Notes>
+    </Task>
+    <Task>
+      <UID>4</UID>
+      <ID>4</ID>
+      <Name>A0.3 App registrations, owners, credentials and granted permissions inventoried, read-only; automation on the protected permissions found</Name>
+      <OutlineNumber>1.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/05-applications-and-workload-identities.md#a-read-only-inventory-to-start-from</Notes>
+    </Task>
+    <Task>
+      <UID>5</UID>
+      <ID>5</ID>
+      <Name>A0.4 Existing emergency access accounts located and checked against the standard</Name>
+      <OutlineNumber>1.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-06T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts</Notes>
+    </Task>
+    <Task>
+      <UID>6</UID>
+      <ID>6</ID>
+      <Name>D-A1 Privilege tier model</Name>
+      <OutlineNumber>1.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-13T17:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Options: The program's four tiers as published (T0 control plane, T1 management plane, T2 scoped operations, read-only); the same boundaries with hour counts adapted to the agency's role inventory
+If decided late: No role's settings can be written, and the PIM build waits
+Source: ../books/b04-access/04-privileged-roles-and-tiers.md#the-programs-privilege-tiers</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>7</UID>
+      <ID>7</ID>
+      <Name>AG0 Gate 0 — Privilege inventoried</Name>
+      <OutlineNumber>1.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-13T17:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Criteria: Standing administrative privilege inventoried and classified by tier; app registrations listed with their owners and credentials; emergency access accounts located; tier model approved
+Source: ../books/b04-access/04-privileged-roles-and-tiers.md#the-programs-privilege-tiers</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>3</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>8</UID>
+      <ID>8</ID>
+      <Name>X-G0 Program G0 — Ready to Plan</Name>
+      <OutlineNumber>1.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-29T17:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward</Contact>
+      <Notes>Owner or approver: Steward
+If decided late: The foundation work can't start
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-01-29T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>9</UID>
+      <ID>9</ID>
+      <Name>Phase 1 — Foundation: emergency access and the activation gate</Name>
+      <OutlineNumber>2</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-07T08:00:00</Start>
+      <Finish>2027-03-01T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>10</UID>
+      <ID>10</ID>
+      <Name>D-A2 Emergency access credentials and custody</Name>
+      <OutlineNumber>2.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-06T17:00:00</Start>
+      <Finish>2027-01-06T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Options: Passkey (FIDO2) security keys or certificate-based authentication, different from the normal administrator methods; in either case retrieved only under dual custody by two senior administrators
+If decided late: Step 0 can't close, so no role can be made eligible and no approval switched on
+Source: ../books/b04-access/06-who-decides-access.md#emergency-access</Notes>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>11</UID>
+      <ID>11</ID>
+      <Name>A1.1 Two emergency accounts built to the standard, excluded by one group, alerted and tested</Name>
+      <OutlineNumber>2.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-05T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#step-0-establish-emergency-access-accounts-first</Notes>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>12</UID>
+      <ID>12</ID>
+      <Name>A1.2 Phishing-resistant MFA registered for every eligible administrator</Name>
+      <OutlineNumber>2.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#prerequisites</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>13</UID>
+      <ID>13</ID>
+      <Name>A1.3 Audit and sign-in logs exported to the workspace at 365-day retention</Name>
+      <OutlineNumber>2.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-05T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#step-9-export-audit-records-for-retention</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>14</UID>
+      <ID>14</ID>
+      <Name>D-A3 Approvers for PIM activation, by tier</Name>
+      <OutlineNumber>2.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-13T17:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Options: The security office as PIM-Approvers-T0, outside the Tier 0 population; a governed group outside the Tier 1 population as PIM-Approvers-T1; for each Tier 2 role, approval or a documented risk acceptance
+If decided late: Approval can't be switched on without the lockout risk, and the role settings wait
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#approver-design-and-separation-of-duties</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>15</UID>
+      <ID>15</ID>
+      <Name>A1.4 Approver groups built, at least two approvers per tier</Name>
+      <OutlineNumber>2.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-03T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#step-1-build-the-approver-groups</Notes>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>16</UID>
+      <ID>16</ID>
+      <Name>A1.5 Authentication context c1 and its policy PIM-Activation-c1 built and turned On</Name>
+      <OutlineNumber>2.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-15T08:00:00</Start>
+      <Finish>2027-02-17T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy</Notes>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>12</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>17</UID>
+      <ID>17</ID>
+      <Name>D-A4 Write path for access as code</Name>
+      <OutlineNumber>2.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-29T17:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Options: Microsoft365DSC for every object class (the program's reference); Terraform azuread for the classes it covers, with Graph PowerShell for PIM role settings, access reviews and Lifecycle Workflows
+If decided late: Role settings can't be held as code, and the drift baseline waits
+Source: ../books/b04-access/10-access-as-code-and-evidence.md#coverage-and-the-programs-choice</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>18</UID>
+      <ID>18</ID>
+      <Name>D-A5 First role class under just-in-time elevation</Name>
+      <OutlineNumber>2.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-13T17:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Options: Tier 0 control-plane roles; Tier 1 management-plane roles
+If decided late: The pilot has no scope, and the program's Phase 2 PIM milestone waits
+Source: ../books/b00-orientation/06-the-project-portfolio.md#privileged-access-administrative-identity</Notes>
+      <PredecessorLink>
+        <PredecessorUID>7</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>19</UID>
+      <ID>19</ID>
+      <Name>D-A6 Access review cadence for privileged roles</Name>
+      <OutlineNumber>2.10</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-13T17:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Options: Monthly for Tier 0 and quarterly for every other privileged role (the program's design); another organization-defined frequency, which AC-6(7) leaves to the agency
+If decided late: Reviews can't be scheduled, and the pilot gate's first-review criterion fails
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#step-8-access-reviews-of-eligibility</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>20</UID>
+      <ID>20</ID>
+      <Name>A1.6 Role settings for every tier written as code from Appendix B and reviewed</Name>
+      <OutlineNumber>2.11</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-18T08:00:00</Start>
+      <Finish>2027-03-01T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/appendix-b-pim-role-settings.md#settings-common-to-every-role</Notes>
+      <PredecessorLink>
+        <PredecessorUID>17</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>15</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>21</UID>
+      <ID>21</ID>
+      <Name>AG1 Gate 1 — Foundation ready</Name>
+      <OutlineNumber>2.12</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-01T17:00:00</Start>
+      <Finish>2027-03-01T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Criteria: Emergency access accounts tested; PIM-Activation-c1 On; an approver group named on every role that requires approval; role settings in the repository and reviewed; logs exported beyond 30 days
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#build</Notes>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>13</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>22</UID>
+      <ID>22</ID>
+      <Name>X-G1 Program G1 — Foundation Complete</Name>
+      <OutlineNumber>2.13</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward</Contact>
+      <Notes>Owner or approver: Steward
+If decided late: The pilot can't start
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-26T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>12</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>23</UID>
+      <ID>23</ID>
+      <Name>Phase 2 — Just-in-time pilot for one role class</Name>
+      <OutlineNumber>3</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>24</UID>
+      <ID>24</ID>
+      <Name>A2.1 Pilot class's role settings applied; PRV role-assignable groups hold the eligible assignments</Name>
+      <OutlineNumber>3.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-02T08:00:00</Start>
+      <Finish>2027-03-08T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person</Notes>
+      <PredecessorLink>
+        <PredecessorUID>21</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>18</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>25</UID>
+      <ID>25</ID>
+      <Name>A2.2 Standing assignments in the pilot class converted: eligible first, activation confirmed, active removed</Name>
+      <OutlineNumber>3.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-09T08:00:00</Start>
+      <Finish>2027-03-22T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#step-5-convert-standing-assignments-to-eligible</Notes>
+      <PredecessorLink>
+        <PredecessorUID>24</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>26</UID>
+      <ID>26</ID>
+      <Name>A2.3 Protected actions with context c2 on the Conditional Access permissions</Name>
+      <OutlineNumber>3.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-09T08:00:00</Start>
+      <Finish>2027-03-15T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#step-6-close-the-loop-with-protected-actions</Notes>
+      <PredecessorLink>
+        <PredecessorUID>24</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>27</UID>
+      <ID>27</ID>
+      <Name>A2.4 Notifications and PIM alerts routed; the assigned-outside-PIM alert reaches the SIEM</Name>
+      <OutlineNumber>3.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-09T08:00:00</Start>
+      <Finish>2027-03-11T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Security operations</Contact>
+      <Notes>Owner or approver: Security operations
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#step-7-notifications-and-pim-alerts</Notes>
+      <PredecessorLink>
+        <PredecessorUID>24</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>28</UID>
+      <ID>28</ID>
+      <Name>A2.5 Administrator policies (CA003 to CA005, CA025 to CA027) in report-only, then piloted on the identity team</Name>
+      <OutlineNumber>3.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-03-19T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators</Notes>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>29</UID>
+      <ID>29</ID>
+      <Name>D-A7 PAW enforcement for the administrator persona</Name>
+      <OutlineNumber>3.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-19T17:00:00</Start>
+      <Finish>2027-03-19T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Options: Enforce CA004 and CA025 for every administrator; enforce with a time-bound exclusion group for administrators whose PAW isn't issued; keep report-only and fix the causes first
+If decided late: Privileged roles stay usable from any device, and the pilot gate waits
+Source: ../books/b04-access/04-privileged-roles-and-tiers.md#privileged-access-workstations</Notes>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>30</UID>
+      <ID>30</ID>
+      <Name>A2.6 Administrator policies enforced ring by ring, an emergency sign-in tested before and after</Name>
+      <OutlineNumber>3.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-22T08:00:00</Start>
+      <Finish>2027-04-02T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement</Notes>
+      <PredecessorLink>
+        <PredecessorUID>29</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>31</UID>
+      <ID>31</ID>
+      <Name>A2.7 First monthly review of Tier 0 eligibility and PRV-T0 membership closed</Name>
+      <OutlineNumber>3.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-23T08:00:00</Start>
+      <Finish>2027-04-05T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity governance officer</Contact>
+      <Notes>Owner or approver: Identity governance officer
+Source: ../books/b04-access/09-access-governance.md#cadence</Notes>
+      <PredecessorLink>
+        <PredecessorUID>25</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>19</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>32</UID>
+      <ID>32</ID>
+      <Name>A2.8 Validation test plan run for the pilot class</Name>
+      <OutlineNumber>3.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-05T08:00:00</Start>
+      <Finish>2027-04-07T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#validation-test-plan</Notes>
+      <PredecessorLink>
+        <PredecessorUID>25</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>27</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>30</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>33</UID>
+      <ID>33</ID>
+      <Name>AG2 Gate 2 — Just-in-time in use for the pilot class</Name>
+      <OutlineNumber>3.10</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-07T17:00:00</Start>
+      <Finish>2027-04-07T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Criteria: Every human assignment in the pilot class eligible; only the emergency accounts and documented service principals standing; validation tests pass; the first review closed with removals applied; every elevation evidenced in the workspace
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#assessment-evidence</Notes>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>32</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>34</UID>
+      <ID>34</ID>
+      <Name>X-G2 Program G2 — Pilot Clean</Name>
+      <OutlineNumber>3.11</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward and executive sponsor</Contact>
+      <Notes>Owner or approver: Steward and executive sponsor
+If decided late: The remaining tiers can't start
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-04-23T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>35</UID>
+      <ID>35</ID>
+      <Name>Phase 3 — Every tier</Name>
+      <OutlineNumber>4</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-04-08T08:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>36</UID>
+      <ID>36</ID>
+      <Name>A3.1 Remaining tiers converted to eligible, tier by tier</Name>
+      <OutlineNumber>4.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-06-04T17:00:00</Finish>
+      <Duration>PT240H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#settings-by-tier</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>34</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>37</UID>
+      <ID>37</ID>
+      <Name>A3.2 Azure privileged roles eligible through PIM; three subscription owners at most</Name>
+      <OutlineNumber>4.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-03T08:00:00</Start>
+      <Finish>2027-05-21T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/04-privileged-roles-and-tiers.md#azure-rbac</Notes>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>24000</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>38</UID>
+      <ID>38</ID>
+      <Name>A3.3 PRV group membership published as access packages with approval, expiry and review</Name>
+      <OutlineNumber>4.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-05-14T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/04-privileged-roles-and-tiers.md#layer-1-who-may-ever-hold-the-role</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>34</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>39</UID>
+      <ID>39</ID>
+      <Name>A3.4 Non-human privileged identities: two named owners each, credentials off secrets, over-consented apps swept</Name>
+      <OutlineNumber>4.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-06-18T17:00:00</Finish>
+      <Duration>PT320H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity governance officer</Contact>
+      <Notes>Owner or approver: Identity governance officer
+Source: ../books/b04-access/05-applications-and-workload-identities.md#governing-app-registrations</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>34</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>40</UID>
+      <ID>40</ID>
+      <Name>A3.5 Help desk privileged access group narrowed to a custom assignment role</Name>
+      <OutlineNumber>4.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-07T08:00:00</Start>
+      <Finish>2027-06-11T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity governance officer</Contact>
+      <Notes>Owner or approver: Identity governance officer
+Source: ../books/b04-access/06-who-decides-access.md#what-each-entra-role-can-actually-do</Notes>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>41</UID>
+      <ID>41</ID>
+      <Name>A3.6 Change control in force: two people per change, a security approver for Tier 0 objects, drift every six hours</Name>
+      <OutlineNumber>4.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-08T08:00:00</Start>
+      <Finish>2027-04-28T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/10-access-as-code-and-evidence.md#change-control</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>42</UID>
+      <ID>42</ID>
+      <Name>A3.7 First quarterly review cycle closed for Tier 1, Tier 2 and read-only roles</Name>
+      <OutlineNumber>4.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-07T08:00:00</Start>
+      <Finish>2027-06-25T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity governance officer</Contact>
+      <Notes>Owner or approver: Identity governance officer
+Source: ../books/b04-access/appendix-b-pim-role-settings.md#review-cadence-by-tier</Notes>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>38</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>43</UID>
+      <ID>43</ID>
+      <Name>AG3 Gate 3 — Every tier just-in-time</Name>
+      <OutlineNumber>4.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-25T17:00:00</Start>
+      <Finish>2027-06-25T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Criteria: Every human privileged assignment eligible; requester and approver distinct for Tier 0 changes; non-human privileged identities in scope have two named owners; reviews running on the approved cadence; a Tier 0 drift handled as an incident
+Source: ../books/b04-access/10-access-as-code-and-evidence.md#drift-detection-and-closure</Notes>
+      <PredecessorLink>
+        <PredecessorUID>37</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>39</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>40</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>42</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>44</UID>
+      <ID>44</ID>
+      <Name>X-G3 Program G3 — Rollout Complete</Name>
+      <OutlineNumber>4.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-10T17:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and steering committee</Contact>
+      <Notes>Owner or approver: Executive sponsor and steering committee
+If decided late: The access-related Group Policy can't be retired
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-09-10T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>45</UID>
+      <ID>45</ID>
+      <Name>Phase 4 — Evidence and residual risk</Name>
+      <OutlineNumber>5</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-09-13T08:00:00</Start>
+      <Finish>2027-10-01T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>46</UID>
+      <ID>46</ID>
+      <Name>A4.1 Access-related GPO settings (smart-card logon, logon rights) retired where the library policy is enforced</Name>
+      <OutlineNumber>5.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-13T08:00:00</Start>
+      <Finish>2027-09-24T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b04-access/07-the-conditional-access-policy-library.md#retiring-group-policy-with-the-library</Notes>
+      <PredecessorLink>
+        <PredecessorUID>44</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>30</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>47</UID>
+      <ID>47</ID>
+      <Name>A4.2 Residual standing privilege named in the system security plan; residual risk to the authorizing official</Name>
+      <OutlineNumber>5.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-27T08:00:00</Start>
+      <Finish>2027-10-01T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Source: ../books/b04-access/08-pim-self-request-with-approval.md#step-5-convert-standing-assignments-to-eligible</Notes>
+      <PredecessorLink>
+        <PredecessorUID>43</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>46</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>48</UID>
+      <ID>48</ID>
+      <Name>A4.3 Monthly evidence package assembled and its metrics signed off</Name>
+      <OutlineNumber>5.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-13T08:00:00</Start>
+      <Finish>2027-09-24T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity governance officer</Contact>
+      <Notes>Owner or approver: Identity governance officer
+Source: ../books/b04-access/10-access-as-code-and-evidence.md#the-evidence-package-for-a-period</Notes>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>44</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>49</UID>
+      <ID>49</ID>
+      <Name>AG4 Gate 4 — Residual privilege owned</Name>
+      <OutlineNumber>5.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-01T17:00:00</Start>
+      <Finish>2027-10-01T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Criteria: Residual standing privilege named with a rationale and accepted by the authorizing official; evidence for every elevation in the period; exception register current; the replaced access-related GPO settings retired
+Source: ../books/b04-access/10-access-as-code-and-evidence.md#what-the-assessor-reads</Notes>
+      <PredecessorLink>
+        <PredecessorUID>47</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>48</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+  </Tasks>
+</Project>

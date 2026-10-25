@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="941" viewBox="0 0 980 941" role="img" aria-labelledby="t d" font-family="Inter, 'DM Sans', Arial, sans-serif">
+<title id="t">Network &amp; Access Modernization: schedule</title>
+<desc id="d">Gantt chart of 45 tasks over 46 weeks. Critical-path tasks are red; other tasks are blue, with a grey line for their float. Gates are violet diamonds, decisions amber diamonds, and milestones from another plan green diamonds.</desc>
+<rect width="980" height="941" fill="#ffffff"/>
+<line x1="360.0" y1="28" x2="360.0" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="362.0" y="22" font-size="10" fill="#64748b">wk 1</text>
+<line x1="412.2" y1="28" x2="412.2" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="414.2" y="22" font-size="10" fill="#64748b">wk 5</text>
+<line x1="464.3" y1="28" x2="464.3" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="466.3" y="22" font-size="10" fill="#64748b">wk 9</text>
+<line x1="516.5" y1="28" x2="516.5" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="518.5" y="22" font-size="10" fill="#64748b">wk 13</text>
+<line x1="568.7" y1="28" x2="568.7" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="570.7" y="22" font-size="10" fill="#64748b">wk 17</text>
+<line x1="620.9" y1="28" x2="620.9" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="622.9" y="22" font-size="10" fill="#64748b">wk 21</text>
+<line x1="673.0" y1="28" x2="673.0" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="675.0" y="22" font-size="10" fill="#64748b">wk 25</text>
+<line x1="725.2" y1="28" x2="725.2" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="727.2" y="22" font-size="10" fill="#64748b">wk 29</text>
+<line x1="777.4" y1="28" x2="777.4" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="779.4" y="22" font-size="10" fill="#64748b">wk 33</text>
+<line x1="829.6" y1="28" x2="829.6" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="831.6" y="22" font-size="10" fill="#64748b">wk 37</text>
+<line x1="881.7" y1="28" x2="881.7" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="883.7" y="22" font-size="10" fill="#64748b">wk 41</text>
+<line x1="933.9" y1="28" x2="933.9" y2="901" stroke="#e2e8f0" stroke-width="1"/>
+<text x="935.9" y="22" font-size="10" fill="#64748b">wk 45</text>
+<rect x="0" y="34" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="46.5" font-size="11" font-weight="600" fill="#1e293b">Phase 0 — Charter, alignment and inventory</text>
+<text x="14" y="63" font-size="10.5" fill="#64748b">N0.1  Naming-plane owner confirmed; pilot population def…</text>
+<line x1="373.0" y1="59.5" x2="412.2" y2="59.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="55" width="13.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="80" font-size="10.5" fill="#64748b">N0.2  AD DNS and DHCP inventory, read-only, committed as…</text>
+<line x1="386.1" y1="76.5" x2="443.5" y2="76.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="72" width="26.1" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="97" font-size="10.5" fill="#64748b">N0.3  DDI candidates scored on evidence: Marketplace sta…</text>
+<line x1="404.3" y1="93.5" x2="443.5" y2="93.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="373.0" y="89" width="31.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="114" font-size="10.5" fill="#64748b">D-N1  DDI platform model</text>
+<path d="M404.3 105.0 L409.8 110.5 L404.3 116.0 L398.8 110.5 Z" fill="#D97706"/>
+<text x="14" y="131" font-size="10.5" fill="#64748b">NG0  Gate 0 — Inventory committed and decisions owned</text>
+<path d="M404.3 122.0 L409.8 127.5 L404.3 133.0 L398.8 127.5 Z" fill="#7C3AED"/>
+<rect x="0" y="136" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="148.5" font-size="11" font-weight="600" fill="#1e293b">Phase 1 — Naming and addressing</text>
+<text x="14" y="165" font-size="10.5" fill="#64748b">X-P17  Cloud DNS Private Resolver deployed (program P1.7)</text>
+<path d="M438.3 156.0 L443.8 161.5 L438.3 167.0 L432.8 161.5 Z" fill="#059669"/>
+<text x="14" y="182" font-size="10.5" fill="#64748b">N1.1  Coexistence: DDI resolvers deployed, Microsoft DNS…</text>
+<line x1="459.1" y1="178.5" x2="464.3" y2="178.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="438.3" y="174" width="20.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="199" font-size="10.5" fill="#64748b">X-P26S  Program starts the pilot division&#x27;s DNS move (st…</text>
+<path d="M464.3 190.0 L469.8 195.5 L464.3 201.0 L458.8 195.5 Z" fill="#059669"/>
+<text x="14" y="216" font-size="10.5" fill="#64748b">D-N2  Resolver path: the redirect-dns target and the for…</text>
+<path d="M404.3 207.0 L409.8 212.5 L404.3 218.0 L398.8 212.5 Z" fill="#D97706"/>
+<text x="14" y="233" font-size="10.5" fill="#64748b">N1.2  Edge retargeted: redirect-dns to agency resolvers,…</text>
+<line x1="485.2" y1="229.5" x2="894.8" y2="229.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="459.1" y="225" width="26.1" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="250" font-size="10.5" fill="#64748b">D-N3  Order of zones to move, and the cutover pattern fo…</text>
+<path d="M459.1 241.0 L464.6 246.5 L459.1 252.0 L453.6 246.5 Z" fill="#D97706"/>
+<text x="14" y="267" font-size="10.5" fill="#64748b">X-P26  Pilot division&#x27;s DNS migrated and DHCP re-homed (…</text>
+<path d="M503.5 258.0 L509.0 263.5 L503.5 269.0 L498.0 263.5 Z" fill="#059669"/>
+<text x="14" y="284" font-size="10.5" fill="#64748b">N1.3  Non-AD zones, forwarders, GlobalNames and reverse…</text>
+<line x1="542.6" y1="280.5" x2="670.4" y2="280.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="503.5" y="276" width="39.1" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="301" font-size="10.5" fill="#64748b">N1.4  Clients and DHCP scopes moved in waves with the pr…</text>
+<line x1="777.4" y1="297.5" x2="905.2" y2="297.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="542.6" y="293" width="234.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="318" font-size="10.5" fill="#64748b">N1.5  Cloud federation: IPAM federation, private endpoin…</text>
+<line x1="581.7" y1="314.5" x2="894.8" y2="314.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="542.6" y="310" width="39.1" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="335" font-size="10.5" fill="#64748b">NG1  Gate 1 — Naming plane authoritative for the pilot s…</text>
+<path d="M581.7 326.0 L587.2 331.5 L581.7 337.0 L576.2 331.5 Z" fill="#7C3AED"/>
+<rect x="0" y="340" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="352.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Securing the governor</text>
+<text x="14" y="369" font-size="10.5" fill="#64748b">D-N4  Control-plane hosting model, recorded as the bound…</text>
+<path d="M404.3 360.0 L409.8 365.5 L404.3 371.0 L398.8 365.5 Z" fill="#D97706"/>
+<text x="14" y="386" font-size="10.5" fill="#64748b">N2.1  Control plane built and taken through the ED 26-03…</text>
+<line x1="469.6" y1="382.5" x2="829.6" y2="382.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="404.3" y="378" width="65.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="403" font-size="10.5" fill="#64748b">N2.2  Pilot circuits bought on measured physics: per-sit…</text>
+<line x1="456.5" y1="399.5" x2="829.6" y2="399.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="404.3" y="395" width="52.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="420" font-size="10.5" fill="#64748b">N2.3  Boundary change and branch use-case package prepar…</text>
+<line x1="542.6" y1="416.5" x2="894.8" y2="416.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="373.0" y="412" width="169.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="437" font-size="10.5" fill="#64748b">NG2  Gate 2 — Governor secured before it carries traffic</text>
+<path d="M469.6 428.0 L475.1 433.5 L469.6 439.0 L464.1 433.5 Z" fill="#7C3AED"/>
+<rect x="0" y="442" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="454.5" font-size="11" font-weight="600" fill="#1e293b">Phase 3 — Identity-driven access pilot</text>
+<text x="14" y="471" font-size="10.5" fill="#64748b">N3.1  Identity claims reachable by every access decision…</text>
+<line x1="417.4" y1="467.5" x2="829.6" y2="467.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="404.3" y="463" width="13.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="488" font-size="10.5" fill="#64748b">N3.2  Application-to-path routing policy (the SC-7(4) tr…</text>
+<line x1="482.6" y1="484.5" x2="894.8" y2="484.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="456.5" y="480" width="26.1" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="505" font-size="10.5" fill="#64748b">D-N5  Egress pattern for each pilot site</text>
+<path d="M456.5 496.0 L462.0 501.5 L456.5 507.0 L451.0 501.5 Z" fill="#D97706"/>
+<text x="14" y="522" font-size="10.5" fill="#64748b">D-N6  Path to a domain controller for each branch class</text>
+<path d="M373.0 513.0 L378.5 518.5 L373.0 524.0 L367.5 518.5 Z" fill="#D97706"/>
+<text x="14" y="539" font-size="10.5" fill="#64748b">N3.3  Ten pilot sites built: edges, regional breakout, s…</text>
+<line x1="534.8" y1="535.5" x2="894.8" y2="535.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="469.6" y="531" width="65.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="556" font-size="10.5" fill="#64748b">D-N7  Boundary change for local egress, decided before t…</text>
+<path d="M542.6 547.0 L548.1 552.5 L542.6 558.0 L537.1 552.5 Z" fill="#D97706"/>
+<text x="14" y="573" font-size="10.5" fill="#64748b">D-N8  Microsoft 365 Optimize exemption (the SC-7(4) traf…</text>
+<path d="M482.6 564.0 L488.1 569.5 L482.6 575.0 L477.1 569.5 Z" fill="#D97706"/>
+<text x="14" y="590" font-size="10.5" fill="#64748b">D-N9  Fabric go-live, site by site: governor live, inspe…</text>
+<path d="M581.7 581.0 L587.2 586.5 L581.7 592.0 L576.2 586.5 Z" fill="#D97706"/>
+<text x="14" y="607" font-size="10.5" fill="#64748b">N3.4  Pilot cutover; 30 stable days; CISA telemetry pari…</text>
+<line x1="639.1" y1="603.5" x2="952.2" y2="603.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="581.7" y="599" width="57.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="624" font-size="10.5" fill="#64748b">NG3  Gate 3 — Pilot governed and evidenced</text>
+<path d="M639.1 615.0 L644.6 620.5 L639.1 626.0 L633.6 620.5 Z" fill="#7C3AED"/>
+<rect x="0" y="629" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="641.5" font-size="11" font-weight="600" fill="#1e293b">Phase 4 — Customer-edge enforcement</text>
+<text x="14" y="658" font-size="10.5" fill="#64748b">D-N10  RADIUS and NAC platform, and the trigger that ret…</text>
+<path d="M373.0 649.0 L378.5 654.5 L373.0 660.0 L367.5 654.5 Z" fill="#D97706"/>
+<text x="14" y="675" font-size="10.5" fill="#64748b">X-P27  Cloud PKI certificates issued; Wi-Fi and VPN veri…</text>
+<path d="M542.6 666.0 L548.1 671.5 L542.6 677.0 L537.1 671.5 Z" fill="#059669"/>
+<text x="14" y="692" font-size="10.5" fill="#64748b">N4.1  NAC platform registered for Intune compliance retr…</text>
+<line x1="620.9" y1="688.5" x2="743.5" y2="688.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="542.6" y="684" width="78.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="709" font-size="10.5" fill="#64748b">D-N11  Move the pilot sites from monitor mode to wired e…</text>
+<path d="M620.9 700.0 L626.4 705.5 L620.9 711.0 L615.4 705.5 Z" fill="#D97706"/>
+<text x="14" y="726" font-size="10.5" fill="#64748b">N4.2  Wired enforcement: open mode removed, CoA tested,…</text>
+<line x1="699.1" y1="722.5" x2="821.7" y2="722.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="620.9" y="718" width="78.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="743" font-size="10.5" fill="#64748b">N4.3  Wireless enforcement on WPA3-Enterprise, then IoT…</text>
+<line x1="829.6" y1="739.5" x2="952.2" y2="739.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="699.1" y="735" width="130.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="760" font-size="10.5" fill="#64748b">NG4  Gate 4 — Customer edge enforced for the pilot</text>
+<path d="M829.6 751.0 L835.1 756.5 L829.6 762.0 L824.1 756.5 Z" fill="#7C3AED"/>
+<rect x="0" y="765" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="777.5" font-size="11" font-weight="600" fill="#1e293b">Phase 5 — AD DNS and DHCP decommission</text>
+<text x="14" y="794" font-size="10.5" fill="#64748b">X-P43  AD-integrated zones moved, except the domain&#x27;s ow…</text>
+<path d="M868.7 785.0 L874.2 790.5 L868.7 796.0 L863.2 790.5 Z" fill="#059669"/>
+<text x="14" y="811" font-size="10.5" fill="#1e293b">N5.1  SRV hold: every critical locator record resolves f…</text>
+<rect x="868.7" y="803" width="57.4" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="828" font-size="10.5" fill="#64748b">N5.2  Inventory reconciled both ways; failover tested on…</text>
+<line x1="889.6" y1="824.5" x2="926.1" y2="824.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="868.7" y="820" width="20.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="845" font-size="10.5" fill="#64748b">N5.3  Hardening: Protective DNS forwarding, encrypted DN…</text>
+<line x1="816.5" y1="841.5" x2="952.2" y2="841.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="777.4" y="837" width="39.1" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="862" font-size="10.5" fill="#1e293b">D-N12  Decommission AD DNS and Windows DHCP</text>
+<path d="M926.1 853.0 L931.6 858.5 L926.1 864.0 L920.6 858.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="879" font-size="10.5" fill="#1e293b">N5.4  Legacy DNS servers retired in order; exports archi…</text>
+<rect x="926.1" y="871" width="26.1" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="896" font-size="10.5" fill="#1e293b">NG5  Gate 5 — Legacy name services retired, evidence com…</text>
+<path d="M952.2 887.0 L957.7 892.5 L952.2 898.0 L946.7 892.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="14" y="914" width="18" height="9" rx="2" fill="#DC2626"/>
+<text x="38" y="923" font-size="10.5" fill="#1e293b">Critical path</text>
+<rect x="140.60000000000002" y="914" width="18" height="9" rx="2" fill="#2563EB"/>
+<text x="164.60000000000002" y="923" font-size="10.5" fill="#1e293b">Other task</text>
+<line x1="248.60000000000002" y1="918.5" x2="266.6" y2="918.5" stroke="#cbd5e1" stroke-width="2"/>
+<text x="272.6" y="923" font-size="10.5" fill="#1e293b">Float</text>
+<path d="M334.6 913 L340.1 918.5 L334.6 924 L329.1 918.5 Z" fill="#7C3AED"/>
+<text x="349.6" y="923" font-size="10.5" fill="#1e293b">Gate</text>
+<path d="M405.40000000000003 913 L410.90000000000003 918.5 L405.40000000000003 924 L399.90000000000003 918.5 Z" fill="#D97706"/>
+<text x="420.40000000000003" y="923" font-size="10.5" fill="#1e293b">Decision</text>
+<path d="M501.0 913 L506.5 918.5 L501.0 924 L495.5 918.5 Z" fill="#059669"/>
+<text x="516.0" y="923" font-size="10.5" fill="#1e293b">From another plan</text>
+<text x="966" y="923" font-size="10.5" fill="#64748b" text-anchor="end">A red outline marks a milestone on the critical path</text>
+</svg>

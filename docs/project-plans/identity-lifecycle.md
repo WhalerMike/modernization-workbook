@@ -120,7 +120,14 @@ Each gate is the next phase's entry condition. The approver signs it against the
 
 ## Links to other plans
 
-- **IG3, Gate 3 — HR feed live for the foundation scope,** feeds the [Program master schedule](program-master-schedule.md) plan as its X-IDL, with 2 d of float there.
+
+Other plans that take a date from this one. *Waits for it*: that plan can't move until this item finishes, and its float says how far this item can slip before it moves that plan. *Must finish by it*: that plan's work has to be done before this item, and the margin says by how much.
+
+| This plan's item | When | Linked plan | Relationship | Float or margin |
+|---|---|---|---|---|
+| IG3  Gate 3 — HR feed live for the foundation scope | end of wk 8 | [Program master schedule](program-master-schedule.md) (X-IDL) | Waits for it | 2 d |
+
+: Plans that take a date from this one {.striped .hover}
 
 ## Work breakdown and schedule
 

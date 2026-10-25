@@ -1,0 +1,178 @@
+# Sample project plan: Privileged Access & Administrative Identity.
+# scripts/project_plans/build.py reads this file and writes the page, the
+# Gantt chart and the downloads. Edit this file, never the outputs.
+#
+# Durations are working days and illustrative. Book 00, Chapter 06 charters
+# this project fifth but starts it early: the program's G1 needs the emergency
+# access accounts tested and Tier 0 administrators registered for
+# phishing-resistant sign-in. So the inventory runs alongside the program's
+# Phase 0, the foundation (Book 04, Chapter 08's Steps 0 to 4) in Phase 1, the
+# just-in-time pilot for one role class in Phase 2, the remaining tiers in
+# Phase 3, and the access-related Group Policy retirement in Phase 4.
+
+slug: privileged-access
+title: "Privileged Access & Administrative Identity: Just-in-Time by Tier"
+short_title: "Privileged Access & Administrative Identity"
+subtitle: "A sample project plan for Book 04's privileged model: emergency access first, then PIM self-request with approval for one role class, then every tier, with the decisions that set each gate"
+description: "A sample PMP-style project plan for the Privileged Access & Administrative Identity project, built from Book 04, Chapters 04 to 10 and Appendix B: a work breakdown from the privilege inventory to every tier under just-in-time elevation, a computed critical path, a gate per phase with its approver and criteria, and the decisions (tier model, approvers, break-glass custody, PAW enforcement, review cadence) with owners and decide-by weeks."
+plan_type: "Project"
+covers: "Inventory, foundation, a just-in-time pilot, every tier, and the evidence and residual risk"
+books: "Book 04"
+sponsor: "Executive sponsor and CIO; CISO"
+manager: "Project lead, with the four domain leads: privileged roles, non-human identity, break-glass and separation of duties"
+start_label: "Week 1 = the program's Phase 0 approval"
+project_start: 2027-01-04
+
+purpose: |
+  This plan builds the privileged half of [Book 04](../books/b04-access/index.md): the privilege tiers in [Chapter 04](../books/b04-access/04-privileged-roles-and-tiers.md), the administrator policies in the [Conditional Access library](../books/b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators), PIM self-request with approval in [Chapter 08](../books/b04-access/08-pim-self-request-with-approval.md) and [Appendix B](../books/b04-access/appendix-b-pim-role-settings.md), the reviews in [Chapter 09](../books/b04-access/09-access-governance.md), and the repository and evidence in [Chapter 10](../books/b04-access/10-access-as-code-and-evidence.md). It follows the [charter](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/privileged-access-charter.md): inventory, elevate just-in-time for one role class, reduce, govern the exceptions, evidence. It feeds the [program master schedule](program-master-schedule.md): the emergency access accounts and phishing-resistant registration it builds are G1 criteria, and its pilot is the program's PIM milestone in Phase 2.
+
+critical_path_note: |
+  This project runs ahead of the program, as [Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md#why-this-order) intends, so what binds it early is the program's gates, not its own finish. The program's G1 (end of week 8) needs the emergency access accounts and phishing-resistant registration for administrators: they're done with ten working days to spare. The program's G2 (end of week 16) needs just-in-time elevation in use for the pilot class, this plan's Gate 2: it lands with twelve days to spare. Those margins, shown under *Links to other plans*, are the numbers to track; the float on the early decisions is measured to this plan's finish and overstates their slack. Read them against G1: the tier model, the break-glass custody and the approvers have to be settled by week 4.
+
+  The computed critical path is the tail: the program's G3, then retiring the access-related Group Policy settings the library has replaced, then naming the residual standing privilege in the system security plan and taking it to the authorizing official. Inside the foundation, the order is fixed. Emergency access comes first, then the activation policy, then the role settings, because switching on approval before the emergency accounts exist is the one sequence that locks the agency out.
+
+assumptions:
+  - "Every user with an eligible or time-bound assignment, every approver and every reviewer is licensed for Microsoft Entra ID P2 or Entra ID Governance ([Chapter 08](../books/b04-access/08-pim-self-request-with-approval.md#prerequisites))."
+  - "Privileged access workstations are built by the endpoint project as Tier 0 devices with their own compliance policy ([Book 05, Chapter 08](../books/b05-devices/08-gpo-to-intune-policy-migration.md#cp-002-tier-0-privileged-access-workstation-strict)) and labeled through the device role attribute."
+  - "The tier boundaries are the program's design; the hour counts and review cadences are a starting posture the agency adapts ([Chapter 04](../books/b04-access/04-privileged-roles-and-tiers.md#the-programs-privilege-tiers))."
+  - "Two standing exceptions remain by design: the emergency access accounts and service principals that can't perform an activation ([Chapter 08](../books/b04-access/08-pim-self-request-with-approval.md#step-5-convert-standing-assignments-to-eligible))."
+  - "Durations are illustrative. Replace them with the agency's own estimates once the role inventory is in."
+
+risks:
+  - risk: "Approval is switched on before the emergency access accounts exist"
+    impact: "The documented tenant lockout: no active administrator can approve or recover"
+    response: "Build and test the emergency accounts first (Step 0), and name the approver group on every role ([Chapter 08](../books/b04-access/08-pim-self-request-with-approval.md#step-0-establish-emergency-access-accounts-first))"
+  - risk: "The P2 or Governance subscription lapses"
+    impact: "Eligible assignments and PIM settings are removed; time-bound active assignments become permanent"
+    response: "Treat license expiry as a configuration-management event; keep the role inventory exported as code so it can be restored ([Chapter 08](../books/b04-access/08-pim-self-request-with-approval.md#prerequisites))"
+  - risk: "Approver groups can't cover real operating hours"
+    impact: "Requests expire after 24 hours; operators push back on just-in-time for critical roles"
+    response: "Size each approver group for the agency's hours; make the emergency procedure, not a workaround, the answer when approvers are unavailable ([Chapter 08](../books/b04-access/08-pim-self-request-with-approval.md#the-24-hour-window))"
+  - risk: "Automation breaks when protected actions are turned on"
+    impact: "Azure PowerShell fails on protected actions; the pilot slips while scripts are rewritten"
+    response: "Inventory the automation that touches those permissions in Phase 0, and move it to Microsoft Graph PowerShell first ([Chapter 08](../books/b04-access/08-pim-self-request-with-approval.md#step-6-close-the-loop-with-protected-actions))"
+
+tasks:
+  # ------------------------------------------------- Phase 0 — inventory
+  - {id: A0.1, phase: 0, name: "Active directory-role assignments inventoried and classified by tier", dur: 8, owner: "Identity engineering",
+     source: "../books/b04-access/04-privileged-roles-and-tiers.md#the-programs-privilege-tiers"}
+  - {id: A0.2, phase: 0, name: "Azure privileged role assignments and subscription owners inventoried", dur: 5, owner: "Identity engineering",
+     source: "../books/b04-access/04-privileged-roles-and-tiers.md#azure-rbac"}
+  - {id: A0.3, phase: 0, name: "App registrations, owners, credentials and granted permissions inventoried, read-only; automation on the protected permissions found", dur: 8, owner: "Identity engineering",
+     source: "../books/b04-access/05-applications-and-workload-identities.md#a-read-only-inventory-to-start-from"}
+  - {id: A0.4, phase: 0, name: "Existing emergency access accounts located and checked against the standard", dur: 3, owner: "Identity engineering",
+     source: "../books/b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts"}
+  - {id: D-A1, kind: decision, phase: 0, name: "Privilege tier model", after: [A0.1], owner: "CISO",
+     options: "The program's four tiers as published (T0 control plane, T1 management plane, T2 scoped operations, read-only); the same boundaries with hour counts adapted to the agency's role inventory",
+     late: "No role's settings can be written, and the PIM build waits",
+     source: "../books/b04-access/04-privileged-roles-and-tiers.md#the-programs-privilege-tiers"}
+  - {id: AG0, kind: gate, phase: 0, name: "Gate 0 — Privilege inventoried", after: [A0.1, A0.2, A0.3, A0.4, D-A1], owner: "CISO",
+     criteria: "Standing administrative privilege inventoried and classified by tier; app registrations listed with their owners and credentials; emergency access accounts located; tier model approved",
+     source: "../books/b04-access/04-privileged-roles-and-tiers.md#the-programs-privilege-tiers"}
+  - {id: X-G0, kind: external, phase: 0, name: "Program G0 — Ready to Plan", ref: "program-master-schedule:G0", owner: "Steward",
+     late: "The foundation work can't start",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Phase 1 — foundation
+  - {id: D-A2, kind: decision, phase: 1, name: "Emergency access credentials and custody", after: [A0.4], owner: "CISO",
+     options: "Passkey (FIDO2) security keys or certificate-based authentication, different from the normal administrator methods; in either case retrieved only under dual custody by two senior administrators",
+     late: "Step 0 can't close, so no role can be made eligible and no approval switched on",
+     source: "../books/b04-access/06-who-decides-access.md#emergency-access"}
+  - {id: A1.1, phase: 1, name: "Two emergency accounts built to the standard, excluded by one group, alerted and tested", dur: 5, after: [D-A2, X-G0], owner: "Identity engineering",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#step-0-establish-emergency-access-accounts-first"}
+  - {id: A1.2, phase: 1, name: "Phishing-resistant MFA registered for every eligible administrator", dur: 10, after: [X-G0], owner: "Identity engineering",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#prerequisites"}
+  - {id: A1.3, phase: 1, name: "Audit and sign-in logs exported to the workspace at 365-day retention", dur: 5, after: [X-G0], owner: "Identity engineering",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#step-9-export-audit-records-for-retention"}
+  - {id: D-A3, kind: decision, phase: 1, name: "Approvers for PIM activation, by tier", after: [D-A1], owner: "CISO",
+     options: "The security office as PIM-Approvers-T0, outside the Tier 0 population; a governed group outside the Tier 1 population as PIM-Approvers-T1; for each Tier 2 role, approval or a documented risk acceptance",
+     late: "Approval can't be switched on without the lockout risk, and the role settings wait",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#approver-design-and-separation-of-duties"}
+  - {id: A1.4, phase: 1, name: "Approver groups built, at least two approvers per tier", dur: 3, after: [D-A3, X-G0], owner: "Identity engineering",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#step-1-build-the-approver-groups"}
+  - {id: A1.5, phase: 1, name: "Authentication context c1 and its policy PIM-Activation-c1 built and turned On", dur: 3, after: [A1.1, A1.2], owner: "Identity engineering",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy"}
+  - {id: D-A4, kind: decision, phase: 1, name: "Write path for access as code", after: [X-G0], owner: "Identity engineering",
+     options: "Microsoft365DSC for every object class (the program's reference); Terraform azuread for the classes it covers, with Graph PowerShell for PIM role settings, access reviews and Lifecycle Workflows",
+     late: "Role settings can't be held as code, and the drift baseline waits",
+     source: "../books/b04-access/10-access-as-code-and-evidence.md#coverage-and-the-programs-choice"}
+  - {id: D-A5, kind: decision, phase: 1, name: "First role class under just-in-time elevation", after: [AG0], owner: "CISO",
+     options: "Tier 0 control-plane roles; Tier 1 management-plane roles",
+     late: "The pilot has no scope, and the program's Phase 2 PIM milestone waits",
+     source: "../books/b00-orientation/06-the-project-portfolio.md#privileged-access-administrative-identity"}
+  - {id: D-A6, kind: decision, phase: 1, name: "Access review cadence for privileged roles", after: [D-A1], owner: "CISO",
+     options: "Monthly for Tier 0 and quarterly for every other privileged role (the program's design); another organization-defined frequency, which AC-6(7) leaves to the agency",
+     late: "Reviews can't be scheduled, and the pilot gate's first-review criterion fails",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#step-8-access-reviews-of-eligibility"}
+  - {id: A1.6, phase: 1, name: "Role settings for every tier written as code from Appendix B and reviewed", dur: 8, after: [D-A4, A1.4, A1.5], owner: "Identity engineering",
+     source: "../books/b04-access/appendix-b-pim-role-settings.md#settings-common-to-every-role"}
+  - {id: AG1, kind: gate, phase: 1, name: "Gate 1 — Foundation ready", after: [A1.6, A1.3], owner: "CISO",
+     criteria: "Emergency access accounts tested; PIM-Activation-c1 On; an approver group named on every role that requires approval; role settings in the repository and reviewed; logs exported beyond 30 days",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#build"}
+  - {id: X-G1, kind: external, phase: 1, name: "Program G1 — Foundation Complete", ref: "program-master-schedule:G1", after: [A1.1, A1.2], owner: "Steward",
+     late: "The pilot can't start",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Phase 2 — just-in-time pilot
+  - {id: A2.1, phase: 2, name: "Pilot class's role settings applied; PRV role-assignable groups hold the eligible assignments", dur: 5, after: [AG1, X-G1, D-A5], owner: "Identity engineering",
+     source: "../books/b04-access/04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person"}
+  - {id: A2.2, phase: 2, name: "Standing assignments in the pilot class converted: eligible first, activation confirmed, active removed", dur: 10, after: [A2.1], owner: "Identity engineering",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#step-5-convert-standing-assignments-to-eligible"}
+  - {id: A2.3, phase: 2, name: "Protected actions with context c2 on the Conditional Access permissions", dur: 5, after: [A2.1, A0.3], owner: "Identity engineering",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#step-6-close-the-loop-with-protected-actions"}
+  - {id: A2.4, phase: 2, name: "Notifications and PIM alerts routed; the assigned-outside-PIM alert reaches the SIEM", dur: 3, after: [A2.1], owner: "Security operations",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#step-7-notifications-and-pim-alerts"}
+  - {id: A2.5, phase: 2, name: "Administrator policies (CA003 to CA005, CA025 to CA027) in report-only, then piloted on the identity team", dur: 15, after: [X-G1], owner: "Identity engineering",
+     source: "../books/b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators"}
+  - {id: D-A7, kind: decision, phase: 2, name: "PAW enforcement for the administrator persona", after: [A2.5], owner: "CISO",
+     options: "Enforce CA004 and CA025 for every administrator; enforce with a time-bound exclusion group for administrators whose PAW isn't issued; keep report-only and fix the causes first",
+     late: "Privileged roles stay usable from any device, and the pilot gate waits",
+     source: "../books/b04-access/04-privileged-roles-and-tiers.md#privileged-access-workstations"}
+  - {id: A2.6, phase: 2, name: "Administrator policies enforced ring by ring, an emergency sign-in tested before and after", dur: 10, after: [D-A7], owner: "Identity engineering",
+     source: "../books/b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement"}
+  - {id: A2.7, phase: 2, name: "First monthly review of Tier 0 eligibility and PRV-T0 membership closed", dur: 10, after: [A2.2, D-A6], owner: "Identity governance officer",
+     source: "../books/b04-access/09-access-governance.md#cadence"}
+  - {id: A2.8, phase: 2, name: "Validation test plan run for the pilot class", dur: 3, after: [A2.2, A2.3, A2.4, A2.6], owner: "ISSO",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#validation-test-plan"}
+  - {id: AG2, kind: gate, phase: 2, name: "Gate 2 — Just-in-time in use for the pilot class", after: [A2.7, A2.8], owner: "CISO",
+     criteria: "Every human assignment in the pilot class eligible; only the emergency accounts and documented service principals standing; validation tests pass; the first review closed with removals applied; every elevation evidenced in the workspace",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#assessment-evidence"}
+  - {id: X-G2, kind: external, phase: 2, name: "Program G2 — Pilot Clean", ref: "program-master-schedule:G2", after: [AG2], owner: "Steward and executive sponsor",
+     late: "The remaining tiers can't start",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Phase 3 — every tier
+  - {id: A3.1, phase: 3, name: "Remaining tiers converted to eligible, tier by tier", dur: 30, after: [AG2, X-G2], owner: "Identity engineering",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#settings-by-tier"}
+  - {id: A3.2, phase: 3, name: "Azure privileged roles eligible through PIM; three subscription owners at most", dur: 15, after: ["A3.1:SS+5"], owner: "Identity engineering",
+     source: "../books/b04-access/04-privileged-roles-and-tiers.md#azure-rbac"}
+  - {id: A3.3, phase: 3, name: "PRV group membership published as access packages with approval, expiry and review", dur: 15, after: [AG2, X-G2], owner: "Identity engineering",
+     source: "../books/b04-access/04-privileged-roles-and-tiers.md#layer-1-who-may-ever-hold-the-role"}
+  - {id: A3.4, phase: 3, name: "Non-human privileged identities: two named owners each, credentials off secrets, over-consented apps swept", dur: 40, after: [AG2, X-G2], owner: "Identity governance officer",
+     source: "../books/b04-access/05-applications-and-workload-identities.md#governing-app-registrations"}
+  - {id: A3.5, phase: 3, name: "Help desk privileged access group narrowed to a custom assignment role", dur: 5, after: [A3.1], owner: "Identity governance officer",
+     source: "../books/b04-access/06-who-decides-access.md#what-each-entra-role-can-actually-do"}
+  - {id: A3.6, phase: 3, name: "Change control in force: two people per change, a security approver for Tier 0 objects, drift every six hours", dur: 15, after: [AG2], owner: "Identity engineering",
+     source: "../books/b04-access/10-access-as-code-and-evidence.md#change-control"}
+  - {id: A3.7, phase: 3, name: "First quarterly review cycle closed for Tier 1, Tier 2 and read-only roles", dur: 15, after: [A3.1, A3.3], owner: "Identity governance officer",
+     source: "../books/b04-access/appendix-b-pim-role-settings.md#review-cadence-by-tier"}
+  - {id: AG3, kind: gate, phase: 3, name: "Gate 3 — Every tier just-in-time", after: [A3.2, A3.4, A3.5, A3.6, A3.7], owner: "CISO",
+     criteria: "Every human privileged assignment eligible; requester and approver distinct for Tier 0 changes; non-human privileged identities in scope have two named owners; reviews running on the approved cadence; a Tier 0 drift handled as an incident",
+     source: "../books/b04-access/10-access-as-code-and-evidence.md#drift-detection-and-closure"}
+  - {id: X-G3, kind: external, phase: 3, name: "Program G3 — Rollout Complete", ref: "program-master-schedule:G3", owner: "Executive sponsor and steering committee",
+     late: "The access-related Group Policy can't be retired",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Phase 4 — evidence and residual risk
+  - {id: A4.1, phase: 4, name: "Access-related GPO settings (smart-card logon, logon rights) retired where the library policy is enforced", dur: 10, after: [X-G3, A2.6], owner: "Identity engineering",
+     source: "../books/b04-access/07-the-conditional-access-policy-library.md#retiring-group-policy-with-the-library"}
+  - {id: A4.2, phase: 4, name: "Residual standing privilege named in the system security plan; residual risk to the authorizing official", dur: 5, after: [AG3, A4.1], owner: "ISSO",
+     source: "../books/b04-access/08-pim-self-request-with-approval.md#step-5-convert-standing-assignments-to-eligible"}
+  - {id: A4.3, phase: 4, name: "Monthly evidence package assembled and its metrics signed off", dur: 10, after: [A3.6, X-G3], owner: "Identity governance officer",
+     source: "../books/b04-access/10-access-as-code-and-evidence.md#the-evidence-package-for-a-period"}
+  - {id: AG4, kind: gate, phase: 4, name: "Gate 4 — Residual privilege owned", after: [A4.2, A4.3], owner: "CISO",
+     criteria: "Residual standing privilege named with a rationale and accepted by the authorizing official; evidence for every elevation in the period; exception register current; the replaced access-related GPO settings retired",
+     source: "../books/b04-access/10-access-as-code-and-evidence.md#what-the-assessor-reads"}
+
+phases:
+  0: "Phase 0 — Inventory"
+  1: "Phase 1 — Foundation: emergency access and the activation gate"
+  2: "Phase 2 — Just-in-time pilot for one role class"
+  3: "Phase 3 — Every tier"
+  4: "Phase 4 — Evidence and residual risk"

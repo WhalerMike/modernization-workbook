@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="907" viewBox="0 0 980 907" role="img" aria-labelledby="t d" font-family="Inter, 'DM Sans', Arial, sans-serif">
+<title id="t">Privileged Access &amp; Administrative Identity: schedule</title>
+<desc id="d">Gantt chart of 44 tasks over 39 weeks. Critical-path tasks are red; other tasks are blue, with a grey line for their float. Gates are violet diamonds, decisions amber diamonds, and milestones from another plan green diamonds.</desc>
+<rect width="980" height="907" fill="#ffffff"/>
+<line x1="360.0" y1="28" x2="360.0" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="362.0" y="22" font-size="10" fill="#64748b">wk 1</text>
+<line x1="421.5" y1="28" x2="421.5" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="423.5" y="22" font-size="10" fill="#64748b">wk 5</text>
+<line x1="483.1" y1="28" x2="483.1" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="485.1" y="22" font-size="10" fill="#64748b">wk 9</text>
+<line x1="544.6" y1="28" x2="544.6" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="546.6" y="22" font-size="10" fill="#64748b">wk 13</text>
+<line x1="606.2" y1="28" x2="606.2" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="608.2" y="22" font-size="10" fill="#64748b">wk 17</text>
+<line x1="667.7" y1="28" x2="667.7" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="669.7" y="22" font-size="10" fill="#64748b">wk 21</text>
+<line x1="729.2" y1="28" x2="729.2" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="731.2" y="22" font-size="10" fill="#64748b">wk 25</text>
+<line x1="790.8" y1="28" x2="790.8" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="792.8" y="22" font-size="10" fill="#64748b">wk 29</text>
+<line x1="852.3" y1="28" x2="852.3" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="854.3" y="22" font-size="10" fill="#64748b">wk 33</text>
+<line x1="913.8" y1="28" x2="913.8" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="915.8" y="22" font-size="10" fill="#64748b">wk 37</text>
+<rect x="0" y="34" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="46.5" font-size="11" font-weight="600" fill="#1e293b">Phase 0 — Inventory</text>
+<text x="14" y="63" font-size="10.5" fill="#64748b">A0.1  Active directory-role assignments inventoried and…</text>
+<line x1="384.6" y1="59.5" x2="495.4" y2="59.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="55" width="24.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="80" font-size="10.5" fill="#64748b">A0.2  Azure privileged role assignments and subscription…</text>
+<line x1="375.4" y1="76.5" x2="529.2" y2="76.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="72" width="15.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="97" font-size="10.5" fill="#64748b">A0.3  App registrations, owners, credentials and granted…</text>
+<line x1="384.6" y1="93.5" x2="529.2" y2="93.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="89" width="24.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="114" font-size="10.5" fill="#64748b">A0.4  Existing emergency access accounts located and che…</text>
+<line x1="369.2" y1="110.5" x2="467.7" y2="110.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="106" width="9.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="131" font-size="10.5" fill="#64748b">D-A1  Privilege tier model</text>
+<path d="M384.6 122.0 L390.1 127.5 L384.6 133.0 L379.1 127.5 Z" fill="#D97706"/>
+<text x="14" y="148" font-size="10.5" fill="#64748b">AG0  Gate 0 — Privilege inventoried</text>
+<path d="M384.6 139.0 L390.1 144.5 L384.6 150.0 L379.1 144.5 Z" fill="#7C3AED"/>
+<text x="14" y="165" font-size="10.5" fill="#64748b">X-G0  Program G0 — Ready to Plan</text>
+<path d="M421.5 156.0 L427.0 161.5 L421.5 167.0 L416.0 161.5 Z" fill="#059669"/>
+<rect x="0" y="170" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="182.5" font-size="11" font-weight="600" fill="#1e293b">Phase 1 — Foundation: emergency access and the activation gate</text>
+<text x="14" y="199" font-size="10.5" fill="#64748b">D-A2  Emergency access credentials and custody</text>
+<path d="M369.2 190.0 L374.7 195.5 L369.2 201.0 L363.7 195.5 Z" fill="#D97706"/>
+<text x="14" y="216" font-size="10.5" fill="#64748b">A1.1  Two emergency accounts built to the standard, excl…</text>
+<line x1="436.9" y1="212.5" x2="483.1" y2="212.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="421.5" y="208" width="15.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="233" font-size="10.5" fill="#64748b">A1.2  Phishing-resistant MFA registered for every eligib…</text>
+<line x1="452.3" y1="229.5" x2="483.1" y2="229.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="421.5" y="225" width="30.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="250" font-size="10.5" fill="#64748b">A1.3  Audit and sign-in logs exported to the workspace a…</text>
+<line x1="436.9" y1="246.5" x2="529.2" y2="246.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="421.5" y="242" width="15.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="267" font-size="10.5" fill="#64748b">D-A3  Approvers for PIM activation, by tier</text>
+<path d="M384.6 258.0 L390.1 263.5 L384.6 269.0 L379.1 263.5 Z" fill="#D97706"/>
+<text x="14" y="284" font-size="10.5" fill="#64748b">A1.4  Approver groups built, at least two approvers per…</text>
+<line x1="430.8" y1="280.5" x2="504.6" y2="280.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="421.5" y="276" width="9.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="301" font-size="10.5" fill="#64748b">A1.5  Authentication context c1 and its policy PIM-Activ…</text>
+<line x1="461.5" y1="297.5" x2="504.6" y2="297.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="452.3" y="293" width="9.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="318" font-size="10.5" fill="#64748b">D-A4  Write path for access as code</text>
+<path d="M421.5 309.0 L427.0 314.5 L421.5 320.0 L416.0 314.5 Z" fill="#D97706"/>
+<text x="14" y="335" font-size="10.5" fill="#64748b">D-A5  First role class under just-in-time elevation</text>
+<path d="M384.6 326.0 L390.1 331.5 L384.6 337.0 L379.1 331.5 Z" fill="#D97706"/>
+<text x="14" y="352" font-size="10.5" fill="#64748b">D-A6  Access review cadence for privileged roles</text>
+<path d="M384.6 343.0 L390.1 348.5 L384.6 354.0 L379.1 348.5 Z" fill="#D97706"/>
+<text x="14" y="369" font-size="10.5" fill="#64748b">A1.6  Role settings for every tier written as code from…</text>
+<line x1="486.2" y1="365.5" x2="529.2" y2="365.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="461.5" y="361" width="24.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="386" font-size="10.5" fill="#64748b">AG1  Gate 1 — Foundation ready</text>
+<path d="M486.2 377.0 L491.7 382.5 L486.2 388.0 L480.7 382.5 Z" fill="#7C3AED"/>
+<text x="14" y="403" font-size="10.5" fill="#64748b">X-G1  Program G1 — Foundation Complete</text>
+<path d="M483.1 394.0 L488.6 399.5 L483.1 405.0 L477.6 399.5 Z" fill="#059669"/>
+<rect x="0" y="408" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="420.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Just-in-time pilot for one role class</text>
+<text x="14" y="437" font-size="10.5" fill="#64748b">A2.1  Pilot class&#x27;s role settings applied; PRV role-assi…</text>
+<line x1="501.5" y1="433.5" x2="544.6" y2="433.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="486.2" y="429" width="15.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="454" font-size="10.5" fill="#64748b">A2.2  Standing assignments in the pilot class converted:…</text>
+<line x1="532.3" y1="450.5" x2="575.4" y2="450.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="501.5" y="446" width="30.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="471" font-size="10.5" fill="#64748b">A2.3  Protected actions with context c2 on the Condition…</text>
+<line x1="516.9" y1="467.5" x2="596.9" y2="467.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="501.5" y="463" width="15.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="488" font-size="10.5" fill="#64748b">A2.4  Notifications and PIM alerts routed; the assigned-…</text>
+<line x1="510.8" y1="484.5" x2="596.9" y2="484.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="501.5" y="480" width="9.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="505" font-size="10.5" fill="#64748b">A2.5  Administrator policies (CA003 to CA005, CA025 to C…</text>
+<line x1="529.2" y1="501.5" x2="566.2" y2="501.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="483.1" y="497" width="46.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="522" font-size="10.5" fill="#64748b">D-A7  PAW enforcement for the administrator persona</text>
+<path d="M529.2 513.0 L534.7 518.5 L529.2 524.0 L523.7 518.5 Z" fill="#D97706"/>
+<text x="14" y="539" font-size="10.5" fill="#64748b">A2.6  Administrator policies enforced ring by ring, an e…</text>
+<line x1="560.0" y1="535.5" x2="596.9" y2="535.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="529.2" y="531" width="30.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="556" font-size="10.5" fill="#64748b">A2.7  First monthly review of Tier 0 eligibility and PRV…</text>
+<line x1="563.1" y1="552.5" x2="606.2" y2="552.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="532.3" y="548" width="30.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="573" font-size="10.5" fill="#64748b">A2.8  Validation test plan run for the pilot class</text>
+<line x1="569.2" y1="569.5" x2="606.2" y2="569.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="560.0" y="565" width="9.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="590" font-size="10.5" fill="#64748b">AG2  Gate 2 — Just-in-time in use for the pilot class</text>
+<path d="M569.2 581.0 L574.7 586.5 L569.2 592.0 L563.7 586.5 Z" fill="#7C3AED"/>
+<text x="14" y="607" font-size="10.5" fill="#64748b">X-G2  Program G2 — Pilot Clean</text>
+<path d="M606.2 598.0 L611.7 603.5 L606.2 609.0 L600.7 603.5 Z" fill="#059669"/>
+<rect x="0" y="612" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="624.5" font-size="11" font-weight="600" fill="#1e293b">Phase 3 — Every tier</text>
+<text x="14" y="641" font-size="10.5" fill="#64748b">A3.1  Remaining tiers converted to eligible, tier by tier</text>
+<line x1="698.5" y1="637.5" x2="898.5" y2="637.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="606.2" y="633" width="92.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="658" font-size="10.5" fill="#64748b">A3.2  Azure privileged roles eligible through PIM; three…</text>
+<line x1="667.7" y1="654.5" x2="944.6" y2="654.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="621.5" y="650" width="46.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="675" font-size="10.5" fill="#64748b">A3.3  PRV group membership published as access packages…</text>
+<line x1="652.3" y1="671.5" x2="898.5" y2="671.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="606.2" y="667" width="46.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="692" font-size="10.5" fill="#64748b">A3.4  Non-human privileged identities: two named owners…</text>
+<line x1="729.2" y1="688.5" x2="944.6" y2="688.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="606.2" y="684" width="123.1" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="709" font-size="10.5" fill="#64748b">A3.5  Help desk privileged access group narrowed to a cu…</text>
+<line x1="713.8" y1="705.5" x2="944.6" y2="705.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="698.5" y="701" width="15.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="726" font-size="10.5" fill="#64748b">A3.6  Change control in force: two people per change, a…</text>
+<line x1="615.4" y1="722.5" x2="929.2" y2="722.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="569.2" y="718" width="46.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="743" font-size="10.5" fill="#64748b">A3.7  First quarterly review cycle closed for Tier 1, Ti…</text>
+<line x1="744.6" y1="739.5" x2="944.6" y2="739.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="698.5" y="735" width="46.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="760" font-size="10.5" fill="#64748b">AG3  Gate 3 — Every tier just-in-time</text>
+<path d="M744.6 751.0 L750.1 756.5 L744.6 762.0 L739.1 756.5 Z" fill="#7C3AED"/>
+<text x="14" y="777" font-size="10.5" fill="#64748b">X-G3  Program G3 — Rollout Complete</text>
+<path d="M913.8 768.0 L919.3 773.5 L913.8 779.0 L908.3 773.5 Z" fill="#059669"/>
+<rect x="0" y="782" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="794.5" font-size="11" font-weight="600" fill="#1e293b">Phase 4 — Evidence and residual risk</text>
+<text x="14" y="811" font-size="10.5" fill="#1e293b">A4.1  Access-related GPO settings (smart-card logon, log…</text>
+<rect x="913.8" y="803" width="30.8" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="828" font-size="10.5" fill="#1e293b">A4.2  Residual standing privilege named in the system se…</text>
+<rect x="944.6" y="820" width="15.4" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="845" font-size="10.5" fill="#64748b">A4.3  Monthly evidence package assembled and its metrics…</text>
+<line x1="944.6" y1="841.5" x2="960.0" y2="841.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="913.8" y="837" width="30.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="862" font-size="10.5" fill="#1e293b">AG4  Gate 4 — Residual privilege owned</text>
+<path d="M960.0 853.0 L965.5 858.5 L960.0 864.0 L954.5 858.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="14" y="880" width="18" height="9" rx="2" fill="#DC2626"/>
+<text x="38" y="889" font-size="10.5" fill="#1e293b">Critical path</text>
+<rect x="140.60000000000002" y="880" width="18" height="9" rx="2" fill="#2563EB"/>
+<text x="164.60000000000002" y="889" font-size="10.5" fill="#1e293b">Other task</text>
+<line x1="248.60000000000002" y1="884.5" x2="266.6" y2="884.5" stroke="#cbd5e1" stroke-width="2"/>
+<text x="272.6" y="889" font-size="10.5" fill="#1e293b">Float</text>
+<path d="M334.6 879 L340.1 884.5 L334.6 890 L329.1 884.5 Z" fill="#7C3AED"/>
+<text x="349.6" y="889" font-size="10.5" fill="#1e293b">Gate</text>
+<path d="M405.40000000000003 879 L410.90000000000003 884.5 L405.40000000000003 890 L399.90000000000003 884.5 Z" fill="#D97706"/>
+<text x="420.40000000000003" y="889" font-size="10.5" fill="#1e293b">Decision</text>
+<path d="M501.0 879 L506.5 884.5 L501.0 890 L495.5 884.5 Z" fill="#059669"/>
+<text x="516.0" y="889" font-size="10.5" fill="#1e293b">From another plan</text>
+<text x="966" y="889" font-size="10.5" fill="#64748b" text-anchor="end">A red outline marks a milestone on the critical path</text>
+</svg>

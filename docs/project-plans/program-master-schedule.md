@@ -28,7 +28,7 @@ This is an illustrative plan built from the workbook's books, in the form a proj
 | **Plan manager** | Steward (program office) |
 | **Duration** | 48 weeks (240 working days), computed from the network |
 | **Work** | 46 tasks, 6 gates, 10 decision points, 1 milestone from other plans |
-| **Critical path** | 33 of 63 items; 6 more within 5 days of it |
+| **Critical path** | 33 of 63 items; 5 more within 5 days of it |
 | **Calendar** | Week 1 = the week Phase 0 is approved; five working days a week |
 
 : Plan at a glance {.striped}
@@ -87,7 +87,6 @@ The critical path, in order. Each item has zero total float: a day lost on any o
 
 | ID | Item | Float | When |
 |---|---|---|---|
-| X-IDL | HR-to-cloud provisioning live for the foundation scope | 2 d | end of wk 8 |
 | P2.4 | First migrated GPOs unlinked from the pilot OUs | 2 d | wk 13–14 |
 | P0.3 | Least-privilege service principals for Entra ID, Intune and Arc | 4 d | wk 1–2 |
 | P2.10 | Rollback rehearsed surface by surface | 4 d | wk 13–14 |
@@ -132,7 +131,41 @@ Each gate is the next phase's entry condition. The approver signs it against the
 
 ## Links to other plans
 
-- **X-IDL, HR-to-cloud provisioning live for the foundation scope,** comes from the [Identity Lifecycle & Provisioning](identity-lifecycle.md) plan (IG3, Gate 3 — HR feed live for the foundation scope). This plan expects it by end of wk 8; it has 2 d of float here. G1 fails its HR-feed criterion and waits.
+- **X-IDL, HR-to-cloud provisioning live for the foundation scope,** is IG3 in the [Identity Lifecycle & Provisioning](identity-lifecycle.md) plan (Gate 3 — HR feed live for the foundation scope), end of wk 8. This plan waits for it; it can slip 2 d before it moves this plan. G1 fails its HR-feed criterion and waits.
+
+Other plans that take a date from this one. *Waits for it*: that plan can't move until this item finishes, and its float says how far this item can slip before it moves that plan. *Must finish by it*: that plan's work has to be done before this item, and the margin says by how much.
+
+| This plan's item | When | Linked plan | Relationship | Float or margin |
+|---|---|---|---|---|
+| P0.2  Platform host built, repository seeded, host connected through Arc | wk 1–2 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-P02) | Waits for it | 8 d |
+| G0 — Ready to Plan | end of wk 4 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-G0) | Reference only | — |
+| G0 — Ready to Plan | end of wk 4 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G0) | Waits for it | 10 d |
+| G0 — Ready to Plan | end of wk 4 | [Supply Chain & SBOM](supply-chain-sbom.md) (X-G0) | Waits for it | 3 d |
+| P1.7  Sync and DNS Private Resolver designs; resolver deployed (M-018, M-019) | wk 5–6 | [Network & Access Modernization](network-access.md) (X-P17) | Waits for it | 2 d |
+| P1.2  Dynamic group design tested; enterprise groups and administrative units built (M-015) | wk 6–7 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-P12) | Waits for it | 0 |
+| G1 — Foundation Complete | end of wk 8 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-G1) | Must finish M4.1 by it | 4 d margin |
+| G1 — Foundation Complete | end of wk 8 | [Data Platform Identity Transformation](data-platform.md) (X-G1) | Waits for it | 94 d |
+| G1 — Foundation Complete | end of wk 8 | [Endpoint & Device Modernization](endpoint-device.md) (X-G1) | Must finish E1.3 by it | 1 d margin |
+| D06  Device pattern for each pilot cohort | end of wk 8 | [Endpoint & Device Modernization](endpoint-device.md) (X-D06) | Waits for it | 2 d |
+| G1 — Foundation Complete | end of wk 8 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G1) | Must finish A1.1, A1.2 by it | 10 d margin |
+| G1 — Foundation Complete | end of wk 8 | [Supply Chain & SBOM](supply-chain-sbom.md) (X-G1) | Waits for it | 13 d |
+| P2.9  Pilot servers under Arc with machine configuration (M-030) | wk 9–10 | [Data Platform Identity Transformation](data-platform.md) (X-ARC) | Waits for it | 0 |
+| start of P2.6  Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027) | wk 9–11 | [Network & Access Modernization](network-access.md) (X-P26S) | Must finish N1.1 by it | 2 d margin |
+| P2.6  Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027) | wk 9–11 | [Network & Access Modernization](network-access.md) (X-P26) | Waits for it | 49 d |
+| P2.3  Pilot devices moved by pattern (M-023) | wk 12–13 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-P23) | Waits for it | 4 d |
+| P2.7  Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028) | wk 13–14 | [Network & Access Modernization](network-access.md) (X-P27) | Waits for it | 47 d |
+| start of P2.11  Drift-clean hold (14 days, illustrative); success criteria met (M-031) | wk 15–16 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-HOLD) | Must finish M5.3 by it | 4 d margin |
+| G2 — Pilot Clean | end of wk 16 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-G2) | Waits for it | 26 d |
+| D08  End dates for legacy authentication and NTLM | end of wk 16 | [Data Platform Identity Transformation](data-platform.md) (X-D08) | Waits for it | 57 d |
+| G2 — Pilot Clean | end of wk 16 | [Endpoint & Device Modernization](endpoint-device.md) (X-G2) | Must finish EG2 by it | 2 d margin |
+| D08  End dates for legacy authentication and NTLM | end of wk 16 | [Endpoint & Device Modernization](endpoint-device.md) (X-D08) | Waits for it | 119 d |
+| G2 — Pilot Clean | end of wk 16 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G2) | Must finish AG2 by it | 12 d margin |
+| G3 — Rollout Complete | end of wk 36 | [Endpoint & Device Modernization](endpoint-device.md) (X-G3) | Waits for it | 19 d |
+| G3 — Rollout Complete | end of wk 36 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G3) | Waits for it | 0 |
+| P4.3  AD-integrated DNS zones moved, except the domain's own zones | wk 37–39 | [Network & Access Modernization](network-access.md) (X-P43) | Waits for it | 0 |
+| P4.6  AD-bound service principal names migrated, retired or islanded, app by app | wk 37–42 | [Data Platform Identity Transformation](data-platform.md) (X-P46) | Must finish DG4 by it | 58 d margin |
+
+: Plans that take a date from this one {.striped .hover}
 
 ## Work breakdown and schedule
 

@@ -1,0 +1,1174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+  <Name>data-platform.xml</Name>
+  <Title>Data Platform Identity Transformation: SQL Server from Windows Authentication to Entra ID</Title>
+  <ScheduleFromStart>1</ScheduleFromStart>
+  <StartDate>2027-01-04T08:00:00</StartDate>
+  <DefaultStartTime>08:00:00</DefaultStartTime>
+  <DefaultFinishTime>17:00:00</DefaultFinishTime>
+  <MinutesPerDay>480</MinutesPerDay>
+  <MinutesPerWeek>2400</MinutesPerWeek>
+  <DaysPerMonth>20</DaysPerMonth>
+  <DurationFormat>7</DurationFormat>
+  <CalendarUID>1</CalendarUID>
+  <Calendars>
+    <Calendar>
+      <UID>1</UID>
+      <Name>Standard</Name>
+      <IsBaseCalendar>1</IsBaseCalendar>
+      <BaseCalendarUID>-1</BaseCalendarUID>
+      <WeekDays>
+        <WeekDay>
+          <DayType>1</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+        <WeekDay>
+          <DayType>2</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>3</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>4</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>5</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>6</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>7</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+      </WeekDays>
+    </Calendar>
+  </Calendars>
+  <Tasks>
+    <Task>
+      <UID>1</UID>
+      <ID>1</ID>
+      <Name>Phase 0 — Prerequisites and the consolidation gate</Name>
+      <OutlineNumber>1</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-02-02T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>2</UID>
+      <ID>2</ID>
+      <Name>D0.1 Toolchain installed; evidence model and dated output directories under version control</Name>
+      <OutlineNumber>1.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-08T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/r01-prerequisites.md#step-2-the-evidence-model</Notes>
+    </Task>
+    <Task>
+      <UID>3</UID>
+      <ID>3</ID>
+      <Name>D0.2 Estate inventory, read-only: the audit seed, the SPN trail and the wider sweep, fused into one inventory</Name>
+      <OutlineNumber>1.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-06T08:00:00</Start>
+      <Finish>2027-01-19T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#step-1-build-the-estate-inventory-read-only</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>9600</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>4</UID>
+      <ID>4</ID>
+      <Name>D0.3 Three rationalization lenses applied; consolidation constraints recorded</Name>
+      <OutlineNumber>1.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-20T08:00:00</Start>
+      <Finish>2027-02-02T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#step-2-apply-the-three-rationalization-lenses-read-only</Notes>
+      <PredecessorLink>
+        <PredecessorUID>3</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>5</UID>
+      <ID>5</ID>
+      <Name>D-D1 Retain, consolidate or retire, instance by instance</Name>
+      <OutlineNumber>1.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-02T17:00:00</Start>
+      <Finish>2027-02-02T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CIO and data leadership</Contact>
+      <Notes>Owner or approver: CIO and data leadership
+Options: Retain; consolidate into a target (the source is then retired); retire
+If decided late: No login may be touched: the audit, Arc and login work all wait on the classified inventory
+Source: ../books/b06-data-platform/06-retain-consolidate-retire.md#the-three-classifications</Notes>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>6</UID>
+      <ID>6</ID>
+      <Name>D-D2 Consolidation target for each consolidated workload</Name>
+      <OutlineNumber>1.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-02T17:00:00</Start>
+      <Finish>2027-02-02T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CIO and data leadership</Contact>
+      <Notes>Owner or approver: CIO and data leadership
+Options: SQL Server 2022 or 2025 on an Arc-enabled host; Azure SQL Managed Instance; Azure SQL Database or elastic pools. A dedicated target where a constraint blocks shared hosting
+If decided late: Authentication would be migrated twice, once on the source and again on the target
+Source: ../books/b06-data-platform/06-retain-consolidate-retire.md#target-state-options</Notes>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>7</UID>
+      <ID>7</ID>
+      <Name>DG0 Gate 0 — Consolidation gate passed</Name>
+      <OutlineNumber>1.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-02T17:00:00</Start>
+      <Finish>2027-02-02T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CIO and data leadership</Contact>
+      <Notes>Owner or approver: CIO and data leadership
+Criteria: One row per instance, classified retain, consolidate or retire and justified by the three lenses; a target named for every consolidated workload; collation, vendor-version, compliance-isolation, failover-cluster and dependency constraints recorded; only retain instances and targets go on
+Source: ../books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#step-3-the-retain-consolidate-retire-decision-the-gate</Notes>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>8</UID>
+      <ID>8</ID>
+      <Name>Phase 1 — The authentication audit</Name>
+      <OutlineNumber>2</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-02-03T08:00:00</Start>
+      <Finish>2027-03-02T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>9</UID>
+      <ID>9</ID>
+      <Name>D1.1 Authentication audit of the surviving set: discovery pass, then the deep audit</Name>
+      <OutlineNumber>2.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-03T08:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/r03-the-authentication-audit.md#the-primary-script-spec3-d1.8-get-sqlserverauthaudit.ps1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>7</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>10</UID>
+      <ID>10</ID>
+      <Name>D1.2 Audit read: Category 1, 2 or 3 per instance; blockers listed; failover cluster instances flagged</Name>
+      <OutlineNumber>2.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-15T08:00:00</Start>
+      <Finish>2027-02-18T17:00:00</Finish>
+      <Duration>PT32H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/r03-the-authentication-audit.md#reading-the-result-migration-readiness</Notes>
+      <PredecessorLink>
+        <PredecessorUID>9</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>11</UID>
+      <ID>11</ID>
+      <Name>D1.3 NTLM Phase A baseline: SPN map and collisions, auth_scheme, host Security logs, Restrict NTLM audit policies, enhanced NTLM logging</Name>
+      <OutlineNumber>2.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-03T08:00:00</Start>
+      <Finish>2027-03-02T17:00:00</Finish>
+      <Duration>PT160H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.md#phase-a-discovery</Notes>
+      <PredecessorLink>
+        <PredecessorUID>7</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>12</UID>
+      <ID>12</ID>
+      <Name>D-D3 Upgrade or retire each pre-2022 retain instance</Name>
+      <OutlineNumber>2.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-18T17:00:00</Start>
+      <Finish>2027-02-18T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CIO and data leadership</Contact>
+      <Notes>Owner or approver: CIO and data leadership
+Options: Upgrade to SQL Server 2022 or later and follow the Category 2-to-1 path; retire or consolidate it; keep it on a sunset-dated exception with the certificate-based interim posture (the authorizing official decides the exception)
+If decided late: Category 3 instances have no path to Entra logins, and the exception long tail can't be sized
+Source: ../books/b06-data-platform/12-the-engine-authentication-decision.md#decision-4-pre-2022-instances-are-upgrade-or-except</Notes>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>13</UID>
+      <ID>13</ID>
+      <Name>D-D4 The engine authentication standard</Name>
+      <OutlineNumber>2.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-18T17:00:00</Start>
+      <Finish>2027-02-18T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Options: SQL authentication refused and sa disabled and renamed on every production instance, with break-glass as an empty Windows group; a type-S login kept past migration only as a dated exception with a named compensating control. Open-ended retention isn't an option
+If decided late: Instances have no standard to cut over against, and the pilot can't be signed off
+Source: ../books/b06-data-platform/12-the-engine-authentication-decision.md#decision-3-sql-authentication-eliminated-sa-disabled-and-renamed</Notes>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>14</UID>
+      <ID>14</ID>
+      <Name>DG1 Gate 1 — Audit read and NTLM baselined</Name>
+      <OutlineNumber>2.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-02T17:00:00</Start>
+      <Finish>2027-03-02T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Every retain instance and target audited and placed in Category 1, 2 or 3 with its blockers; failover cluster instances treated as Category 3; the Phase A NTLM baseline ingested by compliance monitoring; the authentication standard set
+Source: ../books/b06-data-platform/08-reading-the-audit.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>12</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>13</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>15</UID>
+      <ID>15</ID>
+      <Name>Phase 2 — The pilot instance</Name>
+      <OutlineNumber>3</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-03-15T08:00:00</Start>
+      <Finish>2027-05-04T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>16</UID>
+      <ID>16</ID>
+      <Name>X-ARC Pilot servers under Arc with machine configuration (program P2.9)</Name>
+      <OutlineNumber>3.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-12T17:00:00</Start>
+      <Finish>2027-03-12T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: The pilot SQL Server host has no Arc pattern to follow, and the pilot waits
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-03-12T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>17</UID>
+      <ID>17</ID>
+      <Name>D2.1 Pilot host on Arc: egress confirmed, onboarding service principal, managed-identity token validated, SQL Server extension deployed</Name>
+      <OutlineNumber>3.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-15T08:00:00</Start>
+      <Finish>2027-03-19T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Server infrastructure</Contact>
+      <Notes>Owner or approver: Server infrastructure
+Source: ../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md#step-1-enroll-the-host</Notes>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>18</UID>
+      <ID>18</ID>
+      <Name>D2.2 Graph permissions (SQL Server 2025) or admin consent (SQL Server 2022) granted by a Privileged Role Administrator</Name>
+      <OutlineNumber>3.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-22T08:00:00</Start>
+      <Finish>2027-03-23T17:00:00</Finish>
+      <Duration>PT16H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity team</Contact>
+      <Notes>Owner or approver: Identity team
+Source: ../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md#roles-and-permissions</Notes>
+      <PredecessorLink>
+        <PredecessorUID>17</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>19</UID>
+      <ID>19</ID>
+      <Name>D2.3 Entra authentication on; Entra admin group set; Entra logins and users created beside the Windows ones</Name>
+      <OutlineNumber>3.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-24T08:00:00</Start>
+      <Finish>2027-03-30T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/r05-login-migration-and-parallel-run.md#step-2-create-the-entra-database-users-beside-the-windows-users</Notes>
+      <PredecessorLink>
+        <PredecessorUID>18</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>20</UID>
+      <ID>20</ID>
+      <Name>D2.4 Parallel run: 30-day observation, recorded with SQL Server Audit</Name>
+      <OutlineNumber>3.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-31T08:00:00</Start>
+      <Finish>2027-04-29T17:00:00</Finish>
+      <Duration>PT176H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/r05-login-migration-and-parallel-run.md#step-3-the-parallel-run</Notes>
+      <PredecessorLink>
+        <PredecessorUID>19</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>21</UID>
+      <ID>21</ID>
+      <Name>D-D5 Disable the superseded Windows logins on the pilot instance</Name>
+      <OutlineNumber>3.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-29T17:00:00</Start>
+      <Finish>2027-04-29T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Options: Disable, don't drop, once the window's exit criteria are met; extend the observation window
+If decided late: The pilot can't cut over, and the estate waves have no proven pattern
+Source: ../books/b06-data-platform/r05-login-migration-and-parallel-run.md#step-4-cutover</Notes>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>22</UID>
+      <ID>22</ID>
+      <Name>D2.5 Cutover: Windows logins disabled, not dropped; sa disabled and renamed; scheduled audit started</Name>
+      <OutlineNumber>3.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-30T08:00:00</Start>
+      <Finish>2027-05-04T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/r05-login-migration-and-parallel-run.md#the-sa-account</Notes>
+      <PredecessorLink>
+        <PredecessorUID>21</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>23</UID>
+      <ID>23</ID>
+      <Name>DG2 Gate 2 — Pilot instance on Entra authentication</Name>
+      <OutlineNumber>3.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-04T17:00:00</Start>
+      <Finish>2027-05-04T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Arc agent Connected; token audience https://database.windows.net/; SQL Server extension Succeeded; Entra admin set; every application and job seen on its Entra login; no remote NTLM rows; no connection arriving only on a legacy Windows login
+Source: ../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md#verification-checklist</Notes>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>24</UID>
+      <ID>24</ID>
+      <Name>Phase 3 — The estate: logins, NTLM restriction, access layer</Name>
+      <OutlineNumber>4</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-07-27T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>25</UID>
+      <ID>25</ID>
+      <Name>X-G1 G1 — Foundation Complete: groups and AUs drift-clean, Conditional Access baseline enforced (program)</Name>
+      <OutlineNumber>4.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward (program)</Contact>
+      <Notes>Owner or approver: Steward (program)
+If decided late: The DBA administrative unit and the SQL group logins have no foundation to build on
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-26T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>26</UID>
+      <ID>26</ID>
+      <Name>D3.1 DBA administrative unit with restricted management; Groups Administrator scoped to it, eligible through PIM</Name>
+      <OutlineNumber>4.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-03T08:00:00</Start>
+      <Finish>2027-03-05T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity team</Contact>
+      <Notes>Owner or approver: Identity team
+Source: ../books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md#sequencing-the-administrative-unit-comes-first</Notes>
+      <PredecessorLink>
+        <PredecessorUID>25</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>27</UID>
+      <ID>27</ID>
+      <Name>D3.2 Access groups and dynamic rules verified; group logins bound; Conditional Access perimeter confirmed on the pilot</Name>
+      <OutlineNumber>4.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-05T08:00:00</Start>
+      <Finish>2027-05-25T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity team</Contact>
+      <Notes>Owner or approver: Identity team
+Source: ../books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md#provision-attribute-based-dynamic-groups-entra-dynamic-groups</Notes>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>23</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>28</UID>
+      <ID>28</ID>
+      <Name>D3.3 Estate waves: every retain instance and target through Arc, Entra authentication, the parallel run and cutover</Name>
+      <OutlineNumber>4.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-05T08:00:00</Start>
+      <Finish>2027-07-27T17:00:00</Finish>
+      <Duration>PT480H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/11-three-principal-types.md#the-parallel-run-migration-pattern</Notes>
+      <PredecessorLink>
+        <PredecessorUID>23</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>29</UID>
+      <ID>29</ID>
+      <Name>D3.4 Phase B, step 1: SPNs registered and collisions repaired, linked-server passthrough replaced, LM and NTLMv1 refused</Name>
+      <OutlineNumber>4.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-03T08:00:00</Start>
+      <Finish>2027-03-30T17:00:00</Finish>
+      <Duration>PT160H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/r06-ntlm-detection-and-remediation.md#phase-2-remediation-review-required-patterns</Notes>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>30</UID>
+      <ID>30</ID>
+      <Name>X-D08 End dates for legacy authentication and NTLM (program D08)</Name>
+      <OutlineNumber>4.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Authorizing official (program)</Contact>
+      <Notes>Owner or approver: Authorizing official (program)
+If decided late: Phase B's deny step and the Phase C block have no date to plan against
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-04-23T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>31</UID>
+      <ID>31</ID>
+      <Name>D-D6 Move Restrict NTLM from audit to deny, with exceptions from the Phase A baseline</Name>
+      <OutlineNumber>4.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Authorizing official</Contact>
+      <Notes>Owner or approver: Authorizing official
+Options: Deny, with the excepted instances in the domain controller and client lists; stay in audit; if a missed dependency surfaces, relax to audit or add a scoped exception
+If decided late: NTLMv2 stays open, and Phase C has no restricted baseline to tighten
+Source: ../books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.md#phase-b-restriction</Notes>
+      <PredecessorLink>
+        <PredecessorUID>29</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>30</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>32</UID>
+      <ID>32</ID>
+      <Name>D3.5 Phase B, step 2: Restrict NTLM deny settings staged on clients, servers and domain controllers</Name>
+      <OutlineNumber>4.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-05-14T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Server infrastructure</Contact>
+      <Notes>Owner or approver: Server infrastructure
+Source: ../books/b06-data-platform/r06-ntlm-detection-and-remediation.md#phased-group-policy-restriction</Notes>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>33</UID>
+      <ID>33</ID>
+      <Name>DG3 Gate 3 — Estate on Entra logins, NTLM restricted</Name>
+      <OutlineNumber>4.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-07-27T17:00:00</Start>
+      <Finish>2027-07-27T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Every retain instance and target cut over after a clean parallel run; zero critical SPN collisions; Restrict NTLM deny in place with only documented exceptions; DBA administrative unit and group logins verified; a non-compliant sign-in to the SQL resource denied a token
+Source: ../books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.md#phase-b-restriction</Notes>
+      <PredecessorLink>
+        <PredecessorUID>27</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>32</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>34</UID>
+      <ID>34</ID>
+      <Name>Phase 4 — The application chain</Name>
+      <OutlineNumber>5</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-03-03T08:00:00</Start>
+      <Finish>2027-10-22T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>35</UID>
+      <ID>35</ID>
+      <Name>D4.1 LDAP-bind inventory over 30 days; each application placed on both axes</Name>
+      <OutlineNumber>5.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-03T08:00:00</Start>
+      <Finish>2027-04-08T17:00:00</Finish>
+      <Duration>PT216H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Application owners</Contact>
+      <Notes>Owner or approver: Application owners
+Source: ../books/b06-data-platform/r08-application-chain-and-connection-strings.md#phase-1-inventory-the-ldap-bind-dependency-read-only-script-backed</Notes>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>36</UID>
+      <ID>36</ID>
+      <Name>D-D7 Class and database-axis column for each application</Name>
+      <OutlineNumber>5.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-08T17:00:00</Start>
+      <Finish>2027-04-08T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Application owners</Contact>
+      <Notes>Owner or approver: Application owners
+Options: User axis: Class 3 OIDC, Class 2 SAML, Class 1 Application Proxy, Class 4 Entra Domain Services (last resort). Database axis: A configuration only, B code change, C vendor-dependent, D no Entra path today
+If decided late: Neither migration track can be sequenced for the application
+Source: ../books/b06-data-platform/18-the-four-class-pattern-for-applications.md#two-axes-user-sign-in-and-the-database-connection</Notes>
+      <PredecessorLink>
+        <PredecessorUID>35</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>37</UID>
+      <ID>37</ID>
+      <Name>D4.2 Gate conditions prepared: identity holds its database role; change tested on a production-matching Arc stack</Name>
+      <OutlineNumber>5.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-05T08:00:00</Start>
+      <Finish>2027-05-25T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Application owners</Contact>
+      <Notes>Owner or approver: Application owners
+Source: ../books/b06-data-platform/r08-application-chain-and-connection-strings.md#the-three-gate-conditions</Notes>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>23</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>38</UID>
+      <ID>38</ID>
+      <Name>D-D8 Connection-string cutover, application by application</Name>
+      <OutlineNumber>5.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-01T17:00:00</Start>
+      <Finish>2027-06-01T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Application owners</Contact>
+      <Notes>Owner or approver: Application owners
+Options: Cut over in a change window once all three gate conditions hold; fund the code change (column B); carry a dated exception (columns C and D, and Class 4)
+If decided late: The application keeps its stored credential, and its host instance can't close
+Source: ../books/b06-data-platform/19-connection-string-migration.md#the-gate-conditions</Notes>
+      <PredecessorLink>
+        <PredecessorUID>37</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>96000</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>39</UID>
+      <ID>39</ID>
+      <Name>D4.3 Connection strings cut over; prior configuration kept; legacy logins disabled, not dropped</Name>
+      <OutlineNumber>5.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-02T08:00:00</Start>
+      <Finish>2027-08-03T17:00:00</Finish>
+      <Duration>PT360H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Application owners</Contact>
+      <Notes>Owner or approver: Application owners
+Source: ../books/b06-data-platform/r08-application-chain-and-connection-strings.md#verification-and-rollback</Notes>
+      <PredecessorLink>
+        <PredecessorUID>38</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>40</UID>
+      <ID>40</ID>
+      <Name>D4.4 Exceptions filed for Class 4 and deferred applications, sunset dates reconciled against the NTLM block</Name>
+      <OutlineNumber>5.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-09T08:00:00</Start>
+      <Finish>2027-04-15T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Source: ../books/b06-data-platform/r08-application-chain-and-connection-strings.md#the-four-class-triage</Notes>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>41</UID>
+      <ID>41</ID>
+      <Name>DG4 Gate 4 — Application chain on Entra principals</Name>
+      <OutlineNumber>5.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-03T17:00:00</Start>
+      <Finish>2027-08-03T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Every application in Classes 1 to 3 connects as its Entra principal, with no NTLM or KERBEROS rows; every Class 4 or deferred application's host instance carries a dated exception; no stored secret left in a production connection string outside a documented exception
+Source: ../books/b06-data-platform/r08-application-chain-and-connection-strings.md#verification-and-rollback</Notes>
+      <PredecessorLink>
+        <PredecessorUID>39</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>40</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>42</UID>
+      <ID>42</ID>
+      <Name>X-P46 AD-bound service principal names migrated, retired or islanded (program P4.6)</Name>
+      <OutlineNumber>5.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-22T17:00:00</Start>
+      <Finish>2027-10-22T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Application owners (program)</Contact>
+      <Notes>Owner or approver: Application owners (program)
+If decided late: SQL Server's applications still hold Windows-authenticated connections when the program measures AD authentication for G4
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-10-22T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>43</UID>
+      <ID>43</ID>
+      <Name>Phase 5 — Elimination, closure and the long tail</Name>
+      <OutlineNumber>6</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-03-03T08:00:00</Start>
+      <Finish>2027-12-14T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>44</UID>
+      <ID>44</ID>
+      <Name>D5.1 Certificate audit; SQL Server's three AD CS dependencies mapped; CA-migration order derived</Name>
+      <OutlineNumber>6.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-03T08:00:00</Start>
+      <Finish>2027-03-16T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Server infrastructure</Contact>
+      <Notes>Owner or approver: Server infrastructure
+Source: ../books/b06-data-platform/r10-certificate-discovery-for-adcs.md#step-2-map-the-audit-to-sql-servers-three-dependencies</Notes>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>45</UID>
+      <ID>45</ID>
+      <Name>D-D9 Replacement CA and the AD CS decommission date for SQL Server's certificates</Name>
+      <OutlineNumber>6.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-16T17:00:00</Start>
+      <Finish>2027-03-16T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CIO and data leadership</Contact>
+      <Notes>Owner or approver: CIO and data leadership
+Options: Book 07's issuers: the retained AD CS hierarchy through CyberArk Certificate Manager, moving to a standalone AD CS issuing CA under the same root when the forest retires; Microsoft Cloud PKI, which would need another enrollment path for SQL Server hosts. Either way, no decommission date until the replacement is issuing
+If decided late: No decommission date can be set, and the certificate-based interim posture has no assured issuer
+Source: ../books/b06-data-platform/22-where-sql-server-touches-adcs.md#book-07-has-since-made-the-decision</Notes>
+      <PredecessorLink>
+        <PredecessorUID>44</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>46</UID>
+      <ID>46</ID>
+      <Name>D-D10 Phase C rule for instances whose interim posture isn't in place</Name>
+      <OutlineNumber>6.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-15T17:00:00</Start>
+      <Finish>2027-04-15T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Authorizing official</Contact>
+      <Notes>Owner or approver: Authorizing official
+Options: The Phase C date holds for them; dated exceptions with network-level isolation
+If decided late: The long tail has no rule on the block date, and its exceptions can't be closed
+Source: ../books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.md#phase-c-elimination</Notes>
+      <PredecessorLink>
+        <PredecessorUID>40</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>45</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>47</UID>
+      <ID>47</ID>
+      <Name>D5.2 Validation period: closure records and the six evidence sets live and satisfied; drift treated as a violation</Name>
+      <OutlineNumber>6.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-04T08:00:00</Start>
+      <Finish>2027-09-28T17:00:00</Finish>
+      <Duration>PT320H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/r09-continuous-monitoring-and-closure.md#the-six-live-evidence-sets</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>46</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>48</UID>
+      <ID>48</ID>
+      <Name>D5.3 Phase C: Restrict NTLM set to deny across the estate</Name>
+      <OutlineNumber>6.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-29T08:00:00</Start>
+      <Finish>2027-10-05T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Server infrastructure</Contact>
+      <Notes>Owner or approver: Server infrastructure
+Source: ../books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.md#phase-c-elimination</Notes>
+      <PredecessorLink>
+        <PredecessorUID>47</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>30</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>49</UID>
+      <ID>49</ID>
+      <Name>DG5 Gate 5 — Estate closed</Name>
+      <OutlineNumber>6.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-05T17:00:00</Start>
+      <Finish>2027-10-05T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CIO and data leadership</Contact>
+      <Notes>Owner or approver: CIO and data leadership
+Criteria: All five closure conditions hold at once on every production instance; the six evidence sets satisfied across the validation period; every excepted instance in the registry with its justification, sunset date and own closure record; the scheduled audit still running
+Source: ../books/b06-data-platform/20-the-closure-condition.md#the-five-closure-conditions</Notes>
+      <PredecessorLink>
+        <PredecessorUID>48</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>50</UID>
+      <ID>50</ID>
+      <Name>D5.4 Exception long tail: pre-2022 and Class 4 instances upgraded, re-platformed or retired by their sunset dates</Name>
+      <OutlineNumber>6.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-06T08:00:00</Start>
+      <Finish>2027-12-14T17:00:00</Finish>
+      <Duration>PT400H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Data platform team</Contact>
+      <Notes>Owner or approver: Data platform team
+Source: ../books/b06-data-platform/21-what-done-looks-like.md#a-consequence-not-a-completion-date</Notes>
+      <PredecessorLink>
+        <PredecessorUID>49</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>12</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+  </Tasks>
+</Project>

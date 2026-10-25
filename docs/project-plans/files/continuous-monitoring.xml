@@ -1,0 +1,1228 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+  <Name>continuous-monitoring.xml</Name>
+  <Title>Continuous Monitoring &amp; Evidence Fabric: Evidence From the Systems</Title>
+  <ScheduleFromStart>1</ScheduleFromStart>
+  <StartDate>2027-01-04T08:00:00</StartDate>
+  <DefaultStartTime>08:00:00</DefaultStartTime>
+  <DefaultFinishTime>17:00:00</DefaultFinishTime>
+  <MinutesPerDay>480</MinutesPerDay>
+  <MinutesPerWeek>2400</MinutesPerWeek>
+  <DaysPerMonth>20</DaysPerMonth>
+  <DurationFormat>7</DurationFormat>
+  <CalendarUID>1</CalendarUID>
+  <Calendars>
+    <Calendar>
+      <UID>1</UID>
+      <Name>Standard</Name>
+      <IsBaseCalendar>1</IsBaseCalendar>
+      <BaseCalendarUID>-1</BaseCalendarUID>
+      <WeekDays>
+        <WeekDay>
+          <DayType>1</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+        <WeekDay>
+          <DayType>2</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>3</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>4</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>5</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>6</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>7</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+      </WeekDays>
+    </Calendar>
+  </Calendars>
+  <Tasks>
+    <Task>
+      <UID>1</UID>
+      <ID>1</ID>
+      <Name>Phase 0 — Charter and alignment</Name>
+      <OutlineNumber>1</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>2</UID>
+      <ID>2</ID>
+      <Name>X-P02 Platform host built and repository seeded</Name>
+      <OutlineNumber>1.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-15T17:00:00</Start>
+      <Finish>2027-01-15T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+If decided late: The contract has no record to be committed to; Gate 1 waits
+Source: ../books/b13-governance/03-one-authoritative-record.md#where-the-record-lives</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-01-15T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>3</UID>
+      <ID>3</ID>
+      <Name>X-G0 Program G0: Ready to Plan</Name>
+      <OutlineNumber>1.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-29T17:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward</Contact>
+      <Notes>Owner or approver: Steward
+If decided late: This plan's Gate 0 should land before it; the pilot scope feeds the program's planning
+Source: ../books/b00-orientation/06-the-project-portfolio.md#how-the-projects-fit-the-program</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-01-29T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>4</UID>
+      <ID>4</ID>
+      <Name>M0.1 Sponsor, lead and the four domain leads named</Name>
+      <OutlineNumber>1.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-06T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Source: ../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures</Notes>
+    </Task>
+    <Task>
+      <UID>5</UID>
+      <ID>5</ID>
+      <Name>D-M1 Where the record, schemas, rules and their code live</Name>
+      <OutlineNumber>1.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-06T17:00:00</Start>
+      <Finish>2027-01-06T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Program office (steward)</Contact>
+      <Notes>Owner or approver: Program office (steward)
+Options: One repository and one merge gate for the record, schemas, runtime code and tests; several repositories
+If decided late: The contract can't be committed; a whole class of drift between the record and the code that reads it stays possible
+Source: ../books/b13-governance/12-governance-at-scale.md#one-repository-one-merge-gate</Notes>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>6</UID>
+      <ID>6</ID>
+      <Name>M0.2 Record shape, pilot sources and naming-plane join key confirmed</Name>
+      <OutlineNumber>1.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-07T08:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Source: ../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures</Notes>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>7</UID>
+      <ID>7</ID>
+      <Name>D-M2 Pilot scope: the two emitting sources and the drift object class</Name>
+      <OutlineNumber>1.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-13T17:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Options: Two of the identity, endpoint, network and data-platform sources; identity attributes or device posture as the object class
+If decided late: Emission and the drift loop can't be scoped; every later phase waits
+Source: ../books/b13-governance/12-governance-at-scale.md#objectives-and-scope</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>8</UID>
+      <ID>8</ID>
+      <Name>M0.3 Continuous monitoring strategy drafted, with minimum frequencies and manual assessment of what tools can't see</Name>
+      <OutlineNumber>1.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-07T08:00:00</Start>
+      <Finish>2027-01-20T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Source: ../books/b13-governance/09-who-governs.md#where-the-roles-come-from</Notes>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>9</UID>
+      <ID>9</ID>
+      <Name>MG0 Gate 0 — Pilot scope agreed</Name>
+      <OutlineNumber>1.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-13T17:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Criteria: Sponsor, lead and domain leads named; record shape, pilot sources and join key confirmed; pilot scope agreed
+Source: ../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>7</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>10</UID>
+      <ID>10</ID>
+      <Name>Phase 1 — Evidence contract</Name>
+      <OutlineNumber>2</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-14T08:00:00</Start>
+      <Finish>2027-01-27T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>11</UID>
+      <ID>11</ID>
+      <Name>M1.1 Normalized record documented: asset identity, time, control, verdict, evidence reference</Name>
+      <OutlineNumber>2.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-14T08:00:00</Start>
+      <Finish>2027-01-20T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Evidence contract lead</Contact>
+      <Notes>Owner or approver: Evidence contract lead
+Source: ../books/b15-day2-operations/11-attestation-and-the-compliance-app.md#one-record-every-source</Notes>
+      <PredecessorLink>
+        <PredecessorUID>9</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>12</UID>
+      <ID>12</ID>
+      <Name>M1.2 Provenance envelope fixed: source classification, transformation chain, lineage hash</Name>
+      <OutlineNumber>2.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-18T08:00:00</Start>
+      <Finish>2027-01-21T17:00:00</Finish>
+      <Duration>PT32H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Evidence contract lead</Contact>
+      <Notes>Owner or approver: Evidence contract lead
+Source: ../books/b13-governance/07-evidence-over-attestation.md#the-provenance-envelope</Notes>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>9600</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>13</UID>
+      <ID>13</ID>
+      <Name>D-M3 Severity thresholds and halt triggers for the drift classifier</Name>
+      <OutlineNumber>2.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-13T17:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward, after board review and an outside reviewer</Contact>
+      <Notes>Owner or approver: Steward, after board review and an outside reviewer
+Options: The default rule (severity from drift class and whether the claim is in active use; P1 halts and is never remediated automatically); a severity pinned by the owning book's check
+If decided late: The remediation contract has no severity or window, and can't be published
+Source: ../books/b13-governance/09-who-governs.md#who-approves-rule-changes</Notes>
+      <PredecessorLink>
+        <PredecessorUID>9</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>14</UID>
+      <ID>14</ID>
+      <Name>M1.3 Remediation contract shape: class, severity, record version, ladder ceiling, named escalation role</Name>
+      <OutlineNumber>2.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-21T08:00:00</Start>
+      <Finish>2027-01-25T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Drift detection lead</Contact>
+      <Notes>Owner or approver: Drift detection lead
+Source: ../books/b13-governance/06-the-drift-engine.md#the-remediation-contract</Notes>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>13</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>15</UID>
+      <ID>15</ID>
+      <Name>M1.4 Contract committed to the record by reviewed pull request, with a decision record</Name>
+      <OutlineNumber>2.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-26T08:00:00</Start>
+      <Finish>2027-01-27T17:00:00</Finish>
+      <Duration>PT16H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Steward</Contact>
+      <Notes>Owner or approver: Steward
+Source: ../books/b13-governance/04-change-control-and-provenance.md#changing-the-record-pull-requests</Notes>
+      <PredecessorLink>
+        <PredecessorUID>12</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>16</UID>
+      <ID>16</ID>
+      <Name>MG1 Gate 1 — Evidence contract published</Name>
+      <OutlineNumber>2.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-27T17:00:00</Start>
+      <Finish>2027-01-27T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Criteria: The normalized record and its binding to controls are documented; the contract is published and versioned in the authoritative record
+Source: ../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures</Notes>
+      <PredecessorLink>
+        <PredecessorUID>15</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>17</UID>
+      <ID>17</ID>
+      <Name>Phase 2 — Emission</Name>
+      <OutlineNumber>3</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-14T08:00:00</Start>
+      <Finish>2027-02-08T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>18</UID>
+      <ID>18</ID>
+      <Name>M2.1 Read-only identity adapter declared: class, mission, pinned API version, permissions</Name>
+      <OutlineNumber>3.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-14T08:00:00</Start>
+      <Finish>2027-01-20T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b13-governance/08-the-adapter-model.md#the-contract</Notes>
+      <PredecessorLink>
+        <PredecessorUID>9</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>19</UID>
+      <ID>19</ID>
+      <Name>M2.2 Read-only device-posture adapter declared</Name>
+      <OutlineNumber>3.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-14T08:00:00</Start>
+      <Finish>2027-01-20T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b13-governance/08-the-adapter-model.md#the-contract</Notes>
+      <PredecessorLink>
+        <PredecessorUID>9</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>20</UID>
+      <ID>20</ID>
+      <Name>M2.3 Both adapters earn active status: recorded fixtures, live non-production tenant, reference deployment in the boundary</Name>
+      <OutlineNumber>3.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-28T08:00:00</Start>
+      <Finish>2027-02-04T17:00:00</Finish>
+      <Duration>PT48H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b13-governance/08-the-adapter-model.md#earning-active-status-and-retiring</Notes>
+      <PredecessorLink>
+        <PredecessorUID>18</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>19</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>21</UID>
+      <ID>21</ID>
+      <Name>M2.4 Each adapter's granted permissions compared with its declaration</Name>
+      <OutlineNumber>3.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-05T08:00:00</Start>
+      <Finish>2027-02-08T17:00:00</Finish>
+      <Duration>PT16H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>CISO's staff</Contact>
+      <Notes>Owner or approver: CISO's staff
+Source: ../books/b13-governance/08-the-adapter-model.md#read-only-first</Notes>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>22</UID>
+      <ID>22</ID>
+      <Name>M2.5 Telemetry-completeness check scheduled for each source</Name>
+      <OutlineNumber>3.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-02T08:00:00</Start>
+      <Finish>2027-02-04T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Security operations</Contact>
+      <Notes>Owner or approver: Security operations
+Source: ../books/b15-day2-operations/12-the-day-two-runbook.md#the-telemetry-completeness-check</Notes>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>14400</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>23</UID>
+      <ID>23</ID>
+      <Name>MG2 Gate 2 — Two sources emitting</Name>
+      <OutlineNumber>3.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-08T17:00:00</Start>
+      <Finish>2027-02-08T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Criteria: Two sources emitting normalized records on their own cadence; each adapter holds no more than its declaration; a silent source raises an alert
+Source: ../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures</Notes>
+      <PredecessorLink>
+        <PredecessorUID>21</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>24</UID>
+      <ID>24</ID>
+      <Name>Phase 3 — Aggregation</Name>
+      <OutlineNumber>4</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-02-09T08:00:00</Start>
+      <Finish>2027-02-18T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>25</UID>
+      <ID>25</ID>
+      <Name>M3.1 Records joined on the naming-plane identity plus time for the pilot scope</Name>
+      <OutlineNumber>4.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-09T08:00:00</Start>
+      <Finish>2027-02-15T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Aggregation lead</Contact>
+      <Notes>Owner or approver: Aggregation lead
+Source: ../books/b15-day2-operations/07-the-cmdb-and-asset-identity.md#the-join-key-identity-plus-time</Notes>
+      <PredecessorLink>
+        <PredecessorUID>23</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>26</UID>
+      <ID>26</ID>
+      <Name>M3.2 Unjoinable records counted and reported as a coverage gap</Name>
+      <OutlineNumber>4.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-16T08:00:00</Start>
+      <Finish>2027-02-18T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Aggregation lead</Contact>
+      <Notes>Owner or approver: Aggregation lead
+Source: ../books/b13-governance/12-governance-at-scale.md#risks-and-assumptions</Notes>
+      <PredecessorLink>
+        <PredecessorUID>25</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>27</UID>
+      <ID>27</ID>
+      <Name>M3.3 CMDB reconciliation rule applied; unmatched assets worked in the exception queue</Name>
+      <OutlineNumber>4.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-11T08:00:00</Start>
+      <Finish>2027-02-17T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>CMDB owner</Contact>
+      <Notes>Owner or approver: CMDB owner
+Source: ../books/b15-day2-operations/07-the-cmdb-and-asset-identity.md#how-the-platform-reconciles-and-what-the-program-adds</Notes>
+      <PredecessorLink>
+        <PredecessorUID>25</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>9600</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>28</UID>
+      <ID>28</ID>
+      <Name>MG3 Gate 3 — One reconciled picture</Name>
+      <OutlineNumber>4.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-18T17:00:00</Start>
+      <Finish>2027-02-18T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Criteria: One reconciled picture for the pilot scope, joined on asset identity, with unjoinable records counted, not dropped
+Source: ../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures</Notes>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>27</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>29</UID>
+      <ID>29</ID>
+      <Name>Phase 4 — Detection and assembly</Name>
+      <OutlineNumber>5</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-26T08:00:00</Start>
+      <Finish>2027-03-08T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>30</UID>
+      <ID>30</ID>
+      <Name>X-P12 Enterprise groups and administrative units built</Name>
+      <OutlineNumber>5.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-17T17:00:00</Start>
+      <Finish>2027-02-17T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+If decided late: There is nothing to drift-check before G1; the drift run moves day for day
+Source: ../books/b13-governance/06-the-drift-engine.md#one-model-many-domain-checks</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-17T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>31</UID>
+      <ID>31</ID>
+      <Name>M4.1 Pilot groups and administrative units checked against the record; findings written in contract shape</Name>
+      <OutlineNumber>5.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-18T08:00:00</Start>
+      <Finish>2027-02-22T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Drift detection lead</Contact>
+      <Notes>Owner or approver: Drift detection lead
+Source: ../books/b13-governance/06-the-drift-engine.md#what-is-built-today</Notes>
+      <PredecessorLink>
+        <PredecessorUID>30</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>23</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>32</UID>
+      <ID>32</ID>
+      <Name>X-G1 Program G1: Foundation Complete (groups and AUs drift-clean)</Name>
+      <OutlineNumber>5.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward</Contact>
+      <Notes>Owner or approver: Steward
+If decided late: M4.1 must finish before it, or G1's drift-clean criterion rests on findings recorded by hand
+Source: ../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-26T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>33</UID>
+      <ID>33</ID>
+      <Name>D-M4 Actuation ceiling for each pilot operation class</Name>
+      <OutlineNumber>5.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-25T17:00:00</Start>
+      <Finish>2027-01-25T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Authorizing official</Contact>
+      <Notes>Owner or approver: Authorizing official
+Options: Every class at L3 gated actuation, the default; a named low-blast-radius class at L4 under written conditions, such as re-applying a dynamic membership rule from the registry
+If decided late: The loop's remediate step can't be configured; the drift loop waits
+Source: ../books/b13-governance/10-ticket-to-machine.md#approval-gates-keep-humans-on-the-decisions-that-matter</Notes>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>34</UID>
+      <ID>34</ID>
+      <Name>M4.2 Drift loop for identity attributes end to end: snapshot, compare, classify, alert, remediate, verify</Name>
+      <OutlineNumber>5.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-23T08:00:00</Start>
+      <Finish>2027-03-08T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Drift detection lead</Contact>
+      <Notes>Owner or approver: Drift detection lead
+Source: ../books/b13-governance/06-the-drift-engine.md#what-the-engine-remediates-and-what-it-doesnt</Notes>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>35</UID>
+      <ID>35</ID>
+      <Name>D-M5 Engine that realizes the evidence contract and emits the package</Name>
+      <OutlineNumber>5.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-27T17:00:00</Start>
+      <Finish>2027-01-27T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Program office (steward)</Contact>
+      <Notes>Owner or approver: Program office (steward)
+Options: A purpose-built governance platform; a commercial governance, risk and compliance product (buy the native applications first, build only the gaps); native OSCAL tooling
+If decided late: Package artifacts can't be generated; Gate 4 waits
+Source: ../books/b15-day2-operations/11-attestation-and-the-compliance-app.md#build-buy-or-both</Notes>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>36</UID>
+      <ID>36</ID>
+      <Name>M4.3 Package artifacts generated from the stream for the pilot: SSP, assessment plan, results, POA&amp;M in OSCAL</Name>
+      <OutlineNumber>5.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-19T08:00:00</Start>
+      <Finish>2027-03-04T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Authorization package lead</Contact>
+      <Notes>Owner or approver: Authorization package lead
+Source: ../books/b14-compliance/11-the-authorization-package.md#one-oscal-model-per-artifact</Notes>
+      <PredecessorLink>
+        <PredecessorUID>35</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>37</UID>
+      <ID>37</ID>
+      <Name>M4.4 Coverage classified per control; gap closure register opened; proven and asserted counted</Name>
+      <OutlineNumber>5.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-26T08:00:00</Start>
+      <Finish>2027-03-04T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Authorization package lead</Contact>
+      <Notes>Owner or approver: Authorization package lead
+Source: ../books/b13-governance/12-governance-at-scale.md#classify-coverage</Notes>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>24000</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>38</UID>
+      <ID>38</ID>
+      <Name>MG4 Gate 4 — Drift loop running; package from the stream</Name>
+      <OutlineNumber>5.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-08T17:00:00</Start>
+      <Finish>2027-03-08T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Criteria: Drift loop running for one class; package artifacts generated for the pilot; coverage report separates proven from asserted claims
+Source: ../books/b13-governance/12-governance-at-scale.md#phases-and-success-measures</Notes>
+      <PredecessorLink>
+        <PredecessorUID>34</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>37</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>39</UID>
+      <ID>39</ID>
+      <Name>Phase 5 — The cadence after cutover</Name>
+      <OutlineNumber>6</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-21T08:00:00</Start>
+      <Finish>2027-06-07T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>40</UID>
+      <ID>40</ID>
+      <Name>D-M6 Minimum monitoring frequencies in the continuous monitoring strategy</Name>
+      <OutlineNumber>6.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-20T17:00:00</Start>
+      <Finish>2027-01-20T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Senior accountable official for risk management</Contact>
+      <Notes>Owner or approver: Senior accountable official for risk management
+Options: The program's cadence as the minimums; agency-set minimums, which the program may exceed but not undercut
+If decided late: The cadence can't start; Phase 5 waits
+Source: ../books/b13-governance/09-who-governs.md#the-responsibility-matrix</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>41</UID>
+      <ID>41</ID>
+      <Name>M5.1 Daily triage, weekly evidence and drift review, and the human-only closure review running</Name>
+      <OutlineNumber>6.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-09T08:00:00</Start>
+      <Finish>2027-03-15T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Source: ../books/b13-governance/09-who-governs.md#cadence</Notes>
+      <PredecessorLink>
+        <PredecessorUID>38</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>40</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>42</UID>
+      <ID>42</ID>
+      <Name>M5.2 Months 1 to 3: assessment results and the POA&amp;M regenerated, POA&amp;M reviewed, posture report to the AO</Name>
+      <OutlineNumber>6.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-09T08:00:00</Start>
+      <Finish>2027-05-31T17:00:00</Finish>
+      <Duration>PT480H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Source: ../books/b14-compliance/11-the-authorization-package.md#the-cadence</Notes>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>43</UID>
+      <ID>43</ID>
+      <Name>X-P23 Pilot devices moved by pattern</Name>
+      <OutlineNumber>6.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-31T17:00:00</Start>
+      <Finish>2027-03-31T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+If decided late: Device-posture findings can't start; the margin to the G2 hold shrinks day for day
+Source: ../books/b13-governance/06-the-drift-engine.md#cadence</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-03-31T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>44</UID>
+      <ID>44</ID>
+      <Name>M5.3 Pilot devices' posture findings written in contract shape, before the program's drift-clean hold</Name>
+      <OutlineNumber>6.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-01T08:00:00</Start>
+      <Finish>2027-04-05T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b13-governance/06-the-drift-engine.md#what-is-built-today</Notes>
+      <PredecessorLink>
+        <PredecessorUID>43</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>45</UID>
+      <ID>45</ID>
+      <Name>X-HOLD Program drift-clean hold begins (P2.11)</Name>
+      <OutlineNumber>6.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-09T17:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+If decided late: The hold can't be measured from data, so G2 can't pass on evidence
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-04-09T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>44</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>46</UID>
+      <ID>46</ID>
+      <Name>X-G2 Program G2: Pilot Clean (zero drift for the hold period)</Name>
+      <OutlineNumber>6.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward and executive sponsor</Contact>
+      <Notes>Owner or approver: Steward and executive sponsor
+If decided late: M5.3 must finish before the 14-day hold that ends at G2
+Source: ../books/b13-governance/12-governance-at-scale.md#the-continuous-monitoring-program-as-a-project</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-04-23T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>47</UID>
+      <ID>47</ID>
+      <Name>M5.4 Federal senior information security official named to review each provider's Ongoing Certification Report</Name>
+      <OutlineNumber>6.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-09T08:00:00</Start>
+      <Finish>2027-03-11T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Source: ../books/b14-compliance/11-the-authorization-package.md#what-fedramps-2026-rules-expect</Notes>
+      <PredecessorLink>
+        <PredecessorUID>38</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>48</UID>
+      <ID>48</ID>
+      <Name>D-M7 How the agency's decision reuses each external service's package</Name>
+      <OutlineNumber>6.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-08T17:00:00</Start>
+      <Finish>2027-03-08T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Authorizing official</Contact>
+      <Notes>Owner or approver: Authorizing official
+Options: An ATO for the agency's own system using a FedRAMP Certified offering; an authorization to use for a shared service another federal entity authorized; a joint authorization under CA-6(2)
+If decided late: The reciprocity records can't be written; Gate 5 waits
+Source: ../books/b13-governance/11-reciprocity-and-one-authorization.md#one-package-for-a-shared-service</Notes>
+      <PredecessorLink>
+        <PredecessorUID>38</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>49</UID>
+      <ID>49</ID>
+      <Name>M5.5 Reciprocity record per external service; first Ongoing Certification Report reviewed and recorded</Name>
+      <OutlineNumber>6.10</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-12T08:00:00</Start>
+      <Finish>2027-03-25T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>ISSM</Contact>
+      <Notes>Owner or approver: ISSM
+Source: ../books/b13-governance/11-reciprocity-and-one-authorization.md#what-fedramps-2026-rules-add</Notes>
+      <PredecessorLink>
+        <PredecessorUID>48</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>47</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>50</UID>
+      <ID>50</ID>
+      <Name>M5.6 Quarterly trend and evidence-quality review, covering the pilot's drift-clean hold</Name>
+      <OutlineNumber>6.11</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-01T08:00:00</Start>
+      <Finish>2027-06-07T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>ISSM</Contact>
+      <Notes>Owner or approver: ISSM
+Source: ../books/b15-day2-operations/12-the-day-two-runbook.md#weekly-monthly-and-quarterly</Notes>
+      <PredecessorLink>
+        <PredecessorUID>42</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>44</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>46</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>51</UID>
+      <ID>51</ID>
+      <Name>MG5 Gate 5 — First quarter of the cadence closed from the stream</Name>
+      <OutlineNumber>6.12</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-07T17:00:00</Start>
+      <Finish>2027-06-07T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Authorizing official</Contact>
+      <Notes>Owner or approver: Authorizing official
+Criteria: Three monthly regenerations from current evidence; every failing item open, excepted with an expiry or reverted to open; each provider report has a named reviewer and a record of review; controls tools can't monitor have a manual assessment at a stated frequency
+Source: ../books/b14-compliance/11-the-authorization-package.md#what-the-authorizing-official-should-find</Notes>
+      <PredecessorLink>
+        <PredecessorUID>49</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>50</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+  </Tasks>
+</Project>
