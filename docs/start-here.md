@@ -2,6 +2,7 @@
 title: "Start Here"
 subtitle: "Where modernization begins: why identity comes first, and the first step leadership can approve"
 description: "The starting point for the Federal Modernization Workbook: a six-minute narrated executive briefing on why modernization begins with identity, and the bounded first step, a four-week pre-flight to Gate G1."
+doc-type: section-landing
 ---
 
 # Start Here {.unnumbered}

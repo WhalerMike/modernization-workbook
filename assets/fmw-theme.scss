@@ -142,6 +142,38 @@ a:focus-visible {
   margin-top: 1rem;
 }
 
+// Section landing pages: the same header reversed, black with white text.
+#title-block-header.fmw-hero.fmw-hero-dark {
+  background: #000000;
+  border-color: #000000;
+  border-top-color: #5fc4bf;
+}
+.fmw-hero-dark h1.title {
+  color: #ffffff;
+}
+.fmw-hero-dark .fmw-eyebrow {
+  color: #f2b950;
+}
+.fmw-hero-dark .fmw-eyebrow a:hover {
+  color: #d9f2f0;
+}
+.fmw-hero-dark .fmw-tagline {
+  color: #8fd9d4;
+}
+.fmw-hero-dark .subtitle,
+.fmw-hero-dark .description,
+.fmw-hero-dark .quarto-title-meta,
+.fmw-hero-dark .quarto-title-meta-heading,
+.fmw-hero-dark .quarto-title-meta-contents {
+  color: #e6e9ec;
+}
+.fmw-hero-dark a {
+  color: #8fd9d4;
+}
+.fmw-hero-dark a:hover {
+  color: #d9f2f0;
+}
+
 // Chapter lede: the italic sentence that opens each chapter.
 .fmw-lede {
   font-family: $headings-font-family;
