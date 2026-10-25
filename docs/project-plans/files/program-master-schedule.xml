@@ -1,0 +1,1636 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+  <Name>program-master-schedule.xml</Name>
+  <Title>Program Master Schedule: Phases 0 to 5 and Gates G0 to G5</Title>
+  <ScheduleFromStart>1</ScheduleFromStart>
+  <StartDate>2027-01-04T08:00:00</StartDate>
+  <DefaultStartTime>08:00:00</DefaultStartTime>
+  <DefaultFinishTime>17:00:00</DefaultFinishTime>
+  <MinutesPerDay>480</MinutesPerDay>
+  <MinutesPerWeek>2400</MinutesPerWeek>
+  <DaysPerMonth>20</DaysPerMonth>
+  <DurationFormat>7</DurationFormat>
+  <CalendarUID>1</CalendarUID>
+  <Calendars>
+    <Calendar>
+      <UID>1</UID>
+      <Name>Standard</Name>
+      <IsBaseCalendar>1</IsBaseCalendar>
+      <BaseCalendarUID>-1</BaseCalendarUID>
+      <WeekDays>
+        <WeekDay>
+          <DayType>1</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+        <WeekDay>
+          <DayType>2</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>3</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>4</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>5</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>6</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>7</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+      </WeekDays>
+    </Calendar>
+  </Calendars>
+  <Tasks>
+    <Task>
+      <UID>1</UID>
+      <ID>1</ID>
+      <Name>Phase 0 — Pre-flight</Name>
+      <OutlineNumber>1</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>2</UID>
+      <ID>2</ID>
+      <Name>D01 Approve Phase 0 and name the sponsor and steward</Name>
+      <OutlineNumber>1.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-04T08:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Options: Approve the four-week pre-flight; defer
+If decided late: Nothing starts; the external clocks keep running
+Source: ../start-here.md</Notes>
+    </Task>
+    <Task>
+      <UID>3</UID>
+      <ID>3</ID>
+      <Name>P0.1 Charter accepted; owners named in the decision matrix</Name>
+      <OutlineNumber>1.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-06T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Source: ../books/b00-orientation/03-the-charter.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>4</UID>
+      <ID>4</ID>
+      <Name>P0.2 Platform host built, repository seeded, host connected through Arc</Name>
+      <OutlineNumber>1.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-07T08:00:00</Start>
+      <Finish>2027-01-15T17:00:00</Finish>
+      <Duration>PT56H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b01-transformation-arc/03-platform-foundation.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>3</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>5</UID>
+      <ID>5</ID>
+      <Name>P0.3 Least-privilege service principals for Entra ID, Intune and Arc</Name>
+      <OutlineNumber>1.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-07T08:00:00</Start>
+      <Finish>2027-01-11T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-0-pre-flight-weeks-14</Notes>
+      <PredecessorLink>
+        <PredecessorUID>3</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>6</UID>
+      <ID>6</ID>
+      <Name>P0.4 Read-only assessment run and committed</Name>
+      <OutlineNumber>1.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-18T08:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Source: ../books/b00-orientation/08-pre-flight-and-assessment.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>7</UID>
+      <ID>7</ID>
+      <Name>P0.5 Transactions profiled for applications proposed to move from their data</Name>
+      <OutlineNumber>1.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-07T08:00:00</Start>
+      <Finish>2027-01-18T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>App owners</Contact>
+      <Notes>Owner or approver: App owners
+Source: ../books/b01-transformation-arc/10-analyzing-the-estate.md#profiling-transactions-before-separation</Notes>
+      <PredecessorLink>
+        <PredecessorUID>3</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>8</UID>
+      <ID>8</ID>
+      <Name>G0 — Ready to Plan</Name>
+      <OutlineNumber>1.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-29T17:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward (backup: executive sponsor)</Contact>
+      <Notes>Owner or approver: Steward (backup: executive sponsor)
+Criteria: Platform host operational; assessment committed; no open priority-one findings
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#gates-rollback-and-authority</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>7</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>9</UID>
+      <ID>9</ID>
+      <Name>Phase 1 — Foundation</Name>
+      <OutlineNumber>2</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>10</UID>
+      <ID>10</ID>
+      <Name>D02 Authoritative source for each attribute that drives access</Name>
+      <OutlineNumber>2.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-29T17:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>HR</Contact>
+      <Notes>Owner or approver: HR
+Options: HR system per attribute; a named alternative with a dated exception
+If decided late: The taxonomy can't be approved, and the whole critical path waits
+Source: ../books/b01-transformation-arc/09-who-leads-the-transformation.md#decision-rights-across-the-program</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>11</UID>
+      <ID>11</ID>
+      <Name>P1.1 Attribute taxonomy finalized (M-014)</Name>
+      <OutlineNumber>2.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-05T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>12</UID>
+      <ID>12</ID>
+      <Name>P1.2 Dynamic group design tested; enterprise groups and administrative units built (M-015)</Name>
+      <OutlineNumber>2.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-08T08:00:00</Start>
+      <Finish>2027-02-17T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>13</UID>
+      <ID>13</ID>
+      <Name>P1.3 Intune policy design complete; pilot profiles staged (M-016)</Name>
+      <OutlineNumber>2.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-18T08:00:00</Start>
+      <Finish>2027-02-24T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>12</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>14</UID>
+      <ID>14</ID>
+      <Name>X-IDL HR-to-cloud provisioning live for the foundation scope</Name>
+      <OutlineNumber>2.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-24T17:00:00</Start>
+      <Finish>2027-02-24T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Identity Lifecycle project</Contact>
+      <Notes>Owner or approver: Identity Lifecycle project
+If decided late: G1 fails its HR-feed criterion and waits
+Source: identity-lifecycle.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-24T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>15</UID>
+      <ID>15</ID>
+      <Name>P1.5 Conditional Access design running in report-only (M-017)</Name>
+      <OutlineNumber>2.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>16</UID>
+      <ID>16</ID>
+      <Name>D03 Enforce the Conditional Access baseline</Name>
+      <OutlineNumber>2.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-12T17:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO</Contact>
+      <Notes>Owner or approver: CISO
+Options: Enforce; extend report-only; enforce with dated exceptions
+If decided late: G1 can't pass: the baseline must be enforced
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-1-foundation-weeks-58</Notes>
+      <PredecessorLink>
+        <PredecessorUID>15</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>17</UID>
+      <ID>17</ID>
+      <Name>P1.6 Baseline enforced; emergency access accounts vaulted and tested</Name>
+      <OutlineNumber>2.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-15T08:00:00</Start>
+      <Finish>2027-02-17T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-1-foundation-weeks-58</Notes>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>18</UID>
+      <ID>18</ID>
+      <Name>P1.7 Sync and DNS Private Resolver designs; resolver deployed (M-018, M-019)</Name>
+      <OutlineNumber>2.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>19</UID>
+      <ID>19</ID>
+      <Name>D04 Root of trust for device certificates</Name>
+      <OutlineNumber>2.10</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-29T17:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Options: Cloud PKI root; bring-your-own CA
+If decided late: The PKI design and the pilot certificates wait
+Source: ../books/b07-pki/index.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>20</UID>
+      <ID>20</ID>
+      <Name>P1.8 Cloud PKI design; issuing CA created (M-020)</Name>
+      <OutlineNumber>2.11</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-08T08:00:00</Start>
+      <Finish>2027-02-17T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>19</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>21</UID>
+      <ID>21</ID>
+      <Name>P1.9 IPAM covers the platform host and Tier 0</Name>
+      <OutlineNumber>2.12</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b08-ddi/10-migration-sequence.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>22</UID>
+      <ID>22</ID>
+      <Name>P1.10 Single sign-on; FIDO2 and passkeys open to Tier 0 administrators</Name>
+      <OutlineNumber>2.13</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-10T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b04-access/index.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>23</UID>
+      <ID>23</ID>
+      <Name>P1.11 Every High assessment finding remediated and re-scanned</Name>
+      <OutlineNumber>2.14</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-19T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#foundation-build-and-pre-pilot-readiness</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>24</UID>
+      <ID>24</ID>
+      <Name>D05 Choose the pilot division</Name>
+      <OutlineNumber>2.15</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-29T17:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Options: IT (tolerates disruption best); another division plus volunteers
+If decided late: Pilot groups can't be built; G1 fails its pilot-readiness criterion
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#scope</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>25</UID>
+      <ID>25</ID>
+      <Name>P1.12 Design review approved (M-021)</Name>
+      <OutlineNumber>2.16</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-25T08:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+      <Duration>PT16H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Steward</Contact>
+      <Notes>Owner or approver: Steward
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#design-milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>13</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>18</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>24</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>26</UID>
+      <ID>26</ID>
+      <Name>G1 — Foundation Complete</Name>
+      <OutlineNumber>2.17</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward</Contact>
+      <Notes>Owner or approver: Steward
+Criteria: Designs approved; groups and AUs drift-clean; baseline Conditional Access enforced; emergency access tested; Tier 0 in IPAM; HR feed live for the foundation scope; High findings closed
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g1-foundation-complete</Notes>
+      <PredecessorLink>
+        <PredecessorUID>25</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>17</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>21</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>23</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>27</UID>
+      <ID>27</ID>
+      <Name>Phase 2 — Pilot division</Name>
+      <OutlineNumber>3</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>28</UID>
+      <ID>28</ID>
+      <Name>D06 Device pattern for each pilot cohort</Name>
+      <OutlineNumber>3.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-26T17:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Options: New devices Entra joined; existing devices reset and re-enrolled; hybrid joined only with a cut date
+If decided late: Pilot devices can't move; the critical path waits
+Source: ../books/b05-devices/02-the-hybrid-join-trap.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>29</UID>
+      <ID>29</ID>
+      <Name>P2.1 Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022)</Name>
+      <OutlineNumber>3.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-03-12T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>30</UID>
+      <ID>30</ID>
+      <Name>P2.2 Pilot Conditional Access and Intune policies assigned (M-024, M-025)</Name>
+      <OutlineNumber>3.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-15T08:00:00</Start>
+      <Finish>2027-03-19T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>29</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>31</UID>
+      <ID>31</ID>
+      <Name>P2.3 Pilot devices moved by pattern (M-023)</Name>
+      <OutlineNumber>3.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-22T08:00:00</Start>
+      <Finish>2027-03-31T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>30</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>32</UID>
+      <ID>32</ID>
+      <Name>P2.4 First migrated GPOs unlinked from the pilot OUs</Name>
+      <OutlineNumber>3.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-01T08:00:00</Start>
+      <Finish>2027-04-07T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b05-devices/07-the-gpo-sunset-program.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>33</UID>
+      <ID>33</ID>
+      <Name>P2.5 PIM for every pilot administrator (M-026)</Name>
+      <OutlineNumber>3.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-15T08:00:00</Start>
+      <Finish>2027-03-19T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>29</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>34</UID>
+      <ID>34</ID>
+      <Name>P2.6 Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027)</Name>
+      <OutlineNumber>3.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-03-19T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b08-ddi/10-migration-sequence.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>35</UID>
+      <ID>35</ID>
+      <Name>P2.7 Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028)</Name>
+      <OutlineNumber>3.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-01T08:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT56H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>36</UID>
+      <ID>36</ID>
+      <Name>P2.8 Certificate-based authentication for PIV and CAC holders (M-029)</Name>
+      <OutlineNumber>3.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-15T08:00:00</Start>
+      <Finish>2027-03-24T17:00:00</Finish>
+      <Duration>PT64H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Notes>
+      <PredecessorLink>
+        <PredecessorUID>29</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>37</UID>
+      <ID>37</ID>
+      <Name>P2.9 Pilot servers under Arc with machine configuration (M-030)</Name>
+      <OutlineNumber>3.10</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-03-12T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b05-devices/09-servers-under-azure-arc.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>38</UID>
+      <ID>38</ID>
+      <Name>P2.10 Rollback rehearsed surface by surface</Name>
+      <OutlineNumber>3.11</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-01T08:00:00</Start>
+      <Finish>2027-04-05T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#rollback-surface-by-surface</Notes>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>39</UID>
+      <ID>39</ID>
+      <Name>P2.11 Drift-clean hold (14 days, illustrative); success criteria met (M-031)</Name>
+      <OutlineNumber>3.12</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-12T08:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean</Notes>
+      <PredecessorLink>
+        <PredecessorUID>32</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>34</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>35</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>37</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>38</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>40</UID>
+      <ID>40</ID>
+      <Name>P2.12 Retrospective and runbook updates committed</Name>
+      <OutlineNumber>3.13</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-19T08:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean</Notes>
+      <PredecessorLink>
+        <PredecessorUID>39</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>24000</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>41</UID>
+      <ID>41</ID>
+      <Name>G2 — Pilot Clean</Name>
+      <OutlineNumber>3.14</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward and executive sponsor (co-signed)</Contact>
+      <Notes>Owner or approver: Steward and executive sponsor (co-signed)
+Criteria: Zero drift for the hold period; no AD-only users and no hybrid-joined PC without a cut date; no unresolved rollback trigger; retrospective committed
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean</Notes>
+      <PredecessorLink>
+        <PredecessorUID>39</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>40</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>42</UID>
+      <ID>42</ID>
+      <Name>Phase 3 — General rollout</Name>
+      <OutlineNumber>4</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>43</UID>
+      <ID>43</ID>
+      <Name>D07 Wave plan: which divisions, in which order</Name>
+      <OutlineNumber>4.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and steering committee</Contact>
+      <Notes>Owner or approver: Executive sponsor and steering committee
+Options: By region, lowest risk first; by department
+If decided late: Wave 1 can't start; the critical path waits
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#waves-defined-by-attribute-values</Notes>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>44</UID>
+      <ID>44</ID>
+      <Name>P3.1 Wave 1, first region, about 25% (M-032)</Name>
+      <OutlineNumber>4.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-05-25T17:00:00</Finish>
+      <Duration>PT176H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>43</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>45</UID>
+      <ID>45</ID>
+      <Name>P3.2 Wave 2, about 50% cumulative (M-033)</Name>
+      <OutlineNumber>4.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-26T08:00:00</Start>
+      <Finish>2027-06-24T17:00:00</Finish>
+      <Duration>PT176H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>44</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>46</UID>
+      <ID>46</ID>
+      <Name>P3.3 Wave 3, about 75% cumulative (M-034)</Name>
+      <OutlineNumber>4.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-25T08:00:00</Start>
+      <Finish>2027-07-26T17:00:00</Finish>
+      <Duration>PT176H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>45</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>47</UID>
+      <ID>47</ID>
+      <Name>P3.4 Wave 4, everything remaining or excepted (M-035)</Name>
+      <OutlineNumber>4.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-07-27T08:00:00</Start>
+      <Finish>2027-08-25T17:00:00</Finish>
+      <Duration>PT176H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>46</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>48</UID>
+      <ID>48</ID>
+      <Name>P3.5 GPO links off migrated OUs after 7 clean days (M-036)</Name>
+      <OutlineNumber>4.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-19T08:00:00</Start>
+      <Finish>2027-08-25T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones-1</Notes>
+      <PredecessorLink>
+        <PredecessorUID>47</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>81600</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>49</UID>
+      <ID>49</ID>
+      <Name>P3.6 Attribute coverage at 100%; exception register reconciled (M-037)</Name>
+      <OutlineNumber>4.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-26T08:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+      <Duration>PT96H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g3-rollout-complete</Notes>
+      <PredecessorLink>
+        <PredecessorUID>47</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>50</UID>
+      <ID>50</ID>
+      <Name>P3.7 Every server Arc-connected or excepted</Name>
+      <OutlineNumber>4.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-07-16T17:00:00</Finish>
+      <Duration>PT480H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b05-devices/09-servers-under-azure-arc.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>51</UID>
+      <ID>51</ID>
+      <Name>G3 — Rollout Complete</Name>
+      <OutlineNumber>4.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-10T17:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and steering committee</Contact>
+      <Notes>Owner or approver: Executive sponsor and steering committee
+Criteria: Every division past its exit gate; every HR-listed employee with valid attributes; every PC cloud-joined and every server Arc-connected, or excepted; zero cross-division drift
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-3-general-rollout-weeks-1736</Notes>
+      <PredecessorLink>
+        <PredecessorUID>48</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>49</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>50</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>52</UID>
+      <ID>52</ID>
+      <Name>Phase 4 — Legacy retirement</Name>
+      <OutlineNumber>5</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-11-05T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>53</UID>
+      <ID>53</ID>
+      <Name>D08 End dates for legacy authentication and NTLM</Name>
+      <OutlineNumber>5.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Authorizing official</Contact>
+      <Notes>Owner or approver: Authorizing official
+Options: A dated end per protocol; a dated, risk-accepted exception per application
+If decided late: Application owners have no date to plan against; SPN retirement slips
+Source: ../books/b01-transformation-arc/09-who-leads-the-transformation.md#decision-rights-across-the-program</Notes>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>54</UID>
+      <ID>54</ID>
+      <Name>P4.1 Migrated GPOs retired</Name>
+      <OutlineNumber>5.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-13T08:00:00</Start>
+      <Finish>2027-09-17T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744</Notes>
+      <PredecessorLink>
+        <PredecessorUID>51</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>55</UID>
+      <ID>55</ID>
+      <Name>P4.2 OU-based security groups retired</Name>
+      <OutlineNumber>5.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-20T08:00:00</Start>
+      <Finish>2027-09-24T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744</Notes>
+      <PredecessorLink>
+        <PredecessorUID>54</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>56</UID>
+      <ID>56</ID>
+      <Name>P4.3 AD-integrated DNS zones moved, except the domain's own zones</Name>
+      <OutlineNumber>5.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-13T08:00:00</Start>
+      <Finish>2027-10-01T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b08-ddi/10-migration-sequence.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>51</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>57</UID>
+      <ID>57</ID>
+      <Name>P4.4 AD-authorized DHCP retired</Name>
+      <OutlineNumber>5.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-04T08:00:00</Start>
+      <Finish>2027-10-08T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744</Notes>
+      <PredecessorLink>
+        <PredecessorUID>56</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>58</UID>
+      <ID>58</ID>
+      <Name>P4.5 User and device issuance off AD CS; smart-card logon GPO retired</Name>
+      <OutlineNumber>5.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-13T08:00:00</Start>
+      <Finish>2027-10-01T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b07-pki/07-coexistence-and-migration.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>51</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>59</UID>
+      <ID>59</ID>
+      <Name>P4.6 AD-bound service principal names migrated, retired or islanded, app by app</Name>
+      <OutlineNumber>5.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-13T08:00:00</Start>
+      <Finish>2027-10-22T17:00:00</Finish>
+      <Duration>PT240H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>App owners</Contact>
+      <Notes>Owner or approver: App owners
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744</Notes>
+      <PredecessorLink>
+        <PredecessorUID>51</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>53</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>60</UID>
+      <ID>60</ID>
+      <Name>P4.7 AD authentication volume measured below the agreed threshold</Name>
+      <OutlineNumber>5.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-25T08:00:00</Start>
+      <Finish>2027-11-05T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744</Notes>
+      <PredecessorLink>
+        <PredecessorUID>59</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>55</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>57</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>58</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>61</UID>
+      <ID>61</ID>
+      <Name>G4 — Legacy Quiet</Name>
+      <OutlineNumber>5.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-11-05T17:00:00</Start>
+      <Finish>2027-11-05T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward (backup: executive sponsor)</Contact>
+      <Notes>Owner or approver: Steward (backup: executive sponsor)
+Criteria: Only the minimum GPOs; no AD security groups in use; every zone but the domain's moved; user and device issuance off AD CS; every SPN migrated, retired or islanded; AD authentication below threshold
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-4-legacy-retirement-weeks-3744</Notes>
+      <PredecessorLink>
+        <PredecessorUID>60</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>62</UID>
+      <ID>62</ID>
+      <Name>Phase 5 — AD DS retirement</Name>
+      <OutlineNumber>6</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-09-13T08:00:00</Start>
+      <Finish>2027-12-03T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>63</UID>
+      <ID>63</ID>
+      <Name>D09 Retain a Kerberos island, or retire AD completely</Name>
+      <OutlineNumber>6.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-10T17:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Options: Retire completely; keep a documented island with an end-of-life date
+If decided late: The demotion sequence can't be planned
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548</Notes>
+      <PredecessorLink>
+        <PredecessorUID>51</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>64</UID>
+      <ID>64</ID>
+      <Name>D10 Retention of AD-era logs and records</Name>
+      <OutlineNumber>6.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-10T17:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Records officer</Contact>
+      <Notes>Owner or approver: Records officer
+Options: Retention schedule and archive location approved
+If decided late: Domain controllers can't be decommissioned: their logs can't be recovered afterward
+Source: ../books/b01-transformation-arc/09-who-leads-the-transformation.md#decision-rights-across-the-program</Notes>
+      <PredecessorLink>
+        <PredecessorUID>51</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>65</UID>
+      <ID>65</ID>
+      <Name>P5.1 AD changes frozen; final assessment and evidence packet</Name>
+      <OutlineNumber>6.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-11-08T08:00:00</Start>
+      <Finish>2027-11-12T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548</Notes>
+      <PredecessorLink>
+        <PredecessorUID>61</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>66</UID>
+      <ID>66</ID>
+      <Name>P5.2 Domain controllers without operations master roles demoted</Name>
+      <OutlineNumber>6.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-11-15T08:00:00</Start>
+      <Finish>2027-11-19T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548</Notes>
+      <PredecessorLink>
+        <PredecessorUID>65</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>63</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>67</UID>
+      <ID>67</ID>
+      <Name>P5.3 Remaining domain controllers demoted or islanded; domain zones moved or retired</Name>
+      <OutlineNumber>6.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-11-22T08:00:00</Start>
+      <Finish>2027-11-26T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548</Notes>
+      <PredecessorLink>
+        <PredecessorUID>66</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>68</UID>
+      <ID>68</ID>
+      <Name>P5.4 VMs decommissioned; final state archived; retirement record committed</Name>
+      <OutlineNumber>6.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-11-29T08:00:00</Start>
+      <Finish>2027-12-03T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548</Notes>
+      <PredecessorLink>
+        <PredecessorUID>67</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>64</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>69</UID>
+      <ID>69</ID>
+      <Name>G5 — AD Retired</Name>
+      <OutlineNumber>6.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-12-03T17:00:00</Start>
+      <Finish>2027-12-03T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Criteria: Domain controllers decommissioned or a dated Kerberos island; evidence packet in the repository and the SIEM; no production dependency on AD authentication
+Source: ../books/b01-transformation-arc/12-migration-roadmap.md#phase-5-ad-ds-retirement-weeks-4548</Notes>
+      <PredecessorLink>
+        <PredecessorUID>68</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+  </Tasks>
+</Project>

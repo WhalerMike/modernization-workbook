@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+  <Name>identity-lifecycle.xml</Name>
+  <Title>Identity Lifecycle &amp; Provisioning: HR-Driven Identity</Title>
+  <ScheduleFromStart>1</ScheduleFromStart>
+  <StartDate>2027-01-04T08:00:00</StartDate>
+  <DefaultStartTime>08:00:00</DefaultStartTime>
+  <DefaultFinishTime>17:00:00</DefaultFinishTime>
+  <MinutesPerDay>480</MinutesPerDay>
+  <MinutesPerWeek>2400</MinutesPerWeek>
+  <DaysPerMonth>20</DaysPerMonth>
+  <DurationFormat>7</DurationFormat>
+  <CalendarUID>1</CalendarUID>
+  <Calendars>
+    <Calendar>
+      <UID>1</UID>
+      <Name>Standard</Name>
+      <IsBaseCalendar>1</IsBaseCalendar>
+      <BaseCalendarUID>-1</BaseCalendarUID>
+      <WeekDays>
+        <WeekDay>
+          <DayType>1</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+        <WeekDay>
+          <DayType>2</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>3</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>4</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>5</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>6</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>7</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+      </WeekDays>
+    </Calendar>
+  </Calendars>
+  <Tasks>
+    <Task>
+      <UID>1</UID>
+      <ID>1</ID>
+      <Name>Phase 0 — Program alignment</Name>
+      <OutlineNumber>1</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-02-05T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>2</UID>
+      <ID>2</ID>
+      <Name>I0.1 Integration-point inventory, naming the HR-driven identity feed</Name>
+      <OutlineNumber>1.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-08T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>HR 2.0 project team point of contact</Contact>
+      <Notes>Owner or approver: HR 2.0 project team point of contact
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment</Notes>
+    </Task>
+    <Task>
+      <UID>3</UID>
+      <ID>3</ID>
+      <Name>I0.2 Entra migration plan names HR as the source for each population</Name>
+      <OutlineNumber>1.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-06T08:00:00</Start>
+      <Finish>2027-01-08T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Program office</Contact>
+      <Notes>Owner or approver: Program office
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>9600</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>4</UID>
+      <ID>4</ID>
+      <Name>I0.3 Legacy identity data to retain identified</Name>
+      <OutlineNumber>1.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-07T17:00:00</Finish>
+      <Duration>PT32H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Records officer</Contact>
+      <Notes>Owner or approver: Records officer
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment</Notes>
+    </Task>
+    <Task>
+      <UID>5</UID>
+      <ID>5</ID>
+      <Name>I0.4 Privacy basis: routine use, PIA update, minimized attribute set</Name>
+      <OutlineNumber>1.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-02-05T17:00:00</Finish>
+      <Duration>PT200H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Privacy officer</Contact>
+      <Notes>Owner or approver: Privacy officer
+Source: ../books/b03-hr-identity/appendix-b-security-and-privacy.md</Notes>
+    </Task>
+    <Task>
+      <UID>6</UID>
+      <ID>6</ID>
+      <Name>IG0 Gate 0 — Inventory signed and submitted</Name>
+      <OutlineNumber>1.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-08T17:00:00</Start>
+      <Finish>2027-01-08T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: The integration-point inventory is signed by the ISSO and submitted to the agency's HR 2.0 team
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>3</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>7</UID>
+      <ID>7</ID>
+      <Name>Phase 1 — Attribute authority and schema</Name>
+      <OutlineNumber>2</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-11T08:00:00</Start>
+      <Finish>2027-01-26T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>8</UID>
+      <ID>8</ID>
+      <Name>D-I1 Enterprise person key, and how source keys map to it</Name>
+      <OutlineNumber>2.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-08T17:00:00</Start>
+      <Finish>2027-01-08T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>HR, with identity engineering</Contact>
+      <Notes>Owner or approver: HR, with identity engineering
+Options: The HCM person number; another HR key; a minted enterprise key
+If decided late: The authority map can't be signed; the critical path waits
+Source: ../books/b03-hr-identity/04-attribute-authority.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>9</UID>
+      <ID>9</ID>
+      <Name>I1.1 Standard-attribute crosswalk and nature-of-action trigger table</Name>
+      <OutlineNumber>2.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-11T08:00:00</Start>
+      <Finish>2027-01-15T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>10</UID>
+      <ID>10</ID>
+      <Name>I1.2 Attribute authority map signed</Name>
+      <OutlineNumber>2.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-18T08:00:00</Start>
+      <Finish>2027-01-20T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>HR</Contact>
+      <Notes>Owner or approver: HR
+Source: ../books/b03-hr-identity/04-attribute-authority.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>9</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>11</UID>
+      <ID>11</ID>
+      <Name>I1.3 Canonical schema finalized and validated against a sandbox extract</Name>
+      <OutlineNumber>2.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-21T08:00:00</Start>
+      <Finish>2027-01-26T17:00:00</Finish>
+      <Duration>PT32H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>12</UID>
+      <ID>12</ID>
+      <Name>D-I2 Worker-type taxonomy and the three access-attribute code lists</Name>
+      <OutlineNumber>2.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-20T17:00:00</Start>
+      <Finish>2027-01-20T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>HR</Contact>
+      <Notes>Owner or approver: HR
+Options: Employee, contractor, intern, volunteer, vendor, external, each with a license, access ceiling and retention
+If decided late: Naming, placement and scoping rules wait
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema</Notes>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>13</UID>
+      <ID>13</ID>
+      <Name>I1.4 UPN, sAMAccountName, OU placement and scoping rules</Name>
+      <OutlineNumber>2.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-21T08:00:00</Start>
+      <Finish>2027-01-25T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema</Notes>
+      <PredecessorLink>
+        <PredecessorUID>12</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>14</UID>
+      <ID>14</ID>
+      <Name>I1.5 HR data baselined; employeeId populated; orphan candidates owned</Name>
+      <OutlineNumber>2.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-11T08:00:00</Start>
+      <Finish>2027-01-26T17:00:00</Finish>
+      <Duration>PT96H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>HR</Contact>
+      <Notes>Owner or approver: HR
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>15</UID>
+      <ID>15</ID>
+      <Name>I1.6 PIV issuing CAs' CRLs checked against Entra's limits</Name>
+      <OutlineNumber>2.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-11T08:00:00</Start>
+      <Finish>2027-01-13T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PIV credentialing office</Contact>
+      <Notes>Owner or approver: PIV credentialing office
+Source: ../books/b03-hr-identity/09-credentials-and-certificates.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>16</UID>
+      <ID>16</ID>
+      <Name>IG1 Gate 1 — Authority and schema signed</Name>
+      <OutlineNumber>2.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-26T17:00:00</Start>
+      <Finish>2027-01-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Identifier decision, authority map and schema signed; correlation meets the approved threshold on the pilot cohort; every enabled account correlated or on a dated exception list
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema</Notes>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>13</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>15</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>17</UID>
+      <ID>17</ID>
+      <Name>Phase 2 — Pipeline build and test</Name>
+      <OutlineNumber>3</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-26T08:00:00</Start>
+      <Finish>2027-02-09T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>18</UID>
+      <ID>18</ID>
+      <Name>I2.1 Workforce identity service (middleware) built in-boundary</Name>
+      <OutlineNumber>3.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-27T08:00:00</Start>
+      <Finish>2027-02-03T17:00:00</Finish>
+      <Duration>PT48H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/05-the-provisioning-pipeline.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>19</UID>
+      <ID>19</ID>
+      <Name>I2.2 API-driven provisioning apps; least-privilege permissions; throttling sized</Name>
+      <OutlineNumber>3.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-27T08:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/05-the-provisioning-pipeline.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>20</UID>
+      <ID>20</ID>
+      <Name>I2.3 Joiner, mover and leaver workflows and custom task extensions</Name>
+      <OutlineNumber>3.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-26T08:00:00</Start>
+      <Finish>2027-02-02T17:00:00</Finish>
+      <Duration>PT48H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/08-joiner-mover-leaver.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>13</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>21</UID>
+      <ID>21</ID>
+      <Name>I2.4 End-to-end proof in the test tenant, including device retire and test-CA revocation</Name>
+      <OutlineNumber>3.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-04T08:00:00</Start>
+      <Finish>2027-02-09T17:00:00</Finish>
+      <Duration>PT32H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and-test</Notes>
+      <PredecessorLink>
+        <PredecessorUID>18</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>19</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>22</UID>
+      <ID>22</ID>
+      <Name>IG2 Gate 2 — Pipeline proven end to end</Name>
+      <OutlineNumber>3.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-09T17:00:00</Start>
+      <Finish>2027-02-09T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Joiner, mover and leaver each run end to end in the test tenant with a provenance record and a workflow run
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and-test</Notes>
+      <PredecessorLink>
+        <PredecessorUID>21</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>23</UID>
+      <ID>23</ID>
+      <Name>Phase 3 — Hybrid go-live (pilot)</Name>
+      <OutlineNumber>4</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-27T08:00:00</Start>
+      <Finish>2027-02-24T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>24</UID>
+      <ID>24</ID>
+      <Name>I3.1 Two provisioning agents under a gMSA with OU-scoped rights</Name>
+      <OutlineNumber>4.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-27T08:00:00</Start>
+      <Finish>2027-01-28T17:00:00</Finish>
+      <Duration>PT16H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b03-hr-identity/05-the-provisioning-pipeline.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>25</UID>
+      <ID>25</ID>
+      <Name>I3.2 Initial full sync with scoping filters; mismatches reconciled</Name>
+      <OutlineNumber>4.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-10T08:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot</Notes>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>24</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>26</UID>
+      <ID>26</ID>
+      <Name>I3.3 Shadow mode on the pilot cohort; every difference explained</Name>
+      <OutlineNumber>4.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-15T08:00:00</Start>
+      <Finish>2027-02-19T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot</Notes>
+      <PredecessorLink>
+        <PredecessorUID>25</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>27</UID>
+      <ID>27</ID>
+      <Name>D-I4 Let the pipeline act on the pilot cohort</Name>
+      <OutlineNumber>4.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-19T17:00:00</Start>
+      <Finish>2027-02-19T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Options: Act; extend shadow mode
+If decided late: The go-live waits, and with it the program's G1
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot</Notes>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>28</UID>
+      <ID>28</ID>
+      <Name>I3.4 Delta feeds live; first joiner/mover/leaver cycle closes with evidence</Name>
+      <OutlineNumber>4.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-22T08:00:00</Start>
+      <Finish>2027-02-24T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot</Notes>
+      <PredecessorLink>
+        <PredecessorUID>27</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>29</UID>
+      <ID>29</ID>
+      <Name>IG3 Gate 3 — HR feed live for the foundation scope</Name>
+      <OutlineNumber>4.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-24T17:00:00</Start>
+      <Finish>2027-02-24T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: The observation period's differences explained and fixed; a full joiner/mover/leaver cycle on the pilot cohort closed with evidence; zero unmatched-record creations
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot</Notes>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>30</UID>
+      <ID>30</ID>
+      <Name>Phase 4 — Lifecycle automation and derived access</Name>
+      <OutlineNumber>5</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-02-25T08:00:00</Start>
+      <Finish>2027-04-21T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>31</UID>
+      <ID>31</ID>
+      <Name>I4.1 Leaver automation on for covered populations; block and revocation intervals measured</Name>
+      <OutlineNumber>5.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-25T08:00:00</Start>
+      <Finish>2027-03-10T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access</Notes>
+      <PredecessorLink>
+        <PredecessorUID>29</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>32</UID>
+      <ID>32</ID>
+      <Name>I4.2 Exception routes: emergency terminations, litigation holds</Name>
+      <OutlineNumber>5.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-25T08:00:00</Start>
+      <Finish>2027-03-03T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Help desk</Contact>
+      <Notes>Owner or approver: Help desk
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access</Notes>
+      <PredecessorLink>
+        <PredecessorUID>29</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>33</UID>
+      <ID>33</ID>
+      <Name>I4.3 Joiner and mover automation; rehire and conversion matching validated</Name>
+      <OutlineNumber>5.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-11T08:00:00</Start>
+      <Finish>2027-03-24T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/08-joiner-mover-leaver.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>34</UID>
+      <ID>34</ID>
+      <Name>I4.4 Hand-kept groups converted to rules, shadow-compared one by one</Name>
+      <OutlineNumber>5.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-04T08:00:00</Start>
+      <Finish>2027-04-07T17:00:00</Finish>
+      <Duration>PT200H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b03-hr-identity/10-from-attributes-to-access.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>24000</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>35</UID>
+      <ID>35</ID>
+      <Name>I4.5 Access packages re-based on the supervisor of record</Name>
+      <OutlineNumber>5.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-25T08:00:00</Start>
+      <Finish>2027-04-07T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>36</UID>
+      <ID>36</ID>
+      <Name>I4.6 A full pay-period cycle with zero missed leavers; test reorganization</Name>
+      <OutlineNumber>5.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-08T08:00:00</Start>
+      <Finish>2027-04-21T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>34</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>35</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>32</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>37</UID>
+      <ID>37</ID>
+      <Name>IG4 Gate 4 — Lifecycle automated</Name>
+      <OutlineNumber>5.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-21T17:00:00</Start>
+      <Finish>2027-04-21T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Zero missed leavers across a pay period; block within threshold; account-creation tickets retired for covered populations; a test reorganization propagates with zero manual changes
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access</Notes>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>38</UID>
+      <ID>38</ID>
+      <Name>Phase 5 — Cutover, population by population</Name>
+      <OutlineNumber>6</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-27T08:00:00</Start>
+      <Finish>2027-06-30T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>39</UID>
+      <ID>39</ID>
+      <Name>D-I3 Source of authority for contractors and other non-employees</Name>
+      <OutlineNumber>6.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-26T17:00:00</Start>
+      <Finish>2027-01-26T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>HR</Contact>
+      <Notes>Owner or approver: HR
+Options: Core HCM contingent workers; the PIV sponsorship system; the contractor suitability register; a combination with one authority per fact
+If decided late: Contractors stay on COR spreadsheets; their cutover can't be planned
+Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>40</UID>
+      <ID>40</ID>
+      <Name>D-I5 Order of populations to cut over, aligned to the Core HCM onboarding</Name>
+      <OutlineNumber>6.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-21T17:00:00</Start>
+      <Finish>2027-04-21T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Options: Follow the program's waves; follow the agency's Core HCM go-live
+If decided late: Retargeting can't be scheduled
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population</Notes>
+      <PredecessorLink>
+        <PredecessorUID>37</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>41</UID>
+      <ID>41</ID>
+      <Name>I5.1 Employee populations retargeted to the Entra app, one by one, evidence-gated</Name>
+      <OutlineNumber>6.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-22T08:00:00</Start>
+      <Finish>2027-06-16T17:00:00</Finish>
+      <Duration>PT320H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population</Notes>
+      <PredecessorLink>
+        <PredecessorUID>40</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>42</UID>
+      <ID>42</ID>
+      <Name>I5.2 Contractor populations onboarded from their decided source and retargeted</Name>
+      <OutlineNumber>6.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-06T08:00:00</Start>
+      <Finish>2027-06-16T17:00:00</Finish>
+      <Duration>PT240H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b03-hr-identity/06-canonical-attribute-schema.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>39</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>48000</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>43</UID>
+      <ID>43</ID>
+      <Name>I5.3 OU-bound policy retired; rollback path tested once</Name>
+      <OutlineNumber>6.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-17T08:00:00</Start>
+      <Finish>2027-06-30T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform teams</Contact>
+      <Notes>Owner or approver: Platform teams
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population</Notes>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>42</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>44</UID>
+      <ID>44</ID>
+      <Name>IG5 Gate 5 — Populations cloud-mastered</Name>
+      <OutlineNumber>6.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-30T17:00:00</Start>
+      <Finish>2027-06-30T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Cloud-mastered populations run the full lifecycle cloud-native with evidence; no AD writes for migrated populations; rollback tested once
+Source: ../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population</Notes>
+      <PredecessorLink>
+        <PredecessorUID>43</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+  </Tasks>
+</Project>

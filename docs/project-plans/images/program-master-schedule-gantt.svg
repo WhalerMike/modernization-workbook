@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="1247" viewBox="0 0 980 1247" role="img" aria-labelledby="t d" font-family="Inter, 'DM Sans', Arial, sans-serif">
+<title id="t">Program master schedule: schedule</title>
+<desc id="d">Gantt chart of 63 tasks over 48 weeks. Critical-path tasks are red; other tasks are blue, with a grey line for their float. Gates are violet diamonds, decisions amber diamonds, and milestones from another plan green diamonds.</desc>
+<rect width="980" height="1247" fill="#ffffff"/>
+<line x1="360.0" y1="28" x2="360.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="362.0" y="22" font-size="10" fill="#64748b">wk 1</text>
+<line x1="410.0" y1="28" x2="410.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="412.0" y="22" font-size="10" fill="#64748b">wk 5</text>
+<line x1="460.0" y1="28" x2="460.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="462.0" y="22" font-size="10" fill="#64748b">wk 9</text>
+<line x1="510.0" y1="28" x2="510.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="512.0" y="22" font-size="10" fill="#64748b">wk 13</text>
+<line x1="560.0" y1="28" x2="560.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="562.0" y="22" font-size="10" fill="#64748b">wk 17</text>
+<line x1="610.0" y1="28" x2="610.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="612.0" y="22" font-size="10" fill="#64748b">wk 21</text>
+<line x1="660.0" y1="28" x2="660.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="662.0" y="22" font-size="10" fill="#64748b">wk 25</text>
+<line x1="710.0" y1="28" x2="710.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="712.0" y="22" font-size="10" fill="#64748b">wk 29</text>
+<line x1="760.0" y1="28" x2="760.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="762.0" y="22" font-size="10" fill="#64748b">wk 33</text>
+<line x1="810.0" y1="28" x2="810.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="812.0" y="22" font-size="10" fill="#64748b">wk 37</text>
+<line x1="860.0" y1="28" x2="860.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="862.0" y="22" font-size="10" fill="#64748b">wk 41</text>
+<line x1="910.0" y1="28" x2="910.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<text x="912.0" y="22" font-size="10" fill="#64748b">wk 45</text>
+<line x1="960.0" y1="28" x2="960.0" y2="1207" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="0" y="34" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="46.5" font-size="11" font-weight="600" fill="#1e293b">Phase 0 — Pre-flight</text>
+<text x="14" y="63" font-size="10.5" fill="#1e293b">D01  Approve Phase 0 and name the sponsor and steward</text>
+<path d="M360.0 54.0 L365.5 59.5 L360.0 65.0 L354.5 59.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="80" font-size="10.5" fill="#1e293b">P0.1  Charter accepted; owners named in the decision mat…</text>
+<rect x="360.0" y="72" width="7.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="97" font-size="10.5" fill="#1e293b">P0.2  Platform host built, repository seeded, host conne…</text>
+<rect x="367.5" y="89" width="17.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="114" font-size="10.5" fill="#64748b">P0.3  Least-privilege service principals for Entra ID, I…</text>
+<line x1="375.0" y1="110.5" x2="385.0" y2="110.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="367.5" y="106" width="7.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="131" font-size="10.5" fill="#1e293b">P0.4  Read-only assessment run and committed</text>
+<rect x="385.0" y="123" width="25.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="148" font-size="10.5" fill="#64748b">P0.5  Transactions profiled for applications proposed to…</text>
+<line x1="387.5" y1="144.5" x2="410.0" y2="144.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="367.5" y="140" width="20.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="165" font-size="10.5" fill="#1e293b">G0 — Ready to Plan</text>
+<path d="M410.0 156.0 L415.5 161.5 L410.0 167.0 L404.5 161.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="170" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="182.5" font-size="11" font-weight="600" fill="#1e293b">Phase 1 — Foundation</text>
+<text x="14" y="199" font-size="10.5" fill="#1e293b">D02  Authoritative source for each attribute that drives…</text>
+<path d="M410.0 190.0 L415.5 195.5 L410.0 201.0 L404.5 195.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="216" font-size="10.5" fill="#1e293b">P1.1  Attribute taxonomy finalized (M-014)</text>
+<rect x="410.0" y="208" width="12.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="233" font-size="10.5" fill="#1e293b">P1.2  Dynamic group design tested; enterprise groups and…</text>
+<rect x="422.5" y="225" width="20.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="250" font-size="10.5" fill="#1e293b">P1.3  Intune policy design complete; pilot profiles stag…</text>
+<rect x="442.5" y="242" width="12.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="267" font-size="10.5" fill="#64748b">X-IDL  HR-to-cloud provisioning live for the foundation…</text>
+<path d="M455.0 258.0 L460.5 263.5 L455.0 269.0 L449.5 263.5 Z" fill="#059669"/>
+<text x="14" y="284" font-size="10.5" fill="#64748b">P1.5  Conditional Access design running in report-only (…</text>
+<line x1="435.0" y1="280.5" x2="452.5" y2="280.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="410.0" y="276" width="25.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="301" font-size="10.5" fill="#64748b">D03  Enforce the Conditional Access baseline</text>
+<path d="M435.0 292.0 L440.5 297.5 L435.0 303.0 L429.5 297.5 Z" fill="#D97706"/>
+<text x="14" y="318" font-size="10.5" fill="#64748b">P1.6  Baseline enforced; emergency access accounts vault…</text>
+<line x1="442.5" y1="314.5" x2="460.0" y2="314.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="435.0" y="310" width="7.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="335" font-size="10.5" fill="#64748b">P1.7  Sync and DNS Private Resolver designs; resolver de…</text>
+<line x1="435.0" y1="331.5" x2="455.0" y2="331.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="410.0" y="327" width="25.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="352" font-size="10.5" fill="#64748b">D04  Root of trust for device certificates</text>
+<path d="M410.0 343.0 L415.5 348.5 L410.0 354.0 L404.5 348.5 Z" fill="#D97706"/>
+<text x="14" y="369" font-size="10.5" fill="#64748b">P1.8  Cloud PKI design; issuing CA created (M-020)</text>
+<line x1="442.5" y1="365.5" x2="455.0" y2="365.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="422.5" y="361" width="20.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="386" font-size="10.5" fill="#64748b">P1.9  IPAM covers the platform host and Tier 0</text>
+<line x1="435.0" y1="382.5" x2="460.0" y2="382.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="410.0" y="378" width="25.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="403" font-size="10.5" fill="#64748b">P1.10  Single sign-on; FIDO2 and passkeys open to Tier 0…</text>
+<line x1="430.0" y1="399.5" x2="460.0" y2="399.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="410.0" y="395" width="20.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="420" font-size="10.5" fill="#64748b">P1.11  Every High assessment finding remediated and re-s…</text>
+<line x1="447.5" y1="416.5" x2="460.0" y2="416.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="410.0" y="412" width="37.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="437" font-size="10.5" fill="#64748b">D05  Choose the pilot division</text>
+<path d="M410.0 428.0 L415.5 433.5 L410.0 439.0 L404.5 433.5 Z" fill="#D97706"/>
+<text x="14" y="454" font-size="10.5" fill="#1e293b">P1.12  Design review approved (M-021)</text>
+<rect x="455.0" y="446" width="5.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="471" font-size="10.5" fill="#1e293b">G1 — Foundation Complete</text>
+<path d="M460.0 462.0 L465.5 467.5 L460.0 473.0 L454.5 467.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="476" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="488.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Pilot division</text>
+<text x="14" y="505" font-size="10.5" fill="#64748b">D06  Device pattern for each pilot cohort</text>
+<path d="M460.0 496.0 L465.5 501.5 L460.0 507.0 L454.5 501.5 Z" fill="#D97706"/>
+<text x="14" y="522" font-size="10.5" fill="#1e293b">P2.1  Sync deployed; pilot attributes, groups, AUs and d…</text>
+<rect x="460.0" y="514" width="25.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="539" font-size="10.5" fill="#1e293b">P2.2  Pilot Conditional Access and Intune policies assig…</text>
+<rect x="485.0" y="531" width="12.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="556" font-size="10.5" fill="#1e293b">P2.3  Pilot devices moved by pattern (M-023)</text>
+<rect x="497.5" y="548" width="20.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="573" font-size="10.5" fill="#64748b">P2.4  First migrated GPOs unlinked from the pilot OUs</text>
+<line x1="530.0" y1="569.5" x2="535.0" y2="569.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="517.5" y="565" width="12.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="590" font-size="10.5" fill="#64748b">P2.5  PIM for every pilot administrator (M-026)</text>
+<line x1="497.5" y1="586.5" x2="535.0" y2="586.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="485.0" y="582" width="12.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="607" font-size="10.5" fill="#64748b">P2.6  Division DNS migrated, DHCP re-homed, hybrid resol…</text>
+<line x1="497.5" y1="603.5" x2="535.0" y2="603.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="460.0" y="599" width="37.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="624" font-size="10.5" fill="#1e293b">P2.7  Cloud PKI certificates issued; Wi-Fi and VPN verif…</text>
+<rect x="517.5" y="616" width="17.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="641" font-size="10.5" fill="#64748b">P2.8  Certificate-based authentication for PIV and CAC h…</text>
+<line x1="505.0" y1="637.5" x2="535.0" y2="637.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="485.0" y="633" width="20.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="658" font-size="10.5" fill="#64748b">P2.9  Pilot servers under Arc with machine configuration…</text>
+<line x1="485.0" y1="654.5" x2="535.0" y2="654.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="460.0" y="650" width="25.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="675" font-size="10.5" fill="#64748b">P2.10  Rollback rehearsed surface by surface</text>
+<line x1="525.0" y1="671.5" x2="535.0" y2="671.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="517.5" y="667" width="7.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="692" font-size="10.5" fill="#1e293b">P2.11  Drift-clean hold (14 days, illustrative); success…</text>
+<rect x="535.0" y="684" width="25.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="709" font-size="10.5" fill="#1e293b">P2.12  Retrospective and runbook updates committed</text>
+<rect x="547.5" y="701" width="12.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="726" font-size="10.5" fill="#1e293b">G2 — Pilot Clean</text>
+<path d="M560.0 717.0 L565.5 722.5 L560.0 728.0 L554.5 722.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="731" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="743.5" font-size="11" font-weight="600" fill="#1e293b">Phase 3 — General rollout</text>
+<text x="14" y="760" font-size="10.5" fill="#1e293b">D07  Wave plan: which divisions, in which order</text>
+<path d="M560.0 751.0 L565.5 756.5 L560.0 762.0 L554.5 756.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="777" font-size="10.5" fill="#1e293b">P3.1  Wave 1, first region, about 25% (M-032)</text>
+<rect x="560.0" y="769" width="55.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="794" font-size="10.5" fill="#1e293b">P3.2  Wave 2, about 50% cumulative (M-033)</text>
+<rect x="615.0" y="786" width="55.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="811" font-size="10.5" fill="#1e293b">P3.3  Wave 3, about 75% cumulative (M-034)</text>
+<rect x="670.0" y="803" width="55.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="828" font-size="10.5" fill="#1e293b">P3.4  Wave 4, everything remaining or excepted (M-035)</text>
+<rect x="725.0" y="820" width="55.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="845" font-size="10.5" fill="#64748b">P3.5  GPO links off migrated OUs after 7 clean days (M-0…</text>
+<line x1="780.0" y1="841.5" x2="810.0" y2="841.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="767.5" y="837" width="12.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="862" font-size="10.5" fill="#1e293b">P3.6  Attribute coverage at 100%; exception register rec…</text>
+<rect x="780.0" y="854" width="30.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="879" font-size="10.5" fill="#64748b">P3.7  Every server Arc-connected or excepted</text>
+<line x1="710.0" y1="875.5" x2="810.0" y2="875.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="560.0" y="871" width="150.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="896" font-size="10.5" fill="#1e293b">G3 — Rollout Complete</text>
+<path d="M810.0 887.0 L815.5 892.5 L810.0 898.0 L804.5 892.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="901" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="913.5" font-size="11" font-weight="600" fill="#1e293b">Phase 4 — Legacy retirement</text>
+<text x="14" y="930" font-size="10.5" fill="#64748b">D08  End dates for legacy authentication and NTLM</text>
+<path d="M560.0 921.0 L565.5 926.5 L560.0 932.0 L554.5 926.5 Z" fill="#D97706"/>
+<text x="14" y="947" font-size="10.5" fill="#64748b">P4.1  Migrated GPOs retired</text>
+<line x1="822.5" y1="943.5" x2="872.5" y2="943.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="810.0" y="939" width="12.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="964" font-size="10.5" fill="#64748b">P4.2  OU-based security groups retired</text>
+<line x1="835.0" y1="960.5" x2="885.0" y2="960.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="822.5" y="956" width="12.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="981" font-size="10.5" fill="#64748b">P4.3  AD-integrated DNS zones moved, except the domain&#x27;s…</text>
+<line x1="847.5" y1="977.5" x2="872.5" y2="977.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="810.0" y="973" width="37.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="998" font-size="10.5" fill="#64748b">P4.4  AD-authorized DHCP retired</text>
+<line x1="860.0" y1="994.5" x2="885.0" y2="994.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="847.5" y="990" width="12.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1015" font-size="10.5" fill="#64748b">P4.5  User and device issuance off AD CS; smart-card log…</text>
+<line x1="847.5" y1="1011.5" x2="885.0" y2="1011.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="810.0" y="1007" width="37.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1032" font-size="10.5" fill="#1e293b">P4.6  AD-bound service principal names migrated, retired…</text>
+<rect x="810.0" y="1024" width="75.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1049" font-size="10.5" fill="#1e293b">P4.7  AD authentication volume measured below the agreed…</text>
+<rect x="885.0" y="1041" width="25.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1066" font-size="10.5" fill="#1e293b">G4 — Legacy Quiet</text>
+<path d="M910.0 1057.0 L915.5 1062.5 L910.0 1068.0 L904.5 1062.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="1071" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="1083.5" font-size="11" font-weight="600" fill="#1e293b">Phase 5 — AD DS retirement</text>
+<text x="14" y="1100" font-size="10.5" fill="#64748b">D09  Retain a Kerberos island, or retire AD completely</text>
+<path d="M810.0 1091.0 L815.5 1096.5 L810.0 1102.0 L804.5 1096.5 Z" fill="#D97706"/>
+<text x="14" y="1117" font-size="10.5" fill="#64748b">D10  Retention of AD-era logs and records</text>
+<path d="M810.0 1108.0 L815.5 1113.5 L810.0 1119.0 L804.5 1113.5 Z" fill="#D97706"/>
+<text x="14" y="1134" font-size="10.5" fill="#1e293b">P5.1  AD changes frozen; final assessment and evidence p…</text>
+<rect x="910.0" y="1126" width="12.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1151" font-size="10.5" fill="#1e293b">P5.2  Domain controllers without operations master roles…</text>
+<rect x="922.5" y="1143" width="12.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1168" font-size="10.5" fill="#1e293b">P5.3  Remaining domain controllers demoted or islanded;…</text>
+<rect x="935.0" y="1160" width="12.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1185" font-size="10.5" fill="#1e293b">P5.4  VMs decommissioned; final state archived; retireme…</text>
+<rect x="947.5" y="1177" width="12.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1202" font-size="10.5" fill="#1e293b">G5 — AD Retired</text>
+<path d="M960.0 1193.0 L965.5 1198.5 L960.0 1204.0 L954.5 1198.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="14" y="1220" width="18" height="9" rx="2" fill="#DC2626"/>
+<text x="38" y="1229" font-size="10.5" fill="#1e293b">Critical path</text>
+<rect x="140.60000000000002" y="1220" width="18" height="9" rx="2" fill="#2563EB"/>
+<text x="164.60000000000002" y="1229" font-size="10.5" fill="#1e293b">Other task</text>
+<line x1="248.60000000000002" y1="1224.5" x2="266.6" y2="1224.5" stroke="#cbd5e1" stroke-width="2"/>
+<text x="272.6" y="1229" font-size="10.5" fill="#1e293b">Float</text>
+<path d="M334.6 1219 L340.1 1224.5 L334.6 1230 L329.1 1224.5 Z" fill="#7C3AED"/>
+<text x="349.6" y="1229" font-size="10.5" fill="#1e293b">Gate</text>
+<path d="M405.40000000000003 1219 L410.90000000000003 1224.5 L405.40000000000003 1230 L399.90000000000003 1224.5 Z" fill="#D97706"/>
+<text x="420.40000000000003" y="1229" font-size="10.5" fill="#1e293b">Decision</text>
+<path d="M501.0 1219 L506.5 1224.5 L501.0 1230 L495.5 1224.5 Z" fill="#059669"/>
+<text x="516.0" y="1229" font-size="10.5" fill="#1e293b">From another plan</text>
+<text x="966" y="1229" font-size="10.5" fill="#64748b" text-anchor="end">A red outline marks a milestone on the critical path</text>
+</svg>

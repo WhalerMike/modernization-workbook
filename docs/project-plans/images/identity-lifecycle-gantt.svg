@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="822" viewBox="0 0 980 822" role="img" aria-labelledby="t d" font-family="Inter, 'DM Sans', Arial, sans-serif">
+<title id="t">Identity Lifecycle &amp; Provisioning: schedule</title>
+<desc id="d">Gantt chart of 38 tasks over 26 weeks. Critical-path tasks are red; other tasks are blue, with a grey line for their float. Gates are violet diamonds, decisions amber diamonds, and milestones from another plan green diamonds.</desc>
+<rect width="980" height="822" fill="#ffffff"/>
+<line x1="360.0" y1="28" x2="360.0" y2="782" stroke="#e2e8f0" stroke-width="1"/>
+<text x="362.0" y="22" font-size="10" fill="#64748b">wk 1</text>
+<line x1="452.3" y1="28" x2="452.3" y2="782" stroke="#e2e8f0" stroke-width="1"/>
+<text x="454.3" y="22" font-size="10" fill="#64748b">wk 5</text>
+<line x1="544.6" y1="28" x2="544.6" y2="782" stroke="#e2e8f0" stroke-width="1"/>
+<text x="546.6" y="22" font-size="10" fill="#64748b">wk 9</text>
+<line x1="636.9" y1="28" x2="636.9" y2="782" stroke="#e2e8f0" stroke-width="1"/>
+<text x="638.9" y="22" font-size="10" fill="#64748b">wk 13</text>
+<line x1="729.2" y1="28" x2="729.2" y2="782" stroke="#e2e8f0" stroke-width="1"/>
+<text x="731.2" y="22" font-size="10" fill="#64748b">wk 17</text>
+<line x1="821.5" y1="28" x2="821.5" y2="782" stroke="#e2e8f0" stroke-width="1"/>
+<text x="823.5" y="22" font-size="10" fill="#64748b">wk 21</text>
+<line x1="913.8" y1="28" x2="913.8" y2="782" stroke="#e2e8f0" stroke-width="1"/>
+<text x="915.8" y="22" font-size="10" fill="#64748b">wk 25</text>
+<rect x="0" y="34" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="46.5" font-size="11" font-weight="600" fill="#1e293b">Phase 0 — Program alignment</text>
+<text x="14" y="63" font-size="10.5" fill="#1e293b">I0.1  Integration-point inventory, naming the HR-driven…</text>
+<rect x="360.0" y="55" width="23.1" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="80" font-size="10.5" fill="#1e293b">I0.2  Entra migration plan names HR as the source for ea…</text>
+<rect x="369.2" y="72" width="13.8" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="97" font-size="10.5" fill="#64748b">I0.3  Legacy identity data to retain identified</text>
+<line x1="378.5" y1="93.5" x2="383.1" y2="93.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="89" width="18.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="114" font-size="10.5" fill="#64748b">I0.4  Privacy basis: routine use, PIA update, minimized…</text>
+<line x1="475.4" y1="110.5" x2="484.6" y2="110.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="106" width="115.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="131" font-size="10.5" fill="#1e293b">IG0  Gate 0 — Inventory signed and submitted</text>
+<path d="M383.1 122.0 L388.6 127.5 L383.1 133.0 L377.6 127.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="136" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="148.5" font-size="11" font-weight="600" fill="#1e293b">Phase 1 — Attribute authority and schema</text>
+<text x="14" y="165" font-size="10.5" fill="#64748b">D-I1  Enterprise person key, and how source keys map to it</text>
+<path d="M383.1 156.0 L388.6 161.5 L383.1 167.0 L377.6 161.5 Z" fill="#D97706"/>
+<text x="14" y="182" font-size="10.5" fill="#1e293b">I1.1  Standard-attribute crosswalk and nature-of-action…</text>
+<rect x="383.1" y="174" width="23.1" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="199" font-size="10.5" fill="#1e293b">I1.2  Attribute authority map signed</text>
+<rect x="406.2" y="191" width="13.8" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="216" font-size="10.5" fill="#1e293b">I1.3  Canonical schema finalized and validated against a…</text>
+<rect x="420.0" y="208" width="18.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="233" font-size="10.5" fill="#64748b">D-I2  Worker-type taxonomy and the three access-attribut…</text>
+<path d="M420.0 224.0 L425.5 229.5 L420.0 235.0 L414.5 229.5 Z" fill="#D97706"/>
+<text x="14" y="250" font-size="10.5" fill="#64748b">I1.4  UPN, sAMAccountName, OU placement and scoping rules</text>
+<line x1="433.8" y1="246.5" x2="438.5" y2="246.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="420.0" y="242" width="13.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="267" font-size="10.5" fill="#64748b">I1.5  HR data baselined; employeeId populated; orphan ca…</text>
+<line x1="438.5" y1="263.5" x2="466.2" y2="263.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="383.1" y="259" width="55.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="284" font-size="10.5" fill="#64748b">I1.6  PIV issuing CAs&#x27; CRLs checked against Entra&#x27;s limits</text>
+<line x1="396.9" y1="280.5" x2="466.2" y2="280.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="383.1" y="276" width="13.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="301" font-size="10.5" fill="#64748b">IG1  Gate 1 — Authority and schema signed</text>
+<path d="M438.5 292.0 L444.0 297.5 L438.5 303.0 L433.0 297.5 Z" fill="#7C3AED"/>
+<rect x="0" y="306" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="318.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Pipeline build and test</text>
+<text x="14" y="335" font-size="10.5" fill="#1e293b">I2.1  Workforce identity service (middleware) built in-b…</text>
+<rect x="438.5" y="327" width="27.7" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="352" font-size="10.5" fill="#64748b">I2.2  API-driven provisioning apps; least-privilege perm…</text>
+<line x1="452.3" y1="348.5" x2="466.2" y2="348.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="438.5" y="344" width="13.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="369" font-size="10.5" fill="#64748b">I2.3  Joiner, mover and leaver workflows and custom task…</text>
+<line x1="461.5" y1="365.5" x2="466.2" y2="365.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="433.8" y="361" width="27.7" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="386" font-size="10.5" fill="#1e293b">I2.4  End-to-end proof in the test tenant, including dev…</text>
+<rect x="466.2" y="378" width="18.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="403" font-size="10.5" fill="#1e293b">IG2  Gate 2 — Pipeline proven end to end</text>
+<path d="M484.6 394.0 L490.1 399.5 L484.6 405.0 L479.1 399.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="408" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="420.5" font-size="11" font-weight="600" fill="#1e293b">Phase 3 — Hybrid go-live (pilot)</text>
+<text x="14" y="437" font-size="10.5" fill="#64748b">I3.1  Two provisioning agents under a gMSA with OU-scope…</text>
+<line x1="447.7" y1="433.5" x2="484.6" y2="433.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="438.5" y="429" width="9.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="454" font-size="10.5" fill="#1e293b">I3.2  Initial full sync with scoping filters; mismatches…</text>
+<rect x="484.6" y="446" width="13.8" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="471" font-size="10.5" fill="#1e293b">I3.3  Shadow mode on the pilot cohort; every difference…</text>
+<rect x="498.5" y="463" width="23.1" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="488" font-size="10.5" fill="#1e293b">D-I4  Let the pipeline act on the pilot cohort</text>
+<path d="M521.5 479.0 L527.0 484.5 L521.5 490.0 L516.0 484.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="505" font-size="10.5" fill="#1e293b">I3.4  Delta feeds live; first joiner/mover/leaver cycle…</text>
+<rect x="521.5" y="497" width="13.8" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="522" font-size="10.5" fill="#1e293b">IG3  Gate 3 — HR feed live for the foundation scope</text>
+<path d="M535.4 513.0 L540.9 518.5 L535.4 524.0 L529.9 518.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="527" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="539.5" font-size="11" font-weight="600" fill="#1e293b">Phase 4 — Lifecycle automation and derived access</text>
+<text x="14" y="556" font-size="10.5" fill="#1e293b">I4.1  Leaver automation on for covered populations; bloc…</text>
+<rect x="535.4" y="548" width="46.2" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="573" font-size="10.5" fill="#64748b">I4.2  Exception routes: emergency terminations, litigati…</text>
+<line x1="558.5" y1="569.5" x2="673.8" y2="569.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="535.4" y="565" width="23.1" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="590" font-size="10.5" fill="#1e293b">I4.3  Joiner and mover automation; rehire and conversion…</text>
+<rect x="581.5" y="582" width="46.2" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="607" font-size="10.5" fill="#1e293b">I4.4  Hand-kept groups converted to rules, shadow-compar…</text>
+<rect x="558.5" y="599" width="115.4" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="624" font-size="10.5" fill="#1e293b">I4.5  Access packages re-based on the supervisor of record</text>
+<rect x="627.7" y="616" width="46.2" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="641" font-size="10.5" fill="#1e293b">I4.6  A full pay-period cycle with zero missed leavers;…</text>
+<rect x="673.8" y="633" width="46.2" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="658" font-size="10.5" fill="#1e293b">IG4  Gate 4 — Lifecycle automated</text>
+<path d="M720.0 649.0 L725.5 654.5 L720.0 660.0 L714.5 654.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="663" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="675.5" font-size="11" font-weight="600" fill="#1e293b">Phase 5 — Cutover, population by population</text>
+<text x="14" y="692" font-size="10.5" fill="#64748b">D-I3  Source of authority for contractors and other non-…</text>
+<path d="M438.5 683.0 L444.0 688.5 L438.5 694.0 L433.0 688.5 Z" fill="#D97706"/>
+<text x="14" y="709" font-size="10.5" fill="#1e293b">D-I5  Order of populations to cut over, aligned to the C…</text>
+<path d="M720.0 700.0 L725.5 705.5 L720.0 711.0 L714.5 705.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="726" font-size="10.5" fill="#1e293b">I5.1  Employee populations retargeted to the Entra app,…</text>
+<rect x="720.0" y="718" width="184.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="743" font-size="10.5" fill="#1e293b">I5.2  Contractor populations onboarded from their decide…</text>
+<rect x="766.2" y="735" width="138.5" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="760" font-size="10.5" fill="#1e293b">I5.3  OU-bound policy retired; rollback path tested once</text>
+<rect x="904.6" y="752" width="46.2" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="777" font-size="10.5" fill="#1e293b">IG5  Gate 5 — Populations cloud-mastered</text>
+<path d="M950.8 768.0 L956.3 773.5 L950.8 779.0 L945.3 773.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="14" y="795" width="18" height="9" rx="2" fill="#DC2626"/>
+<text x="38" y="804" font-size="10.5" fill="#1e293b">Critical path</text>
+<rect x="140.60000000000002" y="795" width="18" height="9" rx="2" fill="#2563EB"/>
+<text x="164.60000000000002" y="804" font-size="10.5" fill="#1e293b">Other task</text>
+<line x1="248.60000000000002" y1="799.5" x2="266.6" y2="799.5" stroke="#cbd5e1" stroke-width="2"/>
+<text x="272.6" y="804" font-size="10.5" fill="#1e293b">Float</text>
+<path d="M334.6 794 L340.1 799.5 L334.6 805 L329.1 799.5 Z" fill="#7C3AED"/>
+<text x="349.6" y="804" font-size="10.5" fill="#1e293b">Gate</text>
+<path d="M405.40000000000003 794 L410.90000000000003 799.5 L405.40000000000003 805 L399.90000000000003 799.5 Z" fill="#D97706"/>
+<text x="420.40000000000003" y="804" font-size="10.5" fill="#1e293b">Decision</text>
+<path d="M501.0 794 L506.5 799.5 L501.0 805 L495.5 799.5 Z" fill="#059669"/>
+<text x="516.0" y="804" font-size="10.5" fill="#1e293b">From another plan</text>
+<text x="966" y="804" font-size="10.5" fill="#64748b" text-anchor="end">A red outline marks a milestone on the critical path</text>
+</svg>

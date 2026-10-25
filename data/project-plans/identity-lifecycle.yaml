@@ -1,0 +1,151 @@
+# Sample project plan: Identity Lifecycle & Provisioning (HR-driven identity).
+# scripts/project_plans/build.py reads this file and writes the page, the
+# Gantt chart and the downloads. Edit this file, never the outputs.
+#
+# Durations are working days and illustrative. This plan runs from week 1,
+# alongside the program's Phase 0, because the program's Gate G1 needs the
+# HR feed live for the foundation scope by week 8. Book 03's own Phases 0 to 3
+# are compressed here to the foundation scope (the pilot cohort); Phases 4 to
+# 6 then run with the program's pilot and rollout.
+
+slug: identity-lifecycle
+title: "Identity Lifecycle & Provisioning: HR-Driven Identity"
+short_title: "Identity Lifecycle & Provisioning"
+subtitle: "A sample project plan for Book 03's pipeline: from the integration-point inventory to cloud-mastered populations, with the decisions that hold the HR feed's critical path"
+description: "A sample PMP-style project plan for the Identity Lifecycle & Provisioning project, built from Book 03, Chapter 12: a work breakdown by Book 03 phase, a computed critical path that shows why the HR feed is the program's most compressed track, every gate with its approver and criteria, and the intermediate decisions (enterprise identifier, contractor source, cutover populations) with owners and decide-by weeks."
+plan_type: "Project"
+covers: "Book 03 Phases 0 to 5 (Phase 6 is sustained posture)"
+books: "Book 03"
+sponsor: "Executive sponsor and CIO; HR leadership"
+manager: "Identity engineering lead, with the agency HR 2.0 integrated project team point of contact"
+start_label: "Week 1 = the program's Phase 0 approval"
+project_start: 2027-01-04
+
+purpose: |
+  This plan builds [Book 03](../books/b03-hr-identity/index.md)'s pipeline: HR as the source of authority, a middleware in the agency's boundary, provisioning into Active Directory or Entra ID, and Lifecycle Workflows acting on the accounts. It follows Book 03's [phase model](../books/b03-hr-identity/12-execution-plan.md) gate for gate, and it feeds the [program master schedule](program-master-schedule.md): the program's Gate G1 needs this plan's Gate 3, the HR feed live for the foundation scope. The [implementation guide for Oracle Fusion Cloud HCM](../research/hcm-entra-implementation.md) shows the same pipeline on named products.
+
+critical_path_note: |
+  The computed path runs through the integration-point inventory, the crosswalk, the authority map and schema, the middleware build, the end-to-end test and the shadow-mode observation. It is the most compressed track in the program: it has only a few days of float against the program's G1, so a week lost here is a week lost at G1. The privacy basis is the task to watch. It must be in place before production HR data flows at go-live, and many privacy offices need longer than this sample allows, so it starts on day one, not in Phase 1. If the agency's PIA update takes longer, re-baseline here first.
+
+assumptions:
+  - "The foundation scope is the pilot cohort, employees only; contractors join when their source is decided (D-I3)."
+  - "Book 03's thresholds (for example 99% correlation on the pilot cohort) are proposed starting criteria, approved or replaced by the agency's risk governance ([Book 03, Chapter 12](../books/b03-hr-identity/12-execution-plan.md#sequencing-principle))."
+  - "Lifecycle Workflows needs Entra ID Governance or Entra Suite licenses ([Book 03, Chapter 12](../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and-test))."
+  - "Durations are illustrative. Phases 4 and 5 run per population, so their length follows the program's waves."
+
+risks:
+  - risk: "The privacy basis (routine use, PIA update) isn't ready at go-live"
+    impact: "No production data can flow; G1 slips week for week"
+    response: "Start it on day one; agree the minimized attribute set first (Book 03, Appendix B)"
+  - risk: "HR data is wrong at the source"
+    impact: "The pipeline provisions drifted access faster than tickets did"
+    response: "Baseline and fix HR data in Phase 1, before automation (Book 03, Chapter 12)"
+  - risk: "The correlation threshold isn't met on the pilot cohort"
+    impact: "Gate 1 fails; the critical path waits"
+    response: "Start correlation work in week 2 and report the rate weekly"
+  - risk: "The contractor source stays undecided"
+    impact: "Contractors stay on COR spreadsheets past wave 2"
+    response: "Put D-I3 on the steering committee agenda before G2"
+
+tasks:
+  # ------------------------------------------------- Phase 0 — alignment
+  - {id: I0.1, phase: 0, name: "Integration-point inventory, naming the HR-driven identity feed", dur: 5, owner: "HR 2.0 project team point of contact",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment"}
+  - {id: I0.2, phase: 0, name: "Entra migration plan names HR as the source for each population", dur: 3, after: ["I0.1:SS+2"], owner: "Program office",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment"}
+  - {id: I0.3, phase: 0, name: "Legacy identity data to retain identified", dur: 4, owner: "Records officer",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment"}
+  - {id: I0.4, phase: 0, name: "Privacy basis: routine use, PIA update, minimized attribute set", dur: 25, owner: "Privacy officer",
+     source: "../books/b03-hr-identity/appendix-b-security-and-privacy.md"}
+  - {id: IG0, kind: gate, phase: 0, name: "Gate 0 — Inventory signed and submitted", after: [I0.1, I0.2, I0.3], owner: "ISSO",
+     criteria: "The integration-point inventory is signed by the ISSO and submitted to the agency's HR 2.0 team",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-0-program-alignment"}
+  # ------------------------------------------------- Phase 1 — authority and schema
+  - {id: D-I1, kind: decision, phase: 1, name: "Enterprise person key, and how source keys map to it", after: [IG0], owner: "HR, with identity engineering",
+     options: "The HCM person number; another HR key; a minted enterprise key", late: "The authority map can't be signed; the critical path waits",
+     source: "../books/b03-hr-identity/04-attribute-authority.md"}
+  - {id: I1.1, phase: 1, name: "Standard-attribute crosswalk and nature-of-action trigger table", dur: 5, after: [IG0], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/06-canonical-attribute-schema.md"}
+  - {id: I1.2, phase: 1, name: "Attribute authority map signed", dur: 3, after: [I1.1, D-I1], owner: "HR",
+     source: "../books/b03-hr-identity/04-attribute-authority.md"}
+  - {id: I1.3, phase: 1, name: "Canonical schema finalized and validated against a sandbox extract", dur: 4, after: [I1.2], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/06-canonical-attribute-schema.md"}
+  - {id: D-I2, kind: decision, phase: 1, name: "Worker-type taxonomy and the three access-attribute code lists", after: [I1.2], owner: "HR",
+     options: "Employee, contractor, intern, volunteer, vendor, external, each with a license, access ceiling and retention", late: "Naming, placement and scoping rules wait",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema"}
+  - {id: I1.4, phase: 1, name: "UPN, sAMAccountName, OU placement and scoping rules", dur: 3, after: [D-I2], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema"}
+  - {id: I1.5, phase: 1, name: "HR data baselined; employeeId populated; orphan candidates owned", dur: 12, after: [IG0], owner: "HR",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema"}
+  - {id: I1.6, phase: 1, name: "PIV issuing CAs' CRLs checked against Entra's limits", dur: 3, after: [IG0], owner: "PIV credentialing office",
+     source: "../books/b03-hr-identity/09-credentials-and-certificates.md"}
+  - {id: IG1, kind: gate, phase: 1, name: "Gate 1 — Authority and schema signed", after: [I1.3, I1.4, I1.5, I1.6], owner: "ISSO",
+     criteria: "Identifier decision, authority map and schema signed; correlation meets the approved threshold on the pilot cohort; every enabled account correlated or on a dated exception list",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema"}
+  # ------------------------------------------------- Phase 2 — build and test
+  - {id: I2.1, phase: 2, name: "Workforce identity service (middleware) built in-boundary", dur: 6, after: [I1.3], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/05-the-provisioning-pipeline.md"}
+  - {id: I2.2, phase: 2, name: "API-driven provisioning apps; least-privilege permissions; throttling sized", dur: 3, after: [I1.3], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/05-the-provisioning-pipeline.md"}
+  - {id: I2.3, phase: 2, name: "Joiner, mover and leaver workflows and custom task extensions", dur: 6, after: [I1.4], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/08-joiner-mover-leaver.md"}
+  - {id: I2.4, phase: 2, name: "End-to-end proof in the test tenant, including device retire and test-CA revocation", dur: 4, after: [I2.1, I2.2, I2.3, IG1], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and-test"}
+  - {id: IG2, kind: gate, phase: 2, name: "Gate 2 — Pipeline proven end to end", after: [I2.4], owner: "ISSO",
+     criteria: "Joiner, mover and leaver each run end to end in the test tenant with a provenance record and a workflow run",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-2-pipeline-build-and-test"}
+  # ------------------------------------------------- Phase 3 — hybrid go-live
+  - {id: I3.1, phase: 3, name: "Two provisioning agents under a gMSA with OU-scoped rights", dur: 2, after: [IG1], owner: "Platform teams",
+     source: "../books/b03-hr-identity/05-the-provisioning-pipeline.md"}
+  - {id: I3.2, phase: 3, name: "Initial full sync with scoping filters; mismatches reconciled", dur: 3, after: [IG2, I3.1, I0.4], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot"}
+  - {id: I3.3, phase: 3, name: "Shadow mode on the pilot cohort; every difference explained", dur: 5, after: [I3.2], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot"}
+  - {id: D-I4, kind: decision, phase: 3, name: "Let the pipeline act on the pilot cohort", after: [I3.3], owner: "ISSO",
+     options: "Act; extend shadow mode", late: "The go-live waits, and with it the program's G1",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot"}
+  - {id: I3.4, phase: 3, name: "Delta feeds live; first joiner/mover/leaver cycle closes with evidence", dur: 3, after: [D-I4], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot"}
+  - {id: IG3, kind: gate, phase: 3, name: "Gate 3 — HR feed live for the foundation scope", after: [I3.4], owner: "ISSO",
+     criteria: "The observation period's differences explained and fixed; a full joiner/mover/leaver cycle on the pilot cohort closed with evidence; zero unmatched-record creations",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot"}
+  # ------------------------------------------------- Phase 4 — automation and derived access
+  - {id: I4.1, phase: 4, name: "Leaver automation on for covered populations; block and revocation intervals measured", dur: 10, after: [IG3], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access"}
+  - {id: I4.2, phase: 4, name: "Exception routes: emergency terminations, litigation holds", dur: 5, after: [IG3], owner: "Help desk",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access"}
+  - {id: I4.3, phase: 4, name: "Joiner and mover automation; rehire and conversion matching validated", dur: 10, after: [I4.1], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/08-joiner-mover-leaver.md"}
+  - {id: I4.4, phase: 4, name: "Hand-kept groups converted to rules, shadow-compared one by one", dur: 25, after: ["I4.1:SS+5"], owner: "Platform teams",
+     source: "../books/b03-hr-identity/10-from-attributes-to-access.md"}
+  - {id: I4.5, phase: 4, name: "Access packages re-based on the supervisor of record", dur: 10, after: [I4.3], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access"}
+  - {id: I4.6, phase: 4, name: "A full pay-period cycle with zero missed leavers; test reorganization", dur: 10, after: [I4.3, I4.4, I4.5, I4.2], owner: "ISSO",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access"}
+  - {id: IG4, kind: gate, phase: 4, name: "Gate 4 — Lifecycle automated", after: [I4.6], owner: "ISSO",
+     criteria: "Zero missed leavers across a pay period; block within threshold; account-creation tickets retired for covered populations; a test reorganization propagates with zero manual changes",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access"}
+  # ------------------------------------------------- Phase 5 — cutover by population
+  - {id: D-I3, kind: decision, phase: 5, name: "Source of authority for contractors and other non-employees", after: [IG1], owner: "HR",
+     options: "Core HCM contingent workers; the PIV sponsorship system; the contractor suitability register; a combination with one authority per fact", late: "Contractors stay on COR spreadsheets; their cutover can't be planned",
+     source: "../books/b03-hr-identity/06-canonical-attribute-schema.md"}
+  - {id: D-I5, kind: decision, phase: 5, name: "Order of populations to cut over, aligned to the Core HCM onboarding", after: [IG4], owner: "Executive sponsor and CIO",
+     options: "Follow the program's waves; follow the agency's Core HCM go-live", late: "Retargeting can't be scheduled",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population"}
+  - {id: I5.1, phase: 5, name: "Employee populations retargeted to the Entra app, one by one, evidence-gated", dur: 40, after: [D-I5], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population"}
+  - {id: I5.2, phase: 5, name: "Contractor populations onboarded from their decided source and retargeted", dur: 30, after: [D-I3, "I5.1:SS+10"], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/06-canonical-attribute-schema.md"}
+  - {id: I5.3, phase: 5, name: "OU-bound policy retired; rollback path tested once", dur: 10, after: [I5.1, I5.2], owner: "Platform teams",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population"}
+  - {id: IG5, kind: gate, phase: 5, name: "Gate 5 — Populations cloud-mastered", after: [I5.3], owner: "ISSO",
+     criteria: "Cloud-mastered populations run the full lifecycle cloud-native with evidence; no AD writes for migrated populations; rollback tested once",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population"}
+
+phases:
+  0: "Phase 0 — Program alignment"
+  1: "Phase 1 — Attribute authority and schema"
+  2: "Phase 2 — Pipeline build and test"
+  3: "Phase 3 — Hybrid go-live (pilot)"
+  4: "Phase 4 — Lifecycle automation and derived access"
+  5: "Phase 5 — Cutover, population by population"
