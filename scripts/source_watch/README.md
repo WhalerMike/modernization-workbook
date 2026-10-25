@@ -82,10 +82,21 @@ can also name books of its own, in which case every new item is reported
 (B12 Security Operations, B17 AI Identity Governance); the issue marks those
 "(planned)".
 
+**Research review dates.** Every research page (`docs/research/*.md`)
+carries `last-reviewed: YYYY-MM-DD` in its front matter: the date someone
+last checked it against its sources. A page last reviewed more than 90
+days ago, or never, is listed in the issue. Unlike sources and feeds,
+this isn't a one-time report: a due page is listed **every week** until
+someone reviews it and updates the date. The research banner
+(`assets/research-banner.lua`) shows the date in the page's status box
+and says when it's overdue, and the Research page lists it in a Reviewed
+column. Run `python scripts/source_watch/review_dates.py` to see what's
+due now.
+
 ## How to read an issue
 
 The title is **Source watch — week of YYYY-MM-DD** (the Monday) and the
-label is `source-watch`. The issue has three sections:
+label is `source-watch`. The issue has four sections:
 
 1. **Changed, moved or gone sources**, by book, then chapter (linked to the
    chapter file), then source. Each entry gives the source's title as the
@@ -105,6 +116,10 @@ label is `source-watch`. The issue has three sections:
    (bot blocking, sign-in walls, repeated timeouts), sources that answer
    again after failing, and feeds that started failing. Open each one in a
    browser.
+4. **Research due for review**: each research page past its 90-day
+   review, with its status and last-reviewed date. Review the page,
+   update `last-reviewed` (and any row dates on the page), and it drops
+   off the next week's issue.
 
 A week with more than fits in an issue (GitHub's limit is 65,536
 characters) is cut short, with counts of what was left out. The full report
@@ -158,6 +173,7 @@ next run then opens a new "baseline established" issue.
 ```sh
 python scripts/source_watch/citations.py                      # counts
 python scripts/source_watch/citations.py --json               # url -> citations
+python scripts/source_watch/review_dates.py                    # research pages due for review
 
 # Check 60 sources, mixed across hosts, into a scratch state file; print the report.
 python scripts/source_watch/watch.py --state /tmp/sw.json --no-feeds --dry-run --limit 60
@@ -185,6 +201,7 @@ Files:
 | `watch.py` | Fingerprints and classifies each source, polls the feeds, and writes the state and results. |
 | `feeds.py` | The feed readers and the topic matching. |
 | `report.py` | Renders the Markdown digest and opens the issue. |
+| `review_dates.py` | Lists the research pages due for review (`last-reviewed` older than 90 days, or missing). |
 | `data/source-watch/config.json` | Threshold, concurrency, timeouts, per-host delays and skipped hosts. |
 | `data/source-watch/feeds.json` | The feeds and the topic → book map. |
 | `source-watch-state` branch | `data/source-watch/state.json`: per-source fingerprints and per-feed seen ids. Kept off main, because every push to main redeploys the site. |

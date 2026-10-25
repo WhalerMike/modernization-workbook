@@ -6,6 +6,7 @@ research-status: in review
 research-type: product deep dive
 research-book: "Book 09"
 date-modified: 2026-10-24
+last-reviewed: 2026-10-24
 ---
 
 # SD-WAN and SASE Platforms Against Book 09's Requirements {.unnumbered}

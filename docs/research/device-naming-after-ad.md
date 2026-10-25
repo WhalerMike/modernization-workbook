@@ -6,6 +6,7 @@ research-status: in review
 research-type: explainer
 research-book: "Books 05, 08"
 date-modified: 2026-10-22
+last-reviewed: 2026-10-22
 ---
 
 # Who Names the Device After AD? {.unnumbered}

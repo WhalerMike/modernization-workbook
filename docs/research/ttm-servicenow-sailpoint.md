@@ -6,6 +6,7 @@ research-status: in review
 research-type: implementation guide
 research-book: "Books 13, 15"
 date-modified: 2026-10-24
+last-reviewed: 2026-10-24
 ---
 
 # Ticket-to-Machine on ServiceNow and SailPoint: An Example {.unnumbered}

@@ -6,6 +6,7 @@ research-status: in review
 research-type: explainer
 research-book: "Books 03, 04, 06, 07, 09"
 date-modified: 2026-10-23
+last-reviewed: 2026-10-23
 ---
 
 # Certificates, Tokens and Keys Across the Hybrid Estate {.unnumbered}

@@ -6,6 +6,7 @@ research-status: in review
 research-type: implementation guide
 research-book: "Book 07"
 date-modified: 2026-10-23
+last-reviewed: 2026-10-23
 ---
 
 # Certificate Lifecycle on CyberArk Certificate Manager {.unnumbered}

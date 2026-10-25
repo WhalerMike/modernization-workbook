@@ -12,11 +12,12 @@ listing:
     include:
       research-type: "explainer"
     type: table
-    fields: [title, research-book, research-status, date-modified, description]
+    fields: [title, research-book, research-status, date-modified, last-reviewed, description]
     field-display-names: &names
       research-book: "Book"
       research-status: "Status"
       date-modified: "Updated"
+      last-reviewed: "Reviewed"
     sort: "title asc"
     sort-ui: false
     filter-ui: false
@@ -27,7 +28,7 @@ listing:
     include:
       research-type: "product deep dive"
     type: table
-    fields: [title, research-book, research-status, date-modified, description]
+    fields: [title, research-book, research-status, date-modified, last-reviewed, description]
     field-display-names: *names
     sort: "title asc"
     sort-ui: false
@@ -39,7 +40,7 @@ listing:
     include:
       research-type: "implementation guide"
     type: table
-    fields: [title, research-book, research-status, date-modified, description]
+    fields: [title, research-book, research-status, date-modified, last-reviewed, description]
     field-display-names: *names
     sort: "title asc"
     sort-ui: false
@@ -57,6 +58,8 @@ Research is the workbook's staging area. New work starts here, in the open: an e
 3. **Proved:** reviewed, and validated in practice, for example in a lab, a pilot or a test tenant, with the evidence recorded on the item's page.
 4. **Published:** moved into production. The research page stays as the record of its sources, review and evidence.
 :::
+
+**Reviewed** is the date someone last checked a page against its sources. A page not reviewed for more than 90 days says so in its status box, and it is listed in the weekly source-watch issue until it is reviewed again.
 
 Each type of research has its own home in production:
 
