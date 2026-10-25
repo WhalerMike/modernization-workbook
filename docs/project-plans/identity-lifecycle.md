@@ -265,9 +265,20 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 |---|---|
 | [identity-lifecycle.xml](files/identity-lifecycle.xml) | Microsoft Project desktop (open the XML file; it keeps the dependencies, milestones and owners). The dates start on a placeholder Monday: change the project start date. |
 | [identity-lifecycle.csv](files/identity-lifecycle.csv) | Excel or any other scheduling tool: every row with its dependencies, early and late dates and float |
+| [identity-lifecycle-azure-boards.csv](files/identity-lifecycle-azure-boards.csv) | Azure DevOps Boards: an Epic per phase and a Feature per task, gate and decision, with dates and tags (see below) |
+| [identity-lifecycle-dependencies.csv](files/identity-lifecycle-dependencies.csv) · [add-azure-boards-links.ps1](files/add-azure-boards-links.ps1) | The plan's predecessor links, and a script that adds them in Azure Boards after the import |
 | [identity-lifecycle.yaml](https://github.com/WhalerMike/modernization-workbook/blob/main/data/project-plans/identity-lifecycle.yaml) | The source. Edit the durations, owners and dependencies, then run `python scripts/project_plans/build.py` to recompute the critical path and regenerate this page, the chart and the downloads. |
 
 : Downloads {.striped}
+
+::: {.callout-tip}
+## Importing this plan into Azure DevOps Boards
+1. In the project, select **Boards** > **Queries** > **Import work items**, choose [identity-lifecycle-azure-boards.csv](files/identity-lifecycle-azure-boards.csv), check the results and select **Save items**. It creates one Epic per phase with a Feature under it for each task, gate and decision, with start and target dates, which is what Delivery Plans show. Epic and Feature exist in the Agile, Scrum and CMMI processes; in the Basic process, change *Feature* to *Issue* in the file first.
+2. The import can't create dependency links or assign people. To add the predecessor links, sign in with `az login`, add the CLI extension with `az extension add --name azure-devops`, and run `./add-azure-boards-links.ps1 -Organization https://dev.azure.com/<org> -Project <project> -Plan identity-lifecycle` beside [identity-lifecycle-dependencies.csv](files/identity-lifecycle-dependencies.csv). It finds the imported items by their `fmw-id-` tags and links each one to its predecessors.
+3. Assign people in Boards: each item carries its owner role as an *Owner - …* tag, and critical-path items carry *Critical path*. Azure Boards links don't hold lag or start-to-start timing; each item's description keeps them.
+
+The dates count from the plan's placeholder start; shift them when you set the real start. The script hasn't been run against a live organization yet: test it on a scratch project first.
+:::
 
 ::: {.callout-tip}
 ## Opening this plan in Project or Planner

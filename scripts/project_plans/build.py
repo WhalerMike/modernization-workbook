@@ -41,6 +41,7 @@ ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data" / "project-plans"
 OUT = ROOT / "docs" / "project-plans"
 GH = "https://github.com/WhalerMike/modernization-workbook/blob/main"
+SITE = "https://whalermike.github.io/modernization-workbook/"
 
 PRED = re.compile(r"^(?P<id>[A-Za-z0-9.\-]+?)(?::(?P<type>FS|SS))?(?:\+(?P<lag>\d+))?$")
 NEAR_CRITICAL = 5  # days of float at or under which a task is "near-critical"
@@ -390,7 +391,75 @@ def to_csv(plan: dict) -> str:
         w.writerow([t["id"], plan["phases"][t["phase"]], kind_label(t), t["name"], t.get("owner", ""), t["dur"],
                     pred_text(t), weeks(t), t["_es"], t["_ef"], t["_lf"], t["_float"], "Yes" if t["_crit"] else "No",
                     t.get("options", ""), t.get("late", ""), t.get("criteria", ""), src])
-    return "﻿" + buf.getvalue()
+    return "\ufeff" + buf.getvalue()
+
+
+def site_url(src: str) -> str:
+    """A row's source link as an absolute URL on the published site."""
+    if src.startswith("http"):
+        return src
+    page = src if not src.startswith("../") else src[3:]
+    base = "docs/project-plans/" if not src.startswith("../") else "docs/"
+    path, _, anchor = page.partition("#")
+    return f"{SITE}{base}{path[:-3]}.html" + (f"#{anchor}" if anchor else "")
+
+
+def tag(text: str) -> str:
+    # Azure Boards and Jira both split tags on ";" or ","; neither may appear inside one.
+    return re.sub(r"[;,]", " -", text).strip()
+
+
+def to_azure_boards(plan: dict) -> str:
+    """Azure Boards CSV import: an Epic per phase, a Feature per row.
+
+    Epic and Feature exist in the Agile, Scrum and CMMI processes. Title 1 and
+    Title 2 make the parent-child links; the import can't set Assigned To,
+    State or any other link type, so owners travel as tags and dependencies
+    go in a separate file (see add-azure-boards-links.ps1).
+    """
+    start = plan["project_start"]
+    if isinstance(start, str):
+        start = dt.date.fromisoformat(start)
+    buf = io.StringIO()
+    w = csv.writer(buf, lineterminator="\r\n")
+    w.writerow(["Work Item Type", "Title 1", "Title 2", "Description", "Tags", "Start Date", "Target Date"])
+    plan_tag = f"fmw-{plan['slug']}"
+    for ph, label in plan["phases"].items():
+        members = [t for t in plan["tasks"] if t["phase"] == ph]
+        if not members:
+            continue
+        es = min(t["_es"] for t in members)
+        ef = max(t["_ef"] for t in members)
+        w.writerow(["Epic", f"{plan['short_title']}: {label}", "",
+                    f"<p>{html.escape(label)} of the sample plan <a href=\"{SITE}docs/project-plans/{plan['slug']}.html\">{html.escape(plan['title'])}</a>.</p>",
+                    f"fmw; {plan_tag}; Phase", workday(start, es).isoformat(), workday(start, max(0, ef - 1)).isoformat()])
+        for t in members:
+            parts = [f"<p><strong>{html.escape(t['id'])}</strong> · {kind_label(t)} · owner or approver: {html.escape(t.get('owner', ''))}</p>",
+                     f"<p>Duration {t['dur']} working days · {weeks(t)} · total float {float_text(t).replace('**', '')} · predecessors: {html.escape(pred_text(t))}</p>"]
+            for key, title in (("criteria", "Criteria"), ("options", "Options"), ("late", "If decided late")):
+                if t.get(key):
+                    parts.append(f"<p><strong>{title}:</strong> {html.escape(t[key])}</p>")
+            if t.get("kind") == "external":
+                parts.append(f"<p>Comes from {html.escape(t['ref'])} in another plan; its date is set there.</p>")
+            parts.append(f"<p>Source: <a href=\"{site_url(t['source'])}\">{html.escape(site_url(t['source']))}</a></p>")
+            tags = ["fmw", plan_tag, f"fmw-id-{t['id']}", kind_label(t), tag("Owner - " + t.get("owner", ""))]
+            if t["_crit"]:
+                tags.append("Critical path")
+            s = workday(start, t["_es"])
+            f = workday(start, max(t["_es"], t["_ef"] - 1)) if t["dur"] else workday(start, max(0, t["_ef"] - 1))
+            w.writerow(["Feature", "", f"{t['id']} {t['name']}"[:255], "".join(parts), "; ".join(tags), s.isoformat(), f.isoformat()])
+    return "\ufeff" + buf.getvalue()
+
+
+def to_dependencies(plan: dict) -> str:
+    """Every predecessor link, for add-azure-boards-links.ps1 (or any tool)."""
+    buf = io.StringIO()
+    w = csv.writer(buf, lineterminator="\r\n")
+    w.writerow(["Successor", "Predecessor", "Type", "Lag (working days)"])
+    for t in plan["tasks"]:
+        for p, typ, lag in t["_preds"]:
+            w.writerow([t["id"], p, "Finish-to-start" if typ == "FS" else "Start-to-start", lag])
+    return buf.getvalue()
 
 
 def to_mspdi(plan: dict) -> str:
@@ -720,9 +789,20 @@ def page(plan: dict, plans: dict[str, dict]) -> str:
         "|---|---|",
         f"| [{slug}.xml](files/{slug}.xml) | Microsoft Project desktop (open the XML file; it keeps the dependencies, milestones and owners). The dates start on a placeholder Monday: change the project start date. |",
         f"| [{slug}.csv](files/{slug}.csv) | Excel or any other scheduling tool: every row with its dependencies, early and late dates and float |",
+        f"| [{slug}-azure-boards.csv](files/{slug}-azure-boards.csv) | Azure DevOps Boards: an Epic per phase and a Feature per task, gate and decision, with dates and tags (see below) |",
+        f"| [{slug}-dependencies.csv](files/{slug}-dependencies.csv) · [add-azure-boards-links.ps1](files/add-azure-boards-links.ps1) | The plan's predecessor links, and a script that adds them in Azure Boards after the import |",
         f"| [{Path(plan['_file']).name}]({GH}/{plan['_file']}) | The source. Edit the durations, owners and dependencies, then run `python scripts/project_plans/build.py` to recompute the critical path and regenerate this page, the chart and the downloads. |",
         "",
         ": Downloads {.striped}",
+        "",
+        "::: {.callout-tip}",
+        "## Importing this plan into Azure DevOps Boards",
+        f"1. In the project, select **Boards** > **Queries** > **Import work items**, choose [{slug}-azure-boards.csv](files/{slug}-azure-boards.csv), check the results and select **Save items**. It creates one Epic per phase with a Feature under it for each task, gate and decision, with start and target dates, which is what Delivery Plans show. Epic and Feature exist in the Agile, Scrum and CMMI processes; in the Basic process, change *Feature* to *Issue* in the file first.",
+        f"2. The import can't create dependency links or assign people. To add the predecessor links, sign in with `az login`, add the CLI extension with `az extension add --name azure-devops`, and run `./add-azure-boards-links.ps1 -Organization https://dev.azure.com/<org> -Project <project> -Plan {slug}` beside [{slug}-dependencies.csv](files/{slug}-dependencies.csv). It finds the imported items by their `fmw-id-` tags and links each one to its predecessors.",
+        "3. Assign people in Boards: each item carries its owner role as an *Owner - …* tag, and critical-path items carry *Critical path*. Azure Boards links don't hold lag or start-to-start timing; each item's description keeps them.",
+        "",
+        "The dates count from the plan's placeholder start; shift them when you set the real start. The script hasn't been run against a live organization yet: test it on a scratch project first.",
+        ":::",
         "",
         "::: {.callout-tip}",
         "## Opening this plan in Project or Planner",
@@ -751,6 +831,8 @@ def outputs(plans: dict[str, dict]) -> dict[Path, str]:
         files[OUT / "images" / f"{slug}-gantt.svg"] = gantt(plan)
         files[OUT / "files" / f"{slug}.csv"] = to_csv(plan)
         files[OUT / "files" / f"{slug}.xml"] = to_mspdi(plan)
+        files[OUT / "files" / f"{slug}-azure-boards.csv"] = to_azure_boards(plan)
+        files[OUT / "files" / f"{slug}-dependencies.csv"] = to_dependencies(plan)
     return files
 
 
