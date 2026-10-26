@@ -1109,6 +1109,7 @@ $script:FMPTrustBits = [ordered]@{
     0x200 = 'CrossOrganizationNoTGTDelegation'
     0x400 = 'PIMTrust'
     0x800 = 'CrossOrganizationEnableTGTDelegation'
+    0x1000 = 'DisableAuthTargetValidation'
 }
 
 function Get-FMPTrustMap {

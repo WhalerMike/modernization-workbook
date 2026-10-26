@@ -51,3 +51,12 @@ Source: `docs/whitepapers/bod-25-01-close-before-assess.md` (shared with Chapter
 | §6 Then assess continuously | Ch08 §Then assess, continuously | — |
 | §7 Honest limits | Ch08 §Where this argument stops | — |
 | §8 Conclusion | Ch08 closing paragraph | — |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| ScubaGear 2.0.0 released Oct 22, 2026 (latest stable on the PowerShell Gallery); Security Suite baseline replaces Defender; counts in this chapter stay as 1.8.0 counts; CISA's Required Configurations page still lists 1.8.0-era IDs on Oct 26 | text and `c04-scubagear`, `c04-psgallery` updated |
+| ScubaGoggles 1.1.0 released Oct 22, 2026; notes say no new required configuration policies | sentence and `c04-goggles` updated |

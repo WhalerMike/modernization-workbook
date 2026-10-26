@@ -52,3 +52,11 @@ The appendix has no assigned source page of its own; it draws on the brief's "ne
 | central-deployment.md — CDM analogy; BOD 23-01 | Appendix A "Other federal sources"; corrections table | CDM description corrected |
 | whitepaper — M-25-21 requirements; companion memoranda | Appendix A M-25-21 and M-25-22 tables | Competitive framing dropped |
 | (new research) federal AI rules, NIST AI RMF, SP 800-53 baselines, FedRAMP classes, COSIS, EO 14434 | Appendix A tables | — |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| OMB memoranda index now runs to M-27-01; nothing later replaces M-25-21 | sentence and `aA-omb-memos` updated |

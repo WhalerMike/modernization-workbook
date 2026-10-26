@@ -34,7 +34,7 @@ The program's recommendation is to run both: ScubaGear to demonstrate and keep t
 |---|---|---|
 | Question it answers | Does the tenant meet the federal baseline? | How mature is the environment against Zero Trust guidance? |
 | Authority behind it | CISA's SCuBA secure configuration baselines; BOD 25-01 requires agencies to deploy it[^c05-bod2501] | Microsoft's Zero Trust and Secure Future Initiative guidance, drawing on NIST, CISA and CIS standards and Microsoft's internal baselines[^c05-zta-overview] |
-| Current version | 1.8.0, May 7, 2026; 2.0.0 in prerelease[^c05-scubagear-gallery] | 3.1.0, October 20, 2026[^c05-zta-release] |
+| Current version | 2.0.0, October 22, 2026 (previously 1.8.0, May 7, 2026)[^c05-scubagear-gallery] | 3.1.0, October 20, 2026[^c05-zta-release] |
 | Scope | Microsoft 365: Entra ID, Defender, Exchange Online, Power BI, Power Platform, SharePoint and OneDrive, Teams[^c05-scubagear] | Entra ID, Intune, Azure, Exchange Online, SharePoint and Microsoft Purview, organized by Zero Trust pillar[^c05-zta-start][^c05-zta-code] |
 | How it runs | PowerShell queries the Microsoft 365 APIs; Open Policy Agent evaluates the settings against Rego policies[^c05-scubagear] | PowerShell 7 module (`ZeroTrustAssessment`) connecting to Microsoft Graph, Azure, Exchange, SharePoint and Azure Information Protection[^c05-zta-start] |
 | Output | HTML, JSON and CSV[^c05-scubagear] | HTML report, with the collected data in a local export folder[^c05-zta-start] |
@@ -48,7 +48,7 @@ ScubaGear is CISA's assessment tool for Microsoft 365. It runs in Windows PowerS
 
 "Read-only" describes what ScubaGear does, not the roles it needs. Global Reader is enough for Entra ID, the security suite, Exchange Online, SharePoint and Teams, but Power Platform needs the Power Platform Administrator role with a Power Apps for Office 365 license, and Power BI needs a Fabric Administrator (or Global Administrator) with a Power BI or Fabric license. The first run also asks an administrator to consent to a set of Microsoft Graph read permissions.[^c05-perms] Plan the run account accordingly, and keep it under the same privileged-access controls as any administrator ([Book 04](../b04-access/index.md)).
 
-For BOD 25-01 reporting, CISA wants results from the most recent version of the tool.[^c05-guidance] That matters now: the 2.0.0 prerelease carries baseline documents with new Entra ID policies, and its development-branch baselines mark more policies with a BOD 25-01 indicator than CISA's Required Configurations page currently lists.[^c05-aad][^c05-required] Pin the version and the baseline you assess against, record both with every result, and expect the score to move when the version changes even though the tenant didn't.
+For BOD 25-01 reporting, CISA wants results from the most recent version of the tool.[^c05-guidance] That matters now: ScubaGear 2.0.0, released October 22, 2026, replaces the Defender baseline with a Security Suite baseline and adds and renumbers policies, and its release notes list changes that affect the BOD 25-01 required configurations before CISA's Required Configurations page shows them; on October 26, 2026 that page still listed the 1.8.0-era policy IDs.[^c05-aad][^c05-required][^c05-scubagear-gallery] Pin the version and the baseline you assess against, record both with every result, and expect the score to move when the version changes even though the tenant didn't.
 
 ## The Zero Trust Assessment
 
@@ -99,7 +99,7 @@ Both tools read configuration and score it, against a prescriptive baseline in S
 
 [^c05-bod2501]: Cybersecurity and Infrastructure Security Agency, Binding Operational Directive 25-01, *Implementing Secure Practices for Cloud Services*, December 17, 2024, <https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services> (accessed Oct 21, 2026).
 [^c05-zta-overview]: Microsoft Learn, "What is the Zero Trust Assessment?," <https://learn.microsoft.com/security/zero-trust/assessment/overview> (accessed Oct 21, 2026).
-[^c05-scubagear-gallery]: PowerShell Gallery, "ScubaGear," version history, <https://www.powershellgallery.com/packages/ScubaGear> (accessed Oct 21, 2026).
+[^c05-scubagear-gallery]: PowerShell Gallery, "ScubaGear," version history (2.0.0, October 22, 2026, latest stable), <https://www.powershellgallery.com/packages/ScubaGear>; Cybersecurity and Infrastructure Security Agency, ScubaGear release v2.0.0, release notes, "BOD 25-01 required configuration policy changes," <https://github.com/cisagov/ScubaGear/releases/tag/v2.0.0>; CISA, BOD 25-01 Required Configurations page, <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (all accessed Oct 26, 2026).
 [^c05-zta-release]: Microsoft, Zero Trust Assessment release 3.1.0, published October 20, 2026 (release notes: PowerShell 7.6 or later; new Security Operations tests for directory, email and collaboration, endpoint protection and Sentinel), <https://github.com/microsoft/zerotrustassessment/releases> (accessed Oct 21, 2026).
 [^c05-scubagear]: Cybersecurity and Infrastructure Security Agency, ScubaGear README, release v1.8.0, <https://github.com/cisagov/ScubaGear/blob/v1.8.0/README.md> (accessed Oct 21, 2026).
 

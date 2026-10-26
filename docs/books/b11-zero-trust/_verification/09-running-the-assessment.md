@@ -95,3 +95,11 @@ Writer W4. Sources: `docs/whitepapers/scubagear-integration-whitepaper.md` (v1.3
 |---|---|---|---|---|
 | R1 | PowerShell version: was "Windows PowerShell 5.1" | Install | corrected | ScubaGear v1.8.0 dependencies page says "PowerShell 5" (no minor version), https://github.com/cisagov/ScubaGear/blob/v1.8.0/docs/prerequisites/dependencies.md (opened Oct 21, 2026); matches Ch05 |
 | R2 | Tenant inventory update: was "first quarter of each fiscal year" | Scope | corrected | BOD 25-01 Required Actions: "Update this inventory in the first quarter annually", https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services (opened Oct 21, 2026); matches Ch04 |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| ScubaGear 2.0.0 is current; v2.0.0 README installs dependencies with `Install-ScubaDependencies`; this chapter's steps were checked at 1.8.0 and say so; the registry excerpt's `runtime-version: "1.8.0"` pin is left as the program's recorded pin | text, `c09-scuba-release`, `c09-scuba-deps` updated |

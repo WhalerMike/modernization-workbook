@@ -87,3 +87,11 @@ Manual checks: the NSA/CISA *AI Data Security* information sheet PDF on media.de
 |---|---|---|
 | FedRAMP AI Prioritization criteria | completed: all five criteria (enterprise features, data separation, demand, GSA MAS, 20x within two months) | fedramp.gov/ai, Historical Prioritization Criteria |
 | Overlay project URL | corrected to csrc.nist.gov/projects/cosis (old /cosais redirects there) | NIST CSRC |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| OMB memoranda index now runs to M-27-01 (Oct 23, 2026); still no other AI memorandum | sentence and `c02-memos` updated |
