@@ -67,3 +67,16 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 | Finding | Change |
 |---|---|
 | ScubaGear 2.0.0 is current; its release notes list BOD 25-01-relevant changes ahead of CISA's Required Configurations page | table row, "That matters now" sentence and `c05-scubagear-gallery` updated |
+
+## Re-base on ScubaGear 2.0.0, October 26, 2026
+
+Follows the source watch above (issue #160). Sources: ScubaGear tag `v2.0.0` (baselines, docs and `mappings/scuba-baseline-policy-migrations.csv`, raw files from GitHub), the v2.0.0 release notes (`gh release view v2.0.0 --repo cisagov/ScubaGear`), the same files at tag `v1.8.0` for comparison, and CISA's BOD 25-01 Required Configurations page, all read October 26, 2026. Policy counts are distinct `#### MS.<PRODUCT>.n.mvN` headings; indicator counts are policies whose entry carries the "BOD 25-01 Requirement" badge. No personal data was sent to any site; downloads used a generic User-Agent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Scope: Security Suite replaced Defender in 2.0.0 | Comparison table | verified | v2.0.0 README |
+| 2 | Default products aad, securitysuite, exo, sharepoint, teams; Power Platform and Power BI by `-ProductNames` | ScubaGear | verified (Power BI added) | v2.0.0 parameters.md |
+| 3 | `-M365Environment` required for interactive GCC, GCC High, DoD; not required with service principal (auto-detected) | ScubaGear | corrected (1.8.0 text said required for Power Platform and GCC High/DoD) | v2.0.0 parameters.md; v2.0.0 release notes |
+| 4 | Entra baseline 34 policies at 2.0.0; 20 on CISA's list; 22 marked required | Two caveats | verified | v2.0.0 `aad.md`; Required Configurations page |
+| 5 | 22 of 50 listed mandatory policies in EXO, Teams, SharePoint, Power Platform; 26 of 56 marked in 2.0.0 | Two caveats | verified (writer's count) | Required Configurations page; v2.0.0 baselines |
+| 6 | Interactive permissions and mappings unchanged in substance at 2.0.0 (Security Suite row replaces Defender; Power BI row added) | Footnotes | verified | v1.8.0 vs v2.0.0 interactive.md and mappings.md diff |

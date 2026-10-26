@@ -88,3 +88,16 @@ At the user's request, every certificate-dependent book maps its certificates to
 |---|---|---|---|---|
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
 | 2 | CyberArk mechanism (drivers) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-drivers |
+
+## Re-base on ScubaGear 2.0.0, October 26, 2026
+
+ScubaGear 2.0.0 was released October 22, 2026 (weekly source watch, issue #160). Footnotes that cited ScubaGear v1.8.0 were re-checked against tag `v2.0.0` (raw files from GitHub, compared with the same files at `v1.8.0`), the v2.0.0 release notes and CISA's BOD 25-01 Required Configurations page, all read October 26, 2026. No personal data was sent to any site; downloads used a generic User-Agent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | MS.AAD.5.5v1–5.7v1 released in ScubaGear 2.0.0 (Oct 22, 2026); SHOULD; April 2026; no BOD 25-01 indicator; not on CISA's page (supersedes row 12 and the "New SCuBA drafts" note) | Enforcing the order | verified (updated) | v2.0.0 `aad.md`; v2.0.0 release notes; Required Configurations page |
+| 2 | v1.8.0 section 5 had only 5.1–5.3 | Enforcing the order | verified | v1.8.0 `aad.md` |
+| 3 | MS.AAD.9.1v1 "Risky AI agents SHALL be blocked": CA policy, all agent identities, all resources, agent risk High, block; P2 plus Agent 365 or M365 E7; not applicable to GCC High and DoD; BOD 25-01 indicator; last modified March 2026 | Enforcing the order | verified (new) | v2.0.0 `aad.md` section 9; v2.0.0 release notes |
+| 4 | MS.AAD.9.1v1 not on CISA's Required Configurations page on Oct 26, 2026 | Same | verified | Required Configurations page (20 Entra IDs; no 9.1) |
+| 5 | Program treats 9.1v1 as notice; records ScubaGear result per tenant; blocks when the agent risk condition is GA in the agency's cloud | Same | restated-as-design | Book 17 Ch04 position (preview capabilities are watch items; agent risk condition in preview; GCC licensing and availability rows) |
+| 6 | MS.AAD.5.2v1 wording and the two compliant options unchanged at v2.0.0 (`c06-scuba-main` renamed `c06-scuba-v2` and pinned to the tag) | Admin consent | verified | v2.0.0 `aad.md` |

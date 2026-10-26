@@ -47,3 +47,12 @@ Writer W4. New chapter (no direct source page); built on the pattern of Book 09 
 | ScubaGear integration §7.2 (exceptions in canon) and §7.4 (drift to AO) | Ch07 matrix rows and comments; detail in Ch10 | — |
 | ZTA assessment guide: Controlled-data callout; first run Global Admin, later Global Reader | Ch07 CISO role, roles table and notes (corrected to the repository guide's narrower roles) | — |
 | Book 09 Ch09 pattern (roles, D/R/C matrix, comments, owner table, roles-in-systems, what changes) | Ch07 structure | — |
+
+## Re-base on ScubaGear 2.0.0, October 26, 2026
+
+Follows the weekly source watch (issue #160). Sources: ScubaGear tag `v2.0.0` (baselines, docs and `mappings/scuba-baseline-policy-migrations.csv`, raw files from GitHub), the v2.0.0 release notes (`gh release view v2.0.0 --repo cisagov/ScubaGear`), the same files at tag `v1.8.0` for comparison, and CISA's BOD 25-01 Required Configurations page, all read October 26, 2026. Policy counts are distinct `#### MS.<PRODUCT>.n.mvN` headings; indicator counts are policies whose entry carries the "BOD 25-01 Requirement" badge. No personal data was sent to any site; downloads used a generic User-Agent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Operators: Fabric Administrator with Power BI or Fabric license if Power BI is assessed | Roles table | verified (added) | v2.0.0 interactive.md, User Permissions |
+| 2 | Annotate/Omit guidance unchanged at 2.0.0 | Footnote `c07-scuba-config` | verified | v1.8.0 vs v2.0.0 configuration.md diff |

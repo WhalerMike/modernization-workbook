@@ -60,3 +60,19 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 |---|---|
 | ScubaGear 2.0.0 released Oct 22, 2026 (latest stable on the PowerShell Gallery); Security Suite baseline replaces Defender; counts in this chapter stay as 1.8.0 counts; CISA's Required Configurations page still lists 1.8.0-era IDs on Oct 26 | text and `c04-scubagear`, `c04-psgallery` updated |
 | ScubaGoggles 1.1.0 released Oct 22, 2026; notes say no new required configuration policies | sentence and `c04-goggles` updated |
+
+## Re-base on ScubaGear 2.0.0, October 26, 2026
+
+Follows the source watch above (issue #160). Sources: ScubaGear tag `v2.0.0` (baselines, docs and `mappings/scuba-baseline-policy-migrations.csv`, raw files from GitHub), the v2.0.0 release notes (`gh release view v2.0.0 --repo cisagov/ScubaGear`), the same files at tag `v1.8.0` for comparison, and CISA's BOD 25-01 Required Configurations page, all read October 26, 2026. Policy counts are distinct `#### MS.<PRODUCT>.n.mvN` headings; indicator counts are policies whose entry carries the "BOD 25-01 Requirement" badge. No personal data was sent to any site; downloads used a generic User-Agent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Policy counts at v2.0.0: aad 34, securitysuite 24, exo 12, powerbi 8, powerplatform 9, sharepoint 8, teams 14 = 109; v1.8.0 total 134 (recount of row 12 reproduced 30/19/40/8/9/8/20) | Mandatory list table | verified (writer's count) | v2.0.0 and v1.8.0 baseline documents |
+| 2 | BOD 25-01 indicator counts at v2.0.0: aad 22, securitysuite 8, exo 10, powerplatform 4, sharepoint 8, teams 4, powerbi 0 = 56 | Mandatory list table | verified (writer's count) | v2.0.0 baseline documents |
+| 3 | Required Configurations page on Oct 26: 50 M365 IDs (Entra 20, Defender 8, EXO 10, Power Platform 4, SharePoint 4, Teams 4), including MS.DEFENDER.1.1v1–1.5v1, 4.1v2, 5.1v1, 6.1v1, MS.AAD.3.2v1, MS.EXO.2.2v2 | Mandatory list; the tool and the list disagree | verified (re-check of row 11) | Required Configurations page (IDs extracted from page HTML) |
+| 4 | Defender baseline retired; Defender, EXO 8–17 and Teams 6–8 moved into Security Suite; some SHOULD policies removed; migration CSV and removedpolicies.md | Mandatory list | verified | v2.0.0 transition doc; removedpolicies.md; migration CSV |
+| 5 | Gap table: 3.2v1→3.2v2; 3.5v2 decoupled from 3.4; new 9.1v1 (P2 + Agent 365 or M365 E7; not GCC High/DoD); 8 Defender→8 Security Suite (1.1–1.3, 3.1, 4.1, 5.1, 6.1, 6.2); EXO 2.2v3 soft fail; SharePoint 1.3, 3.1, 3.2, 3.3v2 | The tool and the list disagree | verified | v2.0.0 release notes, "BOD 25-01 required configuration policy changes"; v2.0.0 `aad.md`, `securitysuite.md`, `exo.md`, `sharepoint.md` |
+| 6 | SharePoint 1.3/3.1/3.2 and MS.AAD.3.5 already existed at v1.8.0; 2.0.0 newly marks them required | The tool and the list disagree | verified | v1.8.0 vs v2.0.0 heading diff (only 3.3v1→v2 and 3.5v1→v2 changed IDs) |
+| 7 | Row 13 named MS.AAD.3.5v2 as a 1.8.0 policy; v1.8.0 has MS.AAD.3.5v1, and v2 arrives in 2.0.0 | Mandatory list | corrected | v1.8.0 and v2.0.0 `aad.md`; migration CSV row MS.AAD.3.5v1→v2 |
+| 8 | Row 15 (main-branch 5.5–5.7, 9.1v1, 22 indicators) now released in 2.0.0; 5.5–5.7 are SHOULD, April 2026, no indicator | Mandatory list | verified (superseded dev-branch claim) | v2.0.0 `aad.md` |
+| 9 | Three consequences (no ID match; 2.0.0 failure not yet a deviation; `~all` passes 2.2v3 but not 2.2v2) | The tool and the list disagree | restated-as-design | Derived from rows above; directive action 4 (updates on the page's timelines) |

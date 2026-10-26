@@ -67,3 +67,13 @@ At the user's request, every certificate-dependent book maps its certificates to
 |---|---|---|---|---|
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
 | 2 | CyberArk mechanism (disc) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-disc |
+
+## Re-base on ScubaGear 2.0.0, October 26, 2026
+
+Follows the weekly source watch (issue #160). Sources: ScubaGear tag `v2.0.0` (baselines, docs and `mappings/scuba-baseline-policy-migrations.csv`, raw files from GitHub), the v2.0.0 release notes (`gh release view v2.0.0 --repo cisagov/ScubaGear`), the same files at tag `v1.8.0` for comparison, and CISA's BOD 25-01 Required Configurations page, all read October 26, 2026. Policy counts are distinct `#### MS.<PRODUCT>.n.mvN` headings; indicator counts are policies whose entry carries the "BOD 25-01 Requirement" badge. No personal data was sent to any site; downloads used a generic User-Agent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | SPF policy failing non-approved senders; MS.EXO.2.2v3 accepts `~all` or `-all` (last modified Oct 2025); CISA list still MS.EXO.2.2v2 (hardfail only) | What the assessors can't do | verified (updated) | v2.0.0 `exo.md`; v2.0.0 release notes; Required Configurations page |
+| 2 | DMARC for every second-level domain, `p=reject` (MS.EXO.4.1v1, 4.2v1) unchanged at 2.0.0 | Same | verified | v2.0.0 `exo.md` |
+| 3 | No DNSSEC in any of the seven v2.0.0 baselines or removedpolicies.md; none at v1.8.0 either | Same | verified (re-run search) | v2.0.0 and v1.8.0 baselines |

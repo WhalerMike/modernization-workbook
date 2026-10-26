@@ -103,3 +103,20 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 | Finding | Change |
 |---|---|
 | ScubaGear 2.0.0 is current; v2.0.0 README installs dependencies with `Install-ScubaDependencies`; this chapter's steps were checked at 1.8.0 and say so; the registry excerpt's `runtime-version: "1.8.0"` pin is left as the program's recorded pin | text, `c09-scuba-release`, `c09-scuba-deps` updated |
+
+## Re-base on ScubaGear 2.0.0, October 26, 2026
+
+Follows the source watch above (issue #160). Sources: ScubaGear tag `v2.0.0` (baselines, docs and `mappings/scuba-baseline-policy-migrations.csv`, raw files from GitHub), the v2.0.0 release notes (`gh release view v2.0.0 --repo cisagov/ScubaGear`), the same files at tag `v1.8.0` for comparison, and CISA's BOD 25-01 Required Configurations page, all read October 26, 2026. Policy counts are distinct `#### MS.<PRODUCT>.n.mvN` headings; indicator counts are policies whose entry carries the "BOD 25-01 Requirement" badge. No personal data was sent to any site; downloads used a generic User-Agent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Commands, parameters and outputs checked against v2.0.0 docs | Running ScubaGear | verified | v2.0.0 README, dependencies.md, parameters.md, reports.md |
+| 2 | Products incl. Security Suite; `defender` no longer accepted; default run excludes Power Platform and Power BI | Running ScubaGear | verified | v2.0.0 parameters.md; transition doc |
+| 3 | `Install-ScubaDependencies` (formerly `Initialize-SCuBA`, alias retained) installs OPA; code block updated | Running ScubaGear | verified | v2.0.0 dependencies.md |
+| 4 | `-M365Environment` required for interactive GCC/GCC High/DoD; auto-detected for service principal | Running ScubaGear | verified | v2.0.0 parameters.md; release notes |
+| 5 | BOD 25-01 runs: `-ConfigFilePath` and `-Organization`; `-SilenceBODWarnings` otherwise | Running ScubaGear | verified (unchanged) | v2.0.0 README |
+| 6 | Config migration: `defender`→`securitysuite`, `Defender:`→`SecuritySuite:`, migrated IDs in annotations/omissions/exclusions; split ranges; removed policies dropped | Running ScubaGear | verified (new) | v2.0.0 transition doc |
+| 7 | Migrated config goes back through approval | Running ScubaGear | restated-as-design | Program position (Ch 10 approval rules) |
+| 8 | Outputs table unchanged at 2.0.0; release notes add a risky-apps CSV | Outputs table | verified | v1.8.0 vs v2.0.0 reports.md diff (identical); release notes |
+| 9 | Result values and criticality unchanged | From policy results to claims | verified | v1.8.0 vs v2.0.0 tooloutputschema.md diff |
+| 10 | Registry excerpt `runtime-version` pin moved to "2.0.0"; pin moves by reviewed change with config and mapping migration | Registered adapter | restated-as-design | Program registry convention; transition doc |

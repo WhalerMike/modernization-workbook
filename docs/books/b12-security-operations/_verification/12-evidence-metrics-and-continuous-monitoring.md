@@ -111,3 +111,11 @@ Writer W6. Sources: `docs/compliance/Vol_III_Book_07_Multi_Cloud_Evidence_Fabric
 | D6 | Ch05: the two Microsoft pages disagree on Defender XDR connector availability in DoD; stated explicitly | clarified | existing [^c05-feature], [^c05-govfeat] |
 
 | X1 | FedRAMP 2026 rules launch date: was June 24, now June 25 to match Books 00, 01, 02, 14 | Ch08, Ch12 | corrected (consistency) | FedRAMP announcement "Propelling Change: FedRAMP Launches Consolidated Rules for 2026," June 25, 2026; changelog https://www.fedramp.gov/2026/changelog/ (opened Oct 21, 2026): first entry 2026.06.25.01, "changes made in each release after June 23, 2026" |
+
+## Re-base on ScubaGear 2.0.0, October 26, 2026
+
+ScubaGear 2.0.0 was released October 22, 2026 (weekly source watch, issue #160). Footnotes that cited ScubaGear v1.8.0 were re-checked against tag `v2.0.0` (raw files from GitHub, compared with the same files at `v1.8.0`), the v2.0.0 release notes and CISA's BOD 25-01 Required Configurations page, all read October 26, 2026. No personal data was sent to any site; downloads used a generic User-Agent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | SCuBA-to-SP 800-53 mapping limited to FedRAMP High baseline controls (row 40) | ScubaGear | verified (re-pointed to v2.0.0; mappings.md identical to v1.8.0) | ScubaGear v2.0.0 mappings.md |
