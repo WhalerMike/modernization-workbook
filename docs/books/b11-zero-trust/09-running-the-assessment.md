@@ -44,23 +44,23 @@ Five things are decided before either tool touches a production tenant. Each is 
 
 ## Running ScubaGear
 
-ScubaGear is CISA's PowerShell assessor for Microsoft 365. It collects tenant configuration through Microsoft's APIs and evaluates it with Open Policy Agent against Rego policies written from the SCuBA secure configuration baseline documents. It is released under the CC0 license.[^c09-scuba-repo] The current release is v2.0.0, published October 22, 2026; this chapter's commands and configuration were checked against the previous release, v1.8.0 (May 7, 2026), so confirm them against 2.0.0 before a run.[^c09-scuba-release] At v1.8.0 it assesses Microsoft Entra ID, Defender for Office 365, Exchange Online, Power BI, Power Platform, SharePoint Online and OneDrive, and Microsoft Teams.[^c09-scuba-params]
+ScubaGear is CISA's PowerShell assessor for Microsoft 365. It collects tenant configuration through Microsoft's APIs and evaluates it with Open Policy Agent against Rego policies written from the SCuBA secure configuration baseline documents. It is released under the CC0 license.[^c09-scuba-repo] The current release is v2.0.0, published October 22, 2026, and this chapter's commands, parameters and outputs were checked against its documentation.[^c09-scuba-release] It assesses Microsoft Entra ID, Security Suite, Exchange Online, Power BI, Power Platform, SharePoint Online and OneDrive, and Microsoft Teams. Security Suite replaced the Defender product of earlier releases, and 2.0.0 no longer accepts `defender` as a product name. Without `-ProductNames`, a run covers every product except Power Platform and Power BI, which have their own licensing and first-run requirements.[^c09-scuba-params][^c09-scuba-transition]
 
 ::: {.callout-warning}
 ## Illustrative code
 The commands in this chapter are illustrative. They haven't been tested against a production tenant. Check them against the documentation for the tool version you have pinned, and run them first against a test tenant with the narrow roles described in Chapter 07.
 :::
 
-Install from the PowerShell Gallery in a Windows PowerShell 5 session, then install the dependencies, which include OPA.[^c09-scuba-deps] At v1.8.0 the dependency command is `Initialize-SCuBA`; v2.0.0's README uses `Install-ScubaDependencies`, the new name, and the old name remains as an alias.[^c09-scuba-deps]
+Install from the PowerShell Gallery in a Windows PowerShell 5 session, then install the dependencies, which include OPA. The dependency command is `Install-ScubaDependencies`; it was named `Initialize-SCuBA` before 2.0.0, and the old name remains as an alias, so older scripts still run.[^c09-scuba-deps]
 
 ```powershell
 # Windows PowerShell 5.1, on the dedicated assessment host
 Install-Module -Name ScubaGear
-Initialize-SCuBA                      # installs module dependencies and OPA
+Install-ScubaDependencies             # installs module dependencies and OPA
 Invoke-SCuBA -Version                 # record the version in the run log
 ```
 
-For BOD 25-01 submissions, CISA's documentation calls for a configuration file and the organization's tenant name; other runs can silence the BOD warnings instead.[^c09-scuba-readme] A tenant in Microsoft 365 GCC uses the `gcc` environment value; `gcchigh` and `dod` cover the other government clouds.[^c09-scuba-params]
+For BOD 25-01 submissions, CISA's documentation calls for a configuration file and the organization's tenant name; other runs can silence the BOD warnings instead.[^c09-scuba-readme] A tenant in Microsoft 365 GCC uses the `gcc` environment value, and `gcchigh` and `dod` cover the other government clouds; the parameter is required when signing in interactively to any of the three, while a service principal run works out the environment itself.[^c09-scuba-params][^c09-scuba-release]
 
 ```powershell
 # Assess all products against the agency's reviewed configuration file
@@ -72,7 +72,9 @@ Invoke-SCuBA -ConfigFilePath .\config\scuba-tenant01.yaml `
 
 The configuration file is where the agency's decisions about the baseline live: annotations that document an action plan for a failing control, omissions with a rationale and an optional expiration date, and exclusions for accounts such as emergency access accounts.[^c09-scuba-config] [Chapter 10](10-evidence-not-verdicts.md) covers who approves each kind of entry. Here the point is mechanical: the configuration file is an input to the run, so it is versioned in the program's repository and its hash is recorded with each run, exactly like the tool version.
 
-Each run writes a new time-stamped directory.[^c09-scuba-reports]
+A configuration file written for 1.8.0 has to be migrated before it runs under 2.0.0. Replace `defender` with `securitysuite` in `ProductNames`, rename a `Defender:` section to `SecuritySuite:`, and replace each migrated policy ID in annotations, omissions and exclusions with its new ID from CISA's migration file. Where an old policy was split across several new ones, choose the new policies the entry actually applies to, and drop entries for policies that were removed.[^c09-scuba-transition] Treat the migrated file as a new version that goes back through approval ([Chapter 10](10-evidence-not-verdicts.md)): an omission approved against `MS.DEFENDER.2.1v1` isn't automatically an approved omission of its successor.
+
+Each run writes a new time-stamped directory. The 2.0.0 documentation lists the same outputs as 1.8.0; the 2.0.0 release notes also add a CSV of risky applications.[^c09-scuba-reports][^c09-scuba-release]
 
 | Output | What it is | How the program uses it |
 |---|---|---|
@@ -127,14 +129,14 @@ In the program's substrate, ScubaGear is the registered conformance and policy a
   vendor: CISA
   license: CC0-1.0
   runtime: windows-powershell-5.1
-  runtime-version: "1.8.0"
+  runtime-version: "2.0.0"
   runner-class: github-hosted
   tenancy: per-customer
   evidence-class: interval
   retention-years: 3
 ```
 
-The `runtime` value is not cosmetic: a Linux runner can't execute ScubaGear at all, so the runner is Windows. The program's reading of `runner-class: github-hosted` is "a Windows runner driven by the repository's workflow," and for a production federal tenant that runner is one the agency controls inside its boundary, for the output-handling reasons above.
+The `runtime-version` pin moves only through a reviewed registry change. Moving it from 1.8.0 to 2.0.0 also moves the configuration file and the program's mapping table to the Security Suite policy IDs, and earlier results are compared with later ones through CISA's migration file, not by policy ID ([Chapter 04](04-scuba-and-bod-25-01.md)).[^c09-scuba-transition] The `runtime` value is not cosmetic: a Linux runner can't execute ScubaGear at all, so the runner is Windows. The program's reading of `runner-class: github-hosted` is "a Windows runner driven by the repository's workflow," and for a production federal tenant that runner is one the agency controls inside its boundary, for the output-handling reasons above.
 
 Five properties of the declaration matter to an authorizing official.
 
@@ -287,18 +289,19 @@ The dashboard and digests are working views. The evidence is the unaltered repor
 
 [^c09-bod2501]: Cybersecurity and Infrastructure Security Agency, BOD 25-01, *Implementing Secure Practices for Cloud Services*, December 17, 2024, "Required Actions," <https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services> (accessed Oct 21, 2026).
 [^c09-zta-repo]: Microsoft, Zero Trust Assessment repository, README, sections "What the assessment covers" and "Infrastructure Pillar Scope," <https://github.com/microsoft/zerotrustassessment> (accessed Oct 21, 2026).
-[^c09-scuba-deps]: Cybersecurity and Infrastructure Security Agency, ScubaGear documentation, "Dependencies," v1.8.0 <https://github.com/cisagov/ScubaGear/blob/v1.8.0/docs/prerequisites/dependencies.md> and development branch <https://github.com/cisagov/ScubaGear/blob/main/docs/prerequisites/dependencies.md> (accessed Oct 21, 2026); ScubaGear README, release v2.0.0, "Install Dependencies" (`Install-ScubaDependencies`), <https://github.com/cisagov/ScubaGear/blob/v2.0.0/README.md> (accessed Oct 26, 2026).
+[^c09-scuba-deps]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, "Dependencies" (`Install-ScubaDependencies`, "previously named `Initialize-SCuBA`," retained as an alias; installs OPA), <https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/prerequisites/dependencies.md>, and README, release v2.0.0, "Install Dependencies," <https://github.com/cisagov/ScubaGear/blob/v2.0.0/README.md> (both accessed Oct 26, 2026).
 [^c09-zta-guide]: Microsoft, Zero Trust Assessment repository, "Run the Zero Trust Assessment" (PowerShell guide), sections "Prerequisites," "Data handling and telemetry," "Connect to Microsoft 365 and Azure services" and "Review assessment results," <https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/doc/readme.md> (accessed Oct 21, 2026).
 [^c09-zta-start]: Microsoft Learn, "Get started with the Zero Trust Assessment," sections "Install the PowerShell modules" and "Run the assessment," <https://learn.microsoft.com/security/zero-trust/assessment/get-started> (accessed Oct 21, 2026).
 [^c09-m2614]: Office of Management and Budget, M-26-14, *Ensuring Effective and Efficient Agency Logging and Network Visibility to Defend Against Evolving Cyber Threats*, May 22, 2026, "Agency Logging Plan," "Agency Actions" and Appendix B (Minimum Logging Baseline Requirements, items 1, 2 and 5), <https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf> (accessed Oct 21, 2026).
 [^c09-cisa-lra]: Cybersecurity and Infrastructure Security Agency, "Logging Reference Architecture," <https://www.cisa.gov/logging> (accessed Oct 21, 2026).
 [^c09-scuba-repo]: Cybersecurity and Infrastructure Security Agency, ScubaGear repository, README, <https://github.com/cisagov/ScubaGear> (accessed Oct 21, 2026).
-[^c09-scuba-release]: Cybersecurity and Infrastructure Security Agency, ScubaGear release v2.0.0, October 22, 2026, <https://github.com/cisagov/ScubaGear/releases/tag/v2.0.0>, and release v1.8.0, May 7, 2026, <https://github.com/cisagov/ScubaGear/releases/tag/v1.8.0> (accessed Oct 26, 2026).
-[^c09-scuba-params]: Cybersecurity and Infrastructure Security Agency, ScubaGear v1.8.0 documentation, "Parameters," sections "M365Environment" and "ProductNames," <https://github.com/cisagov/ScubaGear/blob/v1.8.0/docs/configuration/parameters.md> (accessed Oct 21, 2026).
-[^c09-scuba-readme]: Cybersecurity and Infrastructure Security Agency, ScubaGear v1.8.0 README, "Run with a configuration file," <https://github.com/cisagov/ScubaGear/blob/v1.8.0/README.md> (accessed Oct 21, 2026).
-[^c09-scuba-config]: Cybersecurity and Infrastructure Security Agency, ScubaGear v1.8.0 documentation, "Configuration File," sections "Annotate Policies," "Omit Policies" and "Entra ID Configuration," <https://github.com/cisagov/ScubaGear/blob/v1.8.0/docs/configuration/configuration.md> (accessed Oct 21, 2026).
-[^c09-scuba-reports]: Cybersecurity and Infrastructure Security Agency, ScubaGear v1.8.0 documentation, "Reports," <https://github.com/cisagov/ScubaGear/blob/v1.8.0/docs/execution/reports.md> (accessed Oct 21, 2026).
-[^c09-scuba-schema]: Cybersecurity and Infrastructure Security Agency, ScubaGear documentation, "Tool Output Schema," Summary, Annotation and Control objects, <https://github.com/cisagov/ScubaGear/blob/main/docs/misc/tooloutputschema.md> (accessed Oct 21, 2026).
+[^c09-scuba-release]: Cybersecurity and Infrastructure Security Agency, ScubaGear release v2.0.0, October 22, 2026, release notes ("Dynamically determine M365Environment during non-interactive authentication"; "Adds CSV output file for Risky Apps"), <https://github.com/cisagov/ScubaGear/releases/tag/v2.0.0>, and release v1.8.0, May 7, 2026, <https://github.com/cisagov/ScubaGear/releases/tag/v1.8.0> (accessed Oct 26, 2026).
+[^c09-scuba-params]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, "Parameters," sections "M365Environment" (required for GCC, GCC High or DoD tenants; not required with service principal authentication) and "ProductNames" (default `aad`, `securitysuite`, `exo`, `sharepoint`, `teams`), <https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/configuration/parameters.md> (accessed Oct 26, 2026).
+[^c09-scuba-transition]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, "Transitioning from Defender to the Security Suite Baseline," <https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/configuration/defender-to-securitysuite-transition.md>, and policy migration mapping `scuba-baseline-policy-migrations.csv`, <https://github.com/cisagov/ScubaGear/blob/v2.0.0/PowerShell/ScubaGear/mappings/scuba-baseline-policy-migrations.csv> (both accessed Oct 26, 2026).
+[^c09-scuba-readme]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 README, "Run with a configuration file" (BOD 25-01 submissions with `-ConfigFilePath` and `-Organization`; `-SilenceBODWarnings` otherwise), <https://github.com/cisagov/ScubaGear/blob/v2.0.0/README.md> (accessed Oct 26, 2026).
+[^c09-scuba-config]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, "Configuration File," sections "Annotate Policies," "Omit Policies" and "Entra ID Configuration," <https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/configuration/configuration.md> (accessed Oct 26, 2026).
+[^c09-scuba-reports]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, "Reports" (unchanged from v1.8.0), <https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/execution/reports.md> (accessed Oct 26, 2026).
+[^c09-scuba-schema]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, "Tool Output Schema," Summary, Annotation and Control objects, <https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/misc/tooloutputschema.md> (accessed Oct 26, 2026).
 [^c09-bod2501-guide]: Cybersecurity and Infrastructure Security Agency, *BOD 25-01 Implementation Guidance: Implementing Secure Practices for Cloud Services*, reporting options and CyberScope submission, <https://www.cisa.gov/news-events/directives/bod-25-01-implementation-guidance-implementing-secure-practices-cloud-services> (accessed Oct 21, 2026).
 [^c09-scubaconnect]: Cybersecurity and Infrastructure Security Agency, ScubaConnect repository, README, <https://github.com/cisagov/ScubaConnect> (accessed Oct 21, 2026).
 [^c09-bod2501-rc]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services — Required Configurations," Microsoft 365 and Google Workspace tables, <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Oct 21, 2026).
@@ -308,8 +311,8 @@ The dashboard and digests are working views. The evidence is the unaltered repor
 [^c09-graph-clouds]: Microsoft Learn, "Microsoft Graph national cloud deployments," section "Microsoft Graph and Graph Explorer service root endpoints," <https://learn.microsoft.com/graph/deployments> (accessed Oct 21, 2026).
 [^c09-zta-connect]: Microsoft, Zero Trust Assessment repository, `Connect-ZtAssessment.ps1`, `-Environment` parameter values, <https://github.com/microsoft/zerotrustassessment/blob/main/src/powershell/public/Connect-ZtAssessment.ps1> (accessed Oct 21, 2026).
 [^c09-zta-status]: Microsoft, Zero Trust Assessment repository, `Get-ZtTestResultStatus.ps1` and `Add-ZtTestResultDetail.ps1`, <https://github.com/microsoft/zerotrustassessment/tree/main/src/powershell/private/core> (accessed Oct 21, 2026).
-[^c09-scuba-mappings]: Cybersecurity and Infrastructure Security Agency, ScubaGear v1.8.0 documentation, "Mappings," and `scuba-to-nist-sp-800-53-r5-fedramp-high.csv`, <https://github.com/cisagov/ScubaGear/blob/v1.8.0/docs/misc/mappings.md> (accessed Oct 21, 2026).
+[^c09-scuba-mappings]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, "Mappings," and `scuba-to-nist-sp-800-53-r5-fedramp-high.csv`, <https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/misc/mappings.md> (accessed Oct 26, 2026).
 [^c09-oscal]: National Institute of Standards and Technology, OSCAL, "Layers and Models Reference," Assessment layer, <https://pages.nist.gov/OSCAL/learn/concepts/layer/> (accessed Oct 21, 2026).
 [^c09-gcc]: Microsoft Learn, "Office 365 GCC," section "How to use this service description," <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc> (accessed Oct 21, 2026).
-[^c09-scuba-aad]: Cybersecurity and Infrastructure Security Agency, ScubaGear v1.8.0, *Microsoft Entra ID Secure Configuration Baseline*, policy MS.AAD.1.1v1, <https://github.com/cisagov/ScubaGear/blob/v1.8.0/PowerShell/ScubaGear/baselines/aad.md> (accessed Oct 21, 2026).
+[^c09-scuba-aad]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0, *Microsoft Entra ID Secure Configuration Baseline*, policy MS.AAD.1.1v1, <https://github.com/cisagov/ScubaGear/blob/v2.0.0/PowerShell/ScubaGear/baselines/aad.md> (accessed Oct 26, 2026).
 [^c09-pypi-fmp]: Python Package Index, "fmp" project page, <https://pypi.org/project/fmp/> (accessed Oct 21, 2026).

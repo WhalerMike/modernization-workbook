@@ -67,3 +67,12 @@ Checked October 21, 2026 by writer W4. Sources: `docs/executive-governance/ch05-
 | brief "Maturity snapshot" | "Honest limits" | Ship table not carried |
 | brief "Where to go deeper" | Links to Book 01 Ch03, Book 02 Ch04, Book 11 Ch09 | Internal spec/validation-suite pages not linked |
 | brief "Leadership takeaway" | "Key takeaways"; "What an authorizing official gains" | — |
+
+## Re-base on ScubaGear 2.0.0, October 26, 2026
+
+ScubaGear 2.0.0 was released October 22, 2026 (weekly source watch, issue #160). Footnotes that cited ScubaGear v1.8.0 were re-checked against tag `v2.0.0` (raw files from GitHub, compared with the same files at `v1.8.0`), the v2.0.0 release notes and CISA's BOD 25-01 Required Configurations page, all read October 26, 2026. No personal data was sent to any site; downloads used a generic User-Agent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Graph application permissions all `.Read` (Directory.Read.All, Policy.Read.All, RoleManagement.Read.Directory among them); Global Reader for most products; Power Platform Administrator with Power Apps for Office 365 license; Global Administrator always sufficient (row 17) | Read-only first | verified (unchanged at v2.0.0) | ScubaGear v2.0.0 interactive.md |
+| 2 | Power BI needs Fabric Administrator (or Global Administrator) with a Power BI or Fabric license | Read-only first | verified (added) | ScubaGear v2.0.0 interactive.md |

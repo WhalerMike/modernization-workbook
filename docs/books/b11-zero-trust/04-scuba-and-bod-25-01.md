@@ -30,7 +30,7 @@ CISA's Zero Trust Maturity Model and OMB M-22-09 describe a target for the whole
 
 CISA established the SCuBA project in 2022 to address cybersecurity and visibility gaps in federal cloud business applications. It publishes secure configuration baselines for Microsoft 365 and Google Workspace, two no-cost assessment tools (ScubaGear for Microsoft 365 and ScubaGoggles for Google Workspace), and supporting guidance, including Hybrid Identity Solutions guidance on identity interoperability between on-premises and cloud systems and a Technical Reference Architecture.[^c04-scuba]
 
-Each baseline is a document of numbered policies, each written as a SHALL or a SHOULD and identified by product and version, for example `MS.AAD.1.1v1`, "Legacy authentication SHALL be blocked."[^c04-aad] The baselines and the tool ship together: ScubaGear's repository holds the Microsoft 365 baseline documents alongside the code that tests them. The current release is ScubaGear 2.0.0, published October 22, 2026; its baselines cover Microsoft Entra ID, Security Suite, Exchange Online, Power BI, Power Platform, SharePoint and Teams. Security Suite replaces the Defender baseline that the previous release, 1.8.0 (May 7, 2026), shipped, and 2.0.0 also adds and renumbers policies.[^c04-scubagear][^c04-psgallery] This chapter's policy counts come from the 1.8.0 baseline documents, and CISA's Required Configurations page still lists the 1.8.0-era policy IDs; [Chapter 05](05-two-assessment-tools.md) covers what the version change means for an assessment.
+Each baseline is a document of numbered policies, each written as a SHALL or a SHOULD and identified by product and version, for example `MS.AAD.1.1v1`, "Legacy authentication SHALL be blocked."[^c04-aad] The baselines and the tool ship together: ScubaGear's repository holds the Microsoft 365 baseline documents alongside the code that tests them. The current release is ScubaGear 2.0.0, published October 22, 2026; its baselines cover Microsoft Entra ID, Security Suite, Exchange Online, Power BI, Power Platform, SharePoint and Teams. Security Suite replaces the Defender baseline that the previous release, 1.8.0 (May 7, 2026), shipped, and 2.0.0 also adds and renumbers policies.[^c04-scubagear][^c04-psgallery] This chapter's policy counts come from the 2.0.0 baseline documents. CISA's Required Configurations page still lists the 1.8.0-era policy IDs, so the tool and the list now disagree; the section on the mandatory list below sets out where, and [Chapter 05](05-two-assessment-tools.md) covers what the version change means for an assessment.
 
 ## What BOD 25-01 requires
 
@@ -59,19 +59,44 @@ The baselines and the mandatory list are different things, and confusing them le
 
 The Required Configurations page is the authority for what BOD 25-01 makes binding. For Microsoft 365 it lists 50 policies:[^c04-required]
 
-| Product | Mandatory policies (Required Configurations page) | Policies in the ScubaGear 1.8.0 baseline |
-|---|---:|---:|
-| Microsoft Entra ID | 20 | 30 |
-| Microsoft Defender | 8 | 19 |
-| Exchange Online | 10 | 40 |
-| Power Platform | 4 | 9 |
-| SharePoint Online and OneDrive | 4 | 8 |
-| Microsoft Teams | 4 | 20 |
-| Power BI | none listed | 8 |
+| Product | Mandatory policies (Required Configurations page) | Policies in the ScubaGear 2.0.0 baseline | Marked as a BOD 25-01 requirement in 2.0.0 |
+|---|---:|---:|---:|
+| Microsoft Entra ID | 20 | 34 | 22 |
+| Microsoft Defender | 8 | retired | — |
+| Security Suite | none listed | 24 | 8 |
+| Exchange Online | 10 | 12 | 10 |
+| Power Platform | 4 | 9 | 4 |
+| SharePoint Online and OneDrive | 4 | 8 | 8 |
+| Microsoft Teams | 4 | 14 | 4 |
+| Power BI | none listed | 8 | 0 |
+| **Total** | **50** | **109** | **56** |
 
-The right-hand column counts the numbered policy statements in each 1.8.0 baseline document.[^c04-baselines] So in Entra ID, for example, 20 of 30 policies are mandatory. The rest, including MS.AAD.3.5v2 (disable SMS, voice call and email one-time passcodes), are CISA's recommendations but not BOD 25-01 obligations at the time of writing.[^c04-required][^c04-aad]
+The third column counts the numbered policy statements in each 2.0.0 baseline document, and the fourth counts the policies each document marks with its BOD 25-01 requirement indicator.[^c04-baselines] So in Entra ID, for example, 20 of 34 policies are on CISA's list. The rest are CISA's recommendations but not BOD 25-01 obligations at the time of writing, though ScubaGear now marks two of them as required (see the next section).[^c04-required][^c04-aad]
 
-The list changes. Revised policies carry a new version suffix: MS.AAD.3.3v2 was modified in July 2025, and three Teams policies (MS.TEAMS.1.2v2, 2.1v2 and 2.2v2) in February 2026.[^c04-required] The baselines on ScubaGear's development branch run ahead of the list again. They add Entra ID policies MS.AAD.5.5v1 to 5.7v1 (application password and certificate lifetimes) and MS.AAD.9.1v1 (block risky AI agents), and they mark 22 Entra ID policies with a BOD 25-01 requirement indicator, against 20 on CISA's page.[^c04-aad] Until CISA's page changes, the page governs. An agency should track the page, pin the baseline version it assesses against, and treat a new indicator in the repository as notice of what is coming rather than as an obligation already in force.
+The fall from 134 policies in 1.8.0 to 109 in 2.0.0 is mostly a move, not a loss. Release 2.0.0 retired the Defender baseline and moved its policies, Exchange Online sections 8 to 17 (data loss prevention, attachment filtering, malware scanning, impersonation, anti-spam, Safe Links, alerts and audit logging) and Teams sections 6 to 8 (data loss prevention and malware scanning) into the new Security Suite baseline, combining some of them along the way. It dropped a small number of SHOULD policies that ScubaGear couldn't assess. CISA publishes a migration file that maps every old policy ID to its new one, and a removed-policies document with the reason for each removal.[^c04-baselines][^c04-transition]
+
+### The tool and the list disagree
+
+The list changes. Revised policies carry a new version suffix: MS.AAD.3.3v2 was modified in July 2025, and three Teams policies (MS.TEAMS.1.2v2, 2.1v2 and 2.2v2) in February 2026.[^c04-required] ScubaGear 2.0.0 is now ahead of the list. Its release notes group the changes below under "BOD 25-01 required configuration policy changes," and its baselines mark 56 policies as BOD 25-01 requirements, against 50 on CISA's page.[^c04-release][^c04-baselines] On October 26, 2026, the page still listed the MS.DEFENDER policies, MS.AAD.3.2v1 and MS.EXO.2.2v2.[^c04-required]
+
+| Product | CISA's Required Configurations page | ScubaGear 2.0.0 |
+|---|---|---|
+| Entra ID | MS.AAD.3.2v1: an alternative MFA method, if phishing-resistant MFA isn't yet enforced | MS.AAD.3.2v2: MFA for all users, checked independently of MS.AAD.3.1v1 |
+| Entra ID | MS.AAD.3.5 not listed | MS.AAD.3.5v2: SMS, voice call and email one-time passcodes disabled, no longer dependent on the authentication methods migration (MS.AAD.3.4v1) |
+| Entra ID | Not listed | MS.AAD.9.1v1, new: risky AI agents blocked. Requires Entra ID P2 and either Microsoft Agent 365 or Microsoft 365 E7; not applicable to GCC High and DoD tenants |
+| Defender, now Security Suite | Eight MS.DEFENDER policies: preset security policies (1.1 to 1.5), data loss prevention (4.1v2), alerts (5.1) and audit logging (6.1) | Eight MS.SECURITYSUITE policies: 1.1 to 1.3 (click-to-run attachments blocked, post-delivery scanning, malware quarantined or dropped) in place of the preset-policy requirements; 3.1 (data loss prevention), 4.1 (alerts) and 5.1 (audit logging) in place of their Defender counterparts; and two new ones, 6.1 (spam and phishing kept out of the inbox) and 6.2 (no allowed domains in inbound anti-spam policies) |
+| Exchange Online | MS.EXO.2.2v2: SPF must hard-fail (`-all`) | MS.EXO.2.2v3: hard fail or soft fail (`~all`) both comply |
+| SharePoint and OneDrive | Four policies | All eight marked, adding 1.3v1 (external sharing limited to approved domains or security groups), 3.1v1 (expiry of 30 days or less for "Anyone" links), 3.2v1 ("Anyone" links view-only) and 3.3v2 (reauthentication within 30 days for verification-code users, now also when sharing is set to existing guests) |
+
+The SharePoint policies and MS.AAD.3.5 aren't new to the baselines; 2.0.0 is the first release to mark them as required.[^c04-release][^c04-aad] The table's sources are the release notes, the 2.0.0 baseline documents and CISA's page.[^c04-release][^c04-baselines][^c04-required]
+
+Three consequences follow, and none of them goes away until CISA changes its page.
+
+1. **A 2.0.0 report can't be matched to the list by ID.** The list's eight Defender IDs, MS.AAD.3.2v1 and MS.EXO.2.2v2 don't appear in 2.0.0's output. Reconcile through CISA's migration file, not by string match.[^c04-transition]
+2. **A 2.0.0 failure isn't always a BOD 25-01 deviation yet.** A tenant that fails MS.AAD.3.5v2, MS.AAD.9.1v1, MS.SECURITYSUITE.6.1v1 or 6.2v1, or one of the four added SharePoint policies, is failing a policy the tool calls required and the page doesn't. Record it as notice of what's coming, with a date, not as a deviation from a mandatory policy.
+3. **A 2.0.0 pass isn't always compliance with the list.** A domain whose SPF record ends in `~all` passes MS.EXO.2.2v3 but doesn't meet MS.EXO.2.2v2 as the page lists it.
+
+Until CISA's page changes, the page governs: the directive makes later updates mandatory on the timelines the page sets.[^c04-bod2501] An agency should track the page, pin the baseline version it assesses against, and treat a new indicator in the repository as notice of what is coming rather than as an obligation already in force. ScubaGear 2.0.0 also adds three Entra ID SHOULD policies, MS.AAD.5.5v1 to 5.7v1 (application password and certificate lifetimes), that carry no BOD 25-01 indicator.[^c04-aad]
 
 ## Google Workspace is in scope
 
@@ -112,12 +137,14 @@ The program's position follows. Count the administrative obligations as done whe
 :::
 
 [^c04-scuba]: Cybersecurity and Infrastructure Security Agency, "Secure Cloud Business Applications (SCuBA) Project," <https://www.cisa.gov/resources-tools/services/secure-cloud-business-applications-scuba-project> (accessed Oct 21, 2026).
-[^c04-aad]: Cybersecurity and Infrastructure Security Agency, ScubaGear, *Microsoft Entra ID secure configuration baseline* (`aad.md`), release v1.8.0 <https://github.com/cisagov/ScubaGear/blob/v1.8.0/PowerShell/ScubaGear/baselines/aad.md> (30 policies, no BOD 25-01 indicators) and development branch <https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md> (34 policies, 22 marked with a BOD 25-01 indicator, including MS.AAD.5.5v1–5.7v1 and MS.AAD.9.1v1) (both accessed Oct 21, 2026).
+[^c04-aad]: Cybersecurity and Infrastructure Security Agency, ScubaGear, *Microsoft Entra ID secure configuration baseline* (`aad.md`), release v2.0.0 (34 policies, 22 marked with a BOD 25-01 requirement indicator, including MS.AAD.3.2v2, MS.AAD.3.5v2 and MS.AAD.9.1v1, last modified March 2026; MS.AAD.5.5v1–5.7v1 are SHOULD policies without the indicator), <https://github.com/cisagov/ScubaGear/blob/v2.0.0/PowerShell/ScubaGear/baselines/aad.md>; release v1.8.0 (30 policies, including MS.AAD.3.5v1; no BOD 25-01 indicators), <https://github.com/cisagov/ScubaGear/blob/v1.8.0/PowerShell/ScubaGear/baselines/aad.md> (both accessed Oct 26, 2026).
 [^c04-scubagear]: Cybersecurity and Infrastructure Security Agency, ScubaGear README, release v2.0.0 (Security Suite baseline in place of Defender), <https://github.com/cisagov/ScubaGear/blob/v2.0.0/README.md>; release v1.8.0, <https://github.com/cisagov/ScubaGear/blob/v1.8.0/README.md>; and ScubaGear releases, <https://github.com/cisagov/ScubaGear/releases> (v2.0.0 published October 22, 2026, with release notes on the Defender-to-Security Suite change and other baseline changes; v1.8.0 published May 7, 2026) (all accessed Oct 26, 2026).
 [^c04-psgallery]: PowerShell Gallery, "ScubaGear," version history (1.8.0, May 7, 2026; 2.0.0, October 22, 2026, the latest stable version), <https://www.powershellgallery.com/packages/ScubaGear> (accessed Oct 26, 2026).
 [^c04-bod2501]: Cybersecurity and Infrastructure Security Agency, Binding Operational Directive 25-01, *Implementing Secure Practices for Cloud Services*, December 17, 2024, <https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services> (accessed Oct 21, 2026).
 [^c04-guidance]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01 Implementation Guidance: Implementing Secure Practices for Cloud Services," updated July 27, 2026, <https://www.cisa.gov/news-events/directives/bod-25-01-implementation-guidance-implementing-secure-practices-cloud-services> (accessed Oct 21, 2026).
-[^c04-required]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Oct 21, 2026).
-[^c04-baselines]: Cybersecurity and Infrastructure Security Agency, ScubaGear baseline documents, release v1.8.0 (`aad.md`, `defender.md`, `exo.md`, `powerbi.md`, `powerplatform.md`, `sharepoint.md`, `teams.md`), <https://github.com/cisagov/ScubaGear/tree/v1.8.0/PowerShell/ScubaGear/baselines> (accessed Oct 21, 2026). Counts are of distinct numbered policy headings in each document.
+[^c04-required]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Oct 21 and Oct 26, 2026; on Oct 26 it listed 50 Microsoft 365 policy IDs, including MS.DEFENDER.1.1v1–1.5v1, 4.1v2, 5.1v1 and 6.1v1, MS.AAD.3.2v1 and MS.EXO.2.2v2).
+[^c04-baselines]: Cybersecurity and Infrastructure Security Agency, ScubaGear baseline documents, release v2.0.0 (`aad.md`, `securitysuite.md`, `exo.md`, `powerbi.md`, `powerplatform.md`, `sharepoint.md` and `teams.md`, plus `removedpolicies.md`), <https://github.com/cisagov/ScubaGear/tree/v2.0.0/PowerShell/ScubaGear/baselines>, compared with release v1.8.0 (`defender.md` in place of `securitysuite.md`; 134 policies in all), <https://github.com/cisagov/ScubaGear/tree/v1.8.0/PowerShell/ScubaGear/baselines> (both accessed Oct 26, 2026). Counts are of distinct numbered policy headings in each document, and of policies whose entry carries the "BOD 25-01 Requirement" badge.
+[^c04-release]: Cybersecurity and Infrastructure Security Agency, ScubaGear release v2.0.0, October 22, 2026, release notes, section "Baselines," subsection "BOD 25-01 required configuration policy changes" (Additions, Removals and Updates), <https://github.com/cisagov/ScubaGear/releases/tag/v2.0.0> (accessed Oct 26, 2026).
+[^c04-transition]: Cybersecurity and Infrastructure Security Agency, ScubaGear v2.0.0 documentation, "Transitioning from Defender to the Security Suite Baseline," <https://github.com/cisagov/ScubaGear/blob/v2.0.0/docs/configuration/defender-to-securitysuite-transition.md>, and the policy migration mapping `scuba-baseline-policy-migrations.csv`, <https://github.com/cisagov/ScubaGear/blob/v2.0.0/PowerShell/ScubaGear/mappings/scuba-baseline-policy-migrations.csv> (both accessed Oct 26, 2026).
 [^c04-goggles]: Cybersecurity and Infrastructure Security Agency, ScubaGoggles releases (v1.0.0, July 24, 2026; v1.0.1, July 28, 2026; v1.1.0, October 22, 2026, whose notes state that no new required configuration policies were added), <https://github.com/cisagov/ScubaGoggles/releases> (accessed Oct 26, 2026).
 [^c04-connect]: Cybersecurity and Infrastructure Security Agency, ScubaConnect README, <https://github.com/cisagov/ScubaConnect> (accessed Oct 21, 2026).

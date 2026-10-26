@@ -96,3 +96,13 @@ Internal vocabulary translated: "coordination layer" kept in lower case as Book 
 | Azure — Honest Limits | Honest limits ("closed" lags; automated remediation still a change record) | Arc bullet moved to Chapter 09 |
 | Azure — Cross-References, Provenance, References | Inline links, footnotes | Internal IDs dropped |
 | (new) | Getting results into the ITSM platform; Where ServiceNow's own products overlap; illustrative collector | Required by the brief |
+
+## Re-base on ScubaGear 2.0.0, October 26, 2026
+
+ScubaGear 2.0.0 was released October 22, 2026 (weekly source watch, issue #160). Footnotes that cited ScubaGear v1.8.0 were re-checked against tag `v2.0.0` (raw files from GitHub, compared with the same files at `v1.8.0`), the v2.0.0 release notes and CISA's BOD 25-01 Required Configurations page, all read October 26, 2026. No personal data was sent to any site; downloads used a generic User-Agent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | ScubaGear queries M365 APIs with PowerShell, evaluates with OPA/Rego, outputs HTML, JSON, CSV (row 4) | ScubaGear | verified (unchanged) | ScubaGear README v2.0.0, Steps One to Three |
+| 2 | `-M365Environment` values commercial/gcc/gcchigh/dod; row 5's "required for GCC High/DoD and Power Platform" is now "required for GCC, GCC High or DoD tenants" (not with service principal authentication) | ScubaGear | corrected | ScubaGear parameters.md v2.0.0 |
+| 3 | Policy ID example `MS.AAD.1.1v1` "Legacy authentication SHALL be blocked" (row 8) | ScubaGear | verified (unchanged) | ScubaGear aad.md v2.0.0 |

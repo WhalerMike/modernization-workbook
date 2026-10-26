@@ -71,3 +71,12 @@ Writer W4. Sources: `docs/whitepapers/zero-trust-governance-whitepaper.md` (v1.3
 | Short twin: Output ("value is in the evidence trail") | Ch10 opening | — |
 | ScubaGear paper §7 Adoption posture (exceptions in canon, enforcement pairing, drift to AO) | Ch10 exceptions and drift sections | — |
 | ScubaGear paper §6 windowed conformance | Ch10 "Re-assess on a cadence" (also Ch09) | — |
+
+## Re-base on ScubaGear 2.0.0, October 26, 2026
+
+Follows the weekly source watch (issue #160). Sources: ScubaGear tag `v2.0.0` (baselines, docs and `mappings/scuba-baseline-policy-migrations.csv`, raw files from GitHub), the v2.0.0 release notes (`gh release view v2.0.0 --repo cisagov/ScubaGear`), the same files at tag `v1.8.0` for comparison, and CISA's BOD 25-01 Required Configurations page, all read October 26, 2026. Policy counts are distinct `#### MS.<PRODUCT>.n.mvN` headings; indicator counts are policies whose entry carries the "BOD 25-01 Requirement" badge. No personal data was sent to any site; downloads used a generic User-Agent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | `Invoke-SCuBADiff` shipped in 2.0.0: offline, no tenant contact, DiffResults.json/.csv and DiffReport.html | Re-assess on a cadence | verified (was dev-branch only) | v2.0.0 diff.md; release notes |
+| 2 | Mappings, configuration and reports docs re-pointed to v2.0.0; content unchanged for the cited sections | Footnotes | verified | v1.8.0 vs v2.0.0 diffs |
