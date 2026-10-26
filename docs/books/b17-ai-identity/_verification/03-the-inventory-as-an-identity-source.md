@@ -92,3 +92,11 @@ Checked October 21, 2026 by writer W2. Sources: `docs/operational-guides/ai-iden
 | Claim | Result | Source |
 |---|---|---|
 | 15 identifiers appear more than once | corrected: 13 distinct IDs appear more than once, on 28 rows (15 extra rows) | 2025_individually_reported_AI_use_cases.csv, recounted |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| OMB memoranda index now runs to M-27-01 | `c03-memos` updated |

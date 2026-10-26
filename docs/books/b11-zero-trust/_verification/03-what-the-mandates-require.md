@@ -71,3 +71,11 @@ Checked October 21, 2026 by writer W2. Source: `docs/modernization-specs/zero-tr
 | Integration shape (sits above running systems; normalizes identity-linked signals; no rip-and-replace) | Design contract item 6 | — |
 | Control mapping (access control, continuous monitoring, incident response; regenerable identity-anchored evaluation) | Design contract closing paragraph; Appendix A controls table | — |
 | Footer ("Cleaned extraction for project use...") | — | Provenance note, not content |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| OMB memoranda index now runs to M-27-01 (Oct 23, 2026, not related to this chapter) | `c03-omb-index` updated |

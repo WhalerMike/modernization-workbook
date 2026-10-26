@@ -353,7 +353,7 @@ Each trust is a trusted domain object in the System container of its domain, car
 | `0x20` | Within forest | The partner is in the same forest |
 | `0x40` | Treat as external | A forest trust filtered as if it were external |
 
-The values come from the Active Directory technical specification, which also defines later bits for AES keys, RC4, PIM trusts and TGT delegation control.[^c08-trustattrs] Record the raw value as well as the decoded list, so that bits added later aren't lost.
+The values come from the Active Directory technical specification, which also defines later bits for AES keys, RC4, PIM trusts, TGT delegation control and turning off domain name validation during NTLM pass-through authentication.[^c08-trustattrs] Record the raw value as well as the decoded list, so that bits added later aren't lost.
 
 ### Direction and posture
 

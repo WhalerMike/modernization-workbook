@@ -203,3 +203,11 @@ Internal-consistency fixes from the Book 02 deck review. Sources were opened aga
 | K1 | ESC7 row removed from the "checks the ones it can see" table and restated below it as not collected by the module (CA security settings), assessed by Defender for Identity only with a sensor on the AD CS server. Matches Appendix B and the output schema (no ESC7 finding). Note c08-mdi-cert re-checked; the ESC7 section states the AD CS sensor prerequisite | Escalation patterns (line 260) | factual + design consistency; existing note reused | c08-mdi-cert <https://learn.microsoft.com/defender-for-identity/security-posture-assessments/certificates> |
 | K2 | Managed identities no longer called "outside this program's boundary"; restated as the target only for workloads running on Azure resources, consistent with Chapter 09's matrix and Chapter 10 Phase 4 | Service accounts, last paragraph (line 331) | factual; new note | c08-managed-identity <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview> (a managed identity is assigned to an Azure compute resource or Azure-supported hosting platform) |
 | K3 | Mapping rows above that say "Appendix C" for the forest module (including "§C.1–C.4") refer to what is now Appendix B; its sections are now B.1–B.4 | Carry-forward ledger | label note only | — |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| MS-ADTS trustAttributes also defines 0x00001000, TRUST_ATTRIBUTE_DISABLE_AUTH_TARGET_VALIDATION (NTLM pass-through domain name validation disabled) | sentence extended |

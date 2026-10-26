@@ -90,3 +90,11 @@ Internal-consistency fixes from the Book 02 deck review. Sources were opened aga
 |---|---|---|---|---|
 | K1 | Section labels C.1-C.4 -> B.1-B.4 (Module manifest, Module file, Installation, Output schema reference), so they no longer collide with Appendix C. Repo-wide search of docs/books found no inbound links or anchors to these headings; nothing else changed. References to "C.3"/"C.4" in the ledger above mean B.3/B.4 | Headings (lines 53, 98, 1484, 1504) | label only | — |
 | K2 | ESC7 statement ("isn't collected here; Defender for Identity assesses it where a sensor is installed on the CA") re-checked and kept; Chapter 08 now agrees | Line 881 | verified, no change | aB-mdi-cert <https://learn.microsoft.com/defender-for-identity/security-posture-assessments/certificates> |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| MS-ADTS trustAttributes 0x00001000, TRUST_ATTRIBUTE_DISABLE_AUTH_TARGET_VALIDATION, was missing from the decode map | `0x1000 = 'DisableAuthTargetValidation'` added |

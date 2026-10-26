@@ -59,3 +59,11 @@ Source: `docs/whitepapers/zta-scuba-relationship.md`.
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | R1 | Reconciliation baseline: was "the FedRAMP Moderate baseline" | Where they overlap / reconcile | corrected | CISA ScubaGear v1.8.0 "Mappings": "limited to controls found within the FedRAMP High baseline", https://github.com/cisagov/ScubaGear/blob/v1.8.0/docs/misc/mappings.md (opened Oct 21, 2026); now agrees with Ch09 and Ch10 |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| ScubaGear 2.0.0 is current; its release notes list BOD 25-01-relevant changes ahead of CISA's Required Configurations page | table row, "That matters now" sentence and `c05-scubagear-gallery` updated |

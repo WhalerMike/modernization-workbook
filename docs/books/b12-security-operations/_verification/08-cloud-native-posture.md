@@ -64,3 +64,11 @@ Checked October 21, 2026 by writer W5. Source: `docs/compliance/Vol_III_Book_04_
 | FedRAMP 20x KSI Alignment | KSI section | Carried and corrected (claim 33) |
 | Platform Selection Status callout | Per-platform table, corrections and takeaways | Merged; ownership statements generalized |
 | References table | Footnotes | Replaced by footnotes to pages actually opened; the Prisma/Wiz vendor blog links and AWS 2021 What's New link not used (Marketplace data is the primary source) |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Wiz Moderate for U.S. Government (FR2308034636, In Process) was removed from the Marketplace data on Oct 26, 2026; Wiz for U.S. Government (FR2308034636A) still Certified, Class D | bullet, step 3 and `c08-marketplace` updated |

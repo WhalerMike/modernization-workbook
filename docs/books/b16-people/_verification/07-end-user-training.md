@@ -111,3 +111,11 @@ Writer W4. Source: `docs/operational-guides/end-user-training.md` (6,109 words b
 | Compliance Amendment: IT staff security training (AT-3) | Book 14 Ch09 (linked); Chapter 08 | Role-based training belongs to Book 14 Ch09 and Book 16 Chs 03–05; internal ID `FMP_187` dropped |
 | Compliance Amendment: Training records (AT-4) | Module timing and Chapter 08 (evidence row); Book 14 Ch09 linked | Not duplicated |
 | Compliance Amendment: Phishing simulation (repeat clickers get targeted training) | Module 5, linked to Book 14 Ch09 | Kept under Book 14's non-punitive rules |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| Microsoft Learn added "Authenticator app same-device number matching": in Microsoft mobile apps on the same phone, Approve/Deny without a number | exception sentence added; `c07-number-match` updated |

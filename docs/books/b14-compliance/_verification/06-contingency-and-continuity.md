@@ -135,3 +135,11 @@ Writer W3. Source: `docs/compliance/Vol_IV_Book_01_Business_Continuity.md` (arch
 | Integration with the Volume I, II, and III Books (table and note) | Opening; Section 5 appendices; cross-links | Volume identifiers dropped |
 | NIST SP 800-53 Rev 5 Control Closure (table) | "The controls and their evidence" | Condensed and corrected |
 | FedRAMP 20x Key Security Indicator Alignment (callout) | "FedRAMP's recovery planning indicators" | Corrected to the 2026 indicator IDs and provider scope |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| `c06-oci`: the Oracle page moved; same title ("Overview of Disaster Recovery Plans") and the same DR-plan-as-automated-runbook statement at the new address | URL updated |

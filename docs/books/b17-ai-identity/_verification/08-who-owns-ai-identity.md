@@ -41,3 +41,11 @@ Writer W4. New chapter; no source page was assigned. Kept consistent with Book 0
 | Source page § | Went to | Or why not carried |
 |---|---|---|
 | (none assigned) | — | New chapter. Routing from the governed-path drift table (AO + ISSO, security team, IdM coordinator, privacy officer) informed the matrix rows for findings; the source is logged in Ch07's ledger |
+
+## Source watch, October 26, 2026
+
+Re-checked after the weekly source watch (issue #160) reported a change in a cited source. Checked October 26, 2026; no personal data sent to any site.
+
+| Finding | Change |
+|---|---|
+| OMB memoranda index now runs to M-27-01; M-26-10 still listed and not superseded | `c08-omb-list` updated |
