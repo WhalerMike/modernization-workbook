@@ -28,6 +28,11 @@ lifecycle_review: 2027-04-01
 This book replaces the workbook's help-desk Entra operations guide, the day-two operator runbook, the ServiceNow compliance-kit roadmap, and the Federal Compliance series' implementation, automation and day-two operations volumes that cover the help desk, ITSM and telephony catalogs, SaaS integration, the CMDB, control compliance automation, attestation, the evidence pipeline and validation harnesses. Every external claim was checked against a primary source on October 21–22, 2026 and carries a note. The replaced pages are kept in the repository's [`archive/b15-day2-operations/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b15-day2-operations) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
+::: {.callout-tip appearance="default"}
+## Download — Help Desk / Cloud Services Entra ID Operations Kit v1.6
+The kit applies this book's help-desk model: four Word documents (the intake and routing flow, the administrative responsibilities guide, the application access governance model and the governance structure brief), the routing matrix as a PowerShell module, the scripts with plain-text copies for mail systems that block `.ps1` files, and Pester tests that need no tenant. Download [`helpdesk-entra-operations-kit.zip`](https://github.com/WhalerMike/modernization-workbook/releases/download/helpdesk-entra-kit-v1.6/helpdesk-entra-operations-kit.zip) (SHA-256 `99bd1f8ff514aea71d0b47b716dc5822f894368c3c2636fc3a169ac98ef27b1a`); the [release page](https://github.com/WhalerMike/modernization-workbook/releases/tag/helpdesk-entra-kit-v1.6) lists every change. The scripts are not tenant-tested, so run every change script with `-WhatIf` first.
+:::
+
 ::: {.callout-tip}
 ## Download and present
 **[b15-day2-operations-bundle.docx](../../../downloads/b15-day2-operations-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
