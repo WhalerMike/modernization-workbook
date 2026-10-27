@@ -253,7 +253,7 @@ format:
     <a class="btn-ghost" href="#books">Browse the books</a>
     <a class="btn-ghost" href="docs/presentations/index.html">Presentations</a>
     <a class="btn-ghost" href="downloads/start-kit.zip" title="Read-only PowerShell assessment scripts: forest, SQL Server estate, RADIUS and NPS">Start Kit scripts (.zip)</a>
-    <a class="btn-ghost" href="https://github.com/WhalerMike/modernization-workbook/releases/download/helpdesk-entra-kit-v1.6/helpdesk-entra-operations-kit.zip" title="Help Desk / Cloud Services Entra ID Operations Kit v1.6: documents, routing module and scripts">Help Desk Kit (.zip)</a>
+    <a class="btn-ghost" href="https://github.com/WhalerMike/modernization-workbook/releases/download/helpdesk-entra-kit-v1.6.1/helpdesk-entra-operations-kit.zip" title="Help Desk / Cloud Services Entra ID Operations Kit v1.6.1: documents, routing module and scripts">Help Desk Kit (.zip)</a>
   </div>
 </section>
 
@@ -451,7 +451,7 @@ format:
         <div class="book-title"><a href="docs/books/b15-day2-operations/index.html">Compliance Automation &amp; Day-2 Operations</a></div>
         <div class="book-q">Why does modernization succeed or fail at the help desk?</div>
         <div class="book-desc">Help-desk authority and identity checks, intake and routing, the CMDB, control automation across clouds, attestation and the day-two runbook.</div>
-        <div class="book-links"><a href="docs/books/b15-day2-operations/index.html">Read</a><a href="downloads/b15-day2-operations-bundle.docx">Word</a><a href="docs/presentations/index.html#book-15">Deck</a><a href="https://github.com/WhalerMike/modernization-workbook/releases/download/helpdesk-entra-kit-v1.6/helpdesk-entra-operations-kit.zip" title="Help Desk / Cloud Services Entra ID Operations Kit v1.6: four Word documents, the routing module and scripts">Help Desk Kit</a></div>
+        <div class="book-links"><a href="docs/books/b15-day2-operations/index.html">Read</a><a href="downloads/b15-day2-operations-bundle.docx">Word</a><a href="docs/presentations/index.html#book-15">Deck</a><a href="https://github.com/WhalerMike/modernization-workbook/releases/download/helpdesk-entra-kit-v1.6.1/helpdesk-entra-operations-kit.zip" title="Help Desk / Cloud Services Entra ID Operations Kit v1.6.1: five Word documents, the routing module and scripts">Help Desk Kit</a></div>
       </div>
       <div class="book-card">
         <div class="book-num">Book 16 · 10 chapters</div>
