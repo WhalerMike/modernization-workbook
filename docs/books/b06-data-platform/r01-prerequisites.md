@@ -26,7 +26,7 @@ The toolchain the later runbooks assume, the evidence envelope every function em
 
 ## What the runbooks automate
 
-The narrative chapters stay conceptual; the runbooks are the executable layer. Each later runbook documents the program's real script behind its step, not a paraphrase. The automation lives in two places in the program's repository: the read-only discovery **Spec family** under `tools/discovery/`, and the derivation and validation **PowerShell modules** under `tools/powershell/`. The tooling isn't published with this workbook; the paths in the runbooks are relative to the root of the program's repository, and the names follow the program's `FMP` prefix.
+The narrative chapters stay conceptual; the runbooks are the executable layer. Each later runbook documents the program's real script behind its step, not a paraphrase. The automation lives in two places in the program's repository: the read-only discovery **Spec family** under `tools/discovery/`, and the derivation and validation **PowerShell modules** under `tools/powershell/`. The program's tooling isn't published with this workbook; the paths in the runbooks are relative to the root of the program's repository, and the names follow the program's `FMP` prefix. The read-only discovery for Runbook R02 is the exception: the workbook ships its own implementation, the Start Kit, described below.
 
 | Runbook | Program automation | Tier |
 |---|---|---|
@@ -41,6 +41,20 @@ The narrative chapters stay conceptual; the runbooks are the executable layer. E
 | [R10 — Certificates](r10-certificate-discovery-for-adcs.md) | `Spec3-D1.10`, `New-FMPSqlCertificatePlan`, `New-FMPPKIMigrationPlan` | read-only / analytical |
 
 R01 has no script of its own: the conceptual opening has no executable layer. This runbook is the setup and orientation that the executable runbooks assume.
+
+::: {.callout-tip}
+## The workbook's Start Kit
+[examples/start-kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit), also a [start-kit.zip download](../../../downloads/start-kit.zip), is a read-only, Pester-tested implementation of the discovery in [Runbook R02](r02-estate-discovery-and-consolidation-gate.md) and the forest assessment in [Book 00, Chapter 08](../b00-orientation/08-pre-flight-and-assessment.md). It isn't the program's `Spec*` family; it's the workbook's own code, with these equivalents:
+
+| Program automation | Start Kit | What it does |
+|---|---|---|
+| `Spec3-D1.8` discovery-only form, `Spec1-D1.5` MSSQLSvc trail, `Find-DbaInstance` | `Invoke-FMPSqlEstateDiscovery` | Reads MSSQLSvc SPNs from every domain in the forest, the directory's SQL hosts and service accounts, and the SQL Browser (or `Find-DbaInstance` when installed), then counts each instance once and says which sources agree |
+| `Spec3-D1.8 -QueryInstances` | `Get-FMPSqlInstanceDetail` (`-QueryInstances`) | SELECT-only T-SQL: version, edition, authentication mode, logins by type, databases, last use, linked servers |
+| `New-FMPEstateInventory` first-pass gate | `Merge-FMPSqlEstate`, `Get-FMPSqlClassification` | The same retain, consolidate, retire and review rules, with the usage DMV's restart limit applied |
+| `Spec1-D1.5` SPN inventory | `Get-FMPKerberosSpnMap` | Every SPN in the forest, with duplicates and orphans (disabled, or no logon in 180 days) |
+
+It runs on Windows PowerShell 5.1 or PowerShell 7, needs only the RSAT modules (dbatools is optional), writes only under the folder you name, and records who ran it, when, where, with which module versions, and a SHA-256 hash of every file. It's illustrative: unit-tested against fixtures, not proven against a live estate. Its output isn't the sealed envelope described below.
+:::
 
 ## Step 1 — Install the toolchain
 

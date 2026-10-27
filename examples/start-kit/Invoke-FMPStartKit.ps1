@@ -1,0 +1,98 @@
+#Requires -Version 5.1
+<#
+.SYNOPSIS
+    Runs the Start Kit: a read-only assessment of the forest and the SQL Server estate, a
+    one-page summary, and a provenance manifest, all under one run folder.
+
+.DESCRIPTION
+    Creates <OutputPath>\<run-id>, where the run identifier is Book 01 Chapter 10's
+    YYYY-MM-DD-HHmm-<host>-tier<A|B> in UTC, then:
+      1. Test-FMPReadAccess          what this account can read; the draft delegation request
+      2. Invoke-FMPADAssessment      the twelve domains plus DHCP, the SPN map and LDAP binds
+      3. Invoke-FMPSqlEstateDiscovery  the SQL Server count and inventory (unless -SkipSql)
+      4. Get-FMPStartKitSummary      Summary\StartKitSummary.md and .json
+      5. AssessmentManifest.json     who, when, where, module versions, SHA-256 of every file
+
+    Nothing here writes to Active Directory, DNS, DHCP, AD CS or SQL Server. Every file goes
+    under the run folder. Tier B adds the collectors that need the narrow delegations
+    (DHCP, LDAP binding events); a Tier A run still records which reads were denied.
+
+    Illustrative: unit-tested against fixtures, not proven against a live estate.
+
+.EXAMPLE
+    .\Invoke-FMPStartKit.ps1 -OutputPath D:\Assessment
+
+    Tier A: directory, DNS zones, PKI configuration, the SPN and directory SQL signals.
+
+.EXAMPLE
+    .\Invoke-FMPStartKit.ps1 -OutputPath D:\Assessment -Tier B -ProbeNetwork -QueryInstances
+
+    Tier B, with the SQL Browser probe and the read-only T-SQL pass on every instance found.
+#>
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory)][string]$OutputPath,
+    [string[]]$Domain,
+    # Defaults to the forest this host is joined to.
+    [string]$Forest,
+    [ValidateSet('A', 'B')][string]$Tier = 'A',
+    [int]$StaleThresholdDays = 90,
+    [switch]$SkipAD,
+    [switch]$SkipSql,
+    [string[]]$TargetServers = @(),
+    [switch]$ProbeNetwork,
+    [switch]$ProbeAllServers,
+    [switch]$UseDbatools,
+    [switch]$QueryInstances,
+    [switch]$TrustServerCertificate,
+    [int]$ZombieThresholdDays = 400
+)
+
+$ErrorActionPreference = 'Stop'
+# Imported once; a session that already loaded them (the tests, or a signed copy) keeps its own.
+foreach ($m in 'FMPADAssessment', 'FMPSqlEstate') {
+    if (-not (Get-Module -Name $m)) { Import-Module (Join-Path (Join-Path $PSScriptRoot 'powershell') $m) }
+}
+# The run script uses the shared helpers directly for the run folder and the manifest.
+. (Join-Path (Join-Path $PSScriptRoot 'powershell') 'StartKit.Common.ps1')
+
+$start = Get-Date
+$runId = ConvertTo-FMPRunId -AsOf $start -HostName ([Environment]::MachineName) -Tier $Tier
+$base = Resolve-FMPOutputRoot -OutputPath $OutputPath
+$runPath = Resolve-FMPOutputRoot -OutputPath (Join-Path $base $runId)
+Write-Host "Start Kit run $runId (read-only). Output: $runPath"
+
+$adForest = if ($Forest) { Get-ADForest -Server $Forest } else { Get-ADForest }
+if (-not $Domain) { $Domain = @($adForest.Domains) }
+$servedBy = @{}
+foreach ($d in $Domain) {
+    try { $servedBy[$d] = (Get-ADDomainController -DomainName $d -Discover -ErrorAction Stop).HostName | Select-Object -First 1 }
+    catch { $servedBy[$d] = $null }
+}
+
+$steps = @()
+$steps += Invoke-FMPStep 'Read-access pre-flight' { Test-FMPReadAccess -OutputPath $runPath -Domain $adForest.RootDomain }
+if (-not $SkipAD) {
+    $steps += Invoke-FMPADAssessment -OutputPath $runPath -Forest $adForest.Name -Domain $Domain -Tier $Tier -StaleThresholdDays $StaleThresholdDays -AsOf $start
+}
+if (-not $SkipSql) {
+    $steps += Invoke-FMPStep 'SQL Server estate' {
+        Invoke-FMPSqlEstateDiscovery -OutputPath $runPath -Forest $adForest.Name -Domain $Domain -TargetServers $TargetServers `
+            -ProbeNetwork:$ProbeNetwork -ProbeAllServers:$ProbeAllServers -UseDbatools:$UseDbatools `
+            -QueryInstances:$QueryInstances -TrustServerCertificate:$TrustServerCertificate `
+            -ZombieThresholdDays $ZombieThresholdDays -AsOf $start
+    }
+}
+$steps += Invoke-FMPStep 'Summary' { Get-FMPStartKitSummary -RunPath $runPath }
+
+$parameters = @{
+    Tier = $Tier; StaleThresholdDays = $StaleThresholdDays; SkipAD = [bool]$SkipAD; SkipSql = [bool]$SkipSql
+    TargetServerCount = @($TargetServers).Count; ProbeNetwork = [bool]$ProbeNetwork; ProbeAllServers = [bool]$ProbeAllServers
+    UseDbatools = [bool]$UseDbatools; QueryInstances = [bool]$QueryInstances; ZombieThresholdDays = $ZombieThresholdDays
+}
+$manifest = Write-FMPManifest -RunPath $runPath -RunId $runId -StartTime $start -Tier $Tier -Forest $adForest.Name `
+    -Domains $Domain -ServedBy $servedBy -Steps $steps -Parameters $parameters
+
+$failed = @($steps | Where-Object Status -eq 'Failed')
+Write-Host ("Done: {0} files, {1} steps, {2} failed. Summary: {3}" -f $manifest.FileCount, $steps.Count, $failed.Count, (Join-Path (Join-Path $runPath 'Summary') 'StartKitSummary.md'))
+foreach ($f in $failed) { Write-Warning "$($f.Step): $($f.Error)" }

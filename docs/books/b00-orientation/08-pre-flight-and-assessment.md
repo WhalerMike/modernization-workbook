@@ -108,32 +108,32 @@ The assessment discipline itself is set out in [Book 01, Chapter 10](../b01-tran
 
 ### Twelve domains
 
-The master plan organizes the assessment into twelve Active Directory domains, each with a planned assessment function, an output and the stream in Book 01 that carries the method. The functions are the program's planned `FMP` module set; the master plan lists them as work to build, so treat the names as specifications rather than shipped tools.
+The master plan organizes the assessment into twelve Active Directory domains, each with a planned assessment function, an output and the stream in Book 01 that carries the method. The functions are the program's planned `FMP` module set; the master plan lists them as work to build, so treat the names as specifications rather than shipped tools. The workbook's own **Start Kit** implements every domain as a read-only collector, named in the last column: [download start-kit.zip](../../../downloads/start-kit.zip) or read it on [GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit). It's illustrative: unit-tested against fixtures, not proven against a live estate.
 
-| Domain | Planned function | Output | Book 01 Chapter 10 stream |
-|---|---|---|---|
-| Forest topology | `Export-FMPForestTopology` | ForestTopology.json | 1, Forest and domain topology |
-| OU hierarchy | `Export-FMPOUHierarchy` | OUHierarchy.json, OUTree.txt | 2, OU hierarchy |
-| GPO inventory | `Export-FMPGPOInventory` | GPOInventory.json, XML reports | 7, Group Policy Objects |
-| DNS infrastructure | `Export-FMPDNSAssessment` | DNSInventory.json | 8, DNS zones and records |
-| PKI and AD CS | `Export-FMPPKIInventory` | PKIInventory.json, ESCVulnerabilities.csv | 10, Certificate services |
-| Computer objects | `Export-FMPComputerInventory` | ComputerInventory.json | 4, Computers |
-| User objects | `Export-FMPUserInventory` | UserInventory.json, PrivilegedUsers.csv | 3, Users |
-| Group memberships | `Export-FMPGroupInventory` | GroupInventory.json | 6, Security and distribution groups |
-| Trust relationships | `Export-FMPTrustMap` | TrustMap.json | 1 (trusts are collected with the topology) |
-| Service accounts | `Export-FMPServiceAccountInventory` | ServiceAccounts.csv | 5, Service accounts and SPNs |
-| ACL and delegation | `Export-FMPACLReport` | OUDelegation.json | 2 (delegation ACLs are part of the OU stream) |
-| Schema extensions | `Export-FMPSchemaExtensions` | SchemaExtensions.json | 1 (schema version); also feeds the attribute design |
+| Domain | Planned function | Output | Book 01 Chapter 10 stream | Start Kit |
+|---|---|---|---|---|
+| Forest topology | `Export-FMPForestTopology` | ForestTopology.json | 1, Forest and domain topology | `Get-FMPForestTopology` |
+| OU hierarchy | `Export-FMPOUHierarchy` | OUHierarchy.json, OUTree.txt | 2, OU hierarchy | `Get-FMPOUHierarchy` |
+| GPO inventory | `Export-FMPGPOInventory` | GPOInventory.json, XML reports | 7, Group Policy Objects | `Get-FMPGPOInventory` |
+| DNS infrastructure | `Export-FMPDNSAssessment` | DNSInventory.json | 8, DNS zones and records | `Get-FMPDNSAssessment` |
+| PKI and AD CS | `Export-FMPPKIInventory` | PKIInventory.json, ESCVulnerabilities.csv | 10, Certificate services | `Get-FMPPKIAssessment` |
+| Computer objects | `Export-FMPComputerInventory` | ComputerInventory.json | 4, Computers | `Get-FMPComputerInventory` |
+| User objects | `Export-FMPUserInventory` | UserInventory.json, PrivilegedUsers.csv | 3, Users | `Get-FMPUserInventory` |
+| Group memberships | `Export-FMPGroupInventory` | GroupInventory.json | 6, Security and distribution groups | `Get-FMPGroupInventory` |
+| Trust relationships | `Export-FMPTrustMap` | TrustMap.json | 1 (trusts are collected with the topology) | `Get-FMPTrustMap` |
+| Service accounts | `Export-FMPServiceAccountInventory` | ServiceAccounts.csv | 5, Service accounts and SPNs | `Get-FMPUserInventory`, `Get-FMPKerberosSpnMap` |
+| ACL and delegation | `Export-FMPACLReport` | OUDelegation.json | 2 (delegation ACLs are part of the OU stream) | `Get-FMPOUHierarchy` |
+| Schema extensions | `Export-FMPSchemaExtensions` | SchemaExtensions.json | 1 (schema version); also feeds the attribute design | `Get-FMPSchemaExtensions` |
 
 : The twelve assessment domains and the Book 01 streams that carry them {.striped .hover}
 
-The twelve domains and Book 01's eleven streams don't match one to one, and the program needs the union of both. The master plan has no domain for DHCP scopes and reservations (Book 01 stream 9) or for LDAP bindings and the Kerberos SPN map (stream 11), and it doesn't call for the transaction profiles that decide whether an application may move away from its data. Book 01 also inventories RADIUS and NPS separately from its streams, because they depend on AD rather than living in it ([Book 01, Chapter 10](../b01-transformation-arc/10-analyzing-the-estate.md#the-eleven-ingestion-streams)), and the charter counts RADIUS among the eleven dependency types the assessment must cover by G0 ([Chapter 03](03-the-charter.md#success-criteria)). Book 01's G0 requires all of them, so they are added to the assessment rather than left to a later phase.
+The twelve domains and Book 01's eleven streams don't match one to one, and the program needs the union of both. The master plan has no domain for DHCP scopes and reservations (Book 01 stream 9) or for LDAP bindings and the Kerberos SPN map (stream 11), and it doesn't call for the transaction profiles that decide whether an application may move away from its data. Book 01 also inventories RADIUS and NPS separately from its streams, because they depend on AD rather than living in it ([Book 01, Chapter 10](../b01-transformation-arc/10-analyzing-the-estate.md#the-eleven-ingestion-streams)), and the charter counts RADIUS among the eleven dependency types the assessment must cover by G0 ([Chapter 03](03-the-charter.md#success-criteria)). Book 01's G0 requires all of them, so they are added to the assessment rather than left to a later phase. The Start Kit covers DHCP (`Get-FMPDHCPInventory`), the Kerberos SPN map (`Get-FMPKerberosSpnMap`) and LDAP binding events (`Get-FMPLdapBindingEvent`), and counts the SQL Server estate from three independent signals (`Invoke-FMPSqlEstateDiscovery`, the instrument [Book 06, Runbook R02](../b06-data-platform/r02-estate-discovery-and-consolidation-gate.md) describes); transaction profiles and the RADIUS and NPS inventory are still separate work.
 
 ### Five steps from default read to approved plans
 
 The master plan runs the assessment as a week-by-week sequence. Each step ends in a milestone, and each milestone is a committed, reviewed artifact. Steps 1 to 3 produce what G0 needs; steps 4 and 5 run immediately after G0, as Phase 1's first work, and are described here because they finish the assessment's deliverables.
 
-**Step 1, read-only assessment (M-008).** Build a dedicated assessment workstation: a privileged access workstation or a hardened, domain-joined Windows 11 VM with restricted network access, PowerShell and Git. On Windows 11 the Remote Server Administration Tools install as Features on Demand, for example `Rsat.ActiveDirectory.DS-LDS.Tools`, with separate capabilities for Group Policy, DNS and AD CS tools.[^c08-rsat] Run the permission pre-flight (`Test-FMPReadAccess`) to record what this forest lets a default account read, then the read-only orchestrator, commit the output on the assessment feature branch and open a pull request for the steward. From the recorded gaps, write the delegation request. The master plan estimated that default read captures about 87 percent of the assessment's value. Treat that as the program's estimate, not a measured fact: Book 01 shows that default read is broader than most teams expect, covering most GPO settings, certificate templates and often the AD-integrated DNS zones, and the pre-flight is what measures it in a given forest. *Milestone check:* the steward has reviewed the read-only run and the delegation request has gone to the directory team.
+**Step 1, read-only assessment (M-008).** Build a dedicated assessment workstation: a privileged access workstation or a hardened, domain-joined Windows 11 VM with restricted network access, PowerShell and Git. On Windows 11 the Remote Server Administration Tools install as Features on Demand, for example `Rsat.ActiveDirectory.DS-LDS.Tools`, with separate capabilities for Group Policy, DNS and AD CS tools.[^c08-rsat] Run the permission pre-flight (`Test-FMPReadAccess`) to record what this forest lets a default account read, then the read-only orchestrator (the Start Kit's `Invoke-FMPStartKit.ps1` runs both, writes a one-page summary of counts and drafts the delegation request from the gaps), commit the output on the assessment feature branch and open a pull request for the steward. From the recorded gaps, write the delegation request. The master plan estimated that default read captures about 87 percent of the assessment's value. Treat that as the program's estimate, not a measured fact: Book 01 shows that default read is broader than most teams expect, covering most GPO settings, certificate templates and often the AD-integrated DNS zones, and the pre-flight is what measures it in a given forest. *Milestone check:* the steward has reviewed the read-only run and the delegation request has gone to the directory team.
 
 **Step 2, delegated assessment (M-009).** With the narrow Tier B additions granted, finish the parts default read couldn't see: DNS server settings such as aging, scavenging and forwarders; the CA's issued-certificate database and CA configuration; a full GPO backup; and the Deleted Objects container. Each needs care in how it is requested:
 

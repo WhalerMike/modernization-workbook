@@ -1,0 +1,82 @@
+{
+  "_comment": "What the fictional estate answers. browser: the SQL Browser reply text per host (no reply for hosts not listed). tsql: rows per connection target and query name; a target not listed fails to connect.",
+  "browser": {
+    "sql01.contoso.example": "ServerName;SQL01;InstanceName;MSSQLSERVER;IsClustered;No;Version;16.0.1000.6;tcp;1433;;",
+    "sql02.contoso.example": "ServerName;SQL02;InstanceName;MSSQLSERVER;IsClustered;No;Version;15.0.2000.5;tcp;1433;np;\\\\SQL02\\pipe\\sql\\query;;ServerName;SQL02;InstanceName;REPORTS;IsClustered;No;Version;15.0.2000.5;tcp;50123;;",
+    "csql01.child.contoso.example": "ServerName;CSQL01;InstanceName;SALES;IsClustered;No;Version;13.0.5026.0;tcp;1435;;",
+    "app01.contoso.example": "ServerName;APP01;InstanceName;SQLEXPRESS;IsClustered;No;Version;14.0.1000.169;tcp;49200;;"
+  },
+  "tsql": {
+    "sql01.contoso.example,1433": {
+      "Properties": [ { "machine_name": "SQL01", "server_name": "SQL01", "instance_name": null, "product_version": "16.0.4135.4", "product_level": "RTM", "edition": "Enterprise Edition: Core-based Licensing (64-bit)", "is_integrated_security_only": 1, "is_clustered": 0, "is_hadr_enabled": 0 } ],
+      "EngineStart": [ { "sqlserver_start_time": "2026-09-27T00:00:00" } ],
+      "Logins": [
+        { "name": "sa", "type_desc": "SQL_LOGIN", "is_disabled": true, "create_date": "2023-01-01T00:00:00", "is_sa": 1, "password_last_set": "2023-01-01T00:00:00" },
+        { "name": "CONTOSO\\svc-app", "type_desc": "WINDOWS_LOGIN", "is_disabled": false, "create_date": "2023-01-01T00:00:00", "is_sa": 0, "password_last_set": null },
+        { "name": "CONTOSO\\SQL Admins", "type_desc": "WINDOWS_GROUP", "is_disabled": false, "create_date": "2023-01-01T00:00:00", "is_sa": 0, "password_last_set": null }
+      ],
+      "Databases": [
+        { "database_id": 1, "name": "master", "state_desc": "ONLINE", "recovery_model_desc": "SIMPLE", "compatibility_level": 160, "create_date": "2003-04-08T09:13:36" },
+        { "database_id": 2, "name": "tempdb", "state_desc": "ONLINE", "recovery_model_desc": "SIMPLE", "compatibility_level": 160, "create_date": "2026-09-27T00:00:00" },
+        { "database_id": 3, "name": "model", "state_desc": "ONLINE", "recovery_model_desc": "FULL", "compatibility_level": 160, "create_date": "2003-04-08T09:13:36" },
+        { "database_id": 4, "name": "msdb", "state_desc": "ONLINE", "recovery_model_desc": "SIMPLE", "compatibility_level": 160, "create_date": "2023-01-01T00:00:00" },
+        { "database_id": 5, "name": "AppDb", "state_desc": "ONLINE", "recovery_model_desc": "FULL", "compatibility_level": 160, "create_date": "2023-02-01T00:00:00" }
+      ],
+      "LastUse": [
+        { "database_id": 1, "database_name": "master", "last_seek": "2026-10-26T23:00:00", "last_scan": null, "last_lookup": null, "last_update": null },
+        { "database_id": 5, "database_name": "AppDb", "last_seek": "2026-10-26T12:00:00", "last_scan": "2026-10-25T12:00:00", "last_lookup": null, "last_update": "2026-10-26T11:00:00" }
+      ],
+      "LinkedServers": []
+    },
+    "sql02.contoso.example,1433": {
+      "Properties": [ { "machine_name": "SQL02", "server_name": "SQL02", "instance_name": null, "product_version": "15.0.4375.4", "product_level": "RTM", "edition": "Standard Edition (64-bit)", "is_integrated_security_only": 0, "is_clustered": 0, "is_hadr_enabled": 0 } ],
+      "EngineStart": [ { "sqlserver_start_time": "2025-06-14T00:00:00" } ],
+      "Logins": [
+        { "name": "sa", "type_desc": "SQL_LOGIN", "is_disabled": false, "create_date": "2019-01-01T00:00:00", "is_sa": 1, "password_last_set": "2019-01-01T00:00:00" },
+        { "name": "app_user", "type_desc": "SQL_LOGIN", "is_disabled": false, "create_date": "2019-01-01T00:00:00", "is_sa": 0, "password_last_set": "2019-06-01T00:00:00" },
+        { "name": "CONTOSO\\Domain Admins", "type_desc": "WINDOWS_GROUP", "is_disabled": false, "create_date": "2019-01-01T00:00:00", "is_sa": 0, "password_last_set": null }
+      ],
+      "Databases": [
+        { "database_id": 1, "name": "master", "state_desc": "ONLINE", "recovery_model_desc": "SIMPLE", "compatibility_level": 150, "create_date": "2003-04-08T09:13:36" },
+        { "database_id": 5, "name": "LegacyDb", "state_desc": "ONLINE", "recovery_model_desc": "FULL", "compatibility_level": 130, "create_date": "2016-01-01T00:00:00" }
+      ],
+      "LastUse": [
+        { "database_id": 1, "database_name": "master", "last_seek": "2026-10-26T23:00:00", "last_scan": null, "last_lookup": null, "last_update": null }
+      ],
+      "LinkedServers": []
+    },
+    "csql01.child.contoso.example,1435": {
+      "Properties": [ { "machine_name": "CSQL01", "server_name": "CSQL01\\SALES", "instance_name": "SALES", "product_version": "13.0.5026.0", "product_level": "SP2", "edition": "Standard Edition (64-bit)", "is_integrated_security_only": 0, "is_clustered": 0, "is_hadr_enabled": 0 } ],
+      "EngineStart": [ { "sqlserver_start_time": "2026-10-01T00:00:00" } ],
+      "Logins": [
+        { "name": "sa", "type_desc": "SQL_LOGIN", "is_disabled": true, "create_date": "2017-01-01T00:00:00", "is_sa": 1, "password_last_set": "2017-01-01T00:00:00" },
+        { "name": "sales_rpt", "type_desc": "SQL_LOGIN", "is_disabled": false, "create_date": "2017-01-01T00:00:00", "is_sa": 0, "password_last_set": "2017-01-01T00:00:00" },
+        { "name": "CHILD\\svc-csql", "type_desc": "WINDOWS_LOGIN", "is_disabled": false, "create_date": "2017-01-01T00:00:00", "is_sa": 0, "password_last_set": null }
+      ],
+      "Databases": [
+        { "database_id": 1, "name": "master", "state_desc": "ONLINE", "recovery_model_desc": "SIMPLE", "compatibility_level": 130, "create_date": "2003-04-08T09:13:36" },
+        { "database_id": 6, "name": "Sales", "state_desc": "ONLINE", "recovery_model_desc": "FULL", "compatibility_level": 130, "create_date": "2017-01-01T00:00:00" }
+      ],
+      "LastUse": [
+        { "database_id": 6, "database_name": "Sales", "last_seek": "2026-10-20T00:00:00", "last_scan": null, "last_lookup": null, "last_update": null }
+      ],
+      "LinkedServers": [
+        { "linked_server": "SQL02", "data_source": "sql02.contoso.example", "product": "SQL Server", "provider": "SQLNCLI11", "uses_self_credential": false, "remote_name": "app_user" }
+      ]
+    },
+    "app01.contoso.example,49200": {
+      "Properties": [ { "machine_name": "APP01", "server_name": "APP01\\SQLEXPRESS", "instance_name": "SQLEXPRESS", "product_version": "14.0.1000.169", "product_level": "RTM", "edition": "Express Edition (64-bit)", "is_integrated_security_only": 1, "is_clustered": 0, "is_hadr_enabled": 0 } ],
+      "EngineStart": [ { "sqlserver_start_time": "2026-10-20T00:00:00" } ],
+      "Logins": [
+        { "name": "sa", "type_desc": "SQL_LOGIN", "is_disabled": true, "create_date": "2018-01-01T00:00:00", "is_sa": 1, "password_last_set": "2018-01-01T00:00:00" },
+        { "name": "BUILTIN\\Users", "type_desc": "WINDOWS_GROUP", "is_disabled": false, "create_date": "2018-01-01T00:00:00", "is_sa": 0, "password_last_set": null }
+      ],
+      "Databases": [
+        { "database_id": 1, "name": "master", "state_desc": "ONLINE", "recovery_model_desc": "SIMPLE", "compatibility_level": 140, "create_date": "2003-04-08T09:13:36" },
+        { "database_id": 5, "name": "VendorApp", "state_desc": "ONLINE", "recovery_model_desc": "SIMPLE", "compatibility_level": 140, "create_date": "2018-01-01T00:00:00" }
+      ],
+      "LastUse": [ { "database_id": 5, "database_name": "VendorApp", "last_seek": "2026-10-26T00:00:00", "last_scan": null, "last_lookup": null, "last_update": null } ],
+      "LinkedServers": []
+    }
+  }
+}

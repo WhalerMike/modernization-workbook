@@ -27,6 +27,11 @@ The `FMPADAssessment` module manifest and module file, function by function, fol
 This module is illustrative. It hasn't been tested against a production forest. Review every function, sign the module, and run it first in a test forest under the narrow rights in Chapter 08. It reads the directory and writes only to the output path and, when you call the Gitea functions, to the repository you name. It changes nothing in Active Directory, DNS or AD CS.
 :::
 
+::: {.callout-tip}
+## Packaged and tested: the Start Kit
+The workbook now ships this module as files, with Pester tests against a fictional forest on Windows PowerShell 5.1 and PowerShell 7: [examples/start-kit on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit), or the [start-kit.zip download](../../../downloads/start-kit.zip). The kit is the read-only half: it leaves out the Gitea functions, `Test-FMPTrust` and the native GPO backup, because each one writes or needs administrator rights, and it adds the schema, DHCP, Kerberos SPN map, LDAP binding and SQL Server collectors [Book 00, Chapter 08](../b00-orientation/08-pre-flight-and-assessment.md) calls for. Its README lists every difference from the code below. Like this appendix, it's illustrative: unit-tested against fixtures, not proven against a live estate.
+:::
+
 ## Corrections to the source design
 
 The source module was flattened onto single lines during conversion, and several functions didn't work as written. The table lists what changed and why.
@@ -49,6 +54,9 @@ The source module was flattened onto single lines during conversion, and several
 | Collector scope | `-Domain` accepted but ignored | Passed to every cmdlet as `-Server` or `-Domain` | Multi-domain runs assessed only the current domain |
 | Gitea | One commit per file; labels never resolved | One multi-file commit on a run branch; label IDs looked up | One run, one commit; the API takes label IDs[^aB-gitea] |
 | Credentials | Token in a text file; user account with typed password | Token from the credential store; gMSA | No stored secrets |
+| Hashtable values (found October 27, 2026, packaging the Start Kit) | `CertSubject = if ($cert) { ... }` with no `else` | `CertSubject = $(if ($cert) { ... })` | Windows PowerShell 5.1 can't parse an `if` without `else` as a hashtable value followed by another key, so the module didn't load on the version it declares |
+| Trust attribute decoding (same) | `[ordered]` dictionary looked up by flag value | Plain hashtable, keys sorted | Indexing an ordered dictionary with an integer reads by position, so `0x8` decoded as `UsesAESKeys` instead of `ForestTransitive` |
+| GPO conflicts (same) | Key on `$node.Name` | Key on the node's own `<Name>` child; skip nodes without one | For a node with no `<Name>` child, `$node.Name` is the element's tag name, so unrelated settings were grouped as conflicts |
 
 ## B.1 Module manifest (`FMPADAssessment.psd1`)
 
@@ -474,12 +482,16 @@ function Find-GPOConflicts {
             foreach ($ext in @($x.GPO.$half.ExtensionData)) {
                 if (-not $ext.Extension) { continue }
                 foreach ($node in $ext.Extension.ChildNodes) {
-                    if (-not $node.Name) { continue }
-                    $key = '{0}|{1}|{2}' -f $half, $node.LocalName, $node.Name
+                    # Only settings with their own <Name> child; an unnamed node's .Name is its tag.
+                    if ($node.NodeType -ne [System.Xml.XmlNodeType]::Element) { continue }
+                    $nameNode  = $node.SelectSingleNode("*[local-name()='Name']")
+                    $stateNode = $node.SelectSingleNode("*[local-name()='State']")
+                    if (-not $nameNode) { continue }
+                    $key = '{0}|{1}|{2}' -f $half, $node.LocalName, $nameNode.InnerText
                     if (-not $map.ContainsKey($key)) { $map[$key] = @() }
                     $map[$key] += [pscustomobject]@{
                         GPOName = $x.GPO.Name
-                        State   = $node.State
+                        State   = $(if ($stateNode) { $stateNode.InnerText })
                     }
                 }
             }
@@ -841,11 +853,11 @@ function Get-FMPPKIAssessment {
             ComputerName       = $ca.dNSHostName
             ConfigString       = $config
             PublishedTemplates = @($ca.certificateTemplates)
-            CertSubject        = if ($cert) { $cert.Subject }
-            NotBefore          = if ($cert) { $cert.NotBefore.ToString('o') }
-            NotAfter           = if ($cert) { $cert.NotAfter.ToString('o') }
+            CertSubject        = $(if ($cert) { $cert.Subject })
+            NotBefore          = $(if ($cert) { $cert.NotBefore.ToString('o') })
+            NotAfter           = $(if ($cert) { $cert.NotAfter.ToString('o') })
             KeySize            = $keySize
-            SignatureAlgorithm = if ($cert) { $cert.SignatureAlgorithm.FriendlyName }
+            SignatureAlgorithm = $(if ($cert) { $cert.SignatureAlgorithm.FriendlyName })
         }
     }
 
@@ -1096,7 +1108,8 @@ The privileged group list is Microsoft's list of on-premises groups whose member
 ### Trusts
 
 ```powershell
-$script:FMPTrustBits = [ordered]@{
+# A plain hashtable: indexing an [ordered] dictionary with an integer reads by position.
+$script:FMPTrustBits = @{
     0x1  = 'NonTransitive'
     0x2  = 'UplevelOnly'
     0x4  = 'QuarantinedDomain'
@@ -1127,7 +1140,7 @@ function Get-FMPTrustMap {
     $trustPath = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'Trusts'
     $trusts = foreach ($t in Get-ADTrust -Filter * -Server $Domain -Properties *) {
         $attr = [int]$t.TrustAttributes
-        $decoded = @($script:FMPTrustBits.Keys | Where-Object { $attr -band $_ } | ForEach-Object { $script:FMPTrustBits[$_] })
+        $decoded = @($script:FMPTrustBits.Keys | Sort-Object | Where-Object { $attr -band $_ } | ForEach-Object { $script:FMPTrustBits[$_] })
         $direction = "$($t.Direction)"
         [pscustomobject]@{
             Name                    = $t.Name

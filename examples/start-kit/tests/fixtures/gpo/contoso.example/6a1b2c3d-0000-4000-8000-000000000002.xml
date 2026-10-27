@@ -1,0 +1,14 @@
+<GPO xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.microsoft.com/GroupPolicy/Settings">
+  <Identifier>
+    <Identifier xmlns="http://www.microsoft.com/GroupPolicy/Types">{6A1B2C3D-0000-4000-8000-000000000002}</Identifier>
+    <Domain xmlns="http://www.microsoft.com/GroupPolicy/Types">contoso.example</Domain>
+  </Identifier>
+  <Name>Empty Policy</Name>
+  <Computer>
+    <VersionDirectory>1</VersionDirectory>
+
+  </Computer>
+  <User>
+    <VersionDirectory>0</VersionDirectory>
+  </User>
+</GPO>

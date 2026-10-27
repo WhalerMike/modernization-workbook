@@ -93,7 +93,19 @@ New-FMPEstateInventory `
     -OutputPath       .\output\estate-inventory.json
 ```
 
-The function is pure derivation over the read-only discovery output: it reads no live host or directory and changes nothing. Its `classification` counts (retain, consolidate, retire, review) and its `denominator` are the gate's headline numbers. Know what the automated pass can and can't see:
+::: {.callout-tip}
+## Run this step with the workbook's Start Kit
+The workbook's own read-only implementation of steps 1a to 1c is in the Start Kit: [start-kit.zip](../../../downloads/start-kit.zip), or [examples/start-kit on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit). One command reads the MSSQLSvc SPNs of every domain in the forest, the computer objects and service accounts that suggest SQL Server, and, with `-ProbeNetwork`, the SQL Browser on each host they found (or `Find-DbaInstance` when dbatools is installed). It counts each instance once, records which sources saw it and whether they agree, and applies the first-pass gate described below:
+
+```powershell
+Import-Module .\powershell\FMPSqlEstate
+Invoke-FMPSqlEstateDiscovery -OutputPath D:\Assessment\sql -ProbeNetwork -ProbeAllServers -QueryInstances
+```
+
+`-QueryInstances` adds the read-only T-SQL pass: version, edition, authentication mode, logins by type, databases, last use and linked servers, under a login with `VIEW SERVER STATE` (`VIEW SERVER PERFORMANCE STATE` on SQL Server 2022 and later). The output, `SqlEstate.csv` and `SqlEstate.json`, uses the audit's field names and adds counts by version, edition, domain and authentication mode. It's illustrative: unit-tested against fixtures, not proven against a live estate.
+:::
+
+The program's function is pure derivation over the read-only discovery output: it reads no live host or directory and changes nothing. Its `classification` counts (retain, consolidate, retire, review) and its `denominator` are the gate's headline numbers. Know what the automated pass can and can't see:
 
 - It classifies on two signals only: the engine version and a last-access age in days. An instance with a last-access age at or above `-ZombieThresholdDays` (default 400) is classified retire; a pre-2022 engine is classified consolidate; a SQL Server 2022 or later engine is classified retain.
 - An instance whose signal is insufficient lands in **review**, never silently in retain. Discovery-only `Spec3-D1.8` output carries no version, so on its own almost every instance lands in review. Supply versions (from the R03 deep audit) and last-access ages (from Lens 1) to get a meaningful first pass.
