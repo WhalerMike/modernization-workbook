@@ -19,6 +19,7 @@ One run produces a one-page summary (`Summary/StartKitSummary.md`) with these co
 | Groups, empty groups, circular nesting | `Get-FMPGroupInventory` | Group memberships (stream 6) |
 | Computers by operating system, servers, stale computers, delegation | `Get-FMPComputerInventory` | Computer objects (stream 4) |
 | Service accounts (users with SPNs, MSAs, gMSAs) | `Get-FMPUserInventory` | Service accounts (stream 5) |
+| **Unconstrained Kerberos delegation** on computers (domain controllers excluded) and on user and service accounts; constrained delegation on accounts; privileged users whose credentials can be delegated (neither marked sensitive nor in Protected Users); and the SQL Server instances whose host or service account has unconstrained delegation | `Get-FMPComputerInventory`, `Get-FMPUserInventory`, `Get-FMPStartKitSummary` | Service accounts and delegation (stream 5); Book 02 Chapter 08; Book 06 Runbook R06 |
 | Service principal names, duplicates and orphans, forest-wide | `Get-FMPKerberosSpnMap` | Kerberos SPN map (stream 11) |
 | LDAP clients binding unsigned or in clear text (Tier B) | `Get-FMPLdapBindingEvent` | LDAP bindings (stream 11) |
 | DNS zones, stale records, DC locator records | `Get-FMPDNSAssessment` | DNS infrastructure (stream 8) |
@@ -144,7 +145,8 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 ├── Summary\        StartKitSummary.md, StartKitSummary.json
 ├── Preflight\      ReadAccess.json, DelegationRequest.md
 ├── SQL\            SqlEstate.csv, SqlEstate.json, SqlEstateSummary.json, SqlSignals.json,
-│                   SqlServiceAccounts.csv, and with -QueryInstances SqlLogins.csv,
+│                   SqlServiceAccounts.csv, SqlUnconstrainedDelegation.csv (written by the
+│                   summary), and with -QueryInstances SqlLogins.csv,
 │                   SqlDatabases.csv, SqlLinkedServers.csv
 ├── NPS\            NpsServers.csv, RadiusClients.csv, NetworkPolicies.csv, PolicyGroups.csv,
 │                   RemoteRadiusServers.csv, NpsCertificates.csv, NpsFindings.csv,

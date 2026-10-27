@@ -101,6 +101,12 @@ Source: `docs/operational-guides/ad-interaction-guide.md` (the source's Appendix
 | 93 | Source advised raising MaxPageSize and wildcard TrustedHosts | Troubleshooting | corrected | Removed as unsafe |
 | 94 | Weekly cadence, one branch and commit per run, two auto-issue classes | Pipeline | restated-as-design | Program design |
 | 95 | GCC-Moderate boundary statement, FedRAMP framing in source header | Scope | removed | Boundary framing not needed for an on-prem assessment; no claim kept |
+| 96 | Trusted for delegation can be set only on accounts with SPNs, so service accounts are the usual case | Kerberos delegation | verified | c08-sensitive |
+| 97 | By default every domain account can be delegated; a Domain Admin on a member server trusted for delegation risks domain compromise | Kerberos delegation | verified | c08-sensitive |
+| 98 | Protected Users members cannot be delegated with unconstrained or constrained delegation; members lose NTLM, RC4/DES and cached sign-in; never add service or computer accounts | Kerberos delegation | verified | c08-protected-users |
+| 99 | Defender for Identity flags privileged accounts without the "not delegated" setting | Kerberos delegation | verified ("Ensure privileged accounts are not delegated") | c08-mdi-accounts |
+| 100 | SQL Server service account is the most common account with delegation (linked-server / reporting double hop) | Kerberos delegation | restated-as-design (practitioner pattern; mechanism sourced in Book 06 Ch14) | — |
+| 101 | Start Kit output files for delegation | Kerberos delegation | verified against examples/start-kit (tests/powershell/ADAssessment.Tests.ps1) | — |
 
 ## Carry-forward ledger
 

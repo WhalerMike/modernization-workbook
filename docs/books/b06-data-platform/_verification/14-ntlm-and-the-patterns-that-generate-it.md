@@ -36,6 +36,8 @@ Checked October 20, 2026. Sources: the existing page (former Book 06, Chapter 1)
 | 28 | Source: "Arc non-domain-join requirement" | Pattern 4 | corrected | Restated as the program's target architecture, consistent with Book 05 Ch09 |
 | 29 | Unjoined host with Integrated Security falls back to NTLM | Pattern 4 | kept (follows from Chapter 01 / SSPI behaviour); "or fails outright" added |  |
 | 30 | Source "Book 01", "Book 05" references | Throughout | corrected | Renumbered to Chapter 01 and Chapters 11–12/19 |
+| 31 | Unconstrained delegation on a SQL host or service account leaves a reusable ticket for every connecting user | Pattern 3 | verified (mechanism per c14-kcd; Book 02 Ch08 c08-sensitive) | c14-kcd |
+| 32 | Start Kit summary lists SQL Server instances whose host or service account has unconstrained delegation | Pattern 3 | verified against examples/start-kit tests | — |
 
 ## Carry-forward ledger
 

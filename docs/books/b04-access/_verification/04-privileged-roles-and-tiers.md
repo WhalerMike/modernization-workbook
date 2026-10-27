@@ -49,6 +49,8 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch), AWS doc
 | 41 | Break-glass password in two sealed envelopes as sole credential (Vol III) | Emergency access | corrected: superseded by phishing-resistant method guidance | c04-emergency |
 | 42 | NIST AC-2, AC-2(1), AC-6, AC-6(1), (2), (5), (7), (9), (10) text summaries | Federal requirements | verified (Rev. 5, release 5.2.0 catalog) | c04-nist |
 | 43 | All mapped controls in SP 800-53B Moderate baseline; AC-2(7) not selected at Moderate | Federal requirements | verified (OSCAL Moderate profile 5.2.0, checked by script) | c04-nist-moderate |
+| 44 | A Domain Admin signing in to a member server trusted for delegation risks domain compromise; mark sensitive accounts "cannot be delegated" | Tier placements | verified | c04-not-delegated |
+| 45 | Protected Users members cannot be delegated; add after testing | Tier placements | verified | c04-not-delegated |
 
 ## 2. Carry-forward ledger
 
