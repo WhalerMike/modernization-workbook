@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.137
+Most agencies can name their SOC.
+
+2
+00:00:02.137 --> 00:00:06.158
+Fewer can say who decided what gets
+collected, how long it's kept,
+
+3
+00:00:06.158 --> 00:00:09.250
+or who accepted the risk
+when a source went quiet.
+
+4
+00:00:09.250 --> 00:00:11.450
+Usually it's whoever held the console.
+
+5
+00:00:11.450 --> 00:00:13.963
+The book's model
+separates those decisions.
+
+6
+00:00:13.963 --> 00:00:15.813
+The SOC runs the queue.
+
+7
+00:00:15.813 --> 00:00:18.811
+The CIO funds it, the
+CISO sets requirements,
+
+8
+00:00:18.811 --> 00:00:24.324
+platform owners keep logs flowing, and
+the authorizing official accepts the risk.
+
+9
+00:00:24.324 --> 00:00:28.400
+And because every system inherits
+monitoring from the SOC,
+
+10
+00:00:28.400 --> 00:00:32.475
+the SOC's own controls need to
+be assessed like anyone else's.
+
+11
+00:00:32.475 --> 00:00:35.400
+The first decision belongs to the CIO:
+
+12
+00:00:35.400 --> 00:00:40.212
+designate one top-level SOC, decide
+how it's staffed, and fund it.
+
+13
+00:00:40.212 --> 00:00:42.170
+Next, the full matrix.

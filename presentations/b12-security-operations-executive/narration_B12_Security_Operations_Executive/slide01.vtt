@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.377
+This is the executive briefing
+for Book 12 of the Federal
+
+3
+00:00:04.377 --> 00:00:08.299
+Modernization Workbook, Security
+Operations and Telemetry.
+
+4
+00:00:08.299 --> 00:00:13.775
+It's for the CISO, the SOC lead,
+the CIO and authorizing officials.
+
+5
+00:00:13.775 --> 00:00:15.200
+The argument is short.
+
+6
+00:00:15.200 --> 00:00:19.620
+You can't defend what you can't see, and
+the gaps that matter most make no noise:
+
+7
+00:00:19.620 --> 00:00:24.325
+a system that never sent its logs looks
+exactly like one where nothing happened.
+
+8
+00:00:24.325 --> 00:00:27.600
+Storing logs isn't the same
+as detecting with them.
+
+9
+00:00:27.600 --> 00:00:31.488
+And a finding closes only when
+the thing is fixed, with proof.
+
+10
+00:00:31.488 --> 00:00:34.725
+I'll take four questions:
+why, what, who and how.
+
+11
+00:00:34.725 --> 00:00:39.100
+Each decision slide names the decision,
+its owner and when it's needed.
+
+12
+00:00:39.100 --> 00:00:41.660
+Let's start with what a
+dashboard can't show you.

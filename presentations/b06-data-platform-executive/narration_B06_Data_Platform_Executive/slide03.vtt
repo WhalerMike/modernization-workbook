@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.825
+Here's the part nobody sees.
+
+2
+00:00:01.825 --> 00:00:05.403
+When an instance's service
+principal name is missing,
+
+3
+00:00:05.403 --> 00:00:10.200
+Kerberos quietly gives way to NTLM,
+and the application still connects.
+
+4
+00:00:10.200 --> 00:00:14.901
+The engine doesn't log which protocol
+each session used, so an estate that
+
+5
+00:00:14.901 --> 00:00:20.150
+believes it runs Kerberos can be running
+NTLM on a large share of its connections.
+
+6
+00:00:20.150 --> 00:00:21.688
+Only measurement tells you.
+
+7
+00:00:21.688 --> 00:00:26.008
+Meanwhile the identities themselves
+are anchored in Active Directory,
+
+8
+00:00:26.008 --> 00:00:30.401
+or in a password the instance checks on
+its own, like the built-in sa account.
+
+9
+00:00:30.401 --> 00:00:31.975
+None of this was a mistake.
+
+10
+00:00:31.975 --> 00:00:36.050
+It was good engineering for a world
+where everything was domain-joined.
+
+11
+00:00:36.050 --> 00:00:39.550
+That world is ending, and
+three drivers are ending it.

@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.412
+Three forces end this inheritance.
+
+2
+00:00:02.412 --> 00:00:05.452
+NTLM is going: Microsoft
+has deprecated it,
+
+3
+00:00:05.452 --> 00:00:08.926
+and the program has
+committed to eliminating it.
+
+4
+00:00:08.926 --> 00:00:14.425
+Zero trust needs the Entra identity
+plane in front of every human sign-in.
+
+5
+00:00:14.425 --> 00:00:17.318
+And when Active Directory
+stops being the source,
+
+6
+00:00:17.318 --> 00:00:20.000
+the engine needs an
+identity that outlives it.
+
+7
+00:00:20.000 --> 00:00:24.499
+April first, 2027 is the
+program's own NTLM block date,
+
+8
+00:00:24.499 --> 00:00:27.638
+not a Microsoft or federal deadline.
+
+9
+00:00:27.638 --> 00:00:32.923
+The outside dates in 2027 are support dates
+for older Windows Server and SQL Server,
+
+10
+00:00:32.923 --> 00:00:35.987
+and none of those versions
+can take Entra logins.
+
+11
+00:00:35.987 --> 00:00:40.591
+So the decision is to hold the
+order: count and consolidate,
+
+12
+00:00:40.591 --> 00:00:43.660
+enable Arc, move logins, then block NTLM.
+
+13
+00:00:43.660 --> 00:00:45.460
+Counting comes first.

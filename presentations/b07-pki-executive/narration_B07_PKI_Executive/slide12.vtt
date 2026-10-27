@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.770
+Certificate power is granted
+in four separate places:
+
+2
+00:00:03.770 --> 00:00:09.225
+the old authority's own permissions, Intune,
+Entra ID, and the lifecycle platform.
+
+3
+00:00:09.225 --> 00:00:11.037
+That's where hidden risk sits.
+
+4
+00:00:11.037 --> 00:00:14.912
+Several everyday console clicks
+are really risk decisions.
+
+5
+00:00:14.912 --> 00:00:17.300
+Leaving a template published just in case.
+
+6
+00:00:17.300 --> 00:00:21.133
+Trusting an authority in Entra
+without a revocation list,
+
+7
+00:00:21.133 --> 00:00:23.688
+so revoked certificates still sign in.
+
+8
+00:00:23.688 --> 00:00:25.800
+Leaving bindings at the weak default.
+
+9
+00:00:25.800 --> 00:00:28.158
+And the platform's own account can approve
+
+10
+00:00:28.158 --> 00:00:30.650
+certificates for every
+template it reaches.
+
+11
+00:00:30.650 --> 00:00:34.396
+The decision for the CISO: map
+every team in all four systems,
+
+12
+00:00:34.396 --> 00:00:37.843
+keep privileged roles eligible
+rather than permanent,
+
+13
+00:00:37.843 --> 00:00:42.338
+and make sure no one can both change
+and approve what an authority issues.
+
+14
+00:00:42.338 --> 00:00:44.040
+Then the migration itself.

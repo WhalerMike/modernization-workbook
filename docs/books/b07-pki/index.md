@@ -36,6 +36,8 @@ This book replaces the workbook's PKI Modernization Guide with one ordered book.
 
 **Technical deep dive (about 50 minutes live, 23 narrated)**: hardening AD CS, the target PKI, device and user certificates and decommissioning, in modules on the [Presentations](../../presentations/index.md#technical-b07) page.
 
+**Executive briefing (about 30 minutes live, 13 narrated)**: for the CIO, CISO, PKI owner and authorizing officials: the two clocks of cutover and expiry, shrinking lifetimes, the AD CS inventory, four issuers instead of one, who owns the CA, the waves and retiring AD CS last, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b07) page.
+
 **Research (under review)**: an implementation guide, [Certificate Lifecycle on CyberArk Certificate Manager](../../research/cyberark-certificate-lifecycle.md), builds this book's certificate lifecycle on the program's CLM platform; it's on the [Research](../../research/index.md) page. A research explainer, [Certificates, Tokens and Keys Across the Hybrid Estate](../../research/hybrid-credentials.md), follows SQL Server with Entra ID, the clouds' key vaults, PIV and RADIUS through coexistence to after AD, with who issues and who renews each credential.
 :::
 

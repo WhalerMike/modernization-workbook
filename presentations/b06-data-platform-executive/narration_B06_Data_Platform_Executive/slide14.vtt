@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.012
+The database isn't finished until
+the applications in front of it are.
+
+2
+00:00:04.012 --> 00:00:07.997
+Each application gets placed on
+two axes: how its users sign in,
+
+3
+00:00:07.997 --> 00:00:10.888
+and what its database
+driver can actually do,
+
+4
+00:00:10.888 --> 00:00:14.638
+from a simple configuration
+change to no Entra path at all.
+
+5
+00:00:14.638 --> 00:00:19.387
+An application stuck on legacy domain
+services holds its whole instance back.
+
+6
+00:00:19.387 --> 00:00:24.280
+The change itself is one line in a connection
+string, but it waits for three gates:
+
+7
+00:00:24.280 --> 00:00:26.504
+the login exists, the role is granted,
+
+8
+00:00:26.504 --> 00:00:30.062
+and it's been tested somewhere
+that looks like production.
+
+9
+00:00:30.062 --> 00:00:34.212
+Application owners approve each
+cutover against those gates.
+
+10
+00:00:34.212 --> 00:00:36.220
+Then, the protocol itself.

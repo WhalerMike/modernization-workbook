@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.288
+So who does the work?
+
+2
+00:00:01.288 --> 00:00:05.690
+The DBAs run the engine: the
+inventory, the audit, the logins,
+
+3
+00:00:05.690 --> 00:00:09.726
+the thirty-day parallel run,
+and the Kerberos repairs.
+
+4
+00:00:09.726 --> 00:00:11.988
+What they no longer decide is who gets in.
+
+5
+00:00:11.988 --> 00:00:17.050
+Membership of the group that holds sysadmin
+becomes a privileged access decision.
+
+6
+00:00:17.050 --> 00:00:20.045
+Application owners own
+their side of the chain:
+
+7
+00:00:20.045 --> 00:00:23.500
+connection strings, test
+sign-off and cutover windows.
+
+8
+00:00:23.500 --> 00:00:27.977
+And data owners, even when they're the
+same person, answer a different question:
+
+9
+00:00:27.977 --> 00:00:31.125
+does this access rule still
+describe the right people?
+
+10
+00:00:31.125 --> 00:00:34.088
+The decision for
+application and data owners:
+
+11
+00:00:34.088 --> 00:00:37.362
+confirm every rule before
+its group grants access.
+
+12
+00:00:37.362 --> 00:00:40.680
+Some steps sit outside
+the DBA team on purpose.

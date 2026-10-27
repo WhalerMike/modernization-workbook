@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.850
+Migration ends on a date.
+
+2
+00:00:01.850 --> 00:00:03.200
+Certificates don't.
+
+3
+00:00:03.200 --> 00:00:05.069
+Every one reaches its expiry,
+
+4
+00:00:05.069 --> 00:00:09.663
+and every authority must keep publishing
+a revocation list until then.
+
+5
+00:00:09.663 --> 00:00:13.387
+So the program watches for trouble
+while it can still be fixed:
+
+6
+00:00:13.387 --> 00:00:18.134
+any certificate close to expiry with no
+renewal path, anything issued outside
+
+7
+00:00:18.134 --> 00:00:22.662
+policy, a trust store holding something
+unapproved, a list about to go stale.
+
+8
+00:00:22.662 --> 00:00:26.051
+The evidence is kept weekly,
+because an assessor asks how
+
+9
+00:00:26.051 --> 00:00:29.150
+long a finding stayed open,
+not just whether it's open.
+
+10
+00:00:29.150 --> 00:00:30.662
+One choice needs care.
+
+11
+00:00:30.662 --> 00:00:33.725
+Making a valid certificate
+a condition of access
+
+12
+00:00:33.725 --> 00:00:36.488
+turns a failed renewal
+into a locked-out user.
+
+13
+00:00:36.488 --> 00:00:39.599
+So the CISO decides
+the grace period first.
+
+14
+00:00:39.599 --> 00:00:41.810
+Then the old authority can retire.

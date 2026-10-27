@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.679
+The audit asks one question
+of every surviving instance:
+
+2
+00:00:03.679 --> 00:00:06.150
+what is actually authenticating here?
+
+3
+00:00:06.150 --> 00:00:12.050
+It records the logins, the mode, the service
+account and the Kerberos registration,
+
+4
+00:00:12.050 --> 00:00:15.000
+and it flags the worst
+first: an enabled sa,
+
+5
+00:00:15.000 --> 00:00:18.037
+active SQL logins, missing registrations.
+
+6
+00:00:18.037 --> 00:00:21.100
+Each instance then lands in
+one of three categories.
+
+7
+00:00:21.100 --> 00:00:22.400
+Ready for Entra now.
+
+8
+00:00:22.400 --> 00:00:24.550
+Ready once Azure Arc is installed.
+
+9
+00:00:24.550 --> 00:00:29.800
+Or blocked, because the version is older
+than 2022 or it's a failover cluster.
+
+10
+00:00:29.800 --> 00:00:34.595
+The decision: data leadership upgrades
+or retires each blocked instance it's
+
+11
+00:00:34.595 --> 00:00:37.591
+keeping, and anything that
+can't move in time goes
+
+12
+00:00:37.591 --> 00:00:40.663
+to the authorizing official
+as a dated exception.
+
+13
+00:00:40.663 --> 00:00:42.120
+Here's the destination.

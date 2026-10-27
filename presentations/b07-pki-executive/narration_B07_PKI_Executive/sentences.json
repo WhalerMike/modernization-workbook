@@ -1,0 +1,793 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.662,
+   "This is the executive briefing for Book 07 of the Federal Modernization Workbook, P K I and certificates."
+  ],
+  [
+   8.425,
+   7.375,
+   "It's for the people who decide: the C I O, the see-so, the P K I owner and authorizing officials."
+  ],
+  [
+   15.8,
+   1.425,
+   "The argument is short."
+  ],
+  [
+   17.225,
+   9.412,
+   "Certificates prove who's who in every other migration, and they keep working until the day they expire, so they fail on their own clock, not the directory's."
+  ],
+  [
+   26.637,
+   6.963,
+   "There's no single replacement for the old certificate authority; the target is four issuers and one lifecycle platform."
+  ],
+  [
+   33.6,
+   4.75,
+   "And the move runs as its own program, with the old authority retired last."
+  ],
+  [
+   38.35,
+   4.375,
+   "Each decision slide names the decision, its owner and when it's needed."
+  ],
+  [
+   42.725,
+   1.25,
+   "Let's start with why."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   4.875,
+   "Every other migration changes which system answers the question, who is this?"
+  ],
+  [
+   4.925,
+   2.487,
+   "Certificates are how the answer gets proved."
+  ],
+  [
+   7.412,
+   3.425,
+   "And a certificate isn't a record you move with the directory."
+  ],
+  [
+   10.838,
+   8.438,
+   "It's a signed statement that's already been handed out, sitting in devices, smart cards, servers and trust stores nobody remembers configuring."
+  ],
+  [
+   19.275,
+   5.975,
+   "It keeps working, unchanged, until it expires, and then whatever relied on it stops."
+  ],
+  [
+   25.25,
+   6.537,
+   "Domain controllers, Wi-Fi, VPN, server encryption and piv sign-in all lean on it."
+  ],
+  [
+   31.788,
+   3.425,
+   "Each book in this workbook migrates its own consumers."
+  ],
+  [
+   35.212,
+   3.075,
+   "None of them owns the issuer underneath all of them."
+  ],
+  [
+   38.288,
+   2.85,
+   "That's the problem, and it runs on a different clock."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.4,
+   "There are two clocks here."
+  ],
+  [
+   1.45,
+   3.5,
+   "Directory work fails at cutover, where someone is watching."
+  ],
+  [
+   4.95,
+   4.725,
+   "Certificate work fails at expiry, months later and far from its cause."
+  ],
+  [
+   9.675,
+   5.475,
+   "So a program that measures progress by cutover dates reports success right up to the outage."
+  ],
+  [
+   15.15,
+   3.1,
+   "And the cloud options only cover part of the estate."
+  ],
+  [
+   18.25,
+   9.475,
+   "Cloud P K I issues only to Intune-managed devices, which don't include servers, and domain controllers need certificates for as long as they exist."
+  ],
+  [
+   27.725,
+   9.863,
+   "The decision for the sponsor and the C I O: run the move off the old certificate authority as its own program, with its own owner, sequenced by expiry dates."
+  ],
+  [
+   37.587,
+   2.237,
+   "And those dates are getting closer together."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.188,
+   "The rules are moving under certificates already issued."
+  ],
+  [
+   3.237,
+   10.562,
+   "Public TLS lifetimes are falling on a fixed schedule: 200 days now, 100 days from March 2027, and 47 days from March 2029."
+  ],
+  [
+   13.8,
+   7.825,
+   "On the book's arithmetic, a thousand certificates means about seven renewals every working day today, and about thirty-one at the end."
+  ],
+  [
+   21.625,
+   4.625,
+   "The mapping rules for sign-in certificates already changed, with no way back."
+  ],
+  [
+   26.25,
+   5.013,
+   "And the algorithms have a horizon, with federal post-quantum deadlines in 2030."
+  ],
+  [
+   31.262,
+   7.662,
+   "So the decision for the see-so: set lifetimes by policy, and require automated renewal for every class before they shorten."
+  ],
+  [
+   38.925,
+   3.525,
+   "No certificate should depend on a person remembering a date."
+  ],
+  [
+   42.45,
+   2.2,
+   "First, we need to know what we have."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   11.775,
+   "Before any certificate moves, the program establishes what the old certificate authority actually holds up: every authority, every template, every certificate issued, and every system that trusts them."
+  ],
+  [
+   11.825,
+   2.55,
+   "Then each template gets one of four verdicts."
+  ],
+  [
+   14.375,
+   2.513,
+   "Retire it if its consumer is going away."
+  ],
+  [
+   16.887,
+   3.013,
+   "Migrate it if Intune or Entra can replace it."
+  ],
+  [
+   19.9,
+   4.5,
+   "Bridge it if it depends on Active Directory itself, like domain controllers."
+  ],
+  [
+   24.4,
+   4.912,
+   "And retain it only if nothing else can serve it, with an owner and a review date."
+  ],
+  [
+   29.312,
+   7.9,
+   "The decision for the P K I administrators: every template classified, with a named owner, in the plan's first four weeks."
+  ],
+  [
+   37.212,
+   3.425,
+   "And before any of it moves, what stays has to be safe."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.837,
+   "A certificate authority can mint credentials the whole estate trusts."
+  ],
+  [
+   3.888,
+   6.812,
+   "So one over-privileged account or a single misconfigured template can undo every other identity control."
+  ],
+  [
+   10.7,
+   5.675,
+   "And the new cloud issuer will chain to this same hierarchy, inheriting whatever's wrong with it."
+  ],
+  [
+   16.375,
+   4.562,
+   "That's why hardening is the first technical workstream, not cleanup at the end."
+  ],
+  [
+   20.938,
+   9.113,
+   "Eight well-known misconfiguration classes get checked, four of them rated critical, and auditing gets turned on, because by default there's no evidence at all."
+  ],
+  [
+   30.05,
+   4.537,
+   "The decision for the P K I owner and the security team: hold the gate."
+  ],
+  [
+   34.587,
+   5.088,
+   "Nothing migrates until every critical and high finding is fixed and re-tested."
+  ],
+  [
+   39.675,
+   1.462,
+   "Then, the target."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.275,
+   "There's no single replacement for the old certificate authority."
+  ],
+  [
+   3.325,
+   3.737,
+   "The target is four issuers, each serving what only it can."
+  ],
+  [
+   7.062,
+   3.475,
+   "Cloud P K I for devices Intune manages."
+  ],
+  [
+   10.537,
+   5.862,
+   "A smaller, hardened internal authority for domain controllers, servers and network gear."
+  ],
+  [
+   16.4,
+   4.775,
+   "The Federal P K I for piv cards, which the migration doesn't touch."
+  ],
+  [
+   21.175,
+   3.538,
+   "And a public authority for names the internet has to trust."
+  ],
+  [
+   24.712,
+   4.963,
+   "Entra ID sits beside them all, checking certificates, never issuing them."
+  ],
+  [
+   29.675,
+   7.987,
+   "The decision for the sponsor and the C I O: adopt this four-issuer target, anchoring the cloud issuer to the root you already have."
+  ],
+  [
+   37.663,
+   2.725,
+   "That choice of root carries a cost of its own."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.462,
+   "Here's the root decision."
+  ],
+  [
+   1.512,
+   6.1,
+   "A brand-new cloud root means every server, gateway and device has to learn to trust a new chain."
+  ],
+  [
+   7.612,
+   9.075,
+   "Anchoring the cloud issuer under the root you already have keeps that trust intact, uses one of the tenant's three cloud authorities, and leaves an easy way back."
+  ],
+  [
+   16.688,
+   3.788,
+   "That's the program's recommendation for an established hierarchy."
+  ],
+  [
+   20.475,
+   2.175,
+   "But it carries one lasting cost."
+  ],
+  [
+   22.65,
+   7.537,
+   "The offline root's revocation list now has to stay published at a plain web address that Entra ID can reach, or sign-ins fail."
+  ],
+  [
+   30.188,
+   9.6,
+   "So the decision for the P K I administrators, inside the security office's window: run that list as a production service, with every ceremony dated."
+  ],
+  [
+   39.788,
+   1.812,
+   "Servers still need an issuer."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.787,
+   "Microsoft's issuers don't renew server certificates, public certificates or appliances."
+  ],
+  [
+   5.838,
+   4.862,
+   "Something has to find those and renew them on time, and that's the lifecycle platform."
+  ],
+  [
+   10.7,
+   6.525,
+   "The program uses CyberArk Certificate Manager, from a vendor it already has, and adds no second tool."
+  ],
+  [
+   17.225,
+   8.375,
+   "Server certificates for internal names come from the retained internal authority, requested and renewed through the platform instead of by hand."
+  ],
+  [
+   25.6,
+   2.05,
+   "One fact shaped the deployment."
+  ],
+  [
+   27.65,
+   9.537,
+   "As of October 2026 the platform's cloud edition had no fed-ramp listing, so the program runs the self-hosted edition inside its own boundary."
+  ],
+  [
+   37.188,
+   6.112,
+   "The decision for the sponsor and C I O: confirm that, and revisit it when the Marketplace changes."
+  ],
+  [
+   43.3,
+   1.3,
+   "Then there's piv."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.587,
+   "piv is the one part the migration doesn't re-issue."
+  ],
+  [
+   3.638,
+   4.562,
+   "Those certificates still come from the Federal P K I through the card system."
+  ],
+  [
+   8.2,
+   9.113,
+   "What changes is who trusts them: the federal root has to reach devices and servers, and Entra ID has to check each card against its revocation list."
+  ],
+  [
+   17.312,
+   1.387,
+   "Two choices matter."
+  ],
+  [
+   18.7,
+   6.138,
+   "Every authority Entra trusts can sign in any user it's bound to, so bindings have to be strong."
+  ],
+  [
+   24.837,
+   7.812,
+   "And a pin-protected card counts as multifactor, while a software certificate doesn't, so derived credentials need their own rule."
+  ],
+  [
+   32.65,
+   8.062,
+   "The decision for the see-so: require high-affinity bindings in production, and send any weaker binding kept to the authorizing official."
+  ],
+  [
+   40.712,
+   1.637,
+   "So who owns all of this?"
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.562,
+   "In most estates, the certificate authority belongs to whoever installed it, and by default the domain's top administrators run it."
+  ],
+  [
+   7.612,
+   1.475,
+   "Nobody decided that."
+  ],
+  [
+   9.088,
+   8.45,
+   "In the target, the estate spreads across more systems, not fewer, each with administrators holding a piece of what the agency trusts."
+  ],
+  [
+   17.538,
+   3.175,
+   "So the program separates who decides from who does the work."
+  ],
+  [
+   20.712,
+   4.662,
+   "The see-so sets issuance policy, trust anchors and binding strength."
+  ],
+  [
+   25.375,
+   3.525,
+   "The authorizing official accepts every standing exception."
+  ],
+  [
+   28.9,
+   5.062,
+   "The sponsor and C I O decide the hierarchy and when old authorities retire."
+  ],
+  [
+   33.962,
+   7.037,
+   "And their decision here: name one renewal owner for every certificate class, recorded in the lifecycle platform."
+  ],
+  [
+   41.0,
+   4.075,
+   "Because an expiry is almost always an ownership failure first."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   9.175,
+   "Certificate power is granted in four separate places: the old authority's own permissions, Intune, Entra ID, and the lifecycle platform."
+  ],
+  [
+   9.225,
+   1.812,
+   "That's where hidden risk sits."
+  ],
+  [
+   11.037,
+   3.875,
+   "Several everyday console clicks are really risk decisions."
+  ],
+  [
+   14.912,
+   2.388,
+   "Leaving a template published just in case."
+  ],
+  [
+   17.3,
+   6.388,
+   "Trusting an authority in Entra without a revocation list, so revoked certificates still sign in."
+  ],
+  [
+   23.688,
+   2.112,
+   "Leaving bindings at the weak default."
+  ],
+  [
+   25.8,
+   4.85,
+   "And the platform's own account can approve certificates for every template it reaches."
+  ],
+  [
+   30.65,
+   11.688,
+   "The decision for the see-so: map every team in all four systems, keep privileged roles eligible rather than permanent, and make sure no one can both change and approve what an authority issues."
+  ],
+  [
+   42.337,
+   1.65,
+   "Then the migration itself."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   7.987,
+   "The migration runs as six waves: assess, build the foundation, pilot, scale, cut over, and decommission."
+  ],
+  [
+   8.037,
+   9.512,
+   "Each wave's exit gate is the next one's entry gate, and the durations, about forty-four weeks for a single forest, are planning figures, not promises."
+  ],
+  [
+   17.55,
+   3.013,
+   "The rule that matters most is about going back."
+  ],
+  [
+   20.562,
+   6.525,
+   "No wave starts until its rollback has been rehearsed, and no rollback depends on something that same wave retired."
+  ],
+  [
+   27.087,
+   7.3,
+   "That's why the old automatic enrollment stays on through the pilot, and federation stays restorable for thirty days after cutover."
+  ],
+  [
+   34.388,
+   5.625,
+   "The decision for the sponsor and C I O: approve each gate before the next wave starts."
+  ],
+  [
+   40.013,
+   2.675,
+   "During all of this, both systems are live."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.225,
+   "For most of the migration, both systems are production."
+  ],
+  [
+   3.275,
+   7.588,
+   "Devices carry certificates from both, servers trust both chains, and two sets of revocation lists have to stay reachable."
+  ],
+  [
+   10.863,
+   1.663,
+   "Five rules keep that safe."
+  ],
+  [
+   12.525,
+   2.638,
+   "Each use case gets one issuer at a time."
+  ],
+  [
+   15.162,
+   2.362,
+   "Trust goes up before issuance moves."
+  ],
+  [
+   17.525,
+   3.45,
+   "Revocation is reachable wherever validation happens."
+  ],
+  [
+   20.975,
+   2.562,
+   "Nothing is revoked early to force a move."
+  ],
+  [
+   23.538,
+   2.288,
+   "And every move has a tested way back."
+  ],
+  [
+   25.825,
+   6.037,
+   "The book's warning is worth remembering: most coexistence outages are revocation outages."
+  ],
+  [
+   31.863,
+   4.225,
+   "A list Entra ID can't reach within ten seconds fails the sign-in."
+  ],
+  [
+   36.087,
+   3.612,
+   "After the migration, the work becomes keeping it all renewed."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.8,
+   "Migration ends on a date."
+  ],
+  [
+   1.85,
+   1.35,
+   "Certificates don't."
+  ],
+  [
+   3.2,
+   6.463,
+   "Every one reaches its expiry, and every authority must keep publishing a revocation list until then."
+  ],
+  [
+   9.662,
+   13.0,
+   "So the program watches for trouble while it can still be fixed: any certificate close to expiry with no renewal path, anything issued outside policy, a trust store holding something unapproved, a list about to go stale."
+  ],
+  [
+   22.663,
+   6.487,
+   "The evidence is kept weekly, because an assessor asks how long a finding stayed open, not just whether it's open."
+  ],
+  [
+   29.15,
+   1.512,
+   "One choice needs care."
+  ],
+  [
+   30.663,
+   5.825,
+   "Making a valid certificate a condition of access turns a failed renewal into a locked-out user."
+  ],
+  [
+   36.487,
+   3.112,
+   "So the see-so decides the grace period first."
+  ],
+  [
+   39.6,
+   2.138,
+   "Then the old authority can retire."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.225,
+   "Retirement is the last wave, and it happens one authority at a time."
+  ],
+  [
+   4.275,
+   7.15,
+   "The gate is strict: cutover done, thirty days with no incidents, and everything that stays documented and running."
+  ],
+  [
+   11.425,
+   7.425,
+   "Even then, the addresses where certificates check their status keep serving until the last certificate they cover has expired."
+  ],
+  [
+   18.85,
+   4.388,
+   "Under the recommended design, the root that signed the cloud issuer stays."
+  ],
+  [
+   23.238,
+   8.762,
+   "And the authority's records carry their own federal retention, measured in years, so the records officer signs off before any archive is destroyed."
+  ],
+  [
+   32.0,
+   9.762,
+   "The decision for the sponsor and C I O: retire each authority only after its gate passes, keeping one for domain controllers until the last of them is gone."
+  ],
+  [
+   41.763,
+   1.3,
+   "Now, the risks."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.15,
+   "The risks fall into three groups."
+  ],
+  [
+   2.2,
+   7.75,
+   "Expiry: a certificate nobody owned, one that was never inventoried, or the enrollment server's own certificates lapsing."
+  ],
+  [
+   9.95,
+   9.875,
+   "Revocation: a list Entra can't reach fails every sign-in for that authority, while an authority trusted with no list at all lets revoked certificates keep working."
+  ],
+  [
+   19.825,
+   8.6,
+   "And trust: weak bindings let a look-alike certificate sign in, and the new cloud issuer inherits any weakness in the old hierarchy."
+  ],
+  [
+   28.425,
+   3.013,
+   "Temporary exceptions are the see-so's to grant."
+  ],
+  [
+   31.438,
+   3.975,
+   "Standing ones, with no end date, are risk acceptances."
+  ],
+  [
+   35.413,
+   6.25,
+   "So the decision for the authorizing official: accept each standing exception explicitly, or don't."
+  ],
+  [
+   41.663,
+   1.863,
+   "Let's pull the decisions together."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.575,
+   "So, the decisions."
+  ],
+  [
+   1.625,
+   17.413,
+   "The sponsor and C I O run this as its own program, adopt the four-issuer target anchored to the existing root, confirm the self-hosted lifecycle platform, name a renewal owner for every class, approve each wave's gate, and retire each authority only after its gate passes."
+  ],
+  [
+   19.038,
+   9.15,
+   "The see-so sets lifetimes and automated renewal, requires strong bindings, owns one access model, and sets the compliance grace period."
+  ],
+  [
+   28.188,
+   9.375,
+   "The P K I team classifies every template and runs the root's revocation list as a production service, and with the security team holds the hardening gate."
+  ],
+  [
+   37.562,
+   3.45,
+   "The authorizing official accepts each standing exception."
+  ],
+  [
+   41.013,
+   1.688,
+   "It starts with the inventory."
+  ],
+  [
+   42.7,
+   4.15,
+   "Book 07 has the detail, every claim footnoted."
+  ],
+  [
+   46.85,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

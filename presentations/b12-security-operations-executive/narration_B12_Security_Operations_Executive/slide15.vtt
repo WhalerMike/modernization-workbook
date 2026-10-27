@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.425
+A rule nobody owns slowly rots.
+
+2
+00:00:02.425 --> 00:00:05.493
+So the program keeps its
+detection rules as code,
+
+3
+00:00:05.493 --> 00:00:09.175
+under version control, and nobody
+edits a live rule by hand.
+
+4
+00:00:09.175 --> 00:00:12.877
+Every rule follows the same
+path: tested against history,
+
+5
+00:00:12.877 --> 00:00:16.895
+run quietly in alert-only mode
+while false alarms are counted,
+
+6
+00:00:16.895 --> 00:00:19.258
+promoted once its response is wired,
+
+7
+00:00:19.258 --> 00:00:24.300
+then reviewed on a schedule to check it
+still fires and its data still arrives.
+
+8
+00:00:24.300 --> 00:00:25.950
+Be honest about the limits.
+
+9
+00:00:25.950 --> 00:00:29.069
+Detection takes minutes
+to hours, not seconds,
+
+10
+00:00:29.069 --> 00:00:32.187
+and without steady upkeep
+the library decays.
+
+11
+00:00:32.187 --> 00:00:36.925
+The decision: security engineering runs
+the library this way, with the CISO
+
+12
+00:00:36.925 --> 00:00:41.738
+setting priorities, and no rule opens
+incidents before it has passed through.
+
+13
+00:00:41.738 --> 00:00:43.320
+Next, response.

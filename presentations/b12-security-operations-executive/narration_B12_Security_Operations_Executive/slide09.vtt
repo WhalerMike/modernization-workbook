@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.637
+Retention is really two decisions.
+
+2
+00:00:02.637 --> 00:00:04.626
+First, the security floor.
+
+3
+00:00:04.626 --> 00:00:09.250
+Data your rules depend on stays in the
+alerting tier for at least six months,
+
+4
+00:00:09.250 --> 00:00:11.563
+because only that tier raises alerts.
+
+5
+00:00:11.563 --> 00:00:15.971
+Older or high-volume data can live in
+cheaper tiers you can still search,
+
+6
+00:00:15.971 --> 00:00:18.587
+and a tamper-proof copy
+serves as evidence.
+
+7
+00:00:18.587 --> 00:00:23.899
+Second, disposition: how long beyond the
+floor, and when data can be destroyed.
+
+8
+00:00:23.899 --> 00:00:28.100
+That belongs to the records officer,
+not to whoever holds the console.
+
+9
+00:00:28.100 --> 00:00:29.723
+So the CISO sets the floor,
+
+10
+00:00:29.723 --> 00:00:34.003
+and nobody shortens retention
+without the records officer agreeing,
+
+11
+00:00:34.003 --> 00:00:38.725
+because once logs are gone, an investigation
+or a legal hold can't get them back.
+
+12
+00:00:38.725 --> 00:00:40.390
+Next, the cost side.

@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.013
+The migration runs in six phases:
+inventory, coexist, move authority,
+
+2
+00:00:06.013 --> 00:00:11.763
+bring in the clouds, retire AD DNS
+and DHCP, then harden and prove it.
+
+3
+00:00:11.763 --> 00:00:15.529
+Name resolution has to keep
+working while authority moves,
+
+4
+00:00:15.529 --> 00:00:17.912
+so every move runs the same small loop.
+
+5
+00:00:17.912 --> 00:00:22.712
+The old system keeps answering until the
+new one is proven from every location,
+
+6
+00:00:22.712 --> 00:00:25.001
+and a failed check just switches back.
+
+7
+00:00:25.001 --> 00:00:29.415
+The program has planning estimates,
+from a day or two up to a few weeks,
+
+8
+00:00:29.415 --> 00:00:31.938
+but they're estimates, not commitments.
+
+9
+00:00:31.938 --> 00:00:35.478
+The decision: the DNS
+and DDI team closes each
+
+10
+00:00:35.478 --> 00:00:39.113
+phase on its evidence,
+never on a calendar date.
+
+11
+00:00:39.113 --> 00:00:41.330
+Next, the step you can't undo.

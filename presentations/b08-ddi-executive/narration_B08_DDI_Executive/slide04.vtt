@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.075
+Two requirements shape everything.
+
+2
+00:00:02.075 --> 00:00:07.742
+M-22-09 says agencies must encrypt DNS
+wherever it's technically supported,
+
+3
+00:00:07.742 --> 00:00:12.788
+and point devices at agency-designated
+resolvers, not whatever they discover.
+
+4
+00:00:12.788 --> 00:00:17.737
+And CISA's Protective DNS is
+mandatory for all outbound resolution.
+
+5
+00:00:17.737 --> 00:00:19.965
+The two fit together: encrypt,
+
+6
+00:00:19.965 --> 00:00:24.513
+but end at your own resolvers,
+with Protective DNS upstream.
+
+7
+00:00:24.513 --> 00:00:26.425
+Where it breaks is the device.
+
+8
+00:00:26.425 --> 00:00:31.280
+Encrypted DNS that rides the ordinary
+web port can't be seen by the network,
+
+9
+00:00:31.280 --> 00:00:35.100
+so it has to be governed through
+device and browser policy.
+
+10
+00:00:35.100 --> 00:00:37.340
+The decision belongs to the CISO:
+
+11
+00:00:37.340 --> 00:00:41.100
+designate the resolvers and
+the allowed transports, now.
+
+12
+00:00:41.100 --> 00:00:45.100
+An exception with no end date
+goes to the authorizing official.
+
+13
+00:00:45.100 --> 00:00:47.060
+Next, the rest of the floor.

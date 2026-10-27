@@ -1,0 +1,77 @@
+# Book 13 — Governance, Drift & Evidence: the executive briefing — narration script (practice copy)
+
+## Slide 1 — Governance, Drift & Evidence: the executive briefing
+
+Welcome. This is the executive briefing for Book 13 of the Federal Modernization Workbook: Governance, Drift and Evidence. It's for the people who fund federal systems, sign for them or answer for them: the CIO, the CISO, authorizing officials and the program office. The book asks one question. Why does compliance decay the day after the audit? Its answer is that an assessment measures one day, and the estate starts changing the next morning. I'll take four parts: why it decays, what keeps the record true, who governs it, and how it runs at scale. Each decision slide names the decision, its owner, and when it's needed. Let's start with the decay itself.
+
+## Slide 2 — Compliance decays the day after the audit
+
+Picture the week a package is signed. On that day, it's all true. The next morning someone changes a firewall rule to fix an outage, a contractor leaves but the account stays on, and a provider ships a new default. None of it reaches the package. The book traces this to four structural failures, not to people: copies of facts that disagree, telemetry combined by hand, evidence rebuilt at every audit, and policy trapped inside the tool that enforces it. Each fix sits beneath the tools. So the decision for the CIO: fix that layer before buying another tool. Next, what federal policy already asks for.
+
+## Slide 3 — Federal policy already points past the snapshot
+
+FISMA makes annual testing a floor, not a ceiling, and expects automated tools. NIST treats monitoring as ongoing awareness, and its framework ends with the authorizing official reviewing posture all the time, not once a cycle. Circular A-130 tells agencies to move eligible systems to ongoing authorization. So the destination is settled. What lags is practice, and NIST says why: without substantial automation, it isn't practical. The usual answer to findings is more checkpoints and more reviewers. That makes reporting heavier and leaves the drift alone. The decision for the CISO: answer the next findings by making evidence regenerable from the record. Next, the mechanism behind the decay.
+
+## Slide 4 — Drift: continuous, silent, and the opening for attack
+
+Drift is any gap between what the record says should be true and what the estate actually does. It gets in five ways: unauthorized change, approved change that's never written back, provider change, people who move or leave, and tools that update themselves. Most of it is an administrator fixing an outage at two in the morning. It's continuous and silent: every system keeps reporting what it was told. And it's the opening attacks use: an account that should have been disabled, a permission nobody removed. The baseline and change-control controls already require finding it. The decision for the CISO: make drift a standing finding in the monitoring strategy. Next, the record drift is measured against.
+
+## Slide 5 — One record, and one owner for every fact in it
+
+Drift can only be measured against something, so the program keeps one authoritative record. It holds desired state, the rules, and an authority map that says which system owns each fact. HR owns who a worker is, the asset registry owns devices, and infrastructure as code owns declared infrastructure. Everything else is a pointer back, and runtime systems only read it. Corrections flow upstream to the owning source, never to the copy. A write to a demoted copy is critical, because it's a second source of truth growing back. The decision: settle the record before the next migration, so the migration changes who supplies a fact, not what it means. Next, how the record is allowed to change.
+
+## Slide 6 — Every change travels one path; urgency gets no second
+
+A record is only as good as the path into it. So every change, from a move to a reset, travels one path. It starts from the source of truth, gets approved by the right authority, runs under a role that's switched on just for the job, closes with proof, and emits its own evidence. Skip a step and it isn't a change with a missing form; it's a drift finding. There's no second lane for urgent work. Pre-approved lanes are standing grants with a scope and an expiry. Emergencies get a path, and they're written back within one business day. The decision for the steward: make the protections bind administrators too. Next, one question every change must answer.
+
+## Slide 7 — From gate G0: no new dependency on Active Directory
+
+Retiring Active Directory takes most of a year, and the estate keeps changing. Every new domain-joined server, legacy application, service account or Group Policy setting is one more thing to unwind. So from gate G0, every add and change answers one question: does this create a new dependency on Active Directory? Microsoft's own guidance puts that step first. A yes isn't automatically a no; some workloads have no modern path yet. But a yes becomes an exception, with an owner, a reason, an end date and the Entra alternative that was considered. The decision belongs to the authorizing official, because keeping AD open is a risk acceptance. Next, what closing a change requires.
+
+## Slide 8 — A closure without its proof is prose, not evidence
+
+The strictest step is closure. A task closed by someone clicking complete, with no machine-readable check attached, says the work happened. It proves nothing an assessor can use. So every closure carries its check, the time, and what did the checking. Human-only closure stays possible, because operations need an escape hatch, but it's flagged and counted on its own. And reports are derived from the closure records by something anyone can re-run, never compiled by hand. A pipeline that can't tell a checked closure from an asserted one is attesting fiction. The decision for the CISO: report human-only closures as their own count, never blended into control tests or service levels. Next, evidence an assessor can re-run.
+
+## Slide 9 — Evidence anyone can re-run, not a statement to trust
+
+An attestation tells an assessor who's accountable. Evidence lets them find out for themselves. The program's rule is determinism: the same record and the same inputs produce the same evidence, every time. So verification becomes a re-run, not an interview. Federal guidance goes most of the way. NIST treats an automated comparison of intended and actual state as assessment results, and FedRAMP's 2026 rules tell assessors not to simply review documents or screenshots. Some controls stay attestations, like a training record or a contract clause, and the package should say which. The decision for the authorizing official: give assessors their own access, so the assessor, not the operator, does the re-run. Next, the drift engine.
+
+## Slide 10 — The drift engine: severity is computed, not argued
+
+The drift engine compares the estate with a versioned record, so an approved change isn't drift and any finding can be re-derived later. Severity is computed from the kind of drift and whether the thing is in active use. A critical finding halts and alerts a named person, and it's never fixed automatically. The engine never edits the record, never judges whether a rule is right, and never accepts risk. And be precise with assessors: some checks are automated today, and others are still found by people. The riskiest change is to what counts as drift, so the decision: any change to the classifier or its thresholds gets a reviewer from outside the program office. Next, who governs.
+
+## Slide 11 — Who governs: one decider for every decision
+
+A platform can detect every drift and still decay, because it can't decide anything. Each finding is a question. Change the estate? Change the record? Or carry the difference for a while? The last two need a person with authority. The book keeps two jobs apart. The steward keeps the record, and information owners, like HR or an application owner, decide what its facts mean. The CISO decides control requirements, and only the authorizing official accepts risk. The governance board reviews; it doesn't vote, because a board that decides by consensus leaves no one accountable. The decision for the sponsor and CIO: charter the board in writing, with one named decider for every kind of decision. Next, exceptions.
+
+## Slide 12 — Exceptions: bounded by the CISO, open-ended by the AO
+
+A finding that can't be fixed in time is carried, by a named decision, with an end date. A bounded exception has an end date and a compensating control, and the CISO approves it. Anything open-ended, or with no compensating control, is a risk acceptance. The CISO recommends, the authorizing official decides, and it goes on the plan of action. The rule never changes; the engine keeps reporting the difference, marked as excepted, so an excepted setting never looks like a passing one. The decision for the board: review the register every quarter. Nothing renews automatically, and anything renewed twice goes back up as a sign the rule must change. Next, the authorizing official's part.
+
+## Slide 13 — The AO's part: small in time, large in consequence
+
+The authorizing official sits outside the program and above the record. The role is small in time and large in consequence. The program asks four things of it: sign for every gap it carries rather than closes; keep reviewing whether the risk is still acceptable; decide whether a significant change needs reauthorization; and set how independent the assessors must be. Their representative can do the daily work, but risk acceptance can't be delegated, and a contractor can prepare one but never sign it. The decision for the authorizing official: receive a monthly posture report built from the record, and sign every open-ended gap in writing. Next, the record as a federal record.
+
+## Slide 14 — The record is a federal record: never rewrite history
+
+The record is a federal record, whether or not anyone calls it one. Its history shows who changed controlled settings, who approved them and when, which is exactly what change control asks an agency to keep. So the records officer decides how long each kind of record lasts, the steward carries it out, and the CISO is consulted. Change records, for example, are kept five years after a system is retired. The one thing that undoes the repository's protections is rewriting its history. A purge destroys records. If a secret is committed by mistake, it's revoked and rotated first. The decision: history is rewritten only with the records officer's and the CISO's agreement. Next, the tempo of operations.
+
+## Slide 15 — Ticket to machine: the person's role stops at approval
+
+A platform that detects perfectly and closes slowly produces an accurate list of things nobody fixed. Wherever a machine can reach the system, the ticket authorizes a machine, not a person. A human approves. The platform runs a versioned plan after a dry run, then re-reads the result to prove it worked. Some changes stay gated forever, like Conditional Access or tenant-wide roles. Where no machine can reach, the fallback is a declared, recorded session with an end date, never a quiet trip to the console. Letting a whole class run without a person accepts the risk of being wrong at machine speed. So the authorizing official accepts each one in writing. Next, reuse across agencies.
+
+## Slide 16 — Reuse by default; every agency still signs for itself
+
+The federal estate assesses the same controls again and again. OMB's memorandum on FedRAMP makes reuse the default: an agency presumes a maintained FedRAMP package is adequate, and asks for more only with a documented, demonstrable need. But reuse always ends in the agency's own signature. Each agency authorizes its own system, never a standalone authorization for the cloud service, and reviews each provider's quarterly report. FedRAMP's 2026 indicators bind providers, not agencies. What the program adds is the evidence side. If the shared package is produced continuously, reuse stops meaning last year's snapshot. The decision: reuse by default, and document any demonstrable need before asking for more. Next, ongoing authorization.
+
+## Slide 17 — Ongoing authorization: a standing decision on evidence
+
+Reciprocity reuses a package across agencies. Ongoing authorization reuses it across time, and that's what makes the first safe. NIST sets two conditions: a complete initial review, and monitoring that checks the controls as often as the strategy requires. The authorizing official then issues a new decision with no end date. They review posture on a schedule, and right away when something triggers it. Reauthorization becomes the exception. Automation is necessary but not enough; people still assess what tools can't see. Circular A-130 tells agencies to make this move when a system is eligible. The decision for the authorizing official: approve each eligible system's move, with how often it's reviewed and what triggers a review. Next, governance at scale.
+
+## Slide 18 — At scale: classify coverage and register every gap
+
+At the scale of hundreds of systems, the program's discipline is honesty about coverage. Every control is covered, partial, a gap, or out of scope, and partial is the answer most often rounded up to covered. Every partial or gap goes into a register that names, on day one, the evidence that will close it. A gap closes by configuration, by a substitute control, or by the authorizing official accepting it with a review date. Coverage is reported as proven and asserted counts, never one percentage. The decision for the senior official for risk: approve the agency-wide monitoring strategy. Now, the decisions together.
+
+## Slide 19 — Governance decisions: owners and timing
+
+So, the decisions together, and none of them is a procurement. The CIO fixes the layer beneath the tools before buying another. The CISO makes drift a standing finding and counts human-only closures on their own. The steward settles the record before the next migration and makes the protections bind administrators. The sponsor and CIO charter the board, with one decider for every decision. The authorizing official approves each new Active Directory dependency only as a dated exception, accepts each class that runs without a person, and approves ongoing authorization when a system is ready. The records officer guards the history. A package describes one day. Governance that doesn't decay keeps proving itself, every day after. Thank you.

@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.850
+People need somewhere safe to practice, and
+that's harder to arrange than it sounds.
+
+2
+00:00:04.850 --> 00:00:08.465
+Many staff won't qualify for a
+developer sandbox on their own,
+
+3
+00:00:08.465 --> 00:00:12.225
+and those sandboxes don't exist
+in the government clouds at all.
+
+4
+00:00:12.225 --> 00:00:16.530
+So the program's approach has two steps:
+practice in a commercial sandbox,
+
+5
+00:00:16.530 --> 00:00:21.265
+then rehearse once in the agency's own
+non-production government tenant before
+
+6
+00:00:21.265 --> 00:00:26.000
+each gate, where a feature difference shows
+up as a finding instead of a surprise.
+
+7
+00:00:26.000 --> 00:00:30.787
+Every lab follows the same rules:
+never production, never real data.
+
+8
+00:00:30.787 --> 00:00:34.819
+The decision for the program office:
+arrange lab tenants centrally,
+
+9
+00:00:34.819 --> 00:00:38.850
+including that government rehearsal
+tenant, before the first labs.
+
+10
+00:00:38.850 --> 00:00:41.110
+Next, the largest group of all.

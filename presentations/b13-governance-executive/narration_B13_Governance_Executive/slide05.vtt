@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.721
+Drift can only be measured
+against something,
+
+2
+00:00:02.721 --> 00:00:05.462
+so the program keeps one
+authoritative record.
+
+3
+00:00:05.462 --> 00:00:07.853
+It holds desired state, the rules,
+
+4
+00:00:07.853 --> 00:00:12.101
+and an authority map that says
+which system owns each fact.
+
+5
+00:00:12.101 --> 00:00:15.864
+HR owns who a worker is, the
+asset registry owns devices,
+
+6
+00:00:15.864 --> 00:00:19.962
+and infrastructure as code
+owns declared infrastructure.
+
+7
+00:00:19.962 --> 00:00:24.074
+Everything else is a pointer back,
+and runtime systems only read it.
+
+8
+00:00:24.074 --> 00:00:28.150
+Corrections flow upstream to the
+owning source, never to the copy.
+
+9
+00:00:28.150 --> 00:00:30.427
+A write to a demoted copy is critical,
+
+10
+00:00:30.427 --> 00:00:33.538
+because it's a second source
+of truth growing back.
+
+11
+00:00:33.538 --> 00:00:37.083
+The decision: settle the record
+before the next migration,
+
+12
+00:00:37.083 --> 00:00:40.850
+so the migration changes who
+supplies a fact, not what it means.
+
+13
+00:00:40.850 --> 00:00:43.730
+Next, how the record is allowed to change.

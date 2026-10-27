@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.700
+Under Windows authentication, the DBA team
+owned database access almost by default.
+
+2
+00:00:05.700 --> 00:00:10.141
+In the target, one connection depends
+on a group the identity team built,
+
+3
+00:00:10.141 --> 00:00:14.883
+a rule the data owner approved, a permission
+only a privileged role can grant,
+
+4
+00:00:14.883 --> 00:00:19.775
+a login the DBAs created, and a connection
+string the application team changed.
+
+5
+00:00:19.775 --> 00:00:22.699
+Miss any owner and the
+gap shows up as drift,
+
+6
+00:00:22.699 --> 00:00:25.288
+or as a help desk call nobody can close.
+
+7
+00:00:25.288 --> 00:00:27.600
+So the model is one decider per row.
+
+8
+00:00:27.600 --> 00:00:30.530
+Data leadership decides
+verdicts and closure;
+
+9
+00:00:30.530 --> 00:00:35.488
+the authorizing official decides every
+exception; the CISO sets the standard.
+
+10
+00:00:35.488 --> 00:00:39.599
+The first step is filling the
+project's open sponsor and lead roles.
+
+11
+00:00:39.599 --> 00:00:41.520
+So what does each team actually do?

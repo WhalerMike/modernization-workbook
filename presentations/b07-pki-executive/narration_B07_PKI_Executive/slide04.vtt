@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.238
+The rules are moving under
+certificates already issued.
+
+2
+00:00:03.238 --> 00:00:08.078
+Public TLS lifetimes are
+falling on a fixed schedule:
+
+3
+00:00:08.078 --> 00:00:13.799
+200 days now, 100 days from March
+2027, and 47 days from March 2029.
+
+4
+00:00:13.799 --> 00:00:17.820
+On the book's arithmetic, a thousand
+certificates means about seven
+
+5
+00:00:17.820 --> 00:00:21.625
+renewals every working day today,
+and about thirty-one at the end.
+
+6
+00:00:21.625 --> 00:00:26.250
+The mapping rules for sign-in certificates
+already changed, with no way back.
+
+7
+00:00:26.250 --> 00:00:31.263
+And the algorithms have a horizon, with
+federal post-quantum deadlines in 2030.
+
+8
+00:00:31.263 --> 00:00:34.633
+So the decision for the CISO:
+set lifetimes by policy,
+
+9
+00:00:34.633 --> 00:00:38.924
+and require automated renewal for
+every class before they shorten.
+
+10
+00:00:38.924 --> 00:00:42.450
+No certificate should depend on
+a person remembering a date.
+
+11
+00:00:42.450 --> 00:00:44.710
+First, we need to know what we have.

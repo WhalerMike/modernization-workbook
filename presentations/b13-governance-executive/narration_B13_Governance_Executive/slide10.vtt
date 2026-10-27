@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.805
+The drift engine compares the
+estate with a versioned record,
+
+2
+00:00:03.805 --> 00:00:08.150
+so an approved change isn't drift and
+any finding can be re-derived later.
+
+3
+00:00:08.150 --> 00:00:13.238
+Severity is computed from the kind of drift
+and whether the thing is in active use.
+
+4
+00:00:13.238 --> 00:00:16.410
+A critical finding halts
+and alerts a named person,
+
+5
+00:00:16.410 --> 00:00:18.600
+and it's never fixed automatically.
+
+6
+00:00:18.600 --> 00:00:20.782
+The engine never edits the record,
+
+7
+00:00:20.782 --> 00:00:24.600
+never judges whether a rule is
+right, and never accepts risk.
+
+8
+00:00:24.600 --> 00:00:28.413
+And be precise with assessors:
+some checks are automated today,
+
+9
+00:00:28.413 --> 00:00:30.613
+and others are still found by people.
+
+10
+00:00:30.613 --> 00:00:35.215
+The riskiest change is to what counts as
+drift, so the decision: any change to
+
+11
+00:00:35.215 --> 00:00:40.263
+the classifier or its thresholds gets a
+reviewer from outside the program office.
+
+12
+00:00:40.263 --> 00:00:41.950
+Next, who governs.

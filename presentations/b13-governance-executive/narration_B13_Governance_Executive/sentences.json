@@ -1,0 +1,860 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.562,
+   "This is the executive briefing for Book 13 of the Federal Modernization Workbook: Governance, Drift and Evidence."
+  ],
+  [
+   8.325,
+   9.812,
+   "It's for the people who fund federal systems, sign for them or answer for them: the C I O, the see-so, authorizing officials and the program office."
+  ],
+  [
+   18.137,
+   1.7,
+   "The book asks one question."
+  ],
+  [
+   19.837,
+   2.763,
+   "Why does compliance decay the day after the audit?"
+  ],
+  [
+   22.6,
+   5.575,
+   "Its answer is that an assessment measures one day, and the estate starts changing the next morning."
+  ],
+  [
+   28.175,
+   7.188,
+   "I'll take four parts: why it decays, what keeps the record true, who governs it, and how it runs at scale."
+  ],
+  [
+   35.362,
+   4.4,
+   "Each decision slide names the decision, its owner, and when it's needed."
+  ],
+  [
+   39.763,
+   2.025,
+   "Let's start with the decay itself."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.988,
+   "Picture the week a package is signed."
+  ],
+  [
+   2.038,
+   1.825,
+   "On that day, it's all true."
+  ],
+  [
+   3.862,
+   8.875,
+   "The next morning someone changes a firewall rule to fix an outage, a contractor leaves but the account stays on, and a provider ships a new default."
+  ],
+  [
+   12.738,
+   1.775,
+   "None of it reaches the package."
+  ],
+  [
+   14.512,
+   14.0,
+   "The book traces this to four structural failures, not to people: copies of facts that disagree, telemetry combined by hand, evidence rebuilt at every audit, and policy trapped inside the tool that enforces it."
+  ],
+  [
+   28.512,
+   2.0,
+   "Each fix sits beneath the tools."
+  ],
+  [
+   30.512,
+   4.662,
+   "So the decision for the C I O: fix that layer before buying another tool."
+  ],
+  [
+   35.175,
+   3.062,
+   "Next, what federal policy already asks for."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.3,
+   "FISMA makes annual testing a floor, not a ceiling, and expects automated tools."
+  ],
+  [
+   5.35,
+   8.988,
+   "nist treats monitoring as ongoing awareness, and its framework ends with the authorizing official reviewing posture all the time, not once a cycle."
+  ],
+  [
+   14.338,
+   6.3,
+   "Circular A-130 tells agencies to move eligible systems to ongoing authorization."
+  ],
+  [
+   20.637,
+   1.863,
+   "So the destination is settled."
+  ],
+  [
+   22.5,
+   6.338,
+   "What lags is practice, and nist says why: without substantial automation, it isn't practical."
+  ],
+  [
+   28.837,
+   4.188,
+   "The usual answer to findings is more checkpoints and more reviewers."
+  ],
+  [
+   33.025,
+   3.275,
+   "That makes reporting heavier and leaves the drift alone."
+  ],
+  [
+   36.3,
+   5.912,
+   "The decision for the see-so: answer the next findings by making evidence regenerable from the record."
+  ],
+  [
+   42.212,
+   2.587,
+   "Next, the mechanism behind the decay."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.388,
+   "Drift is any gap between what the record says should be true and what the estate actually does."
+  ],
+  [
+   5.438,
+   10.713,
+   "It gets in five ways: unauthorized change, approved change that's never written back, provider change, people who move or leave, and tools that update themselves."
+  ],
+  [
+   16.15,
+   3.888,
+   "Most of it is an administrator fixing an outage at two in the morning."
+  ],
+  [
+   20.038,
+   4.763,
+   "It's continuous and silent: every system keeps reporting what it was told."
+  ],
+  [
+   24.8,
+   5.963,
+   "And it's the opening attacks use: an account that should have been disabled, a permission nobody removed."
+  ],
+  [
+   30.762,
+   4.2,
+   "The baseline and change-control controls already require finding it."
+  ],
+  [
+   34.962,
+   5.275,
+   "The decision for the see-so: make drift a standing finding in the monitoring strategy."
+  ],
+  [
+   40.237,
+   3.087,
+   "Next, the record drift is measured against."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.412,
+   "Drift can only be measured against something, so the program keeps one authoritative record."
+  ],
+  [
+   5.463,
+   6.638,
+   "It holds desired state, the rules, and an authority map that says which system owns each fact."
+  ],
+  [
+   12.1,
+   7.862,
+   "HR owns who a worker is, the asset registry owns devices, and infrastructure as code owns declared infrastructure."
+  ],
+  [
+   19.962,
+   4.112,
+   "Everything else is a pointer back, and runtime systems only read it."
+  ],
+  [
+   24.075,
+   4.075,
+   "Corrections flow upstream to the owning source, never to the copy."
+  ],
+  [
+   28.15,
+   5.388,
+   "A write to a demoted copy is critical, because it's a second source of truth growing back."
+  ],
+  [
+   33.538,
+   7.312,
+   "The decision: settle the record before the next migration, so the migration changes who supplies a fact, not what it means."
+  ],
+  [
+   40.85,
+   2.825,
+   "Next, how the record is allowed to change."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.975,
+   "A record is only as good as the path into it."
+  ],
+  [
+   3.025,
+   4.688,
+   "So every change, from a move to a reset, travels one path."
+  ],
+  [
+   7.713,
+   10.1,
+   "It starts from the source of truth, gets approved by the right authority, runs under a role that's switched on just for the job, closes with proof, and emits its own evidence."
+  ],
+  [
+   17.812,
+   4.525,
+   "Skip a step and it isn't a change with a missing form; it's a drift finding."
+  ],
+  [
+   22.337,
+   2.1,
+   "There's no second lane for urgent work."
+  ],
+  [
+   24.438,
+   3.9,
+   "Pre-approved lanes are standing grants with a scope and an expiry."
+  ],
+  [
+   28.337,
+   4.263,
+   "Emergencies get a path, and they're written back within one business day."
+  ],
+  [
+   32.6,
+   4.312,
+   "The decision for the steward: make the protections bind administrators too."
+  ],
+  [
+   36.913,
+   3.263,
+   "Next, one question every change must answer."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.938,
+   "Retiring Active Directory takes most of a year, and the estate keeps changing."
+  ],
+  [
+   4.987,
+   8.238,
+   "Every new domain-joined server, legacy application, service account or Group Policy setting is one more thing to unwind."
+  ],
+  [
+   13.225,
+   7.338,
+   "So from gate G0, every add and change answers one question: does this create a new dependency on Active Directory?"
+  ],
+  [
+   20.562,
+   3.013,
+   "Microsoft's own guidance puts that step first."
+  ],
+  [
+   23.575,
+   4.612,
+   "A yes isn't automatically a no; some workloads have no modern path yet."
+  ],
+  [
+   28.188,
+   7.25,
+   "But a yes becomes an exception, with an owner, a reason, an end date and the Entra alternative that was considered."
+  ],
+  [
+   35.438,
+   5.875,
+   "The decision belongs to the authorizing official, because keeping A D open is a risk acceptance."
+  ],
+  [
+   41.312,
+   2.587,
+   "Next, what closing a change requires."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.05,
+   "The strictest step is closure."
+  ],
+  [
+   2.1,
+   6.312,
+   "A task closed by someone clicking complete, with no machine-readable check attached, says the work happened."
+  ],
+  [
+   8.412,
+   2.225,
+   "It proves nothing an assessor can use."
+  ],
+  [
+   10.637,
+   4.213,
+   "So every closure carries its check, the time, and what did the checking."
+  ],
+  [
+   14.85,
+   7.025,
+   "Human-only closure stays possible, because operations need an escape hatch, but it's flagged and counted on its own."
+  ],
+  [
+   21.875,
+   6.325,
+   "And reports are derived from the closure records by something anyone can re-run, never compiled by hand."
+  ],
+  [
+   28.2,
+   4.925,
+   "A pipeline that can't tell a checked closure from an asserted one is attesting fiction."
+  ],
+  [
+   33.125,
+   8.287,
+   "The decision for the see-so: report human-only closures as their own count, never blended into control tests or service levels."
+  ],
+  [
+   41.413,
+   2.775,
+   "Next, evidence an assessor can re-run."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.2,
+   "An attestation tells an assessor who's accountable."
+  ],
+  [
+   3.25,
+   2.487,
+   "Evidence lets them find out for themselves."
+  ],
+  [
+   5.737,
+   6.963,
+   "The program's rule is determinism: the same record and the same inputs produce the same evidence, every time."
+  ],
+  [
+   12.7,
+   3.388,
+   "So verification becomes a re-run, not an interview."
+  ],
+  [
+   16.087,
+   2.212,
+   "Federal guidance goes most of the way."
+  ],
+  [
+   18.3,
+   12.188,
+   "nist treats an automated comparison of intended and actual state as assessment results, and fed-ramp's 2026 rules tell assessors not to simply review documents or screenshots."
+  ],
+  [
+   30.488,
+   6.812,
+   "Some controls stay attestations, like a training record or a contract clause, and the package should say which."
+  ],
+  [
+   37.3,
+   7.9,
+   "The decision for the authorizing official: give assessors their own access, so the assessor, not the operator, does the re-run."
+  ],
+  [
+   45.2,
+   1.725,
+   "Next, the drift engine."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   8.1,
+   "The drift engine compares the estate with a versioned record, so an approved change isn't drift and any finding can be re-derived later."
+  ],
+  [
+   8.15,
+   5.088,
+   "Severity is computed from the kind of drift and whether the thing is in active use."
+  ],
+  [
+   13.238,
+   5.362,
+   "A critical finding halts and alerts a named person, and it's never fixed automatically."
+  ],
+  [
+   18.6,
+   6.0,
+   "The engine never edits the record, never judges whether a rule is right, and never accepts risk."
+  ],
+  [
+   24.6,
+   6.013,
+   "And be precise with assessors: some checks are automated today, and others are still found by people."
+  ],
+  [
+   30.613,
+   9.65,
+   "The riskiest change is to what counts as drift, so the decision: any change to the classifier or its thresholds gets a reviewer from outside the program office."
+  ],
+  [
+   40.263,
+   1.637,
+   "Next, who governs."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.362,
+   "A platform can detect every drift and still decay, because it can't decide anything."
+  ],
+  [
+   5.412,
+   1.538,
+   "Each finding is a question."
+  ],
+  [
+   6.95,
+   1.212,
+   "Change the estate?"
+  ],
+  [
+   8.162,
+   1.137,
+   "Change the record?"
+  ],
+  [
+   9.3,
+   1.775,
+   "Or carry the difference for a while?"
+  ],
+  [
+   11.075,
+   2.288,
+   "The last two need a person with authority."
+  ],
+  [
+   13.363,
+   2.112,
+   "The book keeps two jobs apart."
+  ],
+  [
+   15.475,
+   7.3,
+   "The steward keeps the record, and information owners, like HR or an application owner, decide what its facts mean."
+  ],
+  [
+   22.775,
+   5.725,
+   "The see-so decides control requirements, and only the authorizing official accepts risk."
+  ],
+  [
+   28.5,
+   7.05,
+   "The governance board reviews; it doesn't vote, because a board that decides by consensus leaves no one accountable."
+  ],
+  [
+   35.55,
+   7.513,
+   "The decision for the sponsor and C I O: charter the board in writing, with one named decider for every kind of decision."
+  ],
+  [
+   43.062,
+   1.525,
+   "Next, exceptions."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.312,
+   "A finding that can't be fixed in time is carried, by a named decision, with an end date."
+  ],
+  [
+   5.362,
+   5.575,
+   "A bounded exception has an end date and a compensating control, and the see-so approves it."
+  ],
+  [
+   10.938,
+   5.162,
+   "Anything open-ended, or with no compensating control, is a risk acceptance."
+  ],
+  [
+   16.1,
+   5.537,
+   "The see-so recommends, the authorizing official decides, and it goes on the plan of action."
+  ],
+  [
+   21.637,
+   8.062,
+   "The rule never changes; the engine keeps reporting the difference, marked as excepted, so an excepted setting never looks like a passing one."
+  ],
+  [
+   29.7,
+   3.775,
+   "The decision for the board: review the register every quarter."
+  ],
+  [
+   33.475,
+   6.65,
+   "Nothing renews automatically, and anything renewed twice goes back up as a sign the rule must change."
+  ],
+  [
+   40.125,
+   2.587,
+   "Next, the authorizing official's part."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.287,
+   "The authorizing official sits outside the program and above the record."
+  ],
+  [
+   4.338,
+   3.55,
+   "The role is small in time and large in consequence."
+  ],
+  [
+   7.888,
+   14.5,
+   "The program asks four things of it: sign for every gap it carries rather than closes; keep reviewing whether the risk is still acceptable; decide whether a significant change needs reauthorization; and set how independent the assessors must be."
+  ],
+  [
+   22.387,
+   7.987,
+   "Their representative can do the daily work, but risk acceptance can't be delegated, and a contractor can prepare one but never sign it."
+  ],
+  [
+   30.375,
+   8.5,
+   "The decision for the authorizing official: receive a monthly posture report built from the record, and sign every open-ended gap in writing."
+  ],
+  [
+   38.875,
+   2.5,
+   "Next, the record as a federal record."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.75,
+   "The record is a federal record, whether or not anyone calls it one."
+  ],
+  [
+   3.8,
+   8.162,
+   "Its history shows who changed controlled settings, who approved them and when, which is exactly what change control asks an agency to keep."
+  ],
+  [
+   11.963,
+   7.662,
+   "So the records officer decides how long each kind of record lasts, the steward carries it out, and the see-so is consulted."
+  ],
+  [
+   19.625,
+   5.062,
+   "Change records, for example, are kept five years after a system is retired."
+  ],
+  [
+   24.688,
+   4.925,
+   "The one thing that undoes the repository's protections is rewriting its history."
+  ],
+  [
+   29.613,
+   1.925,
+   "A purge destroys records."
+  ],
+  [
+   31.538,
+   4.65,
+   "If a secret is committed by mistake, it's revoked and rotated first."
+  ],
+  [
+   36.188,
+   5.9,
+   "The decision: history is rewritten only with the records officer's and the see-so's agreement."
+  ],
+  [
+   42.087,
+   2.337,
+   "Next, the tempo of operations."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   6.525,
+   "A platform that detects perfectly and closes slowly produces an accurate list of things nobody fixed."
+  ],
+  [
+   6.575,
+   5.487,
+   "Wherever a machine can reach the system, the ticket authorizes a machine, not a person."
+  ],
+  [
+   12.062,
+   1.312,
+   "A human approves."
+  ],
+  [
+   13.375,
+   5.912,
+   "The platform runs a versioned plan after a dry run, then re-reads the result to prove it worked."
+  ],
+  [
+   19.288,
+   4.9,
+   "Some changes stay gated forever, like Conditional Access or tenant-wide roles."
+  ],
+  [
+   24.188,
+   7.888,
+   "Where no machine can reach, the fallback is a declared, recorded session with an end date, never a quiet trip to the console."
+  ],
+  [
+   32.075,
+   5.237,
+   "Letting a whole class run without a person accepts the risk of being wrong at machine speed."
+  ],
+  [
+   37.312,
+   3.362,
+   "So the authorizing official accepts each one in writing."
+  ],
+  [
+   40.675,
+   2.4,
+   "Next, reuse across agencies."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   3.862,
+   "The federal estate assesses the same controls again and again."
+  ],
+  [
+   3.913,
+   11.4,
+   "O M B's memorandum on fed-ramp makes reuse the default: an agency presumes a maintained fed-ramp package is adequate, and asks for more only with a documented, demonstrable need."
+  ],
+  [
+   15.312,
+   3.45,
+   "But reuse always ends in the agency's own signature."
+  ],
+  [
+   18.762,
+   8.775,
+   "Each agency authorizes its own system, never a standalone authorization for the cloud service, and reviews each provider's quarterly report."
+  ],
+  [
+   27.538,
+   5.075,
+   "fed-ramp's 2026 indicators bind providers, not agencies."
+  ],
+  [
+   32.612,
+   2.388,
+   "What the program adds is the evidence side."
+  ],
+  [
+   35.0,
+   5.612,
+   "If the shared package is produced continuously, reuse stops meaning last year's snapshot."
+  ],
+  [
+   40.612,
+   6.125,
+   "The decision: reuse by default, and document any demonstrable need before asking for more."
+  ],
+  [
+   46.737,
+   2.225,
+   "Next, ongoing authorization."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   3.4,
+   "Reciprocity reuses a package across agencies."
+  ],
+  [
+   3.45,
+   5.45,
+   "Ongoing authorization reuses it across time, and that's what makes the first safe."
+  ],
+  [
+   8.9,
+   8.262,
+   "nist sets two conditions: a complete initial review, and monitoring that checks the controls as often as the strategy requires."
+  ],
+  [
+   17.163,
+   4.312,
+   "The authorizing official then issues a new decision with no end date."
+  ],
+  [
+   21.475,
+   4.3,
+   "They review posture on a schedule, and right away when something triggers it."
+  ],
+  [
+   25.775,
+   2.525,
+   "Reauthorization becomes the exception."
+  ],
+  [
+   28.3,
+   5.175,
+   "Automation is necessary but not enough; people still assess what tools can't see."
+  ],
+  [
+   33.475,
+   5.763,
+   "Circular A-130 tells agencies to make this move when a system is eligible."
+  ],
+  [
+   39.237,
+   8.338,
+   "The decision for the authorizing official: approve each eligible system's move, with how often it's reviewed and what triggers a review."
+  ],
+  [
+   47.575,
+   2.0,
+   "Next, governance at scale."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   5.325,
+   "At the scale of hundreds of systems, the program's discipline is honesty about coverage."
+  ],
+  [
+   5.375,
+   7.688,
+   "Every control is covered, partial, a gap, or out of scope, and partial is the answer most often rounded up to covered."
+  ],
+  [
+   13.062,
+   6.537,
+   "Every partial or gap goes into a register that names, on day one, the evidence that will close it."
+  ],
+  [
+   19.6,
+   7.675,
+   "A gap closes by configuration, by a substitute control, or by the authorizing official accepting it with a review date."
+  ],
+  [
+   27.275,
+   4.888,
+   "Coverage is reported as proven and asserted counts, never one percentage."
+  ],
+  [
+   32.163,
+   5.575,
+   "The decision for the senior official for risk: approve the agency-wide monitoring strategy."
+  ],
+  [
+   37.737,
+   2.087,
+   "Now, the decisions together."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   3.987,
+   "So, the decisions together, and none of them is a procurement."
+  ],
+  [
+   4.037,
+   3.888,
+   "The C I O fixes the layer beneath the tools before buying another."
+  ],
+  [
+   7.925,
+   5.237,
+   "The see-so makes drift a standing finding and counts human-only closures on their own."
+  ],
+  [
+   13.162,
+   5.75,
+   "The steward settles the record before the next migration and makes the protections bind administrators."
+  ],
+  [
+   18.913,
+   5.15,
+   "The sponsor and C I O charter the board, with one decider for every decision."
+  ],
+  [
+   24.062,
+   12.387,
+   "The authorizing official approves each new Active Directory dependency only as a dated exception, accepts each class that runs without a person, and approves ongoing authorization when a system is ready."
+  ],
+  [
+   36.45,
+   2.2,
+   "The records officer guards the history."
+  ],
+  [
+   38.65,
+   1.875,
+   "A package describes one day."
+  ],
+  [
+   40.525,
+   4.612,
+   "Governance that doesn't decay keeps proving itself, every day after."
+  ],
+  [
+   45.138,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

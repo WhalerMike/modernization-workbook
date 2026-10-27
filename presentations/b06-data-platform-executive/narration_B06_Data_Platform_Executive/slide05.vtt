@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.550
+Before anyone decides anything, count.
+
+2
+00:00:02.550 --> 00:00:07.651
+Twenty years of growth leave three kinds
+of sprawl: more instances than anyone
+
+3
+00:00:07.651 --> 00:00:12.988
+remembers, databases nobody can account
+for, and dependencies that cross domains.
+
+4
+00:00:12.988 --> 00:00:17.458
+No single tool finds them all, so
+the program combines a network sweep,
+
+5
+00:00:17.458 --> 00:00:20.673
+the Kerberos registration
+trail and Microsoft's
+
+6
+00:00:20.673 --> 00:00:23.888
+assessment tools into one
+inventory it can re-run.
+
+7
+00:00:23.888 --> 00:00:26.175
+The book's illustration makes the point.
+
+8
+00:00:26.175 --> 00:00:28.927
+A team that believes it
+has forty instances,
+
+9
+00:00:28.927 --> 00:00:32.750
+when discovery finds a hundred
+and ten, isn't behind schedule.
+
+10
+00:00:32.750 --> 00:00:35.962
+Its whole estimate is wrong
+by nearly three times.
+
+11
+00:00:35.962 --> 00:00:40.462
+Missing instances surface at the worst
+possible moment unless you look first.
+
+12
+00:00:40.462 --> 00:00:42.380
+Then each one needs a verdict.

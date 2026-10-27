@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.451
+Connecting a cloud app to your directory
+
+2
+00:00:02.451 --> 00:00:05.063
+can quietly move data
+outside your boundary.
+
+3
+00:00:05.063 --> 00:00:09.937
+In the government cloud most agencies use,
+nothing in the app gallery is marked.
+
+4
+00:00:09.937 --> 00:00:13.249
+CISA's directive requires
+that only administrators
+
+5
+00:00:13.249 --> 00:00:16.413
+can approve app access, and
+the program applies that.
+
+6
+00:00:16.413 --> 00:00:18.676
+But that rule decides who approves.
+
+7
+00:00:18.676 --> 00:00:21.131
+It says nothing about
+whether the service on
+
+8
+00:00:21.131 --> 00:00:23.787
+the other end is authorized
+to hold federal data.
+
+9
+00:00:23.787 --> 00:00:29.001
+A tenant can pass every consent check and
+still send data to an uncertified service.
+
+10
+00:00:29.001 --> 00:00:31.053
+Only an authorization verdict,
+
+11
+00:00:31.053 --> 00:00:34.763
+recorded before anything is
+configured, closes that gap.
+
+12
+00:00:34.763 --> 00:00:39.037
+The decision for the identity governance
+officer: record each service's
+
+13
+00:00:39.037 --> 00:00:42.813
+authorization status first, and
+stop the request if it's missing.
+
+14
+00:00:42.813 --> 00:00:44.590
+Next, the inventory.

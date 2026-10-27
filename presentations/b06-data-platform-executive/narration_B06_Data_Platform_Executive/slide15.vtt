@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.838
+NTLM isn't a setting you switch off.
+
+2
+00:00:02.838 --> 00:00:06.548
+It's a protocol that four
+connection patterns keep producing,
+
+3
+00:00:06.548 --> 00:00:08.512
+and each has to be found and fixed.
+
+4
+00:00:08.512 --> 00:00:10.925
+The program does it in three phases.
+
+5
+00:00:10.925 --> 00:00:12.713
+Discover every source.
+
+6
+00:00:12.713 --> 00:00:15.546
+Restrict: block the oldest version first,
+
+7
+00:00:15.546 --> 00:00:20.463
+repair Kerberos registrations, move
+linked servers and applications.
+
+8
+00:00:20.463 --> 00:00:25.762
+Then eliminate, with a domain-wide
+block on April first, 2027.
+
+9
+00:00:25.762 --> 00:00:29.462
+Any instance already on
+Entra logins doesn't notice.
+
+10
+00:00:29.462 --> 00:00:33.725
+The block lives in Windows, so it
+ignores engine-level exceptions.
+
+11
+00:00:33.725 --> 00:00:36.938
+That leaves one open question
+for the NTLM program,
+
+12
+00:00:36.938 --> 00:00:40.456
+with each exception going to
+the authorizing official:
+
+13
+00:00:40.456 --> 00:00:45.275
+does the date hold for the long tail, or
+does it get dated, isolated exceptions?
+
+14
+00:00:45.275 --> 00:00:47.570
+Certificates are the next dependency.

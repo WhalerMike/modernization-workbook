@@ -1,0 +1,857 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.0,
+   "This is the executive briefing for Book 06 of the Federal Modernization Workbook, SQL Server identity."
+  ],
+  [
+   7.763,
+   7.638,
+   "It's for the people who make the calls: the C I O, the see-so, the data platform owner, application owners and sponsors."
+  ],
+  [
+   15.4,
+   1.425,
+   "The argument is short."
+  ],
+  [
+   16.825,
+   9.262,
+   "Every domain-joined SQL Server inherited Windows Authentication, and none of it is visible to the identity plane that enforces multifactor sign-in."
+  ],
+  [
+   26.087,
+   4.088,
+   "The estate has to be counted and shrunk before any login moves."
+  ],
+  [
+   30.175,
+   7.987,
+   "And the destination is an Entra token on every connection, finished well before the program's own N T L M block date."
+  ],
+  [
+   38.163,
+   4.375,
+   "Each decision slide names the decision, its owner and when it's needed."
+  ],
+  [
+   42.538,
+   3.0,
+   "Let's start with why the database is where this hides."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.275,
+   "Why does legacy authentication hide in the database?"
+  ],
+  [
+   3.325,
+   4.2,
+   "Because SQL Server doesn't check a Windows user's password itself."
+  ],
+  [
+   7.525,
+   3.688,
+   "It trusts whatever Windows tells it, and you can't switch that off."
+  ],
+  [
+   11.213,
+   6.487,
+   "Which protocol a connection actually used is visible only from inside the engine, one session at a time."
+  ],
+  [
+   17.7,
+   7.225,
+   "The dependencies sit in connection strings, service accounts and linked servers, and none of them reaches an identity dashboard."
+  ],
+  [
+   24.925,
+   7.475,
+   "Of the four ways a connection can authenticate today, only an Entra token passes through multifactor and device checks."
+  ],
+  [
+   32.4,
+   6.588,
+   "So when N T L M goes and Conditional Access arrives, the database breaks last and hardest."
+  ],
+  [
+   38.987,
+   1.387,
+   "It needs its own plan."
+  ],
+  [
+   40.375,
+   1.613,
+   "And the worst of it is silent."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.775,
+   "Here's the part nobody sees."
+  ],
+  [
+   1.825,
+   8.375,
+   "When an instance's service principal name is missing, Kerberos quietly gives way to N T L M, and the application still connects."
+  ],
+  [
+   10.2,
+   9.95,
+   "The engine doesn't log which protocol each session used, so an estate that believes it runs Kerberos can be running N T L M on a large share of its connections."
+  ],
+  [
+   20.15,
+   1.538,
+   "Only measurement tells you."
+  ],
+  [
+   21.688,
+   8.713,
+   "Meanwhile the identities themselves are anchored in Active Directory, or in a password the instance checks on its own, like the built-in sa account."
+  ],
+  [
+   30.4,
+   1.575,
+   "None of this was a mistake."
+  ],
+  [
+   31.975,
+   4.075,
+   "It was good engineering for a world where everything was domain-joined."
+  ],
+  [
+   36.05,
+   3.45,
+   "That world is ending, and three drivers are ending it."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.362,
+   "Three forces end this inheritance."
+  ],
+  [
+   2.413,
+   6.513,
+   "N T L M is going: Microsoft has deprecated it, and the program has committed to eliminating it."
+  ],
+  [
+   8.925,
+   5.5,
+   "Zero trust needs the Entra identity plane in front of every human sign-in."
+  ],
+  [
+   14.425,
+   5.575,
+   "And when Active Directory stops being the source, the engine needs an identity that outlives it."
+  ],
+  [
+   20.0,
+   7.638,
+   "April first, 2027 is the program's own N T L M block date, not a Microsoft or federal deadline."
+  ],
+  [
+   27.637,
+   8.35,
+   "The outside dates in 2027 are support dates for older Windows Server and SQL Server, and none of those versions can take Entra logins."
+  ],
+  [
+   35.987,
+   9.4,
+   "So the decision is to hold the order: count and consolidate, enable Arc, move logins, then block N T L M. Counting comes first."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.5,
+   "Before anyone decides anything, count."
+  ],
+  [
+   2.55,
+   10.438,
+   "Twenty years of growth leave three kinds of sprawl: more instances than anyone remembers, databases nobody can account for, and dependencies that cross domains."
+  ],
+  [
+   12.988,
+   10.9,
+   "No single tool finds them all, so the program combines a network sweep, the Kerberos registration trail and Microsoft's assessment tools into one inventory it can re-run."
+  ],
+  [
+   23.887,
+   2.288,
+   "The book's illustration makes the point."
+  ],
+  [
+   26.175,
+   6.575,
+   "A team that believes it has forty instances, when discovery finds a hundred and ten, isn't behind schedule."
+  ],
+  [
+   32.75,
+   3.212,
+   "Its whole estimate is wrong by nearly three times."
+  ],
+  [
+   35.962,
+   4.5,
+   "Missing instances surface at the worst possible moment unless you look first."
+  ],
+  [
+   40.462,
+   1.863,
+   "Then each one needs a verdict."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.938,
+   "Every instance gets one of three verdicts: retain it, consolidate its workload into a target, or retire it."
+  ],
+  [
+   6.987,
+   2.35,
+   "Three lenses make the call defensible."
+  ],
+  [
+   9.338,
+   1.212,
+   "How busy is it?"
+  ],
+  [
+   10.55,
+   7.112,
+   "A database untouched for over a year is a zombie, and retiring it removes every forgotten login it carries."
+  ],
+  [
+   17.663,
+   1.175,
+   "What version is it?"
+  ],
+  [
+   18.837,
+   7.4,
+   "Entra logins need SQL Server 2022 or later, so most old engines are better consolidated than upgraded."
+  ],
+  [
+   26.238,
+   1.3,
+   "And what depends on it?"
+  ],
+  [
+   27.538,
+   4.075,
+   "A job that runs once a quarter can make an idle instance load-bearing."
+  ],
+  [
+   31.613,
+   9.875,
+   "The decision for the C I O and data leadership: a verdict for every instance and a named target, so authentication migrates once, in its final shape."
+  ],
+  [
+   41.487,
+   1.0,
+   "Then the audit."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.1,
+   "The audit asks one question of every surviving instance: what is actually authenticating here?"
+  ],
+  [
+   6.15,
+   11.887,
+   "It records the logins, the mode, the service account and the Kerberos registration, and it flags the worst first: an enabled sa, active SQL logins, missing registrations."
+  ],
+  [
+   18.038,
+   3.062,
+   "Each instance then lands in one of three categories."
+  ],
+  [
+   21.1,
+   1.3,
+   "Ready for Entra now."
+  ],
+  [
+   22.4,
+   2.15,
+   "Ready once Azure Arc is installed."
+  ],
+  [
+   24.55,
+   5.25,
+   "Or blocked, because the version is older than 2022 or it's a failover cluster."
+  ],
+  [
+   29.8,
+   10.863,
+   "The decision: data leadership upgrades or retires each blocked instance it's keeping, and anything that can't move in time goes to the authorizing official as a dated exception."
+  ],
+  [
+   40.663,
+   1.4,
+   "Here's the destination."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.913,
+   "The destination is simple to say."
+  ],
+  [
+   1.962,
+   2.337,
+   "Every connection carries an Entra token."
+  ],
+  [
+   4.3,
+   3.763,
+   "Azure Arc gives each instance an identity in Entra."
+  ],
+  [
+   8.062,
+   6.088,
+   "People, groups and applications get Entra logins, and sa is disabled rather than migrated."
+  ],
+  [
+   14.15,
+   8.088,
+   "Multifactor is enforced by Conditional Access before a token is ever issued; the engine itself has no multifactor logic."
+  ],
+  [
+   22.238,
+   1.587,
+   "One point saves months."
+  ],
+  [
+   23.825,
+   3.8,
+   "The engine can move to Entra while the server is still domain-joined."
+  ],
+  [
+   27.625,
+   5.15,
+   "Waiting for Windows sign-in to move first is the most common cause of needless delay."
+  ],
+  [
+   32.775,
+   6.312,
+   "So the decision for server infrastructure: onboard Arc now, starting with the instances that need it most."
+  ],
+  [
+   39.087,
+   2.0,
+   "Five positions govern that work."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.55,
+   "The engine-authentication decision, still formally proposed, settles five positions."
+  ],
+  [
+   5.6,
+   1.95,
+   "Consolidation comes first."
+  ],
+  [
+   7.55,
+   9.375,
+   "Every production cutover runs in parallel: create the Entra login, prove it works, disable the old one, watch for thirty days, then drop it."
+  ],
+  [
+   16.925,
+   7.688,
+   "SQL logins are eliminated, and sa is disabled and renamed, with an empty break-glass group for emergencies."
+  ],
+  [
+   24.613,
+   3.312,
+   "Older versions upgrade or carry a dated exception."
+  ],
+  [
+   27.925,
+   2.888,
+   "And a per-instance record is the proof of closure."
+  ],
+  [
+   30.812,
+   8.787,
+   "The decision belongs to the see-so: set the standard once, SQL authentication refused and sa disabled everywhere in production."
+  ],
+  [
+   39.6,
+   6.263,
+   "An instance that can't meet it doesn't stay in mixed mode quietly; it goes to the authorizing official."
+  ],
+  [
+   45.862,
+   1.875,
+   "Now, where all this runs."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.125,
+   "Two facts shape where this runs."
+  ],
+  [
+   2.175,
+   14.562,
+   "Entra authentication for Arc-connected SQL Server isn't offered in the US Government Virginia region today, so the design uses a commercial Azure subscription in the same directory as the government tenant, and the hosts need a path to the public cloud."
+  ],
+  [
+   16.738,
+   6.463,
+   "The services it leans on are each listed in scope for fed-ramp High, but a listing isn't an authorization."
+  ],
+  [
+   23.2,
+   10.5,
+   "On cost, Entra authentication itself works under a plain SQL Server license; the extras are Conditional Access, privileged access management and Defender plans."
+  ],
+  [
+   33.7,
+   8.35,
+   "So the authorizing official decides: accept these leveraged services, after reviewing each package, before production onboarding."
+  ],
+  [
+   42.05,
+   1.55,
+   "Now, who decides what."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.65,
+   "Under Windows authentication, the DBA team owned database access almost by default."
+  ],
+  [
+   5.7,
+   14.075,
+   "In the target, one connection depends on a group the identity team built, a rule the data owner approved, a permission only a privileged role can grant, a login the DBAs created, and a connection string the application team changed."
+  ],
+  [
+   19.775,
+   5.513,
+   "Miss any owner and the gap shows up as drift, or as a help desk call nobody can close."
+  ],
+  [
+   25.288,
+   2.312,
+   "So the model is one decider per row."
+  ],
+  [
+   27.6,
+   7.888,
+   "Data leadership decides verdicts and closure; the authorizing official decides every exception; the see-so sets the standard."
+  ],
+  [
+   35.487,
+   4.112,
+   "The first step is filling the project's open sponsor and lead roles."
+  ],
+  [
+   39.6,
+   1.85,
+   "So what does each team actually do?"
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.238,
+   "So who does the work?"
+  ],
+  [
+   1.288,
+   8.438,
+   "The DBAs run the engine: the inventory, the audit, the logins, the thirty-day parallel run, and the Kerberos repairs."
+  ],
+  [
+   9.725,
+   2.263,
+   "What they no longer decide is who gets in."
+  ],
+  [
+   11.988,
+   5.062,
+   "Membership of the group that holds sysadmin becomes a privileged access decision."
+  ],
+  [
+   17.05,
+   6.45,
+   "Application owners own their side of the chain: connection strings, test sign-off and cutover windows."
+  ],
+  [
+   23.5,
+   7.625,
+   "And data owners, even when they're the same person, answer a different question: does this access rule still describe the right people?"
+  ],
+  [
+   31.125,
+   6.237,
+   "The decision for application and data owners: confirm every rule before its group grants access."
+  ],
+  [
+   37.362,
+   3.25,
+   "Some steps sit outside the DBA team on purpose."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.513,
+   "Some of the most powerful steps don't belong to DBAs at all, by design."
+  ],
+  [
+   4.562,
+   10.863,
+   "Granting the instance identity its directory permissions takes a role that can manage every other role in the tenant, so it stays with a small identity group, eligible only on request."
+  ],
+  [
+   15.425,
+   4.1,
+   "And the Azure roles around the server now matter as much as sysadmin."
+  ],
+  [
+   19.525,
+   3.462,
+   "Contributor on the server can run privileged extensions."
+  ],
+  [
+   22.988,
+   4.213,
+   "Contributor on the SQL resource can switch SQL logins back on."
+  ],
+  [
+   27.2,
+   3.112,
+   "Whoever holds those roles holds a database privilege."
+  ],
+  [
+   30.312,
+   7.062,
+   "So the see-so's decision: review those Azure assignments on the same cadence as sysadmin, from the first Arc onboarding."
+  ],
+  [
+   37.375,
+   2.325,
+   "Next, the applications upstream."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.962,
+   "The database isn't finished until the applications in front of it are."
+  ],
+  [
+   4.013,
+   10.625,
+   "Each application gets placed on two axes: how its users sign in, and what its database driver can actually do, from a simple configuration change to no Entra path at all."
+  ],
+  [
+   14.637,
+   4.75,
+   "An application stuck on legacy domain services holds its whole instance back."
+  ],
+  [
+   19.387,
+   10.675,
+   "The change itself is one line in a connection string, but it waits for three gates: the login exists, the role is granted, and it's been tested somewhere that looks like production."
+  ],
+  [
+   30.062,
+   4.15,
+   "Application owners approve each cutover against those gates."
+  ],
+  [
+   34.212,
+   1.938,
+   "Then, the protocol itself."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.788,
+   "N T L M isn't a setting you switch off."
+  ],
+  [
+   2.837,
+   5.675,
+   "It's a protocol that four connection patterns keep producing, and each has to be found and fixed."
+  ],
+  [
+   8.512,
+   2.413,
+   "The program does it in three phases."
+  ],
+  [
+   10.925,
+   1.788,
+   "Discover every source."
+  ],
+  [
+   12.713,
+   7.75,
+   "Restrict: block the oldest version first, repair Kerberos registrations, move linked servers and applications."
+  ],
+  [
+   20.462,
+   5.3,
+   "Then eliminate, with a domain-wide block on April first, 2027."
+  ],
+  [
+   25.762,
+   3.7,
+   "Any instance already on Entra logins doesn't notice."
+  ],
+  [
+   29.462,
+   4.263,
+   "The block lives in Windows, so it ignores engine-level exceptions."
+  ],
+  [
+   33.725,
+   11.55,
+   "That leaves one open question for the N T L M program, with each exception going to the authorizing official: does the date hold for the long tail, or does it get dated, isolated exceptions?"
+  ],
+  [
+   45.275,
+   2.225,
+   "Certificates are the next dependency."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.175,
+   "SQL Server leans on certificates in three places most retirement plans can't see."
+  ],
+  [
+   5.225,
+   6.537,
+   "The TLS certificate every Entra connection now requires, since those connections are always encrypted."
+  ],
+  [
+   11.762,
+   3.125,
+   "Certificates behind signed code and endpoints."
+  ],
+  [
+   14.887,
+   8.8,
+   "And certificate sign-in, the stopgap for connections that can't reach Entra in time, which quietly depends on the domain controllers' own certificates."
+  ],
+  [
+   23.688,
+   3.925,
+   "Cloud P K I can't help here; it doesn't issue to servers."
+  ],
+  [
+   27.613,
+   11.312,
+   "Book 07 settles the issuer: a retained internal hierarchy, renewed through the lifecycle platform, with domain controller certificates kept until the last one retires."
+  ],
+  [
+   38.925,
+   8.238,
+   "The decision for data leadership: set no retirement date for the old certificate authority until every SQL Server dependency has moved."
+  ],
+  [
+   47.163,
+   1.45,
+   "Then, what done means."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   1.087,
+   "Done isn't a date."
+  ],
+  [
+   1.137,
+   1.725,
+   "It's a posture you keep proving."
+  ],
+  [
+   2.862,
+   13.8,
+   "An instance is closed when five things hold at once: no usable Windows logins, SQL authentication refused, Entra sign-ins observed working, an Entra identity for the engine, and multifactor for every person."
+  ],
+  [
+   16.663,
+   5.362,
+   "Live evidence shows it over a validation period, and any drift is a violation."
+  ],
+  [
+   22.025,
+   5.312,
+   "That's why April first, 2027 is a consequence, not a finish line."
+  ],
+  [
+   27.337,
+   3.913,
+   "Migration ends well before it, and the last months are for proving."
+  ],
+  [
+   31.25,
+   9.2,
+   "The decision for data leadership, as system owner: declare closure only on the security officer's evidence, with every exception already accepted."
+  ],
+  [
+   40.45,
+   1.35,
+   "What could still go wrong?"
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   3.038,
+   "Here are the risks the book names, in three groups."
+  ],
+  [
+   3.087,
+   7.9,
+   "Scope: instances found late, cluster instances that can't take Entra logins, and applications that hold their instance back."
+  ],
+  [
+   10.988,
+   10.3,
+   "Sequence: engine work held up waiting for Windows sign-in, the old certificate authority retired before its replacement, and migration still running when the block lands."
+  ],
+  [
+   21.288,
+   8.838,
+   "Control: Azure roles that can quietly turn SQL logins back on, and one server identity shared by every application on the host."
+  ],
+  [
+   30.125,
+   9.812,
+   "The decision: every residual risk goes in the exception registry, with a control, an owner and an end date, and the authorizing official accepts it."
+  ],
+  [
+   39.938,
+   1.238,
+   "One last question."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   6.6,
+   "Once authentication has moved, a different question opens up: which platform should each data domain live on?"
+  ],
+  [
+   6.65,
+   4.188,
+   "That choice isn't forced, so it comes after, one domain at a time."
+  ],
+  [
+   10.838,
+   6.713,
+   "Stay on SQL Server, or move to PostgreSQL or Oracle; each can meet the identity requirement."
+  ],
+  [
+   17.55,
+   10.275,
+   "The book scores them on ten dimensions with evidence, from migration effort and skills to licensing and exit cost, and two domains reaching different answers is normal."
+  ],
+  [
+   27.825,
+   3.763,
+   "The goal is fewer authoritative platforms, not one vendor."
+  ],
+  [
+   31.587,
+   9.988,
+   "So the decision for the C I O and data leadership: choose per domain, after closure, as its own funded decision, with the same parallel-run discipline."
+  ],
+  [
+   41.575,
+   1.863,
+   "Let's pull the decisions together."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   1.575,
+   "So, the decisions."
+  ],
+  [
+   1.625,
+   16.175,
+   "The C I O and data leadership hold the order, give every instance a verdict and a target, upgrade or retire old engines, set no retirement date for the old certificate authority until SQL Server's certificates have moved, and declare closure on evidence."
+  ],
+  [
+   17.8,
+   4.05,
+   "The see-so sets the standard and reviews Azure roles like sysadmin."
+  ],
+  [
+   21.85,
+   4.425,
+   "Server infrastructure onboards Arc now, on domain-joined hosts."
+  ],
+  [
+   26.275,
+   4.55,
+   "Application and data owners approve their access rules and their cutovers."
+  ],
+  [
+   30.825,
+   4.875,
+   "The authorizing official accepts the leveraged services and every exception."
+  ],
+  [
+   35.7,
+   3.35,
+   "And the N T L M program decides the long tail."
+  ],
+  [
+   39.05,
+   1.863,
+   "None of this waits on a purchase."
+  ],
+  [
+   40.913,
+   1.663,
+   "Count the estate first."
+  ],
+  [
+   42.575,
+   4.062,
+   "Book 06 has the detail, every claim footnoted."
+  ],
+  [
+   46.638,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

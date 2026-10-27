@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.150
+Control automation runs one loop everywhere:
+test the setting, spot the drift,
+
+2
+00:00:05.150 --> 00:00:09.055
+raise a task against the asset,
+fix it on the native platform,
+
+3
+00:00:09.055 --> 00:00:12.163
+and close it only when a
+re-test confirms the fix.
+
+4
+00:00:12.163 --> 00:00:16.828
+The cloud tools already test most
+settings; your job is to own the result,
+
+5
+00:00:16.828 --> 00:00:20.387
+and the coordination platform
+reads but never writes.
+
+6
+00:00:20.387 --> 00:00:22.849
+The platforms differ in ways that matter.
+
+7
+00:00:22.849 --> 00:00:26.323
+Some integrations aren't
+available in Azure Government,
+
+8
+00:00:26.323 --> 00:00:29.426
+one AWS compliance service
+is in maintenance mode,
+
+9
+00:00:29.426 --> 00:00:33.637
+and on your own VMware estate the
+evidence is entirely yours to build.
+
+10
+00:00:33.637 --> 00:00:37.867
+The decision for the CISO: keep
+the platform's identity read-only,
+
+11
+00:00:37.867 --> 00:00:40.138
+with every automated fix approved.
+
+12
+00:00:40.138 --> 00:00:41.690
+Next, who runs it.

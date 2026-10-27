@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.325
+Why does legacy authentication
+hide in the database?
+
+2
+00:00:03.325 --> 00:00:07.525
+Because SQL Server doesn't check
+a Windows user's password itself.
+
+3
+00:00:07.525 --> 00:00:11.213
+It trusts whatever Windows tells
+it, and you can't switch that off.
+
+4
+00:00:11.213 --> 00:00:14.647
+Which protocol a connection
+actually used is visible
+
+5
+00:00:14.647 --> 00:00:17.700
+only from inside the engine,
+one session at a time.
+
+6
+00:00:17.700 --> 00:00:22.292
+The dependencies sit in connection strings,
+service accounts and linked servers,
+
+7
+00:00:22.292 --> 00:00:24.925
+and none of them reaches
+an identity dashboard.
+
+8
+00:00:24.925 --> 00:00:28.247
+Of the four ways a connection
+can authenticate today,
+
+9
+00:00:28.247 --> 00:00:32.400
+only an Entra token passes through
+multifactor and device checks.
+
+10
+00:00:32.400 --> 00:00:36.151
+So when NTLM goes and
+Conditional Access arrives,
+
+11
+00:00:36.151 --> 00:00:38.988
+the database breaks last and hardest.
+
+12
+00:00:38.988 --> 00:00:40.374
+It needs its own plan.
+
+13
+00:00:40.374 --> 00:00:42.050
+And the worst of it is silent.

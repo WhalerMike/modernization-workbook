@@ -1,0 +1,850 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.537,
+   "This is the executive briefing for Book 12 of the Federal Modernization Workbook, Security Operations and Telemetry."
+  ],
+  [
+   8.3,
+   5.475,
+   "It's for the see-so, the SOC lead, the C I O and authorizing officials."
+  ],
+  [
+   13.775,
+   1.425,
+   "The argument is short."
+  ],
+  [
+   15.2,
+   9.125,
+   "You can't defend what you can't see, and the gaps that matter most make no noise: a system that never sent its logs looks exactly like one where nothing happened."
+  ],
+  [
+   24.325,
+   3.275,
+   "Storing logs isn't the same as detecting with them."
+  ],
+  [
+   27.6,
+   3.888,
+   "And a finding closes only when the thing is fixed, with proof."
+  ],
+  [
+   31.488,
+   3.237,
+   "I'll take four questions: why, what, who and how."
+  ],
+  [
+   34.725,
+   4.375,
+   "Each decision slide names the decision, its owner and when it's needed."
+  ],
+  [
+   39.1,
+   2.5,
+   "Let's start with what a dashboard can't show you."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.712,
+   "Most agencies can show a dashboard with millions of events a day."
+  ],
+  [
+   3.763,
+   2.025,
+   "But that only measures what arrived."
+  ],
+  [
+   5.787,
+   1.4,
+   "It can't show what didn't."
+  ],
+  [
+   7.188,
+   12.688,
+   "Gaps stay silent in four ways: a source that was never connected, a connector that looks healthy but delivers nothing, data stored where no rule ever reads it, and logging that someone switched off on purpose."
+  ],
+  [
+   19.875,
+   6.825,
+   "The 2023 intrusion into government mailboxes was caught by an agency that happened to have the right logs."
+  ],
+  [
+   26.7,
+   3.25,
+   "Others had nothing to look at, and nothing told them so."
+  ],
+  [
+   29.95,
+   5.2,
+   "So the takeaway: measure coverage against your asset inventory, not against what showed up."
+  ],
+  [
+   35.15,
+   3.425,
+   "Next, the difference between storing and detecting."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   7.037,
+   "There's a difference that's easy to buy as one thing: a place where logs are kept, and a capability that actually reads them."
+  ],
+  [
+   7.088,
+   1.812,
+   "The controls keep them apart."
+  ],
+  [
+   8.9,
+   5.438,
+   "Generating records is one requirement; reviewing and analyzing them is another."
+  ],
+  [
+   14.338,
+   7.85,
+   "And the new federal logging memo scores maturity by how much of the required activity produces real alerts, not by how much you store."
+  ],
+  [
+   22.188,
+   4.438,
+   "Data kept only in a cheap storage tier raises no alerts at all."
+  ],
+  [
+   26.625,
+   9.5,
+   "So the decision for the see-so is a simple rule: a source counts as monitored only when an enabled rule reads it, and its output reaches a queue someone owns."
+  ],
+  [
+   36.125,
+   2.587,
+   "Next, the federal requirement itself."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   9.6,
+   "In May 2026, O M B memo M-26-14 rescinded M-21-31, effective immediately."
+  ],
+  [
+   9.65,
+   4.675,
+   "So the retention numbers many teams still quote belong to a memo that's gone."
+  ],
+  [
+   14.325,
+   7.8,
+   "The new floor is simpler: logs searchable for six months, retrievable for a year, and available to your top-level SOC."
+  ],
+  [
+   22.125,
+   3.938,
+   "The clock runs from sis-uh's architecture, published in August."
+  ],
+  [
+   26.062,
+   7.438,
+   "By our count, your logging plan is due November 18, and the maturity levels follow through July 2027."
+  ],
+  [
+   33.5,
+   3.45,
+   "Those dates are our arithmetic, not O M B's."
+  ],
+  [
+   36.95,
+   7.713,
+   "The decision: the see-so owns that logging plan, and the C I O funds it as a visibility plan, not a storage purchase."
+  ],
+  [
+   44.663,
+   2.587,
+   "Next, how the evidence fits together."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.562,
+   "Every management tool reports in its own format against its own inventory."
+  ],
+  [
+   4.612,
+   6.825,
+   "Five tools, five inventories, and when an assessor asks you to prove a fix across the whole estate, you can't."
+  ],
+  [
+   11.438,
+   9.713,
+   "The answer is an evidence contract: every source emits the same record, joined on one authoritative identity for each asset, plus synchronized time."
+  ],
+  [
+   21.15,
+   5.4,
+   "That identity has to come from one place, the naming plane, not from each tool's own ID."
+  ],
+  [
+   26.55,
+   7.188,
+   "So the decision: stand up the naming plane before you build the evidence pipeline, and write the contract into the logging plan."
+  ],
+  [
+   33.737,
+   5.487,
+   "The see-so owns the plan; the D N S and identity teams own the naming plane."
+  ],
+  [
+   39.225,
+   2.312,
+   "Next, where telemetry comes from."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.075,
+   "Telemetry isn't collected; it's emitted, and the switch lives in each platform."
+  ],
+  [
+   5.125,
+   9.838,
+   "So the estate is six planes: identity, cloud platform, Microsoft 365, endpoints, network and data, each with an owner."
+  ],
+  [
+   14.963,
+   4.537,
+   "No single plane tells the whole story, and contractor-run systems count too."
+  ],
+  [
+   19.5,
+   1.337,
+   "Watch the defaults."
+  ],
+  [
+   20.837,
+   9.863,
+   "Several native logs quietly expire after a month or three unless you export them, and Microsoft 365 audit history depends on each user's license."
+  ],
+  [
+   30.7,
+   2.138,
+   "So the decision splits on purpose."
+  ],
+  [
+   32.837,
+   4.3,
+   "The see-so decides what each plane must emit, in the logging plan."
+  ],
+  [
+   37.138,
+   3.675,
+   "Each platform owner decides how, and keeps it switched on."
+  ],
+  [
+   40.812,
+   2.938,
+   "Next, keeping it on while everything changes."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.188,
+   "Modernization is a long run of changes, and change is exactly when telemetry goes quiet."
+  ],
+  [
+   6.237,
+   4.638,
+   "New resources can be born silent unless policy forces them to emit."
+  ],
+  [
+   10.875,
+   3.125,
+   "Older ones only get fixed when someone runs the cleanup."
+  ],
+  [
+   14.0,
+   3.413,
+   "Retired resources leave stale settings behind."
+  ],
+  [
+   17.413,
+   5.112,
+   "And the security console itself is moving to a new portal by March 2027."
+  ],
+  [
+   22.525,
+   2.737,
+   "The lesson is to check flow, not settings."
+  ],
+  [
+   25.262,
+   3.763,
+   "A setting that saved without error doesn't prove anything arrived."
+  ],
+  [
+   29.025,
+   11.45,
+   "So the decision: platform owners keep every plane emitting through each change, security engineering checks freshness daily, and an unexplained loss of logs is treated as an incident."
+  ],
+  [
+   40.475,
+   1.812,
+   "Next, the sim decision."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.45,
+   "The sim decision is less about which product and more about how it behaves."
+  ],
+  [
+   4.5,
+   6.787,
+   "A log store on its own is a warehouse; scheduled rules, incidents and automation make it a detection engine."
+  ],
+  [
+   11.287,
+   1.95,
+   "The program's split is design."
+  ],
+  [
+   13.238,
+   4.463,
+   "Your endpoint and identity protection tools detect what their own sensors see."
+  ],
+  [
+   17.7,
+   6.9,
+   "The sim covers everything they can't, like D N S, network services, databases and other clouds."
+  ],
+  [
+   24.6,
+   5.4,
+   "And you only stream raw data where a rule actually needs it, because streaming costs money."
+  ],
+  [
+   30.0,
+   3.987,
+   "Check each feature in your own government cloud before you design on it."
+  ],
+  [
+   33.987,
+   4.013,
+   "Security engineering sets that division, with one incident queue."
+  ],
+  [
+   38.0,
+   1.938,
+   "Next, how long to keep it all."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.587,
+   "Retention is really two decisions."
+  ],
+  [
+   2.638,
+   1.988,
+   "First, the security floor."
+  ],
+  [
+   4.625,
+   6.938,
+   "Data your rules depend on stays in the alerting tier for at least six months, because only that tier raises alerts."
+  ],
+  [
+   11.562,
+   7.025,
+   "Older or high-volume data can live in cheaper tiers you can still search, and a tamper-proof copy serves as evidence."
+  ],
+  [
+   18.587,
+   5.312,
+   "Second, disposition: how long beyond the floor, and when data can be destroyed."
+  ],
+  [
+   23.9,
+   4.2,
+   "That belongs to the records officer, not to whoever holds the console."
+  ],
+  [
+   28.1,
+   10.625,
+   "So the see-so sets the floor, and nobody shortens retention without the records officer agreeing, because once logs are gone, an investigation or a legal hold can't get them back."
+  ],
+  [
+   38.725,
+   1.613,
+   "Next, the cost side."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.85,
+   "Here's the uncomfortable truth: most visibility gaps are decided in the budget."
+  ],
+  [
+   4.9,
+   4.25,
+   "Cheap storage tiers are a sound choice for noisy, low-value data."
+  ],
+  [
+   9.15,
+   7.0,
+   "The problem comes when a source that matters is moved there to save money, and nobody records that it no longer raises alerts."
+  ],
+  [
+   16.15,
+   5.8,
+   "Streaming every raw data feed costs money too, and audit history depends on licensing."
+  ],
+  [
+   21.95,
+   1.925,
+   "So the decision has two halves."
+  ],
+  [
+   23.875,
+   5.9,
+   "The C I O funds ingestion and retention as a visibility decision, not a storage line."
+  ],
+  [
+   29.775,
+   8.05,
+   "And when a detection source does leave the alerting tier, that's recorded as a gap, which the authorizing official accepts or rejects."
+  ],
+  [
+   37.825,
+   2.225,
+   "Next, what happens to findings."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.625,
+   "Detection is only one kind of finding."
+  ],
+  [
+   2.675,
+   7.8,
+   "A missing patch, a known exploited flaw, a drifted setting, an exposed storage account: they all go into the same queue."
+  ],
+  [
+   10.475,
+   1.625,
+   "And the clock changed this year."
+  ],
+  [
+   12.1,
+   15.588,
+   "sis-uh's directive BOD 26-04, from June, replaced the old rules with four questions about each vulnerable asset: is it exposed, is the flaw known to be exploited, can the attack be automated, and how much control does it give."
+  ],
+  [
+   27.688,
+   3.9,
+   "The answers set deadlines from three days up to the next upgrade."
+  ],
+  [
+   31.587,
+   3.237,
+   "Remember, a scanner measures; it never fixes."
+  ],
+  [
+   34.825,
+   5.713,
+   "The system owner remediates on that clock, and a missed deadline goes to the authorizing official."
+  ],
+  [
+   40.538,
+   1.637,
+   "Now, who runs all this."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   9.2,
+   "Most agencies can name their SOC. Fewer can say who decided what gets collected, how long it's kept, or who accepted the risk when a source went quiet."
+  ],
+  [
+   9.25,
+   2.2,
+   "Usually it's whoever held the console."
+  ],
+  [
+   11.45,
+   2.513,
+   "The book's model separates those decisions."
+  ],
+  [
+   13.963,
+   1.85,
+   "The SOC runs the queue."
+  ],
+  [
+   15.812,
+   8.512,
+   "The C I O funds it, the see-so sets requirements, platform owners keep logs flowing, and the authorizing official accepts the risk."
+  ],
+  [
+   24.325,
+   8.15,
+   "And because every system inherits monitoring from the SOC, the SOC's own controls need to be assessed like anyone else's."
+  ],
+  [
+   32.475,
+   7.737,
+   "The first decision belongs to the C I O: designate one top-level SOC, decide how it's staffed, and fund it."
+  ],
+  [
+   40.212,
+   1.9,
+   "Next, the full matrix."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.938,
+   "Here's the matrix in one view."
+  ],
+  [
+   1.988,
+   2.538,
+   "The C I O decides scope and funding."
+  ],
+  [
+   4.525,
+   7.775,
+   "The see-so decides the logging plan, what each plane emits, the retention floor, and any automated action on production."
+  ],
+  [
+   12.3,
+   2.888,
+   "The SOC decides triage and closure."
+  ],
+  [
+   15.188,
+   7.8,
+   "Security engineering owns each detection rule, and every rule has one named owner, a test and a review date."
+  ],
+  [
+   22.988,
+   2.575,
+   "The records officer decides disposition."
+  ],
+  [
+   25.562,
+   2.862,
+   "And the authorizing official decides the risks."
+  ],
+  [
+   28.425,
+   6.787,
+   "One row has a federal clock: the SOC must notify sis-uh within one hour of identifying an incident."
+  ],
+  [
+   35.212,
+   6.888,
+   "There's no time to send that decision up and back, so the SOC owns it, while the see-so decides whether it's major."
+  ],
+  [
+   42.1,
+   2.712,
+   "Next, the risks nobody signs for."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.963,
+   "Only the authorizing official can accept risk, and that includes the risk of not seeing."
+  ],
+  [
+   5.013,
+   12.425,
+   "Four risks tend to get accepted silently by whoever is closest: a source that isn't collected, a noisy rule switched off with no end date, retention that's too short, and a fix that will miss its deadline."
+  ],
+  [
+   17.438,
+   5.062,
+   "Each one should be written up, recommended by the see-so, and decided with an end date."
+  ],
+  [
+   22.5,
+   3.062,
+   "And security operations keeps its own roles apart."
+  ],
+  [
+   25.562,
+   5.388,
+   "A contractor can prepare a risk acceptance, but only the authorizing official signs it."
+  ],
+  [
+   30.95,
+   6.662,
+   "The rule: an exception with an end date is the see-so's; one without goes to the authorizing official."
+  ],
+  [
+   37.612,
+   1.425,
+   "Now, how to respond."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.375,
+   "A rule nobody owns slowly rots."
+  ],
+  [
+   2.425,
+   6.75,
+   "So the program keeps its detection rules as code, under version control, and nobody edits a live rule by hand."
+  ],
+  [
+   9.175,
+   15.125,
+   "Every rule follows the same path: tested against history, run quietly in alert-only mode while false alarms are counted, promoted once its response is wired, then reviewed on a schedule to check it still fires and its data still arrives."
+  ],
+  [
+   24.3,
+   1.65,
+   "Be honest about the limits."
+  ],
+  [
+   25.95,
+   6.237,
+   "Detection takes minutes to hours, not seconds, and without steady upkeep the library decays."
+  ],
+  [
+   32.188,
+   9.55,
+   "The decision: security engineering runs the library this way, with the see-so setting priorities, and no rule opens incidents before it has passed through."
+  ],
+  [
+   41.737,
+   1.525,
+   "Next, response."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   3.362,
+   "Detection without response doesn't reduce your exposure."
+  ],
+  [
+   3.413,
+   4.562,
+   "But automation without a gate can turn one noisy rule into an outage."
+  ],
+  [
+   7.975,
+   1.75,
+   "So responses climb a ladder."
+  ],
+  [
+   9.725,
+   1.913,
+   "Every alert is recorded."
+  ],
+  [
+   11.637,
+   3.5,
+   "Medium confidence gets context and an analyst decides."
+  ],
+  [
+   15.137,
+   4.287,
+   "High confidence gets a prepared containment, released by a named approver."
+  ],
+  [
+   19.425,
+   4.463,
+   "Fully automatic action is only for a short list of low-risk cases."
+  ],
+  [
+   23.887,
+   9.012,
+   "Three things always keep a person in the loop: isolating a server, disabling a privileged or emergency account, and any tenant-wide change."
+  ],
+  [
+   32.9,
+   9.775,
+   "The decision: the see-so approves every playbook that acts on production, and the authorizing official decides whether the vendor's own automatic containment is allowed."
+  ],
+  [
+   42.675,
+   1.375,
+   "Next, evidence."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   3.737,
+   "Continuous monitoring isn't a claim that monitoring happens."
+  ],
+  [
+   3.788,
+   2.962,
+   "It's evidence an assessor can check, and run again."
+  ],
+  [
+   6.75,
+   7.275,
+   "The practical test is simple: show me an alert from the last thirty days, the incident it opened and what you did about it."
+  ],
+  [
+   14.025,
+   7.175,
+   "So every incident keeps four parts: the alert, the ticket, the response notes, and a closure with its proof."
+  ],
+  [
+   21.2,
+   2.388,
+   "Closing a finding takes three steps."
+  ],
+  [
+   23.587,
+   1.812,
+   "The platform owner fixes it."
+  ],
+  [
+   25.4,
+   2.312,
+   "The next scan or check shows it's gone."
+  ],
+  [
+   27.712,
+   1.675,
+   "And the record links the two."
+  ],
+  [
+   29.387,
+   5.388,
+   "The decision: a finding closes only on that re-test, never on a ticket status."
+  ],
+  [
+   34.775,
+   3.188,
+   "Next, how you know the monitoring itself is working."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   4.987,
+   "You need a small set of metrics that tell you whether monitoring works, not how busy it is."
+  ],
+  [
+   5.037,
+   6.013,
+   "Coverage counts the required activities a working rule actually reads, not how many rules you have."
+  ],
+  [
+   11.05,
+   3.675,
+   "Completeness counts how long a required source stayed silent."
+  ],
+  [
+   14.725,
+   5.15,
+   "Vulnerability remediation counts fixes closed on time, and fixes overdue."
+  ],
+  [
+   19.875,
+   6.612,
+   "Configuration counts passes, failures and exceptions separately, so an exception never looks like a pass."
+  ],
+  [
+   26.488,
+   3.938,
+   "And maturity is reported by system, at its weakest point."
+  ],
+  [
+   30.425,
+   9.7,
+   "The decision belongs to the see-so: adopt the metric set and the rhythm, with the SOC seeing it daily, and the see-so and authorizing official monthly."
+  ],
+  [
+   40.125,
+   1.863,
+   "Let's pull the decisions together."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   1.575,
+   "So, the decisions."
+  ],
+  [
+   1.625,
+   11.688,
+   "The see-so owns the logging plan due November 18, decides what each plane emits, counts a source as monitored only when a rule reads it, and approves any automated action on production."
+  ],
+  [
+   13.312,
+   9.713,
+   "The C I O funds visibility, not storage, and designates one top-level SOC. Platform owners keep their logs flowing through every change."
+  ],
+  [
+   23.025,
+   3.663,
+   "Security engineering runs the detection library as code."
+  ],
+  [
+   26.688,
+   3.475,
+   "The records officer must agree before retention shrinks."
+  ],
+  [
+   30.163,
+   2.9,
+   "The SOC notifies sis-uh within the hour."
+  ],
+  [
+   33.062,
+   4.775,
+   "And the authorizing official decides every open-ended gap and missed deadline."
+  ],
+  [
+   37.837,
+   2.663,
+   "A gap nobody chose is still a decision."
+  ],
+  [
+   40.5,
+   1.275,
+   "Make it on purpose."
+  ],
+  [
+   41.775,
+   3.688,
+   "Book 12 has the detail, every claim footnoted."
+  ],
+  [
+   45.462,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

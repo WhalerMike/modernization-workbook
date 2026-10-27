@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.012
+Every control you buy
+assumes the query reaches it.
+
+2
+00:00:03.012 --> 00:00:07.763
+Three ordinary things decide whether it
+does, and none of them raises an alarm.
+
+3
+00:00:07.763 --> 00:00:12.776
+A branch network edge can redirect DNS
+to a resolver outside your control.
+
+4
+00:00:12.776 --> 00:00:18.050
+A device or browser can send encrypted
+DNS straight to a public service.
+
+5
+00:00:18.050 --> 00:00:23.688
+And a rogue DHCP server can hand a whole
+subnet an attacker's resolver in one step.
+
+6
+00:00:23.688 --> 00:00:26.213
+So the decision splits
+deciding from doing.
+
+7
+00:00:26.213 --> 00:00:31.774
+The DNS and DDI team decides that every
+edge points only at agency resolvers;
+
+8
+00:00:31.774 --> 00:00:37.337
+network engineering configures it; and
+the CISO owns rogue DHCP detection.
+
+9
+00:00:37.337 --> 00:00:41.350
+Do it as authority moves, then
+check before every change.
+
+10
+00:00:41.350 --> 00:00:43.150
+Next, certificates.

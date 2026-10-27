@@ -1,0 +1,770 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   9.35,
+   "This is the executive briefing for Book 08 of the Federal Modernization Workbook: D N S, DHCP and IP address management."
+  ],
+  [
+   10.113,
+   5.688,
+   "It's for the C I O, the see-so, the network and infrastructure lead, and sponsors."
+  ],
+  [
+   15.8,
+   1.425,
+   "The argument is short."
+  ],
+  [
+   17.225,
+   7.138,
+   "Almost every connection starts with a D N S query, and the answer now decides far more than an address."
+  ],
+  [
+   24.363,
+   9.238,
+   "Most agencies still run D N S across several platforms that share nothing, so the same name gets different answers, and the failures look like something else."
+  ],
+  [
+   33.6,
+   4.3,
+   "The fix is one authoritative policy plane, with named owners."
+  ],
+  [
+   37.9,
+   3.237,
+   "I'll take four questions: why, what, who and how."
+  ],
+  [
+   41.138,
+   4.375,
+   "Each decision slide names the decision, its owner and when it's needed."
+  ],
+  [
+   45.513,
+   2.4,
+   "Let's start with what D N S now does."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   7.162,
+   "D N S was built to turn names into numbers, in a world where inside and outside were separated by a wire."
+  ],
+  [
+   7.213,
+   1.325,
+   "That world has gone."
+  ],
+  [
+   8.537,
+   12.1,
+   "Today the answer to a D N S query decides whether cloud traffic stays private, which SaaS front door a user reaches, whether a malicious domain is blocked, and whether a certificate check succeeds."
+  ],
+  [
+   20.637,
+   3.7,
+   "It's also the name a Zero Trust policy is written against."
+  ],
+  [
+   24.337,
+   7.0,
+   "nist's 2026 guide says it plainly: D N S is now a security control, not just a service."
+  ],
+  [
+   31.337,
+   7.463,
+   "So the first point for this room is that governing D N S is a security and architecture job, not an operations chore."
+  ],
+  [
+   38.8,
+   2.513,
+   "Next, what happens when it isn't governed."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.1,
+   "Nobody chooses to run D N S in five places."
+  ],
+  [
+   4.15,
+   6.75,
+   "Each cloud ships its own D N S service, and none of them shares state with Active Directory or with each other."
+  ],
+  [
+   10.9,
+   4.412,
+   "So the same name drifts into different answers depending on where the query starts."
+  ],
+  [
+   15.312,
+   9.325,
+   "That's split-brain, and it fails quietly: the name still resolves, just to the wrong place, and it shows up as a certificate error or an access denial."
+  ],
+  [
+   24.637,
+   7.263,
+   "Runbooks can't keep five systems in step, and your real security posture is the weakest resolver a client can reach."
+  ],
+  [
+   31.9,
+   7.588,
+   "So the decision for the sponsor and C I O: authorize one authoritative policy plane, before the next migration wave."
+  ],
+  [
+   39.487,
+   2.6,
+   "Next, what federal policy requires."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.025,
+   "Two requirements shape everything."
+  ],
+  [
+   2.075,
+   10.713,
+   "M twenty-two oh-nine says agencies must encrypt D N S wherever it's technically supported, and point devices at agency-designated resolvers, not whatever they discover."
+  ],
+  [
+   12.787,
+   4.95,
+   "And sis-uh's Protective D N S is mandatory for all outbound resolution."
+  ],
+  [
+   17.738,
+   6.775,
+   "The two fit together: encrypt, but end at your own resolvers, with Protective D N S upstream."
+  ],
+  [
+   24.512,
+   1.913,
+   "Where it breaks is the device."
+  ],
+  [
+   26.425,
+   8.675,
+   "Encrypted D N S that rides the ordinary web port can't be seen by the network, so it has to be governed through device and browser policy."
+  ],
+  [
+   35.1,
+   6.0,
+   "The decision belongs to the see-so: designate the resolvers and the allowed transports, now."
+  ],
+  [
+   41.1,
+   4.0,
+   "An exception with no end date goes to the authorizing official."
+  ],
+  [
+   45.1,
+   1.913,
+   "Next, the rest of the floor."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.438,
+   "Logging changed this year."
+  ],
+  [
+   1.488,
+   7.513,
+   "O M B's May 2026 memo, M-26-14, replaced the old logging tiers."
+  ],
+  [
+   9.0,
+   10.025,
+   "It doesn't name D N S at all; it sets a baseline, logs searchable for six months and kept for a year, and leaves the sources to each agency's logging plan."
+  ],
+  [
+   19.025,
+   5.575,
+   "That plan is due by November 18, a date we computed from sis-uh's publication."
+  ],
+  [
+   24.6,
+   7.763,
+   "D N S query logs tell you which address asked for a bad domain; DHCP lease logs tell you which device that was."
+  ],
+  [
+   32.362,
+   2.3,
+   "So the see-so puts both in the plan."
+  ],
+  [
+   34.663,
+   6.25,
+   "DNSSEC and the IPv6 targets are older requirements, and the IPv6 dates have passed."
+  ],
+  [
+   40.913,
+   3.525,
+   "Now, what has to change, starting with Active Directory."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   8.7,
+   "For twenty years Active Directory quietly ran your D N S. Domain controllers host the zones and publish the records that let machines find them."
+  ],
+  [
+   8.75,
+   2.013,
+   "None of that moves to Entra ID."
+  ],
+  [
+   10.762,
+   6.25,
+   "Entra ID hosts no zones at all, and some systems will keep needing domain controllers for a while."
+  ],
+  [
+   17.012,
+   5.85,
+   "Here's the trap: once a domain controller is gone, the records it kept can't be recovered from it."
+  ],
+  [
+   22.863,
+   5.075,
+   "So leaving A D D N S is an inventory problem before it's a migration problem."
+  ],
+  [
+   27.938,
+   10.35,
+   "The decision: the D N S and D D I team owns the inventory, A D administrators do the work, and it's reconciled before the first domain controller goes."
+  ],
+  [
+   38.288,
+   3.075,
+   "Next, how queries slip past your controls."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.962,
+   "Every control you buy assumes the query reaches it."
+  ],
+  [
+   3.013,
+   4.75,
+   "Three ordinary things decide whether it does, and none of them raises an alarm."
+  ],
+  [
+   7.763,
+   5.013,
+   "A branch network edge can redirect D N S to a resolver outside your control."
+  ],
+  [
+   12.775,
+   5.275,
+   "A device or browser can send encrypted D N S straight to a public service."
+  ],
+  [
+   18.05,
+   5.638,
+   "And a rogue DHCP server can hand a whole subnet an attacker's resolver in one step."
+  ],
+  [
+   23.688,
+   2.525,
+   "So the decision splits deciding from doing."
+  ],
+  [
+   26.212,
+   11.125,
+   "The D N S and D D I team decides that every edge points only at agency resolvers; network engineering configures it; and the see-so owns rogue DHCP detection."
+  ],
+  [
+   37.337,
+   4.013,
+   "Do it as authority moves, then check before every change."
+  ],
+  [
+   41.35,
+   1.738,
+   "Next, certificates."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   8.25,
+   "A certificate can be valid and unrevoked and still fail, because every check that makes it trustworthy starts with a D N S lookup."
+  ],
+  [
+   8.3,
+   9.175,
+   "If the revocation names live only in Active Directory D N S, a cloud workload can't reach them, and the ticket gets opened as a certificate problem."
+  ],
+  [
+   17.475,
+   3.575,
+   "The same goes for sign-in endpoints and wildcard names."
+  ],
+  [
+   21.05,
+   2.487,
+   "DNSSEC protects the answers themselves."
+  ],
+  [
+   23.538,
+   8.75,
+   "The program's position: sign your external zones always, validate on resolvers you control, and sign internal zones only where it's required."
+  ],
+  [
+   32.288,
+   1.462,
+   "The see-so sets that."
+  ],
+  [
+   33.75,
+   6.062,
+   "And moving a zone somewhere it can't be signed is a risk acceptance, so the authorizing official decides it."
+  ],
+  [
+   39.812,
+   1.4,
+   "Next, addresses."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.125,
+   "Names and addresses are the same problem."
+  ],
+  [
+   2.175,
+   6.275,
+   "Every cloud has its own address manager, and left alone each one hands out address space on its own."
+  ],
+  [
+   8.45,
+   5.75,
+   "You find the overlap when two networks are joined, or an auditor finds space nobody recorded."
+  ],
+  [
+   14.2,
+   3.788,
+   "So the enterprise eye-pam is the authority for address blocks."
+  ],
+  [
+   17.988,
+   6.213,
+   "Some platforms integrate natively; others need you to reserve first, mirror, and reconcile."
+  ],
+  [
+   24.2,
+   5.475,
+   "Either way it becomes the address layer of the asset inventory Zero Trust depends on."
+  ],
+  [
+   29.675,
+   8.75,
+   "The decision: the D N S and D D I team owns the address plan, and every new cloud network is reserved in eye-pam before it's created."
+  ],
+  [
+   38.425,
+   1.825,
+   "Next, the architecture."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.975,
+   "The architecture is simple to draw."
+  ],
+  [
+   2.025,
+   9.75,
+   "Branch edge, then an agency resolver, then the policy plane, then each cloud's private zones, with internet queries leaving through Protective D N S."
+  ],
+  [
+   11.775,
+   12.775,
+   "The risk sits in five settings: where the edge points, which resolver goes first, where cloud forwarding rules live, the A D D N S inventory, and whether revocation names resolve from everywhere."
+  ],
+  [
+   24.55,
+   5.088,
+   "Each fails silently, so each needs a check in the live configuration, not the design."
+  ],
+  [
+   29.637,
+   11.037,
+   "The book's ask is specific: the D N S and D D I team settles all five within ninety days of authorizing the plane, and reports the remaining risk to the authorizing official."
+  ],
+  [
+   40.675,
+   2.013,
+   "Next, choosing the platform."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.075,
+   "The platform decision is really a decision about the source of truth."
+  ],
+  [
+   4.125,
+   8.4,
+   "One plane holds the zones, the forwarding rules, the address data and the security policy, and the cloud D N S services consume it."
+  ],
+  [
+   12.525,
+   8.175,
+   "There are three models: a SaaS policy plane, D D I the agency runs itself, or cloud-native services managed as code."
+  ],
+  [
+   20.7,
+   5.037,
+   "Each has a trade-off, and a small single-cloud agency may need only the last."
+  ],
+  [
+   25.738,
+   5.425,
+   "Remember that fed-ramp certifies a service, not your system, and Moderate doesn't cover High."
+  ],
+  [
+   31.163,
+   8.037,
+   "So the sponsor and C I O choose on evidence from your own estate, and the authorizing official authorizes any cloud-delivered plane."
+  ],
+  [
+   39.2,
+   1.2,
+   "Now, who owns it."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.15,
+   "In an Active Directory estate, nobody wrote down who owned D N S, because A D did it for you."
+  ],
+  [
+   6.2,
+   5.675,
+   "One admin group controlled every zone, and the domain controller team decided by default."
+  ],
+  [
+   11.875,
+   8.037,
+   "A single policy plane concentrates that power: one team can now break resolution for every user and every cloud at once."
+  ],
+  [
+   19.913,
+   8.588,
+   "So owners have to be named on purpose, one decider per decision, or the cloud, network and directory teams each own a piece by accident."
+  ],
+  [
+   28.5,
+   2.65,
+   "Two decisions before the transition starts."
+  ],
+  [
+   31.15,
+   4.15,
+   "The sponsor and C I O give the decision rights to a named group."
+  ],
+  [
+   35.3,
+   5.7,
+   "And A D administrators strip the D N S admin group down to domain administrators."
+  ],
+  [
+   41.0,
+   1.712,
+   "Next, the matrix."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.938,
+   "Here's the matrix in one view."
+  ],
+  [
+   1.988,
+   4.838,
+   "The sponsor and C I O decide the platform and when the old services retire."
+  ],
+  [
+   6.825,
+   3.688,
+   "The see-so decides encryption, DNSSEC and logging."
+  ],
+  [
+   10.512,
+   7.025,
+   "The D N S and D D I team decides the namespace, the edge target, the forwarding and the address plan."
+  ],
+  [
+   17.538,
+   5.412,
+   "Network engineering and A D administrators do much of the work, but don't decide it."
+  ],
+  [
+   22.95,
+   2.775,
+   "Why does the authorizing official appear twice?"
+  ],
+  [
+   25.725,
+   3.925,
+   "Because many D N S changes are risk decisions in disguise."
+  ],
+  [
+   29.65,
+   4.737,
+   "Pointing an edge at a public resolver quietly turns off Protective D N S."
+  ],
+  [
+   34.388,
+   5.925,
+   "So every standing exception goes to the authorizing official, with an owner and a review date."
+  ],
+  [
+   40.312,
+   2.0,
+   "Next, everyday changes."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.913,
+   "Most D N S changes don't need a change board."
+  ],
+  [
+   2.962,
+   5.862,
+   "Treat them all alike and you get either a six-week wait for a simple record, or no control at all."
+  ],
+  [
+   8.825,
+   2.45,
+   "So the program uses three classes."
+  ],
+  [
+   11.275,
+   4.6,
+   "Standard changes inside a delegated namespace are approved in advance."
+  ],
+  [
+   15.875,
+   5.588,
+   "Records written by a policy need no approval each time, but the policy itself does."
+  ],
+  [
+   21.462,
+   5.275,
+   "And high-impact changes, like zones, forwarding and wildcards, go to the board."
+  ],
+  [
+   26.738,
+   8.1,
+   "One more point: the account the plane uses to write into each cloud is the most powerful identity in the design, so guard it."
+  ],
+  [
+   34.837,
+   5.5,
+   "The D N S and D D I team adopts the classes before namespaces are delegated."
+  ],
+  [
+   40.337,
+   1.387,
+   "Now, how to migrate."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   11.713,
+   "The migration runs in six phases: inventory, coexist, move authority, bring in the clouds, retire A D D N S and DHCP, then harden and prove it."
+  ],
+  [
+   11.762,
+   6.15,
+   "Name resolution has to keep working while authority moves, so every move runs the same small loop."
+  ],
+  [
+   17.913,
+   7.088,
+   "The old system keeps answering until the new one is proven from every location, and a failed check just switches back."
+  ],
+  [
+   25.0,
+   6.938,
+   "The program has planning estimates, from a day or two up to a few weeks, but they're estimates, not commitments."
+  ],
+  [
+   31.938,
+   7.175,
+   "The decision: the D N S and D D I team closes each phase on its evidence, never on a calendar date."
+  ],
+  [
+   39.112,
+   2.15,
+   "Next, the step you can't undo."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   3.337,
+   "This is where D N S meets the identity program."
+  ],
+  [
+   3.388,
+   7.638,
+   "While any domain controller remains, it needs D N S that accepts its registrations, so those records are the last thing to move."
+  ],
+  [
+   11.025,
+   6.388,
+   "Retiring A D D N S is the one step you can't cheaply undo, so it's gated, not scheduled."
+  ],
+  [
+   17.413,
+   14.338,
+   "Five gates, all program design: the inventory reconciles; the critical records resolve everywhere for thirty days; ninety days of parallel running; failover actually tested; and no traffic left on the old servers."
+  ],
+  [
+   31.75,
+   3.45,
+   "Get it wrong and you get forest-wide sign-in failures."
+  ],
+  [
+   35.2,
+   6.338,
+   "So the sponsor and C I O set the date only after every gate passes, with the records officer involved."
+  ],
+  [
+   41.538,
+   1.3,
+   "Next, running it."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   6.225,
+   "One plane only helps if divisions can still run their own networks through it, and every change leaves a trace."
+  ],
+  [
+   6.275,
+   8.35,
+   "So divisions get scoped control, and every change, by a person or a script, goes through one interface and one audit trail."
+  ],
+  [
+   14.625,
+   5.2,
+   "The logs feed security operations, the inventory and the authorization package."
+  ],
+  [
+   19.825,
+   8.05,
+   "And measure one thing first: resolution-path consistency, meaning the same name gets the intended answer from every location."
+  ],
+  [
+   27.875,
+   3.013,
+   "Baseline it now, set a target, and report it."
+  ],
+  [
+   30.887,
+   7.675,
+   "The book doesn't say who reports, so in our model it's the D N S and D D I team, reporting to the authorizing official."
+  ],
+  [
+   38.562,
+   1.85,
+   "Next, cost and risk."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   6.45,
+   "Commercial D D I licensing isn't published, so get quotes from every candidate on the same assumptions."
+  ],
+  [
+   6.5,
+   4.0,
+   "The cloud pieces do have public prices, and every model uses them."
+  ],
+  [
+   10.5,
+   11.975,
+   "One region's cloud resolver hub runs about three hundred and sixty dollars a month before zones and queries, and the book corrects earlier guidance that got the pricing backwards, so re-check any budget built on it."
+  ],
+  [
+   22.475,
+   10.575,
+   "Some risk remains after the plane is in: sync lag, a management outage that blocks changes, encrypted D N S bypass, and the limits of a Moderate authorization."
+  ],
+  [
+   33.05,
+   5.325,
+   "The sponsor and C I O handle this before selection, and record the residual risk."
+  ],
+  [
+   38.375,
+   1.863,
+   "Let's pull the decisions together."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   1.575,
+   "So, the decisions."
+  ],
+  [
+   1.625,
+   10.725,
+   "The sponsor and C I O authorize one policy plane, choose the platform on evidence, name the decision rights, and retire A D D N S only through the gates."
+  ],
+  [
+   12.35,
+   13.725,
+   "The see-so designates the encrypted resolvers now, puts D N S and DHCP logs in the logging plan by November 18, and sets signing and validation, with standing exceptions going to the authorizing official."
+  ],
+  [
+   26.075,
+   14.838,
+   "The D N S and D D I team reconciles the A D inventory before any domain controller goes, aims every edge at agency resolvers, makes eye-pam the address authority, and settles the five decisions within ninety days."
+  ],
+  [
+   40.913,
+   3.612,
+   "Govern the name layer before the last domain controller goes."
+  ],
+  [
+   44.525,
+   4.075,
+   "Book 08 has the detail, every claim footnoted."
+  ],
+  [
+   48.6,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

@@ -1,0 +1,1093 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.556
+This is the executive briefing
+for Book 16 of the Federal
+
+3
+00:00:04.556 --> 00:00:08.350
+Modernization Workbook,
+People: Training and Education.
+
+4
+00:00:08.350 --> 00:00:12.689
+It's for the CIO, the chief human
+capital officer and HR leadership,
+
+5
+00:00:12.689 --> 00:00:17.350
+the CISO, the workforce and training
+leads, and the program's sponsors.
+
+6
+00:00:17.350 --> 00:00:22.176
+Tools enforce the new rules, but people
+make the decisions those rules depend on,
+
+7
+00:00:22.176 --> 00:00:26.637
+so the modernization isn't finished
+until people do their jobs the new way.
+
+8
+00:00:26.637 --> 00:00:29.588
+I'll take four questions:
+why people close the gap,
+
+9
+00:00:29.588 --> 00:00:34.237
+what the curriculum teaches, who owns
+readiness, and how to run and measure it.
+
+10
+00:00:34.237 --> 00:00:38.612
+Each decision slide names the decision,
+its owner and when it's needed.
+
+11
+00:00:38.612 --> 00:00:40.790
+Let's start with the gap itself.
+
+12
+00:00:41.540 --> 00:00:45.490
+A policy can require phishing-resistant
+sign-in for every user.
+
+13
+00:00:45.490 --> 00:00:47.594
+It can't decide what to do when a caller
+
+14
+00:00:47.594 --> 00:00:49.902
+says they've lost their
+key and need in now.
+
+15
+00:00:49.902 --> 00:00:51.815
+That's the gap this book is about.
+
+16
+00:00:51.815 --> 00:00:54.538
+The new estate removes
+many risky settings,
+
+17
+00:00:54.538 --> 00:00:59.078
+and what's left is a smaller set of
+human decisions that carry more weight:
+
+18
+00:00:59.078 --> 00:01:01.271
+is this caller who they say they are,
+
+19
+00:01:01.271 --> 00:01:04.827
+is this access justified, is
+this exception still needed.
+
+20
+00:01:04.827 --> 00:01:08.365
+Someone who doesn't know the new
+rule falls back on the old habit.
+
+21
+00:01:08.365 --> 00:01:12.062
+So the decision for the program
+office: put a training check,
+
+22
+00:01:12.062 --> 00:01:16.665
+measured against a roster, into every
+gate, beside the technical criteria.
+
+23
+00:01:16.665 --> 00:01:18.920
+Next, whose work changes.
+
+24
+00:01:19.670 --> 00:01:23.108
+Every book in this workbook
+moves a decision to someone.
+
+25
+00:01:23.108 --> 00:01:26.257
+The help desk now verifies
+before it resets.
+
+26
+00:01:26.257 --> 00:01:29.758
+Administrators activate their
+roles only when they need them.
+
+27
+00:01:29.758 --> 00:01:31.182
+Owners approve access,
+
+28
+00:01:31.182 --> 00:01:35.082
+and HR keeps the data that creates
+accounts right at the source.
+
+29
+00:01:35.082 --> 00:01:40.320
+Jobs split into deciding and doing, so
+two people now need each procedure.
+
+30
+00:01:40.320 --> 00:01:42.805
+And decisions move to people outside IT,
+
+31
+00:01:42.805 --> 00:01:46.570
+who need short training on the
+one decision that's now theirs.
+
+32
+00:01:46.570 --> 00:01:51.935
+So the first workforce decision belongs to
+the chief human capital officer's office:
+
+33
+00:01:51.935 --> 00:01:55.001
+draft the roster of everyone
+whose work changes,
+
+34
+00:01:55.001 --> 00:01:58.220
+from HR and identity records,
+before the first gate.
+
+35
+00:01:58.220 --> 00:02:00.620
+Next, why timing matters.
+
+36
+00:02:01.370 --> 00:02:03.932
+A program that trains last pays twice.
+
+37
+00:02:03.932 --> 00:02:05.940
+The first payment comes at cutover:
+
+38
+00:02:05.940 --> 00:02:09.194
+users who weren't taught the
+new sign-in call the help desk,
+
+39
+00:02:09.194 --> 00:02:12.240
+and a desk that wasn't taught
+the new procedure either
+
+40
+00:02:12.240 --> 00:02:15.494
+turns people away or resets
+accounts without the checks.
+
+41
+00:02:15.494 --> 00:02:18.408
+Workarounds granted under
+pressure tend to stay.
+
+42
+00:02:18.408 --> 00:02:21.671
+The second payment comes later,
+finding those workarounds
+
+43
+00:02:21.671 --> 00:02:25.069
+and unlearning the habits, which
+is slower than learning them.
+
+44
+00:02:25.069 --> 00:02:29.020
+And the rules already say train
+before the change, not after.
+
+45
+00:02:29.020 --> 00:02:31.395
+So the decision for the sponsor and CIO:
+
+46
+00:02:31.395 --> 00:02:36.145
+fund the learning program as part of the
+modernization, before the first gate.
+
+47
+00:02:36.145 --> 00:02:39.680
+Next, what federal workforce
+rules actually require.
+
+48
+00:02:40.430 --> 00:02:44.305
+Federal workforce rules are less
+about courses than people expect.
+
+49
+00:02:44.305 --> 00:02:48.880
+FISMA asks for trained personnel sufficient
+to comply, a staffing statement,
+
+50
+00:02:48.880 --> 00:02:52.455
+and enough for the old estate may
+not be enough for the new one.
+
+51
+00:02:52.455 --> 00:02:58.755
+A 2015 law requires every agency to
+identify and code its cyber positions.
+
+52
+00:02:58.755 --> 00:03:03.248
+OPM's rule sets awareness training
+before access and at least once a year,
+
+53
+00:03:03.248 --> 00:03:06.693
+plus training whenever
+systems change significantly.
+
+54
+00:03:06.693 --> 00:03:10.205
+And none of the civilian rules
+requires a particular certification.
+
+55
+00:03:10.205 --> 00:03:12.820
+So the decision follows Circular A-130:
+
+56
+00:03:12.820 --> 00:03:18.458
+the chief human capital officer and the
+CIO set competency requirements together,
+
+57
+00:03:18.458 --> 00:03:22.217
+and feed the program's new
+roles into the workforce plan.
+
+58
+00:03:22.217 --> 00:03:24.530
+Next, the position codes.
+
+59
+00:03:25.280 --> 00:03:27.474
+Position codes matter because they're the
+
+60
+00:03:27.474 --> 00:03:29.793
+cleanest way to know
+who needs role training.
+
+61
+00:03:29.793 --> 00:03:31.492
+But they've been unreliable.
+
+62
+00:03:31.492 --> 00:03:37.371
+In 2019, GAO found that 22 of 24 agencies
+had given about one in five of their IT
+
+63
+00:03:37.371 --> 00:03:40.076
+management positions a non-IT code,
+
+64
+00:03:40.076 --> 00:03:44.181
+and over half of sampled
+codes didn't match the duties.
+
+65
+00:03:44.181 --> 00:03:47.647
+The program uses the code
+as one input to the roster,
+
+66
+00:03:47.647 --> 00:03:51.115
+beside role assignments
+and the system inventory,
+
+67
+00:03:51.115 --> 00:03:55.655
+and treats any disagreement as a
+finding for HR and the CIO's office.
+
+68
+00:03:55.655 --> 00:03:57.782
+So the decision, as program design:
+
+69
+00:03:57.782 --> 00:04:02.113
+HR classification and the CIO's
+office review the affected position
+
+70
+00:04:02.113 --> 00:04:06.292
+descriptions and their codes as
+each workstream reaches its gate.
+
+71
+00:04:06.292 --> 00:04:09.330
+Next, what the curriculum
+actually teaches.
+
+72
+00:04:10.080 --> 00:04:14.872
+Before anyone learns a tool, the program
+teaches a way of thinking: six ideas,
+
+73
+00:04:14.872 --> 00:04:18.814
+starting with governance as
+something that runs all the time,
+
+74
+00:04:18.814 --> 00:04:21.055
+and identity as the starting point.
+
+75
+00:04:21.055 --> 00:04:24.943
+Someone who holds them sees why
+the help desk now asks for proof.
+
+76
+00:04:24.943 --> 00:04:28.179
+Someone who doesn't feels
+every new rule as friction.
+
+77
+00:04:28.179 --> 00:04:30.928
+Then training teaches
+the job, in four tracks:
+
+78
+00:04:30.928 --> 00:04:35.830
+compliance for the people who read
+evidence, implementation for the people who
+
+79
+00:04:35.830 --> 00:04:38.950
+build, vendor training and
+labs for product skills,
+
+80
+00:04:38.950 --> 00:04:40.955
+and short modules for every user.
+
+81
+00:04:40.955 --> 00:04:44.453
+The decision for the chief
+human capital officer's office:
+
+82
+00:04:44.453 --> 00:04:49.043
+approve a training plan that names an
+owner for every track, by the first gate.
+
+83
+00:04:49.043 --> 00:04:51.180
+Next, the engineers.
+
+84
+00:04:51.930 --> 00:04:56.363
+Engineers get a track built on one
+rule: a build isn't done when it works,
+
+85
+00:04:56.363 --> 00:05:00.330
+it's done when its evidence lands
+where an assessor can read it.
+
+86
+00:05:00.330 --> 00:05:01.768
+Three habits come with it.
+
+87
+00:05:01.768 --> 00:05:03.466
+Watch before you enforce,
+
+88
+00:05:03.466 --> 00:05:07.429
+so a policy runs in report-only
+before it can lock anyone out.
+
+89
+00:05:07.429 --> 00:05:11.218
+Keep a way back in, with
+emergency accounts created first.
+
+90
+00:05:11.218 --> 00:05:13.905
+And export the record, never a screenshot.
+
+91
+00:05:13.905 --> 00:05:17.942
+Each build is paired with the compliance
+module that reads its evidence.
+
+92
+00:05:17.942 --> 00:05:21.347
+The decision for the steward,
+who owns the foundation gate:
+
+93
+00:05:21.347 --> 00:05:25.817
+no gate passes until the engineers for
+the next phase have passed their labs.
+
+94
+00:05:25.817 --> 00:05:29.190
+Next, how the program
+knows training worked.
+
+95
+00:05:29.940 --> 00:05:31.440
+How do you know training worked?
+
+96
+00:05:31.440 --> 00:05:32.765
+Not from attendance.
+
+97
+00:05:32.765 --> 00:05:35.203
+The program certifies
+what people can show.
+
+98
+00:05:35.203 --> 00:05:39.871
+Each track ends in a capstone, scored
+from missing up to assessor-ready,
+
+99
+00:05:39.871 --> 00:05:42.689
+and the top level means
+a real, dated result.
+
+100
+00:05:42.689 --> 00:05:45.094
+Two program credentials come out of it,
+
+101
+00:05:45.094 --> 00:05:49.602
+one for practitioners and one for
+assessors, and both expire after a year.
+
+102
+00:05:49.602 --> 00:05:53.914
+Industry certifications still
+count as evidence of general skill,
+
+103
+00:05:53.914 --> 00:05:57.302
+but they can't stand in for
+the agency's own procedures.
+
+104
+00:05:57.302 --> 00:06:00.572
+The decision for the CISO is
+a design option from the book:
+
+105
+00:06:00.572 --> 00:06:02.683
+once the training record is reliable,
+
+106
+00:06:02.683 --> 00:06:07.178
+decide whether a current credential
+becomes a condition for privileged roles.
+
+107
+00:06:07.178 --> 00:06:09.550
+Next, where people practice.
+
+108
+00:06:10.300 --> 00:06:15.100
+People need somewhere safe to practice, and
+that's harder to arrange than it sounds.
+
+109
+00:06:15.100 --> 00:06:18.715
+Many staff won't qualify for a
+developer sandbox on their own,
+
+110
+00:06:18.715 --> 00:06:22.475
+and those sandboxes don't exist
+in the government clouds at all.
+
+111
+00:06:22.475 --> 00:06:26.780
+So the program's approach has two steps:
+practice in a commercial sandbox,
+
+112
+00:06:26.780 --> 00:06:31.515
+then rehearse once in the agency's own
+non-production government tenant before
+
+113
+00:06:31.515 --> 00:06:36.250
+each gate, where a feature difference shows
+up as a finding instead of a surprise.
+
+114
+00:06:36.250 --> 00:06:41.037
+Every lab follows the same rules:
+never production, never real data.
+
+115
+00:06:41.037 --> 00:06:45.069
+The decision for the program office:
+arrange lab tenants centrally,
+
+116
+00:06:45.069 --> 00:06:49.100
+including that government rehearsal
+tenant, before the first labs.
+
+117
+00:06:49.100 --> 00:06:51.660
+Next, the largest group of all.
+
+118
+00:06:52.410 --> 00:06:55.810
+Every user will sign in differently
+by the end of the program.
+
+119
+00:06:55.810 --> 00:07:00.572
+They'll learn how either from the agency,
+before the change, or from an attacker,
+
+120
+00:07:00.572 --> 00:07:05.185
+after it, because someone who's never seen
+the new prompt can't spot a fake one.
+
+121
+00:07:05.185 --> 00:07:09.425
+So end users get six short modules,
+each ending in something they do:
+
+122
+00:07:09.425 --> 00:07:14.282
+sign in with a phishing-resistant method,
+recover an account, enroll a device,
+
+123
+00:07:14.282 --> 00:07:17.289
+find their files, report
+something suspicious,
+
+124
+00:07:17.289 --> 00:07:19.910
+and know what the help
+desk will never ask.
+
+125
+00:07:19.910 --> 00:07:24.185
+The decision belongs to the CISO:
+what users are taught about sign-in,
+
+126
+00:07:24.185 --> 00:07:29.285
+reporting and the help desk, because those
+words are the policy users actually see.
+
+127
+00:07:29.285 --> 00:07:31.320
+Next, the help desk.
+
+128
+00:07:32.070 --> 00:07:35.545
+The help desk is where the
+new estate is most exposed.
+
+129
+00:07:35.545 --> 00:07:38.668
+Attackers have phoned
+employees pretending to be IT,
+
+130
+00:07:38.668 --> 00:07:41.720
+and phoned the help desk
+pretending to be employees.
+
+131
+00:07:41.720 --> 00:07:45.279
+So the desk is trained first,
+before anyone else migrates,
+
+132
+00:07:45.279 --> 00:07:49.066
+and no technician gets the power
+to reset a credential until
+
+133
+00:07:49.066 --> 00:07:53.382
+their training and an observed
+verification scenario are on record.
+
+134
+00:07:53.382 --> 00:07:58.092
+Users learn the desk's rules too: it will
+never ask for your password or a code,
+
+135
+00:07:58.092 --> 00:08:02.346
+and it'll always let you hang up and
+call back on the published number.
+
+136
+00:08:02.346 --> 00:08:05.149
+The decision sits with
+the service desk manager:
+
+137
+00:08:05.149 --> 00:08:08.233
+whether the desk is trained
+and staffed for each wave.
+
+138
+00:08:08.233 --> 00:08:10.600
+Next, how waves are paced.
+
+139
+00:08:11.350 --> 00:08:12.513
+Waves need a rhythm.
+
+140
+00:08:12.513 --> 00:08:15.455
+Users hear about the change
+about two months ahead,
+
+141
+00:08:15.455 --> 00:08:19.450
+get their training a month out, and
+get reminders in the last two weeks.
+
+142
+00:08:19.450 --> 00:08:24.470
+Then, before anything is enforced, there's
+a readiness check on three numbers:
+
+143
+00:08:24.470 --> 00:08:27.498
+how many users registered
+a new sign-in method,
+
+144
+00:08:27.498 --> 00:08:31.163
+how many finished training,
+and how busy the help desk is.
+
+145
+00:08:31.163 --> 00:08:34.225
+When tickets climb, the
+guidance is to slow down.
+
+146
+00:08:34.225 --> 00:08:36.833
+The wave owner, identity engineering,
+
+147
+00:08:36.833 --> 00:08:40.113
+makes the go or no-go, with
+training now part of it.
+
+148
+00:08:40.113 --> 00:08:45.362
+And the rule is simple: a wave that isn't
+ready moves its date, not its threshold.
+
+149
+00:08:45.362 --> 00:08:47.650
+Next, who owns all of this.
+
+150
+00:08:48.400 --> 00:08:52.744
+Ask who owns training and
+usually three offices answer:
+
+151
+00:08:52.744 --> 00:08:55.200
+security, HR and the CIO's office.
+
+152
+00:08:55.200 --> 00:08:57.507
+And nobody owns the thing that matters:
+
+153
+00:08:57.507 --> 00:09:00.463
+whether people can do the
+job on the day it changes.
+
+154
+00:09:00.463 --> 00:09:03.001
+The book gives each decision one owner.
+
+155
+00:09:03.001 --> 00:09:06.800
+The CISO owns the training policy
+and what users are taught.
+
+156
+00:09:06.800 --> 00:09:11.071
+The chief human capital officer's
+office owns the workforce strategy,
+
+157
+00:09:11.071 --> 00:09:13.575
+the position codes and the roster's facts.
+
+158
+00:09:13.575 --> 00:09:17.577
+The decision for the sponsor
+and CIO: name one training lead,
+
+159
+00:09:17.577 --> 00:09:22.314
+and bring in the human capital office,
+labor relations and the Section
+
+160
+00:09:22.314 --> 00:09:26.887
+508 program manager at the first
+gate, not after the first complaint.
+
+161
+00:09:26.887 --> 00:09:29.400
+Next, who decides readiness.
+
+162
+00:09:30.150 --> 00:09:34.262
+Readiness numbers are easy to
+improve without improving readiness.
+
+163
+00:09:34.262 --> 00:09:36.387
+So the book keeps the roles apart.
+
+164
+00:09:36.387 --> 00:09:38.733
+The training lead reports the numbers,
+
+165
+00:09:38.733 --> 00:09:43.424
+the system's security officer reviews
+them, and the gate or wave owner decides.
+
+166
+00:09:43.424 --> 00:09:45.679
+Managers can't waive required training,
+
+167
+00:09:45.679 --> 00:09:49.025
+and phishing test results are
+for learning, not discipline.
+
+168
+00:09:49.025 --> 00:09:52.788
+Contractors can build, deliver
+and report all of the training,
+
+169
+00:09:52.788 --> 00:09:55.887
+but the decisions stay
+with government officials.
+
+170
+00:09:55.887 --> 00:09:59.257
+And one decision sits with the
+authorizing official alone:
+
+171
+00:09:59.257 --> 00:10:03.588
+whether to accept the risk of running
+a system before its people are trained.
+
+172
+00:10:03.588 --> 00:10:05.912
+That's a risk acceptance like any other.
+
+173
+00:10:05.912 --> 00:10:09.260
+Next, how the curriculum
+runs on the roadmap.
+
+174
+00:10:10.010 --> 00:10:14.172
+Training has to run on the roadmap's
+calendar, not the training office's.
+
+175
+00:10:14.172 --> 00:10:17.473
+Each phase has people who must
+be ready before its gate:
+
+176
+00:10:17.473 --> 00:10:22.092
+leaders oriented before planning,
+platform teams and the help desk trained
+
+177
+00:10:22.092 --> 00:10:26.198
+before the foundation is built, and
+every module tested on the pilot.
+
+178
+00:10:26.198 --> 00:10:30.490
+And there's one step most programs
+miss: when Active Directory retires,
+
+179
+00:10:30.490 --> 00:10:33.747
+every course and runbook
+that teaches it retires too,
+
+180
+00:10:33.747 --> 00:10:36.411
+or people keep learning
+a system that's gone.
+
+181
+00:10:36.411 --> 00:10:38.576
+The decision for the program office:
+
+182
+00:10:38.576 --> 00:10:42.764
+no gate gets scheduled without its
+training dates, and no wave without
+
+183
+00:10:42.764 --> 00:10:46.735
+its training window, so when a wave
+slips, its training slips with it.
+
+184
+00:10:46.735 --> 00:10:49.040
+Next, keeping the knowledge.
+
+185
+00:10:49.790 --> 00:10:53.540
+Training is only half the job if
+the knowledge walks out the door.
+
+186
+00:10:53.540 --> 00:10:55.915
+The book builds in a few safeguards.
+
+187
+00:10:55.915 --> 00:10:59.629
+Each module has an owner from
+the team that runs the platform,
+
+188
+00:10:59.629 --> 00:11:03.565
+and at least two qualified instructors,
+so no one person holds it.
+
+189
+00:11:03.565 --> 00:11:07.741
+Administrators of retiring systems
+are trained into new roles,
+
+190
+00:11:07.741 --> 00:11:10.578
+or reassigned, before
+the old platform goes.
+
+191
+00:11:10.578 --> 00:11:14.834
+And contractors are on the same footing
+as staff: their training goes into
+
+192
+00:11:14.834 --> 00:11:18.952
+the agency's own learning system, even
+when their employer trained them.
+
+193
+00:11:18.952 --> 00:11:23.345
+So the decision for contracting officer's
+representatives: make sure every
+
+194
+00:11:23.345 --> 00:11:27.390
+contractor's training is on the
+agency's record before they get access.
+
+195
+00:11:27.390 --> 00:11:30.170
+Next, how readiness is measured.
+
+196
+00:11:30.920 --> 00:11:33.958
+Finishing a course isn't
+the same as being ready.
+
+197
+00:11:33.958 --> 00:11:36.294
+So the program measures three things.
+
+198
+00:11:36.294 --> 00:11:38.057
+Completion, for everyone.
+
+199
+00:11:38.057 --> 00:11:41.910
+Competence, for every role where
+a mistake is a security event,
+
+200
+00:11:41.910 --> 00:11:45.083
+like the help desk and
+privileged administrators.
+
+201
+00:11:45.083 --> 00:11:48.427
+And behavior, from signals
+outside the learning system:
+
+202
+00:11:48.427 --> 00:11:52.862
+whether users actually registered a
+new sign-in method, whether help desk
+
+203
+00:11:52.862 --> 00:11:57.296
+tickets settle back down after a wave,
+and what people say a few weeks later.
+
+204
+00:11:57.296 --> 00:12:01.095
+The pilot sets the baselines,
+and each later wave adjusts them.
+
+205
+00:12:01.095 --> 00:12:06.019
+The decision for the system's security
+officer, against the CISO's threshold:
+
+206
+00:12:06.019 --> 00:12:11.020
+anyone overdue in a privileged role is
+a finding, whatever the percentage says.
+
+207
+00:12:11.020 --> 00:12:13.510
+Next, what leadership should see.
+
+208
+00:12:14.260 --> 00:12:19.047
+Leadership needs a short, regular
+view, not a dashboard nobody acts on.
+
+209
+00:12:19.047 --> 00:12:23.009
+At every steering committee meeting,
+one page answers five questions:
+
+210
+00:12:23.009 --> 00:12:26.492
+is the next gate's workforce ready,
+are the next two waves ready,
+
+211
+00:12:26.492 --> 00:12:30.727
+what happened in the last wave, where
+are the gaps in privileged roles, given
+
+212
+00:12:30.727 --> 00:12:35.098
+as a count rather than a percentage, and
+what does the committee need to decide.
+
+213
+00:12:35.098 --> 00:12:40.255
+Each quarter there's a fuller report, and
+once a year the evaluation OPM requires,
+
+214
+00:12:40.255 --> 00:12:43.147
+of what the training cost
+and what it changed.
+
+215
+00:12:43.147 --> 00:12:47.614
+The decision: the steering committee
+reviews readiness at every meeting,
+
+216
+00:12:47.614 --> 00:12:50.836
+and the head of the agency
+owns the annual evaluation.
+
+217
+00:12:50.836 --> 00:12:53.770
+Finally, the decisions in one place.
+
+218
+00:12:54.520 --> 00:12:56.808
+So, the decisions in one place.
+
+219
+00:12:56.808 --> 00:13:01.344
+The sponsor and CIO fund the learning
+program and name a training lead.
+
+220
+00:13:01.344 --> 00:13:05.808
+The program office puts training into
+every gate and onto the roadmap.
+
+221
+00:13:05.808 --> 00:13:09.166
+The chief human capital
+officer's office owns the roster,
+
+222
+00:13:09.166 --> 00:13:11.595
+the training plan and the position codes.
+
+223
+00:13:11.595 --> 00:13:13.945
+The CISO decides what people are taught.
+
+224
+00:13:13.945 --> 00:13:18.265
+The help desk manager and the wave owner
+decide when people are actually ready,
+
+225
+00:13:18.265 --> 00:13:21.920
+and the authorizing official alone
+accepts the risk if they aren't.
+
+226
+00:13:21.920 --> 00:13:23.620
+None of this is a procurement.
+
+227
+00:13:23.620 --> 00:13:28.308
+The first step is simple: draft the
+roster of everyone whose work changes.
+
+228
+00:13:28.308 --> 00:13:30.570
+Tools enforce; people decide.
+
+229
+00:13:30.570 --> 00:13:34.708
+Book 16 has the detail,
+with every claim footnoted.
+
+230
+00:13:34.708 --> 00:13:35.530
+Thank you.

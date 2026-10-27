@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.326
+This is the executive
+briefing for Book 07 of the
+
+3
+00:00:04.326 --> 00:00:08.424
+Federal Modernization
+Workbook, PKI and certificates.
+
+4
+00:00:08.424 --> 00:00:11.498
+It's for the people who decide: the CIO,
+
+5
+00:00:11.498 --> 00:00:15.800
+the CISO, the PKI owner
+and authorizing officials.
+
+6
+00:00:15.800 --> 00:00:17.225
+The argument is short.
+
+7
+00:00:17.225 --> 00:00:21.969
+Certificates prove who's who in every
+other migration, and they keep working
+
+8
+00:00:21.969 --> 00:00:26.637
+until the day they expire, so they fail
+on their own clock, not the directory's.
+
+9
+00:00:26.637 --> 00:00:30.435
+There's no single replacement for
+the old certificate authority;
+
+10
+00:00:30.435 --> 00:00:33.600
+the target is four issuers
+and one lifecycle platform.
+
+11
+00:00:33.600 --> 00:00:38.350
+And the move runs as its own program,
+with the old authority retired last.
+
+12
+00:00:38.350 --> 00:00:42.725
+Each decision slide names the decision,
+its owner and when it's needed.
+
+13
+00:00:42.725 --> 00:00:44.040
+Let's start with why.

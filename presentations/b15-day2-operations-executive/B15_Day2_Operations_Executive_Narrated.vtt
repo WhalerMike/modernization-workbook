@@ -1,0 +1,1023 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.539
+This is the executive briefing for Book
+15 of the Federal Modernization Workbook:
+
+2
+00:00:05.539 --> 00:00:08.525
+Compliance Automation
+and Day-2 Operations.
+
+3
+00:00:08.525 --> 00:00:12.606
+It's for the people who own what
+happens after cutover: the CIO,
+
+4
+00:00:12.606 --> 00:00:16.687
+service owners, help desk and
+operations leads, and the CISO.
+
+5
+00:00:16.687 --> 00:00:18.488
+The book's argument is simple.
+
+6
+00:00:18.488 --> 00:00:22.488
+A modernized estate is judged
+on day two, at the help desk.
+
+7
+00:00:22.488 --> 00:00:25.568
+Every routine change
+there touches a control,
+
+8
+00:00:25.568 --> 00:00:29.863
+so compliance lives or dies in
+daily operations, not at the audit.
+
+9
+00:00:29.863 --> 00:00:34.515
+I'll take four parts: why day two
+decides, what changes after cutover,
+
+10
+00:00:34.515 --> 00:00:37.475
+who runs it, and how you
+prove and measure it.
+
+11
+00:00:37.475 --> 00:00:41.875
+Each decision slide names the decision,
+its owner, and when it's needed.
+
+12
+00:00:41.875 --> 00:00:43.840
+Let's start on Monday morning.
+
+13
+00:00:44.590 --> 00:00:47.240
+Cutover proves the new
+estate can be built.
+
+14
+00:00:47.240 --> 00:00:50.928
+The first locked-out user on Monday
+proves whether it can be run.
+
+15
+00:00:50.928 --> 00:00:54.803
+A user changed phones; a new
+hire needs an account by nine.
+
+16
+00:00:54.803 --> 00:00:56.577
+Each lands at the help desk.
+
+17
+00:00:56.577 --> 00:01:00.351
+If the new model can't handle it
+safely, the desk finds a way:
+
+18
+00:01:00.351 --> 00:01:03.564
+an emergency admin account
+that never goes away,
+
+19
+00:01:03.564 --> 00:01:08.864
+an email treated as the request, a temporary
+password sent back to the same inbox.
+
+20
+00:01:08.864 --> 00:01:11.303
+Each shortcut is reasonable on the day.
+
+21
+00:01:11.303 --> 00:01:14.277
+Together they rebuild the
+estate you just replaced.
+
+22
+00:01:14.277 --> 00:01:18.977
+The decision for the CIO: call a
+wave complete only after a reset,
+
+23
+00:01:18.977 --> 00:01:23.315
+an unlock, a joiner and a leaver
+have run under the new model.
+
+24
+00:01:23.315 --> 00:01:25.780
+Next, the riskiest of those.
+
+25
+00:01:26.530 --> 00:01:31.380
+The most dangerous routine action on the
+desk is resetting someone's sign-in method.
+
+26
+00:01:31.380 --> 00:01:35.605
+After that reset, whoever registers
+next controls the account.
+
+27
+00:01:35.605 --> 00:01:39.440
+So a reset done on an unverified
+request isn't support;
+
+28
+00:01:39.440 --> 00:01:42.142
+it hands the account to whoever asked.
+
+29
+00:01:42.142 --> 00:01:48.240
+Federal advisories describe callers posing
+as employees to get exactly these resets,
+
+30
+00:01:48.240 --> 00:01:51.204
+and OMB calls recovery a potential bypass.
+
+31
+00:01:51.204 --> 00:01:54.030
+The program's answer is
+a verification ladder.
+
+32
+00:01:54.030 --> 00:01:57.605
+Someone who's lost everything
+is identity-proofed first.
+
+33
+00:01:57.605 --> 00:02:01.730
+Email, caller ID and personal
+questions verify no one.
+
+34
+00:02:01.730 --> 00:02:04.529
+The decision for the
+CISO: own that ladder,
+
+35
+00:02:04.529 --> 00:02:09.168
+put the most friction on privileged
+accounts, and alert on every reset.
+
+36
+00:02:09.168 --> 00:02:11.490
+Next, why volume matters.
+
+37
+00:02:12.240 --> 00:02:16.369
+The day after go-live, the help
+desk resets hundreds of passwords,
+
+38
+00:02:16.369 --> 00:02:19.953
+onboards a dozen people and
+changes group memberships.
+
+39
+00:02:19.953 --> 00:02:22.453
+Every one of those
+changes touches a control.
+
+40
+00:02:22.453 --> 00:02:26.427
+Done through a governed path, the
+authorization package stays true.
+
+41
+00:02:26.427 --> 00:02:29.691
+Done as portal clicks, it
+ages with every click.
+
+42
+00:02:29.691 --> 00:02:33.194
+The case for automation is
+volume: at day-two scale,
+
+43
+00:02:33.194 --> 00:02:37.552
+records assembled by hand are
+reconstructions, not evidence.
+
+44
+00:02:37.552 --> 00:02:41.472
+A control that's designed and
+deployed but not operated,
+
+45
+00:02:41.472 --> 00:02:45.391
+with an owner, a gate, a clock
+and an evidence feed, is a hope.
+
+46
+00:02:45.391 --> 00:02:49.728
+The decision for the CIO and
+sponsor: fund that operating layer,
+
+47
+00:02:49.728 --> 00:02:52.565
+and it's mostly automation, not headcount.
+
+48
+00:02:52.565 --> 00:02:54.110
+Next, what to buy.
+
+49
+00:02:54.860 --> 00:02:57.898
+The program asks for a
+contract, not a product.
+
+50
+00:02:57.898 --> 00:02:59.722
+Every request gets an owner.
+
+51
+00:02:59.722 --> 00:03:04.160
+The approval is recorded before the
+change, and never by the requester.
+
+52
+00:03:04.160 --> 00:03:08.998
+The platform acts through a least-privilege
+identity, never standing admin rights.
+
+53
+00:03:08.998 --> 00:03:10.960
+Every step emits evidence.
+
+54
+00:03:10.960 --> 00:03:15.040
+And the platform's inventory
+reconciles to the authoritative one,
+
+55
+00:03:15.040 --> 00:03:16.598
+never the other way round.
+
+56
+00:03:16.598 --> 00:03:19.673
+ServiceNow is the reference,
+not a requirement.
+
+57
+00:03:19.673 --> 00:03:23.748
+Its government cloud is certified at
+the high level, which serves moderate
+
+58
+00:03:23.748 --> 00:03:27.823
+systems conservatively, but record
+that choice in your own authorization.
+
+59
+00:03:27.823 --> 00:03:32.185
+The decision for the CIO: hold
+any platform to that contract.
+
+60
+00:03:32.185 --> 00:03:34.280
+Next, how work comes in.
+
+61
+00:03:35.030 --> 00:03:37.280
+The operating rule is one front door.
+
+62
+00:03:37.280 --> 00:03:40.092
+Nothing is handled as an
+email to the cloud team.
+
+63
+00:03:40.092 --> 00:03:43.778
+Portal requests, emails,
+identity governance tasks
+
+64
+00:03:43.778 --> 00:03:47.379
+and monitoring alerts all
+land in one triage queue.
+
+65
+00:03:47.379 --> 00:03:51.468
+Triage asks one question: what
+authority does this task need?
+
+66
+00:03:51.468 --> 00:03:54.192
+That answer picks the
+pipeline and the approver,
+
+67
+00:03:54.192 --> 00:03:58.005
+from a simple fix up to governance
+actions that are never automated.
+
+68
+00:03:58.005 --> 00:04:01.574
+One small rule matters: if
+an approver doesn't respond,
+
+69
+00:04:01.574 --> 00:04:05.143
+the request is rejected or
+cancelled, never approved.
+
+70
+00:04:05.143 --> 00:04:07.006
+Silence can't grant access.
+
+71
+00:04:07.006 --> 00:04:11.639
+The decision for the service desk
+manager: close the side doors, route the
+
+72
+00:04:11.639 --> 00:04:16.505
+team mailbox into triage, and count any
+work done outside it as a measured gap.
+
+73
+00:04:16.505 --> 00:04:18.600
+Next, what the desk may do.
+
+74
+00:04:19.350 --> 00:04:21.650
+The help desk executes approved work.
+
+75
+00:04:21.650 --> 00:04:23.850
+It never decides what it executes.
+
+76
+00:04:23.850 --> 00:04:26.446
+Technicians hold no standing admin roles;
+
+77
+00:04:26.446 --> 00:04:29.488
+they switch on a scoped role
+for the ticket in hand.
+
+78
+00:04:29.488 --> 00:04:33.200
+The book flags a trap:
+capability isn't authority.
+
+79
+00:04:33.200 --> 00:04:36.481
+Some roles a help desk
+might hold can delete users
+
+80
+00:04:36.481 --> 00:04:39.762
+or approve app access, which
+the desk must never do.
+
+81
+00:04:39.762 --> 00:04:44.462
+Executive accounts sit in a protected
+unit the general desk can't touch.
+
+82
+00:04:44.462 --> 00:04:48.950
+And security monitoring flags any
+elevation with no matching ticket.
+
+83
+00:04:48.950 --> 00:04:51.923
+The decision for the
+identity governance officer:
+
+84
+00:04:51.923 --> 00:04:56.312
+scope the desk's privileged group, and
+review its membership every quarter.
+
+85
+00:04:56.312 --> 00:04:59.010
+Next, the tasks that need more.
+
+86
+00:04:59.760 --> 00:05:04.885
+Some tasks let one person take over an
+identity or open data to the wrong people,
+
+87
+00:05:04.885 --> 00:05:07.960
+and the platform can't stop
+the misuse on its own.
+
+88
+00:05:07.960 --> 00:05:11.731
+For those, the program requires
+two approvers besides the
+
+89
+00:05:11.731 --> 00:05:15.660
+person doing the work, both
+recorded before anyone elevates.
+
+90
+00:05:15.660 --> 00:05:20.030
+The list is short: resets on accounts
+the desk can't normally touch,
+
+91
+00:05:20.030 --> 00:05:23.914
+repairing a cloud account's
+link to its on-premises record,
+
+92
+00:05:23.914 --> 00:05:27.960
+restoring accounts outside the
+HR process, and bulk changes.
+
+93
+00:05:27.960 --> 00:05:31.578
+The second approver checks that
+the requester was verified,
+
+94
+00:05:31.578 --> 00:05:34.110
+the change is exact,
+and the urgency is real.
+
+95
+00:05:34.110 --> 00:05:37.635
+A caller pressing for speed
+goes to the emergency process.
+
+96
+00:05:37.635 --> 00:05:41.260
+The decision: never waive the
+second approver for urgency.
+
+97
+00:05:41.260 --> 00:05:43.590
+Next, third-party apps.
+
+98
+00:05:44.340 --> 00:05:46.741
+Connecting a cloud app to your directory
+
+99
+00:05:46.741 --> 00:05:49.353
+can quietly move data
+outside your boundary.
+
+100
+00:05:49.353 --> 00:05:54.227
+In the government cloud most agencies use,
+nothing in the app gallery is marked.
+
+101
+00:05:54.227 --> 00:05:57.539
+CISA's directive requires
+that only administrators
+
+102
+00:05:57.539 --> 00:06:00.703
+can approve app access, and
+the program applies that.
+
+103
+00:06:00.703 --> 00:06:02.966
+But that rule decides who approves.
+
+104
+00:06:02.966 --> 00:06:05.421
+It says nothing about
+whether the service on
+
+105
+00:06:05.421 --> 00:06:08.077
+the other end is authorized
+to hold federal data.
+
+106
+00:06:08.077 --> 00:06:13.291
+A tenant can pass every consent check and
+still send data to an uncertified service.
+
+107
+00:06:13.291 --> 00:06:15.343
+Only an authorization verdict,
+
+108
+00:06:15.343 --> 00:06:19.053
+recorded before anything is
+configured, closes that gap.
+
+109
+00:06:19.053 --> 00:06:23.327
+The decision for the identity governance
+officer: record each service's
+
+110
+00:06:23.327 --> 00:06:27.103
+authorization status first, and
+stop the request if it's missing.
+
+111
+00:06:27.103 --> 00:06:29.180
+Next, the inventory.
+
+112
+00:06:29.930 --> 00:06:33.775
+The program's rule: discovery
+fills the configuration database,
+
+113
+00:06:33.775 --> 00:06:38.418
+but the authoritative naming and addressing
+record decides what an asset is.
+
+114
+00:06:38.418 --> 00:06:42.954
+When they disagree, the database is
+wrong, and the gap is a finding.
+
+115
+00:06:42.954 --> 00:06:45.517
+This matters for patching and evidence.
+
+116
+00:06:45.517 --> 00:06:49.767
+A missing asset is never patched,
+while coverage still looks complete.
+
+117
+00:06:49.767 --> 00:06:52.530
+A duplicate lets the fix land on one copy.
+
+118
+00:06:52.530 --> 00:06:56.980
+And a connector that quietly returns
+half its records raises no error at all.
+
+119
+00:06:56.980 --> 00:07:02.121
+The decision for system owners: authorize
+or remove every unknown asset the
+
+120
+00:07:02.121 --> 00:07:07.180
+reconciliation finds, and fix identity
+at the source, never in the database.
+
+121
+00:07:07.180 --> 00:07:09.520
+Next, control automation.
+
+122
+00:07:10.270 --> 00:07:15.370
+Control automation runs one loop everywhere:
+test the setting, spot the drift,
+
+123
+00:07:15.370 --> 00:07:19.275
+raise a task against the asset,
+fix it on the native platform,
+
+124
+00:07:19.275 --> 00:07:22.383
+and close it only when a
+re-test confirms the fix.
+
+125
+00:07:22.383 --> 00:07:27.048
+The cloud tools already test most
+settings; your job is to own the result,
+
+126
+00:07:27.048 --> 00:07:30.607
+and the coordination platform
+reads but never writes.
+
+127
+00:07:30.607 --> 00:07:33.069
+The platforms differ in ways that matter.
+
+128
+00:07:33.069 --> 00:07:36.543
+Some integrations aren't
+available in Azure Government,
+
+129
+00:07:36.543 --> 00:07:39.646
+one AWS compliance service
+is in maintenance mode,
+
+130
+00:07:39.646 --> 00:07:43.857
+and on your own VMware estate the
+evidence is entirely yours to build.
+
+131
+00:07:43.857 --> 00:07:48.087
+The decision for the CISO: keep
+the platform's identity read-only,
+
+132
+00:07:48.087 --> 00:07:50.358
+with every automated fix approved.
+
+133
+00:07:50.358 --> 00:07:52.210
+Next, who runs it.
+
+134
+00:07:52.960 --> 00:07:57.598
+Day two is run by the people who touch
+the estate most and decide the least.
+
+135
+00:07:57.598 --> 00:08:01.323
+So every decision has to sit with
+someone who isn't at the keyboard.
+
+136
+00:08:01.323 --> 00:08:06.059
+A desk that approves its own resets
+has rebuilt the standing administrator.
+
+137
+00:08:06.059 --> 00:08:09.248
+The book separates
+deciding, doing and owning.
+
+138
+00:08:09.248 --> 00:08:10.722
+The desk executes.
+
+139
+00:08:10.722 --> 00:08:15.597
+Its supervisor approves only routine
+credential work for ordinary users.
+
+140
+00:08:15.597 --> 00:08:20.304
+Platform owners own the runbooks;
+control owners own the approval gates;
+
+141
+00:08:20.304 --> 00:08:23.598
+the platform team builds
+both and decides neither.
+
+142
+00:08:23.598 --> 00:08:29.251
+And because runbooks decay, the decision
+for the CIO is to give every catalog item,
+
+143
+00:08:29.251 --> 00:08:33.048
+runbook and workflow one
+named owner and a review date.
+
+144
+00:08:33.048 --> 00:08:34.920
+Next, measuring it.
+
+145
+00:08:35.670 --> 00:08:40.157
+How well the desk is staffed shows up in
+its numbers before it shows up in an audit.
+
+146
+00:08:40.157 --> 00:08:42.182
+Each measure says something specific.
+
+147
+00:08:42.182 --> 00:08:45.120
+Tickets past their service
+level show capacity.
+
+148
+00:08:45.120 --> 00:08:48.795
+A rising escalation share
+shows gaps in the runbooks.
+
+149
+00:08:48.795 --> 00:08:52.470
+Tickets sent back for missing
+evidence show slipping discipline.
+
+150
+00:08:52.470 --> 00:08:55.214
+Privileged elevations
+with no matching ticket
+
+151
+00:08:55.214 --> 00:08:57.683
+mean the queue and the
+roles have come apart.
+
+152
+00:08:57.683 --> 00:09:00.620
+And work done outside the
+front door is a side door.
+
+153
+00:09:00.620 --> 00:09:05.607
+Each problem has a different fix: more
+people, a better runbook, or training.
+
+154
+00:09:05.607 --> 00:09:09.821
+The platform produces the numbers,
+so nobody reports on their own work.
+
+155
+00:09:09.821 --> 00:09:15.182
+The decision for the CIO: staff and source
+the desk from these measures, monthly.
+
+156
+00:09:15.182 --> 00:09:17.270
+Next, the change board.
+
+157
+00:09:18.020 --> 00:09:21.558
+The change advisory board
+authorizes production changes.
+
+158
+00:09:21.558 --> 00:09:25.072
+But two decisions aren't the
+board's: letting a class of change
+
+159
+00:09:25.072 --> 00:09:28.869
+run without a person, and whether
+a change needs reauthorization.
+
+160
+00:09:28.869 --> 00:09:33.170
+Those are risk decisions, and risk
+belongs to the authorizing official.
+
+161
+00:09:33.170 --> 00:09:36.120
+The quietest way separation
+is lost is here.
+
+162
+00:09:36.120 --> 00:09:38.489
+An approval rule is just configuration,
+
+163
+00:09:38.489 --> 00:09:41.720
+and the team that runs the
+platform can usually edit it.
+
+164
+00:09:41.720 --> 00:09:45.457
+So the decision for the board:
+any change to approval rules,
+
+165
+00:09:45.457 --> 00:09:49.195
+routing or integrations is a
+normal change it authorizes.
+
+166
+00:09:49.195 --> 00:09:51.657
+Nobody changes the gate they pass through.
+
+167
+00:09:51.657 --> 00:09:54.870
+Next, proving it to an
+authorizing official.
+
+168
+00:09:55.620 --> 00:09:58.008
+A closed ticket proves
+someone did some work.
+
+169
+00:09:58.008 --> 00:10:00.485
+An assessed control proves the work held,
+
+170
+00:10:00.485 --> 00:10:03.983
+and only that belongs in front
+of an authorizing official.
+
+171
+00:10:03.983 --> 00:10:08.820
+The program's rule: if a system can
+observe a control, a system proves it.
+
+172
+00:10:08.820 --> 00:10:12.942
+People sign only for what no system
+can see, like a policy approval
+
+173
+00:10:12.942 --> 00:10:16.758
+or a physical inspection, and
+the package says which is which.
+
+174
+00:10:16.758 --> 00:10:20.565
+Day-two work feeds a loop:
+map each control to its tests,
+
+175
+00:10:20.565 --> 00:10:25.583
+test on a schedule, and turn every gap
+into a tracked plan-of-action item.
+
+176
+00:10:25.583 --> 00:10:30.430
+The decision for the system owner: close
+those items only on a passing re-test,
+
+177
+00:10:30.430 --> 00:10:34.432
+and escalate a slipped milestone
+instead of quietly moving it.
+
+178
+00:10:34.432 --> 00:10:36.430
+Next, build or buy.
+
+179
+00:10:37.180 --> 00:10:41.955
+Before anyone builds a compliance application,
+know what your platform already does.
+
+180
+00:10:41.955 --> 00:10:45.907
+ServiceNow's own applications
+already schedule control tests,
+
+181
+00:10:45.907 --> 00:10:50.529
+walk the federal risk framework, show
+every plan-of-action item in one place,
+
+182
+00:10:50.529 --> 00:10:54.630
+and import and export the
+machine-readable formats assessors use.
+
+183
+00:10:54.630 --> 00:10:59.724
+Some are separate subscriptions, and
+some don't reach every government cloud;
+
+184
+00:10:59.724 --> 00:11:02.192
+these are October 2026 observations.
+
+185
+00:11:02.192 --> 00:11:05.620
+What they don't do out of the
+box is specific to this design:
+
+186
+00:11:05.620 --> 00:11:10.508
+tie every finding to the authoritative
+asset, refuse to close work without proof,
+
+187
+00:11:10.508 --> 00:11:13.717
+and keep the control list in
+step with the agency's map.
+
+188
+00:11:13.717 --> 00:11:15.386
+The decision for the CIO:
+
+189
+00:11:15.386 --> 00:11:19.392
+configure the native apps first,
+and build only those gaps.
+
+190
+00:11:19.392 --> 00:11:22.330
+Next, checking the automation itself.
+
+191
+00:11:23.080 --> 00:11:27.099
+The most dangerous failure in
+automated operations is a silent one:
+
+192
+00:11:27.099 --> 00:11:31.693
+a log source that stops sending, or a
+detection that quietly stopped matching.
+
+193
+00:11:31.693 --> 00:11:34.730
+It carries false confidence
+into an authorization.
+
+194
+00:11:34.730 --> 00:11:37.493
+So the runbook checks
+the automation itself.
+
+195
+00:11:37.493 --> 00:11:42.498
+Every day, a completeness check confirms
+each log source is still sending,
+
+196
+00:11:42.498 --> 00:11:45.206
+and a dark source is treated as an outage.
+
+197
+00:11:45.206 --> 00:11:49.556
+Every week, harmless test events
+confirm the detections still fire,
+
+198
+00:11:49.556 --> 00:11:52.430
+and every hand-closed
+task gets a second look.
+
+199
+00:11:52.430 --> 00:11:56.130
+And a check that stops running
+looks exactly like one that passes.
+
+200
+00:11:56.130 --> 00:12:01.292
+The decision for the ISSO: confirm
+each month that every check ran.
+
+201
+00:12:01.292 --> 00:12:03.750
+Now, the decisions together.
+
+202
+00:12:04.500 --> 00:12:08.487
+So, the decisions together, and
+none of them is a procurement.
+
+203
+00:12:08.487 --> 00:12:12.820
+The CIO closes waves only after
+the everyday tasks run cleanly,
+
+204
+00:12:12.820 --> 00:12:17.070
+funds the operating layer, holds
+the platform to its contract,
+
+205
+00:12:17.070 --> 00:12:21.737
+gives every artifact an owner, and
+staffs the desk from its measures.
+
+206
+00:12:21.737 --> 00:12:26.163
+The CISO owns the verification ladder
+and keeps automation read-only.
+
+207
+00:12:26.163 --> 00:12:29.181
+The identity governance
+officer reviews the desk's
+
+208
+00:12:29.181 --> 00:12:32.762
+privileges and records a verdict
+before any app is connected.
+
+209
+00:12:32.762 --> 00:12:38.437
+System owners decide unknown assets and
+close plan-of-action items only on re-test.
+
+210
+00:12:38.437 --> 00:12:40.937
+The change board guards
+the approval rules.
+
+211
+00:12:40.937 --> 00:12:43.526
+The next step is free: run one reset,
+
+212
+00:12:43.526 --> 00:12:47.687
+one joiner and one leaver,
+and see what the record shows.
+
+213
+00:12:47.687 --> 00:12:50.037
+Make the governed path the easy path.
+
+214
+00:12:50.037 --> 00:12:50.870
+Thank you.

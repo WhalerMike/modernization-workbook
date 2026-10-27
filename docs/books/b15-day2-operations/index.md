@@ -36,6 +36,8 @@ This book replaces the workbook's help-desk Entra operations guide, the day-two 
 
 **Technical deep dive (about 50 minutes live, 19 narrated)**: intake and triage, help desk authority in Entra ID, catalogs and the CMDB, and control automation, in modules on the [Presentations](../../presentations/index.md#technical-b15) page.
 
+**Executive briefing (about 30 minutes live, 13 narrated)**: for the CIO, service owner, help desk and operations leads and the CISO: the help desk as the risk point, one front door, executors who never decide, reconciled inventory, measuring day-two health and buying native compliance apps first, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b15) page.
+
 **Research (draft)**: the Microsoft automation reference, [Module 1: Graph and Azure Foundations](../../research/ms-automation-foundations.md) and [Module 2: Microsoft Entra ID through Microsoft Graph](../../research/ms-automation-entra.md), covers the endpoints, sign-in, permissions and request patterns behind this book's control automation, with tested read-only checks in Python and PowerShell; it's on the [Research](../../research/index.md) page.
 :::
 

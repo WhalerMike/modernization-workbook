@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.762
+Most agencies can show a dashboard
+with millions of events a day.
+
+2
+00:00:03.762 --> 00:00:05.788
+But that only measures what arrived.
+
+3
+00:00:05.788 --> 00:00:07.187
+It can't show what didn't.
+
+4
+00:00:07.187 --> 00:00:11.092
+Gaps stay silent in four ways: a
+source that was never connected,
+
+5
+00:00:11.092 --> 00:00:15.522
+a connector that looks healthy but
+delivers nothing, data stored where
+
+6
+00:00:15.522 --> 00:00:19.876
+no rule ever reads it, and logging
+that someone switched off on purpose.
+
+7
+00:00:19.876 --> 00:00:23.598
+The 2023 intrusion into
+government mailboxes was caught
+
+8
+00:00:23.598 --> 00:00:26.700
+by an agency that happened
+to have the right logs.
+
+9
+00:00:26.700 --> 00:00:29.950
+Others had nothing to look
+at, and nothing told them so.
+
+10
+00:00:29.950 --> 00:00:33.625
+So the takeaway: measure coverage
+against your asset inventory,
+
+11
+00:00:33.625 --> 00:00:35.150
+not against what showed up.
+
+12
+00:00:35.150 --> 00:00:38.640
+Next, the difference between
+storing and detecting.

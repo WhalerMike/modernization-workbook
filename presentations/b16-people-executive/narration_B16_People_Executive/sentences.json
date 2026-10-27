@@ -1,0 +1,737 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.588,
+   "This is the executive briefing for Book 16 of the Federal Modernization Workbook, People: Training and Education."
+  ],
+  [
+   8.35,
+   9.0,
+   "It's for the C I O, the chief human capital officer and HR leadership, the see-so, the workforce and training leads, and the program's sponsors."
+  ],
+  [
+   17.35,
+   9.287,
+   "Tools enforce the new rules, but people make the decisions those rules depend on, so the modernization isn't finished until people do their jobs the new way."
+  ],
+  [
+   26.637,
+   7.6,
+   "I'll take four questions: why people close the gap, what the curriculum teaches, who owns readiness, and how to run and measure it."
+  ],
+  [
+   34.237,
+   4.375,
+   "Each decision slide names the decision, its owner and when it's needed."
+  ],
+  [
+   38.612,
+   1.825,
+   "Let's start with the gap itself."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.95,
+   "A policy can require phishing-resistant sign-in for every user."
+  ],
+  [
+   4.0,
+   4.412,
+   "It can't decide what to do when a caller says they've lost their key and need in now."
+  ],
+  [
+   8.412,
+   1.913,
+   "That's the gap this book is about."
+  ],
+  [
+   10.325,
+   13.012,
+   "The new estate removes many risky settings, and what's left is a smaller set of human decisions that carry more weight: is this caller who they say they are, is this access justified, is this exception still needed."
+  ],
+  [
+   23.337,
+   3.538,
+   "Someone who doesn't know the new rule falls back on the old habit."
+  ],
+  [
+   26.875,
+   8.3,
+   "So the decision for the program office: put a training check, measured against a roster, into every gate, beside the technical criteria."
+  ],
+  [
+   35.175,
+   1.9,
+   "Next, whose work changes."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.438,
+   "Every book in this workbook moves a decision to someone."
+  ],
+  [
+   3.487,
+   3.15,
+   "The help desk now verifies before it resets."
+  ],
+  [
+   6.638,
+   3.5,
+   "Administrators activate their roles only when they need them."
+  ],
+  [
+   10.137,
+   5.325,
+   "Owners approve access, and HR keeps the data that creates accounts right at the source."
+  ],
+  [
+   15.463,
+   5.237,
+   "Jobs split into deciding and doing, so two people now need each procedure."
+  ],
+  [
+   20.7,
+   6.25,
+   "And decisions move to people outside IT, who need short training on the one decision that's now theirs."
+  ],
+  [
+   26.95,
+   11.65,
+   "So the first workforce decision belongs to the chief human capital officer's office: draft the roster of everyone whose work changes, from HR and identity records, before the first gate."
+  ],
+  [
+   38.6,
+   2.038,
+   "Next, why timing matters."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.562,
+   "A program that trains last pays twice."
+  ],
+  [
+   2.612,
+   11.562,
+   "The first payment comes at cutover: users who weren't taught the new sign-in call the help desk, and a desk that wasn't taught the new procedure either turns people away or resets accounts without the checks."
+  ],
+  [
+   14.175,
+   2.913,
+   "Workarounds granted under pressure tend to stay."
+  ],
+  [
+   17.087,
+   6.662,
+   "The second payment comes later, finding those workarounds and unlearning the habits, which is slower than learning them."
+  ],
+  [
+   23.75,
+   3.95,
+   "And the rules already say train before the change, not after."
+  ],
+  [
+   27.7,
+   7.125,
+   "So the decision for the sponsor and C I O: fund the learning program as part of the modernization, before the first gate."
+  ],
+  [
+   34.825,
+   3.188,
+   "Next, what federal workforce rules actually require."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.875,
+   "Federal workforce rules are less about courses than people expect."
+  ],
+  [
+   3.925,
+   8.15,
+   "FISMA asks for trained personnel sufficient to comply, a staffing statement, and enough for the old estate may not be enough for the new one."
+  ],
+  [
+   12.075,
+   6.3,
+   "A 2015 law requires every agency to identify and code its cyber positions."
+  ],
+  [
+   18.375,
+   7.938,
+   "OPM's rule sets awareness training before access and at least once a year, plus training whenever systems change significantly."
+  ],
+  [
+   26.312,
+   3.513,
+   "And none of the civilian rules requires a particular certification."
+  ],
+  [
+   29.825,
+   12.012,
+   "So the decision follows Circular A-130: the chief human capital officer and the C I O set competency requirements together, and feed the program's new roles into the workforce plan."
+  ],
+  [
+   41.837,
+   1.95,
+   "Next, the position codes."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.513,
+   "Position codes matter because they're the cleanest way to know who needs role training."
+  ],
+  [
+   4.562,
+   1.7,
+   "But they've been unreliable."
+  ],
+  [
+   6.263,
+   12.688,
+   "In 2019, GAO found that 22 of 24 agencies had given about one in five of their IT management positions a non-IT code, and over half of sampled codes didn't match the duties."
+  ],
+  [
+   18.95,
+   11.475,
+   "The program uses the code as one input to the roster, beside role assignments and the system inventory, and treats any disagreement as a finding for HR and the C I O's office."
+  ],
+  [
+   30.425,
+   10.637,
+   "So the decision, as program design: HR classification and the C I O's office review the affected position descriptions and their codes as each workstream reaches its gate."
+  ],
+  [
+   41.062,
+   2.688,
+   "Next, what the curriculum actually teaches."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   10.975,
+   "Before anyone learns a tool, the program teaches a way of thinking: six ideas, starting with governance as something that runs all the time, and identity as the starting point."
+  ],
+  [
+   11.025,
+   3.888,
+   "Someone who holds them sees why the help desk now asks for proof."
+  ],
+  [
+   14.912,
+   3.237,
+   "Someone who doesn't feels every new rule as friction."
+  ],
+  [
+   18.15,
+   12.775,
+   "Then training teaches the job, in four tracks: compliance for the people who read evidence, implementation for the people who build, vendor training and labs for product skills, and short modules for every user."
+  ],
+  [
+   30.925,
+   8.088,
+   "The decision for the chief human capital officer's office: approve a training plan that names an owner for every track, by the first gate."
+  ],
+  [
+   39.013,
+   1.775,
+   "Next, the engineers."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   8.4,
+   "Engineers get a track built on one rule: a build isn't done when it works, it's done when its evidence lands where an assessor can read it."
+  ],
+  [
+   8.45,
+   1.438,
+   "Three habits come with it."
+  ],
+  [
+   9.887,
+   5.662,
+   "Watch before you enforce, so a policy runs in report-only before it can lock anyone out."
+  ],
+  [
+   15.55,
+   3.788,
+   "Keep a way back in, with emergency accounts created first."
+  ],
+  [
+   19.337,
+   2.688,
+   "And export the record, never a screenshot."
+  ],
+  [
+   22.025,
+   4.037,
+   "Each build is paired with the compliance module that reads its evidence."
+  ],
+  [
+   26.062,
+   7.875,
+   "The decision for the steward, who owns the foundation gate: no gate passes until the engineers for the next phase have passed their labs."
+  ],
+  [
+   33.938,
+   3.0,
+   "Next, how the program knows training worked."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.5,
+   "How do you know training worked?"
+  ],
+  [
+   1.55,
+   1.325,
+   "Not from attendance."
+  ],
+  [
+   2.875,
+   2.438,
+   "The program certifies what people can show."
+  ],
+  [
+   5.312,
+   7.487,
+   "Each track ends in a capstone, scored from missing up to assessor-ready, and the top level means a real, dated result."
+  ],
+  [
+   12.8,
+   6.912,
+   "Two program credentials come out of it, one for practitioners and one for assessors, and both expire after a year."
+  ],
+  [
+   19.712,
+   7.7,
+   "Industry certifications still count as evidence of general skill, but they can't stand in for the agency's own procedures."
+  ],
+  [
+   27.413,
+   9.875,
+   "The decision for the see-so is a design option from the book: once the training record is reliable, decide whether a current credential becomes a condition for privileged roles."
+  ],
+  [
+   37.288,
+   2.013,
+   "Next, where people practice."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.8,
+   "People need somewhere safe to practice, and that's harder to arrange than it sounds."
+  ],
+  [
+   4.85,
+   7.375,
+   "Many staff won't qualify for a developer sandbox on their own, and those sandboxes don't exist in the government clouds at all."
+  ],
+  [
+   12.225,
+   13.775,
+   "So the program's approach has two steps: practice in a commercial sandbox, then rehearse once in the agency's own non-production government tenant before each gate, where a feature difference shows up as a finding instead of a surprise."
+  ],
+  [
+   26.0,
+   4.787,
+   "Every lab follows the same rules: never production, never real data."
+  ],
+  [
+   30.788,
+   8.062,
+   "The decision for the program office: arrange lab tenants centrally, including that government rehearsal tenant, before the first labs."
+  ],
+  [
+   38.85,
+   2.212,
+   "Next, the largest group of all."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.4,
+   "Every user will sign in differently by the end of the program."
+  ],
+  [
+   3.45,
+   9.375,
+   "They'll learn how either from the agency, before the change, or from an attacker, after it, because someone who's never seen the new prompt can't spot a fake one."
+  ],
+  [
+   12.825,
+   14.725,
+   "So end users get six short modules, each ending in something they do: sign in with a phishing-resistant method, recover an account, enroll a device, find their files, report something suspicious, and know what the help desk will never ask."
+  ],
+  [
+   27.55,
+   9.375,
+   "The decision belongs to the see-so: what users are taught about sign-in, reporting and the help desk, because those words are the policy users actually see."
+  ],
+  [
+   36.925,
+   1.688,
+   "Next, the help desk."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.475,
+   "The help desk is where the new estate is most exposed."
+  ],
+  [
+   3.525,
+   6.175,
+   "Attackers have phoned employees pretending to be IT, and phoned the help desk pretending to be employees."
+  ],
+  [
+   9.7,
+   11.662,
+   "So the desk is trained first, before anyone else migrates, and no technician gets the power to reset a credential until their training and an observed verification scenario are on record."
+  ],
+  [
+   21.363,
+   8.963,
+   "Users learn the desk's rules too: it will never ask for your password or a code, and it'll always let you hang up and call back on the published number."
+  ],
+  [
+   30.325,
+   5.888,
+   "The decision sits with the service desk manager: whether the desk is trained and staffed for each wave."
+  ],
+  [
+   36.212,
+   2.0,
+   "Next, how waves are paced."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.163,
+   "Waves need a rhythm."
+  ],
+  [
+   1.212,
+   6.938,
+   "Users hear about the change about two months ahead, get their training a month out, and get reminders in the last two weeks."
+  ],
+  [
+   8.15,
+   11.713,
+   "Then, before anything is enforced, there's a readiness check on three numbers: how many users registered a new sign-in method, how many finished training, and how busy the help desk is."
+  ],
+  [
+   19.863,
+   3.062,
+   "When tickets climb, the guidance is to slow down."
+  ],
+  [
+   22.925,
+   5.888,
+   "The wave owner, identity engineering, makes the go or no-go, with training now part of it."
+  ],
+  [
+   28.812,
+   5.25,
+   "And the rule is simple: a wave that isn't ready moves its date, not its threshold."
+  ],
+  [
+   34.062,
+   1.925,
+   "Next, who owns all of this."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.8,
+   "Ask who owns training and usually three offices answer: security, HR and the C I O's office."
+  ],
+  [
+   6.85,
+   5.263,
+   "And nobody owns the thing that matters: whether people can do the job on the day it changes."
+  ],
+  [
+   12.113,
+   2.538,
+   "The book gives each decision one owner."
+  ],
+  [
+   14.65,
+   3.8,
+   "The see-so owns the training policy and what users are taught."
+  ],
+  [
+   18.45,
+   6.775,
+   "The chief human capital officer's office owns the workforce strategy, the position codes and the roster's facts."
+  ],
+  [
+   25.225,
+   13.312,
+   "The decision for the sponsor and C I O: name one training lead, and bring in the human capital office, labor relations and the Section 508 program manager at the first gate, not after the first complaint."
+  ],
+  [
+   38.538,
+   2.163,
+   "Next, who decides readiness."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.112,
+   "Readiness numbers are easy to improve without improving readiness."
+  ],
+  [
+   4.162,
+   2.125,
+   "So the book keeps the roles apart."
+  ],
+  [
+   6.287,
+   7.037,
+   "The training lead reports the numbers, the system's security officer reviews them, and the gate or wave owner decides."
+  ],
+  [
+   13.325,
+   5.6,
+   "Managers can't waive required training, and phishing test results are for learning, not discipline."
+  ],
+  [
+   18.925,
+   6.862,
+   "Contractors can build, deliver and report all of the training, but the decisions stay with government officials."
+  ],
+  [
+   25.788,
+   7.7,
+   "And one decision sits with the authorizing official alone: whether to accept the risk of running a system before its people are trained."
+  ],
+  [
+   33.487,
+   2.325,
+   "That's a risk acceptance like any other."
+  ],
+  [
+   35.812,
+   2.987,
+   "Next, how the curriculum runs on the roadmap."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.162,
+   "Training has to run on the roadmap's calendar, not the training office's."
+  ],
+  [
+   4.213,
+   12.025,
+   "Each phase has people who must be ready before its gate: leaders oriented before planning, platform teams and the help desk trained before the foundation is built, and every module tested on the pilot."
+  ],
+  [
+   16.238,
+   10.213,
+   "And there's one step most programs miss: when Active Directory retires, every course and runbook that teaches it retires too, or people keep learning a system that's gone."
+  ],
+  [
+   26.45,
+   10.325,
+   "The decision for the program office: no gate gets scheduled without its training dates, and no wave without its training window, so when a wave slips, its training slips with it."
+  ],
+  [
+   36.775,
+   1.95,
+   "Next, keeping the knowledge."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   3.75,
+   "Training is only half the job if the knowledge walks out the door."
+  ],
+  [
+   3.8,
+   2.375,
+   "The book builds in a few safeguards."
+  ],
+  [
+   6.175,
+   7.65,
+   "Each module has an owner from the team that runs the platform, and at least two qualified instructors, so no one person holds it."
+  ],
+  [
+   13.825,
+   7.013,
+   "Administrators of retiring systems are trained into new roles, or reassigned, before the old platform goes."
+  ],
+  [
+   20.837,
+   8.375,
+   "And contractors are on the same footing as staff: their training goes into the agency's own learning system, even when their employer trained them."
+  ],
+  [
+   29.212,
+   8.438,
+   "So the decision for contracting officer's representatives: make sure every contractor's training is on the agency's record before they get access."
+  ],
+  [
+   37.65,
+   2.413,
+   "Next, how readiness is measured."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   3.038,
+   "Finishing a course isn't the same as being ready."
+  ],
+  [
+   3.087,
+   2.337,
+   "So the program measures three things."
+  ],
+  [
+   5.425,
+   1.762,
+   "Completion, for everyone."
+  ],
+  [
+   7.188,
+   7.025,
+   "Competence, for every role where a mistake is a security event, like the help desk and privileged administrators."
+  ],
+  [
+   14.213,
+   12.213,
+   "And behavior, from signals outside the learning system: whether users actually registered a new sign-in method, whether help desk tickets settle back down after a wave, and what people say a few weeks later."
+  ],
+  [
+   26.425,
+   3.8,
+   "The pilot sets the baselines, and each later wave adjusts them."
+  ],
+  [
+   30.225,
+   9.925,
+   "The decision for the system's security officer, against the see-so's threshold: anyone overdue in a privileged role is a finding, whatever the percentage says."
+  ],
+  [
+   40.15,
+   2.125,
+   "Next, what leadership should see."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   4.787,
+   "Leadership needs a short, regular view, not a dashboard nobody acts on."
+  ],
+  [
+   4.838,
+   16.05,
+   "At every steering committee meeting, one page answers five questions: is the next gate's workforce ready, are the next two waves ready, what happened in the last wave, where are the gaps in privileged roles, given as a count rather than a percentage, and what does the committee need to decide."
+  ],
+  [
+   20.887,
+   8.05,
+   "Each quarter there's a fuller report, and once a year the evaluation OPM requires, of what the training cost and what it changed."
+  ],
+  [
+   28.938,
+   7.688,
+   "The decision: the steering committee reviews readiness at every meeting, and the head of the agency owns the annual evaluation."
+  ],
+  [
+   36.625,
+   2.587,
+   "Finally, the decisions in one place."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   2.288,
+   "So, the decisions in one place."
+  ],
+  [
+   2.337,
+   4.537,
+   "The sponsor and C I O fund the learning program and name a training lead."
+  ],
+  [
+   6.875,
+   4.463,
+   "The program office puts training into every gate and onto the roadmap."
+  ],
+  [
+   11.338,
+   5.787,
+   "The chief human capital officer's office owns the roster, the training plan and the position codes."
+  ],
+  [
+   17.125,
+   2.35,
+   "The see-so decides what people are taught."
+  ],
+  [
+   19.475,
+   7.975,
+   "The help desk manager and the wave owner decide when people are actually ready, and the authorizing official alone accepts the risk if they aren't."
+  ],
+  [
+   27.45,
+   1.7,
+   "None of this is a procurement."
+  ],
+  [
+   29.15,
+   4.688,
+   "The first step is simple: draft the roster of everyone whose work changes."
+  ],
+  [
+   33.837,
+   2.263,
+   "Tools enforce; people decide."
+  ],
+  [
+   36.1,
+   4.138,
+   "Book 16 has the detail, with every claim footnoted."
+  ],
+  [
+   40.237,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.250
+An attestation tells an
+assessor who's accountable.
+
+2
+00:00:03.250 --> 00:00:05.737
+Evidence lets them find
+out for themselves.
+
+3
+00:00:05.737 --> 00:00:07.953
+The program's rule is determinism:
+
+4
+00:00:07.953 --> 00:00:12.700
+the same record and the same inputs
+produce the same evidence, every time.
+
+5
+00:00:12.700 --> 00:00:16.088
+So verification becomes a
+re-run, not an interview.
+
+6
+00:00:16.088 --> 00:00:18.299
+Federal guidance goes most of the way.
+
+7
+00:00:18.299 --> 00:00:23.893
+NIST treats an automated comparison of
+intended and actual state as assessment
+
+8
+00:00:23.893 --> 00:00:27.232
+results, and FedRAMP's
+2026 rules tell assessors
+
+9
+00:00:27.232 --> 00:00:30.488
+not to simply review
+documents or screenshots.
+
+10
+00:00:30.488 --> 00:00:34.006
+Some controls stay attestations,
+like a training record
+
+11
+00:00:34.006 --> 00:00:37.300
+or a contract clause, and
+the package should say which.
+
+12
+00:00:37.300 --> 00:00:42.179
+The decision for the authorizing
+official: give assessors their own access,
+
+13
+00:00:42.179 --> 00:00:45.200
+so the assessor, not the
+operator, does the re-run.
+
+14
+00:00:45.200 --> 00:00:46.990
+Next, the drift engine.

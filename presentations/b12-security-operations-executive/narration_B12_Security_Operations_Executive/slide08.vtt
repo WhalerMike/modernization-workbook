@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.500
+The SIEM decision is less about which
+product and more about how it behaves.
+
+2
+00:00:04.500 --> 00:00:07.854
+A log store on its own is a
+warehouse; scheduled rules,
+
+3
+00:00:07.854 --> 00:00:11.287
+incidents and automation
+make it a detection engine.
+
+4
+00:00:11.287 --> 00:00:13.237
+The program's split is design.
+
+5
+00:00:13.237 --> 00:00:17.701
+Your endpoint and identity protection
+tools detect what their own sensors see.
+
+6
+00:00:17.701 --> 00:00:21.104
+The SIEM covers everything
+they can't, like DNS,
+
+7
+00:00:21.104 --> 00:00:24.600
+network services,
+databases and other clouds.
+
+8
+00:00:24.600 --> 00:00:28.103
+And you only stream raw data
+where a rule actually needs it,
+
+9
+00:00:28.103 --> 00:00:30.000
+because streaming costs money.
+
+10
+00:00:30.000 --> 00:00:33.987
+Check each feature in your own government
+cloud before you design on it.
+
+11
+00:00:33.987 --> 00:00:38.000
+Security engineering sets that
+division, with one incident queue.
+
+12
+00:00:38.000 --> 00:00:40.010
+Next, how long to keep it all.

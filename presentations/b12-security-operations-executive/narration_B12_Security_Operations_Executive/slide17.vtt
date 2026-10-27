@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.787
+Continuous monitoring isn't a
+claim that monitoring happens.
+
+2
+00:00:03.787 --> 00:00:06.750
+It's evidence an assessor
+can check, and run again.
+
+3
+00:00:06.750 --> 00:00:11.100
+The practical test is simple: show me
+an alert from the last thirty days,
+
+4
+00:00:11.100 --> 00:00:14.025
+the incident it opened
+and what you did about it.
+
+5
+00:00:14.025 --> 00:00:17.908
+So every incident keeps four
+parts: the alert, the ticket,
+
+6
+00:00:17.908 --> 00:00:21.200
+the response notes, and
+a closure with its proof.
+
+7
+00:00:21.200 --> 00:00:23.588
+Closing a finding takes three steps.
+
+8
+00:00:23.588 --> 00:00:25.399
+The platform owner fixes it.
+
+9
+00:00:25.399 --> 00:00:27.712
+The next scan or check shows it's gone.
+
+10
+00:00:27.712 --> 00:00:29.387
+And the record links the two.
+
+11
+00:00:29.387 --> 00:00:34.775
+The decision: a finding closes only on
+that re-test, never on a ticket status.
+
+12
+00:00:34.775 --> 00:00:38.020
+Next, how you know the
+monitoring itself is working.

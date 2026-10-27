@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+The architecture is simple to draw.
+
+2
+00:00:02.025 --> 00:00:06.575
+Branch edge, then an agency resolver,
+then the policy plane, then each
+
+3
+00:00:06.575 --> 00:00:11.775
+cloud's private zones, with internet
+queries leaving through Protective DNS.
+
+4
+00:00:11.775 --> 00:00:17.064
+The risk sits in five settings: where the
+edge points, which resolver goes first,
+
+5
+00:00:17.064 --> 00:00:20.807
+where cloud forwarding rules
+live, the AD DNS inventory,
+
+6
+00:00:20.807 --> 00:00:24.550
+and whether revocation names
+resolve from everywhere.
+
+7
+00:00:24.550 --> 00:00:25.822
+Each fails silently,
+
+8
+00:00:25.822 --> 00:00:29.638
+so each needs a check in the live
+configuration, not the design.
+
+9
+00:00:29.638 --> 00:00:31.317
+The book's ask is specific:
+
+10
+00:00:31.317 --> 00:00:36.675
+the DNS and DDI team settles all five within
+ninety days of authorizing the plane,
+
+11
+00:00:36.675 --> 00:00:40.674
+and reports the remaining risk
+to the authorizing official.
+
+12
+00:00:40.674 --> 00:00:42.740
+Next, choosing the platform.

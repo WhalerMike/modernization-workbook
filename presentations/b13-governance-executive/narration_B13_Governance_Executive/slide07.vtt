@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.988
+Retiring Active Directory takes most of
+a year, and the estate keeps changing.
+
+2
+00:00:04.988 --> 00:00:08.565
+Every new domain-joined
+server, legacy application,
+
+3
+00:00:08.565 --> 00:00:13.225
+service account or Group Policy
+setting is one more thing to unwind.
+
+4
+00:00:13.225 --> 00:00:16.974
+So from gate G0, every add and
+change answers one question:
+
+5
+00:00:16.974 --> 00:00:20.563
+does this create a new
+dependency on Active Directory?
+
+6
+00:00:20.563 --> 00:00:23.575
+Microsoft's own guidance
+puts that step first.
+
+7
+00:00:23.575 --> 00:00:28.187
+A yes isn't automatically a no; some
+workloads have no modern path yet.
+
+8
+00:00:28.187 --> 00:00:31.614
+But a yes becomes an exception,
+with an owner, a reason,
+
+9
+00:00:31.614 --> 00:00:35.438
+an end date and the Entra
+alternative that was considered.
+
+10
+00:00:35.438 --> 00:00:38.561
+The decision belongs to
+the authorizing official,
+
+11
+00:00:38.561 --> 00:00:41.313
+because keeping AD open
+is a risk acceptance.
+
+12
+00:00:41.313 --> 00:00:43.970
+Next, what closing a change requires.

@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.175
+Two facts shape where this runs.
+
+2
+00:00:02.175 --> 00:00:07.146
+Entra authentication for Arc-connected SQL
+Server isn't offered in the US Government
+
+3
+00:00:07.146 --> 00:00:11.836
+Virginia region today, so the design uses
+a commercial Azure subscription in the
+
+4
+00:00:11.836 --> 00:00:14.217
+same directory as the government tenant,
+
+5
+00:00:14.217 --> 00:00:16.737
+and the hosts need a path
+to the public cloud.
+
+6
+00:00:16.737 --> 00:00:20.893
+The services it leans on are each
+listed in scope for FedRAMP High,
+
+7
+00:00:20.893 --> 00:00:23.201
+but a listing isn't an authorization.
+
+8
+00:00:23.201 --> 00:00:28.137
+On cost, Entra authentication itself
+works under a plain SQL Server license;
+
+9
+00:00:28.137 --> 00:00:33.700
+the extras are Conditional Access, privileged
+access management and Defender plans.
+
+10
+00:00:33.700 --> 00:00:38.179
+So the authorizing official decides:
+accept these leveraged services,
+
+11
+00:00:38.179 --> 00:00:42.050
+after reviewing each package,
+before production onboarding.
+
+12
+00:00:42.050 --> 00:00:43.660
+Now, who decides what.

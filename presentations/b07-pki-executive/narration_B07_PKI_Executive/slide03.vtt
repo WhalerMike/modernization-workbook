@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+There are two clocks here.
+
+2
+00:00:01.450 --> 00:00:04.950
+Directory work fails at cutover,
+where someone is watching.
+
+3
+00:00:04.950 --> 00:00:09.675
+Certificate work fails at expiry,
+months later and far from its cause.
+
+4
+00:00:09.675 --> 00:00:12.485
+So a program that measures
+progress by cutover
+
+5
+00:00:12.485 --> 00:00:15.150
+dates reports success
+right up to the outage.
+
+6
+00:00:15.150 --> 00:00:18.250
+And the cloud options only
+cover part of the estate.
+
+7
+00:00:18.250 --> 00:00:23.266
+Cloud PKI issues only to Intune-managed
+devices, which don't include servers,
+
+8
+00:00:23.266 --> 00:00:27.725
+and domain controllers need
+certificates for as long as they exist.
+
+9
+00:00:27.725 --> 00:00:32.736
+The decision for the sponsor and the CIO:
+run the move off the old certificate
+
+10
+00:00:32.736 --> 00:00:37.588
+authority as its own program, with its
+own owner, sequenced by expiry dates.
+
+11
+00:00:37.588 --> 00:00:39.890
+And those dates are
+getting closer together.
