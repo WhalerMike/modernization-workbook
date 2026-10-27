@@ -54,6 +54,8 @@ Verified: 2026-10-20
 | 44 | Source: "OIDC primary; WS-Fed legacy" federation row | At a glance | restated (SAML 2.0 and OIDC to the tenant; WS-Fed via AD FS on the AD side) | — |
 | 45 | Source: crypto "MD4 / RC4 / SHA-1 with AES bolted on later"; "FIPS-validated HSM-backed keys" | Shift paragraph | removed (not verified as stated; replaced by sourced crypto table) | — |
 | 46 | Diagnostic settings stream Entra logs to SIEM | At a glance | verified (checklist item "Diagnostic settings are configured for all Microsoft Entra logs") | learn.microsoft.com/entra/fundamentals/configure-security |
+| 47 | An API calling another API as the user uses OAuth 2.0 OBO, with delegated scopes only, never roles | Protocol mapping | verified | c03-obo |
+| 48 | Entra ID has no counterpart to unconstrained Kerberos delegation; findings are fixed in AD | Protocol mapping | restated-as-design (follows from the OBO model; Entra issues per-audience tokens) | c03-obo |
 
 ## Carry-forward ledger
 

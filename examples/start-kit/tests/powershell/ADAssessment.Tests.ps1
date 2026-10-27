@@ -56,6 +56,10 @@ Describe 'The one-page summary' {
         @{ Item = 'CertificateTemplates'; Expected = 5 }
         @{ Item = 'PublishedTemplates'; Expected = 3 }
         @{ Item = 'SQLInstances'; Expected = 6 }
+        @{ Item = 'UnconstrainedDelegationHosts'; Expected = 1 }
+        @{ Item = 'UnconstrainedDelegationAccounts'; Expected = 1 }
+        @{ Item = 'PrivilegedDelegable'; Expected = 1 }
+        @{ Item = 'SQLUnconstrainedDelegation'; Expected = 2 }
         @{ Item = 'SQLHosts'; Expected = 5 }
     ) {
         $summary.Counts[$Item] | Should -Be $Expected
@@ -79,6 +83,8 @@ Describe 'The one-page summary' {
         $s = Get-FMPStartKitSummary -RunPath $empty
         $s.Counts.Users | Should -Be 'not collected'
         $s.Counts.SQLInstances | Should -Be 'not collected'
+        $s.Counts.UnconstrainedDelegationHosts | Should -Be 'not collected'
+        $s.Counts.SQLUnconstrainedDelegation | Should -Be 'not collected'
     }
 }
 
@@ -89,6 +95,30 @@ Describe 'Collector results' {
         ($d | Where-Object Name -eq 'SQL02').DelegationType | Should -Be 'Constrained (protocol transition)'
         ($d | Where-Object Name -eq 'APP01').DelegationType | Should -Be 'Resource-based (inbound)'
         ($d | Where-Object Name -eq 'DC01').IsDomainController | Should -Be 'True'
+    }
+    It 'classifies delegation on user and service accounts, and marks SQL Server service accounts' {
+        $d = @(Import-Csv (Join-Path $root 'Objects\UserDelegationReport.csv'))
+        $d.SamAccountName | Sort-Object | Should -Be @('svc-sql01', 'svc-web')
+        $sql = $d | Where-Object SamAccountName -eq 'svc-sql01'
+        $sql.DelegationType | Should -Be 'Unconstrained'
+        $sql.IsSqlServiceAccount | Should -Be 'True'
+        ($d | Where-Object SamAccountName -eq 'svc-web').DelegationType | Should -Be 'Constrained (protocol transition)'
+        ($d | Where-Object SamAccountName -eq 'svc-web').DelegationTargets | Should -Be 'MSSQLSvc/sql01.contoso.example:1433'
+    }
+    It 'lists privileged users whose credentials can be delegated, and not the sensitive ones' {
+        @(Import-Csv (Join-Path $root 'Objects\PrivilegedDelegable.csv')).SamAccountName | Should -Be @('Administrator')
+        @(Import-Csv (Join-Path $child 'Objects\PrivilegedDelegable.csv')) | Should -HaveCount 0
+    }
+    It 'flags SQL Server instances whose host or service account has unconstrained delegation' {
+        $u = @(Import-Csv (Join-Path $run 'SQL\SqlUnconstrainedDelegation.csv'))
+        ($u | Where-Object ServerName -eq 'old01.contoso.example').UnconstrainedOn | Should -Be 'host'
+        ($u | Where-Object ServerName -eq 'sql01.contoso.example').UnconstrainedOn | Should -Be 'service account'
+        $u | Should -HaveCount 2
+        $md = Get-Content -Raw (Join-Path $run 'Summary\StartKitSummary.md')
+        $md | Should -Match '## Unconstrained delegation \(domain controllers excluded\)'
+        $md | Should -Match '\| OLD01 \| Computer \| yes \|'
+        $md | Should -Match '\| svc-sql01 \| Account \| yes \|'
+        $md | Should -Not -Match '\| DC01 \|'
     }
     It 'finds stale computers by both logon and password age' {
         @(Import-Csv (Join-Path $root 'Objects\StaleComputers.csv')).Name | Should -Be @('OLD01', 'WS002')

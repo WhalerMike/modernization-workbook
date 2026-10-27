@@ -956,6 +956,7 @@ function Get-FMPUserInventory {
         Users, privileged membership, AdminSDHolder-protected and orphaned accounts, and service accounts.
     .OUTPUTS
         UserInventory.json, PrivilegedUsers.csv, AdminCountReport.csv, ServiceAccounts.csv,
+        UserDelegationReport.csv, PrivilegedDelegable.csv,
         ServiceAccounts\MSAInventory.json, ServiceAccounts\gMSAInventory.json
     #>
     [CmdletBinding()]
@@ -972,9 +973,12 @@ function Get-FMPUserInventory {
 
     $users = @(Get-ADUser -Filter * -Server $Domain -Properties UserPrincipalName, DisplayName, Enabled,
         LastLogonDate, PasswordLastSet, PasswordNeverExpires, PasswordExpired, LockedOut, AccountExpirationDate,
-        MemberOf, AdminCount, TrustedForDelegation, ServicePrincipalName, Created, Modified, Description, Department, Title |
+        MemberOf, AdminCount, TrustedForDelegation, TrustedToAuthForDelegation, AccountNotDelegated, 'msDS-AllowedToDelegateTo',
+        ServicePrincipalName, Created, Modified, Description, Department, Title |
         Select-Object SamAccountName, UserPrincipalName, DisplayName, Enabled, LastLogonDate, PasswordLastSet,
             PasswordNeverExpires, PasswordExpired, LockedOut, AccountExpirationDate, AdminCount, TrustedForDelegation,
+            TrustedToAuthForDelegation, AccountNotDelegated,
+            @{ N = 'AllowedToDelegateTo'; E = { @($_.'msDS-AllowedToDelegateTo' | Where-Object { $_ }) } },
             Created, Modified, DistinguishedName, Description, Department, Title,
             @{ N = 'SID';           E = { "$($_.SID)" } },
             @{ N = 'IsStale';       E = { (-not $_.LastLogonDate) -or [datetime]$_.LastLogonDate -lt $staleDate } },
@@ -1005,6 +1009,36 @@ function Get-FMPUserInventory {
         }
     }
     Write-FMPCsv -InputObject @($privRows) -Path (Join-Path $objPath 'PrivilegedUsers.csv')
+
+    # Kerberos delegation on user (service) accounts. Unconstrained delegation on an account
+    # lets any service running as it impersonate every user who connects, to any service.
+    Write-FMPCsv -InputObject @($users | Where-Object { $_.TrustedForDelegation -or @($_.AllowedToDelegateTo).Count -gt 0 } |
+        Select-Object SamAccountName, Enabled,
+            @{ N = 'DelegationType'; E = {
+                if ($_.TrustedForDelegation) { 'Unconstrained' }
+                elseif ($_.TrustedToAuthForDelegation) { 'Constrained (protocol transition)' }
+                else { 'Constrained (Kerberos only)' } } },
+            @{ N = 'DelegationTargets';   E = { @($_.AllowedToDelegateTo) -join '; ' } },
+            @{ N = 'IsSqlServiceAccount'; E = { @($_.SPNs | Where-Object { "$_" -like 'MSSQLSvc/*' }).Count -gt 0 } },
+            @{ N = 'SPNs';                E = { $_.SPNs -join '; ' } },
+            DistinguishedName) -Path (Join-Path $objPath 'UserDelegationReport.csv')
+
+    # Privileged users whose credentials can still be delegated: neither "Account is sensitive
+    # and cannot be delegated" nor a member of Protected Users.
+    $protected = @{}
+    $protectedRead = $true
+    try {
+        Get-ADGroupMember -Identity 'Protected Users' -Recursive -Server $Domain -ErrorAction Stop |
+            ForEach-Object { $protected["$($_.SID)"] = $true }
+    } catch {
+        $protectedRead = $false
+        Write-Warning "Unable to enumerate Protected Users: $($_.Exception.Message)"
+    }
+    Write-FMPCsv -InputObject @($users | Where-Object { $privileged.ContainsKey($_.SID) -and $_.Enabled -and -not $_.AccountNotDelegated -and -not $protected.ContainsKey($_.SID) } |
+        Select-Object SamAccountName, Enabled, AdminCount,
+            @{ N = 'AccountNotDelegated'; E = { [bool]$_.AccountNotDelegated } },
+            @{ N = 'InProtectedUsers';    E = { if ($protectedRead) { $false } else { 'not collected' } } },
+            DistinguishedName) -Path (Join-Path $objPath 'PrivilegedDelegable.csv')
 
     # adminCount=1 but no longer in any protected group (recursively) = orphaned.
     Write-FMPCsv -InputObject @($users | Where-Object { $_.AdminCount -eq 1 } | Select-Object SamAccountName, Enabled, LastLogonDate,
@@ -1596,6 +1630,34 @@ function Get-FMPStartKitSummary {
     $sql = Read-FMPJsonFile (Join-Path (Join-Path $root 'SQL') 'SqlEstateSummary.json')
     $nps = Read-FMPJsonFile (Join-Path (Join-Path $root 'NPS') 'NpsSummary.json')
 
+    # Unconstrained delegation outside the domain controllers, which are expected to have it.
+    $users = @($domainDirs | ForEach-Object { Read-FMPJsonFile (Join-Path (Join-Path $_.FullName 'Objects') 'UserInventory.json') } | ForEach-Object { $_ })
+    $haveUsers = @($domainDirs | Where-Object { Test-Path -LiteralPath (Join-Path (Join-Path $_.FullName 'Objects') 'UserInventory.json') }).Count -gt 0
+    $ucHosts = @($computers | Where-Object { $_.TrustedForDelegation -and -not $_.IsDomainController })
+    $ucAccounts = @($users | Where-Object TrustedForDelegation)
+    $sqlCsv = Join-Path (Join-Path $root 'SQL') 'SqlEstate.csv'
+    $sqlRows = if (Test-Path -LiteralPath $sqlCsv) { @(Read-FMPCsvFile $sqlCsv) } else { $null }
+    $sqlUc = @()
+    if ($null -ne $sqlRows) {
+        $ucHostNames = @{}
+        foreach ($c in $ucHosts) { foreach ($n in @($c.Name, $c.DNSHostName)) { if ($n) { $ucHostNames["$n".ToLowerInvariant()] = $true } } }
+        $ucAccountNames = @{}
+        foreach ($u in $ucAccounts) { $ucAccountNames["$($u.SamAccountName)".ToLowerInvariant()] = $true }
+        $sqlUc = @($sqlRows | ForEach-Object {
+                $row = $_
+                $server = "$($row.ServerName)".ToLowerInvariant()
+                $short = ($server -split '\.')[0]
+                $accts = @("$($row.ServiceAccount)" -split ';' | Where-Object { $_ } | ForEach-Object { ($_ -split '\\')[-1].ToLowerInvariant() })
+                $why = @()
+                if ($ucHostNames.ContainsKey($server) -or $ucHostNames.ContainsKey($short)) { $why += 'host' }
+                if (@($accts | Where-Object { $ucAccountNames.ContainsKey($_) }).Count -gt 0) { $why += 'service account' }
+                if ($why) {
+                    [pscustomobject]@{ ServerName = $row.ServerName; InstanceName = $row.InstanceName; ServiceAccount = $row.ServiceAccount; UnconstrainedOn = $why -join ' and ' }
+                }
+            })
+        Write-FMPCsv -InputObject $sqlUc -Path (Join-Path (Join-Path $root 'SQL') 'SqlUnconstrainedDelegation.csv')
+    }
+
     $counts = [ordered]@{
         Domains            = if ($topo) { @($topo.Domains).Count } else { $nc }
         DomainControllers  = if ($topo) { @($topo.DomainControllers).Count } else { $nc }
@@ -1620,8 +1682,12 @@ function Get-FMPStartKitSummary {
         CertificateTemplates     = if ($pki) { @($pki.CertificateTemplates).Count } else { $nc }
         PublishedTemplates       = if ($pki) { @($pki.CertificateTemplates | Where-Object Published).Count } else { $nc }
         SchemaVersion      = if ($schema) { "$($schema.SchemaVersion) ($($schema.SchemaVersionName))" } else { $nc }
+        UnconstrainedDelegationHosts    = if ($haveComputers) { @($ucHosts).Count } else { $nc }
+        UnconstrainedDelegationAccounts = if ($haveUsers) { @($ucAccounts).Count } else { $nc }
+        PrivilegedDelegable = & $sumOrNc @($domainDirs | ForEach-Object { $p = Join-Path (Join-Path $_.FullName 'Objects') 'PrivilegedDelegable.csv'; if (Test-Path -LiteralPath $p) { @(Read-FMPCsvFile $p).Count } })
         SQLInstances       = if ($sql) { $sql.InstanceCount } else { $nc }
         SQLHosts           = if ($sql) { $sql.HostCount } else { $nc }
+        SQLUnconstrainedDelegation = if ($null -ne $sqlRows -and $haveComputers -and $haveUsers) { @($sqlUc).Count } else { $nc }
         NPSServers         = if ($nps) { $nps.NpsServers } else { $nc }
         NPSServersRead     = if ($nps) { $nps.NpsServersRead } else { $nc }
         RADIUSClients      = if ($nps) { $nps.UniqueRadiusClientAddresses } else { $nc }
@@ -1652,7 +1718,11 @@ function Get-FMPStartKitSummary {
         Computers = 'Computers'; Servers = 'Servers'; EnabledServers = 'Enabled servers'; ServiceAccounts = 'Service accounts (users with SPNs, MSAs, gMSAs)'
         SPNs = 'Service principal names'; DuplicateSPNs = 'Duplicate SPNs'; DNSZones = 'DNS zones'; DHCPServers = 'DHCP servers (authorized)'; DHCPScopes = 'DHCP scopes'
         CertificationAuthorities = 'Enterprise CAs'; CertificateTemplates = 'Certificate templates'; PublishedTemplates = 'Published templates'
+        UnconstrainedDelegationHosts = 'Computers with unconstrained delegation (domain controllers excluded)'
+        UnconstrainedDelegationAccounts = 'User and service accounts with unconstrained delegation'
+        PrivilegedDelegable = 'Privileged users whose credentials can be delegated (not sensitive, not in Protected Users)'
         SchemaVersion = 'Schema version'; SQLInstances = 'SQL Server instances'; SQLHosts = 'SQL Server hosts'
+        SQLUnconstrainedDelegation = 'SQL Server instances whose host or service account has unconstrained delegation'
         NPSServers = 'NPS servers (RAS and IAS Servers members and named)'; NPSServersRead = 'NPS servers whose configuration was read'
         RADIUSClients = 'RADIUS clients (unique addresses)'; NetworkPolicies = 'NPS network policies (all servers)'
         ConnectionRequestPolicies = 'NPS connection request policies (all servers)'; NPSPolicyGroups = 'AD groups NPS policies authorize against'
@@ -1675,6 +1745,20 @@ function Get-FMPStartKitSummary {
     $md += & $table 'SQL Server instances by authentication mode' $summary.SqlByAuthenticationMode
     $md += & $table 'Do the discovery signals agree?' $summary.SqlBySourcesAgree
     $md += & $table 'RADIUS and NPS findings by severity' $summary.NpsFindingsBySeverity
+    $md += @('', '## Unconstrained delegation (domain controllers excluded)', '',
+        'Each one can impersonate any user who authenticates to it, to any service. Move it to constrained or resource-based constrained delegation (Book 02 Chapter 08; Book 06 Runbook R06).', '',
+        '| Name | Kind | Runs SQL Server |', '|---|---|---|')
+    if (-not ($haveComputers -or $haveUsers)) { $md += '| not collected | | |' }
+    elseif (($ucHosts.Count + $ucAccounts.Count) -eq 0) { $md += '| none found | | |' }
+    $sqlHit = {
+        param($n, $kind)
+        if ($null -eq $sqlRows) { return 'not collected' }
+        $hit = if ($kind -eq 'Computer') { @($sqlUc | Where-Object { $_.UnconstrainedOn -match 'host' -and ("$($_.ServerName)" -split '\.')[0] -eq $n }) }
+               else { @($sqlUc | Where-Object { @("$($_.ServiceAccount)" -split ';' | ForEach-Object { ($_ -split '\\')[-1] }) -contains $n }) }
+        if ($hit.Count) { 'yes' } else { 'no' }
+    }
+    foreach ($c in $ucHosts)    { $md += "| $($c.Name) | Computer | $(& $sqlHit $c.Name 'Computer') |" }
+    foreach ($u in $ucAccounts) { $md += "| $($u.SamAccountName) | Account | $(& $sqlHit $u.SamAccountName 'Account') |" }
     Write-FMPText -Value $md -Path (Join-Path $path 'StartKitSummary.md')
     [pscustomobject]$summary
 }
