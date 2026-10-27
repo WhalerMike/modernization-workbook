@@ -183,6 +183,8 @@ Migration sequence:
 5. Cut RADIUS clients over to the new server.
 6. Decommission NPS only after a 30-day validation window.
 
+Step 1 can start from the workbook's read-only Start Kit ([start-kit.zip](../../../downloads/start-kit.zip), or [examples/start-kit on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit)). Its `Invoke-FMPNpsInventory` finds the NPS servers in each domain's RAS and IAS Servers group, reads every RADIUS client, network policy and connection request policy, and writes the policy-to-AD-group map step 2 works from (`PolicyGroups.csv`), with the certificates and EAP methods each policy uses. Shared secrets are reduced to a length and a label before anything is written. It's illustrative: unit-tested against fixtures, not proven against a live estate.
+
 Entra ID has no native RADIUS service, and the earlier "Entra RADIUS Proxy" implementation doesn't exist as a Microsoft product; it has been removed. The NPS extension for Microsoft Entra multifactor authentication is often mistaken for an exit path. It isn't one: NPS still performs primary authentication against AD and then hands off to Entra ID for the second factor.[^c04-radius-entra] The extension also identifies users by their on-premises UPN by default.[^c04-nps-ext] It's a useful interim control, not a retirement.
 
 The retirement paths are a non-Microsoft RADIUS or network access control service (the program's registry lists Cisco ISE and Aruba ClearPass), certificate-based EAP-TLS using device certificates delivered by Intune, and, for VPNs, replacing RADIUS altogether. Microsoft recommends moving VPNs to SAML federated directly with Entra ID so they get Conditional Access, MFA, and device compliance.[^c04-radius-entra]

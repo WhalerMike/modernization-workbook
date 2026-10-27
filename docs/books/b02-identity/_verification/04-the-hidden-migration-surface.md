@@ -110,3 +110,11 @@ At the user's request, every certificate-dependent book maps its certificates to
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
 | 2 | CyberArk mechanism (capi) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-capi |
 | 3 | 'Stand up the replacement CA'; 'AD CS is replaced'; 'issued by the new CA' | DM_020; exit criteria; validation | corrected: Book 07's target issuers, no single replacement CA; AD CS retained for DCs and servers | Book 07 Ch04, Ch08 |
+
+## Start Kit link, October 27, 2026
+
+Checked October 27, 2026; no personal data sent to any site.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| K1 | DM_030 step 1 points at the Start Kit's `Invoke-FMPNpsInventory`: NPS servers from each domain's RAS and IAS Servers group (RID 553), clients, network and connection request policies, the policy-to-AD-group map (`PolicyGroups.csv`) for step 2, certificates and EAP methods; secrets never written | RADIUS and Network Policy Server (DM_030) | added | examples/start-kit (PR in this change); tests/powershell, 152 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 27, 2026; `NpsInventory.Tests.ps1` checks no fixture secret reaches any output file |

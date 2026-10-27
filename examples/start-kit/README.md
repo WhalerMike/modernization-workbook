@@ -26,6 +26,7 @@ One run produces a one-page summary (`Summary/StartKitSummary.md`) with these co
 | Enterprise CAs, certificate templates, ESC1, ESC2, ESC4 and ESC6 | `Get-FMPPKIAssessment` | PKI and AD CS (stream 10) |
 | Schema version and extensions | `Get-FMPSchemaExtensions` | Schema extensions (stream 1) |
 | **SQL Server instances and hosts**, by version, edition, domain and authentication mode | `Invoke-FMPSqlEstateDiscovery` | Book 06, Runbooks R02 and R03 |
+| **NPS servers, RADIUS clients, network and connection request policies**, the AD groups and certificates each policy authorizes against, and the KB5040268 hardening state | `Invoke-FMPNpsInventory` | RADIUS and NPS inventory (Book 00 Chapter 08, M-009; Book 02 Chapter 04, DM_030; Book 09 Chapter 07) |
 
 ### How it counts SQL Server
 
@@ -38,6 +39,17 @@ No single instrument finds every instance ([Runbook R02](../../docs/books/b06-da
 Instances are keyed on host and instance name, so one seen three times counts once. `SourcesAgree` is `Yes` when every signal that ran saw the instance on the same port; `SourceNotes` says what differs (*Not found by Network*, *Port differs*, *Version differs*). An instance found only by the network signal is usually an Express edition an installer dropped; one found only by an SPN is often a decommissioned host.
 
 With `-QueryInstances`, each instance is then read with SELECT-only T-SQL over Windows authentication and `ApplicationIntent=ReadOnly`: version, edition, authentication mode, logins by type (`SQL_LOGIN`, `WINDOWS_LOGIN`, `WINDOWS_GROUP`, external), whether `sa` is enabled, databases, last user access from `sys.dm_db_index_usage_stats` with the engine start time beside it, and linked servers. `Get-FMPSqlQueryCatalog` prints every statement the kit can send. Field names match Runbook R03's audit (`ServerName`, `InstanceName`, `DiscoveryMethod`, `SQLVersion`, `SQLVersionMajor`, `SQLEdition`, `AuthenticationMode`, `SQLLogins`, `WindowsLogins`, `LinkedServers`), and each instance gets Runbook R02's first-pass gate: **retire** when no user database has been touched in `-ZombieThresholdDays` (default 400) *and* the engine has been up that long, otherwise **retain** for SQL Server 2022 or later, **consolidate** for earlier engines, and **review** when the version is unknown. The architects confirm or override every row.
+
+### How it inventories RADIUS and NPS
+
+Book 02 Chapter 04 rates RADIUS and NPS critical (DM_030): if NPS goes before its replacement is validated, nobody connects. Book 09 Chapter 07 explains why: network policies authorize by the AD group membership of the user or computer, and EAP-TLS trusts certificates that map to AD objects. The kit inventories exactly that dependency.
+
+1. **Find the servers.** Every computer in each domain's *RAS and IAS Servers* group (RID 553), where registering NPS in a domain puts it; Routing and Remote Access servers are in the same group, so membership marks a candidate and a readable configuration confirms NPS. Add servers registered nowhere with `-NpsServers`, and configuration exports already on disk with `-NpsConfigPath` (Book 09 keeps paired servers in step by export and import, so they usually exist).
+2. **Read each one.** The NPS configuration store, `%windir%\System32\ias\ias.xml`, over the admin share: the store `Export-NpsConfiguration` exports, in the same XML shape. From it: RADIUS clients (address, vendor, enabled, whether Message-Authenticator is required), network policies (order, grant or deny, the group SIDs and NAS port types in their conditions, authentication methods, EAP types), connection request policies (Windows or forwarded, and to which remote RADIUS server group), and the remote RADIUS servers themselves. Then the computer's certificate store, for the certificates the EAP settings name; the System log, for KB5040268 events 4418 to 4421; and `HKLM\SYSTEM\CurrentControlSet\Services\AuthSrv\Parameters`, for extension DLLs such as the Microsoft Entra multifactor authentication NPS extension.
+3. **Resolve the groups.** Each group SID is resolved through the domain whose SID prefixes it; one from outside the assessed forest is listed as such. `PolicyGroups.csv` is the map Book 02 Chapter 04 asks for: every NPS policy to the AD groups it depends on.
+4. **Flag what Book 09's rules ask for.** Shared secrets under 32 characters (`-SecretMinLength`); one secret used by more than one RADIUS client; clients and remote servers that don't require Message-Authenticator; granting policies that allow PAP, CHAP or MS-CHAP (the Blast-RADIUS exposure); KB5040268 protections reported in Disable or Audit mode by event 4421, and how much traffic events 4419 and 4420 say enforcement would drop; policy certificates expiring within 60 days; fewer than two servers read.
+
+**Shared secrets never leave memory.** `ias.xml` holds them in clear text. The kit replaces each one, as it parses, with its length and an HMAC under a key generated for the run and never written, and writes only the length and a label (`secret-1`, `secret-2`) that shows which clients share one. No secret, and no hash that could be tested against a guess, reaches any file; a test checks every output file for the fixture secrets.
 
 ## Pointing the kit at your own forest
 
@@ -52,6 +64,9 @@ Nothing in the kit is tied to a forest name. `contoso.example`, `child.contoso.e
 | Add SQL hosts no signal finds | `-TargetServers (Get-Content .\hosts.txt)` with `-ProbeNetwork` |
 | Change what the directory signal looks for | `Invoke-FMPSqlEstateDiscovery -NameHint db` (a substring of names and descriptions) |
 | Change staleness and retirement thresholds | `-StaleThresholdDays 90`, `-ZombieThresholdDays 400`; `Get-FMPKerberosSpnMap -OrphanDays 180` |
+| Add NPS servers outside the RAS and IAS Servers groups | `-NpsServers nps01.corp.agency.example, nps02.corp.agency.example` |
+| Inventory NPS from configuration exports, with no access to the servers | `Invoke-FMPNpsInventory -OutputPath <folder> -NpsConfigPath D:\Exports\nps01.xml -SkipDirectory` (group names stay as SIDs without the directory) |
+| Change the shared-secret rule or the certificate warning | `Invoke-FMPNpsInventory -SecretMinLength 32 -CertificateWarningDays 60 -EventDays 30` |
 | Recognize your own schema extensions | Add a line to `$script:FMPKnownExtensions` in `FMPADAssessment.psm1` |
 | Count a different set of privileged groups | Edit `$script:FMPPrivilegedGroups` in `FMPADAssessment.psm1` |
 | Run the tests against your own data shapes | Copy `tests/fixtures/ad-forest.json`, replace the objects with sanitized exports of your own (`Get-ADUser ... \| ConvertTo-Json`), keep the same keys, and adjust the expected counts in `tests/powershell/ADAssessment.Tests.ps1`. Never commit real exports. |
@@ -75,7 +90,7 @@ The output folders are named after the real domains (`<run>\corp.agency.example\
 
 Confirm the exact Windows Server feature names with `Get-WindowsFeature -Name RSAT*` before scripting an install. `Test-FMPPrerequisites` reports what's installed. The kit needs no SqlServer module: the T-SQL pass uses the .NET SqlClient that ships with both PowerShell editions.
 
-**Network paths** from the assessment host: ADWS (TCP 9389) to domain controllers for the ActiveDirectory module, SMB (TCP 445) for SYSVOL, RPC (TCP 135 and the dynamic range) to DNS servers, DHCP servers, CAs and domain controllers' event logs, UDP 1434 to SQL hosts for the Browser probe, and the SQL Server TCP ports for the T-SQL pass. Tell security operations the window, the account and the expected query pattern first: broad directory enumeration and a UDP sweep both look like reconnaissance.
+**Network paths** from the assessment host: ADWS (TCP 9389) to domain controllers for the ActiveDirectory module, SMB (TCP 445) for SYSVOL, RPC (TCP 135 and the dynamic range) to DNS servers, DHCP servers, CAs and domain controllers' event logs, UDP 1434 to SQL hosts for the Browser probe, the SQL Server TCP ports for the T-SQL pass, and SMB (TCP 445) and RPC to NPS servers for the configuration, certificate store, registry and event log. Tell security operations the window, the account and the expected query pattern first: broad directory enumeration and a UDP sweep both look like reconnaissance.
 
 ## Rights each part needs
 
@@ -91,6 +106,9 @@ The assessment never uses Domain Admins, DnsAdmins, the CA administrator role or
 | LDAP binding events | — | Event Log Readers on each domain controller; the directory team sets "16 LDAP Interface Events" to 2 for event 2889 (the kit never changes it) |
 | SQL Server SPN and directory signals | Authenticated user | — |
 | SQL Server network signal | No account: an unauthenticated UDP query | — |
+| NPS server list (RAS and IAS Servers membership) | Authenticated user | — |
+| NPS configuration, certificate store, extension DLLs | — | Local administrator on each NPS server: `ias.xml` is read over the admin share and the certificate store and registry remotely (the Remote Registry service must be running). An administrator-run `Export-NpsConfiguration`, handed over through a secure channel, is the alternative; feed it to `-NpsConfigPath` |
+| NPS KB5040268 events | — | Event Log Readers on each NPS server |
 | SQL Server T-SQL pass | — | A login on each instance with `VIEW SERVER STATE` (SQL Server 2019 and earlier) or `VIEW SERVER PERFORMANCE STATE` (2022 and later) for the usage DMVs; `VIEW ANY DEFINITION` (2022 and later: `VIEW ANY SECURITY DEFINITION`) to see every login, without which the login list is silently partial; `VIEW SERVER SECURITY STATE` on 2022 and later for `sys.linked_logins` |
 
 Book 06 Runbook R03 names the same T-SQL requirement: confirm the login count against an instance you know. The Tier B items Book 00 lists that the kit doesn't collect (the CA's issued-certificate database, the Deleted Objects container contents, replication health, a native GPO backup) are best taken as administrator-run exports, which Book 02 Chapter 07 prefers to granting a right.
@@ -103,6 +121,9 @@ Book 06 Runbook R03 names the same T-SQL requirement: confirm the login count ag
 
 # Tier B, with the SQL Browser probe and the read-only T-SQL pass on every instance found.
 .\Invoke-FMPStartKit.ps1 -OutputPath D:\Assessment -Tier B -ProbeNetwork -QueryInstances
+
+# Add NPS servers registered nowhere, and an export from a server you can't reach.
+.\Invoke-FMPStartKit.ps1 -OutputPath D:\Assessment -Tier B -NpsServers nps-dmz01.corp.agency.example -NpsConfigPath D:\Exports\nps-branch.xml
 
 # Only the SQL Server count, sweeping every enabled Windows Server for Express instances.
 Import-Module .\powershell\FMPSqlEstate
@@ -125,6 +146,9 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 ├── SQL\            SqlEstate.csv, SqlEstate.json, SqlEstateSummary.json, SqlSignals.json,
 │                   SqlServiceAccounts.csv, and with -QueryInstances SqlLogins.csv,
 │                   SqlDatabases.csv, SqlLinkedServers.csv
+├── NPS\            NpsServers.csv, RadiusClients.csv, NetworkPolicies.csv, PolicyGroups.csv,
+│                   RemoteRadiusServers.csv, NpsCertificates.csv, NpsFindings.csv,
+│                   NpsInventory.json (with each policy's raw conditions), NpsSummary.json
 ├── <forest root>\  Forest\, Domains\, Schema\, PKI\, Kerberos\, DHCP\  (forest-wide)
 └── <each domain>\  OUs\, GPOs\, DNS\, Objects\, ServiceAccounts\, Trusts\, Ldap\
 ```
@@ -136,6 +160,7 @@ The per-domain layout is Book 02 Appendix B's, so its output schema reference ap
 - **No write cmdlets.** `tests/powershell/Safety.Tests.ps1` parses every script and module in the kit and fails on any command with a state-changing verb (`Set-`, `New-`, `Remove-`, `Add-`, `Enable-`, `Disable-`, `Clear-`, `Rename-`, `Move-`, `Copy-`, `Install-`, `Register-`, `Grant-`, `Revoke-`, `Reset-`, `Restore-`, `Backup-`, `Start-`, `Stop-`, `Update-`, `Publish-` and more), on `Out-File`, `Export-Csv`, `Set-Content`, `Invoke-Command`, `Invoke-Expression`, `Invoke-WebRequest` and `Invoke-RestMethod`, on any native program but `certutil.exe -getreg`, and on file redirection. A planted-violation test proves the checks catch each kind.
 - **Writes only under `-OutputPath`.** Every file goes through four guarded writers that refuse any path outside a registered output root; the safety test fails if anything else writes, deletes or moves a file.
 - **SELECT-only T-SQL.** Every statement lives in one catalog; `Invoke-FMPSqlQuery`, the only place T-SQL is sent, refuses anything but a single SELECT (no DML, DDL, `EXEC`, `SELECT INTO`, procedures, `OPENROWSET` or second statement), and the safety test checks every SQL string in the source and that nothing calls `ExecuteNonQuery`.
+- **No secrets in the output.** NPS shared secrets are replaced in memory, before anything is kept, by a length and a per-run label; a test reads every file a run writes and fails if any fixture secret, or the word `Fingerprint`, appears.
 - **Provenance on every run.** The manifest is written last and hashes every other file.
 
 ## Test it
@@ -145,7 +170,7 @@ pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
 powershell -NoProfile -Command "Import-Module Pester -MinimumVersion 5.5; Invoke-Pester -Path tests/powershell"
 ```
 
-Pester 5.5 or later. Windows PowerShell ships with Pester 3.4, so install Pester 5 for it (`Install-Module Pester -Scope CurrentUser -SkipPublisherCheck`). The tests mock every RSAT cmdlet, the SQL Browser reply and the T-SQL results from the fixtures, a fictional two-domain forest (`contoso.example`) with five SQL hosts, and fail if any unmocked cmdlet is called. They prove the code does what this README says against the fixtures and on both PowerShell editions. They don't prove that your forest, DNS, DHCP, CAs or SQL Servers return the same shapes.
+Pester 5.5 or later. Windows PowerShell ships with Pester 3.4, so install Pester 5 for it (`Install-Module Pester -Scope CurrentUser -SkipPublisherCheck`). The tests mock every RSAT cmdlet, the SQL Browser reply and the T-SQL results from the fixtures, a fictional two-domain forest (`contoso.example`) with five SQL hosts and three NPS candidates (a synchronized pair and one server whose reads are denied), and fail if any unmocked cmdlet is called. They prove the code does what this README says against the fixtures and on both PowerShell editions. They don't prove that your forest, DNS, DHCP, CAs or SQL Servers return the same shapes.
 
 ## What changed from Appendix B
 
@@ -173,15 +198,20 @@ Pester 5.5 or later. Windows PowerShell ships with Pester 3.4, so install Pester
 - **Port-only SPNs.** `MSSQLSvc/host:1433` names no instance. The kit joins it to the instance listening on that port; failing that, it assumes the default instance for 1433 and keeps any other port as `PORT-<n>`.
 - **Last-use evidence.** `sys.dm_db_index_usage_stats` is cleared when the engine restarts, so the gate retires an instance only when the uptime covers the threshold; long-horizon evidence comes from login auditing, backup history and the application portfolio (Runbook R02, Lens 1).
 - **No failover-cluster detection beyond `IsClustered`.** Microsoft Entra authentication isn't supported on failover cluster instances; flag them from your cluster inventory (Runbook R03).
-- **Not covered:** RADIUS and NPS (Book 09), transaction profiles (Book 01 Chapter 10), the plan generators, and ESC patterns beyond ESC1, 2, 4 and 6.
+- **NPS configuration element names.** Microsoft documents the NPS Server Data Objects collections and the profile attributes' names (`msNPAuthenticationType2`, `msNPAllowedEapType`, `msAuthProviderType`, `msAuthProviderName`), not `ias.xml` as a file format. The client, policy-condition and server-group element names the kit reads (`IP_Address`, `Require_Signature`, `msNPConstraint`, `msNPSequence`, `Policy_Enabled`) follow the shape of NPS configuration exports and haven't been checked against a live server. A file in which none of the collections is found is reported as `NoKnownSections` with the element names it did contain, never as an empty server; compare one export by hand before relying on the columns.
+- **NPS group conditions.** Group SIDs are read from anywhere in a policy's conditions, and NAS port types from `NAS-Port-Type` matches. Other conditions (time of day, called station, client IP) are kept verbatim in `NpsInventory.json`, not interpreted.
+- **NPS certificates** are matched by finding a certificate's thumbprint in the policy's EAP configuration. A policy that names a certificate this server doesn't hold (common after importing another server's configuration) shows no certificate rather than a wrong one. Reading a remote certificate store needs the .NET Framework's remote-store support; if PowerShell 7 can't open it, the server records `CertificateStatus` as not readable and the rest is collected.
+- **RADIUS beyond NPS.** Cisco ISE, Aruba ClearPass and other RADIUS servers aren't read; their RADIUS clients appear only where an NPS server forwards to them (`RemoteRadiusServers.csv`). The network team's own device inventory is the cross-check.
+- **Not covered:** transaction profiles (Book 01 Chapter 10), the plan generators, and ESC patterns beyond ESC1, 2, 4 and 6.
 
 ```
 examples/start-kit/
   README.md
-  Invoke-FMPStartKit.ps1                  the run: pre-flight, assessment, SQL, summary, manifest
+  Invoke-FMPStartKit.ps1                  the run: pre-flight, assessment, SQL, NPS, summary, manifest
   powershell/StartKit.Common.ps1          output guard, writers, provenance manifest
   powershell/FMPADAssessment/             Appendix B's module, packaged, plus the added collectors
   powershell/FMPSqlEstate/                SQL Server signals, T-SQL pass, fusion and counts
-  tests/fixtures/                         the fictional forest and SQL estate
-  tests/powershell/                       Pester 5: safety, SQL, AD, end to end
+  powershell/FMPNpsInventory/             NPS servers, RADIUS clients, policies, groups, findings
+  tests/fixtures/                         the fictional forest, SQL estate and NPS configuration
+  tests/powershell/                       Pester 5: safety, SQL, AD, NPS, end to end
 ```

@@ -1,8 +1,9 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    Runs the Start Kit: a read-only assessment of the forest and the SQL Server estate, a
-    one-page summary, and a provenance manifest, all under one run folder.
+    Runs the Start Kit: a read-only assessment of the forest, the SQL Server estate and the
+    RADIUS and NPS estate, a one-page summary, and a provenance manifest, all under one run
+    folder.
 
 .DESCRIPTION
     Creates <OutputPath>\<run-id>, where the run identifier is Book 01 Chapter 10's
@@ -10,12 +11,15 @@
       1. Test-FMPReadAccess          what this account can read; the draft delegation request
       2. Invoke-FMPADAssessment      the twelve domains plus DHCP, the SPN map and LDAP binds
       3. Invoke-FMPSqlEstateDiscovery  the SQL Server count and inventory (unless -SkipSql)
-      4. Get-FMPStartKitSummary      Summary\StartKitSummary.md and .json
-      5. AssessmentManifest.json     who, when, where, module versions, SHA-256 of every file
+      4. Invoke-FMPNpsInventory      NPS servers, RADIUS clients and policies (unless -SkipNps)
+      5. Get-FMPStartKitSummary      Summary\StartKitSummary.md and .json
+      6. AssessmentManifest.json     who, when, where, module versions, SHA-256 of every file
 
-    Nothing here writes to Active Directory, DNS, DHCP, AD CS or SQL Server. Every file goes
-    under the run folder. Tier B adds the collectors that need the narrow delegations
-    (DHCP, LDAP binding events); a Tier A run still records which reads were denied.
+    Nothing here writes to Active Directory, DNS, DHCP, AD CS, NPS or SQL Server. Every file
+    goes under the run folder. Tier B adds the collectors that need the narrow delegations
+    (DHCP, LDAP binding events); a Tier A run still records which reads were denied. The
+    NPS step always lists the servers; reading their configuration needs local
+    administrator rights on each one, and a denied read is recorded, not fatal.
 
     Illustrative: unit-tested against fixtures, not proven against a live estate.
 
@@ -45,12 +49,16 @@ param(
     [switch]$UseDbatools,
     [switch]$QueryInstances,
     [switch]$TrustServerCertificate,
-    [int]$ZombieThresholdDays = 400
+    [int]$ZombieThresholdDays = 400,
+    [switch]$SkipNps,
+    # NPS servers outside the RAS and IAS Servers groups, and configuration exports on disk.
+    [string[]]$NpsServers = @(),
+    [string[]]$NpsConfigPath = @()
 )
 
 $ErrorActionPreference = 'Stop'
 # Imported once; a session that already loaded them (the tests, or a signed copy) keeps its own.
-foreach ($m in 'FMPADAssessment', 'FMPSqlEstate') {
+foreach ($m in 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory') {
     if (-not (Get-Module -Name $m)) { Import-Module (Join-Path (Join-Path $PSScriptRoot 'powershell') $m) }
 }
 # The run script uses the shared helpers directly for the run folder and the manifest.
@@ -83,12 +91,18 @@ if (-not $SkipSql) {
             -ZombieThresholdDays $ZombieThresholdDays -AsOf $start
     }
 }
+if (-not $SkipNps) {
+    $steps += Invoke-FMPStep 'RADIUS and NPS' {
+        Invoke-FMPNpsInventory -OutputPath $runPath -Forest $adForest.Name -Domain $Domain -NpsServers $NpsServers -ConfigPath $NpsConfigPath -AsOf $start
+    }
+}
 $steps += Invoke-FMPStep 'Summary' { Get-FMPStartKitSummary -RunPath $runPath }
 
 $parameters = @{
     Tier = $Tier; StaleThresholdDays = $StaleThresholdDays; SkipAD = [bool]$SkipAD; SkipSql = [bool]$SkipSql
     TargetServerCount = @($TargetServers).Count; ProbeNetwork = [bool]$ProbeNetwork; ProbeAllServers = [bool]$ProbeAllServers
     UseDbatools = [bool]$UseDbatools; QueryInstances = [bool]$QueryInstances; ZombieThresholdDays = $ZombieThresholdDays
+    SkipNps = [bool]$SkipNps; NpsServerCount = @($NpsServers).Count; NpsConfigFileCount = @($NpsConfigPath).Count
 }
 $manifest = Write-FMPManifest -RunPath $runPath -RunId $runId -StartTime $start -Tier $Tier -Forest $adForest.Name `
     -Domains $Domain -ServedBy $servedBy -Steps $steps -Parameters $parameters

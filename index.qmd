@@ -252,6 +252,7 @@ format:
     <a class="btn-primary" href="docs/start-here.html">Start here: 6-minute briefing</a>
     <a class="btn-ghost" href="#books">Browse the books</a>
     <a class="btn-ghost" href="docs/presentations/index.html">Presentations</a>
+    <a class="btn-ghost" href="downloads/start-kit.zip" title="Read-only PowerShell assessment scripts: forest, SQL Server estate, RADIUS and NPS">Start Kit scripts (.zip)</a>
   </div>
 </section>
 
@@ -344,7 +345,7 @@ format:
         <div class="book-title"><a href="docs/books/b00-orientation/index.html">Orientation &amp; Program</a></div>
         <div class="book-q">Why modernize, and why now?</div>
         <div class="book-desc">The case for one governed program, how the workbook works, and the program's charter, principles, phases and gates, projects and decision rights.</div>
-        <div class="book-links"><a href="docs/books/b00-orientation/index.html">Read</a><a href="downloads/b00-orientation-bundle.docx">Word</a><a href="docs/presentations/index.html#book-00">Deck</a></div>
+        <div class="book-links"><a href="docs/books/b00-orientation/index.html">Read</a><a href="downloads/b00-orientation-bundle.docx">Word</a><a href="docs/presentations/index.html#book-00">Deck</a><a href="downloads/start-kit.zip">Start Kit</a></div>
       </div>
       <div class="book-card">
         <div class="book-num">Book 01 · 12 chapters</div>
