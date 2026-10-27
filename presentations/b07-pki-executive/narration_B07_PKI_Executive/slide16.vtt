@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.275
+Retirement is the last wave, and it
+happens one authority at a time.
+
+2
+00:00:04.275 --> 00:00:08.196
+The gate is strict: cutover done,
+thirty days with no incidents,
+
+3
+00:00:08.196 --> 00:00:11.425
+and everything that stays
+documented and running.
+
+4
+00:00:11.425 --> 00:00:15.138
+Even then, the addresses where
+certificates check their status
+
+5
+00:00:15.138 --> 00:00:18.850
+keep serving until the last
+certificate they cover has expired.
+
+6
+00:00:18.850 --> 00:00:23.238
+Under the recommended design, the root
+that signed the cloud issuer stays.
+
+7
+00:00:23.238 --> 00:00:28.090
+And the authority's records carry their
+own federal retention, measured in years,
+
+8
+00:00:28.090 --> 00:00:32.000
+so the records officer signs off
+before any archive is destroyed.
+
+9
+00:00:32.000 --> 00:00:36.764
+The decision for the sponsor and CIO:
+retire each authority only after its
+
+10
+00:00:36.764 --> 00:00:41.762
+gate passes, keeping one for domain
+controllers until the last of them is gone.
+
+11
+00:00:41.762 --> 00:00:43.130
+Now, the risks.

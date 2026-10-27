@@ -1,0 +1,788 @@
+{
+ "1": [
+  [
+   0.05,
+   8.475,
+   "This is the executive briefing for Book 15 of the Federal Modernization Workbook: Compliance Automation and Day-2 Operations."
+  ],
+  [
+   8.525,
+   8.162,
+   "It's for the people who own what happens after cutover: the C I O, service owners, help desk and operations leads, and the see-so."
+  ],
+  [
+   16.688,
+   1.8,
+   "The book's argument is simple."
+  ],
+  [
+   18.488,
+   4.0,
+   "A modernized estate is judged on day two, at the help desk."
+  ],
+  [
+   22.488,
+   7.375,
+   "Every routine change there touches a control, so compliance lives or dies in daily operations, not at the audit."
+  ],
+  [
+   29.863,
+   7.612,
+   "I'll take four parts: why day two decides, what changes after cutover, who runs it, and how you prove and measure it."
+  ],
+  [
+   37.475,
+   4.4,
+   "Each decision slide names the decision, its owner, and when it's needed."
+  ],
+  [
+   41.875,
+   1.6,
+   "Let's start on Monday morning."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.65,
+   "Cutover proves the new estate can be built."
+  ],
+  [
+   2.7,
+   3.688,
+   "The first locked-out user on Monday proves whether it can be run."
+  ],
+  [
+   6.388,
+   3.875,
+   "A user changed phones; a new hire needs an account by nine."
+  ],
+  [
+   10.262,
+   1.775,
+   "Each lands at the help desk."
+  ],
+  [
+   12.037,
+   12.287,
+   "If the new model can't handle it safely, the desk finds a way: an emergency admin account that never goes away, an email treated as the request, a temporary password sent back to the same inbox."
+  ],
+  [
+   24.325,
+   2.438,
+   "Each shortcut is reasonable on the day."
+  ],
+  [
+   26.762,
+   2.975,
+   "Together they rebuild the estate you just replaced."
+  ],
+  [
+   29.738,
+   9.037,
+   "The decision for the C I O: call a wave complete only after a reset, an unlock, a joiner and a leaver have run under the new model."
+  ],
+  [
+   38.775,
+   2.1,
+   "Next, the riskiest of those."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.85,
+   "The most dangerous routine action on the desk is resetting someone's sign-in method."
+  ],
+  [
+   4.9,
+   4.225,
+   "After that reset, whoever registers next controls the account."
+  ],
+  [
+   9.125,
+   6.537,
+   "So a reset done on an unverified request isn't support; it hands the account to whoever asked."
+  ],
+  [
+   15.662,
+   9.062,
+   "Federal advisories describe callers posing as employees to get exactly these resets, and O M B calls recovery a potential bypass."
+  ],
+  [
+   24.725,
+   2.825,
+   "The program's answer is a verification ladder."
+  ],
+  [
+   27.55,
+   3.575,
+   "Someone who's lost everything is identity-proofed first."
+  ],
+  [
+   31.125,
+   4.125,
+   "Email, caller ID and personal questions verify no one."
+  ],
+  [
+   35.25,
+   7.438,
+   "The decision for the see-so: own that ladder, put the most friction on privileged accounts, and alert on every reset."
+  ],
+  [
+   42.688,
+   1.962,
+   "Next, why volume matters."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   7.713,
+   "The day after go-live, the help desk resets hundreds of passwords, onboards a dozen people and changes group memberships."
+  ],
+  [
+   7.763,
+   2.5,
+   "Every one of those changes touches a control."
+  ],
+  [
+   10.262,
+   3.975,
+   "Done through a governed path, the authorization package stays true."
+  ],
+  [
+   14.238,
+   3.263,
+   "Done as portal clicks, it ages with every click."
+  ],
+  [
+   17.5,
+   7.862,
+   "The case for automation is volume: at day-two scale, records assembled by hand are reconstructions, not evidence."
+  ],
+  [
+   25.363,
+   7.838,
+   "A control that's designed and deployed but not operated, with an owner, a gate, a clock and an evidence feed, is a hope."
+  ],
+  [
+   33.2,
+   7.175,
+   "The decision for the C I O and sponsor: fund that operating layer, and it's mostly automation, not headcount."
+  ],
+  [
+   40.375,
+   1.175,
+   "Next, what to buy."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.038,
+   "The program asks for a contract, not a product."
+  ],
+  [
+   3.087,
+   1.825,
+   "Every request gets an owner."
+  ],
+  [
+   4.912,
+   4.438,
+   "The approval is recorded before the change, and never by the requester."
+  ],
+  [
+   9.35,
+   4.838,
+   "The platform acts through a least-privilege identity, never standing admin rights."
+  ],
+  [
+   14.188,
+   1.962,
+   "Every step emits evidence."
+  ],
+  [
+   16.15,
+   5.638,
+   "And the platform's inventory reconciles to the authoritative one, never the other way round."
+  ],
+  [
+   21.788,
+   3.075,
+   "ServiceNow is the reference, not a requirement."
+  ],
+  [
+   24.863,
+   8.15,
+   "Its government cloud is certified at the high level, which serves moderate systems conservatively, but record that choice in your own authorization."
+  ],
+  [
+   33.013,
+   4.362,
+   "The decision for the C I O: hold any platform to that contract."
+  ],
+  [
+   37.375,
+   1.725,
+   "Next, how work comes in."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.25,
+   "The operating rule is one front door."
+  ],
+  [
+   2.3,
+   2.812,
+   "Nothing is handled as an email to the cloud team."
+  ],
+  [
+   5.112,
+   7.287,
+   "Portal requests, emails, identity governance tasks and monitoring alerts all land in one triage queue."
+  ],
+  [
+   12.4,
+   4.088,
+   "Triage asks one question: what authority does this task need?"
+  ],
+  [
+   16.488,
+   6.537,
+   "That answer picks the pipeline and the approver, from a simple fix up to governance actions that are never automated."
+  ],
+  [
+   23.025,
+   7.138,
+   "One small rule matters: if an approver doesn't respond, the request is rejected or cancelled, never approved."
+  ],
+  [
+   30.163,
+   1.863,
+   "Silence can't grant access."
+  ],
+  [
+   32.025,
+   9.5,
+   "The decision for the service desk manager: close the side doors, route the team mailbox into triage, and count any work done outside it as a measured gap."
+  ],
+  [
+   41.525,
+   1.738,
+   "Next, what the desk may do."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.3,
+   "The help desk executes approved work."
+  ],
+  [
+   2.35,
+   2.2,
+   "It never decides what it executes."
+  ],
+  [
+   4.55,
+   5.638,
+   "Technicians hold no standing admin roles; they switch on a scoped role for the ticket in hand."
+  ],
+  [
+   10.188,
+   3.712,
+   "The book flags a trap: capability isn't authority."
+  ],
+  [
+   13.9,
+   6.562,
+   "Some roles a help desk might hold can delete users or approve app access, which the desk must never do."
+  ],
+  [
+   20.462,
+   4.7,
+   "Executive accounts sit in a protected unit the general desk can't touch."
+  ],
+  [
+   25.163,
+   4.487,
+   "And security monitoring flags any elevation with no matching ticket."
+  ],
+  [
+   29.65,
+   7.362,
+   "The decision for the identity governance officer: scope the desk's privileged group, and review its membership every quarter."
+  ],
+  [
+   37.013,
+   2.337,
+   "Next, the tasks that need more."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   8.2,
+   "Some tasks let one person take over an identity or open data to the wrong people, and the platform can't stop the misuse on its own."
+  ],
+  [
+   8.25,
+   7.7,
+   "For those, the program requires two approvers besides the person doing the work, both recorded before anyone elevates."
+  ],
+  [
+   15.95,
+   12.3,
+   "The list is short: resets on accounts the desk can't normally touch, repairing a cloud account's link to its on-premises record, restoring accounts outside the HR process, and bulk changes."
+  ],
+  [
+   28.25,
+   6.15,
+   "The second approver checks that the requester was verified, the change is exact, and the urgency is real."
+  ],
+  [
+   34.4,
+   3.525,
+   "A caller pressing for speed goes to the emergency process."
+  ],
+  [
+   37.925,
+   3.625,
+   "The decision: never waive the second approver for urgency."
+  ],
+  [
+   41.55,
+   1.962,
+   "Next, third-party apps."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.013,
+   "Connecting a cloud app to your directory can quietly move data outside your boundary."
+  ],
+  [
+   5.062,
+   4.875,
+   "In the government cloud most agencies use, nothing in the app gallery is marked."
+  ],
+  [
+   9.938,
+   6.475,
+   "sis-uh's directive requires that only administrators can approve app access, and the program applies that."
+  ],
+  [
+   16.413,
+   2.263,
+   "But that rule decides who approves."
+  ],
+  [
+   18.675,
+   5.112,
+   "It says nothing about whether the service on the other end is authorized to hold federal data."
+  ],
+  [
+   23.788,
+   5.213,
+   "A tenant can pass every consent check and still send data to an uncertified service."
+  ],
+  [
+   29.0,
+   5.763,
+   "Only an authorization verdict, recorded before anything is configured, closes that gap."
+  ],
+  [
+   34.763,
+   8.05,
+   "The decision for the identity governance officer: record each service's authorization status first, and stop the request if it's missing."
+  ],
+  [
+   42.812,
+   1.712,
+   "Next, the inventory."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   8.488,
+   "The program's rule: discovery fills the configuration database, but the authoritative naming and addressing record decides what an asset is."
+  ],
+  [
+   8.537,
+   4.537,
+   "When they disagree, the database is wrong, and the gap is a finding."
+  ],
+  [
+   13.075,
+   2.562,
+   "This matters for patching and evidence."
+  ],
+  [
+   15.637,
+   4.25,
+   "A missing asset is never patched, while coverage still looks complete."
+  ],
+  [
+   19.887,
+   2.763,
+   "A duplicate lets the fix land on one copy."
+  ],
+  [
+   22.65,
+   4.45,
+   "And a connector that quietly returns half its records raises no error at all."
+  ],
+  [
+   27.1,
+   10.2,
+   "The decision for system owners: authorize or remove every unknown asset the reconciliation finds, and fix identity at the source, never in the database."
+  ],
+  [
+   37.3,
+   1.988,
+   "Next, control automation."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   12.113,
+   "Control automation runs one loop everywhere: test the setting, spot the drift, raise a task against the asset, fix it on the native platform, and close it only when a re-test confirms the fix."
+  ],
+  [
+   12.162,
+   8.225,
+   "The cloud tools already test most settings; your job is to own the result, and the coordination platform reads but never writes."
+  ],
+  [
+   20.387,
+   2.462,
+   "The platforms differ in ways that matter."
+  ],
+  [
+   22.85,
+   10.787,
+   "Some integrations aren't available in Azure Government, one AWS compliance service is in maintenance mode, and on your own VMware estate the evidence is entirely yours to build."
+  ],
+  [
+   33.638,
+   6.5,
+   "The decision for the see-so: keep the platform's identity read-only, with every automated fix approved."
+  ],
+  [
+   40.138,
+   1.5,
+   "Next, who runs it."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.638,
+   "Day two is run by the people who touch the estate most and decide the least."
+  ],
+  [
+   4.688,
+   3.725,
+   "So every decision has to sit with someone who isn't at the keyboard."
+  ],
+  [
+   8.412,
+   4.737,
+   "A desk that approves its own resets has rebuilt the standing administrator."
+  ],
+  [
+   13.15,
+   3.188,
+   "The book separates deciding, doing and owning."
+  ],
+  [
+   16.337,
+   1.475,
+   "The desk executes."
+  ],
+  [
+   17.812,
+   4.875,
+   "Its supervisor approves only routine credential work for ordinary users."
+  ],
+  [
+   22.688,
+   8.0,
+   "Platform owners own the runbooks; control owners own the approval gates; the platform team builds both and decides neither."
+  ],
+  [
+   30.688,
+   9.45,
+   "And because runbooks decay, the decision for the C I O is to give every catalog item, runbook and workflow one named owner and a review date."
+  ],
+  [
+   40.138,
+   1.512,
+   "Next, measuring it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.487,
+   "How well the desk is staffed shows up in its numbers before it shows up in an audit."
+  ],
+  [
+   4.537,
+   2.025,
+   "Each measure says something specific."
+  ],
+  [
+   6.562,
+   2.938,
+   "Tickets past their service level show capacity."
+  ],
+  [
+   9.5,
+   3.675,
+   "A rising escalation share shows gaps in the runbooks."
+  ],
+  [
+   13.175,
+   3.675,
+   "Tickets sent back for missing evidence show slipping discipline."
+  ],
+  [
+   16.85,
+   5.213,
+   "Privileged elevations with no matching ticket mean the queue and the roles have come apart."
+  ],
+  [
+   22.062,
+   2.938,
+   "And work done outside the front door is a side door."
+  ],
+  [
+   25.0,
+   4.987,
+   "Each problem has a different fix: more people, a better runbook, or training."
+  ],
+  [
+   29.988,
+   4.213,
+   "The platform produces the numbers, so nobody reports on their own work."
+  ],
+  [
+   34.2,
+   5.362,
+   "The decision for the C I O: staff and source the desk from these measures, monthly."
+  ],
+  [
+   39.562,
+   1.738,
+   "Next, the change board."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.538,
+   "The change advisory board authorizes production changes."
+  ],
+  [
+   3.587,
+   7.312,
+   "But two decisions aren't the board's: letting a class of change run without a person, and whether a change needs reauthorization."
+  ],
+  [
+   10.9,
+   4.3,
+   "Those are risk decisions, and risk belongs to the authorizing official."
+  ],
+  [
+   15.2,
+   2.95,
+   "The quietest way separation is lost is here."
+  ],
+  [
+   18.15,
+   5.6,
+   "An approval rule is just configuration, and the team that runs the platform can usually edit it."
+  ],
+  [
+   23.75,
+   7.475,
+   "So the decision for the board: any change to approval rules, routing or integrations is a normal change it authorizes."
+  ],
+  [
+   31.225,
+   2.462,
+   "Nobody changes the gate they pass through."
+  ],
+  [
+   33.688,
+   2.862,
+   "Next, proving it to an authorizing official."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.388,
+   "A closed ticket proves someone did some work."
+  ],
+  [
+   2.438,
+   5.975,
+   "An assessed control proves the work held, and only that belongs in front of an authorizing official."
+  ],
+  [
+   8.412,
+   4.838,
+   "The program's rule: if a system can observe a control, a system proves it."
+  ],
+  [
+   13.25,
+   7.938,
+   "People sign only for what no system can see, like a policy approval or a physical inspection, and the package says which is which."
+  ],
+  [
+   21.188,
+   8.825,
+   "Day-two work feeds a loop: map each control to its tests, test on a schedule, and turn every gap into a tracked plan-of-action item."
+  ],
+  [
+   30.012,
+   8.85,
+   "The decision for the system owner: close those items only on a passing re-test, and escalate a slipped milestone instead of quietly moving it."
+  ],
+  [
+   38.862,
+   1.637,
+   "Next, build or buy."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.775,
+   "Before anyone builds a compliance application, know what your platform already does."
+  ],
+  [
+   4.825,
+   12.675,
+   "ServiceNow's own applications already schedule control tests, walk the federal risk framework, show every plan-of-action item in one place, and import and export the machine-readable formats assessors use."
+  ],
+  [
+   17.5,
+   7.562,
+   "Some are separate subscriptions, and some don't reach every government cloud; these are October 2026 observations."
+  ],
+  [
+   25.062,
+   11.525,
+   "What they don't do out of the box is specific to this design: tie every finding to the authoritative asset, refuse to close work without proof, and keep the control list in step with the agency's map."
+  ],
+  [
+   36.587,
+   5.675,
+   "The decision for the C I O: configure the native apps first, and build only those gaps."
+  ],
+  [
+   42.263,
+   2.587,
+   "Next, checking the automation itself."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   8.613,
+   "The most dangerous failure in automated operations is a silent one: a log source that stops sending, or a detection that quietly stopped matching."
+  ],
+  [
+   8.662,
+   3.038,
+   "It carries false confidence into an authorization."
+  ],
+  [
+   11.7,
+   2.763,
+   "So the runbook checks the automation itself."
+  ],
+  [
+   14.463,
+   7.713,
+   "Every day, a completeness check confirms each log source is still sending, and a dark source is treated as an outage."
+  ],
+  [
+   22.175,
+   7.225,
+   "Every week, harmless test events confirm the detections still fire, and every hand-closed task gets a second look."
+  ],
+  [
+   29.4,
+   3.7,
+   "And a check that stops running looks exactly like one that passes."
+  ],
+  [
+   33.1,
+   5.162,
+   "The decision for the I S S O: confirm each month that every check ran."
+  ],
+  [
+   38.263,
+   2.087,
+   "Now, the decisions together."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   3.987,
+   "So, the decisions together, and none of them is a procurement."
+  ],
+  [
+   4.037,
+   13.25,
+   "The C I O closes waves only after the everyday tasks run cleanly, funds the operating layer, holds the platform to its contract, gives every artifact an owner, and staffs the desk from its measures."
+  ],
+  [
+   17.288,
+   4.425,
+   "The see-so owns the verification ladder and keeps automation read-only."
+  ],
+  [
+   21.712,
+   6.6,
+   "The identity governance officer reviews the desk's privileges and records a verdict before any app is connected."
+  ],
+  [
+   28.312,
+   5.675,
+   "System owners decide unknown assets and close plan-of-action items only on re-test."
+  ],
+  [
+   33.987,
+   2.5,
+   "The change board guards the approval rules."
+  ],
+  [
+   36.487,
+   6.75,
+   "The next step is free: run one reset, one joiner and one leaver, and see what the record shows."
+  ],
+  [
+   43.237,
+   2.35,
+   "Make the governed path the easy path."
+  ],
+  [
+   45.587,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

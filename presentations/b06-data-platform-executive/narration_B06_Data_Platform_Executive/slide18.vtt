@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+Here are the risks the book
+names, in three groups.
+
+2
+00:00:03.088 --> 00:00:07.889
+Scope: instances found late, cluster
+instances that can't take Entra logins,
+
+3
+00:00:07.889 --> 00:00:10.987
+and applications that
+hold their instance back.
+
+4
+00:00:10.987 --> 00:00:14.421
+Sequence: engine work held up
+waiting for Windows sign-in,
+
+5
+00:00:14.421 --> 00:00:18.293
+the old certificate authority
+retired before its replacement,
+
+6
+00:00:18.293 --> 00:00:21.288
+and migration still running
+when the block lands.
+
+7
+00:00:21.288 --> 00:00:25.578
+Control: Azure roles that can
+quietly turn SQL logins back on,
+
+8
+00:00:25.578 --> 00:00:30.126
+and one server identity shared by
+every application on the host.
+
+9
+00:00:30.126 --> 00:00:34.578
+The decision: every residual risk
+goes in the exception registry,
+
+10
+00:00:34.578 --> 00:00:39.937
+with a control, an owner and an end date,
+and the authorizing official accepts it.
+
+11
+00:00:39.937 --> 00:00:41.230
+One last question.

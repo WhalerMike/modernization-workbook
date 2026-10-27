@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.502
+In most estates, the certificate
+authority belongs to whoever installed it,
+
+2
+00:00:04.502 --> 00:00:07.612
+and by default the domain's
+top administrators run it.
+
+3
+00:00:07.612 --> 00:00:09.087
+Nobody decided that.
+
+4
+00:00:09.087 --> 00:00:13.157
+In the target, the estate spreads
+across more systems, not fewer,
+
+5
+00:00:13.157 --> 00:00:17.538
+each with administrators holding
+a piece of what the agency trusts.
+
+6
+00:00:17.538 --> 00:00:20.713
+So the program separates who
+decides from who does the work.
+
+7
+00:00:20.713 --> 00:00:25.374
+The CISO sets issuance policy,
+trust anchors and binding strength.
+
+8
+00:00:25.374 --> 00:00:28.900
+The authorizing official accepts
+every standing exception.
+
+9
+00:00:28.900 --> 00:00:33.962
+The sponsor and CIO decide the hierarchy
+and when old authorities retire.
+
+10
+00:00:33.962 --> 00:00:38.729
+And their decision here: name one renewal
+owner for every certificate class,
+
+11
+00:00:38.729 --> 00:00:40.999
+recorded in the lifecycle platform.
+
+12
+00:00:40.999 --> 00:00:45.140
+Because an expiry is almost always
+an ownership failure first.

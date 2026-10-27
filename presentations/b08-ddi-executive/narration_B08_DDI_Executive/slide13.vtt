@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.988
+Here's the matrix in one view.
+
+2
+00:00:01.988 --> 00:00:06.826
+The sponsor and CIO decide the platform
+and when the old services retire.
+
+3
+00:00:06.826 --> 00:00:10.513
+The CISO decides encryption,
+DNSSEC and logging.
+
+4
+00:00:10.513 --> 00:00:13.664
+The DNS and DDI team
+decides the namespace,
+
+5
+00:00:13.664 --> 00:00:17.537
+the edge target, the forwarding
+and the address plan.
+
+6
+00:00:17.537 --> 00:00:22.950
+Network engineering and AD administrators
+do much of the work, but don't decide it.
+
+7
+00:00:22.950 --> 00:00:25.725
+Why does the authorizing
+official appear twice?
+
+8
+00:00:25.725 --> 00:00:29.650
+Because many DNS changes are
+risk decisions in disguise.
+
+9
+00:00:29.650 --> 00:00:34.387
+Pointing an edge at a public resolver
+quietly turns off Protective DNS.
+
+10
+00:00:34.387 --> 00:00:38.389
+So every standing exception goes
+to the authorizing official,
+
+11
+00:00:38.389 --> 00:00:40.313
+with an owner and a review date.
+
+12
+00:00:40.313 --> 00:00:42.380
+Next, everyday changes.

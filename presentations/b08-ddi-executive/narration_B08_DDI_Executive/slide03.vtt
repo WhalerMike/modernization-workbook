@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.150
+Nobody chooses to run DNS in five places.
+
+2
+00:00:04.150 --> 00:00:06.451
+Each cloud ships its own DNS service,
+
+3
+00:00:06.451 --> 00:00:10.900
+and none of them shares state with
+Active Directory or with each other.
+
+4
+00:00:10.900 --> 00:00:15.312
+So the same name drifts into different
+answers depending on where the query starts.
+
+5
+00:00:15.312 --> 00:00:19.421
+That's split-brain, and it fails
+quietly: the name still resolves,
+
+6
+00:00:19.421 --> 00:00:24.637
+just to the wrong place, and it shows up as
+a certificate error or an access denial.
+
+7
+00:00:24.637 --> 00:00:27.187
+Runbooks can't keep five systems in step,
+
+8
+00:00:27.187 --> 00:00:31.900
+and your real security posture is the
+weakest resolver a client can reach.
+
+9
+00:00:31.900 --> 00:00:34.483
+So the decision for the sponsor and CIO:
+
+10
+00:00:34.483 --> 00:00:39.488
+authorize one authoritative policy
+plane, before the next migration wave.
+
+11
+00:00:39.488 --> 00:00:42.140
+Next, what federal policy requires.

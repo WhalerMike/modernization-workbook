@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.900
+The most dangerous routine action on the
+desk is resetting someone's sign-in method.
+
+2
+00:00:04.900 --> 00:00:09.125
+After that reset, whoever registers
+next controls the account.
+
+3
+00:00:09.125 --> 00:00:12.960
+So a reset done on an unverified
+request isn't support;
+
+4
+00:00:12.960 --> 00:00:15.662
+it hands the account to whoever asked.
+
+5
+00:00:15.662 --> 00:00:21.760
+Federal advisories describe callers posing
+as employees to get exactly these resets,
+
+6
+00:00:21.760 --> 00:00:24.724
+and OMB calls recovery a potential bypass.
+
+7
+00:00:24.724 --> 00:00:27.550
+The program's answer is
+a verification ladder.
+
+8
+00:00:27.550 --> 00:00:31.125
+Someone who's lost everything
+is identity-proofed first.
+
+9
+00:00:31.125 --> 00:00:35.250
+Email, caller ID and personal
+questions verify no one.
+
+10
+00:00:35.250 --> 00:00:38.049
+The decision for the
+CISO: own that ladder,
+
+11
+00:00:38.049 --> 00:00:42.688
+put the most friction on privileged
+accounts, and alert on every reset.
+
+12
+00:00:42.688 --> 00:00:44.710
+Next, why volume matters.

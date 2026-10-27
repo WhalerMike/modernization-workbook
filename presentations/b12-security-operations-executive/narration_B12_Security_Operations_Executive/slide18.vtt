@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.543
+You need a small set of
+metrics that tell you
+
+2
+00:00:02.543 --> 00:00:05.037
+whether monitoring works,
+not how busy it is.
+
+3
+00:00:05.037 --> 00:00:09.437
+Coverage counts the required activities
+a working rule actually reads,
+
+4
+00:00:09.437 --> 00:00:11.050
+not how many rules you have.
+
+5
+00:00:11.050 --> 00:00:14.725
+Completeness counts how long a
+required source stayed silent.
+
+6
+00:00:14.725 --> 00:00:19.875
+Vulnerability remediation counts fixes
+closed on time, and fixes overdue.
+
+7
+00:00:19.875 --> 00:00:24.083
+Configuration counts passes,
+failures and exceptions separately,
+
+8
+00:00:24.083 --> 00:00:26.487
+so an exception never looks like a pass.
+
+9
+00:00:26.487 --> 00:00:30.426
+And maturity is reported by
+system, at its weakest point.
+
+10
+00:00:30.426 --> 00:00:35.032
+The decision belongs to the CISO:
+adopt the metric set and the rhythm,
+
+11
+00:00:35.032 --> 00:00:40.125
+with the SOC seeing it daily, and the
+CISO and authorizing official monthly.
+
+12
+00:00:40.125 --> 00:00:42.050
+Let's pull the decisions together.

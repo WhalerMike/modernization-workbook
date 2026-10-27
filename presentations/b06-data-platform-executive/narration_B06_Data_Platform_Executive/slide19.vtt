@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.790
+Once authentication has moved,
+a different question opens up:
+
+2
+00:00:03.790 --> 00:00:06.650
+which platform should
+each data domain live on?
+
+3
+00:00:06.650 --> 00:00:10.838
+That choice isn't forced, so it
+comes after, one domain at a time.
+
+4
+00:00:10.838 --> 00:00:14.557
+Stay on SQL Server, or move
+to PostgreSQL or Oracle;
+
+5
+00:00:14.557 --> 00:00:17.551
+each can meet the identity requirement.
+
+6
+00:00:17.551 --> 00:00:22.429
+The book scores them on ten dimensions
+with evidence, from migration effort and
+
+7
+00:00:22.429 --> 00:00:24.499
+skills to licensing and exit cost,
+
+8
+00:00:24.499 --> 00:00:27.825
+and two domains reaching
+different answers is normal.
+
+9
+00:00:27.825 --> 00:00:31.588
+The goal is fewer authoritative
+platforms, not one vendor.
+
+10
+00:00:31.588 --> 00:00:36.082
+So the decision for the CIO and
+data leadership: choose per domain,
+
+11
+00:00:36.082 --> 00:00:41.575
+after closure, as its own funded decision,
+with the same parallel-run discipline.
+
+12
+00:00:41.575 --> 00:00:43.490
+Let's pull the decisions together.

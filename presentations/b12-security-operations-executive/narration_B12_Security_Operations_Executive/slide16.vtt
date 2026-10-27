@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.412
+Detection without response
+doesn't reduce your exposure.
+
+2
+00:00:03.412 --> 00:00:07.975
+But automation without a gate can
+turn one noisy rule into an outage.
+
+3
+00:00:07.975 --> 00:00:09.725
+So responses climb a ladder.
+
+4
+00:00:09.725 --> 00:00:11.638
+Every alert is recorded.
+
+5
+00:00:11.638 --> 00:00:15.137
+Medium confidence gets context
+and an analyst decides.
+
+6
+00:00:15.137 --> 00:00:19.424
+High confidence gets a prepared
+containment, released by a named approver.
+
+7
+00:00:19.424 --> 00:00:23.888
+Fully automatic action is only for
+a short list of low-risk cases.
+
+8
+00:00:23.888 --> 00:00:28.114
+Three things always keep a person
+in the loop: isolating a server,
+
+9
+00:00:28.114 --> 00:00:32.899
+disabling a privileged or emergency
+account, and any tenant-wide change.
+
+10
+00:00:32.899 --> 00:00:37.476
+The decision: the CISO approves every
+playbook that acts on production, and the
+
+11
+00:00:37.476 --> 00:00:39.971
+authorizing official decides whether the
+
+12
+00:00:39.971 --> 00:00:42.675
+vendor's own automatic
+containment is allowed.
+
+13
+00:00:42.675 --> 00:00:44.110
+Next, evidence.

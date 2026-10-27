@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.215
+In an Active Directory estate,
+
+2
+00:00:02.215 --> 00:00:06.200
+nobody wrote down who owned
+DNS, because AD did it for you.
+
+3
+00:00:06.200 --> 00:00:08.654
+One admin group controlled every zone,
+
+4
+00:00:08.654 --> 00:00:11.875
+and the domain controller
+team decided by default.
+
+5
+00:00:11.875 --> 00:00:15.073
+A single policy plane
+concentrates that power:
+
+6
+00:00:15.073 --> 00:00:19.912
+one team can now break resolution for
+every user and every cloud at once.
+
+7
+00:00:19.912 --> 00:00:23.968
+So owners have to be named on
+purpose, one decider per decision,
+
+8
+00:00:23.968 --> 00:00:28.501
+or the cloud, network and directory
+teams each own a piece by accident.
+
+9
+00:00:28.501 --> 00:00:31.150
+Two decisions before
+the transition starts.
+
+10
+00:00:31.150 --> 00:00:35.300
+The sponsor and CIO give the
+decision rights to a named group.
+
+11
+00:00:35.300 --> 00:00:41.000
+And AD administrators strip the DNS admin
+group down to domain administrators.
+
+12
+00:00:41.000 --> 00:00:42.770
+Next, the matrix.

@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.300
+The operating rule is one front door.
+
+2
+00:00:02.300 --> 00:00:05.112
+Nothing is handled as an
+email to the cloud team.
+
+3
+00:00:05.112 --> 00:00:08.798
+Portal requests, emails,
+identity governance tasks
+
+4
+00:00:08.798 --> 00:00:12.399
+and monitoring alerts all
+land in one triage queue.
+
+5
+00:00:12.399 --> 00:00:16.488
+Triage asks one question: what
+authority does this task need?
+
+6
+00:00:16.488 --> 00:00:19.212
+That answer picks the
+pipeline and the approver,
+
+7
+00:00:19.212 --> 00:00:23.025
+from a simple fix up to governance
+actions that are never automated.
+
+8
+00:00:23.025 --> 00:00:26.594
+One small rule matters: if
+an approver doesn't respond,
+
+9
+00:00:26.594 --> 00:00:30.163
+the request is rejected or
+cancelled, never approved.
+
+10
+00:00:30.163 --> 00:00:32.026
+Silence can't grant access.
+
+11
+00:00:32.026 --> 00:00:36.659
+The decision for the service desk
+manager: close the side doors, route the
+
+12
+00:00:36.659 --> 00:00:41.525
+team mailbox into triage, and count any
+work done outside it as a measured gap.
+
+13
+00:00:41.525 --> 00:00:43.320
+Next, what the desk may do.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.800
+Modernization is a long run of changes,
+
+2
+00:00:02.800 --> 00:00:06.238
+and change is exactly when
+telemetry goes quiet.
+
+3
+00:00:06.238 --> 00:00:10.875
+New resources can be born silent
+unless policy forces them to emit.
+
+4
+00:00:10.875 --> 00:00:14.000
+Older ones only get fixed when
+someone runs the cleanup.
+
+5
+00:00:14.000 --> 00:00:17.413
+Retired resources leave
+stale settings behind.
+
+6
+00:00:17.413 --> 00:00:22.525
+And the security console itself is
+moving to a new portal by March 2027.
+
+7
+00:00:22.525 --> 00:00:25.262
+The lesson is to check flow, not settings.
+
+8
+00:00:25.262 --> 00:00:29.025
+A setting that saved without error
+doesn't prove anything arrived.
+
+9
+00:00:29.025 --> 00:00:33.997
+So the decision: platform owners keep
+every plane emitting through each change,
+
+10
+00:00:33.997 --> 00:00:36.935
+security engineering
+checks freshness daily,
+
+11
+00:00:36.935 --> 00:00:40.475
+and an unexplained loss of logs
+is treated as an incident.
+
+12
+00:00:40.475 --> 00:00:42.340
+Next, the SIEM decision.

@@ -108,7 +108,8 @@ def check(deck: Path) -> list[str]:
                 continue
             deco = any(e.get("uri") == DECORATIVE for e in nv.iter(f"{{{NS['a']}}}ext"))
             descr = (nv.get("descr") or "").strip()
-            if not deco and (not descr or re.search(r"[\\/]|\.(png|jpe?g|gif|svg|emf|wmf|bmp)$", descr, re.I)):
+            # a path has no spaces; alt text with a slash in it ("S/MIME", "DNS/DDI") is still alt text
+            if not deco and (not descr or re.fullmatch(r"\S*[\\/]\S*", descr) or re.search(r"\.(png|jpe?g|gif|svg|emf|wmf|bmp)$", descr, re.I)):
                 probs.append(f"slide {i}: {'media' if is_media else 'picture'} {nv.get('name')!r} has no real alt text (empty or a file name) and isn't marked decorative")
         # tables
         for tp in tree.iter(f"{{{NS['a']}}}tblPr"):

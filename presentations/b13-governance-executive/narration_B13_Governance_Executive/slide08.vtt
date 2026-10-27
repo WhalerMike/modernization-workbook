@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.100
+The strictest step is closure.
+
+2
+00:00:02.100 --> 00:00:04.653
+A task closed by someone
+clicking complete,
+
+3
+00:00:04.653 --> 00:00:08.412
+with no machine-readable check
+attached, says the work happened.
+
+4
+00:00:08.412 --> 00:00:10.637
+It proves nothing an assessor can use.
+
+5
+00:00:10.637 --> 00:00:14.850
+So every closure carries its check,
+the time, and what did the checking.
+
+6
+00:00:14.850 --> 00:00:19.558
+Human-only closure stays possible,
+because operations need an escape hatch,
+
+7
+00:00:19.558 --> 00:00:21.875
+but it's flagged and counted on its own.
+
+8
+00:00:21.875 --> 00:00:25.075
+And reports are derived
+from the closure records by
+
+9
+00:00:25.075 --> 00:00:28.200
+something anyone can re-run,
+never compiled by hand.
+
+10
+00:00:28.200 --> 00:00:30.697
+A pipeline that can't
+tell a checked closure
+
+11
+00:00:30.697 --> 00:00:33.125
+from an asserted one is attesting fiction.
+
+12
+00:00:33.125 --> 00:00:37.952
+The decision for the CISO: report
+human-only closures as their own count,
+
+13
+00:00:37.952 --> 00:00:41.412
+never blended into control
+tests or service levels.
+
+14
+00:00:41.412 --> 00:00:44.260
+Next, evidence an assessor can re-run.

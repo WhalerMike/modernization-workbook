@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.925
+Every other migration changes which
+system answers the question, who is this?
+
+2
+00:00:04.925 --> 00:00:07.412
+Certificates are how
+the answer gets proved.
+
+3
+00:00:07.412 --> 00:00:10.837
+And a certificate isn't a record
+you move with the directory.
+
+4
+00:00:10.837 --> 00:00:15.165
+It's a signed statement that's already
+been handed out, sitting in devices,
+
+5
+00:00:15.165 --> 00:00:19.276
+smart cards, servers and trust
+stores nobody remembers configuring.
+
+6
+00:00:19.276 --> 00:00:25.250
+It keeps working, unchanged, until it expires,
+and then whatever relied on it stops.
+
+7
+00:00:25.250 --> 00:00:31.787
+Domain controllers, Wi-Fi, VPN, server
+encryption and PIV sign-in all lean on it.
+
+8
+00:00:31.787 --> 00:00:35.213
+Each book in this workbook
+migrates its own consumers.
+
+9
+00:00:35.213 --> 00:00:38.287
+None of them owns the issuer
+underneath all of them.
+
+10
+00:00:38.287 --> 00:00:41.210
+That's the problem, and it
+runs on a different clock.

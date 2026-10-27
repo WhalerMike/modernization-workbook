@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.125
+Telemetry isn't collected; it's emitted,
+and the switch lives in each platform.
+
+2
+00:00:05.125 --> 00:00:09.674
+So the estate is six planes:
+identity, cloud platform,
+
+3
+00:00:09.674 --> 00:00:14.963
+Microsoft 365, endpoints, network
+and data, each with an owner.
+
+4
+00:00:14.963 --> 00:00:19.500
+No single plane tells the whole story,
+and contractor-run systems count too.
+
+5
+00:00:19.500 --> 00:00:20.837
+Watch the defaults.
+
+6
+00:00:20.837 --> 00:00:26.390
+Several native logs quietly expire after
+a month or three unless you export them,
+
+7
+00:00:26.390 --> 00:00:30.700
+and Microsoft 365 audit history
+depends on each user's license.
+
+8
+00:00:30.700 --> 00:00:32.838
+So the decision splits on purpose.
+
+9
+00:00:32.838 --> 00:00:37.137
+The CISO decides what each plane
+must emit, in the logging plan.
+
+10
+00:00:37.137 --> 00:00:40.813
+Each platform owner decides
+how, and keeps it switched on.
+
+11
+00:00:40.813 --> 00:00:43.800
+Next, keeping it on
+while everything changes.

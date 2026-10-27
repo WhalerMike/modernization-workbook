@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.519
+Every instance gets one of
+three verdicts: retain it,
+
+2
+00:00:03.519 --> 00:00:06.988
+consolidate its workload
+into a target, or retire it.
+
+3
+00:00:06.988 --> 00:00:09.337
+Three lenses make the call defensible.
+
+4
+00:00:09.337 --> 00:00:10.550
+How busy is it?
+
+5
+00:00:10.550 --> 00:00:13.738
+A database untouched for
+over a year is a zombie,
+
+6
+00:00:13.738 --> 00:00:17.662
+and retiring it removes every
+forgotten login it carries.
+
+7
+00:00:17.662 --> 00:00:18.838
+What version is it?
+
+8
+00:00:18.838 --> 00:00:21.920
+Entra logins need SQL
+Server 2022 or later,
+
+9
+00:00:21.920 --> 00:00:26.237
+so most old engines are better
+consolidated than upgraded.
+
+10
+00:00:26.237 --> 00:00:27.538
+And what depends on it?
+
+11
+00:00:27.538 --> 00:00:31.613
+A job that runs once a quarter can
+make an idle instance load-bearing.
+
+12
+00:00:31.613 --> 00:00:36.675
+The decision for the CIO and data
+leadership: a verdict for every instance
+
+13
+00:00:36.675 --> 00:00:41.488
+and a named target, so authentication
+migrates once, in its final shape.
+
+14
+00:00:41.488 --> 00:00:42.550
+Then the audit.

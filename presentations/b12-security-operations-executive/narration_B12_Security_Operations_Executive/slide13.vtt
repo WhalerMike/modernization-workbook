@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.988
+Here's the matrix in one view.
+
+2
+00:00:01.988 --> 00:00:04.526
+The CIO decides scope and funding.
+
+3
+00:00:04.526 --> 00:00:08.292
+The CISO decides the logging
+plan, what each plane emits,
+
+4
+00:00:08.292 --> 00:00:12.300
+the retention floor, and any
+automated action on production.
+
+5
+00:00:12.300 --> 00:00:15.188
+The SOC decides triage and closure.
+
+6
+00:00:15.188 --> 00:00:18.774
+Security engineering owns
+each detection rule,
+
+7
+00:00:18.774 --> 00:00:22.988
+and every rule has one named
+owner, a test and a review date.
+
+8
+00:00:22.988 --> 00:00:25.563
+The records officer decides disposition.
+
+9
+00:00:25.563 --> 00:00:28.424
+And the authorizing
+official decides the risks.
+
+10
+00:00:28.424 --> 00:00:30.315
+One row has a federal clock:
+
+11
+00:00:30.315 --> 00:00:35.212
+the SOC must notify CISA within one
+hour of identifying an incident.
+
+12
+00:00:35.212 --> 00:00:38.265
+There's no time to send
+that decision up and back,
+
+13
+00:00:38.265 --> 00:00:42.100
+so the SOC owns it, while the
+CISO decides whether it's major.
+
+14
+00:00:42.100 --> 00:00:44.880
+Next, the risks nobody signs for.

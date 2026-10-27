@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.963
+The destination is simple to say.
+
+2
+00:00:01.963 --> 00:00:04.299
+Every connection carries an Entra token.
+
+3
+00:00:04.299 --> 00:00:08.063
+Azure Arc gives each instance
+an identity in Entra.
+
+4
+00:00:08.063 --> 00:00:11.435
+People, groups and
+applications get Entra logins,
+
+5
+00:00:11.435 --> 00:00:14.150
+and sa is disabled rather than migrated.
+
+6
+00:00:14.150 --> 00:00:19.326
+Multifactor is enforced by Conditional
+Access before a token is ever issued;
+
+7
+00:00:19.326 --> 00:00:22.238
+the engine itself has
+no multifactor logic.
+
+8
+00:00:22.238 --> 00:00:23.825
+One point saves months.
+
+9
+00:00:23.825 --> 00:00:27.625
+The engine can move to Entra while
+the server is still domain-joined.
+
+10
+00:00:27.625 --> 00:00:30.163
+Waiting for Windows sign-in to move first
+
+11
+00:00:30.163 --> 00:00:32.775
+is the most common
+cause of needless delay.
+
+12
+00:00:32.775 --> 00:00:36.330
+So the decision for server
+infrastructure: onboard Arc now,
+
+13
+00:00:36.330 --> 00:00:39.087
+starting with the instances
+that need it most.
+
+14
+00:00:39.087 --> 00:00:41.140
+Five positions govern that work.

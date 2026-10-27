@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:05.292
+This is the executive briefing
+for Book 08 of the Federal
+
+3
+00:00:05.292 --> 00:00:10.112
+Modernization Workbook: DNS,
+DHCP and IP address management.
+
+4
+00:00:10.112 --> 00:00:15.801
+It's for the CIO, the CISO, the network
+and infrastructure lead, and sponsors.
+
+5
+00:00:15.801 --> 00:00:17.225
+The argument is short.
+
+6
+00:00:17.225 --> 00:00:20.707
+Almost every connection
+starts with a DNS query,
+
+7
+00:00:20.707 --> 00:00:24.363
+and the answer now decides
+far more than an address.
+
+8
+00:00:24.363 --> 00:00:28.731
+Most agencies still run DNS across
+several platforms that share nothing,
+
+9
+00:00:28.731 --> 00:00:33.601
+so the same name gets different answers,
+and the failures look like something else.
+
+10
+00:00:33.601 --> 00:00:37.900
+The fix is one authoritative
+policy plane, with named owners.
+
+11
+00:00:37.900 --> 00:00:41.137
+I'll take four questions:
+why, what, who and how.
+
+12
+00:00:41.137 --> 00:00:45.513
+Each decision slide names the decision,
+its owner and when it's needed.
+
+13
+00:00:45.513 --> 00:00:47.980
+Let's start with what DNS now does.

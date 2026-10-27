@@ -36,6 +36,8 @@ This book is the former SQL Server Identity Transformation narrative series and 
 **15-minute presentation (about 10 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-06) page.
 
 **Technical deep dive (about 50 minutes live, 21 narrated)**: the strategy, then runbooks R01–R10 for DBAs, in modules on the [Presentations](../../presentations/index.md#technical-b06) page.
+
+**Executive briefing (about 30 minutes live, 14 narrated)**: for the CIO, CISO, data platform owner and application owners: why the database hides legacy authentication, counting the estate first, the Entra token target, who owns the engine and who owns the application chain, and the NTLM block date, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b06) page.
 :::
 
 Every SQL Server instance that was joined to the domain inherited Windows Authentication: Kerberos when the service principal name is right, NTLM silently when it isn't, and SQL logins wherever an application couldn't do either. That inheritance is why the database is where legacy authentication hides longest. Nothing in Entra ID sees a Kerberos or NTLM session, so Conditional Access, phishing-resistant authentication and the audit trail never reach it. This book moves the estate to cloud identity for SQL Server 2022 and later: an Entra identity for each instance through Azure Arc, Entra logins for people, groups and applications, NTLM eliminated, and a closure condition that proves it. It starts with the estate itself, because consolidating before migrating is cheaper than migrating what should have been retired.

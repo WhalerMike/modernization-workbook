@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.038
+Picture the week a package is signed.
+
+2
+00:00:02.038 --> 00:00:03.863
+On that day, it's all true.
+
+3
+00:00:03.863 --> 00:00:07.889
+The next morning someone changes
+a firewall rule to fix an outage,
+
+4
+00:00:07.889 --> 00:00:12.737
+a contractor leaves but the account stays
+on, and a provider ships a new default.
+
+5
+00:00:12.737 --> 00:00:14.513
+None of it reaches the package.
+
+6
+00:00:14.513 --> 00:00:18.794
+The book traces this to four
+structural failures, not to people:
+
+7
+00:00:18.794 --> 00:00:23.406
+copies of facts that disagree,
+telemetry combined by hand, evidence
+
+8
+00:00:23.406 --> 00:00:28.512
+rebuilt at every audit, and policy
+trapped inside the tool that enforces it.
+
+9
+00:00:28.512 --> 00:00:30.512
+Each fix sits beneath the tools.
+
+10
+00:00:30.512 --> 00:00:35.174
+So the decision for the CIO: fix that
+layer before buying another tool.
+
+11
+00:00:35.174 --> 00:00:38.300
+Next, what federal
+policy already asks for.

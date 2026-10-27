@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.350
+The help desk executes approved work.
+
+2
+00:00:02.350 --> 00:00:04.550
+It never decides what it executes.
+
+3
+00:00:04.550 --> 00:00:07.146
+Technicians hold no standing admin roles;
+
+4
+00:00:07.146 --> 00:00:10.188
+they switch on a scoped role
+for the ticket in hand.
+
+5
+00:00:10.188 --> 00:00:13.900
+The book flags a trap:
+capability isn't authority.
+
+6
+00:00:13.900 --> 00:00:17.181
+Some roles a help desk
+might hold can delete users
+
+7
+00:00:17.181 --> 00:00:20.462
+or approve app access, which
+the desk must never do.
+
+8
+00:00:20.462 --> 00:00:25.162
+Executive accounts sit in a protected
+unit the general desk can't touch.
+
+9
+00:00:25.162 --> 00:00:29.650
+And security monitoring flags any
+elevation with no matching ticket.
+
+10
+00:00:29.650 --> 00:00:32.623
+The decision for the
+identity governance officer:
+
+11
+00:00:32.623 --> 00:00:37.012
+scope the desk's privileged group, and
+review its membership every quarter.
+
+12
+00:00:37.012 --> 00:00:39.410
+Next, the tasks that need more.

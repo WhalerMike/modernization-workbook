@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.275
+For most of the migration,
+both systems are production.
+
+2
+00:00:03.275 --> 00:00:07.373
+Devices carry certificates from
+both, servers trust both chains,
+
+3
+00:00:07.373 --> 00:00:10.863
+and two sets of revocation
+lists have to stay reachable.
+
+4
+00:00:10.863 --> 00:00:12.526
+Five rules keep that safe.
+
+5
+00:00:12.526 --> 00:00:15.163
+Each use case gets one issuer at a time.
+
+6
+00:00:15.163 --> 00:00:17.524
+Trust goes up before issuance moves.
+
+7
+00:00:17.524 --> 00:00:20.975
+Revocation is reachable
+wherever validation happens.
+
+8
+00:00:20.975 --> 00:00:23.537
+Nothing is revoked early to force a move.
+
+9
+00:00:23.537 --> 00:00:25.826
+And every move has a tested way back.
+
+10
+00:00:25.826 --> 00:00:28.481
+The book's warning is worth remembering:
+
+11
+00:00:28.481 --> 00:00:31.862
+most coexistence outages
+are revocation outages.
+
+12
+00:00:31.862 --> 00:00:36.088
+A list Entra ID can't reach within
+ten seconds fails the sign-in.
+
+13
+00:00:36.088 --> 00:00:39.770
+After the migration, the work
+becomes keeping it all renewed.

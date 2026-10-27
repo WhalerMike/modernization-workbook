@@ -200,6 +200,16 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices-technical/B05_Devices_Technical_Narration_Script.md"
  },
  {
+  "id": "B06_Data_Platform_Executive_Narrated",
+  "title": "Book 06 — Data Platform: SQL Server Identity: executive briefing",
+  "group": "book",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B06_Data_Platform_Executive_Narrated.mp4",
+  "vtt": "presentations/b06-data-platform-executive/B06_Data_Platform_Executive_Narrated.vtt",
+  "deck": "presentations/b06-data-platform-executive/B06_Data_Platform_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform-executive/B06_Data_Platform_Executive_Narration_Script.md"
+ },
+ {
   "id": "B06_Data_Platform_Narrated",
   "title": "Book 06 — Data Platform: SQL Server Identity: presentation",
   "group": "book",
@@ -220,6 +230,16 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narration_Script.md"
  },
  {
+  "id": "B07_PKI_Executive_Narrated",
+  "title": "Book 07 — PKI & Certificates: executive briefing",
+  "group": "book",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B07_PKI_Executive_Narrated.mp4",
+  "vtt": "presentations/b07-pki-executive/B07_PKI_Executive_Narrated.vtt",
+  "deck": "presentations/b07-pki-executive/B07_PKI_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki-executive/B07_PKI_Executive_Narration_Script.md"
+ },
+ {
   "id": "B07_PKI_Narrated",
   "title": "Book 07 — PKI & Certificates: presentation",
   "group": "book",
@@ -238,6 +258,16 @@
   "vtt": "presentations/b07-pki-technical/B07_PKI_Technical_Narrated.vtt",
   "deck": "presentations/b07-pki-technical/B07_PKI_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki-technical/B07_PKI_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B08_DDI_Executive_Narrated",
+  "title": "Book 08 — DNS, DHCP & IPAM: executive briefing",
+  "group": "book",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B08_DDI_Executive_Narrated.mp4",
+  "vtt": "presentations/b08-ddi-executive/B08_DDI_Executive_Narrated.vtt",
+  "deck": "presentations/b08-ddi-executive/B08_DDI_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi-executive/B08_DDI_Executive_Narration_Script.md"
  },
  {
   "id": "B08_DDI_Narrated",
@@ -370,6 +400,16 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical_Narration_Script.md"
  },
  {
+  "id": "B12_Security_Operations_Executive_Narrated",
+  "title": "Book 12 — Security Operations & Telemetry: executive briefing",
+  "group": "book",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B12_Security_Operations_Executive_Narrated.mp4",
+  "vtt": "presentations/b12-security-operations-executive/B12_Security_Operations_Executive_Narrated.vtt",
+  "deck": "presentations/b12-security-operations-executive/B12_Security_Operations_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations-executive/B12_Security_Operations_Executive_Narration_Script.md"
+ },
+ {
   "id": "B12_Security_Operations_Narrated",
   "title": "Book 12 — Security Operations & Telemetry: presentation",
   "group": "book",
@@ -388,6 +428,16 @@
   "vtt": "presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narrated.vtt",
   "deck": "presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B13_Governance_Executive_Narrated",
+  "title": "Book 13 — Governance, Drift & Evidence: executive briefing",
+  "group": "book",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B13_Governance_Executive_Narrated.mp4",
+  "vtt": "presentations/b13-governance-executive/B13_Governance_Executive_Narrated.vtt",
+  "deck": "presentations/b13-governance-executive/B13_Governance_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance-executive/B13_Governance_Executive_Narration_Script.md"
  },
  {
   "id": "B13_Governance_Narrated",
@@ -440,6 +490,16 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b14-compliance/B14_Compliance_Narration_Script.md"
  },
  {
+  "id": "B15_Day2_Operations_Executive_Narrated",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations: executive briefing",
+  "group": "book",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B15_Day2_Operations_Executive_Narrated.mp4",
+  "vtt": "presentations/b15-day2-operations-executive/B15_Day2_Operations_Executive_Narrated.vtt",
+  "deck": "presentations/b15-day2-operations-executive/B15_Day2_Operations_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations-executive/B15_Day2_Operations_Executive_Narration_Script.md"
+ },
+ {
   "id": "B15_Day2_Operations_Narrated",
   "title": "Book 15 — Compliance Automation & Day-2 Operations: presentation",
   "group": "book",
@@ -458,6 +518,16 @@
   "vtt": "presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narrated.vtt",
   "deck": "presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narrated.pptx",
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narration_Script.md"
+ },
+ {
+  "id": "B16_People_Executive_Narrated",
+  "title": "Book 16 — People: Training & Education: executive briefing",
+  "group": "book",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B16_People_Executive_Narrated.mp4",
+  "vtt": "presentations/b16-people-executive/B16_People_Executive_Narrated.vtt",
+  "deck": "presentations/b16-people-executive/B16_People_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b16-people-executive/B16_People_Executive_Narration_Script.md"
  },
  {
   "id": "B16_People_Narrated",

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.637
+PIV is the one part the
+migration doesn't re-issue.
+
+2
+00:00:03.637 --> 00:00:08.200
+Those certificates still come from the
+Federal PKI through the card system.
+
+3
+00:00:08.200 --> 00:00:13.331
+What changes is who trusts them: the federal
+root has to reach devices and servers,
+
+4
+00:00:13.331 --> 00:00:17.313
+and Entra ID has to check each
+card against its revocation list.
+
+5
+00:00:17.313 --> 00:00:18.699
+Two choices matter.
+
+6
+00:00:18.699 --> 00:00:22.874
+Every authority Entra trusts can
+sign in any user it's bound to,
+
+7
+00:00:22.874 --> 00:00:24.838
+so bindings have to be strong.
+
+8
+00:00:24.838 --> 00:00:27.711
+And a PIN-protected card
+counts as multifactor,
+
+9
+00:00:27.711 --> 00:00:32.649
+while a software certificate doesn't, so
+derived credentials need their own rule.
+
+10
+00:00:32.649 --> 00:00:37.041
+The decision for the CISO: require
+high-affinity bindings in production,
+
+11
+00:00:37.041 --> 00:00:40.712
+and send any weaker binding kept
+to the authorizing official.
+
+12
+00:00:40.712 --> 00:00:42.410
+So who owns all of this?

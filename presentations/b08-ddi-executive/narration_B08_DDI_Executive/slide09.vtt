@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.175
+Names and addresses are the same problem.
+
+2
+00:00:02.175 --> 00:00:04.763
+Every cloud has its own address manager,
+
+3
+00:00:04.763 --> 00:00:08.450
+and left alone each one hands
+out address space on its own.
+
+4
+00:00:08.450 --> 00:00:11.552
+You find the overlap when
+two networks are joined,
+
+5
+00:00:11.552 --> 00:00:14.200
+or an auditor finds space nobody recorded.
+
+6
+00:00:14.200 --> 00:00:17.988
+So the enterprise IPAM is the
+authority for address blocks.
+
+7
+00:00:17.988 --> 00:00:20.473
+Some platforms integrate natively;
+
+8
+00:00:20.473 --> 00:00:24.201
+others need you to reserve
+first, mirror, and reconcile.
+
+9
+00:00:24.201 --> 00:00:26.938
+Either way it becomes the address layer of
+
+10
+00:00:26.938 --> 00:00:29.675
+the asset inventory Zero Trust depends on.
+
+11
+00:00:29.675 --> 00:00:33.535
+The decision: the DNS and DDI
+team owns the address plan,
+
+12
+00:00:33.535 --> 00:00:38.425
+and every new cloud network is
+reserved in IPAM before it's created.
+
+13
+00:00:38.425 --> 00:00:40.320
+Next, the architecture.

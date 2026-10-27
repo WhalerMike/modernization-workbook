@@ -51,7 +51,8 @@ def q(ns: str, tag: str) -> str:
 
 def looks_like_file(descr: str) -> bool:
     d = descr.strip()
-    return not d or bool(re.search(r"[\\/]", d)) or bool(re.search(r"\.(png|jpe?g|gif|svg|emf|wmf|bmp)$", d, re.I))
+    # A path has no spaces; alt text can contain a slash ("DNS/DDI team") and still be a sentence.
+    return not d or bool(re.fullmatch(r"\S*[\\/]\S*", d)) or bool(re.search(r"\.(png|jpe?g|gif|svg|emf|wmf|bmp)$", d, re.I))
 
 
 def mark_decorative(cnvpr) -> bool:

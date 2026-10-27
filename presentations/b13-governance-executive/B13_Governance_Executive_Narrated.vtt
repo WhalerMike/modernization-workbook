@@ -1,0 +1,1141 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.543
+This is the executive briefing
+for Book 13 of the Federal
+
+3
+00:00:04.543 --> 00:00:08.324
+Modernization Workbook:
+Governance, Drift and Evidence.
+
+4
+00:00:08.324 --> 00:00:13.615
+It's for the people who fund federal
+systems, sign for them or answer for them:
+
+5
+00:00:13.615 --> 00:00:18.137
+the CIO, the CISO, authorizing
+officials and the program office.
+
+6
+00:00:18.137 --> 00:00:19.837
+The book asks one question.
+
+7
+00:00:19.837 --> 00:00:22.600
+Why does compliance decay
+the day after the audit?
+
+8
+00:00:22.600 --> 00:00:25.422
+Its answer is that an
+assessment measures one day,
+
+9
+00:00:25.422 --> 00:00:28.175
+and the estate starts
+changing the next morning.
+
+10
+00:00:28.175 --> 00:00:32.578
+I'll take four parts: why it
+decays, what keeps the record true,
+
+11
+00:00:32.578 --> 00:00:35.363
+who governs it, and how it runs at scale.
+
+12
+00:00:35.363 --> 00:00:39.762
+Each decision slide names the decision,
+its owner, and when it's needed.
+
+13
+00:00:39.762 --> 00:00:42.160
+Let's start with the decay itself.
+
+14
+00:00:42.910 --> 00:00:44.898
+Picture the week a package is signed.
+
+15
+00:00:44.898 --> 00:00:46.723
+On that day, it's all true.
+
+16
+00:00:46.723 --> 00:00:50.749
+The next morning someone changes
+a firewall rule to fix an outage,
+
+17
+00:00:50.749 --> 00:00:55.597
+a contractor leaves but the account stays
+on, and a provider ships a new default.
+
+18
+00:00:55.597 --> 00:00:57.373
+None of it reaches the package.
+
+19
+00:00:57.373 --> 00:01:01.654
+The book traces this to four
+structural failures, not to people:
+
+20
+00:01:01.654 --> 00:01:06.266
+copies of facts that disagree,
+telemetry combined by hand, evidence
+
+21
+00:01:06.266 --> 00:01:11.372
+rebuilt at every audit, and policy
+trapped inside the tool that enforces it.
+
+22
+00:01:11.372 --> 00:01:13.372
+Each fix sits beneath the tools.
+
+23
+00:01:13.372 --> 00:01:18.034
+So the decision for the CIO: fix that
+layer before buying another tool.
+
+24
+00:01:18.034 --> 00:01:21.460
+Next, what federal
+policy already asks for.
+
+25
+00:01:22.210 --> 00:01:27.510
+FISMA makes annual testing a floor, not
+a ceiling, and expects automated tools.
+
+26
+00:01:27.510 --> 00:01:32.004
+NIST treats monitoring as ongoing
+awareness, and its framework ends with
+
+27
+00:01:32.004 --> 00:01:36.498
+the authorizing official reviewing
+posture all the time, not once a cycle.
+
+28
+00:01:36.498 --> 00:01:42.798
+Circular A-130 tells agencies to move
+eligible systems to ongoing authorization.
+
+29
+00:01:42.798 --> 00:01:44.660
+So the destination is settled.
+
+30
+00:01:44.660 --> 00:01:47.364
+What lags is practice, and NIST says why:
+
+31
+00:01:47.364 --> 00:01:50.998
+without substantial
+automation, it isn't practical.
+
+32
+00:01:50.998 --> 00:01:55.185
+The usual answer to findings is more
+checkpoints and more reviewers.
+
+33
+00:01:55.185 --> 00:01:58.460
+That makes reporting heavier
+and leaves the drift alone.
+
+34
+00:01:58.460 --> 00:02:01.523
+The decision for the CISO:
+answer the next findings
+
+35
+00:02:01.523 --> 00:02:04.372
+by making evidence
+regenerable from the record.
+
+36
+00:02:04.372 --> 00:02:07.320
+Next, the mechanism behind the decay.
+
+37
+00:02:08.070 --> 00:02:10.659
+Drift is any gap between
+what the record says
+
+38
+00:02:10.659 --> 00:02:13.458
+should be true and what
+the estate actually does.
+
+39
+00:02:13.458 --> 00:02:18.774
+It gets in five ways: unauthorized change,
+approved change that's never written
+
+40
+00:02:18.774 --> 00:02:24.171
+back, provider change, people who move or
+leave, and tools that update themselves.
+
+41
+00:02:24.171 --> 00:02:28.058
+Most of it is an administrator fixing
+an outage at two in the morning.
+
+42
+00:02:28.058 --> 00:02:32.821
+It's continuous and silent: every system
+keeps reporting what it was told.
+
+43
+00:02:32.821 --> 00:02:34.644
+And it's the opening attacks use:
+
+44
+00:02:34.644 --> 00:02:38.783
+an account that should have been
+disabled, a permission nobody removed.
+
+45
+00:02:38.783 --> 00:02:42.982
+The baseline and change-control
+controls already require finding it.
+
+46
+00:02:42.982 --> 00:02:48.257
+The decision for the CISO: make drift a
+standing finding in the monitoring strategy.
+
+47
+00:02:48.257 --> 00:02:51.710
+Next, the record drift
+is measured against.
+
+48
+00:02:52.460 --> 00:02:55.131
+Drift can only be measured
+against something,
+
+49
+00:02:55.131 --> 00:02:57.872
+so the program keeps one
+authoritative record.
+
+50
+00:02:57.872 --> 00:03:00.263
+It holds desired state, the rules,
+
+51
+00:03:00.263 --> 00:03:04.511
+and an authority map that says
+which system owns each fact.
+
+52
+00:03:04.511 --> 00:03:08.274
+HR owns who a worker is, the
+asset registry owns devices,
+
+53
+00:03:08.274 --> 00:03:12.372
+and infrastructure as code
+owns declared infrastructure.
+
+54
+00:03:12.372 --> 00:03:16.484
+Everything else is a pointer back,
+and runtime systems only read it.
+
+55
+00:03:16.484 --> 00:03:20.560
+Corrections flow upstream to the
+owning source, never to the copy.
+
+56
+00:03:20.560 --> 00:03:22.837
+A write to a demoted copy is critical,
+
+57
+00:03:22.837 --> 00:03:25.948
+because it's a second source
+of truth growing back.
+
+58
+00:03:25.948 --> 00:03:29.493
+The decision: settle the record
+before the next migration,
+
+59
+00:03:29.493 --> 00:03:33.260
+so the migration changes who
+supplies a fact, not what it means.
+
+60
+00:03:33.260 --> 00:03:36.440
+Next, how the record is allowed to change.
+
+61
+00:03:37.190 --> 00:03:40.165
+A record is only as good
+as the path into it.
+
+62
+00:03:40.165 --> 00:03:44.853
+So every change, from a move
+to a reset, travels one path.
+
+63
+00:03:44.853 --> 00:03:49.171
+It starts from the source of truth,
+gets approved by the right authority,
+
+64
+00:03:49.171 --> 00:03:52.245
+runs under a role that's
+switched on just for the job,
+
+65
+00:03:52.245 --> 00:03:54.953
+closes with proof, and
+emits its own evidence.
+
+66
+00:03:54.953 --> 00:03:59.477
+Skip a step and it isn't a change with
+a missing form; it's a drift finding.
+
+67
+00:03:59.477 --> 00:04:01.577
+There's no second lane for urgent work.
+
+68
+00:04:01.577 --> 00:04:05.478
+Pre-approved lanes are standing
+grants with a scope and an expiry.
+
+69
+00:04:05.478 --> 00:04:09.740
+Emergencies get a path, and they're
+written back within one business day.
+
+70
+00:04:09.740 --> 00:04:14.052
+The decision for the steward: make the
+protections bind administrators too.
+
+71
+00:04:14.052 --> 00:04:17.660
+Next, one question every
+change must answer.
+
+72
+00:04:18.410 --> 00:04:23.348
+Retiring Active Directory takes most of
+a year, and the estate keeps changing.
+
+73
+00:04:23.348 --> 00:04:26.925
+Every new domain-joined
+server, legacy application,
+
+74
+00:04:26.925 --> 00:04:31.585
+service account or Group Policy
+setting is one more thing to unwind.
+
+75
+00:04:31.585 --> 00:04:35.334
+So from gate G0, every add and
+change answers one question:
+
+76
+00:04:35.334 --> 00:04:38.923
+does this create a new
+dependency on Active Directory?
+
+77
+00:04:38.923 --> 00:04:41.935
+Microsoft's own guidance
+puts that step first.
+
+78
+00:04:41.935 --> 00:04:46.547
+A yes isn't automatically a no; some
+workloads have no modern path yet.
+
+79
+00:04:46.547 --> 00:04:49.974
+But a yes becomes an exception,
+with an owner, a reason,
+
+80
+00:04:49.974 --> 00:04:53.798
+an end date and the Entra
+alternative that was considered.
+
+81
+00:04:53.798 --> 00:04:56.921
+The decision belongs to
+the authorizing official,
+
+82
+00:04:56.921 --> 00:04:59.673
+because keeping AD open
+is a risk acceptance.
+
+83
+00:04:59.673 --> 00:05:02.630
+Next, what closing a change requires.
+
+84
+00:05:03.380 --> 00:05:05.430
+The strictest step is closure.
+
+85
+00:05:05.430 --> 00:05:07.983
+A task closed by someone
+clicking complete,
+
+86
+00:05:07.983 --> 00:05:11.742
+with no machine-readable check
+attached, says the work happened.
+
+87
+00:05:11.742 --> 00:05:13.967
+It proves nothing an assessor can use.
+
+88
+00:05:13.967 --> 00:05:18.180
+So every closure carries its check,
+the time, and what did the checking.
+
+89
+00:05:18.180 --> 00:05:22.888
+Human-only closure stays possible,
+because operations need an escape hatch,
+
+90
+00:05:22.888 --> 00:05:25.205
+but it's flagged and counted on its own.
+
+91
+00:05:25.205 --> 00:05:28.405
+And reports are derived
+from the closure records by
+
+92
+00:05:28.405 --> 00:05:31.530
+something anyone can re-run,
+never compiled by hand.
+
+93
+00:05:31.530 --> 00:05:34.027
+A pipeline that can't
+tell a checked closure
+
+94
+00:05:34.027 --> 00:05:36.455
+from an asserted one is attesting fiction.
+
+95
+00:05:36.455 --> 00:05:41.282
+The decision for the CISO: report
+human-only closures as their own count,
+
+96
+00:05:41.282 --> 00:05:44.742
+never blended into control
+tests or service levels.
+
+97
+00:05:44.742 --> 00:05:47.890
+Next, evidence an assessor can re-run.
+
+98
+00:05:48.640 --> 00:05:51.840
+An attestation tells an
+assessor who's accountable.
+
+99
+00:05:51.840 --> 00:05:54.327
+Evidence lets them find
+out for themselves.
+
+100
+00:05:54.327 --> 00:05:56.542
+The program's rule is determinism:
+
+101
+00:05:56.542 --> 00:06:01.290
+the same record and the same inputs
+produce the same evidence, every time.
+
+102
+00:06:01.290 --> 00:06:04.678
+So verification becomes a
+re-run, not an interview.
+
+103
+00:06:04.678 --> 00:06:06.889
+Federal guidance goes most of the way.
+
+104
+00:06:06.889 --> 00:06:12.483
+NIST treats an automated comparison of
+intended and actual state as assessment
+
+105
+00:06:12.483 --> 00:06:15.822
+results, and FedRAMP's
+2026 rules tell assessors
+
+106
+00:06:15.822 --> 00:06:19.078
+not to simply review
+documents or screenshots.
+
+107
+00:06:19.078 --> 00:06:22.596
+Some controls stay attestations,
+like a training record
+
+108
+00:06:22.596 --> 00:06:25.890
+or a contract clause, and
+the package should say which.
+
+109
+00:06:25.890 --> 00:06:30.769
+The decision for the authorizing
+official: give assessors their own access,
+
+110
+00:06:30.769 --> 00:06:33.790
+so the assessor, not the
+operator, does the re-run.
+
+111
+00:06:33.790 --> 00:06:35.880
+Next, the drift engine.
+
+112
+00:06:36.630 --> 00:06:40.385
+The drift engine compares the
+estate with a versioned record,
+
+113
+00:06:40.385 --> 00:06:44.730
+so an approved change isn't drift and
+any finding can be re-derived later.
+
+114
+00:06:44.730 --> 00:06:49.818
+Severity is computed from the kind of drift
+and whether the thing is in active use.
+
+115
+00:06:49.818 --> 00:06:52.990
+A critical finding halts
+and alerts a named person,
+
+116
+00:06:52.990 --> 00:06:55.180
+and it's never fixed automatically.
+
+117
+00:06:55.180 --> 00:06:57.362
+The engine never edits the record,
+
+118
+00:06:57.362 --> 00:07:01.180
+never judges whether a rule is
+right, and never accepts risk.
+
+119
+00:07:01.180 --> 00:07:04.993
+And be precise with assessors:
+some checks are automated today,
+
+120
+00:07:04.993 --> 00:07:07.193
+and others are still found by people.
+
+121
+00:07:07.193 --> 00:07:11.795
+The riskiest change is to what counts as
+drift, so the decision: any change to
+
+122
+00:07:11.795 --> 00:07:16.843
+the classifier or its thresholds gets a
+reviewer from outside the program office.
+
+123
+00:07:16.843 --> 00:07:18.830
+Next, who governs.
+
+124
+00:07:19.580 --> 00:07:24.942
+A platform can detect every drift and still
+decay, because it can't decide anything.
+
+125
+00:07:24.942 --> 00:07:26.480
+Each finding is a question.
+
+126
+00:07:26.480 --> 00:07:27.692
+Change the estate?
+
+127
+00:07:27.692 --> 00:07:28.829
+Change the record?
+
+128
+00:07:28.829 --> 00:07:30.605
+Or carry the difference for a while?
+
+129
+00:07:30.605 --> 00:07:32.893
+The last two need a person with authority.
+
+130
+00:07:32.893 --> 00:07:35.005
+The book keeps two jobs apart.
+
+131
+00:07:35.005 --> 00:07:38.496
+The steward keeps the record,
+and information owners,
+
+132
+00:07:38.496 --> 00:07:42.305
+like HR or an application owner,
+decide what its facts mean.
+
+133
+00:07:42.305 --> 00:07:44.935
+The CISO decides control requirements,
+
+134
+00:07:44.935 --> 00:07:48.030
+and only the authorizing
+official accepts risk.
+
+135
+00:07:48.030 --> 00:07:50.805
+The governance board
+reviews; it doesn't vote,
+
+136
+00:07:50.805 --> 00:07:55.080
+because a board that decides by
+consensus leaves no one accountable.
+
+137
+00:07:55.080 --> 00:07:59.351
+The decision for the sponsor and
+CIO: charter the board in writing,
+
+138
+00:07:59.351 --> 00:08:02.593
+with one named decider for
+every kind of decision.
+
+139
+00:08:02.593 --> 00:08:04.470
+Next, exceptions.
+
+140
+00:08:05.220 --> 00:08:08.233
+A finding that can't be
+fixed in time is carried,
+
+141
+00:08:08.233 --> 00:08:10.532
+by a named decision, with an end date.
+
+142
+00:08:10.532 --> 00:08:14.503
+A bounded exception has an end
+date and a compensating control,
+
+143
+00:08:14.503 --> 00:08:16.107
+and the CISO approves it.
+
+144
+00:08:16.107 --> 00:08:21.270
+Anything open-ended, or with no
+compensating control, is a risk acceptance.
+
+145
+00:08:21.270 --> 00:08:24.835
+The CISO recommends, the
+authorizing official decides,
+
+146
+00:08:24.835 --> 00:08:26.807
+and it goes on the plan of action.
+
+147
+00:08:26.807 --> 00:08:30.663
+The rule never changes; the engine
+keeps reporting the difference,
+
+148
+00:08:30.663 --> 00:08:34.869
+marked as excepted, so an excepted
+setting never looks like a passing one.
+
+149
+00:08:34.869 --> 00:08:38.645
+The decision for the board: review
+the register every quarter.
+
+150
+00:08:38.645 --> 00:08:40.728
+Nothing renews automatically,
+
+151
+00:08:40.728 --> 00:08:45.295
+and anything renewed twice goes back
+up as a sign the rule must change.
+
+152
+00:08:45.295 --> 00:08:48.240
+Next, the authorizing official's part.
+
+153
+00:08:48.990 --> 00:08:53.277
+The authorizing official sits outside
+the program and above the record.
+
+154
+00:08:53.277 --> 00:08:56.828
+The role is small in time
+and large in consequence.
+
+155
+00:08:56.828 --> 00:08:58.848
+The program asks four things of it:
+
+156
+00:08:58.848 --> 00:09:01.733
+sign for every gap it
+carries rather than closes;
+
+157
+00:09:01.733 --> 00:09:06.711
+keep reviewing whether the risk is still
+acceptable; decide whether a significant
+
+158
+00:09:06.711 --> 00:09:11.328
+change needs reauthorization; and set
+how independent the assessors must be.
+
+159
+00:09:11.328 --> 00:09:16.310
+Their representative can do the daily work,
+but risk acceptance can't be delegated,
+
+160
+00:09:16.310 --> 00:09:19.314
+and a contractor can prepare
+one but never sign it.
+
+161
+00:09:19.314 --> 00:09:23.602
+The decision for the authorizing
+official: receive a monthly posture
+
+162
+00:09:23.602 --> 00:09:27.815
+report built from the record, and
+sign every open-ended gap in writing.
+
+163
+00:09:27.815 --> 00:09:30.660
+Next, the record as a federal record.
+
+164
+00:09:31.410 --> 00:09:35.160
+The record is a federal record,
+whether or not anyone calls it one.
+
+165
+00:09:35.160 --> 00:09:39.814
+Its history shows who changed controlled
+settings, who approved them and when,
+
+166
+00:09:39.814 --> 00:09:43.322
+which is exactly what change
+control asks an agency to keep.
+
+167
+00:09:43.322 --> 00:09:47.545
+So the records officer decides how
+long each kind of record lasts,
+
+168
+00:09:47.545 --> 00:09:50.985
+the steward carries it out,
+and the CISO is consulted.
+
+169
+00:09:50.985 --> 00:09:56.047
+Change records, for example, are kept
+five years after a system is retired.
+
+170
+00:09:56.047 --> 00:10:00.973
+The one thing that undoes the repository's
+protections is rewriting its history.
+
+171
+00:10:00.973 --> 00:10:02.898
+A purge destroys records.
+
+172
+00:10:02.898 --> 00:10:07.548
+If a secret is committed by mistake,
+it's revoked and rotated first.
+
+173
+00:10:07.548 --> 00:10:10.420
+The decision: history
+is rewritten only with
+
+174
+00:10:10.420 --> 00:10:13.448
+the records officer's
+and the CISO's agreement.
+
+175
+00:10:13.448 --> 00:10:16.160
+Next, the tempo of operations.
+
+176
+00:10:16.910 --> 00:10:20.288
+A platform that detects
+perfectly and closes slowly
+
+177
+00:10:20.288 --> 00:10:23.435
+produces an accurate list
+of things nobody fixed.
+
+178
+00:10:23.435 --> 00:10:26.022
+Wherever a machine can reach the system,
+
+179
+00:10:26.022 --> 00:10:28.922
+the ticket authorizes a
+machine, not a person.
+
+180
+00:10:28.922 --> 00:10:30.234
+A human approves.
+
+181
+00:10:30.234 --> 00:10:33.424
+The platform runs a versioned
+plan after a dry run,
+
+182
+00:10:33.424 --> 00:10:36.147
+then re-reads the result
+to prove it worked.
+
+183
+00:10:36.147 --> 00:10:41.048
+Some changes stay gated forever, like
+Conditional Access or tenant-wide roles.
+
+184
+00:10:41.048 --> 00:10:44.554
+Where no machine can reach,
+the fallback is a declared,
+
+185
+00:10:44.554 --> 00:10:48.936
+recorded session with an end date,
+never a quiet trip to the console.
+
+186
+00:10:48.936 --> 00:10:51.379
+Letting a whole class run without a person
+
+187
+00:10:51.379 --> 00:10:54.172
+accepts the risk of being
+wrong at machine speed.
+
+188
+00:10:54.172 --> 00:10:57.534
+So the authorizing official
+accepts each one in writing.
+
+189
+00:10:57.534 --> 00:11:00.290
+Next, reuse across agencies.
+
+190
+00:11:01.040 --> 00:11:04.902
+The federal estate assesses the
+same controls again and again.
+
+191
+00:11:04.902 --> 00:11:08.331
+OMB's memorandum on FedRAMP
+makes reuse the default:
+
+192
+00:11:08.331 --> 00:11:12.397
+an agency presumes a maintained
+FedRAMP package is adequate,
+
+193
+00:11:12.397 --> 00:11:16.303
+and asks for more only with a
+documented, demonstrable need.
+
+194
+00:11:16.303 --> 00:11:19.752
+But reuse always ends in
+the agency's own signature.
+
+195
+00:11:19.752 --> 00:11:24.327
+Each agency authorizes its own system,
+never a standalone authorization
+
+196
+00:11:24.327 --> 00:11:28.527
+for the cloud service, and reviews
+each provider's quarterly report.
+
+197
+00:11:28.527 --> 00:11:33.603
+FedRAMP's 2026 indicators
+bind providers, not agencies.
+
+198
+00:11:33.603 --> 00:11:35.990
+What the program adds
+is the evidence side.
+
+199
+00:11:35.990 --> 00:11:39.024
+If the shared package is
+produced continuously,
+
+200
+00:11:39.024 --> 00:11:41.602
+reuse stops meaning last year's snapshot.
+
+201
+00:11:41.602 --> 00:11:43.671
+The decision: reuse by default,
+
+202
+00:11:43.671 --> 00:11:47.727
+and document any demonstrable
+need before asking for more.
+
+203
+00:11:47.727 --> 00:11:50.320
+Next, ongoing authorization.
+
+204
+00:11:51.070 --> 00:11:54.470
+Reciprocity reuses a
+package across agencies.
+
+205
+00:11:54.470 --> 00:11:59.920
+Ongoing authorization reuses it across
+time, and that's what makes the first safe.
+
+206
+00:11:59.920 --> 00:12:03.303
+NIST sets two conditions:
+a complete initial review,
+
+207
+00:12:03.303 --> 00:12:08.182
+and monitoring that checks the controls
+as often as the strategy requires.
+
+208
+00:12:08.182 --> 00:12:12.495
+The authorizing official then issues
+a new decision with no end date.
+
+209
+00:12:12.495 --> 00:12:16.795
+They review posture on a schedule, and
+right away when something triggers it.
+
+210
+00:12:16.795 --> 00:12:19.320
+Reauthorization becomes the exception.
+
+211
+00:12:19.320 --> 00:12:24.495
+Automation is necessary but not enough;
+people still assess what tools can't see.
+
+212
+00:12:24.495 --> 00:12:30.258
+Circular A-130 tells agencies to make
+this move when a system is eligible.
+
+213
+00:12:30.258 --> 00:12:35.215
+The decision for the authorizing official:
+approve each eligible system's move,
+
+214
+00:12:35.215 --> 00:12:38.595
+with how often it's reviewed
+and what triggers a review.
+
+215
+00:12:38.595 --> 00:12:40.950
+Next, governance at scale.
+
+216
+00:12:41.700 --> 00:12:43.845
+At the scale of hundreds of systems,
+
+217
+00:12:43.845 --> 00:12:47.025
+the program's discipline
+is honesty about coverage.
+
+218
+00:12:47.025 --> 00:12:50.702
+Every control is covered,
+partial, a gap, or out of scope,
+
+219
+00:12:50.702 --> 00:12:54.713
+and partial is the answer most
+often rounded up to covered.
+
+220
+00:12:54.713 --> 00:12:58.363
+Every partial or gap goes
+into a register that names,
+
+221
+00:12:58.363 --> 00:13:01.249
+on day one, the evidence
+that will close it.
+
+222
+00:13:01.249 --> 00:13:04.811
+A gap closes by configuration,
+by a substitute control,
+
+223
+00:13:04.811 --> 00:13:08.925
+or by the authorizing official
+accepting it with a review date.
+
+224
+00:13:08.925 --> 00:13:13.813
+Coverage is reported as proven and
+asserted counts, never one percentage.
+
+225
+00:13:13.813 --> 00:13:16.600
+The decision for the
+senior official for risk:
+
+226
+00:13:16.600 --> 00:13:19.388
+approve the agency-wide
+monitoring strategy.
+
+227
+00:13:19.388 --> 00:13:21.840
+Now, the decisions together.
+
+228
+00:13:22.590 --> 00:13:26.577
+So, the decisions together, and
+none of them is a procurement.
+
+229
+00:13:26.577 --> 00:13:30.465
+The CIO fixes the layer beneath
+the tools before buying another.
+
+230
+00:13:30.465 --> 00:13:35.702
+The CISO makes drift a standing finding and
+counts human-only closures on their own.
+
+231
+00:13:35.702 --> 00:13:38.250
+The steward settles the
+record before the next
+
+232
+00:13:38.250 --> 00:13:41.452
+migration and makes the
+protections bind administrators.
+
+233
+00:13:41.452 --> 00:13:46.603
+The sponsor and CIO charter the board,
+with one decider for every decision.
+
+234
+00:13:46.603 --> 00:13:51.630
+The authorizing official approves each
+new Active Directory dependency only as a
+
+235
+00:13:51.630 --> 00:13:55.419
+dated exception, accepts each
+class that runs without a person,
+
+236
+00:13:55.419 --> 00:13:58.989
+and approves ongoing authorization
+when a system is ready.
+
+237
+00:13:58.989 --> 00:14:01.190
+The records officer guards the history.
+
+238
+00:14:01.190 --> 00:14:03.065
+A package describes one day.
+
+239
+00:14:03.065 --> 00:14:07.677
+Governance that doesn't decay keeps
+proving itself, every day after.
+
+240
+00:14:07.677 --> 00:14:08.500
+Thank you.

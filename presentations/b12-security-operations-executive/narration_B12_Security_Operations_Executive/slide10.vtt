@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.900
+Here's the uncomfortable truth: most
+visibility gaps are decided in the budget.
+
+2
+00:00:04.900 --> 00:00:09.150
+Cheap storage tiers are a sound
+choice for noisy, low-value data.
+
+3
+00:00:09.150 --> 00:00:13.268
+The problem comes when a source that
+matters is moved there to save money,
+
+4
+00:00:13.268 --> 00:00:16.150
+and nobody records that it
+no longer raises alerts.
+
+5
+00:00:16.150 --> 00:00:19.254
+Streaming every raw data
+feed costs money too,
+
+6
+00:00:19.254 --> 00:00:21.950
+and audit history depends on licensing.
+
+7
+00:00:21.950 --> 00:00:23.875
+So the decision has two halves.
+
+8
+00:00:23.875 --> 00:00:29.775
+The CIO funds ingestion and retention as
+a visibility decision, not a storage line.
+
+9
+00:00:29.775 --> 00:00:33.246
+And when a detection source
+does leave the alerting tier,
+
+10
+00:00:33.246 --> 00:00:37.825
+that's recorded as a gap, which the
+authorizing official accepts or rejects.
+
+11
+00:00:37.825 --> 00:00:40.100
+Next, what happens to findings.

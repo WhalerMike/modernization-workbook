@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.491
+Microsoft's issuers don't
+renew server certificates,
+
+2
+00:00:03.491 --> 00:00:05.837
+public certificates or appliances.
+
+3
+00:00:05.837 --> 00:00:08.727
+Something has to find those
+and renew them on time,
+
+4
+00:00:08.727 --> 00:00:10.700
+and that's the lifecycle platform.
+
+5
+00:00:10.700 --> 00:00:13.883
+The program uses CyberArk
+Certificate Manager,
+
+6
+00:00:13.883 --> 00:00:17.225
+from a vendor it already has,
+and adds no second tool.
+
+7
+00:00:17.225 --> 00:00:22.030
+Server certificates for internal names
+come from the retained internal authority,
+
+8
+00:00:22.030 --> 00:00:25.600
+requested and renewed through
+the platform instead of by hand.
+
+9
+00:00:25.600 --> 00:00:27.650
+One fact shaped the deployment.
+
+10
+00:00:27.650 --> 00:00:32.502
+As of October 2026 the platform's
+cloud edition had no FedRAMP listing,
+
+11
+00:00:32.502 --> 00:00:37.187
+so the program runs the self-hosted
+edition inside its own boundary.
+
+12
+00:00:37.187 --> 00:00:40.401
+The decision for the sponsor
+and CIO: confirm that,
+
+13
+00:00:40.401 --> 00:00:43.300
+and revisit it when the
+Marketplace changes.
+
+14
+00:00:43.300 --> 00:00:44.660
+Then there's PIV.

@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.325
+There's no single replacement for
+the old certificate authority.
+
+2
+00:00:03.325 --> 00:00:07.062
+The target is four issuers,
+each serving what only it can.
+
+3
+00:00:07.062 --> 00:00:10.537
+Cloud PKI for devices Intune manages.
+
+4
+00:00:10.537 --> 00:00:14.735
+A smaller, hardened internal
+authority for domain controllers,
+
+5
+00:00:14.735 --> 00:00:16.399
+servers and network gear.
+
+6
+00:00:16.399 --> 00:00:21.175
+The Federal PKI for PIV cards,
+which the migration doesn't touch.
+
+7
+00:00:21.175 --> 00:00:24.713
+And a public authority for
+names the internet has to trust.
+
+8
+00:00:24.713 --> 00:00:29.675
+Entra ID sits beside them all, checking
+certificates, never issuing them.
+
+9
+00:00:29.675 --> 00:00:34.129
+The decision for the sponsor and the
+CIO: adopt this four-issuer target,
+
+10
+00:00:34.129 --> 00:00:37.662
+anchoring the cloud issuer to
+the root you already have.
+
+11
+00:00:37.662 --> 00:00:40.440
+That choice of root
+carries a cost of its own.

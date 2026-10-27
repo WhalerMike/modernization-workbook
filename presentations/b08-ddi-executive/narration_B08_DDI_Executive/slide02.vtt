@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.932
+DNS was built to turn names into numbers,
+
+2
+00:00:02.932 --> 00:00:07.212
+in a world where inside and
+outside were separated by a wire.
+
+3
+00:00:07.212 --> 00:00:08.538
+That world has gone.
+
+4
+00:00:08.538 --> 00:00:13.301
+Today the answer to a DNS query decides
+whether cloud traffic stays private,
+
+5
+00:00:13.301 --> 00:00:17.990
+which SaaS front door a user reaches,
+whether a malicious domain is blocked,
+
+6
+00:00:17.990 --> 00:00:20.637
+and whether a certificate check succeeds.
+
+7
+00:00:20.637 --> 00:00:24.337
+It's also the name a Zero Trust
+policy is written against.
+
+8
+00:00:24.337 --> 00:00:27.201
+NIST's 2026 guide says it plainly:
+
+9
+00:00:27.201 --> 00:00:31.337
+DNS is now a security
+control, not just a service.
+
+10
+00:00:31.337 --> 00:00:35.028
+So the first point for this
+room is that governing DNS is
+
+11
+00:00:35.028 --> 00:00:38.800
+a security and architecture
+job, not an operations chore.
+
+12
+00:00:38.800 --> 00:00:41.380
+Next, what happens when it isn't governed.

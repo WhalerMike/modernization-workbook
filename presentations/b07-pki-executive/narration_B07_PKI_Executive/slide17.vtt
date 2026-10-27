@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+The risks fall into three groups.
+
+2
+00:00:02.200 --> 00:00:06.506
+Expiry: a certificate nobody owned,
+one that was never inventoried,
+
+3
+00:00:06.506 --> 00:00:09.950
+or the enrollment server's
+own certificates lapsing.
+
+4
+00:00:09.950 --> 00:00:14.850
+Revocation: a list Entra can't reach fails
+every sign-in for that authority, while
+
+5
+00:00:14.850 --> 00:00:19.825
+an authority trusted with no list at all
+lets revoked certificates keep working.
+
+6
+00:00:19.825 --> 00:00:23.882
+And trust: weak bindings let a
+look-alike certificate sign in,
+
+7
+00:00:23.882 --> 00:00:28.425
+and the new cloud issuer inherits
+any weakness in the old hierarchy.
+
+8
+00:00:28.425 --> 00:00:31.438
+Temporary exceptions
+are the CISO's to grant.
+
+9
+00:00:31.438 --> 00:00:35.413
+Standing ones, with no end
+date, are risk acceptances.
+
+10
+00:00:35.413 --> 00:00:38.345
+So the decision for the
+authorizing official:
+
+11
+00:00:38.345 --> 00:00:41.663
+accept each standing exception
+explicitly, or don't.
+
+12
+00:00:41.663 --> 00:00:43.580
+Let's pull the decisions together.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.994
+There's a difference that's
+easy to buy as one thing:
+
+2
+00:00:02.994 --> 00:00:07.087
+a place where logs are kept, and a
+capability that actually reads them.
+
+3
+00:00:07.087 --> 00:00:08.900
+The controls keep them apart.
+
+4
+00:00:08.900 --> 00:00:14.338
+Generating records is one requirement;
+reviewing and analyzing them is another.
+
+5
+00:00:14.338 --> 00:00:18.299
+And the new federal logging memo
+scores maturity by how much of the
+
+6
+00:00:18.299 --> 00:00:22.188
+required activity produces real
+alerts, not by how much you store.
+
+7
+00:00:22.188 --> 00:00:26.626
+Data kept only in a cheap storage
+tier raises no alerts at all.
+
+8
+00:00:26.626 --> 00:00:31.261
+So the decision for the CISO is a simple
+rule: a source counts as monitored
+
+9
+00:00:31.261 --> 00:00:36.125
+only when an enabled rule reads it, and
+its output reaches a queue someone owns.
+
+10
+00:00:36.125 --> 00:00:38.780
+Next, the federal requirement itself.

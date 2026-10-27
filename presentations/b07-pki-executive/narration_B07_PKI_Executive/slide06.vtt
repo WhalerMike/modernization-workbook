@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.887
+A certificate authority can mint
+credentials the whole estate trusts.
+
+2
+00:00:03.887 --> 00:00:07.604
+So one over-privileged account
+or a single misconfigured
+
+3
+00:00:07.604 --> 00:00:10.700
+template can undo every
+other identity control.
+
+4
+00:00:10.700 --> 00:00:14.192
+And the new cloud issuer will
+chain to this same hierarchy,
+
+5
+00:00:14.192 --> 00:00:16.375
+inheriting whatever's wrong with it.
+
+6
+00:00:16.375 --> 00:00:20.937
+That's why hardening is the first technical
+workstream, not cleanup at the end.
+
+7
+00:00:20.937 --> 00:00:25.845
+Eight well-known misconfiguration classes
+get checked, four of them rated critical,
+
+8
+00:00:25.845 --> 00:00:30.051
+and auditing gets turned on, because
+by default there's no evidence at all.
+
+9
+00:00:30.051 --> 00:00:34.587
+The decision for the PKI owner and
+the security team: hold the gate.
+
+10
+00:00:34.587 --> 00:00:39.675
+Nothing migrates until every critical
+and high finding is fixed and re-tested.
+
+11
+00:00:39.675 --> 00:00:41.210
+Then, the target.

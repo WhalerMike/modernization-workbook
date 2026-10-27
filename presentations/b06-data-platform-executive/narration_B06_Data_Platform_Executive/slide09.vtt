@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.600
+The engine-authentication decision, still
+formally proposed, settles five positions.
+
+2
+00:00:05.600 --> 00:00:07.550
+Consolidation comes first.
+
+3
+00:00:07.550 --> 00:00:12.195
+Every production cutover runs in
+parallel: create the Entra login,
+
+4
+00:00:12.195 --> 00:00:16.925
+prove it works, disable the old one,
+watch for thirty days, then drop it.
+
+5
+00:00:16.925 --> 00:00:21.078
+SQL logins are eliminated, and
+sa is disabled and renamed,
+
+6
+00:00:21.078 --> 00:00:24.613
+with an empty break-glass
+group for emergencies.
+
+7
+00:00:24.613 --> 00:00:27.925
+Older versions upgrade or
+carry a dated exception.
+
+8
+00:00:27.925 --> 00:00:30.813
+And a per-instance record
+is the proof of closure.
+
+9
+00:00:30.813 --> 00:00:34.662
+The decision belongs to the
+CISO: set the standard once,
+
+10
+00:00:34.662 --> 00:00:39.599
+SQL authentication refused and sa
+disabled everywhere in production.
+
+11
+00:00:39.599 --> 00:00:43.572
+An instance that can't meet it
+doesn't stay in mixed mode quietly;
+
+12
+00:00:43.572 --> 00:00:45.863
+it goes to the authorizing official.
+
+13
+00:00:45.863 --> 00:00:47.810
+Now, where all this runs.

@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.069
+The most dangerous failure in
+automated operations is a silent one:
+
+2
+00:00:04.069 --> 00:00:08.663
+a log source that stops sending, or a
+detection that quietly stopped matching.
+
+3
+00:00:08.663 --> 00:00:11.700
+It carries false confidence
+into an authorization.
+
+4
+00:00:11.700 --> 00:00:14.463
+So the runbook checks
+the automation itself.
+
+5
+00:00:14.463 --> 00:00:19.468
+Every day, a completeness check confirms
+each log source is still sending,
+
+6
+00:00:19.468 --> 00:00:22.176
+and a dark source is treated as an outage.
+
+7
+00:00:22.176 --> 00:00:26.526
+Every week, harmless test events
+confirm the detections still fire,
+
+8
+00:00:26.526 --> 00:00:29.400
+and every hand-closed
+task gets a second look.
+
+9
+00:00:29.400 --> 00:00:33.100
+And a check that stops running
+looks exactly like one that passes.
+
+10
+00:00:33.100 --> 00:00:38.262
+The decision for the ISSO: confirm
+each month that every check ran.
+
+11
+00:00:38.262 --> 00:00:40.420
+Now, the decisions together.

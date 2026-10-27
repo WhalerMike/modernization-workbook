@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.387
+This is where DNS meets
+the identity program.
+
+2
+00:00:03.387 --> 00:00:08.431
+While any domain controller remains, it
+needs DNS that accepts its registrations,
+
+3
+00:00:08.431 --> 00:00:11.026
+so those records are
+the last thing to move.
+
+4
+00:00:11.026 --> 00:00:15.251
+Retiring AD DNS is the one
+step you can't cheaply undo,
+
+5
+00:00:15.251 --> 00:00:17.413
+so it's gated, not scheduled.
+
+6
+00:00:17.413 --> 00:00:21.264
+Five gates, all program design:
+the inventory reconciles;
+
+7
+00:00:21.264 --> 00:00:26.835
+the critical records resolve everywhere
+for thirty days; ninety days of parallel
+
+8
+00:00:26.835 --> 00:00:31.751
+running; failover actually tested; and
+no traffic left on the old servers.
+
+9
+00:00:31.751 --> 00:00:35.200
+Get it wrong and you get
+forest-wide sign-in failures.
+
+10
+00:00:35.200 --> 00:00:39.269
+So the sponsor and CIO set the
+date only after every gate passes,
+
+11
+00:00:39.269 --> 00:00:41.538
+with the records officer involved.
+
+12
+00:00:41.538 --> 00:00:42.890
+Next, running it.

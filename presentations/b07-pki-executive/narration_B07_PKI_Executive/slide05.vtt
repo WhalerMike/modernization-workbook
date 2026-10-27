@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.802
+Before any certificate moves,
+
+2
+00:00:01.802 --> 00:00:06.428
+the program establishes what the old
+certificate authority actually holds up:
+
+3
+00:00:06.428 --> 00:00:09.863
+every authority, every template,
+every certificate issued,
+
+4
+00:00:09.863 --> 00:00:11.825
+and every system that trusts them.
+
+5
+00:00:11.825 --> 00:00:14.375
+Then each template gets
+one of four verdicts.
+
+6
+00:00:14.375 --> 00:00:16.888
+Retire it if its consumer is going away.
+
+7
+00:00:16.888 --> 00:00:19.900
+Migrate it if Intune or
+Entra can replace it.
+
+8
+00:00:19.900 --> 00:00:24.400
+Bridge it if it depends on Active
+Directory itself, like domain controllers.
+
+9
+00:00:24.400 --> 00:00:29.312
+And retain it only if nothing else can
+serve it, with an owner and a review date.
+
+10
+00:00:29.312 --> 00:00:34.003
+The decision for the PKI administrators:
+every template classified,
+
+11
+00:00:34.003 --> 00:00:37.212
+with a named owner, in the
+plan's first four weeks.
+
+12
+00:00:37.212 --> 00:00:40.700
+And before any of it moves,
+what stays has to be safe.

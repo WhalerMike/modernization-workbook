@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.442
+For twenty years Active
+Directory quietly ran your DNS.
+
+2
+00:00:03.442 --> 00:00:06.317
+Domain controllers host
+the zones and publish
+
+3
+00:00:06.317 --> 00:00:08.750
+the records that let machines find them.
+
+4
+00:00:08.750 --> 00:00:10.763
+None of that moves to Entra ID.
+
+5
+00:00:10.763 --> 00:00:12.661
+Entra ID hosts no zones at all,
+
+6
+00:00:12.661 --> 00:00:17.012
+and some systems will keep needing
+domain controllers for a while.
+
+7
+00:00:17.012 --> 00:00:20.014
+Here's the trap: once a
+domain controller is gone,
+
+8
+00:00:20.014 --> 00:00:22.862
+the records it kept can't
+be recovered from it.
+
+9
+00:00:22.862 --> 00:00:27.938
+So leaving AD DNS is an inventory
+problem before it's a migration problem.
+
+10
+00:00:27.938 --> 00:00:33.113
+The decision: the DNS and DDI team
+owns the inventory, AD administrators
+
+11
+00:00:33.113 --> 00:00:38.288
+do the work, and it's reconciled before
+the first domain controller goes.
+
+12
+00:00:38.288 --> 00:00:41.420
+Next, how queries slip past your controls.

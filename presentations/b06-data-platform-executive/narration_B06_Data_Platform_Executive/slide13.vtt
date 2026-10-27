@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.563
+Some of the most powerful steps don't
+belong to DBAs at all, by design.
+
+2
+00:00:04.563 --> 00:00:09.382
+Granting the instance identity its
+directory permissions takes a role that can
+
+3
+00:00:09.382 --> 00:00:11.612
+manage every other role in the tenant,
+
+4
+00:00:11.612 --> 00:00:15.425
+so it stays with a small identity
+group, eligible only on request.
+
+5
+00:00:15.425 --> 00:00:19.525
+And the Azure roles around the server
+now matter as much as sysadmin.
+
+6
+00:00:19.525 --> 00:00:22.987
+Contributor on the server can
+run privileged extensions.
+
+7
+00:00:22.987 --> 00:00:27.201
+Contributor on the SQL resource
+can switch SQL logins back on.
+
+8
+00:00:27.201 --> 00:00:30.312
+Whoever holds those roles
+holds a database privilege.
+
+9
+00:00:30.312 --> 00:00:33.807
+So the CISO's decision: review
+those Azure assignments on
+
+10
+00:00:33.807 --> 00:00:37.374
+the same cadence as sysadmin,
+from the first Arc onboarding.
+
+11
+00:00:37.374 --> 00:00:39.770
+Next, the applications upstream.

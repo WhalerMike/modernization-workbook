@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.639
+Drift is any gap between
+what the record says
+
+2
+00:00:02.639 --> 00:00:05.438
+should be true and what
+the estate actually does.
+
+3
+00:00:05.438 --> 00:00:10.754
+It gets in five ways: unauthorized change,
+approved change that's never written
+
+4
+00:00:10.754 --> 00:00:16.151
+back, provider change, people who move or
+leave, and tools that update themselves.
+
+5
+00:00:16.151 --> 00:00:20.038
+Most of it is an administrator fixing
+an outage at two in the morning.
+
+6
+00:00:20.038 --> 00:00:24.801
+It's continuous and silent: every system
+keeps reporting what it was told.
+
+7
+00:00:24.801 --> 00:00:26.624
+And it's the opening attacks use:
+
+8
+00:00:26.624 --> 00:00:30.763
+an account that should have been
+disabled, a permission nobody removed.
+
+9
+00:00:30.763 --> 00:00:34.962
+The baseline and change-control
+controls already require finding it.
+
+10
+00:00:34.962 --> 00:00:40.237
+The decision for the CISO: make drift a
+standing finding in the monitoring strategy.
+
+11
+00:00:40.237 --> 00:00:43.390
+Next, the record drift
+is measured against.

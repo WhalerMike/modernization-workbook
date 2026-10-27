@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.225
+SQL Server leans on certificates in three
+places most retirement plans can't see.
+
+2
+00:00:05.225 --> 00:00:08.832
+The TLS certificate every
+Entra connection now requires,
+
+3
+00:00:08.832 --> 00:00:11.762
+since those connections
+are always encrypted.
+
+4
+00:00:11.762 --> 00:00:14.887
+Certificates behind signed
+code and endpoints.
+
+5
+00:00:14.887 --> 00:00:19.713
+And certificate sign-in, the stopgap for
+connections that can't reach Entra in time,
+
+6
+00:00:19.713 --> 00:00:23.687
+which quietly depends on the domain
+controllers' own certificates.
+
+7
+00:00:23.687 --> 00:00:27.613
+Cloud PKI can't help here;
+it doesn't issue to servers.
+
+8
+00:00:27.613 --> 00:00:32.865
+Book 07 settles the issuer: a retained
+internal hierarchy, renewed through the
+
+9
+00:00:32.865 --> 00:00:35.855
+lifecycle platform, with domain controller
+
+10
+00:00:35.855 --> 00:00:38.925
+certificates kept until
+the last one retires.
+
+11
+00:00:38.925 --> 00:00:43.008
+The decision for data leadership:
+set no retirement date for the old
+
+12
+00:00:43.008 --> 00:00:47.163
+certificate authority until every
+SQL Server dependency has moved.
+
+13
+00:00:47.163 --> 00:00:48.670
+Then, what done means.

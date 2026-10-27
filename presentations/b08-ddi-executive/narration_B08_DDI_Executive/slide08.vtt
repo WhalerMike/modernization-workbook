@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.664
+A certificate can be valid
+and unrevoked and still fail,
+
+2
+00:00:03.664 --> 00:00:08.300
+because every check that makes it
+trustworthy starts with a DNS lookup.
+
+3
+00:00:08.300 --> 00:00:13.121
+If the revocation names live only in
+Active Directory DNS, a cloud workload
+
+4
+00:00:13.121 --> 00:00:17.475
+can't reach them, and the ticket gets
+opened as a certificate problem.
+
+5
+00:00:17.475 --> 00:00:21.050
+The same goes for sign-in
+endpoints and wildcard names.
+
+6
+00:00:21.050 --> 00:00:23.537
+DNSSEC protects the answers themselves.
+
+7
+00:00:23.537 --> 00:00:27.038
+The program's position: sign
+your external zones always,
+
+8
+00:00:27.038 --> 00:00:32.288
+validate on resolvers you control, and sign
+internal zones only where it's required.
+
+9
+00:00:32.288 --> 00:00:33.750
+The CISO sets that.
+
+10
+00:00:33.750 --> 00:00:37.513
+And moving a zone somewhere it can't
+be signed is a risk acceptance,
+
+11
+00:00:37.513 --> 00:00:39.812
+so the authorizing official decides it.
+
+12
+00:00:39.812 --> 00:00:41.280
+Next, addresses.

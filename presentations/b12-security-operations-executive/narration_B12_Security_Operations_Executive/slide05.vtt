@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.612
+Every management tool reports in its
+own format against its own inventory.
+
+2
+00:00:04.612 --> 00:00:08.183
+Five tools, five inventories,
+and when an assessor asks
+
+3
+00:00:08.183 --> 00:00:11.437
+you to prove a fix across
+the whole estate, you can't.
+
+4
+00:00:11.437 --> 00:00:16.056
+The answer is an evidence contract:
+every source emits the same record,
+
+5
+00:00:16.056 --> 00:00:21.151
+joined on one authoritative identity
+for each asset, plus synchronized time.
+
+6
+00:00:21.151 --> 00:00:23.771
+That identity has to come from one place,
+
+7
+00:00:23.771 --> 00:00:26.550
+the naming plane, not
+from each tool's own ID.
+
+8
+00:00:26.550 --> 00:00:31.181
+So the decision: stand up the naming plane
+before you build the evidence pipeline,
+
+9
+00:00:31.181 --> 00:00:33.738
+and write the contract
+into the logging plan.
+
+10
+00:00:33.738 --> 00:00:39.224
+The CISO owns the plan; the DNS and
+identity teams own the naming plane.
+
+11
+00:00:39.224 --> 00:00:41.590
+Next, where telemetry comes from.

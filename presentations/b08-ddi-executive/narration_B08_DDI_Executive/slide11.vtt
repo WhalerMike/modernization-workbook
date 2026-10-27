@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.125
+The platform decision is really a
+decision about the source of truth.
+
+2
+00:00:04.125 --> 00:00:07.275
+One plane holds the zones,
+the forwarding rules,
+
+3
+00:00:07.275 --> 00:00:12.525
+the address data and the security policy,
+and the cloud DNS services consume it.
+
+4
+00:00:12.525 --> 00:00:15.669
+There are three models:
+a SaaS policy plane,
+
+5
+00:00:15.669 --> 00:00:20.700
+DDI the agency runs itself, or
+cloud-native services managed as code.
+
+6
+00:00:20.700 --> 00:00:25.737
+Each has a trade-off, and a small
+single-cloud agency may need only the last.
+
+7
+00:00:25.737 --> 00:00:28.342
+Remember that FedRAMP certifies a service,
+
+8
+00:00:28.342 --> 00:00:31.163
+not your system, and
+Moderate doesn't cover High.
+
+9
+00:00:31.163 --> 00:00:34.958
+So the sponsor and CIO choose on
+evidence from your own estate,
+
+10
+00:00:34.958 --> 00:00:39.200
+and the authorizing official
+authorizes any cloud-delivered plane.
+
+11
+00:00:39.200 --> 00:00:40.460
+Now, who owns it.

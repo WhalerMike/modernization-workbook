@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.895
+The program's rule: discovery
+fills the configuration database,
+
+2
+00:00:03.895 --> 00:00:08.538
+but the authoritative naming and addressing
+record decides what an asset is.
+
+3
+00:00:08.538 --> 00:00:13.074
+When they disagree, the database is
+wrong, and the gap is a finding.
+
+4
+00:00:13.074 --> 00:00:15.637
+This matters for patching and evidence.
+
+5
+00:00:15.637 --> 00:00:19.887
+A missing asset is never patched,
+while coverage still looks complete.
+
+6
+00:00:19.887 --> 00:00:22.650
+A duplicate lets the fix land on one copy.
+
+7
+00:00:22.650 --> 00:00:27.100
+And a connector that quietly returns
+half its records raises no error at all.
+
+8
+00:00:27.100 --> 00:00:32.241
+The decision for system owners: authorize
+or remove every unknown asset the
+
+9
+00:00:32.241 --> 00:00:37.300
+reconciliation finds, and fix identity
+at the source, never in the database.
+
+10
+00:00:37.300 --> 00:00:39.340
+Next, control automation.

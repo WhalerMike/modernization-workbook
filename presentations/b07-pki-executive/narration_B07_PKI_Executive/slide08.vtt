@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.512
+Here's the root decision.
+
+2
+00:00:01.512 --> 00:00:04.241
+A brand-new cloud root means every server,
+
+3
+00:00:04.241 --> 00:00:07.612
+gateway and device has to
+learn to trust a new chain.
+
+4
+00:00:07.612 --> 00:00:12.392
+Anchoring the cloud issuer under the root
+you already have keeps that trust intact,
+
+5
+00:00:12.392 --> 00:00:16.687
+uses one of the tenant's three cloud
+authorities, and leaves an easy way back.
+
+6
+00:00:16.687 --> 00:00:20.476
+That's the program's recommendation
+for an established hierarchy.
+
+7
+00:00:20.476 --> 00:00:22.650
+But it carries one lasting cost.
+
+8
+00:00:22.650 --> 00:00:26.569
+The offline root's revocation
+list now has to stay published at
+
+9
+00:00:26.569 --> 00:00:30.187
+a plain web address that Entra
+ID can reach, or sign-ins fail.
+
+10
+00:00:30.187 --> 00:00:35.512
+So the decision for the PKI administrators,
+inside the security office's window:
+
+11
+00:00:35.512 --> 00:00:39.788
+run that list as a production
+service, with every ceremony dated.
+
+12
+00:00:39.788 --> 00:00:41.660
+Servers still need an issuer.

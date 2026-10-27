@@ -1,0 +1,77 @@
+# Book 12 — Security Operations & Telemetry — narration script (practice copy)
+
+## Slide 1 — Security Operations: the executive briefing
+
+Welcome. This is the executive briefing for Book 12 of the Federal Modernization Workbook, Security Operations and Telemetry. It's for the CISO, the SOC lead, the CIO and authorizing officials. The argument is short. You can't defend what you can't see, and the gaps that matter most make no noise: a system that never sent its logs looks exactly like one where nothing happened. Storing logs isn't the same as detecting with them. And a finding closes only when the thing is fixed, with proof. I'll take four questions: why, what, who and how. Each decision slide names the decision, its owner and when it's needed. Let's start with what a dashboard can't show you.
+
+## Slide 2 — A dashboard measures what arrived, not what didn't
+
+Most agencies can show a dashboard with millions of events a day. But that only measures what arrived. It can't show what didn't. Gaps stay silent in four ways: a source that was never connected, a connector that looks healthy but delivers nothing, data stored where no rule ever reads it, and logging that someone switched off on purpose. The 2023 intrusion into government mailboxes was caught by an agency that happened to have the right logs. Others had nothing to look at, and nothing told them so. So the takeaway: measure coverage against your asset inventory, not against what showed up. Next, the difference between storing and detecting.
+
+## Slide 3 — Storing logs isn't detecting with them
+
+There's a difference that's easy to buy as one thing: a place where logs are kept, and a capability that actually reads them. The controls keep them apart. Generating records is one requirement; reviewing and analyzing them is another. And the new federal logging memo scores maturity by how much of the required activity produces real alerts, not by how much you store. Data kept only in a cheap storage tier raises no alerts at all. So the decision for the CISO is a simple rule: a source counts as monitored only when an enabled rule reads it, and its output reaches a queue someone owns. Next, the federal requirement itself.
+
+## Slide 4 — M-26-14 is the logging requirement now
+
+In May 2026, OMB memo M-26-14 rescinded M-21-31, effective immediately. So the retention numbers many teams still quote belong to a memo that's gone. The new floor is simpler: logs searchable for six months, retrievable for a year, and available to your top-level SOC. The clock runs from CISA's architecture, published in August. By our count, your logging plan is due November 18, and the maturity levels follow through July 2027. Those dates are our arithmetic, not OMB's. The decision: the CISO owns that logging plan, and the CIO funds it as a visibility plan, not a storage purchase. Next, how the evidence fits together.
+
+## Slide 5 — One evidence contract, one join key
+
+Every management tool reports in its own format against its own inventory. Five tools, five inventories, and when an assessor asks you to prove a fix across the whole estate, you can't. The answer is an evidence contract: every source emits the same record, joined on one authoritative identity for each asset, plus synchronized time. That identity has to come from one place, the naming plane, not from each tool's own ID. So the decision: stand up the naming plane before you build the evidence pipeline, and write the contract into the logging plan. The CISO owns the plan; the DNS and identity teams own the naming plane. Next, where telemetry comes from.
+
+## Slide 6 — Six planes, each emitting on purpose
+
+Telemetry isn't collected; it's emitted, and the switch lives in each platform. So the estate is six planes: identity, cloud platform, Microsoft 365, endpoints, network and data, each with an owner. No single plane tells the whole story, and contractor-run systems count too. Watch the defaults. Several native logs quietly expire after a month or three unless you export them, and Microsoft 365 audit history depends on each user's license. So the decision splits on purpose. The CISO decides what each plane must emit, in the logging plan. Each platform owner decides how, and keeps it switched on. Next, keeping it on while everything changes.
+
+## Slide 7 — Keep telemetry flowing through the migration
+
+Modernization is a long run of changes, and change is exactly when telemetry goes quiet. New resources can be born silent unless policy forces them to emit. Older ones only get fixed when someone runs the cleanup. Retired resources leave stale settings behind. And the security console itself is moving to a new portal by March 2027. The lesson is to check flow, not settings. A setting that saved without error doesn't prove anything arrived. So the decision: platform owners keep every plane emitting through each change, security engineering checks freshness daily, and an unexplained loss of logs is treated as an incident. Next, the SIEM decision.
+
+## Slide 8 — The SIEM decision: one queue, clear division
+
+The SIEM decision is less about which product and more about how it behaves. A log store on its own is a warehouse; scheduled rules, incidents and automation make it a detection engine. The program's split is design. Your endpoint and identity protection tools detect what their own sensors see. The SIEM covers everything they can't, like DNS, network services, databases and other clouds. And you only stream raw data where a rule actually needs it, because streaming costs money. Check each feature in your own government cloud before you design on it. Security engineering sets that division, with one incident queue. Next, how long to keep it all.
+
+## Slide 9 — Retention: searchable, retrievable, then kept
+
+Retention is really two decisions. First, the security floor. Data your rules depend on stays in the alerting tier for at least six months, because only that tier raises alerts. Older or high-volume data can live in cheaper tiers you can still search, and a tamper-proof copy serves as evidence. Second, disposition: how long beyond the floor, and when data can be destroyed. That belongs to the records officer, not to whoever holds the console. So the CISO sets the floor, and nobody shortens retention without the records officer agreeing, because once logs are gone, an investigation or a legal hold can't get them back. Next, the cost side.
+
+## Slide 10 — Cost is where visibility gaps get decided
+
+Here's the uncomfortable truth: most visibility gaps are decided in the budget. Cheap storage tiers are a sound choice for noisy, low-value data. The problem comes when a source that matters is moved there to save money, and nobody records that it no longer raises alerts. Streaming every raw data feed costs money too, and audit history depends on licensing. So the decision has two halves. The CIO funds ingestion and retention as a visibility decision, not a storage line. And when a detection source does leave the alerting tier, that's recorded as a gap, which the authorizing official accepts or rejects. Next, what happens to findings.
+
+## Slide 11 — Every finding lands in one queue, on a clock
+
+Detection is only one kind of finding. A missing patch, a known exploited flaw, a drifted setting, an exposed storage account: they all go into the same queue. And the clock changed this year. CISA's directive BOD 26-04, from June, replaced the old rules with four questions about each vulnerable asset: is it exposed, is the flaw known to be exploited, can the attack be automated, and how much control does it give. The answers set deadlines from three days up to the next upgrade. Remember, a scanner measures; it never fixes. The system owner remediates on that clock, and a missed deadline goes to the authorizing official. Now, who runs all this.
+
+## Slide 12 — The SOC runs the queue; it doesn't decide alone
+
+Most agencies can name their SOC. Fewer can say who decided what gets collected, how long it's kept, or who accepted the risk when a source went quiet. Usually it's whoever held the console. The book's model separates those decisions. The SOC runs the queue. The CIO funds it, the CISO sets requirements, platform owners keep logs flowing, and the authorizing official accepts the risk. And because every system inherits monitoring from the SOC, the SOC's own controls need to be assessed like anyone else's. The first decision belongs to the CIO: designate one top-level SOC, decide how it's staffed, and fund it. Next, the full matrix.
+
+## Slide 13 — Who decides what in security operations
+
+Here's the matrix in one view. The CIO decides scope and funding. The CISO decides the logging plan, what each plane emits, the retention floor, and any automated action on production. The SOC decides triage and closure. Security engineering owns each detection rule, and every rule has one named owner, a test and a review date. The records officer decides disposition. And the authorizing official decides the risks. One row has a federal clock: the SOC must notify CISA within one hour of identifying an incident. There's no time to send that decision up and back, so the SOC owns it, while the CISO decides whether it's major. Next, the risks nobody signs for.
+
+## Slide 14 — Accepting the risk of what isn't seen
+
+Only the authorizing official can accept risk, and that includes the risk of not seeing. Four risks tend to get accepted silently by whoever is closest: a source that isn't collected, a noisy rule switched off with no end date, retention that's too short, and a fix that will miss its deadline. Each one should be written up, recommended by the CISO, and decided with an end date. And security operations keeps its own roles apart. A contractor can prepare a risk acceptance, but only the authorizing official signs it. The rule: an exception with an end date is the CISO's; one without goes to the authorizing official. Now, how to respond.
+
+## Slide 15 — Detections need rules; rules need owners
+
+A rule nobody owns slowly rots. So the program keeps its detection rules as code, under version control, and nobody edits a live rule by hand. Every rule follows the same path: tested against history, run quietly in alert-only mode while false alarms are counted, promoted once its response is wired, then reviewed on a schedule to check it still fires and its data still arrives. Be honest about the limits. Detection takes minutes to hours, not seconds, and without steady upkeep the library decays. The decision: security engineering runs the library this way, with the CISO setting priorities, and no rule opens incidents before it has passed through. Next, response.
+
+## Slide 16 — Response climbs a ladder, gated by a person
+
+Detection without response doesn't reduce your exposure. But automation without a gate can turn one noisy rule into an outage. So responses climb a ladder. Every alert is recorded. Medium confidence gets context and an analyst decides. High confidence gets a prepared containment, released by a named approver. Fully automatic action is only for a short list of low-risk cases. Three things always keep a person in the loop: isolating a server, disabling a privileged or emergency account, and any tenant-wide change. The decision: the CISO approves every playbook that acts on production, and the authorizing official decides whether the vendor's own automatic containment is allowed. Next, evidence.
+
+## Slide 17 — Evidence an assessor can verify, and re-run
+
+Continuous monitoring isn't a claim that monitoring happens. It's evidence an assessor can check, and run again. The practical test is simple: show me an alert from the last thirty days, the incident it opened and what you did about it. So every incident keeps four parts: the alert, the ticket, the response notes, and a closure with its proof. Closing a finding takes three steps. The platform owner fixes it. The next scan or check shows it's gone. And the record links the two. The decision: a finding closes only on that re-test, never on a ticket status. Next, how you know the monitoring itself is working.
+
+## Slide 18 — Metrics that say whether monitoring works
+
+You need a small set of metrics that tell you whether monitoring works, not how busy it is. Coverage counts the required activities a working rule actually reads, not how many rules you have. Completeness counts how long a required source stayed silent. Vulnerability remediation counts fixes closed on time, and fixes overdue. Configuration counts passes, failures and exceptions separately, so an exception never looks like a pass. And maturity is reported by system, at its weakest point. The decision belongs to the CISO: adopt the metric set and the rhythm, with the SOC seeing it daily, and the CISO and authorizing official monthly. Let's pull the decisions together.
+
+## Slide 19 — Decisions to make, owners and timing
+
+So, the decisions. The CISO owns the logging plan due November 18, decides what each plane emits, counts a source as monitored only when a rule reads it, and approves any automated action on production. The CIO funds visibility, not storage, and designates one top-level SOC. Platform owners keep their logs flowing through every change. Security engineering runs the detection library as code. The records officer must agree before retention shrinks. The SOC notifies CISA within the hour. And the authorizing official decides every open-ended gap and missed deadline. A gap nobody chose is still a decision. Make it on purpose. Book 12 has the detail, every claim footnoted. Thank you.

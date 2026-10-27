@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.056
+This is the executive
+briefing for Book 06 of the
+
+3
+00:00:04.056 --> 00:00:07.762
+Federal Modernization
+Workbook, SQL Server identity.
+
+4
+00:00:07.762 --> 00:00:11.416
+It's for the people who make
+the calls: the CIO, the CISO,
+
+5
+00:00:11.416 --> 00:00:15.401
+the data platform owner,
+application owners and sponsors.
+
+6
+00:00:15.401 --> 00:00:16.825
+The argument is short.
+
+7
+00:00:16.825 --> 00:00:21.042
+Every domain-joined SQL Server
+inherited Windows Authentication,
+
+8
+00:00:21.042 --> 00:00:26.087
+and none of it is visible to the identity
+plane that enforces multifactor sign-in.
+
+9
+00:00:26.087 --> 00:00:30.175
+The estate has to be counted and
+shrunk before any login moves.
+
+10
+00:00:30.175 --> 00:00:34.297
+And the destination is an Entra
+token on every connection,
+
+11
+00:00:34.297 --> 00:00:38.162
+finished well before the
+program's own NTLM block date.
+
+12
+00:00:38.162 --> 00:00:42.538
+Each decision slide names the decision,
+its owner and when it's needed.
+
+13
+00:00:42.538 --> 00:00:45.600
+Let's start with why the
+database is where this hides.

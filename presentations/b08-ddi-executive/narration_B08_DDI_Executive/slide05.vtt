@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.488
+Logging changed this year.
+
+2
+00:00:01.488 --> 00:00:09.001
+OMB's May 2026 memo, M-26-14,
+replaced the old logging tiers.
+
+3
+00:00:09.001 --> 00:00:14.139
+It doesn't name DNS at all; it sets a
+baseline, logs searchable for six months
+
+4
+00:00:14.139 --> 00:00:19.025
+and kept for a year, and leaves the
+sources to each agency's logging plan.
+
+5
+00:00:19.025 --> 00:00:24.600
+That plan is due by November 18, a date
+we computed from CISA's publication.
+
+6
+00:00:24.600 --> 00:00:28.972
+DNS query logs tell you which
+address asked for a bad domain;
+
+7
+00:00:28.972 --> 00:00:32.363
+DHCP lease logs tell you
+which device that was.
+
+8
+00:00:32.363 --> 00:00:34.662
+So the CISO puts both in the plan.
+
+9
+00:00:34.662 --> 00:00:40.913
+DNSSEC and the IPv6 targets are older
+requirements, and the IPv6 dates have passed.
+
+10
+00:00:40.913 --> 00:00:44.500
+Now, what has to change,
+starting with Active Directory.
