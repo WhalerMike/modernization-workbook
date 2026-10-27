@@ -18,6 +18,8 @@ project:
     - "sitemap.qmd"
     - "404.qmd"
     - "docs/start-here.md"
+    # One page listing every download: kits, Word editions, videos.
+    - "docs/downloads.md"
     - "docs/books/**/*.md"
     - "docs/presentations/**/*.md"
     - "docs/inspiration/**/*.md"
@@ -110,6 +112,8 @@ website:
         text: "Presentations"
       - href: docs/presentations/watch.md
         text: "Videos"
+      - href: docs/downloads.md
+        text: "Downloads"
       - href: docs/research/index.md
         text: "Research"
       - text: "About"
