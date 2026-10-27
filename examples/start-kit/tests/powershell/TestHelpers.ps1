@@ -34,6 +34,8 @@ function global:Read-KitFixture([string]$Name) {
 }
 $global:FMPFix = Read-KitFixture 'ad-forest.json'
 $global:FMPSqlFix = Read-KitFixture 'sql-estate.json'
+$global:FMPNpsFix = Read-KitFixture 'nps.json'
+$global:FMPNpsConfigPath = Join-Path $script:FixturePath 'nps-ias.xml'
 $global:FMPGpoPath = Join-Path $script:FixturePath 'gpo'
 $global:FMPAsOf = [datetime]'2026-10-27T00:00:00'
 
@@ -155,6 +157,47 @@ function global:Register-KitAdMocks([string]$ModuleName) {
             'cdc01.*' { throw 'No events were found that match the specified selection criteria.' }
             default { throw 'Access is denied.' }
         }
+    }
+}
+
+function global:Register-KitNpsMocks {
+    # The directory side from the fixture forest; the per-server reads from nps.json. A server
+    # missing from nps.json denies every read, as a server without local admin rights would.
+    $m = @{ ModuleName = 'FMPNpsInventory' }
+    Mock @m Get-ADForest { $global:FMPFix.forest }
+    Mock @m Get-ADDomain { $global:FMPFix.domains.(Get-FixDomain $Server) }
+    Mock @m Get-ADGroupMember { Get-FixList $global:FMPNpsFix.rasIasMembers "$Identity" }
+    Mock @m Get-ADComputer {
+        $c = $global:FMPNpsFix.computers.PSObject.Properties["$Identity"]
+        if (-not $c) { throw "Cannot find an object with identity: '$Identity'" }
+        $c.Value
+    }
+    Mock @m Get-ADGroup {
+        $g = $global:FMPNpsFix.groups.PSObject.Properties["$Identity"]
+        if (-not $g) { throw "Cannot find an object with identity: '$Identity'" }
+        [pscustomobject]@{ SamAccountName = $g.Value; SID = "$Identity" }
+    }
+    Mock @m Read-FMPNpsConfigFile {
+        $s = $global:FMPNpsFix.servers.PSObject.Properties["$ComputerName"]
+        if (-not $s) { throw 'Access is denied.' }
+        Get-Content -Raw -Path (Join-Path (Split-Path -Parent $global:FMPNpsConfigPath) $s.Value.config)
+    }
+    Mock @m Get-FMPNpsCertificate {
+        $s = $global:FMPNpsFix.servers.PSObject.Properties["$ComputerName"]
+        if (-not $s) { throw 'Access is denied.' }
+        @($s.Value.certificates)
+    }
+    Mock @m Get-FMPNpsExtensionDll {
+        $s = $global:FMPNpsFix.servers.PSObject.Properties["$ComputerName"]
+        if (-not $s) { throw 'Attempted to perform an unauthorized operation.' }
+        @($s.Value.extensionDlls)
+    }
+    Mock @m Get-WinEvent {
+        $s = $global:FMPNpsFix.servers.PSObject.Properties["$ComputerName"]
+        if (-not $s) { throw 'Access is denied.' }
+        $e = @($s.Value.events)
+        if ($e.Count -eq 0) { throw 'No events were found that match the specified selection criteria.' }
+        $e | ForEach-Object { [pscustomobject]@{ Id = $_.Id; TimeCreated = [datetime]$_.TimeCreated; Message = $_.Message } }
     }
 }
 

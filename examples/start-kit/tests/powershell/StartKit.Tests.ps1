@@ -4,9 +4,11 @@ BeforeAll {
     . (Join-Path $PSScriptRoot 'TestHelpers.ps1')
     Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPADAssessment') -Force
     Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPSqlEstate') -Force
+    Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPNpsInventory') -Force
     Register-KitAdMocks -ModuleName FMPADAssessment
     Register-KitAdMocks -ModuleName FMPSqlEstate
     Register-KitSqlMocks
+    Register-KitNpsMocks
     Mock -ModuleName FMPADAssessment Get-FMPCAEditFlags { 'EditFlags REG_DWORD = 1' }
     # The run script itself reads the forest and the DC that serves each domain.
     Mock Get-ADForest { $global:FMPFix.forest }
@@ -25,7 +27,7 @@ Describe 'Invoke-FMPStartKit.ps1' {
     }
     It 'completes every step' {
         @($manifest.Steps | Where-Object Status -ne 'Completed' | ForEach-Object { "$($_.Step): $($_.Error)" }) | Should -BeNullOrEmpty
-        @($manifest.Steps).Count | Should -Be 24
+        @($manifest.Steps).Count | Should -Be 25
     }
     It 'records provenance: who, when, where, with what' {
         $manifest.ReadOnly | Should -BeTrue
@@ -34,8 +36,10 @@ Describe 'Invoke-FMPStartKit.ps1' {
         $manifest.ComputerName | Should -Not -BeNullOrEmpty
         $manifest.StartTimeUtc | Should -Not -BeNullOrEmpty
         $manifest.ServedBy.'child.contoso.example' | Should -Be 'cdc01.child.contoso.example'
-        $manifest.ModuleVersions.FMPADAssessment | Should -Be '1.2.0'
+        $manifest.ModuleVersions.FMPADAssessment | Should -Be '1.3.0'
         $manifest.Parameters.QueryInstances | Should -BeTrue
+        $manifest.ModuleVersions.FMPNpsInventory | Should -Be '1.0.0'
+        $manifest.KitVersion | Should -Be '1.1.0'
     }
     It 'hashes every file in the run, and the hashes match' {
         $files = @(Get-ChildItem -Path $runDir.FullName -Recurse -File | Where-Object Name -ne 'AssessmentManifest.json')
@@ -44,10 +48,19 @@ Describe 'Invoke-FMPStartKit.ps1' {
             (Get-FileHash -Path (Join-Path $runDir.FullName $f.RelativePath) -Algorithm SHA256).Hash | Should -Be $f.SHA256
         }
     }
-    It 'writes the summary, the SQL estate and the pre-flight' {
+    It 'writes the summary, the SQL estate, the NPS inventory and the pre-flight' {
         Join-Path $runDir.FullName 'Summary\StartKitSummary.md' | Should -Exist
         Join-Path $runDir.FullName 'SQL\SqlEstate.csv' | Should -Exist
+        Join-Path $runDir.FullName 'NPS\RadiusClients.csv' | Should -Exist
         Join-Path $runDir.FullName 'Preflight\DelegationRequest.md' | Should -Exist
+    }
+    It 'carries the NPS counts into the one-page summary' {
+        $s = Get-Content -Raw (Join-Path $runDir.FullName 'Summary\StartKitSummary.json') | ConvertFrom-Json
+        $s.Counts.NPSServers | Should -Be 3
+        $s.Counts.NPSServersRead | Should -Be 2
+        $s.Counts.RADIUSClients | Should -Be 3
+        $s.Counts.NPSPolicyGroups | Should -Be 5
+        Get-Content -Raw (Join-Path $runDir.FullName 'Summary\StartKitSummary.md') | Should -Match 'RADIUS and NPS findings by severity'
     }
     It 'writes nothing outside -OutputPath' {
         @(Get-ChildItem -Path $TestDrive -Force | Where-Object Name -ne 'assess') | Should -BeNullOrEmpty

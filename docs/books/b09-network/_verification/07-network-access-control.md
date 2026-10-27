@@ -149,3 +149,11 @@ From the research explainer *Certificates, Tokens and Keys Across the Hybrid Est
 |---|---|---|---|---|
 | 1 | NPS MFA extension creates a self-signed certificate valid for two years; own certificates with Client Authentication EKU allowed | Certificates section table and text | added (inventory row; replacement is design guidance) | NPS extension for Entra MFA, note hc-npsmfa |
 | 2 | ISE's own certificates are enrolled by signing request and bind, or import; no SCEP or EST enrollment found | Certificates section table | corrected (was "EST, SCEP or an Adaptable driver"); Adaptable route is inference | ISE 3.4 admin guide, note hc-ise34 |
+
+## Start Kit link, October 27, 2026
+
+Checked October 27, 2026; no personal data sent to any site.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| K1 | Rolling it out: the inventory step can start from the Start Kit, which flags this chapter's rules (secret length and reuse, Message-Authenticator, PAP and MS-CHAP, KB5040268 mode from event 4421) | Rolling it out | added | examples/start-kit (PR in this change); tests/powershell, 152 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 27, 2026; KB5040268 (events 4418 to 4421), opened Oct 27, 2026 |

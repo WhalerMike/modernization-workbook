@@ -77,8 +77,9 @@ jobs:
         run: python3 scripts/build_bundles.py --out _site/downloads
 
       - name: Build the Start Kit download
-        # downloads/start-kit.zip: examples/start-kit as committed, linked from
-        # Book 00 Chapter 08 and Book 06 Runbook R02.
+        # downloads/start-kit.zip: examples/start-kit as committed, linked from the home
+        # page, Book 00 Chapter 08, Book 02 Chapters 04 and Appendix B, Book 06 Runbooks
+        # R01 and R02, and Book 09 Chapter 07.
         run: python3 scripts/build_start_kit_zip.py --out _site/downloads
 
       - name: Setup Pages

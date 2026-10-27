@@ -1,0 +1,47 @@
+{
+  "_comment": "Made-up NPS estate for the tests, in the contoso.example fixture forest. nps01 and nps02 are a synchronized pair; rras01 is in the RAS and IAS Servers group but its reads are denied.",
+  "rasIasMembers": {
+    "S-1-5-21-1000-1000-1000-553": [
+      { "SID": "S-1-5-21-1000-1000-1000-1601", "objectClass": "computer" },
+      { "SID": "S-1-5-21-1000-1000-1000-1602", "objectClass": "computer" },
+      { "SID": "S-1-5-21-1000-1000-1000-1250", "objectClass": "group" }
+    ],
+    "S-1-5-21-2000-2000-2000-553": [
+      { "SID": "S-1-5-21-2000-2000-2000-1601", "objectClass": "computer" }
+    ]
+  },
+  "computers": {
+    "S-1-5-21-1000-1000-1000-1601": { "Name": "NPS01", "DNSHostName": "nps01.contoso.example", "OperatingSystem": "Windows Server 2022 Standard", "Enabled": true },
+    "S-1-5-21-1000-1000-1000-1602": { "Name": "NPS02", "DNSHostName": "NPS02.contoso.example", "OperatingSystem": "Windows Server 2022 Standard", "Enabled": true },
+    "S-1-5-21-2000-2000-2000-1601": { "Name": "RRAS01", "DNSHostName": "rras01.child.contoso.example", "OperatingSystem": "Windows Server 2016 Standard", "Enabled": true }
+  },
+  "groups": {
+    "S-1-5-21-1000-1000-1000-1201": "WiFi-Devices",
+    "S-1-5-21-1000-1000-1000-1202": "Wired-Devices",
+    "S-1-5-21-2000-2000-2000-1203": "Child-Wired-Devices",
+    "S-1-5-21-1000-1000-1000-1204": "VPN-Users"
+  },
+  "servers": {
+    "nps01.contoso.example": {
+      "config": "nps-ias.xml",
+      "certificates": [
+        { "Subject": "CN=nps01.contoso.example", "Issuer": "CN=Contoso Issuing CA", "Thumbprint": "1F4E8C2A9B3D7E6F5A1C0B9D8E7F6A5B4C3D2E1F", "NotAfter": "2026-12-01T00:00:00", "DnsNames": ["nps01.contoso.example"], "ServerAuth": true, "Template": "RAS and IAS Server" },
+        { "Subject": "CN=nps01.contoso.example", "Issuer": "CN=Contoso Issuing CA", "Thumbprint": "AA00BB11CC22DD33EE44FF5566778899AABBCCDD", "NotAfter": "2028-01-01T00:00:00", "DnsNames": ["nps01.contoso.example"], "ServerAuth": true, "Template": "Computer" }
+      ],
+      "extensionDlls": [ "C:\\Program Files\\Microsoft\\AzureMfa\\Extensions\\MfaNpsAuthnExt.dll", "C:\\Program Files\\Microsoft\\AzureMfa\\Extensions\\MfaNpsAuthzExt.dll" ],
+      "events": [
+        { "Id": 4421, "TimeCreated": "2026-10-20T06:00:00", "Message": "RequireMsgAuth and/or limitProxyState configuration is in Disable mode. These settings should be configured in Enable mode for security purposes." },
+        { "Id": 4419, "TimeCreated": "2026-10-21T09:00:00", "Message": "An Access-Request message was received from RADIUS client 10.0.10.2 containing a Proxy-State attribute, but it did not include a Message-Authenticator attribute." },
+        { "Id": 4419, "TimeCreated": "2026-10-22T09:00:00", "Message": "An Access-Request message was received from RADIUS client 10.0.10.2 containing a Proxy-State attribute, but it did not include a Message-Authenticator attribute." }
+      ]
+    },
+    "nps02.contoso.example": {
+      "config": "nps-ias.xml",
+      "certificates": [
+        { "Subject": "CN=nps02.contoso.example", "Issuer": "CN=Contoso Issuing CA", "Thumbprint": "2A5F9D3BAC4E8F706B2D1CAE9F807B6C5D4E3F20", "NotAfter": "2027-09-01T00:00:00", "DnsNames": ["nps02.contoso.example"], "ServerAuth": true, "Template": "RAS and IAS Server" }
+      ],
+      "extensionDlls": [],
+      "events": []
+    }
+  }
+}

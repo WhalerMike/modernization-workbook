@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A made-up NPS configuration in the shape of ias.xml, for the tests. The shared secrets
+     are fixture values; the tests check that none of them reaches any output file. -->
+<Root xmlns:dt="urn:schemas-microsoft-com:datatypes">
+  <Children>
+    <Microsoft_Internet_Authentication_Service name="Microsoft Internet Authentication Service">
+      <Children>
+        <NetworkPolicy name="NetworkPolicy">
+          <Children>
+            <Wireless_EAP-TLS name="Wireless EAP-TLS">
+              <Properties>
+                <Policy_Enabled dt:dt="boolean">1</Policy_Enabled>
+                <msNPAction dt:dt="string">Wireless EAP-TLS</msNPAction>
+                <msNPConstraint dt:dt="string">NTGROUPS("S-1-5-21-1000-1000-1000-1201")</msNPConstraint>
+                <msNPConstraint dt:dt="string">MATCH("NAS-Port-Type=^19$|^19 | 19$| 19 ")</msNPConstraint>
+                <msNPSequence dt:dt="int">1</msNPSequence>
+              </Properties>
+            </Wireless_EAP-TLS>
+            <Wired_802.1X name="Wired 802.1X">
+              <Properties>
+                <Policy_Enabled dt:dt="boolean">1</Policy_Enabled>
+                <msNPAction dt:dt="string">Wired 802.1X</msNPAction>
+                <msNPConstraint dt:dt="string">NTGROUPS("S-1-5-21-1000-1000-1000-1202;S-1-5-21-2000-2000-2000-1203;S-1-5-21-9999-9999-9999-1100")</msNPConstraint>
+                <msNPConstraint dt:dt="string">MATCH("NAS-Port-Type=^15$|^15 | 15$| 15 ")</msNPConstraint>
+                <msNPSequence dt:dt="int">2</msNPSequence>
+              </Properties>
+            </Wired_802.1X>
+            <VPN_legacy name="VPN legacy">
+              <Properties>
+                <Policy_Enabled dt:dt="boolean">1</Policy_Enabled>
+                <msNPAction dt:dt="string">VPN legacy</msNPAction>
+                <msNPConstraint dt:dt="string">NTGROUPS("S-1-5-21-1000-1000-1000-1204")</msNPConstraint>
+                <msNPConstraint dt:dt="string">MATCH("NAS-Port-Type=^5$|^5 | 5$| 5 ")</msNPConstraint>
+                <msNPSequence dt:dt="int">3</msNPSequence>
+              </Properties>
+            </VPN_legacy>
+            <Deny_everyone_else name="Deny everyone else">
+              <Properties>
+                <Policy_Enabled dt:dt="boolean">1</Policy_Enabled>
+                <msNPAction dt:dt="string">Deny everyone else</msNPAction>
+                <msNPConstraint dt:dt="string">TIMEOFDAY("0 00:00-24:00; 1 00:00-24:00; 2 00:00-24:00; 3 00:00-24:00; 4 00:00-24:00; 5 00:00-24:00; 6 00:00-24:00")</msNPConstraint>
+                <msNPSequence dt:dt="int">4</msNPSequence>
+              </Properties>
+            </Deny_everyone_else>
+          </Children>
+        </NetworkPolicy>
+        <RadiusProfiles name="RadiusProfiles">
+          <Children>
+            <Wireless_EAP-TLS name="Wireless EAP-TLS">
+              <Properties>
+                <msNPAllowDialin dt:dt="boolean">1</msNPAllowDialin>
+                <msNPAuthenticationType2 dt:dt="int">5</msNPAuthenticationType2>
+                <msNPAllowedEapType dt:dt="int">13</msNPAllowedEapType>
+                <msEAPConfiguration dt:dt="bin.hex">0d000000000000000000000000000000140000001f4e8c2a9b3d7e6f5a1c0b9d8e7f6a5b4c3d2e1f0000000000</msEAPConfiguration>
+              </Properties>
+            </Wireless_EAP-TLS>
+            <Wired_802.1X name="Wired 802.1X">
+              <Properties>
+                <msNPAllowDialin dt:dt="boolean">1</msNPAllowDialin>
+                <msNPAuthenticationType2 dt:dt="int">11</msNPAuthenticationType2>
+                <msNPAuthenticationType2 dt:dt="int">5</msNPAuthenticationType2>
+                <msNPAllowedEapType dt:dt="int">25</msNPAllowedEapType>
+                <msEAPConfiguration dt:dt="bin.hex">19000000000000000000000000000000140000001F4E8C2A9B3D7E6F5A1C0B9D8E7F6A5B4C3D2E1F</msEAPConfiguration>
+              </Properties>
+            </Wired_802.1X>
+            <VPN_legacy name="VPN legacy">
+              <Properties>
+                <msNPAllowDialin dt:dt="boolean">1</msNPAllowDialin>
+                <msNPAuthenticationType2 dt:dt="int">1</msNPAuthenticationType2>
+                <msNPAuthenticationType2 dt:dt="int">4</msNPAuthenticationType2>
+              </Properties>
+            </VPN_legacy>
+            <Deny_everyone_else name="Deny everyone else">
+              <Properties>
+                <msNPAllowDialin dt:dt="boolean">0</msNPAllowDialin>
+                <msNPAuthenticationType2 dt:dt="int">1</msNPAuthenticationType2>
+              </Properties>
+            </Deny_everyone_else>
+          </Children>
+        </RadiusProfiles>
+        <Proxy_Policies name="Proxy Policies">
+          <Children>
+            <Partner_realm name="Partner realm">
+              <Properties>
+                <Policy_Enabled dt:dt="boolean">1</Policy_Enabled>
+                <msNPAction dt:dt="string">Partner realm</msNPAction>
+                <msNPConstraint dt:dt="string">MATCH("User-Name=@partner\.example$")</msNPConstraint>
+                <msNPSequence dt:dt="int">1</msNPSequence>
+              </Properties>
+            </Partner_realm>
+            <Use_Windows_authentication_for_all_users name="Use Windows authentication for all users">
+              <Properties>
+                <Policy_Enabled dt:dt="boolean">1</Policy_Enabled>
+                <msNPAction dt:dt="string">Use Windows authentication for all users</msNPAction>
+                <msNPConstraint dt:dt="string">TIMEOFDAY("0 00:00-24:00; 1 00:00-24:00; 2 00:00-24:00; 3 00:00-24:00; 4 00:00-24:00; 5 00:00-24:00; 6 00:00-24:00")</msNPConstraint>
+                <msNPSequence dt:dt="int">999999</msNPSequence>
+              </Properties>
+            </Use_Windows_authentication_for_all_users>
+          </Children>
+        </Proxy_Policies>
+        <Proxy_Profiles name="Proxy Profiles">
+          <Children>
+            <Partner_realm name="Partner realm">
+              <Properties>
+                <msAuthProviderType dt:dt="int">2</msAuthProviderType>
+                <msAuthProviderName dt:dt="string">Partner RADIUS</msAuthProviderName>
+              </Properties>
+            </Partner_realm>
+            <Use_Windows_authentication_for_all_users name="Use Windows authentication for all users">
+              <Properties>
+                <msAuthProviderType dt:dt="int">1</msAuthProviderType>
+              </Properties>
+            </Use_Windows_authentication_for_all_users>
+          </Children>
+        </Proxy_Profiles>
+        <Protocols name="Protocols">
+          <Children>
+            <Microsoft_Radius_Protocol name="Microsoft Radius Protocol">
+              <Children>
+                <Clients name="Clients">
+                  <Children>
+                    <wlc01 name="wlc01">
+                      <Properties>
+                        <IP_Address dt:dt="string">10.0.20.5</IP_Address>
+                        <NAS_Manufacturer dt:dt="int">9</NAS_Manufacturer>
+                        <Radius_Client_Enabled dt:dt="boolean">1</Radius_Client_Enabled>
+                        <Require_Signature dt:dt="boolean">1</Require_Signature>
+                        <Shared_Secret dt:dt="string">FIXTURE-wlc-vpn-Secret-0123456789abcdefghijklmnop</Shared_Secret>
+                      </Properties>
+                    </wlc01>
+                    <vpn01 name="vpn01">
+                      <Properties>
+                        <IP_Address dt:dt="string">10.0.30.10</IP_Address>
+                        <NAS_Manufacturer dt:dt="int">0</NAS_Manufacturer>
+                        <Radius_Client_Enabled dt:dt="boolean">1</Radius_Client_Enabled>
+                        <Require_Signature dt:dt="boolean">1</Require_Signature>
+                        <Shared_Secret dt:dt="string">FIXTURE-wlc-vpn-Secret-0123456789abcdefghijklmnop</Shared_Secret>
+                      </Properties>
+                    </vpn01>
+                    <sw-core name="sw-core">
+                      <Properties>
+                        <IP_Address dt:dt="string">10.0.10.2</IP_Address>
+                        <NAS_Manufacturer dt:dt="int">9</NAS_Manufacturer>
+                        <Radius_Client_Enabled dt:dt="boolean">1</Radius_Client_Enabled>
+                        <Require_Signature dt:dt="boolean">0</Require_Signature>
+                        <Shared_Secret dt:dt="string">FIXTURE-short</Shared_Secret>
+                      </Properties>
+                    </sw-core>
+                  </Children>
+                </Clients>
+              </Children>
+            </Microsoft_Radius_Protocol>
+          </Children>
+        </Protocols>
+        <RADIUS_Server_Groups name="RADIUS Server Groups">
+          <Children>
+            <Partner_RADIUS name="Partner RADIUS">
+              <Children>
+                <_198.51.100.20 name="198.51.100.20">
+                  <Properties>
+                    <Address dt:dt="string">198.51.100.20</Address>
+                    <Authentication_Port dt:dt="int">1812</Authentication_Port>
+                    <Accounting_Port dt:dt="int">1813</Accounting_Port>
+                    <Shared_Secret dt:dt="string">FIXTURE-partner-Secret-zyxwvutsrqponmlkjihgfedcba9876</Shared_Secret>
+                    <Accounting_Shared_Secret dt:dt="string">FIXTURE-partner-Secret-zyxwvutsrqponmlkjihgfedcba9876</Accounting_Shared_Secret>
+                  </Properties>
+                </_198.51.100.20>
+              </Children>
+            </Partner_RADIUS>
+          </Children>
+        </RADIUS_Server_Groups>
+      </Children>
+    </Microsoft_Internet_Authentication_Service>
+  </Children>
+</Root>

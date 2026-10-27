@@ -106,3 +106,12 @@ The workbook now ships a read-only implementation of the assessment. Checked Oct
 | S1 | Added a "Start Kit" column naming the kit's collector for each of the twelve domains, and the download and GitHub links; the planned `FMP` names stay specifications | Twelve domains | added | examples/start-kit (PR in this change); tests/powershell, 118 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 27, 2026 |
 | S2 | Added that the kit covers DHCP, the Kerberos SPN map, LDAP binding events and the SQL Server count, and that transaction profiles and RADIUS/NPS remain separate work | Twelve domains, paragraph after the table | added | Same; README "What it counts" and "Known limits" |
 | S3 | Step 1: `Invoke-FMPStartKit.ps1` runs `Test-FMPReadAccess` and the orchestrator, writes a summary of counts and drafts the delegation request | Step 1 | added | Same; `tests/powershell/StartKit.Tests.ps1`, `ADAssessment.Tests.ps1` (pre-flight) |
+
+## Start Kit RADIUS and NPS inventory, October 27, 2026
+
+The Start Kit gained a read-only RADIUS and NPS collector. Microsoft sources opened October 27, 2026: KB5040268 (events 4418 to 4421, requireMsgAuth and limitProxyState), the NPS SDO attribute pages (NP-Authentication-Type, NP-Allowed-EAP-Type, Auth-Provider-Type, Auth-Provider-Name), "Setting Up the Extension DLLs" (AuthSrv\Parameters) and "Export an NPS Configuration for Import on Another Server". No personal data sent to any site.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| N1 | S2's "RADIUS/NPS remain separate work" replaced: the kit inventories RADIUS and NPS with `Invoke-FMPNpsInventory`; transaction profiles remain separate | Twelve domains, paragraph after the table | corrected | examples/start-kit (PR in this change); tests/powershell, 152 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 27, 2026; README "How it inventories RADIUS and NPS" |
+| N2 | G0 checklist RADIUS item names the kit's output (`NPS\PolicyGroups.csv` and companions) | Gate G0 | added | Same; `tests/powershell/NpsInventory.Tests.ps1` |

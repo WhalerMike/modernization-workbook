@@ -14,7 +14,7 @@
     Windows PowerShell 5.1 and PowerShell 7: no PowerShell 7-only syntax here.
 #>
 
-$script:FMPKitVersion = '1.0.0'
+$script:FMPKitVersion = '1.1.0'
 $script:FMPAllowedRoots = [System.Collections.Generic.List[string]]::new()
 $script:FMPUtf8 = [System.Text.UTF8Encoding]::new($false)
 
@@ -154,7 +154,7 @@ function Get-FMPFileManifest {
 
 function Get-FMPModuleVersions {
     # Versions of the modules the kit relies on, as installed on this host (null when absent).
-    $names = 'ActiveDirectory', 'GroupPolicy', 'DnsServer', 'DhcpServer', 'dbatools', 'FMPADAssessment', 'FMPSqlEstate'
+    $names = 'ActiveDirectory', 'GroupPolicy', 'DnsServer', 'DhcpServer', 'dbatools', 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory'
     $o = [ordered]@{}
     foreach ($n in $names) {
         $m = Get-Module -Name $n | Select-Object -First 1

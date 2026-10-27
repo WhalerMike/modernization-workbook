@@ -1594,6 +1594,7 @@ function Get-FMPStartKitSummary {
     $dhcp = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'DHCP') 'DHCPInventory.json') } else { $null }
     $schema = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'Schema') 'SchemaExtensions.json') } else { $null }
     $sql = Read-FMPJsonFile (Join-Path (Join-Path $root 'SQL') 'SqlEstateSummary.json')
+    $nps = Read-FMPJsonFile (Join-Path (Join-Path $root 'NPS') 'NpsSummary.json')
 
     $counts = [ordered]@{
         Domains            = if ($topo) { @($topo.Domains).Count } else { $nc }
@@ -1621,6 +1622,12 @@ function Get-FMPStartKitSummary {
         SchemaVersion      = if ($schema) { "$($schema.SchemaVersion) ($($schema.SchemaVersionName))" } else { $nc }
         SQLInstances       = if ($sql) { $sql.InstanceCount } else { $nc }
         SQLHosts           = if ($sql) { $sql.HostCount } else { $nc }
+        NPSServers         = if ($nps) { $nps.NpsServers } else { $nc }
+        NPSServersRead     = if ($nps) { $nps.NpsServersRead } else { $nc }
+        RADIUSClients      = if ($nps) { $nps.UniqueRadiusClientAddresses } else { $nc }
+        NetworkPolicies    = if ($nps) { $nps.NetworkPolicies } else { $nc }
+        ConnectionRequestPolicies = if ($nps) { $nps.ConnectionRequestPolicies } else { $nc }
+        NPSPolicyGroups    = if ($nps) { $nps.AdGroupsReferenced } else { $nc }
     }
     $byOs = if ($haveComputers) { Get-FMPCountTable -Rows $computers -Property OperatingSystem } else { $null }
     $summary = [ordered]@{
@@ -1634,6 +1641,7 @@ function Get-FMPStartKitSummary {
         SqlByDomain  = if ($sql) { $sql.ByDomain } else { $null }
         SqlByAuthenticationMode = if ($sql) { $sql.ByAuthenticationMode } else { $null }
         SqlBySourcesAgree = if ($sql) { $sql.BySourcesAgree } else { $null }
+        NpsFindingsBySeverity = if ($nps) { $nps.FindingsBySeverity } else { $null }
     }
     $path = Initialize-FMPPath -Path (Join-Path $root 'Summary')
     Write-FMPJson -InputObject $summary -Path (Join-Path $path 'StartKitSummary.json') -Depth 5
@@ -1645,6 +1653,9 @@ function Get-FMPStartKitSummary {
         SPNs = 'Service principal names'; DuplicateSPNs = 'Duplicate SPNs'; DNSZones = 'DNS zones'; DHCPServers = 'DHCP servers (authorized)'; DHCPScopes = 'DHCP scopes'
         CertificationAuthorities = 'Enterprise CAs'; CertificateTemplates = 'Certificate templates'; PublishedTemplates = 'Published templates'
         SchemaVersion = 'Schema version'; SQLInstances = 'SQL Server instances'; SQLHosts = 'SQL Server hosts'
+        NPSServers = 'NPS servers (RAS and IAS Servers members and named)'; NPSServersRead = 'NPS servers whose configuration was read'
+        RADIUSClients = 'RADIUS clients (unique addresses)'; NetworkPolicies = 'NPS network policies (all servers)'
+        ConnectionRequestPolicies = 'NPS connection request policies (all servers)'; NPSPolicyGroups = 'AD groups NPS policies authorize against'
     }
     $md = @('# Start Kit summary', '', "Forest: $($summary.Forest). Generated $($summary.GeneratedUtc) UTC. Read-only run; counts come from this run's own files.", '',
         '| Item | Count |', '|---|---|')
@@ -1663,6 +1674,7 @@ function Get-FMPStartKitSummary {
     $md += & $table 'SQL Server instances by domain' $summary.SqlByDomain
     $md += & $table 'SQL Server instances by authentication mode' $summary.SqlByAuthenticationMode
     $md += & $table 'Do the discovery signals agree?' $summary.SqlBySourcesAgree
+    $md += & $table 'RADIUS and NPS findings by severity' $summary.NpsFindingsBySeverity
     Write-FMPText -Value $md -Path (Join-Path $path 'StartKitSummary.md')
     [pscustomobject]$summary
 }
