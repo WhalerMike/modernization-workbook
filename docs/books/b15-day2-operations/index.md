@@ -29,8 +29,8 @@ This book replaces the workbook's help-desk Entra operations guide, the day-two 
 :::
 
 ::: {.callout-tip appearance="default"}
-## Download — Help Desk / Cloud Services Entra ID Operations Kit v1.6
-The kit applies this book's help-desk model: four Word documents (the intake and routing flow, the administrative responsibilities guide, the application access governance model and the governance structure brief), the routing matrix as a PowerShell module, the scripts with plain-text copies for mail systems that block `.ps1` files, and Pester tests that need no tenant. Download [`helpdesk-entra-operations-kit.zip`](https://github.com/WhalerMike/modernization-workbook/releases/download/helpdesk-entra-kit-v1.6/helpdesk-entra-operations-kit.zip) (SHA-256 `99bd1f8ff514aea71d0b47b716dc5822f894368c3c2636fc3a169ac98ef27b1a`); the [release page](https://github.com/WhalerMike/modernization-workbook/releases/tag/helpdesk-entra-kit-v1.6) lists every change. The scripts are not tenant-tested, so run every change script with `-WhatIf` first.
+## Download — Help Desk / Cloud Services Entra ID Operations Kit v1.6.1
+The kit applies this book's help-desk model: five Word documents (the intake and routing flow, the administrative responsibilities guide, the application access governance model, the governance structure brief, and the implementation path and run guide that shows how to run the scripts), the routing matrix as a PowerShell module, the scripts with plain-text copies for mail systems that block `.ps1` files, and Pester tests that need no tenant. Download [`helpdesk-entra-operations-kit.zip`](https://github.com/WhalerMike/modernization-workbook/releases/download/helpdesk-entra-kit-v1.6.1/helpdesk-entra-operations-kit.zip) (SHA-256 `f90ce418d6ea3a3fcdc8cf8bf65695276b991d0da3006fff7ea3074696a04053`); the [release page](https://github.com/WhalerMike/modernization-workbook/releases/tag/helpdesk-entra-kit-v1.6.1) lists every change. The scripts are not tenant-tested, so run every change script with `-WhatIf` first.
 :::
 
 ::: {.callout-tip}
