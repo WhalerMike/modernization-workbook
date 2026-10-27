@@ -1,0 +1,23 @@
+<GPO xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.microsoft.com/GroupPolicy/Settings">
+  <Identifier>
+    <Identifier xmlns="http://www.microsoft.com/GroupPolicy/Types">{31B2F340-016D-11D2-945F-00C04FB984F9}</Identifier>
+    <Domain xmlns="http://www.microsoft.com/GroupPolicy/Types">contoso.example</Domain>
+  </Identifier>
+  <Name>Default Domain Policy</Name>
+  <Computer>
+    <VersionDirectory>1</VersionDirectory>
+    <ExtensionData>
+      <Extension xmlns:q1="http://www.microsoft.com/GroupPolicy/Settings/Registry" xsi:type="q1:RegistrySettings">
+        <q1:Policy>
+          <q1:Name>Turn off Autoplay</q1:Name>
+          <q1:State>Enabled</q1:State>
+        </q1:Policy>
+        <q1:Blocking>unnamed node</q1:Blocking>
+      </Extension>
+      <Name>Registry</Name>
+    </ExtensionData>
+  </Computer>
+  <User>
+    <VersionDirectory>0</VersionDirectory>
+  </User>
+</GPO>

@@ -54,3 +54,14 @@ Verified: 2026-10-20
 | Safety | edited | probe-traffic note added; renumbered |
 | Closing italic footer | removed | duplicated the body; canon residue |
 | — | added | "Continue the book" callout (R01 ← → R03) |
+
+## Start Kit link, October 27, 2026
+
+Checked October 27, 2026; no personal data sent to any site.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| S1 | Added "Run this step with the workbook's Start Kit" callout with the download, the command and what it reads and writes | 1c | added | examples/start-kit (PR in this change); tests/powershell, 118 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 27, 2026 |
+| S2 | "The function is pure derivation" → "The program's function", so it can't be read as the kit's | 1c | clarified | — |
+| S3 | `VIEW SERVER STATE`, and `VIEW SERVER PERFORMANCE STATE` on SQL Server 2022 and later, for the usage DMVs | Callout | verified | learn.microsoft.com/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-index-usage-stats-transact-sql; .../system-dynamic-management-objects (permissions table), fetched Oct 27, 2026 |
+| S4 | The kit's network signal sends [MC-SQLR] CLNT_UCAST_EX and parses SVR_RESP (0x05, two-byte length, `ServerName;…;InstanceName;…;IsClustered;…;Version;…;tcp;<port>;;`) | Kit only | verified | learn.microsoft.com/openspecs/windows_protocols/mc-sqlr/2e1560c9-5097-4023-9f5e-72b9ff1ec3b1, fetched Oct 27, 2026 |

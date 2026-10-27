@@ -96,3 +96,13 @@ Checked October 21, 2026. Book 00's chapters were reconciled with each other; ea
 | X1 | Steward approves each plan; steering committee review is an input, not a signature | Step 5 | clarified; aligned with Ch07 and Ch09 | Internal: Ch07 decision matrix |
 | X2 | Assessment workstation sanitized under SP 800-88 Rev. 2 (was "rebuilt or retired") | The twenty-three deliverables | corrected; aligned with Appendix A R-021 | csrc.nist.gov SP 800-88 r2 final page (Date Published September 2025; history 09/26/25 Final; supersedes Rev. 1, 12/17/2014; no withdrawal or successor listed), fetched Oct 21, 2026 |
 | X3 | RADIUS/NPS inventoried separately from Book 01's eleven streams; charter criterion 1 requires all eleven dependency types (incl. RADIUS) by G0; G0 checklist item added | Twelve domains; Gate G0; takeaway 4 | gap closed | Internal: B01 Ch10 "The eleven ingestion streams"; B00 Ch03 criterion 1; B00 Ch04 principle 4; B09 Ch07 "The RADIUS server is the Active Directory dependency" and inventory step (line 208) |
+
+## Start Kit link, October 27, 2026
+
+The workbook now ships a read-only implementation of the assessment. Checked October 27, 2026; no personal data sent to any site.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| S1 | Added a "Start Kit" column naming the kit's collector for each of the twelve domains, and the download and GitHub links; the planned `FMP` names stay specifications | Twelve domains | added | examples/start-kit (PR in this change); tests/powershell, 118 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 27, 2026 |
+| S2 | Added that the kit covers DHCP, the Kerberos SPN map, LDAP binding events and the SQL Server count, and that transaction profiles and RADIUS/NPS remain separate work | Twelve domains, paragraph after the table | added | Same; README "What it counts" and "Known limits" |
+| S3 | Step 1: `Invoke-FMPStartKit.ps1` runs `Test-FMPReadAccess` and the orchestrator, writes a summary of counts and drafts the delegation request | Step 1 | added | Same; `tests/powershell/StartKit.Tests.ps1`, `ADAssessment.Tests.ps1` (pre-flight) |

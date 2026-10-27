@@ -98,3 +98,14 @@ Re-checked after the weekly source watch (issue #160) reported a change in a cit
 | Finding | Change |
 |---|---|
 | MS-ADTS trustAttributes 0x00001000, TRUST_ATTRIBUTE_DISABLE_AUTH_TARGET_VALIDATION, was missing from the decode map | `0x1000 = 'DisableAuthTargetValidation'` added |
+
+## Start Kit packaging, October 27, 2026
+
+Packaging this module as tested files (examples/start-kit) found three defects in the printed code. Each was reproduced in a test, fixed in the kit, and fixed here. The B.2 code blocks, extracted and parsed with Windows PowerShell 5.1, gave 3 parse errors before and none after. Checked October 27, 2026; no personal data sent to any site.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| P1 | `CertSubject`, `NotBefore`, `NotAfter`, `SignatureAlgorithm = if ($cert) { … }` → `$(if …)`: Windows PowerShell 5.1 can't parse an `if` without `else` as a hashtable value followed by another key, so the module didn't load on the version it declares | AD CS, `Get-FMPPKIAssessment` | corrected | Windows PowerShell 5.1.26100 parser, Oct 27, 2026; `Safety.Tests.ps1` parses every kit file on both editions |
+| P2 | `$script:FMPTrustBits` `[ordered]` → plain hashtable, keys sorted: indexing an ordered dictionary with an integer reads by position, so `0x8` decoded as `UsesAESKeys` | Trusts | corrected | `ADAssessment.Tests.ps1` "decodes trust attributes and direction"; flag values unchanged from aB-trustattrs |
+| P3 | `Find-GPOConflicts` keys on the node's own `<Name>` child and skips nodes without one; `$node.Name` falls back to the tag name, grouping unrelated settings | Group Policy | corrected | `ADAssessment.Tests.ps1` "counts only real GPO conflicts" (fixture GPO with an unnamed node) |
+| P4 | Three rows added to "Corrections to the source design"; "Packaged and tested: the Start Kit" callout added | Top of appendix | added | examples/start-kit (PR in this change); tests/powershell, 118 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 27, 2026 |

@@ -1,0 +1,222 @@
+{
+  "_comment": "A fictional two-domain forest, contoso.example and child.contoso.example, as the RSAT cmdlets would return it. Dates have no time zone so both PowerShell editions read them the same way. The tests run as of 2026-10-27.",
+  "forest": {
+    "Name": "contoso.example",
+    "RootDomain": "contoso.example",
+    "ForestMode": "Windows2016Forest",
+    "SchemaMaster": "dc01.contoso.example",
+    "DomainNamingMaster": "dc01.contoso.example",
+    "Domains": ["contoso.example", "child.contoso.example"],
+    "Sites": ["HQ", "Branch"],
+    "GlobalCatalogs": ["dc01.contoso.example", "cdc01.child.contoso.example"],
+    "UPNSuffixes": ["contoso.example"],
+    "SPNSuffixes": []
+  },
+  "rootDse": {
+    "configurationNamingContext": "CN=Configuration,DC=contoso,DC=example",
+    "schemaNamingContext": "CN=Schema,CN=Configuration,DC=contoso,DC=example"
+  },
+  "domains": {
+    "contoso.example": {
+      "DNSRoot": "contoso.example", "NetBIOSName": "CONTOSO", "DomainMode": "Windows2016Domain",
+      "DomainSID": "S-1-5-21-1000-1000-1000", "PDCEmulator": "dc01.contoso.example", "RIDMaster": "dc01.contoso.example",
+      "InfrastructureMaster": "dc02.contoso.example", "DistinguishedName": "DC=contoso,DC=example", "ParentDomain": null,
+      "ChildDomains": ["child.contoso.example"]
+    },
+    "child.contoso.example": {
+      "DNSRoot": "child.contoso.example", "NetBIOSName": "CHILD", "DomainMode": "Windows2016Domain",
+      "DomainSID": "S-1-5-21-2000-2000-2000", "PDCEmulator": "cdc01.child.contoso.example", "RIDMaster": "cdc01.child.contoso.example",
+      "InfrastructureMaster": "cdc01.child.contoso.example", "DistinguishedName": "DC=child,DC=contoso,DC=example", "ParentDomain": "contoso.example",
+      "ChildDomains": []
+    }
+  },
+  "dcs": {
+    "contoso.example": [
+      { "Name": "DC01", "HostName": "dc01.contoso.example", "Domain": "contoso.example", "Site": "HQ", "IPv4Address": "10.0.0.10", "OperatingSystem": "Windows Server 2025 Datacenter", "OperatingSystemVersion": "10.0 (26100)", "IsGlobalCatalog": true, "IsReadOnly": false, "Enabled": true, "OperationMasterRoles": ["SchemaMaster", "DomainNamingMaster", "PDCEmulator", "RIDMaster"] },
+      { "Name": "DC02", "HostName": "dc02.contoso.example", "Domain": "contoso.example", "Site": "Branch", "IPv4Address": "10.1.0.10", "OperatingSystem": "Windows Server 2019 Standard", "OperatingSystemVersion": "10.0 (17763)", "IsGlobalCatalog": false, "IsReadOnly": false, "Enabled": true, "OperationMasterRoles": ["InfrastructureMaster"] }
+    ],
+    "child.contoso.example": [
+      { "Name": "CDC01", "HostName": "cdc01.child.contoso.example", "Domain": "child.contoso.example", "Site": "HQ", "IPv4Address": "10.0.1.10", "OperatingSystem": "Windows Server 2022 Standard", "OperatingSystemVersion": "10.0 (20348)", "IsGlobalCatalog": true, "IsReadOnly": false, "Enabled": true, "OperationMasterRoles": ["PDCEmulator", "RIDMaster", "InfrastructureMaster"] }
+    ]
+  },
+  "sites": [
+    { "Name": "HQ", "Description": "Headquarters", "Location": "East", "DistinguishedName": "CN=HQ,CN=Sites,CN=Configuration,DC=contoso,DC=example", "gPLink": "[LDAP://cn={6A1B2C3D-0000-4000-8000-000000000001},cn=policies,cn=system,DC=contoso,DC=example;0]" },
+    { "Name": "Branch", "Description": "Branch office", "Location": "West", "DistinguishedName": "CN=Branch,CN=Sites,CN=Configuration,DC=contoso,DC=example", "gPLink": null }
+  ],
+  "siteLinks": [
+    { "Name": "HQ-Branch", "Cost": 100, "ReplicationFrequencyInMinutes": 180, "Options": 0, "Description": null, "SitesIncluded": ["CN=HQ,CN=Sites,CN=Configuration,DC=contoso,DC=example", "CN=Branch,CN=Sites,CN=Configuration,DC=contoso,DC=example"] }
+  ],
+  "subnets": [
+    { "Name": "10.0.0.0/16", "Location": "East", "Description": null, "Site": "CN=HQ,CN=Sites,CN=Configuration,DC=contoso,DC=example" },
+    { "Name": "10.1.0.0/16", "Location": "West", "Description": null, "Site": "CN=Branch,CN=Sites,CN=Configuration,DC=contoso,DC=example" }
+  ],
+  "ous": {
+    "contoso.example": [
+      { "Name": "Servers", "DistinguishedName": "OU=Servers,DC=contoso,DC=example", "CanonicalName": "contoso.example/Servers", "Description": "Member servers", "ManagedBy": null, "ProtectedFromAccidentalDeletion": true, "LinkedGroupPolicyObjects": [], "gPOptions": 0, "gPLink": null },
+      { "Name": "Workstations", "DistinguishedName": "OU=Workstations,DC=contoso,DC=example", "CanonicalName": "contoso.example/Workstations", "Description": null, "ManagedBy": null, "ProtectedFromAccidentalDeletion": true, "LinkedGroupPolicyObjects": ["cn={6A1B2C3D-0000-4000-8000-000000000001},cn=policies,cn=system,DC=contoso,DC=example"], "gPOptions": 1, "gPLink": "[LDAP://cn={6A1B2C3D-0000-4000-8000-000000000001},cn=policies,cn=system,DC=contoso,DC=example;0]" },
+      { "Name": "ServiceAccounts", "DistinguishedName": "OU=ServiceAccounts,DC=contoso,DC=example", "CanonicalName": "contoso.example/ServiceAccounts", "Description": null, "ManagedBy": null, "ProtectedFromAccidentalDeletion": false, "LinkedGroupPolicyObjects": [], "gPOptions": 0, "gPLink": null }
+    ],
+    "child.contoso.example": [
+      { "Name": "Servers", "DistinguishedName": "OU=Servers,DC=child,DC=contoso,DC=example", "CanonicalName": "child.contoso.example/Servers", "Description": null, "ManagedBy": null, "ProtectedFromAccidentalDeletion": true, "LinkedGroupPolicyObjects": [], "gPOptions": 0, "gPLink": null }
+    ]
+  },
+  "computers": {
+    "contoso.example": [
+      { "Name": "DC01", "DNSHostName": "dc01.contoso.example", "OperatingSystem": "Windows Server 2025 Datacenter", "OperatingSystemVersion": "10.0 (26100)", "Enabled": true, "LastLogonDate": "2026-10-26T08:00:00", "PasswordLastSet": "2026-10-01T00:00:00", "DistinguishedName": "CN=DC01,OU=Domain Controllers,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1001", "ServicePrincipalName": ["HOST/dc01.contoso.example", "ldap/dc01.contoso.example"], "TrustedForDelegation": true, "TrustedToAuthForDelegation": false, "msDS-AllowedToDelegateTo": [], "PrincipalsAllowedToDelegateToAccount": [], "msDS-SupportedEncryptionTypes": 28, "Description": null, "MemberOf": [] },
+      { "Name": "DC02", "DNSHostName": "dc02.contoso.example", "OperatingSystem": "Windows Server 2019 Standard", "OperatingSystemVersion": "10.0 (17763)", "Enabled": true, "LastLogonDate": "2026-10-26T08:00:00", "PasswordLastSet": "2026-10-01T00:00:00", "DistinguishedName": "CN=DC02,OU=Domain Controllers,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1002", "ServicePrincipalName": ["HOST/dc02.contoso.example"], "TrustedForDelegation": true, "TrustedToAuthForDelegation": false, "msDS-AllowedToDelegateTo": [], "PrincipalsAllowedToDelegateToAccount": [], "msDS-SupportedEncryptionTypes": 28, "Description": null, "MemberOf": [] },
+      { "Name": "SQL01", "DNSHostName": "sql01.contoso.example", "OperatingSystem": "Windows Server 2022 Standard", "OperatingSystemVersion": "10.0 (20348)", "Enabled": true, "LastLogonDate": "2026-10-25T08:00:00", "PasswordLastSet": "2026-10-01T00:00:00", "DistinguishedName": "CN=SQL01,OU=Servers,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1101", "ServicePrincipalName": ["HOST/sql01.contoso.example"], "TrustedForDelegation": false, "TrustedToAuthForDelegation": false, "msDS-AllowedToDelegateTo": [], "PrincipalsAllowedToDelegateToAccount": [], "msDS-SupportedEncryptionTypes": 24, "Description": "Line-of-business SQL Server", "MemberOf": [] },
+      { "Name": "SQL02", "DNSHostName": "sql02.contoso.example", "OperatingSystem": "Windows Server 2019 Standard", "OperatingSystemVersion": "10.0 (17763)", "Enabled": true, "LastLogonDate": "2026-10-25T08:00:00", "PasswordLastSet": "2026-10-01T00:00:00", "DistinguishedName": "CN=SQL02,OU=Servers,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1102", "ServicePrincipalName": ["HOST/sql02.contoso.example"], "TrustedForDelegation": false, "TrustedToAuthForDelegation": true, "msDS-AllowedToDelegateTo": ["MSSQLSvc/csql01.child.contoso.example:1435"], "PrincipalsAllowedToDelegateToAccount": [], "msDS-SupportedEncryptionTypes": 24, "Description": null, "MemberOf": [] },
+      { "Name": "SQLTEST01", "DNSHostName": "sqltest01.contoso.example", "OperatingSystem": "Windows Server 2019 Standard", "OperatingSystemVersion": "10.0 (17763)", "Enabled": true, "LastLogonDate": "2026-10-20T08:00:00", "PasswordLastSet": "2026-10-01T00:00:00", "DistinguishedName": "CN=SQLTEST01,OU=Servers,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1103", "ServicePrincipalName": ["HOST/sqltest01.contoso.example"], "TrustedForDelegation": false, "TrustedToAuthForDelegation": false, "msDS-AllowedToDelegateTo": [], "PrincipalsAllowedToDelegateToAccount": [], "msDS-SupportedEncryptionTypes": null, "Description": "Test box, SQL removed?", "MemberOf": [] },
+      { "Name": "APP01", "DNSHostName": "app01.contoso.example", "OperatingSystem": "Windows Server 2016 Standard", "OperatingSystemVersion": "10.0 (14393)", "Enabled": true, "LastLogonDate": "2026-10-24T08:00:00", "PasswordLastSet": "2026-10-01T00:00:00", "DistinguishedName": "CN=APP01,OU=Servers,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1104", "ServicePrincipalName": ["HOST/app01.contoso.example", "HTTP/web.contoso.example"], "TrustedForDelegation": false, "TrustedToAuthForDelegation": false, "msDS-AllowedToDelegateTo": [], "PrincipalsAllowedToDelegateToAccount": ["CN=SQL01,OU=Servers,DC=contoso,DC=example"], "msDS-SupportedEncryptionTypes": 4, "Description": "Web front end", "MemberOf": [] },
+      { "Name": "OLD01", "DNSHostName": "old01.contoso.example", "OperatingSystem": "Windows Server 2012 R2 Standard", "OperatingSystemVersion": "6.3 (9600)", "Enabled": true, "LastLogonDate": "2025-01-10T08:00:00", "PasswordLastSet": "2025-01-01T00:00:00", "DistinguishedName": "CN=OLD01,OU=Servers,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1105", "ServicePrincipalName": ["HOST/old01.contoso.example", "MSSQLSvc/old01.contoso.example:1433"], "TrustedForDelegation": true, "TrustedToAuthForDelegation": false, "msDS-AllowedToDelegateTo": [], "PrincipalsAllowedToDelegateToAccount": [], "msDS-SupportedEncryptionTypes": null, "Description": null, "MemberOf": [] },
+      { "Name": "WS001", "DNSHostName": "ws001.contoso.example", "OperatingSystem": "Windows 11 Enterprise", "OperatingSystemVersion": "10.0 (26100)", "Enabled": true, "LastLogonDate": "2026-10-26T08:00:00", "PasswordLastSet": "2026-10-10T00:00:00", "DistinguishedName": "CN=WS001,OU=Workstations,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1201", "ServicePrincipalName": ["HOST/ws001.contoso.example"], "TrustedForDelegation": false, "TrustedToAuthForDelegation": false, "msDS-AllowedToDelegateTo": [], "PrincipalsAllowedToDelegateToAccount": [], "msDS-SupportedEncryptionTypes": 28, "Description": null, "MemberOf": [] },
+      { "Name": "WS002", "DNSHostName": "ws002.contoso.example", "OperatingSystem": "Windows 10 Enterprise", "OperatingSystemVersion": "10.0 (19045)", "Enabled": false, "LastLogonDate": "2025-03-01T08:00:00", "PasswordLastSet": "2025-02-01T00:00:00", "DistinguishedName": "CN=WS002,OU=Workstations,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1202", "ServicePrincipalName": ["HOST/ws002.contoso.example"], "TrustedForDelegation": false, "TrustedToAuthForDelegation": false, "msDS-AllowedToDelegateTo": [], "PrincipalsAllowedToDelegateToAccount": [], "msDS-SupportedEncryptionTypes": null, "Description": null, "MemberOf": [] }
+    ],
+    "child.contoso.example": [
+      { "Name": "CDC01", "DNSHostName": "cdc01.child.contoso.example", "OperatingSystem": "Windows Server 2022 Standard", "OperatingSystemVersion": "10.0 (20348)", "Enabled": true, "LastLogonDate": "2026-10-26T08:00:00", "PasswordLastSet": "2026-10-01T00:00:00", "DistinguishedName": "CN=CDC01,OU=Domain Controllers,DC=child,DC=contoso,DC=example", "SID": "S-1-5-21-2000-2000-2000-1001", "ServicePrincipalName": ["HOST/cdc01.child.contoso.example", "ldap/cdc01.child.contoso.example"], "TrustedForDelegation": true, "TrustedToAuthForDelegation": false, "msDS-AllowedToDelegateTo": [], "PrincipalsAllowedToDelegateToAccount": [], "msDS-SupportedEncryptionTypes": 28, "Description": null, "MemberOf": [] },
+      { "Name": "CSQL01", "DNSHostName": "csql01.child.contoso.example", "OperatingSystem": "Windows Server 2022 Standard", "OperatingSystemVersion": "10.0 (20348)", "Enabled": true, "LastLogonDate": "2026-10-25T08:00:00", "PasswordLastSet": "2026-10-01T00:00:00", "DistinguishedName": "CN=CSQL01,OU=Servers,DC=child,DC=contoso,DC=example", "SID": "S-1-5-21-2000-2000-2000-1101", "ServicePrincipalName": ["HOST/csql01.child.contoso.example"], "TrustedForDelegation": false, "TrustedToAuthForDelegation": false, "msDS-AllowedToDelegateTo": [], "PrincipalsAllowedToDelegateToAccount": [], "msDS-SupportedEncryptionTypes": 24, "Description": null, "MemberOf": [] },
+      { "Name": "CWS001", "DNSHostName": "cws001.child.contoso.example", "OperatingSystem": "Windows 11 Enterprise", "OperatingSystemVersion": "10.0 (26100)", "Enabled": true, "LastLogonDate": "2026-10-26T08:00:00", "PasswordLastSet": "2026-10-10T00:00:00", "DistinguishedName": "CN=CWS001,DC=child,DC=contoso,DC=example", "SID": "S-1-5-21-2000-2000-2000-1201", "ServicePrincipalName": ["HOST/cws001.child.contoso.example"], "TrustedForDelegation": false, "TrustedToAuthForDelegation": false, "msDS-AllowedToDelegateTo": [], "PrincipalsAllowedToDelegateToAccount": [], "msDS-SupportedEncryptionTypes": 28, "Description": null, "MemberOf": [] }
+    ]
+  },
+  "users": {
+    "contoso.example": [
+      { "SamAccountName": "Administrator", "UserPrincipalName": "Administrator@contoso.example", "DisplayName": "Administrator", "Enabled": true, "LastLogonDate": "2026-10-20T08:00:00", "PasswordLastSet": "2026-01-01T00:00:00", "PasswordNeverExpires": true, "AdminCount": 1, "DistinguishedName": "CN=Administrator,CN=Users,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-500", "MemberOf": ["CN=Domain Admins,CN=Users,DC=contoso,DC=example"], "ServicePrincipalName": [], "Description": "Built-in", "TrustedForDelegation": false },
+      { "SamAccountName": "jdoe", "UserPrincipalName": "jdoe@contoso.example", "DisplayName": "J. Doe", "Enabled": true, "LastLogonDate": "2026-10-26T08:00:00", "PasswordLastSet": "2026-09-01T00:00:00", "PasswordNeverExpires": false, "AdminCount": null, "DistinguishedName": "CN=jdoe,CN=Users,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1301", "MemberOf": [], "ServicePrincipalName": [], "Description": null, "TrustedForDelegation": false },
+      { "SamAccountName": "asmith", "UserPrincipalName": "asmith@contoso.example", "DisplayName": "A. Smith", "Enabled": true, "LastLogonDate": "2026-04-01T08:00:00", "PasswordLastSet": "2025-09-01T00:00:00", "PasswordNeverExpires": false, "AdminCount": 1, "DistinguishedName": "CN=asmith,CN=Users,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1302", "MemberOf": [], "ServicePrincipalName": [], "Description": "Former administrator", "TrustedForDelegation": false },
+      { "SamAccountName": "svc-sql01", "UserPrincipalName": null, "DisplayName": "SQL01 engine", "Enabled": true, "LastLogonDate": "2026-10-26T08:00:00", "PasswordLastSet": "2019-05-01T00:00:00", "PasswordNeverExpires": true, "AdminCount": null, "DistinguishedName": "CN=svc-sql01,OU=ServiceAccounts,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1401", "MemberOf": [], "ServicePrincipalName": ["MSSQLSvc/sql01.contoso.example:1433", "MSSQLSvc/sql01.contoso.example"], "Description": "SQL Server service on SQL01", "TrustedForDelegation": false },
+      { "SamAccountName": "svc-web", "UserPrincipalName": null, "DisplayName": "Web pool", "Enabled": true, "LastLogonDate": "2026-10-26T08:00:00", "PasswordLastSet": "2021-05-01T00:00:00", "PasswordNeverExpires": true, "AdminCount": null, "DistinguishedName": "CN=svc-web,OU=ServiceAccounts,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1402", "MemberOf": [], "ServicePrincipalName": ["HTTP/web.contoso.example"], "Description": "IIS application pool", "TrustedForDelegation": false },
+      { "SamAccountName": "krbtgt", "UserPrincipalName": null, "DisplayName": null, "Enabled": false, "LastLogonDate": null, "PasswordLastSet": "2024-01-01T00:00:00", "PasswordNeverExpires": false, "AdminCount": 1, "DistinguishedName": "CN=krbtgt,CN=Users,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-502", "MemberOf": [], "ServicePrincipalName": ["kadmin/changepw"], "Description": "Key Distribution Center Service Account", "TrustedForDelegation": false }
+    ],
+    "child.contoso.example": [
+      { "SamAccountName": "cadmin", "UserPrincipalName": "cadmin@child.contoso.example", "DisplayName": "Child admin", "Enabled": true, "LastLogonDate": "2026-10-25T08:00:00", "PasswordLastSet": "2026-08-01T00:00:00", "PasswordNeverExpires": false, "AdminCount": 1, "DistinguishedName": "CN=cadmin,CN=Users,DC=child,DC=contoso,DC=example", "SID": "S-1-5-21-2000-2000-2000-1300", "MemberOf": ["CN=Domain Admins,CN=Users,DC=child,DC=contoso,DC=example"], "ServicePrincipalName": [], "Description": null, "TrustedForDelegation": false },
+      { "SamAccountName": "svc-csql", "UserPrincipalName": null, "DisplayName": "Sales SQL", "Enabled": true, "LastLogonDate": "2026-10-26T08:00:00", "PasswordLastSet": "2020-01-01T00:00:00", "PasswordNeverExpires": true, "AdminCount": null, "DistinguishedName": "CN=svc-csql,CN=Users,DC=child,DC=contoso,DC=example", "SID": "S-1-5-21-2000-2000-2000-1401", "MemberOf": [], "ServicePrincipalName": ["MSSQLSvc/csql01.child.contoso.example:SALES"], "Description": "Sales instance engine", "TrustedForDelegation": false }
+    ]
+  },
+  "groups": {
+    "contoso.example": [
+      { "SamAccountName": "Domain Admins", "DisplayName": null, "Description": "Designated administrators", "GroupCategory": "Security", "GroupScope": "Global", "DistinguishedName": "CN=Domain Admins,CN=Users,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-512", "Members": ["CN=Administrator,CN=Users,DC=contoso,DC=example"], "MemberOf": [], "AdminCount": 1 },
+      { "SamAccountName": "Domain Users", "DisplayName": null, "Description": null, "GroupCategory": "Security", "GroupScope": "Global", "DistinguishedName": "CN=Domain Users,CN=Users,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-513", "Members": [], "MemberOf": [], "AdminCount": null },
+      { "SamAccountName": "SQL Admins", "DisplayName": null, "Description": null, "GroupCategory": "Security", "GroupScope": "Global", "DistinguishedName": "CN=SQL Admins,OU=Servers,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1501", "Members": [], "MemberOf": [], "AdminCount": null },
+      { "SamAccountName": "App-A", "DisplayName": null, "Description": null, "GroupCategory": "Security", "GroupScope": "Global", "DistinguishedName": "CN=App-A,OU=Servers,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1502", "Members": ["CN=App-B,OU=Servers,DC=contoso,DC=example"], "MemberOf": ["CN=App-B,OU=Servers,DC=contoso,DC=example"], "AdminCount": null },
+      { "SamAccountName": "App-B", "DisplayName": null, "Description": null, "GroupCategory": "Distribution", "GroupScope": "Universal", "DistinguishedName": "CN=App-B,OU=Servers,DC=contoso,DC=example", "SID": "S-1-5-21-1000-1000-1000-1503", "Members": ["CN=App-A,OU=Servers,DC=contoso,DC=example"], "MemberOf": ["CN=App-A,OU=Servers,DC=contoso,DC=example"], "AdminCount": null }
+    ],
+    "child.contoso.example": [
+      { "SamAccountName": "Domain Admins", "DisplayName": null, "Description": null, "GroupCategory": "Security", "GroupScope": "Global", "DistinguishedName": "CN=Domain Admins,CN=Users,DC=child,DC=contoso,DC=example", "SID": "S-1-5-21-2000-2000-2000-512", "Members": ["CN=cadmin,CN=Users,DC=child,DC=contoso,DC=example"], "MemberOf": [], "AdminCount": 1 },
+      { "SamAccountName": "Domain Users", "DisplayName": null, "Description": null, "GroupCategory": "Security", "GroupScope": "Global", "DistinguishedName": "CN=Domain Users,CN=Users,DC=child,DC=contoso,DC=example", "SID": "S-1-5-21-2000-2000-2000-513", "Members": [], "MemberOf": [], "AdminCount": null }
+    ]
+  },
+  "groupMembers": {
+    "contoso.example": {
+      "Domain Admins": [ { "SID": "S-1-5-21-1000-1000-1000-500", "objectClass": "user" } ],
+      "Administrators": [ { "SID": "S-1-5-21-1000-1000-1000-500", "objectClass": "user" } ]
+    },
+    "child.contoso.example": {
+      "Domain Admins": [ { "SID": "S-1-5-21-2000-2000-2000-1300", "objectClass": "user" } ]
+    }
+  },
+  "serviceAccounts": {
+    "contoso.example": [
+      { "SamAccountName": "gmsa-sql02$", "Enabled": true, "Created": "2023-02-01T00:00:00", "PasswordLastSet": "2026-10-01T00:00:00", "DistinguishedName": "CN=gmsa-sql02,CN=Managed Service Accounts,DC=contoso,DC=example", "ObjectClass": "msDS-GroupManagedServiceAccount", "ServicePrincipalName": ["MSSQLSvc/sql02.contoso.example:1433"], "PrincipalsAllowedToRetrieveManagedPassword": ["CN=SQL02,OU=Servers,DC=contoso,DC=example"], "Description": "SQL02 engine" }
+    ],
+    "child.contoso.example": []
+  },
+  "spnObjects": {
+    "contoso.example": [
+      { "sAMAccountName": "DC01$", "objectClass": ["top", "person", "organizationalPerson", "user", "computer"], "userAccountControl": 532480, "lastLogonTimestamp": 134373600000000000, "servicePrincipalName": ["HOST/dc01.contoso.example", "ldap/dc01.contoso.example"] },
+      { "sAMAccountName": "DC02$", "objectClass": ["top", "person", "organizationalPerson", "user", "computer"], "userAccountControl": 532480, "lastLogonTimestamp": 134373600000000000, "servicePrincipalName": ["HOST/dc02.contoso.example"] },
+      { "sAMAccountName": "APP01$", "objectClass": ["top", "person", "organizationalPerson", "user", "computer"], "userAccountControl": 4096, "lastLogonTimestamp": 134373600000000000, "servicePrincipalName": ["HOST/app01.contoso.example", "HTTP/web.contoso.example"] },
+      { "sAMAccountName": "OLD01$", "objectClass": ["top", "person", "organizationalPerson", "user", "computer"], "userAccountControl": 4096, "lastLogonTimestamp": 133809408000000000, "servicePrincipalName": ["HOST/old01.contoso.example", "MSSQLSvc/old01.contoso.example:1433"] },
+      { "sAMAccountName": "svc-sql01", "objectClass": ["top", "person", "organizationalPerson", "user"], "userAccountControl": 66048, "lastLogonTimestamp": 134373600000000000, "servicePrincipalName": ["MSSQLSvc/sql01.contoso.example:1433", "MSSQLSvc/sql01.contoso.example"] },
+      { "sAMAccountName": "svc-web", "objectClass": ["top", "person", "organizationalPerson", "user"], "userAccountControl": 66048, "lastLogonTimestamp": 134369280000000000, "servicePrincipalName": ["HTTP/web.contoso.example"] },
+      { "sAMAccountName": "gmsa-sql02$", "objectClass": ["top", "person", "organizationalPerson", "user", "computer", "msDS-GroupManagedServiceAccount"], "userAccountControl": 4096, "lastLogonTimestamp": 134373600000000000, "servicePrincipalName": ["MSSQLSvc/sql02.contoso.example:1433"] },
+      { "sAMAccountName": "krbtgt", "objectClass": ["top", "person", "organizationalPerson", "user"], "userAccountControl": 514, "lastLogonTimestamp": null, "servicePrincipalName": ["kadmin/changepw"] }
+    ],
+    "child.contoso.example": [
+      { "sAMAccountName": "CDC01$", "objectClass": ["top", "person", "organizationalPerson", "user", "computer"], "userAccountControl": 532480, "lastLogonTimestamp": 134373600000000000, "servicePrincipalName": ["HOST/cdc01.child.contoso.example", "ldap/cdc01.child.contoso.example"] },
+      { "sAMAccountName": "svc-csql", "objectClass": ["top", "person", "organizationalPerson", "user"], "userAccountControl": 66048, "lastLogonTimestamp": 134373600000000000, "servicePrincipalName": ["MSSQLSvc/csql01.child.contoso.example:SALES"] }
+    ]
+  },
+  "trusts": {
+    "contoso.example": [
+      { "Name": "child.contoso.example", "Source": "DC=contoso,DC=example", "Target": "child.contoso.example", "Direction": "BiDirectional", "TrustType": "Uplevel", "TrustAttributes": 32, "IntraForest": true, "ForestTransitive": false, "SelectiveAuthentication": false, "SIDFilteringQuarantined": false, "SIDFilteringForestAware": false, "Created": "2015-01-01T00:00:00", "Modified": "2026-01-01T00:00:00" },
+      { "Name": "partner.example", "Source": "DC=contoso,DC=example", "Target": "partner.example", "Direction": "Outbound", "TrustType": "Uplevel", "TrustAttributes": 8, "IntraForest": false, "ForestTransitive": true, "SelectiveAuthentication": false, "SIDFilteringQuarantined": false, "SIDFilteringForestAware": false, "Created": "2018-01-01T00:00:00", "Modified": "2026-01-01T00:00:00" }
+    ],
+    "child.contoso.example": [
+      { "Name": "contoso.example", "Source": "DC=child,DC=contoso,DC=example", "Target": "contoso.example", "Direction": "BiDirectional", "TrustType": "Uplevel", "TrustAttributes": 32, "IntraForest": true, "ForestTransitive": false, "SelectiveAuthentication": false, "SIDFilteringQuarantined": false, "SIDFilteringForestAware": false, "Created": "2015-01-01T00:00:00", "Modified": "2026-01-01T00:00:00" }
+    ]
+  },
+  "gpos": {
+    "contoso.example": [
+      { "DisplayName": "Default Domain Policy", "Id": "31b2f340-016d-11d2-945f-00c04fb984f9", "GpoStatus": "AllSettingsEnabled", "CreationTime": "2015-01-01T00:00:00", "ModificationTime": "2026-06-01T00:00:00", "Owner": "CONTOSO\\Domain Admins", "Description": null, "WmiFilter": null },
+      { "DisplayName": "Workstation Baseline", "Id": "6a1b2c3d-0000-4000-8000-000000000001", "GpoStatus": "UserSettingsDisabled", "CreationTime": "2019-03-04T10:15:00", "ModificationTime": "2026-08-30T16:41:22", "Owner": "CONTOSO\\Domain Admins", "Description": null, "WmiFilter": null },
+      { "DisplayName": "Empty Policy", "Id": "6a1b2c3d-0000-4000-8000-000000000002", "GpoStatus": "AllSettingsEnabled", "CreationTime": "2021-01-01T00:00:00", "ModificationTime": "2021-01-01T00:00:00", "Owner": "CONTOSO\\jdoe", "Description": "Never configured", "WmiFilter": null }
+    ],
+    "child.contoso.example": [
+      { "DisplayName": "Default Domain Policy", "Id": "31b2f340-016d-11d2-945f-00c04fb984f9", "GpoStatus": "AllSettingsEnabled", "CreationTime": "2015-01-01T00:00:00", "ModificationTime": "2026-06-01T00:00:00", "Owner": "CHILD\\Domain Admins", "Description": null, "WmiFilter": null }
+    ]
+  },
+  "domainHeads": {
+    "contoso.example": { "DistinguishedName": "DC=contoso,DC=example", "gPLink": "[LDAP://cn={31B2F340-016D-11D2-945F-00C04FB984F9},cn=policies,cn=system,DC=contoso,DC=example;0]" },
+    "child.contoso.example": { "DistinguishedName": "DC=child,DC=contoso,DC=example", "gPLink": "[LDAP://cn={31B2F340-016D-11D2-945F-00C04FB984F9},cn=policies,cn=system,DC=child,DC=contoso,DC=example;0]" }
+  },
+  "dnsZones": {
+    "dc01.contoso.example": [
+      { "ZoneName": "contoso.example", "ZoneType": "Primary", "IsAutoCreated": false, "IsDsIntegrated": true, "IsReverseLookupZone": false, "IsSigned": false, "DynamicUpdate": "Secure", "DirectoryPartitionName": "DomainDnsZones.contoso.example", "MasterServers": [] },
+      { "ZoneName": "_msdcs.contoso.example", "ZoneType": "Primary", "IsAutoCreated": false, "IsDsIntegrated": true, "IsReverseLookupZone": false, "IsSigned": false, "DynamicUpdate": "Secure", "DirectoryPartitionName": "ForestDnsZones.contoso.example", "MasterServers": [] },
+      { "ZoneName": "10.in-addr.arpa", "ZoneType": "Primary", "IsAutoCreated": false, "IsDsIntegrated": true, "IsReverseLookupZone": true, "IsSigned": false, "DynamicUpdate": "Secure", "DirectoryPartitionName": "DomainDnsZones.contoso.example", "MasterServers": [] },
+      { "ZoneName": "partner.example", "ZoneType": "Forwarder", "IsAutoCreated": false, "IsDsIntegrated": true, "IsReverseLookupZone": false, "IsSigned": false, "DynamicUpdate": "None", "DirectoryPartitionName": "ForestDnsZones.contoso.example", "MasterServers": ["192.0.2.53"] },
+      { "ZoneName": "TrustAnchors", "ZoneType": "Primary", "IsAutoCreated": false, "IsDsIntegrated": true, "IsReverseLookupZone": false, "IsSigned": false, "DynamicUpdate": "None", "DirectoryPartitionName": "ForestDnsZones.contoso.example", "MasterServers": [] },
+      { "ZoneName": "0.in-addr.arpa", "ZoneType": "Primary", "IsAutoCreated": true, "IsDsIntegrated": false, "IsReverseLookupZone": true, "IsSigned": false, "DynamicUpdate": "None", "DirectoryPartitionName": null, "MasterServers": [] }
+    ],
+    "cdc01.child.contoso.example": [
+      { "ZoneName": "child.contoso.example", "ZoneType": "Primary", "IsAutoCreated": false, "IsDsIntegrated": true, "IsReverseLookupZone": false, "IsSigned": false, "DynamicUpdate": "Secure", "DirectoryPartitionName": "DomainDnsZones.child.contoso.example", "MasterServers": [] },
+      { "ZoneName": "_msdcs.contoso.example", "ZoneType": "Primary", "IsAutoCreated": false, "IsDsIntegrated": true, "IsReverseLookupZone": false, "IsSigned": false, "DynamicUpdate": "Secure", "DirectoryPartitionName": "ForestDnsZones.contoso.example", "MasterServers": [] }
+    ]
+  },
+  "dnsRecords": [
+    { "HostName": "sql01", "RecordType": "A", "Timestamp": null, "RecordData": { "IPv4Address": "10.0.0.21" } },
+    { "HostName": "ws002", "RecordType": "A", "Timestamp": "2025-03-01T00:00:00", "RecordData": { "IPv4Address": "10.0.5.12" } },
+    { "HostName": "ws001", "RecordType": "A", "Timestamp": "2026-10-26T00:00:00", "RecordData": { "IPv4Address": "10.0.5.11" } }
+  ],
+  "pki": {
+    "cas": [
+      { "cn": "Contoso Issuing CA", "displayName": "Contoso Issuing CA", "dNSHostName": "ca01.contoso.example", "certificateTemplates": ["User", "Machine", "WebServerLegacy"], "cACertificate": null }
+    ],
+    "templates": [
+      { "cn": "User", "displayName": "User", "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.1", "msPKI-Template-Schema-Version": 1, "msPKI-Certificate-Name-Flag": -1509949440, "msPKI-Enrollment-Flag": 41, "msPKI-RA-Signature": 0, "pKIExtendedKeyUsage": ["1.3.6.1.5.5.7.3.2", "1.3.6.1.5.5.7.3.4"], "msPKI-Certificate-Application-Policy": [],
+        "nTSecurityDescriptor": { "Access": [ { "IdentityReference": "CONTOSO\\Domain Users", "ActiveDirectoryRights": "ExtendedRight", "AccessControlType": "Allow", "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55" } ] } },
+      { "cn": "Machine", "displayName": "Computer", "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.2", "msPKI-Template-Schema-Version": 1, "msPKI-Certificate-Name-Flag": 134217728, "msPKI-Enrollment-Flag": 32, "msPKI-RA-Signature": 0, "pKIExtendedKeyUsage": ["1.3.6.1.5.5.7.3.2", "1.3.6.1.5.5.7.3.1"], "msPKI-Certificate-Application-Policy": [],
+        "nTSecurityDescriptor": { "Access": [ { "IdentityReference": "CONTOSO\\Domain Computers", "ActiveDirectoryRights": "ExtendedRight", "AccessControlType": "Allow", "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55" } ] } },
+      { "cn": "WebServerLegacy", "displayName": "Web Server Legacy", "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.3", "msPKI-Template-Schema-Version": 2, "msPKI-Certificate-Name-Flag": 1, "msPKI-Enrollment-Flag": 0, "msPKI-RA-Signature": 0, "pKIExtendedKeyUsage": ["1.3.6.1.5.5.7.3.1", "1.3.6.1.5.5.7.3.2"], "msPKI-Certificate-Application-Policy": ["1.3.6.1.5.5.7.3.1", "1.3.6.1.5.5.7.3.2"],
+        "nTSecurityDescriptor": { "Access": [ { "IdentityReference": "CONTOSO\\Domain Users", "ActiveDirectoryRights": "ReadProperty, ExtendedRight", "AccessControlType": "Allow", "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55" } ] } },
+      { "cn": "SubCA", "displayName": "Subordinate Certification Authority", "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.4", "msPKI-Template-Schema-Version": 1, "msPKI-Certificate-Name-Flag": 1, "msPKI-Enrollment-Flag": 0, "msPKI-RA-Signature": 0, "pKIExtendedKeyUsage": [], "msPKI-Certificate-Application-Policy": [],
+        "nTSecurityDescriptor": { "Access": [ { "IdentityReference": "CONTOSO\\Domain Admins", "ActiveDirectoryRights": "ExtendedRight", "AccessControlType": "Allow", "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55" } ] } },
+      { "cn": "VulnACL", "displayName": "Vulnerable ACL", "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.5", "msPKI-Template-Schema-Version": 2, "msPKI-Certificate-Name-Flag": 0, "msPKI-Enrollment-Flag": 0, "msPKI-RA-Signature": 1, "pKIExtendedKeyUsage": ["1.3.6.1.5.5.7.3.4"], "msPKI-Certificate-Application-Policy": [],
+        "nTSecurityDescriptor": { "Access": [ { "IdentityReference": "NT AUTHORITY\\Authenticated Users", "ActiveDirectoryRights": "ReadProperty, WriteProperty", "AccessControlType": "Allow", "ObjectType": "00000000-0000-0000-0000-000000000000" } ] } }
+    ]
+  },
+  "schema": {
+    "head": { "objectVersion": 88, "whenCreated": "2015-01-01T00:00:00" },
+    "objects": [
+      { "lDAPDisplayName": "cn", "attributeID": "2.5.4.3", "governsID": null, "whenCreated": "2015-01-01T00:00:00", "objectClass": ["top", "attributeSchema"], "isDefunct": null },
+      { "lDAPDisplayName": "user", "attributeID": null, "governsID": "1.2.840.113556.1.5.9", "whenCreated": "2015-01-01T00:00:00", "objectClass": ["top", "classSchema"], "isDefunct": null },
+      { "lDAPDisplayName": "msDS-ManagedPassword", "attributeID": "1.2.840.113556.1.4.2196", "governsID": null, "whenCreated": "2017-06-01T00:00:00", "objectClass": ["top", "attributeSchema"], "isDefunct": null },
+      { "lDAPDisplayName": "msLAPS-Password", "attributeID": "1.2.840.113556.1.6.44.1.3", "governsID": null, "whenCreated": "2024-02-01T00:00:00", "objectClass": ["top", "attributeSchema"], "isDefunct": null },
+      { "lDAPDisplayName": "msExchMailboxGuid", "attributeID": "1.2.840.113556.1.4.7000.102.11058", "governsID": null, "whenCreated": "2016-03-01T00:00:00", "objectClass": ["top", "attributeSchema"], "isDefunct": null },
+      { "lDAPDisplayName": "contosoEmployeeBadge", "attributeID": "1.3.6.1.4.1.99999.1.1", "governsID": null, "whenCreated": "2020-05-01T00:00:00", "objectClass": ["top", "attributeSchema"], "isDefunct": null },
+      { "lDAPDisplayName": "contosoBadgeHolder", "attributeID": null, "governsID": "1.3.6.1.4.1.99999.2.1", "whenCreated": "2020-05-01T00:00:00", "objectClass": ["top", "classSchema"], "isDefunct": null }
+    ]
+  },
+  "dhcp": {
+    "authorized": [ { "DnsName": "dhcp01.contoso.example", "IPAddress": "10.0.0.30" }, { "DnsName": "dhcp02.contoso.example", "IPAddress": "10.1.0.30" } ],
+    "scopes": {
+      "dhcp01.contoso.example": [
+        { "ScopeId": "10.0.5.0", "Name": "HQ clients", "SubnetMask": "255.255.255.0", "StartRange": "10.0.5.10", "EndRange": "10.0.5.250", "State": "Active", "LeaseDuration": "8.00:00:00" },
+        { "ScopeId": "10.0.6.0", "Name": "HQ printers", "SubnetMask": "255.255.255.0", "StartRange": "10.0.6.10", "EndRange": "10.0.6.100", "State": "Active", "LeaseDuration": "8.00:00:00" }
+      ]
+    },
+    "reservations": {
+      "10.0.6.0": [ { "IPAddress": "10.0.6.20", "ClientId": "00-11-22-33-44-55", "Name": "printer-1", "Description": "Floor 1" } ]
+    }
+  }
+}

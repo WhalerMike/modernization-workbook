@@ -76,6 +76,11 @@ jobs:
         # image or on a download link with no matching bundle.
         run: python3 scripts/build_bundles.py --out _site/downloads
 
+      - name: Build the Start Kit download
+        # downloads/start-kit.zip: examples/start-kit as committed, linked from
+        # Book 00 Chapter 08 and Book 06 Runbook R02.
+        run: python3 scripts/build_start_kit_zip.py --out _site/downloads
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
