@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.887
+So what can staff actually build?
+
+2
+00:00:01.887 --> 00:00:06.952
+A small application inside the ServiceNow
+instance we already license, using
+
+3
+00:00:06.952 --> 00:00:11.862
+features that come with it, like its
+tables, scripts, workflows and test tools.
+
+4
+00:00:11.862 --> 00:00:16.476
+It records each finding, matches it to
+the right asset in the configuration
+
+5
+00:00:16.476 --> 00:00:21.313
+management database, and only closes work
+when a fresh check shows the fix held.
+
+6
+00:00:21.313 --> 00:00:24.037
+What it won't do is replace
+a commercial product.
+
+7
+00:00:24.037 --> 00:00:27.838
+No large-scale review campaigns,
+no library of connectors,
+
+8
+00:00:27.838 --> 00:00:31.876
+no machine-learning role
+suggestions, no vendor support line.
+
+9
+00:00:31.876 --> 00:00:35.225
+We should write that down up front
+so nobody expects more later.
+
+10
+00:00:35.225 --> 00:00:36.925
+And we don't start from scratch.
+
+11
+00:00:36.925 --> 00:00:41.789
+An infrastructure team that already writes
+its own ServiceNow scripts can lend us
+
+12
+00:00:41.789 --> 00:00:46.300
+its conventions, its test instance and
+its reviewers, and we can lend ours back.
+
+13
+00:00:46.300 --> 00:00:48.410
+Neither team approves its own work.

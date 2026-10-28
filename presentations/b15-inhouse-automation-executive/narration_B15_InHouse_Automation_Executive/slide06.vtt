@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.550
+Here's how the code moves.
+
+2
+00:00:01.550 --> 00:00:05.438
+It starts in a developer sandbox
+that holds only made-up data.
+
+3
+00:00:05.438 --> 00:00:08.831
+ServiceNow gives developers
+these sandboxes free,
+
+4
+00:00:08.831 --> 00:00:12.776
+but they belong to the vendor, so
+nothing real ever goes in one.
+
+5
+00:00:12.776 --> 00:00:14.853
+Before code leaves the sandbox,
+
+6
+00:00:14.853 --> 00:00:19.488
+a reviewer who didn't write it reads
+every line, and that's the first gate.
+
+7
+00:00:19.488 --> 00:00:21.873
+Then it moves to our own test instance,
+
+8
+00:00:21.873 --> 00:00:25.413
+where automated tests run
+and the results are attached.
+
+9
+00:00:25.413 --> 00:00:27.949
+The second gate is the
+change advisory board,
+
+10
+00:00:27.949 --> 00:00:31.376
+which approves the move to
+production like any other change.
+
+11
+00:00:31.376 --> 00:00:34.550
+Once it's approved, someone
+other than the author puts it in.
+
+12
+00:00:34.550 --> 00:00:39.438
+If a test fails along the way, the fix
+goes back to the sandbox and starts again.
+
+13
+00:00:39.438 --> 00:00:42.860
+Nobody moves their own code,
+and nothing skips a gate.

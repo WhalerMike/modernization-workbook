@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.325
+So here's the ask.
+
+2
+00:00:01.325 --> 00:00:04.150
+Approve a small pilot in
+a developer instance.
+
+3
+00:00:04.150 --> 00:00:05.500
+Made-up data only.
+
+4
+00:00:05.500 --> 00:00:08.763
+One or two staff, trained
+on the rules first.
+
+5
+00:00:08.763 --> 00:00:12.975
+An approved AI tool, and a named
+reviewer who isn't the author.
+
+6
+00:00:12.975 --> 00:00:16.175
+And one component: the check
+that refuses to close a
+
+7
+00:00:16.175 --> 00:00:19.375
+piece of work until a fresh
+read proves the fix held.
+
+8
+00:00:19.375 --> 00:00:22.800
+The code goes into an agency
+repository from day one.
+
+9
+00:00:22.800 --> 00:00:26.769
+At the end of the pilot, we come back
+with the code, the test results,
+
+10
+00:00:26.769 --> 00:00:30.438
+the review records, and an honest
+list of what failed review.
+
+11
+00:00:30.438 --> 00:00:34.788
+Then you decide whether it moves to our
+test instance, through a normal change.
+
+12
+00:00:34.788 --> 00:00:37.807
+It's small, it's reversible,
+it needs no new money,
+
+13
+00:00:37.807 --> 00:00:41.760
+and it shows you the evidence
+before anyone commits to more.

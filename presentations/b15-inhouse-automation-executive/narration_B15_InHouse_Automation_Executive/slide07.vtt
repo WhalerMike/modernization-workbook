@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.325
+None of this is invented for the occasion.
+
+2
+00:00:02.325 --> 00:00:05.255
+It's the standard software
+development life cycle
+
+3
+00:00:05.255 --> 00:00:08.325
+that our existing security
+controls already expect.
+
+4
+00:00:08.325 --> 00:00:11.325
+Changes are reviewed and
+approved before they're made.
+
+5
+00:00:11.325 --> 00:00:13.375
+They're tested before they're finalized.
+
+6
+00:00:13.375 --> 00:00:17.912
+The person who writes the code isn't the
+person who approves it or deploys it.
+
+7
+00:00:17.912 --> 00:00:22.611
+And NIST's Secure Software Development
+Framework gives us the review and testing
+
+8
+00:00:22.611 --> 00:00:27.101
+practices to follow, along with a companion
+profile written for generative AI.
+
+9
+00:00:27.101 --> 00:00:31.244
+So walking this path means meeting
+requirements we already have,
+
+10
+00:00:31.244 --> 00:00:32.625
+not taking on new ones.
+
+11
+00:00:32.625 --> 00:00:36.279
+It also means that if an assessor
+asks how we control our own code,
+
+12
+00:00:36.279 --> 00:00:39.240
+we can point to the same
+controls they already know.

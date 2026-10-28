@@ -1,0 +1,697 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:05.964
+This briefing from the Federal Modernization
+Workbook asks one practical question:
+
+3
+00:00:05.964 --> 00:00:08.236
+when there's no money for new products,
+
+4
+00:00:08.236 --> 00:00:12.412
+can our own staff build the day-two
+automation we need, and do it safely?
+
+5
+00:00:12.412 --> 00:00:17.120
+By day two, I mean the everyday work
+after a system goes live: the resets,
+
+6
+00:00:17.120 --> 00:00:21.250
+the changes, the fixes, and the
+proof that they were done right.
+
+7
+00:00:21.250 --> 00:00:23.509
+I'll cover the problem
+we're trying to fix,
+
+8
+00:00:23.509 --> 00:00:25.768
+why the funded options are off the table,
+
+9
+00:00:25.768 --> 00:00:29.532
+what we can build on the ServiceNow
+instance we already own, and how
+
+10
+00:00:29.532 --> 00:00:34.050
+artificial intelligence, or AI, can help
+write the code without cutting corners.
+
+11
+00:00:34.050 --> 00:00:38.412
+Then who does what, the evidence we
+get out of it, and the honest limits.
+
+12
+00:00:38.412 --> 00:00:42.300
+It ends with one small,
+low-risk decision to approve.
+
+13
+00:00:43.050 --> 00:00:44.437
+Let's start with the problem.
+
+14
+00:00:44.437 --> 00:00:47.938
+A lot of day-two work still
+runs on email and memory.
+
+15
+00:00:47.938 --> 00:00:51.044
+Someone asks for a change,
+someone else makes it,
+
+16
+00:00:51.044 --> 00:00:54.388
+and the proof lives in an
+inbox, if it lives anywhere.
+
+17
+00:00:54.388 --> 00:00:56.262
+The work may well be done right.
+
+18
+00:00:56.262 --> 00:01:00.275
+But when an auditor asks who approved
+it, when it happened, and whether the
+
+19
+00:01:00.275 --> 00:01:04.287
+fix actually held, there's nothing to
+show except people's recollections.
+
+20
+00:01:04.287 --> 00:01:08.763
+Even where there is a ticket, a closed
+ticket only proves somebody did something.
+
+21
+00:01:08.763 --> 00:01:11.700
+It doesn't prove the setting
+stayed fixed the next day.
+
+22
+00:01:11.700 --> 00:01:14.901
+An assessor wants four
+things: an owner, a clock,
+
+23
+00:01:14.901 --> 00:01:18.187
+an approval, and a result
+someone else can check.
+
+24
+00:01:18.187 --> 00:01:19.213
+That's the gap.
+
+25
+00:01:19.213 --> 00:01:22.040
+We do the work, and
+then we can't prove it.
+
+26
+00:01:22.790 --> 00:01:25.065
+The usual answer is to buy our way out.
+
+27
+00:01:25.065 --> 00:01:30.090
+ServiceNow sells compliance and
+continuous-authorization applications that do much
+
+28
+00:01:30.090 --> 00:01:32.774
+of this, and identity-governance
+products such
+
+29
+00:01:32.774 --> 00:01:35.390
+as SailPoint run access
+reviews and a lot more.
+
+30
+00:01:35.390 --> 00:01:38.028
+Microsoft has its own
+governance features too.
+
+31
+00:01:38.028 --> 00:01:41.574
+But ServiceNow's own documentation
+lists those compliance
+
+32
+00:01:41.574 --> 00:01:45.689
+applications as separate subscriptions,
+on top of what we already pay.
+
+33
+00:01:45.689 --> 00:01:48.894
+An identity-governance product
+is another purchase again,
+
+34
+00:01:48.894 --> 00:01:51.640
+and Microsoft's features
+need their own licensing.
+
+35
+00:01:51.640 --> 00:01:54.890
+If the answer on funding is
+no, we have two choices.
+
+36
+00:01:54.890 --> 00:01:58.408
+We can leave the design on paper
+and keep doing things by email,
+
+37
+00:01:58.408 --> 00:02:02.340
+or we can build the essential pieces
+ourselves on what we already own.
+
+38
+00:02:02.340 --> 00:02:06.220
+This briefing is about the
+second choice, done carefully.
+
+39
+00:02:06.970 --> 00:02:08.807
+So what can staff actually build?
+
+40
+00:02:08.807 --> 00:02:13.872
+A small application inside the ServiceNow
+instance we already license, using
+
+41
+00:02:13.872 --> 00:02:18.782
+features that come with it, like its
+tables, scripts, workflows and test tools.
+
+42
+00:02:18.782 --> 00:02:23.396
+It records each finding, matches it to
+the right asset in the configuration
+
+43
+00:02:23.396 --> 00:02:28.233
+management database, and only closes work
+when a fresh check shows the fix held.
+
+44
+00:02:28.233 --> 00:02:30.957
+What it won't do is replace
+a commercial product.
+
+45
+00:02:30.957 --> 00:02:34.758
+No large-scale review campaigns,
+no library of connectors,
+
+46
+00:02:34.758 --> 00:02:38.796
+no machine-learning role
+suggestions, no vendor support line.
+
+47
+00:02:38.796 --> 00:02:42.145
+We should write that down up front
+so nobody expects more later.
+
+48
+00:02:42.145 --> 00:02:43.845
+And we don't start from scratch.
+
+49
+00:02:43.845 --> 00:02:48.709
+An infrastructure team that already writes
+its own ServiceNow scripts can lend us
+
+50
+00:02:48.709 --> 00:02:53.220
+its conventions, its test instance and
+its reviewers, and we can lend ours back.
+
+51
+00:02:53.220 --> 00:02:55.630
+Neither team approves its own work.
+
+52
+00:02:56.380 --> 00:02:59.855
+AI coding assistants can draft
+these scripts in seconds.
+
+53
+00:02:59.855 --> 00:03:02.910
+The catch is that they can
+draft mistakes just as fast,
+
+54
+00:03:02.910 --> 00:03:04.993
+and they sound confident either way.
+
+55
+00:03:04.993 --> 00:03:06.467
+So the rules are simple.
+
+56
+00:03:06.467 --> 00:03:10.585
+First, use only tools the agency
+has approved under its AI policy,
+
+57
+00:03:10.585 --> 00:03:16.879
+which the Office of Management and Budget's
+memo M-25-21 asks every agency to have.
+
+58
+00:03:16.879 --> 00:03:19.754
+Second, never put real data, passwords,
+
+59
+00:03:19.754 --> 00:03:24.018
+or secrets into a prompt; we
+use made-up examples instead.
+
+60
+00:03:24.018 --> 00:03:28.193
+Third, a named person reads
+every line before it's accepted.
+
+61
+00:03:28.193 --> 00:03:33.668
+NIST, the National Institute of Standards
+and Technology, takes the same position:
+
+62
+00:03:33.668 --> 00:03:37.693
+AI-written code is reviewed
+exactly like code a person wrote.
+
+63
+00:03:37.693 --> 00:03:41.620
+And because assistants sometimes
+invent functions that don't exist,
+
+64
+00:03:41.620 --> 00:03:45.617
+every platform call gets checked
+against the vendor's documentation.
+
+65
+00:03:45.617 --> 00:03:49.570
+"The AI wrote it" is never
+a reason to accept a line.
+
+66
+00:03:50.320 --> 00:03:51.820
+Here's how the code moves.
+
+67
+00:03:51.820 --> 00:03:55.708
+It starts in a developer sandbox
+that holds only made-up data.
+
+68
+00:03:55.708 --> 00:03:59.101
+ServiceNow gives developers
+these sandboxes free,
+
+69
+00:03:59.101 --> 00:04:03.046
+but they belong to the vendor, so
+nothing real ever goes in one.
+
+70
+00:04:03.046 --> 00:04:05.123
+Before code leaves the sandbox,
+
+71
+00:04:05.123 --> 00:04:09.758
+a reviewer who didn't write it reads
+every line, and that's the first gate.
+
+72
+00:04:09.758 --> 00:04:12.143
+Then it moves to our own test instance,
+
+73
+00:04:12.143 --> 00:04:15.683
+where automated tests run
+and the results are attached.
+
+74
+00:04:15.683 --> 00:04:18.219
+The second gate is the
+change advisory board,
+
+75
+00:04:18.219 --> 00:04:21.646
+which approves the move to
+production like any other change.
+
+76
+00:04:21.646 --> 00:04:24.820
+Once it's approved, someone
+other than the author puts it in.
+
+77
+00:04:24.820 --> 00:04:29.708
+If a test fails along the way, the fix
+goes back to the sandbox and starts again.
+
+78
+00:04:29.708 --> 00:04:33.430
+Nobody moves their own code,
+and nothing skips a gate.
+
+79
+00:04:34.180 --> 00:04:36.455
+None of this is invented for the occasion.
+
+80
+00:04:36.455 --> 00:04:39.385
+It's the standard software
+development life cycle
+
+81
+00:04:39.385 --> 00:04:42.455
+that our existing security
+controls already expect.
+
+82
+00:04:42.455 --> 00:04:45.455
+Changes are reviewed and
+approved before they're made.
+
+83
+00:04:45.455 --> 00:04:47.505
+They're tested before they're finalized.
+
+84
+00:04:47.505 --> 00:04:52.042
+The person who writes the code isn't the
+person who approves it or deploys it.
+
+85
+00:04:52.042 --> 00:04:56.741
+And NIST's Secure Software Development
+Framework gives us the review and testing
+
+86
+00:04:56.741 --> 00:05:01.231
+practices to follow, along with a companion
+profile written for generative AI.
+
+87
+00:05:01.231 --> 00:05:05.374
+So walking this path means meeting
+requirements we already have,
+
+88
+00:05:05.374 --> 00:05:06.755
+not taking on new ones.
+
+89
+00:05:06.755 --> 00:05:10.409
+It also means that if an assessor
+asks how we control our own code,
+
+90
+00:05:10.409 --> 00:05:13.670
+we can point to the same
+controls they already know.
+
+91
+00:05:14.420 --> 00:05:15.545
+So who does what?
+
+92
+00:05:15.545 --> 00:05:18.308
+Developers on our own
+staff write the code.
+
+93
+00:05:18.308 --> 00:05:21.783
+A different, qualified
+reviewer approves each change.
+
+94
+00:05:21.783 --> 00:05:25.144
+The change advisory board
+approves the move to production.
+
+95
+00:05:25.144 --> 00:05:27.898
+The security officer
+sets the coding rules,
+
+96
+00:05:27.898 --> 00:05:32.257
+and the agency's Chief AI Officer
+decides which AI tools are approved.
+
+97
+00:05:32.257 --> 00:05:36.619
+The point is that no one person
+writes, approves, and deploys.
+
+98
+00:05:36.619 --> 00:05:39.658
+And we train the people we
+already have rather than hiring.
+
+99
+00:05:39.658 --> 00:05:44.272
+They start in a free developer sandbox,
+learn our rules before they touch real work,
+
+100
+00:05:44.272 --> 00:05:48.683
+and pair up with experienced platform
+developers for their first few changes.
+
+101
+00:05:48.683 --> 00:05:52.157
+After that, they can qualify
+as reviewers themselves.
+
+102
+00:05:52.157 --> 00:05:55.793
+Every piece should have at least
+two people who can maintain it,
+
+103
+00:05:55.793 --> 00:05:58.880
+so the application never
+depends on one person.
+
+104
+00:05:59.630 --> 00:06:01.742
+This is the part I most want you to see.
+
+105
+00:06:01.742 --> 00:06:05.519
+Every gate leaves a record
+behind: the review and who did it,
+
+106
+00:06:05.519 --> 00:06:09.768
+the test results, the change
+approval, and who deployed the change.
+
+107
+00:06:09.768 --> 00:06:14.424
+Together, those records are the audit
+evidence, and we get them as a by-product
+
+108
+00:06:14.424 --> 00:06:19.006
+of doing the work properly, not by
+assembling a binder before an assessment.
+
+109
+00:06:19.006 --> 00:06:22.859
+When an assessor asks how we know
+our own code does what we claim,
+
+110
+00:06:22.859 --> 00:06:26.417
+the answer is a report we can
+pull, not a story we have to tell.
+
+111
+00:06:26.417 --> 00:06:31.278
+And the application's own output, its
+control tests and its closed findings,
+
+112
+00:06:31.278 --> 00:06:34.492
+joins the same evidence
+trail as everything else.
+
+113
+00:06:34.492 --> 00:06:36.807
+The assessor shouldn't be able to tell,
+
+114
+00:06:36.807 --> 00:06:40.300
+or need to care, whether the
+code was bought or built.
+
+115
+00:06:41.050 --> 00:06:42.538
+Now the honest limits.
+
+116
+00:06:42.538 --> 00:06:43.651
+This isn't free.
+
+117
+00:06:43.651 --> 00:06:46.766
+It moves the cost from a
+license line to staff time,
+
+118
+00:06:46.766 --> 00:06:50.413
+including retesting every time
+the platform is upgraded.
+
+119
+00:06:50.413 --> 00:06:53.776
+It doesn't replace a full
+identity-governance product,
+
+120
+00:06:53.776 --> 00:06:57.812
+and if our needs grow, this buys
+time rather than removing the need.
+
+121
+00:06:57.812 --> 00:07:02.308
+Review is only as good as the
+reviewer, and AI can produce confident,
+
+122
+00:07:02.308 --> 00:07:07.212
+wrong code, so small changes and a
+reviewer's right to say no really matter.
+
+123
+00:07:07.212 --> 00:07:11.183
+The federal AI policy and the NIST
+guidance are both still moving,
+
+124
+00:07:11.183 --> 00:07:12.874
+so we'll need to recheck them.
+
+125
+00:07:12.874 --> 00:07:16.051
+And the developer sandbox
+belongs to the vendor,
+
+126
+00:07:16.051 --> 00:07:19.990
+outside our boundary, so it
+only ever holds made-up data.
+
+127
+00:07:20.740 --> 00:07:22.015
+So here's the ask.
+
+128
+00:07:22.015 --> 00:07:24.840
+Approve a small pilot in
+a developer instance.
+
+129
+00:07:24.840 --> 00:07:26.190
+Made-up data only.
+
+130
+00:07:26.190 --> 00:07:29.453
+One or two staff, trained
+on the rules first.
+
+131
+00:07:29.453 --> 00:07:33.665
+An approved AI tool, and a named
+reviewer who isn't the author.
+
+132
+00:07:33.665 --> 00:07:36.865
+And one component: the check
+that refuses to close a
+
+133
+00:07:36.865 --> 00:07:40.065
+piece of work until a fresh
+read proves the fix held.
+
+134
+00:07:40.065 --> 00:07:43.490
+The code goes into an agency
+repository from day one.
+
+135
+00:07:43.490 --> 00:07:47.459
+At the end of the pilot, we come back
+with the code, the test results,
+
+136
+00:07:47.459 --> 00:07:51.128
+the review records, and an honest
+list of what failed review.
+
+137
+00:07:51.128 --> 00:07:55.478
+Then you decide whether it moves to our
+test instance, through a normal change.
+
+138
+00:07:55.478 --> 00:07:58.497
+It's small, it's reversible,
+it needs no new money,
+
+139
+00:07:58.497 --> 00:08:02.750
+and it shows you the evidence
+before anyone commits to more.
+
+140
+00:08:03.500 --> 00:08:07.541
+Everything in this briefing comes
+from Book 15, Chapter 13 of the
+
+141
+00:08:07.541 --> 00:08:11.963
+Federal Modernization Workbook, and
+every source is footnoted there.
+
+142
+00:08:11.963 --> 00:08:15.507
+Chapter 11 describes the
+compliance application itself,
+
+143
+00:08:15.507 --> 00:08:17.574
+Chapter 10 covers who runs day two,
+
+144
+00:08:17.574 --> 00:08:22.374
+and the workbook's ServiceNow example is
+a tested starting point for the pilot.
+
+145
+00:08:22.374 --> 00:08:23.730
+Thank you for your time.

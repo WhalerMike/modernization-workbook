@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.525
+AI coding assistants can draft
+these scripts in seconds.
+
+2
+00:00:03.525 --> 00:00:06.580
+The catch is that they can
+draft mistakes just as fast,
+
+3
+00:00:06.580 --> 00:00:08.663
+and they sound confident either way.
+
+4
+00:00:08.663 --> 00:00:10.137
+So the rules are simple.
+
+5
+00:00:10.137 --> 00:00:14.255
+First, use only tools the agency
+has approved under its AI policy,
+
+6
+00:00:14.255 --> 00:00:20.549
+which the Office of Management and Budget's
+memo M-25-21 asks every agency to have.
+
+7
+00:00:20.549 --> 00:00:23.424
+Second, never put real data, passwords,
+
+8
+00:00:23.424 --> 00:00:27.688
+or secrets into a prompt; we
+use made-up examples instead.
+
+9
+00:00:27.688 --> 00:00:31.863
+Third, a named person reads
+every line before it's accepted.
+
+10
+00:00:31.863 --> 00:00:37.338
+NIST, the National Institute of Standards
+and Technology, takes the same position:
+
+11
+00:00:37.338 --> 00:00:41.363
+AI-written code is reviewed
+exactly like code a person wrote.
+
+12
+00:00:41.363 --> 00:00:45.290
+And because assistants sometimes
+invent functions that don't exist,
+
+13
+00:00:45.290 --> 00:00:49.287
+every platform call gets checked
+against the vendor's documentation.
+
+14
+00:00:49.287 --> 00:00:52.940
+"The AI wrote it" is never
+a reason to accept a line.

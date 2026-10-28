@@ -204,6 +204,8 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 | Evidence standard for a closed ticket | D | | C | | | | R | C | | C | C (records) |
 | Day-two evidence in the authorization package | C | C | D, R | | | R | R | R | | | |
 
+Rows for building the day-two automation in-house (who writes, reviews and approves the code, and who approves the AI assistants used to draft it) are in [Chapter 13](13-building-day-two-automation-in-house.md#who-writes-reviews-approves-and-operates).
+
 Nine rows need comment.
 
 The **routine credential** row gives the service desk supervisor a decision, the only one inside the desk. It matches [Appendix A](appendix-a-help-desk-task-reference.md), where the supervisor or the requester's manager approves routine resets for ordinary users, and [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#the-help-desk-and-cloud-services-authority-split), where an authentication method reset is an A1 item. Accounts the desk can't touch, and every access item, go to the approvers Chapter 04 and Book 04 name.
