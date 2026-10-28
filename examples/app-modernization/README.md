@@ -3,6 +3,8 @@
 > **Status: illustrative. Tested against fixtures, not proven in production.**
 > This is a small, runnable slice of the target reference architecture in [Book 18](../../docs/books/b18-application-modernization/index.md): a Java and Spring Boot REST service over PostgreSQL with an API-first contract, a React front end, a DB2/Oracle-to-PostgreSQL migration tool that proves what it moved, and an AI agent that can only propose changes for a person to approve. All data is synthetic. It isn't an endorsement of any product by any agency, and no agency has adopted it. [Chapter 08](../../docs/books/b18-application-modernization/08-the-reference-implementation.md) walks through it.
 
+**Download:** [app-modernization.zip](https://whalermike.github.io/modernization-workbook/downloads/app-modernization.zip), rebuilt from this folder on every site deploy. It also holds a plain-text copy of every source and configuration file, named with `.txt` added (`pom.xml.txt`, `Dockerfile.txt`), for Microsoft 365 Copilot and other tools that refuse code files. Build and run from the originals.
+
 ## What is in it
 
 | Part | What it does | Book 18 chapter |

@@ -2,10 +2,16 @@
 """Build downloads/<kit>.zip from examples/<kit> (default: the Start Kit).
 
 Book 00 Chapter 08 and Book 06 Runbook R02 link the Start Kit as a download, and Book 15
-Chapter 13 links the Copilot agent pack (--kit copilot-agent-pack). This packs the folder as
+Chapter 13 links the Copilot agent pack (--kit copilot-agent-pack), and Book 18 Chapter 08
+the application modernization reference implementation (--kit app-modernization). This packs the folder as
 it is in the repository, scripts, README, fixtures and tests, under a top-level <kit>/
 folder. The archive is reproducible: entries are sorted, timestamps fixed and
 line endings left as committed, so the same commit always gives the same bytes.
+
+Every script, code and data file also gets a plain-text copy beside it, named with .txt
+added (Get-Thing.ps1 -> Get-Thing.ps1.txt), because Microsoft 365 Copilot and some mail
+systems refuse to take .ps1, .py and similar files. The copies are made here, not
+committed, so they can't drift from the originals.
 
 Usage: python3 scripts/build_start_kit_zip.py [--kit start-kit] [--out _site/downloads]
 Default output directory: _site/downloads (the site's /downloads/ URL).
@@ -21,11 +27,18 @@ import zipfile
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-KITS = ("start-kit", "copilot-agent-pack")
+KITS = ("start-kit", "copilot-agent-pack", "app-modernization")
 FIXED_TIME = (2026, 1, 1, 0, 0, 0)
-SKIP_PARTS = {"__pycache__", ".pytest_cache"}
+SKIP_PARTS = {"__pycache__", ".pytest_cache", "node_modules", "target", "dist"}
 # Windows can't create these names, so a file called one would break extraction there.
 RESERVED = {"con", "prn", "aux", "nul"} | {f"com{i}" for i in range(1, 10)} | {f"lpt{i}" for i in range(1, 10)}
+# Files that get a .txt copy: scripts, code, configuration and data.
+TXT_COPY = {
+    ".ps1", ".psm1", ".psd1", ".py", ".js", ".mjs", ".cjs", ".ts", ".tsx", ".jsx", ".java",
+    ".sql", ".sh", ".cmd", ".bat", ".json", ".xml", ".yml", ".yaml", ".csv", ".toml",
+    ".properties", ".ini", ".cfg", ".gradle", ".html", ".css", ".conf", ".example",
+}
+TXT_COPY_NAMES = {"mvnw", "Dockerfile"}
 
 
 def kit_files(kit: Path) -> list[Path]:
@@ -40,6 +53,23 @@ def kit_files(kit: Path) -> list[Path]:
     return files
 
 
+def needs_copy(path: Path) -> bool:
+    return path.suffix.lower() in TXT_COPY or path.name in TXT_COPY_NAMES
+
+
+def entries(kit: Path, files: list[Path]) -> list[tuple[str, Path]]:
+    """Archive names (relative to the kit) and their sources, with the .txt copies."""
+    out = []
+    for path in files:
+        rel = path.relative_to(kit).as_posix()
+        out.append((rel, path))
+        if needs_copy(path):
+            if path.with_name(path.name + ".txt").exists():
+                raise SystemExit(f"Committed .txt copy would collide: {path.relative_to(REPO)}.txt")
+            out.append((rel + ".txt", path))
+    return sorted(out)
+
+
 def build(out_dir: Path, name: str = "start-kit") -> Path:
     kit = REPO / "examples" / name
     files = kit_files(kit)
@@ -48,13 +78,16 @@ def build(out_dir: Path, name: str = "start-kit") -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     target = out_dir / f"{name}.zip"
     with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
-        for path in files:
-            info = zipfile.ZipInfo(f"{name}/" + path.relative_to(kit).as_posix(), date_time=FIXED_TIME)
+        for rel, path in entries(kit, files):
+            info = zipfile.ZipInfo(f"{name}/{rel}", date_time=FIXED_TIME)
             info.compress_type = zipfile.ZIP_DEFLATED
-            info.external_attr = 0o644 << 16
+            # Keep shell scripts such as mvnw runnable on Linux and macOS.
+            executable = not rel.endswith(".txt") and (path.name == "mvnw" or path.suffix == ".sh")
+            info.external_attr = (0o755 if executable else 0o644) << 16
             zf.writestr(info, path.read_bytes())
     digest = hashlib.sha256(target.read_bytes()).hexdigest()
-    print(f"{name}: {len(files)} files -> {target} (sha256 {digest})")
+    copies = sum(1 for path in files if needs_copy(path))
+    print(f"{name}: {len(files)} files and {copies} .txt copies -> {target} (sha256 {digest})")
     return target
 
 

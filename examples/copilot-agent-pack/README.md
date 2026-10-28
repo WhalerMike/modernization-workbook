@@ -12,6 +12,8 @@ Use the agent only under the agency's generative-AI policy (OMB M-25-21, Section
 
 ## What's in the pack
 
+The zip also holds a plain-text copy of each script, named with `.txt` added (`test_pack.py.txt`), for tools that refuse `.py` files. Everything you paste into or attach to Copilot is already `.txt` or Markdown.
+
 ```
 examples/copilot-agent-pack/
   README.md                  this file: setup and limits
