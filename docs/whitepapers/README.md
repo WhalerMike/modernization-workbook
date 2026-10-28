@@ -2,6 +2,8 @@
 
 Cleaned, externally usable versions of high-value modernization whitepapers.
 
+Each paper is now a chapter of a workbook book, linked below. To get one as a Word document, download its book from the [Downloads](../downloads.md) page.
+
 | Document | Description |
 |----------|-------------|
 | [AD to Entra ID — The Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md) | Why the governance gap is structural, not technical. Now a chapter of Book 02. |
