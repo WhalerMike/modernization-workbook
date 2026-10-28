@@ -98,3 +98,13 @@ Every claim was checked against the primary source on October 23, 2026. Sources:
 |---|---|---|---|---|
 | 1 | Require a written ACR per ICT item; 'Partially Supports' means non-conformance | Phase 1 | verified (quoted) | Section508.gov request and claims pages |
 | 2 | Validate vendor conformance before purchase and after change | Phase 1 | verified | OMB M-24-08 §III.B |
+
+## Additions, October 28, 2026 (Help Desk Kit audit)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | A delegated grant with consentType AllPrincipals authorizes the app to impersonate all users; Principal, one user | The Help Desk Kit audit | verified (quoted) | c06-oauth2-grant |
+| 2 | An app consented for every user can act as anyone who signs in to it, within the scopes granted | The Help Desk Kit audit | verified (follows from c06-oauth2-grant and the scope property) | c06-oauth2-grant |
+| 3 | Nearest Entra counterpart to AD unconstrained delegation; differs in being limited to its scopes | The Help Desk Kit audit | restated-as-design (comparison; AD mechanism sourced in Book 02 Ch08) | c06-oauth2-grant; Book 02 Ch08 c08-sensitive |
+| 4 | The script's checks, columns, exclusions and output file | The Help Desk Kit audit | verified against the kit v1.6.2 (`Get-EnterpriseAppInventory.ps1`, Pester 37/37) | kit release helpdesk-entra-kit-v1.6.2 |
+| 5 | Tiers, who acts, A3 routing, drift to the governance officer and security operations | The Help Desk Kit audit | restated-as-design (program policy) | — |
