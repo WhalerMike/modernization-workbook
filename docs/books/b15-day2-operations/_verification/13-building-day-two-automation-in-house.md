@@ -51,12 +51,17 @@ New chapter; no source pages. It extends [Chapter 11](../11-attestation-and-the-
 | 43 | Evidence records map to AC-5, CM-3, CM-3(2), CM-4, CM-5, SA-10, SA-11 | Evidence | verified (control text) / restated-as-design (mapping) | 800-53 r5 catalog; program design |
 | 44 | SA-11(c) quote: produce evidence of the execution of the assessment plan and results | Evidence | verified | 800-53 r5 catalog |
 | 45 | Ticket-to-machine evidence model (owner, clock, approval, result) | Evidence | verified (by cross-reference) | Book 13 Ch10, App B |
+| 46 | A Copilot agent built in Agent Builder carries standing instructions (8,000-character limit) and starter prompts; the agency can't retrain the model | Copilot section | verified | Microsoft Learn, Build agents in Agent Builder; declarative agent manifest (accessed Oct 28, 2026) |
+| 47 | Agent Builder available in GCC and GCC High, not DoD | Copilot section | verified | Microsoft Learn, Agent Builder regional availability; Copilot service description |
+| 48 | Embedded (uploaded) files not supported as knowledge in GCC | Copilot section | verified | Microsoft Learn, Add knowledge sources in Agent Builder |
+| 49 | SharePoint/OneDrive knowledge needs a Microsoft 365 Copilot license or usage-based billing; usage-based billing not supported in GCC/GCC High | Copilot section (pack README) | verified | Microsoft Learn, Agent capabilities and licensing models |
+| 50 | The pack's agent drafts only; every gate in the chapter still applies | Copilot section | restated-as-design | Program design; examples/copilot-agent-pack |
 
 ## Not carried, and why
 
 | Considered | Why not |
 |---|---|
-| Naming any specific AI coding assistant or its FedRAMP status | Not needed for the argument, and product status changes; the chapter requires approval under the agency's policy and authorization like any cloud service |
+| Any AI coding assistant's FedRAMP status, or recommending one | Product status changes; the chapter requires approval under the agency's policy and authorization like any cloud service. The Copilot section names Microsoft 365 Copilot only as the case where it is the assistant an agency has already approved |
 | ServiceNow's own generative-AI coding features | Separately licensed add-ons, which the no-funding premise excludes; licensing terms not verified |
 | Exact license prices for the GRC modules or identity-governance products | Not verified from a primary source; the chapter states only that the modules are separate subscriptions |
 | M-26-04 (unbiased AI principles) | Text not opened; mentioned only in this log. Worth reading before an agency acquires an assistant |
@@ -65,4 +70,4 @@ New chapter; no source pages. It extends [Chapter 11](../11-attestation-and-the-
 
 ## Footnotes
 
-17 definitions, all prefixed `c13-`; checked unique across the book (see the PR description for the bundle build).
+19 definitions, all prefixed `c13-`; checked unique across the book (see the PR description for the bundle build).

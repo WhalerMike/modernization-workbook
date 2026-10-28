@@ -1,0 +1,80 @@
+THE METHOD: BUILDING DAY-TWO AUTOMATION IN-HOUSE
+Source: Federal Modernization Workbook, Book 15, Chapter 13
+https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/13-building-day-two-automation-in-house.html
+This is a condensed reference for a Copilot agent. The chapter is the authority; it carries the citations.
+
+1. WHY THIS PATH EXISTS
+
+The platform's compliance modules (for ServiceNow, Policy and Compliance Management and Continuous Authorization and Monitoring) are separate subscriptions. An identity-governance product is a further purchase. Microsoft's access reviews and lifecycle workflows need Entra ID Governance licensing. When none of these can be funded, the agency's own staff build the joins the workbook needs as a scoped application on the instance the agency already licenses, and apply to their own code the controls they would demand of a vendor's.
+
+2. WHAT STAFF BUILD (platform features that come with the instance: tables, server-side scripts, outbound REST messages, Flow Designer, the MID Server, the Automated Test Framework, update sets)
+
+- Records for findings, control tests and plan of action and milestones (POA&M) items, in custom tables that extend the task table, so they inherit numbering, state, assignment, approvals and the audit trail.
+- Ingest, reconcile and gate scripts that read control state, match each finding to the authoritative CMDB item, and close work only when a re-read confirms the fix.
+- The control map as data, loaded from the authoritative map and checked against it in continuous integration.
+- Scheduled control tests and an export of assessed state and the POA&M in the shape the evidence pipeline expects.
+- Identity-lifecycle checks without an identity-governance product: a read-only drift reconciliation joining the HR extract to Microsoft Graph, and the re-read-before-close rule.
+
+3. WHAT IT DOESN'T REPLACE (say so in writing before starting)
+
+- Access certification campaigns at scale (possible only as a catalog-driven review for a few high-value groups).
+- A vendor-maintained connector library. The build reads and records; it doesn't provision.
+- Role discovery. Roles are designed by people.
+- A separation-of-duties policy engine. The build has approver-is-not-executor checks inside the platform's workflows.
+- Vendor support, roadmap and authorization.
+Limits: it covers the agency's own day-two loop, not an enterprise identity-governance program; it depends on the people who wrote it, so it needs documentation and a second trained maintainer from the start; it must be retested on every platform upgrade.
+
+4. STAFFING MODEL
+
+Treat an existing infrastructure, cloud or platform team that already scripts the ITSM platform as a sister team: borrow its conventions, its sub-production instance and its reviewers, and contribute reviewers back. Neither team approves its own changes. Where no such team exists, start from the ITSM platform team. Authors and reviewers are always different people, recorded as such. Keep two trained maintainers for every component.
+
+5. THE AI RULES (program design)
+
+1. Only approved assistants, used under the agency's generative-AI policy (OMB M-25-21, Section 3(b)(iv)) and, if a cloud service, authorized like any other. A personal account on a public chatbot is not an approved tool.
+2. A named person reviews every line before it is accepted. The assistant drafts; the developer accepts a draft only after reading it; a second named reviewer reads it again before it leaves the sandbox. "The AI wrote it" is never a reason a line was accepted. NIST SP 800-218A evaluates AI-generated and human-written code alike.
+3. No production data, credentials or secrets in any prompt: no real names, identifiers, ticket contents, tenant IDs, tokens, passwords, connection strings or log extracts. Use synthetic fixtures.
+4. No secrets in the code. Credentials come from the platform's credential and connection aliases, bound to the in-boundary MID Server. A reviewer rejects any change carrying a literal secret.
+5. Check every platform API against the vendor's documentation for the instance's release. Assistants invent plausible methods, parameters and table names. A call nobody can find in the documentation is removed.
+6. Treat suggested dependencies (libraries, Store applications, snippets) as acquisitions to verify (SSDF PW.4.4).
+7. Record which approved tool drafted the change, in the review record.
+
+Who decides: the agency's Chief AI Officer decides which assistants are approved and on what terms, and whether a coding assistant is an inventoried AI use case. The CISO decides the secure coding standard.
+
+6. THREE ENVIRONMENTS
+
+Developer sandbox: a Personal Developer Instance (PDI) or agency development instance. Synthetic data only. A PDI belongs to the vendor, outside the agency's boundary, and may be reclaimed if idle. Drafting, AI-assisted drafting, unit-level checks, first ATF tests. Nothing exists only in a PDI: code lives in the agency's repository from day one.
+Sub-production: the agency's own test instance, inside its boundary. Test data; never an unscrubbed production copy. Update set committed from source control; full ATF suites; connector tests against non-production tenants.
+Production: real data. Only the approved update set, committed by an implementer who isn't the author.
+
+Source control is the record of the code (agency-owned repository, least-privilege access; SSDF PS.1.1). Update sets are the unit that moves: dev to test to production; never migrate the same update set from multiple sources. A defect found in sub-production is fixed in the sandbox in a new update set, never patched in place. ATF suites run before anything moves and never in production; they cover the happy path and negative paths (an unreconciled asset, a blocked self-approval, a missed service level that escalates).
+
+7. TWO GATES, NEITHER HELD BY THE AUTHOR
+
+Gate 1, code and design review: a named reviewer reads the whole change, checks it against the secure coding standard and the AI rules, and records the decision and findings in the issue tracker. A design review comes earlier for any new integration, new identity's permissions or new table. (SSDF PW.7.1, PW.7.2.)
+Gate 2, change approval: a normal change with a security impact analysis, ATF results attached and the change advisory board's authorization. A change that alters an approval rule, routing rule or integration permission is a change to a control and never a standard change.
+
+8. CONTROLS THE PATH MEETS (NIST SP 800-53 Rev. 5)
+
+CM-3 change control (gate 2 and the change record). CM-3(2) test before finalizing (ATF in sub-production). CM-4 impact analysis (on the change record). CM-4(1) separate test environment (sub-production; High baseline, adopted as design). CM-5 access restrictions for change (authors can't commit to production). AC-5 separation of duties (author, reviewer and approver are different recorded identities). SA-10 developer configuration management (source control, update sets, issue tracker). SA-11 developer testing and evidence (ATF results, review records). SA-15 documented process naming its tools (the written process names the approved AI assistants). SA-3 a defined life cycle.
+SSDF Version 1.1 (SP 800-218): PO.1, PO.2 (roles and role-based training), PO.3.2, PO.5.1 (separate and protect environments), PS.1.1, PW.4.4, PW.7, PW.8 (executable-code testing), RV.1.1. Version 1.2 was still a draft in October 2026.
+
+9. RESPONSIBILITIES
+
+Approved AI assistants: Chief AI Officer decides. Secure coding standard and AI rules: CISO decides, ITSM platform team does. Design of a new integration, identity or table: system owner decides. Write and unit-test in the sandbox: developers. Code review of every line (gate 1): reviewers decide and do. ATF in sub-production: platform team, developers, reviewers. Change authorization (gate 2): change advisory board decides. Commit to production: platform team implementer who is not the author. Connector identity permissions: CISO decides. Operate the application: system owner decides, platform team does. Whether the build changes the instance's authorization: authorizing official decides.
+
+10. EVIDENCE THE PATH PRODUCES
+
+Review record (change, reviewer, decision, findings, AI tool used): proves a named person other than the author read every line (AC-5, SSDF PW.7).
+ATF results for the update set: proves the change was tested before it was finalized (CM-3(2), SA-11).
+Update set and its source-control commit: proves what moved matches what was reviewed (SA-10).
+Change record, impact analysis and CAB decision: proves authorization with security impact considered (CM-3, CM-4).
+Production commit by an implementer: proves the author didn't move their own code (CM-5).
+A change to the compliance application is a ticket like any other, closed with its review, test results and change record as proof.
+
+11. TRAINING EXISTING STAFF
+
+1. Platform fundamentals in a PDI with synthetic data. 2. The agency's process before its code. 3. Paired work with the sister team. 4. Reviewer qualification: listed reviewers only approve gate 1. 5. AI-assistant training: what the policy allows, what never goes in a prompt, how to check output against vendor documentation.
+
+12. HONEST LIMITS
+
+It isn't free; it moves cost to people. It doesn't replace an identity-governance product. Review is only as good as the reviewer; keep changes small. AI speeds up mistakes as well as code: invented APIs, insecure defaults, confident wrong logic. Federal AI policy and the SSDF are moving. Platform facts change with each release. The PDI is outside the boundary.
