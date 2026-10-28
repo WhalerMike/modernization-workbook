@@ -1,7 +1,7 @@
 ---
 title: "Federal Framework Crosswalk"
-subtitle: "Which federal modernization frameworks the workbook's 18 books address, where, and how deeply, with each framework's status checked on October 23, 2026, and every federal source the books cite"
-description: "Research under review: a crosswalk of the Federal Modernization Workbook's 18 books against federal modernization frameworks: each framework's current status, a book-by-framework coverage matrix scored 0 to 3, the gaps, and a proposal for tagging chapters by framework."
+subtitle: "Which federal modernization frameworks the workbook's 19 books address, where, and how deeply, with each framework's status checked on October 23, 2026, and every federal source the books cite"
+description: "Research under review: a crosswalk of the Federal Modernization Workbook's 19 books against federal modernization frameworks: each framework's current status, a book-by-framework coverage matrix scored 0 to 3, the gaps, and a proposal for tagging chapters by framework."
 research-status: in review
 research-type: explainer
 research-book: "Books 00–17"
@@ -11,7 +11,7 @@ last-reviewed: 2026-10-23
 
 # Federal Framework Crosswalk {.unnumbered}
 
-A federal modernization program answers to more than its security controls. Statute and OMB policy also govern how IT investments are chosen and funded, how enterprise architecture is kept, how digital services are delivered, and how privacy and records are handled. This page maps the workbook's 18 books against those frameworks, checks each one's current status at its primary source, and records where coverage is deep, thin or missing, so that the gaps can be closed deliberately.
+A federal modernization program answers to more than its security controls. Statute and OMB policy also govern how IT investments are chosen and funded, how enterprise architecture is kept, how digital services are delivered, and how privacy and records are handled. This page maps the workbook's 19 books against those frameworks, checks each one's current status at its primary source, and records where coverage is deep, thin or missing, so that the gaps can be closed deliberately.
 
 ## How to read the scores
 
@@ -39,13 +39,15 @@ Three frameworks commonly listed for federal modernization have changed, and two
 | FITARA | **In force, with a new memo**: OMB M-26-10 (March 31, 2026) restates that a covered CFO Act agency can't contract for IT unless the CIO approves, required monthly reports of approved contracts from May 2026 that "shall sunset in October 2026" after the sixth report unless OMB extends them, and requires vendor utilization and pricing clauses in new IT contracts.^[f](#tn-f)^ | M-26-10 |
 | OMB Circular A-130 | **In force**: no rescission found, though it isn't on OMB's current Circulars page; its 2016 PDF still resolves.^[d](#tn-d)^ | A-130 (2016 revision) |
 | Clinger-Cohen Act and capital planning | **In force**: 40 U.S.C. §11312 requires each agency head to "design and implement ... a process for maximizing the value" of IT acquisitions and assessing their risks.^[g](#tn-g)^ | 40 U.S.C. §11312, Circular A-11, A-130 §5.d |
-| Technology Modernization Fund | **Current**: the 2026 call for proposals prioritizes legacy modernization and cybersecurity, expects full repayment, and says "Competitive projects are less than $25M and take no more than three years."^[h](#tn-h)^ | TMF fit criteria |
+| Technology Modernization Fund | **Current**: the 2026 call for proposals prioritizes legacy modernization and cybersecurity, expects full repayment, and, as of October 23, 2026, said "Competitive projects are less than $25M and take no more than three years." On October 28, 2026 that sentence was no longer on the call page, and the fit page said competitive projects "are typically less than $25M and use a five year repayment timeline, though the Board may consider outliers."^[h](#tn-h)^ | TMF fit criteria |
 | 21st Century IDEA | **In force**: Pub. L. 115-336 sets eight criteria for new or redesigned public websites and digital services, and §3(c) asks that any intranet established after December 20, 2018 meet them "to the greatest extent practicable"; it also requires digital forms and an e-signature plan. OMB M-23-22 implements it for public services.^[i](#tn-i)^ | IDEA and M-23-22; OMB M-26-18 (August 31, 2026) adds Login.gov as the universal sign-on for public-facing services^[j](#tn-j)^ |
 | NIST CSF 2.0 and the RMF (SP 800-37 Rev. 2) | **Current**^[k](#tn-k)^ | As cited |
 | Section 508 | **In force**: 29 U.S.C. §794d, the revised 508 Standards, and OMB M-24-08^[l](#tn-l)^ | As cited |
 | Privacy Act; E-Government Act §208 | **In force**: A-130 §5.f and Appendix II direct privacy impact assessments and the handling of personal information^[d](#tn-d)^ | As cited |
 | Federal records (44 U.S.C. chapters 31 and 33) | **In force**: agency heads "shall make and preserve records containing adequate and proper documentation"; NARA lists M-23-07 as current OMB guidance^[m](#tn-m)^ | 44 U.S.C. §3101, M-23-07, NARA General Records Schedules |
 | Cloud Smart (2019) | **Couldn't verify**: the strategy's page on cio.gov failed to load, and no successor was found | Kept provisionally |
+| TOGAF Standard | **Current, voluntary**: the 10th Edition (C220), launched April 25, 2022, with Technical Corrigendum 1 applied in May 2025, published by The Open Group. No federal instrument requires it; A-130 requires an enterprise architecture but names no framework.^[n](#tn-n)^ | A-130 §5.a(2) and SP 800-53 PM-7 for the requirement; TOGAF as the method ([Book 18, Chapter 09](../books/b18-application-modernization/09-togaf-and-zachman.md)) |
+| Zachman Framework | **Current, voluntary**: Version 3.0 (2011), published by Zachman International; an ontology of six interrogatives by six perspectives, not a method. No federal instrument requires it.^[o](#tn-o)^ | As for TOGAF ([Book 18, Chapter 09](../books/b18-application-modernization/09-togaf-and-zachman.md)) |
 
 **Notes to the table**
 
@@ -56,12 +58,14 @@ Three frameworks commonly listed for federal modernization have changed, and two
 - [**e.**]{#tn-e} Federal Register API, presidential documents citing Executive Order 14028, <https://www.federalregister.gov/api/v1/documents.json?conditions[term]=%22Executive+Order+14028%22&conditions[type][]=PRESDOCU&order=newest>; Executive Order 14306 text, <https://www.govinfo.gov/content/pkg/DCPD-202500669/html/DCPD-202500669.htm> (both accessed Oct 23, 2026).
 - [**f.**]{#tn-f} Office of Management and Budget, M-26-10, *Reinforcing Transparency, Accountability, and Oversight of Federal Technology*, March 31, 2026, §1 and Requirements, <https://www.whitehouse.gov/wp-content/uploads/2026/03/M-26-10-Reinforcing-Transparency-Accountability-and-Oversight-of-Federal-Technology.pdf> (accessed Oct 23, 2026).
 - [**g.**]{#tn-g} 40 U.S.C. §11312, Capital planning and investment control (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title40/html/USCODE-2023-title40-subtitleIII-chap113-subchapII-sec11312.htm> (accessed Oct 23, 2026).
-- [**h.**]{#tn-h} Technology Modernization Fund, <https://tmf.cio.gov/>, agency and project fit <https://tmf.cio.gov/fit/>, process <https://tmf.cio.gov/process/>, and 2026 Call for Proposals <https://tmf.cio.gov/2026-call-for-proposals/> (accessed Oct 23, 2026).
+- [**h.**]{#tn-h} Technology Modernization Fund, <https://tmf.cio.gov/>, agency and project fit <https://tmf.cio.gov/fit/>, process <https://tmf.cio.gov/process/>, and 2026 Call for Proposals <https://tmf.cio.gov/2026-call-for-proposals/> (accessed Oct 23, 2026; fit and call pages rechecked Oct 28, 2026).
 - [**i.**]{#tn-i} 21st Century Integrated Digital Experience Act, Pub. L. 115-336, <https://www.govinfo.gov/content/pkg/PLAW-115publ336/html/PLAW-115publ336.htm>; OMB M-23-22, *Delivering a Digital-First Public Experience* (archived page), <https://bidenwhitehouse.archives.gov/omb/management/ofcio/delivering-a-digital-first-public-experience> (both accessed Oct 23, 2026).
 - [**j.**]{#tn-j} Office of Management and Budget, M-26-18, *Scaling Use of Login.gov to Deliver a Universal Sign-on for Public Services*, August 31, 2026, <https://www.whitehouse.gov/wp-content/uploads/2026/08/M-26-18-Scaling-Use-of-Login.gov-to-Deliver-a-Universal-Sign-on-for-Public-Services.pdf> (accessed Oct 23, 2026).
 - [**k.**]{#tn-k} NIST, Cybersecurity Framework, <https://www.nist.gov/cyberframework>; NIST SP 800-37 Rev. 2, <https://csrc.nist.gov/pubs/sp/800/37/r2/final> (both accessed Oct 23, 2026).
 - [**l.**]{#tn-l} Section508.gov, Laws and policies, <https://www.section508.gov/manage/laws-and-policies/> (accessed Oct 23, 2026).
 - [**m.**]{#tn-m} 44 U.S.C. §3101 (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title44/html/USCODE-2023-title44-chap31-sec3101.htm>; National Archives, Records management policy, <https://www.archives.gov/records-mgmt/policy> (both accessed Oct 23, 2026).
+- [**n.**]{#tn-n} The Open Group, *The TOGAF® Standard, 10th Edition* (C220), publication page, May 19, 2025, <https://publications.opengroup.org/c220>; "The Open Group Announces Launch of the TOGAF® Standard, 10th Edition," April 25, 2022, <https://www.opengroup.org/open-group-announces-launch-togaf-standard-10th-edition> (both accessed Oct 28, 2026).
+- [**o.**]{#tn-o} John A. Zachman, *The Zachman Framework for Enterprise Architecture: The Enterprise Ontology*, Version 3.0, © 1987–2011, <https://zachman-feac.com/images/ZI_PIcs/ZF3.jpg>; Zachman International, "About the Zachman Framework," <https://zachman-feac.com/zachman/about-the-zachman-framework> (both accessed Oct 28, 2026).
 
 The frameworks the workbook relies on most are not on the usual modernization lists at all: NIST SP 800-53 Rev. 5 (release 5.2.0), FedRAMP, OMB M-26-14 on logging (which rescinded M-21-31), the CISA Zero Trust Maturity Model 2.0, FIPS 201 and HSPD-12, and FISMA.[^also] They're included in the matrix below.
 
@@ -69,31 +73,33 @@ The frameworks the workbook relies on most are not on the usual modernization li
 
 ## Coverage matrix
 
-| Framework | 00 Orientation & Program | 01 The Transformation Arc | 02 Identity & Directory | 03 HR-Driven Identity | 04 Access & Privilege | 05 Devices & Endpoints | 06 Data Platform: SQL Server Identity | 07 PKI & Certificates | 08 DNS, DHCP & IPAM | 09 Network & Transport | 10 Cloud Boundary & Landing Zone | 11 Zero Trust & Assessment | 12 Security Operations & Telemetry | 13 Governance, Drift & Evidence | 14 Federal Compliance & Authorization | 15 Compliance Automation & Day-2 Operations | 16 People: Training & Education | 17 AI Identity Governance |
-|--------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| NIST SP 800-53 Rev. 5 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
-| FedRAMP | 2 | 3 | 2 | 1 | 3 | 3 | 3 | 1 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 |
-| NIST RMF (SP 800-37 Rev. 2) | 2 | 2 | 2 | 2 | 0 | 1 | 3 | 2 | 2 | 2 | 3 | 2 | 3 | 3 | 3 | 2 | 2 | 3 |
-| EO 14028 and M-22-09 | 2 | 3 | 3 | 2 | 2 | 0 | 3 | 1 | 3 | 3 | 0 | 3 | 0 | 0 | 2 | 1 | 1 | 0 |
-| CISA ZTMM 2.0 | 1 | 3 | 1 | 1 | 1 | 0 | 3 | 0 | 3 | 3 | 0 | 3 | 0 | 1 | 0 | 0 | 0 | 0 |
-| HSPD-12 and FIPS 201 | 0 | 3 | 3 | 3 | 1 | 1 | 2 | 3 | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 1 | 2 | 0 |
-| OMB M-26-14 (logging) | 2 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 3 | 3 | 0 | 3 | 3 | 1 | 2 | 0 | 0 | 0 |
-| FISMA 2014 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 2 | 3 |
-| OMB Circular A-130 | 2 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 3 | 3 | 0 | 2 | 3 |
-| Privacy Act and E-Gov §208 PIAs | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 3 | 0 | 0 | 3 |
-| Federal records | 3 | 2 | 0 | 2 | 0 | 0 | 0 | 2 | 2 | 0 | 2 | 0 | 3 | 2 | 2 | 1 | 2 | 0 |
-| M-26-05 (was M-22-18) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 3 | 0 | 0 | 0 |
-| Evidence Act (was the Federal Data Strategy) | 0 | 3 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
-| NIST CSF 2.0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 2 | 0 | 1 | 0 | 1 | 0 |
-| Section 508 | 1 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 3 | 0 |
-| Enterprise architecture (A-130 §5.a(2)) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 3 | 0 | 0 | 0 |
-| Clinger-Cohen, CPIC and A-11 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
-| FITARA (M-26-10) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 1 |
-| Cloud Smart | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| Technology Modernization Fund | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| 21st Century IDEA and M-23-22 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 |
+| Framework | 00 Orientation & Program | 01 The Transformation Arc | 02 Identity & Directory | 03 HR-Driven Identity | 04 Access & Privilege | 05 Devices & Endpoints | 06 Data Platform: SQL Server Identity | 07 PKI & Certificates | 08 DNS, DHCP & IPAM | 09 Network & Transport | 10 Cloud Boundary & Landing Zone | 11 Zero Trust & Assessment | 12 Security Operations & Telemetry | 13 Governance, Drift & Evidence | 14 Federal Compliance & Authorization | 15 Compliance Automation & Day-2 Operations | 16 People: Training & Education | 17 AI Identity Governance | 18 Application Modernization |
+|--------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| NIST SP 800-53 Rev. 5 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |
+| FedRAMP | 2 | 3 | 2 | 1 | 3 | 3 | 3 | 1 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 | 1 |
+| NIST RMF (SP 800-37 Rev. 2) | 2 | 2 | 2 | 2 | 0 | 1 | 3 | 2 | 2 | 2 | 3 | 2 | 3 | 3 | 3 | 2 | 2 | 3 | 1 |
+| EO 14028 and M-22-09 | 2 | 3 | 3 | 2 | 2 | 0 | 3 | 1 | 3 | 3 | 0 | 3 | 0 | 0 | 2 | 1 | 1 | 0 | 0 |
+| CISA ZTMM 2.0 | 1 | 3 | 1 | 1 | 1 | 0 | 3 | 0 | 3 | 3 | 0 | 3 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
+| HSPD-12 and FIPS 201 | 0 | 3 | 3 | 3 | 1 | 1 | 2 | 3 | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 1 | 2 | 0 | 0 |
+| OMB M-26-14 (logging) | 2 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 3 | 3 | 0 | 3 | 3 | 1 | 2 | 0 | 0 | 0 | 0 |
+| FISMA 2014 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 2 | 3 | 0 |
+| OMB Circular A-130 | 2 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 3 | 3 | 0 | 2 | 3 | 3 |
+| Privacy Act and E-Gov §208 PIAs | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 3 | 0 | 0 | 3 | 2 |
+| Federal records | 3 | 2 | 0 | 2 | 0 | 0 | 0 | 2 | 2 | 0 | 2 | 0 | 3 | 2 | 2 | 1 | 2 | 0 | 1 |
+| M-26-05 (was M-22-18) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 3 | 0 | 0 | 0 | 2 |
+| Evidence Act (was the Federal Data Strategy) | 0 | 3 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 |
+| NIST CSF 2.0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 2 | 0 | 1 | 0 | 1 | 0 | 0 |
+| Section 508 | 1 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 3 | 0 | 1 |
+| Enterprise architecture (A-130 §5.a(2)) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 3 | 0 | 0 | 0 | 3 |
+| Clinger-Cohen, CPIC and A-11 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 2 |
+| FITARA (M-26-10) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 1 | 2 |
+| Cloud Smart | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Technology Modernization Fund | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 |
+| 21st Century IDEA and M-23-22 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 1 |
+| TOGAF Standard, 10th Edition | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 |
+| Zachman Framework 3.0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 |
 
-Notes: Book 14's enterprise architecture score rests on A-130 §5.a(2) and control PM-7, with architecture artifacts and review gates as the evidence; no book names FEAF. Book 01's Cloud Smart score is a mention of its 2010 predecessor, Cloud First, as history. Book 12 relies on M-22-09 through other books rather than citing it directly.
+Notes: Book 18 was added on October 28, 2026; its scores and the TOGAF and Zachman rows come from its chapters as published that day, and no other book cites either framework. Book 14's enterprise architecture score rests on A-130 §5.a(2) and control PM-7, with architecture artifacts and review gates as the evidence; no book names FEAF. Book 01's Cloud Smart score is a mention of its 2010 predecessor, Cloud First, as history. Book 12 relies on M-22-09 through other books rather than citing it directly.
 
 :::
 
@@ -114,6 +120,12 @@ Each gap was closed in the books with endnoted text, checked against the primary
 - **NIST CSF 2.0.** Book 00 Chapter 02 maps the six Functions to the books that carry them, and notes that RECOVER rests on Book 14's contingency planning.
 - **Records.** [Book 00, Chapter 10](../books/b00-orientation/10-retirement-steady-state-and-success.md#records-before-hardware-the-decommissioning-checklist) adds a decommissioning checklist built on 44 U.S.C. §3101, 36 CFR parts 1225, 1226, 1230 and 1236, the General Records Schedules 3.1 and 3.2, and M-23-07; Book 01 Chapter 09, Book 07 Chapter 08 and Book 08 Chapter 10 point to it.[^records]
 - **Cloud Smart** is left out of the books until its status can be confirmed: the strategy's cio.gov pages still didn't load on October 23, 2026.
+
+## Additions made, October 28, 2026
+
+- **Book 18, Application Modernization**, joins the matrix as its own column. Its [Chapter 06](../books/b18-application-modernization/06-compliance-by-design.md) maps SP 800-53 families, A-130 and the SSDF onto the application life cycle; [Chapter 02](../books/b18-application-modernization/02-triaging-the-portfolio.md) and [Chapter 10](../books/b18-application-modernization/10-running-the-portfolio-in-waves.md) tie portfolio triage to capital planning, FITARA and the Technology Modernization Fund; and [Chapter 09](../books/b18-application-modernization/09-togaf-and-zachman.md) maps the book to TOGAF ADM phases and Zachman cells against A-130 §5.a(2) and PM-7.
+- **TOGAF and Zachman** are added to the status table and the matrix as voluntary methods. Neither is a federal requirement; the requirement is A-130's enterprise architecture.
+- **The Technology Modernization Fund** row was rechecked: the "no more than three years" sentence quoted on October 23 was gone from the call page on October 28, and the fit page now gives a five-year repayment timeline.
 
 ## Every federal source the books cite
 

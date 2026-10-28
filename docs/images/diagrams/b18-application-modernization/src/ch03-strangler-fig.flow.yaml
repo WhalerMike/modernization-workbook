@@ -1,0 +1,19 @@
+# Book 18 Chapter 03 — the strangler-fig pattern in four stages, after the
+# Azure Architecture Center "Strangler Fig pattern" page (façade, incremental
+# shift, decommission, remove the façade; anti-corruption layer; rollback
+# until legacy objects are removed) and Martin Fowler, "Strangler Fig" (2024).
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.3}
+nodes:
+  s1: {tone: amber, width: 175, tag: "Stage 1", title: "Introduce the façade", body: ["=Clients call the façade; most requests still go to the legacy application"], size: 11}
+  s2: {tone: amber, width: 175, tag: "Stage 2", title: "Move functions", body: ["=One function at a time to a new service behind the same contract; an anti-corruption layer translates"], size: 11}
+  s3: {tone: green, width: 175, tag: "Stage 3", title: "Decommission the legacy", body: ["=All requests go to the new services; legacy data removed only after validation"], size: 11}
+  s4: {tone: blue, width: 175, tag: "Stage 4", title: "Remove the façade", body: ["=Or keep it as an adapter; clients call the new services"], size: 11}
+  rb: {kind: text, tone: red, width: 175, text: "Rollback stays possible until the legacy objects are removed"}
+order:
+  - [s1, s2, s3, s4]
+edges:
+  - [s1, s2, {tone: amber}]
+  - [s2, s3, {tone: green}]
+  - [s3, s4, {tone: blue}]
+  - [s2, rb, {none: true, style: dashed, tone: red}]

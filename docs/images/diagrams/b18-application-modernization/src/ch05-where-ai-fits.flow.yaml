@@ -1,0 +1,18 @@
+# Book 18 Chapter 05 — four places generative AI fits in a modernized
+# application, ordered by how much each can change, all calling models
+# through one provider-neutral interface. Program design; RAG from Lewis et
+# al. (2020); code modernization tools from vendor documentation cited in
+# the chapter.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.3}
+nodes:
+  assist: {tone: blue, width: 520, tag: "Changes nothing by itself", title: "Assistive feature", body: ["=Drafts, summaries and classification in a screen; a person accepts or edits"], size: 11}
+  rag: {tone: blue, width: 520, tag: "Changes nothing by itself", title: "Retrieval-augmented generation", body: ["=Answers from agency content retrieved with the caller's permissions"], size: 11}
+  code: {tone: amber, width: 520, tag: "Changes a repository", title: "Code modernization assistance", body: ["=Output is a draft: review, build and tests before merge"], size: 11}
+  agent: {tone: violet, width: 520, tag: "Can act", title: "Agent that calls tools", body: ["=Own identity; read tools run; changes to records become proposals a human approves"], size: 11}
+  iface: {tone: slate, width: 520, title: "One provider-neutral model interface", body: ["=Provider and model are configuration; every call recorded; limits in one place"], size: 11}
+edges:
+  - [assist, rag, {style: invis}]
+  - [rag, code, {style: invis}]
+  - [code, agent, {style: invis}]
+  - [agent, iface, {tone: slate, style: dashed, label: "all four call models here"}]

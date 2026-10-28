@@ -1,0 +1,23 @@
+# Book 18 Chapter 02 — the two triage axes (program design). Mission value
+# on the vertical axis, technical health on the horizontal. Each region
+# points to dispositions; the decision table in the chapter is the actual
+# rule set. Dependencies set the order (Chapter 10), not the disposition.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  axis: {kind: text, tone: slate, width: 560, text: "Rows: mission value, high above low. Columns: technical health, poor on the left, good on the right."}
+  hp: {tone: blue, width: 270, tag: "High value, poor health", title: "Replatform, refactor or rebuild", body: ["Replatform when the platform is the problem and the code is sound", "Refactor or rebuild when the code is the problem"], size: 11}
+  hg: {tone: green, width: 270, tag: "High value, good health", title: "Retain or rehost", body: ["Keep it, with a review date", "Rehost only if its platform is being exited"], size: 11}
+  lp: {tone: red, width: 270, tag: "Low value, poor health", title: "Retire first", body: ["=The cheapest modernization there is"], size: 11}
+  lg: {tone: slate, width: 270, tag: "Low value, good health", title: "Retain, or retire when convenient", body: ["=Retire if a product or shared service does the job"], size: 11}
+  dep: {kind: text, tone: violet, width: 560, text: "Dependencies decide the order, not the disposition"}
+order:
+  - [hp, hg]
+  - [lp, lg]
+edges:
+  - [axis, hp, {style: invis}]
+  - [axis, hg, {style: invis}]
+  - [hp, lp, {style: invis}]
+  - [hg, lg, {style: invis}]
+  - [lp, dep, {style: invis}]
+  - [lg, dep, {style: invis}]

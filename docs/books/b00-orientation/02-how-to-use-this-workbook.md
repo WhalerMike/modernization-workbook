@@ -1,6 +1,6 @@
 ---
 title: "Chapter 02 — How to Use This Workbook"
-description: "How the Federal Modernization Workbook is built and organized: eighteen topic books, each framed Why / What / Who / How; how every external claim is verified and footnoted; the house-style diagrams; the Word editions; the 15-minute decks with narrated, captioned editions; how replaced pages are archived and redirected; reading paths by role; and a map of the books."
+description: "How the Federal Modernization Workbook is built and organized: nineteen topic books, each framed Why / What / Who / How; how every external claim is verified and footnoted; the house-style diagrams; the Word editions; the 15-minute decks with narrated, captioned editions; how replaced pages are archived and redirected; reading paths by role; and a map of the books."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b00-orientation
@@ -15,22 +15,22 @@ lifecycle_review: 2027-04-01
 
 # Chapter 02 — How to Use This Workbook
 
-*Eighteen books, one question each, and every external claim traceable to the source that makes it.*
+*Nineteen books, one question each, and every external claim traceable to the source that makes it.*
 
 ::: {.callout-note}
 ## In this chapter
-How the Federal Modernization Workbook is organized into eighteen topic books and why each one follows the same Why / What / Who / How shape. How claims are verified and footnoted, and how to tell an external fact from a program design position or an illustrative example. What the diagrams, Word editions and presentations are, and how they stay in step with the chapters. What happened to the workbook's earlier pages. What the workbook covers and what it doesn't, reading paths for each role, and a map of the books, including one by Cybersecurity Framework Function.
+How the Federal Modernization Workbook is organized into nineteen topic books and why each one follows the same Why / What / Who / How shape. How claims are verified and footnoted, and how to tell an external fact from a program design position or an illustrative example. What the diagrams, Word editions and presentations are, and how they stay in step with the chapters. What happened to the workbook's earlier pages. What the workbook covers and what it doesn't, reading paths for each role, and a map of the books, including one by Cybersecurity Framework Function.
 :::
 
 The workbook grew the way most program material grows: as whitepapers, operational guides, executive briefs, case studies and series, each written when a question came up. That produced depth on many topics and no reliable way through them. The same subject could appear in four places, in four states of currency, with no sign of which one to trust.
 
 The books fix that. Each book takes one topic, consolidates every page the workbook had on it into an ordered reading sequence, checks every external claim against a primary source as of the day it was built, and replaces the earlier pages. This chapter explains how the books are built so that a reader can use them with confidence, and so that a reader who finds a problem knows where to look.
 
-![The Federal Modernization Workbook's eighteen books in five groups: orientation and the transformation arc, identity and access, the estate, boundary and assurance, and running the modernized estate.](../../images/diagrams/b00-orientation/svg/ch02-map-of-the-books.svg){#fig-ch02-map-of-the-books fig-alt="Five groups of book cards. Orientation and arc: Book 00, Orientation and Program, why modernize and why now; Book 01, The Transformation Arc, why modernization is so hard. Identity and access: Book 02, Identity and Directory; Book 03, HR-Driven Identity; Book 04, Access and Privilege; Book 17, AI Identity Governance. The estate: Book 05, Devices and Endpoints; Book 06, Data Platform, SQL Server identity; Book 07, PKI and Certificates; Book 08, DNS, DHCP and IPAM; Book 09, Network and Transport. Boundary and assurance: Book 10, Cloud Boundary and Landing Zone; Book 11, Zero Trust and Assessment; Book 14, Federal Compliance and Authorization. Running it: Book 12, Security Operations and Telemetry; Book 13, Governance, Drift and Evidence; Book 15, Compliance Automation and Day-2 Operations; Book 16, People, Training and Education. All eighteen books are published, shown in blue."}
+![The Federal Modernization Workbook's nineteen books in five groups: orientation and the transformation arc, identity and access, the estate, boundary and assurance, and running the modernized estate.](../../images/diagrams/b00-orientation/svg/ch02-map-of-the-books.svg){#fig-ch02-map-of-the-books fig-alt="Five groups of book cards. Orientation and arc: Book 00, Orientation and Program, why modernize and why now; Book 01, The Transformation Arc, why modernization is so hard. Identity and access: Book 02, Identity and Directory; Book 03, HR-Driven Identity; Book 04, Access and Privilege; Book 17, AI Identity Governance. The estate: Book 05, Devices and Endpoints; Book 06, Data Platform, SQL Server identity; Book 07, PKI and Certificates; Book 08, DNS, DHCP and IPAM; Book 09, Network and Transport. Boundary and assurance: Book 10, Cloud Boundary and Landing Zone; Book 11, Zero Trust and Assessment; Book 14, Federal Compliance and Authorization. Running it: Book 12, Security Operations and Telemetry; Book 13, Governance, Drift and Evidence; Book 15, Compliance Automation and Day-2 Operations; Book 16, People, Training and Education; Book 18, Application Modernization. All nineteen books are published, shown in blue."}
 
-## Eighteen books
+## Nineteen books
 
-The workbook is organized as eighteen books, numbered B00 to B17. Book 00, this one, is the front door: it makes the case for modernizing now and sets out the program that the other books carry out. Book 01 tells the end-to-end transformation arc from client/server to hybrid cloud. Books 02 to 17 each take one domain in depth.
+The workbook is organized as nineteen books, numbered B00 to B18. Book 00, this one, is the front door: it makes the case for modernizing now and sets out the program that the other books carry out. Book 01 tells the end-to-end transformation arc from client/server to hybrid cloud. Books 02 to 18 each take one domain in depth.
 
 The numbering follows the dependency chain [Chapter 01](01-why-modernize-now.md) describes. Identity comes first because every later decision depends on it; the estate's infrastructure follows; boundary, assurance and operations come after. The map above groups the books that way, and the [book index](../index.md) lists them with their status.
 
@@ -168,6 +168,7 @@ Two federal obligations do reach the internal systems the program builds, and th
 | B15 | [Compliance Automation & Day-2 Operations](../b15-day2-operations/index.md) | Why does modernization succeed or fail at the help desk? | Running it |
 | B16 | [People: Training & Education](../b16-people/index.md) | Why do people, not tools, close the gap? | Running it |
 | B17 | [AI Identity Governance](../b17-ai-identity/index.md) | Why do AI agents need identities and owners? | Identity and access |
+| B18 | [Application Modernization](../b18-application-modernization/index.md) | Why is application modernization a portfolio decision, not a rewrite? | Running it |
 
 The [book index](../index.md) shows each book's status and when it was last updated.
 

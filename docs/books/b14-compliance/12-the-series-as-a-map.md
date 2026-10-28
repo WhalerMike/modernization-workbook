@@ -52,7 +52,7 @@ Three conventions apply to everything below.
 | IX. Day-2 operations | The governed catalog: help desk requests, the landing zone front door, application registration, telephony, SaaS integration and identity governance | [Book 15](../b15-day2-operations/index.md); front door in Book [10](../b10-cloud-boundary/index.md); application registration and identity governance in Book [04](../b04-access/index.md) | No new closures; it re-expresses AC-2, AC-5, AC-6, IA-4, IA-5, CM-2, CM-3, CM-8, SA-9, CA-3, AU-2 as governed requests |
 | X. Governance platform integration | How the series' evidence lands on a governance platform, and why that binding is optional | Book [13](../b13-governance/index.md) | No new closures; it routes and explains |
 
-[Book 17, AI Identity Governance](../b17-ai-identity/index.md), has no volume behind it; its material is new.
+[Book 17, AI Identity Governance](../b17-ai-identity/index.md), and [Book 18, Application Modernization](../b18-application-modernization/index.md), have no volume behind them; their material is new.
 
 ### Where the full volumes still are
 

@@ -1,0 +1,21 @@
+# Book 18 Chapter 04 — the data path off DB2 and Oracle: convert the schema,
+# move the rows (full load, then change data capture or delta loads), prove
+# the result three independent ways, then make the cut-over decision. The
+# three checks and the loop back on any mismatch are program design; tool
+# behavior (DMS validation, CDC) is cited in the chapter.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.35}
+nodes:
+  src: {tone: slate, width: 520, title: "Source database: DB2 or Oracle", body: ["=Tables, stored procedures, packages and sequences"], size: 12}
+  conv: {tone: blue, width: 520, tag: "Step 1", title: "Convert the schema", body: ["Type mapping, sequences and identity", "Procedures and packages", "Conversion tool, then human review"], size: 11}
+  move: {tone: blue, width: 520, tag: "Step 2", title: "Move the rows", body: ["Full load", "Then change data capture or delta loads while both run"], size: 11}
+  prove: {tone: violet, width: 520, tag: "Step 3", title: "Prove the result", body: ["Row counts per table", "Order-independent checksum over canonicalized rows", "Independent aggregate reconciliation"], size: 11}
+  cut: {tone: amber, width: 520, title: "Cut-over decision", body: ["=Big-bang, phased or parallel run"], size: 11}
+  tgt: {tone: green, width: 520, title: "Target: PostgreSQL or SQL Server", body: ["=The system of record"], size: 12}
+edges:
+  - [src, conv, {tone: blue}]
+  - [conv, move, {tone: blue}]
+  - [move, prove, {tone: violet}]
+  - [prove, cut, {tone: amber}]
+  - [cut, tgt, {tone: green}]
+  - [prove, conv, {tone: red, style: dashed, label: "any mismatch: fix and rerun", attrs: "constraint=false"}]

@@ -1,0 +1,25 @@
+# Book 18 Chapter 07 — the four review gates an application change passes
+# (disposition, design review, code review, release) and the evidence each
+# leaves in the system's evidence store. The architecture review board owns
+# the standards and patterns the gates check against; the authorizing
+# official alone accepts residual risk. Gate names, owners and the evidence
+# list are the program's design; the control references (SA-3, SA-8, SA-11,
+# SA-15, PL-8, CM-3, CM-4, SR-4) are from NIST SP 800-53 Rev. 5 release 5.2.0,
+# and the code review and SBOM practices from SP 800-218 (PW.7, PS.3.2).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  arb: {tone: violet, width: 300, tag: "Architecture review board", title: "Standards and patterns", body: ["Approved-technology list", "Reference patterns", "Decision records and exceptions"], size: 11}
+  g1: {tone: amber, width: 300, tag: "Gate 1", title: "Disposition", body: ["=Triage score and the chosen R, with the owner's sign-off"], size: 11}
+  g2: {tone: amber, width: 300, tag: "Gate 2", title: "Design review", body: ["=Decision record, interface contract, threat model, privacy check"], size: 11}
+  g3: {tone: blue, width: 300, tag: "Gate 3, every change", title: "Pull request and CI", body: ["=Required reviewer, passing tests, scans, SBOM"], size: 11}
+  g4: {tone: blue, width: 300, tag: "Gate 4", title: "Release", body: ["=Signed build with provenance; impact analysis; change record"], size: 11}
+  ev: {tone: green, width: 300, title: "Evidence store", body: ["=Each gate's output, kept with the system's authorization package"], size: 11}
+  ao: {kind: pill, tone: violet, text: "Authorizing official accepts residual risk"}
+edges:
+  - [arb, g1, {tone: violet, style: dashed, label: "checks against"}]
+  - [g1, g2, {tone: amber}]
+  - [g2, g3, {tone: amber}]
+  - [g3, g4, {tone: blue}]
+  - [g4, ev, {tone: green}]
+  - [ev, ao, {style: dashed}]

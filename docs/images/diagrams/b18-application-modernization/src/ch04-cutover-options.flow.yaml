@@ -1,0 +1,19 @@
+# Book 18 Chapter 04 — three cut-over strategies (big-bang, phased, parallel
+# run), one common gate (three validation results and a rehearsed rollback
+# plan), and the rule against application dual writes. Program design; the
+# dual-write risk is from the Azure Architecture Center, cited in the chapter.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  big: {tone: amber, width: 240, title: "Big-bang", body: ["Freeze writes, final load, validate, switch everyone", "Fits small or batch systems", "Rollback: revert to the frozen source"], size: 11}
+  phase: {tone: amber, width: 240, title: "Phased", body: ["One module or table set at a time", "Change data capture keeps the rest in step", "Fits separable domains"], size: 11}
+  par: {tone: amber, width: 240, title: "Parallel run", body: ["Both live, outputs reconciled", "Until they agree for an agreed period", "Fits high-consequence calculations"], size: 11}
+  gate: {tone: violet, width: 760, title: "One gate for every strategy", body: ["=Three validation results for the final state, and a rehearsed rollback plan"], size: 11}
+  nodual: {tone: red, width: 760, title: "Never dual-write from the application", body: ["=One writer per table; replicate, don't write twice"], size: 11}
+order:
+  - [big, phase, par]
+edges:
+  - [big, gate, {tone: violet}]
+  - [phase, gate, {tone: violet}]
+  - [par, gate, {tone: violet}]
+  - [gate, nodual, {style: invis}]

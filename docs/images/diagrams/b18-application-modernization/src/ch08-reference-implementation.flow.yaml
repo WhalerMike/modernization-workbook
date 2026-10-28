@@ -1,0 +1,25 @@
+# Book 18 Chapter 08 — the parts of the reference implementation in
+# examples/app-modernization/ and how they connect: the React front end
+# calls the Spring Boot service through its OpenAPI contract; the service
+# owns the PostgreSQL schema through Flyway; the migration tool reads the
+# legacy DB2 or Oracle schema and loads the same schema; the agent can only
+# record proposals, which a person approves. Program design, as built.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  web: {tone: blue, width: 230, tag: "web/", title: "React front end", body: ["=Case list, triage, approve or reject"], size: 11}
+  api: {tone: blue, width: 230, tag: "service/", title: "Spring Boot REST service", body: ["=OpenAPI contract, checked by a test", "=Problem details for errors"], size: 11}
+  agent: {tone: violet, width: 230, tag: "service/.../ai/", title: "Triage agent", body: ["=Identity, sponsor, tool allow-list", "=Step limit; every call audited", "=Writes only PENDING proposals"], size: 11}
+  person: {tone: green, width: 230, title: "A person decides", body: ["=Only an approval changes a case"], size: 11}
+  pg: {tone: blue, width: 230, tag: "V1__baseline.sql", title: "PostgreSQL", body: ["=Schema owned by the service (Flyway)"], size: 11}
+  legacy: {tone: slate, width: 230, tag: "migration/legacy/", title: "Legacy DB2 or Oracle schema", body: ["=Synthetic; H2 stand-in in tests"], size: 11}
+  migrate: {tone: amber, width: 230, tag: "migration/", title: "Migration tool", body: ["=Transform, upsert, delta mode", "=Row counts, checksum, aggregates"], size: 11}
+  model: {tone: slate, width: 230, title: "ModelClient", body: ["=Provider-neutral; stub by default"], size: 11}
+edges:
+  - [web, api, {tone: blue, label: "/api"}]
+  - [api, agent, {tone: violet, label: "triage"}]
+  - [agent, model, {tone: slate, style: dashed}]
+  - [agent, person, {tone: green, label: "proposal"}]
+  - [api, pg, {tone: blue}]
+  - [legacy, migrate, {tone: slate}]
+  - [migrate, pg, {tone: amber, label: "load and prove"}]

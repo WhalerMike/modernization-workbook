@@ -1,0 +1,12 @@
+# Build output
+target/
+node_modules/
+dist/
+# Downloaded Maven distribution (the wrapper keeps it under ~/.m2, but just in case)
+.mvn/wrapper/maven-wrapper.jar
+# Embedded PostgreSQL binaries and data directories, if pointed inside the tree
+embedded-pg/
+# Local environment and migration outputs
+.env
+validation-report.json
+*.log

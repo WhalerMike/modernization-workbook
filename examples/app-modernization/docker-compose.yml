@@ -1,0 +1,46 @@
+# Local stack for the reference implementation. Not run in CI or locally by the authors.
+#   cp .env.example .env    # then edit the password
+#   docker compose up --build
+# Web UI: http://localhost:8081   API (through nginx): http://localhost:8081/api/cases
+
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      # PostgreSQL 18 images keep data under /var/lib/postgresql/<major>/; mount the parent.
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: service/Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      # Loads the small synthetic demo data set; remove to start empty (for example before a migration run).
+      SPRING_PROFILES_ACTIVE: demo
+      APP_AI_PROVIDER: stub
+
+  web:
+    build:
+      context: web
+    depends_on:
+      - api
+    ports:
+      - "8081:80"
+
+volumes:
+  pgdata:
