@@ -257,13 +257,29 @@ A catalog that only tests the happy path proves nothing. The program's design ru
 
 : Negative tests for the SaaS catalog. Program design. {.striped .hover}
 
+## The Help Desk Kit audit
+
+The inventory above counts integrations. The [Help Desk Kit](https://github.com/WhalerMike/modernization-workbook/releases/tag/helpdesk-entra-kit-v1.6.2) ([download](index.md)) carries the audit that tiers them: `Get-EnterpriseAppInventory.ps1`, run by identity operations, read-only and with read scopes only. It lists every enterprise application except Microsoft's own, with its owners, the application permissions it holds, its delegated scopes and a risk tier, and writes `app-inventory.csv`. Three findings come out of it.
+
+| Finding | What the script checks | Tier | Who acts |
+|---|---|---|---|
+| Orphaned application | No owner on the service principal, nor on the application object for apps registered in the tenant | Tier 1 | The governance officer assigns an owner before any access is granted |
+| Critical permission | A critical permission, such as `Mail.Send` or `RoleManagement.ReadWrite.Directory`, held as an application permission or a delegated scope | Tier 1 | The application owner justifies it or it's removed |
+| Acts as every user | A delegated grant consented on behalf of all users with a critical or high-risk scope (the `TenantWideRiskyScopes` column) | Flagged for review | The application owner and the governance officer |
+
+: The Help Desk Kit audit. Checks from the kit's script; tiers and owners are program design. {.striped .hover}
+
+The third finding needs a word. A delegated grant has a consent type: *AllPrincipals* authorizes the application to impersonate all users, and *Principal* authorizes it for one user.[^c06-oauth2-grant] An application admin-consented for every user can act as anyone who signs in to it, within the scopes granted. That is the nearest thing Entra ID has to Active Directory's unconstrained delegation, which lets a server act as any user who connects to it against any service ([Book 02, Chapter 08](../b02-identity/08-assessing-the-forest.md)). The difference is the limit: the Entra grant stops at its scopes, so the finding is about which scopes, not whether delegation exists. The workbook's Start Kit runs the Active Directory check; this script runs the Entra one.
+
+Every finding is a governance action (A3 in [Chapter 03](03-intake-triage-and-routing.md)), so the help desk never remediates one. A tenant-wide grant the catalog didn't produce is drift and goes to the governance officer and security operations. Externally published applications aren't detected by the script; raise them to Tier 1 by hand. The script isn't tenant-tested: review it and run it in a sub-production tenant first.
+
 ## Keeping integrations authorized
 
 The review that keeps the estate current combines the catalog's attestation item with what the platforms already do.
 
 - **Status.** The attestation item re-reads the Marketplace data on a schedule and compares each integration's listing with the verdict recorded at intake. A change of status or class raises a task to the owner and the security approver, and the service principal can be disabled while the decision is made.
 - **Access.** Access reviews for each application run on its risk tier's cadence under Entra ID Governance ([Book 04, Chapter 09](../b04-access/09-access-governance.md)). Microsoft lists Entra ID Governance as available in GCC, GCC High and DoD.[^c06-entra-avail]
-- **Consent and behavior.** App governance, where the agency has it, watches consented applications for anomalous behavior; consent grants the catalog didn't produce are drift.
+- **Consent and behavior.** App governance, where the agency has it, watches consented applications for anomalous behavior; consent grants the catalog didn't produce are drift. The Help Desk Kit audit above lists the tenant-wide ones on every run.
 - **Inventory.** Every service principal with a gallery or non-gallery template is either in the inventory with an owner and a verdict, or it is a finding ([Chapter 07](07-the-cmdb-and-asset-identity.md)).
 
 Who approves what is set by [Book 04, Chapter 06](../b04-access/06-who-decides-access.md); who runs the reviews is [Chapter 10](10-who-runs-day-two.md)'s subject.
@@ -312,6 +328,7 @@ Who approves what is set by [Book 04, Chapter 06](../b04-access/06-who-decides-a
 [^c06-listjobs]: Microsoft Learn, "List synchronization jobs" (Microsoft Graph v1.0), Permissions and PowerShell example, <https://learn.microsoft.com/graph/api/synchronization-synchronization-list-jobs?view=graph-rest-1.0> (accessed Oct 21, 2026).
 [^c06-approle]: Microsoft Learn, "Grant an appRoleAssignment for a service principal" (Microsoft Graph v1.0), Permissions, <https://learn.microsoft.com/graph/api/serviceprincipal-post-approleassignedto?view=graph-rest-1.0> (accessed Oct 21, 2026).
 [^c06-permref]: Microsoft Learn, "Microsoft Graph permissions reference," entries for `Application.ReadWrite.OwnedBy` and `AppRoleAssignment.ReadWrite.All`, <https://learn.microsoft.com/graph/permissions-reference> (accessed Oct 21, 2026).
+[^c06-oauth2-grant]: Microsoft Learn, "oAuth2PermissionGrant resource type," property `consentType` (*AllPrincipals* "indicates authorization to impersonate all users"; *Principal*, a specific user), <https://learn.microsoft.com/graph/api/resources/oauth2permissiongrant> (accessed Oct 27, 2026).
 [^c06-entra-avail]: Microsoft Learn, "Microsoft Entra feature availability," Other Microsoft Entra products, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 21, 2026).
 [^c06-508acr]: Section508.gov, "Request Accessibility Information from Vendors and Contractors" (updated August 2026), <https://www.section508.gov/buy/request-accessibility-information/>, and "Understanding Accessibility Conformance Claims," <https://www.section508.gov/buy/understand-claims/> (both accessed Oct 23, 2026).
 [^c06-m2408]: Office of Management and Budget, M-24-08, *Strengthening Digital Accessibility and the Management of Section 508 of the Rehabilitation Act*, December 21, 2023, §III.B, <https://www.whitehouse.gov/wp-content/uploads/2023/12/M-24-08-Strengthening-Digital-Accessibility-and-the-Management-of-Section-508-of-the-Rehabilitation-Act.pdf> (accessed Oct 23, 2026).
