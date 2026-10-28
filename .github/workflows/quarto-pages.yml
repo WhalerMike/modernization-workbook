@@ -82,6 +82,11 @@ jobs:
         # R01 and R02, and Book 09 Chapter 07.
         run: python3 scripts/build_start_kit_zip.py --out _site/downloads
 
+      - name: Build the Copilot agent pack download
+        # downloads/copilot-agent-pack.zip: examples/copilot-agent-pack as committed,
+        # linked from Book 15 Chapter 13 and the Downloads page.
+        run: python3 scripts/build_start_kit_zip.py --kit copilot-agent-pack --out _site/downloads
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

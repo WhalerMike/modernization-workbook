@@ -1,0 +1,41 @@
+GATE 1 REVIEW CHECKLIST
+For the named reviewer of a change drafted with or without AI help. The reviewer is never the author. Program design, from Federal Modernization Workbook, Book 15, Chapter 13.
+
+Severity: BLOCKER = the change can't leave the sandbox. MUST FIX = fix before gate 2. SHOULD FIX = record and track.
+
+A. PROCESS
+[ ] A1 BLOCKER: The reviewer is not the author, and both are named in the review record.
+[ ] A2 BLOCKER: The change is in the agency-owned repository, not only in an instance.
+[ ] A3 MUST FIX: The change is small enough to read in one sitting. If not, send it back to be split.
+[ ] A4 MUST FIX: The review record names the approved AI tool used, or "none".
+[ ] A5 MUST FIX: A design review happened first if the change adds an integration, a new identity's permissions, or a new table.
+
+B. DATA AND SECRETS
+[ ] B1 BLOCKER: No literal secret anywhere: password, token, key, client secret, connection string. Credentials come from credential and connection aliases.
+[ ] B2 BLOCKER: No real data in code, comments, fixtures or test data: names, identifiers, email addresses, tenant IDs, ticket contents, log extracts.
+[ ] B3 MUST FIX: Fixtures are synthetic and obviously fake (example.org or contoso.example, Carol Example, E1002).
+
+C. PLATFORM CALLS
+[ ] C1 BLOCKER: Every platform class, method, table, field and property has been found in the vendor's documentation for the instance's release. Anything nobody can find is removed.
+[ ] C2 MUST FIX: Scoped-application APIs are used where the application is scoped; no global-scope shortcuts without a recorded reason.
+[ ] C3 MUST FIX: Queries are bounded (filters, limits) and don't run unbounded loops over large tables.
+[ ] C4 SHOULD FIX: Errors are caught and logged without logging record contents that could hold personal data.
+
+D. CONTROL LOGIC
+[ ] D1 BLOCKER: Nothing closes a finding on a status alone. Closure requires a re-read of the system of record; otherwise the record goes to "Awaiting verification".
+[ ] D2 BLOCKER: No path lets a person approve their own request, or lets the author execute their own change.
+[ ] D3 MUST FIX: Writes are idempotent and de-duplicated (a repeated event doesn't create a second record).
+[ ] D4 MUST FIX: Integrations read and record; they don't provision, delete or change roles unless a design review approved it.
+[ ] D5 MUST FIX: Connector identities have least privilege, and the change states every permission it needs.
+[ ] D6 MUST FIX: A change to an approval rule, routing rule or integration permission is flagged as a change to a control (never a standard change).
+
+E. DEPENDENCIES
+[ ] E1 MUST FIX: No new library, Store application or outside snippet without the agency's acquisition and supply-chain review (SSDF PW.4.4).
+
+F. TESTS
+[ ] F1 BLOCKER: ATF tests exist for the happy path and at least one negative path.
+[ ] F2 MUST FIX: Negative paths cover what the change guards against (for example: an unreconciled asset, a blocked self-approval, a missed service level that escalates, a close attempt without evidence).
+[ ] F3 MUST FIX: Nothing enables test execution in production.
+
+DECISION
+Send back (any BLOCKER open), or accept with findings recorded. Findings are triaged and tracked in the issue tracker (SSDF PW.7.2). The reviewer, not the author's supervisor, makes the decision.

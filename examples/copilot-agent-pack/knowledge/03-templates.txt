@@ -1,0 +1,63 @@
+TEMPLATES
+Fill-in templates for the records the sandbox-to-production path produces. Square brackets mark what a person must supply. From Federal Modernization Workbook, Book 15, Chapter 13.
+
+TEMPLATE 1: DESIGN NOTE (before drafting; required before a design review)
+Change title: [short name]
+Loop step served: [detect drift / raise a typed task / close with evidence / control test / export]
+What it does, in one paragraph: [plain language]
+Tables touched: [table names; new tables extend the task table]
+Identities and permissions needed: [connector identity, each permission, why]
+Data it reads: [system of record, fields; no values]
+Data it writes: [table, fields]
+What it never does: [for example: provision, delete, change roles, close without a re-read]
+Design review needed? [yes if new integration, new identity's permissions, or new table]
+
+TEMPLATE 2: REVIEW RECORD (gate 1)
+Change: [repository commit or pull request, update set name]
+Author: [name]
+Reviewer: [name; must differ from author; must be a listed reviewer]
+AI tool used: [approved tool name, or "none"]
+Date reviewed: [date]
+Checklist: [gate 1 checklist completed: yes/no]
+Findings: [numbered, each with severity: BLOCKER / MUST FIX / SHOULD FIX]
+Platform calls verified against vendor documentation for release: [release name]
+Decision: [send back / accept with findings]
+Tracker reference: [issue ID]
+
+TEMPLATE 3: ATF TEST PLAN
+Update set: [name]
+Suite: [name]
+Happy path: [setup with synthetic records, action, expected result]
+Negative path 1: [setup, action, expected rejection or state]
+Negative path 2: [setup, action, expected rejection or state]
+Runs in: sub-production only. Test execution is never enabled in production.
+Results attached to change record: [yes, link]
+
+TEMPLATE 4: CHANGE RECORD (gate 2)
+Type: Normal change. (A change to an approval rule, routing rule or integration permission is a change to a control and is never a standard change.)
+Short description: [update set name and purpose]
+Description: [what moves, what it does, what it doesn't do]
+Configuration items affected: [ITSM instance, application]
+Security impact analysis (CM-4): [what changes in access, data flow, identities, permissions, logging; risk; mitigations]
+Privacy impact: [personal data read or written, or "none"]
+Test evidence (CM-3(2)): [ATF suite results from sub-production, attached]
+Review evidence (AC-5): [review record reference]
+Source control reference (SA-10): [commit]
+Implementation plan: [steps; committed by the implementer]
+Backout plan: [how to reverse; for an update set, the backout steps]
+Author: [name]   Reviewer: [name]   Implementer: [name, not the author]   Approver: change advisory board
+Does this change the instance's authorization? [the authorizing official decides; system owner/ISSO to assess]
+
+TEMPLATE 5: AI-USE NOTE FOR THE TEAM'S WRITTEN PROCESS (SA-15)
+Approved AI tools: [names and versions, as approved by the Chief AI Officer]
+Approved for: [drafting code, tests, documentation]
+Never in a prompt: production data, credentials, secrets, real names or identifiers, tenant IDs, ticket contents, log extracts
+Review rule: every AI-drafted line is read by the author and by a named reviewer who isn't the author
+Recording rule: the review record names the tool used
+Checked: [date the agency's AI-use policy was last checked]
+
+TEMPLATE 6: STATEMENT OF WHAT THE BUILD DOESN'T REPLACE (for leadership, before starting)
+This in-house application [name] provides: [joins built]
+It does not provide: access certification campaigns at scale, a vendor connector library, provisioning, role discovery, a separation-of-duties policy engine, or vendor support and authorization.
+It costs: developer and reviewer time, sub-production capacity, retesting on every platform upgrade.
+Maintainers: [two named, trained people per component]

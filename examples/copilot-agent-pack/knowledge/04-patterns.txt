@@ -1,0 +1,43 @@
+PATTERNS FROM THE WORKBOOK'S EXAMPLE KITS
+Design patterns the agent should prefer. They come from the workbook's illustrative example kits, which are unit-tested against mocked responses and not proven on live tenants:
+- examples/servicenow-sailpoint: https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint
+- examples/ms-automation: https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation
+Every platform API named here must still be verified against the vendor's documentation for the instance's release.
+
+PATTERN 1: A FINDING IS A RECORD THAT EXTENDS THE TASK TABLE
+Create findings in a custom table that extends Task (example name: u_identity_finding, in a scoped application with a placeholder scope such as x_example_idkit). Extending Task gives numbering, state, priority, due date, assignment, work notes, close notes, approvals and the audit trail without writing them.
+Useful custom fields: source, drift class, severity, the subject's identifiers, expected value, observed value, intended state (JSON: what a re-read must find), origin (JSON: what raised it), a de-duplication key, occurrence count, detected / last seen / awaiting-since times, evidence (JSON: re-read query, time, result hash, checker), evidence hash, verified-at time.
+Approval, the executing identity and "what ran" stay with the change or catalog record that made the fix; link it from the finding.
+
+PATTERN 2: CLOSE ONLY ON A RE-READ (the closure gate)
+A ticket status is not proof. A before-update business rule on the finding table (condition: the state changes) turns any attempt to set a closed state into "Awaiting verification", unless the same update carries re-read evidence (the evidence hash changes) and is made by the verifier service account. A named exception approver may still cancel with a close note: the declared-exception lane, which stays on the record.
+A separate re-read client lists waiting records, re-reads the account, identity or user from its system of record, and either closes the record with the evidence attached or reopens it with a note.
+Settings belong in system properties (awaiting-verification state value, verifier user, exception role), not hard-coded.
+Write platform scripts in ES5 so they run in global or scoped applications.
+
+PATTERN 3: INGEST THROUGH A SCRIPTED REST RESOURCE THAT VALIDATES AND DE-DUPLICATES
+An inbound integration posts JSON to a Scripted REST resource that requires authentication and an ACL granting a narrow custom role to the integration user. The script validates the payload (reject with 400 and a reason), maps severity to priority and a due date, de-duplicates against open findings with the same source, subject and class (return 200 with deduplicated: true and the existing record), and otherwise inserts (201 with the record's identifiers).
+Severity and tempo used by the example (program design, not a federal requirement): P1 immediate, P2 1 hour, P3 24 hours, P4 72 hours.
+
+PATTERN 4: READ-ONLY DRIFT RECONCILIATION
+Join the HR extract to the directory (Microsoft Graph) on employee ID, write findings to JSON and CSV, and optionally post them to the findings endpoint. It writes nothing to the directory.
+Drift classes (Book 03, Chapter 11): missing identity, stale access, orphan account, attribute drift (for example department or manager), unauthorized write, credential drift, schema drift. A check lists any class it can't compute as "not computed" instead of reporting it clean.
+HR extract columns used by the example: employeeId (the join key), status (Active and Leave count as active; Terminated, Separated, Inactive, Retired as separated), department, managerEmployeeId, displayName, email.
+
+PATTERN 5: READ-ONLY MICROSOFT GRAPH CHECKS
+Example checks: enabled members with no sign-in in N days; Conditional Access policy export for diffing; privileged-role assignment report; application secrets and certificates nearing expiry; MFA registration gaps.
+Practices: least-privileged application permissions (for example User.Read.All, AuditLog.Read.All, Policy.Read.All), stated per check; select only the needed properties; follow @odata.nextLink paging; retry 429, 503 and 504 after Retry-After; never send the token to a host other than the expected Graph endpoint; prefer certificate authentication to client secrets; take secrets from a vault or environment, never from a file in the repository.
+Graph endpoints by cloud: worldwide and GCC use graph.microsoft.com; GCC High uses graph.microsoft.us; DoD uses dod-graph.microsoft.us.
+
+PATTERN 6: LEAST PRIVILEGE FOR EVERY CONNECTOR IDENTITY
+Each integration has its own identity with only the roles or permissions it needs, listed in the design note. Read and record; no write access to the directory or the identity product unless a design review approved it.
+
+PATTERN 7: SYNTHETIC FIXTURES
+Tests use files of obviously fake records, for example:
+employeeId,status,department,managerEmployeeId,displayName,email
+E1000,Active,Finance,,Bob Example,bob@contoso.example
+E1002,Terminated,Sales,E1000,Carol Example,carol@contoso.example
+Use example domains (example.org, contoso.example), "Example" surnames, and IDs that can't be mistaken for real ones. Include at least one record for each case the code must catch: a leaver with an enabled account, a mover with a changed attribute, an account with no HR record.
+
+PATTERN 8: TESTS BEFORE ANYTHING MOVES
+Platform scripts are unit-tested against stubbed platform APIs during drafting and covered by Automated Test Framework suites in sub-production. Clients are unit-tested against mocked HTTP responses. Dry run is the default; applying a change needs an explicit flag.
