@@ -1,0 +1,26 @@
+# Book 18 Chapter 01 — the book's argument. A legacy portfolio is triaged
+# application by application into six dispositions (program design, Chapter
+# 02); the applications that change are built on one target reference
+# architecture (Chapter 03), with data moved with proof (Chapter 04) and AI
+# only with an identity and an owner (Chapter 05); everything is governed
+# through gates and run in waves (Chapters 06, 07, 09, 10).
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.35}
+nodes:
+  portfolio: {tone: slate, width: 440, title: "The legacy portfolio", body: ["=Thousands of mission applications: mainframe, DB2 and Oracle, COBOL and PL/SQL"], size: 12}
+  triage: {tone: amber, width: 440, title: "Triage each application", body: ["=A scored rubric; one recorded disposition per application"], size: 12}
+  keep: {tone: slate, width: 200, title: "Retire or retain", body: ["=Stop paying, or keep on purpose"], size: 11}
+  move: {tone: amber, width: 200, title: "Rehost or replatform", body: ["=Move with little or no code change"], size: 11}
+  change: {tone: blue, width: 200, title: "Refactor or rebuild", body: ["=Change the code onto the target"], size: 11}
+  target: {tone: blue, width: 440, title: "One target reference architecture", body: ["=Java and Spring Boot services, React front ends, OpenAPI contracts, containers", "=Data moved off DB2 and Oracle with proof; AI with an identity and an owner"], size: 11}
+  govern: {tone: violet, width: 440, title: "Governed and run in waves", body: ["=Review gates and compliance evidence; TOGAF and Zachman; pilot, factory, long tail"], size: 11}
+order:
+  - [keep, move, change]
+edges:
+  - [portfolio, triage, {tone: slate}]
+  - [triage, keep, {tone: amber}]
+  - [triage, move, {tone: amber}]
+  - [triage, change, {tone: amber}]
+  - [change, target, {tone: blue}]
+  - [move, govern, {tone: amber, style: dashed}]
+  - [target, govern, {tone: violet}]

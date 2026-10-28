@@ -1,7 +1,7 @@
 ---
 title: "Downloads"
-subtitle: "Every file the workbook publishes: the three kits, the eighteen books as Word documents, and the narrated videos"
-description: "One place for every Federal Modernization Workbook download: the read-only Start Kit assessment scripts, the Copilot agent pack for in-house automation, the Help Desk / Cloud Services Entra ID Operations Kit, each book as a Word document, and the narrated presentation videos."
+subtitle: "Every file the workbook publishes: the three kits, a reference implementation, the nineteen books as Word documents, and the narrated videos"
+description: "One place for every Federal Modernization Workbook download: the read-only Start Kit assessment scripts, the Copilot agent pack for in-house automation, the Help Desk / Cloud Services Entra ID Operations Kit, the application modernization reference implementation, each book as a Word document, and the narrated presentation videos."
 doc-type: section-landing
 ---
 
@@ -16,6 +16,7 @@ Everything here is free to download. The kits and the Word editions are rebuilt 
 | **Start Kit** — read-only estate assessment | PowerShell scripts that count the forest, the SQL Server estate, and RADIUS and NPS, with a one-page summary traced to its sources. Read-only by policy; unit-tested against fixtures, not proven against a live estate. See [Book 00, Chapter 08](books/b00-orientation/08-pre-flight-and-assessment.md). | [start-kit.zip](../downloads/start-kit.zip), rebuilt on every site deploy from [`examples/start-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit) |
 | **Copilot agent pack** — Day-Two Automation Builder | Instructions, starter prompts and optional knowledge files that set up Microsoft 365 Copilot as a drafting and review assistant for in-house day-two automation, with a 17-test acceptance test to run before anyone relies on it. The agent drafts; people review, test and approve. Checked against Microsoft's Agent Builder limits, not yet built in a live tenant. See [Book 15, Chapter 13](books/b15-day2-operations/13-building-day-two-automation-in-house.md#when-the-approved-assistant-is-microsoft-365-copilot). | [copilot-agent-pack.zip](../downloads/copilot-agent-pack.zip), rebuilt on every site deploy from [`examples/copilot-agent-pack`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/copilot-agent-pack) |
 | **Help Desk / Cloud Services Entra ID Operations Kit v1.6.2** | Five Word documents (intake and routing flow, administrative responsibilities, application access governance, governance structure brief, and the implementation path and run guide for the scripts), the routing matrix as a PowerShell module, the scripts with plain-text copies for mail systems that block `.ps1` files, and Pester tests that need no tenant. Its read-only app inventory also flags apps consented to act as every user, the Entra ID counterpart of the Start Kit's unconstrained-delegation check. Applies the help-desk model in [Book 15](books/b15-day2-operations/index.md). Not tenant-tested: run every change script with `-WhatIf` first. | [helpdesk-entra-operations-kit.zip](https://github.com/WhalerMike/modernization-workbook/releases/download/helpdesk-entra-kit-v1.6.2/helpdesk-entra-operations-kit.zip) · [release notes](https://github.com/WhalerMike/modernization-workbook/releases/tag/helpdesk-entra-kit-v1.6.2)<br>SHA-256 `5d00dce2008ba01d73cbe15c782153d7d0c8c786ce6c81ccd474220035181676` |
+| **Application modernization reference implementation** | A Spring Boot REST service over PostgreSQL with its OpenAPI contract, a React front end, a DB2/Oracle to PostgreSQL migration tool that proves the move with row counts, checksums and aggregate reconciliation, and an agentic AI pattern with a provider-neutral interface and a stub model, so no API key is needed. Tests run against a real embedded PostgreSQL engine; docker-compose runs the whole stack. Illustrative, not production code. See [Book 18, Chapter 08](books/b18-application-modernization/08-the-reference-implementation.md). | Source in [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization) |
 
 ## Books as Word documents
 
@@ -41,6 +42,7 @@ Each book downloads as one Word document with its chapters in reading order, its
 | [Book 15 — Compliance Automation & Day-2 Operations](books/b15-day2-operations/index.md) | [b15-day2-operations-bundle.docx](../downloads/b15-day2-operations-bundle.docx) |
 | [Book 16 — People: Training & Education](books/b16-people/index.md) | [b16-people-bundle.docx](../downloads/b16-people-bundle.docx) |
 | [Book 17 — AI Identity Governance](books/b17-ai-identity/index.md) | [b17-ai-identity-bundle.docx](../downloads/b17-ai-identity-bundle.docx) |
+| [Book 18 — Application Modernization](books/b18-application-modernization/index.md) | [b18-application-modernization-bundle.docx](../downloads/b18-application-modernization-bundle.docx) |
 
 ## Videos and presentations
 

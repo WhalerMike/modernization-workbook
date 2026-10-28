@@ -1,0 +1,29 @@
+# Book 18 Chapter 03 — the target reference architecture (program design).
+# Versions as checked on the projects' own sites on October 28, 2026:
+# React 19.3 (react.dev), Node.js LTS (nodejs.org), Java 25 LTS (openjdk.org,
+# Microsoft Learn), Spring Boot 4.1 (spring.io), OpenAPI 3.2 (spec.openapis.org),
+# OCI specifications (opencontainers.org) and Kubernetes (kubernetes.io).
+# Security references NIST SP 800-204 and SP 800-190 (csrc.nist.gov).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  fe: {tone: blue, width: 540, title: "Front ends", body: ["=React 19, served as static assets; calls APIs only"], size: 11}
+  bff: {tone: blue, width: 260, title: "Backend-for-frontend", body: ["=Node.js LTS, one per front end where needed"], size: 11}
+  gw: {tone: blue, width: 260, title: "API gateway", body: ["=Authentication, rate limits, routing; the strangler-fig façade"], size: 11}
+  svc: {tone: blue, width: 260, title: "Domain services", body: ["=Java 25 LTS and Spring Boot 4.1; each publishes an OpenAPI 3.2 contract"], size: 11}
+  legacy: {tone: slate, width: 260, title: "The legacy application", body: ["=Still serving the functions not yet moved"], size: 11}
+  data: {tone: blue, width: 540, title: "Data", body: ["=Each service owns its schema: PostgreSQL or SQL Server (Chapter 04)"], size: 11}
+  plat: {tone: blue, width: 540, title: "Platform", body: ["=OCI images on Kubernetes; configuration from the environment; secrets from a vault or workload identity"], size: 11}
+  sec: {tone: violet, width: 540, title: "Security references", body: ["=NIST SP 800-204 for microservices; SP 800-190 for containers"], size: 11}
+order:
+  - [bff, gw]
+  - [svc, legacy]
+edges:
+  - [fe, bff, {tone: blue}]
+  - [fe, gw, {tone: blue}]
+  - [bff, svc, {tone: blue}]
+  - [gw, svc, {tone: blue}]
+  - [gw, legacy, {tone: slate, style: dashed}]
+  - [svc, data, {tone: blue}]
+  - [data, plat, {style: invis}]
+  - [plat, sec, {tone: violet, style: dashed}]

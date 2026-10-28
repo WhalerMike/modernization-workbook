@@ -1,6 +1,6 @@
-# Book 00 Chapter 02 — the workbook's eighteen books in five reading groups
+# Book 00 Chapter 02 — the workbook's nineteen books in five reading groups
 # (the program's own grouping). Blue = published as a draft book; all
-# eighteen are published. Status from docs/books/index.md on October 22, 2026.
+# nineteen are published. Status from docs/books/index.md on October 28, 2026.
 rankdir: TB
 graph: {nodesep: 0.12, ranksep: 0.3}
 clusters:
@@ -8,7 +8,7 @@ clusters:
   - {id: g2, label: "Identity and access", tone: slate, filled: false, nodes: [b02, b03, b04, b17], order: [b02, b03, b04, b17]}
   - {id: g3, label: "The estate", tone: slate, filled: false, nodes: [b05, b06, b07, b08, b09], order: [b05, b06, b07, b08, b09]}
   - {id: g4, label: "Boundary and assurance", tone: slate, filled: false, nodes: [b10, b11, b14], order: [b10, b11, b14]}
-  - {id: g5, label: "Running it", tone: slate, filled: false, nodes: [b12, b13, b15, b16], order: [b12, b13, b15, b16]}
+  - {id: g5, label: "Running it", tone: slate, filled: false, nodes: [b12, b13, b15, b16, b18], order: [b12, b13, b15, b16, b18]}
 nodes:
   b00: {tone: blue, width: 128, tag: "B00", title: "Orientation & Program", size: 11}
   b01: {tone: blue, width: 128, tag: "B01", title: "Transformation Arc", size: 11}
@@ -21,6 +21,7 @@ nodes:
   b07: {tone: blue, width: 128, tag: "B07", title: "PKI & Certificates", size: 11}
   b08: {tone: blue, width: 128, tag: "B08", title: "DNS, DHCP & IPAM", size: 11}
   b09: {tone: blue, width: 128, tag: "B09", title: "Network & Transport", size: 11}
+  b18: {tone: blue, width: 128, tag: "B18", title: "Application Modernization", size: 11}
   b10: {tone: blue, width: 128, tag: "B10", title: "Cloud Boundary", size: 11}
   b11: {tone: blue, width: 128, tag: "B11", title: "Zero Trust & Assessment", size: 11}
   b14: {tone: blue, width: 128, tag: "B14", title: "Compliance & Authorization", size: 11}

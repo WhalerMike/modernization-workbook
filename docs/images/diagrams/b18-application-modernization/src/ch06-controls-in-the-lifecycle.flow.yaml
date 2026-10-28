@@ -1,0 +1,20 @@
+# Book 18 Chapter 06 — where SP 800-53 Rev. 5 (release 5.2.0) controls land
+# in a modernized application's life cycle, each stage producing evidence for
+# one authorization record (Book 14). Control IDs and titles from the 5.2.0
+# catalog; the placement is program design. SA-22 and Circular A-130 tie
+# unsupported legacy components to a modernization plan.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.3}
+nodes:
+  legacy: {tone: red, width: 300, title: "Unsupported components", body: ["=SA-22; A-130 plan to upgrade, replace or retire"], size: 11}
+  design: {tone: blue, width: 440, tag: "Design", title: "Engineering and privacy", body: ["SA-8 engineering principles", "PT-2, PT-3 authority and purpose; PIA", "Architecture decision records"], size: 11}
+  build: {tone: blue, width: 440, tag: "Build", title: "Secure development", body: ["SA-11, SA-15; SSDF practices", "Code review and testing", "SBOM for SR-4 provenance"], size: 11}
+  deploy: {tone: blue, width: 440, tag: "Deploy", title: "Configuration and protection", body: ["CM-2, CM-3 baseline and change control", "CM-8 component inventory", "SC-8, SC-28 encryption"], size: 11}
+  operate: {tone: blue, width: 440, tag: "Operate", title: "Monitoring and access", body: ["AU-2, AU-12 logging", "SI-2 flaw remediation", "AC-2, AC-6 account review, agents included"], size: 11}
+  record: {tone: violet, width: 440, title: "The system's authorization record", body: ["=Assembled from evidence that already exists; the authorizing official decides (Book 14)"], size: 11}
+edges:
+  - [legacy, design, {tone: red, label: "modernization plan"}]
+  - [design, build, {tone: blue}]
+  - [build, deploy, {tone: blue}]
+  - [deploy, operate, {tone: blue}]
+  - [operate, record, {tone: violet, style: dashed, label: "evidence from every stage"}]

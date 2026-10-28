@@ -104,6 +104,8 @@ website:
             text: "Book 16 — People: Training & Education"
           - href: docs/books/b17-ai-identity/index.md
             text: "Book 17 — AI Identity Governance"
+          - href: docs/books/b18-application-modernization/index.md
+            text: "Book 18 — Application Modernization"
           - href: docs/books/guides/effective-meetings.md
             text: "Guide: Effective Meetings"
       - href: docs/project-plans/index.md
@@ -211,6 +213,10 @@ website:
           href: docs/books/b17-ai-identity/index.md
           contents:
             - auto: "docs/books/b17-ai-identity/*-*.md"
+        - section: "Book 18 — Application Modernization"
+          href: docs/books/b18-application-modernization/index.md
+          contents:
+            - auto: "docs/books/b18-application-modernization/*-*.md"
         - section: "Companion guides"
           contents:
             - docs/books/guides/effective-meetings.md

@@ -1,0 +1,32 @@
+# Book 18 Chapter 05 — guardrails around an agent's loop: identity with a
+# human sponsor and allowed tools; step limit; tool allow-list with denied
+# calls audited; read tools run with least privilege; record-changing
+# actions only become PENDING proposals that a human approves, after which
+# the service applies the change. Mirrors the reference implementation
+# (Chapter 08); mitigations from OWASP LLM06 and LLM10 (2025).
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.3}
+nodes:
+  id: {tone: blue, width: 440, title: "Agent identity", body: ["=Agent ID, human sponsor, allowed tools"], size: 11}
+  loop: {tone: slate, width: 440, title: "Agent loop", body: ["=The model proposes the next tool call"], size: 11}
+  steps: {tone: violet, width: 440, title: "Step limit check", body: ["=Hard cap on calls per task"], size: 11}
+  allow: {tone: violet, width: 440, title: "Allow-list check", body: ["=Is this tool on this agent's list?"], size: 11}
+  stop: {tone: red, width: 220, title: "Stop and audit", size: 11}
+  deny: {tone: red, width: 220, title: "Denied and audited", size: 11}
+  read: {tone: green, width: 260, title: "Read tool runs", body: ["=With least privilege"], size: 11}
+  prop: {tone: amber, width: 260, title: "propose_action", body: ["=Records a PENDING proposal; changes nothing"], size: 11}
+  appr: {tone: violet, width: 260, title: "Human approval", size: 11}
+  apply: {tone: green, width: 260, title: "Service applies the change", body: ["=Under its own authorization and rules"], size: 11}
+  audit: {tone: violet, width: 560, title: "Audit log", body: ["=Every call, denial, proposal and decision"], size: 11}
+edges:
+  - [id, loop, {tone: blue}]
+  - [loop, steps]
+  - [steps, allow, {label: "under limit"}]
+  - [steps, stop, {tone: red, style: dashed, label: "limit reached"}]
+  - [allow, deny, {tone: red, style: dashed, label: "not allowed"}]
+  - [allow, read, {tone: green, label: "read"}]
+  - [allow, prop, {tone: amber, label: "changes a record"}]
+  - [prop, appr, {tone: violet}]
+  - [appr, apply, {tone: green}]
+  - [read, audit, {tone: violet, style: dashed}]
+  - [apply, audit, {tone: violet, style: dashed}]

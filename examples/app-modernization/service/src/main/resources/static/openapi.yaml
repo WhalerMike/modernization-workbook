@@ -1,0 +1,202 @@
+openapi: 3.1.1
+info:
+  title: Case service
+  version: 0.1.0
+  description: >
+    Reference implementation API. Cases are read-only to the triage agent; the agent records
+    proposals, and a person approves or rejects them. Errors are RFC 9457 problem details.
+    All data is synthetic.
+servers:
+  - url: /
+paths:
+  /api/cases:
+    get:
+      operationId: listCases
+      summary: List cases, newest first
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/CaseStatus'
+      responses:
+        '200':
+          description: Cases
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Case'
+        '400':
+          $ref: '#/components/responses/Problem'
+  /api/cases/{caseNumber}:
+    get:
+      operationId: getCase
+      summary: Get one case
+      parameters:
+        - $ref: '#/components/parameters/CaseNumber'
+      responses:
+        '200':
+          description: The case
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+        '400':
+          $ref: '#/components/responses/Problem'
+        '404':
+          $ref: '#/components/responses/Problem'
+  /api/cases/{caseNumber}/triage:
+    post:
+      operationId: triageCase
+      summary: Run the triage agent on one case and return the proposals it recorded
+      description: >
+        The agent reads the case and the applicant's related cases and may record PENDING proposals.
+        It never changes the case record.
+      parameters:
+        - $ref: '#/components/parameters/CaseNumber'
+      responses:
+        '200':
+          description: The triage result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TriageResult'
+        '400':
+          $ref: '#/components/responses/Problem'
+        '404':
+          $ref: '#/components/responses/Problem'
+  /api/proposals:
+    get:
+      operationId: listProposals
+      summary: List agent proposals
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/ProposalStatus'
+      responses:
+        '200':
+          description: Proposals, oldest first
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proposal'
+        '400':
+          $ref: '#/components/responses/Problem'
+  /api/proposals/{id}/decision:
+    post:
+      operationId: decideProposal
+      summary: Approve or reject a PENDING proposal (the human approval step)
+      description: >
+        Approving FLAG_FOR_REVIEW moves an OPEN case to PENDING. Approving CLOSE_CASE sets the case
+        to CLOSED with today's closing date. Rejecting changes no case. The decider must be a person,
+        not the agent.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DecisionRequest'
+      responses:
+        '200':
+          description: The decided proposal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proposal'
+        '400':
+          $ref: '#/components/responses/Problem'
+        '404':
+          $ref: '#/components/responses/Problem'
+        '409':
+          $ref: '#/components/responses/Problem'
+components:
+  parameters:
+    CaseNumber:
+      name: caseNumber
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^C-[0-9]{6}$'
+        example: C-000001
+  responses:
+    Problem:
+      description: RFC 9457 problem details
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+  schemas:
+    CaseStatus:
+      type: string
+      enum: [OPEN, PENDING, CLOSED]
+    ProposalStatus:
+      type: string
+      enum: [PENDING, APPROVED, REJECTED]
+    Case:
+      type: object
+      required: [caseNumber, applicantId, applicantName, stateCode, caseType, status, openedOn, amountClaimed, updatedAt]
+      properties:
+        caseNumber: { type: string, pattern: '^C-[0-9]{6}$' }
+        applicantId: { type: integer, format: int64 }
+        applicantName: { type: string }
+        stateCode: { type: string, minLength: 2, maxLength: 2 }
+        caseType: { type: string, maxLength: 3 }
+        status: { $ref: '#/components/schemas/CaseStatus' }
+        openedOn: { type: string, format: date }
+        closedOn: { type: [string, 'null'], format: date }
+        amountClaimed: { type: number, multipleOf: 0.01 }
+        updatedAt: { type: string, format: date-time }
+    Proposal:
+      type: object
+      required: [id, caseNumber, agentId, sponsor, action, rationale, status, createdAt]
+      properties:
+        id: { type: integer, format: int64 }
+        caseNumber: { type: string }
+        agentId: { type: string }
+        sponsor: { type: string }
+        action: { type: string, enum: [FLAG_FOR_REVIEW, CLOSE_CASE] }
+        rationale: { type: string }
+        status: { $ref: '#/components/schemas/ProposalStatus' }
+        createdAt: { type: string, format: date-time }
+        decidedBy: { type: [string, 'null'] }
+        decidedAt: { type: [string, 'null'], format: date-time }
+    TriageResult:
+      type: object
+      required: [caseNumber, answer, steps, stoppedByStepLimit, proposals]
+      properties:
+        caseNumber: { type: string }
+        answer: { type: string }
+        steps: { type: integer }
+        stoppedByStepLimit: { type: boolean }
+        proposals:
+          type: array
+          items: { $ref: '#/components/schemas/Proposal' }
+    DecisionRequest:
+      type: object
+      required: [decision, decidedBy]
+      additionalProperties: false
+      properties:
+        decision: { type: string, enum: [APPROVED, REJECTED] }
+        decidedBy: { type: string, minLength: 1, maxLength: 64 }
+    Problem:
+      type: object
+      properties:
+        type: { type: string }
+        title: { type: string }
+        status: { type: integer }
+        detail: { type: string }
+        instance: { type: string }

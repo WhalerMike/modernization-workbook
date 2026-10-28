@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: case-service
+  datasource:
+    # Twelve-factor style: everything comes from the environment in a real deployment.
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/cases}
+    username: ${DB_USER:cases}
+    password: ${DB_PASSWORD:}
+  flyway:
+    locations: classpath:db/migration
+  mvc:
+    problemdetails:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+app:
+  ai:
+    # stub = the deterministic, rule-based model client in this repository. No API key, no network.
+    provider: stub
+    stub:
+      mode: rules
+  agent:
+    id: agent-case-triage-01
+    sponsor: case-operations-owner
+    allowed-tools: get_case, list_related_cases, propose_action
+    max-steps: 5
+  clock:
+    # Leave empty to use the system clock (UTC). Set an ISO date (2026-10-01) to pin "today".
+    fixed-date: ""
+
+---
+spring:
+  config:
+    activate:
+      on-profile: demo
+  flyway:
+    locations: classpath:db/migration,classpath:db/sample

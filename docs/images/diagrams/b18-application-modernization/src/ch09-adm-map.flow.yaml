@@ -1,0 +1,35 @@
+# Book 18 Chapter 09 — the TOGAF Standard, 10th Edition, Architecture
+# Development Method phases (names from The Open Group's public material:
+# Preliminary; A Architecture Vision; B Business Architecture; C Information
+# Systems Architectures; D Technology Architecture; E Opportunities and
+# Solutions; F Migration Planning; G Implementation Governance; H Architecture
+# Change Management; Requirements Management at the center), with the Book 18
+# chapters that do each phase's work. The chapter-to-phase mapping is the
+# program's reading, not The Open Group's.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  pre: {tone: violet, width: 240, tag: "Preliminary", title: "Capability and governance", body: ["=Ch07 board, standards, gates"], size: 11}
+  a: {tone: slate, width: 240, tag: "Phase A", title: "Architecture Vision", body: ["=Ch01 the portfolio argument"], size: 11}
+  b: {tone: slate, width: 240, tag: "Phase B", title: "Business Architecture", body: ["=Ch02 mission criticality, owners"], size: 11}
+  c: {tone: blue, width: 240, tag: "Phase C", title: "Information Systems", body: ["=Ch03 applications; Ch04 data; Ch05 AI"], size: 11}
+  d: {tone: blue, width: 240, tag: "Phase D", title: "Technology Architecture", body: ["=Ch03 runtime, containers; Ch08"], size: 11}
+  req: {tone: violet, width: 240, tag: "Center", title: "Requirements Management", body: ["=Ch06 controls, privacy, records"], size: 11}
+  e: {tone: amber, width: 240, tag: "Phase E", title: "Opportunities and Solutions", body: ["=Ch02 dispositions; Ch10 move groups"], size: 11}
+  f: {tone: amber, width: 240, tag: "Phase F", title: "Migration Planning", body: ["=Ch10 waves, funding"], size: 11}
+  g: {tone: green, width: 240, tag: "Phase G", title: "Implementation Governance", body: ["=Ch07 gates; Ch04 validation; Ch08"], size: 11}
+  h: {tone: violet, width: 240, tag: "Phase H", title: "Architecture Change Management", body: ["=Ch10 keeping the triage current"], size: 11}
+edges:
+  - [pre, a]
+  - [a, b]
+  - [b, c]
+  - [c, d]
+  - [d, e]
+  - [e, f]
+  - [f, g]
+  - [g, h]
+  - [h, a, {style: dashed, label: "next cycle", tone: violet}]
+  - [req, c, {style: dashed, tone: violet}]
+  - [req, f, {style: dashed, tone: violet}]
+order:
+  - [b, req]
