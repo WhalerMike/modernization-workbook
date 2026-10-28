@@ -299,7 +299,7 @@ The help desk renews no certificates by hand: device certificates come back thro
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 12 — The Day-Two Operator Runbook and Validation](12-the-day-two-runbook.md) · [Book index](index.md) · [Back to Chapter 04 — Help Desk Authority in Entra ID](04-help-desk-authority-in-entra.md)
+[← Previous: Chapter 13 — Building Day-Two Automation In-House](13-building-day-two-automation-in-house.md) · [Book index](index.md) · [Back to Chapter 04 — Help Desk Authority in Entra ID](04-help-desk-authority-in-entra.md)
 :::
 
 [^aA-writeback]: Microsoft Learn, "How does self-service password reset writeback work in Microsoft Entra ID?" (feature list item 4: an admin reset in the Microsoft Entra admin center is written back for federated or password-hash-synchronized users; not supported in the Office admin portal), <https://learn.microsoft.com/entra/identity/authentication/concept-sspr-writeback>; Microsoft Learn, "Troubleshoot admin password resets in Microsoft 365 admin center," <https://learn.microsoft.com/troubleshoot/entra/entra-id/user-prov-sync/password-writeback-microsoft-365-admin-center> (both accessed Oct 22, 2026).

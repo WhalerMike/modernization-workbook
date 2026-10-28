@@ -490,6 +490,16 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b14-compliance/B14_Compliance_Narration_Script.md"
  },
  {
+  "id": "B15_InHouse_Automation_Executive_Narrated",
+  "title": "Book 15 — Building Day-Two Automation In-House: an Executive Briefing",
+  "group": "book",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B15_InHouse_Automation_Executive_Narrated.mp4",
+  "vtt": "presentations/b15-inhouse-automation-executive/B15_InHouse_Automation_Executive_Narrated.vtt",
+  "deck": "presentations/b15-inhouse-automation-executive/B15_InHouse_Automation_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-inhouse-automation-executive/B15_InHouse_Automation_Executive_Narration_Script.md"
+ },
+ {
   "id": "B15_Day2_Operations_Executive_Narrated",
   "title": "Book 15 — Compliance Automation & Day-2 Operations: executive briefing",
   "group": "book",

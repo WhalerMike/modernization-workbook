@@ -318,7 +318,7 @@ As with the compliance application, the agency should use what its platforms shi
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 11 — Attestation, Evidence and the Compliance Application](11-attestation-and-the-compliance-app.md) · [Book index](index.md) · [Next: Appendix A — Help Desk Task Reference →](appendix-a-help-desk-task-reference.md)
+[← Previous: Chapter 11 — Attestation, Evidence and the Compliance Application](11-attestation-and-the-compliance-app.md) · [Book index](index.md) · [Next: Chapter 13 — Building Day-Two Automation In-House →](13-building-day-two-automation-in-house.md)
 :::
 
 [^c12-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls AU-9, AC-6(7), CA-2, CA-7 and SI-6; text read from the release 5.2.0 OSCAL catalog, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (accessed Oct 21, 2026).

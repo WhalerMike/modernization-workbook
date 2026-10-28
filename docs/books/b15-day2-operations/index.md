@@ -46,7 +46,7 @@ The kit applies this book's help-desk model: five Word documents (the intake and
 **Research (draft)**: the Microsoft automation reference, [Module 1: Graph and Azure Foundations](../../research/ms-automation-foundations.md) and [Module 2: Microsoft Entra ID through Microsoft Graph](../../research/ms-automation-entra.md), covers the endpoints, sign-in, permissions and request patterns behind this book's control automation, with tested read-only checks in Python and PowerShell; it's on the [Research](../../research/index.md) page.
 :::
 
-A modernized estate is judged on day two. The test is whether the help desk can reset, unlock, provision and recover safely under the new model, without becoming the easiest way in: help desks are a favored target for social engineering, and NIST's recovery guidance and CISA's advisories say so plainly. It is also whether every request reaches one front door, is routed by its authority class, is approved by the right person and leaves evidence behind; whether the CMDB knows what exists; and whether control evidence is produced continuously by automation in each cloud rather than assembled before an audit. Book 15 is about that work. It sets out the help desk's least-privileged roles in Entra ID and the identity checks that come before any sensitive action, the service catalogs, the governance of SaaS integrations, the CMDB as a reconciled projection of authoritative sources, and control compliance automation for Microsoft 365, Azure, AWS and VMware. It is candid about what each platform already provides, including the ITSM platform's own compliance and continuous-monitoring applications, and builds only what they lack. Operations is where modernization either becomes routine or quietly reverts.
+A modernized estate is judged on day two. The test is whether the help desk can reset, unlock, provision and recover safely under the new model, without becoming the easiest way in: help desks are a favored target for social engineering, and NIST's recovery guidance and CISA's advisories say so plainly. It is also whether every request reaches one front door, is routed by its authority class, is approved by the right person and leaves evidence behind; whether the CMDB knows what exists; and whether control evidence is produced continuously by automation in each cloud rather than assembled before an audit. Book 15 is about that work. It sets out the help desk's least-privileged roles in Entra ID and the identity checks that come before any sensitive action, the service catalogs, the governance of SaaS integrations, the CMDB as a reconciled projection of authoritative sources, and control compliance automation for Microsoft 365, Azure, AWS and VMware. It is candid about what each platform already provides, including the ITSM platform's own compliance and continuous-monitoring applications, and builds only what they lack, and, where there is no money to buy them, how the agency's own staff can build the essentials safely. Operations is where modernization either becomes routine or quietly reverts.
 
 ## Why, what, who, how
 
@@ -55,7 +55,7 @@ A modernized estate is judged on day two. The test is whether the help desk can 
 | **Why** | Why does modernization succeed or fail at the help desk, and why is day two where compliance lives or dies? | [01](01-the-help-desk-decides.md), [02](02-day-two-is-where-compliance-lives.md) |
 | **What** | Intake and triage, help-desk authority in Entra ID, the service catalogs, SaaS integration governance, the CMDB, and control compliance automation across clouds | [03](03-intake-triage-and-routing.md), [04](04-help-desk-authority-in-entra.md), [05](05-the-service-catalogs.md), [06](06-saas-integration-governance.md), [07](07-the-cmdb-and-asset-identity.md), [08](08-control-automation-m365-and-azure.md), [09](09-control-automation-aws-and-vmware.md) |
 | **Who** | Who executes, who approves, and who owns each catalog, runbook and record | [10](10-who-runs-day-two.md) |
-| **How** | Attest and evidence controls through the compliance application, and run the day-two runbook with harnesses that test the automation itself | [11](11-attestation-and-the-compliance-app.md), [12](12-the-day-two-runbook.md) |
+| **How** | Attest and evidence controls through the compliance application, run the day-two runbook with harnesses that test the automation itself, and build the automation in-house when there is no funding for new products | [11](11-attestation-and-the-compliance-app.md), [12](12-the-day-two-runbook.md), [13](13-building-day-two-automation-in-house.md) |
 
 Appendix: [A — Help desk task reference](appendix-a-help-desk-task-reference.md)
 
@@ -63,7 +63,7 @@ Appendix: [A — Help desk task reference](appendix-a-help-desk-task-reference.m
 
 - **Executives (20 minutes):** Chapters 01, 02 and 10, or the 15-minute presentation.
 - **Service desk managers and staff:** Chapters 03 and 04, with Appendix A.
-- **ITSM and ServiceNow platform teams:** Chapters 05, 07 and 11.
+- **ITSM and ServiceNow platform teams:** Chapters 05, 07, 11 and 13.
 - **Cloud and platform engineers:** Chapters 06, 08 and 09.
 - **Operations leads and ISSOs:** Chapters 10, 11 and 12.
 

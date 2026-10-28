@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.162
+This is the part I most want you to see.
+
+2
+00:00:02.162 --> 00:00:05.939
+Every gate leaves a record
+behind: the review and who did it,
+
+3
+00:00:05.939 --> 00:00:10.188
+the test results, the change
+approval, and who deployed the change.
+
+4
+00:00:10.188 --> 00:00:14.844
+Together, those records are the audit
+evidence, and we get them as a by-product
+
+5
+00:00:14.844 --> 00:00:19.426
+of doing the work properly, not by
+assembling a binder before an assessment.
+
+6
+00:00:19.426 --> 00:00:23.279
+When an assessor asks how we know
+our own code does what we claim,
+
+7
+00:00:23.279 --> 00:00:26.837
+the answer is a report we can
+pull, not a story we have to tell.
+
+8
+00:00:26.837 --> 00:00:31.698
+And the application's own output, its
+control tests and its closed findings,
+
+9
+00:00:31.698 --> 00:00:34.912
+joins the same evidence
+trail as everything else.
+
+10
+00:00:34.912 --> 00:00:37.227
+The assessor shouldn't be able to tell,
+
+11
+00:00:37.227 --> 00:00:40.420
+or need to care, whether the
+code was bought or built.

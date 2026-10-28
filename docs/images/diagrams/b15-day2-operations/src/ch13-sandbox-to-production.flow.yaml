@@ -1,0 +1,22 @@
+# Book 15 Chapter 13 — sandbox to production under a standard SDLC (program
+# design). Code drafted with AI assistance in a developer sandbox moves through
+# sub-production to production; each move passes a gate held by someone other
+# than the author. CM-3 change control, CM-3(2) test before finalizing, AC-5
+# separation of duties; ATF runs only in non-production (ServiceNow guidance);
+# source control is not for production instances (ServiceNow guidance).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  pdi: {tone: slate, width: 300, tag: "Environment 1", title: "Developer sandbox", body: ["=Personal Developer Instance or agency sandbox", "=Synthetic data only; AI-drafted code starts here"], size: 11}
+  g1: {tone: amber, width: 200, tag: "Gate 1", title: "Code review", body: ["=A named reviewer reads every line; never the author"], size: 11}
+  sub: {tone: blue, width: 300, tag: "Environment 2", title: "Sub-production", body: ["=Update set committed from source control", "=ATF suites run; results attached"], size: 11}
+  g2: {tone: amber, width: 200, tag: "Gate 2", title: "Change approval", body: ["=CAB authorizes the change record, CM-3"], size: 11}
+  prod: {tone: green, width: 300, tag: "Environment 3", title: "Production", body: ["=The approved update set, committed by an implementer who isn't the author"], size: 11}
+  ev: {tone: violet, width: 470, title: "Evidence of the path", body: ["=Review record, test results and change record join the ticket's evidence"], size: 11}
+edges:
+  - [pdi, g1, {tone: amber}]
+  - [g1, sub, {tone: blue}]
+  - [sub, g2, {tone: amber}]
+  - [g2, prod, {tone: green}]
+  - [prod, ev, {style: dashed, tone: violet}]
+  - [sub, pdi, {style: dashed, label: "defect: fix in a new update set", attrs: "constraint=false"}]

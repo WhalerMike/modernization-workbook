@@ -27,7 +27,7 @@ PHON = [
     (r"\bPIN\b", "pin"), (r"\bSASE\b", "sassy"), (r"\bICAM\b", "eye-cam"), (r"\bPIV\b", "piv"), (r"\bHRIT\b", "H R I T"),
     (r"\bSCIM\b", "skim"), (r"\bSIEM\b", "sim"), (r"\bPIM\b", "pim"), (r"\bSCuBA\b", "scuba"),
     (r"\bConMon\b", "con-mon"),(r"\bCOR\b", "C O R"), (r"\bSF-50\b", "S F fifty"),
-    (r"\bM-22-09\b", "M twenty-two oh-nine"), (r"\bM-19-17\b", "M nineteen seventeen"), (r"\bM-19-26\b", "M nineteen twenty-six"),
+    (r"\bM-25-21\b", "M twenty-five twenty-one"), (r"\bM-22-09\b", "M twenty-two oh-nine"), (r"\bM-19-17\b", "M nineteen seventeen"), (r"\bM-19-26\b", "M nineteen twenty-six"),
     (r"\bSP 800-207\b", "special publication eight hundred two-oh-seven"), (r"\b800-207\b", "eight hundred two-oh-seven"),
     (r"\bAC-2\b", "A C two"), (r"\bPS-4\b", "P S four"), (r"\bPS-5\b", "P S five"), (r"\bIA-4\b", "I A four"), (r"\bSI-12\b", "S I twelve"),
     (r"\bTIC 3\.0\b", "tick three point oh"), (r"\bBOD 25-01\b", "B O D twenty-five oh-one"), (r"\bFedRAMP 20x\b", "fed-ramp twenty X"),

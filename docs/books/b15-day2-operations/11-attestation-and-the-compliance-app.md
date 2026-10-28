@@ -117,11 +117,11 @@ The program's recommendation is **buy the native applications first, and build o
 
 : Native ServiceNow coverage and the program's additions (as of October 2026) {.striped .hover}
 
-The bottom three rows are the reason a compliance application exists in the program's design at all. If the agency's platform team can deliver them as configuration of the native applications, it should, and skip the custom build.
+The bottom three rows are the reason a compliance application exists in the program's design at all. If the agency's platform team can deliver them as configuration of the native applications, it should, and skip the custom build. If the native applications can't be funded at all, [Chapter 13](13-building-day-two-automation-in-house.md) covers building the application in-house.
 
 ## The compliance application, if you build one
 
-Where the native applications leave gaps, the program's design is a scoped application in the agency's ServiceNow instance. A scoped application keeps the program's records, scripts and flows in their own namespace, packaged so they can be moved between instances as a unit. The design is a starter, not a finished product: an agency completes the connector settings and control map for its own tenant, pins API versions, and tests in a sub-production instance before anything reaches production.
+Where the native applications leave gaps, the program's design is a scoped application in the agency's ServiceNow instance. A scoped application keeps the program's records, scripts and flows in their own namespace, packaged so they can be moved between instances as a unit. The design is a starter, not a finished product: an agency completes the connector settings and control map for its own tenant, pins API versions, and tests in a sub-production instance before anything reaches production. Where there is no funding for the native applications or an integrator, [Chapter 13](13-building-day-two-automation-in-house.md) shows how the agency's own staff can build it on the instance it already owns, with AI-assisted drafting, a named reviewer for every line and a sandbox-to-production path under change control.
 
 ### What it contains
 

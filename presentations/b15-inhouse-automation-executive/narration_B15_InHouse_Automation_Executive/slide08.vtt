@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.175
+So who does what?
+
+2
+00:00:01.175 --> 00:00:03.938
+Developers on our own
+staff write the code.
+
+3
+00:00:03.938 --> 00:00:07.413
+A different, qualified
+reviewer approves each change.
+
+4
+00:00:07.413 --> 00:00:10.774
+The change advisory board
+approves the move to production.
+
+5
+00:00:10.774 --> 00:00:13.528
+The security officer
+sets the coding rules,
+
+6
+00:00:13.528 --> 00:00:17.887
+and the agency's Chief AI Officer
+decides which AI tools are approved.
+
+7
+00:00:17.887 --> 00:00:22.249
+The point is that no one person
+writes, approves, and deploys.
+
+8
+00:00:22.249 --> 00:00:25.288
+And we train the people we
+already have rather than hiring.
+
+9
+00:00:25.288 --> 00:00:29.902
+They start in a free developer sandbox,
+learn our rules before they touch real work,
+
+10
+00:00:29.902 --> 00:00:34.313
+and pair up with experienced platform
+developers for their first few changes.
+
+11
+00:00:34.313 --> 00:00:37.787
+After that, they can qualify
+as reviewers themselves.
+
+12
+00:00:37.787 --> 00:00:41.423
+Every piece should have at least
+two people who can maintain it,
+
+13
+00:00:41.423 --> 00:00:44.210
+so the application never
+depends on one person.
