@@ -1,64 +1,55 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.142
-Conditional Access is the
-cloud's policy engine,
+00:00:00.050 --> 00:00:03.061
+One O U tree holds four
+different populations,
 
 2
-00:00:03.142 --> 00:00:05.925
-and it runs when someone
-signs in to Entra ID.
+00:00:03.061 --> 00:00:07.975
+and they move by different paths, so
+the workbook treats them as four tracks.
 
 3
-00:00:05.925 --> 00:00:09.481
-A Kerberos ticket or an NTLM
-exchange is settled between
+00:00:07.975 --> 00:00:12.029
+People are the HR track: Book
+02 builds the directory side,
 
 4
-00:00:09.481 --> 00:00:12.962
-a computer and a domain
-controller, and never gets there.
+00:00:12.029 --> 00:00:15.825
+and Book 03 decides where
+their attributes come from.
 
 5
-00:00:12.962 --> 00:00:17.095
-That means every remaining
-Kerberos or NTLM dependency
+00:00:15.825 --> 00:00:19.437
+Devices and servers are
+the Intune and Arc tracks:
 
 6
-00:00:17.095 --> 00:00:20.963
-is an access path with no
-cloud policy decision at all.
+00:00:19.437 --> 00:00:24.900
+Book 02's Group Policy analysis finds
+their settings, and Book 05 moves them.
 
 7
-00:00:20.963 --> 00:00:26.287
-And those protocols are on a clock:
-NTLM is deprecated, and Microsoft plans
+00:00:24.900 --> 00:00:28.183
+Service accounts are the non-person track:
 
 8
-00:00:26.287 --> 00:00:31.437
-to switch network NTLM off by default
-in the next major Windows release.
+00:00:28.183 --> 00:00:33.812
+Book 02 gives every one an owner and a
+target, and Book 17 carries AI agents.
 
 9
-00:00:31.437 --> 00:00:34.250
-Wait for cutover, and you'll
-find them in production.
+00:00:33.812 --> 00:00:36.941
+Appendix A ties that
+to account management,
 
 10
-00:00:34.250 --> 00:00:38.775
-So the decision: start NTLM
-auditing in discovery.
+00:00:36.941 --> 00:00:42.937
+attribute-based access and least
+privilege in NIST 800-53, and to M-22-09.
 
 11
-00:00:38.775 --> 00:00:41.085
-Application owners move each path,
-
-12
-00:00:41.085 --> 00:00:46.025
-and anything that stays is an exception
-the authorizing official accepts.
-
-13
-00:00:46.025 --> 00:00:47.780
-And the surface is wider.
+00:00:42.937 --> 00:00:45.740
+Now, the part Conditional
+Access can't see.

@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+Here's why this matters.
+
+2
+00:00:01.437 --> 00:00:03.871
+The organizational units, or O U's,
+
+3
+00:00:03.871 --> 00:00:07.925
+of an Active Directory forest
+were never just folders.
+
+4
+00:00:07.925 --> 00:00:10.683
+That one tree decided who
+could manage an object,
+
+5
+00:00:10.683 --> 00:00:14.613
+which policy reached it, which office
+owned it and what it could touch.
+
+6
+00:00:14.613 --> 00:00:16.438
+Entra ID has no tree.
+
+7
+00:00:16.438 --> 00:00:18.101
+Its directory is flat.
+
+8
+00:00:18.101 --> 00:00:20.444
+So all four of those
+jobs have to move into
+
+9
+00:00:20.444 --> 00:00:23.063
+attributes and the
+mechanisms that read them.
+
+10
+00:00:23.063 --> 00:00:26.399
+One HR-sourced stamp
+drives group membership,
+
+11
+00:00:26.399 --> 00:00:30.087
+delegation, policy, licensing
+and drift detection.
+
+12
+00:00:30.087 --> 00:00:33.424
+If the stamp is wrong, all
+five are wrong at once.
+
+13
+00:00:33.424 --> 00:00:35.900
+So, Module 1, the model.

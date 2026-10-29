@@ -1,63 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.037
-The migration runs in seven phases,
-each with an exit gate and a way back.
+00:00:00.050 --> 00:00:05.587
+The sponsor and CIO decide the path, the
+scope and when devices leave the domain.
 
 2
-00:00:05.037 --> 00:00:10.146
-On the book's planning estimates for
-a large fleet: inventory and classify,
+00:00:05.587 --> 00:00:08.925
+The CISO decides the baselines,
+the compliance rules,
 
 3
-00:00:10.146 --> 00:00:15.003
-then plan the overlap, write the
-baselines, pilot on about five percent,
+00:00:08.925 --> 00:00:13.375
+the update schedule, and how the help
+desk verifies someone before a wipe.
 
 4
-00:00:15.003 --> 00:00:18.437
-cut over in four waves,
-verify, and formally retire.
+00:00:13.375 --> 00:00:16.006
+Endpoint engineering decides when an old
 
 5
-00:00:18.437 --> 00:00:20.542
-That's roughly thirty-four weeks,
+00:00:16.006 --> 00:00:18.862
+setting is retired and
+whether each wave goes.
 
 6
-00:00:20.542 --> 00:00:24.050
-plus a ninety-day hold before
-the last GPOs are deleted.
+00:00:18.862 --> 00:00:21.508
+Application owners decide
+for their own apps,
 
 7
-00:00:24.050 --> 00:00:25.550
-Months, not weeks.
+00:00:21.508 --> 00:00:24.013
+because only they can
+tell if it still works.
 
 8
-00:00:25.550 --> 00:00:30.126
-One sequencing rule matters under
-schedule pressure: on co-managed devices,
+00:00:24.013 --> 00:00:27.387
+And the authorizing official
+owns standing exceptions.
 
 9
-00:00:30.126 --> 00:00:34.194
-the antivirus settings move before
-general device configuration,
+00:00:27.387 --> 00:00:32.085
+The permissions live in three separate
+role systems, and two warnings stand out:
 
 10
-00:00:34.194 --> 00:00:37.100
-because moving configuration
-drags them along.
+00:00:32.085 --> 00:00:36.000
+keep the all-powerful Intune
+administrator role out of daily work,
 
 11
-00:00:37.100 --> 00:00:42.126
-The decision: endpoint engineering makes
-each go or no-go on measured results,
+00:00:36.000 --> 00:00:40.912
+and treat anyone who can push extensions to
+a server as that server's administrator.
 
 12
-00:00:42.126 --> 00:00:45.425
-not the calendar, and the
-sponsor sets the sequence.
+00:00:40.912 --> 00:00:45.525
+The decision for the CISO: a second
+approver on high-impact changes.
 
 13
-00:00:45.425 --> 00:00:46.940
-Next, servers.
+00:00:45.525 --> 00:00:46.440
+Now, how.

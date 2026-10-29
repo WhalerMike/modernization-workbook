@@ -136,3 +136,79 @@ The Limits section's Lifecycle Workflows sentence (100 workflows) and Stage 5's 
 - **Stage 1:** a one-line link to the contractor-source research page. No new claims.
 - **PIV and CAC certificates as attributes:** a new paragraph, "Contractors", added at the author's request. The three links (sponsorship from the contractor joiner, card-system events back to the pipeline, the end date as the notification) are design guidance, restated from Book 03 Ch09 and linked. The 18-hour clock is verified against FIPS 201-3 §2.9.4, and footnote adm-fips201 was added. The Temporary Access Pass to FIDO2 bridge is restated from Book 04 Ch03 and linked.
 - Research page: `docs/research/oracle-contingent-worker-contractor-source.md` (its log: `docs/research/_verification/oracle-contingent-worker-contractor-source.md`).
+
+## Revision 2026-10-29 — four tracks, end state, attributes, dynamic group dangers, coverage, limits and federal requirements
+
+Same day, second pass. The guide gained: "What this migration accomplishes" (goal and per-track criteria, labeled design guidance, with a federal-requirement column); "Four tracks, each with its own source of truth" (table, Group Policy split, reach rules, signposts and links); "Attributes: what you know from AD, and what Entra ID gives you" (the stores in order of use, the store-by-consumer table moved here from "Beyond users", the AD comparison and attribute mapping); a **Tracks** line on every stage and a Tracks column on the stage table; "Beyond users" reorganized as the home of the Intune, Arc and non-person identity tracks, with platform-coverage matrices and a tiered strategy for what neither tool reaches; "Limits" expanded into limit → implication → response tables plus "Lifecycle Workflows at scale"; "Dynamic group dangers and how to avoid them" (user and device tables, monitoring); "The federal requirements each track satisfies"; and per-track checklist rows. The framing wording follows the series' shared framing file. Every Microsoft Learn page footnoted below was opened on 2026-10-29 through the Microsoft Learn documentation service, either in this pass or in the same-day Book 02, 03 and 05 revisions logged in those chapters' `_verification/` files (noted per row). No personal name or email address was sent in any request.
+
+### Claims log: new Microsoft facts (footnoted)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 75 | `employeeId` at most 16 characters; `usageLocation` required for licensed users; `userType` Member or Guest; extension attributes up to 1,024 characters each, read-only for synced users and read-only in Graph for cloud-only users previously synced (managed through Exchange); `onPremisesSamAccountName`, `onPremisesDistinguishedName`, `onPremisesSecurityIdentifier` read-only; `signInActivity` read-only, P1/P2 and AuditLog.Read.All | Attributes | verified | `adm-user-res` |
+| 76 | 15 extension attributes on users and devices, originally AD and Exchange custom attributes; directory-extension naming `extension_<appId-without-hyphens>_<name>`; schema and open extensions not usable in dynamic rules and not synced from AD; 100 extension values per resource | Attributes | verified | `adm-ext-ref` |
+| 77 | Directory extensions: up to 100 values per object; synced strings over 256 characters truncated | Attributes | verified | `adm-dirext-connect` |
+| 78 | Cloud Sync directory extensions only through `CloudSyncCustomExtensionsApp` or the Connect-created app | Attributes | verified | `adm-cloudsync-dirext` |
+| 79 | Dynamic rules read single-valued extension attributes and custom extension properties (multi-value not supported); device `accountEnabled`; `deviceOwnership` Personal, Company or Unknown (Intune: Corporate); `deviceTrustType` AzureAD, ServerAD or Workplace; agents' user accounts included unless excluded; agent identities can't be members; the write-permission security consideration; minimize `-match` and `-contains` | Attributes; dangers | verified | `adm-dyn-rules` |
+| 80 | Conditional Access device filters read extensionAttribute1–15 only for Intune-managed, compliant or hybrid-joined devices | Attributes | verified | `adm-ca-device-filter` |
+| 81 | AD schema additions are forest-wide and can't be removed, only disabled | AD comparison | verified | `adm-ad-schema` |
+| 82 | Filters on extension attributes are advanced queries | AD comparison | verified | `adm-adv-query` |
+| 83 | Source anchor: Connect uses ms-DS-ConsistencyGuid from 1.1.524.0; Cloud Sync uses ms-DS-ConsistencyGuid with objectGUID fallback, not changeable | AD comparison | verified | `adm-sourceanchor`; `adm-cloudsync-faq` |
+| 84 | Connect syncs `c`, `co`, `l`, `st` and `physicalDeliveryOfficeName`; `pwdLastSet` is a mechanical property used to invalidate tokens; Entra `country` pairs with AD `co` | Attribute mapping | verified (the `co` pairing from Microsoft's Domain Services mapping) | `adm-connect-attrs` |
+| 85 | `certificateUserIds` up to 10 values of up to 1,024 characters, unique; `altSecurityIdentities` isn't in the default attribute set and needs added sync rules | Attributes | verified (re-read; see D9) | `adm-cuid` |
+| 86 | Application management policies block password addition and cap secret and certificate lifetimes, tenant default with exceptions; Security Administrator plus Cloud Application or Application Administrator | Non-person track | verified | `adm-app-mgmt-policy` |
+| 87 | Workload ID FAQ: application management policies free; access reviews of service principals in privileged roles (including managed identities) need P2 reviewers and Workload ID Premium; app health recommendations Premium | Non-person track | verified | `adm-wid-faq` |
+| 88 | Validate rules: at least Groups Administrator; 20 users or devices at a time | Dangers | verified | `adm-dyn-validate` |
+| 89 | Group-based licensing: remove-before-add leaves the user unlicensed until processing; the gap can be longer in large tenants | Dangers | verified | `adm-gbl` |
+| 90 | Exchange Online data held 30 days after license removal; re-adding restores | Dangers | verified | `adm-exo-license` |
+| 91 | Exchange Online Delicensing Resiliency is documented as an optional delay | Dangers | verified that the feature is documented; government-cloud availability **not verified** (the guide says to confirm) | `adm-exo-resiliency` |
+| 92 | Stale-device guidance: 21-day caution, disable before delete, retire MDM first, hybrid devices cleaned up in AD, don't delete system-managed Autopilot devices, BitLocker keys | Dangers | verified (consistent with Book 05 Ch10) | `adm-stale-devices` |
+| 93 | Dual state can evaluate nondeterministically; 1803 and later clean it up; `BlockAADWorkplaceJoin` | Dangers | verified | `adm-hybrid-faq`; `adm-hybrid-plan` |
+| 94 | Intune cleanup rules hide devices after 30–270 days, take no action, don't remove the Entra object | Dangers | verified (consistent with Book 05 Ch10) | `adm-intune-cleanup` |
+| 95 | Lifecycle Workflows limits: 100 workflows, 25 tasks, 100 custom task extensions, offset −180 to 180, schedule 1–24 hours, 10 on-demand users, 5 administrative scopes, extension timeout 30 minutes–3 hours; limits can be raised through Microsoft Support | Limits | verified (this pass) | `adm-gov-limits` |
+| 96 | Scheduling switched on per workflow; on-demand ignores execution conditions; three-day catch-up, not for Time based attribute V2 | Limits | verified (Book 02 Ch10 and Book 03 Ch08 revisions, same day) | `adm-lcw-understand` |
+| 97 | Execution limits as a percentage, a count or both; quarantine pending approval; on-demand not subject | Limits | verified (same) | `adm-lcw-exec` |
+| 98 | Custom task extensions call Logic Apps, launch-and-continue or launch-and-wait | Limits | verified (same) | `adm-lcw-ext` |
+| 99 | Changing tasks or execution conditions creates a new version | Limits | verified (Book 02 Ch10 revision) | `adm-lcw-versioning` |
+| 100 | Default schedule every 3 hours; real-time leaver and mover can't be scheduled; extension callback 3 minutes–5 hours | Limits | verified (Book 02 Ch10 revision); see D8 | `adm-lcw-deploy` |
+| 101 | Intune platform matrix: Windows editions, Windows 10 allowed, UWF excluded, macOS 15+ (13+ without user affinity), iOS 18+ (16+), Android Enterprise modes and versions, device administrator end, Linux Ubuntu 24.04/26.04 and RHEL 9/10, Windows Server not supported | Intune coverage | verified (Book 05 Ch03 revision, same day) | `adm-intune-platforms` |
+| 102 | Windows enrollment methods; Windows 365; AVD multi-session limits and GCC support; Apple and Android enrollment; AOSP device list; Linux capabilities; ChromeOS connector scope; specialty-device licensing; frontline shared device mode; Defender device discovery | Intune coverage | verified (same) | `adm-intune-enroll`, `adm-w365`, `adm-intune-avd`, `adm-intune-apple`, `adm-intune-android`, `adm-aosp`, `adm-linux-guide`, `adm-intune-chromeos`, `adm-intune-specialty`, `adm-intune-flw`, `adm-mde-discovery` |
+| 103 | Arc OS matrix: Windows Server 2016–2025; 2012 and 2012 R2 get no new agents after November 2026, ESUs ended October 13, 2026 and Arc doesn't extend them; unlisted OS unsupported; no 32-bit; machine configuration not on Arm64; Linux distributions and end dates; not tested on CIS-hardened systems; clients only in server-like roles; don't install on Azure VMs | Arc coverage | verified (this pass re-read the OS table and the ESU note; the rest in the Book 05 Ch09 revision) | `adm-arc-prereq` |
+| 104 | Arc-enabled VMware vSphere (vCenter 8, 9,500 VMs per bridge, lifecycle operations, ESXi inventory); SCVMM retirement (no new onboardings by October 2026, service ends September 2029); multicloud connector (AWS, GCP preview, not in Azure Government); Azure Local; Arc-enabled Kubernetes | Arc coverage | verified (Book 05 Ch09 revision) | `adm-arc-vmware`, `adm-arc-scvmm`, `adm-mcc`, `adm-arc-choose`, `adm-arc-k8s` |
+
+### Claims log: carried, restated as design, or federal (linked or footnoted)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 105 | Four tracks, the Group Policy split, the reach rules, the end state and how you know | What this migration accomplishes; Four tracks | restated-as-design (labeled design guidance), per the series framing | — |
+| 106 | Stage Tracks lines | Stages 0–8 | restated-as-design; links carry the chapter facts | B02 Ch09–10; B05 Ch03, 04, 08–10; B17 Ch03, 05, 07 |
+| 107 | Service-account targets, owners, credentials, lifecycle | Non-person track | carried | B02 Ch09; B02 Ch10 Phase 4; B06 Ch02, Ch09 |
+| 108 | AI agents: sponsor required, two humans and a record, no stored secrets, lifecycle events | Non-person track | carried | B17 Ch04–06 |
+| 109 | Tiered strategy for devices and servers outside Intune and Arc; the CM-8 tie | Beyond users | restated-as-design (labeled) | B05 Ch03; B09 Ch07, Ch09; B12 Ch01; B01 Ch04 |
+| 110 | Lifecycle Workflows at-scale risks; administrative-unit and what-still-needs-AD responses | Limits | restated-as-design (labeled); the estate described as one forest, twelve trees, GCC, synced users, with no headcount | B03 Ch05; B02 Ch05; B02 Ch10; B00 Ch10 |
+| 111 | Dynamic group danger responses | Dangers | restated-as-design except where a chapter states the rule | B03 Ch06, Ch10; B06 Ch16–17; B04 Ch03; B05 Ch04, Ch08, Ch10 |
+| 112 | Federal requirement rows: AC-2, AC-2(1), AC-2(3), PS-4, PS-5, IA-4, IA-4(4), AC-3, AC-3(13), AC-6, AC-6(5), AC-6(7), IA-2 and enhancements, IA-3, IA-5, IA-9, CM-2, CM-3, CM-6, CM-7, CM-8, AU-2, AU-6, AU-12, SI-4, CA-7; M-22-09, M-19-17, the FICAM ILM Playbook (not policy), the Federal HR 2.0 memo, FIPS 201-3, SP 800-63-4, BOD 25-01 SCuBA, M-25-21, M-26-14, GCC at FedRAMP Moderate | Federal requirements | carried; each mapping is one a book already makes, and the mapping is labeled the program's reading | B02 App A; B03 Ch02, 03, 08, 09, 11; B05 Ch04, Ch10; B01 App A; B06 App A; B11 App A; B12 App A; B14 Ch03; B17 App A |
+| 113 | Federal primary sources | Federal requirements endnotes | carried from the books' verified footnotes (accessed October 20–21, 2026, as each note says); not re-fetched, because each is already logged as verified in the named book | `adm-sp80053`, `adm-omb-m2209`, `adm-m1917`, `adm-ilm`, `adm-hr20`, `adm-fips201`, `adm-sp80063`, `adm-bod2501`, `adm-m2521`, `adm-m2614`, `adm-gcc` |
+| 114 | Mappings left out: PS-7 (no book support), AC-2(13) to the lifecycle, IA-8 for contractors, M-21-31 (rescinded by M-26-14), a direct control mapping from B05 Ch09 | Federal requirements | stated as omissions | — |
+
+### Disagreements and corrections found in this pass
+
+| # | Item | Was | Now | Source |
+|---|---|---|---|---|
+| D8 | Custom task extension timeout | One figure per page in the shared limits note | **Microsoft pages disagree**: the governance service limits page says 30 minutes–3 hours; the deployment-planning page says 3 minutes–5 hours. The guide states both and picks neither; its design guidance is to finish well inside 30 minutes | `adm-gov-limits`; `adm-lcw-deploy` |
+| D9 | `certificateUserIds` value cap | The Book 02 Ch09 revision reported that Learn states "10 or fewer" only for `altSecurityIdentities` | The certificateUserIds page also says the attribute "can hold up to 10 values" (re-read in this pass), so the guide keeps "up to 10 values"; Book 02 Ch09's wording is consistent and unchanged | `adm-cuid` |
+| D10 | Shared attribute content: AD `c` to `country` | `physicalDeliveryOfficeName / l / st / c` | `... / co`; Connect also syncs `c` | `adm-connect-attrs` |
+| D11 | Shared attribute content: `pwdLastSet` and `lastLogonTimestamp` to `lastPasswordChangeDateTime` and `signInActivity` | Presented as a mapping | Nearest equivalents, not synced copies | `adm-connect-attrs`; `adm-user-res` |
+| D12 | Shared attribute content: `altSecurityIdentities` "synced to" `certificateUserIds` | Implied default | Only through sync rules the administrator adds | `adm-cuid` |
+| D13 | Shared attribute content: Azure tags read by "RBAC scope" | Listed as a reader | Tags aren't a role-assignment scope; RBAC attaches to management group, subscription, resource group or resource | `adm-arc-cloud-native` |
+| D14 | M-22-09 citation | The guide's `adm-m2209` is Microsoft's M-22-09 guidance page | The requirement table cites OMB's memo through a new note, `adm-omb-m2209`; `adm-m2209` is unchanged | — |
+
+### Could not verify (added in this pass)
+
+| Item | Status |
+|---|---|
+| Exchange Online Delicensing Resiliency in GCC | Not checked; the guide says to confirm before relying on it |
+| Arc-enabled VMware vSphere and SCVMM in Azure Government | Not stated on the pages opened; not claimed |
+| ESXi hosts taking no agent; vendor appliances not covered | The program's reading, labeled in the Arc coverage table |
+| Thin clients and printers in Intune | Placed by absence from Microsoft's supported list |
+| User source-of-authority transfer in GCC | Still open (Book 03 Ch12 register); the guide asks for an owner and a decide-by date |

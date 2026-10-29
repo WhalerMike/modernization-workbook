@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.238
+This is the store table, and
+both parts point back to it.
+
+2
+00:00:03.238 --> 00:00:07.437
+There are eight places an attribute can
+live, in the order to reach for them.
+
+3
+00:00:07.437 --> 00:00:09.113
+Native properties first.
+
+4
+00:00:09.113 --> 00:00:14.725
+Then extension attributes one to fifteen,
+which rules can read but anyone can see.
+
+5
+00:00:14.725 --> 00:00:17.488
+Directory extensions when
+you need more slots.
+
+6
+00:00:17.488 --> 00:00:22.288
+Custom security attributes for sensitive
+values that dynamic rules can't read.
+
+7
+00:00:22.288 --> 00:00:28.301
+Then device properties, Azure tags, and
+certificate user I Ds, the PIV binding.
+
+8
+00:00:28.301 --> 00:00:30.338
+Pick the store by who has to read it.
+
+9
+00:00:30.338 --> 00:00:31.560
+Now, the path.

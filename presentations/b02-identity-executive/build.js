@@ -163,8 +163,10 @@ I'll take four questions: why identity is now the control plane; what changes, i
 
 Two labels run through the deck, as they do through the book. The responsibility matrix, the adapter model, the phase gates and the duration estimates are program design, not federal or Microsoft requirements. And every product statement is as Microsoft documented it in October 2026.
 
+What Book 02 accomplishes: a directory in which placement has become attributes and rules, delegation has moved to administrative units, and every service account has an owner and a target. Of the workbook's four tracks, it carries the directory side of the HR track and the service accounts on the non-person track; where people's attributes come from is Book 03, end-user devices and servers, the Intune and Arc tracks, are Book 05, and AI agents are Book 17.
+
 Every decision slide names the decision, its owner and when it's needed, and the last slide gathers them into one table.`,
-  "Book 02, index; Chapter 01 — Why Identity Matters (The argument in brief); Chapter 06 — Who Owns the Migration (The responsibility matrix).");
+  "Book 02, index; Appendix A; Chapter 01 — Why Identity Matters (The argument in brief); Chapter 06 — Who Owns the Migration (The responsibility matrix).");
 }
 
 // ------------------------------------------------------------------ Why 1
@@ -276,6 +278,28 @@ Two limits decide how far administrative units, the usual answer, get you. They 
 
 The book's matrix gives HR the decision on what worker attributes mean, and identity engineering how they flow. Settle it before anything is mapped.`,
   "Book 02, Chapter 02 — The Structural Problem (Hierarchy is the governance model; Two limits decide whether the mapping works); Chapter 05 (Dynamic administrative units); Chapter 06 (The roles: HR; responsibility matrix).");
+}
+
+// ------------------------------------------------------------------ What 1b: four tracks (new)
+{
+  const s = content(S_WHAT, "Four tracks: what Book 02 moves, and where the rest goes");
+  tag(s, "What");
+  leftTable(s, ["Track", "What it covers", "Book 02's part", "Carried in"], [
+    [bold("HR track: people"), "Employee and contractor accounts", "Sync, the Entra target, the groups and units that read the attributes", bold("Book 03: the attributes", HEX.teal)],
+    [bold("Intune track: devices"), "Workstations, laptops, mobile", "Device objects; the computer side of the GPO analysis", bold("Book 05, Ch 03, 04, 08", HEX.teal)],
+    [bold("Azure Arc track: servers"), "Member servers", "The computer side of the GPO analysis", bold("Book 05, Ch 09", HEX.teal)],
+    [bold("Non-person track"), "Service accounts, MSAs, gMSAs, service principals, AI agents", "Every service account inventoried, owned and given a target", bold("Book 02, Ch 09; Book 17", HEX.teal)],
+  ], [2.75, 2.9, 3.85, 2.65], [0.45, 0.8, 0.8, 0.8, 0.8], 13.5);
+  takeaway(s, "FaClipboardCheck", HEX.navy, "What Book 02 accomplishes: ",
+    "placement becomes attributes and rules, and every service account gets an owner and a target. Federal requirement: NIST SP 800-53 Rev. 5 AC-2, AC-3(13), AC-6; OMB M-22-09.");
+  sources(s, "Sources: Book 02, Ch 02, 08, 09; App A (NIST SP 800-53 Rev. 5 AC-2, AC-3(13), AC-6; OMB M-22-09). Tracks: series framing (design guidance); Books 03, 05, 17.");
+  narrate(s,
+`One OU tree holds four different populations of identity, and they move by different paths, so the workbook treats them as four tracks, each with its own source of truth. The track model is program design.
+
+People are the HR track. Book 02 builds the directory side, sync, the Entra target and the groups and administrative units that read the attributes; Book 03 decides where those attributes come from. End-user devices are the Intune track and member servers the Azure Arc track: Book 02's Group Policy analysis finds their computer-configuration settings, and Book 05 moves them. Service accounts, MSAs, gMSAs and service principals are the non-person track: Book 02, Chapter 09 gives every one an owner and a target, and Book 17 carries AI agents.
+
+What Book 02 accomplishes, in one line: placement becomes attributes and rules, and every service account gets an owner and a target. Appendix A maps that to NIST SP 800-53 Rev. 5 account management, AC-2, attribute-based access control, AC-3(13), and least privilege, AC-6, and to M-22-09's enterprise-managed identities with phishing-resistant MFA.`,
+  "Book 02, Chapters 02, 08 and 09; Appendix A (NIST SP 800-53 Rev. 5 control mapping; OMB M-22-09); series framing (four tracks, design guidance); Books 03, 05 and 17.");
 }
 
 // ------------------------------------------------------------------ What 2

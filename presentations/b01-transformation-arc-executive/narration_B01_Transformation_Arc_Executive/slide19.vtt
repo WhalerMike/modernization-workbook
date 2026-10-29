@@ -1,101 +1,92 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.750
-So, the decisions, with their owners.
+00:00:00.050 --> 00:00:04.225
+Two external clocks bear on the
+schedule, and they're easy to confuse.
 
 2
-00:00:02.750 --> 00:00:06.909
-Agency leadership and the CIO name
-the sponsor, the steward and the
+00:00:04.225 --> 00:00:09.294
+FedRAMP's Consolidated Rules
+for 2026, announced on June 25,
 
 3
-00:00:06.909 --> 00:00:11.900
-authorizing official, and the sponsor
-fills the matrix with one decider per row.
+00:00:09.294 --> 00:00:13.225
+2026, govern how cloud
+services are certified.
 
 4
-00:00:11.900 --> 00:00:17.367
-The sponsor and the CIO scope all eleven
-categories, with DNS, DHCP and address
+00:00:13.225 --> 00:00:16.898
+They become mandatory on January 1, 2027,
 
 5
-00:00:17.367 --> 00:00:23.175
-management in the core program, and at the
-end retire Active Directory on evidence.
+00:00:16.898 --> 00:00:22.575
+and new Rev5 certification
+applications stop on June 11, 2027.
 
 6
-00:00:23.175 --> 00:00:26.055
-The steward stands up
-the platform host and
+00:00:22.575 --> 00:00:25.475
+None of that certifies
+the agency's own estate.
 
 7
-00:00:26.055 --> 00:00:29.575
-commissions the read-only
-assessment, both in Phase 0.
+00:00:25.475 --> 00:00:28.657
+Each agency still
+authorizes its own systems;
 
 8
-00:00:29.575 --> 00:00:33.737
-The CISO sets the control
-requirements, enforced at Gate G1.
+00:00:28.657 --> 00:00:34.350
+what the 2027 date changes is the evidence
+your providers publish and you inherit.
 
 9
-00:00:33.737 --> 00:00:36.500
-HR defines what the
-worker attributes mean.
+00:00:34.350 --> 00:00:40.897
+The deadlines that bind the agency
+directly come from OMB and CISA: M-26-14's
 
 10
-00:00:36.500 --> 00:00:39.512
-The authorizing official
-agrees the automation
+00:00:40.897 --> 00:00:43.853
+logging plan and maturity levels,
 
 11
-00:00:39.512 --> 00:00:41.862
-ceiling and every exception's end date.
+00:00:43.853 --> 00:00:49.450
+and BOD 25-01's baselines
+for Microsoft 365 tenants.
 
 12
-00:00:41.862 --> 00:00:46.412
-And the records officer settles retention
-before anything is decommissioned.
+00:00:49.450 --> 00:00:51.500
+The estate has its own dates too.
 
 13
-00:00:46.412 --> 00:00:49.051
-None of this needs a vendor
-decision on day one.
+00:00:51.500 --> 00:00:56.478
+Windows 10 reached end of
+support on October 14, 2025,
 
 14
-00:00:49.051 --> 00:00:53.734
-It needs an inventory, an owner and
-a date: the read-only assessment,
+00:00:56.478 --> 00:01:02.498
+Windows Server 2012 security
+updates ended on October 13, 2026,
 
 15
-00:00:53.734 --> 00:00:57.638
-a named sponsor and steward,
-and Gate G0 on the calendar.
+00:01:02.498 --> 00:01:08.750
+and Windows Server 2016 reaches
+end of support on January 12, 2027.
 
 16
-00:00:57.638 --> 00:01:00.113
-Microsoft has supplied the instruments.
+00:01:08.750 --> 00:01:14.050
+Mainframes join the access work late,
+and may need other zero trust mechanisms.
 
 17
-00:01:00.113 --> 00:01:04.737
-The program is the orchestra, and the people
-named in this briefing have to play it.
+00:01:14.050 --> 00:01:18.989
+So the sponsor and the CIO sequence
+the program against the agency's own
 
 18
-00:01:04.737 --> 00:01:08.478
-Retiring Active Directory is
-a governance transformation,
+00:01:18.989 --> 00:01:24.513
+deadlines and end-of-support dates, starting
+now, not against FedRAMP's 2027 date.
 
 19
-00:01:08.478 --> 00:01:10.049
-and it should be led as one.
-
-20
-00:01:10.049 --> 00:01:14.125
-Book 01 has the detail,
-with every claim footnoted.
-
-21
-00:01:14.125 --> 00:01:14.950
-Thank you.
+00:01:24.513 --> 00:01:27.240
+To close, the decisions in one place.

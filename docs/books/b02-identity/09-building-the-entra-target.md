@@ -47,6 +47,8 @@ The chapters assume:
 
 Before any object moves, break the Active Directory identity model into its component object types. Each one has its own migration path, attribute mapping, and Entra ID equivalent. The figure summarizes the decomposition; the sections after it work through each row.
 
+The rows belong to different [tracks](../guides/attribute-driven-migration.md#four-tracks), each with its own source of truth. User objects, groups and OUs are the directory side of the **HR track**: their attributes come from HR through provisioning ([Book 03](../b03-hr-identity/index.md)). Service accounts, MSAs and gMSAs are the **non-person identity track**: their accountability is an owner and sponsor, not an HR record ([companion guide](../guides/attribute-driven-migration.md#non-person-identity-track)); this chapter covers them in [Service accounts](#service-accounts) and [Modernizing service accounts](#modernizing-service-accounts). Computer objects are the **Intune and Arc tracks**, covered in [Book 05](../b05-devices/index.md).
+
 ![Each Active Directory object class maps to a Microsoft Entra ID construct; placement-driven policy becomes attribute-driven policy.](../../images/diagrams/b02-identity/svg/ch09-ad-to-entra-objects.svg){#fig-ch09-ad-to-entra-objects fig-alt="A three-column table. Column one lists Active Directory object types, column two the Microsoft Entra ID target, column three how each moves. User object becomes a user, synced and later cloud-managed, moved by sync with a hard match on the source anchor. Security group in AGDLP tiers becomes an assigned or dynamic security group, by sync, conversion, or retirement. Distribution group becomes an Exchange Online group or a Microsoft 365 group, by sync or recreation. Organizational unit becomes administrative units, dynamic groups, and Conditional Access and Intune targeting, re-expressed as attributes. Service accounts, MSAs, and gMSAs, shaded red as legacy risk, become workload identities: managed identities or applications with certificates or federated credentials, re-platformed per workload. AdminSDHolder-protected groups, also red, become Entra roles through PIM plus protected actions, mapped and made eligible with no standing access. Computer objects become devices, hybrid joined and then Entra joined, through a device join transition."}
 
 ### User objects
@@ -59,22 +61,32 @@ User objects are the foundational identity type. Each one carries the attributes
 - **OU placement.** OUs decide which Group Policy Objects apply and who can administer the object. Entra ID has no OU; administrative units take the delegation role, and groups take the policy-targeting role.
 - **Attribute richness.** Entra ID maps a subset of AD attributes natively and carries `extensionAttribute1` through `15` in `onPremisesExtensionAttributes`. Custom data beyond that needs directory extensions.
 
-The core user attribute mapping is in the following table. The full reference is in [Appendix C](appendix-c-identity-assessment-module.md#attribute-mapping-reference). The program's assignments for the fifteen extension attributes are the program attribute map in [Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map).
+The core user attribute mapping is in the following table. The full reference is in [Appendix C](appendix-c-identity-assessment-module.md#attribute-mapping-reference), and the full comparison of the two directories' attribute models, with every attribute store, is in the [companion guide](../guides/attribute-driven-migration.md#attributes). The program's assignments for the fifteen extension attributes are the program attribute map in [Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map). "Rules" in the notes means dynamic membership rules, which read only the properties Microsoft lists for them.[^c09-dynamic-properties]
 
 | AD attribute | Microsoft Graph user property | Notes |
 |---|---|---|
 | `sAMAccountName` | `onPremisesSamAccountName` | Read-only in Entra ID for synced users |
 | `userPrincipalName` | `userPrincipalName` | Suffix must be a verified domain; the sign-in name |
 | `objectSid` | `onPremisesSecurityIdentifier` | Must be unique in the tenant |
+| `objectGUID` / `ms-DS-ConsistencyGuid` | `onPremisesImmutableId` | The source anchor. Connect Sync uses `ms-DS-ConsistencyGuid` for users from version 1.1.524.0 and writes `objectGUID` into it when it's empty; Cloud Sync uses `ms-DS-ConsistencyGuid` with a fallback to `objectGUID`, and that can't be changed[^c09-source-anchor][^c09-cloud-sync-faq] |
+| `distinguishedName` | `onPremisesDistinguishedName` | Read-only, populated only for synced users.[^c09-user-resource] Rules can read it; the program never uses it for policy, because it's placement |
 | `mail` | `mail` | Primary SMTP address |
 | `displayName`, `givenName`, `sn` | `displayName`, `givenName`, `surname` | Direct mapping |
-| `department`, `title` | `department`, `jobTitle` | Direct mapping; both usable in dynamic group rules |
-| `manager` (DN) | `manager` (relationship) | Resolved as a relationship, not an attribute |
-| `memberOf` | `memberOf` (relationship) | Resolved by the sync engine |
-| `extensionAttribute1`–`15` | `onPremisesExtensionAttributes` | Program-assigned meanings in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) |
-| `userAccountControl` | `accountEnabled` | The disabled bit becomes a Boolean |
-| `pwdLastSet` | `lastPasswordChangeDateTime` | Password age |
+| `department`, `title`, `company` | `department`, `jobTitle`, `companyName` | Direct mapping; all usable in rules, but the program's rules read codes, not these display strings |
+| `physicalDeliveryOfficeName`, `l`, `st`, `co` | `officeLocation`, `city`, `state`, `country` | Entra ID's `country` corresponds to the AD country name `co`; Connect Sync also syncs the two-letter `c`.[^c09-sync-attributes][^c09-entra-to-ad] Entra ID adds `usageLocation`, a two-letter code used for license assignment |
+| `employeeID`, `employeeType` | `employeeId`, `employeeType` | `employeeId` is the HR person key and rules can read it; rules can't read `employeeType`, so the program mirrors worker type in `extensionAttribute11` |
+| `manager` (DN) | `manager` (relationship) | Resolved as a relationship, not an attribute. Rules can't read it as a property; only the separate direct-reports rule uses it |
+| `memberOf` | `memberOf` (relationship) | Resolved by the sync engine. Don't build rules on it ([Dynamic group rule syntax](#dynamic-group-rule-syntax)) |
+| `extensionAttribute1`–`15` | `onPremisesExtensionAttributes` | Up to 1,024 characters each, also known as Exchange custom attributes 1–15. Read-only in Graph for synced users, so edit them in AD or at the HR source; for a cloud-only user that was previously synced, read-only in Graph but managed through Exchange.[^c09-user-resource] Rules can read them. Program-assigned meanings in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) |
+| Custom schema attributes | Directory extensions (`extension_<appId>_<name>`) | Synced from AD through the sync engine; single-valued ones can be read by rules[^c09-dynamic-properties] |
+| `userAccountControl` | `accountEnabled` | The disabled bit becomes a Boolean; every access rule should require `accountEnabled -eq true` |
+| `pwdLastSet` | `lastPasswordChangeDateTime` (nearest equivalent, not synced) | Connect Sync syncs `pwdLastSet` as a mechanical property that tells Entra ID when to invalidate issued tokens.[^c09-sync-attributes] `lastPasswordChangeDateTime` is the Entra user's own last password change or creation time[^c09-user-resource] |
+| `lastLogonTimestamp` | `signInActivity` (nearest equivalent, not synced) | Entra ID's own record of sign-in attempts. Reading its details needs Entra ID P1 or P2 and the `AuditLog.Read.All` permission[^c09-user-resource] |
+| `altSecurityIdentities` | `certificateUserIds` | Not synced by default. It reaches `certificateUserIds` only through Connect Sync rules you add, and each synced account should hold no more than 10 values. For synced users, only Connect Sync can write the attribute[^c09-cbu-mapping] ([Book 07](../b07-pki/index.md)) |
+| `servicePrincipalName` (Kerberos SPNs) | None | Entra service principals are application objects, not Kerberos SPNs. SPNs stay in AD until their workloads move: the non-person identity track ([Modernizing service accounts](#modernizing-service-accounts)) |
+| `adminCount` | None | Privilege comes from Entra roles and PIM ([AdminSDHolder and protected groups](#adminsdholder-and-protected-groups)) |
 | `whenCreated` | `createdDateTime` | The date the object reached Entra ID, not the AD creation date |
+| None (Entra ID only) | Custom security attributes, `userType`, `employeeHireDate`, `employeeLeaveDateTime`, `signInActivity` | Written in the cloud or by HR provisioning; Lifecycle Workflows key on the two dates ([Chapter 10](10-migrating-and-governing.md#lifecycle-workflows)) |
 
 ### Security groups
 
@@ -96,7 +108,7 @@ Distribution groups route mail. They're either mail-enabled security groups, whi
 
 ### Service accounts
 
-Service accounts are a critical identity class that is often under-governed. They come in four forms in Active Directory, each with a different path to Entra ID. The detailed migration matrix is in [Modernizing service accounts](#modernizing-service-accounts).
+This section is the **non-person identity track**: a service account's attributes come from the owning application's record, and its accountability is a named owner and sponsor, not an HR record ([companion guide](../guides/attribute-driven-migration.md#non-person-identity-track)). Service accounts are a critical identity class that is often under-governed. They come in four forms in Active Directory, each with a different path to Entra ID. The detailed migration matrix is in [Modernizing service accounts](#modernizing-service-accounts).
 
 | AD service account type | Characteristics | Entra ID target | Risk profile |
 |---|---|---|---|
@@ -107,7 +119,7 @@ Service accounts are a critical identity class that is often under-governed. The
 
 ### Computer objects
 
-Computer objects represent domain-joined devices. Their path runs from domain joined, to Microsoft Entra hybrid joined, to Microsoft Entra joined. This chapter covers devices only where they meet identity governance, such as device-based Conditional Access and device compliance as an access signal. The device estate and the services it depends on are in [Chapter 04](04-the-hidden-migration-surface.md).
+Computer objects belong to the **Intune track** (workstations and laptops) and the **Arc track** (member servers), both in [Book 05](../b05-devices/index.md); a device rule reads only the device's own attributes, never its owner's. Computer objects represent domain-joined devices. Their path runs from domain joined, to Microsoft Entra hybrid joined, to Microsoft Entra joined. This chapter covers devices only where they meet identity governance, such as device-based Conditional Access and device compliance as an access signal. The device estate and the services it depends on are in [Chapter 04](04-the-hidden-migration-surface.md).
 
 ### Organizational units
 
@@ -125,6 +137,20 @@ OUs serve three governance functions in Active Directory: Group Policy scoping, 
 ## Design principle: placement versus attributes
 Entra ID inverts the Active Directory governance model. In AD, *placement* determines policy: an object's OU decides which Group Policy Objects apply. In Entra ID, *attributes* determine policy: an object's properties decide its group memberships, and memberships decide which policies apply. This inversion is the most important architectural idea in the migration, and it's why attribute quality ([Chapter 08](08-assessing-the-forest.md)) gates everything that follows.
 :::
+
+In AD, *where* an object sits does half the work; in Entra ID, *what the object says about itself* has to do all of it. The models differ in these ways (the [companion guide](../guides/attribute-driven-migration.md#attributes) has the full comparison):
+
+| Topic | Active Directory | Entra ID |
+|---|---|---|
+| Structure | Hierarchy: distinguished name and OU | Flat |
+| Schema | Extensible LDAP schema; additions are forest-wide and can't be removed, only made defunct[^c09-ad-schema] | Fixed properties plus extension mechanisms: extension attributes, directory extensions, custom security attributes |
+| Access | LDAP or AD PowerShell | Microsoft Graph; some filters need advanced queries[^c09-advanced-queries] |
+| Write control | Per-attribute ACLs and OU delegation | Roles scoped by administrative units ([Chapter 05](05-delegation-without-ous.md)); custom security attributes have roles of their own, and Global Administrator can't read or assign them by default[^c09-csa-roles] |
+| Groups from attributes | None native; scripts | Dynamic membership rules, over the properties Microsoft lists for them |
+| Identity anchor | `objectGUID` / `objectSid` | The Entra object `id`, plus `onPremisesImmutableId` (the source anchor) |
+| Mastering | AD | For synced users, AD still masters most attributes, read-only in Entra ID until the source of authority moves |
+
+Three consequences follow. Placement has to become coded data before cut-over. While users are synced, edit attributes in AD or at the HR source, never in Entra ID. And because write access to an attribute decides membership, it's the new security boundary ([Dynamic group rule syntax](#dynamic-group-rule-syntax)).
 
 ### AdminSDHolder and protected groups
 
@@ -491,7 +517,7 @@ Disconnect-MgGraph
 
 ### The migration path matrix
 
-Each AD service account maps to an Entra ID construct that depends on where the workload runs. The general rule is to eliminate stored secrets: managed identities for Azure-hosted workloads, workload identity federation for workloads that already have an identity from another trusted issuer, and certificates only where neither applies.
+This section and the rest of this part are the **non-person identity track** ([companion guide](../guides/attribute-driven-migration.md#non-person-identity-track)); SQL Server service and application principals continue in [Book 06](../b06-data-platform/index.md). Each AD service account maps to an Entra ID construct that depends on where the workload runs. The general rule is to eliminate stored secrets: managed identities for Azure-hosted workloads, workload identity federation for workloads that already have an identity from another trusted issuer, and certificates only where neither applies.
 
 | AD account type | Workload location | Entra ID target | Authentication | Credential management |
 |---|---|---|---|---|
@@ -853,3 +879,13 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c09-dynamic-troubleshoot]: Microsoft Learn, "Troubleshoot dynamic groups," <https://learn.microsoft.com/troubleshoot/entra/entra-id/dir-dmns-obj/troubleshoot-dynamic-groups> (accessed Oct 20, 2026).
 [^c09-gov-clouds]: Microsoft Learn, "Understand Microsoft U.S. government cloud environments for Microsoft 365 and Microsoft Copilot," <https://learn.microsoft.com/microsoft-365/copilot/gov-overview> (accessed Oct 20, 2026).
 [^c09-pim-groups-assign]: Microsoft Learn, "Assign eligibility for a group in Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/groups-assign-member-owner> (accessed Oct 20, 2026).
+[^c09-dynamic-properties]: Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," sections "Supported properties," "Extension attributes and custom extension properties" and "Create a rule for direct reports," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (accessed Oct 29, 2026).
+[^c09-user-resource]: Microsoft Learn, "user resource type," Properties (`onPremisesDistinguishedName`, `onPremisesExtensionAttributes`, `lastPasswordChangeDateTime`, `signInActivity`), <https://learn.microsoft.com/graph/api/resources/user?view=graph-rest-1.0> (accessed Oct 29, 2026).
+[^c09-sync-attributes]: Microsoft Learn, "Microsoft Entra Connect Sync: Attributes synchronized to Microsoft Entra ID" (`c` and `co` synced; `pwdLastSet` a mechanical property "used to know when to invalidate already issued tokens"), <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-sync-attributes-synchronized> (accessed Oct 29, 2026).
+[^c09-entra-to-ad]: Microsoft Learn, "Configure Microsoft Entra ID to Active Directory provisioning (preview)," section "User attribute mappings" (AD `co` mapped from Entra `country`), <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-configure-entra-to-active-directory> (accessed Oct 29, 2026).
+[^c09-source-anchor]: Microsoft Learn, "Microsoft Entra Connect: Design concepts," section "Using ms-DS-ConsistencyGuid as sourceAnchor," <https://learn.microsoft.com/entra/identity/hybrid/connect/plan-connect-design-concepts#using-ms-ds-consistencyguid-as-sourceanchor> (accessed Oct 29, 2026).
+[^c09-cloud-sync-faq]: Microsoft Learn, "Microsoft Entra Cloud Sync FAQ," "Can I change the source anchor for cloud sync?," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/reference-cloud-sync-faq> (accessed Oct 29, 2026).
+[^c09-cbu-mapping]: Microsoft Learn, "Mapping to the certificateUserIds attribute in Microsoft Entra ID," sections "Roles to update certificateUserIds," "Update certificateUserIds using Microsoft Entra Connect" and "Synchronize altSecurityIdentities attribute from Active Directory to Microsoft Entra certificateUserIds," <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids> (accessed Oct 29, 2026).
+[^c09-ad-schema]: Microsoft Learn, "Impact of Schema Changes" (schema changes are global to the forest; additions can't be removed, only disabled), <https://learn.microsoft.com/windows/win32/ad/impact-of-schema-changes> (accessed Oct 29, 2026).
+[^c09-advanced-queries]: Microsoft Learn, "Advanced query capabilities on Microsoft Entra ID objects," section "User properties," <https://learn.microsoft.com/graph/aad-advanced-queries> (accessed Oct 29, 2026).
+[^c09-csa-roles]: Microsoft Learn, "What are custom security attributes in Microsoft Entra ID?," section "Custom security attribute roles," <https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-overview> (accessed Oct 29, 2026).

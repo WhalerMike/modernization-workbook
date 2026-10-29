@@ -1,64 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.707
-The HR system is where four
-facts are created: the worker,
+00:00:00.050 --> 00:00:03.463
+Federal HR 2.0 is coming regardless.
 
 2
-00:00:03.707 --> 00:00:07.125
-the position, the assignment
-and the reporting line.
+00:00:03.463 --> 00:00:08.301
+One government-wide platform replaces
+more than a hundred HR systems,
 
 3
-00:00:07.125 --> 00:00:10.075
-HR doesn't compete with
-the identity platform.
+00:00:08.301 --> 00:00:12.974
+Oracle won the award in June, and
+the second wave moves in fiscal 2027.
 
 4
-00:00:10.075 --> 00:00:12.711
-HR owns who a person
-is and where they sit;
+00:00:12.974 --> 00:00:14.975
+You don't choose whether to implement it.
 
 5
-00:00:12.711 --> 00:00:17.425
-the identity platform owns how they
-prove it and what they can reach now.
+00:00:14.975 --> 00:00:17.437
+You choose whether identity rides along.
 
 6
-00:00:17.425 --> 00:00:21.167
-HR also knows about hires and
-separations before they happen,
+00:00:17.437 --> 00:00:19.665
+And this is the cheapest moment,
 
 7
-00:00:21.167 --> 00:00:25.275
-which is what makes day-one readiness
-and same-day removal possible.
+00:00:19.665 --> 00:00:24.975
+because HR 2.0 rebuilds the interconnections
+and cleans the HR data anyway.
 
 8
-00:00:25.275 --> 00:00:28.875
-The rule that holds it together:
-corrections flow upstream.
+00:00:24.975 --> 00:00:28.500
+But nothing in the program
+makes HR drive your directory.
 
 9
-00:00:28.875 --> 00:00:33.157
-A wrong department is fixed in HR,
-never by hand in the directory,
+00:00:28.500 --> 00:00:30.012
+That's yours to propose.
 
 10
-00:00:33.157 --> 00:00:36.450
-because a hand edit is just
-a new copy that drifts.
+00:00:30.012 --> 00:00:33.333
+The window closes when your
+interconnection goes live,
 
 11
-00:00:36.450 --> 00:00:39.006
-So the governance body signs one map:
+00:00:33.333 --> 00:00:35.787
+around month five in the sample timeline.
 
 12
-00:00:39.006 --> 00:00:42.925
-every attribute, its owner
-and its quality expectation.
+00:00:35.787 --> 00:00:40.968
+So in the first phase, name the identity
+feed as one of your integration points,
 
 13
-00:00:42.925 --> 00:00:44.280
-Next, keys.
+00:00:40.968 --> 00:00:43.963
+and name HR as the source
+in your Entra ID plan.
+
+14
+00:00:43.963 --> 00:00:45.430
+Next, the data.

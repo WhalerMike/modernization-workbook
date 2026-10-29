@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.325
+Lifecycle Workflows carry joiner, mover
+and leaver, so it helps to know the pieces.
+
+2
+00:00:05.325 --> 00:00:09.287
+A workflow has a trigger, a
+scope rule and a list of tasks.
+
+3
+00:00:09.287 --> 00:00:13.337
+Custom task extensions call a
+Logic App to reach other systems.
+
+4
+00:00:13.337 --> 00:00:18.101
+Scheduled runs happen on one tenant
+interval, every three hours by default.
+
+5
+00:00:18.101 --> 00:00:23.337
+The limits are a hundred workflows, twenty-five
+tasks each and a hundred extensions.
+
+6
+00:00:23.337 --> 00:00:25.750
+Two behaviors deserve the red box.
+
+7
+00:00:25.750 --> 00:00:30.593
+Execution limits can quarantine a scheduled
+run that would touch too many people,
+
+8
+00:00:30.593 --> 00:00:33.014
+but an on-demand run skips that guardrail,
+
+9
+00:00:33.014 --> 00:00:35.863
+and it ignores the workflow's
+own conditions too.
+
+10
+00:00:35.863 --> 00:00:37.700
+So what could break at our size?

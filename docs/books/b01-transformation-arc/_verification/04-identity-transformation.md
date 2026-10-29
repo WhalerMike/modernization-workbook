@@ -97,3 +97,16 @@ Sources: the series chapter itself (`04-identity-transformation.md`, upgraded in
 | Date | Change |
 |---|---|
 | 2026-10-21 | Extension attribute reconciliation: region-scoped group example now names its carrier, `extensionAttribute4`, and links the program attribute map in Book 03 Ch 06. Existing `extensionAttribute10`/`12` rules already matched. |
+
+## Revision 2026-10-29 — four tracks and companion-guide alignment
+
+Added *Four populations, four tracks* (table, mechanism scope, Group Policy split) and *Where this ends* under *The four mechanisms*, and one paragraph at the end of *Where the attributes live* linking the guide's #attributes and Book 03 Ch 06 #the-attribute-stores. No new Microsoft facts and no new footnotes.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Four tracks, sources of truth, where each is covered | Four populations, four tracks | restated-as-design (shared FRAMING.md); links Books 02, 03, 05, 06, 17 | — |
+| 2 | Dynamic groups hold users or devices | Four populations | carried (Book 02 Ch 09; guide's limits section); Learn re-check Oct 29: "Only users and devices can be members of a dynamic group" | learn.microsoft.com/graph/api/resources/groups-overview |
+| 3 | Group Policy split: user settings with people, computer settings with devices and servers | Four populations | restated-as-design; links Chapter 05 | — |
+| 4 | End-state goal | Where this ends | restated-as-design; links guide #what-this-migration-accomplishes | — |
+| 5 | AC-2 for people; CM-8, CM-2, CM-6 for devices and servers | Where this ends | carried; links Appendix A #requirements-mapping (aA-53, Oct 21) — no new footnote | Appendix A |
+| 6 | Stores: native, extensionAttribute1–15, directory extensions, custom security attributes, device properties; rules read only some | Where the attributes live | carried from Book 03 Ch 06 (verified Oct 29, see that log) | — |

@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.909
+At an agency our size, the
+limits bite in predictable ways,
+
+2
+00:00:03.909 --> 00:00:07.275
+and this is the program's
+design guidance for each.
+
+3
+00:00:07.275 --> 00:00:10.625
+A workflow per organization
+runs out of a hundred fast,
+
+4
+00:00:10.625 --> 00:00:13.900
+so build a few general
+workflows that branch on codes.
+
+5
+00:00:13.900 --> 00:00:17.188
+Build one reusable Logic
+App per integration.
+
+6
+00:00:17.188 --> 00:00:20.706
+Treat every on-demand run as
+a change with a second person,
+
+7
+00:00:20.706 --> 00:00:23.401
+because it can disable
+the wrong ten people.
+
+8
+00:00:23.401 --> 00:00:26.199
+Size execution limits so a reorganization
+
+9
+00:00:26.199 --> 00:00:29.075
+gets quarantined until
+someone approves it.
+
+10
+00:00:29.075 --> 00:00:33.887
+For urgent terminations, don't wait
+for the schedule: disable and revoke.
+
+11
+00:00:33.887 --> 00:00:37.441
+And until PIV revoke and
+device retire are automated,
+
+12
+00:00:37.441 --> 00:00:39.863
+keep a leaver checklist with owners.
+
+13
+00:00:39.863 --> 00:00:41.860
+Next, what still needs AD.

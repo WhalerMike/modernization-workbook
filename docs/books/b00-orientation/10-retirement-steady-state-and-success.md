@@ -58,6 +58,15 @@ The master plan's seven cutover milestones can run in parallel after the last ro
 
 Book 01's G4 also covers three things the master plan's cutover leaves out: OU-based security groups superseded by dynamic groups, AD-authorized DHCP, and the service principal names still bound to AD, each migrated, retired or islanded application by application ([Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md)). They belong to the same phase and the same evidence packet.
 
+Four more dependencies keep AD alive and are easy to miss because no cutover milestone names them. Each needs an owner and a dated response in the same packet *(design guidance)*:
+
+| Dependency | Response |
+|---|---|
+| Synced users' attributes: while users are synced, HR provisioning writes to AD and AD masters most attributes | Move the source of authority population by population, as a gated step. Entry checks for a population: HR provisions it directly to Entra ID, and it has no on-premises Exchange mailbox, no AD FS dependency and no password-based application. Whether source-of-authority transfer is available in GCC is an open question to confirm with Microsoft; until it's answered, the AD-mastered path is the default ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#what-still-needs-ad-after-phase-10)) |
+| Cloud groups written back to AD for Kerberos applications | Each written-back group is a dependency to retire: move the application to SAML or OpenID Connect, or record it in a Kerberos island with an end date |
+| SQL Server Windows logins, which keep AD in the authentication path and bypass Conditional Access | Report them as an IA-2 gap in the program's control mapping, and close them through Book 06's login migration ([Book 06, Appendix A](../b06-data-platform/appendix-a-requirements-mapping.md)) |
+| Domain GPOs that hybrid-joined devices still apply | Keep the domain baselines until the last hybrid-joined device is gone; links come off population by population with rollback tested ([Book 05, Chapter 07](../b05-devices/07-the-gpo-sunset-program.md)) |
+
 ### The cutover validation checklist
 
 The master plan's twenty-five-item checklist is the most useful single artifact for this phase, because each item names its check and its owner. It is kept here, with the items that would fail a correctly built estate corrected.

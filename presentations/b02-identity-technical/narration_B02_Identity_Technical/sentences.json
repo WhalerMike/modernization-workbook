@@ -7,36 +7,36 @@
   ],
   [
    0.762,
-   7.0,
-   "This is the technical deep dive for Book 02 of the Federal Modernization Workbook, Identity and Directory."
+   12.925,
+   "This is the technical deep dive for Book 02 of the Federal Modernization Workbook, Identity and Directory, for the architects and engineers who will run the move from Active Directory to Microsoft Entra ID."
   ],
   [
-   7.763,
-   6.463,
-   "It's for the architects and engineers who will actually run the move from Active Directory to Microsoft Entra ID."
+   13.688,
+   8.838,
+   "What Book 02 accomplishes is a directory where placement has become attributes and rules, and every service account has an owner and a target."
   ],
   [
-   14.225,
-   1.562,
-   "It comes in two parts."
+   22.525,
+   13.213,
+   "Of the workbook's four tracks, it carries the directory side of the HR track and the service accounts; people's attributes are Book 03, devices and servers Book 05, and AI agents Book 17."
   ],
   [
-   15.787,
-   10.338,
-   "Part 1 is assessing the forest: first what an ordinary account can learn without any elevated access, then the full privileged assessment and the evidence trail behind it."
+   35.737,
+   4.4,
+   "Part 1 assesses the forest, starting with what an ordinary account can see."
   ],
   [
-   26.125,
-   11.725,
-   "Part 2 is building the Entra ID target and moving onto it: the big design decisions, governance, the eleven-phase playbook, and a reference deployment that runs the whole sequence on one estate."
+   40.138,
+   3.562,
+   "Part 2 builds the Entra ID target and moves onto it."
   ],
   [
-   37.85,
-   6.263,
-   "The slides carry the tables and decision matrices, and the code lives in the chapters and appendices."
+   43.7,
+   2.05,
+   "The code lives in the chapters."
   ],
   [
-   44.112,
+   45.75,
    1.525,
    "I'll stick to what matters."
   ]
@@ -106,36 +106,31 @@
   ],
   [
    13.55,
-   1.825,
-   "Entra ID has no tree."
+   4.45,
+   "Entra ID has no tree; it governs objects by what they carry."
   ],
   [
-   15.375,
-   4.812,
-   "It governs objects by what they carry: attributes, memberships and roles."
+   18.0,
+   6.475,
+   "Administrative units help, but they can't nest, and for synced users the values are still written on-premises."
   ],
   [
-   20.188,
-   7.037,
-   "Administrative units help, but they can't nest, and for synced users the attribute values are still written on-premises."
-  ],
-  [
-   27.225,
+   24.475,
    3.425,
    "Second, the surface is bigger than users and groups."
   ],
   [
-   30.65,
-   10.7,
-   "The program's inventory names eleven dependency types, and some, like P K I, radius and el-dap-bound applications, fail silently when A D goes away."
+   27.9,
+   10.188,
+   "The inventory names eleven dependency types, and some, like P K I, radius and el-dap-bound applications, fail silently when A D goes away."
   ],
   [
-   41.35,
-   4.362,
-   "Each dependency gets an adapter, and the sync engine finishes last."
+   38.087,
+   10.3,
+   "The workbook sorts what moves into four tracks: people on the HR track, devices and servers on the Intune and Arc tracks, and service accounts on the non-person track."
   ],
   [
-   45.712,
+   48.388,
    4.612,
    "The rest of this session is how you find all of that, rebuild it, and prove it."
   ]
@@ -594,6 +589,48 @@
  "17": [
   [
    0.05,
+   6.862,
+   "Since placement becomes attributes, it's worth seeing the attributes your team already knows and what each one becomes."
+  ],
+  [
+   6.912,
+   5.2,
+   "Most carry over, but often read-only, and some can't be read by a rule at all."
+  ],
+  [
+   12.113,
+   5.562,
+   "distinguishedName comes across, but never use it for policy, because it's the placement we're leaving."
+  ],
+  [
+   17.675,
+   5.1,
+   "Rules can't read manager or employeeType, so they read coded copies instead."
+  ],
+  [
+   22.775,
+   4.975,
+   "The disabled bit becomes accountEnabled, and every access rule should require it."
+  ],
+  [
+   27.75,
+   5.013,
+   "altSecurityIdentities can feed the piv binding, through sync rules you add."
+  ],
+  [
+   32.763,
+   9.287,
+   "And two have no attribute at all: Kerberos service principal names stay in A D until the workloads move, and admin count gives way to roles and pim."
+  ],
+  [
+   42.05,
+   3.212,
+   "Next, the sync engine that carries these values."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
    3.087,
    "The first hybrid-period decision is the sync engine."
   ],
@@ -633,7 +670,7 @@
    "Both can run in one forest with separate scopes, so you can move in stages."
   ]
  ],
- "18": [
+ "19": [
   [
    0.05,
    2.825,
@@ -675,7 +712,7 @@
    "And since July 1, 2026, sync can't hard-match onto cloud accounts with privileged roles, so don't plan to take over admins that way."
   ]
  ],
- "19": [
+ "20": [
   [
    0.05,
    4.3,
@@ -683,36 +720,31 @@
   ],
   [
    4.35,
-   6.237,
-   "Entra ID has no group scope, so the classic A D nesting model doesn't map one to one."
-  ],
-  [
-   10.588,
    8.525,
    "Every security group gets one of five outcomes: keep it in A D, sync it, convert it to cloud-only, make it dynamic, or retire it."
   ],
   [
-   19.113,
-   9.3,
-   "Nesting also works for fewer things in Entra ID, since app assignment and licensing don't cascade, so flatten deep chains and record the mapping."
+   12.875,
+   8.988,
+   "Nesting works for fewer things in Entra ID, since app assignment and licensing don't cascade, so flatten deep chains and record the mapping."
   ],
   [
-   28.413,
-   4.1,
-   "For service accounts, the rule is to eliminate stored secrets."
+   21.863,
+   9.262,
+   "Service accounts are the non-person track: no HR record, so each needs an owner and a target, and the rule is to eliminate stored secrets."
   ],
   [
-   32.513,
+   31.125,
    12.988,
    "Accounts that call cloud APIs become app registrations with certificates or federated credentials, Azure workloads get managed identities, and on-premises Kerberos workloads go to group managed service accounts."
   ],
   [
-   45.5,
-   4.5,
-   "Every app gets two human owners, and no client secrets in production."
+   44.112,
+   9.188,
+   "The application owner decides each conversion, every replacement app gets two human owners, and an account nobody will own is a retirement candidate."
   ]
  ],
- "20": [
+ "21": [
   [
    0.05,
    3.962,
@@ -749,7 +781,7 @@
    "The emergency accounts are cloud-only, excluded from restrictive policies, alerted on every sign-in, and tested at least every ninety days."
   ]
  ],
- "21": [
+ "22": [
   [
    0.05,
    6.975,
@@ -786,7 +818,7 @@
    "And never switch an all-users policy straight from off to on without confirming both emergency accounts still sign in."
   ]
  ],
- "22": [
+ "23": [
   [
    0.05,
    3.65,
@@ -803,7 +835,7 @@
    "Joiners, movers and leavers flow from HR without a ticket, and drift shows up in a diff instead of an incident."
   ]
  ],
- "23": [
+ "24": [
   [
    0.05,
    7.325,
@@ -840,7 +872,7 @@
    "Quarterly reviews close the loop."
   ]
  ],
- "24": [
+ "25": [
   [
    0.05,
    3.725,
@@ -877,7 +909,7 @@
    "Then the legacy cutoff: find the remaining legacy sign-ins, move them, block them, and watch for thirty days until there are none."
   ]
  ],
- "25": [
+ "26": [
   [
    0.05,
    8.525,
@@ -914,7 +946,7 @@
    "Then come the phishing-resistant roadmap, the legacy cutoff, retiring federation, and finally steady-state governance, with the operations runbook committed to Git."
   ]
  ],
- "26": [
+ "27": [
   [
    0.05,
    11.088,
@@ -951,7 +983,7 @@
    "Today that covers user additions and removals; the rest is planned."
   ]
  ],
- "27": [
+ "28": [
   [
    0.05,
    4.025,
@@ -988,7 +1020,7 @@
    "Then migration and validation, with every operation recorded."
   ]
  ],
- "28": [
+ "29": [
   [
    0.05,
    1.913,

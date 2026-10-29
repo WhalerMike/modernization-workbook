@@ -1,97 +1,99 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.020
-The rule here is simple: nothing
-touches the target without a plan,
+00:00:00.050 --> 00:00:02.038
+Delivery starts with the estate.
 
 2
-00:00:04.020 --> 00:00:07.475
-and no plan touches it until
-someone of record has read it.
+00:00:02.038 --> 00:00:05.561
+You can't modernize what you haven't
+enumerated, and nothing can be
 
 3
-00:00:07.475 --> 00:00:12.404
-The cycle compares current state with the
-target, then turns the difference into
+00:00:05.561 --> 00:00:09.476
+retired until someone has written
+down everything it was quietly doing.
 
 4
-00:00:12.404 --> 00:00:17.112
-a plan of small actions, each with its own
-inverse, so the plan can run backwards.
+00:00:09.476 --> 00:00:14.397
+A long-lived forest usually holds more
+than anyone on the current team knows:
 
 5
-00:00:17.112 --> 00:00:20.332
-Validation rejects plans
-that break safety rules,
+00:00:14.397 --> 00:00:18.381
+unmapped trusts, Group Policy
+whose authors left a decade ago,
 
 6
-00:00:20.332 --> 00:00:22.938
-such as deleting too many objects at once.
+00:00:18.381 --> 00:00:21.975
+risky certificate templates,
+and servers past support.
 
 7
-00:00:22.938 --> 00:00:26.726
-Authorization needs at least one
-approver who isn't the author.
+00:00:21.975 --> 00:00:24.225
+The assessment follows three rules.
 
 8
-00:00:26.726 --> 00:00:29.051
-Only then does the execution layer,
+00:00:24.225 --> 00:00:28.712
+It's read-only, enforced in the
+account, the code and the audit trail.
 
 9
-00:00:29.051 --> 00:00:32.900
-under a separate identity,
-deliver and record each action.
+00:00:28.712 --> 00:00:31.475
+It's least-privilege,
+never a domain admin.
 
 10
-00:00:32.900 --> 00:00:35.831
-When something fails,
-the default is to halt,
+00:00:31.475 --> 00:00:34.847
+And every run carries
+provenance: who ran it,
 
 11
-00:00:35.831 --> 00:00:38.925
-and every run ends in a
-signed evidence packet.
+00:00:34.847 --> 00:00:37.938
+when, against what, and with which rights.
 
 12
-00:00:38.925 --> 00:00:41.860
-A separate rule caps how
-far automation may go,
+00:00:37.938 --> 00:00:40.231
+The output maps privileged accounts,
 
 13
-00:00:41.860 --> 00:00:46.263
-from simply recording up to autonomy
-for named low-risk classes only.
+00:00:40.231 --> 00:00:43.263
+so it's stored encrypted
+and handled as sensitive.
 
 14
-00:00:46.263 --> 00:00:49.903
-Tenant-wide role changes,
-Conditional Access enforcement
+00:00:43.263 --> 00:00:46.891
+And because broad enumeration
+looks like reconnaissance,
 
 15
-00:00:49.903 --> 00:00:52.875
-and bulk device changes
-stay gated permanently.
+00:00:46.891 --> 00:00:49.038
+security operations is told first.
 
 16
-00:00:52.875 --> 00:00:55.423
-No federal document requires that ceiling;
+00:00:49.038 --> 00:00:52.691
+One more input decides whether
+an application may move:
 
 17
-00:00:55.423 --> 00:00:59.175
-the book chooses it because an
-authorizing official can sign it.
+00:00:52.691 --> 00:00:56.900
+how many round trips it makes to
+its data, measured, not estimated.
 
 18
-00:00:59.175 --> 00:01:04.044
-So before the first production delivery,
-the authorizing official agrees the
+00:00:56.900 --> 00:01:00.250
+The steward commissions
+the assessment in Phase 0.
 
 19
-00:01:04.044 --> 00:01:09.062
-ceiling for each class of change, with its
-dry run, approver and rollback on record.
+00:01:00.250 --> 00:01:04.429
+In the program's experience a first
+pass takes days to a few weeks,
 
 20
-00:01:09.062 --> 00:01:10.700
-Next, the roadmap.
+00:01:04.429 --> 00:01:06.400
+and Gate G0 needs it committed.
+
+21
+00:01:06.400 --> 00:01:09.140
+Next, how analysis becomes change.

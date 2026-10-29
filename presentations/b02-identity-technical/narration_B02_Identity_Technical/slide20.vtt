@@ -1,65 +1,61 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.012
-Privileged access has one core
-rule: no standing access.
+00:00:00.050 --> 00:00:04.350
+Groups and service accounts each get
+one recorded decision per object.
 
 2
-00:00:04.012 --> 00:00:08.342
-Every privileged assignment is
-eligible and activated just in time,
+00:00:04.350 --> 00:00:08.613
+Every security group gets one of
+five outcomes: keep it in AD,
 
 3
-00:00:08.342 --> 00:00:12.063
-and the only permanent ones
-are the two emergency accounts.
+00:00:08.613 --> 00:00:12.875
+sync it, convert it to cloud-only,
+make it dynamic, or retire it.
 
 4
-00:00:12.063 --> 00:00:16.422
-Domain Admins maps to Global
-Administrator, held by very few,
+00:00:12.875 --> 00:00:17.290
+Nesting works for fewer things in
+Entra ID, since app assignment and
 
 5
-00:00:16.422 --> 00:00:19.562
-and most of its duties
-map to narrower roles.
+00:00:17.290 --> 00:00:21.863
+licensing don't cascade, so flatten
+deep chains and record the mapping.
 
 6
-00:00:19.562 --> 00:00:21.504
-The slide has the full mapping,
+00:00:21.863 --> 00:00:25.687
+Service accounts are the
+non-person track: no HR record,
 
 7
-00:00:21.504 --> 00:00:25.000
-which is the program's design,
-not an exact equivalence.
+00:00:25.687 --> 00:00:31.125
+so each needs an owner and a target, and
+the rule is to eliminate stored secrets.
 
 8
-00:00:25.000 --> 00:00:28.578
-Activation is short, four hours
-at most for the top roles,
+00:00:31.125 --> 00:00:35.815
+Accounts that call cloud APIs become
+app registrations with certificates or
 
 9
-00:00:28.578 --> 00:00:33.400
-with approval and a ticket, and it forces
-a fresh phishing-resistant sign-in.
+00:00:35.815 --> 00:00:39.712
+federated credentials, Azure
+workloads get managed identities,
 
 10
-00:00:33.400 --> 00:00:36.296
-Name approvers outside
-the requester's chain,
+00:00:39.712 --> 00:00:44.113
+and on-premises Kerberos workloads go
+to group managed service accounts.
 
 11
-00:00:36.296 --> 00:00:39.650
-because with none configured,
-PIM can lock the tenant.
+00:00:44.113 --> 00:00:48.780
+The application owner decides each
+conversion, every replacement app gets
 
 12
-00:00:39.650 --> 00:00:44.768
-The emergency accounts are cloud-only,
-excluded from restrictive policies,
-
-13
-00:00:44.768 --> 00:00:48.980
-alerted on every sign-in, and
-tested at least every ninety days.
+00:00:48.780 --> 00:00:53.350
+two human owners, and an account nobody
+will own is a retirement candidate.

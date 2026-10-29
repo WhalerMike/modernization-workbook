@@ -60,3 +60,22 @@ Footnote keys renamed `c05-*` → `c06-*`. Every kept footnote was re-opened on 
 ## Additions, October 29, 2026
 
 One-line link added after the contractor options table to the research page that tests the contingent worker option. No new claims. Research page: `docs/research/oracle-contingent-worker-contractor-source.md` (its log: `docs/research/_verification/oracle-contingent-worker-contractor-source.md`).
+
+## Revision 2026-10-29 — four tracks and companion-guide alignment
+
+Added an HR-track signpost after the *In this chapter* callout, a device-half note on the device slots, and a new subsection *The attribute stores* under *Design rules*. Four new footnotes: `c06-ext-1024`, `c06-dirext`, `c06-csa`, `c06-csa-dyn` (names grepped unique in the book folder). Every Learn page below was opened on Oct 29, 2026.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Rules can't read `employeeType`, `employeeOrgData` or `manager` | Attribute stores table | re-verified (supported string properties list: employeeId then facsimileTelephoneNumber, neither employeeType nor employeeOrgData; manager only via Direct Reports rule) | learn.microsoft.com/entra/identity/users/groups-dynamic-membership (c06-dyn-rules) |
+| 2 | extensionAttribute1–15: up to 1,024 characters each; also known as Exchange custom attributes 1–15; read-only for synced users | Attribute stores table | verified | learn.microsoft.com/graph/api/resources/onpremisesextensionattributes (c06-ext-1024) |
+| 3 | Device extensionAttributes managed only in Entra ID (create/update through Graph) | Attribute stores table; device-slot paragraph | verified | same as 2 |
+| 4 | Directory extensions `extension_<appId>_<name>`; up to 100 values per object; synced strings over 256 characters truncated | Attribute stores table | verified (the page says the sync engine truncates; worded as "cut at 256 characters") | learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-feature-directory-extensions (c06-dirext) |
+| 5 | Single-valued directory extensions readable by rules; multi-value extension properties not | Attribute stores table | verified | groups-dynamic-membership ("Multi-value extension properties aren't supported"; extension attributes and custom extension properties supported as string properties) |
+| 6 | Device rules read only the device's own properties, never the owner's | Attribute stores table | verified by inspection (device rule properties list contains no owner or user properties) | groups-dynamic-membership, Rules for devices |
+| 7 | Custom security attributes on users and service principals; access restricted by their own roles; anyone who can read an object can read its extension data | Attribute stores table; mirror paragraph | verified | learn.microsoft.com/entra/fundamentals/custom-security-attributes-overview (c06-csa) |
+| 8 | Custom security attributes aren't supported in dynamic membership rules | Attribute stores table | verified | learn.microsoft.com/entra/identity/users/users-custom-security-attributes, FAQ (c06-csa-dyn) |
+| 9 | Program mirrors employeeType / employeeOrgData into slots 5, 6, 11 | Mirror paragraph | carried from the program attribute map (design guidance) | — |
+| 10 | Device slot values come from device provisioning, not HR | Signpost; device-slot paragraph | restated-as-design; links Book 05 Ch 08 #the-device-attribute-schema | — |
+
+Correction to the shared content (ATTRIBUTES.md): none beyond those already recorded in the brief. The brief's "strings up to 256 characters" is, on Learn, a truncation by the sync engine for synced values; the page text says so.

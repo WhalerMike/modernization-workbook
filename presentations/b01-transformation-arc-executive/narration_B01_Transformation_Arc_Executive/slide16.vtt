@@ -1,95 +1,97 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.862
-The roadmap sequences all of this as an
-illustrative fifty-two-week program.
+00:00:00.050 --> 00:00:04.020
+The rule here is simple: nothing
+touches the target without a plan,
 
 2
-00:00:04.862 --> 00:00:08.000
-The weeks are a sequencing
-model, not a commitment;
+00:00:04.020 --> 00:00:07.475
+and no plan touches it until
+someone of record has read it.
 
 3
-00:00:08.000 --> 00:00:11.062
-large federal estates
-typically run multi-year.
+00:00:07.475 --> 00:00:12.404
+The cycle compares current state with the
+target, then turns the difference into
 
 4
-00:00:11.062 --> 00:00:13.399
-There are seven phases and six gates.
+00:00:12.404 --> 00:00:17.112
+a plan of small actions, each with its own
+inverse, so the plan can run backwards.
 
 5
-00:00:13.399 --> 00:00:16.875
-Pre-flight stands up the platform
-and runs the assessment.
+00:00:17.112 --> 00:00:20.332
+Validation rejects plans
+that break safety rules,
 
 6
-00:00:16.875 --> 00:00:22.463
-Foundation puts identity in place, including
-the access baseline and the HR feed.
+00:00:20.332 --> 00:00:22.938
+such as deleting too many objects at once.
 
 7
-00:00:22.463 --> 00:00:26.353
-A pilot division, typically
-IT, proves the whole pattern,
+00:00:22.938 --> 00:00:26.726
+Authorization needs at least one
+approver who isn't the author.
 
 8
-00:00:26.353 --> 00:00:28.637
-with zero drift for a hold period.
+00:00:26.726 --> 00:00:29.051
+Only then does the execution layer,
 
 9
-00:00:28.637 --> 00:00:32.175
-Rollout is the longest
-phase, division by division.
+00:00:29.051 --> 00:00:32.900
+under a separate identity,
+deliver and record each action.
 
 10
-00:00:32.175 --> 00:00:35.871
-Then legacy retirement,
-then the shortest phase,
+00:00:32.900 --> 00:00:35.831
+When something fails,
+the default is to halt,
 
 11
-00:00:35.871 --> 00:00:39.475
-retiring AD DS itself,
-and finally steady state.
+00:00:35.831 --> 00:00:38.925
+and every run ends in a
+signed evidence packet.
 
 12
-00:00:39.475 --> 00:00:41.112
-Two properties define it.
+00:00:38.925 --> 00:00:41.860
+A separate rule caps how
+far automation may go,
 
 13
-00:00:41.112 --> 00:00:44.810
-The five workstreams run in
-parallel, each with a named lead,
+00:00:41.860 --> 00:00:46.263
+from simply recording up to autonomy
+for named low-risk classes only.
 
 14
-00:00:44.810 --> 00:00:49.187
-because finishing one before starting
-the next doubles the duration.
+00:00:46.263 --> 00:00:49.903
+Tenant-wide role changes,
+Conditional Access enforcement
 
 15
-00:00:49.187 --> 00:00:53.488
-And it's gated: a phase opens only
-when the previous gate clears.
+00:00:49.903 --> 00:00:52.875
+and bulk device changes
+stay gated permanently.
 
 16
-00:00:53.488 --> 00:00:56.375
-The decision closes the loop on ownership.
+00:00:52.875 --> 00:00:55.423
+No federal document requires that ceiling;
 
 17
-00:00:56.375 --> 00:00:58.930
-Put the gate dates on
-the sponsor's calendar,
+00:00:55.423 --> 00:00:59.175
+the book chooses it because an
+authorizing official can sign it.
 
 18
-00:00:58.930 --> 00:01:02.763
-and the end date of every exception
-on the authorizing official's.
+00:00:59.175 --> 00:01:04.044
+So before the first production delivery,
+the authorizing official agrees the
 
 19
-00:01:02.763 --> 00:01:05.913
-Gate G0 gets its date in Phase 0.
+00:01:04.044 --> 00:01:09.062
+ceiling for each class of change, with its
+dry run, approver and rollback on record.
 
 20
-00:01:05.913 --> 00:01:08.500
-Next, what makes the gates trustworthy.
+00:01:09.062 --> 00:01:10.700
+Next, the roadmap.

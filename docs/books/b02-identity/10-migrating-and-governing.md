@@ -59,7 +59,7 @@ Expiration of assignments and separation-of-duties checks work with P2; automati
 
 Lifecycle Workflows automate joiner, mover, and leaver tasks. They act on accounts that already exist; HR-driven inbound provisioning creates and updates the account. A workflow runs when a user meets its execution conditions, a trigger plus a scope. The triggers available as of October 2026 are a time-based attribute, an attribute change, a group membership change, sign-in inactivity, and on-demand.[^c10-lcw-execution] Time-based joiner and leaver workflows key on the native `employeeHireDate` and `employeeLeaveDateTime` attributes (or `createdDateTime` for joiners); the offset can be 0 to 180 days before or after the date, and a preview "V2" trigger extends that to 365 days with relative comparisons.[^c10-lcw-execution] Custom attribute triggers are in preview.
 
-For users synced from Active Directory, those date attributes must be synced to Entra ID before the workflow can use them, and attribute-change and group triggers fire only after the sync cycle delivers the change.[^c10-lcw-onprem] The canonical HR-driven design, including where the dates come from, is in [Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md). Scope rules can filter on standard attributes such as `department` and `jobTitle` and on `extensionAttribute1` through `15`.[^c10-lcw-scope] A tenant can have up to 100 workflows and 100 custom task extensions, a workflow up to 25 tasks, and an on-demand run covers at most 10 users.[^c10-lcw-limits]
+For users synced from Active Directory, those date attributes must be synced to Entra ID before the workflow can use them, and attribute-change and group triggers fire only after the sync cycle delivers the change.[^c10-lcw-onprem] The canonical HR-driven design, including where the dates come from, is in [Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md). Scope rules can filter on standard attributes such as `department` and `jobTitle` and on `extensionAttribute1` through `15`.[^c10-lcw-scope] The service limits, the guardrails, and how the design stays inside them at scale are in [Limits, guardrails and design at scale](#limits-guardrails-and-design-at-scale) below.
 
 The workflows below use Microsoft's built-in tasks where they exist.[^c10-lcw-tasks] Steps that have no built-in task, marked "custom," run through a custom task extension, which calls an Azure Logic App, or through a separate service.
 
@@ -111,6 +111,40 @@ Trigger: `employeeLeaveDateTime`, on the day, followed by a post-offboarding wor
 9. Notify the manager, HR, and security operations ("Send email on user's last day," plus custom recipients).
 
 Two cautions. The "Delete user" task doesn't support users with Entra role assignments or with membership or ownership of role-assignable groups, so remove privileged access first.[^c10-lcw-tasks] And a synced user deleted only in the cloud comes back on the next sync; for synced users, delete the account in Active Directory, using the on-premises options Microsoft documents for synced users.[^c10-lcw-onprem]
+
+#### Limits, guardrails and design at scale
+
+Lifecycle Workflows has these limits as of October 29, 2026:[^c10-lcw-limits][^c10-lcw-deployment]
+
+| Limit | Value |
+|---|---|
+| Workflows | 100 per tenant |
+| Tasks | 25 per workflow |
+| Custom task extensions | 100 per tenant |
+| Trigger offset (`offsetInDays`) | -180 to +180 days (negative is before the date, positive after) |
+| Schedule interval | 1 to 24 hours, tenant-wide; the default is every 3 hours |
+| On-demand run | At most 10 users |
+| Administrative scopes | 5 per workflow |
+| Custom task extension timeout | Microsoft's pages disagree: the service limits page gives 30 minutes to 3 hours for `durationBeforeTimeout`, and the deployment plan gives a callback timeout of 3 minutes to 5 hours. Test the value you need before relying on it |
+
+Five behaviors matter as much as the numbers:
+
+- **Scheduling is per workflow.** A new workflow is enabled but not scheduled; scheduling must be switched on, after which the tenant evaluates it on the interval. Real-time leaver and mover workflows can't be scheduled, by design.[^c10-lcw-understanding][^c10-lcw-deployment]
+- **On-demand runs ignore the execution conditions.** The tasks apply to whoever is selected, whether or not they meet the trigger and scope.[^c10-lcw-understanding] On-demand runs also aren't subject to execution limits, so they bypass quarantine.[^c10-lcw-exec-limits]
+- **Execution limits quarantine a runaway scheduled run.** A tenant-wide or per-workflow threshold, set as a percentage of users, a number of users, or both (either one exceeded counts), quarantines a scheduled run that would exceed it and notifies the Lifecycle Workflows administrators. A quarantined workflow doesn't run until an administrator approves it, and quarantine can't be cleared automatically.[^c10-lcw-exec-limits]
+- **Late data has a three-day catch-up.** If the trigger or scope attributes are set after the intended processing time, for example because HR entered a hire late, the standard time-based trigger still processes the user if the setup is completed within three days of that time. The preview "Time based attribute V2" trigger doesn't do this catch-up.[^c10-lcw-understanding]
+- **Changes are new versions, not edits.** Changing an existing workflow's tasks or execution conditions creates a new version; only basic properties such as the name, description and the enabled and scheduling switches change in place.[^c10-lcw-versioning] Updating a workflow's execution limits also creates a new version.[^c10-lcw-exec-limits]
+
+The program's design response *(design guidance)*, with the full risk table in the [companion guide](../guides/attribute-driven-migration.md#lifecycle-workflows-at-scale):
+
+- **A small set of general workflows.** Pre-hire, joiner, mover, leaver, rehire and conversion, each branching on coded attributes through its scope rule. Never one workflow per organization, tree or worker type: twelve trees times joiner, mover and leaver times three worker types is already 108 workflows. Keep a workflow budget in change control.
+- **Parameterized extensions.** One Logic App per integration (card management, Intune retire, ticketing, HR write-back), taking the component or code as input, and an extension count kept per tenant, test and production.
+- **Long leavers split.** Group steps inside one Logic App, or chain a leaver and a post-leaver workflow, to stay under 25 tasks.
+- **On-demand treated as a change.** Lifecycle Workflows Administrator is a PIM-eligible role with approval; an on-demand run gets a second-person check and a log entry, because it bypasses both the scope and the quarantine.
+- **Execution limits set from normal volume.** Size the tenant-wide and per-workflow thresholds to ordinary weekly volume, plan reorganizations as change events with a pre-agreed release of the quarantine, and rehearse in the test tenant.
+- **Urgent terminations off the schedule.** For a hostile or urgent separation, use the real-time leaver and also disable the account and revoke sessions out of band; don't wait for the schedule, sync and dynamic-group processing.
+- **Late HR data monitored.** Report users whose trigger date is in the past and who were never processed, and run catch-up deliberately when HR is more than three days late.
+- **Workflow versions under change control.** Test each new version in the test tenant, pilot it on a scoped population, and keep the version history as evidence.
 
 ### Terms of use
 
@@ -437,6 +471,8 @@ The migration runs in eleven phases, grouped into five waves. Each phase has pre
 
 ### Phase 4: Service account modernization
 
+Phase 4 is the **non-person identity track**: its inventory, owners and targets come from the owning applications' records, not from HR ([companion guide](../guides/attribute-driven-migration.md#non-person-identity-track)). The design is in [Chapter 09](09-building-the-entra-target.md#modernizing-service-accounts).
+
 | Element | Detail |
 |---|---|
 | Prerequisites | Phase 3 complete; service account inventory classified ([Chapter 09](09-building-the-entra-target.md#discovering-service-accounts)); application owners identified |
@@ -505,6 +541,20 @@ The migration runs in eleven phases, grouped into five waves. Each phase has pre
 | Rollback | Not applicable; handle workflow problems individually |
 | Duration | Ongoing; initial setup 2–4 weeks |
 
+### What still needs AD after Phase 10
+
+Phase 10 ends with the target governed, not with AD retired. Hybrid lasts: retiring AD means clearing a list of named dependencies, not reaching a date. [Chapter 04](04-the-hidden-migration-surface.md) owns the infrastructure dependencies and the sync engine's retirement criteria. The playbook above leaves these open, each with the program's response *(design guidance)*:
+
+| Still needs AD | Why | Response |
+|---|---|---|
+| Synced users' attributes | While users are synced, HR provisioning writes to AD and AD masters most attributes ([Book 03, Chapter 05](../b03-hr-identity/05-the-provisioning-pipeline.md#two-landing-zones)) | Move the source of authority as a gated step per population, not all at once ([Chapter 04](04-the-hidden-migration-surface.md#sync-engine-microsoft-entra-connect-dm_050-high-finishes-last)) |
+| Kerberos applications | Phase 3 writes cloud groups back to AD as universal groups for them | Inventory them. Move each application to SAML or OpenID Connect where it can; treat every written-back group as a dependency to retire, with an owner |
+| DNS, DHCP and Kerberos-bound legacy applications | They block AD retirement on their own | Track them in [Chapter 04](04-the-hidden-migration-surface.md#ipam-dns-dhcp-and-ip-management-dm_010-high) and [Book 08](../b08-ddi/10-migration-sequence.md) |
+| SQL Server Windows logins | Windows-authenticated SQL logins keep AD in the authentication path and bypass Conditional Access | Report them as an IA-2 gap and track them to closure in [Book 06](../b06-data-platform/11-three-principal-types.md) ([its requirements mapping](../b06-data-platform/appendix-a-requirements-mapping.md)) |
+| Domain GPOs that hybrid-joined devices still apply | A hybrid-joined device keeps taking computer policy from the domain | Move the policy to Intune first, disable links population by population with rollback tested, and keep the domain baselines until the last hybrid device is gone ([Book 05, Chapter 07](../b05-devices/07-the-gpo-sunset-program.md)) |
+| Moving the source of authority itself | A population can leave AD only when nothing it uses still needs AD | Make these the entry checks for each population: HR provisions it directly to Entra ID, and it has no on-premises Exchange mailbox, no AD FS dependency and no password-based application. The validation kit evaluates them; the populations that pass move first |
+| Source-of-authority transfer in GCC | The program hasn't confirmed its availability in GCC | Treat it as open and confirm with Microsoft. Until then, plan the AD-mastered path as the default; Book 03 supports both. Give the question an owner and a decide-by date |
+
 ## Git-based drift detection
 
 ### The assessment pipeline
@@ -565,7 +615,7 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c10-memberof]: Microsoft Learn, "Configure dynamic membership groups with the memberOf operator in the Entra Admin Center (preview)," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-rule-member-of> (accessed Oct 20, 2026).
 [^c10-gwb-cloud-sync]: Microsoft Learn, "Group writeback with Microsoft Entra Cloud Sync," <https://learn.microsoft.com/entra/identity/hybrid/group-writeback-cloud-sync> (accessed Oct 20, 2026).
 [^c10-lcw-execution]: Microsoft Learn, "Lifecycle workflows execution conditions and scheduling," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-conditions> (accessed Oct 20, 2026).
-[^c10-lcw-limits]: Microsoft Learn, "Microsoft Entra ID Governance service limits," "Lifecycle Workflows" (100 workflows and 100 custom task extensions per tenant; 25 tasks per workflow; 10 users per on-demand selection), <https://learn.microsoft.com/entra/id-governance/governance-service-limits#lifecycle-workflows> (accessed Oct 29, 2026). "What are lifecycle workflows?" also gives 100 workflows; "Microsoft Entra ID Governance licensing fundamentals" still said 50 on that date.
+[^c10-lcw-limits]: Microsoft Learn, "Microsoft Entra ID Governance service limits," "Lifecycle Workflows" (100 workflows and 100 custom task extensions per tenant; 25 tasks per workflow; `offsetInDays` -180 to 180 through the API; schedule interval 1-24 hours; 10 users per on-demand selection; custom task extension `durationBeforeTimeout` 30 minutes-3 hours; 5 administrative scopes per workflow), <https://learn.microsoft.com/entra/id-governance/governance-service-limits#lifecycle-workflows> (accessed Oct 29, 2026). "What are lifecycle workflows?" also gives 100 workflows; "Microsoft Entra ID Governance licensing fundamentals" still said 50 on that date.
 [^c10-lcw-onprem]: Microsoft Learn, "Managing users synchronized from Active Directory Domain Services to Microsoft Entra ID with Lifecycle workflows," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-on-premises> (accessed Oct 20, 2026).
 [^c10-lcw-scope]: Microsoft Learn, "ruleBasedSubjectSet resource type," <https://learn.microsoft.com/graph/api/resources/identitygovernance-rulebasedsubjectset?view=graph-rest-1.0> (accessed Oct 20, 2026).
 [^c10-lcw-tasks]: Microsoft Learn, "Lifecycle Workflow built-in tasks," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-tasks> (accessed Oct 20, 2026).
@@ -610,3 +660,7 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c10-existing-tenant]: Microsoft Learn, "Configure Microsoft Entra Connect for an existing tenant," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-existing-tenant> (accessed Oct 20, 2026).
 [^c10-sspr-writeback]: Microsoft Learn, "Tutorial: Enable Microsoft Entra self-service password reset writeback to an on-premises environment," <https://learn.microsoft.com/entra/identity/authentication/tutorial-enable-sspr-writeback> (accessed Oct 20, 2026).
 [^c10-adsync-permissions]: Microsoft Learn, "Microsoft Entra Connect: Configure AD DS Connector Account Permissions," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-configure-ad-ds-connector-account> (accessed Oct 20, 2026).
+[^c10-lcw-deployment]: Microsoft Learn, "Plan a Lifecycle Workflow deployment," section "Limitations and constraints" (schedule default every 3 hours, 1 to 24 hours; extensibility callback timeout 3 minutes to 5 hours; real-time leaver and mover can't be scheduled), <https://learn.microsoft.com/entra/id-governance/lifecycle-workflows-deployment> (accessed Oct 29, 2026).
+[^c10-lcw-understanding]: Microsoft Learn, "Understanding lifecycle workflows," sections "Scheduling" and "On-demand scheduling," <https://learn.microsoft.com/entra/id-governance/understanding-lifecycle-workflows> (accessed Oct 29, 2026).
+[^c10-lcw-exec-limits]: Microsoft Learn, "Configure execution limits and quarantine for Lifecycle Workflows," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-limits> (accessed Oct 29, 2026).
+[^c10-lcw-versioning]: Microsoft Learn, "Lifecycle Workflows Versioning," section "Workflow properties and versions," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-versioning> (accessed Oct 29, 2026).

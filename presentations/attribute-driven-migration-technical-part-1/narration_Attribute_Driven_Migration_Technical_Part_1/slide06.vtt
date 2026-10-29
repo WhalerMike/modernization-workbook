@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.063
+Here's what the whole migration is for.
+
+2
+00:00:02.063 --> 00:00:07.653
+Every person, device, server and workload
+is governed by attributes that are true,
+
+3
+00:00:07.653 --> 00:00:10.824
+owned by exactly one
+source, and read by policy.
+
+4
+00:00:10.824 --> 00:00:15.757
+Joining, moving and leaving change
+access with no ticket, every non-person
+
+5
+00:00:15.757 --> 00:00:20.850
+identity has an owner and a managed
+credential, and AD can finally be retired.
+
+6
+00:00:20.850 --> 00:00:25.598
+The table is how you know you're there,
+track by track: every account traced to HR,
+
+7
+00:00:25.598 --> 00:00:29.011
+every device and server
+targeted by its own attributes,
+
+8
+00:00:29.011 --> 00:00:32.275
+every service account owned,
+and a clean drift report.
+
+9
+00:00:32.275 --> 00:00:35.121
+That's design guidance
+on the books' own gates,
+
+10
+00:00:35.121 --> 00:00:38.812
+and the last column names the
+federal rule each one serves.
+
+11
+00:00:38.812 --> 00:00:40.100
+So, which rules?

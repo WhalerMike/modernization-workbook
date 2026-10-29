@@ -122,6 +122,47 @@ The slides show tables, flows and decision matrices. The scripts and policy payl
   "Book 05, Chapters 04–10 and Appendix A; index.");
 }
 
+// ------------------------------------------------------------------ Tracks: this book is the Intune and Arc tracks
+{
+  const s = D.content("Orientation", "Book 05 is the Intune and Arc tracks: devices, servers");
+  tag(s, "Why");
+  const tracks = [
+    ["FaLaptop", "Intune track: end-user devices", HEX.teal, HEX.tealTint, [
+      ["Source: ", "device provisioning (Autopilot group tag, enrollment), never HR"],
+      ["Read by: ", "dynamic device groups, assignment filters, compliance, Conditional Access"],
+      ["Done when: ", "policy targets those attributes; computer-side GPO links disabled one population at a time, rollback tested"]]],
+    ["FaServer", "Arc track: servers", HEX.navy, HEX.navyTint, [
+      ["Source: ", "Arc onboarding tags and resource group, then Azure Policy"],
+      ["Read by: ", "machine configuration, Update Manager, Defender for Servers, Azure RBAC"],
+      ["Done when: ", "every in-scope server Arc-enabled and tagged, its baseline evaluated by Azure Policy"]]],
+  ];
+  tracks.forEach((c, i) => {
+    const x = 0.6 + i * 6.15;
+    box(s, `Track ${i + 1}`, x, 1.5, 6.0, 3.45, c[3]);
+    icon(s, c[0], x + 0.22, 1.63, 0.6, c[2]);
+    txt(s, `Track ${i + 1} head`, c[1], { x: x + 0.98, y: 1.63, w: 4.9, h: 0.6, bold: true, color: c[2], fontSize: 18, fontFace: "Cambria", valign: "middle" });
+    txt(s, `Track ${i + 1} text`, c[4].flatMap((r, k) => [{ text: r[0], options: { bold: true, color: c[2], bullet: true } }, { text: r[1], options: { breakLine: k < c[4].length - 1 } }]),
+      { x: x + 0.25, y: 2.33, w: 5.6, h: 2.57, fontSize: 13.5, paraSpaceAfter: 6 });
+  });
+  D.callout(s, "Split", 5.08, 1.0, "FaRightLeft", HEX.amber, "Group Policy splits: ",
+    "user settings go with people (Book 03's HR track, Conditional Access); computer settings go with devices and servers. A device rule can't read its owner.");
+  txt(s, "Requirements", [{ text: "Federal requirements:  ", options: { bold: true, color: HEX.navy } },
+    { text: "NIST SP 800-53 CM-2, CM-6, CM-7, CM-8, SI-2 (Book 05, Ch 10); SA-22 and OMB M-22-09 §III.A–B, device signal and inventory (Book 01, Appendix A)" }],
+    { x: 0.6, y: 6.16, w: 12.15, h: 0.42, fontSize: 11.5, valign: "middle" });
+  sources(s, "Sources: Book 05, Ch 03, 04, 07, 08, 09, 10; attribute-driven migration guide (dynamic rules, Intune assignment). Full citations in the backup.");
+  notes(s,
+`First, where this session sits. The series moves four populations of identity to the cloud, each on its own track with its own source of truth, and Book 05 carries two of them: the Intune track for end-user devices, and the Arc track for servers.
+
+The Intune track's attributes come from device provisioning: the Autopilot registration and its group tag, Intune enrollment, and writes by the device provisioning service to the Entra device object's extension attributes. They don't come from HR, and a dynamic device rule can read only device attributes, never the attributes of the device's owner. Dynamic device groups, assignment filters, compliance and Conditional Access device filters read them. As program design guidance, the track is done when every managed device carries attributes written by provisioning, its policy is targeted by them, and computer-side GPO links are disabled population by population, with rollback tested.
+
+The Arc track's attributes are the tags and resource group applied when a server is onboarded with the Connected Machine agent, then Azure Policy. Machine configuration, Update Manager scoping, Defender for Servers and Azure RBAC read them. It's done when every in-scope server is Arc-enabled with its tag taxonomy applied and its baseline assigned and evaluated by Azure Policy.
+
+Group Policy splits the same way. User-configuration settings move with people, to user-targeted Intune policy and Conditional Access, which is Book 03's HR track and Book 04. Computer-configuration settings move with devices, to Intune device policy, and with servers, to Azure Policy and machine configuration.
+
+The evidence supports SP 800-53 CM-2, CM-6, CM-7, CM-8 and SI-2, which Chapter 10 maps, and Book 01's Appendix A ties device inventory and the device signal to M-22-09.`,
+  "Book 05, Chapter 03 (one source per device fact; not the primary user's department); Chapter 04 (group tags); Chapter 07 (unlink one population at a time); Chapter 08 (attribute targeting, assignment filters); Chapter 09 (tags, Azure Policy, Update Manager, Defender for Servers); Chapter 10 (CM-2, CM-6, CM-7, CM-8, SI-2). The attribute-driven migration guide (device rules can't read the owner's attributes; user settings to user groups). Book 01, Appendix A (M-22-09 §III.A–B; SA-22). Success criteria are program design guidance.");
+}
+
 // ================================================================== 2 Why Group Policy can't come
 {
   const s = D.content("Orientation", "Why Group Policy can't come to the cloud");
@@ -234,6 +275,33 @@ Every asset follows the same five phases. Procure, with the assignment validated
 
 The assignment comes from the first source that can supply it: procurement, then the vendor carrier, then derivation from the user, and finally an explicit unpositioned marker. A known nowhere is still a value a rule can match. The latency target is fourteen calendar days from purchase order, five for expedited orders.`,
   "Book 05, Chapter 04 — Intune-First Onboarding, \"The five pillars\" and \"The five-phase process.\"");
+}
+
+// ================================================================== 5b Intune platform coverage
+{
+  const s = D.content(P1, "Which end-user platforms Intune covers, and how");
+  tag(s, "What");
+  table(s, "IntuneCoverage", 1.45, [2.45, 5.1, 4.6], ["Platform", "Intune coverage", "How it enrolls"], [
+    ["Windows 11, LTSC; Windows 365", "Managed; Cloud PCs join and enroll when provisioned", "Autopilot or device preparation; Entra join with auto-enrollment; package; co-management"],
+    ["Windows 10 (not LTSC)", "Limited: out of support, an allowed version; functions not guaranteed", "As Windows 11"],
+    ["Azure Virtual Desktop", "Managed, with limits: settings catalog, certificate and VPN templates; no Autopilot or ESP; GCC supported", "Entra join with Enroll the VM with Intune, or hybrid join"],
+    ["macOS, iOS, iPadOS", "Managed", "Automated Device Enrollment; user enrollment for personal devices"],
+    ["Android Enterprise", "Managed: work profile, corporate work profile, fully managed, dedicated", "Company Portal; QR code, zero-touch, Knox, NFC or token"],
+    ["Android device administrator; AOSP", "Device administrator unsupported with Google Mobile Services since Dec. 2024; AOSP for listed devices", "AOSP corporate enrollment"],
+    ["Linux desktop", "Limited: Ubuntu 24.04, 26.04 LTS; RHEL 9, 10; compliance, with custom Bash checks", "Microsoft Intune app"],
+    ["ChromeOS", "Limited: inventory and remote actions; compliance Not evaluated", "Google Admin console"],
+    ["Windows Server; printers, network, IoT, OT", "Not Intune platforms: servers go to Arc; Defender discovery finds the rest", "The four tiers (Module 3)"],
+  ], { fontSize: 11 });
+  sources(s, "Sources: Book 05, Ch 03, \"Which end-user devices Intune covers\" (Microsoft Learn — supported platforms, AVD multi-session, Apple and Android enrollment, Chrome Enterprise connector; Oct 29, 2026).");
+  notes(s,
+`Why this matters: the Intune track is every end-user device, not only the Windows ones, so the plan needs to know which platforms Intune actually manages. This is Microsoft's documentation as Chapter 03 checked it on October 29, 2026.
+
+Windows 11 and the LTSC editions are managed, and Windows 365 Cloud PCs join and enroll when they're provisioned. Windows 10 outside LTSC is out of support, so Intune treats it as an allowed version: it can enroll, but functionality isn't guaranteed. Azure Virtual Desktop, including multi-session, is managed with limits: the settings catalog plus certificate and device-tunnel VPN templates, no Autopilot and no Enrollment Status Page, and it's supported in GCC.
+
+Apple devices are managed through Automated Device Enrollment from Apple Business Manager or Apple School Manager, with user enrollment for personal devices. Android Enterprise is managed in all four modes. Device administrator isn't supported on devices with Google Mobile Services since December 2024, and AOSP covers a listed set of devices, mostly headsets. Linux desktops are limited: Ubuntu 24.04 and 26.04 and Red Hat 9 and 10, managed for compliance, including custom Bash checks. ChromeOS is limited too: the Chrome Enterprise connector gives inventory and remote actions, but policy stays in the Google Admin console and compliance shows Not evaluated.
+
+And Windows Server, printers, network gear, IoT and OT aren't Intune platforms. Servers go to Arc, and the rest fall into the four tiers in Module 3.`,
+  "Book 05, Chapter 03 — Where Device and Server Data Lives, \"Which end-user devices Intune covers\" (Microsoft Learn, checked October 29, 2026); the attribute-driven migration guide, Intune track.");
 }
 
 // ================================================================== 6 Autopilot vs device preparation
@@ -661,6 +729,40 @@ Plan cost by service, not by connection. If the Windows Server licenses carry So
   "Book 05, Chapter 09 — Servers Under Azure Arc, \"What Arc changes and what it doesn't\" and \"Plan cost by service.\"");
 }
 
+// ================================================================== 19b Arc coverage and the four tiers
+{
+  const s = D.content(P2, "Which servers Arc reaches, and four tiers for the rest");
+  tag(s, "What");
+  const b = table(s, "ArcCoverage", 1.45, [3.0, 4.3], ["Server or platform", "Arc coverage"], [
+    ["Windows Server 2016–2025", "Supported: Desktop Experience and Server Core"],
+    ["Windows Server 2012, 2012 R2", "Listed; no new agents after Nov. 2026; ESUs ended Oct. 13, 2026"],
+    ["Linux: RHEL, Rocky, Alma, Oracle, SUSE, Ubuntu, Debian, Amazon, Azure Linux", "Supported; some versions get no new agents after Nov. 2026; no machine configuration on Arm64"],
+    ["Physical; any other hypervisor", "Supported, with the Connected Machine agent"],
+    ["VMware vSphere VMs", "Arc-enabled vSphere: vCenter 8, up to 9,500 VMs; agent in the guest only"],
+    ["SCVMM-managed VMs", "Retiring: no new onboarding from Oct. 2026; ends Sept. 2029"],
+    ["AWS EC2, GCP VMs", "Agent, or multicloud connector: AWS; GCP in preview; not in Azure Government"],
+    ["Azure VMs", "Not Arc: Policy, RBAC and tags apply natively"],
+    ["AIX, Solaris, HP-UX, mainframe, network devices", "Not supported: tiers 2 to 4"],
+  ], { fontSize: 11 });
+  panel(s, "Tiers", 8.1, 1.45, 4.65, Math.max(b, 5.9) - 1.45, HEX.amber, HEX.amberTint, "FOR WHAT'S LEFT (DESIGN GUIDANCE)", "Four tiers, one source of truth", [
+    "1  Intune or Arc: the default; attributes written at enrollment or onboarding",
+    "2  The platform's own tool, with an evidence feed; the CMDB holds the attributes (ChromeOS, network gear, mainframe, ESXi hosts)",
+    "3  Discovered and monitored only: Defender device discovery, network access control, CDM feeds",
+    "4  Segmented and isolated, or retired, with a risk acceptance and a retirement date",
+  ], 12.5);
+  txt(s, "Requirements", [{ text: "Federal requirements:  ", options: { bold: true, color: HEX.navy } },
+    { text: "NIST SP 800-53 CM-8: the inventory includes every component and counts none twice; a device in no tier is a finding (Book 05, Ch 03 and 10)" }],
+    { x: 0.6, y: 6.16, w: 12.15, h: 0.42, fontSize: 11.5, valign: "middle" });
+  sources(s, "Sources: Book 05, Ch 09, \"Which servers Arc reaches\" (Microsoft Learn — agent prerequisites, Arc-enabled vSphere, SCVMM, multicloud connector; Oct 29, 2026); Ch 03 tiers.");
+  notes(s,
+`Why this matters: the Arc track is servers wherever they run, and anything neither Intune nor Arc reaches still needs a home in the inventory.
+
+Per Chapter 09, as of October 29, 2026: Windows Server 2016 to 2025 is supported, Desktop Experience and Server Core. Windows Server 2012 and 2012 R2 are listed but get no new agent versions after November 2026, and their ESUs ended on October 13. The supported Linux distributions run the agent, though several versions also get no new agents after November 2026, and machine configuration doesn't run on Arm64. Physical servers and VMs on any hypervisor are supported. VMware vSphere VMs come in through Arc-enabled vSphere and vCenter 8, up to 9,500 VMs, with the agent in the guest only; ESXi hosts are discovered as inventory. SCVMM-managed VMs are retiring. AWS EC2 and Google Cloud VMs take the agent or the multicloud connector, which covers AWS, has GCP in preview and isn't available in Azure Government. Azure VMs don't take Arc. And AIX, Solaris, HP-UX, mainframe operating systems and network devices aren't on Microsoft's list.
+
+For everything left out, the program's design guidance is four tiers, with the CMDB as the attribute source outside Intune and Arc. One, managed by Intune or Arc. Two, managed by the platform's own tool with an evidence feed. Three, discovered and monitored only. Four, segmented and isolated, or retired, with a risk acceptance and a date. That's how the inventory meets CM-8: every component, none counted twice. A device in no tier is a finding.`,
+  "Book 05, Chapter 09 — Servers Under Azure Arc, \"Which servers Arc reaches\" (Microsoft Learn, checked October 29, 2026); Chapter 03, \"What Intune and Arc don't reach\" (the four tiers, design guidance); Chapter 10 (CM-8). The attribute-driven migration guide, Arc track.");
+}
+
 // ================================================================== 20 Before you onboard
 {
   const s = D.content(P2, "Before you onboard: roles, network, tags and images");
@@ -1017,6 +1119,22 @@ So, from Monday: inventory and triage every GPO; set the tenant compliance defau
     "Full footnotes with links and access dates: Book 05, Chapters 09–10 (whalermike.github.io/modernization-workbook/docs/books/b05-devices/).",
   ];
   txt(s, "Source list", bullets(src, 12), { x: 0.6, y: 1.5, w: 12.1, h: 5.1, paraSpaceAfter: 5 });
+}
+
+// ------------------------------------------------------------------ Backup: federal requirements (the deck's endnotes)
+{
+  const s = D.content("Backup", "Federal requirements: full citations");
+  const R = [
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "CM-2 Baseline Configuration; CM-6 Configuration Settings; CM-7 Least Functionality", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Intune track; Arc track (machine configuration)"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "CM-8 System Component Inventory; SI-2 Flaw Remediation", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Inventory reconciliation; update rings"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "SA-22 Unsupported System Components", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Arc track: end-of-support servers"],
+    ["OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles", "§III.A Identity: at least one device-level signal alongside identity. §III.B Devices: a complete inventory of every device; EDR", "Jan. 26, 2022", "Intune and Arc tracks"],
+  ];
+  s.addTable([head(["Primary source", "Section or control", "Date", "Used for"]),
+    ...R.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }, { text: r[3] }])],
+    tableOpts([3.3, 4.85, 1.95, 2.05], { y: 1.45, fontSize: 11.5, rowH: [0.36, 0.7, 0.7, 0.7, 0.7] }));
+  txt(s, "Requirements note", "Mapping from Book 05, Chapter 10 (evidence an assessor reads; FedRAMP adds no parameter values to these CM and SI controls), sources checked October 20, 2026, and Book 01, Appendix A (M-22-09; SA-22). The program's mapping for its assessors, not a compliance claim.",
+    { x: 0.6, y: 6.0, w: 12.15, h: 0.55, fontSize: 11, italic: true, color: HEX.slate });
 }
 
 console.log(`notes: ${words} words, about ${(words / WPM).toFixed(1)} minutes at ${WPM} wpm`);

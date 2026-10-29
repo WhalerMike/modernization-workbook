@@ -1,64 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.463
-Federal HR 2.0 is coming regardless.
+00:00:00.050 --> 00:00:03.315
+Ask who works here, what they
+do and who they report to,
 
 2
-00:00:03.463 --> 00:00:08.301
-One government-wide platform replaces
-more than a hundred HR systems,
+00:00:03.315 --> 00:00:05.138
+and no single system answers.
 
 3
-00:00:08.301 --> 00:00:12.974
-Oracle won the award in June, and
-the second wave moves in fiscal 2027.
+00:00:05.138 --> 00:00:10.095
+The answers are scattered across
+regional organizational unit (OU) trees,
 
 4
-00:00:12.974 --> 00:00:14.975
-You don't choose whether to implement it.
+00:00:10.095 --> 00:00:14.076
+application account stores,
+spreadsheets and slide decks.
 
 5
-00:00:14.975 --> 00:00:17.437
-You choose whether identity rides along.
+00:00:14.076 --> 00:00:18.413
+HR records a separation two weeks
+early, but nothing is listening.
 
 6
-00:00:17.437 --> 00:00:19.665
-And this is the cheapest moment,
+00:00:18.413 --> 00:00:21.125
+On the day, every account is still live.
 
 7
-00:00:19.665 --> 00:00:24.975
-because HR 2.0 rebuilds the interconnections
-and cleans the HR data anyway.
+00:00:21.125 --> 00:00:25.112
+A ticket gets the main account days
+later, but not the applications.
 
 8
-00:00:24.975 --> 00:00:28.500
-But nothing in the program
-makes HR drive your directory.
+00:00:25.112 --> 00:00:29.038
+Months on, a penetration test
+signs in with a leftover account.
 
 9
-00:00:28.500 --> 00:00:30.012
-That's yours to propose.
+00:00:29.038 --> 00:00:30.175
+Nobody failed.
 
 10
-00:00:30.012 --> 00:00:33.333
-The window closes when your
-interconnection goes live,
+00:00:30.175 --> 00:00:33.713
+There's simply no channel from
+HR to the systems that act.
 
 11
-00:00:33.333 --> 00:00:35.787
-around month five in the sample timeline.
+00:00:33.713 --> 00:00:37.925
+Cleaning up, or reviewing harder,
+can't fix a missing channel.
 
 12
-00:00:35.787 --> 00:00:40.968
-So in the first phase, name the identity
-feed as one of your integration points,
+00:00:37.925 --> 00:00:41.622
+So the decision: designate HR
+as the source of authority,
 
 13
-00:00:40.968 --> 00:00:43.963
-and name HR as the source
-in your Entra ID plan.
+00:00:41.622 --> 00:00:44.113
+and build it into both migrations now.
 
 14
-00:00:43.963 --> 00:00:45.430
-Next, the data.
+00:00:44.113 --> 00:00:45.000
+Why now?

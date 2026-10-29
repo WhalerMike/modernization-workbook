@@ -165,6 +165,42 @@ The slides show tables, flows and decision matrices. Configuration detail lives 
   "Book 03, index; Chapters 01–13; Appendices A–C.");
 }
 
+// ================================================================== 2 The HR track
+{
+  const s = content("Orientation", "This is the HR track: what it moves and how you know");
+  tag(s, "What");
+  const b = table(s, "Track", 1.5, [2.05, 5.6], ["The HR track", "People: user accounts for employees and contractors"], [
+    ["Source of truth", "HR (Core HCM, Federal HR 2.0) for employees; the contractor source of authority, which the agency designates, for contractors; both through provisioning"],
+    ["Written to", "The user object: in AD while users are synced (AD-mastered), in Entra ID once cloud-mastered"],
+    ["Read by", "Dynamic user groups, administrative units, Conditional Access personas, Lifecycle Workflows, license and access-package assignment"],
+    ["You're there when", "Every enabled account correlates to HR or the contractor source, or carries an owned exception; every OU-derived group is a validated rule over coded attributes (design guidance)"],
+  ], { fontSize: 12 });
+  panel(s, "Elsewhere", 8.45, 1.5, 4.3, b - 1.5, HEX.amber, HEX.amberTint, "OTHER TRACKS, OTHER BOOKS", "Not in this deck", [
+    "End-user devices, the Intune track: Book 05, Ch 03, 04, 08",
+    "Servers, the Arc track: Book 05, Ch 09",
+    "Service accounts and gMSAs: Book 02, Ch 09",
+    "SQL and application principals: Book 06",
+    "AI agents: Book 17",
+  ], 12.5);
+  callout(s, "Reach", Math.max(b + 0.15, 5.0), 0.95, "FaTriangleExclamation", HEX.red, "HR never describes a device, a server or a service: ",
+    "a device rule can't read its owner's attributes, and a non-person identity answers to its owner and sponsor.");
+  txt(s, "Requirements", [{ text: "Federal requirements:  ", options: { bold: true, color: HEX.navy } },
+    { text: "NIST SP 800-53 AC-2, AC-2(1), PS-4, PS-5, IA-4(4); OMB M-19-17; OMB M-22-09 §III.A (Book 03, Ch 11: control support, not control closure)" }],
+    { x: 0.6, y: 6.16, w: 12.15, h: 0.42, fontSize: 11.5, valign: "middle" });
+  sources(s, "Sources: Book 03, Ch 01, 06, 08, 10, 11; Book 05, Ch 03; attribute-driven migration guide, \"Beyond users.\" Full citations in the backup.");
+  notes(s,
+`Before the detail, where this session sits. The series moves four populations of identity to the cloud, each on its own track with its own source of truth. Book 03 is the HR track: people, meaning the user accounts of employees and contractors.
+
+The source of truth for employees is the HR system of record, Core HCM under Federal HR 2.0. For contractors it's the contractor source of authority the agency designates, which stays an open decision. Both arrive through provisioning. The attributes are written to the user object: in Active Directory while users are synced and AD-mastered, and in Entra ID once they're cloud-mastered. They're read by dynamic user groups, administrative units, Conditional Access personas, Lifecycle Workflows, and license and access-package assignment.
+
+You're there, as program design guidance, when every enabled account correlates to HR or the contractor source or carries an owned exception, and every OU-derived access group is a validated rule over coded attributes, with no hand-maintained membership left. The book's own gates are in Chapter 12 and Appendix C.
+
+What this deck doesn't cover: devices and servers, which are Book 05, and the non-person identities: service accounts and gMSAs in Book 02, Chapter 09, SQL and application principals in Book 06, AI agents in Book 17. HR never describes them, and a device rule can't read its owner's attributes.
+
+On the controls, the architecture supports AC-2 and AC-2(1), PS-4, PS-5 and IA-4(4) under the M-19-17 framework. Chapter 11 calls that control support, not control closure.`,
+  "Book 03, Chapter 01 (authority boundaries; contractors and vendors need their own source); Chapter 06 (canonical schema and the program attribute map); Chapter 08; Chapter 10; Chapter 11 (control support); Chapter 12 and Appendix C (gates). Book 05, Chapter 03; the attribute-driven migration guide (Beyond users; device rules can't read the owner's attributes). Success criteria are program design guidance.");
+}
+
 // ================================================================== 2 Why
 {
   const s = content("Orientation", "Why this matters: a token can't prove the claim is true");
@@ -1060,6 +1096,23 @@ sourceSlide("Sources behind Module 4 — Evidence and the plan", [
   "Workbook: Book 01, Chapter 12 (Phase 1 Foundation, Gate G1, risk register); Book 00, Chapter 09 (Gate G1 checklist).",
   "Full footnotes with links and access dates: Book 03, Chapters 06, 07, 11, 12 and Appendices B–C.",
 ]);
+
+// ------------------------------------------------------------------ Backup: federal requirements (the deck's endnotes)
+{
+  const s = D.content("Backup", "Federal requirements: full citations");
+  const R = [
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "AC-2 Account Management (including AC-2l, aligned with personnel termination and transfer); AC-2(1) Automated System Account Management", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "HR track: accounts follow HR events"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "PS-4 Personnel Termination; PS-5 Personnel Transfer", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Leaver and mover"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "IA-4 Identifier Management; IA-4(4) Identify User Status (for example, contractor)", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "One person key; worker type"],
+    ["OMB M-19-17, Enabling Mission Delivery through Improved Identity, Credential, and Access Management", "The enterprise ICAM policy framework; §IV Governance", "May 21, 2019", "HR as the source of authority"],
+    ["OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles", "§III.A Identity: centralized identity management systems for agency users", "Jan. 26, 2022", "HR track"],
+  ];
+  s.addTable([head(["Primary source", "Section or control", "Date", "Used for"]),
+    ...R.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }, { text: r[3] }])],
+    tableOpts([3.3, 4.85, 1.95, 2.05], { y: 1.45, fontSize: 11.5, rowH: [0.36, 0.7, 0.7, 0.7, 0.7, 0.7] }));
+  txt(s, "Requirements note", "Mapping from Book 03, Chapter 11 (Control support) and Chapters 02 and 08, sources checked October 20, 2026. Control support, not control closure: each control also needs agency policy, organization-defined parameters, procedures and assessment.",
+    { x: 0.6, y: 6.0, w: 12.15, h: 0.55, fontSize: 11, italic: true, color: HEX.slate });
+}
 
 console.log(`notes: ${words} words, about ${(words / WPM).toFixed(1)} minutes at ${WPM} wpm`);
 modules.forEach(([m, w]) => console.log(`  ${m}: ${w} words, ${(w / WPM).toFixed(1)} min`));

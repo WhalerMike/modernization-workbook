@@ -1,0 +1,1340 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.877
+Welcome to Part 2 of
+the technical deep dive
+
+2
+00:00:02.877 --> 00:00:05.625
+on attribute-driven migration to Entra ID.
+
+3
+00:00:05.625 --> 00:00:09.275
+Part 1 covered the model and
+the HR track, the people.
+
+4
+00:00:09.275 --> 00:00:14.259
+This part takes the other three tracks:
+end-user devices through Intune,
+
+5
+00:00:14.259 --> 00:00:18.230
+servers through Azure Arc,
+and the non-person identities,
+
+6
+00:00:18.230 --> 00:00:21.187
+service accounts, workloads and AI agents.
+
+7
+00:00:21.187 --> 00:00:24.726
+Then it runs the migration,
+from cutover to the checklist.
+
+8
+00:00:24.726 --> 00:00:31.150
+Microsoft facts were checked on October
+29, 2026, and design guidance is labeled.
+
+9
+00:00:31.150 --> 00:00:33.080
+First, a quick recap.
+
+10
+00:00:36.830 --> 00:00:39.380
+Two things from Part 1
+carry everything here.
+
+11
+00:00:39.380 --> 00:00:41.230
+First, the four tracks.
+
+12
+00:00:41.230 --> 00:00:45.717
+People get their attributes from HR,
+devices from device provisioning,
+
+13
+00:00:45.717 --> 00:00:48.911
+servers from Arc onboarding
+tags and Azure Policy,
+
+14
+00:00:48.911 --> 00:00:53.017
+and non-person identities from
+their owner's record, never from HR.
+
+15
+00:00:53.017 --> 00:00:55.730
+Second, the store table, reduced.
+
+16
+00:00:55.730 --> 00:00:59.041
+Extension attributes drive
+user and device rules,
+
+17
+00:00:59.041 --> 00:01:04.243
+custom security attributes feed
+Conditional Access for applications but not
+
+18
+00:01:04.243 --> 00:01:09.130
+dynamic rules, Intune's inventory feeds
+filters, and Azure tags feed Policy.
+
+19
+00:01:09.130 --> 00:01:11.205
+Part 1 covered the HR track.
+
+20
+00:01:11.205 --> 00:01:12.840
+Now the computers.
+
+21
+00:01:16.590 --> 00:01:20.343
+Module 1 is the Intune and Arc
+tracks: what each tool covers,
+
+22
+00:01:20.343 --> 00:01:25.035
+how devices and servers get attributes
+that policy reads, the dangers of
+
+23
+00:01:25.035 --> 00:01:30.090
+dynamic device groups, and a strategy
+for whatever neither tool reaches.
+
+24
+00:01:33.840 --> 00:01:36.325
+Now the Intune track: end-user devices,
+
+25
+00:01:36.325 --> 00:01:40.012
+whose attributes come from
+device provisioning, not HR.
+
+26
+00:01:40.012 --> 00:01:43.940
+Start with what Intune covers,
+because it's not just Windows.
+
+27
+00:01:43.940 --> 00:01:48.863
+It manages Windows 11, Cloud PCs
+and Azure Virtual Desktop, Macs,
+
+28
+00:01:48.863 --> 00:01:54.165
+iPhones and iPads, Android in several
+modes, and some Linux desktops.
+
+29
+00:01:54.165 --> 00:01:57.740
+ChromeOS is limited:
+Intune sees the inventory,
+
+30
+00:01:57.740 --> 00:02:00.490
+but policy stays in Google's console.
+
+31
+00:02:00.490 --> 00:02:05.062
+Old Windows releases and Windows
+Server aren't Intune platforms,
+
+32
+00:02:05.062 --> 00:02:08.703
+and neither are printers,
+network gear or OT devices.
+
+33
+00:02:08.703 --> 00:02:13.228
+So Intune does manage non-Microsoft
+platforms, within limits.
+
+34
+00:02:13.228 --> 00:02:15.080
+Now, how it targets them.
+
+35
+00:02:18.830 --> 00:02:23.155
+This slide sets the default for Intune
+targeting, so it's worth getting right.
+
+36
+00:02:23.155 --> 00:02:26.705
+By default each policy goes
+to a dynamic device group.
+
+37
+00:02:26.705 --> 00:02:29.810
+Microsoft's current
+guidance, checked October 29,
+
+38
+00:02:29.810 --> 00:02:33.369
+is to prefer assignment filters
+where they meet the need,
+
+39
+00:02:33.369 --> 00:02:36.702
+because dynamic device
+groups add processing delay,
+
+40
+00:02:36.702 --> 00:02:40.867
+and the Federal Modernization
+Workbook's Book 05 now says the same.
+
+41
+00:02:40.867 --> 00:02:45.255
+Send user settings to user groups
+and device settings to device groups.
+
+42
+00:02:45.255 --> 00:02:48.534
+The exception is tier and
+role: filters can't read
+
+43
+00:02:48.534 --> 00:02:52.468
+device extension attributes,
+so those stay in group rules.
+
+44
+00:02:52.468 --> 00:02:57.168
+And underneath it all, a device rule
+can never read its owner's attributes.
+
+45
+00:02:57.168 --> 00:03:00.120
+Next, how device attributes get written.
+
+46
+00:03:03.870 --> 00:03:08.492
+Devices are attribute-driven too, but
+only through their own attributes,
+
+47
+00:03:08.492 --> 00:03:11.420
+the device rows of the
+store table in the recap.
+
+48
+00:03:11.420 --> 00:03:16.600
+Dynamic device groups read things like
+ownership, trust type and enrollment profile,
+
+49
+00:03:16.600 --> 00:03:19.883
+and Autopilot devices carry
+markers a rule can select.
+
+50
+00:03:19.883 --> 00:03:23.282
+Filters read Intune's own
+inventory at check-in.
+
+51
+00:03:23.282 --> 00:03:25.257
+The highpoint is the red panel.
+
+52
+00:03:25.257 --> 00:03:29.515
+Writing a device's extension attributes
+needs the right Graph permission,
+
+53
+00:03:29.515 --> 00:03:32.468
+and it depends on the call:
+a signed-in administrator
+
+54
+00:03:32.468 --> 00:03:35.420
+uses one permission, an
+unattended service another.
+
+55
+00:03:35.420 --> 00:03:38.970
+Book 05's sample now
+uses the signed-in one.
+
+56
+00:03:38.970 --> 00:03:42.330
+Then, the dangers of
+dynamic device groups.
+
+57
+00:03:46.080 --> 00:03:48.858
+Dynamic device groups
+have their own dangers,
+
+58
+00:03:48.858 --> 00:03:51.855
+and a mistake here reaches
+the whole fleet at once.
+
+59
+00:03:51.855 --> 00:03:55.705
+Only the device provisioning service
+should write device attributes.
+
+60
+00:03:55.705 --> 00:04:00.119
+A wrong or reused Autopilot group
+tag puts a device in the wrong group,
+
+61
+00:04:00.119 --> 00:04:02.055
+so check it before enrollment.
+
+62
+00:04:02.055 --> 00:04:04.133
+Device rules can't read their owner,
+
+63
+00:04:04.133 --> 00:04:08.792
+and stale or duplicate device objects
+keep matching until you reconcile them.
+
+64
+00:04:08.792 --> 00:04:11.496
+For time-sensitive policy, use filters,
+
+65
+00:04:11.496 --> 00:04:15.130
+and never use a dynamic
+device group as an exclusion.
+
+66
+00:04:15.130 --> 00:04:20.318
+Pilot rings, one owning policy per setting,
+and watching the deltas finish the list.
+
+67
+00:04:20.318 --> 00:04:22.230
+Now, the servers.
+
+68
+00:04:25.980 --> 00:04:28.042
+Now the Arc track: servers.
+
+69
+00:04:28.042 --> 00:04:29.905
+Arc isn't just for Windows either.
+
+70
+00:04:29.905 --> 00:04:36.107
+It covers Windows Server 2016 through
+2025, a long list of Linux distributions,
+
+71
+00:04:36.107 --> 00:04:39.542
+physical servers and
+VMs on any hypervisor,
+
+72
+00:04:39.542 --> 00:04:44.217
+VMware through vCenter, and
+AWS and Google Cloud instances.
+
+73
+00:04:44.217 --> 00:04:50.406
+Two dates matter: Windows Server 2012
+stops getting new agents in November 2026,
+
+74
+00:04:50.406 --> 00:04:53.406
+and the SCVMM integration is retiring.
+
+75
+00:04:53.406 --> 00:04:57.955
+Azure VMs don't need Arc at all,
+because they're already Azure resources.
+
+76
+00:04:57.955 --> 00:05:02.780
+And Unix, mainframes, network devices
+and sealed appliances are out.
+
+77
+00:05:02.780 --> 00:05:06.000
+So here's how Arc makes a
+server attribute-driven.
+
+78
+00:05:09.750 --> 00:05:13.728
+Arc servers matter because
+they're the on-premises servers
+
+79
+00:05:13.728 --> 00:05:16.975
+the organizational unit, or
+O U, tree used to scope.
+
+80
+00:05:16.975 --> 00:05:22.387
+Once connected, a server becomes an Azure
+resource, and tags become its attributes.
+
+81
+00:05:22.387 --> 00:05:26.287
+You set them at onboarding or
+later, Azure Policy can test them
+
+82
+00:05:26.287 --> 00:05:30.263
+and even inherit them, and Resource
+Graph queries them at scale.
+
+83
+00:05:30.263 --> 00:05:32.200
+One boundary to state plainly.
+
+84
+00:05:32.200 --> 00:05:36.882
+Azure's attribute-based access conditions
+apply only to storage data today,
+
+85
+00:05:36.882 --> 00:05:40.375
+so Microsoft doesn't document
+them for managing servers.
+
+86
+00:05:40.375 --> 00:05:42.962
+Role assignments at the
+right scope do that job.
+
+87
+00:05:42.962 --> 00:05:46.120
+Next, the devices neither tool covers.
+
+88
+00:05:49.870 --> 00:05:52.207
+So what about everything
+neither tool reaches?
+
+89
+00:05:52.207 --> 00:05:57.320
+It still needs one source of truth, and
+the program's design gives it four tiers.
+
+90
+00:05:57.320 --> 00:05:59.663
+Tier one is managed by Intune or Arc.
+
+91
+00:05:59.663 --> 00:06:04.188
+Tier two is managed by its own platform
+tool, like the Google console,
+
+92
+00:06:04.188 --> 00:06:07.985
+a network controller or the
+mainframe's security system,
+
+93
+00:06:07.985 --> 00:06:11.783
+feeding evidence to the C M D
+B, which holds its attributes.
+
+94
+00:06:11.783 --> 00:06:17.420
+Tier three is discovered and monitored
+only, like printers, cameras and OT.
+
+95
+00:06:17.420 --> 00:06:19.845
+Tier four is segmented or retired.
+
+96
+00:06:19.845 --> 00:06:22.347
+That's how the inventory meets C M 8:
+
+97
+00:06:22.347 --> 00:06:27.082
+every component counted once, and
+a device in no tier is a finding.
+
+98
+00:06:27.082 --> 00:06:30.990
+Now, the fourth track:
+the non-person identities.
+
+99
+00:06:34.740 --> 00:06:37.302
+Module 2 is the non-person track.
+
+100
+00:06:37.302 --> 00:06:39.987
+Service accounts, service principals,
+
+101
+00:06:39.987 --> 00:06:45.442
+workload identities and AI agents have no
+HR record, so each needs a named owner,
+
+102
+00:06:45.442 --> 00:06:49.890
+a credential that's managed or
+expires, and a lifecycle that ends.
+
+103
+00:06:49.890 --> 00:06:54.050
+Then the crosswalk across
+every track, and PIV binding.
+
+104
+00:06:57.800 --> 00:07:01.287
+The non-person track starts
+with what AD already holds.
+
+105
+00:07:01.287 --> 00:07:06.187
+Service accounts have no HR record, so
+nobody's leave date ever turns them off,
+
+106
+00:07:06.187 --> 00:07:10.075
+and that's why they're so often
+over-privileged and forgotten.
+
+107
+00:07:10.075 --> 00:07:13.338
+The table is Book 02's migration matrix.
+
+108
+00:07:13.338 --> 00:07:16.182
+The rule is to get rid of stored secrets:
+
+109
+00:07:16.182 --> 00:07:22.403
+a traditional account becomes an app
+registration with a certificate or federated
+
+110
+00:07:22.403 --> 00:07:27.113
+credential, or a managed identity
+in Azure; on-premises Kerberos
+
+111
+00:07:27.113 --> 00:07:31.201
+workloads go to a g M S A; and an
+M S A upgrades to a g M S A first.
+
+112
+00:07:31.201 --> 00:07:33.614
+Each one gets an owner
+before it's touched,
+
+113
+00:07:33.614 --> 00:07:36.950
+and an account nobody will
+own is a retirement candidate.
+
+114
+00:07:36.950 --> 00:07:39.020
+Next, the cloud side.
+
+115
+00:07:42.770 --> 00:07:45.970
+The rest of the non-person
+track lives in Entra ID,
+
+116
+00:07:45.970 --> 00:07:50.210
+and the question for each identity
+is the same: who answers for it,
+
+117
+00:07:50.210 --> 00:07:53.570
+what credential does it
+hold, and what ends its life.
+
+118
+00:07:53.570 --> 00:07:58.345
+Service principals get two human owners
+and no client secrets in production.
+
+119
+00:07:58.345 --> 00:08:03.145
+Managed identities have credentials
+nobody sees, and end with their resource.
+
+120
+00:08:03.145 --> 00:08:08.320
+Workload identity federation trusts an
+external issuer, so there's no secret at all.
+
+121
+00:08:08.320 --> 00:08:13.090
+And AI agents get an agent identity
+with a required sponsor; the program
+
+122
+00:08:13.090 --> 00:08:18.183
+makes that sponsor an HR-mastered federal
+employee, and expiry is the review.
+
+123
+00:08:18.183 --> 00:08:23.020
+One caution: check what your cloud supports
+before you plan on agent identities.
+
+124
+00:08:23.020 --> 00:08:26.340
+Next, how attributes reach applications.
+
+125
+00:08:30.090 --> 00:08:33.577
+Applications and service
+principals are the partial answer.
+
+126
+00:08:33.577 --> 00:08:37.415
+The table repeats the recap's
+store table for these consumers.
+
+127
+00:08:37.415 --> 00:08:40.465
+Extension attributes drive dynamic groups.
+
+128
+00:08:40.465 --> 00:08:45.412
+Custom security attributes can't, but
+Conditional Access can filter applications
+
+129
+00:08:45.412 --> 00:08:49.928
+by them, and they suit sensitive values
+that only specific roles should read.
+
+130
+00:08:49.928 --> 00:08:54.376
+For service principals, workload
+Conditional Access only blocks,
+
+131
+00:08:54.376 --> 00:08:59.552
+applies only to direct assignment, and
+needs the Workload I D Premium license.
+
+132
+00:08:59.552 --> 00:09:03.852
+And Microsoft documents no dynamic
+groups of service principals at all.
+
+133
+00:09:03.852 --> 00:09:07.202
+So access codes stay in
+the user extension slots.
+
+134
+00:09:07.202 --> 00:09:09.530
+Here's everything on one page.
+
+135
+00:09:13.280 --> 00:09:16.463
+This crosswalk is the
+reference you'll come back to,
+
+136
+00:09:16.463 --> 00:09:19.798
+the store table seen by object
+type: every object type,
+
+137
+00:09:19.798 --> 00:09:24.042
+the store its attributes live in,
+who writes them and what reads them.
+
+138
+00:09:24.042 --> 00:09:27.455
+Users, devices, Arc servers
+and service principals
+
+139
+00:09:27.455 --> 00:09:30.867
+each have their own stores
+and their own consumers.
+
+140
+00:09:30.867 --> 00:09:32.842
+The highpoint is the third column.
+
+141
+00:09:32.842 --> 00:09:36.548
+Every row names one writer,
+whether that's HR provisioning,
+
+142
+00:09:36.548 --> 00:09:40.793
+device registration, the Arc agent
+or an attribute administrator.
+
+143
+00:09:40.793 --> 00:09:44.161
+That's the same single-writer
+rule we set for the user schema,
+
+144
+00:09:44.161 --> 00:09:45.467
+applied to everything.
+
+145
+00:09:45.467 --> 00:09:49.030
+And one user row leads straight into PIV.
+
+146
+00:09:52.780 --> 00:09:57.605
+PIV and CAC sign-in is attribute-driven
+too, which is easy to miss.
+
+147
+00:09:57.605 --> 00:10:00.427
+Entra ID finds the user
+by matching a field
+
+148
+00:10:00.427 --> 00:10:03.330
+on the certificate to
+a field on the account.
+
+149
+00:10:03.330 --> 00:10:06.912
+Some matches are low affinity,
+like the name on the card,
+
+150
+00:10:06.912 --> 00:10:10.255
+and some are high, tied to
+one specific certificate.
+
+151
+00:10:10.255 --> 00:10:11.418
+Two highpoints.
+
+152
+00:10:11.418 --> 00:10:16.050
+Certificate-based sign-in is only as
+strong as the weakest binding you allow,
+
+153
+00:10:16.050 --> 00:10:19.580
+and the program's position is
+high affinity in production.
+
+154
+00:10:19.580 --> 00:10:22.327
+But switch the whole tenant
+to high before every
+
+155
+00:10:22.327 --> 00:10:25.005
+account's value is right,
+and you lock people out.
+
+156
+00:10:25.005 --> 00:10:26.205
+Pilot it first.
+
+157
+00:10:26.205 --> 00:10:28.380
+So where does that value come from?
+
+158
+00:10:32.130 --> 00:10:36.942
+The certificate user I Ds attribute,
+the last row of the store table,
+
+159
+00:10:36.942 --> 00:10:41.580
+holds the binding, so who writes it
+matters as much as any HR field.
+
+160
+00:10:41.580 --> 00:10:46.855
+For cloud-only users, a privileged
+authentication administrator or Graph writes it.
+
+161
+00:10:46.855 --> 00:10:51.191
+For synced users, only Entra
+Connect can, from Active Directory,
+
+162
+00:10:51.191 --> 00:10:54.443
+and Microsoft's page
+doesn't mention Cloud Sync.
+
+163
+00:10:54.443 --> 00:10:59.002
+HR supplies the person; the card
+management system supplies the binding,
+
+164
+00:10:59.002 --> 00:11:01.206
+because a reissued card changes it.
+
+165
+00:11:01.206 --> 00:11:03.150
+After Active Directory is gone,
+
+166
+00:11:03.150 --> 00:11:06.293
+the plan is for the card
+system to write it directly.
+
+167
+00:11:06.293 --> 00:11:09.705
+Be clear that this is design
+guidance, and unverified.
+
+168
+00:11:09.705 --> 00:11:13.030
+It's an open pilot,
+workbook issue one thirty.
+
+169
+00:11:13.030 --> 00:11:14.430
+Now let's run it.
+
+170
+00:11:18.180 --> 00:11:20.417
+Module 3 runs the migration.
+
+171
+00:11:20.417 --> 00:11:25.323
+We'll follow one analyst through a reassignment
+with no ticket, cut over in phases,
+
+172
+00:11:25.323 --> 00:11:29.789
+keep the attributes true with drift
+detection, and finish with the limits,
+
+173
+00:11:29.789 --> 00:11:33.070
+the checklist and the
+decisions for every track.
+
+174
+00:11:36.820 --> 00:11:40.795
+Here's the model working on one
+person, which is the best test of it.
+
+175
+00:11:40.795 --> 00:11:45.620
+She's a budget analyst in a finance
+division, still mastered in Active Directory.
+
+176
+00:11:45.620 --> 00:11:51.120
+Her HR record becomes a handful of coded
+attributes, and every mechanism reads them.
+
+177
+00:11:51.120 --> 00:11:55.995
+Her organization code puts her in the right
+groups, and in a database reader group.
+
+178
+00:11:55.995 --> 00:12:00.220
+Her division puts her in the unit
+whose help desk can reset her password.
+
+179
+00:12:00.220 --> 00:12:03.070
+Her worker type puts her
+in the employee persona.
+
+180
+00:12:03.070 --> 00:12:06.833
+And her laptop is governed by
+its own attributes, not hers.
+
+181
+00:12:06.833 --> 00:12:09.169
+Nobody assigned any of it by hand.
+
+182
+00:12:09.169 --> 00:12:11.080
+Now HR moves her.
+
+183
+00:12:14.830 --> 00:12:16.955
+This is why the whole design exists.
+
+184
+00:12:16.955 --> 00:12:21.099
+HR records her move to accounts
+payable as a personnel action,
+
+185
+00:12:21.099 --> 00:12:22.805
+and nobody opens a ticket.
+
+186
+00:12:22.805 --> 00:12:27.430
+The record flows through the middleware
+to Active Directory and up through sync.
+
+187
+00:12:27.430 --> 00:12:29.662
+Her groups and units recompute,
+
+188
+00:12:29.662 --> 00:12:33.268
+usually within hours, but it
+can take more than a day.
+
+189
+00:12:33.268 --> 00:12:37.981
+A workflow swaps her access packages
+and starts a review of what's left.
+
+190
+00:12:37.981 --> 00:12:41.618
+Her laptop stays put, because
+device rules can't see her.
+
+191
+00:12:41.618 --> 00:12:44.767
+And a drift scan checks
+the result field by field.
+
+192
+00:12:44.767 --> 00:12:47.170
+Next, cutting over at scale.
+
+193
+00:12:50.920 --> 00:12:56.332
+Stage seven is a runbook, not a flag day,
+and that's what keeps rollback possible.
+
+194
+00:12:56.332 --> 00:12:58.892
+Waves are defined by attribute values,
+
+195
+00:12:58.892 --> 00:13:02.171
+so each wave is a query
+whose groups already exist.
+
+196
+00:13:02.171 --> 00:13:06.720
+Start with a pilot division, and keep
+each one drift-clean before the next.
+
+197
+00:13:06.720 --> 00:13:11.183
+Do leaver automation first, because
+revocation is where the risk is.
+
+198
+00:13:11.183 --> 00:13:14.832
+The gate is the strip across
+the top: a signed report,
+
+199
+00:13:14.832 --> 00:13:20.132
+a dry run with writes off, then seven
+days in which every change traces to HR.
+
+200
+00:13:20.132 --> 00:13:22.295
+Only then does the ticket path close.
+
+201
+00:13:22.295 --> 00:13:25.933
+And disable, never delete,
+so you can always go back.
+
+202
+00:13:25.933 --> 00:13:27.390
+Then, drift.
+
+203
+00:13:31.140 --> 00:13:34.763
+Stage eight keeps the
+statements true after cutover;
+
+204
+00:13:34.763 --> 00:13:37.315
+without it, everything slowly decays.
+
+205
+00:13:37.315 --> 00:13:41.262
+Two comparisons run on a schedule:
+HR against the directory,
+
+206
+00:13:41.262 --> 00:13:44.565
+and the unit and role
+registry against the tenant.
+
+207
+00:13:44.565 --> 00:13:49.648
+Every finding goes to the CISO and is
+fixed at the source, in the HR record or
+
+208
+00:13:49.648 --> 00:13:54.977
+the rule, never in the copy, because the
+next cycle would just overwrite your fix.
+
+209
+00:13:54.977 --> 00:13:57.377
+The callout is the one to act on today.
+
+210
+00:13:57.377 --> 00:14:00.207
+Entra's logs don't last
+nearly as long as federal
+
+211
+00:14:00.207 --> 00:14:03.253
+records rules require, and
+they aren't retroactive.
+
+212
+00:14:03.253 --> 00:14:04.741
+Route them out from day one.
+
+213
+00:14:04.741 --> 00:14:06.550
+Now, the limits.
+
+214
+00:14:10.300 --> 00:14:13.466
+Administrative units are
+the delegation replacement,
+
+215
+00:14:13.466 --> 00:14:16.287
+so their limits shape the
+whole delegation model.
+
+216
+00:14:16.287 --> 00:14:18.915
+They don't nest, so the
+tree becomes a flat set,
+
+217
+00:14:18.915 --> 00:14:22.712
+and a role covering several units
+gets one assignment per unit.
+
+218
+00:14:22.712 --> 00:14:25.888
+They limit who can change
+members, not who can see them.
+
+219
+00:14:25.888 --> 00:14:28.312
+Only some roles can be scoped to a unit.
+
+220
+00:14:28.312 --> 00:14:32.560
+Dynamic units work in G C C,
+but not in G C C High or D O D,
+
+221
+00:14:32.560 --> 00:14:36.187
+where an automation job
+has to keep them up.
+
+222
+00:14:36.187 --> 00:14:40.510
+And restricting a unit takes its
+members out of governance automation,
+
+223
+00:14:40.510 --> 00:14:43.513
+so restriction is a deliberate
+choice, default no.
+
+224
+00:14:43.513 --> 00:14:46.000
+Next, Lifecycle Workflows.
+
+225
+00:14:49.750 --> 00:14:55.025
+Lifecycle Workflows carry joiner, mover
+and leaver, so it helps to know the pieces.
+
+226
+00:14:55.025 --> 00:14:58.987
+A workflow has a trigger, a
+scope rule and a list of tasks.
+
+227
+00:14:58.987 --> 00:15:03.037
+Custom task extensions call a
+Logic App to reach other systems.
+
+228
+00:15:03.037 --> 00:15:07.801
+Scheduled runs happen on one tenant
+interval, every three hours by default.
+
+229
+00:15:07.801 --> 00:15:13.037
+The limits are a hundred workflows, twenty-five
+tasks each and a hundred extensions.
+
+230
+00:15:13.037 --> 00:15:15.450
+Two behaviors deserve the red box.
+
+231
+00:15:15.450 --> 00:15:20.293
+Execution limits can quarantine a scheduled
+run that would touch too many people,
+
+232
+00:15:20.293 --> 00:15:22.714
+but an on-demand run skips that guardrail,
+
+233
+00:15:22.714 --> 00:15:25.563
+and it ignores the workflow's
+own conditions too.
+
+234
+00:15:25.563 --> 00:15:27.700
+So what could break at our size?
+
+235
+00:15:31.450 --> 00:15:35.309
+At an agency our size, the
+limits bite in predictable ways,
+
+236
+00:15:35.309 --> 00:15:38.675
+and this is the program's
+design guidance for each.
+
+237
+00:15:38.675 --> 00:15:42.025
+A workflow per organization
+runs out of a hundred fast,
+
+238
+00:15:42.025 --> 00:15:45.300
+so build a few general
+workflows that branch on codes.
+
+239
+00:15:45.300 --> 00:15:48.588
+Build one reusable Logic
+App per integration.
+
+240
+00:15:48.588 --> 00:15:52.106
+Treat every on-demand run as
+a change with a second person,
+
+241
+00:15:52.106 --> 00:15:54.801
+because it can disable
+the wrong ten people.
+
+242
+00:15:54.801 --> 00:15:57.599
+Size execution limits so a reorganization
+
+243
+00:15:57.599 --> 00:16:00.475
+gets quarantined until
+someone approves it.
+
+244
+00:16:00.475 --> 00:16:05.287
+For urgent terminations, don't wait
+for the schedule: disable and revoke.
+
+245
+00:16:05.287 --> 00:16:08.841
+And until PIV revoke and
+device retire are automated,
+
+246
+00:16:08.841 --> 00:16:11.263
+keep a leaver checklist with owners.
+
+247
+00:16:11.263 --> 00:16:13.560
+Next, what still needs AD.
+
+248
+00:16:17.310 --> 00:16:19.734
+Hybrid lasts longer than anyone plans,
+
+249
+00:16:19.734 --> 00:16:23.597
+so it helps to name exactly what
+still needs Active Directory.
+
+250
+00:16:23.597 --> 00:16:26.198
+Synced users' attributes
+are still written there.
+
+251
+00:16:26.198 --> 00:16:29.123
+Kerberos applications
+need groups written back.
+
+252
+00:16:29.123 --> 00:16:33.033
+D N S, D H C P and legacy
+apps keep the forest alive,
+
+253
+00:16:33.033 --> 00:16:37.973
+and Windows logins to SQL
+Server skip Conditional Access.
+
+254
+00:16:37.973 --> 00:16:41.110
+Hybrid-joined devices still
+need some domain policy.
+
+255
+00:16:41.110 --> 00:16:45.274
+Moving a population's source of
+authority has firm entry checks,
+
+256
+00:16:45.274 --> 00:16:48.810
+and whether that move works
+in G C C is still unverified.
+
+257
+00:16:48.810 --> 00:16:53.872
+So retiring AD means clearing a list of
+named dependencies, not reaching a date.
+
+258
+00:16:53.872 --> 00:16:55.550
+Here's the checklist.
+
+259
+00:16:59.300 --> 00:17:03.190
+The checklist turns the nine stages
+into something you can tick off,
+
+260
+00:17:03.190 --> 00:17:04.787
+and that's its whole purpose.
+
+261
+00:17:04.787 --> 00:17:07.444
+There's one row per stage, plus PIV,
+
+262
+00:17:07.444 --> 00:17:11.675
+and one each for the Intune,
+Arc and non-person tracks.
+
+263
+00:17:11.675 --> 00:17:13.250
+A few are easy to miss.
+
+264
+00:17:13.250 --> 00:17:15.962
+Export site links, not just O U links.
+
+265
+00:17:15.962 --> 00:17:18.512
+Match accounts before the first full sync.
+
+266
+00:17:18.512 --> 00:17:22.450
+Write every access rule on
+codes, and don't use member-of.
+
+267
+00:17:22.450 --> 00:17:25.562
+Decide unit restriction
+before the unit exists.
+
+268
+00:17:25.562 --> 00:17:27.600
+Pair every grant with a block.
+
+269
+00:17:27.600 --> 00:17:31.850
+Prove seven days of sole-source
+changes before closing the ticket path.
+
+270
+00:17:31.850 --> 00:17:33.900
+And route logs out from the first day.
+
+271
+00:17:33.900 --> 00:17:35.980
+Finally, who decides.
+
+272
+00:17:39.730 --> 00:17:41.729
+Every decision here has one owner,
+
+273
+00:17:41.729 --> 00:17:44.655
+and that's what keeps the
+migration from stalling.
+
+274
+00:17:44.655 --> 00:17:47.541
+Identity engineering owns the plumbing,
+
+275
+00:17:47.541 --> 00:17:50.767
+the delegation model and
+each wave's go or no-go.
+
+276
+00:17:50.767 --> 00:17:55.093
+The ICAM governance body owns the
+authority map and the person key.
+
+277
+00:17:55.093 --> 00:17:59.043
+HR owns the codes, the data
+architect the schema, and application
+
+278
+00:17:59.043 --> 00:18:03.367
+owners their own access rules and
+their service accounts' conversion.
+
+279
+00:18:03.367 --> 00:18:06.768
+The CISO owns the controls
+and the drift findings.
+
+280
+00:18:06.768 --> 00:18:12.234
+And you can start Monday without new tools:
+export the tree, name the HR feed early,
+
+281
+00:18:12.234 --> 00:18:16.955
+populate the person key, remove other
+writers, and route your logs out.
+
+282
+00:18:16.955 --> 00:18:19.893
+Make the attributes
+true, and keep them true.
+
+283
+00:18:19.893 --> 00:18:20.720
+Thank you.

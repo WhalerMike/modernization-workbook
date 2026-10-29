@@ -1,0 +1,20 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.287
+Module 3 runs the migration.
+
+2
+00:00:02.287 --> 00:00:07.193
+We'll follow one analyst through a reassignment
+with no ticket, cut over in phases,
+
+3
+00:00:07.193 --> 00:00:11.659
+keep the attributes true with drift
+detection, and finish with the limits,
+
+4
+00:00:11.659 --> 00:00:14.640
+the checklist and the
+decisions for every track.

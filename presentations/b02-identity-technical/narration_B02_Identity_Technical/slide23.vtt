@@ -1,59 +1,25 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.497
-Governance in Active Directory
-was mostly a ticket queue:
+00:00:00.050 --> 00:00:03.700
+Module 4 is migrating,
+governing and proving it.
 
 2
-00:00:03.497 --> 00:00:07.375
-someone asked for access, someone
-added it, and nobody took it away.
+00:00:03.700 --> 00:00:05.890
+Chapter 10 states the finish line:
 
 3
-00:00:07.375 --> 00:00:09.563
-The target replaces that with a loop.
+00:00:05.890 --> 00:00:09.175
+the migration ends when
+governance runs on its own.
 
 4
-00:00:09.563 --> 00:00:14.883
-HR-driven provisioning creates the account,
-Lifecycle Workflows run the joiner,
+00:00:09.175 --> 00:00:13.014
+Joiners, movers and leavers
+flow from HR without a ticket,
 
 5
-00:00:14.883 --> 00:00:19.330
-mover and leaver tasks, access
-packages grant access with an expiry,
-
-6
-00:00:19.330 --> 00:00:22.824
-and access reviews remove
-what's no longer justified.
-
-7
-00:00:22.824 --> 00:00:27.638
-For example, seven days before the hire
-date the manager is emailed a Temporary
-
-8
-00:00:27.638 --> 00:00:32.600
-Access Pass, so the new hire registers a
-phishing-resistant credential on day one.
-
-9
-00:00:32.600 --> 00:00:36.887
-On the leave date, the account is
-disabled and its sessions revoked.
-
-10
-00:00:36.887 --> 00:00:41.363
-Two cautions: remove privileged
-access before the delete task runs,
-
-11
-00:00:41.363 --> 00:00:45.438
-and delete synced users in AD, or
-they come back on the next sync.
-
-12
-00:00:45.438 --> 00:00:47.660
-Quarterly reviews close the loop.
+00:00:13.014 --> 00:00:16.420
+and drift shows up in a diff
+instead of an incident.

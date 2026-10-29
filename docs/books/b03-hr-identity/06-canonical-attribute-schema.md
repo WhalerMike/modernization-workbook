@@ -22,6 +22,8 @@ lifecycle_review: 2027-04-01
 The standard-attribute layer: why OPM's data standards, not vendor fields, are the contract for federal employees. Contractors and vendors, whom HRIT doesn't cover: where to source them, and how to split authority among those sources. The design rules behind the schema. The implementation crosswalk, which every other page on this site links to instead of repeating. Why three extension attributes, and why they hold codes. The program attribute map: the one assignment of all fifteen extension attributes, which every book uses. How the hire and leave dates reach Entra ID from each landing zone. Who is allowed to write any of it.
 :::
 
+**This chapter is the HR track** of the companion guide's [four tracks](../guides/attribute-driven-migration.md#four-tracks): the attributes of people, sourced from HR and the contractor source. The device slots near the end of the chapter are the device half of the same map. Their values come from device provisioning, not HR ([Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md#the-device-attribute-schema)).
+
 ## The standard-attribute layer
 
 The schema below names Oracle fields because Oracle Fusion Cloud HCM is the Core HCM platform. But the durable contract is one level up: **OPM's standard personnel data.** Every agency on the platform records the same data elements with the same codes and meanings, defined by OPM's data standards (formerly published as the *Guide to Data Standards*, now maintained in OPM's online metadata repository),[^c06-opm-gds][^c06-ehri] and every personnel action carries a nature-of-action code from the same standards (Chapter 08).[^c06-gppa] For federal employees, mapping identity to the standard rather than to vendor fields means one crosswalk serves every employee population, survives the next vendor change, and can be reused by any agency on the platform. The standard stops at federal employees, though; contractors and vendors are covered in the next section.
@@ -107,6 +109,22 @@ Settle six things with the register's owner first. The first two decide whether 
 4. **Use the same carrier in both landing zones.** `extensionAttribute1`–`15` exist in on-premises AD and in Entra ID. For synced users, AD is the source and the Entra values are read-only; for cloud-only users they can be set when the user is created or updated.[^c06-onprem-ext] A rule written against `user.extensionAttribute10` works the same for a hybrid user and a cloud-mastered one, which matters during the years of coexistence.
 5. **Don't build an organizational hierarchy into attributes.** The reporting line is the `manager` relationship; organizational placement is `department`, `employeeOrgData` and one organization code. There's no encoded path, tree or composite key to maintain. Where a rule needs division or cost center, the program attribute map gives each one a flat code that mirrors its `employeeOrgData` value, not a path.
 
+### The attribute stores
+
+Entra ID gives a value five places to live, and they differ in who can write them and what can read them. The order below is the order to reach for them.
+
+| Store | What it is | Can a dynamic membership rule read it? |
+|---|---|---|
+| **Native properties** | `department`, `jobTitle`, `companyName`, `employeeId`, `employeeType`, `employeeHireDate`, `employeeOrgData`, `manager`, `accountEnabled` and the rest of the user object | Many, but not `employeeType`, `employeeOrgData` or `manager`[^c06-dyn-rules] |
+| **`extensionAttribute1`–`15`** | Fifteen string slots on users and devices, up to 1,024 characters each, also known as Exchange custom attributes 1–15. AD-mastered and read-only in Entra ID for synced users[^c06-ext-1024] | Yes[^c06-dyn-rules] |
+| **Directory extensions** | `extension_<appId>_<name>` properties registered on an application, synced from custom AD attributes or created through Graph. An object can hold up to 100 values, and a synced string is cut at 256 characters[^c06-dirext] | Single-valued ones, yes; multi-value ones, no[^c06-dyn-rules] |
+| **Custom security attributes** | Typed attributes in attribute sets, on users and service principals, readable and writable only through their own roles[^c06-csa] | No[^c06-csa-dyn] |
+| **Device properties** | The Entra device object's own properties and its own fifteen extension slots, set in Entra ID through Graph[^c06-ext-1024] | Yes, by device rules, which read only the device's own properties, never its owner's |
+
+: Where an attribute can live in Entra ID {.striped .hover}
+
+That is why the program mirrors values into extension slots. `employeeType` and `employeeOrgData` already hold the worker type, division and cost center, but no rule can read them, so the program attribute map copies each one as a code into a slot a rule can read (slots 5, 6 and 11 below). The program prefers extension attributes to directory extensions for the reason in design rule 4: the same slot exists in AD and in Entra ID, so one rule works in both landing zones. Custom security attributes are for sensitive values no rule needs, because anyone who can read a user can read its extension attributes.[^c06-csa] The guide's [attributes section](../guides/attribute-driven-migration.md#attributes) compares each store with Active Directory, attribute by attribute.
+
 ## The schema
 
 | Canonical field | Oracle HCM source | SCIM attribute | On-premises AD | Entra ID | Rule can read it | Used for |
@@ -163,7 +181,7 @@ The schema above names the HR-sourced carriers. The other books need more slots:
 
 Earlier drafts of Book 02 gave department code, classification and role slots of their own. They are the organization code, the worker type code and the position category, so they use slots 10, 11 and 12, and the hire and end dates use the worksheet's slots 2 and 3.
 
-Device objects have their own fifteen extension attributes. They are mastered in Entra ID and set through Microsoft Graph, so they never collide with the user slots.[^c06-onprem-ext] The program assigns them as follows:
+Device objects have their own fifteen extension attributes. They are mastered in Entra ID and set through Microsoft Graph, so they never collide with the user slots.[^c06-onprem-ext] They are the device half of the map, the Intune track: device provisioning writes them, not HR, and [Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md#the-device-attribute-schema) owns their values. The program assigns them as follows:
 
 | Device slot | Meaning | Values | Used in |
 |---|---|---|---|
@@ -208,3 +226,7 @@ The [SQL Server Identity Transformation series, Book 07](../b06-data-platform/17
 [^c06-ehri]: U.S. Office of Personnel Management, Federal Workforce Data, "EHRI Data Standards," <https://data.opm.gov/data-standards/ehri-data-standards> (accessed Oct 20, 2026).
 [^c06-cwt]: Oracle, *Oracle Fusion Cloud Human Resources 26B What's New*, "New Redwood Process to Change Worker Type" (contingent worker to employee in one transaction), <https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43513.htm> (accessed Oct 20, 2026).
 [^c06-fips201]: National Institute of Standards and Technology, FIPS 201-3, *Personal Identity Verification (PIV) of Federal Employees and Contractors*, January 2022 (background investigation and adjudication before issuance; identity proofing and registration meet IAL3; card validity of no more than six years), <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.201-3.pdf> (accessed Oct 20, 2026).
+[^c06-ext-1024]: Microsoft Graph, "onPremisesExtensionAttributes resource type" (each attribute stores up to 1,024 characters; read-only for synced users; device extensionAttributes managed only in Entra ID; "also known as Exchange custom attributes 1-15"), <https://learn.microsoft.com/graph/api/resources/onpremisesextensionattributes?view=graph-rest-1.0> (accessed Oct 29, 2026).
+[^c06-dirext]: Microsoft Learn, "Microsoft Entra Connect Sync: Directory extensions," section "Important considerations when using Directory Extensions" (up to 100 directory extension values per object; string values over 256 characters are truncated), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-feature-directory-extensions> (accessed Oct 29, 2026).
+[^c06-csa]: Microsoft Learn, "What are custom security attributes in Microsoft Entra ID?," sections "Objects that support custom security attributes" and "How do custom security attributes compare with extensions?" (users and service principals; restricted read and write access; anyone who can read the object can read extension data), <https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-overview> (accessed Oct 29, 2026).
+[^c06-csa-dyn]: Microsoft Learn, "Assign, update, list, or remove custom security attributes for a user," section "Frequently asked questions" (custom security attributes aren't supported in rules for dynamic membership groups), <https://learn.microsoft.com/entra/identity/users/users-custom-security-attributes> (accessed Oct 29, 2026).

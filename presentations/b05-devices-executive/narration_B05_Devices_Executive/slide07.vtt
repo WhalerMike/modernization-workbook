@@ -1,61 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.950
-For new devices, the doctrine is
-Intune-first: no ungoverned device, ever.
+00:00:00.050 --> 00:00:03.844
+Done as an unattended switch,
+hybrid join keeps the single
 
 2
-00:00:05.950 --> 00:00:09.650
-A new laptop is governed from
-the moment it first powers on.
+00:00:03.844 --> 00:00:07.400
+sign-on and quietly spends
+the governance underneath.
 
 3
-00:00:09.650 --> 00:00:13.219
-It never joins the old domain,
-never gets co-managed later,
+00:00:07.400 --> 00:00:09.900
+New device objects appear with no owner.
 
 4
-00:00:13.219 --> 00:00:16.637
-and never runs without an
-organizational assignment.
+00:00:09.900 --> 00:00:11.275
+Duplicates pile up.
 
 5
-00:00:16.637 --> 00:00:18.987
-The most important change is upstream:
+00:00:11.275 --> 00:00:15.300
+Turning on the managed-device
+policy too early locks people out.
 
 6
-00:00:18.987 --> 00:00:21.924
-procurement becomes the
-first governance step.
+00:00:15.300 --> 00:00:18.238
+Thousands of changes can't
+be traced to a decision.
 
 7
-00:00:21.924 --> 00:00:26.717
-The device's place in the organization
-is set when the purchase order goes out,
+00:00:18.238 --> 00:00:21.513
+And retired machines linger,
+padding the managed count.
 
 8
-00:00:26.717 --> 00:00:29.113
-the way HR records drive user accounts.
+00:00:21.513 --> 00:00:25.200
+Even a perfect rollout only
+covers domain-joined Windows.
 
 9
-00:00:29.113 --> 00:00:31.039
-If anything fails along the way,
+00:00:25.200 --> 00:00:31.650
+Macs, phones, Linux, personal devices, kiosks
+and servers all need their own answer.
 
 10
-00:00:31.039 --> 00:00:35.188
-the device goes to quarantine
-instead of quietly running degraded.
+00:00:31.650 --> 00:00:36.462
+So the decision: fleet-wide changes go
+wave by wave, approved by a person,
 
 11
-00:00:35.188 --> 00:00:37.621
-The decision for the sponsor and CIO:
+00:00:36.462 --> 00:00:41.275
+with the access policy in report-only
+mode until coverage is measured.
 
 12
-00:00:37.621 --> 00:00:41.675
-from the next purchase order, no
-new device takes the old path.
+00:00:41.275 --> 00:00:46.087
+The endpoint lead calls each wave;
+the CISO decides the enforcement.
 
 13
-00:00:41.675 --> 00:00:43.630
-Next, the access signal.
+00:00:46.087 --> 00:00:48.380
+Now, what a governed device needs.

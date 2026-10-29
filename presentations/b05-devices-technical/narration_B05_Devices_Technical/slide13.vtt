@@ -1,69 +1,21 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:06.325
-Step two gives every setting one tag:
-required, obsolete, high-risk or redundant.
+00:00:00.050 --> 00:00:04.888
+Module 2 is the GPO sunset, the
+program for the existing fleet.
 
 2
-00:00:06.325 --> 00:00:08.338
-Only required settings move on.
+00:00:04.888 --> 00:00:08.749
+It replaces Group Policy on
+endpoints already deployed,
 
 3
-00:00:08.338 --> 00:00:12.913
-Each one then faces four questions
-in order, and the first yes decides.
+00:00:08.749 --> 00:00:13.513
+and it's measured by GPOs retired with
+evidence, not by settings copied.
 
 4
-00:00:12.913 --> 00:00:15.050
-Is it still needed in the target model?
-
-5
-00:00:15.050 --> 00:00:19.550
-Group Policy accumulated settings that
-existed only because it could set them.
-
-6
-00:00:19.550 --> 00:00:21.813
-Does Intune have a native equivalent?
-
-7
-00:00:21.813 --> 00:00:22.724
-Most do.
-
-8
-00:00:22.724 --> 00:00:24.825
-Does a cloud pattern remove the need?
-
-9
-00:00:24.825 --> 00:00:29.221
-Folder redirection, for example,
-becomes OneDrive Known Folder Move,
-
-10
-00:00:29.221 --> 00:00:32.075
-and mapped printers
-become Universal Print.
-
-11
-00:00:32.075 --> 00:00:34.113
-And can a script enforce and prove it?
-
-12
-00:00:34.113 --> 00:00:37.634
-A setting that fails all four
-becomes a dated exception,
-
-13
-00:00:37.634 --> 00:00:40.774
-and its GPO stays linked
-for that population only.
-
-14
-00:00:40.774 --> 00:00:44.416
-The answers send settings to
-four landing zones in Intune,
-
-15
-00:00:44.416 --> 00:00:46.370
-and the slide has their limits.
+00:00:13.513 --> 00:00:19.080
+Chapters 07 and 08 run it, and
+Appendix A is the crosswalk.

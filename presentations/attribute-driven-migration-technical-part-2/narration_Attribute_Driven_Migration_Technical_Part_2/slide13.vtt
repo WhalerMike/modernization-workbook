@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.250
+The rest of the non-person
+track lives in Entra ID,
+
+2
+00:00:03.250 --> 00:00:07.490
+and the question for each identity
+is the same: who answers for it,
+
+3
+00:00:07.490 --> 00:00:10.850
+what credential does it
+hold, and what ends its life.
+
+4
+00:00:10.850 --> 00:00:15.625
+Service principals get two human owners
+and no client secrets in production.
+
+5
+00:00:15.625 --> 00:00:20.425
+Managed identities have credentials
+nobody sees, and end with their resource.
+
+6
+00:00:20.425 --> 00:00:25.600
+Workload identity federation trusts an
+external issuer, so there's no secret at all.
+
+7
+00:00:25.600 --> 00:00:30.370
+And AI agents get an agent identity
+with a required sponsor; the program
+
+8
+00:00:30.370 --> 00:00:35.463
+makes that sponsor an HR-mastered federal
+employee, and expiry is the review.
+
+9
+00:00:35.463 --> 00:00:40.300
+One caution: check what your cloud supports
+before you plan on agent identities.
+
+10
+00:00:40.300 --> 00:00:43.320
+Next, how attributes reach applications.

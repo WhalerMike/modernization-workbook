@@ -4,7 +4,7 @@ The 15-minute Why / What / Who / How briefing for [Book 03](../../docs/books/b03
 
 | File | Use |
 |---|---|
-| `B03_HR_Identity.pptx` | The deck: eleven narrated slides, then a backup section with the full source list |
+| `B03_HR_Identity.pptx` | The deck: twelve narrated slides (slide 2 places the book as the series' HR track), then a backup section with the full source list and the federal requirements' full citations |
 | `B03_HR_Identity_Narrated.pptx` | Self-running version with the narration embedded and slide timings set |
 | `B03_HR_Identity_Narration_Script.md` | The narration text, for practice |
 | `narration_B03_HR_Identity/` | Per-slide audio and durations |

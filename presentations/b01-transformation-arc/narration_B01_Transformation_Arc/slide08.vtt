@@ -1,72 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.298
-Group Policy was Active Directory's
-most ambitious delivery system,
+00:00:00.050 --> 00:00:05.315
+Here's why this matters: an Active
+Directory forest holds four populations,
 
 2
-00:00:04.298 --> 00:00:05.938
-and its most network-bound.
+00:00:05.315 --> 00:00:09.900
+not one, and each moves by its own
+track, with its own source of truth.
 
 3
-00:00:05.938 --> 00:00:09.188
-A client only gets it when it
-can reach a domain controller.
+00:00:09.900 --> 00:00:13.219
+People are the HR track,
+from the HR record or,
 
 4
-00:00:09.188 --> 00:00:14.475
-A cloud-native device, Entra joined
-and in Intune, has no such dependency.
+00:00:13.219 --> 00:00:16.262
+for contractors, the contractor source.
 
 5
-00:00:14.475 --> 00:00:16.000
-Don't copy it across.
+00:00:16.262 --> 00:00:20.955
+End-user devices are the Intune track:
+their attributes come from device
 
 6
-00:00:16.000 --> 00:00:20.201
-A fifty-setting GPO ported as
-fifty settings carries dead weight,
+00:00:20.955 --> 00:00:25.100
+provisioning, never from HR, and a
+device rule can't read its owner.
 
 7
-00:00:20.201 --> 00:00:25.725
-old conflicts and manual targeting, and
-Microsoft itself recommends starting fresh.
+00:00:25.100 --> 00:00:30.025
+Servers are the Arc track, tagged at
+onboarding and governed by Azure Policy.
 
 8
-00:00:25.725 --> 00:00:30.997
-So the program regenerates one clean
-policy per category, keyed to attributes,
+00:00:30.025 --> 00:00:33.924
+Non-person identities, like
+service accounts and AI agents,
 
 9
-00:00:30.997 --> 00:00:34.241
-into Intune, Conditional
-Access and, for servers,
+00:00:33.924 --> 00:00:35.913
+answer to their owner's record.
 
 10
-00:00:34.241 --> 00:00:39.350
-Azure machine configuration, because
-Intune doesn't manage Windows Server.
+00:00:35.913 --> 00:00:40.532
+The goal is the same for all four:
+true attributes, one source each,
 
 11
-00:00:39.350 --> 00:00:42.643
-Every change passes four
-stages: validation,
+00:00:40.532 --> 00:00:45.063
+read by policy, so AD can retire
+without losing what the tree did.
 
 12
-00:00:42.643 --> 00:00:46.738
-a simulated tenant, a report-only
-pilot, then production.
-
-13
-00:00:46.738 --> 00:00:48.660
-And prefer require over block,
-
-14
-00:00:48.660 --> 00:00:52.274
-except where the federal SCuBA
-baseline demands a block.
-
-15
-00:00:52.274 --> 00:00:55.900
-Books 05 and 04 carry the detail.
+00:00:45.063 --> 00:00:49.130
+Group Policy splits the same
+way, so policy is next.

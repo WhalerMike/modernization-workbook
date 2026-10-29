@@ -1,79 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.574
-What replaces it depends
-on what you're managing,
+00:00:00.050 --> 00:00:01.312
+Here's the core problem.
 
 2
-00:00:02.574 --> 00:00:05.225
-because devices and servers
-take different roads.
+00:00:01.312 --> 00:00:06.099
+Group Policy governed by position,
+and an Intune device has no position.
 
 3
-00:00:05.225 --> 00:00:09.103
-For endpoints, the Entra device
-object carries the identity,
+00:00:06.099 --> 00:00:12.025
+Where a computer sat in the organizational
+unit (OU) tree quietly did five jobs.
 
 4
-00:00:09.103 --> 00:00:12.127
-Intune carries configuration
-and compliance,
+00:00:12.025 --> 00:00:16.057
+It decided which settings applied,
+which setting won, who could change it,
 
 5
-00:00:12.127 --> 00:00:16.625
-Autopilot does zero-touch provisioning,
-and Defender covers threats.
+00:00:16.057 --> 00:00:19.350
+when it refreshed, and what
+evidence you had of what applied.
 
 6
-00:00:16.625 --> 00:00:20.388
-Servers are different, and the old
-design documents got this wrong.
+00:00:19.350 --> 00:00:22.812
+An Entra-joined, Intune-managed
+device has none of that.
 
 7
-00:00:20.388 --> 00:00:22.849
-Intune doesn't manage Windows Server.
+00:00:22.812 --> 00:00:26.487
+Policy goes flatly to groups,
+and nothing reads the tree.
 
 8
-00:00:22.849 --> 00:00:27.598
-A server comes under governance through
-Azure Arc, which makes it an Azure resource,
+00:00:26.487 --> 00:00:28.821
+When two policies set the same thing,
 
 9
-00:00:27.598 --> 00:00:31.313
-and Azure Policy machine
-configuration sets its configuration.
+00:00:28.821 --> 00:00:32.088
+Intune reports a conflict
+instead of resolving it.
 
 10
-00:00:31.313 --> 00:00:35.637
-Patching and protection come from Update
-Manager and Defender for Servers.
+00:00:32.088 --> 00:00:36.324
+Some jobs, like mapped drives, have
+no built-in equivalent at all.
 
 11
-00:00:35.637 --> 00:00:38.676
-Each of these systems is
-authoritative for one thing.
+00:00:36.324 --> 00:00:40.525
+That's why Microsoft advises
+against copying GPOs one for one.
 
 12
-00:00:38.676 --> 00:00:41.410
-So the program ties
-them together on stable
+00:00:40.525 --> 00:00:43.020
+Teams that do it find
+the governance gap only
 
 13
-00:00:41.410 --> 00:00:44.525
-keys and reconciles the
-inventory continuously.
+00:00:43.020 --> 00:00:45.650
+after the targeting model
+has already changed.
 
 14
-00:00:44.525 --> 00:00:47.902
-That way the fleet has one
-answer to a simple question:
+00:00:45.650 --> 00:00:49.738
+Every job the tree did implicitly
+has to be rebuilt explicitly.
 
 15
-00:00:47.902 --> 00:00:49.975
-what do we have, and is it governed?
-
-16
-00:00:49.975 --> 00:00:52.900
-For brand-new devices,
-the book goes further.
+00:00:49.738 --> 00:00:51.700
+So what about the obvious shortcut?

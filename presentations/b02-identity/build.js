@@ -21,7 +21,9 @@ I'll take it through four questions. Why identity matters now. What actually cha
 
 The short version: this is not a directory upgrade. It decides whether every security control after it works.
 
-Workbook: Book 02, index.`);
+What Book 02 accomplishes: a directory in which OU placement has become attributes and rules, delegation has moved to administrative units, and every service account has an owner and a target. Of the workbook's four tracks it carries the directory side of the HR track and the service accounts on the non-person track. Where people's attributes come from is Book 03; end-user devices and servers, the Intune and Arc tracks, are Book 05; AI agents are Book 17.
+
+Workbook: Book 02, index; Appendix A.`);
 }
 
 // ------------------------------------------------------------------ 2 Why: identity is the control plane
@@ -137,7 +139,37 @@ The key idea is the bottom line. In Active Directory, governance is implied by w
 Workbook: Book 02, Chapter 02 — The Structural Problem; Chapter 03 — Active Directory and Entra ID, Side by Side.`);
 }
 
-// ------------------------------------------------------------------ 5 What: hidden surface
+// ------------------------------------------------------------------ 5 What: four tracks (new)
+{
+  const s = D.content("What changes", "Four tracks: what Book 02 moves, and where the rest goes");
+  tag(s, "What");
+  const rows = [
+    ["HR track: people", "Employee and contractor accounts", "Sync, the Entra target, and the groups and units that read the attributes", "Book 03: where the attributes come from"],
+    ["Intune track: devices", "Workstations, laptops, mobile", "The device objects; the computer side of the GPO analysis", "Book 05, Chapters 03, 04, 08"],
+    ["Azure Arc track: servers", "Member servers", "The computer side of the GPO analysis", "Book 05, Chapter 09"],
+    ["Non-person track", "Service accounts, MSAs, gMSAs, service principals, AI agents", "Every service account inventoried, owned, and given a target", "Book 02, Ch 09; AI agents in Book 17"],
+  ];
+  s.addTable([head(["Track", "What it covers", "Book 02's part", "Carried in"]),
+    ...rows.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }, { text: r[3], options: { color: HEX.teal, bold: true } }])],
+    tableOpts([2.75, 2.9, 3.85, 2.65], { y: 1.55, fontSize: 13.5, rowH: [0.45, 0.75, 0.75, 0.75, 0.75] }));
+  callout(s, "Accomplishes", 5.2, 1.2, "FaClipboardCheck", HEX.navy, "What Book 02 accomplishes: ",
+    "a directory where placement has become attributes and rules, and every service account has an owner and a target. Federal requirement: NIST SP 800-53 Rev. 5 AC-2, AC-3(13), AC-6; OMB M-22-09.");
+  sources(s, "Sources: Book 02, Ch 02, 08, 09; Appendix A (NIST SP 800-53 Rev. 5 AC-2, AC-3(13), AC-6; OMB M-22-09). Track model: series framing (design guidance); Books 03, 05, 17.");
+  s.addNotes(
+`An Active Directory forest holds four populations of identity, and they move by different paths, so the workbook treats them as four tracks, each with its own source of truth. The track model is the program's framing, design guidance.
+
+The HR track is people, employees and contractors. Book 02 builds the directory side: sync, the Entra target, and the groups and administrative units that read the attributes. Where those attributes come from, HR and the contractor source, is Book 03.
+
+The Intune track is end-user devices and the Azure Arc track is member servers. Book 02's GPO analysis finds the computer-configuration settings; Book 05 moves them, Chapters 03, 04 and 08 for devices and Chapter 09 for servers.
+
+The non-person track is the service accounts, MSAs and gMSAs, service principals and AI agents. Book 02, Chapter 09 inventories every service account, gives it an owner and a target, and moves it; AI agents are Book 17.
+
+What Book 02 accomplishes: a directory where placement has become attributes and rules, and every service account has an owner and a target. Appendix A maps that work to NIST SP 800-53 Rev. 5: account management, AC-2, attribute-based access control, AC-3(13), and least privilege, AC-6; and to OMB M-22-09's enterprise-managed identities with phishing-resistant MFA.
+
+Workbook: Book 02, Chapters 02, 08 and 09; Appendix A — "NIST SP 800-53 Rev. 5 control mapping," "OMB M-22-09"; Books 03, 05 and 17.`);
+}
+
+// ------------------------------------------------------------------ 6 What: hidden surface
 {
   const s = D.content("What changes", "The migration surface is much larger than users and groups");
   tag(s, "What");

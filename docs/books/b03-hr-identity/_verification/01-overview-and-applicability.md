@@ -63,3 +63,14 @@ Applied from the research page `docs/research/hcm-entra-implementation.md`; ever
 | # | Claim | Where | Verdict | Source note |
 |---|---|---|---|---|
 | 1 | "No OPM document mandates or specifies Entra ID integration" | One caution, stated up front | corrected (narrowed): no OPM document specifies Entra integration *for the agency's own directory*; the solicitation names OPM's Entra-based solution for the platform's own sign-in and users and lists an HR-fed identity interconnection only as a sample | c01-pws (Solicitation Amd 4, PWS §5.1.1(3) p. 26; Appendix B p. 95) |
+
+## Revision 2026-10-29 — four tracks and companion-guide alignment
+
+Added the HR-track framing to *Where it doesn't apply as written* (non-person identities and devices/servers point to their tracks) and an end state with *How you know you're there* after *What success looks like*. No new Microsoft facts and no new footnotes.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | A non-person identity has no HR record; owner and sponsor are its accountability; lifecycle follows the owning record and credential expiry | Where it doesn't apply | restated-as-design (shared FRAMING.md); links guide #non-person-identity-track | — |
+| 2 | HR never describes a device or a server; a device rule can't read its owner's attributes | Where it doesn't apply | carried; verified in Ch 06 this revision (device rule properties are the device's own) | Ch 06 log, row 5 |
+| 3 | End-state goal and how-you-know criteria | What success looks like | restated-as-design, labelled *(design guidance)*; book gates linked in Appendix C | — |
+| 4 | AC-2, PS-4, PS-5, IA-4 mapping | What success looks like | carried; links Chapter 11 #control-support-nist-sp-800-53-rev.-5 (c11-nist-80053, checked Oct 20) — no new footnote | Ch 11 |

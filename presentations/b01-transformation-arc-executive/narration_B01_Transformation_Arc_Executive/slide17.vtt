@@ -1,99 +1,95 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.150
-Two things make the gates trustworthy.
+00:00:00.050 --> 00:00:04.862
+The roadmap sequences all of this as an
+illustrative fifty-two-week program.
 
 2
-00:00:02.150 --> 00:00:05.374
-First, every gate criterion
-is evaluated from the
+00:00:04.862 --> 00:00:08.000
+The weeks are a sequencing
+model, not a commitment;
 
 3
-00:00:05.374 --> 00:00:08.913
-repository and the drift
-reports, not from a signature.
+00:00:08.000 --> 00:00:11.062
+large federal estates
+typically run multi-year.
 
 4
-00:00:08.913 --> 00:00:14.012
-Zero drift for fourteen days is a
-query; so is every PC cloud-joined.
+00:00:11.062 --> 00:00:13.399
+There are seven phases and six gates.
 
 5
-00:00:14.012 --> 00:00:17.412
-A gate the engine can't evaluate
-needs a better criterion.
+00:00:13.399 --> 00:00:16.875
+Pre-flight stands up the platform
+and runs the assessment.
 
 6
-00:00:17.412 --> 00:00:20.337
-Second, rollback triggers are thresholds,
+00:00:16.875 --> 00:00:22.463
+Foundation puts identity in place, including
+the access baseline and the HR feed.
 
 7
-00:00:20.337 --> 00:00:23.763
-not judgment calls, and
-the agency sets the values.
+00:00:22.463 --> 00:00:26.353
+A pilot division, typically
+IT, proves the whole pattern,
 
 8
-00:00:23.763 --> 00:00:26.462
-Drift above the threshold halts the phase.
+00:00:26.353 --> 00:00:28.637
+with zero drift for a hold period.
 
 9
-00:00:26.462 --> 00:00:29.720
-Conditional Access blocking
-too many legitimate
+00:00:28.637 --> 00:00:32.175
+Rollout is the longest
+phase, division by division.
 
 10
-00:00:29.720 --> 00:00:32.124
-sign-ins means the policy is reverted.
+00:00:32.175 --> 00:00:35.871
+Then legacy retirement,
+then the shortest phase,
 
 11
-00:00:32.124 --> 00:00:35.950
-If drift detection stops
-reporting, all phase work halts.
+00:00:35.871 --> 00:00:39.475
+retiring AD DS itself,
+and finally steady state.
 
 12
-00:00:35.950 --> 00:00:38.022
-Authority is fixed in advance,
+00:00:39.475 --> 00:00:41.112
+Two properties define it.
 
 13
-00:00:38.022 --> 00:00:42.663
-from the steward on the early gates
-to the sponsor and CIO on the last.
+00:00:41.112 --> 00:00:44.810
+The five workstreams run in
+parallel, each with a named lead,
 
 14
-00:00:42.663 --> 00:00:44.250
-And be clear about the end.
+00:00:44.810 --> 00:00:49.187
+because finishing one before starting
+the next doubles the duration.
 
 15
-00:00:44.250 --> 00:00:47.557
-A forest in backup isn't
-a lasting fallback:
+00:00:49.187 --> 00:00:53.488
+And it's gated: a phase opens only
+when the previous gate clears.
 
 16
-00:00:47.557 --> 00:00:53.225
-a backup is valid only within the
-tombstone lifetime, 180 days by default.
+00:00:53.488 --> 00:00:56.375
+The decision closes the loop on ownership.
 
 17
-00:00:53.225 --> 00:00:57.712
-The real rollback point is the last
-moment a domain controller still runs.
+00:00:56.375 --> 00:00:58.930
+Put the gate dates on
+the sponsor's calendar,
 
 18
-00:00:57.712 --> 00:01:01.713
-So G5 is the sponsor's and the
-CIO's decision, made on evidence:
+00:00:58.930 --> 00:01:02.763
+and the end date of every exception
+on the authorizing official's.
 
 19
-00:01:01.713 --> 00:01:06.368
-no live production dependency on
-Active Directory authentication,
+00:01:02.763 --> 00:01:05.913
+Gate G0 gets its date in Phase 0.
 
 20
-00:01:06.368 --> 00:01:10.124
-or a documented Kerberos island
-with an end-of-life date.
-
-21
-00:01:10.124 --> 00:01:12.310
-Next, the external clocks.
+00:01:05.913 --> 00:01:08.500
+Next, what makes the gates trustworthy.

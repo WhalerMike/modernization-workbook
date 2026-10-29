@@ -1,67 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.425
-So, four decisions.
+00:00:00.050 --> 00:00:04.767
+Chapter 12 puts it all in sequence: an
+illustrative fifty-two-week program,
 
 2
-00:00:01.425 --> 00:00:05.925
-First, name the owners, one decider per
-decision, starting with the sponsor,
+00:00:04.767 --> 00:00:09.872
+seven phases from pre-flight to steady
+state, with five workstreams in parallel.
 
 3
-00:00:05.925 --> 00:00:08.506
-the authorizing official and the steward,
+00:00:09.872 --> 00:00:13.024
+Large federal estates
+usually take several years;
 
 4
-00:00:08.506 --> 00:00:13.375
-and confirm who holds the Zero Trust
-lead role that M-22-09 required.
+00:00:13.024 --> 00:00:15.862
+the weeks are a sequencing
+model, not a promise.
 
 5
-00:00:13.375 --> 00:00:19.037
-Second, run the read-only assessment across
-all eleven categories, with provenance.
+00:00:15.862 --> 00:00:20.445
+A phase opens only when the previous
+gate clears, and gates read from data.
 
 6
-00:00:19.037 --> 00:00:24.275
-Third, stand up the platform host, so
-every change has one writer and a plan.
+00:00:20.445 --> 00:00:24.391
+“Zero drift for fourteen days”
+is a query, not a signature.
 
 7
-00:00:24.275 --> 00:00:28.037
-And fourth, set the dates: gate
-dates on the sponsor's calendar,
+00:00:24.391 --> 00:00:29.301
+Underneath it all is one structural
+move: separate truth from enforcement.
 
 8
-00:00:28.037 --> 00:00:31.800
-and every exception's end date
-on the authorizing official's.
+00:00:29.301 --> 00:00:33.249
+A governance layer holds and
+reconciles the authoritative state,
 
 9
-00:00:31.800 --> 00:00:34.438
-None of this needs a vendor
-decision on day one.
+00:00:33.249 --> 00:00:37.384
+while the identity, network and device
+platforms enforce it at runtime.
 
 10
-00:00:34.438 --> 00:00:37.525
-Start with an inventory,
-an owner, and a date.
+00:00:37.384 --> 00:00:39.106
+And read one clock carefully:
 
 11
-00:00:37.525 --> 00:00:41.500
-Modernization is a governance
-rebuild, not a platform swap.
+00:00:39.106 --> 00:00:43.118
+FedRAMP's 2027 date is about
+certifying cloud providers.
 
 12
-00:00:41.500 --> 00:00:46.815
-Book 01 is the map, and Books 02
-to 09 carry each part in depth,
+00:00:43.118 --> 00:00:46.164
+The agency still authorizes
+its own systems.
 
 13
-00:00:46.815 --> 00:00:49.362
-with every claim footnoted.
-
-14
-00:00:49.362 --> 00:00:50.180
-Thank you.
+00:00:46.164 --> 00:00:48.650
+That brings us to the decisions.

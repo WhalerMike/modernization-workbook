@@ -67,6 +67,20 @@ Restricted management has limits that shape any design that uses it:[^c05-rmau]
 - Only users, devices, and security groups can be members; Microsoft 365, mail-enabled, and distribution groups can't.
 - Applications can't modify members through Microsoft Graph application permissions; they need an Entra role assigned at the AU's scope.
 
+### What the limits mean for the design
+
+Each limit above shapes the design in a specific way. The responses are the program's *(design guidance)*:
+
+| Limit | Implication | Response |
+|---|---|---|
+| AUs can't be nested | There's no department-over-division tree, and no role assignment that cascades down one | Keep AUs flat. Where a role must cover several AUs, give it one assignment per AU, generated from one list: the [registry](#administrative-unit-registry) |
+| AUs scope writes, not reads | A scoped administrator can still browse users outside the AU in the Entra admin center and PowerShell | Don't use AUs for confidentiality. Protect sensitive values with custom security attributes and access controls in the application |
+| Only some roles can be AU-scoped | Some matrix roles, such as the Tier 1 readers, can't be confined to an AU | Check every role in the [matrix](#role-assignment-matrix) against Microsoft's list. Roles that can't be scoped stay central or sit behind PIM approval |
+| Dynamic AUs need the global Azure cloud | A GCC tenant, the program's target, pairs with Entra ID in global Azure and can use them; a GCC High or DoD tenant pairs with Azure Government and can't[^c05-gov-pairing] | In GCC, use dynamic rules. In GCC High or DoD, maintain AU membership with an automation job under change control, covered by the [drift checks](#drift-detection) |
+| At most 100 restricted management AUs, and their members are outside ID Governance | Restricting a population takes it out of Lifecycle Workflows, access packages, access reviews and PIM | Restrict only by explicit decision, with a default of no ([Restricted management: a per-AU decision](#restricted-management-a-per-au-decision)). Never restrict a large HR population, or the joiner, mover and leaver automation stops for it |
+
+AUs hold users, groups or devices, so they serve the HR track (users and groups) and the Intune track (devices). Arc-enabled servers are delegated with Azure RBAC, not AUs ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md)). Accountability for non-person identities is a named owner and sponsor, not an AU ([companion guide](../guides/attribute-driven-migration.md#non-person-identity-track)).
+
 ## The three-tier model
 
 | Tier | Scope | Who | What they can do |
@@ -256,3 +270,4 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c05-fedramp-ac]: FedRAMP, "Access Control" (NIST SP 800-53 Rev. 5 controls, catalog release 5.2.0), AC-2(j) and AC-6(7), <https://fedramp.gov/2026/reference/controls/access-control/> (accessed Oct 21, 2026).
 [^c05-purview]: Microsoft Learn, "Administrative units in Microsoft Purview," <https://learn.microsoft.com/purview/purview-admin-units> (accessed Oct 20, 2026).
 [^c05-update-au]: Microsoft Learn, "Update-MgDirectoryAdministrativeUnit," <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.directorymanagement/update-mgdirectoryadministrativeunit?view=graph-powershell-1.0> (accessed Oct 20, 2026).
+[^c05-gov-pairing]: Microsoft Learn, "Cloud feature availability for US Government customers," section "Microsoft 365 integration" ("Office 365 and Office 365 GCC are paired with Microsoft Entra ID in Azure. Office 365 GCC High and Office 365 DoD are paired with Microsoft Entra ID in Azure Government"), <https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration> (accessed Oct 29, 2026); Microsoft Learn, "Manage users or devices for an administrative unit with rules for dynamic membership groups," Prerequisites ("Global Azure cloud (not available in specialized clouds, such as Azure Government ...)"), <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-dynamic> (accessed Oct 29, 2026).

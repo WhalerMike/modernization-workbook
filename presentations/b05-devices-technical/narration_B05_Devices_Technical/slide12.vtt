@@ -1,61 +1,68 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.220
-The program keeps three efforts apart:
-Intune-first for new devices, this sunset
+00:00:00.050 --> 00:00:03.862
+Three places in the shared
+runbook cause most of the outages.
 
 2
-00:00:05.220 --> 00:00:10.625
-for the existing fleet, and regenerate-not-copy
-as the way replacements are written.
+00:00:03.862 --> 00:00:05.137
+Precedence first.
 
 3
-00:00:10.625 --> 00:00:15.700
-Microsoft's own advice is that assessing
-every setting is likely impractical,
+00:00:05.137 --> 00:00:10.663
+Existing devices usually enroll in Intune
+through Group Policy, with no reimage.
 
 4
-00:00:15.700 --> 00:00:19.525
-so the program runs seven steps,
-each with an exit condition.
+00:00:10.663 --> 00:00:15.307
+But while the GPOs are still linked,
+overlaps are dangerous: Group Policy
 
 5
-00:00:19.525 --> 00:00:23.581
-Step one: nothing is translated or
-retired until it's inventoried,
+00:00:15.307 --> 00:00:19.875
+usually wins, and for some settings
+it's a race with no guaranteed winner.
 
 6
-00:00:23.581 --> 00:00:28.388
-including its targeting, because that's
-the part that doesn't survive the move.
+00:00:19.875 --> 00:00:24.075
+So document every overlap before
+Intune enforces anything.
 
 7
-00:00:28.388 --> 00:00:31.654
-Group Policy analytics then
-shows, setting by setting,
+00:00:24.075 --> 00:00:26.037
+NTLM second.
 
 8
-00:00:31.654 --> 00:00:35.575
-what's ready to migrate, what isn't
-supported and what's deprecated.
+00:00:26.037 --> 00:00:31.714
+A common mistake is treating the strictest
+LAN Manager level as blocking NTLM;
 
 9
-00:00:35.575 --> 00:00:38.363
-Plan around its limits,
-which are on the slide.
+00:00:31.714 --> 00:00:35.993
+it doesn't, because domain
+controllers still accept NTLMv2.
 
 10
-00:00:38.363 --> 00:00:42.524
-Its migrate step is, in
-Microsoft's words, best effort.
+00:00:35.993 --> 00:00:39.660
+Blocking takes the Restrict
+NTLM policies, staged,
 
 11
-00:00:42.524 --> 00:00:45.847
-So the program treats the
-readiness report as proof that
+00:00:39.660 --> 00:00:44.201
+and only after a fourteen to thirty
+day audit and owner sign-off.
 
 12
-00:00:45.847 --> 00:00:48.940
-an equivalent exists, never
-that a setting is needed.
+00:00:44.201 --> 00:00:45.662
+And SPNs third.
+
+13
+00:00:45.662 --> 00:00:52.037
+A missing SPN is the silent case: Kerberos
+isn't tried and NTLM quietly works,
+
+14
+00:00:52.037 --> 00:00:55.800
+until the NTLM block
+turns it into an outage.

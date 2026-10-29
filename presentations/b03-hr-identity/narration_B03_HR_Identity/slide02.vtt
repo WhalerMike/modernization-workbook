@@ -1,75 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.675
-In many agencies, nothing
-connects HR to identity.
+00:00:00.050 --> 00:00:05.314
+Here's why this matters: the series
+moves four populations to the cloud,
 
 2
-00:00:03.675 --> 00:00:08.194
-Accounts, access and credentials
-are created and removed by ticket,
+00:00:05.314 --> 00:00:08.763
+each on its own track, and
+Book 03 is the HR track.
 
 3
-00:00:08.194 --> 00:00:10.050
-and that costs in three ways.
+00:00:08.763 --> 00:00:09.887
+It's about people.
 
 4
-00:00:10.050 --> 00:00:12.450
-First, access outlives the job.
+00:00:09.887 --> 00:00:14.483
+Every employee account follows the HR
+record, and every contractor account
 
 5
-00:00:12.450 --> 00:00:17.197
-When someone leaves, removal waits for a
-ticket, yet the PIV standard says a card
+00:00:14.483 --> 00:00:19.225
+follows the contractor source of authority,
+which the agency still has to name.
 
 6
-00:00:17.197 --> 00:00:22.163
-that can't be collected must be terminated
-within eighteen hours of notification.
+00:00:19.225 --> 00:00:24.012
+Then joining, moving and leaving
+change access by rule, with no ticket.
 
 7
-00:00:22.163 --> 00:00:24.050
-A ticket queue struggles with that.
+00:00:24.012 --> 00:00:29.128
+You'll know you're there when every enabled
+account matches an authoritative record
 
 8
-00:00:24.050 --> 00:00:26.364
-Second, records drift: the phone book,
+00:00:29.128 --> 00:00:31.979
+or an owned exception,
+and every group that came
 
 9
-00:00:26.364 --> 00:00:31.300
-the manager and the approval routing
-stay wrong until someone files a ticket.
+00:00:31.979 --> 00:00:35.049
+from an organizational unit
+(OU) is a validated rule.
 
 10
-00:00:31.300 --> 00:00:35.563
-And third, every joiner, mover
-and leaver is help-desk work.
+00:00:35.049 --> 00:00:37.997
+Devices and servers are Book 05,
 
 11
-00:00:35.563 --> 00:00:38.024
-Zero Trust makes the gap obvious.
+00:00:37.997 --> 00:00:43.212
+and service accounts and AI
+agents are Books 02, 06 and 17.
 
 12
-00:00:38.024 --> 00:00:42.076
-A token proves who signed it, but
-not that the claim is still true:
+00:00:43.212 --> 00:00:45.037
+HR never describes those.
 
 13
-00:00:42.076 --> 00:00:47.062
-that the person still works here, in the
-same position, for the same supervisor.
-
-14
-00:00:47.062 --> 00:00:48.699
-Those are HR facts.
-
-15
-00:00:48.699 --> 00:00:51.435
-And if we do nothing,
-we'll rebuild the same
-
-16
-00:00:51.435 --> 00:00:54.310
-manual process twice,
-on two new platforms.
+00:00:45.037 --> 00:00:47.570
+Now, how identity gets built today.

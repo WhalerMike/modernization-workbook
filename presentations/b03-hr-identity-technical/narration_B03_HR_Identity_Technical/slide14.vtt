@@ -1,45 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.711
-The endpoint has a contract worth
-designing around: batches of up to fifty,
+00:00:00.050 --> 00:00:04.954
+On the source side, a full extract seeds
+the population and event feeds carry the
 
 2
-00:00:04.711 --> 00:00:08.685
-a daily call cap that depends on
-licensing, and a rate limit that
+00:00:04.954 --> 00:00:07.851
+changes, and the feeds
+have to start right after
 
 3
-00:00:08.685 --> 00:00:12.888
-two Microsoft pages state differently,
-so pace to the stricter one.
+00:00:07.851 --> 00:00:10.600
+the initial load or
+changes fall into the gap.
 
 4
-00:00:12.888 --> 00:00:16.514
-Give the client only the upload
-and log-reading permissions,
+00:00:10.600 --> 00:00:13.700
+The middleware then does
+five things for every event.
 
 5
-00:00:16.514 --> 00:00:19.924
-ideally the scoped version that
-limits it to apps it owns.
+00:00:13.700 --> 00:00:15.225
+Two deserve emphasis.
 
 6
-00:00:19.924 --> 00:00:23.884
-Three design rules sit underneath:
-one provisioning app per source,
+00:00:15.225 --> 00:00:18.349
+Sequencing, because a
+mover and a leaver applied
 
 7
-00:00:23.884 --> 00:00:28.055
-no client secrets, and a pause switch
-held by an operator rather than the
+00:00:18.349 --> 00:00:21.238
+out of order is a correctness
+bug, not a glitch.
 
 8
-00:00:28.055 --> 00:00:32.863
-middleware, so a bad batch can be stopped
-before it disables thousands of accounts.
+00:00:21.238 --> 00:00:24.120
+And provenance, written
+before the call returns,
 
 9
-00:00:32.863 --> 00:00:35.040
-Next, where the users land.
+00:00:24.120 --> 00:00:27.650
+because without that record
+there's no verifiable outcome.
+
+10
+00:00:27.650 --> 00:00:31.083
+One more rule: send the
+complete record every time,
+
+11
+00:00:31.083 --> 00:00:33.762
+or an empty field can clear a real value.
+
+12
+00:00:33.762 --> 00:00:36.890
+Next, the contract that endpoint enforces.

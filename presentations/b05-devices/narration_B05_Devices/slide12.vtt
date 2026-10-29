@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.807
+Servers come under governance
+through Azure Arc.
+
+2
+00:00:02.807 --> 00:00:06.573
+Onboarding uses the Connected
+Machine agent with least privilege:
+
+3
+00:00:06.573 --> 00:00:10.675
+a certificate-based identity that's
+needed only when the server connects.
+
+4
+00:00:10.675 --> 00:00:14.888
+Configuration comes from Azure Policy
+machine configuration baselines,
+
+5
+00:00:14.888 --> 00:00:19.100
+and patching and protection from Update
+Manager and Defender for Servers.
+
+6
+00:00:19.100 --> 00:00:20.763
+Two dates make this urgent.
+
+7
+00:00:20.763 --> 00:00:28.405
+Extended security updates for Windows Server
+2012 and 2012 R2 ended on October 13,
+
+8
+00:00:28.405 --> 00:00:33.125
+2026, so any 2012 host still
+running is a red finding.
+
+9
+00:00:33.125 --> 00:00:39.475
+And Windows Server 2016 reaches
+end of support on January 12, 2027.
+
+10
+00:00:39.475 --> 00:00:41.787
+The book is careful about rollback too.
+
+11
+00:00:41.787 --> 00:00:46.381
+Remove extensions before you disconnect
+the agent, because disconnecting
+
+12
+00:00:46.381 --> 00:00:50.901
+deletes the Azure resource, and the
+onboarding role isn't allowed to do that.
+
+13
+00:00:50.901 --> 00:00:53.520
+Last, how do we run all this and prove it?

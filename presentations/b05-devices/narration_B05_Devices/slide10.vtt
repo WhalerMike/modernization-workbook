@@ -1,63 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.807
-Servers come under governance
-through Azure Arc.
+00:00:00.050 --> 00:00:04.303
+The Group Policy sunset runs as
+a program, one setting at a time,
 
 2
-00:00:02.807 --> 00:00:06.573
-Onboarding uses the Connected
-Machine agent with least privilege:
+00:00:04.303 --> 00:00:07.388
+in seven steps from
+inventory to retirement.
 
 3
-00:00:06.573 --> 00:00:10.675
-a certificate-based identity that's
-needed only when the server connects.
+00:00:07.388 --> 00:00:11.224
+Every setting ends one of three
+ways: migrate it to Intune,
 
 4
-00:00:10.675 --> 00:00:14.888
-Configuration comes from Azure Policy
-machine configuration baselines,
+00:00:11.224 --> 00:00:14.651
+replace it with a cloud-native
+pattern, or retire it.
 
 5
-00:00:14.888 --> 00:00:19.100
-and patching and protection from Update
-Manager and Defender for Servers.
+00:00:14.651 --> 00:00:18.700
+The coexistence rules matter most,
+and the old guides had them wrong.
 
 6
-00:00:19.100 --> 00:00:20.763
-Two dates make this urgent.
+00:00:18.700 --> 00:00:22.825
+While a device is under both,
+Group Policy wins by default.
 
 7
-00:00:20.763 --> 00:00:28.405
-Extended security updates for Windows Server
-2012 and 2012 R2 ended on October 13,
+00:00:22.825 --> 00:00:27.250
+There's a setting that flips that, but it
+only covers part of the policy surface.
 
 8
-00:00:28.405 --> 00:00:33.125
-2026, so any 2012 host still
-running is a red finding.
+00:00:27.250 --> 00:00:30.258
+Defender settings and
+Windows Hello for Business
 
 9
-00:00:33.125 --> 00:00:39.475
-And Windows Server 2016 reaches
-end of support on January 12, 2027.
+00:00:30.258 --> 00:00:33.338
+have to be removed from
+Group Policy, not overridden.
 
 10
-00:00:39.475 --> 00:00:41.787
-The book is careful about rollback too.
+00:00:33.338 --> 00:00:38.550
+Group Policy preferences can leave
+settings behind after a GPO is unlinked,
 
 11
-00:00:41.787 --> 00:00:46.381
-Remove extensions before you disconnect
-the agent, because disconnecting
+00:00:38.550 --> 00:00:40.949
+so each one needs a planned cleanup.
 
 12
-00:00:46.381 --> 00:00:50.901
-deletes the Azure resource, and the
-onboarding role isn't allowed to do that.
+00:00:40.949 --> 00:00:45.950
+And populations are unlinked one at a
+time, because that's scoped and reversible.
 
 13
-00:00:50.901 --> 00:00:53.520
-Last, how do we run all this and prove it?
+00:00:45.950 --> 00:00:48.375
+Finally, measure, don't assume.
+
+14
+00:00:48.375 --> 00:00:52.263
+The program runs Group Policy
+analytics on its own exports.
+
+15
+00:00:52.263 --> 00:00:54.310
+Then the fleet itself migrates.

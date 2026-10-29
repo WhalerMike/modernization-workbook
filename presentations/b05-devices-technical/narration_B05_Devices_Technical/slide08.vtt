@@ -1,64 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.188
-A new device should arrive at a known baseline
-before anyone uses it, in two halves.
+00:00:00.050 --> 00:00:03.500
+Microsoft now ships two
+ways to provision Windows.
 
 2
-00:00:05.188 --> 00:00:07.138
-Compliance decides access.
+00:00:03.500 --> 00:00:06.377
+Autopilot device preparation is the newer,
 
 3
-00:00:07.138 --> 00:00:11.976
-The first step is a tenant-wide setting:
-mark devices with no compliance policy
+00:00:06.377 --> 00:00:09.175
+simpler one, with near
+real-time reporting.
 
 4
-00:00:11.976 --> 00:00:17.038
-as not compliant, so an unassigned device
-can't pass Conditional Access by default.
+00:00:09.175 --> 00:00:11.787
+Classic Autopilot is more feature-rich.
 
 5
-00:00:17.038 --> 00:00:20.523
-The Windows policy then
-requires the usual protections,
+00:00:11.787 --> 00:00:15.257
+The difference that matters
+most here is registration:
 
 6
-00:00:20.523 --> 00:00:23.563
-like BitLocker, Secure
-Boot and current Defender.
+00:00:15.257 --> 00:00:18.349
+device preparation has none,
+so it has no group tag.
 
 7
-00:00:23.563 --> 00:00:28.612
-Configuration sets the device up, starting
-from Microsoft's security baselines.
+00:00:18.349 --> 00:00:24.575
+In a GCC tenant both are available, because
+GCC uses the commercial Intune service.
 
 8
-00:00:28.612 --> 00:00:31.289
-Because these devices
-never had Group Policy,
+00:00:24.575 --> 00:00:29.196
+The program's default for standard hardware
+is classic Autopilot, user-driven,
 
 9
-00:00:31.289 --> 00:00:34.388
-there's nothing to conflict
-with, and that's the payoff.
+00:00:29.196 --> 00:00:34.030
+with Entra join, because its registration
+carries the procurement attribute and
 
 10
-00:00:34.388 --> 00:00:37.714
-Four exception paths cover what
-can't follow the main path,
+00:00:34.030 --> 00:00:38.438
+the purchase order from the vendor to
+the device before it's ever powered on.
 
 11
-00:00:37.714 --> 00:00:41.526
-from personal devices to Windows
-machines that can't enroll at all.
+00:00:38.438 --> 00:00:41.854
+Use device preparation
+where its advantages matter,
 
 12
-00:00:41.526 --> 00:00:46.838
-Each needs written justification, a
-compensating control and an audit entry,
+00:00:41.854 --> 00:00:46.513
+such as faster provisioning or a tenant
+that might later move to GCC High.
 
 13
-00:00:46.838 --> 00:00:49.220
-and the last one is isolated first.
+00:00:46.513 --> 00:00:49.820
+And never use either with
+hybrid join for new devices.

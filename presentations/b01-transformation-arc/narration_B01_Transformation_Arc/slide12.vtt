@@ -1,66 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.913
-Who leads it?
+00:00:00.050 --> 00:00:05.125
+When Active Directory retires, being
+inside the network stops meaning anything.
 
 2
-00:00:00.913 --> 00:00:03.090
-Chapter 09 sums it up in one line:
+00:00:05.125 --> 00:00:11.063
+M-22-09 puts it simply: users should
+log into applications, not networks.
 
 3
-00:00:03.090 --> 00:00:08.199
-Microsoft provides the instruments;
-the program provides the orchestra.
+00:00:11.063 --> 00:00:16.703
+The replacement has four parts: Zero Trust
+as the model, Conditional Access as the
 
 4
-00:00:08.199 --> 00:00:09.884
-The tools are each excellent,
+00:00:16.703 --> 00:00:22.175
+per-request decision, SASE at the edge,
+and phishing-resistant MFA as the proof.
 
 5
-00:00:09.884 --> 00:00:14.166
-but none of them decides what the
-organization's structure should become,
+00:00:22.175 --> 00:00:27.337
+BOD 25-01 makes blocking legacy
+authentication mandatory.
 
 6
-00:00:14.166 --> 00:00:18.587
-or what to do with what they find, and
-no vendor deadline forces that decision.
+00:00:27.337 --> 00:00:28.525
+Smart cards stay.
 
 7
-00:00:18.587 --> 00:00:21.399
-So name one decider for
-each kind of decision.
+00:00:28.525 --> 00:00:33.567
+Entra certificate-based authentication
+moves card validation from the domain
 
 8
-00:00:21.399 --> 00:00:27.712
-The sponsor and CIO own scope, funding,
-sequence, and when AD components retire.
+00:00:33.567 --> 00:00:36.577
+controller to Entra ID,
+though a card only counts
 
 9
-00:00:27.712 --> 00:00:31.261
-The authorizing official is the
-only one who can accept risk,
+00:00:36.577 --> 00:00:39.738
+as phishing-resistant if
+it's set up as multifactor.
 
 10
-00:00:31.261 --> 00:00:33.675
-so every deferred cutoff lands with them.
+00:00:39.738 --> 00:00:45.052
+And card issuance needs a successor first,
+because an enterprise CA depends on AD.
 
 11
-00:00:33.675 --> 00:00:36.073
-The CISO sets control requirements,
+00:00:45.052 --> 00:00:47.987
+Administrators hold no standing privilege:
 
 12
-00:00:36.073 --> 00:00:39.863
-and the steward holds the
-repository and clears most gates.
+00:00:47.987 --> 00:00:52.112
+roles are activated just in time,
+and a vault covers what can't be.
 
 13
-00:00:39.863 --> 00:00:43.706
-Then, each month, ask three
-things: how drift is trending,
-
-14
-00:00:43.706 --> 00:00:48.220
-whether changes are signed, and
-what risk acceptances are open.
+00:00:52.112 --> 00:00:57.500
+Book 04 covers policy and privilege,
+and Book 07 the certificates.

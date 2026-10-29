@@ -1,69 +1,68 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.088
-The third change is delegation.
+00:00:00.050 --> 00:00:03.088
+The second thing that changes
+is the size of the job.
 
 2
-00:00:02.088 --> 00:00:06.699
-In Active Directory, who could manage
-what was mostly expressed through OUs.
+00:00:03.088 --> 00:00:06.112
+Most migration plans
+count users and groups.
 
 3
-00:00:06.699 --> 00:00:11.550
-Entra ID has none, so delegation
-has to be rebuilt on purpose.
+00:00:06.112 --> 00:00:11.534
+But Active Directory has also been
+holding the rest of the estate together:
 
 4
-00:00:11.550 --> 00:00:15.413
-The program uses three tiers:
-tenant-wide control at Tier 0,
+00:00:11.534 --> 00:00:17.218
+DNS and DHCP, the certificate services
+behind smart cards, Wi-Fi, VPN and servers,
 
 5
-00:00:15.413 --> 00:00:19.277
-service administration like
-Exchange or Intune at Tier 1,
+00:00:17.218 --> 00:00:20.803
+RADIUS sign-in, applications
+that bind over LDAP,
 
 6
-00:00:19.277 --> 00:00:24.750
-and departmental work like the help desk
-at Tier 2, scoped to administrative units.
+00:00:20.803 --> 00:00:26.050
+the sync engine itself, domain-joined
+devices, time, and file permissions.
 
 7
-00:00:24.750 --> 00:00:26.424
-The platform has real limits,
+00:00:26.050 --> 00:00:28.050
+You don't need to memorize the list.
 
 8
-00:00:26.424 --> 00:00:29.562
-and the old design documents
-got several of them wrong.
+00:00:28.050 --> 00:00:32.188
+The point is that none of it moves
+just because users sync to the cloud.
 
 9
-00:00:29.562 --> 00:00:34.323
-Administrative units can't be nested,
-role-holding groups can't be dynamic,
+00:00:32.188 --> 00:00:36.713
+Some interim steps, like the
+NPS extension for Entra MFA,
 
 10
-00:00:34.323 --> 00:00:38.537
-and restricted management has to
-be chosen when a unit is created.
+00:00:36.713 --> 00:00:39.763
+are useful, but they still depend on AD.
 
 11
-00:00:38.537 --> 00:00:42.441
-That last one also takes its
-users out of Entra ID Governance,
+00:00:39.763 --> 00:00:43.576
+So the program gives each
+dependency its own adapter:
 
 12
-00:00:42.441 --> 00:00:45.876
-so no access reviews or
-lifecycle workflows for them.
+00:00:43.576 --> 00:00:47.476
+an owner, a target, a cutover
+test and a validation check.
 
 13
-00:00:45.876 --> 00:00:48.692
-So the program's default
-is unrestricted units,
+00:00:47.476 --> 00:00:50.850
+And they retire in priority
+order, not all at once.
 
 14
-00:00:48.692 --> 00:00:53.740
-with restricted management a deliberate,
-recorded choice for sensitive accounts.
+00:00:50.850 --> 00:00:52.440
+Next, delegation.

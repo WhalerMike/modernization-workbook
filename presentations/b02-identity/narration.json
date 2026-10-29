@@ -2,7 +2,7 @@
   {
     "slide": 1,
     "title": "Why Does Identity Matter?",
-    "say": "Welcome. This briefing comes from Book 02 of the Federal Modernization Workbook, Identity and Directory. It's about the move from Active Directory to Entra ID. We'll take it through four questions: why identity matters now, what actually changes when a directory moves to the cloud, who has to own which decisions, and how to do it without losing the governance that twenty-five years of Active Directory quietly carried. Here's the short version, and it's worth holding onto: this isn't a directory upgrade. It decides whether every security control that comes after it actually works. Let's start with why."
+    "say": "Welcome. This briefing comes from Book 02 of the Federal Modernization Workbook, Identity and Directory: the move from Active Directory to Entra ID. What Book 02 accomplishes is a directory where an object's place in the tree has become attributes and rules, and every service account has an owner and a target. Of the workbook's four tracks, it carries the directory side of the HR track and the service accounts. People's attributes are Book 03, devices and servers Book 05, and AI agents Book 17. We'll take it through four questions: why identity matters now, what changes, who owns which decisions, and how to do it. The short version: this isn't a directory upgrade. It decides whether every later control actually works. Let's start with why."
   },
   {
     "slide": 2,
@@ -21,36 +21,41 @@
   },
   {
     "slide": 5,
+    "title": "Four tracks: what Book 02 moves, and where the rest goes",
+    "say": "Before the size of the job, it helps to know which job is whose, because one O U tree holds four different populations. The workbook treats them as four tracks. People, the HR track: Book 02 builds the directory side, and Book 03 supplies the attributes. End-user devices and servers, the Intune and Arc tracks: Book 02's Group Policy analysis finds their settings, and Book 05 moves them. And the non-person track: every service account gets an owner and a target, here in Book 02, with AI agents in Book 17. Appendix A maps that work to account management, attribute-based access and least privilege in NIST 800-53, and to M-22-09. Next, everything else the directory holds up."
+  },
+  {
+    "slide": 6,
     "title": "The migration surface is much larger than users and groups",
     "say": "The second thing that changes is the size of the job. Most migration plans count users and groups. But Active Directory has also been holding the rest of the estate together: DNS and DHCP, the certificate services behind smart cards, Wi-Fi, VPN and servers, RADIUS sign-in, applications that bind over LDAP, the sync engine itself, domain-joined devices, time, and file permissions. You don't need to memorize the list. The point is that none of it moves just because users sync to the cloud. Some interim steps, like the NPS extension for Entra MFA, are useful, but they still depend on AD. So the program gives each dependency its own adapter: an owner, a target, a cutover test and a validation check. And they retire in priority order, not all at once. Next, delegation."
   },
   {
-    "slide": 6,
+    "slide": 7,
     "title": "Delegation has to be rebuilt without OUs",
     "say": "The third change is delegation. In Active Directory, who could manage what was mostly expressed through OUs. Entra ID has none, so delegation has to be rebuilt on purpose. The program uses three tiers: tenant-wide control at Tier 0, service administration like Exchange or Intune at Tier 1, and departmental work like the help desk at Tier 2, scoped to administrative units. The platform has real limits, and the old design documents got several of them wrong. Administrative units can't be nested, role-holding groups can't be dynamic, and restricted management has to be chosen when a unit is created. That last one also takes its users out of Entra ID Governance, so no access reviews or lifecycle workflows for them. So the program's default is unrestricted units, with restricted management a deliberate, recorded choice for sensitive accounts."
   },
   {
-    "slide": 7,
+    "slide": 8,
     "title": "Sign-in moves to phishing-resistant credentials",
     "say": "One more thing changes, and users will feel it: how they sign in. M-22-09 requires phishing-resistant MFA, and it names PIV as the simplest route. That flips the usual roadmap. Older plans saved smart-card sign-in for last. But federal staff already carry PIV or CAC cards, so certificate-based authentication in Entra ID is the fastest path: the credential's already issued, and no federation server is needed. The book runs four waves: privileged accounts first, then card holders, then managed Windows devices with Windows Hello, and finally everyone else with passkeys. Along the way, SMS and voice codes go for staff, and so do legacy protocols that send a password with every request. Those are found in the sign-in logs, fixed, blocked, and watched for thirty days. One thing stays on: password hash sync, for leaked-credential detection and as a fallback."
   },
   {
-    "slide": 8,
+    "slide": 9,
     "title": "Who decides, who does the work",
     "say": "Who. Directory migrations fail more often on ownership than on technology, so the book separates who decides from who does the work. Deciding: the CIO and sponsor set scope, funding and sequence; the CISO sets the control requirements; and the authorizing official accepts any risk the program carries instead of removing, like a service account that can't be converted yet. Building and running: identity engineering builds the target, from sync and authentication to PIM and administrative units; AD administrators clean up the source and eventually retire it, and the ISSO assembles the evidence. Then come the people who supply and accept: HR, application owners, the help desk and users. But one owner is usually missing. Microsoft's tools each own a slice of the picture, and nobody owns the gaps between them unless the program names someone. Next, how it's done."
   },
   {
-    "slide": 9,
+    "slide": 10,
     "title": "How: discover, assess, build, migrate, prove",
     "say": "The book's How chapters follow five steps: discover, assess, build, migrate and prove. Discovery starts with the read-only access every employee already has, and only then asks for narrow, time-bound access to what you still can't see. The assessment covers the whole forest without ever requesting rights that expose secrets. For the build, the book recommends Cloud Sync unless something needs Connect Sync, password hash sync everywhere, PIM for every admin role, and a tested Conditional Access baseline. Migration runs in waves, moving to phishing-resistant sign-in and switching off legacy authentication. And proof means drift checks and an evidence bundle the authorizing official can rely on. A few rules hold every time: never enforce an untested policy on everyone, keep two cloud-only break-glass accounts, and treat any closure as unproven until it carries its evidence."
   },
   {
-    "slide": 10,
+    "slide": 11,
     "title": "What a reference deployment produces",
     "say": "Chapter 11 puts the steps together in a reference deployment. It's a framing pattern, not a real engagement: a civilian agency with two forests, a trust between them, and a fleet of SQL Server instances. The figures are illustrative, but the mechanics are real. It runs in five phases: discover, normalize, map, migrate and validate. Two moments stand out. Every account the registry can't tie to a real owner becomes a finding. And every change is recorded with who asked for it, on what authority, and a hash of the result. What comes out is an evidence bundle for the authorizing official and the assessor, who authorize the agency's own system. And it belongs to the agency. When the integrator leaves, the registry, the findings and the evidence stay behind for the next authorization cycle. So, what are we asking for?"
   },
   {
-    "slide": 11,
+    "slide": 12,
     "title": "What we're asking for",
     "say": "Four asks. Name the owners, including someone who owns the gaps between the tools. Start read-only discovery now. It needs no elevated access to begin, so any request for more can follow the evidence instead of coming first. Put the dates on the plan: Connect Sync has to be upgraded by April 7, 2027, and NTLM and legacy authentication should come off wave by wave, not in one weekend. And agree what done means: every control backed by evidence an assessor can read, not a status in a ticket. Identity matters because it's now where every access decision gets made. Getting it right once, while the platform is being rebuilt anyway, costs far less than rebuilding the same gaps twice. Book 02 has the full argument and the runbooks, every claim footnoted, and Book 03 picks up where the directory's facts should come from. Thank you."
   }

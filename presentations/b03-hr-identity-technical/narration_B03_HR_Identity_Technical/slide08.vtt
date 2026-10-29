@@ -1,54 +1,46 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.703
-The crosswalk follows one design rule
-above all: use a native Entra attribute
+00:00:00.050 --> 00:00:04.700
+For federal employees, the real
+contract isn't Oracle's field names.
 
 2
-00:00:04.703 --> 00:00:09.138
-wherever one exists, because other
-Microsoft features already read them.
+00:00:04.700 --> 00:00:10.078
+It's OPM's standard personnel data: the
+same elements and codes in every agency,
 
 3
-00:00:09.138 --> 00:00:14.460
-Extensions come in only where a dynamic
-membership rule can't read the native value,
+00:00:10.078 --> 00:00:13.775
+and a nature-of-action code
+on every personnel action.
 
 4
-00:00:14.460 --> 00:00:17.392
-and that's a real gap:
-rules can't see worker type,
+00:00:13.775 --> 00:00:18.763
+Mapping identity to the standard means
+one crosswalk works for every employee
 
 5
-00:00:17.392 --> 00:00:19.475
-the org data block or the manager.
+00:00:18.763 --> 00:00:23.675
+population, survives the next vendor
+change, and can be reused across agencies.
 
 6
-00:00:19.475 --> 00:00:23.125
-So three extension attributes
-carry codes for access:
+00:00:23.675 --> 00:00:28.320
+OPM requires the coded blocks of the
+SF-50 to use only standard codes,
 
 7
-00:00:23.125 --> 00:00:26.450
-organization, worker type
-and position category.
+00:00:28.320 --> 00:00:31.863
+which is why they're dependable
+enough to drive access.
 
 8
-00:00:26.450 --> 00:00:29.620
-They exist in both Active
-Directory and Entra ID,
+00:00:31.863 --> 00:00:36.525
+One limit is worth remembering: the
+standard covers federal employees only.
 
 9
-00:00:29.620 --> 00:00:34.850
-so a rule works the same for hybrid and
-cloud users through years of coexistence.
-
-10
-00:00:34.850 --> 00:00:37.562
-And they hold codes, never display names.
-
-11
-00:00:37.562 --> 00:00:41.090
-Next, the rest of the slots,
-and who may write them.
+00:00:36.525 --> 00:00:39.890
+Next, how those values
+land in the directories.

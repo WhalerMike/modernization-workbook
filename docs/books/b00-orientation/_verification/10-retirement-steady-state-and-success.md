@@ -98,3 +98,14 @@ At the user's request, every certificate-dependent book maps its certificates to
 | 2 | CyberArk mechanism (capi) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-capi |
 | 3 | CyberArk mechanism (revmon) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-revmon |
 | 4 | Operating cadence and outcome rows monitored Cloud PKI only | Operating cadence; scorecard | corrected: three engines, CLM inventory | Book 07 Ch08 |
+
+## Revision 2026-10-29 — four tracks and companion-guide alignment
+
+The chapter already keeps AD-retirement dependencies (cutover milestones, the G4 extras, the checklist). Only the four missing ones from the series' "what still needs AD" content were added, each with a response.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Synced users' attributes keep AD alive; move the source of authority per population with entry checks; GCC availability of the transfer is open | Phase 4, after the G4 extras | restated-as-design; links Book 02 Ch10 | series limits content |
+| R2 | Written-back Kerberos groups are dependencies to retire | Same table | restated-as-design | Book 02 Ch09 and Ch10 |
+| R3 | SQL Server Windows logins are an IA-2 gap in the program's mapping | Same table | restated-as-design; the mapping is Book 06 Appendix A's (the Login Migration row maps IA-2) | Book 06 Appendix A |
+| R4 | Keep domain baselines until the last hybrid-joined device is gone | Same table | restated-as-design; links Book 05 Ch07 | series limits content |

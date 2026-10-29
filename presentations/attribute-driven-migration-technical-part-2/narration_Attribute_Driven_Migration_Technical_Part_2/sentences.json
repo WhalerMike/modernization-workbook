@@ -1,0 +1,1018 @@
+{
+ "1": [
+  [
+   0.05,
+   5.575,
+   "Welcome to Part 2 of the technical deep dive on attribute-driven migration to Entra ID."
+  ],
+  [
+   5.625,
+   3.65,
+   "Part 1 covered the model and the HR track, the people."
+  ],
+  [
+   9.275,
+   11.912,
+   "This part takes the other three tracks: end-user devices through Intune, servers through Azure Arc, and the non-person identities, service accounts, workloads and AI agents."
+  ],
+  [
+   21.188,
+   3.538,
+   "Then it runs the migration, from cutover to the checklist."
+  ],
+  [
+   24.725,
+   6.425,
+   "Microsoft facts were checked on October 29, 2026, and design guidance is labeled."
+  ],
+  [
+   31.15,
+   1.562,
+   "First, a quick recap."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.55,
+   "Two things from Part 1 carry everything here."
+  ],
+  [
+   2.6,
+   1.85,
+   "First, the four tracks."
+  ],
+  [
+   4.45,
+   11.787,
+   "People get their attributes from HR, devices from device provisioning, servers from Arc onboarding tags and Azure Policy, and non-person identities from their owner's record, never from HR."
+  ],
+  [
+   16.238,
+   2.712,
+   "Second, the store table, reduced."
+  ],
+  [
+   18.95,
+   13.4,
+   "Extension attributes drive user and device rules, custom security attributes feed Conditional Access for applications but not dynamic rules, Intune's inventory feeds filters, and Azure tags feed Policy."
+  ],
+  [
+   32.35,
+   2.075,
+   "Part 1 covered the HR track."
+  ],
+  [
+   34.425,
+   1.275,
+   "Now the computers."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   13.137,
+   "Module 1 is the Intune and Arc tracks: what each tool covers, how devices and servers get attributes that policy reads, the dangers of dynamic device groups, and a strategy for whatever neither tool reaches."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   10.1,
+   "Now the Intune track: end-user devices, whose attributes come from device provisioning, not HR. Start with what Intune covers, because it's not just Windows."
+  ],
+  [
+   10.15,
+   10.225,
+   "It manages Windows 11, Cloud PCs and Azure Virtual Desktop, Macs, iPhones and iPads, Android in several modes, and some Linux desktops."
+  ],
+  [
+   20.375,
+   6.325,
+   "ChromeOS is limited: Intune sees the inventory, but policy stays in Google's console."
+  ],
+  [
+   26.7,
+   8.213,
+   "Old Windows releases and Windows Server aren't Intune platforms, and neither are printers, network gear or OT devices."
+  ],
+  [
+   34.913,
+   4.525,
+   "So Intune does manage non-Microsoft platforms, within limits."
+  ],
+  [
+   39.438,
+   1.488,
+   "Now, how it targets them."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.325,
+   "This slide sets the default for Intune targeting, so it's worth getting right."
+  ],
+  [
+   4.375,
+   3.55,
+   "By default each policy goes to a dynamic device group."
+  ],
+  [
+   7.925,
+   14.162,
+   "Microsoft's current guidance, checked October 29, is to prefer assignment filters where they meet the need, because dynamic device groups add processing delay, and the Federal Modernization Workbook's Book 05 now says the same."
+  ],
+  [
+   22.087,
+   4.388,
+   "Send user settings to user groups and device settings to device groups."
+  ],
+  [
+   26.475,
+   7.213,
+   "The exception is tier and role: filters can't read device extension attributes, so those stay in group rules."
+  ],
+  [
+   33.688,
+   4.7,
+   "And underneath it all, a device rule can never read its owner's attributes."
+  ],
+  [
+   38.388,
+   2.587,
+   "Next, how device attributes get written."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   7.55,
+   "Devices are attribute-driven too, but only through their own attributes, the device rows of the store table in the recap."
+  ],
+  [
+   7.6,
+   8.463,
+   "Dynamic device groups read things like ownership, trust type and enrollment profile, and Autopilot devices carry markers a rule can select."
+  ],
+  [
+   16.062,
+   3.4,
+   "Filters read Intune's own inventory at check-in."
+  ],
+  [
+   19.462,
+   1.975,
+   "The highpoint is the red panel."
+  ],
+  [
+   21.438,
+   10.162,
+   "Writing a device's extension attributes needs the right Graph permission, and it depends on the call: a signed-in administrator uses one permission, an unattended service another."
+  ],
+  [
+   31.6,
+   3.55,
+   "Book 05's sample now uses the signed-in one."
+  ],
+  [
+   35.15,
+   3.0,
+   "Then, the dangers of dynamic device groups."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.775,
+   "Dynamic device groups have their own dangers, and a mistake here reaches the whole fleet at once."
+  ],
+  [
+   5.825,
+   3.85,
+   "Only the device provisioning service should write device attributes."
+  ],
+  [
+   9.675,
+   6.35,
+   "A wrong or reused Autopilot group tag puts a device in the wrong group, so check it before enrollment."
+  ],
+  [
+   16.025,
+   6.737,
+   "Device rules can't read their owner, and stale or duplicate device objects keep matching until you reconcile them."
+  ],
+  [
+   22.762,
+   6.338,
+   "For time-sensitive policy, use filters, and never use a dynamic device group as an exclusion."
+  ],
+  [
+   29.1,
+   5.188,
+   "Pilot rings, one owning policy per setting, and watching the deltas finish the list."
+  ],
+  [
+   34.288,
+   1.55,
+   "Now, the servers."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.062,
+   "Now the Arc track: servers."
+  ],
+  [
+   2.112,
+   1.863,
+   "Arc isn't just for Windows either."
+  ],
+  [
+   3.975,
+   14.312,
+   "It covers Windows Server 2016 through 2025, a long list of Linux distributions, physical servers and VMs on any hypervisor, VMware through vCenter, and AWS and Google Cloud instances."
+  ],
+  [
+   18.288,
+   9.188,
+   "Two dates matter: Windows Server 2012 stops getting new agents in November 2026, and the SCVMM integration is retiring."
+  ],
+  [
+   27.475,
+   4.55,
+   "Azure VMs don't need Arc at all, because they're already Azure resources."
+  ],
+  [
+   32.025,
+   4.825,
+   "And Unix, mainframes, network devices and sealed appliances are out."
+  ],
+  [
+   36.85,
+   2.862,
+   "So here's how Arc makes a server attribute-driven."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   7.225,
+   "Arc servers matter because they're the on-premises servers the organizational unit, or O U, tree used to scope."
+  ],
+  [
+   7.275,
+   5.412,
+   "Once connected, a server becomes an Azure resource, and tags become its attributes."
+  ],
+  [
+   12.688,
+   7.875,
+   "You set them at onboarding or later, Azure Policy can test them and even inherit them, and Resource Graph queries them at scale."
+  ],
+  [
+   20.562,
+   1.938,
+   "One boundary to state plainly."
+  ],
+  [
+   22.5,
+   8.175,
+   "Azure's attribute-based access conditions apply only to storage data today, so Microsoft doesn't document them for managing servers."
+  ],
+  [
+   30.675,
+   2.587,
+   "Role assignments at the right scope do that job."
+  ],
+  [
+   33.263,
+   2.788,
+   "Next, the devices neither tool covers."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.337,
+   "So what about everything neither tool reaches?"
+  ],
+  [
+   2.388,
+   5.112,
+   "It still needs one source of truth, and the program's design gives it four tiers."
+  ],
+  [
+   7.5,
+   14.463,
+   "Tier one is managed by Intune or Arc. Tier two is managed by its own platform tool, like the Google console, a network controller or the mainframe's security system, feeding evidence to the C M D B, which holds its attributes."
+  ],
+  [
+   21.962,
+   5.638,
+   "Tier three is discovered and monitored only, like printers, cameras and OT."
+  ],
+  [
+   27.6,
+   2.425,
+   "Tier four is segmented or retired."
+  ],
+  [
+   30.025,
+   7.237,
+   "That's how the inventory meets C M 8: every component counted once, and a device in no tier is a finding."
+  ],
+  [
+   37.263,
+   3.55,
+   "Now, the fourth track: the non-person identities."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.562,
+   "Module 2 is the non-person track."
+  ],
+  [
+   2.612,
+   12.588,
+   "Service accounts, service principals, workload identities and AI agents have no HR record, so each needs a named owner, a credential that's managed or expires, and a lifecycle that ends."
+  ],
+  [
+   15.2,
+   3.788,
+   "Then the crosswalk across every track, and piv binding."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.487,
+   "The non-person track starts with what A D already holds."
+  ],
+  [
+   3.538,
+   8.787,
+   "Service accounts have no HR record, so nobody's leave date ever turns them off, and that's why they're so often over-privileged and forgotten."
+  ],
+  [
+   12.325,
+   3.263,
+   "The table is Book 02's migration matrix."
+  ],
+  [
+   15.588,
+   17.863,
+   "The rule is to get rid of stored secrets: a traditional account becomes an app registration with a certificate or federated credential, or a managed identity in Azure; on-premises Kerberos workloads go to a g M S A; and an M S A upgrades to a g M S A first."
+  ],
+  [
+   33.45,
+   5.75,
+   "Each one gets an owner before it's touched, and an account nobody will own is a retirement candidate."
+  ],
+  [
+   39.2,
+   1.712,
+   "Next, the cloud side."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   10.8,
+   "The rest of the non-person track lives in Entra ID, and the question for each identity is the same: who answers for it, what credential does it hold, and what ends its life."
+  ],
+  [
+   10.85,
+   4.775,
+   "Service principals get two human owners and no client secrets in production."
+  ],
+  [
+   15.625,
+   4.8,
+   "Managed identities have credentials nobody sees, and end with their resource."
+  ],
+  [
+   20.425,
+   5.175,
+   "Workload identity federation trusts an external issuer, so there's no secret at all."
+  ],
+  [
+   25.6,
+   9.863,
+   "And AI agents get an agent identity with a required sponsor; the program makes that sponsor an HR-mastered federal employee, and expiry is the review."
+  ],
+  [
+   35.462,
+   4.838,
+   "One caution: check what your cloud supports before you plan on agent identities."
+  ],
+  [
+   40.3,
+   2.95,
+   "Next, how attributes reach applications."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.487,
+   "Applications and service principals are the partial answer."
+  ],
+  [
+   3.538,
+   3.837,
+   "The table repeats the recap's store table for these consumers."
+  ],
+  [
+   7.375,
+   3.05,
+   "Extension attributes drive dynamic groups."
+  ],
+  [
+   10.425,
+   9.463,
+   "Custom security attributes can't, but Conditional Access can filter applications by them, and they suit sensitive values that only specific roles should read."
+  ],
+  [
+   19.887,
+   9.625,
+   "For service principals, workload Conditional Access only blocks, applies only to direct assignment, and needs the Workload I D Premium license."
+  ],
+  [
+   29.512,
+   4.3,
+   "And Microsoft documents no dynamic groups of service principals at all."
+  ],
+  [
+   33.812,
+   3.35,
+   "So access codes stay in the user extension slots."
+  ],
+  [
+   37.163,
+   1.962,
+   "Here's everything on one page."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   10.762,
+   "This crosswalk is the reference you'll come back to, the store table seen by object type: every object type, the store its attributes live in, who writes them and what reads them."
+  ],
+  [
+   10.812,
+   6.825,
+   "Users, devices, Arc servers and service principals each have their own stores and their own consumers."
+  ],
+  [
+   17.637,
+   1.975,
+   "The highpoint is the third column."
+  ],
+  [
+   19.613,
+   7.95,
+   "Every row names one writer, whether that's HR provisioning, device registration, the Arc agent or an attribute administrator."
+  ],
+  [
+   27.562,
+   4.675,
+   "That's the same single-writer rule we set for the user schema, applied to everything."
+  ],
+  [
+   32.237,
+   3.2,
+   "And one user row leads straight into piv."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.825,
+   "piv and CAC sign-in is attribute-driven too, which is easy to miss."
+  ],
+  [
+   4.875,
+   5.725,
+   "Entra ID finds the user by matching a field on the certificate to a field on the account."
+  ],
+  [
+   10.6,
+   6.925,
+   "Some matches are low affinity, like the name on the card, and some are high, tied to one specific certificate."
+  ],
+  [
+   17.525,
+   1.163,
+   "Two highpoints."
+  ],
+  [
+   18.688,
+   8.162,
+   "Certificate-based sign-in is only as strong as the weakest binding you allow, and the program's position is high affinity in production."
+  ],
+  [
+   26.85,
+   5.425,
+   "But switch the whole tenant to high before every account's value is right, and you lock people out."
+  ],
+  [
+   32.275,
+   1.2,
+   "Pilot it first."
+  ],
+  [
+   33.475,
+   1.825,
+   "So where does that value come from?"
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   9.45,
+   "The certificate user I Ds attribute, the last row of the store table, holds the binding, so who writes it matters as much as any HR field."
+  ],
+  [
+   9.5,
+   5.275,
+   "For cloud-only users, a privileged authentication administrator or Graph writes it."
+  ],
+  [
+   14.775,
+   7.588,
+   "For synced users, only Entra Connect can, from Active Directory, and Microsoft's page doesn't mention Cloud Sync."
+  ],
+  [
+   22.363,
+   6.763,
+   "HR supplies the person; the card management system supplies the binding, because a reissued card changes it."
+  ],
+  [
+   29.125,
+   5.088,
+   "After Active Directory is gone, the plan is for the card system to write it directly."
+  ],
+  [
+   34.212,
+   3.413,
+   "Be clear that this is design guidance, and unverified."
+  ],
+  [
+   37.625,
+   3.325,
+   "It's an open pilot, workbook issue one thirty."
+  ],
+  [
+   40.95,
+   1.05,
+   "Now let's run it."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   2.237,
+   "Module 3 runs the migration."
+  ],
+  [
+   2.288,
+   12.3,
+   "We'll follow one analyst through a reassignment with no ticket, cut over in phases, keep the attributes true with drift detection, and finish with the limits, the checklist and the decisions for every track."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   3.975,
+   "Here's the model working on one person, which is the best test of it."
+  ],
+  [
+   4.025,
+   4.825,
+   "She's a budget analyst in a finance division, still mastered in Active Directory."
+  ],
+  [
+   8.85,
+   5.5,
+   "Her HR record becomes a handful of coded attributes, and every mechanism reads them."
+  ],
+  [
+   14.35,
+   4.875,
+   "Her organization code puts her in the right groups, and in a database reader group."
+  ],
+  [
+   19.225,
+   4.225,
+   "Her division puts her in the unit whose help desk can reset her password."
+  ],
+  [
+   23.45,
+   2.85,
+   "Her worker type puts her in the employee persona."
+  ],
+  [
+   26.3,
+   3.763,
+   "And her laptop is governed by its own attributes, not hers."
+  ],
+  [
+   30.062,
+   2.337,
+   "Nobody assigned any of it by hand."
+  ],
+  [
+   32.4,
+   1.55,
+   "Now HR moves her."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   2.125,
+   "This is why the whole design exists."
+  ],
+  [
+   2.175,
+   5.85,
+   "HR records her move to accounts payable as a personnel action, and nobody opens a ticket."
+  ],
+  [
+   8.025,
+   4.625,
+   "The record flows through the middleware to Active Directory and up through sync."
+  ],
+  [
+   12.65,
+   5.838,
+   "Her groups and units recompute, usually within hours, but it can take more than a day."
+  ],
+  [
+   18.488,
+   4.713,
+   "A workflow swaps her access packages and starts a review of what's left."
+  ],
+  [
+   23.2,
+   3.638,
+   "Her laptop stays put, because device rules can't see her."
+  ],
+  [
+   26.837,
+   3.15,
+   "And a drift scan checks the result field by field."
+  ],
+  [
+   29.988,
+   2.05,
+   "Next, cutting over at scale."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   5.412,
+   "Stage seven is a runbook, not a flag day, and that's what keeps rollback possible."
+  ],
+  [
+   5.463,
+   5.838,
+   "Waves are defined by attribute values, so each wave is a query whose groups already exist."
+  ],
+  [
+   11.3,
+   4.55,
+   "Start with a pilot division, and keep each one drift-clean before the next."
+  ],
+  [
+   15.85,
+   4.463,
+   "Do leaver automation first, because revocation is where the risk is."
+  ],
+  [
+   20.312,
+   8.95,
+   "The gate is the strip across the top: a signed report, a dry run with writes off, then seven days in which every change traces to HR."
+  ],
+  [
+   29.262,
+   2.163,
+   "Only then does the ticket path close."
+  ],
+  [
+   31.425,
+   3.638,
+   "And disable, never delete, so you can always go back."
+  ],
+  [
+   35.062,
+   1.1,
+   "Then, drift."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   6.175,
+   "Stage eight keeps the statements true after cutover; without it, everything slowly decays."
+  ],
+  [
+   6.225,
+   7.25,
+   "Two comparisons run on a schedule: HR against the directory, and the unit and role registry against the tenant."
+  ],
+  [
+   13.475,
+   10.412,
+   "Every finding goes to the see-so and is fixed at the source, in the HR record or the rule, never in the copy, because the next cycle would just overwrite your fix."
+  ],
+  [
+   23.887,
+   2.4,
+   "The callout is the one to act on today."
+  ],
+  [
+   26.288,
+   5.875,
+   "Entra's logs don't last nearly as long as federal records rules require, and they aren't retroactive."
+  ],
+  [
+   32.163,
+   1.488,
+   "Route them out from day one."
+  ],
+  [
+   33.65,
+   1.45,
+   "Now, the limits."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   5.987,
+   "Administrative units are the delegation replacement, so their limits shape the whole delegation model."
+  ],
+  [
+   6.037,
+   6.425,
+   "They don't nest, so the tree becomes a flat set, and a role covering several units gets one assignment per unit."
+  ],
+  [
+   12.463,
+   3.175,
+   "They limit who can change members, not who can see them."
+  ],
+  [
+   15.637,
+   2.425,
+   "Only some roles can be scoped to a unit."
+  ],
+  [
+   18.062,
+   7.875,
+   "Dynamic units work in G C C, but not in G C C High or D O D, where an automation job has to keep them up."
+  ],
+  [
+   25.938,
+   7.325,
+   "And restricting a unit takes its members out of governance automation, so restriction is a deliberate choice, default no."
+  ],
+  [
+   33.263,
+   2.125,
+   "Next, Lifecycle Workflows."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   5.275,
+   "Lifecycle Workflows carry joiner, mover and leaver, so it helps to know the pieces."
+  ],
+  [
+   5.325,
+   3.962,
+   "A workflow has a trigger, a scope rule and a list of tasks."
+  ],
+  [
+   9.287,
+   4.05,
+   "Custom task extensions call a Logic App to reach other systems."
+  ],
+  [
+   13.338,
+   4.763,
+   "Scheduled runs happen on one tenant interval, every three hours by default."
+  ],
+  [
+   18.1,
+   5.237,
+   "The limits are a hundred workflows, twenty-five tasks each and a hundred extensions."
+  ],
+  [
+   23.337,
+   2.413,
+   "Two behaviors deserve the red box."
+  ],
+  [
+   25.75,
+   10.113,
+   "Execution limits can quarantine a scheduled run that would touch too many people, but an on-demand run skips that guardrail, and it ignores the workflow's own conditions too."
+  ],
+  [
+   35.862,
+   1.788,
+   "So what could break at our size?"
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   7.225,
+   "At an agency our size, the limits bite in predictable ways, and this is the program's design guidance for each."
+  ],
+  [
+   7.275,
+   6.625,
+   "A workflow per organization runs out of a hundred fast, so build a few general workflows that branch on codes."
+  ],
+  [
+   13.9,
+   3.288,
+   "Build one reusable Logic App per integration."
+  ],
+  [
+   17.188,
+   6.213,
+   "Treat every on-demand run as a change with a second person, because it can disable the wrong ten people."
+  ],
+  [
+   23.4,
+   5.675,
+   "Size execution limits so a reorganization gets quarantined until someone approves it."
+  ],
+  [
+   29.075,
+   4.812,
+   "For urgent terminations, don't wait for the schedule: disable and revoke."
+  ],
+  [
+   33.888,
+   5.975,
+   "And until piv revoke and device retire are automated, keep a leaver checklist with owners."
+  ],
+  [
+   39.862,
+   1.925,
+   "Next, what still needs A D."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   6.287,
+   "Hybrid lasts longer than anyone plans, so it helps to name exactly what still needs Active Directory."
+  ],
+  [
+   6.338,
+   2.6,
+   "Synced users' attributes are still written there."
+  ],
+  [
+   8.938,
+   2.925,
+   "Kerberos applications need groups written back."
+  ],
+  [
+   11.863,
+   8.85,
+   "D N S, D H C P and legacy apps keep the forest alive, and Windows logins to SQL Server skip Conditional Access."
+  ],
+  [
+   20.712,
+   3.138,
+   "Hybrid-joined devices still need some domain policy."
+  ],
+  [
+   23.85,
+   7.7,
+   "Moving a population's source of authority has firm entry checks, and whether that move works in G C C is still unverified."
+  ],
+  [
+   31.55,
+   5.062,
+   "So retiring A D means clearing a list of named dependencies, not reaching a date."
+  ],
+  [
+   36.612,
+   1.325,
+   "Here's the checklist."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   5.487,
+   "The checklist turns the nine stages into something you can tick off, and that's its whole purpose."
+  ],
+  [
+   5.537,
+   6.888,
+   "There's one row per stage, plus piv, and one each for the Intune, Arc and non-person tracks."
+  ],
+  [
+   12.425,
+   1.575,
+   "A few are easy to miss."
+  ],
+  [
+   14.0,
+   2.712,
+   "Export site links, not just O U links."
+  ],
+  [
+   16.712,
+   2.55,
+   "Match accounts before the first full sync."
+  ],
+  [
+   19.262,
+   3.938,
+   "Write every access rule on codes, and don't use member-of."
+  ],
+  [
+   23.2,
+   3.112,
+   "Decide unit restriction before the unit exists."
+  ],
+  [
+   26.312,
+   2.038,
+   "Pair every grant with a block."
+  ],
+  [
+   28.35,
+   4.25,
+   "Prove seven days of sole-source changes before closing the ticket path."
+  ],
+  [
+   32.6,
+   2.05,
+   "And route logs out from the first day."
+  ],
+  [
+   34.65,
+   1.725,
+   "Finally, who decides."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   4.925,
+   "Every decision here has one owner, and that's what keeps the migration from stalling."
+  ],
+  [
+   4.975,
+   6.112,
+   "Identity engineering owns the plumbing, the delegation model and each wave's go or no-go."
+  ],
+  [
+   11.088,
+   4.325,
+   "The eye-cam governance body owns the authority map and the person key."
+  ],
+  [
+   15.412,
+   8.275,
+   "HR owns the codes, the data architect the schema, and application owners their own access rules and their service accounts' conversion."
+  ],
+  [
+   23.688,
+   3.4,
+   "The see-so owns the controls and the drift findings."
+  ],
+  [
+   27.087,
+   10.188,
+   "And you can start Monday without new tools: export the tree, name the HR feed early, populate the person key, remove other writers, and route your logs out."
+  ],
+  [
+   37.275,
+   2.938,
+   "Make the attributes true, and keep them true."
+  ],
+  [
+   40.212,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

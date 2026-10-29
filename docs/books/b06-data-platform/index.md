@@ -62,6 +62,16 @@ Windows Authentication and SQL Authentication are eliminated for SQL Server 2022
 
 ![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities authenticate with Entra tokens and no domain controller is in the path."}
 
+## Which tracks this book covers
+
+The workbook moves an AD forest to Entra ID on [four tracks](../guides/attribute-driven-migration.md#four-tracks), each with its own source of truth. A SQL Server estate touches three of them:
+
+- **People's SQL access is the HR track.** A person reaches the engine through an Entra group login, and the group's dynamic membership comes from HR-sourced attributes ([Chapters 16](16-groups-roles-and-membership.md) and [17](17-dynamic-membership-delegation-and-privilege.md)).
+- **The engine and the applications are the [non-person identity track](../guides/attribute-driven-migration.md#non-person-identity-track).** That covers the engine's service account ([Chapter 02, driver three](02-why-the-inheritance-must-end.md#driver-three-the-service-account-credential-problem)), the Arc managed identity or app registration that replaces it ([Chapter 09](09-what-arc-provides-to-sql-server.md#the-managed-identity-and-the-service-account)), and the application principals that connect to the database ([Chapters 18](18-the-four-class-pattern-for-applications.md) and [19](19-connection-string-migration.md)). None of these has an HR record. Each one's owner is its accountability.
+- **The servers come under Azure Arc,** which is the Arc track ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md)).
+
+In the program's mapping, the engine's identity supports IA-9 and people's Entra logins support IA-2 ([Appendix A](appendix-a-requirements-mapping.md#mapping-by-part)).
+
 ## Reading paths
 
 - **Executives (20 minutes):** Chapters 01, 02, 06 and 13, or the 15-minute presentation.

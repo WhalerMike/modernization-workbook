@@ -14,7 +14,7 @@ The deck has two parts of about 25 minutes each, split into four modules of 8 to
 
 | File | Use |
 |---|---|
-| `B02_Identity_Technical.pptx` | The deck: 28 narrated slides, then a backup section with the full source lists |
+| `B02_Identity_Technical.pptx` | The deck: 29 narrated slides (including the AD-to-Entra attribute mapping in Module 3, and the four-track framing in the orientation), then a backup section with the full source lists |
 | `B02_Identity_Technical_Narrated.pptx` | Self-running version with the narration embedded and slide timings set (built by `build_narrated.ps1`) |
 | `B02_Identity_Technical_Narration_Script.md` | The narration text, for practice |
 | `narration_B02_Identity_Technical/` | Per-slide audio, durations and captions |

@@ -1,91 +1,98 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.937
-The book's framing is simple.
+00:00:00.050 --> 00:00:05.125
+When Active Directory retires, being
+inside the network stops meaning anything.
 
 2
-00:00:01.937 --> 00:00:06.276
-Microsoft provides the instruments;
-the program provides the orchestra.
+00:00:05.125 --> 00:00:10.263
+M-22-09 says users should log in to
+applications rather than networks,
 
 3
-00:00:06.276 --> 00:00:08.424
-Cloud identity, device management,
+00:00:10.263 --> 00:00:15.175
+and multifactor authentication belongs
+at the application layer, not in a VPN.
 
 4
-00:00:08.424 --> 00:00:12.425
-Conditional Access and the
-assessment tools are each excellent.
+00:00:15.175 --> 00:00:17.882
+The replacement is Zero
+Trust as the model,
 
 5
-00:00:12.425 --> 00:00:14.475
-But look at what each one doesn't decide.
+00:00:17.882 --> 00:00:22.523
+Conditional Access deciding each
+request, a secure access service edge
 
 6
-00:00:14.475 --> 00:00:18.900
-Cloud identity doesn't decide what your
-organizational structure should become.
+00:00:22.523 --> 00:00:27.087
+replacing the VPN, and phishing-resistant
+authentication as the proof.
 
 7
-00:00:18.900 --> 00:00:22.325
-The assessment tools don't decide
-what to do with the findings.
+00:00:27.087 --> 00:00:31.739
+BOD 25-01 makes blocking
+legacy authentication
 
 8
-00:00:22.325 --> 00:00:25.875
-Every one of those gaps is a
-decision someone has to own.
+00:00:31.739 --> 00:00:35.662
+and phishing-resistant MFA
+for all users mandatory.
 
 9
-00:00:25.875 --> 00:00:30.570
-And with no vendor deadline forcing
-it, organizations without leadership
+00:00:35.662 --> 00:00:37.804
+FIDO2 keys, passkeys,
 
 10
-00:00:30.570 --> 00:00:35.113
-migrate in pieces and end up unable to
-answer last year's audit questions.
+00:00:37.804 --> 00:00:43.438
+Windows Hello and PIV or CAC cards
+qualify; SMS and voice don't.
 
 11
-00:00:35.113 --> 00:00:40.250
-The program needs no license of its own,
-but the services it orchestrates do.
+00:00:43.438 --> 00:00:45.963
+Two consequences need an executive eye.
 
 12
-00:00:40.250 --> 00:00:44.638
-Federal policy already says this
-belongs to more than the IT shop.
+00:00:45.963 --> 00:00:49.562
+Smart-card sign-in is anchored
+in Active Directory today.
 
 13
-00:00:44.638 --> 00:00:48.598
-M-22-09 says the whole
-C-suite must be aligned,
+00:00:49.562 --> 00:00:52.458
+The card and PIN stay,
+but certificate issuance
 
 14
-00:00:48.598 --> 00:00:53.063
-and it required a zero trust
-implementation lead within 30 days.
+00:00:52.458 --> 00:00:55.650
+needs a successor before
+Active Directory retires.
 
 15
-00:00:53.063 --> 00:00:59.291
-M-19-17 requires an agency-wide identity
-governance structure that includes HR,
+00:00:55.650 --> 00:01:00.500
+And privilege: every human admin assignment
+becomes eligible and time-bound,
 
 16
-00:00:59.291 --> 00:01:02.050
-general counsel, privacy and acquisition.
+00:01:00.500 --> 00:01:04.062
+and emergency accounts are
+tested at least every 90 days.
 
 17
-00:01:02.050 --> 00:01:06.912
-So the first decision for the sponsor
-and the CIO, before Phase 0: confirm who
+00:01:04.062 --> 00:01:09.672
+The CISO decides: phishing-resistant
+MFA as the end state for everyone,
 
 18
-00:01:06.912 --> 00:01:12.087
-already holds those roles, and decide
-whether one becomes the program's steward.
+00:01:09.672 --> 00:01:13.380
+Tier 0 administrators
+first, opening in Phase 1,
 
 19
-00:01:12.087 --> 00:01:14.330
-Next, the decision matrix.
+00:01:13.380 --> 00:01:17.374
+and certificate issuance
+moved off AD DS by Gate G4.
+
+20
+00:01:17.374 --> 00:01:18.940
+Next, who leads.

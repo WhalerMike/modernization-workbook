@@ -1,92 +1,99 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.225
-Two external clocks bear on the
-schedule, and they're easy to confuse.
+00:00:00.050 --> 00:00:02.150
+Two things make the gates trustworthy.
 
 2
-00:00:04.225 --> 00:00:09.294
-FedRAMP's Consolidated Rules
-for 2026, announced on June 25,
+00:00:02.150 --> 00:00:05.374
+First, every gate criterion
+is evaluated from the
 
 3
-00:00:09.294 --> 00:00:13.225
-2026, govern how cloud
-services are certified.
+00:00:05.374 --> 00:00:08.913
+repository and the drift
+reports, not from a signature.
 
 4
-00:00:13.225 --> 00:00:16.898
-They become mandatory on January 1, 2027,
+00:00:08.913 --> 00:00:14.012
+Zero drift for fourteen days is a
+query; so is every PC cloud-joined.
 
 5
-00:00:16.898 --> 00:00:22.575
-and new Rev5 certification
-applications stop on June 11, 2027.
+00:00:14.012 --> 00:00:17.412
+A gate the engine can't evaluate
+needs a better criterion.
 
 6
-00:00:22.575 --> 00:00:25.475
-None of that certifies
-the agency's own estate.
+00:00:17.412 --> 00:00:20.337
+Second, rollback triggers are thresholds,
 
 7
-00:00:25.475 --> 00:00:28.657
-Each agency still
-authorizes its own systems;
+00:00:20.337 --> 00:00:23.763
+not judgment calls, and
+the agency sets the values.
 
 8
-00:00:28.657 --> 00:00:34.350
-what the 2027 date changes is the evidence
-your providers publish and you inherit.
+00:00:23.763 --> 00:00:26.462
+Drift above the threshold halts the phase.
 
 9
-00:00:34.350 --> 00:00:40.897
-The deadlines that bind the agency
-directly come from OMB and CISA: M-26-14's
+00:00:26.462 --> 00:00:29.720
+Conditional Access blocking
+too many legitimate
 
 10
-00:00:40.897 --> 00:00:43.853
-logging plan and maturity levels,
+00:00:29.720 --> 00:00:32.124
+sign-ins means the policy is reverted.
 
 11
-00:00:43.853 --> 00:00:49.450
-and BOD 25-01's baselines
-for Microsoft 365 tenants.
+00:00:32.124 --> 00:00:35.950
+If drift detection stops
+reporting, all phase work halts.
 
 12
-00:00:49.450 --> 00:00:51.500
-The estate has its own dates too.
+00:00:35.950 --> 00:00:38.022
+Authority is fixed in advance,
 
 13
-00:00:51.500 --> 00:00:56.478
-Windows 10 reached end of
-support on October 14, 2025,
+00:00:38.022 --> 00:00:42.663
+from the steward on the early gates
+to the sponsor and CIO on the last.
 
 14
-00:00:56.478 --> 00:01:02.498
-Windows Server 2012 security
-updates ended on October 13, 2026,
+00:00:42.663 --> 00:00:44.250
+And be clear about the end.
 
 15
-00:01:02.498 --> 00:01:08.750
-and Windows Server 2016 reaches
-end of support on January 12, 2027.
+00:00:44.250 --> 00:00:47.557
+A forest in backup isn't
+a lasting fallback:
 
 16
-00:01:08.750 --> 00:01:14.050
-Mainframes join the access work late,
-and may need other zero trust mechanisms.
+00:00:47.557 --> 00:00:53.225
+a backup is valid only within the
+tombstone lifetime, 180 days by default.
 
 17
-00:01:14.050 --> 00:01:18.989
-So the sponsor and the CIO sequence
-the program against the agency's own
+00:00:53.225 --> 00:00:57.712
+The real rollback point is the last
+moment a domain controller still runs.
 
 18
-00:01:18.989 --> 00:01:24.513
-deadlines and end-of-support dates, starting
-now, not against FedRAMP's 2027 date.
+00:00:57.712 --> 00:01:01.713
+So G5 is the sponsor's and the
+CIO's decision, made on evidence:
 
 19
-00:01:24.513 --> 00:01:27.240
-To close, the decisions in one place.
+00:01:01.713 --> 00:01:06.368
+no live production dependency on
+Active Directory authentication,
+
+20
+00:01:06.368 --> 00:01:10.124
+or a documented Kerberos island
+with an end-of-life date.
+
+21
+00:01:10.124 --> 00:01:12.310
+Next, the external clocks.

@@ -1,69 +1,24 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.188
-Before the first server
-connects, settle four things.
+00:00:00.050 --> 00:00:02.308
+Module 3 is servers under Azure Arc.
 
 2
-00:00:03.188 --> 00:00:04.313
-Roles first.
+00:00:02.308 --> 00:00:04.799
+Intune doesn't support Windows Server,
 
 3
-00:00:04.313 --> 00:00:06.216
-Use the narrowest built-in roles,
+00:00:04.799 --> 00:00:08.225
+so Arc takes over the job
+Group Policy did for servers.
 
 4
-00:00:06.216 --> 00:00:10.587
-and remember that extensions run
-arbitrary scripts with full privileges.
+00:00:08.225 --> 00:00:11.133
+Arc gives a server an
+address in the control plane;
 
 5
-00:00:10.587 --> 00:00:14.952
-Microsoft says to treat any Contributor
-on an Arc resource as an indirect
-
-6
-00:00:14.952 --> 00:00:18.385
-administrator of the server,
-so scope those roles tightly
-
-7
-00:00:18.385 --> 00:00:21.676
-and hold them through
-Privileged Identity Management.
-
-8
-00:00:21.676 --> 00:00:26.665
-Network: the agent only talks outbound
-over 443, with no inbound rule,
-
-9
-00:00:26.665 --> 00:00:31.388
-and a private link scope keeps
-that traffic off public networks.
-
-10
-00:00:31.388 --> 00:00:35.387
-Run the agent's connectivity check
-from a representative server first.
-
-11
-00:00:35.387 --> 00:00:38.468
-Tags: settle one taxonomy
-at connection time,
-
-12
-00:00:38.468 --> 00:00:42.713
-because tags drive policy scope,
-patching and cost reporting.
-
-13
-00:00:42.713 --> 00:00:46.111
-And images: install the
-agent in your golden image,
-
-14
-00:00:46.111 --> 00:00:50.640
-but never connect the image, or
-every clone shares one resource ID.
+00:00:11.133 --> 00:00:14.810
+what governs it is everything
+you then attach to that address.

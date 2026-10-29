@@ -4,7 +4,7 @@
 
 | File | Use |
 |---|---|
-| `B01_Transformation_Arc_Executive.pptx` | The deck: nineteen narrated slides (the title and eighteen content slides), then a backup section with the full source list and a slide-to-chapter map |
+| `B01_Transformation_Arc_Executive.pptx` | The deck: twenty narrated slides (the title and nineteen content slides), then a backup section with the full source list, a slide-to-chapter map and the federal requirements' full citations |
 | `B01_Transformation_Arc_Executive_Narration_Script.md` | The narration text, for practice (written by `../_build/narrate.py`) |
 | `narration_B01_Transformation_Arc_Executive/` | Per-slide audio, durations, sentence timings and caption tracks (`narrate.py`, `captions.py`) |
 | `B01_Transformation_Arc_Executive_Narrated.vtt` | One caption track for the narrated video (written by `../_build/captions.py`) |
@@ -17,17 +17,17 @@ The self-running `B01_Transformation_Arc_Executive_Narrated.pptx` (and an MP4) c
 | Part | Slides | Book 01 source |
 |---|---|---|
 | **Why** | Every mandate assumes a foundation never built; Active Directory was the governance nobody wrote down; five things must be true first | Chapters 01, 02 |
-| **What** | One decision-level slide each for the platform, identity, policy, network services, compute and the access plane | Chapters 03–08 |
+| **What** | One decision-level slide each for the platform, identity, policy, network services, compute and the access plane, plus the four tracks (people, devices, servers, non-person identities) and the end state | Chapters 01, 03–08 |
 | **Who** | Instruments versus orchestra; one decider per decision; three decisions that land on the wrong desk | Chapter 09 |
 | **How** | Analyzing the estate; the analyze–plan–deliver cycle and its actuation ceiling; the seven-phase roadmap; gates, rollback triggers and gate authority; the external clocks; the decisions and where to start | Chapters 10, 11, 12 |
 
 ## How it differs from the 15-minute deck
 
-- **Decision-centered.** Each decision slide ends with a bar that states the decision, its owner and when it's needed, taken from the book's decision matrix (Chapter 09) and its gates and phase entry criteria (Chapter 12). The closing slide gathers them into one table. One slide (the five prerequisites) carries a callout instead, because the book assigns no owner to it.
+- **Decision-centered.** Each decision slide ends with a bar that states the decision, its owner and when it's needed, taken from the book's decision matrix (Chapter 09) and its gates and phase entry criteria (Chapter 12). The closing slide gathers them into one table. Two slides (the five prerequisites, and the four tracks and the end state) carry a callout instead, because the book assigns no owner to them; the four tracks' success criteria are labeled program design guidance.
 - **No configuration detail.** No attribute names, PowerShell versions, policy numbers, plan formats or baseline IDs; the 15-minute deck and the book's chapters carry those.
 - **More of the Who and How.** Separate slides for the decisions that land on the wrong desk (legacy-authentication end dates, help desk identity checks, records retention), gate authority and rollback, and the external clocks the roadmap runs against.
 
-Every fact on the slides comes from a footnoted chapter of Book 01; each slide's notes end with the chapter they draw on, each slide carries a short Sources line, and the backup slides list the primary sources. The timing cue at the start of each slide's notes is worked out by `build.js` from the spoken words at about 142 words a minute (about 4,230 words, just under 30 minutes), so it stays right when the notes are edited.
+Every fact on the slides comes from a footnoted chapter of Book 01; each slide's notes end with the chapter they draw on, each slide carries a short Sources line, and the backup slides list the primary sources. The timing cue at the start of each slide's notes is worked out by `build.js` from the spoken words at about 142 words a minute (about 4,470 words, about 31 minutes), so it stays right when the notes are edited.
 
 ## Build
 

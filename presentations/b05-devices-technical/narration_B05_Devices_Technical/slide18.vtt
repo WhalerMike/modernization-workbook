@@ -1,24 +1,70 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.308
-Module 3 is servers under Azure Arc.
+00:00:00.050 --> 00:00:04.862
+The policy library has five types, and
+every policy is assigned to dynamic
 
 2
-00:00:02.308 --> 00:00:04.799
-Intune doesn't support Windows Server,
+00:00:04.862 --> 00:00:09.437
+device groups built from attributes,
+which replaces OU-based scoping.
 
 3
-00:00:04.799 --> 00:00:08.225
-so Arc takes over the job
-Group Policy did for servers.
+00:00:09.437 --> 00:00:13.980
+Those attributes are the device's own
+extension attributes, written through
 
 4
-00:00:08.225 --> 00:00:11.133
-Arc gives a server an
-address in the control plane;
+00:00:13.980 --> 00:00:18.026
+Microsoft Graph, with one numbering
+and one fixed spelling per value.
 
 5
-00:00:11.133 --> 00:00:14.810
-what governs it is everything
-you then attach to that address.
+00:00:18.026 --> 00:00:22.875
+The correction that matters: assignment
+filters can't read extension attributes.
+
+6
+00:00:22.875 --> 00:00:25.861
+Attribute targeting
+belongs in the group rule;
+
+7
+00:00:25.861 --> 00:00:29.537
+filters work on Intune properties
+like join type or model.
+
+8
+00:00:29.537 --> 00:00:32.951
+Three Microsoft facts shape
+every compliance policy.
+
+9
+00:00:32.951 --> 00:00:36.475
+Noncompliance actions are
+scheduled in days, not hours.
+
+10
+00:00:36.475 --> 00:00:37.857
+There's no block action;
+
+11
+00:00:37.857 --> 00:00:42.075
+blocking is what Conditional Access
+does with a noncompliant device.
+
+12
+00:00:42.075 --> 00:00:45.280
+And encryption and boot
+checks are measured at boot,
+
+13
+00:00:45.280 --> 00:00:47.963
+so a newly encrypted
+device needs a restart.
+
+14
+00:00:47.963 --> 00:00:52.460
+The slide has the compliance set,
+including a strict Tier 0 policy.

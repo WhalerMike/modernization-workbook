@@ -2,72 +2,76 @@
 
 ## Slide 1 — HR-Driven Identity: the executive briefing
 
-Welcome. This is the executive briefing for Book 03 of the Federal Modernization Workbook, HR-Driven Identity. It's for the people who make the calls: the CIO, the Chief Human Capital Officer and HR leadership, the CISO, the privacy officer and the sponsors. Access is now decided by identity, and the facts it reads, like organization, position, status and supervisor, only HR originates. In most agencies those facts reach the directory by ticket. And two migrations already under way rebuild both ends of that connection, so this is the cheapest moment you'll get. I'll take four questions: why, what, who and how. Each decision slide names the decision, its owner and when it's needed. First, what access runs on.
+Welcome. This is the executive briefing for Book 03 of the Federal Modernization Workbook, HR-Driven Identity. It's for the people who make the calls: the CIO, the Chief Human Capital Officer and HR leadership, the CISO, the privacy officer and the sponsors. Access is now decided by identity, and the facts it reads, like organization, position, status and supervisor, only HR originates. In most agencies those facts reach the directory by ticket. And two migrations already under way rebuild both ends of that connection, so this is the cheapest moment you'll get. I'll take four questions: why, what, who and how. Each decision slide names the decision, its owner and when it's needed. First, where this book sits in the series.
 
-## Slide 2 — Access now runs on employee data
+## Slide 2 — Book 03 is the HR track: people, from their records
+
+Here's why this matters: the series moves four populations to the cloud, each on its own track, and Book 03 is the HR track. It's about people. Employee accounts follow the HR record; contractor accounts follow the contractor source of authority, which is still the agency's decision. Joining, moving and leaving then change access by rule, not by ticket. You'll know you're there when every enabled account matches an authoritative record or an owned exception, and no hand-kept group membership is left. Devices and servers are Book 05; service accounts and AI agents are Books 02, 06 and 17. And the design supports the federal account-management and personnel controls; it doesn't close them on its own. Now, what access runs on.
+
+## Slide 3 — Access now runs on employee data
 
 A sign-in token makes claims: this person works here, holds this job, reports to this supervisor. The identity platform can prove who signed the claim. It can't prove the claim is true. That matters now, because under Zero Trust every request is evaluated against those facts. Conditional Access and dynamic groups read organization, position, status and supervisor. So a wrong department isn't a typo anymore; it's the wrong access. And a stale status is a working token for someone who has left, usable from anywhere. Federal guidance points to HR as the authoritative source, without naming a product. So the accuracy of employee data is now the accuracy of access. So why do orphans keep coming back?
 
-## Slide 3 — Why orphans keep coming back: no channel from HR
+## Slide 4 — Why orphans keep coming back: no channel from HR
 
 Ask who works here, what they do and who they report to, and no single system answers. The answers are scattered across regional organizational unit (OU) trees, application account stores, spreadsheets and slide decks. HR records a separation two weeks early, but nothing is listening. On the day, every account is still live. A ticket gets the main account days later, but not the applications. Months on, a penetration test signs in with a leftover account. Nobody failed. There's simply no channel from HR to the systems that act. Cleaning up, or reviewing harder, can't fix a missing channel. So the decision: designate HR as the source of authority, and build it into both migrations now. Why now?
 
-## Slide 4 — Federal HR 2.0: the window closes at interconnection
+## Slide 5 — Federal HR 2.0: the window closes at interconnection
 
 Federal HR 2.0 is coming regardless. One government-wide platform replaces more than a hundred HR systems, Oracle won the award in June, and the second wave moves in fiscal 2027. You don't choose whether to implement it. You choose whether identity rides along. And this is the cheapest moment, because HR 2.0 rebuilds the interconnections and cleans the HR data anyway. But nothing in the program makes HR drive your directory. That's yours to propose. The window closes when your interconnection goes live, around month five in the sample timeline. So in the first phase, name the identity feed as one of your integration points, and name HR as the source in your Entra ID plan. Next, the data.
 
-## Slide 5 — One owner per fact: the attribute authority map
+## Slide 6 — One owner per fact: the attribute authority map
 
 The HR system is where four facts are created: the worker, the position, the assignment and the reporting line. HR doesn't compete with the identity platform. HR owns who a person is and where they sit; the identity platform owns how they prove it and what they can reach now. HR also knows about hires and separations before they happen, which is what makes day-one readiness and same-day removal possible. The rule that holds it together: corrections flow upstream. A wrong department is fixed in HR, never by hand in the directory, because a hand edit is just a new copy that drifts. So the governance body signs one map: every attribute, its owner and its quality expectation. Next, keys.
 
-## Slide 6 — One person, one key, through every source change
+## Slide 7 — One person, one key, through every source change
 
 Every person needs one key the agency controls and never changes. Here's why. It's tempting to use the HR system's own person number as the key. But that number changes when the HR system changes, and Core HCM is exactly that change. Contractors come from elsewhere. So pick an enterprise key, often an identifier you already have, and map every other number to it. Then the move to the new platform changes one mapping, and nothing downstream. A returning employee is the same person, not a new identity, and a contractor who converts keeps one record. And the Social Security number is never the join key. The governance body makes this call before Phase 1 closes. Next, the standard.
 
-## Slide 7 — Map to OPM's standards once, not to vendor fields
+## Slide 8 — Map to OPM's standards once, not to vendor fields
 
 The platform uses Oracle's field names, but they aren't the contract. The durable contract is OPM's standard personnel data: the same data elements and codes in every agency, and a standard code on every personnel action. If you map identity to the standard once, that one crosswalk covers every employee, survives the next vendor change, and can be reused by any agency on the platform. A few rules keep it clean. Use the attributes Entra already understands first. Put codes in access rules, never display names, because names get retyped. And remember the standard covers federal employees only. The decision: the data architect builds one governed crosswalk, and HR owns the code lists it uses. Now, the data flow.
 
-## Slide 8 — The provisioning pipeline, at decision level
+## Slide 9 — The provisioning pipeline, at decision level
 
 Here's the pipeline at leadership level. HR publishes worker records, a small service translates them into one standard model, and Entra's provisioning service creates and updates the accounts. Oracle's platform has no ready-made Entra connector, so Microsoft's own guidance is this pattern, with a service the agency runs. That service matters. It checks every record and refuses bad ones, processes changes in order, and keeps a record of every event, so every account has a paper trail. Accounts land in Active Directory for now, and directly in Entra ID as each group of users moves. Because this service handles personnel data inside your boundary, it needs an authorization. The authorizing official grants it before the pilot. Next, the people.
 
-## Slide 9 — Owners, users and guards of workforce identity
+## Slide 10 — Owners, users and guards of workforce identity
 
 This is an organizational change first, and most owners sit outside IT. Owners create the facts: HR owns personnel data and its quality, OPM owns the platform and the standards, and contractor sources own the people HR doesn't cover. Users consume the facts but never change them: the identity team, security, application owners, and the help desk, which now routes data errors to their owner instead of fixing them. Guards decide what can be used: privacy, the PIV office, and the authorizing official. A data architect keeps it all consistent: one name, one meaning, one owner per attribute. The decision for HR leadership: name an owner, and a quality bar, for each attribute. Now, who decides.
 
-## Slide 10 — Who decides what for workforce identity
+## Slide 11 — Who decides what for workforce identity
 
 One decider per row. The governance body takes the decisions that bind several offices at once: the attribute map, the person key and the contractor source. HR owns what its data means. The data architect, the model. Privacy owns the disclosure decision. Contracting owns contractor sponsorship. The PIV office owns the card. Application owners decide access to their applications. And the authorizing official accepts the remaining risk. The failures on the right share one root: in a ticket-driven estate, whoever can make a change ends up owning the data. That's how a leaver ends up owned by nobody. So security owns the leaver path end to end, and the authorizing official weighs in on any looser timing. Then, two guards.
 
-## Slide 11 — Privacy and PIV: guards with clocks of their own
+## Slide 12 — Privacy and PIV: guards with clocks of their own
 
 Two guards bring clocks you can't compress. First, privacy: moving HR records into identity systems is a disclosure, and needs a legal basis. If records leave the agency, a new routine use has to be published, and it can't be relied on for at least thirty days. The privacy impact assessment needs updating, and the feed should carry only the attributes access decisions actually read. That's the privacy office's call, not the project's. Then the PIV office. Only the agency can sponsor and approve a card, and a card that can't be collected must be terminated within eighteen hours. In this model, the separation record is the notification. So bring privacy in at Phase 1. Now, how it runs.
 
-## Slide 12 — Joiner, mover, leaver: by code, not by ticket
+## Slide 13 — Joiner, mover, leaver: by code, not by ticket
 
 The shift: nobody remembers to disable a leaver; the separation record does it, on the effective date. Every lifecycle event comes from HR. A new hire is ready before day one. A mover loses the old job's access as the new job's arrives. A leaver is blocked first. A rehire comes back as the same person, and a conversion keeps one identity. For federal employees, the triggers already exist: every personnel action carries a standard code that says what kind of action it is. A few rules prevent real harm. Leave without pay is not a separation. A separation wins any tie. And a cancelled separation restores access, with evidence. HR validates those rules before anything automates. Then, credentials.
 
-## Slide 13 — Block first, then reconcile every credential
+## Slide 14 — Block first, then reconcile every credential
 
 The trap: disabling an account doesn't revoke a PIV certificate or a device certificate. Both stay valid until someone revokes them. So a lifecycle that stops at the account leaves a former employee's credentials working wherever they're trusted. The leaver sequence fixes that. Block sign-in and end sessions first, which closes Entra immediately. Then revoke the card, wipe or retire devices, and remove access, in parallel, confirming each. Delete the account last. One more decision: the link between a PIV card and its account decides who signs in. So only one automated system, the card-management integration, may write it. Security sets that rule, and the PIV office runs the card system. Now, the open question about contractors.
 
-## Slide 14 — Contractors: the source decision is still open
+## Slide 15 — Contractors: the source decision is still open
 
 One decision is still open: where contractor identities come from. The new HR platform covers federal employees, not contractors. Today they usually live in spreadsheets kept by contracting officers' representatives, and a spreadsheet can't be a source of authority. Candidates include the new platform's contingent worker record, the PIV sponsorship system, a contractor suitability register, or a separate lifecycle service. None is complete on its own. So give each fact one authority, and make a federal sponsor accountable for every contractor. Access then ends at the first end condition: the contract ends, vetting is withdrawn, the card is revoked, or the sponsor leaves. Start by reconciling what exists, read-only. The governance body decides in Phase 1. Here's the plan.
 
-## Slide 15 — Seven gated phases, and the feed Gate G1 needs
+## Slide 16 — Seven gated phases, and the feed Gate G1 needs
 
 The plan has seven phases, each gated on the one before. One caution runs through all of it: the source has to be correct, not just designated. A bad HR feed produces bad access faster than any ticket queue ever could. That's why the early phases fix data at the source, though users see nothing change. The gate numbers, like ninety-nine percent matching and zero missed leavers in a pay period, are proposed starting points that the agency approves. The pilot runs in shadow mode first, and automation starts with leavers. The wider program's foundation gate requires the HR feed to be live, so a broken connector can't stall the rollout. The steward holds that gate. Then, cutover.
 
-## Slide 16 — Cut over one population at a time, then close tickets
+## Slide 17 — Cut over one population at a time, then close tickets
 
 Cutover happens one group of users at a time, as each group moves to Entra ID. Before a group cuts over, acceptance tests in plain business language are signed: a new hire, a transfer, a separation, leave without pay, a cancelled action, a conversion. Anything that could leave a separated person with access, or lock out someone active, stops the cutover. Then there's a dry run on real data with no changes written, and a rollback plan ready. For seven days afterward, every change must trace back to HR. When that holds, the ticket path closes. Nobody requests an account for a new hire anymore. HR, the ISSO and the business owner sign. How will you know it works?
 
-## Slide 17 — How you'll know it works: six numbers
+## Slide 18 — How you'll know it works: six numbers
 
 You can measure it. The book proposes six numbers: how fast a separation blocks access, how fast every credential is revoked, how fast a transfer's leftover access is reviewed, how many new hires are ready on day one, how many accounts match a real worker, and how much access comes from rules instead of hand assignment. None of those numbers exists in a ticket-driven estate. Expect a spike of findings in the first month. That's the measurement finally seeing what was already there, not the pipeline failing. And keep the evidence outside the directory, because Entra keeps most logs for only about thirty days. The ISSO owns the evidence, and security sets the leaver thresholds. Let's bring the decisions together.
 
-## Slide 18 — Decisions to make, owners and timing
+## Slide 19 — Decisions to make, owners and timing
 
 The decisions, in one place. The governance body designates HR as the source now, signs the attribute map, chooses the person key and settles the contractor source. Your HR 2.0 contact names the identity feed in the first phase. HR leadership names attribute owners, and the data architect builds the crosswalk. Privacy settles the disclosure basis early. The authorizing official authorizes the feed before the pilot. Security owns the leaver path and the card binding. The steward holds the rollout until the HR feed is live. And each population's ticket path closes once the proof holds. Nobody requests an account for a new hire. The hire causes it, and the separation ends it. Book 03 has the detail. Thank you.

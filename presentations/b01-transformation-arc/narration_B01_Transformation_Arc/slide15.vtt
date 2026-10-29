@@ -1,64 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.973
-Chapter 12 puts it all in sequence: an
-illustrative fifty-two-week program,
+00:00:00.050 --> 00:00:04.537
+Chapter 11 turns the inventory
+into change, in three stages.
 
 2
-00:00:04.973 --> 00:00:10.300
-seven phases from pre-flight to steady
-state, with five workstreams in parallel.
+00:00:04.537 --> 00:00:08.587
+Analyze compares the current state
+with the target and produces a diff.
 
 3
-00:00:10.300 --> 00:00:13.574
-Large federal estates
-usually take several years;
+00:00:08.587 --> 00:00:12.681
+Plan expands that diff into
+actions, each scoped to one object,
 
 4
-00:00:13.574 --> 00:00:16.537
-the weeks are a sequencing
-model, not a promise.
+00:00:12.681 --> 00:00:16.213
+put in dependency order, and
+paired with its rollback.
 
 5
-00:00:16.537 --> 00:00:21.338
-A phase opens only when the previous
-gate clears, and gates read from data.
+00:00:16.213 --> 00:00:20.550
+A plan has to pass validation, then
+approval by someone who didn't write it.
 
 6
-00:00:21.338 --> 00:00:25.637
-“Zero drift for fourteen days”
-is a query, not a signature.
+00:00:20.550 --> 00:00:24.988
+Then a separate identity carries it
+out and closes with an evidence packet.
 
 7
-00:00:25.637 --> 00:00:30.537
-Underneath it all is one structural
-move: separate truth from enforcement.
+00:00:24.988 --> 00:00:29.620
+How far automation may go is capped
+by a ladder, from simply recording,
 
 8
-00:00:30.537 --> 00:00:34.561
-A governance layer holds and
-reconciles the authoritative state,
+00:00:29.620 --> 00:00:32.951
+up to autonomy for a short
+list of low-risk changes.
 
 9
-00:00:34.561 --> 00:00:38.876
-while the identity, network and device
-platforms enforce it at runtime.
+00:00:32.951 --> 00:00:35.451
+The default ceiling is gated actuation,
 
 10
-00:00:38.876 --> 00:00:41.013
-And read one clock carefully:
+00:00:35.451 --> 00:00:38.937
+because it's a posture an
+authorizing official can sign.
 
 11
-00:00:41.013 --> 00:00:45.200
-FedRAMP's 2027 date is about
-certifying cloud providers.
+00:00:38.937 --> 00:00:42.096
+CISA calls its maturity
+model a general guide,
 
 12
-00:00:45.200 --> 00:00:48.150
-The agency still authorizes
-its own systems.
+00:00:42.096 --> 00:00:46.225
+not a strict set of requirements,
+so this is design, not mandate.
 
 13
-00:00:48.150 --> 00:00:50.060
-That brings us to the decisions.
+00:00:46.225 --> 00:00:50.400
+And when nothing has drifted,
+the next run plans zero actions.

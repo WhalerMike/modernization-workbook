@@ -24,45 +24,46 @@ tree decides who manages it
 and which policy applies.
 
 6
-00:00:13.550 --> 00:00:15.375
-Entra ID has no tree.
+00:00:13.550 --> 00:00:18.000
+Entra ID has no tree; it governs
+objects by what they carry.
 
 7
-00:00:15.375 --> 00:00:20.187
-It governs objects by what they carry:
-attributes, memberships and roles.
-
-8
-00:00:20.187 --> 00:00:22.917
+00:00:18.000 --> 00:00:20.765
 Administrative units
 help, but they can't nest,
 
-9
-00:00:22.917 --> 00:00:27.225
-and for synced users the attribute
-values are still written on-premises.
+8
+00:00:20.765 --> 00:00:24.475
+and for synced users the values
+are still written on-premises.
 
-10
-00:00:27.225 --> 00:00:30.650
+9
+00:00:24.475 --> 00:00:27.900
 Second, the surface is bigger
 than users and groups.
 
-11
-00:00:30.650 --> 00:00:36.137
-The program's inventory names eleven
-dependency types, and some, like PKI,
+10
+00:00:27.900 --> 00:00:32.760
+The inventory names eleven dependency
+types, and some, like PKI,
 
-12
-00:00:36.137 --> 00:00:41.350
+11
+00:00:32.760 --> 00:00:38.088
 RADIUS and LDAP-bound applications,
 fail silently when AD goes away.
 
+12
+00:00:38.088 --> 00:00:43.237
+The workbook sorts what moves into four
+tracks: people on the HR track, devices and
+
 13
-00:00:41.350 --> 00:00:45.712
-Each dependency gets an adapter,
-and the sync engine finishes last.
+00:00:43.237 --> 00:00:48.387
+servers on the Intune and Arc tracks, and
+service accounts on the non-person track.
 
 14
-00:00:45.712 --> 00:00:50.380
+00:00:48.387 --> 00:00:53.060
 The rest of this session is how you find
 all of that, rebuild it, and prove it.

@@ -28,38 +28,42 @@ Now, what changes. Before anything moves, the program needs one place where ever
 
 Identity comes first, because every later control reads its attributes. For the workforce, the authoritative source is the HR system of record. Four mechanisms rebuild what the OU tree did: attributes replace OU placement, dynamic groups replace OU-based groups, administrative units replace OU delegation, and Conditional Access replaces Group Policy inheritance. The program's contribution is what ties them together: one HR-sourced stamp drives membership, delegation, policy targeting, licensing and drift detection. Two cautions. Dynamic membership usually updates within a few hours, but it can take more than a day, so design job moves around that delay. And HR provisioning must be the only thing that writes those attributes. Books 02 and 03 carry identity in depth.
 
-## Slide 8 — Policy: regenerate Group Policy, don't copy it
+## Slide 8 — Four tracks, each with its own source of truth
+
+Here's why this matters: an Active Directory forest holds four populations, not one, and each moves by its own track, with its own source of truth. People are the HR track, from the HR record or, for contractors, the contractor source. End-user devices are the Intune track: their attributes come from device provisioning, never from HR, and a device rule can't read its owner. Servers are the Arc track, tagged at onboarding and governed by Azure Policy. Non-person identities, like service accounts and AI agents, answer to their owner's record. The goal is the same for all four: true attributes, one source each, read by policy, so AD can retire without losing what the tree did. Group Policy splits the same way, so policy is next.
+
+## Slide 9 — Policy: regenerate Group Policy, don't copy it
 
 Group Policy was Active Directory's most ambitious delivery system, and its most network-bound. A client only gets it when it can reach a domain controller. A cloud-native device, Entra joined and in Intune, has no such dependency. Don't copy it across. A fifty-setting GPO ported as fifty settings carries dead weight, old conflicts and manual targeting, and Microsoft itself recommends starting fresh. So the program regenerates one clean policy per category, keyed to attributes, into Intune, Conditional Access and, for servers, Azure machine configuration, because Intune doesn't manage Windows Server. Every change passes four stages: validation, a simulated tenant, a report-only pilot, then production. And prefer require over block, except where the federal SCuBA baseline demands a block. Books 05 and 04 carry the detail.
 
-## Slide 9 — DNS, DHCP and IPAM move together, and with AD
+## Slide 10 — DNS, DHCP and IPAM move together, and with AD
 
 DNS, DHCP and address management are what agencies most often put off, because they still work. That's exactly how they keep the old directory alive. AD-integrated zones replicate with Active Directory, and domain-joined clients find their domain controllers through records in DNS, so DNS and AD have to be retired together, in sequence. The target is a governed DNS authority outside AD. Windows DHCP servers check in with AD every hour, but that only stops a rogue Windows server, not a rogue device. And one address-management authority owns the address space, with DNS and DHCP following from it. Leave these three for “Phase 2,” and it rarely comes. A forest that still hosts DNS hasn't been retired. Books 08 and 09 carry the detail.
 
-## Slide 10 — Compute: the domain join is the last thing to go
+## Slide 11 — Compute: the domain join is the last thing to go
 
 Once identity, policy and services have moved, the biggest remaining dependency is the domain join itself. User PCs end up Entra joined and in Intune. Servers come under Azure Arc and machine configuration. Hybrid join is a waypoint, not a destination. And there's no supported way to convert a hybrid-joined device without resetting Windows, so time the move to a hardware refresh. Every service principal name is an application that expects Kerberos, and each needs a decision: move it to modern authentication, retire it, or, as a last resort, isolate it with an end date. No server leaves the domain until every one is resolved, and NTLM goes in the same pass. And compute stays with its data until the round trips are cut down. Books 05 and 06 have the detail.
 
-## Slide 11 — The access plane: every request decided again
+## Slide 12 — The access plane: every request decided again
 
 When Active Directory retires, being inside the network stops meaning anything. M-22-09 puts it simply: users should log into applications, not networks. The replacement has four parts: Zero Trust as the model, Conditional Access as the per-request decision, SASE at the edge, and phishing-resistant MFA as the proof. BOD 25-01 makes blocking legacy authentication mandatory. Smart cards stay. Entra certificate-based authentication moves card validation from the domain controller to Entra ID, though a card only counts as phishing-resistant if it's set up as multifactor. And card issuance needs a successor first, because an enterprise CA depends on AD. Administrators hold no standing privilege: roles are activated just in time, and a vault covers what can't be. Book 04 covers policy and privilege, and Book 07 the certificates.
 
-## Slide 12 — Instruments versus orchestra: who leads it
+## Slide 13 — Instruments versus orchestra: who leads it
 
 Who leads it? Chapter 09 sums it up in one line: Microsoft provides the instruments; the program provides the orchestra. The tools are each excellent, but none of them decides what the organization's structure should become, or what to do with what they find, and no vendor deadline forces that decision. So name one decider for each kind of decision. The sponsor and CIO own scope, funding, sequence, and when AD components retire. The authorizing official is the only one who can accept risk, so every deferred cutoff lands with them. The CISO sets control requirements, and the steward holds the repository and clears most gates. Then, each month, ask three things: how drift is trending, whether changes are signed, and what risk acceptances are open.
 
-## Slide 13 — Inventory first: read-only, with provenance
+## Slide 14 — Inventory first: read-only, with provenance
 
 How do you get there? Start with an inventory. You can't modernize what you haven't counted, and nothing gets retired until it's written down: read-only, with proof of how it was read. The assessment account has no write rights, the code can't issue write commands, and every call is logged. An ordinary signed-in account already sees more than most teams expect: the topology, the OU tree, most Group Policy, users and groups. Every run records who, when, against what, and a hash of every file. Eleven streams feed the risk scoring. One example: Windows Server 2016 reaches end of support on January 12, 2027, so every such server needs a disposition. And no application leaves its data until its transactions are profiled.
 
-## Slide 14 — Analyze, plan, deliver, under an actuation ceiling
+## Slide 15 — Analyze, plan, deliver, under an actuation ceiling
 
 Chapter 11 turns the inventory into change, in three stages. Analyze compares the current state with the target and produces a diff. Plan expands that diff into actions, each scoped to one object, put in dependency order, and paired with its rollback. A plan has to pass validation, then approval by someone who didn't write it. Then a separate identity carries it out and closes with an evidence packet. How far automation may go is capped by a ladder, from simply recording, up to autonomy for a short list of low-risk changes. The default ceiling is gated actuation, because it's a posture an authorizing official can sign. CISA calls its maturity model a general guide, not a strict set of requirements, so this is design, not mandate. And when nothing has drifted, the next run plans zero actions.
 
-## Slide 15 — The roadmap: seven phases, gated by data
+## Slide 16 — The roadmap: seven phases, gated by data
 
 Chapter 12 puts it all in sequence: an illustrative fifty-two-week program, seven phases from pre-flight to steady state, with five workstreams in parallel. Large federal estates usually take several years; the weeks are a sequencing model, not a promise. A phase opens only when the previous gate clears, and gates read from data. “Zero drift for fourteen days” is a query, not a signature. Underneath it all is one structural move: separate truth from enforcement. A governance layer holds and reconciles the authoritative state, while the identity, network and device platforms enforce it at runtime. And read one clock carefully: FedRAMP's 2027 date is about certifying cloud providers. The agency still authorizes its own systems. That brings us to the decisions.
 
-## Slide 16 — Decisions to make, and next steps
+## Slide 17 — Decisions to make, and next steps
 
 So, four decisions. First, name the owners, one decider per decision, starting with the sponsor, the authorizing official and the steward, and confirm who holds the Zero Trust lead role that M-22-09 required. Second, run the read-only assessment across all eleven categories, with provenance. Third, stand up the platform host, so every change has one writer and a plan. And fourth, set the dates: gate dates on the sponsor's calendar, and every exception's end date on the authorizing official's. None of this needs a vendor decision on day one. Start with an inventory, an owner, and a date. Modernization is a governance rebuild, not a platform swap. Book 01 is the map, and Books 02 to 09 carry each part in depth, with every claim footnoted. Thank you.

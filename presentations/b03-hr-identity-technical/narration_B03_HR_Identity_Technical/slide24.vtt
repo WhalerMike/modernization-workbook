@@ -1,50 +1,25 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.963
-Once events drive identity,
-every interval becomes a number.
+00:00:00.050 --> 00:00:03.675
+Module 4 is evidence,
+ownership and the plan.
 
 2
-00:00:03.963 --> 00:00:08.532
-The six metrics on the left measure things
-a ticket-driven estate simply can't:
+00:00:03.675 --> 00:00:06.146
+An architecture that can't measure its own
 
 3
-00:00:08.532 --> 00:00:12.888
-how long from separation to block, from
-separation to the last revocation,
+00:00:06.146 --> 00:00:08.900
+revocation time is taking
+compliance on faith.
 
 4
-00:00:12.888 --> 00:00:16.387
-and how many accounts actually
-tie back to a current worker.
+00:00:08.900 --> 00:00:13.397
+So we'll cover what the event stream lets
+you measure, who owns the data, the phased
 
 5
-00:00:16.387 --> 00:00:20.469
-On the right are the drift classes:
-each kind of difference between
-
-6
-00:00:20.469 --> 00:00:24.625
-HR and the directory gets a detection
-signal and a default severity.
-
-7
-00:00:24.625 --> 00:00:29.273
-One expectation to set with leadership:
-the first month brings a burst of
-
-8
-00:00:29.273 --> 00:00:34.463
-high-severity findings, old leavers and
-orphans the manual process never caught.
-
-9
-00:00:34.463 --> 00:00:37.537
-That's the measurement working,
-not the pipeline failing.
-
-10
-00:00:37.537 --> 00:00:39.600
-Next, keeping the evidence.
+00:00:13.397 --> 00:00:17.880
+plan and its link to the program's foundation
+gate, and the contractor question.

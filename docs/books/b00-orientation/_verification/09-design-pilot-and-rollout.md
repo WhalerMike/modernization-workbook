@@ -79,3 +79,9 @@ Checked October 21, 2026. Book 00's chapters were reconciled with each other; ea
 | X2 | Plans reviewed by workstream and security leads, approved by the steward; steering committee reviews | Phase 1 opening | corrected; aligned with Ch07 decision matrix | Internal |
 | X3 | Division waves (this chapter) and Book 05's workload waves are two views of one rollout; division waves are the rings for each workload | Waves defined by attribute values | added Oct 25, 2026; aligned with Book 05 Ch08 | Book 05 Ch08; Learn, "How to switch Configuration Manager workloads to Intune" |
 | X4 | M-026 (every pilot administrator eligible) is wider than the privileged-access project's one-role-class criterion; the project's criterion is the floor, M-026 is what G2 checks | Milestones | added Oct 25, 2026; aligned with Ch06 and Book 04 Ch02 | Internal |
+
+## Revision 2026-10-29 — four tracks and companion-guide alignment
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | Each track selects wave members from its own source: users and devices by attribute, servers by Azure resource group and tag, non-person identities by owning application | Waves defined by attribute values | restated-as-design (no new Microsoft fact) | series framing; companion guide #four-tracks |

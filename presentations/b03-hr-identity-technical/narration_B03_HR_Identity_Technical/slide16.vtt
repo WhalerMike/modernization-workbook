@@ -1,26 +1,53 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.050
-Module 3 is lifecycle,
-credentials and access.
+00:00:00.050 --> 00:00:02.207
+The same feed can land in two places,
 
 2
-00:00:04.050 --> 00:00:08.574
-With trusted data and a working
-pipe, the HR event becomes the cause:
+00:00:02.207 --> 00:00:05.925
+and which one changes as the
+agency leaves Active Directory.
 
 3
-00:00:08.574 --> 00:00:13.263
-nobody requests an account for a new
-hire, because the hire creates it.
+00:00:05.925 --> 00:00:11.253
+While AD masters the account, users land
+in AD through the provisioning agent,
 
 4
-00:00:13.263 --> 00:00:16.065
-We'll follow that event
-through the lifecycle,
+00:00:11.253 --> 00:00:15.000
+with their organizational
+units (OUs) computed from HR
 
 5
-00:00:16.065 --> 00:00:19.970
-through the PIV card and
-certificates, and finally into access.
+00:00:15.000 --> 00:00:18.913
+data rather than picked by hand,
+and then sync to the cloud.
+
+6
+00:00:18.913 --> 00:00:24.108
+Once a population's accounts move to
+the cloud, users land in Entra ID, where
+
+7
+00:00:24.108 --> 00:00:29.813
+structure is just attributes and a
+reorganization is a data change, not a project.
+
+8
+00:00:29.813 --> 00:00:35.405
+The two programs converge population by
+population: HR is the source for the person,
+
+9
+00:00:35.405 --> 00:00:40.512
+Entra ID masters the account, and AD
+shrinks to what applications still need.
+
+10
+00:00:40.512 --> 00:00:41.513
+That's Part 1.
+
+11
+00:00:41.513 --> 00:00:43.540
+Part 2 picks up the lifecycle.

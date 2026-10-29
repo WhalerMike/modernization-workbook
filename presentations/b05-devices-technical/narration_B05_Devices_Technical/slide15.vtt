@@ -1,55 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.057
-Chapter 08 breaks the seven phases into
-working tasks, with durations from the
+00:00:00.050 --> 00:00:06.325
+Step two gives every setting one tag:
+required, obsolete, high-risk or redundant.
 
 2
-00:00:05.057 --> 00:00:10.450
-program's reference plan for a large fleet
-that already runs Configuration Manager.
+00:00:06.325 --> 00:00:08.338
+Only required settings move on.
 
 3
-00:00:10.450 --> 00:00:15.178
-First comes the inventory and classification,
-then co-management for a pilot,
+00:00:08.338 --> 00:00:12.913
+Each one then faces four questions
+in order, and the first yes decides.
 
 4
-00:00:15.178 --> 00:00:20.275
-then building every policy unassigned, with
-the riskier protections in audit mode.
+00:00:12.913 --> 00:00:15.050
+Is it still needed in the target model?
 
 5
-00:00:20.275 --> 00:00:24.530
-The pilot is about five percent of
-the fleet, representative across
+00:00:15.050 --> 00:00:19.550
+Group Policy accumulated settings that
+existed only because it could set them.
 
 6
-00:00:24.530 --> 00:00:29.013
-tiers and regions, and the GPOs stay
-linked so conflicts can be measured.
+00:00:19.550 --> 00:00:21.813
+Does Intune have a native equivalent?
 
 7
-00:00:29.013 --> 00:00:34.423
-Then four waves of three weeks each, and
-finally the links and GPOs are disabled,
+00:00:21.813 --> 00:00:22.724
+Most do.
 
 8
-00:00:34.423 --> 00:00:37.087
-kept ninety days, backed up and deleted.
+00:00:22.724 --> 00:00:24.825
+Does a cloud pattern remove the need?
 
 9
-00:00:37.087 --> 00:00:42.425
-On these estimates, the program reaches the
-last phase in roughly thirty-four weeks.
+00:00:24.825 --> 00:00:29.221
+Folder redirection, for example,
+becomes OneDrive Known Folder Move,
 
 10
-00:00:42.425 --> 00:00:45.932
-One reminder: rolling back
-a pilot means reassigning a
+00:00:29.221 --> 00:00:32.075
+and mapped printers
+become Universal Print.
 
 11
-00:00:45.932 --> 00:00:49.800
-policy with the old value, not
-just removing the assignment.
+00:00:32.075 --> 00:00:34.113
+And can a script enforce and prove it?
+
+12
+00:00:34.113 --> 00:00:37.634
+A setting that fails all four
+becomes a dated exception,
+
+13
+00:00:37.634 --> 00:00:40.774
+and its GPO stays linked
+for that population only.
+
+14
+00:00:40.774 --> 00:00:44.416
+The answers send settings to
+four landing zones in Intune,
+
+15
+00:00:44.416 --> 00:00:46.370
+and the slide has their limits.

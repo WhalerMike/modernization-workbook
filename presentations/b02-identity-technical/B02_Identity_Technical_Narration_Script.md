@@ -2,7 +2,7 @@
 
 ## Slide 1 — Identity & Directory: the technical deep dive
 
-Welcome. This is the technical deep dive for Book 02 of the Federal Modernization Workbook, Identity and Directory. It's for the architects and engineers who will actually run the move from Active Directory to Microsoft Entra ID. It comes in two parts. Part 1 is assessing the forest: first what an ordinary account can learn without any elevated access, then the full privileged assessment and the evidence trail behind it. Part 2 is building the Entra ID target and moving onto it: the big design decisions, governance, the eleven-phase playbook, and a reference deployment that runs the whole sequence on one estate. The slides carry the tables and decision matrices, and the code lives in the chapters and appendices. I'll stick to what matters.
+Welcome. This is the technical deep dive for Book 02 of the Federal Modernization Workbook, Identity and Directory, for the architects and engineers who will run the move from Active Directory to Microsoft Entra ID. What Book 02 accomplishes is a directory where placement has become attributes and rules, and every service account has an owner and a target. Of the workbook's four tracks, it carries the directory side of the HR track and the service accounts; people's attributes are Book 03, devices and servers Book 05, and AI agents Book 17. Part 1 assesses the forest, starting with what an ordinary account can see. Part 2 builds the Entra ID target and moves onto it. The code lives in the chapters. I'll stick to what matters.
 
 ## Slide 2 — Why this matters: identity now decides access
 
@@ -10,7 +10,7 @@ Here's why this matters. Federal policy moved the access decision off the networ
 
 ## Slide 3 — What the migration actually has to move
 
-So what actually has to move? Two points drive everything in this session. First, placement becomes attributes. In Active Directory, where an object sits in the OU tree decides who manages it and which policy applies. Entra ID has no tree. It governs objects by what they carry: attributes, memberships and roles. Administrative units help, but they can't nest, and for synced users the attribute values are still written on-premises. Second, the surface is bigger than users and groups. The program's inventory names eleven dependency types, and some, like PKI, RADIUS and LDAP-bound applications, fail silently when AD goes away. Each dependency gets an adapter, and the sync engine finishes last. The rest of this session is how you find all of that, rebuild it, and prove it.
+So what actually has to move? Two points drive everything in this session. First, placement becomes attributes. In Active Directory, where an object sits in the OU tree decides who manages it and which policy applies. Entra ID has no tree; it governs objects by what they carry. Administrative units help, but they can't nest, and for synced users the values are still written on-premises. Second, the surface is bigger than users and groups. The inventory names eleven dependency types, and some, like PKI, RADIUS and LDAP-bound applications, fail silently when AD goes away. The workbook sorts what moves into four tracks: people on the HR track, devices and servers on the Intune and Arc tracks, and service accounts on the non-person track. The rest of this session is how you find all of that, rebuild it, and prove it.
 
 ## Slide 4 — Module 1: Read-only discovery
 
@@ -64,50 +64,54 @@ Part 2 builds the Entra ID target and migrates onto it, starting with Module 3, 
 
 Before any object moves, break the AD model into its parts, because each lands somewhere different. OUs do three jobs: policy scoping becomes Conditional Access and Intune profiles, delegation becomes administrative units, and organization becomes dynamic groups and attributes. The forest becomes the tenant, trusts become cross-tenant access, and AdminSDHolder's purpose is served by Privileged Identity Management and protected actions. The design principle is that Entra ID inverts the model. Attributes decide memberships, and memberships decide policy, which is why attribute quality gates everything after it. Licensing gates the governance features, and the slide has the map. One date to act on: the preview member-of operator ends November 3, 2026, so replace any rules that use it now.
 
-## Slide 17 — Choosing the sync engine: Cloud Sync unless a Connect-only need applies
+## Slide 17 — The attributes you know, side by side
+
+Since placement becomes attributes, it's worth seeing the attributes your team already knows and what each one becomes. Most carry over, but often read-only, and some can't be read by a rule at all. distinguishedName comes across, but never use it for policy, because it's the placement we're leaving. Rules can't read manager or employeeType, so they read coded copies instead. The disabled bit becomes accountEnabled, and every access rule should require it. altSecurityIdentities can feed the PIV binding, through sync rules you add. And two have no attribute at all: Kerberos service principal names stay in AD until the workloads move, and admin count gives way to roles and PIM. Next, the sync engine that carries these values.
+
+## Slide 18 — Choosing the sync engine: Cloud Sync unless a Connect-only need applies
 
 The first hybrid-period decision is the sync engine. Connect Sync is the long-standing, full-featured engine on a Windows Server. Cloud Sync is a lightweight agent configured from the cloud, and Microsoft now calls it the strategic direction. The slide compares them side by side. The short version: Cloud Sync runs multiple active agents with automatic failover, while Connect Sync still wins on scale and advanced rules. Cloud Sync now covers group provisioning back to AD and Exchange hybrid writeback, so those no longer force Connect. The program's rule is Cloud Sync for new deployments, and Connect only where a forest needs something Cloud Sync can't do. Both can run in one forest with separate scopes, so you can move in stages.
 
-## Slide 18 — Sign-in method and object matching
+## Slide 19 — Sign-in method and object matching
 
 The second decision is where passwords are checked. With password hash sync, it happens in the cloud, needs no extra infrastructure, and survives an on-premises outage. Pass-through authentication depends on on-premises agents, and federation with AD FS needs whole server farms. Microsoft recommends turning on password hash sync whichever method you choose, because it's the fallback, and organizations that had it on recovered from ransomware outages in hours rather than weeks. So the program prefers it everywhere, and AD FS becomes a decommission target. Then, matching. When sync meets an object that already exists in the cloud, a match overwrites the cloud copy, so clean AD first. And since July 1, 2026, sync can't hard-match onto cloud accounts with privileged roles, so don't plan to take over admins that way.
 
-## Slide 19 — Groups and service accounts: one recorded decision per object
+## Slide 20 — Groups and service accounts: one recorded decision per object
 
-Groups and service accounts each get one recorded decision per object. Entra ID has no group scope, so the classic AD nesting model doesn't map one to one. Every security group gets one of five outcomes: keep it in AD, sync it, convert it to cloud-only, make it dynamic, or retire it. Nesting also works for fewer things in Entra ID, since app assignment and licensing don't cascade, so flatten deep chains and record the mapping. For service accounts, the rule is to eliminate stored secrets. Accounts that call cloud APIs become app registrations with certificates or federated credentials, Azure workloads get managed identities, and on-premises Kerberos workloads go to group managed service accounts. Every app gets two human owners, and no client secrets in production.
+Groups and service accounts each get one recorded decision per object. Every security group gets one of five outcomes: keep it in AD, sync it, convert it to cloud-only, make it dynamic, or retire it. Nesting works for fewer things in Entra ID, since app assignment and licensing don't cascade, so flatten deep chains and record the mapping. Service accounts are the non-person track: no HR record, so each needs an owner and a target, and the rule is to eliminate stored secrets. Accounts that call cloud APIs become app registrations with certificates or federated credentials, Azure workloads get managed identities, and on-premises Kerberos workloads go to group managed service accounts. The application owner decides each conversion, every replacement app gets two human owners, and an account nobody will own is a retirement candidate.
 
-## Slide 20 — Privileged access: no standing admin, two break-glass accounts
+## Slide 21 — Privileged access: no standing admin, two break-glass accounts
 
 Privileged access has one core rule: no standing access. Every privileged assignment is eligible and activated just in time, and the only permanent ones are the two emergency accounts. Domain Admins maps to Global Administrator, held by very few, and most of its duties map to narrower roles. The slide has the full mapping, which is the program's design, not an exact equivalence. Activation is short, four hours at most for the top roles, with approval and a ticket, and it forces a fresh phishing-resistant sign-in. Name approvers outside the requester's chain, because with none configured, PIM can lock the tenant. The emergency accounts are cloud-only, excluded from restrictive policies, alerted on every sign-in, and tested at least every ninety days.
 
-## Slide 21 — Conditional Access: personas, a baseline, and a staged rollout
+## Slide 22 — Conditional Access: personas, a baseline, and a staged rollout
 
 Conditional Access replaces the logon restrictions and network controls AD enforced through Group Policy. The program organizes it around personas, populations with different needs and risks: internal staff, admins, partners, guests, service accounts, and the break-glass group. One tip: target admins by group, because role targeting doesn't cover scoped or custom roles. The baseline set, CA001 through CA017, runs from blocking legacy sign-in for everyone to requiring phishing-resistant strength for admins. Book 04's library is the authoritative set and extends it for the CISA baseline. Rollout is staged: report-only, then a pilot, then phased waves, each behind a monitoring gate. And never switch an all-users policy straight from off to on without confirming both emergency accounts still sign in.
 
-## Slide 22 — Module 4: Migrating, governing and proving it
+## Slide 23 — Module 4: Migrating, governing and proving it
 
 Module 4 is migrating, governing and proving it. Chapter 10 states the finish line: the migration ends when governance runs on its own. Joiners, movers and leavers flow from HR without a ticket, and drift shows up in a diff instead of an incident.
 
-## Slide 23 — Governance runs as a loop: joiner, mover, leaver, review
+## Slide 24 — Governance runs as a loop: joiner, mover, leaver, review
 
 Governance in Active Directory was mostly a ticket queue: someone asked for access, someone added it, and nobody took it away. The target replaces that with a loop. HR-driven provisioning creates the account, Lifecycle Workflows run the joiner, mover and leaver tasks, access packages grant access with an expiry, and access reviews remove what's no longer justified. For example, seven days before the hire date the manager is emailed a Temporary Access Pass, so the new hire registers a phishing-resistant credential on day one. On the leave date, the account is disabled and its sessions revoked. Two cautions: remove privileged access before the delete task runs, and delete synced users in AD, or they come back on the next sync. Quarterly reviews close the loop.
 
-## Slide 24 — Phishing-resistant authentication, then the legacy cutoff
+## Slide 25 — Phishing-resistant authentication, then the legacy cutoff
 
 Authentication modernization starts from the federal requirement. OMB M-22-09 requires phishing-resistant MFA, and an end to methods like SMS and voice codes for routine access. Its targets were set for the end of fiscal year 2024, so these are requirements now, not goals. That reorders the roadmap. Older plans put smart cards last, but a federal workforce already carries PIV or CAC cards, so certificate-based authentication straight against Entra ID is the fastest path. The program goes in four phases: privileged accounts first, then every card holder, then managed Windows devices on Windows Hello, then everyone else on passkeys. Then the legacy cutoff: find the remaining legacy sign-ins, move them, block them, and watch for thirty days until there are none.
 
-## Slide 25 — The eleven-phase playbook: each phase gated on validation
+## Slide 26 — The eleven-phase playbook: each phase gated on validation
 
 The migration runs in eleven phases, zero through ten, and each one starts only when the previous one's validation criteria are met. Every phase also has a rollback procedure. The durations are planning estimates, not measured results, and the total runs forty to seventy weeks. It starts with the assessment, then the sync deployment, with object counts matching within one percent. Then sign-in, groups, service accounts and PIM, which ends with no permanent admin assignments except the emergency accounts. Conditional Access is enforced only after MFA registration passes ninety-five percent in each population. Then come the phishing-resistant roadmap, the legacy cutoff, retiring federation, and finally steady-state governance, with the operations runbook committed to Git.
 
-## Slide 26 — Proving it: logs, FedRAMP 20x indicators and drift
+## Slide 27 — Proving it: logs, FedRAMP 20x indicators and drift
 
 Proving it starts with logs, because Entra ID keeps them only briefly: seven days on the free tier, thirty on P1 or P2, and upgrading doesn't recover older data. So stream everything to Log Analytics and keep sign-in and audit logs for three hundred sixty-five days. On top of that, scheduled detections watch for things like stale accounts, late-night privileged activations, and any emergency account sign-in. For compliance, the controls map to FedRAMP 20x Key Security Indicators, evidenced by the workflows, reviews and PIM you've already built. And drift lives in Git. A weekly scan compares against a baseline and opens an issue with the diff, and each finding is fixed at the source, never by editing the copy. Today that covers user additions and removals; the rest is planned.
 
-## Slide 27 — Reference deployment: one estate, five gated phases
+## Slide 28 — Reference deployment: one estate, five gated phases
 
 Chapter 11 puts it all together on one representative estate. It's a composite, not a real engagement, and the counts are illustrative. Picture about fifty thousand users in two forests, joined by a forest trust nobody documented or owns, moving to Microsoft 365 GCC. There are five phases, and each ends with a signed readiness bundle that the next one starts from. Discovery finds about four hundred accounts with service principal names, and every SQL Server one is captured, because a missing one silently falls back to NTLM. Normalizing resolves a clash between two Operations OUs in an organizational registry, not by renaming groups. Mapping finds four adapters that carry the risk, including PKI and RADIUS, which move in lockstep. Then migration and validation, with every operation recorded.
 
-## Slide 28 — What the assessor receives, and what the agency keeps
+## Slide 29 — What the assessor receives, and what the agency keeps
 
 Last, what all this produces. During migration, the program classifies drift into five kinds, and it's honest about maturity: two are detected automatically today, one partly, and two still rely on people reviewing the assessment. From Phase 2 on, the agency can produce an evidence bundle at any time, with the readiness bundles, the SPN inventories, the provenance chain and every drift finding. It goes to the security control assessor and the authorizing official as the work happens, not assembled over most of a year afterward. And it belongs to the agency. When the integrator leaves, the evidence stays. So, from Monday: start read-only discovery, keep the access request narrow, make every run evidence, and gate every phase. Book 03, HR-Driven Identity, picks up next. Thank you.

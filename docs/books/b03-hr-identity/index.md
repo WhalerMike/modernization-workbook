@@ -64,6 +64,20 @@ This book is a proposal: use Federal HR 2.0 and the move from Active Directory t
 
 The canonical model and provisioning services exist to produce these outcomes; Chapter 01 sets out the scope, authority boundaries, and principles behind them.
 
+## This book is the HR track
+
+An Active Directory forest holds four populations of identity, and each moves to Entra ID by its own path, with its own source of truth: the companion guide calls them the [four tracks](../guides/attribute-driven-migration.md#four-tracks). **This book is the HR track: people.** It covers the user accounts of employees and contractors, whose attributes come from HR and the contractor source through provisioning. HR never describes a device, a server or a service, so the other three tracks are covered elsewhere:
+
+| Track | What it covers | Where |
+|---|---|---|
+| **Intune** | End-user devices: their attributes come from device provisioning, not HR | [Book 05, Chapter 03](../b05-devices/03-where-device-and-server-data-lives.md), [Chapter 04](../b05-devices/04-intune-first-onboarding.md) and [Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md) |
+| **Azure Arc** | Servers, tagged at onboarding and governed by Azure Policy | [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md) |
+| **Non-person identities** | Service accounts, service principals, managed identities and AI agents, owned by a sponsor, not an HR record | Service accounts: [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#modernizing-service-accounts); SQL service and application principals: [Book 06](../b06-data-platform/index.md); AI agents: [Book 17](../b17-ai-identity/index.md); the [non-person identity track](../guides/attribute-driven-migration.md#non-person-identity-track) in the companion guide |
+
+: The four tracks, and where the three this book doesn't cover live {.striped .hover}
+
+The goal across all four is set out in the guide's [What this migration accomplishes](../guides/attribute-driven-migration.md#what-this-migration-accomplishes). For the HR track, the program maps the work to NIST SP 800-53 account management (AC-2), personnel termination (PS-4), personnel transfer (PS-5) and identifier management (IA-4); [Chapter 11](11-drift-metrics-and-evidence.md#control-support-nist-sp-800-53-rev.-5) sets out what the architecture contributes to each and what the agency still supplies.
+
 ## Why, what, who, how
 
 | | Question | Chapters |

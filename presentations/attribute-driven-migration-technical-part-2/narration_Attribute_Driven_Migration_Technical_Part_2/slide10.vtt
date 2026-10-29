@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.387
+So what about everything
+neither tool reaches?
+
+2
+00:00:02.387 --> 00:00:07.500
+It still needs one source of truth, and
+the program's design gives it four tiers.
+
+3
+00:00:07.500 --> 00:00:09.843
+Tier one is managed by Intune or Arc.
+
+4
+00:00:09.843 --> 00:00:14.368
+Tier two is managed by its own platform
+tool, like the Google console,
+
+5
+00:00:14.368 --> 00:00:18.165
+a network controller or the
+mainframe's security system,
+
+6
+00:00:18.165 --> 00:00:21.963
+feeding evidence to the C M D
+B, which holds its attributes.
+
+7
+00:00:21.963 --> 00:00:27.600
+Tier three is discovered and monitored
+only, like printers, cameras and OT.
+
+8
+00:00:27.600 --> 00:00:30.025
+Tier four is segmented or retired.
+
+9
+00:00:30.025 --> 00:00:32.527
+That's how the inventory meets C M 8:
+
+10
+00:00:32.527 --> 00:00:37.262
+every component counted once, and
+a device in no tier is a finding.
+
+11
+00:00:37.262 --> 00:00:40.870
+Now, the fourth track:
+the non-person identities.

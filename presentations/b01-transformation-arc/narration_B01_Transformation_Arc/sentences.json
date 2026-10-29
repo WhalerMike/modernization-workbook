@@ -301,6 +301,43 @@
  "8": [
   [
    0.05,
+   9.85,
+   "Here's why this matters: an Active Directory forest holds four populations, not one, and each moves by its own track, with its own source of truth."
+  ],
+  [
+   9.9,
+   6.362,
+   "People are the HR track, from the HR record or, for contractors, the contractor source."
+  ],
+  [
+   16.262,
+   8.838,
+   "End-user devices are the Intune track: their attributes come from device provisioning, never from HR, and a device rule can't read its owner."
+  ],
+  [
+   25.1,
+   4.925,
+   "Servers are the Arc track, tagged at onboarding and governed by Azure Policy."
+  ],
+  [
+   30.025,
+   5.888,
+   "Non-person identities, like service accounts and AI agents, answer to their owner's record."
+  ],
+  [
+   35.913,
+   9.15,
+   "The goal is the same for all four: true attributes, one source each, read by policy, so A D can retire without losing what the tree did."
+  ],
+  [
+   45.062,
+   4.0,
+   "Group Policy splits the same way, so policy is next."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
    5.888,
    "Group Policy was Active Directory's most ambitious delivery system, and its most network-bound."
   ],
@@ -345,7 +382,7 @@
    "Books 05 and 04 carry the detail."
   ]
  ],
- "9": [
+ "10": [
   [
    0.05,
    6.938,
@@ -387,7 +424,7 @@
    "Books 08 and 09 carry the detail."
   ]
  ],
- "10": [
+ "11": [
   [
    0.05,
    7.075,
@@ -434,7 +471,7 @@
    "Books 05 and 06 have the detail."
   ]
  ],
- "11": [
+ "12": [
   [
    0.05,
    5.075,
@@ -476,7 +513,7 @@
    "Book 04 covers policy and privilege, and Book 07 the certificates."
   ]
  ],
- "12": [
+ "13": [
   [
    0.05,
    0.863,
@@ -518,7 +555,7 @@
    "Then, each month, ask three things: how drift is trending, whether changes are signed, and what risk acceptances are open."
   ]
  ],
- "13": [
+ "14": [
   [
    0.05,
    1.025,
@@ -565,7 +602,7 @@
    "And no application leaves its data until its transactions are profiled."
   ]
  ],
- "14": [
+ "15": [
   [
    0.05,
    4.487,
@@ -612,7 +649,7 @@
    "And when nothing has drifted, the next run plans zero actions."
   ]
  ],
- "15": [
+ "16": [
   [
    0.05,
    10.25,
@@ -652,14 +689,9 @@
    45.2,
    2.95,
    "The agency still authorizes its own systems."
-  ],
-  [
-   48.15,
-   1.863,
-   "That brings us to the decisions."
   ]
  ],
- "16": [
+ "17": [
   [
    0.05,
    1.375,

@@ -23,6 +23,91 @@ The short version: this is not a settings migration. It's a governance rebuild.
 Workbook: Book 05, index.`);
 }
 
+// ------------------------------------------------------------------ Tracks: this book is the Intune and Arc tracks
+{
+  const s = D.content("Why Group Policy", "Book 05 is the Intune and Arc tracks: devices, servers");
+  tag(s, "Why");
+  const tracks = [
+    ["FaLaptop", "Intune track: end-user devices", HEX.teal, HEX.tealTint, [
+      ["Source: ", "device provisioning (Autopilot group tag, enrollment), never HR"],
+      ["Read by: ", "dynamic device groups, assignment filters, compliance, Conditional Access"],
+      ["Done when: ", "policy targets those attributes; computer-side GPO links disabled one population at a time, rollback tested"]]],
+    ["FaServer", "Arc track: servers", HEX.navy, HEX.navyTint, [
+      ["Source: ", "Arc onboarding tags and resource group, then Azure Policy"],
+      ["Read by: ", "machine configuration, Update Manager, Defender for Servers, Azure RBAC"],
+      ["Done when: ", "every in-scope server Arc-enabled and tagged, its baseline evaluated by Azure Policy"]]],
+  ];
+  tracks.forEach((c, i) => {
+    const x = 0.6 + i * 6.15;
+    box(s, `Track ${i + 1}`, x, 1.5, 6.0, 3.45, c[3]);
+    icon(s, c[0], x + 0.22, 1.63, 0.6, c[2]);
+    txt(s, `Track ${i + 1} head`, c[1], { x: x + 0.98, y: 1.63, w: 4.9, h: 0.6, bold: true, color: c[2], fontSize: 18, fontFace: "Cambria", valign: "middle" });
+    txt(s, `Track ${i + 1} text`, c[4].flatMap((r, k) => [{ text: r[0], options: { bold: true, color: c[2], bullet: true } }, { text: r[1], options: { breakLine: k < c[4].length - 1 } }]),
+      { x: x + 0.25, y: 2.33, w: 5.6, h: 2.57, fontSize: 13.5, paraSpaceAfter: 6 });
+  });
+  callout(s, "Split", 5.08, 1.0, "FaRightLeft", HEX.amber, "Group Policy splits: ",
+    "user settings go with people (Book 03's HR track, Conditional Access); computer settings go with devices and servers. A device rule can't read its owner.");
+  txt(s, "Requirements", [{ text: "Federal requirements:  ", options: { bold: true, color: HEX.navy } },
+    { text: "NIST SP 800-53 CM-2, CM-6, CM-7, CM-8, SI-2 (Book 05, Ch 10); SA-22 and OMB M-22-09 §III.A–B, device signal and inventory (Book 01, Appendix A)" }],
+    { x: 0.6, y: 6.16, w: 12.15, h: 0.42, fontSize: 11.5, valign: "middle" });
+  sources(s, "Sources: Book 05, Chapters 03, 04, 07, 08, 09 and 10; attribute-driven migration guide (dynamic rules, Intune assignment). Success criteria: design guidance. Full citations in the backup.");
+  s.addNotes(
+`[0:27–1:34]  First, where this book sits. The series moves four populations to the cloud, each on its own track, and Book 05 carries two of them: the Intune track for end-user devices and the Arc track for servers.
+
+A device's attributes come from device provisioning: the Autopilot registration and its group tag, enrollment, and the provisioning service. Never from HR, and a device rule can't read its owner's attributes. The Intune track is done when every managed device's policy is targeted by attributes provisioning wrote, and computer-side Group Policy links are disabled population by population, with rollback tested. The Arc track is done when every in-scope server is Arc-enabled with its tags and its baseline is assigned and evaluated by Azure Policy. Both are program design guidance.
+
+Group Policy splits the same way. User settings go with people, to the HR track and Conditional Access; computer settings go with devices and servers. The evidence supports CM-2, CM-6, CM-8 and SI-2.
+
+Workbook: Book 05, Chapter 03 (one source per device fact; not the primary user's department); Chapter 04 (group tags); Chapter 07 (unlink one population at a time); Chapter 08 (attribute targeting); Chapter 09 (tags, Azure Policy); Chapter 10 (the controls). The attribute-driven migration guide (device rules can't read the owner's attributes; user settings to user groups). Book 01, Appendix A (M-22-09; SA-22). Success criteria are program design guidance.`);
+}
+
+// ------------------------------------------------------------------ Coverage: which platforms Intune and Arc reach, and the tiers
+{
+  const s = D.content("Why Group Policy", "What Intune and Arc cover, and the strategy for the rest");
+  tag(s, "Why");
+  const R = [
+    ["Windows 11, Windows 365, Azure Virtual Desktop", "Intune (Virtual Desktop with limits)"],
+    ["macOS, iOS and iPadOS", "Intune, through Apple Business Manager"],
+    ["Android Enterprise", "Intune: work profile, fully managed, dedicated"],
+    ["Linux desktop (Ubuntu, Red Hat)", "Intune, limited: compliance checks"],
+    ["ChromeOS", "Intune inventory only; Google Admin manages"],
+    ["Windows Server 2016–2025; Linux servers", "Arc, with the Connected Machine agent"],
+    ["VMware vSphere VMs", "Arc-enabled vSphere through vCenter"],
+    ["AWS EC2 and GCP VMs", "Arc agent or multicloud connector (GCP in preview)"],
+    ["Azure VMs", "Native Azure: Policy, RBAC, tags; not Arc"],
+    ["AIX, Solaris, mainframe, network gear, printers, IoT", "Neither: tiers 2 to 4"],
+  ];
+  s.addTable([head(["Platform", "Covered by"]), ...R.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1], options: { bold: r[1].startsWith("Neither"), color: r[1].startsWith("Neither") ? HEX.red : HEX.ink } }])],
+    tableOpts([3.2, 4.2], { y: 1.45, fontSize: 11.5, rowH: [0.34, 0.48, 0.29, 0.29, 0.29, 0.29, 0.48, 0.29, 0.29, 0.29, 0.48] }));
+  box(s, "Tiers box", 8.2, 1.45, 4.55, 4.55, HEX.amberTint);
+  txt(s, "Tiers head", [
+    { text: "FOR WHAT'S LEFT: FOUR TIERS (DESIGN GUIDANCE)", options: { bold: true, color: HEX.slate, fontSize: 11, breakLine: true } },
+    { text: "One source of truth for every device", options: { bold: true, color: HEX.amber, fontSize: 16, fontFace: "Cambria" } },
+  ], { x: 8.4, y: 1.55, w: 4.2, h: 0.8, valign: "middle" });
+  const tiers = [
+    "Managed by Intune or Arc: the default",
+    "The platform's own tool, with an evidence feed; the CMDB holds the attributes (ChromeOS, network gear, mainframe, ESXi hosts)",
+    "Discovered and monitored only: Defender discovery, network access control, CDM feeds",
+    "Segmented and isolated, or retired, with a risk acceptance and a date",
+  ];
+  txt(s, "Tiers list", tiers.map((t, k) => ({ text: `${k + 1}  ${t}`, options: { breakLine: k < tiers.length - 1 } })),
+    { x: 8.4, y: 2.45, w: 4.2, h: 3.45, fontSize: 13, paraSpaceAfter: 8 });
+  txt(s, "Requirements", [{ text: "Federal requirements:  ", options: { bold: true, color: HEX.navy } },
+    { text: "NIST SP 800-53 CM-8: the inventory includes every component and counts none twice; a device in no tier is a finding (Book 05, Ch 03 and 10)" }],
+    { x: 0.6, y: 6.16, w: 12.15, h: 0.42, fontSize: 11.5, valign: "middle" });
+  sources(s, "Sources: Book 05, Ch 03 (Intune coverage; the four tiers) and Ch 09 (Which servers Arc reaches), per Microsoft Learn on Oct 29, 2026. Tiers: design guidance.");
+  s.addNotes(
+`[1:34–3:26]  Why this matters: an inventory that covers only Windows isn't an inventory, and the federal inventory control asks for every component.
+
+Intune isn't only for Microsoft platforms. It manages Windows 11, Windows 365 Cloud PCs and Azure Virtual Desktop, the last with limits; macOS, iOS and iPadOS through Apple Business Manager; Android Enterprise in its work-profile, fully managed and dedicated modes; and Ubuntu and Red Hat desktops, where management is compliance. ChromeOS shows up in Intune as inventory with remote actions, but enrollment and policy stay in the Google Admin console.
+
+Azure Arc reaches servers wherever they run: Windows Server 2016 to 2025 and the supported Linux distributions, physical or on any hypervisor; VMware vSphere VMs through Arc-enabled vSphere and vCenter; and AWS EC2 and Google Cloud VMs, with the agent or the multicloud connector, which covers AWS, has GCP in preview and isn't available in Azure Government. Azure VMs don't take Arc at all; Microsoft says they already have the same capabilities. AIX, Solaris, mainframe operating systems, network devices, printers and IoT are on neither list.
+
+So every class of device goes in one of four tiers, as program design guidance. One: managed by Intune or Arc, the default. Two: managed by the platform's own tool, with an evidence feed and the CMDB as the attribute source. Three: discovered and monitored only, through Defender device discovery, network access control and CISA's CDM feeds. Four: segmented and isolated, or retired, with a risk acceptance and a date. That's how the inventory meets CM-8: every component, none counted twice. A device in no tier is a finding.
+
+Workbook: Book 05, Chapter 03 (Which end-user devices Intune covers; What Intune and Arc don't reach, the four tiers, CM-8); Chapter 09 (Which servers Arc reaches); Chapter 10 (CM-8). Platform facts as Microsoft Learn documented them on October 29, 2026. The tiers are program design guidance.`);
+}
+
 // ------------------------------------------------------------------ Why 1
 {
   const s = D.content("Why Group Policy", "Group Policy governed by position. Intune has no position.");
@@ -52,7 +137,7 @@ Workbook: Book 05, index.`);
     "teams that copy GPOs into Intune discover the governance loss after the targeting model has already changed. Every job the tree did implicitly must be rebuilt explicitly.");
   sources(s, "Sources: Microsoft Learn — Group Policy processing, Intune policy conflicts, device check-in, Group Policy analytics. Book 05, Chapter 01.");
   s.addNotes(
-`[0:27–1:38]  Why can't Group Policy come to the cloud? Because Group Policy governed by position, and an Intune-managed device has no position.
+`[3:26–4:37]  Why can't Group Policy come to the cloud? Because Group Policy governed by position, and an Intune-managed device has no position.
 
 Where a computer sat in the OU tree quietly did five jobs. It decided targeting: what settings the computer got. Precedence: link order and inheritance decided which setting won. Delegation: OU permissions decided who could change it. Timing: policy refreshed at startup, at sign-in and on a cycle. And evidence: the resultant set of policy told you what actually applied.
 
@@ -87,7 +172,7 @@ Workbook: Book 05, Chapter 01 — Why Group Policy Can't Come to the Cloud.`);
     "use hybrid join where it helps, and plan each device's move to Entra join at its next refresh, upgrade or rebuild — so the waypoint doesn't become the destination by default.");
   sources(s, "Sources: Microsoft Learn — choosing a device join type; Windows Autopilot hybrid join guidance. Book 05, Chapter 02.");
   s.addNotes(
-`[1:38–2:41]  The obvious shortcut is hybrid join, and the book calls it a trap, carefully.
+`[4:37–5:40]  The obvious shortcut is hybrid join, and the book calls it a trap, carefully.
 
 Microsoft's guidance has two halves. New, refurbished or reset Windows devices should be Microsoft Entra joined by default. Existing domain-joined devices can be hybrid joined, which gives them a cloud identity with minimal impact on users. But Microsoft is explicit that hybrid join shouldn't be the long-term end state.
 
@@ -122,7 +207,7 @@ Workbook: Book 05, Chapter 02 — The Hybrid Join Trap.`);
     "each system is authoritative for one thing, so the program correlates them on stable keys and reconciles the inventory continuously.");
   sources(s, "Sources: Microsoft Learn — Intune supported platforms, Azure Arc, machine configuration, Autopilot. Book 05, Chapters 03–04.");
   s.addNotes(
-`[2:41–3:47]  What replaces it? Devices and servers take different roads.
+`[5:40–6:46]  What replaces it? Devices and servers take different roads.
 
 For endpoints, the Entra ID device object carries the identity, Intune carries configuration and compliance, Autopilot provides zero-touch provisioning, and Defender for Endpoint covers threat and vulnerability.
 
@@ -163,7 +248,7 @@ Workbook: Book 05, Chapter 03 — Where Device and Server Data Lives; Chapter 04
     "the five pillars are the book's design for net-new devices; the existing fleet takes one of the three paths that follow.");
   sources(s, "Sources: Microsoft Learn — Windows Autopilot, Autopilot device preparation, Intune supported platforms. Book 05, Chapter 04.");
   s.addNotes(
-`[3:47–5:04]  For new devices, the book's doctrine is Intune-first, and it has five pillars.
+`[6:46–8:03]  For new devices, the book's doctrine is Intune-first, and it has five pillars.
 
 One: no ungoverned device, ever. Every device is enrolled in governance before it goes into production use, and quarantine is the safety valve, not the steady state. Two: procurement is the first governance step. The organizational assignment is set when the order is placed, not when the box arrives, the same way HR feeds user provisioning. Three: zero-touch only. Manual enrollment is an exception that needs written justification, a time limit and an audit entry. Four: one management plane per asset. Intune for endpoints, Azure Arc with machine configuration for servers, and no greenfield Group Policy or hybrid join. And five: quarantine on failure. An onboarding failure opens a ticket; it never produces a device running in a degraded state.
 
@@ -197,7 +282,7 @@ Workbook: Book 05, Chapter 04 — Intune-First Onboarding.`);
     "every path ends with the device or server enrolled, baselined and reconciled; what differs is how much of the proof is produced automatically, and what has to be collected by hand.");
   sources(s, "Program design, with Microsoft Learn facts for each step. Book 05, Chapter 05.");
   s.addNotes(
-`[5:04–6:04]  There are three paths to the same governed state, and the book uses them deliberately.
+`[8:03–9:03]  There are three paths to the same governed state, and the book uses them deliberately.
 
 The governed path is program-orchestrated: every step is recorded, approved and evidenced. It's the default for any population in scope.
 
@@ -233,7 +318,7 @@ Workbook: Book 05, Chapter 05 — The Governed, Manual and Retrofit Paths.`);
     "day-to-day work runs on scoped Intune roles, not Intune Administrator; Microsoft advises against using the broad role for routine administration.");
   sources(s, "Sources: Microsoft Learn — Intune role-based access control; the program's responsibility matrix. Book 05, Chapter 06.");
   s.addNotes(
-`[6:04–7:06]  Who owns the endpoint? The book separates who decides from who does the work.
+`[9:03–10:05]  Who owns the endpoint? The book separates who decides from who does the work.
 
 Deciding: the CISO and ISSO own the baselines, the exceptions and the evidence. The endpoint engineering lead owns policy design and the rollout. And the change board owns the update rings, the migration waves and any pause.
 
@@ -269,7 +354,7 @@ Workbook: Book 05, Chapter 06 — Who Owns the Endpoint.`);
     "Microsoft publishes no typical percentage of settings that migrate — run Group Policy analytics against the estate's own GPO exports.");
   sources(s, "Sources: Microsoft Learn — Group Policy analytics, MDMWinsOverGP, Group Policy preferences. Book 05, Chapter 07 and Appendix A.");
   s.addNotes(
-`[7:06–8:17]  How. The book runs the Group Policy sunset as a program, setting by setting, in seven steps: inventory and parse, classify each setting, crosswalk it, decide, sequence by population, freeze and unlink, and finally retire.
+`[10:05–11:16]  How. The book runs the Group Policy sunset as a program, setting by setting, in seven steps: inventory and parse, classify each setting, crosswalk it, decide, sequence by population, freeze and unlink, and finally retire.
 
 Every setting goes one of three ways: migrate it to Intune, replace it with a cloud-native pattern, or retire it.
 
@@ -305,7 +390,7 @@ Workbook: Book 05, Chapter 07 — The GPO Sunset Program; Appendix A — GPO to 
     "durations are for a large fleet with an existing Configuration Manager estate; every gate is the next phase's precondition, and every phase has a rollback while it's open.");
   sources(s, "Sources: Microsoft Learn — co-management workloads, Windows lifecycle. Book 05, Chapter 08.");
   s.addNotes(
-`[8:17–9:27]  The existing fleet then migrates in seven phases, about thirty-four weeks on the book's planning estimates.
+`[11:16–12:26]  The existing fleet then migrates in seven phases, about thirty-four weeks on the book's planning estimates.
 
 Phase one inventories and classifies, ending with a decision record for every setting. Phase two plans coexistence, with pilot devices co-managed and syncing. Phase three authors the baselines, unassigned, until every setting is owned by exactly one policy. Phase four pilots on about five percent of devices. Phase five cuts over workload by workload in four waves, each watched for seventy-two hours. Phase six verifies that no migrated device still processes a GPO. And phase seven retires the GPOs, keeping them ninety days before they're archived and deleted.
 
@@ -347,7 +432,7 @@ Workbook: Book 05, Chapter 08 — GPO to Intune Policy Migration.`);
     "remove extensions before disconnecting the agent — disconnect deletes the Azure resource, which the onboarding role isn't allowed to do.");
   sources(s, "Sources: Microsoft Learn — Azure Arc onboarding, machine configuration, Windows Server lifecycle and ESUs. Book 05, Chapter 09.");
   s.addNotes(
-`[9:27–10:21]  Servers come under governance through Azure Arc.
+`[12:26–13:20]  Servers come under governance through Azure Arc.
 
 Onboarding uses the Connected Machine agent with least privilege: a certificate-based onboarding identity that's needed only at connect time. Configuration comes through Azure Policy machine configuration baselines, assigned by scope. And patching and protection come from Update Manager and Defender for Servers.
 
@@ -382,7 +467,7 @@ Workbook: Book 05, Chapter 09 — Servers Under Azure Arc.`);
   callout(s, "Next", 5.4, 1.1, "FaBook", HEX.navy, "Read next: ",
     "Book 05 for the full migration, every claim footnoted; Book 04 for what a compliant device may reach; Book 02 for the identity it rests on.");
   s.addNotes(
-`[10:21–11:36]  Finally, run it and prove it. In run-state, compliance feeds Conditional Access, which is Book 04. Updates flow through rings and Windows Autopatch, and in a GCC tenant the update evidence comes from Intune and Autopatch reports, because Windows Update for Business reports don't meet GCC compliance. The inventory is reconciled across Entra ID, Intune, Autopilot, Arc and the CMDB. Devices are retired and wiped before the account is deleted. And the evidence maps to the configuration-management and flaw-remediation controls: CM-2, CM-6, CM-7, CM-8 and SI-2.
+`[13:20–14:35]  Finally, run it and prove it. In run-state, compliance feeds Conditional Access, which is Book 04. Updates flow through rings and Windows Autopatch, and in a GCC tenant the update evidence comes from Intune and Autopatch reports, because Windows Update for Business reports don't meet GCC compliance. The inventory is reconciled across Entra ID, Intune, Autopilot, Arc and the CMDB. Devices are retired and wiped before the account is deleted. And the evidence maps to the configuration-management and flaw-remediation controls: CM-2, CM-6, CM-7, CM-8 and SI-2.
 
 What we need from leadership is four things. Approve Intune-first for every new device. Fund the Group Policy inventory and the Group Policy analytics run. Set the Windows 11 24H2 floor and a plan for servers reaching end of support. And name the owners for endpoints, servers and security.
 
@@ -409,6 +494,22 @@ Workbook: Book 05, Chapter 10 — Operating and Evidencing the Fleet.`);
     "Full footnotes with links and access dates: Book 05, every chapter (whalermike.github.io/modernization-workbook/docs/books/b05-devices/).",
   ];
   txt(s, "Source list", bullets(src, 13), { x: 0.6, y: 1.55, w: 12.1, h: 5.0, paraSpaceAfter: 6 });
+}
+
+// ------------------------------------------------------------------ Backup: federal requirements (the deck's endnotes)
+{
+  const s = D.content("Backup", "Federal requirements: full citations");
+  const R = [
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "CM-2 Baseline Configuration; CM-6 Configuration Settings; CM-7 Least Functionality", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Intune track; Arc track (machine configuration)"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "CM-8 System Component Inventory; SI-2 Flaw Remediation", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Inventory reconciliation; update rings"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "SA-22 Unsupported System Components", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Arc track: end-of-support servers"],
+    ["OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles", "§III.A Identity: at least one device-level signal alongside identity. §III.B Devices: a complete inventory of every device; EDR", "Jan. 26, 2022", "Intune and Arc tracks"],
+  ];
+  s.addTable([head(["Primary source", "Section or control", "Date", "Used for"]),
+    ...R.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }, { text: r[3] }])],
+    tableOpts([3.3, 4.85, 1.95, 2.05], { y: 1.45, fontSize: 11.5, rowH: [0.36, 0.7, 0.7, 0.7, 0.7] }));
+  txt(s, "Requirements note", "Mapping from Book 05, Chapter 10 (evidence an assessor reads; FedRAMP adds no parameter values to these CM and SI controls), sources checked October 20, 2026, and Book 01, Appendix A (M-22-09; SA-22). The program's mapping for its assessors, not a compliance claim.",
+    { x: 0.6, y: 6.0, w: 12.15, h: 0.55, fontSize: 11, italic: true, color: HEX.slate });
 }
 
 D.save(OUT).catch((e) => { console.error(e); process.exit(1); });

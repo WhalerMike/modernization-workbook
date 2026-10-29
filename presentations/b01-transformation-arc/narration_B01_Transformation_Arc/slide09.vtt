@@ -1,69 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.834
-DNS, DHCP and address
-management are what agencies
+00:00:00.050 --> 00:00:04.298
+Group Policy was Active Directory's
+most ambitious delivery system,
 
 2
-00:00:03.834 --> 00:00:06.988
-most often put off,
-because they still work.
+00:00:04.298 --> 00:00:05.938
+and its most network-bound.
 
 3
-00:00:06.988 --> 00:00:10.125
-That's exactly how they keep
-the old directory alive.
+00:00:05.938 --> 00:00:09.188
+A client only gets it when it
+can reach a domain controller.
 
 4
-00:00:10.125 --> 00:00:13.765
-AD-integrated zones replicate
-with Active Directory,
+00:00:09.188 --> 00:00:14.475
+A cloud-native device, Entra joined
+and in Intune, has no such dependency.
 
 5
-00:00:13.765 --> 00:00:19.184
-and domain-joined clients find their
-domain controllers through records in DNS,
+00:00:14.475 --> 00:00:16.000
+Don't copy it across.
 
 6
-00:00:19.184 --> 00:00:22.662
-so DNS and AD have to be
-retired together, in sequence.
+00:00:16.000 --> 00:00:20.201
+A fifty-setting GPO ported as
+fifty settings carries dead weight,
 
 7
-00:00:22.662 --> 00:00:26.352
-The target is a governed
-DNS authority outside AD.
+00:00:20.201 --> 00:00:25.725
+old conflicts and manual targeting, and
+Microsoft itself recommends starting fresh.
 
 8
-00:00:26.352 --> 00:00:29.951
-Windows DHCP servers check
-in with AD every hour,
+00:00:25.725 --> 00:00:30.997
+So the program regenerates one clean
+policy per category, keyed to attributes,
 
 9
-00:00:29.951 --> 00:00:34.450
-but that only stops a rogue
-Windows server, not a rogue device.
+00:00:30.997 --> 00:00:34.241
+into Intune, Conditional
+Access and, for servers,
 
 10
-00:00:34.450 --> 00:00:38.976
-And one address-management
-authority owns the address space,
+00:00:34.241 --> 00:00:39.350
+Azure machine configuration, because
+Intune doesn't manage Windows Server.
 
 11
-00:00:38.976 --> 00:00:41.550
-with DNS and DHCP following from it.
+00:00:39.350 --> 00:00:42.643
+Every change passes four
+stages: validation,
 
 12
-00:00:41.550 --> 00:00:45.438
-Leave these three for “Phase
-2,” and it rarely comes.
+00:00:42.643 --> 00:00:46.738
+a simulated tenant, a report-only
+pilot, then production.
 
 13
-00:00:45.438 --> 00:00:49.413
-A forest that still hosts
-DNS hasn't been retired.
+00:00:46.738 --> 00:00:48.660
+And prefer require over block,
 
 14
-00:00:49.413 --> 00:00:52.700
-Books 08 and 09 carry the detail.
+00:00:48.660 --> 00:00:52.274
+except where the federal SCuBA
+baseline demands a block.
+
+15
+00:00:52.274 --> 00:00:55.900
+Books 05 and 04 carry the detail.

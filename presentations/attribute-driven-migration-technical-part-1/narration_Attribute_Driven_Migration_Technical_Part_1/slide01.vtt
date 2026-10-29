@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:06.074
+This is Part 1 of the technical deep dive
+for the Federal Modernization Workbook's
+
+3
+00:00:06.074 --> 00:00:09.746
+companion guide, Attribute-Driven
+Migration to Entra ID,
+
+4
+00:00:09.746 --> 00:00:13.574
+for the engineers, administrators
+and I S S O's who will run it.
+
+5
+00:00:13.574 --> 00:00:15.037
+The idea is simple.
+
+6
+00:00:15.037 --> 00:00:19.812
+In Active Directory, where an object sat
+in the tree decided what applied to it.
+
+7
+00:00:19.812 --> 00:00:23.624
+In Entra ID, what the object
+says about itself decides.
+
+8
+00:00:23.624 --> 00:00:25.700
+The deep dive is split by track.
+
+9
+00:00:25.700 --> 00:00:29.025
+This part is the model and
+the HR track, the people.
+
+10
+00:00:29.025 --> 00:00:33.250
+Part 2 is devices, servers
+and non-person identities.
+
+11
+00:00:33.250 --> 00:00:34.560
+Let's start with why.

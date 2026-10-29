@@ -47,6 +47,29 @@ Two properties shape the operating model.
 In the program's target architecture, Arc-enabled servers carry an Entra-backed machine identity and run without a domain join. Onboarding attaches the management plane. It doesn't remove the domain join for you. Plan the unjoin as a separately sequenced decision for each workload, after its authentication dependencies are known; the Kerberos and NTLM work that precedes it is in [Chapter 05](05-the-governed-manual-and-retrofit-paths.md) and Book 02 ([Chapter 04 of Book 02](../b02-identity/04-the-hidden-migration-surface.md)).
 :::
 
+## Which servers Arc reaches
+
+This chapter is the [Azure Arc track](../guides/attribute-driven-migration.md#arc-track): servers, wherever they run. A server's attributes come from the procurement or asset record and are applied as tags at onboarding, not taken from HR. Arc isn't limited to Microsoft platforms. It manages Linux servers, VMware virtual machines and AWS and GCP instances, within the limits below. The table summarizes what Microsoft documents as of October 29, 2026. Rows marked *(program reading)* are the program's inference, not a Microsoft statement. [Chapter 03](03-where-device-and-server-data-lives.md#what-intune-and-arc-dont-reach-design-guidance) sets the tiers for anything the table leaves out.
+
+| Server or platform | Arc coverage | How it connects |
+|---|---|---|
+| Windows Server 2016, 2019, 2022 and 2025, Desktop Experience and Server Core | Supported[^c09-arc-prereq] | Connected Machine agent |
+| Windows Server 2012 and 2012 R2 | Listed, but no new agent versions after November 2026. Their ESUs ended October 13, 2026 ([Extended Security Updates](#extended-security-updates))[^c09-arc-prereq] | Connected Machine agent |
+| Windows Server 2008 R2 and earlier; any 32-bit OS | Not supported. Microsoft's rule is that an OS version not on its list isn't supported, and the agent doesn't run on 32-bit systems[^c09-arc-prereq] | None |
+| Linux: Red Hat Enterprise Linux 7–10, Rocky Linux 8–9, AlmaLinux 8–9, Oracle Linux 7–10, SUSE Linux Enterprise Server 12 SP5 and 15, Ubuntu 18.04–26.04, Debian 11–13, Amazon Linux 2 and 2023, Azure Linux 3.0 | Supported. Several of these get no new agent versions after November 2026: Ubuntu 18.04 and 20.04, Debian 11 and 12, SUSE 12 SP5 and 15 SP3–SP6, Oracle Linux 7 and Amazon Linux 2. Machine configuration doesn't run on Arm64[^c09-arc-prereq] | Connected Machine agent |
+| Physical servers, and VMs on any other hypervisor | Supported[^c09-arc-choose] | Connected Machine agent |
+| VMware vSphere VMs | Supported. Arc-enabled VMware vSphere works with vCenter Server 8 and up to 9,500 VMs, and adds VM lifecycle operations. ESXi hosts, clusters and datastores are discovered as inventory, but the agent runs only in the guest VMs[^c09-arc-vmware] | Arc resource bridge to vCenter, then guest management (the agent) |
+| VMs managed by System Center Virtual Machine Manager | Retiring. New onboardings stop by October 2026 and the service ends in September 2029. Microsoft points to Arc-enabled servers instead[^c09-arc-scvmm] | Connected Machine agent |
+| AWS EC2 instances and GCP VMs | Supported, either with the agent on each VM or through the multicloud connector, which discovers instances and installs the agent. The connector covers AWS, with GCP in preview, and it isn't available in Azure Government[^c09-mcc] | Agent, or multicloud connector |
+| Azure Local | Supported, through Azure Local's own Arc control plane[^c09-arc-choose] | Built in |
+| Azure VMs | Not Arc. Microsoft says not to install Arc on Azure VMs because they already have the same capabilities.[^c09-arc-prereq] Policy, RBAC and tags apply to them natively | Native Azure resource |
+| Kubernetes clusters; SQL Server | Arc-enabled Kubernetes attaches any CNCF-certified cluster as an Azure resource.[^c09-arc-k8s] SQL Server enabled by Azure Arc is [Book 06, Chapter 09](../b06-data-platform/09-what-arc-provides-to-sql-server.md) | Cluster agents; SQL extension |
+| Windows 10 and 11 clients | Only in server-like roles, such as signage or point of sale, on machines that are always on and connected. End-user machines belong in Intune[^c09-arc-prereq] | Connected Machine agent |
+| AIX, Solaris, HP-UX, mainframe operating systems, network devices | Not supported: none is on Microsoft's operating system list[^c09-arc-prereq] | None; [Chapter 03](03-where-device-and-server-data-lives.md#what-intune-and-arc-dont-reach-design-guidance) tiers 2 to 4 |
+| Vendor-sealed appliances and virtual appliances | Not covered where the vendor doesn't allow an agent *(program reading)* | None; [Chapter 03](03-where-device-and-server-data-lives.md#what-intune-and-arc-dont-reach-design-guidance) tiers 2 to 4 |
+
+The full matrix is in the companion guide's [Arc track](../guides/attribute-driven-migration.md#arc-track).
+
 ## Before you onboard
 
 ### Plan cost by service, not by connection
@@ -113,7 +136,7 @@ Microsoft supports these methods:[^c09-arc-deploy]
 | Service principal with the installation script | Windows and Linux | At scale, non-interactively |
 | Ansible (Ansible Core or Ansible Automation Platform) | Windows and Linux | At scale |
 | Azure Arc-enabled VMware vSphere | Windows and Linux VMs on vCenter | At scale; needs VMware Tools |
-| Multicloud connector | Windows and Linux on AWS | At scale |
+| Multicloud connector | Windows and Linux on AWS, and on GCP in preview[^c09-mcc] | At scale |
 | Windows Admin Center; Azure Arc setup | Windows Server | Interactive |
 | Configuration Manager scripts or custom task sequence | Windows Server | At scale |
 | Group Policy | Domain-joined Windows Server | At scale |
@@ -329,6 +352,12 @@ Servers aren't Intune-managed, so they can't get certificates from Cloud PKI. Af
 
 [^c09-intune-platforms]: Microsoft Learn, "Supported operating systems and browsers in Intune," <https://learn.microsoft.com/intune/fundamentals/ref-supported-platforms> (accessed Oct 20, 2026).
 [^c09-arc-overview]: Microsoft Learn, "What is Azure Arc-enabled servers?," <https://learn.microsoft.com/azure/azure-arc/servers/overview> (accessed Oct 20, 2026).
+[^c09-arc-prereq]: Microsoft Learn, "Connected Machine agent prerequisites," sections "Supported environments," "Supported operating systems," "Arm64 architecture support" and "Client operating systems," <https://learn.microsoft.com/azure/azure-arc/servers/prerequisites> (accessed Oct 29, 2026).
+[^c09-arc-choose]: Microsoft Learn, "Choosing the right Azure Arc service for machines," section "General recommendations," <https://learn.microsoft.com/azure/azure-arc/choose-service> (accessed Oct 29, 2026).
+[^c09-arc-vmware]: Microsoft Learn, "What is Azure Arc-enabled VMware vSphere?," sections "How does it work?" and "Supported scenarios," <https://learn.microsoft.com/azure/azure-arc/vmware-vsphere/overview> (accessed Oct 29, 2026).
+[^c09-arc-scvmm]: Microsoft Learn, "Retirement of Azure Arc-enabled System Center Virtual Machine Manager," <https://learn.microsoft.com/azure/azure-arc/system-center-virtual-machine-manager/transition-guidance> (accessed Oct 29, 2026).
+[^c09-mcc]: Microsoft Learn, "What is Multicloud connector enabled by Azure Arc?," sections on the supported solutions and "Supported regions," <https://learn.microsoft.com/azure/azure-arc/multicloud-connector/overview> (accessed Oct 29, 2026).
+[^c09-arc-k8s]: Microsoft Learn, "What is Azure Arc-enabled Kubernetes?," section "Supported Kubernetes distributions," <https://learn.microsoft.com/azure/azure-arc/kubernetes/overview> (accessed Oct 29, 2026).
 [^c09-arc-msi]: Microsoft Learn, "Identity and access management with Azure Arc-enabled servers," system-assigned managed identity, <https://learn.microsoft.com/azure/azure-arc/servers/cloud-native/identity-access#system-assigned-managed-identity> (accessed Oct 20, 2026).
 [^c09-arc-agent]: Microsoft Learn, "Overview of Azure Connected Machine agent," <https://learn.microsoft.com/azure/azure-arc/servers/agent-overview> (accessed Oct 20, 2026).
 [^c09-arc-roles]: Microsoft Learn, "Identity and authorization" (Azure Arc-enabled servers security), RBAC roles, <https://learn.microsoft.com/azure/azure-arc/servers/security-identity-authorization#rbac-roles> (accessed Oct 20, 2026).

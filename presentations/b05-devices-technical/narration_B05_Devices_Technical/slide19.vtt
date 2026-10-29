@@ -1,71 +1,70 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.338
-Arc is the management plane,
-not the identity plane.
+00:00:00.050 --> 00:00:03.566
+Endpoint security policies
+aren't a higher-priority source;
 
 2
-00:00:03.338 --> 00:00:07.169
-Onboarding doesn't change how
-a server authenticates users or
+00:00:03.566 --> 00:00:06.800
+they have the same standing
+as configuration profiles.
 
 3
-00:00:07.169 --> 00:00:11.074
-whether it's domain-joined, so keep
-the two separate in every plan.
+00:00:06.800 --> 00:00:11.619
+In the program's library, though, they
+own every Defender, BitLocker, firewall,
 
 4
-00:00:11.074 --> 00:00:15.885
-What changes: the server becomes an
-Azure resource, with role-based access,
+00:00:11.619 --> 00:00:13.990
+account protection and LAPS setting,
 
 5
-00:00:15.885 --> 00:00:20.300
-tags and Azure Policy, and extensions
-that run with full privileges.
+00:00:13.990 --> 00:00:18.350
+and the settings catalog profiles
+that duplicated them are retired.
 
 6
-00:00:20.300 --> 00:00:24.612
-What doesn't: its domain membership,
-its workload and where it runs.
+00:00:18.350 --> 00:00:20.412
+The slide walks through each one.
 
 7
-00:00:24.612 --> 00:00:26.588
-Arc isn't a migration to Azure.
+00:00:20.412 --> 00:00:21.638
+A few highlights.
 
 8
-00:00:26.588 --> 00:00:28.687
-Two properties shape operations.
+00:00:21.638 --> 00:00:26.173
+Sending every file sample to Microsoft
+can upload organizational data,
 
 9
-00:00:28.687 --> 00:00:30.413
-Azure is the source of truth,
+00:00:26.173 --> 00:00:27.987
+so that's the data owner's call.
 
 10
-00:00:30.413 --> 00:00:33.863
-so every change is checked
-before it reaches the server.
+00:00:27.987 --> 00:00:32.203
+Silent encryption and a TPM PIN
+can't apply to the same device,
 
 11
-00:00:33.863 --> 00:00:36.112
-And connection state is evidence.
+00:00:32.203 --> 00:00:34.900
+so Tier 0 gets its own BitLocker policy.
 
 12
-00:00:36.112 --> 00:00:40.597
-A server disconnected for fourteen
-days loses its baseline assignments,
+00:00:34.900 --> 00:00:39.437
+On an Entra-joined device, the
+firewall's domain profile doesn't apply.
 
 13
-00:00:40.597 --> 00:00:42.950
-and after forty-five days it can expire.
+00:00:39.437 --> 00:00:44.363
+And attack surface reduction rules run in
+audit for thirty days before blocking.
 
 14
-00:00:42.950 --> 00:00:46.365
-Plan cost by service, too;
-with the right licensing,
+00:00:44.363 --> 00:00:46.767
+Appendix A flags the crosswalk traps,
 
 15
-00:00:46.365 --> 00:00:51.170
-several management services come at
-no extra cost, once you attest it.
+00:00:46.767 --> 00:00:50.780
+such as a logon message breaking
+Autopilot pre-provisioning.

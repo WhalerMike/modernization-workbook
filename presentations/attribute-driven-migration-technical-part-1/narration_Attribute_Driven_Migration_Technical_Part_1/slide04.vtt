@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.938
+This slide is the translation table,
+and it's the heart of the model.
+
+2
+00:00:03.938 --> 00:00:05.988
+Placement becomes attributes.
+
+3
+00:00:05.988 --> 00:00:09.074
+Groups built from O U's
+become dynamic groups.
+
+4
+00:00:09.074 --> 00:00:11.787
+Delegation moves to administrative units.
+
+5
+00:00:11.787 --> 00:00:16.500
+And Group Policy inheritance becomes
+Conditional Access and Intune targeting.
+
+6
+00:00:16.500 --> 00:00:20.634
+One rule on the right matters more
+than it looks: rules read codes,
+
+7
+00:00:20.634 --> 00:00:25.625
+never display names, because a display
+name breaks the day someone retypes it.
+
+8
+00:00:25.625 --> 00:00:28.628
+And some native fields can't
+be read by rules at all,
+
+9
+00:00:28.628 --> 00:00:31.338
+which is why the schema
+carries coded copies.
+
+10
+00:00:31.338 --> 00:00:35.380
+But the tree held more than
+people, so next, the four tracks.

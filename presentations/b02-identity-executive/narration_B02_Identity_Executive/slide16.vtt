@@ -1,65 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.819
-The sync engine is both
-the bridge to Entra ID
+00:00:00.050 --> 00:00:05.298
+The migration runs as eleven phases in
+five waves: foundation, then objects,
 
 2
-00:00:02.819 --> 00:00:05.888
-and the tether that keeps
-Active Directory alive.
+00:00:05.298 --> 00:00:10.800
+then privilege and policy, then
+authentication, then steady-state governance.
 
 3
-00:00:05.888 --> 00:00:09.850
-As long as it runs, Active
-Directory is still in production.
+00:00:10.800 --> 00:00:12.383
+Each phase has a rollback,
 
 4
-00:00:09.850 --> 00:00:13.350
-So it goes last, and only
-when six things are all true.
+00:00:12.383 --> 00:00:15.850
+and the next one doesn't start
+until its criteria are met.
 
 5
-00:00:13.350 --> 00:00:16.875
-Every user comes from HR
-or the designated source.
+00:00:15.850 --> 00:00:19.535
+The program estimates forty-three
+to sixty-eight weeks in total,
 
 6
-00:00:16.875 --> 00:00:19.300
-Every group lives in Entra ID.
+00:00:19.535 --> 00:00:22.525
+and those are planning
+estimates, not measurements.
 
 7
-00:00:19.300 --> 00:00:22.400
-No application uses on-premises sign-in.
+00:00:22.525 --> 00:00:24.637
+What leadership watches are the gates.
 
 8
-00:00:22.400 --> 00:00:24.813
-Every device is managed in the cloud.
+00:00:24.637 --> 00:00:29.112
+Policies aren't enforced until
+registration passes ninety-five percent.
 
 9
-00:00:24.813 --> 00:00:27.437
-Every service account is a cloud identity.
+00:00:29.112 --> 00:00:33.376
+Help desk volume has to return to
+normal within a week of each wave.
 
 10
-00:00:27.437 --> 00:00:33.651
-And certificates, DNS, network access and
-LDAP applications are moved and validated.
+00:00:33.376 --> 00:00:37.314
+And no policy aimed at everyone
+ever goes straight from off to on,
 
 11
-00:00:33.651 --> 00:00:37.591
-The good news is that authority
-now moves one object at a time,
+00:00:37.314 --> 00:00:40.362
+because one mistake can
+lock out the whole agency.
 
 12
-00:00:37.591 --> 00:00:39.325
-so this happens gradually.
+00:00:40.362 --> 00:00:43.862
+Identity engineering approves
+each wave on its gate.
 
 13
-00:00:39.325 --> 00:00:43.013
-The sponsor retires each
-component only after its gate.
-
-14
-00:00:43.013 --> 00:00:44.880
-Finally, proving it worked.
+00:00:43.862 --> 00:00:46.780
+And the last step is
+retiring Active Directory.

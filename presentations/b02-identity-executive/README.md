@@ -4,8 +4,8 @@
 
 | File | Use |
 |---|---|
-| `B02_Identity_Executive.pptx` | The deck: eighteen narrated slides (the title and seventeen content slides), then a backup section with the full source list |
-| `narration.json` | The spoken narration, one `{slide, title, say}` entry per narrated slide (about 2,100 words, roughly 13 minutes); `../_build/narrate.py` speaks this instead of the notes, and stops if a title doesn't match the slide |
+| `B02_Identity_Executive.pptx` | The deck: nineteen narrated slides (the title and eighteen content slides, including the four-tracks slide that says what Book 02 moves and which books carry the rest), then a backup section with the full source list |
+| `narration.json` | The spoken narration, one `{slide, title, say}` entry per narrated slide (about 2,240 words, roughly 14 minutes); `../_build/narrate.py` speaks this instead of the notes, and stops if a title doesn't match the slide |
 | `build.js` | Slide content and speaker notes; rebuild with the commands below |
 
 `narrate.py` and `captions.py` add the per-slide audio folder, the practice script and the caption track; `../_build/build_narrated.ps1 -Base B02_Identity_Executive` builds the self-running edition.

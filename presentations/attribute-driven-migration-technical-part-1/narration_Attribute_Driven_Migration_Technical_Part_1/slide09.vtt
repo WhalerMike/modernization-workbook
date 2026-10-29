@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.287
+These are the attributes your team
+already knows, and what each becomes.
+
+2
+00:00:04.287 --> 00:00:07.638
+distinguishedName comes across,
+but never use it for policy,
+
+3
+00:00:07.638 --> 00:00:09.849
+because it's the placement we're leaving.
+
+4
+00:00:09.849 --> 00:00:12.443
+Rules can't read manager or employeeType,
+
+5
+00:00:12.443 --> 00:00:15.188
+which is why the program
+keeps coded copies.
+
+6
+00:00:15.188 --> 00:00:20.163
+The disabled bit becomes accountEnabled,
+and every access rule should require it.
+
+7
+00:00:20.163 --> 00:00:24.806
+And two have no attribute at all:
+Kerberos service principal names stay
+
+8
+00:00:24.806 --> 00:00:29.450
+in AD until the workloads move, and
+admin count gives way to roles and PIM.
+
+9
+00:00:29.450 --> 00:00:31.130
+So where do the values live?

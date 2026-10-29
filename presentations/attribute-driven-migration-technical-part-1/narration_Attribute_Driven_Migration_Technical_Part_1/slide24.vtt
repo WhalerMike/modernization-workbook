@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.862
+Stage six retires Group
+Policy inheritance,
+
+2
+00:00:02.862 --> 00:00:06.813
+and the risk is policies that
+look strict but restrict nothing.
+
+3
+00:00:06.813 --> 00:00:10.678
+Conditional Access targets
+personas built from attributes;
+
+4
+00:00:10.678 --> 00:00:15.074
+employees and contractors, for example,
+come from the worker type code.
+
+5
+00:00:15.074 --> 00:00:19.184
+The figure is the key pattern: a
+grant policy on its own doesn't
+
+6
+00:00:19.184 --> 00:00:23.375
+stop anyone outside the group, so
+pair every grant with a block.
+
+7
+00:00:23.375 --> 00:00:27.537
+Run everything in report-only
+first, then enforce in waves.
+
+8
+00:00:27.537 --> 00:00:33.301
+And watch for empty attributes, because a
+dynamic group silently misses those users.
+
+9
+00:00:33.301 --> 00:00:36.813
+Devices are the other half,
+and Part 2 takes them up.
+
+10
+00:00:36.813 --> 00:00:39.820
+First, the dangers of dynamic user groups.

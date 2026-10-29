@@ -1,53 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.515
-Here's the problem in one sentence:
-a token can prove who signed a claim,
+00:00:00.050 --> 00:00:04.781
+Here's why this matters: the series
+moves four populations to the cloud,
 
 2
-00:00:04.515 --> 00:00:06.787
-but not that the claim is still true.
+00:00:04.781 --> 00:00:08.288
+each on its own track, and
+this session is the HR track.
 
 3
-00:00:06.787 --> 00:00:09.675
-The timeline shows how an
-orphaned account happens.
+00:00:08.288 --> 00:00:09.412
+It's about people.
 
 4
-00:00:09.675 --> 00:00:14.159
-HR knows about a separation two weeks
-early, and nothing else is listening,
+00:00:09.412 --> 00:00:12.972
+Employees come from Core HCM,
+and contractors from the
 
 5
-00:00:14.159 --> 00:00:18.863
-so the last forgotten account turns up
-in a penetration test six months later.
+00:00:12.972 --> 00:00:16.612
+contractor source of authority
+the agency designates.
 
 6
-00:00:18.863 --> 00:00:22.038
-Nobody was careless;
-there was simply no wire.
+00:00:16.612 --> 00:00:21.299
+Those attributes land on the user
+object, in AD while users are synced,
 
 7
-00:00:22.038 --> 00:00:23.526
-And the cost has gone up.
+00:00:21.299 --> 00:00:24.669
+then in Entra ID, and
+groups, administrative units,
 
 8
-00:00:23.526 --> 00:00:29.139
-Under Zero Trust, access is decided per
-session from attributes and dynamic groups,
+00:00:24.669 --> 00:00:28.451
+Conditional Access and
+Lifecycle Workflows read them.
 
 9
-00:00:29.139 --> 00:00:32.638
-so a wrong department isn't
-a phone-book typo any more.
+00:00:28.451 --> 00:00:32.295
+You're there when every enabled
+account matches an authoritative
 
 10
-00:00:32.638 --> 00:00:33.938
-It's wrong access.
+00:00:32.295 --> 00:00:36.350
+record or an owned exception, and no
+hand-kept group membership is left.
 
 11
-00:00:33.938 --> 00:00:37.010
-Next, the architecture
-that fixes the wiring.
+00:00:36.350 --> 00:00:40.978
+Devices, servers, service accounts
+and AI agents are other books;
+
+12
+00:00:40.978 --> 00:00:42.725
+HR never describes them.
+
+13
+00:00:42.725 --> 00:00:45.380
+Next, why the data matters so much now.

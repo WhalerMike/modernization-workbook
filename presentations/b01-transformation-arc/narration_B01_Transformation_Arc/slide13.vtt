@@ -1,63 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.075
-How do you get there?
+00:00:00.050 --> 00:00:00.913
+Who leads it?
 
 2
-00:00:01.075 --> 00:00:02.613
-Start with an inventory.
+00:00:00.913 --> 00:00:03.090
+Chapter 09 sums it up in one line:
 
 3
-00:00:02.613 --> 00:00:06.707
-You can't modernize what you haven't
-counted, and nothing gets retired
+00:00:03.090 --> 00:00:08.199
+Microsoft provides the instruments;
+the program provides the orchestra.
 
 4
-00:00:06.707 --> 00:00:10.300
-until it's written down: read-only,
-with proof of how it was read.
+00:00:08.199 --> 00:00:09.884
+The tools are each excellent,
 
 5
-00:00:10.300 --> 00:00:13.011
-The assessment account
-has no write rights,
+00:00:09.884 --> 00:00:14.166
+but none of them decides what the
+organization's structure should become,
 
 6
-00:00:13.011 --> 00:00:16.700
-the code can't issue write
-commands, and every call is logged.
+00:00:14.166 --> 00:00:18.587
+or what to do with what they find, and
+no vendor deadline forces that decision.
 
 7
-00:00:16.700 --> 00:00:21.801
-An ordinary signed-in account already
-sees more than most teams expect:
+00:00:18.587 --> 00:00:21.399
+So name one decider for
+each kind of decision.
 
 8
-00:00:21.801 --> 00:00:26.038
-the topology, the OU tree, most
-Group Policy, users and groups.
+00:00:21.399 --> 00:00:27.712
+The sponsor and CIO own scope, funding,
+sequence, and when AD components retire.
 
 9
-00:00:26.038 --> 00:00:31.463
-Every run records who, when, against
-what, and a hash of every file.
+00:00:27.712 --> 00:00:31.261
+The authorizing official is the
+only one who can accept risk,
 
 10
-00:00:31.463 --> 00:00:33.850
-Eleven streams feed the risk scoring.
+00:00:31.261 --> 00:00:33.675
+so every deferred cutoff lands with them.
 
 11
-00:00:33.850 --> 00:00:39.565
-One example: Windows Server 2016
-reaches end of support on January 12,
+00:00:33.675 --> 00:00:36.073
+The CISO sets control requirements,
 
 12
-00:00:39.565 --> 00:00:43.375
-2027, so every such server
-needs a disposition.
+00:00:36.073 --> 00:00:39.863
+and the steward holds the
+repository and clears most gates.
 
 13
-00:00:43.375 --> 00:00:47.660
-And no application leaves its data
-until its transactions are profiled.
+00:00:39.863 --> 00:00:43.706
+Then, each month, ask three
+things: how drift is trending,
+
+14
+00:00:43.706 --> 00:00:48.220
+whether changes are signed, and
+what risk acceptances are open.

@@ -1,58 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.089
-Two services share the lifecycle,
+00:00:00.050 --> 00:00:04.238
+For federal employees, the
+trigger vocabulary already exists.
 
 2
-00:00:02.089 --> 00:00:05.075
-and mixing them up is the
-most common design error.
+00:00:04.238 --> 00:00:07.687
+Every personnel action carries
+a nature-of-action code,
 
 3
-00:00:05.075 --> 00:00:09.413
-Provisioning creates and updates
-accounts and turns them on or off.
+00:00:07.687 --> 00:00:12.037
+and its family tells you the identity
+event: appointments are joiners,
 
 4
-00:00:09.413 --> 00:00:13.451
-Lifecycle Workflows act on
-accounts that already exist:
+00:00:12.037 --> 00:00:15.712
+separations are leavers, and
+conversions keep the same key.
 
 5
-00:00:13.451 --> 00:00:16.974
-the welcome, the access
-packages, the leaver tasks.
+00:00:15.712 --> 00:00:18.692
+The table is the book's
+proposed interpretation,
 
 6
-00:00:16.974 --> 00:00:20.075
-The schedule is the
-engineering detail that bites.
+00:00:18.692 --> 00:00:22.788
+which HR and policy owners validate
+before anything is automated.
 
 7
-00:00:20.075 --> 00:00:24.714
-Workflows run every three hours by
-default, on one tenant-wide setting,
+00:00:22.788 --> 00:00:25.388
+Three rules prevent the classic failures.
 
 8
-00:00:24.714 --> 00:00:28.313
-so that interval is part of
-how fast a leaver is blocked.
+00:00:25.388 --> 00:00:29.999
+Leave isn't a leaver, so a furlough
+restricts an account rather than removing it.
 
 9
-00:00:28.313 --> 00:00:31.435
-And a separation recorded
-more than three days late
+00:00:29.999 --> 00:00:33.575
+When two actions land
+together, a separation wins.
 
 10
-00:00:31.435 --> 00:00:34.775
-misses the window entirely
-and needs the on-demand path.
+00:00:33.575 --> 00:00:37.425
+And a cancelled separation
+re-enables access, with evidence.
 
 11
-00:00:34.775 --> 00:00:36.875
-Notice the gap at the bottom, too.
+00:00:37.425 --> 00:00:41.737
+Contractors have no such codes;
+their triggers are contract dates.
 
 12
-00:00:36.875 --> 00:00:38.740
-That brings us to credentials.
+00:00:41.737 --> 00:00:44.020
+Next, who acts on these events.

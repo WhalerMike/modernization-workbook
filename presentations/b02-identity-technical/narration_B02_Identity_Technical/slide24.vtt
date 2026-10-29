@@ -1,63 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.775
-Authentication modernization starts
-from the federal requirement.
+00:00:00.050 --> 00:00:03.497
+Governance in Active Directory
+was mostly a ticket queue:
 
 2
-00:00:03.775 --> 00:00:08.111
-OMB M-22-09 requires
-phishing-resistant MFA,
+00:00:03.497 --> 00:00:07.375
+someone asked for access, someone
+added it, and nobody took it away.
 
 3
-00:00:08.111 --> 00:00:13.000
-and an end to methods like SMS and
-voice codes for routine access.
+00:00:07.375 --> 00:00:09.563
+The target replaces that with a loop.
 
 4
-00:00:13.000 --> 00:00:16.640
-Its targets were set for
-the end of fiscal year 2024,
+00:00:09.563 --> 00:00:14.883
+HR-driven provisioning creates the account,
+Lifecycle Workflows run the joiner,
 
 5
-00:00:16.640 --> 00:00:19.500
-so these are requirements now, not goals.
+00:00:14.883 --> 00:00:19.330
+mover and leaver tasks, access
+packages grant access with an expiry,
 
 6
-00:00:19.500 --> 00:00:21.250
-That reorders the roadmap.
+00:00:19.330 --> 00:00:22.824
+and access reviews remove
+what's no longer justified.
 
 7
-00:00:21.250 --> 00:00:23.413
-Older plans put smart cards last,
+00:00:22.824 --> 00:00:27.638
+For example, seven days before the hire
+date the manager is emailed a Temporary
 
 8
-00:00:23.413 --> 00:00:27.179
-but a federal workforce already
-carries PIV or CAC cards,
+00:00:27.638 --> 00:00:32.600
+Access Pass, so the new hire registers a
+phishing-resistant credential on day one.
 
 9
-00:00:27.179 --> 00:00:32.787
-so certificate-based authentication straight
-against Entra ID is the fastest path.
+00:00:32.600 --> 00:00:36.887
+On the leave date, the account is
+disabled and its sessions revoked.
 
 10
-00:00:32.787 --> 00:00:38.233
-The program goes in four phases: privileged
-accounts first, then every card holder,
+00:00:36.887 --> 00:00:41.363
+Two cautions: remove privileged
+access before the delete task runs,
 
 11
-00:00:38.233 --> 00:00:43.438
-then managed Windows devices on Windows
-Hello, then everyone else on passkeys.
+00:00:41.363 --> 00:00:45.438
+and delete synced users in AD, or
+they come back on the next sync.
 
 12
-00:00:43.438 --> 00:00:47.265
-Then the legacy cutoff: find
-the remaining legacy sign-ins,
-
-13
-00:00:47.265 --> 00:00:51.720
-move them, block them, and watch for
-thirty days until there are none.
+00:00:45.438 --> 00:00:47.660
+Quarterly reviews close the loop.

@@ -1,54 +1,53 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.250
-The architecture is a straight
-line with a stable middle.
+00:00:00.050 --> 00:00:04.515
+Here's the problem in one sentence:
+a token can prove who signed a claim,
 
 2
-00:00:03.250 --> 00:00:05.549
-The HR source on the left can change,
+00:00:04.515 --> 00:00:06.787
+but not that the claim is still true.
 
 3
-00:00:05.549 --> 00:00:09.673
-and so can the Microsoft products
-on the right, but the governed
+00:00:06.787 --> 00:00:09.675
+The timeline shows how an
+orphaned account happens.
 
 4
-00:00:09.673 --> 00:00:14.113
-identity model in the center, one
-schema and one person key, stays put.
+00:00:09.675 --> 00:00:14.159
+HR knows about a separation two weeks
+early, and nothing else is listening,
 
 5
-00:00:14.113 --> 00:00:16.702
-That's what lets an
-agency survive a vendor
+00:00:14.159 --> 00:00:18.863
+so the last forgotten account turns up
+in a penetration test six months later.
 
 6
-00:00:16.702 --> 00:00:19.438
-change without rewriting
-its access policy.
+00:00:18.863 --> 00:00:22.038
+Nobody was careless;
+there was simply no wire.
 
 7
-00:00:19.438 --> 00:00:23.741
-The boundaries matter just as
-much: HR owns employment facts,
+00:00:22.038 --> 00:00:23.526
+And the cost has gone up.
 
 8
-00:00:23.741 --> 00:00:29.163
-Entra ID owns credentials and sessions,
-and the card system owns the PIV card.
+00:00:23.526 --> 00:00:29.139
+Under Zero Trust, access is decided per
+session from attributes and dynamic groups,
 
 9
-00:00:29.163 --> 00:00:32.788
-No system becomes authoritative
-just because it holds a copy.
+00:00:29.139 --> 00:00:32.638
+so a wrong department isn't
+a phone-book typo any more.
 
 10
-00:00:32.788 --> 00:00:36.213
-The principles on the right
-come back in every module.
+00:00:32.638 --> 00:00:33.938
+It's wrong access.
 
 11
-00:00:36.213 --> 00:00:38.300
-So let's start with the data itself.
+00:00:33.938 --> 00:00:37.010
+Next, the architecture
+that fixes the wiring.

@@ -1,66 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.315
-Ask who works here, what they
-do and who they report to,
+00:00:00.050 --> 00:00:03.718
+A sign-in token makes claims:
+this person works here,
 
 2
-00:00:03.315 --> 00:00:05.138
-and no single system answers.
+00:00:03.718 --> 00:00:06.775
+holds this job, reports
+to this supervisor.
 
 3
-00:00:05.138 --> 00:00:10.095
-The answers are scattered across
-regional organizational unit (OU) trees,
+00:00:06.775 --> 00:00:09.875
+The identity platform can
+prove who signed the claim.
 
 4
-00:00:10.095 --> 00:00:14.076
-application account stores,
-spreadsheets and slide decks.
+00:00:09.875 --> 00:00:11.687
+It can't prove the claim is true.
 
 5
-00:00:14.076 --> 00:00:18.413
-HR records a separation two weeks
-early, but nothing is listening.
+00:00:11.687 --> 00:00:14.517
+That matters now, because under Zero Trust
 
 6
-00:00:18.413 --> 00:00:21.125
-On the day, every account is still live.
+00:00:14.517 --> 00:00:17.750
+every request is evaluated
+against those facts.
 
 7
-00:00:21.125 --> 00:00:25.112
-A ticket gets the main account days
-later, but not the applications.
+00:00:17.750 --> 00:00:21.788
+Conditional Access and dynamic
+groups read organization,
 
 8
-00:00:25.112 --> 00:00:29.038
-Months on, a penetration test
-signs in with a leftover account.
+00:00:21.788 --> 00:00:24.013
+position, status and supervisor.
 
 9
-00:00:29.038 --> 00:00:30.175
-Nobody failed.
+00:00:24.013 --> 00:00:28.424
+So a wrong department isn't a typo
+anymore; it's the wrong access.
 
 10
-00:00:30.175 --> 00:00:33.713
-There's simply no channel from
-HR to the systems that act.
+00:00:28.424 --> 00:00:32.414
+And a stale status is a working
+token for someone who has left,
 
 11
-00:00:33.713 --> 00:00:37.925
-Cleaning up, or reviewing harder,
-can't fix a missing channel.
+00:00:32.414 --> 00:00:33.850
+usable from anywhere.
 
 12
-00:00:37.925 --> 00:00:41.622
-So the decision: designate HR
-as the source of authority,
+00:00:33.850 --> 00:00:39.050
+Federal guidance points to HR as the
+authoritative source, without naming a product.
 
 13
-00:00:41.622 --> 00:00:44.113
-and build it into both migrations now.
+00:00:39.050 --> 00:00:43.400
+So the accuracy of employee data
+is now the accuracy of access.
 
 14
-00:00:44.113 --> 00:00:45.000
-Why now?
+00:00:43.400 --> 00:00:45.530
+So why do orphans keep coming back?

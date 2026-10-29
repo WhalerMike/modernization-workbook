@@ -1,64 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.940
-Compliance policies decide whether a
-device is compliant; Conditional Access
+00:00:00.050 --> 00:00:03.313
+A connected server is
+addressable, not yet governed.
 
 2
-00:00:04.940 --> 00:00:09.312
-decides what a noncompliant device
-can reach, and Book 04 owns that part.
+00:00:03.313 --> 00:00:05.899
+Three things get attached
+on the same change.
 
 3
-00:00:09.312 --> 00:00:12.075
-This book's job is making
-the signal accurate.
+00:00:05.899 --> 00:00:09.222
+Configuration, through
+Azure machine configuration,
 
 4
-00:00:12.075 --> 00:00:15.150
-Two tenant settings
-sit above every policy.
+00:00:09.222 --> 00:00:14.389
+which audits or sets operating system
+settings and reports compliance per machine,
 
 5
-00:00:15.150 --> 00:00:20.425
-Devices with no compliance policy default
-to compliant, and the program flips that,
+00:00:14.389 --> 00:00:16.973
+scoped by Azure resource
+rather than by OU.
 
 6
-00:00:20.425 --> 00:00:24.400
-so a device that falls outside
-every group can't pass by default.
+00:00:16.973 --> 00:00:21.697
+Keep the customized baseline in the
+governance repository as policy-as-code,
 
 7
-00:00:24.400 --> 00:00:28.297
-And compliance status stays
-valid for thirty days by default;
+00:00:21.697 --> 00:00:25.462
+and treat noncompliance as a
+finding, not a failed deployment.
 
 8
-00:00:28.297 --> 00:00:32.117
-the program uses fourteen, short
-enough that a device left in
+00:00:25.462 --> 00:00:29.223
+Patching, through Azure Update
+Manager, which assesses daily,
 
 9
-00:00:32.117 --> 00:00:35.937
-a drawer loses access, long enough
-not to catch staff on leave.
+00:00:29.223 --> 00:00:32.762
+patches in maintenance windows
+and groups servers by tag.
 
 10
-00:00:35.937 --> 00:00:37.710
-Read the dashboard carefully,
+00:00:32.762 --> 00:00:35.413
+And protection, through
+Defender for Servers.
 
 11
-00:00:37.710 --> 00:00:41.538
-because some statuses hide devices
-from the noncompliant count.
+00:00:35.413 --> 00:00:38.950
+The program's FedRAMP
+Moderate scope uses Plan 2,
 
 12
-00:00:41.538 --> 00:00:46.044
-And on Tier 0, a Defender detection
-becomes a compliance failure,
+00:00:38.950 --> 00:00:41.426
+plus Defender for SQL on SQL hosts.
 
 13
-00:00:46.044 --> 00:00:47.640
-and so a loss of access.
+00:00:41.426 --> 00:00:45.429
+Onboard Defender through Arc,
+rather than installing it directly,
+
+14
+00:00:45.429 --> 00:00:47.660
+which gives you only Plan 1 function.

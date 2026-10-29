@@ -1,75 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.925
-Last, what the assessor reads.
+00:00:00.050 --> 00:00:03.760
+Intune manages Windows updates
+through four policy types,
 
 2
-00:00:01.925 --> 00:00:05.201
-The evidence is the records
-the services already keep,
+00:00:03.760 --> 00:00:06.712
+and the rings stage each
+month's quality update.
 
 3
-00:00:05.201 --> 00:00:09.131
-exported on a schedule and retained,
-mapped to the configuration
+00:00:06.712 --> 00:00:10.412
+The ring names follow Windows
+Autopatch, Test, First,
 
 4
-00:00:09.131 --> 00:00:15.100
-management and flaw remediation
-controls in NIST SP 800-53.
+00:00:10.412 --> 00:00:14.713
+Fast and Broad, from the engineering
+lab out to everyone else.
 
 5
-00:00:15.100 --> 00:00:19.412
-Baseline configuration is the policy
-library under version control.
+00:00:14.713 --> 00:00:16.775
+The values are the program's design.
 
 6
-00:00:19.412 --> 00:00:22.275
-Inventory is the weekly reconciliation.
+00:00:16.775 --> 00:00:21.895
+With them, a quality update reaches every
+online device within about sixteen days
 
 7
-00:00:22.275 --> 00:00:24.549
-Flaw remediation is the ring table,
+00:00:21.895 --> 00:00:26.638
+of release, and an update that breaks an
+early ring can be paused before Broad.
 
 8
-00:00:24.549 --> 00:00:28.000
-whose deadlines set the
-organization's patch period.
+00:00:26.638 --> 00:00:31.389
+Autopatch automates all of
+this, and it's included for
 
 9
-00:00:28.000 --> 00:00:30.138
-Two GCC facts matter.
+00:00:31.389 --> 00:00:36.250
+GCC customers with G3 or G5,
+though not in GCC High or DoD.
 
 10
-00:00:30.138 --> 00:00:32.869
-Intune in GCC uses the commercial service,
+00:00:36.250 --> 00:00:40.275
+It maintains its own rings, so
+don't assign yours to its devices.
 
 11
-00:00:32.869 --> 00:00:38.099
-and Windows Update for Business reports
-don't meet GCC compliance requirements,
+00:00:40.275 --> 00:00:47.159
+And version currency: 23H2 Enterprise
+stops receiving updates on November tenth,
 
 12
-00:00:38.099 --> 00:00:41.924
-so patch evidence comes from
-Intune and Autopatch reports.
-
-13
-00:00:41.924 --> 00:00:46.983
-So, from Monday: inventory and triage
-every GPO, set the compliance defaults,
-
-14
-00:00:46.983 --> 00:00:51.062
-carry procurement into the group
-tag, onboard servers with a
-
-15
-00:00:51.062 --> 00:00:55.875
-short-lived certificate principal,
-and reconcile inventories weekly.
-
-16
-00:00:55.875 --> 00:00:56.690
-Thank you.
+00:00:47.159 --> 00:00:50.570
+2026, so feature updates target 25H2 now.

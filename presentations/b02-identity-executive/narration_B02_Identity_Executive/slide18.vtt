@@ -1,71 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.150
-Here are the decisions in one place.
+00:00:00.050 --> 00:00:04.250
+Everything ends in evidence, and the
+question is when it gets produced.
 
 2
-00:00:02.150 --> 00:00:05.869
-The sponsor and CIO go first:
-plan against the dates,
+00:00:04.250 --> 00:00:06.369
+In the book's reference deployment,
 
 3
-00:00:05.869 --> 00:00:10.650
-treat this as a governance event,
-and adopt the one-decider matrix.
+00:00:06.369 --> 00:00:09.875
+it's produced as the work
+happens, not assembled afterward.
 
 4
-00:00:10.650 --> 00:00:14.575
-HR settles what the attributes
-mean before anything is mapped.
+00:00:09.875 --> 00:00:14.037
+Each phase ends in a signed
+readiness bundle, and those bundles,
 
 5
-00:00:14.575 --> 00:00:18.075
-Application owners chase down
-their old sign-in paths.
+00:00:14.037 --> 00:00:19.000
+with every drift finding and its fix,
+build the evidence as the work happens.
 
 6
-00:00:18.075 --> 00:00:22.137
-Identity engineering approves the
-delegation model and each wave.
+00:00:19.000 --> 00:00:22.722
+It goes to the agency's own
+assessor and authorizing official,
 
 7
-00:00:22.137 --> 00:00:25.550
-The CISO names the gap owner,
-sets privileged access
+00:00:22.722 --> 00:00:26.662
+and it lines up with the federal
+logging and cloud baseline rules.
 
 8
-00:00:25.550 --> 00:00:28.962
-and phishing-resistant sign-in,
-and owns the evidence.
+00:00:26.662 --> 00:00:30.670
+Most important, it belongs to the
+agency, so the next authorization,
 
 9
-00:00:28.962 --> 00:00:32.125
-The authorizing official
-keeps the legacy cutoff.
+00:00:30.670 --> 00:00:35.188
+and the next engagement, start from the
+current record instead of from zero.
 
 10
-00:00:32.125 --> 00:00:36.987
-And the sponsor retires Active Directory
-one gate at a time, sync engine last.
+00:00:35.188 --> 00:00:39.363
+The CISO owns that evidence,
+and the ISSO assembles it.
 
 11
-00:00:36.987 --> 00:00:39.237
-None of this is a directory upgrade.
-
-12
-00:00:39.237 --> 00:00:41.859
-Discover what Active Directory encodes,
-
-13
-00:00:41.859 --> 00:00:44.712
-rebuild it explicitly,
-and prove it survived.
-
-14
-00:00:44.712 --> 00:00:46.824
-Book 02 has the detail.
-
-15
-00:00:46.824 --> 00:00:47.640
-Thank you.
+00:00:39.363 --> 00:00:41.300
+Let's bring the decisions together.

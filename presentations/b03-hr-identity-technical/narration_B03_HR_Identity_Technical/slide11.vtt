@@ -1,59 +1,24 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.337
-Federal HR 2.0 isn't the
-project; it's the opening.
+00:00:00.050 --> 00:00:05.246
+Module 2 is the provisioning pipeline:
+how records travel from the HR platform,
 
 2
-00:00:04.337 --> 00:00:08.368
-One government-wide HR
-platform, awarded in June 2026,
+00:00:05.246 --> 00:00:09.244
+through middleware the agency
+runs inside its own boundary,
 
 3
-00:00:08.368 --> 00:00:14.413
-with agencies moving in waves and the
-older HR data systems eventually retired.
+00:00:09.244 --> 00:00:11.562
+into Entra ID and Active Directory.
 
 4
-00:00:14.413 --> 00:00:17.350
-The detail engineers need
-is on the bottom row.
+00:00:11.562 --> 00:00:13.424
+We start with Federal HR 2.0,
 
 5
-00:00:17.350 --> 00:00:21.158
-The procurement does require
-SCIM, but in one direction only:
-
-6
-00:00:21.158 --> 00:00:26.338
-provisioning the HR platform's own users
-from the government's identity provider.
-
-7
-00:00:26.338 --> 00:00:29.775
-Nothing in it makes HR drive
-the agency's directory.
-
-8
-00:00:29.775 --> 00:00:32.864
-That reverse direction is
-the agency's to design,
-
-9
-00:00:32.864 --> 00:00:36.262
-and Microsoft documents how
-for this exact platform.
-
-10
-00:00:36.262 --> 00:00:38.746
-The window closes at the interconnection,
-
-11
-00:00:38.746 --> 00:00:41.726
-around month five of
-onboarding in the sample plan.
-
-12
-00:00:41.726 --> 00:00:43.780
-Next, the pipeline itself.
+00:00:13.424 --> 00:00:18.220
+because its schedule decides when
+the identity feed has to be ready.

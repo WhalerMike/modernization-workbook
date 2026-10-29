@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.375
+This slide sets the default for Intune
+targeting, so it's worth getting right.
+
+2
+00:00:04.375 --> 00:00:07.925
+By default each policy goes
+to a dynamic device group.
+
+3
+00:00:07.925 --> 00:00:11.030
+Microsoft's current
+guidance, checked October 29,
+
+4
+00:00:11.030 --> 00:00:14.589
+is to prefer assignment filters
+where they meet the need,
+
+5
+00:00:14.589 --> 00:00:17.922
+because dynamic device
+groups add processing delay,
+
+6
+00:00:17.922 --> 00:00:22.087
+and the Federal Modernization
+Workbook's Book 05 now says the same.
+
+7
+00:00:22.087 --> 00:00:26.475
+Send user settings to user groups
+and device settings to device groups.
+
+8
+00:00:26.475 --> 00:00:29.754
+The exception is tier and
+role: filters can't read
+
+9
+00:00:29.754 --> 00:00:33.688
+device extension attributes,
+so those stay in group rules.
+
+10
+00:00:33.688 --> 00:00:38.388
+And underneath it all, a device rule
+can never read its owner's attributes.
+
+11
+00:00:38.388 --> 00:00:41.040
+Next, how device attributes get written.

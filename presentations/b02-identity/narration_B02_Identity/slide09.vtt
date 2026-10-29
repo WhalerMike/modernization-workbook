@@ -1,78 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.306
-The book's How chapters follow five steps:
+00:00:00.050 --> 00:00:00.650
+Who.
 
 2
-00:00:03.306 --> 00:00:06.563
-discover, assess, build,
-migrate and prove.
+00:00:00.650 --> 00:00:05.075
+Directory migrations fail more often
+on ownership than on technology,
 
 3
-00:00:06.563 --> 00:00:11.068
-Discovery starts with the read-only
-access every employee already has,
+00:00:05.075 --> 00:00:08.525
+so the book separates who
+decides from who does the work.
 
 4
-00:00:11.068 --> 00:00:15.650
-and only then asks for narrow, time-bound
-access to what you still can't see.
+00:00:08.525 --> 00:00:12.408
+Deciding: the CIO and sponsor
+set scope, funding and sequence;
 
 5
-00:00:15.650 --> 00:00:18.461
-The assessment covers
-the whole forest without
+00:00:12.408 --> 00:00:15.048
+the CISO sets the control requirements;
 
 6
-00:00:18.461 --> 00:00:21.062
-ever requesting rights
-that expose secrets.
+00:00:15.048 --> 00:00:19.396
+and the authorizing official
+accepts any risk the program carries
 
 7
-00:00:21.062 --> 00:00:26.094
-For the build, the book recommends Cloud
-Sync unless something needs Connect Sync,
+00:00:19.396 --> 00:00:23.900
+instead of removing, like a service
+account that can't be converted yet.
 
 8
-00:00:26.094 --> 00:00:29.497
-password hash sync everywhere,
-PIM for every admin role,
+00:00:23.900 --> 00:00:28.085
+Building and running: identity
+engineering builds the target,
 
 9
-00:00:29.497 --> 00:00:32.087
-and a tested Conditional Access baseline.
+00:00:28.085 --> 00:00:33.558
+from sync and authentication to PIM and
+administrative units; AD administrators
 
 10
-00:00:32.087 --> 00:00:35.573
-Migration runs in waves,
-moving to phishing-resistant
+00:00:33.558 --> 00:00:38.950
+clean up the source and eventually retire
+it, and the ISSO assembles the evidence.
 
 11
-00:00:35.573 --> 00:00:38.749
-sign-in and switching off
-legacy authentication.
+00:00:38.950 --> 00:00:42.144
+Then come the people
+who supply and accept:
 
 12
-00:00:38.749 --> 00:00:41.444
-And proof means drift
-checks and an evidence
+00:00:42.144 --> 00:00:45.612
+HR, application owners,
+the help desk and users.
 
 13
-00:00:41.444 --> 00:00:44.138
-bundle the authorizing
-official can rely on.
+00:00:45.612 --> 00:00:47.662
+But one owner is usually missing.
 
 14
-00:00:44.138 --> 00:00:49.046
-A few rules hold every time: never
-enforce an untested policy on everyone,
+00:00:47.662 --> 00:00:50.638
+Microsoft's tools each own
+a slice of the picture,
 
 15
-00:00:49.046 --> 00:00:51.827
-keep two cloud-only break-glass accounts,
+00:00:50.638 --> 00:00:55.025
+and nobody owns the gaps between them
+unless the program names someone.
 
 16
-00:00:51.827 --> 00:00:56.230
-and treat any closure as unproven
-until it carries its evidence.
+00:00:55.025 --> 00:00:56.710
+Next, how it's done.

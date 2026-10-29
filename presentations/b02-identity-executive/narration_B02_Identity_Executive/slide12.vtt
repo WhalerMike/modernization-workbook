@@ -1,58 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.850
-An assessment team rarely gets privileged
-access on day one, and it doesn't need to.
+00:00:00.050 --> 00:00:02.025
+Doesn't Microsoft already do this?
 
 2
-00:00:04.850 --> 00:00:08.991
-An ordinary domain account can
-read most of what the plan needs:
+00:00:02.025 --> 00:00:05.903
+Microsoft's tools do their
+individual jobs well: sync,
 
 3
-00:00:08.991 --> 00:00:14.088
-the forest's shape, the OU tree, groups,
-policy links and certificate templates.
+00:00:05.903 --> 00:00:10.662
+attack detection, policy analysis,
+tenant baselines, governance.
 
 4
-00:00:14.088 --> 00:00:16.331
-Read-only discovery changes nothing,
+00:00:10.662 --> 00:00:13.322
+But each one keeps its
+results in its own portal,
 
 5
-00:00:16.331 --> 00:00:19.950
-and it applies least privilege
-to the assessors themselves.
+00:00:13.322 --> 00:00:15.437
+and none of them connects the picture.
 
 6
-00:00:19.950 --> 00:00:24.998
-Whatever it can't see becomes a short
-written request: read only, specific,
+00:00:15.437 --> 00:00:19.533
+No native tool inventories the
+OU tree and its delegation,
 
 7
-00:00:24.998 --> 00:00:29.625
-time-bound, for one named account,
-and an export wherever one will do.
+00:00:19.533 --> 00:00:24.225
+the trusts, DNS, the full Group
+Policy estate or certificate health.
 
 8
-00:00:29.625 --> 00:00:32.123
-Never a blanket request for Domain Admin.
+00:00:24.225 --> 00:00:29.413
+And none keeps one record of the old estate,
+the new one and the drift between them.
 
 9
-00:00:32.123 --> 00:00:36.605
-Tell security operations first,
-because this looks like reconnaissance,
+00:00:29.413 --> 00:00:34.188
+So the program uses what Microsoft does
+well and builds only that missing layer.
 
 10
-00:00:36.605 --> 00:00:39.838
-and protect the output, because
-it's a map of the estate.
+00:00:34.188 --> 00:00:36.400
+Every tool already has an owner.
 
 11
-00:00:39.838 --> 00:00:44.649
-The decision: start now, and elevate
-only through that narrow request.
+00:00:36.400 --> 00:00:39.637
+The gaps between them don't,
+unless someone names one.
 
 12
-00:00:44.649 --> 00:00:46.150
-Then build the target.
+00:00:39.637 --> 00:00:44.476
+The CISO owns evidence and drift,
+so the CISO names that owner.
+
+13
+00:00:44.476 --> 00:00:45.820
+Now, how to begin.

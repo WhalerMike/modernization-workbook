@@ -5,54 +5,59 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.809
-This briefing comes from
-Book 02 of the Federal
+00:00:00.763 --> 00:00:05.517
+This briefing comes from Book 02 of
+the Federal Modernization Workbook,
 
 3
-00:00:03.809 --> 00:00:07.012
-Modernization Workbook,
-Identity and Directory.
+00:00:05.517 --> 00:00:09.875
+Identity and Directory: the move
+from Active Directory to Entra ID.
 
 4
-00:00:07.012 --> 00:00:10.426
-It's about the move from
-Active Directory to Entra ID.
+00:00:09.875 --> 00:00:14.812
+What Book 02 accomplishes is a directory
+where an object's place in the tree has
 
 5
-00:00:10.426 --> 00:00:13.934
+00:00:14.812 --> 00:00:19.825
+become attributes and rules, and every
+service account has an owner and a target.
+
+6
+00:00:19.825 --> 00:00:21.596
+Of the workbook's four tracks,
+
+7
+00:00:21.596 --> 00:00:25.875
+it carries the directory side of the
+HR track and the service accounts.
+
+8
+00:00:25.875 --> 00:00:33.325
+People's attributes are Book 03, devices
+and servers Book 05, and AI agents Book 17.
+
+9
+00:00:33.325 --> 00:00:37.385
 We'll take it through four
 questions: why identity matters now,
 
-6
-00:00:13.934 --> 00:00:17.237
-what actually changes when a
-directory moves to the cloud,
-
-7
-00:00:17.237 --> 00:00:20.884
-who has to own which decisions,
-and how to do it without losing the
-
-8
-00:00:20.884 --> 00:00:25.013
-governance that twenty-five years of
-Active Directory quietly carried.
-
-9
-00:00:25.013 --> 00:00:28.131
-Here's the short version,
-and it's worth holding onto:
-
 10
-00:00:28.131 --> 00:00:29.987
-this isn't a directory upgrade.
+00:00:37.385 --> 00:00:40.887
+what changes, who owns which
+decisions, and how to do it.
 
 11
-00:00:29.987 --> 00:00:34.350
-It decides whether every security control
-that comes after it actually works.
+00:00:40.887 --> 00:00:43.850
+The short version: this
+isn't a directory upgrade.
 
 12
-00:00:34.350 --> 00:00:35.660
+00:00:43.850 --> 00:00:47.062
+It decides whether every
+later control actually works.
+
+13
+00:00:47.062 --> 00:00:48.380
 Let's start with why.

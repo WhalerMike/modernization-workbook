@@ -1,73 +1,78 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.303
-The Group Policy sunset runs as
-a program, one setting at a time,
+00:00:00.050 --> 00:00:04.438
+There are three ways to get the existing
+fleet to the same governed state,
 
 2
-00:00:04.303 --> 00:00:07.388
-in seven steps from
-inventory to retirement.
+00:00:04.438 --> 00:00:06.412
+and the book uses each on purpose.
 
 3
-00:00:07.388 --> 00:00:11.224
-Every setting ends one of three
-ways: migrate it to Intune,
+00:00:06.412 --> 00:00:09.624
+The governed path is
+orchestrated by the program,
 
 4
-00:00:11.224 --> 00:00:14.651
-replace it with a cloud-native
-pattern, or retire it.
+00:00:09.624 --> 00:00:12.837
+with every step recorded,
+approved and evidenced.
 
 5
-00:00:14.651 --> 00:00:18.700
-The coexistence rules matter most,
-and the old guides had them wrong.
+00:00:12.837 --> 00:00:13.963
+It's the default.
 
 6
-00:00:18.700 --> 00:00:22.825
-While a device is under both,
-Group Policy wins by default.
+00:00:13.963 --> 00:00:16.825
+The manual path uses the
+native tools by hand,
 
 7
-00:00:22.825 --> 00:00:27.250
-There's a setting that flips that, but it
-only covers part of the policy surface.
+00:00:16.825 --> 00:00:20.151
+for when the orchestration
+platform isn't ready yet.
 
 8
-00:00:27.250 --> 00:00:30.258
-Defender settings and
-Windows Hello for Business
+00:00:20.151 --> 00:00:24.025
+It works, but more of the evidence
+has to be collected by hand.
 
 9
-00:00:30.258 --> 00:00:33.338
-have to be removed from
-Group Policy, not overridden.
+00:00:24.025 --> 00:00:27.270
+And the retrofit path takes
+an estate someone already
 
 10
-00:00:33.338 --> 00:00:38.550
-Group Policy preferences can leave
-settings behind after a GPO is unlinked,
+00:00:27.270 --> 00:00:31.163
+modernized by hand and brings it
+under governance after the fact.
 
 11
-00:00:38.550 --> 00:00:40.949
-so each one needs a planned cleanup.
+00:00:31.163 --> 00:00:36.263
+All three end in the same place:
+enrolled, baselined and reconciled.
 
 12
-00:00:40.949 --> 00:00:45.950
-And populations are unlinked one at a
-time, because that's scoped and reversible.
+00:00:36.263 --> 00:00:39.438
+The difference is how much of
+the proof comes automatically.
 
 13
-00:00:45.950 --> 00:00:48.375
-Finally, measure, don't assume.
+00:00:39.438 --> 00:00:42.925
+The chapter also fixes a few
+errors in the old guides.
 
 14
-00:00:48.375 --> 00:00:52.263
-The program runs Group Policy
-analytics on its own exports.
+00:00:42.925 --> 00:00:47.219
+For example, the highest LAN
+Manager authentication level
 
 15
-00:00:52.263 --> 00:00:54.310
-Then the fleet itself migrates.
+00:00:47.219 --> 00:00:51.163
+still accepts NTLM version
+two, so it doesn't block NTLM.
+
+16
+00:00:51.163 --> 00:00:52.990
+Next, who owns all this?

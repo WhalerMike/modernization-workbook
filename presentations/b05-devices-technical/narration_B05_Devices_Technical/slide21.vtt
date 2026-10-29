@@ -1,67 +1,71 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.838
-Onboarding runs in waves.
+00:00:00.050 --> 00:00:03.338
+Arc is the management plane,
+not the identity plane.
 
 2
-00:00:01.838 --> 00:00:06.187
-Each wave creates its credential,
-connects a set of servers, attaches the
+00:00:03.338 --> 00:00:07.169
+Onboarding doesn't change how
+a server authenticates users or
 
 3
-00:00:06.187 --> 00:00:10.899
-baseline on the same change, verifies,
-and then removes what onboarding needed.
+00:00:07.169 --> 00:00:11.074
+whether it's domain-joined, so keep
+the two separate in every plan.
 
 4
-00:00:10.899 --> 00:00:13.250
-Microsoft supports many methods.
+00:00:11.074 --> 00:00:15.885
+What changes: the server becomes an
+Azure resource, with role-based access,
 
 5
-00:00:13.250 --> 00:00:17.491
-The program recommends a dedicated
-service principal that signs in with a
+00:00:15.885 --> 00:00:20.300
+tags and Azure Policy, and extensions
+that run with full privileges.
 
 6
-00:00:17.491 --> 00:00:21.800
-certificate, deployed through the
-automation the server team already runs.
+00:00:20.300 --> 00:00:24.612
+What doesn't: its domain membership,
+its workload and where it runs.
 
 7
-00:00:21.800 --> 00:00:25.337
-That credential is needed only
-while the connect command runs,
+00:00:24.612 --> 00:00:26.588
+Arc isn't a migration to Azure.
 
 8
-00:00:25.337 --> 00:00:27.650
-so keep its life short
-and its scope small.
+00:00:26.588 --> 00:00:28.687
+Two properties shape operations.
 
 9
-00:00:27.650 --> 00:00:29.944
-Someone holding it could connect servers
+00:00:28.687 --> 00:00:30.413
+Azure is the source of truth,
 
 10
-00:00:29.944 --> 00:00:32.762
-outside your organization
-into your subscription.
+00:00:30.413 --> 00:00:33.863
+so every change is checked
+before it reaches the server.
 
 11
-00:00:32.762 --> 00:00:36.162
-Protect it in deployment,
-too: a secret in a hand-built
+00:00:33.863 --> 00:00:36.112
+And connection state is evidence.
 
 12
-00:00:36.162 --> 00:00:40.351
-startup script is readable by
-every domain user through SYSVOL.
+00:00:36.112 --> 00:00:40.597
+A server disconnected for fourteen
+days loses its baseline assignments,
 
 13
-00:00:40.351 --> 00:00:44.605
-And for sensitive servers, set
-local controls Azure can't override,
+00:00:40.597 --> 00:00:42.950
+and after forty-five days it can expire.
 
 14
-00:00:44.605 --> 00:00:46.510
-like an extension allowlist.
+00:00:42.950 --> 00:00:46.365
+Plan cost by service, too;
+with the right licensing,
+
+15
+00:00:46.365 --> 00:00:51.170
+several management services come at
+no extra cost, once you attest it.

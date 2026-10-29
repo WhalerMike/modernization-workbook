@@ -412,11 +412,53 @@
   ],
   [
    70.0,
+   2.737,
+   "But people are only one of four populations."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   8.975,
+   "Here's why this matters: \"migrate identity\" hides four populations, and each moves by its own track, with its own source of truth."
+  ],
+  [
+   9.025,
+   5.85,
+   "People are the HR track, from HR or, for contractors, the contractor source."
+  ],
+  [
+   14.875,
+   11.2,
+   "End-user devices are the Intune track, with attributes written by device provisioning, never by HR. Servers are the Arc track, tagged at onboarding and governed by Azure Policy."
+  ],
+  [
+   26.075,
+   8.625,
+   "And non-person identities, like service accounts and AI agents, have no HR record; their owner and sponsor are their accountability."
+  ],
+  [
+   34.7,
+   8.762,
+   "The end state is the same for all four: true attributes, one source each, read by policy, with evidence for every change."
+  ],
+  [
+   43.462,
+   3.438,
+   "Then A D can retire without losing what the O U tree did."
+  ],
+  [
+   46.9,
+   2.163,
+   "Group Policy splits the same way."
+  ],
+  [
+   49.062,
    1.262,
    "Next, policy."
   ]
  ],
- "7": [
+ "8": [
   [
    0.05,
    9.525,
@@ -483,7 +525,7 @@
    "Next, network services."
   ]
  ],
- "8": [
+ "9": [
   [
    0.05,
    8.4,
@@ -560,7 +602,7 @@
    "Next, compute."
   ]
  ],
- "9": [
+ "10": [
   [
    0.05,
    7.162,
@@ -617,7 +659,7 @@
    "Next, access."
   ]
  ],
- "10": [
+ "11": [
   [
    0.05,
    5.075,
@@ -674,7 +716,7 @@
    "Next, who leads."
   ]
  ],
- "11": [
+ "12": [
   [
    0.05,
    1.887,
@@ -746,7 +788,7 @@
    "Next, the decision matrix."
   ]
  ],
- "12": [
+ "13": [
   [
    0.05,
    4.2,
@@ -798,7 +840,7 @@
    "Next, three decisions that often land on the wrong desk."
   ]
  ],
- "13": [
+ "14": [
   [
    0.05,
    5.375,
@@ -860,7 +902,7 @@
    "Now, how to deliver it."
   ]
  ],
- "14": [
+ "15": [
   [
    0.05,
    1.988,
@@ -927,7 +969,7 @@
    "Next, how analysis becomes change."
   ]
  ],
- "15": [
+ "16": [
   [
    0.05,
    7.425,
@@ -984,7 +1026,7 @@
    "Next, the roadmap."
   ]
  ],
- "16": [
+ "17": [
   [
    0.05,
    4.812,
@@ -1061,7 +1103,7 @@
    "Next, what makes the gates trustworthy."
   ]
  ],
- "17": [
+ "18": [
   [
    0.05,
    2.1,
@@ -1133,7 +1175,7 @@
    "Next, the external clocks."
   ]
  ],
- "18": [
+ "19": [
   [
    0.05,
    4.175,
@@ -1190,7 +1232,7 @@
    "To close, the decisions in one place."
   ]
  ],
- "19": [
+ "20": [
   [
    0.05,
    2.7,

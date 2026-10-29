@@ -1,25 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.325
-Module 1 is Intune-first onboarding
-and the migration paths.
+00:00:00.050 --> 00:00:03.162
+Two more ideas frame
+everything in this session.
 
 2
-00:00:04.325 --> 00:00:07.888
-Migration brings an existing
-device under governance;
+00:00:03.162 --> 00:00:05.301
+First, the hybrid-join trap.
 
 3
-00:00:07.888 --> 00:00:11.838
-Intune-first refuses to let an
-ungoverned device exist at all.
+00:00:05.301 --> 00:00:10.260
+Converting a domain-joined fleet to hybrid
+join is close to a tenant-wide switch:
 
 4
-00:00:11.838 --> 00:00:14.075
-Chapter 04 covers new devices,
+00:00:10.260 --> 00:00:14.319
+extend the sync scope, and every
+Windows device registers itself,
 
 5
-00:00:14.075 --> 00:00:18.170
-and Chapter 05 the three
-paths for the existing estate.
+00:00:14.319 --> 00:00:17.175
+with nothing checking
+ownership or approval.
+
+6
+00:00:17.175 --> 00:00:22.456
+Microsoft's guidance is that Entra join
+is the default for new or reset devices,
+
+7
+00:00:22.456 --> 00:00:25.462
+and hybrid join is a
+waypoint, not the end goal.
+
+8
+00:00:25.462 --> 00:00:29.074
+Done ungoverned, the waypoint
+becomes the destination.
+
+9
+00:00:29.074 --> 00:00:31.213
+Second, where the truth lives.
+
+10
+00:00:31.213 --> 00:00:35.525
+A laptop is described by
+procurement, Autopilot, Entra ID,
+
+11
+00:00:35.525 --> 00:00:39.287
+Intune and Defender records,
+and a server adds Arc.
+
+12
+00:00:39.287 --> 00:00:41.482
+The program decides, fact by fact,
+
+13
+00:00:41.482 --> 00:00:45.463
+which one is authoritative, and
+correlates on the right key.
+
+14
+00:00:45.463 --> 00:00:48.979
+And one rule to remember:
+delete the Entra object last,
+
+15
+00:00:48.979 --> 00:00:52.390
+because that deletes the
+BitLocker recovery keys.

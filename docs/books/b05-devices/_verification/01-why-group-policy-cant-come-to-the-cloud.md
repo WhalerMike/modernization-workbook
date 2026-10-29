@@ -94,3 +94,11 @@ The body now states the guidance directly. These were the earlier positions it u
 
 - The workbook's source pages quoted 30 to 60 percent of settings with a direct Intune equivalent.
 - The source pages described coexistence as "last writer wins".
+
+## Revision 2026-10-29 — four tracks and companion-guide alignment
+
+Sources opened on Oct 29, 2026 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| T1 | Group Policy splits in two: the user-configuration half moves with people (HR track: user-targeted Intune policy and Conditional Access); the computer half goes to Intune device policy (devices) and Azure Policy and machine configuration (servers) | New paragraph after "In this chapter" | restated-as-design (series framing); no new Microsoft fact. Machine configuration carried from Ch09 by link | Shared framing; Ch08, Ch09 |

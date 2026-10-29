@@ -1,72 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.000
-Four asks.
+00:00:00.050 --> 00:00:03.713
+Chapter 11 puts the steps together
+in a reference deployment.
 
 2
-00:00:01.000 --> 00:00:05.263
-Name the owners, including someone
-who owns the gaps between the tools.
+00:00:03.713 --> 00:00:09.202
+It's a framing pattern, not a real engagement:
+a civilian agency with two forests,
 
 3
-00:00:05.263 --> 00:00:07.363
-Start read-only discovery now.
+00:00:09.202 --> 00:00:13.087
+a trust between them, and a
+fleet of SQL Server instances.
 
 4
-00:00:07.363 --> 00:00:09.696
-It needs no elevated access to begin,
+00:00:13.087 --> 00:00:16.276
+The figures are illustrative,
+but the mechanics are real.
 
 5
-00:00:09.696 --> 00:00:14.287
-so any request for more can follow
-the evidence instead of coming first.
+00:00:16.276 --> 00:00:22.387
+It runs in five phases: discover,
+normalize, map, migrate and validate.
 
 6
-00:00:14.287 --> 00:00:19.839
-Put the dates on the plan: Connect Sync
-has to be upgraded by April 7, 2027,
+00:00:22.387 --> 00:00:23.800
+Two moments stand out.
 
 7
-00:00:19.839 --> 00:00:26.349
-and NTLM and legacy authentication should
-come off wave by wave, not in one weekend.
+00:00:23.800 --> 00:00:28.100
+Every account the registry can't tie
+to a real owner becomes a finding.
 
 8
-00:00:26.349 --> 00:00:29.582
-And agree what done means:
-every control backed by
+00:00:28.100 --> 00:00:31.223
+And every change is recorded
+with who asked for it,
 
 9
-00:00:29.582 --> 00:00:33.050
-evidence an assessor can read,
-not a status in a ticket.
+00:00:31.223 --> 00:00:33.813
+on what authority, and
+a hash of the result.
 
 10
-00:00:33.050 --> 00:00:37.350
-Identity matters because it's now
-where every access decision gets made.
+00:00:33.813 --> 00:00:37.049
+What comes out is an evidence
+bundle for the authorizing
 
 11
-00:00:37.350 --> 00:00:41.534
-Getting it right once, while the
-platform is being rebuilt anyway,
+00:00:37.049 --> 00:00:40.700
+official and the assessor, who
+authorize the agency's own system.
 
 12
-00:00:41.534 --> 00:00:44.788
-costs far less than rebuilding
-the same gaps twice.
+00:00:40.700 --> 00:00:42.613
+And it belongs to the agency.
 
 13
-00:00:44.788 --> 00:00:49.354
-Book 02 has the full argument and
-the runbooks, every claim footnoted,
+00:00:42.613 --> 00:00:45.105
+When the integrator leaves, the registry,
 
 14
-00:00:49.354 --> 00:00:53.600
-and Book 03 picks up where the
-directory's facts should come from.
+00:00:45.105 --> 00:00:49.724
+the findings and the evidence stay
+behind for the next authorization cycle.
 
 15
-00:00:53.600 --> 00:00:54.430
-Thank you.
+00:00:49.724 --> 00:00:51.340
+So, what are we asking for?

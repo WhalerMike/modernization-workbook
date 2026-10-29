@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.787
+Once the fleet is moved, the
+job is to run it and prove it.
+
+2
+00:00:03.787 --> 00:00:08.051
+Device compliance feeds Conditional
+Access, which is Book 04.
+
+3
+00:00:08.051 --> 00:00:11.511
+Updates flow through rings
+and Windows Autopatch,
+
+4
+00:00:11.511 --> 00:00:16.950
+and in a GCC tenant the update evidence
+comes from Intune and Autopatch reports.
+
+5
+00:00:16.950 --> 00:00:20.136
+The inventory is reconciled
+across all the systems,
+
+6
+00:00:20.136 --> 00:00:23.027
+devices are wiped before
+accounts are deleted,
+
+7
+00:00:23.027 --> 00:00:28.362
+and the evidence maps to the configuration-management
+and flaw-remediation controls.
+
+8
+00:00:28.362 --> 00:00:30.638
+From leadership, we need four things.
+
+9
+00:00:30.638 --> 00:00:33.550
+Approve Intune-first for every new device.
+
+10
+00:00:33.550 --> 00:00:37.050
+Fund the Group Policy
+inventory and analytics run.
+
+11
+00:00:37.050 --> 00:00:42.750
+Set the Windows 11 24H2 floor and a plan
+for servers reaching end of support.
+
+12
+00:00:42.750 --> 00:00:46.562
+And name the owners for
+endpoints, servers and security.
+
+13
+00:00:46.562 --> 00:00:51.862
+Book 05 has the full migration, with
+every external claim footnoted.
+
+14
+00:00:51.862 --> 00:00:55.333
+Book 04 covers what a
+compliant device can reach,
+
+15
+00:00:55.333 --> 00:00:57.937
+and Book 02 the identity underneath.
+
+16
+00:00:57.937 --> 00:00:58.750
+Thank you.

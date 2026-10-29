@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.877
+Welcome to Part 2 of
+the technical deep dive
+
+2
+00:00:02.877 --> 00:00:05.625
+on attribute-driven migration to Entra ID.
+
+3
+00:00:05.625 --> 00:00:09.275
+Part 1 covered the model and
+the HR track, the people.
+
+4
+00:00:09.275 --> 00:00:14.259
+This part takes the other three tracks:
+end-user devices through Intune,
+
+5
+00:00:14.259 --> 00:00:18.230
+servers through Azure Arc,
+and the non-person identities,
+
+6
+00:00:18.230 --> 00:00:21.187
+service accounts, workloads and AI agents.
+
+7
+00:00:21.187 --> 00:00:24.726
+Then it runs the migration,
+from cutover to the checklist.
+
+8
+00:00:24.726 --> 00:00:31.150
+Microsoft facts were checked on October
+29, 2026, and design guidance is labeled.
+
+9
+00:00:31.150 --> 00:00:32.780
+First, a quick recap.

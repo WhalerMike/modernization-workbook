@@ -1,67 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.813
-The obvious shortcut is hybrid
-join, and it's almost a switch.
+00:00:00.050 --> 00:00:03.620
+For twenty years, a device's
+settings came from where
 
 2
-00:00:03.813 --> 00:00:07.138
-Change the sync scope, publish
-one setting per forest,
+00:00:03.620 --> 00:00:06.775
+it sat in the tree of
+organizational units (OUs).
 
 3
-00:00:07.138 --> 00:00:10.237
-and every domain-joined
-device registers itself.
+00:00:06.775 --> 00:00:11.702
+That position quietly did five jobs:
+which settings applied, which one won,
 
 4
-00:00:10.237 --> 00:00:12.700
-No approval, no ownership check.
+00:00:11.702 --> 00:00:16.225
+who could change it, how often it
+refreshed, and what evidence you had.
 
 5
-00:00:12.700 --> 00:00:14.875
-That effortlessness is the hazard.
+00:00:16.225 --> 00:00:19.750
+A cloud-joined, Intune-managed
+device has no position.
 
 6
-00:00:14.875 --> 00:00:18.135
-Microsoft says new devices
-should be cloud joined,
+00:00:19.750 --> 00:00:24.525
+Policies are assigned flatly to groups,
+overlapping settings become reported
 
 7
-00:00:18.135 --> 00:00:22.638
-and hybrid join is fine for existing
-devices, but never as the end state.
+00:00:24.525 --> 00:00:29.300
+conflicts that may not apply at all, and
+devices check in about every eight hours.
 
 8
-00:00:22.638 --> 00:00:26.384
-And it's sticky: moving off it
-later means resetting the device,
+00:00:29.300 --> 00:00:31.750
+Intune can deliver most of the settings.
 
 9
-00:00:26.384 --> 00:00:29.249
-and it still needs a domain
-controller in sight.
+00:00:31.750 --> 00:00:33.962
+It can't deliver the
+governance around them.
 
 10
-00:00:29.249 --> 00:00:31.836
-So every hybrid device needs an exit:
+00:00:33.962 --> 00:00:38.037
+So treat this as a governance
+rebuild, not a settings migration.
 
 11
-00:00:31.836 --> 00:00:35.888
-a target of Entra join and a
-trigger, like its refresh date.
-
-12
-00:00:35.888 --> 00:00:39.230
-The sponsor and CIO set
-the domain-unjoin waves,
-
-13
-00:00:39.230 --> 00:00:42.401
-because unjoining ends
-everyone's fallback.
-
-14
-00:00:42.401 --> 00:00:44.570
-Next, what the shortcut costs.
+00:00:38.037 --> 00:00:40.540
+Next, why running both doesn't help.

@@ -4,15 +4,15 @@
 
 | File | Use |
 |---|---|
-| `B05_Devices_Executive.pptx` | The deck: nineteen narrated slides (the title, seventeen content slides and the decisions table), then a backup section with the full source list |
-| `narration.json` | The spoken narration, one `{slide, title, say}` entry per narrated slide (about 2,200 words, roughly 14 minutes); `../_build/narrate.py` speaks this instead of the notes, and stops if a title doesn't match the slide |
+| `B05_Devices_Executive.pptx` | The deck: twenty-one narrated slides (the title, nineteen content slides and the decisions table), then a backup section with the full source list and the federal requirements' full citations |
+| `narration.json` | The spoken narration, one `{slide, title, say}` entry per narrated slide (about 2,430 words, roughly 15 minutes); `../_build/narrate.py` speaks this instead of the notes, and stops if a title doesn't match the slide |
 | `build.js` | Slide content and speaker notes; rebuild with the commands below |
 
 `narrate.py` and `captions.py` add the per-slide audio folder, the practice script and the caption track; `../_build/build_narrated.ps1 -Base B05_Devices_Executive` builds the self-running edition.
 
 ## How it differs from the 15-minute deck
 
-- **Decision-centered.** Fifteen slides end with a bar that states the decision, its owner and when it's needed, taken from the book's responsibility matrix and role descriptions (Chapter 06), its exception paths (Chapter 04), its sunset rules (Chapter 07) and its support dates (Chapters 08 to 10). Two context slides end with a takeaway instead. The closing slide gathers the decisions into one table.
+- **Decision-centered.** Fifteen slides end with a bar that states the decision, its owner and when it's needed, taken from the book's responsibility matrix and role descriptions (Chapter 06), its exception paths (Chapter 04), its sunset rules (Chapter 07) and its support dates (Chapters 08 to 10). Two context slides end with a takeaway instead, and the two opening track slides (the Intune and Arc tracks; platform coverage and the four tiers) end with a callout or table, with their federal requirements line. The closing slide gathers the decisions into one table.
 - **No configuration detail.** No CSP paths, Graph templates, PowerShell, policy IDs or per-setting values; the technical deep dive, Chapters 08 and 09 and Appendix A carry those.
 - **More of the What and the Who.** Separate slides for the coexistence rules, the hybrid-join loss ledger, one source per device fact, compliance as a fail-closed access signal, the device that can't enroll, the three paths, the full decision map with the three role systems, the support dates that bind the fleet now, and update rings as the patch clock.
 
@@ -20,7 +20,7 @@
 
 | Part | Slides | Book 05 source |
 |---|---|---|
-| **Why** | Group Policy governed by position; running both isn't safe; hybrid join is a waypoint; what an ungoverned flip loses | Chapters 01, 02 |
+| **Why** | Book 05 is the Intune and Arc tracks; which platforms Intune and Arc cover, and four tiers for the rest; Group Policy governed by position; running both isn't safe; hybrid join is a waypoint; what an ungoverned flip loses | Chapters 01, 02, 03, 09, 10 |
 | **What** | One source per fact; Intune-first onboarding; compliance as the access signal; the device that can't enroll; three paths to one end state | Chapters 03, 04, 05, 10 |
 | **Who** | Deciding isn't doing; who decides what for devices and servers | Chapter 06 |
 | **How** | The GPO sunset; seven phases with gates; servers under Azure Arc; the support dates; update rings; running and retiring the fleet; the decisions | Chapters 07 to 10 |

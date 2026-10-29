@@ -1,60 +1,55 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.137
-The first hybrid-period
-decision is the sync engine.
+00:00:00.050 --> 00:00:03.377
+Since placement becomes
+attributes, it's worth seeing the
 
 2
-00:00:03.137 --> 00:00:08.050
-Connect Sync is the long-standing,
-full-featured engine on a Windows Server.
+00:00:03.377 --> 00:00:06.912
+attributes your team already
+knows and what each one becomes.
 
 3
-00:00:08.050 --> 00:00:11.712
-Cloud Sync is a lightweight
-agent configured from the cloud,
+00:00:06.912 --> 00:00:12.112
+Most carry over, but often read-only,
+and some can't be read by a rule at all.
 
 4
-00:00:11.712 --> 00:00:14.862
-and Microsoft now calls it
-the strategic direction.
+00:00:12.112 --> 00:00:15.464
+distinguishedName comes across,
+but never use it for policy,
 
 5
-00:00:14.862 --> 00:00:17.075
-The slide compares them side by side.
+00:00:15.464 --> 00:00:17.675
+because it's the placement we're leaving.
 
 6
-00:00:17.075 --> 00:00:22.376
-The short version: Cloud Sync runs multiple
-active agents with automatic failover,
+00:00:17.675 --> 00:00:22.775
+Rules can't read manager or employeeType,
+so they read coded copies instead.
 
 7
-00:00:22.376 --> 00:00:26.063
-while Connect Sync still wins
-on scale and advanced rules.
+00:00:22.775 --> 00:00:27.750
+The disabled bit becomes accountEnabled,
+and every access rule should require it.
 
 8
-00:00:26.063 --> 00:00:29.626
-Cloud Sync now covers group
-provisioning back to AD and
+00:00:27.750 --> 00:00:32.763
+altSecurityIdentities can feed the PIV
+binding, through sync rules you add.
 
 9
-00:00:29.626 --> 00:00:33.500
-Exchange hybrid writeback, so
-those no longer force Connect.
+00:00:32.763 --> 00:00:37.407
+And two have no attribute at all:
+Kerberos service principal names stay
 
 10
-00:00:33.500 --> 00:00:36.528
-The program's rule is Cloud
-Sync for new deployments,
+00:00:37.407 --> 00:00:42.050
+in AD until the workloads move, and
+admin count gives way to roles and PIM.
 
 11
-00:00:36.528 --> 00:00:40.400
-and Connect only where a forest
-needs something Cloud Sync can't do.
-
-12
-00:00:40.400 --> 00:00:44.880
-Both can run in one forest with separate
-scopes, so you can move in stages.
+00:00:42.050 --> 00:00:45.310
+Next, the sync engine that
+carries these values.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+The checklist turns the nine stages
+into something you can tick off,
+
+2
+00:00:03.940 --> 00:00:05.537
+and that's its whole purpose.
+
+3
+00:00:05.537 --> 00:00:08.194
+There's one row per stage, plus PIV,
+
+4
+00:00:08.194 --> 00:00:12.425
+and one each for the Intune,
+Arc and non-person tracks.
+
+5
+00:00:12.425 --> 00:00:14.000
+A few are easy to miss.
+
+6
+00:00:14.000 --> 00:00:16.712
+Export site links, not just O U links.
+
+7
+00:00:16.712 --> 00:00:19.262
+Match accounts before the first full sync.
+
+8
+00:00:19.262 --> 00:00:23.200
+Write every access rule on
+codes, and don't use member-of.
+
+9
+00:00:23.200 --> 00:00:26.312
+Decide unit restriction
+before the unit exists.
+
+10
+00:00:26.312 --> 00:00:28.350
+Pair every grant with a block.
+
+11
+00:00:28.350 --> 00:00:32.600
+Prove seven days of sole-source
+changes before closing the ticket path.
+
+12
+00:00:32.600 --> 00:00:34.650
+And route logs out from the first day.
+
+13
+00:00:34.650 --> 00:00:36.430
+Finally, who decides.

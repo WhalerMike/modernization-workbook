@@ -42,11 +42,53 @@
   ],
   [
    44.913,
-   2.0,
-   "First, what access runs on."
+   2.725,
+   "First, where this book sits in the series."
   ]
  ],
  "2": [
+  [
+   0.05,
+   8.713,
+   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and Book 03 is the HR track."
+  ],
+  [
+   8.762,
+   1.125,
+   "It's about people."
+  ],
+  [
+   9.887,
+   8.512,
+   "Employee accounts follow the HR record; contractor accounts follow the contractor source of authority, which is still the agency's decision."
+  ],
+  [
+   18.4,
+   4.888,
+   "Joining, moving and leaving then change access by rule, not by ticket."
+  ],
+  [
+   23.288,
+   8.188,
+   "You'll know you're there when every enabled account matches an authoritative record or an owned exception, and no hand-kept group membership is left."
+  ],
+  [
+   31.475,
+   8.325,
+   "Devices and servers are Book 05; service accounts and AI agents are Books 02, 06 and 17."
+  ],
+  [
+   39.8,
+   6.412,
+   "And the design supports the federal account-management and personnel controls; it doesn't close them on its own."
+  ],
+  [
+   46.212,
+   1.7,
+   "Now, what access runs on."
+  ]
+ ],
+ "3": [
   [
    0.05,
    6.725,
@@ -98,7 +140,7 @@
    "So why do orphans keep coming back?"
   ]
  ],
- "3": [
+ "4": [
   [
    0.05,
    5.088,
@@ -155,7 +197,7 @@
    "Why now?"
   ]
  ],
- "4": [
+ "5": [
   [
    0.05,
    3.413,
@@ -207,7 +249,7 @@
    "Next, the data."
   ]
  ],
- "5": [
+ "6": [
   [
    0.05,
    7.075,
@@ -249,7 +291,7 @@
    "Next, keys."
   ]
  ],
- "6": [
+ "7": [
   [
    0.05,
    4.438,
@@ -306,7 +348,7 @@
    "Next, the standard."
   ]
  ],
- "7": [
+ "8": [
   [
    0.05,
    4.175,
@@ -353,7 +395,7 @@
    "Now, the data flow."
   ]
  ],
- "8": [
+ "9": [
   [
    0.05,
    2.25,
@@ -400,7 +442,7 @@
    "Next, the people."
   ]
  ],
- "9": [
+ "10": [
   [
    0.05,
    4.7,
@@ -437,7 +479,7 @@
    "Now, who decides."
   ]
  ],
- "10": [
+ "11": [
   [
    0.05,
    1.325,
@@ -504,7 +546,7 @@
    "Then, two guards."
   ]
  ],
- "11": [
+ "12": [
   [
    0.05,
    2.4,
@@ -556,7 +598,7 @@
    "Now, how it runs."
   ]
  ],
- "12": [
+ "13": [
   [
    0.05,
    6.763,
@@ -623,7 +665,7 @@
    "Then, credentials."
   ]
  ],
- "13": [
+ "14": [
   [
    0.05,
    5.8,
@@ -680,7 +722,7 @@
    "Now, the open question about contractors."
   ]
  ],
- "14": [
+ "15": [
   [
    0.05,
    4.188,
@@ -732,7 +774,7 @@
    "Here's the plan."
   ]
  ],
- "15": [
+ "16": [
   [
    0.05,
    3.725,
@@ -779,7 +821,7 @@
    "Then, cutover."
   ]
  ],
- "16": [
+ "17": [
   [
    0.05,
    5.325,
@@ -826,7 +868,7 @@
    "How will you know it works?"
   ]
  ],
- "17": [
+ "18": [
   [
    0.05,
    1.062,
@@ -868,7 +910,7 @@
    "Let's bring the decisions together."
   ]
  ],
- "18": [
+ "19": [
   [
    0.05,
    2.112,

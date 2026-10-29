@@ -1,20 +1,67 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.438
-Module 4 is operating
-and evidencing the fleet.
+00:00:00.050 --> 00:00:01.838
+Onboarding runs in waves.
 
 2
-00:00:03.438 --> 00:00:08.535
-Once the GPOs are gone, a device's state
-has to be proved from three records:
+00:00:01.838 --> 00:00:06.187
+Each wave creates its credential,
+connects a set of servers, attaches the
 
 3
-00:00:08.535 --> 00:00:13.801
-the policy library, the status Intune
-and Defender report, and the audit log.
+00:00:06.187 --> 00:00:10.899
+baseline on the same change, verifies,
+and then removes what onboarding needed.
 
 4
-00:00:13.801 --> 00:00:16.150
-Operating means keeping them in agreement.
+00:00:10.899 --> 00:00:13.250
+Microsoft supports many methods.
+
+5
+00:00:13.250 --> 00:00:17.491
+The program recommends a dedicated
+service principal that signs in with a
+
+6
+00:00:17.491 --> 00:00:21.800
+certificate, deployed through the
+automation the server team already runs.
+
+7
+00:00:21.800 --> 00:00:25.337
+That credential is needed only
+while the connect command runs,
+
+8
+00:00:25.337 --> 00:00:27.650
+so keep its life short
+and its scope small.
+
+9
+00:00:27.650 --> 00:00:29.944
+Someone holding it could connect servers
+
+10
+00:00:29.944 --> 00:00:32.762
+outside your organization
+into your subscription.
+
+11
+00:00:32.762 --> 00:00:36.162
+Protect it in deployment,
+too: a secret in a hand-built
+
+12
+00:00:36.162 --> 00:00:40.351
+startup script is readable by
+every domain user through SYSVOL.
+
+13
+00:00:40.351 --> 00:00:44.605
+And for sensitive servers, set
+local controls Azure can't override,
+
+14
+00:00:44.605 --> 00:00:46.510
+like an extension allowlist.

@@ -1,77 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.650
-Who.
+00:00:00.050 --> 00:00:04.388
+One more thing changes, and users
+will feel it: how they sign in.
 
 2
-00:00:00.650 --> 00:00:05.075
-Directory migrations fail more often
-on ownership than on technology,
+00:00:04.388 --> 00:00:11.076
+M-22-09 requires phishing-resistant MFA,
+and it names PIV as the simplest route.
 
 3
-00:00:05.075 --> 00:00:08.525
-so the book separates who
-decides from who does the work.
+00:00:11.076 --> 00:00:13.063
+That flips the usual roadmap.
 
 4
-00:00:08.525 --> 00:00:12.408
-Deciding: the CIO and sponsor
-set scope, funding and sequence;
+00:00:13.063 --> 00:00:16.174
+Older plans saved smart-card
+sign-in for last.
 
 5
-00:00:12.408 --> 00:00:15.048
-the CISO sets the control requirements;
+00:00:16.174 --> 00:00:19.378
+But federal staff already
+carry PIV or CAC cards,
 
 6
-00:00:15.048 --> 00:00:19.396
-and the authorizing official
-accepts any risk the program carries
+00:00:19.378 --> 00:00:23.941
+so certificate-based authentication
+in Entra ID is the fastest path:
 
 7
-00:00:19.396 --> 00:00:23.900
-instead of removing, like a service
-account that can't be converted yet.
+00:00:23.941 --> 00:00:28.425
+the credential's already issued,
+and no federation server is needed.
 
 8
-00:00:23.900 --> 00:00:28.085
-Building and running: identity
-engineering builds the target,
+00:00:28.425 --> 00:00:33.232
+The book runs four waves: privileged
+accounts first, then card holders, then
 
 9
-00:00:28.085 --> 00:00:33.558
-from sync and authentication to PIM and
-administrative units; AD administrators
+00:00:33.232 --> 00:00:38.737
+managed Windows devices with Windows Hello,
+and finally everyone else with passkeys.
 
 10
-00:00:33.558 --> 00:00:38.950
-clean up the source and eventually retire
-it, and the ISSO assembles the evidence.
+00:00:38.737 --> 00:00:41.809
+Along the way, SMS and
+voice codes go for staff,
 
 11
-00:00:38.950 --> 00:00:42.144
-Then come the people
-who supply and accept:
+00:00:41.809 --> 00:00:46.375
+and so do legacy protocols that
+send a password with every request.
 
 12
-00:00:42.144 --> 00:00:45.612
-HR, application owners,
-the help desk and users.
+00:00:46.375 --> 00:00:51.575
+Those are found in the sign-in logs, fixed,
+blocked, and watched for thirty days.
 
 13
-00:00:45.612 --> 00:00:47.662
-But one owner is usually missing.
+00:00:51.575 --> 00:00:54.080
+One thing stays on: password hash sync,
 
 14
-00:00:47.662 --> 00:00:50.638
-Microsoft's tools each own
-a slice of the picture,
-
-15
-00:00:50.638 --> 00:00:55.025
-and nobody owns the gaps between them
-unless the program names someone.
-
-16
-00:00:55.025 --> 00:00:56.710
-Next, how it's done.
+00:00:54.080 --> 00:00:57.530
+for leaked-credential
+detection and as a fallback.

@@ -1,54 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.662
-Servers take a different road, because
-Intune doesn't manage Windows Server.
+00:00:00.050 --> 00:00:00.950
+Now the how.
 
 2
-00:00:04.662 --> 00:00:10.012
-Azure Arc gives each server an Azure
-resource, with roles, tags and policy.
+00:00:00.950 --> 00:00:05.550
+The Group Policy sunset runs one
+setting and one population at a time.
 
 3
-00:00:10.012 --> 00:00:13.474
-But Arc is the management
-plane, not the identity plane.
+00:00:05.550 --> 00:00:09.175
+Every setting gets asked, in
+order: is it still needed?
 
 4
-00:00:13.474 --> 00:00:18.163
-Onboarding doesn't take a server off
-the domain or change how people sign in.
+00:00:09.175 --> 00:00:11.250
+Is there a direct Intune equivalent?
 
 5
-00:00:18.163 --> 00:00:22.876
-A connected server is only addressable,
-not governed, until three things
+00:00:11.250 --> 00:00:16.275
+Does a cloud service replace the need, the
+way OneDrive replaces redirected folders?
 
 6
-00:00:22.876 --> 00:00:27.588
-are attached on day one: a configuration
-baseline, patching and Defender.
+00:00:16.275 --> 00:00:17.750
+Can a script enforce it?
 
 7
-00:00:27.588 --> 00:00:32.612
-Licensing changes the bill, but only
-once each server's license is attested.
+00:00:17.750 --> 00:00:22.112
+Anything that fails all four becomes
+a dated exception with an owner.
 
 8
-00:00:32.612 --> 00:00:38.387
-And cloud sign-in works only on Windows
-Server 2025, without Conditional Access.
+00:00:22.112 --> 00:00:26.577
+Then the rules that keep it honest:
+retire before you translate, one owner
 
 9
-00:00:38.387 --> 00:00:42.394
-The decision: each server leaves
-the domain as its own decision,
+00:00:26.577 --> 00:00:31.338
+per setting, and no GPO link switched
+off until its replacement shows success.
 
 10
-00:00:42.394 --> 00:00:45.013
-after its sign-in dependencies are known.
+00:00:31.338 --> 00:00:35.887
+GPOs are disabled first and kept
+ninety days as a safety net.
 
 11
-00:00:45.013 --> 00:00:46.540
-Next, the dates.
+00:00:35.887 --> 00:00:39.203
+The decision for the
+endpoint engineering lead:
+
+12
+00:00:39.203 --> 00:00:43.513
+freeze every inventoried GPO, so
+new requirements go to Intune.
+
+13
+00:00:43.513 --> 00:00:45.020
+Next, the timeline.

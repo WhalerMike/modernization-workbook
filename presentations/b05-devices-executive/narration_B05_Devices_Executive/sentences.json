@@ -52,11 +52,90 @@
   ],
   [
    36.312,
-   2.65,
-   "Let's start with what Group Policy was really doing."
+   2.725,
+   "First, where this book sits in the series."
   ]
  ],
  "2": [
+  [
+   0.05,
+   8.338,
+   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and Book 05 carries two of them."
+  ],
+  [
+   8.387,
+   4.487,
+   "The Intune track is end-user devices, and the Arc track is servers."
+  ],
+  [
+   12.875,
+   8.262,
+   "A device's attributes come from device provisioning, like the Autopilot group tag, never from HR, and a device rule can't read its owner."
+  ],
+  [
+   21.137,
+   7.85,
+   "Devices are done when their policy targets those attributes and the computer-side G P O links are gone, one population at a time."
+  ],
+  [
+   28.988,
+   5.525,
+   "Servers are done when each is Arc-enabled, tagged, and evaluated by Azure Policy."
+  ],
+  [
+   34.513,
+   6.287,
+   "And Group Policy splits: user settings go with people, computer settings with devices and servers."
+  ],
+  [
+   40.8,
+   2.85,
+   "First, which platforms each one reaches."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.125,
+   "Here's why this matters: an inventory that only covers Windows isn't an inventory."
+  ],
+  [
+   5.175,
+   2.938,
+   "Intune isn't just for Microsoft platforms."
+  ],
+  [
+   8.113,
+   7.95,
+   "It manages Windows, Apple and Android devices, and Linux desktops with limits, while ChromeOS stays in Google's console."
+  ],
+  [
+   16.062,
+   8.7,
+   "Arc reaches Windows and Linux servers wherever they run: on premises, VMware VMs, and AWS and Google Cloud instances."
+  ],
+  [
+   24.762,
+   2.188,
+   "Azure VMs don't need Arc at all."
+  ],
+  [
+   26.95,
+   17.863,
+   "For what neither reaches, like printers, network gear, the mainframe or old Unix, every device still lands in one of four tiers: Intune or Arc; its own tool, with the CMDB holding its attributes; discovered and monitored only; or segmented and retired."
+  ],
+  [
+   44.812,
+   2.325,
+   "A device in no tier is a finding."
+  ],
+  [
+   47.138,
+   2.413,
+   "Now, what Group Policy was really doing."
+  ]
+ ],
+ "4": [
   [
    0.05,
    6.725,
@@ -98,7 +177,7 @@
    "Next, why running both doesn't help."
   ]
  ],
- "3": [
+ "5": [
   [
    0.05,
    4.025,
@@ -140,7 +219,7 @@
    "Next, the shortcut."
   ]
  ],
- "4": [
+ "6": [
   [
    0.05,
    3.763,
@@ -187,7 +266,7 @@
    "Next, what the shortcut costs."
   ]
  ],
- "5": [
+ "7": [
   [
    0.05,
    7.35,
@@ -244,7 +323,7 @@
    "Now, what a governed device needs."
   ]
  ],
- "6": [
+ "8": [
   [
    0.05,
    6.475,
@@ -286,7 +365,7 @@
    "Next, how new devices start out governed."
   ]
  ],
- "7": [
+ "9": [
   [
    0.05,
    5.9,
@@ -328,7 +407,7 @@
    "Next, the access signal."
   ]
  ],
- "8": [
+ "10": [
   [
    0.05,
    3.062,
@@ -375,7 +454,7 @@
    "Next, devices that can't enroll."
   ]
  ],
- "9": [
+ "11": [
   [
    0.05,
    8.65,
@@ -412,7 +491,7 @@
    "Next, the existing fleet."
   ]
  ],
- "10": [
+ "12": [
   [
    0.05,
    4.162,
@@ -459,7 +538,7 @@
    "Now, who owns it."
   ]
  ],
- "11": [
+ "13": [
   [
    0.05,
    5.925,
@@ -506,7 +585,7 @@
    "Next, the full map."
   ]
  ],
- "12": [
+ "14": [
   [
    0.05,
    5.537,
@@ -548,7 +627,7 @@
    "Now, how."
   ]
  ],
- "13": [
+ "15": [
   [
    0.05,
    0.9,
@@ -605,7 +684,7 @@
    "Next, the timeline."
   ]
  ],
- "14": [
+ "16": [
   [
    0.05,
    4.987,
@@ -642,7 +721,7 @@
    "Next, servers."
   ]
  ],
- "15": [
+ "17": [
   [
    0.05,
    4.612,
@@ -689,7 +768,7 @@
    "Next, the dates."
   ]
  ],
- "16": [
+ "18": [
   [
    0.05,
    6.325,
@@ -721,7 +800,7 @@
    "Next, patching."
   ]
  ],
- "17": [
+ "19": [
   [
    0.05,
    4.338,
@@ -758,7 +837,7 @@
    "Next, running the fleet."
   ]
  ],
- "18": [
+ "20": [
   [
    0.05,
    8.425,
@@ -790,7 +869,7 @@
    "Let's pull it together."
   ]
  ],
- "19": [
+ "21": [
   [
    0.05,
    1.575,

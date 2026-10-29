@@ -1,71 +1,82 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.338
-Ownership matters because the
-work crosses several teams,
+00:00:00.050 --> 00:00:03.398
+For new devices, the
+doctrine is Intune-first,
 
 2
-00:00:03.338 --> 00:00:06.425
-so the book separates who
-decides from who does the work.
+00:00:03.398 --> 00:00:08.013
+and the headline is the slide
+title: no ungoverned device, ever.
 
 3
-00:00:06.425 --> 00:00:13.200
-On the deciding side, the CISO and ISSO
-own the baselines, exceptions and evidence.
+00:00:08.013 --> 00:00:12.100
+Every device is enrolled in governance
+before it's used in production.
 
 4
-00:00:13.200 --> 00:00:17.150
-The endpoint engineering lead
-owns policy design and rollout.
+00:00:12.100 --> 00:00:16.050
+Governance starts at procurement,
+so the device's organizational
 
 5
-00:00:17.150 --> 00:00:22.325
-The change board owns the update rings,
-the migration waves and any pause.
+00:00:16.050 --> 00:00:20.000
+assignment is set when the order is
+placed, not when the box arrives.
 
 6
-00:00:22.325 --> 00:00:27.578
-On the doing side, endpoint engineering
-builds the Intune policies and Autopilot
+00:00:20.000 --> 00:00:23.487
+That's the same idea as HR
+feeding user provisioning.
 
 7
-00:00:27.578 --> 00:00:30.745
-profiles, the server team
-onboards servers to Arc,
+00:00:23.487 --> 00:00:27.980
+Enrollment is zero-touch, and
+manual enrollment is a justified,
 
 8
-00:00:30.745 --> 00:00:34.375
-and security operations runs
-Defender and the response.
+00:00:27.980 --> 00:00:30.313
+time-limited, audited exception.
 
 9
-00:00:34.375 --> 00:00:37.990
-Application owners, the help
-desk and pilot users are
+00:00:30.313 --> 00:00:32.882
+Each asset gets one management plane,
 
 10
-00:00:37.990 --> 00:00:41.687
-consulted and affected; pilot
-users tell us what broke.
+00:00:32.882 --> 00:00:35.950
+and there's no new Group
+Policy or hybrid join.
 
 11
-00:00:41.687 --> 00:00:46.225
-And one rule applies to people as
-much as devices: least privilege.
+00:00:35.950 --> 00:00:40.071
+And if onboarding fails, the device
+goes to quarantine with a ticket,
 
 12
-00:00:46.225 --> 00:00:51.337
-Daily work runs on scoped Intune roles,
-not the broad Intune Administrator role,
+00:00:40.071 --> 00:00:42.500
+never into production half-configured.
 
 13
-00:00:51.337 --> 00:00:54.512
-which Microsoft advises
-against for routine use.
+00:00:42.500 --> 00:00:47.264
+One practical note for GCC tenants:
+the book defaults to classic Autopilot,
 
 14
-00:00:54.512 --> 00:00:57.620
-With owners named, here's
-how the sunset runs.
+00:00:47.264 --> 00:00:50.338
+because manufacturer
+registration can carry a
+
+15
+00:00:50.338 --> 00:00:53.412
+group tag and the newer
+device preparation can't.
+
+16
+00:00:53.412 --> 00:00:55.151
+That covers new devices.
+
+17
+00:00:55.151 --> 00:00:57.960
+The existing fleet takes
+one of three paths.

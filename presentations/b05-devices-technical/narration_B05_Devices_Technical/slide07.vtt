@@ -1,66 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.414
-Here's how a procurement
-decision reaches a
+00:00:00.050 --> 00:00:01.599
+Here's why this matters:
 
 2
-00:00:02.414 --> 00:00:05.238
-device's configuration
-without anyone touching it.
+00:00:01.599 --> 00:00:05.513
+the Intune track is every end-user
+device, not just Windows.
 
 3
-00:00:05.238 --> 00:00:09.524
-The purchase order carries an
-organizational code and the serial number.
+00:00:05.513 --> 00:00:08.506
+Windows 11 and Cloud
+PCs are fully managed,
 
 4
-00:00:09.524 --> 00:00:13.918
-The supplier registers the device at
-purchase, which is also what makes it
+00:00:08.506 --> 00:00:12.013
+and Azure Virtual Desktop
+is managed with limits.
 
 5
-00:00:13.918 --> 00:00:18.238
-zero-touch, after a one-time recorded
-approval by a Global Administrator.
+00:00:12.013 --> 00:00:15.211
+Apple devices come in through
+Apple Business Manager,
 
 6
-00:00:18.238 --> 00:00:22.742
-That group tag shows up on the Entra
-device, a dynamic group matches on it,
+00:00:15.211 --> 00:00:18.624
+and Android Enterprise is
+managed in all four of its modes.
 
 7
-00:00:22.742 --> 00:00:26.788
-and the profile, compliance and
-configuration follow the group.
+00:00:18.624 --> 00:00:23.925
+Linux desktops are limited: Ubuntu
+and Red Hat, mostly for compliance.
 
 8
-00:00:26.788 --> 00:00:31.090
-The tag holds a node identifier,
-never a free-text department name,
+00:00:23.925 --> 00:00:28.763
+ChromeOS shows up as inventory, but
+Google's console keeps the policy.
 
 9
-00:00:31.090 --> 00:00:36.188
-so a reorganization changes a mapping
-table, not thousands of registrations.
+00:00:28.763 --> 00:00:33.262
+Windows 10 is out of support, so it
+can enroll but nothing's guaranteed.
 
 10
-00:00:36.188 --> 00:00:39.347
-Enrollment restrictions
-are the enforcement point:
+00:00:33.262 --> 00:00:38.738
+And servers, printers, network gear
+and IoT aren't Intune platforms at all.
 
 11
-00:00:39.347 --> 00:00:43.152
-block personal Windows enrollment,
-and an unregistered device
+00:00:38.738 --> 00:00:43.562
+Servers go to Arc, and the rest get a
+tier, which we'll come to in Module 3.
 
 12
-00:00:43.152 --> 00:00:47.100
-simply fails to enroll, which is
-the quarantine pillar in practice.
-
-13
-00:00:47.100 --> 00:00:50.570
-The slide covers naming and
-the Enrollment Status Page.
+00:00:43.562 --> 00:00:46.940
+Next, Windows in a GCC tenant.
