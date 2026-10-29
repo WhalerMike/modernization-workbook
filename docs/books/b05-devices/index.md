@@ -50,6 +50,8 @@ The workbook moves an Active Directory estate on [four tracks](../guides/attribu
 - **The Intune track: end-user devices.** Workstations, laptops and mobile devices, in Chapters 03, 04 and 08; summarized in the companion guide's [Intune track](../guides/attribute-driven-migration.md#intune-track).
 - **The Azure Arc track: servers.** Servers on premises and in other clouds, in Chapter 09; summarized in the guide's [Arc track](../guides/attribute-driven-migration.md#arc-track).
 
+Each track also runs as gated steps with read-only validation checks: the [Intune track implementation guide](../guides/intune-track-implementation.md) and the [Azure Arc Track: Implementation Guide](../guides/arc-track-implementation.md).
+
 On both tracks the attributes come from device provisioning and the procurement or asset record, written at enrollment or Arc onboarding. They don't come from HR. HR never describes a device or a server, and a device rule can't read its owner's attributes ([Chapter 03](03-where-device-and-server-data-lives.md#three-stores-that-policy-reads)). The end state, and how you know you've reached it, is in the guide's [What this migration accomplishes](../guides/attribute-driven-migration.md#what-this-migration-accomplishes). In the program's mapping, the two tracks produce the evidence for NIST SP 800-53 CM-8 (system component inventory), CM-2 (baseline configuration) and CM-6 (configuration settings), set out in [Chapter 10](10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads).
 
 ## Why, what, who, how

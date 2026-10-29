@@ -1,0 +1,70 @@
+[
+  {
+    "id": "00000000-0000-4000-8000-000000000300",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000300",
+    "displayName": "Payroll API",
+    "servicePrincipalType": "Application",
+    "appOwnerOrganizationId": "11111111-1111-4111-8111-111111111111",
+    "accountEnabled": true,
+    "owners": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000001"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000002"
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000301",
+    "appId": "00000003-0000-0000-c000-000000000000",
+    "displayName": "Microsoft Graph",
+    "servicePrincipalType": "Application",
+    "appOwnerOrganizationId": "f8cdef31-a31e-4b4a-93e4-5f571e91255a",
+    "accountEnabled": true,
+    "owners": []
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000302",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000302",
+    "displayName": "HR Sync",
+    "servicePrincipalType": "Application",
+    "appOwnerOrganizationId": "11111111-1111-4111-8111-111111111111",
+    "accountEnabled": true,
+    "owners": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000002"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000003"
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000303",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000303",
+    "displayName": "Report Bot",
+    "servicePrincipalType": "Application",
+    "appOwnerOrganizationId": "11111111-1111-4111-8111-111111111111",
+    "accountEnabled": true,
+    "owners": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000001"
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000304",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000304",
+    "displayName": "Orphan Job",
+    "servicePrincipalType": "Application",
+    "appOwnerOrganizationId": "11111111-1111-4111-8111-111111111111",
+    "accountEnabled": true,
+    "owners": []
+  }
+]

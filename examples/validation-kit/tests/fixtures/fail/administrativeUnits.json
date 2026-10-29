@@ -1,0 +1,26 @@
+[
+  {
+    "id": "00000000-0000-4000-8000-000000000600",
+    "displayName": "AU ORG-A",
+    "membershipType": "Dynamic",
+    "membershipRule": "(user.extensionAttribute10 -eq \"ORG-B\") -and (user.accountEnabled -eq true) -and (user.userType -eq \"Member\")",
+    "membershipRuleProcessingState": "On",
+    "isMemberManagementRestricted": false
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000601",
+    "displayName": "AU HR case files",
+    "membershipType": null,
+    "membershipRule": null,
+    "membershipRuleProcessingState": null,
+    "isMemberManagementRestricted": true
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000602",
+    "displayName": "AU Break-glass",
+    "membershipType": null,
+    "membershipRule": null,
+    "membershipRuleProcessingState": null,
+    "isMemberManagementRestricted": true
+  }
+]

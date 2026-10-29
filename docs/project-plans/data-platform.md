@@ -33,7 +33,7 @@ This is an illustrative plan built from the workbook's books, in the form a proj
 
 : Plan at a glance {.striped}
 
-This plan builds the [Data Platform Identity Transformation](../projects/data-platform-charter.md) project from [Book 06](../books/b06-data-platform/index.md): SQL Server moved from Windows and SQL authentication to Microsoft Entra ID, NTLM removed after audit, and the result kept as a continuously verified [closure record](../books/b06-data-platform/20-the-closure-condition.md). Its phases follow the book's [runbook order](../books/b06-data-platform/r01-prerequisites.md#step-5-the-run-order): discovery and the consolidation gate, the authentication audit, Arc and the parallel run on a pilot instance, the estate with NTLM restriction and the access layer, the application chain, then elimination and closure. It runs inside the [program master schedule](program-master-schedule.md): discovery belongs to the program's Pre-flight, the pilot host follows the program's server Arc pattern (P2.9), the group work builds on Gate G1, and NTLM restriction waits for the authorizing official's end dates (D08). Its tail, the instances that can only close by upgrade or retirement, runs past the program's week 48.
+This plan builds the [Data Platform Identity Transformation](../books/b00-orientation/06-the-project-portfolio.md#data-platform-identity-transformation) project from [Book 06](../books/b06-data-platform/index.md): SQL Server moved from Windows and SQL authentication to Microsoft Entra ID, NTLM removed after audit, and the result kept as a continuously verified [closure record](../books/b06-data-platform/20-the-closure-condition.md). Its phases follow the book's [runbook order](../books/b06-data-platform/r01-prerequisites.md#step-5-the-run-order): discovery and the consolidation gate, the authentication audit, Arc and the parallel run on a pilot instance, the estate with NTLM restriction and the access layer, the application chain, then elimination and closure. It runs inside the [program master schedule](program-master-schedule.md): discovery belongs to the program's Pre-flight, the pilot host follows the program's server Arc pattern (P2.9), the group work builds on Gate G1, and NTLM restriction waits for the authorizing official's end dates (D08). Its tail, the instances that can only close by upgrade or retirement, runs past the program's week 48.
 
 ## Schedule
 
@@ -114,6 +114,14 @@ Each gate is the next phase's entry condition. The approver signs it against the
 - **X-G1, G1 — Foundation Complete: groups and AUs drift-clean, Conditional Access baseline enforced (program),** is G1 in the [Program master schedule](program-master-schedule.md) plan (G1 — Foundation Complete), end of wk 8. This plan waits for it; it can slip 94 d before it moves this plan. The DBA administrative unit and the SQL group logins have no foundation to build on.
 - **X-D08, End dates for legacy authentication and NTLM (program D08),** is D08 in the [Program master schedule](program-master-schedule.md) plan (End dates for legacy authentication and NTLM), end of wk 16. This plan waits for it; it can slip 57 d before it moves this plan. Phase B's deny step and the Phase C block have no date to plan against.
 - **X-P46, AD-bound service principal names migrated, retired or islanded (program P4.6),** is P4.6 in the [Program master schedule](program-master-schedule.md) plan (AD-bound service principal names migrated, retired or islanded, app by app), end of wk 42. This plan must finish DG4 by then: a margin of 58 d. SQL Server's applications still hold Windows-authenticated connections when the program measures AD authentication for G4.
+
+Other plans that take a date from this one. *Waits for it*: that plan can't move until this item finishes, and its float says how far this item can slip before it moves that plan. *Must finish by it*: that plan's work has to be done before this item, and the margin says by how much.
+
+| This plan's item | When | Linked plan | Relationship | Float or margin |
+|---|---|---|---|---|
+| DG4  Gate 4 — Application chain on Entra principals | end of wk 31 | [Non-Person Identity Modernization](non-person-identity.md) (X-DG4) | Reference only | — |
+
+: Plans that take a date from this one {.striped .hover}
 
 ## Work breakdown and schedule
 
@@ -228,7 +236,7 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 
 ## Assumptions
 
-- Book 06 carries SQL Server. Other engines are inventoried only; the charter excludes non-relational platforms beyond inventory ([charter](../projects/data-platform-charter.md)).
+- Book 06 carries SQL Server. Other engines are inventoried only; the charter excludes non-relational platforms beyond inventory ([charter](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/data-platform-charter.md)).
 - Executing a large consolidation is outside this plan. The verdict is in scope, but moving databases onto targets needs its own funding decision ([Book 06, Chapter 13](../books/b06-data-platform/13-who-owns-the-data-platform.md#where-the-roles-come-from)).
 - Book 06 fixes the Phase C NTLM block at 2027-04-01, a program date, not a Microsoft one. This sample's calendar counts from Phase 0 approval, so the block sits where the network puts it, after the validation period; the authorizing official sets the actual date through program D08.
 - The 30-day observation window holds in production; non-production may shorten it only with documented owner sign-off ([Book 06, Chapter 12](../books/b06-data-platform/12-the-engine-authentication-decision.md#decision-2-the-parallel-run-sequence-is-required)).

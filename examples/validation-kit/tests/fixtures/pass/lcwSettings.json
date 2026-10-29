@@ -1,0 +1,16 @@
+{
+  "workflowScheduleIntervalInHours": 3,
+  "quarantineConfiguration": {
+    "matchMode": "any",
+    "conditions": [
+      {
+        "@odata.type": "#microsoft.graph.identityGovernance.countBasedQuarantineCondition",
+        "threshold": 50
+      },
+      {
+        "@odata.type": "#microsoft.graph.identityGovernance.percentageBasedQuarantineCondition",
+        "percentage": 10
+      }
+    ]
+  }
+}

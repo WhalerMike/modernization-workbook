@@ -1,0 +1,7 @@
+[
+  {
+    "principalId": "00000000-0000-4000-8000-000000000400",
+    "roleDefinitionId": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7",
+    "scope": "/subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-servers"
+  }
+]

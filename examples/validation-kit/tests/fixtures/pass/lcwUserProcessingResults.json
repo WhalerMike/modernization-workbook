@@ -1,0 +1,13 @@
+{
+  "wf-joiner": [
+    {
+      "id": "upr-1",
+      "processingStatus": "completed",
+      "scheduledDateTime": "2026-10-20T03:00:00Z",
+      "subject": {
+        "id": "00000000-0000-4000-8000-000000000001"
+      }
+    }
+  ],
+  "wf-leaver": []
+}

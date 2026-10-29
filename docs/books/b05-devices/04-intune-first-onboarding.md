@@ -141,6 +141,8 @@ Registration binds the hardware hash to the tenant. The OEM, reseller or distrib
 
 The group tag Intune stores on the registration appears on the Entra ID device as an `[OrderID]` physical ID, and the purchase order ID appears as `[PurchaseOrderId]`.[^c04-ap-hololens] Dynamic groups match on them.
 
+The group tag vocabulary, the single writer for device attributes and the checks that prove both are [Gate 1 of the Intune track implementation guide](../guides/intune-track-implementation.md#gate-1-device-sources-and-the-single-writer).
+
 ::: {.callout-warning}
 ## Illustrative, not tested against a production tenant
 The rules and commands in this chapter are examples. Test each one in a non-production scope and check the resulting group membership before you assign policy to it.

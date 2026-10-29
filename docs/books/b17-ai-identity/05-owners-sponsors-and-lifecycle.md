@@ -93,6 +93,8 @@ The table maps the human lifecycle events onto an AI identity. The events and th
 
 : The AI identity lifecycle. Events and triggers are program design; platform support from Microsoft Learn. {.striped .hover}
 
+Run alongside every other non-person identity, with a read-only check at its gate, this lifecycle is [Step 6 of the non-person identity implementation guide](../guides/non-person-identity-implementation.md#step-6-run-the-lifecycle).
+
 ### Creation
 
 Creation is the joiner event, and the program's rule is that nothing is created in production that the inventory hasn't approved. Microsoft's own best practices point the same way: plan blueprints before deploying agents rather than creating ad hoc service principals, provision a unique identity for each agent instance so that one can be disabled without affecting others, assign a sponsor and an owner at creation, fill in description and tags, and use a production handshake in which an identity administrator confirms the blueprint, sponsor, consented permissions, Conditional Access coverage and group placement before an agent goes live.[^c05-best-practices]

@@ -1,0 +1,8 @@
+{
+  "alice-in-ORG-A": {
+    "membershipRuleEvaluationResult": true
+  },
+  "carol-not-in-ORG-A": {
+    "membershipRuleEvaluationResult": false
+  }
+}

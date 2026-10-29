@@ -1,0 +1,39 @@
+[
+  {
+    "id": "cfg1",
+    "@odata.type": "#microsoft.graph.windows10GeneralConfiguration",
+    "displayName": "Win11 general (Tier2)",
+    "assignments": [
+      {
+        "id": "a-0103-0",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "groupId": "00000000-0000-4000-8000-000000000103",
+          "deviceAndAppManagementAssignmentFilterId": "flt-corporate",
+          "deviceAndAppManagementAssignmentFilterType": "include"
+        }
+      }
+    ]
+  },
+  {
+    "id": "cfg2",
+    "@odata.type": "#microsoft.graph.windows10EndpointProtectionConfiguration",
+    "displayName": "Endpoint protection (Tier0)",
+    "assignments": [
+      {
+        "id": "a-0102-0",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "groupId": "00000000-0000-4000-8000-000000000102"
+        }
+      },
+      {
+        "id": "a-0104-1",
+        "target": {
+          "@odata.type": "#microsoft.graph.exclusionGroupAssignmentTarget",
+          "groupId": "00000000-0000-4000-8000-000000000104"
+        }
+      }
+    ]
+  }
+]

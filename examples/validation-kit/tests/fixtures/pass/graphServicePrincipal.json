@@ -1,0 +1,17 @@
+{
+  "id": "00000000-0000-4000-8000-000000000301",
+  "appRoles": [
+    {
+      "id": "19dbc75e-c2e2-444c-a770-ec69d8559fc7",
+      "value": "Directory.ReadWrite.All"
+    },
+    {
+      "id": "df021288-bdef-4463-88db-98f22de89214",
+      "value": "User.Read.All"
+    },
+    {
+      "id": "9e3f62cf-ca93-4989-b6ce-bf83c28f9fe8",
+      "value": "RoleManagement.ReadWrite.Directory"
+    }
+  ]
+}

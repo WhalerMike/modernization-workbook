@@ -126,6 +126,7 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | This plan's item | When | Linked plan | Relationship | Float or margin |
 |---|---|---|---|---|
 | IG3  Gate 3 — HR feed live for the foundation scope | end of wk 8 | [Program master schedule](program-master-schedule.md) (X-IDL) | Waits for it | 2 d |
+| IG4  Gate 4 — Lifecycle automated | end of wk 16 | [Non-Person Identity Modernization](non-person-identity.md) (X-IG4) | Waits for it | 60 d |
 
 : Plans that take a date from this one {.striped .hover}
 

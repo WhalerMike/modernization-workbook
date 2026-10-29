@@ -1,0 +1,8 @@
+{
+  "source": "Book 05, Chapter 09 (resource groups and tags): the program's Arc tag taxonomy. Replace with the agency's.",
+  "required": ["Environment", "Workload", "Criticality", "Owner", "CostCenter", "PatchGroup", "ArcOnboardedDate"],
+  "allowed": {
+    "Environment": ["Production", "Staging", "Dev"],
+    "Criticality": ["High", "Medium", "Low"]
+  }
+}

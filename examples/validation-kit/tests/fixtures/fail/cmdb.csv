@@ -1,0 +1,6 @@
+Name,Tier,Owner,config_owner
+srv-app01.contoso.example,1,app-team,machine-configuration
+srv-file01,1,ops,
+mainframe-lpar1,3,mainframe,
+esx-host01,,virtualization,
+srv-exp01,1,app-team,sccm

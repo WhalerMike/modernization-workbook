@@ -1,0 +1,16 @@
+[
+  {
+    "id": "act-payroll",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000300",
+    "lastSignInActivity": {
+      "lastSignInDateTime": "2026-10-28T00:00:00Z"
+    }
+  },
+  {
+    "id": "act-hrsync",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000302",
+    "lastSignInActivity": {
+      "lastSignInDateTime": "2026-10-01T00:00:00Z"
+    }
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "00000000-0000-4000-8000-000000000001",
+    "userPrincipalName": "alice@contoso.example",
+    "displayName": "Alice",
+    "accountEnabled": true,
+    "userType": "Member",
+    "employeeId": "E1001",
+    "companyName": "Contoso",
+    "employeeHireDate": "2026-10-20T00:00:00Z",
+    "employeeLeaveDateTime": null,
+    "onPremisesExtensionAttributes": {
+      "extensionAttribute10": "ORG-A",
+      "extensionAttribute11": "EMP",
+      "extensionAttribute12": "P01"
+    }
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000002",
+    "userPrincipalName": "bob@contoso.example",
+    "displayName": "Bob",
+    "accountEnabled": true,
+    "userType": "Member",
+    "employeeId": "E1002",
+    "companyName": "Contoso",
+    "employeeHireDate": "2025-01-01T00:00:00Z",
+    "employeeLeaveDateTime": null,
+    "onPremisesExtensionAttributes": {
+      "extensionAttribute10": "ORG-A",
+      "extensionAttribute11": "CTR",
+      "extensionAttribute12": "P02"
+    }
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000003",
+    "userPrincipalName": "carol@contoso.example",
+    "displayName": "Carol",
+    "accountEnabled": true,
+    "userType": "Member",
+    "employeeId": "E1003",
+    "companyName": "Contoso",
+    "employeeHireDate": null,
+    "employeeLeaveDateTime": null,
+    "onPremisesExtensionAttributes": {
+      "extensionAttribute10": "ORG-B",
+      "extensionAttribute11": "EMP",
+      "extensionAttribute12": "P01"
+    }
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000004",
+    "userPrincipalName": "breakglass@contoso.example",
+    "displayName": "Breakglass",
+    "accountEnabled": true,
+    "userType": "Member",
+    "employeeId": null,
+    "companyName": "Contoso",
+    "employeeHireDate": null,
+    "employeeLeaveDateTime": null,
+    "onPremisesExtensionAttributes": {
+      "extensionAttribute10": null,
+      "extensionAttribute11": null,
+      "extensionAttribute12": null
+    }
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000005",
+    "userPrincipalName": "guest@contoso.example",
+    "displayName": "Guest",
+    "accountEnabled": true,
+    "userType": "Guest",
+    "employeeId": null,
+    "companyName": null,
+    "employeeHireDate": null,
+    "employeeLeaveDateTime": null,
+    "onPremisesExtensionAttributes": {
+      "extensionAttribute10": null,
+      "extensionAttribute11": null,
+      "extensionAttribute12": null
+    }
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000006",
+    "userPrincipalName": "disabled@contoso.example",
+    "displayName": "Disabled",
+    "accountEnabled": false,
+    "userType": "Member",
+    "employeeId": null,
+    "companyName": "Contoso",
+    "employeeHireDate": null,
+    "employeeLeaveDateTime": null,
+    "onPremisesExtensionAttributes": {
+      "extensionAttribute10": null,
+      "extensionAttribute11": null,
+      "extensionAttribute12": null
+    }
+  }
+]

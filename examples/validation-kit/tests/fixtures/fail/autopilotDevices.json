@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ap1",
+    "serialNumber": "SN-0001",
+    "groupTag": "FIN-STD"
+  },
+  {
+    "id": "ap3",
+    "serialNumber": "SN-0003",
+    "groupTag": ""
+  },
+  {
+    "id": "ap4",
+    "serialNumber": "SN-0004",
+    "groupTag": "FINSTD"
+  }
+]

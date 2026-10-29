@@ -6,15 +6,18 @@
 # reference plan in Book 05, Chapter 08 (a large fleet with a Configuration
 # Manager estate), fitted to the program's weeks: the observation work feeds
 # the program's G0, the pilot runs inside the program's Phase 2, the workload
-# waves inside Phase 3, and the formal retirement ends in Phase 4.
+# waves inside Phase 3, and the formal retirement ends in Phase 4. Servers
+# under Azure Arc are a phase of their own (Book 05, Chapter 09): readiness
+# from Gate 0, the pilot wave by the program's P2.9, the estate waves by the
+# program's P3.7, closed by their own gate.
 
 slug: endpoint-device
 title: "Endpoint & Device Modernization: Group Policy to Intune and Azure Arc"
 short_title: "Endpoint & Device Modernization"
 subtitle: "A sample project plan for Book 05: observe the fleet, author the policy library, pilot it beside the GPOs, cut each workload over, and retire the GPOs with evidence"
-description: "A sample PMP-style project plan for the Endpoint & Device Modernization project, built from Book 05, Chapters 04 to 10: a work breakdown from observation to formal GPO retirement, a computed critical path through the policy library and the four workload waves, a gate per phase with its approver and criteria, and the decisions (path, Windows 10 posture, cut dates, Arc onboarding method) with owners and decide-by weeks."
+description: "A sample PMP-style project plan for the Endpoint & Device Modernization project, built from Book 05, Chapters 04 to 10: a work breakdown from observation to formal GPO retirement, with servers under Azure Arc as a phase of their own (onboarding waves, the tag taxonomy, the policy baseline and Update Manager), a computed critical path through the policy library and the four workload waves, a gate per phase with its approver and criteria, and the decisions (path, Windows 10 posture, cut dates, Arc onboarding method) with owners and decide-by weeks."
 plan_type: "Project"
-covers: "Observe, author, pilot, workload cutover and formal retirement (Book 05, Chapter 08's seven phases)"
+covers: "Observe, author, pilot, workload cutover and formal retirement (Book 05, Chapter 08's seven phases), and servers under Azure Arc (Chapter 09)"
 books: "Book 05"
 sponsor: "Executive sponsor and CIO"
 manager: "Project lead, with the four domain leads: device identity, Group Policy sunset, Conditional Access and NTLM"
@@ -27,13 +30,17 @@ purpose: |
 critical_path_note: |
   Two program gates bound the first half. The program's G1 (end of week 8) needs the Intune policy design, so the GPO export, the classification of every setting, the policy library and its peer review have to finish by then: they do, with one working day to spare, which is why the program carries its own Intune design on its critical path. The NTLM audit and Gate 0 sit one day off that path. The pilot then has to clear the program's G2 (end of week 16): devices moved, policies assigned beside the still-linked GPOs, four weeks of conflict and application testing, and the first setting class retired, with two days to spare.
 
-  After G2 the computed critical path is the four workload waves in their fixed order (Endpoint Protection before device configuration, because the device configuration slider carries it), the residual cleanup, the 90-day hold on the disabled GPOs, and their archiving and deletion. The hold is the longest single item. It starts when the cleanup ends, in week 31, so the last deletions land at the end of week 44, with the program's G4. Waiting for G3 to start it would push the deletions to about week 50, past G5. The server waves, the NTLM stages and the inventory reconciliation all carry float.
+  After G2 the computed critical path is the four workload waves in their fixed order (Endpoint Protection before device configuration, because the device configuration slider carries it), the residual cleanup, the 90-day hold on the disabled GPOs, and their archiving and deletion. The hold is the longest single item. It starts when the cleanup ends, in week 31, so the last deletions land at the end of week 44, with the program's G4. Waiting for G3 to start it would push the deletions to about week 50, past G5. The NTLM stages and the inventory reconciliation carry float.
+
+  Servers under Azure Arc are their own phase, held to two program dates rather than to this plan's finish. Readiness starts at Gate 0: resource groups and scoped roles, the tag taxonomy, the network check per site, the onboarding method (D-E5) and its certificate-based service principal, and the policy baseline written as code. The pilot wave connects after the program's G1 and has its baseline attached and evaluated by the end of week 10, two working days inside the program's P2.9, which the Data Platform plan's pilot SQL Server host also waits for. The estate waves start after the program's G2, and Gate 4 (servers under Arc) lands in week 27, five working days inside the program's P3.7. The Windows Server 2016 ESU connections can't wait for either: with this sample's placeholder start, end of support on January 12, 2027 falls in week 2, so those hosts are connected for ESUs only, ahead of the readiness work.
 
 assumptions:
   - "The fleet has a Configuration Manager estate, which is what Book 05's durations assume; a fleet without one skips most of the coexistence planning ([Chapter 08](../books/b05-devices/08-gpo-to-intune-policy-migration.md#the-seven-phases-at-working-level))."
   - "The pilot cohort is about 5% of the fleet, representative across tiers, regions and departments; the ring sizes in each wave are a program design choice."
   - "Domain unjoin of the existing fleet is out of scope; the sponsor schedules it separately ([Chapter 06](../books/b05-devices/06-who-owns-the-endpoint.md#the-roles))."
   - "The 90-day GPO retention window is the program's design choice, sized to the fleet's patch and refresh cycle ([Chapter 07](../books/b05-devices/07-the-gpo-sunset-program.md#freezing-and-unlinking-gpos)); here it is taken as 64 working days."
+  - "Arc onboarding attaches the management plane and doesn't unjoin a server from the domain; unjoining is a separate decision per workload, outside this plan, as is Entra ID sign-in on Windows Server 2025 ([Chapter 09](../books/b05-devices/09-servers-under-azure-arc.md#what-arc-changes-and-what-it-doesnt))."
+  - "Windows Server 2016 reaches end of support on January 12, 2027. This sample's placeholder calendar starts on January 4, 2027, so hosts that won't be upgraded are connected for ESUs in week 1; on a real calendar that is done before the program starts ([Chapter 09](../books/b05-devices/09-servers-under-azure-arc.md#extended-security-updates))."
   - "Durations are illustrative. Replace them with the agency's own estimates once the GPO inventory and the NTLM audit are in."
 
 risks:
@@ -49,6 +56,9 @@ risks:
   - risk: "Pilot Intune doesn't remove policies when they are unassigned"
     impact: "A pilot rollback takes longer than planned"
     response: "Plan rollback as reassigning a policy that sets the old value, not as removing the assignment ([Chapter 08](../books/b05-devices/08-gpo-to-intune-policy-migration.md#rollback))"
+  - risk: "An Arc server stays disconnected for more than 14 days"
+    impact: "Its machine configuration assignments are deleted and not reassigned, so its baseline evaluation silently stops"
+    response: "Alert on connection state and investigate missed heartbeats; reconnect inside the window or re-assign the baseline ([Chapter 09](../books/b05-devices/09-servers-under-azure-arc.md#azure-policy-and-machine-configuration))"
   - risk: "An onboarding secret is left in plain text in a startup script"
     impact: "Anyone who reads SYSVOL can register servers into the subscription"
     response: "Onboard with a certificate-based service principal and remove the credential when each wave closes ([Chapter 09](../books/b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal))"
@@ -83,10 +93,6 @@ tasks:
      options: "Classic Windows Autopilot, user-driven, Entra join, OEM or reseller registration with a group tag (the program's GCC default); Autopilot device preparation, with the attribute carried by the serial-number mapping table",
      late: "New hardware has no governed path and keeps arriving as tomorrow's migration",
      source: "../books/b05-devices/04-intune-first-onboarding.md#which-one-in-a-gcc-tenant"}
-  - {id: D-E5, kind: decision, phase: 1, name: "Arc onboarding method", after: [EG0], owner: "Server infrastructure",
-     options: "A certificate-based service principal through the tool the server team already runs (Configuration Manager, Ansible or Group Policy); the portal script for a handful of servers or a pilot; Arc-enabled VMware vSphere; the multicloud connector for AWS",
-     late: "The pilot server wave can't create its credential",
-     source: "../books/b05-devices/09-servers-under-azure-arc.md#choose-a-method"}
   - {id: D-E6, kind: decision, phase: 1, name: "Update model: Windows Autopatch or program-managed rings", after: [EG0], owner: "CISO / ISSO",
      options: "Autopatch groups configured to the program's ring table, where the license allows; Intune update rings built from SC-005",
      late: "The Windows Update wave can't be built, and WSUS stays",
@@ -123,14 +129,10 @@ tasks:
      source: "../books/b05-devices/10-operating-and-evidencing-the-fleet.md#compliance-and-the-conditional-access-hand-off"}
   - {id: E2.5, phase: 2, name: "First setting class retired: GPO backed up, evidence checked, links disabled on the pilot OUs", dur: 5, after: [E2.3], owner: "Endpoint engineering",
      source: "../books/b05-devices/07-the-gpo-sunset-program.md#freezing-and-unlinking-gpos"}
-  - {id: E2.6, phase: 2, name: "Pilot server wave: resource group, tags, network check, certificate credential, connect, license attestation", dur: 8, after: [X-G1, D-E5], owner: "Server infrastructure",
-     source: "../books/b05-devices/09-servers-under-azure-arc.md#onboarding"}
-  - {id: E2.7, phase: 2, name: "Day-one baseline on pilot servers: machine configuration, Update Manager, Defender for Servers; wave closed", dur: 7, after: [E2.6], owner: "Server infrastructure",
-     source: "../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline"}
   - {id: E2.8, phase: 2, name: "SPNs repaired for pilot applications; NTLM restriction plan per application", dur: 10, after: [E2.1, EG0], owner: "Application owners",
      source: "../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-3-repair-spns-before-enforcing-kerberos"}
-  - {id: EG2, kind: gate, phase: 2, name: "Gate 2 — Pilot clean", after: [E2.5, E2.4, E2.7, E2.8, D-E7], owner: "Endpoint engineering",
-     criteria: "No unexplained Conflict or Error; no application regressions against the baseline; one setting class retired with evidence; every hybrid-joined pilot device has a cut date; pilot servers connected with their baseline evaluated; an NTLM restriction plan per application",
+  - {id: EG2, kind: gate, phase: 2, name: "Gate 2 — Pilot clean", after: [E2.5, E2.4, E2.8, D-E7], owner: "Endpoint engineering",
+     criteria: "No unexplained Conflict or Error; no application regressions against the baseline; one setting class retired with evidence; every hybrid-joined pilot device has a cut date; an NTLM restriction plan per application",
      source: "../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate"}
   - {id: X-G2, kind: external, phase: 2, name: "Program G2 — Pilot Clean", ref: "program-master-schedule:G2", after: [EG2], owner: "Steward and executive sponsor",
      late: "The workload waves can't start",
@@ -144,33 +146,71 @@ tasks:
      source: "../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-5-workload-cutover-in-waves"}
   - {id: E3.4, phase: 3, name: "Wave 4, Windows Update policies: update rings assigned; WSUS stopped for migrated devices", dur: 15, after: [E3.3, D-E6], owner: "Endpoint engineering",
      source: "../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-5-workload-cutover-in-waves"}
-  - {id: E3.5, phase: 3, name: "Every remaining server Arc-connected or excepted, wave by wave; Windows Server 2016 enrolled in ESUs", dur: 60, after: [X-G2, E2.7], owner: "Server infrastructure",
-     source: "../books/b05-devices/09-servers-under-azure-arc.md#extended-security-updates"}
   - {id: E3.6, phase: 3, name: "NTLM stage 2 per application, after owner sign-off: LM and NTLMv1 refused", dur: 30, after: [E2.8, X-G2], owner: "Application owners",
      source: "../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-3-restrict-ntlm-in-stages"}
   - {id: E3.7, phase: 3, name: "Weekly inventory reconciliation and daily drift export running; alerts set", dur: 10, after: [EG2], owner: "Endpoint engineering",
      source: "../books/b05-devices/10-operating-and-evidencing-the-fleet.md#device-inventory-reconciliation"}
   - {id: E3.8, phase: 3, name: "Residual cleanup: remaining links disabled; tattooed preference items cleared or owned", dur: 10, after: [E3.4], owner: "Endpoint engineering",
      source: "../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-6-verification-and-residual-cleanup"}
-  - {id: EG3, kind: gate, phase: 3, name: "Gate 3 — Workloads cut over", after: [E3.8, E3.5, E3.6, E3.7], owner: "Endpoint engineering",
-     criteria: "Each wave's settings report success on its population; no migrated device processes an in-scope GPO; every preference item cleared or owned; every server Arc-connected or excepted; evidence filed",
+  - {id: EG3, kind: gate, phase: 3, name: "Gate 3 — Workloads cut over", after: [E3.8, E3.6, E3.7], owner: "Endpoint engineering",
+     criteria: "Each wave's settings report success on its population; no migrated device processes an in-scope GPO; every preference item cleared or owned; evidence filed",
      source: "../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate"}
   - {id: X-G3, kind: external, phase: 3, name: "Program G3 — Rollout Complete", ref: "program-master-schedule:G3", owner: "Executive sponsor and steering committee",
      late: "Formal retirement and NTLM stage 3 can't close",
      source: "program-master-schedule.md"}
-  # ------------------------------------------------- Phase 4 — formal retirement
-  - {id: X-D08, kind: external, phase: 4, name: "Program decision D08: end dates for legacy authentication and NTLM", ref: "program-master-schedule:D08", owner: "Authorizing official",
+  # ------------------------------------------------- Phase 4 — servers under Azure Arc
+  - {id: E4.1, phase: 4, name: "Arc resource groups per owning team; Onboarding role to the service principal only, Resource Administrator to server operations, scoped and held through PIM", dur: 5, after: [EG0], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#roles"}
+  - {id: E4.2, phase: 4, name: "Tag taxonomy fixed from the asset record: Environment, Workload, Criticality, Owner, CostCenter, PatchGroup, ArcOnboardedDate; SQL Server opt-out tag where needed", dur: 5, after: [EG0], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#resource-groups-and-tags"}
+  - {id: E4.3, phase: 4, name: "Network readiness per site: Arc service tags or a private link scope; azcmagent check from a representative server", dur: 10, after: [EG0], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#network"}
+  - {id: D-E5, kind: decision, phase: 4, name: "Arc onboarding method", after: [EG0], owner: "Server infrastructure",
+     options: "A certificate-based service principal through the tool the server team already runs (Configuration Manager, Ansible or Group Policy); the portal script for a handful of servers or a pilot; Arc-enabled VMware vSphere; the multicloud connector for AWS",
+     late: "The pilot server wave can't create its credential",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#choose-a-method"}
+  - {id: E4.4, phase: 4, name: "Certificate-based onboarding service principal at resource-group scope, created as a recorded change and handed to the chosen tool", dur: 2, after: [D-E5, E4.1], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal"}
+  - {id: E4.5, phase: 4, name: "Policy baseline as code: machine configuration prerequisites, Azure compute security baselines, Update Manager schedules by PatchGroup, Defender for Servers Plan 2, extension allowlists", dur: 10, after: [E4.2], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline"}
+  - {id: E4.6, phase: 4, name: "Windows Server 2016 hosts that won't be upgraded in time: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist", dur: 5, owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#extended-security-updates"}
+  - {id: E4.7, phase: 4, name: "Pilot server wave: connected with tags through the chosen tool, licensing attested, certificate file removed, agent local controls set", dur: 4, after: [X-G1, E4.3, E4.4], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#connect"}
+  - {id: E4.8, phase: 4, name: "Pilot baseline attached on the same change and evaluated: machine configuration compliance, Update Manager assessment, Defender for Endpoint onboarded", dur: 4, after: [E4.7, E4.5], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline"}
+  - {id: X-P29, kind: external, phase: 4, name: "Pilot servers under Arc with machine configuration (program P2.9)", ref: "program-master-schedule:P2.9", after: [E4.8], owner: "Platform teams (program)",
+     late: "The program's pilot has no governed servers, and the Data Platform plan's pilot SQL Server host has no Arc pattern to follow",
+     source: "program-master-schedule.md"}
+  - {id: E4.9, phase: 4, name: "Pilot wave closed: credential rotated or removed, onboarding GPO disabled; rollback rehearsed on a test server (extensions, disconnect, uninstall)", dur: 3, after: [E4.8], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#rollback"}
+  - {id: E4.10, phase: 4, name: "Estate waves: each creates its credential, connects, attests, attaches the baseline, verifies and closes by removing what onboarding needed", dur: 50, after: [X-G2, E4.9], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#onboarding"}
+  - {id: E4.11, phase: 4, name: "Update Manager across the estate: periodic assessment on every server; scheduled patching in maintenance windows scoped by PatchGroup", dur: 10, after: ["E4.10:SS+10"], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#azure-update-manager"}
+  - {id: E4.12, phase: 4, name: "Servers Arc doesn't reach recorded and tiered; Windows Server 2012 hosts migrated, upgraded or isolated with the risk accepted", dur: 15, after: [X-G2], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#which-servers-arc-reaches"}
+  - {id: E4.13, phase: 4, name: "Estate monitoring: connection-state alerts, agent currency, the three baselines watched together, ESU coverage reported", dur: 5, after: [E4.10], owner: "Server infrastructure",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#monitoring-the-server-estate"}
+  - {id: EG4, kind: gate, phase: 4, name: "Gate 4 — Servers under Arc", after: [E4.10, E4.11, E4.12, E4.13, E4.6], owner: "CISO / ISSO",
+     criteria: "Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; every Windows Server 2016 host upgraded or ESU-covered; rollback rehearsed",
+     source: "../books/b05-devices/09-servers-under-azure-arc.md#what-this-chapter-establishes"}
+  - {id: X-P37, kind: external, phase: 4, name: "Every server Arc-connected or excepted (program P3.7)", ref: "program-master-schedule:P3.7", after: [EG4], owner: "Platform teams (program)",
+     late: "The program's G3 fails its every-server-Arc-connected-or-excepted criterion",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Phase 5 — formal retirement
+  - {id: X-D08, kind: external, phase: 5, name: "Program decision D08: end dates for legacy authentication and NTLM", ref: "program-master-schedule:D08", owner: "Authorizing official",
      late: "NTLM stage 3 has no date for application owners to plan against",
      source: "program-master-schedule.md"}
-  - {id: E4.1, phase: 4, name: "Migrated GPOs disabled and held 90 days as the rollback net", dur: 64, after: [EG3], owner: "Endpoint engineering",
+  - {id: E5.1, phase: 5, name: "Migrated GPOs disabled and held 90 days as the rollback net", dur: 64, after: [EG3], owner: "Endpoint engineering",
      source: "../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal-retirement"}
-  - {id: E4.2, phase: 4, name: "Backups restore-tested; GPOs archived and deleted; exception register closed", dur: 5, after: [E4.1, X-G3], owner: "Endpoint engineering",
+  - {id: E5.2, phase: 5, name: "Backups restore-tested; GPOs archived and deleted; exception register closed", dur: 5, after: [E5.1, X-G3], owner: "Endpoint engineering",
      source: "../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal-retirement"}
-  - {id: E4.3, phase: 4, name: "NTLM stage 3: deny all; exceptions removed as each dependency retires", dur: 20, after: [E3.6, X-D08, X-G3], owner: "Application owners",
+  - {id: E5.3, phase: 5, name: "NTLM stage 3: deny all; exceptions removed as each dependency retires", dur: 20, after: [E3.6, X-D08, X-G3], owner: "Application owners",
      source: "../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-3-restrict-ntlm-in-stages"}
-  - {id: E4.4, phase: 4, name: "Evidence for CM-2, CM-6, CM-7, CM-8 and SI-2 handed to the ISSO", dur: 5, after: [E3.7, X-G3], owner: "Endpoint engineering",
+  - {id: E5.4, phase: 5, name: "Evidence for CM-2, CM-6, CM-7, CM-8 and SI-2, workstations and servers, handed to the ISSO", dur: 5, after: [E3.7, EG4, X-G3], owner: "Endpoint engineering",
      source: "../books/b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads"}
-  - {id: EG4, kind: gate, phase: 4, name: "Gate 4 — GPOs retired", after: [E4.2, E4.3, E4.4], owner: "CISO / ISSO",
+  - {id: EG5, kind: gate, phase: 5, name: "Gate 5 — GPOs retired", after: [E5.2, E5.3, E5.4], owner: "CISO / ISSO",
      criteria: "No GPO in scope linked to an OU with migrated devices; every retired GPO backed up with a decision record; only dated exceptions remain, each with an owner and review date; workload sliders at Intune",
      source: "../books/b05-devices/07-the-gpo-sunset-program.md#the-end-state"}
 
@@ -179,4 +219,5 @@ phases:
   1: "Phase 1 — Classify and author"
   2: "Phase 2 — Pilot"
   3: "Phase 3 — Workload cutover"
-  4: "Phase 4 — Formal retirement"
+  4: "Phase 4 — Servers under Azure Arc"
+  5: "Phase 5 — Formal retirement"

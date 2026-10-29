@@ -519,6 +519,8 @@ Disconnect-MgGraph
 
 This section and the rest of this part are the **non-person identity track** ([companion guide](../guides/attribute-driven-migration.md#non-person-identity-track)); SQL Server service and application principals continue in [Book 06](../b06-data-platform/index.md). Each AD service account maps to an Entra ID construct that depends on where the workload runs. The general rule is to eliminate stored secrets: managed identities for Azure-hosted workloads, workload identity federation for workloads that already have an identity from another trusted issuer, and certificates only where neither applies.
 
+The step-by-step path, with a validation check at each gate, is [Non-Person Identity: An Implementation Guide](../guides/non-person-identity-implementation.md).
+
 | AD account type | Workload location | Entra ID target | Authentication | Credential management |
 |---|---|---|---|---|
 | Traditional | Calls Microsoft 365 or other Entra-protected APIs | Application registration and service principal | Certificate, or federated credential where the host has an OIDC issuer | Certificate rotation (program standard: annual), or no stored secret |

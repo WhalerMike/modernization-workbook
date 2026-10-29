@@ -1,0 +1,11 @@
+[
+  {
+    "id": "00000000-0000-4000-8000-000000000400",
+    "appId": "bbbbbbbb-0000-4000-8000-000000000400",
+    "displayName": "mi-app01",
+    "alternativeNames": [
+      "isExplicit=False",
+      "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app01"
+    ]
+  }
+]

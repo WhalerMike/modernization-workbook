@@ -1,0 +1,28 @@
+[
+  {
+    "id": "ca-block-workload-identities-off-network",
+    "displayName": "Block workload identities off-network",
+    "state": "enabled",
+    "conditions": {
+      "clientApplications": {
+        "includeServicePrincipals": [
+          "00000000-0000-4000-8000-000000000300"
+        ],
+        "excludeServicePrincipals": []
+      }
+    }
+  },
+  {
+    "id": "ca-report-only-workload-policy",
+    "displayName": "Report-only workload policy",
+    "state": "enabledForReportingButNotEnforced",
+    "conditions": {
+      "clientApplications": {
+        "includeServicePrincipals": [
+          "00000000-0000-4000-8000-000000000302"
+        ],
+        "excludeServicePrincipals": []
+      }
+    }
+  }
+]

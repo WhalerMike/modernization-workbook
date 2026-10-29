@@ -88,6 +88,8 @@ One Active Directory OU tree holds four different populations of identity: the p
 - **What each track's tools cover, including non-Microsoft platforms, AWS, Google Cloud and VMware, and the strategy for what they don't:** [Intune coverage](#intune-coverage) and [Arc coverage](#arc-coverage).
 - **Non-person:** service accounts in [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#service-accounts) ("Service accounts" and [Modernizing service accounts](../b02-identity/09-building-the-entra-target.md#modernizing-service-accounts)); SQL Server service accounts and application principals in [Book 06](../b06-data-platform/09-what-arc-provides-to-sql-server.md#the-managed-identity-and-the-service-account); AI agents in [Book 17](../b17-ai-identity/index.md); service principal attributes in [this guide's non-person identity track](#non-person-identity-track).
 
+**Step by step, the HR track:** the stages below, built through [Building Book 03's HR Pipeline](../../research/hcm-entra-implementation.md) as its implementation guide (research, under review) and scheduled in the [Identity Lifecycle & Provisioning plan](../../project-plans/identity-lifecycle.md).
+
 ## Attributes: what you know from AD, and what Entra ID gives you {#attributes}
 
 In Active Directory, *where* an object sits does half the work; in Entra ID, *what the object says about itself* has to do all of it. This section is the reference the later stages point back to: the attribute stores Entra ID offers, in the order to reach for them, which mechanisms read each one, and how the AD attributes an administrator already knows map across. The slot numbers (10 for the organization code, 11 for worker type, 12 for position category, 6 for division, 4 for region) are the program's, from the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map), not Microsoft's.
@@ -279,6 +281,8 @@ For contractors, whether Oracle's contingent worker could be that source, and th
 
 **Gate.** Correlation threshold met on the pilot; every enabled account correlated or on a dated exception list ([Phase 1](../b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema)). Privacy basis, PIA and the minimized attribute set are Phase 1 gate items too ([Book 03, Chapter 07](../b03-hr-identity/07-who-owns-workforce-identity.md#the-privacy-office)).
 
+**Validate.** The read-only [validation kit](../../../downloads/validation-kit.zip) measures this gate: VK-HR-01 (uncorrelated accounts), VK-HR-02 (coded attribute coverage), VK-HR-03 (reconciliation with an HR export) and VK-HR-04 (duplicate `employeeId`).
+
 **Failure modes.** Automating against unverified data in month one ([Book 03, Chapter 12](../b03-hr-identity/12-execution-plan.md#the-program-at-a-glance)). Expect a burst of high-severity findings in the first month of a new pipeline; that is the measurement working ([Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory)).
 
 ## Stage 3: map the attributes through sync
@@ -411,6 +415,8 @@ The stages above move people. This section is the home of the other three [track
 
 **Done when** *(design guidance)*: every managed device carries attributes written by provisioning, its policy is targeted by them, and computer-side GPO links are disabled population by population, with rollback tested ([Book 05's gates](../b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate)). **Federal requirement:** CM-2, CM-6, CM-8 and IA-3, and M-22-09's device inventory and signal ([mapping](#federal-requirements)).
 
+**Step by step:** the [Intune Track Implementation guide](intune-track-implementation.md) runs this track as seven gates, each with the validation kit checks that prove it.
+
 **What Microsoft documents for targeting by attribute: yes.**
 
 - **Dynamic device groups.** Device rules can read device properties such as `deviceOSType`, `deviceOwnership`, `deviceTrustType`, `enrollmentProfileName`, `devicePhysicalIds` and `extensionAttribute1` to `15`, and only device properties: a device rule can't read the attributes of the device's owner.[^adm-dyn-rules] Windows Autopilot devices carry their own markers: `(device.devicePhysicalIDs -any (_ -startsWith "[ZTDid]"))` selects every Autopilot device, and the Autopilot group tag maps to the device's `OrderID`, so `(device.devicePhysicalIds -any (_ -eq "[OrderID]:<tag>"))` selects one tag.[^adm-autopilot]
@@ -450,6 +456,8 @@ Intune isn't only for Microsoft platforms: it manages Apple, Android and Linux d
 **Group Policy.** The computer-configuration settings that reached servers through OU links become Azure Policy and machine configuration, scoped by subscription, resource group or machine rather than by OU ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#azure-policy-and-machine-configuration)). Arc attaches the management plane; it doesn't remove the domain join, which is a separate decision per workload ([same chapter](../b05-devices/09-servers-under-azure-arc.md#what-arc-changes-and-what-it-doesnt)).
 
 **Done when** *(design guidance)*: every in-scope server is Arc-enabled with its tag taxonomy applied, and its baseline is assigned and evaluated by Azure Policy ([the day-one baseline](../b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline)). **Federal requirement:** CM-2, CM-6 and CM-8; IA-9 for the server's workload identity ([mapping](#federal-requirements)).
+
+**Step by step:** the [Azure Arc Track: Implementation Guide](arc-track-implementation.md) runs this track as eight gated steps, and the [Endpoint & Device plan's Phase 4](../../project-plans/endpoint-device.md#phase-4-servers-under-azure-arc) schedules it.
 
 **What Microsoft documents for targeting by attribute: yes, through Azure Resource Manager.**
 
@@ -504,6 +512,8 @@ The tiers are how the inventory meets CM-8, System Component Inventory, in the p
 **Source of truth.** The owning application or workload's record: the system inventory or CMDB entry, the application registration, and for AI the AI use-case inventory. None of these is an HR record, and Book 03 deliberately leaves non-person identities out of the human-worker pattern ([Book 03, Chapter 01](../b03-hr-identity/01-overview-and-applicability.md#where-it-doesnt-apply-as-written)). Accountability is a named owner and sponsor; the lifecycle runs on the owning system's record and on credential expiry, not on hire and leave dates. What a person contributes is the sponsor's own HR-driven lifecycle: when the sponsor moves or leaves, that is an event for every identity they sponsor ([Book 17, Chapter 05](../b17-ai-identity/05-owners-sponsors-and-lifecycle.md#when-the-sponsor-moves-or-leaves)).
 
 **Done when** *(design guidance)*: every service account and service principal has an owner and sponsor, a reason and a target; each one is retired, re-platformed to a managed identity or gMSA, or made a certificate or federated-credential workload identity; none holds a password that never expires, and none is orphaned. Book 02's Phase 4 is the gate for service accounts ([Chapter 10](../b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)). **Federal requirement:** AC-2, AC-6(5), IA-4, IA-5 and IA-9, and M-25-21 for AI ([mapping](#federal-requirements)).
+
+**Step by step:** [Non-Person Identity: An Implementation Guide](non-person-identity-implementation.md) runs this track as six gated steps, and the [Non-Person Identity Modernization plan](../../project-plans/non-person-identity.md) schedules it.
 
 #### Service accounts, MSAs, gMSAs and dMSAs
 
@@ -705,7 +715,7 @@ The same dependencies, as retirement prerequisites, are in [Book 02, Chapter 10]
 
 ## The federal requirements each track satisfies {#federal-requirements}
 
-The tracks and their end state aren't only good practice: each one supports controls and mandates an agency already has to meet. The table maps each track, and the stages and success criteria in it, to those requirements. It reuses only mappings the books already make and verified; the control identifiers and titles are SP 800-53 Rev. 5 (Release 5.2.0),[^adm-sp80053] and the mapping itself is the program's reading, as it is in every book: the architecture contributes mechanisms and evidence to a control, and the agency's authorizing official and assessors decide whether the control is satisfied ([Book 02, Appendix A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#nist-sp-800-53-rev.-5-control-mapping)). The evidence column names the record the program produces; the validation checks that collect it will be named there as they're built.
+The tracks and their end state aren't only good practice: each one supports controls and mandates an agency already has to meet. The table maps each track, and the stages and success criteria in it, to those requirements. It reuses only mappings the books already make and verified; the control identifiers and titles are SP 800-53 Rev. 5 (Release 5.2.0),[^adm-sp80053] and the mapping itself is the program's reading, as it is in every book: the architecture contributes mechanisms and evidence to a control, and the agency's authorizing official and assessors decide whether the control is satisfied ([Book 02, Appendix A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#nist-sp-800-53-rev.-5-control-mapping)). The evidence column names the record the program produces; the read-only [validation kit](../../../downloads/validation-kit.zip) collects much of it, and each track's implementation guide names the check behind each record.
 
 | Track and stage | Requirement | What satisfies it | Evidence | Where the books map it |
 |---|---|---|---|---|

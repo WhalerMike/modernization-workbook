@@ -1,0 +1,98 @@
+[
+  {
+    "id": "00000000-0000-4000-8000-000000000200",
+    "deviceId": "d0000000-0000-4000-8000-000000000200",
+    "displayName": "PC-001",
+    "accountEnabled": true,
+    "operatingSystem": "Windows",
+    "operatingSystemVersion": "10.0.26100.1000",
+    "trustType": "AzureAD",
+    "isManaged": true,
+    "approximateLastSignInDateTime": "2026-10-25T00:00:00Z",
+    "extensionAttributes": {
+      "extensionAttribute11": "Tier2",
+      "extensionAttribute12": "Dedicated",
+      "extensionAttribute13": "Production"
+    }
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000201",
+    "deviceId": "d0000000-0000-4000-8000-000000000201",
+    "displayName": "PC-002",
+    "accountEnabled": true,
+    "operatingSystem": "Windows",
+    "operatingSystemVersion": "10.0.26100.1000",
+    "trustType": "AzureAD",
+    "isManaged": true,
+    "approximateLastSignInDateTime": "2026-10-20T00:00:00Z",
+    "extensionAttributes": {
+      "extensionAttribute11": "Tier0",
+      "extensionAttribute12": "PAW",
+      "extensionAttribute13": "Production"
+    }
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000203",
+    "deviceId": "d0000000-0000-4000-8000-000000000203",
+    "displayName": "PC-004",
+    "accountEnabled": true,
+    "operatingSystem": "Windows",
+    "operatingSystemVersion": "10.0.26100.1000",
+    "trustType": "AzureAD",
+    "isManaged": true,
+    "approximateLastSignInDateTime": "2026-10-25T00:00:00Z",
+    "extensionAttributes": {
+      "extensionAttribute11": "Tier2",
+      "extensionAttribute12": null,
+      "extensionAttribute13": null
+    }
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000204",
+    "deviceId": "d0000000-0000-4000-8000-000000000204",
+    "displayName": "PC-005",
+    "accountEnabled": true,
+    "operatingSystem": "Windows",
+    "operatingSystemVersion": "10.0.26100.1000",
+    "trustType": "AzureAD",
+    "isManaged": true,
+    "approximateLastSignInDateTime": "2026-05-01T00:00:00Z",
+    "extensionAttributes": {
+      "extensionAttribute11": null,
+      "extensionAttribute12": null,
+      "extensionAttribute13": null
+    }
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000205",
+    "deviceId": "d0000000-0000-4000-8000-000000000205",
+    "displayName": "PC-006",
+    "accountEnabled": true,
+    "operatingSystem": "Windows",
+    "operatingSystemVersion": "10.0.26100.1000",
+    "trustType": "ServerAD",
+    "isManaged": true,
+    "approximateLastSignInDateTime": "2026-10-25T00:00:00Z",
+    "extensionAttributes": {
+      "extensionAttribute11": "Tier2",
+      "extensionAttribute12": "Dedicated",
+      "extensionAttribute13": "Production"
+    }
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000206",
+    "deviceId": "d0000000-0000-4000-8000-000000000206",
+    "displayName": "PC-006",
+    "accountEnabled": true,
+    "operatingSystem": "Windows",
+    "operatingSystemVersion": "10.0.26100.1000",
+    "trustType": "AzureAD",
+    "isManaged": false,
+    "approximateLastSignInDateTime": "2026-10-25T00:00:00Z",
+    "extensionAttributes": {
+      "extensionAttribute11": null,
+      "extensionAttribute12": null,
+      "extensionAttribute13": null
+    }
+  }
+]

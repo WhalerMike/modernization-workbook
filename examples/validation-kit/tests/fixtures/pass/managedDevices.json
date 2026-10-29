@@ -1,0 +1,38 @@
+[
+  {
+    "id": "md-1",
+    "deviceName": "PC-001",
+    "operatingSystem": "Windows",
+    "osVersion": "10.0.26100.1000",
+    "managedDeviceOwnerType": "company",
+    "azureADDeviceId": null,
+    "lastSyncDateTime": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": "md-2",
+    "deviceName": "PC-002",
+    "operatingSystem": "Windows",
+    "osVersion": "10.0.22631.3000",
+    "managedDeviceOwnerType": "company",
+    "azureADDeviceId": null,
+    "lastSyncDateTime": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": "md-3",
+    "deviceName": "IPHONE-01",
+    "operatingSystem": "iOS",
+    "osVersion": "18.1",
+    "managedDeviceOwnerType": "personal",
+    "azureADDeviceId": null,
+    "lastSyncDateTime": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": "md-4",
+    "deviceName": "MAC-01",
+    "operatingSystem": "macOS",
+    "osVersion": "15.2",
+    "managedDeviceOwnerType": "company",
+    "azureADDeviceId": null,
+    "lastSyncDateTime": "2026-10-28T00:00:00Z"
+  }
+]

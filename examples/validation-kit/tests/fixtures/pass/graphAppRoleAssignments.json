@@ -1,0 +1,9 @@
+[
+  {
+    "id": "ara-300-df02",
+    "principalId": "00000000-0000-4000-8000-000000000300",
+    "principalType": "ServicePrincipal",
+    "appRoleId": "df021288-bdef-4463-88db-98f22de89214",
+    "resourceId": "00000000-0000-4000-8000-000000000301"
+  }
+]

@@ -1,7 +1,7 @@
 ---
 title: "Endpoint & Device Modernization: Group Policy to Intune and Azure Arc"
 subtitle: "A sample project plan for Book 05: observe the fleet, author the policy library, pilot it beside the GPOs, cut each workload over, and retire the GPOs with evidence"
-description: "A sample PMP-style project plan for the Endpoint & Device Modernization project, built from Book 05, Chapters 04 to 10: a work breakdown from observation to formal GPO retirement, a computed critical path through the policy library and the four workload waves, a gate per phase with its approver and criteria, and the decisions (path, Windows 10 posture, cut dates, Arc onboarding method) with owners and decide-by weeks."
+description: "A sample PMP-style project plan for the Endpoint & Device Modernization project, built from Book 05, Chapters 04 to 10: a work breakdown from observation to formal GPO retirement, with servers under Azure Arc as a phase of their own (onboarding waves, the tag taxonomy, the policy baseline and Update Manager), a computed critical path through the policy library and the four workload waves, a gate per phase with its approver and criteria, and the decisions (path, Windows 10 posture, cut dates, Arc onboarding method) with owners and decide-by weeks."
 doc-type: project-plan
 plan-type: "Project"
 plan-books: "Book 05"
@@ -22,13 +22,13 @@ This is an illustrative plan built from the workbook's books, in the form a proj
 
 | | |
 |---|---|
-| **Plan type** | Project: Observe, author, pilot, workload cutover and formal retirement (Book 05, Chapter 08's seven phases) |
+| **Plan type** | Project: Observe, author, pilot, workload cutover and formal retirement (Book 05, Chapter 08's seven phases), and servers under Azure Arc (Chapter 09) |
 | **Built from** | Book 05 |
 | **Sponsor** | Executive sponsor and CIO |
 | **Plan manager** | Project lead, with the four domain leads: device identity, Group Policy sunset, Conditional Access and NTLM |
 | **Duration** | 44 weeks (219 working days), computed from the network |
-| **Work** | 28 tasks, 5 gates, 7 decision points, 5 milestones from other plans |
-| **Critical path** | 9 of 45 items; 11 more within 5 days of it |
+| **Work** | 38 tasks, 6 gates, 7 decision points, 7 milestones from other plans |
+| **Critical path** | 9 of 58 items; 16 more within 5 days of it |
 | **Calendar** | Week 1 = the program's Phase 0 approval; five working days a week |
 
 : Plan at a glance {.striped}
@@ -43,7 +43,9 @@ This plan moves the existing fleet from Group Policy and domain join to the gove
 
 Two program gates bound the first half. The program's G1 (end of week 8) needs the Intune policy design, so the GPO export, the classification of every setting, the policy library and its peer review have to finish by then: they do, with one working day to spare, which is why the program carries its own Intune design on its critical path. The NTLM audit and Gate 0 sit one day off that path. The pilot then has to clear the program's G2 (end of week 16): devices moved, policies assigned beside the still-linked GPOs, four weeks of conflict and application testing, and the first setting class retired, with two days to spare.
 
-After G2 the computed critical path is the four workload waves in their fixed order (Endpoint Protection before device configuration, because the device configuration slider carries it), the residual cleanup, the 90-day hold on the disabled GPOs, and their archiving and deletion. The hold is the longest single item. It starts when the cleanup ends, in week 31, so the last deletions land at the end of week 44, with the program's G4. Waiting for G3 to start it would push the deletions to about week 50, past G5. The server waves, the NTLM stages and the inventory reconciliation all carry float.
+After G2 the computed critical path is the four workload waves in their fixed order (Endpoint Protection before device configuration, because the device configuration slider carries it), the residual cleanup, the 90-day hold on the disabled GPOs, and their archiving and deletion. The hold is the longest single item. It starts when the cleanup ends, in week 31, so the last deletions land at the end of week 44, with the program's G4. Waiting for G3 to start it would push the deletions to about week 50, past G5. The NTLM stages and the inventory reconciliation carry float.
+
+Servers under Azure Arc are their own phase, held to two program dates rather than to this plan's finish. Readiness starts at Gate 0: resource groups and scoped roles, the tag taxonomy, the network check per site, the onboarding method (D-E5) and its certificate-based service principal, and the policy baseline written as code. The pilot wave connects after the program's G1 and has its baseline attached and evaluated by the end of week 10, two working days inside the program's P2.9, which the Data Platform plan's pilot SQL Server host also waits for. The estate waves start after the program's G2, and Gate 4 (servers under Arc) lands in week 27, five working days inside the program's P3.7. The Windows Server 2016 ESU connections can't wait for either: with this sample's placeholder start, end of support on January 12, 2027 falls in week 2, so those hosts are connected for ESUs only, ahead of the readiness work.
 
 The critical path, in order. Each item has zero total float: a day lost on any of them is a day lost at the finish.
 
@@ -55,9 +57,9 @@ The critical path, in order. Each item has zero total float: a day lost on any o
 | 4 | E3.4 | Wave 4, Windows Update policies: update rings assigned; WSUS stopped for migrated devices | Endpoint engineering | wk 26–28 |
 | 5 | E3.8 | Residual cleanup: remaining links disabled; tattooed preference items cleared or owned | Endpoint engineering | wk 29–30 |
 | 6 | EG3 | Gate 3 — Workloads cut over | Endpoint engineering | end of wk 30 |
-| 7 | E4.1 | Migrated GPOs disabled and held 90 days as the rollback net | Endpoint engineering | wk 31–43 |
-| 8 | E4.2 | Backups restore-tested; GPOs archived and deleted; exception register closed | Endpoint engineering | wk 43–44 |
-| 9 | EG4 | Gate 4 — GPOs retired | CISO / ISSO | end of wk 44 |
+| 7 | E5.1 | Migrated GPOs disabled and held 90 days as the rollback net | Endpoint engineering | wk 31–43 |
+| 8 | E5.2 | Backups restore-tested; GPOs archived and deleted; exception register closed | Endpoint engineering | wk 43–44 |
+| 9 | EG5 | Gate 5 — GPOs retired | CISO / ISSO | end of wk 44 |
 
 : The critical path {.striped .hover}
 
@@ -71,11 +73,16 @@ The critical path, in order. Each item has zero total float: a day lost on any o
 | E1.2 | Policy library built unassigned: compliance, configuration, endpoint security, app protection; groups, filters and scope tags | 1 d | wk 5–7 |
 | E1.3 | Peer review against the decision records; lab ring reports Succeeded for every setting | 1 d | wk 8 |
 | E2.1 | Pilot devices moved by pattern, with device attributes populated | 2 d | wk 9–10 |
+| E4.7 | Pilot server wave: connected with tags through the chosen tool, licensing attested, certificate file removed, agent local controls set | 2 d | wk 9 |
+| E4.8 | Pilot baseline attached on the same change and evaluated: machine configuration compliance, Update Manager assessment, Defender for Endpoint onboarded | 2 d | wk 9–10 |
 | E2.2 | Sliders at Pilot Intune; policies assigned to the 5% cohort with a 7-day grace period; GPOs left linked | 2 d | wk 10–11 |
 | E2.3 | Conflicts measured (gpresult against per-setting status); application and user tests against the baseline | 2 d | wk 11–15 |
 | E2.5 | First setting class retired: GPO backed up, evidence checked, links disabled on the pilot OUs | 2 d | wk 15–16 |
 | EG2 | Gate 2 — Pilot clean | 2 d | end of wk 16 |
 | EG1 | Gate 1 — Policy library authored and reviewed | 3 d | end of wk 8 |
+| E4.10 | Estate waves: each creates its credential, connects, attests, attaches the baseline, verifies and closes by removing what onboarding needed | 5 d | wk 17–26 |
+| E4.13 | Estate monitoring: connection-state alerts, agent currency, the three baselines watched together, ESU coverage reported | 5 d | wk 27 |
+| EG4 | Gate 4 — Servers under Arc | 5 d | end of wk 27 |
 
 : Near-critical items {.striped .hover}
 
@@ -89,7 +96,7 @@ Each decision is a zero-duration milestone in the network. *Decide by* is its la
 | D-E1 | Path: manual, governed or retrofit | Sponsor / CIO | E1.4 | end of wk 7 | 24 d | Manual (small estate or pilot, no control plane yet); governed (larger estate, or the authorizing official must sign); retrofit (estate already modernized by hand) | Nobody knows who holds the decision record; co-management for the pilot can't start |
 | D-E4 | Windows provisioning for net-new devices | Endpoint engineering | E1.5 | end of wk 7 | 12 d | Classic Windows Autopilot, user-driven, Entra join, OEM or reseller registration with a group tag (the program's GCC default); Autopilot device preparation, with the attribute carried by the serial-number mapping table | New hardware has no governed path and keeps arriving as tomorrow's migration |
 | D-E2 | Settings with no Intune equivalent | CISO / ISSO | E1.3 | end of wk 8 | 21 d | A Remediation script, reviewed later for a native replacement; a Configuration Manager baseline on co-managed devices; a dated exception with its GPO linked for that population only; a standing exception, accepted by the authorizing official | Decision records stay open and the baseline review can't sign off |
-| D-E5 | Arc onboarding method | Server infrastructure | E2.6 | end of wk 13 | 45 d | A certificate-based service principal through the tool the server team already runs (Configuration Manager, Ansible or Group Policy); the portal script for a handful of servers or a pilot; Arc-enabled VMware vSphere; the multicloud connector for AWS | The pilot server wave can't create its credential |
+| D-E5 | Arc onboarding method | Server infrastructure | E4.4 | end of wk 8 | 20 d | A certificate-based service principal through the tool the server team already runs (Configuration Manager, Ansible or Group Policy); the portal script for a handful of servers or a pilot; Arc-enabled VMware vSphere; the multicloud connector for AWS | The pilot server wave can't create its credential |
 | D-E7 | Cut date for each hybrid-joined pilot device | Sponsor / CIO | EG2 | end of wk 16 | 40 d | The device's refresh date; an OS upgrade; a troubleshooting rebuild (each needs a reset to reach Entra join) | The pilot fails its no-hybrid-join-without-a-cut-date criterion, and so does the program's G2 |
 | D-E6 | Update model: Windows Autopatch or program-managed rings | CISO / ISSO | E3.4 | end of wk 25 | 105 d | Autopatch groups configured to the program's ring table, where the license allows; Intune update rings built from SC-005 | The Windows Update wave can't be built, and WSUS stays |
 
@@ -103,9 +110,10 @@ Each gate is the next phase's entry condition. The approver signs it against the
 |---|---|---|---|
 | [Gate 0 — Observation signed off](../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#four-phases-observe-first) | end of wk 4 | CISO / ISSO | Every linked GPO and setting inventoried; the NTLM audit window closed; SPNs inventoried with duplicates flagged; device records correlated and the loss ledger run |
 | [Gate 1 — Policy library authored and reviewed](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | end of wk 8 | CISO / ISSO | A decision record for every setting; every required setting owned by exactly one policy; peer review signed off; lab devices report Succeeded; pilot devices co-managed and syncing |
-| [Gate 2 — Pilot clean](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | end of wk 16 | Endpoint engineering | No unexplained Conflict or Error; no application regressions against the baseline; one setting class retired with evidence; every hybrid-joined pilot device has a cut date; pilot servers connected with their baseline evaluated; an NTLM restriction plan per application |
-| [Gate 3 — Workloads cut over](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | end of wk 30 | Endpoint engineering | Each wave's settings report success on its population; no migrated device processes an in-scope GPO; every preference item cleared or owned; every server Arc-connected or excepted; evidence filed |
-| [Gate 4 — GPOs retired](../books/b05-devices/07-the-gpo-sunset-program.md#the-end-state) | end of wk 44 | CISO / ISSO | No GPO in scope linked to an OU with migrated devices; every retired GPO backed up with a decision record; only dated exceptions remain, each with an owner and review date; workload sliders at Intune |
+| [Gate 2 — Pilot clean](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | end of wk 16 | Endpoint engineering | No unexplained Conflict or Error; no application regressions against the baseline; one setting class retired with evidence; every hybrid-joined pilot device has a cut date; an NTLM restriction plan per application |
+| [Gate 3 — Workloads cut over](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | end of wk 30 | Endpoint engineering | Each wave's settings report success on its population; no migrated device processes an in-scope GPO; every preference item cleared or owned; evidence filed |
+| [Gate 4 — Servers under Arc](../books/b05-devices/09-servers-under-azure-arc.md#what-this-chapter-establishes) | end of wk 27 | CISO / ISSO | Every in-scope server Connected with the full tag taxonomy, or in the exception register with its tier; machine configuration baseline assigned and evaluated, noncompliance filed as findings; Update Manager assessing every server and patching on its PatchGroup schedule; Defender for Servers Plan 2 onboarded; no onboarding credential or certificate file left after any wave; every Windows Server 2016 host upgraded or ESU-covered; rollback rehearsed |
+| [Gate 5 — GPOs retired](../books/b05-devices/07-the-gpo-sunset-program.md#the-end-state) | end of wk 44 | CISO / ISSO | No GPO in scope linked to an OU with migrated devices; every retired GPO backed up with a decision record; only dated exceptions remain, each with an owner and review date; workload sliders at Intune |
 
 : Gates {.striped .hover}
 
@@ -115,6 +123,8 @@ Each gate is the next phase's entry condition. The approver signs it against the
 - **X-D06, Program decision D06: device pattern for each pilot cohort,** is D06 in the [Program master schedule](program-master-schedule.md) plan (Device pattern for each pilot cohort), end of wk 8. This plan waits for it; it can slip 2 d before it moves this plan. Pilot devices can't move, and this plan's pilot waits.
 - **X-G2, Program G2 — Pilot Clean,** is G2 in the [Program master schedule](program-master-schedule.md) plan (G2 — Pilot Clean), end of wk 16. This plan must finish EG2 by then: a margin of 2 d. Later work in this plan waits for it. The workload waves can't start.
 - **X-G3, Program G3 — Rollout Complete,** is G3 in the [Program master schedule](program-master-schedule.md) plan (G3 — Rollout Complete), end of wk 36. This plan waits for it; it can slip 19 d before it moves this plan. Formal retirement and NTLM stage 3 can't close.
+- **X-P29, Pilot servers under Arc with machine configuration (program P2.9),** is P2.9 in the [Program master schedule](program-master-schedule.md) plan (Pilot servers under Arc with machine configuration (M-030)), end of wk 10. This plan must finish E4.8 by then: a margin of 2 d. The program's pilot has no governed servers, and the Data Platform plan's pilot SQL Server host has no Arc pattern to follow.
+- **X-P37, Every server Arc-connected or excepted (program P3.7),** is P3.7 in the [Program master schedule](program-master-schedule.md) plan (Every server Arc-connected or excepted), end of wk 28. This plan must finish EG4 by then: a margin of 5 d. The program's G3 fails its every-server-Arc-connected-or-excepted criterion.
 - **X-D08, Program decision D08: end dates for legacy authentication and NTLM,** is D08 in the [Program master schedule](program-master-schedule.md) plan (End dates for legacy authentication and NTLM), end of wk 16. This plan waits for it; it can slip 119 d before it moves this plan. NTLM stage 3 has no date for application owners to plan against.
 
 ## Work breakdown and schedule
@@ -141,7 +151,6 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | D-E2 | [Settings with no Intune equivalent](../books/b05-devices/07-the-gpo-sunset-program.md#step-2-classify-each-setting) | Decision | CISO / ISSO | — | E1.1 | end of wk 3 | 21 d |
 | D-E3 | [Windows 10 posture](../books/b05-devices/08-gpo-to-intune-policy-migration.md) | Decision | CISO / ISSO | — | EG0 | end of wk 4 | 1 d |
 | D-E4 | [Windows provisioning for net-new devices](../books/b05-devices/04-intune-first-onboarding.md#which-one-in-a-gcc-tenant) | Decision | Endpoint engineering | — | EG0 | end of wk 4 | 12 d |
-| D-E5 | [Arc onboarding method](../books/b05-devices/09-servers-under-azure-arc.md#choose-a-method) | Decision | Server infrastructure | — | EG0 | end of wk 4 | 45 d |
 | D-E6 | [Update model: Windows Autopatch or program-managed rings](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#windows-autopatch) | Decision | CISO / ISSO | — | EG0 | end of wk 4 | 105 d |
 | E1.2 | [Policy library built unassigned: compliance, configuration, endpoint security, app protection; groups, filters and scope tags](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-3-baseline-authoring) | Task | Endpoint engineering | 15 | E1.1, D-E3 | wk 5–7 | 1 d |
 | E1.3 | [Peer review against the decision records; lab ring reports Succeeded for every setting](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | Task | Endpoint engineering | 4 | E1.2, D-E2 | wk 8 | 1 d |
@@ -163,10 +172,8 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | E2.3 | [Conflicts measured (gpresult against per-setting status); application and user tests against the baseline](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-4-pilot) | Task | Endpoint engineering | 20 | E2.2 | wk 11–15 | 2 d |
 | E2.4 | [Compliant-device Conditional Access in report-only for the pilot; coverage reconciled](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#compliance-and-the-conditional-access-hand-off) | Task | Identity team | 10 | E2.2 | wk 11–13 | 17 d |
 | E2.5 | [First setting class retired: GPO backed up, evidence checked, links disabled on the pilot OUs](../books/b05-devices/07-the-gpo-sunset-program.md#freezing-and-unlinking-gpos) | Task | Endpoint engineering | 5 | E2.3 | wk 15–16 | 2 d |
-| E2.6 | [Pilot server wave: resource group, tags, network check, certificate credential, connect, license attestation](../books/b05-devices/09-servers-under-azure-arc.md#onboarding) | Task | Server infrastructure | 8 | X-G1, D-E5 | wk 9–10 | 25 d |
-| E2.7 | [Day-one baseline on pilot servers: machine configuration, Update Manager, Defender for Servers; wave closed](../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline) | Task | Server infrastructure | 7 | E2.6 | wk 10–11 | 25 d |
 | E2.8 | [SPNs repaired for pilot applications; NTLM restriction plan per application](../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-3-repair-spns-before-enforcing-kerberos) | Task | Application owners | 10 | E2.1, EG0 | wk 10–12 | 22 d |
-| EG2 | [Gate 2 — Pilot clean](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | Gate | Endpoint engineering | — | E2.5, E2.4, E2.7, E2.8, D-E7 | end of wk 16 | 2 d |
+| EG2 | [Gate 2 — Pilot clean](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate) | Gate | Endpoint engineering | — | E2.5, E2.4, E2.8, D-E7 | end of wk 16 | 2 d |
 | X-G2 | [Program G2 — Pilot Clean](program-master-schedule.md) | External | Steward and executive sponsor | — | EG2 | end of wk 16 | fixed date |
 
 : Phase 2 — Pilot {.striped .hover}
@@ -179,27 +186,50 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | E3.2 | **[Wave 2, Endpoint Protection: ES-001 to ES-006; matching GPO links disabled](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-5-workload-cutover-in-waves)** | Task | Endpoint engineering | 15 | E3.1 | wk 20–22 | 0 |
 | E3.3 | **[Wave 3, device configuration: the settings catalog profiles; matching GPO links disabled](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-5-workload-cutover-in-waves)** | Task | Endpoint engineering | 15 | E3.2 | wk 23–25 | 0 |
 | E3.4 | **[Wave 4, Windows Update policies: update rings assigned; WSUS stopped for migrated devices](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-5-workload-cutover-in-waves)** | Task | Endpoint engineering | 15 | E3.3, D-E6 | wk 26–28 | 0 |
-| E3.5 | [Every remaining server Arc-connected or excepted, wave by wave; Windows Server 2016 enrolled in ESUs](../books/b05-devices/09-servers-under-azure-arc.md#extended-security-updates) | Task | Server infrastructure | 60 | X-G2, E2.7 | wk 17–28 | 10 d |
 | E3.6 | [NTLM stage 2 per application, after owner sign-off: LM and NTLMv1 refused](../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-3-restrict-ntlm-in-stages) | Task | Application owners | 30 | E2.8, X-G2 | wk 17–22 | 40 d |
 | E3.7 | [Weekly inventory reconciliation and daily drift export running; alerts set](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#device-inventory-reconciliation) | Task | Endpoint engineering | 10 | EG2 | wk 16–18 | 62 d |
 | E3.8 | **[Residual cleanup: remaining links disabled; tattooed preference items cleared or owned](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-6-verification-and-residual-cleanup)** | Task | Endpoint engineering | 10 | E3.4 | wk 29–30 | 0 |
-| EG3 | **[Gate 3 — Workloads cut over](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate)** | Gate | Endpoint engineering | — | E3.8, E3.5, E3.6, E3.7 | end of wk 30 | 0 |
+| EG3 | **[Gate 3 — Workloads cut over](../books/b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate)** | Gate | Endpoint engineering | — | E3.8, E3.6, E3.7 | end of wk 30 | 0 |
 | X-G3 | [Program G3 — Rollout Complete](program-master-schedule.md) | External | Executive sponsor and steering committee | — | — | end of wk 36 | 19 d |
 
 : Phase 3 — Workload cutover {.striped .hover}
 
-### Phase 4 — Formal retirement
+### Phase 4 — Servers under Azure Arc
+
+| ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
+|---|---|---|---|---|---|---|---|
+| E4.1 | [Arc resource groups per owning team; Onboarding role to the service principal only, Resource Administrator to server operations, scoped and held through PIM](../books/b05-devices/09-servers-under-azure-arc.md#roles) | Task | Server infrastructure | 5 | EG0 | wk 5 | 15 d |
+| E4.2 | [Tag taxonomy fixed from the asset record: Environment, Workload, Criticality, Owner, CostCenter, PatchGroup, ArcOnboardedDate; SQL Server opt-out tag where needed](../books/b05-devices/09-servers-under-azure-arc.md#resource-groups-and-tags) | Task | Server infrastructure | 5 | EG0 | wk 5 | 11 d |
+| E4.3 | [Network readiness per site: Arc service tags or a private link scope; azcmagent check from a representative server](../books/b05-devices/09-servers-under-azure-arc.md#network) | Task | Server infrastructure | 10 | EG0 | wk 5–6 | 12 d |
+| D-E5 | [Arc onboarding method](../books/b05-devices/09-servers-under-azure-arc.md#choose-a-method) | Decision | Server infrastructure | — | EG0 | end of wk 4 | 20 d |
+| E4.4 | [Certificate-based onboarding service principal at resource-group scope, created as a recorded change and handed to the chosen tool](../books/b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal) | Task | Server infrastructure | 2 | D-E5, E4.1 | wk 6 | 15 d |
+| E4.5 | [Policy baseline as code: machine configuration prerequisites, Azure compute security baselines, Update Manager schedules by PatchGroup, Defender for Servers Plan 2, extension allowlists](../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline) | Task | Server infrastructure | 10 | E4.2 | wk 6–7 | 11 d |
+| E4.6 | [Windows Server 2016 hosts that won't be upgraded in time: connected for ESUs before end of support (January 12, 2027), Allow/None allowlist](../books/b05-devices/09-servers-under-azure-arc.md#extended-security-updates) | Task | Server infrastructure | 5 | — | wk 1 | 135 d |
+| E4.7 | [Pilot server wave: connected with tags through the chosen tool, licensing attested, certificate file removed, agent local controls set](../books/b05-devices/09-servers-under-azure-arc.md#connect) | Task | Server infrastructure | 4 | X-G1, E4.3, E4.4 | wk 9 | 2 d |
+| E4.8 | [Pilot baseline attached on the same change and evaluated: machine configuration compliance, Update Manager assessment, Defender for Endpoint onboarded](../books/b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline) | Task | Server infrastructure | 4 | E4.7, E4.5 | wk 9–10 | 2 d |
+| X-P29 | [Pilot servers under Arc with machine configuration (program P2.9)](program-master-schedule.md) | External | Platform teams (program) | — | E4.8 | end of wk 10 | fixed date |
+| E4.9 | [Pilot wave closed: credential rotated or removed, onboarding GPO disabled; rollback rehearsed on a test server (extensions, disconnect, uninstall)](../books/b05-devices/09-servers-under-azure-arc.md#rollback) | Task | Server infrastructure | 3 | E4.8 | wk 10–11 | 34 d |
+| E4.10 | [Estate waves: each creates its credential, connects, attests, attaches the baseline, verifies and closes by removing what onboarding needed](../books/b05-devices/09-servers-under-azure-arc.md#onboarding) | Task | Server infrastructure | 50 | X-G2, E4.9 | wk 17–26 | 5 d |
+| E4.11 | [Update Manager across the estate: periodic assessment on every server; scheduled patching in maintenance windows scoped by PatchGroup](../books/b05-devices/09-servers-under-azure-arc.md#azure-update-manager) | Task | Server infrastructure | 10 | E4.10 (SS) +10 d | wk 19–20 | 40 d |
+| E4.12 | [Servers Arc doesn't reach recorded and tiered; Windows Server 2012 hosts migrated, upgraded or isolated with the risk accepted](../books/b05-devices/09-servers-under-azure-arc.md#which-servers-arc-reaches) | Task | Server infrastructure | 15 | X-G2 | wk 17–19 | 45 d |
+| E4.13 | [Estate monitoring: connection-state alerts, agent currency, the three baselines watched together, ESU coverage reported](../books/b05-devices/09-servers-under-azure-arc.md#monitoring-the-server-estate) | Task | Server infrastructure | 5 | E4.10 | wk 27 | 5 d |
+| EG4 | [Gate 4 — Servers under Arc](../books/b05-devices/09-servers-under-azure-arc.md#what-this-chapter-establishes) | Gate | CISO / ISSO | — | E4.10, E4.11, E4.12, E4.13, E4.6 | end of wk 27 | 5 d |
+| X-P37 | [Every server Arc-connected or excepted (program P3.7)](program-master-schedule.md) | External | Platform teams (program) | — | EG4 | end of wk 28 | fixed date |
+
+: Phase 4 — Servers under Azure Arc {.striped .hover}
+
+### Phase 5 — Formal retirement
 
 | ID | Item | Type | Owner or approver | Days | Predecessors | When | Float |
 |---|---|---|---|---|---|---|---|
 | X-D08 | [Program decision D08: end dates for legacy authentication and NTLM](program-master-schedule.md) | External | Authorizing official | — | — | end of wk 16 | 119 d |
-| E4.1 | **[Migrated GPOs disabled and held 90 days as the rollback net](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal-retirement)** | Task | Endpoint engineering | 64 | EG3 | wk 31–43 | 0 |
-| E4.2 | **[Backups restore-tested; GPOs archived and deleted; exception register closed](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal-retirement)** | Task | Endpoint engineering | 5 | E4.1, X-G3 | wk 43–44 | 0 |
-| E4.3 | [NTLM stage 3: deny all; exceptions removed as each dependency retires](../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-3-restrict-ntlm-in-stages) | Task | Application owners | 20 | E3.6, X-D08, X-G3 | wk 37–40 | 19 d |
-| E4.4 | [Evidence for CM-2, CM-6, CM-7, CM-8 and SI-2 handed to the ISSO](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads) | Task | Endpoint engineering | 5 | E3.7, X-G3 | wk 37 | 34 d |
-| EG4 | **[Gate 4 — GPOs retired](../books/b05-devices/07-the-gpo-sunset-program.md#the-end-state)** | Gate | CISO / ISSO | — | E4.2, E4.3, E4.4 | end of wk 44 | 0 |
+| E5.1 | **[Migrated GPOs disabled and held 90 days as the rollback net](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal-retirement)** | Task | Endpoint engineering | 64 | EG3 | wk 31–43 | 0 |
+| E5.2 | **[Backups restore-tested; GPOs archived and deleted; exception register closed](../books/b05-devices/08-gpo-to-intune-policy-migration.md#phase-7-formal-retirement)** | Task | Endpoint engineering | 5 | E5.1, X-G3 | wk 43–44 | 0 |
+| E5.3 | [NTLM stage 3: deny all; exceptions removed as each dependency retires](../books/b05-devices/05-the-governed-manual-and-retrofit-paths.md#phase-3-restrict-ntlm-in-stages) | Task | Application owners | 20 | E3.6, X-D08, X-G3 | wk 37–40 | 19 d |
+| E5.4 | [Evidence for CM-2, CM-6, CM-7, CM-8 and SI-2, workstations and servers, handed to the ISSO](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads) | Task | Endpoint engineering | 5 | E3.7, EG4, X-G3 | wk 37 | 34 d |
+| EG5 | **[Gate 5 — GPOs retired](../books/b05-devices/07-the-gpo-sunset-program.md#the-end-state)** | Gate | CISO / ISSO | — | E5.2, E5.3, E5.4 | end of wk 44 | 0 |
 
-: Phase 4 — Formal retirement {.striped .hover}
+: Phase 5 — Formal retirement {.striped .hover}
 
 ## Responsibility
 
@@ -208,9 +238,10 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 | Owner or approver | Tasks | Decisions | Gates |
 |---|---|---|---|
 | Endpoint engineering | 20 | 1 | 2 |
-| CISO / ISSO | — | 3 | 3 |
-| Server infrastructure | 4 | 1 | — |
+| Server infrastructure | 14 | 1 | — |
+| CISO / ISSO | — | 3 | 4 |
 | Application owners | 3 | — | — |
+| Platform teams (program) | 2 | — | — |
 | Sponsor / CIO | — | 2 | — |
 | Authorizing official | 1 | — | — |
 | Executive sponsor and steering committee | 1 | — | — |
@@ -227,6 +258,8 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 - The pilot cohort is about 5% of the fleet, representative across tiers, regions and departments; the ring sizes in each wave are a program design choice.
 - Domain unjoin of the existing fleet is out of scope; the sponsor schedules it separately ([Chapter 06](../books/b05-devices/06-who-owns-the-endpoint.md#the-roles)).
 - The 90-day GPO retention window is the program's design choice, sized to the fleet's patch and refresh cycle ([Chapter 07](../books/b05-devices/07-the-gpo-sunset-program.md#freezing-and-unlinking-gpos)); here it is taken as 64 working days.
+- Arc onboarding attaches the management plane and doesn't unjoin a server from the domain; unjoining is a separate decision per workload, outside this plan, as is Entra ID sign-in on Windows Server 2025 ([Chapter 09](../books/b05-devices/09-servers-under-azure-arc.md#what-arc-changes-and-what-it-doesnt)).
+- Windows Server 2016 reaches end of support on January 12, 2027. This sample's placeholder calendar starts on January 4, 2027, so hosts that won't be upgraded are connected for ESUs in week 1; on a real calendar that is done before the program starts ([Chapter 09](../books/b05-devices/09-servers-under-azure-arc.md#extended-security-updates)).
 - Durations are illustrative. Replace them with the agency's own estimates once the GPO inventory and the NTLM audit are in.
 
 ## Schedule risks
@@ -237,6 +270,7 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 | A setting outside the Policy CSP (Defender, Windows Hello for Business) is configured in both a GPO and Intune | A race with no guaranteed winner; unexplained conflicts fail the pilot gate | Never configure those settings in both places; unlink the GPO first or exclude the population ([Chapter 07](../books/b05-devices/07-the-gpo-sunset-program.md#coexistence-who-wins)) |
 | Device attributes are incomplete | Devices fall outside every policy's scope, and the compliant-device policies can't be enforced | Mark devices with no compliance policy as not compliant; reconcile the inventories weekly ([Chapter 10](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#tenant-wide-compliance-settings)) |
 | Pilot Intune doesn't remove policies when they are unassigned | A pilot rollback takes longer than planned | Plan rollback as reassigning a policy that sets the old value, not as removing the assignment ([Chapter 08](../books/b05-devices/08-gpo-to-intune-policy-migration.md#rollback)) |
+| An Arc server stays disconnected for more than 14 days | Its machine configuration assignments are deleted and not reassigned, so its baseline evaluation silently stops | Alert on connection state and investigate missed heartbeats; reconnect inside the window or re-assign the baseline ([Chapter 09](../books/b05-devices/09-servers-under-azure-arc.md#azure-policy-and-machine-configuration)) |
 | An onboarding secret is left in plain text in a startup script | Anyone who reads SYSVOL can register servers into the subscription | Onboard with a certificate-based service principal and remove the credential when each wave closes ([Chapter 09](../books/b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal)) |
 
 : Schedule risks {.striped .hover}

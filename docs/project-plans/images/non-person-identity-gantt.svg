@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="1196" viewBox="0 0 980 1196" role="img" aria-labelledby="t d" font-family="Inter, 'DM Sans', Arial, sans-serif">
+<title id="t">Non-Person Identity Modernization: schedule</title>
+<desc id="d">Gantt chart of 58 tasks over 34 weeks. Critical-path tasks are red; other tasks are blue, with a grey line for their float. Gates are violet diamonds, decisions amber diamonds, and milestones from another plan green diamonds.</desc>
+<rect width="980" height="1196" fill="#ffffff"/>
+<line x1="360.0" y1="28" x2="360.0" y2="1156" stroke="#e2e8f0" stroke-width="1"/>
+<text x="362.0" y="22" font-size="10" fill="#64748b">wk 1</text>
+<line x1="430.6" y1="28" x2="430.6" y2="1156" stroke="#e2e8f0" stroke-width="1"/>
+<text x="432.6" y="22" font-size="10" fill="#64748b">wk 5</text>
+<line x1="501.2" y1="28" x2="501.2" y2="1156" stroke="#e2e8f0" stroke-width="1"/>
+<text x="503.2" y="22" font-size="10" fill="#64748b">wk 9</text>
+<line x1="571.8" y1="28" x2="571.8" y2="1156" stroke="#e2e8f0" stroke-width="1"/>
+<text x="573.8" y="22" font-size="10" fill="#64748b">wk 13</text>
+<line x1="642.4" y1="28" x2="642.4" y2="1156" stroke="#e2e8f0" stroke-width="1"/>
+<text x="644.4" y="22" font-size="10" fill="#64748b">wk 17</text>
+<line x1="712.9" y1="28" x2="712.9" y2="1156" stroke="#e2e8f0" stroke-width="1"/>
+<text x="714.9" y="22" font-size="10" fill="#64748b">wk 21</text>
+<line x1="783.5" y1="28" x2="783.5" y2="1156" stroke="#e2e8f0" stroke-width="1"/>
+<text x="785.5" y="22" font-size="10" fill="#64748b">wk 25</text>
+<line x1="854.1" y1="28" x2="854.1" y2="1156" stroke="#e2e8f0" stroke-width="1"/>
+<text x="856.1" y="22" font-size="10" fill="#64748b">wk 29</text>
+<line x1="924.7" y1="28" x2="924.7" y2="1156" stroke="#e2e8f0" stroke-width="1"/>
+<text x="926.7" y="22" font-size="10" fill="#64748b">wk 33</text>
+<rect x="0" y="34" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="46.5" font-size="11" font-weight="600" fill="#1e293b">Phase 0 — Inventory</text>
+<text x="14" y="63" font-size="10.5" fill="#1e293b">N0.1  AD service accounts discovered, read-only: traditi…</text>
+<rect x="360.0" y="55" width="35.3" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="80" font-size="10.5" fill="#64748b">X-G0  Program G0 — Ready to Plan: the read-only assessme…</text>
+<path d="M430.6 71.0 L436.1 76.5 L430.6 82.0 L425.1 76.5 Z" fill="#059669"/>
+<text x="14" y="97" font-size="10.5" fill="#64748b">X-A03  App registrations, owners, credentials and grante…</text>
+<path d="M388.2 88.0 L393.7 93.5 L388.2 99.0 L382.7 93.5 Z" fill="#059669"/>
+<text x="14" y="114" font-size="10.5" fill="#1e293b">N0.2  Entra workload identities added to that inventory:…</text>
+<rect x="388.2" y="106" width="17.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="131" font-size="10.5" fill="#64748b">N0.3  AI seed list: the current AI use-case inventory vi…</text>
+<line x1="395.3" y1="127.5" x2="405.9" y2="127.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="123" width="35.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="148" font-size="10.5" fill="#1e293b">N0.4  SQL Server engine, login and LDAP-bind accounts ta…</text>
+<rect x="395.3" y="140" width="10.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="165" font-size="10.5" fill="#1e293b">N0.5  One non-person identity register: type, host, work…</text>
+<rect x="405.9" y="157" width="17.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="182" font-size="10.5" fill="#64748b">D-N1  Source of record for non-person identities</text>
+<path d="M395.3 173.0 L400.8 178.5 L395.3 184.0 L389.8 178.5 Z" fill="#D97706"/>
+<text x="14" y="199" font-size="10.5" fill="#1e293b">NG0  Gate 0 — Non-person identities inventoried</text>
+<path d="M423.5 190.0 L429.0 195.5 L423.5 201.0 L418.0 195.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="204" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="216.5" font-size="11" font-weight="600" fill="#1e293b">Phase 1 — Ownership</text>
+<text x="14" y="233" font-size="10.5" fill="#1e293b">N1.1  An application owner found for every service accou…</text>
+<rect x="423.5" y="225" width="88.2" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="250" font-size="10.5" fill="#64748b">N1.2  AI accountability: a federal sponsor mastered in H…</text>
+<line x1="476.5" y1="246.5" x2="529.4" y2="246.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="423.5" y="242" width="52.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="267" font-size="10.5" fill="#64748b">D-N2  Orphan rule for identities nobody will own</text>
+<path d="M423.5 258.0 L429.0 263.5 L423.5 269.0 L418.0 263.5 Z" fill="#D97706"/>
+<text x="14" y="284" font-size="10.5" fill="#1e293b">N1.3  Unowned identities disabled, not deleted, under th…</text>
+<rect x="511.8" y="276" width="17.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="301" font-size="10.5" fill="#1e293b">NG1  Gate 1 — Every non-person identity owned</text>
+<path d="M529.4 292.0 L534.9 297.5 L529.4 303.0 L523.9 297.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="306" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="318.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Decide per account</text>
+<text x="14" y="335" font-size="10.5" fill="#1e293b">N2.1  Target set per account from the migration path mat…</text>
+<rect x="529.4" y="327" width="52.9" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="352" font-size="10.5" fill="#1e293b">D-N3  Retire, re-platform or keep, account by account</text>
+<path d="M582.4 343.0 L587.9 348.5 L582.4 354.0 L576.9 348.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="369" font-size="10.5" fill="#64748b">D-N4  Workload ID Premium licensing scope</text>
+<path d="M582.4 360.0 L587.9 365.5 L582.4 371.0 L576.9 365.5 Z" fill="#D97706"/>
+<text x="14" y="386" font-size="10.5" fill="#1e293b">N2.2  Conversion waves sequenced: HIGH-risk accounts fir…</text>
+<rect x="582.4" y="378" width="17.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="403" font-size="10.5" fill="#1e293b">NG2  Gate 2 — Every account has a decision</text>
+<path d="M600.0 394.0 L605.5 399.5 L600.0 405.0 L594.5 399.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="408" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="420.5" font-size="11" font-weight="600" fill="#1e293b">Phase 3 — Credential modernization</text>
+<text x="14" y="437" font-size="10.5" fill="#64748b">X-G1  Program G1 — Foundation Complete: groups and AUs d…</text>
+<path d="M501.2 428.0 L506.7 433.5 L501.2 439.0 L495.7 433.5 Z" fill="#059669"/>
+<text x="14" y="454" font-size="10.5" fill="#64748b">N3.1  App management policy: new client secrets and symm…</text>
+<line x1="441.2" y1="450.5" x2="600.0" y2="450.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="423.5" y="446" width="17.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="471" font-size="10.5" fill="#1e293b">N3.2  Wave 1, HIGH-risk accounts: workload identities cr…</text>
+<rect x="600.0" y="463" width="52.9" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="488" font-size="10.5" fill="#1e293b">N3.3  Wave 1 parallel run: old and new credentials side…</text>
+<rect x="652.9" y="480" width="77.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="505" font-size="10.5" fill="#1e293b">N3.4  Remaining waves converted, each with its own 30-da…</text>
+<rect x="688.2" y="497" width="211.8" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="522" font-size="10.5" fill="#64748b">N3.5  Kerberos-only workloads: MSAs upgraded to gMSAs; t…</text>
+<line x1="670.6" y1="518.5" x2="882.4" y2="518.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="600.0" y="514" width="70.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="539" font-size="10.5" fill="#64748b">X-D08  End dates for legacy authentication and NTLM (pro…</text>
+<path d="M642.4 530.0 L647.9 535.5 L642.4 541.0 L636.9 535.5 Z" fill="#059669"/>
+<text x="14" y="556" font-size="10.5" fill="#64748b">N3.6  Kerberos accounts that stay: SPN owner and an end…</text>
+<line x1="688.2" y1="552.5" x2="900.0" y2="552.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="670.6" y="548" width="17.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="573" font-size="10.5" fill="#64748b">N3.7  Rotation in place: certificates in Key Vault, rota…</text>
+<line x1="688.2" y1="569.5" x2="900.0" y2="569.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="652.9" y="565" width="35.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="590" font-size="10.5" fill="#1e293b">NG3  Gate 3 — Credentials modernized</text>
+<path d="M900.0 581.0 L905.5 586.5 L900.0 592.0 L894.5 586.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="607" font-size="10.5" fill="#64748b">X-DG4  SQL Server&#x27;s application chain on Entra principal…</text>
+<path d="M896.5 598.0 L902.0 603.5 L896.5 609.0 L891.0 603.5 Z" fill="#059669"/>
+<text x="14" y="624" font-size="10.5" fill="#64748b">X-P46  AD-bound service principal names migrated, retire…</text>
+<path d="M1101.2 615.0 L1106.7 620.5 L1101.2 626.0 L1095.7 620.5 Z" fill="#059669"/>
+<rect x="0" y="629" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="641.5" font-size="11" font-weight="600" fill="#1e293b">Phase 4 — Least privilege</text>
+<text x="14" y="658" font-size="10.5" fill="#64748b">N4.1  Permission sweep: owners review every grant; broad…</text>
+<line x1="617.6" y1="654.5" x2="829.4" y2="654.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="529.4" y="650" width="88.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="675" font-size="10.5" fill="#64748b">N4.2  Managed identities&#x27; role assignments scoped to the…</text>
+<line x1="564.7" y1="671.5" x2="829.4" y2="671.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="529.4" y="667" width="35.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="692" font-size="10.5" fill="#64748b">X-A34  Non-human privileged identities owned, off secret…</text>
+<path d="M783.5 683.0 L789.0 688.5 L783.5 694.0 L778.0 688.5 Z" fill="#059669"/>
+<text x="14" y="709" font-size="10.5" fill="#64748b">N4.3  First quarterly owner review of permissions closed…</text>
+<line x1="670.6" y1="705.5" x2="882.4" y2="705.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="617.6" y="701" width="52.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="726" font-size="10.5" fill="#64748b">NG4  Gate 4 — Least privilege</text>
+<path d="M783.5 717.0 L789.0 722.5 L783.5 728.0 L778.0 722.5 Z" fill="#7C3AED"/>
+<rect x="0" y="731" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="743.5" font-size="11" font-weight="600" fill="#1e293b">Phase 5 — Conditional Access for workload identities</text>
+<text x="14" y="760" font-size="10.5" fill="#64748b">N5.1  Scope set: Tier 1 single-tenant service principals…</text>
+<line x1="600.0" y1="756.5" x2="847.1" y2="756.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="582.4" y="752" width="17.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="777" font-size="10.5" fill="#64748b">N5.2  CA015 location restriction and CA037 high-risk blo…</text>
+<line x1="670.6" y1="773.5" x2="917.6" y2="773.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="600.0" y="769" width="70.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="794" font-size="10.5" fill="#64748b">D-N5  Enforce the workload identity policies</text>
+<path d="M670.6 785.0 L676.1 790.5 L670.6 796.0 L665.1 790.5 Z" fill="#D97706"/>
+<text x="14" y="811" font-size="10.5" fill="#64748b">N5.3  Policies enforced ring by ring; block events alert…</text>
+<line x1="705.9" y1="807.5" x2="952.9" y2="807.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="670.6" y="803" width="35.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="828" font-size="10.5" fill="#64748b">NG5  Gate 5 — Workload identities under Conditional Access</text>
+<path d="M705.9 819.0 L711.4 824.5 L705.9 830.0 L700.4 824.5 Z" fill="#7C3AED"/>
+<rect x="0" y="833" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="845.5" font-size="11" font-weight="600" fill="#1e293b">Phase 6 — AI agents</text>
+<text x="14" y="862" font-size="10.5" fill="#64748b">D-N6  AI identity capabilities the program builds on in…</text>
+<path d="M395.3 853.0 L400.8 858.5 L395.3 864.0 L389.8 858.5 Z" fill="#D97706"/>
+<text x="14" y="879" font-size="10.5" fill="#64748b">N6.1  Creation closed: Users can create agent blueprints…</text>
+<line x1="434.1" y1="875.5" x2="794.1" y2="875.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="423.5" y="871" width="10.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="896" font-size="10.5" fill="#64748b">N6.2  Production handshake: blueprint, sponsor, consent,…</text>
+<line x1="511.8" y1="892.5" x2="829.4" y2="892.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="476.5" y="888" width="35.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="913" font-size="10.5" fill="#64748b">N6.3  Agent credentials: managed identity as the bluepri…</text>
+<line x1="564.7" y1="909.5" x2="882.4" y2="909.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="511.8" y="905" width="52.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="930" font-size="10.5" fill="#64748b">N6.4  Agent least privilege: access mode chosen first; n…</text>
+<line x1="547.1" y1="926.5" x2="882.4" y2="926.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="511.8" y="922" width="35.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="947" font-size="10.5" fill="#64748b">X-IG4  Mover and leaver automation proven (Identity Life…</text>
+<path d="M635.3 938.0 L640.8 943.5 L635.3 949.0 L629.8 943.5 Z" fill="#059669"/>
+<text x="14" y="964" font-size="10.5" fill="#64748b">N6.5  Sponsorship tasks added to the HR-driven mover and…</text>
+<line x1="670.6" y1="960.5" x2="882.4" y2="960.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="635.3" y="956" width="35.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="981" font-size="10.5" fill="#64748b">N6.6  Agent Conditional Access in report-only: block all…</text>
+<line x1="547.1" y1="977.5" x2="882.4" y2="977.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="511.8" y="973" width="35.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="998" font-size="10.5" fill="#64748b">N6.7  AI drift checks running: agentic system with no go…</text>
+<line x1="547.1" y1="994.5" x2="882.4" y2="994.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="511.8" y="990" width="35.3" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1015" font-size="10.5" fill="#64748b">NG6  Gate 6 — AI identities governed</text>
+<path d="M670.6 1006.0 L676.1 1011.5 L670.6 1017.0 L665.1 1011.5 Z" fill="#7C3AED"/>
+<rect x="0" y="1020" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="1032.5" font-size="11" font-weight="600" fill="#1e293b">Phase 7 — Steady state</text>
+<text x="14" y="1049" font-size="10.5" fill="#1e293b">N7.1  Register drift scheduled: ownerless, unused or exp…</text>
+<rect x="900.0" y="1041" width="35.3" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1066" font-size="10.5" fill="#64748b">N7.2  A full review cycle: owners&#x27; quarterly permission…</text>
+<line x1="836.5" y1="1062.5" x2="935.3" y2="1062.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="783.5" y="1058" width="52.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1083" font-size="10.5" fill="#64748b">X-D11  Provisional target end state: AD retired, or a da…</text>
+<path d="M430.6 1074.0 L436.1 1079.5 L430.6 1085.0 L425.1 1079.5 Z" fill="#059669"/>
+<text x="14" y="1100" font-size="10.5" fill="#1e293b">N7.3  gMSAs and dMSAs reconciled with the provisional en…</text>
+<rect x="900.0" y="1092" width="52.9" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1117" font-size="10.5" fill="#64748b">X-G5  Program G5 — AD Retired</text>
+<path d="M1207.1 1108.0 L1212.6 1113.5 L1207.1 1119.0 L1201.6 1113.5 Z" fill="#059669"/>
+<text x="14" y="1134" font-size="10.5" fill="#1e293b">N7.4  Evidence to the ISSO for AC-2, AC-6(5), IA-4, IA-5…</text>
+<rect x="935.3" y="1126" width="17.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1151" font-size="10.5" fill="#1e293b">NG7  Gate 7 — Steady state</text>
+<path d="M952.9 1142.0 L958.4 1147.5 L952.9 1153.0 L947.4 1147.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="14" y="1169" width="18" height="9" rx="2" fill="#DC2626"/>
+<text x="38" y="1178" font-size="10.5" fill="#1e293b">Critical path</text>
+<rect x="140.60000000000002" y="1169" width="18" height="9" rx="2" fill="#2563EB"/>
+<text x="164.60000000000002" y="1178" font-size="10.5" fill="#1e293b">Other task</text>
+<line x1="248.60000000000002" y1="1173.5" x2="266.6" y2="1173.5" stroke="#cbd5e1" stroke-width="2"/>
+<text x="272.6" y="1178" font-size="10.5" fill="#1e293b">Float</text>
+<path d="M334.6 1168 L340.1 1173.5 L334.6 1179 L329.1 1173.5 Z" fill="#7C3AED"/>
+<text x="349.6" y="1178" font-size="10.5" fill="#1e293b">Gate</text>
+<path d="M405.40000000000003 1168 L410.90000000000003 1173.5 L405.40000000000003 1179 L399.90000000000003 1173.5 Z" fill="#D97706"/>
+<text x="420.40000000000003" y="1178" font-size="10.5" fill="#1e293b">Decision</text>
+<path d="M501.0 1168 L506.5 1173.5 L501.0 1179 L495.5 1173.5 Z" fill="#059669"/>
+<text x="516.0" y="1178" font-size="10.5" fill="#1e293b">From another plan</text>
+<text x="966" y="1178" font-size="10.5" fill="#64748b" text-anchor="end">A red outline marks a milestone on the critical path</text>
+</svg>

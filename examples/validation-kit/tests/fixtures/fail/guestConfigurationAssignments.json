@@ -1,0 +1,30 @@
+[
+  {
+    "id": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app01/providers/microsoft.guestconfiguration/guestconfigurationassignments/azurewindowsbaseline",
+    "name": "AzureWindowsBaseline",
+    "machineId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app01",
+    "assignmentType": "ApplyAndAutoCorrect",
+    "complianceStatus": "Compliant"
+  },
+  {
+    "id": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-web01/providers/microsoft.guestconfiguration/guestconfigurationassignments/azurewindowsbaseline",
+    "name": "AzureWindowsBaseline",
+    "machineId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-web01",
+    "assignmentType": "ApplyandMonitor",
+    "complianceStatus": "Compliant"
+  },
+  {
+    "id": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-exp01/providers/microsoft.guestconfiguration/guestconfigurationassignments/azurewindowsbaseline",
+    "name": "AzureWindowsBaseline",
+    "machineId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-exp01",
+    "assignmentType": "ApplyAndAutoCorrect",
+    "complianceStatus": "Compliant"
+  },
+  {
+    "id": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-old01/providers/microsoft.guestconfiguration/guestconfigurationassignments/azurelinuxbaseline",
+    "name": "AzureLinuxBaseline",
+    "machineId": "",
+    "assignmentType": "ApplyAndAutoCorrect",
+    "complianceStatus": "Compliant"
+  }
+]

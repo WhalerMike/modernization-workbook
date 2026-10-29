@@ -1,0 +1,16 @@
+[
+  {
+    "id": "cp1",
+    "@odata.type": "#microsoft.graph.windows10CompliancePolicy",
+    "displayName": "Windows compliance",
+    "assignments": [
+      {
+        "id": "a-0103-0",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "groupId": "00000000-0000-4000-8000-000000000103"
+        }
+      }
+    ]
+  }
+]

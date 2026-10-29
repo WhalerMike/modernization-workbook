@@ -141,6 +141,8 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 |---|---|---|---|---|
 | P0.2  Platform host built, repository seeded, host connected through Arc | wk 1–2 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-P02) | Waits for it | 8 d |
 | G0 — Ready to Plan | end of wk 4 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-G0) | Reference only | — |
+| G0 — Ready to Plan | end of wk 4 | [Non-Person Identity Modernization](non-person-identity.md) (X-G0) | Must finish N0.1 by it | 10 d margin |
+| D11  Provisional target end state: AD retired, or a dated Kerberos island | end of wk 4 | [Non-Person Identity Modernization](non-person-identity.md) (X-D11) | Waits for it | 133 d |
 | G0 — Ready to Plan | end of wk 4 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G0) | Waits for it | 10 d |
 | G0 — Ready to Plan | end of wk 4 | [Supply Chain & SBOM](supply-chain-sbom.md) (X-G0) | Waits for it | 3 d |
 | P1.7  Sync and DNS Private Resolver designs; resolver deployed (M-018, M-019) | wk 5–6 | [Network & Access Modernization](network-access.md) (X-P17) | Waits for it | 2 d |
@@ -149,9 +151,11 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | G1 — Foundation Complete | end of wk 8 | [Data Platform Identity Transformation](data-platform.md) (X-G1) | Waits for it | 94 d |
 | G1 — Foundation Complete | end of wk 8 | [Endpoint & Device Modernization](endpoint-device.md) (X-G1) | Must finish E1.3 by it | 1 d margin |
 | D06  Device pattern for each pilot cohort | end of wk 8 | [Endpoint & Device Modernization](endpoint-device.md) (X-D06) | Waits for it | 2 d |
+| G1 — Foundation Complete | end of wk 8 | [Non-Person Identity Modernization](non-person-identity.md) (X-G1) | Waits for it | 28 d |
 | G1 — Foundation Complete | end of wk 8 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G1) | Must finish A1.1, A1.2 by it | 10 d margin |
 | G1 — Foundation Complete | end of wk 8 | [Supply Chain & SBOM](supply-chain-sbom.md) (X-G1) | Waits for it | 13 d |
 | P2.9  Pilot servers under Arc with machine configuration (M-030) | wk 9–10 | [Data Platform Identity Transformation](data-platform.md) (X-ARC) | Waits for it | 0 |
+| P2.9  Pilot servers under Arc with machine configuration (M-030) | wk 9–10 | [Endpoint & Device Modernization](endpoint-device.md) (X-P29) | Must finish E4.8 by it | 2 d margin |
 | start of P2.6  Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027) | wk 9–11 | [Network & Access Modernization](network-access.md) (X-P26S) | Must finish N1.1 by it | 2 d margin |
 | P2.6  Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027) | wk 9–11 | [Network & Access Modernization](network-access.md) (X-P26) | Waits for it | 49 d |
 | P2.3  Pilot devices moved by pattern (M-023) | wk 12–13 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-P23) | Waits for it | 4 d |
@@ -161,11 +165,15 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | D08  End dates for legacy authentication and NTLM | end of wk 16 | [Data Platform Identity Transformation](data-platform.md) (X-D08) | Waits for it | 57 d |
 | G2 — Pilot Clean | end of wk 16 | [Endpoint & Device Modernization](endpoint-device.md) (X-G2) | Must finish EG2 by it | 2 d margin |
 | D08  End dates for legacy authentication and NTLM | end of wk 16 | [Endpoint & Device Modernization](endpoint-device.md) (X-D08) | Waits for it | 119 d |
+| D08  End dates for legacy authentication and NTLM | end of wk 16 | [Non-Person Identity Modernization](non-person-identity.md) (X-D08) | Waits for it | 68 d |
 | G2 — Pilot Clean | end of wk 16 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G2) | Must finish AG2 by it | 12 d margin |
+| P3.7  Every server Arc-connected or excepted | wk 17–28 | [Endpoint & Device Modernization](endpoint-device.md) (X-P37) | Must finish EG4 by it | 5 d margin |
 | G3 — Rollout Complete | end of wk 36 | [Endpoint & Device Modernization](endpoint-device.md) (X-G3) | Waits for it | 19 d |
 | G3 — Rollout Complete | end of wk 36 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G3) | Waits for it | 0 |
 | P4.3  AD-integrated DNS zones moved, except the domain's own zones | wk 37–39 | [Network & Access Modernization](network-access.md) (X-P43) | Waits for it | 0 |
 | P4.6  AD-bound service principal names migrated, retired or islanded, app by app | wk 37–42 | [Data Platform Identity Transformation](data-platform.md) (X-P46) | Must finish DG4 by it | 58 d margin |
+| P4.6  AD-bound service principal names migrated, retired or islanded, app by app | wk 37–42 | [Non-Person Identity Modernization](non-person-identity.md) (X-P46) | Must finish NG3 by it | 57 d margin |
+| G5 — AD Retired | end of wk 48 | [Non-Person Identity Modernization](non-person-identity.md) (X-G5) | Must finish N7.3 by it | 72 d margin |
 
 : Plans that take a date from this one {.striped .hover}
 
