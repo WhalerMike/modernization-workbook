@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.984
+There are three ways to
+cut over: all at once,
+
+2
+00:00:02.984 --> 00:00:06.337
+in phases, or by running
+both systems in parallel.
+
+3
+00:00:06.337 --> 00:00:08.218
+All three end at the same gate:
+
+4
+00:00:08.218 --> 00:00:11.900
+three clean validation results
+and a rehearsed way back.
+
+5
+00:00:11.900 --> 00:00:17.289
+Phases and parallel runs mean both systems
+live side by side for a while, and here's
+
+6
+00:00:17.289 --> 00:00:22.437
+the rule that matters most: never let
+the application write to both databases.
+
+7
+00:00:22.437 --> 00:00:24.675
+Those writes drift apart silently.
+
+8
+00:00:24.675 --> 00:00:30.150
+Instead, one system owns each table,
+and changes are replicated from the log.
+
+9
+00:00:30.150 --> 00:00:31.462
+That's Module 2.
+
+10
+00:00:31.462 --> 00:00:32.880
+Next, Part 2.

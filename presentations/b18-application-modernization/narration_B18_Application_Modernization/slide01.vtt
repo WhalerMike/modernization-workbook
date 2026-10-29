@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.612
+This briefing comes from
+Book 18 of the Federal
+
+3
+00:00:03.612 --> 00:00:06.900
+Modernization Workbook,
+Application Modernization.
+
+4
+00:00:06.900 --> 00:00:10.085
+It's written for CIOs
+and portfolio owners,
+
+5
+00:00:10.085 --> 00:00:14.363
+architects, data teams, ISSOs
+and authorizing officials.
+
+6
+00:00:14.363 --> 00:00:15.776
+I'll take four questions.
+
+7
+00:00:15.776 --> 00:00:18.356
+Why is modernizing thousands of legacy
+
+8
+00:00:18.356 --> 00:00:21.562
+applications a portfolio
+decision, not a rewrite?
+
+9
+00:00:21.562 --> 00:00:23.624
+What should each application become?
+
+10
+00:00:23.624 --> 00:00:25.350
+Who governs the architecture?
+
+11
+00:00:25.350 --> 00:00:26.925
+And how do you run it at scale?
+
+12
+00:00:26.925 --> 00:00:30.418
+The short version: decide
+application by application,
+
+13
+00:00:30.418 --> 00:00:34.533
+build the changed ones on one
+architecture, prove the data moved,
+
+14
+00:00:34.533 --> 00:00:39.113
+give every AI agent an owner, and let
+the review gates write the evidence.
+
+15
+00:00:39.113 --> 00:00:41.140
+Let's start with where the money goes.

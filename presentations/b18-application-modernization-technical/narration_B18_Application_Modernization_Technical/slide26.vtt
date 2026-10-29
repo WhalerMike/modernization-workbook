@@ -1,0 +1,34 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.012
+Module 4 makes it concrete.
+
+2
+00:00:02.012 --> 00:00:05.842
+We'll look at the small reference
+implementation that ships with the book,
+
+3
+00:00:05.842 --> 00:00:07.913
+and be honest about what its tests prove.
+
+4
+00:00:07.913 --> 00:00:10.509
+Then we'll place the
+work in the frameworks
+
+5
+00:00:10.509 --> 00:00:13.774
+architecture offices already
+use, TOGAF and Zachman.
+
+6
+00:00:13.774 --> 00:00:16.680
+And we'll finish with running
+the portfolio in waves,
+
+7
+00:00:16.680 --> 00:00:19.180
+and the decisions that
+belong to each owner.

@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.688
+Those are the privacy
+and records officials.
+
+2
+00:00:02.688 --> 00:00:06.427
+Modernization changes how
+personal information flows,
+
+3
+00:00:06.427 --> 00:00:11.279
+and the events that reopen their work
+are predictable: a new database, a new
+
+4
+00:00:11.279 --> 00:00:16.450
+data flow, an AI feature, production data
+copied into test, and retiring a system.
+
+5
+00:00:16.450 --> 00:00:18.550
+Retirement is the sneaky one.
+
+6
+00:00:18.550 --> 00:00:22.231
+Switching off an application is
+a decision about its records,
+
+7
+00:00:22.231 --> 00:00:25.912
+and a migration that drops
+history may be destroying records.
+
+8
+00:00:25.912 --> 00:00:27.988
+These judgments can't be automated.
+
+9
+00:00:27.988 --> 00:00:31.288
+So name those events, and
+route them to the privacy and
+
+10
+00:00:31.288 --> 00:00:35.113
+records officials at design
+review, before anything is built.
+
+11
+00:00:35.113 --> 00:00:37.800
+That brings us to who
+governs the architecture.

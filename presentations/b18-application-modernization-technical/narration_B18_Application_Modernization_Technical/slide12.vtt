@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.750
+Three disciplines hold
+the architecture together.
+
+2
+00:00:02.750 --> 00:00:05.612
+First, the contract comes before the code.
+
+3
+00:00:05.612 --> 00:00:09.456
+Teams agree on the Open A P
+I document, generate from it,
+
+4
+00:00:09.456 --> 00:00:13.474
+test against it, and publish
+it so the next team reuses it.
+
+5
+00:00:13.474 --> 00:00:15.950
+Second, keep the thin layers thin.
+
+6
+00:00:15.950 --> 00:00:18.050
+Node serves the front end's needs,
+
+7
+00:00:18.050 --> 00:00:22.250
+and business rules stay in the
+services, where they're tested once.
+
+8
+00:00:22.250 --> 00:00:25.525
+Third, configuration comes
+from outside the code.
+
+9
+00:00:25.525 --> 00:00:28.057
+The best test is whether
+you could publish the
+
+10
+00:00:28.057 --> 00:00:30.988
+code tomorrow without
+exposing a single credential.
+
+11
+00:00:30.988 --> 00:00:33.940
+Next, how a refactor actually happens.

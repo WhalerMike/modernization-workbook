@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.941
+You replace in increments, with
+what's called the strangler fig.
+
+2
+00:00:03.941 --> 00:00:07.533
+A façade sits in front of the
+legacy application and routes
+
+3
+00:00:07.533 --> 00:00:10.975
+each request either to the old
+system or to a new service.
+
+4
+00:00:10.975 --> 00:00:13.972
+Functions move one at a time
+behind the same contract,
+
+5
+00:00:13.972 --> 00:00:17.650
+until nothing depends on the old
+system and it can be switched off.
+
+6
+00:00:17.650 --> 00:00:21.185
+Rollback stays possible until
+the old tables are removed,
+
+7
+00:00:21.185 --> 00:00:23.100
+so that's a deliberate last step.
+
+8
+00:00:23.100 --> 00:00:27.225
+It doesn't fit everything; the
+requests have to be interceptable.
+
+9
+00:00:27.225 --> 00:00:31.170
+So at design review, ask every
+refactor to name its façade,
+
+10
+00:00:31.170 --> 00:00:35.887
+its first function, its plan for
+shared data and when rollback ends.
+
+11
+00:00:35.887 --> 00:00:37.300
+Then, the data.

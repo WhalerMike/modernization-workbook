@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.464
+Treat a model like any other component:
+
+2
+00:00:02.464 --> 00:00:06.763
+something behind an interface, whose
+output gets checked, not obeyed.
+
+3
+00:00:06.763 --> 00:00:11.262
+AI shows up in four ways, ordered by how
+much each can change, from a drafting
+
+4
+00:00:11.262 --> 00:00:15.613
+feature that changes nothing to an
+agent that can act through its tools.
+
+5
+00:00:15.613 --> 00:00:20.247
+For retrieval, one rule matters: it
+searches with the user's own permissions,
+
+6
+00:00:20.247 --> 00:00:23.088
+so it can't surface anything
+they couldn't open.
+
+7
+00:00:23.088 --> 00:00:27.497
+And everything calls models through
+one provider-neutral interface,
+
+8
+00:00:27.497 --> 00:00:32.287
+so swapping providers is configuration,
+not code, and every call is recorded.
+
+9
+00:00:32.287 --> 00:00:33.840
+Next, the agent.

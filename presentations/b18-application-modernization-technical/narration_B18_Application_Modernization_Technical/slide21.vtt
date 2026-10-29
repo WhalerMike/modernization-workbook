@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.412
+An agent's risk is what it
+can do, not what it says.
+
+2
+00:00:03.412 --> 00:00:06.793
+And because hidden instructions
+in a document can steer it,
+
+3
+00:00:06.793 --> 00:00:08.863
+you can't count on the model refusing.
+
+4
+00:00:08.863 --> 00:00:12.038
+So design for a steered agent
+that still can't do harm.
+
+5
+00:00:12.038 --> 00:00:16.714
+Every agent has an identity and a
+human sponsor, a short list of allowed
+
+6
+00:00:16.714 --> 00:00:20.987
+tools enforced outside the model,
+a step limit and an audit trail.
+
+7
+00:00:20.987 --> 00:00:24.300
+The big one: no agent writes
+to a system of record.
+
+8
+00:00:24.300 --> 00:00:28.763
+It proposes, a person approves,
+and the service applies the change.
+
+9
+00:00:28.763 --> 00:00:33.137
+And the Model Context Protocol connects
+tools, but it isn't a guardrail.
+
+10
+00:00:33.137 --> 00:00:34.730
+Next, compliance.

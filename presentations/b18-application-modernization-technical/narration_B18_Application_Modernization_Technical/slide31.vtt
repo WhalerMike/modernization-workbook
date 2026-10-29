@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.322
+If TOGAF tells you the order of the work,
+
+2
+00:00:02.322 --> 00:00:05.375
+Zachman tells you whether
+you've described all of it.
+
+3
+00:00:05.375 --> 00:00:09.813
+It's a six-by-six grid of questions and
+perspectives, and it isn't a method.
+
+4
+00:00:09.813 --> 00:00:12.314
+The table shows which
+cells the book fills,
+
+5
+00:00:12.314 --> 00:00:16.174
+from the executive view of the
+portfolio down to the running code.
+
+6
+00:00:16.174 --> 00:00:21.283
+Reading it by column shows two gaps:
+locations and networks, which other books
+
+7
+00:00:21.283 --> 00:00:26.550
+cover, and timing detail like batch windows,
+which belongs in each design review.
+
+8
+00:00:26.550 --> 00:00:29.475
+An empty cell is a question, not a defect.
+
+9
+00:00:29.475 --> 00:00:30.600
+Now, running it.

@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.037
+Arguments about architecture are
+cheap; code that runs is not.
+
+2
+00:00:04.037 --> 00:00:09.366
+So the workbook ships a small reference
+implementation: one mission application
+
+3
+00:00:09.366 --> 00:00:13.912
+in miniature, with a service, a front
+end, a migration tool and an AI agent.
+
+4
+00:00:13.912 --> 00:00:16.024
+Each part shows a pattern from the book.
+
+5
+00:00:16.024 --> 00:00:20.312
+A test keeps the A P I contract
+and the code from drifting apart.
+
+6
+00:00:20.312 --> 00:00:23.484
+The migration tool proves
+every load three ways,
+
+7
+00:00:23.484 --> 00:00:27.687
+and its tests break a value on
+purpose to show the checks catch it.
+
+8
+00:00:27.687 --> 00:00:31.113
+The agent can only file
+proposals a person approves.
+
+9
+00:00:31.113 --> 00:00:34.751
+It's honest about its limits,
+too: it's illustrative,
+
+10
+00:00:34.751 --> 00:00:39.188
+and it hasn't been run against a
+real D B two or Oracle database.
+
+11
+00:00:39.188 --> 00:00:41.620
+How does this fit an architecture office?

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.954
+AI belongs in the architecture as
+a component behind one interface,
+
+2
+00:00:03.954 --> 00:00:07.300
+so providers and models can
+change without changing code.
+
+3
+00:00:07.300 --> 00:00:11.656
+Most uses, like drafting text or
+answering from agency content,
+
+4
+00:00:11.656 --> 00:00:13.750
+change nothing by themselves.
+
+5
+00:00:13.750 --> 00:00:16.062
+Agents are different, because they act.
+
+6
+00:00:16.062 --> 00:00:19.609
+You can't count on a model
+refusing a hidden instruction,
+
+7
+00:00:19.609 --> 00:00:24.621
+so the design limits what a steered agent
+can do: an identity and a human sponsor,
+
+8
+00:00:24.621 --> 00:00:28.862
+a short list of allowed tools, a step
+limit, and an audit of every call.
+
+9
+00:00:28.862 --> 00:00:32.325
+And the big one: no agent
+writes to a system of record.
+
+10
+00:00:32.325 --> 00:00:36.788
+It proposes, a person approves,
+and the service applies the change.
+
+11
+00:00:36.788 --> 00:00:38.380
+Next, compliance.

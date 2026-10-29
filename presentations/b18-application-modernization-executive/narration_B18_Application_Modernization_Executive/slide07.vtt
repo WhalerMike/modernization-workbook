@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.417
+If every project picks its own stack,
+
+2
+00:00:02.417 --> 00:00:05.888
+you trade one legacy problem
+for hundreds of new ones.
+
+3
+00:00:05.888 --> 00:00:11.045
+So the applications that change land on
+one reference architecture: Java and
+
+4
+00:00:11.045 --> 00:00:16.363
+Spring Boot services, React front ends,
+published A P I contracts, and containers.
+
+5
+00:00:16.363 --> 00:00:19.571
+These are the program's
+choices, not a federal rule,
+
+6
+00:00:19.571 --> 00:00:22.388
+picked for long support
+and a big labor pool.
+
+7
+00:00:22.388 --> 00:00:24.486
+The catch is that stacks age fast;
+
+8
+00:00:24.486 --> 00:00:29.150
+some frameworks get only about a year
+of open-source support per release.
+
+9
+00:00:29.150 --> 00:00:31.792
+So approve one target
+and a way to change it,
+
+10
+00:00:31.792 --> 00:00:36.925
+with the chief architect owning the list
+and upgrades budgeted as recurring work.
+
+11
+00:00:36.925 --> 00:00:38.860
+How do you get there without a rewrite?

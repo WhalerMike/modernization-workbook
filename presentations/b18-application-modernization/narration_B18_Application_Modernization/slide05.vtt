@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.748
+If every refactor picks its own stack,
+
+2
+00:00:02.748 --> 00:00:07.013
+the agency just trades one legacy
+problem for many new ones.
+
+3
+00:00:07.013 --> 00:00:12.313
+So the applications that change land on
+one target, reviewed and authorized once.
+
+4
+00:00:12.313 --> 00:00:16.895
+The book's choices are mainstream
+and long-supported: Java services,
+
+5
+00:00:16.895 --> 00:00:20.824
+React front ends, published A
+P I contracts and containers.
+
+6
+00:00:20.824 --> 00:00:23.602
+They're design guidance,
+not a federal rule,
+
+7
+00:00:23.602 --> 00:00:26.300
+and an agency can substitute its own list.
+
+8
+00:00:26.300 --> 00:00:27.675
+Two things to remember.
+
+9
+00:00:27.675 --> 00:00:31.825
+The stack ages fast, so budget
+for upgrades as recurring work.
+
+10
+00:00:31.825 --> 00:00:36.377
+And a refactor happens piece by
+piece: a façade sends each request to
+
+11
+00:00:36.377 --> 00:00:40.763
+the old system or the new one, until
+nothing depends on the old one.
+
+12
+00:00:40.763 --> 00:00:43.370
+The hardest part, though, is the data.

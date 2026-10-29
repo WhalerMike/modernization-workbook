@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.804
+Old and new often run
+side by side for months,
+
+2
+00:00:02.804 --> 00:00:07.700
+and there's a tempting shortcut: have
+the application write to both databases.
+
+3
+00:00:07.700 --> 00:00:08.388
+Don't.
+
+4
+00:00:08.388 --> 00:00:13.237
+The two writes don't share a transaction,
+so under load the copies drift, quietly.
+
+5
+00:00:13.237 --> 00:00:17.113
+Instead, keep one writer per
+table and replicate from it.
+
+6
+00:00:17.113 --> 00:00:21.700
+One more thing: the target engine decides
+which conversion tools you can use,
+
+7
+00:00:21.700 --> 00:00:23.738
+and for DB2 the options are narrow.
+
+8
+00:00:23.738 --> 00:00:25.932
+So forbid dual writes as a standard,
+
+9
+00:00:25.932 --> 00:00:29.638
+and settle the engine before
+the wave plan commits to dates.
+
+10
+00:00:29.638 --> 00:00:32.950
+Now, the newest part of
+the architecture: AI.

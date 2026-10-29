@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.500
+Versions are a snapshot.
+
+2
+00:00:01.500 --> 00:00:03.775
+Support windows are the real story.
+
+3
+00:00:03.775 --> 00:00:07.017
+Java's long-term releases
+are supported for years,
+
+4
+00:00:07.017 --> 00:00:10.100
+so build on one and move
+to the next within a year.
+
+5
+00:00:10.100 --> 00:00:14.593
+Spring Boot is shorter: each recent
+generation gets only about thirteen
+
+6
+00:00:14.593 --> 00:00:18.862
+months of open-source support, and
+one generation has already run out.
+
+7
+00:00:18.862 --> 00:00:21.626
+Node and Kubernetes keep
+their own clocks too.
+
+8
+00:00:21.626 --> 00:00:24.362
+So upgrades can't be left to each project.
+
+9
+00:00:24.362 --> 00:00:28.400
+Build the cadence into the platform
+and fund it as recurring work,
+
+10
+00:00:28.400 --> 00:00:32.063
+or today's modernized portfolio
+becomes tomorrow's legacy.
+
+11
+00:00:32.063 --> 00:00:34.780
+Next, the disciplines
+that hold it together.

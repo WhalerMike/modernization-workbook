@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.816
+Many architecture offices think in TOGAF,
+
+2
+00:00:02.816 --> 00:00:05.662
+so the book maps its work
+onto TOGAF's phases.
+
+3
+00:00:05.662 --> 00:00:09.612
+First, the requirement itself:
+policy asks for an enterprise
+
+4
+00:00:09.612 --> 00:00:13.562
+architecture with a baseline,
+a target and a transition plan.
+
+5
+00:00:13.562 --> 00:00:15.850
+It doesn't require any framework.
+
+6
+00:00:15.850 --> 00:00:18.741
+Triage is the business
+baseline and the options,
+
+7
+00:00:18.741 --> 00:00:23.438
+the reference architecture is the target,
+and the waves are the migration plan.
+
+8
+00:00:23.438 --> 00:00:26.006
+The gates are implementation governance,
+
+9
+00:00:26.006 --> 00:00:29.088
+and re-scoring the portfolio
+starts the next cycle.
+
+10
+00:00:29.088 --> 00:00:33.725
+The point is to file what you already
+produce, not to create new deliverables.
+
+11
+00:00:33.725 --> 00:00:35.110
+Next, Zachman.

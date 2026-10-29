@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.738
+Here's what was actually
+verified, and what wasn't.
+
+2
+00:00:02.738 --> 00:00:05.671
+The service, the contract
+and the migration
+
+3
+00:00:05.671 --> 00:00:09.012
+checks all pass against
+a real PostgreSQL engine.
+
+4
+00:00:09.012 --> 00:00:12.974
+The guardrails hold against a scripted
+model, though not a real one.
+
+5
+00:00:12.974 --> 00:00:14.575
+But two things are unproven.
+
+6
+00:00:14.575 --> 00:00:18.914
+The migration has never run against
+a real DB2 or Oracle database,
+
+7
+00:00:18.914 --> 00:00:22.450
+only a stand-in, and the
+containers were never started.
+
+8
+00:00:22.450 --> 00:00:26.262
+So test against a copy of your
+real source before relying on it.
+
+9
+00:00:26.262 --> 00:00:29.235
+A production version
+would add real sign-in,
+
+10
+00:00:29.235 --> 00:00:32.787
+an agent identity, a secrets
+vault and signed builds.
+
+11
+00:00:32.787 --> 00:00:34.610
+Next, the frameworks.

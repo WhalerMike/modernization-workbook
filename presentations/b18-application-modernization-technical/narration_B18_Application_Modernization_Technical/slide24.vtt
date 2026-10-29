@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.706
+No rule requires an architecture review
+board, but several require what one
+
+2
+00:00:04.706 --> 00:00:07.070
+produces: an enterprise architecture,
+
+3
+00:00:07.070 --> 00:00:10.100
+a fit check for each system,
+and controlled change.
+
+4
+00:00:10.100 --> 00:00:13.238
+The key design choice is
+one decider per decision.
+
+5
+00:00:13.238 --> 00:00:15.550
+The board reviews; it doesn't vote.
+
+6
+00:00:15.550 --> 00:00:20.813
+The chief architect owns the standards,
+the application owner owns the disposition,
+
+7
+00:00:20.813 --> 00:00:25.925
+the CIO approves what gets bought, and only
+the authorizing official accepts risk.
+
+8
+00:00:25.925 --> 00:00:30.908
+The board works through versioned artifacts:
+a technology list with support dates,
+
+9
+00:00:30.908 --> 00:00:33.725
+runnable patterns, and
+short decision records.
+
+10
+00:00:33.725 --> 00:00:35.210
+Next, the gates.

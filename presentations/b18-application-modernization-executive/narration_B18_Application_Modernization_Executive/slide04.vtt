@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.463
+The unit of decision is the application.
+
+2
+00:00:02.463 --> 00:00:05.596
+A mission area is too coarse,
+and a platform can't be
+
+3
+00:00:05.596 --> 00:00:09.112
+retired until every application
+on it has been decided.
+
+4
+00:00:09.112 --> 00:00:14.181
+An application has an owner, a data set,
+a code base and an authorization boundary,
+
+5
+00:00:14.181 --> 00:00:17.175
+so it's something you can
+actually decide about.
+
+6
+00:00:17.175 --> 00:00:21.348
+The figure shows the whole
+argument: triage every application,
+
+7
+00:00:21.348 --> 00:00:23.676
+leave many of them alone on purpose,
+
+8
+00:00:23.676 --> 00:00:28.250
+and build the ones that change on one
+target, governed and run in waves.
+
+9
+00:00:28.250 --> 00:00:32.240
+That makes the first deliverable
+an inventory, with an owner and a
+
+10
+00:00:32.240 --> 00:00:36.525
+proposed disposition for each
+application, not a target-state design.
+
+11
+00:00:36.525 --> 00:00:38.520
+Next, the six choices.

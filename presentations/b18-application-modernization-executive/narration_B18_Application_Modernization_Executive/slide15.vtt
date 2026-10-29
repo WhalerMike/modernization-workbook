@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.901
+Every application that changes
+passes four gates: its disposition,
+
+2
+00:00:04.901 --> 00:00:08.712
+a design review, every pull
+request, and every release.
+
+3
+00:00:08.712 --> 00:00:12.863
+Two are meetings and two are
+automation, and that's deliberate.
+
+4
+00:00:12.863 --> 00:00:16.964
+The daily ones run in the pipeline,
+on protected branches that bind
+
+5
+00:00:16.964 --> 00:00:21.288
+administrators too, because a gate
+that's run as a meeting gets skipped.
+
+6
+00:00:21.288 --> 00:00:25.419
+Each gate leaves proof, so the evidence
+builds up as the work happens,
+
+7
+00:00:25.419 --> 00:00:28.813
+instead of screenshots the
+month before an assessment.
+
+8
+00:00:28.813 --> 00:00:32.400
+One threshold belongs to the
+authorizing official alone:
+
+9
+00:00:32.400 --> 00:00:36.437
+when a change is significant enough
+to reopen the authorization.
+
+10
+00:00:36.437 --> 00:00:39.376
+Set it early, and let
+design review apply it.
+
+11
+00:00:39.376 --> 00:00:40.750
+Now, how it runs.

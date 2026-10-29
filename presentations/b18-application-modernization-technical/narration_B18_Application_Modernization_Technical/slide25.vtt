@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.850
+Every changed application
+passes four gates.
+
+2
+00:00:02.850 --> 00:00:06.268
+The first two, the disposition
+and the design review,
+
+3
+00:00:06.268 --> 00:00:10.162
+are meetings, because they need
+judgment and happen rarely.
+
+4
+00:00:10.162 --> 00:00:14.458
+The last two, the pull request and
+the release, run many times a day,
+
+5
+00:00:14.458 --> 00:00:18.187
+so they're automated in the
+repository and the pipeline.
+
+6
+00:00:18.187 --> 00:00:20.075
+That ratio is deliberate.
+
+7
+00:00:20.075 --> 00:00:23.537
+Run a daily gate as a meeting
+and teams stop running it.
+
+8
+00:00:23.537 --> 00:00:26.688
+Each gate leaves its own
+evidence, kept by system,
+
+9
+00:00:26.688 --> 00:00:31.963
+and one rule holds throughout: nothing
+counts as done unless it carries its proof.
+
+10
+00:00:31.963 --> 00:00:33.410
+That's Module 3.

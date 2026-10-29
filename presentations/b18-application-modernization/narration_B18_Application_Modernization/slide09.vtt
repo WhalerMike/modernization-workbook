@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.613
+An architecture only holds across
+thousands of applications if every
+
+2
+00:00:04.613 --> 00:00:08.712
+decision has an owner and every
+change passes the same few gates.
+
+3
+00:00:08.712 --> 00:00:12.775
+In the book's design, the review
+board reviews; it doesn't vote.
+
+4
+00:00:12.775 --> 00:00:17.974
+The chief architect owns standards, the
+application owner owns the disposition,
+
+5
+00:00:17.974 --> 00:00:20.923
+the authorizing official
+alone accepts risk,
+
+6
+00:00:20.923 --> 00:00:23.562
+and the C I O approves
+what the agency buys.
+
+7
+00:00:23.562 --> 00:00:25.587
+Every change passes four gates.
+
+8
+00:00:25.587 --> 00:00:29.049
+The first two need human
+judgment, once per application.
+
+9
+00:00:29.049 --> 00:00:33.438
+The last two run automatically,
+many times a day, in the pipeline.
+
+10
+00:00:33.438 --> 00:00:35.855
+And every gate leaves evidence behind,
+
+11
+00:00:35.855 --> 00:00:40.538
+so the authorization package is
+assembled from proof that already exists.
+
+12
+00:00:40.538 --> 00:00:41.690
+Let's see it running.

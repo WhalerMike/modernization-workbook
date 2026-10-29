@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.903
+Six criteria drive the triage,
+
+2
+00:00:01.903 --> 00:00:05.388
+and the good news is that you
+already hold most of the data.
+
+3
+00:00:05.388 --> 00:00:09.068
+Your security categorization,
+configuration database,
+
+4
+00:00:09.068 --> 00:00:13.375
+spending data, contracts and network
+flows fill in nearly all of it.
+
+5
+00:00:13.375 --> 00:00:15.100
+Two scoring rules matter.
+
+6
+00:00:15.100 --> 00:00:19.500
+Dependencies tell you the order to
+move things in, not what they become.
+
+7
+00:00:19.500 --> 00:00:22.724
+And business logic buried in
+the database counts twice,
+
+8
+00:00:22.724 --> 00:00:26.088
+because it's both a skills
+problem and a migration problem.
+
+9
+00:00:26.088 --> 00:00:30.449
+Skills, by the way, are about
+the next five years, not today.
+
+10
+00:00:30.449 --> 00:00:32.380
+Now, how the scores combine.
