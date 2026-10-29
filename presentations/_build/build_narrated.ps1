@@ -38,8 +38,10 @@ try {
     $slide = $p.Slides.Item($i)
     $mp3 = Join-Path $nar ("slide{0:D2}.mp3" -f $i)
     if (-not (Test-Path $mp3)) { throw "missing $mp3" }
-    # small icon in the bottom-left corner; hidden while not playing
-    $shp = $slide.Shapes.AddMediaObject2($mp3, 0, -1, 10, 500, 24, 24)
+    # Placed just off the right edge of the slide: it still plays in the slide show and the MP4 export,
+    # but the icon isn't in the picture. (On the slide, the icon showed for the whole clip, because
+    # "hide while not playing" only hides it before and after.)
+    $shp = $slide.Shapes.AddMediaObject2($mp3, 0, -1, $p.PageSetup.SlideWidth + 20, 10, 24, 24)
     $shp.Name = "Narration"
     $shp.AlternativeText = "Narration for this slide; captions available"
     $shp.AnimationSettings.PlaySettings.HideWhileNotPlaying = -1
