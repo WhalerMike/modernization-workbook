@@ -19,6 +19,13 @@ lifecycle_review: 2027-04-01
 One path for one migration, run on attributes rather than OU placement, in nine stages: read what the OU tree encodes, source the attributes (with Federal HR 2.0 as the coming authoritative source), prove them, map them through sync, rebuild OU subtrees as dynamic groups, delegate with administrative units, retarget Group Policy to Conditional Access and Intune, cut over in phases, and correct drift. For each stage: what it is, the decision and who owns it, the gate that says it's done, how it fails, and links to the chapter sections that carry the detail. Then a worked example that follows one user through a mover event, an attribute-to-mechanism crosswalk, what Microsoft documents for attribute-driven targeting of devices, Arc servers and applications, PIV and CAC certificate binding as an attribute, the limits, and a checklist. This guide is a map. The books hold the depth, and it links to them rather than repeating them.
 :::
 
+::: {.callout-tip}
+## Download and present
+**[attribute-driven-migration-guide.docx](../../../downloads/attribute-driven-migration-guide.docx)**: this guide as a Word document, regenerated on every site deploy.
+
+**Technical deep dive (about 50 minutes live, 20 narrated)**: the nine stages, devices, Arc and service principals, and PIV and CAC binding, in four modules, on the [Presentations](../../presentations/index.md#technical-attribute-driven-migration) page.
+:::
+
 ## How to read this guide
 
 The material for this migration is spread over four books. [Book 01, Chapter 04](../b01-transformation-arc/04-identity-transformation.md) states the model. [Book 02](../b02-identity/index.md) moves the directory. [Book 03](../b03-hr-identity/index.md) makes HR the source of the attributes. [Book 06, Chapters 16 and 17](../b06-data-platform/16-groups-roles-and-membership.md) apply the same model to SQL Server, and [Book 04, Chapter 03](../b04-access/03-the-conditional-access-model.md) and [Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md) take policy targeting from Group Policy to Conditional Access and Intune. Each book numbers its own phases; this guide names stages instead, and the [phase alignment](#how-the-books-phase-numbers-line-up) table lines them up.
