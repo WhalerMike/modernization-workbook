@@ -37,9 +37,9 @@ The Federal Modernization Workbook is independent guidance. It isn't federal pol
 ## Download and present
 **[b01-transformation-arc-bundle.docx](../../../downloads/b01-transformation-arc-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
-**15-minute presentation (about 13 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition, with built-in captions, are on the [Presentations](../../presentations/index.md#book-01) page.
+**15-minute presentation (about 15 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition, with built-in captions, are on the [Presentations](../../presentations/index.md#book-01) page.
 
-**Executive briefing (about 30 minutes live, 24 narrated)**: the transformation at decision level, who leads it and the roadmap's gates, on the [Presentations](../../presentations/index.md#executive-b01) page.
+**Executive briefing (about 30 minutes live, 25 narrated)**: the transformation at decision level, who leads it and the roadmap's gates, on the [Presentations](../../presentations/index.md#executive-b01) page.
 :::
 
 Most agencies run on a client/server estate built around Active Directory, and for twenty years that directory quietly did governance nobody wrote down. Where a user or a computer sat in the tree decided what it could reach, which settings it received and who could change it; its domain controllers answered names, issued certificates and authorized network access. Moving to cloud identity, cloud device management and hybrid operations removes that machinery piece by piece, and each piece fails in its own way, often long after the cutover is declared done. That is why modernization is hard: it is a governance rebuild, not a platform swap. This book is the arc of that rebuild from end to end. It analyzes the estate before anything moves, plans the work as gated phases with a rollback at every step, and treats leadership's job as conducting the orchestra rather than playing the instruments. It is also the map of the workbook: each chapter carries the argument at the level of the whole program and links the book that owns the detail.

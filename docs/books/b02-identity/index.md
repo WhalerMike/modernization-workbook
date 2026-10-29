@@ -32,11 +32,11 @@ This book consolidates twenty-two earlier workbook pages on identity and directo
 ## Download and present
 **[b02-identity-bundle.docx](../../../downloads/b02-identity-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
-**15-minute presentation (about 10 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-02) page.
+**15-minute presentation (about 12 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-02) page.
 
-**Technical deep dive (about 50 minutes live, 21 narrated)**: assessing the forest, then building the Entra ID target and migrating, in modules on the [Presentations](../../presentations/index.md#technical-b02) page.
+**Technical deep dive (about 50 minutes live, 24 narrated)**: assessing the forest, then building the Entra ID target and migrating, in modules on the [Presentations](../../presentations/index.md#technical-b02) page.
 
-**Executive briefing (about 30 minutes live, 14 narrated)**: for the CIO, CISO and identity program lead: the case for Entra ID as the identity plane, the hidden migration surface, delegation without OUs, the phased migration and retiring AD last, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b02) page.
+**Executive briefing (about 30 minutes live, 16 narrated)**: for the CIO, CISO and identity program lead: the case for Entra ID as the identity plane, the hidden migration surface, delegation without OUs, the phased migration and retiring AD last, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b02) page.
 
 **Research (draft)**: the Microsoft automation reference, [Module 1: Graph and Azure Foundations](../../research/ms-automation-foundations.md) and [Module 2: Microsoft Entra ID through Microsoft Graph](../../research/ms-automation-entra.md), covers the endpoints, sign-in, permissions and request patterns for scripting this book's Entra ID target, with tested read-only checks in Python and PowerShell; it's on the [Research](../../research/index.md) page.
 :::
