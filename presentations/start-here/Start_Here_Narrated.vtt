@@ -39,387 +39,387 @@ in the workbook's books,
 and I'll point you to them at the end.
 
 9
-00:00:28.430 --> 00:00:30.642
+00:00:31.430 --> 00:00:33.642
 Here are the four reasons on one page.
 
 10
-00:00:30.642 --> 00:00:32.631
+00:00:33.642 --> 00:00:35.631
 There are deadlines nobody can move.
 
 11
-00:00:32.631 --> 00:00:36.768
+00:00:35.631 --> 00:00:39.768
 Every other decision depends on
 identity, so it has to come first.
 
 12
-00:00:36.768 --> 00:00:39.892
+00:00:39.768 --> 00:00:42.892
 The HR side of government
 is being rebuilt anyway,
 
 13
-00:00:39.892 --> 00:00:43.855
+00:00:42.892 --> 00:00:46.855
 which makes this the cheapest
 moment to connect identity to it.
 
 14
-00:00:43.855 --> 00:00:46.793
+00:00:46.855 --> 00:00:49.793
 And the access risk is
 already on the books today.
 
 15
-00:00:46.793 --> 00:00:50.018
+00:00:49.793 --> 00:00:53.018
 None of this requires a
 large commitment to begin.
 
 16
-00:00:50.018 --> 00:00:53.500
+00:00:53.018 --> 00:00:56.500
 Let's take them one at a time,
 starting with the clocks.
 
 17
-00:00:54.250 --> 00:00:57.837
+00:01:00.250 --> 00:01:03.837
 Modernization is usually
 treated as a choice of timing.
 
 18
-00:00:57.837 --> 00:01:01.126
+00:01:03.837 --> 00:01:07.126
 It isn't, because the dates
 are set outside the agency.
 
 19
-00:01:01.126 --> 00:01:06.550
+00:01:07.126 --> 00:01:12.550
 Federal directives already require secure
 cloud configurations and better logging.
 
 20
-00:01:06.550 --> 00:01:10.837
+00:01:12.550 --> 00:01:16.837
 FedRAMP's new rules become
 mandatory in January 2027.
 
 21
-00:01:10.837 --> 00:01:14.431
+00:01:16.837 --> 00:01:20.431
 And the closest date is
 Windows Server 2016,
 
 22
-00:01:14.431 --> 00:01:18.824
+00:01:20.431 --> 00:01:24.824
 which reaches end of support
 on January twelfth, 2027.
 
 23
-00:01:18.824 --> 00:01:23.538
+00:01:24.824 --> 00:01:29.538
 In many estates that's where domain
 controllers and certificate authorities run.
 
 24
-00:01:23.538 --> 00:01:26.963
+00:01:29.538 --> 00:01:32.963
 Count your own 2016
 servers before the meeting;
 
 25
-00:01:26.963 --> 00:01:29.774
+00:01:32.963 --> 00:01:35.774
 that number will do more than any slide.
 
 26
-00:01:29.774 --> 00:01:32.560
+00:01:35.774 --> 00:01:38.560
 So with time short, where do you begin?
 
 27
-00:01:33.310 --> 00:01:37.135
+00:01:42.310 --> 00:01:46.135
 You begin with identity, because
 everything else decides on it.
 
 28
-00:01:37.135 --> 00:01:40.455
+00:01:46.135 --> 00:01:49.455
 Access policy, devices,
 data, certificates:
 
 29
-00:01:40.455 --> 00:01:44.060
+00:01:49.455 --> 00:01:53.060
 each one asks who or what
 is making the request.
 
 30
-00:01:44.060 --> 00:01:46.789
+00:01:53.060 --> 00:01:55.789
 If the answer to that
 question isn't trustworthy,
 
 31
-00:01:46.789 --> 00:01:48.972
+00:01:55.789 --> 00:01:57.972
 nothing built on top of it can be either.
 
 32
-00:01:48.972 --> 00:01:53.517
+00:01:57.972 --> 00:02:02.517
 That's why the workbook numbers its
 books in this order, with identity first
 
 33
-00:01:53.517 --> 00:01:58.135
+00:02:02.517 --> 00:02:07.135
 and infrastructure next, then the cloud
 boundary, assurance and operations.
 
 34
-00:01:58.135 --> 00:02:00.510
+00:02:07.135 --> 00:02:09.510
 Skipping ahead only moves the problem.
 
 35
-00:02:00.510 --> 00:02:04.900
+00:02:09.510 --> 00:02:13.900
 And right now there's an unusual
 opportunity on the identity side.
 
 36
-00:02:05.650 --> 00:02:12.312
+00:02:17.650 --> 00:02:24.312
 Federal HR 2.0 is moving agencies onto one
 government-wide human resources platform.
 
 37
-00:02:12.312 --> 00:02:19.296
+00:02:24.312 --> 00:02:31.296
 The OMB and OPM memo came in December
 2025, Oracle won the contract in June 2026,
 
 38
-00:02:19.296 --> 00:02:23.551
+00:02:31.296 --> 00:02:35.551
 and agencies move in
 waves through fiscal 2027.
 
 39
-00:02:23.551 --> 00:02:28.013
+00:02:35.551 --> 00:02:40.013
 Each agency's move includes new
 connections, designed during onboarding.
 
 40
-00:02:28.013 --> 00:02:33.625
+00:02:40.013 --> 00:02:45.625
 OPM rebuilds the HR side, but the
 identity side is left to the agency.
 
 41
-00:02:33.625 --> 00:02:37.288
+00:02:45.625 --> 00:02:49.288
 If identity rides along,
 the agency connects once.
 
 42
-00:02:37.288 --> 00:02:39.438
+00:02:49.288 --> 00:02:51.438
 If it waits, it builds twice.
 
 43
-00:02:39.438 --> 00:02:44.137
+00:02:51.438 --> 00:02:56.137
 That's why the workbook calls HR
 2.0 the opening, not the project.
 
 44
-00:02:44.137 --> 00:02:47.710
+00:02:56.137 --> 00:02:59.710
 Which brings us to the risk
 agencies already carry.
 
 45
-00:02:48.460 --> 00:02:51.736
+00:03:03.460 --> 00:03:06.736
 Today, who gets an account,
 and when access ends,
 
 46
-00:02:51.736 --> 00:02:55.098
+00:03:06.736 --> 00:03:10.098
 often lives in tickets,
 spreadsheets and email.
 
 47
-00:02:55.098 --> 00:02:58.648
+00:03:10.098 --> 00:03:13.648
 A contractor roster is out of
 date the moment it's saved.
 
 48
-00:02:58.648 --> 00:03:02.893
+00:03:13.648 --> 00:03:17.893
 Quarterly access reviews can't see a
 transition when it happens, so a review
 
 49
-00:03:02.893 --> 00:03:07.548
+00:03:17.893 --> 00:03:22.548
 ninety days after someone leaves ends up
 approving an account nobody should have.
 
 50
-00:03:07.548 --> 00:03:12.084
+00:03:22.548 --> 00:03:27.084
 Assessors know this pattern well; it's
 where account-management findings come from.
 
 51
-00:03:12.084 --> 00:03:14.561
+00:03:27.084 --> 00:03:29.561
 HR-driven identity fixes the cause:
 
 52
-00:03:14.561 --> 00:03:19.598
+00:03:29.561 --> 00:03:34.598
 the HR record becomes the source of
 who works here, and access follows it.
 
 53
-00:03:19.598 --> 00:03:21.730
+00:03:34.598 --> 00:03:36.730
 So what exactly is the ask?
 
 54
-00:03:22.480 --> 00:03:23.742
+00:03:40.480 --> 00:03:41.742
 The ask is small.
 
 55
-00:03:23.742 --> 00:03:28.654
+00:03:41.742 --> 00:03:46.654
 Phase zero is a four-week pre-flight,
 and it doesn't require choosing a vendor.
 
 56
-00:03:28.654 --> 00:03:30.934
+00:03:46.654 --> 00:03:48.934
 It needs three things: an inventory,
 
 57
-00:03:30.934 --> 00:03:34.705
+00:03:48.934 --> 00:03:52.705
 from a read-only assessment of
 the current estate; an owner,
 
 58
-00:03:34.705 --> 00:03:39.184
+00:03:52.705 --> 00:03:57.184
 meaning a named executive sponsor
 and a steward who runs the program;
 
 59
-00:03:39.184 --> 00:03:44.292
+00:03:57.184 --> 00:04:02.292
 and a date, with the first gate on the
 calendar next to those external deadlines.
 
 60
-00:03:44.292 --> 00:03:48.697
+00:04:02.292 --> 00:04:06.697
 At the end of four weeks, leadership
 sees the estate as it really is,
 
 61
-00:03:48.697 --> 00:03:51.143
+00:04:06.697 --> 00:04:09.143
 and decides the next step from facts.
 
 62
-00:03:51.143 --> 00:03:53.860
+00:04:09.143 --> 00:04:11.860
 Then comes the first real milestone.
 
 63
-00:03:54.610 --> 00:03:58.123
+00:04:15.610 --> 00:04:19.123
 Phase one, the foundation,
 runs about four more weeks
 
 64
-00:03:58.123 --> 00:04:01.635
+00:04:19.123 --> 00:04:22.635
 and ends at a gate leadership
 can check, not just sign.
 
 65
-00:04:01.635 --> 00:04:05.497
+00:04:22.635 --> 00:04:26.497
 Groups and administrative units
 are in place, with no drift.
 
 66
-00:04:05.497 --> 00:04:08.465
+00:04:26.497 --> 00:04:29.465
 Everyone is under
 multifactor authentication,
 
 67
-00:04:08.465 --> 00:04:12.173
+00:04:29.465 --> 00:04:33.173
 except a few emergency accounts
 that are vaulted and tested.
 
 68
-00:04:12.173 --> 00:04:15.248
+00:04:33.173 --> 00:04:36.248
 The core infrastructure is
 covered by address management.
 
 69
-00:04:15.248 --> 00:04:18.398
+00:04:36.248 --> 00:04:39.398
 And the HR feed is live for
 a first group of people.
 
 70
-00:04:18.398 --> 00:04:20.422
+00:04:39.398 --> 00:04:41.422
 Each of those is measured from data.
 
 71
-00:04:20.422 --> 00:04:24.611
+00:04:41.422 --> 00:04:45.611
 When the gate passes, everything else
 has something solid to stand on.
 
 72
-00:04:24.611 --> 00:04:26.560
+00:04:45.611 --> 00:04:47.560
 So who needs to be in the room?
 
 73
-00:04:27.310 --> 00:04:29.535
+00:04:51.310 --> 00:04:53.535
 The decision belongs to a few people.
 
 74
-00:04:29.535 --> 00:04:35.160
+00:04:53.535 --> 00:04:59.160
 The executive sponsor, with the CIO,
 owns scope, funding and sequence.
 
 75
-00:04:35.160 --> 00:04:38.685
+00:04:59.160 --> 00:05:02.685
 The steward owns the target
 design and the early gates.
 
 76
-00:04:38.685 --> 00:04:41.848
+00:05:02.685 --> 00:05:05.848
 And workstream leads say
 when their area is ready.
 
 77
-00:04:41.848 --> 00:04:46.274
+00:05:05.848 --> 00:05:10.274
 To make the conversation concrete,
 bring four local numbers:
 
 78
-00:04:46.274 --> 00:04:51.852
+00:05:10.274 --> 00:05:15.852
 how many 2016 servers you run, how many
 contractors sit outside the HR system,
 
 79
-00:04:51.852 --> 00:04:56.898
+00:05:15.852 --> 00:05:20.898
 how long it takes a departing person
 to lose access, and your HR 2.0 wave.
 
 80
-00:04:56.898 --> 00:05:00.876
+00:05:20.898 --> 00:05:24.876
 Then ask for one decision:
 approve the four-week pre-flight,
 
 81
-00:05:00.876 --> 00:05:03.560
+00:05:24.876 --> 00:05:27.560
 with a named owner and a start date.
 
 82
-00:05:04.310 --> 00:05:07.755
+00:05:31.310 --> 00:05:34.755
 To go deeper, start with the
 Book 00 executive briefing,
 
 83
-00:05:07.755 --> 00:05:11.047
+00:05:34.755 --> 00:05:38.047
 which lays out the decisions
 with owners and timing.
 
 84
-00:05:11.047 --> 00:05:16.097
+00:05:38.047 --> 00:05:43.097
 Book 01, Chapter 12 is the roadmap,
 with every phase and gate.
 
 85
-00:05:16.097 --> 00:05:19.415
+00:05:43.097 --> 00:05:46.415
 Book 02 covers identity and the directory,
 
 86
-00:05:19.415 --> 00:05:23.585
+00:05:46.415 --> 00:05:50.585
 and Book 03 makes the full
 case for HR-driven identity.
 
 87
-00:05:23.585 --> 00:05:28.647
+00:05:50.585 --> 00:05:55.647
 Every claim in this briefing is footnoted
 to a primary source in those books.
 
 88
-00:05:28.647 --> 00:05:34.447
+00:05:55.647 --> 00:06:01.447
 The workbook is independent analysis, not
 an official publication of any agency.
 
 89
-00:05:34.447 --> 00:05:35.960
+00:06:01.447 --> 00:06:02.960
 Thank you for starting here.

@@ -65,665 +65,665 @@ program design guidance as we go.
 Let's start with what AD did.
 
 15
-00:00:43.550 --> 00:00:48.550
+00:00:46.550 --> 00:00:51.550
 In Active Directory, a domain-joined
 PC gets two jobs done almost for free.
 
 16
-00:00:48.550 --> 00:00:53.700
+00:00:51.550 --> 00:00:56.700
 Job one is the name: a computer name plus
 the domain's suffix makes its full name.
 
 17
-00:00:53.700 --> 00:00:55.594
+00:00:56.700 --> 00:00:58.594
 Job two is the DNS record,
 
 18
-00:00:55.594 --> 00:01:00.138
+00:00:58.594 --> 00:01:03.138
 the entries that map that name
 to an address and back again.
 
 19
-00:01:00.138 --> 00:01:05.452
+00:01:03.138 --> 00:01:08.452
 In AD, the zone lives on the domain
 controllers and by default accepts only secure
 
 20
-00:01:05.452 --> 00:01:10.687
+00:01:08.452 --> 00:01:13.687
 updates, signed with Kerberos, and once a
 name exists only its owner can change it.
 
 21
-00:01:10.687 --> 00:01:13.701
+00:01:13.687 --> 00:01:16.701
 The PC has a machine
 account, so it can sign.
 
 22
-00:01:13.701 --> 00:01:16.075
+00:01:16.701 --> 00:01:19.075
 It registers its own forward record,
 
 23
-00:01:16.075 --> 00:01:19.638
+00:01:19.075 --> 00:01:22.638
 and the Windows DHCP server
 registers the reverse one.
 
 24
-00:01:19.638 --> 00:01:24.980
+00:01:22.638 --> 00:01:27.980
 When AD retires, both jobs need a new
 owner, and the second one is harder.
 
 25
-00:01:25.730 --> 00:01:27.405
+00:01:31.730 --> 00:01:33.405
 So who names the device now?
 
 26
-00:01:27.405 --> 00:01:30.693
+00:01:33.405 --> 00:01:36.693
 The short answer: whatever
 provisions it, at build time.
 
 27
-00:01:30.693 --> 00:01:32.930
+00:01:36.693 --> 00:01:38.930
 For Windows that's usually Autopilot.
 
 28
-00:01:32.930 --> 00:01:36.545
+00:01:38.930 --> 00:01:42.545
 Classic Autopilot with Entra
 join has a name template,
 
 29
-00:01:36.545 --> 00:01:41.205
+00:01:42.545 --> 00:01:47.205
 fifteen characters or fewer, using
 the serial number or random digits.
 
 30
-00:01:41.205 --> 00:01:46.777
+00:01:47.205 --> 00:01:52.777
 The newer device preparation has a template
 too, but only for devices with device
 
 31
-00:01:46.777 --> 00:01:51.767
+00:01:52.777 --> 00:01:57.767
 association, so, as an inference, Book
 05's description of it needs a review.
 
 32
-00:01:51.767 --> 00:01:56.304
+00:01:57.767 --> 00:02:02.304
 After enrollment, Intune can rename
 corporate Windows PCs and Macs,
 
 33
-00:01:56.304 --> 00:01:58.329
+00:02:02.304 --> 00:02:04.329
 though not hybrid-joined ones.
 
 34
-00:01:58.329 --> 00:02:01.930
+00:02:04.329 --> 00:02:07.930
 Macs have no enrollment-time
 template that this research found.
 
 35
-00:02:01.930 --> 00:02:07.230
+00:02:07.930 --> 00:02:13.230
 Linux, Azure Arc servers and cloud VMs take
 their names from their own build tools.
 
 36
-00:02:07.230 --> 00:02:10.690
+00:02:13.230 --> 00:02:16.690
 Naming has an owner;
 registering is the hard part.
 
 37
-00:02:11.440 --> 00:02:12.702
+00:02:20.440 --> 00:02:21.702
 Here's the core problem.
 
 38
-00:02:12.702 --> 00:02:18.277
+00:02:21.702 --> 00:02:27.277
 A PC joined only to Entra ID still
 tries to register its name in DNS.
 
 39
-00:02:18.277 --> 00:02:21.966
+00:02:27.277 --> 00:02:30.966
 A secure zone refuses its
 unsigned attempt, as it should.
 
 40
-00:02:21.966 --> 00:02:26.803
+00:02:30.966 --> 00:02:35.803
 And Microsoft documents that Windows
 can use only Kerberos for secure update.
 
 41
-00:02:26.803 --> 00:02:30.690
+00:02:35.803 --> 00:02:39.690
 So, as an inference, with no
 machine account in the domain,
 
 42
-00:02:30.690 --> 00:02:34.577
+00:02:39.690 --> 00:02:43.577
 the PC can't sign, and the zone
 gets no record from it at all.
 
 43
-00:02:34.577 --> 00:02:38.290
+00:02:43.577 --> 00:02:47.290
 The tempting fix is to let the
 zone accept unsigned updates.
 
 44
-00:02:38.290 --> 00:02:38.978
+00:02:47.290 --> 00:02:47.978
 Don't.
 
 45
-00:02:38.978 --> 00:02:41.677
+00:02:47.978 --> 00:02:50.677
 Microsoft says that without secure update,
 
 46
-00:02:41.677 --> 00:02:45.277
+00:02:50.677 --> 00:02:54.277
 any computer on the network
 can modify an existing record.
 
 47
-00:02:45.277 --> 00:02:48.778
+00:02:54.277 --> 00:02:57.778
 Remote clients over VPN
 don't even try by default.
 
 48
-00:02:48.778 --> 00:02:52.750
+00:02:57.778 --> 00:03:01.750
 So something else has to register
 endpoints, and it has to sign.
 
 49
-00:02:53.500 --> 00:02:56.087
+00:03:05.500 --> 00:03:08.087
 What takes over is the DHCP server.
 
 50
-00:02:56.087 --> 00:02:59.979
+00:03:08.087 --> 00:03:11.979
 It hands every device its address
 for a set time, called a lease,
 
 51
-00:02:59.979 --> 00:03:04.176
+00:03:11.979 --> 00:03:16.176
 so it already talks to every device
 and can register names for them.
 
 52
-00:03:04.176 --> 00:03:09.441
+00:03:16.176 --> 00:03:21.441
 The device sends its name when it asks
 for an address, and the DHCP server,
 
 53
-00:03:09.441 --> 00:03:14.975
+00:03:21.441 --> 00:03:26.975
 set to always update DNS, signs the update
 with a shared key or with Kerberos.
 
 54
-00:03:14.975 --> 00:03:20.300
+00:03:26.975 --> 00:03:32.300
 On Infoblox, lock each zone so only
 the DHCP servers may update it.
 
 55
-00:03:20.300 --> 00:03:25.101
+00:03:32.300 --> 00:03:37.101
 Two safeguards help: the server writes
 an ownership record beside each name,
 
 56
-00:03:25.101 --> 00:03:27.540
+00:03:37.101 --> 00:03:39.540
 so only one client holds a name at a time,
 
 57
-00:03:27.540 --> 00:03:31.350
+00:03:39.540 --> 00:03:43.350
 and it removes the records it
 created when the lease expires.
 
 58
-00:03:31.350 --> 00:03:34.290
+00:03:43.350 --> 00:03:46.290
 But ownership records
 hide a migration trap.
 
 59
-00:03:35.040 --> 00:03:39.240
+00:03:50.040 --> 00:03:54.240
 Ownership records only help if the
 old and new systems agree on them.
 
 60
-00:03:39.240 --> 00:03:42.311
+00:03:54.240 --> 00:03:57.311
 Infoblox has two modes,
 Interim and Standard,
 
 61
-00:03:42.311 --> 00:03:45.715
+00:03:57.311 --> 00:04:00.715
 and documents that checking
 fails in three cases.
 
 62
-00:03:45.715 --> 00:03:49.606
+00:04:00.715 --> 00:04:04.606
 The big one is migration from
 Microsoft systems, where,
 
 63
-00:03:49.606 --> 00:03:54.015
+00:04:04.606 --> 00:04:09.015
 in Infoblox's words, new DDNS
 updates fail after the migration.
 
 64
-00:03:54.015 --> 00:03:57.525
+00:04:09.015 --> 00:04:12.525
 The others are mixed DHCP
 vendors and laptops whose
 
 65
-00:03:57.525 --> 00:04:00.790
+00:04:12.525 --> 00:04:15.790
 wired and Wi-Fi interfaces
 look like two clients.
 
 66
-00:04:00.790 --> 00:04:04.674
+00:04:15.790 --> 00:04:19.674
 Macs add a twist: private Wi-Fi
 addresses can rotate, and,
 
 67
-00:04:04.674 --> 00:04:09.852
+00:04:19.674 --> 00:04:24.852
 as an inference, that changes the
 identity the ownership record rests on.
 
 68
-00:04:09.852 --> 00:04:14.139
+00:04:24.852 --> 00:04:29.139
 An MDM profile can turn it off
 on macOS fifteen and later.
 
 69
-00:04:14.139 --> 00:04:18.479
+00:04:29.139 --> 00:04:33.479
 The design guidance: pick one
 mode once, migrate deliberately,
 
 70
-00:04:18.479 --> 00:04:22.052
+00:04:33.479 --> 00:04:37.052
 and turn off address
 randomization on agency Wi-Fi.
 
 71
-00:04:22.052 --> 00:04:24.350
+00:04:37.052 --> 00:04:39.350
 Next, IPv6.
 
 72
-00:04:25.100 --> 00:04:28.525
+00:04:43.100 --> 00:04:46.525
 IPv6 adds addresses that nobody registers.
 
 73
-00:04:28.525 --> 00:04:34.187
+00:04:46.525 --> 00:04:52.187
 If a DHCPv6 server assigns the address,
 it knows it and can register the record.
 
 74
-00:04:34.187 --> 00:04:38.970
+00:04:52.187 --> 00:04:56.970
 But with SLAAC, the device builds its own
 address from what the router announces,
 
 75
-00:04:38.970 --> 00:04:41.724
+00:04:56.970 --> 00:04:59.724
 and creates temporary
 privacy addresses too.
 
 76
-00:04:41.724 --> 00:04:45.166
+00:04:59.724 --> 00:05:03.166
 As an inference, no server
 ever learns those addresses,
 
 77
-00:04:45.166 --> 00:04:48.760
+00:05:03.166 --> 00:05:06.760
 so no server-side registration
 creates a record for them,
 
 78
-00:04:48.760 --> 00:04:52.813
+00:05:06.760 --> 00:05:10.813
 and a post-AD Windows client can't
 register them securely itself.
 
 79
-00:04:52.813 --> 00:04:57.900
+00:05:10.813 --> 00:05:15.900
 The consequence, also an inference:
 treat those records as absent by design.
 
 80
-00:04:57.900 --> 00:05:02.000
+00:05:15.900 --> 00:05:20.000
 Find endpoints by their
 DHCP-assigned addresses,
 
 81
-00:05:02.000 --> 00:05:06.900
+00:05:20.000 --> 00:05:24.900
 and track IPv6 activity from
 DHCP and neighbor logs, not DNS.
 
 82
-00:05:06.900 --> 00:05:10.825
+00:05:24.900 --> 00:05:28.825
 Whether Windows registers temporary
 addresses couldn't be verified.
 
 83
-00:05:10.825 --> 00:05:12.700
+00:05:28.825 --> 00:05:30.700
 Servers work differently.
 
 84
-00:05:13.450 --> 00:05:16.975
+00:05:34.450 --> 00:05:37.975
 Servers and cloud machines don't
 follow the endpoint pattern.
 
 85
-00:05:16.975 --> 00:05:22.107
+00:05:37.975 --> 00:05:43.107
 On premises, servers with fixed addresses
 get static records in the IPAM and DDI
 
 86
-00:05:22.107 --> 00:05:24.522
+00:05:43.107 --> 00:05:45.522
 system, and, as program design guidance,
 
 87
-00:05:24.522 --> 00:05:28.975
+00:05:45.522 --> 00:05:49.975
 the pipeline that builds a server
 should create and delete its records.
 
 88
-00:05:28.975 --> 00:05:32.705
+00:05:49.975 --> 00:05:53.705
 Linux servers in an identity
 domain can sign their own updates,
 
 89
-00:05:32.705 --> 00:05:37.512
+00:05:53.705 --> 00:05:58.512
 but watch for a fallback to unauthenticated
 updates if signing fails at install.
 
 90
-00:05:37.512 --> 00:05:43.240
+00:05:58.512 --> 00:06:04.240
 In Azure, private DNS autoregistration
 does the job, with real limits: VMs only,
 
 91
-00:05:43.240 --> 00:05:46.909
+00:06:04.240 --> 00:06:07.909
 forward records only, and
 records that disappear
 
 92
-00:05:46.909 --> 00:05:50.488
+00:06:07.909 --> 00:06:11.488
 when the VM is stopped or
 the network is unlinked.
 
 93
-00:05:50.488 --> 00:05:54.277
+00:06:11.488 --> 00:06:15.277
 In AWS, this research found
 no built-in registration
 
 94
-00:05:54.277 --> 00:05:57.362
+00:06:15.277 --> 00:06:18.362
 into your own zones, so
 you build a pipeline.
 
 95
-00:05:57.362 --> 00:05:59.560
+00:06:18.362 --> 00:06:20.560
 Now, remote workers.
 
 96
-00:06:00.310 --> 00:06:05.097
+00:06:24.310 --> 00:06:29.097
 Remote clients are a different story: they
 find names, but they don't register them.
 
 97
-00:06:05.097 --> 00:06:07.249
+00:06:29.097 --> 00:06:31.249
 With Microsoft's Global Secure Access,
 
 98
-00:06:07.249 --> 00:06:11.886
+00:06:31.249 --> 00:06:35.886
 the laptop's client sends matching queries
 through Microsoft's edge to a connector
 
 99
-00:06:11.886 --> 00:06:13.028
+00:06:35.886 --> 00:06:37.028
 inside your network,
 
 100
-00:06:13.028 --> 00:06:16.523
+00:06:37.028 --> 00:06:40.523
 and gets back a stand-in address
 that routes through the tunnel.
 
 101
-00:06:16.523 --> 00:06:22.522
+00:06:40.523 --> 00:06:46.522
 But no primary source found says it registers
 the laptop's own name in agency DNS.
 
 102
-00:06:22.522 --> 00:06:28.122
+00:06:46.522 --> 00:06:52.122
 So, as an inference, remote clients are
 resolvers of names, not registrants.
 
 103
-00:06:28.122 --> 00:06:31.398
+00:06:52.122 --> 00:06:55.398
 That changes how the help
 desk finds a remote device.
 
 104
-00:06:31.398 --> 00:06:34.647
+00:06:55.398 --> 00:06:58.647
 Intune's Remote Help starts
 from the device list,
 
 105
-00:06:34.647 --> 00:06:38.384
+00:06:58.647 --> 00:07:02.384
 with no DNS lookup, but you
 pick by the Intune device name.
 
 106
-00:06:38.384 --> 00:06:42.420
+00:07:02.384 --> 00:07:06.420
 As an inference, that name
 must be unique and meaningful.
 
 107
-00:06:43.170 --> 00:06:47.170
+00:07:10.170 --> 00:07:14.170
 If devices sign in with cloud
 tokens, why do names still matter?
 
 108
-00:06:47.170 --> 00:06:48.195
+00:07:14.170 --> 00:07:15.195
 Four reasons.
 
 109
-00:06:48.195 --> 00:06:53.855
+00:07:15.195 --> 00:07:20.855
 First, Kerberos islands: an Entra-joined
 device reaching on-premises resources still
 
 110
-00:06:53.855 --> 00:06:58.080
+00:07:20.855 --> 00:07:25.080
 finds domain controllers through
 DNS, and Book 08 explains that
 
 111
-00:06:58.080 --> 00:07:02.145
+00:07:25.080 --> 00:07:29.145
 a name pointing at the wrong host
 gets a valid ticket rejected.
 
 112
-00:07:02.145 --> 00:07:06.374
+00:07:29.145 --> 00:07:33.374
 Second, certificates bind a name
 to a key, so, as an inference,
 
 113
-00:07:06.374 --> 00:07:11.572
+00:07:33.374 --> 00:07:38.572
 after AD the certificate's name has
 to be built from the device name plus
 
 114
-00:07:11.572 --> 00:07:16.770
+00:07:38.572 --> 00:07:43.770
 a fixed agency suffix, and it only
 matches DNS if that name is registered.
 
 115
-00:07:16.770 --> 00:07:21.127
+00:07:43.770 --> 00:07:48.127
 Third, logs: Book 12 joins
 evidence on the device's identity,
 
 116
-00:07:21.127 --> 00:07:24.757
+00:07:48.127 --> 00:07:51.757
 so a missing or duplicated
 name breaks that join.
 
 117
-00:07:24.757 --> 00:07:30.100
+00:07:51.757 --> 00:07:57.100
 Fourth, Microsoft says its naming
 macros don't guarantee unique names.
 
 118
-00:07:30.850 --> 00:07:35.038
+00:08:00.850 --> 00:08:05.038
 Here's the whole picture on one page,
 with the full version in the backup.
 
 119
-00:07:35.038 --> 00:07:38.504
+00:08:05.038 --> 00:08:08.504
 Entra-joined Windows is
 named by Autopilot or Intune
 
 120
-00:07:38.504 --> 00:07:42.050
+00:08:08.504 --> 00:08:12.050
 and registered by the DHCP
 server with signed updates.
 
 121
-00:07:42.050 --> 00:07:46.100
+00:08:12.050 --> 00:08:16.100
 Hybrid-joined Windows keeps working
 through AD until it's rebuilt.
 
 122
-00:07:46.100 --> 00:07:47.957
+00:08:16.100 --> 00:08:17.957
 Macs are renamed in Intune,
 
 123
-00:07:47.957 --> 00:07:51.925
+00:08:17.957 --> 00:08:21.925
 and DHCP should register them,
 though that's an inference.
 
 124
-00:07:51.925 --> 00:07:56.087
+00:08:21.925 --> 00:08:26.087
 Linux is registered by DHCP
 unless it signs its own updates.
 
 125
-00:07:56.087 --> 00:07:58.829
+00:08:26.087 --> 00:08:28.829
 On-premises servers get static records,
 
 126
-00:07:58.829 --> 00:08:04.063
+00:08:28.829 --> 00:08:34.063
 Azure VMs are autoregistered within
 limits, and AWS needs your own pipeline.
 
 127
-00:08:04.063 --> 00:08:07.857
+00:08:34.063 --> 00:08:37.857
 And printers and other unmanaged
 devices get names from a
 
 128
-00:08:07.857 --> 00:08:12.125
+00:08:37.857 --> 00:08:42.125
 reservation or the device itself,
 with DHCP registering for them.
 
 129
-00:08:12.125 --> 00:08:14.640
+00:08:42.125 --> 00:08:44.640
 Now, what the agency must do.
 
 130
-00:08:15.390 --> 00:08:19.825
+00:08:48.390 --> 00:08:52.825
 Here's what the agency must do, condensed
 from a seventeen-step checklist,
 
 131
-00:08:19.825 --> 00:08:22.265
+00:08:52.825 --> 00:08:55.265
 and all of it is program design guidance.
 
 132
-00:08:22.265 --> 00:08:28.069
+00:08:55.265 --> 00:09:01.069
 Before AD DNS retires, choose one naming
 authority per platform, make the DHCP
 
 133
-00:08:28.069 --> 00:08:29.792
+00:09:01.069 --> 00:09:02.792
 server the registrant,
 
 134
-00:08:29.792 --> 00:08:34.327
+00:09:02.792 --> 00:09:07.327
 and lock each zone so only the
 DHCP servers' keys can update it.
 
 135
-00:08:34.327 --> 00:08:36.754
+00:09:07.327 --> 00:09:09.754
 Pick one ownership-record format,
 
 136
-00:08:36.754 --> 00:08:41.953
+00:09:09.754 --> 00:09:14.953
 turn off address randomization on
 agency Wi-Fi, and create reverse zones.
 
 137
-00:08:41.953 --> 00:08:45.988
+00:09:14.953 --> 00:09:18.988
 At cutover, deliver DNS suffixes
 through DHCP and Intune,
 
 138
-00:08:45.988 --> 00:08:50.710
+00:09:18.988 --> 00:09:23.710
 and for Entra-joined Windows,
 either turn client registration off
 
 139
-00:08:50.710 --> 00:08:55.603
+00:09:23.710 --> 00:09:28.603
 or accept refused attempts, but
 never open zones to unsigned updates.
 
 140
-00:08:55.603 --> 00:08:58.910
+00:09:28.603 --> 00:09:31.910
 Afterward, turn on cleanup
 only after a quiet period,
 
 141
-00:08:58.910 --> 00:09:02.490
+00:09:31.910 --> 00:09:35.490
 and monitor duplicates and
 devices with no record.
 
 142
-00:09:03.240 --> 00:09:04.165
+00:09:39.240 --> 00:09:40.165
 To close.
 
 143
-00:09:04.165 --> 00:09:07.651
+00:09:40.165 --> 00:09:43.651
 The decisions are which tool
 names each kind of device,
 
 144
-00:09:07.651 --> 00:09:11.835
+00:09:43.651 --> 00:09:47.835
 the DHCP server as registrant and
 which keys may update each zone,
 
 145
-00:09:11.835 --> 00:09:17.103
+00:09:47.835 --> 00:09:53.103
 which ownership-record format, and whether
 Entra-joined PCs try to register at all.
 
 146
-00:09:17.103 --> 00:09:21.914
+00:09:53.103 --> 00:09:57.914
 The next steps are the things that couldn't
 be verified, such as how Macs handle
 
 147
-00:09:21.914 --> 00:09:26.877
+00:09:57.914 --> 00:10:02.877
 rename and DHCP names, and a recheck of
 Book 05's device preparation description.
 
 148
-00:09:26.877 --> 00:09:31.778
+00:10:02.877 --> 00:10:07.778
 Ask any third-party VPN vendor whether
 its concentrator registers clients.
 
 149
-00:09:31.778 --> 00:09:36.951
+00:10:07.778 --> 00:10:12.951
 In the workbook, Book 05 covers
 onboarding and naming, Book 08 covers
 
 150
-00:09:36.951 --> 00:09:42.402
+00:10:12.951 --> 00:10:18.402
 the AD DNS departure, and two related
 research items sit beside this one.
 
 151
-00:09:42.402 --> 00:09:47.327
+00:10:18.402 --> 00:10:23.327
 This is research under review, not an
 endorsement by any federal agency.
 
 152
-00:09:47.327 --> 00:09:48.140
+00:10:23.327 --> 00:10:24.140
 Thank you.

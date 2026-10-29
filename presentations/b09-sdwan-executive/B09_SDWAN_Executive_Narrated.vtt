@@ -45,512 +45,512 @@ the security conditions, and
 the one decision to ask for.
 
 10
-00:00:31.820 --> 00:00:33.207
+00:00:34.820 --> 00:00:36.207
 Here's why this matters.
 
 11
-00:00:33.207 --> 00:00:36.921
+00:00:36.207 --> 00:00:39.921
 The worked case is an estate
 many agencies will recognize:
 
 12
-00:00:36.921 --> 00:00:42.103
+00:00:39.921 --> 00:00:45.103
 about fifteen hundred field offices,
 about seventy thousand Windows endpoints,
 
 13
-00:00:42.103 --> 00:00:44.888
+00:00:45.103 --> 00:00:47.888
 and a content server in
 nearly every office,
 
 14
-00:00:44.888 --> 00:00:48.446
+00:00:47.888 --> 00:00:51.446
 because the circuit was once
 too slow for anything else.
 
 15
-00:00:48.446 --> 00:00:51.441
+00:00:51.446 --> 00:00:54.441
 Microsoft's published limits
 say that estate needs
 
 16
-00:00:51.441 --> 00:00:54.645
+00:00:54.441 --> 00:00:57.645
 about twenty-four of those
 servers, not fifteen hundred.
 
 17
-00:00:54.645 --> 00:00:59.170
+00:00:57.645 --> 00:01:02.170
 The other fourteen hundred and seventy-six
 compensate for slow branch circuits.
 
 18
-00:00:59.170 --> 00:01:03.495
+00:01:02.170 --> 00:01:06.495
 And the money would land on a tier the
 device strategy is already shrinking.
 
 19
-00:01:03.495 --> 00:01:06.250
+00:01:06.495 --> 00:01:09.250
 So what would fixing the
 circuit actually buy?
 
 20
-00:01:07.000 --> 00:01:09.112
+00:01:13.000 --> 00:01:15.112
 Let's be honest about the limits first.
 
 21
-00:01:09.112 --> 00:01:12.518
+00:01:15.112 --> 00:01:18.518
 Part of every delay is the time
 light takes through fiber,
 
 22
-00:01:12.518 --> 00:01:16.576
+00:01:18.518 --> 00:01:22.576
 about five microseconds per kilometer,
 and no product changes that.
 
 23
-00:01:16.576 --> 00:01:21.407
+00:01:22.576 --> 00:01:27.407
 What SD-WAN does is close the gap above
 that floor: better paths, a tighter tail
 
 24
-00:01:21.407 --> 00:01:22.864
+00:01:27.407 --> 00:01:28.864
 through fast failover,
 
 25
-00:01:22.864 --> 00:01:26.775
+00:01:28.864 --> 00:01:32.775
 and bulk downloads kept away from
 traffic that has to be quick.
 
 26
-00:01:26.775 --> 00:01:30.556
+00:01:32.775 --> 00:01:36.556
 Each office gets two paths,
 an internet circuit sized
 
 27
-00:01:30.556 --> 00:01:34.337
+00:01:36.556 --> 00:01:40.337
 to its seats and a 5G link
 for continuity, not capacity.
 
 28
-00:01:34.337 --> 00:01:36.662
+00:01:40.337 --> 00:01:42.662
 It's a better road, not a shorter one.
 
 29
-00:01:36.662 --> 00:01:38.740
+00:01:42.662 --> 00:01:44.740
 Here's what the target looks like.
 
 30
-00:01:39.490 --> 00:01:41.440
+00:01:48.490 --> 00:01:50.440
 The target fits in one picture.
 
 31
-00:01:41.440 --> 00:01:44.877
+00:01:50.440 --> 00:01:53.877
 Two data centers hold the
 full content library and
 
 32
-00:01:44.877 --> 00:01:48.315
+00:01:53.877 --> 00:01:57.315
 feed ten regional hubs,
 all in existing facilities.
 
 33
-00:01:48.315 --> 00:01:51.397
+00:01:57.315 --> 00:02:00.397
 Each hub carries two
 servers, twenty-four in all,
 
 34
-00:01:51.397 --> 00:01:56.928
+00:02:00.397 --> 00:02:05.928
 enough for ninety-six thousand clients, so
 about seventy-three percent utilization.
 
 35
-00:01:56.928 --> 00:02:01.614
+00:02:05.928 --> 00:02:10.614
 Offices reach the hubs over the SD-WAN
 overlay with no server in the closet,
 
 36
-00:02:01.614 --> 00:02:04.303
+00:02:10.614 --> 00:02:13.303
 and peer caching keeps most content local.
 
 37
-00:02:04.303 --> 00:02:09.747
+00:02:13.303 --> 00:02:18.747
 One limit is settled: Microsoft's informed
 routing feature isn't available in GCC,
 
 38
-00:02:09.747 --> 00:02:15.028
+00:02:18.747 --> 00:02:24.028
 so the design uses direct breakout and
 application-aware routing from day one.
 
 39
-00:02:15.028 --> 00:02:16.800
+00:02:24.028 --> 00:02:25.800
 Now, what does it cost?
 
 40
-00:02:17.550 --> 00:02:19.573
+00:02:29.550 --> 00:02:31.573
 On the book's planning assumptions,
 
 41
-00:02:19.573 --> 00:02:23.201
+00:02:31.573 --> 00:02:35.201
 the first year needs just under
 ten million dollars of capital:
 
 42
-00:02:23.201 --> 00:02:27.247
+00:02:35.201 --> 00:02:39.247
 about five million for branch equipment,
 about one million at the hubs,
 
 43
-00:02:27.247 --> 00:02:31.712
+00:02:39.247 --> 00:02:43.712
 and nearly four million for the control
 plane, installation and engineering.
 
 44
-00:02:31.712 --> 00:02:33.745
+00:02:43.712 --> 00:02:45.745
 At steady state, the new circuits,
 
 45
-00:02:33.745 --> 00:02:39.012
+00:02:45.745 --> 00:02:51.012
 subscriptions and security licensing run
 about fifteen point seven million a year,
 
 46
-00:02:39.012 --> 00:02:43.000
+00:02:51.012 --> 00:02:55.000
 while retiring MPLS removes about
 twenty-one point six million.
 
 47
-00:02:43.000 --> 00:02:45.812
+00:02:55.000 --> 00:02:57.812
 That's roughly five point
 nine million a year back.
 
 48
-00:02:45.812 --> 00:02:49.220
+00:02:57.812 --> 00:03:01.220
 Every figure is an estimate to
 replace with your own data,
 
 49
-00:02:49.220 --> 00:02:51.620
+00:03:01.220 --> 00:03:03.620
 and one matters more than the rest.
 
 50
-00:02:52.370 --> 00:02:57.545
+00:03:07.370 --> 00:03:12.545
 Savings arrive as offices move at their
 MPLS renewal dates, not on day one.
 
 51
-00:02:57.545 --> 00:03:01.446
+00:03:12.545 --> 00:03:16.446
 In the base case the program turns
 cumulatively positive in year
 
 52
-00:03:01.446 --> 00:03:05.420
+00:03:16.446 --> 00:03:20.420
 four and is about seven point seven
 million ahead after five years.
 
 53
-00:03:05.420 --> 00:03:08.002
+00:03:20.420 --> 00:03:23.002
 The refresh spends fifty million up front,
 
 54
-00:03:08.002 --> 00:03:12.207
+00:03:23.002 --> 00:03:27.207
 so the five-year difference is about
 fifty-seven point seven million.
 
 55
-00:03:12.207 --> 00:03:15.532
+00:03:27.207 --> 00:03:30.532
 But all of that turns on what
 MPLS costs per office today.
 
 56
-00:03:15.532 --> 00:03:18.932
+00:03:30.532 --> 00:03:33.932
 Breakeven is eight hundred
 seventy-three dollars a month.
 
 57
-00:03:18.932 --> 00:03:21.508
+00:03:33.932 --> 00:03:36.508
 Above it, the program pays for itself.
 
 58
-00:03:21.508 --> 00:03:25.883
+00:03:36.508 --> 00:03:40.883
 Below it, it's still the better
 architecture, argued on capability.
 
 59
-00:03:25.883 --> 00:03:27.520
+00:03:40.883 --> 00:03:42.520
 Then there's security.
 
 60
-00:03:28.270 --> 00:03:32.296
+00:03:46.270 --> 00:03:50.296
 Breaking out at the branch means
 operating under the TIC 3.0
 
 61
-00:03:32.296 --> 00:03:35.382
+00:03:50.296 --> 00:03:53.382
 branch office use case, and
 that changes what the edge is.
 
 62
-00:03:35.382 --> 00:03:38.730
+00:03:53.382 --> 00:03:56.730
 Every path has to land on
 equally strong enforcement,
 
 63
-00:03:38.730 --> 00:03:42.382
+00:03:56.730 --> 00:04:00.382
 so the steering policy itself
 becomes a security control.
 
 64
-00:03:42.382 --> 00:03:46.397
+00:04:00.382 --> 00:04:04.397
 Accreditation, not procurement, is
 the critical path, which is why
 
 65
-00:03:46.397 --> 00:03:51.082
+00:04:04.397 --> 00:04:09.082
 starting at twelve hubs instead of
 fifteen hundred offices matters so much.
 
 66
-00:03:51.082 --> 00:03:56.483
+00:04:09.082 --> 00:04:14.483
 No office's MPLS circuit retires until
 its replacement telemetry is confirmed.
 
 67
-00:03:56.483 --> 00:03:59.465
+00:04:14.483 --> 00:04:17.465
 And the controller is
 estate-wide attack surface,
 
 68
-00:03:59.465 --> 00:04:03.320
+00:04:17.465 --> 00:04:21.320
 so it's patched, logged and locked
 down before it carries traffic.
 
 69
-00:04:03.320 --> 00:04:05.480
+00:04:21.320 --> 00:04:23.480
 That sets the roadmap's order.
 
 70
-00:04:06.230 --> 00:04:07.580
+00:04:27.230 --> 00:04:28.580
 There are four phases.
 
 71
-00:04:07.580 --> 00:04:12.162
+00:04:28.580 --> 00:04:33.162
 Phase zero, about six months and
 about one point eight million dollars,
 
 72
-00:04:12.162 --> 00:04:17.455
+00:04:33.162 --> 00:04:38.455
 does the design, the accreditation package,
 the control plane and a ten-site pilot.
 
 73
-00:04:17.455 --> 00:04:21.718
+00:04:38.455 --> 00:04:42.718
 Phase one builds the twelve hubs
 and the consolidated content tier.
 
 74
-00:04:21.718 --> 00:04:25.511
+00:04:42.718 --> 00:04:46.511
 Phase two moves offices in
 waves at their MPLS renewals,
 
 75
-00:04:25.511 --> 00:04:27.655
+00:04:46.511 --> 00:04:48.655
 so each wave helps fund the next.
 
 76
-00:04:27.655 --> 00:04:33.368
+00:04:48.655 --> 00:04:54.368
 Phase three adds Microsoft 365 path
 optimization and caching at the hubs.
 
 77
-00:04:33.368 --> 00:04:38.599
+00:04:54.368 --> 00:04:59.599
 Meanwhile, a federal directive requires
 end-of-support edge devices to be replaced
 
 78
-00:04:38.599 --> 00:04:39.887
+00:04:59.599 --> 00:05:00.887
 by about August 2027,
 
 79
-00:04:39.887 --> 00:04:43.905
+00:05:00.887 --> 00:05:04.905
 so write the target's requirements
 into those replacements now.
 
 80
-00:04:43.905 --> 00:04:46.080
+00:05:04.905 --> 00:05:07.080
 And the finish line isn't a date.
 
 81
-00:04:46.830 --> 00:04:50.905
+00:05:10.830 --> 00:05:14.905
 The twenty-four-server tier is an
 interim state, not a new floor.
 
 82
-00:04:50.905 --> 00:04:53.645
+00:05:14.905 --> 00:05:17.645
 The last one retires
 when five gates close:
 
 83
-00:04:53.645 --> 00:04:59.125
+00:05:17.645 --> 00:05:23.125
 application and update content have moved
 to Intune, imaging has moved to Autopilot,
 
 84
-00:04:59.125 --> 00:05:01.474
+00:05:23.125 --> 00:05:25.474
 no cache still runs on that hardware,
 
 85
-00:05:01.474 --> 00:05:05.780
+00:05:25.474 --> 00:05:29.780
 and no compliance evidence still
 comes from the old site database.
 
 86
-00:05:05.780 --> 00:05:10.505
+00:05:29.780 --> 00:05:34.505
 An estate that closes them in month
 thirty retires the tier in month thirty.
 
 87
-00:05:10.505 --> 00:05:12.846
+00:05:34.505 --> 00:05:36.846
 One that hasn't by month sixty keeps it,
 
 88
-00:05:12.846 --> 00:05:16.018
+00:05:36.846 --> 00:05:40.018
 rather than forcing a
 cutover against an open gate.
 
 89
-00:05:16.018 --> 00:05:18.040
+00:05:40.018 --> 00:05:42.040
 Next, what could go wrong.
 
 90
-00:05:18.790 --> 00:05:20.502
+00:05:45.790 --> 00:05:47.502
 Three risks are rated high.
 
 91
-00:05:20.502 --> 00:05:24.308
+00:05:47.502 --> 00:05:51.308
 Accreditation could slip; a
 twelve-month slip cuts the five-year
 
 92
-00:05:24.308 --> 00:05:28.114
+00:05:51.308 --> 00:05:55.114
 position to about one point eight
 million, but the case survives.
 
 93
-00:05:28.114 --> 00:05:30.448
+00:05:55.114 --> 00:05:57.448
 MPLS might cost less than assumed,
 
 94
-00:05:30.448 --> 00:05:34.115
+00:05:57.448 --> 00:06:01.115
 which moves the argument
 from savings to capability.
 
 95
-00:05:34.115 --> 00:05:38.590
+00:06:01.115 --> 00:06:05.590
 And telemetry could lag cutover, which
 is why it gates every retirement.
 
 96
-00:05:38.590 --> 00:05:44.202
+00:06:05.590 --> 00:06:11.202
 Behind those sit ten assumptions; check
 MPLS cost and the endpoint count first.
 
 97
-00:05:44.202 --> 00:05:48.975
+00:06:11.202 --> 00:06:15.975
 The book is plain about it: the architecture
 holds across the plausible range,
 
 98
-00:05:48.975 --> 00:05:53.152
+00:06:15.975 --> 00:06:20.152
 but the financial case holds only
 once the MPLS number is confirmed.
 
 99
-00:05:53.152 --> 00:05:54.850
+00:06:20.152 --> 00:06:21.850
 So here's the ask.
 
 100
-00:05:55.600 --> 00:05:57.225
+00:06:25.600 --> 00:06:27.225
 The ask has three parts.
 
 101
-00:05:57.225 --> 00:06:01.290
+00:06:27.225 --> 00:06:31.290
 Defer the fifty-million-dollar
 refresh pending a network assessment,
 
 102
-00:06:01.290 --> 00:06:05.775
+00:06:31.290 --> 00:06:35.775
 and have the sponsor say whether that
 figure is acquisition or five-year cost.
 
 103
-00:06:05.775 --> 00:06:09.137
+00:06:35.775 --> 00:06:39.137
 Validate the assumptions,
 starting with MPLS.
 
 104
-00:06:09.137 --> 00:06:13.625
+00:06:39.137 --> 00:06:43.625
 And fund Phase zero, about one
 point eight million over six months,
 
 105
-00:06:13.625 --> 00:06:16.367
+00:06:43.625 --> 00:06:46.367
 with a named owner and a clear first gate:
 
 106
-00:06:16.367 --> 00:06:21.601
+00:06:46.367 --> 00:06:51.601
 authorization for regional breakout, a
 stable pilot, and real per-site costs.
 
 107
-00:06:21.601 --> 00:06:26.838
+00:06:51.601 --> 00:06:56.838
 Before scaling out, prove it with a
 paired-branch study: two comparable offices,
 
 108
-00:06:26.838 --> 00:06:30.625
+00:06:56.838 --> 00:07:00.625
 measured for thirty days, a
 change at one, thirty more days.
 
 109
-00:06:30.625 --> 00:06:33.340
+00:07:00.625 --> 00:07:03.340
 That difference is your
 business-case number.
 
 110
-00:06:34.090 --> 00:06:38.412
+00:07:07.090 --> 00:07:11.412
 To go deeper, Book 09, Chapter
 11 has the full worked case,
 
 111
-00:06:38.412 --> 00:06:41.390
+00:07:11.412 --> 00:07:14.390
 with every assumption and its source.
 
 112
-00:06:41.390 --> 00:06:46.752
+00:07:14.390 --> 00:07:19.752
 Chapter 05 covers what SD-WAN can and
 can't do, and how to secure the controller.
 
 113
-00:06:46.752 --> 00:06:52.350
+00:07:19.752 --> 00:07:25.350
 Chapter 03 sets out the TIC 3.0
 requirements, Chapter 10 the long interim and
 
 114
-00:06:52.350 --> 00:06:57.103
+00:07:25.350 --> 00:07:30.103
 the refresh fork, and Chapter 13 the
 sequencing and the paired-branch study.
 
 115
-00:06:57.103 --> 00:07:01.752
+00:07:30.103 --> 00:07:34.752
 The Book 09 executive briefing
 covers the wider network decisions.
 
 116
-00:07:01.752 --> 00:07:04.839
+00:07:34.752 --> 00:07:37.839
 Every figure here is a planning
 estimate from the book.
 
 117
-00:07:04.839 --> 00:07:05.670
+00:07:37.839 --> 00:07:38.670
 Thank you.

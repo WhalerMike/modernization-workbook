@@ -53,738 +53,738 @@ Let's start with how SQL
 Server decides who you are.
 
 12
-00:00:37.220 --> 00:00:41.245
+00:00:40.220 --> 00:00:44.245
 The short answer is that SQL Server
 trusts whatever Windows tells it.
 
 13
-00:00:41.245 --> 00:00:45.865
+00:00:44.245 --> 00:00:48.865
 A connection reaches the engine
 in one of four ways: Kerberos,
 
 14
-00:00:45.865 --> 00:00:50.208
+00:00:48.865 --> 00:00:53.208
 NTLM, a SQL login with a
 password, or Entra authentication.
 
 15
-00:00:50.208 --> 00:00:53.382
+00:00:53.208 --> 00:00:56.382
 Only Entra is ever seen
 by Conditional Access.
 
 16
-00:00:53.382 --> 00:00:55.407
+00:00:56.382 --> 00:00:58.407
 Three facts make this hard to see.
 
 17
-00:00:55.407 --> 00:00:58.829
+00:00:58.407 --> 00:01:01.829
 You can't turn Windows
 Authentication off in SQL Server,
 
 18
-00:00:58.829 --> 00:01:01.208
+00:01:01.829 --> 00:01:04.208
 because the engine hands it to Windows.
 
 19
-00:01:01.208 --> 00:01:04.834
+00:01:04.208 --> 00:01:07.834
 The protocol a connection used
 isn't written to any log;
 
 20
-00:01:04.834 --> 00:01:07.171
+00:01:07.834 --> 00:01:10.171
 you only see it in a live system view.
 
 21
-00:01:07.171 --> 00:01:13.270
+00:01:10.171 --> 00:01:16.270
 And NTLM shows up silently, for example
 when a service principal name is missing.
 
 22
-00:01:13.270 --> 00:01:15.170
+00:01:16.270 --> 00:01:18.170
 The book is fair about one thing.
 
 23
-00:01:15.170 --> 00:01:19.420
+00:01:18.170 --> 00:01:22.420
 Windows Authentication was good
 engineering for a domain-joined estate.
 
 24
-00:01:19.420 --> 00:01:24.195
+00:01:22.420 --> 00:01:27.195
 The case for replacing it is that that
 world is ending, not that it was a mistake.
 
 25
-00:01:24.195 --> 00:01:26.050
+00:01:27.195 --> 00:01:29.050
 So what's pushing it to end?
 
 26
-00:01:26.800 --> 00:01:29.400
+00:01:32.800 --> 00:01:35.400
 Three drivers make the change unavoidable.
 
 27
-00:01:29.400 --> 00:01:32.413
+00:01:35.400 --> 00:01:38.413
 First, NTLM is on its way out.
 
 28
-00:01:32.413 --> 00:01:38.374
+00:01:38.413 --> 00:01:44.374
 Microsoft deprecated it in 2024 and
 plans to disable it by default someday,
 
 29
-00:01:38.374 --> 00:01:44.337
+00:01:44.374 --> 00:01:50.337
 and the program sets its own backstop,
 April 1, 2027, for the domain-wide block.
 
 30
-00:01:44.337 --> 00:01:46.224
+00:01:50.337 --> 00:01:52.224
 Second, Zero Trust.
 
 31
-00:01:46.224 --> 00:01:51.043
+00:01:52.224 --> 00:01:57.043
 Federal policy puts phishing-resistant
 MFA and the Entra identity plane
 
 32
-00:01:51.043 --> 00:01:55.625
+00:01:57.043 --> 00:02:01.625
 in front of human access, and Windows
 Authentication goes around both.
 
 33
-00:01:55.625 --> 00:01:59.024
+00:02:01.625 --> 00:02:05.024
 Third, the directory
 modernization in Book 02 ends the
 
 34
-00:01:59.024 --> 00:02:02.575
+00:02:05.024 --> 00:02:08.575
 domain-joined world that the
 service accounts depend on.
 
 35
-00:02:02.575 --> 00:02:05.700
+00:02:08.575 --> 00:02:11.700
 There's no external NTLM deadline.
 
 36
-00:02:05.700 --> 00:02:11.402
+00:02:11.700 --> 00:02:17.402
 The real dates are support dates for older
 SQL Server and Windows Server versions,
 
 37
-00:02:11.402 --> 00:02:15.175
+00:02:17.402 --> 00:02:21.175
 running through 2026 and 2027,
 and the slide lists them.
 
 38
-00:02:15.175 --> 00:02:20.016
+00:02:21.175 --> 00:02:26.016
 SQL Server 2014 and 2017 can't
 use Entra authentication at all,
 
 39
-00:02:20.016 --> 00:02:24.763
+00:02:26.016 --> 00:02:30.763
 so they only get to the closed
 state by upgrade or retirement.
 
 40
-00:02:24.763 --> 00:02:27.390
+00:02:30.763 --> 00:02:33.390
 The work starts with the estate itself.
 
 41
-00:02:28.140 --> 00:02:32.578
+00:02:37.140 --> 00:02:41.578
 Before touching authentication, every
 instance gets one of three verdicts.
 
 42
-00:02:32.578 --> 00:02:36.802
+00:02:41.578 --> 00:02:45.802
 Retain it, if it's supported or can
 be upgraded and carries real work.
 
 43
-00:02:36.802 --> 00:02:39.295
+00:02:45.802 --> 00:02:48.295
 Consolidate it, moving its workload to a
 
 44
-00:02:39.295 --> 00:02:42.241
+00:02:48.295 --> 00:02:51.241
 target platform and
 retiring the old instance.
 
 45
-00:02:42.241 --> 00:02:45.352
+00:02:51.241 --> 00:02:54.352
 Or retire it, if there's
 no live workload left.
 
 46
-00:02:45.352 --> 00:02:49.265
+00:02:54.352 --> 00:02:58.265
 The inventory has to cover the
 whole forest, not one domain.
 
 47
-00:02:49.265 --> 00:02:52.827
+00:02:58.265 --> 00:03:01.827
 Usage, versions and
 dependencies are read together.
 
 48
-00:02:52.827 --> 00:02:57.207
+00:03:01.827 --> 00:03:06.207
 And the book warns that usage counters
 reset when SQL Server restarts,
 
 49
-00:02:57.207 --> 00:03:00.453
+00:03:06.207 --> 00:03:09.453
 so they can't prove an instance
 is unused on their own.
 
 50
-00:03:00.453 --> 00:03:05.198
+00:03:09.453 --> 00:03:14.198
 The assessment uses the migration
 tooling in SQL Server Management Studio,
 
 51
-00:03:05.198 --> 00:03:09.040
+00:03:14.198 --> 00:03:18.040
 because the older Data Migration
 Assistant has been retired.
 
 52
-00:03:09.040 --> 00:03:11.040
+00:03:18.040 --> 00:03:20.040
 This is the gate for the whole program.
 
 53
-00:03:11.040 --> 00:03:13.519
+00:03:20.040 --> 00:03:22.519
 Migrating an instance
 that should have been
 
 54
-00:03:13.519 --> 00:03:16.265
+00:03:22.519 --> 00:03:25.265
 retired is the most expensive
 mistake it can make.
 
 55
-00:03:16.265 --> 00:03:20.250
+00:03:25.265 --> 00:03:29.250
 Once we know what stays, each
 instance needs a cloud identity.
 
 56
-00:03:21.000 --> 00:03:23.844
+00:03:33.000 --> 00:03:35.844
 What replaces the domain
 join is Azure Arc,
 
 57
-00:03:23.844 --> 00:03:26.850
+00:03:35.844 --> 00:03:38.850
 which gives each instance
 an Entra identity.
 
 58
-00:03:26.850 --> 00:03:30.571
+00:03:38.850 --> 00:03:42.571
 On SQL Server 2025, that's
 a managed identity;
 
 59
-00:03:30.571 --> 00:03:34.912
+00:03:42.571 --> 00:03:46.912
 on 2022, it's an app
 registration with a certificate.
 
 60
-00:03:34.912 --> 00:03:38.213
+00:03:46.912 --> 00:03:50.213
 The limits matter, and the
 old documents missed several.
 
 61
-00:03:38.213 --> 00:03:42.512
+00:03:50.213 --> 00:03:54.512
 Failover cluster instances can't
 use Entra authentication at all.
 
 62
-00:03:42.512 --> 00:03:47.695
+00:03:54.512 --> 00:03:59.695
 Entra authentication through Arc isn't
 available in the US Government Virginia
 
 63
-00:03:47.695 --> 00:03:52.337
+00:03:59.695 --> 00:04:04.337
 region, so a GCC tenant uses a commercial
 subscription in the same tenant.
 
 64
-00:03:52.337 --> 00:03:56.999
+00:04:04.337 --> 00:04:08.999
 The old runbook's government-cloud setup
 would never have produced Entra logins.
 
 65
-00:03:56.999 --> 00:03:59.062
+00:04:08.999 --> 00:04:11.062
 FIDO2 isn't supported here.
 
 66
-00:03:59.062 --> 00:04:03.044
+00:04:11.062 --> 00:04:15.044
 And granting the instance its Graph
 permissions takes a privileged
 
 67
-00:04:03.044 --> 00:04:06.187
+00:04:15.044 --> 00:04:18.187
 role administrator, so that
 step can't sit with the DBAs.
 
 68
-00:04:06.187 --> 00:04:10.959
+00:04:18.187 --> 00:04:22.959
 Arc isn't the only path, but it wins
 because it also brings inventory,
 
 69
-00:04:10.959 --> 00:04:15.037
+00:04:22.959 --> 00:04:27.037
 policy, updates and Defender
 for the host, which is Book 05.
 
 70
-00:04:15.037 --> 00:04:17.630
+00:04:27.037 --> 00:04:29.630
 Next, the logins themselves.
 
 71
-00:04:18.380 --> 00:04:23.818
+00:04:33.380 --> 00:04:38.818
 The logins move to Entra principals, and
 they move in parallel, never in one jump.
 
 72
-00:04:23.818 --> 00:04:27.668
+00:04:38.818 --> 00:04:42.668
 People become Entra users,
 ideally granted through groups,
 
 73
-00:04:27.668 --> 00:04:31.755
+00:04:42.668 --> 00:04:46.755
 so they pick up phishing-resistant
 MFA and Conditional Access.
 
 74
-00:04:31.755 --> 00:04:34.350
+00:04:46.755 --> 00:04:49.350
 Windows groups become Entra groups,
 
 75
-00:04:34.350 --> 00:04:38.155
+00:04:49.350 --> 00:04:53.155
 with membership driven by
 HR attributes from Book 03.
 
 76
-00:04:38.155 --> 00:04:41.843
+00:04:53.155 --> 00:04:56.843
 Applications become service
 principals and managed identities,
 
 77
-00:04:41.843 --> 00:04:46.268
+00:04:56.843 --> 00:05:01.268
 and the book is clear that Conditional
 Access doesn't cover managed identities.
 
 78
-00:04:46.268 --> 00:04:48.056
+00:05:01.268 --> 00:05:03.056
 The parallel run is simple.
 
 79
-00:04:48.056 --> 00:04:52.580
+00:05:03.056 --> 00:05:07.580
 Create the Entra user beside the
 Windows user and copy its permissions.
 
 80
-00:04:52.580 --> 00:04:56.416
+00:05:07.580 --> 00:05:11.416
 Keep both until the audit shows
 no remaining Windows sessions,
 
 81
-00:04:56.416 --> 00:04:57.892
+00:05:11.416 --> 00:05:12.892
 then disable the old one.
 
 82
-00:04:57.892 --> 00:05:01.191
+00:05:12.892 --> 00:05:16.191
 The old runbook had a
 one-step conversion shortcut,
 
 83
-00:05:01.191 --> 00:05:05.355
+00:05:16.191 --> 00:05:20.355
 but it only works on Azure SQL
 Managed Instance, not on SQL Server.
 
 84
-00:05:05.355 --> 00:05:09.508
+00:05:20.355 --> 00:05:24.508
 And one trap: when you change the
 instance's Entra administrator,
 
 85
-00:05:09.508 --> 00:05:12.642
+00:05:24.508 --> 00:05:27.642
 the old one stays sysadmin
 until a DBA removes it.
 
 86
-00:05:12.642 --> 00:05:14.430
+00:05:27.642 --> 00:05:29.430
 So who does all this?
 
 87
-00:05:15.180 --> 00:05:18.330
+00:05:33.180 --> 00:05:36.330
 The book's ownership chapter
 separates deciding from doing.
 
 88
-00:05:18.330 --> 00:05:22.181
+00:05:36.330 --> 00:05:40.181
 On the deciding side, the CIO
 and data leadership decide
 
 89
-00:05:22.181 --> 00:05:26.367
+00:05:40.181 --> 00:05:44.367
 whether each instance is
 retained, consolidated or retired.
 
 90
-00:05:26.367 --> 00:05:30.269
+00:05:44.367 --> 00:05:48.269
 The CISO, ISSO and
 authorizing official decide
 
 91
-00:05:30.269 --> 00:05:34.755
+00:05:48.269 --> 00:05:52.755
 exceptions for NTLM and SQL
 logins, and sign off closure.
 
 92
-00:05:34.755 --> 00:05:39.018
+00:05:52.755 --> 00:05:57.018
 Application and data owners pick
 each application's cutover window.
 
 93
-00:05:39.018 --> 00:05:42.780
+00:05:57.018 --> 00:06:00.780
 On the doing side, the data
 platform team runs logins,
 
 94
-00:05:42.780 --> 00:05:45.405
+00:06:00.780 --> 00:06:03.405
 roles, the audit and the parallel run.
 
 95
-00:05:45.405 --> 00:05:48.776
+00:06:03.405 --> 00:06:06.776
 The identity team creates
 Entra logins and groups,
 
 96
-00:05:48.776 --> 00:05:51.505
+00:06:06.776 --> 00:06:09.505
 and grants the permissions the DBAs can't.
 
 97
-00:05:51.505 --> 00:05:53.864
+00:06:09.505 --> 00:06:11.864
 The server team onboards hosts to Arc.
 
 98
-00:05:53.864 --> 00:05:57.593
+00:06:11.864 --> 00:06:15.593
 Developers, the help desk and
 security operations support.
 
 99
-00:05:57.593 --> 00:05:59.755
+00:06:15.593 --> 00:06:17.755
 And watch for hidden administrators.
 
 100
-00:05:59.755 --> 00:06:04.846
+00:06:17.755 --> 00:06:22.846
 Someone with contributor rights on an Arc
 server is, in effect, an administrator
 
 101
-00:06:04.846 --> 00:06:09.243
+00:06:22.846 --> 00:06:27.243
 of SQL Server on that host, and can
 even switch password logins back on.
 
 102
-00:06:09.243 --> 00:06:11.905
+00:06:27.243 --> 00:06:29.905
 Azure roles need the
 same care as sysadmin.
 
 103
-00:06:11.905 --> 00:06:14.520
+00:06:29.905 --> 00:06:32.520
 Now, the NTLM plan.
 
 104
-00:06:15.270 --> 00:06:18.458
+00:06:36.270 --> 00:06:39.458
 NTLM is eliminated in three phases.
 
 105
-00:06:18.458 --> 00:06:23.732
+00:06:39.458 --> 00:06:44.732
 First discover, with the authentication
 audit and Windows NTLM logging.
 
 106
-00:06:23.732 --> 00:06:26.732
+00:06:44.732 --> 00:06:47.732
 Then restrict: fix
 service principal names,
 
 107
-00:06:26.732 --> 00:06:30.982
+00:06:47.732 --> 00:06:51.982
 move connections to Kerberos or
 Entra, and migrate what's left.
 
 108
-00:06:30.982 --> 00:06:36.769
+00:06:51.982 --> 00:06:57.769
 Then eliminate, with the domain-wide block
 on the program's April 2027 backstop.
 
 109
-00:06:36.769 --> 00:06:42.874
+00:06:57.769 --> 00:07:03.874
 The highest LAN Manager authentication
 level still accepts NTLM version two,
 
 110
-00:06:42.874 --> 00:06:48.133
+00:07:03.874 --> 00:07:09.133
 so it isn't an NTLM block; the real
 block is the Restrict NTLM policies.
 
 111
-00:06:48.133 --> 00:06:52.501
+00:07:09.133 --> 00:07:13.501
 Their exceptions are server-name lists
 on clients and domain controllers,
 
 112
-00:06:52.501 --> 00:06:54.896
+00:07:13.501 --> 00:07:15.896
 not the program's own exception register.
 
 113
-00:06:54.896 --> 00:06:58.151
+00:07:15.896 --> 00:07:19.151
 And Microsoft's upcoming NTLM change for
 
 114
-00:06:58.151 --> 00:07:01.695
+00:07:19.151 --> 00:07:22.695
 Wi-Fi and VPN doesn't
 touch SQL Server traffic.
 
 115
-00:07:01.695 --> 00:07:05.708
+00:07:22.695 --> 00:07:26.708
 The good news is that the fastest
 exit is the migration itself.
 
 116
-00:07:05.708 --> 00:07:10.469
+00:07:26.708 --> 00:07:31.469
 An instance whose logins have moved
 to Entra isn't affected by the block,
 
 117
-00:07:10.469 --> 00:07:14.344
+00:07:31.469 --> 00:07:35.344
 so login migration and NTLM
 elimination are the same work.
 
 118
-00:07:14.344 --> 00:07:17.030
+00:07:35.344 --> 00:07:38.030
 Then access and applications follow.
 
 119
-00:07:17.780 --> 00:07:21.475
+00:07:41.780 --> 00:07:45.475
 With the logins moved, access
 is granted by attribute,
 
 120
-00:07:21.475 --> 00:07:23.743
+00:07:45.475 --> 00:07:47.743
 and applications move by driver.
 
 121
-00:07:23.743 --> 00:07:27.902
+00:07:47.743 --> 00:07:51.902
 On access, dynamic Entra
 groups driven by HR attributes
 
 122
-00:07:27.902 --> 00:07:31.880
+00:07:51.902 --> 00:07:55.880
 grant database access, so no
 DBA hands it out manually.
 
 123
-00:07:31.880 --> 00:07:36.742
+00:07:55.880 --> 00:08:00.742
 Privileged database roles go through
 just-in-time elevation from Book 04,
 
 124
-00:07:36.742 --> 00:07:39.930
+00:08:00.742 --> 00:08:03.930
 and reviews cover the
 groups, not just the logins.
 
 125
-00:07:39.930 --> 00:07:43.586
+00:08:03.930 --> 00:08:07.586
 On applications, the book
 sorts them into four classes,
 
 126
-00:07:43.586 --> 00:07:45.780
+00:08:07.586 --> 00:08:09.780
 each with its own migration path.
 
 127
-00:07:45.780 --> 00:07:49.300
+00:08:09.780 --> 00:08:13.300
 Connection strings name a
 specific Entra authentication
 
 128
-00:07:49.300 --> 00:07:52.317
+00:08:13.300 --> 00:08:16.317
 mode in production, rather
 than a catch-all default.
 
 129
-00:07:52.317 --> 00:07:55.229
+00:08:16.317 --> 00:08:19.229
 All the common database
 drivers support Entra,
 
 130
-00:07:55.229 --> 00:07:57.917
+00:08:19.229 --> 00:08:21.917
 and the book has a table
 of minimum versions.
 
 131
-00:07:57.917 --> 00:08:00.143
+00:08:21.917 --> 00:08:24.143
 The last mile is the connection string.
 
 132
-00:08:00.143 --> 00:08:05.455
+00:08:24.143 --> 00:08:29.455
 Any application that still says Integrated
 Security keeps the Windows path alive.
 
 133
-00:08:05.455 --> 00:08:09.692
+00:08:29.455 --> 00:08:33.692
 So the application inventory is
 part of closure, not a follow-up.
 
 134
-00:08:09.692 --> 00:08:12.290
+00:08:33.692 --> 00:08:36.290
 And closure is the last big idea.
 
 135
-00:08:13.040 --> 00:08:16.697
+00:08:40.040 --> 00:08:43.697
 The book's last idea is that a
 transformation doesn't finish;
 
 136
-00:08:16.697 --> 00:08:20.652
+00:08:43.697 --> 00:08:47.652
 it reaches a posture, and a posture
 is something you keep proving.
 
 137
-00:08:20.652 --> 00:08:23.677
+00:08:47.652 --> 00:08:50.677
 The closed state has five
 conditions that hold together.
 
 138
-00:08:23.677 --> 00:08:29.034
+00:08:50.677 --> 00:08:56.034
 Every in-scope instance uses Entra-only
 authentication, SQL logins exist
 
 139
-00:08:29.034 --> 00:08:34.653
+00:08:56.034 --> 00:09:01.653
 only as approved exceptions, and the
 continuous audit shows no NTLM sessions.
 
 140
-00:08:34.653 --> 00:08:37.988
+00:09:01.653 --> 00:09:04.988
 Any drift, like someone
 switching back to mixed mode,
 
 141
-00:08:37.988 --> 00:08:40.315
+00:09:04.988 --> 00:09:07.315
 is caught and treated as a violation.
 
 142
-00:08:40.315 --> 00:08:44.140
+00:09:07.315 --> 00:09:11.140
 And the evidence is regenerated
 from the instance's own audit,
 
 143
-00:08:44.140 --> 00:08:45.865
+00:09:11.140 --> 00:09:12.865
 not assembled into a binder.
 
 144
-00:08:45.865 --> 00:08:48.102
+00:09:12.865 --> 00:09:15.102
 One correction matters for assessors.
 
 145
-00:08:48.102 --> 00:08:52.848
+00:09:15.102 --> 00:09:19.848
 Entra sign-in logs can't prove per-instance
 access or the absence of NTLM,
 
 146
-00:08:52.848 --> 00:08:56.065
+00:09:19.848 --> 00:09:23.065
 so the proof has to come
 from the instance itself.
 
 147
-00:08:56.065 --> 00:08:58.265
+00:09:23.065 --> 00:09:25.265
 And there's a certificate
 layer underneath.
 
 148
-00:08:58.265 --> 00:09:03.954
+00:09:25.265 --> 00:09:30.954
 SQL Server's TLS certificates usually
 still come from AD Certificate Services,
 
 149
-00:09:03.954 --> 00:09:06.453
+00:09:30.954 --> 00:09:33.453
 and Cloud PKI can't issue to servers.
 
 150
-00:09:06.453 --> 00:09:09.502
+00:09:33.453 --> 00:09:36.502
 So the server certificate
 issuer is its own decision.
 
 151
-00:09:09.502 --> 00:09:11.420
+00:09:36.502 --> 00:09:38.420
 That leads to the asks.
 
 152
-00:09:12.170 --> 00:09:13.395
+00:09:42.170 --> 00:09:43.395
 So, four asks.
 
 153
-00:09:13.395 --> 00:09:18.038
+00:09:43.395 --> 00:09:48.038
 First, run the inventory and the
 gate: a retain, consolidate or retire
 
 154
-00:09:18.038 --> 00:09:22.682
+00:09:48.038 --> 00:09:52.682
 verdict for every instance before
 any authentication work starts.
 
 155
-00:09:22.682 --> 00:09:27.693
+00:09:52.682 --> 00:09:57.693
 Second, fund the Arc bridge, which
 means a commercial subscription
 
 156
-00:09:27.693 --> 00:09:32.157
+00:09:57.693 --> 00:10:02.157
 in the GCC tenant, with SQL Server
 2022 or later as the target.
 
 157
-00:09:32.157 --> 00:09:37.624
+00:10:02.157 --> 00:10:07.624
 Third, plan for the support dates,
 upgrading or retiring the 2014,
 
 158
-00:09:37.624 --> 00:09:44.121
+00:10:07.624 --> 00:10:14.121
 2016 and 2017 instances on time, because
 they can't use Entra authentication.
 
 159
-00:09:44.121 --> 00:09:47.740
+00:10:14.121 --> 00:10:17.740
 And fourth, decide the
 certificate issuer for server TLS,
 
 160
-00:09:47.740 --> 00:09:52.208
+00:10:17.740 --> 00:10:22.208
 because the AD Certificate Services
 dependency needs its own answer.
 
 161
-00:09:52.208 --> 00:09:56.132
+00:10:22.208 --> 00:10:26.132
 The database is where legacy
 authentication hides longest.
 
 162
-00:09:56.132 --> 00:09:59.810
+00:10:26.132 --> 00:10:29.810
 Bringing it into Entra is what
 finally lets Conditional Access,
 
 163
-00:09:59.810 --> 00:10:03.695
+00:10:29.810 --> 00:10:33.695
 phishing-resistant sign-in and
 continuous evidence reach the data.
 
 164
-00:10:03.695 --> 00:10:09.545
+00:10:33.695 --> 00:10:39.545
 Book 06 has the narrative and ten runbooks,
 with every external claim footnoted.
 
 165
-00:10:09.545 --> 00:10:15.495
+00:10:39.545 --> 00:10:45.495
 Book 05 covers Arc on servers, and Book
 04 the access policy it plugs into.
 
 166
-00:10:15.495 --> 00:10:16.320
+00:10:45.495 --> 00:10:46.320
 Thank you.

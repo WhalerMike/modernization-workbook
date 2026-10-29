@@ -56,1466 +56,1466 @@ so the output holds up.
 Let's start with why this matters.
 
 13
-00:00:36.760 --> 00:00:38.460
+00:00:39.760 --> 00:00:41.460
 Two incidents make the case.
 
 14
-00:00:38.460 --> 00:00:43.226
+00:00:41.460 --> 00:00:46.226
 In 2023, tokens forged with a provider's
 own stolen signing key read federal
 
 15
-00:00:43.226 --> 00:00:48.222
+00:00:46.226 --> 00:00:51.222
 email for weeks, and every system that
 checked those tokens said they were fine.
 
 16
-00:00:48.222 --> 00:00:51.747
+00:00:51.222 --> 00:00:54.747
 What caught it was one department's
 own logging, not the provider.
 
 17
-00:00:51.747 --> 00:00:53.847
+00:00:54.747 --> 00:00:56.847
 Then there's the layer beneath the guest.
 
 18
-00:00:53.847 --> 00:00:58.323
+00:00:56.847 --> 00:01:01.323
 Ransomware crews went after hypervisors
 directly, and one flaw handed full
 
 19
-00:00:58.323 --> 00:01:02.585
+00:01:01.323 --> 00:01:05.585
 control to anyone who could create a
 directory group with the right name.
 
 20
-00:01:02.585 --> 00:01:06.322
+00:01:05.585 --> 00:01:09.322
 The security tools inside each
 virtual machine never saw it.
 
 21
-00:01:06.322 --> 00:01:10.298
+00:01:09.322 --> 00:01:13.298
 In both cases, the failure sat
 where no single tool was looking.
 
 22
-00:01:10.298 --> 00:01:12.650
+00:01:13.298 --> 00:01:15.650
 That's what Module 1 builds from.
 
 23
-00:01:13.400 --> 00:01:15.313
+00:01:19.400 --> 00:01:21.313
 Module 1 sets the target.
 
 24
-00:01:15.313 --> 00:01:18.942
+00:01:21.313 --> 00:01:24.942
 We'll look at what the federal
 guidance actually says about scope,
 
 25
-00:01:18.942 --> 00:01:21.967
+00:01:24.942 --> 00:01:27.967
 why governance is the
 capability programs underfund,
 
 26
-00:01:21.967 --> 00:01:24.925
+00:01:27.967 --> 00:01:30.925
 and which documents are
 binding and which are guides.
 
 27
-00:01:24.925 --> 00:01:28.580
+00:01:30.925 --> 00:01:34.580
 Getting that straight is how you
 scope an assessment honestly.
 
 28
-00:01:29.330 --> 00:01:30.717
+00:01:38.330 --> 00:01:39.717
 Here's the core argument.
 
 29
-00:01:30.717 --> 00:01:35.025
+00:01:39.717 --> 00:01:44.025
 Every federal Zero Trust document
 describes the enterprise:
 
 30
-00:01:35.025 --> 00:01:40.093
+00:01:44.025 --> 00:01:49.093
 all identities, all devices, every
 network, cloud and virtualized estate.
 
 31
-00:01:40.093 --> 00:01:42.217
+00:01:49.093 --> 00:01:51.217
 None of them is scoped to a product.
 
 32
-00:01:42.217 --> 00:01:47.188
+00:01:51.217 --> 00:01:56.188
 But most agencies assess the network, the
 clouds and the hypervisors separately,
 
 33
-00:01:47.188 --> 00:01:51.193
+00:01:56.188 --> 00:02:00.193
 each with its own inventory, and
 then staple the reports together.
 
 34
-00:01:51.193 --> 00:01:55.261
+00:02:00.193 --> 00:02:04.261
 The same server shows up as three
 different objects to three assessors,
 
 35
-00:01:55.261 --> 00:01:57.881
+00:02:04.261 --> 00:02:06.881
 so the total doesn't
 measure one architecture.
 
 36
-00:01:57.881 --> 00:02:00.418
+00:02:06.881 --> 00:02:09.418
 A scanner can confirm
 that things are unified.
 
 37
-00:02:00.418 --> 00:02:01.705
+00:02:09.418 --> 00:02:10.705
 It can't unify them.
 
 38
-00:02:01.705 --> 00:02:06.520
+00:02:10.705 --> 00:02:15.520
 Next, why programs stall even after
 buying a tool for every pillar.
 
 39
-00:02:07.270 --> 00:02:11.658
+00:02:19.270 --> 00:02:23.658
 The maturity model looks like five
 pillars, so programs buy five tools.
 
 40
-00:02:11.658 --> 00:02:15.968
+00:02:23.658 --> 00:02:27.968
 But underneath sit three capabilities
 that run the pillars together,
 
 41
-00:02:15.968 --> 00:02:18.346
+00:02:27.968 --> 00:02:30.346
 and governance is the one nobody sells.
 
 42
-00:02:18.346 --> 00:02:19.945
+00:02:30.346 --> 00:02:31.945
 That's why programs stall.
 
 43
-00:02:19.945 --> 00:02:24.590
+00:02:31.945 --> 00:02:36.590
 Pillars get administered but not
 governed, evidence lives in each tool's
 
 44
-00:02:24.590 --> 00:02:29.158
+00:02:36.590 --> 00:02:41.158
 format and can't be re-run, and drift
 turns up only when an auditor finds it.
 
 45
-00:02:29.158 --> 00:02:34.058
+00:02:41.158 --> 00:02:46.058
 The model's own text says advanced maturity
 means coordination across pillars.
 
 46
-00:02:34.058 --> 00:02:36.807
+00:02:46.058 --> 00:02:48.807
 Another per-pillar tool
 doesn't move that needle.
 
 47
-00:02:36.807 --> 00:02:37.732
+00:02:48.807 --> 00:02:49.732
 So what does?
 
 48
-00:02:37.732 --> 00:02:42.060
+00:02:49.732 --> 00:02:54.060
 Five governance principles, starting
 with identity and privilege.
 
 49
-00:02:42.810 --> 00:02:44.110
+00:02:57.810 --> 00:02:59.110
 First, identity.
 
 50
-00:02:44.110 --> 00:02:48.542
+00:02:59.110 --> 00:03:03.542
 The program makes identity the root
 that everything else is named through,
 
 51
-00:02:48.542 --> 00:02:50.972
+00:03:03.542 --> 00:03:05.972
 but that's a naming
 claim, not a trust claim.
 
 52
-00:02:50.972 --> 00:02:53.967
+00:03:05.972 --> 00:03:08.967
 The 2023 forged tokens passed every check,
 
 53
-00:02:53.967 --> 00:02:58.073
+00:03:08.967 --> 00:03:13.073
 so the identity plane is the
 highest-value target you have.
 
 54
-00:02:58.073 --> 00:03:00.657
+00:03:13.073 --> 00:03:15.657
 That means sessions
 you can revoke quickly,
 
 55
-00:03:00.657 --> 00:03:04.247
+00:03:15.657 --> 00:03:19.247
 phishing-resistant sign-in, and
 its own monitored log stream.
 
 56
-00:03:04.247 --> 00:03:05.798
+00:03:19.247 --> 00:03:20.798
 Second, privilege.
 
 57
-00:03:05.798 --> 00:03:09.248
+00:03:20.798 --> 00:03:24.248
 Standing admin access is
 the model's lowest stage.
 
 58
-00:03:09.248 --> 00:03:13.682
+00:03:24.248 --> 00:03:28.682
 Make it eligible and time-boxed, keep
 emergency accounts tested and watched,
 
 59
-00:03:13.682 --> 00:03:17.623
+00:03:28.682 --> 00:03:32.623
 and never grant admin rights just
 because a group has a certain name.
 
 60
-00:03:17.623 --> 00:03:22.400
+00:03:32.623 --> 00:03:37.400
 Next, the principles about evidence,
 enforcement and the boundary.
 
 61
-00:03:23.150 --> 00:03:26.099
+00:03:41.150 --> 00:03:44.099
 Principle three: evidence
 has to be something an
 
 62
-00:03:26.099 --> 00:03:28.975
+00:03:44.099 --> 00:03:46.975
 assessor can re-run and
 get the same answer from.
 
 63
-00:03:28.975 --> 00:03:31.800
+00:03:46.975 --> 00:03:49.800
 If it can't be reproduced,
 it's an assertion.
 
 64
-00:03:31.800 --> 00:03:37.425
+00:03:49.800 --> 00:03:55.425
 Principle four: a policy that only produces
 a dashboard is a report, not a control.
 
 65
-00:03:37.425 --> 00:03:40.072
+00:03:55.425 --> 00:03:58.072
 Enforcement can still wait
 for a human approval,
 
 66
-00:03:40.072 --> 00:03:43.712
+00:03:58.072 --> 00:04:01.712
 but something has to happen when
 the running state breaks the rule.
 
 67
-00:03:43.712 --> 00:03:46.450
+00:04:01.712 --> 00:04:04.450
 Principle five: model the cloud boundary.
 
 68
-00:03:46.450 --> 00:03:49.636
+00:04:04.450 --> 00:04:07.636
 Government clouds don't have
 every commercial feature,
 
 69
-00:03:49.636 --> 00:03:51.575
+00:04:07.636 --> 00:04:09.575
 and each mandate stops somewhere.
 
 70
-00:03:51.575 --> 00:03:54.150
+00:04:09.575 --> 00:04:12.150
 Write those gaps down
 as governed findings.
 
 71
-00:03:54.150 --> 00:03:57.500
+00:04:12.150 --> 00:04:15.500
 Now, which documents
 actually set requirements?
 
 72
-00:03:58.250 --> 00:04:01.159
+00:04:19.250 --> 00:04:22.159
 Zero Trust programs
 get argued by citation,
 
 73
-00:04:01.159 --> 00:04:03.825
+00:04:22.159 --> 00:04:24.825
 and most citations don't survive a check.
 
 74
-00:04:03.825 --> 00:04:07.725
+00:04:24.825 --> 00:04:28.725
 Only the executive order and
 the OMB memo are binding.
 
 75
-00:04:07.725 --> 00:04:11.148
+00:04:28.725 --> 00:04:32.148
 CISA's maturity model calls
 itself a general guide,
 
 76
-00:04:11.148 --> 00:04:13.775
+00:04:32.148 --> 00:04:34.775
 and NIST's architecture is guidance too.
 
 77
-00:04:13.775 --> 00:04:16.656
+00:04:34.775 --> 00:04:37.656
 Other instruments bind
 particular surfaces,
 
 78
-00:04:16.656 --> 00:04:19.538
+00:04:37.656 --> 00:04:40.538
 like cloud tenant
 configuration and logging.
 
 79
-00:04:19.538 --> 00:04:22.450
+00:04:40.538 --> 00:04:43.450
 And several popular claims
 simply don't exist.
 
 80
-00:04:22.450 --> 00:04:26.786
+00:04:43.450 --> 00:04:47.786
 There's no required maturity stage,
 no federal Zero Trust score,
 
 81
-00:04:26.786 --> 00:04:29.538
+00:04:47.786 --> 00:04:50.538
 and no rule that you decrypt all traffic.
 
 82
-00:04:29.538 --> 00:04:32.225
+00:04:50.538 --> 00:04:53.225
 Knowing that saves a
 lot of misdirected work.
 
 83
-00:04:32.225 --> 00:04:35.390
+00:04:53.225 --> 00:04:56.390
 So what does the OMB
 memo actually require?
 
 84
-00:04:36.140 --> 00:04:39.393
+00:05:00.140 --> 00:05:03.393
 The OMB memo sets specific
 actions for each pillar,
 
 85
-00:04:39.393 --> 00:04:42.103
+00:05:03.393 --> 00:05:06.103
 and they're more precise
 than people quote.
 
 86
-00:04:42.103 --> 00:04:46.988
+00:05:06.103 --> 00:05:10.988
 Phishing-resistant sign-in has a definition,
 and it means turning off text codes,
 
 87
-00:04:46.988 --> 00:04:50.615
+00:05:10.988 --> 00:05:14.615
 one-time codes and push approvals
 for routine staff access.
 
 88
-00:04:50.615 --> 00:04:54.140
+00:05:14.615 --> 00:05:18.140
 The network action is an
 isolation plan, not a product.
 
 89
-00:04:54.140 --> 00:04:56.915
+00:05:18.140 --> 00:05:20.915
 One device signal is
 the floor, not the goal.
 
 90
-00:04:56.915 --> 00:05:01.759
+00:05:20.915 --> 00:05:25.759
 The deadlines have passed, but nothing
 rescinded the memo, so treat its actions as
 
 91
-00:05:01.759 --> 00:05:06.603
+00:05:25.759 --> 00:05:30.603
 an existing obligation, and read its
 logging line through the newer logging memo.
 
 92
-00:05:06.603 --> 00:05:07.914
+00:05:30.603 --> 00:05:31.914
 That's Module 1.
 
 93
-00:05:07.914 --> 00:05:12.530
+00:05:31.914 --> 00:05:36.530
 Next, the Microsoft cloud baseline
 and the tools that measure it.
 
 94
-00:05:13.280 --> 00:05:15.068
+00:05:40.280 --> 00:05:42.068
 Module 2 gets concrete.
 
 95
-00:05:15.068 --> 00:05:19.505
+00:05:42.068 --> 00:05:46.505
 CISA's cloud directive names exact
 settings and tells you how to prove them.
 
 96
-00:05:19.505 --> 00:05:24.084
+00:05:46.505 --> 00:05:51.084
 We'll cover what it requires, the
 two assessment tools agencies run,
 
 97
-00:05:24.084 --> 00:05:28.430
+00:05:51.084 --> 00:05:55.430
 and everything those tools
 can't see beyond Microsoft 365.
 
 98
-00:05:29.180 --> 00:05:32.480
+00:05:59.180 --> 00:06:02.480
 CISA's cloud directive
 has six required actions.
 
 99
-00:05:32.480 --> 00:05:35.506
+00:06:02.480 --> 00:06:05.506
 Half of them are paperwork:
 list your tenants,
 
 100
-00:05:35.506 --> 00:05:38.368
+00:06:05.506 --> 00:06:08.368
 deploy the tools, explain your deviations.
 
 101
-00:05:38.368 --> 00:05:40.056
+00:06:08.368 --> 00:06:10.056
 Agencies did those quickly.
 
 102
-00:05:40.056 --> 00:05:44.280
+00:06:10.056 --> 00:06:14.280
 The other half is the real point:
 implement the mandatory settings,
 
 103
-00:05:44.280 --> 00:05:49.043
+00:06:14.280 --> 00:06:19.043
 keep up as they change, and baseline
 every new tenant before it's authorized.
 
 104
-00:05:49.043 --> 00:05:51.158
+00:06:19.043 --> 00:06:21.158
 In practice that means remediation,
 
 105
-00:05:51.158 --> 00:05:54.543
+00:06:21.158 --> 00:06:24.543
 and much of it depends on
 architecture outside the tenant.
 
 106
-00:05:54.543 --> 00:05:57.043
+00:06:24.543 --> 00:06:27.043
 Scope is tighter than people think, too.
 
 107
-00:05:57.043 --> 00:05:59.867
+00:06:27.043 --> 00:06:29.867
 It's production
 software-as-a-service tenants only,
 
 108
-00:05:59.867 --> 00:06:02.556
+00:06:29.867 --> 00:06:32.556
 so cloud infrastructure
 subscriptions are out.
 
 109
-00:06:02.556 --> 00:06:06.180
+00:06:32.556 --> 00:06:36.180
 So measure compliance by what's
 fixed, not by what's reported.
 
 110
-00:06:06.180 --> 00:06:09.390
+00:06:36.180 --> 00:06:39.390
 Next, what the mandatory list contains.
 
 111
-00:06:10.140 --> 00:06:14.090
+00:06:43.140 --> 00:06:47.090
 The mandatory list is a subset
 of CISA's full baselines.
 
 112
-00:06:14.090 --> 00:06:16.871
+00:06:47.090 --> 00:06:49.871
 For Microsoft 365 it's fifty policies,
 
 113
-00:06:16.871 --> 00:06:20.728
+00:06:49.871 --> 00:06:53.728
 out of well over a hundred
 in the baseline documents.
 
 114
-00:06:20.728 --> 00:06:24.588
+00:06:53.728 --> 00:06:57.588
 Treating every recommendation
 as binding is one mistake;
 
 115
-00:06:24.588 --> 00:06:28.127
+00:06:57.588 --> 00:07:01.127
 treating the list as all of
 good practice is the other.
 
 116
-00:06:28.127 --> 00:06:29.715
+00:07:01.127 --> 00:07:02.715
 The list also moves.
 
 117
-00:06:29.715 --> 00:06:33.096
+00:07:02.715 --> 00:07:06.096
 Policies get revised, the
 next tool release adds more,
 
 118
-00:06:33.096 --> 00:06:37.015
+00:07:06.096 --> 00:07:10.015
 and Google Workspace is now in
 scope with a December deadline.
 
 119
-00:06:37.015 --> 00:06:40.356
+00:07:10.015 --> 00:07:13.356
 The rule is simple: CISA's
 page governs, so track it,
 
 120
-00:06:40.356 --> 00:06:43.615
+00:07:13.356 --> 00:07:16.615
 and pin the baseline
 version you assess against.
 
 121
-00:06:43.615 --> 00:06:48.290
+00:07:16.615 --> 00:07:21.290
 Next, how results reach CISA,
 and where the directive stops.
 
 122
-00:06:49.040 --> 00:06:51.376
+00:07:25.040 --> 00:07:27.376
 There are four ways to report to CISA,
 
 123
-00:06:51.376 --> 00:06:54.315
+00:07:27.376 --> 00:07:30.315
 from fully hosted to
 manual quarterly uploads.
 
 124
-00:06:54.315 --> 00:06:58.343
+00:07:30.315 --> 00:07:34.343
 Whichever you pick, the evidence
 is the tool's own results file,
 
 125
-00:06:58.343 --> 00:07:03.240
+00:07:34.343 --> 00:07:39.240
 never renamed, and any approved deviation
 shows up as omitted, with a reason.
 
 126
-00:07:03.240 --> 00:07:06.903
+00:07:39.240 --> 00:07:42.903
 That file and that rationale matter
 more than the pretty report.
 
 127
-00:07:06.903 --> 00:07:08.290
+00:07:42.903 --> 00:07:44.290
 And remember the edge.
 
 128
-00:07:08.290 --> 00:07:10.915
+00:07:44.290 --> 00:07:46.915
 The directive covers
 cloud tenant settings.
 
 129
-00:07:10.915 --> 00:07:13.997
+00:07:46.915 --> 00:07:49.997
 It says nothing about the
 on-premises directory,
 
 130
-00:07:13.997 --> 00:07:17.465
+00:07:49.997 --> 00:07:53.465
 old authentication protocols,
 endpoints or networks.
 
 131
-00:07:17.465 --> 00:07:20.978
+00:07:53.465 --> 00:07:56.978
 A perfect tenant can sit
 on top of a messy forest.
 
 132
-00:07:20.978 --> 00:07:24.950
+00:07:56.978 --> 00:08:00.950
 Next, the two tools agencies
 use to measure all this.
 
 133
-00:07:25.700 --> 00:07:29.850
+00:08:04.700 --> 00:08:08.850
 Agencies often run two free tools
 and then wonder if they need both.
 
 134
-00:07:29.850 --> 00:07:32.513
+00:08:08.850 --> 00:08:11.513
 They do, because they
 ask different questions.
 
 135
-00:07:32.513 --> 00:07:38.400
+00:08:11.513 --> 00:08:17.400
 CISA's tool asks whether your Microsoft
 365 tenant meets the federal baseline.
 
 136
-00:07:38.400 --> 00:07:41.530
+00:08:17.400 --> 00:08:20.530
 Microsoft's tool asks how
 mature your environment
 
 137
-00:07:41.530 --> 00:07:44.212
+00:08:20.530 --> 00:08:23.212
 is against Microsoft's
 Zero Trust guidance.
 
 138
-00:07:44.212 --> 00:07:48.824
+00:08:23.212 --> 00:08:27.824
 They run differently, label findings
 differently and score severity differently.
 
 139
-00:07:48.824 --> 00:07:51.137
+00:08:27.824 --> 00:08:30.137
 And read-only doesn't mean low privilege.
 
 140
-00:07:51.137 --> 00:07:56.388
+00:08:30.137 --> 00:08:35.388
 Both need broad read roles and an admin
 consent, and some products need admin roles.
 
 141
-00:07:56.388 --> 00:08:00.350
+00:08:35.388 --> 00:08:39.350
 Test the exact roles in your tenant
 before you write the run book.
 
 142
-00:08:00.350 --> 00:08:04.130
+00:08:39.350 --> 00:08:43.130
 Next, where the two tools
 overlap and where they don't.
 
 143
-00:08:04.880 --> 00:08:09.905
+00:08:46.880 --> 00:08:51.905
 The tools overlap mostly on identity, and
 now partly on email threat protection.
 
 144
-00:08:09.905 --> 00:08:13.642
+00:08:51.905 --> 00:08:55.642
 But overlap means the same
 area, not the same checks.
 
 145
-00:08:13.642 --> 00:08:16.821
+00:08:55.642 --> 00:08:58.821
 Microsoft's tool goes
 much deeper on identity,
 
 146
-00:08:16.821 --> 00:08:20.167
+00:08:58.821 --> 00:09:02.167
 and it alone covers devices,
 networking and data.
 
 147
-00:08:20.167 --> 00:08:24.875
+00:09:02.167 --> 00:09:06.875
 CISA's tool alone covers mail flow,
 Teams, sharing and Power Platform,
 
 148
-00:08:24.875 --> 00:08:28.343
+00:09:06.875 --> 00:09:10.343
 and almost half the mandatory
 policies live there.
 
 149
-00:08:28.343 --> 00:08:30.873
+00:09:10.343 --> 00:09:12.873
 So dropping either one leaves real gaps,
 
 150
-00:08:30.873 --> 00:08:35.629
+00:09:12.873 --> 00:09:17.629
 and dropping CISA's tool also stops
 the reporting the directive requires.
 
 151
-00:08:35.629 --> 00:08:38.418
+00:09:17.629 --> 00:09:20.418
 Keep both, and reconcile them by control.
 
 152
-00:08:38.418 --> 00:08:42.570
+00:09:20.418 --> 00:09:24.570
 Next, everything outside Microsoft 365.
 
 153
-00:08:43.320 --> 00:08:45.193
+00:09:28.320 --> 00:09:30.193
 Outside Microsoft 365,
 
 154
-00:08:45.193 --> 00:08:50.220
+00:09:30.193 --> 00:09:35.220
 every provider's tool tells you
 its own limits, in its own words.
 
 155
-00:08:50.220 --> 00:08:52.920
+00:09:35.220 --> 00:09:37.920
 One covers only a subset of controls.
 
 156
-00:08:52.920 --> 00:08:55.320
+00:09:37.920 --> 00:09:40.320
 Another calls its compliance view partial.
 
 157
-00:08:55.320 --> 00:08:59.720
+00:09:40.320 --> 00:09:44.720
 The hypervisor guidance warns its
 assumptions may not fit your environment.
 
 158
-00:08:59.720 --> 00:09:02.999
+00:09:44.720 --> 00:09:47.999
 And a FedRAMP certification
 covers the provider's service,
 
 159
-00:09:02.999 --> 00:09:06.345
+00:09:47.999 --> 00:09:51.345
 not how you configured it or
 connected it to everything else.
 
 160
-00:09:06.345 --> 00:09:11.145
+00:09:51.345 --> 00:09:56.145
 So running every vendor's tool gives
 you a pile of reports, one per vendor.
 
 161
-00:09:11.145 --> 00:09:15.345
+00:09:56.145 --> 00:10:00.345
 The agency is the only party that
 can hold one posture across them.
 
 162
-00:09:15.345 --> 00:09:19.670
+00:10:00.345 --> 00:10:04.670
 Next, what has to be reconciled
 before any score means something.
 
 163
-00:09:20.420 --> 00:09:23.495
+00:10:08.420 --> 00:10:11.495
 Before you assess, reconcile three things.
 
 164
-00:09:23.495 --> 00:09:26.383
+00:10:11.495 --> 00:10:14.383
 One inventory, so
 nothing is counted twice.
 
 165
-00:09:26.383 --> 00:09:30.370
+00:10:14.383 --> 00:10:18.370
 One naming authority, so a workload
 has the same name everywhere.
 
 166
-00:09:30.370 --> 00:09:34.365
+00:10:18.370 --> 00:10:22.365
 And no implicit trust from any
 boundary, whether that's a VPN,
 
 167
-00:09:34.365 --> 00:09:37.708
+00:10:22.365 --> 00:10:25.708
 a default cloud network or
 a flat virtual segment.
 
 168
-00:09:37.708 --> 00:09:39.219
+00:10:25.708 --> 00:10:27.219
 Then harden two things.
 
 169
-00:09:39.219 --> 00:09:43.149
+00:10:27.219 --> 00:10:31.149
 The hypervisor management plane
 gets assessed as its own surface,
 
 170
-00:09:43.149 --> 00:09:45.007
+00:10:31.149 --> 00:10:33.007
 because guest tools can't see it.
 
 171
-00:09:45.007 --> 00:09:49.974
+00:10:33.007 --> 00:10:37.974
 And the unified plane you just built becomes
 the most valuable target in the estate,
 
 172
-00:09:49.974 --> 00:09:53.357
+00:10:37.974 --> 00:10:41.357
 so it gets top-tier admin
 controls and its own monitoring.
 
 173
-00:09:53.357 --> 00:09:54.757
+00:10:41.357 --> 00:10:42.757
 That closes Part 1.
 
 174
-00:09:54.757 --> 00:09:57.200
+00:10:42.757 --> 00:10:45.200
 Part 2 is about who owns it.
 
 175
-00:09:57.950 --> 00:10:00.925
+00:10:48.950 --> 00:10:51.925
 Module 3 is about ownership and order.
 
 176
-00:10:00.925 --> 00:10:04.975
+00:10:51.925 --> 00:10:55.975
 Every pillar has an owner, but the
 overall posture usually doesn't.
 
 177
-00:10:04.975 --> 00:10:07.761
+00:10:55.975 --> 00:10:58.761
 We'll name who decides what,
 then look at why you close
 
 178
-00:10:07.761 --> 00:10:11.350
+00:10:58.761 --> 00:11:02.350
 the known findings before
 running the maturity assessment.
 
 179
-00:10:12.100 --> 00:10:14.125
+00:11:06.100 --> 00:11:08.125
 Programs rarely lack owners.
 
 180
-00:10:14.125 --> 00:10:16.547
+00:11:08.125 --> 00:11:10.547
 They lack an owner for the posture itself,
 
 181
-00:10:16.547 --> 00:10:19.825
+00:11:10.547 --> 00:11:13.825
 the person who can say what
 the agency-wide score covers.
 
 182
-00:10:19.825 --> 00:10:21.382
+00:11:13.825 --> 00:11:15.382
 That can't be a pillar owner,
 
 183
-00:10:21.382 --> 00:10:25.487
+00:11:15.382 --> 00:11:19.487
 and it can't be whoever manages the
 biggest cloud vendor relationship.
 
 184
-00:10:25.487 --> 00:10:30.138
+00:11:19.487 --> 00:11:24.138
 In the program's model, a Zero Trust
 program lead owns the score's definition,
 
 185
-00:10:30.138 --> 00:10:33.288
+00:11:24.138 --> 00:11:27.288
 cross-pillar routing and
 the assessment calendar.
 
 186
-00:10:33.288 --> 00:10:36.338
+00:11:27.288 --> 00:11:30.338
 Risk acceptance stays with
 the authorizing official.
 
 187
-00:10:36.338 --> 00:10:37.850
+00:11:30.338 --> 00:11:31.850
 And here's the subtle part.
 
 188
-00:10:37.850 --> 00:10:41.797
+00:11:31.850 --> 00:11:35.797
 Omitting a policy from a tool's
 report looks like configuration,
 
 189
-00:10:41.797 --> 00:10:43.212
+00:11:35.797 --> 00:11:37.212
 but it's a risk decision.
 
 190
-00:10:43.212 --> 00:10:46.626
+00:11:37.212 --> 00:11:40.626
 The engineer types it; someone
 with authority decides it.
 
 191
-00:10:46.626 --> 00:10:49.600
+00:11:40.626 --> 00:11:43.600
 Next, the matrix that pins that down.
 
 192
-00:10:50.350 --> 00:10:54.875
+00:11:47.350 --> 00:11:51.875
 The responsibility matrix gives
 every decision exactly one decider.
 
 193
-00:10:54.875 --> 00:10:56.625
+00:11:51.875 --> 00:11:53.625
 A few rows carry the weight.
 
 194
-00:10:56.625 --> 00:11:00.108
+00:11:53.625 --> 00:11:57.108
 The program lead defines what
 the whole-agency score covers,
 
 195
-00:11:00.108 --> 00:11:02.825
+00:11:57.108 --> 00:11:59.825
 because everyone else has
 a reason to shrink it.
 
 196
-00:11:02.825 --> 00:11:06.050
+00:11:59.825 --> 00:12:03.050
 An exception with an end
 date is the CISO's call.
 
 197
-00:11:06.050 --> 00:11:09.160
+00:12:03.050 --> 00:12:06.160
 One with no end date is a
 standing risk acceptance,
 
 198
-00:11:09.160 --> 00:11:11.587
+00:12:06.160 --> 00:12:08.587
 so it goes to the authorizing official.
 
 199
-00:11:11.587 --> 00:11:14.208
+00:12:08.587 --> 00:12:11.208
 Drift goes to the
 authorizing official too,
 
 200
-00:11:14.208 --> 00:11:16.900
+00:12:11.208 --> 00:12:13.900
 because it's a change to
 an authorized system.
 
 201
-00:11:16.900 --> 00:11:21.900
+00:12:13.900 --> 00:12:18.900
 And a vendor's own tool is evidence for
 its own platform, never the agency's score.
 
 202
-00:11:21.900 --> 00:11:25.140
+00:12:18.900 --> 00:12:22.140
 Next, the roles people
 need in each system.
 
 203
-00:11:25.890 --> 00:11:29.265
+00:12:25.890 --> 00:12:29.265
 Decision rights don't change
 what a console lets someone do.
 
 204
-00:11:29.265 --> 00:11:33.665
+00:12:29.265 --> 00:12:33.665
 Roles do, and these tools need
 broad read access to every tenant.
 
 205
-00:11:33.665 --> 00:11:35.679
+00:12:33.665 --> 00:12:35.679
 So the operators run as readers,
 
 206
-00:11:35.679 --> 00:11:39.165
+00:12:35.679 --> 00:12:39.165
 with admin roles only where
 a product truly needs them.
 
 207
-00:11:39.165 --> 00:11:41.358
+00:12:39.165 --> 00:12:41.358
 The one-time consent is granted by an
 
 208
-00:11:41.358 --> 00:11:44.428
+00:12:41.358 --> 00:12:44.428
 administrator who doesn't
 then run the assessment.
 
 209
-00:11:44.428 --> 00:11:48.862
+00:12:44.428 --> 00:12:48.862
 Those assessment accounts are among
 the most sensitive identities you have,
 
 210
-00:11:48.862 --> 00:11:53.227
+00:12:48.862 --> 00:12:53.227
 so make them eligible rather than standing,
 and send their sign-ins to the SOC.
 
 211
-00:11:53.227 --> 00:11:56.458
+00:12:53.227 --> 00:12:56.458
 Even the tool's telemetry
 setting is a CISO decision,
 
 212
-00:11:56.458 --> 00:11:58.440
+00:12:56.458 --> 00:12:58.440
 not something decided on the day.
 
 213
-00:11:58.440 --> 00:12:00.750
+00:12:58.440 --> 00:13:00.750
 Next, the order of work.
 
 214
-00:12:01.500 --> 00:12:03.300
+00:13:04.500 --> 00:13:06.300
 Here's the discipline of this book.
 
 215
-00:12:03.300 --> 00:12:05.450
+00:13:06.300 --> 00:13:08.450
 The assessment tools are thermometers.
 
 216
-00:12:05.450 --> 00:12:08.062
+00:13:08.450 --> 00:13:11.062
 They measure deviation;
 they don't fix any.
 
 217
-00:12:08.062 --> 00:12:11.273
+00:13:11.062 --> 00:13:14.273
 Run them as your program before
 the architecture exists,
 
 218
-00:12:11.273 --> 00:12:13.937
+00:13:14.273 --> 00:13:16.937
 and you get an accurate
 list that never shrinks.
 
 219
-00:12:13.937 --> 00:12:16.938
+00:13:16.937 --> 00:13:19.938
 So the program's sequence
 puts them at step five.
 
 220
-00:12:16.938 --> 00:12:21.326
+00:13:19.938 --> 00:13:24.326
 First understand the gaps, design
 the fix, build it and govern it.
 
 221
-00:12:21.326 --> 00:12:25.850
+00:13:24.326 --> 00:13:28.850
 Then the tools confirm the built state,
 and the authorizing official decides.
 
 222
-00:12:25.850 --> 00:12:28.687
+00:13:28.850 --> 00:13:31.687
 That's the same order as
 NIST's risk framework.
 
 223
-00:12:28.687 --> 00:12:30.570
+00:13:31.687 --> 00:13:33.570
 And it means building naming,
 
 224
-00:12:30.570 --> 00:12:34.413
+00:13:33.570 --> 00:13:37.413
 device identity and the retirement
 of old protocols first.
 
 225
-00:12:34.413 --> 00:12:37.290
+00:13:37.413 --> 00:13:40.290
 Next, what to do with each finding today.
 
 226
-00:12:38.040 --> 00:12:40.690
+00:13:44.040 --> 00:13:46.690
 Not every finding has to
 wait for architecture.
 
 227
-00:12:40.690 --> 00:12:43.402
+00:13:46.690 --> 00:13:49.402
 Each one goes to exactly one response.
 
 228
-00:12:43.402 --> 00:12:46.764
+00:13:49.402 --> 00:13:52.764
 If it's a simple setting with
 no dependencies, change it now.
 
 229
-00:12:46.764 --> 00:12:49.363
+00:13:52.764 --> 00:13:55.363
 If it depends on a layer
 that doesn't exist yet,
 
 230
-00:12:49.363 --> 00:12:51.890
+00:13:55.363 --> 00:13:57.890
 it gets an owner and a
 date against that work.
 
 231
-00:12:51.890 --> 00:12:53.964
+00:13:57.890 --> 00:13:59.964
 If the deviation is needed for now,
 
 232
-00:12:53.964 --> 00:12:57.890
+00:13:59.964 --> 00:14:03.890
 it becomes a dated risk acceptance
 by the authorizing official.
 
 233
-00:12:57.890 --> 00:13:01.465
+00:14:03.890 --> 00:14:07.465
 The only real failure is a
 finding with no response at all.
 
 234
-00:13:01.465 --> 00:13:06.490
+00:14:07.465 --> 00:14:12.490
 Then a continuous layer tracks every
 open item as it ages, run to run.
 
 235
-00:13:06.490 --> 00:13:08.353
+00:14:12.490 --> 00:14:14.353
 That closes Module 3.
 
 236
-00:13:08.353 --> 00:13:10.640
+00:14:14.353 --> 00:14:16.640
 Next, running the assessment.
 
 237
-00:13:11.390 --> 00:13:15.365
+00:14:20.390 --> 00:14:24.365
 Module 4 is the run itself,
 and what happens to the output.
 
 238
-00:13:15.365 --> 00:13:18.077
+00:14:24.365 --> 00:14:27.077
 A saved report is an opinion from one day.
 
 239
-00:13:18.077 --> 00:13:21.148
+00:14:27.077 --> 00:14:30.148
 The same output, sealed
 with its provenance so
 
 240
-00:13:21.148 --> 00:13:24.139
+00:14:30.148 --> 00:14:33.139
 an assessor can rebuild
 it later, is evidence.
 
 241
-00:13:24.139 --> 00:13:25.460
+00:14:33.139 --> 00:14:34.460
 Let's see how.
 
 242
-00:13:26.210 --> 00:13:29.672
+00:14:38.210 --> 00:14:41.672
 Five decisions come before
 either tool touches production.
 
 243
-00:13:29.672 --> 00:13:34.273
+00:14:41.672 --> 00:14:46.273
 Scope: which tenants and subscriptions
 this run covers, written down.
 
 244
-00:13:34.273 --> 00:13:38.114
+00:14:46.273 --> 00:14:50.114
 The host: a dedicated Windows
 machine inside your boundary,
 
 245
-00:13:38.114 --> 00:13:42.111
+00:14:50.114 --> 00:14:54.111
 a clean one for each tool, never
 a shared internet build runner.
 
 246
-00:13:42.111 --> 00:13:47.272
+00:14:54.111 --> 00:14:59.272
 Accounts: a dedicated reader for each
 tool, with consent granted separately.
 
 247
-00:13:47.272 --> 00:13:52.115
+00:14:59.272 --> 00:15:04.115
 Output: treat every report as sensitive,
 because it's a map of your weaknesses,
 
 248
-00:13:52.115 --> 00:13:56.573
+00:15:04.115 --> 00:15:08.573
 so move it unaltered into the evidence
 store and delete the local copy.
 
 249
-00:13:56.573 --> 00:13:59.491
+00:15:08.573 --> 00:15:11.491
 And logging: the assessment
 accounts' sign-ins
 
 250
-00:13:59.491 --> 00:14:01.948
+00:15:11.491 --> 00:15:13.948
 belong in your agency logging plan now.
 
 251
-00:14:01.948 --> 00:14:04.090
+00:15:13.948 --> 00:15:16.090
 Next, the run itself.
 
 252
-00:14:04.840 --> 00:14:07.278
+00:15:19.840 --> 00:15:22.278
 For both tools, three habits matter.
 
 253
-00:14:07.278 --> 00:14:09.849
+00:15:22.278 --> 00:15:24.849
 Pin the version, and
 record it with every run,
 
 254
-00:14:09.849 --> 00:14:13.564
+00:15:24.849 --> 00:15:28.564
 along with the configuration
 file that holds your exceptions.
 
 255
-00:14:13.564 --> 00:14:16.527
+00:15:28.564 --> 00:15:31.527
 Keep the results file
 exactly as the tool wrote it.
 
 256
-00:14:16.527 --> 00:14:20.303
+00:15:31.527 --> 00:15:35.303
 Never edit or rename it;
 only hash it and copy it.
 
 257
-00:14:20.303 --> 00:14:21.715
+00:15:35.303 --> 00:15:36.715
 And expect quirks.
 
 258
-00:14:21.715 --> 00:14:24.827
+00:15:36.715 --> 00:15:39.827
 Microsoft's tool is a
 fast-moving community project,
 
 259
-00:14:24.827 --> 00:14:29.315
+00:15:39.827 --> 00:15:44.315
 it can run for more than a day on a big
 tenant, and you shouldn't stop it halfway.
 
 260
-00:14:29.315 --> 00:14:32.681
+00:15:44.315 --> 00:15:47.681
 One honest gap, too: the
 Google Workspace assessor
 
 261
-00:14:32.681 --> 00:14:35.965
+00:15:47.681 --> 00:15:50.965
 isn't wired into the
 program's evidence chain yet.
 
 262
-00:14:35.965 --> 00:14:39.150
+00:15:50.965 --> 00:15:54.150
 Next, how a result becomes evidence.
 
 263
-00:14:39.900 --> 00:14:43.088
+00:15:57.900 --> 00:16:01.088
 Each tool becomes an input
 to one evidence chain.
 
 264
-00:14:43.088 --> 00:14:47.446
+00:16:01.088 --> 00:16:05.446
 Every result, passes included, gets
 wrapped with where it came from,
 
 265
-00:14:47.446 --> 00:14:50.062
+00:16:05.446 --> 00:16:08.062
 who issued it and a
 hash of the raw output.
 
 266
-00:14:50.062 --> 00:14:54.108
+00:16:08.062 --> 00:16:12.108
 The results from one run are sealed
 into a bundle that rebuilds byte
 
 267
-00:14:54.108 --> 00:14:58.225
+00:16:12.108 --> 00:16:16.225
 for byte from the same inputs, so an
 assessor can check it months later.
 
 268
-00:14:58.225 --> 00:15:01.738
+00:16:16.225 --> 00:16:19.738
 Then it's emitted in NIST's
 machine-readable assessment format.
 
 269
-00:15:01.738 --> 00:15:05.986
+00:16:19.738 --> 00:16:23.986
 Follow one failed legacy sign-in check
 through those four hops, and you can
 
 270
-00:15:05.986 --> 00:15:10.374
+00:16:23.986 --> 00:16:28.374
 walk back from the final record to the
 raw result without re-running the tool.
 
 271
-00:15:10.374 --> 00:15:13.920
+00:16:28.374 --> 00:16:31.920
 Next, how to read the
 results before counting them.
 
 272
-00:15:14.670 --> 00:15:16.907
+00:16:35.670 --> 00:16:37.907
 Before you count results, read them.
 
 273
-00:15:16.907 --> 00:15:21.408
+00:16:37.907 --> 00:16:42.408
 Only fails, warnings and items flagged
 for investigation are findings.
 
 274
-00:15:21.408 --> 00:15:24.407
+00:16:42.408 --> 00:16:45.407
 A skipped check isn't a
 pass, and it isn't a gap.
 
 275
-00:15:24.407 --> 00:15:29.170
+00:16:45.407 --> 00:16:50.170
 It's absence of evidence, often because
 a license or a connection was missing.
 
 276
-00:15:29.170 --> 00:15:33.334
+00:16:50.170 --> 00:16:54.334
 In a government cloud, some premium
 features simply aren't available,
 
 277
-00:15:33.334 --> 00:15:36.695
+00:16:54.334 --> 00:16:57.695
 so a skipped or failed premium
 check may not be a real gap.
 
 278
-00:15:36.695 --> 00:15:39.689
+00:16:57.695 --> 00:17:00.689
 Score it as failed and
 you overstate the problem;
 
 279
-00:15:39.689 --> 00:15:42.757
+00:17:00.689 --> 00:17:03.757
 score it as passed and you
 overstate your posture.
 
 280
-00:15:42.757 --> 00:15:45.407
+00:17:03.757 --> 00:17:06.407
 Record it as a boundary finding instead.
 
 281
-00:15:45.407 --> 00:15:48.300
+00:17:06.407 --> 00:17:09.300
 Next, scoring and reconciling.
 
 282
-00:15:49.050 --> 00:15:51.978
+00:17:13.050 --> 00:17:15.978
 Findings get ranked by
 severity and effort,
 
 283
-00:15:51.978 --> 00:15:55.475
+00:17:15.978 --> 00:17:19.475
 so a serious problem with a
 cheap fix rises to the top.
 
 284
-00:15:55.475 --> 00:15:58.097
+00:17:19.475 --> 00:17:22.097
 Quick wins go into the next change window;
 
 285
-00:15:58.097 --> 00:16:01.337
+00:17:22.097 --> 00:17:25.337
 big projects go onto a
 pillar roadmap with funding.
 
 286
-00:16:01.337 --> 00:16:06.134
+00:17:25.337 --> 00:17:30.134
 That scoring is the program's own method,
 documented so anyone can check it,
 
 287
-00:16:06.134 --> 00:16:09.200
+00:17:30.134 --> 00:17:33.200
 and a top priority still
 isn't a risk acceptance.
 
 288
-00:16:09.200 --> 00:16:13.187
+00:17:33.200 --> 00:17:37.187
 Then reconcile the two tools
 by control, not tool to tool.
 
 289
-00:16:13.187 --> 00:16:15.199
+00:17:37.187 --> 00:17:39.199
 When both flag the same setting,
 
 290
-00:16:15.199 --> 00:16:18.988
+00:17:39.199 --> 00:17:42.988
 that's one finding with two
 pieces of evidence and one owner.
 
 291
-00:16:18.988 --> 00:16:21.920
+00:17:42.988 --> 00:17:45.920
 Next, exceptions and re-assessment.
 
 292
-00:16:22.670 --> 00:16:26.657
+00:17:49.670 --> 00:17:53.657
 Some findings won't be fixed soon,
 and that's fine if it's governed.
 
 293
-00:16:26.657 --> 00:16:29.682
+00:17:53.657 --> 00:17:56.682
 Exceptions live in the
 tool's configuration file,
 
 294
-00:16:29.682 --> 00:16:33.519
+00:17:56.682 --> 00:18:00.519
 under version control, with an
 expiry date and a named approver.
 
 295
-00:16:33.519 --> 00:16:37.910
+00:18:00.519 --> 00:18:04.910
 Whatever isn't fixed or excepted goes
 on the plan of action and milestones,
 
 296
-00:16:37.910 --> 00:16:41.220
+00:18:04.910 --> 00:18:08.220
 with an owner and the evidence
 that will prove it closed.
 
 297
-00:16:41.220 --> 00:16:45.194
+00:18:08.220 --> 00:18:12.194
 Then re-run on a calendar and
 after each remediation wave,
 
 298
-00:16:45.194 --> 00:16:48.745
+00:18:12.194 --> 00:18:15.745
 so findings close by evidence,
 not by ticket status.
 
 299
-00:16:48.745 --> 00:16:50.386
+00:18:15.745 --> 00:18:17.386
 Each run adds an interval,
 
 300
-00:16:50.386 --> 00:16:54.607
+00:18:17.386 --> 00:18:21.607
 and anything that newly breaks
 goes to the authorizing official.
 
 301
-00:16:54.607 --> 00:16:57.530
+00:18:21.607 --> 00:18:24.530
 Next, how this maps to controls.
 
 302
-00:16:58.280 --> 00:17:01.443
+00:18:28.280 --> 00:18:31.443
 The requirements map is
 careful about what it claims.
 
 303
-00:17:01.443 --> 00:17:05.219
+00:18:31.443 --> 00:18:35.219
 It helps you reuse the design
 and evidence in your own plans;
 
 304
-00:17:05.219 --> 00:17:06.992
+00:18:35.219 --> 00:18:36.992
 it doesn't certify anything.
 
 305
-00:17:06.992 --> 00:17:10.299
+00:18:36.992 --> 00:18:40.299
 It shows which controls Zero
 Trust evidence supports,
 
 306
-00:17:10.299 --> 00:17:14.930
+00:18:40.299 --> 00:18:44.930
 which book builds each capability, and
 what an assessor should expect to see.
 
 307
-00:17:14.930 --> 00:17:19.280
+00:18:44.930 --> 00:18:49.280
 It's honest about gaps, too, like
 incident response and data protection,
 
 308
-00:17:19.280 --> 00:17:21.155
+00:18:49.280 --> 00:18:51.155
 which aren't designed here yet.
 
 309
-00:17:21.155 --> 00:17:26.705
+00:18:51.155 --> 00:18:56.705
 And one detail worth knowing: no control
 in the NIST catalog mentions Zero Trust.
 
 310
-00:17:26.705 --> 00:17:29.417
+00:18:56.705 --> 00:18:59.417
 The evidence supports
 controls you already have.
 
 311
-00:17:29.417 --> 00:17:31.580
+00:18:59.417 --> 00:19:01.580
 Let's finish with the decisions.
 
 312
-00:17:32.330 --> 00:17:34.105
+00:19:05.330 --> 00:19:07.105
 None of this needs a procurement.
 
 313
-00:17:34.105 --> 00:17:39.005
+00:19:07.105 --> 00:19:12.005
 This quarter, find out which pillar evidence
 can be re-run without the operator.
 
 314
-00:17:39.005 --> 00:17:43.093
+00:19:12.005 --> 00:19:16.093
 Name an owner for the whole posture,
 separate from any cloud vendor.
 
 315
-00:17:43.093 --> 00:17:45.642
+00:19:16.093 --> 00:19:18.642
 Bring one tool into the evidence chain.
 
 316
-00:17:45.642 --> 00:17:49.543
+00:19:18.642 --> 00:19:22.543
 Move exceptions into version
 control, with expiry dates.
 
 317
-00:17:49.543 --> 00:17:52.067
+00:19:22.543 --> 00:19:25.067
 Send drift to the authorizing official.
 
 318
-00:17:52.067 --> 00:17:55.616
+00:19:25.067 --> 00:19:28.616
 Model the cloud boundary,
 reconcile the inventory first,
 
 319
-00:17:55.616 --> 00:17:59.843
+00:19:28.616 --> 00:19:32.843
 and time-box privileged access,
 including the assessment accounts.
 
 320
-00:17:59.843 --> 00:18:02.654
+00:19:32.843 --> 00:19:35.654
 No tool certifies Zero Trust maturity.
 
 321
-00:18:02.654 --> 00:18:06.242
+00:19:35.654 --> 00:19:39.242
 The evidence supports the decisions,
 and named people make them.
 
 322
-00:18:06.242 --> 00:18:07.060
+00:19:39.242 --> 00:19:40.060
 Thank you.

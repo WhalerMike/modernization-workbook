@@ -13,12 +13,15 @@ Writes:
 
 The written text is aligned to what the voice actually said: narrate.py's spoken-form rules are applied to the
 script before it is matched to the recorded sentences, so captions show "SASE" while the voice says "sassy".
-Timeline for the whole-video track: build_narrated.ps1 advances each slide after its clip plus 1 second.
+Timeline for the whole-video track: build_narrated.ps1 advances each slide after its transition, its clip and
+a 2-second pause (AdvanceTime = transition + clip + 2 s), and in the exported video each clip starts when its
+slide starts. So slide i's captions are offset by the sum of the earlier slides' advance times.
 """
 import ast
 import json
 import re
 import sys
+import zipfile
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -26,7 +29,32 @@ DECK = Path(sys.argv[1])
 BASE = DECK.stem
 DIR = DECK.parent
 NAR = DIR / f"narration_{BASE}"
-GAP = 1.0          # build_narrated.ps1: AdvanceTime = clip + 1.0 s
+PAUSE = 2.0        # build_narrated.ps1: AdvanceTime = transition + clip + 2.0 s
+
+
+DEFAULT_TRANSITION = 2.0   # PowerPoint reports a 2 s transition for a slide that has none, and build_narrated adds it
+
+
+def slide_xml(deck: Path) -> dict[int, str]:
+    with zipfile.ZipFile(deck) as z:
+        return {int(m.group(1)): z.read(n).decode("utf-8")
+                for n in z.namelist() if (m := re.fullmatch(r"ppt/slides/slide(\d+)\.xml", n))}
+
+
+def advances(durations: dict[int, float]) -> dict[int, float]:
+    """Seconds each narrated slide stays up. The narrated deck's own advance times when it exists and matches;
+    otherwise build_narrated.ps1's rule: transition + clip + 2 s."""
+    narrated = DIR / f"{BASE}_Narrated.pptx"
+    if narrated.exists():
+        xml = slide_xml(narrated)
+        adv = {i: int(m.group(1)) / 1000 for i, x in xml.items() if (m := re.search(r'advTm="(\d+)"', x))}
+        if set(adv) == set(durations) and all(abs(adv[i] - durations[i] - 2 * DEFAULT_TRANSITION) < 1.5 for i in adv):
+            return adv
+    out = {}
+    for i, x in slide_xml(DECK).items():
+        t = re.search(r'<p:transition\b[^>]*\bp14:dur="(\d+)"', x)
+        out[i] = (int(t.group(1)) / 1000 if t else DEFAULT_TRANSITION) + durations.get(i, 0.0) + PAUSE
+    return out
 MAXLEN = 84        # a cue is at most two lines of 42 characters
 LINE = 42
 
@@ -103,6 +131,7 @@ missing = sorted(set(durations) - set(timings))
 if missing:
     sys.exit(f"no sentence timings for slides {missing}: rerun narrate.py (it re-records clips without timings)")
 
+adv = advances(durations)
 deck_cues, offset = [], 0.0
 for i in sorted(durations):
     text = re.sub(r"\s*\n\s*", " ", slides[i])
@@ -130,7 +159,7 @@ for i in sorted(durations):
     cues[-1][1] = max(cues[-1][1], min(durations[i], cues[-1][1] + 0.5))
     (NAR / f"slide{i:02d}.vtt").write_text(vtt(cues), encoding="utf-8")
     deck_cues += [[offset + s, offset + e, t] for s, e, t in cues]
-    offset += durations[i] + GAP
+    offset += adv[i]
 
 tidy(deck_cues)
 dst = DIR / f"{BASE}_Narrated.vtt"

@@ -58,1108 +58,1108 @@ its owner, and when it's needed.
 Let's start with who owes which proof.
 
 13
-00:00:46.870 --> 00:00:51.583
+00:00:49.870 --> 00:00:54.583
 An authorizing official doesn't need to
 know a control is supposed to be in place.
 
 14
-00:00:51.583 --> 00:00:54.545
+00:00:54.583 --> 00:00:57.545
 They need to know it is,
 today, and how they know.
 
 15
-00:00:54.545 --> 00:00:57.214
+00:00:57.545 --> 00:01:00.214
 A promise is a statement
 in the security plan,
 
 16
-00:00:57.214 --> 00:00:59.883
+00:01:00.214 --> 00:01:02.883
 backed by evidence
 someone gathered by hand.
 
 17
-00:00:59.883 --> 00:01:02.194
+00:01:02.883 --> 00:01:05.194
 It's been aging since
 the day it was signed.
 
 18
-00:01:02.194 --> 00:01:04.347
+00:01:05.194 --> 00:01:07.347
 Proof is a record the system produces,
 
 19
-00:01:04.347 --> 00:01:07.958
+00:01:07.347 --> 00:01:10.958
 which another reviewer can check
 again and get the same answer.
 
 20
-00:01:07.958 --> 00:01:10.532
+00:01:10.958 --> 00:01:13.532
 The proof is owed by
 different parties, too.
 
 21
-00:01:10.532 --> 00:01:14.819
+00:01:13.532 --> 00:01:17.819
 The provider proves its service;
 the agency proves its own system.
 
 22
-00:01:14.819 --> 00:01:18.859
+00:01:17.819 --> 00:01:21.859
 So the decision for the authorizing
 official: reuse the provider's
 
 23
-00:01:18.859 --> 00:01:23.558
+00:01:21.859 --> 00:01:26.558
 certification as evidence, and authorize
 the agency's own system that uses it.
 
 24
-00:01:23.558 --> 00:01:26.340
+00:01:26.558 --> 00:01:29.340
 Next, what Moderate commits you to.
 
 25
-00:01:27.090 --> 00:01:30.465
+00:01:33.090 --> 00:01:36.465
 Most civilian cloud systems
 are authorized at Moderate,
 
 26
-00:01:30.465 --> 00:01:32.978
+00:01:36.465 --> 00:01:38.978
 and the word is a
 commitment of a known size.
 
 27
-00:01:32.978 --> 00:01:36.134
+00:01:38.978 --> 00:01:42.134
 The agency rates each kind
 of information it holds;
 
 28
-00:01:36.134 --> 00:01:39.741
+00:01:42.134 --> 00:01:45.741
 one moderate rating and none
 high makes a moderate system.
 
 29
-00:01:39.741 --> 00:01:44.798
+00:01:45.741 --> 00:01:50.798
 Then it tailors NIST's Moderate
 baseline: 287 controls and enhancements,
 
 30
-00:01:44.798 --> 00:01:49.603
+00:01:50.798 --> 00:01:55.603
 every one of which the authorizing
 official accepts on the evidence.
 
 31
-00:01:49.603 --> 00:01:52.339
+00:01:55.603 --> 00:01:58.339
 FedRAMP's Class C is a separate fact.
 
 32
-00:01:52.339 --> 00:01:57.340
+00:01:58.339 --> 00:02:03.340
 It lists 322, and 36 of them
 sit outside NIST Moderate.
 
 33
-00:01:57.340 --> 00:01:59.078
+00:02:03.340 --> 00:02:05.078
 So cite the two separately.
 
 34
-00:01:59.078 --> 00:02:01.512
+00:02:05.078 --> 00:02:07.512
 The decision: the authorizing official,
 
 35
-00:02:01.512 --> 00:02:05.936
+00:02:07.512 --> 00:02:11.936
 with the privacy official for any
 system holding personal information,
 
 36
-00:02:05.936 --> 00:02:10.066
+00:02:11.936 --> 00:02:16.066
 approves each categorization before
 a single control is selected.
 
 37
-00:02:10.066 --> 00:02:13.060
+00:02:16.066 --> 00:02:19.060
 Next, why annual is only the floor.
 
 38
-00:02:13.810 --> 00:02:17.223
+00:02:22.810 --> 00:02:26.223
 Some programs still plan around
 a three-year authorization.
 
 39
-00:02:17.223 --> 00:02:18.510
+00:02:26.223 --> 00:02:27.510
 There's no such rule.
 
 40
-00:02:18.510 --> 00:02:23.271
+00:02:27.510 --> 00:02:32.271
 FISMA requires testing at least
 annually, and OMB's Circular A-130
 
 41
-00:02:23.271 --> 00:02:28.297
+00:02:32.271 --> 00:02:37.297
 points agencies to ongoing
 authorization once a system is eligible.
 
 42
-00:02:28.297 --> 00:02:30.169
+00:02:37.297 --> 00:02:39.169
 Only proof can keep up with that,
 
 43
-00:02:30.169 --> 00:02:34.272
+00:02:39.169 --> 00:02:43.272
 because only proof can be regenerated
 without rebuilding it by hand.
 
 44
-00:02:34.272 --> 00:02:36.734
+00:02:43.272 --> 00:02:45.734
 It's also why assessment tools come last.
 
 45
-00:02:36.734 --> 00:02:41.785
+00:02:45.734 --> 00:02:50.785
 A tool like ScubaGear measures drift from
 an intended design; it can't author one.
 
 46
-00:02:41.785 --> 00:02:44.287
+00:02:50.785 --> 00:02:53.287
 Run first, it hands
 you an accurate list of
 
 47
-00:02:44.287 --> 00:02:47.010
+00:02:53.287 --> 00:02:56.010
 findings and nothing
 that keeps them closed.
 
 48
-00:02:47.010 --> 00:02:52.094
+00:02:56.010 --> 00:03:01.094
 So the decision for the CIO and executive
 sponsor: fund the mechanisms that produce
 
 49
-00:02:52.094 --> 00:02:56.810
+00:03:01.094 --> 00:03:05.810
 records before the tools that measure
 them, and run the tools as confirmation.
 
 50
-00:02:56.810 --> 00:02:59.060
+00:03:05.810 --> 00:03:08.060
 Next, the federal clock.
 
 51
-00:02:59.810 --> 00:03:03.106
+00:03:11.810 --> 00:03:15.106
 The dates that drive this
 work belong to FedRAMP,
 
 52
-00:03:03.106 --> 00:03:06.485
+00:03:15.106 --> 00:03:18.485
 CISA and OMB, and each one
 binds a different party.
 
 53
-00:03:06.485 --> 00:03:08.693
+00:03:18.485 --> 00:03:20.693
 As the book checked on October 21,
 
 54
-00:03:08.693 --> 00:03:12.210
+00:03:20.693 --> 00:03:24.210
 the post-quantum migration
 plan was due the next day.
 
 55
-00:03:12.210 --> 00:03:15.510
+00:03:24.210 --> 00:03:27.510
 The Agency Logging Plan
 falls on November 18.
 
 56
-00:03:15.510 --> 00:03:20.597
+00:03:27.510 --> 00:03:32.597
 On December 7, BOD 26-04's
 remediation timelines bind agencies,
 
 57
-00:03:20.597 --> 00:03:24.985
+00:03:32.597 --> 00:03:36.985
 while FedRAMP's vulnerability
 rules bind providers.
 
 58
-00:03:24.985 --> 00:03:29.860
+00:03:36.985 --> 00:03:41.860
 And FedRAMP's 2026 rules
 become mandatory on January 1.
 
 59
-00:03:29.860 --> 00:03:33.910
+00:03:41.860 --> 00:03:45.910
 And dates move: several in the
 program's own sources had drifted.
 
 60
-00:03:33.910 --> 00:03:39.059
+00:03:45.910 --> 00:03:51.059
 So the decision: keep one dated register,
 with the source, the exact wording,
 
 61
-00:03:39.059 --> 00:03:44.123
+00:03:51.059 --> 00:03:56.123
 whom it binds, and the day it was last
 checked, and re-verify it at every gate.
 
 62
-00:03:44.123 --> 00:03:46.484
+00:03:56.123 --> 00:03:58.484
 A date in a package is evidence.
 
 63
-00:03:46.484 --> 00:03:49.400
+00:03:58.484 --> 00:04:01.400
 Next, what the directives leave behind.
 
 64
-00:03:50.150 --> 00:03:53.975
+00:04:05.150 --> 00:04:08.975
 Most directive deadlines have passed,
 but their requirements haven't.
 
 65
-00:03:53.975 --> 00:04:00.025
+00:04:08.975 --> 00:04:15.025
 BOD 26-04 replaced the old remediation
 directives with timelines set by risk,
 
 66
-00:04:00.025 --> 00:04:03.050
+00:04:15.025 --> 00:04:18.050
 and its third phase lands on December 7.
 
 67
-00:04:03.050 --> 00:04:07.366
+00:04:18.050 --> 00:04:22.366
 BOD 25-01's dates are done,
 yet every new cloud tenant
 
 68
-00:04:07.366 --> 00:04:11.275
+00:04:22.366 --> 00:04:26.275
 still needs its baselines in
 place before it's authorized.
 
 69
-00:04:11.275 --> 00:04:16.562
+00:04:26.275 --> 00:04:31.562
 And a job that must run every seven days
 is only proven by records showing it did.
 
 70
-00:04:16.562 --> 00:04:20.734
+00:04:31.562 --> 00:04:35.734
 Vendor support dates become compliance
 dates too: through the baseline,
 
 71
-00:04:20.734 --> 00:04:24.349
+00:04:35.734 --> 00:04:39.349
 through directives like the one
 on end-of-support edge devices,
 
 72
-00:04:24.349 --> 00:04:26.574
+00:04:39.349 --> 00:04:41.574
 and through the authorization itself.
 
 73
-00:04:26.574 --> 00:04:31.825
+00:04:41.574 --> 00:04:46.825
 So the decision for the authorizing
 official: retire each unsupported component
 
 74
-00:04:31.825 --> 00:04:36.225
+00:04:46.825 --> 00:04:51.225
 by its date, or explicitly accept the
 risk of keeping it, as an open item.
 
 75
-00:04:36.225 --> 00:04:38.660
+00:04:51.225 --> 00:04:53.660
 Next, what each control needs.
 
 76
-00:04:39.410 --> 00:04:42.385
+00:04:57.410 --> 00:05:00.385
 “Is this required at Moderate?”
 sounds like one question.
 
 77
-00:04:42.385 --> 00:04:45.410
+00:05:00.385 --> 00:05:03.410
 It's two: NIST's baseline
 for the agency's system,
 
 78
-00:04:45.410 --> 00:04:48.435
+00:05:03.410 --> 00:05:06.435
 and FedRAMP's class for
 the provider's service.
 
 79
-00:04:48.435 --> 00:04:51.665
+00:05:06.435 --> 00:05:09.665
 The series crosswalk indexes 149 controls,
 
 80
-00:04:51.665 --> 00:04:57.497
+00:05:09.665 --> 00:05:15.497
 but it's a pointer to where each one is
 treated, not proof it's closed or inherited.
 
 81
-00:04:57.497 --> 00:05:00.429
+00:05:15.497 --> 00:05:18.429
 It covers fewer than half
 the Moderate baseline,
 
 82
-00:05:00.429 --> 00:05:02.847
+00:05:18.429 --> 00:05:20.847
 so it can't stand in
 for the security plan.
 
 83
-00:05:02.847 --> 00:05:07.920
+00:05:20.847 --> 00:05:25.920
 The decision: fill the product inventory
 questionnaire against the estate as it is,
 
 84
-00:05:07.920 --> 00:05:11.008
+00:05:25.920 --> 00:05:29.008
 verify each FedRAMP status
 on the day you record it,
 
 85
-00:05:11.008 --> 00:05:14.536
+00:05:29.008 --> 00:05:32.536
 and decide every flag before
 the security plan is written.
 
 86
-00:05:14.536 --> 00:05:19.360
+00:05:32.536 --> 00:05:37.360
 An uncertified service inside the boundary
 goes to the authorizing official.
 
 87
-00:05:19.360 --> 00:05:22.040
+00:05:37.360 --> 00:05:40.040
 Next, when a control is closed.
 
 88
-00:05:22.790 --> 00:05:24.215
+00:05:43.790 --> 00:05:45.215
 Is a control closed?
 
 89
-00:05:24.215 --> 00:05:26.336
+00:05:45.215 --> 00:05:47.336
 Too often the answer is that the product
 
 90
-00:05:26.336 --> 00:05:28.715
+00:05:47.336 --> 00:05:49.715
 was bought or the ticket
 was marked complete.
 
 91
-00:05:28.715 --> 00:05:30.915
+00:05:49.715 --> 00:05:51.915
 None of those is the control operating.
 
 92
-00:05:30.915 --> 00:05:32.778
+00:05:51.915 --> 00:05:53.778
 The book applies two tests.
 
 93
-00:05:32.778 --> 00:05:36.327
+00:05:53.778 --> 00:05:57.327
 The mechanism exists and
 reaches what the control covers.
 
 94
-00:05:36.327 --> 00:05:39.763
+00:05:57.327 --> 00:06:00.763
 And its proof is recorded:
 a machine-readable check,
 
 95
-00:05:39.763 --> 00:05:41.890
+00:06:00.763 --> 00:06:02.890
 a time, and what did the checking.
 
 96
-00:05:41.890 --> 00:05:46.533
+00:06:02.890 --> 00:06:07.533
 A control that passes the first and
 fails the second is worse than open:
 
 97
-00:05:46.533 --> 00:05:49.015
+00:06:07.533 --> 00:06:10.015
 it looks closed and can't be shown to be.
 
 98
-00:05:49.015 --> 00:05:54.153
+00:06:10.015 --> 00:06:15.153
 And a vendor roadmap isn't a commitment;
 date every claim and confirm it first.
 
 99
-00:05:54.153 --> 00:05:57.959
+00:06:15.153 --> 00:06:18.959
 The decision: count a control
 closed only on both tests,
 
 100
-00:05:57.959 --> 00:06:01.003
+00:06:18.959 --> 00:06:22.003
 and keep roadmap items
 in the plan of action.
 
 101
-00:06:01.003 --> 00:06:03.700
+00:06:22.003 --> 00:06:24.700
 Next, what no provider can close.
 
 102
-00:06:04.450 --> 00:06:07.988
+00:06:28.450 --> 00:06:31.988
 Some control families no cloud
 provider can close for you,
 
 103
-00:06:07.988 --> 00:06:10.200
+00:06:31.988 --> 00:06:34.200
 and program management is the first.
 
 104
-00:06:10.200 --> 00:06:13.395
+00:06:34.200 --> 00:06:37.395
 NIST marks the whole
 family organization-wide,
 
 105
-00:06:13.395 --> 00:06:17.737
+00:06:37.395 --> 00:06:41.737
 outside every system baseline,
 and FedRAMP certifies none of it.
 
 106
-00:06:17.737 --> 00:06:21.295
+00:06:41.737 --> 00:06:45.295
 The obligation comes from
 FISMA and Circular A-130,
 
 107
-00:06:21.295 --> 00:06:26.038
+00:06:45.295 --> 00:06:50.038
 and it binds the agency whether or
 not it uses a single cloud service.
 
 108
-00:06:26.038 --> 00:06:29.962
+00:06:50.038 --> 00:06:53.962
 No product can write a risk tolerance
 or appoint a senior official.
 
 109
-00:06:29.962 --> 00:06:32.817
+00:06:53.962 --> 00:06:56.817
 These controls close when
 the artifact exists,
 
 110
-00:06:32.817 --> 00:06:37.137
+00:06:56.817 --> 00:07:01.137
 a named official approved it, and the
 agency can show it's still followed.
 
 111
-00:06:37.137 --> 00:06:41.810
+00:07:01.137 --> 00:07:05.810
 The decision belongs to the head of
 agency: approve the risk strategy and its
 
 112
-00:06:41.810 --> 00:06:44.629
+00:07:05.810 --> 00:07:08.629
 tolerance, because every
 later plan-of-action
 
 113
-00:06:44.629 --> 00:06:47.299
+00:07:08.629 --> 00:07:11.299
 date and every risk
 acceptance will cite it.
 
 114
-00:06:47.299 --> 00:06:49.290
+00:07:11.299 --> 00:07:13.290
 Next, contingency.
 
 115
-00:06:50.040 --> 00:06:54.076
+00:07:17.040 --> 00:07:21.076
 An agency can have tested failover,
 two circuits and good backups,
 
 116
-00:06:54.076 --> 00:06:57.140
+00:07:21.076 --> 00:07:24.140
 and still carry an open
 contingency plan finding.
 
 117
-00:06:57.140 --> 00:07:02.019
+00:07:24.140 --> 00:07:29.019
 The control asks for a plan, not a
 capability: who declares a contingency,
 
 118
-00:07:02.019 --> 00:07:06.815
+00:07:29.019 --> 00:07:33.815
 who's told, what comes back first, and
 when operations are back to normal.
 
 119
-00:07:06.815 --> 00:07:08.790
+00:07:33.815 --> 00:07:35.790
 The runbooks are its appendices.
 
 120
-00:07:08.790 --> 00:07:12.523
+00:07:35.790 --> 00:07:39.523
 For a Moderate system, NIST
 recommends a functional exercise
 
 121
-00:07:12.523 --> 00:07:15.890
+00:07:39.523 --> 00:07:42.890
 that includes a restore from
 backup, not just a tabletop.
 
 122
-00:07:15.890 --> 00:07:17.689
+00:07:42.890 --> 00:07:44.689
 And a replica isn't a backup;
 
 123
-00:07:17.689 --> 00:07:21.615
+00:07:44.689 --> 00:07:48.615
 it copies ransomware as
 faithfully as a good transaction.
 
 124
-00:07:21.615 --> 00:07:23.927
+00:07:48.615 --> 00:07:50.927
 The most important number isn't technical.
 
 125
-00:07:23.927 --> 00:07:28.552
+00:07:50.927 --> 00:07:55.552
 So the decision: each mission owner
 signs the maximum tolerable downtime,
 
 126
-00:07:28.552 --> 00:07:32.266
+00:07:55.552 --> 00:07:59.266
 and it's never lowered to fit
 a convenient technical answer.
 
 127
-00:07:32.266 --> 00:07:34.160
+00:07:59.266 --> 00:08:01.160
 Next, supply chain.
 
 128
-00:07:34.910 --> 00:07:38.303
+00:08:04.910 --> 00:08:08.303
 Most of the code an agency runs
 was written by someone else,
 
 129
-00:07:38.303 --> 00:07:40.635
+00:08:08.303 --> 00:08:10.635
 and federal policy on it moved this year.
 
 130
-00:07:40.635 --> 00:07:48.135
+00:08:10.635 --> 00:08:18.135
 In January, OMB's M-26-05 rescinded the
 secure-development attestation mandate.
 
 131
-00:07:48.135 --> 00:07:52.010
+00:08:18.135 --> 00:08:22.010
 The complete software and hardware
 inventory is still required.
 
 132
-00:07:52.010 --> 00:07:56.564
+00:08:22.010 --> 00:08:26.564
 Attestations and software bills of
 materials became agency choices,
 
 133
-00:07:56.564 --> 00:07:58.448
+00:08:26.564 --> 00:08:28.448
 made through contract terms.
 
 134
-00:07:58.448 --> 00:08:04.108
+00:08:28.448 --> 00:08:34.108
 Even so, a supply chain policy, plan,
 acquisition terms and notification agreements
 
 135
-00:08:04.108 --> 00:08:09.359
+00:08:34.108 --> 00:08:39.359
 sit in every NIST baseline, and they
 close through governance, not technology.
 
 136
-00:08:09.359 --> 00:08:13.538
+00:08:39.359 --> 00:08:43.538
 From December 7, FedRAMP's
 vulnerability rules bind providers,
 
 137
-00:08:13.538 --> 00:08:17.635
+00:08:43.538 --> 00:08:47.635
 and the agency folds their reports
 into its own plan of action.
 
 138
-00:08:17.635 --> 00:08:22.514
+00:08:47.635 --> 00:08:52.514
 The decision for the contracting
 officer: acquisition by acquisition,
 
 139
-00:08:22.514 --> 00:08:25.573
+00:08:52.514 --> 00:08:55.573
 decide whether to require
 an SBOM on request.
 
 140
-00:08:25.573 --> 00:08:27.340
+00:08:55.573 --> 00:08:57.340
 Next, privacy.
 
 141
-00:08:28.090 --> 00:08:30.495
+00:09:01.090 --> 00:09:03.495
 Privacy compliance is a public promise:
 
 142
-00:08:30.495 --> 00:08:35.377
+00:09:03.495 --> 00:09:08.377
 why the agency holds each kind of personal
 information, and under what authority.
 
 143
-00:08:35.377 --> 00:08:39.217
+00:09:08.377 --> 00:09:12.217
 NIST's privacy baseline applies
 whatever the impact level,
 
 144
-00:08:39.217 --> 00:08:43.056
+00:09:12.217 --> 00:09:16.056
 and FedRAMP certifies none of
 it, so the agency closes these
 
 145
-00:08:43.056 --> 00:08:46.816
+00:09:16.056 --> 00:09:19.816
 controls end to end, through
 documents the public can read.
 
 146
-00:08:46.816 --> 00:08:48.965
+00:09:19.816 --> 00:09:21.965
 One timeline catches programs out.
 
 147
-00:08:48.965 --> 00:08:54.110
+00:09:21.965 --> 00:09:27.110
 A new or significantly changed system of
 records is reported to OMB and Congress at
 
 148
-00:08:54.110 --> 00:08:58.137
+00:09:27.110 --> 00:09:31.137
 least thirty days before its notice
 goes to the Federal Register,
 
 149
-00:08:58.137 --> 00:09:01.940
+00:09:31.137 --> 00:09:34.940
 and new routine uses then wait
 out a thirty-day comment period.
 
 150
-00:09:01.940 --> 00:09:05.084
+00:09:34.940 --> 00:09:38.084
 So the decision for counsel
 and the privacy official:
 
 151
-00:09:05.084 --> 00:09:09.015
+00:09:38.084 --> 00:09:42.015
 start that notice at least sixty
 days before the first collection.
 
 152
-00:09:09.015 --> 00:09:10.750
+00:09:42.015 --> 00:09:43.750
 Next, training.
 
 153
-00:09:11.500 --> 00:09:15.275
+00:09:47.500 --> 00:09:51.275
 Training is the one family
 no configuration can close.
 
 154
-00:09:15.275 --> 00:09:18.078
+00:09:51.275 --> 00:09:54.078
 It closes when the right
 people were trained for the
 
 155
-00:09:18.078 --> 00:09:20.750
+00:09:54.078 --> 00:09:56.750
 roles they actually hold,
 and the record proves it.
 
 156
-00:09:20.750 --> 00:09:25.812
+00:09:56.750 --> 00:10:01.812
 A dashboard showing ninety-eight percent
 completion is a number with no denominator.
 
 157
-00:09:25.812 --> 00:09:27.463
+00:10:01.812 --> 00:10:03.463
 Measured against which roster?
 
 158
-00:09:27.463 --> 00:09:31.287
+00:10:03.463 --> 00:10:07.287
 And are the people in high-risk roles in
 the two percent who haven't finished?
 
 159
-00:09:31.287 --> 00:09:34.138
+00:10:07.287 --> 00:10:10.138
 The rules are simpler
 than most programs think:
 
 160
-00:09:34.138 --> 00:09:37.574
+00:10:10.138 --> 00:10:13.574
 training before access, and
 awareness at least annually.
 
 161
-00:09:37.574 --> 00:09:41.049
+00:10:13.574 --> 00:10:17.049
 Social engineering awareness
 is required at Moderate;
 
 162
-00:09:41.049 --> 00:09:43.163
+00:10:17.049 --> 00:10:19.163
 phishing exercises are optional.
 
 163
-00:09:43.163 --> 00:09:47.680
+00:10:19.163 --> 00:10:23.680
 The decision is the CISO's: set the
 completion threshold, and treat every
 
 164
-00:09:47.680 --> 00:09:52.574
+00:10:23.680 --> 00:10:28.574
 overdue person in a privileged role as
 a finding, whatever the percentage says.
 
 165
-00:09:52.574 --> 00:09:54.730
+00:10:28.574 --> 00:10:30.730
 Next, who owns all this.
 
 166
-00:09:55.480 --> 00:09:59.713
+00:10:34.480 --> 00:10:38.713
 Ask who owns compliance, and the
 answer is often the security office,
 
 167
-00:09:59.713 --> 00:10:01.830
+00:10:38.713 --> 00:10:40.830
 which means nobody in particular.
 
 168
-00:10:01.830 --> 00:10:06.592
+00:10:40.830 --> 00:10:45.592
 The failures happen between the jobs: a
 plan of action nobody updates, a privacy
 
 169
-00:10:06.592 --> 00:10:11.280
+00:10:45.592 --> 00:10:50.280
 plan nobody approved, a risk acceptance
 signed by someone who couldn't sign it.
 
 170
-00:10:11.280 --> 00:10:15.092
+00:10:50.280 --> 00:10:54.092
 The Risk Management Framework
 names an owner for every task.
 
 171
-00:10:15.092 --> 00:10:17.905
+00:10:54.092 --> 00:10:56.905
 The system owner owns
 more of them than anyone.
 
 172
-00:10:17.905 --> 00:10:21.793
+00:10:56.905 --> 00:11:00.793
 The authorizing official is the
 only one who can accept risk.
 
 173
-00:10:21.793 --> 00:10:25.543
+00:11:00.793 --> 00:11:04.543
 And six roles are government-only,
 so a contractor-heavy team
 
 174
-00:10:25.543 --> 00:10:29.218
+00:11:04.543 --> 00:11:08.218
 can prepare every package but
 sign none of those decisions.
 
 175
-00:10:29.218 --> 00:10:32.023
+00:11:08.218 --> 00:11:11.023
 The decision for the
 head of agency and CIO:
 
 176
-00:10:32.023 --> 00:10:36.993
+00:11:11.023 --> 00:11:15.993
 make every role a signed appointment
 with a name, not an organization chart.
 
 177
-00:10:36.993 --> 00:10:39.650
+00:11:15.993 --> 00:11:18.650
 Next, the authorization path.
 
 178
-00:10:40.400 --> 00:10:44.302
+00:11:22.400 --> 00:11:26.302
 The authorization path is where
 ownership gaps show first,
 
 179
-00:10:44.302 --> 00:10:46.850
+00:11:26.302 --> 00:11:28.850
 because each step hands off to the next.
 
 180
-00:10:46.850 --> 00:10:50.763
+00:11:28.850 --> 00:11:32.763
 The system owner and ISSO
 categorize and plan.
 
 181
-00:10:50.763 --> 00:10:54.150
+00:11:32.763 --> 00:11:36.150
 The authorizing official
 approves, picks the assessor,
 
 182
-00:10:54.150 --> 00:10:57.612
+00:11:36.150 --> 00:11:39.612
 and approves the assessment
 plan, before testing starts.
 
 183
-00:10:57.612 --> 00:10:59.124
+00:11:39.612 --> 00:11:41.124
 The assessor reports.
 
 184
-00:10:59.124 --> 00:11:02.937
+00:11:41.124 --> 00:11:44.937
 The system owner fixes what was
 found and assembles the package.
 
 185
-00:11:02.937 --> 00:11:05.687
+00:11:44.937 --> 00:11:47.687
 And the authorizing
 official alone decides.
 
 186
-00:11:05.687 --> 00:11:08.206
+00:11:47.687 --> 00:11:50.206
 The handoffs fail in predictable ways,
 
 187
-00:11:08.206 --> 00:11:11.512
+00:11:50.206 --> 00:11:53.512
 like a system owner who
 picks and pays the assessor.
 
 188
-00:11:11.512 --> 00:11:14.965
+00:11:53.512 --> 00:11:56.965
 So keep the roles apart: nobody
 assesses their own work,
 
 189
-00:11:14.965 --> 00:11:18.263
+00:11:56.965 --> 00:12:00.263
 and the authorizing official
 isn't the system owner.
 
 190
-00:11:18.263 --> 00:11:21.854
+00:12:00.263 --> 00:12:03.854
 The decision: the authorizing
 official selects the assessor
 
 191
-00:11:21.854 --> 00:11:25.163
+00:12:03.854 --> 00:12:07.163
 and sets its independence
 before the assessment starts.
 
 192
-00:11:25.163 --> 00:11:27.020
+00:12:07.163 --> 00:12:09.020
 Next, the package.
 
 193
-00:11:27.770 --> 00:11:31.183
+00:12:12.770 --> 00:12:16.183
 The authorizing official doesn't
 read the evidence directly.
 
 194
-00:11:31.183 --> 00:11:34.338
+00:12:16.183 --> 00:12:19.338
 They read a package that
 summarizes it: the plans,
 
 195
-00:11:34.338 --> 00:11:37.494
+00:12:19.338 --> 00:12:22.494
 the assessment, the report,
 and the plan of action.
 
 196
-00:11:37.494 --> 00:11:40.437
+00:12:22.494 --> 00:12:25.437
 NIST says the package may
 be generated by a tool,
 
 197
-00:11:40.437 --> 00:11:44.208
+00:12:25.437 --> 00:12:29.208
 and FedRAMP's agency rules
 expect machine-readable records.
 
 198
-00:11:44.208 --> 00:11:49.195
+00:12:29.208 --> 00:12:34.195
 Generated, the package describes the system
 today, not the day someone assembled it.
 
 199
-00:11:49.195 --> 00:11:54.073
+00:12:34.195 --> 00:12:39.073
 Every failing item gets one disposition:
 open, with an owner and a deadline;
 
 200
-00:11:54.073 --> 00:11:59.270
+00:12:39.073 --> 00:12:44.270
 an exception with an expiry date; or a
 lapsed acceptance that falls back to open.
 
 201
-00:11:59.270 --> 00:12:01.370
+00:12:44.270 --> 00:12:46.370
 Nothing is permanently satisfied.
 
 202
-00:12:01.370 --> 00:12:05.490
+00:12:46.370 --> 00:12:50.490
 The decision for the authorizing
 official: before accepting a clean
 
 203
-00:12:05.490 --> 00:12:09.682
+00:12:50.490 --> 00:12:54.682
 result or an empty plan of action, ask
 what the assessment didn't look at.
 
 204
-00:12:09.682 --> 00:12:11.840
+00:12:54.682 --> 00:12:56.840
 Next, keeping it current.
 
 205
-00:12:12.590 --> 00:12:16.028
+00:13:00.590 --> 00:13:04.028
 A package describes the system
 on the day it was generated.
 
 206
-00:12:16.028 --> 00:12:18.752
+00:13:04.028 --> 00:13:06.752
 Continuous monitoring
 keeps that day recent.
 
 207
-00:12:18.752 --> 00:12:23.520
+00:13:06.752 --> 00:13:11.520
 The program's rhythm, as its own design:
 every month, regenerate the results
 
 208
-00:12:23.520 --> 00:12:28.053
+00:13:11.520 --> 00:13:16.053
 and the plan of action, and report
 posture to the authorizing official.
 
 209
-00:12:28.053 --> 00:12:32.139
+00:13:16.053 --> 00:13:20.139
 Every quarter, review each
 provider's certification report;
 
 210
-00:12:32.139 --> 00:12:34.427
+00:13:20.139 --> 00:13:22.427
 FedRAMP's rule says agencies must.
 
 211
-00:12:34.427 --> 00:12:38.602
+00:13:22.427 --> 00:13:26.602
 Every year, an independent assessor
 re-assesses every control.
 
 212
-00:12:38.602 --> 00:12:43.290
+00:13:26.602 --> 00:13:31.290
 Once monitoring is mature, a review
 frequency can replace the end date.
 
 213
-00:12:43.290 --> 00:12:47.340
+00:13:31.290 --> 00:13:35.340
 And vendor posture scores stay
 signals, not assessment evidence.
 
 214
-00:12:47.340 --> 00:12:52.599
+00:13:35.340 --> 00:13:40.599
 The decision for the CISO: name the
 federal senior official who reviews each
 
 215
-00:12:52.599 --> 00:12:56.050
+00:13:40.599 --> 00:13:44.050
 provider's report, and keep
 a record of every review,
 
 216
-00:12:56.050 --> 00:12:59.665
+00:13:44.050 --> 00:13:47.665
 before FedRAMP's rules become
 mandatory on January 1.
 
 217
-00:12:59.665 --> 00:13:01.540
+00:13:47.665 --> 00:13:49.540
 Next, what remains.
 
 218
-00:13:02.290 --> 00:13:06.203
+00:13:53.290 --> 00:13:57.203
 Build everything the book
 describes, and risk still remains.
 
 219
-00:13:06.203 --> 00:13:09.840
+00:13:57.203 --> 00:14:00.840
 Self-assessment, until an
 independent assessor confirms it.
 
 220
-00:13:09.840 --> 00:13:14.040
+00:14:00.840 --> 00:14:05.040
 What automation can't see, like
 policies and whether training worked.
 
 221
-00:13:14.040 --> 00:13:16.115
+00:14:05.040 --> 00:14:07.115
 Risk inherited from providers.
 
 222
-00:13:16.115 --> 00:13:18.465
+00:14:07.115 --> 00:14:09.465
 Evidence that quietly stops arriving.
 
 223
-00:13:18.465 --> 00:13:22.615
+00:14:09.465 --> 00:14:13.615
 Risks outside control testing,
 like mission and insider risk.
 
 224
-00:13:22.615 --> 00:13:26.265
+00:14:13.615 --> 00:14:17.265
 And design not yet built, or
 vendor features not yet shipped.
 
 225
-00:13:26.265 --> 00:13:28.453
+00:14:17.265 --> 00:14:19.453
 None of this argues against the program.
 
 226
-00:13:28.453 --> 00:13:30.740
+00:14:19.453 --> 00:14:21.740
 It argues for writing the remainder down.
 
 227
-00:13:30.740 --> 00:13:34.865
+00:14:21.740 --> 00:14:25.865
 One green score hides the same risk
 and makes it the official's anyway.
 
 228
-00:13:34.865 --> 00:13:40.189
+00:14:25.865 --> 00:14:31.189
 So the decision: from the next update,
 every package lists what's proven, asserted,
 
 229
-00:13:40.189 --> 00:13:45.190
+00:14:31.189 --> 00:14:36.190
 inherited and accepted, and the authorizing
 official accepts it, or doesn't.
 
 230
-00:13:45.190 --> 00:13:47.780
+00:14:36.190 --> 00:14:38.780
 Finally, the decisions together.
 
 231
-00:13:48.530 --> 00:13:51.168
+00:14:42.530 --> 00:14:45.168
 So, the decisions and their owners.
 
 232
-00:13:51.168 --> 00:13:52.568
+00:14:45.168 --> 00:14:46.568
 None is a procurement.
 
 233
-00:13:52.568 --> 00:13:57.448
+00:14:46.568 --> 00:14:51.448
 The authorizing official authorizes
 the agency's own system, approves each
 
 234
-00:13:57.448 --> 00:14:00.315
+00:14:51.448 --> 00:14:54.315
 categorization first,
 selects the assessor,
 
 235
-00:14:00.315 --> 00:14:03.181
+00:14:54.315 --> 00:14:57.181
 and decides on every
 unsupported component.
 
 236
-00:14:03.181 --> 00:14:06.834
+00:14:57.181 --> 00:15:00.834
 The head of agency approves
 the risk tolerance and,
 
 237
-00:14:06.834 --> 00:14:09.618
+00:15:00.834 --> 00:15:03.618
 with the CIO, signs named appointments.
 
 238
-00:14:09.618 --> 00:14:12.051
+00:15:03.618 --> 00:15:06.051
 The CIO funds the mechanisms that produce
 
 239
-00:14:12.051 --> 00:14:14.555
+00:15:06.051 --> 00:15:08.555
 records before the
 tools that measure them.
 
 240
-00:14:14.555 --> 00:14:19.780
+00:15:08.555 --> 00:15:13.780
 The CISO sets the training threshold and
 names who reviews each provider's report.
 
 241
-00:14:19.780 --> 00:14:25.036
+00:15:13.780 --> 00:15:19.036
 Mission owners sign their downtime limits,
 counsel and the privacy official start
 
 242
-00:14:25.036 --> 00:14:28.235
+00:15:19.036 --> 00:15:22.235
 notices early, and system
 owners show what's proven,
 
 243
-00:14:28.235 --> 00:14:30.368
+00:15:22.235 --> 00:15:24.368
 asserted, inherited and accepted.
 
 244
-00:14:30.368 --> 00:14:32.806
+00:15:24.368 --> 00:15:26.806
 A promise is true on the day it's signed.
 
 245
-00:14:32.806 --> 00:14:34.530
+00:15:26.806 --> 00:15:28.530
 Proof keeps showing itself.
 
 246
-00:14:34.530 --> 00:14:35.350
+00:15:28.530 --> 00:15:29.350
 Thank you.

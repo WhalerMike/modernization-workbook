@@ -71,1049 +71,1049 @@ That's Microsoft's own term:
 HR-driven provisioning.
 
 16
-00:00:57.430 --> 00:00:59.392
+00:01:00.430 --> 00:01:02.392
 The thesis in one slide.
 
 17
-00:00:59.392 --> 00:01:04.400
+00:01:02.392 --> 00:01:07.400
 On the left, two migrations that happen
 regardless: HR moves to Core HCM,
 
 18
-00:01:04.400 --> 00:01:08.543
+00:01:07.400 --> 00:01:11.543
 and identity moves from Active
 Directory toward Entra ID.
 
 19
-00:01:08.543 --> 00:01:13.717
+00:01:11.543 --> 00:01:16.717
 Meanwhile, the enterprise lifecycle remains
 substantially manual and fragmented.
 
 20
-00:01:13.717 --> 00:01:16.329
+00:01:16.717 --> 00:01:19.329
 In the middle, what OPM leaves to us.
 
 21
-00:01:16.329 --> 00:01:20.098
+00:01:19.329 --> 00:01:23.098
 OPM fixes the HR side; how
 the agency's directories
 
 22
-00:01:20.098 --> 00:01:24.142
+00:01:23.098 --> 00:01:27.142
 and ICAM consume that data
 is the agency's decision.
 
 23
-00:01:24.142 --> 00:01:28.346
+00:01:27.142 --> 00:01:31.346
 And the solicitation requires
 SCIM 2.0 provisioning —
 
 24
-00:01:28.346 --> 00:01:30.830
+00:01:31.346 --> 00:01:33.830
 exactly what Entra ID consumes.
 
 25
-00:01:30.830 --> 00:01:34.627
+00:01:33.830 --> 00:01:37.627
 On the right, the proposal:
 start HR-driven identity,
 
 26
-00:01:34.627 --> 00:01:40.142
+00:01:37.627 --> 00:01:43.142
 with HR as the source of authority,
 expressed in OPM's standard attributes.
 
 27
-00:01:40.142 --> 00:01:45.021
+00:01:43.142 --> 00:01:48.021
 So the real choice is: carry ticket-driven
 identity through both migrations,
 
 28
-00:01:45.021 --> 00:01:50.431
+00:01:48.021 --> 00:01:53.431
 or start HR-driven identity once, while
 both platforms are being rebuilt anyway.
 
 29
-00:01:51.230 --> 00:01:54.480
+00:01:57.230 --> 00:02:00.480
 Why we need HR-driven ICAM
 at all — and why now.
 
 30
-00:01:54.480 --> 00:01:58.162
+00:02:00.480 --> 00:02:04.162
 Zero Trust is federal
 strategy — OMB M-22-09,
 
 31
-00:01:58.162 --> 00:02:06.343
+00:02:04.162 --> 00:02:12.343
 with NIST SP 800-207 as the architecture
 and CISA's maturity model as the yardstick.
 
 32
-00:02:06.343 --> 00:02:11.316
+00:02:12.343 --> 00:02:17.316
 SASE is one way these controls can be
 delivered near users and cloud resources,
 
 33
-00:02:11.316 --> 00:02:16.817
+00:02:17.316 --> 00:02:22.817
 which TIC 3.0 opens up for agencies,
 instead of only at our network perimeter.
 
 34
-00:02:16.817 --> 00:02:21.489
+00:02:22.817 --> 00:02:27.489
 Reliable ICAM supplies critical
 identity signals to those decisions:
 
 35
-00:02:21.489 --> 00:02:25.701
+00:02:27.489 --> 00:02:31.701
 the user presents a token from a
 PIV card or phishing-resistant MFA,
 
 36
-00:02:25.701 --> 00:02:29.300
+00:02:31.701 --> 00:02:35.300
 and Entra ID decides access
 through Conditional Access
 
 37
-00:02:29.300 --> 00:02:32.517
+00:02:35.300 --> 00:02:38.517
 and dynamic groups that
 read the user's attributes.
 
 38
-00:02:32.517 --> 00:02:36.792
+00:02:38.517 --> 00:02:42.792
 In the perimeter era, a wrong department
 meant a wrong phone-book entry.
 
 39
-00:02:36.792 --> 00:02:40.238
+00:02:42.792 --> 00:02:46.238
 Now it means the wrong groups,
 and so the wrong access —
 
 40
-00:02:40.238 --> 00:02:42.642
+00:02:46.238 --> 00:02:48.642
 and a stale status is worse than ever.
 
 41
-00:02:42.642 --> 00:02:45.772
+00:02:48.642 --> 00:02:51.772
 In the perimeter era an
 orphaned account was already a
 
 42
-00:02:45.772 --> 00:02:49.042
+00:02:51.772 --> 00:02:55.042
 standing security violation
 that could enable a breach.
 
 43
-00:02:49.042 --> 00:02:51.842
+00:02:55.042 --> 00:02:57.842
 Now it's a valid token
 for someone who has left,
 
 44
-00:02:51.842 --> 00:02:56.005
+00:02:57.842 --> 00:03:02.005
 usable from anywhere, because there
 is no perimeter left to stop it.
 
 45
-00:02:56.005 --> 00:02:58.929
+00:03:02.005 --> 00:03:04.929
 When access decisions
 depend on attributes,
 
 46
-00:02:58.929 --> 00:03:03.180
+00:03:04.929 --> 00:03:09.180
 the accuracy of employee data
 drives the accuracy of access.
 
 47
-00:03:03.990 --> 00:03:06.852
+00:03:12.990 --> 00:03:15.852
 Why this matters to everyone
 who works in an agency.
 
 48
-00:03:06.852 --> 00:03:10.457
+00:03:15.852 --> 00:03:19.457
 In many agencies Active
 Directory feeds the phone book,
 
 49
-00:03:10.457 --> 00:03:13.277
+00:03:19.457 --> 00:03:22.277
 and nothing feeds Active
 Directory from HR.
 
 50
-00:03:13.277 --> 00:03:16.411
+00:03:22.277 --> 00:03:25.411
 Titles, offices, phone
 numbers and managers stay
 
 51
-00:03:16.411 --> 00:03:19.466
+00:03:25.411 --> 00:03:28.466
 wrong until someone
 notices and files a ticket.
 
 52
-00:03:19.466 --> 00:03:24.366
+00:03:28.466 --> 00:03:33.366
 And every time someone changes management,
 their organization, their manager
 
 53
-00:03:24.366 --> 00:03:29.040
+00:03:33.366 --> 00:03:38.040
 and their access to tools have to be
 updated by hand, after the fact, by ticket.
 
 54
-00:03:29.040 --> 00:03:30.852
+00:03:38.040 --> 00:03:39.852
 HR already knows all of it.
 
 55
-00:03:30.852 --> 00:03:35.854
+00:03:39.852 --> 00:03:44.854
 With HR-driven IT, the personnel action
 that records the reassignment updates the
 
 56
-00:03:35.854 --> 00:03:40.561
+00:03:44.854 --> 00:03:49.561
 organization and manager in Entra ID and
 Active Directory, and the phone book,
 
 57
-00:03:40.561 --> 00:03:45.048
+00:03:49.561 --> 00:03:54.048
 the approval chain and tool access
 follow from the authoritative source —
 
 58
-00:03:45.048 --> 00:03:49.540
+00:03:54.048 --> 00:03:58.540
 instead of each person, and the help
 desk, keeping them current by hand.
 
 59
-00:03:50.350 --> 00:03:51.200
+00:04:02.350 --> 00:04:03.200
 The window.
 
 60
-00:03:51.200 --> 00:03:59.175
+00:04:03.200 --> 00:04:11.175
 The December 10, 2025 OMB/OPM memo directs
 one government-wide Core HCM platform.
 
 61
-00:03:59.175 --> 00:04:04.563
+00:04:11.175 --> 00:04:16.563
 Oracle Fusion Cloud HCM
 was awarded June 11, 2026.
 
 62
-00:04:04.563 --> 00:04:08.225
+00:04:16.563 --> 00:04:20.225
 First go-lives are January to March 2027.
 
 63
-00:04:08.225 --> 00:04:12.644
+00:04:20.225 --> 00:04:24.644
 Current planning, based on
 published Federal HR 2.0 material,
 
 64
-00:04:12.644 --> 00:04:15.913
+00:04:24.644 --> 00:04:27.913
 has Wave 2 agencies
 following in fiscal 2027;
 
 65
-00:04:15.913 --> 00:04:20.862
+00:04:27.913 --> 00:04:32.862
 agency-specific milestones are
 confirmed with the program office.
 
 66
-00:04:20.862 --> 00:04:25.795
+00:04:32.862 --> 00:04:37.795
 Program material describes interconnections
 occurring during the onboarding period,
 
 67
-00:04:25.795 --> 00:04:29.862
+00:04:37.795 --> 00:04:41.862
 and for an agency not yet on the platform,
 that onboarding still lies ahead.
 
 68
-00:04:29.862 --> 00:04:35.462
+00:04:41.862 --> 00:04:47.462
 By fiscal 2028 EHRI and
 eOPF are decommissioned.
 
 69
-00:04:35.462 --> 00:04:38.488
+00:04:47.462 --> 00:04:50.488
 I'd describe that not as a
 deadline but as a window.
 
 70
-00:04:38.488 --> 00:04:43.606
+00:04:50.488 --> 00:04:55.606
 Inside it, the data standards, the
 cleanup, the interconnection design — and,
 
 71
-00:04:43.606 --> 00:04:47.801
+00:04:55.606 --> 00:04:59.801
 on our side, the Entra ID migration
 plan — are all being decided,
 
 72
-00:04:47.801 --> 00:04:51.576
+00:04:59.801 --> 00:05:03.576
 and an HR-driven identity feed
 can be written into them.
 
 73
-00:04:51.576 --> 00:04:56.885
+00:05:03.576 --> 00:05:08.885
 After it closes, both migrations finish with
 ticket-driven identity carried forward,
 
 74
-00:04:56.885 --> 00:05:00.775
+00:05:08.885 --> 00:05:12.775
 and adding HR-driven identity
 later means reopening both.
 
 75
-00:05:01.570 --> 00:05:05.745
+00:05:16.570 --> 00:05:20.745
 This is the heart of the proposal, and
 it's the programmatic data knowledge.
 
 76
-00:05:05.745 --> 00:05:10.282
+00:05:20.745 --> 00:05:25.282
 OPM already defines the personnel
 data every agency records.
 
 77
-00:05:10.282 --> 00:05:14.432
+00:05:25.282 --> 00:05:29.432
 Agency and subelement give the
 legal employer and component.
 
 78
-00:05:14.432 --> 00:05:16.982
+00:05:29.432 --> 00:05:31.982
 Duty station is the location of record.
 
 79
-00:05:16.982 --> 00:05:22.220
+00:05:31.982 --> 00:05:37.220
 Series, pay plan and grade give a
 position category for role-based access.
 
 80
-00:05:22.220 --> 00:05:25.807
+00:05:37.220 --> 00:05:40.807
 Supervisory status tells us
 who can approve and review.
 
 81
-00:05:25.807 --> 00:05:28.971
+00:05:40.807 --> 00:05:43.971
 Tenure and appointment type
 drive the worker type.
 
 82
-00:05:28.971 --> 00:05:32.241
+00:05:43.971 --> 00:05:47.241
 And the nature-of-action
 code, with its effective date,
 
 83
-00:05:32.241 --> 00:05:34.620
+00:05:47.241 --> 00:05:49.620
 tells us what just happened — next slide.
 
 84
-00:05:34.620 --> 00:05:38.645
+00:05:49.620 --> 00:05:53.645
 Why build on OPM's standard rather
 than on Oracle's field names?
 
 85
-00:05:38.645 --> 00:05:42.503
+00:05:53.645 --> 00:05:57.503
 Because OPM standards provide
 a common federal vocabulary
 
 86
-00:05:42.503 --> 00:05:45.820
+00:05:57.503 --> 00:06:00.820
 that agencies can map into
 a shared canonical model.
 
 87
-00:05:45.820 --> 00:05:50.603
+00:06:00.820 --> 00:06:05.603
 We map them to Entra ID and AD once,
 for every employee population —
 
 88
-00:05:50.603 --> 00:05:54.845
+00:06:05.603 --> 00:06:09.845
 and if the HR vendor ever
 changes, the mapping still holds.
 
 89
-00:05:54.845 --> 00:05:59.170
+00:06:09.845 --> 00:06:14.170
 One honest limit: HRIT covers
 federal employees only.
 
 90
-00:05:59.170 --> 00:06:01.022
+00:06:14.170 --> 00:06:16.022
 In the processes I have observed,
 
 91
-00:06:01.022 --> 00:06:04.383
+00:06:16.022 --> 00:06:19.383
 contractors and vendors are
 tracked in COR spreadsheets.
 
 92
-00:06:04.383 --> 00:06:07.272
+00:06:19.383 --> 00:06:22.272
 A contractor authority
 decision is required,
 
 93
-00:06:07.272 --> 00:06:10.466
+00:06:22.272 --> 00:06:25.466
 and I propose evaluating
 three candidate sources:
 
 94
-00:06:10.466 --> 00:06:13.584
+00:06:25.466 --> 00:06:28.584
 Core HCM's Contingent Worker
 type — a person record,
 
 95
-00:06:13.584 --> 00:06:16.930
+00:06:28.584 --> 00:06:31.930
 an assignment and a lifecycle
 much like an employee's,
 
 96
-00:06:16.930 --> 00:06:20.504
+00:06:31.930 --> 00:06:35.504
 though with no vendor-management
 layer; PIV sponsorship;
 
 97
-00:06:20.504 --> 00:06:23.014
+00:06:35.504 --> 00:06:38.014
 and a contractor suitability register,
 
 98
-00:06:23.014 --> 00:06:27.957
+00:06:38.014 --> 00:06:42.957
 which ties each contractor to an agency
 contract with a suitability decision.
 
 99
-00:06:27.957 --> 00:06:31.070
+00:06:42.957 --> 00:06:46.070
 That's a decision to put in
 front of the program early.
 
 100
-00:06:31.870 --> 00:06:34.587
+00:06:49.870 --> 00:06:52.587
 Personnel actions can
 initiate the lifecycle,
 
 101
-00:06:34.587 --> 00:06:38.558
+00:06:52.587 --> 00:06:56.558
 after their identity interpretations
 and exceptions are approved.
 
 102
-00:06:38.558 --> 00:06:43.233
+00:06:56.558 --> 00:07:01.233
 For federal employees, every personnel
 action carries a nature-of-action code,
 
 103
-00:06:43.233 --> 00:06:48.557
+00:07:01.233 --> 00:07:06.557
 and I propose mapping the families to
 identity events: the 100 series are joiners,
 
 104
-00:06:48.557 --> 00:06:55.032
+00:07:06.557 --> 00:07:13.032
 the 700 series movers, the 500 series
 conversions, the 300 series separations.
 
 105
-00:06:55.032 --> 00:07:01.007
+00:07:13.032 --> 00:07:19.007
 Contractors have no SF-50; their events
 come from contract start and end dates.
 
 106
-00:07:01.007 --> 00:07:03.583
+00:07:19.007 --> 00:07:21.583
 Two families matter more
 than people expect.
 
 107
-00:07:03.583 --> 00:07:08.811
+00:07:21.583 --> 00:07:26.811
 The 400 series — furlough, leave without
 pay, suspension — is not a leaver;
 
 108
-00:07:08.811 --> 00:07:12.994
+00:07:26.811 --> 00:07:30.994
 the person is still employed and
 policy restricts the account.
 
 109
-00:07:12.994 --> 00:07:17.320
+00:07:30.994 --> 00:07:35.320
 The 200 series, return to
 duty, lifts those restrictions.
 
 110
-00:07:17.320 --> 00:07:19.978
+00:07:35.320 --> 00:07:37.978
 Getting this wrong either
 locks out people on
 
 111
-00:07:19.978 --> 00:07:22.845
+00:07:37.978 --> 00:07:40.845
 leave or leaves access open
 for people who've left.
 
 112
-00:07:22.845 --> 00:07:27.820
+00:07:40.845 --> 00:07:45.820
 The codes also settle precedence — a
 separation wins — and rescinded offers.
 
 113
-00:07:27.820 --> 00:07:32.724
+00:07:45.820 --> 00:07:50.724
 HR, security, labor-relations, privacy,
 and personnel-policy owners would
 
 114
-00:07:32.724 --> 00:07:38.745
+00:07:50.724 --> 00:07:56.745
 validate the mappings, exceptions, precedence
 rules, and actions before automation.
 
 115
-00:07:39.570 --> 00:07:42.833
+00:08:00.570 --> 00:08:03.833
 Identifiers are where data
 architecture earns its keep.
 
 116
-00:07:42.833 --> 00:07:47.244
+00:08:03.833 --> 00:08:08.244
 A common design says the employee
 ID is the person, for life.
 
 117
-00:07:47.244 --> 00:07:49.773
+00:08:08.244 --> 00:08:10.773
 It breaks the moment the source changes,
 
 118
-00:07:49.773 --> 00:07:52.607
+00:08:10.773 --> 00:08:13.607
 a contractor converts,
 or someone is rehired.
 
 119
-00:07:52.607 --> 00:07:58.065
+00:08:13.607 --> 00:08:19.065
 So I model identifiers in layers: an
 enterprise person key the agency controls;
 
 120
-00:07:58.065 --> 00:08:03.101
+00:08:19.065 --> 00:08:24.101
 a source key per HR system; an affiliation
 key per employment or contract;
 
 121
-00:08:03.101 --> 00:08:08.558
+00:08:24.101 --> 00:08:29.558
 a directory ID per account; and credential
 identifiers per PIV or certificate.
 
 122
-00:08:08.558 --> 00:08:11.608
+00:08:29.558 --> 00:08:32.608
 The person is the tracked
 entity, not the account.
 
 123
-00:08:11.608 --> 00:08:15.594
+00:08:32.608 --> 00:08:36.594
 That's what survives rehire,
 conversion and reorganization.
 
 124
-00:08:15.594 --> 00:08:19.705
+00:08:36.594 --> 00:08:40.705
 And many agencies already have a
 strong candidate — for example,
 
 125
-00:08:19.705 --> 00:08:24.132
+00:08:40.705 --> 00:08:45.132
 a Mainframe PIN that already serves
 as the person ID and employee ID.
 
 126
-00:08:24.132 --> 00:08:27.871
+00:08:45.132 --> 00:08:48.871
 I propose it for confirmation
 as the enterprise person key;
 
 127
-00:08:27.871 --> 00:08:32.832
+00:08:48.871 --> 00:08:53.832
 adoption requires validating its
 uniqueness, persistence, non-reassignment,
 
 128
-00:08:32.832 --> 00:08:37.182
+00:08:53.832 --> 00:08:58.182
 population coverage, privacy
 constraints and historical behavior.
 
 129
-00:08:37.182 --> 00:08:42.192
+00:08:58.182 --> 00:09:03.192
 Once it's confirmed, map Core HCM's
 PersonNumber to it — so when the agency
 
 130
-00:08:42.192 --> 00:08:47.846
+00:09:03.192 --> 00:09:08.846
 moves to Core HCM, only the source key
 changes, and nothing downstream has to.
 
 131
-00:08:48.660 --> 00:08:53.498
+00:09:12.660 --> 00:09:17.498
 Logical and physical modeling,
 following the data from HR to ICAM.
 
 132
-00:08:53.498 --> 00:08:57.662
+00:09:17.498 --> 00:09:21.662
 In the middle is the logical model:
 a person with an enterprise key the
 
 133
-00:08:57.662 --> 00:09:02.410
+00:09:21.662 --> 00:09:26.410
 agency controls — their assignments, and
 the lifecycle events that change them.
 
 134
-00:09:02.410 --> 00:09:05.839
+00:09:26.410 --> 00:09:29.839
 On the left, the OPM element
 that feeds each field;
 
 135
-00:09:05.839 --> 00:09:10.641
+00:09:29.839 --> 00:09:34.641
 then where it lands in Entra ID and
 Active Directory; and on the right,
 
 136
-00:09:10.641 --> 00:09:16.042
+00:09:34.641 --> 00:09:40.042
 what ICAM does with it — component scope,
 location policy, role-based access,
 
 137
-00:09:16.042 --> 00:09:20.672
+00:09:40.042 --> 00:09:44.672
 approvals, and the joiner, mover
 and leaver actions, including PIV.
 
 138
-00:09:20.672 --> 00:09:26.283
+00:09:44.672 --> 00:09:50.283
 Three physical rules: native attributes
 first; codes, never display strings, in
 
 139
-00:09:26.283 --> 00:09:28.354
+00:09:50.283 --> 00:09:52.354
 anything that grants access;
 
 140
-00:09:28.354 --> 00:09:32.884
+00:09:52.354 --> 00:09:56.884
 and one governed crosswalk as
 the only place mappings live.
 
 141
-00:09:33.700 --> 00:09:36.875
+00:10:00.700 --> 00:10:03.875
 Logical architecture and
 Microsoft realization.
 
 142
-00:09:36.875 --> 00:09:41.340
+00:10:03.875 --> 00:10:08.340
 The top row is the architecture, and
 it's stable: an authoritative source,
 
 143
-00:09:41.340 --> 00:09:44.897
+00:10:08.340 --> 00:10:11.897
 a boundary transformation,
 the governed identity model,
 
 144
-00:09:44.897 --> 00:09:48.075
+00:10:11.897 --> 00:10:15.075
 a provisioning service,
 and the targets and ICAM.
 
 145
-00:09:48.075 --> 00:09:54.123
+00:10:15.075 --> 00:10:21.123
 The bottom row is how Microsoft realizes it
 today: Oracle Core HCM, Azure Functions,
 
 146
-00:09:54.123 --> 00:10:00.348
+00:10:21.123 --> 00:10:27.348
 the canonical model and provenance store,
 Graph and the Entra provisioning service,
 
 147
-00:10:00.348 --> 00:10:03.550
+00:10:27.348 --> 00:10:30.550
 then Entra ID, AD, Intune
 and card management.
 
 148
-00:10:03.550 --> 00:10:07.162
+00:10:30.550 --> 00:10:34.162
 Products in the bottom row can
 change; the top row doesn't.
 
 149
-00:10:07.162 --> 00:10:10.263
+00:10:34.162 --> 00:10:37.263
 The table is why the two
 migrations belong together.
 
 150
-00:10:10.263 --> 00:10:15.900
+00:10:37.263 --> 00:10:42.900
 Done separately, the Entra ID migration
 moves ticket-created accounts as they are.
 
 151
-00:10:15.900 --> 00:10:21.463
+00:10:42.900 --> 00:10:48.463
 Done together, each population arrives
 in Entra ID already HR-sourced.
 
 152
-00:10:22.270 --> 00:10:24.195
+00:10:52.270 --> 00:10:54.195
 ICAM — beyond accounts.
 
 153
-00:10:24.195 --> 00:10:28.095
+00:10:54.195 --> 00:10:58.095
 Credentials: the joiner event
 schedules PIV enrollment.
 
 154
-00:10:28.095 --> 00:10:31.775
+00:10:58.095 --> 00:11:01.775
 The leaver event blocks sign-in
 and revokes sessions first —
 
 155
-00:10:31.775 --> 00:10:33.652
+00:11:01.775 --> 00:11:03.652
 Microsoft's documented order,
 
 156
-00:10:33.652 --> 00:10:38.684
+00:11:03.652 --> 00:11:08.684
 and the step that closes certificate
 sign-in immediately rather than at the next
 
 157
-00:10:38.684 --> 00:10:41.313
+00:11:08.684 --> 00:11:11.313
 revocation-list refresh
 — then revokes PIV,
 
 158
-00:10:41.313 --> 00:10:46.645
+00:11:11.313 --> 00:11:16.645
 derived credentials and device certificates
 in parallel, reconciled to completion.
 
 159
-00:10:46.645 --> 00:10:51.447
+00:11:16.645 --> 00:11:21.447
 Assurance: record each person's proofing
 level and authenticator assurance as
 
 160
-00:10:51.447 --> 00:10:55.522
+00:11:21.447 --> 00:11:25.522
 governed attributes, treat missing
 proofing evidence as a finding,
 
 161
-00:10:55.522 --> 00:10:59.233
+00:11:25.522 --> 00:11:29.233
 and enforce phishing-resistant
 MFA under M-22-09.
 
 162
-00:10:59.233 --> 00:11:03.714
+00:11:29.233 --> 00:11:33.714
 Access: baseline access derived by
 rule from the standard attributes;
 
 163
-00:11:03.714 --> 00:11:09.200
+00:11:33.714 --> 00:11:39.200
 position attributes scoping candidates
 for privileged eligibility, with explicit
 
 164
-00:11:09.200 --> 00:11:11.286
+00:11:39.200 --> 00:11:41.286
 approval and PIM still required;
 
 165
-00:11:11.286 --> 00:11:14.608
+00:11:41.286 --> 00:11:44.608
 and any activity from a
 separated person is an alert.
 
 166
-00:11:14.608 --> 00:11:18.189
+00:11:44.608 --> 00:11:48.189
 The result: every entitlement
 has a "because" — a rule,
 
 167
-00:11:18.189 --> 00:11:22.070
+00:11:48.189 --> 00:11:52.070
 an attribute, and the
 personnel action that set it.
 
 168
-00:11:22.890 --> 00:11:26.852
+00:11:55.890 --> 00:11:59.852
 Privacy — which is where a data
 architect earns trust with HR.
 
 169
-00:11:26.852 --> 00:11:32.028
+00:11:59.852 --> 00:12:05.028
 Moving HR attributes into a directory
 is a disclosure of personnel records.
 
 170
-00:11:32.028 --> 00:11:38.143
+00:12:05.028 --> 00:12:11.143
 So: confirm the routine-use basis under
 the governing system-of-records notices —
 
 171
-00:11:38.143 --> 00:11:41.293
+00:12:11.143 --> 00:12:14.293
 OPM/GOVT-1 for general personnel records,
 
 172
-00:11:41.293 --> 00:11:44.628
+00:12:14.293 --> 00:12:17.628
 plus the agency's own —
 before anything flows.
 
 173
-00:11:44.628 --> 00:11:49.427
+00:12:17.628 --> 00:12:22.427
 Minimize: send only attributes an
 identity decision actually reads,
 
 174
-00:11:49.427 --> 00:11:53.890
+00:12:22.427 --> 00:12:26.890
 as codes rather than narrative, and
 never use the SSN as a join key.
 
 175
-00:11:53.890 --> 00:11:58.440
+00:12:26.890 --> 00:12:31.440
 Update the privacy impact assessment
 for the new flow and its consumers.
 
 176
-00:11:58.440 --> 00:12:00.935
+00:12:31.440 --> 00:12:33.935
 And protect the flow: encrypt every leg,
 
 177
-00:12:00.935 --> 00:12:06.002
+00:12:33.935 --> 00:12:39.002
 and keep logs to the person key and a
 payload hash rather than the record itself.
 
 178
-00:12:06.002 --> 00:12:10.247
+00:12:39.002 --> 00:12:43.247
 The principle underneath: HR
 remains the system of records;
 
 179
-00:12:10.247 --> 00:12:15.916
+00:12:43.247 --> 00:12:48.916
 identity is a governed consumer that
 never writes an HR-mastered fact back.
 
 180
-00:12:16.710 --> 00:12:19.322
+00:12:52.710 --> 00:12:55.322
 The governance I'd bring
 to deliver it safely.
 
 181
-00:12:19.322 --> 00:12:23.986
+00:12:55.322 --> 00:12:59.986
 The data foundation first: an authority
 map with one owner per attribute,
 
 182
-00:12:23.986 --> 00:12:27.173
+00:12:59.986 --> 00:13:03.173
 and an enterprise person
 key the agency controls.
 
 183
-00:12:27.173 --> 00:12:29.722
+00:13:03.173 --> 00:13:05.722
 A security assessment of the data flow.
 
 184
-00:12:29.722 --> 00:12:33.284
+00:13:05.722 --> 00:13:09.284
 An acceptance gate with a signed
 validation before cutover.
 
 185
-00:12:33.284 --> 00:12:36.348
+00:13:09.284 --> 00:13:12.348
 And a cutover that proves
 HR is the sole source for
 
 186
-00:12:36.348 --> 00:12:39.410
+00:13:12.348 --> 00:13:15.410
 a population before the
 ticket path closes for it.
 
 187
-00:12:39.410 --> 00:12:41.825
+00:13:15.410 --> 00:13:17.825
 Then the operating
 rules on the bottom row,
 
 188
-00:12:41.825 --> 00:12:44.447
+00:13:17.825 --> 00:13:20.447
 from lifecycle rules
 through change control.
 
 189
-00:12:44.447 --> 00:12:51.343
+00:13:20.447 --> 00:13:27.343
 Together that produces evidence for AC-2,
 PS-4, PS-5, IA-4 and SI-12 as a byproduct
 
 190
-00:12:51.343 --> 00:12:57.373
+00:13:27.343 --> 00:13:33.373
 of operating — supporting those controls,
 not claiming to close them on its own.
 
 191
-00:12:58.170 --> 00:13:00.720
+00:13:37.170 --> 00:13:39.720
 One standard, shared across agencies.
 
 192
-00:13:00.720 --> 00:13:04.603
+00:13:39.720 --> 00:13:43.603
 Participating civilian agencies
 are moving toward shared
 
 193
-00:13:04.603 --> 00:13:08.720
+00:13:43.603 --> 00:13:47.720
 Core HCM capabilities and common
 federal personnel standards.
 
 194
-00:13:08.720 --> 00:13:14.174
+00:13:47.720 --> 00:13:53.174
 If one agency defines HR-driven ICAM as
 a standard — crosswalk, canonical model,
 
 195
-00:13:14.174 --> 00:13:15.992
+00:13:53.174 --> 00:13:54.992
 identifiers and evidence —
 
 196
-00:13:15.992 --> 00:13:19.958
+00:13:54.992 --> 00:13:58.958
 other agencies can reuse it
 instead of building their own.
 
 197
-00:13:19.958 --> 00:13:24.190
+00:13:58.958 --> 00:14:03.190
 And attributes that mean the same
 thing everywhere make details,
 
 198
-00:13:24.190 --> 00:13:28.032
+00:14:03.190 --> 00:14:07.032
 transfers, shared services and
 cross-agency access easier.
 
 199
-00:13:28.032 --> 00:13:31.051
+00:14:07.032 --> 00:14:10.051
 That's the work an enterprise
 data architect does:
 
 200
-00:13:31.051 --> 00:13:34.291
+00:14:10.051 --> 00:14:13.291
 working the issues with
 other agencies and industry,
 
 201
-00:13:34.291 --> 00:13:37.309
+00:14:13.291 --> 00:14:16.309
 developing options and
 predicting their impact,
 
 202
-00:13:37.309 --> 00:13:42.021
+00:14:16.309 --> 00:14:21.021
 and serving as the data expert on
 interagency committees and working groups.
 
 203
-00:13:42.021 --> 00:13:46.870
+00:14:21.021 --> 00:14:25.870
 The goal: offer the model for
 interagency evaluation and reuse.
 
 204
-00:13:47.670 --> 00:13:49.395
+00:14:29.670 --> 00:14:31.395
 The roadmap and the ask.
 
 205
-00:13:49.395 --> 00:13:52.726
+00:14:31.395 --> 00:14:34.726
 Now: align with the
 agency's HR 2.0 team so
 
 206
-00:13:52.726 --> 00:13:57.307
+00:14:34.726 --> 00:14:39.307
 identity is a named consumer
 of the interconnection.
 
 207
-00:13:57.307 --> 00:14:00.653
+00:14:39.307 --> 00:14:42.653
 Before onboarding: the
 crosswalk, authority map,
 
 208
-00:14:00.653 --> 00:14:03.246
+00:14:42.653 --> 00:14:45.246
 contractor source and privacy basis.
 
 209
-00:14:03.246 --> 00:14:05.643
+00:14:45.246 --> 00:14:47.643
 Then build and prove in shadow mode,
 
 210
-00:14:05.643 --> 00:14:10.770
+00:14:47.643 --> 00:14:52.770
 cut each population over as it moves to
 Entra ID, and sustain it with metrics.
 
 211
-00:14:10.770 --> 00:14:15.036
+00:14:52.770 --> 00:14:57.036
 So the ask is simple: decide
 now to start HR-driven identity,
 
 212
-00:14:15.036 --> 00:14:20.103
+00:14:57.036 --> 00:15:02.103
 and build it into both the HR 2.0
 onboarding and the Entra ID migration —
 
 213
-00:14:20.103 --> 00:14:24.458
+00:15:02.103 --> 00:15:06.458
 so that Zero Trust and SASE
 decide access on accurate data.
 
 214
-00:14:24.458 --> 00:14:29.838
+00:15:06.458 --> 00:15:11.838
 My contribution as an enterprise data
 architect: establish authority, identifiers,
 
 215
-00:14:29.838 --> 00:14:31.913
+00:15:11.838 --> 00:15:13.913
 standards, lineage and evidence,
 
 216
-00:14:31.913 --> 00:14:35.757
+00:15:13.913 --> 00:15:17.757
 so workforce events produce
 measurable identity outcomes.
 
 217
-00:14:35.757 --> 00:14:38.645
+00:15:17.757 --> 00:15:20.645
 Thank you — I look
 forward to your questions.
 
 218
-00:14:39.450 --> 00:14:45.166
+00:15:24.450 --> 00:15:30.166
 HR-driven identity is one piece of a larger
 set of modernizations I've designed over
 
 219
-00:14:45.166 --> 00:14:48.066
+00:15:30.166 --> 00:15:33.066
 the last several years:
 Entra ID migration,
 
 220
-00:14:48.066 --> 00:14:51.297
+00:15:33.066 --> 00:15:36.297
 next-generation DNS and
 IP address management,
 
 221
-00:14:51.297 --> 00:14:54.611
+00:15:36.297 --> 00:15:39.611
 field office WAN and
 data-center consolidation,
 
 222
-00:14:54.611 --> 00:15:00.908
+00:15:39.611 --> 00:15:45.908
 the TIC 3.0 Cloud and Branch Office cases,
 the client-server to hybrid cloud path,
 
 223
-00:15:00.908 --> 00:15:05.713
+00:15:45.908 --> 00:15:50.713
 SQL Server identity, the move from
 Group Policy to Intune and Azure Arc,
 
 224
-00:15:05.713 --> 00:15:11.512
+00:15:50.713 --> 00:15:56.512
 and continuous compliance against
 SCuBA, BOD 25-01 and FedRAMP 20x.
 
 225
-00:15:11.512 --> 00:15:16.567
+00:15:56.512 --> 00:16:01.567
 They share the same data discipline you
 just saw: a named authority for every fact,
 
 226
-00:15:16.567 --> 00:15:19.887
+00:16:01.567 --> 00:16:04.887
 a governed model, and evidence
 produced by operation.
 
 227
-00:15:19.887 --> 00:15:21.699
+00:16:04.887 --> 00:16:06.699
 I'm happy to go into any of them.
 
 228
-00:15:21.699 --> 00:15:26.797
+00:16:06.699 --> 00:16:11.797
 Two companion decks go deeper on this
 one: the Contractor Identity Source deck,
 
 229
-00:15:26.797 --> 00:15:29.463
+00:16:11.797 --> 00:16:14.463
 on who is authoritative for a contractor,
 
 230
-00:15:29.463 --> 00:15:34.638
+00:16:14.463 --> 00:16:19.638
 and the original HR-Driven Identity deck,
 with the full model, lifecycle and plan.
