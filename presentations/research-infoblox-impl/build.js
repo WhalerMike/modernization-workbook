@@ -128,14 +128,16 @@ const P4 = "Part 4 — Operate and evidence";
     { text: "Orientation  ·  Part 1 Build the Grid  ·  Part 2 Migrate from Microsoft", options: { color: HEX.ink, breakLine: true } },
     { text: "Part 3 Sign and harden  ·  Part 4 Operate and evidence", options: { color: HEX.ink } },
   ], { x: 0.8, y: 4.75, w: 8.6, h: 1.2, fontSize: 15, paraSpaceAfter: 2 });
-  sources(s, "Sources: Infoblox NIOS 9.1.x, upgrade and FIPS/CC docs; DISA Infoblox NIOS 9.x STIG V1R1; Microsoft Learn; CISA KEV; Book 08. New sources opened Oct. 23, 2026.", 6.08);
+  sources(s, "Sources: Infoblox NIOS 9.1.x, upgrade and FIPS/CC docs; NIST SP 800-81r3; DISA NIOS 9.x STIG V1R1 (High only); Microsoft Learn; CISA KEV; Book 08.", 6.08);
   notes(s,
 `This is an implementation guide. Book 08 sets the program's design for DNS, DHCP and IP address management, and the Research section's deep dive explains why Infoblox is one of the strongest platforms for it. This guide shows how to build that design on Infoblox NIOS, version 9.1, and how to move off Microsoft DNS and DHCP without breaking anything.
 
-It runs in four parts after a short orientation. Part 1 builds the Grid: the Grid Master, its candidate, members, time, licensing, and virtual appliances in the clouds. Part 2 migrates from Microsoft: managing the Windows servers first, importing zones, Active Directory zones and secure updates, and taking over DHCP. Part 3 signs and hardens: DNSSEC, the hardware security module, the DISA STIG, FIPS mode and administrator access. And Part 4 covers running it: upgrades, backup and recovery, logging, automation, and the build mapped onto Book 08's six phases.
+It runs in four parts after a short orientation. Part 1 builds the Grid: the Grid Master, its candidate, members, time, licensing, and virtual appliances in the clouds. Part 2 migrates from Microsoft: managing the Windows servers first, importing zones, Active Directory zones and secure updates, and taking over DHCP. Part 3 signs and hardens: DNSSEC, the hardware security module, the agency's own configuration settings for NIOS, FIPS mode and administrator access. And Part 4 covers running it: upgrades, backup and recovery, logging, automation, and the build mapped onto Book 08's six phases.
 
-The ground rules are the same as the other implementation guides. Every fact comes from a primary source; the new ones were opened on October twenty-third, 2026. Sequencing recommendations are labeled design guidance, and inferences are labeled as inferences.`,
-  "Research brief, Implementing Book 08's DDI design on Infoblox NIOS (verified Oct. 23, 2026), with the earlier verified Infoblox briefs it reuses; Infoblox NIOS 9.1.x, NIOS upgrade and FIPS/CC documentation; DISA Infoblox NIOS 9.x STIG V1R1; Book 08, Chapters 04, 06, 08 to 11.");
+The ground rules are the same as the other implementation guides. Every fact comes from a primary source; the new ones were opened on October twenty-third, 2026. Sequencing recommendations are labeled design guidance, and inferences are labeled as inferences.
+
+One more label. This workbook is for Moderate civilian agencies, so the hardening baseline is the agency's own configuration settings, under NIST SP 800-53 control CM-6, drawn from NIST's DNS deployment guide and Infoblox's documentation. The DISA STIG for NIOS appears only as an optional cross-check, marked High only. High only marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs, not to the Moderate civilian baseline this workbook targets.`,
+  "Research brief, Implementing Book 08's DDI design on Infoblox NIOS (verified Oct. 23, 2026), with the earlier verified Infoblox briefs it reuses; Infoblox NIOS 9.1.x, NIOS upgrade and FIPS/CC documentation; NIST SP 800-81r3 and SP 800-53 Rev. 5 CM-6 (read Oct. 29, 2026); DISA Infoblox NIOS 9.x STIG V1R1 (High only reference); Book 08, Chapters 04, 06, 08 to 11.");
 }
 
 // ================================================================== 2 What it implements
@@ -148,7 +150,7 @@ The ground rules are the same as the other implementation guides. Every fact com
     ["Zones and scopes moved one at a time", "Zone import by transfer; DHCP server-assignment takeover", "Part 2"],
     ["Locator records stay on AD DNS until the last DC", "Default kept; NIOS hosting the AD zone shown as the alternative", "Part 2"],
     ["DNSSEC signing and validation (Ch 06)", "The Grid Master signs as a hidden primary; keys in the database or an HSM", "Part 3"],
-    ["Evidence and monitoring (Ch 11)", "Secure syslog to the SIEM, audit log copy, backups, STIG checklist", "Part 4"],
+    ["Evidence and monitoring (Ch 11)", "Secure syslog to the SIEM, audit log copy, backups, settings checklist", "Part 4"],
   ], { fontSize: 11.5 });
   callout(s, "Phases", b + 0.15, Math.min(0.95, 6.5 - b - 0.15), "FaDatabase", HEX.teal, "Book 08's six phases still govern: ",
     "this guide adds a Phase 0 of decisions that can't be undone cheaply, and maps every build step onto Phases 1 to 6.");
@@ -160,7 +162,7 @@ Book 08 wants governed authoritative DNS and IP address management. On NIOS that
 
 Book 08 wants a coexistence period with Microsoft DNS and DHCP. On NIOS, managing members synchronize the Windows servers over Microsoft's remote procedure call protocol, read-only first. Book 08 moves zones and scopes one at a time; on NIOS that's zone import by transfer, and a DHCP takeover done by changing server assignments. Book 08's default keeps the Active Directory locator records on AD DNS until the last domain controller goes, and this guide keeps that default, showing NIOS hosting the AD zone only as the alternative. Part 2 covers all of that.
 
-Book 08 Chapter 06 requires DNSSEC. On NIOS, the Grid Master signs as a hidden primary, with keys in its database or a hardware security module. That's Part 3. And Chapter 11's evidence becomes secure syslog to the SIEM, a copy of the audit log, backups and the STIG checklist, in Part 4.
+Book 08 Chapter 06 requires DNSSEC. On NIOS, the Grid Master signs as a hidden primary, with keys in its database or a hardware security module. That's Part 3. And Chapter 11's evidence becomes secure syslog to the SIEM, a copy of the audit log, backups and the checklist of the agency's configuration settings, in Part 4.
 
 Book 08's six phases still govern. This guide adds a Phase 0 of decisions, because some NIOS choices can't be undone cheaply.`,
   "Book 08, Chapters 04 (AD DNS departure), 06 (DNSSEC), 08 (reference architecture), 10 (six phases, cutover loop), 11 (operations and evidence); Infoblox NIOS 9.1.x About Grids, Managing Microsoft Windows servers, Importing zone data, DNSSEC on a Grid; research brief section 10.");
@@ -172,9 +174,9 @@ Book 08's six phases still govern. This guide adds a Phase 0 of decisions, becau
   tag(s, "Why");
   flow(s, "Decide", 1.5, 2.15, [
     { head: "1 FIPS mode", body: "CLI only, after a factory reset (reset all). It turns off every cloud connection and Infoblox Portal access" },
-    { head: "2 LTS train", body: "The STIG's CAT I version rule measures you against the approved federal Long Term Support release" },
+    { head: "2 LTS train", body: "Name the Long Term Support release in the CM-2 baseline; ask Infoblox which build is approved for federal use" },
     { head: "3 DNSSEC defaults", body: "Defaults are RSA/SHA1 and a 1024-bit ZSK: change them before the first zone is signed" },
-    { head: "4 HSM or stealth", body: "The STIG wants the Grid Master stealth and HSM signing, or a documented exception" },
+    { head: "4 HSM or not", body: "The Grid Master signs as a hidden primary (NIST SP 800-81r3); decide if keys go in an HSM" },
   ], 11.5);
   panel(s, "Cost", 0.6, 3.85, 6.0, 2.6, HEX.red, HEX.redTint, "WHY NOW", null, [
     "Leaving FIPS mode also needs reset all",
@@ -186,18 +188,18 @@ Book 08's six phases still govern. This guide adds a Phase 0 of decisions, becau
     "\"FIPS 140-3 and Common Criteria certifications are currently pending\"",
     "Running in FIPS mode isn't holding a validated module",
   ], 12);
-  sources(s, "Sources: Infoblox NIOS FIPS/CC enabling and guidelines pages; NIOS 9.1.x DNSSEC parameters; DISA NIOS 9.x STIG V1R1 (V-285229, V-285269, V-285308).");
+  sources(s, "Sources: Infoblox NIOS FIPS/CC pages; NIOS 9.1.x DNSSEC parameters; NIST SP 800-81r3 §2.3.2, Table 1; DISA NIOS 9.x STIG V1R1 (High only).");
   notes(s,
 `Before Phase 1, four decisions, because each is expensive to reverse.
 
 First, FIPS mode. On NIOS you can set it only from the command line, and only after a factory reset, the reset all command. On a Grid you set it on the Grid Master, and members take it when they join. Turning it off again also needs reset all. And enabling it disables every cloud connection, including the Infoblox Portal. So a FIPS-mode Grid can't use Universal DDI hybrid management, and by my inference it loses the portal-managed Data Connector as well. Be precise about the claim, too: Infoblox says NIOS 9.0.7 and later is supported in FIPS and Common Criteria mode, but that the FIPS 140-3 and Common Criteria certifications are still pending. Running in FIPS mode isn't the same as holding a validated module.
 
-Second, the Long Term Support train. One of the STIG's category one rules measures you against the current approved long-term-support version for federal systems.
+Second, the Long Term Support train. Name the release in the agency's CM-2 baseline, and ask Infoblox which build is the current approved long-term-support release for federal systems. The DISA STIG, a High only reference here, checks for that build too.
 
-Third, the DNSSEC defaults. NIOS defaults to RSA with SHA-1, and a 1024-bit zone-signing key. Change both before you sign anything, because fixing it later means an algorithm rollover and new DS records at the parent.
+Third, the DNSSEC defaults. NIOS defaults to RSA with SHA-1, and a 1024-bit zone-signing key. NIST's DNS deployment guide, SP 800-81 revision 3, lists RSA with SHA-256 only at 2048 bits or more, alongside elliptic curve algorithms, and RSA with SHA-1 isn't on its list. Change both before you sign anything, because fixing it later means an algorithm rollover and new DS records at the parent.
 
-And fourth, the hardware security module. The STIG wants the Grid Master hidden from every zone's name server list, and HSM signing, or a documented exception.`,
-  "Infoblox NIOS FIPS and CC mode: Enabling FIPS or CC mode, and Guidelines for FIPS/CC mode; NIOS 9.1.x Configuring DNSSEC parameters; DISA Infoblox NIOS 9.x STIG V1R1, rules V-285229, V-285269 and V-285308; research brief sections 0.1 to 0.3.");
+And fourth, the hardware security module. NIST SP 800-81 revision 3 recommends a hidden primary, and on a Grid the Grid Master signs as one. Decide whether the signing keys stay in its database or go in an HSM, and record the choice. The DISA STIG, High only, frames the same choice as a stealth Grid Master or HSM signing.`,
+  "Infoblox NIOS FIPS and CC mode: Enabling FIPS or CC mode, and Guidelines for FIPS/CC mode; NIOS 9.1.x Configuring DNSSEC parameters; NIST SP 800-81r3, section 2.3.2 (hidden primary) and Table 1 (DNSSEC algorithms and key lengths); NIST SP 800-53 Rev. 5 CM-2; DISA Infoblox NIOS 9.x STIG V1R1, rules V-285229, V-285269 and V-285308 (High only reference); research brief sections 0.1 to 0.3.");
 }
 
 // ================================================================== Part 1 divider
@@ -289,7 +291,7 @@ But FIPS mode changes this. The Grid's OpenVPN runs over TCP 22, and port 1023 c
   tag(s, "Why");
   panel(s, "NTP", 0.6, 1.5, 6.0, 4.95, HEX.navy, HEX.navyTint, "TIME (NTP)", "Grid level first, then members", [
     "The Grid Master serves time to members inside the tunnel; if it's offline, members use the external servers",
-    "STIG V-285309: external NTP at the Grid level; at least three sources recommended",
+    "External NTP at the Grid level, at least three sources (also STIG V-285309, High only)",
     "More than 5 minutes off is stepped at once; less is slewed",
     "Grid sync, GSS-TSIG and DHCP failover all fail without synced clocks",
     "NTP auth keys: MD5, DES, SHA1 only; no SHA-2 key type listed",
@@ -301,14 +303,14 @@ But FIPS mode changes this. The Grid's OpenVPN runs over TCP 22, and port 1023 c
     "Microsoft Management license expiry stops sync to Windows servers",
     "VMware permanent keys: show hwid, submit; allow 24–48 hours",
   ], 12);
-  sources(s, "Sources: Infoblox NIOS 9.1.x NTP pages (Grid, members, auth keys); license types, expiry and installation; vNIOS for VMware licensing; DISA STIG V-285309.");
+  sources(s, "Sources: Infoblox NIOS 9.1.x NTP pages (Grid, members, auth keys); license types, expiry and installation; vNIOS for VMware licensing; DISA STIG V-285309 (High only).");
   notes(s,
 `Two quiet failure modes, time and licenses.
 
-Time first. Enable NTP and set the external servers at the Grid level before you configure the Grid Master and members as clients. The Grid Master then serves time to the members inside the encrypted tunnel, and if it goes offline, the candidate and members sync to the external servers. The STIG requires the external servers at the Grid level and recommends at least three. A clock more than five minutes off is stepped immediately; a smaller error is slewed. Time isn't cosmetic here: Grid synchronization, Kerberos-signed updates, and DHCP failover all depend on it. One gap to note for your control mapping: NIOS lists NTP authentication keys of MD5, DES and SHA-1 only, with no SHA-2 option.
+Time first. Enable NTP and set the external servers at the Grid level before you configure the Grid Master and members as clients. The Grid Master then serves time to the members inside the encrypted tunnel, and if it goes offline, the candidate and members sync to the external servers. Use at least three external servers; that's design guidance for the agency's settings, and the DISA STIG, a High only reference, recommends the same. A clock more than five minutes off is stepped immediately; a smaller error is slewed. Time isn't cosmetic here: Grid synchronization, Kerberos-signed updates, and DHCP failover all depend on it. One gap to note for your control mapping: NIOS lists NTP authentication keys of MD5, DES and SHA-1 only, with no SHA-2 option.
 
 Licenses. Member licenses bind to a hardware ID, Grid-wide licenses bind to the Grid Master and replicate, and subscriptions expire with the contract. The trap is the temporary license. It lasts sixty days and can't be renewed, and when it expires, the member's services stop and it's evicted from the Grid. So never let a production member run on one. Install licenses on both nodes of an HA pair, and expect the NIOS and some add-on licenses to restart the product. If the Microsoft Management license expires, synchronization to the Windows servers stops. For VMware, get permanent keys by submitting each VM's hardware ID, and allow a day or two.`,
-  "Infoblox NIOS 9.1.x Configuring NTP (Grid and member), NTP clock behavior, NTP authentication keys; License types, Expiring licenses, Installing licenses; vNIOS for VMware obtaining permanent licenses; DISA Infoblox NIOS 9.x STIG V1R1, V-285309.");
+  "Infoblox NIOS 9.1.x Configuring NTP (Grid and member), NTP clock behavior, NTP authentication keys; License types, Expiring licenses, Installing licenses; vNIOS for VMware obtaining permanent licenses; DISA Infoblox NIOS 9.x STIG V1R1, V-285309 (High only reference).");
 }
 
 // ================================================================== 7 vNIOS in clouds
@@ -564,24 +566,24 @@ And Book 08's rule holds throughout: each phase ends with a rollback point and a
 // ================================================================== Part 3 divider
 {
   const s = divider(P3, "Part 3: Sign and harden", "Implementation guide  ·  Part 3 of 4",
-    ["DNSSEC parameters, signing and DS publication", "The HSM, and the DISA NIOS 9.x STIG", "FIPS mode and administrator access"], 12,
-    "Sources: Infoblox NIOS 9.1.x DNSSEC and HSM pages; NIOS FIPS/CC pages; DISA Infoblox NIOS 9.x STIG V1R1; Book 08 Ch 06.");
+    ["DNSSEC parameters, signing and DS publication", "The HSM, and the agency's NIOS settings baseline", "FIPS mode and administrator access"], 12,
+    "Sources: Infoblox NIOS 9.1.x DNSSEC and HSM pages; NIOS FIPS/CC pages; NIST SP 800-81r3; DISA NIOS 9.x STIG V1R1 (High only); Book 08 Ch 06.");
   notes(s,
 `Part 3: sign and harden.
 
-First DNSSEC on NIOS: how signing works on a Grid, the parameters to set before you sign, and how to publish DS records. Then the hardware security module. Then what the DISA STIG for NIOS 9 actually checks, which is narrower than people assume. Then the FIPS mode procedure, and finally hardening administrator access, including two upgrade gates that can lock people out.`,
-  "Infoblox NIOS 9.1.x DNSSEC and HSM documentation; NIOS FIPS and CC mode documentation; DISA Infoblox NIOS 9.x STIG V1R1; Book 08, Chapter 06.");
+First DNSSEC on NIOS: how signing works on a Grid, the parameters to set before you sign, and how to publish DS records. Then the hardware security module. Then the hardening baseline: the agency's own configuration settings for NIOS, drawn from NIST's DNS deployment guide and Infoblox's documentation, with the DISA STIG as an optional, High only cross-check. Then the FIPS mode procedure, and finally hardening administrator access, including two upgrade gates that can lock people out.`,
+  "Infoblox NIOS 9.1.x DNSSEC and HSM documentation; NIOS FIPS and CC mode documentation; NIST SP 800-81r3; DISA Infoblox NIOS 9.x STIG V1R1 (High only reference); Book 08, Chapter 06.");
 }
 
 // ================================================================== 14 DNSSEC parameters
 {
   const s = content(P3, "DNSSEC on NIOS: set parameters before you sign");
   tag(s, "How");
-  table(s, "Params", 1.5, [2.2, 3.0, 3.6], ["Parameter", "NIOS default", "Set it to"], [
-    ["Algorithm", "RSA/SHA1 (KSK and ZSK)", "RSA/SHA-256, or ECDSA P-256 or P-384"],
+  table(s, "Params", 1.5, [2.0, 2.6, 3.6], ["Parameter", "NIOS default", "Set it to"], [
+    ["Algorithm", "RSA/SHA1 (KSK and ZSK)", "RSA/SHA-256, or ECDSA P-256 or P-384 (SP 800-81r3)"],
     ["ZSK size", "1024 bits", "2048 bits for RSA (KSK at least as large)"],
-    ["Signature validity", "4 days", "Within the STIG's 2 to 7 days"],
-    ["Denial of existence", "NSEC3", "NSEC3 for external zones (STIG)"],
+    ["Signature validity", "4 days", "Keep it short, by policy (NIST: e.g. 5–7 days)"],
+    ["Denial of existence", "NSEC3", "A documented decision (below)"],
     ["ZSK rollover", "30 days, pre-publish", "Keep pre-publish"],
     ["KSK rollover", "1 year, automatic, on", "Keep; notify on manual DS updates"],
   ], { fontSize: 11.5 });
@@ -593,24 +595,24 @@ First DNSSEC on NIOS: how signing works on a Grid, the parameters to set before 
   ], 11.5);
   T(s, "NSEC", [
     { text: "A documented decision: ", options: { bold: true, color: HEX.amber } },
-    { text: "Book 08 Ch 06 records NIST SP 800-81r3's preference for NSEC; the STIG requires NSEC3 externally. Decide for internal zones." },
+    { text: "NIST SP 800-81r3 calls NSEC the more prudent approach (Book 08 Ch 06); the STIG (High only) requires NSEC3 externally. Decide and record it." },
   ], { x: 0.6, y: 5.0, w: 8.2, h: 0.75, fontSize: 12 });
   T(s, "Change", [
     { text: "Changing a signed zone's algorithm: ", options: { bold: true, color: HEX.red } },
     { text: "add, wait past the TTLs, update the parent DS, then remove the old one." },
   ], { x: 0.6, y: 5.8, w: 8.2, h: 0.65, fontSize: 12 });
-  sources(s, "Sources: Infoblox NIOS 9.1.x DNSSEC parameters; signing zones; ZSK and KSK rollover; DISA STIG V-285246, V-285265, V-285274, V-285279; Book 08 Ch 06.");
+  sources(s, "Sources: Infoblox NIOS 9.1.x DNSSEC parameters, signing, ZSK and KSK rollover; NIST SP 800-81r3 §3.8.1–3.8.3; DISA STIG V1R1 (High only); Book 08 Ch 06.");
   notes(s,
 `DNSSEC on NIOS. On a Grid, only the Grid Master signs, acting as a hidden primary, and signing a zone makes it the zone's primary server. You set the parameters in the Grid's DNS properties, in advanced mode, and individual zones can override them.
 
-Set them before you sign anything, because the defaults fail the STIG. The default algorithm is RSA with SHA-1, for both keys. Change it to RSA with SHA-256, or ECDSA with P-256 or P-384. The default zone-signing key is 1024 bits; raise it to 2048 for RSA, and keep the key-signing key at least as large, which is Infoblox's own advice. Book 08 Chapter 06, citing NIST, says RSA keys of at least 2048 bits, with elliptic curve preferred.
+Set them before you sign anything, because the defaults are weak. The default algorithm is RSA with SHA-1, for both keys. Change it to RSA with SHA-256, or ECDSA with P-256 or P-384. The default zone-signing key is 1024 bits; raise it to 2048 for RSA, and keep the key-signing key at least as large, which is Infoblox's own advice. NIST SP 800-81 revision 3 sets the civilian reference: its table of DNSSEC algorithms lists RSA with SHA-256 at 2048 bits or more, ECDSA with P-256 or P-384, and Ed25519 or Ed448, and it calls the elliptic curve options preferable because their keys and signatures are smaller. RSA with SHA-1 isn't in the table.
 
-The other defaults are fine. Signature validity is four days, inside the STIG's two-to-seven-day window. Denial of existence is NSEC3, which the STIG requires for external zones. Zone-signing keys roll every thirty days by pre-publication, which Infoblox recommends. Key-signing keys roll yearly, automatically, with notifications when the parent's DS record needs a manual update.
+The other defaults are fine. Signature validity is four days; NIST says to keep it short, giving five to seven days as an example, set by the agency's policy. Denial of existence defaults to NSEC3. Zone-signing keys roll every thirty days by pre-publication, which Infoblox recommends. Key-signing keys roll yearly, automatically, with notifications when the parent's DS record needs a manual update.
 
-One decision to document: Book 08 records NIST's preference for NSEC, while the STIG requires NSEC3 externally. Decide it for internal zones.
+One decision to document: NIST SP 800-81 revision 3 calls NSEC the more prudent approach, and Book 08 records that preference, while the DISA STIG, a High only reference, requires NSEC3 for external zones. Decide it, and record it in the agency's settings baseline.
 
 And if you ever change a signed zone's algorithm: add the new one, wait longer than the record lifetimes, update the parent's DS, and only then remove the old one.`,
-  "Infoblox NIOS 9.1.x Configuring DNSSEC parameters (defaults and recommendations); Signing a zone; ZSK rollover; KSK rollover and notifications; Changing algorithms; DISA Infoblox NIOS 9.x STIG V1R1 rules V-285246, V-285265, V-285274 and V-285279; Book 08, Chapter 06 (NIST SP 800-81r3).");
+  "Infoblox NIOS 9.1.x Configuring DNSSEC parameters (defaults and recommendations); Signing a zone; ZSK rollover; KSK rollover and notifications; Changing algorithms; NIST SP 800-81r3, sections 3.8.1 (Table 1, DNSSEC key parameters), 3.8.2 (RRSIG validity) and 3.8.3 (NSEC and NSEC3); DISA Infoblox NIOS 9.x STIG V1R1 rules V-285246, V-285265, V-285274 and V-285279 (High only reference); Book 08, Chapter 06.");
 }
 
 // ================================================================== 15 HSM and DS
@@ -646,40 +648,40 @@ For zones already signed on Windows, follow Book 08 Chapter 06's order: finish a
   "Infoblox NIOS 9.1.x HSM groups overview, Thales Luna configuration, Entrust nShield configuration, Enabling HSM signing; Exporting trust anchors; Check KSK rollover due; Source and destination ports; Book 08, Chapter 06.");
 }
 
-// ================================================================== 16 STIG
+// ================================================================== 16 Settings baseline
 {
-  const s = content(P3, "What the DISA NIOS 9.x STIG checks");
+  const s = content(P3, "Hardening NIOS: the agency's settings baseline");
   tag(s, "What");
-  panel(s, "Cat1", 0.6, 1.5, 5.0, 4.95, HEX.red, HEX.redTint, "THE FIVE CAT I RULES", null, [
-    "Grid Master stealth in every zone and NS group (not a finding with an HSM)",
-    "DNSSEC enabled and validating",
-    "The approved federal LTS version, under maintenance",
-    "FIPS-validated crypto: no RSA/SHA-1 (N/A in FIPS mode)",
-    "No DSA for DNSSEC",
+  panel(s, "Basis", 0.6, 1.5, 5.0, 4.95, HEX.navy, HEX.navyTint, "WHERE THE SETTINGS COME FROM", null, [
+    "NIST SP 800-53 CM-6: the agency documents its own settings for NIOS",
+    "NIST SP 800-81r3, the civilian DNS deployment guide",
+    "Infoblox's NIOS 9.1.x documentation: defaults and procedures",
+    "No CIS Benchmark exists for NIOS",
+    "DISA NIOS 9.x STIG V1R1: optional cross-check (High only)",
   ], 12);
-  table(s, "Cat2", 1.5, [2.5, 4.45], ["40 CAT II areas", "Examples"], [
-    ["Transfers, updates", "Named secondaries only; GSS-TSIG or ACLs for dynamic updates"],
-    ["Architecture", "Internal and external roles split; no recursion on external authoritative"],
-    ["Admin access", "MFA policy with a remote service; password policy; approved CAs only"],
-    ["Logging", "External syslog plus Copy Audit Log Message to Syslog"],
-    ["Resilience", "Documented primary promotion; HSM signing; NTP"],
-  ], { x: 5.8, fontSize: 11 });
+  table(s, "Areas", 1.5, [2.3, 4.65], ["Area", "Setting (source)"], [
+    ["Transfers, updates", "Named secondaries with TSIG; GSS-TSIG or ACLs for dynamic updates (SP 800-81r3 §3.1, §3.3)"],
+    ["Architecture", "Authoritative and recursive roles apart; no recursion on authoritative servers (SP 800-81r3 §2.3)"],
+    ["Signing", "Hidden primary; only Table 1 algorithms, so no RSA/SHA-1 or DSA (SP 800-81r3)"],
+    ["Admin access", "PIV or SAML sign-in; password policy; only the agency's approved CAs"],
+    ["Logging, resilience", "Secure syslog and audit copy to the SIEM (SP 800-81r3 §2.1.3); promotion procedure; NTP"],
+  ], { x: 5.8, fontSize: 10.5 });
   T(s, "Scope", [
-    { text: "Scope: DNS only. ", options: { bold: true, color: HEX.navy } },
-    { text: "V1R1 (Aug. 2026), 45 rules. DHCP and IPAM hardening aren't in it; it's written for DoW, and other agencies may use it. Check settings at the zone level, not just the Grid." },
-  ], { x: 5.8, y: 5.3, w: 6.95, h: 1.15, fontSize: 12 });
-  sources(s, "Sources: DISA Infoblox NIOS 9.x STIG V1R1 XCCDF and Overview (benchmark July 28, 2026; downloaded Oct. 22, 2026); earlier federal brief (8.x STIG).");
+    { text: "The STIG (High only): ", options: { bold: true, color: HEX.slate } },
+    { text: "V1R1 (Aug. 2026), 45 rules, DNS only, written for DoW. Its rule IDs make a useful cross-check. Check settings at the zone level, not just the Grid." },
+  ], { x: 5.8, y: 5.45, w: 6.95, h: 1.0, fontSize: 11.5 });
+  sources(s, "Sources: NIST SP 800-53 Rev. 5 CM-6; NIST SP 800-81r3 §2.1.3, 2.3, 3.1, 3.3, 3.8.1; CIS Benchmarks list; Infoblox NIOS 9.1.x; DISA NIOS 9.x STIG (High only).");
   notes(s,
-`What the DISA STIG for NIOS 9 actually checks.
+`How to harden NIOS, and where the settings come from.
 
-Version one, release one, accepted in August 2026, has forty-five rules: five in category one and forty in category two. Its scope is only the DNS capabilities of the appliance. DHCP and IPAM hardening aren't in it, so those rely on the program's own baseline. It was written for the Department of War, and the overview says other agencies are free to use it, though some settings may not fit.
+This workbook is for Moderate civilian agencies, so the baseline is the agency's own. NIST SP 800-53 control CM-6 has the agency establish and document configuration settings for each product, drawn from a common secure configuration it chooses, and approve any deviation. For most products that's a CIS Benchmark or the vendor's hardening guide. NIOS has neither: there's no CIS Benchmark for it. So write the NIOS settings from NIST SP 800-81 revision 3, the civilian DNS deployment guide, and Infoblox's own documentation.
 
-The five category one rules. The Grid Master is stealth, hidden, in every zone and name server group, which isn't a finding if the keys are on an HSM. DNSSEC is enabled and validating. NIOS runs the current approved long-term-support version for federal systems, under maintenance. Cryptography is FIPS-validated, so no RSA with SHA-1, which doesn't apply on a FIPS-mode Grid. And no DSA for DNSSEC.
+The areas. Zone transfers only to named secondaries, protected with TSIG, and dynamic updates restricted by Kerberos signing or access lists; NIST covers both in section 3. Authoritative and recursive roles kept apart, with recursion off on authoritative servers, from section 2.3. Signing on a hidden primary, with only the algorithms in NIST's table, so no RSA with SHA-1 and no DSA. Administrator access through PIV or SAML, a password policy, and only the agency's approved CAs. And DNS logs integrated with the SIEM, which NIST's guide asks government agencies to do, plus a documented promotion procedure and NTP.
 
-The forty category two rules group into areas. Zone transfers only to named secondaries, and dynamic updates restricted by Kerberos signing or access lists. Internal and external roles kept apart, with no recursion on external authoritative servers. Administrator access through a multi-factor policy with a remote service, a password policy, and only approved CAs. External syslog plus a copy of the audit log to syslog. And resilience: a documented primary promotion procedure, HSM signing, and NTP.
+DHCP and IPAM settings come from the same baseline, written from Infoblox's documentation.
 
-One practical point from the overview: check these settings at the zone level, not only at the Grid level.`,
-  "DISA Infoblox NIOS 9.x STIG V1R1: XCCDF benchmark (July 28, 2026) and Overview document, downloaded Oct. 22, 2026 and re-read Oct. 23, 2026; rules V-285229, V-285259, V-285269, V-285274, V-285279 and the CAT II rules cited in research brief section 5.1; earlier federal brief (Infoblox 8.x DNS STIG V1R4).");
+The DISA STIG for NIOS 9 is the only published product-specific checklist, so it's worth having as a cross-check, but it's High only: Defense material, not the Moderate civilian baseline. Version one, release one, accepted in August 2026, has forty-five rules and covers only the appliance's DNS. Its five category one rules match settings already on this slide: a hidden Grid Master unless keys are on an HSM, DNSSEC validation, the approved federal long-term-support version, validated cryptography, and no DSA. One practical point from its overview applies to any baseline: check settings at the zone level, not only at the Grid level.`,
+  "NIST SP 800-53 Rev. 5, CM-6 (statement and discussion; OSCAL catalog read Oct. 29, 2026); NIST SP 800-81r3, Secure Domain Name System (DNS) Deployment Guide (March 2026), sections 2.1.3 (DNS logging), 2.3 (authoritative and recursive roles; hidden primary), 3.1 (zone transfers, TSIG), 3.3 (dynamic updates), 3.8.1 (Table 1), read Oct. 29, 2026; Center for Internet Security, CIS Benchmarks list (no NIOS benchmark; accessed Oct. 29, 2026); Infoblox NIOS 9.1.x documentation; DISA Infoblox NIOS 9.x STIG V1R1, XCCDF (July 28, 2026) and Overview, downloaded Oct. 22, 2026 (High only reference); research brief section 5.1.");
 }
 
 // ================================================================== 17 FIPS procedure
@@ -705,7 +707,7 @@ One practical point from the overview: check these settings at the zone level, n
     "After upgrading a FIPS Grid, run set distributed_grid_comm_mode",
     "Change the local admin on first login",
   ], 11.5);
-  sources(s, "Sources: Infoblox NIOS FIPS/CC mode: Enabling FIPS or CC mode; Guidelines for FIPS/CC mode; DISA STIG V-285274.");
+  sources(s, "Sources: Infoblox NIOS FIPS/CC mode: Enabling FIPS or CC mode; Guidelines for FIPS/CC mode.");
   notes(s,
 `FIPS mode: the procedure, and what it changes.
 
@@ -713,8 +715,8 @@ The procedure has five steps. Run reset all, the factory reset. Configure the ne
 
 What changes. Only TLS 1.2 and 1.3 stay enabled, and Infoblox flags DES, DSA, RSA with SHA-1 and MD5 as not compliant with FIPS 140-3. Portal and cloud connections are disabled, and they aren't restored if FIPS mode is later turned off. Threat rulesets and module sets have to be uploaded by hand. In Common Criteria mode the command line is console-only. The local admin password must be changed on first login.
 
-On the STIG side, the rule against RSA with SHA-1 doesn't apply to a FIPS-mode Grid. But remember slide three: the certificates themselves are still pending.`,
-  "Infoblox NIOS FIPS and CC mode: Enabling FIPS or CC mode (procedure, HA, shared secret, distributed Grid communication mode); Guidelines for FIPS/CC mode (algorithms, TLS, portal, rulesets, CLI); DISA Infoblox NIOS 9.x STIG V1R1, V-285274.");
+So on a FIPS-mode Grid, the weak RSA with SHA-1 default is flagged too. But remember slide three: the certificates themselves are still pending.`,
+  "Infoblox NIOS FIPS and CC mode: Enabling FIPS or CC mode (procedure, HA, shared secret, distributed Grid communication mode); Guidelines for FIPS/CC mode (algorithms, TLS, portal, rulesets, CLI).");
 }
 
 // ================================================================== 18 Admin access
@@ -732,11 +734,11 @@ On the STIG side, the rule against RSA with SHA-1 doesn't apply to a FIPS-mode G
     "Check first: show non_compliant_usernames",
     "TLS 1.0 and 1.1 must be off before the upgrade",
   ], 11.5);
-  T(s, "STIG", [
-    { text: "STIG evidence: ", options: { bold: true, color: HEX.teal } },
-    { text: "an authentication policy with at least one remote service and the \"Two-Factor Authentication Enabled\" banner; a password policy; only the agency's approved CAs in Manage CA Certificates (the STIG names DoW PKI; a civilian reading, inference)." },
+  T(s, "Evidence", [
+    { text: "Baseline evidence: ", options: { bold: true, color: HEX.teal } },
+    { text: "an authentication policy with at least one remote service and the \"Two-Factor Authentication Enabled\" banner; a password policy; only the agency's approved CAs in Manage CA Certificates. The DISA STIG (High only) checks the same items." },
   ], { x: 0.6, y: 5.1, w: 12.15, h: 1.35, fontSize: 12.5 });
-  sources(s, "Sources: earlier divisions brief (CAC/PIV, SAML); NIOS 9.1.x set security, MGMT port, consent banner; 9.1.0 upgrade guidelines; DISA STIG V-285296, V-285297, V-285260.");
+  sources(s, "Sources: earlier divisions brief (CAC/PIV, SAML); NIOS 9.1.x set security, MGMT port, consent banner; 9.1.0 upgrade guidelines; DISA STIG V-285296, V-285297, V-285260 (High only).");
   notes(s,
 `Administrator access, and two upgrade gates.
 
@@ -744,8 +746,8 @@ Administrators sign in with PIV through X.509 client-certificate authentication,
 
 Now two gates in the 9.1.0 upgrade that can lock people out. The test upgrade fails on administrator usernames that don't comply, for example ones that don't start with a letter or that mix scripts, and non-compliant users can't log in after the upgrade. Check first with the show non-compliant usernames command. And TLS 1.0 and 1.1 must be turned off before the upgrade.
 
-For the STIG, the evidence is an authentication policy that includes at least one remote service, with the two-factor banner showing, a password policy, and only approved CAs in the certificate list. The STIG names the Department of War's PKI; my inference is that a civilian agency reads that as its own approved CA set.`,
-  "Earlier divisions brief (CAC/PIV and SAML authentication on NIOS); Infoblox NIOS 9.1.x set security command; Using the MGMT port; Notice and consent banner; NIOS upgrade guidelines for 9.1.0 (usernames, TLS); DISA Infoblox NIOS 9.x STIG V1R1, V-285296, V-285297 and V-285260.");
+For the agency's settings baseline, the evidence is an authentication policy that includes at least one remote service, with the two-factor banner showing, a password policy, and only the agency's approved CAs in the certificate list. The DISA STIG, a High only reference, checks the same items.`,
+  "Earlier divisions brief (CAC/PIV and SAML authentication on NIOS); Infoblox NIOS 9.1.x set security command; Using the MGMT port; Notice and consent banner; NIOS upgrade guidelines for 9.1.0 (usernames, TLS); DISA Infoblox NIOS 9.x STIG V1R1, V-285296, V-285297 and V-285260 (High only reference).");
 }
 
 // ================================================================== Part 4 divider
@@ -847,7 +849,7 @@ For known exploited vulnerabilities, I checked CISA's catalog, version 2026.10.2
     "Notify members sequentially (default 120 seconds apart)",
     "Verify every member reconnected; update anything pointing at the old Grid Master",
   ], 11.5);
-  sources(s, "Sources: Infoblox NIOS backup and restore; database snapshots; Promoting a Grid Master Candidate; DISA STIG V-285271, V-285273.");
+  sources(s, "Sources: Infoblox NIOS backup and restore; database snapshots; Promoting a Grid Master Candidate; DISA STIG V-285271, V-285273 (High only).");
   notes(s,
 `Backup, restore, and recovering the Grid Master.
 
@@ -855,8 +857,8 @@ Backup first. Automatic backup is off by default, so schedule it. Send it by SCP
 
 Restore. SCP isn't listed as a restore source; the choices are your computer, TFTP, FTP or the Grid Master's local backups. My inference is to copy SCP backups back to the management system and restore from there, and to rehearse that. You can restore to the same version, or to a later one on a supported path. A restore overwrites everything and reboots, and a backup taken in Common Criteria mode restores only to compliant appliances.
 
-Recovering from the loss of the Grid Master means promoting the candidate. Confirm UDP 1194 and 2114 are open from the candidate to every member. On the candidate's console or SSH, run set promote master. Choose to notify members sequentially, which Infoblox says can minimize DNS outages; the default spacing is a hundred twenty seconds. Then log in to the new Grid Master and check every member has reconnected. Afterward, wait up to two hours before any further promotion, and update anything that points at the old Grid Master's address, including HSM registrations. Written down, those steps are the STIG's documented promotion procedure.`,
-  "Infoblox NIOS Backing up and restoring configuration files; Restoring backups; Database snapshots; NIOS 9.1.x Promoting a Grid Master Candidate; DISA Infoblox NIOS 9.x STIG V1R1, V-285271 and V-285273 (mapping is inference).");
+Recovering from the loss of the Grid Master means promoting the candidate. Confirm UDP 1194 and 2114 are open from the candidate to every member. On the candidate's console or SSH, run set promote master. Choose to notify members sequentially, which Infoblox says can minimize DNS outages; the default spacing is a hundred twenty seconds. Then log in to the new Grid Master and check every member has reconnected. Afterward, wait up to two hours before any further promotion, and update anything that points at the old Grid Master's address, including HSM registrations. Written down, those steps are the agency's documented promotion procedure.`,
+  "Infoblox NIOS Backing up and restoring configuration files; Restoring backups; Database snapshots; NIOS 9.1.x Promoting a Grid Master Candidate; DISA Infoblox NIOS 9.x STIG V1R1, V-285271 and V-285273 (High only reference; mapping is inference).");
 }
 
 // ================================================================== 22 Logging
@@ -865,20 +867,20 @@ Recovering from the loss of the Grid Master means promoting the candidate. Confi
   tag(s, "What");
   table(s, "Logs", 1.5, [2.4, 9.75], ["Source", "Configure it as"], [
     ["Syslog", "Grid Properties, Monitoring, external syslog over Secure TCP (6514, server certificate uploaded), on the MGMT interface"],
-    ["Audit log", "Detailed or WAPI Detailed, and Copy Audit Log Message to Syslog (STIG V-285237)"],
+    ["Audit log", "Detailed or WAPI Detailed, and Copy Audit Log Message to Syslog"],
     ["Queries and responses", "Not the queries or responses categories, which \"significantly affect system performance\": use capture or dnstap"],
     ["DHCP lease history", "Archived and exported: the attribution source Book 08 Ch 11 calls for"],
     ["Data Connector", "Forwards DNS data to a SIEM in CEF or LEEF, but is portal-managed: unavailable on a FIPS Grid (inference)"],
   ], { fontSize: 11.5 });
   callout(s, "M2614", 4.75, 1.3, "FaDatabase", HEX.teal, "The SIEM is the system of record: ",
     "OMB M-26-14 wants logs searchable for 6 months and retrievable for 12; NIOS local retention can't do that (Book 08 Ch 11).");
-  sources(s, "Sources: Infoblox NIOS 9.1.x syslog, audit log, DNS logging, capture; Data Connector pages; DISA STIG V-285237; earlier federal brief (M-26-14); Book 08 Ch 11.");
+  sources(s, "Sources: Infoblox NIOS 9.1.x syslog, audit log, DNS logging, capture; Data Connector pages; NIST SP 800-81r3 §2.1.3; earlier federal brief (M-26-14); Book 08 Ch 11.");
   notes(s,
 `Logging, and the evidence it produces.
 
 Syslog: in the Grid's monitoring properties, log to external syslog servers over Secure TCP, on port 6514, with the server's certificate uploaded, and send it out the management interface.
 
-The audit log: use the Detailed type, or WAPI Detailed, which also records API calls. And turn on Copy Audit Log Message to Syslog, which the STIG requires in addition to external syslog.
+The audit log: use the Detailed type, or WAPI Detailed, which also records API calls. And turn on Copy Audit Log Message to Syslog, so the audit trail reaches the SIEM along with external syslog. The DISA STIG, a High only reference, checks for it too.
 
 DNS queries and responses: Infoblox warns that turning on the queries and responses logging categories will significantly affect system performance. Use the capture feature or dnstap instead, and note dnstap drops data if its receiver is down.
 
@@ -887,7 +889,7 @@ DHCP lease history is archived and exportable, and it's the source Book 08 Chapt
 The Data Connector forwards DNS data to a SIEM in CEF or LEEF format, but it's managed from the Infoblox Portal, so by my inference it isn't available on a FIPS-mode Grid. There, use Secure TCP syslog or dnstap.
 
 And the SIEM is the system of record. OMB memorandum M-26-14 requires logs searchable for six months and retrievable for twelve, which NIOS's local retention can't meet.`,
-  "Infoblox NIOS 9.1.x Logging to external syslog servers; Audit log types and rolling; DNS logging categories; Capturing DNS queries and responses; dnstap; Data Connector overview and registration; DISA Infoblox NIOS 9.x STIG V1R1, V-285237; earlier federal brief (OMB M-26-14); Book 08, Chapter 11.");
+  "Infoblox NIOS 9.1.x Logging to external syslog servers; Audit log types and rolling; DNS logging categories; Capturing DNS queries and responses; dnstap; Data Connector overview and registration; NIST SP 800-81r3, section 2.1.3 (DNS logs integrated with the SIEM); DISA Infoblox NIOS 9.x STIG V1R1, V-285237 (High only reference); earlier federal brief (OMB M-26-14); Book 08, Chapter 11.");
 }
 
 // ================================================================== 23 Automation
@@ -929,9 +931,9 @@ And some things stay manual. FIPS and Common Criteria mode, the factory reset, p
     ["3 Migrate authority", "Zone import, validate, flip; signed zones re-signed and DS published; DHCP per scope: lower leases, takeover, failover, deactivate Windows scope"],
     ["4 Federate clouds", "Cloud discovery, DNS sync and IPAM federation; Universal DDI only on non-FIPS scopes"],
     ["5 Decommission", "Book 08's five gates; locator zones last; disable sync, remove managed servers, archive, de-authorize"],
-    ["6 Harden, evidence", "Remaining STIG items; approved LTS via test upgrade; the evidence checklist"],
+    ["6 Harden, evidence", "Remaining baseline settings; approved LTS via test upgrade; the evidence checklist"],
   ], { fontSize: 11 });
-  sources(s, "Sources: research brief §10 (program design guidance); Book 08, Ch 10 (six phases, gates); Infoblox and DISA sources cited in Parts 1–3.");
+  sources(s, "Sources: research brief §10 (program design guidance); Book 08, Ch 10 (six phases, gates); Infoblox and NIST sources cited in Parts 1–3.");
   notes(s,
 `Here's the whole build mapped onto Book 08's six phases. This is the program's design guidance: the order is a recommendation, and each step rests on the facts from earlier slides.
 
@@ -947,8 +949,8 @@ Phase 4, federate the clouds, with Universal DDI only on non-FIPS scopes.
 
 Phase 5, decommission, behind Book 08's five gates, with the locator zones last. Disable sync, remove the managed servers, archive the exports, and de-authorize the old DHCP servers.
 
-And Phase 6: the remaining STIG items, the approved long-term-support build through a test upgrade, and the evidence checklist in the backup slides.`,
-  "Research brief section 10 (phase-by-phase build sequence, program design guidance); Book 08, Chapter 10 (six phases, Phase 5 gates, cutover loop); Infoblox NIOS and DISA STIG sources cited in Parts 1 to 3.");
+And Phase 6: the remaining settings in the agency's baseline, the approved long-term-support build through a test upgrade, and the evidence checklist in the backup slides.`,
+  "Research brief section 10 (phase-by-phase build sequence, program design guidance); Book 08, Chapter 10 (six phases, Phase 5 gates, cutover loop); Infoblox NIOS and NIST sources cited in Parts 1 to 3.");
 }
 
 // ================================================================== 25 Close
@@ -957,7 +959,7 @@ And Phase 6: the remaining STIG items, the approved long-term-support build thro
   tag(s, "Who");
   panel(s, "Decide", 0.6, 1.5, 4.0, 4.95, HEX.navy, HEX.navyTint, "DECISIONS TO TAKE", null, [
     "FIPS mode, and what it costs in cloud management",
-    "HSM, or stealth Grid Master with an exception",
+    "Signing keys: in an HSM, or in the database",
     "NSEC or NSEC3 for internal zones",
     "Keep locator zones on AD DNS (default) or host them on NIOS",
     "Physical managing members: how many, where",
@@ -973,20 +975,20 @@ And Phase 6: the remaining STIG items, the approved long-term-support build thro
     "Stand up the lab Grid on evaluation images",
     "Set DNSSEC defaults, then sign a test zone",
     "Pilot one DHCP scope takeover",
-    "Run the STIG checklist on the lab",
+    "Check the lab against the settings baseline",
   ], 11.5);
-  sources(s, "Sources: research brief §0, §12 and Couldn't verify; Book 08, Ch 04, 06, 10, 11; Infoblox and DISA sources cited in Parts 1–3.");
+  sources(s, "Sources: research brief §0, §12 and Couldn't verify; Book 08, Ch 04, 06, 10, 11; Infoblox and NIST sources cited in Parts 1–3.");
   notes(s,
 `To close: decisions, vendor asks, and next steps.
 
-The decisions to take. FIPS mode, knowing it costs cloud management. A hardware security module, or a stealth Grid Master with a documented exception. NSEC or NSEC3 for internal zones. Whether the locator zones stay on AD DNS, which is Book 08's default, or move to NIOS. And how many physical managing members you need, and where.
+The decisions to take. FIPS mode, knowing it costs cloud management. Whether the signing keys go in a hardware security module or stay in the Grid Master's database, documented either way. NSEC or NSEC3 for internal zones. Whether the locator zones stay on AD DNS, which is Book 08's default, or move to NIOS. And how many physical managing members you need, and where.
 
 Ask Infoblox, in writing: which build is the current approved federal long-term-support release; when the FIPS 140-3 and Common Criteria certificates are expected; whether Kerberos-signed updates are supported with Windows Server 2025 domain controllers; whether vNIOS high availability works in GovCloud and Azure Government; whether clients keep their addresses in a DHCP takeover; and whether a SHA-2 NTP key type is coming.
 
-Next steps. Stand up a lab Grid on Infoblox's evaluation images. Set the DNSSEC defaults, then sign a test zone and validate it. Pilot one DHCP scope takeover end to end. And run the STIG checklist against the lab.
+Next steps. Stand up a lab Grid on Infoblox's evaluation images. Set the DNSSEC defaults, then sign a test zone and validate it. Pilot one DHCP scope takeover end to end. And check the lab against the agency's settings baseline.
 
 The program's view is plain: Infoblox NIOS can carry Book 08's design, and its risks are known and manageable if the Phase 0 decisions come first. The backup slides list the assessor evidence, the risks, and what couldn't be verified. This is the program's research, under review, not an endorsement by any federal agency. Thank you.`,
-  "Research brief sections 0 and 12, and Couldn't verify; Book 08, Chapters 04, 06, 10 and 11; Infoblox NIOS and DISA STIG sources cited in Parts 1 to 3.");
+  "Research brief sections 0 and 12, and Couldn't verify; Book 08, Chapters 04, 06, 10 and 11; Infoblox NIOS and NIST sources cited in Parts 1 to 3.");
 }
 
 // ================================================================== Backup
@@ -1000,17 +1002,17 @@ The program's view is plain: Infoblox NIOS can carry Book 08's design, and its r
   const s = content("Backup", "Assessor evidence checklist");
   table(s, "Evidence", 1.45, [3.0, 7.05, 2.1], ["Evidence", "What the assessor reads", "Source"], [
     ["Crypto posture", "FIPS mode status, or a POA&M for the pending FIPS 140-3 certificates", "FIPS/CC pages"],
-    ["STIG results", "45-rule V1R1 checklist; CAT I items evidenced by screenshots or exports", "DISA STIG"],
-    ["DNSSEC", "Grid DNSSEC tab: no RSA/SHA1 or DSA; ZSK 2048+ or ECDSA; validity 2–7 days; NSEC3 external; KSK rollover on", "DNSSEC pages"],
-    ["Signer", "GM stealth in every zone and NS group, or HSM group enabled with test output; DS matches parent", "STIG, HSM"],
-    ["Admin access", "Auth policy with remote or two-factor service and banner; OCSP; CA list; scoped admin groups", "STIG V-285296"],
-    ["Logging", "Secure TCP syslog; audit copy to syslog; Detailed audit type; SIEM retention 6/12 months", "V-285237, M-26-14"],
-    ["Time, version", "Three Grid NTP servers; every member on the approved LTS build; latest test-upgrade result", "V-285309, V-285269"],
-    ["Recovery", "Backup schedule and last SCP backup; annual test restore; GMC promote test", "V-285273"],
-    ["DNS controls", "Transfer ACLs and DDNS restrictions at zone level; only required services per member", "V-285249, V-285238"],
+    ["Settings baseline", "CM-6 settings for NIOS with approved deviations; optional STIG V1R1 cross-check (High only)", "SP 800-53 CM-6"],
+    ["DNSSEC", "Grid DNSSEC tab: no RSA/SHA1 or DSA; ZSK 2048+ or ECDSA; short validity; NSEC or NSEC3 as decided; KSK rollover on", "SP 800-81r3"],
+    ["Signer", "GM stealth in every zone and NS group, or HSM group enabled with test output; DS matches parent", "SP 800-81r3, HSM"],
+    ["Admin access", "Auth policy with remote or two-factor service and banner; OCSP; CA list; scoped admin groups", "Baseline"],
+    ["Logging", "Secure TCP syslog; audit copy to syslog; Detailed audit type; SIEM retention 6/12 months", "M-26-14"],
+    ["Time, version", "Three Grid NTP servers; every member on the approved LTS build; latest test-upgrade result", "Baseline, CM-2"],
+    ["Recovery", "Backup schedule and last SCP backup; annual test restore; GMC promote test", "Baseline"],
+    ["DNS controls", "Transfer ACLs and DDNS restrictions at zone level; only required services per member", "SP 800-81r3 §3"],
     ["DHCP and migration", "Failover status Normal with a test record; sync history; per-scope tickets; archived exports", "Book 08 Ch 10"],
   ], { fontSize: 10.5 });
-  sources(s, "Sources: research brief §11; DISA Infoblox NIOS 9.x STIG V1R1; Book 08, Ch 10 and Ch 11.");
+  sources(s, "Sources: research brief §11; NIST SP 800-53 Rev. 5 CM-2, CM-6; NIST SP 800-81r3; DISA NIOS 9.x STIG V1R1 (High only); Book 08, Ch 10, 11.");
 }
 
 {
@@ -1018,7 +1020,7 @@ The program's view is plain: Infoblox NIOS can carry Book 08's design, and its r
   table(s, "Risks", 1.45, [3.4, 5.4, 3.35], ["Risk", "Why it matters", "Manage it by"], [
     ["FIPS vs. hybrid cloud", "Severs portal: Universal DDI, Data Connector, cloud feeds; back out only by reset all", "Phase 0 decision; separate scopes"],
     ["Certificates pending", "FIPS mode isn't a validated module", "POA&M; vendor dates in writing"],
-    ["Default crypto", "RSA/SHA1 and 1024-bit ZSK are CAT I findings once signed", "Set defaults before signing"],
+    ["Default crypto", "RSA/SHA1 and a 1024-bit ZSK fall outside NIST SP 800-81r3 once signed", "Set defaults before signing"],
     ["RC4 keytab example", "Kerberos RC4 enforcement breaks GSS-TSIG", "AES256-SHA1 keytabs"],
     ["Destructive removal", "Removing a managed DHCP server deletes ranges, leases, fixed addresses", "Take over first"],
     ["Managing-member hardware", "vNIOS can't manage Windows servers", "Procure physical members early"],
@@ -1034,7 +1036,7 @@ The program's view is plain: Infoblox NIOS can carry Book 08's design, and its r
   const s = content("Backup", "Couldn't verify, or login-gated");
   T(s, "Gaps", bullets([
     "The current approved federal LTS build and 9.1.x patch level: release notes, images, Data Import Wizard and hotfix forms are behind the Infoblox support login.",
-    "DISA public.cyber.mil and dl.dod.cyber.mil didn't answer on Oct. 23, 2026: STIG content is from the zip downloaded Oct. 22; a newer revision is unknown.",
+    "DISA public.cyber.mil and dl.dod.cyber.mil didn't answer on Oct. 23, 2026: STIG content (High only) is from the zip downloaded Oct. 22; a newer revision is unknown.",
     "GSS-TSIG with Windows Server 2025 domain controllers: no Infoblox page names it, and the 9.1 pages disagree (to 2016, or 2016–2022).",
     "vNIOS HA in AWS GovCloud and Azure Government: the endpoint lists omit government endpoints.",
     "Whether a client keeps its address across a Windows-to-NIOS DHCP scope takeover: not documented; pilot it.",
@@ -1060,7 +1062,8 @@ srcSlide("Sources: Infoblox documentation", [
   "NIOS FIPS/CC mode: enabling FIPS or CC mode; guidelines  ·  vNIOS for VMware, Azure (deployment, HA, limitations v19) and AWS (HA, limits)  ·  Data Connector overview and registration.",
 ]);
 srcSlide("Sources: government, Microsoft, code and Book 08", [
-  "DISA Infoblox NIOS 9.x STIG V1R1: XCCDF (benchmark July 28, 2026), Overview and Release Memo (Aug. 6, 2026), from dl.dod.cyber.mil, downloaded Oct. 22, 2026.",
+  "NIST SP 800-81r3, Secure DNS Deployment Guide (March 2026); NIST SP 800-53 Rev. 5 CM-2 and CM-6; CIS Benchmarks list (no NIOS benchmark), all read Oct. 29, 2026.",
+  "DISA Infoblox NIOS 9.x STIG V1R1 (High only): XCCDF (July 28, 2026), Overview and Release Memo (Aug. 6, 2026), from dl.dod.cyber.mil, downloaded Oct. 22, 2026.",
   "CISA Known Exploited Vulnerabilities catalog, JSON feed, catalog version 2026.10.21.",
   "Microsoft Learn: Set-DnsServerPrimaryZone (Windows Server 2025); Manage DNS zones (zone transfers); Detect and remediate RC4 usage in Kerberos; Windows message center; Troubleshoot DHCP client issues; DHCP failover overview.",
   "GitHub: infobloxopen/terraform-provider-nios (README compatibility matrix, resources, v2.1.0); infobloxopen/terraform-provider-infoblox releases (v3.0.0-beta); infobloxopen/infoblox-ansible (v1.10.0).",

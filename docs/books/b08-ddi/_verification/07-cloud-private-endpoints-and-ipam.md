@@ -116,3 +116,11 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch), AWS doc
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | CP-1 | Autoregistered VM records are removed when the VM is deleted or stopped and deallocated (was "stopped or deleted") | Private zones: record kinds | corrected; new footnote c07-pdns-faq | Microsoft Learn, "Azure Private DNS FAQ," <https://learn.microsoft.com/azure/dns/dns-faq-private> (opened Oct 21, 2026): removed "when you stop a virtual machine and it is deallocated"; autoregistration overview <https://learn.microsoft.com/azure/dns/private-dns-autoregistration> (opened Oct 21, 2026) says "deleted or stopped"; design guide says "deallocate or delete." Now matches Chapter 11 |
+
+## Moderate-civilian sweep (October 29, 2026)
+
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; DISA STIGs and DoD Impact Levels survive only as optional references labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| MS-1 | GovCloud (US) is a valid Moderate location, so the missing VPC IPAM–Infoblox integration there is a Moderate concern; mixed GovCloud/commercial estates automate only the commercial side | Amazon VPC IPAM paragraph | design (labelled); GovCloud-at-Moderate per fact pack fact 12 | c07-awsipam (existing); AWS FedRAMP pages (fact pack) |

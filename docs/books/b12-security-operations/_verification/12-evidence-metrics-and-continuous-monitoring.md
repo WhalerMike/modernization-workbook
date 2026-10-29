@@ -119,3 +119,11 @@ ScubaGear 2.0.0 was released October 22, 2026 (weekly source watch, issue #160).
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | SCuBA-to-SP 800-53 mapping limited to FedRAMP High baseline controls (row 40) | ScubaGear | verified (re-pointed to v2.0.0; mappings.md identical to v1.8.0) | ScubaGear v2.0.0 mappings.md |
+
+## Moderate-civilian sweep, October 29, 2026
+
+The workbook targets FedRAMP Moderate civilian agencies. Framing that read as High-only was checked.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | SCuBA mapping limited to FedRAMP High baseline controls; the High baseline contains every Moderate control, so the mapping serves a Moderate system too | ScubaGear | verified fact unchanged; added sentence is inference (SP 800-53B baselines are cumulative) | ScubaGear v2.0.0 mappings.md; NIST SP 800-53B |

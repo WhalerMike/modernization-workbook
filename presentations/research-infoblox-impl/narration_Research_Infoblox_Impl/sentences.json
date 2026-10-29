@@ -54,11 +54,11 @@
   ],
   [
    33.712,
-   5.237,
-   "And its evidence becomes syslog, audit logs, backups and the STIG checklist."
+   5.888,
+   "And its evidence becomes syslog, audit logs, backups and the agency's settings checklist."
   ],
   [
-   38.95,
+   39.6,
    5.9,
    "Book 08's six phases still govern, but this guide adds a Phase 0 of decisions."
   ]
@@ -91,18 +91,18 @@
   ],
   [
    31.613,
-   4.95,
-   "Second, pick the long-term-support train, because the STIG measures you against it."
+   5.263,
+   "Second, pick the long-term-support train, and name it in your configuration baseline."
   ],
   [
-   36.562,
+   36.875,
    4.05,
    "Third, fix the weak DNSSEC defaults before you sign anything."
   ],
   [
-   40.612,
-   6.725,
-   "And fourth, decide on a hardware security module, since the STIG expects one or a documented exception."
+   40.925,
+   5.987,
+   "And fourth, decide whether the signing keys go in a hardware security module, and write the choice down."
   ]
  ],
  "4": [
@@ -189,46 +189,46 @@
   ],
   [
    3.388,
-   8.988,
-   "Set NTP at the Grid level first, with at least three external servers as the STIG recommends, and let the Grid Master serve time to the members."
+   7.8,
+   "Set NTP at the Grid level first, with at least three external servers, and let the Grid Master serve time to the members."
   ],
   [
-   12.375,
+   11.188,
    6.312,
    "Time isn't cosmetic: Grid sync, Kerberos-signed updates and DHCP failover all depend on it."
   ],
   [
-   18.688,
+   17.5,
    7.188,
    "One gap for your control mapping: NIOS offers no SHA-2 key type for NTP authentication."
   ],
   [
-   25.875,
+   24.688,
    1.225,
    "Then licenses."
   ],
   [
-   27.1,
+   25.913,
    2.175,
    "The trap is the temporary license."
   ],
   [
-   29.275,
+   28.087,
    7.388,
    "It lasts sixty days, can't be renewed, and when it expires the member's services stop and it's evicted from the Grid."
   ],
   [
-   36.663,
+   35.475,
    2.688,
    "So never let a production member run on one."
   ],
   [
-   39.35,
+   38.163,
    5.037,
    "And if the Microsoft Management license lapses, sync to the Windows servers stops."
   ],
   [
-   44.388,
+   43.2,
    2.175,
    "Now, the virtual appliances."
   ]
@@ -507,8 +507,8 @@
   ],
   [
    2.413,
-   11.825,
-   "We'll cover DNSSEC on NIOS, the hardware security module, what the DISA STIG actually checks, FIPS mode, and administrator access, including two upgrade gates that can lock people out."
+   12.312,
+   "We'll cover DNSSEC on NIOS, the hardware security module, the agency's own hardening baseline, FIPS mode, and administrator access, including two upgrade gates that can lock people out."
   ]
  ],
  "17": [
@@ -519,31 +519,31 @@
   ],
   [
    5.062,
-   5.513,
-   "The key rule is to set the parameters before you sign anything, because the defaults fail the STIG."
+   5.125,
+   "The key rule is to set the parameters before you sign anything, because the defaults are weak."
   ],
   [
-   10.575,
-   14.575,
-   "Change the algorithm from RSA with SHA-1 to SHA-256 or an elliptic curve option, and raise the zone-signing key from 1024 bits to 2048, which lines up with Book 08's own guidance."
+   10.188,
+   14.713,
+   "Change the algorithm from RSA with SHA-1 to SHA-256 or an elliptic curve option, and raise the zone-signing key from 1024 bits to 2048, which matches nist's guide for D N S deployment."
   ],
   [
-   25.15,
+   24.9,
    4.088,
    "The other defaults are fine, including automatic key rollovers."
   ],
   [
-   29.238,
-   11.25,
-   "One decision to document: Book 08 records nist's preference for NSEC, while the STIG requires NSEC3 for external zones, so decide it for internal zones."
+   28.988,
+   9.287,
+   "One decision to document: nist prefers NSEC, while NIOS defaults to NSEC3, so decide which you use and write it down."
   ],
   [
-   40.487,
+   38.275,
    5.15,
    "And if you ever change a signed zone's algorithm, add the new one before removing the old."
   ],
   [
-   45.638,
+   43.425,
    1.712,
    "Next, the HSM."
   ]
@@ -586,43 +586,53 @@
   ],
   [
    41.1,
-   1.163,
-   "Now, the STIG."
+   1.863,
+   "Now, the hardening baseline."
   ]
  ],
  "19": [
   [
    0.05,
-   3.975,
-   "The DISA STIG for NIOS 9 is narrower than people assume."
+   1.625,
+   "How do you harden NIOS?"
   ],
   [
-   4.025,
-   8.963,
-   "Release one, accepted in August 2026, has forty-five rules, and it covers only the appliance's D N S capabilities."
+   1.675,
+   5.5,
+   "This workbook is for Moderate civilian agencies, so the baseline is the agency's own."
   ],
   [
-   12.988,
-   6.475,
-   "DHCP and address management hardening aren't in it, so those rely on the program's own baseline."
+   7.175,
+   7.975,
+   "nist's control C M 6 has you document your configuration settings for each product, from a common secure configuration you choose."
   ],
   [
-   19.462,
-   13.075,
-   "The five most serious rules cover keeping the Grid Master hidden unless keys are on an HSM, DNSSEC validation, running the approved long-term-support version, validated cryptography, and no DSA keys."
+   15.15,
+   7.662,
+   "For most products that's a C I S Benchmark or the vendor's hardening guide, but there's no C I S Benchmark for NIOS."
   ],
   [
-   32.538,
-   9.525,
-   "The rest cover zone transfers, dynamic updates, keeping internal and external roles apart, administrator sign-in, logging and resilience."
+   22.812,
+   22.788,
+   "So write the settings from nist's D N S deployment guide and Infoblox's documentation: zone transfers only to named secondaries, with signed transfers; restricted dynamic updates; authoritative and recursive roles kept apart; a hidden primary and strong signing algorithms; administrator sign-in with piv or sam-ul; and D N S logs in the sim."
   ],
   [
-   42.062,
-   5.0,
-   "One practical tip: check these settings at the zone level, not only at the Grid level."
+   45.6,
+   9.062,
+   "The DISA STIG for NIOS 9 is the only product-specific checklist, so it makes a useful cross-check, but it's High only, Defense material."
   ],
   [
-   47.062,
+   54.663,
+   4.662,
+   "It covers only the appliance's D N S, with forty-five rules."
+  ],
+  [
+   59.325,
+   6.4,
+   "One tip from it applies to any baseline: check these settings at the zone level, not only at the Grid level."
+  ],
+  [
+   65.725,
    1.938,
    "Next, FIPS mode."
   ]
@@ -697,11 +707,11 @@
   ],
   [
    32.075,
-   8.062,
-   "For the STIG, the evidence is an authentication policy with a remote service, a password policy, and only approved CAs."
+   9.35,
+   "For the settings baseline, the evidence is an authentication policy with a remote service, a password policy, and only the agency's approved CAs."
   ],
   [
-   40.138,
+   41.425,
    1.512,
    "That closes Part 3."
   ]
@@ -825,11 +835,11 @@
   ],
   [
    39.388,
-   4.388,
-   "Written down, those steps are the STIG's documented promotion procedure."
+   4.088,
+   "Written down, those steps are your documented promotion procedure."
   ],
   [
-   43.775,
+   43.475,
    1.137,
    "Next, logging."
   ]
@@ -842,31 +852,31 @@
   ],
   [
    2.062,
-   11.95,
-   "Send syslog to external servers over secure TCP, use the detailed audit log, which also records API calls, and copy the audit log to syslog, which the STIG requires."
+   10.613,
+   "Send syslog to external servers over secure TCP, use the detailed audit log, which also records API calls, and copy the audit log to syslog as well."
   ],
   [
-   14.012,
+   12.675,
    9.088,
    "Be careful with full D N S query logging, because Infoblox warns it significantly affects performance, so use capture or dnstap instead."
   ],
   [
-   23.1,
+   21.762,
    4.95,
    "DHCP lease history is what ties an address to a device at a point in time."
   ],
   [
-   28.05,
+   26.712,
    8.662,
    "On a FIPS Grid, the portal-managed Data Connector is likely unavailable, as an inference, so rely on syslog or dnstap."
   ],
   [
-   36.712,
+   35.375,
    6.588,
    "And the sim is the system of record, because local retention can't meet the six-month and twelve-month requirement."
   ],
   [
-   43.3,
+   41.962,
    1.438,
    "Next, automation."
   ]
@@ -946,8 +956,8 @@
   ],
   [
    41.188,
-   3.525,
-   "And Phase 6 finishes the STIG items and evidence."
+   4.562,
+   "And Phase 6 finishes the remaining baseline settings and the evidence."
   ]
  ],
  "29": [
@@ -958,31 +968,31 @@
   ],
   [
    0.975,
-   15.938,
-   "The decisions are yours: FIPS mode, knowing it costs cloud management, an HSM or a documented exception, NSEC or NSEC3 for internal zones, where the locator zones live, and how many physical managing members you need."
+   15.863,
+   "The decisions are yours: FIPS mode, knowing it costs cloud management, whether the signing keys go in an HSM, NSEC or NSEC3 for internal zones, where the locator zones live, and how many physical managing members you need."
   ],
   [
-   16.913,
+   16.837,
    10.938,
    "There are questions to put to Infoblox in writing, mainly around the approved federal build, certification timing, Windows Server 2025, and failover in the government clouds."
   ],
   [
-   27.85,
-   8.213,
-   "The next steps are concrete: stand up a lab Grid, sign a test zone, pilot one DHCP takeover, and run the STIG checklist."
+   27.775,
+   9.162,
+   "The next steps are concrete: stand up a lab Grid, sign a test zone, pilot one DHCP takeover, and check the lab against your settings baseline."
   ],
   [
-   36.062,
+   36.938,
    8.85,
    "The program's view is plain: NIOS can carry Book 08's design, and its risks are manageable if the Phase 0 decisions come first."
   ],
   [
-   44.913,
+   45.788,
    5.912,
    "This is the program's research, under review, not an endorsement by any federal agency."
   ],
   [
-   50.825,
+   51.7,
    0.762,
    "Thank you."
   ]

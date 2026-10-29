@@ -557,7 +557,7 @@ The following sequence reflects what a Cisco Catalyst SD-WAN + Microsoft INR dep
 
 **Step 2 — Baseline template development.** Build cEdge configuration templates in SD-WAN Manager for each branch archetype (small office, large office, high-availability site). Templates should enforce: FIPS mode, no local management plane, Umbrella DNS integration, minimum cipher suite (AES-256-GCM), NTP synchronized to agency time sources, SNMP disabled in favor of streaming telemetry.
 
-**Step 3 — Cloud OnRamp policy for M365.** Configure Cloud OnRamp for SaaS using Microsoft's published Optimize and Allow category endpoint lists (GCC or GCC High). Validate that Teams media (Optimize category) is steered to the best-measured DIA/5G path, not through a proxy. Configure the fallback policy for when all local paths degrade below threshold — fail to the MPLS circuit with minimal additional latency rather than dropping sessions.
+**Step 3 — Cloud OnRamp policy for M365.** Configure Cloud OnRamp for SaaS using Microsoft's published Optimize and Allow category endpoint lists (the Worldwide instance, which covers GCC). Validate that Teams media (Optimize category) is steered to the best-measured DIA/5G path, not through a proxy. Configure the fallback policy for when all local paths degrade below threshold — fail to the MPLS circuit with minimal additional latency rather than dropping sessions.
 
 **Step 4 — Umbrella DNS integration.** Activate the SD-WAN Manager + Umbrella integration. Verify all branch DNS queries resolve through Umbrella and do not fall back to local resolvers. Configure Umbrella DNS policy to block known-malicious domains, apply CASB policy for M365 tenant restriction (preventing personal tenant use on government devices).
 

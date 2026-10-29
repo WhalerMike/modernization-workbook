@@ -867,31 +867,36 @@
   ],
   [
    4.25,
-   8.262,
-   "Config conformance packs and Security Hub's posture checks are the foundation, and both run in GovCloud, though with differences you need to test."
+   4.725,
+   "Config conformance packs and Security Hub's posture checks are the foundation."
   ],
   [
-   12.512,
+   8.975,
+   8.475,
+   "Both run in GovCloud and in the commercial Regions, and either is a valid home for a Moderate system, but GovCloud has differences you need to test."
+  ],
+  [
+   17.45,
    4.925,
    "Security Hub keeps findings for only ninety days, so copy them out first."
   ],
   [
-   17.438,
+   22.375,
    10.613,
    "The big correction is Audit Manager: it closed to new customers in April 2026, has no GovCloud endpoint, and its fed-ramp framework is still on the old revision."
   ],
   [
-   28.05,
+   32.987,
    2.925,
    "Nobody should start a federal evidence program on it."
   ],
   [
-   30.975,
+   35.913,
    6.95,
    "And the ServiceNow connector most agencies used loses support in March 2027, so plan that move now."
   ],
   [
-   37.925,
+   42.862,
    1.837,
    "VMware is harder still."
   ]

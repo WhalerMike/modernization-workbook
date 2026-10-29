@@ -68,8 +68,8 @@ channel. That is a complete and correct *reference implementation* — for the
 Azure estate. It is not the whole estate.
 
 A federal agency operating under FedRAMP Moderate typically runs compute on more
-than one authorized platform at once: Azure Government / M365 GCC, **AWS
-GovCloud**, **Oracle Cloud Infrastructure (OCI)**, on-premises **VMware**, and
+than one authorized platform at once: Azure Government / M365 GCC, **AWS** (GovCloud (US) and
+commercial Regions, both valid Moderate locations), **Oracle Cloud Infrastructure (OCI)**, on-premises **VMware**, and
 **Red Hat** across all of them. Each platform ships its own patch and
 systems-management stack, each spanning Windows, Linux, and — above the guest OS
 — hypervisor, firmware, and managed-service layers that no single vendor's tool
@@ -219,7 +219,8 @@ above Moderate. But the matrix also includes **customer-operated** stacks —
 vSphere Lifecycle Manager on on-premises VMware, and Red Hat Satellite / Ansible
 on customer infrastructure — which carry no FedRAMP CSO. Like the customer-owned
 network gear in the enforcement-substrate book, their accreditation is the
-product's own (DISA STIG hardening, FIPS 140-3 validated modules), and the
+agency's own (hardening to agency CM-6 settings drawn from CIS Benchmarks, the NIST
+National Checklist Program or the vendor's guide, FIPS 140-3 validated modules), and the
 authorization boundary documents them as agency-operated components, not inherited
 CSP services. One boundary nuance recurs: a
 **hybrid agent** — Azure Arc reaching an on-prem or AWS host, or SSM reaching a
@@ -253,8 +254,9 @@ into the existing attestation pipeline** — AWS control state feeds the same
 Vol VII Book 04 attestation and KSI loop; there is no separate AWS
 compliance narrative. Boundary notes carried from the accreditation section:
 Satellite and Ansible run in-boundary on customer infrastructure; Red Hat
-Insights is SaaS and enters only after an authorization review; AWS GovCloud
-and each Red Hat product's authorization status are verified at procurement,
+Insights is SaaS and enters only after an authorization review; each AWS service's
+FedRAMP scope in its Region (GovCloud (US) or commercial) and each Red Hat
+product's authorization status are verified at procurement,
 holding the series' Moderate scope throughout.
 
 ## The 5.1 emission contract — one record shape into the one SI-2 queue

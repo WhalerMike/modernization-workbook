@@ -5,7 +5,8 @@ description: "Research under review: a narrated explainer for architects learnin
 research-status: in review
 research-type: explainer
 research-book: "Book 08"
-date-modified: 2026-10-22
+date-modified: 2026-10-29
+
 last-reviewed: 2026-10-22
 ---
 
@@ -33,7 +34,7 @@ Trinzic is Infoblox's line of physical appliances that run NIOS, its DNS, DHCP a
 | **B. The Grid joined to Universal DDI** | Infoblox's cloud-delivered control plane manages the Grid and writes DNS records back into Route 53, Azure DNS and Google Cloud DNS | The only Infoblox path that writes back to cloud DNS, but its FedRAMP edition is Moderate only, with limited cloud discovery; some features run only on newer NIOS-X servers |
 | **C. Trinzic alongside native cloud DNS** | Each cloud keeps its own private zones; Trinzic and each cloud forward the other's names both ways | Two systems to run, and the automated AWS address handoff isn't available in GovCloud |
 
-**Design guidance (not an endorsement):** an agency that is mostly on premises can start with Trinzic and forwarding (option C). Hybrid with one cloud: add vNIOS in that cloud (A + C). Multi-cloud at Moderate and below: consider Universal DDI on top (B). GovCloud, Azure Government, High or DoD Impact Level 4–5 workloads: vNIOS and native cloud DNS only (A + C), without depending on the SaaS.
+**Design guidance (not an endorsement):** an agency that is mostly on premises can start with Trinzic and forwarding (option C). Hybrid with one cloud: add vNIOS in that cloud (A + C). Multi-cloud at Moderate and below: consider Universal DDI on top (B), whether the Moderate workloads run in commercial regions or in AWS GovCloud (US) and Azure Government, which are valid Moderate locations too; in the government regions, confirm first which hybrid features Infoblox supports against those accounts. Infoblox Government Cloud is itself certified at Moderate and hosted in AWS GovCloud (US).[^tz-fedramp] FedRAMP High or DoD Impact Level 4–5 systems, in any region: vNIOS and native cloud DNS only (A + C), without depending on the Moderate SaaS.
 
 **Three rules hold in every option:** each DNS zone has exactly one writable owner, reached everywhere else by forwarding (for example, `corp.agency.gov` on the Grid and `aws.corp.agency.gov` in Route 53); DNSSEC keys stay on the Grid Master or a hardware security module; and the agency's address space stays authoritative on the Grid, handed out to each cloud in blocks.
 
@@ -42,3 +43,5 @@ Trinzic is Infoblox's line of physical appliances that run NIOS, its DNS, DHCP a
 **In review.** Every claim was checked against Infoblox, AWS, Microsoft and Google documentation and FedRAMP Marketplace data on October 22, 2026. Points that couldn't be verified, including Azure Government availability of Azure's DNS Private Resolver and IPAM, and which hybrid features Infoblox's government edition supports against GovCloud and Azure Government accounts, are marked "confirm" in the deck and listed in its backup section. Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
 
 Related research: [Infoblox DDI for Federal Agencies](infoblox-ddi-federal.md), the 50-minute deep dive, and [What a Federal DDI Platform Must Do](ddi-platform-requirements.md), the vendor-neutral briefing. The architecture both build on is [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md).
+
+[^tz-fedramp]: FedRAMP Marketplace, Infoblox Government Cloud (FR2017257053): FedRAMP Certified, Moderate (Class C), agency path, SaaS, hosted in AWS GovCloud (US), <https://www.fedramp.gov/marketplace/products.json> (accessed Oct 22, 2026). AWS lists services in scope per service and per Region, with columns for "FedRAMP Class C (formerly Moderate baseline) (East/West)" and "FedRAMP Class D (formerly High baseline) (GovCloud)", <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/> (accessed Oct 29, 2026).

@@ -6,53 +6,53 @@ On a Grid, only the Grid Master
 signs, acting as a hidden primary.
 
 2
-00:00:05.063 --> 00:00:08.577
+00:00:05.063 --> 00:00:08.501
 The key rule is to set the
 parameters before you sign anything,
 
 3
-00:00:08.577 --> 00:00:10.575
-because the defaults fail the STIG.
+00:00:08.501 --> 00:00:10.187
+because the defaults are weak.
 
 4
-00:00:10.575 --> 00:00:17.191
+00:00:10.187 --> 00:00:16.682
 Change the algorithm from RSA with SHA-1
 to SHA-256 or an elliptic curve option,
 
 5
-00:00:17.191 --> 00:00:21.635
+00:00:16.682 --> 00:00:21.045
 and raise the zone-signing
 key from 1024 bits to 2048,
 
 6
-00:00:21.635 --> 00:00:25.150
-which lines up with
-Book 08's own guidance.
+00:00:21.045 --> 00:00:24.901
+which matches NIST's
+guide for DNS deployment.
 
 7
-00:00:25.150 --> 00:00:29.238
+00:00:24.901 --> 00:00:28.988
 The other defaults are fine,
 including automatic key rollovers.
 
 8
-00:00:29.238 --> 00:00:34.360
-One decision to document: Book 08
-records NIST's preference for NSEC,
+00:00:28.988 --> 00:00:32.583
+One decision to document:
+NIST prefers NSEC,
 
 9
-00:00:34.360 --> 00:00:40.488
-while the STIG requires NSEC3 for external
-zones, so decide it for internal zones.
+00:00:32.583 --> 00:00:38.275
+while NIOS defaults to NSEC3, so decide
+which you use and write it down.
 
 10
-00:00:40.488 --> 00:00:43.316
+00:00:38.275 --> 00:00:41.104
 And if you ever change a
 signed zone's algorithm,
 
 11
-00:00:43.316 --> 00:00:45.637
+00:00:41.104 --> 00:00:43.425
 add the new one before removing the old.
 
 12
-00:00:45.637 --> 00:00:47.400
+00:00:43.425 --> 00:00:45.190
 Next, the HSM.

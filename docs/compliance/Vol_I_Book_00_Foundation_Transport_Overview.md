@@ -66,7 +66,7 @@ Volumes II–IV do not degrade — they become unevaluable.
 | **Vol I Book 04** | HRIT Identity & Org SSOT | The human/organizational source of truth every account and access decision asserts |
 | **Vol I Book 05** | Network Modernization | Entra ID, ZTNA, and Drift Reconciliation — session-to-token identity modernization |
 | **Vol I Book 06** | Federal Telecommunications Modernization | SD-WAN + SASE under TIC 3.0 — encrypted, application-aware transport (the "DIA is a pipe" doctrine) |
-| **Vol I Book 07** | Network Enforcement Substrate | Cisco / Palo Alto / Juniper at the customer edge, accredited via NIAP / DISA STIG / FIPS 140-3 / DoDIN APL |
+| **Vol I Book 07** | Network Enforcement Substrate | Cisco / Palo Alto / Juniper at the customer edge, accredited via NIAP / FIPS 140-3 / the agency's CM-6 baseline (CIS Benchmarks, vendor hardening guides); DISA STIG and DoDIN APL are optional references (High only: Defense or FedRAMP High material, not the Moderate civilian baseline this series targets) |
 
 : Volume I — Foundation & Transport {.striped .hover}
 

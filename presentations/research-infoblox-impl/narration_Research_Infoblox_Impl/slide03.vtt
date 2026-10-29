@@ -35,21 +35,25 @@ Running in FIPS mode isn't the same
 as holding a validated module.
 
 8
-00:00:31.612 --> 00:00:36.563
+00:00:31.612 --> 00:00:34.130
 Second, pick the long-term-support train,
-because the STIG measures you against it.
 
 9
-00:00:36.563 --> 00:00:40.612
+00:00:34.130 --> 00:00:36.876
+and name it in your
+configuration baseline.
+
+10
+00:00:36.876 --> 00:00:40.925
 Third, fix the weak DNSSEC
 defaults before you sign anything.
 
-10
-00:00:40.612 --> 00:00:43.814
-And fourth, decide on a
-hardware security module,
-
 11
-00:00:43.814 --> 00:00:47.400
-since the STIG expects one
-or a documented exception.
+00:00:40.925 --> 00:00:43.847
+And fourth, decide whether
+the signing keys go in a
+
+12
+00:00:43.847 --> 00:00:46.970
+hardware security module,
+and write the choice down.

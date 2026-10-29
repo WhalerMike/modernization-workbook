@@ -70,3 +70,17 @@ Checked October 21, 2026. External definitions verified against rfc-editor.org (
 | ZTNA | App C | — |
 
 Terms added from the other sources and chapters: access point, address continuity, Allow/Default/Optimize, application-aware steering, authorizing official, BOD, boundary change, branch-edge policy layer, CAE, chattiness, Conditional Access, consistency class, CP-8, deterministic egress, DoH/DoT, EAP-TLS, ED, edge device, EIS, FEC, FIPS 140-3, governor, governed-path transport, G.114, jitter, KEV, LEO, local breakout, logical centralization, managed interface, INR, M-22-09, M-26-14, M-26-15, ML-KEM, MPLS, path class, PEP, PoP, policy enforcement parity, PQC, propagation delay, Protective DNS, RADIUS, residual architecture, RTT, SC-8, Security Capabilities Catalog, significant change, telecommunications diversity, tenant restrictions v2, TIC 3.0 use cases, TICAP, token protection, traffic flow policy, 802.1X.
+
+## 3. Moderate-civilian additions, October 29, 2026
+
+Added because Book 09 and its research pages now name civilian configuration baselines and keep STIGs only as an optional (High only) reference. Each claim was checked against the primary source on October 29, 2026. DISA's own STIG pages (public.cyber.mil, cyber.mil) didn't resolve from this machine, so the STIG definition is cited from the NIST CSRC Glossary.
+
+| # | Claim (short) | Entry | Verdict | Source |
+|---|---|---|---|---|
+| 1 | CIS Benchmarks list Cisco IOS XE 17.x (2.2.1), NX-OS (1.2.0), ASA 9.x Firewall (1.1.0), Juniper OS (2.1.0), Palo Alto Firewall 11 (1.2.0), F5 Networks (1.0.0); none for Catalyst SD-WAN Manager | CIS Benchmarks | verified (CIS Benchmarks list) | cis |
+| 2 | "Typically" CM-6 settings for network gear come from a CIS Benchmark and the vendor's hardening guide | CIS Benchmarks | design guidance (program position) | — |
+| 3 | CM-6: most restrictive mode consistent with operations, organization-defined common secure configurations, deviations approved; discussion names vendors, federal agencies, consortia as sources | CM-6 | verified (OSCAL Rev. 5 catalog) | cm6 |
+| 4 | NCP described in SP 800-70 Rev. 5 (May 2026); checklists typically created by IT vendors, also consortia, academia, government agencies | NCP | verified | ncp |
+| 5 | STIG: based on DoD policy and security controls; geared to a specific product and version (CNSSI 4009-2022) | STIG | verified (CSRC Glossary) | stig |
+| 6 | Some civilian agencies borrow a STIG where no other product checklist exists | STIG | design guidance / program position, not footnoted | — |
+

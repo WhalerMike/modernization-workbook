@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.426
+The workbook sorts every
+asset into coverage tiers,
+
+2
+00:00:03.426 --> 00:00:05.938
+and Ansible's job changes with the tier.
+
+3
+00:00:05.938 --> 00:00:09.838
+In tier one it onboards and reads,
+but it doesn't own settings.
+
+4
+00:00:09.838 --> 00:00:15.467
+Tier two is its natural home: it owns
+configuration where the C M D B says so,
+
+5
+00:00:15.467 --> 00:00:18.563
+and every job's result becomes evidence.
+
+6
+00:00:18.563 --> 00:00:22.812
+In tier three it only reads, and in
+tier four it does nothing at all.
+
+7
+00:00:22.812 --> 00:00:26.312
+Of the workbook's four
+tracks, Ansible lives in two.
+
+8
+00:00:26.312 --> 00:00:28.374
+The Arc track, for servers.
+
+9
+00:00:28.374 --> 00:00:31.994
+And the non-person identity
+track, because the controller
+
+10
+00:00:31.994 --> 00:00:35.537
+itself is an identity with
+standing access to many hosts.
+
+11
+00:00:35.537 --> 00:00:37.300
+Let's start with the Arc job.

@@ -754,7 +754,7 @@ Two properties matter. The hypervisor and firmware column has no cross-platform 
     "It's a rollout: assign Audit, change it later by pull request",
   ], 12);
   flow(s, "Life", 3.65, 1.6, [
-    { head: "Author", body: "SCuBA, CIS or STIG settings as versioned code (CM-6)" },
+    { head: "Author", body: "SCuBA, CIS or agency CM-6 settings as versioned code" },
     { head: "Assign", body: "Audit first; measure the drift population (CM-2)" },
     { head: "Detect", body: "A drift record per setting per asset (CM-6(1))" },
     { head: "Reconcile or report", body: "Fix idempotent settings; else POA&M and SI-2 row (CM-6(2))", color: HEX.amber, tint: HEX.amberTint },
@@ -767,7 +767,7 @@ Two properties matter. The hypervisor and firmware column has no cross-platform 
   notes(s,
 `SI-2 closes flaws; CM-2 and CM-6 hold the configuration that keeps them closed. A patched host that drifts, an SMBv1 client re-enabled or a firewall rule widened, has reopened the exposure. Every platform has a desired-state mechanism: Azure machine configuration for Azure VMs and Arc servers, State Manager on AWS, versioned Ansible playbooks.
 
-A baseline no pipeline enforces is a document, not a control. The lifecycle is design guidance. Author settings as code from SCuBA, binding for Microsoft 365 under BOD 25-01, or from STIGs and CIS Benchmarks found through NIST's National Checklist Program. Assign in audit mode and measure the drift population first, because auto-remediating a setting the estate depends on is an availability incident. Detect drift per setting per asset. Then split the rules: remediate idempotent, low-blast-radius settings, and report anything needing judgment as a POA&M item and an SI-2 queue row. That's CM-6(1) and CM-6(2) in practice.
+A baseline no pipeline enforces is a document, not a control. The lifecycle is design guidance. Author settings as code from SCuBA, which covers Microsoft 365 and Google Workspace and is binding under BOD 25-01, or, for servers and platforms, from CIS Benchmarks, checklists found through NIST's National Checklist Program, or the vendor's hardening guide, written as the agency's own CM-6 settings. Assign in audit mode and measure the drift population first, because auto-remediating a setting the estate depends on is an availability incident. Detect drift per setting per asset. Then split the rules: remediate idempotent, low-blast-radius settings, and report anything needing judgment as a POA&M item and an SI-2 queue row. That's CM-6(1) and CM-6(2) in practice.
 
 Machine configuration has exactly three assignment types. Audit reports and never changes anything. ApplyAndMonitor, the default, applies the configuration and then reports drift without correcting it. ApplyAndAutoCorrect fixes drift at the next evaluation, and Microsoft says there's no way to report when a drift was automatically corrected. So an attacker's change can be silently restored and the record shows only compliance. Use ApplyAndMonitor or Audit wherever drift must be evidenced, reserve autocorrect for low-risk settings, and say which is which in the baseline file. There's no audit-then-remediate mode; that's a rollout sequence.
 
@@ -781,10 +781,10 @@ The drift export reads guestconfigurationresources, one row per noncompliant set
   tag(s, "What");
   table(s, "Posture", 1.5, [1.6, 3.6, 3.1, 3.85], ["Platform", "Posture mechanism", "FedRAMP listing (Oct. 21, 2026)", "Treatment (design guidance)"], [
     ["Azure", "Defender for Cloud: Foundational and Defender CSPM", "Azure, Azure Government: Class D", "Primary; coordinates where it reaches"],
-    ["AWS", "AWS Config conformance packs; Security Hub CSPM", "US East/West Class C; GovCloud Class D", "Primary for AWS where owned"],
+    ["AWS", "Config conformance packs; Security Hub CSPM, incl. CIS AWS", "US East/West Class C; GovCloud Class D", "Primary for AWS; both locations valid"],
     ["Google Cloud", "Security Command Center; Assured Workloads", "Google Services, Class D", "Adoption default"],
     ["Oracle Cloud", "Cloud Guard", "OCI Government Cloud, Class D", "Only mechanism: no Defender for Cloud"],
-    ["VMware", "STIG readiness guides with InSpec, Ansible, PowerCLI", "Customer-operated: none", "The agency's own evidence"],
+    ["VMware", "Broadcom hardening guide; CIS ESXi benchmarks", "Customer-operated: none", "The agency's own evidence"],
   ], { fontSize: 11.5, limit: 4.5 });
   panel(s, "Stops", 0.6, 4.6, 5.95, 1.85, HEX.amber, HEX.amberTint, "WHERE DEFENDER FOR CLOUD STOPS", null, [
     "AWS connector unavailable in national government clouds",
@@ -798,7 +798,7 @@ The drift export reads guestconfigurationresources, one row per noncompliant set
   notes(s,
 `A host scanner can't tell you whether a bucket is public, a workload is internet-reachable, a role is over-permissioned or an image was scanned. Cloud security posture management reads those settings through each provider's API: CM-6 for cloud resources, a separate contribution from the operating-system baseline. An assessor who sees only one hasn't seen CM-6 closed.
 
-The selection rule is design guidance. A Microsoft product is the default only where it actually coordinates other platforms. An owned native mechanism is primary for its own platform. Where nothing is owned, a named adoption default is recorded as a plan, not a capability. And every mechanism is checked on the Marketplace at procurement, because the agency still authorizes its own systems. The listings shown are from the Marketplace dataset of October 21, 2026: AWS Config and Security Hub CSPM appear in both the Moderate commercial and High GovCloud offerings, and VMware's STIG content is customer-operated, with no certification of its own. Prisma Cloud is listed at Moderate and High, and Wiz at High with a Moderate package in process; either is a legitimate whole-estate choice for the authorizing official.
+The selection rule is design guidance. A Microsoft product is the default only where it actually coordinates other platforms. An owned native mechanism is primary for its own platform. Where nothing is owned, a named adoption default is recorded as a plan, not a capability. And every mechanism is checked on the Marketplace at procurement, because the agency still authorizes its own systems. The listings shown are from the Marketplace dataset of October 21, 2026: AWS Config and Security Hub CSPM appear in both the Moderate commercial and High GovCloud offerings, and either location is valid for a Moderate system, since the High offering includes the Moderate controls. Security Hub CSPM also runs the CIS AWS Foundations Benchmark, a civilian hardening benchmark for the account layer. On VMware the baseline is Broadcom's own hardening guide, measured by Security Posture Management, with CIS ESXi as a cross-check; it's customer-operated, with no certification of its own. Prisma Cloud is listed at Moderate and High, and Wiz at High with a Moderate package in process; either is a legitimate whole-estate choice for the authorizing official.
 
 Defender for Cloud's multicloud plans cover Azure, AWS and Google Cloud, not Oracle. Microsoft says its AWS connector isn't available on the national government clouds, and CIEM and DevOps security aren't in Azure Government; attack path is listed both ways, so test it.
 
@@ -1083,7 +1083,7 @@ sourceSlide("Sources behind Module 3 — Vulnerability, patch and posture", [
   "Microsoft Learn: runHuntingQuery; Graph security API; software vulnerability export; Logs Ingestion API and Data Collector migration; Lifecycle (2026–2030); SQL Server servicing models; SQL Arc automatic updates.",
   "Microsoft Learn: Update Manager; Arc hotpatch; Intune update rings and expedite; Resource Graph tables; machine configuration assignments, remediation options and compliance; guest configuration samples.",
   "AWS: Systems Manager Patch Manager, State Manager, EventBridge events; Amazon Inspector; AWS Config NIST 800-53 pack; Security Hub CSPM.  ·  Oracle: OS Management Hub; Ksplice; Cloud Guard.",
-  "Broadcom: vSphere Lifecycle Manager firmware; VCF 9.1 STIG compliance.  ·  Red Hat Satellite 6.19.  ·  Google Cloud: Security Command Center; Assured Workloads.  ·  FedRAMP Marketplace data (Oct. 21, 2026).",
+  "Broadcom: vSphere Lifecycle Manager firmware; VCF 9.1 Security Posture Management.  ·  CIS Benchmarks; CIS AWS Foundations in Security Hub CSPM.  ·  Red Hat Satellite 6.19.  ·  Google Cloud: Security Command Center; Assured Workloads.  ·  FedRAMP Marketplace data (Oct. 21, 2026).",
   "Microsoft Learn: Defender for Cloud support matrices, AWS quickstart, attack paths, Defender for Containers; Azure Policy for Kubernetes.  ·  Kubernetes Pod Security Admission and Standards.  ·  NIST SP 800-190, SP 800-218.",
   "Full footnotes with links and access dates: Book 12, Chapters 06–08.",
 ]);

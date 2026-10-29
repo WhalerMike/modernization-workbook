@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.248
+This is the technical deep dive
+for a companion guide in the
+
+3
+00:00:04.248 --> 00:00:08.587
+Federal Modernization Workbook:
+Ansible for Configuration Automation.
+
+4
+00:00:08.587 --> 00:00:10.974
+It's for the engineers
+who decide which tool
+
+5
+00:00:10.974 --> 00:00:13.625
+may change which setting,
+and prove it afterward.
+
+6
+00:00:13.625 --> 00:00:16.187
+The guide's idea fits in one line.
+
+7
+00:00:16.187 --> 00:00:20.521
+Ansible can reach almost anything
+with an S S H port or an A P I,
+
+8
+00:00:20.521 --> 00:00:25.738
+so a program has to decide, setting by
+setting, where it's allowed to write.
+
+9
+00:00:25.738 --> 00:00:28.963
+Anything the guide couldn't
+confirm stays labeled that way.
+
+10
+00:00:28.963 --> 00:00:30.840
+Let's start with why this matters.

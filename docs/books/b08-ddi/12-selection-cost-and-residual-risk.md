@@ -69,11 +69,14 @@ The table turns these criteria into a decision framework. Score each candidate o
 | Policy-plane coverage | Demonstrated management of on-premises, each cloud in use and VMware, from one system of record, and whether each integration writes to the cloud or only reads from it |
 | Edge and endpoint fit | Network-addressable resolvers that redirect-dns can target; encrypted DNS termination; endpoint agent behavior |
 | Security policy | Response policy and Protective DNS forwarding, DNSSEC signing and validation, logging export to the SIEM |
+| Hardening baseline | A CIS Benchmark, the vendor's hardening guide or a National Checklist Program checklist that the agency's CM-6 settings can be written from ([Chapter 03](03-federal-requirements.md)); a DISA STIG is an optional cross-check (High only) |
 | IPAM integration | External-IPAM allocation where the cloud supports it; discovery and reconciliation where it does not |
 | Delegation and automation | Scoped roles, service accounts, API coverage, Terraform and ITSM integration |
 | Scale and resilience | Resolver sizing for the branch estate; behavior when the management plane is unreachable |
 | Migration path | Microsoft DNS and DHCP coexistence; support for existing automation during transition |
 | Operating cost and skills | Licensing model, metered cloud components, staffing for operation and synchronization monitoring, training needs |
+
+*High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
 ### Authorization status, as the Marketplace shows it
 
@@ -84,7 +87,7 @@ Authorization belongs to a specific cloud service offering, not to a vendor or a
 | Infoblox Government Cloud (FR2017257053) | FedRAMP Certified, Moderate, since December 15, 2022; SaaS in AWS GovCloud (US) | The listed service description covers Universal DDI, Universal Asset Insights and the threat defense components TIDE and Dossier. In July 2026 Infoblox announced that Universal DDI Management, NIOS-X servers and Universal Asset Insights were available through it.[^c12-ibx-pr] On-premises NIOS appliances aren't a cloud service and sit inside the agency's own boundary |
 | BlueCat, EfficientIP | No listing | Their DDI products can be deployed as software or appliances that the agency operates inside its own boundary (BlueCat documents Address Manager and DNS/DHCP Server appliances for Azure and Azure Government[^c12-bluecat-azure]). The Marketplace lists no FedRAMP authorization for either vendor, so a vendor-hosted management service from them would need its own authorization path |
 | Azure (commercial) | FedRAMP Certified, High | Azure DNS is listed in Microsoft's FedRAMP High audit scope for Azure public regions[^c12-azure-scope] |
-| AWS US East/West; AWS GovCloud | FedRAMP Certified, Moderate; High | AWS lists Amazon Route 53 as in scope in both[^c12-aws-scope] |
+| AWS US East/West; AWS GovCloud | FedRAMP Certified, Moderate; High | AWS lists Amazon Route 53 as in scope in both.[^c12-aws-scope] Scope is listed per service and per Region, and either Region can host a Moderate system, since the High baseline contains the Moderate controls *(inference)* |
 | Cisco Catalyst SD-WAN for Government (FR2012534927) | FedRAMP Certified, Moderate, since March 14, 2024 | Relevant when the SD-WAN management plane that sets redirect-dns is itself cloud-delivered |
 
 Two cautions. A Moderate authorization doesn't cover High or DoD workloads ([Applicability](appendix-c-applicability.md)), whatever the vendor's commercial-versus-federal comparison tables say about feature parity. And confirm current status on the Marketplace for every candidate at decision time rather than relying on this table or on vendor claims.
@@ -152,7 +155,7 @@ DNS is no longer a name-lookup utility. It is the identity substrate, the securi
 [^c12-ibx-pr]: **Third-party source (vendor).** Infoblox, "Infoblox Government Cloud Achieves FedRAMP Moderate Certification, Bringing Modern DDI and Asset Visibility to Federal Agencies," press release, July 22, 2026, <https://www.infoblox.com/news/news-events/press-releases/infoblox-government-cloud-achieves-fedramp-moderate-certification-bringing-modern-ddi-and-asset-visibility-to-federal-agencies/> (accessed Oct 20, 2026).
 [^c12-bluecat-azure]: **Third-party source (vendor).** BlueCat, "Introduction to BlueCat Azure Virtual Appliances," BlueCat Integrity 26.1.0, <https://docs.bluecatnetworks.com/r/BlueCat-Azure-Virtual-Appliances/Introduction-to-BlueCat-Azure-Virtual-Appliances/26.1.0> (accessed Oct 20, 2026).
 [^c12-azure-scope]: Microsoft Learn, "Azure, Dynamics 365, Microsoft 365, and Power Platform services compliance scope," section "Azure public services by audit scope," <https://learn.microsoft.com/azure/azure-government/compliance/azure-services-in-fedramp-auditscope> (accessed Oct 20, 2026).
-[^c12-aws-scope]: Amazon Web Services, "AWS Services in Scope by Compliance Program: FedRAMP," <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/> (accessed Oct 20, 2026).
+[^c12-aws-scope]: Amazon Web Services, "AWS Services in Scope by Compliance Program: FedRAMP," <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/> (accessed Oct 20, 2026; per-service, per-Region columns "FedRAMP Class C (formerly Moderate baseline) (East/West)" and "FedRAMP Class D (formerly High baseline) (GovCloud)" re-checked Oct 29, 2026).
 [^c12-ibx-blog]: **Third-party source (vendor).** Infoblox, "November 2025 – January 2026 Innovations: What's New in Infoblox DDI," February 19, 2026, <https://www.infoblox.com/blog/company/november-2025-january-2026-innovations-whats-new-in-infoblox-ddi/> (accessed Oct 20, 2026).
 [^c12-ibx-azure]: **Third-party source (vendor).** Infoblox, "Limitations of Azure DNS Integration," <https://docs.infoblox.com/space/BloxOneDDI/365461729/Limitations+of+Azure+DNS+Integration> (accessed Oct 20, 2026).
 [^c12-bluecat-cdv]: **Third-party source (vendor).** BlueCat, "Introduction to Cloud Discovery & Visibility," Cloud Discovery & Visibility Administration Guide 24.1, <https://docs.bluecatnetworks.com/r/Cloud-Discovery-Visibility-Administration-Guide/Introduction-to-Cloud-Discovery-Visibility/24.1> (accessed Oct 20, 2026).

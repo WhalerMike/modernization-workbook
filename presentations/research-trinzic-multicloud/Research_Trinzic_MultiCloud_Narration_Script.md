@@ -34,7 +34,7 @@ Whatever option you pick, four rules keep split-brain away. First, every zone ha
 
 ## Slide 9 — Which option fits your agency? Design guidance
 
-Here's the decision table, and every row is design guidance, not an endorsement. If you're mostly on premises with a small cloud footprint, Trinzic plus native cloud resolvers and conditional forwarding is the lowest-cost start. Hybrid with one cloud, add a vNIOS pair in a hub network so resolution stays local if the WAN fails. Multi-cloud at FedRAMP Moderate and below, add Universal DDI through Government Cloud. And for GovCloud, Azure Government, FedRAMP High or Defense Impact Levels 4 and 5, stay with options A and C, because Infoblox's service is Moderate-only. In short: Trinzic plus native resolvers as the baseline, with vNIOS and Universal DDI added only where they earn their place.
+Here's the decision table, and every row is design guidance, not an endorsement. If you're mostly on premises with a small cloud footprint, Trinzic plus native cloud resolvers and conditional forwarding is the lowest-cost start. Hybrid with one cloud, add a vNIOS pair in a hub network so resolution stays local if the WAN fails. Multi-cloud at FedRAMP Moderate and below, add Universal DDI through Government Cloud, whether those workloads run in commercial regions or in GovCloud and Azure Government; there, confirm which features Infoblox supports first. And for FedRAMP High or Defense Impact Levels 4 and 5, stay with options A and C, because Infoblox's service is Moderate-only. In short: Trinzic plus native resolvers as the baseline, with vNIOS and Universal DDI added only where they earn their place.
 
 ## Slide 10 — Where this fits the workbook, and next steps
 

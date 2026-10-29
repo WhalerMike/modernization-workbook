@@ -5,7 +5,7 @@ description: "Research under review: a crosswalk of the Federal Modernization Wo
 research-status: in review
 research-type: explainer
 research-book: "Books 00–17"
-date-modified: 2026-10-23
+date-modified: 2026-10-29
 last-reviewed: 2026-10-23
 ---
 
@@ -126,6 +126,12 @@ Each gap was closed in the books with endnoted text, checked against the primary
 - **Book 18, Application Modernization**, joins the matrix as its own column. Its [Chapter 06](../books/b18-application-modernization/06-compliance-by-design.md) maps SP 800-53 families, A-130 and the SSDF onto the application life cycle; [Chapter 02](../books/b18-application-modernization/02-triaging-the-portfolio.md) and [Chapter 10](../books/b18-application-modernization/10-running-the-portfolio-in-waves.md) tie portfolio triage to capital planning, FITARA and the Technology Modernization Fund; and [Chapter 09](../books/b18-application-modernization/09-togaf-and-zachman.md) maps the book to TOGAF ADM phases and Zachman cells against A-130 §5.a(2) and PM-7.
 - **TOGAF and Zachman** are added to the status table and the matrix as voluntary methods. Neither is a federal requirement; the requirement is A-130's enterprise architecture.
 - **The Technology Modernization Fund** row was rechecked: the "no more than three years" sentence quoted on October 23 was gone from the call page on October 28, and the fit page now gives a five-year repayment timeline.
+
+## Additions made, October 29, 2026
+
+- **Configuration baselines for a Moderate civilian agency.** The workbook targets FedRAMP Moderate civilian agencies, so its configuration authority is CISA and NIST, not DISA. Books 11, 12 and 15 now say what a civilian agency uses. CISA's SCuBA baselines cover Microsoft 365 and Google Workspace,[^scuba] and BOD 25-01 makes their "shall" policies mandatory for in-scope tenants of Federal Civilian Executive Branch agencies.[^bod2501] For servers, network devices, hypervisors and cloud accounts, the agency sets its own CM-6 settings from common secure configurations it chooses,[^cm6] drawing on CIS Benchmarks,[^cis] the NIST National Checklist Program[^ncp] and the vendor's own hardening guide. DISA STIGs stay only as an optional reference (High only), for a product with no other published checklist.
+
+*High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
 ## Every federal source the books cite
 
@@ -288,7 +294,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | CISA Protective DNS | Protective DNS resolver (required for all egress resolution) | Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 10 (Cloud Boundary & Landing Zone); Book 12 (Security Operations & Telemetry) | Cited as current |
 | CISA SASE guidance (June 2026) | SASE guidance for TIC | Book 01 (The Transformation Arc); Book 09 (Network & Transport) | Cited as current |
 | CISA SBOM minimum elements (2025 draft) and HBOM framework | Bill-of-materials guidance | Book 14 (Federal Compliance & Authorization) | Cited as current |
-| CISA SCuBA Secure Configuration Baselines (M365, Entra ID) and ScubaGear | Secure Cloud Business Applications | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 04 (Access & Privilege); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Cited as current |
+| CISA SCuBA Secure Configuration Baselines (M365, Entra ID) and ScubaGear | Secure Cloud Business Applications: baselines for Microsoft 365 and Google Workspace only[^scuba] | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 04 (Access & Privilege); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Cited as current |
 | CISA Vulnrichment / SSVC | Exploitation and impact metadata on CVE records | Book 12 (Security Operations & Telemetry) | Cited as current |
 | CISA Zero Trust Maturity Model v2.0 | ZTMM | Book 00 (Orientation & Program); Book 01 (The Transformation Arc); Book 02 (Identity & Directory); Book 03 (HR-Driven Identity); Book 04 (Access & Privilege); Book 06 (Data Platform: SQL Server Identity); Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 13 (Governance, Drift & Evidence) | Cited as current |
 | Continuous Diagnostics and Mitigation (CDM) | CDM program and dashboards | Book 08 (DNS, DHCP & IPAM); Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Cited as current |
@@ -324,7 +330,7 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | NIST AI 600-1 | Generative AI Profile | Book 17 (AI Identity Governance) | Cited as current |
 | NIST Cybersecurity Framework 2.0 | CSF 2.0 | Book 00 (Orientation & Program); Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry); Book 14 (Federal Compliance & Authorization); Book 16 (People: Training & Education) | Cited as current |
 | NIST IR 8547 (initial public draft) | Transition to post-quantum cryptography standards | Book 07 (PKI & Certificates) | Draft |
-| NIST National Checklist Program | Configuration checklist repository | Book 12 (Security Operations & Telemetry) | Cited as current |
+| NIST National Checklist Program | Configuration checklist repository (SP 800-70) | Book 12 (Security Operations & Telemetry) | Cited as current; SP 800-70 Rev. 5 (May 2026) superseded Rev. 4[^ncp] |
 | NIST National Vulnerability Database | NVD | Book 11 (Zero Trust & Assessment); Book 14 (Federal Compliance & Authorization) | Cited as current |
 | NIST OSCAL | Open Security Controls Assessment Language | All 18 books | Cited as current |
 | SP 1800-35 | Implementing a Zero Trust Architecture | Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment) | Cited as current |
@@ -416,10 +422,10 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 |---|---|---|---|
 | CMMC | Cybersecurity Maturity Model Certification | Book 02 (Identity & Directory); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
 | CUI program (generic) | Controlled Unclassified Information | Book 00 (Orientation & Program); Book 12 (Security Operations & Telemetry) | Cited as current |
-| DISA STIGs | Security technical implementation guides | Book 09 (Network & Transport); Book 11 (Zero Trust & Assessment); Book 12 (Security Operations & Telemetry); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
+| DISA STIGs | Defense security technical implementation guides | Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry); Book 15 (Compliance Automation & Day-2 Operations) | High only: an optional reference since October 29, 2026, not the civilian baseline |
 | DoD 8140 / DoDM 8140.03 | DoD cyber workforce qualification | Book 16 (People: Training & Education) | In force; it replaced DoD 8570.01-M |
 | DoD 8570.01-M | DoD IA workforce (legacy) | Book 16 (People: Training & Education) | Replaced by DoD 8140 |
-| DoD Cloud Computing SRG (IL4/IL5) | DoD cloud security requirements guide | Book 08 (DNS, DHCP & IPAM) | Cited as current |
+| DoD Cloud Computing SRG (IL4/IL5) | DoD cloud security requirements guide | Book 08 (DNS, DHCP & IPAM) | High only: a tier comparison, not the Moderate civilian target |
 | DoD Zero Trust Strategy (2022) | DoD ZT capability target | Book 04 (Access & Privilege); Book 09 (Network & Transport) | Cited as current |
 | FBI CJIS Security Policy | Criminal Justice Information Services | Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
 | FCC 19-76 | Report and Order implementing Kari's Law and RAY BAUM'S Act | Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
@@ -463,4 +469,9 @@ The 0-to-3 depth would be derived rather than typed by hand: 3 where a requireme
 [^m2618]: Office of Management and Budget, M-26-18, *Scaling Use of Login.gov to Deliver a Universal Sign-on for Public Services*, August 31, 2026, <https://www.whitehouse.gov/wp-content/uploads/2026/08/M-26-18-Scaling-Use-of-Login.gov-to-Deliver-a-Universal-Sign-on-for-Public-Services.pdf> (accessed Oct 23, 2026).
 [^s508]: Section508.gov, Laws and policies, <https://www.section508.gov/manage/laws-and-policies/> (accessed Oct 23, 2026).
 [^records]: 44 U.S.C. §3101 (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title44/html/USCODE-2023-title44-chap31-sec3101.htm>; National Archives, Records management policy, <https://www.archives.gov/records-mgmt/policy> (both accessed Oct 23, 2026).
+[^scuba]: Cybersecurity and Infrastructure Security Agency, "Secure Cloud Business Applications (SCuBA) Project" (baselines for Microsoft 365 and Google Workspace; ScubaGear and ScubaGoggles assessment tools), <https://www.cisa.gov/resources-tools/services/secure-cloud-business-applications-scuba-project> (accessed Oct 29, 2026).
+[^bod2501]: Cybersecurity and Infrastructure Security Agency, Binding Operational Directive 25-01, *Implementing Secure Practices for Cloud Services*, December 17, 2024 (scope; mandatory "shall" policies), <https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services>; and "BOD 25-01: Implementing Secure Practices for Cloud Services — Required Configurations" (Microsoft 365 and Google Workspace policies), <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Oct 29, 2026).
+[^cm6]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls CM-2 and CM-6 (statement and discussion), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; read from NIST's OSCAL Rev. 5 catalog, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Oct 29, 2026).
+[^cis]: Center for Internet Security, "CIS Benchmarks" (prescriptive configuration recommendations for more than 25 vendor product families), <https://www.cisecurity.org/cis-benchmarks> (accessed Oct 29, 2026).
+[^ncp]: National Institute of Standards and Technology, SP 800-70 Rev. 5, *National Checklist Program for IT Products: Guidelines for Checklist Users and Developers*, May 2026, <https://csrc.nist.gov/pubs/sp/800/70/r5/final>; and NIST, "National Checklist Program," <https://csrc.nist.gov/projects/national-checklist-program> (repository at <https://ncp.nist.gov/>) (accessed Oct 29, 2026).
 [^also]: NIST SP 800-53 Rev. 5, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; FedRAMP, <https://www.fedramp.gov/>, and 44 U.S.C. §3607, <https://www.govinfo.gov/content/pkg/USCODE-2023-title44/html/USCODE-2023-title44-chap36-sec3607.htm>; OMB M-26-14, May 22, 2026, <https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf>; CISA, Zero Trust Maturity Model, <https://www.cisa.gov/zero-trust-maturity-model>; NIST FIPS 201-3, <https://csrc.nist.gov/pubs/fips/201-3/final> (all accessed Oct 23, 2026).

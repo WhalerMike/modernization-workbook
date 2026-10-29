@@ -80,3 +80,11 @@ Follows the source watch above (issue #160). Sources: ScubaGear tag `v2.0.0` (ba
 | 4 | Entra baseline 34 policies at 2.0.0; 20 on CISA's list; 22 marked required | Two caveats | verified | v2.0.0 `aad.md`; Required Configurations page |
 | 5 | 22 of 50 listed mandatory policies in EXO, Teams, SharePoint, Power Platform; 26 of 56 marked in 2.0.0 | Two caveats | verified (writer's count) | Required Configurations page; v2.0.0 baselines |
 | 6 | Interactive permissions and mappings unchanged in substance at 2.0.0 (Security Suite row replaces Defender; Power BI row added) | Footnotes | verified | v1.8.0 vs v2.0.0 interactive.md and mappings.md diff |
+
+## Moderate-civilian sweep, October 29, 2026
+
+The workbook targets FedRAMP Moderate civilian agencies. Framing that read as High-only or Defense-specific was checked.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | CISA's SCuBA mapping is limited to FedRAMP High baseline controls; added: the High baseline contains every Moderate control, so the mapping serves a Moderate system too | Mapping sentence | fact unchanged; added sentence is inference (NIST SP 800-53B baselines are cumulative) | ScubaGear v2.0.0 mappings.md; NIST SP 800-53B |

@@ -45,7 +45,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 
 1. **Voice has a pass/fail threshold, not a performance preference.** ITU-T G.114 specifies one-way voice delay must not exceed 150 ms. Field office agents in western locations already exceed this limit before a call begins under MPLS hairpin architecture.
 
-2. **Amazon Connect runs on AWS commercial (.com) by specific authorized exception.** The exception is documented in the ATO, must be maintained at each renewal, and carries specific boundary obligations described in this document.
+2. **Amazon Connect runs in AWS commercial (.com) regions, a valid Moderate location.** AWS's US East/West regions and GovCloud (US) are both places a Moderate system can run; the agency runs most AWS workloads in GovCloud (US) and the contact center in commercial regions. The region decision is documented in the ATO, reviewed at each renewal, and carries the boundary obligations described in this document.
 
 3. **Teams Phone in GCC Moderate is the correct path for internal telephony replacement.** It introduces no new authorization boundary beyond the existing GCC Moderate ATO — the PSTN/SBC interconnect is the one new boundary interface, and it is documented in this book — while its network dependencies are identical to Amazon Connect.
 
@@ -90,35 +90,35 @@ The N8NN contact center must sustain MOS above 4.0 consistently across all agent
 
 **Packet loss** above 1% produces audible dropouts. Voice RTP does not retransmit lost packets — they are concealed or skipped. The Opus codec handles occasional single-packet loss gracefully; consecutive losses or rates above 3% produce gaps no concealment algorithm can hide.
 
-# Amazon Connect: Architecture, .com Exception, and Network Dependencies
+# Amazon Connect: Architecture, Region Choice, and Network Dependencies
 
 ## Platform Overview
 
 Amazon Connect is AWS's cloud-native contact center platform, providing inbound and outbound call handling, IVR via contact flows, skills-based routing, real-time and historical analytics, call recording, and the agent desktop (Contact Control Panel) as a managed SaaS service. Agents access all contact center functionality through a browser-based WebRTC softphone. There is no proprietary hardware at the agent's desk, no on-premises call processing equipment, and no PBX to maintain.
 
-## The GovCloud vs. Commercial Decision and the Authorized Exception
+## The GovCloud (US) vs. Commercial Region Decision
 
 AWS structures its federal cloud offerings differently from Microsoft and Oracle:
 
 | Provider | Moderate Delivery Model | High / Sovereign Model |
 |----------|------------------------|----------------------|
-| AWS | US East/West commercial regions (FedRAMP Moderate P-ATO) | GovCloud us-gov-east-1 / us-gov-west-1 (FedRAMP High P-ATO; ITAR; US-persons operations; physically separate) |
+| AWS | US East/West commercial regions (FedRAMP Certified Class C, formerly Moderate) **or** GovCloud (US) (Class D, formerly High), since a Moderate system may run in a higher-certified region | GovCloud us-gov-east-1 / us-gov-west-1 (FedRAMP Certified Class D, formerly High; ITAR; US-persons operations; physically separate) |
 | Microsoft | Partitioned .com (GCC Moderate on Azure Commercial) | GCC High / DoD on physically separate infrastructure |
 | Oracle | Partitioned .com (OCI Moderate) | OCI Government Cloud (separate) |
 
-AWS has exactly two FedRAMP boundaries — there is no middle tier. Amazon Connect is available in **AWS GovCloud, where it holds FedRAMP High authorization**. At the time the agency evaluated platforms for the N8NN contact center, the GovCloud version presented operational capability gaps relative to the commercial (.com) version in three categories:
+AWS has two FedRAMP boundaries, and a Moderate system can sit in either. AWS certifies its US East/West regions at Class C (formerly Moderate) and GovCloud (US) at Class D (formerly High), and its services-in-scope list is checked per service and per region (AWS, "FedRAMP" and "FedRAMP — Services in Scope," <https://aws.amazon.com/compliance/fedramp/>, <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/>, accessed 2026-10-29). NIST's control baselines are cumulative, so GovCloud (US) isn't reserved for High systems. Amazon Connect is in scope in both: the commercial regions and **AWS GovCloud (US)**. At the time the agency evaluated platforms for the N8NN contact center, the GovCloud version presented operational capability gaps relative to the commercial (.com) version in three categories:
 
 - **AI-assisted contact center capabilities:** Contact Lens (real-time speech transcription, sentiment analysis, supervisor alerting) and Amazon Q agent assist availability lagged in GovCloud at time of evaluation.
 - **Third-party integration ecosystem:** AWS Marketplace integrations for CRM connectors, workforce management, and reporting were predominantly certified for commercial Connect.
 - **Operational tooling and support maturity:** AWS support procedures and feature release cadence in GovCloud lagged commercial, creating a growing capability gap.
 
-Stated as the trade it actually was: **the agency accepted commercial-at-Moderate with the capabilities it needed over GovCloud-at-High without them.** That is a starker trade than a tier label suggests — and it is exactly the kind of trade an AO can own explicitly, which is what the authorized-exception process did.
+Stated as the trade it actually was: **the agency chose the commercial regions, with the capabilities it needed, over GovCloud (US) without them.** Both are valid Moderate locations, so this is a region decision, not a waiver. It is still the kind of trade an AO should own explicitly, and the ATO records it.
 
-> **Current evaluation required before any new agency deployment.** AWS continuously updates GovCloud service parity. The capability gaps identified at the time of this agency's evaluation may have closed. Any agency evaluating Amazon Connect for a new deployment **must conduct a current-state evaluation of GovCloud Connect against its specific requirements** before concluding that a commercial exception is necessary.
+> **Current evaluation required before any new agency deployment.** AWS continuously updates GovCloud service parity. The capability gaps identified at the time of this agency's evaluation may have closed. Any agency evaluating Amazon Connect for a new deployment **must conduct a current-state evaluation of GovCloud Connect against its specific requirements** before choosing the commercial regions for it.
 
-## What the .com Exception Means Structurally
+## What the Commercial Region Means Structurally
 
-The agency's use of Amazon Connect on AWS commercial (.com) is the same structural pattern as GCC Moderate on Azure Commercial: a federally authorized service running on commercial infrastructure with FedRAMP Moderate controls applied. AWS commercial data centers are US-based. Data is encrypted in transit and at rest. Amazon Connect holds FedRAMP Moderate authorization in the commercial regions (and FedRAMP High in GovCloud). But the personnel screening, physical separation, ITAR/US-persons handling, and High control baseline of GovCloud do not apply on the commercial side.
+The agency's use of Amazon Connect on AWS commercial (.com) is the same structural pattern as GCC Moderate on Azure Commercial: a federally authorized service running on commercial infrastructure with FedRAMP Moderate controls applied. AWS commercial data centers are US-based. Data is encrypted in transit and at rest. Amazon Connect is in scope for FedRAMP in the commercial regions (Class C, formerly Moderate) and in GovCloud (US) (Class D, formerly High). The personnel screening, physical separation and ITAR/US-persons handling of GovCloud do not apply on the commercial side; for a Moderate system they aren't required.
 
 This does not make the deployment less secure — FedRAMP Moderate controls are extensive. It means the authorization boundary is explicitly a commercial environment with federal controls applied, and that boundary must be accurately reflected in the SSP, understood by the AO, and re-evaluated at each authorization renewal.
 
@@ -318,7 +318,7 @@ FedRAMP published its **Consolidated Rules for 2026** on June 25, 2026. Three ke
 - **Call audit logs** (AU-12): every agent session, call recording access, and contact flow execution must generate structured, queryable records — not just archived log files
 - **Federated authentication events** (IA-2): Entra ID → Amazon Connect SAML assertions must produce KSI-verifiable authentication telemetry — the agents are agency (organizational) users authenticating through the agency IdP, so this is IA-2 rather than the non-organizational-user control IA-8
 - **Boundary traffic logs** (SA-9): API calls crossing the .com boundary (CRM integration, recording access, contact flow analytics) must be captured in machine-readable format
-- **ATO exception documentation**: The .com exception itself must be maintained in a format compatible with 20x continuous review rather than point-in-time SSP snapshots
+- **Region decision documentation**: The commercial-region decision must be maintained in a format compatible with 20x continuous review rather than point-in-time SSP snapshots
 
 **What 20x means for Teams Phone GCC Moderate:** Teams Phone in GCC Moderate inherits Microsoft's existing FedRAMP authorization. The 20x transition requires that the *agency's* continuous monitoring evidence — voice quality monitoring, E911 testing records, SBC boundary documentation — align to machine-readable KSI format.
 
@@ -330,11 +330,11 @@ FedRAMP published its **Consolidated Rules for 2026** on June 25, 2026. Three ke
 
 The agency's use of Amazon Connect on AWS commercial (.com) requires specific boundary documentation:
 
-- **SSP SA-9 documentation:** Amazon Connect is an external information system service. The SSP must identify Amazon Connect, its FedRAMP authorization status, the specific authorized exception, and data types (voice audio, call recordings, call metadata, citizen interaction logs).
+- **SSP SA-9 documentation:** Amazon Connect is an external information system service. The SSP must identify Amazon Connect, its FedRAMP authorization status in the region used, the region decision, and data types (voice audio, call recordings, call metadata, citizen interaction logs).
 - **Call recordings:** Stored in S3 on AWS commercial. Access controls, encryption key management (KMS), and data lifecycle policies must be documented. Recordings containing PII must be classified accordingly, and access logging must satisfy AU-9 requirements.
 - **CRM and case management integration:** API calls between Amazon Connect contact flows and agency systems cross the .com boundary. The data flow diagram in the SSP must trace these calls.
 - **Agent authentication federation:** Agents authenticate to Amazon Connect via the agency IdP (Entra ID in GCC Moderate). The SAML/OIDC federation is a cross-boundary credential flow that must be documented in the SSP.
-- **ATO exception maintenance:** The specific authorization permitting .com Connect must be reviewed at each ATO renewal. The exception is not a permanent waiver; it is a time-bounded, condition-bounded authorization that requires active maintenance.
+- **Region decision maintenance:** The commercial-region decision for Connect must be reviewed at each ATO renewal, with the service's current FedRAMP scope in that region checked on the Marketplace and AWS's services-in-scope list.
 
 ## Teams Phone: GCC Boundary and PSTN
 
@@ -351,7 +351,7 @@ Teams Phone in GCC Moderate operates within the GCC boundary for all call signal
 | AI capabilities | Contact Lens (transcription, sentiment, analytics), Amazon Q agent assist | Teams transcription, voicemail transcription (GCC availability varies) |
 | Agent interface | Browser-based Contact Control Panel (WebRTC) | Teams desktop client or browser |
 | Recording | S3 on AWS .com; SA-9 boundary documentation required | GCC-boundary-compliant storage |
-| Authorization | FedRAMP Moderate (AWS .com by specific agency exception) | FedRAMP Moderate (M365 GCC Moderate; partitioned .com) |
+| Authorization | FedRAMP Moderate (AWS commercial regions, Class C) | FedRAMP Moderate (M365 GCC Moderate; partitioned .com) |
 | PSTN connectivity | AWS Voice Connector | Direct Routing SBC or Calling Plans |
 | Voice protocol | WebRTC / RTP / DSCP EF | WebRTC / RTP / DSCP EF |
 | **Network requirement** | **Identical: <75 ms one-way, <30 ms jitter, <1% loss** | **Identical: <75 ms one-way, <30 ms jitter, <1% loss** |
@@ -375,7 +375,7 @@ The shared network requirement row is the most operationally significant in this
 
 ## Phase 2 — Amazon Connect Deployment (Months 2–5)
 
-- Confirm .com exception is current in ATO; update SSP SA-9 for Amazon Connect with current architecture
+- Confirm the commercial-region decision is current in the ATO; update SSP SA-9 for Amazon Connect with current architecture
 - Design and build contact flows replicating and improving current N8NN IVR routing
 - Configure agent authentication via IdP federation (Entra ID GCC Moderate → Amazon Connect)
 - Pilot with single queue and agent cohort; measure MOS, jitter, and loss from pilot locations
@@ -396,7 +396,7 @@ The shared network requirement row is the most operationally significant in this
 - Instrument SD-WAN dashboards to surface G.114 violations by location before they become citizen complaints
 - Integrate Amazon Connect Call Analytics with agency SIEM for AU-12 continuous monitoring
 - Establish MOS floor SLA (≥4.0) per agent location; alert when sustained MOS drops below threshold
-- Review Amazon Connect commercial exception at each ATO renewal; evaluate whether GovCloud capability gaps have been resolved
+- Review the Amazon Connect region decision at each ATO renewal; evaluate whether GovCloud (US) capability gaps have been resolved
 - **FedRAMP 20x alignment (mandatory January 1, 2027):** Configure SD-WAN telemetry exports in machine-readable JSON format; ensure Connect audit logs, authentication events, and boundary crossing records meet structured KSI format requirements; validate SBC event logs feed SIEM in queryable format
 
 # Federal Framework Alignment
@@ -405,9 +405,9 @@ The shared network requirement row is the most operationally significant in this
 |---|---|---|
 | Voice one-way delay ≤75 ms (network budget) | Agency SLA obligation; G.114 | ITU-T G.114; ITU-T G.107 E-model |
 | Jitter <30 ms; packet loss <1% | Agency SLA obligation | ITU-T G.107; RFC 3550 (RTP) |
-| Amazon Connect on AWS .com; specific authorized exception | FedRAMP (FISMA); agency ATO | FedRAMP Moderate P-ATO; NIST SP 800-53 Rev 5 SA-9 |
+| Amazon Connect in AWS commercial regions (a valid Moderate location) | FedRAMP (FISMA); agency ATO | FedRAMP Class C (formerly Moderate); NIST SP 800-53 Rev 5 SA-9 |
 | Amazon Connect .com boundary documentation | FedRAMP; Privacy Act | NIST SP 800-53 Rev 5 SA-9, AU-9, SC-28; agency SSP |
-| ATO exception maintenance at each renewal cycle | FedRAMP ConMon | NIST SP 800-53 Rev 5 CA-7; NIST SP 800-37 Rev 2 (Monitor step); FedRAMP ConMon requirements |
+| Region decision review at each renewal cycle | FedRAMP ConMon | NIST SP 800-53 Rev 5 CA-7; NIST SP 800-37 Rev 2 (Monitor step); FedRAMP ConMon requirements |
 | Teams Phone in GCC Moderate boundary | FedRAMP Moderate (M365 GCC) | Microsoft 365 GCC FedRAMP Moderate ATO |
 | E911 direct dialing without prefix (Kari's Law) | Kari's Law (2018) | 47 CFR §9.4; FCC rules |
 | E911 dispatchable location (Ray Baum's Act) | Ray Baum's Act (2018) | 47 CFR Part 9; FCC rules; NENA i3 standard |

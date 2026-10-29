@@ -26,7 +26,7 @@ Source: `docs/whitepapers/field-office-wan-transformation-dp-consolidation.md` (
 | 18 | Peer Cache depends on workstation-to-workstation **SMB** | Risks; Assumption 9 | corrected: peer cache uses HTTP/HTTPS TCP 8003 and UDP 8004; DO peering uses TCP 7680; the question is client-to-client traffic on those ports | Client settings; Configure DO |
 | 19 | DO LAN mode groups by shared public IP; in hub-and-spoke use Group mode and/or subnet restriction; Group mode recommended for most orgs | Keeping content local | verified (added; consequence for hub-egress phase) | Configure DO; DO reference |
 | 20 | DP vs Intune compliance table: Intune "covered by the Microsoft 365 GCC Moderate FedRAMP ATO" | DP vs Intune | corrected: Intune serves GCC from its commercial instance, in scope for the Azure commercial FedRAMP High P-ATO | Intune government service; Microsoft FedRAMP offering; Azure services in FedRAMP audit scope |
-| 21 | DISA Windows Server and IIS STIGs apply per server | DP vs Intune | verified for IIS 10.0 Server and Site STIGs; phrased as the agency's baselines "for example" | DISA July 2025 maintenance release |
+| 21 | DISA Windows Server and IIS STIGs apply per server | DP vs Intune | verified for IIS 10.0 Server and Site STIGs; phrased as the agency's baselines "for example"; reframed October 29, 2026 as an optional (High only) reference (see below) | DISA July 2025 maintenance release |
 | 22 | Intune compliance feeds Conditional Access; TLS by default | DP vs Intune | restated (link Book 04); general service behavior, not footnoted | — |
 | 23 | Consolidating to 24 DPs shrinks compliance sustainment "to roughly a twelfth" | DP vs Intune | corrected: 24 of 1,500 is under 2 percent of the component count (1/62.5), labor not strictly proportional | arithmetic |
 | 24 | 12 hubs, 24 DPs, 73% utilization, 96,000 capacity, 37% headroom, sizing trigger (8,000 / 3,200 / 90,000 → 28) | Content tier | verified arithmetic; inputs labeled assumptions | arithmetic |
@@ -133,3 +133,13 @@ Applied from the two research briefs behind the workbook's SD-WAN platform deep 
 | 3 | No FIPS 140-3 certificate found covering Catalyst 8200/8300 in SD-WAN mode; controllers covered by #4747 | Risks table (new row) | added | `[^c11-ciscofips]` |
 | 4 | Cisco documents ML-KEM IKEv2 only in autonomous mode; record the gap in the M-26-15 plan | Risks table (new row) | added | `[^c11-ciscopqc]` |
 | 5 | "14 virtual machines" matches Cisco 20.18 sizing (3-node Medium Manager cluster, 2 Controllers, 2 Validators per site, two sites); cluster ceiling 2,000 devices; ~1,524 edges is about 76% | "Control plane and services", new note after the table | confirmed (note added) | `[^c11-ciscosizing]`; 1,524 and 76% are chapter arithmetic |
+
+## Moderate-civilian reframe, October 29, 2026
+
+The workbook targets FedRAMP Moderate civilian agencies, so DISA STIGs are no longer presented as the agency's baseline. Each claim was checked against the primary source on October 29, 2026.
+
+| # | Claim | Where | Verdict | Source note |
+|---|---|---|---|---|
+| 1 | The DP hardening baseline is the agency's CM-6 settings; CM-6 lets the organization choose its common secure configurations, which vendors, federal agencies, consortia and others develop | DP vs Intune, "Hardening baseline" row | verified (NIST OSCAL Rev. 5 catalog, CM-6 statement and discussion) | `[^c11-cm6]` |
+| 2 | CIS publishes Microsoft Windows Server 2022 (5.1.0), Windows Server 2025 (2.1.0) and Microsoft IIS 10 (1.2.1) Benchmarks | Same row | verified (CIS Benchmarks list) | `[^c11-cis]` |
+| 3 | DISA IIS 10.0 Server and Site STIGs kept as an optional reference, labelled (High only), with the one-line *High only* explanation after the table | Same row; note after the table | restated (STIG facts unchanged) | `[^c11-stig]` |

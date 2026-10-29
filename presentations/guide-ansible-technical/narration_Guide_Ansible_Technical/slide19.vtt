@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.488
+Assessors want five things
+from configuration management,
+
+2
+00:00:03.488 --> 00:00:06.238
+and Ansible can show each
+one without extra work.
+
+3
+00:00:06.238 --> 00:00:10.587
+The baseline is simply the playbook
+version, by Git commit and tag.
+
+4
+00:00:10.587 --> 00:00:14.263
+Change control is the pull
+request with a required reviewer.
+
+5
+00:00:14.263 --> 00:00:18.684
+The same playbook that applies settings
+can run in check mode to report drift,
+
+6
+00:00:18.684 --> 00:00:21.862
+so implementation and monitoring
+come from one source.
+
+7
+00:00:21.862 --> 00:00:25.438
+Removing packages you don't
+need shows least functionality.
+
+8
+00:00:25.438 --> 00:00:30.362
+And because the inventory comes from the
+C M D B, Ansible never invents a host,
+
+9
+00:00:30.362 --> 00:00:34.651
+and anything it couldn't reach says
+so instead of passing quietly.
+
+10
+00:00:34.651 --> 00:00:36.740
+Here's where all that evidence goes.

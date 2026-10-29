@@ -293,7 +293,7 @@ A scanner authors no state; it measures a gap. Each platform patches with its ow
   const s = D.content("What reaches the queue", "Configuration, posture and CUI data share the queue");
   tag(s, "What");
   cards(s, "Streams", [
-    ["FaArrowsRotate", "Configuration", HEX.amber, HEX.amberTint, ["CM-6 baselines: SCuBA, CIS, DISA STIG", "Assign in audit mode first", "Auto-correct hides drift: no record it happened", "Unremediated drift becomes a queue row"]],
+    ["FaArrowsRotate", "Configuration", HEX.amber, HEX.amberTint, ["CM-6 baselines: SCuBA, CIS, vendor guides", "Assign in audit mode first", "Auto-correct hides drift: no record it happened", "Unremediated drift becomes a queue row"]],
     ["FaCloud", "Cloud posture", HEX.navy, HEX.navyTint, ["An open storage account has no missing patch", "An owned native tool is primary on its platform", "Defender for Cloud doesn't cover Oracle Cloud", "Its AWS connector isn't in Azure Government"]],
     ["FaLock", "CUI data protection", HEX.teal, HEX.tealTint, ["Two levels: CUI Basic and CUI Specified", "Privacy Act records: Basic; taxpayer data: Specified", "Labels drive DLP on service, endpoint and CASB", "Simulate first, then watch the overrides"]],
   ], 13.5);
@@ -301,7 +301,7 @@ A scanner authors no state; it measures a gap. Each platform patches with its ow
     "since early October 2026, a built-in tuning rule sets Purview DLP signals as behaviors that no longer reach the Defender XDR incident queue unless an administrator disables it.");
   sources(s, "Sources: NIST SP 800-53 (CM-6, CM-7, AC-4, SC-28); Microsoft Learn — machine configuration, Defender for Cloud, Purview labels, DLP alerts in Defender XDR; 32 CFR Part 2002; CUI Registry. Book 12, Chapters 02, 07, 08 and 09.");
   narrate(s,
-`Three more streams share the queue. Configuration first: a patched host that drifts from its baseline isn't remediated. Baselines come from SCuBA, CIS or DISA STIGs. Azure machine configuration's auto-correct mode fixes drift without recording it, so the program keeps it for low-risk settings.
+`Three more streams share the queue. Configuration first: a patched host that drifts from its baseline isn't remediated. Baselines come from SCuBA for Microsoft 365 and Google Workspace, and from CIS Benchmarks or the vendor's hardening guide for servers and platforms, written as the agency's CM-6 settings. Azure machine configuration's auto-correct mode fixes drift without recording it, so the program keeps it for low-risk settings.
 
 Cloud posture next. A storage account open to the internet has no missing patch, so a scanner never reports it. Each provider's native posture tool is primary for its own platform. Defender for Cloud doesn't cover Oracle Cloud, and its AWS connector isn't available in Azure Government.
 

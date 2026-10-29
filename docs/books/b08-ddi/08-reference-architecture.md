@@ -101,20 +101,22 @@ Agencies that already copy DNS records into each cloud provider should change th
 
 ## Commercial and federal clouds compared
 
-The architecture is the same in every environment; authorization and a few integrations change. The [Applicability](appendix-c-applicability.md) page explains each environment, and the table summarizes what changes for this chapter's components.
+The architecture is the same in every environment; authorization and a few integrations change. A Moderate system can run in commercial regions or in a government region such as AWS GovCloud (US); AWS publishes FedRAMP scope per service and per Region,[^c08-aws-fedramp] so the government regions appear here as a Moderate location, not only a High one. The [Applicability](appendix-c-applicability.md) page explains each environment, and the table summarizes what changes for this chapter's components.
 
-| Component | Commercial clouds at FedRAMP Moderate (including Microsoft 365 GCC-Moderate) | GCC High, Azure Government, AWS GovCloud, DoD |
-|---|---|---|
-| Cloud-delivered DDI management plane | Must hold FedRAMP Moderate or better plus an agency ATO; Infoblox Government Cloud is listed at Moderate[^c08-fedramp] | A Moderate authorization does not cover High; use a service authorized at the required level or keep the policy plane inside the agency's boundary |
-| On-premises and in-tenant resolvers and grid | Inside the agency boundary | Inside the agency boundary |
-| SD-WAN redirect-dns to agency resolvers (Decisions 1 and 2) | Applies | Applies |
-| Response policy zones, DNSSEC, Protective DNS forwarding | Applies | Applies (air-gapped enclaves differ; see Applicability) |
-| AD DNS inventory before retirement (Decision 4) | Required | Required |
-| OCSP and CRL reachability (Decision 5) | Required | Required |
-| Azure private endpoint zones | Commercial zone names (`privatelink.*.windows.net` and similar) | Azure Government zone names (`*.usgovcloudapi.net`, `*.azure.us` and similar); Chapter 07[^c08-azpezones] |
-| AWS VPC IPAM allocation from an external IPAM | Available in commercial Regions | Not available in AWS GovCloud (US); use reservation and reconciliation[^c08-awsipam] |
-| Microsoft 365 informed network routing | Worldwide commercial tenants only; not GCC-Moderate[^c08-inr] | Not available[^c08-inr] |
-| Microsoft 365 optimization | Local breakout and application-aware routing (Chapter 05) | Same |
+*High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
+
+| Component | Moderate: commercial regions (including Microsoft 365 GCC-Moderate) | Moderate: AWS GovCloud (US), Azure Government | GCC High, FedRAMP High and DoD (High only) |
+|---|---|---|---|
+| Cloud-delivered DDI management plane | Must hold FedRAMP Moderate or better plus an agency ATO; Infoblox Government Cloud is listed at Moderate[^c08-fedramp] | Same as commercial; Infoblox Government Cloud is itself hosted in AWS GovCloud (US)[^c08-fedramp] | A Moderate authorization does not cover High; use a service authorized at the required level or keep the policy plane inside the agency's boundary |
+| On-premises and in-tenant resolvers and grid | Inside the agency boundary | Inside the agency boundary | Inside the agency boundary |
+| SD-WAN redirect-dns to agency resolvers (Decisions 1 and 2) | Applies | Applies | Applies |
+| Response policy zones, DNSSEC, Protective DNS forwarding | Applies | Applies | Applies (air-gapped enclaves differ; see Applicability) |
+| AD DNS inventory before retirement (Decision 4) | Required | Required | Required |
+| OCSP and CRL reachability (Decision 5) | Required | Required | Required |
+| Azure private endpoint zones | Commercial zone names (`privatelink.*.windows.net` and similar) | Azure Government zone names (`*.usgovcloudapi.net`, `*.azure.us` and similar); Chapter 07[^c08-azpezones] | Azure Government zone names, as in the previous column |
+| AWS VPC IPAM allocation from an external IPAM | Available in commercial Regions | Not available in AWS GovCloud (US); use reservation and reconciliation[^c08-awsipam] | Not available in AWS GovCloud (US) |
+| Microsoft 365 informed network routing | Worldwide commercial tenants only; not GCC-Moderate[^c08-inr] | Not in GCC-Moderate; the cloud region doesn't change the Microsoft 365 tenant | Not available[^c08-inr] |
+| Microsoft 365 optimization | Local breakout and application-aware routing (Chapter 05) | Same | Same |
 
 ## Questions to settle with vendors
 
@@ -145,6 +147,7 @@ Some behaviors that the five decisions depend on are not documented by any vendo
 [^c08-azpe]: Microsoft Learn, "Azure Private Endpoint DNS integration scenarios," <https://learn.microsoft.com/azure/private-link/private-endpoint-dns-integration> (accessed Oct 20, 2026).
 [^c08-r53]: AWS, *Amazon Route 53 Developer Guide*, "What is Route 53 VPC Resolver?," <https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html> (accessed Oct 20, 2026).
 [^c08-ibxrelease]: **Third-party source (vendor blog).** Infoblox, "November 2025 – January 2026 Innovations: What's New in Infoblox DDI," <https://www.infoblox.com/blog/company/november-2025-january-2026-innovations-whats-new-in-infoblox-ddi/> (accessed Oct 20, 2026).
+[^c08-aws-fedramp]: Amazon Web Services, "FedRAMP" (US East/West "FedRAMP Certified Class C (formerly Moderate baseline)"; GovCloud (US) "FedRAMP Certified Class D (formerly High baseline)"), <https://aws.amazon.com/compliance/fedramp/>; and "FedRAMP — Services in Scope" (per-service, per-Region columns), <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/> (accessed Oct 29, 2026).
 [^c08-fedramp]: FedRAMP, Marketplace product data (entry FR2017257053, Infoblox Government Cloud: FedRAMP Certified, Moderate, since December 15, 2022; AWS GovCloud (US)), <https://www.fedramp.gov/marketplace/products.json> (accessed Oct 20, 2026).
 [^c08-ibxpr]: **Third-party source (vendor).** Infoblox, "Infoblox Government Cloud Achieves FedRAMP Moderate Certification, Bringing Modern DDI and Asset Visibility to Federal Agencies," press release, July 22, 2026, <https://www.infoblox.com/news/news-events/press-releases/infoblox-government-cloud-achieves-fedramp-moderate-certification-bringing-modern-ddi-and-asset-visibility-to-federal-agencies/> (accessed Oct 21, 2026). Why the dates differ: the release headlines the Moderate certification as 2026 news and lists the offering as including Universal DDI Management, NIOS-X Servers and Universal Asset Insights, but it gives no certification date, mentions no earlier authorization and does not say whether its product list is new. The FedRAMP Marketplace record dates the certification to December 15, 2022 and shows no later status change. This book takes the certification date from the Marketplace and cites the release only as the vendor's description of what the offering includes.
 [^c08-azpezones]: Microsoft Learn, "Azure Private Endpoint private DNS zone values," <https://learn.microsoft.com/azure/private-link/private-endpoint-dns> (accessed Oct 20, 2026).

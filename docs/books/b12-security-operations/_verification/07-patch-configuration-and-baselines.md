@@ -73,6 +73,11 @@ Checked October 21, 2026 by writer W4. Sources: `docs/compliance/Vol_III_Book_03
 | 65 | Source KSI mapping (SI-2 → KSI-SVC, KSI-MLA; CM-2/CM-6 → KSI-CMT; CM-8 → KSI-PIY) | Controls | corrected | 2026 KSIs: SVC-ACM, MLA-EVC, PIY-GIV, CMT-VTD (maps SI-02, CM-06(02)), SVC-EIS (maps SI-02(02)); vulnerability timeframes in VDR rules |
 | 66 | KSIs written for providers, used as a model | Controls | restated-as-design | — |
 | 67 | Source: "Generated from the series compliance spine ... render_authorities_table.py" | Controls | not carried | Internal tooling note |
+| 68 | CM-6 discussion: common secure configurations can come from product developers, vendors, federal agencies, consortia and others; the agency chooses (no STIG requirement) | Baseline lifecycle | verified 2026-10-29 (Moderate-civilian sweep; coordinator fact pack) | SP 800-53 Rev. 5 OSCAL catalog |
+| 69 | SCuBA covers Microsoft 365 and Google Workspace only | Baseline lifecycle | verified 2026-10-29 | CISA SCuBA project page |
+| 70 | NCP checklists typically created by IT vendors for their own products; SP 800-70 Rev. 5 (May 2026) | Baseline lifecycle | verified 2026-10-29 | SP 800-70 Rev. 5; NIST NCP page |
+| 71 | CIS Benchmarks list RHEL 9 3.0.0, Windows Server 2022 5.1.0 and 2025 2.1.0, Cisco IOS XE 17.x 2.2.1, AWS Foundations 7.1.0 | Baseline lifecycle | verified 2026-10-29 | CIS Benchmarks list |
+| 72 | Source/earlier text "DISA STIGs and CIS Benchmarks are the usual sources"; lifecycle table, figure ch07-baseline-lifecycle and limits naming STIG | Baseline lifecycle; diagram | restated 2026-10-29: CIS, NCP and vendor guides are the civilian sources; STIG kept once as optional High-only reference; diagram box now "SCuBA, CIS, agency CM-6" | Brief (Moderate civilian, not DoD) |
 
 ## Carry-forward ledger
 

@@ -25,33 +25,44 @@ agency runs itself, and Moderate
 doesn't cover High or DoD workloads.
 
 6
-00:00:18.625 --> 00:00:23.704
-Then ask about the STIG, and ask for
-an active FIPS 140-3 certificate,
+00:00:18.625 --> 00:00:23.045
+Then ask what hardening guidance
+the agency's settings can come from:
 
 7
-00:00:23.704 --> 00:00:26.013
-checking its status yourself.
+00:00:23.045 --> 00:00:27.387
+a C I S Benchmark, the vendor's own
+hardening guide, or a NIST checklist.
 
 8
-00:00:26.013 --> 00:00:32.387
+00:00:27.387 --> 00:00:30.537
+A DISA STIG is High
+only, Defense material.
+
+9
+00:00:30.537 --> 00:00:36.388
+And ask for an active FIPS 140-3
+certificate, checking its status yourself.
+
+10
+00:00:36.388 --> 00:00:42.763
 FIPS 140-2 certificates moved to NIST's
 historical list on September 21,
 
-9
-00:00:32.387 --> 00:00:35.737
+11
+00:00:42.763 --> 00:00:46.113
 2026, so a new deployment can't cite one.
 
-10
-00:00:35.737 --> 00:00:40.325
+12
+00:00:46.113 --> 00:00:50.700
 Ask how the vendor tracks the
 open-source DNS code underneath.
 
-11
-00:00:40.325 --> 00:00:44.987
+13
+00:00:50.700 --> 00:00:55.362
 And understand what's metered, then
 model the cost over three to five years.
 
-12
-00:00:44.987 --> 00:00:46.730
+14
+00:00:55.362 --> 00:00:57.100
 Here's what those checks returned.

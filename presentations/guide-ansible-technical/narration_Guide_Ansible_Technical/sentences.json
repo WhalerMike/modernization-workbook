@@ -1,0 +1,1070 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.825,
+   "This is the technical deep dive for a companion guide in the Federal Modernization Workbook: Ansible for Configuration Automation."
+  ],
+  [
+   8.588,
+   5.037,
+   "It's for the engineers who decide which tool may change which setting, and prove it afterward."
+  ],
+  [
+   13.625,
+   2.562,
+   "The guide's idea fits in one line."
+  ],
+  [
+   16.188,
+   9.55,
+   "Ansible can reach almost anything with an S S H port or an A P I, so a program has to decide, setting by setting, where it's allowed to write."
+  ],
+  [
+   25.738,
+   3.225,
+   "Anything the guide couldn't confirm stays labeled that way."
+  ],
+  [
+   28.962,
+   1.825,
+   "Let's start with why this matters."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.038,
+   "Here's the problem."
+  ],
+  [
+   1.087,
+   3.2,
+   "Ansible has no agent and no record of its own."
+  ],
+  [
+   4.287,
+   3.475,
+   "It connects, does what the playbook says, and leaves."
+  ],
+  [
+   7.763,
+   4.037,
+   "That makes it wonderfully flexible, and it makes collisions invisible."
+  ],
+  [
+   11.8,
+   5.7,
+   "Point it at a server that Azure machine configuration already governs, and neither tool notices."
+  ],
+  [
+   17.5,
+   5.175,
+   "Turn on auto-correct, and the setting quietly flips back, with no report that it did."
+  ],
+  [
+   22.675,
+   4.55,
+   "Two tools can fight over one value forever while both report success."
+  ],
+  [
+   27.225,
+   5.688,
+   "The guide's answer is simple: one owning tool per setting, written down in the C M D B."
+  ],
+  [
+   32.913,
+   2.288,
+   "First, what Ansible actually is."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.812,
+   "This first module places Ansible among the tools you already run."
+  ],
+  [
+   3.862,
+   8.35,
+   "We'll settle what it is and what it isn't, set it beside Intune, Arc and Configuration Manager, and lay down the rule that stops them fighting."
+  ],
+  [
+   12.213,
+   5.7,
+   "Then we'll follow it into the places those tools can't reach, starting with onboarding servers to Arc."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.913,
+   "It helps to be precise about what kind of tool this is."
+  ],
+  [
+   2.962,
+   1.262,
+   "Ansible pushes."
+  ],
+  [
+   4.225,
+   6.662,
+   "It connects over S S H or Windows remoting, runs small modules, removes them, and it's gone."
+  ],
+  [
+   10.887,
+   5.537,
+   "You describe the work in Y A M L playbooks, against an inventory of hosts."
+  ],
+  [
+   16.425,
+   7.362,
+   "The free engine does the work, and the Automation Platform wraps it with a controller, a content hub and packaged runtimes."
+  ],
+  [
+   23.788,
+   1.925,
+   "What it isn't is a management plane."
+  ],
+  [
+   25.712,
+   9.762,
+   "And while tasks should be safe to repeat, the documentation admits not all of them are, which is why check mode, a true dry run, matters so much here."
+  ],
+  [
+   35.475,
+   2.062,
+   "So how does it sit beside the others?"
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.587,
+   "Every population in the estate already has a natural owner."
+  ],
+  [
+   3.638,
+   4.362,
+   "Intune owns end-user devices, and it doesn't cover Windows Server."
+  ],
+  [
+   8.0,
+   5.925,
+   "Arc with machine configuration owns servers outside Azure, on Microsoft's supported list."
+  ],
+  [
+   13.925,
+   3.6,
+   "Azure Policy governs the Azure resources themselves."
+  ],
+  [
+   17.525,
+   4.575,
+   "Configuration Manager stays where it's already deployed, with no new use."
+  ],
+  [
+   22.1,
+   2.388,
+   "Ansible's row is the interesting one."
+  ],
+  [
+   24.488,
+   7.188,
+   "It can reach anything, but it owns only the tier two assets the C M D B names it for, plus Arc onboarding."
+  ],
+  [
+   31.675,
+   5.463,
+   "Owning is the key word, so let's look at what happens when two tools both think they own something."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.663,
+   "This is the heart of the guide."
+  ],
+  [
+   1.712,
+   6.287,
+   "When Ansible and machine configuration both set the same value, nothing in either tool notices."
+  ],
+  [
+   8.0,
+   6.375,
+   "Microsoft's own caution is narrow, but the principle is general: don't manage the same setting twice."
+  ],
+  [
+   14.375,
+   4.9,
+   "So the program's rule, which is design guidance, turns ownership into data."
+  ],
+  [
+   19.275,
+   4.2,
+   "Each C M D B record names one configuration owner."
+  ],
+  [
+   23.475,
+   7.763,
+   "Ansible can read anything, but it writes only where it owns, and that's enforced in the inventory and again inside the playbook."
+  ],
+  [
+   31.238,
+   2.5,
+   "Onboarding a server to Arc isn't owning it."
+  ],
+  [
+   33.737,
+   2.388,
+   "And any exception is a dated record."
+  ],
+  [
+   36.125,
+   3.138,
+   "Now, where does Ansible sit in the bigger structure?"
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.888,
+   "The workbook sorts every asset into coverage tiers, and Ansible's job changes with the tier."
+  ],
+  [
+   5.938,
+   3.9,
+   "In tier one it onboards and reads, but it doesn't own settings."
+  ],
+  [
+   9.838,
+   8.725,
+   "Tier two is its natural home: it owns configuration where the C M D B says so, and every job's result becomes evidence."
+  ],
+  [
+   18.562,
+   4.25,
+   "In tier three it only reads, and in tier four it does nothing at all."
+  ],
+  [
+   22.812,
+   3.5,
+   "Of the workbook's four tracks, Ansible lives in two."
+  ],
+  [
+   26.312,
+   2.062,
+   "The Arc track, for servers."
+  ],
+  [
+   28.375,
+   7.162,
+   "And the non-person identity track, because the controller itself is an identity with standing access to many hosts."
+  ],
+  [
+   35.538,
+   1.7,
+   "Let's start with the Arc job."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   7.25,
+   "Microsoft lists Ansible as one of the ways to do it at scale, with a supported role that skips machines already connected."
+  ],
+  [
+   7.3,
+   5.4,
+   "The real choice is how it signs in, because that decides how many secrets you inherit."
+  ],
+  [
+   12.7,
+   6.05,
+   "A managed identity is Microsoft's recommendation for production, since there's no stored secret at all."
+  ],
+  [
+   18.75,
+   4.375,
+   "Next best is a certificate service principal, brokered by the platform."
+  ],
+  [
+   23.125,
+   2.65,
+   "Command-line sign-in is for pilots only."
+  ],
+  [
+   25.775,
+   4.8,
+   "Whatever signs in gets the onboarding role on one resource group, and nothing more."
+  ],
+  [
+   30.575,
+   1.238,
+   "Then come the waves."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.175,
+   "This is where Ansible earns its keep."
+  ],
+  [
+   2.225,
+   13.588,
+   "Because the inventory comes from the C M D B, the onboarding run can stamp the owner, environment, location and patch group onto each Arc resource in the same change, so the cloud's view starts out traceable to its source."
+  ],
+  [
+   15.812,
+   5.188,
+   "The work runs in waves, and each wave's credential goes away when the wave closes."
+  ],
+  [
+   21.0,
+   8.312,
+   "If a playbook calls the agent directly, the secret goes in a configuration file, never on the command line, so it stays out of the logs."
+  ],
+  [
+   29.312,
+   3.4,
+   "The example playbook shows this behind a confirmation gate."
+  ],
+  [
+   32.712,
+   2.525,
+   "Next, the hosts Arc can't take at all."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   10.575,
+   "A good share of a federal estate sits outside Arc's support list: the Unix systems, and several older Linux releases that stop getting new agent versions in late 2026."
+  ],
+  [
+   10.625,
+   4.338,
+   "Those are tier two, and Ansible reaches them over S S H."
+  ],
+  [
+   14.963,
+   1.163,
+   "Two cautions."
+  ],
+  [
+   16.125,
+   8.225,
+   "Privilege escalation can't be narrowed to specific commands, so that account has broad rights and has to be governed like a privileged identity."
+  ],
+  [
+   24.35,
+   4.938,
+   "And check mode is only a simulation, so each drift check should stand on its own."
+  ],
+  [
+   29.288,
+   2.337,
+   "Network gear is the easy win."
+  ],
+  [
+   31.625,
+   6.412,
+   "A read-only facts run gives you the model, serial and version of every device, with nothing installed."
+  ],
+  [
+   38.038,
+   3.612,
+   "Where a vendor controller exists, it owns the configuration."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.875,
+   "The remaining targets all follow one pattern: find the tool that already owns the setting, and let Ansible do only what's left."
+  ],
+  [
+   7.925,
+   7.987,
+   "On VMware, the virtual machines can go to Arc, while the hypervisor and appliances, which can't run an agent, are Ansible's."
+  ],
+  [
+   15.912,
+   6.438,
+   "On Infoblox, Ansible works through the A P I, with an account scoped to the objects it manages."
+  ],
+  [
+   22.35,
+   7.438,
+   "On a Windows server under Arc, the operating system belongs to machine configuration, but the application can be Ansible's."
+  ],
+  [
+   29.788,
+   6.2,
+   "And in the cloud, the provider's inventory is for checking against the C M D B, not replacing it."
+  ],
+  [
+   35.987,
+   1.837,
+   "Next, running the platform."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.75,
+   "The second module is about running the Automation Platform somewhere a federal assessor will look closely."
+  ],
+  [
+   5.8,
+   5.725,
+   "The key fact is that, in almost every option, it's software the agency runs itself."
+  ],
+  [
+   11.525,
+   10.812,
+   "We'll cover what's authorized and what isn't, the cryptography and hardening questions, where to host it, the controls to switch on, and why the controller is an identity in its own right."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.675,
+   "Start with what you're authorizing."
+  ],
+  [
+   1.725,
+   8.738,
+   "The current release has full support into 2027, with maintenance after that, and it installs only as containers or on OpenShift."
+  ],
+  [
+   10.463,
+   2.725,
+   "On authorization, be careful with words."
+  ],
+  [
+   13.188,
+   7.475,
+   "The self-managed platform isn't a cloud service, so it isn't on the fed-ramp Marketplace, and nobody publishes a statement about it."
+  ],
+  [
+   20.663,
+   5.65,
+   "Neither managed offering is listed either, and Azure Government availability isn't published."
+  ],
+  [
+   26.312,
+   8.35,
+   "So the program's default, which is design guidance, is to run it yourself, inside your own boundary, and authorize it like any other component."
+  ],
+  [
+   34.663,
+   3.038,
+   "Then come the two questions every assessor asks."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.125,
+   "F I P S and baseline content come up first, and on F I P S the honest answer is partial."
+  ],
+  [
+   6.175,
+   10.262,
+   "Red Hat's F I P S certificates cover the operating system, but the current platform documentation doesn't say whether the platform is supported in F I P S mode."
+  ],
+  [
+   16.438,
+   4.7,
+   "So treat that as unverified: ask Red Hat in writing, and test it."
+  ],
+  [
+   21.137,
+   8.812,
+   "Where your agency needs validated cryptography, the controller's host runs in F I P S mode, so that support is what you have to confirm."
+  ],
+  [
+   29.95,
+   6.075,
+   "For the baseline, start from the C I S Benchmarks and your agency's own C M 6 settings."
+  ],
+  [
+   36.025,
+   9.238,
+   "Red Hat ships C I S profiles with an Ansible playbook to apply them, and community C I S roles exist too, as long as you review and pin them."
+  ],
+  [
+   45.263,
+   3.188,
+   "The controller's host is hardened like any other server."
+  ],
+  [
+   48.45,
+   5.487,
+   "A S T I G for the controller exists, but that's High only, an optional reference."
+  ],
+  [
+   53.938,
+   1.275,
+   "Next, hosting."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.95,
+   "Where the controller runs decides what it inherits."
+  ],
+  [
+   3.0,
+   2.862,
+   "On premises puts it closest to the targets."
+  ],
+  [
+   5.862,
+   10.963,
+   "Self-managed on cloud virtual machines inherits that cloud's authorization, checked service by service and region by region, and on an Azure virtual machine it can use a managed identity."
+  ],
+  [
+   16.825,
+   7.312,
+   "The two managed offerings aren't fed-ramp-listed, and that, not their commercial regions, is what keeps them out of the default."
+  ],
+  [
+   24.137,
+   5.975,
+   "One of them also erases job logs after thirty days, so you'd have to export them to keep your audit trail."
+  ],
+  [
+   30.113,
+   7.3,
+   "And wherever it runs, the traffic to its targets crosses a boundary, so record each channel as an external connection."
+  ],
+  [
+   37.413,
+   2.075,
+   "Now, the settings to switch on."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   3.862,
+   "Three groups of settings decide whether the controller is auditable."
+  ],
+  [
+   3.913,
+   1.363,
+   "First, sign-in."
+  ],
+  [
+   5.275,
+   8.075,
+   "Federate it to your identity provider, so your conditional access and phishing-resistant sign-in apply, and keep local accounts for break-glass."
+  ],
+  [
+   13.35,
+   6.237,
+   "The default lifetime used to be a thousand years, and old tokens keep it, so revoke them when you upgrade."
+  ],
+  [
+   19.587,
+   1.425,
+   "Second, logging."
+  ],
+  [
+   21.012,
+   4.688,
+   "Send everything to your sim, and set the cleanup jobs to match your retention."
+  ],
+  [
+   25.7,
+   1.55,
+   "Third, content."
+  ],
+  [
+   27.25,
+   2.9,
+   "Hub signing is off by default, so turn it on."
+  ],
+  [
+   30.15,
+   5.55,
+   "And project signing is the quiet hero, because a project that fails its signature won't run."
+  ],
+  [
+   35.7,
+   3.337,
+   "That links the reviewed change to what actually executes."
+  ],
+  [
+   39.038,
+   2.337,
+   "Which brings us to the controller itself."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   4.287,
+   "Think about what a controller holds: the keys to every host it manages."
+  ],
+  [
+   4.338,
+   8.575,
+   "That's more reach than almost any administrator, so the program treats it as a privileged non-person identity, and this is design guidance."
+  ],
+  [
+   12.912,
+   2.212,
+   "It gets two named human owners."
+  ],
+  [
+   15.125,
+   4.287,
+   "Each credential does one job, in one scope, and expires."
+  ],
+  [
+   19.413,
+   10.162,
+   "Where you can avoid it, no secret is stored in the controller at all: use a managed identity first, then certificates, and fetch anything left from your vault at run time."
+  ],
+  [
+   29.575,
+   6.675,
+   "Launching a job that changes production is a privileged action, logged to a person and reviewed every quarter."
+  ],
+  [
+   36.25,
+   1.238,
+   "That's the platform."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   2.062,
+   "The third module is about proof."
+  ],
+  [
+   2.112,
+   9.95,
+   "Used properly, Ansible produces evidence as a side effect: the playbook is a file in Git, the change is a pull request, and the run is a job with a result."
+  ],
+  [
+   12.062,
+   6.775,
+   "We'll map that to the controls assessors test, show where the results land, and then walk through the seven ways it goes wrong."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   6.188,
+   "Assessors want five things from configuration management, and Ansible can show each one without extra work."
+  ],
+  [
+   6.237,
+   4.35,
+   "The baseline is simply the playbook version, by Git commit and tag."
+  ],
+  [
+   10.588,
+   3.675,
+   "Change control is the pull request with a required reviewer."
+  ],
+  [
+   14.262,
+   7.6,
+   "The same playbook that applies settings can run in check mode to report drift, so implementation and monitoring come from one source."
+  ],
+  [
+   21.863,
+   3.575,
+   "Removing packages you don't need shows least functionality."
+  ],
+  [
+   25.438,
+   9.213,
+   "And because the inventory comes from the C M D B, Ansible never invents a host, and anything it couldn't reach says so instead of passing quietly."
+  ],
+  [
+   34.65,
+   2.038,
+   "Here's where all that evidence goes."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   4.05,
+   "The rest of the evidence covers audit, privilege and the supply chain."
+  ],
+  [
+   4.1,
+   3.225,
+   "Job records and the activity stream go to the sim."
+  ],
+  [
+   7.325,
+   7.662,
+   "Least privilege comes from the per-purpose credentials we just covered, and supply chain evidence comes from pinned, verified collections."
+  ],
+  [
+   14.988,
+   1.375,
+   "Then comes the payoff."
+  ],
+  [
+   16.363,
+   13.8,
+   "Every job result goes to the program's evidence store in the same shape every other tool uses, and because the inventory came from the C M D B, each result already carries the configuration item number that joins it all together."
+  ],
+  [
+   30.163,
+   1.562,
+   "Now, the dangers."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   3.087,
+   "Most Ansible disasters come from three failures."
+  ],
+  [
+   3.138,
+   6.037,
+   "The first is blast radius, where one playbook aimed too wide changes every host at once."
+  ],
+  [
+   9.175,
+   8.662,
+   "So run in check mode first, target narrowly, and change in small batches, where the first batch is a canary and a failure stops the rest."
+  ],
+  [
+   17.837,
+   5.7,
+   "The second is inventory drift, where a hand-kept host list disagrees with reality."
+  ],
+  [
+   23.538,
+   6.725,
+   "Generate the inventory from the C M D B on every run, and fail on a bad record rather than guess."
+  ],
+  [
+   30.262,
+   1.975,
+   "The third is credential sprawl."
+  ],
+  [
+   32.237,
+   4.15,
+   "Keep credentials in one controller, and keep secrets out of the output."
+  ],
+  [
+   36.388,
+   4.675,
+   "A strict lint profile on every pull request makes much of this automatic."
+  ],
+  [
+   41.062,
+   1.0,
+   "Four more to go."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   1.337,
+   "These four are quieter."
+  ],
+  [
+   1.387,
+   8.7,
+   "Two tools on one setting flip it back and forth while both report success, and the fix is the ownership rule, checked inside every changing playbook."
+  ],
+  [
+   10.088,
+   11.0,
+   "Public Galaxy content can change under you between runs, so pull collections from a reviewed source, pin exact versions, verify them, and keep that list as your software bill of materials."
+  ],
+  [
+   21.087,
+   6.35,
+   "Running everything as root gives every mistake root's reach, so escalate only on the tasks that need it."
+  ],
+  [
+   27.438,
+   4.862,
+   "And commands that report a change every time turn drift reports into noise."
+  ],
+  [
+   32.3,
+   4.6,
+   "Run each playbook twice in test, and the second run should change nothing."
+  ],
+  [
+   36.9,
+   2.263,
+   "Now, how to adopt all of this."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   3.1,
+   "The last module turns all of this into a path."
+  ],
+  [
+   3.15,
+   5.338,
+   "It starts read-only and earns its way to enforcement, with a gate at each step."
+  ],
+  [
+   8.488,
+   11.025,
+   "Then we'll open the example folder: the inventory every playbook reads, the four playbooks and what each one proves, how they're tested, and finally the checklist and the decisions."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   7.125,
+   "The adoption path is design guidance, and its point is that nothing gets write access until the read-only evidence is in."
+  ],
+  [
+   7.175,
+   8.137,
+   "Phase zero is just facts, from an inventory built off the C M D B. Phase one onboards servers to Arc in waves."
+  ],
+  [
+   15.312,
+   6.65,
+   "Phase two writes baselines for the tier two platforms, but runs them in check mode only, reporting drift."
+  ],
+  [
+   21.962,
+   9.325,
+   "Only in phase three does anything get enforced, by pull request, canary first, on hosts Ansible owns, and only after two clean runs."
+  ],
+  [
+   31.288,
+   6.013,
+   "And phase zero can start this week, with a small control node and a C M D B export."
+  ],
+  [
+   37.3,
+   1.637,
+   "Now, that inventory."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   7.025,
+   "Every pattern in the examples depends on one file: the inventory script that reads the C M D B export."
+  ],
+  [
+   7.075,
+   12.325,
+   "It turns each record's attributes into groups, by tier, by platform, by environment, and most importantly by configuration owner, so the baseline check can only ever see hosts Ansible owns."
+  ],
+  [
+   19.4,
+   5.475,
+   "A server with no owner isn't a target at all; it's a finding to fix in the C M D B."
+  ],
+  [
+   24.875,
+   6.225,
+   "And if the export has a duplicate or a missing column, the script stops rather than hand you a partial inventory."
+  ],
+  [
+   31.1,
+   3.337,
+   "In production, you'd use an inventory plugin instead."
+  ],
+  [
+   34.438,
+   1.837,
+   "Now, the playbooks themselves."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   4.638,
+   "There are four small playbooks, and each one proves a single idea from the guide."
+  ],
+  [
+   4.688,
+   9.438,
+   "The first is the inventory feed: what each server actually is, beside what the C M D B says, with unreached hosts marked as not collected."
+  ],
+  [
+   14.125,
+   4.013,
+   "The second is the only one that changes anything, and it's gated."
+  ],
+  [
+   18.137,
+   8.0,
+   "Without an explicit confirmation it only simulates, and when it does run, it starts with one canary and stops at the first failure."
+  ],
+  [
+   26.137,
+   5.612,
+   "The third is a drift check locked into check mode, so a change result simply means drift."
+  ],
+  [
+   31.75,
+   4.0,
+   "And the fourth reads network and Infoblox facts without any agent."
+  ],
+  [
+   35.75,
+   1.675,
+   "Next, how they're tested."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   2.325,
+   "The tests matter as much as the playbooks."
+  ],
+  [
+   2.375,
+   4.287,
+   "Everything passes the strictest lint profile and a syntax check."
+  ],
+  [
+   6.662,
+   5.938,
+   "A read-only checker fails on any ungated write, and its own negative tests prove it catches them."
+  ],
+  [
+   12.6,
+   3.125,
+   "The inventory tests prove that bad records fail."
+  ],
+  [
+   15.725,
+   1.775,
+   "But be clear about the limits."
+  ],
+  [
+   17.5,
+   2.438,
+   "The tests ran on a control node only."
+  ],
+  [
+   19.938,
+   6.45,
+   "The Arc, Windows, Cisco and Infoblox paths pass lint, but they haven't touched those platforms."
+  ],
+  [
+   26.387,
+   5.412,
+   "And the baseline is a handful of example settings, not a C I S Benchmark profile."
+  ],
+  [
+   31.8,
+   1.887,
+   "Treat them as illustrations."
+  ],
+  [
+   33.688,
+   1.65,
+   "Next, the checklist."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   6.225,
+   "If you take one thing away, take the checklist, because it turns the whole guide into things you can verify."
+  ],
+  [
+   6.275,
+   8.662,
+   "It runs across eight areas, from ownership and inventory, through change safety and credentials, to evidence and the platform itself."
+  ],
+  [
+   14.938,
+   5.362,
+   "Each item is phrased as done when, so it works as a review gate rather than a reminder."
+  ],
+  [
+   20.3,
+   1.525,
+   "You've seen most of it today."
+  ],
+  [
+   21.825,
+   8.188,
+   "The items teams skip are the quiet ones: requiring a second run with no changes, and never counting an unreached host as compliant."
+  ],
+  [
+   30.012,
+   1.8,
+   "Let's finish with the decisions."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   4.287,
+   "Every decision here has one owner, and this is design guidance."
+  ],
+  [
+   4.338,
+   7.075,
+   "The C M D B owner, working with the platform teams, decides the attributes and the configuration owner values."
+  ],
+  [
+   11.412,
+   4.275,
+   "Server infrastructure picks the onboarding identity and the waves."
+  ],
+  [
+   15.688,
+   4.037,
+   "The see-so's configuration authority picks the baseline content."
+  ],
+  [
+   19.725,
+   4.662,
+   "Platform owners decide when enforcement goes live, through change control."
+  ],
+  [
+   24.387,
+   6.237,
+   "And the system owner and the authorizing official decide where the platform runs and how it holds credentials."
+  ],
+  [
+   30.625,
+   5.625,
+   "You can start this week: add the owner attribute, build groups from it, and run facts only."
+  ],
+  [
+   36.25,
+   5.85,
+   "Ansible can reach almost anything, so decide where it may write, and let the evidence follow."
+  ],
+  [
+   42.1,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

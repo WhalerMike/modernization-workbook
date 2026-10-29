@@ -766,1052 +766,1077 @@ or native cloud resolvers wired to
 the Grid with forwarding both ways.
 
 160
-00:11:37.795 --> 00:11:40.964
+00:11:37.795 --> 00:11:40.797
 The design guidance is
 this: mostly on premises,
 
 161
-00:11:40.964 --> 00:11:45.676
+00:11:40.797 --> 00:11:45.262
 use native resolvers with forwarding;
 hybrid, add virtual appliances;
 
 162
-00:11:45.676 --> 00:11:50.308
-multi-cloud at Moderate, add Universal
-DDI; and for government clouds,
+00:11:45.262 --> 00:11:47.957
+multi-cloud at Moderate,
+add Universal DDI;
 
 163
-00:11:50.308 --> 00:11:54.695
-FedRAMP High or the higher Defense
-levels, don't depend on the SaaS.
+00:11:47.957 --> 00:11:50.805
+in GovCloud or Azure
+Government at Moderate,
 
 164
-00:11:54.695 --> 00:11:57.670
+00:11:50.805 --> 00:11:55.347
+confirm the government edition
+supports those accounts first; and for
+
+165
+00:11:55.347 --> 00:12:00.120
+FedRAMP High or the higher Defense
+levels, don't depend on the Moderate SaaS.
+
+166
+00:12:00.120 --> 00:12:03.090
 The Trinzic explainer
 has the full reasoning.
 
-165
-00:12:01.420 --> 00:12:04.808
+167
+00:12:06.840 --> 00:12:10.228
 Now the assurance evidence,
 checked on October twenty-second.
 
-166
-00:12:04.808 --> 00:12:10.169
-DISA STIGs are a real strength: Infoblox
-has two current vendor-specific STIGs,
-
-167
-00:12:10.169 --> 00:12:13.220
-and neither BlueCat nor
-EfficientIP has one.
-
 168
-00:12:13.220 --> 00:12:17.382
+00:12:10.228 --> 00:12:15.720
+There's no C I S Benchmark for NIOS, so
+the hardening baseline is the agency's
+
+169
+00:12:15.720 --> 00:12:20.941
+own settings, drawn from NIST's DNS
+guide and Infoblox's documentation.
+
+170
+00:12:20.941 --> 00:12:25.470
+Infoblox does have two current DISA
+STIGs, which neither BlueCat nor
+
+171
+00:12:25.470 --> 00:12:30.477
+EfficientIP has; they're High only,
+Defense material, but useful cross-checks.
+
+172
+00:12:30.477 --> 00:12:34.640
 FIPS 140 is the weak spot,
 so let's say it plainly.
 
-169
-00:12:17.382 --> 00:12:20.070
+173
+00:12:34.640 --> 00:12:37.328
 Infoblox has no active certificate today.
 
-170
-00:12:20.070 --> 00:12:26.798
+174
+00:12:37.328 --> 00:12:44.056
 Its FIPS 140-2 certificates moved to the
 historical list with the September 21,
 
-171
-00:12:26.798 --> 00:12:32.595
+175
+00:12:44.056 --> 00:12:49.853
 2026 sunset, and four FIPS 140-3
 submissions are still in NIST's queue.
 
-172
-00:12:32.595 --> 00:12:38.457
+176
+00:12:49.853 --> 00:12:55.714
 There's no current NIAP certificate
 either, with NIOS 9.0 in evaluation.
 
-173
-00:12:38.457 --> 00:12:43.139
+177
+00:12:55.714 --> 00:13:00.397
 And a note on NIST's DNS deployment guide:
 it's the best practical guide we have,
 
-174
-00:12:43.139 --> 00:12:46.335
+178
+00:13:00.397 --> 00:13:03.593
 but two of its three authors
 are Infoblox employees,
 
-175
-00:12:46.335 --> 00:12:51.010
+179
+00:13:03.593 --> 00:13:08.270
 so disclose that whenever you cite
 it in support of choosing Infoblox.
 
-176
-00:12:54.760 --> 00:12:56.222
+180
+00:13:12.020 --> 00:13:13.482
 Here's a fair comparison.
 
-177
-00:12:56.222 --> 00:13:00.742
+181
+00:13:13.482 --> 00:13:18.002
 On FedRAMP, Infoblox is the only
 dedicated DDI vendor with a listing,
 
-178
-00:13:00.742 --> 00:13:05.585
+182
+00:13:18.002 --> 00:13:22.845
 though the hyperscalers' government
 clouds sit at High, a higher ceiling.
 
-179
-00:13:05.585 --> 00:13:13.835
+183
+00:13:22.845 --> 00:13:31.095
 On FIPS 140, BlueCat leads with an active
 FIPS 140-3 certificate valid to 2029.
 
-180
-00:13:13.835 --> 00:13:18.773
-Infoblox leads on STIGs and has
+184
+00:13:31.095 --> 00:13:34.371
+Infoblox is the only
+one with its own STIGs,
+
+185
+00:13:34.371 --> 00:13:38.957
+a High only reference, and has
 the broadest DNS security set.
 
-181
-00:13:18.773 --> 00:13:21.259
+186
+00:13:38.957 --> 00:13:41.445
 On automation, it has the deepest.
 
-182
-00:13:21.259 --> 00:13:26.948
+187
+00:13:41.445 --> 00:13:47.133
 DHCPv6 failover is missing everywhere
 we checked, so it's no differentiator.
 
-183
-00:13:26.948 --> 00:13:29.189
+188
+00:13:47.133 --> 00:13:49.375
 And alternatives do win in places:
 
-184
-00:13:29.189 --> 00:13:33.833
+189
+00:13:49.375 --> 00:13:54.019
 BlueCat's Micetro manages existing
 Windows and BIND servers in place,
 
-185
-00:13:33.833 --> 00:13:37.997
+190
+00:13:54.019 --> 00:13:58.183
 and a single-cloud workload may
 need no third-party plane at all.
 
-186
-00:13:37.997 --> 00:13:42.150
+191
+00:13:58.183 --> 00:14:02.334
 So the fair claim is a strong
 default for a hybrid federal estate,
 
-187
-00:13:42.150 --> 00:13:43.873
+192
+00:14:02.334 --> 00:14:04.057
 not the only viable choice.
 
-188
-00:13:43.873 --> 00:13:45.390
+193
+00:14:04.057 --> 00:14:05.570
 Now the risks.
 
-189
-00:13:49.140 --> 00:13:52.890
+194
+00:14:09.320 --> 00:14:13.070
 Now the risks, stated plainly,
 with how to manage each.
 
-190
-00:13:52.890 --> 00:13:57.965
+195
+00:14:13.070 --> 00:14:18.145
 First, cryptographic validation:
 no active FIPS certificate today.
 
-191
-00:13:57.965 --> 00:14:01.393
+196
+00:14:18.145 --> 00:14:21.572
 If your system needs validated
 cryptography at award,
 
-192
-00:14:01.393 --> 00:14:05.962
+197
+00:14:21.572 --> 00:14:26.142
 tie go-live to the issued certificate,
 or carry the gap as a dated POA&M item,
 
-193
-00:14:05.962 --> 00:14:09.390
+198
+00:14:26.142 --> 00:14:29.570
 and ask which NIOS versions
 the pending modules cover.
 
-194
-00:14:09.390 --> 00:14:11.894
+199
+00:14:29.570 --> 00:14:32.074
 Second, no current NIAP certificate,
 
-195
-00:14:11.894 --> 00:14:16.653
+200
+00:14:32.074 --> 00:14:36.833
 and the CDM product list is closed,
 so don't promise anyone that status.
 
-196
-00:14:16.653 --> 00:14:22.371
+201
+00:14:36.833 --> 00:14:42.551
 Third, vulnerabilities: NIOS has had CVEs
 rated as high as 9.8, though none is
 
-197
-00:14:22.371 --> 00:14:28.464
+202
+00:14:42.551 --> 00:14:48.644
 in CISA's known exploited catalog, so
 write the patch cadence into the ATO plan.
 
-198
-00:14:28.464 --> 00:14:33.178
+203
+00:14:48.644 --> 00:14:53.358
 Fourth, NIOS runs on BIND, so ask
 for a BIND advisory commitment.
 
-199
-00:14:33.178 --> 00:14:37.340
+204
+00:14:53.358 --> 00:14:57.520
 And fifth, the SaaS tops out
 at Moderate with zero reuse.
 
-200
-00:14:41.090 --> 00:14:45.252
+205
+00:15:01.270 --> 00:15:05.432
 The second set of risks is about
 cost, capacity and features.
 
-201
-00:14:45.252 --> 00:14:51.004
+206
+00:15:05.432 --> 00:15:11.184
 Universal DDI licensing uses subscription
 tokens that expire at the end of the term,
 
-202
-00:14:51.004 --> 00:14:56.015
+207
+00:15:11.184 --> 00:15:16.195
 so model total cost over three to five
 years, including a hardware refresh.
 
-203
-00:14:56.015 --> 00:14:58.928
+208
+00:15:16.195 --> 00:15:19.108
 Size the reporting tier
 for the retention you need,
 
-204
-00:14:58.928 --> 00:15:00.940
+209
+00:15:19.108 --> 00:15:21.120
 or make the SIEM the system of record.
 
-205
-00:15:00.940 --> 00:15:05.957
+210
+00:15:21.120 --> 00:15:26.137
 Plan the hardware refresh around encrypted
 DNS, put a stronger signing algorithm
 
-206
-00:15:05.957 --> 00:15:10.827
+211
+00:15:26.137 --> 00:15:31.007
 in the build standard, and keep Grid Manager
 runbooks for what the Portal can't do.
 
-207
-00:15:10.827 --> 00:15:14.803
+212
+00:15:31.007 --> 00:15:34.983
 Ignore stale collateral and cite
 only the Marketplace record.
 
-208
-00:15:14.803 --> 00:15:17.949
+213
+00:15:34.983 --> 00:15:38.129
 Then turn the risks into
 contract obligations:
 
-209
-00:15:17.949 --> 00:15:23.031
+214
+00:15:38.129 --> 00:15:43.211
 a certificate timeline with a remedy if
 it slips, a BIND advisory commitment,
 
-210
-00:15:23.031 --> 00:15:27.250
+215
+00:15:43.211 --> 00:15:47.430
 the FedRAMP boundary diagram,
 and a data export guarantee.
 
-211
-00:15:31.000 --> 00:15:35.763
+216
+00:15:51.180 --> 00:15:55.943
 Part 2 is about divisions under
 central governance, starting with NIOS.
 
-212
-00:15:35.763 --> 00:15:40.347
+217
+00:15:55.943 --> 00:16:00.527
 Most agencies aren't one network, and a
 central plane only works if divisions can
 
-213
-00:15:40.347 --> 00:15:45.220
+218
+00:16:00.527 --> 00:16:05.400
 still do their jobs through it, because a
 division that can't will work around it.
 
-214
-00:15:48.970 --> 00:15:53.046
+219
+00:16:09.150 --> 00:16:13.226
 The NIOS permission model starts
 from the right place: everything is
 
-215
-00:15:53.046 --> 00:15:57.408
+220
+00:16:13.226 --> 00:16:17.588
 denied by default, so a new group sees
 nothing until you grant it something.
 
-216
-00:15:57.408 --> 00:16:02.177
+221
+00:16:17.588 --> 00:16:22.356
 Permissions can cover every object of a
 type, or one specific object and what's
 
-217
-00:16:02.177 --> 00:16:06.945
+222
+00:16:22.356 --> 00:16:27.125
 inside it, and they inherit downward,
 with more specific settings overriding.
 
-218
-00:16:06.945 --> 00:16:10.208
+223
+00:16:27.125 --> 00:16:30.388
 When permissions overlap,
 the first match wins.
 
-219
-00:16:10.208 --> 00:16:14.195
+224
+00:16:30.388 --> 00:16:34.375
 So if one role grants read-only
 and a later role grants read-write
 
-220
-00:16:14.195 --> 00:16:18.333
+225
+00:16:34.375 --> 00:16:38.513
 on the same records, the admin gets
 read-only, which can surprise you.
 
-221
-00:16:18.333 --> 00:16:22.110
+226
+00:16:38.513 --> 00:16:42.290
 Be careful with the built-in
 DNS and DHCP admin roles,
 
-222
-00:16:22.110 --> 00:16:24.833
+227
+00:16:42.290 --> 00:16:45.013
 which are far too broad for a division.
 
-223
-00:16:24.833 --> 00:16:29.329
+228
+00:16:45.013 --> 00:16:49.509
 And the governance lever: only
 superusers create groups and roles,
 
-224
-00:16:29.329 --> 00:16:31.945
+229
+00:16:49.509 --> 00:16:52.125
 so a division can't widen its own rights.
 
-225
-00:16:31.945 --> 00:16:33.840
+230
+00:16:52.125 --> 00:16:54.020
 Next, the recipe.
 
-226
-00:16:37.590 --> 00:16:41.190
+231
+00:16:57.770 --> 00:17:01.370
 Here's the recipe for scoping
 one admin group to one division.
 
-227
-00:16:41.190 --> 00:16:45.377
+232
+00:17:01.370 --> 00:17:05.557
 Create a limited-access group with
 only the interfaces it needs;
 
-228
-00:16:45.377 --> 00:16:49.327
+233
+00:17:05.557 --> 00:17:09.507
 help-desk staff can be restricted
 to running approved tasks.
 
-229
-00:16:49.327 --> 00:16:53.608
+234
+00:17:09.507 --> 00:17:13.788
 Grant read-write on the division's
 own address space and its own zones,
 
-230
-00:16:53.608 --> 00:16:58.565
+235
+00:17:13.788 --> 00:17:18.745
 with read-only on the parent view, and
 confine its service work to its own servers.
 
-231
-00:16:58.565 --> 00:17:00.815
+236
+00:17:18.745 --> 00:17:20.995
 Leave everything else at the default deny.
 
-232
-00:17:00.815 --> 00:17:04.339
+237
+00:17:20.995 --> 00:17:24.519
 Then the step people miss: turn
 on the Grid setting that makes
 
-233
-00:17:04.339 --> 00:17:08.215
+238
+00:17:24.519 --> 00:17:28.395
 address records need rights on both
 the zone and the address block.
 
-234
-00:17:08.215 --> 00:17:11.145
+239
+00:17:28.395 --> 00:17:31.324
 Without it, a division with
 write access to a shared
 
-235
-00:17:11.145 --> 00:17:14.353
+240
+00:17:31.324 --> 00:17:34.533
 zone could point a name at
 another division's addresses.
 
-236
-00:17:14.353 --> 00:17:17.227
+241
+00:17:34.533 --> 00:17:37.407
 That one setting is what
 keeps divisions honest.
 
-237
-00:17:17.227 --> 00:17:20.180
+242
+00:17:37.407 --> 00:17:40.360
 Next, the constructs that separate them.
 
-238
-00:17:23.930 --> 00:17:26.747
+243
+00:17:44.110 --> 00:17:46.927
 Three constructs separate
 divisions on NIOS,
 
-239
-00:17:26.747 --> 00:17:29.268
+244
+00:17:46.927 --> 00:17:49.448
 and each has a rule
 that shapes the design.
 
-240
-00:17:29.268 --> 00:17:33.147
+245
+00:17:49.448 --> 00:17:53.327
 Network views let two divisions
 hold the same addresses,
 
-241
-00:17:33.147 --> 00:17:38.264
+246
+00:17:53.327 --> 00:17:58.444
 but a DHCP server serves only one view,
 so a division with overlapping space
 
-242
-00:17:38.264 --> 00:17:43.793
+247
+00:17:58.444 --> 00:18:03.973
 needs its own DHCP servers, and nothing
 on NIOS enforces uniqueness across views.
 
-243
-00:17:43.793 --> 00:17:48.715
+248
+00:18:03.973 --> 00:18:08.895
 DNS views give different answers to
 different clients, and the first match wins,
 
-244
-00:17:48.715 --> 00:17:52.668
+249
+00:18:08.895 --> 00:18:12.848
 so a catch-all external view placed
 first hides the internal one.
 
-245
-00:17:52.668 --> 00:17:57.468
+250
+00:18:12.848 --> 00:18:17.648
 And extensible attributes tag objects
 with things like Division or cost center.
 
-246
-00:17:57.468 --> 00:18:01.446
+251
+00:18:17.648 --> 00:18:21.626
 Two cautions: a required tag
 can be skipped through the API,
 
-247
-00:18:01.446 --> 00:18:06.254
+252
+00:18:21.626 --> 00:18:26.434
 so automation must enforce it, and
 tags drive reports, not permissions.
 
-248
-00:18:06.254 --> 00:18:08.855
+253
+00:18:26.434 --> 00:18:29.035
 Access is always scoped by objects.
 
-249
-00:18:08.855 --> 00:18:10.600
+254
+00:18:29.035 --> 00:18:30.780
 Next, approvals.
 
-250
-00:18:14.350 --> 00:18:16.843
+255
+00:18:34.530 --> 00:18:37.023
 The approval workflow
 is how central keeps a
 
-251
-00:18:16.843 --> 00:18:19.538
+256
+00:18:37.023 --> 00:18:39.718
 hand on division changes
 without doing the work.
 
-252
-00:18:19.538 --> 00:18:24.285
+257
+00:18:39.718 --> 00:18:44.465
 A division submits, a central group
 approves, reschedules or rejects, and
 
-253
-00:18:24.285 --> 00:18:29.587
+258
+00:18:44.465 --> 00:18:49.767
 approved tasks run with the submitter's
 own permissions and land in the audit log.
 
-254
-00:18:29.587 --> 00:18:34.803
+259
+00:18:49.767 --> 00:18:54.983
 The riskiest operations, like signing
 zones, rolling keys, or resizing networks,
 
-255
-00:18:34.803 --> 00:18:39.387
+260
+00:18:54.983 --> 00:18:59.567
 are blocked for submitters entirely,
 which suits a federal model well.
 
-256
-00:18:39.387 --> 00:18:40.375
+261
+00:18:59.567 --> 00:19:00.555
 Now the gap.
 
-257
-00:18:40.375 --> 00:18:44.912
+262
+00:19:00.555 --> 00:19:05.092
 Infoblox's own page says CSV
 imports do not require approvals.
 
-258
-00:18:44.912 --> 00:18:47.446
+263
+00:19:05.092 --> 00:19:07.626
 Leave that permission
 in place and a division
 
-259
-00:18:47.446 --> 00:18:50.113
+264
+00:19:07.626 --> 00:19:10.293
 can load a thousand records
 with no review at all.
 
-260
-00:18:50.113 --> 00:18:53.059
+265
+00:19:10.293 --> 00:19:13.239
 So remove CSV import from
 every division group,
 
-261
-00:18:53.059 --> 00:18:56.762
+266
+00:19:13.239 --> 00:19:16.942
 and give bulk loads to a central
 group under a change ticket.
 
-262
-00:18:56.762 --> 00:18:58.500
+267
+00:19:16.942 --> 00:19:18.680
 Next, sign-in.
 
-263
-00:19:02.250 --> 00:19:04.882
+268
+00:19:22.430 --> 00:19:25.062
 Who can sign in, and
 which group they land in,
 
-264
-00:19:04.882 --> 00:19:07.213
+269
+00:19:25.062 --> 00:19:27.393
 is the other half of division scoping.
 
-265
-00:19:07.213 --> 00:19:12.330
+270
+00:19:27.393 --> 00:19:32.510
 NIOS maps directory groups to its own
 admin groups, with the first match winning,
 
-266
-00:19:12.330 --> 00:19:16.826
+271
+00:19:32.510 --> 00:19:37.006
 so an AD group per division can decide
 where an administrator belongs.
 
-267
-00:19:16.826 --> 00:19:20.744
+272
+00:19:37.006 --> 00:19:40.924
 For federal staff, the
 important path is certificate
 
-268
-00:19:20.744 --> 00:19:23.950
+273
+00:19:40.924 --> 00:19:44.130
 sign-in with CAC or PIV,
 checked against OCSP.
 
-269
-00:19:23.950 --> 00:19:26.528
+274
+00:19:44.130 --> 00:19:46.708
 SAML works too, including with Entra,
 
-270
-00:19:26.528 --> 00:19:30.687
+275
+00:19:46.708 --> 00:19:50.867
 where the user lands in the
 group whose name exactly matches.
 
-271
-00:19:30.687 --> 00:19:35.921
+276
+00:19:50.867 --> 00:19:56.101
 A few things to test: certificate sign-in
 to the API can conflict with certain cloud
 
-272
-00:19:35.921 --> 00:19:38.845
+277
+00:19:56.101 --> 00:19:59.025
 licenses, SAML-only users
 get no command line,
 
-273
-00:19:38.845 --> 00:19:43.000
+278
+00:19:59.025 --> 00:20:03.180
 and it's not confirmed whether Entra
 sends the group name or its ID.
 
-274
-00:19:43.000 --> 00:19:47.090
+279
+00:20:03.180 --> 00:20:07.270
 Order mappings carefully, and
 keep a local break-glass admin.
 
-275
-00:19:50.840 --> 00:19:53.503
+280
+00:20:11.020 --> 00:20:13.683
 Three topics close the NIOS module.
 
-276
-00:19:53.503 --> 00:19:58.918
+281
+00:20:13.683 --> 00:20:19.098
 First, a division still running Windows
 DNS and DHCP can be managed from the Grid,
 
-277
-00:19:58.918 --> 00:20:03.102
+282
+00:20:19.098 --> 00:20:23.282
 with the division's group given
 rights on its own servers only,
 
-278
-00:20:03.102 --> 00:20:05.564
+283
+00:20:23.282 --> 00:20:25.744
 not the system-wide Microsoft roles.
 
-279
-00:20:05.564 --> 00:20:09.574
+284
+00:20:25.744 --> 00:20:29.754
 Second, what stays central in
 every design: the Grid Master,
 
-280
-00:20:09.574 --> 00:20:14.920
+285
+00:20:29.754 --> 00:20:35.100
 DNSSEC keys and signing, security policy,
 the definitions of groups and roles,
 
-281
-00:20:14.920 --> 00:20:18.178
+286
+00:20:35.100 --> 00:20:38.358
 sign-in policy, and the
 top-level address blocks.
 
-282
-00:20:18.178 --> 00:20:21.690
+287
+00:20:38.358 --> 00:20:41.870
 Third, a limitation that
 surprises almost everyone.
 
-283
-00:20:21.690 --> 00:20:25.040
+288
+00:20:41.870 --> 00:20:45.220
 NIOS reporting doesn't
 filter by permissions,
 
-284
-00:20:25.040 --> 00:20:30.153
+289
+00:20:45.220 --> 00:20:50.333
 so a division with the reporting app
 sees agency-wide DNS and DHCP data.
 
-285
-00:20:30.153 --> 00:20:33.177
+290
+00:20:50.333 --> 00:20:53.357
 That matters a great deal
 for a law-enforcement bureau.
 
-286
-00:20:33.177 --> 00:20:36.853
+291
+00:20:53.357 --> 00:20:57.033
 So scope reporting by sharing
 dashboards per division instead.
 
-287
-00:20:36.853 --> 00:20:39.280
+292
+00:20:57.033 --> 00:20:59.460
 Next, splitting by service.
 
-288
-00:20:43.030 --> 00:20:45.892
+293
+00:21:03.210 --> 00:21:06.072
 Divisions aren't the only way to cut DDI.
 
-289
-00:20:45.892 --> 00:20:51.012
+294
+00:21:06.072 --> 00:21:11.192
 Many agencies split it by service,
 with DNS, DHCP and IPAM teams working
 
-290
-00:20:51.012 --> 00:20:55.705
+295
+00:21:11.192 --> 00:21:15.885
 across the whole agency, and NIOS
 supports that with the same model.
 
-291
-00:20:55.705 --> 00:20:59.843
+296
+00:21:15.885 --> 00:21:20.023
 This is an illustrative design,
 not a validated configuration.
 
-292
-00:20:59.843 --> 00:21:05.981
+297
+00:21:20.023 --> 00:21:26.161
 The DNS team gets its views, zones and
 DNS servers, with no network rights.
 
-293
-00:21:05.981 --> 00:21:10.977
+298
+00:21:26.161 --> 00:21:31.157
 The DHCP team is where the catch is:
 a permission on a network also covers
 
-294
-00:21:10.977 --> 00:21:15.805
+299
+00:21:31.157 --> 00:21:35.985
 its ranges, so grant the ranges and
 fixed addresses directly instead.
 
-295
-00:21:15.805 --> 00:21:18.917
+300
+00:21:35.985 --> 00:21:39.097
 The IPAM team gets the address containers,
 
-296
-00:21:18.917 --> 00:21:22.955
+301
+00:21:39.097 --> 00:21:43.135
 with an explicit deny on DHCP
 ranges if that team owns them.
 
-297
-00:21:22.955 --> 00:21:26.204
+302
+00:21:43.135 --> 00:21:46.384
 And the same Grid-wide
 setting from before becomes
 
-298
-00:21:26.204 --> 00:21:29.530
+303
+00:21:46.384 --> 00:21:49.710
 a deliberate check between
 the DNS and IPAM teams.
 
-299
-00:21:29.530 --> 00:21:31.620
+304
+00:21:49.710 --> 00:21:51.800
 Next, combining both.
 
-300
-00:21:35.370 --> 00:21:40.070
+305
+00:21:55.550 --> 00:22:00.250
 Service teams and divisions aren't
 alternatives; most agencies combine them,
 
-301
-00:21:40.070 --> 00:21:44.182
+306
+00:22:00.250 --> 00:22:04.362
 because a grant can be scoped by
 service and by address space at once.
 
-302
-00:21:44.182 --> 00:21:46.145
+307
+00:22:04.362 --> 00:22:06.325
 Again, it's illustrative.
 
-303
-00:21:46.145 --> 00:21:50.730
+308
+00:22:06.325 --> 00:22:10.910
 The central DNS team keeps the
 agency's top zone and DNSSEC signing,
 
-304
-00:21:50.730 --> 00:21:56.398
+309
+00:22:10.910 --> 00:22:16.578
 the central IPAM team keeps the top-level
 blocks and hands each division its own,
 
-305
-00:21:56.398 --> 00:21:59.983
+310
+00:22:16.578 --> 00:22:20.163
 and divisions take over DHCP
 inside their own space.
 
-306
-00:21:59.983 --> 00:22:02.420
+311
+00:22:20.163 --> 00:22:22.600
 On Universal DDI the picture changes,
 
-307
-00:22:02.420 --> 00:22:06.822
+312
+00:22:22.600 --> 00:22:27.002
 and there's a documentation conflict
 over whether separate DNS and
 
-308
-00:22:06.822 --> 00:22:11.145
+313
+00:22:27.002 --> 00:22:31.325
 DHCP roles are supported in this
 release, so confirm with Infoblox.
 
-309
-00:22:11.145 --> 00:22:16.441
+314
+00:22:31.325 --> 00:22:36.621
 And one caution applies however you split:
 on NIOS, reports ignore permissions,
 
-310
-00:22:16.441 --> 00:22:20.108
+315
+00:22:36.621 --> 00:22:40.288
 so anyone with the reporting
 app sees agency-wide data.
 
-311
-00:22:20.108 --> 00:22:22.420
+316
+00:22:40.288 --> 00:22:42.600
 Now Universal DDI.
 
-312
-00:22:26.170 --> 00:22:31.220
+317
+00:22:46.350 --> 00:22:51.400
 Module 4 covers divisions on Universal
 DDI, and the operating model.
 
-313
-00:22:31.220 --> 00:22:36.693
+318
+00:22:51.400 --> 00:22:56.873
 We'll look at its access views and IPAM
 Federation, then four delegation patterns,
 
-314
-00:22:36.693 --> 00:22:40.530
+319
+00:22:56.873 --> 00:23:00.710
 a worked example, who does
 what, and a rollout sequence.
 
-315
-00:22:44.280 --> 00:22:48.750
+320
+00:23:04.460 --> 00:23:08.929
 On Universal DDI, the division
 construct is the access view,
 
-316
-00:22:48.750 --> 00:22:51.942
+321
+00:23:08.929 --> 00:23:12.122
 a container for a
 division's DDI resources.
 
-317
-00:22:51.942 --> 00:22:54.874
+322
+00:23:12.122 --> 00:23:15.054
 Corporate admins create
 one level of sub-views,
 
-318
-00:22:54.874 --> 00:22:58.406
+323
+00:23:15.054 --> 00:23:18.586
 and divisional admins can't
 see anything outside theirs.
 
-319
-00:22:58.406 --> 00:23:01.855
+324
+00:23:18.586 --> 00:23:22.035
 Assign an IP space and
 everything in it follows.
 
-320
-00:23:01.855 --> 00:23:07.327
+325
+00:23:22.035 --> 00:23:27.507
 The constraints are significant: users
 and roles are defined only centrally,
 
-321
-00:23:07.327 --> 00:23:11.773
+326
+00:23:27.507 --> 00:23:31.953
 access views can't be renamed or
 deleted, so name them carefully,
 
-322
-00:23:11.773 --> 00:23:15.193
+327
+00:23:31.953 --> 00:23:35.373
 and service users with API
 keys can't log in to one.
 
-323
-00:23:15.193 --> 00:23:20.907
+328
+00:23:35.373 --> 00:23:41.087
 The big gain over NIOS is IPAM Federation,
 which enforces address uniqueness
 
-324
-00:23:20.907 --> 00:23:27.055
+329
+00:23:41.087 --> 00:23:47.235
 across Universal DDI, NIOS and cloud IPAM,
 including deliberate overlap behind NAT.
 
-325
-00:23:27.055 --> 00:23:30.517
+330
+00:23:47.235 --> 00:23:50.697
 And remember the documentation
 conflict on supported roles.
 
-326
-00:23:30.517 --> 00:23:32.243
+331
+00:23:50.697 --> 00:23:52.423
 Confirm it with Infoblox.
 
-327
-00:23:32.243 --> 00:23:34.260
+332
+00:23:52.423 --> 00:23:54.440
 Next, the patterns.
 
-328
-00:23:38.010 --> 00:23:43.010
+333
+00:23:58.190 --> 00:24:03.190
 Put together, these give four delegation
 patterns, and most agencies mix them.
 
-329
-00:23:43.010 --> 00:23:47.279
+334
+00:24:03.190 --> 00:24:07.458
 Pattern A is one central Grid with
 scoped admin groups and approvals,
 
-330
-00:23:47.279 --> 00:23:51.547
+335
+00:24:07.458 --> 00:24:11.727
 the default, with risks like permission
 sprawl and the import bypass.
 
-331
-00:23:51.547 --> 00:23:55.227
+336
+00:24:11.727 --> 00:24:15.407
 Pattern B gives a division its
 own servers inside the Grid,
 
-332
-00:23:55.227 --> 00:23:59.673
+337
+00:24:15.407 --> 00:24:19.853
 for local resilience, while signed
 zones still keep a central primary.
 
-333
-00:23:59.673 --> 00:24:03.851
+338
+00:24:19.853 --> 00:24:24.031
 Pattern C gives a division its
 own network view or IP space,
 
-334
-00:24:03.851 --> 00:24:07.247
+339
+00:24:24.031 --> 00:24:27.427
 the only way to hold
 overlapping address space.
 
-335
-00:24:07.247 --> 00:24:12.583
+340
+00:24:27.427 --> 00:24:32.763
 And pattern D delegates a zone to servers
 the division runs itself: full autonomy,
 
-336
-00:24:12.583 --> 00:24:14.812
+341
+00:24:32.763 --> 00:24:34.992
 but central loses the audit trail,
 
-337
-00:24:14.812 --> 00:24:18.236
+342
+00:24:34.992 --> 00:24:38.416
 security policy coverage
 and signing for that zone.
 
-338
-00:24:18.236 --> 00:24:22.216
+343
+00:24:38.416 --> 00:24:42.396
 Use A by default, B for
 resilience, C only for overlap,
 
-339
-00:24:22.216 --> 00:24:25.420
+344
+00:24:42.396 --> 00:24:45.600
 and D only where autonomy is worth it.
 
-340
-00:24:29.170 --> 00:24:33.196
+345
+00:24:49.350 --> 00:24:53.376
 Here's an illustrative design,
 not a validated configuration,
 
-341
-00:24:33.196 --> 00:24:35.407
+346
+00:24:53.376 --> 00:24:55.587
 for an agency with four divisions.
 
-342
-00:24:35.407 --> 00:24:38.119
+347
+00:24:55.587 --> 00:24:58.299
 Headquarters is the
 central operations team.
 
-343
-00:24:38.119 --> 00:24:41.356
+348
+00:24:58.299 --> 00:25:01.536
 A law-enforcement bureau
 needs confidentiality,
 
-344
-00:24:41.356 --> 00:24:43.645
+349
+00:25:01.536 --> 00:25:03.825
 so it gets its own servers, pattern B.
 
-345
-00:24:43.645 --> 00:24:47.132
+350
+00:25:03.825 --> 00:25:07.312
 A regional office still
 runs Windows DNS and DHCP,
 
-346
-00:24:47.132 --> 00:24:51.045
+351
+00:25:07.312 --> 00:25:11.225
 managed from the Grid with
 rights on those servers only.
 
-347
-00:24:51.045 --> 00:24:56.467
+352
+00:25:11.225 --> 00:25:16.647
 And a research lab whose range overlaps
 headquarters gets its own network view
 
-348
-00:24:56.467 --> 00:25:01.807
+353
+00:25:16.647 --> 00:25:21.987
 and DHCP servers, pattern C, with its zone
 delegated to its own servers, pattern D.
 
-349
-00:25:01.807 --> 00:25:04.813
+354
+00:25:21.987 --> 00:25:24.993
 Across the Grid: object
 permissions turned on,
 
-350
-00:25:04.813 --> 00:25:08.529
+355
+00:25:24.993 --> 00:25:28.709
 so headquarters can't point a
 name into the bureau's space,
 
-351
-00:25:08.529 --> 00:25:12.325
+356
+00:25:28.709 --> 00:25:32.505
 no CSV import for any division,
 one approval workflow each,
 
-352
-00:25:12.325 --> 00:25:16.000
+357
+00:25:32.505 --> 00:25:36.180
 and the bureau's data kept
 out of shared dashboards.
 
-353
-00:25:19.750 --> 00:25:20.675
+358
+00:25:39.930 --> 00:25:40.855
 Who does what?
 
-354
-00:25:20.675 --> 00:25:23.144
+359
+00:25:40.855 --> 00:25:43.324
 This matrix is adapted from Book 08's,
 
-355
-00:25:23.144 --> 00:25:28.000
+360
+00:25:43.324 --> 00:25:48.180
 which separates deciding from doing,
 with a column added for divisions.
 
-356
-00:25:28.000 --> 00:25:31.671
+361
+00:25:48.180 --> 00:25:51.851
 The CIO decides the platform
 and how divisions are scoped,
 
-357
-00:25:31.671 --> 00:25:35.496
+362
+00:25:51.851 --> 00:25:55.676
 and the central DDI team builds
 it, with divisions consulted,
 
-358
-00:25:35.496 --> 00:25:38.938
+363
+00:25:55.676 --> 00:25:59.118
 because a scope they can't
 work in becomes a workaround.
 
-359
-00:25:38.938 --> 00:25:43.626
+364
+00:25:59.118 --> 00:26:03.806
 The authorizing official decides whether
 a cloud management plane is authorized.
 
-360
-00:25:43.626 --> 00:25:46.577
+365
+00:26:03.806 --> 00:26:06.757
 The CISO decides the control requirements,
 
-361
-00:25:46.577 --> 00:25:50.487
+366
+00:26:06.757 --> 00:26:10.667
 like signing and security policy,
 and central DDI runs them.
 
-362
-00:25:50.487 --> 00:25:54.073
+367
+00:26:10.667 --> 00:26:14.253
 Standard record changes are
 where delegation pays off:
 
-363
-00:25:54.073 --> 00:25:57.813
+368
+00:26:14.253 --> 00:26:17.993
 central defines them in advance,
 and divisions do the work.
 
-364
-00:25:57.813 --> 00:25:59.987
+369
+00:26:17.993 --> 00:26:20.167
 High-impact changes stay central.
 
-365
-00:25:59.987 --> 00:26:06.130
+370
+00:26:20.167 --> 00:26:26.310
 And an encrypted DNS exception with no
 end date goes to the authorizing official.
 
-366
-00:26:09.880 --> 00:26:14.470
+371
+00:26:30.060 --> 00:26:34.650
 To close, the rollout follows Book
 08's order, adapted for divisions:
 
-367
-00:26:14.470 --> 00:26:18.225
+372
+00:26:34.650 --> 00:26:38.405
 inventory everything first,
 build the central pieces,
 
-368
-00:26:18.225 --> 00:26:23.315
+373
+00:26:38.405 --> 00:26:43.495
 coexist with the Windows servers in
 place, onboard divisions one at a time
 
-369
-00:26:23.315 --> 00:26:28.155
+374
+00:26:43.495 --> 00:26:48.335
 starting with pattern A, federate
 the clouds, then harden and evidence.
 
-370
-00:26:28.155 --> 00:26:32.307
+375
+00:26:48.335 --> 00:26:52.487
 The decisions to take now are the
 platform model for each impact level,
 
-371
-00:26:32.307 --> 00:26:36.172
+376
+00:26:52.487 --> 00:26:56.352
 the delegation pattern per division,
 whether to wait for the FIPS
 
-372
-00:26:36.172 --> 00:26:39.680
+377
+00:26:56.352 --> 00:26:59.860
 certificate or proceed with a
 POA&M, and where logs will live.
 
-373
-00:26:39.680 --> 00:26:44.318
+378
+00:26:59.860 --> 00:27:04.498
 Then send Infoblox the procurement
 asks and lab-test the open questions.
 
-374
-00:26:44.318 --> 00:26:48.643
+379
+00:27:04.498 --> 00:27:08.823
 In the program's analysis, Infoblox
 is one of the strongest ways to
 
-375
-00:26:48.643 --> 00:26:53.129
+380
+00:27:08.823 --> 00:27:13.309
 build a governed DDI plane, as long
 as you manage its risks in the open.
 
-376
-00:26:53.129 --> 00:26:58.055
+381
+00:27:13.309 --> 00:27:18.235
 This is research under review, not an
 endorsement by any federal agency.
 
-377
-00:26:58.055 --> 00:26:58.890
+382
+00:27:18.235 --> 00:27:19.070
 Thank you.

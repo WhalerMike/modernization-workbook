@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.112
+F I P S and baseline
+content come up first,
+
+2
+00:00:03.112 --> 00:00:06.175
+and on F I P S the honest
+answer is partial.
+
+3
+00:00:06.175 --> 00:00:11.547
+Red Hat's F I P S certificates cover the
+operating system, but the current platform
+
+4
+00:00:11.547 --> 00:00:16.437
+documentation doesn't say whether the
+platform is supported in F I P S mode.
+
+5
+00:00:16.437 --> 00:00:21.138
+So treat that as unverified: ask
+Red Hat in writing, and test it.
+
+6
+00:00:21.138 --> 00:00:25.951
+Where your agency needs validated
+cryptography, the controller's host
+
+7
+00:00:25.951 --> 00:00:29.949
+runs in F I P S mode, so that
+support is what you have to confirm.
+
+8
+00:00:29.949 --> 00:00:32.579
+For the baseline, start from the C I S
+
+9
+00:00:32.579 --> 00:00:36.025
+Benchmarks and your agency's
+own C M 6 settings.
+
+10
+00:00:36.025 --> 00:00:40.602
+Red Hat ships C I S profiles with
+an Ansible playbook to apply them,
+
+11
+00:00:40.602 --> 00:00:45.263
+and community C I S roles exist too,
+as long as you review and pin them.
+
+12
+00:00:45.263 --> 00:00:48.451
+The controller's host is
+hardened like any other server.
+
+13
+00:00:48.451 --> 00:00:53.937
+A S T I G for the controller exists, but
+that's High only, an optional reference.
+
+14
+00:00:53.937 --> 00:00:55.270
+Next, hosting.

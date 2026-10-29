@@ -57,7 +57,7 @@ Each module emits its state to the evidence contract (Book VI-07); the `ipam` mo
 | `platform` module | Governed cloud foundation | Azure Landing Zone (Bicep/Terraform) | AWS Control Tower + Terraform; GCP org policy |
 | `network` module (hub-spoke, segmentation, NGFW/route intent) | SC-7 boundary + traffic-class separation | Terraform (VNet, Azure Firewall) | AWS VPC + Network Firewall; GCP VPC-SC |
 | `ddi` module (authoritative DNS, DNSSEC signing, RPZ, DHCP scopes) | SC-20/21/22 naming plane; CM-8 address-keyed inventory | InfoBlox / cloud DNS as code | BlueCat; Route 53 + IPAM |
-| `edge` config (SASE/TIC 3.0 PEP capability set) | AC-4 flow enforcement at the distributed PEP | SASE tenant-as-code | Zscaler/Netskope GovCloud config-as-code |
+| `edge` config (SASE/TIC 3.0 PEP capability set) | AC-4 flow enforcement at the distributed PEP | SASE tenant-as-code | Zscaler/Netskope government-cloud config-as-code |
 
 ## Illustrative module — the DNSSEC-signed authoritative zone
 

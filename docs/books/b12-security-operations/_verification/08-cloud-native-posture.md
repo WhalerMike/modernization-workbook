@@ -44,6 +44,9 @@ Checked October 21, 2026 by writer W5. Source: `docs/compliance/Vol_III_Book_04_
 | 36 | A pilot-era numbered KSI scheme (for example KSI-CMT-01) existed | KSI | removed | The 2025 Phase One page and PDF return 404; claim dropped |
 | 37 | Source RA-5 authority driver "CISA BOD 26-04" | Control map | not carried | Directive verification belongs to Ch06 (W4); this chapter cites no directive for RA-5 |
 | 38 | Source: Defender for Cloud does "multi-cloud CSPM/CWPP ingestion across Azure, AWS, and GCP" | Owned-tool-first | verified | Learn multicloud support matrix |
+| 39 | VMware row: Broadcom VCF Security Configuration and Hardening Guide (an SPM benchmark in VCF 9.1) as the vendor baseline; CIS VMware ESXi 8.0 1.4.0 and 9.0 1.0.0 as cross-check; STIG readiness content kept as optional High-only reference (claim 13 superseded in part) | Table; figure ch08-owned-tool-first | verified 2026-10-29 (Moderate-civilian sweep) | Broadcom TechDocs, VCF 9.1 Security Posture Management; CIS Benchmarks list |
+| 40 | Security Hub CSPM CIS AWS Foundations Benchmark standard (v5.0.0, v3.0.0, v1.4.0, v1.2.0; v5.0.0 recommended), available in every Security Hub CSPM Region | Table, AWS row | verified 2026-10-29 | Security Hub UG, CIS AWS Foundations Benchmark; Regional limits |
+| 41 | AWS US East/West Class C (formerly Moderate), GovCloud (US) Class D (formerly High); scope per service, per Region; a Moderate system can run in GovCloud (High includes the Moderate controls) | AWS corrections bullet | verified 2026-10-29; "can run there" is inference | AWS FedRAMP page; Services in Scope |
 
 ## Carry-forward ledger
 

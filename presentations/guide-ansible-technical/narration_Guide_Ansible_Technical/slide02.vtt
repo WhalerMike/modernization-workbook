@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Here's the problem.
+
+2
+00:00:01.088 --> 00:00:04.287
+Ansible has no agent and
+no record of its own.
+
+3
+00:00:04.287 --> 00:00:07.762
+It connects, does what the
+playbook says, and leaves.
+
+4
+00:00:07.762 --> 00:00:11.800
+That makes it wonderfully flexible,
+and it makes collisions invisible.
+
+5
+00:00:11.800 --> 00:00:15.006
+Point it at a server that
+Azure machine configuration
+
+6
+00:00:15.006 --> 00:00:17.500
+already governs, and neither tool notices.
+
+7
+00:00:17.500 --> 00:00:21.053
+Turn on auto-correct, and the
+setting quietly flips back,
+
+8
+00:00:21.053 --> 00:00:22.675
+with no report that it did.
+
+9
+00:00:22.675 --> 00:00:27.225
+Two tools can fight over one value
+forever while both report success.
+
+10
+00:00:27.225 --> 00:00:29.207
+The guide's answer is simple:
+
+11
+00:00:29.207 --> 00:00:32.913
+one owning tool per setting,
+written down in the C M D B.
+
+12
+00:00:32.913 --> 00:00:35.260
+First, what Ansible actually is.

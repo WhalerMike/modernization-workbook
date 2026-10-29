@@ -1,6 +1,6 @@
 ---
 title: "Vol VI Book 06 — Federal Compliance — Configuration Baselines & Hardening"
-subtitle: "SCuBA, CIS, and STIG baselines expressed as policy-as-code with drift detection and reconciliation"
+subtitle: "SCuBA, CIS Benchmark, vendor-guide and agency CM-6 baselines expressed as policy-as-code with drift detection and reconciliation"
 author: "Federal Cloud Services"
 date: "2026-07-09T15:13:00-04:00"
 format:
@@ -32,7 +32,7 @@ Developed by the **CSI Team (Cloud Services Infrastructure)**; not yet reviewed 
 
 # What This Document Addresses
 
-A baseline that no pipeline enforces is a document, not a control. Volume III establishes the required secure-configuration posture — SCuBA for the cloud business applications, CIS/STIG for the platforms — and makes the sharp point that conformance tooling *measures drift from an intended state; it cannot author one.*
+A baseline that no pipeline enforces is a document, not a control. Volume III establishes the required secure-configuration posture — SCuBA for the cloud business applications (Microsoft 365 and Google Workspace, binding under BOD 25-01), and for the platforms the agency's own CM-6 settings drawn from CIS Benchmarks, the NIST National Checklist Program (SP 800-70 Rev. 5) and the vendor's hardening guide — and makes the sharp point that conformance tooling *measures drift from an intended state; it cannot author one.*
 
 This book authors the intended state as machine-enforced policy, detects drift against it continuously, and reconciles or reports it. It operationalizes, through CM-6(1)/(2) automation, the enforce-detect-reconcile loop over base CM-6: an enforced configuration, a detection of deviation, and a documented reconciliation — not a spreadsheet of settings someone once applied.
 
@@ -42,7 +42,7 @@ Each baseline moves through four as-code stages; the last two are what turn a on
 
 | Stage | Artifact | Control tie |
 |---|---|---|
-| Author | Baseline definition (SCuBA/CIS/STIG mapped to policy) | CM-6 settings |
+| Author | Baseline definition (SCuBA/CIS/vendor guide, as agency CM-6 settings, mapped to policy) | CM-6 settings |
 | Assign | Policy assignment to the target scope | CM-2 baseline |
 | Detect | Continuous compliance scan → drift record | CM-3 change; CM-6 |
 | Reconcile / report | Auto-remediate where safe; POA&M where not | CM-6; SI-2 feed |
@@ -53,7 +53,7 @@ Each baseline moves through four as-code stages; the last two are what turn a on
 |---|---|---|---|
 | SCuBA baseline conformance packs | CM-6 cloud business-app baseline | ScubaGear assessment + policy-as-code | equivalent CIS cloud benchmark packs |
 | Guest/machine-config baselines | CM-2/6 OS configuration | Azure Machine Config (Guest Config) | AWS SSM State Manager; GCP OS Config |
-| Host hardening roles | CM-6/7 least functionality | Ansible/DSC roles mapped to STIG/CIS | Chef/Puppet equivalents |
+| Host hardening roles | CM-6/7 least functionality | Ansible/DSC roles mapped to CIS Benchmarks or the vendor guide (STIG roles only as an optional High-only reference) | Chef/Puppet equivalents |
 | Drift detection + reconciliation | CM-3 change control; SI-2 flaw feed | Config drift export to evidence contract | native config-compliance exports |
 
 ## Illustrative artifact — a machine-config baseline with drift export
@@ -107,7 +107,7 @@ Volume III proves conformance tooling *measures drift from an intended state; it
 # Honest Limits
 
 - Auto-remediation is safe only for idempotent, low-blast-radius settings; the `report` path exists precisely because not every drift can be closed without human judgment.
-- SCuBA/CIS/STIG baselines are point-in-time; they must track the publishing authority's updates, or the "baseline" silently ages out of currency.
+- SCuBA, CIS and vendor-guide baselines are point-in-time; they must track the publishing authority's updates, or the "baseline" silently ages out of currency.
 - Cloud-native posture (CSPM) findings on multi-CSP estates require per-CSP packs; the mechanism is uniform, the pack content is not.
 
 # Cross-References
@@ -118,4 +118,4 @@ Volume III proves conformance tooling *measures drift from an intended state; it
 
 # Provenance
 
-Draft. Products are deployed examples; substitution columns preserve the mechanism. The baseline YAML is an illustrative pattern to adapt, not a drop-in pack. Baseline sources (CISA SCuBA, CIS Benchmarks, DISA STIG) cite their publishing authority.
+Draft. Products are deployed examples; substitution columns preserve the mechanism. The baseline YAML is an illustrative pattern to adapt, not a drop-in pack. Baseline sources (CISA SCuBA, CIS Benchmarks, NIST National Checklist Program, vendor hardening guides) cite their publishing authority. This workbook targets FedRAMP Moderate civilian agencies: NIST SP 800-53 Rev. 5 CM-6 lets the agency choose its common secure configurations (vendors, federal agencies, consortia and others; https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final), so a DISA STIG is never the required baseline. It may be borrowed as an optional reference (High only: material for FedRAMP High or Defense environments) where it is the only published checklist for a product.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.100
+The rest of the evidence covers audit,
+privilege and the supply chain.
+
+2
+00:00:04.100 --> 00:00:07.325
+Job records and the activity
+stream go to the SIEM.
+
+3
+00:00:07.325 --> 00:00:11.288
+Least privilege comes from the
+per-purpose credentials we just covered,
+
+4
+00:00:11.288 --> 00:00:14.987
+and supply chain evidence comes
+from pinned, verified collections.
+
+5
+00:00:14.987 --> 00:00:16.363
+Then comes the payoff.
+
+6
+00:00:16.363 --> 00:00:21.435
+Every job result goes to the program's
+evidence store in the same shape every other
+
+7
+00:00:21.435 --> 00:00:25.538
+tool uses, and because the inventory
+came from the C M D B, each result
+
+8
+00:00:25.538 --> 00:00:30.163
+already carries the configuration item
+number that joins it all together.
+
+9
+00:00:30.163 --> 00:00:31.780
+Now, the dangers.

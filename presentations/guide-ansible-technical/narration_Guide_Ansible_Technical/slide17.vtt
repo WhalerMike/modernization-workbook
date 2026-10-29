@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.337
+Think about what a controller holds:
+the keys to every host it manages.
+
+2
+00:00:04.337 --> 00:00:08.739
+That's more reach than almost any
+administrator, so the program treats
+
+3
+00:00:08.739 --> 00:00:12.913
+it as a privileged non-person
+identity, and this is design guidance.
+
+4
+00:00:12.913 --> 00:00:15.124
+It gets two named human owners.
+
+5
+00:00:15.124 --> 00:00:19.412
+Each credential does one job,
+in one scope, and expires.
+
+6
+00:00:19.412 --> 00:00:23.448
+Where you can avoid it, no secret
+is stored in the controller at all:
+
+7
+00:00:23.448 --> 00:00:26.437
+use a managed identity
+first, then certificates,
+
+8
+00:00:26.437 --> 00:00:29.575
+and fetch anything left from
+your vault at run time.
+
+9
+00:00:29.575 --> 00:00:33.463
+Launching a job that changes
+production is a privileged action,
+
+10
+00:00:33.463 --> 00:00:36.250
+logged to a person and
+reviewed every quarter.
+
+11
+00:00:36.250 --> 00:00:37.540
+That's the platform.

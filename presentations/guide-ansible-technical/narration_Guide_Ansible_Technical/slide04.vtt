@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+It helps to be precise about
+what kind of tool this is.
+
+2
+00:00:02.963 --> 00:00:04.224
+Ansible pushes.
+
+3
+00:00:04.224 --> 00:00:07.415
+It connects over S S
+H or Windows remoting,
+
+4
+00:00:07.415 --> 00:00:10.887
+runs small modules, removes
+them, and it's gone.
+
+5
+00:00:10.887 --> 00:00:16.424
+You describe the work in Y A M L
+playbooks, against an inventory of hosts.
+
+6
+00:00:16.424 --> 00:00:19.959
+The free engine does the work,
+and the Automation Platform
+
+7
+00:00:19.959 --> 00:00:23.787
+wraps it with a controller, a
+content hub and packaged runtimes.
+
+8
+00:00:23.787 --> 00:00:25.713
+What it isn't is a management plane.
+
+9
+00:00:25.713 --> 00:00:30.802
+And while tasks should be safe to
+repeat, the documentation admits not all
+
+10
+00:00:30.802 --> 00:00:35.474
+of them are, which is why check mode,
+a true dry run, matters so much here.
+
+11
+00:00:35.474 --> 00:00:37.610
+So how does it sit beside the others?

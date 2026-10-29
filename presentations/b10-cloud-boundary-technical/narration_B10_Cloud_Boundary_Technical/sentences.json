@@ -680,21 +680,31 @@
   ],
   [
    16.225,
+   2.25,
+   "And GovCloud isn't only for High."
+  ],
+  [
+   18.475,
+   7.987,
+   "A Moderate system can run there or in the commercial Regions, and an agency can use both, so check each service, Region by Region."
+  ],
+  [
+   26.462,
    3.237,
    "The other half of this slide is about your own automation."
   ],
   [
-   19.462,
+   29.7,
    6.3,
    "A collector calling a commercial-only API from inside the boundary is a crossing nobody approved."
   ],
   [
-   25.762,
+   36.0,
    7.362,
    "So every adapter declares its boundary, resolves endpoints from it, and fails closed when it doesn't recognize the cloud."
   ],
   [
-   33.125,
+   43.362,
    1.762,
    "Next, the address plan."
   ]

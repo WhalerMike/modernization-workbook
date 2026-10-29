@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.225
+This is where Ansible earns its keep.
+
+2
+00:00:02.225 --> 00:00:04.912
+Because the inventory
+comes from the C M D B,
+
+3
+00:00:04.912 --> 00:00:08.213
+the onboarding run can stamp
+the owner, environment,
+
+4
+00:00:08.213 --> 00:00:12.435
+location and patch group onto each
+Arc resource in the same change,
+
+5
+00:00:12.435 --> 00:00:15.813
+so the cloud's view starts
+out traceable to its source.
+
+6
+00:00:15.813 --> 00:00:21.000
+The work runs in waves, and each wave's
+credential goes away when the wave closes.
+
+7
+00:00:21.000 --> 00:00:26.049
+If a playbook calls the agent directly,
+the secret goes in a configuration file,
+
+8
+00:00:26.049 --> 00:00:29.312
+never on the command line,
+so it stays out of the logs.
+
+9
+00:00:29.312 --> 00:00:32.712
+The example playbook shows this
+behind a confirmation gate.
+
+10
+00:00:32.712 --> 00:00:35.300
+Next, the hosts Arc can't take at all.

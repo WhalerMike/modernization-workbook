@@ -67,3 +67,13 @@ Checked October 20, 2026. Source: the existing series page (Next Generation DDI,
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | CP-1 | Source-list entry title is "DNS resolver policy," formerly DNS security policy | Primary sources: cloud and platform provider documentation | corrected (page title is not "Overview of ...") | Microsoft Learn, "DNS resolver policy," <https://learn.microsoft.com/en-us/azure/dns/dns-security-policy> (opened Oct 21, 2026): page title and every heading use "DNS resolver policy"; portal resource "DNS Resolver Policies"; URL keeps `dns-security-policy`; networking design guide <https://learn.microsoft.com/azure/networking/design-guide/dns-security> still says "DNS security policy" |
+
+## Moderate-civilian sweep (October 29, 2026)
+
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; DISA STIGs and DoD Impact Levels survive only as optional references labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| MS-1 | New mapping row: Configuration baseline and settings (CM-2, CM-6), with CIS/vendor/NCP sources, SP 800-81r3 for DNS settings; no CIS NIOS benchmark; DISA STIG optional (High only) | Requirements mapping | verified 2026-10-29 (fact pack) | aB-cm6, aB-ncp, aB-cis |
+| MS-2 | Sources list: SP 800-70 Rev. 5 and NCP; AWS FedRAMP and Services in Scope; CIS Benchmarks list; sources-intro date note | Sources | added | as listed |
+| MS-3 | High only explanation line | Before Reading the SP 800-53 controls | label per brief | — |

@@ -5,16 +5,16 @@ WEBVTT
 Part 3 is signing and hardening.
 
 2
-00:00:02.412 --> 00:00:06.064
+00:00:02.412 --> 00:00:06.189
 We'll cover DNSSEC on NIOS,
 the hardware security module,
 
 3
-00:00:06.064 --> 00:00:10.746
-what the DISA STIG actually checks,
+00:00:06.189 --> 00:00:11.113
+the agency's own hardening baseline,
 FIPS mode, and administrator access,
 
 4
-00:00:10.746 --> 00:00:14.300
+00:00:11.113 --> 00:00:14.780
 including two upgrade gates
 that can lock people out.

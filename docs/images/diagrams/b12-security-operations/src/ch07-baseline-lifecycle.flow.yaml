@@ -5,7 +5,7 @@
 rankdir: TB
 graph: {nodesep: 0.35, ranksep: 0.3}
 nodes:
-  author: {tone: green, width: 250, tag: "CM-6", title: "Author", body: ["Baseline as code", "SCuBA, CIS, STIG", "Reviewed in a pull request"], size: 11}
+  author: {tone: green, width: 250, tag: "CM-6", title: "Author", body: ["Baseline as code", "SCuBA, CIS, agency CM-6", "Reviewed in a pull request"], size: 11}
   assign: {tone: blue, width: 250, tag: "CM-2", title: "Assign", body: ["`Audit` first", "Measure drift before", "any remediation"], size: 11}
   detect: {tone: violet, width: 250, tag: "CM-6(1)", title: "Detect", body: ["Per setting, per asset", "`guestconfigurationresources`"], size: 11}
   fix: {tone: green, width: 250, title: "Remediate", body: ["Idempotent, low blast radius", "`ApplyAndMonitor`; autocorrect", "only where silent repair is OK"], size: 11}

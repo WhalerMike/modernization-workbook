@@ -96,3 +96,13 @@ Placed after the paragraph that follows the platform-model table (former line 10
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | CP-1 | Azure feature is "DNS resolver policy," formerly DNS security policy; price meters keep the old name | Cost paragraph; price table row; platform-model table; c12-azure-dns-security | corrected (name updated; footnote now cites the feature page) | Microsoft Learn, "DNS resolver policy," <https://learn.microsoft.com/en-us/azure/dns/dns-security-policy> (opened Oct 21, 2026): page title and every heading use "DNS resolver policy"; portal resource "DNS Resolver Policies"; URL keeps `dns-security-policy`; networking design guide <https://learn.microsoft.com/azure/networking/design-guide/dns-security> still says "DNS security policy". Meter name "DNS Security Policy" as already logged for the Azure Retail Prices API (Oct 20, 2026); not re-queried |
+
+## Moderate-civilian sweep (October 29, 2026)
+
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; DISA STIGs and DoD Impact Levels survive only as optional references labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| MS-1 | AWS scope listed per service and per Region (Class C East/West; Class D GovCloud columns); either Region can host a Moderate system because the High baseline contains the Moderate controls | Authorization status table, AWS row; c12-aws-scope | verified 2026-10-29 (fact pack) + inference (labelled) | c12-aws-scope (access note added) |
+| MS-2 | Selection framework: new Hardening baseline row (CIS Benchmark, vendor hardening guide or NCP checklist for CM-6 settings; DISA STIG optional, High only) | Decision framework table | framing per brief; facts cross-referenced to Chapter 03 | Chapter 03 (c03-cm6, c03-ncp, c03-cisbench) |
+| MS-3 | "A Moderate authorization doesn't cover High or DoD" kept | Cautions; residual risks | kept: legitimate tier comparison | — |

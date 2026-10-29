@@ -6,60 +6,60 @@ Two things fail quietly
 here: time and licenses.
 
 2
-00:00:03.387 --> 00:00:07.921
+00:00:03.387 --> 00:00:07.938
 Set NTP at the Grid level first, with
-at least three external servers as
+at least three external servers,
 
 3
-00:00:07.921 --> 00:00:12.376
-the STIG recommends, and let the Grid
-Master serve time to the members.
+00:00:07.938 --> 00:00:11.188
+and let the Grid Master
+serve time to the members.
 
 4
-00:00:12.376 --> 00:00:14.450
+00:00:11.188 --> 00:00:13.263
 Time isn't cosmetic: Grid sync,
 
 5
-00:00:14.450 --> 00:00:18.687
+00:00:13.263 --> 00:00:17.500
 Kerberos-signed updates and
 DHCP failover all depend on it.
 
 6
-00:00:18.687 --> 00:00:21.461
+00:00:17.500 --> 00:00:20.273
 One gap for your control mapping:
 
 7
-00:00:21.461 --> 00:00:25.876
+00:00:20.273 --> 00:00:24.688
 NIOS offers no SHA-2 key
 type for NTP authentication.
 
 8
-00:00:25.876 --> 00:00:27.100
+00:00:24.688 --> 00:00:25.913
 Then licenses.
 
 9
-00:00:27.100 --> 00:00:29.275
+00:00:25.913 --> 00:00:28.088
 The trap is the temporary license.
 
 10
-00:00:29.275 --> 00:00:31.629
+00:00:28.088 --> 00:00:30.441
 It lasts sixty days, can't be renewed,
 
 11
-00:00:31.629 --> 00:00:36.663
+00:00:30.441 --> 00:00:35.475
 and when it expires the member's services
 stop and it's evicted from the Grid.
 
 12
-00:00:36.663 --> 00:00:39.351
+00:00:35.475 --> 00:00:38.163
 So never let a production
 member run on one.
 
 13
-00:00:39.351 --> 00:00:44.387
+00:00:38.163 --> 00:00:43.200
 And if the Microsoft Management license
 lapses, sync to the Windows servers stops.
 
 14
-00:00:44.387 --> 00:00:46.630
+00:00:43.200 --> 00:00:45.430
 Now, the virtual appliances.

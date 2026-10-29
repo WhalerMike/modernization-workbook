@@ -91,7 +91,7 @@ The static tests and the inventory tests also run on Windows with Python and PyY
 
 - **Not proven live.** The Arc, Windows, Cisco and Infoblox tasks pass syntax checks and lint but haven't run against those platforms here. The local runs cover the Linux paths only.
 - **`azcmagent show --json` field names.** Microsoft documents `-j` for JSON output and the `status` property, not a full sample of the output; the playbooks read `status` and report `unknown` if it's absent.
-- **The baseline is an example.** Seven settings that show the pattern, not a STIG or CIS benchmark. `sshd_config` files that include drop-in directories (`Include /etc/ssh/sshd_config.d/*.conf`) can override the main file; check the effective value with `sshd -T` in your own baseline.
+- **The baseline is an example.** Seven settings that show the pattern, not a CIS Benchmark profile or an agency's CM-6 baseline. `sshd_config` files that include drop-in directories (`Include /etc/ssh/sshd_config.d/*.conf`) can override the main file; check the effective value with `sshd -T` in your own baseline.
 - **Windows connection.** `group_vars/os_windows.yml` uses WinRM over HTTPS with Kerberos. Ansible also supports PSRP, and SSH on Windows Server versions with a recent enough OpenSSH.
 - **No VMware playbook.** The guide covers vSphere; read VM inventory with the `vmware.vmware.vms` inventory plugin or `vmware.vmware_rest` modules, not the removed `community.vmware.vmware_vm_inventory`.
 
