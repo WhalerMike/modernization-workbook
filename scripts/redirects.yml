@@ -35,8 +35,8 @@ redirects:
   docs/executive-governance/ch09-governance-operating-system/index.html: docs/books/b13-governance/index.html
 
   # Retired content.
-  docs/executive-briefs/governance-os-overview.html: docs/executive-briefs/index.html
-  docs/whitepapers/fmp-governance-os-whitepaper.html: docs/whitepapers/README.html
+  docs/executive-briefs/governance-os-overview.html: docs/books/b13-governance/index.html
+  docs/whitepapers/fmp-governance-os-whitepaper.html: docs/books/b13-governance/index.html
   docs/platform/active-governance.html: index.html
 
   # Modernization Specs: nested copies merged into the flat specs.
