@@ -72,1611 +72,1611 @@ untested against production.
 I'll stick to what matters.
 
 16
-00:00:50.850 --> 00:00:52.237
+00:00:53.850 --> 00:00:55.237
 Here's why this matters.
 
 17
-00:00:52.237 --> 00:00:55.838
+00:00:55.237 --> 00:00:58.838
 A certificate is a signed claim
 that's already been handed out.
 
 18
-00:00:55.838 --> 00:00:57.772
+00:00:58.838 --> 00:01:00.772
 It sits on devices, smart cards,
 
 19
-00:00:57.772 --> 00:01:01.874
+00:01:00.772 --> 00:01:04.874
 load balancers and trust stores
 nobody remembers configuring.
 
 20
-00:01:01.874 --> 00:01:04.275
+00:01:04.874 --> 00:01:07.275
 It doesn't move when the directory moves.
 
 21
-00:01:04.275 --> 00:01:08.650
+00:01:07.275 --> 00:01:11.650
 It keeps working until it expires,
 and then whatever relied on it stops.
 
 22
-00:01:08.650 --> 00:01:13.851
+00:01:11.650 --> 00:01:16.851
 AD CS is the hardest part of Active Directory
 to leave: it's wired into the forest,
 
 23
-00:01:13.851 --> 00:01:17.372
+00:01:16.851 --> 00:01:20.372
 the cloud replacements cover
 only part of the estate,
 
 24
-00:01:17.372 --> 00:01:21.613
+00:01:20.372 --> 00:01:24.613
 and domain controllers need
 certificates as long as they exist.
 
 25
-00:01:21.613 --> 00:01:25.223
+00:01:24.613 --> 00:01:28.223
 Meanwhile the rules keep moving,
 from shrinking public TLS
 
 26
-00:01:25.223 --> 00:01:29.349
+00:01:28.223 --> 00:01:32.349
 lifetimes to strong-mapping
 enforcement to post-quantum planning.
 
 27
-00:01:29.349 --> 00:01:33.323
+00:01:32.349 --> 00:01:36.323
 So this runs as its own program,
 because it fails at expiry,
 
 28
-00:01:33.323 --> 00:01:37.560
+00:01:36.323 --> 00:01:40.560
 not at cutover, often months
 later and far from the cause.
 
 29
-00:01:38.310 --> 00:01:40.710
+00:01:44.310 --> 00:01:46.710
 So what does AD CS actually hold up?
 
 30
-00:01:40.710 --> 00:01:42.073
+00:01:46.710 --> 00:01:48.073
 It isn't one server.
 
 31
-00:01:42.073 --> 00:01:46.459
+00:01:48.073 --> 00:01:52.459
 The typical estate is an offline
 root signing enterprise issuing CAs,
 
 32
-00:01:46.459 --> 00:01:50.846
+00:01:52.459 --> 00:01:56.846
 and every enterprise CA also lives
 as objects across the whole forest,
 
 33
-00:01:50.846 --> 00:01:53.947
+00:01:56.846 --> 00:01:59.947
 which is exactly what ties
 it to Active Directory.
 
 34
-00:01:53.947 --> 00:01:58.898
+00:01:59.947 --> 00:02:04.898
 Domain members enroll through autoenrollment
 and renew quietly in the background.
 
 35
-00:01:58.898 --> 00:02:04.283
+00:02:04.898 --> 00:02:10.283
 Chapter 02's inventory has four layers:
 CAs, templates, issued certificates
 
 36
-00:02:04.283 --> 00:02:09.235
+00:02:10.283 --> 00:02:15.235
 and relying parties, and the relying
 parties decide the order of work.
 
 37
-00:02:09.235 --> 00:02:13.060
+00:02:15.235 --> 00:02:19.060
 Then every template gets one of
 four verdicts, asked in order.
 
 38
-00:02:13.060 --> 00:02:15.598
+00:02:19.060 --> 00:02:21.598
 Retire, if the consumer is going away.
 
 39
-00:02:15.598 --> 00:02:20.097
+00:02:21.598 --> 00:02:26.097
 Migrate, if Cloud PKI or
 Entra CBA replaces it.
 
 40
-00:02:20.097 --> 00:02:24.185
+00:02:26.097 --> 00:02:30.185
 Bridge, if it depends on AD
 itself, like domain controllers.
 
 41
-00:02:24.185 --> 00:02:28.410
+00:02:30.185 --> 00:02:34.410
 And retain what's left, each
 with an owner and a review date.
 
 42
-00:02:29.160 --> 00:02:31.435
+00:02:38.160 --> 00:02:40.435
 Module 1 is hardening what stays.
 
 43
-00:02:31.435 --> 00:02:35.073
+00:02:40.435 --> 00:02:44.073
 The migration takes months,
 and some workloads never leave.
 
 44
-00:02:35.073 --> 00:02:39.772
+00:02:44.073 --> 00:02:48.772
 All that time the CA keeps minting
 credentials the whole environment trusts,
 
 45
-00:02:39.772 --> 00:02:43.223
+00:02:48.772 --> 00:02:52.223
 so one bad setting can undo
 every other identity control.
 
 46
-00:02:43.223 --> 00:02:45.990
+00:02:52.223 --> 00:02:54.990
 Hardening comes first, not last.
 
 47
-00:02:46.740 --> 00:02:50.930
+00:02:58.740 --> 00:03:02.930
 The program carries one rule
 forward unchanged: Critical and High
 
 48
-00:02:50.930 --> 00:02:56.415
+00:03:02.930 --> 00:03:08.415
 misconfigurations are fixed and verified
 before any certificate workload migrates.
 
 49
-00:02:56.415 --> 00:02:59.523
+00:03:08.415 --> 00:03:11.523
 Migrating from a CA that
 can be tricked into issuing
 
 50
-00:02:59.523 --> 00:03:03.065
+00:03:11.523 --> 00:03:15.065
 arbitrary credentials just
 carries the weakness forward.
 
 51
-00:03:03.065 --> 00:03:07.640
+00:03:15.065 --> 00:03:19.640
 And under the bring-your-own-CA model
 the program recommends, the new cloud
 
 52
-00:03:07.640 --> 00:03:12.665
+00:03:19.640 --> 00:03:24.665
 issuer chains to the existing hierarchy,
 so it inherits every weakness on day one.
 
 53
-00:03:12.665 --> 00:03:17.622
+00:03:24.665 --> 00:03:29.622
 The ESC labels from SpecterOps' 2021
 research are the shared vocabulary,
 
 54
-00:03:17.622 --> 00:03:20.927
+00:03:29.622 --> 00:03:32.927
 and the book uses them
 only for defensive checks.
 
 55
-00:03:20.927 --> 00:03:25.490
+00:03:32.927 --> 00:03:37.490
 They live in four places: templates,
 the forest's PKI objects,
 
 56
-00:03:25.490 --> 00:03:29.402
+00:03:37.490 --> 00:03:41.402
 the CA's own settings, and
 web enrollment endpoints.
 
 57
-00:03:29.402 --> 00:03:33.377
+00:03:41.402 --> 00:03:45.377
 Put a Defender for Identity
 sensor on every CA that stays.
 
 58
-00:03:33.377 --> 00:03:39.190
+00:03:45.377 --> 00:03:51.190
 In GCC, some of these assessments are still
 preview, so run the manual checks too.
 
 59
-00:03:39.940 --> 00:03:42.590
+00:03:54.940 --> 00:03:57.590
 The template classes work
 best as a checklist.
 
 60
-00:03:42.590 --> 00:03:47.062
+00:03:57.590 --> 00:04:02.062
 ESC1 is the big one: a template that
 lets the requester name the subject,
 
 61
-00:03:47.062 --> 00:03:49.837
+00:04:02.062 --> 00:04:04.837
 allows sign-in, and lets
 broad groups enroll,
 
 62
-00:03:49.837 --> 00:03:53.615
+00:04:04.837 --> 00:04:08.615
 so someone could get a certificate
 in another person's name.
 
 63
-00:03:53.615 --> 00:03:56.645
+00:04:08.615 --> 00:04:11.645
 Any single fix closes it,
 like building the subject
 
 64
-00:03:56.645 --> 00:03:59.602
+00:04:11.645 --> 00:04:14.602
 from the directory or
 restricting who can enroll.
 
 65
-00:03:59.602 --> 00:04:03.852
+00:04:14.602 --> 00:04:18.852
 ESC2 is a template that allows
 any purpose to broad groups.
 
 66
-00:04:03.852 --> 00:04:07.414
+00:04:18.852 --> 00:04:22.414
 ESC3 is a broadly available
 enrollment agent template,
 
 67
-00:04:07.414 --> 00:04:10.977
+00:04:22.414 --> 00:04:25.977
 which you should treat as an
 impersonation capability.
 
 68
-00:04:10.977 --> 00:04:13.713
+00:04:25.977 --> 00:04:28.713
 And ESC4 is anyone other than the PKI
 
 69
-00:04:13.713 --> 00:04:17.452
+00:04:28.713 --> 00:04:32.452
 administrators being able
 to write to a template.
 
 70
-00:04:17.452 --> 00:04:22.505
+00:04:32.452 --> 00:04:37.505
 One trap when you fix that: if you remove
 Authenticated Users from a template,
 
 71
-00:04:22.505 --> 00:04:27.450
+00:04:37.505 --> 00:04:42.450
 give each issuing CA read access, or
 it can no longer read the template.
 
 72
-00:04:28.200 --> 00:04:31.162
+00:04:46.200 --> 00:04:49.162
 Next, the directory and CA classes.
 
 73
-00:04:31.162 --> 00:04:34.686
+00:04:49.162 --> 00:04:52.686
 ESC5 is write access to
 the forest's PKI objects,
 
 74
-00:04:34.686 --> 00:04:40.738
+00:04:52.686 --> 00:04:58.738
 including the NTAuth store that decides
 which CAs can issue logon certificates.
 
 75
-00:04:40.738 --> 00:04:43.874
+00:04:58.738 --> 00:05:01.874
 Write access there is
 control over authentication,
 
 76
-00:04:43.874 --> 00:04:48.688
+00:05:01.874 --> 00:05:06.688
 and Defender for Identity doesn't assess
 it, so review those permissions by hand.
 
 77
-00:04:48.688 --> 00:04:54.850
+00:05:06.688 --> 00:05:12.850
 ESC6 is a CA-wide flag that lets anyone
 supply alternate names on any template.
 
 78
-00:04:54.850 --> 00:04:58.289
+00:05:12.850 --> 00:05:16.289
 A common belief is that strong
 mapping makes it harmless;
 
 79
-00:04:58.289 --> 00:05:02.313
+00:05:16.289 --> 00:05:20.313
 it doesn't change what the CA will
 sign, so clear the flag regardless.
 
 80
-00:05:02.313 --> 00:05:04.547
+00:05:20.313 --> 00:05:22.547
 ESC7 is broad CA management rights,
 
 81
-00:05:04.547 --> 00:05:09.401
+00:05:22.547 --> 00:05:27.401
 and remember that service accounts like
 the Intune connector hold them too.
 
 82
-00:05:09.401 --> 00:05:14.575
+00:05:27.401 --> 00:05:32.575
 ESC8 is web enrollment accepting
 NTLM without protection.
 
 83
-00:05:14.575 --> 00:05:18.990
+00:05:32.575 --> 00:05:36.990
 Better still, remove web enrollment
 wherever nothing depends on it.
 
 84
-00:05:19.740 --> 00:05:23.344
+00:05:40.740 --> 00:05:44.344
 Every detection in this
 module depends on evidence,
 
 85
-00:05:23.344 --> 00:05:25.690
+00:05:44.344 --> 00:05:46.690
 and AD CS produces none by default.
 
 86
-00:05:25.690 --> 00:05:30.284
+00:05:46.690 --> 00:05:51.284
 Two settings are needed, and neither works
 without the other: the CA's own audit
 
 87
-00:05:30.284 --> 00:05:35.165
+00:05:51.284 --> 00:05:56.165
 filter, and the operating system's audit
 subcategory for Certification Services.
 
 88
-00:05:35.165 --> 00:05:37.629
+00:05:56.165 --> 00:05:58.629
 Turn both on, and test restarts first,
 
 89
-00:05:37.629 --> 00:05:40.915
+00:05:58.629 --> 00:06:01.915
 because full auditing can
 slow them on a large CA.
 
 90
-00:05:40.915 --> 00:05:46.016
+00:06:01.915 --> 00:06:07.016
 Then watch Microsoft's focused baseline
 of events: requests issued and denied,
 
 91
-00:05:46.016 --> 00:05:49.469
+00:06:07.016 --> 00:06:10.469
 revocations, permission
 changes, CA setting changes,
 
 92
-00:05:49.469 --> 00:05:52.765
+00:06:10.469 --> 00:06:13.765
 and anyone tampering with
 the audit filter itself.
 
 93
-00:05:52.765 --> 00:05:56.714
+00:06:13.765 --> 00:06:17.714
 Microsoft recommends generating
 each event in a test first,
 
 94
-00:05:56.714 --> 00:05:59.715
+00:06:17.714 --> 00:06:20.715
 so an assumed event doesn't
 become a blind spot.
 
 95
-00:05:59.715 --> 00:06:03.469
+00:06:20.715 --> 00:06:24.469
 Forward everything to the SIEM,
 and size the local log for the
 
 96
-00:06:03.469 --> 00:06:07.730
+00:06:24.469 --> 00:06:28.730
 longest outage you can imagine,
 so evidence isn't overwritten.
 
 97
-00:06:08.480 --> 00:06:11.768
+00:06:32.480 --> 00:06:35.768
 The program scores each
 class to set priorities.
 
 98
-00:06:11.768 --> 00:06:15.585
+00:06:35.768 --> 00:06:39.585
 To be clear about what's whose: the
 risk and priority columns are the
 
 99
-00:06:15.585 --> 00:06:19.542
+00:06:39.585 --> 00:06:43.542
 program's own scoring, and the
 detection column comes from Microsoft.
 
 100
-00:06:19.542 --> 00:06:26.993
+00:06:43.542 --> 00:06:50.993
 Four classes are Critical and
 Immediate: ESC1, ESC2, ESC6 and ESC8.
 
 101
-00:06:26.993 --> 00:06:29.630
+00:06:50.993 --> 00:06:53.630
 Four are High, to fix within two weeks.
 
 102
-00:06:29.630 --> 00:06:33.988
+00:06:53.630 --> 00:06:57.988
 One change from the original guide:
 ESC2 drops from yes to possible
 
 103
-00:06:33.988 --> 00:06:38.743
+00:06:57.988 --> 00:07:02.743
 for domain compromise, following
 Microsoft's description of its effect.
 
 104
-00:06:38.743 --> 00:06:42.815
+00:07:02.743 --> 00:07:06.815
 Every row is a migration blocker
 until it's verified closed,
 
 105
-00:06:42.815 --> 00:06:46.472
+00:07:06.815 --> 00:07:10.472
 and verified has a definition:
 Defender for Identity
 
 106
-00:06:46.472 --> 00:06:50.129
+00:07:10.472 --> 00:07:14.129
 shows nothing exposed, plus
 a manual re-check for ESC5.
 
 107
-00:06:50.129 --> 00:06:52.055
+00:07:14.129 --> 00:07:16.055
 That's the record the gate reads.
 
 108
-00:06:52.055 --> 00:06:55.187
+00:07:16.055 --> 00:07:19.187
 The first wave doesn't
 exit until every Critical
 
 109
-00:06:55.187 --> 00:06:58.670
+00:07:19.187 --> 00:07:22.670
 and High finding is fixed,
 re-tested and approved.
 
 110
-00:06:59.420 --> 00:07:01.632
+00:07:26.420 --> 00:07:28.632
 Three baselines close the module.
 
 111
-00:07:01.632 --> 00:07:04.486
+00:07:28.632 --> 00:07:31.486
 The AD CS that remains may run for years,
 
 112
-00:07:04.486 --> 00:07:10.549
+00:07:31.486 --> 00:07:37.549
 so strip every template its workloads don't
 need, keep CRLs publishing on schedule,
 
 113
-00:07:10.549 --> 00:07:12.599
+00:07:37.549 --> 00:07:39.599
 back up before every change,
 
 114
-00:07:12.599 --> 00:07:16.433
+00:07:39.599 --> 00:07:43.433
 and treat CA servers as Tier
 0, with keys held in an HSM.
 
 115
-00:07:16.433 --> 00:07:21.070
+00:07:43.433 --> 00:07:48.070
 Cloud PKI removes most of that
 attack surface but adds its own.
 
 116
-00:07:21.070 --> 00:07:26.399
+00:07:48.070 --> 00:07:53.399
 There's no built-in PKI administrator
 role, so scope admins with custom roles,
 
 117
-00:07:26.399 --> 00:07:30.882
+00:07:53.399 --> 00:07:57.882
 keep keys in the TPM, and don't
 build production CAs during a trial.
 
 118
-00:07:30.882 --> 00:07:36.097
+00:07:57.882 --> 00:08:03.097
 Entra CBA is a relying party, so its
 hardening is about trust and binding:
 
 119
-00:07:36.097 --> 00:07:42.019
+00:08:03.097 --> 00:08:09.019
 require high-affinity bindings, require
 CRL checking, and scope each CA to a group.
 
 120
-00:07:42.019 --> 00:07:45.332
+00:08:09.019 --> 00:08:12.332
 Scoping mistakes can lock
 users out, so pilot it.
 
 121
-00:07:45.332 --> 00:07:47.170
+00:08:12.332 --> 00:08:14.170
 Next, the target.
 
 122
-00:07:47.920 --> 00:07:50.608
+00:08:17.920 --> 00:08:20.608
 Module 2 is the target PKI.
 
 123
-00:07:50.608 --> 00:07:53.682
+00:08:20.608 --> 00:08:23.682
 There's no single replacement for AD CS.
 
 124
-00:07:53.682 --> 00:07:58.854
+00:08:23.682 --> 00:08:28.854
 The target is four issuers, each
 serving what only it can: Cloud PKI,
 
 125
-00:07:58.854 --> 00:08:02.589
+00:08:28.854 --> 00:08:32.589
 a smaller hardened AD CS,
 the Federal PKI for PIV,
 
 126
-00:08:02.589 --> 00:08:08.210
+00:08:32.589 --> 00:08:38.210
 and public CAs, with one lifecycle
 platform holding them together.
 
 127
-00:08:08.960 --> 00:08:14.735
+00:08:41.960 --> 00:08:47.735
 Cloud PKI is Microsoft's hosted PKI,
 managed in the Intune admin center.
 
 128
-00:08:14.735 --> 00:08:18.654
+00:08:47.735 --> 00:08:51.654
 For device certificates, it
 replaces the on-premises CA,
 
 129
-00:08:18.654 --> 00:08:21.635
+00:08:51.654 --> 00:08:54.635
 the NDES server and the
 connector in one go.
 
 130
-00:08:21.635 --> 00:08:26.718
+00:08:54.635 --> 00:08:59.718
 It issues client certificates to
 Intune-enrolled devices through SCEP,
 
 131
-00:08:26.718 --> 00:08:30.785
+00:08:59.718 --> 00:09:03.785
 publishes its own CRLs, and
 hosts up to three CAs per tenant.
 
 132
-00:08:30.785 --> 00:08:32.960
+00:09:03.785 --> 00:09:05.960
 Just as important is what it can't do.
 
 133
-00:08:32.960 --> 00:08:37.860
+00:09:05.960 --> 00:09:10.860
 It can't issue to anything not enrolled
 in Intune, and Intune doesn't manage
 
 134
-00:08:37.860 --> 00:08:43.323
+00:09:10.860 --> 00:09:16.323
 Windows Server, so no domain controller or
 web server gets a Cloud PKI certificate.
 
 135
-00:08:43.323 --> 00:08:48.574
+00:09:16.323 --> 00:09:21.574
 It doesn't do PKCS or OCSP, and a CA's
 purposes can't change after creation,
 
 136
-00:08:48.574 --> 00:08:52.286
+00:09:21.574 --> 00:09:25.286
 so plan your three CAs
 before you create anything.
 
 137
-00:08:52.286 --> 00:08:56.673
+00:09:25.286 --> 00:09:29.673
 On licensing and government
 availability, the slide has the details.
 
 138
-00:08:56.673 --> 00:08:59.590
+00:09:29.673 --> 00:09:32.590
 Confirm the entitlement
 on your current plan.
 
 139
-00:09:00.340 --> 00:09:05.590
+00:09:36.340 --> 00:09:41.590
 Cloud PKI gives you two ways to anchor
 trust, and both can live in one tenant.
 
 140
-00:09:05.590 --> 00:09:09.830
+00:09:41.590 --> 00:09:45.830
 With a Cloud PKI root, you create
 the whole hierarchy in the cloud,
 
 141
-00:09:09.830 --> 00:09:13.190
+00:09:45.830 --> 00:09:49.190
 but every relying party has
 to be given the new root.
 
 142
-00:09:13.190 --> 00:09:18.172
+00:09:49.190 --> 00:09:54.171
 With bring your own CA, you create an
 issuing CA in the cloud and your existing
 
 143
-00:09:18.172 --> 00:09:23.153
+00:09:54.171 --> 00:09:59.153
 private CA signs it, so the chain relying
 parties already trust is preserved.
 
 144
-00:09:23.153 --> 00:09:26.715
+00:09:59.153 --> 00:10:02.715
 A few details matter, like
 making sure the signing
 
 145
-00:09:26.715 --> 00:09:30.103
+00:10:02.715 --> 00:10:06.103
 CA publishes its chain
 over HTTP, not just LDAP.
 
 146
-00:09:30.103 --> 00:09:32.640
+00:10:06.103 --> 00:10:08.640
 But one consequence outweighs the rest.
 
 147
-00:09:32.640 --> 00:09:37.034
+00:10:08.640 --> 00:10:13.034
 Under bring your own CA, the private
 root's CRL stays where it is,
 
 148
-00:09:37.034 --> 00:09:41.515
+00:10:13.034 --> 00:10:17.515
 and every relying party, Entra ID
 included, still has to fetch it.
 
 149
-00:09:41.515 --> 00:09:45.180
+00:10:17.515 --> 00:10:21.180
 A root that publishes late
 breaks the cloud issuer too.
 
 150
-00:09:45.930 --> 00:09:46.980
+00:10:24.930 --> 00:10:25.980
 So which model?
 
 151
-00:09:46.980 --> 00:09:49.940
+00:10:25.980 --> 00:10:28.940
 A cloud root needs no
 existing PKI but brings
 
 152
-00:09:49.940 --> 00:09:52.580
+00:10:28.940 --> 00:10:31.580
 a new chain that has to reach everything.
 
 153
-00:09:52.580 --> 00:09:58.128
+00:10:31.580 --> 00:10:37.128
 Bring your own CA preserves the chain you
 have, makes rollback simpler, and adds
 
 154
-00:09:58.128 --> 00:10:03.505
+00:10:37.128 --> 00:10:42.505
 one ongoing dependency: the private
 root's CRL must stay reachable over HTTP.
 
 155
-00:10:03.505 --> 00:10:06.630
+00:10:42.505 --> 00:10:45.630
 Neither can serve domain
 controllers or servers.
 
 156
-00:10:06.630 --> 00:10:10.992
+00:10:45.630 --> 00:10:49.992
 For an organization with an established
 hierarchy and an offline root,
 
 157
-00:10:10.992 --> 00:10:13.505
+00:10:49.992 --> 00:10:52.505
 the program recommends bring your own CA.
 
 158
-00:10:13.505 --> 00:10:18.456
+00:10:52.505 --> 00:10:57.456
 For one building PKI for the first
 time alongside cloud-first identity,
 
 159
-00:10:18.456 --> 00:10:21.980
+00:10:57.456 --> 00:11:00.980
 a cloud root removes every
 on-premises dependency.
 
 160
-00:10:21.980 --> 00:10:26.374
+00:11:00.980 --> 00:11:05.374
 Three rules come with the choice:
 harden the hierarchy before it signs,
 
 161
-00:10:26.374 --> 00:10:31.373
+00:11:05.374 --> 00:11:10.373
 sign with the root rather than an issuing
 CA, and treat the root CRL as production,
 
 162
-00:10:31.373 --> 00:10:34.920
+00:11:10.373 --> 00:11:13.920
 with the next ceremony date
 recorded ahead of time.
 
 163
-00:10:35.670 --> 00:10:41.082
+00:11:17.670 --> 00:11:23.082
 Chapter 04 records what AD CS is
 kept for, and when each use ends.
 
 164
-00:10:41.082 --> 00:10:46.092
+00:11:23.082 --> 00:11:28.092
 Domain controller certificates stay
 until the last domain controller retires,
 
 165
-00:10:46.092 --> 00:10:49.158
+00:11:28.092 --> 00:11:31.158
 because servers can't get
 Cloud PKI certificates.
 
 166
-00:10:49.158 --> 00:10:52.358
+00:11:31.158 --> 00:11:34.358
 LDAPS, RADIUS and VPN server certificates,
 
 167
-00:10:52.358 --> 00:10:56.382
+00:11:34.358 --> 00:11:38.382
 network equipment and HSM-held
 code signing stay too.
 
 168
-00:10:56.382 --> 00:10:58.911
+00:11:38.382 --> 00:11:40.911
 That leaves internal server certificates,
 
 169
-00:10:58.911 --> 00:11:01.369
+00:11:40.911 --> 00:11:43.369
 and the program's
 decision has three parts.
 
 170
-00:11:01.369 --> 00:11:04.180
+00:11:43.369 --> 00:11:46.180
 Internal names come from
 the retained AD CS,
 
 171
-00:11:04.180 --> 00:11:08.942
+00:11:46.180 --> 00:11:50.942
 but they're requested and renewed
 through CyberArk Certificate Manager,
 
 172
-00:11:08.942 --> 00:11:13.782
+00:11:50.942 --> 00:11:55.782
 so every one has an owner, an expiry
 alert and automated renewal in one place.
 
 173
-00:11:13.782 --> 00:11:17.983
+00:11:55.782 --> 00:11:59.983
 Internet-facing names come from a
 public CA, through the same platform.
 
 174
-00:11:17.983 --> 00:11:22.447
+00:11:59.983 --> 00:12:04.447
 And after Active Directory retires,
 issuance moves to a standalone
 
 175
-00:11:22.447 --> 00:11:26.560
+00:12:04.447 --> 00:12:08.560
 CA under the same root, so
 there's no new root to distribute.
 
 176
-00:11:27.310 --> 00:11:32.635
+00:12:12.310 --> 00:12:17.635
 PIV certificates come from the Federal PKI,
 and the migration doesn't change that.
 
 177
-00:11:32.635 --> 00:11:36.260
+00:12:17.635 --> 00:12:21.260
 The target's job for PIV
 is trust, not issuing.
 
 178
-00:11:36.260 --> 00:11:40.014
+00:12:21.260 --> 00:12:25.014
 The federal root isn't in the
 common trust stores by default,
 
 179
-00:11:40.014 --> 00:11:43.537
+00:12:25.014 --> 00:12:28.537
 so distribute it to managed
 devices and domain members,
 
 180
-00:11:43.537 --> 00:11:48.210
+00:12:28.537 --> 00:12:33.210
 keep NTAuth right while the domain
 exists, and upload the chain to Entra ID.
 
 181
-00:11:48.210 --> 00:11:49.422
+00:12:33.210 --> 00:12:34.422
 Then lifecycle.
 
 182
-00:11:49.422 --> 00:11:51.705
+00:12:34.422 --> 00:12:36.705
 Intune handles what it puts on devices,
 
 183
-00:11:51.705 --> 00:11:56.841
+00:12:36.705 --> 00:12:41.841
 and everything else belongs to the lifecycle
 platform, CyberArk Certificate Manager,
 
 184
-00:11:56.841 --> 00:12:01.548
+00:12:41.841 --> 00:12:46.548
 from the program's existing machine-identity
 vendor, so there's no second vendor.
 
 185
-00:12:01.548 --> 00:12:02.873
+00:12:46.548 --> 00:12:47.873
 Two facts shape it.
 
 186
-00:12:02.873 --> 00:12:07.609
+00:12:47.873 --> 00:12:52.609
 Its CA account is privileged, so
 it falls under the ESC7 review.
 
 187
-00:12:07.609 --> 00:12:12.510
+00:12:52.609 --> 00:12:57.510
 And because no matching FedRAMP
 package was listed as of October 20,
 
 188
-00:12:12.510 --> 00:12:17.940
+00:12:57.510 --> 00:13:02.940
 2026, the program runs the self-hosted
 edition inside its own boundary.
 
 189
-00:12:18.690 --> 00:12:21.865
+00:13:06.690 --> 00:13:09.865
 Module 3 is device and user certificates.
 
 190
-00:12:21.865 --> 00:12:24.208
+00:13:09.865 --> 00:13:12.208
 Intune puts certificates on devices,
 
 191
-00:12:24.208 --> 00:12:28.290
+00:13:12.208 --> 00:13:16.290
 and Entra ID decides whether a
 certificate proves who someone is.
 
 192
-00:12:28.290 --> 00:12:32.084
+00:13:16.290 --> 00:13:20.084
 Those are two jobs that fail
 differently: one fails visibly,
 
 193
-00:12:32.084 --> 00:12:35.860
+00:13:20.084 --> 00:13:23.860
 the other can quietly let
 the wrong certificate pass.
 
 194
-00:12:36.610 --> 00:12:40.498
+00:13:27.610 --> 00:13:31.498
 Everything in Intune starts with
 the trusted certificate profile.
 
 195
-00:12:40.498 --> 00:12:44.106
+00:13:31.498 --> 00:13:35.106
 It puts the root and issuing
 CA certificates on the device,
 
 196
-00:12:44.106 --> 00:12:46.136
+00:13:35.106 --> 00:13:37.136
 so the device can build the chain.
 
 197
-00:12:46.136 --> 00:12:50.048
+00:13:37.136 --> 00:13:41.048
 If the device doesn't trust the
 root, every other profile fails.
 
 198
-00:12:50.048 --> 00:12:52.123
+00:13:41.048 --> 00:13:43.123
 Then there are three delivery paths.
 
 199
-00:12:52.123 --> 00:12:55.819
+00:13:43.123 --> 00:13:46.819
 SCEP with Cloud PKI, where
 the device makes its own key,
 
 200
-00:12:55.819 --> 00:13:00.860
+00:13:46.819 --> 00:13:51.860
 contrary to what the old guide said,
 and no on-premises servers are needed.
 
 201
-00:13:00.860 --> 00:13:05.862
+00:13:51.860 --> 00:13:56.862
 SCEP with AD CS, which runs through
 NDES and the Intune connector,
 
 202
-00:13:05.862 --> 00:13:09.260
+00:13:56.862 --> 00:14:00.260
 with the key still never
 leaving the device.
 
 203
-00:13:09.260 --> 00:13:14.935
+00:14:00.260 --> 00:14:05.935
 And PKCS, where the connector generates the
 key on its own server and hands it over.
 
 204
-00:13:14.935 --> 00:13:20.222
+00:14:05.935 --> 00:14:11.222
 That means the private key exists, however
 briefly, somewhere other than the device.
 
 205
-00:13:20.222 --> 00:13:24.520
+00:14:11.222 --> 00:14:15.520
 That trade is why the program
 prefers SCEP wherever it can.
 
 206
-00:13:25.270 --> 00:13:29.645
+00:14:19.270 --> 00:14:23.645
 When the issuer is AD CS, the
 infrastructure rules are strict.
 
 207
-00:13:29.645 --> 00:13:34.148
+00:14:23.645 --> 00:14:28.148
 It needs an enterprise CA, and
 the NDES and connector server must
 
 208
-00:13:34.148 --> 00:13:38.820
+00:14:28.148 --> 00:14:32.820
 sit in the same forest, apart from
 the CA and the domain controllers.
 
 209
-00:13:38.820 --> 00:13:43.710
+00:14:32.820 --> 00:14:37.710
 Here's the subtle one: the SCEP template
 lets the request supply the subject,
 
 210
-00:13:43.710 --> 00:13:46.470
+00:14:37.710 --> 00:14:40.470
 the very setting Module 1 calls dangerous.
 
 211
-00:13:46.470 --> 00:13:50.621
+00:14:40.470 --> 00:14:44.621
 It's safe only while enrollment is
 limited to the NDES service account,
 
 212
-00:13:50.621 --> 00:13:52.982
+00:14:44.621 --> 00:14:46.982
 so audit that permission like any other,
 
 213
-00:13:52.982 --> 00:13:56.632
+00:14:46.982 --> 00:14:50.632
 and keep the connector server in
 the CA's administrative tier.
 
 214
-00:13:56.632 --> 00:14:00.445
+00:14:50.632 --> 00:14:54.445
 NDES can't be clustered, so
 run several identical servers,
 
 215
-00:14:00.445 --> 00:14:04.420
+00:14:54.445 --> 00:14:58.420
 and watch its own certificates,
 a frequent cause of outages.
 
 216
-00:14:04.420 --> 00:14:05.932
+00:14:58.420 --> 00:14:59.932
 Keep the connector current.
 
 217
-00:14:05.932 --> 00:14:09.136
+00:14:59.932 --> 00:15:03.136
 As for which profile
 fits which use, Wi-Fi,
 
 218
-00:14:09.136 --> 00:14:14.650
+00:15:03.136 --> 00:15:08.650
 VPN and sign-in certificates use
 SCEP, and the slide maps the rest.
 
 219
-00:14:15.400 --> 00:14:19.825
+00:15:12.400 --> 00:15:16.825
 Strong certificate mapping isn't a
 future deadline; it's the present.
 
 220
-00:14:19.825 --> 00:14:26.163
+00:15:16.825 --> 00:15:23.163
 KB5014754 moved domain controllers
 from matching certificates by name to
 
 221
-00:14:26.163 --> 00:14:32.300
+00:15:23.163 --> 00:15:29.300
 wanting a strong link to the account, in
 four steps, ending September 9, 2025.
 
 222
-00:14:32.300 --> 00:14:35.999
+00:15:29.300 --> 00:15:32.999
 As of October 2026, every
 current domain controller
 
 223
-00:14:35.999 --> 00:14:39.525
+00:15:32.999 --> 00:15:36.525
 is in Full Enforcement,
 with no supported way back.
 
 224
-00:14:39.525 --> 00:14:42.128
+00:15:36.525 --> 00:15:39.128
 One form of that strong
 link is the account's
 
 225
-00:14:42.128 --> 00:14:44.875
+00:15:39.128 --> 00:15:41.875
 security identifier
 inside the certificate.
 
 226
-00:14:44.875 --> 00:14:49.415
+00:15:41.875 --> 00:15:46.415
 For Intune SCEP profiles, you have to
 add it yourself; the old guide said
 
 227
-00:14:49.415 --> 00:14:54.425
+00:15:46.415 --> 00:15:51.425
 Cloud PKI does it automatically, and
 Microsoft's instructions say otherwise.
 
 228
-00:14:54.425 --> 00:14:59.700
+00:15:51.425 --> 00:15:56.700
 Pilot with a new profile, because editing
 a SCEP profile revokes what it issued.
 
 229
-00:14:59.700 --> 00:15:03.486
+00:15:56.700 --> 00:16:00.486
 Then sweep the domain controller
 logs to find weak certificates,
 
 230
-00:15:03.486 --> 00:15:08.110
+00:16:00.486 --> 00:16:05.110
 and read each event's text, because
 older servers number them differently.
 
 231
-00:15:08.860 --> 00:15:11.998
+00:16:08.860 --> 00:16:11.998
 Here's how a certificate
 sign-in to Entra ID works.
 
 232
-00:15:11.998 --> 00:15:16.182
+00:16:11.998 --> 00:16:16.182
 The user enters a username, chooses
 to use a certificate or smart card,
 
 233
-00:15:16.182 --> 00:15:20.586
+00:16:16.182 --> 00:16:20.586
 and the client hands its certificate
 to a dedicated Microsoft endpoint.
 
 234
-00:15:20.586 --> 00:15:24.565
+00:16:20.586 --> 00:16:24.565
 Entra checks the chain and
 revocation, finds the matching user,
 
 235
-00:15:24.565 --> 00:15:28.622
+00:16:24.565 --> 00:16:28.622
 and decides whether the certificate
 counts as one factor or two.
 
 236
-00:15:28.622 --> 00:15:32.197
+00:16:28.622 --> 00:16:32.197
 One practical tip: let that
 endpoint through your proxies
 
 237
-00:15:32.197 --> 00:15:35.772
+00:16:32.197 --> 00:16:35.772
 without TLS inspection, or
 the certificate never arrives.
 
 238
-00:15:35.772 --> 00:15:38.509
+00:16:35.772 --> 00:16:38.509
 The trust store is also a blast radius.
 
 239
-00:15:38.509 --> 00:15:41.911
+00:16:38.509 --> 00:16:41.911
 Adding a CA lets anything
 it issues authenticate any
 
 240
-00:15:41.911 --> 00:15:44.848
+00:16:41.911 --> 00:16:44.848
 user it can be bound to,
 so add only what you need.
 
 241
-00:15:44.848 --> 00:15:46.963
+00:16:44.848 --> 00:16:46.963
 And turn on required CRL checking,
 
 242
-00:15:46.963 --> 00:15:50.361
+00:16:46.963 --> 00:16:50.361
 because otherwise a revoked
 certificate still works.
 
 243
-00:15:50.361 --> 00:15:54.458
+00:16:50.361 --> 00:16:54.458
 Entra caches CRLs, so when
 revocation must be immediate,
 
 244
-00:15:54.458 --> 00:15:57.040
+00:16:54.458 --> 00:16:57.040
 revoke the user's sessions too.
 
 245
-00:15:57.790 --> 00:16:01.590
+00:17:00.790 --> 00:17:04.590
 Username bindings are how a
 certificate gets tied to a user.
 
 246
-00:16:01.590 --> 00:16:04.155
+00:17:04.590 --> 00:17:07.155
 Some certificate fields are high affinity,
 
 247
-00:16:04.155 --> 00:16:08.002
+00:17:07.155 --> 00:17:11.002
 because they point to exactly one
 certificate, and others are low.
 
 248
-00:16:08.002 --> 00:16:12.943
+00:17:11.002 --> 00:17:15.943
 The old guide classed issuer plus subject
 as high; Microsoft classes it as low,
 
 249
-00:16:12.943 --> 00:16:17.190
+00:17:15.943 --> 00:17:20.190
 because a CA can issue several
 certificates with the same subject.
 
 250
-00:16:17.190 --> 00:16:21.790
+00:17:20.190 --> 00:17:24.790
 And with several bindings, CBA is
 only as secure as the weakest one.
 
 251
-00:16:21.790 --> 00:16:25.010
+00:17:24.790 --> 00:17:28.010
 The program requires high
 affinity in production
 
 252
-00:16:25.010 --> 00:16:28.077
+00:17:28.010 --> 00:17:31.077
 and allows a low-affinity
 binding only in a pilot.
 
 253
-00:16:28.077 --> 00:16:30.719
+00:17:31.077 --> 00:17:33.719
 But switching the tenant
 to high before every
 
 254
-00:16:30.719 --> 00:16:33.152
+00:17:33.719 --> 00:17:36.152
 user's values are
 correct locks people out.
 
 255
-00:16:33.152 --> 00:16:38.178
+00:17:36.152 --> 00:17:41.178
 Separately, a certificate counts as
 multifactor only if a PIN or biometric
 
 256
-00:16:38.178 --> 00:16:42.878
+00:17:41.178 --> 00:17:45.878
 protects it, so a PIV card qualifies
 and a software certificate doesn't.
 
 257
-00:16:42.878 --> 00:16:46.090
+00:17:45.878 --> 00:17:49.090
 And never target CBA at all users.
 
 258
-00:16:46.840 --> 00:16:50.880
+00:17:52.840 --> 00:17:56.880
 Staged rollout lets some
 federated users sign in to Entra
 
 259
-00:16:50.880 --> 00:16:54.752
+00:17:56.880 --> 00:18:00.752
 ID with certificates while
 everyone else stays on AD FS.
 
 260
-00:16:54.752 --> 00:16:58.183
+00:18:00.752 --> 00:18:04.183
 Microsoft is explicit that
 it's a temporary testing tool,
 
 261
-00:16:58.183 --> 00:17:03.073
+00:18:04.183 --> 00:18:09.073
 not a permanent mixed state, and its limits
 are tighter than the old guide implied,
 
 262
-00:17:03.073 --> 00:17:05.628
+00:18:09.073 --> 00:18:11.628
 from group counts to
 how long changes take.
 
 263
-00:17:05.628 --> 00:17:10.358
+00:18:11.628 --> 00:18:16.358
 The program pilots with small cloud
 groups of ten to twenty users, checks the
 
 264
-00:17:10.358 --> 00:17:12.836
+00:18:16.358 --> 00:18:18.836
 sign-in log to see which binding matched,
 
 265
-00:17:12.836 --> 00:17:15.615
+00:18:18.836 --> 00:18:21.615
 and grows in steps until
 the domain converts.
 
 266
-00:17:15.615 --> 00:17:19.689
+00:18:21.615 --> 00:18:25.689
 Moving off AD FS doesn't change
 the credential or the PKI,
 
 267
-00:17:19.689 --> 00:17:21.815
+00:18:25.689 --> 00:18:27.815
 just where checking happens.
 
 268
-00:17:21.815 --> 00:17:24.380
+00:18:27.815 --> 00:18:30.380
 So get trust and binding parity first,
 
 269
-00:17:24.380 --> 00:17:27.690
+00:18:30.380 --> 00:18:33.690
 keep the staged period
 short, and back up the farm.
 
 270
-00:17:27.690 --> 00:17:31.540
+00:18:33.690 --> 00:18:37.540
 And contrary to the old guide,
 conversion isn't one-way,
 
 271
-00:17:31.540 --> 00:17:34.780
+00:18:37.540 --> 00:18:40.780
 as long as AD FS can
 still be brought back.
 
 272
-00:17:35.530 --> 00:17:39.455
+00:18:44.530 --> 00:18:48.455
 Module 4 is coexistence,
 migration and retirement.
 
 273
-00:17:39.455 --> 00:17:44.468
+00:18:48.455 --> 00:18:53.468
 Coexistence isn't the last phase; it's
 the condition the whole project runs in.
 
 274
-00:17:44.468 --> 00:17:47.603
+00:18:53.468 --> 00:18:56.603
 For most of the migration
 both PKIs are production,
 
 275
-00:17:47.603 --> 00:17:52.750
+00:18:56.603 --> 00:19:01.750
 and the plan has to say which one each
 certificate comes from, and how to go back.
 
 276
-00:17:53.500 --> 00:17:56.450
+00:19:05.500 --> 00:19:08.450
 The program runs
 coexistence on five rules.
 
 277
-00:17:56.450 --> 00:18:00.062
+00:19:08.450 --> 00:19:12.062
 One issuer at a time for each
 use case and population.
 
 278
-00:18:00.062 --> 00:18:02.424
+00:19:12.062 --> 00:19:14.424
 Trust goes up before issuance moves.
 
 279
-00:18:02.424 --> 00:18:05.875
+00:19:14.424 --> 00:19:17.875
 Revocation is reachable
 wherever validation happens.
 
 280
-00:18:05.875 --> 00:18:10.687
+00:19:17.875 --> 00:19:22.687
 Nothing is revoked just to force a move;
 certificates are replaced at renewal.
 
 281
-00:18:10.687 --> 00:18:13.088
+00:19:22.687 --> 00:19:25.088
 And every move has a tested rollback.
 
 282
-00:18:13.088 --> 00:18:16.869
+00:19:25.088 --> 00:19:28.869
 Some things stay on AD CS
 until Active Directory retires,
 
 283
-00:18:16.869 --> 00:18:20.088
+00:19:28.869 --> 00:19:32.088
 like domain controller
 and LDAPS certificates;
 
 284
-00:18:20.088 --> 00:18:25.399
+00:19:32.088 --> 00:19:37.399
 the old guide said LDAPS could move to Cloud
 PKI, but an LDAPS endpoint is a server.
 
 285
-00:18:25.399 --> 00:18:30.975
+00:19:37.399 --> 00:19:42.975
 RADIUS needs special care, because it must
 trust both chains for the whole overlap.
 
 286
-00:18:30.975 --> 00:18:36.596
+00:19:42.975 --> 00:19:48.596
 And trust runs both ways: the AD CS
 chain into Entra ID, and the cloud chain
 
 287
-00:18:36.596 --> 00:18:42.660
+00:19:48.596 --> 00:19:54.660
 into each forest, with NTAuth only
 for CAs that issue logon certificates.
 
 288
-00:18:43.410 --> 00:18:47.060
+00:19:58.410 --> 00:20:02.060
 Most coexistence outages are
 really revocation outages.
 
 289
-00:18:47.060 --> 00:18:52.247
+00:20:02.060 --> 00:20:07.247
 Relying parties now sit in three places,
 inside the network, on the internet,
 
 290
-00:18:52.247 --> 00:18:57.685
+00:20:07.247 --> 00:20:12.685
 and in Entra ID, and each CA's revocation
 list has to be reachable from all of them.
 
 291
-00:18:57.685 --> 00:19:04.097
+00:20:12.685 --> 00:20:19.097
 The usual trap is an AD CS CA that publishes
 only over LDAP or an internal address.
 
 292
-00:19:04.097 --> 00:19:09.048
+00:20:19.097 --> 00:20:24.048
 Entra ID needs one internet-reachable
 HTTP address per CA,
 
 293
-00:19:09.048 --> 00:19:11.936
+00:20:24.048 --> 00:20:26.936
 with no OCSP, and size limits apply.
 
 294
-00:19:11.936 --> 00:19:14.854
+00:20:26.936 --> 00:20:29.854
 Fixing that has a twist:
 the new address appears
 
 295
-00:19:14.854 --> 00:19:17.698
+00:20:29.854 --> 00:20:32.698
 only in certificates
 issued after the change.
 
 296
-00:19:17.698 --> 00:19:22.060
+00:20:32.698 --> 00:20:37.060
 Entra ID uses its own trust store
 setting, so sign-in works right away,
 
 297
-00:19:22.060 --> 00:19:26.734
+00:20:37.060 --> 00:20:41.734
 but other relying parties keep failing
 until their certificates renew.
 
 298
-00:19:26.734 --> 00:19:30.016
+00:20:41.734 --> 00:20:45.016
 The program publishes on
 plain anonymous HTTP,
 
 299
-00:19:30.016 --> 00:19:34.590
+00:20:45.016 --> 00:20:49.590
 because Entra ID has to download
 the list without signing in.
 
 300
-00:19:35.340 --> 00:19:37.625
+00:20:53.340 --> 00:20:55.625
 The migration runs in six waves,
 
 301
-00:19:37.625 --> 00:19:41.315
+00:20:55.625 --> 00:20:59.315
 and each wave's exit gate is
 the next one's entry gate.
 
 302
-00:19:41.315 --> 00:19:44.922
+00:20:59.315 --> 00:21:02.922
 The durations are planning
 figures for a single forest,
 
 303
-00:19:44.922 --> 00:19:49.078
+00:21:02.922 --> 00:21:07.078
 not commitments, and Appendix A
 turns each wave into a checklist.
 
 304
-00:19:49.078 --> 00:19:51.590
+00:21:07.078 --> 00:21:09.590
 Wave 1 assesses and changes nothing.
 
 305
-00:19:51.590 --> 00:19:56.594
+00:21:09.590 --> 00:21:14.594
 Wave 2 builds the foundation, and it
 doesn't exit until trust profiles reach
 
 306
-00:19:56.594 --> 00:20:01.840
+00:21:14.594 --> 00:21:19.840
 ninety-nine percent of managed devices
 and every CRL is reachable everywhere.
 
 307
-00:20:01.840 --> 00:20:04.653
+00:21:19.840 --> 00:21:22.653
 Wave 3 pilots fifty to a hundred devices,
 
 308
-00:20:04.653 --> 00:20:07.978
+00:21:22.653 --> 00:21:25.978
 with autoenrollment left
 on so rollback works.
 
 309
-00:20:07.978 --> 00:20:13.062
+00:21:25.978 --> 00:21:31.062
 Wave 4 scales in rings, Wave 5
 converts the domains while keeping
 
 310
-00:20:13.062 --> 00:20:17.666
+00:21:31.062 --> 00:21:35.666
 AD FS restorable for thirty
 days, and Wave 6 decommissions.
 
 311
-00:20:17.666 --> 00:20:19.765
+00:21:35.666 --> 00:21:37.765
 Rehearse each rollback first.
 
 312
-00:20:19.765 --> 00:20:25.045
+00:21:37.765 --> 00:21:43.045
 And remember, removing or editing a
 SCEP profile revokes its certificates,
 
 313
-00:20:25.045 --> 00:20:28.290
+00:21:43.045 --> 00:21:46.290
 so treat profile changes as real changes.
 
 314
-00:20:29.040 --> 00:20:33.262
+00:21:50.040 --> 00:21:54.262
 Appendix B is the starting matrix
 that seeds wave 1, and the rule is
 
 315
-00:20:33.262 --> 00:20:37.640
+00:21:54.262 --> 00:21:58.640
 to classify each template by what it
 actually issued, not by its name.
 
 316
-00:20:37.640 --> 00:20:39.815
+00:21:58.640 --> 00:22:00.815
 A few facts decide most rows.
 
 317
-00:20:39.815 --> 00:20:45.213
+00:22:00.815 --> 00:22:06.213
 Cloud PKI issues only to Intune devices,
 and Intune doesn't manage servers,
 
 318
-00:20:45.213 --> 00:20:49.815
+00:22:06.213 --> 00:22:10.815
 so every server certificate is
 bridge or retain, never migrate.
 
 319
-00:20:49.815 --> 00:20:54.548
+00:22:10.815 --> 00:22:15.548
 For example, the old guide moved Web
 Server to Cloud PKI, but web servers
 
 320
-00:20:54.548 --> 00:21:00.015
+00:22:15.548 --> 00:22:21.015
 aren't Intune devices, so it stays, renewed
 through CyberArk Certificate Manager.
 
 321
-00:21:00.015 --> 00:21:05.440
+00:22:21.015 --> 00:22:26.440
 Some templates even carry two verdicts,
 migrating delivery while the issuer stays.
 
 322
-00:21:05.440 --> 00:21:09.260
+00:22:26.440 --> 00:22:30.260
 Before any migrate row moves,
 it has to pass four checks,
 
 323
-00:21:09.260 --> 00:21:11.977
+00:22:30.260 --> 00:22:32.977
 which become wave 4's per-ring exit test.
 
 324
-00:21:11.977 --> 00:21:15.154
+00:22:32.977 --> 00:22:36.154
 And every bridge row records
 the event that ends it,
 
 325
-00:21:15.154 --> 00:21:18.150
+00:22:36.154 --> 00:22:39.150
 so retirement is scheduled, not forgotten.
 
 326
-00:21:18.900 --> 00:21:22.175
+00:22:42.900 --> 00:22:46.175
 Migration ends on a
 date; certificates don't.
 
 327
-00:21:22.175 --> 00:21:27.356
+00:22:46.175 --> 00:22:51.356
 Public TLS validity falls to forty-seven
 days from March 15, 2029, and the
 
 328
-00:21:27.356 --> 00:21:32.888
+00:22:51.356 --> 00:22:56.888
 design rule is that no certificate may
 depend on a person remembering a date.
 
 329
-00:21:32.888 --> 00:21:37.855
+00:22:56.888 --> 00:23:01.855
 So the target has three renewal engines:
 Intune profiles for managed devices,
 
 330
-00:21:37.855 --> 00:21:40.805
+00:23:01.855 --> 00:23:04.805
 AD CS autoenrollment
 for domain controllers,
 
 331
-00:21:40.805 --> 00:21:46.162
+00:23:04.805 --> 00:23:10.162
 and CyberArk Certificate Manager for server
 certificates, each with a named owner.
 
 332
-00:21:46.162 --> 00:21:48.924
+00:23:10.162 --> 00:23:12.924
 Neither Microsoft issuer offers ACME,
 
 333
-00:21:48.924 --> 00:21:54.275
+00:23:12.924 --> 00:23:18.275
 so the lifecycle platform provides it,
 on its own servers outside FIPS mode.
 
 334
-00:21:54.275 --> 00:21:57.617
+00:23:18.275 --> 00:23:21.617
 Drift checks run at least weekly
 and are kept as evidence,
 
 335
-00:21:57.617 --> 00:22:00.887
+00:23:21.617 --> 00:23:24.887
 because an assessor asks how
 long a finding stayed open.
 
 336
-00:22:00.887 --> 00:22:04.955
+00:23:24.887 --> 00:23:28.955
 And treat a mismatched identifier in
 a certificate as a security event,
 
 337
-00:22:04.955 --> 00:22:08.760
+00:23:28.955 --> 00:23:32.760
 because it can mean the certificate
 went to a different user.
 
 338
-00:22:09.510 --> 00:22:13.097
+00:23:36.510 --> 00:23:40.097
 Last, retiring AD CS, the sixth wave.
 
 339
-00:22:13.097 --> 00:22:18.187
+00:23:40.097 --> 00:23:45.187
 It applies only to CAs that no longer
 serve a retained use; domain controllers
 
 340
-00:22:18.187 --> 00:22:22.561
+00:23:45.187 --> 00:23:49.561
 usually keep at least one issuing
 CA alive for as long as they exist.
 
 341
-00:22:22.561 --> 00:22:26.734
+00:23:49.561 --> 00:23:53.734
 The gate is a finished cutover, a
 clean thirty-day rollback window,
 
 342
-00:22:26.734 --> 00:22:30.135
+00:23:53.734 --> 00:23:57.135
 and every retained use running
 on the CAs that remain.
 
 343
-00:22:30.135 --> 00:22:34.459
+00:23:57.135 --> 00:24:01.459
 Then confirm nothing depends on the
 CA, stop new issuance, back it up,
 
 344
-00:22:34.459 --> 00:22:38.547
+00:24:01.459 --> 00:24:05.547
 publish a final revocation list,
 and clean up trust everywhere.
 
 345
-00:22:38.547 --> 00:22:42.985
+00:24:05.547 --> 00:24:09.985
 Keep the published endpoints serving
 until the last certificate expires.
 
 346
-00:22:42.985 --> 00:22:48.573
+00:24:09.985 --> 00:24:15.573
 The assessor reads the result
 as NIST SP 800-53 evidence.
 
 347
-00:22:48.573 --> 00:22:54.483
+00:24:15.573 --> 00:24:21.483
 So, from Monday: harden first, choose
 the root deliberately, issue strongly
 
 348
-00:22:54.483 --> 00:23:00.685
+00:24:21.483 --> 00:24:27.685
 mapped certificates, keep CRLs reachable,
 and retire AD CS last, with evidence.
 
 349
-00:23:00.685 --> 00:23:01.520
+00:24:27.685 --> 00:24:28.520
 Thank you.

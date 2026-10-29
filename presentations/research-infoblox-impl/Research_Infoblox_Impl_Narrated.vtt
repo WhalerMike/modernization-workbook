@@ -58,1388 +58,1388 @@ guidance and inferences as we go.
 The slides and notes carry the detail.
 
 13
-00:00:47.230 --> 00:00:49.773
+00:00:50.230 --> 00:00:52.773
 Here's the frame for the whole guide:
 
 14
-00:00:49.773 --> 00:00:53.455
+00:00:52.773 --> 00:00:56.455
 Book 08's design, mapped
 onto the way Infoblox works.
 
 15
-00:00:53.455 --> 00:00:58.549
+00:00:56.455 --> 00:01:01.549
 Book 08 wants governed DNS and address
 management, and on NIOS that's a Grid,
 
 16
-00:00:58.549 --> 00:01:01.806
+00:01:01.549 --> 00:01:04.806
 one Grid Master holding
 the database and every
 
 17
-00:01:01.806 --> 00:01:05.230
+00:01:04.806 --> 00:01:08.230
 member getting its copy
 over an encrypted tunnel.
 
 18
-00:01:05.230 --> 00:01:10.349
+00:01:08.230 --> 00:01:13.349
 Book 08 wants a period of coexistence
 with Microsoft, so NIOS first manages
 
 19
-00:01:10.349 --> 00:01:15.468
+00:01:13.349 --> 00:01:18.468
 the Windows servers read-only, then takes
 over zones and scopes one at a time.
 
 20
-00:01:15.468 --> 00:01:20.893
+00:01:18.468 --> 00:01:23.893
 Book 08 requires DNSSEC, so the Grid
 Master signs as a hidden primary.
 
 21
-00:01:20.893 --> 00:01:26.129
+00:01:23.893 --> 00:01:29.129
 And its evidence becomes syslog, audit
 logs, backups and the STIG checklist.
 
 22
-00:01:26.129 --> 00:01:32.380
+00:01:29.129 --> 00:01:35.380
 Book 08's six phases still govern, but
 this guide adds a Phase 0 of decisions.
 
 23
-00:01:33.130 --> 00:01:38.455
+00:01:39.130 --> 00:01:44.455
 Before you build anything, four decisions,
 because each is expensive to reverse.
 
 24
-00:01:38.455 --> 00:01:40.330
+00:01:44.455 --> 00:01:46.330
 First, FIPS mode.
 
 25
-00:01:40.330 --> 00:01:44.849
+00:01:46.330 --> 00:01:50.849
 You can only turn it on after a factory
 reset, turning it off needs another,
 
 26
-00:01:44.849 --> 00:01:49.293
+00:01:50.849 --> 00:01:55.293
 and it disables every cloud connection,
 including the Infoblox Portal.
 
 27
-00:01:49.293 --> 00:01:54.195
+00:01:55.293 --> 00:02:00.195
 Be precise about the claim, too:
 NIOS is supported in FIPS mode,
 
 28
-00:01:54.195 --> 00:02:00.079
+00:02:00.195 --> 00:02:06.079
 but the FIPS 140-3 and Common Criteria
 certifications are still pending.
 
 29
-00:02:00.079 --> 00:02:04.692
+00:02:06.079 --> 00:02:10.692
 Running in FIPS mode isn't the same
 as holding a validated module.
 
 30
-00:02:04.692 --> 00:02:09.643
+00:02:10.692 --> 00:02:15.643
 Second, pick the long-term-support train,
 because the STIG measures you against it.
 
 31
-00:02:09.643 --> 00:02:13.692
+00:02:15.643 --> 00:02:19.692
 Third, fix the weak DNSSEC
 defaults before you sign anything.
 
 32
-00:02:13.692 --> 00:02:16.894
+00:02:19.692 --> 00:02:22.894
 And fourth, decide on a
 hardware security module,
 
 33
-00:02:16.894 --> 00:02:20.780
+00:02:22.894 --> 00:02:26.780
 since the STIG expects one
 or a documented exception.
 
 34
-00:02:21.530 --> 00:02:23.268
+00:02:30.530 --> 00:02:32.268
 Part 1 is building the Grid.
 
 35
-00:02:23.268 --> 00:02:27.498
+00:02:32.268 --> 00:02:36.498
 We'll cover the Grid Master pair
 and its candidate, how members join,
 
 36
-00:02:27.498 --> 00:02:31.421
+00:02:36.498 --> 00:02:40.421
 time and licensing, including
 one trap that can evict a member,
 
 37
-00:02:31.421 --> 00:02:34.160
+00:02:40.421 --> 00:02:43.160
 and virtual appliances in the clouds.
 
 38
-00:02:34.910 --> 00:02:36.721
+00:02:46.910 --> 00:02:48.721
 The Grid Master comes first,
 
 39
-00:02:36.721 --> 00:02:40.423
+00:02:48.721 --> 00:02:52.423
 built as a high-availability
 pair, and members come after.
 
 40
-00:02:40.423 --> 00:02:43.688
+00:02:52.423 --> 00:02:55.688
 The pair depends on the switch
 being set up right, so the physical
 
 41
-00:02:43.688 --> 00:02:47.385
+00:02:55.688 --> 00:02:59.385
 cabling and switch-port settings on
 the slide matter more than they look.
 
 42
-00:02:47.385 --> 00:02:50.135
+00:02:59.385 --> 00:03:02.135
 You run a wizard on node
 one to create the Grid,
 
 43
-00:02:50.135 --> 00:02:54.519
+00:03:02.135 --> 00:03:06.519
 then join node two with the same name,
 virtual address and shared secret,
 
 44
-00:02:54.519 --> 00:02:58.235
+00:03:06.519 --> 00:03:10.235
 and manage the pair through the
 virtual address from then on.
 
 45
-00:02:58.235 --> 00:03:01.016
+00:03:10.235 --> 00:03:13.016
 The step people skip is
 the defaults: the login,
 
 46
-00:03:01.016 --> 00:03:05.845
+00:03:13.016 --> 00:03:17.845
 the Grid name and the shared secret all
 ship with default values you must change,
 
 47
-00:03:05.845 --> 00:03:09.723
+00:03:17.845 --> 00:03:21.723
 and escrow the new secret, because
 Infoblox says if you forget it,
 
 48
-00:03:09.723 --> 00:03:11.772
+00:03:21.723 --> 00:03:23.772
 you have to contact their support.
 
 49
-00:03:11.772 --> 00:03:14.500
+00:03:23.772 --> 00:03:26.500
 Next, the backup Grid Master.
 
 50
-00:03:15.250 --> 00:03:17.434
+00:03:30.250 --> 00:03:32.434
 Next comes the Grid Master Candidate,
 
 51
-00:03:17.434 --> 00:03:20.675
+00:03:32.434 --> 00:03:35.675
 the appliance that takes over
 if the Grid Master is lost.
 
 52
-00:03:20.675 --> 00:03:24.144
+00:03:35.675 --> 00:03:39.144
 It holds a full copy of the
 database, should be the same model,
 
 53
-00:03:24.144 --> 00:03:28.250
+00:03:39.144 --> 00:03:43.250
 and Infoblox gives you a promote test
 to check it can reach the members.
 
 54
-00:03:28.250 --> 00:03:31.106
+00:03:43.250 --> 00:03:46.106
 Members are defined on
 the Grid Master first,
 
 55
-00:03:31.106 --> 00:03:35.275
+00:03:46.106 --> 00:03:50.275
 then joined with its virtual address,
 Grid name and shared secret.
 
 56
-00:03:35.275 --> 00:03:37.938
+00:03:50.275 --> 00:03:52.938
 The ports the Grid needs
 are listed on the slide.
 
 57
-00:03:37.938 --> 00:03:43.451
+00:03:52.938 --> 00:03:58.451
 The one to watch is FIPS mode, which moves
 the Grid's tunnel onto different ports.
 
 58
-00:03:43.451 --> 00:03:46.837
+00:03:58.451 --> 00:04:01.837
 So, as an inference,
 firewall rules written only
 
 59
-00:03:46.837 --> 00:03:50.225
+00:04:01.837 --> 00:04:05.225
 for the usual ports won't
 be enough on a FIPS Grid.
 
 60
-00:03:50.225 --> 00:03:52.960
+00:04:05.225 --> 00:04:07.960
 Next, two quiet failure modes.
 
 61
-00:03:53.710 --> 00:03:57.047
+00:04:11.710 --> 00:04:15.047
 Two things fail quietly
 here: time and licenses.
 
 62
-00:03:57.047 --> 00:04:01.581
+00:04:15.047 --> 00:04:19.581
 Set NTP at the Grid level first, with
 at least three external servers as
 
 63
-00:04:01.581 --> 00:04:06.036
+00:04:19.581 --> 00:04:24.036
 the STIG recommends, and let the Grid
 Master serve time to the members.
 
 64
-00:04:06.036 --> 00:04:08.110
+00:04:24.036 --> 00:04:26.110
 Time isn't cosmetic: Grid sync,
 
 65
-00:04:08.110 --> 00:04:12.347
+00:04:26.110 --> 00:04:30.347
 Kerberos-signed updates and
 DHCP failover all depend on it.
 
 66
-00:04:12.347 --> 00:04:15.121
+00:04:30.347 --> 00:04:33.121
 One gap for your control mapping:
 
 67
-00:04:15.121 --> 00:04:19.536
+00:04:33.121 --> 00:04:37.536
 NIOS offers no SHA-2 key
 type for NTP authentication.
 
 68
-00:04:19.536 --> 00:04:20.760
+00:04:37.536 --> 00:04:38.760
 Then licenses.
 
 69
-00:04:20.760 --> 00:04:22.935
+00:04:38.760 --> 00:04:40.935
 The trap is the temporary license.
 
 70
-00:04:22.935 --> 00:04:25.289
+00:04:40.935 --> 00:04:43.289
 It lasts sixty days, can't be renewed,
 
 71
-00:04:25.289 --> 00:04:30.323
+00:04:43.289 --> 00:04:48.323
 and when it expires the member's services
 stop and it's evicted from the Grid.
 
 72
-00:04:30.323 --> 00:04:33.011
+00:04:48.323 --> 00:04:51.011
 So never let a production
 member run on one.
 
 73
-00:04:33.011 --> 00:04:38.047
+00:04:51.011 --> 00:04:56.047
 And if the Microsoft Management license
 lapses, sync to the Windows servers stops.
 
 74
-00:04:38.047 --> 00:04:40.590
+00:04:56.047 --> 00:04:58.590
 Now, the virtual appliances.
 
 75
-00:04:41.340 --> 00:04:47.090
+00:05:02.340 --> 00:05:08.090
 Virtual appliances, vNIOS,
 run on VMware, Azure and AWS.
 
 76
-00:04:47.090 --> 00:04:50.644
+00:05:08.090 --> 00:05:11.644
 On VMware, the advice is to
 leave the VM's settings alone,
 
 77
-00:04:50.644 --> 00:04:55.540
+00:05:11.644 --> 00:05:16.540
 because changing them may violate the
 licensing terms and stop it joining.
 
 78
-00:04:55.540 --> 00:05:02.251
+00:05:16.540 --> 00:05:23.251
 On Azure and AWS, high availability arrived
 in 9.0.4, with limits to plan around,
 
 79
-00:05:02.251 --> 00:05:08.003
+00:05:23.251 --> 00:05:29.003
 such as both nodes in the same region
 and zone, and no IPv6 failover.
 
 80
-00:05:08.003 --> 00:05:12.485
+00:05:29.003 --> 00:05:33.485
 Here's the gap that matters for
 government: the HA prerequisites list only
 
 81
-00:05:12.485 --> 00:05:17.115
+00:05:33.485 --> 00:05:38.115
 commercial cloud endpoints, with nothing
 for GovCloud or Azure Government.
 
 82
-00:05:17.115 --> 00:05:22.515
+00:05:38.115 --> 00:05:43.515
 So ask Infoblox, in writing, before
 you rely on vNIOS failover there.
 
 83
-00:05:22.515 --> 00:05:28.610
+00:05:43.515 --> 00:05:49.610
 And one constraint that shapes Part 2: vNIOS
 members can't manage Microsoft servers.
 
 84
-00:05:29.360 --> 00:05:33.344
+00:05:53.360 --> 00:05:57.344
 Part 2 is the migration from
 Microsoft, and it's the longest part,
 
 85
-00:05:33.344 --> 00:05:35.873
+00:05:57.344 --> 00:05:59.873
 because it's where a mistake hurts users.
 
 86
-00:05:35.873 --> 00:05:39.290
+00:05:59.873 --> 00:06:03.290
 We'll cover managing,
 importing, signed updates,
 
 87
-00:05:39.290 --> 00:05:44.730
+00:06:03.290 --> 00:06:08.730
 the DHCP takeover and its one
 destructive trap, failover, and rollback.
 
 88
-00:05:45.480 --> 00:05:49.367
+00:06:12.480 --> 00:06:16.367
 Method A is the one Book 08's
 coexistence phase leans on:
 
 89
-00:05:49.367 --> 00:05:53.168
+00:06:16.367 --> 00:06:20.168
 manage the Windows servers
 first, then take them over.
 
 90
-00:05:53.168 --> 00:05:58.960
+00:06:20.168 --> 00:06:25.960
 Grid members manage Windows DNS and DHCP
 without an agent, read-only or read-write,
 
 91
-00:05:58.960 --> 00:06:03.542
+00:06:25.960 --> 00:06:30.542
 using a physical member with the
 Microsoft Management license.
 
 92
-00:06:03.542 --> 00:06:07.914
+00:06:30.542 --> 00:06:34.914
 Most zone types and records sync,
 but conditional forwarders don't,
 
 93
-00:06:07.914 --> 00:06:11.968
+00:06:34.914 --> 00:06:38.968
 so you still need Book 08's
 PowerShell export to recreate them.
 
 94
-00:06:11.968 --> 00:06:16.828
+00:06:38.968 --> 00:06:43.828
 A few rules bite: each Windows server
 syncs into one view, the first sync
 
 95
-00:06:16.828 --> 00:06:21.855
+00:06:43.828 --> 00:06:48.855
 belongs off-hours, and a failover
 mid-sync loses recent Grid-side changes.
 
 96
-00:06:21.855 --> 00:06:26.299
+00:06:48.855 --> 00:06:53.299
 The design guidance is to add the
 Windows servers read-only in Phase 1,
 
 97
-00:06:26.299 --> 00:06:29.105
+00:06:53.299 --> 00:06:56.105
 so the synced views
 become a live inventory.
 
 98
-00:06:29.105 --> 00:06:30.970
+00:06:56.105 --> 00:06:57.970
 Then you move the zones.
 
 99
-00:06:31.720 --> 00:06:34.345
+00:07:01.720 --> 00:07:04.345
 Method B moves zones by zone transfer.
 
 100
-00:06:34.345 --> 00:06:38.299
+00:07:04.345 --> 00:07:08.299
 You let the Windows server transfer
 each zone to the Grid Master,
 
 101
-00:06:38.299 --> 00:06:41.879
+00:07:08.299 --> 00:07:11.879
 create the same zone on NIOS,
 import it, and check the record
 
 102
-00:06:41.879 --> 00:06:45.982
+00:07:11.879 --> 00:07:15.982
 counts and answers before you
 change any delegation or forwarder.
 
 103
-00:06:45.982 --> 00:06:48.294
+00:07:15.982 --> 00:07:18.294
 That's Book 08's cutover loop.
 
 104
-00:06:48.294 --> 00:06:50.931
+00:07:18.294 --> 00:07:20.931
 The import brings in the ordinary records,
 
 105
-00:06:50.931 --> 00:06:55.826
+00:07:20.931 --> 00:07:25.826
 but recreates the zone's own name server
 and start-of-authority records rather
 
 106
-00:06:55.826 --> 00:07:00.570
+00:07:25.826 --> 00:07:30.570
 than copying them, which matches Book
 08's rule never to migrate the zone apex.
 
 107
-00:07:00.570 --> 00:07:04.320
+00:07:30.570 --> 00:07:34.320
 Subzones come in as delegations,
 so import them separately.
 
 108
-00:07:04.320 --> 00:07:08.188
+00:07:34.320 --> 00:07:38.188
 For bulk data there's an import
 wizard, but Infoblox warns mass
 
 109
-00:07:08.188 --> 00:07:12.208
+00:07:38.188 --> 00:07:42.208
 imports can cause a service outage,
 so run them in a change window.
 
 110
-00:07:12.208 --> 00:07:14.830
+00:07:42.208 --> 00:07:44.830
 Next, Active Directory zones.
 
 111
-00:07:15.580 --> 00:07:18.633
+00:07:48.580 --> 00:07:51.633
 Active Directory zones and
 Kerberos-signed updates
 
 112
-00:07:18.633 --> 00:07:21.755
+00:07:51.633 --> 00:07:54.755
 start with a correction to
 the vendor's documentation.
 
 113
-00:07:21.755 --> 00:07:26.518
+00:07:54.755 --> 00:07:59.518
 Infoblox's page for generating
 the key file shows RC4 encryption.
 
 114
-00:07:26.518 --> 00:07:32.005
+00:07:59.518 --> 00:08:05.005
 But Microsoft's July 2026 update
 moved Kerberos RC4 protections into
 
 115
-00:07:32.005 --> 00:07:38.343
+00:08:05.005 --> 00:08:11.343
 enforcement on domain controllers, so
 generate the key file with AES 256 instead.
 
 116
-00:07:38.343 --> 00:07:44.302
+00:08:11.343 --> 00:08:17.302
 Book 08's default keeps the AD locator
 zones on AD DNS until the last domain
 
 117
-00:07:44.302 --> 00:07:47.624
+00:08:17.302 --> 00:08:20.624
 controller goes, and even then NIOS needs
 
 118
-00:07:47.624 --> 00:07:51.142
+00:08:20.624 --> 00:08:24.142
 AES keys so its DHCP
 can send signed updates.
 
 119
-00:07:51.142 --> 00:07:55.425
+00:08:24.142 --> 00:08:28.425
 The alternative, NIOS hosting
 the AD zone itself, works,
 
 120
-00:07:55.425 --> 00:08:00.755
+00:08:28.425 --> 00:08:33.755
 but no Infoblox page names Windows
 Server 2025 domain controllers.
 
 121
-00:08:00.755 --> 00:08:03.143
+00:08:33.755 --> 00:08:36.143
 Confirm support before you take that path.
 
 122
-00:08:03.143 --> 00:08:05.920
+00:08:36.143 --> 00:08:38.920
 Now, the DHCP takeover.
 
 123
-00:08:06.670 --> 00:08:09.958
+00:08:42.670 --> 00:08:45.958
 The DHCP takeover has
 one destructive trap.
 
 124
-00:08:09.958 --> 00:08:14.752
+00:08:45.958 --> 00:08:50.752
 Infoblox documents that removing
 a managed Windows DHCP server from
 
 125
-00:08:14.752 --> 00:08:19.382
+00:08:50.752 --> 00:08:55.382
 Grid management deletes all its
 ranges, leases and fixed addresses.
 
 126
-00:08:19.382 --> 00:08:23.794
+00:08:55.382 --> 00:08:59.794
 So take the scopes over first, and
 remove the server from management last.
 
 127
-00:08:23.794 --> 00:08:27.530
+00:08:59.794 --> 00:09:03.530
 The takeover itself is a handful
 of steps that move each range
 
 128
-00:08:27.530 --> 00:08:31.045
+00:09:03.530 --> 00:09:07.045
 and fixed address from the
 Windows server to a Grid member.
 
 129
-00:08:31.045 --> 00:08:35.763
+00:09:07.045 --> 00:09:11.763
 On the client side, Windows clients keep
 renewing with the server that issued their
 
 130
-00:08:35.763 --> 00:08:40.345
+00:09:11.763 --> 00:09:16.345
 lease, so the old Windows scope has to stop
 answering, or clients keep its settings.
 
 131
-00:08:40.345 --> 00:08:44.259
+00:09:16.345 --> 00:09:20.259
 Whether a client keeps its
 address isn't documented, so,
 
 132
-00:08:44.259 --> 00:08:48.520
+00:09:20.259 --> 00:09:24.520
 as an inference, pilot one scope
 and lower lease times first.
 
 133
-00:08:48.520 --> 00:08:50.140
+00:09:24.520 --> 00:09:26.140
 Then failover.
 
 134
-00:08:50.890 --> 00:08:56.090
+00:09:29.890 --> 00:09:35.090
 DHCP failover pairs two servers,
 and at least one must be NIOS.
 
 135
-00:08:56.090 --> 00:09:00.323
+00:09:35.090 --> 00:09:39.323
 A mixed Windows and NIOS pair
 isn't offered, which is why Book 08
 
 136
-00:09:00.323 --> 00:09:05.303
+00:09:39.323 --> 00:09:44.303
 says to move both partners of a
 Windows failover relationship together.
 
 137
-00:09:05.303 --> 00:09:09.614
+00:09:44.303 --> 00:09:48.614
 Leave the default settings alone unless
 you understand the consequences,
 
 138
-00:09:09.614 --> 00:09:12.465
+00:09:48.614 --> 00:09:51.465
 and configure everything
 before you turn DHCP on.
 
 139
-00:09:12.465 --> 00:09:14.533
+00:09:51.465 --> 00:09:53.533
 One common assumption is wrong:
 
 140
-00:09:14.533 --> 00:09:18.827
+00:09:53.533 --> 00:09:57.827
 the Grid Master plays no part in
 failover; the peers talk directly.
 
 141
-00:09:18.827 --> 00:09:20.753
+00:09:57.827 --> 00:09:59.753
 IPv6 is different.
 
 142
-00:09:20.753 --> 00:09:24.579
+00:09:59.753 --> 00:10:03.579
 An IPv6 range is served by a
 single member with no failover,
 
 143
-00:09:24.579 --> 00:09:29.203
+00:10:03.579 --> 00:10:08.203
 so redundancy comes from making that
 member a high-availability pair.
 
 144
-00:09:29.203 --> 00:09:34.377
+00:10:08.203 --> 00:10:13.377
 That's not a regression, since
 Microsoft's DHCPv6 has no failover either.
 
 145
-00:09:34.377 --> 00:09:36.090
+00:10:13.377 --> 00:10:15.090
 Now, how to back out.
 
 146
-00:09:36.840 --> 00:09:38.740
+00:10:18.840 --> 00:10:20.740
 Every method needs a way back.
 
 147
-00:09:38.740 --> 00:09:43.615
+00:10:20.740 --> 00:10:25.615
 Managing read-only is easy to undo,
 because nothing on Windows changed.
 
 148
-00:09:43.615 --> 00:09:49.352
+00:10:25.615 --> 00:10:31.352
 Read-write is riskier, since switching back
 silently reverts recent Grid-side edits.
 
 149
-00:09:49.352 --> 00:09:54.651
+00:10:31.352 --> 00:10:36.651
 For zone import, the Windows zone stays
 authoritative until you change delegation,
 
 150
-00:09:54.651 --> 00:09:57.877
+00:10:36.651 --> 00:10:39.877
 so Book 08's cutover loop
 is the real rollback point.
 
 151
-00:09:57.877 --> 00:10:02.814
+00:10:39.877 --> 00:10:44.814
 For the DHCP takeover, no Infoblox
 rollback procedure was found, so,
 
 152
-00:10:02.814 --> 00:10:07.840
+00:10:44.814 --> 00:10:49.840
 as an inference, reverse the steps
 and reactivate the Windows scope.
 
 153
-00:10:07.840 --> 00:10:12.426
+00:10:49.840 --> 00:10:54.426
 The NIOS database snapshot is a quick
 undo for configuration mistakes,
 
 154
-00:10:12.426 --> 00:10:16.778
+00:10:54.426 --> 00:10:58.778
 but there's only one, and it isn't
 for migration data clients depend on.
 
 155
-00:10:16.778 --> 00:10:19.595
+00:10:58.778 --> 00:11:01.595
 Throughout, each phase
 ends with a rollback
 
 156
-00:10:19.595 --> 00:10:23.100
+00:11:01.595 --> 00:11:05.100
 point and a consistency
 test, not a calendar date.
 
 157
-00:10:23.850 --> 00:10:26.212
+00:11:08.850 --> 00:11:11.212
 Part 3 is signing and hardening.
 
 158
-00:10:26.212 --> 00:10:29.864
+00:11:11.212 --> 00:11:14.864
 We'll cover DNSSEC on NIOS,
 the hardware security module,
 
 159
-00:10:29.864 --> 00:10:34.546
+00:11:14.864 --> 00:11:19.546
 what the DISA STIG actually checks,
 FIPS mode, and administrator access,
 
 160
-00:10:34.546 --> 00:10:38.400
+00:11:19.546 --> 00:11:23.400
 including two upgrade gates
 that can lock people out.
 
 161
-00:10:39.150 --> 00:10:44.163
+00:11:27.150 --> 00:11:32.163
 On a Grid, only the Grid Master
 signs, acting as a hidden primary.
 
 162
-00:10:44.163 --> 00:10:47.677
+00:11:32.163 --> 00:11:35.677
 The key rule is to set the
 parameters before you sign anything,
 
 163
-00:10:47.677 --> 00:10:49.675
+00:11:35.677 --> 00:11:37.675
 because the defaults fail the STIG.
 
 164
-00:10:49.675 --> 00:10:56.291
+00:11:37.675 --> 00:11:44.291
 Change the algorithm from RSA with SHA-1
 to SHA-256 or an elliptic curve option,
 
 165
-00:10:56.291 --> 00:11:00.735
+00:11:44.291 --> 00:11:48.735
 and raise the zone-signing
 key from 1024 bits to 2048,
 
 166
-00:11:00.735 --> 00:11:04.250
+00:11:48.735 --> 00:11:52.250
 which lines up with
 Book 08's own guidance.
 
 167
-00:11:04.250 --> 00:11:08.338
+00:11:52.250 --> 00:11:56.338
 The other defaults are fine,
 including automatic key rollovers.
 
 168
-00:11:08.338 --> 00:11:13.460
+00:11:56.338 --> 00:12:01.460
 One decision to document: Book 08
 records NIST's preference for NSEC,
 
 169
-00:11:13.460 --> 00:11:19.588
+00:12:01.460 --> 00:12:07.588
 while the STIG requires NSEC3 for external
 zones, so decide it for internal zones.
 
 170
-00:11:19.588 --> 00:11:22.416
+00:12:07.588 --> 00:12:10.416
 And if you ever change a
 signed zone's algorithm,
 
 171
-00:11:22.416 --> 00:11:24.737
+00:12:10.416 --> 00:12:12.737
 add the new one before removing the old.
 
 172
-00:11:24.737 --> 00:11:26.800
+00:12:12.737 --> 00:12:14.800
 Next, the HSM.
 
 173
-00:11:27.550 --> 00:11:31.287
+00:12:18.550 --> 00:12:22.287
 The hardware security module keeps
 the signing keys off the Grid.
 
 174
-00:11:31.287 --> 00:11:34.863
+00:12:22.287 --> 00:12:25.863
 NIOS supports Thales Luna
 and Entrust nShield.
 
 175
-00:11:34.863 --> 00:11:39.073
+00:12:25.863 --> 00:12:30.073
 The important step is registering both
 the Grid Master and the candidate,
 
 176
-00:11:39.073 --> 00:11:42.524
+00:12:30.073 --> 00:12:33.524
 because the candidate becomes
 the signer after a promotion.
 
 177
-00:11:42.524 --> 00:11:45.832
+00:12:33.524 --> 00:12:36.832
 Signing moves to the HSM
 at the next key rollover,
 
 178
-00:11:45.832 --> 00:11:49.387
+00:12:36.832 --> 00:12:40.387
 not immediately, and NIOS
 never deletes keys from it.
 
 179
-00:11:49.387 --> 00:11:52.175
+00:12:40.387 --> 00:12:43.175
 Then you publish DS
 records to the parent zone.
 
 180
-00:11:52.175 --> 00:11:56.209
+00:12:43.175 --> 00:12:47.209
 If the parent is in the same
 Grid, that's automatic;
 
 181
-00:11:56.209 --> 00:12:02.562
+00:12:47.209 --> 00:12:53.562
 otherwise you export them, and, as an
 inference, submit only the SHA-256 digest.
 
 182
-00:12:02.562 --> 00:12:04.914
+00:12:53.562 --> 00:12:55.914
 For zones already signed on Windows,
 
 183
-00:12:04.914 --> 00:12:08.599
+00:12:55.914 --> 00:12:59.599
 sign on NIOS and validate before
 you stop the old signing.
 
 184
-00:12:08.599 --> 00:12:10.110
+00:12:59.599 --> 00:13:01.110
 Now, the STIG.
 
 185
-00:12:10.860 --> 00:12:14.835
+00:13:04.860 --> 00:13:08.835
 The DISA STIG for NIOS 9 is
 narrower than people assume.
 
 186
-00:12:14.835 --> 00:12:19.516
+00:13:08.835 --> 00:13:13.516
 Release one, accepted in August
 2026, has forty-five rules,
 
 187
-00:12:19.516 --> 00:12:23.798
+00:13:13.516 --> 00:13:17.798
 and it covers only the
 appliance's DNS capabilities.
 
 188
-00:12:23.798 --> 00:12:27.330
+00:13:17.798 --> 00:13:21.330
 DHCP and address management
 hardening aren't in it,
 
 189
-00:12:27.330 --> 00:12:30.273
+00:13:21.330 --> 00:13:24.273
 so those rely on the
 program's own baseline.
 
 190
-00:12:30.273 --> 00:12:35.807
+00:13:24.273 --> 00:13:29.807
 The five most serious rules cover keeping
 the Grid Master hidden unless keys are on
 
 191
-00:12:35.807 --> 00:12:40.700
+00:13:29.807 --> 00:13:34.700
 an HSM, DNSSEC validation, running the
 approved long-term-support version,
 
 192
-00:12:40.700 --> 00:12:43.347
+00:13:34.700 --> 00:13:37.347
 validated cryptography, and no DSA keys.
 
 193
-00:12:43.347 --> 00:12:48.111
+00:13:37.347 --> 00:13:42.111
 The rest cover zone transfers,
 dynamic updates, keeping internal and
 
 194
-00:12:48.111 --> 00:12:52.873
+00:13:42.111 --> 00:13:46.873
 external roles apart, administrator
 sign-in, logging and resilience.
 
 195
-00:12:52.873 --> 00:12:56.328
+00:13:46.873 --> 00:13:50.328
 One practical tip: check these
 settings at the zone level,
 
 196
-00:12:56.328 --> 00:12:57.872
+00:13:50.328 --> 00:13:51.872
 not only at the Grid level.
 
 197
-00:12:57.872 --> 00:13:00.170
+00:13:51.872 --> 00:13:54.170
 Next, FIPS mode.
 
 198
-00:13:00.920 --> 00:13:05.896
+00:13:57.920 --> 00:14:02.896
 Turning on FIPS mode is a short
 procedure built around a factory reset,
 
 199
-00:13:05.896 --> 00:13:09.070
+00:14:02.896 --> 00:14:06.070
 a longer shared secret,
 and a self-test reboot.
 
 200
-00:13:09.070 --> 00:13:13.075
+00:14:06.070 --> 00:14:10.075
 The order matters: on a high-availability
 pair, set it on each node
 
 201
-00:13:13.075 --> 00:13:17.457
+00:14:10.075 --> 00:14:14.457
 before forming the pair, and join
 special members before you enable it.
 
 202
-00:13:17.457 --> 00:13:22.132
+00:14:14.457 --> 00:14:19.132
 After an upgrade, there's one extra
 command to make Grid traffic compliant.
 
 203
-00:13:22.132 --> 00:13:23.982
+00:14:19.132 --> 00:14:20.982
 What changes is significant.
 
 204
-00:13:23.982 --> 00:13:28.776
+00:14:20.982 --> 00:14:25.776
 Only modern TLS stays on, weak algorithms
 are flagged, and portal and cloud
 
 205
-00:13:28.776 --> 00:13:34.120
+00:14:25.776 --> 00:14:31.120
 connections are disabled, and they aren't
 restored if FIPS mode is later turned off.
 
 206
-00:13:34.120 --> 00:13:36.620
+00:14:31.120 --> 00:14:33.620
 Threat updates have to
 be uploaded by hand.
 
 207
-00:13:36.620 --> 00:13:40.657
+00:14:33.620 --> 00:14:37.657
 And remember slide three: the certificates
 themselves are still pending.
 
 208
-00:13:40.657 --> 00:13:43.270
+00:14:37.657 --> 00:14:40.270
 Next, administrator access.
 
 209
-00:13:44.020 --> 00:13:49.561
+00:14:44.020 --> 00:14:49.561
 Administrators should sign in with PIV,
 checked by OCSP, or with SAML through Entra,
 
 210
-00:13:49.561 --> 00:13:53.657
+00:14:49.561 --> 00:14:53.657
 keeping the local admin as
 break-glass for directory outages.
 
 211
-00:13:53.657 --> 00:13:56.235
+00:14:53.657 --> 00:14:56.235
 Put the GUI and API on
 the management port,
 
 212
-00:13:56.235 --> 00:13:59.645
+00:14:56.235 --> 00:14:59.645
 restrict who can reach them,
 and add the consent banner.
 
 213
-00:13:59.645 --> 00:14:04.195
+00:14:59.645 --> 00:15:04.195
 Now the two gates in the 9.1.0
 upgrade that can lock people out.
 
 214
-00:14:04.195 --> 00:14:08.373
+00:15:04.195 --> 00:15:08.373
 The test upgrade fails on administrator
 usernames that don't comply,
 
 215
-00:14:08.373 --> 00:14:12.257
+00:15:08.373 --> 00:15:12.257
 and those users can't log in after
 the upgrade, so check them first.
 
 216
-00:14:12.257 --> 00:14:16.046
+00:15:12.257 --> 00:15:16.046
 And older TLS versions must be
 turned off before you upgrade.
 
 217
-00:14:16.046 --> 00:14:21.336
+00:15:16.046 --> 00:15:21.336
 For the STIG, the evidence is an
 authentication policy with a remote service,
 
 218
-00:14:21.336 --> 00:14:24.107
+00:15:21.336 --> 00:15:24.107
 a password policy, and only approved CAs.
 
 219
-00:14:24.107 --> 00:14:25.980
+00:15:24.107 --> 00:15:25.980
 That closes Part 3.
 
 220
-00:14:26.730 --> 00:14:29.518
+00:15:29.730 --> 00:15:32.518
 Part 4 is running it
 and producing evidence.
 
 221
-00:14:29.518 --> 00:14:34.849
+00:15:32.518 --> 00:15:37.849
 We'll cover upgrades and the point of no
 return, patching, backup and recovery,
 
 222
-00:14:34.849 --> 00:14:40.200
+00:15:37.849 --> 00:15:43.200
 logging, automation, and the whole
 build mapped onto Book 08's six phases.
 
 223
-00:14:40.950 --> 00:14:46.888
+00:15:46.950 --> 00:15:52.888
 Upgrades follow five steps: download,
 upload, distribute, test, and upgrade.
 
 224
-00:14:46.888 --> 00:14:51.449
+00:15:52.888 --> 00:15:57.449
 The step to respect is distribution,
 because it's the point of no return.
 
 225
-00:14:51.449 --> 00:14:55.050
+00:15:57.449 --> 00:16:01.050
 It removes the ability to revert
 to the version you had before.
 
 226
-00:14:55.050 --> 00:14:58.301
+00:16:01.050 --> 00:16:04.301
 The test upgrade is
 mandatory from 9.1.0 onward,
 
 227
-00:14:58.301 --> 00:15:01.638
+00:16:04.301 --> 00:16:07.638
 and it catches data errors
 before they hurt you.
 
 228
-00:15:01.638 --> 00:15:05.265
+00:16:07.638 --> 00:16:11.265
 During the upgrade, avoid
 changing or restarting members,
 
 229
-00:15:05.265 --> 00:15:10.101
+00:16:11.265 --> 00:16:16.101
 and recreate scheduled tasks afterward,
 because a full upgrade deletes them.
 
 230
-00:15:10.101 --> 00:15:13.975
+00:16:16.101 --> 00:16:19.975
 Reverting a single member is
 possible only in a short window,
 
 231
-00:15:13.975 --> 00:15:17.462
+00:16:19.975 --> 00:16:23.462
 and reverting the whole Grid
 loses every change since.
 
 232
-00:15:17.462 --> 00:15:21.550
+00:16:23.462 --> 00:16:27.550
 As for long-term support, by
 inference the current train runs
 
 233
-00:15:21.550 --> 00:15:25.474
+00:16:27.550 --> 00:16:31.474
 to about April 2027, so confirm
 the approved federal build.
 
 234
-00:15:25.474 --> 00:15:27.140
+00:16:31.474 --> 00:16:33.140
 Next, patching.
 
 235
-00:15:27.890 --> 00:15:29.690
+00:16:36.890 --> 00:16:38.690
 Patching has a couple of catches.
 
 236
-00:15:29.690 --> 00:15:32.597
+00:16:38.690 --> 00:16:41.597
 Hotfixes go to the Grid
 Master and every member,
 
 237
-00:15:32.597 --> 00:15:35.802
+00:16:41.597 --> 00:16:44.802
 and members that join later
 need them applied again.
 
 238
-00:15:35.802 --> 00:15:40.316
+00:16:44.802 --> 00:16:49.316
 Common Criteria Grids need a different
 upgrade image, so check which one you upload.
 
 239
-00:15:40.316 --> 00:15:42.277
+00:16:49.316 --> 00:16:51.277
 The bigger point is what to watch.
 
 240
-00:15:42.277 --> 00:15:48.066
+00:16:51.277 --> 00:16:57.066
 CISA's catalog of known exploited
 vulnerabilities lists no Infoblox product,
 
 241
-00:15:48.066 --> 00:15:53.241
+00:16:57.066 --> 00:17:02.241
 but it does list an old BIND vulnerability,
 added on October eighth, 2026.
 
 242
-00:15:53.241 --> 00:15:58.542
+00:17:02.241 --> 00:17:07.542
 Because NIOS ships BIND, the program's
 patch watch covers BIND advisories too,
 
 243
-00:15:58.542 --> 00:16:03.015
+00:17:07.542 --> 00:17:12.015
 not only Infoblox's own notices,
 mapped against the release notes.
 
 244
-00:16:03.015 --> 00:16:05.680
+00:17:12.015 --> 00:17:14.680
 Next, backup and recovery.
 
 245
-00:16:06.430 --> 00:16:09.221
+00:17:18.430 --> 00:17:21.221
 Backup is off by default, so schedule it,
 
 246
-00:16:09.221 --> 00:16:14.368
+00:17:21.221 --> 00:17:26.368
 and send it by SCP rather than FTP,
 which sends credentials in clear text.
 
 247
-00:16:14.368 --> 00:16:18.042
+00:17:26.368 --> 00:17:30.042
 Back up before every
 upgrade, restore or revert.
 
 248
-00:16:18.042 --> 00:16:23.363
+00:17:30.042 --> 00:17:35.363
 Restoring has a wrinkle: SCP isn't listed
 as a restore source, so, as an inference,
 
 249
-00:16:23.363 --> 00:16:28.767
+00:17:35.363 --> 00:17:40.767
 copy backups back to the management
 system and rehearse restoring from there.
 
 250
-00:16:28.767 --> 00:16:32.905
+00:17:40.767 --> 00:17:44.905
 Losing the Grid Master means promoting
 the candidate from its console.
 
 251
-00:16:32.905 --> 00:16:37.871
+00:17:44.905 --> 00:17:49.871
 Notify members one at a time, which
 Infoblox says can minimize DNS outages,
 
 252
-00:16:37.871 --> 00:16:40.802
+00:17:49.871 --> 00:17:52.802
 then confirm every member has reconnected,
 
 253
-00:16:40.802 --> 00:16:45.768
+00:17:52.802 --> 00:17:57.768
 and update anything that pointed at
 the old Grid Master, including the HSM.
 
 254
-00:16:45.768 --> 00:16:50.156
+00:17:57.768 --> 00:18:02.156
 Written down, those steps are the
 STIG's documented promotion procedure.
 
 255
-00:16:50.156 --> 00:16:51.660
+00:18:02.156 --> 00:18:03.660
 Next, logging.
 
 256
-00:16:52.410 --> 00:16:54.423
+00:18:07.410 --> 00:18:09.423
 Logging is where the evidence comes from.
 
 257
-00:16:54.423 --> 00:17:00.488
+00:18:09.423 --> 00:18:15.488
 Send syslog to external servers over secure
 TCP, use the detailed audit log, which
 
 258
-00:17:00.488 --> 00:17:06.372
+00:18:15.488 --> 00:18:21.372
 also records API calls, and copy the audit
 log to syslog, which the STIG requires.
 
 259
-00:17:06.372 --> 00:17:10.754
+00:18:21.372 --> 00:18:25.754
 Be careful with full DNS query
 logging, because Infoblox warns it
 
 260
-00:17:10.754 --> 00:17:15.460
+00:18:25.754 --> 00:18:30.460
 significantly affects performance,
 so use capture or dnstap instead.
 
 261
-00:17:15.460 --> 00:17:20.410
+00:18:30.460 --> 00:18:35.410
 DHCP lease history is what ties an
 address to a device at a point in time.
 
 262
-00:17:20.410 --> 00:17:25.847
+00:18:35.410 --> 00:18:40.847
 On a FIPS Grid, the portal-managed
 Data Connector is likely unavailable,
 
 263
-00:17:25.847 --> 00:17:29.072
+00:18:40.847 --> 00:18:44.072
 as an inference, so rely
 on syslog or dnstap.
 
 264
-00:17:29.072 --> 00:17:31.055
+00:18:44.072 --> 00:18:46.055
 And the SIEM is the system of record,
 
 265
-00:17:31.055 --> 00:17:35.660
+00:18:46.055 --> 00:18:50.660
 because local retention can't meet the
 six-month and twelve-month requirement.
 
 266
-00:17:35.660 --> 00:17:37.470
+00:18:50.660 --> 00:18:52.470
 Next, automation.
 
 267
-00:17:38.220 --> 00:17:41.220
+00:18:56.220 --> 00:18:59.220
 Much of the Grid can be
 codified, but not all of it.
 
 268
-00:17:41.220 --> 00:17:47.910
+00:18:59.220 --> 00:19:05.910
 Terraform's NIOS provider version 2 needs
 NIOS 9.1.0 and covers most of the build,
 
 269
-00:17:47.910 --> 00:17:52.645
+00:19:05.910 --> 00:19:10.645
 from members and zones to
 DHCP, failover and admin roles.
 
 270
-00:17:52.645 --> 00:17:57.469
+00:19:10.645 --> 00:19:15.469
 A new combined provider is in beta
 and isn't backward compatible, so,
 
 271
-00:17:57.469 --> 00:18:02.557
+00:19:15.469 --> 00:19:20.557
 as an inference, build on version 2
 now and plan to re-import state later.
 
 272
-00:18:02.557 --> 00:18:07.007
+00:19:20.557 --> 00:19:25.007
 Ansible covers a lot too, but has
 nothing for failover or DNSSEC.
 
 273
-00:18:07.007 --> 00:18:11.219
+00:19:25.007 --> 00:19:29.219
 And some things stay manual:
 FIPS mode, the factory reset,
 
 274
-00:18:11.219 --> 00:18:15.157
+00:19:29.219 --> 00:19:33.157
 promoting the candidate,
 the HSM and DNSSEC signing.
 
 275
-00:18:15.157 --> 00:18:18.469
+00:19:33.157 --> 00:19:36.469
 Write those as runbooks that
 capture their evidence as they go.
 
 276
-00:18:18.469 --> 00:18:20.850
+00:19:36.469 --> 00:19:38.850
 Now, the whole build in order.
 
 277
-00:18:21.600 --> 00:18:24.728
+00:19:42.600 --> 00:19:45.728
 Here's the whole build laid
 onto Book 08's phases,
 
 278
-00:18:24.728 --> 00:18:27.775
+00:19:45.728 --> 00:19:48.775
 and the order is the
 program's design guidance.
 
 279
-00:18:27.775 --> 00:18:30.200
+00:19:48.775 --> 00:19:51.200
 Phase 0 makes the four decisions.
 
 280
-00:18:30.200 --> 00:18:35.344
+00:19:51.200 --> 00:19:56.344
 Phase 1 builds a lab Grid, then production
 in order, from the Grid Master pair and
 
 281
-00:18:35.344 --> 00:18:40.725
+00:19:56.344 --> 00:20:01.725
 candidate to sign-in, logging and backups,
 with the Windows servers added read-only.
 
 282
-00:18:40.725 --> 00:18:45.650
+00:20:01.725 --> 00:20:06.650
 Phase 2 coexists, adding members
 on premises and in each cloud hub.
 
 283
-00:18:45.650 --> 00:18:49.603
+00:20:06.650 --> 00:20:10.603
 Phase 3 moves authority zone
 by zone and scope by scope,
 
 284
-00:18:49.603 --> 00:18:51.887
+00:20:10.603 --> 00:20:12.887
 re-signing signed zones on NIOS.
 
 285
-00:18:51.887 --> 00:18:57.837
+00:20:12.887 --> 00:20:18.837
 Phase 4 federates the clouds, with
 Universal DDI only on non-FIPS scopes.
 
 286
-00:18:57.837 --> 00:19:02.738
+00:20:18.837 --> 00:20:23.738
 Phase 5 decommissions behind Book
 08's gates, locator zones last.
 
 287
-00:19:02.738 --> 00:19:06.630
+00:20:23.738 --> 00:20:27.630
 And Phase 6 finishes the
 STIG items and evidence.
 
 288
-00:19:07.380 --> 00:19:08.305
+00:20:31.380 --> 00:20:32.305
 To close.
 
 289
-00:19:08.305 --> 00:19:13.496
+00:20:32.305 --> 00:20:37.496
 The decisions are yours: FIPS mode,
 knowing it costs cloud management,
 
 290
-00:19:13.496 --> 00:19:18.414
+00:20:37.496 --> 00:20:42.414
 an HSM or a documented exception,
 NSEC or NSEC3 for internal zones,
 
 291
-00:19:18.414 --> 00:19:24.243
+00:20:42.414 --> 00:20:48.243
 where the locator zones live, and how
 many physical managing members you need.
 
 292
-00:19:24.243 --> 00:19:27.357
+00:20:48.243 --> 00:20:51.357
 There are questions to put
 to Infoblox in writing,
 
 293
-00:19:27.357 --> 00:19:31.459
+00:20:51.357 --> 00:20:55.459
 mainly around the approved federal
 build, certification timing,
 
 294
-00:19:31.459 --> 00:19:35.181
+00:20:55.459 --> 00:20:59.181
 Windows Server 2025, and failover
 in the government clouds.
 
 295
-00:19:35.181 --> 00:19:39.684
+00:20:59.181 --> 00:21:03.684
 The next steps are concrete: stand
 up a lab Grid, sign a test zone,
 
 296
-00:19:39.684 --> 00:19:43.393
+00:21:03.684 --> 00:21:07.393
 pilot one DHCP takeover,
 and run the STIG checklist.
 
 297
-00:19:43.393 --> 00:19:47.552
+00:21:07.393 --> 00:21:11.552
 The program's view is plain:
 NIOS can carry Book 08's design,
 
 298
-00:19:47.552 --> 00:19:52.242
+00:21:11.552 --> 00:21:16.242
 and its risks are manageable if
 the Phase 0 decisions come first.
 
 299
-00:19:52.242 --> 00:19:55.283
+00:21:16.242 --> 00:21:19.283
 This is the program's
 research, under review,
 
 300
-00:19:55.283 --> 00:19:58.155
+00:21:19.283 --> 00:21:22.155
 not an endorsement by any federal agency.
 
 301
-00:19:58.155 --> 00:19:58.980
+00:21:22.155 --> 00:21:22.980
 Thank you.

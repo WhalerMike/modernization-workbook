@@ -55,1366 +55,1366 @@ The slides and notes carry every detail
 and source; I'll stick to what matters.
 
 12
-00:00:41.950 --> 00:00:46.138
+00:00:44.950 --> 00:00:49.138
 Before we build anything, here's the
 idea that frames this whole guide.
 
 13
-00:00:46.138 --> 00:00:50.412
+00:00:49.138 --> 00:00:53.412
 Book 07 doesn't use one certificate
 authority for everything.
 
 14
-00:00:50.412 --> 00:00:54.987
+00:00:53.412 --> 00:00:57.987
 It gives each kind of certificate its
 own source and its own way of renewing.
 
 15
-00:00:54.987 --> 00:00:57.413
+00:00:57.987 --> 00:01:00.413
 Intune looks after device certificates.
 
 16
-00:00:57.413 --> 00:00:59.800
+00:01:00.413 --> 00:01:02.800
 PIV cards have their own card system.
 
 17
-00:00:59.800 --> 00:01:03.625
+00:01:02.800 --> 00:01:06.625
 Domain controllers keep renewing
 themselves the way they always have.
 
 18
-00:01:03.625 --> 00:01:08.695
+00:01:06.625 --> 00:01:11.695
 What's left — servers, VPN and RADIUS,
 SQL, internal websites, appliances,
 
 19
-00:01:08.695 --> 00:01:10.741
+00:01:11.695 --> 00:01:13.741
 and anything public-facing —
 
 20
-00:01:10.741 --> 00:01:15.900
+00:01:13.741 --> 00:01:18.900
 has nobody renewing it today except
 a person with a calendar reminder.
 
 21
-00:01:15.900 --> 00:01:18.000
+00:01:18.900 --> 00:01:21.000
 That's the gap the platform fills.
 
 22
-00:01:18.000 --> 00:01:20.659
+00:01:21.000 --> 00:01:23.659
 It becomes the system of record for every
 
 23
-00:01:20.659 --> 00:01:24.150
+00:01:23.659 --> 00:01:27.150
 certificate Intune and
 PIV don't already manage.
 
 24
-00:01:24.900 --> 00:01:26.875
+00:01:30.900 --> 00:01:32.875
 Two things to settle before you build.
 
 25
-00:01:26.875 --> 00:01:28.538
+00:01:32.875 --> 00:01:34.538
 First, where it runs.
 
 26
-00:01:28.538 --> 00:01:31.899
+00:01:34.538 --> 00:01:37.899
 There's no FedRAMP package
 for CyberArk's cloud edition,
 
 27
-00:01:31.899 --> 00:01:36.502
+00:01:37.899 --> 00:01:42.502
 so the program runs the self-hosted
 edition inside the agency's own boundary,
 
 28
-00:01:36.502 --> 00:01:39.425
+00:01:42.502 --> 00:01:45.425
 next to the certificate
 authorities it manages.
 
 29
-00:01:39.425 --> 00:01:43.723
+00:01:45.425 --> 00:01:49.723
 Second, what it runs on: Windows
 servers, English-language builds,
 
 30
-00:01:43.723 --> 00:01:48.913
+00:01:49.723 --> 00:01:54.913
 all on the same version, with a SQL Server
 database that lives on its own server.
 
 31
-00:01:48.913 --> 00:01:51.680
+00:01:54.913 --> 00:01:57.680
 Plan for an upgrade
 roughly every six months,
 
 32
-00:01:51.680 --> 00:01:54.224
+00:01:57.680 --> 00:02:00.224
 because that's CyberArk's release rhythm.
 
 33
-00:01:54.224 --> 00:01:56.250
+00:02:00.224 --> 00:02:02.250
 The full requirements are on the slide.
 
 34
-00:01:56.250 --> 00:02:00.790
+00:02:02.250 --> 00:02:06.790
 Next, let's open the box and see what
 the platform is actually made of.
 
 35
-00:02:01.540 --> 00:02:04.893
+00:02:10.540 --> 00:02:13.893
 This short section answers
 the question people ask first:
 
 36
-00:02:04.893 --> 00:02:06.640
+00:02:13.893 --> 00:02:15.640
 what actually is the platform?
 
 37
-00:02:06.640 --> 00:02:08.865
+00:02:15.640 --> 00:02:17.865
 Not a box, and not one server.
 
 38
-00:02:08.865 --> 00:02:13.005
+00:02:17.865 --> 00:02:22.005
 It's a set of Windows servers running
 the same CyberArk software against
 
 39
-00:02:13.005 --> 00:02:17.215
+00:02:22.005 --> 00:02:26.215
 one shared database, with different
 jobs switched on in different places.
 
 40
-00:02:17.215 --> 00:02:20.537
+00:02:26.215 --> 00:02:29.537
 We'll look at those server roles,
 the web tier you sign in to,
 
 41
-00:02:20.537 --> 00:02:23.222
+00:02:29.537 --> 00:02:32.222
 the back end that does
 the work, the components,
 
 42
-00:02:23.222 --> 00:02:27.463
+00:02:32.222 --> 00:02:36.463
 the drivers that reach other systems,
 what it all connects to, a reference
 
 43
-00:02:27.463 --> 00:02:32.490
+00:02:36.463 --> 00:02:41.490
 layout for two sites, and finally one
 certificate's journey from start to finish.
 
 44
-00:02:33.240 --> 00:02:35.577
+00:02:45.240 --> 00:02:47.577
 Here's the whole platform on one page.
 
 45
-00:02:35.577 --> 00:02:40.615
+00:02:47.577 --> 00:02:52.615
 Every server runs the same software and
 talks to the same database; what makes
 
 46
-00:02:40.615 --> 00:02:45.416
+00:02:52.615 --> 00:02:57.416
 a server a "web server" or a "back-end
 server" is which components you switch on.
 
 47
-00:02:45.416 --> 00:02:50.540
+00:02:57.416 --> 00:03:02.540
 The web servers sit behind a load balancer
 and give people and automation a way in.
 
 48
-00:02:50.540 --> 00:02:52.961
+00:03:02.540 --> 00:03:04.961
 The ACME servers are kept separate,
 
 49
-00:02:52.961 --> 00:02:57.803
+00:03:04.961 --> 00:03:09.803
 because CyberArk doesn't allow FIPS
 mode on a server that handles ACME.
 
 50
-00:02:57.803 --> 00:03:00.112
+00:03:09.803 --> 00:03:12.112
 The back-end servers do the real work —
 
 51
-00:03:00.112 --> 00:03:03.191
+00:03:12.112 --> 00:03:15.191
 issuing, renewing and
 installing certificates.
 
 52
-00:03:03.191 --> 00:03:07.078
+00:03:15.191 --> 00:03:19.078
 The log servers keep the audit
 trail and send events to the SIEM.
 
 53
-00:03:07.078 --> 00:03:11.295
+00:03:19.078 --> 00:03:23.295
 And underneath: one SQL Server
 database, the keys that protect it,
 
 54
-00:03:11.295 --> 00:03:14.840
+00:03:23.295 --> 00:03:26.840
 and a message bus that
 keeps every server in step.
 
 55
-00:03:15.590 --> 00:03:17.540
+00:03:30.590 --> 00:03:32.540
 The web tier is how anyone gets in.
 
 56
-00:03:17.540 --> 00:03:21.263
+00:03:32.540 --> 00:03:36.263
 People use the web console for
 daily work and the Policy Tree,
 
 57
-00:03:21.263 --> 00:03:24.540
+00:03:36.263 --> 00:03:39.540
 which is also a web page,
 for the deeper configuration.
 
 58
-00:03:24.540 --> 00:03:26.452
+00:03:39.540 --> 00:03:41.452
 Automation uses the REST API,
 
 59
-00:03:26.452 --> 00:03:31.152
+00:03:41.452 --> 00:03:46.152
 and sign-ins for both go through the
 platform's authentication service.
 
 60
-00:03:31.152 --> 00:03:34.309
+00:03:46.152 --> 00:03:49.309
 There's one more console,
 the Configuration Console,
 
 61
-00:03:34.309 --> 00:03:38.640
+00:03:49.309 --> 00:03:53.640
 that administrators run on each server
 to switch components on and off.
 
 62
-00:03:38.640 --> 00:03:42.006
+00:03:53.640 --> 00:03:57.006
 The thing to remember for the
 build is the load balancer:
 
 63
-00:03:42.006 --> 00:03:45.883
+00:03:57.006 --> 00:04:00.883
 every web service sits behind one
 name, and that name has to match
 
 64
-00:03:45.883 --> 00:03:49.970
+00:04:00.883 --> 00:04:04.970
 the certificate the servers
 present, or single sign-on breaks.
 
 65
-00:03:50.720 --> 00:03:53.020
+00:04:08.720 --> 00:04:11.020
 Behind the scenes, three things matter.
 
 66
-00:03:53.020 --> 00:03:57.454
+00:04:11.020 --> 00:04:15.454
 Processing engines decide which server
 does which work, so you can keep, say,
 
 67
-00:03:57.454 --> 00:04:02.032
+00:04:15.454 --> 00:04:20.032
 public certificate requests on one server
 that's allowed out to the internet.
 
 68
-00:04:02.032 --> 00:04:05.041
+00:04:20.032 --> 00:04:23.041
 The log servers record
 every event and are the
 
 69
-00:04:05.041 --> 00:04:08.208
+00:04:23.041 --> 00:04:26.208
 only servers that need a
 path to the SIEM and email.
 
 70
-00:04:08.208 --> 00:04:12.541
+00:04:26.208 --> 00:04:30.541
 And the message bus keeps every
 server informed about changes,
 
 71
-00:04:12.541 --> 00:04:15.458
+00:04:30.541 --> 00:04:33.458
 which means one firewall rule people miss:
 
 72
-00:04:15.458 --> 00:04:19.708
+00:04:33.458 --> 00:04:37.708
 port 8883 has to be open between
 every server, across sites too.
 
 73
-00:04:19.708 --> 00:04:24.080
+00:04:37.708 --> 00:04:42.080
 Watch distance as well — every server
 works against one active database,
 
 74
-00:04:24.080 --> 00:04:29.320
+00:04:42.080 --> 00:04:47.320
 and at a thirty-millisecond delay a single
 renewal takes about fifteen seconds.
 
 75
-00:04:30.070 --> 00:04:32.382
+00:04:51.070 --> 00:04:53.382
 This table is the platform's parts list.
 
 76
-00:04:32.382 --> 00:04:35.421
+00:04:53.382 --> 00:04:56.421
 Each component is a job
 you switch on per server:
 
 77
-00:04:35.421 --> 00:04:38.303
+00:04:56.421 --> 00:04:59.303
 the lifecycle engine
 that issues and renews,
 
 78
-00:04:38.303 --> 00:04:41.653
+00:04:59.303 --> 00:05:02.653
 CA Import that pulls in what
 your CAs already issued,
 
 79
-00:04:41.653 --> 00:04:44.926
+00:05:02.653 --> 00:05:05.926
 discovery that finds
 certificates on the network,
 
 80
-00:04:44.926 --> 00:04:50.613
+00:05:05.926 --> 00:05:11.613
 validation and revocation monitoring that
 keep checking, and the enrollment services
 
 81
-00:04:50.613 --> 00:04:55.132
+00:05:11.613 --> 00:05:16.132
 — ACME, EST and SCEP — that devices and
 scripts use to ask for certificates.
 
 82
-00:04:55.132 --> 00:04:57.133
+00:05:16.132 --> 00:05:18.133
 You don't need to memorize the list.
 
 83
-00:04:57.133 --> 00:04:59.481
+00:05:18.133 --> 00:05:20.481
 The point is that the design is modular,
 
 84
-00:04:59.481 --> 00:05:04.230
+00:05:20.481 --> 00:05:25.230
 so you place each job where its network
 access and its security rules fit.
 
 85
-00:05:04.980 --> 00:05:08.067
+00:05:28.980 --> 00:05:32.067
 Drivers are how the platform
 reaches the outside world.
 
 86
-00:05:08.067 --> 00:05:13.868
+00:05:32.067 --> 00:05:37.868
 CA drivers request certificates
 from AD CS, public CAs or AWS.
 
 87
-00:05:13.868 --> 00:05:18.055
+00:05:37.868 --> 00:05:42.055
 Application drivers install
 certificates on IIS, F5,
 
 88
-00:05:18.055 --> 00:05:22.718
+00:05:42.055 --> 00:05:46.718
 NetScaler, Key Vault and the
 rest, usually without any agent.
 
 89
-00:05:22.718 --> 00:05:24.254
+00:05:46.718 --> 00:05:48.254
 Where a driver can't reach,
 
 90
-00:05:24.254 --> 00:05:27.618
+00:05:48.254 --> 00:05:51.618
 a small Server Agent checks
 in and does the work locally.
 
 91
-00:05:27.618 --> 00:05:30.739
+00:05:51.618 --> 00:05:54.739
 Everything is stored in
 one SQL Server database,
 
 92
-00:05:30.739 --> 00:05:33.937
+00:05:54.739 --> 00:05:57.937
 and that database's secrets
 are protected by a key —
 
 93
-00:05:33.937 --> 00:05:38.306
+00:05:57.937 --> 00:06:02.306
 either a software key you must back
 up, or a hardware security module.
 
 94
-00:05:38.306 --> 00:05:43.250
+00:06:02.306 --> 00:06:07.250
 Lose that key and you lose the data,
 which is why it's treated as Tier 0.
 
 95
-00:05:44.000 --> 00:05:47.250
+00:06:11.000 --> 00:06:14.250
 Now the bigger picture:
 everything the platform touches.
 
 96
-00:05:47.250 --> 00:05:51.087
+00:06:14.250 --> 00:06:18.087
 On the left, the certificate
 authorities it asks for certificates.
 
 97
-00:05:51.087 --> 00:05:53.888
+00:06:18.087 --> 00:06:20.888
 On the right, the systems
 it installs them on.
 
 98
-00:05:53.888 --> 00:05:56.736
+00:06:20.888 --> 00:06:23.736
 Above, Entra ID for
 signing in to the console,
 
 99
-00:05:56.736 --> 00:06:00.613
+00:06:23.736 --> 00:06:27.613
 and CyberArk's own vault for
 the passwords its drivers need.
 
 100
-00:06:00.613 --> 00:06:04.838
+00:06:27.613 --> 00:06:31.838
 Below, the SIEM for events and
 ServiceNow for owners and tickets.
 
 101
-00:06:04.838 --> 00:06:10.087
+00:06:31.838 --> 00:06:37.087
 Two lines are dashed on purpose: Kubernetes
 and ServiceNow both need extra care,
 
 102
-00:06:10.087 --> 00:06:13.189
+00:06:37.087 --> 00:06:40.189
 because one depends on
 a cloud service outside
 
 103
-00:06:13.189 --> 00:06:16.212
+00:06:40.189 --> 00:06:43.212
 the boundary and the other
 is a third-party app.
 
 104
-00:06:16.212 --> 00:06:17.900
+00:06:43.212 --> 00:06:44.900
 We'll come back to both.
 
 105
-00:06:18.650 --> 00:06:21.813
+00:06:48.650 --> 00:06:51.813
 Here's how those pieces could
 be laid out across two sites.
 
 106
-00:06:21.813 --> 00:06:23.646
+00:06:51.813 --> 00:06:53.646
 This is the program's design,
 
 107
-00:06:23.646 --> 00:06:28.112
+00:06:53.646 --> 00:06:58.112
 built only from CyberArk's documented
 rules, not a vendor blueprint.
 
 108
-00:06:28.112 --> 00:06:31.940
+00:06:58.112 --> 00:07:01.940
 Each site has a web server,
 a separate ACME server,
 
 109
-00:06:31.940 --> 00:06:34.524
+00:07:01.940 --> 00:07:04.524
 a back-end server and a log server.
 
 110
-00:06:34.524 --> 00:06:38.779
+00:07:04.524 --> 00:07:08.779
 One database runs in an availability
 group across both sites,
 
 111
-00:06:38.779 --> 00:06:43.450
+00:07:08.779 --> 00:07:13.450
 with one listener everyone uses, and
 the HSMs are paired the same way.
 
 112
-00:06:43.450 --> 00:06:44.613
+00:07:13.450 --> 00:07:14.613
 Two cautions.
 
 113
-00:06:44.613 --> 00:06:47.867
+00:07:14.613 --> 00:07:17.867
 CyberArk doesn't say
 whether FIPS and non-FIPS
 
 114
-00:06:47.867 --> 00:06:51.550
+00:07:17.867 --> 00:07:21.550
 servers can share one cluster,
 so get that in writing.
 
 115
-00:06:51.550 --> 00:06:53.077
+00:07:21.550 --> 00:07:23.077
 And keep the sites close,
 
 116
-00:06:53.077 --> 00:06:57.560
+00:07:23.077 --> 00:07:27.560
 because the remote site pays for
 every round trip to the database.
 
 117
-00:06:58.310 --> 00:07:00.960
+00:07:31.310 --> 00:07:33.960
 Let's follow one certificate
 through all of that.
 
 118
-00:07:00.960 --> 00:07:05.660
+00:07:33.960 --> 00:07:38.660
 First the platform finds it, by scanning
 the network or importing from a CA.
 
 119
-00:07:05.660 --> 00:07:09.073
+00:07:38.660 --> 00:07:42.073
 Then it gives it a home in a
 policy folder and a named owner.
 
 120
-00:07:09.073 --> 00:07:12.862
+00:07:42.073 --> 00:07:45.862
 When it's time, the lifecycle
 engine asks the CA for a new one,
 
 121
-00:07:12.862 --> 00:07:15.309
+00:07:45.862 --> 00:07:48.309
 and a driver installs it on the server.
 
 122
-00:07:15.309 --> 00:07:19.035
+00:07:48.309 --> 00:07:52.035
 Validation keeps checking that it's
 really there and still trusted.
 
 123
-00:07:19.035 --> 00:07:23.585
+00:07:52.035 --> 00:07:56.585
 Before it expires, the cycle repeats
 — no one has to remember a date.
 
 124
-00:07:23.585 --> 00:07:27.960
+00:07:56.585 --> 00:08:00.960
 And when the system it belongs to is
 retired, the certificate is revoked.
 
 125
-00:07:27.960 --> 00:07:32.772
+00:08:00.960 --> 00:08:05.772
 Every step leaves a log entry, and
 that trail is what an assessor reads.
 
 126
-00:07:32.772 --> 00:07:35.500
+00:08:05.772 --> 00:08:08.500
 With that picture in mind, let's build it.
 
 127
-00:07:36.250 --> 00:07:37.562
+00:08:12.250 --> 00:08:13.562
 Part 1 is the build.
 
 128
-00:07:37.562 --> 00:07:40.694
+00:08:13.562 --> 00:08:16.694
 We'll size the cluster and
 make it highly available,
 
 129
-00:07:40.694 --> 00:07:45.167
+00:08:16.694 --> 00:08:21.167
 be careful about what we claim for
 FIPS, set up how administrators sign in,
 
 130
-00:07:45.167 --> 00:07:48.140
+00:08:21.167 --> 00:08:24.140
 harden it, and make sure
 it can be recovered.
 
 131
-00:07:48.890 --> 00:07:51.040
+00:08:27.890 --> 00:08:30.040
 Sizing is refreshingly simple.
 
 132
-00:07:51.040 --> 00:07:54.627
+00:08:30.040 --> 00:08:33.627
 Two servers handle up to about
 fifty thousand certificates.
 
 133
-00:07:54.627 --> 00:07:59.508
+00:08:33.627 --> 00:08:38.508
 Past that, CyberArk's guide splits the
 work across six — two each for web, back
 
 134
-00:07:59.508 --> 00:08:04.789
+00:08:38.508 --> 00:08:43.789
 end and logging — and beyond a million
 certificates CyberArk designs it with you.
 
 135
-00:08:04.789 --> 00:08:09.614
+00:08:43.789 --> 00:08:48.614
 For availability, the rules are what you'd
 expect: at least two servers per role,
 
 136
-00:08:09.614 --> 00:08:12.327
+00:08:48.614 --> 00:08:51.327
 a load balancer in front
 of the web services,
 
 137
-00:08:12.327 --> 00:08:15.040
+00:08:51.327 --> 00:08:54.040
 and an availability
 group for the database.
 
 138
-00:08:15.040 --> 00:08:19.040
+00:08:54.040 --> 00:08:58.040
 One nice touch for the certificate
 authorities: a CA pool lets the
 
 139
-00:08:19.040 --> 00:08:23.390
+00:08:58.040 --> 00:09:02.390
 platform fail over to a second CA
 if the first one stops answering.
 
 140
-00:08:24.140 --> 00:08:28.365
+00:09:06.140 --> 00:09:10.365
 FIPS is where it's easy to
 overclaim, so let's be precise.
 
 141
-00:08:28.365 --> 00:08:32.344
+00:09:10.365 --> 00:09:14.344
 The platform runs on Windows
 servers that can be in FIPS mode,
 
 142
-00:08:32.344 --> 00:08:33.777
+00:09:14.344 --> 00:09:15.777
 and that's documented.
 
 143
-00:08:33.777 --> 00:08:37.869
+00:09:15.777 --> 00:09:19.869
 What isn't documented is a FIPS
 certificate for the platform itself —
 
 144
-00:08:37.869 --> 00:08:41.303
+00:09:19.869 --> 00:09:23.303
 none of CyberArk's validated
 modules names this product.
 
 145
-00:08:41.303 --> 00:08:44.452
+00:09:23.303 --> 00:09:26.452
 So the honest evidence
 is FIPS-mode Windows,
 
 146
-00:08:44.452 --> 00:08:48.477
+00:09:26.452 --> 00:09:30.477
 plus the HSM's own certificate
 for the database secrets.
 
 147
-00:08:48.477 --> 00:08:52.097
+00:09:30.477 --> 00:09:34.097
 And remember the catch from
 earlier: the ACME servers can't
 
 148
-00:08:52.097 --> 00:08:55.850
+00:09:34.097 --> 00:09:37.850
 be in FIPS mode at all, which
 is why they're kept separate.
 
 149
-00:08:56.600 --> 00:08:59.125
+00:09:41.600 --> 00:09:44.125
 Next, how administrators sign in.
 
 150
-00:08:59.125 --> 00:09:02.073
+00:09:44.125 --> 00:09:47.073
 The platform supports single
 sign-on with Entra ID,
 
 151
-00:09:02.073 --> 00:09:05.934
+00:09:47.073 --> 00:09:50.934
 so the program's approach is to put
 the console behind Entra and let
 
 152
-00:09:05.934 --> 00:09:10.988
+00:09:50.934 --> 00:09:55.988
 administrators use their PIV card through
 Entra's certificate-based authentication.
 
 153
-00:09:10.988 --> 00:09:15.328
+00:09:55.988 --> 00:10:00.328
 That way there's one trust store and
 one set of Conditional Access rules,
 
 154
-00:09:15.328 --> 00:09:18.050
+00:10:00.328 --> 00:10:03.050
 instead of a second
 login system to maintain.
 
 155
-00:09:18.050 --> 00:09:21.500
+00:10:03.050 --> 00:10:06.500
 Keep the platform's own
 certificate login as a fallback,
 
 156
-00:09:21.500 --> 00:09:25.025
+00:10:06.500 --> 00:10:10.025
 keep a local break-glass
 account, and shorten the default
 
 157
-00:09:25.025 --> 00:09:28.840
+00:10:10.025 --> 00:10:13.840
 token lifetimes for automation
 — ninety days is too long.
 
 158
-00:09:29.590 --> 00:09:32.570
+00:10:17.590 --> 00:10:20.570
 Hardening comes down to
 one uncomfortable fact:
 
 159
-00:09:32.570 --> 00:09:35.028
+00:10:20.570 --> 00:10:23.028
 this platform concentrates privilege.
 
 160
-00:09:35.028 --> 00:09:39.456
+00:10:23.028 --> 00:10:27.456
 It holds rights on your certificate
 authorities, administrator access on
 
 161
-00:09:39.456 --> 00:09:43.814
+00:10:27.456 --> 00:10:31.814
 the servers it installs certificates
 on, and private keys in its database.
 
 162
-00:09:43.814 --> 00:09:46.308
+00:10:31.814 --> 00:10:34.308
 So apply CyberArk's web server hardening,
 
 163
-00:09:46.308 --> 00:09:50.047
+00:10:34.308 --> 00:10:38.047
 replace the self-signed certificate
 every server ships with,
 
 164
-00:09:50.047 --> 00:09:54.519
+00:10:38.047 --> 00:10:42.519
 switch outbound certificate checking
 from its default of "none" to strict,
 
 165
-00:09:54.519 --> 00:09:57.452
+00:10:42.519 --> 00:10:45.452
 and keep driver passwords
 in the CyberArk vault.
 
 166
-00:09:57.452 --> 00:10:02.460
+00:10:45.452 --> 00:10:50.460
 Then treat the admins, the key and
 the database backups as Tier 0.
 
 167
-00:10:03.210 --> 00:10:07.598
+00:10:54.210 --> 00:10:58.598
 Recovery hinges on a pair: the
 database and the key that protects it.
 
 168
-00:10:07.598 --> 00:10:11.890
+00:10:58.598 --> 00:11:02.890
 Back up both, store them separately,
 and if an HSM holds the key,
 
 169
-00:10:11.890 --> 00:10:17.211
+00:11:02.890 --> 00:11:08.211
 run the HSMs as a pair, because the platform
 shuts down when it can't reach one.
 
 170
-00:10:17.211 --> 00:10:21.295
+00:11:08.211 --> 00:11:12.295
 CyberArk's recovery steps are on
 the slide; the one people forget is
 
 171
-00:10:21.295 --> 00:10:26.198
+00:11:12.295 --> 00:11:17.198
 re-enabling SQL Service Broker after a
 restore, which quietly stops everything.
 
 172
-00:10:26.198 --> 00:10:28.542
+00:11:17.198 --> 00:11:19.542
 The program's rule is to rehearse a full
 
 173
-00:10:28.542 --> 00:10:31.398
+00:11:19.542 --> 00:11:22.398
 restore before the second
 migration wave ends.
 
 174
-00:10:31.398 --> 00:10:32.436
+00:11:22.398 --> 00:11:23.436
 That's the build.
 
 175
-00:10:32.436 --> 00:10:35.430
+00:11:23.436 --> 00:11:26.430
 Now let's connect it to the
 certificate authorities.
 
 176
-00:10:36.180 --> 00:10:41.667
+00:11:30.180 --> 00:11:35.668
 Part 2 connects the platform to the places
 certificates come from: the agency's own
 
 177
-00:10:41.667 --> 00:10:47.520
+00:11:35.668 --> 00:11:41.520
 AD CS, public certificate authorities, the
 cloud, and how it lives alongside Intune.
 
 178
-00:10:48.270 --> 00:10:53.932
+00:11:45.270 --> 00:11:50.932
 The most important connection is to AD CS,
 the agency's own certificate authority.
 
 179
-00:10:53.932 --> 00:10:56.020
+00:11:50.932 --> 00:11:53.020
 The platform talks to it over DCOM,
 
 180
-00:10:56.020 --> 00:11:00.045
+00:11:53.020 --> 00:11:57.045
 using an account with the right
 to issue and manage certificates.
 
 181
-00:11:00.045 --> 00:11:03.987
+00:11:57.045 --> 00:12:00.987
 The cleanest pattern is one
 platform template for each
 
 182
-00:11:03.987 --> 00:11:07.758
+00:12:00.987 --> 00:12:04.758
 AD CS template it issues from,
 so policy is easy to read.
 
 183
-00:11:07.758 --> 00:11:12.350
+00:12:04.758 --> 00:12:09.350
 After Active Directory retires,
 Book 07 moves server certificates
 
 184
-00:11:12.350 --> 00:11:15.958
+00:12:09.350 --> 00:12:12.958
 to a standalone CA, and the
 platform handles that fine.
 
 185
-00:11:15.958 --> 00:11:21.219
+00:12:12.958 --> 00:12:18.219
 One open item: CyberArk's support
 table stops at Windows Server 2022,
 
 186
-00:11:21.219 --> 00:11:25.620
+00:12:18.219 --> 00:12:22.620
 so if your CA runs 2025, get
 that confirmed in writing.
 
 187
-00:11:26.370 --> 00:11:29.058
+00:12:26.370 --> 00:12:29.058
 This slide is about one
 dangerous permission.
 
 188
-00:11:29.058 --> 00:11:31.616
+00:12:29.058 --> 00:12:31.616
 To issue certificates on the agency's CAs,
 
 189
-00:11:31.616 --> 00:11:35.680
+00:12:31.616 --> 00:12:35.680
 the platform needs a right called
 Issue and Manage Certificates,
 
 190
-00:11:35.680 --> 00:11:39.594
+00:12:35.680 --> 00:12:39.594
 and with it an account can approve,
 deny or revoke certificates.
 
 191
-00:11:39.594 --> 00:11:43.832
+00:12:39.594 --> 00:12:43.832
 Attackers know this; it's a
 known attack path called ESC7.
 
 192
-00:11:43.832 --> 00:11:47.376
+00:12:43.832 --> 00:12:47.376
 Here's the honest part: Microsoft
 doesn't give you a switch that
 
 193
-00:11:47.376 --> 00:11:50.920
+00:12:47.376 --> 00:12:50.920
 limits that right to a few templates,
 so we don't pretend it does.
 
 194
-00:11:50.920 --> 00:11:54.555
+00:12:50.920 --> 00:12:54.555
 We limit what the account can
 request, prove in the lab that a
 
 195
-00:11:54.555 --> 00:11:59.210
+00:12:54.555 --> 00:12:59.210
 request outside those templates fails,
 and alert if one ever succeeds.
 
 196
-00:11:59.960 --> 00:12:04.399
+00:13:02.960 --> 00:13:07.399
 For public certificates, the platform
 has drivers for the major public CAs,
 
 197
-00:12:04.399 --> 00:12:07.835
+00:13:07.399 --> 00:13:10.835
 and two changes in this release
 matter before you upgrade.
 
 198
-00:12:07.835 --> 00:12:10.860
+00:13:10.835 --> 00:13:13.860
 Entrust is no longer
 supported as a public CA,
 
 199
-00:12:10.860 --> 00:12:13.885
+00:13:13.860 --> 00:13:16.885
 so if that's your provider,
 plan the path first.
 
 200
-00:12:13.885 --> 00:12:19.098
+00:13:16.885 --> 00:13:22.098
 And DigiCert client certificates now
 need an email address, or renewals fail.
 
 201
-00:12:19.098 --> 00:12:21.820
+00:13:22.098 --> 00:13:24.821
 On the cloud side, the platform can issue
 
 202
-00:12:21.820 --> 00:12:24.873
+00:13:24.821 --> 00:13:27.873
 through AWS and install
 into Azure Key Vault.
 
 203
-00:12:24.873 --> 00:12:28.799
+00:13:27.873 --> 00:13:31.799
 What I couldn't confirm is Key
 Vault support in Azure Government,
 
 204
-00:12:28.799 --> 00:12:31.390
+00:13:31.799 --> 00:13:34.390
 so test it or ask before you rely on it.
 
 205
-00:12:32.140 --> 00:12:36.227
+00:13:38.140 --> 00:13:42.227
 The rule with Intune is simple:
 Intune owns device certificates,
 
 206
-00:12:36.227 --> 00:12:38.540
+00:13:42.227 --> 00:13:44.540
 and the platform stays out of its way.
 
 207
-00:12:38.540 --> 00:12:42.969
+00:13:44.540 --> 00:13:48.969
 If some Intune certificates still come
 from AD CS during the transition,
 
 208
-00:12:42.969 --> 00:12:47.028
+00:13:48.969 --> 00:13:53.028
 the platform will see them, and it
 just watches — it doesn't renew them.
 
 209
-00:12:47.028 --> 00:12:51.648
+00:13:53.028 --> 00:13:57.648
 CyberArk can also act as Intune's certificate
 authority, but the program says no,
 
 210
-00:12:51.648 --> 00:12:56.128
+00:13:57.648 --> 00:14:02.128
 because that would create a second issuer
 for devices that are mid-migration.
 
 211
-00:12:56.128 --> 00:13:00.094
+00:14:02.128 --> 00:14:06.094
 And there's no built-in way to
 pull in Cloud PKI's inventory;
 
 212
-00:13:00.094 --> 00:13:04.930
+00:14:06.094 --> 00:14:10.930
 it would take a custom job, so
 Intune's own report stays the record.
 
 213
-00:13:05.680 --> 00:13:10.293
+00:14:14.680 --> 00:14:19.293
 Part 3 is where the platform earns
 its keep: finding every certificate,
 
 214
-00:13:10.293 --> 00:13:15.910
+00:14:19.293 --> 00:14:24.910
 giving each one an owner, and automating
 renewal so nobody has to remember a date.
 
 215
-00:13:16.660 --> 00:13:18.761
+00:14:28.660 --> 00:14:30.761
 You can't manage what you can't see,
 
 216
-00:13:18.761 --> 00:13:21.873
+00:14:30.761 --> 00:14:33.873
 and a CA's database only
 shows what that CA issued.
 
 217
-00:13:21.873 --> 00:13:25.986
+00:14:33.873 --> 00:14:37.986
 So the platform finds certificates
 two ways: it scans the network for
 
 218
-00:13:25.986 --> 00:13:30.748
+00:14:37.986 --> 00:14:42.748
 anything presenting a certificate, and
 it imports what your CAs already issued.
 
 219
-00:13:30.748 --> 00:13:33.672
+00:14:42.748 --> 00:14:45.672
 Agents and API feeds fill in the rest.
 
 220
-00:13:33.672 --> 00:13:35.529
+00:14:45.672 --> 00:14:47.529
 The program's rule is blunt:
 
 221
-00:13:35.529 --> 00:13:39.834
+00:14:47.529 --> 00:14:51.834
 any certificate found with no
 record and no owner is a finding.
 
 222
-00:13:39.834 --> 00:13:45.610
+00:14:51.834 --> 00:14:57.610
 In the first wave, run read-only scans
 and imports, and log every surprise.
 
 223
-00:13:46.360 --> 00:13:48.938
+00:15:01.360 --> 00:15:03.938
 An expired certificate is almost always an
 
 224
-00:13:48.938 --> 00:13:51.660
+00:15:03.938 --> 00:15:06.660
 ownership problem before
 it's a technical one.
 
 225
-00:13:51.660 --> 00:13:54.835
+00:15:06.660 --> 00:15:09.835
 So every certificate gets
 a home and a named owner.
 
 226
-00:13:54.835 --> 00:13:59.233
+00:15:09.835 --> 00:15:14.233
 The platform's policy folders mirror
 Book 07's certificate classes,
 
 227
-00:13:59.233 --> 00:14:02.610
+00:15:14.233 --> 00:15:17.610
 so where a certificate lives
 tells you how it renews.
 
 228
-00:14:02.610 --> 00:14:06.264
+00:15:17.610 --> 00:15:21.264
 Owners come from Entra groups,
 and, if the agency uses it,
 
 229
-00:14:06.264 --> 00:14:11.948
+00:15:21.264 --> 00:15:26.948
 the ServiceNow app can tie certificates to
 the same configuration items as the CMDB.
 
 230
-00:14:11.948 --> 00:14:16.012
+00:15:26.948 --> 00:15:31.012
 And one alert matters most: a
 certificate nearing expiry with no
 
 231
-00:14:16.012 --> 00:14:20.210
+00:15:31.012 --> 00:15:35.210
 renewal path is an incident while
 there's still time to fix it.
 
 232
-00:14:20.960 --> 00:14:24.172
+00:15:38.960 --> 00:15:42.172
 Automation is how renewals
 stop depending on people.
 
 233
-00:14:24.172 --> 00:14:27.110
+00:15:42.172 --> 00:15:45.110
 Web servers can renew
 themselves using ACME,
 
 234
-00:14:27.110 --> 00:14:30.285
+00:15:45.110 --> 00:15:48.285
 the same protocol public
 certificate sites use.
 
 235
-00:14:30.285 --> 00:14:33.835
+00:15:48.285 --> 00:15:51.835
 Network devices can use EST or SCEP.
 
 236
-00:14:33.835 --> 00:14:38.735
+00:15:51.835 --> 00:15:56.735
 Scripts and pipelines use the REST
 API or CyberArk's command-line tool.
 
 237
-00:14:38.735 --> 00:14:43.323
+00:15:56.735 --> 00:16:01.323
 And for everything else, the drivers renew
 the certificate and install it for you.
 
 238
-00:14:43.323 --> 00:14:47.907
+00:16:01.323 --> 00:16:05.907
 The one design rule to carry
 forward is the one we've seen twice:
 
 239
-00:14:47.907 --> 00:14:51.690
+00:16:05.907 --> 00:16:09.690
 ACME runs on its own
 servers, outside FIPS mode.
 
 240
-00:14:52.440 --> 00:14:55.590
+00:16:13.440 --> 00:16:16.590
 Three integrations, each
 with a boundary question.
 
 241
-00:14:55.590 --> 00:14:59.600
+00:16:16.590 --> 00:16:20.600
 Kubernetes discovery only works
 through CyberArk's cloud service,
 
 242
-00:14:59.600 --> 00:15:03.466
+00:16:20.600 --> 00:16:24.466
 which isn't authorized, so inside
 the boundary we use cert-manager,
 
 243
-00:15:03.466 --> 00:15:06.402
+00:16:24.466 --> 00:16:27.402
 which talks straight to
 the self-hosted platform.
 
 244
-00:15:06.402 --> 00:15:10.355
+00:16:27.402 --> 00:16:31.355
 ServiceNow has no CyberArk-built
 app, only a third-party one,
 
 245
-00:15:10.355 --> 00:15:13.340
+00:16:31.355 --> 00:16:34.340
 so assess it like any
 supply-chain component.
 
 246
-00:15:13.340 --> 00:15:18.107
+00:16:34.340 --> 00:16:39.107
 And the SIEM gets the platform's events
 over syslog with TLS — with one gotcha:
 
 247
-00:15:18.107 --> 00:15:21.859
+00:16:39.107 --> 00:16:42.859
 the SIEM collector's certificate
 needs its IP address in it,
 
 248
-00:15:21.859 --> 00:15:23.940
+00:16:42.859 --> 00:16:44.940
 even if you connect by name.
 
 249
-00:15:24.690 --> 00:15:28.220
+00:16:48.690 --> 00:16:52.220
 Part 4 puts it all on a
 timeline and keeps it running:
 
 250
-00:15:28.220 --> 00:15:30.826
+00:16:52.220 --> 00:16:54.826
 the build mapped to Book 07's six waves,
 
 251
-00:15:30.826 --> 00:15:36.650
+00:16:54.826 --> 00:17:00.650
 renewal as certificate lifetimes shrink,
 monitoring, and retiring the old CAs.
 
 252
-00:15:37.400 --> 00:15:40.925
+00:17:04.400 --> 00:17:07.925
 Here's the build laid
 onto Book 07's six waves.
 
 253
-00:15:40.925 --> 00:15:44.469
+00:17:07.925 --> 00:17:11.469
 Wave one is a small test
 cluster and read-only discovery,
 
 254
-00:15:44.469 --> 00:15:46.087
+00:17:11.469 --> 00:17:13.087
 so you learn what you have.
 
 255
-00:15:46.087 --> 00:15:50.618
+00:17:13.087 --> 00:17:17.618
 Wave two builds production properly
 — two of everything, keys backed up,
 
 256
-00:15:50.618 --> 00:15:55.538
+00:17:17.618 --> 00:17:22.538
 sign-in and logging done — and doesn't
 close until a restore has been rehearsed.
 
 257
-00:15:55.538 --> 00:15:59.749
+00:17:22.538 --> 00:17:26.749
 Wave three pilots automatic
 renewal on a handful of servers,
 
 258
-00:15:59.749 --> 00:16:02.613
+00:17:26.749 --> 00:17:29.613
 with the old method left
 on as a safety net.
 
 259
-00:16:02.613 --> 00:16:06.452
+00:17:29.613 --> 00:17:33.452
 Then you scale ring by ring,
 move public certificates over,
 
 260
-00:16:06.452 --> 00:16:10.960
+00:17:33.452 --> 00:17:37.960
 and finally retire CAs using the
 platform's inventory as proof.
 
 261
-00:16:11.710 --> 00:16:13.148
+00:17:41.710 --> 00:17:43.148
 Here's why this can't wait.
 
 262
-00:16:13.148 --> 00:16:18.303
+00:17:43.148 --> 00:17:48.303
 Public certificate lifetimes are
 shrinking fast: two hundred days today,
 
 263
-00:16:18.303 --> 00:16:21.598
+00:17:48.303 --> 00:17:51.598
 a hundred next year, and
 forty-seven days by 2029.
 
 264
-00:16:21.598 --> 00:16:25.102
+00:17:51.598 --> 00:17:55.102
 For a thousand certificates,
 that's roughly seven
 
 265
-00:16:25.102 --> 00:16:28.948
+00:17:55.102 --> 00:17:58.948
 renewals every working day
 now, and over thirty in 2029.
 
 266
-00:16:28.948 --> 00:16:30.948
+00:17:58.948 --> 00:18:00.948
 No team can keep that up by hand.
 
 267
-00:16:30.948 --> 00:16:36.362
+00:18:00.948 --> 00:18:06.362
 That's why Book 07's rule is that no
 certificate may depend on a person remembering
 
 268
-00:16:36.362 --> 00:16:41.410
+00:18:06.362 --> 00:18:11.410
 a date — every one runs through Intune,
 autoenrollment, or this platform.
 
 269
-00:16:42.160 --> 00:16:44.960
+00:18:15.160 --> 00:18:17.960
 Monitoring is where
 the inventory pays off.
 
 270
-00:16:44.960 --> 00:16:49.457
+00:18:17.960 --> 00:18:22.457
 The platform sends its events to the SIEM
 and watches for four kinds of drift:
 
 271
-00:16:49.457 --> 00:16:52.575
+00:18:22.457 --> 00:18:25.575
 a certificate close to expiry
 with no way to renew it,
 
 272
-00:16:52.575 --> 00:16:56.999
+00:18:25.575 --> 00:18:29.999
 a certificate issued outside policy,
 a revocation list that's going stale,
 
 273
-00:16:56.999 --> 00:17:00.698
+00:18:29.999 --> 00:18:33.698
 and trust stores that have picked
 up roots they shouldn't have.
 
 274
-00:17:00.698 --> 00:17:05.024
+00:18:33.698 --> 00:18:38.024
 The checks run at least weekly, and the
 results are kept, because an assessor
 
 275
-00:17:05.024 --> 00:17:09.430
+00:18:38.024 --> 00:18:42.430
 will ask how long a problem stayed
 open, not just whether it's open today.
 
 276
-00:17:10.180 --> 00:17:13.252
+00:18:46.180 --> 00:18:49.252
 Eventually the old certificate
 authorities retire,
 
 277
-00:17:13.252 --> 00:17:15.905
+00:18:49.252 --> 00:18:51.905
 and the platform is the
 evidence that it's safe.
 
 278
-00:17:15.905 --> 00:17:20.717
+00:18:51.905 --> 00:18:56.717
 Before a CA goes, its inventory has to
 show that nothing still depends on it.
 
 279
-00:17:20.717 --> 00:17:25.038
+00:18:56.717 --> 00:19:01.038
 Then you stop new issuance — after
 pointing the platform's templates at a
 
 280
-00:17:25.038 --> 00:17:29.505
+00:19:01.038 --> 00:19:05.505
 CA that's staying — publish the last
 revocation list, and remove the service.
 
 281
-00:17:29.505 --> 00:17:33.768
+00:19:05.505 --> 00:19:09.768
 The records and endpoints stay up
 until the last certificate expires.
 
 282
-00:17:33.768 --> 00:17:37.256
+00:19:09.768 --> 00:19:13.256
 After Active Directory, server
 certificates come from a
 
 283
-00:17:37.256 --> 00:17:41.490
+00:19:13.256 --> 00:19:17.490
 standalone CA under the same root,
 still driven by the platform.
 
 284
-00:17:42.240 --> 00:17:43.115
+00:19:21.240 --> 00:19:22.115
 To wrap up.
 
 285
-00:17:43.115 --> 00:17:47.267
+00:19:22.115 --> 00:19:26.267
 The decisions are yours: which
 servers run in FIPS mode,
 
 286
-00:17:47.267 --> 00:17:51.603
+00:19:26.267 --> 00:19:30.603
 HSM or software key, and a
 handful of integration choices.
 
 287
-00:17:51.603 --> 00:17:55.440
+00:19:30.603 --> 00:19:34.440
 There are a few questions to
 put to CyberArk in writing,
 
 288
-00:17:55.440 --> 00:17:59.790
+00:19:34.440 --> 00:19:38.790
 mainly around FIPS, Windows Server
 2025, and Azure Government.
 
 289
-00:17:59.790 --> 00:18:04.873
+00:19:38.790 --> 00:19:43.873
 And the next steps are concrete: stand up
 the test cluster, create the CA account
 
 290
-00:18:04.873 --> 00:18:09.878
+00:19:43.873 --> 00:19:48.878
 under the ESC7 controls, and prove in the
 lab that it can't do more than it should.
 
 291
-00:18:09.878 --> 00:18:14.932
+00:19:48.878 --> 00:19:53.932
 The program's view is clear — this is
 the right platform for Book 07's design,
 
 292
-00:18:14.932 --> 00:18:17.628
+00:19:53.932 --> 00:19:56.628
 and its risks are known and manageable.
 
 293
-00:18:17.628 --> 00:18:20.519
+00:19:56.628 --> 00:19:59.519
 This is the program's
 research, under review,
 
 294
-00:18:20.519 --> 00:18:23.490
+00:19:59.519 --> 00:20:02.490
 and not an endorsement
 by any federal agency.
 
 295
-00:18:23.490 --> 00:18:24.650
+00:20:02.490 --> 00:20:03.650
 Thanks for watching.

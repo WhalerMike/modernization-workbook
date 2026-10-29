@@ -59,1136 +59,1136 @@ the evidence the fabric has to emit.
 First, why start with a directive?
 
 13
-00:00:48.550 --> 00:00:50.688
+00:00:51.550 --> 00:00:53.688
 Most build plans start with hardware.
 
 14
-00:00:50.688 --> 00:00:54.244
+00:00:53.688 --> 00:00:57.244
 This one starts with a directive,
 because the product we're
 
 15
-00:00:54.244 --> 00:00:57.800
+00:00:57.244 --> 00:01:00.800
 building on was the subject of
 a 2026 emergency directive.
 
 16
-00:00:57.800 --> 00:01:02.829
+00:01:00.800 --> 00:01:05.829
 Book 09 already says the governor has
 its own exposure: one control plane
 
 17
-00:01:02.829 --> 00:01:08.025
+00:01:05.829 --> 00:01:11.025
 with authority over every edge, and an
 internet-facing edge in every office.
 
 18
-00:01:08.025 --> 00:01:11.063
+00:01:11.025 --> 00:01:14.063
 On Catalyst SD-WAN that
 isn't hypothetical.
 
 19
-00:01:11.063 --> 00:01:16.310
+00:01:14.063 --> 00:01:19.310
 CISA's catalog now lists nine exploited
 flaws in the platform, and every 2026
 
 20
-00:01:16.310 --> 00:01:22.050
+00:01:19.310 --> 00:01:25.050
 advisory names Cisco's hosted FedRAMP
 environment among the affected deployments.
 
 21
-00:01:22.050 --> 00:01:25.416
+00:01:25.050 --> 00:01:28.416
 So the first gate is proving
 the control plane is patched,
 
 22
-00:01:25.416 --> 00:01:29.212
+00:01:28.416 --> 00:01:32.212
 hunted and hardened, before it
 carries a single production flow.
 
 23
-00:01:29.212 --> 00:01:31.420
+00:01:32.212 --> 00:01:34.420
 Here's what the directive required.
 
 24
-00:01:32.170 --> 00:01:36.570
+00:01:38.170 --> 00:01:42.570
 Emergency Directive 26-03
 landed on February 25, 2026,
 
 25
-00:01:36.570 --> 00:01:43.370
+00:01:42.570 --> 00:01:49.370
 and it was strict about order: identify
 every Manager and Controller, collect logs
 
 26
-00:01:43.370 --> 00:01:49.670
+00:01:49.370 --> 00:01:55.670
 and forensic images, update to Cisco's
 fixed releases, hunt, harden, and report.
 
 27
-00:01:49.670 --> 00:01:51.257
+00:01:55.670 --> 00:01:57.257
 The clock ran in hours.
 
 28
-00:01:51.257 --> 00:01:54.550
+00:01:57.257 --> 00:02:00.550
 The inventory was due
 to CISA the next night,
 
 29
-00:01:54.550 --> 00:01:58.020
+00:02:00.550 --> 00:02:04.020
 and the fixed releases by
 five PM on February 27.
 
 30
-00:01:58.020 --> 00:02:00.782
+00:02:04.020 --> 00:02:06.782
 A March update added log delivery to CLAW,
 
 31
-00:02:00.782 --> 00:02:03.545
+00:02:06.782 --> 00:02:09.545
 CISA's log warehouse, and a fourth report.
 
 32
-00:02:03.545 --> 00:02:05.090
+00:02:09.545 --> 00:02:11.090
 Those deadlines are past,
 
 33
-00:02:05.090 --> 00:02:08.695
+00:02:11.090 --> 00:02:14.695
 and whether a new fabric must
 report is a question for CISA.
 
 34
-00:02:08.695 --> 00:02:13.312
+00:02:14.695 --> 00:02:19.312
 The program's position is simpler: a
 new build runs the same sequence anyway,
 
 35
-00:02:13.312 --> 00:02:17.482
+00:02:19.312 --> 00:02:23.482
 because it's the best published
 definition of a clean control plane.
 
 36
-00:02:17.482 --> 00:02:19.940
+00:02:23.482 --> 00:02:25.940
 And the list of flaws kept growing.
 
 37
-00:02:20.690 --> 00:02:23.453
+00:02:29.690 --> 00:02:32.453
 The directive started
 with two catalog entries.
 
 38
-00:02:23.453 --> 00:02:29.364
+00:02:32.453 --> 00:02:38.364
 Today CISA's Known Exploited Vulnerabilities
 catalog lists nine for Catalyst SD-WAN.
 
 39
-00:02:29.364 --> 00:02:32.523
+00:02:38.364 --> 00:02:41.523
 Six carry the directive's
 mitigation instructions,
 
 40
-00:02:32.523 --> 00:02:35.240
+00:02:41.523 --> 00:02:44.240
 and three more arrived
 in June and September.
 
 41
-00:02:35.240 --> 00:02:38.655
+00:02:44.240 --> 00:02:47.655
 Two are authentication bypasses
 that reach the Manager,
 
 42
-00:02:38.655 --> 00:02:40.690
+00:02:47.655 --> 00:02:49.690
 the Controller and the Validator.
 
 43
-00:02:40.690 --> 00:02:45.090
+00:02:49.690 --> 00:02:54.090
 The newest, added on September 30,
 came with a three-day due date.
 
 44
-00:02:45.090 --> 00:02:47.103
+00:02:54.090 --> 00:02:56.103
 So this isn't a one-time cleanup.
 
 45
-00:02:47.103 --> 00:02:50.750
+00:02:56.103 --> 00:02:59.750
 Nine exploited flaws in eight
 months is a patch tempo,
 
 46
-00:02:50.750 --> 00:02:54.315
+00:02:59.750 --> 00:03:03.315
 not an event; treat the
 catalog as a standing posture.
 
 47
-00:02:54.315 --> 00:02:59.039
+00:03:03.315 --> 00:03:08.039
 Cisco now publishes advisories on the
 first and third Wednesday of each month,
 
 48
-00:02:59.039 --> 00:03:03.327
+00:03:08.039 --> 00:03:12.327
 with a week's notice, and still goes
 out of cycle for active exploitation.
 
 49
-00:03:03.327 --> 00:03:05.270
+00:03:12.327 --> 00:03:14.270
 So which release do you need?
 
 50
-00:03:06.020 --> 00:03:10.361
+00:03:18.020 --> 00:03:22.361
 Reading Cisco's advisories together
 gives a floor: a minimum release per
 
 51
-00:03:10.361 --> 00:03:14.920
+00:03:22.361 --> 00:03:26.920
 software train, one for the Manager and
 one for the Controller and Validator.
 
 52
-00:03:14.920 --> 00:03:19.758
+00:03:26.920 --> 00:03:31.758
 That's the program's inference from Cisco's
 tables, so re-read them at build time.
 
 53
-00:03:19.758 --> 00:03:21.120
+00:03:31.758 --> 00:03:33.120
 A few things stand out.
 
 54
-00:03:21.120 --> 00:03:26.245
+00:03:33.120 --> 00:03:38.245
 Several older trains have no fix of their
 own, and Cisco's answer is to migrate.
 
 55
-00:03:26.245 --> 00:03:29.296
+00:03:38.245 --> 00:03:41.296
 The newest train isn't
 listed for the Controller
 
 56
-00:03:29.296 --> 00:03:32.270
+00:03:41.296 --> 00:03:44.270
 and Validator in three
 advisories, so ask Cisco.
 
 57
-00:03:32.270 --> 00:03:38.143
+00:03:44.270 --> 00:03:50.143
 And the edges have their own catalog
 entries, for the web interface and SNMP,
 
 58
-00:03:38.143 --> 00:03:43.258
+00:03:50.143 --> 00:03:55.258
 so the HTTP server stays off and
 SNMPv3 sits behind an access list.
 
 59
-00:03:43.258 --> 00:03:45.958
+00:03:55.258 --> 00:03:57.958
 Cisco's Live Protect
 shields can bridge a gap,
 
 60
-00:03:45.958 --> 00:03:49.096
+00:03:57.958 --> 00:04:01.096
 but Cisco calls them
 temporary partial protection.
 
 61
-00:03:49.096 --> 00:03:50.770
+00:04:01.096 --> 00:04:02.770
 Next, the hunt.
 
 62
-00:03:51.520 --> 00:03:54.912
+00:04:06.520 --> 00:04:09.912
 Patching doesn't tell you whether
 someone already came through,
 
 63
-00:03:54.912 --> 00:03:57.408
+00:04:09.912 --> 00:04:12.408
 and CISA's supplemental
 guidance is sobering.
 
 64
-00:03:57.408 --> 00:04:00.578
+00:04:12.408 --> 00:04:15.578
 The original bypass was
 exploited as a zero-day,
 
 65
-00:04:00.578 --> 00:04:05.293
+00:04:15.578 --> 00:04:20.293
 the attacker's rogue device looked
 like a legitimate SD-WAN component,
 
 66
-00:04:05.293 --> 00:04:10.008
+00:04:20.293 --> 00:04:25.008
 and the activity likely began in 2023,
 so the hunt reaches back that far.
 
 67
-00:04:10.008 --> 00:04:15.375
+00:04:25.008 --> 00:04:30.375
 The six-part hunt looks for downgrades
 and reboots, rogue peering, SSH key abuse,
 
 68
-00:04:15.375 --> 00:04:17.439
+00:04:30.375 --> 00:04:32.439
 root sign-ins and cleared logs,
 
 69
-00:04:17.439 --> 00:04:21.733
+00:04:32.439 --> 00:04:36.733
 and any root compromise means
 rebuilding from patched images.
 
 70
-00:04:21.733 --> 00:04:26.222
+00:04:36.733 --> 00:04:41.222
 The hardening is concrete: five-minute
 timeouts, pairwise IPsec keys,
 
 71
-00:04:26.222 --> 00:04:31.420
+00:04:41.222 --> 00:04:46.420
 an enterprise certificate on the Manager,
 and SIEM alerts on unexpected peering.
 
 72
-00:04:31.420 --> 00:04:34.234
+00:04:46.420 --> 00:04:49.234
 The fabric carries no
 production traffic until
 
 73
-00:04:34.234 --> 00:04:36.907
+00:04:49.234 --> 00:04:51.907
 every line of the gate
 is closed and evidenced.
 
 74
-00:04:36.907 --> 00:04:39.070
+00:04:51.907 --> 00:04:54.070
 Now, the first decision.
 
 75
-00:04:39.820 --> 00:04:42.657
+00:04:57.820 --> 00:05:00.657
 First, decide where the
 control plane lives.
 
 76
-00:04:42.657 --> 00:04:48.101
+00:05:00.657 --> 00:05:06.101
 Cisco's FedRAMP environment, Catalyst
 SD-WAN for Government, is certified at
 
 77
-00:04:48.101 --> 00:04:53.458
+00:05:06.101 --> 00:05:11.458
 Moderate, runs in AWS GovCloud, and is
 run by a Cisco federal operations team.
 
 78
-00:04:53.458 --> 00:04:55.471
+00:05:11.458 --> 00:05:13.471
 The guide recommends it by default.
 
 79
-00:04:55.471 --> 00:05:00.259
+00:05:13.471 --> 00:05:18.259
 CISA's own hardening guidance points
 there, Cisco patches the control plane,
 
 80
-00:05:00.259 --> 00:05:02.803
+00:05:18.259 --> 00:05:20.803
 the boundary question gets an inherited,
 
 81
-00:05:02.803 --> 00:05:05.945
+00:05:20.803 --> 00:05:23.945
 certified answer, and a
 fourteen-VM build goes away.
 
 82
-00:05:05.945 --> 00:05:11.193
+00:05:23.945 --> 00:05:29.193
 Choose on-premises if the system is High
 or isolated, if the authorizing official
 
 83
-00:05:11.193 --> 00:05:13.387
+00:05:29.193 --> 00:05:31.387
 needs custody of forensic images,
 
 84
-00:05:13.387 --> 00:05:16.520
+00:05:31.387 --> 00:05:34.520
 or if Cisco can't commit to
 the catalog's due dates.
 
 85
-00:05:16.520 --> 00:05:18.670
+00:05:34.520 --> 00:05:36.670
 But hosting doesn't remove the gate.
 
 86
-00:05:18.670 --> 00:05:22.523
+00:05:36.670 --> 00:05:40.523
 The hosted environment was
 affected too, and the edges,
 
 87
-00:05:22.523 --> 00:05:26.633
+00:05:40.523 --> 00:05:44.633
 logs, allow-lists, roles and
 single sign-on stay the agency's.
 
 88
-00:05:26.633 --> 00:05:28.600
+00:05:44.633 --> 00:05:46.600
 Next, the fabric.
 
 89
-00:05:29.350 --> 00:05:33.475
+00:05:50.350 --> 00:05:54.475
 Here's Book 09's target: two
 data centers, ten regional hubs,
 
 90
-00:05:33.475 --> 00:05:37.425
+00:05:54.475 --> 00:05:58.425
 and about fifteen hundred
 field offices on an overlay.
 
 91
-00:05:37.425 --> 00:05:42.277
+00:05:58.425 --> 00:06:03.277
 On Catalyst, that's one edge per office,
 a high-availability pair at each hub,
 
 92
-00:05:42.277 --> 00:05:46.413
+00:06:03.277 --> 00:06:07.413
 and hub-and-spoke to a regional
 hub, with a second hub as fallback.
 
 93
-00:05:46.413 --> 00:05:51.073
+00:06:07.413 --> 00:06:12.073
 In plain terms, the Manager is where
 you configure and monitor, the Validator
 
 94
-00:05:51.073 --> 00:05:52.700
+00:06:12.073 --> 00:06:13.700
 decides which edges get in,
 
 95
-00:05:52.700 --> 00:05:56.251
+00:06:13.700 --> 00:06:17.251
 and the Controller hands every
 edge its routes and policy.
 
 96
-00:05:56.251 --> 00:06:01.313
+00:06:17.251 --> 00:06:22.313
 On-premises, Cisco's sizing for this
 fleet is seven VMs per data center,
 
 97
-00:06:01.313 --> 00:06:05.488
+00:06:22.313 --> 00:06:26.488
 fourteen in all, which matches
 Book 09's bill of materials.
 
 98
-00:06:05.488 --> 00:06:08.672
+00:06:26.488 --> 00:06:29.672
 The Manager cluster tops
 out at two thousand devices,
 
 99
-00:06:08.672 --> 00:06:11.350
+00:06:29.672 --> 00:06:32.350
 so this fleet uses about
 three quarters of it.
 
 100
-00:06:11.350 --> 00:06:12.950
+00:06:32.350 --> 00:06:33.950
 Plan the growth trigger now.
 
 101
-00:06:12.950 --> 00:06:14.580
+00:06:33.950 --> 00:06:35.580
 Next, policy.
 
 102
-00:06:15.330 --> 00:06:18.868
+00:06:39.330 --> 00:06:42.868
 Book 09 splits branch
 traffic into two classes.
 
 103
-00:06:18.868 --> 00:06:25.305
+00:06:42.868 --> 00:06:49.305
 Lean is the latency-sensitive kind: sign-in,
 voice, clock sync and interactive work.
 
 104
-00:06:25.305 --> 00:06:28.505
+00:06:49.305 --> 00:06:52.505
 Bulk is backups, patch waves and re-syncs.
 
 105
-00:06:28.505 --> 00:06:32.155
+00:06:52.505 --> 00:06:56.155
 On Catalyst, both become
 application-aware routing.
 
 106
-00:06:32.155 --> 00:06:36.418
+00:06:56.155 --> 00:07:00.418
 Lean gets a custom SLA class built
 from the pilot's measurements,
 
 107
-00:06:36.418 --> 00:06:41.405
+00:07:00.418 --> 00:07:05.405
 not Cisco's defaults; it prefers the
 internet circuit and can fall back to 5G.
 
 108
-00:06:41.405 --> 00:06:44.025
+00:07:05.405 --> 00:07:08.025
 Bulk stays on the internet circuit,
 
 109
-00:06:44.025 --> 00:06:48.180
+00:07:08.025 --> 00:07:12.180
 kept off 5G by data policy and
 behind lean traffic by QoS.
 
 110
-00:06:48.180 --> 00:06:51.427
+00:07:12.180 --> 00:07:15.427
 Every path that can reach
 the internet lands on the
 
 111
-00:06:51.427 --> 00:06:54.443
+00:07:15.427 --> 00:07:18.443
 same security policy, so
 no path gets less rigor.
 
 112
-00:06:54.443 --> 00:06:59.984
+00:07:18.443 --> 00:07:23.984
 And lane discipline carries over unchanged:
 the program observes and emits evidence,
 
 113
-00:06:59.984 --> 00:07:03.418
+00:07:23.984 --> 00:07:27.418
 while the Manager and
 Controllers route and enforce.
 
 114
-00:07:03.418 --> 00:07:05.550
+00:07:27.418 --> 00:07:29.550
 Next, segmentation.
 
 115
-00:07:06.300 --> 00:07:10.025
+00:07:33.300 --> 00:07:37.025
 Segmentation follows Book
 09's admission design.
 
 116
-00:07:10.025 --> 00:07:14.925
+00:07:37.025 --> 00:07:41.925
 Transport and management each get their
 own VPN, with management out of band.
 
 117
-00:07:14.925 --> 00:07:18.425
+00:07:41.925 --> 00:07:45.425
 Then each admission segment
 becomes a service VPN.
 
 118
-00:07:18.425 --> 00:07:21.688
+00:07:45.425 --> 00:07:48.688
 Production reaches the hubs
 and the security service.
 
 119
-00:07:21.688 --> 00:07:25.601
+00:07:48.688 --> 00:07:52.601
 Remediation reaches only update
 and antivirus endpoints.
 
 120
-00:07:25.601 --> 00:07:27.213
+00:07:52.601 --> 00:07:54.213
 Quarantine stays local.
 
 121
-00:07:27.213 --> 00:07:30.850
+00:07:54.213 --> 00:07:57.850
 IoT and OT reach only their
 own management systems.
 
 122
-00:07:30.850 --> 00:07:34.775
+00:07:57.850 --> 00:08:01.775
 And guests go out through the security
 service, with no route inward.
 
 123
-00:07:34.775 --> 00:07:39.070
+00:08:01.775 --> 00:08:06.070
 Cisco ISE plugs in two ways:
 security group tags on the edge,
 
 124
-00:07:39.070 --> 00:07:41.575
+00:08:06.070 --> 00:08:08.575
 or identity-based firewall rules.
 
 125
-00:07:41.575 --> 00:07:47.575
+00:08:08.575 --> 00:08:14.575
 One catch to remember: Cisco says TrustSec
 isn't supported with FIPS mode on.
 
 126
-00:07:47.575 --> 00:07:49.682
+00:08:14.575 --> 00:08:16.682
 So if the edges must run FIPS,
 
 127
-00:07:49.682 --> 00:07:54.538
+00:08:16.682 --> 00:08:21.538
 segment by VPN and leave tag
 enforcement to the access switches.
 
 128
-00:07:54.538 --> 00:07:56.370
+00:08:21.538 --> 00:08:23.370
 Now, certificates.
 
 129
-00:07:57.120 --> 00:08:00.001
+00:08:27.120 --> 00:08:30.001
 Out of the box, Catalyst
 trusts Cisco's own PKI,
 
 130
-00:08:00.001 --> 00:08:04.907
+00:08:30.001 --> 00:08:34.907
 and hardware edges prove who they are
 with a certificate in their trust chip.
 
 131
-00:08:04.907 --> 00:08:08.958
+00:08:34.907 --> 00:08:38.958
 An edge joins only if its serial
 number is on the authorized list.
 
 132
-00:08:08.958 --> 00:08:14.559
+00:08:38.958 --> 00:08:44.559
 Book 09 wants edges onboarded with certificates
 from the agency's PKI, and Cisco's
 
 133
-00:08:14.559 --> 00:08:19.994
+00:08:44.559 --> 00:08:49.994
 Enterprise Certificate option makes that
 possible on recent IOS XE releases.
 
 134
-00:08:19.994 --> 00:08:21.545
+00:08:49.994 --> 00:08:51.545
 The catch is renewal.
 
 135
-00:08:21.545 --> 00:08:23.320
+00:08:51.545 --> 00:08:53.320
 It's automatic at onboarding,
 
 136
-00:08:23.320 --> 00:08:26.795
+00:08:53.320 --> 00:08:56.795
 but Cisco says later renewals
 need manual intervention.
 
 137
-00:08:26.795 --> 00:08:31.815
+00:08:56.795 --> 00:09:01.815
 So this is a build plus a procedure, not
 a setting: issue through the CLM platform,
 
 138
-00:08:31.815 --> 00:08:34.827
+00:09:01.815 --> 00:09:04.827
 inventory certificates
 from the Manager's API,
 
 139
-00:08:34.827 --> 00:08:39.307
+00:09:04.827 --> 00:09:09.307
 and write renewal as a runbook
 triggered by the Manager's expiry alarm.
 
 140
-00:08:39.307 --> 00:08:42.407
+00:09:09.307 --> 00:09:12.407
 The CyberArk certificate
 guide covers that platform.
 
 141
-00:08:42.407 --> 00:08:44.430
+00:09:12.407 --> 00:09:14.430
 Next, FIPS.
 
 142
-00:08:45.180 --> 00:08:49.524
+00:09:18.180 --> 00:09:22.524
 If an acquisition has to state
 a FIPS 140-3 expectation,
 
 143
-00:08:49.524 --> 00:08:52.130
+00:09:22.524 --> 00:09:25.130
 the honest answer has two halves.
 
 144
-00:08:52.130 --> 00:08:55.051
+00:09:25.130 --> 00:09:28.051
 The control components are in good shape:
 
 145
-00:08:55.051 --> 00:09:00.376
+00:09:28.051 --> 00:09:33.376
 FIPS mode is on by default on recent
 releases and in the hosted environment,
 
 146
-00:09:00.376 --> 00:09:05.530
+00:09:33.376 --> 00:09:38.530
 and Cisco's letter for the current
 train cites an active FIPS 140-3 module.
 
 147
-00:09:05.530 --> 00:09:06.893
+00:09:38.530 --> 00:09:39.893
 The edges are different.
 
 148
-00:09:06.893 --> 00:09:09.199
+00:09:39.893 --> 00:09:42.199
 Their crypto modules are validated,
 
 149
-00:09:09.199 --> 00:09:13.736
+00:09:42.199 --> 00:09:46.736
 but Cisco's current letters don't name
 SD-WAN mode, NIAP's router listings
 
 150
-00:09:13.736 --> 00:09:18.580
+00:09:46.736 --> 00:09:51.580
 don't mention it, and Cisco's own example
 shows an edge with FIPS mode disabled.
 
 151
-00:09:18.580 --> 00:09:23.855
+00:09:51.580 --> 00:09:56.855
 So get edge validation in SD-WAN mode as
 a written vendor commitment before award.
 
 152
-00:09:23.855 --> 00:09:25.617
+00:09:56.855 --> 00:09:58.617
 There's no SD-WAN STIG either;
 
 153
-00:09:25.617 --> 00:09:29.293
+00:09:58.617 --> 00:10:02.293
 the router STIGs are a reference
 baseline, not a checklist.
 
 154
-00:09:29.293 --> 00:09:31.510
+00:10:02.293 --> 00:10:04.510
 Next, TIC 3.0.
 
 155
-00:09:32.260 --> 00:09:37.560
+00:10:08.260 --> 00:10:13.560
 Book 09 names four branch egress
 patterns, and each has a Catalyst build.
 
 156
-00:09:37.560 --> 00:09:41.603
+00:10:13.560 --> 00:10:17.603
 Pattern A, the hairpin, sends
 internet traffic to the regional hub,
 
 157
-00:09:41.603 --> 00:09:44.672
+00:10:17.603 --> 00:10:20.672
 which breaks out through
 its own security tunnel.
 
 158
-00:09:44.672 --> 00:09:48.248
+00:10:20.672 --> 00:10:24.248
 That's every office's starting
 state, and its fallback.
 
 159
-00:09:48.248 --> 00:09:51.579
+00:10:24.248 --> 00:10:27.579
 Pattern B, bare local
 breakout, is never allowed,
 
 160
-00:09:51.579 --> 00:09:54.910
+00:10:27.579 --> 00:10:30.910
 so audit the policy group
 for it on every change.
 
 161
-00:09:54.910 --> 00:10:00.738
+00:10:30.910 --> 00:10:36.738
 Pattern C, the reference, is automatic
 IPsec tunnels from each edge to a security
 
 162
-00:10:00.738 --> 00:10:03.829
+00:10:36.738 --> 00:10:39.829
 service edge, with Microsoft 365 Optimize
 
 163
-00:10:03.829 --> 00:10:07.273
+00:10:39.829 --> 00:10:43.273
 traffic going direct only
 under its exception.
 
 164
-00:10:07.273 --> 00:10:10.415
+00:10:43.273 --> 00:10:46.415
 Pattern D puts policy
 in the endpoint agent,
 
 165
-00:10:10.415 --> 00:10:13.646
+00:10:46.415 --> 00:10:49.646
 and the edge keeps
 agentless devices on A or C.
 
 166
-00:10:13.646 --> 00:10:19.322
+00:10:49.646 --> 00:10:55.322
 Cisco's own TIC guide predates the current
 use case, so build to Book 09's reading.
 
 167
-00:10:19.322 --> 00:10:21.850
+00:10:55.322 --> 00:10:57.850
 Next, the security service.
 
 168
-00:10:22.600 --> 00:10:27.543
+00:11:01.600 --> 00:11:06.543
 For the security service, Cisco's government
 option is Secure Access for Government,
 
 169
-00:10:27.543 --> 00:10:32.063
+00:11:06.543 --> 00:11:11.063
 certified at High, with automatic tunnels
 documented from a Catalyst branch.
 
 170
-00:10:32.063 --> 00:10:36.937
+00:11:11.063 --> 00:11:15.937
 But it runs in one region, Virginia, and
 a western office pays that round trip.
 
 171
-00:10:36.937 --> 00:10:41.237
+00:11:15.937 --> 00:11:20.237
 Measure it in the pilot, or choose a
 service with nearer points of presence.
 
 172
-00:10:41.237 --> 00:10:45.018
+00:11:20.237 --> 00:11:24.018
 Microsoft's Global Secure
 Access is available in GCC,
 
 173
-00:10:45.018 --> 00:10:50.603
+00:11:24.018 --> 00:11:29.603
 and Catalyst is a listed partner, but
 Cisco's guide forwards only the Microsoft
 
 174
-00:10:50.603 --> 00:10:56.101
+00:11:29.603 --> 00:11:35.101
 365 profile, and Conditional Access
 applies only to users running the client.
 
 175
-00:10:56.101 --> 00:11:01.400
+00:11:35.101 --> 00:11:40.400
 So it carries branch Microsoft
 365 traffic, not a full Pattern C.
 
 176
-00:11:01.400 --> 00:11:05.540
+00:11:40.400 --> 00:11:44.540
 And in GCC, informed network
 routing is still closed,
 
 177
-00:11:05.540 --> 00:11:10.162
+00:11:44.540 --> 00:11:49.162
 so Microsoft 365 path choice
 rests on the edge's own probes.
 
 178
-00:11:10.162 --> 00:11:11.910
+00:11:49.162 --> 00:11:50.910
 Next, evidence.
 
 179
-00:11:12.660 --> 00:11:17.498
+00:11:54.660 --> 00:11:59.498
 Book 09 expects decision records that
 become boundary-change evidence.
 
 180
-00:11:17.498 --> 00:11:22.660
+00:11:59.498 --> 00:12:04.660
 On Catalyst, they're derived from the
 Manager's APIs, and labeled as derived.
 
 181
-00:11:22.660 --> 00:11:28.355
+00:12:04.660 --> 00:12:10.355
 Device inventory, the audit log, alarms and
 path statistics give you the controller,
 
 182
-00:11:28.355 --> 00:11:33.060
+00:12:10.355 --> 00:12:15.060
 the selected path, the SLA state,
 failovers and the policy references.
 
 183
-00:11:33.060 --> 00:11:36.156
+00:12:15.060 --> 00:12:18.156
 Logs leave the box over
 TLS syslog to the SIEM,
 
 184
-00:11:36.156 --> 00:11:39.510
+00:12:18.156 --> 00:12:21.510
 and all SD-WAN syslog goes
 to CISA through CLAW.
 
 185
-00:11:39.510 --> 00:11:41.773
+00:12:21.510 --> 00:12:23.773
 One caveat for Sentinel users.
 
 186
-00:11:41.773 --> 00:11:46.861
+00:12:23.773 --> 00:12:28.861
 The documented connector's syslog path,
 through the Azure Monitor Agent, is fine.
 
 187
-00:11:46.861 --> 00:11:51.160
+00:12:28.861 --> 00:12:33.160
 Its NetFlow path uses an API
 whose support ended in September.
 
 188
-00:11:51.160 --> 00:11:54.923
+00:12:33.160 --> 00:12:36.923
 Ingestion continues, but
 treat that path as legacy.
 
 189
-00:11:54.923 --> 00:11:57.670
+00:12:36.923 --> 00:12:39.670
 Next, how the build is sequenced.
 
 190
-00:11:58.420 --> 00:12:03.582
+00:12:43.420 --> 00:12:48.582
 The build follows Book 09's own
 sequence, and each step leaves evidence.
 
 191
-00:12:03.582 --> 00:12:05.908
+00:12:48.582 --> 00:12:50.908
 Step zero is the gate we've covered.
 
 192
-00:12:05.908 --> 00:12:10.003
+00:12:50.908 --> 00:12:55.003
 Phase zero, the first six months,
 decides hosted or on-premises,
 
 193
-00:12:10.003 --> 00:12:13.136
+00:12:55.003 --> 00:12:58.136
 sets the release baseline,
 runs a ten-site pilot,
 
 194
-00:12:13.136 --> 00:12:17.232
+00:12:58.136 --> 00:13:02.232
 and starts the CLAW coordination
 and the static-address plan.
 
 195
-00:12:17.232 --> 00:12:19.209
+00:13:02.232 --> 00:13:04.209
 Phase one builds the twelve hubs,
 
 196
-00:12:19.209 --> 00:12:23.748
+00:13:04.209 --> 00:13:08.748
 with SLA classes set from the pilot's
 measurements, and no office gets local
 
 197
-00:12:23.748 --> 00:12:28.433
+00:13:08.748 --> 00:13:13.433
 internet until its security tunnel is
 up and its boundary change is approved.
 
 198
-00:12:28.433 --> 00:12:31.997
+00:13:13.433 --> 00:13:16.997
 Phase two moves offices
 in waves at MPLS renewal,
 
 199
-00:12:31.997 --> 00:12:36.007
+00:13:16.997 --> 00:13:21.007
 retiring MPLS only after that
 office's logs reach CLAW.
 
 200
-00:12:36.007 --> 00:12:42.221
+00:13:21.007 --> 00:13:27.221
 Phase three adds the Microsoft 365 direct
 path and tracks the five retirement gates.
 
 201
-00:12:42.221 --> 00:12:44.010
+00:13:27.221 --> 00:13:29.010
 So what does this change?
 
 202
-00:12:44.760 --> 00:12:48.398
+00:13:32.760 --> 00:13:36.398
 Three findings update Book
 09's planning inputs.
 
 203
-00:12:48.398 --> 00:12:52.348
+00:13:36.398 --> 00:13:40.348
 First, CISA expects a static
 address on every edge.
 
 204
-00:12:52.348 --> 00:12:56.746
+00:13:40.348 --> 00:13:44.746
 That conflicts with zero-touch
 provisioning from dynamic addresses,
 
 205
-00:12:56.746 --> 00:12:59.248
+00:13:44.746 --> 00:13:47.248
 and probably with the 5G secondary path.
 
 206
-00:12:59.248 --> 00:13:02.984
+00:13:47.248 --> 00:13:50.984
 It reinforces Book 09's
 deterministic-egress action,
 
 207
-00:13:02.984 --> 00:13:05.447
+00:13:50.984 --> 00:13:53.447
 and it belongs in the circuit order.
 
 208
-00:13:05.447 --> 00:13:09.890
+00:13:53.447 --> 00:13:57.890
 Second, Book 09's cost model assumes
 an on-premises control plane,
 
 209
-00:13:09.890 --> 00:13:12.823
+00:13:57.890 --> 00:14:00.823
 while CISA's guidance points to GovCloud.
 
 210
-00:13:12.823 --> 00:13:15.542
+00:14:00.823 --> 00:14:03.542
 Hosting replaces the fourteen-VM line with
 
 211
-00:13:15.542 --> 00:13:18.185
+00:14:03.542 --> 00:14:06.185
 a subscription the
 model doesn't price yet.
 
 212
-00:13:18.185 --> 00:13:20.337
+00:14:06.185 --> 00:14:08.337
 Third, the catalog keeps growing,
 
 213
-00:13:20.337 --> 00:13:25.198
+00:14:08.337 --> 00:14:13.198
 with the Validator now in scope and a
 floor that moves with every addition.
 
 214
-00:13:25.198 --> 00:13:29.250
+00:14:13.198 --> 00:14:17.250
 And one planning number: about four
 hundred seventy-six more edges,
 
 215
-00:13:29.250 --> 00:13:31.460
+00:14:17.250 --> 00:14:19.460
 and the fleet needs a second overlay.
 
 216
-00:13:31.460 --> 00:13:33.270
+00:14:19.460 --> 00:14:21.270
 Next, the risks.
 
 217
-00:13:34.020 --> 00:13:35.683
+00:14:25.020 --> 00:14:26.683
 Two risks are rated high.
 
 218
-00:13:35.683 --> 00:13:39.322
+00:14:26.683 --> 00:14:30.322
 The control plane collects new
 exploited flaws faster than
 
 219
-00:13:39.322 --> 00:13:43.107
+00:14:30.322 --> 00:14:34.107
 most agencies can patch, and a
 compromise may predate the build.
 
 220
-00:13:43.107 --> 00:13:46.992
+00:14:34.107 --> 00:14:37.992
 The answers are the hosted fabric
 with a written patch commitment,
 
 221
-00:13:46.992 --> 00:13:50.311
+00:14:37.992 --> 00:14:41.311
 or a standing patch crew on
 Cisco's publication schedule,
 
 222
-00:13:50.311 --> 00:13:53.207
+00:14:41.311 --> 00:14:44.207
 and hunting before you
 trust any existing fabric.
 
 223
-00:13:53.207 --> 00:13:58.159
+00:14:44.207 --> 00:14:49.159
 The medium risks are ones we've met:
 forensic custody on a hosted fabric,
 
 224
-00:13:58.159 --> 00:14:03.707
+00:14:49.159 --> 00:14:54.707
 static addressing against zero-touch and
 5G, a single-region security service,
 
 225
-00:14:03.707 --> 00:14:08.146
+00:14:54.707 --> 00:14:59.146
 manual certificate renewal, and
 unconfirmed edge FIPS status.
 
 226
-00:14:08.146 --> 00:14:11.357
+00:14:59.146 --> 00:15:02.357
 The vendor asks turn those
 into questions with owners.
 
 227
-00:14:11.357 --> 00:14:16.483
+00:15:02.357 --> 00:15:07.483
 Cisco gets most of them; Microsoft,
 the carriers and CISA get one each.
 
 228
-00:14:16.483 --> 00:14:18.720
+00:15:07.483 --> 00:15:09.720
 Next, the example code.
 
 229
-00:14:19.470 --> 00:14:23.383
+00:15:13.470 --> 00:15:17.383
 The guide comes with a small
 example, a read-only Python script.
 
 230
-00:14:23.383 --> 00:14:28.212
+00:15:17.383 --> 00:15:22.212
 It checks every control component against
 the fixed releases for the directive
 
 231
-00:14:28.212 --> 00:14:32.682
+00:15:22.212 --> 00:15:26.682
 and the catalog, and writes a gate file
 that must show no fail or confirm rows.
 
 232
-00:14:32.682 --> 00:14:36.955
+00:15:26.682 --> 00:15:30.955
 It exports a fleet inventory record
 per device, and an audit record per
 
 233
-00:14:36.955 --> 00:14:41.744
+00:15:30.955 --> 00:15:35.744
 audit-log entry, flagging sign-ins and
 sources outside the management network.
 
 234
-00:14:41.744 --> 00:14:46.807
+00:15:35.744 --> 00:15:40.807
 It doesn't build path-decision records;
 those need the policy and statistics reads.
 
 235
-00:14:46.807 --> 00:14:50.648
+00:15:40.807 --> 00:15:44.648
 And it's read-only on purpose,
 because of lane discipline:
 
 236
-00:14:50.648 --> 00:14:53.570
+00:15:44.648 --> 00:15:47.570
 the program observes, the fabric enforces.
 
 237
-00:14:53.570 --> 00:14:55.520
+00:15:47.570 --> 00:15:49.520
 Be clear about its status, though.
 
 238
-00:14:55.520 --> 00:14:59.299
+00:15:49.520 --> 00:15:53.299
 It's illustrative: unit-tested
 against mocked responses,
 
 239
-00:14:59.299 --> 00:15:01.470
+00:15:53.299 --> 00:15:55.470
 not proven against a live fabric.
 
 240
-00:15:01.470 --> 00:15:04.100
+00:15:55.470 --> 00:15:58.100
 Finally, what to do with all of this.
 
 241
-00:15:04.850 --> 00:15:07.819
+00:16:01.850 --> 00:16:04.819
 To move this guide from
 under review to proved,
 
 242
-00:15:07.819 --> 00:15:11.725
+00:16:04.819 --> 00:16:08.725
 build the gate and the ten-site
 pilot in a lab or a pilot fabric,
 
 243
-00:15:11.725 --> 00:15:15.475
+00:16:08.725 --> 00:16:12.475
 run the example script against
 it, and record the evidence.
 
 244
-00:15:15.475 --> 00:15:19.931
+00:16:12.475 --> 00:16:16.931
 Some things couldn't be verified,
 like a Cisco recommended release
 
 245
-00:15:19.931 --> 00:15:24.063
+00:16:16.931 --> 00:16:21.063
 and edge FIPS status in SD-WAN
 mode, so confirm those with Cisco.
 
 246
-00:15:24.063 --> 00:15:28.078
+00:16:21.063 --> 00:16:25.078
 The decisions are hosted or
 on-premises, the release baseline,
 
 247
-00:15:28.078 --> 00:15:32.487
+00:16:25.078 --> 00:16:29.487
 static addressing, which security
 service, and the renewal runbook.
 
 248
-00:15:32.487 --> 00:15:37.213
+00:16:29.487 --> 00:16:34.213
 For why the program builds on this platform,
 read the SD-WAN platform deep dive.
 
 249
-00:15:37.213 --> 00:15:41.601
+00:16:34.213 --> 00:16:38.601
 For the design itself, read Book
 09's chapters on governed transport
 
 250
-00:15:41.601 --> 00:15:46.225
+00:16:38.601 --> 00:16:43.225
 and the field-office transformation,
 or watch the SD-WAN technical deck.
 
 251
-00:15:46.225 --> 00:15:47.400
+00:16:43.225 --> 00:16:44.400
 Thanks for listening.
