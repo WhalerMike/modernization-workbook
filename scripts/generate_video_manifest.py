@@ -12,7 +12,9 @@ them and writes:
 
 The browser streams each MP4 from the release; the caption tracks are
 published with the site, because a <track> must come from the page's own
-origin.
+origin. A video that is also on the workbook's YouTube channel carries its
+YouTube ID (from data/youtube-ids.json), and the players embed it from
+youtube-nocookie.com instead, keeping the MP4 as the download.
 
     python scripts/generate_video_manifest.py            # write both files
     python scripts/generate_video_manifest.py --check    # exit 1 if either is stale
@@ -38,6 +40,8 @@ OUT_LIB = ROOT / "docs" / "presentations" / "_video-library.md"
 # Each video's true length in seconds, read from its MP4 header by --verify.
 # The caption track ends before the closing slides, so it undercounts.
 DURATIONS = ROOT / "data" / "video-durations.json"
+# Workbook video id -> YouTube video id, for the videos on the channel.
+YOUTUBE = ROOT / "data" / "youtube-ids.json"
 REPO = "WhalerMike/modernization-workbook"
 RELEASE = "videos-2026-10-23"
 BASE = f"https://github.com/{REPO}/releases/download/{RELEASE}"
@@ -110,6 +114,7 @@ def probe_seconds(url: str, size: int) -> float:
 
 def collect() -> list[dict]:
     seconds = json.loads(DURATIONS.read_text(encoding="utf-8")) if DURATIONS.exists() else {}
+    youtube = json.loads(YOUTUBE.read_text(encoding="utf-8")) if YOUTUBE.exists() else {}
     videos = []
     for vtt in sorted(PRES.glob("*/*_Narrated.vtt")):
         vid = vtt.stem
@@ -124,11 +129,15 @@ def collect() -> list[dict]:
                 "group": group_of(folder.name),
                 "minutes": max(1, round(seconds[vid] / 60)) if vid in seconds else minutes_of(vtt),
                 "mp4": f"{BASE}/{vid}.mp4",
+                "youtube": youtube.get(vid),
                 "vtt": f"{rel}/{vtt.name}",
                 "deck": f"{rel}/{deck.name}" if deck.exists() else None,
                 "script": f"{GH}/{rel}/{script.name}" if script.exists() else None,
             }
         )
+    unknown = sorted(set(youtube) - {v["id"] for v in videos})
+    if unknown:
+        raise SystemExit("video manifest: data/youtube-ids.json names unknown videos: " + ", ".join(unknown))
     order = {g: i for i, (g, _) in enumerate(GROUPS)}
     videos.sort(key=lambda v: (order[v["group"]], v["id"] != "Start_Here_Narrated", v["title"].lower()))
     return videos
@@ -146,6 +155,8 @@ def library(videos: list[dict]) -> str:
         lines += [f"### {heading}", "", "| Video | Length | Also |", "|---|---|---|"]
         for v in rows:
             extra = [f"[MP4]({v['mp4']})"]
+            if v["youtube"]:
+                extra.append(f"[YouTube](https://www.youtube.com/watch?v={v['youtube']})")
             if v["deck"]:
                 extra.append(f"[Narrated deck](../../{v['deck']})")
             if v["script"]:
