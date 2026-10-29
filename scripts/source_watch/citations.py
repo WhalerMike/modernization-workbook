@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""List every source URL the workbook books cite, and where each is cited.
+"""List every source URL the workbook books and research pages cite, and where each is cited.
 
 A citation is a URL in a footnote definition (a line starting `[^key]:`) in
-a book chapter, `docs/books/bNN-*/*.md`. Files and folders whose names start
+a book chapter, `docs/books/bNN-*/*.md`, or a research page,
+`docs/research/*.md` (not the index). Research citations carry the code `RES`
+in place of a book code. Files and folders whose names start
 with `_` (briefs, verification notes) are skipped. URLs inside inline code
 (`https://graph.microsoft.com`) are literals the chapter quotes, not sources,
 so they are skipped too.
@@ -29,6 +31,8 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
 BOOKS = ROOT / "docs" / "books"
+RESEARCH = ROOT / "docs" / "research"
+RESEARCH_CODE = "RES"  # research pages are reported together, after the books
 
 FOOTNOTE = re.compile(r"^\[\^([^\]]+)\]:(.*)$")
 INLINE_CODE = re.compile(r"`[^`]*`")
@@ -97,21 +101,32 @@ def chapter_title(path: Path) -> str:
     return m.group(1) if m else path.stem
 
 
+def research_files() -> list[Path]:
+    """Research pages, not the index; `_verification` and other `_` files are skipped."""
+    return [p for p in chapter_files(RESEARCH) if p.name != "index.md"] if RESEARCH.is_dir() else []
+
+
+def sources() -> list[tuple[str, Path]]:
+    """(code, file) for every book chapter, then every research page."""
+    out = [(book_code(folder), path) for folder in book_folders() for path in chapter_files(folder)]
+    return out + [(RESEARCH_CODE, path) for path in research_files()]
+
+
 def collect() -> dict[str, list[dict[str, str]]]:
-    """url -> [{book, chapter, footnote}], in book and chapter order."""
+    """url -> [{book, chapter, footnote}], in book and chapter order, then research pages.
+    For a research page, `book` is RESEARCH_CODE and `chapter` is the page."""
     cited: dict[str, list[dict[str, str]]] = {}
-    for folder in book_folders():
-        for path in chapter_files(folder):
-            rel = path.relative_to(ROOT).as_posix()
-            for line in path.read_text(encoding="utf-8").splitlines():
-                m = FOOTNOTE.match(line)
-                if not m:
-                    continue
-                title = cited_title(m.group(2))
-                for url in urls_in(m.group(2)):
-                    cited.setdefault(url, []).append(
-                        {"book": book_code(folder), "chapter": rel, "footnote": m.group(1), "title": title}
-                    )
+    for code, path in sources():
+        rel = path.relative_to(ROOT).as_posix()
+        for line in path.read_text(encoding="utf-8").splitlines():
+            m = FOOTNOTE.match(line)
+            if not m:
+                continue
+            title = cited_title(m.group(2))
+            for url in urls_in(m.group(2)):
+                cited.setdefault(url, []).append(
+                    {"book": code, "chapter": rel, "footnote": m.group(1), "title": title}
+                )
     return cited
 
 
@@ -134,7 +149,10 @@ def books() -> dict[str, dict[str, str]]:
         }
     for folder in book_folders():
         out.setdefault(book_code(folder), {"title": folder.name, "folder": folder.name, "status": ""})
-    return dict(sorted(out.items()))
+    out = dict(sorted(out.items()))
+    if research_files():
+        out[RESEARCH_CODE] = {"title": "Research pages", "folder": "", "status": ""}
+    return out
 
 
 def chapter_titles(cited: dict[str, list[dict[str, str]]]) -> dict[str, str]:
