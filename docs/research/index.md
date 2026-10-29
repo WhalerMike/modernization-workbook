@@ -59,7 +59,7 @@ Research is the workbook's staging area. New work starts here, in the open: an e
 4. **Published:** moved into production. The research page stays as the record of its sources, review and evidence.
 :::
 
-**Reviewed** is the date someone last checked a page against its sources. A page not reviewed for more than 90 days says so in its status box, and it is listed in the weekly source-watch issue until it is reviewed again.
+**Reviewed** is the date someone last checked a page against its sources. The sources themselves are checked every week: when one changes, moves or disappears, the source-watch issue lists it under the research page that cites it. A page not reviewed for more than 90 days says so in its status box, and it is listed in the weekly source-watch issue until it is reviewed again.
 
 Each type of research has its own home in production:
 

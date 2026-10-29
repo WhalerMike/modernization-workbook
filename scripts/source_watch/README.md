@@ -14,11 +14,16 @@ the Python standard library only.
 ## What it checks
 
 **Cited sources.** Every URL in a footnote definition (`[^key]: ...`) in
-`docs/books/bNN-*/*.md`. Files and folders starting with `_` are skipped.
+a book chapter, `docs/books/bNN-*/*.md`, or a research page,
+`docs/research/*.md` (not the index). Research pages are reported together
+under **RES — Research pages**, after the books, by page. Files and folders
+starting with `_` are skipped.
 So are URLs in inline code (`https://graph.microsoft.com`) and URL
 templates (`.../products/{id}/`), which the text quotes rather than cites.
-In October 2026 that was 1,766 URLs in 3,474 citations, 1,253 of them on
-learn.microsoft.com. Run
+On October 29, 2026 that was 3,020 URLs in 5,780 citations (441 of them on
+research pages), 1,850 of the URLs on learn.microsoft.com. A URL first cited
+since the last run is fingerprinted silently and reported from the next
+change on. Run
 `python scripts/source_watch/citations.py` for the current counts.
 
 Each URL gets one plain GET, with redirects followed. The request carries a
