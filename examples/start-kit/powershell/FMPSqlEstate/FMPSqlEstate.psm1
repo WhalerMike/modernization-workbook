@@ -78,6 +78,18 @@ FROM sys.servers AS s
 LEFT JOIN sys.linked_logins AS ll ON ll.server_id = s.server_id
 WHERE s.is_linked = 1
 '@
+    # For Measure-FMPSqlRoundTrip (FMPTransactionProfile): one row per user connection, with
+    # the server's own clock. The constant row keeps the server time when nothing else is
+    # connected; the poller's own session is left out.
+    Sessions     = @'
+SELECT SYSDATETIME() AS server_time, c.connection_id, c.session_id, c.connect_time,
+       c.num_reads, c.num_writes, c.net_packet_size, c.client_net_address,
+       s.host_name, s.program_name, s.login_name, DB_NAME(s.database_id) AS database_name
+FROM (SELECT 1 AS one) AS k
+LEFT JOIN sys.dm_exec_connections AS c
+     INNER JOIN sys.dm_exec_sessions AS s ON s.session_id = c.session_id
+     ON s.is_user_process = 1 AND c.session_id <> @@SPID
+'@
 }
 
 function Get-FMPSqlQueryCatalog {
@@ -140,6 +152,23 @@ function Invoke-FMPSqlQuery {
         $reader.Close()
     } finally {
         $conn.Dispose()
+    }
+}
+
+function Get-FMPSqlSessionCounter {
+    <#
+    .SYNOPSIS
+        One snapshot of the instance's user connections and their network read and write
+        counters, with the server's clock. SELECT-only; needs VIEW SERVER STATE (2022 and
+        later: VIEW SERVER PERFORMANCE STATE). Filtering is left to the caller, so no
+        caller-supplied text is ever put into the T-SQL.
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$ConnectionString)
+    $rows = @(Invoke-FMPSqlQuery -ConnectionString $ConnectionString -Query $script:FMPSqlQueries.Sessions)
+    [pscustomobject]@{
+        ServerTime  = if ($rows.Count) { $rows[0].server_time } else { $null }
+        Connections = @($rows | Where-Object { $null -ne $_.connection_id })
     }
 }
 
@@ -826,7 +855,7 @@ function Invoke-FMPSqlEstateDiscovery {
 }
 
 Export-ModuleMember -Function @(
-    'Get-FMPSqlQueryCatalog', 'Test-FMPSelectOnly', 'Get-FMPSqlConnectionString', 'Get-FMPSqlVersionName',
+    'Get-FMPSqlQueryCatalog', 'Test-FMPSelectOnly', 'Get-FMPSqlConnectionString', 'Get-FMPSqlSessionCounter', 'Get-FMPSqlVersionName',
     'ConvertFrom-FMPSqlSpn', 'Get-FMPSqlSpnInstance', 'Get-FMPSqlDirectoryCandidate', 'ConvertFrom-FMPSqlBrowserResponse',
     'Find-FMPSqlBrowserInstance', 'Get-FMPSqlInstanceDetail', 'Get-FMPSqlClassification', 'Merge-FMPSqlEstate',
     'Get-FMPSqlEstateSummary', 'Invoke-FMPSqlEstateDiscovery'

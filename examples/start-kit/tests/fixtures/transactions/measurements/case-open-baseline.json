@@ -1,0 +1,18 @@
+{
+  "Schema": "fmp-start-kit/transaction-measurement/1",
+  "Application": "Case management",
+  "Transaction": "Open case",
+  "Phase": "Baseline",
+  "Method": "SqlDmv",
+  "Store": "sql02\\CASES",
+  "Source": "sys.dm_exec_connections",
+  "MeasuredUtc": "2026-10-20T14:05:00.0000000Z",
+  "Repetitions": 3,
+  "RoundTrips": 42,
+  "RoundTripsPerRepetition": [41, 42, 44],
+  "NewConnections": 1,
+  "MeasuredRttMs": null,
+  "Warnings": [
+    "1 connection(s) closed between polls, so their last reads were not counted and the figure is a lower bound. Confirm it with a packet capture."
+  ]
+}

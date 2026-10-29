@@ -1,6 +1,6 @@
 @{
     RootModule        = 'FMPADAssessment.psm1'
-    ModuleVersion     = '1.3.0'
+    ModuleVersion     = '1.4.0'
     GUID              = 'a780184d-7086-4cb0-9a1f-f70c94f6123a'
     Author            = 'Federal Modernization Workbook'
     Description       = 'Read-only Active Directory forest assessment (Book 02 Appendix B, packaged) with the Book 00 and Book 01 additions: schema extensions, DHCP, the Kerberos SPN map, LDAP binding events, a read-access pre-flight and a one-page summary. Illustrative; unit-tested against fixtures.'

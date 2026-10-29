@@ -37,6 +37,7 @@ $global:FMPSqlFix = Read-KitFixture 'sql-estate.json'
 $global:FMPNpsFix = Read-KitFixture 'nps.json'
 $global:FMPNpsConfigPath = Join-Path $script:FixturePath 'nps-ias.xml'
 $global:FMPGpoPath = Join-Path $script:FixturePath 'gpo'
+$global:FMPTxPath = Join-Path $script:FixturePath 'transactions'
 $global:FMPAsOf = [datetime]'2026-10-27T00:00:00'
 
 function global:Get-FixDomain($Server) {

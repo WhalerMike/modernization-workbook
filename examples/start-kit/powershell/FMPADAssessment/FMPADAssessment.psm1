@@ -1629,6 +1629,8 @@ function Get-FMPStartKitSummary {
     $schema = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'Schema') 'SchemaExtensions.json') } else { $null }
     $sql = Read-FMPJsonFile (Join-Path (Join-Path $root 'SQL') 'SqlEstateSummary.json')
     $nps = Read-FMPJsonFile (Join-Path (Join-Path $root 'NPS') 'NpsSummary.json')
+    $tx = Read-FMPJsonFile (Join-Path (Join-Path $root 'transaction-profiles') 'TransactionSummary.json')
+    $txRead = $tx -and $tx.Status -eq 'Read'
 
     # Unconstrained delegation outside the domain controllers, which are expected to have it.
     $users = @($domainDirs | ForEach-Object { Read-FMPJsonFile (Join-Path (Join-Path $_.FullName 'Objects') 'UserInventory.json') } | ForEach-Object { $_ })
@@ -1694,6 +1696,10 @@ function Get-FMPStartKitSummary {
         NetworkPolicies    = if ($nps) { $nps.NetworkPolicies } else { $nc }
         ConnectionRequestPolicies = if ($nps) { $nps.ConnectionRequestPolicies } else { $nc }
         NPSPolicyGroups    = if ($nps) { $nps.AdGroupsReferenced } else { $nc }
+        ProfiledApplications = if ($txRead) { $tx.Applications } elseif ($tx) { 'no catalog' } else { $nc }
+        ProfiledTransactions = if ($txRead) { $tx.Transactions } elseif ($tx) { 'no catalog' } else { $nc }
+        SeparationGatePassing = if ($txRead) { $tx.ApplicationsPassing } elseif ($tx) { 'no catalog' } else { $nc }
+        SeparationGateBlocked = if ($txRead) { $tx.ApplicationsBlocked } elseif ($tx) { 'no catalog' } else { $nc }
     }
     $byOs = if ($haveComputers) { Get-FMPCountTable -Rows $computers -Property OperatingSystem } else { $null }
     $summary = [ordered]@{
@@ -1708,6 +1714,7 @@ function Get-FMPStartKitSummary {
         SqlByAuthenticationMode = if ($sql) { $sql.ByAuthenticationMode } else { $null }
         SqlBySourcesAgree = if ($sql) { $sql.BySourcesAgree } else { $null }
         NpsFindingsBySeverity = if ($nps) { $nps.FindingsBySeverity } else { $null }
+        TransactionsByStatus = if ($txRead) { $tx.ByStatus } else { $null }
     }
     $path = Initialize-FMPPath -Path (Join-Path $root 'Summary')
     Write-FMPJson -InputObject $summary -Path (Join-Path $path 'StartKitSummary.json') -Depth 5
@@ -1726,6 +1733,9 @@ function Get-FMPStartKitSummary {
         NPSServers = 'NPS servers (RAS and IAS Servers members and named)'; NPSServersRead = 'NPS servers whose configuration was read'
         RADIUSClients = 'RADIUS clients (unique addresses)'; NetworkPolicies = 'NPS network policies (all servers)'
         ConnectionRequestPolicies = 'NPS connection request policies (all servers)'; NPSPolicyGroups = 'AD groups NPS policies authorize against'
+        ProfiledApplications = 'Applications with transaction profiles'; ProfiledTransactions = 'Transactions profiled'
+        SeparationGatePassing = 'Applications clear to leave their data (every transaction profiled and within budget)'
+        SeparationGateBlocked = 'Applications that must stay with their data for now'
     }
     $md = @('# Start Kit summary', '', "Forest: $($summary.Forest). Generated $($summary.GeneratedUtc) UTC. Read-only run; counts come from this run's own files.", '',
         '| Item | Count |', '|---|---|')
@@ -1745,6 +1755,7 @@ function Get-FMPStartKitSummary {
     $md += & $table 'SQL Server instances by authentication mode' $summary.SqlByAuthenticationMode
     $md += & $table 'Do the discovery signals agree?' $summary.SqlBySourcesAgree
     $md += & $table 'RADIUS and NPS findings by severity' $summary.NpsFindingsBySeverity
+    $md += & $table 'Transaction profiles by status' $summary.TransactionsByStatus
     $md += @('', '## Unconstrained delegation (domain controllers excluded)', '',
         'Each one can impersonate any user who authenticates to it, to any service. Move it to constrained or resource-based constrained delegation (Book 02 Chapter 08; Book 06 Runbook R06).', '',
         '| Name | Kind | Runs SQL Server |', '|---|---|---|')
@@ -1755,7 +1766,7 @@ function Get-FMPStartKitSummary {
         if ($null -eq $sqlRows) { return 'not collected' }
         $hit = if ($kind -eq 'Computer') { @($sqlUc | Where-Object { $_.UnconstrainedOn -match 'host' -and ("$($_.ServerName)" -split '\.')[0] -eq $n }) }
                else { @($sqlUc | Where-Object { @("$($_.ServiceAccount)" -split ';' | ForEach-Object { ($_ -split '\\')[-1] }) -contains $n }) }
-        if ($hit.Count) { 'yes' } else { 'no' }
+        if (@($hit).Count) { 'yes' } else { 'no' }
     }
     foreach ($c in $ucHosts)    { $md += "| $($c.Name) | Computer | $(& $sqlHit $c.Name 'Computer') |" }
     foreach ($u in $ucAccounts) { $md += "| $($u.SamAccountName) | Account | $(& $sqlHit $u.SamAccountName 'Account') |" }

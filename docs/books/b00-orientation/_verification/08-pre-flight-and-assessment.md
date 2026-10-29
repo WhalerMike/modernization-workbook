@@ -115,3 +115,12 @@ The Start Kit gained a read-only RADIUS and NPS collector. Microsoft sources ope
 |---|---|---|---|---|
 | N1 | S2's "RADIUS/NPS remain separate work" replaced: the kit inventories RADIUS and NPS with `Invoke-FMPNpsInventory`; transaction profiles remain separate | Twelve domains, paragraph after the table | corrected | examples/start-kit (PR in this change); tests/powershell, 152 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 27, 2026; README "How it inventories RADIUS and NPS" |
 | N2 | G0 checklist RADIUS item names the kit's output (`NPS\PolicyGroups.csv` and companions) | Gate G0 | added | Same; `tests/powershell/NpsInventory.Tests.ps1` |
+
+## Start Kit transaction profiles, October 29, 2026
+
+The Start Kit gained transaction profiling. Microsoft source opened October 29, 2026: sys.dm_exec_connections (Transact-SQL), for the num_reads and connect_time columns and the VIEW SERVER STATE / VIEW SERVER PERFORMANCE STATE requirement. No personal data sent to any site.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| T1 | N1's "transaction profiles remain separate" replaced: the kit builds them with `Invoke-FMPTransactionProfile` from a team-supplied catalog and measured round trips; budgets and target round-trip times stated as program inputs | Twelve domains, paragraph after the table | corrected | examples/start-kit (PR in this change); tests/powershell, 197 Pester tests passing on Windows PowerShell 5.1 and PowerShell 7, Oct 29, 2026; README "How it builds transaction profiles" |
+| T2 | G0 checklist transaction-profile item links Book 01 Ch10 and names the kit's output (`transaction-profiles\`, `SeparationGate.csv`) | Gate G0 | added | Same; `tests/powershell/TransactionProfile.Tests.ps1` |
