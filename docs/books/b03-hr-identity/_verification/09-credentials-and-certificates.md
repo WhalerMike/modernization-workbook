@@ -92,3 +92,18 @@ At the user's request, every certificate-dependent book maps its certificates to
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+
+## Additions, October 29, 2026 (the contractor PIV path)
+
+Added at the author's request: new subsection "The contractor PIV path" after "Binding the PIV certificate to the Entra user". Research page: `docs/research/oracle-contingent-worker-contractor-source.md` (its log: `docs/research/_verification/oracle-contingent-worker-contractor-source.md`).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | A credential is issued only after "a proper authority has authorized issuance" | Contractor PIV path, 1 | verified (FIPS 201-3 §2.1); §2.1 added to the c09-fips201 footnote | FIPS 201-3 |
+| 2 | Only the organization decides which contractors apply; sponsorship can't be outsourced | Contractor PIV path, 1 | verified; footnote c09-sp80079 added | SP 800-79-2 §2.3 |
+| 3 | Sponsorship request as an output of the contractor joiner; no record, no card request | Contractor PIV path, 1 | design (stated as the program's design) | — |
+| 4 | CMS publishes termination, revocation, suspension and expiry events; contractor vs employee handling | Contractor PIV path, 2 | design; that card status can drive de-provisioning is documented in a public PIA cited on the research page | research page |
+| 5 | 18-hour clock from notification for an uncollected card | Contractor PIV path, 3 | verified | FIPS 201-3 §2.9.4 |
+| 6 | FAR 52.204-9: return upon contract completion or termination | Contractor PIV path, 3 | verified; footnote c09-far52049 added | acquisition.gov |
+| 7 | PS-7: provider notifies terminations within a defined time | Contractor PIV path, 3 | verified; footnote c09-sp80053-ps7 added (c09-sp80053 stays PS-4) | SP 800-53 Rev. 5 PS-7(d) |
+| 8 | Pipeline notifies the PIV office at the earliest end date, capped by the contract's completion date | Contractor PIV path, 3 | design | — |

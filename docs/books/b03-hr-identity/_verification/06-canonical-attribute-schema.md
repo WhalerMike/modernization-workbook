@@ -56,3 +56,7 @@ Footnote keys renamed `c05-*` → `c06-*`. Every kept footnote was re-opened on 
 | Date | Change |
 |---|---|
 | 2026-10-21 | Extension attribute reconciliation: added "Program attribute map" section (user slots 1-15 and device slots), the single home of the map; slots 1-3 and 10-12 unchanged; design rules 2 and 5, Writers bullets, the in-this-chapter callout and "How other pages use this schema" updated to point to it. No new footnotes (device claim cites existing `c06-onprem-ext`). |
+
+## Additions, October 29, 2026
+
+One-line link added after the contractor options table to the research page that tests the contingent worker option. No new claims. Research page: `docs/research/oracle-contingent-worker-contractor-source.md` (its log: `docs/research/_verification/oracle-contingent-worker-contractor-source.md`).

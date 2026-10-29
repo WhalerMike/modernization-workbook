@@ -55,6 +55,8 @@ OPM's data standards and nature-of-action codes describe **federal employees**. 
 
 : Where contractors and vendors can be sourced from {.striped .hover}
 
+The research page [Contractors as Oracle Contingent Workers](../../research/oracle-contingent-worker-contractor-source.md) tests the contingent worker option against Federal HR 2.0's scope, licensing and privacy, compares it with the alternatives, and recommends a phased path.
+
 Whichever source the agency chooses, the rules are the same:
 
 - **One model.** Contractors map into the same canonical model, with worker type set to contractor and their own enterprise person key (Chapter 04). In the proposed canonical model, conversion between contractor and employee creates a new affiliation for the same person, joining the two sources on that key, so a converting person never gets a second identity.

@@ -130,3 +130,9 @@ The Limits section's Lifecycle Workflows sentence (100 workflows) and Stage 5's 
 | Re-render of figure `ch05-au-assignment` (Book 02 Ch 05) | Source and fig-alt updated to the organization code; SVG/PNG not regenerated (Graphviz and rsvg-convert unavailable on the editing machine) |
 | Whether Cloud Sync can populate `certificateUserIds` for synced users | Not documented on the Learn page opened 2026-10-29, which names Entra Connect only; the guide says so |
 | Federal HR 2.0 schedule after Oct 20, 2026 | Not re-checked; the guide carries Book 03 Ch03's dated facts and its instruction to confirm with the HR 2.0 program office |
+
+## Additions, October 29, 2026
+
+- **Stage 1:** a one-line link to the contractor-source research page. No new claims.
+- **PIV and CAC certificates as attributes:** a new paragraph, "Contractors", added at the author's request. The three links (sponsorship from the contractor joiner, card-system events back to the pipeline, the end date as the notification) are design guidance, restated from Book 03 Ch09 and linked. The 18-hour clock is verified against FIPS 201-3 §2.9.4, and footnote adm-fips201 was added. The Temporary Access Pass to FIDO2 bridge is restated from Book 04 Ch03 and linked.
+- Research page: `docs/research/oracle-contingent-worker-contractor-source.md` (its log: `docs/research/_verification/oracle-contingent-worker-contractor-source.md`).
