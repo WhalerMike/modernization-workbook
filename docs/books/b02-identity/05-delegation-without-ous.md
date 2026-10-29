@@ -91,25 +91,27 @@ The program's matrix mapped each tier to an AU: `AU-Enterprise` for Tier 1, depa
 
 | AU | Department | Membership |
 |---|---|---|
-| `AU-Department-IT` | IT | Dynamic: `(user.department -eq "IT")` |
-| `AU-Department-HR` | HR | Dynamic: `(user.department -eq "HR")` |
-| `AU-Department-Finance` | Finance | Dynamic: `(user.department -eq "Finance")` |
-| `AU-Department-Legal` | Legal | Dynamic: `(user.department -eq "Legal")` |
-| `AU-Department-Engineering` | Engineering | Dynamic: `(user.department -eq "Engineering")` |
-| `AU-Department-Operations` | Operations | Dynamic: `(user.department -eq "Operations")` |
-| `AU-Department-Sales` | Sales | Dynamic: `(user.department -eq "Sales")` |
-| `AU-Department-Executive` | Executive | Dynamic: `(user.department -eq "Executive")` |
+| `AU-Department-IT` | IT | Dynamic: `(user.extensionAttribute10 -in ["IT-CIO","IT-OPS","IT-DEV"])` |
+| `AU-Department-HR` | HR | Dynamic: `(user.extensionAttribute10 -in ["HR-OPS","HR-BEN"])` |
+| `AU-Department-Finance` | Finance | Dynamic: `(user.extensionAttribute10 -in ["FIN-LED","FIN-AP"])` |
+| `AU-Department-Legal` | Legal | Dynamic: `(user.extensionAttribute10 -in ["LGL-GC","LGL-CMP"])` |
+| `AU-Department-Engineering` | Engineering | Dynamic: `(user.extensionAttribute10 -in ["ENG-SYS","ENG-NET"])` |
+| `AU-Department-Operations` | Operations | Dynamic: `(user.extensionAttribute10 -in ["OPS-FAC","OPS-LOG"])` |
+| `AU-Department-Sales` | Sales | Dynamic: `(user.extensionAttribute10 -eq "SLS-ACCT")` |
+| `AU-Department-Executive` | Executive | Dynamic: `(user.extensionAttribute10 -eq "EXE-OFC")` |
+
+Department AUs read the organization code in `extensionAttribute10`, not the `department` display name, because a rule on a display string breaks the next time someone retypes it; the slot is fixed in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map). A department AU lists every organization code in the department, the roll-up form of the node query in [Book 01, Chapter 04](../b01-transformation-arc/04-identity-transformation.md#the-two-query-patterns), and its rule changes together with the matching group's rule when HR adds a code. The codes are placeholders for the agency's own code list.
 
 ### Division AUs (Tier 3, created on demand)
 
-| AU | Scope |
-|---|---|
-| `AU-IT-CyberOps` | IT / CyberOps |
-| `AU-IT-InfraOps` | IT / Infrastructure |
-| `AU-IT-AppDev` | IT / AppDev |
-| `AU-Legal-GRC` | Legal / GRC |
+| AU | Scope | Membership |
+|---|---|---|
+| `AU-IT-CyberOps` | IT / CyberOps | Dynamic: `(user.extensionAttribute6 -eq "IT-CYBEROPS")` |
+| `AU-IT-InfraOps` | IT / Infrastructure | Dynamic: `(user.extensionAttribute6 -eq "IT-INFRAOPS")` |
+| `AU-IT-AppDev` | IT / AppDev | Dynamic: `(user.extensionAttribute6 -eq "IT-APPDEV")` |
+| `AU-Legal-GRC` | Legal / GRC | Dynamic: `(user.extensionAttribute6 -eq "LGL-GRC")` |
 
-Division AUs use a rule that combines the department with the division code the HR feed supplies. The program carries the division code in `extensionAttribute6`, a copy of `employeeOrgData.division` that rules can read; the slot is fixed in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) in the HR-driven IAM series.
+Division AUs read the division code the HR feed supplies. The program carries it in `extensionAttribute6`, a copy of `employeeOrgData.division` that rules can read; the slot is fixed in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) in the HR-driven IAM series. The placeholder division codes carry their department's prefix, so each is unique across the agency; where an agency's division codes repeat across departments, add the department's organization codes to the rule with `-and`.
 
 ## Role assignment matrix
 
@@ -131,7 +133,7 @@ Two corrections to the principals in this table:
 - **The groups that hold roles must be role-assignable, and role-assignable groups can't be dynamic.** The earlier design derived the `*-Admins` groups from the `*-Users` groups by a dynamic rule. Entra ID doesn't allow that: a role-assignable group's membership type must be Assigned, the `isAssignableToRole` property can only be set at creation, nested groups aren't allowed, and a tenant can have at most 500 role-assignable groups.[^c05-role-groups] The program's position is to keep the `*-Admins` groups assigned, populate them through an approval workflow, and make members eligible rather than permanently active through Privileged Identity Management, which supports eligible assignments scoped to an AU.[^c05-pim-scope]
 - **Tier 1 assignees need the same treatment.** The `*-Users` groups in the Tier 1 rows are department populations. If they're dynamic, they can't hold a role. Assign Tier 1 roles to a separate assigned, role-assignable group for each reader population.
 
-![How one scoped delegation is built from an HR attribute, an administrative unit, a role-assignable group, and a scoped role assignment.](../../images/diagrams/b02-identity/svg/ch05-au-assignment.svg){#fig-ch05-au-assignment fig-alt="A left-to-right flow. An amber card, the HR-sourced attribute department on the user object, feeds a blue administrative unit card through an arrow labeled membership rule; the unit has a dynamic rule over users, user.department equals Finance, and is restricted only if the population is sensitive. Separately, a blue role-assignable group card, Finance-Admins, with assigned membership that can't be dynamic and members eligible through PIM, points to a violet scoped role assignment card: User Administrator at scope slash administrativeUnits slash id. An arrow labeled scope runs from the role assignment to the administrative unit."}
+![How one scoped delegation is built from an HR attribute, an administrative unit, a role-assignable group, and a scoped role assignment.](../../images/diagrams/b02-identity/svg/ch05-au-assignment.svg){#fig-ch05-au-assignment fig-alt="A left-to-right flow. An amber card, the HR-sourced organization code in extensionAttribute10 on the user object, feeds a blue administrative unit card through an arrow labeled membership rule; the unit has a dynamic rule over users that matches Finance's organization codes in extensionAttribute10, and is restricted only if the population is sensitive. Separately, a blue role-assignable group card, Finance-Admins, with assigned membership that can't be dynamic and members eligible through PIM, points to a violet scoped role assignment card: User Administrator at scope slash administrativeUnits slash id. An arrow labeled scope runs from the role assignment to the administrative unit."}
 
 ::: {.callout-warning}
 ## Illustrative code
@@ -239,6 +241,8 @@ $state | Export-Csv -Path .\au-actual-state.csv -NoTypeInformation
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 04 — The Hidden Migration Surface](04-the-hidden-migration-surface.md) · [Book index](index.md) · [Next: Chapter 06 — Who Owns the Migration →](06-who-owns-the-migration.md)
+
+See the companion guide: [Attribute-Driven Migration from Active Directory to Microsoft Entra ID](../guides/attribute-driven-migration.md), one end-to-end path through this material.
 :::
 
 [^c05-au-overview]: Microsoft Learn, "Administrative units in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units> (accessed Oct 20, 2026).

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.516
+The schema is where names,
+codes and slots get fixed,
+
+2
+00:00:03.516 --> 00:00:05.662
+and every rule will depend on it.
+
+3
+00:00:05.662 --> 00:00:10.447
+The chain on the left is the ownership
+model: the standard defines the code,
+
+4
+00:00:10.447 --> 00:00:14.762
+HR owns each person's value, and
+one provisioning service writes it.
+
+5
+00:00:14.762 --> 00:00:17.658
+Access targeting uses three coded slots:
+
+6
+00:00:17.658 --> 00:00:21.150
+organization, worker type
+and position category.
+
+7
+00:00:21.150 --> 00:00:25.328
+Some native fields, like hire
+date, are readable only in preview,
+
+8
+00:00:25.328 --> 00:00:27.738
+so they stay out of production rules.
+
+9
+00:00:27.738 --> 00:00:31.363
+The panel under the table is the
+rule that holds it all together.
+
+10
+00:00:31.363 --> 00:00:34.038
+The provisioning service
+is the only writer.
+
+11
+00:00:34.038 --> 00:00:39.050
+Remove the help desk and self-service
+paths, and treat any other write as drift.

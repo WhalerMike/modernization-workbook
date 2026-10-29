@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.175
+This is why the whole design exists.
+
+2
+00:00:02.175 --> 00:00:06.319
+HR records her move to accounts
+payable as a personnel action,
+
+3
+00:00:06.319 --> 00:00:08.025
+and nobody opens a ticket.
+
+4
+00:00:08.025 --> 00:00:12.650
+The record flows through the middleware
+to Active Directory and up through sync.
+
+5
+00:00:12.650 --> 00:00:14.882
+Her groups and units recompute,
+
+6
+00:00:14.882 --> 00:00:18.488
+usually within hours, but it
+can take more than a day.
+
+7
+00:00:18.488 --> 00:00:23.201
+A workflow swaps her access packages
+and starts a review of what's left.
+
+8
+00:00:23.201 --> 00:00:26.838
+Her laptop stays put, because
+device rules can't see her.
+
+9
+00:00:26.838 --> 00:00:29.987
+And a drift scan checks
+the result field by field.
+
+10
+00:00:29.987 --> 00:00:32.090
+Next, cutting over at scale.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.775
+So how does the record
+actually reach Entra ID?
+
+2
+00:00:02.775 --> 00:00:06.098
+Oracle's platform has no
+native Entra connector,
+
+3
+00:00:06.098 --> 00:00:09.337
+so the path is A P I-driven
+inbound provisioning.
+
+4
+00:00:09.337 --> 00:00:13.097
+Middleware in your own boundary
+validates each HR event,
+
+5
+00:00:13.097 --> 00:00:16.776
+records its provenance, and
+posts it to Microsoft Graph.
+
+6
+00:00:16.776 --> 00:00:18.975
+Then it lands in one of two places.
+
+7
+00:00:18.975 --> 00:00:21.684
+For most users today
+that's Active Directory,
+
+8
+00:00:21.684 --> 00:00:24.613
+which syncs up, and the
+Entra copies are read-only.
+
+9
+00:00:24.613 --> 00:00:27.763
+For cloud-managed users
+it's Entra ID directly.
+
+10
+00:00:27.763 --> 00:00:30.550
+The two converge population by population.
+
+11
+00:00:30.550 --> 00:00:33.227
+It's included with the P1 and P2 licenses,
+
+12
+00:00:33.227 --> 00:00:38.230
+and it's been generally available in
+the government cloud since June 2025.

@@ -86,7 +86,7 @@ actions:
     type: create-administrative-unit
     target:
       display_name: AU-NCR-Finance
-      membership_rule: '(user.extensionAttribute4 -eq "NCR") -and (user.department -eq "Finance")'
+      membership_rule: '(user.extensionAttribute4 -eq "NCR") -and (user.extensionAttribute10 -in ["FIN-LED","FIN-AP"])'
       restricted: false   # see "Restricted management" below
     provenance:
       source: assessments/2026-04-24-1030-host-tierB/ou-hierarchy.json#ou/FIN

@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.463
+This is the most important
+ownership decision in the program.
+
+2
+00:00:03.463 --> 00:00:06.475
+Each fact has exactly
+one authoritative system.
+
+3
+00:00:06.475 --> 00:00:09.425
+HR owns who a worker
+is and where they sit.
+
+4
+00:00:09.425 --> 00:00:12.110
+The identity platform
+owns how they prove it,
+
+5
+00:00:12.110 --> 00:00:14.650
+and whether a request
+is allowed right now.
+
+6
+00:00:14.650 --> 00:00:17.438
+The card system owns the PIV credential.
+
+7
+00:00:17.438 --> 00:00:19.133
+Everything else is a copy,
+
+8
+00:00:19.133 --> 00:00:23.088
+and corrections flow back to
+the source, never into the copy.
+
+9
+00:00:23.088 --> 00:00:25.462
+The other decision is the person key.
+
+10
+00:00:25.462 --> 00:00:30.570
+Make it a key the agency controls, with
+the HR system's own number mapped to it,
+
+11
+00:00:30.570 --> 00:00:34.112
+so changing HR systems
+doesn't break every identity.
+
+12
+00:00:34.112 --> 00:00:35.540
+And that change is coming.

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.297
+Stage five moves delegation,
+and it matters because this
+
+2
+00:00:03.297 --> 00:00:06.475
+is where help desks and
+administrators get their reach.
+
+3
+00:00:06.475 --> 00:00:10.586
+In Entra ID, a role is assigned
+over an administrative unit,
+
+4
+00:00:10.586 --> 00:00:13.413
+so it applies only to that unit's members.
+
+5
+00:00:13.413 --> 00:00:17.293
+The figure is the three-tier
+model: readers across the tenant,
+
+6
+00:00:17.293 --> 00:00:20.087
+then department units,
+then division units.
+
+7
+00:00:20.087 --> 00:00:23.231
+Decide restriction for each
+unit before it exists,
+
+8
+00:00:23.231 --> 00:00:26.449
+with a default of no, because
+you can't change it later.
+
+9
+00:00:26.449 --> 00:00:27.837
+And remember the callout.
+
+10
+00:00:27.837 --> 00:00:31.312
+A unit limits who can change
+things, not who can see them.
+
+11
+00:00:31.312 --> 00:00:32.590
+Then, policy.

@@ -18,7 +18,7 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (§9–§15
 | 10 | Custom attribute triggers preview | Lifecycle Workflows | verified | lifecycle-workflow-execution-conditions |
 | 11 | Synced users: date attributes must be synced; triggers wait for sync | Lifecycle Workflows | verified (added) | lifecycle-workflow-on-premises |
 | 12 | Scope rules support extensionAttribute1–15, department, jobTitle | Lifecycle Workflows | verified (added) | identitygovernance-rulebasedsubjectset |
-| 13 | 50 workflows, 100 custom task extensions | Lifecycle Workflows | verified (added) | licensing-fundamentals |
+| 13 | 50 workflows, 100 custom task extensions | Lifecycle Workflows | superseded 2026-10-29 (now 100 workflows; see G1) | licensing-fundamentals |
 | 14 | Pre-hire tasks; "Generate TAP and send email" goes to manager | Pre-hire | corrected (TAP task emails manager; access package via "Request user access package assignment") | lifecycle-workflow-tasks; lifecycle-workflows-deployment |
 | 15 | Joiner tasks incl. "trigger MFA registration campaign" | Joiner | corrected (registration campaign isn't a workflow task; license task is preview) | lifecycle-workflow-tasks; task arguments |
 | 16 | Enable task can enable synced on-prem account | Joiner | verified (added) | identitygovernance-lifecycleworkflows-task-arguments |
@@ -157,3 +157,12 @@ Internal-consistency fixes from the Book 02 deck review. Sources were opened aga
 | K2 | Playbook total "40 to 70 weeks" -> "43 to 68 weeks, counting Phase 10's initial setup"; the sum of the eleven phase estimates (2-4, 2-3, 3-4, 4-6, 6-8, 2-3, 4-6, 12-18, 2-4, 4-8, 2-4) | Playbook intro (line 394) | arithmetic consistency; no new note | Program estimates |
 | K3 | Cross-reference labels fixed: "HR-Driven Identity, Chapter 6" -> "Book 03, Chapter 08" (target 08-joiner-mover-leaver.md); "HR-Driven Identity, Chapter 9" -> "Book 03, Chapter 11" (target 11-drift-metrics-and-evidence.md). Targets unchanged; labels now match the Book 03 chapter titles and the workbook's "Book NN, Chapter NN" convention | Lifecycle Workflows (line 62); drift (line 519) | wording only | Book 03 chapter front matter |
 | K4 | Phase 1 prerequisite added: any Connect Sync server on 2.6.84.0+ with application-based authentication, required by April 7, 2027 | Phase 1 (line 412) | factual; new note | c10-connect-hardening <https://learn.microsoft.com/entra/identity/hybrid/connect/harden-update-ad-fs-pingfederate> |
+
+## Revision 2026-10-29 — companion-guide reconciliation
+
+The attribute-driven migration guide (`docs/books/guides/attribute-driven-migration.md`, finding D1 in its verification log) found the workflow limit out of date. Sources opened on Oct 29, 2026 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim | Source (accessed 2026-10-29) | Old text | New text |
+|---|---|---|---|---|
+| G1 | Lifecycle Workflows tenant limits | c10-lcw-limits <https://learn.microsoft.com/entra/id-governance/governance-service-limits#lifecycle-workflows> (100 workflows, 25 tasks per workflow, 100 custom task extensions, 10 users per on-demand run); also "What are lifecycle workflows?" and "Plan a Lifecycle Workflow deployment" (100 workflows). "Licensing fundamentals" still says 50, so Learn is internally inconsistent; the service-limits page is cited as the limits authority | "A tenant can have up to 50 workflows and 100 custom task extensions.[^c10-governance-licensing]" | "A tenant can have up to 100 workflows and 100 custom task extensions, a workflow up to 25 tasks, and an on-demand run covers at most 10 users.[^c10-lcw-limits]" |
+| G2 | Other Lifecycle Workflows limits in the section: triggers (time-based, attribute change, group membership, sign-in inactivity, on-demand); offset 0–180 days; V2 preview 0–365 days; custom attribute triggers in preview | c10-lcw-execution <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-conditions> | unchanged | unchanged (re-verified) |

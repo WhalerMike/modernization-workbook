@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.654
+Stage three is the plumbing between HR,
+
+2
+00:00:02.654 --> 00:00:07.862
+Active Directory and Entra ID while they
+coexist, and failures here are quiet.
+
+3
+00:00:07.862 --> 00:00:12.079
+The default sync engine is Cloud Sync
+unless you have a Connect-only need,
+
+4
+00:00:12.079 --> 00:00:14.187
+with password hash sync everywhere.
+
+5
+00:00:14.187 --> 00:00:17.096
+Then map the dates and
+the transitional fields,
+
+6
+00:00:17.096 --> 00:00:20.750
+and run in shadow mode until
+every difference is explained.
+
+7
+00:00:20.750 --> 00:00:21.875
+Three traps.
+
+8
+00:00:21.875 --> 00:00:27.050
+A soft or hard match can overwrite cloud
+values with stale on-premises ones.
+
+9
+00:00:27.050 --> 00:00:31.550
+Older Connect Sync servers
+stop syncing in April 2027.
+
+10
+00:00:31.550 --> 00:00:35.156
+And a provisioning record with a
+missing field can clear a value,
+
+11
+00:00:35.156 --> 00:00:36.925
+so always send the whole record.
+
+12
+00:00:36.925 --> 00:00:38.640
+Now, the mechanisms.

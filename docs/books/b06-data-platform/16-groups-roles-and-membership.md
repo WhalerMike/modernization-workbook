@@ -97,7 +97,7 @@ That latency is acceptable for routine joiners, movers and leavers, and often be
 
 Groups in a long-lived SQL Server estate fall into four patterns:
 
-- **Organization-derived access groups**, kept in step with the org chart by hand, become **dynamic** groups whose rules read HR-maintained attributes such as `department`, `companyName`, `jobTitle`, an `extensionAttribute`, or a directory extension property ([Chapter 17](17-dynamic-membership-delegation-and-privilege.md)).
+- **Organization-derived access groups**, kept in step with the org chart by hand, become **dynamic** groups whose rules read HR-maintained codes, such as the organization code in `extensionAttribute10` and the position category in `extensionAttribute12` from the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map), or a directory extension property, not display strings such as `department` or `jobTitle` ([Chapter 17](17-dynamic-membership-delegation-and-privilege.md#choosing-the-attributes)).
 - **Explicit role-assignment groups** such as `PROD-SQL-SYSADMIN` reflect specific people given a specific permission, so no rule should define them. They become flattened **assigned** groups managed by a delegated administrator or, for privileged roles, PIM ([Chapter 17](17-dynamic-membership-delegation-and-privilege.md)).
 - **Distribution lists** for SQL Server Agent notifications become mail-only groups; the operator address is updated and no login is created.
 - **Mail-enabled security groups** split into a mail-only group and an assigned security group, with the pairing recorded in both descriptions and the migration record.

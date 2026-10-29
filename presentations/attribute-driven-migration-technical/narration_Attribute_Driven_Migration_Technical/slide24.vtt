@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.875
+PIV and CAC sign-in is attribute-driven
+too, which is easy to miss.
+
+2
+00:00:04.875 --> 00:00:07.697
+Entra ID finds the user
+by matching a field
+
+3
+00:00:07.697 --> 00:00:10.600
+on the certificate to
+a field on the account.
+
+4
+00:00:10.600 --> 00:00:14.182
+Some matches are low affinity,
+like the name on the card,
+
+5
+00:00:14.182 --> 00:00:17.525
+and some are high, tied to
+one specific certificate.
+
+6
+00:00:17.525 --> 00:00:18.688
+Two highpoints.
+
+7
+00:00:18.688 --> 00:00:23.320
+Certificate-based sign-in is only as
+strong as the weakest binding you allow,
+
+8
+00:00:23.320 --> 00:00:26.850
+and the program's position is
+high affinity in production.
+
+9
+00:00:26.850 --> 00:00:29.597
+But switch the whole tenant
+to high before every
+
+10
+00:00:29.597 --> 00:00:32.275
+account's value is right,
+and you lock people out.
+
+11
+00:00:32.275 --> 00:00:33.475
+Pilot it first.
+
+12
+00:00:33.475 --> 00:00:35.350
+So where does that value come from?

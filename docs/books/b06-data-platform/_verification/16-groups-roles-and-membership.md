@@ -54,3 +54,11 @@ Checked October 20, 2026. Sources: the existing page (former Book 07, Chapter 1)
 | Book_07 "Continue the series" | Continue the book | edited |
 
 Diagram source edited: `book-07-ch01-group-to-login-mapping.flow.yaml` ("Chapter 2" → "Chapter 17"). Needs re-render.
+
+## Revision 2026-10-29 — companion-guide reconciliation
+
+Finding D3 in the attribute-driven migration guide's verification log (`docs/books/guides/_verification/attribute-driven-migration.md`): rule inputs listed display strings, against Chapter 17's codes-only rule. Sources opened on Oct 29, 2026 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim | Source (accessed 2026-10-29) | Old text | New text |
+|---|---|---|---|---|
+| G1 | Organization-derived groups' rules read HR codes | Manage rules for dynamic membership groups <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (`extensionAttribute1`–`15` supported for users; `-in` with a bracketed string list; minimize `-contains` and `-match`); administrative-unit rules use the same attributes and syntax: <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-dynamic> | "rules read HR-maintained attributes such as `department`, `companyName`, `jobTitle`, an `extensionAttribute`, or a directory extension property ([Chapter 17](…))" | "rules read HR-maintained codes, such as the organization code in `extensionAttribute10` and the position category in `extensionAttribute12` from the [program attribute map](…), or a directory extension property, not display strings such as `department` or `jobTitle` ([Chapter 17](…#choosing-the-attributes))" |

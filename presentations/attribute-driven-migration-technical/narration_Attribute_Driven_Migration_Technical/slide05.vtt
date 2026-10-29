@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.438
+Here's the whole path on one page,
+laid out this way for accountability.
+
+2
+00:00:04.438 --> 00:00:07.976
+Nine stages, from reading
+the tree to correcting drift.
+
+3
+00:00:07.976 --> 00:00:11.803
+Every stage has exactly one
+decider, taken from the books'
+
+4
+00:00:11.803 --> 00:00:15.712
+two responsibility matrices,
+and a gate that says it's done.
+
+5
+00:00:15.712 --> 00:00:20.306
+Identity engineering owns most of
+the plumbing, application owners own
+
+6
+00:00:20.306 --> 00:00:24.975
+their access rules, and the CISO owns
+the controls and the drift findings.
+
+7
+00:00:24.975 --> 00:00:26.529
+And the gates are the point:
+
+8
+00:00:26.529 --> 00:00:29.850
+nothing grants production
+access until it's been proved.
+
+9
+00:00:29.850 --> 00:00:31.510
+Stage zero first.

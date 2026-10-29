@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.338
+This crosswalk is the reference you'll
+come back to: every object type,
+
+2
+00:00:04.338 --> 00:00:08.550
+the store its attributes live in,
+who writes them and what reads them.
+
+3
+00:00:08.550 --> 00:00:11.963
+Users, devices, Arc servers
+and service principals
+
+4
+00:00:11.963 --> 00:00:15.375
+each have their own stores
+and their own consumers.
+
+5
+00:00:15.375 --> 00:00:17.350
+The highpoint is the third column.
+
+6
+00:00:17.350 --> 00:00:21.055
+Every row names one writer,
+whether that's HR provisioning,
+
+7
+00:00:21.055 --> 00:00:25.300
+device registration, the Arc agent
+or an attribute administrator.
+
+8
+00:00:25.300 --> 00:00:28.669
+That's the same single-writer
+rule we set for the user schema,
+
+9
+00:00:28.669 --> 00:00:29.975
+applied to everything.
+
+10
+00:00:29.975 --> 00:00:33.240
+And one user row leads straight into PIV.

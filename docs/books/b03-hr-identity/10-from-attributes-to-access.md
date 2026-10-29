@@ -100,6 +100,8 @@ The [SQL Server Identity Transformation workbook, Book 07](../b06-data-platform/
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 09 — Credentials and Certificates Across Joiner, Mover, Leaver](09-credentials-and-certificates.md) · [Book index](index.md) · [Next: Chapter 11 — Drift, Metrics and Evidence →](11-drift-metrics-and-evidence.md)
+
+See the companion guide: [Attribute-Driven Migration from Active Directory to Microsoft Entra ID](../guides/attribute-driven-migration.md), one end-to-end path through this material.
 :::
 
 [^c10-dyn-rules]: Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership> (accessed Oct 20, 2026).

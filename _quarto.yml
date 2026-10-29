@@ -108,6 +108,8 @@ website:
             text: "Book 18 — Application Modernization"
           - href: docs/books/guides/effective-meetings.md
             text: "Guide: Effective Meetings"
+          - href: docs/books/guides/attribute-driven-migration.md
+            text: "Guide: Attribute-Driven Migration to Entra ID"
       - href: docs/project-plans/index.md
         text: "Projects"
       - href: docs/presentations/index.md
@@ -220,6 +222,7 @@ website:
         - section: "Companion guides"
           contents:
             - docs/books/guides/effective-meetings.md
+            - docs/books/guides/attribute-driven-migration.md
 
   page-footer:
     left: "Federal Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How."
