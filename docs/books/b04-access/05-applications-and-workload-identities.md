@@ -115,7 +115,7 @@ Which role can grant it depends on what's being granted:[^c05-grant-admin]
 
 | Role | Can grant admin consent for |
 |---|---|
-| Privileged Role Administrator | Any permission, for any API |
+| Privileged Role Administrator | Any permission, for any API, Microsoft Graph application permissions included; in practice a Global Administrator is typically required for those (see below)[^c05-graph-consent-practice] |
 | Cloud Application Administrator, Application Administrator, AI Administrator | Any permission for any API, except Microsoft Graph app roles (application permissions) |
 | Custom role with the permission to grant permissions to applications | The permissions the custom role allows |
 
@@ -141,7 +141,7 @@ Configuration details matter for the approval model in [Chapter 06](06-who-decid
 - Reviewers can view, block or deny any request, but only Global Administrators can approve requests for apps asking for Microsoft Graph app roles.
 - Requests expire after a configured number of days, with reminder emails. Reviewers added later don't see requests made before they were added, and reviewers removed later keep the requests they already had.
 
-The program enables the workflow, names the identity governance office as reviewers, and treats the workflow as the intake for the admin consent approval chain, not as the approval itself. The tier decision and security review happen in the ticket; the workflow request is where the grant is finally executed by a holder of the right role. Requests for Microsoft Graph application permissions that arrive through the workflow need a Global Administrator to approve them there, so the program grants those through the Enterprise applications pane, as Privileged Role Administrator activated through PIM ([Chapter 08](08-pim-self-request-with-approval.md)), once the ticket is approved.
+The program enables the workflow, names the identity governance office as reviewers, and treats the workflow as the intake for the admin consent approval chain, not as the approval itself. The tier decision and security review happen in the ticket; the workflow request is where the grant is finally executed by a holder of the right role. Requests for Microsoft Graph application permissions that arrive through the workflow need a Global Administrator to approve them there. Outside the workflow, Microsoft lists Privileged Role Administrator as the least privileged role for consenting to Microsoft Graph application permissions, but notes that in practice this typically requires Global Administrator, and that Privileged Role Administrator may not be enough depending on the tenant's consent policies, the permission scopes or Graph protection requirements.[^c05-graph-consent-practice] So the program plans for both: it grants those permissions once the ticket is approved, through the Enterprise applications pane, as Privileged Role Administrator activated through PIM ([Chapter 08](08-pim-self-request-with-approval.md)), with a PIM-activated Global Administrator as the fallback. Test the path in the pilot.
 
 ## Ownership
 
@@ -264,6 +264,8 @@ Three limits are worth stating plainly.
 - Consent governance covers new grants. Existing over-consented apps need a one-time sweep; the attestation cadence then keeps the estate from drifting back.
 - Rotation depends on the certificate authority and key store chosen for the program. This chapter governs the workflow, not the authority.
 
+The lifecycle as gated steps, each with a read-only validation check, is in [Non-Person Identity: An Implementation Guide](../guides/non-person-identity-implementation.md).
+
 ### A read-only inventory to start from
 
 The sweep starts with knowing what exists. The script below reads tenant consent settings and, for every app registration, its owner count, credentials, and the delegated and application permissions granted to its service principal. It changes nothing.
@@ -356,6 +358,7 @@ None of this book's certificates is renewed by the CLM platform. App-registratio
 
 [^c05-scuba-consent]: Cybersecurity and Infrastructure Security Agency, ScubaGear Microsoft Entra ID secure configuration baseline, policy MS.AAD.5.2v1 and its implementation options, <https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md> (accessed Oct 21, 2026).
 [^c05-consent-policies]: Microsoft Learn, "Manage app consent policies," section "Built-in consent policies," <https://learn.microsoft.com/entra/identity/enterprise-apps/manage-app-consent-policies> (accessed Oct 20, 2026).
+[^c05-graph-consent-practice]: Microsoft Learn, "Least privileged roles by task in Microsoft Entra ID," section "Enterprise applications least privileged roles," task "Consent to application permissions to Microsoft Graph" and the note below the table, <https://learn.microsoft.com/entra/identity/role-based-access-control/delegate-by-task> (accessed Oct 29, 2026).
 [^c05-grant-admin]: Microsoft Learn, "Grant tenant-wide admin consent to an application," <https://learn.microsoft.com/entra/identity/enterprise-apps/grant-admin-consent> (accessed Oct 20, 2026).
 [^c05-roles]: Microsoft Learn, "Microsoft Entra built-in roles," sections "Application Administrator" and "Cloud Application Administrator," <https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference> (accessed Oct 20, 2026).
 [^c05-oauth-grant]: Microsoft Learn, "New-MgBetaOauth2PermissionGrant," parameter notes for `ExpiryTime` and `StartTime`, <https://learn.microsoft.com/powershell/module/microsoft.graph.beta.identity.signins/new-mgbetaoauth2permissiongrant?view=graph-powershell-beta> (accessed Oct 20, 2026).

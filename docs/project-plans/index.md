@@ -48,10 +48,11 @@ The program master schedule is the integrated plan, and the project plans link t
 | [Network & Access Modernization](network-access.md) | Sample ready | [Book 08](../books/b08-ddi/index.md), [Book 09](../books/b09-network/index.md) |
 | [Privileged Access & Administrative Identity](privileged-access.md) | Sample ready | [Book 04](../books/b04-access/index.md) |
 | [Data Platform Identity Transformation](data-platform.md) | Sample ready | [Book 06](../books/b06-data-platform/index.md) |
+| [Non-Person Identity Modernization](non-person-identity.md) | Sample ready | [Book 02, Chapters 09 and 10](../books/b02-identity/09-building-the-entra-target.md#modernizing-service-accounts); [Book 17](../books/b17-ai-identity/index.md); the companion guide's [non-person identity track](../books/guides/attribute-driven-migration.md#non-person-identity-track) |
 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) | Sample ready | [Book 13](../books/b13-governance/index.md) |
 | [Supply Chain & Software Bill of Materials](supply-chain-sbom.md) | Sample ready | [Book 14](../books/b14-compliance/index.md) |
 
-: The plan set, following the seven projects in [Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md) {.striped .hover}
+: The plan set: the seven projects in [Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md), plus the non-person identity track of the [Attribute-Driven Migration guide](../books/guides/attribute-driven-migration.md#four-tracks) {.striped .hover}
 
 ## How to read a plan
 
@@ -78,10 +79,10 @@ Three terms carry most of the meaning:
 
 ## Using a plan
 
-Each plan downloads as a Microsoft Project file (XML) and as a CSV for Excel, with every dependency, owner and float. Each also has a YAML source in the repository. To adapt one in the repository, edit its durations, owners and dependencies, then run:
+Each plan downloads as a Microsoft Project file (XML), a CSV for Excel, and import files for Azure Boards and Jira, with every dependency, owner and float. Each also has a YAML source in the repository. To adapt one in the repository, edit its durations, owners and dependencies, then run:
 
 ```bash
 python scripts/project_plans/build.py
 ```
 
-The script recomputes the critical path and regenerates the page, the chart and both downloads; `--check` reports any output that no longer matches its source.
+The script recomputes the critical path and regenerates the page, the chart and the downloads; `--check` reports any output that no longer matches its source.

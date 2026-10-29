@@ -1,0 +1,45 @@
+[
+  {
+    "id": "obj-payroll",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000300",
+    "displayName": "Payroll API",
+    "signInAudience": "AzureADMyOrg",
+    "owners": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000001"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000002"
+      }
+    ],
+    "passwordCredentials": [],
+    "keyCredentials": [
+      {
+        "keyId": "kc-payroll-0",
+        "startDateTime": "2026-06-01T00:00:00Z",
+        "endDateTime": "2027-05-31T00:00:00Z",
+        "type": "AsymmetricX509Cert"
+      }
+    ]
+  },
+  {
+    "id": "obj-hrsync",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000302",
+    "displayName": "HR Sync",
+    "signInAudience": "AzureADMyOrg",
+    "owners": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000002"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000003"
+      }
+    ],
+    "passwordCredentials": [],
+    "keyCredentials": []
+  }
+]

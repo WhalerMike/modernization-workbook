@@ -1,0 +1,60 @@
+[
+  {
+    "id": "wf-joiner",
+    "displayName": "Joiner: new hire",
+    "category": "joiner",
+    "isEnabled": true,
+    "isSchedulingEnabled": true,
+    "createdDateTime": "2026-01-01T00:00:00Z",
+    "executionConditions": {
+      "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+      "scope": {
+        "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+        "rule": "(companyName eq 'Contoso')"
+      },
+      "trigger": {
+        "@odata.type": "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger",
+        "timeBasedAttribute": "employeeHireDate",
+        "offsetInDays": 0
+      }
+    },
+    "settings": {
+      "quarantineConfiguration": {
+        "matchMode": "any",
+        "conditions": [
+          {
+            "@odata.type": "#microsoft.graph.identityGovernance.countBasedQuarantineCondition",
+            "threshold": 50
+          },
+          {
+            "@odata.type": "#microsoft.graph.identityGovernance.percentageBasedQuarantineCondition",
+            "percentage": 10
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "wf-leaver",
+    "displayName": "Leaver: last day",
+    "category": "leaver",
+    "isEnabled": true,
+    "isSchedulingEnabled": true,
+    "createdDateTime": "2026-01-01T00:00:00Z",
+    "executionConditions": {
+      "@odata.type": "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions",
+      "scope": {
+        "@odata.type": "#microsoft.graph.identityGovernance.ruleBasedSubjectSet",
+        "rule": "(companyName eq 'Contoso')"
+      },
+      "trigger": {
+        "@odata.type": "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger",
+        "timeBasedAttribute": "employeeLeaveDateTime",
+        "offsetInDays": 0
+      }
+    },
+    "settings": {
+      "quarantineConfiguration": null
+    }
+  }
+]

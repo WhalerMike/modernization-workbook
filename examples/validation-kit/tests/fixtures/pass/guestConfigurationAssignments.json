@@ -1,0 +1,16 @@
+[
+  {
+    "id": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app01/providers/microsoft.guestconfiguration/guestconfigurationassignments/azurewindowsbaseline",
+    "name": "AzureWindowsBaseline",
+    "machineId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app01",
+    "assignmentType": "ApplyAndAutoCorrect",
+    "complianceStatus": "Compliant"
+  },
+  {
+    "id": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db01/providers/microsoft.guestconfiguration/guestconfigurationassignments/azurelinuxbaseline",
+    "name": "AzureLinuxBaseline",
+    "machineId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db01",
+    "assignmentType": "Audit",
+    "complianceStatus": "Compliant"
+  }
+]

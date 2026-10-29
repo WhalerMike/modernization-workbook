@@ -1,0 +1,12 @@
+OperatingSystem,MinVersion,Coverage,Note
+Windows,10.0.22000,Managed,Windows 11 (the guide's coverage table; Windows 10 LTSC 2019 and 2021 are also Managed but share Windows 10 version numbers)
+Windows,10.0.10240,Limited,Windows 10 non-LTSC: out of support since October 14 2025; Intune treats it as allowed
+macOS,15.0,Managed,macOS 15 and later supported
+macOS,13.0,Limited,macOS 13 and later allowed for devices with no user affinity
+iOS,18.0,Managed,iOS 18 and later supported
+iOS,16.0,Limited,iOS 16 and later allowed for devices with no user affinity
+iPadOS,18.0,Managed,iPadOS 18 and later supported
+iPadOS,16.0,Limited,iPadOS 16 and later allowed for devices with no user affinity
+Android,10.0,Managed,Android Enterprise (dedicated devices from Android 8)
+Android,8.0,Limited,Android 8 and 9: dedicated devices only
+Linux,0.0,Limited,Ubuntu Desktop 24.04 and 26.04 LTS and RHEL 9 and 10: compliance only

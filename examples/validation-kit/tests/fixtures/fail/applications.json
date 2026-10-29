@@ -1,0 +1,105 @@
+[
+  {
+    "id": "obj-payroll",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000300",
+    "displayName": "Payroll API",
+    "signInAudience": "AzureADMyOrg",
+    "owners": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000001"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000002"
+      }
+    ],
+    "passwordCredentials": [],
+    "keyCredentials": [
+      {
+        "keyId": "kc-payroll-0",
+        "startDateTime": "2026-06-01T00:00:00Z",
+        "endDateTime": "2027-05-31T00:00:00Z",
+        "type": "AsymmetricX509Cert"
+      }
+    ]
+  },
+  {
+    "id": "obj-hrsync",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000302",
+    "displayName": "HR Sync",
+    "signInAudience": "AzureADMyOrg",
+    "owners": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000002"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000003"
+      }
+    ],
+    "passwordCredentials": [],
+    "keyCredentials": []
+  },
+  {
+    "id": "obj-report",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000303",
+    "displayName": "Report Bot",
+    "signInAudience": "AzureADMyOrg",
+    "owners": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000001"
+      }
+    ],
+    "passwordCredentials": [
+      {
+        "keyId": "pw-report-0",
+        "startDateTime": "2026-01-01T00:00:00Z",
+        "endDateTime": "2027-12-31T00:00:00Z"
+      }
+    ],
+    "keyCredentials": []
+  },
+  {
+    "id": "obj-orphan",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000304",
+    "displayName": "Orphan Job",
+    "signInAudience": "AzureADMyOrg",
+    "owners": [],
+    "passwordCredentials": [],
+    "keyCredentials": [
+      {
+        "keyId": "kc-orphan-0",
+        "startDateTime": "2026-01-10T00:00:00Z",
+        "endDateTime": "2026-11-10T00:00:00Z",
+        "type": "AsymmetricX509Cert"
+      }
+    ]
+  },
+  {
+    "id": "obj-legacy",
+    "appId": "aaaaaaaa-0000-4000-8000-000000000305",
+    "displayName": "Legacy SaaS",
+    "signInAudience": "AzureADMultipleOrgs",
+    "owners": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000001"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "00000000-0000-4000-8000-000000000002"
+      }
+    ],
+    "passwordCredentials": [
+      {
+        "keyId": "pw-legacy-0",
+        "startDateTime": "2026-09-01T00:00:00Z",
+        "endDateTime": "2026-11-30T00:00:00Z"
+      }
+    ],
+    "keyCredentials": []
+  }
+]

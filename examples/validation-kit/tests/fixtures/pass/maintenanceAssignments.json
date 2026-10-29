@@ -1,0 +1,26 @@
+[
+  {
+    "id": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app01/providers/microsoft.maintenance/configurationassignments/patch-weekly",
+    "resourceId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app01",
+    "maintenanceConfigurationId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-patch/providers/microsoft.maintenance/maintenanceconfigurations/weekly",
+    "filter": null
+  },
+  {
+    "id": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/microsoft.maintenance/configurationassignments/group-b",
+    "resourceId": "",
+    "maintenanceConfigurationId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-patch/providers/microsoft.maintenance/maintenanceconfigurations/group-b",
+    "filter": {
+      "resourceTypes": [
+        "microsoft.hybridcompute/machines"
+      ],
+      "tagSettings": {
+        "tags": {
+          "PatchGroup": [
+            "Group-B"
+          ]
+        },
+        "filterOperator": "Any"
+      }
+    }
+  }
+]

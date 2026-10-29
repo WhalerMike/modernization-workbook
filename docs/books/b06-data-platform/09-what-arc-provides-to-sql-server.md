@@ -58,6 +58,8 @@ On both versions, agent-side work (retrieving certificates from Key Vault, the e
 
 None of this replaces the Windows account the service runs as (`NT SERVICE\MSSQLSERVER`, a gMSA or a domain account), which still presents the computer or domain identity for Windows networking on a domain-joined host. What changes is the identity Entra ID and Azure see: the managed identity (2025) or the app registration (2022) instead of an AD service account. On SQL Server 2025 there's no credential to manage. On 2022 the one credential is the app registration's Key Vault certificate, which needs a named renewal owner: Microsoft recommends a validity of at most 12 months, and the certificates created for this setup aren't rotated automatically.[^c09-appreg-2022][^c09-automation]
 
+The inventory, ownership and lifecycle of these service and application principals, with the rest of the estate's non-person identities, are in the non-person identity implementation guide's [SQL Server section](../guides/non-person-identity-implementation.md#sql-server).
+
 ## Why Arc and not the alternatives
 
 Every alternative either re-anchors on the directory the program is retiring or reintroduces the stored credential it exists to eliminate.

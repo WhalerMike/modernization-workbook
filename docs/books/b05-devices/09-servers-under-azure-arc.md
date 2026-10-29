@@ -26,6 +26,8 @@ Group Policy reached servers the same way it reached workstations: through OU pl
 
 That's the management plane. It isn't the identity plane, and onboarding doesn't change how the server authenticates users or whether it's joined to a domain. Keep the two separate in every plan.
 
+The estate-wide rollout, as gated steps with validation checks, is the [Azure Arc Track: Implementation Guide](../guides/arc-track-implementation.md); the [Endpoint & Device plan's Phase 4](../../project-plans/endpoint-device.md#phase-4-servers-under-azure-arc) schedules it.
+
 ![Arc gives the server an Azure resource and a managed identity; governance, patching, protection and sign-in attach to that resource.](../../images/diagrams/b05-devices/svg/ch09-arc-management-plane.svg){#fig-ch09-arc-management-plane fig-alt="Left to right. A slate card for the on-premises or other-cloud server running the Connected Machine agent, still domain joined until a separate decision. An arrow labeled outbound TCP 443 leads to a blue card for the Azure Arc machine resource, Microsoft.HybridCompute/machines, holding resource ID, tags, Azure RBAC and extensions. Below it, a blue card for the system-assigned managed identity in Microsoft Entra ID, connected by a dashed line. From the resource, three arrows lead to three cards on the right: a violet card, Govern, Azure Policy and machine configuration audit the security baseline; a green card, Patch, Azure Update Manager and Extended Security Updates; and a violet card, Protect and sign in, Defender for Servers onboards Defender for Endpoint, and the Entra ID sign-in extension on Windows Server 2025."}
 
 ## What Arc changes and what it doesn't

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ara-300-df02",
+    "principalId": "00000000-0000-4000-8000-000000000300",
+    "principalType": "ServicePrincipal",
+    "appRoleId": "df021288-bdef-4463-88db-98f22de89214",
+    "resourceId": "00000000-0000-4000-8000-000000000301"
+  },
+  {
+    "id": "ara-303-19db",
+    "principalId": "00000000-0000-4000-8000-000000000303",
+    "principalType": "ServicePrincipal",
+    "appRoleId": "19dbc75e-c2e2-444c-a770-ec69d8559fc7",
+    "resourceId": "00000000-0000-4000-8000-000000000301"
+  },
+  {
+    "id": "ara-304-9e3f",
+    "principalId": "00000000-0000-4000-8000-000000000304",
+    "principalType": "ServicePrincipal",
+    "appRoleId": "9e3f62cf-ca93-4989-b6ce-bf83c28f9fe8",
+    "resourceId": "00000000-0000-4000-8000-000000000301"
+  }
+]

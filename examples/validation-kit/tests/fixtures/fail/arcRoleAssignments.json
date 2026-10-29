@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ra-1",
+    "principalId": "00000000-0000-4000-8000-000000000700",
+    "principalType": "User",
+    "roleDefinitionId": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+    "scope": "/subscriptions/22222222-2222-4222-8222-222222222222"
+  },
+  {
+    "id": "ra-2",
+    "principalId": "00000000-0000-4000-8000-000000000701",
+    "principalType": "Group",
+    "roleDefinitionId": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/Microsoft.Authorization/roleDefinitions/1c0163c0-47e6-4577-8991-ea5c82e286e4",
+    "scope": "/subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-servers"
+  },
+  {
+    "id": "ra-3",
+    "principalId": "00000000-0000-4000-8000-000000000703",
+    "principalType": "ServicePrincipal",
+    "roleDefinitionId": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/Microsoft.Authorization/roleDefinitions/b64e21ea-ac4e-4cdf-9dc9-5b892992bee7",
+    "scope": "/subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-wave3"
+  },
+  {
+    "id": "ra-4",
+    "principalId": "00000000-0000-4000-8000-000000000001",
+    "principalType": "User",
+    "roleDefinitionId": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+    "scope": "/subscriptions/22222222-2222-4222-8222-222222222222"
+  },
+  {
+    "id": "ra-5",
+    "principalId": "00000000-0000-4000-8000-000000000702",
+    "principalType": "Group",
+    "roleDefinitionId": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
+    "scope": "/subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-servers"
+  },
+  {
+    "id": "ra-6",
+    "principalId": "00000000-0000-4000-8000-000000000703",
+    "principalType": "ServicePrincipal",
+    "roleDefinitionId": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/Microsoft.Authorization/roleDefinitions/b64e21ea-ac4e-4cdf-9dc9-5b892992bee7",
+    "scope": "/subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-wave1"
+  }
+]

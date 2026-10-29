@@ -471,7 +471,7 @@ The migration runs in eleven phases, grouped into five waves. Each phase has pre
 
 ### Phase 4: Service account modernization
 
-Phase 4 is the **non-person identity track**: its inventory, owners and targets come from the owning applications' records, not from HR ([companion guide](../guides/attribute-driven-migration.md#non-person-identity-track)). The design is in [Chapter 09](09-building-the-entra-target.md#modernizing-service-accounts).
+Phase 4 is the **non-person identity track**: its inventory, owners and targets come from the owning applications' records, not from HR ([companion guide](../guides/attribute-driven-migration.md#non-person-identity-track)). The design is in [Chapter 09](09-building-the-entra-target.md#modernizing-service-accounts). The parallel run in step 5 is worked out in the non-person guide's [Step 5](../guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run), and the [Non-Person Identity Modernization plan](../../project-plans/non-person-identity.md) schedules the phase.
 
 | Element | Detail |
 |---|---|
@@ -578,7 +578,7 @@ The design rule is the same as in [Book 03, Chapter 11](../b03-hr-identity/11-dr
 | Application credential audit | Weekly, Monday 06:00 | `Get-FMPServicePrincipalCredentialReport -ExpiringWithin 30` | Expiring credentials; an issue per application | Planned |
 | Stale account report | Monthly, 1st, 06:00 | `Get-FMPStaleAccountReport -InactiveDays 90` | Stale account list; access review trigger | Planned |
 
-The planned functions aren't in the module yet. Until they are, run the equivalent steps by hand and commit the output; don't schedule a command that doesn't exist.
+The planned functions aren't in the module yet. Until they are, run the equivalent steps by hand and commit the output; don't schedule a command that doesn't exist. For the application credential audit, the read-only [validation kit](../../../downloads/validation-kit.zip) already has a check, VK-NPI-02 (secrets and certificates expiring within N days).
 
 ### Raising drift issues through the Git host's API
 

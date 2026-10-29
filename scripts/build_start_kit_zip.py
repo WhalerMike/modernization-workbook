@@ -4,7 +4,8 @@
 Book 00 Chapter 08 and Book 06 Runbook R02 link the Start Kit as a download, and Book 15
 Chapter 13 links the Copilot agent pack (--kit copilot-agent-pack), and Book 18 Chapter 08
 the application modernization reference implementation (--kit app-modernization), and the
-Ansible companion guide links its example playbooks (--kit ansible, published as ansible-examples.zip).
+Ansible companion guide links its example playbooks (--kit ansible, published as ansible-examples.zip),
+and the track implementation guides link the validation kit (--kit validation-kit).
 This packs the folder as
 it is in the repository, scripts, README, fixtures and tests, under a top-level <kit>/
 folder. The archive is reproducible: entries are sorted, timestamps fixed and
@@ -29,7 +30,7 @@ import zipfile
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible")
+KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "validation-kit")
 # Kits whose download name differs from their folder name.
 ZIP_NAMES = {"ansible": "ansible-examples"}
 # Files that must stay executable once extracted, beyond shell scripts: Ansible runs an

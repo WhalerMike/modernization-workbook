@@ -100,6 +100,15 @@ Each gate is the next phase's entry condition. The approver signs it against the
 - **X-G2, Program G2 — Pilot Clean,** is G2 in the [Program master schedule](program-master-schedule.md) plan (G2 — Pilot Clean), end of wk 16. This plan must finish AG2 by then: a margin of 12 d. Later work in this plan waits for it. The remaining tiers can't start.
 - **X-G3, Program G3 — Rollout Complete,** is G3 in the [Program master schedule](program-master-schedule.md) plan (G3 — Rollout Complete), end of wk 36. This plan waits for it; it can slip 0 before it moves this plan. The access-related Group Policy can't be retired.
 
+Other plans that take a date from this one. *Waits for it*: that plan can't move until this item finishes, and its float says how far this item can slip before it moves that plan. *Must finish by it*: that plan's work has to be done before this item, and the margin says by how much.
+
+| This plan's item | When | Linked plan | Relationship | Float or margin |
+|---|---|---|---|---|
+| A0.3  App registrations, owners, credentials and granted permissions inventoried, read-only; automation on the protected permissions found | wk 1–2 | [Non-Person Identity Modernization](non-person-identity.md) (X-A03) | Waits for it | 0 |
+| A3.4  Non-human privileged identities: two named owners each, credentials off secrets, over-consented apps swept | wk 17–24 | [Non-Person Identity Modernization](non-person-identity.md) (X-A34) | Waits for it | 28 d |
+
+: Plans that take a date from this one {.striped .hover}
+
 ## Work breakdown and schedule
 
 Every row, by phase. *Float* is total float in working days; **bold** rows are on the critical path. Each row links to the chapter it comes from.

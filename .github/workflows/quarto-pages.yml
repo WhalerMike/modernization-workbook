@@ -97,6 +97,12 @@ jobs:
         # Ansible companion guide and the Downloads page.
         run: python3 scripts/build_start_kit_zip.py --kit ansible --out _site/downloads
 
+      - name: Build the validation kit download
+        # downloads/validation-kit.zip: examples/validation-kit as committed, linked from
+        # the track implementation guides, the Attribute-Driven Migration guide, Book 05
+        # Chapter 10 and the Downloads page.
+        run: python3 scripts/build_start_kit_zip.py --kit validation-kit --out _site/downloads
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

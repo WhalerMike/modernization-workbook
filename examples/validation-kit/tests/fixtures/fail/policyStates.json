@@ -1,0 +1,26 @@
+[
+  {
+    "resourceId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app01",
+    "complianceState": "Compliant",
+    "policyAssignmentName": "server-baseline",
+    "policyDefinitionName": "def-1"
+  },
+  {
+    "resourceId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-web01",
+    "complianceState": "NonCompliant",
+    "policyAssignmentName": "server-baseline",
+    "policyDefinitionName": "def-1"
+  },
+  {
+    "resourceId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-exp01",
+    "complianceState": "Compliant",
+    "policyAssignmentName": "server-baseline",
+    "policyDefinitionName": "def-1"
+  },
+  {
+    "resourceId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-old01",
+    "complianceState": "NonCompliant",
+    "policyAssignmentName": "other-assignment",
+    "policyDefinitionName": "x"
+  }
+]

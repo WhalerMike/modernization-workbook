@@ -1,0 +1,65 @@
+[
+  {
+    "id": "md-1",
+    "deviceName": "PC-001",
+    "operatingSystem": "Windows",
+    "osVersion": "10.0.26100.1000",
+    "managedDeviceOwnerType": "company",
+    "azureADDeviceId": null,
+    "lastSyncDateTime": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": "md-2",
+    "deviceName": "PC-002",
+    "operatingSystem": "Windows",
+    "osVersion": "10.0.22631.3000",
+    "managedDeviceOwnerType": "company",
+    "azureADDeviceId": null,
+    "lastSyncDateTime": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": "md-3",
+    "deviceName": "IPHONE-01",
+    "operatingSystem": "iOS",
+    "osVersion": "18.1",
+    "managedDeviceOwnerType": "personal",
+    "azureADDeviceId": null,
+    "lastSyncDateTime": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": "md-4",
+    "deviceName": "MAC-01",
+    "operatingSystem": "macOS",
+    "osVersion": "15.2",
+    "managedDeviceOwnerType": "company",
+    "azureADDeviceId": null,
+    "lastSyncDateTime": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": "md-5",
+    "deviceName": "PC-OLD",
+    "operatingSystem": "Windows",
+    "osVersion": "6.1.7601",
+    "managedDeviceOwnerType": "company",
+    "azureADDeviceId": null,
+    "lastSyncDateTime": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": "md-6",
+    "deviceName": "IPHONE-OLD",
+    "operatingSystem": "iOS",
+    "osVersion": "15.7",
+    "managedDeviceOwnerType": "company",
+    "azureADDeviceId": null,
+    "lastSyncDateTime": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": "md-7",
+    "deviceName": "PC-W10",
+    "operatingSystem": "Windows",
+    "osVersion": "10.0.19045.4000",
+    "managedDeviceOwnerType": "company",
+    "azureADDeviceId": null,
+    "lastSyncDateTime": "2026-10-28T00:00:00Z"
+  }
+]

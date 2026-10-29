@@ -1,0 +1,46 @@
+[
+  {
+    "id": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app01",
+    "name": "srv-app01",
+    "resourceGroup": "rg-servers",
+    "subscriptionId": "22222222-2222-4222-8222-222222222222",
+    "location": "eastus",
+    "tags": {
+      "Environment": "Production",
+      "Workload": "Payroll",
+      "Criticality": "High",
+      "Owner": "app-team",
+      "CostCenter": "CC100",
+      "PatchGroup": "Group-A",
+      "ArcOnboardedDate": "2026-09-01"
+    },
+    "status": "Connected",
+    "agentVersion": "1.68.03315.1001",
+    "osType": "windows",
+    "osName": "windows",
+    "computerName": "srv-app01",
+    "lastStatusChange": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db01",
+    "name": "srv-db01",
+    "resourceGroup": "rg-servers",
+    "subscriptionId": "22222222-2222-4222-8222-222222222222",
+    "location": "eastus",
+    "tags": {
+      "Environment": "Production",
+      "Workload": "Payroll",
+      "Criticality": "High",
+      "Owner": "app-team",
+      "CostCenter": "CC100",
+      "PatchGroup": "Group-B",
+      "ArcOnboardedDate": "2026-09-01"
+    },
+    "status": "Connected",
+    "agentVersion": "1.66.03200.900",
+    "osType": "linux",
+    "osName": "linux",
+    "computerName": "srv-db01",
+    "lastStatusChange": "2026-10-28T00:00:00Z"
+  }
+]

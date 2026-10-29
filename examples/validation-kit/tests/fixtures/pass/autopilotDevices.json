@@ -1,0 +1,12 @@
+[
+  {
+    "id": "ap1",
+    "serialNumber": "SN-0001",
+    "groupTag": "FIN-STD"
+  },
+  {
+    "id": "ap2",
+    "serialNumber": "SN-0002",
+    "groupTag": "PAW"
+  }
+]

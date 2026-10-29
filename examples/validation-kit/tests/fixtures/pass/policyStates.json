@@ -1,0 +1,14 @@
+[
+  {
+    "resourceId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app01",
+    "complianceState": "Compliant",
+    "policyAssignmentName": "server-baseline",
+    "policyDefinitionName": "def-1"
+  },
+  {
+    "resourceId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db01",
+    "complianceState": "Compliant",
+    "policyAssignmentName": "server-baseline",
+    "policyDefinitionName": "def-1"
+  }
+]

@@ -68,6 +68,8 @@ Appendix: [A — Requirements mapping: AI rules to identity controls](appendix-a
 
 This is Book 17 of the [Federal Modernization Workbook](../index.md). [Book 18, Application Modernization](../b18-application-modernization/index.md), applies this book to AI built into modernized applications. Workload identities and the Entra target are in [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md); the human joiner, mover and leaver lifecycle in [Book 03](../b03-hr-identity/index.md); Conditional Access, application consent and workload identities in [Book 04](../b04-access/index.md); the evidence contract and identity telemetry in [Book 12](../b12-security-operations/index.md); the drift model in [Book 13](../b13-governance/index.md); authorization and continuous monitoring in [Book 14](../b14-compliance/index.md); SaaS and OAuth integration governance in [Book 15, Chapter 06](../b15-day2-operations/06-saas-integration-governance.md); and the training M-25-21 requires for people who use and oversee AI in [Book 16](../b16-people/index.md).
 
+Phase 6 of the [Non-Person Identity Modernization plan](../../project-plans/non-person-identity.md#phase-6-ai-agents) schedules this book.
+
 ## Chapters
 
 ::: {#chapters}

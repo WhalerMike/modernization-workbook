@@ -1,0 +1,4 @@
+Name,Tier,Owner,config_owner
+srv-app01.contoso.example,1,app-team,machine-configuration
+srv-db01,1,dba-team,ansible
+aix-legacy01,4,ops,

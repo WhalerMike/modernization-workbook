@@ -1,0 +1,60 @@
+[
+  {
+    "id": "00000000-0000-4000-8000-000000000100",
+    "displayName": "FMP-Users-ORG-A",
+    "groupTypes": [
+      "DynamicMembership"
+    ],
+    "membershipRule": "(user.extensionAttribute10 -eq \"ORG-A\") -and (user.accountEnabled -eq true) -and (user.userType -eq \"Member\")",
+    "membershipRuleProcessingState": "On",
+    "securityEnabled": true
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000101",
+    "displayName": "FMP-Users-ORG-B",
+    "groupTypes": [
+      "DynamicMembership"
+    ],
+    "membershipRule": "(user.extensionAttribute10 -eq \"ORG-B\") -and (user.accountEnabled -eq true) -and (user.userType -eq \"Member\")",
+    "membershipRuleProcessingState": "On",
+    "securityEnabled": true
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000102",
+    "displayName": "FMP-Devices-Tier0",
+    "groupTypes": [
+      "DynamicMembership"
+    ],
+    "membershipRule": "(device.extensionAttribute11 -eq \"Tier0\") -and (device.accountEnabled -eq true)",
+    "membershipRuleProcessingState": "On",
+    "securityEnabled": true
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000103",
+    "displayName": "FMP-Devices-Tier2",
+    "groupTypes": [
+      "DynamicMembership"
+    ],
+    "membershipRule": "(device.extensionAttribute11 -eq \"Tier2\") -and (device.accountEnabled -eq true)",
+    "membershipRuleProcessingState": "On",
+    "securityEnabled": true
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000104",
+    "displayName": "Pilot devices (assigned)",
+    "groupTypes": [],
+    "membershipRule": null,
+    "membershipRuleProcessingState": null,
+    "securityEnabled": true
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000105",
+    "displayName": "FMP-Users-ORG-A-v2",
+    "groupTypes": [
+      "DynamicMembership"
+    ],
+    "membershipRule": "(user.extensionAttribute10 -in [\"ORG-A\"]) -and (user.accountEnabled -eq true) -and (user.userType -eq \"Member\")",
+    "membershipRuleProcessingState": "On",
+    "securityEnabled": true
+  }
+]

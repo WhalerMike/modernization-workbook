@@ -1,0 +1,231 @@
+﻿Work item ID,Work type,Parent,Summary,Description,Labels,Labels,Labels,Labels,Labels,Labels,Start date,Due date,Blocks,Blocks,Blocks,Blocks,Blocks
+1,Epic,,Non-Person Identity Modernization: Phase 0 — Inventory,"Phase 0 — Inventory of the sample plan Non-Person Identity Modernization: Service Accounts, Workload Identities and AI Agents.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/non-person-identity.html",fmw,fmw-non-person-identity,phase,,,,2027-01-04,2027-01-29,,,,,
+2,Task,1,"N0.1 AD service accounts discovered, read-only: traditional accounts, MSAs, gMSAs and dMSAs, classified by type and risk with a suggested target","N0.1 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 1–2 · total float 0 · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#discovering-service-accounts",fmw,fmw-non-person-identity,fmw-id-n0.1,task,owner-identity-engineering,critical-path,2027-01-04,2027-01-15,3,7,8,9,
+3,Task,1,X-G0 Program G0 — Ready to Plan: the read-only assessment committed,"X-G0 · External · owner or approver: Steward (program)
+Duration 0 working days · end of wk 4 · total float fixed date · predecessors: N0.1
+If decided late: The program's assessment goes to G0 without the service account picture, and Phase 1 is sized without it
+Comes from program-master-schedule:G0 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-non-person-identity,fmw-id-x-g0,external,owner-steward-program,,2027-02-01,2027-01-29,,,,,
+4,Task,1,"X-A03 App registrations, owners, credentials and granted permissions inventoried (Privileged Access plan, A0.3)","X-A03 · External · owner or approver: Identity engineering (Privileged Access plan)
+Duration 0 working days · end of wk 2 · total float 0 · predecessors: —
+If decided late: The Entra side of the register has no app registration inventory to start from
+Comes from privileged-access:A0.3 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/privileged-access.html",fmw,fmw-non-person-identity,fmw-id-x-a03,external,owner-identity-engineering-privileged-access-plan,,2027-01-14,2027-01-13,5,,,,
+5,Task,1,"N0.2 Entra workload identities added to that inventory: managed identities, federated credentials, consent grants; ownerless and secret-holding apps flagged","N0.2 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 2–3 · total float 0 · predecessors: X-A03
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html#a-read-only-inventory-to-start-from",fmw,fmw-non-person-identity,fmw-id-n0.2,task,owner-identity-engineering,critical-path,2027-01-14,2027-01-20,8,,,,
+6,Task,1,"N0.3 AI seed list: the current AI use-case inventory vintage loaded; agentic, purchased and no-ATO entries matched to agent identities and service principals","N0.3 · Task · owner or approver: Identity engineering, with the Chief AI Officer's staff
+Duration 10 working days · wk 1–2 · total float 3 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/03-the-inventory-as-an-identity-source.html#using-the-inventory-as-the-seed-list",fmw,fmw-non-person-identity,fmw-id-n0.3,task,owner-identity-engineering-with-the-chief-ai-officer-s-staff,,2027-01-04,2027-01-15,8,49,,,
+7,Task,1,"N0.4 SQL Server engine, login and LDAP-bind accounts tagged and handed to the Data Platform plan","N0.4 · Task · owner or approver: Identity engineering
+Duration 3 working days · wk 3 · total float 0 · predecessors: N0.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html#the-managed-identity-and-the-service-account",fmw,fmw-non-person-identity,fmw-id-n0.4,task,owner-identity-engineering,critical-path,2027-01-18,2027-01-20,8,,,,
+8,Task,1,"N0.5 One non-person identity register: type, host, workload location, risk and candidate target for every identity","N0.5 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 3–4 · total float 0 · predecessors: N0.1, N0.2, N0.3, N0.4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#non-person-identity-track",fmw,fmw-non-person-identity,fmw-id-n0.5,task,owner-identity-engineering,critical-path,2027-01-21,2027-01-27,10,,,,
+9,Task,1,D-N1 Source of record for non-person identities,"D-N1 · Decision · owner or approver: CIO
+Duration 0 working days · end of wk 2 · total float 8 d · predecessors: N0.1
+Options: The owning workload's record (the system inventory or CMDB entry and the application registration) and, for AI, the AI use-case inventory, with the register keyed to them; a separate identity register kept by the identity team
+If decided late: The register has nothing to reconcile against, and owners and lifecycle have nothing to hang from
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#non-person-identity-track",fmw,fmw-non-person-identity,fmw-id-d-n1,decision,owner-cio,,2027-01-18,2027-01-15,10,,,,
+10,Task,1,NG0 Gate 0 — Non-person identities inventoried,"NG0 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 4 · total float 0 · predecessors: N0.5, D-N1
+Criteria: Every AD service account, MSA, gMSA and dMSA, every app registration, service principal and managed identity, and every AI use case in the current vintage in one register with type, risk and candidate target; HIGH-risk accounts listed; stale leads confirmed against sign-in logs, not retired on a guess; SQL Server accounts handed to the Data Platform plan
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#phase-4-service-account-modernization",fmw,fmw-non-person-identity,fmw-id-ng0,gate,owner-isso,critical-path,2027-01-28,2027-01-27,12,13,14,25,50
+11,Epic,,Non-Person Identity Modernization: Phase 1 — Ownership,"Phase 1 — Ownership of the sample plan Non-Person Identity Modernization: Service Accounts, Workload Identities and AI Agents.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/non-person-identity.html",fmw,fmw-non-person-identity,phase,,,,2027-01-28,2027-03-10,,,,,
+12,Task,11,N1.1 An application owner found for every service account; two human owners on every app registration and service principal; serviceManagementReference set,"N1.1 · Task · owner or approver: Application owners
+Duration 25 working days · wk 4–9 · total float 0 · predecessors: NG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html#ownership",fmw,fmw-non-person-identity,fmw-id-n1.1,task,owner-application-owners,critical-path,2027-01-28,2027-03-03,15,,,,
+13,Task,11,"N1.2 AI accountability: a federal sponsor mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor, and a matching inventory record","N1.2 · Task · owner or approver: Sponsoring offices, with the identity governance officer
+Duration 15 working days · wk 4–7 · total float 15 d · predecessors: NG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html#the-programs-rule-two-named-humans-and-a-record",fmw,fmw-non-person-identity,fmw-id-n1.2,task,owner-sponsoring-offices-with-the-identity-governance-officer,,2027-01-28,2027-02-17,16,51,,,
+14,Task,11,D-N2 Orphan rule for identities nobody will own,"D-N2 · Decision · owner or approver: CISO
+Duration 0 working days · end of wk 4 · total float 25 d · predecessors: NG0
+Options: Disable once the identity governance officer confirms the finding, then 30 days for the office to name an owner or retire it (Book 04's rule, applied at once to agents because they can act); retire at once; keep running on a dated exception
+If decided late: Unowned accounts can't be disposed of, and Gate 1 can't pass
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/06-who-decides-access.html#ownership-changes-and-orphaned-apps",fmw,fmw-non-person-identity,fmw-id-d-n2,decision,owner-ciso,,2027-01-28,2027-01-27,15,,,,
+15,Task,11,"N1.3 Unowned identities disabled, not deleted, under the orphan rule; each a retirement candidate with a 30-day claim window","N1.3 · Task · owner or approver: Identity governance officer
+Duration 5 working days · wk 9–10 · total float 0 · predecessors: N1.1, D-N2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#service-accounts-msas-gmsas-and-dmsas",fmw,fmw-non-person-identity,fmw-id-n1.3,task,owner-identity-governance-officer,critical-path,2027-03-04,2027-03-10,16,,,,
+16,Task,11,NG1 Gate 1 — Every non-person identity owned,"NG1 · Gate · owner or approver: CISO
+Duration 0 working days · end of wk 10 · total float 0 · predecessors: N1.2, N1.3
+Criteria: Every service account has a named application owner; every app registration and service principal has two human owners and a service-management reference; every AI identity has a federal sponsor, a sponsoring group, a technical owner and a matching inventory record; every unowned identity is disabled pending retirement or carries a dated exception
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#governing-service-principals",fmw,fmw-non-person-identity,fmw-id-ng1,gate,owner-ciso,critical-path,2027-03-11,2027-03-10,18,37,38,43,
+17,Epic,,Non-Person Identity Modernization: Phase 2 — Decide per account,"Phase 2 — Decide per account of the sample plan Non-Person Identity Modernization: Service Accounts, Workload Identities and AI Agents.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/non-person-identity.html",fmw,fmw-non-person-identity,phase,,,,2027-03-11,2027-04-07,,,,,
+18,Task,17,"N2.1 Target set per account from the migration path matrix: app registration, managed identity, gMSA or dMSA, or retirement","N2.1 · Task · owner or approver: Identity engineering, with application owners
+Duration 15 working days · wk 10–13 · total float 0 · predecessors: NG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#the-migration-path-matrix",fmw,fmw-non-person-identity,fmw-id-n2.1,task,owner-identity-engineering-with-application-owners,critical-path,2027-03-11,2027-03-31,19,20,,,
+19,Task,17,"D-N3 Retire, re-platform or keep, account by account","D-N3 · Decision · owner or approver: Application owners
+Duration 0 working days · end of wk 13 · total float 0 · predecessors: N2.1
+Options: Retire (unused or unowned); re-platform to a managed identity, a gMSA or dMSA, or an app registration with a federated credential or certificate; keep on Kerberos with an SPN, islanded with an end date the authorizing official accepts
+If decided late: The conversion waves can't be built, and the program's SPN retirement (P4.6) has no list to work from
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#non-person-identity-track",fmw,fmw-non-person-identity,fmw-id-d-n3,decision,owner-application-owners,critical-path,2027-04-01,2027-03-31,21,,,,
+20,Task,17,D-N4 Workload ID Premium licensing scope,"D-N4 · Decision · owner or approver: CISO
+Duration 0 working days · end of wk 13 · total float 5 d · predecessors: N2.1
+Options: License for the single-tenant service principals classified Tier 1 (Book 04's position); license more widely; don't license, and rely on app management policies and owner reviews, with no workload Conditional Access
+If decided late: Workload Conditional Access can't be created or changed, and privileged service principal reviews aren't available
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html#what-workload-id-premium-adds",fmw,fmw-non-person-identity,fmw-id-d-n4,decision,owner-ciso,,2027-04-01,2027-03-31,22,40,43,,
+21,Task,17,"N2.2 Conversion waves sequenced: HIGH-risk accounts first (password never expires, over-privileged); rollback recorded per wave","N2.2 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 13–14 · total float 0 · predecessors: D-N3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#phase-4-service-account-modernization",fmw,fmw-non-person-identity,fmw-id-n2.2,task,owner-identity-engineering,critical-path,2027-04-01,2027-04-07,22,,,,
+22,Task,17,NG2 Gate 2 — Every account has a decision,"NG2 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 14 · total float 0 · predecessors: N2.2, D-N4
+Criteria: Every account in the register has a disposition (retire, re-platform, or keep with an end date) and a target from the matrix; HIGH-risk accounts in the first wave; every kept Kerberos account has an SPN owner; waves and their rollback recorded
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#phase-4-service-account-modernization",fmw,fmw-non-person-identity,fmw-id-ng2,gate,owner-isso,critical-path,2027-04-08,2027-04-07,26,29,,,
+23,Epic,,Non-Person Identity Modernization: Phase 3 — Credential modernization,"Phase 3 — Credential modernization of the sample plan Non-Person Identity Modernization: Service Accounts, Workload Identities and AI Agents.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/non-person-identity.html",fmw,fmw-non-person-identity,phase,,,,2027-01-28,2027-10-22,,,,,
+24,Task,23,"X-G1 Program G1 — Foundation Complete: groups and AUs drift-clean, Conditional Access baseline enforced","X-G1 · External · owner or approver: Steward (program)
+Duration 0 working days · end of wk 8 · total float 28 d · predecessors: —
+If decided late: Conversion has no group and policy foundation to land on (Book 02 puts service accounts after group migration)
+Comes from program-master-schedule:G1 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-non-person-identity,fmw-id-x-g1,external,owner-steward-program,,2027-03-01,2027-02-26,26,29,43,,
+25,Task,23,"N3.1 App management policy: new client secrets and symmetric keys blocked, certificates capped at 180 days for new apps; app instance property lock on owned apps","N3.1 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 4–5 · total float 45 d · predecessors: NG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html#enforcing-the-order-with-app-management-policies",fmw,fmw-non-person-identity,fmw-id-n3.1,task,owner-identity-engineering,,2027-01-28,2027-02-03,26,52,,,
+26,Task,23,"N3.2 Wave 1, HIGH-risk accounts: workload identities created (managed identity, then federated credential, then certificate); federated token exchange tested","N3.2 · Task · owner or approver: Identity engineering, with application owners
+Duration 15 working days · wk 14–17 · total float 0 · predecessors: NG2, X-G1, N3.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#workload-identity-federation",fmw,fmw-non-person-identity,fmw-id-n3.2,task,owner-identity-engineering-with-application-owners,critical-path,2027-04-08,2027-04-28,27,32,,,
+27,Task,23,"N3.3 Wave 1 parallel run: old and new credentials side by side for 30 days, then the legacy accounts disabled","N3.3 · Task · owner or approver: Application owners
+Duration 22 working days · wk 17–21 · total float 0 · predecessors: N3.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#phase-4-service-account-modernization",fmw,fmw-non-person-identity,fmw-id-n3.3,task,owner-application-owners,critical-path,2027-04-29,2027-05-28,28,,,,
+28,Task,23,"N3.4 Remaining waves converted, each with its own 30-day parallel run before the legacy account is disabled","N3.4 · Task · owner or approver: Identity engineering, with application owners
+Duration 60 working days · wk 19–31 · total float 0 · predecessors: N3.3 (SS) +10 d
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#phase-4-service-account-modernization",fmw,fmw-non-person-identity,fmw-id-n3.4,task,owner-identity-engineering-with-application-owners,critical-path,2027-05-13,2027-08-04,33,,,,
+29,Task,23,"N3.5 Kerberos-only workloads: MSAs upgraded to gMSAs; traditional accounts, IIS application pools and scheduled tasks moved to a gMSA or a dMSA","N3.5 · Task · owner or approver: Server infrastructure
+Duration 20 working days · wk 14–18 · total float 60 d · predecessors: NG2, X-G1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#the-migration-path-matrix",fmw,fmw-non-person-identity,fmw-id-n3.5,task,owner-server-infrastructure,,2027-04-08,2027-05-05,31,,,,
+30,Task,23,X-D08 End dates for legacy authentication and NTLM (program D08),"X-D08 · External · owner or approver: Authorizing official (program)
+Duration 0 working days · end of wk 16 · total float 68 d · predecessors: —
+If decided late: Kerberos accounts that stay can't be given end dates, so the islanded list can't be handed to the program
+Comes from program-master-schedule:D08 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-non-person-identity,fmw-id-x-d08,external,owner-authorizing-official-program,,2027-04-26,2027-04-23,31,,,,
+31,Task,23,N3.6 Kerberos accounts that stay: SPN owner and an end date within D08 recorded; the islanded list handed to the program's SPN retirement,"N3.6 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 18–19 · total float 60 d · predecessors: N3.5, X-D08
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#what-still-needs-ad-after-phase-10",fmw,fmw-non-person-identity,fmw-id-n3.6,task,owner-identity-engineering,,2027-05-06,2027-05-12,33,,,,
+32,Task,23,"N3.7 Rotation in place: certificates in Key Vault, rotated by the pipeline, raised before expiry and approved by the owner","N3.7 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 17–19 · total float 60 d · predecessors: N3.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html#governing-app-registrations",fmw,fmw-non-person-identity,fmw-id-n3.7,task,owner-identity-engineering,,2027-04-29,2027-05-12,33,,,,
+33,Task,23,NG3 Gate 3 — Credentials modernized,"NG3 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 31 · total float 0 · predecessors: N3.4, N3.6, N3.7
+Criteria: Every HIGH-risk account converted or retired; no account with a password that never expires; new identities authenticate without stored secrets where the host allows, otherwise with a certificate on the rotation schedule; no client secret in production outside a dated exception; legacy accounts disabled after a clean 30-day parallel run with no service disruption; every remaining Kerberos account islanded with an owner and end date
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#phase-4-service-account-modernization",fmw,fmw-non-person-identity,fmw-id-ng3,gate,owner-isso,critical-path,2027-08-05,2027-08-04,35,60,63,,
+34,Task,23,"X-DG4 SQL Server's application chain on Entra principals (Data Platform plan, Gate 4)","X-DG4 · External · owner or approver: ISSO (Data Platform plan)
+Duration 0 working days · end of wk 31 · total float fixed date · predecessors: —
+If decided late: The SQL Server accounts handed over in Phase 0 are still on Windows authentication
+Comes from data-platform:DG4 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/data-platform.html",fmw,fmw-non-person-identity,fmw-id-x-dg4,external,owner-isso-data-platform-plan,,2027-08-04,2027-08-03,,,,,
+35,Task,23,"X-P46 AD-bound service principal names migrated, retired or islanded (program P4.6)","X-P46 · External · owner or approver: Application owners (program)
+Duration 0 working days · end of wk 42 · total float fixed date · predecessors: NG3
+If decided late: The program measures AD authentication for G4 while converted workloads still hold AD credentials
+Comes from program-master-schedule:P4.6 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-non-person-identity,fmw-id-x-p46,external,owner-application-owners-program,,2027-10-25,2027-10-22,,,,,
+36,Epic,,Non-Person Identity Modernization: Phase 4 — Least privilege,"Phase 4 — Least privilege of the sample plan Non-Person Identity Modernization: Service Accounts, Workload Identities and AI Agents.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/non-person-identity.html",fmw,fmw-non-person-identity,phase,,,,2027-03-11,2027-06-18,,,,,
+37,Task,36,N4.1 Permission sweep: owners review every grant; broad permissions such as Directory.ReadWrite.All replaced with application-specific roles and scopes,"N4.1 · Task · owner or approver: Application owners
+Duration 25 working days · wk 10–15 · total float 60 d · predecessors: NG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#governing-service-principals",fmw,fmw-non-person-identity,fmw-id-n4.1,task,owner-application-owners,,2027-03-11,2027-04-14,40,,,,
+38,Task,36,N4.2 Managed identities' role assignments scoped to the resource and put on the app registrations' review cadence,"N4.2 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 10–12 · total float 75 d · predecessors: NG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html#managed-identities",fmw,fmw-non-person-identity,fmw-id-n4.2,task,owner-identity-engineering,,2027-03-11,2027-03-24,40,,,,
+39,Task,36,"X-A34 Non-human privileged identities owned, off secrets, over-consented apps swept (Privileged Access plan, A3.4)","X-A34 · External · owner or approver: Identity governance officer (Privileged Access plan)
+Duration 0 working days · end of wk 24 · total float 28 d · predecessors: —
+If decided late: Privileged service principals are outside this plan's sweep, so the least-privilege gate can't pass
+Comes from privileged-access:A3.4 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/privileged-access.html",fmw,fmw-non-person-identity,fmw-id-x-a34,external,owner-identity-governance-officer-privileged-access-plan,,2027-06-21,2027-06-18,41,,,,
+40,Task,36,N4.3 First quarterly owner review of permissions closed; access reviews for service principals in privileged roles,"N4.3 · Task · owner or approver: Identity governance officer
+Duration 15 working days · wk 15–18 · total float 60 d · predecessors: N4.1, N4.2, D-N4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#service-principals-managed-identities-and-workload-identities",fmw,fmw-non-person-identity,fmw-id-n4.3,task,owner-identity-governance-officer,,2027-04-15,2027-05-05,41,,,,
+41,Task,36,NG4 Gate 4 — Least privilege,"NG4 · Gate · owner or approver: CISO
+Duration 0 working days · end of wk 24 · total float 28 d · predecessors: N4.3, X-A34
+Criteria: No service principal holds a broad tenant-wide permission without a recorded justification; managed identities' role assignments scoped to resources; privileged non-human identities closed in the Privileged Access plan; the first quarterly review cycle closed with its findings acted on
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#governing-service-principals",fmw,fmw-non-person-identity,fmw-id-ng4,gate,owner-ciso,,2027-06-21,2027-06-18,61,,,,
+42,Epic,,Non-Person Identity Modernization: Phase 5 — Conditional Access for workload identities,"Phase 5 — Conditional Access for workload identities of the sample plan Non-Person Identity Modernization: Service Accounts, Workload Identities and AI Agents.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/non-person-identity.html",fmw,fmw-non-person-identity,phase,,,,2027-04-01,2027-05-19,,,,,
+43,Task,42,"N5.1 Scope set: Tier 1 single-tenant service principals assigned directly, never through a group; workload egress ranges named; managed identities and multitenant apps recorded as out of scope","N5.1 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 13–14 · total float 70 d · predecessors: D-N4, X-G1, NG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html#conditional-access-for-workload-identities",fmw,fmw-non-person-identity,fmw-id-n5.1,task,owner-identity-engineering,,2027-04-01,2027-04-07,44,,,,
+44,Task,42,N5.2 CA015 location restriction and CA037 high-risk block in report-only; service principal sign-in logs read,"N5.2 · Task · owner or approver: Identity engineering
+Duration 20 working days · wk 14–18 · total float 70 d · predecessors: N5.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#wave-4-risk-and-workload-identities",fmw,fmw-non-person-identity,fmw-id-n5.2,task,owner-identity-engineering,,2027-04-08,2027-05-05,45,,,,
+45,Task,42,D-N5 Enforce the workload identity policies,"D-N5 · Decision · owner or approver: CISO
+Duration 0 working days · end of wk 18 · total float 70 d · predecessors: N5.2
+Options: Enforce; extend report-only; enforce with named exclusions, each recorded with its owner and end date
+If decided late: Tier 1 workloads stay reachable from anywhere with a stolen credential, and Gate 5 can't pass
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html#conditional-access-for-workload-identities",fmw,fmw-non-person-identity,fmw-id-d-n5,decision,owner-ciso,,2027-05-06,2027-05-05,46,,,,
+46,Task,42,N5.3 Policies enforced ring by ring; block events alerted to security operations,"N5.3 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 18–20 · total float 70 d · predecessors: D-N5
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#wave-4-risk-and-workload-identities",fmw,fmw-non-person-identity,fmw-id-n5.3,task,owner-identity-engineering,,2027-05-06,2027-05-19,47,,,,
+47,Task,42,NG5 Gate 5 — Workload identities under Conditional Access,"NG5 · Gate · owner or approver: CISO
+Duration 0 working days · end of wk 20 · total float 70 d · predecessors: N5.3
+Criteria: Every Tier 1 single-tenant service principal assigned directly to the enforced location and risk policies; report-only results reviewed before enforcement; every out-of-scope identity (managed identities, multitenant and SaaS apps) recorded with the control that covers it instead
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html#conditional-access-for-workload-identities",fmw,fmw-non-person-identity,fmw-id-ng5,gate,owner-ciso,,2027-05-20,2027-05-19,66,,,,
+48,Epic,,Non-Person Identity Modernization: Phase 6 — AI agents,"Phase 6 — AI agents of the sample plan Non-Person Identity Modernization: Service Accounts, Workload Identities and AI Agents.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/non-person-identity.html",fmw,fmw-non-person-identity,phase,,,,2027-01-18,2027-05-05,,,,,
+49,Task,48,D-N6 AI identity capabilities the program builds on in the agency's cloud,"D-N6 · Decision · owner or approver: CIO, with the Chief AI Officer
+Duration 0 working days · end of wk 2 · total float 113 d · predecessors: N0.3
+Options: Agent identities where generally available in the agency's cloud, with GCC's documented subset; service principals and managed identities under the same governance where agent identities aren't available; preview capabilities as watch items
+If decided late: Agents are created with no decided identity type, and the production handshake can't be defined
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/04-kinds-of-ai-identity.html#release-stage-licensing-and-government-clouds",fmw,fmw-non-person-identity,fmw-id-d-n6,decision,owner-cio-with-the-chief-ai-officer,,2027-01-18,2027-01-15,51,,,,
+50,Task,48,N6.1 Creation closed: Users can create agent blueprints set to No; agent app registrations routed to the blueprint path; consent baseline applied to agents,"N6.1 · Task · owner or approver: Identity engineering
+Duration 3 working days · wk 4–5 · total float 102 d · predecessors: NG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/06-credentials-and-least-privilege.html#admin-consent-and-the-scuba-consent-baseline",fmw,fmw-non-person-identity,fmw-id-n6.1,task,owner-identity-engineering,,2027-01-28,2027-02-01,51,,,,
+51,Task,48,"N6.2 Production handshake: blueprint, sponsor, consent, Conditional Access coverage and placement confirmed; access through expiring access packages","N6.2 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 7–9 · total float 90 d · predecessors: D-N6, N6.1, N1.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html#creation",fmw,fmw-non-person-identity,fmw-id-n6.2,task,owner-identity-engineering,,2027-02-18,2027-03-03,52,53,55,56,57
+52,Task,48,"N6.3 Agent credentials: managed identity as the blueprint credential, else federation, else a certificate; no secret on a production blueprint","N6.3 · Task · owner or approver: Identity engineering, with technical owners
+Duration 15 working days · wk 9–12 · total float 90 d · predecessors: N6.2, N3.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/06-credentials-and-least-privilege.html#no-stored-secrets",fmw,fmw-non-person-identity,fmw-id-n6.3,task,owner-identity-engineering-with-technical-owners,,2027-03-04,2027-03-24,58,,,,
+53,Task,48,"N6.4 Agent least privilege: access mode chosen first; narrow inheritance, never allAllowed for app roles; no standing privileged role","N6.4 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 9–11 · total float 95 d · predecessors: N6.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/06-credentials-and-least-privilege.html#privileged-roles-for-ai-none-standing",fmw,fmw-non-person-identity,fmw-id-n6.4,task,owner-identity-engineering,,2027-03-04,2027-03-17,58,,,,
+54,Task,48,"X-IG4 Mover and leaver automation proven (Identity Lifecycle plan, Gate 4)","X-IG4 · External · owner or approver: ISSO (Identity Lifecycle plan)
+Duration 0 working days · end of wk 16 · total float 60 d · predecessors: —
+If decided late: The sponsor's mover and leaver events have no HR-driven workflow to ride on
+Comes from identity-lifecycle:IG4 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/identity-lifecycle.html",fmw,fmw-non-person-identity,fmw-id-x-ig4,external,owner-isso-identity-lifecycle-plan,,2027-04-22,2027-04-21,55,,,,
+55,Task,48,N6.5 Sponsorship tasks added to the HR-driven mover and leaver workflows; ten-business-day confirmation; human workflows kept off agents' user accounts,"N6.5 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 16–18 · total float 60 d · predecessors: N6.2, X-IG4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html#when-the-sponsor-moves-or-leaves",fmw,fmw-non-person-identity,fmw-id-n6.5,task,owner-identity-engineering,,2027-04-22,2027-05-05,58,,,,
+56,Task,48,"N6.6 Agent Conditional Access in report-only: block all agent identities except those approved by attribute; block high-risk agents (preview, watch item)","N6.6 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 9–11 · total float 95 d · predecessors: N6.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/06-credentials-and-least-privilege.html#the-token-subject-decides-which-policy-applies",fmw,fmw-non-person-identity,fmw-id-n6.6,task,owner-identity-engineering,,2027-03-04,2027-03-17,58,,,,
+57,Task,48,"N6.7 AI drift checks running: agentic system with no governed identity, shadow AI identity, no accountable human, credential added outside the pipeline","N6.7 · Task · owner or approver: Security operations
+Duration 10 working days · wk 9–11 · total float 95 d · predecessors: N6.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.html#drift-comparing-what-was-declared-with-what-is-observed",fmw,fmw-non-person-identity,fmw-id-n6.7,task,owner-security-operations,,2027-03-04,2027-03-17,58,,,,
+58,Task,48,NG6 Gate 6 — AI identities governed,"NG6 · Gate · owner or approver: CISO
+Duration 0 working days · end of wk 18 · total float 60 d · predecessors: N6.3, N6.4, N6.5, N6.6, N6.7
+Criteria: Every AI system in the current inventory vintage classified by kind of identity; every agent identity created through the handshake with a sponsor, a technical owner and a matching inventory record; no production blueprint with a client secret; no AI identity with a standing privileged role; sponsor mover and leaver tasks live; agent block policies in report-only with results reviewed; no open P1 AI drift finding
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/10-evidence-and-authorization.html#the-evidence-an-authorizing-official-needs",fmw,fmw-non-person-identity,fmw-id-ng6,gate,owner-ciso,,2027-05-06,2027-05-05,61,,,,
+59,Epic,,Non-Person Identity Modernization: Phase 7 — Steady state,"Phase 7 — Steady state of the sample plan Non-Person Identity Modernization: Service Accounts, Workload Identities and AI Agents.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/non-person-identity.html",fmw,fmw-non-person-identity,phase,,,,2027-02-01,2027-12-03,,,,,
+60,Task,59,"N7.1 Register drift scheduled: ownerless, unused or expiring registrations, passwords that never expire, credentials added outside the pipeline","N7.1 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 31–33 · total float 0 · predecessors: NG3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/10-migrating-and-governing.html#git-based-drift-detection",fmw,fmw-non-person-identity,fmw-id-n7.1,task,owner-identity-engineering,critical-path,2027-08-05,2027-08-18,65,,,,
+61,Task,59,"N7.2 A full review cycle: owners' quarterly permission review, sponsors' attestation, expiry-based recertification of agent access","N7.2 · Task · owner or approver: Identity governance officer
+Duration 15 working days · wk 25–27 · total float 28 d · predecessors: NG4, NG6
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.html#recertification-expiry-is-the-review",fmw,fmw-non-person-identity,fmw-id-n7.2,task,owner-identity-governance-officer,,2027-06-21,2027-07-09,65,,,,
+62,Task,59,"X-D11 Provisional target end state: AD retired, or a dated Kerberos island (program D11)","X-D11 · External · owner or approver: Executive sponsor and CIO (program)
+Duration 0 working days · end of wk 4 · total float 133 d · predecessors: —
+If decided late: The gMSA and dMSA reconciliation has no target to reconcile against
+Comes from program-master-schedule:D11 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-non-person-identity,fmw-id-x-d11,external,owner-executive-sponsor-and-cio-program,,2027-02-01,2027-01-29,63,,,,
+63,Task,59,"N7.3 gMSAs and dMSAs reconciled with the provisional end state: moved to a workload identity, or listed for the Kerberos island with an end-of-life date","N7.3 · Task · owner or approver: Identity engineering
+Duration 15 working days · wk 31–34 · total float 0 · predecessors: X-D11, NG3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#service-accounts-msas-gmsas-and-dmsas",fmw,fmw-non-person-identity,fmw-id-n7.3,task,owner-identity-engineering,critical-path,2027-08-05,2027-08-25,64,66,,,
+64,Task,59,X-G5 Program G5 — AD Retired,"X-G5 · External · owner or approver: Executive sponsor and CIO (program)
+Duration 0 working days · end of wk 48 · total float fixed date · predecessors: N7.3
+If decided late: A workload still running under a gMSA loses its credential when the last domain controller is demoted
+Comes from program-master-schedule:G5 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-non-person-identity,fmw-id-x-g5,external,owner-executive-sponsor-and-cio-program,,2027-12-06,2027-12-03,,,,,
+65,Task,59,"N7.4 Evidence to the ISSO for AC-2, AC-6(5), IA-4, IA-5 and IA-9, and for M-25-21; the annual inventory vintage comparison scheduled","N7.4 · Task · owner or approver: Identity governance officer
+Duration 5 working days · wk 33–34 · total float 0 · predecessors: N7.1, N7.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#federal-requirements",fmw,fmw-non-person-identity,fmw-id-n7.4,task,owner-identity-governance-officer,critical-path,2027-08-19,2027-08-25,66,,,,
+66,Task,59,NG7 Gate 7 — Steady state,"NG7 · Gate · owner or approver: ISSO
+Duration 0 working days · end of wk 34 · total float 0 · predecessors: N7.3, N7.4, NG5
+Criteria: Every service account and service principal has an owner and sponsor, a reason and a target; each is retired, re-platformed to a managed identity or gMSA, or a certificate or federated workload identity; none holds a password that never expires and none is orphaned; drift checks and review cycles running; every remaining gMSA and dMSA moved or in the dated Kerberos island
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#non-person-identity-track",fmw,fmw-non-person-identity,fmw-id-ng7,gate,owner-isso,critical-path,2027-08-26,2027-08-25,,,,,

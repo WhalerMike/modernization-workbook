@@ -26,6 +26,8 @@ The working detail of the GPO sunset that [Chapter 07](07-the-gpo-sunset-program
 
 This chapter is the [Intune track](../guides/attribute-driven-migration.md#intune-track). It moves the computer-configuration settings that reached workstations through OU links into Intune device policy. The user-configuration half of Group Policy moves with people instead, on the HR track ([Chapter 01](01-why-group-policy-cant-come-to-the-cloud.md)). Servers take the Arc track in [Chapter 09](09-servers-under-azure-arc.md).
 
+Run as gated steps with validation checks: [Intune track implementation guide](../guides/intune-track-implementation.md).
+
 The scope is the existing Windows fleet: corporate-owned workstations, privileged access workstations and kiosks, plus personal devices that reach organizational data through app protection only. Two scope facts shape it:
 
 - **Windows 10 is out of support.** It reached end of support on October 14, 2025. Intune still treats it as an *allowed* version, so devices can enroll and use eligible features, but Microsoft no longer guarantees that functionality works.[^c08-win10-eos] The templates below set Windows 11 as the floor; any Windows 10 device left in the fleet is an exception with an upgrade date.
