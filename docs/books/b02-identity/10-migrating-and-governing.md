@@ -59,7 +59,7 @@ Expiration of assignments and separation-of-duties checks work with P2; automati
 
 Lifecycle Workflows automate joiner, mover, and leaver tasks. They act on accounts that already exist; HR-driven inbound provisioning creates and updates the account. A workflow runs when a user meets its execution conditions, a trigger plus a scope. The triggers available as of October 2026 are a time-based attribute, an attribute change, a group membership change, sign-in inactivity, and on-demand.[^c10-lcw-execution] Time-based joiner and leaver workflows key on the native `employeeHireDate` and `employeeLeaveDateTime` attributes (or `createdDateTime` for joiners); the offset can be 0 to 180 days before or after the date, and a preview "V2" trigger extends that to 365 days with relative comparisons.[^c10-lcw-execution] Custom attribute triggers are in preview.
 
-For users synced from Active Directory, those date attributes must be synced to Entra ID before the workflow can use them, and attribute-change and group triggers fire only after the sync cycle delivers the change.[^c10-lcw-onprem] The canonical HR-driven design, including where the dates come from, is in [Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md). Scope rules can filter on standard attributes such as `department` and `jobTitle` and on `extensionAttribute1` through `15`.[^c10-lcw-scope] A tenant can have up to 50 workflows and 100 custom task extensions.[^c10-governance-licensing]
+For users synced from Active Directory, those date attributes must be synced to Entra ID before the workflow can use them, and attribute-change and group triggers fire only after the sync cycle delivers the change.[^c10-lcw-onprem] The canonical HR-driven design, including where the dates come from, is in [Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md). Scope rules can filter on standard attributes such as `department` and `jobTitle` and on `extensionAttribute1` through `15`.[^c10-lcw-scope] A tenant can have up to 100 workflows and 100 custom task extensions, a workflow up to 25 tasks, and an on-demand run covers at most 10 users.[^c10-lcw-limits]
 
 The workflows below use Microsoft's built-in tasks where they exist.[^c10-lcw-tasks] Steps that have no built-in task, marked "custom," run through a custom task extension, which calls an Azure Logic App, or through a separate service.
 
@@ -555,6 +555,8 @@ The planned functions aren't in the module yet. Until they are, run the equivale
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 09 — Building the Entra ID Target](09-building-the-entra-target.md) · [Book index](index.md) · [Next: Chapter 11 — Reference Deployment →](11-reference-deployment.md)
+
+See the companion guide: [Attribute-Driven Migration from Active Directory to Microsoft Entra ID](../guides/attribute-driven-migration.md), one end-to-end path through this material.
 :::
 
 [^c10-connect-hardening]: Microsoft Learn, "Hardening update to Microsoft Entra Connect Sync," <https://learn.microsoft.com/entra/identity/hybrid/connect/harden-update-ad-fs-pingfederate> (accessed Oct 21, 2026).
@@ -563,6 +565,7 @@ The planned functions aren't in the module yet. Until they are, run the equivale
 [^c10-memberof]: Microsoft Learn, "Configure dynamic membership groups with the memberOf operator in the Entra Admin Center (preview)," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-rule-member-of> (accessed Oct 20, 2026).
 [^c10-gwb-cloud-sync]: Microsoft Learn, "Group writeback with Microsoft Entra Cloud Sync," <https://learn.microsoft.com/entra/identity/hybrid/group-writeback-cloud-sync> (accessed Oct 20, 2026).
 [^c10-lcw-execution]: Microsoft Learn, "Lifecycle workflows execution conditions and scheduling," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-conditions> (accessed Oct 20, 2026).
+[^c10-lcw-limits]: Microsoft Learn, "Microsoft Entra ID Governance service limits," "Lifecycle Workflows" (100 workflows and 100 custom task extensions per tenant; 25 tasks per workflow; 10 users per on-demand selection), <https://learn.microsoft.com/entra/id-governance/governance-service-limits#lifecycle-workflows> (accessed Oct 29, 2026). "What are lifecycle workflows?" also gives 100 workflows; "Microsoft Entra ID Governance licensing fundamentals" still said 50 on that date.
 [^c10-lcw-onprem]: Microsoft Learn, "Managing users synchronized from Active Directory Domain Services to Microsoft Entra ID with Lifecycle workflows," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-on-premises> (accessed Oct 20, 2026).
 [^c10-lcw-scope]: Microsoft Learn, "ruleBasedSubjectSet resource type," <https://learn.microsoft.com/graph/api/resources/identitygovernance-rulebasedsubjectset?view=graph-rest-1.0> (accessed Oct 20, 2026).
 [^c10-lcw-tasks]: Microsoft Learn, "Lifecycle Workflow built-in tasks," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-tasks> (accessed Oct 20, 2026).

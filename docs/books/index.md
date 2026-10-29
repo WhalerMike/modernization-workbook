@@ -42,8 +42,9 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 
 ## Companion guides
 
-Short, practical guides that support every book but belong to none of them.
+Guides that support the books but belong to none of them: short practice guides, and cross-book reference guides that follow one piece of work through several books and link to the chapters that carry the detail.
 
 | Guide | What it covers |
 |---|---|
 | [Effective Meetings — Purpose, Agenda, Roles, and Follow-Through](guides/effective-meetings.md) | Running program meetings: a real agenda, named roles, a parking lot, and written action items with owners and dates. Includes agenda and notes templates and a one-page checklist. |
+| [Attribute-Driven Migration from Active Directory to Microsoft Entra ID](guides/attribute-driven-migration.md) | Cross-book reference: one migration run on attributes instead of OU placement, in nine stages from sourcing the attributes (with Federal HR 2.0) to drift correction, plus what Microsoft documents for devices, Azure Arc servers, service principals and PIV/CAC certificate binding. Links Books 01–07; [Word edition](../../downloads/attribute-driven-migration-guide.docx). |

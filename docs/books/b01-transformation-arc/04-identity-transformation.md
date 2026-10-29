@@ -95,7 +95,7 @@ Every attribute-governed dynamic group uses one of two patterns. Rules join expr
 **Pattern 2: functional query (cross-cutting).** Combines an organizational attribute with another attribute for a question that isn't about position at all.
 
 ```text
-(user.department -eq "IT") -and (user.extensionAttribute12 -eq "SECURITY")
+(user.extensionAttribute10 -in ["IT-CIO","IT-OPS","IT-DEV"]) -and (user.extensionAttribute12 -eq "SECURITY")
 ```
 
 The second produces every IT user in the security position category, in every region. Book 03 shows the full rule set ([Chapter 10](../b03-hr-identity/10-from-attributes-to-access.md)). Prefer `-eq` and `-in` to `-contains` and `-match`: Microsoft recommends minimizing `-contains` and `-match` because they slow processing.[^c04-dyn-efficient]
@@ -267,6 +267,8 @@ Only when every box is ticked is the tenant in steady state.
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 03 — The Platform Foundation](03-platform-foundation.md) · [Book index](index.md) · [Next: Chapter 05 — Policy Transformation →](05-policy-transformation.md)
+
+See the companion guide: [Attribute-Driven Migration from Active Directory to Microsoft Entra ID](../guides/attribute-driven-migration.md), one end-to-end path through this material.
 :::
 
 [^c04-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, "Identity" (centralized identity management, enterprise-managed identities, phishing-resistant MFA), <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Oct 21, 2026).

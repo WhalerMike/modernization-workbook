@@ -1,0 +1,1275 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.838,
+   "This is the technical deep dive for the Federal Modernization Workbook's companion guide, Attribute-Driven Migration to Entra ID."
+  ],
+  [
+   8.6,
+   10.525,
+   "It's for identity engineers, Entra and Active Directory administrators, Intune and Azure platform owners, P K I and credential teams, and I S S O's."
+  ],
+  [
+   19.125,
+   1.462,
+   "The idea is simple."
+  ],
+  [
+   20.587,
+   4.775,
+   "In Active Directory, where an object sat in the tree decided what applied to it."
+  ],
+  [
+   25.363,
+   3.812,
+   "In Entra ID, what the object says about itself decides."
+  ],
+  [
+   29.175,
+   4.938,
+   "So the migration is the work of making those statements true, and keeping them true."
+  ],
+  [
+   34.112,
+   8.238,
+   "Microsoft facts were checked on October 29, 2026, and the program's own recommendations are labeled design guidance."
+  ],
+  [
+   42.35,
+   1.25,
+   "Let's start with why."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.387,
+   "Here's why this matters."
+  ],
+  [
+   1.438,
+   6.487,
+   "The organizational units, or O U's, of an Active Directory forest were never just folders."
+  ],
+  [
+   7.925,
+   6.688,
+   "That one tree decided who could manage an object, which policy reached it, which office owned it and what it could touch."
+  ],
+  [
+   14.613,
+   1.825,
+   "Entra ID has no tree."
+  ],
+  [
+   16.438,
+   1.663,
+   "Its directory is flat."
+  ],
+  [
+   18.1,
+   4.963,
+   "So all four of those jobs have to move into attributes and the mechanisms that read them."
+  ],
+  [
+   23.062,
+   2.85,
+   "The figure shows the payoff and the risk together."
+  ],
+  [
+   25.913,
+   7.025,
+   "One HR-sourced stamp drives group membership, delegation, policy, licensing and drift detection."
+  ],
+  [
+   32.938,
+   3.337,
+   "If the stamp is wrong, all five are wrong at once."
+  ],
+  [
+   36.275,
+   2.425,
+   "So, Module 1, the model."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.738,
+   "Module 1 is the model."
+  ],
+  [
+   1.788,
+   13.863,
+   "Before anything moves, everyone needs the same picture: what the O U tree was really doing, where each of those jobs lands in Entra ID, and the nine stages that get you there, each with one decider and a gate that says it's done."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.888,
+   "This slide is the translation table, and it's the heart of the model."
+  ],
+  [
+   3.938,
+   2.05,
+   "Placement becomes attributes."
+  ],
+  [
+   5.987,
+   3.087,
+   "Groups built from O U's become dynamic groups."
+  ],
+  [
+   9.075,
+   2.712,
+   "Delegation moves to administrative units."
+  ],
+  [
+   11.787,
+   4.713,
+   "And Group Policy inheritance becomes Conditional Access and Intune targeting."
+  ],
+  [
+   16.5,
+   6.388,
+   "Microsoft documents each piece; the program's contribution is the contract that binds them together."
+  ],
+  [
+   22.887,
+   9.125,
+   "One rule on the right matters more than it looks: rules read codes, never display names, because a display name breaks the day someone retypes it."
+  ],
+  [
+   32.013,
+   5.713,
+   "And some native fields can't be read by rules at all, which is why the schema carries coded copies."
+  ],
+  [
+   37.725,
+   1.325,
+   "Next, the path."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.388,
+   "Here's the whole path on one page, laid out this way for accountability."
+  ],
+  [
+   4.438,
+   3.538,
+   "Nine stages, from reading the tree to correcting drift."
+  ],
+  [
+   7.975,
+   7.737,
+   "Every stage has exactly one decider, taken from the books' two responsibility matrices, and a gate that says it's done."
+  ],
+  [
+   15.713,
+   9.262,
+   "Identity engineering owns most of the plumbing, application owners own their access rules, and the see-so owns the controls and the drift findings."
+  ],
+  [
+   24.975,
+   4.875,
+   "And the gates are the point: nothing grants production access until it's been proved."
+  ],
+  [
+   29.85,
+   1.613,
+   "Stage zero first."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   7.25,
+   "Stage zero matters because the target has to reproduce intent, not structure, and you can't reproduce what you haven't read."
+  ],
+  [
+   7.3,
+   1.738,
+   "It's entirely read-only."
+  ],
+  [
+   9.037,
+   10.963,
+   "Capture each O U's placement and size, its Group Policy links and inheritance, and especially the permissions someone delegated by hand, because that's where the real delegation lives."
+  ],
+  [
+   20.0,
+   2.2,
+   "Then decide every group's fate."
+  ],
+  [
+   22.2,
+   1.062,
+   "Two traps."
+  ],
+  [
+   23.262,
+   4.263,
+   "A policy linked at a site looks unlinked if you only search O U's."
+  ],
+  [
+   27.525,
+   5.925,
+   "And the protected-account marker stays set after someone leaves a protected group, so it overstates privilege."
+  ],
+  [
+   33.45,
+   1.05,
+   "That's the model."
+  ],
+  [
+   34.5,
+   1.4,
+   "Now the attributes."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.4,
+   "Module 2 is sourcing and proving the attributes."
+  ],
+  [
+   3.45,
+   6.787,
+   "Every mechanism later in this session reads these values, so this is where the migration is won or lost."
+  ],
+  [
+   10.238,
+   13.613,
+   "We'll cover who owns each fact, Federal HR 2.0 as the coming source, how HR data reaches Entra ID, the facts HR doesn't supply, the schema and its single writer, and then proof and sync."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.413,
+   "This is the most important ownership decision in the program."
+  ],
+  [
+   3.462,
+   3.013,
+   "Each fact has exactly one authoritative system."
+  ],
+  [
+   6.475,
+   2.95,
+   "HR owns who a worker is and where they sit."
+  ],
+  [
+   9.425,
+   5.225,
+   "The identity platform owns how they prove it, and whether a request is allowed right now."
+  ],
+  [
+   14.65,
+   2.788,
+   "The card system owns the piv credential."
+  ],
+  [
+   17.438,
+   5.65,
+   "Everything else is a copy, and corrections flow back to the source, never into the copy."
+  ],
+  [
+   23.087,
+   2.375,
+   "The other decision is the person key."
+  ],
+  [
+   25.462,
+   8.65,
+   "Make it a key the agency controls, with the HR system's own number mapped to it, so changing HR systems doesn't break every identity."
+  ],
+  [
+   34.112,
+   1.375,
+   "And that change is coming."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   7.037,
+   "Federal HR 2.0 matters because it's about to become the source for most federal employee attributes."
+  ],
+  [
+   7.088,
+   6.037,
+   "O M B and O P M are consolidating core HR onto one government-wide platform."
+  ],
+  [
+   13.125,
+   6.713,
+   "The contract went to Oracle in June 2026, and most agencies move in fiscal 2027."
+  ],
+  [
+   19.837,
+   2.475,
+   "Confirm that schedule with the program office."
+  ],
+  [
+   22.312,
+   5.325,
+   "Here's the highpoint: nothing from O P M specifies how that platform feeds your directory."
+  ],
+  [
+   27.637,
+   2.288,
+   "The Entra design is yours to make."
+  ],
+  [
+   29.925,
+   7.05,
+   "The book's advice is to put the identity feed in front of the steering committee early, because that window closes at go-live."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.725,
+   "So how does the record actually reach Entra ID?"
+  ],
+  [
+   2.775,
+   6.562,
+   "Oracle's platform has no native Entra connector, so the path is A P I-driven inbound provisioning."
+  ],
+  [
+   9.338,
+   7.438,
+   "Middleware in your own boundary validates each HR event, records its provenance, and posts it to Microsoft Graph."
+  ],
+  [
+   16.775,
+   2.2,
+   "Then it lands in one of two places."
+  ],
+  [
+   18.975,
+   5.638,
+   "For most users today that's Active Directory, which syncs up, and the Entra copies are read-only."
+  ],
+  [
+   24.613,
+   3.15,
+   "For cloud-managed users it's Entra ID directly."
+  ],
+  [
+   27.762,
+   2.788,
+   "The two converge population by population."
+  ],
+  [
+   30.55,
+   7.625,
+   "It's included with the P1 and P2 licenses, and it's been generally available in the government cloud since June 2025."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.188,
+   "HR supplies most of the person, but not everything, and every gap needs a named writer or it becomes drift."
+  ],
+  [
+   7.237,
+   8.0,
+   "Contractors aren't in the HR system, so each of their facts gets its own authority, like the contract record or the piv system."
+  ],
+  [
+   15.238,
+   4.575,
+   "Device attributes come from device provisioning, never from the user's record."
+  ],
+  [
+   19.812,
+   4.612,
+   "And where someone signs in from is a sign-in signal, not an HR fact."
+  ],
+  [
+   24.425,
+   8.838,
+   "On the right is the design that survives the HR cutover: an agency-owned key, standard data elements, and one door into the directory."
+  ],
+  [
+   33.263,
+   3.3,
+   "That makes the switch a source swap rather than a redesign."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.612,
+   "The schema is where names, codes and slots get fixed, and every rule will depend on it."
+  ],
+  [
+   5.662,
+   9.1,
+   "The chain on the left is the ownership model: the standard defines the code, HR owns each person's value, and one provisioning service writes it."
+  ],
+  [
+   14.762,
+   6.388,
+   "Access targeting uses three coded slots: organization, worker type and position category."
+  ],
+  [
+   21.15,
+   6.588,
+   "Some native fields, like hire date, are readable only in preview, so they stay out of production rules."
+  ],
+  [
+   27.738,
+   3.625,
+   "The panel under the table is the rule that holds it all together."
+  ],
+  [
+   31.363,
+   2.675,
+   "The provisioning service is the only writer."
+  ],
+  [
+   34.038,
+   4.963,
+   "Remove the help desk and self-service paths, and treat any other write as drift."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.088,
+   "Stage two is the one teams want to skip, and it's the one you can't."
+  ],
+  [
+   4.138,
+   7.463,
+   "Everything downstream trusts these values, so a bad HR record becomes bad access faster than any ticket queue."
+  ],
+  [
+   11.6,
+   11.975,
+   "Baseline HR against reality, fix errors at the source, and match every enabled account to a worker record before the first full sync, because that match is what prevents duplicate identities."
+  ],
+  [
+   23.575,
+   6.763,
+   "The threshold is the agency's own call; ninety-nine percent on the pilot is a starting proposal, not a rule."
+  ],
+  [
+   30.337,
+   3.375,
+   "And expect a burst of serious findings in the first month."
+  ],
+  [
+   33.712,
+   3.025,
+   "That's the measurement working, not the program failing."
+  ],
+  [
+   36.737,
+   1.188,
+   "Then, sync."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   7.812,
+   "Stage three is the plumbing between HR, Active Directory and Entra ID while they coexist, and failures here are quiet."
+  ],
+  [
+   7.862,
+   6.325,
+   "The default sync engine is Cloud Sync unless you have a Connect-only need, with password hash sync everywhere."
+  ],
+  [
+   14.188,
+   6.562,
+   "Then map the dates and the transitional fields, and run in shadow mode until every difference is explained."
+  ],
+  [
+   20.75,
+   1.125,
+   "Three traps."
+  ],
+  [
+   21.875,
+   5.175,
+   "A soft or hard match can overwrite cloud values with stale on-premises ones."
+  ],
+  [
+   27.05,
+   4.5,
+   "Older Connect Sync servers stop syncing in April 2027."
+  ],
+  [
+   31.55,
+   5.375,
+   "And a provisioning record with a missing field can clear a value, so always send the whole record."
+  ],
+  [
+   36.925,
+   1.65,
+   "Now, the mechanisms."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.987,
+   "Module 3 maps attributes to mechanisms."
+  ],
+  [
+   3.038,
+   10.075,
+   "The values are true and in place, and now each replacement for an O U job reads them: dynamic groups, administrative units, Conditional Access and Intune."
+  ],
+  [
+   13.113,
+   5.575,
+   "Then everything else the tree held, meaning devices, Arc servers and service principals."
+  ],
+  [
+   18.688,
+   5.287,
+   "And finally piv and CAC certificate binding, which turns out to be an attribute too."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   3.737,
+   "Stage four replaces walking the tree with evaluating a rule."
+  ],
+  [
+   3.788,
+   5.15,
+   "Instead of asking who sits under the Finance branch, you ask who carries the Finance code."
+  ],
+  [
+   8.938,
+   10.188,
+   "Every governed group uses one of two patterns: a node query on one organization code, or a functional query that crosses organization with something like position."
+  ],
+  [
+   19.125,
+   5.525,
+   "And every access rule explicitly leaves out disabled accounts, guests and agents."
+  ],
+  [
+   24.65,
+   5.625,
+   "Convert only the groups whose membership really follows the organization, and flatten nesting."
+  ],
+  [
+   30.275,
+   7.412,
+   "The gate is strict: validate, shadow against the old group, and pilot before any rule grants production access."
+  ],
+  [
+   37.688,
+   2.4,
+   "Next, who gets to manage these people."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   6.425,
+   "Stage five moves delegation, and it matters because this is where help desks and administrators get their reach."
+  ],
+  [
+   6.475,
+   6.938,
+   "In Entra ID, a role is assigned over an administrative unit, so it applies only to that unit's members."
+  ],
+  [
+   13.412,
+   6.675,
+   "The figure is the three-tier model: readers across the tenant, then department units, then division units."
+  ],
+  [
+   20.087,
+   6.362,
+   "Decide restriction for each unit before it exists, with a default of no, because you can't change it later."
+  ],
+  [
+   26.45,
+   1.387,
+   "And remember the callout."
+  ],
+  [
+   27.837,
+   3.475,
+   "A unit limits who can change things, not who can see them."
+  ],
+  [
+   31.312,
+   1.225,
+   "Then, policy."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   6.763,
+   "Stage six retires Group Policy inheritance, and the risk is policies that look strict but restrict nothing."
+  ],
+  [
+   6.812,
+   8.262,
+   "Conditional Access targets personas built from attributes; employees and contractors, for example, come from the worker type code."
+  ],
+  [
+   15.075,
+   8.3,
+   "The figure is the key pattern: a grant policy on its own doesn't stop anyone outside the group, so pair every grant with a block."
+  ],
+  [
+   23.375,
+   4.162,
+   "Run everything in report-only first, then enforce in waves."
+  ],
+  [
+   27.538,
+   5.763,
+   "And watch for empty attributes, because a dynamic group silently misses those users."
+  ],
+  [
+   33.3,
+   4.275,
+   "Devices are the other half, and the guide corrects the emphasis there."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   4.325,
+   "This slide sets the default for Intune targeting, so it's worth getting right."
+  ],
+  [
+   4.375,
+   3.55,
+   "By default each policy goes to a dynamic device group."
+  ],
+  [
+   7.925,
+   12.375,
+   "Microsoft's current guidance, checked October 29, is to prefer assignment filters where they meet the need, because dynamic device groups add processing delay, and Book 05 now says the same."
+  ],
+  [
+   20.3,
+   4.388,
+   "Send user settings to user groups and device settings to device groups."
+  ],
+  [
+   24.688,
+   7.213,
+   "The exception is tier and role: filters can't read device extension attributes, so those stay in group rules."
+  ],
+  [
+   31.9,
+   4.7,
+   "And underneath it all, a device rule can never read its owner's attributes."
+  ],
+  [
+   36.6,
+   2.587,
+   "Next, how device attributes get written."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   4.662,
+   "Devices are attribute-driven too, but only through their own attributes."
+  ],
+  [
+   4.713,
+   8.463,
+   "Dynamic device groups read things like ownership, trust type and enrollment profile, and Autopilot devices carry markers a rule can select."
+  ],
+  [
+   13.175,
+   3.4,
+   "Filters read Intune's own inventory at check-in."
+  ],
+  [
+   16.575,
+   1.975,
+   "The highpoint is the red panel."
+  ],
+  [
+   18.55,
+   10.162,
+   "Writing a device's extension attributes needs the right Graph permission, and it depends on the call: a signed-in administrator uses one permission, an unattended service another."
+  ],
+  [
+   28.712,
+   3.55,
+   "Book 05's sample now uses the signed-in one."
+  ],
+  [
+   32.263,
+   1.413,
+   "Then, servers."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   5.0,
+   "Arc servers matter because they're the on-premises servers the O U tree used to scope."
+  ],
+  [
+   5.05,
+   5.412,
+   "Once connected, a server becomes an Azure resource, and tags become its attributes."
+  ],
+  [
+   10.463,
+   7.875,
+   "You set them at onboarding or later, Azure Policy can test them and even inherit them, and Resource Graph queries them at scale."
+  ],
+  [
+   18.337,
+   1.938,
+   "One boundary to state plainly."
+  ],
+  [
+   20.275,
+   8.175,
+   "Azure's attribute-based access conditions apply only to storage data today, so Microsoft doesn't document them for managing servers."
+  ],
+  [
+   28.45,
+   2.587,
+   "Role assignments at the right scope do that job."
+  ],
+  [
+   31.038,
+   1.663,
+   "Next, applications."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   4.875,
+   "Applications and service principals are the partial answer, and the table shows why."
+  ],
+  [
+   4.925,
+   3.575,
+   "Each attribute store is readable by different mechanisms."
+  ],
+  [
+   8.5,
+   3.05,
+   "Extension attributes drive dynamic groups."
+  ],
+  [
+   11.55,
+   9.463,
+   "Custom security attributes can't, but Conditional Access can filter applications by them, and they suit sensitive values that only specific roles should read."
+  ],
+  [
+   21.012,
+   9.625,
+   "For service principals, workload Conditional Access only blocks, applies only to direct assignment, and needs the Workload I D Premium license."
+  ],
+  [
+   30.637,
+   4.3,
+   "And Microsoft documents no dynamic groups of service principals at all."
+  ],
+  [
+   34.938,
+   3.35,
+   "So access codes stay in the user extension slots."
+  ],
+  [
+   38.288,
+   1.962,
+   "Here's everything on one page."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   8.5,
+   "This crosswalk is the reference you'll come back to: every object type, the store its attributes live in, who writes them and what reads them."
+  ],
+  [
+   8.55,
+   6.825,
+   "Users, devices, Arc servers and service principals each have their own stores and their own consumers."
+  ],
+  [
+   15.375,
+   1.975,
+   "The highpoint is the third column."
+  ],
+  [
+   17.35,
+   7.95,
+   "Every row names one writer, whether that's HR provisioning, device registration, the Arc agent or an attribute administrator."
+  ],
+  [
+   25.3,
+   4.675,
+   "That's the same single-writer rule we set for the user schema, applied to everything."
+  ],
+  [
+   29.975,
+   3.2,
+   "And one user row leads straight into piv."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   4.825,
+   "piv and CAC sign-in is attribute-driven too, which is easy to miss."
+  ],
+  [
+   4.875,
+   5.725,
+   "Entra ID finds the user by matching a field on the certificate to a field on the account."
+  ],
+  [
+   10.6,
+   6.925,
+   "Some matches are low affinity, like the name on the card, and some are high, tied to one specific certificate."
+  ],
+  [
+   17.525,
+   1.163,
+   "Two highpoints."
+  ],
+  [
+   18.688,
+   8.162,
+   "Certificate-based sign-in is only as strong as the weakest binding you allow, and the program's position is high affinity in production."
+  ],
+  [
+   26.85,
+   5.425,
+   "But switch the whole tenant to high before every account's value is right, and you lock people out."
+  ],
+  [
+   32.275,
+   1.2,
+   "Pilot it first."
+  ],
+  [
+   33.475,
+   1.825,
+   "So where does that value come from?"
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   7.188,
+   "The certificate user I Ds attribute holds the binding, so who writes it matters as much as any HR field."
+  ],
+  [
+   7.237,
+   5.275,
+   "For cloud-only users, a privileged authentication administrator or Graph writes it."
+  ],
+  [
+   12.512,
+   7.588,
+   "For synced users, only Entra Connect can, from Active Directory, and Microsoft's page doesn't mention Cloud Sync."
+  ],
+  [
+   20.1,
+   6.763,
+   "HR supplies the person; the card management system supplies the binding, because a reissued card changes it."
+  ],
+  [
+   26.863,
+   5.088,
+   "After Active Directory is gone, the plan is for the card system to write it directly."
+  ],
+  [
+   31.95,
+   3.413,
+   "Be clear that this is design guidance, and unverified."
+  ],
+  [
+   35.362,
+   3.325,
+   "It's an open pilot, workbook issue one thirty."
+  ],
+  [
+   38.688,
+   1.05,
+   "Now let's run it."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   2.15,
+   "Module 4 runs the migration."
+  ],
+  [
+   2.2,
+   11.75,
+   "We'll follow one analyst through a reassignment with no ticket, then cut over in phases, keep the attributes true with drift detection, and finish with the limits, the checklist and the decisions."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   3.975,
+   "Here's the model working on one person, which is the best test of it."
+  ],
+  [
+   4.025,
+   4.825,
+   "She's a budget analyst in a finance division, still mastered in Active Directory."
+  ],
+  [
+   8.85,
+   5.5,
+   "Her HR record becomes a handful of coded attributes, and every mechanism reads them."
+  ],
+  [
+   14.35,
+   4.875,
+   "Her organization code puts her in the right groups, and in a database reader group."
+  ],
+  [
+   19.225,
+   4.225,
+   "Her division puts her in the unit whose help desk can reset her password."
+  ],
+  [
+   23.45,
+   2.85,
+   "Her worker type puts her in the employee persona."
+  ],
+  [
+   26.3,
+   3.763,
+   "And her laptop is governed by its own attributes, not hers."
+  ],
+  [
+   30.062,
+   2.337,
+   "Nobody assigned any of it by hand."
+  ],
+  [
+   32.4,
+   1.55,
+   "Now HR moves her."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   2.125,
+   "This is why the whole design exists."
+  ],
+  [
+   2.175,
+   5.85,
+   "HR records her move to accounts payable as a personnel action, and nobody opens a ticket."
+  ],
+  [
+   8.025,
+   4.625,
+   "The record flows through the middleware to Active Directory and up through sync."
+  ],
+  [
+   12.65,
+   5.838,
+   "Her groups and units recompute, usually within hours, but it can take more than a day."
+  ],
+  [
+   18.488,
+   4.713,
+   "A workflow swaps her access packages and starts a review of what's left."
+  ],
+  [
+   23.2,
+   3.638,
+   "Her laptop stays put, because device rules can't see her."
+  ],
+  [
+   26.837,
+   3.15,
+   "And a drift scan checks the result field by field."
+  ],
+  [
+   29.988,
+   2.05,
+   "Next, cutting over at scale."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   5.412,
+   "Stage seven is a runbook, not a flag day, and that's what keeps rollback possible."
+  ],
+  [
+   5.463,
+   5.838,
+   "Waves are defined by attribute values, so each wave is a query whose groups already exist."
+  ],
+  [
+   11.3,
+   4.55,
+   "Start with a pilot division, and keep each one drift-clean before the next."
+  ],
+  [
+   15.85,
+   4.463,
+   "Do leaver automation first, because revocation is where the risk is."
+  ],
+  [
+   20.312,
+   8.95,
+   "The gate is the strip across the top: a signed report, a dry run with writes off, then seven days in which every change traces to HR."
+  ],
+  [
+   29.262,
+   2.163,
+   "Only then does the ticket path close."
+  ],
+  [
+   31.425,
+   3.638,
+   "And disable, never delete, so you can always go back."
+  ],
+  [
+   35.062,
+   1.1,
+   "Then, drift."
+  ]
+ ],
+ "30": [
+  [
+   0.05,
+   6.175,
+   "Stage eight keeps the statements true after cutover; without it, everything slowly decays."
+  ],
+  [
+   6.225,
+   7.25,
+   "Two comparisons run on a schedule: HR against the directory, and the unit and role registry against the tenant."
+  ],
+  [
+   13.475,
+   10.412,
+   "Every finding goes to the see-so and is fixed at the source, in the HR record or the rule, never in the copy, because the next cycle would just overwrite your fix."
+  ],
+  [
+   23.887,
+   2.4,
+   "The callout is the one to act on today."
+  ],
+  [
+   26.288,
+   5.875,
+   "Entra's logs don't last nearly as long as federal records rules require, and they aren't retroactive."
+  ],
+  [
+   32.163,
+   1.488,
+   "Route them out from day one."
+  ],
+  [
+   33.65,
+   1.45,
+   "Now, the limits."
+  ]
+ ],
+ "31": [
+  [
+   0.05,
+   3.325,
+   "Every design has edges, and these are the ones that bite."
+  ],
+  [
+   3.375,
+   7.25,
+   "Privileged groups can't be dynamic, so privilege stays assigned and time-bound, and HR decides only eligibility."
+  ],
+  [
+   10.625,
+   4.362,
+   "Rules have size and count limits, and they can't read some native fields."
+  ],
+  [
+   14.988,
+   7.487,
+   "Then the date: the member-of preview ends on November 3, 2026, and groups that use it freeze in place."
+  ],
+  [
+   22.475,
+   3.725,
+   "Microsoft's page still said so on October 29."
+  ],
+  [
+   26.2,
+   6.3,
+   "And membership can lag by more than a day, so an urgent removal means disable and revoke, not wait."
+  ],
+  [
+   32.5,
+   1.325,
+   "More limits next."
+  ]
+ ],
+ "32": [
+  [
+   0.05,
+   1.262,
+   "A few more limits."
+  ],
+  [
+   1.312,
+   4.713,
+   "Administrative units don't nest, and they limit changes, not visibility."
+  ],
+  [
+   6.025,
+   12.713,
+   "Dynamic units work in G C C, but not in G C C High or D O D. Lifecycle Workflows allow up to one hundred workflows per tenant, and no built-in task revokes a piv credential."
+  ],
+  [
+   18.738,
+   6.987,
+   "Active Directory stays necessary during hybrid for synced users' attributes, Kerberos apps and some policy."
+  ],
+  [
+   25.725,
+   7.463,
+   "Moving a user's source of authority has firm prerequisites, and whether it's available in G C C is still unverified."
+  ],
+  [
+   33.188,
+   1.325,
+   "Here's the checklist."
+  ]
+ ],
+ "33": [
+  [
+   0.05,
+   5.487,
+   "The checklist turns the nine stages into something you can tick off, and that's its whole purpose."
+  ],
+  [
+   5.537,
+   3.3,
+   "There's one row per stage, plus one for piv."
+  ],
+  [
+   8.838,
+   1.575,
+   "A few are easy to miss."
+  ],
+  [
+   10.412,
+   2.712,
+   "Export site links, not just O U links."
+  ],
+  [
+   13.125,
+   2.55,
+   "Match accounts before the first full sync."
+  ],
+  [
+   15.675,
+   3.938,
+   "Write every access rule on codes, and don't use member-of."
+  ],
+  [
+   19.613,
+   3.112,
+   "Decide unit restriction before the unit exists."
+  ],
+  [
+   22.725,
+   2.038,
+   "Pair every grant with a block."
+  ],
+  [
+   24.762,
+   4.25,
+   "Prove seven days of sole-source changes before closing the ticket path."
+  ],
+  [
+   29.012,
+   2.05,
+   "And route logs out from the first day."
+  ],
+  [
+   31.062,
+   1.725,
+   "Finally, who decides."
+  ]
+ ],
+ "34": [
+  [
+   0.05,
+   4.925,
+   "Every decision here has one owner, and that's what keeps the migration from stalling."
+  ],
+  [
+   4.975,
+   6.112,
+   "Identity engineering owns the plumbing, the delegation model and each wave's go or no-go."
+  ],
+  [
+   11.088,
+   4.325,
+   "The eye-cam governance body owns the authority map and the person key."
+  ],
+  [
+   15.412,
+   6.537,
+   "HR owns the codes, the data architect the schema, and application owners their own access rules."
+  ],
+  [
+   21.95,
+   3.4,
+   "The see-so owns the controls and the drift findings."
+  ],
+  [
+   25.35,
+   10.188,
+   "And you can start Monday without new tools: export the tree, name the HR feed early, populate the person key, remove other writers, and route your logs out."
+  ],
+  [
+   35.538,
+   2.938,
+   "Make the attributes true, and keep them true."
+  ],
+  [
+   38.475,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

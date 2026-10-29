@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.673
+Stage eight keeps the
+statements true after cutover;
+
+2
+00:00:03.673 --> 00:00:06.225
+without it, everything slowly decays.
+
+3
+00:00:06.225 --> 00:00:10.172
+Two comparisons run on a schedule:
+HR against the directory,
+
+4
+00:00:10.172 --> 00:00:13.475
+and the unit and role
+registry against the tenant.
+
+5
+00:00:13.475 --> 00:00:18.558
+Every finding goes to the CISO and is
+fixed at the source, in the HR record or
+
+6
+00:00:18.558 --> 00:00:23.887
+the rule, never in the copy, because the
+next cycle would just overwrite your fix.
+
+7
+00:00:23.887 --> 00:00:26.287
+The callout is the one to act on today.
+
+8
+00:00:26.287 --> 00:00:29.117
+Entra's logs don't last
+nearly as long as federal
+
+9
+00:00:29.117 --> 00:00:32.163
+records rules require, and
+they aren't retroactive.
+
+10
+00:00:32.163 --> 00:00:33.651
+Route them out from day one.
+
+11
+00:00:33.651 --> 00:00:35.160
+Now, the limits.

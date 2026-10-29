@@ -213,10 +213,10 @@ These chapters assume P2 for every user and Entra ID Governance for the populati
 
 ### Dynamic group rule syntax
 
-Dynamic groups compute membership from user or device attributes. Rules use operators such as `-eq`, `-ne`, `-startsWith`, `-notStartsWith`, `-contains`, `-notContains`, `-match`, `-notMatch`, `-in`, and `-notIn`, and they can be combined with `-and` and `-or`.[^c09-dynamic-rules] A department group looks like this:
+Dynamic groups compute membership from user or device attributes. Rules use operators such as `-eq`, `-ne`, `-startsWith`, `-notStartsWith`, `-contains`, `-notContains`, `-match`, `-notMatch`, `-in`, and `-notIn`, and they can be combined with `-and` and `-or`.[^c09-dynamic-rules] A department group reads the coded organization attribute, not the display name, so a renamed office doesn't change who's in it ([Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#design-rules)):
 
 ```text
-(user.department -eq "Finance") -and (user.accountEnabled -eq true)
+(user.extensionAttribute10 -in ["FIN-LED","FIN-AP"]) -and (user.accountEnabled -eq true)
 ```
 
 Three cautions apply:
@@ -807,6 +807,8 @@ Never switch a policy that targets all users from off straight to on. A misconfi
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 08 — Assessing the Forest](08-assessing-the-forest.md) · [Book index](index.md) · [Next: Chapter 10 — Migrating and Governing →](10-migrating-and-governing.md)
+
+See the companion guide: [Attribute-Driven Migration from Active Directory to Microsoft Entra ID](../guides/attribute-driven-migration.md), one end-to-end path through this material.
 :::
 
 [^c09-graph-clouds]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 20, 2026).

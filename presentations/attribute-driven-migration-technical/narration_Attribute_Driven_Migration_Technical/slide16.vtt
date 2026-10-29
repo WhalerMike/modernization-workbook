@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.787
+Stage four replaces walking the
+tree with evaluating a rule.
+
+2
+00:00:03.787 --> 00:00:06.822
+Instead of asking who sits
+under the Finance branch,
+
+3
+00:00:06.822 --> 00:00:08.938
+you ask who carries the Finance code.
+
+4
+00:00:08.938 --> 00:00:13.843
+Every governed group uses one of two
+patterns: a node query on one organization
+
+5
+00:00:13.843 --> 00:00:19.126
+code, or a functional query that crosses
+organization with something like position.
+
+6
+00:00:19.126 --> 00:00:24.650
+And every access rule explicitly leaves
+out disabled accounts, guests and agents.
+
+7
+00:00:24.650 --> 00:00:27.533
+Convert only the groups
+whose membership really
+
+8
+00:00:27.533 --> 00:00:30.275
+follows the organization,
+and flatten nesting.
+
+9
+00:00:30.275 --> 00:00:34.146
+The gate is strict: validate,
+shadow against the old group,
+
+10
+00:00:34.146 --> 00:00:37.687
+and pilot before any rule
+grants production access.
+
+11
+00:00:37.687 --> 00:00:40.150
+Next, who gets to manage these people.

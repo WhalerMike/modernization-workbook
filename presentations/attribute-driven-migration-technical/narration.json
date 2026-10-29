@@ -1,0 +1,172 @@
+[
+  {
+    "slide": 1,
+    "title": "Attribute-Driven Migration: the technical deep dive",
+    "say": "Welcome. This is the technical deep dive for the Federal Modernization Workbook's companion guide, Attribute-Driven Migration to Entra ID. It's for identity engineers, Entra and Active Directory administrators, Intune and Azure platform owners, PKI and credential teams, and I S S O's. The idea is simple. In Active Directory, where an object sat in the tree decided what applied to it. In Entra ID, what the object says about itself decides. So the migration is the work of making those statements true, and keeping them true. Microsoft facts were checked on October 29, 2026, and the program's own recommendations are labeled design guidance. Let's start with why."
+  },
+  {
+    "slide": 2,
+    "title": "Why this matters: the attributes now decide",
+    "say": "Here's why this matters. The organizational units, or O U's, of an Active Directory forest were never just folders. That one tree decided who could manage an object, which policy reached it, which office owned it and what it could touch. Entra ID has no tree. Its directory is flat. So all four of those jobs have to move into attributes and the mechanisms that read them. The figure shows the payoff and the risk together. One HR-sourced stamp drives group membership, delegation, policy, licensing and drift detection. If the stamp is wrong, all five are wrong at once. So, Module 1, the model."
+  },
+  {
+    "slide": 3,
+    "title": "Module 1: The model, from placement to attributes",
+    "say": "Module 1 is the model. Before anything moves, everyone needs the same picture: what the O U tree was really doing, where each of those jobs lands in Entra ID, and the nine stages that get you there, each with one decider and a gate that says it's done."
+  },
+  {
+    "slide": 4,
+    "title": "What the OU tree encoded, and where each job goes",
+    "say": "This slide is the translation table, and it's the heart of the model. Placement becomes attributes. Groups built from O U's become dynamic groups. Delegation moves to administrative units. And Group Policy inheritance becomes Conditional Access and Intune targeting. Microsoft documents each piece; the program's contribution is the contract that binds them together. One rule on the right matters more than it looks: rules read codes, never display names, because a display name breaks the day someone retypes it. And some native fields can't be read by rules at all, which is why the schema carries coded copies. Next, the path."
+  },
+  {
+    "slide": 5,
+    "title": "Nine stages, each with a decider and a gate",
+    "say": "Here's the whole path on one page, laid out this way for accountability. Nine stages, from reading the tree to correcting drift. Every stage has exactly one decider, taken from the books' two responsibility matrices, and a gate that says it's done. Identity engineering owns most of the plumbing, application owners own their access rules, and the CISO owns the controls and the drift findings. And the gates are the point: nothing grants production access until it's been proved. Stage zero first."
+  },
+  {
+    "slide": 6,
+    "title": "Stage 0: read what the tree encodes before moving it",
+    "say": "Stage zero matters because the target has to reproduce intent, not structure, and you can't reproduce what you haven't read. It's entirely read-only. Capture each O U's placement and size, its Group Policy links and inheritance, and especially the permissions someone delegated by hand, because that's where the real delegation lives. Then decide every group's fate. Two traps. A policy linked at a site looks unlinked if you only search O U's. And the protected-account marker stays set after someone leaves a protected group, so it overstates privilege. That's the model. Now the attributes."
+  },
+  {
+    "slide": 7,
+    "title": "Module 2: Sourcing and proving the attributes",
+    "say": "Module 2 is sourcing and proving the attributes. Every mechanism later in this session reads these values, so this is where the migration is won or lost. We'll cover who owns each fact, Federal HR 2.0 as the coming source, how HR data reaches Entra ID, the facts HR doesn't supply, the schema and its single writer, and then proof and sync."
+  },
+  {
+    "slide": 8,
+    "title": "Stage 1: HR is the authority, one fact to one system",
+    "say": "This is the most important ownership decision in the program. Each fact has exactly one authoritative system. HR owns who a worker is and where they sit. The identity platform owns how they prove it, and whether a request is allowed right now. The card system owns the PIV credential. Everything else is a copy, and corrections flow back to the source, never into the copy. The other decision is the person key. Make it a key the agency controls, with the HR system's own number mapped to it, so changing HR systems doesn't break every identity. And that change is coming."
+  },
+  {
+    "slide": 9,
+    "title": "Federal HR 2.0: the coming source and what OPM leaves open",
+    "say": "Federal HR 2.0 matters because it's about to become the source for most federal employee attributes. O M B and O P M are consolidating core HR onto one government-wide platform. The contract went to Oracle in June 2026, and most agencies move in fiscal 2027. Confirm that schedule with the program office. Here's the highpoint: nothing from O P M specifies how that platform feeds your directory. The Entra design is yours to make. The book's advice is to put the identity feed in front of the steering committee early, because that window closes at go-live."
+  },
+  {
+    "slide": 10,
+    "title": "API-driven inbound provisioning and the two landing zones",
+    "say": "So how does the record actually reach Entra ID? Oracle's platform has no native Entra connector, so the path is A P I-driven inbound provisioning. Middleware in your own boundary validates each HR event, records its provenance, and posts it to Microsoft Graph. Then it lands in one of two places. For most users today that's Active Directory, which syncs up, and the Entra copies are read-only. For cloud-managed users it's Entra ID directly. The two converge population by population. It's included with the P1 and P2 licenses, and it's been generally available in the government cloud since June 2025."
+  },
+  {
+    "slide": 11,
+    "title": "What HR doesn't supply: contractors and other writers",
+    "say": "HR supplies most of the person, but not everything, and every gap needs a named writer or it becomes drift. Contractors aren't in the HR system, so each of their facts gets its own authority, like the contract record or the PIV system. Device attributes come from device provisioning, never from the user's record. And where someone signs in from is a sign-in signal, not an HR fact. On the right is the design that survives the HR cutover: an agency-owned key, standard data elements, and one door into the directory. That makes the switch a source swap rather than a redesign."
+  },
+  {
+    "slide": 12,
+    "title": "The canonical schema, and one writer per attribute",
+    "say": "The schema is where names, codes and slots get fixed, and every rule will depend on it. The chain on the left is the ownership model: the standard defines the code, HR owns each person's value, and one provisioning service writes it. Access targeting uses three coded slots: organization, worker type and position category. Some native fields, like hire date, are readable only in preview, so they stay out of production rules. The panel under the table is the rule that holds it all together. The provisioning service is the only writer. Remove the help desk and self-service paths, and treat any other write as drift."
+  },
+  {
+    "slide": 13,
+    "title": "Stage 2: prove the attributes true before use",
+    "say": "Stage two is the one teams want to skip, and it's the one you can't. Everything downstream trusts these values, so a bad HR record becomes bad access faster than any ticket queue. Baseline HR against reality, fix errors at the source, and match every enabled account to a worker record before the first full sync, because that match is what prevents duplicate identities. The threshold is the agency's own call; ninety-nine percent on the pilot is a starting proposal, not a rule. And expect a burst of serious findings in the first month. That's the measurement working, not the program failing. Then, sync."
+  },
+  {
+    "slide": 14,
+    "title": "Stage 3: map the attributes through sync",
+    "say": "Stage three is the plumbing between HR, Active Directory and Entra ID while they coexist, and failures here are quiet. The default sync engine is Cloud Sync unless you have a Connect-only need, with password hash sync everywhere. Then map the dates and the transitional fields, and run in shadow mode until every difference is explained. Three traps. A soft or hard match can overwrite cloud values with stale on-premises ones. Older Connect Sync servers stop syncing in April 2027. And a provisioning record with a missing field can clear a value, so always send the whole record. Now, the mechanisms."
+  },
+  {
+    "slide": 15,
+    "title": "Module 3: From attributes to mechanisms",
+    "say": "Module 3 maps attributes to mechanisms. The values are true and in place, and now each replacement for an O U job reads them: dynamic groups, administrative units, Conditional Access and Intune. Then everything else the tree held, meaning devices, Arc servers and service principals. And finally PIV and CAC certificate binding, which turns out to be an attribute too."
+  },
+  {
+    "slide": 16,
+    "title": "Stage 4: OU subtrees become dynamic-group rules",
+    "say": "Stage four replaces walking the tree with evaluating a rule. Instead of asking who sits under the Finance branch, you ask who carries the Finance code. Every governed group uses one of two patterns: a node query on one organization code, or a functional query that crosses organization with something like position. And every access rule explicitly leaves out disabled accounts, guests and agents. Convert only the groups whose membership really follows the organization, and flatten nesting. The gate is strict: validate, shadow against the old group, and pilot before any rule grants production access. Next, who gets to manage these people."
+  },
+  {
+    "slide": 17,
+    "title": "Stage 5: delegation moves to administrative units",
+    "say": "Stage five moves delegation, and it matters because this is where help desks and administrators get their reach. In Entra ID, a role is assigned over an administrative unit, so it applies only to that unit's members. The figure is the three-tier model: readers across the tenant, then department units, then division units. Decide restriction for each unit before it exists, with a default of no, because you can't change it later. And remember the callout. A unit limits who can change things, not who can see them. Then, policy."
+  },
+  {
+    "slide": 18,
+    "title": "Stage 6: Conditional Access targets personas, not the tree",
+    "say": "Stage six retires Group Policy inheritance, and the risk is policies that look strict but restrict nothing. Conditional Access targets personas built from attributes; employees and contractors, for example, come from the worker type code. The figure is the key pattern: a grant policy on its own doesn't stop anyone outside the group, so pair every grant with a block. Run everything in report-only first, then enforce in waves. And watch for empty attributes, because a dynamic group silently misses those users. Devices are the other half, and the guide corrects the emphasis there."
+  },
+  {
+    "slide": 19,
+    "title": "Intune targeting: device groups, and prefer filters",
+    "say": "This slide sets the default for Intune targeting, so it's worth getting right. By default each policy goes to a dynamic device group. Microsoft's current guidance, checked October 29, is to prefer assignment filters where they meet the need, because dynamic device groups add processing delay, and Book 05 now says the same. Send user settings to user groups and device settings to device groups. The exception is tier and role: filters can't read device extension attributes, so those stay in group rules. And underneath it all, a device rule can never read its owner's attributes. Next, how device attributes get written."
+  },
+  {
+    "slide": 20,
+    "title": "Beyond users: Intune and Entra devices",
+    "say": "Devices are attribute-driven too, but only through their own attributes. Dynamic device groups read things like ownership, trust type and enrollment profile, and Autopilot devices carry markers a rule can select. Filters read Intune's own inventory at check-in. The highpoint is the red panel. Writing a device's extension attributes needs the right Graph permission, and it depends on the call: a signed-in administrator uses one permission, an unattended service another. Book 05's sample now uses the signed-in one. Then, servers."
+  },
+  {
+    "slide": 21,
+    "title": "Beyond users: Azure Arc servers, through Resource Manager",
+    "say": "Arc servers matter because they're the on-premises servers the O U tree used to scope. Once connected, a server becomes an Azure resource, and tags become its attributes. You set them at onboarding or later, Azure Policy can test them and even inherit them, and Resource Graph queries them at scale. One boundary to state plainly. Azure's attribute-based access conditions apply only to storage data today, so Microsoft doesn't document them for managing servers. Role assignments at the right scope do that job. Next, applications."
+  },
+  {
+    "slide": 22,
+    "title": "Beyond users: service principals and custom attributes",
+    "say": "Applications and service principals are the partial answer, and the table shows why. Each attribute store is readable by different mechanisms. Extension attributes drive dynamic groups. Custom security attributes can't, but Conditional Access can filter applications by them, and they suit sensitive values that only specific roles should read. For service principals, workload Conditional Access only blocks, applies only to direct assignment, and needs the Workload I D Premium license. And Microsoft documents no dynamic groups of service principals at all. So access codes stay in the user extension slots. Here's everything on one page."
+  },
+  {
+    "slide": 23,
+    "title": "The object-type crosswalk: stores, writers, consumers",
+    "say": "This crosswalk is the reference you'll come back to: every object type, the store its attributes live in, who writes them and what reads them. Users, devices, Arc servers and service principals each have their own stores and their own consumers. The highpoint is the third column. Every row names one writer, whether that's HR provisioning, device registration, the Arc agent or an attribute administrator. That's the same single-writer rule we set for the user schema, applied to everything. And one user row leads straight into PIV."
+  },
+  {
+    "slide": 24,
+    "title": "PIV and CAC: the certificate binding is an attribute",
+    "say": "PIV and CAC sign-in is attribute-driven too, which is easy to miss. Entra ID finds the user by matching a field on the certificate to a field on the account. Some matches are low affinity, like the name on the card, and some are high, tied to one specific certificate. Two highpoints. Certificate-based sign-in is only as strong as the weakest binding you allow, and the program's position is high affinity in production. But switch the whole tenant to high before every account's value is right, and you lock people out. Pilot it first. So where does that value come from?"
+  },
+  {
+    "slide": 25,
+    "title": "certificateUserIds: who writes it, and the open pilot",
+    "say": "The certificate user I Ds attribute holds the binding, so who writes it matters as much as any HR field. For cloud-only users, a privileged authentication administrator or Graph writes it. For synced users, only Entra Connect can, from Active Directory, and Microsoft's page doesn't mention Cloud Sync. HR supplies the person; the card management system supplies the binding, because a reissued card changes it. After Active Directory is gone, the plan is for the card system to write it directly. Be clear that this is design guidance, and unverified. It's an open pilot, workbook issue one thirty. Now let's run it."
+  },
+  {
+    "slide": 26,
+    "title": "Module 4: Running the migration",
+    "say": "Module 4 runs the migration. We'll follow one analyst through a reassignment with no ticket, then cut over in phases, keep the attributes true with drift detection, and finish with the limits, the checklist and the decisions."
+  },
+  {
+    "slide": 27,
+    "title": "Worked example: one analyst, every mechanism",
+    "say": "Here's the model working on one person, which is the best test of it. She's a budget analyst in a finance division, still mastered in Active Directory. Her HR record becomes a handful of coded attributes, and every mechanism reads them. Her organization code puts her in the right groups, and in a database reader group. Her division puts her in the unit whose help desk can reset her password. Her worker type puts her in the employee persona. And her laptop is governed by its own attributes, not hers. Nobody assigned any of it by hand. Now HR moves her."
+  },
+  {
+    "slide": 28,
+    "title": "The mover event: one personnel action, no ticket",
+    "say": "This is why the whole design exists. HR records her move to accounts payable as a personnel action, and nobody opens a ticket. The record flows through the middleware to Active Directory and up through sync. Her groups and units recompute, usually within hours, but it can take more than a day. A workflow swaps her access packages and starts a review of what's left. Her laptop stays put, because device rules can't see her. And a drift scan checks the result field by field. Next, cutting over at scale."
+  },
+  {
+    "slide": 29,
+    "title": "Stage 7: cut over in phases, wave by wave",
+    "say": "Stage seven is a runbook, not a flag day, and that's what keeps rollback possible. Waves are defined by attribute values, so each wave is a query whose groups already exist. Start with a pilot division, and keep each one drift-clean before the next. Do leaver automation first, because revocation is where the risk is. The gate is the strip across the top: a signed report, a dry run with writes off, then seven days in which every change traces to HR. Only then does the ticket path close. And disable, never delete, so you can always go back. Then, drift."
+  },
+  {
+    "slide": 30,
+    "title": "Stage 8: detect drift and fix it at the source",
+    "say": "Stage eight keeps the statements true after cutover; without it, everything slowly decays. Two comparisons run on a schedule: HR against the directory, and the unit and role registry against the tenant. Every finding goes to the CISO and is fixed at the source, in the HR record or the rule, never in the copy, because the next cycle would just overwrite your fix. The callout is the one to act on today. Entra's logs don't last nearly as long as federal records rules require, and they aren't retroactive. Route them out from day one. Now, the limits."
+  },
+  {
+    "slide": 31,
+    "title": "Limits: dynamic membership and latency",
+    "say": "Every design has edges, and these are the ones that bite. Privileged groups can't be dynamic, so privilege stays assigned and time-bound, and HR decides only eligibility. Rules have size and count limits, and they can't read some native fields. Then the date: the member-of preview ends on November 3, 2026, and groups that use it freeze in place. Microsoft's page still said so on October 29. And membership can lag by more than a day, so an urgent removal means disable and revoke, not wait. More limits next."
+  },
+  {
+    "slide": 32,
+    "title": "Limits: units, Lifecycle Workflows, what still needs AD",
+    "say": "A few more limits. Administrative units don't nest, and they limit changes, not visibility. Dynamic units work in G C C, but not in G C C High or D O D. Lifecycle Workflows allow up to one hundred workflows per tenant, and no built-in task revokes a PIV credential. Active Directory stays necessary during hybrid for synced users' attributes, Kerberos apps and some policy. Moving a user's source of authority has firm prerequisites, and whether it's available in G C C is still unverified. Here's the checklist."
+  },
+  {
+    "slide": 33,
+    "title": "The checklist, stage by stage",
+    "say": "The checklist turns the nine stages into something you can tick off, and that's its whole purpose. There's one row per stage, plus one for PIV. A few are easy to miss. Export site links, not just O U links. Match accounts before the first full sync. Write every access rule on codes, and don't use member-of. Decide unit restriction before the unit exists. Pair every grant with a block. Prove seven days of sole-source changes before closing the ticket path. And route logs out from the first day. Finally, who decides."
+  },
+  {
+    "slide": 34,
+    "title": "Decisions, owners, and where to start",
+    "say": "Every decision here has one owner, and that's what keeps the migration from stalling. Identity engineering owns the plumbing, the delegation model and each wave's go or no-go. The ICAM governance body owns the authority map and the person key. HR owns the codes, the data architect the schema, and application owners their own access rules. The CISO owns the controls and the drift findings. And you can start Monday without new tools: export the tree, name the HR feed early, populate the person key, remove other writers, and route your logs out. Make the attributes true, and keep them true. Thank you."
+  }
+]

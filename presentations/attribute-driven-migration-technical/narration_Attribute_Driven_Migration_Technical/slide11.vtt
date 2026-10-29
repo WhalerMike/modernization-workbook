@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.517
+HR supplies most of the
+person, but not everything,
+
+2
+00:00:03.517 --> 00:00:07.238
+and every gap needs a named
+writer or it becomes drift.
+
+3
+00:00:07.238 --> 00:00:12.465
+Contractors aren't in the HR system, so
+each of their facts gets its own authority,
+
+4
+00:00:12.465 --> 00:00:15.237
+like the contract record
+or the PIV system.
+
+5
+00:00:15.237 --> 00:00:19.813
+Device attributes come from device
+provisioning, never from the user's record.
+
+6
+00:00:19.813 --> 00:00:24.424
+And where someone signs in from is
+a sign-in signal, not an HR fact.
+
+7
+00:00:24.424 --> 00:00:28.142
+On the right is the design
+that survives the HR cutover:
+
+8
+00:00:28.142 --> 00:00:33.263
+an agency-owned key, standard data
+elements, and one door into the directory.
+
+9
+00:00:33.263 --> 00:00:36.620
+That makes the switch a source
+swap rather than a redesign.

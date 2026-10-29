@@ -44,6 +44,12 @@ Each book downloads as one Word document with its chapters in reading order, its
 | [Book 17 — AI Identity Governance](books/b17-ai-identity/index.md) | [b17-ai-identity-bundle.docx](../downloads/b17-ai-identity-bundle.docx) |
 | [Book 18 — Application Modernization](books/b18-application-modernization/index.md) | [b18-application-modernization-bundle.docx](../downloads/b18-application-modernization-bundle.docx) |
 
+## Companion guides as Word documents
+
+| Guide | Word edition |
+|---|---|
+| [Attribute-Driven Migration from Active Directory to Microsoft Entra ID](books/guides/attribute-driven-migration.md) | [attribute-driven-migration-guide.docx](../downloads/attribute-driven-migration-guide.docx) |
+
 ## Videos and presentations
 
 - **Narrated presentation videos:** watch them on the [Videos](presentations/watch.md) page, or download the MP4s from the [October 23, 2026 video release](https://github.com/WhalerMike/modernization-workbook/releases/tag/videos-2026-10-23).

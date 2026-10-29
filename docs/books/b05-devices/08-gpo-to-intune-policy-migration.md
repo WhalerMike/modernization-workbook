@@ -140,7 +140,7 @@ Conflicts between these types follow Microsoft's rules. A compliance policy's se
 
 ### The device attribute schema
 
-Every policy is assigned to dynamic device groups built from attributes, which replaces OU-linked GPO scoping. Microsoft Entra dynamic membership rules for devices can use `extensionAttribute1` through `extensionAttribute15`, but those values must be written to the Entra device object first, through Microsoft Graph.[^c08-dynamic] They aren't the same attributes as the user extension attributes in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map); a device object has its own set.
+By default each policy is assigned to dynamic device groups built from attributes, which replaces OU-linked GPO scoping; the exception for time-sensitive assignment is under [Assignment strategy](#assignment-strategy). Microsoft Entra dynamic membership rules for devices can use `extensionAttribute1` through `extensionAttribute15`, but those values must be written to the Entra device object first, through Microsoft Graph.[^c08-dynamic] They aren't the same attributes as the user extension attributes in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map); a device object has its own set.
 
 The program uses one numbering for these attributes, which is the device half of the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map):
 
@@ -159,6 +159,8 @@ The values are written by the program's provisioning process when a device is re
 - **Include groups.** Dynamic device groups that match the policy's tier, environment and role.
 - **Exclude groups.** Break-glass exclusion groups for emergency override, and staging groups during a phased rollout.
 - **Assignment filters.** A second layer applied at assignment time. Filters can't read device extension attributes. They work on Intune device properties such as `deviceName`, `deviceOwnership`, `deviceTrustType`, `enrollmentProfileName`, `manufacturer`, `model`, `operatingSystemSKU` and `operatingSystemVersion`.[^c08-filters] A filter on `extensionAttribute11` or `extensionAttribute13` doesn't evaluate; attribute targeting belongs in the group rule, and filters handle hardware, ownership, join type and OS.
+
+Dynamic device groups take processing time before a new device appears in them. For time-sensitive assignment, such as a policy that has to land as a device enrolls, Microsoft's guidance is to assign to a user group, or to the **All devices** group for userless devices, with an assignment filter that selects the devices at check-in; it suggests a filter instead of a dynamic group wherever the rule reads only properties a filter can see, such as OS type, manufacturer, model, ownership or category; and it advises against dynamic device groups as exclusions, because a late membership calculation can let the policy reach the device first.[^c08-intune-assign] The program follows that guidance where a target depends only on Intune device properties. It keeps dynamic device groups where the rule has to read the device extension attributes (tier, role, environment, region and department), because filters can't.
 
 ![How a policy reaches a device: attributes drive dynamic groups, assignments add exclusions and filters, and the compliance result flows to Conditional Access.](../../images/diagrams/b05-devices/svg/ch08-targeting-layers.svg){#fig-ch08-targeting-layers fig-alt="Top to bottom. A slate card, device attributes on the Entra device object, lists region, department, security tier, device role and environment, written through Microsoft Graph. It feeds a blue card, dynamic device groups, with example rules on extensionAttribute11 and extensionAttribute12. That feeds a blue card, assignment, listing include group, exclude groups for break-glass and staging, and an assignment filter on Intune properties such as join type, ownership, model or OS SKU. The assignment feeds a green card, one owning policy per setting, listing compliance, configuration, endpoint security and app protection. A dashed violet arrow from the compliance policy leads to a violet card, Conditional Access, require device to be marked as compliant, owned by Book 04."}
 
@@ -640,11 +642,11 @@ The groups below use the device attribute schema. GCC (Moderate) tenants use the
 
 ### Writing a device attribute
 
-Dynamic rules can only match values that exist on the device object, so the provisioning process writes them first.
+Dynamic rules can only match values that exist on the device object, so the provisioning process writes them first. The sample is a delegated call, like the other scripts in this chapter: the least-privileged delegated permission for updating a device is `Directory.AccessAsUser.All`, and the signed-in administrator needs at least the Intune Administrator role. `Device.ReadWrite.All` is the application permission, for an unattended provisioning service running app-only; app-only calls can update only `extensionAttributes`, which is all this sample writes.[^c08-device-update]
 
 ```powershell
-# Requires Device.ReadWrite.All. $deviceObjectId is the Entra device object ID, not the device ID.
-Connect-MgGraph -Scopes 'Device.ReadWrite.All'
+# Delegated: sign in as at least Intune Administrator. $deviceObjectId is the Entra device object ID, not the device ID.
+Connect-MgGraph -Scopes 'Directory.AccessAsUser.All'
 
 $params = @{
     extensionAttributes = @{
@@ -899,6 +901,8 @@ A compliance policy needs its scheduled action, and SC-001 isn't a `windows10Gen
 [^c08-es-conflicts]: Microsoft Learn, "Manage endpoint security in Microsoft Intune," sections "Choose the right policy type" and "Avoid policy conflicts," <https://learn.microsoft.com/intune/device-security/endpoint-security-policies> (accessed Oct 20, 2026).
 [^c08-dynamic]: Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," section "Rules for devices," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (accessed Oct 20, 2026).
 [^c08-filters]: Microsoft Learn, "App and device properties, operators, and rule editing when creating assignment filters in Microsoft Intune," section "Managed device properties," <https://learn.microsoft.com/intune/fundamentals/filters/ref-device-properties> (accessed Oct 20, 2026).
+[^c08-intune-assign]: Microsoft Learn, "Assign policies in Microsoft Intune," section "Principles of including and excluding groups" (dynamic device group processing time; assignment filters on user groups or the All devices group for time-sensitive scenarios; filters instead of dynamic device groups for OS type, manufacturer, model, ownership or category; avoid dynamic device groups as exclusions), <https://learn.microsoft.com/intune/device-configuration/assign-device-profile> (accessed Oct 29, 2026).
+[^c08-device-update]: Microsoft Learn, "Update device," Microsoft Graph v1.0, section "Permissions" (delegated least privilege `Directory.AccessAsUser.All`; application `Device.ReadWrite.All`; Intune Administrator the least-privileged supported role; app-only and non-Windows calls update only `extensionAttributes`), <https://learn.microsoft.com/graph/api/device-update?view=graph-rest-1.0> (accessed Oct 29, 2026).
 [^c08-win-compliance]: Microsoft Learn, "Device compliance settings for Windows in Intune," sections "Device health," "System security" and "Microsoft Defender for Endpoint," <https://learn.microsoft.com/intune/device-security/compliance/ref-windows-settings> (accessed Oct 20, 2026).
 [^c08-win11-release]: Microsoft Learn, "Windows 11 release information," section "Windows 11 current versions by servicing option," <https://learn.microsoft.com/windows/release-health/windows11-release-information> (accessed Oct 20, 2026).
 [^c08-devicelock]: Microsoft Learn, "Policy CSP - DeviceLock," section "AccountLockoutPolicy," <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-devicelock> (accessed Oct 20, 2026).

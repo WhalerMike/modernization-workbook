@@ -1,0 +1,31 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.450
+Module 2 is sourcing and
+proving the attributes.
+
+2
+00:00:03.450 --> 00:00:07.328
+Every mechanism later in this
+session reads these values,
+
+3
+00:00:07.328 --> 00:00:10.237
+so this is where the
+migration is won or lost.
+
+4
+00:00:10.237 --> 00:00:15.188
+We'll cover who owns each fact,
+Federal HR 2.0 as the coming source,
+
+5
+00:00:15.188 --> 00:00:19.472
+how HR data reaches Entra ID,
+the facts HR doesn't supply,
+
+6
+00:00:19.472 --> 00:00:23.900
+the schema and its single
+writer, and then proof and sync.

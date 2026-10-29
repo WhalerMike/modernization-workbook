@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.369
+Arc servers matter because they're the
+
+2
+00:00:02.369 --> 00:00:05.050
+on-premises servers the
+O U tree used to scope.
+
+3
+00:00:05.050 --> 00:00:10.462
+Once connected, a server becomes an Azure
+resource, and tags become its attributes.
+
+4
+00:00:10.462 --> 00:00:14.362
+You set them at onboarding or
+later, Azure Policy can test them
+
+5
+00:00:14.362 --> 00:00:18.338
+and even inherit them, and Resource
+Graph queries them at scale.
+
+6
+00:00:18.338 --> 00:00:20.275
+One boundary to state plainly.
+
+7
+00:00:20.275 --> 00:00:24.957
+Azure's attribute-based access conditions
+apply only to storage data today,
+
+8
+00:00:24.957 --> 00:00:28.450
+so Microsoft doesn't document
+them for managing servers.
+
+9
+00:00:28.450 --> 00:00:31.037
+Role assignments at the
+right scope do that job.
+
+10
+00:00:31.037 --> 00:00:32.760
+Next, applications.

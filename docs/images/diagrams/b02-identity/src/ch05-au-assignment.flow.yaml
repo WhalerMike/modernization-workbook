@@ -4,8 +4,8 @@
 rankdir: LR
 graph: {nodesep: 0.3, ranksep: 0.45}
 nodes:
-  attr: {tone: amber, width: 180, tag: "Source", title: "HR-sourced attribute", body: ["`department` on the user object"], size: 12}
-  au: {tone: blue, width: 200, tag: "Scope", title: "Administrative unit", body: ["Dynamic rule over users", "`(user.department -eq \"Finance\")`", "Restricted only if the population is sensitive"], size: 12}
+  attr: {tone: amber, width: 180, tag: "Source", title: "HR-sourced attribute", body: ["Organization code in `extensionAttribute10` on the user object"], size: 12}
+  au: {tone: blue, width: 200, tag: "Scope", title: "Administrative unit", body: ["Dynamic rule over users", "Finance's organization codes in `extensionAttribute10`", "Restricted only if the population is sensitive"], size: 12}
   grp: {tone: blue, width: 200, tag: "Principal", title: "Role-assignable group", body: ["`Finance-Admins`", "Assigned membership; can't be dynamic", "Members eligible through PIM"], size: 12}
   ra: {tone: violet, width: 200, tag: "Binding", title: "Scoped role assignment", body: ["User Administrator", "`/administrativeUnits/{id}`"], size: 12}
 edges:
