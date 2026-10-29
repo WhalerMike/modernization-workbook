@@ -1,0 +1,68 @@
+name: Pull request checks
+
+# Tiered pre-merge check (scripts/check_changed.py). A pull request that edits
+# a few pages renders and checks just those pages and builds the Word bundles
+# that contain them; one that touches the site configuration, filters, theme,
+# build scripts, an included file, a listing page, the video manifest, or
+# renames or deletes a page, or edits more than 25 pages, runs the deploy
+# workflow's full build (without deploying). Changes the site doesn't publish
+# run only the checks that apply to them. Read-only: no Pages, no secrets.
+
+on:
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      force_full:
+        description: "Run the FULL tier whatever changed"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      # origin/main for a manual run, where there is no pull request base.
+      BASE_REF: ${{ github.base_ref || 'main' }}
+      FORCE_FULL: ${{ github.event_name == 'workflow_dispatch' && inputs.force_full }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Full commit history (no file contents): the diff needs the merge base,
+          # and the books table dates each book from git log, as in the deploy.
+          fetch-depth: 0
+          filter: blob:none
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y librsvg2-bin python3-yaml
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Copy reference doc to docs directory
+        # As the deploy does, for the FULL tier's per-page DOCX render.
+        run: |
+          mkdir -p docs/assets docs/compliance/assets docs/compliance/day2-kit/assets
+          cp assets/reference-mslearn.docx docs/reference-mslearn.docx
+          cp assets/reference-mslearn.docx docs/assets/reference-mslearn.docx
+          cp assets/reference-mslearn.docx docs/compliance/reference-mslearn.docx
+          cp assets/reference-mslearn.docx docs/compliance/assets/reference-mslearn.docx
+          cp assets/reference-mslearn.docx docs/compliance/day2-kit/reference-mslearn.docx
+          cp assets/reference-mslearn.docx docs/compliance/day2-kit/assets/reference-mslearn.docx
+
+      - name: Run the tiered check
+        # The script prints the tier, the reason and every check's result, and
+        # writes the summary to $GITHUB_STEP_SUMMARY.
+        run: |
+          args=(--base "origin/$BASE_REF" --committed-only)
+          if [ "$FORCE_FULL" = "true" ]; then args+=(--force-full); fi
+          python3 scripts/check_changed.py "${args[@]}"

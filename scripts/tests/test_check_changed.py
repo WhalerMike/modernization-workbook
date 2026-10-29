@@ -1,0 +1,262 @@
+"""Tests for scripts/check_changed.py: the tier decision and the Markdown scanners.
+
+Fixture file lists only: no git, no Quarto, no PyYAML.
+
+    python -m unittest discover -s scripts/tests -v
+"""
+from __future__ import annotations
+
+import sys
+import unittest
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+import check_changed as cc  # noqa: E402
+from check_changed import Change  # noqa: E402
+
+PUBLISHED_ROOTS = ("docs/books/", "docs/research/", "docs/presentations/")
+
+
+def published(path: str) -> bool:
+    """A stand-in for _quarto.yml's project.render rules."""
+    if path in ("index.qmd", "sitemap.qmd", "404.qmd", "docs/start-here.md"):
+        return True
+    if any(part.startswith(("_", ".")) for part in path.split("/")):
+        return False
+    return path.startswith(PUBLISHED_ROOTS) and path.endswith((".md", ".qmd"))
+
+
+def decide(changes, **kw):
+    return cc.decide(changes, published=published, **kw)
+
+
+def mods(*paths):
+    return [Change("M", p) for p in paths]
+
+
+class FullTier(unittest.TestCase):
+    def assert_full(self, changes, fragment="", **kw):
+        plan = decide(changes, **kw)
+        self.assertEqual(plan.tier, "FULL", plan.reasons)
+        self.assertTrue(any(fragment in r for r in plan.reasons), plan.reasons)
+        return plan
+
+    def test_site_configuration(self):
+        self.assert_full(mods("_quarto.yml"), "site configuration")
+
+    def test_assets_filters_extensions(self):
+        for p in ("assets/fmw-hero.lua", "assets/partials/title-block.html", "assets/reference-mslearn.docx",
+                  "docs/filters/x.lua", "_extensions/foo/_extension.yml"):
+            with self.subTest(p):
+                self.assert_full(mods(p))
+
+    def test_docs_underscore_include(self):
+        self.assert_full(mods("docs/_shared-callout.md"), "docs/_* include")
+        self.assert_full(mods("docs/_partials/footer.md"), "docs/_* include")
+
+    def test_folder_metadata(self):
+        self.assert_full(mods("docs/books/b07-pki/_metadata.yml"), "folder metadata")
+
+    def test_build_scripts_and_manifests(self):
+        for p in ("scripts/generate_sitemap.py", "scripts/generate_book_metrics.py",
+                  "scripts/generate_video_manifest.py", "scripts/write_redirects.py", "scripts/redirects.yml",
+                  "scripts/build_bundles.py", "scripts/bundles.yml", "scripts/bundle-filter.lua",
+                  ".github/workflows/quarto-pages.yml"):
+            with self.subTest(p):
+                self.assert_full(mods(p))
+
+    def test_include_target_found_by_grep(self):
+        self.assert_full(mods("docs/presentations/_video-library.md"), "included by a published page",
+                         include_targets={"docs/presentations/_video-library.md"})
+        # The same file is not special unless something includes it.
+        self.assertEqual(decide(mods("docs/compliance/servicenow-day2/START-HERE.md")).tier, "NONE")
+
+    def test_listing_page(self):
+        self.assert_full(mods("docs/books/b07-pki/index.md"), "has a listing",
+                         listing_pages={"docs/books/b07-pki/index.md"})
+
+    def test_video_manifest(self):
+        self.assert_full(mods("docs/presentations/videos.json"), "video manifest")
+
+    def test_deleted_published_page(self):
+        plan = self.assert_full([Change("D", "docs/books/b07-pki/03-old.md")], "published page deleted")
+        self.assertIn("docs/books/b07-pki/03-old.md", plan.deleted)
+
+    def test_renamed_published_page(self):
+        plan = self.assert_full([Change("R", "docs/books/b07-pki/03-new.md", "docs/books/b07-pki/03-old.md")],
+                                "published page renamed")
+        self.assertIn("docs/books/b07-pki/03-old.md", plan.deleted)
+
+    def test_page_count_over_threshold(self):
+        pages = [f"docs/books/b07-pki/{i:02d}-chapter.md" for i in range(26)]
+        self.assert_full(mods(*pages), "26 published pages affected (more than 25)")
+
+    def test_threshold_is_configurable(self):
+        pages = [f"docs/books/b07-pki/{i:02d}-chapter.md" for i in range(4)]
+        self.assert_full(mods(*pages), "more than 3", max_pages=3)
+
+    def test_force_full(self):
+        plan = self.assert_full(mods("docs/books/b07-pki/01-a.md"), "--force-full", force_full=True)
+        self.assertEqual(plan.pages, ["docs/books/b07-pki/01-a.md"])
+
+    def test_full_reason_listed_once(self):
+        plan = decide(mods("_quarto.yml", "_quarto.yml"))
+        self.assertEqual(len(plan.reasons), 1)
+
+
+class ChangedTier(unittest.TestCase):
+    def test_one_page(self):
+        plan = decide(mods("docs/books/b07-pki/03-x.md"))
+        self.assertEqual(plan.tier, "CHANGED")
+        self.assertEqual(plan.pages, ["docs/books/b07-pki/03-x.md"])
+
+    def test_added_page_is_changed_not_full(self):
+        plan = decide([Change("A", "docs/research/new-topic.md")])
+        self.assertEqual(plan.tier, "CHANGED")
+
+    def test_exactly_at_threshold(self):
+        pages = [f"docs/books/b07-pki/{i:02d}-chapter.md" for i in range(25)]
+        plan = decide(mods(*pages))
+        self.assertEqual(plan.tier, "CHANGED")
+        self.assertEqual(len(plan.pages), 25)
+
+    def test_changed_image_brings_in_the_pages_that_embed_it(self):
+        img = "docs/images/diagrams/b07-pki/svg/fig-01.svg"
+        plan = decide(mods(img), image_users={img: ["docs/books/b07-pki/01-a.md", "docs/books/b07-pki/02-b.md"]})
+        self.assertEqual(plan.tier, "CHANGED")
+        self.assertEqual(plan.pages, ["docs/books/b07-pki/01-a.md", "docs/books/b07-pki/02-b.md"])
+        self.assertEqual(plan.direct_pages, [])
+        self.assertEqual(plan.image_pages["docs/books/b07-pki/01-a.md"], [img])
+
+    def test_image_pages_count_toward_threshold(self):
+        img = "docs/images/shared.svg"
+        users = [f"docs/books/b0{i % 9}/{i:02d}.md" for i in range(30)]
+        self.assertEqual(decide(mods(img), image_users={img: users}).tier, "FULL")
+
+    def test_unpublished_pages_alongside_are_ignored(self):
+        plan = decide(mods("docs/books/b07-pki/03-x.md", "docs/books/b07-pki/_verification/03-x.md",
+                           "docs/compliance/notes.md"))
+        self.assertEqual(plan.pages, ["docs/books/b07-pki/03-x.md"])
+
+    def test_root_qmd_page(self):
+        self.assertEqual(decide(mods("404.qmd")).pages, ["404.qmd"])
+
+    def test_non_listing_index_is_changed(self):
+        plan = decide(mods("docs/research/index.md"), listing_pages={"docs/books/b07-pki/index.md"})
+        self.assertEqual(plan.tier, "CHANGED")
+
+
+class NoneTier(unittest.TestCase):
+    def test_nothing(self):
+        plan = decide([])
+        self.assertEqual(plan.tier, "NONE")
+
+    def test_deck_binaries(self):
+        plan = decide(mods("presentations/b07-pki/B07_PKI.pptx", "presentations/b07-pki/B07_PKI_Narrated.vtt"))
+        self.assertEqual(plan.tier, "NONE")
+        self.assertEqual(plan.tasks["a11y"], ["presentations/b07-pki/B07_PKI.pptx"])
+        self.assertIn("video-manifest", plan.tasks)
+
+    def test_example_code(self):
+        plan = decide(mods("examples/ansible/inventory/cmdb_inventory.py", "examples/hcm-entra/x.py"))
+        self.assertEqual(plan.tier, "NONE")
+        self.assertEqual(plan.tasks["kits"], ["ansible"])
+
+    def test_unpublished_notes(self):
+        plan = decide(mods("docs/books/b07-pki/_verification/03-x.md", "InBox/draft.md", "STATUS.md"))
+        self.assertEqual(plan.tier, "NONE")
+        self.assertEqual(plan.tasks, {})
+
+    def test_deleted_unpublished_file_is_not_full(self):
+        plan = decide([Change("D", "presentations/old/Old.pptx")])
+        self.assertEqual(plan.tier, "NONE")
+        self.assertEqual(plan.deleted, ["presentations/old/Old.pptx"])
+        self.assertNotIn("a11y", plan.tasks)
+
+
+class NonSiteTasks(unittest.TestCase):
+    def test_checker_change_runs_every_deck(self):
+        t = cc.non_site_tasks(mods("presentations/_build/a11y_check.py", "presentations/a/A.pptx"))
+        self.assertEqual(t["a11y"], ["*"])
+
+    def test_lock_files_skipped(self):
+        self.assertNotIn("a11y", cc.non_site_tasks(mods("presentations/a/~$A.pptx")))
+
+    def test_kit_builder_change_builds_every_kit(self):
+        t = cc.non_site_tasks(mods("scripts/build_start_kit_zip.py"))
+        self.assertEqual(t["kits"], ["start-kit", "copilot-agent-pack", "app-modernization", "ansible"])
+
+    def test_project_plans(self):
+        self.assertIn("project-plans", cc.non_site_tasks(mods("data/project-plans/network-access.yaml")))
+
+    def test_unit_tests_run_when_the_checker_changes(self):
+        self.assertIn("unit-tests", cc.non_site_tasks(mods("scripts/check_changed.py")))
+        self.assertIn("unit-tests", cc.non_site_tasks(mods("scripts/tests/test_check_changed.py")))
+
+
+class RenderTargets(unittest.TestCase):
+    def test_single_pages_stay_single(self):
+        pub = [f"docs/books/b07-pki/{i:02d}.md" for i in range(15)]
+        self.assertEqual(cc.render_targets(["docs/books/b07-pki/01.md"], pub), ["docs/books/b07-pki/01.md"])
+
+    def test_many_pages_in_one_folder_render_the_folder(self):
+        pub = [f"docs/books/b07-pki/{i:02d}.md" for i in range(15)]
+        self.assertEqual(cc.render_targets(pub[:6], pub), ["docs/books/b07-pki"])
+
+    def test_root_pages_never_render_the_project(self):
+        self.assertEqual(cc.render_targets(["404.qmd", "index.qmd"], ["404.qmd", "index.qmd"]),
+                         ["404.qmd", "index.qmd"])
+
+
+class Anchors(unittest.TestCase):
+    def test_pandoc_identifiers(self):
+        cases = {
+            "A — B: c.d (x)": "a-b-c.d-x",
+            "2026 Plan": "plan",
+            "Path C: `az rest`": "path-c-az-rest",
+            "What `have_ato` means": "what-have_ato-means",
+            "**Bold** and *em* and [a link](x.md)": "bold-and-em-and-a-link",
+            "Notes[^n1]": "notes",
+            "Don’t stop": "dont-stop",
+            "?!": "section",
+        }
+        for heading, expected in cases.items():
+            with self.subTest(heading):
+                self.assertEqual(cc.slug(heading), expected)
+
+    def test_page_anchors(self):
+        text = ("---\ntitle: T\n---\n\n## Intro\n\n## Intro\n\n## Custom {#mine .unnumbered}\n\n"
+                "```\n## not a heading\n```\n\n::: {#box .callout-note}\nx\n:::\n\n"
+                "![Fig](a.svg){#fig-one}\n\n<a id=\"raw\"></a>\n")
+        ids = cc.anchors(text)
+        self.assertTrue({"intro", "intro-1", "mine", "box", "fig-one", "raw"} <= ids, ids)
+        self.assertNotIn("not-a-heading", ids)
+        self.assertNotIn("custom", ids)
+
+
+class Links(unittest.TestCase):
+    def test_kinds_and_resolution(self):
+        text = ("See [two](02-b.md#part), [up](../b02-identity/index.md), [web](https://x.gov/a), "
+                "[self](#top), ![img](../../images/a%20b.svg \"t\") and `[code](nope.md)`.\n\n"
+                "[ref]: ../../../downloads/b07-pki-bundle.docx\n")
+        got = {(l.path, l.fragment, l.image) for l in cc.links("docs/books/b07-pki/01-a.md", text)}
+        self.assertEqual(got, {
+            ("docs/books/b07-pki/02-b.md", "part", False),
+            ("docs/books/b02-identity/index.md", "", False),
+            ("", "top", False),
+            ("docs/images/a b.svg", "", True),
+            ("downloads/b07-pki-bundle.docx", "", False),
+        })
+
+
+class Footnotes(unittest.TestCase):
+    def test_definitions_and_references(self):
+        text = "Text[^a] and[^b].\n\n```\n[^c]\n```\n\n[^a]: One.\n[^d]: Unused.\n"
+        defs, refs = cc.footnotes(text)
+        self.assertEqual([d for d, _ in defs], ["a", "d"])
+        self.assertEqual([r for r, _ in refs], ["a", "b"])
+
+
+if __name__ == "__main__":
+    unittest.main()
