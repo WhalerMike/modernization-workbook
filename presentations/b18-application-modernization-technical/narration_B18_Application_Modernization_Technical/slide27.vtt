@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.838
+Arguments about architecture
+are cheap; code that runs isn't.
+
+2
+00:00:03.838 --> 00:00:08.661
+So the book ships a small slice of
+the target: a case-management service,
+
+3
+00:00:08.661 --> 00:00:12.237
+a React front end, a migration
+tool and a triage agent.
+
+4
+00:00:12.237 --> 00:00:16.242
+It's deliberately small, with
+synthetic data and no sign-in,
+
+5
+00:00:16.242 --> 00:00:19.663
+so read it as an illustration,
+not production code.
+
+6
+00:00:19.663 --> 00:00:22.620
+Notice that the service
+owns its database schema,
+
+7
+00:00:22.620 --> 00:00:25.650
+and the migration tool
+loads into that same schema.
+
+8
+00:00:25.650 --> 00:00:27.907
+Two choices differ from the target,
+
+9
+00:00:27.907 --> 00:00:32.500
+an older Java and an older contract
+version, and the book says so plainly.
+
+10
+00:00:32.500 --> 00:00:34.800
+Next, what the code demonstrates.

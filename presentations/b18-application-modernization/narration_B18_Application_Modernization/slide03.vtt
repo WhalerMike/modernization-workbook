@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.456
+The grand rewrite is the obvious answer,
+
+2
+00:00:02.456 --> 00:00:05.300
+and the federal record
+says it rarely ends well.
+
+3
+00:00:05.300 --> 00:00:09.738
+A rewrite delivers nothing until
+cut-over, so users wait years.
+
+4
+00:00:09.738 --> 00:00:15.676
+Its real specification is the old system,
+buried in code, data and workarounds.
+
+5
+00:00:15.676 --> 00:00:19.225
+And all the risk lands on one
+switch with no easy way back.
+
+6
+00:00:19.225 --> 00:00:23.889
+Federal policy already points the
+other way: build in useful segments,
+
+7
+00:00:23.889 --> 00:00:27.025
+each one delivering a
+working system on its own.
+
+8
+00:00:27.025 --> 00:00:29.375
+That leads to the key idea of the book.
+
+9
+00:00:29.375 --> 00:00:33.516
+The unit of decision is the application,
+because that's where the owner,
+
+10
+00:00:33.516 --> 00:00:37.300
+the data, the code and the
+authorization boundary actually live.
+
+11
+00:00:37.300 --> 00:00:39.940
+So how do you decide, thousands of times?

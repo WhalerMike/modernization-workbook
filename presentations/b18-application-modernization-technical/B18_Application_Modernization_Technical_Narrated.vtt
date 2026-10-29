@@ -1,0 +1,1575 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.762
+This is the technical deep
+dive for Book 18 of the
+
+3
+00:00:03.762 --> 00:00:07.662
+Federal Modernization Workbook,
+Application Modernization.
+
+4
+00:00:07.662 --> 00:00:10.950
+It's for architects,
+application and data engineers,
+
+5
+00:00:10.950 --> 00:00:15.919
+database administrators and system
+security officers, the people who decide
+
+6
+00:00:15.919 --> 00:00:20.812
+what each legacy application becomes, then
+build it, move its data and prove it.
+
+7
+00:00:20.812 --> 00:00:24.697
+The book's idea is simple:
+modernization is a portfolio
+
+8
+00:00:24.697 --> 00:00:29.099
+decision made one application at
+a time, not one giant rewrite.
+
+9
+00:00:29.099 --> 00:00:31.425
+Part 1 is deciding and designing.
+
+10
+00:00:31.425 --> 00:00:33.700
+Part 2 is governing and running.
+
+11
+00:00:33.700 --> 00:00:35.464
+One note before we start:
+
+12
+00:00:35.464 --> 00:00:40.050
+product versions here are as of
+late October 2026, and they move.
+
+13
+00:00:40.050 --> 00:00:41.750
+Let's begin with why.
+
+14
+00:00:42.500 --> 00:00:43.887
+Here's why this matters.
+
+15
+00:00:43.887 --> 00:00:47.923
+Most federal I T money goes to
+keeping existing systems running,
+
+16
+00:00:47.923 --> 00:00:50.663
+and that share has barely
+moved in six years.
+
+17
+00:00:50.663 --> 00:00:54.832
+G A O's list of the most critical
+legacy systems is decades old,
+
+18
+00:00:54.832 --> 00:00:58.001
+and most of those systems
+lack complete plans.
+
+19
+00:00:58.001 --> 00:01:00.913
+But those few systems are
+only the top of the list.
+
+20
+00:01:00.913 --> 00:01:04.587
+The real cost sits in thousands
+of ordinary applications.
+
+21
+00:01:04.587 --> 00:01:09.963
+The tempting answer is a grand rewrite,
+and the record says it rarely ends well:
+
+22
+00:01:09.963 --> 00:01:14.499
+value arrives only at the end, and
+all the risk lands on one cut-over.
+
+23
+00:01:14.499 --> 00:01:18.925
+Federal policy already asks for
+small, useful pieces instead.
+
+24
+00:01:18.925 --> 00:01:20.600
+So, Module 1.
+
+25
+00:01:21.350 --> 00:01:23.363
+Module 1 is about deciding.
+
+26
+00:01:23.363 --> 00:01:25.419
+Before anyone picks a framework,
+
+27
+00:01:25.419 --> 00:01:29.075
+every application needs a
+decision about what it becomes.
+
+28
+00:01:29.075 --> 00:01:33.691
+We'll look at the six dispositions, the
+criteria behind them, how they're scored,
+
+29
+00:01:33.691 --> 00:01:36.216
+the rules that turn a
+score into a decision,
+
+30
+00:01:36.216 --> 00:01:40.100
+and how owners and calibration
+keep the whole thing honest.
+
+31
+00:01:40.850 --> 00:01:45.139
+The unit of decision is the application,
+because that's where the owner,
+
+32
+00:01:45.139 --> 00:01:48.688
+the data, the code and the
+authorization boundary all meet.
+
+33
+00:01:48.688 --> 00:01:53.579
+Each one gets one of six dispositions,
+listed from cheapest to most expensive,
+
+34
+00:01:53.579 --> 00:01:58.700
+and that order is the first rule: take the
+cheapest one that meets the mission need.
+
+35
+00:01:58.700 --> 00:02:02.100
+Notice that retire and retain
+aren't projects at all.
+
+36
+00:02:02.100 --> 00:02:05.038
+They're decisions, and they're
+where the early savings are.
+
+37
+00:02:05.038 --> 00:02:08.913
+The vendors' lists line up with
+these, with one deliberate twist:
+
+38
+00:02:08.913 --> 00:02:12.788
+replacing an application with a
+product counts as retiring it.
+
+39
+00:02:12.788 --> 00:02:14.630
+Next, what we score.
+
+40
+00:02:15.380 --> 00:02:17.233
+Six criteria drive the triage,
+
+41
+00:02:17.233 --> 00:02:20.718
+and the good news is that you
+already hold most of the data.
+
+42
+00:02:20.718 --> 00:02:24.398
+Your security categorization,
+configuration database,
+
+43
+00:02:24.398 --> 00:02:28.705
+spending data, contracts and network
+flows fill in nearly all of it.
+
+44
+00:02:28.705 --> 00:02:30.430
+Two scoring rules matter.
+
+45
+00:02:30.430 --> 00:02:34.830
+Dependencies tell you the order to
+move things in, not what they become.
+
+46
+00:02:34.830 --> 00:02:38.054
+And business logic buried in
+the database counts twice,
+
+47
+00:02:38.054 --> 00:02:41.418
+because it's both a skills
+problem and a migration problem.
+
+48
+00:02:41.418 --> 00:02:45.779
+Skills, by the way, are about
+the next five years, not today.
+
+49
+00:02:45.779 --> 00:02:48.010
+Now, how the scores combine.
+
+50
+00:02:48.760 --> 00:02:52.605
+The six criteria roll up into
+two axes: how much the mission
+
+51
+00:02:52.605 --> 00:02:56.610
+needs the application, and how
+healthy it is to run and change.
+
+52
+00:02:56.610 --> 00:02:59.035
+The grid shows where each corner points.
+
+53
+00:02:59.035 --> 00:02:59.998
+Low value?
+
+54
+00:02:59.998 --> 00:03:01.372
+Retire it first.
+
+55
+00:03:01.372 --> 00:03:03.047
+High value and healthy?
+
+56
+00:03:03.047 --> 00:03:04.523
+Keep it, on purpose.
+
+57
+00:03:04.523 --> 00:03:06.422
+High value and unhealthy?
+
+58
+00:03:06.422 --> 00:03:10.297
+Fix the platform or the code,
+whichever is the real problem.
+
+59
+00:03:10.297 --> 00:03:14.341
+Every score also carries a flag
+for how far you can trust it:
+
+60
+00:03:14.341 --> 00:03:16.447
+measured, attested or assumed.
+
+61
+00:03:16.447 --> 00:03:19.111
+Mostly assumed means no decision yet.
+
+62
+00:03:19.111 --> 00:03:23.998
+And always prefer what's measured, like
+usage logs, over what people believe.
+
+63
+00:03:23.998 --> 00:03:25.900
+Next, the rules.
+
+64
+00:03:26.650 --> 00:03:29.300
+This is where scores become
+a proposed decision.
+
+65
+00:03:29.300 --> 00:03:32.515
+Seven rules run in order,
+and the first match wins,
+
+66
+00:03:32.515 --> 00:03:35.087
+which keeps the cheapest answer on top.
+
+67
+00:03:35.087 --> 00:03:39.030
+Retire, retain, rehost
+and replatform come first,
+
+68
+00:03:39.030 --> 00:03:41.888
+and only then refactor and rebuild.
+
+69
+00:03:41.888 --> 00:03:44.762
+The seventh rule is what
+makes this work at scale.
+
+70
+00:03:44.762 --> 00:03:47.418
+High-impact systems headed for a rewrite,
+
+71
+00:03:47.418 --> 00:03:50.463
+and anything an owner
+disputes, get a deep study.
+
+72
+00:03:50.463 --> 00:03:53.450
+Everything else gets a decision
+for the cost of scoring.
+
+73
+00:03:53.450 --> 00:03:56.082
+So thousands of applications get decided,
+
+74
+00:03:56.082 --> 00:03:58.713
+and the real analysis
+goes where it counts.
+
+75
+00:03:58.713 --> 00:04:01.270
+Next, the people who confirm it.
+
+76
+00:04:02.020 --> 00:04:04.708
+The rubric proposes; owners confirm.
+
+77
+00:04:04.708 --> 00:04:09.532
+Each application's mission owner and
+system owner get a fixed window to agree,
+
+78
+00:04:09.532 --> 00:04:14.282
+or to contest with evidence, and a bad
+score gets corrected, not argued around.
+
+79
+00:04:14.282 --> 00:04:18.533
+What comes out is a decision
+record: the disposition, the scores,
+
+80
+00:04:18.533 --> 00:04:22.457
+the rule that fired, the owner's
+agreement and a review date.
+
+81
+00:04:22.457 --> 00:04:27.245
+That one record serves the architecture
+plan, capital planning and the auditor.
+
+82
+00:04:27.245 --> 00:04:29.629
+And before you run it
+across the portfolio,
+
+83
+00:04:29.629 --> 00:04:33.920
+calibrate it on a few dozen applications
+your architects already know well.
+
+84
+00:04:33.920 --> 00:04:35.232
+That's Module 1.
+
+85
+00:04:35.232 --> 00:04:36.780
+Now, the target.
+
+86
+00:04:37.530 --> 00:04:40.939
+Module 2 is about what the
+changed applications land on,
+
+87
+00:04:40.939 --> 00:04:42.718
+and how their data gets there.
+
+88
+00:04:42.718 --> 00:04:46.483
+One shared target means the platform
+team, the security team and
+
+89
+00:04:46.483 --> 00:04:50.392
+the authorizing official review
+one pattern instead of hundreds.
+
+90
+00:04:50.392 --> 00:04:54.930
+We'll cover the layers, the support
+clocks, contracts and configuration,
+
+91
+00:04:54.930 --> 00:04:59.760
+the strangler fig, and then the hardest
+part of most refactors: the data.
+
+92
+00:05:00.510 --> 00:05:01.585
+Here's the target.
+
+93
+00:05:01.585 --> 00:05:04.822
+React front ends that only call A P I's.
+
+94
+00:05:04.822 --> 00:05:07.465
+A thin Node layer where
+a front end needs one,
+
+95
+00:05:07.465 --> 00:05:11.797
+and a gateway that also acts as the
+switch for incremental replacement.
+
+96
+00:05:11.797 --> 00:05:16.710
+Java and Spring Boot services that each
+publish a contract and own their data.
+
+97
+00:05:16.710 --> 00:05:19.373
+And everything in
+containers on Kubernetes.
+
+98
+00:05:19.373 --> 00:05:23.652
+These are mainstream choices with big
+labor pools and long support windows,
+
+99
+00:05:23.652 --> 00:05:26.573
+because these business
+rules will live for decades.
+
+100
+00:05:26.573 --> 00:05:29.548
+And they're the program's
+design, not a federal rule.
+
+101
+00:05:29.548 --> 00:05:33.709
+An agency built on .NET can keep
+the structure and swap the list.
+
+102
+00:05:33.709 --> 00:05:35.510
+Next, the clocks.
+
+103
+00:05:36.260 --> 00:05:37.710
+Versions are a snapshot.
+
+104
+00:05:37.710 --> 00:05:39.985
+Support windows are the real story.
+
+105
+00:05:39.985 --> 00:05:43.227
+Java's long-term releases
+are supported for years,
+
+106
+00:05:43.227 --> 00:05:46.310
+so build on one and move
+to the next within a year.
+
+107
+00:05:46.310 --> 00:05:50.803
+Spring Boot is shorter: each recent
+generation gets only about thirteen
+
+108
+00:05:50.803 --> 00:05:55.072
+months of open-source support, and
+one generation has already run out.
+
+109
+00:05:55.072 --> 00:05:57.836
+Node and Kubernetes keep
+their own clocks too.
+
+110
+00:05:57.836 --> 00:06:00.572
+So upgrades can't be left to each project.
+
+111
+00:06:00.572 --> 00:06:04.610
+Build the cadence into the platform
+and fund it as recurring work,
+
+112
+00:06:04.610 --> 00:06:08.273
+or today's modernized portfolio
+becomes tomorrow's legacy.
+
+113
+00:06:08.273 --> 00:06:11.290
+Next, the disciplines
+that hold it together.
+
+114
+00:06:12.040 --> 00:06:14.740
+Three disciplines hold
+the architecture together.
+
+115
+00:06:14.740 --> 00:06:17.602
+First, the contract comes before the code.
+
+116
+00:06:17.602 --> 00:06:21.446
+Teams agree on the Open A P
+I document, generate from it,
+
+117
+00:06:21.446 --> 00:06:25.464
+test against it, and publish
+it so the next team reuses it.
+
+118
+00:06:25.464 --> 00:06:27.940
+Second, keep the thin layers thin.
+
+119
+00:06:27.940 --> 00:06:30.040
+Node serves the front end's needs,
+
+120
+00:06:30.040 --> 00:06:34.240
+and business rules stay in the
+services, where they're tested once.
+
+121
+00:06:34.240 --> 00:06:37.515
+Third, configuration comes
+from outside the code.
+
+122
+00:06:37.515 --> 00:06:40.047
+The best test is whether
+you could publish the
+
+123
+00:06:40.047 --> 00:06:42.978
+code tomorrow without
+exposing a single credential.
+
+124
+00:06:42.978 --> 00:06:46.230
+Next, how a refactor actually happens.
+
+125
+00:06:46.980 --> 00:06:49.518
+A refactor happens
+through the strangler fig.
+
+126
+00:06:49.518 --> 00:06:52.347
+Put a façade in front of
+the legacy application,
+
+127
+00:06:52.347 --> 00:06:55.550
+move one function at a time
+behind the same contract,
+
+128
+00:06:55.550 --> 00:07:00.317
+retire the old system when nothing depends
+on it, and finally remove the façade.
+
+129
+00:07:00.317 --> 00:07:03.617
+You can roll back right up until
+the legacy tables are gone.
+
+130
+00:07:03.617 --> 00:07:07.561
+Before you commit, check that
+requests can actually be intercepted,
+
+131
+00:07:07.561 --> 00:07:09.743
+and that there's a plan for shared data.
+
+132
+00:07:09.743 --> 00:07:12.317
+Those questions belong in the deep study.
+
+133
+00:07:12.317 --> 00:07:17.080
+And for security, two NIST guides
+cover microservices and containers.
+
+134
+00:07:17.080 --> 00:07:19.230
+They're guidance, not requirements.
+
+135
+00:07:19.230 --> 00:07:20.830
+Now, the data.
+
+136
+00:07:21.580 --> 00:07:25.152
+Code can be replaced a piece at
+a time, but data moves once,
+
+137
+00:07:25.152 --> 00:07:28.880
+and the move isn't done until
+you can prove nothing was lost.
+
+138
+00:07:28.880 --> 00:07:32.963
+So the program treats it as
+three jobs: convert the schema,
+
+139
+00:07:32.963 --> 00:07:37.480
+move the rows, and prove the result,
+looping back on any mismatch.
+
+140
+00:07:37.480 --> 00:07:41.042
+Choosing the engine is usually
+settled by what you already run.
+
+141
+00:07:41.042 --> 00:07:45.217
+And remember that the engine also decides
+which conversion tools you can use.
+
+142
+00:07:45.217 --> 00:07:51.143
+If the target is SQL Server, arrive
+already on Book 6's modern sign-in pattern.
+
+143
+00:07:51.143 --> 00:07:53.750
+Next, where conversions go wrong.
+
+144
+00:07:54.500 --> 00:07:56.628
+Conversion tools do most of the work,
+
+145
+00:07:56.628 --> 00:07:59.963
+but the dangerous conversions
+are the ones that succeed.
+
+146
+00:07:59.963 --> 00:08:04.963
+Map an Oracle date to a plain date
+and you silently lose the time of day.
+
+147
+00:08:04.963 --> 00:08:08.462
+Treat money as floating
+point and you lose exactness.
+
+148
+00:08:08.462 --> 00:08:12.612
+Oracle treats an empty string
+as null, and the targets don't.
+
+149
+00:08:12.612 --> 00:08:17.113
+And sequences need to move past the
+highest key before the first new record.
+
+150
+00:08:17.113 --> 00:08:20.363
+Stored procedures and
+packages are the long pole.
+
+151
+00:08:20.363 --> 00:08:25.900
+Tools emulate them, but the program treats
+every emulation call as debt to pay down.
+
+152
+00:08:25.900 --> 00:08:28.280
+Next, the tools themselves.
+
+153
+00:08:29.030 --> 00:08:34.767
+Here are the conversion tools as of October
+2026, as examples, not endorsements.
+
+154
+00:08:34.767 --> 00:08:36.467
+Three facts shape your plan.
+
+155
+00:08:36.467 --> 00:08:40.879
+Only A W S tools convert
+DB2 to PostgreSQL.
+
+156
+00:08:40.879 --> 00:08:45.268
+Microsoft's assistant targets
+only SQL Server and Azure SQL.
+
+157
+00:08:45.268 --> 00:08:49.393
+And the newer AI-assisted conversion
+sends your source code to a model,
+
+158
+00:08:49.393 --> 00:08:53.305
+which puts that model's endpoint
+inside your migration's boundary.
+
+159
+00:08:53.305 --> 00:08:55.974
+Treat whatever it produces as a draft that
+
+160
+00:08:55.974 --> 00:08:58.643
+a person reviews and the validation tests.
+
+161
+00:08:58.643 --> 00:09:01.081
+So pick the engine with
+these limits in view.
+
+162
+00:09:01.081 --> 00:09:03.170
+Next, proving the move.
+
+163
+00:09:03.920 --> 00:09:07.330
+A migration is finished when
+you can prove the target holds
+
+164
+00:09:07.330 --> 00:09:10.670
+the same facts as the source,
+and no single check can do that.
+
+165
+00:09:10.670 --> 00:09:15.873
+So use three with different blind spots:
+row counts, a checksum over every row,
+
+166
+00:09:15.873 --> 00:09:19.920
+and business totals computed
+separately in each database.
+
+167
+00:09:19.920 --> 00:09:21.732
+The third one matters most.
+
+168
+00:09:21.732 --> 00:09:24.646
+If your transform drops
+the time from every date,
+
+169
+00:09:24.646 --> 00:09:29.233
+the checksum still matches perfectly,
+because it ran after the same mistake.
+
+170
+00:09:29.233 --> 00:09:31.671
+The business totals
+don't share that mistake.
+
+171
+00:09:31.671 --> 00:09:34.545
+Pick totals the program office recognizes.
+
+172
+00:09:34.545 --> 00:09:36.760
+Next, the switch itself.
+
+173
+00:09:37.510 --> 00:09:40.444
+There are three ways to
+cut over: all at once,
+
+174
+00:09:40.444 --> 00:09:43.797
+in phases, or by running
+both systems in parallel.
+
+175
+00:09:43.797 --> 00:09:45.678
+All three end at the same gate:
+
+176
+00:09:45.678 --> 00:09:49.360
+three clean validation results
+and a rehearsed way back.
+
+177
+00:09:49.360 --> 00:09:54.749
+Phases and parallel runs mean both systems
+live side by side for a while, and here's
+
+178
+00:09:54.749 --> 00:09:59.897
+the rule that matters most: never let
+the application write to both databases.
+
+179
+00:09:59.897 --> 00:10:02.135
+Those writes drift apart silently.
+
+180
+00:10:02.135 --> 00:10:07.610
+Instead, one system owns each table,
+and changes are replicated from the log.
+
+181
+00:10:07.610 --> 00:10:08.922
+That's Module 2.
+
+182
+00:10:08.922 --> 00:10:10.640
+Next, Part 2.
+
+183
+00:10:11.390 --> 00:10:14.940
+Module 3 begins Part 2,
+governing and running.
+
+184
+00:10:14.940 --> 00:10:19.078
+It's about keeping all of this true
+across hundreds of delivery teams.
+
+185
+00:10:19.078 --> 00:10:22.202
+We'll cover where AI fits
+and how agents are fenced in,
+
+186
+00:10:22.202 --> 00:10:26.416
+which controls the architecture
+carries and the evidence they leave,
+
+187
+00:10:26.416 --> 00:10:30.340
+and the review board and the
+four gates every change passes.
+
+188
+00:10:31.090 --> 00:10:33.504
+Treat a model like any other component:
+
+189
+00:10:33.504 --> 00:10:37.803
+something behind an interface, whose
+output gets checked, not obeyed.
+
+190
+00:10:37.803 --> 00:10:42.302
+AI shows up in four ways, ordered by how
+much each can change, from a drafting
+
+191
+00:10:42.302 --> 00:10:46.653
+feature that changes nothing to an
+agent that can act through its tools.
+
+192
+00:10:46.653 --> 00:10:51.288
+For retrieval, one rule matters: it
+searches with the user's own permissions,
+
+193
+00:10:51.288 --> 00:10:54.128
+so it can't surface anything
+they couldn't open.
+
+194
+00:10:54.128 --> 00:10:58.537
+And everything calls models through
+one provider-neutral interface,
+
+195
+00:10:58.537 --> 00:11:03.327
+so swapping providers is configuration,
+not code, and every call is recorded.
+
+196
+00:11:03.327 --> 00:11:05.180
+Next, the agent.
+
+197
+00:11:05.930 --> 00:11:09.292
+An agent's risk is what it
+can do, not what it says.
+
+198
+00:11:09.292 --> 00:11:12.673
+And because hidden instructions
+in a document can steer it,
+
+199
+00:11:12.673 --> 00:11:14.743
+you can't count on the model refusing.
+
+200
+00:11:14.743 --> 00:11:17.918
+So design for a steered agent
+that still can't do harm.
+
+201
+00:11:17.918 --> 00:11:22.594
+Every agent has an identity and a
+human sponsor, a short list of allowed
+
+202
+00:11:22.594 --> 00:11:26.867
+tools enforced outside the model,
+a step limit and an audit trail.
+
+203
+00:11:26.867 --> 00:11:30.180
+The big one: no agent writes
+to a system of record.
+
+204
+00:11:30.180 --> 00:11:34.643
+It proposes, a person approves,
+and the service applies the change.
+
+205
+00:11:34.643 --> 00:11:39.017
+And the Model Context Protocol connects
+tools, but it isn't a guardrail.
+
+206
+00:11:39.017 --> 00:11:40.910
+Next, compliance.
+
+207
+00:11:41.660 --> 00:11:44.602
+Compliance is cheapest
+when the platform carries
+
+208
+00:11:44.602 --> 00:11:47.685
+the controls and the pipeline
+produces the evidence.
+
+209
+00:11:47.685 --> 00:11:52.560
+Implement a control once in the target,
+and every application on it inherits it.
+
+210
+00:11:52.560 --> 00:11:57.177
+The diagram shows where the controls
+land, from design through operation,
+
+211
+00:11:57.177 --> 00:12:00.735
+with everything flowing into
+one authorization record.
+
+212
+00:12:00.735 --> 00:12:04.612
+The table shows the control families
+application work touches most,
+
+213
+00:12:04.612 --> 00:12:06.585
+and the evidence each should leave.
+
+214
+00:12:06.585 --> 00:12:10.929
+And here's the point for triage:
+keeping an application on unsupported
+
+215
+00:12:10.929 --> 00:12:15.048
+software with no plan is a compliance
+finding, not a neutral choice.
+
+216
+00:12:15.048 --> 00:12:17.550
+Next, three design inputs.
+
+217
+00:12:18.300 --> 00:12:22.388
+Three things usually get reviewed at
+the end, and should come in at design.
+
+218
+00:12:22.388 --> 00:12:26.151
+Secure development: the federal
+attestation memo was rescinded,
+
+219
+00:12:26.151 --> 00:12:29.636
+but you're the producer of your
+own code, so build to the secure
+
+220
+00:12:29.636 --> 00:12:33.538
+development framework and let the
+pipeline generate the evidence.
+
+221
+00:12:33.538 --> 00:12:38.673
+Privacy: the program names the events
+that reopen privacy work, like a new
+
+222
+00:12:38.673 --> 00:12:43.637
+data store, a new flow or an AI feature,
+so the privacy office hears early.
+
+223
+00:12:43.637 --> 00:12:45.759
+And records: retiring a system,
+
+224
+00:12:45.759 --> 00:12:49.749
+or dropping history in a
+migration, is a records decision.
+
+225
+00:12:49.749 --> 00:12:51.690
+Next, who decides.
+
+226
+00:12:52.440 --> 00:12:57.096
+No rule requires an architecture review
+board, but several require what one
+
+227
+00:12:57.096 --> 00:12:59.460
+produces: an enterprise architecture,
+
+228
+00:12:59.460 --> 00:13:02.490
+a fit check for each system,
+and controlled change.
+
+229
+00:13:02.490 --> 00:13:05.628
+The key design choice is
+one decider per decision.
+
+230
+00:13:05.628 --> 00:13:07.940
+The board reviews; it doesn't vote.
+
+231
+00:13:07.940 --> 00:13:13.203
+The chief architect owns the standards,
+the application owner owns the disposition,
+
+232
+00:13:13.203 --> 00:13:18.315
+the CIO approves what gets bought, and only
+the authorizing official accepts risk.
+
+233
+00:13:18.315 --> 00:13:23.298
+The board works through versioned artifacts:
+a technology list with support dates,
+
+234
+00:13:23.298 --> 00:13:26.115
+runnable patterns, and
+short decision records.
+
+235
+00:13:26.115 --> 00:13:27.900
+Next, the gates.
+
+236
+00:13:28.650 --> 00:13:31.450
+Every changed application
+passes four gates.
+
+237
+00:13:31.450 --> 00:13:34.868
+The first two, the disposition
+and the design review,
+
+238
+00:13:34.868 --> 00:13:38.762
+are meetings, because they need
+judgment and happen rarely.
+
+239
+00:13:38.762 --> 00:13:43.058
+The last two, the pull request and
+the release, run many times a day,
+
+240
+00:13:43.058 --> 00:13:46.787
+so they're automated in the
+repository and the pipeline.
+
+241
+00:13:46.787 --> 00:13:48.675
+That ratio is deliberate.
+
+242
+00:13:48.675 --> 00:13:52.137
+Run a daily gate as a meeting
+and teams stop running it.
+
+243
+00:13:52.137 --> 00:13:55.288
+Each gate leaves its own
+evidence, kept by system,
+
+244
+00:13:55.288 --> 00:14:00.563
+and one rule holds throughout: nothing
+counts as done unless it carries its proof.
+
+245
+00:14:00.563 --> 00:14:02.310
+That's Module 3.
+
+246
+00:14:03.060 --> 00:14:05.022
+Module 4 makes it concrete.
+
+247
+00:14:05.022 --> 00:14:08.852
+We'll look at the small reference
+implementation that ships with the book,
+
+248
+00:14:08.852 --> 00:14:10.923
+and be honest about what its tests prove.
+
+249
+00:14:10.923 --> 00:14:13.519
+Then we'll place the
+work in the frameworks
+
+250
+00:14:13.519 --> 00:14:16.784
+architecture offices already
+use, TOGAF and Zachman.
+
+251
+00:14:16.784 --> 00:14:19.690
+And we'll finish with running
+the portfolio in waves,
+
+252
+00:14:19.690 --> 00:14:22.490
+and the decisions that
+belong to each owner.
+
+253
+00:14:23.240 --> 00:14:27.028
+Arguments about architecture
+are cheap; code that runs isn't.
+
+254
+00:14:27.028 --> 00:14:31.851
+So the book ships a small slice of
+the target: a case-management service,
+
+255
+00:14:31.851 --> 00:14:35.427
+a React front end, a migration
+tool and a triage agent.
+
+256
+00:14:35.427 --> 00:14:39.432
+It's deliberately small, with
+synthetic data and no sign-in,
+
+257
+00:14:39.432 --> 00:14:42.853
+so read it as an illustration,
+not production code.
+
+258
+00:14:42.853 --> 00:14:45.810
+Notice that the service
+owns its database schema,
+
+259
+00:14:45.810 --> 00:14:48.840
+and the migration tool
+loads into that same schema.
+
+260
+00:14:48.840 --> 00:14:51.097
+Two choices differ from the target,
+
+261
+00:14:51.097 --> 00:14:55.690
+an older Java and an older contract
+version, and the book says so plainly.
+
+262
+00:14:55.690 --> 00:14:58.290
+Next, what the code demonstrates.
+
+263
+00:14:59.040 --> 00:15:01.602
+Three parts show the
+patterns most directly.
+
+264
+00:15:01.602 --> 00:15:05.608
+The service's contract is checked
+against the code in both directions,
+
+265
+00:15:05.608 --> 00:15:08.440
+so the two can't drift apart
+without a failed build.
+
+266
+00:15:08.440 --> 00:15:12.596
+The migration tool handles real
+legacy habits, like padded text
+
+267
+00:15:12.596 --> 00:15:16.752
+and placeholder dates, and refuses
+to guess at a value it can't map.
+
+268
+00:15:16.752 --> 00:15:19.531
+And the agent can't even
+start without an owner,
+
+269
+00:15:19.531 --> 00:15:22.164
+and can only ever record
+a pending proposal.
+
+270
+00:15:22.164 --> 00:15:24.980
+Best of all, the tests
+break things on purpose,
+
+271
+00:15:24.980 --> 00:15:29.240
+to prove each check and guardrail
+catches the failure it exists for.
+
+272
+00:15:29.240 --> 00:15:31.280
+Next, the honest part.
+
+273
+00:15:32.030 --> 00:15:34.718
+Here's what was actually
+verified, and what wasn't.
+
+274
+00:15:34.718 --> 00:15:37.651
+The service, the contract
+and the migration
+
+275
+00:15:37.651 --> 00:15:40.992
+checks all pass against
+a real PostgreSQL engine.
+
+276
+00:15:40.992 --> 00:15:44.954
+The guardrails hold against a scripted
+model, though not a real one.
+
+277
+00:15:44.954 --> 00:15:46.555
+But two things are unproven.
+
+278
+00:15:46.555 --> 00:15:50.894
+The migration has never run against
+a real DB2 or Oracle database,
+
+279
+00:15:50.894 --> 00:15:54.430
+only a stand-in, and the
+containers were never started.
+
+280
+00:15:54.430 --> 00:15:58.242
+So test against a copy of your
+real source before relying on it.
+
+281
+00:15:58.242 --> 00:16:01.215
+A production version
+would add real sign-in,
+
+282
+00:16:01.215 --> 00:16:04.767
+an agent identity, a secrets
+vault and signed builds.
+
+283
+00:16:04.767 --> 00:16:06.890
+Next, the frameworks.
+
+284
+00:16:07.640 --> 00:16:10.406
+Many architecture offices think in TOGAF,
+
+285
+00:16:10.406 --> 00:16:13.252
+so the book maps its work
+onto TOGAF's phases.
+
+286
+00:16:13.252 --> 00:16:17.202
+First, the requirement itself:
+policy asks for an enterprise
+
+287
+00:16:17.202 --> 00:16:21.152
+architecture with a baseline,
+a target and a transition plan.
+
+288
+00:16:21.152 --> 00:16:23.440
+It doesn't require any framework.
+
+289
+00:16:23.440 --> 00:16:26.331
+Triage is the business
+baseline and the options,
+
+290
+00:16:26.331 --> 00:16:31.028
+the reference architecture is the target,
+and the waves are the migration plan.
+
+291
+00:16:31.028 --> 00:16:33.596
+The gates are implementation governance,
+
+292
+00:16:33.596 --> 00:16:36.678
+and re-scoring the portfolio
+starts the next cycle.
+
+293
+00:16:36.678 --> 00:16:41.315
+The point is to file what you already
+produce, not to create new deliverables.
+
+294
+00:16:41.315 --> 00:16:43.000
+Next, Zachman.
+
+295
+00:16:43.750 --> 00:16:46.022
+If TOGAF tells you the order of the work,
+
+296
+00:16:46.022 --> 00:16:49.075
+Zachman tells you whether
+you've described all of it.
+
+297
+00:16:49.075 --> 00:16:53.513
+It's a six-by-six grid of questions and
+perspectives, and it isn't a method.
+
+298
+00:16:53.513 --> 00:16:56.014
+The table shows which
+cells the book fills,
+
+299
+00:16:56.014 --> 00:16:59.874
+from the executive view of the
+portfolio down to the running code.
+
+300
+00:16:59.874 --> 00:17:04.983
+Reading it by column shows two gaps:
+locations and networks, which other books
+
+301
+00:17:04.983 --> 00:17:10.250
+cover, and timing detail like batch windows,
+which belongs in each design review.
+
+302
+00:17:10.250 --> 00:17:13.175
+An empty cell is a question, not a defect.
+
+303
+00:17:13.175 --> 00:17:14.600
+Now, running it.
+
+304
+00:17:15.350 --> 00:17:17.925
+A triage gives you a list, not a plan.
+
+305
+00:17:17.925 --> 00:17:22.028
+Waves turn it into one: batches
+that move through the same steps,
+
+306
+00:17:22.028 --> 00:17:24.000
+each leaving the next cheaper.
+
+307
+00:17:24.000 --> 00:17:26.597
+The portfolio doesn't
+get its own schedule;
+
+308
+00:17:26.597 --> 00:17:31.494
+it runs inside the program's existing
+phases and gates, from scoring everything,
+
+309
+00:17:31.494 --> 00:17:33.349
+through building the factory,
+
+310
+00:17:33.349 --> 00:17:36.762
+a pilot and the main waves, to
+retiring what was replaced.
+
+311
+00:17:36.762 --> 00:17:41.066
+Keep the pilot small, but include
+one genuinely hard application,
+
+312
+00:17:41.066 --> 00:17:43.537
+so the first real wave isn't a surprise.
+
+313
+00:17:43.537 --> 00:17:47.113
+And size later waves by what the
+factory has actually delivered.
+
+314
+00:17:47.113 --> 00:17:49.540
+Next, the engine behind it.
+
+315
+00:17:50.290 --> 00:17:54.562
+Group applications that share a
+database into the same wave, and keep a
+
+316
+00:17:54.562 --> 00:17:59.128
+ranked backlog several waves deep, with
+only the next one planned in detail.
+
+317
+00:17:59.128 --> 00:18:04.138
+The factory, meaning the platform,
+patterns, pipelines and runbooks, is judged
+
+318
+00:18:04.138 --> 00:18:08.914
+by one test: the fifth wave should cost
+less per application than the first.
+
+319
+00:18:08.914 --> 00:18:11.902
+Report progress from records, not plans.
+
+320
+00:18:11.902 --> 00:18:16.315
+Fund it wave by wave, so savings from
+retirements pay for the next one.
+
+321
+00:18:16.315 --> 00:18:19.412
+And here's the honest rule:
+cost avoided is only a
+
+322
+00:18:19.412 --> 00:18:23.065
+forecast until the old system
+is actually switched off.
+
+323
+00:18:23.065 --> 00:18:25.120
+Let's close with decisions.
+
+324
+00:18:25.870 --> 00:18:28.195
+Every decision here has one owner.
+
+325
+00:18:28.195 --> 00:18:32.320
+Leadership approves the triage
+rules once and settles disputes.
+
+326
+00:18:32.320 --> 00:18:35.245
+Application owners decide dispositions.
+
+327
+00:18:35.245 --> 00:18:39.270
+The chief architect owns the
+technology list and keeps it current.
+
+328
+00:18:39.270 --> 00:18:42.670
+The security and privacy
+officials set the controls.
+
+329
+00:18:42.670 --> 00:18:47.707
+The CIO approves what's bought, and only
+the authorizing official accepts risk.
+
+330
+00:18:47.707 --> 00:18:51.767
+You can start Monday without a
+new platform: build the inventory,
+
+331
+00:18:51.767 --> 00:18:55.980
+calibrate the rubric, publish the
+list with end dates, ask for three
+
+332
+00:18:55.980 --> 00:19:00.882
+validation results before any cut-over,
+and keep agents from writing records.
+
+333
+00:19:00.882 --> 00:19:05.107
+Decide one application at a time,
+and let the gates write the evidence.
+
+334
+00:19:05.107 --> 00:19:05.920
+Thank you.

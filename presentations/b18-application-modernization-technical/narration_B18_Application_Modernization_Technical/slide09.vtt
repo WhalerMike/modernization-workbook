@@ -1,0 +1,30 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.459
+Module 2 is about what the
+changed applications land on,
+
+2
+00:00:03.459 --> 00:00:05.238
+and how their data gets there.
+
+3
+00:00:05.238 --> 00:00:09.003
+One shared target means the platform
+team, the security team and
+
+4
+00:00:09.003 --> 00:00:12.912
+the authorizing official review
+one pattern instead of hundreds.
+
+5
+00:00:12.912 --> 00:00:17.450
+We'll cover the layers, the support
+clocks, contracts and configuration,
+
+6
+00:00:17.450 --> 00:00:21.980
+the strangler fig, and then the hardest
+part of most refactors: the data.

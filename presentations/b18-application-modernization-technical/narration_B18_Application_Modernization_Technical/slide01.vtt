@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.762
+This is the technical deep
+dive for Book 18 of the
+
+3
+00:00:03.762 --> 00:00:07.662
+Federal Modernization Workbook,
+Application Modernization.
+
+4
+00:00:07.662 --> 00:00:10.950
+It's for architects,
+application and data engineers,
+
+5
+00:00:10.950 --> 00:00:15.919
+database administrators and system
+security officers, the people who decide
+
+6
+00:00:15.919 --> 00:00:20.812
+what each legacy application becomes, then
+build it, move its data and prove it.
+
+7
+00:00:20.812 --> 00:00:24.697
+The book's idea is simple:
+modernization is a portfolio
+
+8
+00:00:24.697 --> 00:00:29.099
+decision made one application at
+a time, not one giant rewrite.
+
+9
+00:00:29.099 --> 00:00:31.425
+Part 1 is deciding and designing.
+
+10
+00:00:31.425 --> 00:00:33.700
+Part 2 is governing and running.
+
+11
+00:00:33.700 --> 00:00:35.464
+One note before we start:
+
+12
+00:00:35.464 --> 00:00:40.050
+product versions here are as of
+late October 2026, and they move.
+
+13
+00:00:40.050 --> 00:00:41.450
+Let's begin with why.

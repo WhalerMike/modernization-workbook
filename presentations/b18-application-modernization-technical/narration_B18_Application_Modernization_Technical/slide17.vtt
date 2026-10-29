@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.460
+A migration is finished when
+you can prove the target holds
+
+2
+00:00:03.460 --> 00:00:06.800
+the same facts as the source,
+and no single check can do that.
+
+3
+00:00:06.800 --> 00:00:12.003
+So use three with different blind spots:
+row counts, a checksum over every row,
+
+4
+00:00:12.003 --> 00:00:16.050
+and business totals computed
+separately in each database.
+
+5
+00:00:16.050 --> 00:00:17.862
+The third one matters most.
+
+6
+00:00:17.862 --> 00:00:20.776
+If your transform drops
+the time from every date,
+
+7
+00:00:20.776 --> 00:00:25.363
+the checksum still matches perfectly,
+because it ran after the same mistake.
+
+8
+00:00:25.363 --> 00:00:27.801
+The business totals
+don't share that mistake.
+
+9
+00:00:27.801 --> 00:00:30.675
+Pick totals the program office recognizes.
+
+10
+00:00:30.675 --> 00:00:32.590
+Next, the switch itself.

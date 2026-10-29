@@ -1,0 +1,1215 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   6.9,
+   "This is the technical deep dive for Book 18 of the Federal Modernization Workbook, Application Modernization."
+  ],
+  [
+   7.662,
+   13.15,
+   "It's for architects, application and data engineers, database administrators and system security officers, the people who decide what each legacy application becomes, then build it, move its data and prove it."
+  ],
+  [
+   20.812,
+   8.287,
+   "The book's idea is simple: modernization is a portfolio decision made one application at a time, not one giant rewrite."
+  ],
+  [
+   29.1,
+   2.325,
+   "Part 1 is deciding and designing."
+  ],
+  [
+   31.425,
+   2.275,
+   "Part 2 is governing and running."
+  ],
+  [
+   33.7,
+   6.35,
+   "One note before we start: product versions here are as of late October 2026, and they move."
+  ],
+  [
+   40.05,
+   1.35,
+   "Let's begin with why."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.387,
+   "Here's why this matters."
+  ],
+  [
+   1.438,
+   6.775,
+   "Most federal I T money goes to keeping existing systems running, and that share has barely moved in six years."
+  ],
+  [
+   8.213,
+   7.338,
+   "G A O's list of the most critical legacy systems is decades old, and most of those systems lack complete plans."
+  ],
+  [
+   15.55,
+   2.913,
+   "But those few systems are only the top of the list."
+  ],
+  [
+   18.462,
+   3.675,
+   "The real cost sits in thousands of ordinary applications."
+  ],
+  [
+   22.137,
+   9.912,
+   "The tempting answer is a grand rewrite, and the record says it rarely ends well: value arrives only at the end, and all the risk lands on one cut-over."
+  ],
+  [
+   32.05,
+   4.425,
+   "Federal policy already asks for small, useful pieces instead."
+  ],
+  [
+   36.475,
+   1.312,
+   "So, Module 1."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.013,
+   "Module 1 is about deciding."
+  ],
+  [
+   2.062,
+   5.713,
+   "Before anyone picks a framework, every application needs a decision about what it becomes."
+  ],
+  [
+   7.775,
+   10.675,
+   "We'll look at the six dispositions, the criteria behind them, how they're scored, the rules that turn a score into a decision, and how owners and calibration keep the whole thing honest."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   7.838,
+   "The unit of decision is the application, because that's where the owner, the data, the code and the authorization boundary all meet."
+  ],
+  [
+   7.888,
+   10.012,
+   "Each one gets one of six dispositions, listed from cheapest to most expensive, and that order is the first rule: take the cheapest one that meets the mission need."
+  ],
+  [
+   17.9,
+   3.4,
+   "Notice that retire and retain aren't projects at all."
+  ],
+  [
+   21.3,
+   2.938,
+   "They're decisions, and they're where the early savings are."
+  ],
+  [
+   24.238,
+   7.75,
+   "The vendors' lists line up with these, with one deliberate twist: replacing an application with a product counts as retiring it."
+  ],
+  [
+   31.988,
+   1.488,
+   "Next, what we score."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.338,
+   "Six criteria drive the triage, and the good news is that you already hold most of the data."
+  ],
+  [
+   5.388,
+   7.987,
+   "Your security categorization, configuration database, spending data, contracts and network flows fill in nearly all of it."
+  ],
+  [
+   13.375,
+   1.725,
+   "Two scoring rules matter."
+  ],
+  [
+   15.1,
+   4.4,
+   "Dependencies tell you the order to move things in, not what they become."
+  ],
+  [
+   19.5,
+   6.588,
+   "And business logic buried in the database counts twice, because it's both a skills problem and a migration problem."
+  ],
+  [
+   26.087,
+   4.362,
+   "Skills, by the way, are about the next five years, not today."
+  ],
+  [
+   30.45,
+   1.875,
+   "Now, how the scores combine."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   7.85,
+   "The six criteria roll up into two axes: how much the mission needs the application, and how healthy it is to run and change."
+  ],
+  [
+   7.9,
+   2.425,
+   "The grid shows where each corner points."
+  ],
+  [
+   10.325,
+   0.963,
+   "Low value?"
+  ],
+  [
+   11.287,
+   1.375,
+   "Retire it first."
+  ],
+  [
+   12.662,
+   1.675,
+   "High value and healthy?"
+  ],
+  [
+   14.338,
+   1.475,
+   "Keep it, on purpose."
+  ],
+  [
+   15.812,
+   1.9,
+   "High value and unhealthy?"
+  ],
+  [
+   17.712,
+   3.875,
+   "Fix the platform or the code, whichever is the real problem."
+  ],
+  [
+   21.587,
+   6.15,
+   "Every score also carries a flag for how far you can trust it: measured, attested or assumed."
+  ],
+  [
+   27.738,
+   2.663,
+   "Mostly assumed means no decision yet."
+  ],
+  [
+   30.4,
+   4.888,
+   "And always prefer what's measured, like usage logs, over what people believe."
+  ],
+  [
+   35.288,
+   1.55,
+   "Next, the rules."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.65,
+   "This is where scores become a proposed decision."
+  ],
+  [
+   2.7,
+   5.787,
+   "Seven rules run in order, and the first match wins, which keeps the cheapest answer on top."
+  ],
+  [
+   8.488,
+   6.8,
+   "Retire, retain, rehost and replatform come first, and only then refactor and rebuild."
+  ],
+  [
+   15.287,
+   2.875,
+   "The seventh rule is what makes this work at scale."
+  ],
+  [
+   18.163,
+   5.7,
+   "High-impact systems headed for a rewrite, and anything an owner disputes, get a deep study."
+  ],
+  [
+   23.863,
+   2.987,
+   "Everything else gets a decision for the cost of scoring."
+  ],
+  [
+   26.85,
+   5.263,
+   "So thousands of applications get decided, and the real analysis goes where it counts."
+  ],
+  [
+   32.112,
+   2.188,
+   "Next, the people who confirm it."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.688,
+   "The rubric proposes; owners confirm."
+  ],
+  [
+   2.737,
+   9.575,
+   "Each application's mission owner and system owner get a fixed window to agree, or to contest with evidence, and a bad score gets corrected, not argued around."
+  ],
+  [
+   12.312,
+   8.175,
+   "What comes out is a decision record: the disposition, the scores, the rule that fired, the owner's agreement and a review date."
+  ],
+  [
+   20.488,
+   4.787,
+   "That one record serves the architecture plan, capital planning and the auditor."
+  ],
+  [
+   25.275,
+   6.675,
+   "And before you run it across the portfolio, calibrate it on a few dozen applications your architects already know well."
+  ],
+  [
+   31.95,
+   1.312,
+   "That's Module 1."
+  ],
+  [
+   33.263,
+   1.188,
+   "Now, the target."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.188,
+   "Module 2 is about what the changed applications land on, and how their data gets there."
+  ],
+  [
+   5.237,
+   7.675,
+   "One shared target means the platform team, the security team and the authorizing official review one pattern instead of hundreds."
+  ],
+  [
+   12.912,
+   9.0,
+   "We'll cover the layers, the support clocks, contracts and configuration, the strangler fig, and then the hardest part of most refactors: the data."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.075,
+   "Here's the target."
+  ],
+  [
+   1.125,
+   3.237,
+   "React front ends that only call A P I's."
+  ],
+  [
+   4.362,
+   6.975,
+   "A thin Node layer where a front end needs one, and a gateway that also acts as the switch for incremental replacement."
+  ],
+  [
+   11.338,
+   4.912,
+   "Java and Spring Boot services that each publish a contract and own their data."
+  ],
+  [
+   16.25,
+   2.663,
+   "And everything in containers on Kubernetes."
+  ],
+  [
+   18.913,
+   7.2,
+   "These are mainstream choices with big labor pools and long support windows, because these business rules will live for decades."
+  ],
+  [
+   26.113,
+   2.975,
+   "And they're the program's design, not a federal rule."
+  ],
+  [
+   29.087,
+   4.162,
+   "An agency built on .NET can keep the structure and swap the list."
+  ],
+  [
+   33.25,
+   1.45,
+   "Next, the clocks."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.45,
+   "Versions are a snapshot."
+  ],
+  [
+   1.5,
+   2.275,
+   "Support windows are the real story."
+  ],
+  [
+   3.775,
+   6.325,
+   "Java's long-term releases are supported for years, so build on one and move to the next within a year."
+  ],
+  [
+   10.1,
+   8.762,
+   "Spring Boot is shorter: each recent generation gets only about thirteen months of open-source support, and one generation has already run out."
+  ],
+  [
+   18.863,
+   2.763,
+   "Node and Kubernetes keep their own clocks too."
+  ],
+  [
+   21.625,
+   2.737,
+   "So upgrades can't be left to each project."
+  ],
+  [
+   24.363,
+   7.7,
+   "Build the cadence into the platform and fund it as recurring work, or today's modernized portfolio becomes tomorrow's legacy."
+  ],
+  [
+   32.062,
+   2.65,
+   "Next, the disciplines that hold it together."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.7,
+   "Three disciplines hold the architecture together."
+  ],
+  [
+   2.75,
+   2.862,
+   "First, the contract comes before the code."
+  ],
+  [
+   5.612,
+   7.862,
+   "Teams agree on the Open A P I document, generate from it, test against it, and publish it so the next team reuses it."
+  ],
+  [
+   13.475,
+   2.475,
+   "Second, keep the thin layers thin."
+  ],
+  [
+   15.95,
+   6.3,
+   "Node serves the front end's needs, and business rules stay in the services, where they're tested once."
+  ],
+  [
+   22.25,
+   3.275,
+   "Third, configuration comes from outside the code."
+  ],
+  [
+   25.525,
+   5.463,
+   "The best test is whether you could publish the code tomorrow without exposing a single credential."
+  ],
+  [
+   30.988,
+   2.9,
+   "Next, how a refactor actually happens."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.538,
+   "A refactor happens through the strangler fig."
+  ],
+  [
+   2.587,
+   10.8,
+   "Put a fa\u00e7ade in front of the legacy application, move one function at a time behind the same contract, retire the old system when nothing depends on it, and finally remove the fa\u00e7ade."
+  ],
+  [
+   13.387,
+   3.3,
+   "You can roll back right up until the legacy tables are gone."
+  ],
+  [
+   16.688,
+   6.125,
+   "Before you commit, check that requests can actually be intercepted, and that there's a plan for shared data."
+  ],
+  [
+   22.812,
+   2.575,
+   "Those questions belong in the deep study."
+  ],
+  [
+   25.387,
+   4.763,
+   "And for security, two nist guides cover microservices and containers."
+  ],
+  [
+   30.15,
+   2.15,
+   "They're guidance, not requirements."
+  ],
+  [
+   32.3,
+   1.25,
+   "Now, the data."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   7.3,
+   "Code can be replaced a piece at a time, but data moves once, and the move isn't done until you can prove nothing was lost."
+  ],
+  [
+   7.35,
+   8.6,
+   "So the program treats it as three jobs: convert the schema, move the rows, and prove the result, looping back on any mismatch."
+  ],
+  [
+   15.95,
+   3.562,
+   "Choosing the engine is usually settled by what you already run."
+  ],
+  [
+   19.512,
+   4.175,
+   "And remember that the engine also decides which conversion tools you can use."
+  ],
+  [
+   23.688,
+   5.925,
+   "If the target is SQL Server, arrive already on Book 6's modern sign-in pattern."
+  ],
+  [
+   29.613,
+   2.25,
+   "Next, where conversions go wrong."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   5.463,
+   "Conversion tools do most of the work, but the dangerous conversions are the ones that succeed."
+  ],
+  [
+   5.513,
+   5.0,
+   "Map an Oracle date to a plain date and you silently lose the time of day."
+  ],
+  [
+   10.512,
+   3.5,
+   "Treat money as floating point and you lose exactness."
+  ],
+  [
+   14.012,
+   4.15,
+   "Oracle treats an empty string as null, and the targets don't."
+  ],
+  [
+   18.163,
+   4.5,
+   "And sequences need to move past the highest key before the first new record."
+  ],
+  [
+   22.663,
+   3.25,
+   "Stored procedures and packages are the long pole."
+  ],
+  [
+   25.913,
+   5.537,
+   "Tools emulate them, but the program treats every emulation call as debt to pay down."
+  ],
+  [
+   31.45,
+   2.025,
+   "Next, the tools themselves."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.737,
+   "Here are the conversion tools as of October 2026, as examples, not endorsements."
+  ],
+  [
+   5.787,
+   1.7,
+   "Three facts shape your plan."
+  ],
+  [
+   7.487,
+   4.412,
+   "Only A W S tools convert DB2 to PostgreSQL."
+  ],
+  [
+   11.9,
+   4.388,
+   "Microsoft's assistant targets only SQL Server and Azure SQL."
+  ],
+  [
+   16.288,
+   8.037,
+   "And the newer AI-assisted conversion sends your source code to a model, which puts that model's endpoint inside your migration's boundary."
+  ],
+  [
+   24.325,
+   5.338,
+   "Treat whatever it produces as a draft that a person reviews and the validation tests."
+  ],
+  [
+   29.663,
+   2.438,
+   "So pick the engine with these limits in view."
+  ],
+  [
+   32.1,
+   1.725,
+   "Next, proving the move."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   6.75,
+   "A migration is finished when you can prove the target holds the same facts as the source, and no single check can do that."
+  ],
+  [
+   6.8,
+   9.25,
+   "So use three with different blind spots: row counts, a checksum over every row, and business totals computed separately in each database."
+  ],
+  [
+   16.05,
+   1.812,
+   "The third one matters most."
+  ],
+  [
+   17.863,
+   7.5,
+   "If your transform drops the time from every date, the checksum still matches perfectly, because it ran after the same mistake."
+  ],
+  [
+   25.363,
+   2.438,
+   "The business totals don't share that mistake."
+  ],
+  [
+   27.8,
+   2.875,
+   "Pick totals the program office recognizes."
+  ],
+  [
+   30.675,
+   1.863,
+   "Next, the switch itself."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   6.287,
+   "There are three ways to cut over: all at once, in phases, or by running both systems in parallel."
+  ],
+  [
+   6.338,
+   5.562,
+   "All three end at the same gate: three clean validation results and a rehearsed way back."
+  ],
+  [
+   11.9,
+   10.537,
+   "Phases and parallel runs mean both systems live side by side for a while, and here's the rule that matters most: never let the application write to both databases."
+  ],
+  [
+   22.438,
+   2.237,
+   "Those writes drift apart silently."
+  ],
+  [
+   24.675,
+   5.475,
+   "Instead, one system owns each table, and changes are replicated from the log."
+  ],
+  [
+   30.15,
+   1.312,
+   "That's Module 2."
+  ],
+  [
+   31.462,
+   1.363,
+   "Next, Part 2."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   3.55,
+   "Module 3 begins Part 2, governing and running."
+  ],
+  [
+   3.6,
+   4.138,
+   "It's about keeping all of this true across hundreds of delivery teams."
+  ],
+  [
+   7.737,
+   10.9,
+   "We'll cover where AI fits and how agents are fenced in, which controls the architecture carries and the evidence they leave, and the review board and the four gates every change passes."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   6.713,
+   "Treat a model like any other component: something behind an interface, whose output gets checked, not obeyed."
+  ],
+  [
+   6.763,
+   8.85,
+   "AI shows up in four ways, ordered by how much each can change, from a drafting feature that changes nothing to an agent that can act through its tools."
+  ],
+  [
+   15.613,
+   7.475,
+   "For retrieval, one rule matters: it searches with the user's own permissions, so it can't surface anything they couldn't open."
+  ],
+  [
+   23.087,
+   9.2,
+   "And everything calls models through one provider-neutral interface, so swapping providers is configuration, not code, and every call is recorded."
+  ],
+  [
+   32.288,
+   1.5,
+   "Next, the agent."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   3.362,
+   "An agent's risk is what it can do, not what it says."
+  ],
+  [
+   3.413,
+   5.45,
+   "And because hidden instructions in a document can steer it, you can't count on the model refusing."
+  ],
+  [
+   8.863,
+   3.175,
+   "So design for a steered agent that still can't do harm."
+  ],
+  [
+   12.037,
+   8.95,
+   "Every agent has an identity and a human sponsor, a short list of allowed tools enforced outside the model, a step limit and an audit trail."
+  ],
+  [
+   20.988,
+   3.312,
+   "The big one: no agent writes to a system of record."
+  ],
+  [
+   24.3,
+   4.463,
+   "It proposes, a person approves, and the service applies the change."
+  ],
+  [
+   28.762,
+   4.375,
+   "And the Model Context Protocol connects tools, but it isn't a guardrail."
+  ],
+  [
+   33.138,
+   1.525,
+   "Next, compliance."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   6.025,
+   "Compliance is cheapest when the platform carries the controls and the pipeline produces the evidence."
+  ],
+  [
+   6.075,
+   4.875,
+   "Implement a control once in the target, and every application on it inherits it."
+  ],
+  [
+   10.95,
+   8.175,
+   "The diagram shows where the controls land, from design through operation, with everything flowing into one authorization record."
+  ],
+  [
+   19.125,
+   5.85,
+   "The table shows the control families application work touches most, and the evidence each should leave."
+  ],
+  [
+   24.975,
+   8.463,
+   "And here's the point for triage: keeping an application on unsupported software with no plan is a compliance finding, not a neutral choice."
+  ],
+  [
+   33.438,
+   2.138,
+   "Next, three design inputs."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   4.088,
+   "Three things usually get reviewed at the end, and should come in at design."
+  ],
+  [
+   4.138,
+   11.15,
+   "Secure development: the federal attestation memo was rescinded, but you're the producer of your own code, so build to the secure development framework and let the pipeline generate the evidence."
+  ],
+  [
+   15.287,
+   10.1,
+   "Privacy: the program names the events that reopen privacy work, like a new data store, a new flow or an AI feature, so the privacy office hears early."
+  ],
+  [
+   25.387,
+   6.112,
+   "And records: retiring a system, or dropping history in a migration, is a records decision."
+  ],
+  [
+   31.5,
+   1.587,
+   "Next, who decides."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   10.05,
+   "No rule requires an architecture review board, but several require what one produces: an enterprise architecture, a fit check for each system, and controlled change."
+  ],
+  [
+   10.1,
+   3.138,
+   "The key design choice is one decider per decision."
+  ],
+  [
+   13.238,
+   2.312,
+   "The board reviews; it doesn't vote."
+  ],
+  [
+   15.55,
+   10.375,
+   "The chief architect owns the standards, the application owner owns the disposition, the C I O approves what gets bought, and only the authorizing official accepts risk."
+  ],
+  [
+   25.925,
+   7.8,
+   "The board works through versioned artifacts: a technology list with support dates, runnable patterns, and short decision records."
+  ],
+  [
+   33.725,
+   1.413,
+   "Next, the gates."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   2.8,
+   "Every changed application passes four gates."
+  ],
+  [
+   2.85,
+   7.312,
+   "The first two, the disposition and the design review, are meetings, because they need judgment and happen rarely."
+  ],
+  [
+   10.162,
+   8.025,
+   "The last two, the pull request and the release, run many times a day, so they're automated in the repository and the pipeline."
+  ],
+  [
+   18.188,
+   1.887,
+   "That ratio is deliberate."
+  ],
+  [
+   20.075,
+   3.462,
+   "Run a daily gate as a meeting and teams stop running it."
+  ],
+  [
+   23.538,
+   8.425,
+   "Each gate leaves its own evidence, kept by system, and one rule holds throughout: nothing counts as done unless it carries its proof."
+  ],
+  [
+   31.962,
+   1.375,
+   "That's Module 3."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   1.962,
+   "Module 4 makes it concrete."
+  ],
+  [
+   2.013,
+   5.9,
+   "We'll look at the small reference implementation that ships with the book, and be honest about what its tests prove."
+  ],
+  [
+   7.912,
+   5.862,
+   "Then we'll place the work in the frameworks architecture offices already use, TOGAF and Zachman."
+  ],
+  [
+   13.775,
+   5.338,
+   "And we'll finish with running the portfolio in waves, and the decisions that belong to each owner."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   3.788,
+   "Arguments about architecture are cheap; code that runs isn't."
+  ],
+  [
+   3.837,
+   8.4,
+   "So the book ships a small slice of the target: a case-management service, a React front end, a migration tool and a triage agent."
+  ],
+  [
+   12.238,
+   7.425,
+   "It's deliberately small, with synthetic data and no sign-in, so read it as an illustration, not production code."
+  ],
+  [
+   19.663,
+   5.987,
+   "Notice that the service owns its database schema, and the migration tool loads into that same schema."
+  ],
+  [
+   25.65,
+   6.85,
+   "Two choices differ from the target, an older Java and an older contract version, and the book says so plainly."
+  ],
+  [
+   32.5,
+   2.25,
+   "Next, what the code demonstrates."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   2.562,
+   "Three parts show the patterns most directly."
+  ],
+  [
+   2.612,
+   6.838,
+   "The service's contract is checked against the code in both directions, so the two can't drift apart without a failed build."
+  ],
+  [
+   9.45,
+   8.312,
+   "The migration tool handles real legacy habits, like padded text and placeholder dates, and refuses to guess at a value it can't map."
+  ],
+  [
+   17.762,
+   5.412,
+   "And the agent can't even start without an owner, and can only ever record a pending proposal."
+  ],
+  [
+   23.175,
+   7.075,
+   "Best of all, the tests break things on purpose, to prove each check and guardrail catches the failure it exists for."
+  ],
+  [
+   30.25,
+   1.688,
+   "Next, the honest part."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   2.688,
+   "Here's what was actually verified, and what wasn't."
+  ],
+  [
+   2.737,
+   6.275,
+   "The service, the contract and the migration checks all pass against a real PostgreSQL engine."
+  ],
+  [
+   9.012,
+   3.962,
+   "The guardrails hold against a scripted model, though not a real one."
+  ],
+  [
+   12.975,
+   1.6,
+   "But two things are unproven."
+  ],
+  [
+   14.575,
+   7.875,
+   "The migration has never run against a real DB2 or Oracle database, only a stand-in, and the containers were never started."
+  ],
+  [
+   22.45,
+   3.812,
+   "So test against a copy of your real source before relying on it."
+  ],
+  [
+   26.262,
+   6.525,
+   "A production version would add real sign-in, an agent identity, a secrets vault and signed builds."
+  ],
+  [
+   32.788,
+   1.762,
+   "Next, the frameworks."
+  ]
+ ],
+ "30": [
+  [
+   0.05,
+   5.612,
+   "Many architecture offices think in TOGAF, so the book maps its work onto TOGAF's phases."
+  ],
+  [
+   5.662,
+   7.9,
+   "First, the requirement itself: policy asks for an enterprise architecture with a baseline, a target and a transition plan."
+  ],
+  [
+   13.562,
+   2.288,
+   "It doesn't require any framework."
+  ],
+  [
+   15.85,
+   7.588,
+   "Triage is the business baseline and the options, the reference architecture is the target, and the waves are the migration plan."
+  ],
+  [
+   23.438,
+   5.65,
+   "The gates are implementation governance, and re-scoring the portfolio starts the next cycle."
+  ],
+  [
+   29.087,
+   4.638,
+   "The point is to file what you already produce, not to create new deliverables."
+  ],
+  [
+   33.725,
+   1.325,
+   "Next, Zachman."
+  ]
+ ],
+ "31": [
+  [
+   0.05,
+   5.325,
+   "If TOGAF tells you the order of the work, Zachman tells you whether you've described all of it."
+  ],
+  [
+   5.375,
+   4.438,
+   "It's a six-by-six grid of questions and perspectives, and it isn't a method."
+  ],
+  [
+   9.812,
+   6.362,
+   "The table shows which cells the book fills, from the executive view of the portfolio down to the running code."
+  ],
+  [
+   16.175,
+   10.375,
+   "Reading it by column shows two gaps: locations and networks, which other books cover, and timing detail like batch windows, which belongs in each design review."
+  ],
+  [
+   26.55,
+   2.925,
+   "An empty cell is a question, not a defect."
+  ],
+  [
+   29.475,
+   1.075,
+   "Now, running it."
+  ]
+ ],
+ "32": [
+  [
+   0.05,
+   2.575,
+   "A triage gives you a list, not a plan."
+  ],
+  [
+   2.625,
+   6.075,
+   "Waves turn it into one: batches that move through the same steps, each leaving the next cheaper."
+  ],
+  [
+   8.7,
+   12.762,
+   "The portfolio doesn't get its own schedule; it runs inside the program's existing phases and gates, from scoring everything, through building the factory, a pilot and the main waves, to retiring what was replaced."
+  ],
+  [
+   21.462,
+   6.775,
+   "Keep the pilot small, but include one genuinely hard application, so the first real wave isn't a surprise."
+  ],
+  [
+   28.238,
+   3.575,
+   "And size later waves by what the factory has actually delivered."
+  ],
+  [
+   31.812,
+   2.062,
+   "Next, the engine behind it."
+  ]
+ ],
+ "33": [
+  [
+   0.05,
+   8.838,
+   "Group applications that share a database into the same wave, and keep a ranked backlog several waves deep, with only the next one planned in detail."
+  ],
+  [
+   8.887,
+   9.787,
+   "The factory, meaning the platform, patterns, pipelines and runbooks, is judged by one test: the fifth wave should cost less per application than the first."
+  ],
+  [
+   18.675,
+   2.987,
+   "Report progress from records, not plans."
+  ],
+  [
+   21.663,
+   4.412,
+   "Fund it wave by wave, so savings from retirements pay for the next one."
+  ],
+  [
+   26.075,
+   6.75,
+   "And here's the honest rule: cost avoided is only a forecast until the old system is actually switched off."
+  ],
+  [
+   32.825,
+   1.7,
+   "Let's close with decisions."
+  ]
+ ],
+ "34": [
+  [
+   0.05,
+   2.325,
+   "Every decision here has one owner."
+  ],
+  [
+   2.375,
+   4.125,
+   "Leadership approves the triage rules once and settles disputes."
+  ],
+  [
+   6.5,
+   2.925,
+   "Application owners decide dispositions."
+  ],
+  [
+   9.425,
+   4.025,
+   "The chief architect owns the technology list and keeps it current."
+  ],
+  [
+   13.45,
+   3.4,
+   "The security and privacy officials set the controls."
+  ],
+  [
+   16.85,
+   5.037,
+   "The C I O approves what's bought, and only the authorizing official accepts risk."
+  ],
+  [
+   21.887,
+   13.175,
+   "You can start Monday without a new platform: build the inventory, calibrate the rubric, publish the list with end dates, ask for three validation results before any cut-over, and keep agents from writing records."
+  ],
+  [
+   35.062,
+   4.225,
+   "Decide one application at a time, and let the gates write the evidence."
+  ],
+  [
+   39.288,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

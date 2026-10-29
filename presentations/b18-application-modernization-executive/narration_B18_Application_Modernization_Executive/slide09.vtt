@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.013
+Code can move a piece at a time, but
+data moves once, and data errors hide.
+
+2
+00:00:05.013 --> 00:00:07.585
+A date that lost its
+time of day may not show
+
+3
+00:00:07.585 --> 00:00:10.451
+up until someone's record
+is wrong months later.
+
+4
+00:00:10.451 --> 00:00:14.126
+So the move isn't finished
+until it's proven, three ways,
+
+5
+00:00:14.126 --> 00:00:19.641
+chosen so their blind spots don't overlap:
+row counts, a checksum over every value,
+
+6
+00:00:19.641 --> 00:00:24.487
+and totals the business recognizes,
+computed separately on each side.
+
+7
+00:00:24.487 --> 00:00:27.558
+That last one matters,
+because a program office can
+
+8
+00:00:27.558 --> 00:00:30.701
+judge its monthly totals in
+a way it can't judge a hash.
+
+9
+00:00:30.701 --> 00:00:33.301
+The decision: no cut-over until the owner
+
+10
+00:00:33.301 --> 00:00:36.138
+and the authorizing
+official see all three.
+
+11
+00:00:36.138 --> 00:00:37.660
+And during the transition?

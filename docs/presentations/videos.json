@@ -580,6 +580,36 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity-technical/B17_AI_Identity_Technical_Narration_Script.md"
  },
  {
+  "id": "B18_Application_Modernization_Executive_Narrated",
+  "title": "Book 18 — Application Modernization: executive briefing",
+  "group": "book",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B18_Application_Modernization_Executive_Narrated.mp4",
+  "vtt": "presentations/b18-application-modernization-executive/B18_Application_Modernization_Executive_Narrated.vtt",
+  "deck": "presentations/b18-application-modernization-executive/B18_Application_Modernization_Executive_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization-executive/B18_Application_Modernization_Executive_Narration_Script.md"
+ },
+ {
+  "id": "B18_Application_Modernization_Narrated",
+  "title": "Book 18 — Application Modernization: presentation",
+  "group": "book",
+  "minutes": 10,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B18_Application_Modernization_Narrated.mp4",
+  "vtt": "presentations/b18-application-modernization/B18_Application_Modernization_Narrated.vtt",
+  "deck": "presentations/b18-application-modernization/B18_Application_Modernization_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization/B18_Application_Modernization_Narration_Script.md"
+ },
+ {
+  "id": "B18_Application_Modernization_Technical_Narrated",
+  "title": "Book 18 — Application Modernization: technical deep dive",
+  "group": "book",
+  "minutes": 21,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B18_Application_Modernization_Technical_Narrated.mp4",
+  "vtt": "presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narrated.vtt",
+  "deck": "presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narration_Script.md"
+ },
+ {
   "id": "B08_DDI_Requirements_Narrated",
   "title": "Book 08 — DNS, DHCP & IPAM: what a federal DDI platform must do",
   "group": "research",

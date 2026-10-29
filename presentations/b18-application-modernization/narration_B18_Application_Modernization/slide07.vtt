@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.926
+AI belongs in the architecture
+the same way any component does:
+
+2
+00:00:03.926 --> 00:00:08.025
+behind one interface, with its
+output checked rather than trusted.
+
+3
+00:00:08.025 --> 00:00:12.797
+An agent is different, because it
+acts, so it needs what any actor needs:
+
+4
+00:00:12.797 --> 00:00:18.238
+an identity, a person who answers for it,
+limited permissions and an audit trail.
+
+5
+00:00:18.238 --> 00:00:21.763
+The design can't count on the
+model refusing bad instructions,
+
+6
+00:00:21.763 --> 00:00:25.288
+since there's no fool-proof
+defense against prompt injection.
+
+7
+00:00:25.288 --> 00:00:27.891
+So the guardrails sit outside the model,
+
+8
+00:00:27.891 --> 00:00:31.676
+and the rule is simple: no agent
+writes to a system of record.
+
+9
+00:00:31.676 --> 00:00:36.550
+Agents read and propose, people
+approve, and services apply the change.
+
+10
+00:00:36.550 --> 00:00:38.860
+Now, how does all of this stay compliant?

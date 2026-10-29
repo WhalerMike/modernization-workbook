@@ -1,0 +1,714 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.612
+This briefing comes from
+Book 18 of the Federal
+
+3
+00:00:03.612 --> 00:00:06.900
+Modernization Workbook,
+Application Modernization.
+
+4
+00:00:06.900 --> 00:00:10.085
+It's written for CIOs
+and portfolio owners,
+
+5
+00:00:10.085 --> 00:00:14.363
+architects, data teams, ISSOs
+and authorizing officials.
+
+6
+00:00:14.363 --> 00:00:15.776
+I'll take four questions.
+
+7
+00:00:15.776 --> 00:00:18.356
+Why is modernizing thousands of legacy
+
+8
+00:00:18.356 --> 00:00:21.562
+applications a portfolio
+decision, not a rewrite?
+
+9
+00:00:21.562 --> 00:00:23.624
+What should each application become?
+
+10
+00:00:23.624 --> 00:00:25.350
+Who governs the architecture?
+
+11
+00:00:25.350 --> 00:00:26.925
+And how do you run it at scale?
+
+12
+00:00:26.925 --> 00:00:30.418
+The short version: decide
+application by application,
+
+13
+00:00:30.418 --> 00:00:34.533
+build the changed ones on one
+architecture, prove the data moved,
+
+14
+00:00:34.533 --> 00:00:39.113
+give every AI agent an owner, and let
+the review gates write the evidence.
+
+15
+00:00:39.113 --> 00:00:41.440
+Let's start with where the money goes.
+
+16
+00:00:42.190 --> 00:00:46.027
+This slide matters because it shows
+the size of what we're deciding about.
+
+17
+00:00:46.027 --> 00:00:50.701
+Year after year, about eighty percent
+of federal IT spending goes to keeping
+
+18
+00:00:50.701 --> 00:00:55.003
+existing systems running, and that
+share has hardly moved in six years.
+
+19
+00:00:55.003 --> 00:00:58.264
+When G A O ranked the most
+critical legacy systems,
+
+20
+00:00:58.264 --> 00:01:01.128
+the striking finding
+wasn't the technology.
+
+21
+00:01:01.128 --> 00:01:02.153
+It was planning.
+
+22
+00:01:02.153 --> 00:01:06.773
+Most had no complete plan, and the
+missing pieces were decisions made one
+
+23
+00:01:06.773 --> 00:01:11.240
+system at a time: milestones, the work,
+and what happens to the old system.
+
+24
+00:01:11.240 --> 00:01:14.415
+And those flagship systems
+are only the top of the list.
+
+25
+00:01:14.415 --> 00:01:18.377
+Most of the cost sits in thousands
+of ordinary applications.
+
+26
+00:01:18.377 --> 00:01:20.290
+So why not just replace them?
+
+27
+00:01:21.040 --> 00:01:23.446
+The grand rewrite is the obvious answer,
+
+28
+00:01:23.446 --> 00:01:26.290
+and the federal record
+says it rarely ends well.
+
+29
+00:01:26.290 --> 00:01:30.728
+A rewrite delivers nothing until
+cut-over, so users wait years.
+
+30
+00:01:30.728 --> 00:01:36.666
+Its real specification is the old system,
+buried in code, data and workarounds.
+
+31
+00:01:36.666 --> 00:01:40.215
+And all the risk lands on one
+switch with no easy way back.
+
+32
+00:01:40.215 --> 00:01:44.879
+Federal policy already points the
+other way: build in useful segments,
+
+33
+00:01:44.879 --> 00:01:48.015
+each one delivering a
+working system on its own.
+
+34
+00:01:48.015 --> 00:01:50.365
+That leads to the key idea of the book.
+
+35
+00:01:50.365 --> 00:01:54.506
+The unit of decision is the application,
+because that's where the owner,
+
+36
+00:01:54.506 --> 00:01:58.290
+the data, the code and the
+authorization boundary actually live.
+
+37
+00:01:58.290 --> 00:02:01.230
+So how do you decide, thousands of times?
+
+38
+00:02:01.980 --> 00:02:03.655
+Here's the heart of the method.
+
+39
+00:02:03.655 --> 00:02:08.470
+A study per application would take
+longer than most applications have left,
+
+40
+00:02:08.470 --> 00:02:12.368
+so triage is a rubric applied to
+data the agency already holds.
+
+41
+00:02:12.368 --> 00:02:15.608
+Every application gets
+one of six dispositions,
+
+42
+00:02:15.608 --> 00:02:20.630
+from retire and retain up through
+rehost, replatform, refactor and rebuild,
+
+43
+00:02:20.630 --> 00:02:24.356
+and it gets the cheapest one
+that meets its mission need.
+
+44
+00:02:24.356 --> 00:02:29.196
+A simple table of rules proposes the
+answer, owners confirm or contest it,
+
+45
+00:02:29.196 --> 00:02:33.230
+and deep study is kept for the
+high-stakes and disputed cases.
+
+46
+00:02:33.230 --> 00:02:37.738
+The big surprise for most leaders is
+that retire and retain are decisions,
+
+47
+00:02:37.738 --> 00:02:40.842
+not projects, and that's
+where the early savings are.
+
+48
+00:02:40.842 --> 00:02:43.530
+Then, what do the changed ones become?
+
+49
+00:02:44.280 --> 00:02:46.978
+If every refactor picks its own stack,
+
+50
+00:02:46.978 --> 00:02:51.243
+the agency just trades one legacy
+problem for many new ones.
+
+51
+00:02:51.243 --> 00:02:56.543
+So the applications that change land on
+one target, reviewed and authorized once.
+
+52
+00:02:56.543 --> 00:03:01.125
+The book's choices are mainstream
+and long-supported: Java services,
+
+53
+00:03:01.125 --> 00:03:05.054
+React front ends, published A
+P I contracts and containers.
+
+54
+00:03:05.054 --> 00:03:07.832
+They're design guidance,
+not a federal rule,
+
+55
+00:03:07.832 --> 00:03:10.530
+and an agency can substitute its own list.
+
+56
+00:03:10.530 --> 00:03:11.905
+Two things to remember.
+
+57
+00:03:11.905 --> 00:03:16.055
+The stack ages fast, so budget
+for upgrades as recurring work.
+
+58
+00:03:16.055 --> 00:03:20.607
+And a refactor happens piece by
+piece: a façade sends each request to
+
+59
+00:03:20.607 --> 00:03:24.993
+the old system or the new one, until
+nothing depends on the old one.
+
+60
+00:03:24.993 --> 00:03:27.900
+The hardest part, though, is the data.
+
+61
+00:03:28.650 --> 00:03:33.511
+Data is where modernization loses the
+most trust, because a missing row or a
+
+62
+00:03:33.511 --> 00:03:38.450
+lost time of day may not surface until
+someone's record is wrong months later.
+
+63
+00:03:38.450 --> 00:03:41.609
+Code can move a piece at a
+time, but data moves once,
+
+64
+00:03:41.609 --> 00:03:45.400
+and the move isn't done until
+you can prove nothing was lost.
+
+65
+00:03:45.400 --> 00:03:48.456
+The book's answer is
+three independent checks:
+
+66
+00:03:48.456 --> 00:03:52.075
+counts, a checksum, and totals
+the business recognizes.
+
+67
+00:03:52.075 --> 00:03:53.508
+No single check is enough,
+
+68
+00:03:53.508 --> 00:03:56.987
+because each one shares an
+assumption with what it's checking.
+
+69
+00:03:56.987 --> 00:04:02.024
+And while old and new run side by side,
+each table has exactly one writer.
+
+70
+00:04:02.024 --> 00:04:05.075
+Writing to both databases
+is a plan for drift.
+
+71
+00:04:05.075 --> 00:04:08.860
+Next, the newest part of
+the architecture: AI.
+
+72
+00:04:09.610 --> 00:04:13.486
+AI belongs in the architecture
+the same way any component does:
+
+73
+00:04:13.486 --> 00:04:17.585
+behind one interface, with its
+output checked rather than trusted.
+
+74
+00:04:17.585 --> 00:04:22.357
+An agent is different, because it
+acts, so it needs what any actor needs:
+
+75
+00:04:22.357 --> 00:04:27.798
+an identity, a person who answers for it,
+limited permissions and an audit trail.
+
+76
+00:04:27.798 --> 00:04:31.323
+The design can't count on the
+model refusing bad instructions,
+
+77
+00:04:31.323 --> 00:04:34.848
+since there's no fool-proof
+defense against prompt injection.
+
+78
+00:04:34.848 --> 00:04:37.451
+So the guardrails sit outside the model,
+
+79
+00:04:37.451 --> 00:04:41.236
+and the rule is simple: no agent
+writes to a system of record.
+
+80
+00:04:41.236 --> 00:04:46.110
+Agents read and propose, people
+approve, and services apply the change.
+
+81
+00:04:46.110 --> 00:04:48.720
+Now, how does all of this stay compliant?
+
+82
+00:04:49.470 --> 00:04:53.108
+Compliance usually arrives as
+a package assembled at the end.
+
+83
+00:04:53.108 --> 00:04:55.921
+Modernization is the one
+moment that can change,
+
+84
+00:04:55.921 --> 00:04:59.508
+because you're choosing the
+platform and the pipeline anyway.
+
+85
+00:04:59.508 --> 00:05:04.226
+A control the platform carries once is
+inherited by every application on it, and
+
+86
+00:05:04.226 --> 00:05:09.158
+a pipeline that keeps its results produces
+evidence without anyone collecting it.
+
+87
+00:05:09.158 --> 00:05:10.321
+Two more points.
+
+88
+00:05:10.321 --> 00:05:14.395
+Legacy is itself a compliance
+matter: an application kept on
+
+89
+00:05:14.395 --> 00:05:18.632
+unsupported software needs a plan,
+a risk acceptance and a date.
+
+90
+00:05:18.632 --> 00:05:22.678
+And privacy and records officials
+come in at design review,
+
+91
+00:05:22.678 --> 00:05:26.807
+when a new data store, a new flow
+or an AI feature first appears.
+
+92
+00:05:26.807 --> 00:05:28.840
+So who makes all these calls?
+
+93
+00:05:29.590 --> 00:05:34.153
+An architecture only holds across
+thousands of applications if every
+
+94
+00:05:34.153 --> 00:05:38.252
+decision has an owner and every
+change passes the same few gates.
+
+95
+00:05:38.252 --> 00:05:42.315
+In the book's design, the review
+board reviews; it doesn't vote.
+
+96
+00:05:42.315 --> 00:05:47.514
+The chief architect owns standards, the
+application owner owns the disposition,
+
+97
+00:05:47.514 --> 00:05:50.463
+the authorizing official
+alone accepts risk,
+
+98
+00:05:50.463 --> 00:05:53.102
+and the C I O approves
+what the agency buys.
+
+99
+00:05:53.102 --> 00:05:55.127
+Every change passes four gates.
+
+100
+00:05:55.127 --> 00:05:58.589
+The first two need human
+judgment, once per application.
+
+101
+00:05:58.589 --> 00:06:02.978
+The last two run automatically,
+many times a day, in the pipeline.
+
+102
+00:06:02.978 --> 00:06:05.395
+And every gate leaves evidence behind,
+
+103
+00:06:05.395 --> 00:06:10.078
+so the authorization package is
+assembled from proof that already exists.
+
+104
+00:06:10.078 --> 00:06:11.530
+Let's see it running.
+
+105
+00:06:12.280 --> 00:06:16.267
+Arguments about architecture are
+cheap; code that runs is not.
+
+106
+00:06:16.267 --> 00:06:21.596
+So the workbook ships a small reference
+implementation: one mission application
+
+107
+00:06:21.596 --> 00:06:26.142
+in miniature, with a service, a front
+end, a migration tool and an AI agent.
+
+108
+00:06:26.142 --> 00:06:28.254
+Each part shows a pattern from the book.
+
+109
+00:06:28.254 --> 00:06:32.542
+A test keeps the A P I contract
+and the code from drifting apart.
+
+110
+00:06:32.542 --> 00:06:35.714
+The migration tool proves
+every load three ways,
+
+111
+00:06:35.714 --> 00:06:39.917
+and its tests break a value on
+purpose to show the checks catch it.
+
+112
+00:06:39.917 --> 00:06:43.343
+The agent can only file
+proposals a person approves.
+
+113
+00:06:43.343 --> 00:06:46.981
+It's honest about its limits,
+too: it's illustrative,
+
+114
+00:06:46.981 --> 00:06:51.418
+and it hasn't been run against a
+real D B two or Oracle database.
+
+115
+00:06:51.418 --> 00:06:54.150
+How does this fit an architecture office?
+
+116
+00:06:54.900 --> 00:06:59.961
+Many agencies have an enterprise architecture
+office that speaks TOGAF or Zachman,
+
+117
+00:06:59.961 --> 00:07:02.925
+and this slide is about
+not making them translate.
+
+118
+00:07:02.925 --> 00:07:06.790
+TOGAF gives the order to do the
+work in, and the book's triage,
+
+119
+00:07:06.790 --> 00:07:11.138
+target architecture and wave plan
+drop straight into its phases.
+
+120
+00:07:11.138 --> 00:07:15.544
+Zachman is a checklist: it shows
+whether you've described everything,
+
+121
+00:07:15.544 --> 00:07:18.250
+and an empty cell is a
+question, not a defect.
+
+122
+00:07:18.250 --> 00:07:22.579
+But the federal requirement behind
+both is the architecture itself,
+
+123
+00:07:22.579 --> 00:07:25.162
+a baseline, a target
+and a plan to get there.
+
+124
+00:07:25.162 --> 00:07:27.712
+No rule requires either framework.
+
+125
+00:07:27.712 --> 00:07:30.100
+So file the book's artifacts as they are.
+
+126
+00:07:30.100 --> 00:07:32.900
+That brings us to the plan: waves.
+
+127
+00:07:33.650 --> 00:07:37.738
+A disposition for every
+application is a list, not a plan.
+
+128
+00:07:37.738 --> 00:07:40.267
+Thousands of projects can't start at once,
+
+129
+00:07:40.267 --> 00:07:43.688
+and one at a time keeps
+rediscovering the same problems.
+
+130
+00:07:43.688 --> 00:07:44.963
+Waves solve both.
+
+131
+00:07:44.963 --> 00:07:49.092
+Start with a pilot that includes
+one genuinely hard application,
+
+132
+00:07:49.092 --> 00:07:51.463
+so the first real wave isn't a surprise.
+
+133
+00:07:51.463 --> 00:07:54.392
+Then run factory waves that
+get cheaper each time,
+
+134
+00:07:54.392 --> 00:07:56.750
+and actually switch the old systems off.
+
+135
+00:07:56.750 --> 00:07:58.982
+Waves are also how you fund the work:
+
+136
+00:07:58.982 --> 00:08:02.138
+one wave's retirement
+savings can pay for the next.
+
+137
+00:08:02.138 --> 00:08:06.371
+Size waves by what the factory really
+delivers, not by the schedule,
+
+138
+00:08:06.371 --> 00:08:09.450
+and count savings only once
+the old system is off.
+
+139
+00:08:09.450 --> 00:08:11.290
+So, what should you decide?
+
+140
+00:08:12.040 --> 00:08:13.415
+So, four decisions.
+
+141
+00:08:13.415 --> 00:08:15.945
+Ask for the inventory before the program:
+
+142
+00:08:15.945 --> 00:08:19.590
+an owner and a proposed
+disposition for every application.
+
+143
+00:08:19.590 --> 00:08:24.702
+Approve the rubric once, rather than
+each decision, and fund the retirements.
+
+144
+00:08:24.702 --> 00:08:30.190
+Before any cut-over, ask to see the three
+proof results, and forbid dual writes.
+
+145
+00:08:30.190 --> 00:08:32.823
+And make sure every AI agent has a sponsor
+
+146
+00:08:32.823 --> 00:08:35.378
+and no power to change
+a record on its own.
+
+147
+00:08:35.378 --> 00:08:36.990
+The next step is small.
+
+148
+00:08:36.990 --> 00:08:41.695
+Score a pilot set of applications your
+architects already know well, calibrate
+
+149
+00:08:41.695 --> 00:08:46.328
+the rubric against their judgment, and pick
+a first wave with one hard case in it.
+
+150
+00:08:46.328 --> 00:08:50.064
+Book 18 has the detail,
+every claim footnoted.
+
+151
+00:08:50.064 --> 00:08:50.890
+Thank you.

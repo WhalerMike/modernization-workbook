@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.911
+Data is where modernization loses the
+most trust, because a missing row or a
+
+2
+00:00:04.911 --> 00:00:09.850
+lost time of day may not surface until
+someone's record is wrong months later.
+
+3
+00:00:09.850 --> 00:00:13.009
+Code can move a piece at a
+time, but data moves once,
+
+4
+00:00:13.009 --> 00:00:16.800
+and the move isn't done until
+you can prove nothing was lost.
+
+5
+00:00:16.800 --> 00:00:19.856
+The book's answer is
+three independent checks:
+
+6
+00:00:19.856 --> 00:00:23.475
+counts, a checksum, and totals
+the business recognizes.
+
+7
+00:00:23.475 --> 00:00:24.908
+No single check is enough,
+
+8
+00:00:24.908 --> 00:00:28.387
+because each one shares an
+assumption with what it's checking.
+
+9
+00:00:28.387 --> 00:00:33.424
+And while old and new run side by side,
+each table has exactly one writer.
+
+10
+00:00:33.424 --> 00:00:36.475
+Writing to both databases
+is a plan for drift.
+
+11
+00:00:36.475 --> 00:00:39.960
+Next, the newest part of
+the architecture: AI.

@@ -1,0 +1,787 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   6.963,
+   "This is the executive briefing for Book 18 of the Federal Modernization Workbook, Application Modernization."
+  ],
+  [
+   7.725,
+   10.5,
+   "It's for the people who make the calls: the C I O, the chief architect, portfolio owners, the see-so, the privacy officer, authorizing officials and sponsors."
+  ],
+  [
+   18.225,
+   1.45,
+   "The argument is simple."
+  ],
+  [
+   19.675,
+   4.625,
+   "An agency with thousands of legacy applications can't rewrite its way out."
+  ],
+  [
+   24.3,
+   9.312,
+   "It decides, one application at a time, what each one becomes, and builds the ones that change on one architecture, with the data proven and the AI owned."
+  ],
+  [
+   33.612,
+   3.237,
+   "I'll take four questions: why, what, who and how."
+  ],
+  [
+   36.85,
+   4.375,
+   "Each decision slide names the decision, its owner and when it's needed."
+  ],
+  [
+   41.225,
+   1.962,
+   "Let's start with where the money goes."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   4.25,
+   "This matters because most of the IT budget is already spoken for."
+  ],
+  [
+   4.3,
+   8.05,
+   "G A O puts federal IT spending above a hundred billion dollars a year, and about eighty percent of it keeps existing systems running."
+  ],
+  [
+   12.35,
+   2.6,
+   "That share has barely moved in six years."
+  ],
+  [
+   14.95,
+   7.612,
+   "G A O's lists of the most critical legacy systems get the headlines, but eleven systems are a small slice of that cost."
+  ],
+  [
+   22.562,
+   4.4,
+   "The bulk sits in thousands of ordinary applications, all of them aging."
+  ],
+  [
+   26.962,
+   3.575,
+   "And the gap G A O keeps finding isn't technology."
+  ],
+  [
+   30.538,
+   2.788,
+   "It's planning, decided one system at a time."
+  ],
+  [
+   33.325,
+   1.788,
+   "So why not just replace them all?"
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.862,
+   "Because big rewrites keep failing, and for structural reasons."
+  ],
+  [
+   3.913,
+   2.062,
+   "Value only arrives at the end."
+  ],
+  [
+   5.975,
+   5.213,
+   "The real specification is buried in the old code and in its users' workarounds."
+  ],
+  [
+   11.188,
+   4.025,
+   "And all the risk lands on one cut-over, with no easy way back."
+  ],
+  [
+   15.213,
+   2.788,
+   "Federal policy already points the other way."
+  ],
+  [
+   18.0,
+   9.562,
+   "Circular A one-thirty asks for useful segments with a narrow scope and a brief duration, and modular contracting asks for increments that each work on their own."
+  ],
+  [
+   27.562,
+   8.037,
+   "So the decision belongs to the C I O, who approves the contracts: no proposal that delivers nothing until a single switch."
+  ],
+  [
+   35.6,
+   2.425,
+   "If not the whole program, what's the unit?"
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.413,
+   "The unit of decision is the application."
+  ],
+  [
+   2.462,
+   6.65,
+   "A mission area is too coarse, and a platform can't be retired until every application on it has been decided."
+  ],
+  [
+   9.113,
+   8.062,
+   "An application has an owner, a data set, a code base and an authorization boundary, so it's something you can actually decide about."
+  ],
+  [
+   17.175,
+   11.075,
+   "The figure shows the whole argument: triage every application, leave many of them alone on purpose, and build the ones that change on one target, governed and run in waves."
+  ],
+  [
+   28.25,
+   8.275,
+   "That makes the first deliverable an inventory, with an owner and a proposed disposition for each application, not a target-state design."
+  ],
+  [
+   36.525,
+   1.938,
+   "Next, the six choices."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   11.213,
+   "Every application gets one of six dispositions: retire, retain, rehost, replatform, refactor or rebuild, in rising order of cost and risk."
+  ],
+  [
+   11.262,
+   5.588,
+   "The rule is the cheapest one that meets the mission need, and every step up has to be justified."
+  ],
+  [
+   16.85,
+   1.238,
+   "Here's the highpoint."
+  ],
+  [
+   18.087,
+   4.037,
+   "Two of the six, retire and retain, aren't projects at all."
+  ],
+  [
+   22.125,
+   6.688,
+   "They need an owner's decision, not an engineering team, and in most portfolios they're where the early savings are."
+  ],
+  [
+   28.812,
+   3.9,
+   "A portfolio where nothing is retained probably hasn't been triaged."
+  ],
+  [
+   32.712,
+   5.612,
+   "So fund decisions as well as projects, including the decommissioning that makes a retirement real."
+  ],
+  [
+   38.325,
+   1.825,
+   "But how do you decide thousands?"
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.463,
+   "You can't study thousands of applications one by one; the studies would outlive the systems."
+  ],
+  [
+   5.513,
+   10.787,
+   "So triage is a scored rubric, filled from data the agency mostly already holds, like each system's security categorization, its support dates and its costs."
+  ],
+  [
+   16.3,
+   5.263,
+   "A decision table proposes a disposition, and the owners confirm or contest it."
+  ],
+  [
+   21.562,
+   6.162,
+   "Only the high-stakes and disputed cases get a deep study, which is how a rubric stays careful at scale."
+  ],
+  [
+   27.725,
+   5.4,
+   "It's program design, calibrated first on applications your architects already know well."
+  ],
+  [
+   33.125,
+   4.912,
+   "Leadership's job is to approve the rubric once, then rule on what it sends up."
+  ],
+  [
+   38.038,
+   2.625,
+   "Now, where the changed applications land."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.838,
+   "If every project picks its own stack, you trade one legacy problem for hundreds of new ones."
+  ],
+  [
+   5.888,
+   10.475,
+   "So the applications that change land on one reference architecture: Java and Spring Boot services, React front ends, published A P I contracts, and containers."
+  ],
+  [
+   16.363,
+   6.025,
+   "These are the program's choices, not a federal rule, picked for long support and a big labor pool."
+  ],
+  [
+   22.387,
+   6.763,
+   "The catch is that stacks age fast; some frameworks get only about a year of open-source support per release."
+  ],
+  [
+   29.15,
+   7.775,
+   "So approve one target and a way to change it, with the chief architect owning the list and upgrades budgeted as recurring work."
+  ],
+  [
+   36.925,
+   1.863,
+   "How do you get there without a rewrite?"
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   10.925,
+   "You replace in increments, with what's called the strangler fig. A fa\u00e7ade sits in front of the legacy application and routes each request either to the old system or to a new service."
+  ],
+  [
+   10.975,
+   6.675,
+   "Functions move one at a time behind the same contract, until nothing depends on the old system and it can be switched off."
+  ],
+  [
+   17.65,
+   5.45,
+   "Rollback stays possible until the old tables are removed, so that's a deliberate last step."
+  ],
+  [
+   23.1,
+   4.125,
+   "It doesn't fit everything; the requests have to be interceptable."
+  ],
+  [
+   27.225,
+   8.662,
+   "So at design review, ask every refactor to name its fa\u00e7ade, its first function, its plan for shared data and when rollback ends."
+  ],
+  [
+   35.888,
+   1.35,
+   "Then, the data."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.963,
+   "Code can move a piece at a time, but data moves once, and data errors hide."
+  ],
+  [
+   5.013,
+   5.438,
+   "A date that lost its time of day may not show up until someone's record is wrong months later."
+  ],
+  [
+   10.45,
+   14.037,
+   "So the move isn't finished until it's proven, three ways, chosen so their blind spots don't overlap: row counts, a checksum over every value, and totals the business recognizes, computed separately on each side."
+  ],
+  [
+   24.488,
+   6.213,
+   "That last one matters, because a program office can judge its monthly totals in a way it can't judge a hash."
+  ],
+  [
+   30.7,
+   5.438,
+   "The decision: no cut-over until the owner and the authorizing official see all three."
+  ],
+  [
+   36.138,
+   1.462,
+   "And during the transition?"
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.65,
+   "Old and new often run side by side for months, and there's a tempting shortcut: have the application write to both databases."
+  ],
+  [
+   7.7,
+   0.688,
+   "Don't."
+  ],
+  [
+   8.387,
+   4.85,
+   "The two writes don't share a transaction, so under load the copies drift, quietly."
+  ],
+  [
+   13.238,
+   3.875,
+   "Instead, keep one writer per table and replicate from it."
+  ],
+  [
+   17.113,
+   6.625,
+   "One more thing: the target engine decides which conversion tools you can use, and for DB2 the options are narrow."
+  ],
+  [
+   23.738,
+   5.9,
+   "So forbid dual writes as a standard, and settle the engine before the wave plan commits to dates."
+  ],
+  [
+   29.637,
+   3.25,
+   "Now, the newest part of the architecture: AI."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.25,
+   "AI belongs in the architecture as a component behind one interface, so providers and models can change without changing code."
+  ],
+  [
+   7.3,
+   6.45,
+   "Most uses, like drafting text or answering from agency content, change nothing by themselves."
+  ],
+  [
+   13.75,
+   2.312,
+   "Agents are different, because they act."
+  ],
+  [
+   16.062,
+   12.8,
+   "You can't count on a model refusing a hidden instruction, so the design limits what a steered agent can do: an identity and a human sponsor, a short list of allowed tools, a step limit, and an audit of every call."
+  ],
+  [
+   28.863,
+   3.462,
+   "And the big one: no agent writes to a system of record."
+  ],
+  [
+   32.325,
+   4.463,
+   "It proposes, a person approves, and the service applies the change."
+  ],
+  [
+   36.788,
+   1.525,
+   "Next, compliance."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.263,
+   "Compliance is usually a package assembled at the end."
+  ],
+  [
+   3.312,
+   5.825,
+   "Modernization is the moment to change that, because you're choosing the platform and the pipeline anyway."
+  ],
+  [
+   9.137,
+   9.275,
+   "A control the platform implements once is inherited by every application on it, and a pipeline that keeps its results writes the evidence as it goes."
+  ],
+  [
+   18.413,
+   10.963,
+   "Circular A one-thirty also turns legacy into a compliance question: systems that can't be protected, including unsupported software, get top priority for replacement."
+  ],
+  [
+   29.375,
+   4.162,
+   "So a retained application on unsupported software is a finding."
+  ],
+  [
+   33.538,
+   3.763,
+   "It needs a plan, a risk acceptance and a review date."
+  ],
+  [
+   37.3,
+   2.025,
+   "And two officials need to hear early."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.638,
+   "Those are the privacy and records officials."
+  ],
+  [
+   2.688,
+   13.762,
+   "Modernization changes how personal information flows, and the events that reopen their work are predictable: a new database, a new data flow, an AI feature, production data copied into test, and retiring a system."
+  ],
+  [
+   16.45,
+   2.1,
+   "Retirement is the sneaky one."
+  ],
+  [
+   18.55,
+   7.362,
+   "Switching off an application is a decision about its records, and a migration that drops history may be destroying records."
+  ],
+  [
+   25.913,
+   2.075,
+   "These judgments can't be automated."
+  ],
+  [
+   27.988,
+   7.125,
+   "So name those events, and route them to the privacy and records officials at design review, before anything is built."
+  ],
+  [
+   35.112,
+   2.625,
+   "That brings us to who governs the architecture."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.625,
+   "A target architecture holds across hundreds of teams only if each decision has an owner."
+  ],
+  [
+   5.675,
+   10.762,
+   "No federal rule demands an architecture review board, but several demand what one produces: an enterprise architecture, and controlled change with security and privacy at the table."
+  ],
+  [
+   16.438,
+   2.562,
+   "The rule here is one decider per decision."
+  ],
+  [
+   19.0,
+   3.275,
+   "The chief architect decides standards and designs."
+  ],
+  [
+   22.275,
+   2.925,
+   "Application owners decide dispositions."
+  ],
+  [
+   25.2,
+   5.612,
+   "The authorizing official alone accepts risk, and observes the board rather than sitting on it."
+  ],
+  [
+   30.812,
+   4.338,
+   "And the C I O, not the board, approves what the agency buys."
+  ],
+  [
+   35.15,
+   3.475,
+   "So the C I O charters the board and names its chair."
+  ],
+  [
+   38.625,
+   1.238,
+   "Then come the gates."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   8.662,
+   "Every application that changes passes four gates: its disposition, a design review, every pull request, and every release."
+  ],
+  [
+   8.713,
+   4.15,
+   "Two are meetings and two are automation, and that's deliberate."
+  ],
+  [
+   12.863,
+   8.425,
+   "The daily ones run in the pipeline, on protected branches that bind administrators too, because a gate that's run as a meeting gets skipped."
+  ],
+  [
+   21.288,
+   7.525,
+   "Each gate leaves proof, so the evidence builds up as the work happens, instead of screenshots the month before an assessment."
+  ],
+  [
+   28.812,
+   7.625,
+   "One threshold belongs to the authorizing official alone: when a change is significant enough to reopen the authorization."
+  ],
+  [
+   36.438,
+   2.938,
+   "Set it early, and let design review apply it."
+  ],
+  [
+   39.375,
+   1.325,
+   "Now, how it runs."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   11.55,
+   "The book ships a small, runnable reference implementation: a case service with a contract test, a front end, a migration tool with all three checks, and an agent that can only propose."
+  ],
+  [
+   11.6,
+   3.212,
+   "Its tests prove the checks by breaking things on purpose."
+  ],
+  [
+   14.812,
+   2.5,
+   "Change one amount, and two checks fail."
+  ],
+  [
+   17.312,
+   3.462,
+   "Truncate one name, and only the checksum catches it."
+  ],
+  [
+   20.775,
+   2.962,
+   "Just as important, it says what it doesn't prove."
+  ],
+  [
+   23.738,
+   7.825,
+   "It has never run against a real DB2 or Oracle database, a real model, or production, and it has no sign-in."
+  ],
+  [
+   31.562,
+   2.362,
+   "So copy the pattern, not the claim."
+  ],
+  [
+   33.925,
+   3.388,
+   "Next, the frameworks your architects already use."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.65,
+   "Many architecture offices speak TOGAF or Zachman, so the book maps its work onto both."
+  ],
+  [
+   5.7,
+   5.912,
+   "The short version: TOGAF tells you the order, and Zachman tells you whether you've described everything."
+  ],
+  [
+   11.613,
+   2.087,
+   "But neither one is the requirement."
+  ],
+  [
+   13.7,
+   8.1,
+   "Circular A one-thirty asks for an enterprise architecture with a baseline, a target and a transition plan, and names no framework."
+  ],
+  [
+   21.8,
+   6.925,
+   "The book already produces all three: the triaged portfolio, the reference architecture, and the wave plan."
+  ],
+  [
+   28.725,
+   5.463,
+   "So file those artifacts under the phase and cell your architects know, rather than rewriting them."
+  ],
+  [
+   34.188,
+   2.513,
+   "And don't try to buy compliance with a framework."
+  ],
+  [
+   36.7,
+   1.2,
+   "Now, the waves."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   4.088,
+   "A disposition for every application is a list, not a plan."
+  ],
+  [
+   4.138,
+   5.037,
+   "Waves turn it into one, inside the program's existing phases and gates."
+  ],
+  [
+   9.175,
+   9.688,
+   "Start with a pilot of a few simple applications, plus one representative hard case, so the first factory wave doesn't meet its first tangled database cold."
+  ],
+  [
+   18.863,
+   4.987,
+   "Group applications by what must move together, especially a shared database."
+  ],
+  [
+   23.85,
+   3.462,
+   "Plan a few waves ahead, but only the next one in detail."
+  ],
+  [
+   27.312,
+   3.95,
+   "And size the waves by the throughput you've measured, not by the schedule."
+  ],
+  [
+   31.262,
+   5.088,
+   "The factory is working if the fifth wave costs less per application than the first."
+  ],
+  [
+   36.35,
+   1.637,
+   "Finally, paying for it."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   5.775,
+   "Waves are also a funding structure: small enough to approve, with results soon enough to show."
+  ],
+  [
+   5.825,
+   10.15,
+   "The Technology Modernization Fund wants proposals that improve, retire or replace systems, aiming for results within a year, and a wave plan fits that shape."
+  ],
+  [
+   15.975,
+   5.162,
+   "Working capital funds let the savings from one wave's retirements pay for the next."
+  ],
+  [
+   21.137,
+   1.163,
+   "Two cautions."
+  ],
+  [
+   22.3,
+   4.625,
+   "Report cost avoided only once the old system is actually switched off."
+  ],
+  [
+   26.925,
+   5.35,
+   "And re-score the portfolio every year, with the budget cycle, so the list stays true."
+  ],
+  [
+   32.275,
+   4.925,
+   "The C I O, who advises on every program, should sign the wave plan."
+  ],
+  [
+   37.2,
+   1.863,
+   "Let's pull the decisions together."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   1.575,
+   "So, the decisions."
+  ],
+  [
+   1.625,
+   7.6,
+   "The C I O approves no rewrite that waits on a single cut-over, charters the architecture board, and signs the wave plan."
+  ],
+  [
+   9.225,
+   6.562,
+   "The program starts with an inventory and an agreed rubric, and application owners sign each disposition."
+  ],
+  [
+   15.787,
+   10.162,
+   "The chief architect sets one target stack, asks every refactor how it will be strangled, forbids dual writes, and makes no-write agents with sponsors the standard."
+  ],
+  [
+   25.95,
+   2.612,
+   "No cut-over happens without three proofs."
+  ],
+  [
+   28.562,
+   3.013,
+   "Unsupported software is a finding with a plan."
+  ],
+  [
+   31.575,
+   7.537,
+   "Privacy and records come in at design review, and the authorizing official decides when a change reopens the authorization."
+  ],
+  [
+   39.112,
+   4.112,
+   "Book 18 has the detail, with every claim footnoted."
+  ],
+  [
+   43.225,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

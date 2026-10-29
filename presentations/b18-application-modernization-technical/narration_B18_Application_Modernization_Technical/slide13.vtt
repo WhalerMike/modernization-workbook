@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+A refactor happens
+through the strangler fig.
+
+2
+00:00:02.588 --> 00:00:05.417
+Put a façade in front of
+the legacy application,
+
+3
+00:00:05.417 --> 00:00:08.620
+move one function at a time
+behind the same contract,
+
+4
+00:00:08.620 --> 00:00:13.387
+retire the old system when nothing depends
+on it, and finally remove the façade.
+
+5
+00:00:13.387 --> 00:00:16.687
+You can roll back right up until
+the legacy tables are gone.
+
+6
+00:00:16.687 --> 00:00:20.631
+Before you commit, check that
+requests can actually be intercepted,
+
+7
+00:00:20.631 --> 00:00:22.813
+and that there's a plan for shared data.
+
+8
+00:00:22.813 --> 00:00:25.387
+Those questions belong in the deep study.
+
+9
+00:00:25.387 --> 00:00:30.150
+And for security, two NIST guides
+cover microservices and containers.
+
+10
+00:00:30.150 --> 00:00:32.300
+They're guidance, not requirements.
+
+11
+00:00:32.300 --> 00:00:33.600
+Now, the data.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.992
+Compliance is cheapest
+when the platform carries
+
+2
+00:00:02.992 --> 00:00:06.075
+the controls and the pipeline
+produces the evidence.
+
+3
+00:00:06.075 --> 00:00:10.950
+Implement a control once in the target,
+and every application on it inherits it.
+
+4
+00:00:10.950 --> 00:00:15.567
+The diagram shows where the controls
+land, from design through operation,
+
+5
+00:00:15.567 --> 00:00:19.125
+with everything flowing into
+one authorization record.
+
+6
+00:00:19.125 --> 00:00:23.002
+The table shows the control families
+application work touches most,
+
+7
+00:00:23.002 --> 00:00:24.975
+and the evidence each should leave.
+
+8
+00:00:24.975 --> 00:00:29.319
+And here's the point for triage:
+keeping an application on unsupported
+
+9
+00:00:29.319 --> 00:00:33.438
+software with no plan is a compliance
+finding, not a neutral choice.
+
+10
+00:00:33.438 --> 00:00:35.640
+Next, three design inputs.

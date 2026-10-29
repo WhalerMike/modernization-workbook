@@ -28,10 +28,16 @@ This book is new material; it replaces no earlier workbook pages. Every external
 :::
 
 ::: {.callout-tip}
-## Download and run
+## Download, run and present
 **[b18-application-modernization-bundle.docx](../../../downloads/b18-application-modernization-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
 **Reference implementation**: a Spring Boot service over PostgreSQL, a React front end, a DB2/Oracle to PostgreSQL migration with row-count, checksum and aggregate validation, and an agentic AI pattern with a stub model, in the repository's [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization) folder. [Chapter 08](08-the-reference-implementation.md) walks through it.
+
+**15-minute presentation (about 9 minutes narrated)**: the Why / What / Who / How deck is on the [Presentations](../../presentations/index.md#book-18) page.
+
+**Executive briefing (about 30 minutes live, 13 narrated)**: for the CIO, chief architect, portfolio owners, CISO, privacy officer and authorizing officials: the application as the unit of decision, triage, one target architecture, proving the data, AI with an owner, compliance by design and the decisions to make, on the [Presentations](../../presentations/index.md#executive-b18) page.
+
+**Technical deep dive (about 50 minutes live, 19 narrated)**: triage scoring, the target architecture, moving and proving the data, AI guardrails, controls and gates, the reference implementation, TOGAF and Zachman, and the waves, in modules on the [Presentations](../../presentations/index.md#technical-b18) page.
 :::
 
 Most agencies run hundreds or thousands of mission applications, many of them written decades ago on mainframes, in COBOL, PL/SQL or early Java, against DB2 or Oracle databases, by people who have since retired. Each one works, after a fashion, and each one costs more to keep running every year. The temptation is a grand rewrite. It rarely ends well: the program runs years late, the old system keeps running beside it, and the knowledge buried in the old code is lost on the way. Book 18 treats application modernization as a portfolio problem instead. The unit of decision is the application. Each one gets a disposition (retire, retain, rehost, replatform, refactor or rebuild) from a scored triage that can be run across thousands of applications, not a study per system. The ones that change land on one target reference architecture, so the agency builds and authorizes a pattern once and reuses it. Their data moves with proof that nothing was lost. Generative and agentic AI join the architecture only with an identity and an accountable owner for every agent. And the whole portfolio runs under standards, patterns and review gates that produce the evidence federal compliance asks for, mapped to the TOGAF and Zachman frameworks architects already use, and delivered in waves.

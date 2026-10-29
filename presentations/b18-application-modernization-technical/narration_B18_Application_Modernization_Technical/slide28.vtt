@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.612
+Three parts show the
+patterns most directly.
+
+2
+00:00:02.612 --> 00:00:06.618
+The service's contract is checked
+against the code in both directions,
+
+3
+00:00:06.618 --> 00:00:09.450
+so the two can't drift apart
+without a failed build.
+
+4
+00:00:09.450 --> 00:00:13.606
+The migration tool handles real
+legacy habits, like padded text
+
+5
+00:00:13.606 --> 00:00:17.762
+and placeholder dates, and refuses
+to guess at a value it can't map.
+
+6
+00:00:17.762 --> 00:00:20.541
+And the agent can't even
+start without an owner,
+
+7
+00:00:20.541 --> 00:00:23.174
+and can only ever record
+a pending proposal.
+
+8
+00:00:23.174 --> 00:00:25.990
+Best of all, the tests
+break things on purpose,
+
+9
+00:00:25.990 --> 00:00:30.250
+to prove each check and guardrail
+catches the failure it exists for.
+
+10
+00:00:30.250 --> 00:00:31.990
+Next, the honest part.

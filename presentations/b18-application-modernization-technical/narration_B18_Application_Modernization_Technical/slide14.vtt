@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.622
+Code can be replaced a piece at
+a time, but data moves once,
+
+2
+00:00:03.622 --> 00:00:07.350
+and the move isn't done until
+you can prove nothing was lost.
+
+3
+00:00:07.350 --> 00:00:11.433
+So the program treats it as
+three jobs: convert the schema,
+
+4
+00:00:11.433 --> 00:00:15.950
+move the rows, and prove the result,
+looping back on any mismatch.
+
+5
+00:00:15.950 --> 00:00:19.512
+Choosing the engine is usually
+settled by what you already run.
+
+6
+00:00:19.512 --> 00:00:23.687
+And remember that the engine also decides
+which conversion tools you can use.
+
+7
+00:00:23.687 --> 00:00:29.613
+If the target is SQL Server, arrive
+already on Book 6's modern sign-in pattern.
+
+8
+00:00:29.613 --> 00:00:31.920
+Next, where conversions go wrong.

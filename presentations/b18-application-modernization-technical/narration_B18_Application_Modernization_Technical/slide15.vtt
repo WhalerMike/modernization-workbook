@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.178
+Conversion tools do most of the work,
+
+2
+00:00:02.178 --> 00:00:05.513
+but the dangerous conversions
+are the ones that succeed.
+
+3
+00:00:05.513 --> 00:00:10.513
+Map an Oracle date to a plain date
+and you silently lose the time of day.
+
+4
+00:00:10.513 --> 00:00:14.012
+Treat money as floating
+point and you lose exactness.
+
+5
+00:00:14.012 --> 00:00:18.162
+Oracle treats an empty string
+as null, and the targets don't.
+
+6
+00:00:18.162 --> 00:00:22.663
+And sequences need to move past the
+highest key before the first new record.
+
+7
+00:00:22.663 --> 00:00:25.913
+Stored procedures and
+packages are the long pole.
+
+8
+00:00:25.913 --> 00:00:31.450
+Tools emulate them, but the program treats
+every emulation call as debt to pay down.
+
+9
+00:00:31.450 --> 00:00:33.530
+Next, the tools themselves.

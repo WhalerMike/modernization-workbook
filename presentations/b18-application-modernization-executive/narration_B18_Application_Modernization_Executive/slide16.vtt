@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.900
+The book ships a small, runnable
+reference implementation:
+
+2
+00:00:03.900 --> 00:00:06.886
+a case service with a
+contract test, a front end,
+
+3
+00:00:06.886 --> 00:00:11.600
+a migration tool with all three checks,
+and an agent that can only propose.
+
+4
+00:00:11.600 --> 00:00:14.812
+Its tests prove the checks by
+breaking things on purpose.
+
+5
+00:00:14.812 --> 00:00:17.312
+Change one amount, and two checks fail.
+
+6
+00:00:17.312 --> 00:00:20.774
+Truncate one name, and only
+the checksum catches it.
+
+7
+00:00:20.774 --> 00:00:23.737
+Just as important, it says
+what it doesn't prove.
+
+8
+00:00:23.737 --> 00:00:27.937
+It has never run against a
+real DB2 or Oracle database,
+
+9
+00:00:27.937 --> 00:00:31.563
+a real model, or production,
+and it has no sign-in.
+
+10
+00:00:31.563 --> 00:00:33.924
+So copy the pattern, not the claim.
+
+11
+00:00:33.924 --> 00:00:37.370
+Next, the frameworks your
+architects already use.

@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.787
+Here are the conversion tools as of October
+2026, as examples, not endorsements.
+
+2
+00:00:05.787 --> 00:00:07.487
+Three facts shape your plan.
+
+3
+00:00:07.487 --> 00:00:11.899
+Only A W S tools convert
+DB2 to PostgreSQL.
+
+4
+00:00:11.899 --> 00:00:16.288
+Microsoft's assistant targets
+only SQL Server and Azure SQL.
+
+5
+00:00:16.288 --> 00:00:20.413
+And the newer AI-assisted conversion
+sends your source code to a model,
+
+6
+00:00:20.413 --> 00:00:24.325
+which puts that model's endpoint
+inside your migration's boundary.
+
+7
+00:00:24.325 --> 00:00:26.994
+Treat whatever it produces as a draft that
+
+8
+00:00:26.994 --> 00:00:29.663
+a person reviews and the validation tests.
+
+9
+00:00:29.663 --> 00:00:32.101
+So pick the engine with
+these limits in view.
+
+10
+00:00:32.101 --> 00:00:33.890
+Next, proving the move.
