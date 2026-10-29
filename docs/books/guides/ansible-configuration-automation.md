@@ -24,6 +24,11 @@ What Ansible is and isn't next to Intune, Azure Arc, Azure Policy and machine co
 **[ansible-examples.zip](../../../downloads/ansible-examples.zip)**: a dynamic inventory that reads a CMDB export, and four small playbooks (the CM-8 inventory feed, gated Azure Arc onboarding, a Linux baseline drift check pinned to check mode, and read-only network and Infoblox facts), with tests that fail on any ungated write. Rebuilt on every site deploy from [`examples/ansible`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible). [The example playbooks](#the-example-playbooks) section below describes them.
 :::
 
+::: {.callout-tip}
+## Watch or present
+**Technical deep dive (about 19 minutes narrated, captions)**: where Ansible fits, Ansible Automation Platform in a federal setting, evidence and dangers, and adoption with the example playbooks, in four modules, on the [Presentations](../../presentations/index.md#guide-ansible) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Ansible_Technical_Narrated).
+:::
+
 ## How to read this guide
 
 Ansible appears in several books, always in passing: as an Azure Arc onboarding method in [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#choose-a-method), as the Red Hat configuration stack in [Book 12, Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#actuation-is-platform-native), as a remediation tool in VMware's hardening content in [Book 15, Chapter 09](../b15-day2-operations/09-control-automation-aws-and-vmware.md#vmware-hardening-content), and as the Infoblox collection in [Book 08](../b08-ddi/11-operating-the-control-plane.md). This guide gathers those mentions into one implementation view and links back to the chapters for the depth.

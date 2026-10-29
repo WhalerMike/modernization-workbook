@@ -21,7 +21,7 @@ A companion briefing to [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md
 | Edition | File |
 |---|---|
 | Deck, presented live (about 25 minutes) | [B08_DDI_Requirements.pptx](../../presentations/research-ddi-requirements/B08_DDI_Requirements.pptx) |
-| Narrated, self-running (about 13 minutes, captions) | [B08_DDI_Requirements_Narrated.pptx](../../presentations/research-ddi-requirements/B08_DDI_Requirements_Narrated.pptx) |
+| Narrated, self-running (about 14 minutes, captions) | [B08_DDI_Requirements_Narrated.pptx](../../presentations/research-ddi-requirements/B08_DDI_Requirements_Narrated.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ddi-requirements/B08_DDI_Requirements_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ddi-requirements/B08_DDI_Requirements_Narrated.vtt) |
 
 ## What it covers

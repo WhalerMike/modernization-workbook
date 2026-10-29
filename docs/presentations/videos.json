@@ -630,6 +630,16 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narration_Script.md"
  },
  {
+  "id": "Guide_Ansible_Technical_Narrated",
+  "title": "Companion guide — Ansible for Configuration Automation: technical deep dive",
+  "group": "book",
+  "minutes": 19,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Guide_Ansible_Technical_Narrated.mp4",
+  "vtt": "presentations/guide-ansible-technical/Guide_Ansible_Technical_Narrated.vtt",
+  "deck": "presentations/guide-ansible-technical/Guide_Ansible_Technical_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-ansible-technical/Guide_Ansible_Technical_Narration_Script.md"
+ },
+ {
   "id": "Guide_Effective_Meetings_Narrated",
   "title": "Companion guide — Effective Meetings: narrated deck",
   "group": "book",
@@ -643,7 +653,7 @@
   "id": "B08_DDI_Requirements_Narrated",
   "title": "Book 08 — DNS, DHCP & IPAM: what a federal DDI platform must do",
   "group": "research",
-  "minutes": 13,
+  "minutes": 14,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B08_DDI_Requirements_Narrated.mp4",
   "vtt": "presentations/research-ddi-requirements/B08_DDI_Requirements_Narrated.vtt",
   "deck": "presentations/research-ddi-requirements/B08_DDI_Requirements_Narrated.pptx",
@@ -693,7 +703,7 @@
   "id": "Research_Infoblox_Impl_Narrated",
   "title": "Research: Implementing Book 08 on Infoblox NIOS — implementation guide",
   "group": "research",
-  "minutes": 21,
+  "minutes": 22,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_Infoblox_Impl_Narrated.mp4",
   "vtt": "presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.vtt",
   "deck": "presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.pptx",
