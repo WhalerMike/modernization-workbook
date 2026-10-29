@@ -80,3 +80,11 @@ Follows the weekly source watch (issue #160). Sources: ScubaGear tag `v2.0.0` (b
 |---|---|---|---|---|
 | 1 | `Invoke-SCuBADiff` shipped in 2.0.0: offline, no tenant contact, DiffResults.json/.csv and DiffReport.html | Re-assess on a cadence | verified (was dev-branch only) | v2.0.0 diff.md; release notes |
 | 2 | Mappings, configuration and reports docs re-pointed to v2.0.0; content unchanged for the cited sections | Footnotes | verified | v1.8.0 vs v2.0.0 diffs |
+
+## Moderate-civilian sweep, October 29, 2026
+
+The workbook targets FedRAMP Moderate civilian agencies. Framing that read as High-only or Defense-specific was checked.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | CISA's SCuBA mapping is limited to FedRAMP High baseline controls; added: the High baseline contains every Moderate control, so the mapping serves a Moderate system too | Mapping sentence | fact unchanged; added sentence is inference (NIST SP 800-53B baselines are cumulative) | ScubaGear v2.0.0 mappings.md; NIST SP 800-53B |

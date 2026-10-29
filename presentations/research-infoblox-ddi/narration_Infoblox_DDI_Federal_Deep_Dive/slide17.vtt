@@ -20,42 +20,47 @@ On FIPS 140, BlueCat leads with an active
 FIPS 140-3 certificate valid to 2029.
 
 5
-00:00:19.125 --> 00:00:24.063
-Infoblox leads on STIGs and has
-the broadest DNS security set.
+00:00:19.125 --> 00:00:22.401
+Infoblox is the only
+one with its own STIGs,
 
 6
-00:00:24.063 --> 00:00:26.549
-On automation, it has the deepest.
+00:00:22.401 --> 00:00:26.987
+a High only reference, and has
+the broadest DNS security set.
 
 7
-00:00:26.549 --> 00:00:32.238
+00:00:26.987 --> 00:00:29.475
+On automation, it has the deepest.
+
+8
+00:00:29.475 --> 00:00:35.163
 DHCPv6 failover is missing everywhere
 we checked, so it's no differentiator.
 
-8
-00:00:32.238 --> 00:00:34.479
+9
+00:00:35.163 --> 00:00:37.405
 And alternatives do win in places:
 
-9
-00:00:34.479 --> 00:00:39.123
+10
+00:00:37.405 --> 00:00:42.049
 BlueCat's Micetro manages existing
 Windows and BIND servers in place,
 
-10
-00:00:39.123 --> 00:00:43.287
+11
+00:00:42.049 --> 00:00:46.213
 and a single-cloud workload may
 need no third-party plane at all.
 
-11
-00:00:43.287 --> 00:00:47.440
+12
+00:00:46.213 --> 00:00:50.364
 So the fair claim is a strong
 default for a hybrid federal estate,
 
-12
-00:00:47.440 --> 00:00:49.163
+13
+00:00:50.364 --> 00:00:52.087
 not the only viable choice.
 
-13
-00:00:49.163 --> 00:00:50.380
+14
+00:00:52.087 --> 00:00:53.300
 Now the risks.

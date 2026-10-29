@@ -115,7 +115,7 @@ The program's rollout follows that guidance. Each boundary policy goes in at the
 
 AWS expresses the same structure with AWS Organizations: accounts instead of subscriptions, organizational units instead of management groups, and **service control policies** instead of deny assignments. An SCP never grants a permission; it sets the maximum permissions available to IAM users and roles in member accounts, including the root user. SCPs don't affect the management account, and they require an organization with all features enabled.[^c05-scp]
 
-**AWS Control Tower** builds the landing zone on top of Organizations, and it's available in both AWS GovCloud (US) Regions for workloads that require FedRAMP High. The GovCloud version works differently in ways that shape the build:[^c05-ct]
+**AWS Control Tower** builds the landing zone on top of Organizations. It runs in the commercial Regions and in both AWS GovCloud (US) Regions; AWS's GovCloud guide notes it can be used there even for workloads that require a High categorization. The GovCloud version works differently in ways that shape the build:[^c05-ct]
 
 - Accounts can't be created inside GovCloud. The `CreateGovCloudAccount` API runs from a management account in the commercial partition and creates a pair: a standalone GovCloud account and a linked commercial account for billing and support.
 - An organization in GovCloud is independent of commercial organizations, and the Audit and Log Archive accounts must already exist in it before Control Tower is set up.
@@ -124,6 +124,8 @@ AWS expresses the same structure with AWS Organizations: accounts instead of sub
 - Control Tower metadata (account names, email addresses, organizational unit names) must not contain export-controlled data.
 
 AWS recommends **Landing Zone Accelerator on AWS** on top of Control Tower for regulated workloads. It's open-source infrastructure as code, supports the GovCloud (US) partition, and comes with AWS's own warning that it "will not, by itself, make you compliant."[^c05-lza] On the Marketplace, AWS GovCloud (F1603047866) is listed at Class D (High) and AWS US East/West at Class C (Moderate).[^c05-fr]
+
+Those classes describe what each region was assessed against, not who may use it. AWS states that US East/West is FedRAMP Certified Class C (formerly the Moderate baseline) and GovCloud (US) Class D (formerly the High baseline), and its services-in-scope list marks each service separately for each, so a service can be in scope in one and not the other.[^c05-aws-fedramp] The High baseline contains the Moderate controls, so a Moderate system can run in GovCloud (US) as well as in the commercial Regions *(inference)*. An agency may run most of its AWS workloads in GovCloud (US) at Moderate and put a service such as a contact center in the commercial Regions; both are Moderate locations. The landing zone then has two organizations, one per partition, and the package names which services run where *(design guidance)*. Check each service, per region, on the FedRAMP Marketplace and AWS's list before the design depends on it.
 
 ## A multi-environment estate
 
@@ -187,6 +189,7 @@ A landing zone enforces structure. It doesn't authorize anything. NIST defines t
 [^c05-compliance-data]: Microsoft Learn, "Get compliance data of Azure resources," Evaluation triggers, <https://learn.microsoft.com/azure/governance/policy/how-to/get-compliance-data> (accessed Oct 21, 2026).
 [^c05-scp]: AWS, *AWS Organizations User Guide*, "Service control policies (SCPs)," <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html> (accessed Oct 21, 2026).
 [^c05-ct]: AWS, *AWS GovCloud (US) User Guide*, "AWS Control Tower in AWS GovCloud (US)," <https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-controltower.html> (accessed Oct 21, 2026).
+[^c05-aws-fedramp]: Amazon Web Services, "FedRAMP" (US East/West FedRAMP Certified Class C, formerly Moderate; GovCloud (US) Class D, formerly High), <https://aws.amazon.com/compliance/fedramp/>; and "FedRAMP — Services in Scope" (per-service, per-Region columns), <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/>; baselines are cumulative per NIST SP 800-53B, <https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final> (accessed Oct 29, 2026).
 [^c05-lza]: AWS, *Landing Zone Accelerator on AWS Implementation Guide*, "Deploy a cloud foundation to support highly-regulated workloads and complex compliance requirements," <https://docs.aws.amazon.com/solutions/latest/landing-zone-accelerator-on-aws/solution-overview.html> (accessed Oct 21, 2026).
 [^c05-vnetfaq]: Microsoft Learn, "Azure Virtual Network frequently asked questions (FAQ)," Configuration ("Virtual networks are Layer 3 overlays. Azure does not support any Layer 2 semantics"; five reserved addresses per subnet), <https://learn.microsoft.com/azure/virtual-network/virtual-networks-faq> (accessed Oct 21, 2026).
 [^c05-aws-subnet]: AWS, *Amazon VPC User Guide*, "Subnet CIDR blocks," Subnet sizing for IPv4, <https://docs.aws.amazon.com/vpc/latest/userguide/subnet-sizing.html> (accessed Oct 21, 2026).

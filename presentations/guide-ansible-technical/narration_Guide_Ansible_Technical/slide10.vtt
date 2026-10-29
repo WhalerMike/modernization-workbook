@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.220
+A good share of a federal estate sits
+outside Arc's support list: the Unix systems,
+
+2
+00:00:05.220 --> 00:00:10.625
+and several older Linux releases that stop
+getting new agent versions in late 2026.
+
+3
+00:00:10.625 --> 00:00:14.963
+Those are tier two, and Ansible
+reaches them over S S H.
+
+4
+00:00:14.963 --> 00:00:16.126
+Two cautions.
+
+5
+00:00:16.126 --> 00:00:19.650
+Privilege escalation can't be
+narrowed to specific commands,
+
+6
+00:00:19.650 --> 00:00:24.350
+so that account has broad rights and has
+to be governed like a privileged identity.
+
+7
+00:00:24.350 --> 00:00:29.288
+And check mode is only a simulation, so
+each drift check should stand on its own.
+
+8
+00:00:29.288 --> 00:00:31.625
+Network gear is the easy win.
+
+9
+00:00:31.625 --> 00:00:34.205
+A read-only facts run gives you the model,
+
+10
+00:00:34.205 --> 00:00:38.037
+serial and version of every
+device, with nothing installed.
+
+11
+00:00:38.037 --> 00:00:41.710
+Where a vendor controller exists,
+it owns the configuration.

@@ -1253,402 +1253,412 @@ at the right level, or keep the
 plane inside the agency's boundary.
 
 262
-00:18:14.165 --> 00:18:17.350
-The slide lists the other
-government-cloud gaps.
+00:18:14.165 --> 00:18:17.868
+Government regions such as GovCloud
+host Moderate systems too,
 
 263
-00:18:21.100 --> 00:18:24.187
+00:18:17.868 --> 00:18:21.152
+so their gaps matter at Moderate,
+and the slide lists them.
+
+264
+00:18:21.152 --> 00:18:24.910
+The right-hand column is High
+only, kept for reference.
+
+265
+00:18:28.660 --> 00:18:31.747
 Module 4 is the migration
 and running the plane.
 
-264
-00:18:24.187 --> 00:18:28.321
+266
+00:18:31.747 --> 00:18:35.881
 Name resolution has to keep
 working while its authority moves,
 
-265
-00:18:28.321 --> 00:18:31.660
+267
+00:18:35.881 --> 00:18:39.220
 so Chapter 10 makes the
 migration a series of small,
 
-266
-00:18:31.660 --> 00:18:36.588
+268
+00:18:39.220 --> 00:18:44.148
 reversible cutovers, each proven from
 every origin before the next starts.
 
-267
-00:18:36.588 --> 00:18:40.210
+269
+00:18:44.148 --> 00:18:47.770
 Then Chapter 11 covers
 operations and evidence.
 
-268
-00:18:43.960 --> 00:18:47.514
+270
+00:18:51.520 --> 00:18:55.074
 Here's the book's sequence
 applied to moving
 
-269
-00:18:47.514 --> 00:18:50.772
+271
+00:18:55.074 --> 00:18:58.332
 off AD DNS and DHCP onto one policy plane.
 
-270
-00:18:50.772 --> 00:18:54.957
+272
+00:18:58.332 --> 00:19:02.517
 Six phases: inventory,
 coexistence, migrating authority,
 
-271
-00:18:54.957 --> 00:18:58.697
+273
+00:19:02.517 --> 00:19:06.257
 cloud federation,
 decommissioning, and hardening.
 
-272
-00:18:58.697 --> 00:19:03.710
+274
+00:19:06.257 --> 00:19:11.270
 Each one ends with a rollback point and
 a consistency test, not a calendar date.
 
-273
-00:19:03.710 --> 00:19:07.635
+275
+00:19:11.270 --> 00:19:15.195
 The playbook's durations are planning
 estimates; the gates decide.
 
-274
-00:19:07.635 --> 00:19:10.610
+276
+00:19:15.195 --> 00:19:18.170
 And every move of authority
 runs the same loop.
 
-275
-00:19:10.610 --> 00:19:12.572
+277
+00:19:18.170 --> 00:19:20.132
 Lower the TTL well ahead.
 
-276
-00:19:12.572 --> 00:19:15.973
+278
+00:19:20.132 --> 00:19:23.533
 Export, transform and
 import with a dry run.
 
-277
-00:19:15.973 --> 00:19:18.034
+279
+00:19:23.533 --> 00:19:25.594
 Validate from every origin.
 
-278
-00:19:18.034 --> 00:19:20.548
+280
+00:19:25.594 --> 00:19:28.108
 Switch authority one mechanism at a time.
 
-279
-00:19:20.548 --> 00:19:23.436
+281
+00:19:28.108 --> 00:19:30.996
 Wait until no client
 queries the old server.
 
-280
-00:19:23.436 --> 00:19:26.623
+282
+00:19:30.996 --> 00:19:34.183
 Then restore the TTL
 and file the evidence.
 
-281
-00:19:26.623 --> 00:19:29.211
+283
+00:19:34.183 --> 00:19:36.771
 If a check fails, you revert the switch,
 
-282
-00:19:29.211 --> 00:19:33.000
+284
+00:19:36.771 --> 00:19:40.560
 and the old authority,
 still intact, answers again.
 
-283
-00:19:36.750 --> 00:19:40.104
+285
+00:19:44.310 --> 00:19:47.664
 Phase 1 is read-only, so it
 carries no rollback risk,
 
-284
-00:19:40.104 --> 00:19:43.213
+286
+00:19:47.664 --> 00:19:50.773
 but anything it misses
 can't be repaired later.
 
-285
-00:19:43.213 --> 00:19:49.059
+287
+00:19:50.773 --> 00:19:56.619
 It collects every zone, record, forwarder,
 DHCP scope and resolution path, including
 
-286
-00:19:49.059 --> 00:19:54.651
+288
+00:19:56.619 --> 00:20:02.211
 the health of the data, because stale
 records migrate as faithfully as good ones.
 
-287
-00:19:54.651 --> 00:19:57.487
+289
+00:20:02.211 --> 00:20:05.047
 Then each component gets
 a target and a method.
 
-288
-00:19:57.487 --> 00:19:59.988
+290
+00:20:05.047 --> 00:20:07.548
 Internal zones move to the new platform.
 
-289
-00:19:59.988 --> 00:20:03.751
+291
+00:20:07.548 --> 00:20:11.311
 External zones need a registrar
 change, so they're high risk.
 
-290
-00:20:03.751 --> 00:20:07.537
+292
+00:20:11.311 --> 00:20:15.097
 And locator records stay where
 domain controllers can register,
 
-291
-00:20:07.537 --> 00:20:10.062
+293
+00:20:15.097 --> 00:20:17.622
 because there's no
 Azure-native equivalent.
 
-292
-00:20:10.062 --> 00:20:15.210
+294
+00:20:17.622 --> 00:20:22.770
 Phase 2 adds the new resolvers without
 moving authority, forwarding both ways,
 
-293
-00:20:15.210 --> 00:20:19.962
+295
+00:20:22.770 --> 00:20:27.522
 with exactly one authoritative path
 per namespace so queries don't loop.
 
-294
-00:20:19.962 --> 00:20:24.210
+296
+00:20:27.522 --> 00:20:31.770
 Two errors cause most failures
 here, and the slide names both.
 
-295
-00:20:27.960 --> 00:20:33.038
+297
+00:20:35.520 --> 00:20:40.598
 Phase 3 is where zones, forwarders,
 DHCP scopes and clients actually move,
 
-296
-00:20:33.038 --> 00:20:36.085
+298
+00:20:40.598 --> 00:20:43.645
 each move one pass
 through the cutover loop.
 
-297
-00:20:36.085 --> 00:20:39.767
+299
+00:20:43.645 --> 00:20:47.327
 Records move, then you observe
 for at least thirty days,
 
-298
-00:20:39.767 --> 00:20:43.285
+300
+00:20:47.327 --> 00:20:50.845
 with the old copy left in
 place as the rollback point.
 
-299
-00:20:43.285 --> 00:20:47.847
+301
+00:20:50.845 --> 00:20:55.407
 Three patterns cover almost every
 zone, and each has its own rollback.
 
-300
-00:20:47.847 --> 00:20:51.902
+302
+00:20:55.407 --> 00:20:59.462
 Check the record types that behave
 differently on the new platform;
 
-301
-00:20:51.902 --> 00:20:56.029
+303
+00:20:59.462 --> 00:21:03.589
 SRV records are the most consequential
 and the most underestimated,
 
-302
-00:20:56.029 --> 00:20:58.635
+304
+00:21:03.589 --> 00:21:06.195
 because nothing moves
 them when AD retires.
 
-303
-00:20:58.635 --> 00:21:04.310
+305
+00:21:06.195 --> 00:21:11.870
 DHCP moves scope by scope, with its
 options, and failover stays on throughout.
 
-304
-00:21:04.310 --> 00:21:06.560
+306
+00:21:11.870 --> 00:21:14.120
 Clients move last, in waves.
 
-305
-00:21:06.560 --> 00:21:10.922
+307
+00:21:14.120 --> 00:21:18.482
 One trap to plan for: removing a
 network link from an Azure private zone
 
-306
-00:21:10.922 --> 00:21:16.160
+308
+00:21:18.482 --> 00:21:23.720
 deletes its auto-registered records, and
 Microsoft says they can't be restored.
 
-307
-00:21:19.910 --> 00:21:24.711
+309
+00:21:27.470 --> 00:21:32.271
 Phase 4 brings each cloud under the
 plane, and its real contribution is the
 
-308
-00:21:24.711 --> 00:21:29.748
+310
+00:21:32.271 --> 00:21:37.308
 validation matrix: every class of name
 resolves correctly from every origin.
 
-309
-00:21:29.748 --> 00:21:33.183
+311
+00:21:37.308 --> 00:21:40.743
 A private endpoint name
 returning a public address from
 
-310
-00:21:33.183 --> 00:21:36.984
+312
+00:21:40.743 --> 00:21:44.544
 anywhere is a failed test, even
 if the application seems to work.
 
-311
-00:21:36.984 --> 00:21:41.221
+313
+00:21:44.544 --> 00:21:48.781
 Phase 5 is the one step whose
 mistakes can't be cheaply undone,
 
-312
-00:21:41.221 --> 00:21:43.085
+314
+00:21:48.781 --> 00:21:50.645
 so it's gated, not scheduled.
 
-313
-00:21:43.085 --> 00:21:48.361
+315
+00:21:50.645 --> 00:21:55.921
 All five gates must pass, including locator
 records resolving at one hundred percent
 
-314
-00:21:48.361 --> 00:21:50.144
+316
+00:21:55.921 --> 00:21:57.704
 for thirty consecutive days,
 
-315
-00:21:50.144 --> 00:21:53.860
+317
+00:21:57.704 --> 00:22:01.420
 and ninety days of parallel
 running with no critical alerts.
 
-316
-00:21:53.860 --> 00:21:57.689
+318
+00:22:01.420 --> 00:22:05.249
 Then decommission in order,
 archiving the final exports
 
-317
-00:21:57.689 --> 00:22:01.110
+319
+00:22:05.249 --> 00:22:08.670
 before anything is removed,
 with a seven-day burn-in.
 
-318
-00:22:01.110 --> 00:22:07.150
+320
+00:22:08.670 --> 00:22:14.710
 Losing locator records early causes
 forest-wide sign-in and domain-join failures.
 
-319
-00:22:10.900 --> 00:22:14.518
+321
+00:22:18.460 --> 00:22:22.078
 A single policy plane only works
 if divisions can still run their
 
-320
-00:22:14.518 --> 00:22:18.338
+322
+00:22:22.078 --> 00:22:25.898
 networks through it, because a division
 that can't will work around it.
 
-321
-00:22:18.338 --> 00:22:21.670
+323
+00:22:25.898 --> 00:22:29.230
 So each division gets its
 own scope, with manager,
 
-322
-00:22:21.670 --> 00:22:25.587
+324
+00:22:29.230 --> 00:22:33.147
 operator and auditor roles,
 and no visibility outside it.
 
-323
-00:22:25.587 --> 00:22:29.421
+325
+00:22:33.147 --> 00:22:36.981
 Whatever stays on Windows or
 Azure needs the same discipline,
 
-324
-00:22:29.421 --> 00:22:31.601
+326
+00:22:36.981 --> 00:22:39.161
 including locks on critical zones.
 
-325
-00:22:31.601 --> 00:22:35.881
+327
+00:22:39.161 --> 00:22:43.441
 Every object should sit behind
 one documented API, so automation,
 
-326
-00:22:35.881 --> 00:22:39.925
+328
+00:22:43.441 --> 00:22:47.485
 ticketing and pipelines share
 the same roles and audit trail.
 
-327
-00:22:39.925 --> 00:22:41.075
+329
+00:22:47.485 --> 00:22:48.635
 Then telemetry.
 
-328
-00:22:41.075 --> 00:22:46.858
+330
+00:22:48.635 --> 00:22:54.418
 M-26-14 doesn't name DNS or DHCP, but
 its baseline needs network address
 
-329
-00:22:46.858 --> 00:22:52.438
+331
+00:22:54.418 --> 00:22:59.998
 information, searchable for six
 months and retrievable for a year.
 
-330
-00:22:52.438 --> 00:22:57.150
+332
+00:22:59.998 --> 00:23:04.710
 The book's reading is that query logs
 and lease history supply exactly that.
 
-331
-00:22:57.150 --> 00:22:59.580
+333
+00:23:04.710 --> 00:23:07.140
 Last, how to keep it all honest.
 
-332
-00:23:03.330 --> 00:23:07.042
+334
+00:23:10.890 --> 00:23:14.602
 Last, keeping it honest during
 and after the hybrid period.
 
-333
-00:23:07.042 --> 00:23:11.068
+335
+00:23:14.602 --> 00:23:18.628
 Chapter 11's troubleshooting
 reference covers the common failures.
 
-334
-00:23:11.068 --> 00:23:15.904
+336
+00:23:18.628 --> 00:23:23.464
 For example, a private endpoint returning
 its public address usually means
 
-335
-00:23:15.904 --> 00:23:20.204
+337
+00:23:23.464 --> 00:23:27.764
 an unlinked zone, a bad forwarder
 target or a timeout that's too short.
 
-336
-00:23:20.204 --> 00:23:25.493
+338
+00:23:27.764 --> 00:23:33.053
 Then watch continuously: resolve the
 locator records every fifteen minutes from
 
-337
-00:23:25.493 --> 00:23:28.292
+339
+00:23:33.053 --> 00:23:35.852
 every site, detect
 drift between platforms,
 
-338
-00:23:28.292 --> 00:23:31.480
+340
+00:23:35.852 --> 00:23:39.040
 and commit each report so
 the history is evidence.
 
-339
-00:23:31.480 --> 00:23:35.830
+341
+00:23:39.040 --> 00:23:43.390
 The evidence checklist opens with the
 five decisions, each checked live.
 
-340
-00:23:35.830 --> 00:23:41.145
+342
+00:23:43.390 --> 00:23:48.705
 So, before the next SD-WAN or DDI change:
 audit every branch's redirect target,
 
-341
-00:23:41.145 --> 00:23:46.545
+343
+00:23:48.705 --> 00:23:54.105
 verify the chain order, finish the AD
 DNS inventory before touching a domain
 
-342
-00:23:46.545 --> 00:23:49.974
+344
+00:23:54.105 --> 00:23:57.534
 controller, confirm the
 sovereign-cloud limits,
 
-343
-00:23:49.974 --> 00:23:52.717
+345
+00:23:57.534 --> 00:24:00.277
 and take open questions to the vendors.
 
-344
-00:23:52.717 --> 00:23:53.540
+346
+00:24:00.277 --> 00:24:01.100
 Thank you.

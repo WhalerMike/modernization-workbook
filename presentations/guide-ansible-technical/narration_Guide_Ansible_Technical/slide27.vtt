@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.375
+The tests matter as much as the playbooks.
+
+2
+00:00:02.375 --> 00:00:06.662
+Everything passes the strictest
+lint profile and a syntax check.
+
+3
+00:00:06.662 --> 00:00:09.555
+A read-only checker fails
+on any ungated write,
+
+4
+00:00:09.555 --> 00:00:12.600
+and its own negative tests
+prove it catches them.
+
+5
+00:00:12.600 --> 00:00:15.725
+The inventory tests prove
+that bad records fail.
+
+6
+00:00:15.725 --> 00:00:17.500
+But be clear about the limits.
+
+7
+00:00:17.500 --> 00:00:19.938
+The tests ran on a control node only.
+
+8
+00:00:19.938 --> 00:00:23.502
+The Arc, Windows, Cisco and
+Infoblox paths pass lint,
+
+9
+00:00:23.502 --> 00:00:26.388
+but they haven't touched those platforms.
+
+10
+00:00:26.388 --> 00:00:31.799
+And the baseline is a handful of example
+settings, not a C I S Benchmark profile.
+
+11
+00:00:31.799 --> 00:00:33.687
+Treat them as illustrations.
+
+12
+00:00:33.687 --> 00:00:35.400
+Next, the checklist.

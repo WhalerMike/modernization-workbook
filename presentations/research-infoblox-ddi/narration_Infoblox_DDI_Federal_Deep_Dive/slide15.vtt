@@ -35,26 +35,36 @@ or native cloud resolvers wired to
 the Grid with forwarding both ways.
 
 8
-00:00:28.525 --> 00:00:31.694
+00:00:28.525 --> 00:00:31.527
 The design guidance is
 this: mostly on premises,
 
 9
-00:00:31.694 --> 00:00:36.406
+00:00:31.527 --> 00:00:35.992
 use native resolvers with forwarding;
 hybrid, add virtual appliances;
 
 10
-00:00:36.406 --> 00:00:41.037
-multi-cloud at Moderate, add Universal
-DDI; and for government clouds,
+00:00:35.992 --> 00:00:38.687
+multi-cloud at Moderate,
+add Universal DDI;
 
 11
-00:00:41.037 --> 00:00:45.425
-FedRAMP High or the higher Defense
-levels, don't depend on the SaaS.
+00:00:38.687 --> 00:00:41.535
+in GovCloud or Azure
+Government at Moderate,
 
 12
-00:00:45.425 --> 00:00:48.100
+00:00:41.535 --> 00:00:46.077
+confirm the government edition
+supports those accounts first; and for
+
+13
+00:00:46.077 --> 00:00:50.850
+FedRAMP High or the higher Defense
+levels, don't depend on the Moderate SaaS.
+
+14
+00:00:50.850 --> 00:00:53.520
 The Trinzic explainer
 has the full reasoning.

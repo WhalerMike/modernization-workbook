@@ -63,7 +63,7 @@ A host vulnerability scanner answers "what CVEs are on this VM." It does not
 answer "is this storage bucket public," "can this workload reach the internet,"
 "does this IAM role grant far more than it uses," or "was this container image
 scanned before it ran." Those are **cloud-control-plane and container-layer**
-questions, and on a multi-cloud estate (AWS GovCloud, Azure, GCP, OCI, VMware,
+questions, and on a multi-cloud estate (AWS GovCloud (US) and commercial Regions, Azure, GCP, OCI, VMware,
 plus Kubernetes — AKS/EKS/GKE/OKE/OpenShift) they are where a dominant class of
 cloud incidents begins: misconfiguration, excessive entitlement, and exposure —
 not an unpatched kernel.
@@ -103,10 +103,10 @@ Cloud's role there narrows to cross-account correlation rather than sole source:
 | Platform | Primary mechanism | Owned today | FedRAMP status | Moderate-boundary treatment |
 |---|---|---|---|---|
 | Azure | Microsoft Defender for Cloud | Yes | FedRAMP Moderate (GCC) | Native Moderate — coordinating default |
-| AWS | AWS Config (conformance packs) + AWS Security Hub | Yes | FedRAMP-authorized, above Moderate (AWS GovCloud Class D) | Exceeds Moderate, boundary treatment documented; owned, so primary for AWS rather than relying on Defender's AWS ingestion |
+| AWS | AWS Config (conformance packs) + AWS Security Hub CSPM (including its CIS AWS Foundations Benchmark standard) | Yes | Listed in both AWS US East/West (FedRAMP Class C, formerly Moderate) and AWS GovCloud (US) (Class D, formerly High) | Both locations are valid for a Moderate system: native Moderate in the commercial Regions; in GovCloud (US) the High offering includes the Moderate controls, with the boundary treatment documented. An agency may run most AWS workloads in GovCloud (US) at Moderate and a contact center in a commercial Region. Owned, so primary for AWS rather than relying on Defender's AWS ingestion |
 | GCP | Google Assured Workloads (boundary/guardrail) + Security Command Center (posture) | No | Assured Workloads: native FedRAMP Moderate control package; Security Command Center: FedRAMP-authorized, above Moderate (Google Cloud's High P-ATO) | Assured Workloads needs no flag — it *is* the Moderate control package; Security Command Center exceeds Moderate and needs the boundary treatment documented if adopted. Neither is procured today — Defender for Cloud's native GCP ingestion is the only mechanism actually in place |
-| OCI | OCI Cloud Guard (unified misconfiguration and threat detection across the OCI tenancy) | No | FedRAMP-authorized, above Moderate (DISA IL5 / JAB) | Exceeds Moderate, boundary treatment documented; residual-gap closer only — Defender's native coverage does not extend to OCI/OKE |
-| VMware | VMware Aria Operations for Compliance | Yes | Not a CSP offering — no independent FedRAMP authorization | Inherits the deploying system's own ATO boundary, same as other customer-operated software in the estate |
+| OCI | OCI Cloud Guard (unified misconfiguration and threat detection across the OCI tenancy) | No | FedRAMP Certified Class D (High) (Oracle Cloud Infrastructure-Government Cloud, per the FedRAMP Marketplace); its DoD IL5 status is a Defense tier comparison (High only: Defense or FedRAMP High material, not the Moderate civilian baseline this series targets) | Exceeds Moderate, boundary treatment documented; residual-gap closer only — Defender's native coverage does not extend to OCI/OKE |
+| VMware | VCF Operations Security Posture Management, measuring Broadcom's VMware Cloud Foundation Security Configuration and Hardening Guide (CIS VMware ESXi benchmarks as a cross-check) | Yes | Not a CSP offering — no independent FedRAMP authorization | Inherits the deploying system's own ATO boundary, same as other customer-operated software in the estate |
 
 : Per-platform CSPM mechanism, ownership, and Moderate-boundary status {.striped .hover}
 
@@ -120,11 +120,12 @@ rather than active, exactly as the "Owned today" column states.
 
 The agency also prefers **Palo Alto (Prisma Cloud)** as a whole-platform CNAPP
 alternative to Defender, and Prisma Cloud is among the most feature-complete
-CNAPPs — but it is **FedRAMP High-only**, as is **Wiz for Government**. Under
-the Moderate-exclusive rule this is the identical flag as the AWS/GCP/OCI rows
-above: High exceeds Moderate, so either product may be used if the boundary
-treatment is documented, or Defender for Cloud is selected to stay natively at
-Moderate. This is an explicit procurement/boundary decision, recorded in the
+CNAPPs. It is not High-only: the FedRAMP Marketplace (October 21, 2026) lists
+Prisma Cloud in Palo Alto's Government Cloud Services offering (Class C,
+Moderate) and in GCS-HIGH (Class D, High). **Wiz for Government** is certified
+at Class D (High), so it carries the same flag as the GCP/OCI rows above: High
+includes the Moderate controls, so it may be used if the boundary treatment is
+documented, or a Moderate offering is selected. This is an explicit procurement/boundary decision, recorded in the
 Product Inventory Questionnaire's flag list.
 :::
 
@@ -183,7 +184,7 @@ Management book owns host RA-5).
 |---|---|---|---|---|---|---|---|
 | CM-7 | Least Functionality | Container hardening + Kubernetes admission control (deny non-compliant workloads) | FedRAMP Moderate | NIST SP 800-53 Rev 5 | Security / supply chain | KSI-SVC | No |
 | SC-7 | Boundary Protection | Cloud network-exposure and attack-path analysis (CNAPP) — internet-reachable workloads flagged | FedRAMP Moderate | NIST SP 800-53 Rev 5; NIST SP 800-207 | Network | KSI-CNA | No |
-| CM-6 | Configuration Settings | Cloud resource misconfiguration detection across CSPs (CSPM) — Defender for Cloud (Azure/AWS/GCP, Moderate default); AWS Config + Security Hub (AWS, owned, primary for AWS — High-covers-Moderate in AWS GovCloud); Google Assured Workloads + Security Command Center (GCP, adoption default if procured — Assured Workloads native Moderate, SCC High-covers-Moderate); VMware Aria Operations for Compliance (VMware, owned, boundary-inherited — not independently FedRAMP-authorized); OCI Cloud Guard (OCI, adoption default if procured, residual gap closer, High-covers-Moderate); Prisma Cloud/Wiz (High, alternative) | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA SCuBA | Security / supply chain | KSI-CMT, KSI-SVC | No |
+| CM-6 | Configuration Settings | Cloud resource misconfiguration detection across CSPs (CSPM) — Defender for Cloud (Azure/AWS/GCP, Moderate default); AWS Config + Security Hub CSPM (AWS, owned, primary for AWS — Moderate in the commercial Regions, High-covers-Moderate in AWS GovCloud (US); both valid); Google Assured Workloads + Security Command Center (GCP, adoption default if procured — Assured Workloads native Moderate, SCC High-covers-Moderate); VCF Operations Security Posture Management with Broadcom's hardening guide and CIS ESXi (VMware, owned, boundary-inherited — not independently FedRAMP-authorized); OCI Cloud Guard (OCI, adoption default if procured, residual gap closer, High-covers-Moderate); Prisma Cloud (Moderate and High) / Wiz (High), alternatives | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA SCuBA | Security / supply chain | KSI-CMT, KSI-SVC | No |
 | RA-5 | Vulnerability Monitoring and Scanning | Agentless cloud-workload + container-image vulnerability scanning (CNAPP/CWPP) | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA BOD 26-04 | Security / supply chain | KSI-MLA | No |
 | SA-11 | Developer Testing and Evaluation | Shift-left IaC and container-image scanning in CI (CNAPP code security) | FedRAMP Moderate | NIST SP 800-53 Rev 5; NIST SP 800-218 | Security / supply chain | KSI-SVC | No |
 | SI-3 | Malicious Code Protection | Container / workload runtime threat detection | FedRAMP Moderate | NIST SP 800-53 Rev 5 | Security / supply chain | KSI-MLA | No |
@@ -203,8 +204,8 @@ through the evidence fabric.
 ## Platform Selection Status
 
 Per-platform CSPM selection prioritizes what the agency already owns:
-**AWS Config + Security Hub** (AWS) and **VMware Aria Operations for
-Compliance** (VMware) are the primary posture mechanisms for their platforms
+**AWS Config + Security Hub CSPM** (AWS) and **VCF Operations Security Posture
+Management** (VMware) are the primary posture mechanisms for their platforms
 today, ahead of routing that evidence through Defender for Cloud's ingestion.
 **Microsoft Defender for Cloud** remains the coordinating default for Azure and
 GCP, natively at FedRAMP Moderate. **Google Assured Workloads** and **Security
@@ -212,11 +213,13 @@ Command Center** (GCP) and **OCI Cloud Guard** (OCI) are documented as each
 platform's adoption default — the specific mechanism to stand up the day GCP
 or OCI is actually procured — not a current-ownership claim; today Defender
 for Cloud covers GCP and OCI/OKE has no native posture mechanism in place.
-Where a mechanism (owned, preferred, or documented-default) is FedRAMP High
-rather than Moderate — AWS Config/Security Hub, Security Command Center, OCI
-Cloud Guard, and the agency-preferred **Palo Alto Prisma Cloud** /
-**Wiz for Government** — the High-covering-Moderate boundary treatment must be
-documented; this is not a disqualifier under the Moderate-exclusive rule.
+Where a mechanism (owned, preferred, or documented-default) is used from a
+FedRAMP High offering rather than a Moderate one — AWS Config/Security Hub CSPM
+in GovCloud (US), Security Command Center, OCI Cloud Guard, Prisma Cloud
+GCS-HIGH or **Wiz for Government** — the High-covering-Moderate boundary
+treatment must be documented; this is not a disqualifier under the
+Moderate-exclusive rule. AWS Config and Security Hub CSPM are also listed at
+Moderate in the commercial Regions, and Prisma Cloud at Moderate.
 Verify all authorization claims on the FedRAMP Marketplace at procurement.
 :::
 
@@ -231,12 +234,15 @@ Verify all authorization claims on the FedRAMP Marketplace at procurement.
 | CISA BOD 26-04 | Risk-based remediation; KEV listing is one of four variables. Known Exploited Vulnerabilities catalog — <https://www.cisa.gov/known-exploited-vulnerabilities-catalog> |
 | Microsoft Defender for Cloud (multi-cloud CSPM/CWPP) | <https://learn.microsoft.com/azure/defender-for-cloud/> |
 | AWS Config — NIST SP 800-53 Rev 5 conformance pack (AWS, owned) | <https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-nist-800-53_rev_5.html> |
-| AWS Security Hub (AWS, owned, FedRAMP-authorized above Moderate in AWS GovCloud) | <https://aws.amazon.com/about-aws/whats-new/2021/04/aws-security-hub-achieves-fedramp-high-authorization-to-enable-security-posture-management-for-high-impact-workloads/> |
+| AWS Security Hub CSPM (AWS, owned; FedRAMP Class C in US East/West and Class D in GovCloud (US)) | <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/> (per-service, per-Region scope; accessed Oct 29, 2026) |
+| CIS AWS Foundations Benchmark in Security Hub CSPM (v5.0.0 recommended; available in every Security Hub CSPM Region) | <https://docs.aws.amazon.com/securityhub/latest/userguide/cis-aws-foundations-benchmark.html> (accessed Oct 29, 2026) |
 | Google Assured Workloads (GCP, adoption default, native FedRAMP Moderate control package) | <https://cloud.google.com/assured-workloads> |
 | Google Security Command Center (GCP, adoption default, FedRAMP-authorized above Moderate) | <https://cloud.google.com/security-command-center> |
-| VMware Aria Operations for Compliance (VMware, owned; vSphere/NSX-T/vSAN STIG benchmark content) | <https://techdocs.broadcom.com/us/en/vmware-cis/vcf/stig/9-0/vcf-stig-documentation/docs-tutorials-Aria-aria.html> |
-| Oracle Cloud Guard (OCI, adoption default, residual-gap closer, FedRAMP-authorized above Moderate / DISA IL5) | <https://www.oracle.com/security/cloud-security/cloud-guard/> |
-| Palo Alto Prisma Cloud (CNAPP, FedRAMP High) | <https://www.paloaltonetworks.com/blog/prisma-cloud/fedramp-high-impact-ready/> |
+| VCF Operations Security Posture Management (VMware, owned; benchmarks include the VMware Cloud Foundation Security Configuration and Hardening Guide) | <https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1/security-and-compliance/security-posture-management/compliance-assessment-and-reporting-using-security-posture-management.html> |
+| CIS VMware ESXi 8.0 (1.4.0) and 9.0 (1.0.0) Benchmarks (VMware, vendor-neutral cross-check) | <https://www.cisecurity.org/cis-benchmarks> (accessed Oct 29, 2026) |
+| Broadcom VCF STIG content (optional reference, High only: Defense material, not the Moderate civilian baseline) | <https://techdocs.broadcom.com/us/en/vmware-cis/vcf/stig/9-0/vcf-stig-documentation/docs-tutorials-Aria-aria.html> |
+| Oracle Cloud Guard (OCI, adoption default, residual-gap closer, FedRAMP Class D (High); DoD IL5 is a High-only tier comparison) | <https://www.oracle.com/security/cloud-security/cloud-guard/> |
+| Palo Alto Prisma Cloud (CNAPP; FedRAMP Moderate and High offerings) | <https://www.paloaltonetworks.com/blog/prisma-cloud/fedramp-high-impact-ready/> |
 | Wiz for Government (CNAPP, FedRAMP High) | <https://www.wiz.io/blog/wiz-achieves-fedramp-high-authorization> |
 
 : Reference Documents and Vendor Sources {.striped .hover}

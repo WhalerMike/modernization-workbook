@@ -5,7 +5,7 @@ description: "Research under review: an implementation guide for building Book 0
 research-status: in review
 research-type: implementation guide
 research-book: "Book 09"
-date-modified: 2026-10-24
+date-modified: 2026-10-29
 last-reviewed: 2026-10-24
 ---
 
@@ -15,7 +15,7 @@ last-reviewed: 2026-10-24
 
 ::: {.callout-note}
 ## An example, not an endorsement
-This guide names one product to make Book 09's vendor-neutral design concrete. It isn't an endorsement by any agency, and Book 09's design doesn't depend on this vendor. Every product, directive and certification fact was checked against primary sources on October 24, 2026, and is footnoted. Statements marked *(design guidance)* are the program's recommendations; statements marked *(inference)* are conclusions the sources support but don't state.
+This guide names one product to make Book 09's vendor-neutral design concrete. It isn't an endorsement by any agency, and Book 09's design doesn't depend on this vendor. Every product, directive and certification fact was checked against primary sources on October 24, 2026, and is footnoted; the configuration-baseline facts were added on October 29, 2026. Statements marked *(design guidance)* are the program's recommendations; statements marked *(inference)* are conclusions the sources support but don't state.
 :::
 
 **The example code:** [examples/cisco-sdwan on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/cisco-sdwan). It's a read-only Python script that checks every control component against the fixed releases for the directive and the catalog, and exports inventory and audit-log evidence. It's **illustrative: unit-tested against mocked responses, not proven against a live fabric**.
@@ -38,7 +38,7 @@ This guide names one product to make Book 09's vendor-neutral design concrete. I
 | Orientation | Book 09's terms mapped to Catalyst components; the one decision to make first, a hosted or on-premises control plane |
 | Gate 0 | Emergency Directive 26-03, its supplemental hunt and hardening guidance, the nine Catalyst SD-WAN entries in CISA's Known Exploited Vulnerabilities (KEV) catalog, and the software floor they set today |
 | Build | The control plane, the 12 hubs, the branch waves and Microsoft 365, mapped to Chapter 11's phases and Chapter 13's sequence; configuration groups, SLA classes, segmentation and NAC |
-| Harden | Perimeter, administrative access, certificates and the CLM platform, logging, FIPS 140-3, Common Criteria and STIG status |
+| Harden | Perimeter, administrative access, certificates and the CLM platform, logging, FIPS 140-3, Common Criteria and the edge configuration baseline |
 | Integrate | TIC 3.0 patterns A to D on Catalyst; Cisco Secure Access for Government and Microsoft Global Secure Access; Microsoft 365 in GCC; Microsoft Sentinel |
 | Evidence | Manager APIs mapped to Chapter 05's evidence schema; CISA telemetry; the example script |
 | Close | Risks, vendor asks, what couldn't be verified, and the source notes |
@@ -105,7 +105,7 @@ Cisco offers on-premises control components, Cisco-hosted fabrics, and **Cisco S
 
 Cisco's government guide adds:[^cs-gov]
 
-- The boundary is in AWS GovCloud (US).
+- The boundary is in AWS GovCloud (US). That's a Moderate service in GovCloud: AWS certifies GovCloud (US) at Class D (formerly High) and its US East/West regions at Class C (formerly Moderate), and checks scope per service and region. NIST's baselines are cumulative, so GovCloud isn't reserved for High systems *(inference)*.[^cs-aws-fr]
 - A Cisco federal operations team maintains and monitors it.
 - Customers manage their overlay through the SD-WAN Portal, allow trusted IP addresses there, and have no access to the AWS boundary.
 - FedRAMP compliance requires Manager 20.12.1.1 and IOS XE 17.9.1a or later.
@@ -322,7 +322,7 @@ That's how Book 09 reaches its "certificate-based edge onboarding from the agenc
 
 The Manager web certificate is a separate certificate-signing-request flow.[^cs-harden]
 
-### FIPS 140-3, Common Criteria and STIGs
+### FIPS 140-3, Common Criteria and the configuration baseline
 
 | Item | Status, October 24, 2026 |
 |---|---|
@@ -332,7 +332,10 @@ The Manager web certificate is a separate certificate-signing-request flow.[^cs-
 | FIPS mode, edges | Cisco's IOS XE 17.x security guide shows example edge output with `fips-mode Disabled`, and this research found no documented procedure for enabling it on edges (vendor ask 5)[^cs-secparams] |
 | Common Criteria (NIAP) | Catalyst 8200, 8300, 8400 and 8500 Secure Routers (G2 hardware) on IOS XE 17.18, certified April 9, 2026; Catalyst 8200, 8300 and 8500 with ASR 1000 on 17.15, certified September 29, 2025, maintained to 17.18; protection profiles NDcPP 3.0e, VPN Gateway 1.3, MACsec 1.0 and SSH 1.0. No Cisco SD-WAN product is listed, and the router listings don't mention controller mode[^cs-niap] |
 | Common Criteria (other) | Cisco lists "Cisco cEdge Routers running IOS XE 17.12 with SD-WAN 20.12," EAL2+, certified December 18, 2024, expiring December 18, 2029; the certificate was issued under the Canadian scheme, with no protection profile claimed[^cs-cc] |
-| DISA STIGs | No SD-WAN STIG exists. The Cisco IOS XE Router NDM STIG V3R7 (April 1, 2026) and RTR STIG V3R5 (October 1, 2025) are written for IOS XE and don't mention SD-WAN mode; use them as a reference baseline for edges, not as a checklist an assessor will expect to match *(inference)*[^cs-stig] |
+| Configuration baseline (CM-6) | NIST SP 800-53 CM-6 leaves the agency to choose its common secure configurations and record its deviations.[^cs-cm6] For the control components, that's Cisco's Catalyst SD-WAN Hardening Guide and CISA's supplemental guidance (the table above).[^cs-harden][^cs-supp] For the edges, draw the settings from the CIS Cisco IOS XE 17.x Benchmark (2.2.1) and Cisco's IOS XE Software Hardening Guide (revision 3.2, December 8, 2025), and check each against SD-WAN mode, in which Manager pushes the edge configuration *(design guidance)*.[^cs-cis][^cs-iosxe-harden] CIS lists no Catalyst SD-WAN Manager benchmark[^cs-cis] |
+| DISA STIGs (High only) | No SD-WAN STIG exists. The Cisco IOS XE Router NDM STIG V3R7 (April 1, 2026) and RTR STIG V3R5 (October 1, 2025) are written for IOS XE and don't mention SD-WAN mode. They're an optional cross-check, not the civilian baseline and not something a Moderate assessor expects to match *(inference)*[^cs-stig] |
+
+*High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
 For Chapter 10's requirement that acquisitions state a FIPS 140-3 expectation, the honest statement today has two halves:
 
@@ -506,7 +509,7 @@ Microsoft ended support for the HTTP Data Collector API on September 14, 2026; i
 - **SDWAN-G remediation of CVE-2026-76504.** The advisory names only Cisco's managed cloud.
 - **Cflowd and IPFIX export details on IOS XE 17.x.** Cisco's page returned 404; flow support is taken from Microsoft's connector page and Cisco's high-speed logging section.
 - **The release-20.18 disaster-recovery procedure for Manager.** The design guide found is from 2021.
-- **The DoDIN Approved Products List entry, if any.** The list site was unreachable and Cisco's page returned 404.
+- **The DoDIN Approved Products List entry, if any (High only).** The list site was unreachable and Cisco's page returned 404.
 - **SD-WAN mode in edge FIPS validation and in NIAP's evaluated configurations.**
 - **Product-wide versus GCC-specific availability.** Whether Global Secure Access remote networks, specifically, are generally available in GCC; Microsoft's statement is product-wide.
 - **Cisco SD-WAN's Sentinel solution in Azure Government,** and whether Umbrella for Government still automates Catalyst SD-WAN tunnels.
@@ -519,6 +522,7 @@ Microsoft ended support for the HTTP Data Collector API on September 14, 2026; i
 - Cisco's security advisories, hardening guide, configuration guides, sizing chapter, government guide, certification pages and DevNet references
 - the Cisco Secure Access for Government help center
 - FedRAMP Marketplace data, the NIST CMVP, the NIAP Product Compliant List and the DISA STIG library
+- on October 29, 2026: NIST SP 800-53 CM-6, the CIS Benchmarks list, Cisco's IOS XE Software Hardening Guide and AWS's FedRAMP pages
 - Microsoft Learn
 
 To move this guide to **Proved**:
@@ -561,6 +565,10 @@ Related: [Book 09 — Network & Transport](../books/b09-network/index.md), [Book
 [^cs-cc]: Cisco, "Common Criteria" government certifications page ("Cisco cEdge Routers running IOS XE 17.12 with SD-WAN 20.12," EAL2+ (ALC_FLR.2), December 18, 2024 to December 18, 2029; certificate PDF 654-LSS, issued under the Canadian Common Criteria scheme), <https://www.cisco.com/c/en/us/solutions/industries/government/global-government-certifications/common-criteria.html>, accessed October 24, 2026.
 [^cs-trustsec-fips]: Cisco, *Cisco Catalyst SD-WAN Security Configuration Guide, IOS XE 17.x*, "Cisco TrustSec Integration" (TrustSec not supported with FIPS mode enabled; PAC key download fails), <https://www.cisco.com/c/en/us/td/docs/routers/sdwan/configuration/security/ios-xe-17/security-book-xe.html>, accessed October 24, 2026.
 [^cs-secparams]: Cisco, *Cisco Catalyst SD-WAN Security Configuration Guide, IOS XE 17.x*, "Configure Security Parameters" (example `show sdwan security-info` output on a 17.18.02 edge with `fips-mode Disabled`), updated January 12, 2026, <https://www.cisco.com/c/en/us/td/docs/routers/sdwan/configuration/security/ios-xe-17/security-book-xe.html>, accessed October 24, 2026.
+[^cs-cm6]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, control CM-6 (organization-defined common secure configurations; deviations documented and approved; the discussion names vendors, federal agencies and consortia as sources), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; read from NIST's OSCAL Rev. 5 catalog, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5>, accessed October 29, 2026.
+[^cs-cis]: Center for Internet Security, "CIS Benchmarks" (benchmark list, including Cisco IOS XE 17.x (2.2.1); no Cisco Catalyst SD-WAN Manager benchmark listed), <https://www.cisecurity.org/cis-benchmarks>, accessed October 29, 2026.
+[^cs-iosxe-harden]: Cisco, *Cisco IOS XE Software Hardening Guide*, revision 3.2, December 8, 2025 (management, control and data plane hardening; checklist), <https://sec.cloudapps.cisco.com/security/center/resources/IOS_XE_hardening>, accessed October 29, 2026.
+[^cs-aws-fr]: Amazon Web Services, "FedRAMP" (US East/West FedRAMP Certified Class C, formerly Moderate; GovCloud (US) Class D, formerly High), <https://aws.amazon.com/compliance/fedramp/>; and "FedRAMP — Services in Scope" (per-service, per-Region columns), <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/>, accessed October 29, 2026.
 [^cs-stig]: Defense Information Systems Agency, STIG library, Cisco IOS XE Router STIG bundle `U_Cisco_IOS-XE_Router_Y26M04_STIG` (NDM STIG V3R7, April 1, 2026; RTR STIG V3R5, October 1, 2025), <https://public.cyber.mil/stigs/downloads/>, accessed October 24, 2026.
 [^cs-api-auth]: Cisco DevNet, "Authentication" for the Catalyst SD-WAN Manager API (JWT from 20.18.1 at `/jwt/login`, duration 1–604,800 seconds, default 1,800, `csrf` claim, no JWT logout; session flow with `/j_security_check`, `/dataservice/client/token` and `/logout`; 24-hour session and 30-minute inactivity timeout), <https://developer.cisco.com/docs/sdwan/authentication/>, accessed October 24, 2026.
 [^cs-api-examples]: Cisco DevNet, "Cisco Catalyst SD-WAN Manager API Examples" (`/dataservice/device`, `/dataservice/alarms`, `/statistics/approute/fields` with latency, jitter and loss percentage), <https://developer.cisco.com/docs/sdwan/basic-management-examples/>, accessed October 24, 2026.

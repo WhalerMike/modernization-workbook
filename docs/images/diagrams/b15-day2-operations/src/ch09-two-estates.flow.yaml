@@ -4,7 +4,7 @@
 # is in maintenance mode with no GovCloud endpoint. VMware is agency-operated:
 # nothing is inherited, so the agency produces every piece of evidence
 # (Configuration Profiles, vLCM images, VCF Operations Security Posture
-# Management, STIG readiness scans). Product facts verified in the chapter
+# Management, CIS ESXi checks). Product facts verified in the chapter
 # footnotes; the single contract is program design.
 rankdir: TB
 graph: {nodesep: 0.3, ranksep: 0.4}
@@ -22,7 +22,7 @@ clusters:
 nodes:
   awsn: {tone: blue, width: 290, title: "Provider-published tests", body: ["Config conformance packs", "Security Hub CSPM controls", "Patch Manager compliance", "=The agency owns the follow-through"], size: 11}
   am: {tone: amber, width: 290, title: "Audit Manager", body: ["=Closed to new customers since April 30, 2026; no GovCloud endpoint"], size: 11}
-  vmwn: {tone: slate, width: 290, title: "Agency-run tests", body: ["Configuration Profiles compliance", "Lifecycle Manager image compliance", "Security Posture Management", "STIG readiness scans"], size: 11}
+  vmwn: {tone: slate, width: 290, title: "Agency-run tests", body: ["Configuration Profiles compliance", "Lifecycle Manager image compliance", "Security Posture Management", "CIS ESXi benchmark checks"], size: 11}
   inh: {tone: red, width: 290, title: "Nothing inherited", body: ["=The agency produces every piece of evidence"], size: 11}
   rec: {tone: violet, width: 500, title: "One evidence-contract record per finding", body: ["=Asset identity from the CMDB plus time of observation; opens one typed task in the ITSM platform"], size: 11}
 edges:

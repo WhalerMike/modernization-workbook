@@ -154,7 +154,7 @@ ScubaGear's results per policy are Pass, Fail, Warning (a failed SHOULD policy),
 
 **Every result is a claim.** Each result carries `claim_id`, `issuer_identity`, `source_classification`, `extraction_timestamp` and `lineage_hash`. No raw ScubaGear result floats outside the chain: Pass, Fail, Warning and N/A results all become claims, so the record shows what passed as well as what failed.
 
-**The mapping lives in canon, not in adapter code.** Which control a SCuBA policy bears on is a reviewed, schema-validated registry entry. An adapter author can't silently remap a policy. CISA publishes its own mapping of every SCuBA policy to NIST SP 800-53 Rev. 5 controls in the FedRAMP High baseline,[^c09-scuba-mappings] and the program's table starts from it.
+**The mapping lives in canon, not in adapter code.** Which control a SCuBA policy bears on is a reviewed, schema-validated registry entry. An adapter author can't silently remap a policy. CISA publishes its own mapping of every SCuBA policy to NIST SP 800-53 Rev. 5 controls in the FedRAMP High baseline,[^c09-scuba-mappings] and the program's table starts from it. The High baseline contains every Moderate control, so the mapping serves a Moderate system too *(inference)*.
 
 **The interval is preserved.** ScubaGear runs on an interval: on demand, on a schedule or on a dispatched event. Each run's claims carry the interval, and the bundle respects it. `evidence-class: interval` is an attribute the OSCAL emission consumes, not a hint.
 
@@ -276,7 +276,7 @@ The dashboard and digests are working views. The evidence is the unaltered repor
 
 ## Honest limits
 
-- ScubaGear's coverage is per policy. It evaluates the SCuBA baselines, not every Microsoft 365 control. The program's adapter taxonomy has other slots (vulnerability scanning, STIG compliance, patch state) for the rest; ScubaGear is the policy adapter, not the universal one.
+- ScubaGear's coverage is per policy. It evaluates the SCuBA baselines, not every Microsoft 365 control. The program's adapter taxonomy has other slots (vulnerability scanning, host configuration against CIS Benchmarks or the agency's CM-6 settings, patch state) for the rest; ScubaGear is the policy adapter, not the universal one.
 - Both tools run on an interval. Continuous capture across every adapter is target-state maturity.
 - The mapping from SCuBA policies to the program's rules is curated. Mapping a new SCuBA policy is a canon change, not an adapter edit.
 - Google Workspace isn't covered: the registry has no ScubaGoggles adapter.

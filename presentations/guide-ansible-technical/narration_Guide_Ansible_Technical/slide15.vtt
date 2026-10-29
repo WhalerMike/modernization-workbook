@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.000
+Where the controller runs
+decides what it inherits.
+
+2
+00:00:03.000 --> 00:00:05.862
+On premises puts it
+closest to the targets.
+
+3
+00:00:05.862 --> 00:00:10.418
+Self-managed on cloud virtual machines
+inherits that cloud's authorization,
+
+4
+00:00:10.418 --> 00:00:13.266
+checked service by service
+and region by region,
+
+5
+00:00:13.266 --> 00:00:16.825
+and on an Azure virtual machine
+it can use a managed identity.
+
+6
+00:00:16.825 --> 00:00:20.194
+The two managed offerings aren't
+FedRAMP-listed, and that,
+
+7
+00:00:20.194 --> 00:00:24.137
+not their commercial regions, is
+what keeps them out of the default.
+
+8
+00:00:24.137 --> 00:00:27.089
+One of them also erases
+job logs after thirty days,
+
+9
+00:00:27.089 --> 00:00:30.112
+so you'd have to export them
+to keep your audit trail.
+
+10
+00:00:30.112 --> 00:00:34.295
+And wherever it runs, the traffic
+to its targets crosses a boundary,
+
+11
+00:00:34.295 --> 00:00:37.413
+so record each channel as
+an external connection.
+
+12
+00:00:37.413 --> 00:00:39.550
+Now, the settings to switch on.

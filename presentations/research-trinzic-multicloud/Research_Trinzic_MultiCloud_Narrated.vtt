@@ -503,87 +503,97 @@ network so resolution stays
 local if the WAN fails.
 
 106
-00:07:12.618 --> 00:07:15.406
+00:07:12.618 --> 00:07:15.267
 Multi-cloud at FedRAMP Moderate and below,
 
 107
-00:07:15.406 --> 00:07:18.354
+00:07:15.267 --> 00:07:18.069
 add Universal DDI
-through Government Cloud.
+through Government Cloud,
 
 108
-00:07:18.354 --> 00:07:24.043
-And for GovCloud, Azure Government, FedRAMP
-High or Defense Impact Levels 4 and 5,
+00:07:18.069 --> 00:07:22.461
+whether those workloads run in
+commercial regions or in GovCloud and
 
 109
-00:07:24.043 --> 00:07:28.955
+00:07:22.461 --> 00:07:27.080
+Azure Government; there, confirm which
+features Infoblox supports first.
+
+110
+00:07:27.080 --> 00:07:30.816
+And for FedRAMP High or
+Defense Impact Levels 4 and 5,
+
+111
+00:07:30.816 --> 00:07:35.768
 stay with options A and C, because
 Infoblox's service is Moderate-only.
 
-110
-00:07:28.955 --> 00:07:32.963
+112
+00:07:35.768 --> 00:07:39.775
 In short: Trinzic plus native
 resolvers as the baseline,
 
-111
-00:07:32.963 --> 00:07:38.200
+113
+00:07:39.775 --> 00:07:45.010
 with vNIOS and Universal DDI added
 only where they earn their place.
 
-112
-00:07:41.950 --> 00:07:43.850
+114
+00:07:48.760 --> 00:07:50.660
 To close, where this fits.
 
-113
-00:07:43.850 --> 00:07:48.844
+115
+00:07:50.660 --> 00:07:55.654
 Book 08 of the workbook makes the
 vendor-neutral case, from split-brain to the
 
-114
-00:07:48.844 --> 00:07:54.313
+116
+00:07:55.654 --> 00:08:01.123
 policy plane, and the research deep dive on
 Infoblox DDI covers the platform itself.
 
-115
-00:07:54.313 --> 00:07:59.317
+117
+00:08:01.123 --> 00:08:06.127
 The decisions to take are which option
 for each cloud and impact level, one named
 
-116
-00:07:59.317 --> 00:08:02.047
+118
+00:08:06.127 --> 00:08:08.857
 owner for every zone,
 where DNSSEC keys live,
 
-117
-00:08:02.047 --> 00:08:04.550
+119
+00:08:08.857 --> 00:08:11.360
 and how address blocks reach each cloud.
 
-118
-00:08:04.550 --> 00:08:07.956
+120
+00:08:11.360 --> 00:08:14.766
 The next steps start with
 Infoblox: ask for the Government
 
-119
-00:08:07.956 --> 00:08:11.575
+121
+00:08:14.766 --> 00:08:18.385
 Cloud boundary and a feature
 matrix for government accounts.
 
-120
-00:08:11.575 --> 00:08:15.946
+122
+00:08:18.385 --> 00:08:22.756
 Then confirm Azure Government
 availability, size NIOS-X capacity if
 
-121
-00:08:15.946 --> 00:08:20.163
+123
+00:08:22.756 --> 00:08:26.973
 you want cloud forwarders, and test
 forwarding in both directions.
 
-122
-00:08:20.163 --> 00:08:25.088
+124
+00:08:26.973 --> 00:08:31.898
 This is research under review, not an
 endorsement by any federal agency.
 
-123
-00:08:25.088 --> 00:08:25.920
+125
+00:08:31.898 --> 00:08:32.730
 Thank you.

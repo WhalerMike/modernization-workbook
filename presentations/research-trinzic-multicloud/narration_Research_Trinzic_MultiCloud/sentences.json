@@ -333,16 +333,16 @@
   ],
   [
    21.087,
-   5.737,
-   "Multi-cloud at fed-ramp Moderate and below, add Universal D D I through Government Cloud."
+   14.463,
+   "Multi-cloud at fed-ramp Moderate and below, add Universal D D I through Government Cloud, whether those workloads run in commercial regions or in GovCloud and Azure Government; there, confirm which features Infoblox supports first."
   ],
   [
-   26.825,
-   10.6,
-   "And for GovCloud, Azure Government, fed-ramp High or Defense Impact Levels 4 and 5, stay with options A and C, because Infoblox's service is Moderate-only."
+   35.55,
+   8.688,
+   "And for fed-ramp High or Defense Impact Levels 4 and 5, stay with options A and C, because Infoblox's service is Moderate-only."
   ],
   [
-   37.425,
+   44.237,
    8.887,
    "In short: Trinzic plus native resolvers as the baseline, with vNIOS and Universal D D I added only where they earn their place."
   ]

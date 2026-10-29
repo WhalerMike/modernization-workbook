@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.137
+Most Ansible disasters
+come from three failures.
+
+2
+00:00:03.137 --> 00:00:04.924
+The first is blast radius,
+
+3
+00:00:04.924 --> 00:00:09.175
+where one playbook aimed too
+wide changes every host at once.
+
+4
+00:00:09.175 --> 00:00:13.827
+So run in check mode first, target
+narrowly, and change in small batches,
+
+5
+00:00:13.827 --> 00:00:17.837
+where the first batch is a canary
+and a failure stops the rest.
+
+6
+00:00:17.837 --> 00:00:23.537
+The second is inventory drift, where a
+hand-kept host list disagrees with reality.
+
+7
+00:00:23.537 --> 00:00:27.214
+Generate the inventory from
+the C M D B on every run,
+
+8
+00:00:27.214 --> 00:00:30.263
+and fail on a bad record
+rather than guess.
+
+9
+00:00:30.263 --> 00:00:32.237
+The third is credential sprawl.
+
+10
+00:00:32.237 --> 00:00:36.387
+Keep credentials in one controller,
+and keep secrets out of the output.
+
+11
+00:00:36.387 --> 00:00:41.063
+A strict lint profile on every pull
+request makes much of this automatic.
+
+12
+00:00:41.063 --> 00:00:42.120
+Four more to go.

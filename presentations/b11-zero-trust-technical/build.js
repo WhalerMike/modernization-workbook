@@ -948,7 +948,7 @@ Severity, zero to a hundred, is the check's risk weighted by its status, so a fa
 
 The program's toolkit produces the dashboard workbook, a Power BI CSV with one row per check and a remediation playbook with portal steps and Microsoft Learn links, no scripts. Install it from the program's own repository and verify downloaded scripts against their published hashes: a package with the same name on the public Python index is an unrelated import formatter.
 
-Then reconcile at the control, not tool to tool. Policy IDs and numeric test IDs don't match. The spine is the tenant setting and the SP 800-53 control. CISA maps every SCuBA policy to Rev. 5 controls within the FedRAMP High baseline, and the program's table carries Zero Trust Assessment checks onto the same controls. A ScubaGear Fail and a Zero Trust Assessment Failed on the same setting and control are one finding with two pieces of evidence, routed to one pillar owner.`,
+Then reconcile at the control, not tool to tool. Policy IDs and numeric test IDs don't match. The spine is the tenant setting and the SP 800-53 control. CISA maps every SCuBA policy to Rev. 5 controls within the FedRAMP High baseline, which contains every Moderate control, so the map serves a Moderate system too. The program's table carries Zero Trust Assessment checks onto the same controls. A ScubaGear Fail and a Zero Trust Assessment Failed on the same setting and control are one finding with two pieces of evidence, routed to one pillar owner.`,
   "Book 11, Chapter 10 — Evidence, Not Verdicts, \"Score and rank the findings,\" \"Reconcile at the control, not tool to tool\"; Chapter 09, \"Ingesting the Zero Trust Assessment.\"");
 }
 

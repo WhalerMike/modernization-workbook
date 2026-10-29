@@ -120,3 +120,12 @@ Follows the source watch above (issue #160). Sources: ScubaGear tag `v2.0.0` (ba
 | 8 | Outputs table unchanged at 2.0.0; release notes add a risky-apps CSV | Outputs table | verified | v1.8.0 vs v2.0.0 reports.md diff (identical); release notes |
 | 9 | Result values and criticality unchanged | From policy results to claims | verified | v1.8.0 vs v2.0.0 tooloutputschema.md diff |
 | 10 | Registry excerpt `runtime-version` pin moved to "2.0.0"; pin moves by reviewed change with config and mapping migration | Registered adapter | restated-as-design | Program registry convention; transition doc |
+
+## Moderate-civilian sweep, October 29, 2026
+
+The workbook targets FedRAMP Moderate civilian agencies. Framing that read as High-only or Defense-specific was checked.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | CISA's SCuBA mapping is limited to FedRAMP High baseline controls; added: the High baseline contains every Moderate control, so the mapping serves a Moderate system too | Mapping sentence | fact unchanged; added sentence is inference (NIST SP 800-53B baselines are cumulative) | ScubaGear v2.0.0 mappings.md; NIST SP 800-53B |
+| 2 | Adapter taxonomy slot "STIG compliance" | Honest limits | restated 2026-10-29: "host configuration against CIS Benchmarks or the agency's CM-6 settings" (Moderate civilian baseline, not DISA) | Brief; NIST SP 800-53 Rev. 5 CM-6 (agency-chosen common secure configurations) |

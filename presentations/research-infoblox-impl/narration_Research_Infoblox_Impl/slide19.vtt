@@ -1,63 +1,86 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.025
-The DISA STIG for NIOS 9 is
-narrower than people assume.
+00:00:00.050 --> 00:00:01.675
+How do you harden NIOS?
 
 2
-00:00:04.025 --> 00:00:08.706
-Release one, accepted in August
-2026, has forty-five rules,
+00:00:01.675 --> 00:00:04.943
+This workbook is for
+Moderate civilian agencies,
 
 3
-00:00:08.706 --> 00:00:12.988
-and it covers only the
-appliance's DNS capabilities.
+00:00:04.943 --> 00:00:07.175
+so the baseline is the agency's own.
 
 4
-00:00:12.988 --> 00:00:16.520
-DHCP and address management
-hardening aren't in it,
+00:00:07.175 --> 00:00:12.243
+NIST's control C M 6 has you document your
+configuration settings for each product,
 
 5
-00:00:16.520 --> 00:00:19.463
-so those rely on the
-program's own baseline.
+00:00:12.243 --> 00:00:15.150
+from a common secure
+configuration you choose.
 
 6
-00:00:19.463 --> 00:00:24.997
-The five most serious rules cover keeping
-the Grid Master hidden unless keys are on
+00:00:15.150 --> 00:00:20.229
+For most products that's a C I S
+Benchmark or the vendor's hardening guide,
 
 7
-00:00:24.997 --> 00:00:29.890
-an HSM, DNSSEC validation, running the
-approved long-term-support version,
+00:00:20.229 --> 00:00:22.812
+but there's no C I S Benchmark for NIOS.
 
 8
-00:00:29.890 --> 00:00:32.537
-validated cryptography, and no DSA keys.
+00:00:22.812 --> 00:00:28.550
+So write the settings from NIST's DNS
+deployment guide and Infoblox's documentation:
 
 9
-00:00:32.537 --> 00:00:37.300
-The rest cover zone transfers,
-dynamic updates, keeping internal and
+00:00:28.550 --> 00:00:32.976
+zone transfers only to named
+secondaries, with signed transfers;
 
 10
-00:00:37.300 --> 00:00:42.063
-external roles apart, administrator
-sign-in, logging and resilience.
+00:00:32.976 --> 00:00:38.141
+restricted dynamic updates; authoritative
+and recursive roles kept apart;
 
 11
-00:00:42.063 --> 00:00:45.518
-One practical tip: check these
-settings at the zone level,
+00:00:38.141 --> 00:00:41.419
+a hidden primary and
+strong signing algorithms;
 
 12
-00:00:45.518 --> 00:00:47.062
-not only at the Grid level.
+00:00:41.419 --> 00:00:45.600
+administrator sign-in with PIV or
+SAML; and DNS logs in the SIEM.
 
 13
-00:00:47.062 --> 00:00:49.060
+00:00:45.600 --> 00:00:50.004
+The DISA STIG for NIOS 9 is the
+only product-specific checklist,
+
+14
+00:00:50.004 --> 00:00:54.662
+so it makes a useful cross-check,
+but it's High only, Defense material.
+
+15
+00:00:54.662 --> 00:00:59.325
+It covers only the appliance's
+DNS, with forty-five rules.
+
+16
+00:00:59.325 --> 00:01:01.734
+One tip from it applies to any baseline:
+
+17
+00:01:01.734 --> 00:01:05.725
+check these settings at the zone
+level, not only at the Grid level.
+
+18
+00:01:05.725 --> 00:01:07.730
 Next, FIPS mode.

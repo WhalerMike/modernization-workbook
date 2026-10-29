@@ -8,7 +8,7 @@ rankdir: TB
 graph: {nodesep: 0.2, ranksep: 0.4}
 nodes:
   ask: {tone: slate, width: 320, tag: "For each platform", title: "Does the agency own a native posture tool?", body: ["=Ownership is agency-specific; the rule is the same everywhere"], size: 12}
-  owned: {tone: green, width: 215, tag: "Owned", title: "Native tool is primary", body: ["AWS: Config conformance packs, Security Hub CSPM", "VMware: STIG audit with InSpec, remediation with Ansible and PowerCLI"], size: 11}
+  owned: {tone: green, width: 215, tag: "Owned", title: "Native tool is primary", body: ["AWS: Config conformance packs, Security Hub CSPM", "VMware: vendor hardening guide and CIS ESXi, audited as code"], size: 11}
   notyet: {tone: amber, width: 215, tag: "Not yet owned", title: "Name the adoption default", body: ["Google Cloud: Security Command Center, Assured Workloads", "OCI: Cloud Guard", "=Recorded as a plan, not a capability"], size: 11}
   mdc: {tone: blue, width: 235, tag: "Coordinating default", title: "Microsoft Defender for Cloud", body: ["Primary for Azure", "Correlates Azure, AWS and Google Cloud", "No OCI coverage", "AWS connector not available in Azure Government"], size: 11}
   check: {tone: amber, width: 240, tag: "At procurement", title: "Check the FedRAMP listing", body: ["=Higher class than the system: usable, with the boundary treatment documented"], size: 11}

@@ -1,0 +1,117 @@
+# Companion guide — Ansible for Configuration Automation — Technical Deep Dive — narration script (practice copy)
+
+## Slide 1 — Ansible for Configuration Automation: technical deep dive
+
+Welcome. This is the technical deep dive for a companion guide in the Federal Modernization Workbook: Ansible for Configuration Automation. It's for the engineers who decide which tool may change which setting, and prove it afterward. The guide's idea fits in one line. Ansible can reach almost anything with an S S H port or an A P I, so a program has to decide, setting by setting, where it's allowed to write. Anything the guide couldn't confirm stays labeled that way. Let's start with why this matters.
+
+## Slide 2 — Why this matters: Ansible can write almost anywhere
+
+Here's the problem. Ansible has no agent and no record of its own. It connects, does what the playbook says, and leaves. That makes it wonderfully flexible, and it makes collisions invisible. Point it at a server that Azure machine configuration already governs, and neither tool notices. Turn on auto-correct, and the setting quietly flips back, with no report that it did. Two tools can fight over one value forever while both report success. The guide's answer is simple: one owning tool per setting, written down in the C M D B. First, what Ansible actually is.
+
+## Slide 3 — Module 1: What Ansible is, and where it fits
+
+This first module places Ansible among the tools you already run. We'll settle what it is and what it isn't, set it beside Intune, Arc and Configuration Manager, and lay down the rule that stops them fighting. Then we'll follow it into the places those tools can't reach, starting with onboarding servers to Arc.
+
+## Slide 4 — What Ansible is, and what it isn't
+
+It helps to be precise about what kind of tool this is. Ansible pushes. It connects over S S H or Windows remoting, runs small modules, removes them, and it's gone. You describe the work in Y A M L playbooks, against an inventory of hosts. The free engine does the work, and the Automation Platform wraps it with a controller, a content hub and packaged runtimes. What it isn't is a management plane. And while tasks should be safe to repeat, the documentation admits not all of them are, which is why check mode, a true dry run, matters so much here. So how does it sit beside the others?
+
+## Slide 5 — Five tools, and the population each one owns
+
+Every population in the estate already has a natural owner. Intune owns end-user devices, and it doesn't cover Windows Server. Arc with machine configuration owns servers outside Azure, on Microsoft's supported list. Azure Policy governs the Azure resources themselves. Configuration Manager stays where it's already deployed, with no new use. Ansible's row is the interesting one. It can reach anything, but it owns only the tier two assets the C M D B names it for, plus Arc onboarding. Owning is the key word, so let's look at what happens when two tools both think they own something.
+
+## Slide 6 — One owning tool per setting, recorded in the CMDB
+
+This is the heart of the guide. When Ansible and machine configuration both set the same value, nothing in either tool notices. Microsoft's own caution is narrow, but the principle is general: don't manage the same setting twice. So the program's rule, which is design guidance, turns ownership into data. Each C M D B record names one configuration owner. Ansible can read anything, but it writes only where it owns, and that's enforced in the inventory and again inside the playbook. Onboarding a server to Arc isn't owning it. And any exception is a dated record. Now, where does Ansible sit in the bigger structure?
+
+## Slide 7 — Ansible across the coverage tiers and the four tracks
+
+The workbook sorts every asset into coverage tiers, and Ansible's job changes with the tier. In tier one it onboards and reads, but it doesn't own settings. Tier two is its natural home: it owns configuration where the C M D B says so, and every job's result becomes evidence. In tier three it only reads, and in tier four it does nothing at all. Of the workbook's four tracks, Ansible lives in two. The Arc track, for servers. And the non-person identity track, because the controller itself is an identity with standing access to many hosts. Let's start with the Arc job.
+
+## Slide 8 — Arc onboarding at scale: Microsoft's role, three sign-ins
+
+Microsoft lists Ansible as one of the ways to do it at scale, with a supported role that skips machines already connected. The real choice is how it signs in, because that decides how many secrets you inherit. A managed identity is Microsoft's recommendation for production, since there's no stored secret at all. Next best is a certificate service principal, brokered by the platform. Command-line sign-in is for pilots only. Whatever signs in gets the onboarding role on one resource group, and nothing more. Then come the waves.
+
+## Slide 9 — Onboarding waves: CMDB tags, secrets off the console
+
+This is where Ansible earns its keep. Because the inventory comes from the C M D B, the onboarding run can stamp the owner, environment, location and patch group onto each Arc resource in the same change, so the cloud's view starts out traceable to its source. The work runs in waves, and each wave's credential goes away when the wave closes. If a playbook calls the agent directly, the secret goes in a configuration file, never on the command line, so it stays out of the logs. The example playbook shows this behind a confirmation gate. Next, the hosts Arc can't take at all.
+
+## Slide 10 — Tier 2: Unix, Linux beyond Arc, and network gear
+
+A good share of a federal estate sits outside Arc's support list: the Unix systems, and several older Linux releases that stop getting new agent versions in late 2026. Those are tier two, and Ansible reaches them over S S H. Two cautions. Privilege escalation can't be narrowed to specific commands, so that account has broad rights and has to be governed like a privileged identity. And check mode is only a simulation, so each drift check should stand on its own. Network gear is the easy win. A read-only facts run gives you the model, serial and version of every device, with nothing installed. Where a vendor controller exists, it owns the configuration.
+
+## Slide 11 — VMware, Infoblox, Windows and cloud VMs: who owns what
+
+The remaining targets all follow one pattern: find the tool that already owns the setting, and let Ansible do only what's left. On VMware, the virtual machines can go to Arc, while the hypervisor and appliances, which can't run an agent, are Ansible's. On Infoblox, Ansible works through the A P I, with an account scoped to the objects it manages. On a Windows server under Arc, the operating system belongs to machine configuration, but the application can be Ansible's. And in the cloud, the provider's inventory is for checking against the C M D B, not replacing it. Next, running the platform.
+
+## Slide 12 — Module 2: Ansible Automation Platform in a federal setting
+
+The second module is about running the Automation Platform somewhere a federal assessor will look closely. The key fact is that, in almost every option, it's software the agency runs itself. We'll cover what's authorized and what isn't, the cryptography and hardening questions, where to host it, the controls to switch on, and why the controller is an identity in its own right.
+
+## Slide 13 — Versions, and authorization status as published
+
+Start with what you're authorizing. The current release has full support into 2027, with maintenance after that, and it installs only as containers or on OpenShift. On authorization, be careful with words. The self-managed platform isn't a cloud service, so it isn't on the FedRAMP Marketplace, and nobody publishes a statement about it. Neither managed offering is listed either, and Azure Government availability isn't published. So the program's default, which is design guidance, is to run it yourself, inside your own boundary, and authorize it like any other component. Then come the two questions every assessor asks.
+
+## Slide 14 — FIPS mode and baseline content: what's published
+
+F I P S and baseline content come up first, and on F I P S the honest answer is partial. Red Hat's F I P S certificates cover the operating system, but the current platform documentation doesn't say whether the platform is supported in F I P S mode. So treat that as unverified: ask Red Hat in writing, and test it. Where your agency needs validated cryptography, the controller's host runs in F I P S mode, so that support is what you have to confirm. For the baseline, start from the C I S Benchmarks and your agency's own C M 6 settings. Red Hat ships C I S profiles with an Ansible playbook to apply them, and community C I S roles exist too, as long as you review and pin them. The controller's host is hardened like any other server. A S T I G for the controller exists, but that's High only, an optional reference. Next, hosting.
+
+## Slide 15 — Where the controller can run
+
+Where the controller runs decides what it inherits. On premises puts it closest to the targets. Self-managed on cloud virtual machines inherits that cloud's authorization, checked service by service and region by region, and on an Azure virtual machine it can use a managed identity. The two managed offerings aren't FedRAMP-listed, and that, not their commercial regions, is what keeps them out of the default. One of them also erases job logs after thirty days, so you'd have to export them to keep your audit trail. And wherever it runs, the traffic to its targets crosses a boundary, so record each channel as an external connection. Now, the settings to switch on.
+
+## Slide 16 — Sign-in, logging and content: the controls to set
+
+Three groups of settings decide whether the controller is auditable. First, sign-in. Federate it to your identity provider, so your conditional access and phishing-resistant sign-in apply, and keep local accounts for break-glass. The default lifetime used to be a thousand years, and old tokens keep it, so revoke them when you upgrade. Second, logging. Send everything to your SIEM, and set the cleanup jobs to match your retention. Third, content. Hub signing is off by default, so turn it on. And project signing is the quiet hero, because a project that fails its signature won't run. That links the reviewed change to what actually executes. Which brings us to the controller itself.
+
+## Slide 17 — The controller is a non-person identity
+
+Think about what a controller holds: the keys to every host it manages. That's more reach than almost any administrator, so the program treats it as a privileged non-person identity, and this is design guidance. It gets two named human owners. Each credential does one job, in one scope, and expires. Where you can avoid it, no secret is stored in the controller at all: use a managed identity first, then certificates, and fetch anything left from your vault at run time. Launching a job that changes production is a privileged action, logged to a person and reviewed every quarter. That's the platform.
+
+## Slide 18 — Module 3: Evidence and dangers
+
+The third module is about proof. Used properly, Ansible produces evidence as a side effect: the playbook is a file in Git, the change is a pull request, and the run is a job with a result. We'll map that to the controls assessors test, show where the results land, and then walk through the seven ways it goes wrong.
+
+## Slide 19 — Evidence for CM-2, CM-3, CM-6, CM-7 and CM-8
+
+Assessors want five things from configuration management, and Ansible can show each one without extra work. The baseline is simply the playbook version, by Git commit and tag. Change control is the pull request with a required reviewer. The same playbook that applies settings can run in check mode to report drift, so implementation and monitoring come from one source. Removing packages you don't need shows least functionality. And because the inventory comes from the C M D B, Ansible never invents a host, and anything it couldn't reach says so instead of passing quietly. Here's where all that evidence goes.
+
+## Slide 20 — Audit, privilege, supply chain, and the evidence store
+
+The rest of the evidence covers audit, privilege and the supply chain. Job records and the activity stream go to the SIEM. Least privilege comes from the per-purpose credentials we just covered, and supply chain evidence comes from pinned, verified collections. Then comes the payoff. Every job result goes to the program's evidence store in the same shape every other tool uses, and because the inventory came from the C M D B, each result already carries the configuration item number that joins it all together. Now, the dangers.
+
+## Slide 21 — Dangers: blast radius, inventory drift, credential sprawl
+
+Most Ansible disasters come from three failures. The first is blast radius, where one playbook aimed too wide changes every host at once. So run in check mode first, target narrowly, and change in small batches, where the first batch is a canary and a failure stops the rest. The second is inventory drift, where a hand-kept host list disagrees with reality. Generate the inventory from the C M D B on every run, and fail on a bad record rather than guess. The third is credential sprawl. Keep credentials in one controller, and keep secrets out of the output. A strict lint profile on every pull request makes much of this automatic. Four more to go.
+
+## Slide 22 — Dangers: two tools, Galaxy content, root and idempotence
+
+These four are quieter. Two tools on one setting flip it back and forth while both report success, and the fix is the ownership rule, checked inside every changing playbook. Public Galaxy content can change under you between runs, so pull collections from a reviewed source, pin exact versions, verify them, and keep that list as your software bill of materials. Running everything as root gives every mistake root's reach, so escalate only on the tasks that need it. And commands that report a change every time turn drift reports into noise. Run each playbook twice in test, and the second run should change nothing. Now, how to adopt all of this.
+
+## Slide 23 — Module 4: Adoption and the example playbooks
+
+The last module turns all of this into a path. It starts read-only and earns its way to enforcement, with a gate at each step. Then we'll open the example folder: the inventory every playbook reads, the four playbooks and what each one proves, how they're tested, and finally the checklist and the decisions.
+
+## Slide 24 — A phased path: read-only first, enforcement later
+
+The adoption path is design guidance, and its point is that nothing gets write access until the read-only evidence is in. Phase zero is just facts, from an inventory built off the C M D B. Phase one onboards servers to Arc in waves. Phase two writes baselines for the tier two platforms, but runs them in check mode only, reporting drift. Only in phase three does anything get enforced, by pull request, canary first, on hosts Ansible owns, and only after two clean runs. And phase zero can start this week, with a small control node and a C M D B export. Now, that inventory.
+
+## Slide 25 — The CMDB-driven inventory: groups from attributes
+
+Every pattern in the examples depends on one file: the inventory script that reads the C M D B export. It turns each record's attributes into groups, by tier, by platform, by environment, and most importantly by configuration owner, so the baseline check can only ever see hosts Ansible owns. A server with no owner isn't a target at all; it's a finding to fix in the C M D B. And if the export has a duplicate or a missing column, the script stops rather than hand you a partial inventory. In production, you'd use an inventory plugin instead. Now, the playbooks themselves.
+
+## Slide 26 — Four example playbooks, and what each one proves
+
+There are four small playbooks, and each one proves a single idea from the guide. The first is the inventory feed: what each server actually is, beside what the C M D B says, with unreached hosts marked as not collected. The second is the only one that changes anything, and it's gated. Without an explicit confirmation it only simulates, and when it does run, it starts with one canary and stops at the first failure. The third is a drift check locked into check mode, so a change result simply means drift. And the fourth reads network and Infoblox facts without any agent. Next, how they're tested.
+
+## Slide 27 — How the examples are tested, and what they don't prove
+
+The tests matter as much as the playbooks. Everything passes the strictest lint profile and a syntax check. A read-only checker fails on any ungated write, and its own negative tests prove it catches them. The inventory tests prove that bad records fail. But be clear about the limits. The tests ran on a control node only. The Arc, Windows, Cisco and Infoblox paths pass lint, but they haven't touched those platforms. And the baseline is a handful of example settings, not a C I S Benchmark profile. Treat them as illustrations. Next, the checklist.
+
+## Slide 28 — The adoption checklist, area by area
+
+If you take one thing away, take the checklist, because it turns the whole guide into things you can verify. It runs across eight areas, from ownership and inventory, through change safety and credentials, to evidence and the platform itself. Each item is phrased as done when, so it works as a review gate rather than a reminder. You've seen most of it today. The items teams skip are the quiet ones: requiring a second run with no changes, and never counting an unreached host as compliant. Let's finish with the decisions.
+
+## Slide 29 — Decisions, owners, and where to start
+
+Every decision here has one owner, and this is design guidance. The C M D B owner, working with the platform teams, decides the attributes and the configuration owner values. Server infrastructure picks the onboarding identity and the waves. The CISO's configuration authority picks the baseline content. Platform owners decide when enforcement goes live, through change control. And the system owner and the authorizing official decide where the platform runs and how it holds credentials. You can start this week: add the owner attribute, build groups from it, and run facts only. Ansible can reach almost anything, so decide where it may write, and let the evidence follow. Thank you.

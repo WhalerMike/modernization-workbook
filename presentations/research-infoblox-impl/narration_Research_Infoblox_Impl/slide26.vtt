@@ -5,49 +5,49 @@ WEBVTT
 Logging is where the evidence comes from.
 
 2
-00:00:02.063 --> 00:00:08.128
-Send syslog to external servers over secure
-TCP, use the detailed audit log, which
+00:00:02.063 --> 00:00:07.638
+Send syslog to external servers over
+secure TCP, use the detailed audit log,
 
 3
-00:00:08.128 --> 00:00:14.012
-also records API calls, and copy the audit
-log to syslog, which the STIG requires.
+00:00:07.638 --> 00:00:12.675
+which also records API calls, and
+copy the audit log to syslog as well.
 
 4
-00:00:14.012 --> 00:00:18.394
+00:00:12.675 --> 00:00:17.057
 Be careful with full DNS query
 logging, because Infoblox warns it
 
 5
-00:00:18.394 --> 00:00:23.100
+00:00:17.057 --> 00:00:21.763
 significantly affects performance,
 so use capture or dnstap instead.
 
 6
-00:00:23.100 --> 00:00:28.050
+00:00:21.763 --> 00:00:26.712
 DHCP lease history is what ties an
 address to a device at a point in time.
 
 7
-00:00:28.050 --> 00:00:33.487
+00:00:26.712 --> 00:00:32.149
 On a FIPS Grid, the portal-managed
 Data Connector is likely unavailable,
 
 8
-00:00:33.487 --> 00:00:36.712
+00:00:32.149 --> 00:00:35.374
 as an inference, so rely
 on syslog or dnstap.
 
 9
-00:00:36.712 --> 00:00:38.695
+00:00:35.374 --> 00:00:37.358
 And the SIEM is the system of record,
 
 10
-00:00:38.695 --> 00:00:43.300
+00:00:37.358 --> 00:00:41.963
 because local retention can't meet the
 six-month and twelve-month requirement.
 
 11
-00:00:43.300 --> 00:00:44.810
+00:00:41.963 --> 00:00:43.460
 Next, automation.

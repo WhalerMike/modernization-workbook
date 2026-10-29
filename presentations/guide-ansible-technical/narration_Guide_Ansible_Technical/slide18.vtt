@@ -1,0 +1,25 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.112
+The third module is about proof.
+
+2
+00:00:02.112 --> 00:00:07.253
+Used properly, Ansible produces evidence
+as a side effect: the playbook is a
+
+3
+00:00:07.253 --> 00:00:12.062
+file in Git, the change is a pull request,
+and the run is a job with a result.
+
+4
+00:00:12.062 --> 00:00:16.087
+We'll map that to the controls assessors
+test, show where the results land,
+
+5
+00:00:16.087 --> 00:00:18.890
+and then walk through the
+seven ways it goes wrong.

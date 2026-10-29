@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.540
+The adoption path is design
+guidance, and its point is that
+
+2
+00:00:03.540 --> 00:00:07.175
+nothing gets write access until
+the read-only evidence is in.
+
+3
+00:00:07.175 --> 00:00:11.961
+Phase zero is just facts, from an
+inventory built off the C M D B.
+
+4
+00:00:11.961 --> 00:00:15.312
+Phase one onboards
+servers to Arc in waves.
+
+5
+00:00:15.312 --> 00:00:18.833
+Phase two writes baselines
+for the tier two platforms,
+
+6
+00:00:18.833 --> 00:00:21.962
+but runs them in check mode
+only, reporting drift.
+
+7
+00:00:21.962 --> 00:00:26.580
+Only in phase three does anything
+get enforced, by pull request,
+
+8
+00:00:26.580 --> 00:00:31.287
+canary first, on hosts Ansible
+owns, and only after two clean runs.
+
+9
+00:00:31.287 --> 00:00:37.301
+And phase zero can start this week, with
+a small control node and a C M D B export.
+
+10
+00:00:37.301 --> 00:00:39.000
+Now, that inventory.

@@ -1,5 +1,5 @@
 ---
-title: "Vol I Book 07 — Federal Compliance — Network Enforcement Substrate: Cisco, Palo Alto, Juniper and the NIAP/STIG/FIPS Path"
+title: "Vol I Book 07 — Federal Compliance — Network Enforcement Substrate: Cisco, Palo Alto, Juniper and the NIAP, FIPS and CM-6 Baseline Path"
 subtitle: "How Customer-Owned Network Gear Closes NIST Controls — and the Accreditation Gate That Governs It"
 author: "Federal Cloud Services"
 date: "2026-07-09T08:41:00-04:00"
@@ -100,7 +100,7 @@ validated?" The shared-responsibility model draws the line:
 |---|---|---|
 | SaaS / PaaS control implementation | Cloud provider | Inherited from the provider's **FedRAMP** package (leveraged authorization) |
 | IaaS guest OS and workload | Agency | Agency ConMon evidence (see the identity, patch, and telemetry books) |
-| **Network path to the cloud boundary — branch, WAN edge, DIA circuit, access layer** | **Agency** | **The equipment's own NIAP evaluation, DISA STIG compliance, and FIPS 140-3 module — not a FedRAMP package** |
+| **Network path to the cloud boundary — branch, WAN edge, DIA circuit, access layer** | **Agency** | **The equipment's own NIAP evaluation, FIPS 140-3 module, and the agency's CM-6 configuration baseline for it — not a FedRAMP package** |
 
 The line matters because an assessor asked to see evidence for SC-7 at a field
 office will not accept "our cloud provider is FedRAMP-authorized." The boundary
@@ -111,24 +111,37 @@ accreditation, not the provider's.
 # Theme F Formalized — The Accreditation Gate for Network Gear
 
 A cloud service passes one gate: FedRAMP. Network and endpoint *gear* passes a
-composed gate of four federal mechanisms, each certifying a different property.
+composed gate of three mechanisms, each establishing a different property. This
+series targets FedRAMP Moderate civilian agencies, so the configuration leg is
+the agency's own CM-6 baseline, not a Defense checklist.
 
 | Mechanism | Registry / authority | What it certifies |
 |---|---|---|
 | **NIAP Common Criteria** | NIAP Product Compliant List (Protection Profiles for Network Devices, Stateful Firewalls, etc.) | The product was independently evaluated against a federal Protection Profile — its security functions work as claimed in an evaluated configuration |
-| **DISA STIG** | DoD Cyber Exchange | The hardened configuration baseline the device must run in; STIG-compliance scans are the operational evidence |
+| **Configuration baseline (CM-2, CM-6)** | The agency, under NIST SP 800-53 Rev 5 CM-6 | The hardened settings the device must run in. CM-6 has the agency choose its common secure configurations and approve and record deviations (NIST SP 800-53 Rev 5, CM-6 statement and discussion). For network gear the usual sources are the CIS Benchmarks (Cisco IOS XE 17.x, Cisco NX-OS, Cisco ASA 9.x Firewall, Juniper OS, Palo Alto Firewall 11, F5 Networks; <https://www.cisecurity.org/cis-benchmarks>, accessed 2026-10-29), the vendor's own hardening guide (for example Cisco's *IOS XE Software Hardening Guide*, revision 3.2, December 8, 2025), and checklists found through the NIST National Checklist Program (SP 800-70 Rev. 5). Configuration-compliance scans against that baseline are the operational evidence |
 | **FIPS 140-3** | NIST Cryptographic Module Validation Program (CMVP) | The cryptographic module performing SC-8/SC-13 encryption is validated — not merely "AES-capable" |
-| **DoDIN APL** | DISA Approved Products List | The product is approved to connect to DoD networks (the strictest federal fielding gate; civilian agencies frequently treat APL listing as an assurance signal) |
 
-: The Four-Part Accreditation Gate for Network Gear {.striped .hover}
+: The Three-Part Accreditation Gate for Network Gear {.striped .hover}
+
+Two Defense mechanisms sit outside this gate. They are **High only**: material
+that applies to FedRAMP High or Defense environments, not to the Moderate
+civilian baseline this series targets, kept as an optional reference.
+
+| Mechanism | Registry / authority | How a Moderate civilian agency uses it |
+|---|---|---|
+| **DISA STIG** (High only) | DoD Cyber Exchange | A DoD configuration guide for a product and version. Optional cross-check when writing the CM-6 baseline, or a starting point where no CIS Benchmark or vendor guide exists. Not a civilian requirement and not what a Moderate assessor expects |
+| **DoDIN APL** (High only) | DISA Approved Products List | Approval to connect to DoD networks. A Defense fielding gate; a civilian agency may note a listing as one assurance signal, but it isn't part of the civilian gate |
+
+: Defense References Outside the Civilian Gate (High only) {.striped .hover}
 
 These compose: an appliance may be **NIAP-evaluated** (its design was assessed),
-running a **DISA STIG** baseline (it is hardened), with a **FIPS 140-3** module
-(its crypto is validated), and **DoDIN APL-listed** (it is approved to field).
-An agency's control evidence for edge-enforced controls is assembled from these
-four sources — the NIAP validation report, the STIG scan output, the CMVP
-certificate number, and the APL listing — none of which appears in any cloud
-provider's FedRAMP package.
+running the agency's **CM-6 baseline** drawn from a CIS Benchmark and the
+vendor's hardening guide (it is hardened), with a **FIPS 140-3** module (its
+crypto is validated). An agency's control evidence for edge-enforced controls is
+assembled from these three sources — the NIAP validation report, the
+configuration-compliance scan against the agency baseline (with its approved
+deviations), and the CMVP certificate number — none of which appears in any
+cloud provider's FedRAMP package.
 
 ::: {.aan-note}
 ## FedRAMP scope reminder
@@ -147,7 +160,8 @@ the vendor product is a deployed *example* of the mechanism. The matrix below
 maps each edge function to how each of the three manufacturers realizes it, and
 to the NIST control it closes. Every cell is a candidate implementation, not a
 recommendation; final selection is a procurement decision validated against the
-NIAP PCL, the CMVP list, and the DoDIN APL at time of buy.
+NIAP PCL and the CMVP list at time of buy, with the agency's CM-6 baseline
+written for the chosen product.
 
 | Function / NIST control | Cisco | Palo Alto Networks | Juniper Networks |
 |---|---|---|---|
@@ -184,7 +198,7 @@ owns; the port-level enforcement cannot move off the switch. Where the NAC polic
 service is cloud-delivered it is a second gear-becomes-cloud-service crossover
 alongside the SASE PEP below, carrying FedRAMP-side evidence for its policy plane
 even though the IA-3 authenticator anchored here stays on-premises under the
-NIAP/STIG/FIPS gate.
+NIAP, FIPS and CM-6 baseline gate.
 
 **SC-7 boundary protection at the branch (necessity under TIC 3.0).** Under TIC
 3.0, a branch running Direct Internet Access requires a distributed enforcement
@@ -197,7 +211,7 @@ cloud-delivered SASE service — and which one it is determines which gate appli
 # Where Gear Becomes a Cloud Service — the FedRAMP ↔ NIAP Crossover
 
 Two of the functions above have a cloud-delivered form. When the distributed PEP
-is an on-premises appliance, it passes the NIAP/STIG/FIPS/APL gate. When it is a
+is an on-premises appliance, it passes the NIAP, FIPS and CM-6 baseline gate. When it is a
 cloud-delivered SASE service — Cisco Secure Access, Palo Alto Prisma Access — it
 passes the **FedRAMP** gate instead, and the boundary documentation treats it as
 an external service (interconnection agreement, Marketplace verification). The
@@ -253,23 +267,25 @@ protocols, not a proprietary controller.
 The table below is **generated from the series compliance spine**
 (`federal-compliance-compliance-spine.yml`) and regenerated by `render_authorities_table.py`;
 it is not hand-maintained. Each row names the closing mechanism as a function,
-the accreditation gate (all NIAP/STIG/FIPS/APL for this book's customer-owned
-gear), the authority drivers, the evidence slot, and whether conformance tooling
-alone can attest it (uniformly **No** here — edge-gear evidence is assembled from
-NIAP/STIG/FIPS/APL sources, not a SCuBA-style tenant scan).
+the accreditation gate (NIAP, FIPS 140-3 and the agency's CM-6 baseline for all
+of this book's customer-owned gear), the authority drivers, the evidence slot,
+and whether conformance tooling alone can attest it (uniformly **No** here —
+edge-gear evidence is assembled from NIAP, CMVP and configuration-baseline
+sources, not a SCuBA-style tenant scan; CISA's SCuBA baselines cover Microsoft
+365 and Google Workspace, not network gear).
 
 <!-- authorities:book-net-enforce — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
-| SC-8 † | Transmission Confidentiality and Integrity | IPsec/MACsec overlay on customer-premises transport (function: network-layer encryption) | NIAP CC + DISA STIG + FIPS 140-3 + DoDIN APL | NIST SP 800-53 Rev 5; EO 14028 | Network | KSI-CNA | No |
-| SC-8(1) | Cryptographic Protection | FIPS 140-3 validated cipher suite on the overlay | NIAP CC + DISA STIG + FIPS 140-3 + DoDIN APL | NIST SP 800-53 Rev 5 | Network | KSI-CNA | No |
-| AC-19 | Access Control for Mobile Devices | NAC posture gating at the access layer | NIAP CC + DISA STIG + FIPS 140-3 + DoDIN APL | NIST SP 800-53 Rev 5; OMB M-22-09 | Endpoint | KSI-IAM | No |
-| IA-3 † | Device Identification and Authentication | 802.1X authenticator + NAC at the port (function: device identity at the edge) | NIAP CC + DISA STIG + FIPS 140-3 + DoDIN APL | NIST SP 800-53 Rev 5; NIST SP 800-207; CISA ZTMM v2.0 | Network | KSI-IAM | No |
-| AC-17 | Remote Access | Vendor ZTNA/remote-access gateway (function: per-session remote access) | NIAP CC + DISA STIG + FIPS 140-3 + DoDIN APL | NIST SP 800-53 Rev 5; OMB M-22-09; CISA ZTMM v2.0 | Network | KSI-CNA | No |
-| AC-4 | Information Flow Enforcement | Application-aware flow policy at the NGFW/SASE PEP | NIAP CC + DISA STIG + FIPS 140-3 + DoDIN APL | NIST SP 800-53 Rev 5; NIST SP 800-207; CISA TIC 3.0 | Network | KSI-CNA | No |
-| SC-7 | Boundary Protection | NGFW boundary enforcement at the customer-owned edge (function: distributed policy enforcement point) | NIAP CC + DISA STIG + FIPS 140-3 + DoDIN APL | NIST SP 800-53 Rev 5; CISA TIC 3.0; NIST SP 800-207 | Network | KSI-CNA | No |
-| SC-7(8) | Route Traffic to Authenticated Proxy Servers | Forced-proxy egress through the SASE/SWG enforcement point | NIAP CC + DISA STIG + FIPS 140-3 + DoDIN APL | NIST SP 800-53 Rev 5; CISA TIC 3.0 | Network | KSI-CNA | No |
-| SI-4 | System Monitoring | Network detection/telemetry export from the enforcement substrate to the evidence contract | NIAP CC + DISA STIG + FIPS 140-3 + DoDIN APL | NIST SP 800-53 Rev 5; OMB M-26-14 | Telemetry | KSI-MLA | No |
+| SC-8 † | Transmission Confidentiality and Integrity | IPsec/MACsec overlay on customer-premises transport (function: network-layer encryption) | NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide) | NIST SP 800-53 Rev 5; EO 14028 | Network | KSI-CNA | No |
+| SC-8(1) | Cryptographic Protection | FIPS 140-3 validated cipher suite on the overlay | NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide) | NIST SP 800-53 Rev 5 | Network | KSI-CNA | No |
+| AC-19 | Access Control for Mobile Devices | NAC posture gating at the access layer | NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide) | NIST SP 800-53 Rev 5; OMB M-22-09 | Endpoint | KSI-IAM | No |
+| IA-3 † | Device Identification and Authentication | 802.1X authenticator + NAC at the port (function: device identity at the edge) | NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide) | NIST SP 800-53 Rev 5; NIST SP 800-207; CISA ZTMM v2.0 | Network | KSI-IAM | No |
+| AC-17 | Remote Access | Vendor ZTNA/remote-access gateway (function: per-session remote access) | NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide) | NIST SP 800-53 Rev 5; OMB M-22-09; CISA ZTMM v2.0 | Network | KSI-CNA | No |
+| AC-4 | Information Flow Enforcement | Application-aware flow policy at the NGFW/SASE PEP | NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide) | NIST SP 800-53 Rev 5; NIST SP 800-207; CISA TIC 3.0 | Network | KSI-CNA | No |
+| SC-7 | Boundary Protection | NGFW boundary enforcement at the customer-owned edge (function: distributed policy enforcement point) | NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide) | NIST SP 800-53 Rev 5; CISA TIC 3.0; NIST SP 800-207 | Network | KSI-CNA | No |
+| SC-7(8) | Route Traffic to Authenticated Proxy Servers | Forced-proxy egress through the SASE/SWG enforcement point | NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide) | NIST SP 800-53 Rev 5; CISA TIC 3.0 | Network | KSI-CNA | No |
+| SI-4 | System Monitoring | Network detection/telemetry export from the enforcement substrate to the evidence contract | NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide) | NIST SP 800-53 Rev 5; OMB M-26-14 | Telemetry | KSI-MLA | No |
 
 : Authorities Closed Here — Network Enforcement Substrate (Cisco/Palo Alto/Juniper) († = Closure-Necessity anchor: no alternate closure path) {.striped .hover}
 
@@ -293,11 +309,13 @@ doctrine (Executive Summary).
 Network-equipment manufacturer selections are pending agency procurement review.
 The three manufacturers mapped here (Cisco, Palo Alto Networks, Juniper Networks)
 reflect federal fielding prevalence and Protection-Profile coverage at time of
-writing; other NIAP-evaluated, DoDIN APL-listed manufacturers (e.g., Fortinet,
-Arista) satisfy the same mechanism classes. Final selection requires validation
-against the current NIAP Product Compliant List, the NIST CMVP validated-modules
-list, the applicable DISA STIG, and the DoDIN APL, plus agency-specific
-environment testing and procurement authority.
+writing; other NIAP-evaluated manufacturers (e.g., Fortinet, Arista) satisfy
+the same mechanism classes. Final selection requires validation against the
+current NIAP Product Compliant List and the NIST CMVP validated-modules list, an
+agency CM-6 baseline for the product (from its CIS Benchmark where one exists and
+the vendor's hardening guide), plus agency-specific environment testing and
+procurement authority. The DISA STIG and DoDIN APL are optional references (High
+only).
 :::
 
 # References
@@ -309,8 +327,12 @@ environment testing and procurement authority.
 | CISA TIC 3.0 | Trusted Internet Connections — distributed enforcement / DIA permissibility |
 | NIAP Product Compliant List | Common Criteria evaluated products — <https://www.niap-ccevs.org/Product/> |
 | NIST CMVP (FIPS 140-3) | Cryptographic Module Validation Program — <https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules> |
-| DISA STIGs | Security Technical Implementation Guides — <https://public.cyber.mil/stigs/> |
-| DoDIN APL | DoD Information Network Approved Products List — <https://aplits.disa.mil/> |
+| NIST SP 800-53 Rev 5 CM-2 / CM-6 | Baseline configuration; configuration settings from organization-defined common secure configurations — <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> |
+| CIS Benchmarks | Consensus configuration guides, including Cisco IOS XE 17.x (2.2.1), Cisco NX-OS (1.2.0), Cisco ASA 9.x Firewall (1.1.0), Juniper OS (2.1.0), Palo Alto Firewall 11 (1.2.0), F5 Networks (1.0.0) — <https://www.cisecurity.org/cis-benchmarks> (accessed 2026-10-29) |
+| Cisco IOS XE Software Hardening Guide | Vendor hardening guide, revision 3.2, December 8, 2025 — <https://sec.cloudapps.cisco.com/security/center/resources/IOS_XE_hardening> |
+| NIST National Checklist Program | SP 800-70 Rev. 5 (May 2026) and the checklist repository — <https://csrc.nist.gov/pubs/sp/800/70/r5/final>; <https://ncp.nist.gov/> |
+| DISA STIGs (High only) | Security Technical Implementation Guides; optional Defense reference — <https://public.cyber.mil/stigs/> |
+| DoDIN APL (High only) | DoD Information Network Approved Products List; Defense fielding gate — <https://aplits.disa.mil/> |
 | FedRAMP Marketplace | Cloud service authorization verification — <https://marketplace.fedramp.gov/> |
 | Cisco Identity Services Engine (ISE) | 802.1X / NAC / TrustSec — <https://www.cisco.com/site/us/en/products/security/identity-services-engine/index.html> |
 | Cisco Secure Firewall | NGFW boundary protection — <https://www.cisco.com/site/us/en/products/security/firewalls/index.html> |

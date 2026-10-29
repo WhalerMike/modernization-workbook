@@ -301,26 +301,36 @@
   ],
   [
    18.625,
-   7.388,
-   "Then ask about the STIG, and ask for an active FIPS 140-3 certificate, checking its status yourself."
+   8.762,
+   "Then ask what hardening guidance the agency's settings can come from: a C I S Benchmark, the vendor's own hardening guide, or a nist checklist."
   ],
   [
-   26.012,
+   27.387,
+   3.15,
+   "A DISA STIG is High only, Defense material."
+  ],
+  [
+   30.538,
+   5.85,
+   "And ask for an active FIPS 140-3 certificate, checking its status yourself."
+  ],
+  [
+   36.388,
    9.725,
    "FIPS 140-2 certificates moved to nist's historical list on September 21, 2026, so a new deployment can't cite one."
   ],
   [
-   35.737,
+   46.112,
    4.588,
    "Ask how the vendor tracks the open-source D N S code underneath."
   ],
   [
-   40.325,
+   50.7,
    4.662,
    "And understand what's metered, then model the cost over three to five years."
   ],
   [
-   44.987,
+   55.362,
    1.675,
    "Here's what those checks returned."
   ]
@@ -348,26 +358,26 @@
   ],
   [
    21.125,
-   2.888,
-   "Only Infoblox has vendor-specific STIGs."
+   4.787,
+   "Only Infoblox has vendor-specific STIGs, which are a High only reference."
   ],
   [
-   24.012,
+   25.913,
    8.537,
    "Only BlueCat holds an active FIPS 140-3 certificate, while Infoblox's newer modules are still in nist's review queue."
   ],
   [
-   32.55,
+   34.45,
    5.862,
    "None of the four has a current NIAP certification, and none is on the latest CDM list."
   ],
   [
-   38.413,
+   40.312,
    6.275,
    "So every candidate has a gap to close, in the contract or in a plan of action and milestones."
   ],
   [
-   44.688,
+   46.587,
    1.188,
    "Now, who runs it."
   ]

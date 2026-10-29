@@ -25,30 +25,44 @@ and some factory features
 simply aren't there.
 
 6
-00:00:16.225 --> 00:00:19.462
+00:00:16.225 --> 00:00:18.475
+And GovCloud isn't only for High.
+
+7
+00:00:18.475 --> 00:00:22.352
+A Moderate system can run there
+or in the commercial Regions,
+
+8
+00:00:22.352 --> 00:00:26.462
+and an agency can use both, so check
+each service, Region by Region.
+
+9
+00:00:26.462 --> 00:00:29.699
 The other half of this slide
 is about your own automation.
 
-7
-00:00:19.462 --> 00:00:22.495
+10
+00:00:29.699 --> 00:00:32.733
 A collector calling a
 commercial-only API from
 
-8
-00:00:22.495 --> 00:00:25.762
+11
+00:00:32.733 --> 00:00:36.000
 inside the boundary is a
 crossing nobody approved.
 
-9
-00:00:25.762 --> 00:00:29.926
+12
+00:00:36.000 --> 00:00:40.164
 So every adapter declares its
 boundary, resolves endpoints from it,
 
-10
-00:00:29.926 --> 00:00:33.124
+13
+00:00:40.164 --> 00:00:43.362
 and fails closed when it
 doesn't recognize the cloud.
 
-11
-00:00:33.124 --> 00:00:34.940
+14
+00:00:43.362 --> 00:00:45.190
 Next, the address plan.

@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.606
+Every pattern in the examples
+depends on one file:
+
+2
+00:00:03.606 --> 00:00:07.075
+the inventory script that
+reads the C M D B export.
+
+3
+00:00:07.075 --> 00:00:12.472
+It turns each record's attributes into
+groups, by tier, by platform, by environment,
+
+4
+00:00:12.472 --> 00:00:15.533
+and most importantly by
+configuration owner,
+
+5
+00:00:15.533 --> 00:00:19.400
+so the baseline check can only
+ever see hosts Ansible owns.
+
+6
+00:00:19.400 --> 00:00:24.875
+A server with no owner isn't a target at
+all; it's a finding to fix in the C M D B.
+
+7
+00:00:24.875 --> 00:00:27.816
+And if the export has a
+duplicate or a missing column,
+
+8
+00:00:27.816 --> 00:00:31.100
+the script stops rather than
+hand you a partial inventory.
+
+9
+00:00:31.100 --> 00:00:34.437
+In production, you'd use an
+inventory plugin instead.
+
+10
+00:00:34.437 --> 00:00:36.340
+Now, the playbooks themselves.

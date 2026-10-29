@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.565
+Microsoft lists Ansible as one
+of the ways to do it at scale,
+
+2
+00:00:03.565 --> 00:00:07.300
+with a supported role that skips
+machines already connected.
+
+3
+00:00:07.300 --> 00:00:09.413
+The real choice is how it signs in,
+
+4
+00:00:09.413 --> 00:00:12.700
+because that decides how
+many secrets you inherit.
+
+5
+00:00:12.700 --> 00:00:16.615
+A managed identity is Microsoft's
+recommendation for production,
+
+6
+00:00:16.615 --> 00:00:18.750
+since there's no stored secret at all.
+
+7
+00:00:18.750 --> 00:00:23.125
+Next best is a certificate service
+principal, brokered by the platform.
+
+8
+00:00:23.125 --> 00:00:25.775
+Command-line sign-in is for pilots only.
+
+9
+00:00:25.775 --> 00:00:30.575
+Whatever signs in gets the onboarding role
+on one resource group, and nothing more.
+
+10
+00:00:30.575 --> 00:00:31.870
+Then come the waves.

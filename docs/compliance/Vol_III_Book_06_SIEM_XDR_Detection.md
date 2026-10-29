@@ -441,7 +441,7 @@ SigninLogs
 
 ### SQL Server: SA Account Re-Enabled [RULE ONLY]
 
-**Threat:** Re-enabling the SQL Server System Administrator (SA) account, which should be permanently disabled in any production SQL Server instance per CIS SQL Server benchmark and STIG V-79075. Re-enabling SA is a significant indicator of either unauthorized administrative access or a misconfiguration.
+**Threat:** Re-enabling the SQL Server System Administrator (SA) account, which should be permanently disabled in any production SQL Server instance per the CIS Microsoft SQL Server benchmark and Microsoft's own SQL Server security guidance (Microsoft Learn, "SQL Server security best practices": the SA login "shouldn't be used or enabled", <https://learn.microsoft.com/sql/relational-databases/security/sql-server-security-best-practices>, accessed Oct 29, 2026) (the DISA SQL Server STIG check V-79075 says the same; High only: Defense or FedRAMP High material, not the Moderate civilian baseline this series targets, an optional reference). Re-enabling SA is a significant indicator of either unauthorized administrative access or a misconfiguration.
 
 **Detection logic:** Query `AzureDiagnostics` for SQL audit events where `event_class_s == "AUDIT_LOGIN_FAILED"` or `statement_s` contains `ALTER LOGIN sa ENABLE`. Alert on any occurrence with no suppression — this event should be zero-frequency in a properly configured environment.
 

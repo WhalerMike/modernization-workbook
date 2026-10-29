@@ -64,6 +64,14 @@ Internal vocabulary translated: "Closure Necessity" callouts, "Authorities Close
 | 52 | Hybrid-activated nodes governed at guest OS only (like Arc) | Honest limits | restated-as-design (source bound); consistent with Book 12 Ch07 matrix | Book 12 Ch07 |
 | 53 | Source: Security Hub CSPM cross-account/Region aggregation and third-party integrations "a later follow-up" | — | not carried (internal roadmap) | — |
 | 54 | Source: OCI reconciling into the same queue later | — | not carried (internal roadmap); OCI covered in Book 12 Ch07/Ch08 | — |
+| 55 | AWS US East/West FedRAMP Certified Class C (formerly Moderate); GovCloud (US) Class D (formerly High); services-in-scope is per service, per Region; Amazon Connect Customer in both columns | AWS locations paragraph | verified 2026-10-29 (Moderate-civilian sweep; coordinator fact pack) | AWS FedRAMP page; FedRAMP Services in Scope |
+| 56 | A Moderate system can run in GovCloud (US) because SP 800-53B baselines are cumulative; most workloads in GovCloud with a contact center in commercial Regions | AWS locations paragraph | inference / design guidance 2026-10-29 | Grounded in #55 |
+| 57 | Security Hub CSPM supports CIS AWS Foundations Benchmark v5.0.0, v3.0.0, v1.4.0, v1.2.0; recommends v5.0.0 | Security Hub CSPM | verified 2026-10-29 | Security Hub UG, CIS AWS Foundations Benchmark |
+| 58 | Standards other than Control Tower and Resource Tagging available in every Region where Security Hub CSPM is (GovCloud included) | Security Hub CSPM | verified 2026-10-29 | Security Hub UG, Regional limits |
+| 59 | CIS lists AWS Foundations 7.1.0, VMware ESXi 8.0 1.4.0 and 9.0 1.0.0 | Security Hub CSPM; VMware hardening content | verified 2026-10-29 | CIS Benchmarks list |
+| 60 | CM-6: organization-defined common secure configurations; may come from product developers, vendors, federal agencies, consortia and others; doesn't require a STIG | VMware hardening content | verified 2026-10-29 | SP 800-53 Rev. 5 OSCAL catalog |
+| 61 | VCF Security Configuration and Hardening Guide is the vendor guide and the first SPM benchmark in 9.1 | VMware hardening content | verified (c09-vcfops-91-spm, the 9.1 SPM page) | Broadcom TechDocs, SPM |
+| 62 | Section "STIG content for VCF 9" renamed "VMware hardening content" with anchor `#vmware-hardening-content`; Broadcom STIG readiness content kept as optional High-only reference (claim #41 unchanged); diagram ch09-two-estates "STIG readiness scans" replaced by "CIS ESXi benchmark checks" | VMware; diagram; tables; limits; takeaways | restated 2026-10-29 (Moderate civilian, not DoD: CISA/NIST/CIS/vendor guide as baseline) | Brief |
 
 ## Carry-forward ledger
 

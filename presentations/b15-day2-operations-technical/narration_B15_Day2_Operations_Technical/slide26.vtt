@@ -6,45 +6,50 @@ On AWS, the evidence path has
 changed under people's feet.
 
 2
-00:00:04.250 --> 00:00:08.794
+00:00:04.250 --> 00:00:08.975
 Config conformance packs and Security
-Hub's posture checks are the foundation,
+Hub's posture checks are the foundation.
 
 3
-00:00:08.794 --> 00:00:12.512
-and both run in GovCloud, though
-with differences you need to test.
+00:00:08.975 --> 00:00:13.177
+Both run in GovCloud and in the
+commercial Regions, and either is a valid
 
 4
-00:00:12.512 --> 00:00:17.437
+00:00:13.177 --> 00:00:17.450
+home for a Moderate system, but GovCloud
+has differences you need to test.
+
+5
+00:00:17.450 --> 00:00:22.375
 Security Hub keeps findings for only
 ninety days, so copy them out first.
 
-5
-00:00:17.437 --> 00:00:22.621
+6
+00:00:22.375 --> 00:00:27.558
 The big correction is Audit Manager: it
 closed to new customers in April 2026,
 
-6
-00:00:22.621 --> 00:00:28.051
+7
+00:00:27.558 --> 00:00:32.988
 has no GovCloud endpoint, and its FedRAMP
 framework is still on the old revision.
 
-7
-00:00:28.051 --> 00:00:30.975
+8
+00:00:32.988 --> 00:00:35.912
 Nobody should start a federal
 evidence program on it.
 
-8
-00:00:30.975 --> 00:00:34.493
+9
+00:00:35.912 --> 00:00:39.431
 And the ServiceNow
 connector most agencies used
 
-9
-00:00:34.493 --> 00:00:37.925
+10
+00:00:39.431 --> 00:00:42.863
 loses support in March
 2027, so plan that move now.
 
-10
-00:00:37.925 --> 00:00:39.820
+11
+00:00:42.863 --> 00:00:44.760
 VMware is harder still.

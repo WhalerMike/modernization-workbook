@@ -1,0 +1,25 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.862
+This first module places Ansible
+among the tools you already run.
+
+2
+00:00:03.862 --> 00:00:07.441
+We'll settle what it is and what
+it isn't, set it beside Intune,
+
+3
+00:00:07.441 --> 00:00:12.212
+Arc and Configuration Manager, and lay
+down the rule that stops them fighting.
+
+4
+00:00:12.212 --> 00:00:15.550
+Then we'll follow it into the
+places those tools can't reach,
+
+5
+00:00:15.550 --> 00:00:17.980
+starting with onboarding servers to Arc.

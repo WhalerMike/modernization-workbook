@@ -1,6 +1,6 @@
 ---
 title: "Chapter 09 — Control Compliance Automation: AWS and VMware"
-description: "How control evidence is collected automatically from AWS (AWS Config conformance packs, Security Hub CSPM and the new Security Hub, Systems Manager Patch Manager, and why AWS Audit Manager is no longer a foundation to build on) and from the agency's own VMware estate (vSphere Configuration Profiles, vSphere Lifecycle Manager images, VCF Operations compliance and Security Posture Management, Broadcom's STIG readiness content), what each does in AWS GovCloud and on premises, how each feeds the same evidence contract, and where the on-premises virtualization layer leaves an evidence gap the agency has to close itself."
+description: "How control evidence is collected automatically from AWS (AWS Config conformance packs, Security Hub CSPM and the new Security Hub, Systems Manager Patch Manager, and why AWS Audit Manager is no longer a foundation to build on) and from the agency's own VMware estate (vSphere Configuration Profiles, vSphere Lifecycle Manager images, VCF Operations compliance and Security Posture Management, Broadcom's hardening guide and the CIS ESXi benchmarks), what each does in AWS GovCloud (US), the AWS commercial Regions and on premises, how each feeds the same evidence contract, and where the on-premises virtualization layer leaves an evidence gap the agency has to close itself."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b15-day2-operations
@@ -19,14 +19,16 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The same five-step loop as [Chapter 08](08-control-automation-m365-and-azure.md), run on two very different estates. What produces control evidence in AWS, checked for AWS GovCloud (US): AWS Config conformance packs, Security Hub CSPM and the new Security Hub, and Patch Manager, plus the corrections that come from checking them, chiefly that AWS Audit Manager closed to new customers in April 2026 and has no GovCloud endpoint. What produces it in an on-premises VMware Cloud Foundation estate, where the product names and compliance features changed between versions 9.0 and 9.1. How every source lands in the evidence contract, where ServiceNow's own products overlap, and where the on-premises gap stays open.
+The same five-step loop as [Chapter 08](08-control-automation-m365-and-azure.md), run on two very different estates. What produces control evidence in AWS, checked for AWS GovCloud (US) and the commercial Regions: AWS Config conformance packs, Security Hub CSPM and the new Security Hub, and Patch Manager, plus the corrections that come from checking them, chiefly that AWS Audit Manager closed to new customers in April 2026 and has no GovCloud endpoint. What produces it in an on-premises VMware Cloud Foundation estate, where the product names and compliance features changed between versions 9.0 and 9.1. How every source lands in the evidence contract, where ServiceNow's own products overlap, and where the on-premises gap stays open.
 :::
 
 [Chapter 08](08-control-automation-m365-and-azure.md) ran the loop on Microsoft 365 and Azure: test on the native surface, detect drift, raise a typed task against the configuration item, actuate natively, close on a re-test. This chapter runs it on the two other platforms most federal estates carry. The loop is deliberately the same, so that an assessor sees one story whatever the platform. What differs is how much of the evidence the agency can get from someone else.
 
 AWS is like Azure. The provider operates the infrastructure, publishes control-mapped tests for it, and runs posture services the agency turns on. The agency's day-two job is to take ownership of the results. A VMware estate in the agency's own data center is different in kind. The hypervisor, the virtual network and the management plane are the agency's to operate and patch; there is no provider authorization to inherit for them, and [Book 12, Chapter 08](../b12-security-operations/08-cloud-native-posture.md#per-platform-mechanisms) notes that customer-operated software has no FedRAMP certification of its own. Every piece of evidence about that layer is the agency's to produce.
 
-![AWS and VMware run the same loop into one evidence contract, but the AWS side starts from provider-published tests while the VMware side depends on the agency's own scans.](../../images/diagrams/b15-day2-operations/svg/ch09-two-estates.svg){#fig-ch09-two-estates fig-alt="Two columns feed one card at the bottom. The left column, labeled AWS, provider-operated, has a blue card listing AWS Config conformance packs, Security Hub CSPM controls and Patch Manager compliance, with a note that the provider publishes the tests and the agency owns the follow-through; beneath it an amber note says Audit Manager is closed to new customers and has no GovCloud endpoint. The right column, labeled VMware, agency-operated, has a slate card listing vSphere Configuration Profiles compliance, vSphere Lifecycle Manager image compliance, VCF Operations Security Posture Management and STIG readiness scans, with a red note that nothing is inherited, so the agency produces every piece of evidence. Both columns lead to a violet card: one evidence-contract record per finding, keyed to the asset identity from the CMDB and the time of the observation, opening one typed task in the ITSM platform."}
+Both AWS locations are valid for a Moderate system. AWS lists its US East/West Regions as FedRAMP Certified Class C (formerly Moderate) and AWS GovCloud (US) as Class D (formerly High), and it lists FedRAMP scope per service and per Region; Amazon Connect Customer, for example, is listed in both.[^c09-aws-fedramp] NIST's baselines are cumulative, so a High offering includes the Moderate controls and a Moderate system can run in GovCloud (US) *(inference)*. An agency may run most of its AWS workloads in GovCloud (US) at Moderate and a contact center in a commercial Region. The loop below is the same in both; the chapter flags where a feature differs between them *(design guidance)*.
+
+![AWS and VMware run the same loop into one evidence contract, but the AWS side starts from provider-published tests while the VMware side depends on the agency's own scans.](../../images/diagrams/b15-day2-operations/svg/ch09-two-estates.svg){#fig-ch09-two-estates fig-alt="Two columns feed one card at the bottom. The left column, labeled AWS, provider-operated, has a blue card listing AWS Config conformance packs, Security Hub CSPM controls and Patch Manager compliance, with a note that the provider publishes the tests and the agency owns the follow-through; beneath it an amber note says Audit Manager is closed to new customers and has no GovCloud endpoint. The right column, labeled VMware, agency-operated, has a slate card listing vSphere Configuration Profiles compliance, vSphere Lifecycle Manager image compliance, VCF Operations Security Posture Management and CIS ESXi benchmark checks, with a red note that nothing is inherited, so the agency produces every piece of evidence. Both columns lead to a violet card: one evidence-contract record per finding, keyed to the asset identity from the CMDB and the time of the observation, opening one typed task in the ITSM platform."}
 
 ## AWS: what produces the evidence
 
@@ -43,6 +45,8 @@ Config also gives the evidence trail. AWS recommends advanced queries to export 
 ### Security Hub CSPM, and the new Security Hub
 
 What used to be called Security Hub is now **AWS Security Hub CSPM** (cloud security posture management). It runs control checks against standards, including the AWS Foundational Security Best Practices standard and a NIST SP 800-53 Revision 5 standard, and receives findings from GuardDuty, Inspector, Macie and supported third-party products in one format, the AWS Security Finding Format (ASFF).[^c09-shcspm] Its NIST standard "support[s] a subset" of Rev. 5 requirements and doesn't cover requirements that need manual checks; most of its controls run as service-linked AWS Config rules, so resource recording in Config has to be enabled and configured for the resource types the controls check.[^c09-sh-nist] Security Hub CSPM is available in both GovCloud Regions, and its standards are available wherever it is.[^c09-sh-endpoints][^c09-sh-regions]
+
+Security Hub CSPM also runs the **CIS AWS Foundations Benchmark**, in versions 5.0.0, 3.0.0, 1.4.0 and 1.2.0, and AWS recommends 5.0.0.[^c09-sh-cis] Like the other standards apart from Control Tower and Resource Tagging, it is available in every Region where Security Hub CSPM is, GovCloud (US) included.[^c09-sh-regions] For a civilian agency this is the published hardening benchmark for the AWS account layer: the agency can name it as the common secure configuration behind its CM-6 settings for AWS, next to the NIST standard's control mapping *(design guidance)*. CIS's own current release of the benchmark is 7.1.0,[^c09-cis] so the Security Hub standard can trail CIS; the agency's baseline file records which version it measures against.
 
 Three properties shape how it feeds the loop:
 
@@ -85,7 +89,7 @@ On a hyperscaler the agency inherits the provider's controls for the layers the 
 
 1. **Nothing below the guest is visible to the guest.** [Book 12, Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#actuation-is-platform-native) shows that the hypervisor and firmware column has no cross-platform tool: an agent in a virtual machine can't patch or assess the ESX host it runs on.
 2. **No provider publishes the control mapping.** Microsoft and AWS ship initiatives and conformance packs mapped to FedRAMP and SP 800-53. For the agency's own VMware estate, the mapping from Broadcom's hardening content to the agency's baseline is the agency's work.
-3. **The tooling changed under the agency's feet.** Between VCF 9.0 and 9.1 the compliance feature in VCF Operations was replaced, and the federal hardening guide for VCF 9 is still a readiness guide. Each is covered below.
+3. **The tooling changed under the agency's feet.** Between VCF 9.0 and 9.1 the compliance feature in VCF Operations was replaced, and the agency's baseline has to follow it. Both are covered below.
 
 ### Configuration: vSphere Configuration Profiles
 
@@ -103,15 +107,19 @@ In VCF 9.1 that happened: "Compliance Benchmarks are deprecated in VCF 9.1. Comp
 
 Broadcom also sells **VMware Advanced Cyber Compliance**, announced November 3, 2025 as an advanced service for VCF customers. It uses VMware Salt for desired-state configuration management and event-driven automation, and adds automated remediation of critical security threats.[^c09-vacc] It is a separate purchase, and the program doesn't assume it.
 
-### STIG content for VCF 9
+### VMware hardening content: the vendor guide and CIS ESXi {#vmware-hardening-content}
 
-For federal hardening, Broadcom publishes STIG content and automation for VCF. For VCF 9.x it is "currently in STIG Readiness Guide status," and an official DISA-reviewed STIG for VCF 9.1 is in progress. Audit runs with MITRE's InSpec (or the open-source Cinc Auditor), remediation with Ansible playbooks for appliances and VCF.PowerCLI scripts for settings exposed through the vSphere and VCF APIs, and MITRE's SAF CLI converts InSpec's JSON output into STIG checklist files for the DISA STIG Viewer.[^c09-vcf-stig] For the evidence record the InSpec JSON is the useful artifact: it is machine-readable, it carries a result per control, and it can be re-run to show a fix. The program records which readiness-guide version each scan used, because the control identifiers and severities will change when DISA publishes the final STIG.
+For a Moderate civilian system, the agency's CM-6 settings for the VMware layer come from the vendor's own hardening guide and a civilian benchmark *(design guidance)*. Broadcom's *VMware Cloud Foundation Security Configuration and Hardening Guide* is the vendor guide, and it is the first of the benchmarks Security Posture Management ships in 9.1, so the same guide is both the baseline's source and its automated test.[^c09-vcfops-91-spm] CIS publishes VMware ESXi 8.0 (1.4.0) and 9.0 (1.0.0) benchmarks, a vendor-neutral cross-check for the host layer.[^c09-cis] NIST SP 800-53 CM-6 leaves the choice of common secure configuration to the agency and says such configurations can come from product developers, vendors, federal agencies, consortia and others,[^c09-sp80053-cm6] so the agency's baseline file names the guide and version behind each setting *(design guidance)*.
 
-Running that Ansible content under an orchestrator, with one owning tool per setting and the controller's own credentials governed as a non-person identity, is covered in the companion guide [Ansible for Configuration Automation](../guides/ansible-configuration-automation.md#vmware).
+*High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
+
+Broadcom also publishes DISA STIG content and automation for VCF (High only). For VCF 9.x it is "currently in STIG Readiness Guide status," and an official DISA-reviewed STIG for VCF 9.1 is in progress. Audit runs with MITRE's InSpec (or the open-source Cinc Auditor), remediation with Ansible playbooks for appliances and VCF.PowerCLI scripts for settings exposed through the vSphere and VCF APIs, and MITRE's SAF CLI converts InSpec's JSON output into STIG checklist files.[^c09-vcf-stig] A civilian ATO doesn't require it. An agency that borrows its checks or automation as a reference, where the vendor guide is silent, gets a useful evidence artifact in the InSpec JSON: it is machine-readable, it carries a result per control, and it can be re-run to show a fix. If the agency does that, it records which readiness-guide version each scan used, because the control identifiers will change when DISA publishes the final STIG.
+
+Running hardening content with Ansible under an orchestrator, with one owning tool per setting and the controller's own credentials governed as a non-person identity, is covered in the companion guide [Ansible for Configuration Automation](../guides/ansible-configuration-automation.md#vmware).
 
 ### Getting VMware results into the ITSM platform
 
-There is no VMware counterpart to Defender for Cloud's ServiceNow integration or Security Hub's ServiceNow ITSM integration in the current documentation this chapter could verify. The source volume cited a VCF Operations management pack for ServiceNow and a VCF Automation plugin for ServiceNow; the official page found for the management pack is for an older Aria Operations release and describes pulling ServiceNow CMDB items into Aria Operations, not sending compliance results to ServiceNow,[^c09-mp-snow] so neither is relied on here. The program's collector route is therefore the default for VMware: it reads the Security Posture Management CSV export, the InSpec JSON and the Configuration Profiles and image compliance results, and writes evidence-contract records against the configuration items that ServiceNow discovery or the reconciliation in [Chapter 07](07-the-cmdb-and-asset-identity.md) maintains.
+There is no VMware counterpart to Defender for Cloud's ServiceNow integration or Security Hub's ServiceNow ITSM integration in the current documentation this chapter could verify. The source volume cited a VCF Operations management pack for ServiceNow and a VCF Automation plugin for ServiceNow; the official page found for the management pack is for an older Aria Operations release and describes pulling ServiceNow CMDB items into Aria Operations, not sending compliance results to ServiceNow,[^c09-mp-snow] so neither is relied on here. The program's collector route is therefore the default for VMware: it reads the Security Posture Management CSV export, the Configuration Profiles and image compliance results, and any InSpec JSON the agency produces, and writes evidence-contract records against the configuration items that ServiceNow discovery or the reconciliation in [Chapter 07](07-the-cmdb-and-asset-identity.md) maintains.
 
 ### When no machine reaches the surface
 
@@ -133,7 +141,7 @@ Every source in this chapter and [Chapter 08](08-control-automation-m365-and-azu
 | vSphere Configuration Profiles | Host compliance against the cluster's desired configuration | `vcp`; host and cluster | The compliance check's time | Image-managed clusters only |
 | vSphere Lifecycle Manager | Host compliance against the cluster image | `vlcm`; host and cluster | The compliance check's time | Baselines deprecated for upgrades |
 | VCF Operations Security Posture Management | Assessment results export (CSV) | `vcf-spm`; object | The assessment's time | No 800-53 or DISA benchmark listed in 9.1 |
-| STIG readiness scan | InSpec JSON | `inspec`; target | The scan's time | Readiness guide, not final STIG |
+| Optional STIG readiness scan (High only) | InSpec JSON | `inspec`; target | The scan's time | A reference some agencies borrow; readiness guide, not final STIG |
 
 : Where each contract field comes from (program mapping) {.striped .hover}
 
@@ -147,7 +155,7 @@ The `asset_id` column is missing on purpose. On every row it comes from the CMDB
 
 ::: {.callout-warning}
 ## Illustrative, not tested against a production account
-These commands are examples of the collector's AWS reads. They haven't been run against a production account. They read data only and change nothing, but run them against a test account first and review the output before relying on it. Set the Region to a GovCloud Region with the matching credentials where that applies.
+These commands are examples of the collector's AWS reads. They haven't been run against a production account. They read data only and change nothing, but run them against a test account first and review the output before relying on it. Set the Region to the workload's Region, a GovCloud (US) Region or a commercial one, with the matching credentials.
 :::
 
 ```bash
@@ -193,8 +201,8 @@ The AWS CLI pages through results by default. The two files are the raw artifact
 ## Honest limits
 
 - **"Closed" lags the fix.** Config evaluations, Security Hub checks, Patch Manager scans and VMware compliance checks all run on cycles. Evidence timestamps record the evaluation, not the instant of the fix.
-- **GovCloud is a different feature set.** Config remediation documents, Security Hub integrations and the new Security Hub's third-party integrations differ from the commercial Regions, and AWS's own pages disagree on one of them. Test each one in a GovCloud account before relying on it.
-- **The VMware mapping is the agency's.** No provider publishes a FedRAMP or 800-53 mapping for an agency-operated VCF estate, VCF 9.1's Security Posture Management doesn't list one, and the VCF 9 STIG isn't final. Whatever mapping the agency writes will need revisiting when DISA publishes.
+- **GovCloud is a different feature set.** Config remediation documents, Security Hub integrations and the new Security Hub's third-party integrations differ from the commercial Regions, and AWS's own pages disagree on one of them. Test each one in an account in the Region the workload uses before relying on it.
+- **The VMware mapping is the agency's.** No provider publishes a FedRAMP or 800-53 mapping for an agency-operated VCF estate, and VCF 9.1's Security Posture Management doesn't list one. The agency maps Broadcom's hardening guide, and CIS ESXi where it uses it, to its own CM-6 settings, and revisits the mapping when either publisher revises its content.
 - **Connectors are moving.** The AWS Service Management Connector ends on March 31, 2027, and a current VMware-to-ServiceNow compliance integration wasn't found. The collector route is the one the agency controls.
 - **Each guard rail covers its own layer.** Hybrid-activated nodes under Systems Manager, like Arc-enabled servers under Azure, are governed at the guest operating system only. The hypervisor, firmware and managed services reconcile from their own stacks.
 
@@ -204,7 +212,7 @@ The mapping is the program's, not a published crosswalk.
 
 | Control | AWS contribution | VMware contribution |
 |---|---|---|
-| CM-2, CM-6 | Conformance pack and Security Hub CSPM control results raised as tasks and closed on re-evaluation | Configuration Profiles, Security Posture Management and STIG readiness scans raised as tasks and closed on re-check |
+| CM-2, CM-6 | Conformance pack and Security Hub CSPM control results raised as tasks and closed on re-evaluation | Configuration Profiles, Security Posture Management (hardening guide) and CIS ESXi results raised as tasks and closed on re-check |
 | CM-3 | Config and Automation remediations carried as change records | Configuration Profiles, image and posture remediations carried as change records; manual sessions only as declared exceptions |
 | CM-8 | Every record joined to the CMDB identity; unmatched resources raised as inventory findings | The same, for hosts, clusters and management appliances the agency discovers itself |
 | RA-5, SI-2 | Inspector findings through Security Hub CSPM and Patch Manager results into the [Book 12](../b12-security-operations/index.md) queues, clocked by BOD 26-04 | Image compliance into the same queue for the hypervisor |
@@ -216,9 +224,9 @@ The mapping is the program's, not a published crosswalk.
 
 - Run the same loop on AWS and VMware as on Microsoft 365 and Azure, and land every result in the same evidence contract.
 - Build AWS evidence on Config conformance packs and Security Hub CSPM, not on Audit Manager.
-- Check every AWS feature in GovCloud itself; several differ, and AWS's documentation disagrees on Config remediation.
+- Check every AWS feature in the Region the workload uses, GovCloud (US) or commercial; several differ in GovCloud, and AWS's documentation disagrees on Config remediation.
 - Plan the move off the AWS Service Management Connector before March 31, 2027.
-- Treat the VMware layer as evidence the agency produces end to end: move clusters to images, use Configuration Profiles and Security Posture Management, keep STIG readiness scans, and write the mapping to the agency's baseline.
+- Treat the VMware layer as evidence the agency produces end to end: move clusters to images, use Configuration Profiles and Security Posture Management, take the baseline from Broadcom's hardening guide with CIS ESXi as a cross-check, and write the mapping to the agency's CM-6 settings.
 - Use machine actuators wherever the vendor provides them, and keep the recorded privileged session for what remains.
 
 ::: {.callout-tip}
@@ -252,4 +260,8 @@ The mapping is the program's, not a published crosswalk.
 [^c09-vcfops-91-dep]: Broadcom TechDocs, "Activate a Regulatory Benchmark," VMware Cloud Foundation 9.1, deprecation notice, <https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1/security-and-compliance/viewing-and-configuring-compliance/how-to-configure-compliance-benchmarks/install-a-regulatory-benchmark.html> (accessed Oct 21, 2026).
 [^c09-vcfops-91-spm]: Broadcom TechDocs, "Compliance Assessment and Reporting using Security Posture Management," VMware Cloud Foundation 9.1, <https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1/security-and-compliance/security-posture-management/compliance-assessment-and-reporting-using-security-posture-management.html> (accessed Oct 21, 2026).
 [^c09-vacc]: VMware Cloud Foundation Blog (Broadcom), "VMware Advanced Cyber Compliance is now available to VCF customers," November 3, 2025, <https://blogs.vmware.com/cloud-foundation/2025/11/03/vmware-advanced-cyber-compliance-is-now-available-to-vcf-customers/> (accessed Oct 21, 2026).
+[^c09-aws-fedramp]: Amazon Web Services, "FedRAMP" (US East/West FedRAMP Certified Class C, formerly Moderate; GovCloud (US) Class D, formerly High), <https://aws.amazon.com/compliance/fedramp/>; and "FedRAMP — Services in Scope" (per-service, per-Region columns; Amazon Connect Customer listed in both), <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/> (accessed Oct 29, 2026).
+[^c09-sh-cis]: AWS documentation, "CIS AWS Foundations Benchmark in Security Hub CSPM" (supported versions 5.0.0, 3.0.0, 1.4.0 and 1.2.0; 5.0.0 recommended), *AWS Security Hub User Guide*, <https://docs.aws.amazon.com/securityhub/latest/userguide/cis-aws-foundations-benchmark.html> (accessed Oct 29, 2026).
+[^c09-cis]: Center for Internet Security, "CIS Benchmarks" (benchmark list, including Amazon Web Services Foundations 7.1.0, VMware ESXi 8.0 1.4.0 and VMware ESXi 9.0 1.0.0), <https://www.cisecurity.org/cis-benchmarks> (accessed Oct 29, 2026).
+[^c09-sp80053-cm6]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls CM-2 and CM-6 (statement and discussion), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; read from NIST's OSCAL Rev. 5 catalog, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Oct 29, 2026).
 [^c09-vcf-stig]: VMware Cloud Foundation Blog (Broadcom), "Securing the Foundation: VMware Cloud Foundation 9.1 STIG Compliance," July 14, 2026, <https://blogs.vmware.com/cloud-foundation/2026/07/14/securing-the-foundation-vmware-cloud-foundation-9-1-stig-compliance/> (accessed Oct 21, 2026).

@@ -40,7 +40,7 @@ Checked 2026-10-21 against Microsoft Learn (CAF landing zone overview, design ar
 | 29 | MG-assigned policy evaluates only resources in subscriptions/RGs; start with audit | Enforcing | verified | overview |
 | 30 | 24-hour standard cycle; ~30 minutes for subscription created/moved | Enforcing | verified | compliance-data |
 | 31 | SCPs never grant permissions; max permissions incl. root user; don't affect management account; need all features | AWS | verified | scp |
-| 32 | Control Tower in both GovCloud Regions for FedRAMP High workloads | AWS | verified | ct |
+| 32 | Control Tower in both GovCloud Regions; usable there for workloads that require High | AWS | verified; reworded 2026-10-29 so it no longer reads as GovCloud being only for High (AWS: "You can utilize AWS Control Tower with workloads that require FedRAMP High categorization level in the AWS GovCloud (US) Regions") | ct |
 | 33 | CreateGovCloudAccount from commercial management account creates paired accounts; GovCloud org independent; bring existing Audit and Log Archive accounts | AWS | verified | ct |
 | 34 | Account Factory Create account removed; new customers can't deploy AFT in GovCloud; some controls ineffective; some Security Hub CSPM controls unavailable; metadata must not contain export-controlled data | AWS | verified | ct |
 | 35 | LZA recommended atop Control Tower; supports GovCloud; "will not, by itself, make you compliant" | AWS | verified | lza |
@@ -52,6 +52,9 @@ Checked 2026-10-21 against Microsoft Learn (CAF landing zone overview, design ar
 | 41 | Authorization boundary definition (all components to be authorized; excludes separately authorized connected systems) | What a landing zone can't prove | verified | sp80037 |
 | 42 | "each agency still authorizes its own federal information systems"; SSP focuses on what the agency implements, configures, operates, or inherits | What a landing zone can't prove | verified | fedramp-use |
 | 43 | Source: FedRAMP 20x Consolidated Rules impose "automated, machine-readable compliance evidence enforced by IaC" on the agency landing zone | (not carried) | removed: the Consolidated Rules govern provider certification; the agency authorizes its own system (Book 01 Ch12; Chapter 03) | fedramp-use |
+| 44 | 2026-10-29: AWS US East/West FedRAMP Certified Class C (formerly Moderate), GovCloud (US) Class D (formerly High); services-in-scope marked per service, per Region | AWS | verified (coordinator fact pack, 2026-10-29) | aws-fedramp |
+| 45 | 2026-10-29: High baseline contains the Moderate controls, so a Moderate system can run in GovCloud (US) or commercial Regions | AWS | inference (SP 800-53B baselines are cumulative) | aws-fedramp |
+| 46 | 2026-10-29: most AWS workloads in GovCloud (US) at Moderate, a contact center in commercial Regions; two organizations, one per partition; package names which services run where | AWS | restated-as-design (agency-neutral pattern) | — |
 
 ## 2. Carry-forward ledger
 

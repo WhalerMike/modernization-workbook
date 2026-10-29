@@ -753,12 +753,12 @@ Decision 1, the redirect-dns destination: a DDI resolver or forwarding proxy at 
     "Local resolvers and agents: keep resolving if management is unreachable",
     "Route 53 and Azure still serve their zones; the plane holds one policy object",
   ], 12);
-  table(s, "Federal", 1.5, [2.55, 2.4, 2.6], ["Component", "Commercial / GCC-Moderate", "GCC High, Azure Gov, GovCloud, DoD"], [
+  table(s, "Federal", 1.5, [2.55, 2.4, 2.6], ["Component", "Moderate: commercial or gov regions", "High only: GCC High, High systems, DoD"], [
     ["Cloud DDI management plane", "FedRAMP Moderate + agency ATO", "Moderate doesn't cover High"],
     ["Five decisions, RPZ, Protective DNS", "Apply", "Apply (air-gapped differs)"],
-    ["Private endpoint zone names", "Commercial names", "*.usgovcloudapi.net, *.azure.us"],
-    ["VPC IPAM external authority", "Commercial Regions", "Not in GovCloud (US)"],
-    ["Azure DNS Private Resolver", "Available", "FedRAMP High; forecast at IL4–IL5"],
+    ["Private endpoint zone names", "Commercial; Azure Gov uses its own", "*.usgovcloudapi.net, *.azure.us"],
+    ["VPC IPAM external authority", "Commercial Regions, not GovCloud", "Not in GovCloud (US)"],
+    ["Azure DNS Private Resolver", "Available (GA in Azure Gov)", "FedRAMP High; forecast at IL4–IL5"],
     ["Azure Private DNS signing", "Not supported", "Not supported"],
     ["M365 informed network routing", "Not in GCC-Moderate", "Not available"],
   ], { x: 5.2, fontSize: 11.5, firstColor: HEX.teal });
@@ -768,7 +768,7 @@ Decision 1, the redirect-dns destination: a DDI resolver or forwarding proxy at 
 
 Infoblox is the book's example: the NIOS grid, and Universal DDI as the cloud plane. Its FedRAMP-listed offering is Infoblox Government Cloud, certified at Moderate; on-premises NIOS appliances aren't a FedRAMP cloud service and sit inside the agency's boundary. Chapter 12 evaluates other platforms against the same requirements.
 
-The architecture is the same everywhere; authorization and integrations change. A plane certified at Moderate, plus the agency's own authorization, suffices for Moderate systems but doesn't cover High: use a service authorized at the required level or keep the plane inside the agency's boundary. Azure Government's zone names differ. VPC IPAM's external authority isn't in GovCloud. The Private Resolver is at FedRAMP High in Azure Government and forecast, not yet authorized, at IL4 and IL5. Azure Private DNS can't be signed anywhere. And informed network routing isn't available in GCC-Moderate, GCC High or DoD.`,
+The architecture is the same everywhere; authorization and integrations change. A Moderate system can run in commercial regions or in a government region such as GovCloud or Azure Government, so the government-region gaps on the slide are Moderate concerns too, not only High ones; the right-hand column, marked High only, applies to FedRAMP High or Defense environments, not to the Moderate civilian baseline this workbook targets. A plane certified at Moderate, plus the agency's own authorization, suffices for Moderate systems but doesn't cover High: use a service authorized at the required level or keep the plane inside the agency's boundary. Azure Government's zone names differ. VPC IPAM's external authority isn't in GovCloud. The Private Resolver is at FedRAMP High in Azure Government and forecast, not yet authorized, at IL4 and IL5. Azure Private DNS can't be signed anywhere. And informed network routing isn't available in GCC-Moderate, GCC High or DoD.`,
   "Book 08, Chapter 08 — Reference Architecture, \"What a DDI policy plane is made of\" and \"Commercial and federal clouds compared\"; Appendix C — Applicability.");
 }
 

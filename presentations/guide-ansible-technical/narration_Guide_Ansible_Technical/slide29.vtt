@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.337
+Every decision here has one owner,
+and this is design guidance.
+
+2
+00:00:04.337 --> 00:00:07.438
+The C M D B owner, working
+with the platform teams,
+
+3
+00:00:07.438 --> 00:00:11.413
+decides the attributes and the
+configuration owner values.
+
+4
+00:00:11.413 --> 00:00:15.687
+Server infrastructure picks the
+onboarding identity and the waves.
+
+5
+00:00:15.687 --> 00:00:19.725
+The CISO's configuration authority
+picks the baseline content.
+
+6
+00:00:19.725 --> 00:00:24.387
+Platform owners decide when enforcement
+goes live, through change control.
+
+7
+00:00:24.387 --> 00:00:27.641
+And the system owner and the
+authorizing official decide
+
+8
+00:00:27.641 --> 00:00:30.624
+where the platform runs and
+how it holds credentials.
+
+9
+00:00:30.624 --> 00:00:33.715
+You can start this week:
+add the owner attribute,
+
+10
+00:00:33.715 --> 00:00:36.250
+build groups from it, and run facts only.
+
+11
+00:00:36.250 --> 00:00:38.512
+Ansible can reach almost anything,
+
+12
+00:00:38.512 --> 00:00:42.100
+so decide where it may write,
+and let the evidence follow.
+
+13
+00:00:42.100 --> 00:00:42.910
+Thank you.

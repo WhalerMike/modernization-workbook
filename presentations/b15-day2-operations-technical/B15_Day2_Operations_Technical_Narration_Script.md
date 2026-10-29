@@ -102,7 +102,7 @@ There are three routes from a native result into the ticketing platform: the ven
 
 ## Slide 26 — AWS: Config and Security Hub CSPM, not Audit Manager
 
-On AWS, the evidence path has changed under people's feet. Config conformance packs and Security Hub's posture checks are the foundation, and both run in GovCloud, though with differences you need to test. Security Hub keeps findings for only ninety days, so copy them out first. The big correction is Audit Manager: it closed to new customers in April 2026, has no GovCloud endpoint, and its FedRAMP framework is still on the old revision. Nobody should start a federal evidence program on it. And the ServiceNow connector most agencies used loses support in March 2027, so plan that move now. VMware is harder still.
+On AWS, the evidence path has changed under people's feet. Config conformance packs and Security Hub's posture checks are the foundation. Both run in GovCloud and in the commercial Regions, and either is a valid home for a Moderate system, but GovCloud has differences you need to test. Security Hub keeps findings for only ninety days, so copy them out first. The big correction is Audit Manager: it closed to new customers in April 2026, has no GovCloud endpoint, and its FedRAMP framework is still on the old revision. Nobody should start a federal evidence program on it. And the ServiceNow connector most agencies used loses support in March 2027, so plan that move now. VMware is harder still.
 
 ## Slide 27 — VMware: the evidence the agency produces itself
 

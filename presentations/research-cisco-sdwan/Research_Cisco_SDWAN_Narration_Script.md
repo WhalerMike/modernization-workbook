@@ -46,7 +46,7 @@ Out of the box, Catalyst trusts Cisco's own PKI, and hardware edges prove who th
 
 ## Slide 12 — FIPS and Common Criteria: controllers vs edges
 
-If an acquisition has to state a FIPS 140-3 expectation, the honest answer has two halves. The control components are in good shape: FIPS mode is on by default on recent releases and in the hosted environment, and Cisco's letter for the current train cites an active FIPS 140-3 module. The edges are different. Their crypto modules are validated, but Cisco's current letters don't name SD-WAN mode, NIAP's router listings don't mention it, and Cisco's own example shows an edge with FIPS mode disabled. So get edge validation in SD-WAN mode as a written vendor commitment before award. There's no SD-WAN STIG either; the router STIGs are a reference baseline, not a checklist. Next, TIC 3.0.
+If an acquisition has to state a FIPS 140-3 expectation, the honest answer has two halves. The control components are in good shape: FIPS mode is on by default on recent releases and in the hosted environment, and Cisco's letter for the current train cites an active FIPS 140-3 module. The edges are different. Cisco's current letters don't name SD-WAN mode, and Cisco's own example shows an edge with FIPS mode disabled. So get edge validation in SD-WAN mode as a written vendor commitment before award. For edge hardening, the agency sets its own baseline from the Center for Internet Security benchmark for IOS XE and Cisco's hardening guide. The router STIGs are Defense material, an optional cross-check at most. Next, TIC 3.0.
 
 ## Slide 13 — TIC 3.0 patterns on Catalyst
 

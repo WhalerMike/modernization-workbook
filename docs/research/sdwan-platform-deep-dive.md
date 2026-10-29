@@ -5,7 +5,7 @@ description: "Research under review: Cisco Catalyst SD-WAN, Palo Alto Prisma SD-
 research-status: in review
 research-type: product deep dive
 research-book: "Book 09"
-date-modified: 2026-10-24
+date-modified: 2026-10-29
 last-reviewed: 2026-10-24
 ---
 
@@ -166,7 +166,7 @@ Four reasons:
 - Cisco meets more of Book 09's criteria outright than any alternative.
 - It is the only platform whose fit to Chapter 11's 12-hub, 1,500-office design is already sized and costed.
 - It has both a Moderate-certified hosted controller and a supported on-premises one.
-- Its own SSE is certified at High.
+- Its own SSE is FedRAMP certified at Class D (High), above the Moderate level this program targets (inference).
 
 Switching would spend the requirements, design and cost work already done to escape a risk that Book 09 already tells the agency how to manage.
 
@@ -188,7 +188,7 @@ The record on Cisco is serious, though, and the choice holds only with these con
 - documented ML-KEM;
 - no exploited vulnerabilities against its SD-WAN edge or controller.[^fr][^pa-onprem][^cmvp][^niap][^pa-pqc][^kev]
 
-Its limits are a Moderate-only SD-WAN at the High level, CSV-only audit export, a gap between post-quantum and FIPS-mode firmware, and the cost of redoing Chapter 11's design.[^pa-fr][^pa-logs][^pa-pqc] HPE Aruba EdgeConnect comes next: a clean record and the best evidence export, but no FedRAMP listing, no current FIPS certificate and an open roadmap question.
+Its limits are CSV-only audit export, a gap between post-quantum and FIPS-mode firmware, and the cost of redoing Chapter 11's design. Its SD-WAN is supported at Moderate only, which meets this program's Moderate target but would rule it out for a High system.[^pa-fr][^pa-logs][^pa-pqc] HPE Aruba EdgeConnect comes next: a clean record and the best evidence export, but no FedRAMP listing, no current FIPS certificate and an open roadmap question.
 
 **What would reopen the decision (design guidance):**
 
@@ -224,7 +224,7 @@ Its limits are a Moderate-only SD-WAN at the High level, CSV-only audit export, 
 - the patch-release cadence it commits to for KEV-listed controller flaws;
 - whether Cisco's FedOps team will hand over forensic images within the hours an emergency directive allows.
 
-**Ask Palo Alto:** when Prisma SD-WAN will be supported at FedRAMP High, and whether the audit log can be exported other than as CSV.
+**Ask Palo Alto:** whether the audit log can be exported other than as CSV, and, only if a High system would use it, when Prisma SD-WAN will be supported at FedRAMP High.
 
 **Ask HPE:** the FIPS 140-3 plan for EdgeConnect, any FedRAMP plan, and the roadmap now that it owns both EdgeConnect and the Session Smart Router.
 

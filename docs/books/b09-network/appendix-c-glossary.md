@@ -57,8 +57,14 @@ CAE (Continuous Access Evaluation)
 Chattiness
 : How many sequential round trips an application needs to finish a transaction. For chatty applications the round-trip count, not the per-trip latency, dominates response time.
 
+CIS Benchmarks
+: The Center for Internet Security's consensus configuration guides for operating systems, cloud platforms and network products, including Cisco IOS XE 17.x, Cisco NX-OS, Cisco ASA, Juniper OS, Palo Alto Firewall 11 and F5. For network gear, a Moderate civilian agency typically draws its CM-6 settings from a CIS Benchmark and the vendor's own hardening guide. There is no CIS Benchmark for Cisco Catalyst SD-WAN Manager.[^aC-cis]
+
 CLAW (Comprehensive Log Aggregation Warehouse)
 : CISA's cloud-based service for collecting and aggregating agency-provided telemetry, and the route by which agencies that leave MTIPS keep CISA's visibility. CISA earlier called it the Cloud Log Aggregation Warehouse, and the NCPS Cloud Interface Reference Architecture is now the CLAW Cloud Interface Reference Architecture. (One of the book's sources had the two names backward, calling "Comprehensive" the error.)[^aC-sase]
+
+CM-6 Configuration Settings
+: The NIST SP 800-53 control under which the agency sets and documents the most restrictive configuration consistent with operations, using common secure configurations it chooses, and approves and records any deviation. The control's discussion says those configurations can come from product vendors, federal agencies, consortia and others. It doesn't require any one checklist.[^aC-cm6]
 
 Conditional Access
 : Microsoft Entra ID's policy engine that grants, limits or blocks sign-in based on user, device, location and risk signals. Location conditions depend on a stable egress address; see [Book 04](../b04-access/03-the-conditional-access-model.md).
@@ -165,6 +171,9 @@ MTIPS (Managed Trusted Internet Protocol Service)
 NAT and SNAT (source network address translation)
 : Replacing a packet's address at a gateway; SNAT replaces the source address. It matters for address-keyed applications and location policies, not because it breaks Kerberos.
 
+NCP (National Checklist Program)
+: NIST's program and repository for security configuration checklists, described in SP 800-70 Rev. 5 (May 2026). NIST notes that checklists are typically written by IT vendors for their own products, and also by consortia, academia and government agencies.[^aC-ncp]
+
 Path class
 : A category of WAN path built for one kind of traffic: a lean, low-latency path for small latency-critical flows and a fat, bulk path for large transfers. See [Chapter 05](05-sd-wan-sase-and-governed-transport.md).
 
@@ -224,6 +233,9 @@ SI-4 System Monitoring
 Significant change
 : A change "likely to substantively affect the security or privacy posture of a system," which may trigger an event-driven authorization action.[^aC-sp80037]
 
+STIG (Security Technical Implementation Guide) (High only)
+: A Defense Information Systems Agency configuration guide for a specific product and version, based on DoD policy and a DoD baseline.[^aC-stig] It's Defense material, not the Moderate civilian baseline; some civilian agencies borrow one as an optional reference where no other product checklist exists. *High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference. See CIS Benchmarks, CM-6 and NCP.
+
 ## T–Z
 
 TDS (Tabular Data Stream)
@@ -261,6 +273,10 @@ ZTNA (zero trust network access)
 [← Previous: Appendix B — Requirements Mapping and Sources](appendix-b-requirements-mapping.md) · [Book index](index.md)
 :::
 
+[^aC-cis]: Center for Internet Security, "CIS Benchmarks" (description; benchmark list, including Cisco IOS XE 17.x (2.2.1), Cisco NX-OS (1.2.0), Cisco ASA 9.x Firewall (1.1.0), Juniper OS (2.1.0), Palo Alto Firewall 11 (1.2.0) and F5 Networks (1.0.0); no Cisco Catalyst SD-WAN Manager benchmark listed), <https://www.cisecurity.org/cis-benchmarks> (accessed Oct 29, 2026).
+[^aC-cm6]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, control CM-6 (statement and discussion), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; read from NIST's OSCAL Rev. 5 catalog, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Oct 29, 2026).
+[^aC-ncp]: National Institute of Standards and Technology, SP 800-70 Rev. 5, *National Checklist Program for IT Products: Guidelines for Checklist Users and Developers*, May 2026, <https://csrc.nist.gov/pubs/sp/800/70/r5/final>; and NIST, "National Checklist Program," <https://csrc.nist.gov/projects/national-checklist-program> (repository at <https://ncp.nist.gov/>) (accessed Oct 29, 2026).
+[^aC-stig]: National Institute of Standards and Technology, CSRC Glossary, "Security Technical Implementation Guide (STIG)" ("Based on Department of Defense (DoD) policy and security controls"; "geared to a specific product and version"; source CNSSI 4009-2022), <https://csrc.nist.gov/glossary/term/security_technical_implementation_guide> (accessed Oct 29, 2026).
 [^aC-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf> (accessed Oct 21, 2026). AC-17, SC-7, SC-7(4), SC-8, SC-8(1), SI-4.
 [^aC-sp80053b]: National Institute of Standards and Technology, SP 800-53B, *Control Baselines for Information Systems and Organizations*, <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53B.pdf> (accessed Oct 21, 2026). Baseline tables for CP-8 and SC-8.
 [^aC-m365ws]: Microsoft Learn, "Microsoft 365 IP Address and URL web service" ("Valid values are Optimize, Allow, and Default"), <https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service>; and "Implementing VPN split tunneling for Microsoft 365," <https://learn.microsoft.com/microsoft-365/enterprise/microsoft-365-vpn-split-tunnel> (both accessed Oct 21, 2026).

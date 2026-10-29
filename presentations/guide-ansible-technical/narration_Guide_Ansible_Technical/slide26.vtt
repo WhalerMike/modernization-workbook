@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.688
+There are four small playbooks, and each
+one proves a single idea from the guide.
+
+2
+00:00:04.688 --> 00:00:09.017
+The first is the inventory feed:
+what each server actually is,
+
+3
+00:00:09.017 --> 00:00:14.126
+beside what the C M D B says, with
+unreached hosts marked as not collected.
+
+4
+00:00:14.126 --> 00:00:18.138
+The second is the only one that
+changes anything, and it's gated.
+
+5
+00:00:18.138 --> 00:00:22.665
+Without an explicit confirmation it
+only simulates, and when it does run,
+
+6
+00:00:22.665 --> 00:00:26.137
+it starts with one canary and
+stops at the first failure.
+
+7
+00:00:26.137 --> 00:00:29.299
+The third is a drift check
+locked into check mode,
+
+8
+00:00:29.299 --> 00:00:31.749
+so a change result simply means drift.
+
+9
+00:00:31.749 --> 00:00:35.750
+And the fourth reads network and
+Infoblox facts without any agent.
+
+10
+00:00:35.750 --> 00:00:37.490
+Next, how they're tested.

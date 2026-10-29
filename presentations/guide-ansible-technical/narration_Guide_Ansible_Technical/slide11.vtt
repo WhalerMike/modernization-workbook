@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.984
+The remaining targets
+all follow one pattern:
+
+2
+00:00:02.984 --> 00:00:07.925
+find the tool that already owns the setting,
+and let Ansible do only what's left.
+
+3
+00:00:07.925 --> 00:00:10.889
+On VMware, the virtual
+machines can go to Arc,
+
+4
+00:00:10.889 --> 00:00:15.912
+while the hypervisor and appliances,
+which can't run an agent, are Ansible's.
+
+5
+00:00:15.912 --> 00:00:18.916
+On Infoblox, Ansible
+works through the A P I,
+
+6
+00:00:18.916 --> 00:00:22.350
+with an account scoped to
+the objects it manages.
+
+7
+00:00:22.350 --> 00:00:25.959
+On a Windows server under Arc,
+the operating system belongs
+
+8
+00:00:25.959 --> 00:00:29.788
+to machine configuration, but
+the application can be Ansible's.
+
+9
+00:00:29.788 --> 00:00:33.012
+And in the cloud, the
+provider's inventory is for
+
+10
+00:00:33.012 --> 00:00:35.988
+checking against the C
+M D B, not replacing it.
+
+11
+00:00:35.988 --> 00:00:37.900
+Next, running the platform.

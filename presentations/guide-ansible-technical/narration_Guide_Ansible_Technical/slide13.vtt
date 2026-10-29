@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.725
+Start with what you're authorizing.
+
+2
+00:00:01.725 --> 00:00:06.968
+The current release has full support
+into 2027, with maintenance after that,
+
+3
+00:00:06.968 --> 00:00:10.463
+and it installs only as
+containers or on OpenShift.
+
+4
+00:00:10.463 --> 00:00:13.188
+On authorization, be careful with words.
+
+5
+00:00:13.188 --> 00:00:15.964
+The self-managed platform
+isn't a cloud service,
+
+6
+00:00:15.964 --> 00:00:20.663
+so it isn't on the FedRAMP Marketplace,
+and nobody publishes a statement about it.
+
+7
+00:00:20.663 --> 00:00:23.238
+Neither managed offering is listed either,
+
+8
+00:00:23.238 --> 00:00:26.313
+and Azure Government
+availability isn't published.
+
+9
+00:00:26.313 --> 00:00:30.560
+So the program's default, which is
+design guidance, is to run it yourself,
+
+10
+00:00:30.560 --> 00:00:34.662
+inside your own boundary, and
+authorize it like any other component.
+
+11
+00:00:34.662 --> 00:00:37.750
+Then come the two questions
+every assessor asks.

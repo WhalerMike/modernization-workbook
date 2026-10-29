@@ -1,6 +1,6 @@
 ---
 title: "Appendix C — Applicability"
-description: "Which parts of the book apply as written in commercial cloud and GCC-Moderate at FedRAMP Moderate, and what changes in GCC High, Azure Government and AWS GovCloud, DoD impact levels 4 and 5, and air-gapped or classified networks. Platform facts are as of October 20, 2026."
+description: "Which parts of the book apply as written at FedRAMP Moderate, in commercial regions with GCC-Moderate and in the AWS GovCloud (US) and Azure Government regions, and what changes for GCC High and FedRAMP High systems, DoD impact levels 4 and 5, and air-gapped or classified networks. Platform facts are as of October 20, 2026; region authorization facts as of October 29, 2026."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b08-ddi
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this appendix
-The environment the book is written for, and what changes in GCC High, Azure Government and AWS GovCloud (US), at DoD impact levels 4 and 5, and in air-gapped and classified networks, with a quick-reference table. Readers in higher-impact environments should start here, then read [Chapter 03](03-federal-requirements.md).
+The environment the book is written for, FedRAMP Moderate in commercial regions or in the AWS GovCloud (US) and Azure Government regions, and what changes for GCC High and FedRAMP High systems, at DoD impact levels 4 and 5, and in air-gapped and classified networks, with a quick-reference table. Readers in higher-impact environments should start here, then read [Chapter 03](03-federal-requirements.md).
 :::
 
 ::: {.callout-important}
@@ -31,9 +31,11 @@ The architecture in this book applies in every environment: one authoritative DD
 
 The book uses **GCC-Moderate** for the Microsoft 365 Government Community Cloud offering that Microsoft documents as "GCC."[^aC-gccdesc] GCC uses the Worldwide endpoint set,[^aC-m365ww] and the FedRAMP Marketplace lists it (as Microsoft 365 Government Community Cloud & Supporting Services) as FedRAMP Certified at Class C, which the Marketplace labels Moderate.[^aC-fr-gcc] Microsoft's GCC service description uses broader wording about FedRAMP accreditation;[^aC-gccdesc] for authorization purposes, read the Marketplace listing and the package.
 
-## Primary scope: commercial cloud at FedRAMP Moderate
+*High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
-The book is written for agencies whose workloads run in commercial Azure, commercial AWS Regions and Google Cloud, with Microsoft 365 in GCC-Moderate, at the FedRAMP Moderate impact level. In this environment:
+## Primary scope: FedRAMP Moderate
+
+The book is written for agencies whose systems are categorized Moderate, with Microsoft 365 in GCC-Moderate and workloads in commercial Azure, commercial AWS Regions, Google Cloud, or the AWS GovCloud (US) and Azure Government regions. In this environment:
 
 - Everything in Chapters 01–12 applies as written.
 - A DDI management service delivered as a cloud service must hold a FedRAMP certification at Moderate or higher, and the agency authorizes its own DDI system that uses it; FedRAMP's rules say an agency "should never create a standalone authorization to operate for a cloud service offering."[^aC-fedramp-use] On-premises and in-tenant resolvers stay inside the agency's own boundary ([Chapter 03](03-federal-requirements.md)).
@@ -41,20 +43,27 @@ The book is written for agencies whose workloads run in commercial Azure, commer
 - The Amazon VPC IPAM integration that lets an external Infoblox IPAM act as the authority for a VPC IPAM scope is available in commercial AWS Regions, for private scopes only, and requires the VPC IPAM Advanced Tier ([Chapter 07](07-cloud-private-endpoints-and-ipam.md)).[^aC-awsipam]
 - Because GCC-Moderate uses the Worldwide endpoint list,[^aC-m365ww] the DNS risk for Microsoft 365 is path consistency rather than resolving to the wrong cloud ([Chapter 02](02-split-brain-dns.md)).
 
-## GCC High, Azure Government and AWS GovCloud (US)
+### Moderate workloads in AWS GovCloud (US) and Azure Government
 
-The architecture is unchanged. The differences are in authorization and integration:
+A government region is a valid place for a Moderate system, not only for High ones. AWS lists its US East/West Regions as FedRAMP Certified Class C (formerly Moderate) and GovCloud (US) as Class D (formerly High), and publishes in-scope services per service and per Region, so a service's authorization is checked one service and one Region at a time.[^aC-aws-fedramp] NIST's control baselines are cumulative, with the High baseline containing the Moderate controls, so a region authorized at High can host a Moderate system *(inference)*. An agency may, for example, run most AWS workloads in GovCloud (US) at Moderate and a contact center in commercial Regions; both are Moderate locations *(design guidance)*. The Infoblox Government Cloud SaaS is itself certified at Moderate and hosted in AWS GovCloud (US) ([Chapter 03](03-federal-requirements.md)).[^aC-fr-ibx]
 
-- A policy plane certified only at FedRAMP Moderate doesn't cover High-impact systems. Either use a service certified at High, or keep the policy plane inside the agency's own High boundary (on-premises or in-tenant management), and confirm the approach with the authorizing official.
-- Microsoft 365 GCC High uses its own endpoints and namespaces, many under `.us` domains (for example `outlook.office365.us`, `*.sharepoint.us`, `gov.teams.microsoft.us` and `login.microsoftonline.us`), and every resolver that GCC High users depend on must answer them correctly ([Chapter 02](02-split-brain-dns.md)).[^aC-m365gcch]
-- INR is not available.[^aC-inr]
+The architecture and the Moderate authorization rules above are unchanged. What differs is integration:
+
 - The Amazon VPC IPAM–Infoblox integration is not available in the AWS GovCloud (US) Regions (or the AWS China Regions).[^aC-awsipam-news] Treat GovCloud like Azure and Google Cloud in [Chapter 07](07-cloud-private-endpoints-and-ipam.md): discovery, reconciliation and a reservation process.
 - Azure Government feature availability differs from commercial Azure.[^aC-azgov] On Microsoft's Azure Government roadmap, Azure DNS private zones and public zones are generally available and authorized at FedRAMP High, DoD IL4 and DoD IL5, and Azure DNS Private Resolver is generally available at FedRAMP High.[^aC-azgov-roadmap] Confirm DNS resolver policy (formerly DNS security policy) and DNSSEC signing availability in the target Azure Government regions before design.
 - Private endpoint DNS zone names differ in Azure Government (for example `privatelink.database.usgovcloudapi.net` rather than the commercial names), so conditional forwarding rules written for commercial Azure don't carry over unchanged ([Chapter 07](07-cloud-private-endpoints-and-ipam.md)).[^aC-pe-gov]
 
-## DoD (impact levels 4 and 5)
+## GCC High and FedRAMP High systems (High only)
 
-Everything in the GCC High section applies, plus the DoD Cloud Computing Security Requirements Guide (SRG) and component-specific requirements. Azure Government holds DISA provisional authorizations at IL4 and IL5, with separate IL5 provisional authorizations for the US Gov and US DoD regions.[^aC-azdod] Not every service is authorized at every level: on the Azure Government roadmap, Azure DNS Private Resolver is forecast, not yet authorized, at IL4 and IL5.[^aC-azgov-roadmap] This book doesn't map the SRG. Treat [Chapter 03](03-federal-requirements.md) and [Appendix B](appendix-b-requirements-mapping.md) as a starting point only, and confirm provisional authorization status at the required impact level for every cloud service in the design.
+The architecture is unchanged. Everything in the government-region section above applies to High systems in those regions too. The differences are in authorization and the Microsoft 365 namespace:
+
+- A policy plane certified only at FedRAMP Moderate doesn't cover High-impact systems. Either use a service certified at High, or keep the policy plane inside the agency's own High boundary (on-premises or in-tenant management), and confirm the approach with the authorizing official.
+- Microsoft 365 GCC High uses its own endpoints and namespaces, many under `.us` domains (for example `outlook.office365.us`, `*.sharepoint.us`, `gov.teams.microsoft.us` and `login.microsoftonline.us`), and every resolver that GCC High users depend on must answer them correctly ([Chapter 02](02-split-brain-dns.md)).[^aC-m365gcch]
+- INR is not available.[^aC-inr]
+
+## DoD impact levels 4 and 5 (High only)
+
+Everything in the GCC High and FedRAMP High section applies, plus the DoD Cloud Computing Security Requirements Guide (SRG) and component-specific requirements. Azure Government holds DISA provisional authorizations at IL4 and IL5, with separate IL5 provisional authorizations for the US Gov and US DoD regions.[^aC-azdod] Not every service is authorized at every level: on the Azure Government roadmap, Azure DNS Private Resolver is forecast, not yet authorized, at IL4 and IL5.[^aC-azgov-roadmap] This book doesn't map the SRG. Treat [Chapter 03](03-federal-requirements.md) and [Appendix B](appendix-b-requirements-mapping.md) as a starting point only, and confirm provisional authorization status at the required impact level for every cloud service in the design.
 
 ## Air-gapped and classified networks
 
@@ -69,15 +78,15 @@ Mission-specific guidance governs these environments, and this book's sources do
 
 ## Quick reference
 
-| Topic | Commercial / GCC-Moderate | GCC High / Azure Government / GovCloud | DoD IL4–IL5 | Air-gapped |
-|---|---|---|---|---|
-| Single DDI policy plane | Applies | Applies | Applies | Applies |
-| Cloud-delivered management certified at FedRAMP Moderate | Sufficient for Moderate systems; the agency authorizes its own system | Not sufficient alone | Not sufficient alone | Not applicable |
-| CISA Protective DNS forwarding | Required for federal civilian agency egress | Required for federal civilian agency egress | Per DoD requirements | Not applicable |
-| Microsoft 365 INR | Not in GCC-Moderate (Worldwide commercial only) | Not available | Not available | Not applicable |
-| Amazon VPC IPAM external-IPAM (Infoblox) integration | Commercial Regions, private scopes | Not in GovCloud | Not in GovCloud | Not applicable |
-| Azure DNS Private Resolver | Available | FedRAMP High (Azure Government) | Forecast at IL4 and IL5 | Awaiting review in Azure Government Secret |
-| Azure Private DNS DNSSEC signing | Not supported (Azure DNSSEC signs public zones only) | Not supported | Not supported | Not applicable |
+| Topic | Moderate: commercial regions, GCC-Moderate | Moderate: AWS GovCloud (US), Azure Government | GCC High and FedRAMP High systems (High only) | DoD IL4–IL5 (High only) | Air-gapped |
+|---|---|---|---|---|---|
+| Single DDI policy plane | Applies | Applies | Applies | Applies | Applies |
+| Cloud-delivered management certified at FedRAMP Moderate | Sufficient for Moderate systems; the agency authorizes its own system | Sufficient for Moderate systems; the agency authorizes its own system | Not sufficient alone | Not sufficient alone | Not applicable |
+| CISA Protective DNS forwarding | Required for federal civilian agency egress | Required for federal civilian agency egress | Required for federal civilian agency egress | Per DoD requirements | Not applicable |
+| Microsoft 365 INR | Not in GCC-Moderate (Worldwide commercial only) | Not in GCC-Moderate | Not available | Not available | Not applicable |
+| Amazon VPC IPAM external-IPAM (Infoblox) integration | Commercial Regions, private scopes | Not in GovCloud | Not in GovCloud | Not in GovCloud | Not applicable |
+| Azure DNS Private Resolver | Available | Generally available in Azure Government (authorized at FedRAMP High) | FedRAMP High (Azure Government) | Forecast at IL4 and IL5 | Awaiting review in Azure Government Secret |
+| Azure Private DNS DNSSEC signing | Not supported (Azure DNSSEC signs public zones only) | Not supported | Not supported | Not supported | Not applicable |
 
 The Protective DNS row rests on M-22-09's statement that agencies "are already required to have DNS requests routed through CISA-operated infrastructure."[^aC-m2209] The DNSSEC row rests on Microsoft's prerequisite that a zone to be signed "must be hosted by Azure Public DNS."[^aC-dnssec]
 
@@ -99,4 +108,6 @@ The Protective DNS row rests on M-22-09's statement that agencies "are already r
 [^aC-pe-gov]: Microsoft Learn, "Azure Private Endpoint private DNS zone values," section "Government," <https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns> (accessed Oct 20, 2026).
 [^aC-azdod]: Microsoft Learn, "Azure Government DoD Overview," <https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-overview-dod> (accessed Oct 20, 2026).
 [^aC-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, "Encrypting DNS traffic," <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Oct 20, 2026).
+[^aC-aws-fedramp]: Amazon Web Services, "FedRAMP" (US East/West "FedRAMP Certified Class C (formerly Moderate baseline)"; GovCloud (US) "FedRAMP Certified Class D (formerly High baseline)"), <https://aws.amazon.com/compliance/fedramp/>; and "FedRAMP — Services in Scope" (per-service, per-Region columns), <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/> (accessed Oct 29, 2026).
+[^aC-fr-ibx]: FedRAMP, Marketplace product data (entry FR2017257053, Infoblox Government Cloud: FedRAMP Certified, Moderate, since December 15, 2022; deployed in AWS GovCloud (US)), <https://www.fedramp.gov/marketplace/products.json> (accessed Oct 20, 2026).
 [^aC-dnssec]: Microsoft Learn, "How to sign your Azure Public DNS zone with DNSSEC," Prerequisites, <https://learn.microsoft.com/en-us/azure/dns/dnssec-how-to> (accessed Oct 20, 2026).

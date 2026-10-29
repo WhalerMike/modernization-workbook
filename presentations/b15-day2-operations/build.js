@@ -296,7 +296,7 @@ Duplicates are resolved by binding, not deleting, so no open finding loses its a
     ["Microsoft 365", "ScubaGear, Graph, Purview", "Compliance Manager continuous assessments still rolling out in GCC"],
     ["Azure", "Azure Policy, Defender for Cloud", "Defender's ServiceNow integration not in Azure Government"],
     ["AWS", "Config packs, Security Hub CSPM", "Audit Manager closed to new accounts; no GovCloud endpoint"],
-    ["VMware VCF", "Config Profiles, posture scans", "9.1 lists no NIST or DISA benchmark; STIG still a readiness guide"],
+    ["VMware VCF", "Config Profiles, posture scans", "9.1 lists no NIST benchmark; map the vendor hardening guide to CM-6"],
   ];
   s.addTable([head(["Platform", "Native tests", "Government-cloud or on-premises gap"]), ...clouds.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2], options: { color: HEX.red } }])],
     tableOpts([1.45, 2.2, 3.25], { y: 1.5, fontSize: 12.5, rowH: [0.4, 0.75, 0.75, 0.75, 0.75] }));
@@ -313,7 +313,7 @@ Duplicates are resolved by binding, not deleting, so no open finding loses its a
   narrate(s,
 `Microsoft, AWS and VMware already ship tools that test most of the settings an assessor asks about. The gap is turning each failed test into owned work with a clock, and each closed task into a record. The program runs one loop everywhere: the native tool tests, drift is detected, a typed task is raised against the configuration item, the owning team fixes it natively, and the task closes on a re-test, not a click. The service management platform reads control state; it never writes it.
 
-The government clouds differ. Defender for Cloud's ServiceNow integration isn't available in Azure Government. Compliance Manager's continuous assessments are still rolling out in GCC. AWS Audit Manager closed to new customers on April 30, 2026, and has no GovCloud endpoint. AWS's ServiceNow connector loses support on March 31, 2027, and Security Hub keeps findings only ninety days. In VMware Cloud Foundation 9.1, the compliance benchmarks were replaced by a posture tool that lists no NIST or DISA benchmark. On premises, the agency produces every piece of evidence itself.`,
+The government clouds differ. Defender for Cloud's ServiceNow integration isn't available in Azure Government. Compliance Manager's continuous assessments are still rolling out in GCC. AWS Audit Manager closed to new customers on April 30, 2026, and has no GovCloud endpoint. AWS's ServiceNow connector loses support on March 31, 2027, and Security Hub keeps findings only ninety days. In VMware Cloud Foundation 9.1, the compliance benchmarks were replaced by a posture tool built on Broadcom's own hardening guide, with no NIST 800-53 benchmark, so the agency maps that guide, and CIS ESXi where it uses it, to its own CM-6 settings. On premises, the agency produces every piece of evidence itself.`,
   "Book 15, Chapter 08 — Control Compliance Automation: Microsoft 365 and Azure (One loop on every surface; Purview Compliance Manager; Three routes to the ITSM platform); Chapter 09 — Control Compliance Automation: AWS and VMware (AWS Audit Manager; Getting AWS results into the ITSM platform; VMware: the on-premises evidence gap).");
 }
 
@@ -460,7 +460,7 @@ Operations is where modernization becomes routine or quietly reverts. Book 15 ha
     "FedRAMP Consolidated Rules for 2026 (Using a Certified Cloud Service; Key Security Indicators; Security Decision Record; Vulnerability Detection and Response); FedRAMP Marketplace data, products.json (October 21, 2026).",
     "Microsoft Learn: Entra built-in roles, privileged roles, administrative and restricted management units, PIM, Temporary Access Pass, account recovery and Verified ID, SSPR and writeback, app provisioning, Defender for Cloud, Azure Policy, Purview, Teams emergency calling, Entra Connect.",
     "ServiceNow: Microsoft Entra ID spoke; inbound email and approvals; MID Server; Discovery, IRE, CMDB Health and Data Manager; Policy and Compliance Management; Continuous Authorization and Monitoring; Configuration Compliance; change types; ATF.",
-    "AWS: Config conformance packs, Security Hub CSPM and Security Hub, Audit Manager availability change, Service Management Connector end of support.  ·  Broadcom: vSphere Configuration Profiles, Lifecycle Manager, VCF Operations 9.0 and 9.1, VCF STIG content.",
+    "AWS: Config conformance packs, Security Hub CSPM and Security Hub, Audit Manager availability change, Service Management Connector end of support.  ·  Broadcom: vSphere Configuration Profiles, Lifecycle Manager, VCF Operations 9.0 and 9.1 (Security Posture Management).  ·  CIS Benchmarks (VMware ESXi).",
     "Full footnotes with links and access dates (October 21, 2026): Book 15, every chapter and Appendix A (whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/).",
   ];
   txt(s, "Source list", bullets(src, 12), { x: 0.6, y: 1.5, w: 12.1, h: 5.05, paraSpaceAfter: 6 });

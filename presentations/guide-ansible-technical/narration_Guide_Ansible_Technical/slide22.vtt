@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.387
+These four are quieter.
+
+2
+00:00:01.387 --> 00:00:05.701
+Two tools on one setting flip it back
+and forth while both report success,
+
+3
+00:00:05.701 --> 00:00:10.087
+and the fix is the ownership rule,
+checked inside every changing playbook.
+
+4
+00:00:10.087 --> 00:00:13.467
+Public Galaxy content can
+change under you between runs,
+
+5
+00:00:13.467 --> 00:00:17.206
+so pull collections from a reviewed
+source, pin exact versions,
+
+6
+00:00:17.206 --> 00:00:21.088
+verify them, and keep that list as
+your software bill of materials.
+
+7
+00:00:21.088 --> 00:00:24.867
+Running everything as root gives
+every mistake root's reach,
+
+8
+00:00:24.867 --> 00:00:27.437
+so escalate only on
+the tasks that need it.
+
+9
+00:00:27.437 --> 00:00:32.300
+And commands that report a change every
+time turn drift reports into noise.
+
+10
+00:00:32.300 --> 00:00:36.900
+Run each playbook twice in test, and
+the second run should change nothing.
+
+11
+00:00:36.900 --> 00:00:39.220
+Now, how to adopt all of this.

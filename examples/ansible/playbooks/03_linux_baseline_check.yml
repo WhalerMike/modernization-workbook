@@ -9,8 +9,9 @@
 #
 #   ansible-playbook playbooks/03_linux_baseline_check.yml
 #
-# The settings are illustrations of the pattern, not a STIG or CIS benchmark. Replace them
-# with the agency's approved baseline, versioned in Git; the commit is the CM-2 baseline.
+# The settings are illustrations of the pattern, not a CIS Benchmark profile. Replace them
+# with the agency's approved CM-6 settings (for example drawn from the CIS Benchmark for
+# the release), versioned in Git; the commit is the CM-2 baseline.
 
 - name: Check the Linux baseline
   hosts: os_linux:&config_owner_ansible

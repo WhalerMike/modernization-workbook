@@ -26,37 +26,38 @@ The others run inside the
 agency's own boundary.
 
 6
-00:00:21.125 --> 00:00:24.013
-Only Infoblox has vendor-specific STIGs.
+00:00:21.125 --> 00:00:25.912
+Only Infoblox has vendor-specific
+STIGs, which are a High only reference.
 
 7
-00:00:24.013 --> 00:00:27.876
+00:00:25.912 --> 00:00:29.777
 Only BlueCat holds an active
 FIPS 140-3 certificate,
 
 8
-00:00:27.876 --> 00:00:32.549
+00:00:29.777 --> 00:00:34.450
 while Infoblox's newer modules
 are still in NIST's review queue.
 
 9
-00:00:32.549 --> 00:00:36.084
+00:00:34.450 --> 00:00:37.984
 None of the four has a
 current NIAP certification,
 
 10
-00:00:36.084 --> 00:00:38.412
+00:00:37.984 --> 00:00:40.312
 and none is on the latest CDM list.
 
 11
-00:00:38.412 --> 00:00:40.992
+00:00:40.312 --> 00:00:42.891
 So every candidate has a gap to close,
 
 12
-00:00:40.992 --> 00:00:44.688
+00:00:42.891 --> 00:00:46.587
 in the contract or in a plan
 of action and milestones.
 
 13
-00:00:44.688 --> 00:00:45.940
+00:00:46.587 --> 00:00:47.830
 Now, who runs it.

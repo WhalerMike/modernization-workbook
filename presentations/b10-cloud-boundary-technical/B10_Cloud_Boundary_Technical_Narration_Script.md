@@ -78,7 +78,7 @@ Every line in the package's boundary description should have a mechanism behind 
 
 ## Slide 20 — AWS, GovCloud and automation that declares its boundary
 
-AWS gets to the same place with accounts, organizational units and service control policies, but GovCloud works differently enough that you have to plan for it, not discover it. Accounts are created in pairs from the commercial side, and some factory features simply aren't there. The other half of this slide is about your own automation. A collector calling a commercial-only API from inside the boundary is a crossing nobody approved. So every adapter declares its boundary, resolves endpoints from it, and fails closed when it doesn't recognize the cloud. Next, the address plan.
+AWS gets to the same place with accounts, organizational units and service control policies, but GovCloud works differently enough that you have to plan for it, not discover it. Accounts are created in pairs from the commercial side, and some factory features simply aren't there. And GovCloud isn't only for High. A Moderate system can run there or in the commercial Regions, and an agency can use both, so check each service, Region by Region. The other half of this slide is about your own automation. A collector calling a commercial-only API from inside the boundary is a crossing nobody approved. So every adapter declares its boundary, resolves endpoints from it, and fails closed when it doesn't recognize the cloud. Next, the address plan.
 
 ## Slide 21 — The address plan: the denominator every inventory needs
 

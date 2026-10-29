@@ -48,3 +48,17 @@ Checked October 20, 2026. Source: the existing series page "Applicability" (the 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | CP-1 | Confirm DNS resolver policy (formerly DNS security policy) availability in Azure Government | Azure Government bullet | name updated | Microsoft Learn, "DNS resolver policy," <https://learn.microsoft.com/en-us/azure/dns/dns-security-policy> (opened Oct 21, 2026): page title and every heading use "DNS resolver policy"; portal resource "DNS Resolver Policies"; URL keeps `dns-security-policy`; networking design guide <https://learn.microsoft.com/azure/networking/design-guide/dns-security> still says "DNS security policy" |
+
+## Moderate-civilian sweep (October 29, 2026)
+
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; DISA STIGs and DoD Impact Levels survive only as optional references labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| MS-1 | Primary scope widened from "commercial cloud" to FedRAMP Moderate in commercial regions or in AWS GovCloud (US) and Azure Government; GovCloud/Azure Government moved out of the higher-impact section into a new Moderate subsection | Description, In this appendix, Primary scope | reframed per brief | — |
+| MS-2 | AWS US East/West Class C (formerly Moderate); GovCloud (US) Class D (formerly High); per-service, per-Region scope | Moderate workloads in AWS GovCloud (US) and Azure Government | verified 2026-10-29 (fact pack) | aC-aws-fedramp |
+| MS-3 | High-authorized region can host a Moderate system (High baseline contains the Moderate controls) | Same subsection | inference (labelled) | fact pack fact 12 |
+| MS-4 | Example pattern: most AWS workloads in GovCloud (US) at Moderate and a contact center in commercial Regions | Same subsection | design (labelled); agency-neutral | — |
+| MS-5 | Infoblox Government Cloud certified at Moderate, hosted in AWS GovCloud (US) | Same subsection | verified (Marketplace data, Oct 20, 2026; same fact as c03-fedramp) | aC-fr-ibx |
+| MS-6 | GCC High / FedRAMP High and DoD IL4–IL5 sections labelled High only; DoD section's Azure Government DISA provisional authorizations at IL4/IL5 kept | Section headings | kept as tier comparison, labelled | aC-azdod (existing) |
+| MS-7 | Quick-reference table: added a Moderate GovCloud/Azure Government column; High and DoD columns labelled High only; Azure DNS Private Resolver in Azure Government shown as GA (authorized at FedRAMP High) | Quick reference | reframed; cell facts carried from aC-azgov-roadmap and aC-awsipam-news | existing footnotes |

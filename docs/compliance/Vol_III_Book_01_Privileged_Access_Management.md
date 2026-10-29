@@ -974,7 +974,7 @@ With this configuration, when a user initiates a PIM activation, Entra ID sends 
 
 The Entra PIM / PAW / Arc-JIT architecture above governs privileged access to the
 Microsoft estate — Azure RBAC, Entra directory roles, and Arc-connected servers.
-It does not, by itself, govern privileged identities in **AWS GovCloud** (IAM
+It does not, by itself, govern privileged identities in **AWS** (GovCloud (US) or commercial Regions; IAM
 roles, IAM Identity Center permission sets), **Oracle OCI** (IAM), or the
 standing service, break-glass, and appliance-admin accounts a dedicated PAM
 platform vaults. On a multi-cloud estate, **AC-5 / AC-6** least privilege must
@@ -990,7 +990,7 @@ is therefore where the cross-vendor coordinators earn the role:
 | JIT elevation (AC-6) | Entra PIM (Azure/Entra) | AWS IAM Identity Center permission sets; OCI IAM policies |
 | Entitlement governance & access review (AC-2, AC-6) | Entra ID Governance | **SailPoint Identity Security Cloud** *(owned, FedRAMP Moderate)* — certifies privileged entitlements across CSPs + on-prem, on the HRIT identity SSOT |
 | Credential vaulting, session isolation, rotation (AC-6, IA-5) | Key Vault (secrets) | **CyberArk** — vaults and brokers the standing accounts JIT cannot eliminate |
-| Cloud entitlement right-sizing (CIEM, AC-6) | Defender for Cloud CIEM *(Moderate)* | Prisma Cloud / Wiz CIEM *(High)* |
+| Cloud entitlement right-sizing (CIEM, AC-6) | Defender for Cloud CIEM *(Moderate)* | Prisma Cloud CIEM *(Moderate and High offerings)* / Wiz CIEM *(High)* |
 
 **SailPoint ISC** (owned, Moderate) is the cross-cloud entitlement-governance
 layer — it reviews and certifies who holds privileged access across Azure, AWS,

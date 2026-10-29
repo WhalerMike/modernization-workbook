@@ -421,8 +421,8 @@ Four: IPAM authority stays on the Grid. Clouds get delegated blocks, and one net
   table(s, "Decision", 1.85, [2.45, 3.3, 3.35, 3.05], ["Agency situation", "Pattern", "Why", "Rests on"], [
     ["Mostly on-prem, small cloud", "Trinzic + native resolvers + conditional forwarding (minimal C)", "Lowest cost and boundary impact; no new SaaS authorization", "NIOS can't own cloud zones; documented forwarding in all three clouds"],
     ["Hybrid, one cloud (commercial, GovCloud or Azure Government)", "A + C: HA vNIOS pair in a hub; native rules forward agency zones to it", "Resolution stays local if the WAN fails; RPZ, signed zones and Grid IPAM reach the cloud", "vNIOS documented for GovCloud discovery and Azure Government"],
-    ["Multi-cloud, FedRAMP Moderate and below", "B on top of A or C (Government Cloud for federal work)", "Only Infoblox path that writes to cloud DNS and discovers resolver rules", "Government Cloud: single AWS accounts, no Azure tenants, no VPC IPAM handoff"],
-    ["GovCloud, Azure Government, High, IL4–IL5", "A + C only; don't depend on Universal DDI SaaS", "Infoblox's SaaS is Moderate-only; native services carry higher authorizations", "VPC IPAM integration excludes GovCloud; Cloud DNS on Assured Workloads High/IL4/IL5; Azure Gov resolver: confirm"],
+    ["Multi-cloud at FedRAMP Moderate (commercial, GovCloud or Azure Government)", "B on top of A or C (Government Cloud for federal work)", "Only Infoblox path that writes to cloud DNS and discovers resolver rules", "Government Cloud: single AWS accounts, no Azure tenants, no VPC IPAM handoff; GovCloud and Azure Gov accounts: confirm"],
+    ["FedRAMP High or IL4–IL5 systems", "A + C only; don't depend on Universal DDI SaaS", "Infoblox's SaaS is Moderate-only; native services carry higher authorizations", "Cloud DNS on Assured Workloads High/IL4/IL5; Azure Gov resolver: confirm"],
   ], { fontSize: 11.5 });
   sources(s, "Sources: research_multicloud §5 decision table (S2, S3, S13, S20–S31, S38, S39, S41–S48, S50–S55, S61, S62, S67, S69); research_federal and research_compare (FedRAMP levels).");
   notes(s,
@@ -432,9 +432,9 @@ Mostly on premises, with a small cloud footprint: Trinzic with native cloud reso
 
 Hybrid with one cloud, commercial or government: add an HA vNIOS pair in a hub network, Option A plus C. It keeps resolution local if the WAN fails and extends response policy, signed zones and Grid IPAM into the cloud. vNIOS is documented for both GovCloud and Azure Government.
 
-Multi-cloud at FedRAMP Moderate and below: add Universal DDI on top, through Government Cloud for federal work. It's the only Infoblox mechanism that writes to cloud DNS, within the Government Cloud limits.
+Multi-cloud at FedRAMP Moderate and below: add Universal DDI on top, through Government Cloud for federal work. That holds whether the Moderate workloads run in commercial regions or in GovCloud and Azure Government, which are valid Moderate locations too; Infoblox Government Cloud itself is hosted in GovCloud. It's the only Infoblox mechanism that writes to cloud DNS, within the Government Cloud limits, and the VPC IPAM integration excludes GovCloud. Confirm with Infoblox which hybrid features work against GovCloud and Azure Government accounts.
 
-GovCloud, Azure Government, FedRAMP High, or Defense Impact Levels 4 and 5: stay with options A and C only. Infoblox's SaaS is Moderate-only, the VPC IPAM integration excludes GovCloud, and native services carry the higher authorizations. Google lists Cloud DNS for High, IL4 and IL5 under Assured Workloads. For Azure Government, confirm DNS Private Resolver is available first.
+FedRAMP High, or Defense Impact Levels 4 and 5, in any region: stay with options A and C only. Infoblox's SaaS is Moderate-only, and native services carry the higher authorizations. Google lists Cloud DNS for High, IL4 and IL5 under Assured Workloads. For Azure Government, confirm DNS Private Resolver is available first.
 
 In short, the design guidance is: Trinzic plus native cloud resolvers as the baseline, with vNIOS and Universal DDI added only where they earn their place.`,
   "Research decision guidance table and its cited sources: Infoblox vDiscovery, vNIOS for AWS and Azure, Route 53 sync, Universal DDI integrations and FedRAMP release notes, Universal Asset Insights discovery pages; AWS Resolver, VPC IPAM + Infoblox, GovCloud Route 53; Google Assured Workloads supported products; FedRAMP Marketplace products.json.");

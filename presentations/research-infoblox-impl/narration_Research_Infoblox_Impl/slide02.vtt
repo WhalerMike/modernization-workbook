@@ -40,11 +40,16 @@ Book 08 requires DNSSEC, so the Grid
 Master signs as a hidden primary.
 
 9
-00:00:33.713 --> 00:00:38.949
-And its evidence becomes syslog, audit
-logs, backups and the STIG checklist.
+00:00:33.713 --> 00:00:36.616
+And its evidence becomes
+syslog, audit logs,
 
 10
-00:00:38.949 --> 00:00:44.900
+00:00:36.616 --> 00:00:39.600
+backups and the agency's
+settings checklist.
+
+11
+00:00:39.600 --> 00:00:45.550
 Book 08's six phases still govern, but
 this guide adds a Phase 0 of decisions.

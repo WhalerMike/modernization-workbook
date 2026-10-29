@@ -164,7 +164,7 @@ For cross-site NTLM, Phase B deploys Cloud Kerberos Trust — an Azure AD Kerber
 
 For linked servers, Phase B migrates the authentication from passthrough credentials to a dedicated Managed Identity or service principal with the minimum required permissions.
 
-**NTLMv1 block.** At the end of Phase B, NTLMv1 is blocked at the domain level via Group Policy (`Network security: LAN Manager authentication level = Send NTLMv2 response only/refuse LM and NTLM`). NTLMv1 has no legitimate use case in a federal environment; its removal follows Microsoft/DISA STIG hardening guidance and OMB M-22-09 zero-trust doctrine.
+**NTLMv1 block.** At the end of Phase B, NTLMv1 is blocked at the domain level via Group Policy (`Network security: LAN Manager authentication level = Send NTLMv2 response only/refuse LM and NTLM`). NTLMv1 has no legitimate use case in a federal environment; its removal follows Microsoft's hardening guidance and the CIS Windows Server benchmarks (Microsoft's Windows security baseline sets this value to "Send NTLMv2 response only. Refuse LM & NTLM" and maps it to CIS Windows Server 2019 recommendation 2.3.11.7, <https://learn.microsoft.com/azure/governance/policy/samples/guest-configuration-baseline-windows>, accessed Oct 29, 2026) (DISA STIGs say the same; High only: Defense or FedRAMP High material, not the Moderate civilian baseline this series targets, an optional reference), and OMB M-22-09 zero-trust doctrine.
 
 ## Phase C — Domain-Wide Block
 

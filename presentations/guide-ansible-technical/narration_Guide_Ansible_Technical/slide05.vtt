@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.637
+Every population in the estate
+already has a natural owner.
+
+2
+00:00:03.637 --> 00:00:08.000
+Intune owns end-user devices, and
+it doesn't cover Windows Server.
+
+3
+00:00:08.000 --> 00:00:11.950
+Arc with machine configuration
+owns servers outside Azure,
+
+4
+00:00:11.950 --> 00:00:13.925
+on Microsoft's supported list.
+
+5
+00:00:13.925 --> 00:00:17.525
+Azure Policy governs the
+Azure resources themselves.
+
+6
+00:00:17.525 --> 00:00:22.100
+Configuration Manager stays where it's
+already deployed, with no new use.
+
+7
+00:00:22.100 --> 00:00:24.488
+Ansible's row is the interesting one.
+
+8
+00:00:24.488 --> 00:00:28.126
+It can reach anything, but
+it owns only the tier two
+
+9
+00:00:28.126 --> 00:00:31.676
+assets the C M D B names it
+for, plus Arc onboarding.
+
+10
+00:00:31.676 --> 00:00:34.056
+Owning is the key word,
+so let's look at what
+
+11
+00:00:34.056 --> 00:00:37.200
+happens when two tools both
+think they own something.

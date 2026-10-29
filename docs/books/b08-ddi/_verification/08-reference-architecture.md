@@ -69,3 +69,14 @@ Checked 2026-10-20 against CISA, Microsoft Learn (Learn MCP), AWS documentation,
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | CP-1 | July 2026 Infoblox release: restated as describing the offering's components; no longer says they "had been added"; footnote explains the date difference | Infoblox example paragraph; c08-ibxpr | corrected | Infoblox press release, July 22, 2026 (opened Oct 21, 2026): headline announces Moderate certification; lists Universal DDI Management, NIOS-X Servers, Universal Asset Insights; gives no certification date, no prior authorization, no Rev5/20x mention. FedRAMP `products.json` (fetched Oct 21, 2026, last_change 2026-10-22T00:15Z), FR2017257053: event log 2020-09-24 Agency In Process, 2022-07-01 FedRAMP In Process, 2022-12-15 FedRAMP Certified; no later status change; cert_class Class C, Moderate |
+
+## Moderate-civilian sweep (October 29, 2026)
+
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; DISA STIGs and DoD Impact Levels survive only as optional references labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| MS-1 | AWS US East/West FedRAMP Certified Class C (formerly Moderate); GovCloud (US) Class D (formerly High); scope per service and per Region | Commercial and federal clouds compared, intro | verified 2026-10-29 (fact pack) | c08-aws-fedramp: AWS FedRAMP; Services in Scope |
+| MS-2 | Table restructured: Moderate commercial; Moderate GovCloud/Azure Government; GCC High, FedRAMP High and DoD (High only). Previously GovCloud and Azure Government sat in the High column | Comparison table | reframed; every cell's fact unchanged and carried from existing footnotes | c08-fedramp, c08-azpezones, c08-awsipam, c08-inr |
+| MS-3 | Infoblox Government Cloud is hosted in AWS GovCloud (US) at Moderate | Comparison table | verified (existing footnote, Oct 20, 2026) | c08-fedramp |
+| MS-4 | High only explanation line added | Before the table | label per brief | — |

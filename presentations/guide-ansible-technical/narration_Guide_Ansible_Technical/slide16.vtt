@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.912
+Three groups of settings decide
+whether the controller is auditable.
+
+2
+00:00:03.912 --> 00:00:05.276
+First, sign-in.
+
+3
+00:00:05.276 --> 00:00:09.211
+Federate it to your identity provider,
+so your conditional access and
+
+4
+00:00:09.211 --> 00:00:13.350
+phishing-resistant sign-in apply, and
+keep local accounts for break-glass.
+
+5
+00:00:13.350 --> 00:00:16.320
+The default lifetime used
+to be a thousand years,
+
+6
+00:00:16.320 --> 00:00:19.587
+and old tokens keep it, so
+revoke them when you upgrade.
+
+7
+00:00:19.587 --> 00:00:21.012
+Second, logging.
+
+8
+00:00:21.012 --> 00:00:25.700
+Send everything to your SIEM, and set
+the cleanup jobs to match your retention.
+
+9
+00:00:25.700 --> 00:00:27.250
+Third, content.
+
+10
+00:00:27.250 --> 00:00:30.150
+Hub signing is off by
+default, so turn it on.
+
+11
+00:00:30.150 --> 00:00:32.475
+And project signing is the quiet hero,
+
+12
+00:00:32.475 --> 00:00:35.700
+because a project that fails
+its signature won't run.
+
+13
+00:00:35.700 --> 00:00:39.037
+That links the reviewed change
+to what actually executes.
+
+14
+00:00:39.037 --> 00:00:41.420
+Which brings us to the controller itself.

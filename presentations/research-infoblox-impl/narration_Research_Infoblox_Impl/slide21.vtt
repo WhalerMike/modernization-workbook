@@ -41,14 +41,15 @@ And older TLS versions must be
 turned off before you upgrade.
 
 9
-00:00:32.076 --> 00:00:37.366
-For the STIG, the evidence is an
-authentication policy with a remote service,
+00:00:32.076 --> 00:00:36.908
+For the settings baseline, the evidence
+is an authentication policy with
 
 10
-00:00:37.366 --> 00:00:40.137
-a password policy, and only approved CAs.
+00:00:36.908 --> 00:00:41.425
+a remote service, a password policy,
+and only the agency's approved CAs.
 
 11
-00:00:40.137 --> 00:00:41.710
+00:00:41.425 --> 00:00:43.010
 That closes Part 3.

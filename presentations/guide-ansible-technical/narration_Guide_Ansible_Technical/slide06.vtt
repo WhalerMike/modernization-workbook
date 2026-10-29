@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.713
+This is the heart of the guide.
+
+2
+00:00:01.713 --> 00:00:05.930
+When Ansible and machine
+configuration both set the same value,
+
+3
+00:00:05.930 --> 00:00:07.999
+nothing in either tool notices.
+
+4
+00:00:07.999 --> 00:00:12.093
+Microsoft's own caution is narrow,
+but the principle is general:
+
+5
+00:00:12.093 --> 00:00:14.375
+don't manage the same setting twice.
+
+6
+00:00:14.375 --> 00:00:19.275
+So the program's rule, which is design
+guidance, turns ownership into data.
+
+7
+00:00:19.275 --> 00:00:23.475
+Each C M D B record names
+one configuration owner.
+
+8
+00:00:23.475 --> 00:00:27.093
+Ansible can read anything, but
+it writes only where it owns,
+
+9
+00:00:27.093 --> 00:00:31.238
+and that's enforced in the inventory
+and again inside the playbook.
+
+10
+00:00:31.238 --> 00:00:33.738
+Onboarding a server to
+Arc isn't owning it.
+
+11
+00:00:33.738 --> 00:00:36.125
+And any exception is a dated record.
+
+12
+00:00:36.125 --> 00:00:39.310
+Now, where does Ansible sit
+in the bigger structure?
