@@ -22,6 +22,11 @@ agenda template, a notes template, and a one-page checklist. The practices come 
 guidance, chiefly GSA's 18F team, and from facilitation training used in industry and academia.
 :::
 
+::: {.callout-tip}
+## Watch or present
+**Narrated briefing (about 14 minutes, captions)**: the whole guide as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-effective-meetings) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Effective_Meetings_Narrated).
+:::
+
 ## Why meetings matter to a modernization program
 
 A modernization program is coordinated through meetings: change advisory boards, cutover

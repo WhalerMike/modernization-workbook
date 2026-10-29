@@ -630,6 +630,16 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narration_Script.md"
  },
  {
+  "id": "Guide_Effective_Meetings_Narrated",
+  "title": "Companion guide — Effective Meetings: narrated deck",
+  "group": "book",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Guide_Effective_Meetings_Narrated.mp4",
+  "vtt": "presentations/guide-effective-meetings/Guide_Effective_Meetings_Narrated.vtt",
+  "deck": "presentations/guide-effective-meetings/Guide_Effective_Meetings_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-effective-meetings/Guide_Effective_Meetings_Narration_Script.md"
+ },
+ {
   "id": "B08_DDI_Requirements_Narrated",
   "title": "Book 08 — DNS, DHCP & IPAM: what a federal DDI platform must do",
   "group": "research",
