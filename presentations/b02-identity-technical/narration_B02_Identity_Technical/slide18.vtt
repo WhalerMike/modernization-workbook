@@ -1,70 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.875
-The second decision is
-where passwords are checked.
+00:00:00.050 --> 00:00:03.137
+The first hybrid-period
+decision is the sync engine.
 
 2
-00:00:02.875 --> 00:00:05.971
-With password hash sync,
-it happens in the cloud,
+00:00:03.137 --> 00:00:08.050
+Connect Sync is the long-standing,
+full-featured engine on a Windows Server.
 
 3
-00:00:05.971 --> 00:00:10.338
-needs no extra infrastructure, and
-survives an on-premises outage.
+00:00:08.050 --> 00:00:11.712
+Cloud Sync is a lightweight
+agent configured from the cloud,
 
 4
-00:00:10.338 --> 00:00:14.258
-Pass-through authentication
-depends on on-premises agents,
+00:00:11.712 --> 00:00:14.862
+and Microsoft now calls it
+the strategic direction.
 
 5
-00:00:14.258 --> 00:00:17.551
-and federation with AD FS
-needs whole server farms.
+00:00:14.862 --> 00:00:17.075
+The slide compares them side by side.
 
 6
-00:00:17.551 --> 00:00:22.174
-Microsoft recommends turning on password
-hash sync whichever method you choose,
+00:00:17.075 --> 00:00:22.376
+The short version: Cloud Sync runs multiple
+active agents with automatic failover,
 
 7
-00:00:22.174 --> 00:00:25.439
-because it's the fallback, and
-organizations that had it on
+00:00:22.376 --> 00:00:26.063
+while Connect Sync still wins
+on scale and advanced rules.
 
 8
-00:00:25.439 --> 00:00:28.975
-recovered from ransomware outages
-in hours rather than weeks.
+00:00:26.063 --> 00:00:29.626
+Cloud Sync now covers group
+provisioning back to AD and
 
 9
-00:00:28.975 --> 00:00:34.125
-So the program prefers it everywhere,
-and AD FS becomes a decommission target.
+00:00:29.626 --> 00:00:33.500
+Exchange hybrid writeback, so
+those no longer force Connect.
 
 10
-00:00:34.125 --> 00:00:35.387
-Then, matching.
+00:00:33.500 --> 00:00:36.528
+The program's rule is Cloud
+Sync for new deployments,
 
 11
-00:00:35.387 --> 00:00:39.361
-When sync meets an object that
-already exists in the cloud,
+00:00:36.528 --> 00:00:40.400
+and Connect only where a forest
+needs something Cloud Sync can't do.
 
 12
-00:00:39.361 --> 00:00:42.838
-a match overwrites the cloud
-copy, so clean AD first.
-
-13
-00:00:42.838 --> 00:00:47.151
-And since July 1, 2026, sync can't
-hard-match onto cloud accounts
-
-14
-00:00:47.151 --> 00:00:51.600
-with privileged roles, so don't
-plan to take over admins that way.
+00:00:40.400 --> 00:00:44.880
+Both can run in one forest with separate
+scopes, so you can move in stages.

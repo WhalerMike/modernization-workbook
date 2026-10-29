@@ -1,25 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.675
-Module 4 is evidence,
-ownership and the plan.
+00:00:00.050 --> 00:00:03.488
+Once the attributes are trusted,
+access follows from them.
 
 2
-00:00:03.675 --> 00:00:06.146
-An architecture that can't measure its own
+00:00:03.488 --> 00:00:07.401
+Dynamic groups compute membership
+from the coded attributes,
 
 3
-00:00:06.146 --> 00:00:08.900
-revocation time is taking
-compliance on faith.
+00:00:07.401 --> 00:00:10.562
+so nobody joins by hand and
+nobody forgets to leave.
 
 4
-00:00:08.900 --> 00:00:13.397
-So we'll cover what the event stream lets
-you measure, who owns the data, the phased
+00:00:10.562 --> 00:00:15.772
+Every access rule also excludes disabled
+accounts, guests and agent identities,
 
 5
-00:00:13.397 --> 00:00:17.880
-plan and its link to the program's foundation
-gate, and the contractor question.
+00:00:15.772 --> 00:00:19.349
+and runs in shadow before it's
+attached to anything real.
+
+6
+00:00:19.349 --> 00:00:22.750
+The right side matters just
+as much: where rules stop.
+
+7
+00:00:22.750 --> 00:00:27.382
+Privileged access uses assigned
+groups and just-in-time activation,
+
+8
+00:00:27.382 --> 00:00:31.363
+so HR decides who's eligible,
+never who holds standing power.
+
+9
+00:00:31.363 --> 00:00:36.542
+Dynamic administrative units (AUs) aren't
+available in every government cloud,
+
+10
+00:00:36.542 --> 00:00:39.650
+and break-glass accounts
+depend on none of this.
+
+11
+00:00:39.650 --> 00:00:40.987
+That's the lifecycle.
+
+12
+00:00:40.987 --> 00:00:43.300
+Module 4 is how you prove it works.

@@ -1,69 +1,56 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.437
-Here's why this matters.
+00:00:00.050 --> 00:00:04.886
+Here's why this matters: the series
+moves four populations to the cloud,
 
 2
-00:00:01.437 --> 00:00:04.138
-For twenty years, Group
-Policy did a great deal
+00:00:04.886 --> 00:00:08.388
+each on its own track, and
+Book 05 carries two of them.
 
 3
-00:00:04.138 --> 00:00:06.838
-of governance without
-anyone writing it down.
+00:00:08.388 --> 00:00:12.874
+The Intune track is end-user devices,
+and the Arc track is servers.
 
 4
-00:00:06.838 --> 00:00:09.739
-A computer sat in an
-organizational unit (OU),
+00:00:12.874 --> 00:00:18.029
+A device's attributes come from device
+provisioning, like the Autopilot group tag,
 
 5
-00:00:09.739 --> 00:00:15.139
-the linked GPOs applied in a fixed order,
-and that one structure was the targeting,
+00:00:18.029 --> 00:00:21.137
+never from HR, and a device
+rule can't read its owner.
 
 6
-00:00:15.139 --> 00:00:18.363
-the precedence, the
-delegation and the evidence.
+00:00:21.137 --> 00:00:25.213
+Devices are done when their policy
+targets those attributes and
 
 7
-00:00:18.363 --> 00:00:20.048
-Microsoft says it plainly:
+00:00:25.213 --> 00:00:28.987
+the computer-side GPO links are
+gone, one population at a time.
 
 8
-00:00:20.048 --> 00:00:24.338
-Group Policy enforcement isn't
-possible on cloud-native endpoints.
+00:00:28.987 --> 00:00:34.513
+Servers are done when each is Arc-enabled,
+tagged, and evaluated by Azure Policy.
 
 9
-00:00:24.338 --> 00:00:28.637
-Intune can deliver most of the
-settings, but every mechanism changes.
+00:00:34.513 --> 00:00:37.928
+And Group Policy splits: user
+settings go with people,
 
 10
-00:00:28.637 --> 00:00:33.337
-Targeting is flat, devices check in
-about every eight hours instead of every
+00:00:37.928 --> 00:00:40.800
+computer settings with
+devices and servers.
 
 11
-00:00:33.337 --> 00:00:38.187
-ninety minutes, and when two policies
-disagree, the setting may not apply at all.
-
-12
-00:00:38.187 --> 00:00:41.763
-On a hybrid device, Group
-Policy wins by default.
-
-13
-00:00:41.763 --> 00:00:47.191
-So the program's rule is regenerate, not
-copy: identify the mandatory settings,
-
-14
-00:00:47.191 --> 00:00:50.900
-compare them with MDM, and
-treat the gaps as blockers.
+00:00:40.800 --> 00:00:43.820
+Next, why Group Policy
+can't come to the cloud.

@@ -32,11 +32,53 @@
   ],
   [
    33.237,
-   2.7,
-   "Let's begin with how identity gets built today."
+   2.725,
+   "First, where this book sits in the series."
   ]
  ],
  "2": [
+  [
+   0.05,
+   8.713,
+   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and Book 03 is the HR track."
+  ],
+  [
+   8.762,
+   1.125,
+   "It's about people."
+  ],
+  [
+   9.887,
+   9.338,
+   "Every employee account follows the HR record, and every contractor account follows the contractor source of authority, which the agency still has to name."
+  ],
+  [
+   19.225,
+   4.787,
+   "Then joining, moving and leaving change access by rule, with no ticket."
+  ],
+  [
+   24.012,
+   11.037,
+   "You'll know you're there when every enabled account matches an authoritative record or an owned exception, and every group that came from an organizational unit (O U) is a validated rule."
+  ],
+  [
+   35.05,
+   8.162,
+   "Devices and servers are Book 05, and service accounts and AI agents are Books 02, 06 and 17."
+  ],
+  [
+   43.212,
+   1.825,
+   "HR never describes those."
+  ],
+  [
+   45.038,
+   2.462,
+   "Now, how identity gets built today."
+  ]
+ ],
+ "3": [
   [
    0.05,
    3.625,
@@ -93,7 +135,7 @@
    "And if we do nothing, we'll rebuild the same manual process twice, on two new platforms."
   ]
  ],
- "3": [
+ "4": [
   [
    0.05,
    0.787,
@@ -145,7 +187,7 @@
    "Contractors need their own authoritative source, and onboarding is the right time to decide that too."
   ]
  ],
- "4": [
+ "5": [
   [
    0.05,
    1.137,
@@ -207,7 +249,7 @@
    "But D's first step, data standards, ownership and a person key, is no-regret either way."
   ]
  ],
- "5": [
+ "6": [
   [
    0.05,
    3.4,
@@ -254,7 +296,7 @@
    "When a fact is wrong, it gets fixed at the source, never patched in the directory."
   ]
  ],
- "6": [
+ "7": [
   [
    0.05,
    4.4,
@@ -316,7 +358,7 @@
    "If the vendors change, the model and the rules still hold."
   ]
  ],
- "7": [
+ "8": [
   [
    0.05,
    1.325,
@@ -358,7 +400,7 @@
    "A data architect ties it together, owning the standards and the person key."
   ]
  ],
- "8": [
+ "9": [
   [
    0.05,
    0.8,
@@ -410,7 +452,7 @@
    "Credentials follow the same events, from piv issuance through to termination."
   ]
  ],
- "9": [
+ "10": [
   [
    0.05,
    1.25,
@@ -462,7 +504,7 @@
    "The same records answer the auditor's oldest question: does every account belong to a current person, with a current reason?"
   ]
  ],
- "10": [
+ "11": [
   [
    0.05,
    5.475,
@@ -509,7 +551,7 @@
    "Chapter 13 walks an illustrative agency through all seven phases."
   ]
  ],
- "11": [
+ "12": [
   [
    0.05,
    2.612,

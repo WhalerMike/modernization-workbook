@@ -1,54 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.975
-Here's the uncomfortable fact: disabling
-an account doesn't revoke a certificate.
+00:00:00.050 --> 00:00:02.089
+Two services share the lifecycle,
 
 2
-00:00:04.975 --> 00:00:09.452
-The PIV card is bound to the Entra
-user through an attribute holding the
+00:00:02.089 --> 00:00:05.075
+and mixing them up is the
+most common design error.
 
 3
-00:00:09.452 --> 00:00:12.107
-certificate's identifiers, and the strong,
+00:00:05.075 --> 00:00:09.413
+Provisioning creates and updates
+accounts and turns them on or off.
 
 4
-00:00:12.107 --> 00:00:15.825
-high-affinity bindings identify
-exactly one certificate.
+00:00:09.413 --> 00:00:13.451
+Lifecycle Workflows act on
+accounts that already exist:
 
 5
-00:00:15.825 --> 00:00:20.950
-So every reissue or renewal means the
-card system has to rewrite the binding.
+00:00:13.451 --> 00:00:16.974
+the welcome, the access
+packages, the leaver tasks.
 
 6
-00:00:20.950 --> 00:00:23.650
-Who can write it depends on
-where the user is mastered.
+00:00:16.974 --> 00:00:20.075
+The schedule is the
+engineering detail that bites.
 
 7
-00:00:23.650 --> 00:00:28.588
-Today, for synced users, only Entra
-Connect can, from Active Directory.
+00:00:20.075 --> 00:00:24.714
+Workflows run every three hours by
+default, on one tenant-wide setting,
 
 8
-00:00:28.588 --> 00:00:31.987
-Once the account moves to the
-cloud, the design guidance is
+00:00:24.714 --> 00:00:28.313
+so that interval is part of
+how fast a leaver is blocked.
 
 9
-00:00:31.987 --> 00:00:35.600
-that the card system's issuance
-event writes it through Graph.
+00:00:28.313 --> 00:00:31.435
+And a separation recorded
+more than three days late
 
 10
-00:00:35.600 --> 00:00:40.050
-And the warning in red: whoever writes
-that value decides who signs in.
+00:00:31.435 --> 00:00:34.775
+misses the window entirely
+and needs the on-demand path.
 
 11
-00:00:40.050 --> 00:00:41.640
-Next, revocation.
+00:00:34.775 --> 00:00:36.875
+Notice the gap at the bottom, too.
+
+12
+00:00:36.875 --> 00:00:38.740
+That brings us to credentials.

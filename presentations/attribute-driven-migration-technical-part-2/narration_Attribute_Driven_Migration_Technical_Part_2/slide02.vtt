@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.600
+Two things from Part 1
+carry everything here.
+
+2
+00:00:02.600 --> 00:00:04.450
+First, the four tracks.
+
+3
+00:00:04.450 --> 00:00:08.937
+People get their attributes from HR,
+devices from device provisioning,
+
+4
+00:00:08.937 --> 00:00:12.131
+servers from Arc onboarding
+tags and Azure Policy,
+
+5
+00:00:12.131 --> 00:00:16.237
+and non-person identities from
+their owner's record, never from HR.
+
+6
+00:00:16.237 --> 00:00:18.950
+Second, the store table, reduced.
+
+7
+00:00:18.950 --> 00:00:22.261
+Extension attributes drive
+user and device rules,
+
+8
+00:00:22.261 --> 00:00:27.463
+custom security attributes feed
+Conditional Access for applications but not
+
+9
+00:00:27.463 --> 00:00:32.350
+dynamic rules, Intune's inventory feeds
+filters, and Azure tags feed Policy.
+
+10
+00:00:32.350 --> 00:00:34.425
+Part 1 covered the HR track.
+
+11
+00:00:34.425 --> 00:00:35.760
+Now the computers.

@@ -267,6 +267,36 @@ So HR decides what the authoritative attributes mean, and identity engineering d
   "Book 01, Chapter 04 — Identity Transformation (The identity claim; Why the attributes must be true first; The four mechanisms; Protect the write path; HR-driven lifecycle; From sessions to tokens); Chapter 09 (HR and the contractor sources; Decision rights: authoritative worker attributes); Chapter 12 (Phase 1, Gate G1; Common failure modes).");
 }
 
+// ------------------------------------------------------------------ What 2b: four tracks and the end state
+{
+  const s = D.content(S_WHAT, "Four tracks, four sources of truth, one end state");
+  tag(s, "What");
+  const tracks = [
+    ["HR track: people", "HR for employees; the contractor source of authority for contractors", "Every enabled account matches an authoritative record or an owned exception"],
+    ["Intune track: devices", "Device provisioning at purchase and enrollment, never HR", "Every managed device's policy is targeted by attributes provisioning wrote"],
+    ["Arc track: servers", "Arc onboarding, then Azure Policy", "Every in-scope server is Arc-enabled, tagged and evaluated by policy"],
+    ["Non-person identities", "The owning system's record: inventory, app registration, AI inventory", "Each has an owner and a target; none orphaned, none with a never-expiring password"],
+  ];
+  s.addTable([head(["Track", "Source of truth", "How you know you're there (design guidance)"]),
+    ...tracks.map((r) => [bold(r[0]), { text: r[1] }, { text: r[2] }])],
+    tableOpts([2.45, 4.6, 5.1], { y: 1.5, fontSize: 13, rowH: [0.42, 0.66, 0.66, 0.66, 0.66] }));
+  callout(s, "End state", 4.78, 1.32, "FaFingerprint", HEX.teal, "The end state: ",
+    "every person, device, server and workload governed by true attributes, owned by one source and read by policy, with evidence for every change; then AD can retire without losing a job the OU tree did.");
+  txt(s, "Requirements", [{ text: "Federal requirements:  ", options: { bold: true, color: HEX.navy } },
+    { text: "OMB M-22-09 §III.A, §III.B, §III.D; NIST SP 800-53 AC-2, AC-6, CM-2, CM-6, CM-8 (Book 01, Appendix A: compliance-enabling, not a compliance claim)" }],
+    { x: 0.6, y: 6.2, w: 12.15, h: 0.34, fontSize: 11.5, valign: "middle" });
+  sources(s, "Sources: Book 01, Chapters 01, 04, 07, 08 and Appendix A; Book 02, Chapter 09; Book 05, Chapters 03 and 09. Success criteria: design guidance. Full citations in the backup.");
+  narrate(s,
+`Why does this matter at the executive level? Because "migrate identity" hides four different populations, and each moves by its own track with its own source of truth. When a program talks about people and Group Policy for computers in the same breath, it's switching tracks without saying so.
+
+People are the HR track: employees from the HR system of record, contractors from the contractor source of authority. End-user devices are the Intune track: their attributes are written by device provisioning, from the purchase order to enrollment, never by HR. Servers are the Arc track: tagged when they're onboarded, then governed by Azure Policy. And non-person identities, meaning service accounts, service principals, managed identities and AI agents, have no HR record at all. Their owner and sponsor are their accountability.
+
+The end state is the same for all four. Every person, device, server and workload is governed by attributes that are true, owned by exactly one source and read by policy. Joining, moving and leaving change access with no ticket. Every non-person identity has a named owner and a credential that expires or is managed. Every change leaves evidence. And Active Directory can be reduced and retired without losing delegation, policy scope, accountability or security scope.
+
+The right-hand column is how you know you're there. It's program design guidance; each book's own gates take precedence. Group Policy splits along the same lines, which is the next slide.`,
+  "Book 01, Chapter 01 (What has to be true: one authoritative record per user, device and service account); Chapter 04 (HR as the workforce source); Chapter 07 (Arc servers tagged with organizational attributes); Chapter 08 (service accounts to managed identities, gMSAs and workload identity federation); Chapter 09 (HR and the contractor sources). Depth: Book 03 (HR track); Book 05, Chapters 03, 04, 08 (Intune) and 09 (Arc); Book 02, Chapter 09, Book 06 and Book 17 (non-person identities). Success criteria are program design guidance.");
+}
+
 // ------------------------------------------------------------------ What 3: policy
 {
   const s = D.content(S_WHAT, "Policy: regenerate Group Policy; don't copy it");
@@ -706,7 +736,8 @@ Microsoft has supplied the instruments. The program is the orchestra, and the pe
   const map = [
     ["Every mandate assumes a foundation", "Ch. 01, 09, 12"], ["AD was the governance", "Ch. 02, 09"],
     ["Five things must be true", "Ch. 01"], ["Platform: one writer", "Ch. 03, 09, 12"],
-    ["Identity: attributes first", "Ch. 04, 09, 12"], ["Policy: regenerate, don't copy", "Ch. 05, 09, 12"],
+    ["Identity: attributes first", "Ch. 04, 09, 12"], ["Four tracks, one end state", "Ch. 01, 04, 07, 08"],
+    ["Policy: regenerate, don't copy", "Ch. 05, 09, 12"],
     ["DNS, DHCP and IPAM together", "Ch. 06, 12"], ["Compute: domain join goes last", "Ch. 07, 09, 10, 12"],
     ["Access: applications, not networks", "Ch. 08, 12"], ["Instruments, not the orchestra", "Ch. 09"],
     ["One decider per decision", "Ch. 09, 12"], ["Three decisions, wrong desk", "Ch. 09"],
@@ -719,6 +750,23 @@ Microsoft has supplied the instruments. The program is the orchestra, and the pe
     s.addTable([head(["Slide", "Book 01 source"]), ...part.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }])],
       tableOpts([3.75, 2.2], { x: 0.6 + k * 6.2, y: 1.5, fontSize: 12.5, rowH: Array(part.length + 1).fill(0.46) }));
   });
+}
+
+
+// ------------------------------------------------------------------ Backup: federal requirements (the deck's endnotes)
+{
+  const s = D.content("Backup", "Federal requirements: full citations");
+  const R = [
+    ["OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles", "§III.A Identity: centralized identity management for agency users; at least one device-level signal alongside identity. §III.B Devices: a complete inventory of every device; EDR. §III.D Applications and workloads", "Jan. 26, 2022", "HR, Intune and non-person tracks"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "AC-2 Account Management; AC-6 Least Privilege", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "HR and non-person tracks"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "CM-2 Baseline Configuration; CM-6 Configuration Settings; CM-8 System Component Inventory", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Intune and Arc tracks"],
+    ["NIST SP 800-53B, Control Baselines", "AC-2, CM-2, CM-6 and CM-8 are in the Low, Moderate and High baselines; AC-6 in Moderate and High", "Sept. 2020", "All four tracks"],
+  ];
+  s.addTable([head(["Primary source", "Section or control", "Date", "Used for"]),
+    ...R.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }, { text: r[3] }])],
+    tableOpts([3.3, 4.85, 1.95, 2.05], { y: 1.45, fontSize: 11.5, rowH: [0.36, 0.89, 0.7, 0.7, 0.5] }));
+  txt(s, "Requirements note", "Mapping from Book 01, Appendix A (Requirements Mapping), sources checked October 21, 2026. A compliance-enabling map, not a compliance claim: whether a control is satisfied depends on the agency's own boundary, implementation and assessor.",
+    { x: 0.6, y: 6.0, w: 12.15, h: 0.55, fontSize: 11, italic: true, color: HEX.slate });
 }
 
 console.log(`narration: ${spoken} spoken words (${perSlide.join(", ")}), about ${mmss(clock)} at ${WPM} wpm`);

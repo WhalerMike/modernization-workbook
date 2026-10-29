@@ -19,8 +19,10 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The five events a worker record goes through and what each one causes in the directory. The personnel-action codes that trigger them. The division of labor between inbound provisioning and Lifecycle Workflows. Triggers, schedules and built-in tasks. Emergency termination, rehire, conversion and deletion. The leaver sequence itself, including credentials, is in Chapter 09.
+The five events a worker record goes through and what each one causes in the directory. The personnel-action codes that trigger them. The division of labor between inbound provisioning and Lifecycle Workflows. Triggers, schedules and built-in tasks. The guardrails for running workflows at agency scale: execution limits, on-demand runs and reorganizations. Emergency termination, how one leaver event reaches all four tracks, rehire, conversion and deletion. The leaver sequence itself, including credentials, is in Chapter 09.
 :::
+
+**This chapter is the HR track** of the companion guide's [four tracks](../guides/attribute-driven-migration.md#four-tracks): the HR record drives the lifecycle. A leaver still has to reach the other three tracks, which is the subject of *One leaver reaches four tracks* below.
 
 ## The lifecycle is an event stream
 
@@ -89,7 +91,7 @@ The two also license differently. API-driven inbound provisioning is included fr
 
 Lifecycle Workflows support four scheduled trigger types — time-based attribute, attribute change, group membership change, and sign-in inactivity — plus on-demand only.[^c08-lcw-conditions] The time-based trigger reads `employeeHireDate`, `employeeLeaveDateTime` or `createdDateTime`, with an offset of 0 to 180 days before or after the date; a relative time-based trigger, in preview, extends the offset to 365 days, but it has no three-day catch-up window, so on a workflow built on it a late HR entry always needs the on-demand path.[^c08-lcw-conditions][^c08-lcw-exec] Scheduling has to be turned on for each workflow, and scheduled workflows are evaluated every 3 hours by default; the interval can be set from 1 to 24 hours, and it's a single tenant-wide setting that every workflow follows.[^c08-lcw-conditions][^c08-lcw-schedule] Just before processing, the engine re-evaluates each user and skips anyone who no longer meets the conditions.[^c08-lcw-conditions]
 
-That schedule matters for evidence. A workflow never runs earlier than the time in the trigger attribute, but the tenant schedule can delay it,[^c08-lcw-sync] so a leaver workflow keyed to `employeeLeaveDateTime` runs at the first scheduled pass after the date, and the separation-to-revocation interval (Chapter 11) includes the schedule interval. Set the tenant interval with the leaver workflow in mind. There's also a three-day catch-up window: a user whose trigger date passed no more than three days before the engine sees them is still processed, but a later one isn't.[^c08-lcw-conditions] A separation recorded more than three days after its effective date has to go through the on-demand path (see *Emergency termination*).
+That schedule matters for evidence. A workflow never runs earlier than the time in the trigger attribute, but the tenant schedule can delay it,[^c08-lcw-sync] so a leaver workflow keyed to `employeeLeaveDateTime` runs at the first scheduled pass after the date, and the separation-to-revocation interval (Chapter 11) includes the schedule interval. Set the tenant interval with the leaver workflow in mind. There's also a three-day catch-up window: a user whose trigger date passed no more than three days before the engine sees them is still processed, but a later one isn't.[^c08-lcw-conditions] A separation recorded more than three days after its effective date has to go through the on-demand path (see *Emergency termination*). So HR timeliness is an operational control, not only a data-quality wish *(design guidance)*: monitor how late HR enters hires and separations, report every user whose trigger date is in the past and who was never processed, and run the catch-up deliberately rather than waiting for someone to notice.
 
 ### Built-in tasks by stage
 
@@ -103,6 +105,23 @@ That schedule matters for evidence. A workflow never runs earlier than the time 
 : Lifecycle Workflows built-in tasks by stage[^c08-lcw-tasks] {.striped .hover}
 
 No built-in task revokes a certificate or a PIV credential, or retires a device. Those steps go through a custom task extension or a separate process (Chapter 09).
+
+### Guardrails at agency scale
+
+A workflow that is wrong is wrong for everyone in scope at once. Three Microsoft behaviors decide how big that mistake can get.
+
+- **Execution limits and quarantine.** A tenant-wide or per-workflow threshold can be set as a percentage of users, a number of users, or both; with both, exceeding either one counts. When a scheduled run would exceed it, the workflow is quarantined and Lifecycle Workflows administrators are notified. It doesn't run again until an administrator approves it; quarantine can't be cleared automatically. Changing a workflow's limits creates a new workflow version.[^c08-lcw-quarantine]
+- **On-demand runs bypass the guardrails.** An on-demand run takes at most 10 users at a time.[^c08-lcw-limits] It ignores the workflow's execution conditions: the tasks apply to whoever is selected, whether or not they qualify.[^c08-lcw-ondemand] And execution limits apply only to scheduled runs, so an on-demand run isn't checked against them, even on a quarantined workflow.[^c08-lcw-quarantine] An administrator who runs the leaver workflow on the wrong 10 people disables them.
+- **Tenant ceilings.** A tenant holds at most 100 workflows and 100 custom task extensions, and a workflow at most 25 tasks.[^c08-lcw-limits]
+
+The program's responses *(design guidance)*:
+
+- **Few workflows, coded scope.** A small set of general workflows (pre-hire, joiner, mover, leaver, rehire, conversion) that branch on the coded attributes of Chapter 06 through their scope rules, never one workflow per organization or per tree. Keep a workflow budget in change control, and build one parameterized Logic App per integration, not one per component.
+- **On-demand is a change.** Put the Lifecycle Workflows Administrator role behind Privileged Identity Management with approval, require a second person to check the selection, and log every on-demand run as a change.
+- **Size the thresholds.** Set tenant-wide and per-workflow execution limits a little above normal weekly volume for each workflow, so an anomaly quarantines and a normal week doesn't.
+- **Plan reorganizations as mass-mover events.** A reorganization that recodes thousands of organization codes fires the mover workflow for all of them at the next run, and a well-sized threshold quarantines it. That is the point. Treat the reorganization as a change event: rehearse it in a test tenant, agree in advance who approves the release of the quarantine, and release it once the recoded attributes have been checked against HR. Don't reach for on-demand runs to push it through; ten users at a time is no tool for a reorganization. A failed HR batch is fixed the same way: correct the data at the source and let the scheduled run process it.
+
+The companion guide's [Lifecycle Workflows at scale](../guides/attribute-driven-migration.md#lifecycle-workflows-at-scale) sets these limits against an estate of one forest with 12 trees.
 
 ## Joiner
 
@@ -119,6 +138,24 @@ The separation record sets `employeeLeaveDateTime` through provisioning, and the
 ### Emergency termination
 
 Some separations can't wait for the schedule. Microsoft's **Real-time employee termination** template is an on-demand workflow; its tutorial removes the user from all groups and all Teams and deletes the account.[^c08-lcw-offboard-portal] For an agency, use the template as the starting point for an on-demand workflow that runs the *same* sequence as the scheduled leaver workflow (Chapter 09), not a shorter one. The trigger is human; the execution and the evidence are identical.
+
+Don't rely on any workflow alone for a hostile or urgent termination. A scheduled leaver waits for the tenant schedule, by default every 3 hours, plus sync and dynamic-group processing. In the program's design the help desk's emergency path also blocks the person out of band, at once. For a synced user, Microsoft's steps are to disable the account in Active Directory and reset its password twice, then disable the account in Entra ID, revoke its refresh tokens and disable the user's registered devices.[^c08-revoke] Revoking sessions doesn't end every session at once: applications that use access tokens keep access until the token expires (one hour by default), and an application's own session lasts until that application revokes it. Continuous access evaluation shortens that for applications that support it.[^c08-revoke] The real-time workflow then runs the rest of the sequence, and the out-of-band actions go into the same evidence trail.
+
+### One leaver reaches four tracks
+
+The separation record is an HR fact, but the person it describes touches all four tracks. Natively, Lifecycle Workflows complete only the account side. Everything else goes through a custom task extension, a step that calls an Azure Logic App, either launching it and continuing or waiting for its response within a set time; a third-party system can send that response.[^c08-lcw-ext]
+
+| Track | What the leaver must reach | How |
+|---|---|---|
+| **HR (the account)** | Disable; remove groups, Teams, access packages and licenses; revoke refresh tokens | Built-in tasks (above) |
+| **HR (the credential)** | Revoke the PIV certificate and remove its `certificateUserIds` binding | A custom task extension to the card management system (Chapter 09) |
+| **Intune** | Retire or wipe the person's devices | A custom task extension to Intune |
+| **Azure Arc** | Remove the person's access to servers | A custom task extension, or the privileged-access process, that removes role assignments and local access |
+| **Non-person identities** | Hand over every service account, application and agent the person sponsored, so none is orphaned | For agent identities, a built-in task transfers sponsorships to the leaver's manager, with a Microsoft Agent 365 license; confirm it in the tenant's cloud.[^c08-lcw-agent-sponsor] For other workloads, a custom task extension that reassigns owners from the system inventory |
+
+: One leaver event, four tracks {.striped .hover}
+
+Until those extensions exist, the program's fallback is a leaver checklist with a named owner per row, and the separation-to-revocation interval (Chapter 11) measures how long it takes. The task ceiling bites here: a four-track leaver can run long, so group steps inside one Logic App, or chain a leaver and a post-leaver workflow *(design guidance)*. The companion guide's [four tracks](../guides/attribute-driven-migration.md#four-tracks) set out who owns each track.
 
 ## Rehire and conversion
 
@@ -151,3 +188,9 @@ Disable on the separation date; delete or anonymize only under the approved acco
 [^c08-lcw-tasks2]: Microsoft Learn, "Lifecycle Workflows tasks and definitions" (Enable, Disable and Delete user tasks with the `enableOnPremisesAccount`, `disableOnPremisesAccount` and `deleteOnPremisesAccount` arguments), <https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-tasks> (accessed Oct 25, 2026).
 [^c08-lcw-onprem]: Microsoft Learn, "Managing Users synchronized from Active Directory Domain Services to Microsoft Entra ID with Lifecycle Workflows" (the Microsoft Entra provisioning agent, at least 1.1.1586.0, with the HR-driven provisioning extension; gMSA permissions; AD Recycle Bin for deletes), <https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-on-premises> (accessed Oct 25, 2026).
 [^c08-ora-dated]: Oracle, *REST API for Oracle Fusion Cloud HCM*, "Manage Date Effective Entries" (future-dated events carry the effective start date as their `updated` date; by default no entries with an `updated` date past the current date are returned), <https://docs.oracle.com/en/cloud/saas/human-resources/farws/Handling_Date_Effective_Entry.html>; and "Read a Feed" (`published-min`, `published-max`), <https://docs.oracle.com/en/cloud/saas/human-resources/farws/Reading_a_Feed.html> (accessed Oct 25, 2026).
+[^c08-lcw-quarantine]: Microsoft Learn, "Configure execution limits and quarantine for Lifecycle Workflows" (tenant-wide and workflow-specific limits; OR logic; quarantine and notification; approval required; limits apply only to scheduled runs; on-demand runs bypass them; changing limits creates a new workflow version), <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-limits> (accessed Oct 29, 2026).
+[^c08-lcw-limits]: Microsoft Learn, "Microsoft Entra ID Governance service limits," section "Lifecycle Workflows" (100 workflows and 100 custom task extensions per tenant; 25 tasks per workflow; 10 users per on-demand selection), <https://learn.microsoft.com/entra/id-governance/governance-service-limits#lifecycle-workflows> (accessed Oct 29, 2026).
+[^c08-lcw-ondemand]: Microsoft Learn, "Understanding lifecycle workflows," section "On-demand scheduling" (an on-demand run doesn't take into account whether the user meets the execution conditions), <https://learn.microsoft.com/entra/id-governance/understanding-lifecycle-workflows>; and "Run a workflow on-demand" (up to 10 users at a time), <https://learn.microsoft.com/entra/id-governance/on-demand-workflow> (both accessed Oct 29, 2026).
+[^c08-lcw-ext]: Microsoft Learn, "Lifecycle Workflows custom task extension" (Azure Logic Apps; launch and continue, launch and wait; a third-party system can respond), <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-extensibility> (accessed Oct 29, 2026).
+[^c08-lcw-agent-sponsor]: Microsoft Learn, "Agent identity sponsor tasks in Lifecycle Workflows" (Transfer agent identity sponsorships to manager; mover and leaver tasks; license requirements), <https://learn.microsoft.com/entra/id-governance/agent-sponsor-tasks> (accessed Oct 29, 2026).
+[^c08-revoke]: Microsoft Learn, "Revoke user access in Microsoft Entra ID" (hybrid steps: disable in AD, reset the password twice, disable in Entra ID, revoke refresh tokens, disable registered devices; when access is revoked; access tokens last one hour by default; continuous access evaluation), <https://learn.microsoft.com/entra/identity/users/users-revoke-access> (accessed Oct 29, 2026).

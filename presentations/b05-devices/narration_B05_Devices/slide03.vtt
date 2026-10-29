@@ -1,68 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.100
-The obvious shortcut is hybrid
-join, and the book calls it a trap.
+00:00:00.050 --> 00:00:05.175
+Here's why this matters: an inventory that
+only covers Windows isn't an inventory.
 
 2
-00:00:04.100 --> 00:00:06.425
-Microsoft's guidance is two-sided.
+00:00:05.175 --> 00:00:08.113
+Intune isn't just for Microsoft platforms.
 
 3
-00:00:06.425 --> 00:00:10.700
-New or reset Windows devices
-should be Entra joined by default.
+00:00:08.113 --> 00:00:11.196
+It manages Windows, Apple
+and Android devices,
 
 4
-00:00:10.700 --> 00:00:16.050
-Existing domain-joined devices can be
-hybrid joined, with little impact on users.
+00:00:11.196 --> 00:00:16.063
+and Linux desktops with limits, while
+ChromeOS stays in Google's console.
 
 5
-00:00:16.050 --> 00:00:21.000
-But Microsoft is clear that hybrid join
-isn't meant to be the long-term end state.
+00:00:16.063 --> 00:00:20.366
+Arc reaches Windows and Linux
+servers wherever they run:
 
 6
-00:00:21.000 --> 00:00:22.887
-The trap is how easy it looks.
+00:00:20.366 --> 00:00:24.762
+on premises, VMware VMs, and
+AWS and Google Cloud instances.
 
 7
-00:00:22.887 --> 00:00:26.812
-Turning it on is close to a single
-tenant-wide switch, so something
+00:00:24.762 --> 00:00:26.950
+Azure VMs don't need Arc at all.
 
 8
-00:00:26.812 --> 00:00:31.174
-assessments treat as a multi-quarter
-program can look finished in a week.
+00:00:26.950 --> 00:00:32.727
+For what neither reaches, like printers,
+network gear, the mainframe or old Unix,
 
 9
-00:00:31.174 --> 00:00:34.987
-Meanwhile the fleet keeps every
-on-premises dependency it had.
+00:00:32.727 --> 00:00:37.881
+every device still lands in one of four
+tiers: Intune or Arc; its own tool,
 
 10
-00:00:34.987 --> 00:00:37.801
-And there's no supported
-way to convert a hybrid
+00:00:37.881 --> 00:00:40.636
+with the CMDB holding its attributes;
 
 11
-00:00:37.801 --> 00:00:40.687
-device to Entra join
-without resetting Windows.
+00:00:40.636 --> 00:00:44.813
+discovered and monitored only;
+or segmented and retired.
 
 12
-00:00:40.687 --> 00:00:45.574
-So the governed path uses hybrid join
-where it helps, then moves each device
+00:00:44.813 --> 00:00:47.137
+A device in no tier is a finding.
 
 13
-00:00:45.574 --> 00:00:49.988
-to Entra join at a natural event,
-like a hardware refresh or a rebuild.
-
-14
-00:00:49.988 --> 00:00:52.680
-Now, what actually replaces Group Policy?
+00:00:47.137 --> 00:00:50.330
+Now, why Group Policy
+can't simply come along.

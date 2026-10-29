@@ -37,11 +37,48 @@
   ],
   [
    36.725,
-   2.788,
-   "Let's start with why the data matters so much now."
+   2.9,
+   "First, where this session sits in the series."
   ]
  ],
  "2": [
+  [
+   0.05,
+   8.238,
+   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and this session is the HR track."
+  ],
+  [
+   8.287,
+   1.125,
+   "It's about people."
+  ],
+  [
+   9.412,
+   7.2,
+   "Employees come from Core H C M, and contractors from the contractor source of authority the agency designates."
+  ],
+  [
+   16.613,
+   11.838,
+   "Those attributes land on the user object, in A D while users are synced, then in Entra ID, and groups, administrative units, Conditional Access and Lifecycle Workflows read them."
+  ],
+  [
+   28.45,
+   7.9,
+   "You're there when every enabled account matches an authoritative record or an owned exception, and no hand-kept group membership is left."
+  ],
+  [
+   36.35,
+   6.375,
+   "Devices, servers, service accounts and AI agents are other books; HR never describes them."
+  ],
+  [
+   42.725,
+   2.587,
+   "Next, why the data matters so much now."
+  ]
+ ],
+ "3": [
   [
    0.05,
    6.737,
@@ -83,7 +120,7 @@
    "Next, the architecture that fixes the wiring."
   ]
  ],
- "3": [
+ "4": [
   [
    0.05,
    3.2,
@@ -120,7 +157,7 @@
    "So let's start with the data itself."
   ]
  ],
- "4": [
+ "5": [
   [
    0.05,
    11.863,
@@ -132,7 +169,7 @@
    "It's the work estates skip because users never see it, and it's the work that decides whether automation spreads truth or spreads errors."
   ]
  ],
- "5": [
+ "6": [
   [
    0.05,
    6.162,
@@ -174,7 +211,7 @@
    "Next, how one person is keyed."
   ]
  ],
- "6": [
+ "7": [
   [
    0.05,
    4.8,
@@ -216,7 +253,7 @@
    "Now, where the values come from."
   ]
  ],
- "7": [
+ "8": [
   [
    0.05,
    4.65,
@@ -248,7 +285,7 @@
    "Next, how those values land in the directories."
   ]
  ],
- "8": [
+ "9": [
   [
    0.05,
    9.088,
@@ -280,7 +317,7 @@
    "Next, the rest of the slots, and who may write them."
   ]
  ],
- "9": [
+ "10": [
   [
    0.05,
    7.85,
@@ -317,7 +354,7 @@
    "Module 2 is how the data moves."
   ]
  ],
- "10": [
+ "11": [
   [
    0.05,
    11.512,
@@ -329,7 +366,7 @@
    "We start with Federal HR 2.0, because its schedule decides when the identity feed has to be ready."
   ]
  ],
- "11": [
+ "12": [
   [
    0.05,
    4.287,
@@ -371,7 +408,7 @@
    "Next, the pipeline itself."
   ]
  ],
- "12": [
+ "13": [
   [
    0.05,
    2.112,
@@ -413,7 +450,7 @@
    "Next, what the middleware actually does."
   ]
  ],
- "13": [
+ "14": [
   [
    0.05,
    10.55,
@@ -450,7 +487,7 @@
    "Next, the contract that endpoint enforces."
   ]
  ],
- "14": [
+ "15": [
   [
    0.05,
    12.838,
@@ -472,7 +509,7 @@
    "Next, where the users land."
   ]
  ],
- "15": [
+ "16": [
   [
    0.05,
    5.875,
@@ -504,7 +541,7 @@
    "Part 2 picks up the lifecycle."
   ]
  ],
- "16": [
+ "17": [
   [
    0.05,
    4.0,
@@ -521,7 +558,7 @@
    "We'll follow that event through the lifecycle, through the piv card and certificates, and finally into access."
   ]
  ],
- "17": [
+ "18": [
   [
    0.05,
    4.188,
@@ -568,7 +605,7 @@
    "Next, who acts on these events."
   ]
  ],
- "18": [
+ "19": [
   [
    0.05,
    5.025,
@@ -610,7 +647,7 @@
    "That brings us to credentials."
   ]
  ],
- "19": [
+ "20": [
   [
    0.05,
    4.925,
@@ -652,7 +689,7 @@
    "Next, revocation."
   ]
  ],
- "20": [
+ "21": [
   [
    0.05,
    1.863,
@@ -689,7 +726,7 @@
    "That order becomes the leaver sequence."
   ]
  ],
- "21": [
+ "22": [
   [
    0.05,
    3.812,
@@ -731,7 +768,7 @@
    "Next, access."
   ]
  ],
- "22": [
+ "23": [
   [
    0.05,
    3.438,
@@ -773,7 +810,7 @@
    "Module 4 is how you prove it works."
   ]
  ],
- "23": [
+ "24": [
   [
    0.05,
    3.625,
@@ -790,7 +827,7 @@
    "So we'll cover what the event stream lets you measure, who owns the data, the phased plan and its link to the program's foundation gate, and the contractor question."
   ]
  ],
- "24": [
+ "25": [
   [
    0.05,
    3.913,
@@ -822,7 +859,7 @@
    "Next, keeping the evidence."
   ]
  ],
- "25": [
+ "26": [
   [
    0.05,
    2.0,
@@ -854,7 +891,7 @@
    "Next, what all this evidence does and doesn't prove."
   ]
  ],
- "26": [
+ "27": [
   [
    0.05,
    3.413,
@@ -881,7 +918,7 @@
    "Now, the people behind the data."
   ]
  ],
- "27": [
+ "28": [
   [
    0.05,
    7.975,
@@ -923,7 +960,7 @@
    "Next, the plan."
   ]
  ],
- "28": [
+ "29": [
   [
    0.05,
    4.65,
@@ -960,7 +997,7 @@
    "Next, cutting a population over."
   ]
  ],
- "29": [
+ "30": [
   [
    0.05,
    7.2,
@@ -992,7 +1029,7 @@
    "Last, the population HR doesn't cover."
   ]
  ],
- "30": [
+ "31": [
   [
    0.05,
    5.7,
@@ -1029,7 +1066,7 @@
    "Finally, what to decide first."
   ]
  ],
- "31": [
+ "32": [
   [
    0.05,
    3.925,

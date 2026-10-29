@@ -7,31 +7,41 @@
   ],
   [
    0.762,
-   6.25,
-   "This briefing comes from Book 02 of the Federal Modernization Workbook, Identity and Directory."
+   9.113,
+   "This briefing comes from Book 02 of the Federal Modernization Workbook, Identity and Directory: the move from Active Directory to Entra ID."
   ],
   [
-   7.013,
-   3.413,
-   "It's about the move from Active Directory to Entra ID."
+   9.875,
+   9.95,
+   "What Book 02 accomplishes is a directory where an object's place in the tree has become attributes and rules, and every service account has an owner and a target."
   ],
   [
-   10.425,
-   14.588,
-   "We'll take it through four questions: why identity matters now, what actually changes when a directory moves to the cloud, who has to own which decisions, and how to do it without losing the governance that twenty-five years of Active Directory quietly carried."
+   19.825,
+   6.05,
+   "Of the workbook's four tracks, it carries the directory side of the HR track and the service accounts."
   ],
   [
-   25.012,
-   4.975,
-   "Here's the short version, and it's worth holding onto: this isn't a directory upgrade."
+   25.875,
+   7.45,
+   "People's attributes are Book 03, devices and servers Book 05, and AI agents Book 17."
   ],
   [
-   29.988,
-   4.362,
-   "It decides whether every security control that comes after it actually works."
+   33.325,
+   7.562,
+   "We'll take it through four questions: why identity matters now, what changes, who owns which decisions, and how to do it."
   ],
   [
-   34.35,
+   40.888,
+   2.962,
+   "The short version: this isn't a directory upgrade."
+  ],
+  [
+   43.85,
+   3.212,
+   "It decides whether every later control actually works."
+  ],
+  [
+   47.062,
    1.25,
    "Let's start with why."
   ]
@@ -195,6 +205,43 @@
  "5": [
   [
    0.05,
+   7.325,
+   "Before the size of the job, it helps to know which job is whose, because one O U tree holds four different populations."
+  ],
+  [
+   7.375,
+   2.725,
+   "The workbook treats them as four tracks."
+  ],
+  [
+   10.1,
+   7.5,
+   "People, the HR track: Book 02 builds the directory side, and Book 03 supplies the attributes."
+  ],
+  [
+   17.6,
+   9.588,
+   "End-user devices and servers, the Intune and Arc tracks: Book 02's Group Policy analysis finds their settings, and Book 05 moves them."
+  ],
+  [
+   27.188,
+   8.575,
+   "And the non-person track: every service account gets an owner and a target, here in Book 02, with AI agents in Book 17."
+  ],
+  [
+   35.763,
+   9.35,
+   "Appendix A maps that work to account management, attribute-based access and least privilege in nist 800-53, and to M twenty-two oh-nine."
+  ],
+  [
+   45.112,
+   2.837,
+   "Next, everything else the directory holds up."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
    3.038,
    "The second thing that changes is the size of the job."
   ],
@@ -239,7 +286,7 @@
    "Next, delegation."
   ]
  ],
- "6": [
+ "7": [
   [
    0.05,
    2.038,
@@ -281,7 +328,7 @@
    "So the program's default is unrestricted units, with restricted management a deliberate, recorded choice for sensitive accounts."
   ]
  ],
- "7": [
+ "8": [
   [
    0.05,
    4.338,
@@ -328,7 +375,7 @@
    "One thing stays on: password hash sync, for leaked-credential detection and as a fallback."
   ]
  ],
- "8": [
+ "9": [
   [
    0.05,
    0.6,
@@ -370,7 +417,7 @@
    "Next, how it's done."
   ]
  ],
- "9": [
+ "10": [
   [
    0.05,
    6.513,
@@ -407,7 +454,7 @@
    "A few rules hold every time: never enforce an untested policy on everyone, keep two cloud-only break-glass accounts, and treat any closure as unproven until it carries its evidence."
   ]
  ],
- "10": [
+ "11": [
   [
    0.05,
    3.663,
@@ -464,7 +511,7 @@
    "So, what are we asking for?"
   ]
  ],
- "11": [
+ "12": [
   [
    0.05,
    0.95,

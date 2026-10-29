@@ -1,70 +1,55 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.566
-Endpoint security policies
-aren't a higher-priority source;
+00:00:00.050 --> 00:00:05.057
+Chapter 08 breaks the seven phases into
+working tasks, with durations from the
 
 2
-00:00:03.566 --> 00:00:06.800
-they have the same standing
-as configuration profiles.
+00:00:05.057 --> 00:00:10.450
+program's reference plan for a large fleet
+that already runs Configuration Manager.
 
 3
-00:00:06.800 --> 00:00:11.619
-In the program's library, though, they
-own every Defender, BitLocker, firewall,
+00:00:10.450 --> 00:00:15.178
+First comes the inventory and classification,
+then co-management for a pilot,
 
 4
-00:00:11.619 --> 00:00:13.990
-account protection and LAPS setting,
+00:00:15.178 --> 00:00:20.275
+then building every policy unassigned, with
+the riskier protections in audit mode.
 
 5
-00:00:13.990 --> 00:00:18.350
-and the settings catalog profiles
-that duplicated them are retired.
+00:00:20.275 --> 00:00:24.530
+The pilot is about five percent of
+the fleet, representative across
 
 6
-00:00:18.350 --> 00:00:20.412
-The slide walks through each one.
+00:00:24.530 --> 00:00:29.013
+tiers and regions, and the GPOs stay
+linked so conflicts can be measured.
 
 7
-00:00:20.412 --> 00:00:21.638
-A few highlights.
+00:00:29.013 --> 00:00:34.423
+Then four waves of three weeks each, and
+finally the links and GPOs are disabled,
 
 8
-00:00:21.638 --> 00:00:26.173
-Sending every file sample to Microsoft
-can upload organizational data,
+00:00:34.423 --> 00:00:37.087
+kept ninety days, backed up and deleted.
 
 9
-00:00:26.173 --> 00:00:27.987
-so that's the data owner's call.
+00:00:37.087 --> 00:00:42.425
+On these estimates, the program reaches the
+last phase in roughly thirty-four weeks.
 
 10
-00:00:27.987 --> 00:00:32.203
-Silent encryption and a TPM PIN
-can't apply to the same device,
+00:00:42.425 --> 00:00:45.932
+One reminder: rolling back
+a pilot means reassigning a
 
 11
-00:00:32.203 --> 00:00:34.900
-so Tier 0 gets its own BitLocker policy.
-
-12
-00:00:34.900 --> 00:00:39.437
-On an Entra-joined device, the
-firewall's domain profile doesn't apply.
-
-13
-00:00:39.437 --> 00:00:44.363
-And attack surface reduction rules run in
-audit for thirty days before blocking.
-
-14
-00:00:44.363 --> 00:00:46.767
-Appendix A flags the crosswalk traps,
-
-15
-00:00:46.767 --> 00:00:50.780
-such as a logon message breaking
-Autopilot pre-provisioning.
+00:00:45.932 --> 00:00:49.800
+policy with the old value, not
+just removing the assignment.

@@ -51,6 +51,25 @@ Cloud identity platforms provide individually powerful tools. The program uses t
 
 Each mechanism is documented by Microsoft; the program's contribution is **the contract that binds them together**, so that setting a user's organizational attributes produces consistent downstream effects: group membership, administrative-unit scope, policy targeting, license assignment and drift-detector visibility.
 
+### Four populations, four tracks
+
+An Active Directory forest holds four populations of identity, and they move to Entra ID and Azure by different paths, each with its own source of truth. The program treats them as [four tracks](../guides/attribute-driven-migration.md#four-tracks):
+
+| Track | What it covers | Source of truth for its attributes | Where the workbook covers it |
+|---|---|---|---|
+| **HR** | Employees' and contractors' user accounts | HR and the contractor source, through provisioning | [Book 03](../b03-hr-identity/index.md) |
+| **Intune** | Workstations, laptops and mobile devices | Device provisioning: Autopilot registration, Intune enrollment, Graph writes | [Book 05](../b05-devices/index.md), Chapters 03, 04 and 08 |
+| **Azure Arc** | Servers on premises and in other clouds | Arc onboarding tags and resource group, then Azure Policy | [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md) |
+| **Non-person identity** | Service accounts, service principals, managed identities and AI agents | The owner or sponsor record in the system inventory, not HR | [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#modernizing-service-accounts); [Book 06](../b06-data-platform/index.md); [Book 17](../b17-ai-identity/index.md) |
+
+: The four tracks of the migration {.striped .hover}
+
+The four mechanisms apply mostly to the first two tracks: dynamic groups hold users or devices, and administrative units and Conditional Access target them. HR never describes a device, a server or a service, and a device rule can't read its owner's attributes. Group Policy splits the same way: user-configuration settings move with people, to user-targeted Intune policy and Conditional Access, and computer-configuration settings move with devices (Intune device policy) and with servers (Azure Policy and machine configuration), which [Chapter 05](05-policy-transformation.md) covers. The rest of this chapter is the HR track.
+
+### Where this ends
+
+The goal is that every person, device, server and workload is governed by attributes that are true, owned by exactly one source, and read by policy. Joining, moving and leaving then change access automatically, with no ticket and no hand-edited group; delegation and policy follow facts about the object, not its place in a folder tree; every non-person identity has a named owner and a credential that expires or is managed; every access decision leaves evidence; and Active Directory can be reduced and retired without losing any of the four jobs the OU tree did. The companion guide's [What this migration accomplishes](../guides/attribute-driven-migration.md#what-this-migration-accomplishes) sets out how the program knows each track is there *(design guidance)*. Among the federal requirements, this work supports account management (NIST SP 800-53 AC-2) for people and inventory and configuration (CM-8, CM-2, CM-6) for devices and servers, in the program's mapping in [Appendix A](appendix-a-requirements-mapping.md#requirements-mapping).
+
 ## Organizational attributes
 
 Organizational position is carried in attributes on every governed user object (and, where applicable, device and group objects).
@@ -58,6 +77,8 @@ Organizational position is carried in attributes on every governed user object (
 ### Where the attributes live
 
 Use a native Entra attribute wherever one exists (`department`, `jobTitle`, `employeeId`, `employeeType`, `employeeHireDate`, `employeeLeaveDateTime`, `employeeOrgData` and `manager`), and add an extension attribute only where a dynamic membership rule needs a value it can't read natively. Rules can read `department`, `jobTitle`, `employeeId` and `extensionAttribute1` through `15`, among others, plus directory extension properties; they can't read `employeeType`, `employeeOrgData` or `manager` (direct-reports groups use a separate rule form).[^c04-dyn-rules] [Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md) fixes the carriers: coded organization, worker-type and position-category attributes for access targeting, and the date attributes that drive the lifecycle. The examples below follow it. Book 03 reserves `extensionAttribute2` and `extensionAttribute3` for hire and termination dates on AD-landed users, so don't use them for department or division.
+
+Entra ID has several places an attribute can live: native properties, the fifteen extension attributes, directory extensions, custom security attributes, and the device object's own properties, and dynamic rules can read only some of them. The companion guide's [attributes section](../guides/attribute-driven-migration.md#attributes) compares each store with Active Directory, attribute by attribute, and Book 03, Chapter 06 sets out [which store the program uses for what](../b03-hr-identity/06-canonical-attribute-schema.md#the-attribute-stores).
 
 `extensionAttribute1` through `15` exist in both landing zones. For synced users AD is the source and the Entra values are read-only; for cloud-only users they can be set directly.[^c04-onprem-ext] Once AD is no longer the source, HR-driven inbound provisioning writes the same values straight to Entra ID, so the attribute source has to be planned before AD retires. API-driven and HR-driven inbound provisioning are included with Microsoft Entra ID P1 and above, and need a P1 or higher license for every user they provision.[^c04-api-prov][^c04-hr]
 

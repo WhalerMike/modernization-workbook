@@ -1,65 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.537
-Chapter 11 turns the inventory
-into change, in three stages.
+00:00:00.050 --> 00:00:01.075
+How do you get there?
 
 2
-00:00:04.537 --> 00:00:08.587
-Analyze compares the current state
-with the target and produces a diff.
+00:00:01.075 --> 00:00:02.613
+Start with an inventory.
 
 3
-00:00:08.587 --> 00:00:12.681
-Plan expands that diff into
-actions, each scoped to one object,
+00:00:02.613 --> 00:00:06.707
+You can't modernize what you haven't
+counted, and nothing gets retired
 
 4
-00:00:12.681 --> 00:00:16.213
-put in dependency order, and
-paired with its rollback.
+00:00:06.707 --> 00:00:10.300
+until it's written down: read-only,
+with proof of how it was read.
 
 5
-00:00:16.213 --> 00:00:20.550
-A plan has to pass validation, then
-approval by someone who didn't write it.
+00:00:10.300 --> 00:00:13.011
+The assessment account
+has no write rights,
 
 6
-00:00:20.550 --> 00:00:24.988
-Then a separate identity carries it
-out and closes with an evidence packet.
+00:00:13.011 --> 00:00:16.700
+the code can't issue write
+commands, and every call is logged.
 
 7
-00:00:24.988 --> 00:00:29.620
-How far automation may go is capped
-by a ladder, from simply recording,
+00:00:16.700 --> 00:00:21.801
+An ordinary signed-in account already
+sees more than most teams expect:
 
 8
-00:00:29.620 --> 00:00:32.951
-up to autonomy for a short
-list of low-risk changes.
+00:00:21.801 --> 00:00:26.038
+the topology, the OU tree, most
+Group Policy, users and groups.
 
 9
-00:00:32.951 --> 00:00:35.451
-The default ceiling is gated actuation,
+00:00:26.038 --> 00:00:31.463
+Every run records who, when, against
+what, and a hash of every file.
 
 10
-00:00:35.451 --> 00:00:38.937
-because it's a posture an
-authorizing official can sign.
+00:00:31.463 --> 00:00:33.850
+Eleven streams feed the risk scoring.
 
 11
-00:00:38.937 --> 00:00:42.096
-CISA calls its maturity
-model a general guide,
+00:00:33.850 --> 00:00:39.565
+One example: Windows Server 2016
+reaches end of support on January 12,
 
 12
-00:00:42.096 --> 00:00:46.225
-not a strict set of requirements,
-so this is design, not mandate.
+00:00:39.565 --> 00:00:43.375
+2027, so every such server
+needs a disposition.
 
 13
-00:00:46.225 --> 00:00:50.400
-And when nothing has drifted,
-the next run plans zero actions.
+00:00:43.375 --> 00:00:47.660
+And no application leaves its data
+until its transactions are profiled.

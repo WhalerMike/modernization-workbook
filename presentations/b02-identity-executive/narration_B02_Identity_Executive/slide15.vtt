@@ -1,64 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.298
-The migration runs as eleven phases in
-five waves: foundation, then objects,
+00:00:00.050 --> 00:00:02.925
+Sign-in is where users feel the migration.
 
 2
-00:00:05.298 --> 00:00:10.800
-then privilege and policy, then
-authentication, then steady-state governance.
+00:00:02.925 --> 00:00:08.393
+M-22-09 requires phishing-resistant
+MFA, and its targets were due
 
 3
-00:00:10.800 --> 00:00:12.383
-Each phase has a rollback,
+00:00:08.393 --> 00:00:12.750
+at the end of fiscal 2024, so this
+is a requirement now, not a goal.
 
 4
-00:00:12.383 --> 00:00:15.850
-and the next one doesn't start
-until its criteria are met.
+00:00:12.750 --> 00:00:15.312
+It names PIV as the simplest route.
 
 5
-00:00:15.850 --> 00:00:19.535
-The program estimates forty-three
-to sixty-eight weeks in total,
+00:00:15.312 --> 00:00:19.374
+That flips the old roadmap,
+which saved smart cards for last.
 
 6
-00:00:19.535 --> 00:00:22.525
-and those are planning
-estimates, not measurements.
+00:00:19.374 --> 00:00:21.941
+Your workforce already carries the cards,
 
 7
-00:00:22.525 --> 00:00:24.637
-What leadership watches are the gates.
+00:00:21.941 --> 00:00:24.800
+so certificate-based
+sign-in is the fastest win.
 
 8
-00:00:24.637 --> 00:00:29.112
-Policies aren't enforced until
-registration passes ninety-five percent.
+00:00:24.800 --> 00:00:28.875
+Administrators go first,
+on security keys or PIV.
 
 9
-00:00:29.112 --> 00:00:33.376
-Help desk volume has to return to
-normal within a week of each wave.
+00:00:28.875 --> 00:00:33.888
+Then card holders, managed Windows
+devices, and everyone else on passkeys,
 
 10
-00:00:33.376 --> 00:00:37.314
-And no policy aimed at everyone
-ever goes straight from off to on,
+00:00:33.888 --> 00:00:37.175
+in parallel, in roughly
+twelve to eighteen weeks.
 
 11
-00:00:37.314 --> 00:00:40.362
-because one mistake can
-lock out the whole agency.
+00:00:37.175 --> 00:00:40.400
+Text messages and voice
+calls go away for staff.
 
 12
-00:00:40.362 --> 00:00:43.862
-Identity engineering approves
-each wave on its gate.
+00:00:40.400 --> 00:00:43.925
+The CISO sets that requirement,
+administrators first.
 
 13
-00:00:43.862 --> 00:00:46.780
-And the last step is
-retiring Active Directory.
+00:00:43.925 --> 00:00:45.910
+So how does the whole migration run?

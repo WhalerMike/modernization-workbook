@@ -4,7 +4,7 @@ The 15-minute Why / What / Who / How briefing for [Book 05](../../docs/books/b05
 
 | File | Use |
 |---|---|
-| `B05_Devices.pptx` | The deck: eleven narrated slides, then a backup section with the full source list |
+| `B05_Devices.pptx` | The deck: thirteen narrated slides (slide 2 places the book as the series' Intune and Arc tracks; slide 3 shows which platforms each covers and the four tiers for the rest), then a backup section with the full source list and the federal requirements' full citations |
 | `B05_Devices_Narrated.pptx` | Self-running version with the narration embedded and slide timings set |
 | `B05_Devices_Narration_Script.md` | The narration text, for practice |
 | `narration_B05_Devices/` | Per-slide audio and durations |

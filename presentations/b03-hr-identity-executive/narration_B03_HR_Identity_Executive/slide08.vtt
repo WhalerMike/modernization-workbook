@@ -1,66 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.300
-Here's the pipeline at leadership level.
+00:00:00.050 --> 00:00:04.225
+The platform uses Oracle's field
+names, but they aren't the contract.
 
 2
-00:00:02.300 --> 00:00:07.399
-HR publishes worker records, a small
-service translates them into one standard
+00:00:04.225 --> 00:00:09.656
+The durable contract is OPM's standard
+personnel data: the same data elements
 
 3
-00:00:07.399 --> 00:00:12.112
-model, and Entra's provisioning service
-creates and updates the accounts.
+00:00:09.656 --> 00:00:14.663
+and codes in every agency, and a
+standard code on every personnel action.
 
 4
-00:00:12.112 --> 00:00:15.503
-Oracle's platform has no
-ready-made Entra connector,
+00:00:14.663 --> 00:00:20.145
+If you map identity to the standard once,
+that one crosswalk covers every employee,
 
 5
-00:00:15.503 --> 00:00:20.313
-so Microsoft's own guidance is this
-pattern, with a service the agency runs.
+00:00:20.145 --> 00:00:25.387
+survives the next vendor change, and can
+be reused by any agency on the platform.
 
 6
-00:00:20.313 --> 00:00:21.662
-That service matters.
+00:00:25.387 --> 00:00:26.937
+A few rules keep it clean.
 
 7
-00:00:21.662 --> 00:00:26.456
-It checks every record and refuses
-bad ones, processes changes in order,
+00:00:26.937 --> 00:00:30.413
+Use the attributes Entra
+already understands first.
 
 8
-00:00:26.456 --> 00:00:30.925
-and keeps a record of every event,
-so every account has a paper trail.
+00:00:30.413 --> 00:00:35.650
+Put codes in access rules, never display
+names, because names get retyped.
 
 9
-00:00:30.925 --> 00:00:33.965
-Accounts land in Active Directory for now,
+00:00:35.650 --> 00:00:38.788
+And remember the standard
+covers federal employees only.
 
 10
-00:00:33.965 --> 00:00:37.700
-and directly in Entra ID as
-each group of users moves.
+00:00:38.788 --> 00:00:43.119
+The decision: the data architect
+builds one governed crosswalk,
 
 11
-00:00:37.700 --> 00:00:41.532
-Because this service handles
-personnel data inside your boundary,
+00:00:43.119 --> 00:00:45.325
+and HR owns the code lists it uses.
 
 12
-00:00:41.532 --> 00:00:43.038
-it needs an authorization.
-
-13
-00:00:43.038 --> 00:00:46.113
-The authorizing official
-grants it before the pilot.
-
-14
-00:00:46.113 --> 00:00:47.570
-Next, the people.
+00:00:45.325 --> 00:00:46.940
+Now, the data flow.

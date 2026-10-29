@@ -168,6 +168,51 @@ Every decision slide names the decision, its owner and when it's needed, and the
   "Book 03, index; Chapter 01 — Overview and Applicability (The proposal; The ask); Chapter 12 (About the numbers in the gates).");
 }
 
+// ------------------------------------------------------------------ Track: this book is the HR track
+{
+  const s = content(S_WHY, "Book 03 is the HR track: people, from their records");
+  tag(s, "Why");
+  const cols = [
+    ["FaUserCheck", "What it accomplishes", HEX.teal, HEX.tealTint, [
+      "Employees from HR; contractors from the contractor source of authority",
+      "Joiner, mover and leaver change access by rule, not by ticket",
+      "One set of true attributes read by groups, delegation and access policy"]],
+    ["FaClipboardCheck", "How you know", HEX.navy, HEX.navyTint, [
+      "Every enabled account matches an HR or contractor record, or an owned exception",
+      "No hand-kept membership left in OU-derived groups",
+      "Drift checks clean; fixes made at the source (design guidance)"]],
+    ["FaRoute", "Covered elsewhere", HEX.amber, HEX.amberTint, [
+      "End-user devices, the Intune track: Book 05",
+      "Servers, the Arc track: Book 05, Chapter 09",
+      "Service accounts: Book 02, Chapter 09",
+      "Data-platform principals: Book 06; AI agents: Book 17"]],
+  ];
+  cols.forEach((c, i) => {
+    const x = 0.6 + i * 4.1;
+    box(s, `Track col ${i + 1}`, x, 1.5, 3.95, 3.5, c[3]);
+    icon(s, c[0], x + 0.22, 1.64, 0.6, c[2]);
+    T(s, `Track head ${i + 1}`, c[1], { x: x + 0.98, y: 1.64, w: 2.85, h: 0.6, bold: true, color: c[2], fontSize: 17, fontFace: "Cambria", valign: "middle" });
+    T(s, `Track text ${i + 1}`, bullets(c[4], 13.5), { x: x + 0.25, y: 2.38, w: 3.55, h: 2.55, paraSpaceAfter: 6 });
+  });
+  D.callout(s, "Reach", 5.15, 0.95, "FaTriangleExclamation", HEX.red, "HR never describes a device, a server or a service: ",
+    "a device rule can't read its owner, and a service account answers to its owner and sponsor, not to a hire date.");
+  T(s, "Requirements", [{ text: "Federal requirements:  ", options: { bold: true, color: HEX.navy } },
+    { text: "NIST SP 800-53 AC-2, AC-2(1), PS-4, PS-5, IA-4(4); OMB M-19-17; OMB M-22-09 §III.A (Book 03, Ch 11: control support, not control closure)" }],
+    { x: 0.6, y: 6.16, w: 12.15, h: 0.42, fontSize: 11.5, valign: "middle" });
+  sources(s, "Sources: Book 03, Chapters 01, 02, 06, 08, 10, 11; Book 05, Ch 03; attribute-driven migration guide. Full citations in the backup.");
+  narrate(s,
+`First, where this book sits. The series moves four populations of identity to the cloud, each on its own track with its own source of truth, and Book 03 is the HR track: people.
+
+What it accomplishes: every employee account follows the HR system of record, and every contractor account follows the contractor source of authority, which remains the agency's decision. Joiners, movers and leavers then change access by rule, not by ticket, because groups, delegated administration and Conditional Access all read the same true attributes.
+
+How you know you're there, as program design guidance: every enabled account correlates to an authoritative record or carries an owned exception; every group that used to be built from OU position is a validated rule, with no hand-maintained membership; and the scheduled drift comparison runs clean, with findings fixed at the source. The book's own gates, in Chapter 12 and Appendix C, take precedence.
+
+What this book doesn't cover: end-user devices and servers, the Intune and Arc tracks in Book 05; and the non-person identities, service accounts in Book 02, data-platform principals in Book 06, and AI agents in Book 17. HR never describes a device, a server or a service.
+
+For the federal controls, the design supports account management, termination and transfer, and identifier status in SP 800-53, under the M-19-17 ICAM framework. It supports them; it doesn't close them.`,
+  "Book 03, Chapter 01 (the proposal; contractors and vendors need their own source); Chapter 06; Chapter 08 (joiner, mover, leaver); Chapter 10 (from attributes to access); Chapter 11 (control support: AC-2, AC-2(1), PS-4, PS-5, IA-4); Chapter 12 and Appendix C (gates). Book 05, Chapter 03 (device facts don't come from the primary user). Non-person identities: Book 02, Chapter 09; Book 06; Book 17. Success criteria are program design guidance.");
+}
+
 // ------------------------------------------------------------------ Why 1
 {
   const s = content(S_WHY, "Access now runs on employee data");
@@ -721,6 +766,23 @@ The end state is simple to say. Nobody requests an account for a new hire: the h
     "Microsoft Learn: Entra ID data retention; provisioning logs; audit logs; emergency access accounts.  ·  Federal PKI Common Policy (PIV issuing CAs).",
   ];
   T(s, "Source list", bullets(src, 13), { x: 0.6, y: 1.5, w: 12.1, h: 5.0, paraSpaceAfter: 8 });
+}
+
+// ------------------------------------------------------------------ Backup: federal requirements (the deck's endnotes)
+{
+  const s = D.content("Backup", "Federal requirements: full citations");
+  const R = [
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "AC-2 Account Management (including AC-2l, aligned with personnel termination and transfer); AC-2(1) Automated System Account Management", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "HR track: accounts follow HR events"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "PS-4 Personnel Termination; PS-5 Personnel Transfer", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Leaver and mover"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "IA-4 Identifier Management; IA-4(4) Identify User Status (for example, contractor)", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "One person key; worker type"],
+    ["OMB M-19-17, Enabling Mission Delivery through Improved Identity, Credential, and Access Management", "The enterprise ICAM policy framework; §IV Governance", "May 21, 2019", "HR as the source of authority"],
+    ["OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles", "§III.A Identity: centralized identity management systems for agency users", "Jan. 26, 2022", "HR track"],
+  ];
+  s.addTable([head(["Primary source", "Section or control", "Date", "Used for"]),
+    ...R.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }, { text: r[3] }])],
+    tableOpts([3.3, 4.85, 1.95, 2.05], { y: 1.45, fontSize: 11.5, rowH: [0.36, 0.7, 0.7, 0.7, 0.7, 0.7] }));
+  txt(s, "Requirements note", "Mapping from Book 03, Chapter 11 (Control support) and Chapters 02 and 08, sources checked October 20, 2026. Control support, not control closure: each control also needs agency policy, organization-defined parameters, procedures and assessment.",
+    { x: 0.6, y: 6.0, w: 12.15, h: 0.55, fontSize: 11, italic: true, color: HEX.slate });
 }
 
 // ---------------------------------------------------------------- narration.json must match the narrated slides

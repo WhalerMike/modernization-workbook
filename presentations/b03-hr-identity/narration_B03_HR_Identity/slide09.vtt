@@ -1,78 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.300
-Next, access.
+00:00:00.050 --> 00:00:00.850
+Now, how.
 
 2
-00:00:01.300 --> 00:00:05.550
-Once the attributes can be trusted,
-access is derived from them.
+00:00:00.850 --> 00:00:05.875
+Personnel actions drive the three
+identity events, by code, not by ticket.
 
 3
-00:00:05.550 --> 00:00:09.738
-A personnel record becomes an
-attribute, a rule or access package
+00:00:05.875 --> 00:00:09.837
+A joiner gets an account and
+baseline access, ready on day one.
 
 4
-00:00:09.738 --> 00:00:13.925
-turns it into an entitlement, and
-an evidence record captures why.
+00:00:09.837 --> 00:00:12.539
+A mover loses the old assignment's access,
 
 5
-00:00:13.925 --> 00:00:18.781
-So every entitlement traces back to
-something: a rule, an approved exception,
+00:00:12.539 --> 00:00:16.113
+gets the new baseline, and
+has any exceptions reviewed.
 
 6
-00:00:18.781 --> 00:00:22.712
-an authoritative attribute, or
-a privileged-access decision.
+00:00:16.113 --> 00:00:21.123
+And a leaver is blocked first, the account
+disabled and sessions revoked at the
 
 7
-00:00:22.712 --> 00:00:24.962
-That's what makes access explainable.
+00:00:21.123 --> 00:00:24.051
+effective separation
+time; then credentials,
 
 8
-00:00:24.962 --> 00:00:27.971
-Drift is found by
-comparison, not by complaint:
+00:00:24.051 --> 00:00:26.826
+devices and access are
+removed in parallel.
 
 9
-00:00:27.971 --> 00:00:31.850
-scheduled checks compare HR,
-the model and the directories.
+00:00:26.826 --> 00:00:29.838
+The book is precise about what
+the platform really does.
 
 10
-00:00:31.850 --> 00:00:34.493
-And it's measured in
-terms leadership can read,
+00:00:29.838 --> 00:00:32.341
+Revoking sessions stops new tokens,
 
 11
-00:00:34.493 --> 00:00:37.275
-like the time from separation
-to blocked access.
+00:00:32.341 --> 00:00:35.762
+but tokens already issued
+last until they expire.
 
 12
-00:00:37.275 --> 00:00:41.656
-One practical catch: Entra ID keeps
-audit and provisioning logs for
+00:00:35.762 --> 00:00:38.565
+Privileged leavers need
+their own block path,
 
 13
-00:00:41.656 --> 00:00:45.725
-only thirty days, so the book
-exports them from the pilot onward.
+00:00:38.565 --> 00:00:42.988
+because the built-in disable task
+doesn't support users with admin roles.
 
 14
-00:00:45.725 --> 00:00:47.962
-And the evidence is a byproduct.
+00:00:42.988 --> 00:00:46.605
+And synced users have to be
+deleted in Active Directory too,
 
 15
-00:00:47.962 --> 00:00:51.292
-The same records answer the
-auditor's oldest question:
+00:00:46.605 --> 00:00:48.599
+or the next sync brings them back.
 
 16
-00:00:51.292 --> 00:00:55.490
-does every account belong to a
-current person, with a current reason?
+00:00:48.599 --> 00:00:53.690
+Credentials follow the same events, from
+PIV issuance through to termination.

@@ -1,66 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.450
-Chapter 05 is how the
-existing estate gets there.
+00:00:00.050 --> 00:00:02.414
+Here's how a procurement
+decision reaches a
 
 2
-00:00:03.450 --> 00:00:08.640
-The sources described three separate kits
-that repeated most of the same steps,
+00:00:02.414 --> 00:00:05.238
+device's configuration
+without anyone touching it.
 
 3
-00:00:08.640 --> 00:00:13.515
-because the destination is the same:
-servers in Arc, workstations in Intune,
+00:00:05.238 --> 00:00:09.524
+The purchase order carries an
+organizational code and the serial number.
 
 4
-00:00:13.515 --> 00:00:18.075
-NTLM restricted after it's measured,
-and Conditional Access enforced.
+00:00:09.524 --> 00:00:13.918
+The supplier registers the device at
+purchase, which is also what makes it
 
 5
-00:00:18.075 --> 00:00:20.575
-What differs is who holds
-the decision record.
+00:00:13.918 --> 00:00:18.238
+zero-touch, after a one-time recorded
+approval by a Global Administrator.
 
 6
-00:00:20.575 --> 00:00:26.175
-The rule all three obey: the control
-plane governs, the data plane executes.
+00:00:18.238 --> 00:00:22.742
+That group tag shows up on the Entra
+device, a dynamic group matches on it,
 
 7
-00:00:26.175 --> 00:00:29.981
-Every path runs four phases
-in order, observe, onboard,
+00:00:22.742 --> 00:00:26.788
+and the profile, compliance and
+configuration follow the group.
 
 8
-00:00:29.981 --> 00:00:34.825
-harden and watch, and nothing is
-restricted until it's been measured.
+00:00:26.788 --> 00:00:31.090
+The tag holds a node identifier,
+never a free-text department name,
 
 9
-00:00:34.825 --> 00:00:37.925
-The manual path suits
-small estates and pilots.
+00:00:31.090 --> 00:00:36.188
+so a reorganization changes a mapping
+table, not thousands of registrations.
 
 10
-00:00:37.925 --> 00:00:41.800
-The governed path puts an approval
-reference on every change.
+00:00:36.188 --> 00:00:39.347
+Enrollment restrictions
+are the enforcement point:
 
 11
-00:00:41.800 --> 00:00:44.706
-The retrofit adopts a
-hand-modernized estate,
+00:00:39.347 --> 00:00:43.152
+block personal Windows enrollment,
+and an unregistered device
 
 12
-00:00:44.706 --> 00:00:47.688
-at the risk of blessing
-whatever drift is there.
+00:00:43.152 --> 00:00:47.100
+simply fails to enroll, which is
+the quarantine pillar in practice.
 
 13
-00:00:47.688 --> 00:00:52.460
-And the federal ceiling is human
-approval; autonomous action is refused.
+00:00:47.100 --> 00:00:50.570
+The slide covers naming and
+the Enrollment Status Page.

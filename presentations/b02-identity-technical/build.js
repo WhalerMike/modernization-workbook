@@ -94,15 +94,18 @@ const P2 = "Part 2 — Building the target and migrating";
     { text: "Part 1 — Assessing the forest", options: { bold: true, color: HEX.navy, breakLine: true } },
     { text: "Module 1  Read-only discovery   ·   Module 2  Assessing the forest", options: { color: HEX.ink, breakLine: true } },
     { text: "Part 2 — Building the Entra ID target and migrating", options: { bold: true, color: HEX.teal, breakLine: true } },
-    { text: "Module 3  Building the target   ·   Module 4  Migrating, governing, proving", options: { color: HEX.ink } },
-  ], { x: 0.8, y: 4.75, w: 8.2, h: 1.5, fontSize: 15, paraSpaceAfter: 2 });
+    { text: "Module 3  Building the target   ·   Module 4  Migrating, governing, proving", options: { color: HEX.ink, breakLine: true } },
+    { text: "Tracks: the directory side of HR, and service accounts  ·  Books 03, 05, 17 carry the rest", options: { color: HEX.slate, fontSize: 13 } },
+  ], { x: 0.8, y: 4.75, w: 9.4, h: 1.75, fontSize: 15, paraSpaceAfter: 2 });
   notes(s,
 `This is the technical deep dive for Book 02 of the Federal Modernization Workbook, Identity and Directory. It's for the architects and engineers who will actually run the move from Active Directory to Microsoft Entra ID.
 
 It comes in two parts of about twenty-five minutes each, and four modules you can watch separately. Part 1 is assessing the forest: first what a standard account can learn without any elevated access, then the full privileged assessment and the evidence pipeline behind it. Part 2 is building the Entra ID target and migrating onto it: the sync, sign-in, group, service account, privileged access and Conditional Access decisions, then governance, the eleven-phase playbook, and a reference deployment that shows the whole sequence on one estate.
 
+What Book 02 accomplishes: a directory in which placement has become attributes and rules, delegation has moved to administrative units, and every service account has an owner and a target. Appendix A maps that to NIST SP 800-53 Rev. 5 AC-2, AC-3(13) and AC-6, and to OMB M-22-09. Of the workbook's four tracks, it carries the directory side of the HR track and the service accounts on the non-person track. Where people's attributes come from is Book 03; end-user devices and servers, the Intune and Arc tracks, are Book 05; AI agents are Book 17.
+
 The slides show tables, flows and decision matrices. The code lives in the chapters and appendices; I'll point you to it rather than put it on screen.`,
-  "Book 02, index; Chapters 07–11; Appendices B–C.");
+  "Book 02, index; Chapters 07–11; Appendices A–C; series framing (four tracks, design guidance).");
 }
 
 // ================================================================== 2 Why this matters
@@ -171,7 +174,7 @@ The trap is the lift and shift. Synchronize the forest as it stands, and stale a
   });
   callout(s, "Adapters", 5.35, 1.1, "FaCubes", HEX.amber, "One adapter per dependency: ",
     "PKI, RADIUS and the LDAP proxy are critical because they fail silently; the sync engine is high priority but finishes last, because it's the tether that keeps AD in production.");
-  sources(s, "Sources: Microsoft Learn — administrative units and limits, onPremisesExtensionAttributes, cross-tenant synchronization. Book 02, Chapters 02–04.");
+  sources(s, "Sources: Microsoft Learn — administrative units and limits, onPremisesExtensionAttributes, cross-tenant synchronization. Book 02, Chapters 02–04. Tracks: series framing.");
   notes(s,
 `What has to move. Chapters 02 through 04 make two points that drive everything in this session.
 
@@ -179,7 +182,9 @@ First, placement becomes attributes. In Active Directory, an object's position i
 
 Second, the surface is bigger than users and groups. The program's inventory names eleven dependency types. The first five are what plans usually count. Types six through nine, DNS and DHCP, PKI, RADIUS and the Network Policy Server, and LDAP-bound applications, fail silently when AD goes away. Types ten and eleven, service principal names and trusts, have no direct counterpart in Entra ID.
 
-Each dependency gets an adapter. The PKI, RADIUS and LDAP proxy adapters are critical, because they fail silently. The sync engine finishes last, because it's what keeps AD in production until everything else has moved. The rest of this session is how you find all of that, rebuild it, and prove it.`,
+Each dependency gets an adapter. The PKI, RADIUS and LDAP proxy adapters are critical, because they fail silently. The sync engine finishes last, because it's what keeps AD in production until everything else has moved.
+
+The workbook sorts what moves into four tracks, each with its own source of truth. People's accounts are the HR track: this book builds their directory side, and Book 03 supplies the attributes. Computers split into end-user devices, the Intune track, and member servers, the Arc track, both in Book 05. Service accounts are the non-person track, which this book carries in Chapter 09, with AI agents in Book 17. The rest of this session is how you find all of that, rebuild it, and prove it.`,
   "Book 02, Chapter 02 — The Structural Problem; Chapter 04 — The Hidden Migration Surface.");
 }
 
@@ -594,6 +599,34 @@ One date to act on: the preview member-of operator ends November 3, 2026. After 
   "Book 02, Chapter 09 — Building the Entra ID Target, \"Decomposing the Active Directory identity landscape\" and \"Licensing for governance features.\"");
 }
 
+// ================================================================== 16b Attribute mapping (new)
+{
+  const s = D.content(P2, "The attributes you know, side by side");
+  tag(s, "What");
+  table(s, "Mapping", 1.45, [3.35, 3.6, 5.2], ["AD attribute", "Entra ID property", "What to know"], [
+    ["sAMAccountName", "onPremisesSamAccountName", "Read-only in Entra ID"],
+    ["distinguishedName", "onPremisesDistinguishedName", "Read-only; never use it for policy"],
+    ["objectGUID / ms-DS-ConsistencyGuid", "onPremisesImmutableId", "The source anchor"],
+    ["department / title / company", "department / jobTitle / companyName", "Rules read codes, not these strings"],
+    ["manager (a DN)", "manager (a reference)", "Rules can't read it, except in the direct-reports rule"],
+    ["employeeID / employeeType", "employeeId / employeeType", "employeeId carries the person key; rules can't read employeeType"],
+    ["extensionAttribute1–15", "onPremisesExtensionAttributes", "AD-mastered for synced users; rules can read them"],
+    ["Custom schema attributes", "Directory extensions", "extension_<appId>_<name>"],
+    ["userAccountControl (disabled bit)", "accountEnabled", "Every access rule requires it to be true"],
+    ["altSecurityIdentities", "certificateUserIds", "Only through sync rules the administrator adds: the PIV binding"],
+    ["servicePrincipalName (Kerberos)", "No equivalent", "SPNs stay in AD until workloads move: the non-person track"],
+    ["adminCount", "None", "Privilege comes from roles and PIM"],
+  ], { fontSize: 11.5 });
+  sources(s, "Sources: Microsoft Learn — user resource type; extension attributes; dynamic membership rules; certificateUserIds (as cited in the companion guide). Book 02, Ch 09.");
+  notes(s,
+`Placement becomes attributes, so here are the attributes the team already knows and what each becomes in Entra ID: the key rows of the companion guide's mapping table.
+
+sAMAccountName becomes onPremisesSamAccountName, read-only. distinguishedName becomes onPremisesDistinguishedName, read-only, and never used for policy, because it is the placement we're leaving. objectGUID, or ms-DS-ConsistencyGuid, becomes onPremisesImmutableId, the source anchor that soft and hard match rest on. department, title and company become department, jobTitle and companyName, and rules should read codes rather than these strings. manager is a reference rules can't read, except in the direct-reports rule. employeeID becomes employeeId, which carries the enterprise person key; rules can't read employeeType.
+
+extensionAttribute1 to 15 become onPremisesExtensionAttributes, mastered in AD for synced users, and rules can read them. Custom schema attributes become directory extensions. The userAccountControl disabled bit becomes accountEnabled, which every access rule should require to be true. altSecurityIdentities reaches certificateUserIds, the PIV binding, only through sync rules the administrator adds. And two have no attribute at all: Kerberos service principal names stay in AD until the workloads move, which is the non-person track, and adminCount has none, because privilege comes from roles and PIM.`,
+  "Book 02, Chapter 09 — \"Organizational units,\" \"Soft match and hard match\"; companion guide, attributes primer (Entra ID compared with AD); Book 03, Chapter 06 — \"Design rules.\"");
+}
+
 // ================================================================== 17 Sync engine
 {
   const s = D.content(P2, "Choosing the sync engine: Cloud Sync unless a Connect-only need applies");
@@ -679,7 +712,7 @@ And since July 1, 2026, Entra ID blocks a hard match onto a cloud account that a
     "App assignment and group licensing don't cascade to nested groups",
     "Flatten deep AGDLP chains; record the mapping",
   ], 12.5), { x: 0.6, y: b + 0.12, w: 5.9, h: 6.5 - b - 0.12, paraSpaceAfter: 3 });
-  subhead(s, "SA head", "SERVICE ACCOUNTS: ELIMINATE STORED SECRETS", 6.8, 1.5, 5.95);
+  subhead(s, "SA head", "NON-PERSON TRACK: SERVICE ACCOUNTS, OWNER AND TARGET", 6.8, 1.5, 5.95);
   const b2 = table(s, "Workloads", 1.85, [2.85, 3.1], ["Account and workload", "Entra ID target"], [
     ["Traditional, calls Entra-protected APIs", "App registration; certificate or federated credential"],
     ["Traditional, Azure-hosted", "Managed identity (user-assigned)"],
@@ -687,12 +720,12 @@ And since July 1, 2026, Entra ID blocks a hard match onto a cloud account that a
     ["gMSA moving to the cloud", "Workload identity federation"],
   ], { x: 6.8, fontSize: 12.5 });
   txt(s, "WIF", bullets([
-    "Federated credential: issuer, exact subject (no wildcards), audience; at most 20",
-    "Two human owners; no client secrets in production",
+    "Owner: the application owner decides each conversion; two human owners per app",
+    "No client secrets in production; a federated credential's subject must match exactly",
   ], 12.5), { x: 6.8, y: b2 + 0.12, w: 5.95, h: 6.5 - b2 - 0.12, paraSpaceAfter: 3 });
   sources(s, "Sources: Microsoft Learn — manage groups (nesting); Cloud Sync group provisioning; workload identity federation and its restrictions; managed identities. Book 02, Ch 09.");
   notes(s,
-`Groups and service accounts each get one recorded decision per object.
+`Groups and service accounts each get one recorded decision per object. Groups serve the HR track; service accounts are the non-person track, with no HR record behind them, so their accountability is an owner and their plan is a target.
 
 For groups, the AGDLP model doesn't map one to one, because Entra ID has no group scope. So every AD security group gets one of five decisions. Used only for on-premises resource ACLs: keep it in AD and don't sync it, since a cloud copy adds nothing. Used for both on-premises and cloud: synchronize it, with AD as the source of authority during the transition. Used only for cloud resources: convert it to cloud-only. Membership follows attributes exactly: convert it to a dynamic group. No members or no assignments: retire it. Where a cloud-only group still has to guard a Kerberos application, Cloud Sync provisions it back to AD as a universal group.
 
@@ -700,8 +733,10 @@ Nesting works for fewer things in Entra ID. Conditional Access follows nested me
 
 For service accounts, the rule is to eliminate stored secrets. A traditional account that calls Microsoft 365 or other Entra-protected APIs becomes an application registration with a certificate, or a federated credential where the host has an OIDC issuer. One whose workload runs on an Azure resource becomes a managed identity, user-assigned preferred. On-premises Kerberos workloads, and standalone MSAs, go to a group managed service account. A gMSA whose workload moves to the cloud goes to workload identity federation.
 
-A federated credential has three working parts: the issuer, a subject that must match exactly with no wildcards, and an audience. An application holds at most twenty, and a wrong subject fails only at token exchange, so test each one. Every application gets two human owners, and no client secrets in production.`,
-  "Book 02, Chapter 09 — Building the Entra ID Target, \"Migrating groups\" and \"Modernizing service accounts.\"");
+A federated credential has three working parts: the issuer, a subject that must match exactly with no wildcards, and an audience. An application holds at most twenty, and a wrong subject fails only at token exchange, so test each one.
+
+Owner and target. Chapter 06's matrix gives service account conversion, per application, to the application owner. Chapter 10's Phase 4 identifies that owner before the account is touched, gives every replacement application two human owners, runs old and new credentials in parallel for 30 days, then disables the legacy account. An account nobody will own is a retirement candidate. And no client secrets in production.`,
+  "Book 02, Chapter 09 — Building the Entra ID Target, \"Migrating groups\" and \"Modernizing service accounts\"; Chapter 06 — \"The responsibility matrix\"; Chapter 10 — \"Phase 4: service account modernization.\"");
 }
 
 // ================================================================== 20 Privileged access

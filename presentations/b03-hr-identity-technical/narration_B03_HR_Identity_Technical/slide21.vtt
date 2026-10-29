@@ -1,57 +1,53 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.862
-The leaver sequence has one
-rule at its heart: block first.
+00:00:00.050 --> 00:00:01.913
+Revocation has its own timing.
 
 2
-00:00:03.862 --> 00:00:06.097
-At the effective separation time,
+00:00:01.913 --> 00:00:05.141
+Entra checks the issuing
+authority's revocation list,
 
 3
-00:00:06.097 --> 00:00:10.487
-disable the account and revoke
-sessions, back to back, in that order.
+00:00:05.141 --> 00:00:08.799
+but it caches that list and
+doesn't support live status checks,
 
 4
-00:00:10.487 --> 00:00:14.519
-Everything else, the PIV card,
-the devices and the access,
+00:00:08.799 --> 00:00:13.175
+so a revoked card stops working on the
+authority's schedule, not instantly.
 
 5
-00:00:14.519 --> 00:00:19.338
-runs after the block, in parallel,
-and nothing is allowed to delay it.
+00:00:13.175 --> 00:00:17.712
+That's why the account block and token
+revocation matter: they close Entra now.
 
 6
-00:00:19.338 --> 00:00:24.687
-Each result is reconciled, and anything
-incomplete escalates until it's confirmed.
+00:00:17.712 --> 00:00:19.412
+Devices are the other trap.
 
 7
-00:00:24.687 --> 00:00:26.675
-Deleting the account comes last,
+00:00:19.412 --> 00:00:23.809
+Intune revokes a device certificate
+when you retire or wipe the device,
 
 8
-00:00:26.675 --> 00:00:30.576
-because deleting first strands
-valid certificates on devices.
+00:00:23.809 --> 00:00:26.938
+but not when you delete the
+user or pull the license.
 
 9
-00:00:30.576 --> 00:00:34.036
-In Lifecycle Workflows, the
-steps with no built-in task
+00:00:26.938 --> 00:00:31.296
+So the order is retire first and
+delete last, and remove certificate
 
 10
-00:00:34.036 --> 00:00:37.650
-go through one custom extension
-that waits for an answer.
+00:00:31.296 --> 00:00:35.888
+assignments before revoking by hand,
+or the device simply gets a new one.
 
 11
-00:00:37.650 --> 00:00:40.012
-Two clocks still run outside the block.
-
-12
-00:00:40.012 --> 00:00:41.380
-Next, access.
+00:00:35.888 --> 00:00:38.380
+That order becomes the leaver sequence.

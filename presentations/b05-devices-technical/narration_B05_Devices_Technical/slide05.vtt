@@ -1,73 +1,25 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.012
-The doctrine is simple to state.
+00:00:00.050 --> 00:00:04.325
+Module 1 is Intune-first onboarding
+and the migration paths.
 
 2
-00:00:02.012 --> 00:00:05.845
-A new asset is governed from
-the moment it first powers on:
+00:00:04.325 --> 00:00:07.888
+Migration brings an existing
+device under governance;
 
 3
-00:00:05.845 --> 00:00:09.351
-by Intune for endpoints, and
-by Azure Arc for servers.
+00:00:07.888 --> 00:00:11.838
+Intune-first refuses to let an
+ungoverned device exist at all.
 
 4
-00:00:09.351 --> 00:00:12.839
-There's no waiting room where it
-joins Active Directory first,
+00:00:11.838 --> 00:00:14.075
+Chapter 04 covers new devices,
 
 5
-00:00:12.839 --> 00:00:15.712
-or reaches production
-without a compliance check.
-
-6
-00:00:15.712 --> 00:00:19.254
-Five pillars carry it, and
-they're the program's doctrine,
-
-7
-00:00:19.254 --> 00:00:21.101
-not Microsoft requirements.
-
-8
-00:00:21.101 --> 00:00:24.249
-The ones to remember: no
-ungoverned device, ever;
-
-9
-00:00:24.249 --> 00:00:29.417
-procurement is the first governance
-step, the way HR feeds user provisioning;
-
-10
-00:00:29.417 --> 00:00:33.939
-and an onboarding failure produces
-a quarantine entry and a ticket,
-
-11
-00:00:33.939 --> 00:00:36.362
-never a degraded production device.
-
-12
-00:00:36.362 --> 00:00:39.369
-Every asset then follows
-the same five phases,
-
-13
-00:00:39.369 --> 00:00:42.375
-from procure through
-provision and validate.
-
-14
-00:00:42.375 --> 00:00:46.468
-The organizational assignment comes from
-the first source that can supply it,
-
-15
-00:00:46.468 --> 00:00:49.220
-and the target is fourteen
-days from purchase order.
+00:00:14.075 --> 00:00:18.170
+and Chapter 05 the three
+paths for the existing estate.

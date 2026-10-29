@@ -24,6 +24,50 @@ Book 02 made the case that identity is now where every access decision is made. 
 Workbook: Book 03, index and Chapter 01.`);
 }
 
+// ------------------------------------------------------------------ Track: this book is the HR track
+{
+  const s = D.content("Why HR decides", "Book 03 is the HR track: people, from their records");
+  tag(s, "Why");
+  const cols = [
+    ["FaUserCheck", "What it accomplishes", HEX.teal, HEX.tealTint, [
+      "Employees from HR; contractors from their own source of authority",
+      "Joiner, mover and leaver change access by rule, with no ticket",
+      "Attributes feed groups, admin units, Conditional Access and Lifecycle Workflows"]],
+    ["FaClipboardCheck", "How you know", HEX.navy, HEX.navyTint, [
+      "Every enabled account matches an HR or contractor record, or an owned exception",
+      "Every OU-derived group is a validated rule; no hand-kept membership",
+      "Drift checks run clean; fixes go to the source (design guidance)"]],
+    ["FaRoute", "Not in this book", HEX.amber, HEX.amberTint, [
+      "Devices, the Intune track: Book 05",
+      "Servers, the Arc track: Book 05, Ch 09",
+      "Service accounts: Book 02, Ch 09",
+      "SQL and app principals: Book 06; AI agents: Book 17"]],
+  ];
+  cols.forEach((c, i) => {
+    const x = 0.6 + i * 4.1;
+    box(s, `Track col ${i + 1}`, x, 1.5, 3.95, 3.5, c[3]);
+    icon(s, c[0], x + 0.22, 1.64, 0.6, c[2]);
+    txt(s, `Track head ${i + 1}`, c[1], { x: x + 0.98, y: 1.64, w: 2.85, h: 0.6, bold: true, color: c[2], fontSize: 17, fontFace: "Cambria", valign: "middle" });
+    txt(s, `Track text ${i + 1}`, bullets(c[4], 13.5), { x: x + 0.25, y: 2.38, w: 3.55, h: 2.55, paraSpaceAfter: 6 });
+  });
+  callout(s, "Reach", 5.15, 0.95, "FaTriangleExclamation", HEX.red, "HR never describes a device, a server or a service: ",
+    "a device rule can't read its owner, and a service account answers to its owner and sponsor, not to a hire date.");
+  txt(s, "Requirements", [{ text: "Federal requirements:  ", options: { bold: true, color: HEX.navy } },
+    { text: "NIST SP 800-53 AC-2, AC-2(1), PS-4, PS-5, IA-4(4); OMB M-19-17; OMB M-22-09 §III.A (Book 03, Chapter 11: control support, not control closure)" }],
+    { x: 0.6, y: 6.2, w: 12.15, h: 0.34, fontSize: 11.5, valign: "middle" });
+  sources(s, "Sources: Book 03, Chapters 01, 02, 06, 08, 10 and 11; Book 05, Chapter 03; companion guide, attribute-driven migration. Full citations in the backup.");
+  s.addNotes(
+`[0:30–1:30]  First, where this book sits. The series moves four populations to the cloud, each on its own track, and Book 03 is the HR track: people.
+
+It accomplishes one thing. Every employee account follows the HR record, and every contractor account follows the contractor source of authority, which the agency still has to designate. Joiners, movers and leavers then change access by rule, with no ticket and no hand-edited group.
+
+You know you're there when every enabled account matches an authoritative record or carries an owned exception, every group that used to come from an OU is a validated rule, and the drift checks run clean. Those criteria are program design guidance.
+
+What this book doesn't cover: devices and servers, which are Book 05, and service accounts, application principals and AI agents, which are Books 02, 06 and 17. HR never describes them.
+
+Workbook: Book 03, Chapters 01, 06, 08, 10 and 11; Book 05, Chapter 03; the attribute-driven migration guide, "Beyond users."`);
+}
+
 // ------------------------------------------------------------------ Why 1
 {
   const s = D.content("Why HR decides", "Identity is built by hand, and the mission is outgrowing it");
@@ -58,7 +102,7 @@ Workbook: Book 03, index and Chapter 01.`);
     "HR moves to Core HCM, identity moves to Entra ID — and we rebuild the same manual process twice, on new platforms.");
   sources(s, "Sources: FIPS 201-3 (PIV termination); NIST SP 800-53 PS-4, AC-2. Book 03, Chapters 01–02 and 07.");
   s.addNotes(
-`[0:30–1:37]  Why. In many agencies today, nothing connects HR to identity. Accounts, access and credentials are created and removed by ticket, and that costs three ways.
+`[1:30–2:37]  Why. In many agencies today, nothing connects HR to identity. Accounts, access and credentials are created and removed by ticket, and that costs three ways.
 
 Access outlives the job. When someone leaves or changes roles, removal waits for a ticket. Yet the federal PIV standard, FIPS 201-3, requires a card that can't be collected to be terminated within eighteen hours of notification. A ticket-driven process struggles to meet that. Records drift: the phone book, the manager and the approval routing are wrong until someone files a ticket. And every joiner, mover and leaver is help-desk work.
 
@@ -99,7 +143,7 @@ Workbook: Book 03, Chapters 01 and 02; Chapter 07 for the PIV office.`);
     "Federal HR 2.0 covers federal employees only. Contractors need their own authoritative source — decided during the same onboarding.");
   sources(s, "Sources: OMB/OPM, Creating \"Federal HR 2.0\" (Dec. 10, 2025); OPM award (June 10, 2026). Book 03, Chapter 03.");
   s.addNotes(
-`[1:37–2:48]  Why now? Because two migrations open one design window.
+`[2:37–3:48]  Why now? Because two migrations open one design window.
 
 On the HR side: the December 10, 2025 memo from OMB and OPM creates Federal HR 2.0, one government-wide core human capital platform. OPM awarded the platform contract on June 10, 2026, and the first agencies begin moving as fiscal year 2027 starts. The memo's sample timeline runs about eight months per agency, with the agency's interconnections going live around month five.
 
@@ -133,7 +177,7 @@ Workbook: Book 03, Chapter 03 — Federal HR 2.0 and the Core HCM Platform.`);
     "if HR 2.0 slipped a long way, C becomes reasonable. But D's first step — data standards, ownership and the person key — is no-regret either way.");
   sources(s, "Program assessment; ratings are the book's judgment, not external fact. Book 03, Chapters 01 and 03.");
   s.addNotes(
-`[2:48–4:07]  What should we do? There are four realistic options, weighed against what leadership has to balance: the mission and the public, security, cost and resilience. Compliance matters, but on its own it isn't a reason to invest.
+`[3:48–5:07]  What should we do? There are four realistic options, weighed against what leadership has to balance: the mission and the public, security, cost and resilience. Compliance matters, but on its own it isn't a reason to invest.
 
 Option A keeps ticket-driven identity. No new investment, but the risk and the manual work stay where they are: the cost of doing nothing.
 
@@ -172,7 +216,7 @@ Workbook: Book 03, Chapters 01 and 03.`);
     "every attribute gets one name, one definition and one accountable owner. When a fact is wrong, it is fixed in its source — never patched in the directory.");
   sources(s, "Sources: OPM Guide to Data Standards and Guide to Processing Personnel Actions; Microsoft Graph user resource. Book 03, Chapters 04 and 06.");
   s.addNotes(
-`[4:07–5:12]  What does "HR as the source of truth" actually mean? It means one owner for every fact.
+`[5:07–6:12]  What does "HR as the source of truth" actually mean? It means one owner for every fact.
 
 The HR system of record is authoritative for employment status, position, organization, supervisor and effective dates. The identity platform stays authoritative for what it does: credentials, authentication, sessions, directory objects and policy. And contractors, whom HR 2.0 doesn't cover, get their own authoritative source mapped into the same model.
 
@@ -209,7 +253,7 @@ Workbook: Book 03, Chapter 04 — Attribute Authority; Chapter 06 — The Canoni
     "Oracle Core HCM feeding Entra ID today. If the vendors change, the model and the rules hold — only the boundary changes.");
   sources(s, "Sources: Microsoft Learn — API-driven inbound provisioning, provisioning limits; Oracle HCM REST APIs. Book 03, Chapter 05.");
   s.addNotes(
-`[5:12–6:19]  Provisioning turns personnel records into governed identities.
+`[6:12–7:19]  Provisioning turns personnel records into governed identities.
 
 Core HCM publishes worker records and personnel actions. A small middleware, inside the agency's authorization boundary, does five things for every event: it validates the record, applies events in order, normalizes them to the SCIM standard, writes a provenance record, and reconciles the result. Then Entra ID's API-driven inbound provisioning creates and updates the accounts in Entra ID and, through the provisioning agent, in Active Directory. That interface has daily call limits that scale with the license, which the book sizes against the agency's population.
 
@@ -252,7 +296,7 @@ Workbook: Book 03, Chapter 05 — Provisioning Services.`);
     "own the standards, the crosswalk and the person key; make sure every attribute has one accountable owner; carry the standard to the interagency forums where it is adopted.");
   sources(s, "Sources: NIST SP 800-37 Rev. 2; OMB M-19-17; FIPS 201-3; OMB A-108, A-130. Book 03, Chapter 07.");
   s.addNotes(
-`[6:19–7:36]  Who has to be involved. This is an organizational change as much as a technical one.
+`[7:19–8:36]  Who has to be involved. This is an organizational change as much as a technical one.
 
 Owners. HR owns the personnel data and its quality, at the source. The OPM HR 2.0 program owns the platform, the standards and the interconnection. And each contractor source owns its own record.
 
@@ -294,7 +338,7 @@ Workbook: Book 03, Chapter 07 — Who Owns Workforce Identity.`);
     "the personnel action's nature-of-action code decides the identity event; credentials follow the same events — PIV issuance, binding and termination, device certificates retired before the account is deleted.");
   sources(s, "Sources: Microsoft Learn — Lifecycle Workflows, revoke user access; FIPS 201-3. Book 03, Chapters 08–09 and Appendix A.");
   s.addNotes(
-`[7:36–8:43]  How. Personnel actions drive the three identity events, by code, not by ticket.
+`[8:36–9:43]  How. Personnel actions drive the three identity events, by code, not by ticket.
 
 A joiner gets an account and baseline access ready on day one. A mover has the old assignment's access removed, the new baseline applied, and any exceptions reviewed. And a leaver is blocked first: the account disabled and sessions revoked at the effective separation time, then credentials, devices and access removed in parallel, each one reconciled.
 
@@ -334,7 +378,7 @@ Workbook: Book 03, Chapter 08 — Joiner, Mover, Leaver; Chapter 09 — Credenti
     "the same records that run the lifecycle answer the auditor's question — does every account belong to a current person with a current reason?");
   sources(s, "Sources: Microsoft Learn — dynamic membership, entitlement management, log retention; NIST SP 800-53 AC-2, CA-7. Book 03, Chapters 10–11.");
   s.addNotes(
-`[8:43–9:45]  Next, access. Once the attributes are trustworthy, access is derived from them. A personnel record becomes a canonical attribute, a rule or access package turns that into an entitlement, and an evidence record captures why. Every entitlement then traces back to a rule, an approved exception, an authoritative attribute, or a privileged-access decision. That's what makes access explainable.
+`[9:43–10:45]  Next, access. Once the attributes are trustworthy, access is derived from them. A personnel record becomes a canonical attribute, a rule or access package turns that into an entitlement, and an evidence record captures why. Every entitlement then traces back to a rule, an approved exception, an authoritative attribute, or a privileged-access decision. That's what makes access explainable.
 
 Drift is found by comparison, not by complaint: scheduled checks compare HR, the model and the directories. It's measured in business terms leadership can read: time from separation to blocked access, orphaned accounts, and access ready on day one. And the records have to be kept long enough. Entra ID keeps audit and provisioning logs for thirty days with P1 or P2, so the book exports them from the pilot onward.
 
@@ -366,7 +410,7 @@ Workbook: Book 03, Chapter 10 — From Attributes to Access; Chapter 11 — Drif
     "thresholds such as 99% correlation are starting criteria the agency approves through its own risk governance, not federal requirements.");
   sources(s, "Program design. Book 03, Chapter 12 — Execution Plan; Appendix C — Acceptance and Cutover; Chapter 13 — Reference Deployment.");
   s.addNotes(
-`[9:45–10:56]  The execution plan has seven phases, and each gate is the next phase's precondition.
+`[10:45–11:56]  The execution plan has seven phases, and each gate is the next phase's precondition.
 
 Phase zero aligns the program, naming identity as a consumer in both migrations. Phase one settles attribute authority and the schema. Phase two builds and tests the pipeline. Phase three is the pilot. Phase four turns on lifecycle automation and attribute-derived access. Phase five cuts over population by population. And phase six sustains it.
 
@@ -399,7 +443,7 @@ Workbook: Book 03, Chapter 12 — Execution Plan; Appendix C; Chapter 13.`);
   callout(s, "Next", 5.4, 1.1, "FaBook", HEX.navy, "Read next: ",
     "Book 03 for the full design, every claim footnoted; Book 02 for the directory migration it builds on.");
   s.addNotes(
-`[10:56–11:59]  How we'll know it's working, and what we need.
+`[11:56–12:59]  How we'll know it's working, and what we need.
 
 Five measures, each baselined in phase one, and each one a business measure leadership can read. Time from separation to blocked access, in hours. Accounts tied to a person, with orphaned accounts trending to zero. Joiner and mover tickets going down, with access ready on day one. The manager and organization in the directory matching HR. And every exception with an owner and an age.
 
@@ -429,6 +473,23 @@ Workbook: Book 03, Chapters 11 and 12.`);
     "Full footnotes with links and access dates: Book 03, every chapter (whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/).",
   ];
   txt(s, "Source list", bullets(src, 13), { x: 0.6, y: 1.55, w: 12.1, h: 5.0, paraSpaceAfter: 6 });
+}
+
+// ------------------------------------------------------------------ Backup: federal requirements (the deck's endnotes)
+{
+  const s = D.content("Backup", "Federal requirements: full citations");
+  const R = [
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "AC-2 Account Management (including AC-2l, aligned with personnel termination and transfer); AC-2(1) Automated System Account Management", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "HR track: accounts follow HR events"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "PS-4 Personnel Termination; PS-5 Personnel Transfer", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Leaver and mover"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "IA-4 Identifier Management; IA-4(4) Identify User Status (for example, contractor)", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "One person key; worker type"],
+    ["OMB M-19-17, Enabling Mission Delivery through Improved Identity, Credential, and Access Management", "The enterprise ICAM policy framework; §IV Governance", "May 21, 2019", "HR as the source of authority"],
+    ["OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles", "§III.A Identity: centralized identity management systems for agency users", "Jan. 26, 2022", "HR track"],
+  ];
+  s.addTable([head(["Primary source", "Section or control", "Date", "Used for"]),
+    ...R.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }, { text: r[3] }])],
+    tableOpts([3.3, 4.85, 1.95, 2.05], { y: 1.45, fontSize: 11.5, rowH: [0.36, 0.7, 0.7, 0.7, 0.7, 0.7] }));
+  txt(s, "Requirements note", "Mapping from Book 03, Chapter 11 (Control support) and Chapters 02 and 08, sources checked October 20, 2026. Control support, not control closure: each control also needs agency policy, organization-defined parameters, procedures and assessment.",
+    { x: 0.6, y: 6.0, w: 12.15, h: 0.55, fontSize: 11, italic: true, color: HEX.slate });
 }
 
 D.save(OUT).catch((e) => { console.error(e); process.exit(1); });

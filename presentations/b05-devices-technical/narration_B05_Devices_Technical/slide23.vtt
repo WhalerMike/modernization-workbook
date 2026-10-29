@@ -1,60 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.571
-Arc is also how many organizations
-keep end-of-support servers
+00:00:00.050 --> 00:00:03.188
+Before the first server
+connects, settle four things.
 
 2
-00:00:03.571 --> 00:00:06.888
-patched while they migrate, and
-the dates are the point here.
+00:00:03.188 --> 00:00:04.313
+Roles first.
 
 3
-00:00:06.888 --> 00:00:09.185
-As of October twentieth, 2026,
+00:00:04.313 --> 00:00:06.216
+Use the narrowest built-in roles,
 
 4
-00:00:09.185 --> 00:00:15.598
-Windows Server 2012 and 2012 R2 receive
-no further security updates through any
+00:00:06.216 --> 00:00:10.587
+and remember that extensions run
+arbitrary scripts with full privileges.
 
 5
-00:00:15.598 --> 00:00:19.139
-channel, so any still
-running is a red finding:
+00:00:10.587 --> 00:00:14.952
+Microsoft says to treat any Contributor
+on an Arc resource as an indirect
 
 6
-00:00:19.139 --> 00:00:23.063
-migrate, upgrade, or isolate
-it and record the risk.
+00:00:14.952 --> 00:00:18.385
+administrator of the server,
+so scope those roles tightly
 
 7
-00:00:23.063 --> 00:00:28.331
-Windows Server 2016 reaches end of
-support on January twelfth, 2027,
+00:00:18.385 --> 00:00:21.676
+and hold them through
+Privileged Identity Management.
 
 8
-00:00:28.331 --> 00:00:33.412
-so enroll those hosts in ESUs before
-then if they won't be upgraded.
+00:00:21.676 --> 00:00:26.665
+Network: the agent only talks outbound
+over 443, with no inbound rule,
 
 9
-00:00:33.412 --> 00:00:37.155
-Arc servers can also use
-Entra ID for Remote Desktop,
+00:00:26.665 --> 00:00:31.388
+and a private link scope keeps
+that traffic off public networks.
 
 10
-00:00:37.155 --> 00:00:41.854
-but only on Server 2025 or Windows
-11 24H2, and Conditional Access
+00:00:31.388 --> 00:00:35.387
+Run the agent's connectivity check
+from a representative server first.
 
 11
-00:00:41.854 --> 00:00:46.988
-isn't supported there; the control is
-role-based access held through PIM.
+00:00:35.387 --> 00:00:38.468
+Tags: settle one taxonomy
+at connection time,
 
 12
-00:00:46.988 --> 00:00:52.420
-And rollback has an order: remove
-extensions, disconnect, then uninstall.
+00:00:38.468 --> 00:00:42.713
+because tags drive policy scope,
+patching and cost reporting.
+
+13
+00:00:42.713 --> 00:00:46.111
+And images: install the
+agent in your golden image,
+
+14
+00:00:46.111 --> 00:00:50.640
+but never connect the image, or
+every clone shares one resource ID.

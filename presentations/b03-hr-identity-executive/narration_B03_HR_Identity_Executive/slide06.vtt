@@ -1,66 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.488
-Every person needs one key the
-agency controls and never changes.
+00:00:00.050 --> 00:00:03.707
+The HR system is where four
+facts are created: the worker,
 
 2
-00:00:04.488 --> 00:00:05.399
-Here's why.
+00:00:03.707 --> 00:00:07.125
+the position, the assignment
+and the reporting line.
 
 3
-00:00:05.399 --> 00:00:09.625
-It's tempting to use the HR system's
-own person number as the key.
+00:00:07.125 --> 00:00:10.075
+HR doesn't compete with
+the identity platform.
 
 4
-00:00:09.625 --> 00:00:13.233
-But that number changes
-when the HR system changes,
+00:00:10.075 --> 00:00:12.711
+HR owns who a person
+is and where they sit;
 
 5
-00:00:13.233 --> 00:00:15.725
-and Core HCM is exactly that change.
+00:00:12.711 --> 00:00:17.425
+the identity platform owns how they
+prove it and what they can reach now.
 
 6
-00:00:15.725 --> 00:00:17.550
-Contractors come from elsewhere.
+00:00:17.425 --> 00:00:21.167
+HR also knows about hires and
+separations before they happen,
 
 7
-00:00:17.550 --> 00:00:21.809
-So pick an enterprise key, often
-an identifier you already have,
+00:00:21.167 --> 00:00:25.275
+which is what makes day-one readiness
+and same-day removal possible.
 
 8
-00:00:21.809 --> 00:00:23.938
-and map every other number to it.
+00:00:25.275 --> 00:00:28.875
+The rule that holds it together:
+corrections flow upstream.
 
 9
-00:00:23.938 --> 00:00:28.350
-Then the move to the new platform changes
-one mapping, and nothing downstream.
+00:00:28.875 --> 00:00:33.157
+A wrong department is fixed in HR,
+never by hand in the directory,
 
 10
-00:00:28.350 --> 00:00:32.178
-A returning employee is the same
-person, not a new identity,
+00:00:33.157 --> 00:00:36.450
+because a hand edit is just
+a new copy that drifts.
 
 11
-00:00:32.178 --> 00:00:35.288
-and a contractor who
-converts keeps one record.
+00:00:36.450 --> 00:00:39.006
+So the governance body signs one map:
 
 12
-00:00:35.288 --> 00:00:38.438
-And the Social Security
-number is never the join key.
+00:00:39.006 --> 00:00:42.925
+every attribute, its owner
+and its quality expectation.
 
 13
-00:00:38.438 --> 00:00:42.351
-The governance body makes this
-call before Phase 1 closes.
-
-14
-00:00:42.351 --> 00:00:44.020
-Next, the standard.
+00:00:42.925 --> 00:00:44.280
+Next, keys.

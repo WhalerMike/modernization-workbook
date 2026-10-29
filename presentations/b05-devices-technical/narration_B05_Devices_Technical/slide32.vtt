@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Last, what the assessor reads.
+
+2
+00:00:01.925 --> 00:00:05.201
+The evidence is the records
+the services already keep,
+
+3
+00:00:05.201 --> 00:00:09.131
+exported on a schedule and retained,
+mapped to the configuration
+
+4
+00:00:09.131 --> 00:00:15.100
+management and flaw remediation
+controls in NIST SP 800-53.
+
+5
+00:00:15.100 --> 00:00:19.412
+Baseline configuration is the policy
+library under version control.
+
+6
+00:00:19.412 --> 00:00:22.275
+Inventory is the weekly reconciliation.
+
+7
+00:00:22.275 --> 00:00:24.549
+Flaw remediation is the ring table,
+
+8
+00:00:24.549 --> 00:00:28.000
+whose deadlines set the
+organization's patch period.
+
+9
+00:00:28.000 --> 00:00:30.138
+Two GCC facts matter.
+
+10
+00:00:30.138 --> 00:00:32.869
+Intune in GCC uses the commercial service,
+
+11
+00:00:32.869 --> 00:00:38.099
+and Windows Update for Business reports
+don't meet GCC compliance requirements,
+
+12
+00:00:38.099 --> 00:00:41.924
+so patch evidence comes from
+Intune and Autopatch reports.
+
+13
+00:00:41.924 --> 00:00:46.983
+So, from Monday: inventory and triage
+every GPO, set the compliance defaults,
+
+14
+00:00:46.983 --> 00:00:51.062
+carry procurement into the group
+tag, onboard servers with a
+
+15
+00:00:51.062 --> 00:00:55.875
+short-lived certificate principal,
+and reconcile inventories weekly.
+
+16
+00:00:55.875 --> 00:00:56.690
+Thank you.

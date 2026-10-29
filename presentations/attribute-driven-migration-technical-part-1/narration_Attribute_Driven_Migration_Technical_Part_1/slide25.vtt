@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.538
+Dynamic groups take away the ticket queue,
+
+2
+00:00:02.538 --> 00:00:05.950
+and with it the human check, so
+it's worth naming the dangers.
+
+3
+00:00:05.950 --> 00:00:09.531
+Whoever can write an attribute
+controls the access it grants,
+
+4
+00:00:09.531 --> 00:00:12.200
+so only the provisioning
+service writes them.
+
+5
+00:00:12.200 --> 00:00:15.253
+A rule edit can remove
+hundreds of people at once,
+
+6
+00:00:15.253 --> 00:00:18.612
+so validate, shadow and pilot
+it under change control.
+
+7
+00:00:18.612 --> 00:00:22.272
+Rules need guards against
+disabled accounts and guests,
+
+8
+00:00:22.272 --> 00:00:25.463
+codes instead of names, and
+a plan for empty values.
+
+9
+00:00:25.463 --> 00:00:30.837
+Removal is slow and doesn't revoke tokens,
+so urgent cases disable and revoke.
+
+10
+00:00:30.837 --> 00:00:32.862
+And watch the membership deltas.
+
+11
+00:00:32.862 --> 00:00:34.490
+Then, the limits.

@@ -1,59 +1,26 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.238
-For federal employees, the
-trigger vocabulary already exists.
+00:00:00.050 --> 00:00:04.050
+Module 3 is lifecycle,
+credentials and access.
 
 2
-00:00:04.238 --> 00:00:07.687
-Every personnel action carries
-a nature-of-action code,
+00:00:04.050 --> 00:00:08.574
+With trusted data and a working
+pipe, the HR event becomes the cause:
 
 3
-00:00:07.687 --> 00:00:12.037
-and its family tells you the identity
-event: appointments are joiners,
+00:00:08.574 --> 00:00:13.263
+nobody requests an account for a new
+hire, because the hire creates it.
 
 4
-00:00:12.037 --> 00:00:15.712
-separations are leavers, and
-conversions keep the same key.
+00:00:13.263 --> 00:00:16.065
+We'll follow that event
+through the lifecycle,
 
 5
-00:00:15.712 --> 00:00:18.692
-The table is the book's
-proposed interpretation,
-
-6
-00:00:18.692 --> 00:00:22.788
-which HR and policy owners validate
-before anything is automated.
-
-7
-00:00:22.788 --> 00:00:25.388
-Three rules prevent the classic failures.
-
-8
-00:00:25.388 --> 00:00:29.999
-Leave isn't a leaver, so a furlough
-restricts an account rather than removing it.
-
-9
-00:00:29.999 --> 00:00:33.575
-When two actions land
-together, a separation wins.
-
-10
-00:00:33.575 --> 00:00:37.425
-And a cancelled separation
-re-enables access, with evidence.
-
-11
-00:00:37.425 --> 00:00:41.737
-Contractors have no such codes;
-their triggers are contract dates.
-
-12
-00:00:41.737 --> 00:00:44.020
-Next, who acts on these events.
+00:00:16.065 --> 00:00:19.970
+through the PIV card and
+certificates, and finally into access.

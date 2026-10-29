@@ -1,68 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.862
-Three places in the shared
-runbook cause most of the outages.
+00:00:00.050 --> 00:00:05.188
+A new device should arrive at a known baseline
+before anyone uses it, in two halves.
 
 2
-00:00:03.862 --> 00:00:05.137
-Precedence first.
+00:00:05.188 --> 00:00:07.138
+Compliance decides access.
 
 3
-00:00:05.137 --> 00:00:10.663
-Existing devices usually enroll in Intune
-through Group Policy, with no reimage.
+00:00:07.138 --> 00:00:11.976
+The first step is a tenant-wide setting:
+mark devices with no compliance policy
 
 4
-00:00:10.663 --> 00:00:15.307
-But while the GPOs are still linked,
-overlaps are dangerous: Group Policy
+00:00:11.976 --> 00:00:17.038
+as not compliant, so an unassigned device
+can't pass Conditional Access by default.
 
 5
-00:00:15.307 --> 00:00:19.875
-usually wins, and for some settings
-it's a race with no guaranteed winner.
+00:00:17.038 --> 00:00:20.523
+The Windows policy then
+requires the usual protections,
 
 6
-00:00:19.875 --> 00:00:24.075
-So document every overlap before
-Intune enforces anything.
+00:00:20.523 --> 00:00:23.563
+like BitLocker, Secure
+Boot and current Defender.
 
 7
-00:00:24.075 --> 00:00:26.037
-NTLM second.
+00:00:23.563 --> 00:00:28.612
+Configuration sets the device up, starting
+from Microsoft's security baselines.
 
 8
-00:00:26.037 --> 00:00:31.714
-A common mistake is treating the strictest
-LAN Manager level as blocking NTLM;
+00:00:28.612 --> 00:00:31.289
+Because these devices
+never had Group Policy,
 
 9
-00:00:31.714 --> 00:00:35.993
-it doesn't, because domain
-controllers still accept NTLMv2.
+00:00:31.289 --> 00:00:34.388
+there's nothing to conflict
+with, and that's the payoff.
 
 10
-00:00:35.993 --> 00:00:39.660
-Blocking takes the Restrict
-NTLM policies, staged,
+00:00:34.388 --> 00:00:37.714
+Four exception paths cover what
+can't follow the main path,
 
 11
-00:00:39.660 --> 00:00:44.201
-and only after a fourteen to thirty
-day audit and owner sign-off.
+00:00:37.714 --> 00:00:41.526
+from personal devices to Windows
+machines that can't enroll at all.
 
 12
-00:00:44.201 --> 00:00:45.662
-And SPNs third.
+00:00:41.526 --> 00:00:46.838
+Each needs written justification, a
+compensating control and an audit entry,
 
 13
-00:00:45.662 --> 00:00:52.037
-A missing SPN is the silent case: Kerberos
-isn't tried and NTLM quietly works,
-
-14
-00:00:52.037 --> 00:00:55.800
-until the NTLM block
-turns it into an outage.
+00:00:46.838 --> 00:00:49.220
+and the last one is isolated first.

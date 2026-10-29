@@ -58,1040 +58,1153 @@ Each decision slide names the decision,
 its owner and when it's needed.
 
 13
-00:00:36.313 --> 00:00:39.320
-Let's start with what Group
-Policy was really doing.
+00:00:36.313 --> 00:00:39.400
+First, where this book sits in the series.
 
 14
-00:00:43.070 --> 00:00:46.640
+00:00:43.150 --> 00:00:47.986
+Here's why this matters: the series
+moves four populations to the cloud,
+
+15
+00:00:47.986 --> 00:00:51.488
+each on its own track, and
+Book 05 carries two of them.
+
+16
+00:00:51.488 --> 00:00:55.974
+The Intune track is end-user devices,
+and the Arc track is servers.
+
+17
+00:00:55.974 --> 00:01:01.129
+A device's attributes come from device
+provisioning, like the Autopilot group tag,
+
+18
+00:01:01.129 --> 00:01:04.237
+never from HR, and a device
+rule can't read its owner.
+
+19
+00:01:04.237 --> 00:01:08.313
+Devices are done when their policy
+targets those attributes and
+
+20
+00:01:08.313 --> 00:01:12.087
+the computer-side GPO links are
+gone, one population at a time.
+
+21
+00:01:12.087 --> 00:01:17.613
+Servers are done when each is Arc-enabled,
+tagged, and evaluated by Azure Policy.
+
+22
+00:01:17.613 --> 00:01:21.028
+And Group Policy splits: user
+settings go with people,
+
+23
+00:01:21.028 --> 00:01:23.900
+computer settings with
+devices and servers.
+
+24
+00:01:23.900 --> 00:01:27.100
+First, which platforms each one reaches.
+
+25
+00:01:30.850 --> 00:01:35.975
+Here's why this matters: an inventory that
+only covers Windows isn't an inventory.
+
+26
+00:01:35.975 --> 00:01:38.913
+Intune isn't just for Microsoft platforms.
+
+27
+00:01:38.913 --> 00:01:41.996
+It manages Windows, Apple
+and Android devices,
+
+28
+00:01:41.996 --> 00:01:46.863
+and Linux desktops with limits, while
+ChromeOS stays in Google's console.
+
+29
+00:01:46.863 --> 00:01:51.166
+Arc reaches Windows and Linux
+servers wherever they run:
+
+30
+00:01:51.166 --> 00:01:55.562
+on premises, VMware VMs, and
+AWS and Google Cloud instances.
+
+31
+00:01:55.562 --> 00:01:57.750
+Azure VMs don't need Arc at all.
+
+32
+00:01:57.750 --> 00:02:03.527
+For what neither reaches, like printers,
+network gear, the mainframe or old Unix,
+
+33
+00:02:03.527 --> 00:02:08.681
+every device still lands in one of four
+tiers: Intune or Arc; its own tool,
+
+34
+00:02:08.681 --> 00:02:11.436
+with the CMDB holding its attributes;
+
+35
+00:02:11.436 --> 00:02:15.613
+discovered and monitored only;
+or segmented and retired.
+
+36
+00:02:15.613 --> 00:02:17.937
+A device in no tier is a finding.
+
+37
+00:02:17.937 --> 00:02:20.710
+Now, what Group Policy was really doing.
+
+38
+00:02:24.460 --> 00:02:28.030
 For twenty years, a device's
 settings came from where
 
-15
-00:00:46.640 --> 00:00:49.795
+39
+00:02:28.030 --> 00:02:31.185
 it sat in the tree of
 organizational units (OUs).
 
-16
-00:00:49.795 --> 00:00:54.722
+40
+00:02:31.185 --> 00:02:36.112
 That position quietly did five jobs:
 which settings applied, which one won,
 
-17
-00:00:54.722 --> 00:00:59.245
+41
+00:02:36.112 --> 00:02:40.635
 who could change it, how often it
 refreshed, and what evidence you had.
 
-18
-00:00:59.245 --> 00:01:02.770
+42
+00:02:40.635 --> 00:02:44.160
 A cloud-joined, Intune-managed
 device has no position.
 
-19
-00:01:02.770 --> 00:01:07.545
+43
+00:02:44.160 --> 00:02:48.935
 Policies are assigned flatly to groups,
 overlapping settings become reported
 
-20
-00:01:07.545 --> 00:01:12.320
+44
+00:02:48.935 --> 00:02:53.710
 conflicts that may not apply at all, and
 devices check in about every eight hours.
 
-21
-00:01:12.320 --> 00:01:14.770
+45
+00:02:53.710 --> 00:02:56.160
 Intune can deliver most of the settings.
 
-22
-00:01:14.770 --> 00:01:16.982
+46
+00:02:56.160 --> 00:02:58.372
 It can't deliver the
 governance around them.
 
-23
-00:01:16.982 --> 00:01:21.057
+47
+00:02:58.372 --> 00:03:02.447
 So treat this as a governance
 rebuild, not a settings migration.
 
-24
-00:01:21.057 --> 00:01:23.860
+48
+00:03:02.447 --> 00:03:05.250
 Next, why running both doesn't help.
 
-25
-00:01:27.610 --> 00:01:31.635
+49
+00:03:09.000 --> 00:03:13.025
 The tempting middle ground is to
 keep the GPOs and add Intune.
 
-26
-00:01:31.635 --> 00:01:35.023
+50
+00:03:13.025 --> 00:03:16.413
 But when both touch a setting,
 nobody sees who wins.
 
-27
-00:01:35.023 --> 00:01:37.085
+51
+00:03:16.413 --> 00:03:18.475
 By default Group Policy wins.
 
-28
-00:01:37.085 --> 00:01:40.915
+52
+00:03:18.475 --> 00:03:22.305
 A switch reverses that, but only
 for some settings; for others,
 
-29
-00:01:40.915 --> 00:01:44.285
+53
+00:03:22.305 --> 00:03:25.675
 Microsoft warns it's a race
 with no guaranteed winner.
 
-30
-00:01:44.285 --> 00:01:48.829
+54
+00:03:25.675 --> 00:03:30.219
 Microsoft's own tool can measure how much
 of your Group Policy maps to Intune,
 
-31
-00:01:48.829 --> 00:01:53.373
+55
+00:03:30.219 --> 00:03:34.763
 but it doesn't close the gap, and nobody
 can tell you the percentage in advance.
 
-32
-00:01:53.373 --> 00:01:57.784
+56
+00:03:34.763 --> 00:03:39.174
 Microsoft's advice is to rebuild from
 today's requirements rather than copy.
 
-33
-00:01:57.784 --> 00:02:02.920
+57
+00:03:39.174 --> 00:03:44.310
 So the decision for the endpoint engineering
 lead: write down every overlapping
 
-34
-00:02:02.920 --> 00:02:07.672
+58
+00:03:44.310 --> 00:03:49.062
 setting before Intune enforces it, and
 give each GPO copy a retirement date.
 
-35
-00:02:07.672 --> 00:02:09.600
+59
+00:03:49.062 --> 00:03:50.990
 Next, the shortcut.
 
-36
-00:02:13.350 --> 00:02:17.113
+60
+00:03:54.740 --> 00:03:58.503
 The obvious shortcut is hybrid
 join, and it's almost a switch.
 
-37
-00:02:17.113 --> 00:02:20.438
+61
+00:03:58.503 --> 00:04:01.828
 Change the sync scope, publish
 one setting per forest,
 
-38
-00:02:20.438 --> 00:02:23.537
+62
+00:04:01.828 --> 00:04:04.927
 and every domain-joined
 device registers itself.
 
-39
-00:02:23.537 --> 00:02:26.000
+63
+00:04:04.927 --> 00:04:07.390
 No approval, no ownership check.
 
-40
-00:02:26.000 --> 00:02:28.175
+64
+00:04:07.390 --> 00:04:09.565
 That effortlessness is the hazard.
 
-41
-00:02:28.175 --> 00:02:31.435
+65
+00:04:09.565 --> 00:04:12.825
 Microsoft says new devices
 should be cloud joined,
 
-42
-00:02:31.435 --> 00:02:35.938
+66
+00:04:12.825 --> 00:04:17.328
 and hybrid join is fine for existing
 devices, but never as the end state.
 
-43
-00:02:35.938 --> 00:02:39.684
+67
+00:04:17.328 --> 00:04:21.074
 And it's sticky: moving off it
 later means resetting the device,
 
-44
-00:02:39.684 --> 00:02:42.549
+68
+00:04:21.074 --> 00:04:23.939
 and it still needs a domain
 controller in sight.
 
-45
-00:02:42.549 --> 00:02:45.136
+69
+00:04:23.939 --> 00:04:26.526
 So every hybrid device needs an exit:
 
-46
-00:02:45.136 --> 00:02:49.188
+70
+00:04:26.526 --> 00:04:30.578
 a target of Entra join and a
 trigger, like its refresh date.
 
-47
-00:02:49.188 --> 00:02:52.530
+71
+00:04:30.578 --> 00:04:33.920
 The sponsor and CIO set
 the domain-unjoin waves,
 
-48
-00:02:52.530 --> 00:02:55.701
+72
+00:04:33.920 --> 00:04:37.091
 because unjoining ends
 everyone's fallback.
 
-49
-00:02:55.701 --> 00:02:58.170
+73
+00:04:37.091 --> 00:04:39.560
 Next, what the shortcut costs.
 
-50
-00:03:01.920 --> 00:03:05.714
+74
+00:04:43.310 --> 00:04:47.104
 Done as an unattended switch,
 hybrid join keeps the single
 
-51
-00:03:05.714 --> 00:03:09.270
+75
+00:04:47.104 --> 00:04:50.660
 sign-on and quietly spends
 the governance underneath.
 
-52
-00:03:09.270 --> 00:03:11.770
+76
+00:04:50.660 --> 00:04:53.160
 New device objects appear with no owner.
 
-53
-00:03:11.770 --> 00:03:13.145
+77
+00:04:53.160 --> 00:04:54.535
 Duplicates pile up.
 
-54
-00:03:13.145 --> 00:03:17.170
+78
+00:04:54.535 --> 00:04:58.560
 Turning on the managed-device
 policy too early locks people out.
 
-55
-00:03:17.170 --> 00:03:20.108
+79
+00:04:58.560 --> 00:05:01.498
 Thousands of changes can't
 be traced to a decision.
 
-56
-00:03:20.108 --> 00:03:23.383
+80
+00:05:01.498 --> 00:05:04.773
 And retired machines linger,
 padding the managed count.
 
-57
-00:03:23.383 --> 00:03:27.070
+81
+00:05:04.773 --> 00:05:08.460
 Even a perfect rollout only
 covers domain-joined Windows.
 
-58
-00:03:27.070 --> 00:03:33.520
+82
+00:05:08.460 --> 00:05:14.910
 Macs, phones, Linux, personal devices, kiosks
 and servers all need their own answer.
 
-59
-00:03:33.520 --> 00:03:38.333
+83
+00:05:14.910 --> 00:05:19.723
 So the decision: fleet-wide changes go
 wave by wave, approved by a person,
 
-60
-00:03:38.333 --> 00:03:43.145
+84
+00:05:19.723 --> 00:05:24.535
 with the access policy in report-only
 mode until coverage is measured.
 
-61
-00:03:43.145 --> 00:03:47.957
+85
+00:05:24.535 --> 00:05:29.347
 The endpoint lead calls each wave;
 the CISO decides the enforcement.
 
-62
-00:03:47.957 --> 00:03:50.550
+86
+00:05:29.347 --> 00:05:31.940
 Now, what a governed device needs.
 
-63
-00:03:54.300 --> 00:03:58.562
+87
+00:05:35.690 --> 00:05:39.952
 After modernization, one laptop
 shows up in five or six systems,
 
-64
-00:03:58.562 --> 00:04:00.775
+88
+00:05:39.952 --> 00:05:42.165
 most of them editable by someone.
 
-65
-00:04:00.775 --> 00:04:05.450
+89
+00:05:42.165 --> 00:05:46.840
 That only works if you decide, fact
 by fact, where the truth lives.
 
-66
-00:04:05.450 --> 00:04:08.651
+90
+00:05:46.840 --> 00:05:50.041
 The business facts, who owns
 it, what it's for and where
 
-67
-00:04:08.651 --> 00:04:12.000
+91
+00:05:50.041 --> 00:05:53.390
 it belongs in the organization,
 come from procurement.
 
-68
-00:04:12.000 --> 00:04:17.002
+92
+00:05:53.390 --> 00:05:58.392
 The technical facts come from the
 services: Entra ID for identity, Intune for
 
-69
-00:04:17.002 --> 00:04:21.925
+93
+00:05:58.392 --> 00:06:03.315
 management and compliance, Defender
 for threats, and Azure Arc for servers.
 
-70
-00:04:21.925 --> 00:04:23.000
+94
+00:06:03.315 --> 00:06:04.390
 Then one rule.
 
-71
-00:04:23.000 --> 00:04:29.287
+95
+00:06:04.390 --> 00:06:10.677
 Every derived value, a tag, a group, a
 category, has to trace back to its source.
 
-72
-00:04:29.287 --> 00:04:33.801
+96
+00:06:10.677 --> 00:06:15.191
 If it can't, it's drift, and you fix
 it at the source, never at the copy.
 
-73
-00:04:33.801 --> 00:04:36.890
+97
+00:06:15.191 --> 00:06:18.280
 Next, how new devices start out governed.
 
-74
-00:04:40.640 --> 00:04:46.540
+98
+00:06:22.030 --> 00:06:27.930
 For new devices, the doctrine is
 Intune-first: no ungoverned device, ever.
 
-75
-00:04:46.540 --> 00:04:50.240
+99
+00:06:27.930 --> 00:06:31.630
 A new laptop is governed from
 the moment it first powers on.
 
-76
-00:04:50.240 --> 00:04:53.809
+100
+00:06:31.630 --> 00:06:35.199
 It never joins the old domain,
 never gets co-managed later,
 
-77
-00:04:53.809 --> 00:04:57.227
+101
+00:06:35.199 --> 00:06:38.617
 and never runs without an
 organizational assignment.
 
-78
-00:04:57.227 --> 00:04:59.577
+102
+00:06:38.617 --> 00:06:40.967
 The most important change is upstream:
 
-79
-00:04:59.577 --> 00:05:02.514
+103
+00:06:40.967 --> 00:06:43.904
 procurement becomes the
 first governance step.
 
-80
-00:05:02.514 --> 00:05:07.307
+104
+00:06:43.904 --> 00:06:48.697
 The device's place in the organization
 is set when the purchase order goes out,
 
-81
-00:05:07.307 --> 00:05:09.703
+105
+00:06:48.697 --> 00:06:51.093
 the way HR records drive user accounts.
 
-82
-00:05:09.703 --> 00:05:11.629
+106
+00:06:51.093 --> 00:06:53.019
 If anything fails along the way,
 
-83
-00:05:11.629 --> 00:05:15.778
+107
+00:06:53.019 --> 00:06:57.168
 the device goes to quarantine
 instead of quietly running degraded.
 
-84
-00:05:15.778 --> 00:05:18.211
+108
+00:06:57.168 --> 00:06:59.601
 The decision for the sponsor and CIO:
 
-85
-00:05:18.211 --> 00:05:22.265
+109
+00:06:59.601 --> 00:07:03.655
 from the next purchase order, no
 new device takes the old path.
 
-86
-00:05:22.265 --> 00:05:24.520
+110
+00:07:03.655 --> 00:07:05.910
 Next, the access signal.
 
-87
-00:05:28.270 --> 00:05:31.332
+111
+00:07:09.660 --> 00:07:12.722
 Device compliance is
 where devices meet access.
 
-88
-00:05:31.332 --> 00:05:34.406
+112
+00:07:12.722 --> 00:07:15.796
 Intune decides whether
 a device is compliant,
 
-89
-00:05:34.406 --> 00:05:38.532
+113
+00:07:15.796 --> 00:07:19.922
 and Conditional Access, from Book
 04, decides what it can reach.
 
-90
-00:05:38.532 --> 00:05:42.995
+114
+00:07:19.922 --> 00:07:24.385
 Out of the box, a device with no
 compliance policy counts as compliant.
 
-91
-00:05:42.995 --> 00:05:47.945
+115
+00:07:24.385 --> 00:07:29.335
 The program flips that, so a device that
 slips through every group can't pass.
 
-92
-00:05:47.945 --> 00:05:51.545
+116
+00:07:29.335 --> 00:07:32.935
 A device that stops reporting
 for two weeks loses access.
 
-93
-00:05:51.545 --> 00:05:55.380
+117
+00:07:32.935 --> 00:07:36.770
 And the grace period, how long
 a failing device keeps working,
 
-94
-00:05:55.380 --> 00:05:57.758
+118
+00:07:36.770 --> 00:07:39.148
 is a risk decision, not a technical one.
 
-95
-00:05:57.758 --> 00:06:02.883
+119
+00:07:39.148 --> 00:07:44.273
 On the most privileged workstations, a
 security detection also costs access.
 
-96
-00:06:02.883 --> 00:06:06.420
+120
+00:07:44.273 --> 00:07:47.810
 The decision for the CISO:
 make compliance fail closed,
 
-97
-00:06:06.420 --> 00:06:10.495
+121
+00:07:47.810 --> 00:07:51.885
 and set the grace period, before
 Conditional Access relies on it.
 
-98
-00:06:10.495 --> 00:06:13.160
+122
+00:07:51.885 --> 00:07:54.550
 Next, devices that can't enroll.
 
-99
-00:06:16.910 --> 00:06:22.246
+123
+00:07:58.300 --> 00:08:03.636
 The book allows four carve-outs: personal
 devices, Linux that Intune can't manage,
 
-100
-00:06:22.246 --> 00:06:25.560
+124
+00:08:03.636 --> 00:08:06.950
 older servers, and devices
 that can't enroll at all.
 
-101
-00:06:25.560 --> 00:06:29.427
+125
+00:08:06.950 --> 00:08:10.817
 That last group, lab instruments,
 factory-floor systems,
 
-102
-00:06:29.427 --> 00:06:33.210
+126
+00:08:10.817 --> 00:08:14.600
 PCs locked to a vendor's
 certified image, is the hard one.
 
-103
-00:06:33.210 --> 00:06:37.447
+127
+00:08:14.600 --> 00:08:18.837
 They can't pass a compliant-device
 policy, so their users are blocked.
 
-104
-00:06:37.447 --> 00:06:41.930
+128
+00:08:18.837 --> 00:08:23.320
 The program handles them in order:
 put them on their own network segment,
 
-105
-00:06:41.930 --> 00:06:46.488
+129
+00:08:23.320 --> 00:08:27.878
 protect them where they connect, and
 only then, if people must reach cloud
 
-106
-00:06:46.488 --> 00:06:51.047
+130
+00:08:27.878 --> 00:08:32.437
 resources, a named exclusion with an
 owner and a review every ninety days.
 
-107
-00:06:51.047 --> 00:06:54.923
+131
+00:08:32.437 --> 00:08:36.313
 Because that leaves a control
 unmet, it's a risk acceptance.
 
-108
-00:06:54.923 --> 00:06:59.222
+132
+00:08:36.313 --> 00:08:40.612
 So the authorizing official decides
 it, before those users get access.
 
-109
-00:06:59.222 --> 00:07:01.540
+133
+00:08:40.612 --> 00:08:42.930
 Next, the existing fleet.
 
-110
-00:07:05.290 --> 00:07:09.452
+134
+00:08:46.680 --> 00:08:50.842
 The existing fleet can get to the
 same governed end state three ways.
 
-111
-00:07:09.452 --> 00:07:12.428
+135
+00:08:50.842 --> 00:08:53.818
 The manual path uses the
 native tools by hand.
 
-112
-00:07:12.428 --> 00:07:14.864
+136
+00:08:53.818 --> 00:08:56.254
 The governed path runs the same steps,
 
-113
-00:07:14.864 --> 00:07:19.816
+137
+00:08:56.254 --> 00:09:01.206
 but every high-impact change is previewed,
 approved by a person and recorded.
 
-114
-00:07:19.816 --> 00:07:22.859
+138
+00:09:01.206 --> 00:09:04.249
 And the retrofit path adds
 that governance later,
 
-115
-00:07:22.859 --> 00:07:25.828
+139
+00:09:04.249 --> 00:09:07.218
 to an estate someone
 already modernized by hand.
 
-116
-00:07:25.828 --> 00:07:29.638
+140
+00:09:07.218 --> 00:09:11.028
 All three start the same way:
 measure before you change anything,
 
-117
-00:07:29.638 --> 00:07:31.364
+141
+00:09:11.028 --> 00:09:12.754
 and give it at least two weeks.
 
-118
-00:07:31.364 --> 00:07:33.927
+142
+00:09:12.754 --> 00:09:15.317
 Fully automatic change is refused.
 
-119
-00:07:33.927 --> 00:07:36.703
+143
+00:09:15.317 --> 00:09:18.093
 Intune also has a
 built-in second approver.
 
-120
-00:07:36.703 --> 00:07:41.285
+144
+00:09:18.093 --> 00:09:22.675
 The decision for the sponsor and CIO:
 use the governed path for anything
 
-121
-00:07:41.285 --> 00:07:46.102
+145
+00:09:22.675 --> 00:09:27.492
 over a few hundred devices, or wherever
 an authorizing official has to sign.
 
-122
-00:07:46.102 --> 00:07:47.660
+146
+00:09:27.492 --> 00:09:29.050
 Now, who owns it.
 
-123
-00:07:51.410 --> 00:07:54.212
+147
+00:09:32.800 --> 00:09:35.602
 Under Group Policy, whoever could edit and
 
-124
-00:07:54.212 --> 00:07:57.335
+148
+00:09:35.602 --> 00:09:38.725
 link a GPO decided for
 every machine beneath it.
 
-125
-00:07:57.335 --> 00:08:01.372
+149
+00:09:38.725 --> 00:09:42.762
 Now that job is split across
 several teams and three consoles.
 
-126
-00:08:01.372 --> 00:08:05.136
+150
+00:09:42.762 --> 00:09:46.526
 And Group Policy taught a generation
 of administrators that being
 
-127
-00:08:05.136 --> 00:08:08.497
+151
+00:09:46.526 --> 00:09:49.887
 able to change something meant
 having the right to decide it.
 
-128
-00:08:08.497 --> 00:08:12.947
+152
+00:09:49.887 --> 00:09:54.337
 That habit is how someone sets the
 agency's risk posture without noticing.
 
-129
-00:08:12.947 --> 00:08:15.822
+153
+00:09:54.337 --> 00:09:57.212
 A thirty-day grace period
 is a risk decision.
 
-130
-00:08:15.822 --> 00:08:20.922
+154
+00:09:57.212 --> 00:10:02.312
 So is leaving an old GPO in place,
 or exempting kiosks from encryption.
 
-131
-00:08:20.922 --> 00:08:23.509
+155
+00:10:02.312 --> 00:10:04.899
 The book's rule is one decider per row.
 
-132
-00:08:23.509 --> 00:08:28.917
+156
+00:10:04.899 --> 00:10:10.307
 And exceptions split by time: a temporary
 one with an end date is the CISO's call;
 
-133
-00:08:28.917 --> 00:08:33.160
+157
+00:10:10.307 --> 00:10:14.550
 a standing one goes to the
 authorizing official, on a schedule.
 
-134
-00:08:33.160 --> 00:08:35.120
+158
+00:10:14.550 --> 00:10:16.510
 Next, the full map.
 
-135
-00:08:38.870 --> 00:08:44.407
+159
+00:10:20.260 --> 00:10:25.797
 The sponsor and CIO decide the path, the
 scope and when devices leave the domain.
 
-136
-00:08:44.407 --> 00:08:47.745
+160
+00:10:25.797 --> 00:10:29.135
 The CISO decides the baselines,
 the compliance rules,
 
-137
-00:08:47.745 --> 00:08:52.195
+161
+00:10:29.135 --> 00:10:33.585
 the update schedule, and how the help
 desk verifies someone before a wipe.
 
-138
-00:08:52.195 --> 00:08:54.826
+162
+00:10:33.585 --> 00:10:36.216
 Endpoint engineering decides when an old
 
-139
-00:08:54.826 --> 00:08:57.682
+163
+00:10:36.216 --> 00:10:39.072
 setting is retired and
 whether each wave goes.
 
-140
-00:08:57.682 --> 00:09:00.328
+164
+00:10:39.072 --> 00:10:41.718
 Application owners decide
 for their own apps,
 
-141
-00:09:00.328 --> 00:09:02.833
+165
+00:10:41.718 --> 00:10:44.223
 because only they can
 tell if it still works.
 
-142
-00:09:02.833 --> 00:09:06.207
+166
+00:10:44.223 --> 00:10:47.597
 And the authorizing official
 owns standing exceptions.
 
-143
-00:09:06.207 --> 00:09:10.905
+167
+00:10:47.597 --> 00:10:52.295
 The permissions live in three separate
 role systems, and two warnings stand out:
 
-144
-00:09:10.905 --> 00:09:14.820
+168
+00:10:52.295 --> 00:10:56.210
 keep the all-powerful Intune
 administrator role out of daily work,
 
-145
-00:09:14.820 --> 00:09:19.732
+169
+00:10:56.210 --> 00:11:01.122
 and treat anyone who can push extensions to
 a server as that server's administrator.
 
-146
-00:09:19.732 --> 00:09:24.345
+170
+00:11:01.122 --> 00:11:05.735
 The decision for the CISO: a second
 approver on high-impact changes.
 
-147
-00:09:24.345 --> 00:09:25.560
+171
+00:11:05.735 --> 00:11:06.950
 Now, how.
 
-148
-00:09:29.310 --> 00:09:30.210
+172
+00:11:10.700 --> 00:11:11.600
 Now the how.
 
-149
-00:09:30.210 --> 00:09:34.810
+173
+00:11:11.600 --> 00:11:16.200
 The Group Policy sunset runs one
 setting and one population at a time.
 
-150
-00:09:34.810 --> 00:09:38.435
+174
+00:11:16.200 --> 00:11:19.825
 Every setting gets asked, in
 order: is it still needed?
 
-151
-00:09:38.435 --> 00:09:40.510
+175
+00:11:19.825 --> 00:11:21.900
 Is there a direct Intune equivalent?
 
-152
-00:09:40.510 --> 00:09:45.535
+176
+00:11:21.900 --> 00:11:26.925
 Does a cloud service replace the need, the
 way OneDrive replaces redirected folders?
 
-153
-00:09:45.535 --> 00:09:47.010
+177
+00:11:26.925 --> 00:11:28.400
 Can a script enforce it?
 
-154
-00:09:47.010 --> 00:09:51.372
+178
+00:11:28.400 --> 00:11:32.762
 Anything that fails all four becomes
 a dated exception with an owner.
 
-155
-00:09:51.372 --> 00:09:55.837
+179
+00:11:32.762 --> 00:11:37.227
 Then the rules that keep it honest:
 retire before you translate, one owner
 
-156
-00:09:55.837 --> 00:10:00.598
+180
+00:11:37.227 --> 00:11:41.988
 per setting, and no GPO link switched
 off until its replacement shows success.
 
-157
-00:10:00.598 --> 00:10:05.147
+181
+00:11:41.988 --> 00:11:46.537
 GPOs are disabled first and kept
 ninety days as a safety net.
 
-158
-00:10:05.147 --> 00:10:08.463
+182
+00:11:46.537 --> 00:11:49.853
 The decision for the
 endpoint engineering lead:
 
-159
-00:10:08.463 --> 00:10:12.773
+183
+00:11:49.853 --> 00:11:54.163
 freeze every inventoried GPO, so
 new requirements go to Intune.
 
-160
-00:10:12.773 --> 00:10:14.580
+184
+00:11:54.163 --> 00:11:55.970
 Next, the timeline.
 
-161
-00:10:18.330 --> 00:10:23.317
+185
+00:11:59.720 --> 00:12:04.707
 The migration runs in seven phases,
 each with an exit gate and a way back.
 
-162
-00:10:23.317 --> 00:10:28.426
+186
+00:12:04.707 --> 00:12:09.816
 On the book's planning estimates for
 a large fleet: inventory and classify,
 
-163
-00:10:28.426 --> 00:10:33.283
+187
+00:12:09.816 --> 00:12:14.673
 then plan the overlap, write the
 baselines, pilot on about five percent,
 
-164
-00:10:33.283 --> 00:10:36.717
+188
+00:12:14.673 --> 00:12:18.107
 cut over in four waves,
 verify, and formally retire.
 
-165
-00:10:36.717 --> 00:10:38.822
+189
+00:12:18.107 --> 00:12:20.213
 That's roughly thirty-four weeks,
 
-166
-00:10:38.822 --> 00:10:42.330
+190
+00:12:20.213 --> 00:12:23.720
 plus a ninety-day hold before
 the last GPOs are deleted.
 
-167
-00:10:42.330 --> 00:10:43.830
+191
+00:12:23.720 --> 00:12:25.220
 Months, not weeks.
 
-168
-00:10:43.830 --> 00:10:48.406
+192
+00:12:25.220 --> 00:12:29.796
 One sequencing rule matters under
 schedule pressure: on co-managed devices,
 
-169
-00:10:48.406 --> 00:10:52.474
+193
+00:12:29.796 --> 00:12:33.864
 the antivirus settings move before
 general device configuration,
 
-170
-00:10:52.474 --> 00:10:55.380
+194
+00:12:33.864 --> 00:12:36.770
 because moving configuration
 drags them along.
 
-171
-00:10:55.380 --> 00:11:00.406
+195
+00:12:36.770 --> 00:12:41.796
 The decision: endpoint engineering makes
 each go or no-go on measured results,
 
-172
-00:11:00.406 --> 00:11:03.705
+196
+00:12:41.796 --> 00:12:45.095
 not the calendar, and the
 sponsor sets the sequence.
 
-173
-00:11:03.705 --> 00:11:05.520
+197
+00:12:45.095 --> 00:12:46.910
 Next, servers.
 
-174
-00:11:09.270 --> 00:11:13.882
+198
+00:12:50.660 --> 00:12:55.272
 Servers take a different road, because
 Intune doesn't manage Windows Server.
 
-175
-00:11:13.882 --> 00:11:19.232
+199
+00:12:55.272 --> 00:13:00.622
 Azure Arc gives each server an Azure
 resource, with roles, tags and policy.
 
-176
-00:11:19.232 --> 00:11:22.694
+200
+00:13:00.622 --> 00:13:04.084
 But Arc is the management
 plane, not the identity plane.
 
-177
-00:11:22.694 --> 00:11:27.383
+201
+00:13:04.084 --> 00:13:08.773
 Onboarding doesn't take a server off
 the domain or change how people sign in.
 
-178
-00:11:27.383 --> 00:11:32.096
+202
+00:13:08.773 --> 00:13:13.486
 A connected server is only addressable,
 not governed, until three things
 
-179
-00:11:32.096 --> 00:11:36.808
+203
+00:13:13.486 --> 00:13:18.198
 are attached on day one: a configuration
 baseline, patching and Defender.
 
-180
-00:11:36.808 --> 00:11:41.832
+204
+00:13:18.198 --> 00:13:23.222
 Licensing changes the bill, but only
 once each server's license is attested.
 
-181
-00:11:41.832 --> 00:11:47.607
+205
+00:13:23.222 --> 00:13:28.997
 And cloud sign-in works only on Windows
 Server 2025, without Conditional Access.
 
-182
-00:11:47.607 --> 00:11:51.614
+206
+00:13:28.997 --> 00:13:33.004
 The decision: each server leaves
 the domain as its own decision,
 
-183
-00:11:51.614 --> 00:11:54.233
+207
+00:13:33.004 --> 00:13:35.623
 after its sign-in dependencies are known.
 
-184
-00:11:54.233 --> 00:11:56.060
+208
+00:13:35.623 --> 00:13:37.450
 Next, the dates.
 
-185
-00:11:59.810 --> 00:12:06.135
+209
+00:13:41.200 --> 00:13:47.525
 Windows Server 2012's extended
 updates ended on October 13, 2026.
 
-186
-00:12:06.135 --> 00:12:11.282
+210
+00:13:47.525 --> 00:13:52.672
 Any of those hosts still running gets
 no more security fixes from anywhere,
 
-187
-00:12:11.282 --> 00:12:15.848
+211
+00:13:52.672 --> 00:13:57.238
 so the book treats them as a red
 finding: migrate, upgrade or isolate.
 
-188
-00:12:15.848 --> 00:12:21.360
+212
+00:13:57.238 --> 00:14:02.750
 Windows Server 2016 reaches end of support
 on January 12, 2027, so any you can't
 
-189
-00:12:21.360 --> 00:12:27.222
+213
+00:14:02.750 --> 00:14:08.612
 upgrade in time should be enrolled for
 extended updates through Arc before then.
 
-190
-00:12:27.222 --> 00:12:32.769
+214
+00:14:08.612 --> 00:14:14.159
 Windows 11 version 23H2 stops getting
 updates on November 10, and Windows 10 is
 
-191
-00:12:32.769 --> 00:12:38.060
+215
+00:14:14.159 --> 00:14:19.450
 already out of support, so each one left
 is an exception with an upgrade date.
 
-192
-00:12:38.060 --> 00:12:42.924
+216
+00:14:19.450 --> 00:14:24.314
 The decision can't wait: server
 infrastructure acts on the 2012 hosts now,
 
-193
-00:12:42.924 --> 00:12:46.735
+217
+00:14:24.314 --> 00:14:28.125
 and the authorizing official
 accepts any that must stay.
 
-194
-00:12:46.735 --> 00:12:48.400
+218
+00:14:28.125 --> 00:14:29.790
 Next, patching.
 
-195
-00:12:52.150 --> 00:12:56.488
+219
+00:14:33.540 --> 00:14:37.878
 Once Intune owns the fleet,
 update rings set the patch clock.
 
-196
-00:12:56.488 --> 00:12:59.940
+220
+00:14:37.878 --> 00:14:41.330
 Each month's update flows
 through four rings: a lab,
 
-197
-00:12:59.940 --> 00:13:03.813
+221
+00:14:41.330 --> 00:14:45.203
 a small pilot, about a quarter
 of the fleet, then everyone.
 
-198
-00:13:03.813 --> 00:13:08.876
+222
+00:14:45.203 --> 00:14:50.266
 With the book's values, an update reaches
 every online device in about sixteen days,
 
-199
-00:13:08.876 --> 00:13:12.450
+223
+00:14:50.266 --> 00:14:53.840
 and a bad one can be paused
 before it reaches the broad ring.
 
-200
-00:13:12.450 --> 00:13:15.516
+224
+00:14:53.840 --> 00:14:56.906
 Windows Autopatch can
 run the rings for you,
 
-201
-00:13:15.516 --> 00:13:20.625
+225
+00:14:56.906 --> 00:15:02.015
 and it's included for GCC customers
 with the government G3 or G5 licenses.
 
-202
-00:13:20.625 --> 00:13:24.987
+226
+00:15:02.015 --> 00:15:06.377
 Why assessors care: the federal patching
 control asks for updates within
 
-203
-00:13:24.987 --> 00:13:29.063
+227
+00:15:06.377 --> 00:15:10.453
 a period the agency defines, and
 these ring deadlines are that period.
 
-204
-00:13:29.063 --> 00:13:34.349
+228
+00:15:10.453 --> 00:15:15.739
 So the decision for the CISO: approve the
 ring values as the agency's patch window.
 
-205
-00:13:34.349 --> 00:13:36.370
+229
+00:15:15.739 --> 00:15:17.760
 Next, running the fleet.
 
-206
-00:13:40.120 --> 00:13:43.623
+230
+00:15:21.510 --> 00:15:25.013
 In the run state, three
 records replace the old tree:
 
-207
-00:13:43.623 --> 00:13:48.545
+231
+00:15:25.013 --> 00:15:29.935
 the policy library, what each device
 reports, and the log of every change.
 
-208
-00:13:48.545 --> 00:13:51.282
+232
+00:15:29.935 --> 00:15:32.672
 Running the fleet means
 keeping them in agreement.
 
-209
-00:13:51.282 --> 00:13:55.105
+233
+00:15:32.672 --> 00:15:36.495
 Proving it to an assessor means
 handing over those same records,
 
-210
-00:13:55.105 --> 00:13:59.720
+234
+00:15:36.495 --> 00:15:41.110
 not a document written for the audit,
 including the versioned policy library,
 
-211
-00:13:59.720 --> 00:14:02.533
+235
+00:15:41.110 --> 00:15:43.923
 per-setting status, a
 weekly reconciliation of
 
-212
-00:14:02.533 --> 00:14:05.345
+236
+00:15:43.923 --> 00:15:46.735
 the device inventories,
 and the update results.
 
-213
-00:14:05.345 --> 00:14:10.275
+237
+00:15:46.735 --> 00:15:51.665
 Retiring a device runs in order: save
 the encryption keys first, then wipe,
 
-214
-00:14:10.275 --> 00:14:15.370
+238
+00:15:51.665 --> 00:15:56.760
 and delete the cloud device record last,
 since deleting it deletes the keys.
 
-215
-00:14:15.370 --> 00:14:20.383
+239
+00:15:56.760 --> 00:16:01.773
 The decision for the CISO: own the drift
 findings and evidence from the first wave.
 
-216
-00:14:20.383 --> 00:14:22.010
+240
+00:16:01.773 --> 00:16:03.400
 Let's pull it together.
 
-217
-00:14:25.760 --> 00:14:27.335
+241
+00:16:07.150 --> 00:16:08.725
 So, the decisions.
 
-218
-00:14:27.335 --> 00:14:32.340
+242
+00:16:08.725 --> 00:16:13.730
 The sponsor and CIO set the shape: an
 exit plan for every hybrid-joined device,
 
-219
-00:14:32.340 --> 00:14:36.948
+243
+00:16:13.730 --> 00:16:18.338
 no new device on the old path from
 the next purchase order, the governed
 
-220
-00:14:36.948 --> 00:14:41.635
+244
+00:16:18.338 --> 00:16:23.025
 path for large estates, and each server's
 domain exit as its own decision.
 
-221
-00:14:41.635 --> 00:14:46.155
+245
+00:16:23.025 --> 00:16:27.545
 Endpoint engineering freezes
 the GPOs, records every overlap,
 
-222
-00:14:46.155 --> 00:14:49.023
+246
+00:16:27.545 --> 00:16:30.413
 and calls each wave on measured results.
 
-223
-00:14:49.023 --> 00:14:54.069
+247
+00:16:30.413 --> 00:16:35.459
 The CISO makes compliance fail closed,
 adds a second approver to high-impact
 
-224
-00:14:54.069 --> 00:14:59.510
+248
+00:16:35.459 --> 00:16:40.900
 changes, sets the patch window, owns the
 evidence, and decides temporary exceptions.
 
-225
-00:14:59.510 --> 00:15:04.466
+249
+00:16:40.900 --> 00:16:45.856
 And the authorizing official accepts
 the rest: devices that can't enroll,
 
-226
-00:15:04.466 --> 00:15:08.348
+250
+00:16:45.856 --> 00:16:49.738
 standing exceptions, and any
 2012 server that has to stay.
 
-227
-00:15:08.348 --> 00:15:11.148
+251
+00:16:49.738 --> 00:16:52.538
 Rebuild on purpose what
 the tree did implicitly.
 
-228
-00:15:11.148 --> 00:15:15.123
+252
+00:16:52.538 --> 00:16:56.513
 Book 05 has the detail,
 every claim footnoted.
 
-229
-00:15:15.123 --> 00:15:15.940
+253
+00:16:56.513 --> 00:16:57.330
 Thank you.

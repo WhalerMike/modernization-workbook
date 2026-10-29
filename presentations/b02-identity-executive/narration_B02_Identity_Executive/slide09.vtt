@@ -1,63 +1,76 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.962
-In Active Directory, one small team ran
-the domain and made most of the calls.
+00:00:00.050 --> 00:00:02.637
+Delegation used to come
+free with the tree.
 
 2
-00:00:04.962 --> 00:00:07.229
-Once identity is the control plane,
+00:00:02.637 --> 00:00:06.138
+Without it, agencies fall
+into one of two traps.
 
 3
-00:00:07.229 --> 00:00:12.151
-those decisions belong to more people,
-and some carry legal accountability.
+00:00:06.138 --> 00:00:08.674
+They over-delegate,
+handing out tenant-wide
 
 4
-00:00:12.151 --> 00:00:16.462
-Federal policy already asks for
-an agency-wide governance body.
+00:00:08.674 --> 00:00:11.351
+admin roles because
+nothing narrower exists.
 
 5
-00:00:16.462 --> 00:00:21.006
-The book adds a simple rule: every
-decision has exactly one decider,
+00:00:11.351 --> 00:00:12.747
+Or they under-delegate,
 
 6
-00:00:21.006 --> 00:00:23.237
-even when many people do the work.
+00:00:12.747 --> 00:00:16.425
+and every password reset becomes
+a ticket in a central queue.
 
 7
-00:00:23.237 --> 00:00:26.193
-That matters because the old
-habit was letting whoever
+00:00:16.425 --> 00:00:19.395
+Administrative units fix
+that, in three tiers:
 
 8
-00:00:26.193 --> 00:00:28.826
-could make a change also
-decide whether to make it.
+00:00:19.395 --> 00:00:24.318
+tenant-wide readers for security and
+compliance, department units for full
 
 9
-00:00:28.826 --> 00:00:31.913
-That's how an engineer ends
-up setting the agency's
+00:00:24.318 --> 00:00:29.163
+administration, and narrow units for
+the help desk, driven by HR attributes.
 
 10
-00:00:31.913 --> 00:00:34.625
-risk posture by leaving
-legacy sign-in open.
+00:00:29.163 --> 00:00:30.326
+Two cautions.
 
 11
-00:00:34.625 --> 00:00:37.687
-Only the authorizing official
-can accept that risk.
+00:00:30.326 --> 00:00:33.331
+The groups that hold admin
+roles can't be dynamic,
 
 12
-00:00:37.687 --> 00:00:41.275
-So the sponsor and CIO adopt
-this matrix at the start.
+00:00:33.331 --> 00:00:36.413
+so they're assigned and
+made eligible just in time.
 
 13
-00:00:41.275 --> 00:00:42.580
-Here's what it says.
+00:00:36.413 --> 00:00:41.012
+And locking a unit down also blocks
+lifecycle and review features,
+
+14
+00:00:41.012 --> 00:00:43.688
+so that's chosen unit by unit, default no.
+
+15
+00:00:43.688 --> 00:00:46.263
+Identity engineering decides the model.
+
+16
+00:00:46.263 --> 00:00:48.360
+Next, who decides the rest.

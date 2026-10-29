@@ -1,69 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.499
-Conditional Access replaces
-the logon restrictions
+00:00:00.050 --> 00:00:04.012
+Privileged access has one core
+rule: no standing access.
 
 2
-00:00:03.499 --> 00:00:07.025
-and network controls AD
-enforced through Group Policy.
+00:00:04.012 --> 00:00:08.342
+Every privileged assignment is
+eligible and activated just in time,
 
 3
-00:00:07.025 --> 00:00:09.935
-The program organizes it around personas,
+00:00:08.342 --> 00:00:12.063
+and the only permanent ones
+are the two emergency accounts.
 
 4
-00:00:09.935 --> 00:00:14.592
-populations with different needs
-and risks: internal staff, admins,
+00:00:12.063 --> 00:00:16.422
+Domain Admins maps to Global
+Administrator, held by very few,
 
 5
-00:00:14.592 --> 00:00:18.750
-partners, guests, service accounts,
-and the break-glass group.
+00:00:16.422 --> 00:00:19.562
+and most of its duties
+map to narrower roles.
 
 6
-00:00:18.750 --> 00:00:20.796
-One tip: target admins by group,
+00:00:19.562 --> 00:00:21.504
+The slide has the full mapping,
 
 7
-00:00:20.796 --> 00:00:24.888
-because role targeting doesn't
-cover scoped or custom roles.
+00:00:21.504 --> 00:00:25.000
+which is the program's design,
+not an exact equivalence.
 
 8
-00:00:24.888 --> 00:00:29.882
-The baseline set, CA001 through
-CA017, runs from blocking legacy
+00:00:25.000 --> 00:00:28.578
+Activation is short, four hours
+at most for the top roles,
 
 9
-00:00:29.882 --> 00:00:35.725
-sign-in for everyone to requiring
-phishing-resistant strength for admins.
+00:00:28.578 --> 00:00:33.400
+with approval and a ticket, and it forces
+a fresh phishing-resistant sign-in.
 
 10
-00:00:35.725 --> 00:00:41.250
-Book 04's library is the authoritative
-set and extends it for the CISA baseline.
+00:00:33.400 --> 00:00:36.296
+Name approvers outside
+the requester's chain,
 
 11
-00:00:41.250 --> 00:00:44.406
-Rollout is staged:
-report-only, then a pilot,
+00:00:36.296 --> 00:00:39.650
+because with none configured,
+PIM can lock the tenant.
 
 12
-00:00:44.406 --> 00:00:48.013
-then phased waves, each
-behind a monitoring gate.
+00:00:39.650 --> 00:00:44.768
+The emergency accounts are cloud-only,
+excluded from restrictive policies,
 
 13
-00:00:48.013 --> 00:00:51.412
-And never switch an all-users
-policy straight from off to
-
-14
-00:00:51.412 --> 00:00:55.150
-on without confirming both
-emergency accounts still sign in.
+00:00:44.768 --> 00:00:48.980
+alerted on every sign-in, and
+tested at least every ninety days.

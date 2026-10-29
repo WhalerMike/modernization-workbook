@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.828
+Dynamic device groups
+have their own dangers,
+
+2
+00:00:02.828 --> 00:00:05.825
+and a mistake here reaches
+the whole fleet at once.
+
+3
+00:00:05.825 --> 00:00:09.675
+Only the device provisioning service
+should write device attributes.
+
+4
+00:00:09.675 --> 00:00:14.089
+A wrong or reused Autopilot group
+tag puts a device in the wrong group,
+
+5
+00:00:14.089 --> 00:00:16.025
+so check it before enrollment.
+
+6
+00:00:16.025 --> 00:00:18.103
+Device rules can't read their owner,
+
+7
+00:00:18.103 --> 00:00:22.762
+and stale or duplicate device objects
+keep matching until you reconcile them.
+
+8
+00:00:22.762 --> 00:00:25.466
+For time-sensitive policy, use filters,
+
+9
+00:00:25.466 --> 00:00:29.100
+and never use a dynamic
+device group as an exclusion.
+
+10
+00:00:29.100 --> 00:00:34.288
+Pilot rings, one owning policy per setting,
+and watching the deltas finish the list.
+
+11
+00:00:34.288 --> 00:00:35.900
+Now, the servers.

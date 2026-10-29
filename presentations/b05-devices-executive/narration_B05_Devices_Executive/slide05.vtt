@@ -1,63 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.844
-Done as an unattended switch,
-hybrid join keeps the single
+00:00:00.050 --> 00:00:04.075
+The tempting middle ground is to
+keep the GPOs and add Intune.
 
 2
-00:00:03.844 --> 00:00:07.400
-sign-on and quietly spends
-the governance underneath.
+00:00:04.075 --> 00:00:07.463
+But when both touch a setting,
+nobody sees who wins.
 
 3
-00:00:07.400 --> 00:00:09.900
-New device objects appear with no owner.
+00:00:07.463 --> 00:00:09.525
+By default Group Policy wins.
 
 4
-00:00:09.900 --> 00:00:11.275
-Duplicates pile up.
+00:00:09.525 --> 00:00:13.355
+A switch reverses that, but only
+for some settings; for others,
 
 5
-00:00:11.275 --> 00:00:15.300
-Turning on the managed-device
-policy too early locks people out.
+00:00:13.355 --> 00:00:16.725
+Microsoft warns it's a race
+with no guaranteed winner.
 
 6
-00:00:15.300 --> 00:00:18.238
-Thousands of changes can't
-be traced to a decision.
+00:00:16.725 --> 00:00:21.269
+Microsoft's own tool can measure how much
+of your Group Policy maps to Intune,
 
 7
-00:00:18.238 --> 00:00:21.513
-And retired machines linger,
-padding the managed count.
+00:00:21.269 --> 00:00:25.813
+but it doesn't close the gap, and nobody
+can tell you the percentage in advance.
 
 8
-00:00:21.513 --> 00:00:25.200
-Even a perfect rollout only
-covers domain-joined Windows.
+00:00:25.813 --> 00:00:30.224
+Microsoft's advice is to rebuild from
+today's requirements rather than copy.
 
 9
-00:00:25.200 --> 00:00:31.650
-Macs, phones, Linux, personal devices, kiosks
-and servers all need their own answer.
+00:00:30.224 --> 00:00:35.360
+So the decision for the endpoint engineering
+lead: write down every overlapping
 
 10
-00:00:31.650 --> 00:00:36.462
-So the decision: fleet-wide changes go
-wave by wave, approved by a person,
+00:00:35.360 --> 00:00:40.112
+setting before Intune enforces it, and
+give each GPO copy a retirement date.
 
 11
-00:00:36.462 --> 00:00:41.275
-with the access policy in report-only
-mode until coverage is measured.
-
-12
-00:00:41.275 --> 00:00:46.087
-The endpoint lead calls each wave;
-the CISO decides the enforcement.
-
-13
-00:00:46.087 --> 00:00:48.380
-Now, what a governed device needs.
+00:00:40.112 --> 00:00:41.740
+Next, the shortcut.

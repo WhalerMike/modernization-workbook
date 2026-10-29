@@ -22,7 +22,7 @@ lifecycle_review: 2027-04-01
 Why the attribute a rule reads is itself an access control. Which user attributes Entra dynamic rules can use, and where those values should come from. How to write, name, test and change rules safely within Microsoft's processing limits. How administrative units scope DBA delegation, and where restricted management collides with governance tooling. Why privileged SQL Server access belongs in PIM for Groups rather than in a dynamic rule. How access reviews, break-glass and monitoring close the loop. What a FedRAMP Moderate system in the commercial cloud can adopt as written, and why preview features stay out of production.
 :::
 
-[Chapter 16](16-groups-roles-and-membership.md) turned the organization-derived groups of the old estate into dynamic groups, whose membership Entra ID recomputes from a rule over coded attributes, such as `user.extensionAttribute10 -in ["FIN-LED","FIN-AP"]`, whenever attributes change. No ticket, no DBA action. This chapter covers what has to be true for that to be safe. [Book 03](../b03-hr-identity/index.md) covers the HR attribute pipeline itself, and [Book 04](../b04-access/index.md) covers PIM and Conditional Access for the whole tenant; this chapter applies both to SQL Server.
+[Chapter 16](16-groups-roles-and-membership.md) turned the organization-derived groups of the old estate into dynamic groups, whose membership Entra ID recomputes from a rule over coded attributes, such as `user.extensionAttribute10 -in ["FIN-LED","FIN-AP"]`, whenever attributes change. No ticket, no DBA action. This chapter covers what has to be true for that to be safe. [Book 03](../b03-hr-identity/index.md) covers the HR attribute pipeline itself, and [Book 04](../b04-access/index.md) covers PIM and Conditional Access for the whole tenant; this chapter applies both to SQL Server. Dynamic membership is for people, the HR track. Service accounts and application principals are the [non-person identity track](../guides/attribute-driven-migration.md#non-person-identity-track) and are never placed by an HR rule.
 
 ## The attribute is the access control
 
@@ -74,7 +74,7 @@ The second is **testing before granting.** A rule should be proven before its gr
 3. **Watch processing.** For a rule change on a group that's already live, check the group's processing status and its audit-log entries for the additions and removals the change caused. A rule change removes existing members who no longer match.[^c17-status][^c17-troubleshoot]
 4. **Pause bulk changes.** For HR reorganizations or bulk attribute loads (Microsoft's examples are changes to more than 500 groups or more than 20,000 membership changes), Microsoft recommends pausing nonessential dynamic groups, waiting at least 24 hours for processing to catch up, then resuming in phases.[^c17-processing]
 
-The **rollout gate** for the whole pattern follows from this. No dynamic group grants production access until the access attributes are populated and verified for a pilot cohort, and its rule has been validated, shadowed and reconciled against the group it replaces.
+The **rollout gate** for the whole pattern follows from this. No dynamic group grants production access until the access attributes are populated and verified for a pilot cohort, and its rule has been validated, shadowed and reconciled against the group it replaces. The companion guide's [dynamic group dangers](../guides/attribute-driven-migration.md#dynamic-group-dangers) lists the failure modes these steps guard against.
 
 ## Scoped delegation with administrative units
 

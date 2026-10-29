@@ -1,74 +1,82 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.450
-What does “HR as the source
-of truth” actually mean?
+00:00:00.050 --> 00:00:01.187
+So what should we do?
 
 2
-00:00:03.450 --> 00:00:05.337
-One owner for every fact.
+00:00:01.187 --> 00:00:06.510
+There are four realistic options, weighed
+against what leadership has to balance:
 
 3
-00:00:05.337 --> 00:00:08.956
-HR is authoritative for
-employment status, position,
+00:00:06.510 --> 00:00:10.188
+the mission and the public,
+security, cost and resilience.
 
 4
-00:00:08.956 --> 00:00:12.163
-organization, supervisor
-and effective dates.
+00:00:10.188 --> 00:00:14.388
+Compliance matters, but on its
+own it isn't a reason to invest.
 
 5
-00:00:12.163 --> 00:00:15.929
-The identity platform stays
-authoritative for what it does:
+00:00:14.388 --> 00:00:18.065
+Option A keeps ticket-driven
+identity: no new spending,
 
 6
-00:00:15.929 --> 00:00:20.299
-credentials, authentication, sessions,
-directory objects and policy.
+00:00:18.065 --> 00:00:20.762
+but the risk and the manual work stay put.
 
 7
-00:00:20.299 --> 00:00:23.583
-And contractors, whom
-HR 2.0 doesn't cover,
+00:00:20.762 --> 00:00:24.187
+Option B scripts automation
+inside the directories.
 
 8
-00:00:23.583 --> 00:00:27.462
-get their own source,
-mapped into the same model.
+00:00:24.187 --> 00:00:26.969
+It's quick and cheap,
+but it automates a source
 
 9
-00:00:27.462 --> 00:00:31.827
-That model uses OPM's standard
-personnel data elements as its contract,
+00:00:26.969 --> 00:00:30.201
+that isn't authoritative,
+so bad data spreads faster.
 
 10
-00:00:31.827 --> 00:00:35.749
-so vendor field names stay at the
-boundary and can be swapped out.
+00:00:30.201 --> 00:00:34.562
+Option C waits for HR 2.0
+and integrates afterward.
 
 11
-00:00:35.749 --> 00:00:40.192
-It's keyed on a person key the agency
-controls, and that key has to fit
+00:00:34.562 --> 00:00:37.651
+That's defensible, but the
+interconnection decisions are
 
 12
-00:00:40.192 --> 00:00:45.037
-Entra ID's employeeId attribute, which
-holds at most sixteen characters.
+00:00:37.651 --> 00:00:40.612
+made during onboarding, so
+waiting means retrofitting.
 
 13
-00:00:45.037 --> 00:00:48.939
-The rule that makes it all work:
-every attribute has one name,
+00:00:40.612 --> 00:00:47.000
+Option D starts now, with HR as the source
+of truth, designed into both migrations.
 
 14
-00:00:48.939 --> 00:00:51.726
-one definition and one accountable owner.
+00:00:47.000 --> 00:00:49.212
+It costs design effort up front.
 
 15
-00:00:51.726 --> 00:00:56.590
-When a fact is wrong, it gets fixed at the
-source, never patched in the directory.
+00:00:49.212 --> 00:00:54.687
+The judgment call: if HR 2.0 slipped
+a long way, C becomes reasonable.
+
+16
+00:00:54.687 --> 00:00:57.224
+But D's first step, data standards,
+
+17
+00:00:57.224 --> 00:01:01.130
+ownership and a person key,
+is no-regret either way.

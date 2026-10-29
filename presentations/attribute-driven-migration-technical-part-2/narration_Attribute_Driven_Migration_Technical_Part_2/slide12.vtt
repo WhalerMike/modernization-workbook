@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.537
+The non-person track starts
+with what AD already holds.
+
+2
+00:00:03.537 --> 00:00:08.437
+Service accounts have no HR record, so
+nobody's leave date ever turns them off,
+
+3
+00:00:08.437 --> 00:00:12.325
+and that's why they're so often
+over-privileged and forgotten.
+
+4
+00:00:12.325 --> 00:00:15.588
+The table is Book 02's migration matrix.
+
+5
+00:00:15.588 --> 00:00:18.432
+The rule is to get rid of stored secrets:
+
+6
+00:00:18.432 --> 00:00:24.653
+a traditional account becomes an app
+registration with a certificate or federated
+
+7
+00:00:24.653 --> 00:00:29.363
+credential, or a managed identity
+in Azure; on-premises Kerberos
+
+8
+00:00:29.363 --> 00:00:33.451
+workloads go to a g M S A; and an
+M S A upgrades to a g M S A first.
+
+9
+00:00:33.451 --> 00:00:35.864
+Each one gets an owner
+before it's touched,
+
+10
+00:00:35.864 --> 00:00:39.200
+and an account nobody will
+own is a retirement candidate.
+
+11
+00:00:39.200 --> 00:00:40.970
+Next, the cloud side.

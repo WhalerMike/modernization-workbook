@@ -1,82 +1,68 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.398
-For new devices, the
-doctrine is Intune-first,
+00:00:00.050 --> 00:00:04.100
+The obvious shortcut is hybrid
+join, and the book calls it a trap.
 
 2
-00:00:03.398 --> 00:00:08.013
-and the headline is the slide
-title: no ungoverned device, ever.
+00:00:04.100 --> 00:00:06.425
+Microsoft's guidance is two-sided.
 
 3
-00:00:08.013 --> 00:00:12.100
-Every device is enrolled in governance
-before it's used in production.
+00:00:06.425 --> 00:00:10.700
+New or reset Windows devices
+should be Entra joined by default.
 
 4
-00:00:12.100 --> 00:00:16.050
-Governance starts at procurement,
-so the device's organizational
+00:00:10.700 --> 00:00:16.050
+Existing domain-joined devices can be
+hybrid joined, with little impact on users.
 
 5
-00:00:16.050 --> 00:00:20.000
-assignment is set when the order is
-placed, not when the box arrives.
+00:00:16.050 --> 00:00:21.000
+But Microsoft is clear that hybrid join
+isn't meant to be the long-term end state.
 
 6
-00:00:20.000 --> 00:00:23.487
-That's the same idea as HR
-feeding user provisioning.
+00:00:21.000 --> 00:00:22.887
+The trap is how easy it looks.
 
 7
-00:00:23.487 --> 00:00:27.980
-Enrollment is zero-touch, and
-manual enrollment is a justified,
+00:00:22.887 --> 00:00:26.812
+Turning it on is close to a single
+tenant-wide switch, so something
 
 8
-00:00:27.980 --> 00:00:30.313
-time-limited, audited exception.
+00:00:26.812 --> 00:00:31.174
+assessments treat as a multi-quarter
+program can look finished in a week.
 
 9
-00:00:30.313 --> 00:00:32.882
-Each asset gets one management plane,
+00:00:31.174 --> 00:00:34.987
+Meanwhile the fleet keeps every
+on-premises dependency it had.
 
 10
-00:00:32.882 --> 00:00:35.950
-and there's no new Group
-Policy or hybrid join.
+00:00:34.987 --> 00:00:37.801
+And there's no supported
+way to convert a hybrid
 
 11
-00:00:35.950 --> 00:00:40.071
-And if onboarding fails, the device
-goes to quarantine with a ticket,
+00:00:37.801 --> 00:00:40.687
+device to Entra join
+without resetting Windows.
 
 12
-00:00:40.071 --> 00:00:42.500
-never into production half-configured.
+00:00:40.687 --> 00:00:45.574
+So the governed path uses hybrid join
+where it helps, then moves each device
 
 13
-00:00:42.500 --> 00:00:47.264
-One practical note for GCC tenants:
-the book defaults to classic Autopilot,
+00:00:45.574 --> 00:00:49.988
+to Entra join at a natural event,
+like a hardware refresh or a rebuild.
 
 14
-00:00:47.264 --> 00:00:50.338
-because manufacturer
-registration can carry a
-
-15
-00:00:50.338 --> 00:00:53.412
-group tag and the newer
-device preparation can't.
-
-16
-00:00:53.412 --> 00:00:55.151
-That covers new devices.
-
-17
-00:00:55.151 --> 00:00:57.960
-The existing fleet takes
-one of three paths.
+00:00:49.988 --> 00:00:52.680
+Now, what actually replaces Group Policy?

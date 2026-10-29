@@ -1,98 +1,85 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.125
-When Active Directory retires, being
-inside the network stops meaning anything.
+00:00:00.050 --> 00:00:03.373
+Once identity, policy and
+network services have moved,
 
 2
-00:00:05.125 --> 00:00:10.263
-M-22-09 says users should log in to
-applications rather than networks,
+00:00:03.373 --> 00:00:07.212
+domain-joined machines are the
+largest remaining dependency.
 
 3
-00:00:10.263 --> 00:00:15.175
-and multifactor authentication belongs
-at the application layer, not in a VPN.
+00:00:07.212 --> 00:00:12.525
+A machine leaves only when its identity,
+policy and trust have each been replaced,
 
 4
-00:00:15.175 --> 00:00:17.882
-The replacement is Zero
-Trust as the model,
+00:00:12.525 --> 00:00:16.013
+so the domain join is the last
+thing to go, not the first.
 
 5
-00:00:17.882 --> 00:00:22.523
-Conditional Access deciding each
-request, a secure access service edge
+00:00:16.013 --> 00:00:19.925
+User PCs end Entra joined
+and managed in Intune.
 
 6
-00:00:22.523 --> 00:00:27.087
-replacing the VPN, and phishing-resistant
-authentication as the proof.
+00:00:19.925 --> 00:00:24.484
+Hybrid join is a transition, and
+there's no supported way to convert a
 
 7
-00:00:27.087 --> 00:00:31.739
-BOD 25-01 makes blocking
-legacy authentication
+00:00:24.484 --> 00:00:29.775
+hybrid-joined PC without resetting it, so
+time that reset to a hardware refresh.
 
 8
-00:00:31.739 --> 00:00:35.662
-and phishing-resistant MFA
-for all users mandatory.
+00:00:29.775 --> 00:00:34.882
+Servers take a different road: Azure Arc
+brings them under policy where they stand,
 
 9
-00:00:35.662 --> 00:00:37.804
-FIDO2 keys, passkeys,
+00:00:34.882 --> 00:00:38.337
+and leaving the domain is
+decided workload by workload.
 
 10
-00:00:37.804 --> 00:00:43.438
-Windows Hello and PIV or CAC cards
-qualify; SMS and voice don't.
+00:00:38.337 --> 00:00:41.549
+What really holds servers in
+the domain is applications.
 
 11
-00:00:43.438 --> 00:00:45.963
-Two consequences need an executive eye.
+00:00:41.549 --> 00:00:46.950
+Each Kerberos application is migrated
+to modern authentication, retired, or,
 
 12
-00:00:45.963 --> 00:00:49.562
-Smart-card sign-in is anchored
-in Active Directory today.
+00:00:46.950 --> 00:00:52.013
+as a last resort, kept on a small
+documented island with an end-of-life date.
 
 13
-00:00:49.562 --> 00:00:52.458
-The card and PIN stay,
-but certificate issuance
+00:00:52.013 --> 00:00:56.750
+And an application's compute stays with
+its data until its round trips are reduced.
 
 14
-00:00:52.458 --> 00:00:55.650
-needs a successor before
-Active Directory retires.
+00:00:56.750 --> 00:01:01.062
+Only an application's owner can make
+that call and sign off its cutover.
 
 15
-00:00:55.650 --> 00:01:00.500
-And privilege: every human admin assignment
-becomes eligible and time-bound,
+00:01:01.062 --> 00:01:06.849
+Keeping legacy authentication open is
+a risk acceptance, so the authorizing
 
 16
-00:01:00.500 --> 00:01:04.062
-and emergency accounts are
-tested at least every 90 days.
+00:01:06.849 --> 00:01:11.912
+official sets every island and NTLM
+end date, all resolved by Gate G4.
 
 17
-00:01:04.062 --> 00:01:09.672
-The CISO decides: phishing-resistant
-MFA as the end state for everyone,
-
-18
-00:01:09.672 --> 00:01:13.380
-Tier 0 administrators
-first, opening in Phase 1,
-
-19
-00:01:13.380 --> 00:01:17.374
-and certificate issuance
-moved off AD DS by Gate G4.
-
-20
-00:01:17.374 --> 00:01:18.940
-Next, who leads.
+00:01:11.912 --> 00:01:13.270
+Next, access.

@@ -1,21 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.888
-Module 2 is the GPO sunset, the
-program for the existing fleet.
+00:00:00.050 --> 00:00:03.450
+Chapter 05 is how the
+existing estate gets there.
 
 2
-00:00:04.888 --> 00:00:08.749
-It replaces Group Policy on
-endpoints already deployed,
+00:00:03.450 --> 00:00:08.640
+The sources described three separate kits
+that repeated most of the same steps,
 
 3
-00:00:08.749 --> 00:00:13.513
-and it's measured by GPOs retired with
-evidence, not by settings copied.
+00:00:08.640 --> 00:00:13.515
+because the destination is the same:
+servers in Arc, workstations in Intune,
 
 4
-00:00:13.513 --> 00:00:19.080
-Chapters 07 and 08 run it, and
-Appendix A is the crosswalk.
+00:00:13.515 --> 00:00:18.075
+NTLM restricted after it's measured,
+and Conditional Access enforced.
+
+5
+00:00:18.075 --> 00:00:20.575
+What differs is who holds
+the decision record.
+
+6
+00:00:20.575 --> 00:00:26.175
+The rule all three obey: the control
+plane governs, the data plane executes.
+
+7
+00:00:26.175 --> 00:00:29.981
+Every path runs four phases
+in order, observe, onboard,
+
+8
+00:00:29.981 --> 00:00:34.825
+harden and watch, and nothing is
+restricted until it's been measured.
+
+9
+00:00:34.825 --> 00:00:37.925
+The manual path suits
+small estates and pilots.
+
+10
+00:00:37.925 --> 00:00:41.800
+The governed path puts an approval
+reference on every change.
+
+11
+00:00:41.800 --> 00:00:44.706
+The retrofit adopts a
+hand-modernized estate,
+
+12
+00:00:44.706 --> 00:00:47.688
+at the risk of blessing
+whatever drift is there.
+
+13
+00:00:47.688 --> 00:00:52.460
+And the federal ceiling is human
+approval; autonomous action is refused.

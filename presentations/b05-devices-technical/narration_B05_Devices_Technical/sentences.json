@@ -39,9 +39,51 @@
    44.763,
    1.525,
    "I'll stick to what matters."
+  ],
+  [
+   46.288,
+   2.9,
+   "First, where this session sits in the series."
   ]
  ],
  "2": [
+  [
+   0.05,
+   8.338,
+   "Here's why this matters: the series moves four populations to the cloud, each on its own track, and Book 05 carries two of them."
+  ],
+  [
+   8.387,
+   4.487,
+   "The Intune track is end-user devices, and the Arc track is servers."
+  ],
+  [
+   12.875,
+   8.262,
+   "A device's attributes come from device provisioning, like the Autopilot group tag, never from HR, and a device rule can't read its owner."
+  ],
+  [
+   21.137,
+   7.85,
+   "Devices are done when their policy targets those attributes and the computer-side G P O links are gone, one population at a time."
+  ],
+  [
+   28.988,
+   5.525,
+   "Servers are done when each is Arc-enabled, tagged, and evaluated by Azure Policy."
+  ],
+  [
+   34.513,
+   6.287,
+   "And Group Policy splits: user settings go with people, computer settings with devices and servers."
+  ],
+  [
+   40.8,
+   2.962,
+   "Next, why Group Policy can't come to the cloud."
+  ]
+ ],
+ "3": [
   [
    0.05,
    1.387,
@@ -83,7 +125,7 @@
    "So the program's rule is regenerate, not copy: identify the mandatory settings, compare them with MDM, and treat the gaps as blockers."
   ]
  ],
- "3": [
+ "4": [
   [
    0.05,
    3.112,
@@ -130,7 +172,7 @@
    "And one rule to remember: delete the Entra object last, because that deletes the BitLocker recovery keys."
   ]
  ],
- "4": [
+ "5": [
   [
    0.05,
    4.275,
@@ -147,7 +189,7 @@
    "Chapter 04 covers new devices, and Chapter 05 the three paths for the existing estate."
   ]
  ],
- "5": [
+ "6": [
   [
    0.05,
    1.962,
@@ -184,7 +226,54 @@
    "The organizational assignment comes from the first source that can supply it, and the target is fourteen days from purchase order."
   ]
  ],
- "6": [
+ "7": [
+  [
+   0.05,
+   5.463,
+   "Here's why this matters: the Intune track is every end-user device, not just Windows."
+  ],
+  [
+   5.513,
+   6.5,
+   "Windows 11 and Cloud PCs are fully managed, and Azure Virtual Desktop is managed with limits."
+  ],
+  [
+   12.012,
+   6.612,
+   "Apple devices come in through Apple Business Manager, and Android Enterprise is managed in all four of its modes."
+  ],
+  [
+   18.625,
+   5.3,
+   "Linux desktops are limited: Ubuntu and Red Hat, mostly for compliance."
+  ],
+  [
+   23.925,
+   4.838,
+   "ChromeOS shows up as inventory, but Google's console keeps the policy."
+  ],
+  [
+   28.762,
+   4.5,
+   "Windows 10 is out of support, so it can enroll but nothing's guaranteed."
+  ],
+  [
+   33.263,
+   5.475,
+   "And servers, printers, network gear and IoT aren't Intune platforms at all."
+  ],
+  [
+   38.737,
+   4.825,
+   "Servers go to Arc, and the rest get a tier, which we'll come to in Module 3."
+  ],
+  [
+   43.562,
+   3.312,
+   "Next, Windows in a G C C tenant."
+  ]
+ ],
+ "8": [
   [
    0.05,
    3.45,
@@ -226,7 +315,7 @@
    "And never use either with hybrid join for new devices."
   ]
  ],
- "7": [
+ "9": [
   [
    0.05,
    5.188,
@@ -263,7 +352,7 @@
    "The slide covers naming and the Enrollment Status Page."
   ]
  ],
- "8": [
+ "10": [
   [
    0.05,
    5.138,
@@ -305,7 +394,7 @@
    "Each needs written justification, a compensating control and an audit entry, and the last one is isolated first."
   ]
  ],
- "9": [
+ "11": [
   [
    0.05,
    3.4,
@@ -352,7 +441,7 @@
    "And the federal ceiling is human approval; autonomous action is refused."
   ]
  ],
- "10": [
+ "12": [
   [
    0.05,
    3.812,
@@ -399,7 +488,7 @@
    "A missing SPN is the silent case: Kerberos isn't tried and N T L M quietly works, until the N T L M block turns it into an outage."
   ]
  ],
- "11": [
+ "13": [
   [
    0.05,
    4.838,
@@ -416,7 +505,7 @@
    "Chapters 07 and 08 run it, and Appendix A is the crosswalk."
   ]
  ],
- "12": [
+ "14": [
   [
    0.05,
    10.575,
@@ -453,7 +542,7 @@
    "So the program treats the readiness report as proof that an equivalent exists, never that a setting is needed."
   ]
  ],
- "13": [
+ "15": [
   [
    0.05,
    6.275,
@@ -515,7 +604,7 @@
    "The answers send settings to four landing zones in Intune, and the slide has their limits."
   ]
  ],
- "14": [
+ "16": [
   [
    0.05,
    5.775,
@@ -552,7 +641,7 @@
    "Disabling a G P O link is the moment production behavior changes, so it's gated: freeze, back up, prove the replacement works, then disable the link with one reversible command."
   ]
  ],
- "15": [
+ "17": [
   [
    0.05,
    10.4,
@@ -584,7 +673,7 @@
    "One reminder: rolling back a pilot means reassigning a policy with the old value, not just removing the assignment."
   ]
  ],
- "16": [
+ "18": [
   [
    0.05,
    9.387,
@@ -631,7 +720,7 @@
    "The slide has the compliance set, including a strict Tier 0 policy."
   ]
  ],
- "17": [
+ "19": [
   [
    0.05,
    6.75,
@@ -678,7 +767,7 @@
    "Appendix A flags the crosswalk traps, such as a logon message breaking Autopilot pre-provisioning."
   ]
  ],
- "18": [
+ "20": [
   [
    0.05,
    8.175,
@@ -690,7 +779,7 @@
    "Arc gives a server an address in the control plane; what governs it is everything you then attach to that address."
   ]
  ],
- "19": [
+ "21": [
   [
    0.05,
    3.288,
@@ -742,7 +831,39 @@
    "Plan cost by service, too; with the right licensing, several management services come at no extra cost, once you attest it."
   ]
  ],
- "20": [
+ "22": [
+  [
+   0.05,
+   6.5,
+   "Here's why this matters: the Arc track is servers wherever they run, and the inventory needs everything else too."
+  ],
+  [
+   6.55,
+   16.087,
+   "Arc covers Windows Server 2016 through 2025, the supported Linux distributions, physical servers and any hypervisor, VMware VMs through vCenter, and AWS and Google Cloud instances, with Google's connector still in preview."
+  ],
+  [
+   22.637,
+   6.075,
+   "Azure VMs don't need Arc. AIX, Solaris, the mainframe and network devices aren't covered."
+  ],
+  [
+   28.712,
+   12.45,
+   "So every device lands in one of four tiers: Intune or Arc; its own tool, with the CMDB holding its attributes; discovered and monitored only; or segmented and retired."
+  ],
+  [
+   41.163,
+   3.862,
+   "A device in no tier is a finding against the inventory control."
+  ],
+  [
+   45.025,
+   2.163,
+   "Next, getting ready to onboard."
+  ]
+ ],
+ "23": [
   [
    0.05,
    3.138,
@@ -784,7 +905,7 @@
    "And images: install the agent in your golden image, but never connect the image, or every clone shares one resource ID."
   ]
  ],
- "21": [
+ "24": [
   [
    0.05,
    1.788,
@@ -826,7 +947,7 @@
    "And for sensitive servers, set local controls Azure can't override, like an extension allowlist."
   ]
  ],
- "22": [
+ "25": [
   [
    0.05,
    3.263,
@@ -863,7 +984,7 @@
    "Onboard Defender through Arc, rather than installing it directly, which gives you only Plan 1 function."
   ]
  ],
- "23": [
+ "26": [
   [
    0.05,
    6.838,
@@ -890,7 +1011,7 @@
    "And rollback has an order: remove extensions, disconnect, then uninstall."
   ]
  ],
- "24": [
+ "27": [
   [
    0.05,
    3.388,
@@ -907,7 +1028,7 @@
    "Operating means keeping them in agreement."
   ]
  ],
- "25": [
+ "28": [
   [
    0.05,
    9.262,
@@ -944,7 +1065,7 @@
    "And on Tier 0, a Defender detection becomes a compliance failure, and so a loss of access."
   ]
  ],
- "26": [
+ "29": [
   [
    0.05,
    6.662,
@@ -981,7 +1102,7 @@
    "And version currency: 23H2 Enterprise stops receiving updates on November tenth, 2026, so feature updates target 25H2 now."
   ]
  ],
- "27": [
+ "30": [
   [
    0.05,
    7.525,
@@ -1018,7 +1139,7 @@
    "Export the BitLocker keys and LAPS password first, then wipe, deregister and delete, and delete the Entra object last, because that permanently removes its keys."
   ]
  ],
- "28": [
+ "31": [
   [
    0.05,
    9.162,
@@ -1055,7 +1176,7 @@
    "Otherwise the alert would arrive two days late."
   ]
  ],
- "29": [
+ "32": [
   [
    0.05,
    1.875,

@@ -1,64 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.500
-Microsoft now ships two
-ways to provision Windows.
+00:00:00.050 --> 00:00:02.012
+The doctrine is simple to state.
 
 2
-00:00:03.500 --> 00:00:06.377
-Autopilot device preparation is the newer,
+00:00:02.012 --> 00:00:05.845
+A new asset is governed from
+the moment it first powers on:
 
 3
-00:00:06.377 --> 00:00:09.175
-simpler one, with near
-real-time reporting.
+00:00:05.845 --> 00:00:09.351
+by Intune for endpoints, and
+by Azure Arc for servers.
 
 4
-00:00:09.175 --> 00:00:11.787
-Classic Autopilot is more feature-rich.
+00:00:09.351 --> 00:00:12.839
+There's no waiting room where it
+joins Active Directory first,
 
 5
-00:00:11.787 --> 00:00:15.257
-The difference that matters
-most here is registration:
+00:00:12.839 --> 00:00:15.712
+or reaches production
+without a compliance check.
 
 6
-00:00:15.257 --> 00:00:18.349
-device preparation has none,
-so it has no group tag.
+00:00:15.712 --> 00:00:19.254
+Five pillars carry it, and
+they're the program's doctrine,
 
 7
-00:00:18.349 --> 00:00:24.575
-In a GCC tenant both are available, because
-GCC uses the commercial Intune service.
+00:00:19.254 --> 00:00:21.101
+not Microsoft requirements.
 
 8
-00:00:24.575 --> 00:00:29.196
-The program's default for standard hardware
-is classic Autopilot, user-driven,
+00:00:21.101 --> 00:00:24.249
+The ones to remember: no
+ungoverned device, ever;
 
 9
-00:00:29.196 --> 00:00:34.030
-with Entra join, because its registration
-carries the procurement attribute and
+00:00:24.249 --> 00:00:29.417
+procurement is the first governance
+step, the way HR feeds user provisioning;
 
 10
-00:00:34.030 --> 00:00:38.438
-the purchase order from the vendor to
-the device before it's ever powered on.
+00:00:29.417 --> 00:00:33.939
+and an onboarding failure produces
+a quarantine entry and a ticket,
 
 11
-00:00:38.438 --> 00:00:41.854
-Use device preparation
-where its advantages matter,
+00:00:33.939 --> 00:00:36.362
+never a degraded production device.
 
 12
-00:00:41.854 --> 00:00:46.513
-such as faster provisioning or a tenant
-that might later move to GCC High.
+00:00:36.362 --> 00:00:39.369
+Every asset then follows
+the same five phases,
 
 13
-00:00:46.513 --> 00:00:49.820
-And never use either with
-hybrid join for new devices.
+00:00:39.369 --> 00:00:42.375
+from procure through
+provision and validate.
+
+14
+00:00:42.375 --> 00:00:46.468
+The organizational assignment comes from
+the first source that can supply it,
+
+15
+00:00:46.468 --> 00:00:49.220
+and the target is fourteen
+days from purchase order.

@@ -1,59 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.760
-Intune manages Windows updates
-through four policy types,
+00:00:00.050 --> 00:00:03.571
+Arc is also how many organizations
+keep end-of-support servers
 
 2
-00:00:03.760 --> 00:00:06.712
-and the rings stage each
-month's quality update.
+00:00:03.571 --> 00:00:06.888
+patched while they migrate, and
+the dates are the point here.
 
 3
-00:00:06.712 --> 00:00:10.412
-The ring names follow Windows
-Autopatch, Test, First,
+00:00:06.888 --> 00:00:09.185
+As of October twentieth, 2026,
 
 4
-00:00:10.412 --> 00:00:14.713
-Fast and Broad, from the engineering
-lab out to everyone else.
+00:00:09.185 --> 00:00:15.598
+Windows Server 2012 and 2012 R2 receive
+no further security updates through any
 
 5
-00:00:14.713 --> 00:00:16.775
-The values are the program's design.
+00:00:15.598 --> 00:00:19.139
+channel, so any still
+running is a red finding:
 
 6
-00:00:16.775 --> 00:00:21.895
-With them, a quality update reaches every
-online device within about sixteen days
+00:00:19.139 --> 00:00:23.063
+migrate, upgrade, or isolate
+it and record the risk.
 
 7
-00:00:21.895 --> 00:00:26.638
-of release, and an update that breaks an
-early ring can be paused before Broad.
+00:00:23.063 --> 00:00:28.331
+Windows Server 2016 reaches end of
+support on January twelfth, 2027,
 
 8
-00:00:26.638 --> 00:00:31.389
-Autopatch automates all of
-this, and it's included for
+00:00:28.331 --> 00:00:33.412
+so enroll those hosts in ESUs before
+then if they won't be upgraded.
 
 9
-00:00:31.389 --> 00:00:36.250
-GCC customers with G3 or G5,
-though not in GCC High or DoD.
+00:00:33.412 --> 00:00:37.155
+Arc servers can also use
+Entra ID for Remote Desktop,
 
 10
-00:00:36.250 --> 00:00:40.275
-It maintains its own rings, so
-don't assign yours to its devices.
+00:00:37.155 --> 00:00:41.854
+but only on Server 2025 or Windows
+11 24H2, and Conditional Access
 
 11
-00:00:40.275 --> 00:00:47.159
-And version currency: 23H2 Enterprise
-stops receiving updates on November tenth,
+00:00:41.854 --> 00:00:46.988
+isn't supported there; the control is
+role-based access held through PIM.
 
 12
-00:00:47.159 --> 00:00:50.570
-2026, so feature updates target 25H2 now.
+00:00:46.988 --> 00:00:52.420
+And rollback has an order: remove
+extensions, disconnect, then uninstall.

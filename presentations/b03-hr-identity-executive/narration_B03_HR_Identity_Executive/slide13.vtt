@@ -1,67 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.031
-The trap: disabling an
-account doesn't revoke
+00:00:00.050 --> 00:00:03.267
+The shift: nobody remembers
+to disable a leaver;
 
 2
-00:00:03.031 --> 00:00:05.850
-a PIV certificate or a device certificate.
+00:00:03.267 --> 00:00:06.813
+the separation record does
+it, on the effective date.
 
 3
-00:00:05.850 --> 00:00:08.388
-Both stay valid until
-someone revokes them.
+00:00:06.813 --> 00:00:09.424
+Every lifecycle event comes from HR.
 
 4
-00:00:08.388 --> 00:00:11.391
-So a lifecycle that stops at
-the account leaves a former
+00:00:09.424 --> 00:00:11.825
+A new hire is ready before day one.
 
 5
-00:00:11.391 --> 00:00:14.525
-employee's credentials working
-wherever they're trusted.
+00:00:11.825 --> 00:00:15.950
+A mover loses the old job's
+access as the new job's arrives.
 
 6
-00:00:14.525 --> 00:00:16.450
-The leaver sequence fixes that.
+00:00:15.950 --> 00:00:17.725
+A leaver is blocked first.
 
 7
-00:00:16.450 --> 00:00:21.413
-Block sign-in and end sessions first,
-which closes Entra immediately.
+00:00:17.725 --> 00:00:22.625
+A rehire comes back as the same person,
+and a conversion keeps one identity.
 
 8
-00:00:21.413 --> 00:00:24.851
-Then revoke the card,
-wipe or retire devices,
+00:00:22.625 --> 00:00:25.746
+For federal employees, the
+triggers already exist:
 
 9
-00:00:24.851 --> 00:00:28.575
-and remove access, in
-parallel, confirming each.
+00:00:25.746 --> 00:00:30.800
+every personnel action carries a standard
+code that says what kind of action it is.
 
 10
-00:00:28.575 --> 00:00:30.188
-Delete the account last.
+00:00:30.800 --> 00:00:32.838
+A few rules prevent real harm.
 
 11
-00:00:30.188 --> 00:00:35.675
-One more decision: the link between a PIV
-card and its account decides who signs in.
+00:00:32.838 --> 00:00:35.312
+Leave without pay is not a separation.
 
 12
-00:00:35.675 --> 00:00:40.625
-So only one automated system, the
-card-management integration, may write it.
+00:00:35.312 --> 00:00:37.537
+A separation wins any tie.
 
 13
-00:00:40.625 --> 00:00:45.050
-Security sets that rule, and the
-PIV office runs the card system.
+00:00:37.537 --> 00:00:41.201
+And a cancelled separation
+restores access, with evidence.
 
 14
-00:00:45.050 --> 00:00:47.860
-Now, the open question about contractors.
+00:00:41.201 --> 00:00:44.562
+HR validates those rules
+before anything automates.
+
+15
+00:00:44.562 --> 00:00:46.060
+Then, credentials.

@@ -1,72 +1,78 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.713
-Chapter 11 puts the steps together
-in a reference deployment.
+00:00:00.050 --> 00:00:03.306
+The book's How chapters follow five steps:
 
 2
-00:00:03.713 --> 00:00:09.202
-It's a framing pattern, not a real engagement:
-a civilian agency with two forests,
+00:00:03.306 --> 00:00:06.563
+discover, assess, build,
+migrate and prove.
 
 3
-00:00:09.202 --> 00:00:13.087
-a trust between them, and a
-fleet of SQL Server instances.
+00:00:06.563 --> 00:00:11.068
+Discovery starts with the read-only
+access every employee already has,
 
 4
-00:00:13.087 --> 00:00:16.276
-The figures are illustrative,
-but the mechanics are real.
+00:00:11.068 --> 00:00:15.650
+and only then asks for narrow, time-bound
+access to what you still can't see.
 
 5
-00:00:16.276 --> 00:00:22.387
-It runs in five phases: discover,
-normalize, map, migrate and validate.
+00:00:15.650 --> 00:00:18.461
+The assessment covers
+the whole forest without
 
 6
-00:00:22.387 --> 00:00:23.800
-Two moments stand out.
+00:00:18.461 --> 00:00:21.062
+ever requesting rights
+that expose secrets.
 
 7
-00:00:23.800 --> 00:00:28.100
-Every account the registry can't tie
-to a real owner becomes a finding.
+00:00:21.062 --> 00:00:26.094
+For the build, the book recommends Cloud
+Sync unless something needs Connect Sync,
 
 8
-00:00:28.100 --> 00:00:31.223
-And every change is recorded
-with who asked for it,
+00:00:26.094 --> 00:00:29.497
+password hash sync everywhere,
+PIM for every admin role,
 
 9
-00:00:31.223 --> 00:00:33.813
-on what authority, and
-a hash of the result.
+00:00:29.497 --> 00:00:32.087
+and a tested Conditional Access baseline.
 
 10
-00:00:33.813 --> 00:00:37.049
-What comes out is an evidence
-bundle for the authorizing
+00:00:32.087 --> 00:00:35.573
+Migration runs in waves,
+moving to phishing-resistant
 
 11
-00:00:37.049 --> 00:00:40.700
-official and the assessor, who
-authorize the agency's own system.
+00:00:35.573 --> 00:00:38.749
+sign-in and switching off
+legacy authentication.
 
 12
-00:00:40.700 --> 00:00:42.613
-And it belongs to the agency.
+00:00:38.749 --> 00:00:41.444
+And proof means drift
+checks and an evidence
 
 13
-00:00:42.613 --> 00:00:45.105
-When the integrator leaves, the registry,
+00:00:41.444 --> 00:00:44.138
+bundle the authorizing
+official can rely on.
 
 14
-00:00:45.105 --> 00:00:49.724
-the findings and the evidence stay
-behind for the next authorization cycle.
+00:00:44.138 --> 00:00:49.046
+A few rules hold every time: never
+enforce an untested policy on everyone,
 
 15
-00:00:49.724 --> 00:00:51.340
-So, what are we asking for?
+00:00:49.046 --> 00:00:51.827
+keep two cloud-only break-glass accounts,
+
+16
+00:00:51.827 --> 00:00:56.230
+and treat any closure as unproven
+until it carries its evidence.

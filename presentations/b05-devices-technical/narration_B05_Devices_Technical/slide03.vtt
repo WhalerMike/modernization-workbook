@@ -1,73 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.162
-Two more ideas frame
-everything in this session.
+00:00:00.050 --> 00:00:01.437
+Here's why this matters.
 
 2
-00:00:03.162 --> 00:00:05.301
-First, the hybrid-join trap.
+00:00:01.437 --> 00:00:04.138
+For twenty years, Group
+Policy did a great deal
 
 3
-00:00:05.301 --> 00:00:10.260
-Converting a domain-joined fleet to hybrid
-join is close to a tenant-wide switch:
+00:00:04.138 --> 00:00:06.838
+of governance without
+anyone writing it down.
 
 4
-00:00:10.260 --> 00:00:14.319
-extend the sync scope, and every
-Windows device registers itself,
+00:00:06.838 --> 00:00:09.739
+A computer sat in an
+organizational unit (OU),
 
 5
-00:00:14.319 --> 00:00:17.175
-with nothing checking
-ownership or approval.
+00:00:09.739 --> 00:00:15.139
+the linked GPOs applied in a fixed order,
+and that one structure was the targeting,
 
 6
-00:00:17.175 --> 00:00:22.456
-Microsoft's guidance is that Entra join
-is the default for new or reset devices,
+00:00:15.139 --> 00:00:18.363
+the precedence, the
+delegation and the evidence.
 
 7
-00:00:22.456 --> 00:00:25.462
-and hybrid join is a
-waypoint, not the end goal.
+00:00:18.363 --> 00:00:20.048
+Microsoft says it plainly:
 
 8
-00:00:25.462 --> 00:00:29.074
-Done ungoverned, the waypoint
-becomes the destination.
+00:00:20.048 --> 00:00:24.338
+Group Policy enforcement isn't
+possible on cloud-native endpoints.
 
 9
-00:00:29.074 --> 00:00:31.213
-Second, where the truth lives.
+00:00:24.338 --> 00:00:28.637
+Intune can deliver most of the
+settings, but every mechanism changes.
 
 10
-00:00:31.213 --> 00:00:35.525
-A laptop is described by
-procurement, Autopilot, Entra ID,
+00:00:28.637 --> 00:00:33.337
+Targeting is flat, devices check in
+about every eight hours instead of every
 
 11
-00:00:35.525 --> 00:00:39.287
-Intune and Defender records,
-and a server adds Arc.
+00:00:33.337 --> 00:00:38.187
+ninety minutes, and when two policies
+disagree, the setting may not apply at all.
 
 12
-00:00:39.287 --> 00:00:41.482
-The program decides, fact by fact,
+00:00:38.187 --> 00:00:41.763
+On a hybrid device, Group
+Policy wins by default.
 
 13
-00:00:41.482 --> 00:00:45.463
-which one is authoritative, and
-correlates on the right key.
+00:00:41.763 --> 00:00:47.191
+So the program's rule is regenerate, not
+copy: identify the mandatory settings,
 
 14
-00:00:45.463 --> 00:00:48.979
-And one rule to remember:
-delete the Entra object last,
-
-15
-00:00:48.979 --> 00:00:52.390
-because that deletes the
-BitLocker recovery keys.
+00:00:47.191 --> 00:00:50.900
+compare them with MDM, and
+treat the gaps as blockers.

@@ -115,6 +115,16 @@ No Microsoft service is authoritative for why the organization bought a device, 
 
 The CMDB is a source of truth for business facts and a consumer for technical ones. It shouldn't be where anyone decides a device is compliant or managed; it should import those states from Intune, Arc and Defender and flag the records where they disagree with its own.
 
+## Three stores that policy reads
+
+The authority map says where each fact is true. Policy reads copies of those facts from three different stores, and each store has different readers. Device attributes in all three come from device provisioning and the procurement or asset record, not from HR. HR never describes a device.
+
+- **Entra ID device object properties.** These include `deviceOSType`, `deviceOwnership`, `deviceTrustType`, `enrollmentProfileName`, `devicePhysicalIds` (the Autopilot `[ZTDId]` and the `[OrderID]` group tag) and `extensionAttribute1` to `15`. Dynamic device groups read them. A device rule reads only device attributes, so it can't use the attributes of the device's owner.[^c03-dynamic-rules] Conditional Access device filters can read the extension attributes too, but only when the device is Intune managed, compliant or Microsoft Entra hybrid joined.[^c03-ca-device-filter]
+- **Intune inventory.** This holds manufacturer, model, OS SKU and version, ownership, category and enrollment profile. Assignment filters evaluate these properties at check-in, and they can't read extension attributes ([Chapter 08](08-gpo-to-intune-policy-migration.md#assignment-strategy)).
+- **Azure resource tags on Arc machines.** They're set at onboarding with `azcmagent connect --tags` or afterward. Azure Policy and Update Manager's dynamic scoping read them. Tags are plain text ([Chapter 09](09-servers-under-azure-arc.md#resource-groups-and-tags)).
+
+The companion guide sets out every attribute store and which consumer reads which ([Attribute stores](../guides/attribute-driven-migration.md#attributes)).
+
 ## How the records correlate
 
 Correlation is where most device inventories fail. The same physical device can appear in every system with a different primary key. The table shows the keys and how far you can trust each one.
@@ -197,6 +207,43 @@ $arcNotConnected | Export-Csv .\arc-not-connected.csv -NoTypeInformation
 
 Each output file maps to a governance finding. Enrolled-without-registration is the vector the program calls `DRIFT-ENROLLMENT-VECTOR`, and registration-without-group-tag is `DRIFT-VENDOR-PROGRAM-CARRIER` ([Chapter 04](04-intune-first-onboarding.md)). Compare the serial numbers against a CMDB export to find the fifth class, `DRIFT-PROCUREMENT-RECORD-ABSENT`. A disconnected or expired Arc server is a management gap on the server side. Don't delete anything this script reports until the owner has confirmed it; deletion order matters, as described above.
 
+## Which end-user devices Intune covers
+
+Intune isn't only for Microsoft platforms. It manages Apple, Android and Linux devices as well as Windows, within the limits below. The table summarizes what Microsoft documents as of October 29, 2026. Servers are covered in [Chapter 09](09-servers-under-azure-arc.md#which-servers-arc-reaches), and the full matrix is in the companion guide's [Intune track](../guides/attribute-driven-migration.md#intune-track).
+
+| Platform | Intune coverage | How it enrolls |
+|---|---|---|
+| Windows 11 and Windows 10/11 LTSC editions, Windows 365 Cloud PCs | Managed.[^c03-intune-platforms] Cloud PCs are joined and enrolled automatically when they're provisioned[^c03-w365] | Autopilot or Autopilot device preparation ([Chapter 04](04-intune-first-onboarding.md)), Entra join with automatic enrollment, provisioning package, co-management |
+| Windows 10 (not LTSC) | Limited. It's out of support, so Intune treats it as an *allowed* version: it can enroll, but functionality isn't guaranteed[^c03-intune-platforms] | As Windows 11 |
+| Azure Virtual Desktop, including Windows Enterprise multi-session | Managed, with limits: settings catalog plus certificate and device-tunnel VPN templates only, and no Autopilot or Enrollment Status Page. Supported in GCC[^c03-intune-avd] | Entra join with **Enroll the VM with Intune**, or hybrid join with device-credential enrollment |
+| macOS, iOS and iPadOS | Managed | Automated Device Enrollment through Apple Business Manager or Apple School Manager; device enrollment or account-driven user enrollment for personal devices; Apple Configurator for devices with no user[^c03-intune-apple] |
+| Android Enterprise: personally owned work profile, corporate-owned work profile, fully managed, dedicated | Managed | Work profile through the Company Portal; corporate modes by QR code, zero-touch, Knox Mobile Enrollment, NFC or token[^c03-intune-android] |
+| Android device administrator; AOSP | Device administrator isn't supported on devices with Google Mobile Services since December 2024, except Teams Android devices.[^c03-intune-platforms] AOSP covers a listed set of devices without Google Mobile Services, mostly AR/VR headsets[^c03-aosp] | AOSP corporate enrollment |
+| Linux desktop | Limited: Ubuntu 24.04 and 26.04 LTS and Red Hat Enterprise Linux 9 and 10. Management is compliance, including custom Bash checks, plus Conditional Access in Edge[^c03-intune-platforms][^c03-linux-ids] | Microsoft Intune app |
+| ChromeOS | Limited. The Chrome Enterprise connector shows inventory and allows remote actions (deprovision, lost mode, restart, wipe). Enrollment and policy stay in the Google Admin console, compliance shows **Not evaluated**, and app protection isn't supported[^c03-intune-chromeos][^c03-intune-platforms] | Google Admin console |
+| HoloLens, Surface Hub, Teams Rooms, AR/VR headsets; shared and frontline devices | Managed. Specialty devices need extra licensing.[^c03-intune-specialty] Shared use runs through Windows shared PC and kiosk profiles, or Entra shared device mode on iOS, iPadOS and Android[^c03-intune-flw] | Per platform |
+| Windows Server; printers, network gear, IoT and OT | Not Intune platforms. Servers go to Azure Arc ([Chapter 09](09-servers-under-azure-arc.md)). Defender for Endpoint can discover the rest[^c03-mde-discovery] | See the tiers below |
+
+### What Intune and Arc don't reach *(design guidance)*
+
+Every device and server needs exactly one source of truth for its attributes, whichever tool manages it. Outside Intune and Arc, that source is the CMDB or asset inventory: the same record that owns the business facts for managed devices ([Which system owns which fact](#which-system-owns-which-fact)). The program puts every class of device in one of four tiers.
+
+1. **Managed by Intune or Arc.** This is the default. Attributes are written at enrollment or onboarding from the procurement record, and policy reads them ([Chapter 04](04-intune-first-onboarding.md), [Chapter 09](09-servers-under-azure-arc.md)).
+2. **Managed by the platform's own tool, with an evidence feed.** The tool stays, but the attributes are mastered in the CMDB. Each tool sends its inventory and configuration state to the CMDB on a schedule. Examples:
+   - ChromeOS in the Google Admin console;
+   - network devices under their controllers and managers ([Book 09, Chapter 09](../b09-network/09-who-owns-the-network.md#roles-in-each-system));
+   - the mainframe under its own security system ([Book 01, Chapter 04](../b01-transformation-arc/04-identity-transformation.md#at-the-mainframe-boundary));
+   - ESXi hosts under vCenter ([Chapter 09](09-servers-under-azure-arc.md#which-servers-arc-reaches)).
+3. **Discovered and monitored only.** This covers printers, cameras, badge readers, OT equipment and anything else that can't take an agent. Three sources find them:
+   - Defender for Endpoint device discovery, which finds unmanaged endpoints, network devices and IoT devices, and OT devices once Defender for IoT is onboarded;[^c03-mde-discovery]
+   - network access control, which records each connection ([Book 09, Chapter 07](../b09-network/07-network-access-control.md#inventory-profiling-and-logs));
+   - CISA's CDM asset feeds under BOD 23-01 ([Book 12, Chapter 01](../b12-security-operations/01-you-cant-defend-what-you-cant-see.md#bod-23-01-and-cdm-the-asset-denominator)).
+
+   The CMDB record exists even though no tool manages the device.
+4. **Segmented and isolated, or retired.** Out-of-support systems, and anything that can't be inventoried with confidence, go behind segmentation with a recorded risk acceptance and a retirement date. [Chapter 09](09-servers-under-azure-arc.md#extended-security-updates) requires this for Windows Server 2012.
+
+The tiers are how the inventory meets CM-8: it includes every component and counts none twice ([Chapter 10](10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads)). A device that belongs to no tier is a finding.
+
 ## What this chapter establishes
 
 1. Every fact about a device has one authoritative origin. Procurement owns the business facts; Entra ID, Intune, Autopilot, Arc and Defender each own a slice of the technical state.
@@ -218,7 +265,7 @@ Each output file maps to a governance finding. Enrolled-without-registration is 
 [^c03-compliance-settings]: Microsoft Learn, "Use compliance policies to set rules for devices you manage with Intune," compliance policy settings, <https://learn.microsoft.com/intune/device-security/compliance/overview#compliance-policy-settings> (accessed Oct 20, 2026).
 [^c03-ap-registration]: Microsoft Learn, "Windows Autopilot registration overview," <https://learn.microsoft.com/autopilot/registration-overview> (accessed Oct 20, 2026).
 [^c03-ap-identity]: Microsoft Learn, "New-MgDeviceManagementWindowsAutopilotDeviceIdentity" (windowsAutopilotDeviceIdentity properties), <https://learn.microsoft.com/powershell/module/microsoft.graph.devicemanagement.enrollment/new-mgdevicemanagementwindowsautopilotdeviceidentity?view=graph-powershell-1.0> (accessed Oct 20, 2026).
-[^c03-dynamic-rules]: Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," rules for devices, <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership#rules-for-devices> (accessed Oct 20, 2026).
+[^c03-dynamic-rules]: Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," sections "Rules for devices" and "Considerations for dynamic membership groups," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership#rules-for-devices> (accessed Oct 20, 2026; re-checked Oct 29, 2026).
 [^c03-ap-compare]: Microsoft Learn, "Compare Windows Autopilot device preparation and Windows Autopilot," <https://learn.microsoft.com/autopilot/device-preparation/compare> (accessed Oct 20, 2026).
 [^c03-arc-overview]: Microsoft Learn, "What is Azure Arc-enabled servers?," <https://learn.microsoft.com/azure/azure-arc/servers/overview> (accessed Oct 20, 2026).
 [^c03-arc-agent]: Microsoft Learn, "Overview of Azure Connected Machine agent," instance metadata, <https://learn.microsoft.com/azure/azure-arc/servers/agent-overview#instance-metadata> (accessed Oct 20, 2026).
@@ -227,5 +274,15 @@ Each output file maps to a governance finding. Enrolled-without-registration is 
 [^c03-mde-machine]: Microsoft Learn, "Machine resource type" (Defender for Endpoint API), <https://learn.microsoft.com/defender-endpoint/api/machine> (accessed Oct 20, 2026).
 [^c03-mde-risk]: Microsoft Learn, "Device compliance settings for Windows in Intune," Microsoft Defender for Endpoint rules, <https://learn.microsoft.com/intune/device-security/compliance/ref-windows-settings#microsoft-defender-for-endpoint> (accessed Oct 20, 2026).
 [^c03-mde-ssm]: Microsoft Learn, "Learn how to use Intune endpoint security policies to manage Microsoft Defender for Endpoint on devices that are not enrolled with Intune," <https://learn.microsoft.com/intune/device-security/microsoft-defender/security-settings-management> (accessed Oct 20, 2026).
-[^c03-intune-platforms]: Microsoft Learn, "Supported operating systems and browsers in Intune," <https://learn.microsoft.com/intune/fundamentals/ref-supported-platforms> (accessed Oct 20, 2026).
+[^c03-intune-platforms]: Microsoft Learn, "Supported operating systems and browsers in Intune," sections "Android," "Linux" and "Microsoft," <https://learn.microsoft.com/intune/fundamentals/ref-supported-platforms> (accessed Oct 20, 2026; re-checked Oct 29, 2026).
+[^c03-ca-device-filter]: Microsoft Learn, "Conditional Access: Filter for devices," section "Supported operators and device properties for filters," <https://learn.microsoft.com/entra/identity/conditional-access/concept-condition-filters-for-devices> (accessed Oct 29, 2026).
+[^c03-w365]: Microsoft Learn, "What is Windows 365 Enterprise?," <https://learn.microsoft.com/windows-365/enterprise/overview> (accessed Oct 29, 2026).
+[^c03-intune-avd]: Microsoft Learn, "Windows Enterprise multi-session remote desktops," sections "Prerequisites," "Create the configuration profile" and "Additional configurations that aren't supported on Windows Enterprise multi-session VMs," <https://learn.microsoft.com/intune/solutions/azure-virtual-desktop-multi-session> (accessed Oct 29, 2026).
+[^c03-intune-apple]: Microsoft Learn, "Enrollment guide: Enroll Apple mobile devices in Microsoft Intune," <https://learn.microsoft.com/intune/device-enrollment/apple/guide-ios-ipados>, and "Enrollment guide: Enroll macOS devices in Microsoft Intune," <https://learn.microsoft.com/intune/device-enrollment/apple/guide-macos> (both accessed Oct 29, 2026).
+[^c03-intune-android]: Microsoft Learn, "Enrollment guide: Enroll Android devices in Microsoft Intune," <https://learn.microsoft.com/intune/device-enrollment/android/guide>, and "Enroll your Android Enterprise dedicated, fully managed, or corporate-owned with work profile devices," <https://learn.microsoft.com/intune/device-enrollment/android/ref-corporate-methods> (both accessed Oct 29, 2026).
+[^c03-aosp]: Microsoft Learn, "Android Open Source Project Supported Devices," <https://learn.microsoft.com/intune/fundamentals/aosp-supported-devices> (accessed Oct 29, 2026).
+[^c03-intune-chromeos]: Microsoft Learn, "Configure Chrome Enterprise connector," <https://learn.microsoft.com/intune/device-enrollment/configure-chrome-enterprise-connector>, and "View ChromeOS device information in Intune," section "View ChromeOS devices," <https://learn.microsoft.com/intune/device-management/inventory-and-status/chrome-enterprise-details> (both accessed Oct 29, 2026).
+[^c03-intune-specialty]: Microsoft Learn, "Specialty device management," section "Licensing considerations," <https://learn.microsoft.com/intune/device-management/specialty-devices> (accessed Oct 29, 2026).
+[^c03-intune-flw]: Microsoft Learn, "Frontline worker device management overview in Microsoft Intune," section "Microsoft Entra shared device mode for FLW," <https://learn.microsoft.com/intune/solutions/frontline-worker/>, and "Frontline worker for Windows devices in Microsoft Intune," section "Step 2 - Shared device or user associated device," <https://learn.microsoft.com/intune/solutions/frontline-worker/windows> (both accessed Oct 29, 2026).
+[^c03-mde-discovery]: Microsoft Learn, "Microsoft Defender for Endpoint device discovery overview," sections "Discovered assets" and "Discovery modes and scans," <https://learn.microsoft.com/defender-endpoint/device-discovery> (accessed Oct 29, 2026).
 [^c03-linux-ids]: Microsoft Learn, "Deployment guide: Manage Linux devices in Microsoft Intune," step 4, <https://learn.microsoft.com/intune/fundamentals/platform-guide-linux#step-4-enroll-devices> (accessed Oct 20, 2026).

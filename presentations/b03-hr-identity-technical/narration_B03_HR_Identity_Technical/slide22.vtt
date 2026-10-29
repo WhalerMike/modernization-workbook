@@ -1,59 +1,57 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.488
-Once the attributes are trusted,
-access follows from them.
+00:00:00.050 --> 00:00:03.862
+The leaver sequence has one
+rule at its heart: block first.
 
 2
-00:00:03.488 --> 00:00:07.401
-Dynamic groups compute membership
-from the coded attributes,
+00:00:03.862 --> 00:00:06.097
+At the effective separation time,
 
 3
-00:00:07.401 --> 00:00:10.562
-so nobody joins by hand and
-nobody forgets to leave.
+00:00:06.097 --> 00:00:10.487
+disable the account and revoke
+sessions, back to back, in that order.
 
 4
-00:00:10.562 --> 00:00:15.772
-Every access rule also excludes disabled
-accounts, guests and agent identities,
+00:00:10.487 --> 00:00:14.519
+Everything else, the PIV card,
+the devices and the access,
 
 5
-00:00:15.772 --> 00:00:19.349
-and runs in shadow before it's
-attached to anything real.
+00:00:14.519 --> 00:00:19.338
+runs after the block, in parallel,
+and nothing is allowed to delay it.
 
 6
-00:00:19.349 --> 00:00:22.750
-The right side matters just
-as much: where rules stop.
+00:00:19.338 --> 00:00:24.687
+Each result is reconciled, and anything
+incomplete escalates until it's confirmed.
 
 7
-00:00:22.750 --> 00:00:27.382
-Privileged access uses assigned
-groups and just-in-time activation,
+00:00:24.687 --> 00:00:26.675
+Deleting the account comes last,
 
 8
-00:00:27.382 --> 00:00:31.363
-so HR decides who's eligible,
-never who holds standing power.
+00:00:26.675 --> 00:00:30.576
+because deleting first strands
+valid certificates on devices.
 
 9
-00:00:31.363 --> 00:00:36.542
-Dynamic administrative units (AUs) aren't
-available in every government cloud,
+00:00:30.576 --> 00:00:34.036
+In Lifecycle Workflows, the
+steps with no built-in task
 
 10
-00:00:36.542 --> 00:00:39.650
-and break-glass accounts
-depend on none of this.
+00:00:34.036 --> 00:00:37.650
+go through one custom extension
+that waits for an answer.
 
 11
-00:00:39.650 --> 00:00:40.987
-That's the lifecycle.
+00:00:37.650 --> 00:00:40.012
+Two clocks still run outside the block.
 
 12
-00:00:40.987 --> 00:00:43.300
-Module 4 is how you prove it works.
+00:00:40.012 --> 00:00:41.380
+Next, access.

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.262
+That's the model and the HR track.
+
+2
+00:00:02.262 --> 00:00:06.325
+Part 2 takes the other three
+tracks, and then runs the migration.
+
+3
+00:00:06.325 --> 00:00:11.228
+First the Intune and Arc tracks: what
+each tool covers, how devices and servers
+
+4
+00:00:11.228 --> 00:00:15.825
+get their attributes, and what to do
+with the devices neither one reaches.
+
+5
+00:00:15.825 --> 00:00:21.146
+Then the non-person track: service
+accounts, workload identities and AI agents,
+
+6
+00:00:21.146 --> 00:00:24.175
+each with an owner and
+a credential that ends.
+
+7
+00:00:24.175 --> 00:00:29.212
+And finally the cutover, drift, the
+limits and the decisions for every track.
+
+8
+00:00:29.212 --> 00:00:33.790
+Part 2 covers devices, servers
+and non-person identities.

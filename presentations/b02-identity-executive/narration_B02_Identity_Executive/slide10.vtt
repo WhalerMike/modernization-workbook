@@ -1,68 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.625
-Here's the matrix, one decider per row.
+00:00:00.050 --> 00:00:04.962
+In Active Directory, one small team ran
+the domain and made most of the calls.
 
 2
-00:00:02.625 --> 00:00:06.019
-The sponsor and CIO own
-scope, funding, sequence,
+00:00:04.962 --> 00:00:07.229
+Once identity is the control plane,
 
 3
-00:00:06.019 --> 00:00:09.325
-and when Active Directory
-components retire.
+00:00:07.229 --> 00:00:12.151
+those decisions belong to more people,
+and some carry legal accountability.
 
 4
-00:00:09.325 --> 00:00:14.575
-Identity engineering owns the technical
-design and each wave's go or no-go.
+00:00:12.151 --> 00:00:16.462
+Federal policy already asks for
+an agency-wide governance body.
 
 5
-00:00:14.575 --> 00:00:18.963
-The CISO sets the security requirements
-and the privileged-access model.
+00:00:16.462 --> 00:00:21.006
+The book adds a simple rule: every
+decision has exactly one decider,
 
 6
-00:00:18.963 --> 00:00:21.125
-HR owns what worker data means.
+00:00:21.006 --> 00:00:23.237
+even when many people do the work.
 
 7
-00:00:21.125 --> 00:00:24.575
-Application owners decide
-for their own applications.
+00:00:23.237 --> 00:00:26.193
+That matters because the old
+habit was letting whoever
 
 8
-00:00:24.575 --> 00:00:27.787
-And the authorizing official
-accepts residual risk.
+00:00:26.193 --> 00:00:28.826
+could make a change also
+decide whether to make it.
 
 9
-00:00:27.787 --> 00:00:30.777
-Then each team gets only
-the role its work needs,
+00:00:28.826 --> 00:00:31.913
+That's how an engineer ends
+up setting the agency's
 
 10
-00:00:30.777 --> 00:00:34.838
-with admin roles held by a small
-group and activated just in time.
+00:00:31.913 --> 00:00:34.625
+risk posture by leaving
+legacy sign-in open.
 
 11
-00:00:34.838 --> 00:00:36.750
-One row deserves emphasis.
+00:00:34.625 --> 00:00:37.687
+Only the authorizing official
+can accept that risk.
 
 12
-00:00:36.750 --> 00:00:40.663
-Cutting off legacy sign-in belongs
-to the authorizing official,
+00:00:37.687 --> 00:00:41.275
+So the sponsor and CIO adopt
+this matrix at the start.
 
 13
-00:00:40.663 --> 00:00:43.838
-because keeping it open is
-itself a risk acceptance.
-
-14
-00:00:43.838 --> 00:00:48.840
-Next, a question every sponsor asks:
-doesn't Microsoft already do this?
+00:00:41.275 --> 00:00:42.580
+Here's what it says.

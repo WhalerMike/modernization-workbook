@@ -1,52 +1,25 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.055
-The first misreading to clear up:
+00:00:00.050 --> 00:00:05.720
+Module 1 is attribute authority and the
+canonical schema: deciding, in writing,
 
 2
-00:00:02.055 --> 00:00:06.212
-making HR the source doesn't make it
-a rival to the identity platform.
+00:00:05.720 --> 00:00:07.726
+which system owns each fact,
 
 3
-00:00:06.212 --> 00:00:08.025
-They own different kinds of fact.
+00:00:07.726 --> 00:00:11.913
+which key identifies a person,
+and where every value lands.
 
 4
-00:00:08.025 --> 00:00:10.975
-HR owns who a worker
-is and where they sit.
+00:00:11.913 --> 00:00:15.113
+It's the work estates skip
+because users never see it,
 
 5
-00:00:10.975 --> 00:00:15.600
-Entra ID owns how they prove it and
-whether a request is allowed right now.
-
-6
-00:00:15.600 --> 00:00:19.839
-What makes HR special is effective
-dating: it knows about a hire or
-
-7
-00:00:19.839 --> 00:00:24.000
-a separation before it's true,
-along with the date it becomes true.
-
-8
-00:00:24.000 --> 00:00:28.000
-That's what makes day-one readiness
-and same-day revocation possible.
-
-9
-00:00:28.000 --> 00:00:30.322
-And the one rule with no exceptions:
-
-10
-00:00:30.322 --> 00:00:33.925
-fix a wrong value upstream,
-never in the directory copy.
-
-11
-00:00:33.925 --> 00:00:36.290
-Next, how one person is keyed.
+00:00:15.113 --> 00:00:20.230
+and it's the work that decides whether
+automation spreads truth or spreads errors.

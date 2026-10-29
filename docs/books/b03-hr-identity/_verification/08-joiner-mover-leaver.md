@@ -96,3 +96,26 @@ Applied from the research page `docs/research/hcm-entra-implementation.md`; ever
 | 6 | Rule: one writer per state transition, recorded; pipeline sends active false no later than the leaver workflow's first run; workflow disable is the backstop | Who does what | added (design guidance) | c08-lcw-tasks2; c08-lcw-onprem |
 | 7 | "For a synchronized user, the disposition happens in Active Directory" | Deletion | confirmed; added that Lifecycle Workflows can now carry deletion to AD (agent ≥ 1.1.1586.0 with HR-driven provisioning extension; gMSA permissions; AD Recycle Bin) | c08-lcw-tasks2; c08-lcw-onprem |
 | 8 | Diagram ch08-provisioning-and-workflows: provisioning box "enable or disable from HR status" | Figure | not changed; still true, but it doesn't show that Lifecycle Workflows can now also write account state for synced accounts | — |
+
+## Revision 2026-10-29 — four tracks and companion-guide alignment
+
+Added an HR-track signpost, an HR-timeliness sentence after the three-day catch-up (the existing V2 caveat in *Triggers and schedule* already covers "not for Time based attribute V2 (Preview)"), a new *Guardrails at agency scale* subsection, an out-of-band paragraph in *Emergency termination*, and a new *One leaver reaches four tracks* subsection. Six new footnotes: `c08-lcw-quarantine`, `c08-lcw-limits`, `c08-lcw-ondemand`, `c08-lcw-ext`, `c08-lcw-agent-sponsor`, `c08-revoke` (names grepped unique in the book folder). Every Learn page below was opened on Oct 29, 2026.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Schedule default every 3 hours, 1–24 hours, tenant-wide | Triggers and schedule (existing); Emergency termination | re-verified, unchanged | understanding-lifecycle-workflows (Scheduling); governance-service-limits |
+| 2 | Three-day catch-up; doesn't apply to Time based attribute V2 (Preview) | Triggers and schedule (existing) | re-verified, unchanged | understanding-lifecycle-workflows (Scheduling note) |
+| 3 | Execution limits: tenant-wide or per workflow; percentage, number or both, OR logic; scheduled run that exceeds is quarantined and admins notified; approval needed; can't be cleared automatically; updating limits creates a new version | Guardrails | verified | learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-limits (c08-lcw-quarantine) |
+| 4 | Execution limits apply only to scheduled runs; on-demand runs not subject, including on a quarantined workflow | Guardrails | verified ("You can also run a quarantined workflow on demand, which bypasses execution limits") | same as 3 |
+| 5 | On-demand: up to 10 users | Guardrails | verified | governance-service-limits#lifecycle-workflows; on-demand-workflow (c08-lcw-limits, c08-lcw-ondemand) |
+| 6 | On-demand ignores execution conditions | Guardrails | verified | understanding-lifecycle-workflows, On-demand scheduling (c08-lcw-ondemand) |
+| 7 | 100 workflows, 100 custom task extensions per tenant; 25 tasks per workflow | Guardrails | verified | governance-service-limits#lifecycle-workflows (c08-lcw-limits) |
+| 8 | Few general workflows, PIM on the LCW admin role, sized thresholds, reorganization as a change event with pre-agreed quarantine release | Guardrails | restated-as-design (LIMITS.md), labelled *(design guidance)* | — |
+| 9 | Real-time employee termination template is on demand (no execution condition) | Emergency termination (existing) | re-verified, unchanged | lifecycle-workflow-templates |
+| 10 | Hybrid emergency revoke: disable in AD, reset password twice, disable in Entra, revoke refresh tokens, disable registered devices | Emergency termination | verified | learn.microsoft.com/entra/identity/users/users-revoke-access (c08-revoke) |
+| 11 | Access tokens last one hour by default; app session tokens last until the app revokes them; CAE shortens it for capable apps | Emergency termination | verified | same as 10 (When access is revoked; Access tokens and refresh tokens; Best practices) |
+| 12 | Custom task extension calls an Azure Logic App; launch and continue or launch and wait with a duration; a third-party system can respond | One leaver reaches four tracks | verified | learn.microsoft.com/entra/id-governance/lifecycle-workflow-extensibility (c08-lcw-ext) |
+| 13 | Built-in task transfers agent identity sponsorships to the manager (mover/leaver); needs a Microsoft Agent 365 license | One leaver reaches four tracks | verified; GCC availability not confirmed, so the text says "confirm it in the tenant's cloud" | learn.microsoft.com/entra/id-governance/agent-sponsor-tasks (c08-lcw-agent-sponsor) |
+| 14 | PIV/certificateUserIds, Intune retire, Arc access, owner reassignment via custom extensions; checklist fallback; chain workflows | One leaver reaches four tracks | restated-as-design (LIMITS.md) | — |
+
+Not published: the custom task extension timeout. The service-limits page says 30 minutes–3 hours (confirmed Oct 29); LIMITS.md notes the deployment page says otherwise. The chapter doesn't state a timeout.

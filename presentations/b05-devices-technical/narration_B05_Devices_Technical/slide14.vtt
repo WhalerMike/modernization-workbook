@@ -1,69 +1,61 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.531
-While a population has both
-GPOs and Intune policies,
+00:00:00.050 --> 00:00:05.220
+The program keeps three efforts apart:
+Intune-first for new devices, this sunset
 
 2
-00:00:03.531 --> 00:00:05.825
-three conflict systems are in play.
+00:00:05.220 --> 00:00:10.625
+for the existing fleet, and regenerate-not-copy
+as the way replacements are written.
 
 3
-00:00:05.825 --> 00:00:10.513
-Inside Intune, configuration policies
-have no precedence over each other.
+00:00:10.625 --> 00:00:15.700
+Microsoft's own advice is that assessing
+every setting is likely impractical,
 
 4
-00:00:10.513 --> 00:00:13.847
-A conflict is reported and
-the setting might not apply,
+00:00:15.700 --> 00:00:19.525
+so the program runs seven steps,
+each with an exit condition.
 
 5
-00:00:13.847 --> 00:00:16.737
-so each setting gets
-exactly one owning policy.
+00:00:19.525 --> 00:00:23.581
+Step one: nothing is translated or
+retired until it's inventoried,
 
 6
-00:00:16.737 --> 00:00:21.429
-The chapter also corrects earlier program
-material: there's no last-write-wins,
+00:00:23.581 --> 00:00:28.388
+including its targeting, because that's
+the part that doesn't survive the move.
 
 7
-00:00:21.429 --> 00:00:25.976
-and endpoint security doesn't
-automatically beat configuration profiles.
+00:00:28.388 --> 00:00:31.654
+Group Policy analytics then
+shows, setting by setting,
 
 8
-00:00:25.976 --> 00:00:31.247
-Between Group Policy and MDM, Group Policy
-keeps winning unless you change that,
+00:00:31.654 --> 00:00:35.575
+what's ready to migrate, what isn't
+supported and what's deprecated.
 
 9
-00:00:31.247 --> 00:00:34.362
-and outside the core policy
-settings it's a race.
+00:00:35.575 --> 00:00:38.363
+Plan around its limits,
+which are on the slide.
 
 10
-00:00:34.362 --> 00:00:37.067
-Between Configuration Manager and Intune,
+00:00:38.363 --> 00:00:42.524
+Its migrate step is, in
+Microsoft's words, best effort.
 
 11
-00:00:37.067 --> 00:00:41.274
-the co-management slider decides,
-with a couple of traps on the slide.
+00:00:42.524 --> 00:00:45.847
+So the program treats the
+readiness report as proof that
 
 12
-00:00:41.274 --> 00:00:46.397
-Disabling a GPO link is the moment
-production behavior changes, so it's gated:
-
-13
-00:00:46.397 --> 00:00:49.323
-freeze, back up, prove
-the replacement works,
-
-14
-00:00:49.323 --> 00:00:52.800
-then disable the link with
-one reversible command.
+00:00:45.847 --> 00:00:48.940
+an equivalent exists, never
+that a setting is needed.

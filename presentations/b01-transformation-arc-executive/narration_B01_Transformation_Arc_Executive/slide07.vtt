@@ -1,98 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.959
-Group Policy was Active Directory's most
-ambitious delivery system, and its most
+00:00:00.050 --> 00:00:04.801
+Here's why this matters: "migrate
+identity" hides four populations,
 
 2
-00:00:04.959 --> 00:00:09.575
-network-bound: a client applies it only
-when it can reach a domain controller.
+00:00:04.801 --> 00:00:09.025
+and each moves by its own track,
+with its own source of truth.
 
 3
-00:00:09.575 --> 00:00:13.133
-Its replacement is several
-surfaces: Intune for devices,
+00:00:09.025 --> 00:00:14.875
+People are the HR track, from HR or,
+for contractors, the contractor source.
 
 4
-00:00:13.133 --> 00:00:17.221
-Conditional Access for access,
-and Azure machine configuration
+00:00:14.875 --> 00:00:17.286
+End-user devices are the Intune track,
 
 5
-00:00:17.221 --> 00:00:21.612
-through Arc for servers, because
-Intune doesn't manage Windows Server.
+00:00:17.286 --> 00:00:21.175
+with attributes written by device
+provisioning, never by HR.
 
 6
-00:00:21.612 --> 00:00:24.638
-The program's pattern is
-regenerate, not copy.
+00:00:21.175 --> 00:00:26.075
+Servers are the Arc track, tagged at
+onboarding and governed by Azure Policy.
 
 7
-00:00:24.638 --> 00:00:27.465
-Porting a fifty-setting
-policy as fifty modern
+00:00:26.075 --> 00:00:30.228
+And non-person identities, like
+service accounts and AI agents,
 
 8
-00:00:27.465 --> 00:00:30.874
-settings carries forward dead
-weight and old conflicts.
+00:00:30.228 --> 00:00:34.700
+have no HR record; their owner and
+sponsor are their accountability.
 
 9
-00:00:30.874 --> 00:00:34.963
-Microsoft's own recommendation is
-to start new rather than migrate.
+00:00:34.700 --> 00:00:38.758
+The end state is the same for
+all four: true attributes,
 
 10
-00:00:34.963 --> 00:00:37.324
-A few rules govern every change.
+00:00:38.758 --> 00:00:43.462
+one source each, read by policy,
+with evidence for every change.
 
 11
-00:00:37.324 --> 00:00:40.225
-Each setting has exactly one owning layer.
+00:00:43.462 --> 00:00:46.900
+Then AD can retire without
+losing what the OU tree did.
 
 12
-00:00:40.225 --> 00:00:43.747
-Require is preferred to block,
-because a bad block locks
+00:00:46.900 --> 00:00:49.063
+Group Policy splits the same way.
 
 13
-00:00:43.747 --> 00:00:46.887
-people out and a bad require
-adds a step you can fix.
-
-14
-00:00:46.887 --> 00:00:51.750
-Every change goes through validation and
-a report-only pilot before production.
-
-15
-00:00:51.750 --> 00:00:56.325
-And the emergency access accounts are
-excluded from every blocking policy.
-
-16
-00:00:56.325 --> 00:01:01.652
-The decision is the CISO's: the control
-requirements every surface must meet,
-
-17
-00:01:01.652 --> 00:01:06.313
-meaning the Conditional Access
-baseline, MFA strength and logging.
-
-18
-00:01:06.313 --> 00:01:10.601
-Gate G1 needs that baseline
-enforced, with no user outside
-
-19
-00:01:10.601 --> 00:01:15.337
-the MFA requirement except the
-documented emergency accounts.
-
-20
-00:01:15.337 --> 00:01:17.350
-Next, network services.
+00:00:49.063 --> 00:00:50.380
+Next, policy.

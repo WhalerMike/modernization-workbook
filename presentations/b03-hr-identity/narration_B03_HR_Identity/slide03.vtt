@@ -1,79 +1,75 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.837
-Why now?
+00:00:00.050 --> 00:00:03.675
+In many agencies, nothing
+connects HR to identity.
 
 2
-00:00:00.837 --> 00:00:04.050
-Because two migrations
-open one design window.
+00:00:03.675 --> 00:00:08.194
+Accounts, access and credentials
+are created and removed by ticket,
 
 3
-00:00:04.050 --> 00:00:09.095
-On the HR side, an OMB and OPM
-memo creates Federal HR 2.0,
+00:00:08.194 --> 00:00:10.050
+and that costs in three ways.
 
 4
-00:00:09.095 --> 00:00:12.650
-one government-wide core HR platform.
+00:00:10.050 --> 00:00:12.450
+First, access outlives the job.
 
 5
-00:00:12.650 --> 00:00:16.729
-OPM awarded the platform
-contract in June 2026,
+00:00:12.450 --> 00:00:17.197
+When someone leaves, removal waits for a
+ticket, yet the PIV standard says a card
 
 6
-00:00:16.729 --> 00:00:21.750
-and the first agencies start
-moving as fiscal 2027 begins.
+00:00:17.197 --> 00:00:22.163
+that can't be collected must be terminated
+within eighteen hours of notification.
 
 7
-00:00:21.750 --> 00:00:24.887
-The sample timeline is about
-eight months per agency,
+00:00:22.163 --> 00:00:24.050
+A ticket queue struggles with that.
 
 8
-00:00:24.887 --> 00:00:28.737
-with the agency's interconnections
-going live around month five.
+00:00:24.050 --> 00:00:26.364
+Second, records drift: the phone book,
 
 9
-00:00:28.737 --> 00:00:34.800
-On the identity side, agencies are already
-moving to Entra ID, which is Book 02.
+00:00:26.364 --> 00:00:31.300
+the manager and the approval routing
+stay wrong until someone files a ticket.
 
 10
-00:00:34.800 --> 00:00:39.182
-There, attributes drive Conditional
-Access, groups and delegation,
+00:00:31.300 --> 00:00:35.563
+And third, every joiner, mover
+and leaver is help-desk work.
 
 11
-00:00:39.182 --> 00:00:42.625
-and feeding them from an HR
-system is a supported path.
+00:00:35.563 --> 00:00:38.024
+Zero Trust makes the gap obvious.
 
 12
-00:00:42.625 --> 00:00:47.138
-So the window is this: design the
-identity feed in during HR onboarding,
+00:00:38.024 --> 00:00:42.076
+A token proves who signed it, but
+not that the claim is still true:
 
 13
-00:00:47.138 --> 00:00:51.262
-before those interconnections go
-live, not bolted on afterward.
+00:00:42.076 --> 00:00:47.062
+that the person still works here, in the
+same position, for the same supervisor.
 
 14
-00:00:51.262 --> 00:00:56.163
-One honest limit: HR 2.0
-covers federal employees only.
+00:00:47.062 --> 00:00:48.699
+Those are HR facts.
 
 15
-00:00:56.163 --> 00:00:59.194
-Contractors need their
-own authoritative source,
+00:00:48.699 --> 00:00:51.435
+And if we do nothing,
+we'll rebuild the same
 
 16
-00:00:59.194 --> 00:01:02.280
-and onboarding is the right
-time to decide that too.
+00:00:51.435 --> 00:00:54.310
+manual process twice,
+on two new platforms.

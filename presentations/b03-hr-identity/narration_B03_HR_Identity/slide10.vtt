@@ -1,65 +1,78 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.525
-The execution plan has seven phases, and
-each gate is the next phase's precondition.
+00:00:00.050 --> 00:00:01.300
+Next, access.
 
 2
-00:00:05.525 --> 00:00:10.250
-It runs from aligning the program,
-through settling who owns each attribute,
+00:00:01.300 --> 00:00:05.550
+Once the attributes can be trusted,
+access is derived from them.
 
 3
-00:00:10.250 --> 00:00:13.100
-building and testing the
-pipeline, and a pilot,
+00:00:05.550 --> 00:00:09.738
+A personnel record becomes an
+attribute, a rule or access package
 
 4
-00:00:13.100 --> 00:00:17.150
-to automating the lifecycle, cutting
-over, and then sustaining it.
+00:00:09.738 --> 00:00:13.925
+turns it into an entitlement, and
+an evidence record captures why.
 
 5
-00:00:17.150 --> 00:00:18.612
-Four rules run through it.
+00:00:13.925 --> 00:00:18.781
+So every entitlement traces back to
+something: a rule, an approved exception,
 
 6
-00:00:18.612 --> 00:00:21.762
-Start now, with the HR data
-the agency already has,
+00:00:18.781 --> 00:00:22.712
+an authoritative attribute, or
+a privileged-access decision.
 
 7
-00:00:21.762 --> 00:00:25.463
-and switch the source to the
-new platform when it arrives.
+00:00:22.712 --> 00:00:24.962
+That's what makes access explainable.
 
 8
-00:00:25.463 --> 00:00:30.412
-Run in shadow mode first, comparing what
-HR says with what the directories hold.
+00:00:24.962 --> 00:00:27.971
+Drift is found by
+comparison, not by complaint:
 
 9
-00:00:30.412 --> 00:00:35.801
-Cut over one population at a time, with a
-signed validation report and a rollback.
+00:00:27.971 --> 00:00:31.850
+scheduled checks compare HR,
+the model and the directories.
 
 10
-00:00:35.801 --> 00:00:40.500
-And close the ticket path only when
-the data proves HR is the sole source.
+00:00:31.850 --> 00:00:34.493
+And it's measured in
+terms leadership can read,
 
 11
-00:00:40.500 --> 00:00:44.181
-The gate thresholds, like
-ninety-nine percent correlation,
+00:00:34.493 --> 00:00:37.275
+like the time from separation
+to blocked access.
 
 12
-00:00:44.181 --> 00:00:48.312
-are proposals for the agency to
-approve, not federal requirements.
+00:00:37.275 --> 00:00:41.656
+One practical catch: Entra ID keeps
+audit and provisioning logs for
 
 13
-00:00:48.312 --> 00:00:52.920
-Chapter 13 walks an illustrative
-agency through all seven phases.
+00:00:41.656 --> 00:00:45.725
+only thirty days, so the book
+exports them from the pilot onward.
+
+14
+00:00:45.725 --> 00:00:47.962
+And the evidence is a byproduct.
+
+15
+00:00:47.962 --> 00:00:51.292
+The same records answer the
+auditor's oldest question:
+
+16
+00:00:51.292 --> 00:00:55.490
+does every account belong to a
+current person, with a current reason?

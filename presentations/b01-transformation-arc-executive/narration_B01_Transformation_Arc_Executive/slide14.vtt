@@ -1,99 +1,93 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.038
-Delivery starts with the estate.
+00:00:00.050 --> 00:00:02.975
+Three decisions often
+land on the wrong desk,
 
 2
-00:00:02.038 --> 00:00:05.561
-You can't modernize what you haven't
-enumerated, and nothing can be
+00:00:02.975 --> 00:00:05.425
+and the book moves each one on purpose.
 
 3
-00:00:05.561 --> 00:00:09.476
-retired until someone has written
-down everything it was quietly doing.
+00:00:05.425 --> 00:00:09.688
+First, end dates for legacy
+authentication and NTLM.
 
 4
-00:00:09.476 --> 00:00:14.397
-A long-lived forest usually holds more
-than anyone on the current team knows:
+00:00:09.688 --> 00:00:14.774
+They sit with the authorizing official, not
+with the engineers who'd like more time,
 
 5
-00:00:14.397 --> 00:00:18.381
-unmapped trusts, Group Policy
-whose authors left a decade ago,
+00:00:14.774 --> 00:00:18.887
+because keeping legacy authentication
+open is a risk acceptance,
 
 6
-00:00:18.381 --> 00:00:21.975
-risky certificate templates,
-and servers past support.
+00:00:18.887 --> 00:00:22.926
+and BOD 25-01 makes blocking
+it a mandatory baseline.
 
 7
-00:00:21.975 --> 00:00:24.225
-The assessment follows three rules.
+00:00:22.926 --> 00:00:26.450
+Second, the help desk's
+identity-verification procedure.
 
 8
-00:00:24.225 --> 00:00:28.712
-It's read-only, enforced in the
-account, the code and the audit trail.
+00:00:26.450 --> 00:00:30.963
+The help desk supports users through
+every wave, and that makes it a target.
 
 9
-00:00:28.712 --> 00:00:31.475
-It's least-privilege,
-never a domain admin.
+00:00:30.963 --> 00:00:34.978
+CISA's advisory on Scattered
+Spider describes attackers
 
 10
-00:00:31.475 --> 00:00:34.847
-And every run carries
-provenance: who ran it,
+00:00:34.978 --> 00:00:38.749
+phoning help desks to get
+passwords reset and MFA moved.
 
 11
-00:00:34.847 --> 00:00:37.938
-when, against what, and with which rights.
+00:00:38.749 --> 00:00:43.446
+So the procedure for resets and temporary
+access passes is a CISO decision,
 
 12
-00:00:37.938 --> 00:00:40.231
-The output maps privileged accounts,
+00:00:43.446 --> 00:00:46.875
+carried out by the help desk
+with narrowly scoped roles.
 
 13
-00:00:40.231 --> 00:00:43.263
-so it's stored encrypted
-and handled as sensitive.
+00:00:46.875 --> 00:00:48.462
+Third, records.
 
 14
-00:00:43.263 --> 00:00:46.891
-And because broad enumeration
-looks like reconnaissance,
+00:00:48.462 --> 00:00:52.562
+Retiring Active Directory
+retires years of access records.
 
 15
-00:00:46.891 --> 00:00:49.038
-security operations is told first.
+00:00:52.562 --> 00:00:56.907
+NARA's schedule keeps some for six
+years after an account is terminated,
 
 16
-00:00:49.038 --> 00:00:52.691
-One more input decides whether
-an application may move:
+00:00:56.907 --> 00:01:00.737
+and once a domain controller is
+gone, its logs can't be recovered.
 
 17
-00:00:52.691 --> 00:00:56.900
-how many round trips it makes to
-its data, measured, not estimated.
+00:01:00.737 --> 00:01:05.550
+So the records officer decides retention
+before anything is decommissioned, and
 
 18
-00:00:56.900 --> 00:01:00.250
-The steward commissions
-the assessment in Phase 0.
+00:01:05.550 --> 00:01:10.575
+the privacy office is consulted before any
+new attribute flow carries personal data.
 
 19
-00:01:00.250 --> 00:01:04.429
-In the program's experience a first
-pass takes days to a few weeks,
-
-20
-00:01:04.429 --> 00:01:06.400
-and Gate G0 needs it committed.
-
-21
-00:01:06.400 --> 00:01:09.140
-Next, how analysis becomes change.
+00:01:10.575 --> 00:01:12.380
+Now, how to deliver it.

@@ -86,3 +86,12 @@ Found by the workbook-wide sweep of federal citations for the Federal Framework 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Azure public cloud 'holds a FedRAMP High P-ATO' | What the cloud authorization covers | restated: authorized at High; P-ATO flagged as Microsoft's pre-2026 term | FedRAMP 2026 rules via B10 Ch03 |
+
+## Revision 2026-10-29 — four tracks and companion-guide alignment
+
+No new Microsoft or federal facts.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Dynamic membership is for people (HR track); service accounts and application principals are the non-person identity track and are never placed by an HR rule | Opening | restated-as-design | Program framing; companion guide, Non-person identity track |
+| 2 | Link to the companion guide's dynamic group dangers | Writing, naming and testing rules | link only | Companion guide, `#dynamic-group-dangers` |

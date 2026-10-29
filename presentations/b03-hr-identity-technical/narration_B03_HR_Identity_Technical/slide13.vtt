@@ -1,58 +1,57 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.954
-On the source side, a full extract seeds
-the population and event feeds carry the
+00:00:00.050 --> 00:00:02.162
+Here's the Microsoft realization.
 
 2
-00:00:04.954 --> 00:00:07.851
-changes, and the feeds
-have to start right after
+00:00:02.162 --> 00:00:06.980
+Middleware inside the agency's boundary
+reads the HR events and posts them to a
 
 3
-00:00:07.851 --> 00:00:10.600
-the initial load or
-changes fall into the gap.
+00:00:06.980 --> 00:00:09.945
+single Graph endpoint,
+and Entra's provisioning
 
 4
-00:00:10.600 --> 00:00:13.700
-The middleware then does
-five things for every event.
+00:00:09.945 --> 00:00:12.613
+service decides what to
+do with each record.
 
 5
-00:00:13.700 --> 00:00:15.225
-Two deserve emphasis.
+00:00:12.613 --> 00:00:13.901
+That split matters.
 
 6
-00:00:15.225 --> 00:00:18.349
-Sequencing, because a
-mover and a leaver applied
+00:00:13.901 --> 00:00:18.811
+The client doesn't decide whether to
+create or update; the service does, and it
 
 7
-00:00:18.349 --> 00:00:21.238
-out of order is a correctness
-bug, not a glitch.
+00:00:18.811 --> 00:00:23.800
+reports results asynchronously, so the
+client has to go back and read the logs.
 
 8
-00:00:21.238 --> 00:00:24.120
-And provenance, written
-before the call returns,
+00:00:23.800 --> 00:00:24.900
+Why this pattern?
 
 9
-00:00:24.120 --> 00:00:27.650
-because without that record
-there's no verifiable outcome.
+00:00:24.900 --> 00:00:29.037
+Oracle's HR platform has no native
+Entra connector, Microsoft's own
 
 10
-00:00:27.650 --> 00:00:31.083
-One more rule: send the
-complete record every time,
+00:00:29.037 --> 00:00:33.625
+guidance is this pattern, and one entry
+point gives one provenance stream.
 
 11
-00:00:31.083 --> 00:00:33.762
-or an empty field can clear a real value.
+00:00:33.625 --> 00:00:37.900
+If a native connector ships later,
+it slots in as an optimization.
 
 12
-00:00:33.762 --> 00:00:36.890
-Next, the contract that endpoint enforces.
+00:00:37.900 --> 00:00:40.440
+Next, what the middleware actually does.

@@ -1,60 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.215
-Drift is a gap between the policy
-library and what a device reports,
+00:00:00.050 --> 00:00:04.940
+Compliance policies decide whether a
+device is compliant; Conditional Access
 
 2
-00:00:04.215 --> 00:00:09.212
-one the policy should have prevented, like
-BitLocker off or an OS below the floor.
+00:00:04.940 --> 00:00:09.312
+decides what a noncompliant device
+can reach, and Book 04 owns that part.
 
 3
-00:00:09.212 --> 00:00:13.856
-The program finds it with the same loop
-as the governed path: a daily export,
+00:00:09.312 --> 00:00:12.075
+This book's job is making
+the signal accurate.
 
 4
-00:00:13.856 --> 00:00:17.891
-a comparison with the library,
-classification, and remediation,
+00:00:12.075 --> 00:00:15.150
+Two tenant settings
+sit above every policy.
 
 5
-00:00:17.891 --> 00:00:21.088
-with policy changes going
-through change control.
+00:00:15.150 --> 00:00:20.425
+Devices with no compliance policy default
+to compliant, and the program flips that,
 
 6
-00:00:21.088 --> 00:00:22.399
-The catch is timing.
+00:00:20.425 --> 00:00:24.400
+so a device that falls outside
+every group can't pass by default.
 
 7
-00:00:22.399 --> 00:00:27.052
-Intune's audit logs arrive in Log
-Analytics right away, but compliance and
+00:00:24.400 --> 00:00:28.297
+And compliance status stays
+valid for thirty days by default;
 
 8
-00:00:27.052 --> 00:00:32.162
-inventory data are exported once a day and
-can take up to forty-eight hours to land.
+00:00:28.297 --> 00:00:32.117
+the program uses fourteen, short
+enough that a device left in
 
 9
-00:00:32.162 --> 00:00:36.301
-So those tables are for trends and
-evidence, not minute-level alerts.
+00:00:32.117 --> 00:00:35.937
+a drawer loses access, long enough
+not to catch staff on leave.
 
 10
-00:00:36.301 --> 00:00:39.797
-That's why fleet-wide alerts
-come from the daily export,
+00:00:35.937 --> 00:00:37.710
+Read the dashboard carefully,
 
 11
-00:00:39.797 --> 00:00:43.450
-but Tier 0 noncompliance is
-polled from Graph every hour.
+00:00:37.710 --> 00:00:41.538
+because some statuses hide devices
+from the noncompliant count.
 
 12
-00:00:43.450 --> 00:00:46.460
-Otherwise the alert would
-arrive two days late.
+00:00:41.538 --> 00:00:46.044
+And on Tier 0, a Defender detection
+becomes a compliance failure,
+
+13
+00:00:46.044 --> 00:00:47.640
+and so a loss of access.

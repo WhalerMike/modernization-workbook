@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.215
+Drift is a gap between the policy
+library and what a device reports,
+
+2
+00:00:04.215 --> 00:00:09.212
+one the policy should have prevented, like
+BitLocker off or an OS below the floor.
+
+3
+00:00:09.212 --> 00:00:13.856
+The program finds it with the same loop
+as the governed path: a daily export,
+
+4
+00:00:13.856 --> 00:00:17.891
+a comparison with the library,
+classification, and remediation,
+
+5
+00:00:17.891 --> 00:00:21.088
+with policy changes going
+through change control.
+
+6
+00:00:21.088 --> 00:00:22.399
+The catch is timing.
+
+7
+00:00:22.399 --> 00:00:27.052
+Intune's audit logs arrive in Log
+Analytics right away, but compliance and
+
+8
+00:00:27.052 --> 00:00:32.162
+inventory data are exported once a day and
+can take up to forty-eight hours to land.
+
+9
+00:00:32.162 --> 00:00:36.301
+So those tables are for trends and
+evidence, not minute-level alerts.
+
+10
+00:00:36.301 --> 00:00:39.797
+That's why fleet-wide alerts
+come from the daily export,
+
+11
+00:00:39.797 --> 00:00:43.450
+but Tier 0 noncompliance is
+polled from Graph every hour.
+
+12
+00:00:43.450 --> 00:00:46.460
+Otherwise the alert would
+arrive two days late.

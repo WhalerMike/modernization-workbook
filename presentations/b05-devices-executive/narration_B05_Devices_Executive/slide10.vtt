@@ -1,62 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.212
-The existing fleet can get to the
-same governed end state three ways.
+00:00:00.050 --> 00:00:03.112
+Device compliance is
+where devices meet access.
 
 2
-00:00:04.212 --> 00:00:07.188
-The manual path uses the
-native tools by hand.
+00:00:03.112 --> 00:00:06.186
+Intune decides whether
+a device is compliant,
 
 3
-00:00:07.188 --> 00:00:09.624
-The governed path runs the same steps,
+00:00:06.186 --> 00:00:10.312
+and Conditional Access, from Book
+04, decides what it can reach.
 
 4
-00:00:09.624 --> 00:00:14.576
-but every high-impact change is previewed,
-approved by a person and recorded.
+00:00:10.312 --> 00:00:14.775
+Out of the box, a device with no
+compliance policy counts as compliant.
 
 5
-00:00:14.576 --> 00:00:17.619
-And the retrofit path adds
-that governance later,
+00:00:14.775 --> 00:00:19.725
+The program flips that, so a device that
+slips through every group can't pass.
 
 6
-00:00:17.619 --> 00:00:20.588
-to an estate someone
-already modernized by hand.
+00:00:19.725 --> 00:00:23.325
+A device that stops reporting
+for two weeks loses access.
 
 7
-00:00:20.588 --> 00:00:24.398
-All three start the same way:
-measure before you change anything,
+00:00:23.325 --> 00:00:27.160
+And the grace period, how long
+a failing device keeps working,
 
 8
-00:00:24.398 --> 00:00:26.124
-and give it at least two weeks.
+00:00:27.160 --> 00:00:29.538
+is a risk decision, not a technical one.
 
 9
-00:00:26.124 --> 00:00:28.687
-Fully automatic change is refused.
+00:00:29.538 --> 00:00:34.663
+On the most privileged workstations, a
+security detection also costs access.
 
 10
-00:00:28.687 --> 00:00:31.463
-Intune also has a
-built-in second approver.
+00:00:34.663 --> 00:00:38.200
+The decision for the CISO:
+make compliance fail closed,
 
 11
-00:00:31.463 --> 00:00:36.045
-The decision for the sponsor and CIO:
-use the governed path for anything
+00:00:38.200 --> 00:00:42.275
+and set the grace period, before
+Conditional Access relies on it.
 
 12
-00:00:36.045 --> 00:00:40.862
-over a few hundred devices, or wherever
-an authorizing official has to sign.
-
-13
-00:00:40.862 --> 00:00:42.120
-Now, who owns it.
+00:00:42.275 --> 00:00:44.640
+Next, devices that can't enroll.

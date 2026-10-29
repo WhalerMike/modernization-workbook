@@ -1,58 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.225
-The platform uses Oracle's field
-names, but they aren't the contract.
+00:00:00.050 --> 00:00:04.488
+Every person needs one key the
+agency controls and never changes.
 
 2
-00:00:04.225 --> 00:00:09.656
-The durable contract is OPM's standard
-personnel data: the same data elements
+00:00:04.488 --> 00:00:05.399
+Here's why.
 
 3
-00:00:09.656 --> 00:00:14.663
-and codes in every agency, and a
-standard code on every personnel action.
+00:00:05.399 --> 00:00:09.625
+It's tempting to use the HR system's
+own person number as the key.
 
 4
-00:00:14.663 --> 00:00:20.145
-If you map identity to the standard once,
-that one crosswalk covers every employee,
+00:00:09.625 --> 00:00:13.233
+But that number changes
+when the HR system changes,
 
 5
-00:00:20.145 --> 00:00:25.387
-survives the next vendor change, and can
-be reused by any agency on the platform.
+00:00:13.233 --> 00:00:15.725
+and Core HCM is exactly that change.
 
 6
-00:00:25.387 --> 00:00:26.937
-A few rules keep it clean.
+00:00:15.725 --> 00:00:17.550
+Contractors come from elsewhere.
 
 7
-00:00:26.937 --> 00:00:30.413
-Use the attributes Entra
-already understands first.
+00:00:17.550 --> 00:00:21.809
+So pick an enterprise key, often
+an identifier you already have,
 
 8
-00:00:30.413 --> 00:00:35.650
-Put codes in access rules, never display
-names, because names get retyped.
+00:00:21.809 --> 00:00:23.938
+and map every other number to it.
 
 9
-00:00:35.650 --> 00:00:38.788
-And remember the standard
-covers federal employees only.
+00:00:23.938 --> 00:00:28.350
+Then the move to the new platform changes
+one mapping, and nothing downstream.
 
 10
-00:00:38.788 --> 00:00:43.119
-The decision: the data architect
-builds one governed crosswalk,
+00:00:28.350 --> 00:00:32.178
+A returning employee is the same
+person, not a new identity,
 
 11
-00:00:43.119 --> 00:00:45.325
-and HR owns the code lists it uses.
+00:00:32.178 --> 00:00:35.288
+and a contractor who
+converts keeps one record.
 
 12
-00:00:45.325 --> 00:00:46.940
-Now, the data flow.
+00:00:35.288 --> 00:00:38.438
+And the Social Security
+number is never the join key.
+
+13
+00:00:38.438 --> 00:00:42.351
+The governance body makes this
+call before Phase 1 closes.
+
+14
+00:00:42.351 --> 00:00:44.020
+Next, the standard.

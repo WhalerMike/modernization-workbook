@@ -1,25 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.700
-Module 4 is migrating,
-governing and proving it.
+00:00:00.050 --> 00:00:03.499
+Conditional Access replaces
+the logon restrictions
 
 2
-00:00:03.700 --> 00:00:05.890
-Chapter 10 states the finish line:
+00:00:03.499 --> 00:00:07.025
+and network controls AD
+enforced through Group Policy.
 
 3
-00:00:05.890 --> 00:00:09.175
-the migration ends when
-governance runs on its own.
+00:00:07.025 --> 00:00:09.935
+The program organizes it around personas,
 
 4
-00:00:09.175 --> 00:00:13.014
-Joiners, movers and leavers
-flow from HR without a ticket,
+00:00:09.935 --> 00:00:14.592
+populations with different needs
+and risks: internal staff, admins,
 
 5
-00:00:13.014 --> 00:00:16.420
-and drift shows up in a diff
-instead of an incident.
+00:00:14.592 --> 00:00:18.750
+partners, guests, service accounts,
+and the break-glass group.
+
+6
+00:00:18.750 --> 00:00:20.796
+One tip: target admins by group,
+
+7
+00:00:20.796 --> 00:00:24.888
+because role targeting doesn't
+cover scoped or custom roles.
+
+8
+00:00:24.888 --> 00:00:29.882
+The baseline set, CA001 through
+CA017, runs from blocking legacy
+
+9
+00:00:29.882 --> 00:00:35.725
+sign-in for everyone to requiring
+phishing-resistant strength for admins.
+
+10
+00:00:35.725 --> 00:00:41.250
+Book 04's library is the authoritative
+set and extends it for the CISA baseline.
+
+11
+00:00:41.250 --> 00:00:44.406
+Rollout is staged:
+report-only, then a pilot,
+
+12
+00:00:44.406 --> 00:00:48.013
+then phased waves, each
+behind a monitoring gate.
+
+13
+00:00:48.013 --> 00:00:51.412
+And never switch an all-users
+policy straight from off to
+
+14
+00:00:51.412 --> 00:00:55.150
+on without confirming both
+emergency accounts still sign in.

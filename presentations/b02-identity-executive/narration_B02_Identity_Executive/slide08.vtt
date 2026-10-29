@@ -1,76 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.637
-Delegation used to come
-free with the tree.
+00:00:00.050 --> 00:00:03.025
+Most migration plans
+count users and groups.
 
 2
-00:00:02.637 --> 00:00:06.138
-Without it, agencies fall
-into one of two traps.
+00:00:03.025 --> 00:00:08.590
+But Active Directory has been quietly
+holding the rest of the estate together: name
 
 3
-00:00:06.138 --> 00:00:08.674
-They over-delegate,
-handing out tenant-wide
+00:00:08.590 --> 00:00:14.075
+resolution, certificates, network sign-in,
+application logins, time and file paths.
 
 4
-00:00:08.674 --> 00:00:11.351
-admin roles because
-nothing narrower exists.
+00:00:14.075 --> 00:00:17.236
+The program counts eleven
+kinds of dependent object,
 
 5
-00:00:11.351 --> 00:00:12.747
-Or they under-delegate,
+00:00:17.236 --> 00:00:19.463
+and the worst of them don't fail loudly.
 
 6
-00:00:12.747 --> 00:00:16.425
-and every password reset becomes
-a ticket in a central queue.
+00:00:19.463 --> 00:00:23.900
+Certificates stop renewing weeks
+after the migration is declared done.
 
 7
-00:00:16.425 --> 00:00:19.395
-Administrative units fix
-that, in three tiers:
+00:00:23.900 --> 00:00:27.475
+Wi-Fi and VPN sign-in
+fail at the network edge.
 
 8
-00:00:19.395 --> 00:00:24.318
-tenant-wide readers for security and
-compliance, department units for full
+00:00:27.475 --> 00:00:31.688
+Applications bound to a domain
+controller just stop letting people in.
 
 9
-00:00:24.318 --> 00:00:29.163
-administration, and narrow units for
-the help desk, driven by HR attributes.
+00:00:31.688 --> 00:00:33.426
+Each looks like a local outage.
 
 10
-00:00:29.163 --> 00:00:30.326
-Two cautions.
+00:00:33.426 --> 00:00:38.900
+That's why three adapters are critical:
+certificates, network access and LDAP.
 
 11
-00:00:30.326 --> 00:00:33.331
-The groups that hold admin
-roles can't be dynamic,
+00:00:38.900 --> 00:00:42.158
+The decision for the sponsor:
+nothing in Active Directory
 
 12
-00:00:33.331 --> 00:00:36.413
-so they're assigned and
-made eligible just in time.
+00:00:42.158 --> 00:00:45.212
+is decommissioned until
+those three pass validation.
 
 13
-00:00:36.413 --> 00:00:41.012
-And locking a unit down also blocks
-lifecycle and review features,
-
-14
-00:00:41.012 --> 00:00:43.688
-so that's chosen unit by unit, default no.
-
-15
-00:00:43.688 --> 00:00:46.263
-Identity engineering decides the model.
-
-16
-00:00:46.263 --> 00:00:48.360
-Next, who decides the rest.
+00:00:45.212 --> 00:00:47.140
+Then, who can manage whom.

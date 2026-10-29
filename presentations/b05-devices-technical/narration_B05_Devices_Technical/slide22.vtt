@@ -1,69 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.313
-A connected server is
-addressable, not yet governed.
+00:00:00.050 --> 00:00:03.907
+Here's why this matters: the Arc
+track is servers wherever they run,
 
 2
-00:00:03.313 --> 00:00:05.899
-Three things get attached
-on the same change.
+00:00:03.907 --> 00:00:06.550
+and the inventory needs
+everything else too.
 
 3
-00:00:05.899 --> 00:00:09.222
-Configuration, through
-Azure machine configuration,
+00:00:06.550 --> 00:00:12.408
+Arc covers Windows Server 2016 through
+2025, the supported Linux distributions,
 
 4
-00:00:09.222 --> 00:00:14.389
-which audits or sets operating system
-settings and reports compliance per machine,
+00:00:12.408 --> 00:00:17.129
+physical servers and any hypervisor,
+VMware VMs through vCenter,
 
 5
-00:00:14.389 --> 00:00:16.973
-scoped by Azure resource
-rather than by OU.
+00:00:17.129 --> 00:00:22.637
+and AWS and Google Cloud instances, with
+Google's connector still in preview.
 
 6
-00:00:16.973 --> 00:00:21.697
-Keep the customized baseline in the
-governance repository as policy-as-code,
+00:00:22.637 --> 00:00:24.286
+Azure VMs don't need Arc.
 
 7
-00:00:21.697 --> 00:00:25.462
-and treat noncompliance as a
-finding, not a failed deployment.
+00:00:24.286 --> 00:00:28.712
+AIX, Solaris, the mainframe and
+network devices aren't covered.
 
 8
-00:00:25.462 --> 00:00:29.223
-Patching, through Azure Update
-Manager, which assesses daily,
+00:00:28.712 --> 00:00:34.516
+So every device lands in one of four tiers:
+Intune or Arc; its own tool, with the
 
 9
-00:00:29.223 --> 00:00:32.762
-patches in maintenance windows
-and groups servers by tag.
+00:00:34.516 --> 00:00:36.762
+CMDB holding its attributes;
 
 10
-00:00:32.762 --> 00:00:35.413
-And protection, through
-Defender for Servers.
+00:00:36.762 --> 00:00:41.162
+discovered and monitored only;
+or segmented and retired.
 
 11
-00:00:35.413 --> 00:00:38.950
-The program's FedRAMP
-Moderate scope uses Plan 2,
+00:00:41.162 --> 00:00:45.025
+A device in no tier is a finding
+against the inventory control.
 
 12
-00:00:38.950 --> 00:00:41.426
-plus Defender for SQL on SQL hosts.
-
-13
-00:00:41.426 --> 00:00:45.429
-Onboard Defender through Arc,
-rather than installing it directly,
-
-14
-00:00:45.429 --> 00:00:47.660
-which gives you only Plan 1 function.
+00:00:45.025 --> 00:00:47.260
+Next, getting ready to onboard.

@@ -1,73 +1,55 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.312
-Here's the core problem.
+00:00:00.050 --> 00:00:04.886
+Here's why this matters: the series
+moves four populations to the cloud,
 
 2
-00:00:01.312 --> 00:00:06.099
-Group Policy governed by position,
-and an Intune device has no position.
+00:00:04.886 --> 00:00:08.388
+each on its own track, and
+Book 05 carries two of them.
 
 3
-00:00:06.099 --> 00:00:12.025
-Where a computer sat in the organizational
-unit (OU) tree quietly did five jobs.
+00:00:08.388 --> 00:00:12.874
+The Intune track is end-user devices,
+and the Arc track is servers.
 
 4
-00:00:12.025 --> 00:00:16.057
-It decided which settings applied,
-which setting won, who could change it,
+00:00:12.874 --> 00:00:18.029
+A device's attributes come from device
+provisioning, like the Autopilot group tag,
 
 5
-00:00:16.057 --> 00:00:19.350
-when it refreshed, and what
-evidence you had of what applied.
+00:00:18.029 --> 00:00:21.137
+never from HR, and a device
+rule can't read its owner.
 
 6
-00:00:19.350 --> 00:00:22.812
-An Entra-joined, Intune-managed
-device has none of that.
+00:00:21.137 --> 00:00:25.213
+Devices are done when their policy
+targets those attributes and
 
 7
-00:00:22.812 --> 00:00:26.487
-Policy goes flatly to groups,
-and nothing reads the tree.
+00:00:25.213 --> 00:00:28.987
+the computer-side GPO links are
+gone, one population at a time.
 
 8
-00:00:26.487 --> 00:00:28.821
-When two policies set the same thing,
+00:00:28.987 --> 00:00:34.513
+Servers are done when each is Arc-enabled,
+tagged, and evaluated by Azure Policy.
 
 9
-00:00:28.821 --> 00:00:32.088
-Intune reports a conflict
-instead of resolving it.
+00:00:34.513 --> 00:00:37.928
+And Group Policy splits: user
+settings go with people,
 
 10
-00:00:32.088 --> 00:00:36.324
-Some jobs, like mapped drives, have
-no built-in equivalent at all.
+00:00:37.928 --> 00:00:40.800
+computer settings with
+devices and servers.
 
 11
-00:00:36.324 --> 00:00:40.525
-That's why Microsoft advises
-against copying GPOs one for one.
-
-12
-00:00:40.525 --> 00:00:43.020
-Teams that do it find
-the governance gap only
-
-13
-00:00:43.020 --> 00:00:45.650
-after the targeting model
-has already changed.
-
-14
-00:00:45.650 --> 00:00:49.738
-Every job the tree did implicitly
-has to be rebuilt explicitly.
-
-15
-00:00:49.738 --> 00:00:51.700
-So what about the obvious shortcut?
+00:00:40.800 --> 00:00:43.700
+First, which platforms each one reaches.

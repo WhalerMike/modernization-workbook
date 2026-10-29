@@ -1,53 +1,67 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.312
-After modernization, one laptop
-shows up in five or six systems,
+00:00:00.050 --> 00:00:03.813
+The obvious shortcut is hybrid
+join, and it's almost a switch.
 
 2
-00:00:04.312 --> 00:00:06.525
-most of them editable by someone.
+00:00:03.813 --> 00:00:07.138
+Change the sync scope, publish
+one setting per forest,
 
 3
-00:00:06.525 --> 00:00:11.200
-That only works if you decide, fact
-by fact, where the truth lives.
+00:00:07.138 --> 00:00:10.237
+and every domain-joined
+device registers itself.
 
 4
-00:00:11.200 --> 00:00:14.401
-The business facts, who owns
-it, what it's for and where
+00:00:10.237 --> 00:00:12.700
+No approval, no ownership check.
 
 5
-00:00:14.401 --> 00:00:17.750
-it belongs in the organization,
-come from procurement.
+00:00:12.700 --> 00:00:14.875
+That effortlessness is the hazard.
 
 6
-00:00:17.750 --> 00:00:22.752
-The technical facts come from the
-services: Entra ID for identity, Intune for
+00:00:14.875 --> 00:00:18.135
+Microsoft says new devices
+should be cloud joined,
 
 7
-00:00:22.752 --> 00:00:27.675
-management and compliance, Defender
-for threats, and Azure Arc for servers.
+00:00:18.135 --> 00:00:22.638
+and hybrid join is fine for existing
+devices, but never as the end state.
 
 8
-00:00:27.675 --> 00:00:28.750
-Then one rule.
+00:00:22.638 --> 00:00:26.384
+And it's sticky: moving off it
+later means resetting the device,
 
 9
-00:00:28.750 --> 00:00:35.037
-Every derived value, a tag, a group, a
-category, has to trace back to its source.
+00:00:26.384 --> 00:00:29.249
+and it still needs a domain
+controller in sight.
 
 10
-00:00:35.037 --> 00:00:39.551
-If it can't, it's drift, and you fix
-it at the source, never at the copy.
+00:00:29.249 --> 00:00:31.836
+So every hybrid device needs an exit:
 
 11
-00:00:39.551 --> 00:00:42.340
-Next, how new devices start out governed.
+00:00:31.836 --> 00:00:35.888
+a target of Entra join and a
+trigger, like its refresh date.
+
+12
+00:00:35.888 --> 00:00:39.230
+The sponsor and CIO set
+the domain-unjoin waves,
+
+13
+00:00:39.230 --> 00:00:42.401
+because unjoining ends
+everyone's fallback.
+
+14
+00:00:42.401 --> 00:00:44.570
+Next, what the shortcut costs.

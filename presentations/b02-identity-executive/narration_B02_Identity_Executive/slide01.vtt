@@ -5,64 +5,64 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.961
-This is the executive
-briefing for Book 02 of the
+00:00:00.763 --> 00:00:06.357
+This is the executive briefing for Book
+02 of the Federal Modernization Workbook,
 
 3
-00:00:03.961 --> 00:00:07.799
-Federal Modernization Workbook,
-Identity and Directory.
+00:00:06.357 --> 00:00:10.223
+Identity and Directory, for
+the people who make the calls:
 
 4
-00:00:07.799 --> 00:00:10.933
-It's for the people who
-make the calls: the CIO,
-
-5
-00:00:10.933 --> 00:00:14.763
-the CISO, the identity
+00:00:10.223 --> 00:00:14.337
+the CIO, the CISO, the identity
 program lead and the sponsors.
 
-6
-00:00:14.763 --> 00:00:16.187
+5
+00:00:14.337 --> 00:00:15.763
 The argument is short.
 
-7
-00:00:16.187 --> 00:00:19.668
+6
+00:00:15.763 --> 00:00:19.242
 Zero Trust moved the access
 decision onto identity,
 
-8
-00:00:19.668 --> 00:00:24.038
+7
+00:00:19.242 --> 00:00:23.612
 so whatever the directory believes,
 every application enforces.
 
-9
-00:00:24.038 --> 00:00:29.313
-Active Directory isn't being retired,
-but every road now points to Entra ID,.
-
-10
-00:00:29.313 --> 00:00:31.770
+8
+00:00:23.612 --> 00:00:26.071
 And syncing the forest as it stands just
 
-11
-00:00:31.770 --> 00:00:34.674
+9
+00:00:26.071 --> 00:00:28.975
 copies twenty-five years
 of risk into the cloud.
 
+10
+00:00:28.975 --> 00:00:33.281
+What Book 02 accomplishes is a
+directory where placement has become
+
+11
+00:00:33.281 --> 00:00:37.813
+attributes and rules, and every service
+account has an owner and a target.
+
 12
-00:00:34.674 --> 00:00:37.912
-I'll take four questions:
-why, what, who and how.
+00:00:37.813 --> 00:00:43.203
+It carries the directory side of the
+HR track and the service accounts;
 
 13
-00:00:37.912 --> 00:00:42.288
-Each decision slide names the decision,
-its owner and when it's needed.
+00:00:43.203 --> 00:00:49.337
+people's attributes are Book 03, devices
+and servers Book 05, and AI agents Book 17.
 
 14
-00:00:42.288 --> 00:00:45.050
+00:00:49.337 --> 00:00:52.100
 Let's start with where
 access gets decided now.

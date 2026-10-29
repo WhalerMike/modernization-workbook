@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.049
+Every decision here has one owner,
+
+2
+00:00:02.049 --> 00:00:04.975
+and that's what keeps the
+migration from stalling.
+
+3
+00:00:04.975 --> 00:00:07.861
+Identity engineering owns the plumbing,
+
+4
+00:00:07.861 --> 00:00:11.087
+the delegation model and
+each wave's go or no-go.
+
+5
+00:00:11.087 --> 00:00:15.413
+The ICAM governance body owns the
+authority map and the person key.
+
+6
+00:00:15.413 --> 00:00:19.363
+HR owns the codes, the data
+architect the schema, and application
+
+7
+00:00:19.363 --> 00:00:23.687
+owners their own access rules and
+their service accounts' conversion.
+
+8
+00:00:23.687 --> 00:00:27.088
+The CISO owns the controls
+and the drift findings.
+
+9
+00:00:27.088 --> 00:00:32.554
+And you can start Monday without new tools:
+export the tree, name the HR feed early,
+
+10
+00:00:32.554 --> 00:00:37.275
+populate the person key, remove other
+writers, and route your logs out.
+
+11
+00:00:37.275 --> 00:00:40.213
+Make the attributes
+true, and keep them true.
+
+12
+00:00:40.213 --> 00:00:41.040
+Thank you.

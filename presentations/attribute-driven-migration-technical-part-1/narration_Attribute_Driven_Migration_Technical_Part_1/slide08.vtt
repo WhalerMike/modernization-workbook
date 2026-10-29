@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.662
+Before the stages, a short primer,
+because every later slide leans on it.
+
+2
+00:00:04.662 --> 00:00:08.037
+In AD, where an object
+sits does half the work.
+
+3
+00:00:08.037 --> 00:00:12.274
+In Entra ID, what the object says
+about itself has to do all of it.
+
+4
+00:00:12.274 --> 00:00:16.900
+The directory is flat, the schema is
+fixed, and you reach it through Graph.
+
+5
+00:00:16.900 --> 00:00:20.625
+Write control moves to roles
+scoped by administrative units.
+
+6
+00:00:20.625 --> 00:00:25.912
+And the row that shapes everything
+is the last one: for synced users,
+
+7
+00:00:25.912 --> 00:00:31.488
+AD still masters most attributes, so
+edit them in AD or HR, not in Entra ID.
+
+8
+00:00:31.488 --> 00:00:33.460
+Now the attributes themselves.

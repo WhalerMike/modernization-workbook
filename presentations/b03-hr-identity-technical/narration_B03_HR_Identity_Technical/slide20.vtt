@@ -1,53 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.913
-Revocation has its own timing.
+00:00:00.050 --> 00:00:04.975
+Here's the uncomfortable fact: disabling
+an account doesn't revoke a certificate.
 
 2
-00:00:01.913 --> 00:00:05.141
-Entra checks the issuing
-authority's revocation list,
+00:00:04.975 --> 00:00:09.452
+The PIV card is bound to the Entra
+user through an attribute holding the
 
 3
-00:00:05.141 --> 00:00:08.799
-but it caches that list and
-doesn't support live status checks,
+00:00:09.452 --> 00:00:12.107
+certificate's identifiers, and the strong,
 
 4
-00:00:08.799 --> 00:00:13.175
-so a revoked card stops working on the
-authority's schedule, not instantly.
+00:00:12.107 --> 00:00:15.825
+high-affinity bindings identify
+exactly one certificate.
 
 5
-00:00:13.175 --> 00:00:17.712
-That's why the account block and token
-revocation matter: they close Entra now.
+00:00:15.825 --> 00:00:20.950
+So every reissue or renewal means the
+card system has to rewrite the binding.
 
 6
-00:00:17.712 --> 00:00:19.412
-Devices are the other trap.
+00:00:20.950 --> 00:00:23.650
+Who can write it depends on
+where the user is mastered.
 
 7
-00:00:19.412 --> 00:00:23.809
-Intune revokes a device certificate
-when you retire or wipe the device,
+00:00:23.650 --> 00:00:28.588
+Today, for synced users, only Entra
+Connect can, from Active Directory.
 
 8
-00:00:23.809 --> 00:00:26.938
-but not when you delete the
-user or pull the license.
+00:00:28.588 --> 00:00:31.987
+Once the account moves to the
+cloud, the design guidance is
 
 9
-00:00:26.938 --> 00:00:31.296
-So the order is retire first and
-delete last, and remove certificate
+00:00:31.987 --> 00:00:35.600
+that the card system's issuance
+event writes it through Graph.
 
 10
-00:00:31.296 --> 00:00:35.888
-assignments before revoking by hand,
-or the device simply gets a new one.
+00:00:35.600 --> 00:00:40.050
+And the warning in red: whoever writes
+that value decides who signs in.
 
 11
-00:00:35.888 --> 00:00:38.380
-That order becomes the leaver sequence.
+00:00:40.050 --> 00:00:41.640
+Next, revocation.

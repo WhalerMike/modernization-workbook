@@ -111,7 +111,8 @@ No system becomes authoritative because it receives a copy. No source field shou
 ## Where it doesn't apply as written
 
 - GCC High, DoD, national security, military personnel, and Intelligence Community environments, which need separate validation of scope, endpoints, services, and governing requirements. The Federal HR 2.0 memo initially excludes military personnel and Intelligence Community agencies.[^c01-hr20]
-- Non-person identities — service accounts, managed identities, application identities, shared accounts, robotic automation. They need a companion authority and lifecycle model and shouldn't be forced into the human-worker pattern because the same directory stores them.
+- Non-person identities — service accounts, managed identities, application identities, shared accounts, robotic automation. They need a companion authority and lifecycle model and shouldn't be forced into the human-worker pattern because the same directory stores them. A non-person identity has no HR record: its owner and sponsor are its accountability, and its lifecycle follows the owning system's record and credential expiry, not a hire or leave date. That model is the companion guide's [non-person identity track](../guides/attribute-driven-migration.md#non-person-identity-track).
+- End-user devices and servers. HR never describes a device or a server, and a device rule can't read its owner's attributes. Devices are the Intune track ([Book 05, Chapters 03, 04 and 08](../b05-devices/index.md)); servers are the Azure Arc track ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md)). This book is the HR track of the guide's [four tracks](../guides/attribute-driven-migration.md#four-tracks).
 - The directory migration itself (moving objects and applications from AD to Entra ID), which is the companion [Book 02 — Identity & Directory](../b02-identity/index.md), in particular [Chapter 09 — Building the Entra ID Target](../b02-identity/09-building-the-entra-target.md). This book covers where that migration's users come from.
 - Application modernization. Legacy applications with local accounts, proprietary roles, RACF profiles, shared credentials, or nonstandard deprovisioning paths need an application-specific integration and revocation plan.
 - A production interface specification for Federal HR 2.0. Procurement requirements, awarded-product capabilities, agency onboarding schedules, and post-award interfaces have to be verified at engagement time.
@@ -141,6 +142,16 @@ The architecture is stable; the products that realize it are replaceable (Chapte
 ## What success looks like
 
 A covered identity can be traced from a personnel action in Core HCM to its directory objects, credentials, devices, access decisions, exceptions, and evidence. A joiner is ready within an approved threshold. A mover's access converges on the new assignment and residual access is reviewed. A leaver's logical access is blocked immediately and every linked revocation action is reconciled to completion. No account is created by ticket for a covered population. Drift is measurable, ownership is explicit, and a change of source system doesn't require the lifecycle policy to be redesigned.
+
+That is the HR track's share of the migration's goal: every person, device, server and workload governed by attributes that are true, owned by exactly one source, and read by policy ([What this migration accomplishes](../guides/attribute-driven-migration.md#what-this-migration-accomplishes)). For people, it means joining, moving and leaving change access automatically and correctly, with no ticket and no hand-edited group. Delegation and policy follow facts about the person, not a position in a folder tree, and every access decision and change leaves evidence.
+
+**How you know you're there** *(design guidance; the book's own gates are in [Appendix C](appendix-c-acceptance-and-cutover.md))*:
+
+- Every enabled account correlates to an authoritative record (HR or the contractor source) or carries an owned exception.
+- Every OU-derived access group is a validated rule over coded attributes, so no hand-maintained membership remains for it.
+- The scheduled drift comparison is clean, and findings are fixed at the source, not in the copy (Chapter 11).
+
+In the program's mapping, these are the HR track's contribution to NIST SP 800-53 AC-2, PS-4, PS-5 and IA-4; [Chapter 11](11-drift-metrics-and-evidence.md#control-support-nist-sp-800-53-rev.-5) sets out what the architecture supplies to each and what the agency still has to.
 
 ::: {.callout-tip}
 ## Continue the book

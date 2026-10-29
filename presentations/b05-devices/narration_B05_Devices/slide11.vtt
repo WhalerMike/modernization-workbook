@@ -1,77 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.787
-Once the fleet is moved, the
-job is to run it and prove it.
+00:00:00.050 --> 00:00:02.809
+The existing fleet
+migrates in seven phases,
 
 2
-00:00:03.787 --> 00:00:08.051
-Device compliance feeds Conditional
-Access, which is Book 04.
+00:00:02.809 --> 00:00:06.313
+about thirty-four weeks on
+the book's planning estimates.
 
 3
-00:00:08.051 --> 00:00:11.511
-Updates flow through rings
-and Windows Autopatch,
+00:00:06.313 --> 00:00:11.398
+It runs from inventory and coexistence
+planning, through baselines and a
 
 4
-00:00:11.511 --> 00:00:16.950
-and in a GCC tenant the update evidence
-comes from Intune and Autopatch reports.
+00:00:11.398 --> 00:00:16.650
+small pilot, to cutover in waves,
+verification, and finally retiring the GPOs.
 
 5
-00:00:16.950 --> 00:00:20.136
-The inventory is reconciled
-across all the systems,
+00:00:16.650 --> 00:00:19.419
+Each wave is watched before
+the next one starts,
 
 6
-00:00:20.136 --> 00:00:23.027
-devices are wiped before
-accounts are deleted,
+00:00:19.419 --> 00:00:22.613
+and old GPOs are kept for a
+while before they're deleted.
 
 7
-00:00:23.027 --> 00:00:28.362
-and the evidence maps to the configuration-management
-and flaw-remediation controls.
+00:00:22.613 --> 00:00:25.251
+The slide has the details for each phase.
 
 8
-00:00:28.362 --> 00:00:30.638
-From leadership, we need four things.
+00:00:25.251 --> 00:00:30.000
+The book also sets a floor:
+Windows 11 version 24H2.
 
 9
-00:00:30.638 --> 00:00:33.550
-Approve Intune-first for every new device.
+00:00:30.000 --> 00:00:33.037
+Windows 10 is already out of support,
 
 10
-00:00:33.550 --> 00:00:37.050
-Fund the Group Policy
-inventory and analytics run.
+00:00:33.037 --> 00:00:39.213
+and Windows 11 23H2 Enterprise stops
+getting updates on November 10, 2026.
 
 11
-00:00:37.050 --> 00:00:42.750
-Set the Windows 11 24H2 floor and a plan
-for servers reaching end of support.
+00:00:39.213 --> 00:00:43.624
+Keep in mind these are planning estimates
+for a large fleet, not promises.
 
 12
-00:00:42.750 --> 00:00:46.562
-And name the owners for
-endpoints, servers and security.
+00:00:43.624 --> 00:00:46.413
+Every gate is the next
+phase's precondition,
 
 13
-00:00:46.562 --> 00:00:51.862
-Book 05 has the full migration, with
-every external claim footnoted.
+00:00:46.413 --> 00:00:49.200
+and every phase can roll
+back while it's open.
 
 14
-00:00:51.862 --> 00:00:55.333
-Book 04 covers what a
-compliant device can reach,
+00:00:49.200 --> 00:00:50.537
+That's the devices.
 
 15
-00:00:55.333 --> 00:00:57.937
-and Book 02 the identity underneath.
-
-16
-00:00:57.937 --> 00:00:58.750
-Thank you.
+00:00:50.537 --> 00:00:53.780
+Servers have their own road,
+and their own deadlines.

@@ -34,11 +34,11 @@ This book is the former HR-Driven Identity series, which had already consolidate
 
 One chapter at a time: [01](../../../downloads/b03-hr-identity-01.docx) · [02](../../../downloads/b03-hr-identity-02.docx) · [03](../../../downloads/b03-hr-identity-03.docx) · [04](../../../downloads/b03-hr-identity-04.docx) · [05](../../../downloads/b03-hr-identity-05.docx) · [06](../../../downloads/b03-hr-identity-06.docx) · [07](../../../downloads/b03-hr-identity-07.docx) · [08](../../../downloads/b03-hr-identity-08.docx) · [09](../../../downloads/b03-hr-identity-09.docx) · [10](../../../downloads/b03-hr-identity-10.docx) · [11](../../../downloads/b03-hr-identity-11.docx) · [12](../../../downloads/b03-hr-identity-12.docx) · [13](../../../downloads/b03-hr-identity-13.docx)
 
-**15-minute presentation (about 10 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-03) page.
+**15-minute presentation (about 12 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-03) page.
 
-**Technical deep dive (about 50 minutes live, 19 narrated)**: attribute authority, the provisioning pipeline, lifecycle and the PIV binding, and evidence and the execution plan, in modules on the [Presentations](../../presentations/index.md#technical-b03) page.
+**Technical deep dive (about 50 minutes live, 22 narrated)**: attribute authority, the provisioning pipeline, lifecycle and the PIV binding, and evidence and the execution plan, in modules on the [Presentations](../../presentations/index.md#technical-b03) page.
 
-**Executive briefing (about 30 minutes live, 14 narrated)**: for the CIO, HR leadership, CISO and privacy officer: HR as the source of authority, the Federal HR 2.0 window, attribute authority, joiner-mover-leaver, the open contractor decision and Gate G1's HR feed, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b03) page.
+**Executive briefing (about 30 minutes live, 16 narrated)**: for the CIO, HR leadership, CISO and privacy officer: HR as the source of authority, the Federal HR 2.0 window, attribute authority, joiner-mover-leaver, the open contractor decision and Gate G1's HR feed, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b03) page.
 
 **Research (under review)**: [DNS for HR-Driven Identity Across Clouds](../../research/hr-identity-dns.md) explains what the HR-to-identity pipeline must resolve across Oracle, Azure, AWS and on-premises; it's on the [Research](../../research/index.md) page.
 
@@ -63,6 +63,20 @@ This book is a proposal: use Federal HR 2.0 and the move from Active Directory t
 - **Continuous evidence:** provenance, provisioning results, workflow outcomes, exceptions, and drift findings come out of normal operation.
 
 The canonical model and provisioning services exist to produce these outcomes; Chapter 01 sets out the scope, authority boundaries, and principles behind them.
+
+## This book is the HR track
+
+An Active Directory forest holds four populations of identity, and each moves to Entra ID by its own path, with its own source of truth: the companion guide calls them the [four tracks](../guides/attribute-driven-migration.md#four-tracks). **This book is the HR track: people.** It covers the user accounts of employees and contractors, whose attributes come from HR and the contractor source through provisioning. HR never describes a device, a server or a service, so the other three tracks are covered elsewhere:
+
+| Track | What it covers | Where |
+|---|---|---|
+| **Intune** | End-user devices: their attributes come from device provisioning, not HR | [Book 05, Chapter 03](../b05-devices/03-where-device-and-server-data-lives.md), [Chapter 04](../b05-devices/04-intune-first-onboarding.md) and [Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md) |
+| **Azure Arc** | Servers, tagged at onboarding and governed by Azure Policy | [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md) |
+| **Non-person identities** | Service accounts, service principals, managed identities and AI agents, owned by a sponsor, not an HR record | Service accounts: [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#modernizing-service-accounts); SQL service and application principals: [Book 06](../b06-data-platform/index.md); AI agents: [Book 17](../b17-ai-identity/index.md); the [non-person identity track](../guides/attribute-driven-migration.md#non-person-identity-track) in the companion guide |
+
+: The four tracks, and where the three this book doesn't cover live {.striped .hover}
+
+The goal across all four is set out in the guide's [What this migration accomplishes](../guides/attribute-driven-migration.md#what-this-migration-accomplishes). For the HR track, the program maps the work to NIST SP 800-53 account management (AC-2), personnel termination (PS-4), personnel transfer (PS-5) and identifier management (IA-4); [Chapter 11](11-drift-metrics-and-evidence.md#control-support-nist-sp-800-53-rev.-5) sets out what the architecture contributes to each and what the agency still supplies.
 
 ## Why, what, who, how
 

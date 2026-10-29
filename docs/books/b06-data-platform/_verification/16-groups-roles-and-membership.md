@@ -62,3 +62,13 @@ Finding D3 in the attribute-driven migration guide's verification log (`docs/boo
 | # | Claim | Source (accessed 2026-10-29) | Old text | New text |
 |---|---|---|---|---|
 | G1 | Organization-derived groups' rules read HR codes | Manage rules for dynamic membership groups <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (`extensionAttribute1`–`15` supported for users; `-in` with a bracketed string list; minimize `-contains` and `-match`); administrative-unit rules use the same attributes and syntax: <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-dynamic> | "rules read HR-maintained attributes such as `department`, `companyName`, `jobTitle`, an `extensionAttribute`, or a directory extension property ([Chapter 17](…))" | "rules read HR-maintained codes, such as the organization code in `extensionAttribute10` and the position category in `extensionAttribute12` from the [program attribute map](…), or a directory extension property, not display strings such as `department` or `jobTitle` ([Chapter 17](…#choosing-the-attributes))" |
+
+## Revision 2026-10-29 — four tracks and companion-guide alignment
+
+No new Microsoft or federal facts. Both additions carry existing material by link.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | People's group-derived logins are the HR track; service accounts and application principals are the non-person identity track, with no HR record | "Where this part of the book goes next" callout | restated-as-design | Program framing; companion guide, Non-person identity track |
+| 2 | A surviving Windows-authenticated login is an IA-2 gap in the program's mapping | Conditional Access as the outer perimeter | carried | Appendix A, Mapping by part (Login Migration row maps IA-2, IA-2(1), IA-2(2)) |
+| 3 | A surviving Windows login is an AD-retirement dependency: it authenticates only while AD does | Same | restated-as-design | Follows from Chapter 01 (Windows Authentication is Kerberos/NTLM against AD) |

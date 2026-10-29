@@ -7,46 +7,36 @@
   ],
   [
    0.762,
-   7.037,
-   "This is the executive briefing for Book 02 of the Federal Modernization Workbook, Identity and Directory."
+   13.575,
+   "This is the executive briefing for Book 02 of the Federal Modernization Workbook, Identity and Directory, for the people who make the calls: the C I O, the see-so, the identity program lead and the sponsors."
   ],
   [
-   7.8,
-   6.963,
-   "It's for the people who make the calls: the C I O, the see-so, the identity program lead and the sponsors."
-  ],
-  [
-   14.762,
+   14.338,
    1.425,
    "The argument is short."
   ],
   [
-   16.188,
+   15.762,
    7.85,
    "Zero Trust moved the access decision onto identity, so whatever the directory believes, every application enforces."
   ],
   [
-   24.038,
-   5.275,
-   "Active Directory isn't being retired, but every road now points to Entra ID,."
-  ],
-  [
-   29.312,
+   23.613,
    5.362,
    "And syncing the forest as it stands just copies twenty-five years of risk into the cloud."
   ],
   [
-   34.675,
-   3.237,
-   "I'll take four questions: why, what, who and how."
+   28.975,
+   8.838,
+   "What Book 02 accomplishes is a directory where placement has become attributes and rules, and every service account has an owner and a target."
   ],
   [
-   37.913,
-   4.375,
-   "Each decision slide names the decision, its owner and when it's needed."
+   37.812,
+   11.525,
+   "It carries the directory side of the HR track and the service accounts; people's attributes are Book 03, devices and servers Book 05, and AI agents Book 17."
   ],
   [
-   42.288,
+   49.337,
    2.7,
    "Let's start with where access gets decided now."
   ]
@@ -245,11 +235,43 @@
   ],
   [
    44.975,
+   3.263,
+   "But first, which of this is Book 02's job."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   7.925,
+   "One O U tree holds four different populations, and they move by different paths, so the workbook treats them as four tracks."
+  ],
+  [
+   7.975,
+   7.85,
+   "People are the HR track: Book 02 builds the directory side, and Book 03 decides where their attributes come from."
+  ],
+  [
+   15.825,
+   9.075,
+   "Devices and servers are the Intune and Arc tracks: Book 02's Group Policy analysis finds their settings, and Book 05 moves them."
+  ],
+  [
+   24.9,
+   8.912,
+   "Service accounts are the non-person track: Book 02 gives every one an owner and a target, and Book 17 carries AI agents."
+  ],
+  [
+   33.812,
+   9.125,
+   "Appendix A ties that to account management, attribute-based access and least privilege in nist 800-53, and to M twenty-two oh-nine."
+  ],
+  [
+   42.938,
    2.75,
    "Now, the part Conditional Access can't see."
   ]
  ],
- "6": [
+ "7": [
   [
    0.05,
    5.875,
@@ -291,7 +313,7 @@
    "And the surface is wider."
   ]
  ],
- "7": [
+ "8": [
   [
    0.05,
    2.975,
@@ -343,7 +365,7 @@
    "Then, who can manage whom."
   ]
  ],
- "8": [
+ "9": [
   [
    0.05,
    2.587,
@@ -395,7 +417,7 @@
    "Next, who decides the rest."
   ]
  ],
- "9": [
+ "10": [
   [
    0.05,
    4.912,
@@ -442,7 +464,7 @@
    "Here's what it says."
   ]
  ],
- "10": [
+ "11": [
   [
    0.05,
    2.575,
@@ -499,7 +521,7 @@
    "Next, a question every sponsor asks: doesn't Microsoft already do this?"
   ]
  ],
- "11": [
+ "12": [
   [
    0.05,
    1.975,
@@ -551,7 +573,7 @@
    "Now, how to begin."
   ]
  ],
- "12": [
+ "13": [
   [
    0.05,
    4.8,
@@ -588,7 +610,7 @@
    "Then build the target."
   ]
  ],
- "13": [
+ "14": [
   [
    0.05,
    2.75,
@@ -635,7 +657,7 @@
    "Next, how people sign in."
   ]
  ],
- "14": [
+ "15": [
   [
    0.05,
    2.875,
@@ -687,7 +709,7 @@
    "So how does the whole migration run?"
   ]
  ],
- "15": [
+ "16": [
   [
    0.05,
    10.75,
@@ -734,7 +756,7 @@
    "And the last step is retiring Active Directory."
   ]
  ],
- "16": [
+ "17": [
   [
    0.05,
    5.838,
@@ -796,7 +818,7 @@
    "Finally, proving it worked."
   ]
  ],
- "17": [
+ "18": [
   [
    0.05,
    4.2,
@@ -833,7 +855,7 @@
    "Let's bring the decisions together."
   ]
  ],
- "18": [
+ "19": [
   [
    0.05,
    2.1,

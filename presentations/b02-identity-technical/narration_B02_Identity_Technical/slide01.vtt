@@ -5,67 +5,58 @@ WEBVTT
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.944
-This is the technical deep
-dive for Book 02 of the
+00:00:00.763 --> 00:00:05.932
+This is the technical deep dive for Book
+02 of the Federal Modernization Workbook,
 
 3
-00:00:03.944 --> 00:00:07.762
-Federal Modernization Workbook,
-Identity and Directory.
+00:00:05.932 --> 00:00:09.809
+Identity and Directory, for the
+architects and engineers who
 
 4
-00:00:07.762 --> 00:00:10.960
-It's for the architects and
-engineers who will actually
-
-5
-00:00:10.960 --> 00:00:14.226
-run the move from Active
+00:00:09.809 --> 00:00:13.687
+will run the move from Active
 Directory to Microsoft Entra ID.
 
+5
+00:00:13.687 --> 00:00:17.994
+What Book 02 accomplishes is a
+directory where placement has become
+
 6
-00:00:14.226 --> 00:00:15.787
-It comes in two parts.
+00:00:17.994 --> 00:00:22.526
+attributes and rules, and every service
+account has an owner and a target.
 
 7
-00:00:15.787 --> 00:00:17.620
-Part 1 is assessing the forest:
+00:00:22.526 --> 00:00:24.668
+Of the workbook's four tracks,
 
 8
-00:00:17.620 --> 00:00:21.872
-first what an ordinary account can
-learn without any elevated access,
+00:00:24.668 --> 00:00:29.846
+it carries the directory side of the
+HR track and the service accounts;
 
 9
-00:00:21.872 --> 00:00:26.125
-then the full privileged assessment
-and the evidence trail behind it.
+00:00:29.846 --> 00:00:35.738
+people's attributes are Book 03, devices
+and servers Book 05, and AI agents Book 17.
 
 10
-00:00:26.125 --> 00:00:31.129
-Part 2 is building the Entra ID target and
-moving onto it: the big design decisions,
+00:00:35.738 --> 00:00:40.137
+Part 1 assesses the forest, starting
+with what an ordinary account can see.
 
 11
-00:00:31.129 --> 00:00:33.518
-governance, the eleven-phase playbook,
+00:00:40.137 --> 00:00:43.700
+Part 2 builds the Entra ID
+target and moves onto it.
 
 12
-00:00:33.518 --> 00:00:37.850
-and a reference deployment that runs
-the whole sequence on one estate.
+00:00:43.700 --> 00:00:45.750
+The code lives in the chapters.
 
 13
-00:00:37.850 --> 00:00:41.019
-The slides carry the tables
-and decision matrices,
-
-14
-00:00:41.019 --> 00:00:44.113
-and the code lives in the
-chapters and appendices.
-
-15
-00:00:44.113 --> 00:00:45.700
+00:00:45.750 --> 00:00:47.330
 I'll stick to what matters.

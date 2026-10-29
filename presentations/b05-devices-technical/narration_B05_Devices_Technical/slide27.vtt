@@ -1,59 +1,20 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.807
-Intune, Entra ID and Defender each
-keep their own device inventory,
+00:00:00.050 --> 00:00:03.438
+Module 4 is operating
+and evidencing the fleet.
 
 2
-00:00:04.807 --> 00:00:07.575
-and they disagree in predictable ways.
+00:00:03.438 --> 00:00:08.535
+Once the GPOs are gone, a device's state
+has to be proved from three records:
 
 3
-00:00:07.575 --> 00:00:11.287
-The program reconciles them
-weekly on the Entra device ID.
+00:00:08.535 --> 00:00:13.801
+the policy library, the status Intune
+and Defender report, and the audit log.
 
 4
-00:00:11.287 --> 00:00:15.680
-Every enrolled device needs an Entra
-object with its attributes set and
-
-5
-00:00:15.680 --> 00:00:20.000
-a healthy Defender sensor, and a device
-missing from any one is a finding.
-
-6
-00:00:20.000 --> 00:00:23.675
-That same comparison is the
-evidence for a complete inventory.
-
-7
-00:00:23.675 --> 00:00:28.876
-Treat stale records with care: cleanup
-rules hide devices but don't delete them,
-
-8
-00:00:28.876 --> 00:00:33.837
-and Entra's sign-in date isn't updated
-every time, so disable before deleting.
-
-9
-00:00:33.837 --> 00:00:35.784
-Retirement follows a fixed order,
-
-10
-00:00:35.784 --> 00:00:38.912
-because the order decides
-what can still be recovered.
-
-11
-00:00:38.912 --> 00:00:44.330
-Export the BitLocker keys and LAPS password
-first, then wipe, deregister and delete,
-
-12
-00:00:44.330 --> 00:00:49.340
-and delete the Entra object last, because
-that permanently removes its keys.
+00:00:13.801 --> 00:00:16.150
+Operating means keeping them in agreement.

@@ -1,60 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.812
-Proving it starts with logs, because Entra
-ID keeps them only briefly: seven days
+00:00:00.050 --> 00:00:03.556
+The migration runs in eleven
+phases, zero through ten,
 
 2
-00:00:05.812 --> 00:00:11.138
-on the free tier, thirty on P1 or P2,
-and upgrading doesn't recover older data.
+00:00:03.556 --> 00:00:08.575
+and each one starts only when the previous
+one's validation criteria are met.
 
 3
-00:00:11.138 --> 00:00:14.743
-So stream everything to Log
-Analytics and keep sign-in
+00:00:08.575 --> 00:00:11.350
+Every phase also has a rollback procedure.
 
 4
-00:00:14.743 --> 00:00:17.949
-and audit logs for three
-hundred sixty-five days.
+00:00:11.350 --> 00:00:15.152
+The durations are planning
+estimates, not measured results,
 
 5
-00:00:17.949 --> 00:00:22.288
-On top of that, scheduled detections
-watch for things like stale accounts,
+00:00:15.152 --> 00:00:17.738
+and the total runs forty to seventy weeks.
 
 6
-00:00:22.288 --> 00:00:26.413
-late-night privileged activations,
-and any emergency account sign-in.
+00:00:17.738 --> 00:00:21.048
+It starts with the assessment,
+then the sync deployment,
 
 7
-00:00:26.413 --> 00:00:31.643
-For compliance, the controls map to
-FedRAMP 20x Key Security Indicators,
+00:00:21.048 --> 00:00:23.926
+with object counts matching
+within one percent.
 
 8
-00:00:31.643 --> 00:00:35.975
-evidenced by the workflows, reviews
-and PIM you've already built.
+00:00:23.926 --> 00:00:26.799
+Then sign-in, groups,
+service accounts and PIM,
 
 9
-00:00:35.975 --> 00:00:37.612
-And drift lives in Git.
+00:00:26.799 --> 00:00:31.925
+which ends with no permanent admin
+assignments except the emergency accounts.
 
 10
-00:00:37.612 --> 00:00:42.107
-A weekly scan compares against a baseline
-and opens an issue with the diff,
+00:00:31.925 --> 00:00:35.305
+Conditional Access is
+enforced only after MFA
 
 11
-00:00:42.107 --> 00:00:46.012
-and each finding is fixed at the
-source, never by editing the copy.
+00:00:35.305 --> 00:00:39.725
+registration passes ninety-five
+percent in each population.
 
 12
-00:00:46.012 --> 00:00:50.660
-Today that covers user additions
-and removals; the rest is planned.
+00:00:39.725 --> 00:00:44.719
+Then come the phishing-resistant roadmap,
+the legacy cutoff, retiring federation,
+
+13
+00:00:44.719 --> 00:00:49.850
+and finally steady-state governance, with
+the operations runbook committed to Git.

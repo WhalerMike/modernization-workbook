@@ -1,62 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.950
-Now the how.
+00:00:00.050 --> 00:00:02.852
+Under Group Policy, whoever could edit and
 
 2
-00:00:00.950 --> 00:00:05.550
-The Group Policy sunset runs one
-setting and one population at a time.
+00:00:02.852 --> 00:00:05.975
+link a GPO decided for
+every machine beneath it.
 
 3
-00:00:05.550 --> 00:00:09.175
-Every setting gets asked, in
-order: is it still needed?
+00:00:05.975 --> 00:00:10.012
+Now that job is split across
+several teams and three consoles.
 
 4
-00:00:09.175 --> 00:00:11.250
-Is there a direct Intune equivalent?
+00:00:10.012 --> 00:00:13.776
+And Group Policy taught a generation
+of administrators that being
 
 5
-00:00:11.250 --> 00:00:16.275
-Does a cloud service replace the need, the
-way OneDrive replaces redirected folders?
+00:00:13.776 --> 00:00:17.137
+able to change something meant
+having the right to decide it.
 
 6
-00:00:16.275 --> 00:00:17.750
-Can a script enforce it?
+00:00:17.137 --> 00:00:21.587
+That habit is how someone sets the
+agency's risk posture without noticing.
 
 7
-00:00:17.750 --> 00:00:22.112
-Anything that fails all four becomes
-a dated exception with an owner.
+00:00:21.587 --> 00:00:24.462
+A thirty-day grace period
+is a risk decision.
 
 8
-00:00:22.112 --> 00:00:26.577
-Then the rules that keep it honest:
-retire before you translate, one owner
+00:00:24.462 --> 00:00:29.562
+So is leaving an old GPO in place,
+or exempting kiosks from encryption.
 
 9
-00:00:26.577 --> 00:00:31.338
-per setting, and no GPO link switched
-off until its replacement shows success.
+00:00:29.562 --> 00:00:32.149
+The book's rule is one decider per row.
 
 10
-00:00:31.338 --> 00:00:35.887
-GPOs are disabled first and kept
-ninety days as a safety net.
+00:00:32.149 --> 00:00:37.557
+And exceptions split by time: a temporary
+one with an end date is the CISO's call;
 
 11
-00:00:35.887 --> 00:00:39.203
-The decision for the
-endpoint engineering lead:
+00:00:37.557 --> 00:00:41.800
+a standing one goes to the
+authorizing official, on a schedule.
 
 12
-00:00:39.203 --> 00:00:43.513
-freeze every inventoried GPO, so
-new requirements go to Intune.
-
-13
-00:00:43.513 --> 00:00:45.020
-Next, the timeline.
+00:00:41.800 --> 00:00:43.460
+Next, the full map.

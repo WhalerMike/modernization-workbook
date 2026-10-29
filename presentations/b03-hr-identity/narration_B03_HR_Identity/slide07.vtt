@@ -1,72 +1,79 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.375
-Who has to be involved?
+00:00:00.050 --> 00:00:04.450
+Provisioning is where personnel
+records turn into governed identities.
 
 2
-00:00:01.375 --> 00:00:04.950
-This is an organizational change
-as much as a technical one,
+00:00:04.450 --> 00:00:08.737
+The HR platform publishes worker
+records and personnel actions.
 
 3
-00:00:04.950 --> 00:00:07.138
-and it helps to think in three groups.
+00:00:08.737 --> 00:00:13.094
+A small middleware, inside the
+agency's own authorization boundary,
 
 4
-00:00:07.138 --> 00:00:12.442
-Owners: HR owns the personnel data and
-its quality, the HR 2.0 program owns
+00:00:13.094 --> 00:00:18.460
+validates each event, applies events in
+order, normalizes them to the SCIM standard,
 
 5
-00:00:12.442 --> 00:00:18.376
-the platform and the standards, and each
-contractor source owns its own records.
+00:00:18.460 --> 00:00:22.038
+records where they came from,
+and reconciles the result.
 
 6
-00:00:18.376 --> 00:00:23.030
-Users: the identity team runs the
-directories and access from that data,
+00:00:22.038 --> 00:00:26.983
+Entra ID's inbound provisioning then
+creates and updates the accounts,
 
 7
-00:00:23.030 --> 00:00:26.659
-security owns the Zero Trust
-policy and the leaver path,
+00:00:26.983 --> 00:00:29.413
+in Entra ID and in Active Directory.
 
 8
-00:00:26.659 --> 00:00:30.525
-and the help desk moves from
-routine tickets to exceptions.
+00:00:29.413 --> 00:00:34.113
+The book sizes that interface's daily
+limits against the agency's population.
 
 9
-00:00:30.525 --> 00:00:31.537
-And guards.
+00:00:34.113 --> 00:00:36.962
+The key design choice is
+that it fails closed.
 
 10
-00:00:31.537 --> 00:00:33.946
-The privacy office is in from the start,
+00:00:36.962 --> 00:00:39.012
+Unknown worker types are refused.
 
 11
-00:00:33.946 --> 00:00:38.687
-and decides the legal basis for each
-leg of sharing HR records with identity,
+00:00:39.012 --> 00:00:43.226
+A failed record is retried and
+recorded, never silently skipped.
 
 12
-00:00:38.687 --> 00:00:42.450
-along with the privacy impact
-assessment and minimization.
+00:00:43.226 --> 00:00:45.574
+And every event leaves
+a provenance record,
 
 13
-00:00:42.450 --> 00:00:45.896
-The PIV office owns
-issuance and termination,
+00:00:45.574 --> 00:00:47.988
+which is where the
+evidence comes from later.
 
 14
-00:00:45.896 --> 00:00:51.700
-and the ISSO and authorizing official
-own the evidence and any accepted risk.
+00:00:47.988 --> 00:00:50.974
+The technology is the
+example, not the point.
 
 15
-00:00:51.700 --> 00:00:56.620
-A data architect ties it together,
-owning the standards and the person key.
+00:00:50.974 --> 00:00:54.975
+Today it's Oracle Core
+HCM feeding Entra ID.
+
+16
+00:00:54.975 --> 00:00:58.540
+If the vendors change, the
+model and the rules still hold.

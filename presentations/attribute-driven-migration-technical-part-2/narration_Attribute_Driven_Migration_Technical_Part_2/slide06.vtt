@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.672
+Devices are attribute-driven too, but
+only through their own attributes,
+
+2
+00:00:04.672 --> 00:00:07.600
+the device rows of the
+store table in the recap.
+
+3
+00:00:07.600 --> 00:00:12.780
+Dynamic device groups read things like
+ownership, trust type and enrollment profile,
+
+4
+00:00:12.780 --> 00:00:16.063
+and Autopilot devices carry
+markers a rule can select.
+
+5
+00:00:16.063 --> 00:00:19.462
+Filters read Intune's own
+inventory at check-in.
+
+6
+00:00:19.462 --> 00:00:21.437
+The highpoint is the red panel.
+
+7
+00:00:21.437 --> 00:00:25.695
+Writing a device's extension attributes
+needs the right Graph permission,
+
+8
+00:00:25.695 --> 00:00:28.648
+and it depends on the call:
+a signed-in administrator
+
+9
+00:00:28.648 --> 00:00:31.600
+uses one permission, an
+unattended service another.
+
+10
+00:00:31.600 --> 00:00:35.150
+Book 05's sample now
+uses the signed-in one.
+
+11
+00:00:35.150 --> 00:00:38.210
+Then, the dangers of
+dynamic device groups.

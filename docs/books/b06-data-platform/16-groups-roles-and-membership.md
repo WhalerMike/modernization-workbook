@@ -25,6 +25,8 @@ How an Entra security group becomes a SQL Server login and a database role membe
 ::: {.callout-tip}
 ## Where this part of the book goes next
 The migration moves SQL Server's groups from Active Directory to Microsoft Entra ID, but it keeps group-based authorization. What changes is who maintains the groups and how. A group that maps to a single database role can keep itself current from HR-sourced attributes, which removes the helpdesk ticket. That only works if the attributes are trustworthy, the rules are tested, delegation is scoped and privileged access is just in time. Chapters 16 and 17 cover that design and the governance it needs; in the program's dependency chain this is step 5, introducing Entra principals. The working procedure is [Runbook R07](r07-groups-aus-and-the-conditional-access-perimeter.md).
+
+People's group-derived logins are the HR track. Service accounts and application principals are the [non-person identity track](../guides/attribute-driven-migration.md#non-person-identity-track), which has no HR record and runs on its owner's record instead.
 :::
 
 ![The directory half of SQL Server access moves to Entra ID; the engine half barely changes.](../../images/sql-server/diagrams/svg/book-07-two-halves-of-access.svg){fig-alt="Outside the engine, the HR system of record feeds user attributes in Entra ID and Entra security groups; inside the engine, a type X group login maps to a user-defined database role and its permissions, unchanged from before."}
@@ -108,7 +110,7 @@ Once every login is Entra-backed, every user connection needs a token, and every
 
 Application identities are a different case. Conditional Access policies scoped to users don't block service principals. Conditional Access for workload identities covers only single-tenant service principals registered in the tenant, needs Workload ID Premium licenses, and doesn't cover managed identities at all.[^c16-ca-wid] For managed identities the perimeter is who can request the host's token, Azure role assignments and access reviews, which [Chapter 19](19-connection-string-migration.md) and [Chapter 17](17-dynamic-membership-delegation-and-privilege.md) cover.
 
-None of this reaches a Windows or SQL-authenticated login, so for people the perimeter is binary: one surviving Windows login bypasses every policy. Privileged-access workstations, bastions, segmentation and vaulting are legitimate interim controls, but none evaluates identity, device and risk per connection. [Chapter 12](12-the-engine-authentication-decision.md) therefore treats each surviving legacy login as a documented, sunset-dated exception.
+None of this reaches a Windows or SQL-authenticated login, so for people the perimeter is binary: one surviving Windows login bypasses every policy. Privileged-access workstations, bastions, segmentation and vaulting are legitimate interim controls, but none evaluates identity, device and risk per connection. [Chapter 12](12-the-engine-authentication-decision.md) therefore treats each surviving legacy login as a documented, sunset-dated exception. In the program's mapping, a surviving Windows-authenticated login is also an IA-2 gap ([Appendix A](appendix-a-requirements-mapping.md#mapping-by-part)) and an AD-retirement dependency, because it authenticates only while Active Directory does.
 
 ::: {.callout-note title="What this chapter establishes"}
 1. An Entra group reaches SQL Server as a type X login and grants exactly one role, on one database, in one environment.

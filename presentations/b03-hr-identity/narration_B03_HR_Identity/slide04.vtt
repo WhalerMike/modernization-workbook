@@ -1,82 +1,79 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.187
-So what should we do?
+00:00:00.050 --> 00:00:00.837
+Why now?
 
 2
-00:00:01.187 --> 00:00:06.510
-There are four realistic options, weighed
-against what leadership has to balance:
+00:00:00.837 --> 00:00:04.050
+Because two migrations
+open one design window.
 
 3
-00:00:06.510 --> 00:00:10.188
-the mission and the public,
-security, cost and resilience.
+00:00:04.050 --> 00:00:09.095
+On the HR side, an OMB and OPM
+memo creates Federal HR 2.0,
 
 4
-00:00:10.188 --> 00:00:14.388
-Compliance matters, but on its
-own it isn't a reason to invest.
+00:00:09.095 --> 00:00:12.650
+one government-wide core HR platform.
 
 5
-00:00:14.388 --> 00:00:18.065
-Option A keeps ticket-driven
-identity: no new spending,
+00:00:12.650 --> 00:00:16.729
+OPM awarded the platform
+contract in June 2026,
 
 6
-00:00:18.065 --> 00:00:20.762
-but the risk and the manual work stay put.
+00:00:16.729 --> 00:00:21.750
+and the first agencies start
+moving as fiscal 2027 begins.
 
 7
-00:00:20.762 --> 00:00:24.187
-Option B scripts automation
-inside the directories.
+00:00:21.750 --> 00:00:24.887
+The sample timeline is about
+eight months per agency,
 
 8
-00:00:24.187 --> 00:00:26.969
-It's quick and cheap,
-but it automates a source
+00:00:24.887 --> 00:00:28.737
+with the agency's interconnections
+going live around month five.
 
 9
-00:00:26.969 --> 00:00:30.201
-that isn't authoritative,
-so bad data spreads faster.
+00:00:28.737 --> 00:00:34.800
+On the identity side, agencies are already
+moving to Entra ID, which is Book 02.
 
 10
-00:00:30.201 --> 00:00:34.562
-Option C waits for HR 2.0
-and integrates afterward.
+00:00:34.800 --> 00:00:39.182
+There, attributes drive Conditional
+Access, groups and delegation,
 
 11
-00:00:34.562 --> 00:00:37.651
-That's defensible, but the
-interconnection decisions are
+00:00:39.182 --> 00:00:42.625
+and feeding them from an HR
+system is a supported path.
 
 12
-00:00:37.651 --> 00:00:40.612
-made during onboarding, so
-waiting means retrofitting.
+00:00:42.625 --> 00:00:47.138
+So the window is this: design the
+identity feed in during HR onboarding,
 
 13
-00:00:40.612 --> 00:00:47.000
-Option D starts now, with HR as the source
-of truth, designed into both migrations.
+00:00:47.138 --> 00:00:51.262
+before those interconnections go
+live, not bolted on afterward.
 
 14
-00:00:47.000 --> 00:00:49.212
-It costs design effort up front.
+00:00:51.262 --> 00:00:56.163
+One honest limit: HR 2.0
+covers federal employees only.
 
 15
-00:00:49.212 --> 00:00:54.687
-The judgment call: if HR 2.0 slipped
-a long way, C becomes reasonable.
+00:00:56.163 --> 00:00:59.194
+Contractors need their
+own authoritative source,
 
 16
-00:00:54.687 --> 00:00:57.224
-But D's first step, data standards,
-
-17
-00:00:57.224 --> 00:01:01.130
-ownership and a person key,
-is no-regret either way.
+00:00:59.194 --> 00:01:02.280
+and onboarding is the right
+time to decide that too.

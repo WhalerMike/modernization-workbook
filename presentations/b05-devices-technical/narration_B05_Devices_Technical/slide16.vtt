@@ -1,70 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.862
-The policy library has five types, and
-every policy is assigned to dynamic
+00:00:00.050 --> 00:00:03.531
+While a population has both
+GPOs and Intune policies,
 
 2
-00:00:04.862 --> 00:00:09.437
-device groups built from attributes,
-which replaces OU-based scoping.
+00:00:03.531 --> 00:00:05.825
+three conflict systems are in play.
 
 3
-00:00:09.437 --> 00:00:13.980
-Those attributes are the device's own
-extension attributes, written through
+00:00:05.825 --> 00:00:10.513
+Inside Intune, configuration policies
+have no precedence over each other.
 
 4
-00:00:13.980 --> 00:00:18.026
-Microsoft Graph, with one numbering
-and one fixed spelling per value.
+00:00:10.513 --> 00:00:13.847
+A conflict is reported and
+the setting might not apply,
 
 5
-00:00:18.026 --> 00:00:22.875
-The correction that matters: assignment
-filters can't read extension attributes.
+00:00:13.847 --> 00:00:16.737
+so each setting gets
+exactly one owning policy.
 
 6
-00:00:22.875 --> 00:00:25.861
-Attribute targeting
-belongs in the group rule;
+00:00:16.737 --> 00:00:21.429
+The chapter also corrects earlier program
+material: there's no last-write-wins,
 
 7
-00:00:25.861 --> 00:00:29.537
-filters work on Intune properties
-like join type or model.
+00:00:21.429 --> 00:00:25.976
+and endpoint security doesn't
+automatically beat configuration profiles.
 
 8
-00:00:29.537 --> 00:00:32.951
-Three Microsoft facts shape
-every compliance policy.
+00:00:25.976 --> 00:00:31.247
+Between Group Policy and MDM, Group Policy
+keeps winning unless you change that,
 
 9
-00:00:32.951 --> 00:00:36.475
-Noncompliance actions are
-scheduled in days, not hours.
+00:00:31.247 --> 00:00:34.362
+and outside the core policy
+settings it's a race.
 
 10
-00:00:36.475 --> 00:00:37.857
-There's no block action;
+00:00:34.362 --> 00:00:37.067
+Between Configuration Manager and Intune,
 
 11
-00:00:37.857 --> 00:00:42.075
-blocking is what Conditional Access
-does with a noncompliant device.
+00:00:37.067 --> 00:00:41.274
+the co-management slider decides,
+with a couple of traps on the slide.
 
 12
-00:00:42.075 --> 00:00:45.280
-And encryption and boot
-checks are measured at boot,
+00:00:41.274 --> 00:00:46.397
+Disabling a GPO link is the moment
+production behavior changes, so it's gated:
 
 13
-00:00:45.280 --> 00:00:47.963
-so a newly encrypted
-device needs a restart.
+00:00:46.397 --> 00:00:49.323
+freeze, back up, prove
+the replacement works,
 
 14
-00:00:47.963 --> 00:00:52.460
-The slide has the compliance set,
-including a strict Tier 0 policy.
+00:00:49.323 --> 00:00:52.800
+then disable the link with
+one reversible command.

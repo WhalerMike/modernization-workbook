@@ -1,69 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.388
-One more thing changes, and users
-will feel it: how they sign in.
+00:00:00.050 --> 00:00:02.088
+The third change is delegation.
 
 2
-00:00:04.388 --> 00:00:11.076
-M-22-09 requires phishing-resistant MFA,
-and it names PIV as the simplest route.
+00:00:02.088 --> 00:00:06.699
+In Active Directory, who could manage
+what was mostly expressed through OUs.
 
 3
-00:00:11.076 --> 00:00:13.063
-That flips the usual roadmap.
+00:00:06.699 --> 00:00:11.550
+Entra ID has none, so delegation
+has to be rebuilt on purpose.
 
 4
-00:00:13.063 --> 00:00:16.174
-Older plans saved smart-card
-sign-in for last.
+00:00:11.550 --> 00:00:15.413
+The program uses three tiers:
+tenant-wide control at Tier 0,
 
 5
-00:00:16.174 --> 00:00:19.378
-But federal staff already
-carry PIV or CAC cards,
+00:00:15.413 --> 00:00:19.277
+service administration like
+Exchange or Intune at Tier 1,
 
 6
-00:00:19.378 --> 00:00:23.941
-so certificate-based authentication
-in Entra ID is the fastest path:
+00:00:19.277 --> 00:00:24.750
+and departmental work like the help desk
+at Tier 2, scoped to administrative units.
 
 7
-00:00:23.941 --> 00:00:28.425
-the credential's already issued,
-and no federation server is needed.
+00:00:24.750 --> 00:00:26.424
+The platform has real limits,
 
 8
-00:00:28.425 --> 00:00:33.232
-The book runs four waves: privileged
-accounts first, then card holders, then
+00:00:26.424 --> 00:00:29.562
+and the old design documents
+got several of them wrong.
 
 9
-00:00:33.232 --> 00:00:38.737
-managed Windows devices with Windows Hello,
-and finally everyone else with passkeys.
+00:00:29.562 --> 00:00:34.323
+Administrative units can't be nested,
+role-holding groups can't be dynamic,
 
 10
-00:00:38.737 --> 00:00:41.809
-Along the way, SMS and
-voice codes go for staff,
+00:00:34.323 --> 00:00:38.537
+and restricted management has to
+be chosen when a unit is created.
 
 11
-00:00:41.809 --> 00:00:46.375
-and so do legacy protocols that
-send a password with every request.
+00:00:38.537 --> 00:00:42.441
+That last one also takes its
+users out of Entra ID Governance,
 
 12
-00:00:46.375 --> 00:00:51.575
-Those are found in the sign-in logs, fixed,
-blocked, and watched for thirty days.
+00:00:42.441 --> 00:00:45.876
+so no access reviews or
+lifecycle workflows for them.
 
 13
-00:00:51.575 --> 00:00:54.080
-One thing stays on: password hash sync,
+00:00:45.876 --> 00:00:48.692
+So the program's default
+is unrestricted units,
 
 14
-00:00:54.080 --> 00:00:57.530
-for leaked-credential
-detection and as a fallback.
+00:00:48.692 --> 00:00:53.740
+with restricted management a deliberate,
+recorded choice for sensitive accounts.

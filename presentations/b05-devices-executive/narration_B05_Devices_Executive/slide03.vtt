@@ -1,54 +1,61 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.075
-The tempting middle ground is to
-keep the GPOs and add Intune.
+00:00:00.050 --> 00:00:05.175
+Here's why this matters: an inventory that
+only covers Windows isn't an inventory.
 
 2
-00:00:04.075 --> 00:00:07.463
-But when both touch a setting,
-nobody sees who wins.
+00:00:05.175 --> 00:00:08.113
+Intune isn't just for Microsoft platforms.
 
 3
-00:00:07.463 --> 00:00:09.525
-By default Group Policy wins.
+00:00:08.113 --> 00:00:11.196
+It manages Windows, Apple
+and Android devices,
 
 4
-00:00:09.525 --> 00:00:13.355
-A switch reverses that, but only
-for some settings; for others,
+00:00:11.196 --> 00:00:16.063
+and Linux desktops with limits, while
+ChromeOS stays in Google's console.
 
 5
-00:00:13.355 --> 00:00:16.725
-Microsoft warns it's a race
-with no guaranteed winner.
+00:00:16.063 --> 00:00:20.366
+Arc reaches Windows and Linux
+servers wherever they run:
 
 6
-00:00:16.725 --> 00:00:21.269
-Microsoft's own tool can measure how much
-of your Group Policy maps to Intune,
+00:00:20.366 --> 00:00:24.762
+on premises, VMware VMs, and
+AWS and Google Cloud instances.
 
 7
-00:00:21.269 --> 00:00:25.813
-but it doesn't close the gap, and nobody
-can tell you the percentage in advance.
+00:00:24.762 --> 00:00:26.950
+Azure VMs don't need Arc at all.
 
 8
-00:00:25.813 --> 00:00:30.224
-Microsoft's advice is to rebuild from
-today's requirements rather than copy.
+00:00:26.950 --> 00:00:32.727
+For what neither reaches, like printers,
+network gear, the mainframe or old Unix,
 
 9
-00:00:30.224 --> 00:00:35.360
-So the decision for the endpoint engineering
-lead: write down every overlapping
+00:00:32.727 --> 00:00:37.881
+every device still lands in one of four
+tiers: Intune or Arc; its own tool,
 
 10
-00:00:35.360 --> 00:00:40.112
-setting before Intune enforces it, and
-give each GPO copy a retirement date.
+00:00:37.881 --> 00:00:40.636
+with the CMDB holding its attributes;
 
 11
-00:00:40.112 --> 00:00:41.740
-Next, the shortcut.
+00:00:40.636 --> 00:00:44.813
+discovered and monitored only;
+or segmented and retired.
+
+12
+00:00:44.813 --> 00:00:47.137
+A device in no tier is a finding.
+
+13
+00:00:47.137 --> 00:00:49.610
+Now, what Group Policy was really doing.

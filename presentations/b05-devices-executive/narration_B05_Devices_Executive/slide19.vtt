@@ -1,63 +1,55 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.625
-So, the decisions.
+00:00:00.050 --> 00:00:04.388
+Once Intune owns the fleet,
+update rings set the patch clock.
 
 2
-00:00:01.625 --> 00:00:06.630
-The sponsor and CIO set the shape: an
-exit plan for every hybrid-joined device,
+00:00:04.388 --> 00:00:07.840
+Each month's update flows
+through four rings: a lab,
 
 3
-00:00:06.630 --> 00:00:11.238
-no new device on the old path from
-the next purchase order, the governed
+00:00:07.840 --> 00:00:11.713
+a small pilot, about a quarter
+of the fleet, then everyone.
 
 4
-00:00:11.238 --> 00:00:15.925
-path for large estates, and each server's
-domain exit as its own decision.
+00:00:11.713 --> 00:00:16.776
+With the book's values, an update reaches
+every online device in about sixteen days,
 
 5
-00:00:15.925 --> 00:00:20.445
-Endpoint engineering freezes
-the GPOs, records every overlap,
+00:00:16.776 --> 00:00:20.350
+and a bad one can be paused
+before it reaches the broad ring.
 
 6
-00:00:20.445 --> 00:00:23.313
-and calls each wave on measured results.
+00:00:20.350 --> 00:00:23.416
+Windows Autopatch can
+run the rings for you,
 
 7
-00:00:23.313 --> 00:00:28.359
-The CISO makes compliance fail closed,
-adds a second approver to high-impact
+00:00:23.416 --> 00:00:28.525
+and it's included for GCC customers
+with the government G3 or G5 licenses.
 
 8
-00:00:28.359 --> 00:00:33.800
-changes, sets the patch window, owns the
-evidence, and decides temporary exceptions.
+00:00:28.525 --> 00:00:32.887
+Why assessors care: the federal patching
+control asks for updates within
 
 9
-00:00:33.800 --> 00:00:38.756
-And the authorizing official accepts
-the rest: devices that can't enroll,
+00:00:32.887 --> 00:00:36.963
+a period the agency defines, and
+these ring deadlines are that period.
 
 10
-00:00:38.756 --> 00:00:42.638
-standing exceptions, and any
-2012 server that has to stay.
+00:00:36.963 --> 00:00:42.249
+So the decision for the CISO: approve the
+ring values as the agency's patch window.
 
 11
-00:00:42.638 --> 00:00:45.438
-Rebuild on purpose what
-the tree did implicitly.
-
-12
-00:00:45.438 --> 00:00:49.413
-Book 05 has the detail,
-every claim footnoted.
-
-13
-00:00:49.413 --> 00:00:50.230
-Thank you.
+00:00:42.249 --> 00:00:43.970
+Next, running the fleet.

@@ -1,66 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.075
-Chapter 11 puts it all together
-on one representative estate.
+00:00:00.050 --> 00:00:05.812
+Proving it starts with logs, because Entra
+ID keeps them only briefly: seven days
 
 2
-00:00:04.075 --> 00:00:08.637
-It's a composite, not a real engagement,
-and the counts are illustrative.
+00:00:05.812 --> 00:00:11.138
+on the free tier, thirty on P1 or P2,
+and upgrading doesn't recover older data.
 
 3
-00:00:08.637 --> 00:00:12.798
-Picture about fifty thousand
-users in two forests,
+00:00:11.138 --> 00:00:14.743
+So stream everything to Log
+Analytics and keep sign-in
 
 4
-00:00:12.798 --> 00:00:19.237
-joined by a forest trust nobody documented
-or owns, moving to Microsoft 365 GCC.
+00:00:14.743 --> 00:00:17.949
+and audit logs for three
+hundred sixty-five days.
 
 5
-00:00:19.237 --> 00:00:22.004
-There are five phases, and
-each ends with a signed
+00:00:17.949 --> 00:00:22.288
+On top of that, scheduled detections
+watch for things like stale accounts,
 
 6
-00:00:22.004 --> 00:00:24.701
-readiness bundle that
-the next one starts from.
+00:00:22.288 --> 00:00:26.413
+late-night privileged activations,
+and any emergency account sign-in.
 
 7
-00:00:24.701 --> 00:00:29.941
-Discovery finds about four hundred
-accounts with service principal names, and
+00:00:26.413 --> 00:00:31.643
+For compliance, the controls map to
+FedRAMP 20x Key Security Indicators,
 
 8
-00:00:29.941 --> 00:00:35.340
-every SQL Server one is captured, because
-a missing one silently falls back to NTLM.
+00:00:31.643 --> 00:00:35.975
+evidenced by the workflows, reviews
+and PIM you've already built.
 
 9
-00:00:35.340 --> 00:00:39.152
-Normalizing resolves a clash
-between two Operations OUs
+00:00:35.975 --> 00:00:37.612
+And drift lives in Git.
 
 10
-00:00:39.152 --> 00:00:42.725
-in an organizational registry,
-not by renaming groups.
+00:00:37.612 --> 00:00:42.107
+A weekly scan compares against a baseline
+and opens an issue with the diff,
 
 11
-00:00:42.725 --> 00:00:46.138
-Mapping finds four adapters
-that carry the risk,
+00:00:42.107 --> 00:00:46.012
+and each finding is fixed at the
+source, never by editing the copy.
 
 12
-00:00:46.138 --> 00:00:49.550
-including PKI and RADIUS,
-which move in lockstep.
-
-13
-00:00:49.550 --> 00:00:53.830
-Then migration and validation,
-with every operation recorded.
+00:00:46.012 --> 00:00:50.660
+Today that covers user additions
+and removals; the rest is planned.

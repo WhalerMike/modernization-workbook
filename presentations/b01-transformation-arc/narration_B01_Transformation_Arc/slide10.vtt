@@ -1,69 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.105
-Once identity, policy
-and services have moved,
+00:00:00.050 --> 00:00:03.834
+DNS, DHCP and address
+management are what agencies
 
 2
-00:00:03.105 --> 00:00:07.125
-the biggest remaining dependency
-is the domain join itself.
+00:00:03.834 --> 00:00:06.988
+most often put off,
+because they still work.
 
 3
-00:00:07.125 --> 00:00:10.612
-User PCs end up Entra
-joined and in Intune.
+00:00:06.988 --> 00:00:10.125
+That's exactly how they keep
+the old directory alive.
 
 4
-00:00:10.612 --> 00:00:14.038
-Servers come under Azure Arc
-and machine configuration.
+00:00:10.125 --> 00:00:13.765
+AD-integrated zones replicate
+with Active Directory,
 
 5
-00:00:14.038 --> 00:00:17.200
-Hybrid join is a waypoint,
-not a destination.
+00:00:13.765 --> 00:00:19.184
+and domain-joined clients find their
+domain controllers through records in DNS,
 
 6
-00:00:17.200 --> 00:00:20.855
-And there's no supported way to
-convert a hybrid-joined device
+00:00:19.184 --> 00:00:22.662
+so DNS and AD have to be
+retired together, in sequence.
 
 7
-00:00:20.855 --> 00:00:24.725
-without resetting Windows, so time
-the move to a hardware refresh.
+00:00:22.662 --> 00:00:26.352
+The target is a governed
+DNS authority outside AD.
 
 8
-00:00:24.725 --> 00:00:29.608
-Every service principal name is an
-application that expects Kerberos,
+00:00:26.352 --> 00:00:29.951
+Windows DHCP servers check
+in with AD every hour,
 
 9
-00:00:29.608 --> 00:00:33.663
-and each needs a decision: move
-it to modern authentication,
+00:00:29.951 --> 00:00:34.450
+but that only stops a rogue
+Windows server, not a rogue device.
 
 10
-00:00:33.663 --> 00:00:37.387
-retire it, or, as a last resort,
-isolate it with an end date.
+00:00:34.450 --> 00:00:38.976
+And one address-management
+authority owns the address space,
 
 11
-00:00:37.387 --> 00:00:41.504
-No server leaves the domain
-until every one is resolved,
+00:00:38.976 --> 00:00:41.550
+with DNS and DHCP following from it.
 
 12
-00:00:41.504 --> 00:00:43.651
-and NTLM goes in the same pass.
+00:00:41.550 --> 00:00:45.438
+Leave these three for “Phase
+2,” and it rarely comes.
 
 13
-00:00:43.651 --> 00:00:47.525
-And compute stays with its data
-until the round trips are cut down.
+00:00:45.438 --> 00:00:49.413
+A forest that still hosts
+DNS hasn't been retired.
 
 14
-00:00:47.525 --> 00:00:50.780
-Books 05 and 06 have the detail.
+00:00:49.413 --> 00:00:52.700
+Books 08 and 09 carry the detail.

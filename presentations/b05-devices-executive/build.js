@@ -174,6 +174,93 @@ Every decision slide names the decision, its owner and when it's needed, and the
   "Book 05, index; Chapter 01 — Why Group Policy Can't Come to the Cloud (The Why in five sentences); Chapter 02 — The Hybrid Join Trap (What this chapter establishes); Chapter 09 — Servers Under Azure Arc (opening).");
 }
 
+// ------------------------------------------------------------------ Tracks: this book is the Intune and Arc tracks
+{
+  const s = content(S_WHY, "Book 05 is the Intune and Arc tracks: devices, servers");
+  tag(s, "Why");
+  const tracks = [
+    ["FaLaptop", "Intune track: end-user devices", HEX.teal, HEX.tealTint, [
+      ["Source: ", "device provisioning (Autopilot group tag, enrollment), never HR"],
+      ["Read by: ", "dynamic device groups, assignment filters, compliance, Conditional Access"],
+      ["Done when: ", "policy targets those attributes; computer-side GPO links disabled one population at a time, rollback tested"]]],
+    ["FaServer", "Arc track: servers", HEX.navy, HEX.navyTint, [
+      ["Source: ", "Arc onboarding tags and resource group, then Azure Policy"],
+      ["Read by: ", "machine configuration, Update Manager, Defender for Servers, Azure RBAC"],
+      ["Done when: ", "every in-scope server Arc-enabled and tagged, its baseline evaluated by Azure Policy"]]],
+  ];
+  tracks.forEach((c, i) => {
+    const x = 0.6 + i * 6.15;
+    box(s, `Track ${i + 1}`, x, 1.5, 6.0, 3.45, c[3]);
+    icon(s, c[0], x + 0.22, 1.63, 0.6, c[2]);
+    T(s, `Track ${i + 1} head`, c[1], { x: x + 0.98, y: 1.63, w: 4.9, h: 0.6, bold: true, color: c[2], fontSize: 18, fontFace: "Cambria", valign: "middle" });
+    T(s, `Track ${i + 1} text`, c[4].flatMap((r, k) => [{ text: r[0], options: { bold: true, color: c[2], bullet: true } }, { text: r[1], options: { breakLine: k < c[4].length - 1 } }]),
+      { x: x + 0.25, y: 2.33, w: 5.6, h: 2.57, fontSize: 13.5, paraSpaceAfter: 6 });
+  });
+  D.callout(s, "Split", 5.08, 1.0, "FaRightLeft", HEX.amber, "Group Policy splits: ",
+    "user settings go with people (Book 03's HR track, Conditional Access); computer settings go with devices and servers. A device rule can't read its owner.");
+  T(s, "Requirements", [{ text: "Federal requirements:  ", options: { bold: true, color: HEX.navy } },
+    { text: "NIST SP 800-53 CM-2, CM-6, CM-7, CM-8, SI-2 (Book 05, Ch 10); SA-22 and OMB M-22-09 §III.A–B, device signal and inventory (Book 01, Appendix A)" }],
+    { x: 0.6, y: 6.16, w: 12.15, h: 0.42, fontSize: 11.5, valign: "middle" });
+  sources(s, "Sources: Book 05, Ch 03, 04, 07, 08, 09, 10; attribute-driven migration guide (dynamic rules, Intune assignment). Full citations in the backup.");
+  narrate(s,
+`First, where this book sits. The series moves four populations of identity to the cloud, each on its own track with its own source of truth, and Book 05 carries two of them: the Intune track for end-user devices, and the Arc track for servers.
+
+The Intune track's attributes come from device provisioning: the Autopilot registration and its group tag, Intune enrollment, and writes by the device provisioning service to the Entra device object's extension attributes. They don't come from HR, and a dynamic device rule can read only device attributes, never the attributes of the device's owner. Dynamic device groups, assignment filters, compliance and Conditional Access device filters read them. As program design guidance, the track is done when every managed device carries attributes written by provisioning, its policy is targeted by them, and computer-side GPO links are disabled population by population, with rollback tested.
+
+The Arc track's attributes are the tags and resource group applied when a server is onboarded with the Connected Machine agent, then Azure Policy. Machine configuration, Update Manager scoping, Defender for Servers and Azure RBAC read them. It's done when every in-scope server is Arc-enabled with its tag taxonomy applied and its baseline assigned and evaluated by Azure Policy.
+
+Group Policy splits the same way. User-configuration settings move with people, to user-targeted Intune policy and Conditional Access, which is Book 03's HR track and Book 04. Computer-configuration settings move with devices, to Intune device policy, and with servers, to Azure Policy and machine configuration.
+
+The evidence supports SP 800-53 CM-2, CM-6, CM-7, CM-8 and SI-2, which Chapter 10 maps, and Book 01's Appendix A ties device inventory and the device signal to M-22-09.`,
+  "Book 05, Chapter 03 (one source per device fact; not the primary user's department); Chapter 04 (group tags); Chapter 07 (unlink one population at a time); Chapter 08 (attribute targeting, assignment filters); Chapter 09 (tags, Azure Policy, Update Manager, Defender for Servers); Chapter 10 (CM-2, CM-6, CM-7, CM-8, SI-2). The attribute-driven migration guide (device rules can't read the owner's attributes; user settings to user groups). Book 01, Appendix A (M-22-09 §III.A–B; SA-22). Success criteria are program design guidance.");
+}
+
+// ------------------------------------------------------------------ Coverage: which platforms Intune and Arc reach, and the tiers
+{
+  const s = content(S_WHY, "What Intune and Arc cover, and the strategy for the rest");
+  tag(s, "Why");
+  const R = [
+    ["Windows 11, Windows 365, Azure Virtual Desktop", "Intune (Virtual Desktop with limits)"],
+    ["macOS, iOS and iPadOS", "Intune, through Apple Business Manager"],
+    ["Android Enterprise", "Intune: work profile, fully managed, dedicated"],
+    ["Linux desktop (Ubuntu, Red Hat)", "Intune, limited: compliance checks"],
+    ["ChromeOS", "Intune inventory only; Google Admin manages"],
+    ["Windows Server 2016–2025; Linux servers", "Arc, with the Connected Machine agent"],
+    ["VMware vSphere VMs", "Arc-enabled vSphere through vCenter"],
+    ["AWS EC2 and GCP VMs", "Arc agent or multicloud connector (GCP in preview)"],
+    ["Azure VMs", "Native Azure: Policy, RBAC, tags; not Arc"],
+    ["AIX, Solaris, mainframe, network gear, printers, IoT", "Neither: tiers 2 to 4"],
+  ];
+  s.addTable([head(["Platform", "Covered by"]), ...R.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1], options: { bold: r[1].startsWith("Neither"), color: r[1].startsWith("Neither") ? HEX.red : HEX.ink } }])],
+    tableOpts([3.2, 4.2], { y: 1.45, fontSize: 11.5, rowH: [0.34, 0.48, 0.29, 0.29, 0.29, 0.29, 0.48, 0.29, 0.29, 0.29, 0.48] }));
+  box(s, "Tiers box", 8.2, 1.45, 4.55, 4.55, HEX.amberTint);
+  T(s, "Tiers head", [
+    { text: "FOR WHAT'S LEFT: FOUR TIERS (DESIGN GUIDANCE)", options: { bold: true, color: HEX.slate, fontSize: 11, breakLine: true } },
+    { text: "One source of truth for every device", options: { bold: true, color: HEX.amber, fontSize: 16, fontFace: "Cambria" } },
+  ], { x: 8.4, y: 1.55, w: 4.2, h: 0.8, valign: "middle" });
+  const tiers = [
+    "Managed by Intune or Arc: the default",
+    "The platform's own tool, with an evidence feed; the CMDB holds the attributes (ChromeOS, network gear, mainframe, ESXi hosts)",
+    "Discovered and monitored only: Defender discovery, network access control, CDM feeds",
+    "Segmented and isolated, or retired, with a risk acceptance and a date",
+  ];
+  T(s, "Tiers list", tiers.map((t, k) => ({ text: `${k + 1}  ${t}`, options: { breakLine: k < tiers.length - 1 } })),
+    { x: 8.4, y: 2.45, w: 4.2, h: 3.45, fontSize: 13, paraSpaceAfter: 8 });
+  T(s, "Requirements", [{ text: "Federal requirements:  ", options: { bold: true, color: HEX.navy } },
+    { text: "NIST SP 800-53 CM-8: the inventory includes every component and counts none twice; a device in no tier is a finding (Book 05, Ch 03 and 10)" }],
+    { x: 0.6, y: 6.16, w: 12.15, h: 0.42, fontSize: 11.5, valign: "middle" });
+  sources(s, "Sources: Book 05, Ch 03 (Intune coverage; the four tiers) and Ch 09 (Which servers Arc reaches), per Microsoft Learn on Oct 29, 2026. Tiers: design guidance.");
+  narrate(s,
+`Why this matters: an inventory that covers only Windows isn't an inventory, and the federal inventory control asks for every component.
+
+Intune isn't only for Microsoft platforms. It manages Windows 11, Windows 365 Cloud PCs and Azure Virtual Desktop, the last with limits; macOS, iOS and iPadOS through Apple Business Manager; Android Enterprise in its work-profile, fully managed and dedicated modes; and Ubuntu and Red Hat desktops, where management is compliance. ChromeOS shows up in Intune as inventory with remote actions, but enrollment and policy stay in the Google Admin console.
+
+Azure Arc reaches servers wherever they run: Windows Server 2016 to 2025 and the supported Linux distributions, physical or on any hypervisor; VMware vSphere VMs through Arc-enabled vSphere and vCenter; and AWS EC2 and Google Cloud VMs, with the agent or the multicloud connector, which covers AWS, has GCP in preview and isn't available in Azure Government. Azure VMs don't take Arc at all; Microsoft says they already have the same capabilities. AIX, Solaris, mainframe operating systems, network devices, printers and IoT are on neither list.
+
+So every class of device goes in one of four tiers, as program design guidance. One: managed by Intune or Arc, the default. Two: managed by the platform's own tool, with an evidence feed and the CMDB as the attribute source. Three: discovered and monitored only, through Defender device discovery, network access control and CISA's CDM feeds. Four: segmented and isolated, or retired, with a risk acceptance and a date. That's how the inventory meets CM-8: every component, none counted twice. A device in no tier is a finding.`,
+  "Book 05, Chapter 03 (Which end-user devices Intune covers; What Intune and Arc don't reach, the four tiers, CM-8); Chapter 09 (Which servers Arc reaches); Chapter 10 (CM-8). Platform facts as Microsoft Learn documented them on October 29, 2026. The tiers are program design guidance.");
+}
+
 // ------------------------------------------------------------------ Why 1
 {
   const s = content(S_WHY, "Group Policy governed by position; the cloud has none");
@@ -759,6 +846,22 @@ Group Policy governed by position, and that governance has to be rebuilt on purp
     "Full footnotes with links and access dates (October 20, 2026): Book 05, every chapter and Appendix A (whalermike.github.io/modernization-workbook/docs/books/b05-devices/).",
   ];
   T(s, "Source list", bullets(src, 13), { x: 0.6, y: 1.5, w: 12.1, h: 5.0, paraSpaceAfter: 8 });
+}
+
+// ------------------------------------------------------------------ Backup: federal requirements (the deck's endnotes)
+{
+  const s = D.content("Backup", "Federal requirements: full citations");
+  const R = [
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "CM-2 Baseline Configuration; CM-6 Configuration Settings; CM-7 Least Functionality", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Intune track; Arc track (machine configuration)"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "CM-8 System Component Inventory; SI-2 Flaw Remediation", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Inventory reconciliation; update rings"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "SA-22 Unsupported System Components", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Arc track: end-of-support servers"],
+    ["OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles", "§III.A Identity: at least one device-level signal alongside identity. §III.B Devices: a complete inventory of every device; EDR", "Jan. 26, 2022", "Intune and Arc tracks"],
+  ];
+  s.addTable([head(["Primary source", "Section or control", "Date", "Used for"]),
+    ...R.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }, { text: r[3] }])],
+    tableOpts([3.3, 4.85, 1.95, 2.05], { y: 1.45, fontSize: 11.5, rowH: [0.36, 0.7, 0.7, 0.7, 0.7] }));
+  txt(s, "Requirements note", "Mapping from Book 05, Chapter 10 (evidence an assessor reads; FedRAMP adds no parameter values to these CM and SI controls), sources checked October 20, 2026, and Book 01, Appendix A (M-22-09; SA-22). The program's mapping for its assessors, not a compliance claim.",
+    { x: 0.6, y: 6.0, w: 12.15, h: 0.55, fontSize: 11, italic: true, color: HEX.slate });
 }
 
 // ---------------------------------------------------------------- narration.json must match the narrated slides

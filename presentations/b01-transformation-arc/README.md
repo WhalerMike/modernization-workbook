@@ -4,7 +4,7 @@ The 15-minute Why / What / Who / How briefing for [Book 01](../../docs/books/b01
 
 | File | Use |
 |---|---|
-| `B01_Transformation_Arc.pptx` | The deck: sixteen narrated slides, then a backup section with the full source list |
+| `B01_Transformation_Arc.pptx` | The deck: seventeen narrated slides, then a backup section with the full source list and the federal requirements' full citations |
 | `B01_Transformation_Arc_Narrated.pptx` | Self-running version with the narration embedded and slide timings set (built by `../_build/build_narrated.ps1`) |
 | `B01_Transformation_Arc_Narration_Script.md` | The narration text, for practice (written by `../_build/narrate.py`) |
 | `narration_B01_Transformation_Arc/` | Per-slide audio and durations |

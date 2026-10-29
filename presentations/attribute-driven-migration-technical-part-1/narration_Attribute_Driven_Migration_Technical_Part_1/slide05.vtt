@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.309
+This slide is the map for
+both parts of the deep dive,
+
+2
+00:00:03.309 --> 00:00:06.800
+because one O U tree holds
+four different populations.
+
+3
+00:00:06.800 --> 00:00:12.037
+People are the HR track: HR and the
+contractor source write their attributes.
+
+4
+00:00:12.037 --> 00:00:16.899
+End-user devices are the Intune track:
+device provisioning writes theirs.
+
+5
+00:00:16.899 --> 00:00:21.800
+Servers are the Arc track: Arc
+onboarding and Azure Policy write tags.
+
+6
+00:00:21.800 --> 00:00:26.509
+And service accounts, service
+principals, workload identities and AI
+
+7
+00:00:26.509 --> 00:00:31.300
+agents are the non-person track: their
+owner's record is the source, not HR.
+
+8
+00:00:31.300 --> 00:00:32.760
+So what's the end state?

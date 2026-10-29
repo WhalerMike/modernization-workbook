@@ -264,6 +264,37 @@ Tokens only work if this is right. Books 02 and 03 carry identity in depth.`,
   "Book 01, Chapter 04 — Identity Transformation. Depth: Book 02 (Identity & Directory), Book 03 (HR-Driven Identity).");
 }
 
+// ------------------------------------------------------------------ What 2b: four tracks and the end state
+{
+  const s = D.content("What changes", "Four tracks, each with its own source of truth");
+  tag(s, "What");
+  depth(s, "IN DEPTH: BOOKS 02, 03, 05, 06 AND 17");
+  const tracks = [
+    ["HR track: people", "HR (Core HCM) for employees; the contractor source of authority for contractors", "Every enabled account matches an HR or contractor record, or an owned exception"],
+    ["Intune track: devices", "Device provisioning: Autopilot registration and group tag, enrollment. Not HR", "Every managed device carries provisioning-written attributes that target its policy"],
+    ["Arc track: servers", "Arc onboarding tags and resource group, then Azure Policy", "Every in-scope server is Arc-enabled, tagged, and evaluated against its baseline"],
+    ["Non-person identities", "The owner and sponsor record: system inventory, app registration, AI inventory", "Each has an owner and a target, and no password that never expires"],
+  ];
+  s.addTable([head(["Track", "Source of truth for its attributes", "You're there when (design guidance)"]),
+    ...tracks.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }])],
+    tableOpts([2.45, 4.75, 4.95], { y: 1.5, fontSize: 13, rowH: [0.42, 0.66, 0.66, 0.66, 0.66] }));
+  callout(s, "End state", 4.75, 1.35, "FaFingerprint", HEX.teal, "The end state: ",
+    "every person, device, server and workload governed by true attributes, each owned by one source and read by policy. Joining, moving and leaving change access with no ticket, and AD retires without losing a job the OU tree did.");
+  txt(s, "Requirements", [{ text: "Federal requirements:  ", options: { bold: true, color: HEX.navy } },
+    { text: "OMB M-22-09 §III.A, §III.B, §III.D; NIST SP 800-53 AC-2, AC-6, CM-2, CM-6, CM-8 (Book 01, Appendix A: compliance-enabling, not a compliance claim)" }],
+    { x: 0.6, y: 6.2, w: 12.15, h: 0.34, fontSize: 11.5, valign: "middle" });
+  sources(s, "Sources: Book 01, Chapters 01, 04, 07, 08 and Appendix A; Book 05, Chapters 03 and 09; Book 02, Chapter 09. Success criteria: program design guidance. Full citations in the backup.");
+  narrate(s,
+`Why does this matter? Because an Active Directory forest holds four populations of identity, not one, and each moves to the cloud by its own track, with its own source of truth.
+
+People are the HR track: employees from the HR record, contractors from the contractor source of authority. End-user devices are the Intune track. Their attributes come from device provisioning, the Autopilot registration and its group tag, never from HR, and a device rule can't read its owner. Servers are the Arc track: tagged at onboarding, then governed by Azure Policy. And non-person identities, such as service accounts, service principals, managed identities and AI agents, answer to their owner's record, not to HR.
+
+The goal is the same for all four: true attributes, one owning source each, read by policy. Joins, moves and exits change access with no ticket, every workload has a named owner, and AD can retire without losing what the OU tree did. The right-hand column is program design guidance for knowing you're there.
+
+Group Policy splits the same way, so policy is next.`,
+  "Book 01, Chapter 01 (What has to be true: one authoritative record per user, device and service account); Chapter 04 (the HR system of record); Chapter 07 (Arc servers tagged with organizational attributes); Chapter 08 (service accounts to managed identities, gMSAs and workload identity federation). Depth: Book 03 (HR track); Book 05, Chapters 03, 04, 08 (Intune track) and 09 (Arc track); non-person identities in Book 02, Chapter 09 (Modernizing service accounts), Book 06 and Book 17. Success criteria are program design guidance.");
+}
+
 // ------------------------------------------------------------------ What 3
 {
   const s = D.content("What changes", "Policy: regenerate Group Policy, don't copy it");
@@ -589,6 +620,23 @@ Modernization is a governance rebuild, not a platform swap. Book 01 is the map, 
     "Full footnotes with links and access dates: Book 01, every chapter (whalermike.github.io/modernization-workbook/docs/books/b01-transformation-arc/).",
   ];
   txt(s, "Source list", bullets(src, 13), { x: 0.6, y: 1.55, w: 12.1, h: 5.0, paraSpaceAfter: 6 });
+}
+
+
+// ------------------------------------------------------------------ Backup: federal requirements (the deck's endnotes)
+{
+  const s = D.content("Backup", "Federal requirements: full citations");
+  const R = [
+    ["OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles", "§III.A Identity: centralized identity management for agency users; at least one device-level signal alongside identity. §III.B Devices: a complete inventory of every device; EDR. §III.D Applications and workloads", "Jan. 26, 2022", "HR, Intune and non-person tracks"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "AC-2 Account Management; AC-6 Least Privilege", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "HR and non-person tracks"],
+    ["NIST SP 800-53 Rev. 5, Security and Privacy Controls", "CM-2 Baseline Configuration; CM-6 Configuration Settings; CM-8 System Component Inventory", "Sept. 2020, updated Dec. 10, 2020; release 5.2.0, Aug. 27, 2025", "Intune and Arc tracks"],
+    ["NIST SP 800-53B, Control Baselines", "AC-2, CM-2, CM-6 and CM-8 are in the Low, Moderate and High baselines; AC-6 in Moderate and High", "Sept. 2020", "All four tracks"],
+  ];
+  s.addTable([head(["Primary source", "Section or control", "Date", "Used for"]),
+    ...R.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }, { text: r[3] }])],
+    tableOpts([3.3, 4.85, 1.95, 2.05], { y: 1.45, fontSize: 11.5, rowH: [0.36, 0.89, 0.7, 0.7, 0.5] }));
+  txt(s, "Requirements note", "Mapping from Book 01, Appendix A (Requirements Mapping), sources checked October 21, 2026. A compliance-enabling map, not a compliance claim: whether a control is satisfied depends on the agency's own boundary, implementation and assessor.",
+    { x: 0.6, y: 6.0, w: 12.15, h: 0.55, fontSize: 11, italic: true, color: HEX.slate });
 }
 
 console.log(`narration: ${spoken} spoken words, about ${mmss(clock)} at ${WPM} wpm`);

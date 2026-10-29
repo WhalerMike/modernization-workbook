@@ -1,64 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.556
-The migration runs in eleven
-phases, zero through ten,
+00:00:00.050 --> 00:00:03.775
+Authentication modernization starts
+from the federal requirement.
 
 2
-00:00:03.556 --> 00:00:08.575
-and each one starts only when the previous
-one's validation criteria are met.
+00:00:03.775 --> 00:00:08.111
+OMB M-22-09 requires
+phishing-resistant MFA,
 
 3
-00:00:08.575 --> 00:00:11.350
-Every phase also has a rollback procedure.
+00:00:08.111 --> 00:00:13.000
+and an end to methods like SMS and
+voice codes for routine access.
 
 4
-00:00:11.350 --> 00:00:15.152
-The durations are planning
-estimates, not measured results,
+00:00:13.000 --> 00:00:16.640
+Its targets were set for
+the end of fiscal year 2024,
 
 5
-00:00:15.152 --> 00:00:17.738
-and the total runs forty to seventy weeks.
+00:00:16.640 --> 00:00:19.500
+so these are requirements now, not goals.
 
 6
-00:00:17.738 --> 00:00:21.048
-It starts with the assessment,
-then the sync deployment,
+00:00:19.500 --> 00:00:21.250
+That reorders the roadmap.
 
 7
-00:00:21.048 --> 00:00:23.926
-with object counts matching
-within one percent.
+00:00:21.250 --> 00:00:23.413
+Older plans put smart cards last,
 
 8
-00:00:23.926 --> 00:00:26.799
-Then sign-in, groups,
-service accounts and PIM,
+00:00:23.413 --> 00:00:27.179
+but a federal workforce already
+carries PIV or CAC cards,
 
 9
-00:00:26.799 --> 00:00:31.925
-which ends with no permanent admin
-assignments except the emergency accounts.
+00:00:27.179 --> 00:00:32.787
+so certificate-based authentication straight
+against Entra ID is the fastest path.
 
 10
-00:00:31.925 --> 00:00:35.305
-Conditional Access is
-enforced only after MFA
+00:00:32.787 --> 00:00:38.233
+The program goes in four phases: privileged
+accounts first, then every card holder,
 
 11
-00:00:35.305 --> 00:00:39.725
-registration passes ninety-five
-percent in each population.
+00:00:38.233 --> 00:00:43.438
+then managed Windows devices on Windows
+Hello, then everyone else on passkeys.
 
 12
-00:00:39.725 --> 00:00:44.719
-Then come the phishing-resistant roadmap,
-the legacy cutoff, retiring federation,
+00:00:43.438 --> 00:00:47.265
+Then the legacy cutoff: find
+the remaining legacy sign-ins,
 
 13
-00:00:44.719 --> 00:00:49.850
-and finally steady-state governance, with
-the operations runbook committed to Git.
+00:00:47.265 --> 00:00:51.720
+move them, block them, and watch for
+thirty days until there are none.

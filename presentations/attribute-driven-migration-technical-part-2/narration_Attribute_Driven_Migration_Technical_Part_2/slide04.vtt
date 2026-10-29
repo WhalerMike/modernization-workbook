@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.535
+Now the Intune track: end-user devices,
+
+2
+00:00:02.535 --> 00:00:06.222
+whose attributes come from
+device provisioning, not HR.
+
+3
+00:00:06.222 --> 00:00:10.150
+Start with what Intune covers,
+because it's not just Windows.
+
+4
+00:00:10.150 --> 00:00:15.073
+It manages Windows 11, Cloud PCs
+and Azure Virtual Desktop, Macs,
+
+5
+00:00:15.073 --> 00:00:20.375
+iPhones and iPads, Android in several
+modes, and some Linux desktops.
+
+6
+00:00:20.375 --> 00:00:23.950
+ChromeOS is limited:
+Intune sees the inventory,
+
+7
+00:00:23.950 --> 00:00:26.700
+but policy stays in Google's console.
+
+8
+00:00:26.700 --> 00:00:31.272
+Old Windows releases and Windows
+Server aren't Intune platforms,
+
+9
+00:00:31.272 --> 00:00:34.913
+and neither are printers,
+network gear or OT devices.
+
+10
+00:00:34.913 --> 00:00:39.438
+So Intune does manage non-Microsoft
+platforms, within limits.
+
+11
+00:00:39.438 --> 00:00:40.990
+Now, how it targets them.

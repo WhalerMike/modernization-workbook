@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.862
+The certificate user I Ds attribute,
+the last row of the store table,
+
+2
+00:00:04.862 --> 00:00:09.500
+holds the binding, so who writes it
+matters as much as any HR field.
+
+3
+00:00:09.500 --> 00:00:14.775
+For cloud-only users, a privileged
+authentication administrator or Graph writes it.
+
+4
+00:00:14.775 --> 00:00:19.111
+For synced users, only Entra
+Connect can, from Active Directory,
+
+5
+00:00:19.111 --> 00:00:22.363
+and Microsoft's page
+doesn't mention Cloud Sync.
+
+6
+00:00:22.363 --> 00:00:26.922
+HR supplies the person; the card
+management system supplies the binding,
+
+7
+00:00:26.922 --> 00:00:29.126
+because a reissued card changes it.
+
+8
+00:00:29.126 --> 00:00:31.070
+After Active Directory is gone,
+
+9
+00:00:31.070 --> 00:00:34.213
+the plan is for the card
+system to write it directly.
+
+10
+00:00:34.213 --> 00:00:37.625
+Be clear that this is design
+guidance, and unverified.
+
+11
+00:00:37.625 --> 00:00:40.950
+It's an open pilot,
+workbook issue one thirty.
+
+12
+00:00:40.950 --> 00:00:42.050
+Now let's run it.

@@ -32,16 +32,25 @@ This book consolidates the workbook's device and server modernization pages (the
 ## Download and present
 **[b05-devices-bundle.docx](../../../downloads/b05-devices-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
-**15-minute presentation (about 10 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-05) page.
+**15-minute presentation (about 12 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-05) page.
 
-**Technical deep dive (about 50 minutes live, 23 narrated)**: onboarding, the GPO sunset, Azure Arc and operating the fleet, in modules on the [Presentations](../../presentations/index.md#technical-b05) page.
+**Technical deep dive (about 50 minutes live, 27 narrated)**: onboarding, the GPO sunset, Azure Arc and operating the fleet, in modules on the [Presentations](../../presentations/index.md#technical-b05) page.
 
-**Executive briefing (about 30 minutes live, 14 narrated)**: for the CIO, CISO and endpoint lead: why Group Policy can't come to the cloud, Intune-first onboarding, compliance as the access signal, the GPO sunset, servers under Azure Arc and the support dates, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b05) page.
+**Executive briefing (about 30 minutes live, 17 narrated)**: for the CIO, CISO and endpoint lead: why Group Policy can't come to the cloud, Intune-first onboarding, compliance as the access signal, the GPO sunset, servers under Azure Arc and the support dates, with each decision's owner and timing, on the [Presentations](../../presentations/index.md#executive-b05) page.
 
 **Research (under review)**: [Who Names the Device After AD?](../../research/device-naming-after-ad.md) explains device naming and DNS registration once Active Directory retires; it's on the [Research](../../research/index.md) page.
 :::
 
 For twenty years Group Policy did a great deal of governance without anyone writing it down. Where a computer sat in the OU tree decided which settings it got, in which order, and which ones won. Moving devices to Entra ID and Intune removes that machinery. Nothing in the cloud reads the OU tree, and Intune applies policy by assignment, not by precedence. So the settings, the targeting and the exceptions all have to be stated again on purpose. Servers follow a different road: Intune doesn't manage Windows Server, so servers come under governance through Azure Arc and Azure Policy. This book is the plan for both, and for the hybrid-join shortcut that looks like progress but isn't an end state.
+
+## Two tracks in this book
+
+The workbook moves an Active Directory estate on [four tracks](../guides/attribute-driven-migration.md#four-tracks), each with its own source of truth. This book carries two of them:
+
+- **The Intune track: end-user devices.** Workstations, laptops and mobile devices, in Chapters 03, 04 and 08; summarized in the companion guide's [Intune track](../guides/attribute-driven-migration.md#intune-track).
+- **The Azure Arc track: servers.** Servers on premises and in other clouds, in Chapter 09; summarized in the guide's [Arc track](../guides/attribute-driven-migration.md#arc-track).
+
+On both tracks the attributes come from device provisioning and the procurement or asset record, written at enrollment or Arc onboarding. They don't come from HR. HR never describes a device or a server, and a device rule can't read its owner's attributes ([Chapter 03](03-where-device-and-server-data-lives.md#three-stores-that-policy-reads)). The end state, and how you know you've reached it, is in the guide's [What this migration accomplishes](../guides/attribute-driven-migration.md#what-this-migration-accomplishes). In the program's mapping, the two tracks produce the evidence for NIST SP 800-53 CM-8 (system component inventory), CM-2 (baseline configuration) and CM-6 (configuration settings), set out in [Chapter 10](10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads).
 
 ## Why, what, who, how
 

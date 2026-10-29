@@ -121,3 +121,30 @@ At the user's request, every certificate-dependent book maps its certificates to
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
 | 2 | CyberArk mechanism (capi) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-capi |
 | 3 | CyberArk mechanism (drivers) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-drivers |
+
+## Revision 2026-10-29 — four tracks and companion-guide alignment
+
+New section "Which servers Arc reaches" (coverage table, Arc-track signpost) and one correction to the onboarding-methods table. Sources opened on Oct 29, 2026 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| A1 | Windows Server 2016, 2019, 2022, 2025 supported; Desktop and Server Core both supported | Coverage table | verified | c09-arc-prereq, "Connected Machine agent prerequisites," "Supported operating systems," <https://learn.microsoft.com/azure/azure-arc/servers/prerequisites> |
+| A2 | Windows Server 2012 / 2012 R2 listed with "New arc agent version support ends November 2026"; ESUs end October 13, 2026 and Arc support doesn't extend them | Coverage table | verified | c09-arc-prereq, same section (Important note) |
+| A3 | "If an OS version isn't listed, it's not supported by Azure Arc"; the agent doesn't run on 32-bit; 2008 R2 not listed | Coverage table | verified (2008 R2 by absence from the list) | c09-arc-prereq |
+| A4 | Linux list (RHEL 7–10, Rocky 8–9, AlmaLinux 8–9, Oracle 7–10, SLES 12 SP5 and 15 SP3–SP7, Ubuntu 18.04–26.04, Debian 11–13, Amazon Linux 2 and 2023, Azure Linux 3.0); versions flagged with new-agent support ending November 2026 | Coverage table | verified | c09-arc-prereq |
+| A5 | Machine configuration isn't compatible with Arm64 | Coverage table | verified | c09-arc-prereq, "Arm64 architecture support" |
+| A6 | Supported environments: physical servers and VMs outside Azure, including VMware, Azure Local, other clouds | Coverage table | verified | c09-arc-prereq "Supported environments"; c09-arc-choose, "Choosing the right Azure Arc service for machines," "General recommendations," <https://learn.microsoft.com/azure/azure-arc/choose-service> |
+| A7 | Don't install Arc on VMs hosted in Azure, Azure Stack Hub or Azure Stack Edge (they already have similar capabilities) | Coverage table | verified | c09-arc-prereq, "Supported environments" note |
+| A8 | Arc-enabled VMware vSphere: vCenter Server 8, max 9,500 VMs per resource bridge; discovers VMs, templates, networks, datastores, clusters, hosts, resource pools; guest capabilities need the agent (guest management) | Coverage table | verified. ESXi hosts not running the agent is inferred from discovery-only host inventory and ESXi's absence from the OS list | c09-arc-vmware, "What is Azure Arc-enabled VMware vSphere?," "How does it work?" and "Supported scenarios," <https://learn.microsoft.com/azure/azure-arc/vmware-vsphere/overview> |
+| A9 | Arc-enabled SCVMM retires September 2029; all new onboardings stop by October 2026; existing customers keep capabilities until then; Microsoft recommends Arc-enabled servers for management-only use | Coverage table | verified | c09-arc-scvmm, "Retirement of Azure Arc-enabled System Center Virtual Machine Manager," <https://learn.microsoft.com/azure/azure-arc/system-center-virtual-machine-manager/transition-guidance> |
+| A10 | Multicloud connector: AWS, and GCP in preview; its Arc onboarding solution installs the agent on EC2 instances and GCP VMs; not available in national clouds (Azure Government) | Coverage table; methods table | verified | c09-mcc, "What is Multicloud connector enabled by Azure Arc?," <https://learn.microsoft.com/azure/azure-arc/multicloud-connector/overview> |
+| A11 | Methods table said "Windows and Linux on AWS" for the multicloud connector | Methods table | corrected: now "on AWS, and on GCP in preview" | c09-mcc |
+| A12 | Azure Local uses its own Arc control plane (resource bridge installed) | Coverage table | verified | c09-arc-choose, "Azure Local" |
+| A13 | Arc-enabled Kubernetes works with any CNCF-certified cluster; each cluster is an Azure Resource Manager resource | Coverage table | verified | c09-arc-k8s, "What is Azure Arc-enabled Kubernetes?," <https://learn.microsoft.com/azure/azure-arc/kubernetes/overview> |
+| A14 | Windows 10/11 clients only in server-like roles (always connected, powered, on); end-user machines should use Intune or Configuration Manager | Coverage table | verified | c09-arc-prereq, "Client operating systems" |
+| A15 | AIX, Solaris, HP-UX, mainframe operating systems and network devices not supported | Coverage table | verified by absence from Microsoft's list (the rule in A3) | c09-arc-prereq |
+| A16 | Vendor-sealed appliances not covered where no agent is allowed | Coverage table | program reading, labeled in the table; not a Microsoft statement | — |
+| A17 | Azure VMs get Policy, RBAC and tags natively | Coverage table | restated (Azure resources by definition; the chapter opening already cites c09-arc-overview for Arc servers being managed like Azure VMs) | c09-arc-overview |
+| A18 | SQL Server enabled by Azure Arc | Coverage table | carried by link to Book 06, Chapter 09; no new footnote | Book 06 |
+| A19 | Arc manages non-Microsoft platforms (Linux, VMware, AWS, GCP) | Coverage intro | verified by A4, A8, A10 | as above |
+| A20 | Arc-enabled VMware vSphere availability in Azure Government | — | not verified; not stated in the chapter | — |

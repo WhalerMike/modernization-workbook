@@ -2,116 +2,128 @@
 
 ## Slide 1 — Devices & Endpoints: the technical deep dive
 
-Welcome. This is the technical deep dive for Book 05 of the Federal Modernization Workbook, Devices and Endpoints. It's for the architects and engineers who move a domain-joined fleet onto Intune, and its servers onto Azure Arc. It comes in two parts. Part 1 is the endpoints: how a new device is governed from the moment it powers on, the three paths an existing estate can take to the same end state, and then the Group Policy sunset and the policy library that replaces it. Part 2 is servers and the run state: bringing servers under Arc with a day-one baseline, then operating and evidencing the whole fleet. The scripts and policy payloads live in the chapters and Appendix A, marked as illustrative and untested. I'll stick to what matters.
+Welcome. This is the technical deep dive for Book 05 of the Federal Modernization Workbook, Devices and Endpoints. It's for the architects and engineers who move a domain-joined fleet onto Intune, and its servers onto Azure Arc. It comes in two parts. Part 1 is the endpoints: how a new device is governed from the moment it powers on, the three paths an existing estate can take to the same end state, and then the Group Policy sunset and the policy library that replaces it. Part 2 is servers and the run state: bringing servers under Arc with a day-one baseline, then operating and evidencing the whole fleet. The scripts and policy payloads live in the chapters and Appendix A, marked as illustrative and untested. I'll stick to what matters. First, where this session sits in the series.
 
-## Slide 2 — Why Group Policy can't come to the cloud
+## Slide 2 — Book 05 is the Intune and Arc tracks: devices, servers
+
+Here's why this matters: the series moves four populations to the cloud, each on its own track, and Book 05 carries two of them. The Intune track is end-user devices, and the Arc track is servers. A device's attributes come from device provisioning, like the Autopilot group tag, never from HR, and a device rule can't read its owner. Devices are done when their policy targets those attributes and the computer-side GPO links are gone, one population at a time. Servers are done when each is Arc-enabled, tagged, and evaluated by Azure Policy. And Group Policy splits: user settings go with people, computer settings with devices and servers. Next, why Group Policy can't come to the cloud.
+
+## Slide 3 — Why Group Policy can't come to the cloud
 
 Here's why this matters. For twenty years, Group Policy did a great deal of governance without anyone writing it down. A computer sat in an organizational unit (OU), the linked GPOs applied in a fixed order, and that one structure was the targeting, the precedence, the delegation and the evidence. Microsoft says it plainly: Group Policy enforcement isn't possible on cloud-native endpoints. Intune can deliver most of the settings, but every mechanism changes. Targeting is flat, devices check in about every eight hours instead of every ninety minutes, and when two policies disagree, the setting may not apply at all. On a hybrid device, Group Policy wins by default. So the program's rule is regenerate, not copy: identify the mandatory settings, compare them with MDM, and treat the gaps as blockers.
 
-## Slide 3 — The hybrid-join trap, and where each device fact lives
+## Slide 4 — The hybrid-join trap, and where each device fact lives
 
 Two more ideas frame everything in this session. First, the hybrid-join trap. Converting a domain-joined fleet to hybrid join is close to a tenant-wide switch: extend the sync scope, and every Windows device registers itself, with nothing checking ownership or approval. Microsoft's guidance is that Entra join is the default for new or reset devices, and hybrid join is a waypoint, not the end goal. Done ungoverned, the waypoint becomes the destination. Second, where the truth lives. A laptop is described by procurement, Autopilot, Entra ID, Intune and Defender records, and a server adds Arc. The program decides, fact by fact, which one is authoritative, and correlates on the right key. And one rule to remember: delete the Entra object last, because that deletes the BitLocker recovery keys.
 
-## Slide 4 — Module 1: Intune-first onboarding and the paths
+## Slide 5 — Module 1: Intune-first onboarding and the paths
 
 Module 1 is Intune-first onboarding and the migration paths. Migration brings an existing device under governance; Intune-first refuses to let an ungoverned device exist at all. Chapter 04 covers new devices, and Chapter 05 the three paths for the existing estate.
 
-## Slide 5 — Intune-first: five pillars and a five-phase process
+## Slide 6 — Intune-first: five pillars and a five-phase process
 
 The doctrine is simple to state. A new asset is governed from the moment it first powers on: by Intune for endpoints, and by Azure Arc for servers. There's no waiting room where it joins Active Directory first, or reaches production without a compliance check. Five pillars carry it, and they're the program's doctrine, not Microsoft requirements. The ones to remember: no ungoverned device, ever; procurement is the first governance step, the way HR feeds user provisioning; and an onboarding failure produces a quarantine entry and a ticket, never a degraded production device. Every asset then follows the same five phases, from procure through provision and validate. The organizational assignment comes from the first source that can supply it, and the target is fourteen days from purchase order.
 
-## Slide 6 — Windows in a GCC tenant: Autopilot or device preparation
+## Slide 7 — Which end-user platforms Intune covers, and how
+
+Here's why this matters: the Intune track is every end-user device, not just Windows. Windows 11 and Cloud PCs are fully managed, and Azure Virtual Desktop is managed with limits. Apple devices come in through Apple Business Manager, and Android Enterprise is managed in all four of its modes. Linux desktops are limited: Ubuntu and Red Hat, mostly for compliance. ChromeOS shows up as inventory, but Google's console keeps the policy. Windows 10 is out of support, so it can enroll but nothing's guaranteed. And servers, printers, network gear and IoT aren't Intune platforms at all. Servers go to Arc, and the rest get a tier, which we'll come to in Module 3. Next, Windows in a GCC tenant.
+
+## Slide 8 — Windows in a GCC tenant: Autopilot or device preparation
 
 Microsoft now ships two ways to provision Windows. Autopilot device preparation is the newer, simpler one, with near real-time reporting. Classic Autopilot is more feature-rich. The difference that matters most here is registration: device preparation has none, so it has no group tag. In a GCC tenant both are available, because GCC uses the commercial Intune service. The program's default for standard hardware is classic Autopilot, user-driven, with Entra join, because its registration carries the procurement attribute and the purchase order from the vendor to the device before it's ever powered on. Use device preparation where its advantages matter, such as faster provisioning or a tenant that might later move to GCC High. And never use either with hybrid join for new devices.
 
-## Slide 7 — Carrying the purchase order to the device's configuration
+## Slide 9 — Carrying the purchase order to the device's configuration
 
 Here's how a procurement decision reaches a device's configuration without anyone touching it. The purchase order carries an organizational code and the serial number. The supplier registers the device at purchase, which is also what makes it zero-touch, after a one-time recorded approval by a Global Administrator. That group tag shows up on the Entra device, a dynamic group matches on it, and the profile, compliance and configuration follow the group. The tag holds a node identifier, never a free-text department name, so a reorganization changes a mapping table, not thousands of registrations. Enrollment restrictions are the enforcement point: block personal Windows enrollment, and an unregistered device simply fails to enroll, which is the quarantine pillar in practice. The slide covers naming and the Enrollment Status Page.
 
-## Slide 8 — The day-zero baseline, and the four exception paths
+## Slide 10 — The day-zero baseline, and the four exception paths
 
 A new device should arrive at a known baseline before anyone uses it, in two halves. Compliance decides access. The first step is a tenant-wide setting: mark devices with no compliance policy as not compliant, so an unassigned device can't pass Conditional Access by default. The Windows policy then requires the usual protections, like BitLocker, Secure Boot and current Defender. Configuration sets the device up, starting from Microsoft's security baselines. Because these devices never had Group Policy, there's nothing to conflict with, and that's the payoff. Four exception paths cover what can't follow the main path, from personal devices to Windows machines that can't enroll at all. Each needs written justification, a compensating control and an audit entry, and the last one is isolated first.
 
-## Slide 9 — Three paths to one end state: governed, manual and retrofit
+## Slide 11 — Three paths to one end state: governed, manual and retrofit
 
 Chapter 05 is how the existing estate gets there. The sources described three separate kits that repeated most of the same steps, because the destination is the same: servers in Arc, workstations in Intune, NTLM restricted after it's measured, and Conditional Access enforced. What differs is who holds the decision record. The rule all three obey: the control plane governs, the data plane executes. Every path runs four phases in order, observe, onboard, harden and watch, and nothing is restricted until it's been measured. The manual path suits small estates and pilots. The governed path puts an approval reference on every change. The retrofit adopts a hand-modernized estate, at the risk of blessing whatever drift is there. And the federal ceiling is human approval; autonomous action is refused.
 
-## Slide 10 — The runbook's sharp edges: precedence, NTLM and SPNs
+## Slide 12 — The runbook's sharp edges: precedence, NTLM and SPNs
 
 Three places in the shared runbook cause most of the outages. Precedence first. Existing devices usually enroll in Intune through Group Policy, with no reimage. But while the GPOs are still linked, overlaps are dangerous: Group Policy usually wins, and for some settings it's a race with no guaranteed winner. So document every overlap before Intune enforces anything. NTLM second. A common mistake is treating the strictest LAN Manager level as blocking NTLM; it doesn't, because domain controllers still accept NTLMv2. Blocking takes the Restrict NTLM policies, staged, and only after a fourteen to thirty day audit and owner sign-off. And SPNs third. A missing SPN is the silent case: Kerberos isn't tried and NTLM quietly works, until the NTLM block turns it into an outage.
 
-## Slide 11 — Module 2: The GPO sunset and policy migration
+## Slide 13 — Module 2: The GPO sunset and policy migration
 
 Module 2 is the GPO sunset, the program for the existing fleet. It replaces Group Policy on endpoints already deployed, and it's measured by GPOs retired with evidence, not by settings copied. Chapters 07 and 08 run it, and Appendix A is the crosswalk.
 
-## Slide 12 — The sunset pipeline and Group Policy analytics
+## Slide 14 — The sunset pipeline and Group Policy analytics
 
 The program keeps three efforts apart: Intune-first for new devices, this sunset for the existing fleet, and regenerate-not-copy as the way replacements are written. Microsoft's own advice is that assessing every setting is likely impractical, so the program runs seven steps, each with an exit condition. Step one: nothing is translated or retired until it's inventoried, including its targeting, because that's the part that doesn't survive the move. Group Policy analytics then shows, setting by setting, what's ready to migrate, what isn't supported and what's deprecated. Plan around its limits, which are on the slide. Its migrate step is, in Microsoft's words, best effort. So the program treats the readiness report as proof that an equivalent exists, never that a setting is needed.
 
-## Slide 13 — Classify, then dispose: tags, questions, landing zones
+## Slide 15 — Classify, then dispose: tags, questions, landing zones
 
 Step two gives every setting one tag: required, obsolete, high-risk or redundant. Only required settings move on. Each one then faces four questions in order, and the first yes decides. Is it still needed in the target model? Group Policy accumulated settings that existed only because it could set them. Does Intune have a native equivalent? Most do. Does a cloud pattern remove the need? Folder redirection, for example, becomes OneDrive Known Folder Move, and mapped printers become Universal Print. And can a script enforce and prove it? A setting that fails all four becomes a dated exception, and its GPO stays linked for that population only. The answers send settings to four landing zones in Intune, and the slide has their limits.
 
-## Slide 14 — Coexistence: who wins while GPOs and Intune both apply
+## Slide 16 — Coexistence: who wins while GPOs and Intune both apply
 
 While a population has both GPOs and Intune policies, three conflict systems are in play. Inside Intune, configuration policies have no precedence over each other. A conflict is reported and the setting might not apply, so each setting gets exactly one owning policy. The chapter also corrects earlier program material: there's no last-write-wins, and endpoint security doesn't automatically beat configuration profiles. Between Group Policy and MDM, Group Policy keeps winning unless you change that, and outside the core policy settings it's a race. Between Configuration Manager and Intune, the co-management slider decides, with a couple of traps on the slide. Disabling a GPO link is the moment production behavior changes, so it's gated: freeze, back up, prove the replacement works, then disable the link with one reversible command.
 
-## Slide 15 — Seven phases at working level: durations, gates and waves
+## Slide 17 — Seven phases at working level: durations, gates and waves
 
 Chapter 08 breaks the seven phases into working tasks, with durations from the program's reference plan for a large fleet that already runs Configuration Manager. First comes the inventory and classification, then co-management for a pilot, then building every policy unassigned, with the riskier protections in audit mode. The pilot is about five percent of the fleet, representative across tiers and regions, and the GPOs stay linked so conflicts can be measured. Then four waves of three weeks each, and finally the links and GPOs are disabled, kept ninety days, backed up and deleted. On these estimates, the program reaches the last phase in roughly thirty-four weeks. One reminder: rolling back a pilot means reassigning a policy with the old value, not just removing the assignment.
 
-## Slide 16 — The policy library: attribute targeting and the compliance set
+## Slide 18 — The policy library: attribute targeting and the compliance set
 
 The policy library has five types, and every policy is assigned to dynamic device groups built from attributes, which replaces OU-based scoping. Those attributes are the device's own extension attributes, written through Microsoft Graph, with one numbering and one fixed spelling per value. The correction that matters: assignment filters can't read extension attributes. Attribute targeting belongs in the group rule; filters work on Intune properties like join type or model. Three Microsoft facts shape every compliance policy. Noncompliance actions are scheduled in days, not hours. There's no block action; blocking is what Conditional Access does with a noncompliant device. And encryption and boot checks are measured at boot, so a newly encrypted device needs a restart. The slide has the compliance set, including a strict Tier 0 policy.
 
-## Slide 17 — Endpoint security settings, and the crosswalk traps
+## Slide 19 — Endpoint security settings, and the crosswalk traps
 
 Endpoint security policies aren't a higher-priority source; they have the same standing as configuration profiles. In the program's library, though, they own every Defender, BitLocker, firewall, account protection and LAPS setting, and the settings catalog profiles that duplicated them are retired. The slide walks through each one. A few highlights. Sending every file sample to Microsoft can upload organizational data, so that's the data owner's call. Silent encryption and a TPM PIN can't apply to the same device, so Tier 0 gets its own BitLocker policy. On an Entra-joined device, the firewall's domain profile doesn't apply. And attack surface reduction rules run in audit for thirty days before blocking. Appendix A flags the crosswalk traps, such as a logon message breaking Autopilot pre-provisioning.
 
-## Slide 18 — Module 3: Servers under Azure Arc
+## Slide 20 — Module 3: Servers under Azure Arc
 
 Module 3 is servers under Azure Arc. Intune doesn't support Windows Server, so Arc takes over the job Group Policy did for servers. Arc gives a server an address in the control plane; what governs it is everything you then attach to that address.
 
-## Slide 19 — What Arc changes, and what it doesn't
+## Slide 21 — What Arc changes, and what it doesn't
 
 Arc is the management plane, not the identity plane. Onboarding doesn't change how a server authenticates users or whether it's domain-joined, so keep the two separate in every plan. What changes: the server becomes an Azure resource, with role-based access, tags and Azure Policy, and extensions that run with full privileges. What doesn't: its domain membership, its workload and where it runs. Arc isn't a migration to Azure. Two properties shape operations. Azure is the source of truth, so every change is checked before it reaches the server. And connection state is evidence. A server disconnected for fourteen days loses its baseline assignments, and after forty-five days it can expire. Plan cost by service, too; with the right licensing, several management services come at no extra cost, once you attest it.
 
-## Slide 20 — Before you onboard: roles, network, tags and images
+## Slide 22 — Which servers Arc reaches, and four tiers for the rest
+
+Here's why this matters: the Arc track is servers wherever they run, and the inventory needs everything else too. Arc covers Windows Server 2016 through 2025, the supported Linux distributions, physical servers and any hypervisor, VMware VMs through vCenter, and AWS and Google Cloud instances, with Google's connector still in preview. Azure VMs don't need Arc. AIX, Solaris, the mainframe and network devices aren't covered. So every device lands in one of four tiers: Intune or Arc; its own tool, with the CMDB holding its attributes; discovered and monitored only; or segmented and retired. A device in no tier is a finding against the inventory control. Next, getting ready to onboard.
+
+## Slide 23 — Before you onboard: roles, network, tags and images
 
 Before the first server connects, settle four things. Roles first. Use the narrowest built-in roles, and remember that extensions run arbitrary scripts with full privileges. Microsoft says to treat any Contributor on an Arc resource as an indirect administrator of the server, so scope those roles tightly and hold them through Privileged Identity Management. Network: the agent only talks outbound over 443, with no inbound rule, and a private link scope keeps that traffic off public networks. Run the agent's connectivity check from a representative server first. Tags: settle one taxonomy at connection time, because tags drive policy scope, patching and cost reporting. And images: install the agent in your golden image, but never connect the image, or every clone shares one resource ID.
 
-## Slide 21 — Onboarding a wave with a least-privileged principal
+## Slide 24 — Onboarding a wave with a least-privileged principal
 
 Onboarding runs in waves. Each wave creates its credential, connects a set of servers, attaches the baseline on the same change, verifies, and then removes what onboarding needed. Microsoft supports many methods. The program recommends a dedicated service principal that signs in with a certificate, deployed through the automation the server team already runs. That credential is needed only while the connect command runs, so keep its life short and its scope small. Someone holding it could connect servers outside your organization into your subscription. Protect it in deployment, too: a secret in a hand-built startup script is readable by every domain user through SYSVOL. And for sensitive servers, set local controls Azure can't override, like an extension allowlist.
 
-## Slide 22 — The day-one baseline: configuration, patching and protection
+## Slide 25 — The day-one baseline: configuration, patching and protection
 
 A connected server is addressable, not yet governed. Three things get attached on the same change. Configuration, through Azure machine configuration, which audits or sets operating system settings and reports compliance per machine, scoped by Azure resource rather than by OU. Keep the customized baseline in the governance repository as policy-as-code, and treat noncompliance as a finding, not a failed deployment. Patching, through Azure Update Manager, which assesses daily, patches in maintenance windows and groups servers by tag. And protection, through Defender for Servers. The program's FedRAMP Moderate scope uses Plan 2, plus Defender for SQL on SQL hosts. Onboard Defender through Arc, rather than installing it directly, which gives you only Plan 1 function.
 
-## Slide 23 — Extended Security Updates, Entra ID sign-in and rollback
+## Slide 26 — Extended Security Updates, Entra ID sign-in and rollback
 
 Arc is also how many organizations keep end-of-support servers patched while they migrate, and the dates are the point here. As of October twentieth, 2026, Windows Server 2012 and 2012 R2 receive no further security updates through any channel, so any still running is a red finding: migrate, upgrade, or isolate it and record the risk. Windows Server 2016 reaches end of support on January twelfth, 2027, so enroll those hosts in ESUs before then if they won't be upgraded. Arc servers can also use Entra ID for Remote Desktop, but only on Server 2025 or Windows 11 24H2, and Conditional Access isn't supported there; the control is role-based access held through PIM. And rollback has an order: remove extensions, disconnect, then uninstall.
 
-## Slide 24 — Module 4: Operating and evidencing the fleet
+## Slide 27 — Module 4: Operating and evidencing the fleet
 
 Module 4 is operating and evidencing the fleet. Once the GPOs are gone, a device's state has to be proved from three records: the policy library, the status Intune and Defender report, and the audit log. Operating means keeping them in agreement.
 
-## Slide 25 — Making the compliance signal accurate
+## Slide 28 — Making the compliance signal accurate
 
 Compliance policies decide whether a device is compliant; Conditional Access decides what a noncompliant device can reach, and Book 04 owns that part. This book's job is making the signal accurate. Two tenant settings sit above every policy. Devices with no compliance policy default to compliant, and the program flips that, so a device that falls outside every group can't pass by default. And compliance status stays valid for thirty days by default; the program uses fourteen, short enough that a device left in a drawer loses access, long enough not to catch staff on leave. Read the dashboard carefully, because some statuses hide devices from the noncompliant count. And on Tier 0, a Defender detection becomes a compliance failure, and so a loss of access.
 
-## Slide 26 — Windows updates: rings, Autopatch and version currency
+## Slide 29 — Windows updates: rings, Autopatch and version currency
 
 Intune manages Windows updates through four policy types, and the rings stage each month's quality update. The ring names follow Windows Autopatch, Test, First, Fast and Broad, from the engineering lab out to everyone else. The values are the program's design. With them, a quality update reaches every online device within about sixteen days of release, and an update that breaks an early ring can be paused before Broad. Autopatch automates all of this, and it's included for GCC customers with G3 or G5, though not in GCC High or DoD. It maintains its own rings, so don't assign yours to its devices. And version currency: 23H2 Enterprise stops receiving updates on November tenth, 2026, so feature updates target 25H2 now.
 
-## Slide 27 — Reconciling three inventories, and retiring a device in order
+## Slide 30 — Reconciling three inventories, and retiring a device in order
 
 Intune, Entra ID and Defender each keep their own device inventory, and they disagree in predictable ways. The program reconciles them weekly on the Entra device ID. Every enrolled device needs an Entra object with its attributes set and a healthy Defender sensor, and a device missing from any one is a finding. That same comparison is the evidence for a complete inventory. Treat stale records with care: cleanup rules hide devices but don't delete them, and Entra's sign-in date isn't updated every time, so disable before deleting. Retirement follows a fixed order, because the order decides what can still be recovered. Export the BitLocker keys and LAPS password first, then wipe, deregister and delete, and delete the Entra object last, because that permanently removes its keys.
 
-## Slide 28 — Drift detection: what the logs can tell you, and when
+## Slide 31 — Drift detection: what the logs can tell you, and when
 
 Drift is a gap between the policy library and what a device reports, one the policy should have prevented, like BitLocker off or an OS below the floor. The program finds it with the same loop as the governed path: a daily export, a comparison with the library, classification, and remediation, with policy changes going through change control. The catch is timing. Intune's audit logs arrive in Log Analytics right away, but compliance and inventory data are exported once a day and can take up to forty-eight hours to land. So those tables are for trends and evidence, not minute-level alerts. That's why fleet-wide alerts come from the daily export, but Tier 0 noncompliance is polled from Graph every hour. Otherwise the alert would arrive two days late.
 
-## Slide 29 — The evidence an assessor reads, and the GCC boundary facts
+## Slide 32 — The evidence an assessor reads, and the GCC boundary facts
 
 Last, what the assessor reads. The evidence is the records the services already keep, exported on a schedule and retained, mapped to the configuration management and flaw remediation controls in NIST SP 800-53. Baseline configuration is the policy library under version control. Inventory is the weekly reconciliation. Flaw remediation is the ring table, whose deadlines set the organization's patch period. Two GCC facts matter. Intune in GCC uses the commercial service, and Windows Update for Business reports don't meet GCC compliance requirements, so patch evidence comes from Intune and Autopatch reports. So, from Monday: inventory and triage every GPO, set the compliance defaults, carry procurement into the group tag, onboard servers with a short-lived certificate principal, and reconcile inventories weekly. Thank you.

@@ -1,64 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.125
-When Active Directory retires, being
-inside the network stops meaning anything.
+00:00:00.050 --> 00:00:03.105
+Once identity, policy
+and services have moved,
 
 2
-00:00:05.125 --> 00:00:11.063
-M-22-09 puts it simply: users should
-log into applications, not networks.
+00:00:03.105 --> 00:00:07.125
+the biggest remaining dependency
+is the domain join itself.
 
 3
-00:00:11.063 --> 00:00:16.703
-The replacement has four parts: Zero Trust
-as the model, Conditional Access as the
+00:00:07.125 --> 00:00:10.612
+User PCs end up Entra
+joined and in Intune.
 
 4
-00:00:16.703 --> 00:00:22.175
-per-request decision, SASE at the edge,
-and phishing-resistant MFA as the proof.
+00:00:10.612 --> 00:00:14.038
+Servers come under Azure Arc
+and machine configuration.
 
 5
-00:00:22.175 --> 00:00:27.337
-BOD 25-01 makes blocking legacy
-authentication mandatory.
+00:00:14.038 --> 00:00:17.200
+Hybrid join is a waypoint,
+not a destination.
 
 6
-00:00:27.337 --> 00:00:28.525
-Smart cards stay.
+00:00:17.200 --> 00:00:20.855
+And there's no supported way to
+convert a hybrid-joined device
 
 7
-00:00:28.525 --> 00:00:33.567
-Entra certificate-based authentication
-moves card validation from the domain
+00:00:20.855 --> 00:00:24.725
+without resetting Windows, so time
+the move to a hardware refresh.
 
 8
-00:00:33.567 --> 00:00:36.577
-controller to Entra ID,
-though a card only counts
+00:00:24.725 --> 00:00:29.608
+Every service principal name is an
+application that expects Kerberos,
 
 9
-00:00:36.577 --> 00:00:39.738
-as phishing-resistant if
-it's set up as multifactor.
+00:00:29.608 --> 00:00:33.663
+and each needs a decision: move
+it to modern authentication,
 
 10
-00:00:39.738 --> 00:00:45.052
-And card issuance needs a successor first,
-because an enterprise CA depends on AD.
+00:00:33.663 --> 00:00:37.387
+retire it, or, as a last resort,
+isolate it with an end date.
 
 11
-00:00:45.052 --> 00:00:47.987
-Administrators hold no standing privilege:
+00:00:37.387 --> 00:00:41.504
+No server leaves the domain
+until every one is resolved,
 
 12
-00:00:47.987 --> 00:00:52.112
-roles are activated just in time,
-and a vault covers what can't be.
+00:00:41.504 --> 00:00:43.651
+and NTLM goes in the same pass.
 
 13
-00:00:52.112 --> 00:00:57.500
-Book 04 covers policy and privilege,
-and Book 07 the certificates.
+00:00:43.651 --> 00:00:47.525
+And compute stays with its data
+until the round trips are cut down.
+
+14
+00:00:47.525 --> 00:00:50.780
+Books 05 and 06 have the detail.

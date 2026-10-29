@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.275
+Every decision here has one owner, and that's
+what keeps the HR track from stalling.
+
+2
+00:00:05.275 --> 00:00:09.225
+Identity engineering owns the
+plumbing and the delegation model.
+
+3
+00:00:09.225 --> 00:00:13.550
+The ICAM governance body owns the
+authority map and the person key.
+
+4
+00:00:13.550 --> 00:00:16.819
+HR owns the codes, the
+data architect the schema,
+
+5
+00:00:16.819 --> 00:00:20.087
+and application owners
+their own access rules.
+
+6
+00:00:20.087 --> 00:00:22.187
+The CISO owns the controls.
+
+7
+00:00:22.187 --> 00:00:27.655
+And you can start Monday without new tools:
+export the tree, name the HR feed early,
+
+8
+00:00:27.655 --> 00:00:32.376
+populate the person key, remove other
+writers, and route your logs out.
+
+9
+00:00:32.376 --> 00:00:33.500
+So what's left?

@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.112
+Now the Arc track: servers.
+
+2
+00:00:02.112 --> 00:00:03.975
+Arc isn't just for Windows either.
+
+3
+00:00:03.975 --> 00:00:10.177
+It covers Windows Server 2016 through
+2025, a long list of Linux distributions,
+
+4
+00:00:10.177 --> 00:00:13.612
+physical servers and
+VMs on any hypervisor,
+
+5
+00:00:13.612 --> 00:00:18.287
+VMware through vCenter, and
+AWS and Google Cloud instances.
+
+6
+00:00:18.287 --> 00:00:24.476
+Two dates matter: Windows Server 2012
+stops getting new agents in November 2026,
+
+7
+00:00:24.476 --> 00:00:27.476
+and the SCVMM integration is retiring.
+
+8
+00:00:27.476 --> 00:00:32.025
+Azure VMs don't need Arc at all,
+because they're already Azure resources.
+
+9
+00:00:32.025 --> 00:00:36.850
+And Unix, mainframes, network devices
+and sealed appliances are out.
+
+10
+00:00:36.850 --> 00:00:39.770
+So here's how Arc makes a
+server attribute-driven.

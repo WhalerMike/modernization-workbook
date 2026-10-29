@@ -1,64 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.800
-Building the target comes
-down to three choices.
+00:00:00.050 --> 00:00:04.850
+An assessment team rarely gets privileged
+access on day one, and it doesn't need to.
 
 2
-00:00:02.800 --> 00:00:07.682
-First, the sync engine: Cloud Sync by
-default, Connect Sync only where a
+00:00:04.850 --> 00:00:08.991
+An ordinary domain account can
+read most of what the plan needs:
 
 3
-00:00:07.682 --> 00:00:13.163
-forest genuinely needs it, and any
-Connect server upgraded before April 2027.
+00:00:08.991 --> 00:00:14.088
+the forest's shape, the OU tree, groups,
+policy links and certificate templates.
 
 4
-00:00:13.163 --> 00:00:16.568
-Second, sign-in: keep password
-hash sync on everywhere,
+00:00:14.088 --> 00:00:16.331
+Read-only discovery changes nothing,
 
 5
-00:00:16.568 --> 00:00:20.980
-because it's the fallback when other
-methods fail, and Microsoft says
+00:00:16.331 --> 00:00:19.950
+and it applies least privilege
+to the assessors themselves.
 
 6
-00:00:20.980 --> 00:00:25.237
-agencies that had it recovered from
-ransomware in hours, not weeks.
+00:00:19.950 --> 00:00:24.998
+Whatever it can't see becomes a short
+written request: read only, specific,
 
 7
-00:00:25.237 --> 00:00:28.126
-Federation servers become
-a retirement target.
+00:00:24.998 --> 00:00:29.625
+time-bound, for one named account,
+and an export wherever one will do.
 
 8
-00:00:28.126 --> 00:00:32.138
-Third, and this one is the
-CISO's: privileged access.
+00:00:29.625 --> 00:00:32.123
+Never a blanket request for Domain Admin.
 
 9
-00:00:32.138 --> 00:00:34.413
-No one holds an admin role permanently.
+00:00:32.123 --> 00:00:36.605
+Tell security operations first,
+because this looks like reconnaissance,
 
 10
-00:00:34.413 --> 00:00:38.046
-Roles are activated just in
-time, on cloud-only accounts,
+00:00:36.605 --> 00:00:39.838
+and protect the output, because
+it's a map of the estate.
 
 11
-00:00:38.046 --> 00:00:43.338
-with fewer than five Global Administrators
-and two tested break-glass accounts.
+00:00:39.838 --> 00:00:44.649
+The decision: start now, and elevate
+only through that narrow request.
 
 12
-00:00:43.338 --> 00:00:46.012
-The CISO sets that model
-before the rollout.
-
-13
-00:00:46.012 --> 00:00:47.980
-Next, how people sign in.
+00:00:44.649 --> 00:00:46.150
+Then build the target.
