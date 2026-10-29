@@ -28,6 +28,7 @@ One run produces a one-page summary (`Summary/StartKitSummary.md`) with these co
 | Schema version and extensions | `Get-FMPSchemaExtensions` | Schema extensions (stream 1) |
 | **SQL Server instances and hosts**, by version, edition, domain and authentication mode | `Invoke-FMPSqlEstateDiscovery` | Book 06, Runbooks R02 and R03 |
 | **NPS servers, RADIUS clients, network and connection request policies**, the AD groups and certificates each policy authorizes against, and the KB5040268 hardening state | `Invoke-FMPNpsInventory` | RADIUS and NPS inventory (Book 00 Chapter 08, M-009; Book 02 Chapter 04, DM_030; Book 09 Chapter 07) |
+| **Transaction profiles**: measured round trips per business transaction for each application proposed to move away from its data, what they cost at the target round-trip time, and which applications clear the separation gate | `Invoke-FMPTransactionProfile` | Transaction profiling (Book 01 Chapter 10; Chapter 07's co-location rule; Chapter 11's gated actuation) |
 
 ### How it counts SQL Server
 
@@ -52,6 +53,20 @@ Book 02 Chapter 04 rates RADIUS and NPS critical (DM_030): if NPS goes before it
 
 **Shared secrets never leave memory.** `ias.xml` holds them in clear text. The kit replaces each one, as it parses, with its length and an HMAC under a key generated for the run and never written, and writes only the length and a label (`secret-1`, `secret-2`) that shows which clients share one. No secret, and no hash that could be tested against a guess, reaches any file; a test checks every output file for the fixture secrets.
 
+### How it builds transaction profiles
+
+[Book 01, Chapter 07](../../docs/books/b01-transformation-arc/07-compute-transformation.md#where-compute-runs) keeps an application's compute beside its authoritative data until profiling shows its round trips have been reduced: every synchronous call pays the network's propagation delay once, so separating an application from its data multiplies that delay by the number of calls. [Chapter 10](../../docs/books/b01-transformation-arc/10-analyzing-the-estate.md#profiling-transactions-before-separation) makes the profile an assessment job, and [Chapter 11](../../docs/books/b01-transformation-arc/11-analysis-plan-delivery.md) won't approve a separation without it. Nothing in a directory says which applications are chatty, so this part starts from the team's own list rather than from discovery.
+
+1. **List the transactions.** One row per business transaction in `TransactionCatalog.csv`: the application, the transaction, the authoritative store, the round-trip time the application sees today (`CurrentRttMs`), the round-trip time it would see after separation (`TargetRttMs`), and the network wait the transaction can afford (`BudgetMs`). A run without `-TransactionCatalog` writes `transaction-profiles\TransactionCatalog.template.csv` with every column and one example row.
+2. **Measure the round trips** while someone runs the transaction, in whichever of three ways fits:
+   - **A packet capture**, the most exact. Capture on the application host while the transaction runs (the kit doesn't capture: installing a capture driver or starting a trace is a change on that host, made under the agency's change control), export the packet fields with tshark, and name the export in the catalog's `BaselineCapture` or `ReducedCapture` column with the store's address and port. `ConvertFrom-FMPPacketCapture` counts, per TCP connection, each client request the store answered (a request or response spread over several packets counts once) plus one per new connection for the TCP handshake, and takes today's round-trip time from the handshakes. It works for any protocol: SQL Server, Oracle, LDAP, HTTP.
+   - **SQL Server's own counters.** `Measure-FMPSqlRoundTrip` polls `sys.dm_exec_connections` with one SELECT while an operator runs the transaction, and counts the network reads on the application's connections, picked out by host, program, login or client address. No capture, no agent, no change on the server; it needs `VIEW SERVER STATE`.
+   - **A figure from a tool you already run**, such as an APM transaction trace, entered in `BaselineRoundTrips` or `ReducedRoundTrips` with the tool named in `DeclaredMethod`. A figure whose method is *Estimate* or blank is ignored and flagged: Book 01 asks for round trips "measured, not estimated".
+3. **Reduce, and measure again.** Name the techniques used in `Techniques` (Book 01's six: `Aggregation`, `Asynchronous`, `Caching`, `Batching`, `ConnectionPooling`, `AtomicCalls`) and record the new measurement as the reduced phase.
+4. **Apply the gate.** The network wait after separation is the round trips times `TargetRttMs`; the round trips the transaction can afford are `BudgetMs` divided by `TargetRttMs`, rounded down. A transaction passes when its measurement after reduction fits (*Reduced*), or when its baseline already fits and there's nothing to reduce (*WithinBudget*). It's blocked when it has no measured baseline (*NotProfiled*), when it's over budget and not yet reduced (*NotReduced*, with the number of round trips to remove), when it's still over after reduction (*ReducedOverBudget*), or when its catalog row lacks a target or a budget (*Incomplete*). An application clears the gate in `SeparationGate.csv` only when every one of its transactions passes.
+
+The budget and the target round-trip time are the program's decisions, not the kit's: the budget comes from the application owner's response-time requirement, and the target from where the application would run ([Book 09, Chapter 01](../../docs/books/b09-network/01-why-physics-decides-the-architecture.md) has the physics, [Chapter 13](../../docs/books/b09-network/13-sequencing-cost-and-evidence.md) how to measure it). `Measure-FMPTcpRoundTrip` times TCP connection setup to a port, from wherever it runs; run it from the application host for today's figure and from the target location for the other.
+
 ## Pointing the kit at your own forest
 
 Nothing in the kit is tied to a forest name. `contoso.example`, `child.contoso.example` and `partner.example` appear only in the test fixtures (`tests/fixtures/`) and in examples; at run time the kit asks Active Directory which forest it's in and reads every domain of it.
@@ -68,6 +83,7 @@ Nothing in the kit is tied to a forest name. `contoso.example`, `child.contoso.e
 | Add NPS servers outside the RAS and IAS Servers groups | `-NpsServers nps01.corp.agency.example, nps02.corp.agency.example` |
 | Inventory NPS from configuration exports, with no access to the servers | `Invoke-FMPNpsInventory -OutputPath <folder> -NpsConfigPath D:\Exports\nps01.xml -SkipDirectory` (group names stay as SIDs without the directory) |
 | Change the shared-secret rule or the certificate warning | `Invoke-FMPNpsInventory -SecretMinLength 32 -CertificateWarningDays 60 -EventDays 30` |
+| Profile your own applications | Fill in the catalog template a run writes, with your applications, stores and budgets; keep the capture exports beside it and name them relative to the catalog's folder; run with `-TransactionCatalog` |
 | Recognize your own schema extensions | Add a line to `$script:FMPKnownExtensions` in `FMPADAssessment.psm1` |
 | Count a different set of privileged groups | Edit `$script:FMPPrivilegedGroups` in `FMPADAssessment.psm1` |
 | Run the tests against your own data shapes | Copy `tests/fixtures/ad-forest.json`, replace the objects with sanitized exports of your own (`Get-ADUser ... \| ConvertTo-Json`), keep the same keys, and adjust the expected counts in `tests/powershell/ADAssessment.Tests.ps1`. Never commit real exports. |
@@ -110,6 +126,8 @@ The assessment never uses Domain Admins, DnsAdmins, the CA administrator role or
 | NPS server list (RAS and IAS Servers membership) | Authenticated user | — |
 | NPS configuration, certificate store, extension DLLs | — | Local administrator on each NPS server: `ias.xml` is read over the admin share and the certificate store and registry remotely (the Remote Registry service must be running). An administrator-run `Export-NpsConfiguration`, handed over through a secure channel, is the alternative; feed it to `-NpsConfigPath` |
 | NPS KB5040268 events | — | Event Log Readers on each NPS server |
+| Transaction profiles from captures or declared figures | No account: the kit reads files the team supplies | — (the capture itself is taken by the application's administrators, under change control) |
+| Transaction profiles from SQL Server counters (`Measure-FMPSqlRoundTrip`) | — | A login with `VIEW SERVER STATE` (2022 and later: `VIEW SERVER PERFORMANCE STATE`) on the application's instance |
 | SQL Server T-SQL pass | — | A login on each instance with `VIEW SERVER STATE` (SQL Server 2019 and earlier) or `VIEW SERVER PERFORMANCE STATE` (2022 and later) for the usage DMVs; `VIEW ANY DEFINITION` (2022 and later: `VIEW ANY SECURITY DEFINITION`) to see every login, without which the login list is silently partial; `VIEW SERVER SECURITY STATE` on 2022 and later for `sys.linked_logins` |
 
 Book 06 Runbook R03 names the same T-SQL requirement: confirm the login count against an instance you know. The Tier B items Book 00 lists that the kit doesn't collect (the CA's issued-certificate database, the Deleted Objects container contents, replication health, a native GPO backup) are best taken as administrator-run exports, which Book 02 Chapter 07 prefers to granting a right.
@@ -125,6 +143,15 @@ Book 06 Runbook R03 names the same T-SQL requirement: confirm the login count ag
 
 # Add NPS servers registered nowhere, and an export from a server you can't reach.
 .\Invoke-FMPStartKit.ps1 -OutputPath D:\Assessment -Tier B -NpsServers nps-dmz01.corp.agency.example -NpsConfigPath D:\Exports\nps-branch.xml
+
+# Transaction profiles: measure one transaction from SQL Server's counters (three runs,
+# a key press after each), then build the profiles and the gate in the next full run.
+Import-Module .\powershell\FMPTransactionProfile
+Measure-FMPSqlRoundTrip -OutputPath D:\Profiles -ServerName sql01 -InstanceName HR -Application Payroll -Transaction 'Submit timesheet' -HostName APP07
+.\Invoke-FMPStartKit.ps1 -OutputPath D:\Assessment -TransactionCatalog D:\Profiles\TransactionCatalog.csv -TransactionMeasurementPath D:\Profiles
+
+# Export a capture's packet fields for the catalog (tab-separated, the tshark default).
+tshark -r payroll-submit.pcapng -Y "tcp.port==1433" -T fields -E header=y -e frame.time_epoch -e tcp.stream -e ip.src -e ipv6.src -e tcp.srcport -e ip.dst -e ipv6.dst -e tcp.dstport -e tcp.len -e tcp.flags.syn -e tcp.flags.ack | Out-File -Encoding utf8 D:\Profiles\captures\payroll-submit-baseline.tsv
 
 # Only the SQL Server count, sweeping every enabled Windows Server for Express instances.
 Import-Module .\powershell\FMPSqlEstate
@@ -151,6 +178,11 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 ├── NPS\            NpsServers.csv, RadiusClients.csv, NetworkPolicies.csv, PolicyGroups.csv,
 │                   RemoteRadiusServers.csv, NpsCertificates.csv, NpsFindings.csv,
 │                   NpsInventory.json (with each policy's raw conditions), NpsSummary.json
+├── transaction-profiles\  TransactionProfiles.csv, SeparationGate.csv, Measurements.csv,
+│                   TransactionFindings.csv, TransactionProfiles.json, TransactionSummary.json,
+│                   applications\<name>.json (one per application, for its plan review),
+│                   measurements\ (what each capture showed); with no catalog, only
+│                   TransactionCatalog.template.csv and TransactionSummary.json
 ├── <forest root>\  Forest\, Domains\, Schema\, PKI\, Kerberos\, DHCP\  (forest-wide)
 └── <each domain>\  OUs\, GPOs\, DNS\, Objects\, ServiceAccounts\, Trusts\, Ldap\
 ```
@@ -162,6 +194,7 @@ The per-domain layout is Book 02 Appendix B's, so its output schema reference ap
 - **No write cmdlets.** `tests/powershell/Safety.Tests.ps1` parses every script and module in the kit and fails on any command with a state-changing verb (`Set-`, `New-`, `Remove-`, `Add-`, `Enable-`, `Disable-`, `Clear-`, `Rename-`, `Move-`, `Copy-`, `Install-`, `Register-`, `Grant-`, `Revoke-`, `Reset-`, `Restore-`, `Backup-`, `Start-`, `Stop-`, `Update-`, `Publish-` and more), on `Out-File`, `Export-Csv`, `Set-Content`, `Invoke-Command`, `Invoke-Expression`, `Invoke-WebRequest` and `Invoke-RestMethod`, on any native program but `certutil.exe -getreg`, and on file redirection. A planted-violation test proves the checks catch each kind.
 - **Writes only under `-OutputPath`.** Every file goes through four guarded writers that refuse any path outside a registered output root; the safety test fails if anything else writes, deletes or moves a file.
 - **SELECT-only T-SQL.** Every statement lives in one catalog; `Invoke-FMPSqlQuery`, the only place T-SQL is sent, refuses anything but a single SELECT (no DML, DDL, `EXEC`, `SELECT INTO`, procedures, `OPENROWSET` or second statement), and the safety test checks every SQL string in the source and that nothing calls `ExecuteNonQuery`.
+- **Transaction measurement reads, never captures.** The kit reads capture exports the team supplies and polls one SQL Server DMV with a SELECT; it installs nothing, starts no trace and changes no setting. It writes only the capture's file name, never the folder it came from.
 - **No secrets in the output.** NPS shared secrets are replaced in memory, before anything is kept, by a length and a per-run label; a test reads every file a run writes and fails if any fixture secret, or the word `Fingerprint`, appears.
 - **Provenance on every run.** The manifest is written last and hashes every other file.
 
@@ -172,7 +205,7 @@ pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
 powershell -NoProfile -Command "Import-Module Pester -MinimumVersion 5.5; Invoke-Pester -Path tests/powershell"
 ```
 
-Pester 5.5 or later. Windows PowerShell ships with Pester 3.4, so install Pester 5 for it (`Install-Module Pester -Scope CurrentUser -SkipPublisherCheck`). The tests mock every RSAT cmdlet, the SQL Browser reply and the T-SQL results from the fixtures, a fictional two-domain forest (`contoso.example`) with five SQL hosts and three NPS candidates (a synchronized pair and one server whose reads are denied), and fail if any unmocked cmdlet is called. They prove the code does what this README says against the fixtures and on both PowerShell editions. They don't prove that your forest, DNS, DHCP, CAs or SQL Servers return the same shapes.
+Pester 5.5 or later. Windows PowerShell ships with Pester 3.4, so install Pester 5 for it (`Install-Module Pester -Scope CurrentUser -SkipPublisherCheck`). The tests mock every RSAT cmdlet, the SQL Browser reply and the T-SQL results from the fixtures, a fictional two-domain forest (`contoso.example`) with five SQL hosts, three NPS candidates (a synchronized pair and one server whose reads are denied), and a transaction catalog of three applications with two capture exports and a SQL Server counter measurement, and fail if any unmocked cmdlet is called. They prove the code does what this README says against the fixtures and on both PowerShell editions. They don't prove that your forest, DNS, DHCP, CAs or SQL Servers return the same shapes.
 
 ## What changed from Appendix B
 
@@ -204,16 +237,20 @@ Pester 5.5 or later. Windows PowerShell ships with Pester 3.4, so install Pester
 - **NPS group conditions.** Group SIDs are read from anywhere in a policy's conditions, and NAS port types from `NAS-Port-Type` matches. Other conditions (time of day, called station, client IP) are kept verbatim in `NpsInventory.json`, not interpreted.
 - **NPS certificates** are matched by finding a certificate's thumbprint in the policy's EAP configuration. A policy that names a certificate this server doesn't hold (common after importing another server's configuration) shows no certificate rather than a wrong one. Reading a remote certificate store needs the .NET Framework's remote-store support; if PowerShell 7 can't open it, the server records `CertificateStatus` as not readable and the rest is collected.
 - **RADIUS beyond NPS.** Cisco ISE, Aruba ClearPass and other RADIUS servers aren't read; their RADIUS clients appear only where an NPS server forwards to them (`RemoteRadiusServers.csv`). The network team's own device inventory is the cross-check.
-- **Not covered:** transaction profiles (Book 01 Chapter 10), the plan generators, and ESC patterns beyond ESC1, 2, 4 and 6.
+- **Round trips from SQL Server counters.** `sys.dm_exec_connections.num_reads` counts network reads (Microsoft's documentation calls them byte reads), so a request larger than the packet size counts more than once, and a connection that closes between two polls loses its last reads. The measurement says when that happened; a packet capture has neither limit. It also counts everything else on the application's connections in the window, so measure when no one else is using the application from that host.
+- **Round trips from a capture.** A round trip is counted when the store sends data after the client did. A protocol that streams results without waiting for the client, or pipelines several requests before reading any answer, is counted by its turns, which can undercount its requests; the waits that matter for separation are the turns. A capture with no SYN flags column can't count new connections.
+- **The budget is an input.** The kit checks a transaction against the budget and target round-trip time the team enters; it doesn't derive either. Concurrency, server time and bandwidth aren't modeled: the rule is Book 01's round-trip arithmetic, and performance testing after reduction is the proof Chapter 10 asks for.
+- **Not covered:** the plan generators, and ESC patterns beyond ESC1, 2, 4 and 6.
 
 ```
 examples/start-kit/
   README.md
-  Invoke-FMPStartKit.ps1                  the run: pre-flight, assessment, SQL, NPS, summary, manifest
+  Invoke-FMPStartKit.ps1                  the run: pre-flight, assessment, SQL, NPS, transaction profiles, summary, manifest
   powershell/StartKit.Common.ps1          output guard, writers, provenance manifest
   powershell/FMPADAssessment/             Appendix B's module, packaged, plus the added collectors
   powershell/FMPSqlEstate/                SQL Server signals, T-SQL pass, fusion and counts
   powershell/FMPNpsInventory/             NPS servers, RADIUS clients, policies, groups, findings
-  tests/fixtures/                         the fictional forest, SQL estate and NPS configuration
-  tests/powershell/                       Pester 5: safety, SQL, AD, NPS, end to end
+  powershell/FMPTransactionProfile/       round-trip measurement, profiles, the separation gate
+  tests/fixtures/                         the fictional forest, SQL estate, NPS configuration, transaction catalog
+  tests/powershell/                       Pester 5: safety, SQL, AD, NPS, transaction profiles, end to end
 ```

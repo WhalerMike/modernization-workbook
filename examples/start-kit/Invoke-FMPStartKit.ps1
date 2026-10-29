@@ -12,8 +12,10 @@
       2. Invoke-FMPADAssessment      the twelve domains plus DHCP, the SPN map and LDAP binds
       3. Invoke-FMPSqlEstateDiscovery  the SQL Server count and inventory (unless -SkipSql)
       4. Invoke-FMPNpsInventory      NPS servers, RADIUS clients and policies (unless -SkipNps)
-      5. Get-FMPStartKitSummary      Summary\StartKitSummary.md and .json
-      6. AssessmentManifest.json     who, when, where, module versions, SHA-256 of every file
+      5. Invoke-FMPTransactionProfile  transaction profiles and the separation gate, from
+                                     -TransactionCatalog; without one, a catalog template
+      6. Get-FMPStartKitSummary      Summary\StartKitSummary.md and .json
+      7. AssessmentManifest.json     who, when, where, module versions, SHA-256 of every file
 
     Nothing here writes to Active Directory, DNS, DHCP, AD CS, NPS or SQL Server. Every file
     goes under the run folder. Tier B adds the collectors that need the narrow delegations
@@ -53,12 +55,16 @@ param(
     [switch]$SkipNps,
     # NPS servers outside the RAS and IAS Servers groups, and configuration exports on disk.
     [string[]]$NpsServers = @(),
-    [string[]]$NpsConfigPath = @()
+    [string[]]$NpsConfigPath = @(),
+    [switch]$SkipTransactionProfiles,
+    # The team's transaction catalog, and folders of measurements taken before the run.
+    [string]$TransactionCatalog,
+    [string[]]$TransactionMeasurementPath = @()
 )
 
 $ErrorActionPreference = 'Stop'
 # Imported once; a session that already loaded them (the tests, or a signed copy) keeps its own.
-foreach ($m in 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory') {
+foreach ($m in 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory', 'FMPTransactionProfile') {
     if (-not (Get-Module -Name $m)) { Import-Module (Join-Path (Join-Path $PSScriptRoot 'powershell') $m) }
 }
 # The run script uses the shared helpers directly for the run folder and the manifest.
@@ -96,6 +102,11 @@ if (-not $SkipNps) {
         Invoke-FMPNpsInventory -OutputPath $runPath -Forest $adForest.Name -Domain $Domain -NpsServers $NpsServers -ConfigPath $NpsConfigPath -AsOf $start
     }
 }
+if (-not $SkipTransactionProfiles) {
+    $steps += Invoke-FMPStep 'Transaction profiles' {
+        Invoke-FMPTransactionProfile -OutputPath $runPath -CatalogPath $TransactionCatalog -MeasurementPath $TransactionMeasurementPath -AsOf $start
+    }
+}
 $steps += Invoke-FMPStep 'Summary' { Get-FMPStartKitSummary -RunPath $runPath }
 
 $parameters = @{
@@ -103,6 +114,8 @@ $parameters = @{
     TargetServerCount = @($TargetServers).Count; ProbeNetwork = [bool]$ProbeNetwork; ProbeAllServers = [bool]$ProbeAllServers
     UseDbatools = [bool]$UseDbatools; QueryInstances = [bool]$QueryInstances; ZombieThresholdDays = $ZombieThresholdDays
     SkipNps = [bool]$SkipNps; NpsServerCount = @($NpsServers).Count; NpsConfigFileCount = @($NpsConfigPath).Count
+    SkipTransactionProfiles = [bool]$SkipTransactionProfiles; TransactionCatalog = [bool]$TransactionCatalog
+    TransactionMeasurementPathCount = @($TransactionMeasurementPath).Count
 }
 $manifest = Write-FMPManifest -RunPath $runPath -RunId $runId -StartTime $start -Tier $Tier -Forest $adForest.Name `
     -Domains $Domain -ServedBy $servedBy -Steps $steps -Parameters $parameters

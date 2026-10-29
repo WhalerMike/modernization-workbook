@@ -1,0 +1,7 @@
+Application,Transaction,Store,StoreAddress,StorePort,ClientAddress,CurrentRttMs,TargetRttMs,BudgetMs,Techniques,BaselineCapture,ReducedCapture,CaptureRepetitions,BaselineRoundTrips,ReducedRoundTrips,DeclaredMethod,Owner,Notes
+Payroll,Submit timesheet,sql01\HR,10.0.20.15,1433,10.0.30.40,,30,300,Aggregation;Batching,captures\payroll-submit-baseline.tsv,captures\payroll-submit-reduced.csv,1,,,,HR applications team,
+Payroll,Run pay report,sql01\HR,,,,0.5,30,300,,,,,6,,APM trace,HR applications team,Measured in the APM tool's transaction trace
+Case management,Open case,sql02\CASES,,,,0.4,30,500,Connection pooling,,,,,,,Case systems team,
+Case management,Search cases,sql02\CASES,,,,0.4,30,500,,,,,20,,Estimate,Case systems team,From the vendor's design notes
+Licensing,Renew licence,ora01,10.0.20.40,1521,,0.6,30,,Caching;Sharding,captures\missing.tsv,,,,,,Licensing team,
+Licensing,Renew licence,ora01,,,,,,,,,,,,,,,Duplicate row
