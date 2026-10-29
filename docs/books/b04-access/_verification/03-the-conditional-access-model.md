@@ -121,3 +121,16 @@ Book-internal consistency fixes. Factual changes were checked against sources op
 | Claim | Result | Source |
 |---|---|---|
 | Agent targets are preview; agent identities support only Block | updated: Agent ID platform GA April 2026; agent targeting still labeled preview; agent identities Block only, agent risk (preview) only condition; agent users can be granted on a compliant device (Windows 365 Cloud PC for Agents); licensing Microsoft 365 E7 or Agent 365 with Entra ID P1 or Microsoft 365 E3 | Microsoft Learn: howto-target-agent-identities, policy-agent-user, concept-conditional-access-grant, Entra whats-new (April 2026) |
+
+## Additions, October 29, 2026 (contractors and the PIV path)
+
+Added at the author's request: paragraph "Contractors and the PIV path" at the end of "Authentication strengths". Research page: `docs/research/oracle-contingent-worker-contractor-source.md` (its log: `docs/research/_verification/oracle-contingent-worker-contractor-source.md`).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Contractors are in the Internals persona (`CTR`) | Contractors and the PIV path | verified (this chapter's persona table) | internal |
+| 2 | TAP satisfies the Multifactor authentication strength, not Phishing-resistant MFA | Before the card | verified (this chapter's built-in strength table) | c03-auth-strengths |
+| 3 | A TAP lets users "onboard other passwordless authentication methods" | Before the card | verified (raw page text); footnote c03-tap added | Microsoft Learn, Temporary Access Pass |
+| 4 | Only internal guest accounts can be issued a TAP | Before the card | verified (raw page text) | c03-tap |
+| 5 | PIV revocation reaches Entra only when the CRL refreshes; the leaver's disable stops sign-in | After the card | restated from Book 03 Ch09 (linked) | — |
+| 6 | Register FIDO2 with the TAP; decide member or guest on purpose | Before the card | design (labelled) | — |

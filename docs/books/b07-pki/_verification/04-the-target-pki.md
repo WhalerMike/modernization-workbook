@@ -106,3 +106,16 @@ Cross-chapter consistency pass. Every changed external fact was re-checked on th
 | Claim | Result | Source |
 |---|---|---|
 | CLM reads Cloud PKI inventory | corrected after the CyberArk implementation-guide research | No CyberArk Cloud PKI import documented; Graph beta leaf report is the only machine-readable source |
+
+## Additions, October 29, 2026 (the contractor PIV path)
+
+Added at the author's request: new subsection "The contractor PIV path" in "Federal PKI for PIV". Research page: `docs/research/oracle-contingent-worker-contractor-source.md` (its log: `docs/research/_verification/oracle-contingent-worker-contractor-source.md`).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Issuance only once a proper authority has authorized it | Issue | verified | FIPS 201-3 §2.1 (c04-fips201) |
+| 2 | CMS writes and removes the binding on issuance and reissue | Bind | restated from Book 03 Ch09 and this book's Ch06 (linked) | — |
+| 3 | A revocation reaches Entra CBA only after a newer CRL and a cache refresh | Revoke and report | verified; caching added to the c04-cba-crl footnote's description (same page) | Microsoft Learn, CBA CRL |
+| 4 | Account disable, not the CRL, stops sign-in | Revoke and report | restated from Book 03 Ch09 and this book's Ch08 (linked) | — |
+| 5 | 18-hour termination clock from notification | End | verified | FIPS 201-3 §2.9.4 (c04-fips201) |
+| 6 | Sponsorship from the contractor joiner; CMS events back to the pipeline; end date as the notification | All four | design (labelled) | — |

@@ -120,6 +120,11 @@ Custom strengths narrow the list further, for example to FIDO2 keys with specifi
 
 Which methods agencies roll out, and in what order toward M-22-09, is [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md)'s subject. This book assumes its end state: phishing-resistant MFA for everyone.
 
+**Contractors and the PIV path.** Contractors sit in the Internals persona with employees (worker type code `CTR`, [below](#personas)), so they meet the same phishing-resistant strength, usually with their PIV certificate through certificate-based authentication configured as multifactor. Two moments are theirs to plan *(design guidance)*:
+
+- **Before the card.** The account exists before the card does, and a Temporary Access Pass satisfies only the Multifactor authentication strength in the table above, not Phishing-resistant MFA. Use the pass to register a FIDO2 security key or passkey, which does satisfy it: a Temporary Access Pass lets users "onboard other passwordless authentication methods."[^c03-tap] Only internal guest accounts can be issued a Temporary Access Pass,[^c03-tap] which is one more reason to decide on purpose whether contractors with agency accounts are members or guests ([research: the contractor source](../../research/oracle-contingent-worker-contractor-source.md#microsofts-side)).
+- **After the card.** A PIV revocation reaches Entra ID only when the issuing CA's CRL refreshes ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#revocation-checking)). What stops a contractor's sign-in on the day is the leaver's account disable and session revocation, driven by the contractor source's end date ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#the-contractor-piv-path)); the policy can't do it.
+
 ### Session controls
 
 Session controls apply after every grant requirement is met.[^c03-policies]
@@ -265,6 +270,7 @@ Devices carry their own label. The program sets the device object's `extensionAt
 [^c03-graph-grant]: Microsoft Learn, "conditionalAccessGrantControls resource type" (Microsoft Graph v1.0), <https://learn.microsoft.com/graph/api/resources/conditionalaccessgrantcontrols?view=graph-rest-1.0> (accessed Oct 20, 2026).
 [^c03-managed]: Microsoft Learn, "Microsoft-managed Conditional Access policies," <https://learn.microsoft.com/entra/identity/conditional-access/managed-policies> (accessed Oct 20, 2026).
 [^c03-auth-strength-graph]: Microsoft Learn, "List authenticationStrengthPolicies" (Microsoft Graph v1.0), <https://learn.microsoft.com/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0> (accessed Oct 20, 2026).
+[^c03-tap]: Microsoft Learn, "Configure Temporary Access Pass to register passwordless authentication methods" (users sign in with a TAP "to onboard other passwordless authentication methods"; only internal guest accounts can be issued a TAP), <https://learn.microsoft.com/entra/identity/authentication/howto-authentication-temporary-access-pass> (accessed Oct 29, 2026).
 [^c03-session]: Microsoft Learn, "Conditional Access: Session," <https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-session> (accessed Oct 20, 2026).
 [^c03-graph-session]: Microsoft Learn, "conditionalAccessSessionControls resource type" (Microsoft Graph v1.0), <https://learn.microsoft.com/graph/api/resources/conditionalaccesssessioncontrols?view=graph-rest-1.0> (accessed Oct 20, 2026).
 [^c03-session-lifetime]: Microsoft Learn, "Conditional Access adaptive session lifetime policies," <https://learn.microsoft.com/entra/identity/conditional-access/concept-session-lifetime> (accessed Oct 20, 2026).
