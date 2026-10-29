@@ -120,6 +120,8 @@ Microsoft supports these methods:[^c09-arc-deploy]
 
 The program's recommendation: onboard fleets with a dedicated service principal that authenticates with a certificate, deployed through the automation tool the server team already runs (Configuration Manager, Ansible or Group Policy). Use the interactive script only for a handful of servers or a pilot. Whichever tool you use, the same least-privilege rules apply.
 
+Onboarding with Ansible, and the populations Arc doesn't reach that Ansible can, are covered in the companion guide [Ansible for Configuration Automation](../guides/ansible-configuration-automation.md#arc-onboarding-at-scale), with [example playbooks](../../../downloads/ansible-examples.zip).
+
 ### Create the onboarding service principal
 
 The service principal exists only to connect machines. Microsoft describes it as used only during onboarding and for no other purpose,[^c09-arc-sp] and the credential is needed only when `azcmagent connect` runs. If it expires or is deleted afterward, the server stays connected.[^c09-arc-onboard-sec] So keep its lifetime short and its scope small.

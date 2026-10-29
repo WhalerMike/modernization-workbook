@@ -1,0 +1,11 @@
+{#- One CSV from a list of flat dictionaries; the header is the first row's keys. -#}
+{% if rows | length > 0 %}
+{{ rows[0].keys() | join(',') }}
+{% for row in rows %}
+{% set cells = [] %}
+{% for value in row.values() %}
+{% set _ = cells.append('"' ~ (value | string | replace('"', '""')) ~ '"') %}
+{% endfor %}
+{{ cells | join(',') }}
+{% endfor %}
+{% endif %}

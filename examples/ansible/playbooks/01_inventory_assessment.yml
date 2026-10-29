@@ -1,0 +1,147 @@
+---
+# Inventory and assessment: the CM-8 feed.
+#
+# What each managed server actually is (operating system, version, Azure Connected Machine
+# agent present or not) beside what its CMDB record says it is (owner, environment, tier).
+# Read-only: it gathers facts and reads the agent's own status. The only files written are
+# the two reports on the control node, under report_dir.
+#
+#   ansible-playbook playbooks/01_inventory_assessment.yml
+#   ansible-playbook playbooks/01_inventory_assessment.yml --limit env_nonproduction
+#
+# Every CMDB record gets a row. A host that couldn't be reached, or that sits in tier 3 or 4,
+# says not_collected; it's never counted as having no agent.
+
+- name: Assess Linux and Unix servers
+  hosts: os_linux:os_unix:&managed
+  gather_facts: true
+  # The minimal fact subset: platform, distribution and kernel, without hardware or mounts.
+  gather_subset: [min]
+  become: false
+  tasks:
+    - name: Look for the Azure Connected Machine agent
+      ansible.builtin.stat:
+        path: /opt/azcmagent/bin/azcmagent
+      register: arc_agent_file
+
+    - name: Read the agent's own status
+      ansible.builtin.command:
+        argv: [/opt/azcmagent/bin/azcmagent, show, --json]
+      register: arc_agent_show
+      when: arc_agent_file.stat.exists
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: Record what was observed
+      ansible.builtin.set_fact:
+        assessment:
+          observed_os: "{{ ansible_facts['distribution'] | default('') }}"
+          observed_version: "{{ ansible_facts['distribution_version'] | default('') }}"
+          kernel: "{{ ansible_facts['kernel'] | default('') }}"
+          arc_agent_present: "{{ arc_agent_file.stat.exists }}"
+          arc_agent_status: >-
+            {{ (arc_agent_show.stdout | default('{}') | from_json).status | default('unknown')
+               if arc_agent_file.stat.exists and (arc_agent_show.rc | default(1)) == 0
+               else ('not_installed' if not arc_agent_file.stat.exists else 'unknown') }}
+
+- name: Assess Windows servers
+  hosts: os_windows:&managed
+  gather_facts: true
+  # The minimal fact subset: platform, distribution and kernel, without hardware or mounts.
+  gather_subset: [min]
+  tasks:
+    - name: Look for the Azure Connected Machine agent
+      ansible.windows.win_stat:
+        path: C:\Program Files\AzureConnectedMachineAgent\azcmagent.exe
+      register: arc_agent_file
+
+    - name: Read the agent's own status
+      ansible.windows.win_command:
+        argv: ['C:\Program Files\AzureConnectedMachineAgent\azcmagent.exe', show, --json]
+      register: arc_agent_show
+      when: arc_agent_file.stat.exists
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: Record what was observed
+      ansible.builtin.set_fact:
+        assessment:
+          observed_os: "{{ ansible_facts['os_name'] | default(ansible_facts['distribution'] | default('')) }}"
+          observed_version: "{{ ansible_facts['distribution_version'] | default('') }}"
+          kernel: "{{ ansible_facts['kernel'] | default('') }}"
+          arc_agent_present: "{{ arc_agent_file.stat.exists }}"
+          arc_agent_status: >-
+            {{ (arc_agent_show.stdout | default('{}') | from_json).status | default('unknown')
+               if arc_agent_file.stat.exists and (arc_agent_show.rc | default(1)) == 0
+               else ('not_installed' if not arc_agent_file.stat.exists else 'unknown') }}
+
+- name: Write the CM-8 feed on the control node
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Stamp the run once
+      ansible.builtin.set_fact:
+        run_stamp: "{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}"
+        rows: []
+
+    - name: Build one row per CMDB record
+      vars:
+        hv: "{{ hostvars[record] }}"
+        seen: "{{ hostvars[record]['assessment'] | default({}) }}"
+      ansible.builtin.set_fact:
+        rows: >-
+          {{ rows + [{
+               'host': record,
+               'cmdb_ci': hv.cmdb_ci | default(''),
+               'owner': hv.owner | default(''),
+               'environment': hv.environment | default(''),
+               'management_tier': hv.management_tier | default(''),
+               'config_owner': hv.config_owner | default(''),
+               'cmdb_os': hv.cmdb_os | default(''),
+               'observed_os': seen.observed_os | default(''),
+               'observed_version': seen.observed_version | default(''),
+               'version_matches_cmdb': ((seen.observed_version | default('') | length > 0)
+                                        and (seen.observed_version | default('')) in (hv.cmdb_os | default('')))
+                                       if seen else '',
+               'arc_status_in_cmdb': hv.arc_status | default(''),
+               'arc_agent_present': seen.arc_agent_present | default(''),
+               'arc_agent_status': seen.arc_agent_status | default(''),
+               'collection_status': 'collected' if seen else 'not_collected'
+             }] }}
+      loop: "{{ groups['all'] | sort }}"
+      loop_control:
+        loop_var: record
+        label: "{{ record }}"
+
+    - name: Create the report folder
+      ansible.builtin.file:
+        path: "{{ report_dir }}"
+        state: directory
+        mode: "0750"
+      check_mode: false
+
+    - name: Write the JSON feed
+      ansible.builtin.copy:
+        content: "{{ rows | to_nice_json }}\n"
+        dest: "{{ report_dir }}/inventory-assessment-{{ run_stamp }}.json"
+        mode: "0640"
+      check_mode: false
+
+    - name: Write the CSV feed
+      ansible.builtin.template:
+        src: rows.csv.j2
+        dest: "{{ report_dir }}/inventory-assessment-{{ run_stamp }}.csv"
+        mode: "0640"
+      check_mode: false
+
+    - name: Summarize
+      ansible.builtin.debug:
+        msg: >-
+          {{ rows | selectattr('collection_status', 'equalto', 'collected') | list | length }} of
+          {{ rows | length }} CMDB records collected;
+          {{ rows | selectattr('arc_agent_present', 'equalto', true) | list | length }} with the Arc agent;
+          {{ rows | selectattr('owner', 'equalto', '') | list | length }} with no owner.
+          Reports in {{ report_dir }}.

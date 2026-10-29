@@ -1,0 +1,10 @@
+---
+# The NIOS modules and lookup call the Grid Master's WAPI from the control node, so the
+# play runs locally. The credential comes from the environment (or an Automation Platform
+# credential that sets it), never from this file. Use a read-only NIOS admin group.
+ansible_connection: local
+nios_provider:
+  host: "{{ ansible_host }}"
+  username: "{{ lookup('ansible.builtin.env', 'NIOS_USERNAME') }}"
+  password: "{{ lookup('ansible.builtin.env', 'NIOS_PASSWORD') }}"
+  validate_certs: true

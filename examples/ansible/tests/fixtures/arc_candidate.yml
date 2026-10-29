@@ -1,0 +1,19 @@
+---
+# The control node posing as one Arc onboarding candidate, for the dry-run test of
+# playbooks/02_arc_onboarding.yml. Every identifier is a placeholder.
+all:
+  vars:
+    arc_tenant_id: "00000000-0000-0000-0000-000000000000"
+    arc_subscription_id: "00000000-0000-0000-0000-000000000000"
+    arc_sp_id: "00000000-0000-0000-0000-000000000000"
+    arc_cloud: AzureUSGovernment
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: "{{ ansible_playbook_python }}"
+      arc_resource_group: rg-arc-servers-test
+      arc_location: usgovvirginia
+      arc_tags: {Owner: team-test, Environment: nonproduction, CmdbCi: CI9999999, Location: lab, PatchGroup: ""}
+  children:
+    arc_onboarding_candidates: {hosts: {localhost: {}}}
+    os_linux: {hosts: {localhost: {}}}

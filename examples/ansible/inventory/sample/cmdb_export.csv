@@ -1,0 +1,13 @@
+name,ansible_host,cmdb_ci,device_class,os_family,os,environment,owner,location,management_tier,config_owner,arc_status,arc_resource_group,arc_location,patch_group
+app01.contoso.example,192.0.2.11,CI0001001,server,linux,RHEL 9.4,production,team-claims,dc-east,tier1,arc_machine_configuration,connected,rg-arc-servers-prod,usgovvirginia,PG-WED-0200
+app02.contoso.example,192.0.2.12,CI0001002,server,linux,RHEL 8.10,production,team-claims,dc-east,tier1,arc_machine_configuration,not_onboarded,rg-arc-servers-prod,usgovvirginia,PG-WED-0200
+web01.contoso.example,192.0.2.21,CI0001003,server,linux,Ubuntu 22.04,nonproduction,team-portal,dc-west,tier1,arc_machine_configuration,not_onboarded,rg-arc-servers-dev,usgovarizona,PG-TUE-2200
+win01.contoso.example,192.0.2.31,CI0001004,server,windows,Windows Server 2022,production,team-finance,dc-east,tier1,arc_machine_configuration,not_onboarded,rg-arc-servers-prod,usgovvirginia,PG-WED-0200
+lab01.contoso.example,192.0.2.41,CI0001005,server,linux,Rocky Linux 9.4,nonproduction,team-research,lab-north,tier2,ansible,not_supported,,,PG-SAT-0100
+aix01.contoso.example,192.0.2.51,CI0001006,server,unix,AIX 7.3,production,team-payroll,dc-east,tier2,ansible,not_supported,,,PG-SUN-0300
+sol01.contoso.example,192.0.2.52,CI0001007,server,unix,Solaris 11.4,production,team-records,dc-east,tier2,ansible,not_supported,,,PG-SUN-0300
+rtr01.contoso.example,198.51.100.1,CI0002001,network,network_ios,Cisco IOS XE 17.9,production,team-network,dc-east,tier2,ansible,not_supported,,,PG-NET-0400
+gm01.contoso.example,198.51.100.10,CI0002002,appliance,infoblox_nios,NIOS 9.0,production,team-ddi,dc-east,tier2,ansible,not_supported,,,PG-NET-0400
+vc01.contoso.example,198.51.100.20,CI0002003,appliance,vmware_vcenter,vCenter Server 8.0,production,team-virtualization,dc-east,tier2,ansible,not_supported,,,PG-VMW-0400
+legacy01.contoso.example,192.0.2.91,CI0003001,server,unix,HP-UX 11i v3,production,,dc-east,tier3,none,not_supported,,,
+scada01.contoso.example,203.0.113.5,CI0003002,ot,other,Vendor firmware,production,team-facilities,plant-south,tier4,none,not_supported,,,

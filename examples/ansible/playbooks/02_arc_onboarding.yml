@@ -1,0 +1,232 @@
+---
+# Azure Arc onboarding at scale: install and connect the Azure Connected Machine agent.
+#
+# This is the one playbook in the kit that changes servers, so it's gated twice:
+#   1. Without -e confirm_change=true every task runs in check mode: you see what would
+#      happen on each host and nothing is installed or connected.
+#   2. It targets only arc_onboarding_candidates, the tier 1 Linux and Windows servers the
+#      CMDB says aren't connected yet, and it skips any host whose agent already reports
+#      Connected.
+#
+#   ansible-playbook playbooks/02_arc_onboarding.yml --limit app02.contoso.example
+#   ansible-playbook playbooks/02_arc_onboarding.yml --limit app02.contoso.example -e confirm_change=true
+#
+# Parameters come from inventory: the tenant, subscription, cloud and service principal ID
+# from group_vars/all.yml; the resource group, region and tags from each host's CMDB record.
+# The service principal secret comes from Ansible Vault (arc_sp_secret) or the ARC_SP_SECRET
+# environment variable, never from this file, and it's passed to azcmagent in a short-lived
+# configuration file that is deleted in the same run, not on the command line.
+# Waves run one canary host, then five, then a quarter of the rest, and stop at the first failure.
+
+- name: Onboard Linux servers to Azure Arc
+  hosts: arc_onboarding_candidates:&os_linux
+  gather_facts: false
+  serial: [1, 5, "25%"]
+  max_fail_percentage: 0
+  vars:
+    confirm_change: false
+    arc_secret: "{{ arc_sp_secret | default(lookup('ansible.builtin.env', 'ARC_SP_SECRET')) }}"
+    # The CMDB tags as Name=Value pairs, comma-delimited, empty values left out.
+    arc_tag_string: "{% for k, v in arc_tags.items() if v %}{{ k }}={{ v }}{{ '' if loop.last else ',' }}{% endfor %}"
+    arc_agent: /opt/azcmagent/bin/azcmagent
+    arc_config: /root/.arc-onboarding.json
+  # Check mode unless the operator says otherwise on the command line.
+  check_mode: "{{ not (confirm_change | bool) }}"
+  tasks:
+    - name: Check every parameter is present before touching the host
+      ansible.builtin.assert:
+        that:
+          - arc_tenant_id | length > 0
+          - arc_subscription_id | length > 0
+          - arc_sp_id | length > 0
+          - arc_resource_group | default('') | length > 0
+          - arc_location | default('') | length > 0
+          - arc_secret | length > 0
+        fail_msg: >-
+          Missing an Arc parameter for {{ inventory_hostname }}: the resource group and region come
+          from its CMDB record, the secret from arc_sp_secret (vault) or ARC_SP_SECRET.
+        quiet: true
+      no_log: true
+
+    - name: Look for the agent
+      ansible.builtin.stat:
+        path: "{{ arc_agent }}"
+      register: arc_agent_file
+
+    - name: Read the agent's status if it's installed
+      ansible.builtin.command:
+        argv: ["{{ arc_agent }}", show, --json]
+      become: true
+      register: arc_agent_show
+      when: arc_agent_file.stat.exists
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: Decide whether this host still needs connecting
+      ansible.builtin.set_fact:
+        arc_connected: >-
+          {{ arc_agent_file.stat.exists and (arc_agent_show.rc | default(1)) == 0
+             and ((arc_agent_show.stdout | default('{}') | from_json).status | default('')) == 'Connected' }}
+
+    - name: Install and connect
+      when: not arc_connected
+      block:
+        - name: Download Microsoft's agent installation script
+          ansible.builtin.get_url:
+            url: https://aka.ms/azcmagent
+            dest: /tmp/install_linux_azcmagent.sh
+            mode: "0700"
+          become: true
+          when: not arc_agent_file.stat.exists
+
+        - name: Install the agent
+          ansible.builtin.command:
+            argv: [bash, /tmp/install_linux_azcmagent.sh]
+            creates: "{{ arc_agent }}"
+          become: true
+
+        - name: Write the connection parameters to a root-only file
+          ansible.builtin.copy:
+            dest: "{{ arc_config }}"
+            mode: "0600"
+            owner: root
+            content: "{{ arc_parameters | to_nice_json }}"
+          vars:
+            arc_parameters:
+              tenant-id: "{{ arc_tenant_id }}"
+              subscription-id: "{{ arc_subscription_id }}"
+              resource-group: "{{ arc_resource_group }}"
+              location: "{{ arc_location }}"
+              cloud: "{{ arc_cloud }}"
+              service-principal-id: "{{ arc_sp_id }}"
+              service-principal-secret: "{{ arc_secret }}"
+              tags: "{{ arc_tag_string }}"
+          become: true
+          no_log: true
+
+        - name: Connect the agent
+          ansible.builtin.command:
+            argv: ["{{ arc_agent }}", connect, --config, "{{ arc_config }}"]
+          become: true
+          register: arc_connect
+          changed_when: arc_connect.rc == 0
+          no_log: true
+
+      always:
+        - name: Delete the parameter file
+          ansible.builtin.file:
+            path: "{{ arc_config }}"
+            state: absent
+          become: true
+
+    - name: Confirm the connection
+      ansible.builtin.command:
+        argv: ["{{ arc_agent }}", show, --json]
+      become: true
+      register: arc_after
+      changed_when: false
+      when: not ansible_check_mode
+      failed_when: (arc_after.stdout | from_json).status | default('') != 'Connected'
+
+- name: Onboard Windows servers to Azure Arc
+  hosts: arc_onboarding_candidates:&os_windows
+  gather_facts: false
+  serial: [1, 5, "25%"]
+  max_fail_percentage: 0
+  vars:
+    confirm_change: false
+    arc_secret: "{{ arc_sp_secret | default(lookup('ansible.builtin.env', 'ARC_SP_SECRET')) }}"
+    # The CMDB tags as Name=Value pairs, comma-delimited, empty values left out.
+    arc_tag_string: "{% for k, v in arc_tags.items() if v %}{{ k }}={{ v }}{{ '' if loop.last else ',' }}{% endfor %}"
+    arc_agent: C:\Program Files\AzureConnectedMachineAgent\azcmagent.exe
+    arc_installer: C:\Windows\Temp\AzureConnectedMachineAgent.msi
+    arc_config: C:\Windows\Temp\arc-onboarding.json
+  check_mode: "{{ not (confirm_change | bool) }}"
+  tasks:
+    - name: Check every parameter is present before touching the host
+      ansible.builtin.assert:
+        that:
+          - arc_tenant_id | length > 0
+          - arc_subscription_id | length > 0
+          - arc_sp_id | length > 0
+          - arc_resource_group | default('') | length > 0
+          - arc_location | default('') | length > 0
+          - arc_secret | length > 0
+        fail_msg: Missing an Arc parameter for {{ inventory_hostname }}.
+        quiet: true
+      no_log: true
+
+    - name: Look for the agent
+      ansible.windows.win_stat:
+        path: "{{ arc_agent }}"
+      register: arc_agent_file
+
+    - name: Read the agent's status if it's installed
+      ansible.windows.win_command:
+        argv: ["{{ arc_agent }}", show, --json]
+      register: arc_agent_show
+      when: arc_agent_file.stat.exists
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: Decide whether this host still needs connecting
+      ansible.builtin.set_fact:
+        arc_connected: >-
+          {{ arc_agent_file.stat.exists and (arc_agent_show.rc | default(1)) == 0
+             and ((arc_agent_show.stdout | default('{}') | from_json).status | default('')) == 'Connected' }}
+
+    - name: Install and connect
+      when: not arc_connected
+      block:
+        - name: Download the agent installer
+          ansible.windows.win_get_url:
+            url: https://aka.ms/AzureConnectedMachineAgent
+            dest: "{{ arc_installer }}"
+          when: not arc_agent_file.stat.exists
+
+        - name: Install the agent
+          ansible.windows.win_package:
+            path: "{{ arc_installer }}"
+            creates_path: "{{ arc_agent }}"
+            state: present
+          when: not arc_agent_file.stat.exists
+
+        - name: Write the connection parameters to a temporary file
+          ansible.windows.win_copy:
+            dest: "{{ arc_config }}"
+            content: "{{ arc_parameters | to_nice_json }}"
+          vars:
+            arc_parameters:
+              tenant-id: "{{ arc_tenant_id }}"
+              subscription-id: "{{ arc_subscription_id }}"
+              resource-group: "{{ arc_resource_group }}"
+              location: "{{ arc_location }}"
+              cloud: "{{ arc_cloud }}"
+              service-principal-id: "{{ arc_sp_id }}"
+              service-principal-secret: "{{ arc_secret }}"
+              tags: "{{ arc_tag_string }}"
+          no_log: true
+
+        - name: Connect the agent
+          ansible.windows.win_command:
+            argv: ["{{ arc_agent }}", connect, --config, "{{ arc_config }}"]
+          register: arc_connect
+          changed_when: arc_connect.rc == 0
+          no_log: true
+
+      always:
+        - name: Delete the parameter file and the installer
+          ansible.windows.win_file:
+            path: "{{ item }}"
+            state: absent
+          loop: ["{{ arc_config }}", "{{ arc_installer }}"]
+
+    - name: Confirm the connection
+      ansible.windows.win_command:
+        argv: ["{{ arc_agent }}", show, --json]
+      register: arc_after
+      changed_when: false
+      when: not ansible_check_mode
+      failed_when: (arc_after.stdout | from_json).status | default('') != 'Connected'

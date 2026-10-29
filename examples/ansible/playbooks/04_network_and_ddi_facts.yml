@@ -1,0 +1,85 @@
+---
+# Network and DDI facts: read-only inventory for assets no endpoint agent reaches.
+#
+# Routers and switches, and the Infoblox Grid, are tier 2 assets: managed by their platform's
+# own tool, with Ansible collecting the evidence. This reads facts from each; it sends no
+# configuration commands and creates no NIOS objects.
+#
+#   ansible-playbook playbooks/04_network_and_ddi_facts.yml
+#
+# Needs the collections in requirements.yml. The Infoblox lookup also needs the
+# infoblox-client Python package on the control node, and NIOS_USERNAME and NIOS_PASSWORD
+# in the environment for a NIOS admin group with read-only permissions.
+
+- name: Read Cisco IOS facts
+  hosts: os_network_ios:&managed
+  gather_facts: false
+  tasks:
+    - name: Gather the minimal fact subset
+      cisco.ios.ios_facts:
+        gather_subset: [min]
+
+    - name: Record what was observed
+      ansible.builtin.set_fact:
+        network_row:
+          host: "{{ inventory_hostname }}"
+          cmdb_ci: "{{ cmdb_ci }}"
+          owner: "{{ owner }}"
+          cmdb_os: "{{ cmdb_os }}"
+          observed_hostname: "{{ ansible_facts['net_hostname'] | default('') }}"
+          observed_model: "{{ ansible_facts['net_model'] | default('') }}"
+          observed_serial: "{{ ansible_facts['net_serialnum'] | default('') }}"
+          observed_version: "{{ ansible_facts['net_version'] | default('') }}"
+          source: cisco.ios.ios_facts
+
+- name: Read the Infoblox Grid's members
+  hosts: os_infoblox_nios:&managed
+  gather_facts: false
+  tasks:
+    - name: Look up Grid members through the WAPI
+      ansible.builtin.set_fact:
+        grid_members: >-
+          {{ query('infoblox.nios_modules.nios_lookup', 'member',
+                   return_fields=['host_name', 'platform', 'node_info'],
+                   provider=nios_provider) }}
+      no_log: true
+
+    - name: Record what was observed
+      ansible.builtin.set_fact:
+        network_row:
+          host: "{{ inventory_hostname }}"
+          cmdb_ci: "{{ cmdb_ci }}"
+          owner: "{{ owner }}"
+          cmdb_os: "{{ cmdb_os }}"
+          observed_hostname: "{{ grid_members | map(attribute='host_name') | join(' ') }}"
+          observed_model: "{{ grid_members | map(attribute='platform') | unique | join(' ') }}"
+          observed_serial: ""
+          observed_version: ""
+          source: infoblox.nios_modules.nios_lookup
+
+- name: Write the network and DDI feed on the control node
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Collect the rows
+      ansible.builtin.set_fact:
+        run_stamp: "{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}"
+        rows: >-
+          {{ ((groups['os_network_ios'] | default([])) + (groups['os_infoblox_nios'] | default([])))
+             | map('extract', hostvars) | selectattr('network_row', 'defined')
+             | map(attribute='network_row') | list }}
+
+    - name: Create the report folder
+      ansible.builtin.file:
+        path: "{{ report_dir }}"
+        state: directory
+        mode: "0750"
+      check_mode: false
+
+    - name: Write the CSV feed
+      ansible.builtin.template:
+        src: rows.csv.j2
+        dest: "{{ report_dir }}/network-ddi-facts-{{ run_stamp }}.csv"
+        mode: "0640"
+      check_mode: false

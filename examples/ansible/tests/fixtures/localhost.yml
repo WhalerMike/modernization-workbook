@@ -1,0 +1,27 @@
+---
+# The control node as a one-host estate, for running the read-only playbooks in the tests.
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: "{{ ansible_playbook_python }}"
+      cmdb_ci: CI9999999
+      cmdb_os: Ubuntu 24.04
+      owner: team-test
+      environment: nonproduction
+      management_tier: 2
+      config_owner: ansible
+      arc_status: not_supported
+    # A discovered-only record: in the CMDB, never contacted, reported as not_collected.
+    legacy.contoso.example:
+      ansible_host: 192.0.2.99
+      cmdb_ci: CI9999998
+      cmdb_os: HP-UX 11i v3
+      owner: ""
+      management_tier: 3
+      config_owner: none
+  children:
+    unmanaged: {hosts: {legacy.contoso.example: {}}}
+    managed: {hosts: {localhost: {}}}
+    os_linux: {hosts: {localhost: {}}}
+    config_owner_ansible: {hosts: {localhost: {}}}

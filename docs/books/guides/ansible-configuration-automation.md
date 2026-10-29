@@ -1,0 +1,341 @@
+---
+title: "Ansible for Configuration Automation"
+description: "Where Ansible fits in a federal modernization program beside Intune, Azure Arc, Azure Policy machine configuration and Configuration Manager, with one owning tool per setting: Azure Arc onboarding at scale, and the tier-2 populations Intune and Arc don't reach (AIX, Solaris, Linux beyond Arc's support list, network gear, appliances, VMware, Infoblox and cloud VMs). Ansible Automation Platform's federal posture (authorization, FIPS, STIG, hosting, credentials and the controller as a non-person identity), the evidence it produces for CM-2, CM-3, CM-6, CM-7, CM-8 and AU, the dangers and how to avoid them, a phased adoption path, and tested example playbooks."
+doc-type: workbook-guide
+audience: [Executive, Technical, Customer]
+family: guides
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-04-01
+---
+
+# Ansible for Configuration Automation
+
+*Ansible can reach almost anything with an SSH port or an API, which is exactly why a program has to decide, setting by setting, where it is allowed to write.*
+
+::: {.callout-note}
+## In this guide
+What Ansible is and isn't next to Intune, Azure Arc, Azure Policy and machine configuration, and Configuration Manager, and the rule that keeps them from fighting: one owning tool per setting, recorded in the CMDB. Where Ansible fits: onboarding servers to Azure Arc at scale, and managing the populations Intune and Arc don't reach (AIX and Solaris, Linux outside Arc's support list, network devices, VMware, Infoblox NIOS, Windows where Configuration Manager isn't used, and cloud VMs), which the program's coverage tiers call tier 2. Ansible Automation Platform in a federal setting: authorization status, FIPS mode, STIG content, hosting, and credentials, with the controller governed as a non-person identity. The evidence Ansible produces for CM-2, CM-3, CM-6, CM-7, CM-8 and the AU family. The dangers and how to avoid them. A phased adoption path with gates. And a folder of example playbooks, tested and downloadable.
+:::
+
+::: {.callout-tip}
+## Download the examples
+**[ansible-examples.zip](../../../downloads/ansible-examples.zip)**: a dynamic inventory that reads a CMDB export, and four small playbooks (the CM-8 inventory feed, gated Azure Arc onboarding, a Linux baseline drift check pinned to check mode, and read-only network and Infoblox facts), with tests that fail on any ungated write. Rebuilt on every site deploy from [`examples/ansible`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible). [The example playbooks](#the-example-playbooks) section below describes them.
+:::
+
+## How to read this guide
+
+Ansible appears in several books, always in passing: as an Azure Arc onboarding method in [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#choose-a-method), as the Red Hat configuration stack in [Book 12, Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#actuation-is-platform-native), as the remediation tool in VMware's STIG content in [Book 15, Chapter 09](../b15-day2-operations/09-control-automation-aws-and-vmware.md#stig-content-for-vcf-9), and as the Infoblox collection in [Book 08](../b08-ddi/11-operating-the-control-plane.md). This guide gathers those mentions into one implementation view and links back to the chapters for the depth.
+
+It follows the identity and device material's four tracks: HR for people, Intune for end-user devices, Azure Arc for servers, and non-person identities. Ansible belongs to the Arc track, where it onboards servers and manages the ones Arc can't, and to the non-person identity track, because the automation controller is itself an identity with standing access to many hosts.
+
+Facts in this guide come from the chapters it links to, and the ones the chapters don't carry were checked on October 29, 2026 against Microsoft Learn, Red Hat's documentation, the FedRAMP Marketplace, DISA, NIST and the Ansible documentation, and are footnoted. The Ansible community documentation site refused automated requests on that date, so Ansible facts were checked against the source files the site is built from, and the footnotes give the published address. Statements marked *(design guidance)* are the program's recommendations, as in the books. Product names are examples, not endorsements.
+
+## What Ansible is, and what it isn't {#what-ansible-is}
+
+Ansible is an automation engine that connects to the hosts it manages, over SSH for Linux and Unix and over WinRM, PowerShell Remoting or SSH for Windows,[^ans-windows] runs small programs called modules there, and removes them. There's no Ansible agent on the target. A *playbook* lists tasks in YAML; an *inventory* lists hosts and groups; a *collection* packages modules, plugins and roles for a platform. Modules should be idempotent, meaning that running a task once has the same result as running it repeatedly, but the documentation is candid that not every playbook or module behaves that way.[^ans-idempotent] Ansible also has a *check mode* that simulates a run without making changes, which this guide leans on heavily.[^ans-checkmode]
+
+**ansible-core** is the free command-line engine. **Red Hat Ansible Automation Platform** is the supported product around it: an automation controller (web interface, API, role-based access, credential store, job scheduling and logging), a private automation hub for approved content, and execution environments that package ansible-core with pinned collections.
+
+What Ansible isn't is a management plane with a record of its own. It doesn't enroll a device, evaluate compliance continuously, or keep a desired state that it re-applies by itself; it does what a playbook says, when the playbook runs. That distinction decides where it fits.
+
+| Tool | What it manages | How it acts | Population it owns *(design guidance)* |
+|---|---|---|---|
+| **Microsoft Intune** | End-user devices: Windows, macOS, iOS and Android. Its supported platforms don't include Windows Server ([Book 05, Chapter 03](../b05-devices/03-where-device-and-server-data-lives.md#which-system-owns-which-fact)) | Enrollment; the device checks in and applies assigned policy | Tier 1 end-user devices |
+| **Azure Arc with Azure Policy machine configuration** | Windows and Linux servers outside Azure, on the versions Microsoft lists[^ans-arc-prereq] | The Connected Machine agent; machine configuration audits, applies and monitors, or applies and auto-corrects operating system settings[^ans-mc-remediation] | Tier 1 servers |
+| **Azure Policy** | Azure resources, including the Arc machine resource and its tags | Policy assignments evaluated by Azure Resource Manager | Azure resources |
+| **Configuration Manager** | Windows devices and servers where it's already deployed; co-management moves workloads to Intune one at a time ([Book 05, Chapter 01](../b05-devices/01-why-group-policy-cant-come-to-the-cloud.md)) | The Configuration Manager client | Existing estates only: no greenfield use ([Book 05, Chapter 04](../b05-devices/04-intune-first-onboarding.md), pillar 4) |
+| **Ansible** | Anything reachable over SSH, WinRM or an API, including network devices and appliances | Push: a playbook runs when someone or a schedule starts it | Tier 2 assets whose CMDB record names it; Arc onboarding for tier 1 servers |
+
+: Which tool owns which population {.striped .hover}
+
+### One owning tool per setting {#one-owning-tool-per-setting}
+
+Book 05's onboarding standard allows one management plane per asset and no co-management for new assets ([Chapter 04](../b05-devices/04-intune-first-onboarding.md), pillar 4). Ansible makes that rule easy to break, because it can write to a server that Azure machine configuration already governs, and nothing in either tool notices. Machine configuration's auto-correct mode makes the collision worse: when a setting drifts, the agent corrects it, and Microsoft says there's no way to report that a drift was automatically corrected.[^ans-mc-remediation] Two tools that disagree on one setting can therefore flip it back and forth indefinitely while both report success. Microsoft's own warning on the point is narrow, about running machine configuration beside older Desired State Configuration versions, but the principle is general: "don't try to manage the same settings."[^ans-mc-dsc] Microsoft doesn't publish guidance on dividing settings between machine configuration and Ansible, Chef or Puppet.
+
+The program's rule *(design guidance)*:
+
+1. **The owner is an attribute.** Every asset's CMDB record names the one tool that owns its configuration settings (`config_owner`: Intune, Arc machine configuration, Configuration Manager, Ansible or the platform's own controller). The CMDB is already the origin of business facts about devices and servers ([Book 05, Chapter 03](../b05-devices/03-where-device-and-server-data-lives.md#the-procurement-record-and-the-cmdb)); which tool owns the settings is one more.
+2. **Ansible reads anything and writes only what it owns.** Assessment playbooks may run anywhere the program allows. A playbook that changes a setting runs only against hosts whose `config_owner` is Ansible, enforced by building the inventory group from that attribute and by an assertion in the playbook itself.
+3. **Onboarding isn't owning.** Installing and connecting the Arc agent hands a server to Arc. After that, Ansible doesn't set what machine configuration sets.
+4. **An exception is a record.** Where Ansible must touch a setting another tool owns (an emergency fix, a setting the owner can't express), it's a dated exception with a reason, and the owning tool's baseline is updated to match within the exception's life.
+
+## Where Ansible fits {#where-it-fits}
+
+The device and server tracks sort every asset into four coverage tiers: tier 1, managed by Intune or Arc; tier 2, managed by the platform's own tool with an evidence feed, the CMDB as the attribute source; tier 3, discovered only; tier 4, segmented or retired. Ansible is the natural tier-2 tool, and an onboarding tool for tier 1.
+
+| Tier | Ansible's role *(design guidance)* |
+|---|---|
+| 1. Intune or Arc | Onboards servers to Arc at scale; reads facts for the CM-8 feed; doesn't own settings |
+| 2. Platform's own tool with an evidence feed | Owns configuration where the CMDB names it; posts every job's results to the evidence store; reads its targets from the CMDB |
+| 3. Discovered only | Reads facts where it's allowed to, to move an asset into tier 1 or 2; never changes it |
+| 4. Segmented or retired | Nothing. No playbook targets the group |
+
+: Ansible across the coverage tiers {.striped .hover}
+
+### Arc onboarding at scale {#arc-onboarding-at-scale}
+
+Microsoft lists Ansible among the at-scale Arc onboarding methods: "the Azure Arc onboarding role in Ansible Core or Ansible Automation Platform."[^ans-arc-deploy] The role, `azure.azcollection.azure_arc`, installs the Connected Machine agent and registers each target; Microsoft calls it idempotent, skips machines already connected, and says it neither discovers machines nor replaces Azure Policy–based management.[^ans-arc-ansible] It takes the resource group, subscription, tenant, region, cloud and tags as variables.[^ans-arc-ansible]
+
+How the role signs in to Azure decides how much secret handling the program inherits:
+
+| Sign-in | What Microsoft says | Program use *(design guidance)* |
+|---|---|---|
+| Managed identity of the control node (`auth_source: msi`) | "the recommended authentication method for production automation," because it removes stored secrets; the control node must be an Azure VM or an Arc-enabled server, and the identity has no Azure permissions until granted[^ans-arc-ansible] | First choice where the controller runs in Azure or is itself Arc-enabled |
+| Service principal through Automation Platform's Azure credential (`auth_source: env`) | The platform injects the values, so no secret is hard-coded in the playbook[^ans-arc-ansible] | Where the controller can't have a managed identity; a certificate credential, as Book 05 recommends |
+| Azure CLI sign-in (`auth_source: cli`) | For interactive use and development; not applicable in Automation Platform[^ans-arc-ansible] | Pilots only |
+
+Whichever identity signs in, it holds the *Azure Connected Machine Onboarding* role on the target resource group and nothing else.[^ans-arc-ansible] Microsoft's security guidance recommends assigning that role only to the onboarding service principal.[^ans-arc-roles] Book 05 adds the program's rules: a dedicated, certificate-based service principal, scoped to the resource group, created and removed per wave, because the credential is needed only while `azcmagent connect` runs ([Chapter 09](../b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal)). Where a playbook calls `azcmagent connect` itself, Microsoft recommends passing the service principal secret in a configuration file rather than on the command line, to keep it out of console logs; `--config` takes a JSON or YAML file of the command's flags, and `--tags` a comma-delimited list of `Name=Value` pairs.[^ans-azcmagent-connect] [^ans-azcmagent-cli] For Azure Government, `--cloud AzureUSGovernment` goes with `--location`.[^ans-azcmagent-connect]
+
+The tags are where Ansible earns its place. The inventory comes from the CMDB, so the onboarding run writes the CMDB's owner, environment, location and patch group onto the Arc resource on the same change, and the derived pointer starts out explainable from its origin, as [Book 05, Chapter 03](../b05-devices/03-where-device-and-server-data-lives.md#the-rule) requires. Run onboarding in Book 05's waves: credential, connect, attach the baseline, verify, close ([Chapter 09](../b05-devices/09-servers-under-azure-arc.md#onboarding)). The example playbook `02_arc_onboarding.yml` spells those steps out with `azcmagent`, gated so nothing changes without `confirm_change=true`; for production, prefer Microsoft's role.
+
+### Linux and Unix baselines {#linux-and-unix}
+
+Arc supports the Windows and Linux versions on Microsoft's list, and "If an OS version isn't listed, it's not supported."[^ans-arc-prereq] AIX, Solaris and HP-UX aren't on it. Neither, after November 2026, are new agent versions for several Linux releases still common in federal estates: the list marks Ubuntu 18.04 and 20.04, Debian 11 and 12, SUSE Linux Enterprise Server 12 SP5 and 15 SP3 through SP6, Oracle Linux 7 and Amazon Linux 2 as reaching the end of new agent version support that month, with the final compatible agent serviced for 12 months after its release.[^ans-arc-prereq] Microsoft also says the agent isn't tested on operating systems hardened to the CIS Benchmark.[^ans-arc-prereq]
+
+Those hosts are tier 2. Ansible reaches them over SSH, escalating with the host's own mechanism (`sudo`, `su`, `pfexec`, `doas`, `pbrun`, `dzdo` and others),[^ans-become] and a baseline is a playbook that sets or checks a list of settings. Two cautions from the documentation shape how. First, `become` can't be limited to particular commands, because modules run from temporary files whose names change on every run, so a `sudo` rule that allows only named commands will fail.[^ans-become] The escalation account therefore has broad rights, which is why it's governed as a privileged non-person identity ([below](#credentials-and-the-controllers-identity)). Second, check mode is "just a simulation"; a task whose condition depends on an earlier task's result won't report in check mode.[^ans-checkmode] Write drift checks so each comparison stands alone, as the example `03_linux_baseline_check.yml` does.
+
+For Red Hat Enterprise Linux, Red Hat ships the security content that turns a STIG or CIS profile into Ansible remediation; [Ansible Automation Platform in a federal setting](#ansible-automation-platform-in-a-federal-setting) has what Red Hat publishes. Whatever content the program adopts, the playbook version in Git is the baseline ([Evidence](#evidence-to-the-program)).
+
+### Network devices {#network-devices}
+
+Routers, switches and firewalls take no endpoint agent, and Ansible's network collections connect to them over SSH or the platform's API. The Cisco IOS collection's facts module, for one, runs over the `network_cli` connection and gathers the `min` subset by default, returning facts prefixed `ansible_net_`: host name, model, serial number and software version.[^ans-ios-facts] That's a CM-8 feed for the network estate with no new software on any device.
+
+Ownership needs care here *(design guidance)*. Where a vendor controller already manages the devices (an SD-WAN manager, a wireless controller, a firewall manager), the controller owns the configuration and Ansible reads, or drives the controller's API, rather than writing to the devices behind its back. Where no controller exists, Ansible can own the device configuration, with the rendered configuration as the CM-2 baseline.
+
+### VMware {#vmware}
+
+Two layers, two owners. Virtual machines on vCenter can be tier 1: Arc-enabled VMware vSphere installs the Connected Machine agent on supported VMs at scale ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#choose-a-method)). The hypervisor and its appliances can't run an operating system agent, and that's where Ansible fits. Broadcom's STIG content for VMware Cloud Foundation 9 remediates appliances with Ansible playbooks and vSphere and VCF API settings with PowerCLI, with InSpec for the audit ([Book 15, Chapter 09](../b15-day2-operations/09-control-automation-aws-and-vmware.md#stig-content-for-vcf-9)). Book 15 records which readiness-guide version each scan used, and the same discipline applies to the playbook version that remediated.
+
+For VM inventory, use the `vmware.vmware.vms` inventory plugin. The older `community.vmware.vmware_vm_inventory` plugin was removed in community.vmware 7.0.0, which points to `vmware.vmware.vms` instead.[^ans-vmware-inv] The `vmware.vmware_rest` collection reads vCenter through its REST API, for example `vcenter_vm_info` to list virtual machines.[^ans-vmware-rest] Where VMware's own Configuration Profiles or Security Posture Management already govern a setting, those own it ([Book 15, Chapter 09](../b15-day2-operations/09-control-automation-aws-and-vmware.md)), and Ansible reads.
+
+### Infoblox NIOS {#infoblox}
+
+The `infoblox.nios_modules` collection manages DNS, DHCP and IPAM objects through the NIOS WAPI ([Book 08, Appendix A](../b08-ddi/appendix-a-dns-record-types.md)), and Infoblox Universal DDI has a Red Hat–certified collection of its own ([Book 08, Chapter 11](../b08-ddi/11-operating-the-control-plane.md)). Its lookup plugins (`nios_lookup` for any WAPI object, `nios_next_ip` for the next free address) run on the control node and need the `infoblox-client` Python package.[^ans-nios] Record and address changes from a playbook are the "configuration management" integration Book 08 lists; the program's rules for who may change DDI objects, through scoped service accounts, are in [Book 08, Chapter 11](../b08-ddi/11-operating-the-control-plane.md), and the NIOS build is in the [Infoblox NIOS implementation guide](../../research/infoblox-nios-implementation.md). Give the automation account a NIOS admin group scoped to the objects it manages, and a read-only group for the evidence playbooks.
+
+### Windows where Configuration Manager isn't used {#windows}
+
+Ansible manages Windows over WinRM, PowerShell Remoting (PSRP) or SSH; SSH has been officially supported since ansible-core 2.18 and needs the OpenSSH that ships with recent Windows versions.[^ans-windows] [^ans-windows-ssh] That makes it a candidate for Windows hosts outside both Configuration Manager and Arc: appliances built on Windows, systems in enclaves Arc can't reach, and application deployment on servers whose operating system settings another tool owns. A Windows Server that's connected to Arc is tier 1, and its operating system settings belong to machine configuration ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline)); Ansible may still deploy and configure the *application* on it, which is a different setting with a different owner *(design guidance)*.
+
+### Cloud VMs {#cloud-vms}
+
+Microsoft doesn't support installing the Connected Machine agent on an Azure VM; Azure VMs are managed natively.[^ans-arc-deploy] On AWS, the Arc multicloud connector onboards EC2 instances ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#choose-a-method)), and AWS Systems Manager State Manager can itself run Ansible playbooks through its associations ([Book 12, Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#configuration-state-not-just-patch-level)). For inventory, Ansible's cloud inventory plugins read each provider's API directly: `amazon.aws.aws_ec2`, `google.cloud.gcp_compute` and `azure.azcollection.azure_rm`.[^ans-cloud-inv] Use them to reconcile the cloud's view against the CMDB, not to replace it: the cloud knows the instance exists, the CMDB knows who owns it and why.
+
+## Ansible Automation Platform in a federal setting {#ansible-automation-platform-in-a-federal-setting}
+
+Automation Platform is software the agency runs, in almost every deployment option, and that one fact drives its federal treatment. Everything in this section was checked on October 29, 2026; recheck it before an authorization decision, because product status changes.
+
+### Versions
+
+Ansible Automation Platform 2.7 became generally available on June 2, 2026, with full support until June 2, 2027 and maintenance until June 2, 2029; 2.6 left full support on October 1, 2026 and is maintained until October 1, 2028.[^ans-aap-lifecycle] The platform's default automation engine is ansible-core 2.16, which Red Hat supports for the whole life of 2.5, 2.6 and 2.7 even though the community version reached end of life in July 2025; execution environments with ansible-core 2.18 are supported the same way, and 2.7 adds an optional 2.20 stream.[^ans-aap-lifecycle] [^ans-core-matrix] Version 2.7 installs as containers on RHEL 9 or 10, rootless by default, or through the operator on OpenShift; there's no RPM installer in 2.7.[^ans-aap-lifecycle] [^ans-aap-install] It also makes the platform gateway the only supported path for external sign-in and API access.[^ans-aap-auth]
+
+### Authorization status
+
+| Offering | FedRAMP status, as published |
+|---|---|
+| Self-managed Ansible Automation Platform (on agency infrastructure, or on agency-provisioned VMs in any cloud) | Not a cloud service offering, and not on the FedRAMP Marketplace. Neither Red Hat nor FedRAMP publishes a statement about it; it's customer-operated software inside the agency system's own boundary, as Book 12 treats it ([Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#accreditation-and-the-boundary)) |
+| Red Hat Ansible Automation Platform Service on AWS (Red Hat runs the control plane; the customer runs execution nodes) | Not on the FedRAMP Marketplace[^ans-fedramp-mkt] and not on Red Hat's list of FedRAMP offerings[^ans-rh-fedramp] |
+| Ansible Automation Platform on Microsoft Azure (a managed application in the customer's tenant) | Not on the FedRAMP Marketplace;[^ans-fedramp-mkt] availability in Azure Government not published[^ans-aap-azure] |
+| For contrast: Red Hat OpenShift Service on AWS | FedRAMP Certified at High (package FR2102031769), with Red Hat Lightspeed, formerly Insights, bundled[^ans-fedramp-rosa] |
+
+: Ansible Automation Platform and FedRAMP {.striped .hover}
+
+Red Hat's own page is explicit that "FedRAMP is only applicable to the products listed below," and the list holds only the two OpenShift Service on AWS architectures and Lightspeed, available through AWS GovCloud.[^ans-rh-fedramp] The marketplace's product data contained no Ansible offering on that date.[^ans-fedramp-mkt] So the program's default *(design guidance)* is self-managed Automation Platform inside the system boundary, authorized as an agency-operated component and hardened like any other, with the managed offerings considered only after their authorization status changes. Book 12 already excludes Lightspeed (formerly Insights) from the boundary by default until an authorization review admits it ([Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#extending-the-contract-to-a-second-cloud-red-hat-on-aws)).
+
+### FIPS mode
+
+Red Hat's FIPS 140 page lists certificates for RHEL's cryptographic modules and says they generally apply to other Red Hat products running unmodified on that RHEL; Automation Platform isn't listed by name.[^ans-rh-fips] The 2.6 and 2.7 documentation opened for this guide doesn't state whether the platform is supported on RHEL in FIPS mode. The history shows the combination has been worked on: the 2.5 release notes listed platform gateway on FIPS-enabled RHEL 9 as unsupported (AAP-39146) and fixed it in the April 9, 2025 update, with later fixes for PostgreSQL password handling on FIPS systems.[^ans-aap-25-notes] Ask Red Hat for a written support statement for the version you deploy, and test it: the RHEL DISA STIG profile itself requires a system installed in FIPS mode,[^ans-rh-stig] so a STIG-hardened controller host is a FIPS host.
+
+### STIG content
+
+Two kinds, for two targets:
+
+- **The controller.** Red Hat lists a DISA STIG for Red Hat Ansible Automation Controller among the published STIGs,[^ans-rh-stig] first released in April 2023.[^ans-rh-stig-blog] This guide couldn't reach the DoD Cyber Exchange to confirm the current release or the platform version it covers, so check both there before scoping the controller's hardening. The 2.7 documentation also covers installing on hosts hardened to the DISA STIG, CIS or PCI DSS: `fapolicyd` rules, `noexec` on `/tmp` and `/var` during installation, and the `umask` a containerized install needs.[^ans-aap-hardened]
+- **The hosts it manages.** For RHEL, Red Hat's security hardening guide documents remediating a system to a baseline "by using an SSG Ansible Playbook" from the SCAP Security Guide package, for RHEL 9 and RHEL 10, and Red Hat lists the current DISA STIG baselines by RHEL release.[^ans-rhel-hardening] [^ans-rh-stig] That's a ready-made baseline playbook, versioned by the package, which the program adopts, customizes in Git and runs in check mode first, like any other.
+
+### Hosting
+
+| Option | What Red Hat documents | Program view *(design guidance)* |
+|---|---|---|
+| On premises | Containerized installation on RHEL, or the OpenShift operator[^ans-aap-install] | The default where the managed estate is on premises; nearest to the targets |
+| Self-managed in a government cloud (Azure Government, AWS GovCloud) | Self-managed offers on the AWS, Google Cloud and Oracle marketplaces; on any cloud, the agency can install on RHEL VMs it provisions itself[^ans-aap-options] | The controller inherits the cloud's infrastructure authorization and adds its own controls; a managed identity becomes possible where the controller is an Azure VM ([Arc onboarding](#arc-onboarding-at-scale)) |
+| Azure managed application | Deployed from Azure Marketplace into the customer's tenant; Red Hat reaches only the managed resource group[^ans-aap-azure] | Commercial regions only, as published; not FedRAMP-listed |
+| AWS managed service | Red Hat runs the control plane in its own infrastructure; execution nodes run in the customer's network; job logs erased every 30 days[^ans-aap-aws] | Commercial regions only, as published; not FedRAMP-listed; the 30-day log erasure means job results must be exported for AU retention |
+
+: Where Automation Platform can run {.striped .hover}
+
+Red Hat publishes no Azure Government or AWS GovCloud availability for either managed offering; both guides' region tables list commercial regions only.[^ans-aap-azure] [^ans-aap-aws] Wherever the controller runs, the management traffic to its targets crosses a boundary edge, and Book 12 records each such channel as an external connection with its own agreement ([Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#accreditation-and-the-boundary)).
+
+### Sign-in, roles and tokens
+
+The platform gateway brokers user sign-in through local accounts, LDAP, SAML, generic OIDC, Microsoft Entra ID and others; role-based access assigns predefined or custom roles per resource to users and teams.[^ans-aap-auth] Federate sign-in to the agency's identity provider so Conditional Access, phishing-resistant MFA and joiner-mover-leaver processes apply, and keep local accounts to the break-glass minimum *(design guidance)*. API tokens are issued only by the gateway in 2.7; the default access-token lifetime was cut from 1,000 years to 1 year, and tokens created before the 2.5.20250604 update keep the old lifetime,[^ans-aap-tokens] so inventory and revoke old tokens when upgrading.
+
+### Logging and audit {#logging-and-audit}
+
+The controller sends logs to an external aggregator (Splunk, Loggly, Sumo Logic or Elastic) over HTTPS, TCP or UDP; Red Hat names job facts, job events, activity stream data and log messages as the most useful streams.[^ans-aap-logging] The activity stream records the time, user and action for every change to a controller object,[^ans-aap-activity] and Red Hat's hardening guidance is to collect logging and auditing centrally, alongside RHEL's own audit daemon.[^ans-aap-securelog] Cleanup jobs delete job history and activity-stream records older than a configured number of days,[^ans-aap-cleanup] so set them to the agency's retention schedule, or rely on the SIEM copy for retention and keep the controller's history short.
+
+### Content and change sources
+
+Automation hub serves Red Hat Certified collections, included in the subscription, and Ansible validated content, alongside whatever the agency approves from Galaxy.[^ans-aap-content] Collection and container signing in the hub is disabled by default and is enabled with GPG keys at installation; 2.7 adds post-quantum signing as a manual option.[^ans-aap-signing] Clients verify signatures only if a keyring is configured.[^ans-aap-signing] Project signing with `ansible-sign` makes the controller refuse to update a project whose signature fails, so its jobs don't launch,[^ans-aap-projsign] which ties the CM-3 pull request to what actually runs. Job templates can also be triggered by GitHub or GitLab webhooks.[^ans-aap-webhooks]
+
+### Credential plugins
+
+Automation Platform stores machine, cloud, network, source control and vault credentials, and fetches secrets at run time from external stores through credential plugins: AWS Secrets Manager, Centrify, CyberArk Central Credential Provider and Conjur, HashiCorp Vault (key-value and signed SSH certificates), Microsoft Azure Key Vault, and Thycotic.[^ans-aap-creds] Version 2.7 adds HashiCorp Vault credential types that authenticate with a short-lived token issued per job.[^ans-aap-vault-oidc] The program uses those to keep long-lived secrets out of the controller altogether.
+
+### Credentials and the controller's identity {#credentials-and-the-controllers-identity}
+
+An automation controller holds the keys to every host it manages. It's a non-person identity with more reach than almost any administrator, and the program governs it as one *(design guidance)*:
+
+- **An owner.** Two named human owners for the controller and for each of its credentials, as for any service principal ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#governing-service-principals)).
+- **Least privilege, by credential.** One credential per purpose and scope (Arc onboarding for one resource group, read-only facts for the network estate, change rights for one tier-2 platform), never one account that can do everything. The escalation account on Linux and Unix has broad rights by necessity ([above](#linux-and-unix)); confine it to the hosts whose `config_owner` is Ansible.
+- **No standing secrets.** Prefer a managed identity or workload identity federation for Azure ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#managed-identities-and-workload-identity-federation)); otherwise certificates; and fetch every remaining secret at run time from the agency's vault through a credential plugin rather than storing it in the controller. Ansible Vault protects secrets in files, but the documentation warns that it "ONLY protects 'data at rest'": once decrypted for a run, keeping the value out of output is the playbook author's job, with `no_log`.[^ans-vault] [^ans-no-log]
+- **Expiring credentials.** Every credential has an end date. Arc onboarding credentials live for one wave ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#create-the-onboarding-service-principal)); the rest rotate on the program's schedule.
+- **Reviewed like a privileged account.** The controller's role assignments, its credentials and the people who can launch jobs that use them are in the quarterly access review, and launching a job that changes production is itself a privileged action, logged and attributable to a person.
+
+## Evidence to the program {#evidence-to-the-program}
+
+Ansible produces evidence as a side effect of being used properly: the playbook is a file in Git, the change is a pull request, the run is a job with a result. The program's job is to land those artifacts where assessors look. The control titles are from NIST SP 800-53 Revision 5, release 5.2.0, and every control below is in the Moderate baseline.[^ans-80053]
+
+| Control | What it asks | Ansible's evidence *(design guidance unless cited)* |
+|---|---|---|
+| **CM-2** Baseline Configuration | A current, documented baseline | The playbook or role version, by Git commit and tag, is the baseline version for the hosts it owns, as Book 12 already records Ansible playbook versions ([Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#extending-the-contract-to-a-second-cloud-red-hat-on-aws)) |
+| **CM-3** Configuration Change Control | Changes reviewed, approved and recorded | Every change to a playbook, inventory source or variable reaches the main branch only by pull request with a required reviewer; the controller runs only content from the main branch. Book 12 treats baseline changes by pull request as CM-3 ([Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#controls-and-indicators)) |
+| **CM-6** Configuration Settings | Settings established, implemented and monitored | The baseline playbook implements; the same playbook in check mode monitors and reports drift. Book 12 lists Ansible enforcement under CM-6 ([Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#controls-and-indicators)) |
+| **CM-7** Least Functionality | Only essential capabilities; prohibited functions, ports, protocols and services disabled | Baseline tasks that remove packages and disable services, checked by the same drift run (the example checks that `telnet-server` and `rsh-server` are absent) |
+| **CM-8** System Component Inventory | An accurate, current inventory | Inventory comes *from* the CMDB, so Ansible never invents a host; a facts run reports what each host actually is beside what the CMDB says, and records nothing reached as not collected (the example `01_inventory_assessment.yml`) |
+| **AU-2** Event Logging, **AU-12** Audit Record Generation | Defined events logged and records generated | The controller's job records, activity stream and external logging to the SIEM (see [Logging](#logging-and-audit)); for ansible-core alone, a callback or log file shipped to the SIEM |
+| **AC-6** Least Privilege, **AC-6(5)** Privileged Accounts | Least privilege; privileged accounts restricted | Per-purpose credentials and the controller as a governed non-person identity ([above](#credentials-and-the-controllers-identity)) |
+| **SR-3** Supply Chain Controls and Processes, **SR-11** Component Authenticity | Supply chain risk addressed; counterfeit components detected | Collections from a reviewed, signed source, pinned by version and verified (see [Dangers](#dangers-and-how-to-avoid-them)). SA-12, the Revision 4 supply chain control, was withdrawn and incorporated into the SR family[^ans-80053] |
+
+: Controls and the Ansible evidence for each {.striped .hover}
+
+**Job results to the evidence store.** Book 12's evidence contract already expects Ansible Automation Platform job results to be posted to the coordination layer's inbound integration, in the same shape every other stack emits: the asset's authoritative identity as the join key, `aap` as the source stack, the finding or baseline reference, and the job ID as the evidence pointer ([Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#extending-the-contract-to-a-second-cloud-red-hat-on-aws)). Because the inventory came from the CMDB, every result already carries the CMDB's configuration item number, which is the join key the contract needs. The example playbooks write CSV and JSON with that column for the same reason.
+
+## Dangers and how to avoid them {#dangers-and-how-to-avoid-them}
+
+| Danger | How it fails | How to avoid it |
+|---|---|---|
+| **Blast radius** | A playbook runs against `all`, or an inventory group is wider than anyone thought, and one bad task changes every host at once | Run in check mode first: Ansible "runs without making any changes on remote systems," though modules without check-mode support "report nothing and do nothing."[^ans-checkmode] Target narrowly with `--limit`.[^ans-patterns] Change in batches with `serial`, which takes a number, a percentage or a list such as `[1, 5, "25%"]`, so the first batch is a canary; set `max_fail_percentage` (it applies per batch, and must be exceeded, not equaled) or `any_errors_fatal` to stop on the first failure.[^ans-strategies] [^ans-errors] Use `--diff` to see what would change, but it "can reveal sensitive information," so turn it off on tasks that handle secrets.[^ans-checkmode] |
+| **Inventory drift** | A hand-kept hosts file disagrees with the CMDB: decommissioned hosts are still targeted, new ones are missed, owners are wrong | Generate inventory from the CMDB at run time. Ansible recommends inventory plugins over scripts for dynamic inventory;[^ans-dyninv] the `constructed` plugin builds groups from variables an earlier inventory source supplied.[^ans-constructed] Fail the run on a duplicate or malformed record instead of producing a partial inventory |
+| **Credential sprawl** | Each engineer keeps keys and passwords in local files; the same service account is used everywhere; a secret sits in a playbook | One controller, credentials stored or brokered there, per-purpose and expiring ([above](#credentials-and-the-controllers-identity)). Mark every task that handles a secret `no_log: true`; it doesn't hide debugging output, so don't run production jobs at high verbosity[^ans-no-log] |
+| **Two tools fighting over one setting** | Ansible and machine configuration both set a value; auto-correct silently reverts Ansible, Ansible reverts it back, both report success | One owning tool per setting, as a CMDB attribute that builds the inventory groups ([above](#one-owning-tool-per-setting)), and an assertion in every changing playbook that refuses a host another tool owns |
+| **Unreviewed Galaxy content** | A playbook installs the latest version of a collection from the public Galaxy server at run time; the new version changes behavior, or isn't what it claims to be | Galaxy is a site for "finding and sharing Ansible community content."[^ans-galaxy] Install collections from a private automation hub or after review, pin each one to an exact version in `requirements.yml` (by default `ansible-galaxy` installs the latest), and verify installed content with `ansible-galaxy collection verify`; where the source signs collections, require signatures with `--keyring`, which Ansible checks only for collections from a distribution server.[^ans-galaxy-install] [^ans-galaxy-verify] Record each collection's name, version and source as the automation's software bill of materials, under SR-3 and SR-11 |
+| **Running as root** | Every task escalates, so a mistake in any task has root's reach | Escalate per task, not per play: set `become: false` as the default and `become: true` only on tasks that need it. Remember escalation can't be confined to commands ([above](#linux-and-unix)), so confine it to hosts instead. Read-only checks that need root to read a file run pinned to check mode |
+| **Idempotence failures** | `command` and `shell` tasks report a change every time, or change something every time, so drift reports are noise and reruns aren't safe | Prefer a purpose-built module over `command`; the command module supports check mode only with `creates` or `removes`.[^ans-command] Give every `command` task a `changed_when` that says when it actually changed something; ansible-lint's `no-changed-when` rule flags those that don't.[^ans-lint] Run each playbook twice in test and require the second run to report no changes |
+
+: Ansible's dangers and their controls {.striped .hover}
+
+**Lint as a gate.** ansible-lint's profiles increase in strictness from `min` through `basic`, `moderate`, `safety` and `shared` to `production`, which "meets requirements for inclusion in Ansible Automation Platform"; `safety` flags non-deterministic and risky module calls, and `production` requires fully qualified collection names.[^ans-lint] Requiring the `production` profile on every pull request makes several of the controls above mechanical *(design guidance)*.
+
+## A phased adoption path {#a-phased-adoption-path}
+
+*(Design guidance.)* Each phase ends at a gate, and the gate's evidence is what the next phase builds on.
+
+| Phase | What happens | Decision, and who decides | Gate: done when |
+|---|---|---|---|
+| **0. Read-only inventory** | ansible-core on a hardened control node; inventory from the CMDB export; facts runs only, posted to the evidence store | Which CMDB attributes drive groups, and the `config_owner` values: the CMDB owner with the platform teams | Every managed CMDB record has a collected or not-collected row; owner-missing and version-mismatch findings sent back to the CMDB |
+| **1. Arc onboarding** | Book 05's waves, run by Microsoft's role or a gated playbook, tags from the CMDB | Onboarding identity (managed identity or certificate service principal) and wave plan: server infrastructure ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#onboarding)) | Each wave connected, baselined and verified; the wave's credential removed; Arc tags match the CMDB |
+| **2. Tier-2 baselines in check mode** | Baseline playbooks for each tier-2 platform (Unix, Linux beyond Arc, network, VMware, Infoblox), run in check mode only, drift reported | The baseline content per platform (STIG, CIS or agency profile): the CISO's configuration authority | Every tier-2 host has a drift report against a versioned baseline; findings triaged |
+| **3. Enforcement under change control** | Baselines applied for real, by pull request, in canary-first batches, on hosts whose `config_owner` is Ansible | Go-live per platform: the platform owner, through change control | Two clean consecutive runs (no changes on the second); rollback tested; exceptions recorded |
+| **4. Automation Platform at scale** | The controller, private automation hub and execution environments; credentials brokered from the agency vault; logging to the SIEM; job results posted automatically | Hosting, authorization boundary and credential design: the system owner and the authorizing official | The controller is in the boundary documentation; its identity is reviewed like a privileged account; evidence arrives with no hand steps |
+
+: Adoption phases, decisions and gates {.striped .hover}
+
+Phase 0 can start in a week with nothing but a laptop-class control node and a CMDB export, and it produces evidence the program needs anyway. Automation Platform isn't a prerequisite for phases 0 to 2; it's the way to make phase 3 governable at scale.
+
+## The example playbooks {#the-example-playbooks}
+
+The [`examples/ansible`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible) folder, downloadable as [ansible-examples.zip](../../../downloads/ansible-examples.zip), shows the patterns above in small, readable files. It follows the house rules of the workbook's [Start Kit](../b00-orientation/08-pre-flight-and-assessment.md): read-only by default, tested, and a test that fails on any write it doesn't allow.
+
+| File | Pattern it shows |
+|---|---|
+| `inventory/cmdb_inventory.py` and `inventory/sample/cmdb_export.csv` | The CMDB as the attribute source: groups by coverage tier, platform, environment and configuration owner; Arc onboarding candidates; owner-missing findings. Fails on a duplicate or malformed record |
+| `playbooks/01_inventory_assessment.yml` | The CM-8 feed: facts and Arc agent status beside each CMDB record, as CSV and JSON |
+| `playbooks/02_arc_onboarding.yml` | Gated change: check mode unless `-e confirm_change=true`; one canary host, then 5, then 25 percent; stop on the first failure; tags from the CMDB; the secret from Vault or the environment, passed through a deleted configuration file, never logged |
+| `playbooks/03_linux_baseline_check.yml` | Drift as evidence: the play is pinned to check mode, runs only where Ansible owns the configuration, and refuses a host another tool owns |
+| `playbooks/04_network_and_ddi_facts.yml` | Tier-2 evidence without agents: Cisco IOS facts and Infoblox Grid members, read-only |
+| `tests/` | `yamllint` and `ansible-lint` (production profile) clean; `--syntax-check` on every playbook; a static check that fails on any ungated write; inventory tests; real runs against the control node |
+
+: What the example folder contains {.striped .hover}
+
+They were tested on October 29, 2026 with ansible-core 2.21.5, ansible-lint 26.10.1 and yamllint 1.38.0, on the control node only; the Arc, Windows, Cisco and Infoblox paths pass lint and syntax checks but haven't run against those platforms. They're illustrations, not production code.
+
+## Checklist
+
+| Area | Done when |
+|---|---|
+| Ownership | Every asset's CMDB record names one configuration owner · Changing playbooks run only on hosts Ansible owns · Exceptions are dated records |
+| Inventory | Generated from the CMDB at run time · Malformed records fail the run · Not-collected hosts reported, never counted as compliant |
+| Arc onboarding | Managed identity or certificate service principal · Onboarding role only, on the resource group · Credential removed when the wave closes · Tags from the CMDB |
+| Change safety | Check mode first · `--limit` and canary-first `serial` · Stop on first failure · Second run reports no changes |
+| Credentials | Two human owners · One credential per purpose · No secret in Git or in a playbook · Every credential expires · `no_log` on every secret-handling task |
+| Content | Collections from a reviewed or signed source · Pinned versions · `collection verify` in the pipeline · Collection list kept as the automation's bill of materials |
+| Evidence | Playbook version as the CM-2 baseline · Pull requests as CM-3 · Job results posted with the CMDB key · Controller logs in the SIEM |
+| Platform | Authorization treatment recorded · FIPS mode where required · STIG applied to the controller and its hosts · Controller reviewed as a privileged non-person identity |
+
+: Ansible adoption checklist {.striped .hover}
+
+::: {.callout-tip}
+## Back to the books
+This is a companion guide, not part of a numbered book. [← The Workbook Books](../index.md)
+:::
+
+[^ans-windows]: Ansible documentation, "Managing Windows hosts with Ansible" (connection plugins psrp, ssh and winrm), <https://docs.ansible.com/ansible/latest/os_guide/intro_windows.html>; checked against its source, `docs/docsite/rst/os_guide/intro_windows.rst` in the ansible-documentation repository (accessed Oct 29, 2026).
+[^ans-windows-ssh]: Ansible documentation, "Windows SSH" (official support added in version 2.18; OpenSSH requirements), <https://docs.ansible.com/ansible/latest/os_guide/windows_ssh.html>; checked against its source, `os_guide/windows_ssh.rst` (accessed Oct 29, 2026).
+[^ans-idempotent]: Ansible documentation, "Glossary," Idempotency, <https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html>, and "Ansible playbooks," Idempotency ("not all playbooks and not all modules behave this way"), <https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html>; checked against their sources in the ansible-documentation repository (accessed Oct 29, 2026).
+[^ans-checkmode]: Ansible documentation, "Validating tasks: check mode and diff mode" (check mode makes no changes; modules without check-mode support report nothing and do nothing; check mode is a simulation; `check_mode` per task; `--diff` and sensitive information), <https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_checkmode.html>; checked against its source, `playbook_guide/playbooks_checkmode.rst` (accessed Oct 29, 2026).
+[^ans-arc-prereq]: Microsoft Learn, "Connected Machine agent prerequisites," Supported operating systems (unlisted versions unsupported; end of new agent version support dates; not tested on CIS-hardened systems), <https://learn.microsoft.com/azure/azure-arc/servers/prerequisites#supported-operating-systems> (accessed Oct 29, 2026).
+[^ans-mc-remediation]: Microsoft Learn, "Remediation options for machine configuration" (Audit, ApplyAndMonitor and ApplyAndAutoCorrect; no way to report an automatic correction), <https://learn.microsoft.com/azure/governance/machine-configuration/concepts/remediation-options> (accessed Oct 29, 2026).
+[^ans-mc-dsc]: Microsoft Learn, "PowerShell DSC in machine configuration" (no conflict detection across DSC versions), <https://learn.microsoft.com/azure/governance/machine-configuration/whats-new/psdsc-in-machine-configuration> (accessed Oct 29, 2026).
+[^ans-arc-deploy]: Microsoft Learn, "Azure Connected Machine agent deployment options" (Ansible row; the agent can't be installed on an Azure VM), <https://learn.microsoft.com/azure/azure-arc/servers/deployment-options> (accessed Oct 29, 2026).
+[^ans-arc-ansible]: Microsoft Learn, "Connect machines to Azure Arc at scale with Ansible" (the `azure.azcollection.azure_arc` role; idempotent, skips connected machines; scope; role variables; authentication with Azure CLI, managed identity or an Automation Platform service principal credential; the Azure Connected Machine Onboarding role), <https://learn.microsoft.com/azure/azure-arc/servers/onboard-ansible-playbooks> (accessed Oct 29, 2026).
+[^ans-arc-roles]: Microsoft Learn, "Identity and authorization" (Azure Arc-enabled servers security), Azure Connected Machine Onboarding role, <https://learn.microsoft.com/azure/azure-arc/servers/security-identity-authorization> (accessed Oct 29, 2026).
+[^ans-azcmagent-connect]: Microsoft Learn, "`azcmagent connect`," Flags (`--service-principal-secret` and the configuration-file recommendation; `--tags`; `--cloud` with `--location`), <https://learn.microsoft.com/azure/azure-arc/servers/azcmagent-connect> (accessed Oct 29, 2026).
+[^ans-azcmagent-cli]: Microsoft Learn, "azcmagent CLI reference," Common flags (`--config` takes a JSON or YAML file; the command line takes precedence), <https://learn.microsoft.com/azure/azure-arc/servers/azcmagent> (accessed Oct 29, 2026).
+[^ans-become]: Ansible documentation, "Understanding privilege escalation: become" (supported escalation methods; "Risks and limitations of become": privilege escalation can't be limited to certain commands), <https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_privilege_escalation.html>; checked against its source, `playbook_guide/playbooks_privilege_escalation.rst` (accessed Oct 29, 2026).
+[^ans-ios-facts]: Ansible documentation, cisco.ios collection, "cisco.ios.ios_facts module" (`network_cli` connection; `gather_subset` defaults to `min`; `ansible_net_` facts), <https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_facts_module.html>; checked against the module source in the ansible-collections/cisco.ios repository (accessed Oct 29, 2026).
+[^ans-vmware-inv]: community.vmware changelog, 7.0.0 (removal of `vmware_vm_inventory`; use `vmware.vmware.vms`), <https://github.com/ansible-collections/community.vmware/blob/main/CHANGELOG.rst>; and vmware.vmware collection, `vms` inventory plugin ("Create an inventory containing VMware VMs"), <https://github.com/ansible-collections/vmware.vmware> (both accessed Oct 29, 2026).
+[^ans-vmware-rest]: vmware.vmware_rest collection, `vcenter_vm_info` module ("Gather information about virtual machines in vCenter"), <https://github.com/ansible-collections/vmware.vmware_rest> (accessed Oct 29, 2026).
+[^ans-nios]: Ansible documentation, infoblox.nios_modules collection, "nios_lookup" and "nios_next_ip" lookup plugins (WAPI; requirement `infoblox-client`), <https://docs.ansible.com/ansible/latest/collections/infoblox/nios_modules/index.html>; checked against the plugin sources and README in the infobloxopen/infoblox-ansible repository (accessed Oct 29, 2026).
+[^ans-cloud-inv]: Inventory plugin documentation for `amazon.aws.aws_ec2` ("EC2 inventory source"), `google.cloud.gcp_compute` ("Google Cloud Compute Engine inventory source") and `azure.azcollection.azure_rm` ("Azure Resource Manager inventory plugin"), published under <https://docs.ansible.com/ansible/latest/collections/>; checked against the plugin sources in each collection's repository (accessed Oct 29, 2026).
+[^ans-vault]: Ansible documentation, "Ansible Vault" (encrypts variables and files; protects only data at rest), <https://docs.ansible.com/ansible/latest/vault_guide/vault.html>; checked against its source, `vault_guide/vault.rst` (accessed Oct 29, 2026).
+[^ans-no-log]: Ansible documentation, "Logging Ansible output" (`no_log: True` on tasks that expose secrets; `no_log` doesn't affect debugging output), <https://docs.ansible.com/ansible/latest/reference_appendices/logging.html>; checked against its source (accessed Oct 29, 2026).
+[^ans-80053]: NIST, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, release 5.2.0 (August 27, 2025), controls CM-2, CM-3, CM-6, CM-7, CM-8, AU-2, AU-12, AC-6, AC-6(5), IA-5, SR-3, SR-11 and withdrawn SA-12 (incorporated into the SR family), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; titles and withdrawal read from NIST's OSCAL Rev. 5 catalog, version 5.2.0, and the Moderate baseline profile, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Oct 29, 2026).
+[^ans-patterns]: Ansible documentation, "Patterns: targeting hosts and groups" (`--limit`), <https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html>; checked against its source, `inventory_guide/intro_patterns.rst` (accessed Oct 29, 2026).
+[^ans-strategies]: Ansible documentation, "Controlling playbook execution: strategies and more" (`serial` as a number, percentage or list; failure scope per batch; `throttle`; `run_once`), <https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_strategies.html>; checked against its source, `playbook_guide/playbooks_strategies.rst` (accessed Oct 29, 2026).
+[^ans-errors]: Ansible documentation, "Error handling in playbooks" (`any_errors_fatal`; `max_fail_percentage` applies per batch with `serial` and must be exceeded, not equaled; `changed_when`), <https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_error_handling.html>; checked against its source, `playbook_guide/playbooks_error_handling.rst` (accessed Oct 29, 2026).
+[^ans-dyninv]: Ansible documentation, "Working with dynamic inventory" (inventory plugins recommended over scripts), <https://docs.ansible.com/ansible/latest/inventory_guide/intro_dynamic_inventory.html>; checked against its source, `inventory_guide/intro_dynamic_inventory.rst` (accessed Oct 29, 2026).
+[^ans-constructed]: Ansible documentation, "ansible.builtin.constructed inventory" (groups and variables from existing inventory with Jinja2; only variables from earlier inventories or the fact cache), <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/constructed_inventory.html>; checked against the plugin source in ansible-core 2.21 (accessed Oct 29, 2026).
+[^ans-galaxy]: Ansible documentation, "Glossary," Galaxy ("finding and sharing Ansible community content"), <https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html>; checked against its source (accessed Oct 29, 2026).
+[^ans-galaxy-install]: Ansible documentation, "Installing collections" (requirements files and version ranges; latest version by default; signature verification with `--keyring`, only for collections installed from a distribution server), <https://docs.ansible.com/ansible/latest/collections_guide/collections_installing.html>; checked against its source (accessed Oct 29, 2026).
+[^ans-galaxy-verify]: Ansible documentation, "Verifying collections" (`ansible-galaxy collection verify`; signed collections), <https://docs.ansible.com/ansible/latest/collections_guide/collections_verifying.html>; checked against its source (accessed Oct 29, 2026).
+[^ans-command]: Ansible documentation, "ansible.builtin.command module," Attributes (check mode supported only with `creates` or `removes`), <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html>; checked against the module source in ansible-core 2.21 (accessed Oct 29, 2026).
+[^ans-lint]: Ansible Lint documentation, "Profiles" (min, basic, moderate, safety, shared, production) and the rules `no-changed-when`, `risky-shell-pipe` and `fqcn`, <https://docs.ansible.com/projects/lint/profiles/>; checked against its source in the ansible/ansible-lint repository (accessed Oct 29, 2026).
+[^ans-aap-lifecycle]: Red Hat, "Red Hat Ansible Automation Platform Life Cycle" (versions 2.5 to 2.7, support phases and dates; ansible-core in each version; install methods by version), <https://access.redhat.com/support/policy/updates/ansible-automation-platform>, dates confirmed in the Red Hat Product Life Cycle API (accessed Oct 29, 2026).
+[^ans-core-matrix]: Ansible documentation, "Releases and maintenance," ansible-core support matrix, <https://docs.ansible.com/ansible/latest/reference_appendices/release_and_maintenance.html>; checked against its source, `reference_appendices/release_and_maintenance.rst` in the ansible-documentation repository, last changed Oct 27, 2026 (accessed Oct 29, 2026).
+[^ans-aap-install]: Red Hat, Ansible Automation Platform 2.7, "Install containerized Ansible Automation Platform" (rootless containers by default) and "Install on OpenShift Container Platform," <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-aap-auth]: Red Hat, Ansible Automation Platform 2.7, "Pluggable authentication," "Mandatory platform gateway authentication in Ansible Automation Platform 2.7" and "View, create, and assign roles to grant user access to resources," <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-fedramp-mkt]: FedRAMP, "Marketplace Products" (product data searched for Ansible and for Red Hat offerings), <https://www.fedramp.gov/marketplace/products/> (accessed Oct 29, 2026).
+[^ans-rh-fedramp]: Red Hat Customer Portal, "FedRAMP" (FedRAMP applies only to the listed products: Red Hat OpenShift Service on AWS with hosted control planes, its classic architecture, and Red Hat Lightspeed; available through AWS GovCloud), <https://access.redhat.com/compliance/fedramp> (accessed Oct 29, 2026).
+[^ans-fedramp-rosa]: FedRAMP Marketplace, "Red Hat OpenShift Service on AWS (ROSA)," package FR2102031769 (FedRAMP Certified; High; bundled services), <https://www.fedramp.gov/marketplace/products/FR2102031769/> (accessed Oct 29, 2026).
+[^ans-aap-azure]: Red Hat, "Red Hat Ansible Automation Platform on Microsoft Azure Guide" (managed application from Azure Marketplace in the customer's tenant; Red Hat access limited to the managed resource group; supported regions), <https://docs.redhat.com/en/documentation/ansible_on_clouds/2.x/html-single/red_hat_ansible_automation_platform_on_microsoft_azure_guide/index> (accessed Oct 29, 2026).
+[^ans-aap-aws]: Red Hat, "Red Hat Ansible Automation Platform Service on AWS" (control plane in Red Hat's infrastructure; execution plane in the customer's network; job logs erased every 30 days; regions), <https://docs.redhat.com/en/documentation/ansible_on_clouds/2.x/html-single/red_hat_ansible_automation_platform_service_on_aws/index> (accessed Oct 29, 2026).
+[^ans-aap-options]: Red Hat, "Which Red Hat Ansible Automation Platform deployment option is right for you?" (managed and self-managed offers on AWS, Azure, Google Cloud and Oracle), <https://www.redhat.com/en/technologies/management/ansible/ansible-deployment-options> (accessed Oct 29, 2026).
+[^ans-rh-fips]: Red Hat Customer Portal, "FIPS" (FIPS 140 certificates for RHEL cryptographic modules; applicability to other Red Hat products running unmodified), <https://access.redhat.com/compliance/fips> (accessed Oct 29, 2026).
+[^ans-aap-25-notes]: Red Hat, Ansible Automation Platform 2.5, "Release notes" (known issue AAP-39146, platform gateway on FIPS-enabled RHEL 9; fix in the April 9, 2025 update; AAP-16456 and AAP-50443), <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html-single/release_notes/index> (accessed Oct 29, 2026).
+[^ans-rh-stig]: Red Hat Customer Portal, "DISA STIG" (published Red Hat STIGs, including Red Hat Ansible Automation Controller; current RHEL STIG baselines by release; the STIG profile requires a system installed in FIPS mode), <https://access.redhat.com/compliance/disa-stig> (accessed Oct 29, 2026).
+[^ans-rh-stig-blog]: Red Hat Blog, "DISA releases the first Ansible STIG," April 11, 2023, <https://www.redhat.com/en/blog/disa-releases-first-ansible-stig> (accessed Oct 29, 2026).
+[^ans-aap-hardened]: Red Hat, Ansible Automation Platform 2.7, "Ensure compliance with host-level security controls" and "Automate nodes that comply with security profiles," <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-rhel-hardening]: Red Hat, *Security hardening*, RHEL 9, section 7.5, and RHEL 10, section 5.3.2, "Remediating the system to align with a specific baseline by using an SSG Ansible Playbook," <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/security_hardening/index> and <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html-single/security_hardening/index> (accessed Oct 29, 2026).
+[^ans-aap-tokens]: Red Hat, Ansible Automation Platform 2.7, "Configure access to external applications with tokens" (gateway-issued tokens; default access-token expiry changed from 1,000 years to 1 year; earlier tokens keep their lifetime), <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-aap-logging]: Red Hat, Ansible Automation Platform 2.7, "Send log files to third-party aggregation services" and "Configure third-party services" (Splunk, Loggly, Sumologic, Elastic; the most useful data), <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-aap-activity]: Red Hat, Ansible Automation Platform 2.7, "View activity streams for all resources," <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-aap-securelog]: Red Hat, Ansible Automation Platform 2.7, "Best practices for setting up secure logging," <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-aap-cleanup]: Red Hat, Ansible Automation Platform 2.5, *Configuring automation execution*, management jobs (Cleanup Activity Stream, Cleanup Job Details; days of data to keep), <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html-single/configuring_automation_execution/index> (accessed Oct 29, 2026).
+[^ans-aap-content]: Red Hat, Ansible Automation Platform 2.7, "Red Hat Certified, validated, and Ansible Galaxy content in automation hub," <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-aap-signing]: Red Hat, Ansible Automation Platform 2.7, "Enable automation content collection and container signing" (disabled by default), "Configure content signing on private automation hub" (clients opt in with a keyring) and "Post-Quantum Cryptography signing in automation hub," <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-aap-projsign]: Red Hat, Ansible Automation Platform 2.7, "Enforce project integrity with signing and verification," <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-aap-webhooks]: Red Hat, Ansible Automation Platform 2.7, "Trigger automation with webhooks" (GitHub and GitLab), <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-aap-creds]: Red Hat, Ansible Automation Platform 2.7, "Credential types" and "Integrate third-party secret management systems," <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).
+[^ans-aap-vault-oidc]: Red Hat, Ansible Automation Platform 2.7, "OIDC credential types for HashiCorp Vault," <https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7/> (accessed Oct 29, 2026).

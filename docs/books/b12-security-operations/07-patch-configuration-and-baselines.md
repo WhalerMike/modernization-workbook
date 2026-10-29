@@ -272,6 +272,8 @@ The emission contract for this estate is deliberately small, the same shape ever
 
 The emitters are existing capabilities. Systems Manager patch compliance changes surface as EventBridge `Configuration Compliance State Change` events;[^c07-ssm-events] Satellite and Ansible Automation Platform job results are posted to the coordination layer's inbound integration (program design). The baseline artifacts that define the estate's desired state, the State Manager association and the Ansible playbook version, are recorded as CM-2 baseline versions, so drift is judged against a versioned baseline and not a console's memory.
 
+The companion guide [Ansible for Configuration Automation](../guides/ansible-configuration-automation.md#evidence-to-the-program) works this through for Ansible: playbook versions as CM-2 baselines, pull requests as CM-3 change control, job results to the evidence store, with [example playbooks](../../../downloads/ansible-examples.zip).
+
 The assessment side stays in [Chapter 06](06-vulnerability-management.md). Amazon Inspector discovers and continually scans EC2 instances, ECR container images and Lambda functions, publishes findings to EventBridge and Security Hub, and closes a finding when it detects the remediation.[^c07-inspector] Its findings enter the one KEV-weighted queue, keyed to the same `asset_id`, alongside Defender's, through the same evidence path as every other source ([Chapter 02](02-the-evidence-contract.md)). Red Hat Insights, a software-as-a-service analytics service, is excluded from the boundary by default until an authorization review admits it; Satellite and Ansible Automation Platform carry the full contract without it.
 
 ## Closure necessity: remediation has no substitute

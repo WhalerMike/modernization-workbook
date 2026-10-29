@@ -1,0 +1,15 @@
+---
+# Collections the playbooks use, pinned to versions tested with this kit. Install them from a
+# reviewed source (a private automation hub, or Galaxy after review), never at run time:
+#   ansible-galaxy collection install -r requirements.yml
+collections:
+  - name: ansible.windows
+    version: "==3.9.2"
+  - name: ansible.netcommon
+    version: "==8.7.1"
+  - name: cisco.ios
+    version: "==11.6.0"
+  - name: infoblox.nios_modules
+    version: "==1.10.0"
+  - name: ansible.utils
+    version: "==6.1.1"

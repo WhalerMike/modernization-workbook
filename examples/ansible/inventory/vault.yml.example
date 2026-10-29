@@ -1,0 +1,8 @@
+---
+# Copy to inventory/group_vars/all/vault.yml (and move all.yml into that folder too),
+# put the real value in, and encrypt it:
+#   ansible-vault encrypt inventory/group_vars/all/vault.yml
+# Never commit the unencrypted file. A secret injected by Ansible Automation Platform
+# from an external vault (a credential plugin) or the ARC_SP_SECRET environment variable
+# works the same way and leaves no file at all.
+arc_sp_secret: "replace-me-and-encrypt"

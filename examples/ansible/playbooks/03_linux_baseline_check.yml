@@ -1,0 +1,154 @@
+---
+# Linux baseline check: report drift from a handful of example settings. Changes nothing.
+#
+# The play is pinned to check mode with the check_mode keyword, so even ansible-playbook
+# without --check can't apply a setting; "changed" here means "would change", which is drift.
+# It runs only on hosts whose CMDB record names Ansible as the configuration owner
+# (config_owner_ansible). Hosts owned by Azure machine configuration or another tool are
+# that tool's to evaluate; checking them here would be two tools judging one setting.
+#
+#   ansible-playbook playbooks/03_linux_baseline_check.yml
+#
+# The settings are illustrations of the pattern, not a STIG or CIS benchmark. Replace them
+# with the agency's approved baseline, versioned in Git; the commit is the CM-2 baseline.
+
+- name: Check the Linux baseline
+  hosts: os_linux:&config_owner_ansible
+  gather_facts: true
+  # The minimal fact subset: platform, distribution and kernel, without hardware or mounts.
+  gather_subset: [min]
+  check_mode: true
+  vars:
+    baseline_version: "example-2026.10"
+    # Line settings: one file, one expected line, matched by a regular expression.
+    baseline_lines:
+      - {id: LNX-01, path: /etc/ssh/sshd_config, regexp: '^\s*#?\s*PermitRootLogin\s', line: PermitRootLogin no}
+      - {id: LNX-02, path: /etc/ssh/sshd_config, regexp: '^\s*#?\s*X11Forwarding\s', line: X11Forwarding no}
+      - {id: LNX-03, path: /etc/ssh/sshd_config, regexp: '^\s*#?\s*MaxAuthTries\s', line: MaxAuthTries 4}
+      - {id: LNX-04, path: /etc/login.defs, regexp: '^\s*#?\s*PASS_MAX_DAYS\s', line: PASS_MAX_DAYS 60}
+    baseline_services_running: [{id: LNX-05, name: auditd}]
+    baseline_packages_absent: [{id: LNX-06, name: telnet-server}, {id: LNX-07, name: rsh-server}]
+  pre_tasks:
+    - name: Refuse a host whose configuration another tool owns
+      ansible.builtin.assert:
+        that: config_owner | default('') == 'ansible'
+        fail_msg: >-
+          {{ inventory_hostname }}'s CMDB record names {{ config_owner | default('no tool') }} as the
+          configuration owner, so this baseline doesn't apply to it.
+        quiet: true
+
+  tasks:
+    - name: Find which baseline files exist
+      ansible.builtin.stat:
+        path: "{{ item }}"
+      loop: "{{ baseline_lines | map(attribute='path') | unique }}"
+      register: baseline_files
+      become: true
+
+    - name: Compare each line setting (check mode, never written)
+      ansible.builtin.lineinfile:
+        path: "{{ item.path }}"
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+      loop: "{{ baseline_lines }}"
+      loop_control:
+        label: "{{ item.id }}"
+      when: item.path in (baseline_files.results | selectattr('stat.exists') | map(attribute='item') | list)
+      register: line_results
+      become: true
+
+    - name: Read service state
+      ansible.builtin.service_facts:
+
+    - name: Read installed packages
+      ansible.builtin.package_facts:
+
+    - name: Start an empty drift record, stamped with the baseline version
+      ansible.builtin.set_fact:
+        drift: []
+        baseline_applied: "{{ baseline_version }}"
+
+    - name: Record each line setting's state
+      ansible.builtin.set_fact:
+        drift: >-
+          {{ drift + [{
+               'id': item.item.id, 'setting': item.item.line, 'where': item.item.path,
+               'state': 'file_missing' if item is skipped else ('drift' if item is changed else 'compliant')
+             }] }}
+      loop: "{{ line_results.results }}"
+      loop_control:
+        label: "{{ item.item.id }}"
+
+    - name: Record each service's state
+      ansible.builtin.set_fact:
+        drift: >-
+          {{ drift + [{
+               'id': item.id, 'setting': item.name ~ ' running', 'where': 'services',
+               'state': 'compliant'
+                        if (ansible_facts.services[item.name ~ '.service'] | default({})).state | default('') == 'running'
+                        else 'drift'
+             }] }}
+      loop: "{{ baseline_services_running }}"
+      loop_control:
+        label: "{{ item.id }}"
+
+    - name: Record each package's state
+      ansible.builtin.set_fact:
+        drift: >-
+          {{ drift + [{
+               'id': item.id, 'setting': item.name ~ ' absent', 'where': 'packages',
+               'state': 'drift' if item.name in ansible_facts.packages else 'compliant'
+             }] }}
+      loop: "{{ baseline_packages_absent }}"
+      loop_control:
+        label: "{{ item.id }}"
+
+- name: Write the drift report on the control node
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Stamp the run once
+      ansible.builtin.set_fact:
+        run_stamp: "{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}"
+        rows: []
+
+    - name: Flatten every host's results into rows
+      ansible.builtin.set_fact:
+        rows: >-
+          {{ rows + (hostvars[record]['drift'] | default([])
+                     | map('combine', {'host': record, 'cmdb_ci': hostvars[record]['cmdb_ci'] | default(''),
+                                        'baseline_version': hostvars[record]['baseline_applied'] | default('')})
+                     | list) }}
+      loop: "{{ groups['config_owner_ansible'] | default([]) | intersect(groups['os_linux'] | default([])) | sort }}"
+      loop_control:
+        loop_var: record
+
+    - name: Create the report folder
+      ansible.builtin.file:
+        path: "{{ report_dir }}"
+        state: directory
+        mode: "0750"
+      check_mode: false
+
+    - name: Write the JSON report
+      ansible.builtin.copy:
+        content: "{{ rows | to_nice_json }}\n"
+        dest: "{{ report_dir }}/baseline-drift-{{ run_stamp }}.json"
+        mode: "0640"
+      check_mode: false
+
+    - name: Write the CSV report
+      ansible.builtin.template:
+        src: rows.csv.j2
+        dest: "{{ report_dir }}/baseline-drift-{{ run_stamp }}.csv"
+        mode: "0640"
+      check_mode: false
+
+    - name: Summarize
+      ansible.builtin.debug:
+        msg: >-
+          {{ rows | selectattr('state', 'equalto', 'drift') | list | length }} drifted settings,
+          {{ rows | selectattr('state', 'equalto', 'compliant') | list | length }} compliant,
+          {{ rows | selectattr('state', 'equalto', 'file_missing') | list | length }} not checkable
+          (file missing). Reports in {{ report_dir }}.

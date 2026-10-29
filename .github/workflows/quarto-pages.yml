@@ -92,6 +92,11 @@ jobs:
         # linked from the Downloads page.
         run: python3 scripts/build_start_kit_zip.py --kit app-modernization --out _site/downloads
 
+      - name: Build the Ansible examples download
+        # downloads/ansible-examples.zip: examples/ansible as committed, linked from the
+        # Ansible companion guide and the Downloads page.
+        run: python3 scripts/build_start_kit_zip.py --kit ansible --out _site/downloads
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
