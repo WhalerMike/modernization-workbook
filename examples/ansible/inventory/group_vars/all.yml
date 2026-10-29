@@ -1,0 +1,16 @@
+---
+# Settings every playbook reads. Values are placeholders for a fictional tenant.
+# Secrets never go in this file: see inventory/vault.yml.example.
+
+# Where the read-only playbooks write their reports, on the control node only.
+report_dir: "{{ playbook_dir }}/../reports"
+
+# Azure Arc onboarding (playbooks/02_arc_onboarding.yml). The resource group and region
+# come from each host's CMDB record (arc_resource_group, arc_location).
+arc_tenant_id: "00000000-0000-0000-0000-000000000000"
+arc_subscription_id: "00000000-0000-0000-0000-000000000000"
+# AzureCloud for commercial Azure, AzureUSGovernment for Azure Government.
+arc_cloud: AzureUSGovernment
+# The onboarding service principal's application (client) ID. Its secret is read from
+# Ansible Vault (arc_sp_secret) or the ARC_SP_SECRET environment variable at run time.
+arc_sp_id: "00000000-0000-0000-0000-000000000000"

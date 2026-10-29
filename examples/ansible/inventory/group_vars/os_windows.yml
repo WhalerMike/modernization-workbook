@@ -1,0 +1,7 @@
+---
+# Windows hosts are reached over WinRM with HTTPS; set the user and credential in your
+# Automation Platform credential or vault, not here.
+ansible_connection: winrm
+ansible_winrm_transport: kerberos
+ansible_winrm_scheme: https
+ansible_port: 5986

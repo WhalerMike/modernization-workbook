@@ -1,0 +1,7 @@
+---
+# The strictest built-in profile. The tests fail on any finding.
+profile: production
+exclude_paths:
+  - reports/
+  - tests/
+  - .venv/
