@@ -611,8 +611,9 @@ class Builder:
             listing_ids.update(pr.listing_ids)
             for src, resolved, captioned in pr.images:
                 refs.append((p, src, resolved, captioned))
-                # pandoc rebases the path relative to the staged copy
-                key = os.path.normpath(os.path.join(pr.staged.parent, urllib.parse.unquote(src)))
+                # pandoc rebases the path relative to the staged copy; the filter
+                # compares in "/" form, which also covers Windows drive paths
+                key = Path(os.path.normpath(os.path.join(pr.staged.parent, urllib.parse.unquote(src)))).as_posix()
                 image_map[key] = str(self.word_ready[resolved])
         unique = {r for _, _, r, _ in refs}
         map_file = self.work / f"{b.output}.images.json"

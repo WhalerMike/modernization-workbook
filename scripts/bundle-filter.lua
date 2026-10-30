@@ -132,20 +132,26 @@ if map_path then
   end
 end
 
--- Absolute path with "." and ".." collapsed (like Python's os.path.normpath).
+-- Absolute path with "." and ".." collapsed and "/" as the separator, the
+-- form build_bundles.py writes its map keys in. On Windows pandoc hands over
+-- "C:\...\page-dir/../img.png", so backslashes are converted and a drive
+-- letter counts as absolute.
 local function absolute(path)
-  if path:sub(1, 1) ~= "/" then
-    path = pandoc.system.get_working_directory() .. "/" .. path
+  path = path:gsub("\\", "/")
+  local function is_abs(p) return p:sub(1, 1) == "/" or p:match("^%a:/") ~= nil end
+  if not is_abs(path) then
+    path = pandoc.system.get_working_directory():gsub("\\", "/") .. "/" .. path
   end
+  local drive = path:match("^(%a:)/")
   local parts = {}
-  for seg in path:gmatch("[^/]+") do
+  for seg in path:sub(drive and 3 or 1):gmatch("[^/]+") do
     if seg == ".." then
       table.remove(parts)
     elseif seg ~= "." then
       table.insert(parts, seg)
     end
   end
-  return "/" .. table.concat(parts, "/")
+  return (drive or "") .. "/" .. table.concat(parts, "/")
 end
 
 local function unescape(s)
