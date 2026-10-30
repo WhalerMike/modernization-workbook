@@ -74,3 +74,25 @@ Checked October 21, 2026 by writer W4. Sources: `docs/compliance/Vol_IX_Book_01_
 | Book 04 Honest Limits | Honest limits | Carried |
 | Book 04 Cross-References | Book 09 Ch12; Chapter 08 | Internal volume references replaced; CISA SCuBA reference re-cited via BOD 25-01 pages |
 | Book 04 Provenance | — | Internal |
+
+## Addition, October 30, 2026: federal applicability and remote softphone users
+
+Brings this chapter in line with the emergency-calling section added to Book 03, Chapter 10 the same day. Sources opened on Oct 30, 2026: Microsoft Learn (Learn MCP fetch) for dynamic emergency calling, remote locations and the Locations and Networks report; FCC 19-76 PDF from docs.fcc.gov, full text extracted with pypdf and searched; 47 CFR 9.3 through the eCFR versioner API (title 47 as of Oct 28, 2026). The three statutes were read through govinfo by the Book 03 Chapter 10 writer the same day (that ledger, rows E7–E9) and are cited here under this chapter's own keys. The heading "Emergency calling is the agency's obligation" became "Emergency calling: configure as if the rules bind the agency"; no page linked the old anchor.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| F1 | Section no longer says the rules bind the agency directly; says they reach the system and that operator coverage is a narrower question | Emergency calling | corrected (overstated) | c05-usc1471, c05-usc623, c05-usc153 |
+| F2 | Statutory MLTS definition includes systems owned or leased by governmental agencies | Interpretation callout | verified | c05-usc1471 |
+| F3 | Duties fall on "a person engaged in the business of installing, managing, or operating" | Interpretation callout; operator bullet now says "in the business of" | verified | c05-usc623 |
+| F4 | "Person" = individual, partnership, association, joint-stock company, trust or corporation | Interpretation callout | verified | c05-usc153 |
+| F5 | FCC 19-76's regulatory flexibility analysis counts government agencies among MLTS operators, installers and managers; the order doesn't address federal agencies or the "person" definition | Interpretation callout | verified (Appendix C, para. 15, PDF p. 148; full-text search for "federal agenc", "federal government", "federal entit", "sovereign" finds only the Paperwork Reduction Act invitation to comment). Book 03 Ch10 says only that the order doesn't discuss federal agencies as operators, which stays true; this chapter adds the FRFA sentence | c05-fcc1976 |
+| F6 | Configure as if bound; counsel decides | Interpretation callout | restated-as-design (same position as Book 03 Ch10) | — |
+| F7 | Five-tier location precedence | How Teams meets the rules, Remote workers | verified | c05-remote-loc |
+| F8 | US routing by address type: dynamic, OS-confirmed, autosuggest direct; static user/number, unconfirmed OS, typed, null screened | Same | verified (classification table; manually entered and confirmed is screened, autosuggest confirmed is direct) | c05-remote-loc |
+| F9 | User-entered location needs external location lookup mode; Teams desktop Windows and Mac only; mobile automatic only; Teams phones unsupported | Same | verified | c05-remote-loc, c05-ecp |
+| F10 | Remote-location policy for every softphone user, by group from HR attributes | Same; new catalog row | restated-as-design (links Book 03 Ch10) | — |
+| F11 | Subnet lookups only when public IP is trusted; WAP and switch regardless; cloud proxies that modify source IP don't support network setting lookups | VPN pools stay unmapped | verified | c05-dynamic |
+| F12 | Full-tunnel VPN with a mapped pool hands a home worker the pool's location; leave pools unmapped | Same; mapping row | inference, labeled as such in the text | — |
+| F13 | Windows stateful DHCPv6 /128: site match and policies without LIS location; alternatives IPv4 subnet, switch/port, BSSID; no per-device /128 entries | A site match isn't a location | verified | c05-dynamic (IPv6 subnet matching) |
+| F14 | Locations and Networks report: Network Site tab shows site matches; Network Identifier tab shows location match and location ID | Same | verified | c05-loc-report |
+| F15 | Mapping item closes on the Network Identifier tab and a test call | Same | restated-as-design | — |

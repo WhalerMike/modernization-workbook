@@ -193,7 +193,7 @@ Two federal laws impose specific requirements on any multi-line telephone system
 
 **Kari's Law (2018):** Users must be able to dial 911 directly without dialing an access code or prefix. A notification must be sent to a central point when 911 is dialed. Teams Phone satisfies both requirements when emergency calling policies are correctly configured.
 
-**Ray Baum's Act (2018):** The "dispatchable location" — not just a building address but the specific floor, room, or workstation — must be transmitted with the 911 call to the PSAP. Teams Phone supports dispatchable location via the Location Information Service (LIS) and Emergency Location Identification Number (ELIN) configuration.
+**Ray Baum's Act (2018):** A "dispatchable location" must be conveyed with the 911 call to the PSAP. The FCC's rules define it as the validated street address of the calling party, plus additional information such as suite, apartment or similar information necessary to adequately identify the caller's location.[^v1b06-cfr93] Floor and room detail belong in that additional information where they are needed to find the caller; the definition doesn't mention a workstation. Teams Phone supports dispatchable location via the Location Information Service (LIS) and Emergency Location Identification Number (ELIN) configuration.
 
 > **E911 is not optional and must be validated before go-live.** E911 compliance is a federal legal requirement under 47 CFR Part 9. For each location where Teams Phone will be activated, the agency must: (1) configure a Location Information Service entry with dispatchable location, (2) configure an emergency calling policy that routes to the correct PSAP, (3) test 911 dialing and callback from a representative device at that location, and (4) document the test in the deployment record. Remote workers present an additional challenge — location awareness policy must capture the remote worker's current location at sign-in.
 
@@ -418,3 +418,5 @@ The shared network requirement row is the most operationally significant in this
 | Call recording access controls and audit logging | FedRAMP; Privacy Act | NIST SP 800-53 Rev 5 AU-9, SC-28; 5 U.S.C. §552a |
 | Agent IdP federation across .com boundary | OMB M-22-09; FICAM | NIST SP 800-63; SAML 2.0 / OIDC federation documentation |
 | Continuous call quality monitoring | FedRAMP ConMon; OMB A-130 | NIST SP 800-53 Rev 5 CA-7; NIST SP 800-37 Rev 2 (Monitor step) |
+
+[^v1b06-cfr93]: Electronic Code of Federal Regulations, 47 CFR § 9.3, definition of "Dispatchable location," <https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-9/subpart-A/section-9.3> (accessed Oct 30, 2026).
