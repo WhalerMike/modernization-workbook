@@ -32,7 +32,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from entra_tasks import iso, parse_time  # noqa: E402
-from graphkit import CLOUDS, GraphClient, azure_identity_provider  # noqa: E402
+from graphkit import CLOUDS, GraphClient, azure_identity_provider, load_calls, preflight, try_beta  # noqa: E402
 
 # Permissions per task (Microsoft Graph, application). The least-privileged ones each API page lists.
 PERMISSIONS = {
@@ -261,9 +261,11 @@ def fetch_compliance_policies(g: GraphClient) -> list[dict]:
     return policies
 
 
-def fetch_autopilot(g: GraphClient) -> list[dict]:
-    # Beta: deploymentProfileAssignmentStatus isn't in the v1.0 resource. Same host, so the token check holds.
-    return list(g.get_all(f"{g.root}/beta/deviceManagement/windowsAutopilotDeviceIdentities?$select={AUTOPILOT_SELECT}"))
+def fetch_autopilot(g: GraphClient) -> dict:
+    """Beta: deploymentProfileAssignmentStatus isn't in the v1.0 resource. Read through try_beta, so a
+    changed or missing beta shape, or a cloud where Autopilot isn't offered, gives "not evaluated"
+    instead of a failed run. Same host, so the token check holds."""
+    return try_beta(g, f"/deviceManagement/windowsAutopilotDeviceIdentities?$select={AUTOPILOT_SELECT}")
 
 
 # ------------------------------------------------------------ command line
@@ -304,10 +306,18 @@ def main(argv: list[str] | None = None) -> int:
     else:
         if not a.tenant:
             p.error("--tenant is required unless --from-json is given")
-        g = GraphClient(a.cloud, azure_identity_provider(a.cloud, a.tenant, a.client, a.cert))
+        # Only this task's declared calls, and a token checked against their permissions first.
+        g = GraphClient(a.cloud, azure_identity_provider(a.cloud, a.tenant, a.client, a.cert), calls=load_calls(a.task))
+        if not preflight(g, PERMISSIONS[a.task], lambda m: print(m, file=sys.stderr)):
+            return 2
         data = {}
         if a.task == "autopilot-profiles":
-            data["autopilotDevices"] = fetch_autopilot(g)
+            beta = fetch_autopilot(g)
+            if not beta["available"]:
+                result = {"stage": "beta", "evaluated": False, "reason": beta["reason"]}
+                print(json.dumps({"task": a.task, "evidences": EVIDENCES[a.task], "result": result}, indent=2))
+                return 0
+            data["autopilotDevices"] = beta["items"]
         else:
             data["managedDevices"] = fetch_devices(g)
             if a.task in ("noncompliant-devices", "compliance-coverage"):
@@ -322,7 +332,7 @@ def main(argv: list[str] | None = None) -> int:
     elif a.task == "device-posture":
         result = evaluate_posture(data["managedDevices"], _floors(a.os_floor) if a.os_floor else None)
     else:
-        result = evaluate_autopilot(data["autopilotDevices"])
+        result = {"stage": "beta", "evaluated": True, **evaluate_autopilot(data["autopilotDevices"])}
     print(json.dumps({"task": a.task, "evidences": EVIDENCES[a.task], "result": result}, indent=2))
     return 0
 

@@ -411,6 +411,17 @@
         "DW"
       ],
       "source": "Commits to the Learn source page that holds Microsoft's Logic App definition and authorization policies for custom task extensions, which examples/third_party/lifecycle-workflows-logic-app pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 05). A new commit means: review it, rerun examples/lifecycle-extensions/tests/test_learn_sample.py on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "msgraph-snippets-python-commits",
+      "name": "Microsoft Graph Python SDK snippets (microsoftgraph/msgraph-snippets-python commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/msgraph-snippets-python",
+      "path": "src/snippets",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Graph SDK snippets that Learn's national cloud and authentication provider pages render, which examples/third_party/msgraph-snippets-python pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 02). A new commit means: review it, rerun examples/ms-automation/tests/python/test_learn_sample.py on the new files, and update the snapshot only in a reviewed pull request."
     }
   ]
 }
