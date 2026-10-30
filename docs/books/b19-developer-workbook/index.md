@@ -50,7 +50,7 @@ This book is for the developers who build those pieces. It is code first. Each c
 
 | # | Chapter | Builds on | What you build | Status |
 |---|---|---|---|---|
-| 01 | [The HR-to-Entra middleware](01-the-hr-to-entra-middleware.md) | `examples/hcm-entra` | An HR extract turned into SCIM `/bulkUpload` batches: validation that fails closed, quarantine, ordering, pacing, and a provenance manifest that ties every batch to its inputs | Written |
+| 01 | [The HR-to-Entra middleware](01-the-hr-to-entra-middleware.md) | Microsoft's CSV2SCIM sample (pinned in `examples/third_party/csv2scim`), then `examples/hcm-entra` | Start from Microsoft's sample, then add what it leaves to you: validation that fails closed, quarantine, ordering, a mass-disable hold, pacing, the US Government clouds, least privilege, and a provenance manifest | Written |
 | 02 | Graph clients for the government clouds | `examples/ms-automation` | One client pattern for worldwide, GCC High and DoD: the token authority and Graph host per cloud, least-privileged scopes per call, paging with `@odata.nextLink`, `Retry-After`, and how to call beta paths without depending on them | Planned |
 | 03 | [Writing a validation kit check](03-writing-a-validation-kit-check.md) | `examples/validation-kit` | A new check, VK-SYNC-02, from the catalog entry through pass and fail fixtures and Pester tests to the GET-only safety rule, and what to do when the read needs a privileged role | Written |
 | 04 | Dynamic rules as code | `examples/validation-kit` (VK-DG-01 to VK-DG-04) | A rule library in Git: one file per group, a linter for the guards every user rule needs, rule tests through the beta `evaluateDynamicMembership` action (VK-DG-03), and shadow diffs (VK-DG-04) in CI before a rule changes | Planned |
@@ -64,6 +64,7 @@ Chapter 02 is the foundation chapters 01 and 03 lean on. They were written first
 
 ### Changes from the first outline
 
+- **Chapter 01 starts from Microsoft's sample.** Microsoft publishes CSV2SCIM for this integration and documents it on Learn. The chapter runs it first, on the same HR fixture, and builds the hardened client only for what the sample leaves out. The repository keeps a pinned copy so the labs stay stable.
 - **Chapter 03's worked example is a new check.** The outline proposed walking through an existing check. The chapter builds VK-SYNC-02 instead, because its live read needs Global Administrator, which makes it the clearest case for the kit's rule that a read-only check still has to ask for the least privilege it can.
 - **Chapter 04 will cover agents' user accounts.** Learn says an agent's user account is evaluated by user-based membership rules like any other user, and that a rule can exclude such accounts, but its rule property tables, read on October 30, 2026, don't name the property to use.[^i-agentusers] The chapter will give the clause when Learn documents it, and VK-DG-01's guards will grow to match.
 - **Chapter 08 needs one input first.** The [Ansible guide](../guides/ansible-configuration-automation.md) names a `patch_owner` field in the CMDB, but the sample CMDB export in `examples/ansible` doesn't carry it yet. The chapter will add the column, with tests, before it relies on it.

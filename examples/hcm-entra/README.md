@@ -3,6 +3,10 @@
 > **Status: illustrative. Unit-tested against fixtures, not proven against live tenants.**
 > This is one way to build the middleware's validate and normalize duties from [Book 03, Chapter 05](../../docs/books/b03-hr-identity/05-the-provisioning-pipeline.md), using the canonical schema and program attribute map in [Chapter 06](../../docs/books/b03-hr-identity/06-canonical-attribute-schema.md). It isn't an endorsement of any product by any agency, and no agency has adopted it. Product and API facts were checked against Microsoft Learn and Oracle's documentation on October 25, 2026. The explanation, with sources, is the research page [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../../docs/research/hcm-entra-implementation.md).
 
+## Start with Microsoft's sample
+
+Microsoft publishes a PowerShell sample for this integration, CSV2SCIM, documented on Learn in [API-driven inbound provisioning with PowerShell script](https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-powershell). A pinned, unmodified copy is in [`../third_party/csv2scim`](../third_party/csv2scim/SNAPSHOT.md), and `config/csv2scim/AttributeMapping.psd1` maps this example's extract columns for it. Use the sample to validate a mapping, extend the provisioning app's schema (`-UpdateSchema`) and read cycle logs in a worldwide or GCC tenant. This example adds what the sample leaves to you: record validation and quarantine, ordering, the mass-disable hold, pacing and the call budget, the US Government clouds, a single least-privileged permission, a repeatable `bulkId` and the provenance manifest. `tests/powershell/Csv2ScimBaseline.Tests.ps1` runs the sample offline on the same fixture and pins the differences. The [Developer Workbook, Chapter 01](../../docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md) walks through both.
+
 ## What it does
 
 Two equivalent clients, `python/hcm_to_scim.py` and `powershell/Invoke-HcmToScim.ps1` (with `HcmToScim.psm1`), read an HCM Extract CSV, validate each row, and turn it into a SCIM bulk request for the API-driven inbound provisioning app. By default they only write files:
@@ -98,10 +102,11 @@ examples/hcm-entra/
   README.md
   config/mapping.json            mapping, code lists, validation rules (shared)
   config/settings.example.json   non-secret settings; placeholders only
+  config/csv2scim/               the same columns as a CSV2SCIM AttributeMapping.psd1
   python/hcm_to_scim.py          converter, validator, dry-run-first sender
   powershell/HcmToScim.psm1      the same in PowerShell 7
   powershell/Invoke-HcmToScim.ps1  wrapper script
   tests/fixtures/                sample extract, expected payload, hashes, provenance hash
   tests/python/                  pytest
-  tests/powershell/              Pester 5
+  tests/powershell/              Pester 5, including the CSV2SCIM baseline comparison
 ```

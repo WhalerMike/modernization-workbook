@@ -36,3 +36,28 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | `examples/hcm-entra/README.md` (what it does, mapping, rules, run, test, limits) | The code; Validate and fail closed; Order, batch and hold; Pace, retry and stop | The attribute map table stays in the README; the chapter links it rather than copying it |
 | README "Known limits: doesn't write provenance" | The provenance manifest (new) | Limit narrowed: the README now says the client writes `provenance.json` but doesn't ship it to an evidence store |
 | Research page `hcm-entra-implementation.md` | Linked from Goal and audience | Its product background (the HR system) is out of scope for a developer chapter |
+
+## Rework, October 30, 2026: start from Microsoft's CSV2SCIM sample
+
+The owner asked that Microsoft migration material use as much Microsoft Learn content as possible, and that Microsoft's own sample be assessed as a replacement for the example. Learn's tutorial "API-driven inbound provisioning with PowerShell script" (read October 30, 2026) documents CSV2SCIM. The sample was copied unmodified from AzureAD/entra-id-inbound-provisioning at commit `f2e8c59f0af497b066c3484fc36a4197c2b37711` (March 2, 2026; MIT) into `examples/third_party/csv2scim`, with `snapshot.json` (hashes) and `SNAPSHOT.md`; `scripts/tests/test_third_party_snapshots.py` checks the hashes, and the `csv2scim-commits` feed watches upstream. Before running it, its payload-generation path was read: `Import-Csv | ConvertTo-ScimBulkPayload`, no sign-in and no network. It was then run offline on this book's fixture.
+
+Assessment: it can't replace the example for a federal deployment (gaps below), so the chapter starts from it and keeps the example only for the gaps.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 21 | CSV2SCIM modes: validate mapping, generate payload, send, UpdateSchema, GetPreviousCycleLogs; 50 operations per request; mapping values are column names or script blocks | Start with Microsoft's sample | verified | Learn tutorial (Appendix and sections); pinned script |
+| 22 | The mapping is CSV to SCIM only; app mappings stay in the provisioning app | What it does | verified | Learn tutorial, note in Appendix |
+| 23 | Provided "as-is" for implementation reference; questions and enhancements through GitHub | What it does | verified | Learn tutorial, note |
+| 24 | Learn lists custom validation as a customization to add | What it leaves to you | verified (quoted, 12 words) | Learn tutorial, task table row 2 |
+| 25 | Client shouldn't implement comparison logic; the service applies IT rules | Where the middleware sits | verified (paraphrased) | Learn tutorial, implementation requirement |
+| 26 | Sends all 19 fixture rows; pending and unknown worker types active; duplicate twice; empty `externalId`; file order; future hire active | What it leaves to you; Lab 1 | verified by running the pinned sample; pinned in `Csv2ScimBaseline.Tests.ps1` | local run, October 30, 2026 |
+| 27 | `bulkId` is a new GUID per operation | What it leaves to you | verified | pinned script, `ConvertTo-ScimBulkPayload` (`New-Guid`); test |
+| 28 | `/bulkUpload` and schema PUT hard-coded to `https://graph.microsoft.com/beta`; `Connect-MgGraph` called without an environment | What it leaves to you | verified | pinned script, `Invoke-AzureADBulkScimRequest`, `Set-AzureADProvisioningAppSchema`, sign-in block |
+| 29 | Delegated scopes `Application.ReadWrite.All`, `AuditLog.Read.All`, `SynchronizationData-User.Upload` | What it leaves to you | verified | pinned script, sign-in block |
+| 30 | No pacing of its own; relies on SDK retry | What it leaves to you | verified (no sleep or 429 handling in the script); SDK behavior per Learn throttling guidance | pinned script; Learn throttling guidance |
+| 31 | Certificate flow adds `Application.Read.All` and `Synchronization.Read.All` | Lab 2; Verified facts | verified | Learn tutorial, certificate section step 6 |
+| 32 | GCC uses the worldwide Graph endpoint; GCC High and DoD don't | What it leaves to you | verified | Learn, national cloud deployments |
+| 33 | Use the sample for mapping, schema and logs in worldwide or GCC tenants; the hardened client for production and GCC High and DoD | What it leaves to you | restated-as-design (labeled) | — |
+| 34 | Pin, hash and watch every sample you run | The pinned copy | restated-as-design (labeled) | — |
+
+Tests after the rework, October 30, 2026: pytest 48 passed; Pester 48 passed (41 plus 7 baseline comparison tests); `scripts/tests` 84 passed.
