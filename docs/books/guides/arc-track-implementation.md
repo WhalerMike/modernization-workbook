@@ -162,6 +162,7 @@ Book 05 sets the program's taxonomy. This guide adds the CMDB column, which says
 | `ArcOnboardedDate` | `2026-10-20` | Written by the onboarding run, not the CMDB | Wave tracking |
 | `CmdbId` *(optional, design guidance)* | `CI0012345` | The configuration item number | The join key to the CMDB and to Book 12's evidence contract ([Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#cm-8-is-the-precondition-for-si-2-at-scale)) |
 | `ConfigOwner` *(optional, design guidance)* | `ArcMachineConfiguration` | The CMDB's `config_owner` ([Ansible guide](ansible-configuration-automation.md#one-owning-tool-per-setting)) | The two-tools check in [Step 7](#step-7-dangers-and-mitigations) |
+| `PatchOwner` *(optional, design guidance)* | `UpdateManager` | The CMDB's patch owner: Update Manager, or the tool that already patches the fleet, such as Ansible ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#azure-update-manager)) | Scoping: only `UpdateManager` servers get a scheduled patching configuration; the rest are assessed only |
 | `ArcSQLServerExtensionDeployment` | `Disabled` | Set only where SQL Server must not be auto-connected | The Arc SQL Server auto-onboarding ([Book 05](../b05-devices/09-servers-under-azure-arc.md#resource-groups-and-tags)) |
 
 : The tag taxonomy and its source {.striped .hover}

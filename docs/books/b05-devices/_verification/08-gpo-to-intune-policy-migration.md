@@ -172,3 +172,15 @@ Sources opened on Oct 29, 2026 through the Microsoft Learn documentation service
 | T4 | A dynamic group's security depends on who can write the attributes its rule reads ("Security consideration: Evaluate attribute write permissions before using them in dynamic group rules") | Device attribute schema | verified | same page and section |
 | T5 | Footnote c08-dynamic extended to cite "Considerations for dynamic membership groups" and the re-check date | Notes | updated | same page |
 | T6 | Link to the guide's `#dynamic-group-dangers` | Device attribute schema | open: the anchor didn't exist in the guide when this was written; the guide's owner is adding it | guide |
+
+## Additions, October 30, 2026 (adopt, don't build)
+
+Pages read on 2026-10-30 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| U1 | Policy Analyzer treats a set of GPOs as one unit, highlights redundant and conflicting settings, compares with baselines and diffs snapshots; GPO2PolicyRules converts GPO backups from the command line | Phase 1 step 2; adopt table | verified | `c08-sct` |
+| U2 | Migrate: select imported GPOs and settings, review values, then profile info, scope tags, assignments (optional), create; conflicting values stop the step with "Conflicts are detected…"; Microsoft advises reviewing rather than including every setting | Phase 3; adopt table | verified | `c08-gpa-migrate` (sections "Review and migrate," "Conflicting settings are detected early") |
+| U3 | Migrate is best effort: alternate settings, failures listed in Notifications; Migrate disabled for AppLocker and firewall rule settings, which go to Endpoint security | Phase 3; adopt table; supports the existing firewall-rules statement | verified (section "What you need to know"); footnote access date moved to Oct 30, 2026 | `c08-gpa-migrate` |
+| U4 | Graph beta `groupPolicyMigrationReports`: list needs DeviceManagementConfiguration.Read.All (delegated or application); create needs ReadWrite; `migrationReadiness` none/partial/complete/error/notApplicable and supported-setting counts; national cloud table lists global, US Gov L4 and L5 | Adopt table | verified. GCC reading inferred from the GCC boundary fact (Book 14, Ch 03) | `c08-gpa-graph` |
+| U5 | Intune security baselines: same Microsoft team as the GPO baselines; settings specific to on-premises domain controllers excluded | Adopt table | verified | `c08-baselines` |

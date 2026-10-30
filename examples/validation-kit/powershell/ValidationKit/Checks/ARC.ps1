@@ -322,7 +322,10 @@ function Invoke-VkArc07 {
         param($Context)
         $machines = Get-VkArcMachines $Context
         if ($machines.Count -eq 0) { return Get-VkNotApplicable 'No Arc-enabled servers in scope' }
-        $mcValues = @($Context.Options['MachineConfigurationOwnerValues'] | ForEach-Object { "$_".ToLowerInvariant() })
+        # Owner spellings vary by source (the Arc guide's ArcMachineConfiguration tag, the Ansible example's
+        # arc_machine_configuration, "machine configuration"), so compare letters and digits only, without an
+        # "azure" or "arc" prefix.
+        $mcValues = @($Context.Options['MachineConfigurationOwnerValues'] | ForEach-Object { ("$_".ToLowerInvariant() -replace '[^a-z0-9]', '') -replace '^(azure|arc)+', '' })
         $owners = @{}
         foreach ($s in (Read-VkInputCsv -Context $Context -Option 'CmdbFile')) {
             $o = Get-VkValue $s 'config_owner'
@@ -346,7 +349,7 @@ function Invoke-VkArc07 {
             $data = [ordered]@{ Owner = $ownerText; Assignments = @($mine | ForEach-Object { "$($_.name):$($_.assignmentType)" }) }
             if (Test-VkBlank $owner) {
                 ConvertTo-VkFinding -Severity Warn -Object $m.name -ObjectId $m.id -Issue 'Enforcing machine configuration assignment on a server with no recorded configuration owner' -Data $data
-            } elseif ($mcValues -notcontains "$owner".ToLowerInvariant()) {
+            } elseif ($mcValues -notcontains (("$owner".ToLowerInvariant() -replace '[^a-z0-9]', '') -replace '^(azure|arc)+', '')) {
                 ConvertTo-VkFinding -Severity Finding -Object $m.name -ObjectId $m.id -Issue 'Configuration owned by another tool, but machine configuration also enforces settings' -Data $data
             }
         }

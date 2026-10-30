@@ -171,7 +171,7 @@ The results name users, devices and service principals, so store them as the age
 | Attribute-Driven Migration implementation guide, Gate 4 (group library and units) | VK-DG-01 to VK-DG-07 |
 | Attribute-Driven Migration implementation guide, Gate 5 (personas, and the conventions handed to the tracks) | VK-CA-01, VK-HR-02, VK-INT-01, VK-INT-04, VK-ARC-01, VK-NPI-01, VK-NPI-08 |
 | Attribute-Driven Migration implementation guide, Gate 6 (PIV binding) | VK-PIV-01 |
-| Attribute-Driven Migration implementation guide, Gate 7 (mover proof) | VK-DG-05, VK-HR-03, VK-HR-05 |
+| Attribute-Driven Migration implementation guide, Gate 7 (mover proof) | VK-DG-05, VK-HR-03 |
 | Attribute-Driven Migration implementation guide, Gate 8 (each wave) | VK-HR-01 to VK-HR-06, VK-DG-04, VK-DG-05 |
 | Attribute-Driven Migration implementation guide, Gate 9 (drift) | VK-HR-01, VK-HR-03, VK-HR-04, VK-DG-05, VK-DG-06, VK-DG-07, and each track's standing checks |
 | [Intune track](../../docs/books/guides/intune-track-implementation.md), Step 0.4 (coverage matrix and tiers) | VK-INT-06 |

@@ -67,6 +67,7 @@ The program's rule *(design guidance)*:
 2. **Ansible reads anything and writes only what it owns.** Assessment playbooks may run anywhere the program allows. A playbook that changes a setting runs only against hosts whose `config_owner` is Ansible, enforced by building the inventory group from that attribute and by an assertion in the playbook itself.
 3. **Onboarding isn't owning.** Installing and connecting the Arc agent hands a server to Arc. After that, Ansible doesn't set what machine configuration sets.
 4. **An exception is a record.** Where Ansible must touch a setting another tool owns (an emergency fix, a setting the owner can't express), it's a dated exception with a reason, and the owning tool's baseline is updated to match within the exception's life.
+5. **Patching has one owner too.** The CMDB names the tool that patches each server (`patch_owner`), mirrored to the Arc `PatchOwner` tag. Where Ansible already patches a fleet, such as Red Hat Enterprise Linux on AWS, Update Manager only assesses those servers and schedules nothing on them ([Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#azure-update-manager)).
 
 ## Where Ansible fits {#where-it-fits}
 

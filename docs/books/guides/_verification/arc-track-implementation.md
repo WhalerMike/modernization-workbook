@@ -83,3 +83,9 @@ Existing: VK-ARC-01 to VK-ARC-05; VK-NPI-01, VK-NPI-02, VK-NPI-03, VK-NPI-07.
 
 - **VK-ARC-06**: role assignments at the Arc management group, subscriptions and resource groups: Owner or Contributor outside break-glass; Azure Connected Machine Resource Administrator and the Virtual Machine login roles active rather than PIM-eligible; the Azure Connected Machine Onboarding role on any scope without an open wave; assignees that are individual users rather than groups or owned non-person identities.
 - **VK-ARC-07**: servers whose `ConfigOwner` tag (or CMDB `config_owner`) isn't Arc machine configuration but that carry an `ApplyAndMonitor` or `ApplyAndAutoCorrect` guest assignment (two tools on one setting).
+
+## Addition, October 30, 2026
+
+| Claim | Where | Verdict |
+|---|---|---|
+| Optional `PatchOwner` tag mirroring the CMDB's patch owner; only `UpdateManager` servers get scheduled patching | Step 2 tag table | design guidance, labeled; links Book 05 Ch 09, Azure Update Manager, which carries the rule and its verification (G6) |
