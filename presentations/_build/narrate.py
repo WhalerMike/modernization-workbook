@@ -44,6 +44,21 @@ PHON = [
     (r"\bISSO\b", "I S S O"), (r"\bCIO\b", "C I O"), (r"\bCISO\b", "see-so"), (r"\bSSOT\b", "S S O T"), (r"\bB2B\b", "B to B"),
     (r"\bSP 800-53\b", "special publication eight hundred fifty-three"), (r"\bIA-2\(6\)", "I A two, enhancement six"),
     (r"\bAC-6\(7\)", "A C six, enhancement seven"), (r"\bAC-2\b", "A C two"),
+    # "live" is two words: the adjective /laɪv/ ("the live configuration", "is live", "go-live") is respelled
+    # "lyve", the verb /lɪv/ ("rules live in", "where files live.") "liv". The adjective rules run first.
+    (r"\b([Gg]o|goes|going|went|gone)([- ])live\b", r"\1\2lyve"),
+    (r"\b(is|are|was|were|be|been|being|isn't|aren't|wasn't|weren't|stay|stays|stayed|remain|remains|remained)"
+     r"(\s+(?:still|now|already|not|fully|actually)\s+|\s+)live\b", r"\1\2lyve"),
+    (r"\b(secured and|checked|problem|governor) live\b", r"\1 lyve"),
+    (r"\b([Ll])ive(?= (?:configuration|environment|entries|entry|inventory|evidence|video|status|systems?|production|"
+     r"workloads?|settings?|rules?|estate|tenants?|data|traffic|discussion|Azure|Graph|demos?|sessions?|migration|cutover|"
+     r"dashboards?|quer(?:y|ies)|tests?|feeds?|sites?|users?|servers?|networks?|records?|events?|views?|copy|version|runs?|"
+     r"links?|streams?|presentations?|meetings?|calls?|deployments?|services?|apps?|applications?|certificates?|zones?|DNS|"
+     r"director(?:y|ies)|forests?|fleet|endpoints?|devices?|accounts?|policy|policies|subscriptions?|resources?|objects?)\b)",
+     r"\1yve"),
+    (r"\bto-live\b", "to-liv"),
+    (r"\b([Ll])ive(?= (?:in|on|under|above|below|with|as|side|there|here|inside|outside|within|alongside|together|only|"
+     r"for|is)\b|[.,;:?!\"]|$)", r"\1iv"),
     (r"—", ", "),
 ]
 
