@@ -1,0 +1,342 @@
+{
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "graphHost": {
+        "type": "String",
+        "allowedValues": [
+          "https://graph.microsoft.com",
+          "https://graph.microsoft.us",
+          "https://dod-graph.microsoft.us"
+        ],
+        "metadata": {
+          "description": "Microsoft Graph root for the tenant's cloud: graph.microsoft.com for worldwide and GCC, graph.microsoft.us for GCC High, dod-graph.microsoft.us for DoD."
+        }
+      },
+      "integrationUri": {
+        "type": "String",
+        "metadata": {
+          "description": "The one downstream system this Logic App integrates with."
+        }
+      },
+      "integrationAudience": {
+        "type": "String",
+        "metadata": {
+          "description": "Token audience the downstream system accepts from this Logic App's managed identity."
+        }
+      },
+      "operations": {
+        "type": "Object",
+        "metadata": {
+          "description": "Lifecycle workflow ID to the operation this integration runs for it. A workflow not listed gets a failed callback."
+        }
+      }
+    },
+    "triggers": {
+      "manual": {
+        "inputs": {
+          "schema": {
+            "properties": {
+              "data": {
+                "properties": {
+                  "callbackUriPath": {
+                    "description": "CallbackUriPath used for Resume Action",
+                    "title": "Data.CallbackUriPath",
+                    "type": "string"
+                  },
+                  "subject": {
+                    "properties": {
+                      "displayName": {
+                        "description": "DisplayName of the Subject",
+                        "title": "Subject.DisplayName",
+                        "type": "string"
+                      },
+                      "email": {
+                        "description": "Email of the Subject",
+                        "title": "Subject.Email",
+                        "type": "string"
+                      },
+                      "id": {
+                        "description": "Id of the Subject",
+                        "title": "Subject.Id",
+                        "type": "string"
+                      },
+                      "manager": {
+                        "properties": {
+                          "displayName": {
+                            "description": "DisplayName parameter for Manager",
+                            "title": "Manager.DisplayName",
+                            "type": "string"
+                          },
+                          "email": {
+                            "description": "Mail parameter for Manager",
+                            "title": "Manager.Mail",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Id parameter for Manager",
+                            "title": "Manager.Id",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "userPrincipalName": {
+                        "description": "UserPrincipalName of the Subject",
+                        "title": "Subject.UserPrincipalName",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "task": {
+                    "properties": {
+                      "displayName": {
+                        "description": "DisplayName for Task Object",
+                        "title": "Task.DisplayName",
+                        "type": "string"
+                      },
+                      "id": {
+                        "description": "Id for Task Object",
+                        "title": "Task.Id",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "taskProcessingResult": {
+                    "properties": {
+                      "createdDateTime": {
+                        "description": "CreatedDateTime for TaskProcessingResult Object",
+                        "title": "TaskProcessingResult.CreatedDateTime",
+                        "type": "string"
+                      },
+                      "id": {
+                        "description": "Id for TaskProcessingResult Object",
+                        "title": "TaskProcessingResult.Id",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "workflow": {
+                    "properties": {
+                      "displayName": {
+                        "description": "DisplayName for Workflow Object",
+                        "title": "Workflow.DisplayName",
+                        "type": "string"
+                      },
+                      "id": {
+                        "description": "Id for Workflow Object",
+                        "title": "Workflow.Id",
+                        "type": "string"
+                      },
+                      "workflowVersion": {
+                        "description": "WorkflowVersion for Workflow Object",
+                        "title": "Workflow.WorkflowVersion",
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "source": {
+                "description": "Context in which an event happened",
+                "title": "Request.Source",
+                "type": "string"
+              },
+              "type": {
+                "description": "Value describing the type of event related to the originating occurrence.",
+                "title": "Request.Type",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "kind": "Http",
+        "type": "Request",
+        "runtimeConfiguration": {
+          "secureData": {
+            "properties": [
+              "outputs"
+            ]
+          }
+        }
+      }
+    },
+    "actions": {
+      "Check_request": {
+        "type": "If",
+        "expression": {
+          "and": [
+            {
+              "startsWith": [
+                "@triggerBody()?['data']?['callbackUriPath']",
+                "/identityGovernance/lifecycleWorkflows/workflows/"
+              ]
+            },
+            {
+              "endsWith": [
+                "@triggerBody()?['data']?['callbackUriPath']",
+                "/resume"
+              ]
+            },
+            {
+              "contains": [
+                "@triggerBody()?['data']?['callbackUriPath']",
+                "@{coalesce(triggerBody()?['data']?['workflow']?['id'], '|none|')}"
+              ]
+            },
+            {
+              "contains": [
+                "@triggerBody()?['data']?['callbackUriPath']",
+                "@{coalesce(triggerBody()?['data']?['taskProcessingResult']?['id'], '|none|')}"
+              ]
+            },
+            {
+              "not": {
+                "equals": [
+                  "@coalesce(triggerBody()?['data']?['subject']?['id'], '')",
+                  ""
+                ]
+              }
+            }
+          ]
+        },
+        "actions": {},
+        "else": {
+          "actions": {
+            "Reject_request": {
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "code": "RejectedPayload",
+                  "message": "The callback path or the subject is missing or malformed; no callback is sent."
+                }
+              },
+              "runAfter": {}
+            }
+          }
+        },
+        "runAfter": {}
+      },
+      "Operation": {
+        "type": "Compose",
+        "inputs": "@coalesce(parameters('operations')?[triggerBody()?['data']?['workflow']?['id']], '')",
+        "runAfter": {
+          "Check_request": [
+            "Succeeded"
+          ]
+        }
+      },
+      "Check_operation": {
+        "type": "If",
+        "expression": {
+          "not": {
+            "equals": [
+              "@outputs('Operation')",
+              ""
+            ]
+          }
+        },
+        "actions": {
+          "Call_integration": {
+            "type": "Http",
+            "inputs": {
+              "method": "POST",
+              "uri": "@parameters('integrationUri')",
+              "headers": {
+                "Content-Type": "application/json",
+                "Idempotency-Key": "@{triggerBody()?['data']?['taskProcessingResult']?['id']}"
+              },
+              "body": {
+                "operation": "@outputs('Operation')",
+                "subjectId": "@triggerBody()?['data']?['subject']?['id']",
+                "workflowId": "@triggerBody()?['data']?['workflow']?['id']",
+                "taskProcessingResultId": "@triggerBody()?['data']?['taskProcessingResult']?['id']"
+              },
+              "authentication": {
+                "type": "ManagedServiceIdentity",
+                "audience": "@parameters('integrationAudience')"
+              },
+              "retryPolicy": {
+                "type": "exponential",
+                "count": 4,
+                "interval": "PT10S",
+                "minimumInterval": "PT10S",
+                "maximumInterval": "PT2M"
+              }
+            },
+            "runAfter": {},
+            "runtimeConfiguration": {
+              "secureData": {
+                "properties": [
+                  "inputs",
+                  "outputs"
+                ]
+              }
+            }
+          }
+        },
+        "else": {
+          "actions": {}
+        },
+        "runAfter": {
+          "Operation": [
+            "Succeeded"
+          ]
+        }
+      },
+      "Resume": {
+        "type": "Http",
+        "inputs": {
+          "method": "POST",
+          "uri": "@{parameters('graphHost')}/v1.0@{triggerBody()?['data']?['callbackUriPath']}",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "data": {
+              "operationStatus": "@{if(equals(actions('Call_integration')?['status'], 'Succeeded'), 'completed', 'failed')}"
+            },
+            "source": "contoso.example/lifecycle-extensions",
+            "type": "lifecycleEvent"
+          },
+          "authentication": {
+            "type": "ManagedServiceIdentity",
+            "audience": "@parameters('graphHost')"
+          },
+          "retryPolicy": {
+            "type": "exponential",
+            "count": 4,
+            "interval": "PT10S",
+            "minimumInterval": "PT10S",
+            "maximumInterval": "PT2M"
+          }
+        },
+        "runAfter": {
+          "Check_operation": [
+            "Succeeded",
+            "Failed",
+            "TimedOut"
+          ]
+        },
+        "runtimeConfiguration": {
+          "secureData": {
+            "properties": [
+              "inputs",
+              "outputs"
+            ]
+          }
+        }
+      }
+    },
+    "outputs": {}
+  },
+  "parameters": {}
+}

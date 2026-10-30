@@ -1,0 +1,304 @@
+---
+title: "Chapter 05 — Lifecycle Workflows Custom Extensions"
+description: "Building the Logic Apps that Lifecycle Workflows custom task extensions call: start from Learn's Logic App definition (pinned in the repository), then add what it leaves to you: one reusable Logic App per integration with its own managed identity, a checked callback path, a callback on failure as well as success, the right Graph host for each US cloud, idempotency, bounded retries inside the callback timeout, proof-of-possession authorization built from a reviewed registry, and Book 03's leaver order, with labs against fakes and a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-attribute-driven-migration
+part: How
+series-order: 5
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-04-01
+review-status: pending
+---
+
+# Chapter 05 — Lifecycle Workflows Custom Extensions
+
+*A custom task extension hands a leaver, a joiner or a mover to code you wrote. Lifecycle Workflows then waits for that code to say what happened. Make sure it always says, says the truth, and says it to the right cloud.*
+
+::: {.callout-note}
+## In this chapter
+How a Lifecycle Workflows task calls an Azure Logic App, what the call carries, how the Logic App proves who called it, and how it reports back so the workflow can go on. You start from the Logic App definition Learn publishes, which the repository keeps as a pinned copy, and run it against fakes to see what it does on its own. Then you build on `examples/lifecycle-extensions` for what it leaves to you: one reusable Logic App per integration, a callback that always arrives, the Graph host for each US cloud, idempotency, retries that fit the timeout, and the deployment pieces built from a reviewed registry. Lab 1 runs on a laptop with no tenant; Lab 2 uses a test tenant and a test subscription.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can build a Logic App that a custom task extension calls, test it without a tenant, and deploy it with its authorization policy and its custom task extension from a file you reviewed. You can explain what Lifecycle Workflows records when the Logic App succeeds, fails, or never calls back, and for each rule in the code you can say whether it is Microsoft's contract, Microsoft's sample, or the program's own design.
+
+**Audience.** Developers and identity engineers who build the integrations behind the joiner, mover and leaver workflows, and the reviewers who approve them. You should read JSON and Python. You don't need a tenant until Lab 2.
+
+## Where the extensions sit
+
+[Book 03](../../../books/b03-hr-identity/08-joiner-mover-leaver.md#who-does-what-provisioning-and-lifecycle-workflows) splits the work: inbound provisioning creates and updates accounts, and Lifecycle Workflows act on accounts that already exist. The built-in tasks cover the account side. Everything else in a leaver (the PIV credential, the devices, the servers) goes through a custom task extension ([Book 03, Chapter 09](../../../books/b03-hr-identity/09-credentials-and-certificates.md#running-it-from-lifecycle-workflows)). Book 03 also sets three rules this chapter builds in code: one parameterized Logic App per integration, not one per component ([Chapter 08](../../../books/b03-hr-identity/08-joiner-mover-leaver.md#guardrails-at-agency-scale)); block first, with *Disable user account* and *Revoke all refresh tokens for user* before the custom task; and custom tasks that are idempotent and retry with a bound.
+
+What Learn says about the extension itself sets the contract:
+
+- A custom task extension calls an Azure Logic App on the Consumption plan.[^c05-ext] It runs one of two ways. **Launch and continue** starts the Logic App and moves on; the task succeeds if the Logic App starts. **Launch and wait** starts it and waits for a response; if none arrives within the duration you set, the task is considered failed.[^c05-ext] The response can come from a third-party system if the Logic App is only an intermediary.[^c05-ext]
+- The wait is 30 minutes to 3 hours, written as an ISO 8601 duration.[^c05-callback][^c05-limits] Learn's deployment planning page says 3 minutes to 5 hours;[^c05-deploy] the code follows the narrower range.
+- The response is a `POST` to `taskProcessingResult: resume` with an `operationStatus` of `completed` or `failed`. It is in v1.0 and listed for the global service, US Government L4 and L5.[^c05-resume][^c05-cbdata]
+- New custom task extensions use proof-of-possession (PoP) tokens to call the Logic App. Extensions created before PoP existed use bearer tokens and can't be migrated: you create new ones.[^c05-configure][^c05-security]
+- A tenant can hold 100 custom task extensions, and a workflow 25 tasks.[^c05-limits] Lifecycle Workflows need Microsoft Entra ID Governance or Microsoft Entra Suite licenses.[^c05-licensing] Microsoft Entra ID Governance is available in GCC, GCC High and DoD, and Lifecycle Workflows are listed as available in Azure for US Government.[^c05-licensing][^c05-availability]
+- GCC keeps the worldwide Graph endpoint, `graph.microsoft.com`. GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`, and a token for one cloud doesn't work in another.[^c05-deployments]
+
+## Start with Microsoft's sample
+
+### What Learn gives you
+
+Learn gives you two ways in. The Microsoft Entra admin center can create the custom task extension and a new Logic App together, and sets most of it up for you.[^c05-trigger] For an existing Logic App, Learn's page "Configure a Logic App for Lifecycle Workflow use" gives the workflow definition to paste into code view, the steps to turn on the system-assigned managed identity, and the authorization policy for each token type.[^c05-configure] That definition is Microsoft's only sample for this integration. A search of the `Azure-Samples` and `microsoft` organizations on GitHub on October 30, 2026 found no repository, ARM template or Bicep file for it.
+
+| Piece | What Learn's definition does |
+|---|---|
+| Trigger | A Request trigger with the JSON schema of what Lifecycle Workflows sends: `callbackUriPath`, the subject (ID, display name, email, UPN, manager), the task, the task processing result and the workflow |
+| Callback | One HTTP action: `POST https://graph.microsoft.com/beta@{callbackUriPath}` with the managed identity, audience `https://graph.microsoft.com`, body `operationStatus: Completed` |
+| Your logic | "Add other actions between the trigger and callback action"; remove the callback for launch and continue[^c05-configure] |
+| Authorization (PoP) | Policy `AzureADLifecycleWorkflowsAuthPOPAuthPolicy`, type `AADPOP`, with claims for issuer, audience, `appid`, `m`, `u` and `p`[^c05-configure] |
+
+### The pinned copy
+
+The definition lives only inside the Learn page, so the repository pins the page: "Configure a Logic App for Lifecycle Workflow use" and "Lifecycle Workflows custom task extension", from MicrosoftDocs/entra-docs at commit `07cb73d` (October 30, 2026), unmodified, with the repository's MIT code license.[^c05-sample-code] Each file's git blob hash was checked against the upstream tree before `snapshot.json` recorded its SHA-256, and a unit test checks the hashes. The weekly source watch reports new commits to the configure page. Updating the copy is a reviewed pull request, as in [Chapter 04](04-dynamic-rules-as-code.md#the-pinned-copy).
+
+`tools/lcwext.py learn-sample` extracts the definition from the pinned page at test time. `tools/wdl.py` is a small interpreter for the part of the Workflow Definition Language these definitions use, so the tests can run Learn's definition, unchanged, against a fake Lifecycle Workflows service, a fake Graph per cloud and a fake downstream system.
+
+### What it leaves to you
+
+Running Learn's definition against the fakes shows what it does well and what it leaves to you. Each row is pinned by a test in `tests/test_learn_sample.py` or `tests/test_extension.py`.
+
+| Learn's definition, run as published | Why it matters | What `examples/lifecycle-extensions` adds |
+|---|---|---|
+| Resumes the task with the Logic App's managed identity, no secret | — | Kept as the model, and the trigger schema is kept unchanged (a test compares them) |
+| Calls back to `graph.microsoft.com`, hard-coded, with a matching audience | In a GCC High or DoD tenant the callback goes to the wrong cloud, and the task fails at the end of the wait | A `graphHost` parameter that accepts only the three Graph roots, set from the registry's cloud |
+| Calls back on `/beta` | Learn doesn't support beta in production;[^c05-resume-beta] resume is in v1.0[^c05-resume] | The callback uses v1.0 |
+| Uses `callbackUriPath` as it arrives | Any path appended to the Graph host gets a `POST` with the managed identity's token (a test sends `/users`) | `Check_request` refuses a path that isn't a resume path for this workflow and task processing result, or a payload with no subject, and makes no call |
+| Always reports `Completed` | A failed revocation reads as done | The status comes from the integration call: `completed` or `failed` |
+| If work added before the callback fails, no callback is sent | Lifecycle Workflows waits out the whole timeout before the task fails | `Resume` runs after success, failure or time-out, so a failure is reported at once |
+| No idempotency | A retried call or a rerun repeats the work downstream | `Idempotency-Key` set to the task processing result ID; the fake downstream does the work once |
+| The trigger's outputs carry the subject's name, UPN, email and manager into run history | Personal data in run history, visible to anyone who can read runs | Trigger outputs and HTTP inputs and outputs secured;[^c05-la-security] only the object ID goes downstream (*design guidance*) |
+| Default retry policy, implicit | Fine on its own; once you add work, retries have to fit inside the wait | Explicit exponential retries with a `maximumInterval`; the lint checks the worst case against the extension's timeout |
+| Authorization policy set by hand in the portal; the `appid` value printed on the page is a documentation placeholder | A policy typed by hand drifts; a placeholder `appid` would block every call | `accessControl` built from the registry, with SAS turned off as Learn's security guidance asks;[^c05-security] the builder refuses the placeholder |
+
+The `appid` row needs a word. Learn's page says the `appid` claim "represents Lifecycle Workflows and is always the same", and prints `00001111-aaaa-2222-bbbb-3333cccc4444`, the format Learn uses for example GUIDs. The page's own `azp` row, in the bearer-token policy, prints `ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7`, and the page's history shows the `appid` row held that value until a documentation sweep in May 2024.[^c05-configure][^c05-sample-code] The registry uses `ce79fdc4-…`, and Lab 2 confirms it in the tenant before anything depends on it (*design guidance*; research gap 10).
+
+**The verdict.** Learn's definition is the right shape and the right trigger, and the program keeps both. It isn't safe to run as the leaver's credential revocation as published: it can report success for work that failed, it reports nothing for work that failed after you add it, and it works only in the worldwide cloud. Use it as the model and run the program's definition.
+
+## The code: what `examples/lifecycle-extensions` adds
+
+[`examples/lifecycle-extensions`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions) is one Logic App definition, one registry, two Python tools and three test files. It needs only Python 3.10 or later.
+
+### One Logic App per integration
+
+`logicapp/integration.workflow.json` is the definition every integration deploys. What changes between integrations is data, not code: four parameters.
+
+| Parameter | What it holds |
+|---|---|
+| `graphHost` | The Graph root for the tenant's cloud; only `graph.microsoft.com`, `graph.microsoft.us` or `dod-graph.microsoft.us` is accepted |
+| `integrationUri` | The one downstream system this Logic App calls |
+| `integrationAudience` | The audience the downstream system accepts in the managed identity's token |
+| `operations` | Each lifecycle workflow ID this integration serves, and the operation it runs for it (`revoke`, `issue`) |
+
+The run goes in four steps:
+
+1. **`Check_request`** checks that `callbackUriPath` starts with `/identityGovernance/lifecycleWorkflows/workflows/`, ends with `/resume`, contains the payload's workflow ID and task processing result ID, and that the subject has an ID. If not, the run stops with `RejectedPayload` and sends nothing: it can't trust the path to call back on.
+2. **`Operation`** looks up the workflow ID in `operations`. A workflow that isn't registered gets no work done.
+3. **`Call_integration`** posts the operation, the subject's object ID, the workflow ID and the task processing result ID to the integration, with its managed identity and an `Idempotency-Key` header set to the task processing result ID. It retries 408, 429 and 5xx responses up to four times, waiting at most two minutes between tries.[^c05-la-retry]
+4. **`Resume`** posts to `{graphHost}/v1.0{callbackUriPath}` with the managed identity, after the integration call succeeds, fails or times out, and reports `completed` only if the call succeeded. An unregistered workflow gets `failed`.
+
+The idempotency key is a contract with the downstream system, not a Microsoft feature: the system does the work once per key and answers a repeat with the first result (*design guidance*). The custom task extension may call the Logic App a second time (`maximumRetries` is 0 or 1),[^c05-client] a workflow can be rerun, and Book 03's rule for a partial leaver is that a rerun resumes from the first incomplete step ([Appendix A](../../../books/b03-hr-identity/appendix-a-lifecycle-rules.md#partial-leavers)). With the key, each of those is safe.
+
+The exact `callbackUriPath` that Lifecycle Workflows sends isn't documented. Learn's definition appends it to `https://graph.microsoft.com/beta`, which makes it the resume path that the Graph reference shows.[^c05-configure][^c05-resume] `Check_request` is written to that shape, and Lab 2 confirms it with a real run (research gap 11).
+
+### The registry
+
+`config/integrations.json` has one entry per integration: the tenant's cloud, the Azure cloud the Logic App runs in, the Logic App's subscription, resource group and name, the downstream URI and audience, the workflows it serves and their Book 03 scenario, and the custom task extension's settings. The example entry, `cms-revocation`, is the leaver's PIV revocation from Book 03, Chapter 09, for two fictional `contoso.example` leaver workflows.
+
+The extension settings default to launch and wait, a one-hour wait, one retry of the call, and a one-second connection timeout (*design guidance*). The builder refuses values outside Learn's ranges: `maximumRetries` 0 or 1, `timeoutInMilliseconds` 200 to 2,000, `timeoutDuration` 30 minutes to 3 hours.[^c05-client][^c05-callback]
+
+### Lint, run, build, check
+
+`tools/lcwext.py` has five commands.
+
+- **`lint`** applies twelve rules (LX-01 to LX-12; the [README](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions#lint-rules) lists them) to any definition, Learn's included. LX-11 adds up the worst-case retry waits of every HTTP action and fails the definition if they reach the extension's timeout. With four retries capped at two minutes, the two HTTP actions can wait 16 minutes, inside the one-hour wait.
+- **`run`** runs a definition against the fakes for a payload and a cloud, with optional downstream failures (`--fail 503,503`) and repeat deliveries (`--deliveries 2`), and prints what reached Graph and what Lifecycle Workflows records for the task.
+- **`build`** lints the integration's definition and refuses to build if there is a finding. Otherwise it writes two files: the Logic App's ARM resource, with a system-assigned identity, the parameter values and `accessControl`; and the body for `POST /identityGovernance/lifecycleWorkflows/customTaskExtensions` in v1.0.
+- **`check-extension`** compares a custom task extension read back from Graph with the registry: proof-of-possession authentication, the Logic App it points at, the timeouts, and an authorized app for the callback.
+- **`check-workflow`** checks a lifecycle workflow read back from Graph against Book 03's leaver order: *Disable user account*, then *Revoke all refresh tokens for user*, then the custom task.
+
+### Authorization, built and checked
+
+`build` writes Learn's PoP policy into the Logic App's `accessControl`, beside `sasAuthenticationPolicy` set to `Disabled`.[^c05-configure][^c05-la-security] The claims are Learn's: the issuer `https://sts.windows.net/{tenant}/` with its trailing slash, the audience `https://management.azure.com`, `appid` in lower case, `m` `POST`, `u` `management.azure.com`, and `p` the Logic App's resource path.[^c05-configure] Learn documents these values only for Azure commercial. For a Logic App in Azure Government, Azure Resource Manager is `management.usgovcloudapi.net`,[^c05-azgov] but Learn gives no PoP policy for it, so the builder refuses rather than guess (research gap 12).
+
+The extension body asks for `azureAdPopTokenAuthentication`. Learn's create example in v1.0 still shows `azureAdTokenAuthentication`, the bearer type; Learn's security guidance says extensions created through v1.0 use PoP by default and recommends PoP.[^c05-create][^c05-security] The code follows the security guidance. The body leaves out the callback's `authorizedApps`: Learn describes the property but shows no request that sets it.[^c05-callback] In Lab 2 the admin center sets it, as it does by default for launch and wait,[^c05-security] and `check-extension` checks the result.
+
+For the callback, the Logic App's managed identity needs no Graph permission. Apps listed in the extension's `authorizedApps` can resume a task processing result without an application permission or role.[^c05-resume] The alternative, `LifecycleWorkflows.ReadWrite.All` as an application permission, is tenant-wide, and Learn advises against it.[^c05-ext][^c05-security] For the downstream call, give the same identity only what the integration needs, scoped as narrowly as the target allows.[^c05-security]
+
+### The leaver order
+
+`check-workflow` reads a workflow's tasks by execution sequence. In a leaver workflow it requires *Disable user account* (`1dfdfcc7-…`) and *Revoke all refresh tokens for user* (`509589a4-…`) before the custom task, in that order, because [Book 03's leaver sequence](../../../books/b03-hr-identity/09-credentials-and-certificates.md#the-canonical-leaver-sequence) blocks first and follows Microsoft's order: disable, then revoke. It warns when the custom task stops the workflow on error: in a leaver, a failed revocation shouldn't stop the group, license and access package removals after it, and it is still recorded as failed (*design guidance*). `build_task` writes the task with the *Run a custom task extension* definition ID `4262b724-8dba-4fad-afc3-43fcbb497a0e` and the argument `customTaskExtensionID`.[^c05-tasks][^c05-args]
+
+### The tests
+
+`tests/test_wdl.py` has 15 tests for the interpreter. `tests/test_learn_sample.py` has 9 that run Learn's definition, unmodified, against the fakes. `tests/test_extension.py` has 30 for the program's definition, the clouds, the outcomes, the builders and the read-back checks. None needs a package, a tenant or a network.
+
+::: {.callout-important}
+## Illustrative code
+The commands below run Learn's pinned definition and the example as published in the repository, against fixtures and fakes. The interpreter covers only the actions and functions these definitions use and refuses anything else. The fakes decide two things Learn doesn't document: how Graph answers a second resume, and the exact callback path. Review the code, and run Lab 2 in a test tenant, before it carries real leavers.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need Python 3.10 or later. Work in `examples/lifecycle-extensions`.
+
+1. **Extract and lint Learn's definition:**
+
+   ```bash
+   python tools/lcwext.py learn-sample
+   python tools/lcwext.py lint out/learn-sample.workflow.json --timeout PT1H
+   ```
+
+   Eight results and exit `2`: LX-03 (hard-coded `graph.microsoft.com`), LX-04 (`/beta`), LX-06 (path not checked), LX-07 (no callback on failure), LX-08 (always `Completed`), two LX-10 warnings for run history, and an LX-11 warning for the implicit retry policy.
+
+2. **Run Learn's definition for a GCC High tenant:**
+
+   ```bash
+   python tools/lcwext.py run out/learn-sample.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh
+   ```
+
+   The run fails. The one `POST` goes to `https://graph.microsoft.com/beta/identityGovernance/…/resume` with the worldwide audience, and the last line reads `Lifecycle Workflows task: failed (no callback within PT1H)`. Run it again with `--cloud Global`: `completed`.
+
+3. **Lint the program's definition:**
+
+   ```bash
+   python tools/lcwext.py lint logicapp/integration.workflow.json --timeout PT1H
+   ```
+
+   `0 result(s); no findings`, exit `0`. Run it with `--timeout PT15M` and LX-11 reports that the worst-case retry waits, 960 seconds, reach the timeout.
+
+4. **Run it for GCC High through two transient failures:**
+
+   ```bash
+   python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --fail 503,503
+   ```
+
+   The callback goes to `https://graph.microsoft.us/v1.0/identityGovernance/…/resume` with the audience `https://graph.microsoft.us` and `operationStatus=completed`; `downstream: 3 call(s), 1 effect(s)`; the task is `completed`. With `--fail 503,503,503,503,503` the downstream gets 5 calls, the callback reports `failed`, and the task is `failed` at once instead of at the end of the wait. With `--deliveries 2` and no failures the downstream gets 2 calls and 1 effect.
+
+5. **Build the deployment pieces:**
+
+   ```bash
+   python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id 6e3a1f2b-8c4d-4e5f-9a0b-1c2d3e4f5a6b
+   ```
+
+   Two files in `out/`: `arm-cms-revocation.json`, whose `accessControl` turns SAS off and holds the `AADPOP` policy with six claims, and `extension-cms-revocation.json`, with `azureAdPopTokenAuthentication` and `timeoutDuration` `PT1H`. In `config/integrations.json`, set `azureCloud` to `AzureUSGovernment` and run it again: exit `1`, because Learn documents no PoP policy for Azure Government. Put it back.
+
+6. **Check the read-backs:**
+
+   ```bash
+   python tools/lcwext.py check-extension config/integrations.json --name cms-revocation tests/fixtures/extension-get.json
+   python tools/lcwext.py check-workflow config/integrations.json --name cms-revocation --extension-id c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e01 tests/fixtures/workflow-get-leaver.json
+   ```
+
+   Both `0 result(s); no findings`. In the workflow fixture, give the custom task `executionSequence` 0 and run the second command again: WX-03 twice, because the block no longer comes first.
+
+7. **Run the tests:** `python -m unittest discover -s tests -v`.
+
+**Expected result:** 54 tests passing, and each difference in the table above seen with your own eyes.
+
+## Lab 2: test tenant
+
+Use a test tenant with Microsoft Entra ID Governance licenses and a test Azure subscription, never production, with fictional test users. You need Lifecycle Workflows Administrator in the tenant and Logic App Contributor, Contributor or Owner on the resource group; Logic App Operator isn't enough.[^c05-ext][^c05-create]
+
+1. **Create the extension and its Logic App in the admin center.** Follow Learn's procedure: **ID Governance** > **Lifecycle workflows** > **Custom task extension** > **Create custom task extension**, choose **Launch and wait**, a one-hour wait, **System-assigned managed identity** for response authorization, and **Create new Logic App** in your test resource group with the registry's name.[^c05-trigger] This creates the Logic App with Learn's definition, the managed identity, the PoP authorization policy and the extension's authorized app.
+2. **Record what the admin center made.** Read the extension with `GET /identityGovernance/lifecycleWorkflows/customTaskExtensions/{id}`, save it over `tests/fixtures/extension-get.json`, and run `check-extension`. Read the Logic App through Azure Resource Manager (`GET …/providers/Microsoft.Logic/workflows/{name}?api-version=2016-06-01`, which Learn says returns the policies[^c05-la-security]) and compare its `accessControl` with `out/arm-cms-revocation.json`. Look up `GET /servicePrincipals(appId='ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7')` and record its display name. Any difference is a finding against the builder.
+3. **Replace the definition with the program's.** In code view, paste `logicapp/integration.workflow.json`; set the parameter values from the ARM file, with `integrationUri` pointing at your test instance of the downstream system or at a test receiver that answers `200` and logs the `Idempotency-Key` header.
+4. **Build a test workflow.** A custom leaver workflow, on demand only, with *Disable user account*, *Revoke all refresh tokens for user*, then *Run a custom task extension* with this extension. Read it with `GET /identityGovernance/lifecycleWorkflows/workflows/{id}?$expand=tasks` and run `check-workflow`. Add its ID to the registry's `workflows`, rebuild, and update the Logic App's `operations` parameter.
+5. **Run it on demand for one fictional user.** In the Logic App's run history, `Check_request` should pass. If the run ends in `Reject_request`, the real `callbackUriPath` differs from the documented shape: turn off **Secure Outputs** on the trigger for one more run, record the path, turn it back on, and file the difference against research gap 11. The task processing result should end `completed`.
+6. **Drill the failure path.** Point `integrationUri` at a receiver that answers `503`, run again for another fictional user, and confirm the task ends `failed` within minutes, not at the end of the hour. Confirm the receiver logged one key per task processing result.
+7. **Back it out.** Remove the custom task from the workflow and delete the workflow; then delete the custom task extension, which Learn allows only when no task references it.[^c05-remove] Delete the Logic App and the test resource group, remove the role assignments you added, and delete the test users.
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| What a custom task extension calls | An Azure Logic App on the Consumption plan | [^c05-ext] |
+| Behaviors | Launch and continue; launch and wait, failed if no response within the duration | [^c05-ext] |
+| Callback wait | 30 minutes to 3 hours (`timeoutDuration`); 3 minutes to 5 hours on the planning page | [^c05-callback] [^c05-limits] [^c05-deploy] |
+| Call to the Logic App | `maximumRetries` 0 or 1; `timeoutInMilliseconds` 200 to 2,000, default 1,000 | [^c05-client] |
+| Token type | Proof-of-possession for new extensions; bearer extensions can't be migrated | [^c05-configure] [^c05-security] |
+| PoP authorization policy | `AzureADLifecycleWorkflowsAuthPOPAuthPolicy`, `AADPOP`: issuer, audience `https://management.azure.com`, `appid`, `m` `POST`, `u` `management.azure.com`, `p` the Logic App path | [^c05-configure] |
+| SAS | Not needed by Lifecycle Workflows; Learn recommends turning it off | [^c05-security] [^c05-la-security] |
+| Resume | `POST /identityGovernance/lifecycleWorkflows/workflows/{id}/tasks/{id}/taskProcessingResults/{id}/resume`, v1.0, `204 No Content`; `operationStatus` `completed` or `failed` | [^c05-resume] [^c05-cbdata] |
+| Resume permission | `LifecycleWorkflows.ReadWrite.All` (delegated with Lifecycle Workflows Administrator, or application); none for an app in `authorizedApps` | [^c05-resume] |
+| Create an extension | `POST /identityGovernance/lifecycleWorkflows/customTaskExtensions`; `LifecycleWorkflows-CustomExt.ReadWrite.All`; Lifecycle Workflows Administrator; Logic App Contributor, Contributor or Owner on the Logic App | [^c05-create] |
+| National clouds (resume, create) | Global service, US Government L4, US Government L5 (DoD) | [^c05-resume] [^c05-create] |
+| Graph host | `graph.microsoft.com` for worldwide and GCC; `graph.microsoft.us` for GCC High; `dod-graph.microsoft.us` for DoD | [^c05-deployments] |
+| Availability and license | Lifecycle Workflows listed for Azure for US Government; ID Governance in GCC, GCC High and DoD; ID Governance or Entra Suite licenses | [^c05-availability] [^c05-licensing] |
+| Limits | 100 custom task extensions per tenant; 25 tasks per workflow; 100 workflows (50 on the licensing page) | [^c05-limits] [^c05-licensing] |
+| Task | *Run a custom task extension*, `4262b724-8dba-4fad-afc3-43fcbb497a0e`, argument `customTaskExtensionID` | [^c05-tasks] [^c05-args] |
+| Logic Apps retries | Default: up to 4 retries, intervals capped between 5 and 45 seconds; retries 408, 429 and 5xx | [^c05-la-retry] |
+| Release stage | Generally available: the extension and resume APIs are in v1.0 | [^c05-resume] [^c05-create] [^c05-security] |
+
+Learn states several things differently on different pages, recorded here so a later edit doesn't loosen the code:
+
+- The callback wait is 30 minutes to 3 hours on the resource and limits pages, and 3 minutes to 5 hours on the planning page. The code uses the narrower range.
+- The tenant limit is 100 workflows on the limits page and "What are lifecycle workflows?", and 50 on the licensing page. The chapter plans for 50.
+- The *Run a custom task extension* task is `4262b724-…` in the task table and the Graph arguments page, and `d79d1fcc-16be-490c-a865-f4533b1639ee` in the same task page's details section. The argument is `customTaskExtensionID` on the task page and `CustomTaskExtensionID` on the arguments page. The code uses `4262b724-…` and `customTaskExtensionID`; Lab 2 reads back what the admin center writes.
+- Learn's create example shows bearer authentication; the security page says v1.0 defaults to PoP and recommends it. The code asks for PoP.
+- The callback data type lists `completed` and `failed`; Learn's definition and the resume example send `Completed`. The code sends the listed values, and Lab 2 confirms the service accepts them.
+- The configure page prints a placeholder GUID for `appid`; the code uses the `azp` value from the same page, and Lab 2 checks it.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A failure that sends no callback | The leaver's revocation fails, and nobody knows until the wait ends | `Resume` runs after failure and time-out; LX-07 |
+| A callback that reports success for failed work | A credential stays valid and the record says revoked | Status computed from the call; LX-08 |
+| The wrong cloud | A GCC High or DoD callback goes to the worldwide Graph and never arrives | `graphHost` limited to three roots, set from the registry; LX-03; tests for every cloud |
+| A forged or malformed payload | The managed identity's token is sent to a path you didn't intend | PoP authorization with SAS off; `Check_request` before any call; LX-06 |
+| A repeat delivery or a rerun | The downstream system revokes, issues or deletes twice | `Idempotency-Key` from the task processing result; LX-09 |
+| Retries longer than the wait | The callback arrives after the task has already failed | Bounded retries; LX-11 against the registry's timeout |
+| Personal data in run history | Names, UPNs and emails readable by anyone with run access | Secured inputs and outputs; object ID only downstream; LX-10, LX-12 |
+| A broad permission on the identity | A compromised Logic App can change any workflow | Resume through `authorizedApps`, no `LifecycleWorkflows.ReadWrite.All`; CX-04 |
+| A custom task before the block | A leaver keeps signing in while revocations run | WX-03 and WX-04 against Book 03's order |
+| A bearer-token extension left in place | Weaker than PoP, and it can't be converted | CX-01; recreate it as PoP |
+| The placeholder `appid` | Every call is refused | The builder refuses it; Lab 2 checks the real one |
+| Azure Government policy values guessed | The Logic App rejects Lifecycle Workflows, or accepts the wrong caller | The builder refuses; research gap 12 |
+
+## Checklist
+
+- [ ] Each integration has one entry in `config/integrations.json`, one Logic App and one managed identity, and lists every workflow it serves.
+- [ ] `lcwext.py lint` reports no findings against the entry's `timeoutDuration`, and `build` produced the deployed ARM resource and extension.
+- [ ] The extension uses proof-of-possession, launch and wait, and the Logic App's identity as its only authorized app.
+- [ ] The Logic App has SAS turned off and Learn's PoP policy, with the `appid` confirmed in the tenant.
+- [ ] `graphHost` matches the tenant's cloud; GCC uses `graph.microsoft.com`.
+- [ ] The downstream system honors `Idempotency-Key`, and a repeat delivery was tested.
+- [ ] A forced downstream failure produced a `failed` callback within minutes in the test tenant.
+- [ ] In every leaver workflow, *Disable user account* and *Revoke all refresh tokens for user* run before the custom task.
+- [ ] The managed identity has no tenant-wide Lifecycle Workflows permission.
+- [ ] The pinned Learn page matches its manifest, and every upstream commit since the pin has been reviewed.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 04 — Dynamic Rules as Code](04-dynamic-rules-as-code.md) · [Book index](index.md) · [Next: Chapter 07 — Machine Configuration Packages →](07-machine-configuration-packages.md)
+:::
+
+[^c05-ext]: Microsoft Learn, "Lifecycle Workflows custom task extension," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-extensibility> (accessed Oct 30, 2026).
+[^c05-configure]: Microsoft Learn, "Configure a Logic App for Lifecycle Workflow use," <https://learn.microsoft.com/entra/id-governance/configure-logic-app-lifecycle-workflows> (accessed Oct 30, 2026).
+[^c05-trigger]: Microsoft Learn, "Trigger Logic Apps based on custom task extensions," <https://learn.microsoft.com/entra/id-governance/trigger-custom-task> (accessed Oct 30, 2026).
+[^c05-security]: Microsoft Learn, "Best practices for securing the custom extension extensibility to Azure Logic Apps," <https://learn.microsoft.com/entra/id-governance/custom-extension-security> (accessed Oct 30, 2026).
+[^c05-resume]: Microsoft Learn, "taskProcessingResult: resume," <https://learn.microsoft.com/graph/api/identitygovernance-taskprocessingresult-resume?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^c05-resume-beta]: Microsoft Learn, "Create customTaskExtensions" (beta), which notes that APIs under `/beta` are subject to change and not supported in production applications, <https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-post-customtaskextensions?view=graph-rest-beta> (accessed Oct 30, 2026).
+[^c05-cbdata]: Microsoft Learn, "customTaskExtensionCallbackData resource type," <https://learn.microsoft.com/graph/api/resources/identitygovernance-customtaskextensioncallbackdata?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^c05-callback]: Microsoft Learn, "customTaskExtensionCallbackConfiguration resource type," <https://learn.microsoft.com/graph/api/resources/identitygovernance-customtaskextensioncallbackconfiguration?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^c05-client]: Microsoft Learn, "customExtensionClientConfiguration resource type," <https://learn.microsoft.com/graph/api/resources/customextensionclientconfiguration?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^c05-create]: Microsoft Learn, "Create customTaskExtensions," <https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-post-customtaskextensions?view=graph-rest-1.0>, and "Lifecycle Workflows custom task extension" (Logic Apps prerequisites) (accessed Oct 30, 2026).
+[^c05-limits]: Microsoft Learn, "Microsoft Entra ID Governance service limits," section "Lifecycle Workflows," <https://learn.microsoft.com/entra/id-governance/governance-service-limits#lifecycle-workflows> (accessed Oct 30, 2026).
+[^c05-deploy]: Microsoft Learn, "Plan a Lifecycle Workflow deployment," section "Limitations and constraints," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflows-deployment> (accessed Oct 30, 2026).
+[^c05-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals" (Lifecycle Workflows; Government availability), <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals>, and "What are lifecycle workflows?" (license requirements), <https://learn.microsoft.com/entra/id-governance/what-are-lifecycle-workflows> (accessed Oct 30, 2026).
+[^c05-availability]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: Lifecycle workflows, in Microsoft Entra ID Governance), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
+[^c05-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
+[^c05-tasks]: Microsoft Learn, "Lifecycle Workflow built-in tasks," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-tasks> (accessed Oct 30, 2026).
+[^c05-args]: Microsoft Learn, "Configure the arguments for built-in Lifecycle Workflows tasks," <https://learn.microsoft.com/graph/identitygovernance-lifecycleworkflows-task-arguments> (accessed Oct 30, 2026).
+[^c05-la-retry]: Microsoft Learn, "Handle workflow errors and exceptions in Azure Logic Apps," section "Retry policies," <https://learn.microsoft.com/azure/logic-apps/error-exception-handling#retry-policies> (accessed Oct 30, 2026).
+[^c05-la-security]: Microsoft Learn, "Secure access and data for workflows in Azure Logic Apps" (authorization policies in ARM templates; disabling SAS; securing inputs and outputs in run history), <https://learn.microsoft.com/azure/logic-apps/set-up-security-permissions> (accessed Oct 30, 2026).
+[^c05-azgov]: Microsoft Learn, "Compare Azure Government and global Azure," section "Guidance for developers," <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers> (accessed Oct 30, 2026).
+[^c05-remove]: Microsoft Learn, "Remove-MgIdentityGovernanceLifecycleWorkflowCustomTaskExtension" (a custom task extension can only be deleted if no task references it), <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/remove-mgidentitygovernancelifecycleworkflowcustomtaskextension?view=graph-powershell-1.0> (accessed Oct 30, 2026).
+[^c05-sample-code]: Microsoft, MicrosoftDocs/entra-docs, `docs/id-governance/configure-logic-app-lifecycle-workflows.md` and `docs/id-governance/lifecycle-workflow-extensibility.md` at commit `07cb73d6c6380414eecd040ba5e14c1c94d48b66` (October 30, 2026), code under the MIT License, <https://github.com/MicrosoftDocs/entra-docs/tree/07cb73d6c6380414eecd040ba5e14c1c94d48b66/docs/id-governance>; commit `b7e8790374026b37be320fe091aefb0747e54809` (May 15, 2024) replaced the `appid` rows' `ce79fdc4-…` with the placeholder (accessed Oct 30, 2026); pinned copy in `examples/third_party/lifecycle-workflows-logic-app`.

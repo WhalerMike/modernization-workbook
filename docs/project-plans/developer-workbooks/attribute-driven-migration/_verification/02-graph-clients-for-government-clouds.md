@@ -22,7 +22,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 8 | Azure PowerShell default AzureCloud; AzureUSGovernment for Azure Government | Table; Verified facts | verified | Learn, connect to Azure Government with PowerShell; Redis PowerShell page |
 | 9 | Client-credentials request: all scopes for one resource | What GCC with commercial Azure means; Verified facts | verified | Learn, OAuth 2.0 client credentials flow |
 | 10 | National cloud SDK page: authority, service root, scope host; shortened scope names equivalent; app-only `.default` with the cloud's host; app registered in the cloud's admin center | Start with Microsoft's sample; Lab 2 | verified | Learn, access national cloud deployments with the Graph SDKs |
-| 11 | The page's C#, Go, Java and TypeScript examples set the US Government authority; Python doesn't | Gap table; Learn differences | verified by reading the page and the pinned file | Learn page; pinned `national_clouds.py` |
+| 11 | The page's C#, Go, Java and TypeScript examples set the US Government authority; Python doesn't | Gap table; Learn differences | verified by reading the page and the pinned file; open question in research-gaps.md row 15 | Learn page; pinned `national_clouds.py` |
 | 12 | azure-identity default authority is the public cloud; managed identities ignore `authority` | Gap table; Verified facts | verified | Learn, InteractiveBrowserCredential; DefaultAzureCredential |
 | 13 | Learn's Python examples come from msgraph-snippets-python | The pinned copy | verified in `microsoft-graph-docs-contrib`'s `.openpublishing.publish.config.json` and the `:::code` references in `national-clouds.md` and `choose-authentication-providers.md` (read with `gh api`) | GitHub, microsoftgraph/microsoft-graph-docs-contrib |
 | 14 | Snippet behavior: scope, host, no authority, one function, certificate snippet scope, client secret snippet | Gap table | verified by running the pinned files against stand-ins; pinned in `test_learn_sample.py` | local run |
@@ -33,7 +33,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 19 | Retry-After may be an HTTP date | Throttling | verified (Learn's Dev Proxy concepts page; Graph's own pages show only seconds) | Learn, the Retry-After header |
 | 20 | JSON batch at most 20 requests | Throttling; Verified facts | verified | Learn, JSON batching |
 | 21 | Beta subject to change; not supported in production | Beta; Verified facts | verified | Learn, versioning and support |
-| 22 | `roles` claim carries application permissions | Least privilege | verified | Learn, access token claims reference |
+| 22 | `roles` claim carries application permissions | Least privilege | verified; reading it in a Graph PowerShell session is open (research-gaps.md row 16) | Learn, access token claims reference |
 | 23 | Choose the least-privileged permission per call; unused permissions are a risk | Gap table; Least privilege | verified | Learn, permissions overview; least privilege principle |
 | 24 | Autopilot list endpoint: `DeviceManagementServiceConfig.Read.All`; table lists L4 and L5 | Beta; Verified facts | verified | Learn, list windowsAutopilotDeviceIdentities |
 | 25 | Windows Autopilot not available in GCC High and DoD | Beta; Verified facts | verified; conflicts with row 24 (recorded below and in research-gaps.md) | Learn, Intune GCC High and DoD service description |

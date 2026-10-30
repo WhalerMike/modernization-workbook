@@ -402,6 +402,17 @@
       "source": "Commits to the Learn source pages that hold the five pause and resume samples, which examples/third_party/dynamic-membership-samples pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 04). A new commit means: review it, rerun examples/dynamic-rules/tests/LearnSamples.Tests.ps1 on the new pages, and update the snapshot only in a reviewed pull request."
     },
     {
+      "id": "lifecycle-workflows-logic-app-commits",
+      "name": "Learn's Logic App definition for Lifecycle Workflows custom task extensions (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/id-governance/configure-logic-app-lifecycle-workflows.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds Microsoft's Logic App definition and authorization policies for custom task extensions, which examples/third_party/lifecycle-workflows-logic-app pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 05). A new commit means: review it, rerun examples/lifecycle-extensions/tests/test_learn_sample.py on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
       "id": "msgraph-snippets-python-commits",
       "name": "Microsoft Graph Python SDK snippets (microsoftgraph/msgraph-snippets-python commits)",
       "type": "github_commits",
