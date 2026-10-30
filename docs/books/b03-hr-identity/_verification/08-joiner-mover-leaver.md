@@ -119,3 +119,12 @@ Added an HR-track signpost, an HR-timeliness sentence after the three-day catch-
 | 14 | PIV/certificateUserIds, Intune retire, Arc access, owner reassignment via custom extensions; checklist fallback; chain workflows | One leaver reaches four tracks | restated-as-design (LIMITS.md) | — |
 
 Not published: the custom task extension timeout. The service-limits page says 30 minutes–3 hours (confirmed Oct 29); LIMITS.md notes the deployment page says otherwise. The chapter doesn't state a timeout.
+
+## Additions, October 30, 2026 (the contractor PIV path)
+
+Added at the author's request. The path is set in Chapter 09, "The contractor PIV path", and its sources are logged in `_verification/09-credentials-and-certificates.md` (October 29) and the research page's log.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Contractor joiner sends the sponsorship request; card termination or expiry is a leaver input, reissue isn't | Contractors paragraph after the nature-of-action table | design (labelled); restated from Ch09 and linked | — |
+| 2 | The custom task sends the PIV office the termination notice on the end date | After the built-in tasks table | design; restated from Ch09 and linked | — |

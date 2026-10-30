@@ -47,3 +47,13 @@ Editor pass, 2026-10-20. The chapter had no footnotes; all 13 footnote definitio
 | Requirements-mapping paragraph | Same | edited — footnotes for M-19-17, FIPS 201-3, ILM Playbook, ZTMM |
 | Continue the series callout | "Continue the book" callout | edited — Book 02 styling |
 | Diagram `ch11-drift-evidence-loop.flow.yaml` | Unchanged | kept — no wrong facts (comment line still says "Chapter 09"; cosmetic, not edited) |
+
+## Additions, October 30, 2026 (the contractor PIV path)
+
+Added at the author's request. The path is set in Chapter 09, "The contractor PIV path", and its sources are logged in `_verification/09-credentials-and-certificates.md` (October 29) and the research page's log.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | New drift class: contractor credential drift (card with no contractor record; terminated or expired card with an open engagement) | Drift classes table | design (program default severity, as the table's note says) | — |
+| 2 | PS-7 row: provider notifies terminations within an organization-defined period (PS-7d) | Control table | verified against SP 800-53 Rev. 5 PS-7(d) (c11-nist-80053); contribution and evidence columns are design | SP 800-53 Rev. 5 |
+| 3 | "In this chapter" lists PS-7 | Callout | editorial | — |

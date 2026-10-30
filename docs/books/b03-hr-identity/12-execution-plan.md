@@ -48,6 +48,7 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 - Build the standard-attribute crosswalk (Chapter 06): each OPM standard element an identity decision reads, mapped to the canonical model; and the nature-of-action trigger table (Chapter 08).
 - Establish the privacy basis: routine use under the governing SORNs, the updated PIA, and the minimized attribute set (Appendix B).
 - Decide the contractor and vendor source (Chapter 06): Core HCM contingent workers, the PIV sponsorship system, the agency's contractor suitability register, or a combination with one authority per fact. Retire the COR spreadsheets as a source of truth.
+- Decide the contractor PIV path (Chapter 09): the contractor joiner as the sponsorship trigger, the card management system's termination, revocation and expiry events into the middleware with their latency, and the end-date notice to the PIV office. The PIV office owns the interface; identity engineering and security are consulted.
 - Sign the attribute authority map (Chapter 04): every attribute any access decision reads, its authoritative system, its derivation rule if derived, and its data-quality owner.
 - Finalize the canonical schema (Chapter 06) against Oracle HCM field names, and validate the crosswalk against a sandbox extract. Confirm the extension-attribute carriers are free and in the provisioning apps' target lists.
 - Define the worker-type taxonomy (employee, contractor, intern, volunteer, vendor, external), each mapped to license, access ceiling and retention, and the code lists for the three access attributes.
@@ -143,6 +144,7 @@ Phases 1 and 2 produce no visible change for end users, which is exactly why est
 | Agency onboarding schedule movement | The interconnection go-live is the deadline | Watch program communications |
 | OPM standard data elements and codes used by the crosswalk | The crosswalk's contract (Chapter 06) | Confirm against OPM's current data standards and how Core HCM exposes them |
 | Whether the agency's Core HCM configuration records contingent workers | The contractor and vendor source decision (Chapter 06) | Confirm with the HR 2.0 program |
+| Whether the card management system can publish termination, revocation and expiry events keyed on the enterprise person key, and how fast | Whether the card system can be a contractor leaver input (Chapter 09) | Confirm with the PIV office and the card management system's operator |
 | Whether the contractor suitability register records engagement end dates and the enterprise person key | Whether it can be the contractor leaver signal and join on one key (Chapter 06) | Confirm with the register's owner |
 | Nature-of-action families and codes | The lifecycle trigger table (Chapter 08) | Checked against the GPPA, October 2026 edition;[^c12-gppa] re-check at engagement time |
 | Routine use under the governing SORNs; PIA update | The privacy basis for the feed (Appendix B) | Confirm with the agency privacy office |

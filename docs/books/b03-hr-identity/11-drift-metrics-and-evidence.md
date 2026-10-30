@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-Six lifecycle metrics. The drift classes between the HR record and the directory, and the signal for each. What evidence each event leaves, and how long Entra ID keeps it. The control-support mapping for AC-2, PS-4, PS-5, IA-4 and SI-12, and the monitoring and audit controls that consume it.
+Six lifecycle metrics. The drift classes between the HR record and the directory, and the signal for each. What evidence each event leaves, and how long Entra ID keeps it. The control-support mapping for AC-2, PS-4, PS-5, PS-7, IA-4 and SI-12, and the monitoring and audit controls that consume it.
 :::
 
 ## The measured lifecycle
@@ -55,6 +55,7 @@ Drift is any difference between what the HR record says and what the directory h
 | Attribute drift | A department, code or manager value that differs from HR | Field-by-field comparison of the canonical schema (Chapter 06) | Medium |
 | Unauthorized write | A write to an HR-mastered attribute by a principal other than the provisioning service | Entra audit log and AD change auditing, filtered on the attributes of Chapter 06 and `certificateUserIds` / `altSecurityIdentities` | High |
 | Credential drift | A valid PIV binding, derived credential or device certificate for a separated worker | CMS status and Intune certificate reports joined on the worker | High |
+| Contractor credential drift | A PIV card for someone the contractor source doesn't hold, or a contractor record whose card was terminated or expired with the engagement still open | CMS status joined to the contractor source on the enterprise person key ([Chapter 09](09-credentials-and-certificates.md#the-contractor-piv-path)) | High |
 | Schema drift | A record that fails validation in the middleware | The middleware's validation output (Chapter 05) | Medium |
 
 : Drift classes and how to detect them {.striped .hover}
@@ -89,6 +90,7 @@ The architecture implements mechanisms and produces evidence for these controls.
 | **AC-2(1)** Automated System Account Management | Provisioning and Lifecycle Workflows run the account lifecycle from effective-dated HR events | Workflow run history, per task; provisioning logs | Automation for applications not integrated with enterprise identity services |
 | **PS-4** Personnel Termination | The separation record starts the leaver sequence on the effective date; the block and the revocations are timestamped and reconciled | Separation-to-block and separation-to-revocation intervals; CMS and Intune records; exceptions | The organization-defined time period; exit interviews, retrieval of security-related property, and retained access to information the individual controlled (PS-4c–e); separations HR records late |
 | **PS-5** Personnel Transfer | The mover event re-derives access and starts a review of residual access | Transfer-to-review interval; review decisions | Review of logical and physical access needs; the organization-defined actions and time period; notification of the organization-defined personnel (PS-5d) |
+| **PS-7** External Personnel Security | Contractor engagements end on the contractor source's earliest end date, not on the provider's notice; the provider's termination notice is one more leaver input ([Chapter 09](09-credentials-and-certificates.md#the-contractor-piv-path)) | End-date-to-block interval for contractors; provider notices received against engagements already ended | The provider's notification requirement and its organization-defined time period (PS-7d)[^c11-nist-80053]; contract language that carries it |
 | **IA-4** Identifier Management | One enterprise person key with mapped source, affiliation and directory keys, preserved across rehire and conversion (Chapter 04); worker type available as the IA-4(4) status characteristic (contractor, foreign national, non-organizational user) | Correlation coverage; identifier mapping records | The identifier decision; authorization to assign identifiers; the reuse-prevention period; identifiers for non-person entities |
 | **SI-12** Information Management and Retention | Lineage for governed identity facts, from the HR record through middleware provenance to each consumer | Provenance records retained in the agency's log store | Records schedules, legal holds, and disposition for each category of record; privacy requirements for workforce data |
 

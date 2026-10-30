@@ -64,7 +64,7 @@ For federal employees, every HR event above is recorded as a personnel action, a
 
 The table is a proposed interpretation, not an OPM rule. HR, security, labor-relations, privacy, and personnel-policy owners validate the mappings, exceptions, precedence rules, and actions before automation.
 
-Contractors and vendors have no SF-50 and no nature-of-action codes. Their joiner and leaver events are the contract or sponsorship start and end dates in their own source, and a sponsor's withdrawal is a leaver event (Chapter 06).
+Contractors and vendors have no SF-50 and no nature-of-action codes. Their joiner and leaver events are the contract or sponsorship start and end dates in their own source, and a sponsor's withdrawal is a leaver event (Chapter 06). The PIV card follows the same two events *(design guidance)*: the contractor joiner sends the sponsorship request, and a termination or expiry reported by the card management system is a contractor leaver input, while a reissue isn't ([Chapter 09](09-credentials-and-certificates.md#the-contractor-piv-path)).
 
 Three rules follow, and Appendix A sets out the rest:
 
@@ -104,7 +104,7 @@ That schedule matters for evidence. A workflow never runs earlier than the time 
 
 : Lifecycle Workflows built-in tasks by stage[^c08-lcw-tasks] {.striped .hover}
 
-No built-in task revokes a certificate or a PIV credential, or retires a device. Those steps go through a custom task extension or a separate process (Chapter 09).
+No built-in task revokes a certificate or a PIV credential, or retires a device. Those steps go through a custom task extension or a separate process (Chapter 09). For contractors the same custom task also sends the PIV office its termination notice on the end date, so the card's termination clock starts on that date ([Chapter 09](09-credentials-and-certificates.md#the-contractor-piv-path)).
 
 ### Guardrails at agency scale
 

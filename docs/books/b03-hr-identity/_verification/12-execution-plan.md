@@ -40,3 +40,12 @@ Editor pass 2026-10-20. Edited in place; structure, gates, thresholds and roles 
 | Roles table | kept | — |
 | Open verification register | edited (memo quote, GPPA footnote, closed item footnotes renamed and one added) | — |
 | Continue callout | edited to "Continue the book" / "Book index" | — |
+
+## Additions, October 30, 2026 (the contractor PIV path)
+
+Added at the author's request. The path is set in Chapter 09, "The contractor PIV path", and its sources are logged in `_verification/09-credentials-and-certificates.md` (October 29) and the research page's log.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Phase 1 decision: the contractor PIV path, owned by the PIV office | Phase 1 | design (ownership follows Ch07's PIV office role) | — |
+| 2 | Verification register row: can the card management system publish events keyed on the enterprise person key, and how fast | Verification register | open item (not a claim) | — |
