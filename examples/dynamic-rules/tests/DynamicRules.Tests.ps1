@@ -161,8 +161,8 @@ Describe "Book 03, Chapter 10's rule pattern table" {
     It 'finds the Legal employer pattern reading companyName, now with both guards' {
         @($script:BookRows | Where-Object Group -EQ 'Legal employer' | ForEach-Object Rule) | Should -Be @('DR-05')
     }
-    It 'notes that the Exclusion pattern admits a blank worker type' {
-        @($script:BookRows | Where-Object Group -EQ 'Exclusion' | ForEach-Object Rule) | Should -Be @('DR-10')
+    It 'finds nothing in the Exclusion pattern, which now refuses a blank worker type (owner decision; research gap 9)' {
+        @($script:BookRows | Where-Object Group -EQ 'Exclusion' | ForEach-Object Rule) | Should -BeNullOrEmpty
     }
     It 'passes the other patterns, with the direct reports note' {
         @($script:BookRows | Where-Object { $_.Group -notin 'Legal employer', 'Exclusion' } | ForEach-Object { "$($_.Group):$($_.Rule)" }) | Should -Be @('Direct reports:DR-03')

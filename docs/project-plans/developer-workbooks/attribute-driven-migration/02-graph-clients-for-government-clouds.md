@@ -130,7 +130,7 @@ Three rules follow from the file.
 
 - **A task makes only its calls.** The command lines build the client with `load_calls(task)`. Any other call raises `PermissionError` before it is sent. In PowerShell, `Invoke-FmwEntraTask` and `Invoke-FmwIntuneTask` pass the task to `Get-FmwGraphCollection`, which checks every page with `Assert-FmwGraphCall`.
 - **A task's permissions are the union of its calls.** A test checks that this union equals each task's published permission list, in both languages. Adding a call without its permission, or a permission without a call, fails the build.
-- **The token is checked before a live run.** An app-only token carries its application permissions in the `roles` claim.[^c02-claims] `preflight` reads that claim from the run's own token. A missing permission stops the run before any call; a permission the task doesn't use is printed as a warning, because an unused permission is exposure even if the code never calls it.[^c02-overpriv] The check reads the claim; it doesn't validate the token, and nothing uses it to authorize anything. In PowerShell, `Test-FmwTokenRole` does the same for a token you pass it. The module doesn't call it on its own, because Graph PowerShell signs in for you and never hands the module the token.
+- **The token is checked before a live run.** An app-only token carries its application permissions in the `roles` claim.[^c02-claims] `preflight` reads that claim from the run's own token. A missing permission stops the run before any call; a permission the task doesn't use is printed as a warning, because an unused permission is exposure even if the code never calls it.[^c02-overpriv] The check reads the claim; it doesn't validate the token, and nothing uses it to authorize anything. In PowerShell, `Test-FmwTokenRole` does the same for a token you pass it, but Graph PowerShell signs in for you and never hands the module the token. It doesn't need to: Learn's app-only guide shows `Get-MgContext` reporting an `AppOnly` session's application permissions in `Scopes`,[^c02-ps-apponly] and the SDK fills `Scopes` from the token's `scp` claim or, when there is none, its `roles` claim.[^c02-ps-jwt] So `Test-FmwSessionRole` reads `Scopes`, and `Invoke-FmwEntraTask` and `Invoke-FmwIntuneTask` call `Assert-FmwSessionRole` first: a missing permission stops the task before any Graph call, and an extra one is a warning, as in Python. It refuses a delegated session or none at all.
 
 ### Paging
 
@@ -154,12 +154,12 @@ The file also records where a feature isn't offered. The beta Autopilot API page
 
 ### The tests
 
-The Python suite has 70 tests (pytest) and the Pester suite 40. Chapter 02 added 35 and 23 of them:
+The Python suite has 70 tests (pytest) and the Pester suite 44. Chapter 02 added 35 and 27 of them, 4 of the Pester tests when research gap 16 was closed:
 
 - `tests/python/test_learn_sample.py`, 9 tests: Microsoft's pinned snippets against stand-ins, and our provider's authority for each cloud.
 - `tests/python/test_graph_clients.py`, 24 tests: endpoints against the shared fixture, refused cloud names, the call list against each task's permissions, refused calls, the token audit, headers on every page, retrying a page with the last good link, `Retry-After` as an HTTP date, backoff with no header, and beta.
 - `tests/python/test_intune_tasks.py`, 2 new tests: Autopilot in GCC High makes no call, and a beta `404` is "not evaluated".
-- `tests/powershell/GraphClients.Tests.ps1`, 23 tests: the same rules in PowerShell, with `Connect-MgGraph` and `Invoke-MgGraphRequest` mocked.
+- `tests/powershell/GraphClients.Tests.ps1`, 27 tests: the same rules in PowerShell, including the session check, with `Connect-MgGraph`, `Get-MgContext` and `Invoke-MgGraphRequest` mocked.
 
 None needs a module, a tenant or a network.
 
@@ -237,7 +237,7 @@ You need Python 3.10 or later with pytest, and PowerShell 7.5 or later with Pest
    pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
    ```
 
-**Expected result:** 70 Python and 40 Pester tests passing, and each row of the gap table seen with your own eyes.
+**Expected result:** 70 Python and 44 Pester tests passing, and each row of the gap table seen with your own eyes.
 
 ## Lab 2: test tenant
 
@@ -332,6 +332,8 @@ Two places where Learn's pages differ, recorded so a later edit doesn't loosen t
 [^c02-authority]: Microsoft Learn, "InteractiveBrowserCredential Class" (azure-identity for Python), keyword-only parameter `authority`, <https://learn.microsoft.com/python/api/azure-identity/azure.identity.interactivebrowsercredential?view=azure-python> (accessed Oct 30, 2026).
 [^c02-authority-mi]: Microsoft Learn, "DefaultAzureCredential Class" (azure-identity for Python), keyword-only parameter `authority`, <https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python> (accessed Oct 30, 2026).
 [^c02-claims]: Microsoft Learn, "Access token claims reference," payload claims, <https://learn.microsoft.com/entra/identity-platform/access-token-claims-reference> (accessed Oct 30, 2026).
+[^c02-ps-apponly]: Microsoft Learn, "Use app-only authentication with the Microsoft Graph PowerShell SDK," step 2, <https://learn.microsoft.com/powershell/microsoftgraph/app-only> (accessed Oct 30, 2026): an app registered with two application permissions (`Type="Role"`) shows `Scopes : {Group.Read.All, User.Read.All}` and `AuthType : AppOnly`.
+[^c02-ps-jwt]: Microsoft, microsoftgraph/msgraph-sdk-powershell, `src/Authentication/Authentication.Core/Utilities/JwtHelpers.cs` (`authContext.Scopes = jwtPayload?.Scp?.Split(' ') ?? jwtPayload?.Roles`), last changed in commit `0fceedbba17c1dec4d9bb292910a5f286cd7454e` (October 30, 2023), read with `gh api` (accessed Oct 30, 2026). Not a Learn page: it explains the Learn output above for every sign-in type, managed identity included.
 [^c02-leastpriv]: Microsoft Learn, "Overview of Microsoft Graph permissions," best practices for using Microsoft Graph permissions, <https://learn.microsoft.com/graph/permissions-overview> (accessed Oct 30, 2026).
 [^c02-overpriv]: Microsoft Learn, "Enhance security with the principle of least privilege," overprivileged applications, <https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access> (accessed Oct 30, 2026).
 [^c02-paging]: Microsoft Learn, "Page through a collection using the Microsoft Graph SDKs," <https://learn.microsoft.com/graph/sdks/paging> (accessed Oct 30, 2026).

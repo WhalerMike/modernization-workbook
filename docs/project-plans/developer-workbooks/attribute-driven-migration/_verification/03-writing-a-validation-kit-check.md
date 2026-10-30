@@ -1,6 +1,6 @@
 # Verification — Chapter 03, Writing a Validation Kit Check
 
-New material; it replaces no workbook page. Code: `examples/validation-kit`, extended in this change with VK-SYNC-02 (`Invoke-VkSync02` in `Checks/SYNC.ps1`), its catalog entry, two options (`OnPremSyncExportFile`, `MatchWindowOpenUntil`), pass and fail fixtures (`onPremisesSynchronization.json`), five new tests plus the table-driven case, and README rows. Test results on October 30, 2026: Pester 5.5.0 on PowerShell 7, 274 passed, 0 failed. Windows PowerShell 5.1 was not run: this machine has only Pester 3.4 for that edition.
+New material; it replaces no workbook page. Code: `examples/validation-kit`, extended in this change with VK-SYNC-02 (`Invoke-VkSync02` in `Checks/SYNC.ps1`), its catalog entry, two options (`OnPremSyncExportFile`, `MatchWindowOpenUntil`), pass and fail fixtures (`onPremisesSynchronization.json`), five new tests plus the table-driven case, and README rows. Test results on October 30, 2026: Pester 5.5.0 on PowerShell 7, 274 passed, 0 failed. Rerun on October 30, 2026 after research gap 24 added the tenant ID to `ValidationManifest.json` (`Resolve-VkRunTenant` in `Private/Core.ps1`, `-TenantId` passed into the run context, a `Get-AzContext` stub in `TestHelpers.ps1`, six tests in `Runner.Tests.ps1`): 280 passed, 0 failed. Windows PowerShell 5.1 was not run: this machine has only Pester 3.4 for that edition.
 
 Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP tools: Get onPremisesDirectorySynchronization; Configure Microsoft Entra Connect for an existing tenant (block soft match, block hard match, hard match security protections); Understanding errors during Microsoft Entra synchronization (InvalidHardMatch); Set-EntraDirSyncFeature; group: evaluateDynamicMembership (beta); Best practices for working with Microsoft Graph; Microsoft Graph throttling guidance; Microsoft Graph national cloud deployments.
 
@@ -26,7 +26,8 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 16 | Default every control read to the unsafe answer | Rows and outcome | restated-as-design (labeled) | — |
 | 17 | Kit behavior: `Invoke-VkCheckBody` turns exceptions into Error; safety tests; one POST; beta allow-list; nextLink host check | The function; The safety tests | verified against the code | `Private/Core.ps1`, `tests/powershell/Safety.Tests.ps1`, kit README |
 | 18 | Lab outputs (Fail, count 2, one Info row, Warn in window, Input evidence, scope printed) | Lab 1 | verified by running the code | local run, October 30, 2026 |
-| 19 | `-SkipConnect` stops the runner signing in for a live run | Lab 2 | verified against the code | `Invoke-ValidationKit.ps1`, line 72 |
+| 19 | `-SkipConnect` stops the runner signing in for a live run | Lab 2 | verified against the code | `Invoke-ValidationKit.ps1`, line 74 |
+| 20 | The run manifest records `TenantId` and `TenantIdSource`: Graph session (the token's `tid` claim), else Azure session, else `-TenantId`; fixture runs record `tenant.json`'s placeholder; a session in another tenant than a `-TenantId` GUID stops the run before any file is written | Lab 2 (back-out step) | verified against the code and pinned in `Runner.Tests.ps1` (6 tests); research-gaps.md row 24 | `Private/Core.ps1` (`Resolve-VkRunTenant`, `Write-VkManifest`); Learn, access token claims reference (`tid`) |
 
 ## Carry-forward ledger
 

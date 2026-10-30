@@ -118,7 +118,7 @@ The evaluator is for tests and reviews, and it isn't the engine. It refuses `mem
 
 `Test-DrRule` applies eleven rules (DR-01 to DR-11; the [README](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules#linter-rules) lists them). Two matter most. DR-03 and DR-04 require the guards to be ANDed at the top of the rule: a guard inside an `-or` protects nothing, and a regular expression over the rule text can't tell the difference, which is why the linter works on the parsed tree. DR-10 notes that `-ne` or `-notIn` on a coded slot also admits someone whose slot is empty; add `(… -ne null)` if an empty slot must not qualify (*design guidance*).
 
-Run against Book 03, Chapter 10's own rule pattern table, the linter found three things. The **Legal employer** pattern had no `userType` guard, so a guest whose `companyName` matched would have qualified (DR-04); it now has the guard, fixed in the same change as this chapter. It still reads `companyName`, a display-name attribute (DR-05), because the row exists to show that case. The **Exclusion** pattern admits a worker whose type slot is empty (DR-10), the open question the owner of Book 03 has to decide. The **Direct reports** pattern can't carry guards at all, because Learn says that rule can't be combined with any other, so the linter only notes it (DR-03, Info).[^c04-rules]
+Run against Book 03, Chapter 10's own rule pattern table, the linter found three things. The **Legal employer** pattern had no `userType` guard, so a guest whose `companyName` matched would have qualified (DR-04); it now has the guard, fixed in the same change as this chapter. It still reads `companyName`, a display-name attribute (DR-05), because the row exists to show that case. The **Exclusion** pattern admitted a worker whose type slot was empty (DR-10). The owner decided that an empty worker type must not qualify, so the pattern now ends `-and (user.extensionAttribute11 -ne null)`, as this library's entry already did, and the linter finds nothing in it. The **Direct reports** pattern can't carry guards at all, because Learn says that rule can't be combined with any other, so the linter only notes it (DR-03, Info).[^c04-rules]
 
 ### The shadow diff
 
@@ -167,7 +167,7 @@ You need PowerShell 7.1 or later and Pester 5. Work in `examples/dynamic-rules`.
        Format-Table Severity, Rule, Group, Issue
    ```
 
-   Three rows: DR-10 on Exclusion, DR-05 on Legal employer, and the DR-03 note on Direct reports. A test checks that the fixture still matches Book 03's table row for row.
+   Two rows: DR-05 on Legal employer, and the DR-03 note on Direct reports. Exclusion, which now has the null guard, has none. A test checks that the fixture still matches Book 03's table row for row.
 
 3. **Evaluate a rule against the population:**
 

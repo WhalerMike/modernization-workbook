@@ -155,6 +155,16 @@ class Builders(unittest.TestCase):
         with self.assertRaises(lcwext.BuildError):
             lcwext.build_access_control(e, TENANT)
 
+    def test_the_policy_appid_is_the_azp_value_learn_prints(self):
+        # research-gaps.md row 10: Learn's access token claims reference says azp (v2.0) replaces
+        # appid (v1.0) and both carry the client's application ID, and the configure page prints
+        # Lifecycle Workflows' azp as ce79fdc4-... So the PoP policy's appid is that value.
+        page = lcwext.LEARN_PAGE.read_text(encoding="utf-8")
+        self.assertIn(f"|azp     |  {ENTRY['lcwAppId']}   |", page)
+        pol = lcwext.build_access_control(ENTRY, TENANT)["triggers"]["openAuthenticationPolicies"]["policies"]
+        claims = {c["name"]: c["value"] for c in pol["AzureADLifecycleWorkflowsAuthPOPAuthPolicy"]["claims"]}
+        self.assertEqual(claims["appid"], "ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7")
+
     def test_azure_government_policy_values_are_refused_until_learn_documents_them(self):
         e = copy.deepcopy(ENTRY)
         e["azureCloud"] = "AzureUSGovernment"

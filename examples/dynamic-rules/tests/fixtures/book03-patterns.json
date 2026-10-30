@@ -16,7 +16,7 @@
   },
   {
     "pattern": "Exclusion",
-    "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.extensionAttribute10 -eq \"FIN-LED\") -and (user.extensionAttribute11 -ne \"CTR\")",
+    "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.extensionAttribute10 -eq \"FIN-LED\") -and (user.extensionAttribute11 -ne \"CTR\") -and (user.extensionAttribute11 -ne null)",
     "kind": "user"
   },
   {

@@ -11,12 +11,14 @@
     never a client secret. Get-FmwGraphCollection follows @odata.nextLink, and checks every
     page with Assert-FmwGraphCall: the token stays on the cloud's Graph host, a task makes only
     the calls graph-calls.json declares for it, and a beta call must be declared. Test-FmwTokenRole
-    compares a token's roles with a task's permissions. Get-FmwBetaCollection reads a beta
+    compares a token's roles with a task's permissions, and Test-FmwSessionRole does the same for the
+    Graph PowerShell session through Get-MgContext; the Invoke-Fmw*Task functions stop before any call if
+    the session lacks a permission (Assert-FmwSessionRole). Get-FmwBetaCollection reads a beta
     collection without depending on it (developer workbook, Chapter 02). The Test-* and
     ConvertTo-* functions are pure: they take Graph objects and return findings, so they
     can be tested without a tenant.
 
-    Requires the Microsoft.Graph.Authentication module for Connect-MgGraph and
+    Requires the Microsoft.Graph.Authentication module for Connect-MgGraph, Get-MgContext and
     Invoke-MgGraphRequest; the pure functions need nothing.
 #>
 
@@ -203,6 +205,33 @@ function Test-FmwTokenRole {
     }
 }
 
+function Test-FmwSessionRole {
+    <#
+    The same pre-flight as Test-FmwTokenRole, for a Graph PowerShell session, whose token the module
+    never sees. Learn's app-only guide shows Get-MgContext's Scopes holding the application's
+    permissions in an AppOnly session; the SDK fills Scopes from the token's scp claim, or else its
+    roles claim (research-gaps.md row 16). An app-only session has no scp, so Scopes is the roles claim.
+    Returns Missing and Extra like Test-FmwTokenRole. Throws when there is no session, or a delegated one.
+    #>
+    param([Parameter(Mandatory)][AllowEmptyCollection()][string[]]$Needed)
+    $ctx = Get-MgContext
+    if (-not $ctx) { throw 'No Microsoft Graph session: run Connect-FmwGraph first' }
+    if ("$($ctx.AuthType)" -eq 'Delegated') { throw 'A delegated session: the tasks run app-only (Connect-FmwGraph)' }
+    $have = @($ctx.Scopes | Where-Object { $_ })
+    [ordered]@{
+        Missing = @($Needed | Where-Object { $_ -cnotin $have } | Sort-Object -Unique -CaseSensitive)
+        Extra   = @($have | Where-Object { $_ -cnotin $Needed } | Sort-Object -Unique -CaseSensitive)
+    }
+}
+
+function Assert-FmwSessionRole {
+    <# Before a live task: stop if the session lacks a permission the task's calls need; warn for each extra one. #>
+    param([Parameter(Mandatory)][string]$Task)
+    $audit = Test-FmwSessionRole -Needed (Get-FmwCallPermission -Task $Task)
+    if ($audit.Missing.Count) { throw "The session lacks $($audit.Missing -join ', '); grant the task's permissions (graph-calls.json) and retry" }
+    foreach ($extra in $audit.Extra) { Write-Warning "The session also holds $extra, which task $Task doesn't use" }
+}
+
 function ConvertTo-FmwUtc {
     param($Value)
     if ($null -eq $Value -or "$Value" -eq '') { return $null }
@@ -347,6 +376,7 @@ function Invoke-FmwEntraTask {
         [string[]]$PrivilegedRoleIds = @($script:GlobalAdmin),
         [string]$OutDirectory
     )
+    Assert-FmwSessionRole -Task $Task
     $asOf = [datetimeoffset]::UtcNow
     switch ($Task) {
         'stale-users' { Test-FmwStaleUser -Users @(Get-FmwGraphCollection '/v1.0/users?$select=id,userPrincipalName,accountEnabled,userType,createdDateTime,signInActivity&$top=500' -Task $Task) -AsOf $asOf -Days $Days }
@@ -578,6 +608,7 @@ function Invoke-FmwIntuneTask {
         [int]$CleanupDays = 90,
         [System.Collections.IDictionary]$OsFloors = @{ Windows = '10.0.26100' }
     )
+    Assert-FmwSessionRole -Task $Task
     if ($Task -eq 'autopilot-profiles') {
         # Beta, read without depending on it: not offered in GCC High or DoD, or a changed beta shape,
         # gives "not evaluated" instead of a failed run.
@@ -597,5 +628,5 @@ function Invoke-FmwIntuneTask {
     }
 }
 
-Export-ModuleMember -Function Get-FmwCloud, Connect-FmwGraph, Get-FmwGraphCollection, Get-FmwGraphCall, Get-FmwCallPermission, Assert-FmwGraphCall, Get-FmwBetaCollection, Get-FmwTokenRole, Test-FmwTokenRole,Test-FmwStaleUser, ConvertTo-FmwCaExport, Test-FmwPim, Test-FmwAppCredential, Test-FmwMfaRegistration, Invoke-FmwEntraTask, ConvertTo-FmwUtc, Format-FmwUtc,
+Export-ModuleMember -Function Get-FmwCloud, Connect-FmwGraph, Get-FmwGraphCollection, Get-FmwGraphCall, Get-FmwCallPermission, Assert-FmwGraphCall, Get-FmwBetaCollection, Get-FmwTokenRole, Test-FmwTokenRole, Test-FmwSessionRole, Assert-FmwSessionRole, Test-FmwStaleUser, ConvertTo-FmwCaExport, Test-FmwPim, Test-FmwAppCredential, Test-FmwMfaRegistration, Invoke-FmwEntraTask, ConvertTo-FmwUtc, Format-FmwUtc,
     Get-FmwIntunePermission, Test-FmwIntuneNoncompliant, Test-FmwIntuneComplianceCoverage, Test-FmwIntuneStaleCheckin, Test-FmwIntunePosture, Test-FmwAutopilotProfile, Test-FmwVersionBelow, Invoke-FmwIntuneTask

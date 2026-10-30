@@ -2,7 +2,7 @@
 
 Illustrative: unit-tested against fixtures, not proven against a live tenant. Standard library only.
 
-    python drift_pipeline.py compare --previous <kit-run> --current <kit-run> --out <dir>
+    python drift_pipeline.py compare --previous <kit-run> --current <kit-run> --out <dir> [--allow-tenant-mismatch]
     python drift_pipeline.py issues  --diff <dir>/drift-report.json --out <dir>/issues.json
     python drift_pipeline.py package --kit-run <kit-run> --diff <dir>/drift-report.json
                                      --provenance hcm-entra=<file> ... --out <evidence-dir>
@@ -10,7 +10,8 @@ Illustrative: unit-tested against fixtures, not proven against a live tenant. St
     python drift_pipeline.py cloud   --name gcc
 
 Exit codes: 0 no drift (or verified), 2 drift found (new, changed or unverified results),
-1 error or refusal (a run that fails its own manifest, runs that can't be compared, a package
+1 error or refusal (a run that fails its own manifest, runs that can't be compared, including runs of
+different or unrecorded tenants without --allow-tenant-mismatch, a package
 that fails verification).
 """
 from __future__ import annotations
@@ -132,6 +133,9 @@ def load_run(run_dir: Path) -> dict[str, Any]:
         "as_of": manifest["AsOfUtc"],
         "mode": manifest["Mode"],
         "cloud": manifest["Cloud"],
+        # Recorded by the kit from the run's own sign-in (the token's tid claim) or, for a fixture
+        # run, the fixture tenant's placeholder. None in a manifest written before the kit recorded it.
+        "tenant_id": (str(manifest.get("TenantId") or "").strip() or None),
         "options": manifest.get("Options") or {},
         "checks": {r["CheckId"]: r for r in results},
     }
@@ -171,15 +175,34 @@ def _counted_rows(check: dict[str, Any]) -> list[dict[str, Any]]:
 
 # ---------------------------------------------------------------- compare
 
-def assert_comparable(prev: dict[str, Any], curr: dict[str, Any]) -> list[str]:
-    """Refuse runs that can't be compared; return notes for differences that can be."""
+def tenant_problem(prev: dict[str, Any], curr: dict[str, Any]) -> str | None:
+    """Why two runs can't be shown to come from one tenant, or None when their tenant IDs match."""
+    a, b = prev.get("tenant_id"), curr.get("tenant_id")
+    missing = [name for name, v in (("previous", a), ("current", b)) if not v]
+    if missing:
+        return f"no tenant ID in the {' and '.join(missing)} run's kit manifest, so the runs can't be shown to come from one tenant"
+    if str(a).lower() != str(b).lower():
+        return f"tenant differs: {a} then {b}"
+    return None
+
+
+def assert_comparable(prev: dict[str, Any], curr: dict[str, Any], allow_tenant_mismatch: bool = False) -> list[str]:
+    """Refuse runs that can't be compared; return notes for differences that can be.
+
+    Two runs from different tenants in the same cloud, or a run whose manifest records no tenant,
+    are refused unless allow_tenant_mismatch is set; the override is then written into the notes."""
     if prev["mode"] != curr["mode"]:
         raise DriftError(f"mode differs: {prev['mode']} then {curr['mode']}; a fixture run is not evidence about a tenant")
     if str(prev["cloud"]).lower() != str(curr["cloud"]).lower():
         raise DriftError(f"cloud differs: {prev['cloud']} then {curr['cloud']}")
+    notes = []
+    problem = tenant_problem(prev, curr)
+    if problem and not allow_tenant_mismatch:
+        raise DriftError(f"{problem}; compare runs of one tenant, or pass --allow-tenant-mismatch for a reviewed exception")
+    if problem:
+        notes.append(f"Compared despite a tenant check failure (--allow-tenant-mismatch): {problem}")
     if not str(curr["as_of"]) > str(prev["as_of"]):
         raise DriftError(f"the current run ({curr['as_of']}) isn't later than the previous one ({prev['as_of']})")
-    notes = []
     for k in sorted(set(prev["options"]) | set(curr["options"])):
         a, b = prev["options"].get(k), curr["options"].get(k)
         if a != b:
@@ -187,20 +210,22 @@ def assert_comparable(prev: dict[str, Any], curr: dict[str, Any]) -> list[str]:
     return notes
 
 
-def compare(prev: dict[str, Any] | None, curr: dict[str, Any]) -> dict[str, Any]:
+def compare(prev: dict[str, Any] | None, curr: dict[str, Any], allow_tenant_mismatch: bool = False) -> dict[str, Any]:
     """Diff two runs: new, resolved, changed, unchanged and unverified findings, and check status changes.
 
     A finding is one Finding or Warn row, keyed by check, object ID (or name) and issue.
     "Changed" means the same object and check with a different severity or issue text; a
     difference only in Detail is listed as detail_only and opens nothing. A check that ended in
     Error or NotApplicable, or didn't run, proves nothing about its earlier findings: they are
-    "unverified", never "resolved"."""
+    "unverified", never "resolved". Runs of different or unrecorded tenants are refused unless
+    allow_tenant_mismatch is set (assert_comparable)."""
     report: dict[str, Any] = {
         "schema": DIFF_SCHEMA,
         "baseline": prev is None,
-        "previous": None if prev is None else {"run_id": prev["run_id"], "as_of": prev["as_of"], "kit_manifest_sha256": prev["manifest_sha256"]},
+        "previous": None if prev is None else {"run_id": prev["run_id"], "as_of": prev["as_of"], "kit_manifest_sha256": prev["manifest_sha256"],
+                                               "tenant_id": prev.get("tenant_id")},
         "current": {"run_id": curr["run_id"], "as_of": curr["as_of"], "kit_manifest_sha256": curr["manifest_sha256"],
-                    "mode": curr["mode"], "cloud": curr["cloud"]},
+                    "mode": curr["mode"], "cloud": curr["cloud"], "tenant_id": curr.get("tenant_id")},
         "notes": [],
         "checks": [],
         "new": [], "resolved": [], "changed": [], "detail_only": [], "unchanged": [], "unverified": [],
@@ -211,9 +236,11 @@ def compare(prev: dict[str, Any] | None, curr: dict[str, Any]) -> dict[str, Any]
             if check.get("Status") in UNREAD:
                 report["unverified"].append({"check_id": cid, "reason": check["Status"], "message": check.get("Message", ""), "findings": []})
         report["notes"].append("No previous run: this run is the baseline. Its findings are recorded, not opened one by one.")
+        if not curr.get("tenant_id"):
+            report["notes"].append("The kit manifest records no tenant ID: the next run can't be compared with this one without --allow-tenant-mismatch.")
         return _finish(report)
 
-    report["notes"] += assert_comparable(prev, curr)
+    report["notes"] += assert_comparable(prev, curr, allow_tenant_mismatch)
     for cid in sorted(set(prev["checks"]) | set(curr["checks"])):
         p, c = prev["checks"].get(cid), curr["checks"].get(cid)
         before = p.get("Status") if p else None
@@ -428,6 +455,7 @@ def package(kit_run: Path, report: dict[str, Any], provenance: list[tuple[str, P
         "run_id": run["run_id"],
         "as_of": run["as_of"],
         "cloud": run["cloud"],
+        "tenant_id": run["tenant_id"],
         "mode": run["mode"],
         "read_only": True,
         "metadata": dict(sorted((metadata or {}).items())),
@@ -499,6 +527,8 @@ def main(argv: list[str] | None = None) -> int:
     c.add_argument("--previous", type=Path, help="the previous kit run folder (omit for a baseline)")
     c.add_argument("--current", type=Path, required=True)
     c.add_argument("--out", type=Path, required=True)
+    c.add_argument("--allow-tenant-mismatch", action="store_true",
+                   help="compare runs whose kit manifests record different tenant IDs, or none (a reviewed exception; noted in the report)")
     i = sub.add_parser("issues", help="draft what to open and close")
     i.add_argument("--diff", type=Path, required=True)
     i.add_argument("--out", type=Path, required=True)
@@ -521,7 +551,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.cmd == "compare":
             prev = load_run(args.previous) if args.previous else None
-            report = compare(prev, load_run(args.current))
+            report = compare(prev, load_run(args.current), args.allow_tenant_mismatch)
             write_text(args.out / "drift-report.json", dump_json(report))
             write_text(args.out / "drift-summary.md", summary_markdown(report))
             print(json.dumps({"counts": report["counts"], "baseline": report["baseline"], "drift": report["drift"]}, sort_keys=True))
