@@ -44,3 +44,15 @@ Settled-fact note: the federal framework crosswalk quotes the TMF 2026 call as s
 - `docs/images/diagrams/b18-application-modernization/src/ch02-value-health-grid.flow.yaml` — the two axes and the dispositions (program design).
 
 Neither is rendered.
+
+## Addition — October 30, 2026: recording dependencies as an evidence map
+
+Opened October 30, 2026: 5 U.S.C. §552a on the Legal Information Institute (subsections (e)(4), (e)(12), (o)(1) and (o)(2)).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 26 | A system of records notice lists routine uses and categories of sources of records | Evidence map | verified | 5 U.S.C. §552a(e)(4)(D), (I) |
+| 27 | A computer matching agreement is written, runs up to 18 months, renewable without new review for no more than one additional year | Evidence map | verified | 5 U.S.C. §552a(o)(1), (o)(2)(C)–(D) |
+| 28 | Entity and relationship types, basis labels, confidence flags, open questions, master-record ranking, computed dependency score | Evidence map | restated-as-design | Program design |
+
+The section is agency-neutral: its pattern was observed in a public, independent research site about one federal agency's systems, which is deliberately not named or linked. No facts, system names or counts from that site are used.

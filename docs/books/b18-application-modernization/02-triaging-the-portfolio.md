@@ -1,6 +1,6 @@
 ---
 title: "Chapter 02 — Triaging the Portfolio"
-description: "How to give every application in a large federal portfolio a disposition: the six dispositions (retire, retain, rehost, replatform, refactor, rebuild) and where they come from in Gartner's five options, AWS's 7 Rs and the Microsoft Cloud Adoption Framework; the triage criteria of mission criticality, technical condition, data sensitivity, cost, skills and dependencies; a scored rubric that triages thousands of applications without a study of each; and where capital planning and the Technology Modernization Fund fit."
+description: "How to give every application in a large federal portfolio a disposition: the six dispositions (retire, retain, rehost, replatform, refactor, rebuild) and where they come from in Gartner's five options, AWS's 7 Rs and the Microsoft Cloud Adoption Framework; the triage criteria of mission criticality, technical condition, data sensitivity, cost, skills and dependencies; an evidence map that records dependencies as typed, sourced and dated relationships; a scored rubric that triages thousands of applications without a study of each; and where capital planning and the Technology Modernization Fund fit."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b18-application-modernization
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The six dispositions this book uses, and how they line up with Gartner's original five options, AWS's 7 Rs and the Microsoft Cloud Adoption Framework's eight strategies. The six criteria a triage weighs. A scored rubric and a decision table that turn the criteria into a disposition for thousands of applications at once. How the result feeds capital planning and Technology Modernization Fund proposals. Book 06 applies the same discipline to SQL Server instances.
+The six dispositions this book uses, and how they line up with Gartner's original five options, AWS's 7 Rs and the Microsoft Cloud Adoption Framework's eight strategies. The six criteria a triage weighs, and an evidence map that turns the dependency criterion from a guess into a sourced, dated record. A scored rubric and a decision table that turn the criteria into a disposition for thousands of applications at once. How the result feeds capital planning and Technology Modernization Fund proposals. Book 06 applies the same discipline to SQL Server instances.
 :::
 
 [Chapter 01](01-a-portfolio-not-a-rewrite.md) argued that the unit of modernization is the application. This chapter is about deciding what each one becomes. In a portfolio of thousands, that can't be a separate study per application: a three-month assessment of each would take longer than most applications have left to live. It has to be a rubric applied to data, with judgment kept for the exceptions.
@@ -83,6 +83,54 @@ A few notes on using them.
 - **Skills are about the future, not the present.** An application maintained today by one contractor team in a language few people still learn scores badly even if it runs well. GAO's point is that the cost of those skills rises as the pool shrinks.[^c02-gao25]
 - **Dependencies decide sequence, not disposition.** A heavily connected application may still be refactored, but not first. [Chapter 10](10-running-the-portfolio-in-waves.md) uses the dependency score to build waves.
 - **PL/SQL and stored procedures count twice.** Business logic in the database raises both the skills score and the data migration effort, and it makes a rehost or replatform harder than it looks. [Chapter 04](04-moving-the-data.md) covers converting it.
+
+## Recording dependencies as an evidence map
+
+Dependencies are the criterion a scoring sheet handles worst. A score of 4 says an application is well connected; it doesn't say to what, on whose evidence, or which of those connections a move would break. The program's design is to record dependencies as an evidence map, a list of typed entities joined by typed, directed relationships, each relationship carrying its source. The dependency score is then computed from the map rather than estimated by the owner.
+
+### What goes on the map
+
+| Entity type | What it covers | Examples |
+|---|---|---|
+| Application | Software people or other systems use | A case management system; a public web service; a batch reporting job |
+| Data store | Where records live, including master records | The person or account master file; a payments database; a document repository |
+| Data element | A single field that something else relies on | A status code, a date of death, an indicator flag |
+| Data exchange | An interface with another organization | A file feed to a state, a verification service another agency calls, a matching agreement |
+| Process | A business or batch process that reads or writes the data | Nightly reconciliation; a correction workflow; an annual statistical extract |
+| Rule | A business, eligibility or data-quality rule, wherever it lives | A rule in a COBOL paragraph, a stored procedure or a procedure manual |
+| Governance document | Something that authorizes or constrains a relationship | A system of records notice, an interface agreement, a policy |
+| Finding | An audit or oversight finding about the entity | An inspector general recommendation; a GAO finding |
+
+Each relationship records six things:
+
+| Field | What it holds |
+|---|---|
+| From, to and kind | The two entities and what the link does: reads, writes, feeds, governs, replaces |
+| Basis | Observed (seen in flows, logs or code), documented (in an agreement, notice or manual), planned or historical |
+| Evidence | The document, log extract or code reference, with its revision date |
+| Observed | When someone last confirmed the link |
+| Confidence | The same *measured*, *attested* or *assumed* flag the rubric uses |
+| Status | Current, retired, or planned with a target date |
+
+### Rules for keeping it honest
+
+- **A link is a claim, not a deployment fact.** A documented link says two things are connected by policy or design. It doesn't prove data flows between them today, and the absence of a link doesn't prove nothing does. Label the basis on every link, and let observed evidence override documented evidence when they disagree.
+- **Keep open questions on the map.** When the evidence doesn't settle a link, record the question, who can answer it and when it was asked. Don't drop the link and don't guess it into existence. An open question on a high-impact system is a reason for rule 7, below.
+- **Count what points at each master record.** Rank data stores by incoming relationships: applications, processes, rules and outside exchanges that read them. A master record with a hundred or more incoming links is where migration risk concentrates. Retiring or replatforming it isn't one decision but one per dependent, and the map lists them.
+- **Count outside partners separately.** Each exchange with another organization is a commitment the agency can't change alone: an agreement with a term, a published notice, a partner's own schedule. Under the Privacy Act, a system of records notice lists the system's routine uses and the categories of sources of its records, and a computer matching agreement runs for up to 18 months, renewable without a new review for no more than one additional year.[^c02-privacy-act] Those dates belong on the map, because a move has to fit inside them or wait for the next renewal.
+- **Map fields, not only systems.** Rules depend on individual data elements, such as a code value that means "deceased" or "do not pay." A replatform that preserves every table but changes one code's meaning breaks every rule that reads it. [Chapter 04](04-moving-the-data.md) covers carrying the data across.
+- **Date everything.** Each piece of evidence carries the revision date of its source and the date it was last checked. A map without dates can't show which parts have gone stale.
+
+### Where the evidence comes from
+
+The observed basis comes from the sources in the criteria table: network flows, database links, batch schedules and the code itself. The documented basis is often already published or on file: system of records notices, privacy impact assessments, interface and matching agreements, procedure manuals and oversight reports. Starting from the documents gives a first map in weeks; the observed evidence then confirms, corrects or adds to it. [Book 01, Chapter 10](../b01-transformation-arc/10-analyzing-the-estate.md) collects the infrastructure side of the same picture (directory, DNS, certificates, service accounts) as committed, provenance-bound streams, and the two should share identifiers so an application's map can point at its infrastructure dependencies.
+
+### How the map feeds triage
+
+- **The dependency score is computed.** It weighs incoming and outgoing relationships, the number of outside exchanges and the share of links that are only assumed. The confidence flag for the criterion is the weakest flag among the links that drive the score.
+- **High-stakes cases are visible.** A master record with many outside exchanges, or a high-impact system with open questions, is a case for deep study under rule 7.
+- **Sequencing has its input.** [Chapter 10](10-running-the-portfolio-in-waves.md) builds waves from the map: dependents move before or with what they depend on, and a master record moves last, or behind a stable interface, as [Chapter 03](03-the-target-reference-architecture.md) describes.
+- **The map is the authoritative record of dependencies.** Diagrams, spreadsheets and wave plans are derived from it, not maintained beside it. [Book 13, Chapter 03](../b13-governance/03-one-authoritative-record.md) explains why.
 
 ## A scored rubric, not a study per application
 
@@ -172,3 +220,4 @@ Triage produces decisions; capital planning funds them. The two have to connect,
 [^c02-11312]: 40 U.S.C. §11312, "Capital planning and investment control," subsections (a) and (b) (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title40/html/USCODE-2023-title40-subtitleIII-chap113-subchapII-sec11312.htm> (accessed Oct 28, 2026).
 [^c02-tmf-fit]: Technology Modernization Fund, "Agency and project fit," <https://tmf.cio.gov/fit/> (accessed Oct 28, 2026).
 [^c02-tmf-2026]: Technology Modernization Fund, "2026 Call for Proposals," <https://tmf.cio.gov/2026-call-for-proposals/> (accessed Oct 28, 2026).
+[^c02-privacy-act]: 5 U.S.C. §552a (Privacy Act of 1974, as amended), subsections (e)(4)(D) and (I) and (o)(1)–(2), Legal Information Institute, <https://www.law.cornell.edu/uscode/text/5/552a> (accessed Oct 30, 2026).
