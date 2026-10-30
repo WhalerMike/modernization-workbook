@@ -1,0 +1,314 @@
+---
+title: "Chapter 07 — Machine Configuration Packages"
+description: "Building Azure Machine Configuration content from Learn's own procedure and Microsoft's pinned samples, then adding only what a federal pipeline needs on top: a MOF free of build-host data that compiles to the same bytes every time, a package and policy definition checked against a reviewed release registry, the owner tag that keeps two tools off one setting, Arc and Azure Government scope, and a provenance manifest, with labs offline and in a test subscription."
+doc-type: workbook-chapter
+audience: [Technical]
+family: b19-developer-workbook
+book: B19
+part: How
+series-order: 7
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-04-01
+review-status: pending
+---
+
+# Chapter 07 — Machine Configuration Packages
+
+*Learn's cmdlets build a package and a policy definition; nothing in them says whether this package is the one you reviewed, whether it leaks the build host, or whether it will reach servers another tool owns. That check is the pipeline's job.*
+
+::: {.callout-note}
+## In this chapter
+How a server setting becomes Azure Machine Configuration content: a DSC configuration compiled to a MOF, packaged with `New-GuestConfigurationPackage`, tested, published, signed, and turned into an Azure Policy definition with `New-GuestConfigurationPolicy`. You follow Learn's procedure and run Microsoft's own sample project, which the repository keeps as a pinned copy, and see what the cmdlets do on their own. Then you build on `examples/machine-configuration` for what they leave to you: a cleaned, repeatable MOF, package and definition checks against a release registry, the owner tag filter, Arc and Azure Government scope, and a provenance manifest. Lab 1 runs offline on a laptop; Lab 2 uses a test subscription and a disposable server.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can take a server setting from a DSC configuration to an assigned policy using Learn's cmdlets, you know what those cmdlets don't check, and you can run, change and test the build that checks it. For every rule in the build you can say whether it is Microsoft's contract, Microsoft's procedure, or the program's own design.
+
+**Audience.** Developers and platform engineers who write server baselines for the Arc track, and the engineers and ISSOs who review them. You should be comfortable in PowerShell 7 and know what a DSC configuration is. You don't need to know Azure Policy in depth: the chapter covers the parts machine configuration uses.
+
+## Where machine configuration sits
+
+The [Arc track](../guides/arc-track-implementation.md) puts each server under one owning tool per setting, recorded as `config_owner` in the CMDB and mirrored in the `ConfigOwner` tag ([Ansible guide](../guides/ansible-configuration-automation.md#one-owning-tool-per-setting)). For the settings machine configuration owns, the code is a DSC configuration, and Azure Policy delivers it.
+
+Learn's model has three parts.[^c07-overview] A **package** (a `.zip` with the compiled MOF and the DSC resource modules it uses) says what the machine should look like. A **policy definition** in the category `Guest Configuration` points at the package by URI and hash. When the definition is assigned, the service creates a **guest assignment** (`Microsoft.GuestConfiguration/guestConfigurationAssignments`) on each machine in scope, and the agent on the machine downloads the package, evaluates it and reports compliance.[^c07-assignments] A machine can hold up to 50 guest assignments.[^c07-overview]
+
+Each assignment has one of three types, and the spelling is case sensitive:[^c07-remediation]
+
+| Assignment type | What the agent does |
+|---|---|
+| `Audit` | Reports; changes nothing |
+| `ApplyAndMonitor` | Applies once, then reports drift without correcting it |
+| `ApplyAndAutoCorrect` | Applies, and corrects drift at the next evaluation |
+
+Custom packages that audit and apply, and custom definitions with `AuditIfNotExists` or `DeployIfNotExists`, are generally available. Applying needs guest configuration extension 1.26.24 or later on Azure VMs, or Arc agent 1.10.0 or later.[^c07-develop]
+
+## Start with Learn's procedure and Microsoft's sample
+
+### What Learn gives you
+
+Learn documents the whole procedure, one page a step:[^c07-develop]
+
+| Step | Learn's command | What it produces |
+|---|---|---|
+| Set up | `Install-Module GuestConfiguration`; on Windows, `PSDesiredStateConfiguration` 2.0.7[^c07-setup] | The authoring environment, PowerShell 7.1.3 or later on Windows, 7.2.4 or later on Ubuntu 20+ |
+| Author | `Configuration MyConfig { ... }`, then dot-source the script[^c07-create] | `localhost.mof` |
+| Package | `New-GuestConfigurationPackage -Name -Configuration -Type Audit` or `AuditAndSet`[^c07-create] | `<Name>.zip` with the MOF, a `metaconfig.json` holding type and version, and the modules |
+| Test | `Get-GuestConfigurationPackageComplianceStatus`, then `Start-GuestConfigurationPackageRemediation` for `AuditAndSet`[^c07-test] | Compliance per resource, from the same agent the machines run |
+| Publish | `Set-AzStorageBlobContent`, optionally `New-AzStorageBlobSASToken`[^c07-publish] | An HTTPS URI the machines can read |
+| Sign | `Protect-GuestConfigurationPackage`, and the `GuestConfigPolicyCertificateValidation` tag on machines[^c07-sign] | A signed package that tagged machines will insist on |
+| Define | `New-GuestConfigurationPolicy -PolicyId -ContentUri -Mode -Platform -PolicyVersion`[^c07-policy] | Definition JSON, with `contentHash` filled in |
+| Publish the definition | `New-AzPolicyDefinition`, with Resource Policy Contributor as the recommended role[^c07-policy] | The definition in Azure, ready to assign |
+
+Learn is clear about some things you must not do. Don't put secrets or confidential information in a package.[^c07-develop] The package can't exceed 100 MB uncompressed.[^c07-create] To release a new version, give the package a new name (Learn suggests `PackageName_1.0.0`), keep the same `PolicyId`, raise the version, and let the cmdlet recompute `contentHash`. If only the URI changes and not the hash, the extension rejects the package.[^c07-policy]
+
+### The pinned sample
+
+Learn's overview lists Microsoft's sample DSC resource modules among its machine configuration samples.[^c07-overview] The repository keeps an unmodified copy of that repository's worked example project in [`examples/third_party/guest-configuration-samples`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/third_party/guest-configuration-samples), pinned at commit `ca85d61` of August 4, 2021, with its MIT license.[^c07-samples-code] It is `createPackage.ps1`, a compiled `AdministratorsGroupMembers.mof` that audits the members of the local Administrators group, and the `LocalGroup` resource module it imports.
+
+`snapshot.json` records the commit and the SHA-256 of every file, and a unit test fails if one changes. The weekly source watch reports new upstream commits, both to the samples and to the GuestConfiguration module's own repository. Updating either is a reviewed pull request, the same pattern as [Chapter 01](01-the-hr-to-entra-middleware.md#the-pinned-copy).
+
+The sample is five years older than the module the chapter uses (GuestConfiguration 4.12.0, published June 22, 2026, on the PowerShell Gallery; the gallery isn't a Learn page).[^c07-module] Two things in it no longer hold. Its script calls `Test-GuestConfigurationPackage`, which 4.12.0 doesn't export: the current name is `Get-GuestConfigurationPackageComplianceStatus`. It also appends to `PSModulePath` with `:`, the Linux separator. Its MOF and module still package with 4.12.0. `tests/LearnBaseline.Tests.ps1` pins all three facts.
+
+### What it leaves to you
+
+Running Learn's commands offline, on the sample and on this chapter's configuration, shows what the cmdlets don't do. Each row is pinned by a test that runs the cmdlets.
+
+| Learn's cmdlets, on their own | Why it matters in a federal pipeline | What `examples/machine-configuration` adds |
+|---|---|---|
+| The compiled MOF records the user name, host name, date and full script path (`@GeneratedBy`, `@GenerationHost`, `SourceInfo`) | That MOF goes into the package, and the package goes to a blob the machines read: it publishes who built it and where | `ConvertTo-McCleanMof` removes them; rule MC-PKG-04 refuses a package that still has them |
+| Compiling writes each resource's properties in a different order each run | The MOF's hash changes with no change to the configuration, so a reviewer can't tell a real change from noise | The cleaner sorts properties, so the same source gives the same MOF bytes on any host |
+| `New-GuestConfigurationPackage` writes a different `.zip` each run, even from the same MOF | A rebuilt package doesn't match the hash in the reviewed definition | Build once, check, publish those exact bytes; `provenance.json` records both hashes |
+| Nothing checks for secrets, although Learn says not to include them | A credential in a MOF is readable by anyone who can read the blob | MC-PKG-05 scans the MOF for credential properties, SAS signatures, account keys and private keys |
+| `New-GuestConfigurationPolicy` takes whatever `-PolicyId` and `-PolicyVersion` it's given; Learn says to generate a GUID with `New-Guid` for a new definition and reuse it for updates, but nothing records it[^c07-policy] | A new GUID creates a second definition instead of updating the first; a version that doesn't rise breaks the release | `config/releases.json` holds the fixed policy ID, mode and published version; MC-POL-05 to MC-POL-07 compare against it |
+| An enforcing definition reaches every machine in scope | Two tools on one setting flip it back and forth, each reporting success | MC-POL-08 requires the `ConfigOwner` tag filter on `ApplyAnd*` definitions, the same rule VK-ARC-07 checks after the fact |
+| The generated definition's `IncludeArcMachines` parameter defaults to `"false"` | An assignment made with defaults leaves every Arc-enabled server out of scope, and nothing reports it | MC-POL-09 reminds on every build meant for Arc |
+| Learn's SAS example lasts three years[^c07-publish] | A read token in a definition outlives the package, the server and the people who made it | Managed identity by default; MC-POL-03 warns on any SAS and refuses one longer than 90 days (*design guidance*) |
+| Module versions float | A rebuild a month later compiles against different resources | `RequiredModules.psd1` pins them; the build stops if one is missing |
+
+Two smaller differences from Learn's text, found by running 4.12.0 and pinned in the baseline test. The definition file is named `<package>_AuditIfNotExists.json` or `<package>_DeployIfNotExists.json`, not `auditIfNotExists.json` as Learn's page says.[^c07-policy] The `-Tag` parameter takes one hashtable; the array of hashtables Learn describes fails to bind. The package also holds only the configuration's own resource module, not the `GuestConfiguration` and `DscNativeResources` folders Learn lists in a package's expected contents.[^c07-create] The package works either way; the test pins what 4.12.0 does.
+
+**The verdict.** Learn's procedure is the procedure: the build calls its cmdlets in its order and replaces none of them. What the build adds sits between the steps: clean the MOF before packaging, check the package before defining, check the definition before publishing, and record what was built.
+
+## The code: what `examples/machine-configuration` adds
+
+[`examples/machine-configuration`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/machine-configuration) has one configuration, one module of checks, one build script and two test files:
+
+- `configurations/TlsServerProtocols.ps1` audits that the server side of TLS 1.0 and TLS 1.1 is explicitly disabled in SCHANNEL, using the `Registry` resource from PSDscResources. It is audit only. It reports a machine with no explicit setting as non-compliant, which is the intent: the baseline wants the setting on record.
+- `powershell/McPipeline.psm1` holds the checks and the provenance manifest. None of it needs the GuestConfiguration module, Azure or a network.
+- `powershell/Invoke-McBuild.ps1` runs the whole build offline: compile, clean, package, define, check, write `provenance.json`. It exits `0` if the build passed (warnings allowed), `2` on findings, and `1` on error.
+
+### The release registry
+
+`config/releases.json` is the reviewed record of what is in production, one entry per configuration:
+
+```json
+"TlsServerProtocols": {
+  "policyId": "ca593085-dfcb-425d-ac9c-12870a55bbaa",
+  "platform": "Windows",
+  "mode": "Audit",
+  "published": "0.0.0",
+  "identity": "system",
+  "include_arc": true,
+  "owner_tag": { "ConfigOwner": "ArcMachineConfiguration" }
+}
+```
+
+The policy ID never changes; Learn says to reuse it so updates replace the definition.[^c07-policy] `mode` is checked case-sensitively against the three assignment types. `published` moves up in the same pull request that publishes a new version, so a second build of `1.0.0` fails MC-POL-06. `identity: system` builds definitions that read the package with each machine's system-assigned identity, which Learn says works for Arc-enabled servers; a user-assigned identity doesn't.[^c07-access] The owner tag value is the one the [Arc track](../guides/arc-track-implementation.md) uses.
+
+### Clean the MOF
+
+`ConvertTo-McCleanMof` rewrites the compiled MOF into one canonical form. It drops the header comment and the configuration document's `Author`, `GenerationDate` and `GenerationHost`. It keeps `SourceInfo` as `::line::column::resource`, the form Microsoft's own sample MOF uses. It sorts each instance's properties and writes LF line endings. Compiled three times, the configuration gives three different MOFs and one cleaned MOF. The baseline test parses the compiled and cleaned files with DSC's own MOF deserializer and checks that the resources and values are the same, apart from the fields removed on purpose.
+
+### Check the package
+
+`Test-McPackage` opens the `.zip` in memory and applies seven rules. The MOF and metaconfig must be at the root (MC-PKG-01), and the type must be the one the registry mode needs (MC-PKG-02). The package must stay within the 100 MB limit (MC-PKG-03). The MOF must carry no build-host data (MC-PKG-04) and nothing that looks like a secret (MC-PKG-05). Every module the MOF imports must be in the package at the version it was compiled against (MC-PKG-06). The package name must carry a version (MC-PKG-07, a warning).
+
+### Check the definition
+
+`Test-McPolicy` reads the definition `New-GuestConfigurationPolicy` wrote, with the package and the registry entry, and applies nine rules (MC-POL-01 to MC-POL-09; the [README](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/machine-configuration#rules) lists them). The one that catches the most is MC-POL-02. `contentHash` appears four times in an enforcing definition (once in the metadata, once per machine type in the deployment template), and every copy must be this package's SHA-256. A hand-edited definition or a rebuilt package fails here, not on a server.
+
+### The provenance manifest
+
+`provenance.json` follows the pattern of [Book 13, Chapter 04](../b13-governance/04-change-control-and-provenance.md): what was built, from what, and what shipped.
+
+```json
+{
+  "schema": "fmp-mc-provenance/1",
+  "configuration": "TlsServerProtocols",
+  "version": "1.0.0",
+  "policy_id": "ca593085-dfcb-425d-ac9c-12870a55bbaa",
+  "mode": "Audit",
+  "mof":     { "file": "TlsServerProtocols_1.0.0.mof", "sha256": "ecffd795…" },
+  "package": { "file": "TlsServerProtocols_1.0.0.zip", "sha256": "…", "bytes": 341673 },
+  "policy":  { "file": "TlsServerProtocols_1.0.0_AuditIfNotExists.json", "sha256": "…" },
+  "modules": { "GuestConfiguration": "4.12.0", "PSDesiredStateConfiguration": "2.0.7", "PSDscResources": "2.12.0.0" },
+  "findings": { "Finding": 0, "Warn": 0, "Info": 1 }
+}
+```
+
+The MOF hash is the reviewable one: it is the same for anyone who builds the same commit. The package and definition hashes identify the bytes that shipped; an ISSO can download the published blob, hash it, and match it here. Chapter 09 carries this file into the evidence package.
+
+### The tests
+
+`tests/McPipeline.Tests.ps1` has 48 fixture tests and needs no module: it zips packages in a temporary folder and uses two definitions 4.12.0 wrote, with the package hash replaced by a placeholder. `tests/LearnBaseline.Tests.ps1` has 16 tests that run Learn's cmdlets and the pinned sample offline. They skip unless the pinned module versions are found.
+
+::: {.callout-important}
+## Illustrative code
+The build runs Learn's cmdlets as the module publishes them, and its checks are tested against fixtures and offline runs, not against a production subscription. The cleaned MOF parses the same with DSC's deserializer, but its acceptance by the agent on a real machine is shown in Lab 2. Review the code, and run Lab 2, before it builds a production baseline.
+:::
+
+## Lab 1: offline, no subscription
+
+You need Windows with PowerShell 7.1 or later and Pester 5. Nothing in this lab signs in, uploads, or installs the machine configuration agent.
+
+1. **Save the pinned modules** to a folder rather than installing them, from `examples/machine-configuration`:
+
+   ```powershell
+   Save-Module GuestConfiguration -RequiredVersion 4.12.0 -Path ./mcmods
+   Save-Module PSDesiredStateConfiguration -RequiredVersion 2.0.7 -Path ./mcmods
+   Save-Module PSDscResources -RequiredVersion 2.12.0.0 -Path ./mcmods
+   $env:PSModulePath = (Resolve-Path ./mcmods).Path + ';' + $env:PSModulePath
+   Import-Module PSDesiredStateConfiguration -RequiredVersion 2.0.7
+   ```
+
+2. **Follow Learn's steps by hand.** Compile the chapter's configuration and package it the way Learn's page does:[^c07-create]
+
+   ```powershell
+   . ./configurations/TlsServerProtocols.ps1
+   TlsServerProtocols -OutputPath ./lab/compiled
+   New-GuestConfigurationPackage -Name TlsServerProtocols -Configuration ./lab/compiled/localhost.mof -Type Audit -Path ./lab/p1 -Force
+   New-GuestConfigurationPackage -Name TlsServerProtocols -Configuration ./lab/compiled/localhost.mof -Type Audit -Path ./lab/p2 -Force
+   Get-FileHash ./lab/p1/TlsServerProtocols.zip, ./lab/p2/TlsServerProtocols.zip
+   ```
+
+   Two packages from one MOF, with two different hashes. Open `./lab/compiled/localhost.mof`: your user name and computer name are in the header, and your folder path is in every `SourceInfo`.
+
+3. **See what the checks say about Learn's output:**
+
+   ```powershell
+   Import-Module ./powershell/McPipeline.psm1
+   Test-McPackage -Path ./lab/p1/TlsServerProtocols.zip -Name TlsServerProtocols -ExpectedType Audit
+   ```
+
+   Three rows: two MC-PKG-04 findings (build-host data, absolute path) and the MC-PKG-07 warning (no version in the name).
+
+4. **Run Microsoft's pinned sample with the current module.** Still in `examples/machine-configuration`, package the example project's MOF and module, and look for the cmdlet its script calls:
+
+   ```powershell
+   cd ../third_party/guest-configuration-samples/package-samples/.example-project
+   $env:PSModulePath = "$PWD/Modules;" + $env:PSModulePath
+   New-GuestConfigurationPackage -Name AdministratorsGroupMembers -Configuration ./AdministratorsGroupMembers.mof -Path $env:TEMP/ms -Force
+   Get-Command Test-GuestConfigurationPackage -ErrorAction SilentlyContinue   # nothing: renamed
+   cd ../../../../machine-configuration
+   ```
+
+   The package builds. `Test-McMofText -Text (Get-Content ../third_party/guest-configuration-samples/package-samples/.example-project/AdministratorsGroupMembers.mof -Raw)` returns nothing: Microsoft's published MOF carries no build-host data, which is the form the cleaner produces.
+
+5. **Run the checked build:**
+
+   ```powershell
+   pwsh ./powershell/Invoke-McBuild.ps1 -Name TlsServerProtocols -Version 1.0.0 `
+       -ContentUri https://stcontosomc.blob.core.windows.net/machine-configuration -ModulePath ./mcmods -OutputPath ./out
+   ```
+
+   It exits `0` with one information row, MC-POL-09: `IncludeArcMachines` defaults to false. Open `out/TlsServerProtocols_1.0.0/TlsServerProtocols_1.0.0_AuditIfNotExists.json` under `policy`, and find `contentHash` and the `IncludeArcMachines` parameter. Run the build again into `./out2` and compare the two `provenance.json` files: the `mof.sha256` values match (`ecffd795…`), and the package hashes don't.
+
+6. **Break something on purpose.** In a copy of `config/releases.json`, change `published` to `1.0.0` and pass it with `-Registry`: exit `2`, MC-POL-06. Change `mode` to `applyAndAutoCorrect` (lower-case a): exit `1`, because the mode is case sensitive. Change it to `ApplyAndAutoCorrect` and remove `owner_tag`: exit `2`, MC-POL-08.
+
+7. **Run the tests:**
+
+   ```powershell
+   $env:MC_MODULE_PATH = (Resolve-Path ./mcmods).Path
+   Invoke-Pester ./tests
+   ```
+
+**Expected result:** 64 tests passing (48 if `MC_MODULE_PATH` isn't set, with 16 skipped), and each difference in the table above seen with your own eyes.
+
+## Lab 2: test subscription and a disposable server
+
+Use a test subscription and a server you can rebuild, never production. Learn says local testing runs the same agent as the machines, installs it under `C:\ProgramData\GuestConfig\bin` on first use, and needs elevation; `Start-GuestConfigurationPackageRemediation` changes the machine it runs on.[^c07-test]
+
+1. **Test the package on the disposable server.** Copy `TlsServerProtocols_1.0.0.zip` from Lab 1 to it and, in an elevated PowerShell 7 session with the pinned modules, run `Get-GuestConfigurationPackageComplianceStatus -Path ./TlsServerProtocols_1.0.0.zip`.[^c07-test] Expect `complianceStatus` `False` on a default server, with a reason per registry key, and `True` after you set both `Enabled` values to `0`. This is the step that shows the agent accepts the cleaned MOF.
+2. **Sign in to the right cloud.** In Azure Government, `Connect-AzAccount -Environment AzureUSGovernment`. Check the server can reach the cloud's machine configuration endpoints. For Azure Government, Learn lists `*.guestconfiguration.azure.us` for Arc-enabled servers[^c07-arcnet] and regional endpoints for US Gov Arizona, Texas and Virginia.[^c07-network]
+3. **Publish the exact bytes.** Create a storage account and container in the test subscription with anonymous blob access disabled, and upload the package Lab 1 built with Learn's `Set-AzStorageBlobContent` step.[^c07-publish] Don't rebuild it. Download it back and compare its SHA-256 with `package.sha256` in `provenance.json`.
+4. **Grant read access to the machines, not a token.** The definition uses each machine's system-assigned identity, so assign **Storage Blob Data Reader** on the storage account to the test server's identity, as Learn describes for this option.[^c07-policy] No SAS token goes in the definition.
+5. **Publish the definition.** With Resource Policy Contributor on the test subscription,[^c07-policy] run `New-AzPolicyDefinition -Name <registry policyId> -Policy ./out/TlsServerProtocols_1.0.0/policy/TlsServerProtocols_1.0.0_AuditIfNotExists.json`. Using the registry's policy ID as the name means the next version updates this definition.
+6. **Assign it to the test resource group with `IncludeArcMachines` set to `true`.** If the test server is Arc-enabled and you leave the default, nothing happens and nothing says so.
+7. **Read the result.** Within a few evaluation cycles the guest assignment appears with a compliance status. Read it in the portal's guest assignments page or through Resource Graph, the way VK-ARC-03 and VK-ARC-07 in [Chapter 03](03-writing-a-validation-kit-check.md)'s validation kit do. Record the assignment's `contentHash` and compare it with `provenance.json`.
+8. **Back it out.** Delete the policy assignment; Learn says that deletes the guest assignment it created, but a definition removed from an initiative leaves its guest assignments behind to delete by hand.[^c07-assignments] Then delete the definition, the blob and the role assignment, and rebuild the disposable server.
+
+To try an enforcing version, rebuild with the registry mode set to `ApplyAndMonitor`, a new version and a new package name. Tag the test server `ConfigOwner = ArcMachineConfiguration`; an untagged server stays out of scope, which is the point.
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Release stage | Custom packages that audit and apply, and custom definitions with `AuditIfNotExists` or `DeployIfNotExists`, are generally available | [^c07-develop] [^c07-policy] |
+| Agent versions for apply | Azure VM guest configuration extension 1.26.24 or later; Arc agent 1.10.0 or later | [^c07-develop] |
+| Authoring environment | Windows with PowerShell 7.1.3 or later, or Ubuntu 20+ with 7.2.4 or later; PSDesiredStateConfiguration 2.0.7 for Windows configurations, the 3.0.0 prerelease for Linux | [^c07-setup] [^c07-create] |
+| Package | `.zip`, at most 100 MB uncompressed; type `Audit` or `AuditAndSet`; no secrets | [^c07-create] [^c07-develop] |
+| Assignment types | `Audit`, `ApplyAndMonitor`, `ApplyAndAutoCorrect`, case sensitive | [^c07-remediation] |
+| Guest assignments per machine | Up to 50 | [^c07-overview] |
+| Publish the definition | `New-AzPolicyDefinition`; recommended role Resource Policy Contributor | [^c07-policy] |
+| Package access | System-assigned identity works for Arc-enabled servers; user-assigned identity doesn't, and needs `-ExcludeArcMachines`; either needs Storage Blob Data Reader and anonymous blob access disabled | [^c07-policy] [^c07-access] |
+| Signing | `Protect-GuestConfigurationPackage`; public key in Trusted Publishers (Windows) or `/usr/local/share/ca-certificates/gc` (Linux); tag `GuestConfigPolicyCertificateValidation` = `enabled` on machines that must require it | [^c07-sign] |
+| Turning off remediation of custom content on one machine | Tag `CustomGuestConfigurationSetPolicy` = `disable` | [^c07-remediation] |
+| Azure Government | Arc-enabled servers need `*.guestconfiguration.azure.us`; machine configuration endpoints are listed for US Gov Arizona, Texas and Virginia | [^c07-arcnet] [^c07-network] |
+| Cost on Arc | Included at no extra cost for Arc-enabled Windows servers with Software Assurance or a subscription license once attested, or enrolled in Windows Server pay-as-you-go; otherwise purchased separately | [^c07-billing] |
+
+The GuestConfiguration module version, its command list and its behavior described above come from the PowerShell Gallery and from running it, not from Learn.[^c07-module]
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| Two tools on one setting | Under `ApplyAndAutoCorrect`, machine configuration and another tool flip a value back and forth, both reporting success | MC-POL-08 owner tag filter at build time; VK-ARC-07 after assignment |
+| Rebuilding at release time | The package published isn't the package reviewed, or its hash no longer matches the definition | Publish the bytes the build checked; MC-POL-02; compare the downloaded blob with `provenance.json` |
+| Build-host data in a published package | User names, host names and folder paths in a blob the whole fleet can read | `ConvertTo-McCleanMof`; MC-PKG-04 |
+| A secret in a MOF | Learn says don't; a credential compiled into a resource is in every copy of the package | MC-PKG-05; parameters through Azure Policy for values that vary |
+| A long-lived SAS token | Learn's example lasts three years; the URI in the definition is a standing read grant | System-assigned identity with Storage Blob Data Reader; MC-POL-03 |
+| Arc servers silently out of scope | `IncludeArcMachines` defaults to `"false"` | MC-POL-09 on every build; Lab 2 step 6 |
+| A new GUID for an update | A second definition, and two assignments on the same machines | Fixed policy ID in the registry; MC-POL-05 |
+| Enforcing by accident | An `AuditAndSet` package and an apply mode change servers that were only meant to be measured | Registry mode reviewed; MC-PKG-02 and MC-POL-07; the cmdlet itself refuses an apply mode for an audit-only package |
+| Leftover guest assignments | Removing a definition from an initiative leaves its guest assignments in place[^c07-assignments] | Back-out step that lists and deletes them |
+| A floating module | A rebuild compiles against different resources | `RequiredModules.psd1`; the baseline tests on every module update |
+| Unsigned content where signing is required | Tagged machines refuse it[^c07-sign] | Sign before publishing, as Learn says, and generate the definition from the file you publish, so `contentHash` is the hash of the signed package (*design guidance*) |
+
+## Checklist
+
+- [ ] The configuration is in Git, with the registry entry in the same pull request: fixed policy ID, mode, published version, owner tag, identity.
+- [ ] The build ran from the pinned module versions and exited `0`; `findings.json` has no findings.
+- [ ] The cleaned MOF's hash in `provenance.json` matches a rebuild of the same commit.
+- [ ] The package was tested on a disposable server with `Get-GuestConfigurationPackageComplianceStatus` (and `Start-GuestConfigurationPackageRemediation` for `AuditAndSet`).
+- [ ] The published blob's SHA-256 matches `package.sha256`, and the definition's `contentHash` matches it everywhere it appears.
+- [ ] No SAS token in the definition, or one that expires within 90 days with a recorded reason.
+- [ ] Enforcing definitions filter on `ConfigOwner`, and VK-ARC-07 is clean after assignment.
+- [ ] The assignment sets `IncludeArcMachines` to `true` where Arc-enabled servers are in scope.
+- [ ] Signed content, where required: signed after the checks, definition generated from the signed file, machines tagged.
+- [ ] The pinned sample matches its manifest, and every upstream commit to the samples and the module since the pin has been reviewed.
+- [ ] `provenance.json` and `findings.json` are in the evidence store.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 04 — Dynamic Rules as Code](04-dynamic-rules-as-code.md) · [Book index](index.md)
+:::
+
+[^c07-overview]: Microsoft Learn, "What is Azure Machine Configuration?," <https://learn.microsoft.com/azure/governance/machine-configuration/overview/01-overview-concepts> (accessed Oct 30, 2026).
+[^c07-assignments]: Microsoft Learn, "Understand machine configuration assignment resources," <https://learn.microsoft.com/azure/governance/machine-configuration/concepts/assignments> (accessed Oct 30, 2026).
+[^c07-remediation]: Microsoft Learn, "Remediation options for machine configuration," <https://learn.microsoft.com/azure/governance/machine-configuration/concepts/remediation-options> (accessed Oct 30, 2026).
+[^c07-develop]: Microsoft Learn, "How to develop a custom machine configuration package," <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/develop-custom-package/overview> (accessed Oct 30, 2026).
+[^c07-setup]: Microsoft Learn, "How to set up a machine configuration authoring environment," <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/develop-custom-package/1-set-up-authoring-environment> (accessed Oct 30, 2026).
+[^c07-create]: Microsoft Learn, "How to create custom machine configuration package artifacts," <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/develop-custom-package/2-create-package> (accessed Oct 30, 2026).
+[^c07-test]: Microsoft Learn, "How to test machine configuration package artifacts," <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/develop-custom-package/3-test-package> (accessed Oct 30, 2026).
+[^c07-publish]: Microsoft Learn, "How to publish custom machine configuration package artifacts," <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/develop-custom-package/4-publish-package> (accessed Oct 30, 2026).
+[^c07-access]: Microsoft Learn, "How to provide secure access to custom machine configuration packages," <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/develop-custom-package/5-access-package> (accessed Oct 30, 2026).
+[^c07-sign]: Microsoft Learn, "How to sign machine configuration packages," <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/develop-custom-package/6-sign-package> (accessed Oct 30, 2026).
+[^c07-policy]: Microsoft Learn, "How to create custom machine configuration policy definitions," <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/create-policy-definition> (accessed Oct 30, 2026).
+[^c07-network]: Microsoft Learn, "Azure Machine Configuration network requirements," <https://learn.microsoft.com/azure/governance/machine-configuration/overview/03-network-requirements> (accessed Oct 30, 2026).
+[^c07-arcnet]: Microsoft Learn, "Connected Machine agent network requirements," <https://learn.microsoft.com/azure/azure-arc/servers/network-requirements> (accessed Oct 30, 2026).
+[^c07-billing]: Microsoft Learn, "Windows Server Management enabled by Azure Arc," <https://learn.microsoft.com/azure/azure-arc/servers/windows-server-management-overview> (accessed Oct 30, 2026).
+[^c07-samples-code]: Microsoft, Azure Policy samples, Azure/azure-policy, `samples/GuestConfiguration/package-samples` at commit `ca85d6182e5a855bcdd1462421d5a1305c14c1df` (August 4, 2021), MIT License, <https://github.com/Azure/azure-policy/tree/ca85d6182e5a855bcdd1462421d5a1305c14c1df/samples/GuestConfiguration/package-samples> (accessed Oct 30, 2026); pinned copy in `examples/third_party/guest-configuration-samples`.
+[^c07-module]: PowerShell Gallery, "GuestConfiguration 4.12.0," <https://www.powershellgallery.com/packages/GuestConfiguration/4.12.0> (accessed Oct 30, 2026). Not a Learn page: Learn's setup page installs the module from the gallery without naming a current version.

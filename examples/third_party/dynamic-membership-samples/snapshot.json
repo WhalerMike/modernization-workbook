@@ -1,0 +1,55 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's dynamic membership processing samples, as their Learn source pages. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn PowerShell samples for dynamic membership processing",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/identity/users/scripts",
+  "commit": "07cb73d6c6380414eecd040ba5e14c1c94d48b66",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2026-06-12 (commit 4c22bc84c3abc54c7fdf590185f67773f5b30742)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: the repository's LICENSE. Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership-powershell-samples",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "groups-dynamic-membership-powershell-samples.md": "docs/identity/users/groups-dynamic-membership-powershell-samples.md",
+    "scripts/*": "docs/identity/users/scripts/<same name>"
+  },
+  "not_copied": [
+    "Everything else in MicrosoftDocs/entra-docs: the scripts exist only inside these six Learn source pages, so the pages are pinned whole; the chapter links Learn rather than quoting them."
+  ],
+  "files": {
+    "groups-dynamic-membership-powershell-samples.md": {
+      "bytes": 4577,
+      "sha256": "8c7f0243a091f7e5e039a42fcab2eb03e9e6c20bee41a3386f40b84763276070"
+    },
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "scripts/powershell-pause-all-dynamic-membership.md": {
+      "bytes": 24976,
+      "sha256": "6843378b97a6759285674b1c8872adaa89707c82b4d9d11f08a1228485750997"
+    },
+    "scripts/powershell-pause-all-except-dynamic-membership.md": {
+      "bytes": 29354,
+      "sha256": "cd91a9afb5667aa3d38d47091cb690bc00606d2ef329c80cf652f7d2709782e9"
+    },
+    "scripts/powershell-pause-specific-dynamic-membership.md": {
+      "bytes": 26459,
+      "sha256": "3d1733933bf7af80203f66527875679b9ff13ffcad88273b95fe572715f2dcc5"
+    },
+    "scripts/powershell-resume-noncritical-dynamic-membership.md": {
+      "bytes": 26752,
+      "sha256": "1f526adb23883aa3aae4a22ec4e9e7fe9e837f849e06a14655af318d8fddbd62"
+    },
+    "scripts/powershell-resume-specific-critical-dynamic-membership.md": {
+      "bytes": 27308,
+      "sha256": "46acd86042f51ba48a5eb1bbf04a39297e55ec7b0fc1bac8abaa8b4f5314cfd1"
+    }
+  }
+}

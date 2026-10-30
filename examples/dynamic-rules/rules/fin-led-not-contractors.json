@@ -1,0 +1,22 @@
+{
+  "displayName": "FIN-LED everyone but contractors",
+  "mailNickname": "fin-led-noctr",
+  "kind": "user",
+  "owner": "FIN-LED access owner",
+  "critical": false,
+  "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.extensionAttribute10 -eq \"FIN-LED\") -and (user.extensionAttribute11 -ne \"CTR\") -and (user.extensionAttribute11 -ne null)",
+  "tests": [
+    {
+      "member": "u01",
+      "expected": true
+    },
+    {
+      "member": "u02",
+      "expected": false
+    },
+    {
+      "member": "u06",
+      "expected": false
+    }
+  ]
+}
