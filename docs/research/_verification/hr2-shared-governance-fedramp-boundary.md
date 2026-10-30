@@ -76,3 +76,7 @@ Verified: 2026-10-30
 - **The agencies holding Oracle Fusion Cloud authorizations.** The Marketplace names nine; the page gives only the count and that OPM isn't among them.
 - **A secondary-source claim that only US nationals manage Fusion government systems.** Its source couldn't be found.
 - **The CSA note citing a Rev5 end date of December 31, 2028.** It isn't a primary source.
+
+## Additions, October 30, 2026 (follow-up)
+
+The "Status and review" section now has a promotion checklist for when the page is Proved: Book 10 Ch03 and Appendix A. This is process text and adds no new claims.
