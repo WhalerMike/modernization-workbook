@@ -363,8 +363,32 @@
       "type": "github_commits",
       "repo": "AzureAD/entra-id-inbound-provisioning",
       "path": "PowerShell/CSV2SCIM",
-      "books": ["B19"],
+      "books": [
+        "B19"
+      ],
       "source": "Commits to Microsoft's CSV2SCIM sample, which examples/third_party/csv2scim pins at one commit (Developer Workbook, Chapter 01). A new commit means: review it, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "guest-configuration-samples-commits",
+      "name": "Microsoft machine configuration package samples (Azure/azure-policy commits)",
+      "type": "github_commits",
+      "repo": "Azure/azure-policy",
+      "path": "samples/GuestConfiguration",
+      "books": [
+        "B19"
+      ],
+      "source": "Commits to Microsoft's guest configuration package samples, which examples/third_party/guest-configuration-samples pins at one commit (Developer Workbook, Chapter 07). A new commit means: review it, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "guestconfiguration-module-commits",
+      "name": "GuestConfiguration PowerShell module (Azure/GuestConfiguration commits)",
+      "type": "github_commits",
+      "repo": "Azure/GuestConfiguration",
+      "path": "source",
+      "books": [
+        "B19"
+      ],
+      "source": "Commits to the GuestConfiguration module's source. examples/machine-configuration pins version 4.12.0 in RequiredModules.psd1 (Developer Workbook, Chapter 07). A change here means: rerun tests/LearnBaseline.Tests.ps1 against the new version before moving the pin, in a reviewed pull request."
     }
   ]
 }

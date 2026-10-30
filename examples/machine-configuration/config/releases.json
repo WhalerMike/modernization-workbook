@@ -1,0 +1,17 @@
+{
+  "_comment": "Release registry: one entry per configuration. policyId never changes; published is the version now in production. Update it in the same reviewed pull request that publishes a new version.",
+  "configurations": {
+    "TlsServerProtocols": {
+      "displayName": "Audit: TLS 1.0 and 1.1 server protocols disabled",
+      "description": "Audits that SCHANNEL has the server side of TLS 1.0 and TLS 1.1 explicitly disabled.",
+      "script": "configurations/TlsServerProtocols.ps1",
+      "policyId": "ca593085-dfcb-425d-ac9c-12870a55bbaa",
+      "platform": "Windows",
+      "mode": "Audit",
+      "published": "0.0.0",
+      "identity": "system",
+      "include_arc": true,
+      "owner_tag": { "ConfigOwner": "ArcMachineConfiguration" }
+    }
+  }
+}
