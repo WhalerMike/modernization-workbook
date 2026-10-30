@@ -22,6 +22,7 @@ Goal and audience; the code (what it builds on, what the chapter adds, the tests
 
 - Front matter as in Chapter 01, including `review-status: pending`. Never set `approved` yourself: the owner approves a page with `python scripts/source_watch/review_gate.py --approve <page>`. Any change to an approved page sends it back to the weekly review list.
 - No narrated chapter tour until the chapter is approved.
+- **Microsoft Learn first, and as much of it as possible.** For anything about a Microsoft product, API, cmdlet, permission, limit or migration step, cite Microsoft Learn (learn.microsoft.com), found with the Microsoft Learn MCP tools. Prefer Learn's own procedures, commands and code samples over writing new ones, and follow Learn's wording for names and limits. Use a non-Learn source (GitHub samples, Arc Jumpstart, blogs, Q&A answers) only when Learn has nothing, say so in the verification log, and replace it once Learn covers the point. When two Learn pages disagree, cite both and follow the stricter.
 - Every new external claim cites Microsoft Learn (or a workbook chapter) first, with an access date. Footnote keys are unique in the book: `[^cNN-key]`, `[^i-key]` on the index.
 - Label the program's own positions *Design guidance*. Give every preview or beta feature its stage.
 - Never name an agency. Use the fictional `contoso.example` tenant in fixtures.
