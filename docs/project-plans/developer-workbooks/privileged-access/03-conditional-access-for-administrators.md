@@ -235,7 +235,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 113 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+**Expected result:** 330 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
@@ -314,7 +314,7 @@ Where the sources differ, recorded so a later edit doesn't loosen the code:
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 02 — Emergency Access Accounts as Code](02-emergency-access-as-code.md) · [Workbook index](index.md)
+[← Previous: Chapter 02 — Emergency Access Accounts as Code](02-emergency-access-as-code.md) · [Workbook index](index.md) · [Next: Chapter 04 — PIM for Microsoft Entra Roles as Code →](04-pim-for-entra-roles-as-code.md)
 :::
 
 [^pa03-pim-settings]: Microsoft Learn, "Configure Microsoft Entra role settings in Privileged Identity Management," on activation, require Microsoft Entra Conditional Access authentication context, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings> (accessed Oct 30, 2026).

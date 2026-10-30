@@ -361,7 +361,7 @@ The roles Learn names for reading differ by surface, without contradicting each 
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 02 — Emergency Access Accounts as Code](02-emergency-access-as-code.md) · [Workbook index](index.md)
+[← Previous: Chapter 07 — Access Reviews of Privileged Roles](07-access-reviews-of-privileged-roles.md) · [Workbook index](index.md)
 :::
 
 [^pa08-pim-audit]: Microsoft Learn, "View audit history for Microsoft Entra roles in Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log> (accessed Oct 30, 2026).

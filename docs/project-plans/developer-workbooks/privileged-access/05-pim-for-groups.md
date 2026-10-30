@@ -251,7 +251,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** every test passing (153 with Chapters 01 to 03), and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+**Expected result:** 330 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
@@ -331,7 +331,7 @@ Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 
 ::: {.callout-tip}
 ## Continue the book
-[← Chapter 02 — Emergency Access Accounts as Code](02-emergency-access-as-code.md) · [Chapter 01 — Privileged Inventory as Code](01-privileged-inventory-as-code.md) · [Workbook index](index.md)
+[← Previous: Chapter 04 — PIM for Microsoft Entra Roles as Code](04-pim-for-entra-roles-as-code.md) · [Workbook index](index.md) · [Next: Chapter 06 — PIM for Azure Resources →](06-pim-for-azure-resources.md)
 :::
 
 [^pa05-overview]: Microsoft Learn, "Govern membership and ownership of groups by using PIM for Groups," <https://learn.microsoft.com/graph/api/resources/privilegedidentitymanagement-for-groups-api-overview?view=graph-rest-1.0> (accessed Oct 30, 2026).

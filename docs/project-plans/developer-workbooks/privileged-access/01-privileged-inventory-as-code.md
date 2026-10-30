@@ -205,7 +205,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 78 tests passing, every row of the gap table seen with your own eyes, and `out/inventory/manifest.json` listing 24 GET requests. Delete `out` when you're done.
+**Expected result:** 330 tests passing, every row of the gap table seen with your own eyes, and `out/inventory/manifest.json` listing 24 GET requests. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 

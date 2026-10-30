@@ -192,7 +192,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 78 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+**Expected result:** 330 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
@@ -265,7 +265,7 @@ Two places where the sources differ, recorded so a later edit doesn't loosen the
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 01 — Privileged Inventory as Code](01-privileged-inventory-as-code.md) · [Workbook index](index.md)
+[← Previous: Chapter 01 — Privileged Inventory as Code](01-privileged-inventory-as-code.md) · [Workbook index](index.md) · [Next: Chapter 03 — Conditional Access for Administrators and the Activation Gate →](03-conditional-access-for-administrators.md)
 :::
 
 [^pa02-emergency]: Microsoft Learn, "Manage emergency access accounts in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access> (accessed Oct 30, 2026).

@@ -28,5 +28,5 @@ Every page is held for the owner's review: until a page is approved it is listed
 
 ::: {.callout-note}
 ## More to follow
-One developer workbook per project track is planned. Two are started: *Building the Attribute-Driven Migration*, with all nine chapters written, and *Building Privileged Access*, with its first two chapters written. Workbooks for the other project tracks will be added here as they are written.
+One developer workbook per project track is planned. Two are started: *Building the Attribute-Driven Migration*, with all nine chapters written, and *Building Privileged Access*, with all eight chapters written. Workbooks for the other project tracks will be added here as they are written.
 :::
