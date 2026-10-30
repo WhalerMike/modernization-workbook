@@ -1,0 +1,28 @@
+{
+  "_comment": "Fictional: the shape of GET /identityGovernance/lifecycleWorkflows/customTaskExtensions/{id} for contoso.example, after the extension was created with launch and wait and the Logic App's system-assigned identity as the response authorization. The authorizedApps item shape is a placeholder; Lab 2 replaces this file with the real read-back.",
+  "id": "c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e01",
+  "displayName": "CMS - revoke PIV credential",
+  "description": "Calls la-lcw-cms-revocation and waits for its callback.",
+  "endpointConfiguration": {
+    "@odata.type": "#microsoft.graph.logicAppTriggerEndpointConfiguration",
+    "subscriptionId": "5f0c2b7e-0d1a-4c3e-9b8a-0c0a7050e001",
+    "resourceGroupName": "rg-identity-lcw-extensions",
+    "logicAppWorkflowName": "la-lcw-cms-revocation",
+    "url": null
+  },
+  "authenticationConfiguration": {
+    "@odata.type": "#microsoft.graph.azureAdPopTokenAuthentication"
+  },
+  "clientConfiguration": {
+    "@odata.type": "#microsoft.graph.customExtensionClientConfiguration",
+    "maximumRetries": 1,
+    "timeoutInMilliseconds": 1000
+  },
+  "callbackConfiguration": {
+    "@odata.type": "#microsoft.graph.identityGovernance.customTaskExtensionCallbackConfiguration",
+    "timeoutDuration": "PT1H",
+    "authorizedApps": [
+      {"id": "8a7b6c5d-4e3f-4a2b-9c1d-0e1f2a3b4c01"}
+    ]
+  }
+}
