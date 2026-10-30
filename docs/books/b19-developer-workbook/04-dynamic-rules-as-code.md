@@ -117,7 +117,7 @@ The evaluator is for tests and reviews, and it isn't the engine. It refuses `mem
 
 `Test-DrRule` applies eleven rules (DR-01 to DR-11; the [README](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules#linter-rules) lists them). Two matter most. DR-03 and DR-04 require the guards to be ANDed at the top of the rule: a guard inside an `-or` protects nothing, and a regular expression over the rule text can't tell the difference, which is why the linter works on the parsed tree. DR-10 notes that `-ne` or `-notIn` on a coded slot also admits someone whose slot is empty; add `(… -ne null)` if an empty slot must not qualify (*design guidance*).
 
-Run against Book 03, Chapter 10's own rule pattern table, the linter finds three things. The **Legal employer** pattern has no `userType` guard, so a guest whose `companyName` matches would qualify, and it reads `companyName`, a display-name attribute (DR-04, DR-05). The **Exclusion** pattern admits a worker whose type slot is empty (DR-10), the open question the owner of Book 03 has to decide. The **Direct reports** pattern can't carry guards at all, because Learn says that rule can't be combined with any other, so the linter only notes it (DR-03, Info).[^c04-rules]
+Run against Book 03, Chapter 10's own rule pattern table, the linter found three things. The **Legal employer** pattern had no `userType` guard, so a guest whose `companyName` matched would have qualified (DR-04); it now has the guard, fixed in the same change as this chapter. It still reads `companyName`, a display-name attribute (DR-05), because the row exists to show that case. The **Exclusion** pattern admits a worker whose type slot is empty (DR-10), the open question the owner of Book 03 has to decide. The **Direct reports** pattern can't carry guards at all, because Learn says that rule can't be combined with any other, so the linter only notes it (DR-03, Info).[^c04-rules]
 
 ### The shadow diff
 
@@ -129,7 +129,7 @@ Run against Book 03, Chapter 10's own rule pattern table, the linter finds three
 
 ### The tests
 
-`tests/DynamicRules.Tests.ps1` has 56 tests: the parser, the evaluator, the linter, the library, Book 03's table, the shadow diff, and pause and resume against a fake Graph. `tests/LearnSamples.Tests.ps1` has 13 tests that run Learn's five scripts against the fake tenant. Neither needs a module, a tenant or a network.
+`tests/DynamicRules.Tests.ps1` has 57 tests: the parser, the evaluator, the linter, the library, Book 03's table, the shadow diff, and pause and resume against a fake Graph. `tests/LearnSamples.Tests.ps1` has 13 tests that run Learn's five scripts against the fake tenant. Neither needs a module, a tenant or a network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -166,7 +166,7 @@ You need PowerShell 7.1 or later and Pester 5. Work in `examples/dynamic-rules`.
        Format-Table Severity, Rule, Group, Issue
    ```
 
-   Four rows: DR-10 on Exclusion, DR-04 and DR-05 on Legal employer, and the DR-03 note on Direct reports.
+   Three rows: DR-10 on Exclusion, DR-05 on Legal employer, and the DR-03 note on Direct reports. A test checks that the fixture still matches Book 03's table row for row.
 
 3. **Evaluate a rule against the population:**
 
@@ -189,7 +189,7 @@ You need PowerShell 7.1 or later and Pester 5. Work in `examples/dynamic-rules`.
 
 6. **Run the tests:** `Invoke-Pester ./tests`.
 
-**Expected result:** 69 tests passing, and each difference in the table above seen with your own eyes.
+**Expected result:** 70 tests passing, and each difference in the table above seen with your own eyes.
 
 ## Lab 2: test tenant
 

@@ -26,7 +26,7 @@
   },
   {
     "pattern": "Legal employer",
-    "membershipRule": "(user.accountEnabled -eq true) -and (user.companyName -eq \"Example Bureau\")",
+    "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.companyName -eq \"Example Bureau\")",
     "kind": "user"
   },
   {

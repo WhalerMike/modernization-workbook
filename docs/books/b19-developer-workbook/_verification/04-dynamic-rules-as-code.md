@@ -2,7 +2,7 @@
 
 New material; it replaces no workbook page. Code: `examples/dynamic-rules` (new): `DynamicRules.psm1`, `Invoke-DrLibraryCheck.ps1`, six rule files, a fictional population, Book 03's rule pattern table as a fixture, and two Pester files with a harness. Pinned sample: `examples/third_party/dynamic-membership-samples` (new), the Learn source pages for the five dynamic membership processing samples and their overview page, from MicrosoftDocs/entra-docs at commit `07cb73d6c6380414eecd040ba5e14c1c94d48b66` (October 30, 2026; code MIT). Every file's git blob hash matched the upstream tree at that commit before `snapshot.json` was written. Source-watch feed added: `dynamic-membership-samples-commits`.
 
-Test results on October 30, 2026, Windows 11, PowerShell 7.6.9, Pester 5.5.0: `DynamicRules.Tests.ps1` 56 passed; `LearnSamples.Tests.ps1` 13 passed. `scripts/tests/test_third_party_snapshots.py` covers all three snapshots. Learn's samples were run only against the fake tenant in `tests/LearnSampleHarness.ps1`: nothing signed in and no Graph call left the machine.
+Test results on October 30, 2026, Windows 11, PowerShell 7.6.9, Pester 5.5.0: `DynamicRules.Tests.ps1` 57 passed; `LearnSamples.Tests.ps1` 13 passed. `scripts/tests/test_third_party_snapshots.py` covers all three snapshots. Learn's samples were run only against the fake tenant in `tests/LearnSampleHarness.ps1`: nothing signed in and no Graph call left the machine.
 
 Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP tools: Manage rules for dynamic membership groups; Create simpler, more efficient rules; Understand and manage dynamic group processing; Configure dynamic membership groups with the memberOf operator (preview); group: evaluateDynamicMembership (beta); evaluateDynamicMembershipResult; PowerShell samples for dynamic membership processing and the pause-all sample page; Troubleshooting groups with dynamic membership processing; Create or update a dynamic membership group; group resource type; New-MgGroup.
 
@@ -29,12 +29,12 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 17 | Learn's examples print an en dash (–eq) | Parse | verified | Learn, rules page (null and precedence examples) |
 | 18 | Direct reports rule can't be combined; adds the manager | Lint; evaluator; Verified facts | verified | Learn, rules page; Book 03, Chapter 10 |
 | 19 | Extension attributes 1–15 as string properties; multi-value extension properties unsupported | Verified facts | verified | Learn, rules page |
-| 20 | Book 03 table: Legal employer lacks userType and reads companyName; Exclusion admits an empty worker type | Lint | verified by running the linter on the table as published; recorded in research-gaps.md | Book 03, Chapter 10 (October 30, 2026) |
+| 20 | Book 03 table: Legal employer lacked userType (now fixed, owner approved) and reads companyName; Exclusion admits an empty worker type | Lint | verified by running the linter on the table; the Legal employer row was corrected in the same pull request and the fixture follows the published table (a test compares them) | Book 03, Chapter 10 (October 30, 2026) |
 | 21 | evaluateDynamicMembership permissions and clouds (global, L4, L5) | Lab 2; Verified facts | verified | Learn, evaluateDynamicMembership |
 | 22 | New-MgGroup permissions: Group.ReadWrite.All delegated, Group.Create application | Lab 2; Verified facts | verified | Learn, New-MgGroup |
 | 23 | Processing state values On and Paused; Update complete status | Lab 2; Verified facts | verified | Learn, group resource type; create or update a dynamic group |
 | 24 | Guards ANDed at the top; `-ne` on coded slots and empty slots; 24-hour default | Lint; pause manifest; Dangers | restated-as-design (labeled where stated) | — |
-| 25 | Lab 1 outputs (both groups On; Graph host for GCCHigh; four lint rows; members u01, u02, u06, u08, u09; exit 0 then 2 with adds u06) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
+| 25 | Lab 1 outputs (both groups On; Graph host for GCCHigh; three lint rows after the Legal employer fix; members u01, u02, u06, u08, u09; exit 0 then 2 with adds u06) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 
 ## Carry-forward ledger
 
