@@ -1,0 +1,34 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's page 'List Microsoft Entra role assignments', as its Learn source page: the Microsoft Graph PowerShell and Graph API samples for listing role assignments exist only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn sample: List Microsoft Entra role assignments (Graph PowerShell and Graph API)",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/identity/role-based-access-control/view-assignments.md",
+  "commit": "07cb73d6c6380414eecd040ba5e14c1c94d48b66",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2026-02-24 (commit 1e00cf609547be041873b17ad353aec85ca4a8a7)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: MIT (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/identity/role-based-access-control/view-assignments",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "view-assignments.md": "docs/identity/role-based-access-control/view-assignments.md"
+  },
+  "not_copied": [
+    "Everything else in MicrosoftDocs/entra-docs, including the page's screenshots (docs/identity/role-based-access-control/media/view-assignments) and the shared include files: the samples exist only inside this one page, so the page is pinned whole; the chapter links Learn rather than quoting it."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "view-assignments.md": {
+      "bytes": 18726,
+      "sha256": "b55e983993ab1e5d128c6d9408a8adc05c6afaafbb86237e2260170fb708f895"
+    }
+  }
+}

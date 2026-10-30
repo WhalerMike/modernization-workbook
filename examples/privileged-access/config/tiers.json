@@ -1,0 +1,39 @@
+{
+  "_comment": "Design guidance: the program's privilege tiers (Book 04, Chapter 04 and Appendix B). Entra roles are keyed by template ID, which is the same in every tenant. Azure roles are keyed by built-in role definition ID; the tier of an Azure assignment also depends on its scope (Book 04, Chapter 04, Azure RBAC), which Get-PaAzureTier applies. A role that isn't listed here is reported as unclassified, never assumed to be safe. Replace this file with the agency's approved tier model (decision D-A1).",
+  "entra": {
+    "62e90394-69f5-4237-9190-012177145e10": { "name": "Global Administrator", "tier": "T0" },
+    "e8611ab8-c189-46e8-94e1-60213ab1f814": { "name": "Privileged Role Administrator", "tier": "T0" },
+    "7be44c8a-adaf-4e2a-84d6-ab2649e08a13": { "name": "Privileged Authentication Administrator", "tier": "T0" },
+    "194ae4cb-b126-40b2-bd5b-6091b380977d": { "name": "Security Administrator", "tier": "T0" },
+    "b1be1c3e-b65d-4f19-8427-f6fa0d97feb9": { "name": "Conditional Access Administrator", "tier": "T0" },
+    "29232cdf-9323-42fd-ade2-1d097af3e4de": { "name": "Exchange Administrator", "tier": "T1" },
+    "f28a1f50-f6e7-4571-818b-6a12f2af6b6c": { "name": "SharePoint Administrator", "tier": "T1" },
+    "69091246-20e8-4a56-aa4d-066075b2a7a8": { "name": "Teams Administrator", "tier": "T1" },
+    "3a2c62db-5318-420d-8d74-23affee5d9d5": { "name": "Intune Administrator", "tier": "T1" },
+    "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3": { "name": "Application Administrator", "tier": "T1" },
+    "158c047a-c907-4556-b7ef-446551a6b5f7": { "name": "Cloud Application Administrator", "tier": "T1" },
+    "8ac3fc64-6eca-42ea-9e69-59f4c7b60eb2": { "name": "Hybrid Identity Administrator", "tier": "T1" },
+    "0526716b-113d-4c15-b2c8-68e3c22b9f80": { "name": "Authentication Policy Administrator", "tier": "T1" },
+    "17315797-102d-40b4-93e0-432062caca18": { "name": "Compliance Administrator", "tier": "T1" },
+    "fe930be7-5e62-47db-91af-98c3a49a38b1": { "name": "User Administrator", "tier": "T2" },
+    "fdd7a751-b60b-444a-984c-02652fe8fa1c": { "name": "Groups Administrator", "tier": "T2" },
+    "729827e3-9c14-49f7-bb1b-9608f156bbb8": { "name": "Helpdesk Administrator", "tier": "T2" },
+    "966707d0-3269-4727-9be2-8c3a10f19b9d": { "name": "Password Administrator", "tier": "T2" },
+    "c4e39bd9-1100-46d3-8c65-fb160da0071f": { "name": "Authentication Administrator", "tier": "T2" },
+    "f2ef992c-3afb-46b9-b7cf-a126ee74c451": { "name": "Global Reader", "tier": "RO" },
+    "5d6b6bb7-de71-4623-b4af-96380a352509": { "name": "Security Reader", "tier": "RO" },
+    "4a5d8f65-41da-4de4-8968-e035b65339cf": { "name": "Reports Reader", "tier": "RO" }
+  },
+  "azure": {
+    "8e3af657-a8ff-443c-a75c-2fe8c4bcb635": { "name": "Owner", "privilegedAdministrator": true, "canAssignRoles": true },
+    "18d7d88d-d35e-4fb5-a5c3-7773c20a72d9": { "name": "User Access Administrator", "privilegedAdministrator": true, "canAssignRoles": true },
+    "f58310d9-a9f6-439a-9e8d-f62e7b41a168": { "name": "Role Based Access Control Administrator", "privilegedAdministrator": true, "canAssignRoles": true },
+    "b24988ac-6180-42a0-ab88-20f7382dd24c": { "name": "Contributor", "privilegedAdministrator": true, "canAssignRoles": false },
+    "a8889054-8d42-49c9-bc1c-52486c10e7cd": { "name": "Reservations Administrator", "privilegedAdministrator": true, "canAssignRoles": false },
+    "acdd72a7-3385-48ef-bd42-f606fba81ae7": { "name": "Reader", "privilegedAdministrator": false, "canAssignRoles": false }
+  },
+  "azureControlPlaneSubscriptions": {
+    "_comment": "Subscriptions that host identity infrastructure, PIM evidence or the log workspace: any privileged administrator role on them is T0 (Book 04, Chapter 04). The agency lists its own.",
+    "ids": []
+  }
+}

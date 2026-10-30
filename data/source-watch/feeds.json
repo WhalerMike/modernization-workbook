@@ -466,6 +466,28 @@
         "DW"
       ],
       "source": "Commits to the azure.azcollection azure_arc role, which examples/third_party/azure-arc-role pins at the v4.2.0 release and examples/ansible/requirements.yml installs (developer workbook Building the Attribute-Driven Migration, Chapter 08). A new commit means: review it, rerun examples/ansible/tests/test_microsoft_role.py against the new role, and move the snapshot and the pin only in a reviewed pull request."
+    },
+    {
+      "id": "entra-role-assignments-page-commits",
+      "name": "Learn's List Microsoft Entra role assignments samples (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/role-based-access-control/view-assignments.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Microsoft Graph PowerShell and Graph API samples for listing role assignments, which examples/third_party/entra-role-assignments-page pins at one commit (developer workbook Building Privileged Access, Chapter 01). A new commit means: review it, rerun examples/privileged-access/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-emergency-access-page-commits",
+      "name": "Learn's emergency access accounts page and alert queries (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/role-based-access-control/security-emergency-access.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that sets the standard for emergency access accounts and holds the sample alert queries for their use, which examples/third_party/entra-emergency-access-page pins at one commit (developer workbook Building Privileged Access, Chapter 02). A new commit means: review it, rerun examples/privileged-access/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     }
   ]
 }

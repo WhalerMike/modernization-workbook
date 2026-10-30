@@ -1,0 +1,4 @@
+PrincipalId,Name,Reason,Owner
+0e000000-0000-4000-8000-000000000001,Emergency Access 01,Emergency access account (Book 04 Chapter 04),CISO
+0e000000-0000-4000-8000-000000000002,Emergency Access 02,Emergency access account (Book 04 Chapter 04),CISO
+5e000000-0000-4000-8000-000000000001,Contoso-Mail-Automation,Service principal that cannot perform an activation,

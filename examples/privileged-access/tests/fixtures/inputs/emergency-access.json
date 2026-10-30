@@ -1,0 +1,10 @@
+{
+  "_comment": "The emergency access accounts and their exclusion group, by object ID (fictional). Names are for people; the code keys on IDs.",
+  "accounts": [
+    { "id": "0e000000-0000-4000-8000-000000000001", "userPrincipalName": "ea01@contosoexample.onmicrosoft.com" },
+    { "id": "0e000000-0000-4000-8000-000000000002", "userPrincipalName": "ea02@contoso.example" }
+  ],
+  "exclusionGroupId": "9e000000-0000-4000-8000-000000000001",
+  "minimumAccounts": 2,
+  "maxValidationAgeDays": 90
+}

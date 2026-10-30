@@ -130,6 +130,8 @@ website:
             text: "Developer Workbooks"
           - href: docs/project-plans/developer-workbooks/attribute-driven-migration/index.md
             text: "Building the Attribute-Driven Migration"
+          - href: docs/project-plans/developer-workbooks/privileged-access/index.md
+            text: "Building Privileged Access"
       - href: docs/presentations/index.md
         text: "Presentations"
       - href: docs/presentations/watch.md
@@ -173,6 +175,10 @@ website:
               href: docs/project-plans/developer-workbooks/attribute-driven-migration/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/attribute-driven-migration/*-*.md"
+            - section: "Building Privileged Access"
+              href: docs/project-plans/developer-workbooks/privileged-access/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/privileged-access/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked

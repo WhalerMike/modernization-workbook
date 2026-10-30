@@ -83,6 +83,13 @@ bundles:
     image_dir: docs/images/diagrams/developer-workbooks/attribute-driven-migration
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: building-privileged-access-bundle.docx
+    title: "Building Privileged Access"
+    subtitle: "A developer workbook for the Privileged Access & Administrative Identity project — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/privileged-access
+    image_dir: docs/images/diagrams/developer-workbooks/privileged-access
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: b18-application-modernization-bundle.docx
     title: "Book 18 — Application Modernization"
     subtitle: "A portfolio, not a rewrite — Federal Modernization Workbook, combined edition"

@@ -1,0 +1,106 @@
+{
+  "_comment": "Every call the privileged access example makes: GET only, with the least-privileged Graph permission (or Azure role) from the Learn page for that call, read on October 30, 2026. A task may make only its own calls; Get-PaRequiredPermission returns the union for a task. Tests fail when a call is made that isn't listed here.",
+  "calls": [
+    {
+      "id": "entra-role-definitions",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleDefinitions",
+      "permissions": ["RoleManagement.Read.Directory"],
+      "stage": "v1.0",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0"
+    },
+    {
+      "id": "entra-active-assignments",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleAssignmentScheduleInstances",
+      "permissions": ["RoleAssignmentSchedule.Read.Directory"],
+      "stage": "v1.0",
+      "tasks": ["inventory", "emergency-access"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignmentscheduleinstances?view=graph-rest-1.0"
+    },
+    {
+      "id": "entra-eligibility-schedules",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleEligibilitySchedules",
+      "permissions": ["RoleEligibilitySchedule.Read.Directory"],
+      "stage": "v1.0",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0"
+    },
+    {
+      "id": "group-members",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/groups/{id}/members",
+      "permissions": ["GroupMember.ReadBasic.All", "User.ReadBasic.All"],
+      "stage": "v1.0",
+      "tasks": ["inventory", "emergency-access"],
+      "learn": "https://learn.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0",
+      "note": "GroupMember.ReadBasic.All alone returns only id and @odata.type for user members; User.ReadBasic.All adds their basic properties (Learn, permissions overview)."
+    },
+    {
+      "id": "user",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/users/{id}",
+      "permissions": ["User.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["emergency-access"],
+      "learn": "https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0",
+      "note": "Reads onPremisesSyncEnabled and accountEnabled, which aren't basic properties."
+    },
+    {
+      "id": "user-auth-methods",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/users/{id}/authentication/methods",
+      "permissions": ["UserAuthenticationMethod.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["emergency-access"],
+      "learn": "https://learn.microsoft.com/graph/api/authentication-list-methods?view=graph-rest-1.0"
+    },
+    {
+      "id": "ca-policies",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/policies",
+      "permissions": ["Policy.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["emergency-access"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0"
+    },
+    {
+      "id": "azure-assignment-schedules",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2020-10-01",
+      "path": "{scope}/providers/Microsoft.Authorization/roleAssignmentSchedules",
+      "azureRole": "Reader",
+      "stage": "GA (2020-10-01)",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/azure/role-based-access-control/pim-integration"
+    },
+    {
+      "id": "azure-eligibility-schedules",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2020-10-01",
+      "path": "{scope}/providers/Microsoft.Authorization/roleEligibilitySchedules",
+      "azureRole": "Reader",
+      "stage": "GA (2020-10-01)",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/azure/role-based-access-control/pim-integration"
+    }
+  ]
+}
