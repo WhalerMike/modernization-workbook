@@ -1,0 +1,80 @@
+{
+  "_comment": "Chapter 06: every Resource Manager call PaAzurePim makes for PIM for Azure resources, API version 2020-10-01 (GA for every PIM resource type, Learn's API versions page), with the least-privileged Azure role from the Learn page for that call, read on October 30, 2026. Reads are GET; the three writes (two PUTs and a PATCH) belong to the azure-pim-apply task only and are sent only by Invoke-PaAzPlan -Apply. Learn's REST walkthrough names Owner and User Access Administrator as the only built-in roles that can create schedule requests; User Access Administrator is the narrower of the two. Get-PaAzRequiredRole returns the union for a task, and AzurePim.Tests.ps1 fails when a call is made that isn't listed here.",
+  "calls": [
+    {
+      "id": "azpim-assignment-schedules",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2020-10-01",
+      "path": "{scope}/providers/Microsoft.Authorization/roleAssignmentSchedules",
+      "azureRole": "Reader",
+      "action": "Microsoft.Authorization/roleAssignments/read",
+      "stage": "GA (2020-10-01)",
+      "tasks": ["azure-pim-read", "azure-pim-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/authorization/privileged-role-assignment-rest-sample"
+    },
+    {
+      "id": "azpim-eligibility-schedules",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2020-10-01",
+      "path": "{scope}/providers/Microsoft.Authorization/roleEligibilitySchedules",
+      "azureRole": "Reader",
+      "action": "Microsoft.Authorization/roleAssignments/read",
+      "stage": "GA (2020-10-01)",
+      "tasks": ["azure-pim-read", "azure-pim-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/authorization/privileged-role-eligibility-rest-sample"
+    },
+    {
+      "id": "azpim-policies",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2020-10-01",
+      "path": "{scope}/providers/Microsoft.Authorization/roleManagementPolicies",
+      "azureRole": "Reader",
+      "action": "Microsoft.Authorization/roleAssignments/read",
+      "stage": "GA (2020-10-01)",
+      "tasks": ["azure-pim-read", "azure-pim-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/authorization/privileged-role-policy-rest-sample"
+    },
+    {
+      "id": "azpim-eligibility-request",
+      "api": "arm",
+      "method": "PUT",
+      "apiVersion": "2020-10-01",
+      "path": "{scope}/providers/Microsoft.Authorization/roleEligibilityScheduleRequests/{name}",
+      "azureRole": "User Access Administrator",
+      "action": "Microsoft.Authorization/roleAssignments/write",
+      "stage": "GA (2020-10-01)",
+      "tasks": ["azure-pim-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/authorization/privileged-role-eligibility-rest-sample",
+      "note": "Learn's walkthrough: only Owner and User Access Administrator, of the built-in roles, are granted this. Role Based Access Control Administrator also holds roleAssignments/write on the built-in roles page; whether PIM accepts it is open (research gaps, row 62)."
+    },
+    {
+      "id": "azpim-assignment-request",
+      "api": "arm",
+      "method": "PUT",
+      "apiVersion": "2020-10-01",
+      "path": "{scope}/providers/Microsoft.Authorization/roleAssignmentScheduleRequests/{name}",
+      "azureRole": "User Access Administrator",
+      "action": "Microsoft.Authorization/roleAssignments/write",
+      "stage": "GA (2020-10-01)",
+      "tasks": ["azure-pim-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/authorization/privileged-role-assignment-rest-sample",
+      "note": "Used only with requestType AdminRemove, to remove a standing assignment after its eligible replacement exists."
+    },
+    {
+      "id": "azpim-policy-update",
+      "api": "arm",
+      "method": "PATCH",
+      "apiVersion": "2020-10-01",
+      "path": "{scope}/providers/Microsoft.Authorization/roleManagementPolicies/{name}",
+      "azureRole": "User Access Administrator",
+      "action": "Microsoft.Authorization/roleManagementPolicies/write",
+      "stage": "GA (2020-10-01)",
+      "tasks": ["azure-pim-apply"],
+      "learn": "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
+      "note": "Learn: an Owner or User Access Administrator role is needed to manage PIM role settings for the resource. Role Based Access Control Administrator holds only roleAssignments/write and delete, not Microsoft.Authorization/*."
+    }
+  ]
+}

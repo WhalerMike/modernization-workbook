@@ -1,0 +1,64 @@
+{
+  "_comment": "A pinned, unmodified copy of Microsoft's request and response examples for the PIM for Azure resources REST API (Microsoft.Authorization 2020-10-01), the examples the Learn REST reference pages render. Learn's own how-to pages for the same API (Use Azure PIM to manage eligible access with the REST API, and its policy and active-access companions) aren't published in a public MicrosoftDocs repository, so their source can't be pinned; these examples are the closest public Microsoft source. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Microsoft REST examples: PIM for Azure resources (role eligibility and assignment schedule requests, role management policies), API version 2020-10-01",
+  "upstream_repo": "https://github.com/Azure/azure-rest-api-specs",
+  "upstream_path": "specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples",
+  "commit": "411fb227a905864f972d26ab88b21ef69e1f67b2",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2026-02-12 (commit 7c98c2cc77b5186209f42cf9c8260e367c892d28, a move to the unified folder structure); LICENSE 2017-02-06 (commit 2940a1cbc6ef193d8e82372fdcb6e8792136fa0f)",
+  "retrieved": "2026-10-30",
+  "license": "MIT (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/rest/api/authorization/privileged-role-eligibility-rest-sample",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "examples/GetRoleAssignmentSchedulesByScope.json": "specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples/GetRoleAssignmentSchedulesByScope.json",
+    "examples/GetRoleEligibilitySchedulesByScope.json": "specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples/GetRoleEligibilitySchedulesByScope.json",
+    "examples/GetRoleManagementPolicyByScope.json": "specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples/GetRoleManagementPolicyByScope.json",
+    "examples/PatchPartialRoleManagementPolicy.json": "specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples/PatchPartialRoleManagementPolicy.json",
+    "examples/PutRoleAssignmentScheduleRequest.json": "specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples/PutRoleAssignmentScheduleRequest.json",
+    "examples/PutRoleEligibilityScheduleRequest.json": "specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples/PutRoleEligibilityScheduleRequest.json"
+  },
+  "not_copied": [
+    "The other 32 examples in the same folder (get by name, instances, cancel, validate, policy assignments, eligible child resources, delete, the full policy PATCH): Chapter 06 makes only the list, PUT and partial PATCH calls these six examples show.",
+    "The OpenAPI files themselves (RoleEligibilityScheduleRequest.json and the rest) and every other API version: the chapter cites the Learn REST reference pages rendered from them."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1076,
+      "sha256": "b37363bf2295aa0acde60ce78a60034a71a0955075fc01aa09cc23eadff44436"
+    },
+    "examples/GetRoleAssignmentSchedulesByScope.json": {
+      "bytes": 2710,
+      "sha256": "5912e6e13b2e45f94b4d5f78990868dc3d951dd3e143d5447de3cf51510395ac"
+    },
+    "examples/GetRoleEligibilitySchedulesByScope.json": {
+      "bytes": 2582,
+      "sha256": "684ba19ae300c165b262735b8c323a21029a8f1927df44db466fa05cec4b711c"
+    },
+    "examples/GetRoleManagementPolicyByScope.json": {
+      "bytes": 28951,
+      "sha256": "6767a2d4bd3d2ccc5bd49b7db5c06853449db844234f22fbbb79a315adc4fd22"
+    },
+    "examples/PatchPartialRoleManagementPolicy.json": {
+      "bytes": 27417,
+      "sha256": "3b9b696ef577ad788ade177760de1970bfd76fb0dfacbec6dd3d29836cf0297d"
+    },
+    "examples/PutRoleAssignmentScheduleRequest.json": {
+      "bytes": 3507,
+      "sha256": "bcb5a63c32741f278bed56c47aa53cd7967dd9f86d043965500a68452049b970"
+    },
+    "examples/PutRoleEligibilityScheduleRequest.json": {
+      "bytes": 3429,
+      "sha256": "927afa12d92e80efe85f8f7aa1f1d2394ecc276665f9cb3773b6f5d24f3a8bda"
+    }
+  },
+  "git_blob_sha1_verified_against_upstream": {
+    "LICENSE": "6acfdd593962ad75691ac6cae598a91a405f348b",
+    "examples/GetRoleAssignmentSchedulesByScope.json": "756bb3019f0e735f2933c7652576cdbdf877ff81",
+    "examples/GetRoleEligibilitySchedulesByScope.json": "c1c7d106b4552f079c43305c28e20927f7a91aff",
+    "examples/GetRoleManagementPolicyByScope.json": "08e6c796138ffa2cfa2fb5b35293d4b90a5b354c",
+    "examples/PatchPartialRoleManagementPolicy.json": "62d3b232d29e8b652a39f834a7021e2c5a37ff08",
+    "examples/PutRoleAssignmentScheduleRequest.json": "53d11cc9487bc44191b54a88f6b141c2e4783ae1",
+    "examples/PutRoleEligibilityScheduleRequest.json": "5bb91f385a3549d0e4cd59a4eea31e7efe54c811"
+  }
+}
