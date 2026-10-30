@@ -13,3 +13,7 @@ collections:
     version: "==1.10.0"
   - name: ansible.utils
     version: "==6.1.1"
+  # Microsoft's Arc onboarding role, azure.azcollection.azure_arc (06_arc_onboarding_role.yml).
+  # examples/third_party/azure-arc-role pins the role's files from the same release.
+  - name: azure.azcollection
+    version: "==4.2.0"

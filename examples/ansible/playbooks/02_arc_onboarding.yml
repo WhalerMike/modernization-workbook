@@ -1,25 +1,32 @@
 ---
 # Azure Arc onboarding at scale: install and connect the Azure Connected Machine agent.
 #
-# This is the one playbook in the kit that changes servers, so it's gated twice:
+# One of the two playbooks in the kit that change servers (with 06_arc_onboarding_role.yml,
+# which uses Microsoft's own role instead), so it's gated:
 #   1. Without -e confirm_change=true every task runs in check mode: you see what would
 #      happen on each host and nothing is installed or connected.
-#   2. It targets only arc_onboarding_candidates, the tier 1 Linux and Windows servers the
-#      CMDB says aren't connected yet, and it skips any host whose agent already reports
-#      Connected.
+#   2. It runs one wave at a time. Its first play is the wave plan (05_arc_wave_plan.yml),
+#      which stops the run if the wave isn't ready; then it targets only the wave's servers in
+#      arc_onboarding_candidates, the tier 1 Linux and Windows servers the CMDB says aren't
+#      connected yet and whose records have both owners, a resource group, a region and the
+#      wave. It skips any host whose agent already reports Connected.
 #
-#   ansible-playbook playbooks/02_arc_onboarding.yml --limit app02.contoso.example
-#   ansible-playbook playbooks/02_arc_onboarding.yml --limit app02.contoso.example -e confirm_change=true
+#   ansible-playbook playbooks/02_arc_onboarding.yml -e onboarding_wave=0
+#   ansible-playbook playbooks/02_arc_onboarding.yml -e onboarding_wave=0 -e confirm_change=true
 #
 # Parameters come from inventory: the tenant, subscription, cloud and service principal ID
 # from group_vars/all.yml; the resource group, region and tags from each host's CMDB record.
 # The service principal secret comes from Ansible Vault (arc_sp_secret) or the ARC_SP_SECRET
 # environment variable, never from this file, and it's passed to azcmagent in a short-lived
 # configuration file that is deleted in the same run, not on the command line.
-# Waves run one canary host, then five, then a quarter of the rest, and stop at the first failure.
+# Within a wave, batches run one canary host, then five, then a quarter of the rest, and stop
+# at the first failure.
+
+- name: Plan the wave
+  ansible.builtin.import_playbook: 05_arc_wave_plan.yml
 
 - name: Onboard Linux servers to Azure Arc
-  hosts: arc_onboarding_candidates:&os_linux
+  hosts: "arc_onboarding_candidates:&arc_wave_{{ onboarding_wave | default('none') }}:&os_linux"
   gather_facts: false
   serial: [1, 5, "25%"]
   max_fail_percentage: 0
@@ -42,9 +49,13 @@
           - arc_resource_group | default('') | length > 0
           - arc_location | default('') | length > 0
           - arc_secret | length > 0
+          - config_owner | default('') not in ['', 'none']
+          - patch_owner | default('') not in ['', 'none']
+          - arc_wave | default(none) is not none
+          - (arc_wave | int) == (onboarding_wave | int)
         fail_msg: >-
-          Missing an Arc parameter for {{ inventory_hostname }}: the resource group and region come
-          from its CMDB record, the secret from arc_sp_secret (vault) or ARC_SP_SECRET.
+          Missing an Arc parameter for {{ inventory_hostname }}: the resource group, region, wave and
+          both owners come from its CMDB record, the secret from arc_sp_secret (vault) or ARC_SP_SECRET.
         quiet: true
       no_log: true
 
@@ -78,7 +89,10 @@
             dest: /tmp/install_linux_azcmagent.sh
             mode: "0700"
           become: true
-          when: not arc_agent_file.stat.exists
+          # get_url requests the URL even in check mode, so a dry run skips it: no network request.
+          when:
+            - not arc_agent_file.stat.exists
+            - confirm_change | bool
 
         - name: Install the agent
           ansible.builtin.command:
@@ -126,11 +140,11 @@
       become: true
       register: arc_after
       changed_when: false
-      when: not ansible_check_mode
+      when: confirm_change | bool
       failed_when: (arc_after.stdout | from_json).status | default('') != 'Connected'
 
 - name: Onboard Windows servers to Azure Arc
-  hosts: arc_onboarding_candidates:&os_windows
+  hosts: "arc_onboarding_candidates:&arc_wave_{{ onboarding_wave | default('none') }}:&os_windows"
   gather_facts: false
   serial: [1, 5, "25%"]
   max_fail_percentage: 0
@@ -153,6 +167,10 @@
           - arc_resource_group | default('') | length > 0
           - arc_location | default('') | length > 0
           - arc_secret | length > 0
+          - config_owner | default('') not in ['', 'none']
+          - patch_owner | default('') not in ['', 'none']
+          - arc_wave | default(none) is not none
+          - (arc_wave | int) == (onboarding_wave | int)
         fail_msg: Missing an Arc parameter for {{ inventory_hostname }}.
         quiet: true
       no_log: true
@@ -184,7 +202,10 @@
           ansible.windows.win_get_url:
             url: https://aka.ms/AzureConnectedMachineAgent
             dest: "{{ arc_installer }}"
-          when: not arc_agent_file.stat.exists
+          # A dry run makes no network request.
+          when:
+            - not arc_agent_file.stat.exists
+            - confirm_change | bool
 
         - name: Install the agent
           ansible.windows.win_package:
@@ -228,5 +249,5 @@
         argv: ["{{ arc_agent }}", show, --json]
       register: arc_after
       changed_when: false
-      when: not ansible_check_mode
+      when: confirm_change | bool
       failed_when: (arc_after.stdout | from_json).status | default('') != 'Connected'

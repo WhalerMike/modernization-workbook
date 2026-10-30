@@ -9,9 +9,11 @@ change a target fails the test unless it is one of three narrow exceptions:
   * a report writer (file, copy, template) in a play that runs only on the control node and
     writes only under report_dir.
 
-The one changing playbook, 02_arc_onboarding.yml, must run every task in check mode unless
-the operator passes confirm_change=true, and every task that touches the secret must hide it.
-The negative tests prove the checker catches the writes it's meant to catch.
+The two changing playbooks, 02_arc_onboarding.yml and 06_arc_onboarding_role.yml, must start
+with the wave plan (05_arc_wave_plan.yml), target one wave, run every task on a server in check
+mode unless the operator passes confirm_change=true, and hide every task that touches the
+secret. 06 may call Microsoft's role only when confirm_change is true, because the role can't
+run in check mode. The negative tests prove the checker catches the writes it's meant to catch.
 """
 
 from __future__ import annotations
@@ -23,8 +25,13 @@ import yaml
 
 KIT = Path(__file__).resolve().parent.parent
 PLAYBOOKS = KIT / "playbooks"
-READ_ONLY = ["01_inventory_assessment.yml", "03_linux_baseline_check.yml", "04_network_and_ddi_facts.yml"]
-GATED = ["02_arc_onboarding.yml"]
+READ_ONLY = [
+    "01_inventory_assessment.yml", "03_linux_baseline_check.yml", "04_network_and_ddi_facts.yml",
+    "05_arc_wave_plan.yml",
+]
+GATED = ["02_arc_onboarding.yml", "06_arc_onboarding_role.yml"]
+WAVE_PLAN = "05_arc_wave_plan.yml"
+MICROSOFT_ROLE = "azure.azcollection.azure_arc"
 
 SAFE_MODULES = {
     "ansible.builtin.setup", "ansible.builtin.stat", "ansible.builtin.set_fact",
@@ -46,7 +53,13 @@ TASK_KEYWORDS = {
 
 
 def load(path: Path) -> list[dict]:
-    return yaml.safe_load(path.read_text(encoding="utf-8"))
+    """The plays in a playbook; an import_playbook entry isn't a play and is left out."""
+    return [play for play in yaml.safe_load(path.read_text(encoding="utf-8")) if "hosts" in play]
+
+
+def imports(path: Path) -> list[str]:
+    return [entry["ansible.builtin.import_playbook"] for entry in yaml.safe_load(path.read_text(encoding="utf-8"))
+            if "ansible.builtin.import_playbook" in entry]
 
 
 def walk(tasks: list[dict] | None):
@@ -131,8 +144,46 @@ def test_baseline_check_is_pinned_to_check_mode():
 
 
 @pytest.mark.parametrize("name", GATED)
+def test_changing_playbook_starts_with_the_wave_plan(name):
+    entries = yaml.safe_load((PLAYBOOKS / name).read_text(encoding="utf-8"))
+    assert entries[0].get("ansible.builtin.import_playbook") == WAVE_PLAN
+    assert imports(PLAYBOOKS / name) == [WAVE_PLAN]
+
+
+def test_wave_plan_runs_only_on_the_control_node():
+    for play in load(PLAYBOOKS / WAVE_PLAN):
+        assert is_control_node_play(play)
+
+
+@pytest.mark.parametrize("name", GATED)
+def test_changing_playbook_targets_one_wave_of_ready_servers(name):
+    for play in load(PLAYBOOKS / name):
+        if is_control_node_play(play):
+            continue
+        assert play["hosts"].startswith("arc_onboarding_candidates:&arc_wave_{{ onboarding_wave"), play["hosts"]
+
+
+@pytest.mark.parametrize("name", GATED)
+def test_changing_playbook_checks_both_owners_and_the_wave_on_each_server(name):
+    for play in load(PLAYBOOKS / name):
+        if is_control_node_play(play):
+            continue
+        asserts = " ".join(yaml.safe_dump(t) for t in play_tasks(play) if module_of(t) == "ansible.builtin.assert")
+        for needed in ("config_owner", "patch_owner", "onboarding_wave"):
+            assert needed in asserts, f"{play['name']} doesn't check {needed}"
+
+
+@pytest.mark.parametrize("name", GATED)
+def test_changing_playbook_control_node_plays_are_read_only(name):
+    plays = [p for p in load(PLAYBOOKS / name) if is_control_node_play(p)]
+    assert violations(plays) == []
+
+
+@pytest.mark.parametrize("name", GATED)
 def test_changing_playbook_defaults_to_check_mode(name):
     for play in load(PLAYBOOKS / name):
+        if is_control_node_play(play):
+            continue
         assert play.get("check_mode") == GATE, f"{play['name']} isn't gated"
         assert play.get("vars", {}).get("confirm_change") is False
         for task in play_tasks(play):
@@ -144,6 +195,8 @@ def test_changing_playbook_defaults_to_check_mode(name):
 @pytest.mark.parametrize("name", GATED)
 def test_changing_playbook_runs_in_small_batches_and_stops_on_failure(name):
     for play in load(PLAYBOOKS / name):
+        if is_control_node_play(play):
+            continue
         assert play.get("serial") and play["serial"][0] == 1, "first batch must be one canary host"
         assert play.get("max_fail_percentage") == 0
 
@@ -159,6 +212,41 @@ def test_secret_is_never_logged_or_put_on_a_command_line(name):
             if module in COMMAND_MODULES:
                 argv = " ".join(str(a) for a in task[module].get("argv", []))
                 assert "secret" not in argv, f"{task.get('name')} puts the secret on the command line"
+
+
+def _role_task() -> dict:
+    tasks = [t for p in load(PLAYBOOKS / "06_arc_onboarding_role.yml") for t in play_tasks(p)
+             if module_of(t) == "ansible.builtin.include_role"]
+    assert len(tasks) == 1
+    return tasks[0]
+
+
+def test_microsoft_role_runs_only_with_confirmation():
+    # The role can't dry-run a server without the agent, so a dry run must not call it at all.
+    task = _role_task()
+    assert task["ansible.builtin.include_role"]["name"] == MICROSOFT_ROLE
+    assert task["when"] == "confirm_change | bool"
+
+
+def test_microsoft_role_gets_the_cmdb_values_and_the_programs_choices():
+    role_vars = _role_task()["vars"]
+    assert role_vars["azure_arc_resource_group"] == "{{ arc_resource_group }}"
+    assert role_vars["azure_arc_location"] == "{{ arc_location }}"
+    assert role_vars["azure_arc_cloud"] == "{{ arc_cloud }}"
+    assert role_vars["azure_arc_tags"] == "{{ arc_role_tags }}"
+    assert "default(false)" in role_vars["azure_arc_log_enabled"]
+    assert "default('msi')" in role_vars["auth_source"]
+    # No secret passes through the playbook: the role's own auth_source handles identity.
+    assert "secret" not in yaml.safe_dump(role_vars)
+    play = next(p for p in load(PLAYBOOKS / "06_arc_onboarding_role.yml") if not is_control_node_play(p))
+    tags = play["vars"]["arc_role_tags"]
+    assert "arc_tags" in tags and "ArcSQLServerExtensionDeployment" in tags and "selectattr('value')" in tags
+
+
+def test_microsoft_role_playbook_refuses_azure_government():
+    play = next(p for p in load(PLAYBOOKS / "06_arc_onboarding_role.yml") if not is_control_node_play(p))
+    clouds = [t for t in play_tasks(play) if "arc_cloud == 'AzureCloud'" in str(t.get("ansible.builtin.assert", {}))]
+    assert clouds, "06 must refuse a cloud other than AzureCloud"
 
 
 def test_no_secret_value_is_committed():

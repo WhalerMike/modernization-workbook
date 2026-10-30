@@ -1,0 +1,17 @@
+---
+# Microsoft's azure.azcollection.azure_arc role, unchanged, against the control node in check
+# mode (tests/test_microsoft_role.py and Lab 1 of the developer workbook's Chapter 08).
+# Offline: the region is given so the role never looks up the resource group, its signal to
+# Microsoft is off, and the test sends every outbound request to a dead local proxy.
+- name: Microsoft's azure_arc role, unchanged, in check mode
+  hosts: all
+  gather_facts: true
+  vars:
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
+    azure_arc_resource_group: rg-arc-test-dev
+    azure_arc_subscription_id: "00000000-0000-0000-0000-000000000000"
+    azure_arc_tenant_id: "00000000-0000-0000-0000-000000000000"
+    azure_arc_location: eastus
+    azure_arc_log_enabled: false
+  roles:
+    - role: azure.azcollection.azure_arc

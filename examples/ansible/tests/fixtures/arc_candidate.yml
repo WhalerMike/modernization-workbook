@@ -1,19 +1,37 @@
 ---
-# The control node posing as one Arc onboarding candidate, for the dry-run test of
-# playbooks/02_arc_onboarding.yml. Every identifier is a placeholder.
+# The control node posing as one Arc onboarding candidate in wave 0, for the dry-run tests of
+# playbooks/02_arc_onboarding.yml, 05_arc_wave_plan.yml and 06_arc_onboarding_role.yml.
+# Every identifier is a placeholder. A GCC estate uses commercial Azure: AzureCloud, eastus.
 all:
   vars:
     arc_tenant_id: "00000000-0000-0000-0000-000000000000"
     arc_subscription_id: "00000000-0000-0000-0000-000000000000"
     arc_sp_id: "00000000-0000-0000-0000-000000000000"
-    arc_cloud: AzureUSGovernment
+    arc_cloud: AzureCloud
+    arc_auth_source: msi
+    arc_role_log_enabled: false
+    arc_sql_extension_deployment: Disabled
+    arc_nonproduction_waves: [0, 1]
   hosts:
     localhost:
       ansible_connection: local
       ansible_python_interpreter: "{{ ansible_playbook_python }}"
-      arc_resource_group: rg-arc-servers-test
-      arc_location: usgovvirginia
-      arc_tags: {Owner: team-test, Environment: nonproduction, CmdbCi: CI9999999, Location: lab, PatchGroup: ""}
+      cmdb_ci: CI9999999
+      environment: nonproduction
+      config_owner: ansible
+      patch_owner: ansible
+      arc_resource_group: rg-arc-test-dev
+      arc_location: eastus
+      arc_wave: 0
+      arc_tags:
+        Owner: team-test
+        Environment: nonproduction
+        CmdbCi: CI9999999
+        Location: lab
+        PatchGroup: ""
+        ConfigOwner: Ansible
+        PatchOwner: Ansible
   children:
     arc_onboarding_candidates: {hosts: {localhost: {}}}
+    arc_wave_0: {hosts: {localhost: {}}}
     os_linux: {hosts: {localhost: {}}}

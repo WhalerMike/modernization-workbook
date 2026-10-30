@@ -5,12 +5,32 @@
 # Where the read-only playbooks write their reports, on the control node only.
 report_dir: "{{ playbook_dir }}/../reports"
 
-# Azure Arc onboarding (playbooks/02_arc_onboarding.yml). The resource group and region
-# come from each host's CMDB record (arc_resource_group, arc_location).
+# Azure Arc onboarding (02_arc_onboarding.yml, 05_arc_wave_plan.yml, 06_arc_onboarding_role.yml).
+# The resource group, region and wave come from each host's CMDB record (arc_resource_group,
+# arc_location, arc_wave).
 arc_tenant_id: "00000000-0000-0000-0000-000000000000"
 arc_subscription_id: "00000000-0000-0000-0000-000000000000"
-# AzureCloud for commercial Azure, AzureUSGovernment for Azure Government.
-arc_cloud: AzureUSGovernment
-# The onboarding service principal's application (client) ID. Its secret is read from
-# Ansible Vault (arc_sp_secret) or the ARC_SP_SECRET environment variable at run time.
+# AzureCloud for commercial Azure, AzureUSGovernment for Azure Government. A Microsoft 365 GCC
+# tenant uses commercial Microsoft Entra ID, and an Azure Government subscription can't be
+# associated with it, so a GCC estate onboards to a commercial subscription: AzureCloud.
+# GCC High and DoD tenants use Azure Government: AzureUSGovernment, and US Gov regions.
+arc_cloud: AzureCloud
+# The onboarding service principal's application (client) ID, for 02_arc_onboarding.yml. Its
+# secret is read from Ansible Vault (arc_sp_secret) or the ARC_SP_SECRET environment variable.
 arc_sp_id: "00000000-0000-0000-0000-000000000000"
+
+# Microsoft's azure.azcollection.azure_arc role (06_arc_onboarding_role.yml).
+# msi: the control node's managed identity, which Learn recommends for production; env: a
+# service principal injected by Ansible Automation Platform; cli: an Azure CLI sign-in.
+arc_auth_source: msi
+# The role sends a success or failure signal (subscription, resource group, tenant, region) to
+# the Arc hybrid identity service unless this is false. Design guidance: off, unless a support
+# case needs it.
+arc_role_log_enabled: false
+# The role's own default tag. Passing the CMDB's tags replaces the role's default, so the
+# playbook adds it back. Set per server class before the connect (Arc track guide, Step 3).
+arc_sql_extension_deployment: Disabled
+
+# Waves (design guidance, the Arc track guide's wave plan): 0 is the pilot and 1 the rest of
+# non-production. A production server planned in one of these waves stops the plan.
+arc_nonproduction_waves: [0, 1]

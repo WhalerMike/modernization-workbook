@@ -1,0 +1,143 @@
+---
+# Plan one Azure Arc onboarding wave from the CMDB. Changes nothing on any server.
+#
+# The CMDB plans each tier 1 server into a wave (arc_wave). This playbook takes the wave
+# number, lists the servers the inventory says are ready for it, checks what a connect would
+# send for each one, and writes the plan on the control node before anything is installed:
+# which servers, which resource group and region, which tags (ConfigOwner and PatchOwner
+# included). It stops on anything that would make the wave wrong, and the two onboarding
+# playbooks import it as their first play, so a bad plan stops them too.
+#
+#   ansible-playbook playbooks/05_arc_wave_plan.yml -e onboarding_wave=0
+#
+# It stops when:
+#   - no wave is given, or the wave has no ready servers;
+#   - arc_cloud isn't AzureCloud or AzureUSGovernment, or a server's region belongs to the
+#     other cloud (a US Gov or US DoD region needs AzureUSGovernment, and no other region does);
+#   - a production server is planned in a non-production wave (arc_nonproduction_waves);
+#   - a server has no config_owner or patch_owner.
+# Servers of the wave the inventory blocked (arc_onboarding_blocked) are listed with their
+# reasons and aren't onboarded; fix their CMDB records and they join a later run.
+
+- name: Plan the Arc onboarding wave
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    confirm_change: false
+    nonproduction_waves: "{{ arc_nonproduction_waves | default([0, 1]) | map('int') | list }}"
+  tasks:
+    - name: Check a wave was given
+      ansible.builtin.assert:
+        that:
+          - onboarding_wave is defined
+          - onboarding_wave | string is match('^[0-9]+$')
+        fail_msg: Give the wave to plan, for example -e onboarding_wave=0.
+        quiet: true
+
+    - name: Check the Azure cloud
+      ansible.builtin.assert:
+        that: arc_cloud | default('') in ['AzureCloud', 'AzureUSGovernment']
+        fail_msg: arc_cloud must be AzureCloud (commercial Azure, which a GCC tenant uses) or AzureUSGovernment.
+        quiet: true
+
+    - name: Find the wave's servers
+      ansible.builtin.set_fact:
+        wave: "{{ onboarding_wave | int }}"
+        wave_hosts: >-
+          {{ groups['arc_onboarding_candidates'] | default([])
+             | intersect(groups['arc_wave_' ~ (onboarding_wave | int)] | default([])) | sort }}
+        wave_blocked: >-
+          {{ groups['arc_onboarding_blocked'] | default([])
+             | intersect(groups['arc_wave_' ~ (onboarding_wave | int)] | default([])) | sort }}
+        run_stamp: "{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}"
+        rows: []
+
+    - name: Check each server the wave would connect
+      vars:
+        hv: "{{ hostvars[record] }}"
+        problems: >-
+          {{ ([] if (hv.arc_location | default('') is match('^us(gov|dod)')) == (arc_cloud == 'AzureUSGovernment')
+              else ['region ' ~ (hv.arc_location | default('')) ~ ' is not in ' ~ arc_cloud])
+             + ([] if (wave | int) not in nonproduction_waves or hv.environment | default('') == 'nonproduction'
+                else ['production server in non-production wave ' ~ wave])
+             + ([] if hv.config_owner | default('') not in ['', 'none'] else ['no config_owner'])
+             + ([] if hv.patch_owner | default('') not in ['', 'none'] else ['no patch_owner']) }}
+      ansible.builtin.set_fact:
+        rows: >-
+          {{ rows + [{
+               'host': record,
+               'cmdb_ci': hv.cmdb_ci | default(''),
+               'environment': hv.environment | default(''),
+               'resource_group': hv.arc_resource_group | default(''),
+               'location': hv.arc_location | default(''),
+               'cloud': arc_cloud,
+               'config_owner': hv.config_owner | default(''),
+               'patch_owner': hv.patch_owner | default(''),
+               'tags': (hv.arc_tags | default({}) | dict2items | selectattr('value') | map(attribute='key') | list)
+                       | zip(hv.arc_tags | default({}) | dict2items | selectattr('value') | map(attribute='value') | list)
+                       | map('join', '=') | join(','),
+               'state': 'ready' if problems | length == 0 else 'stopped',
+               'reasons': problems | join('; ')
+             }] }}
+      loop: "{{ wave_hosts }}"
+      loop_control:
+        loop_var: record
+
+    - name: List the wave's servers the inventory blocked
+      ansible.builtin.set_fact:
+        rows: >-
+          {{ rows + [{
+               'host': record,
+               'cmdb_ci': hostvars[record].cmdb_ci | default(''),
+               'environment': hostvars[record].environment | default(''),
+               'resource_group': hostvars[record].arc_resource_group | default(''),
+               'location': hostvars[record].arc_location | default(''),
+               'cloud': arc_cloud,
+               'config_owner': hostvars[record].config_owner | default(''),
+               'patch_owner': hostvars[record].patch_owner | default(''),
+               'tags': '',
+               'state': 'blocked',
+               'reasons': hostvars[record].arc_blocked_reasons | default([]) | join('; ')
+             }] }}
+      loop: "{{ wave_blocked }}"
+      loop_control:
+        loop_var: record
+
+    - name: Create the report folder
+      ansible.builtin.file:
+        path: "{{ report_dir }}"
+        state: directory
+        mode: "0750"
+      check_mode: false
+
+    - name: Write the plan as JSON
+      ansible.builtin.copy:
+        content: >-
+          {{ {'wave': wave | int, 'cloud': arc_cloud,
+              'mode': 'change' if confirm_change | bool else 'dry_run',
+              'servers': rows} | to_nice_json }}
+        dest: "{{ report_dir }}/arc-wave-{{ wave }}-plan-{{ run_stamp }}.json"
+        mode: "0640"
+      check_mode: false
+
+    - name: Write the plan as CSV
+      ansible.builtin.template:
+        src: rows.csv.j2
+        dest: "{{ report_dir }}/arc-wave-{{ wave }}-plan-{{ run_stamp }}.csv"
+        mode: "0640"
+      check_mode: false
+
+    - name: Stop unless every server in the wave is ready
+      ansible.builtin.assert:
+        that:
+          - wave_hosts | length > 0
+          - rows | selectattr('state', 'equalto', 'stopped') | list | length == 0
+        fail_msg: >-
+          Wave {{ wave }} isn't ready:
+          {{ 'no server is planned for it' if wave_hosts | length == 0 else
+             rows | selectattr('state', 'equalto', 'stopped') | map(attribute='host') | join(', ') }}.
+          See arc-wave-{{ wave }}-plan-{{ run_stamp }}.csv in {{ report_dir }}.
+        success_msg: >-
+          Wave {{ wave }} is ready: {{ wave_hosts | length }} to connect, {{ wave_blocked | length }} blocked in the
+          CMDB. Plan in {{ report_dir }}.
