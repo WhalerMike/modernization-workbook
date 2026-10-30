@@ -1,0 +1,114 @@
+{
+  "_comment": "Chapter 07, access reviews of privileged roles: every call the PaAccessReviews module makes, with the least-privileged Microsoft Graph permission (or Azure role) from the Learn page for that call, read on October 30, 2026. Three tasks: access-reviews-plan (reads only), access-reviews-apply (the plan's reads plus the writes, used only with -Apply) and access-reviews-evidence (reads only). Get-PaArRequiredPermission returns a task's union. Tests fail when a call is made that isn't listed here for the task.",
+  "calls": [
+    {
+      "id": "ar-definitions-list",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identityGovernance/accessReviews/definitions",
+      "permissions": ["AccessReview.Read.All"],
+      "delegatedRoles": "Security Reader, Identity Governance Administrator, Privileged Role Administrator or Security Administrator (reviews of Microsoft Entra roles)",
+      "stage": "v1.0",
+      "tasks": ["access-reviews-plan", "access-reviews-apply", "access-reviews-evidence"],
+      "learn": "https://learn.microsoft.com/graph/api/accessreviewset-list-definitions?view=graph-rest-1.0",
+      "note": "$filter isn't supported on principalResourceMembershipsScope, so the code lists every definition and matches by displayName."
+    },
+    {
+      "id": "ar-instances-list",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identityGovernance/accessReviews/definitions/{definitionId}/instances",
+      "permissions": ["AccessReview.Read.All"],
+      "delegatedRoles": "Security Reader, Identity Governance Administrator, Privileged Role Administrator or Security Administrator",
+      "stage": "v1.0",
+      "tasks": ["access-reviews-evidence"],
+      "learn": "https://learn.microsoft.com/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0"
+    },
+    {
+      "id": "ar-decisions-list",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identityGovernance/accessReviews/definitions/{definitionId}/instances/{instanceId}/decisions",
+      "permissions": ["AccessReview.Read.All"],
+      "delegatedRoles": "Security Reader, Identity Governance Administrator, Privileged Role Administrator or Security Administrator",
+      "stage": "v1.0",
+      "tasks": ["access-reviews-evidence"],
+      "learn": "https://learn.microsoft.com/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0",
+      "note": "Default page size 100; the code asks for $top=100 and follows @odata.nextLink, and pages with $skip if a full page comes back without one."
+    },
+    {
+      "id": "ar-definition-create",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/identityGovernance/accessReviews/definitions",
+      "permissions": ["AccessReview.ReadWrite.All"],
+      "delegatedRoles": "Privileged Role Administrator for reviews of Microsoft Entra roles (PIM page); the API overview names User Administrator and the tutorial Identity Governance Administrator",
+      "stage": "v1.0",
+      "tasks": ["access-reviews-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/accessreviewset-post-definitions?view=graph-rest-1.0"
+    },
+    {
+      "id": "ar-definition-update",
+      "api": "graph",
+      "method": "PUT",
+      "version": "v1.0",
+      "path": "/identityGovernance/accessReviews/definitions/{definitionId}",
+      "permissions": ["AccessReview.ReadWrite.All"],
+      "delegatedRoles": "as for create",
+      "stage": "v1.0",
+      "tasks": ["access-reviews-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/accessreviewscheduledefinition-update?view=graph-rest-1.0",
+      "note": "PUT takes the full object. Updates apply only to future instances; scope isn't updatable, and reviewers only when they are individual users."
+    },
+    {
+      "id": "azure-ar-definitions-list",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2021-12-01-preview",
+      "path": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/accessReviewScheduleDefinitions",
+      "azureRole": "Reader",
+      "stage": "preview (2021-12-01-preview)",
+      "tasks": ["access-reviews-plan", "access-reviews-apply", "access-reviews-evidence"],
+      "learn": "https://learn.microsoft.com/rest/api/authorization/access-review-schedule-definitions/list?view=rest-authorization-2021-12-01-preview",
+      "note": "Reader holds */read for the control plane (Learn, Azure built-in roles for General)."
+    },
+    {
+      "id": "azure-ar-instances-list",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2021-12-01-preview",
+      "path": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/accessReviewScheduleDefinitions/{definitionId}/instances",
+      "azureRole": "Reader",
+      "stage": "preview (2021-12-01-preview)",
+      "tasks": ["access-reviews-evidence"],
+      "learn": "https://learn.microsoft.com/rest/api/authorization/access-review-instances/list?view=rest-authorization-2021-12-01-preview"
+    },
+    {
+      "id": "azure-ar-decisions-list",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2021-12-01-preview",
+      "path": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/accessReviewScheduleDefinitions/{definitionId}/instances/{instanceId}/decisions",
+      "azureRole": "Reader",
+      "stage": "preview (2021-12-01-preview)",
+      "tasks": ["access-reviews-evidence"],
+      "learn": "https://learn.microsoft.com/rest/api/authorization/access-review-instance-decisions/list?view=rest-authorization-2021-12-01-preview"
+    },
+    {
+      "id": "azure-ar-definition-put",
+      "api": "arm",
+      "method": "PUT",
+      "apiVersion": "2021-12-01-preview",
+      "path": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/accessReviewScheduleDefinitions/{definitionId}",
+      "azureRole": "User Access Administrator",
+      "stage": "preview (2021-12-01-preview)",
+      "tasks": ["access-reviews-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/authorization/access-review-schedule-definitions/create-or-update-by-id?view=rest-authorization-2021-12-01-preview",
+      "note": "Learn's PIM page asks for Owner or User Access Administrator on the resource; User Access Administrator is the narrower of the two. Sent only with -Apply and -IncludePreview."
+    }
+  ]
+}
