@@ -221,9 +221,80 @@
   "group": "book",
   "minutes": 15,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated.mp4",
+  "youtube": null,
   "vtt": "presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated.vtt",
   "deck": "presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Part 1: Reading the tree to flowing attributes"
+   ],
+   [
+    48,
+    "Gates 0–3 on one page: done when, proved by"
+   ],
+   [
+    104,
+    "Baseline: trace the last real events, not the process"
+   ],
+   [
+    154,
+    "Baseline evidence: where each number comes from"
+   ],
+   [
+    209,
+    "Gate 0: run the Start Kit, read-only, Tier A first"
+   ],
+   [
+    263,
+    "Gate 0: the decision record, one row per group"
+   ],
+   [
+    325,
+    "What the overview simplified"
+   ],
+   [
+    381,
+    "Gate 1: the user slot register, slot by slot"
+   ],
+   [
+    433,
+    "Gate 1: one store, one writer, one owner"
+   ],
+   [
+    491,
+    "Gate 2: run the HR checks against an HR export"
+   ],
+   [
+    544,
+    "Reading a failing check: status, count, rows"
+   ],
+   [
+    595,
+    "Gate 2: threshold, writers out, logs out"
+   ],
+   [
+    650,
+    "Gate 3: two landing zones, one carrier, mapped"
+   ],
+   [
+    700,
+    "Gate 3: the /bulkUpload record, sent whole"
+   ],
+   [
+    754,
+    "Gate 3: the match trap and the April 7, 2027 deadline"
+   ],
+   [
+    807,
+    "Gate 3: proving it flowed, and backing it out"
+   ],
+   [
+    868,
+    "Handing Gates 0–3 to Part 2"
+   ]
+  ]
  },
  {
   "id": "Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated",
@@ -231,9 +302,76 @@
   "group": "book",
   "minutes": 17,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated.mp4",
+  "youtube": null,
   "vtt": "presentations/attribute-driven-migration-deeper-dive-part-2/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated.vtt",
   "deck": "presentations/attribute-driven-migration-deeper-dive-part-2/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-2/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-2/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Part 2: Groups, targeting and moving Group Policy"
+   ],
+   [
+    49,
+    "Gates 4–6 at a glance, and the slots they read"
+   ],
+   [
+    115,
+    "Rule text: two patterns, with every guard"
+   ],
+   [
+    171,
+    "Test, then shadow: VK-DG-03 and VK-DG-04"
+   ],
+   [
+    237,
+    "The memberOf preview ends; watch membership deltas"
+   ],
+   [
+    298,
+    "Administrative units: three tiers, restriction first"
+   ],
+   [
+    363,
+    "Conditional Access personas from slot 11"
+   ],
+   [
+    434,
+    "Device targeting: device slots, groups, filters"
+   ],
+   [
+    502,
+    "Moving device GPOs: adopt Microsoft's tools"
+   ],
+   [
+    573,
+    "The Migrate step, the pilot, and rollback"
+   ],
+   [
+    633,
+    "Moving server GPOs: audit beside Group Policy first"
+   ],
+   [
+    696,
+    "RHEL on AWS under Ansible: one owner per setting"
+   ],
+   [
+    759,
+    "What the overview simplified"
+   ],
+   [
+    819,
+    "PIV binding: certificateUserIds values and limits"
+   ],
+   [
+    880,
+    "Affinity, the binding's writer, and the open pilot"
+   ],
+   [
+    948,
+    "Decisions, owners, and on to Part 3"
+   ]
+  ]
  },
  {
   "id": "Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated",
@@ -241,9 +379,80 @@
   "group": "book",
   "minutes": 16,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated.mp4",
+  "youtube": null,
   "vtt": "presentations/attribute-driven-migration-deeper-dive-part-3/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated.vtt",
   "deck": "presentations/attribute-driven-migration-deeper-dive-part-3/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-3/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-3/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Part 3: Proving it, cutting over and keeping it true"
+   ],
+   [
+    50,
+    "Gates 7 to 9 on one page"
+   ],
+   [
+    101,
+    "Gate 7: set up the mover proof"
+   ],
+   [
+    156,
+    "Gate 7: follow the personnel action through"
+   ],
+   [
+    214,
+    "Gate 7: what must not change, and the proof"
+   ],
+   [
+    275,
+    "Gate 7: read the run, keep the evidence"
+   ],
+   [
+    322,
+    "Gate 8: waves are attribute queries, leaver first"
+   ],
+   [
+    377,
+    "Gate 8: the per-wave attribute gate"
+   ],
+   [
+    435,
+    "Gate 8: retarget provisioning; what still needs AD"
+   ],
+   [
+    491,
+    "Gate 8: Lifecycle Workflows at agency scale"
+   ],
+   [
+    541,
+    "Retiring the OU tree: disable, never delete"
+   ],
+   [
+    596,
+    "Gate 9: drift classes and the two comparisons"
+   ],
+   [
+    653,
+    "Gate 9: fix at the source; logs; the limits register"
+   ],
+   [
+    707,
+    "Gate 9: the standing checks, track by track"
+   ],
+   [
+    761,
+    "Where the kits stop"
+   ],
+   [
+    824,
+    "What the overview simplified"
+   ],
+   [
+    875,
+    "Decisions, the checklist, and where to go next"
+   ]
+  ]
  },
  {
   "id": "Attribute_Driven_Migration_Technical_Part_1_Narrated",
