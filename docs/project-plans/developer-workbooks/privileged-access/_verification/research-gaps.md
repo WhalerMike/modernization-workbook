@@ -1,6 +1,6 @@
 # Research gaps for the developer workbook *Building Privileged Access*
 
-Rows 1 to 4 and 10 were found while writing Chapter 01, rows 5 to 9 while writing Chapter 02. Each was researched on Microsoft Learn (MCP tools) or in the repository on October 30, 2026. Where a later chapter depends on one, the outline in `index.md` says so.
+Rows 1 to 4 and 10 were found while writing Chapter 01, rows 5 to 9 while writing Chapter 02. Chapters 03 to 08 were written in parallel, each with its own block of row numbers: 31 to 38 (Chapter 03), 41 to 49 (Chapter 04), 51 to 59 (Chapter 05), 61 to 69 (Chapter 06), 71 to 79 (Chapter 07) and 81 to 89 (Chapter 08). The gaps between blocks are unused; the numbers stay as they are because the chapters and their logs cite them. Each was researched on Microsoft Learn (MCP tools) or in the repository on October 30, 2026. Where a later chapter depends on one, the outline in `index.md` says so.
 
 | # | Gap | Finding | Status | Source |
 |---|---|---|---|---|

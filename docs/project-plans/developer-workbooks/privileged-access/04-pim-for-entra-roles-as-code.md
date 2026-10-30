@@ -331,7 +331,7 @@ Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 
 ::: {.callout-tip}
 ## Continue the book
-[← Chapter 02 — Emergency Access Accounts as Code](02-emergency-access-as-code.md) · [Chapter 01 — Privileged Inventory as Code](01-privileged-inventory-as-code.md) · [Workbook index](index.md)
+[← Previous: Chapter 03 — Conditional Access for Administrators and the Activation Gate](03-conditional-access-for-administrators.md) · [Workbook index](index.md) · [Next: Chapter 05 — PIM for Groups and the PRV Groups →](05-pim-for-groups.md)
 :::
 
 [^pa04-settings]: Microsoft Learn, "Configure Microsoft Entra role settings in Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings> (accessed Oct 30, 2026).

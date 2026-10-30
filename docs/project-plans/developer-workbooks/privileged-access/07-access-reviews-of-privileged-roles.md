@@ -263,7 +263,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 208 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done; the evidence folder names people.
+**Expected result:** 330 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done; the evidence folder names people.
 
 ## Lab 2: test tenant
 
@@ -344,7 +344,7 @@ Four places where Learn's pages differ, recorded so a later edit doesn't loosen 
 
 ::: {.callout-tip}
 ## Continue the book
-[← Chapter 01 — Privileged Inventory as Code](01-privileged-inventory-as-code.md) · [Chapter 02 — Emergency Access Accounts as Code](02-emergency-access-as-code.md) · [Workbook index](index.md)
+[← Previous: Chapter 06 — PIM for Azure Resources](06-pim-for-azure-resources.md) · [Workbook index](index.md) · [Next: Chapter 08 — Evidence and Drift for the ISSO →](08-evidence-and-drift.md)
 :::
 
 [^pa07-tutorial]: Microsoft Learn, "Review access to administrative roles using access reviews APIs," <https://learn.microsoft.com/graph/tutorial-accessreviews-roleassignments> (accessed Oct 30, 2026).

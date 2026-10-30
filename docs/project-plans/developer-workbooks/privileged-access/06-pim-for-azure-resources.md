@@ -231,7 +231,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 116 tests passing, 38 of them this chapter's, every row of the gap table seen with your own eyes, and a plan you could hand a reviewer. Delete `out` when you're done.
+**Expected result:** 330 tests passing, 38 of them this chapter's, every row of the gap table seen with your own eyes, and a plan you could hand a reviewer. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
@@ -307,7 +307,7 @@ Two places where Learn's pages differ, recorded so a later edit doesn't loosen t
 
 ::: {.callout-tip}
 ## Continue the book
-[← Chapter 02 — Emergency Access Accounts as Code](02-emergency-access-as-code.md) · [Workbook index](index.md) · [Chapter 01 — Privileged Inventory as Code](01-privileged-inventory-as-code.md)
+[← Previous: Chapter 05 — PIM for Groups and the PRV Groups](05-pim-for-groups.md) · [Workbook index](index.md) · [Next: Chapter 07 — Access Reviews of Privileged Roles →](07-access-reviews-of-privileged-roles.md)
 :::
 
 [^pa06-pim-apis]: Microsoft Learn, "Privileged Identity Management APIs," PIM API history and permissions, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-apis> (accessed Oct 30, 2026).
