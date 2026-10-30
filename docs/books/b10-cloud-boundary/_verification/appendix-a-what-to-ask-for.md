@@ -38,3 +38,7 @@ Source: `docs/whitepapers/fedramp-20x-and-the-commercial-feature-gap.md`, §7 (f
 | §7 closing paragraph | Summary | Corrected (#16) |
 | (new) | A5, A7, A8 | Added from the rule families covered in Ch03 |
 | §4.2 ExpressRoute | "How to make the ask" (as the model) | Full treatment in Ch09 (W4) |
+
+## Additions, October 30, 2026 (follow-up)
+
+A one-line link was added at the end of the Summary paragraph. It points to the research page `docs/research/hr2-shared-governance-fedramp-boundary.md#questions-to-ask` as a worked example of A6 and A8. The link adds no new claims.

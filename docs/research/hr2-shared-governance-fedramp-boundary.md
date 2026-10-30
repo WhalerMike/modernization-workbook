@@ -222,6 +222,12 @@ A government-only suffix such as `oraclegovcloud.com` or Microsoft's `.us` lets 
 
 To move it to **Proved**, record OPM's and Oracle's answers to the questions above on this page, and re-check the Marketplace record after Oracle's first assessment under the 2026 rules.
 
+When it is proved, promote its lasting conclusions into the books, in vendor-neutral and agency-neutral terms, and then mark this page **Published**:
+1. **[Book 10, Chapter 03](../books/b10-cloud-boundary/03-what-changed-at-fedramp.md#what-changes-for-the-agency), "What changes for the agency":** a Rev5 provider's assessed scope can stay restricted until its first assessment under the 2026 rules, and an agency that isn't yet a customer isn't guaranteed access to the trust center, so ask before relying on it.
+2. **[Book 10, Appendix A](../books/b10-cloud-boundary/appendix-a-what-to-ask-for.md):** add the asks this page turned up: the public service list and the date it will be published; the hostname pattern for the government region; and active FIPS 140-3 validations for the modules in the data path.
+
+Re-check every claim promoted against its source on the day it moves, and log it in the chapter's `_verification` file.
+
 Related:
 - [Book 10, Chapter 03 — What Changed at FedRAMP](../books/b10-cloud-boundary/03-what-changed-at-fedramp.md)
 - [Book 03, Chapter 03 — Federal HR 2.0](../books/b03-hr-identity/03-federal-hr-2-0.md)
