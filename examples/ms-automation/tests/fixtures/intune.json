@@ -1,0 +1,167 @@
+{
+  "managedDevices": [
+    {
+      "id": "md1",
+      "deviceName": "WS-0001",
+      "operatingSystem": "Windows",
+      "osVersion": "10.0.26200.6584",
+      "complianceState": "compliant",
+      "lastSyncDateTime": "2026-10-29T08:00:00Z",
+      "complianceGracePeriodExpirationDateTime": null,
+      "isEncrypted": true,
+      "managedDeviceOwnerType": "company",
+      "azureADDeviceId": "e1"
+    },
+    {
+      "id": "md2",
+      "deviceName": "WS-0002",
+      "operatingSystem": "Windows",
+      "osVersion": "10.0.22631.4317",
+      "complianceState": "noncompliant",
+      "lastSyncDateTime": "2026-10-28T12:00:00Z",
+      "complianceGracePeriodExpirationDateTime": null,
+      "isEncrypted": false,
+      "managedDeviceOwnerType": "company",
+      "azureADDeviceId": "e2"
+    },
+    {
+      "id": "md3",
+      "deviceName": "WS-0003",
+      "operatingSystem": "Windows",
+      "osVersion": "10.0.26100.2033",
+      "complianceState": "inGracePeriod",
+      "lastSyncDateTime": "2026-10-29T18:30:00Z",
+      "complianceGracePeriodExpirationDateTime": "2026-10-31T00:00:00Z",
+      "isEncrypted": true,
+      "managedDeviceOwnerType": "company",
+      "azureADDeviceId": "e3"
+    },
+    {
+      "id": "md4",
+      "deviceName": "WS-0004",
+      "operatingSystem": "Windows",
+      "osVersion": "10.0.26100.4000",
+      "complianceState": "compliant",
+      "lastSyncDateTime": "2026-10-10T00:00:00Z",
+      "complianceGracePeriodExpirationDateTime": null,
+      "isEncrypted": true,
+      "managedDeviceOwnerType": "company",
+      "azureADDeviceId": "e4"
+    },
+    {
+      "id": "md5",
+      "deviceName": "WS-0005",
+      "operatingSystem": "Windows",
+      "osVersion": "10.0.26200.1",
+      "complianceState": "error",
+      "lastSyncDateTime": "2026-07-01T00:00:00Z",
+      "complianceGracePeriodExpirationDateTime": null,
+      "isEncrypted": true,
+      "managedDeviceOwnerType": "company",
+      "azureADDeviceId": "e5"
+    },
+    {
+      "id": "md6",
+      "deviceName": "MAC-0001",
+      "operatingSystem": "macOS",
+      "osVersion": "15.6",
+      "complianceState": "compliant",
+      "lastSyncDateTime": "2026-10-29T09:00:00Z",
+      "complianceGracePeriodExpirationDateTime": null,
+      "isEncrypted": false,
+      "managedDeviceOwnerType": "company",
+      "azureADDeviceId": "e6"
+    },
+    {
+      "id": "md7",
+      "deviceName": "IPH-0001",
+      "operatingSystem": "iOS",
+      "osVersion": "18.6",
+      "complianceState": "noncompliant",
+      "lastSyncDateTime": "2026-10-29T23:00:00Z",
+      "complianceGracePeriodExpirationDateTime": null,
+      "isEncrypted": true,
+      "managedDeviceOwnerType": "personal",
+      "azureADDeviceId": "e7"
+    },
+    {
+      "id": "md8",
+      "deviceName": "WS-0002",
+      "operatingSystem": "Windows",
+      "osVersion": "10.0.26200.100",
+      "complianceState": "compliant",
+      "lastSyncDateTime": "2026-10-29T10:00:00Z",
+      "complianceGracePeriodExpirationDateTime": null,
+      "isEncrypted": true,
+      "managedDeviceOwnerType": "company",
+      "azureADDeviceId": "e8"
+    },
+    {
+      "id": "md9",
+      "deviceName": "KSK-0001",
+      "operatingSystem": "Windows",
+      "osVersion": "10.0.26100.1",
+      "complianceState": "unknown",
+      "lastSyncDateTime": "0001-01-01T00:00:00Z",
+      "complianceGracePeriodExpirationDateTime": null,
+      "isEncrypted": null,
+      "managedDeviceOwnerType": "company",
+      "azureADDeviceId": "e9"
+    }
+  ],
+  "compliancePolicies": [
+    {
+      "id": "cp1",
+      "@odata.type": "#microsoft.graph.windows10CompliancePolicy",
+      "displayName": "CP-001 Windows workstation baseline",
+      "assignments": [
+        {"id": "a1", "target": {"@odata.type": "#microsoft.graph.groupAssignmentTarget", "groupId": "g-tier"}},
+        {"id": "a2", "target": {"@odata.type": "#microsoft.graph.exclusionGroupAssignmentTarget", "groupId": "g-kiosk"}}
+      ],
+      "deviceStatuses": [
+        {"id": "s1", "deviceDisplayName": "WS-0001", "status": "compliant", "lastReportedDateTime": "2026-10-29T08:00:00Z"},
+        {"id": "s2", "deviceDisplayName": "WS-0002", "status": "nonCompliant", "lastReportedDateTime": "2026-10-28T12:00:00Z"},
+        {"id": "s3", "deviceDisplayName": "WS-0003", "status": "nonCompliant", "lastReportedDateTime": "2026-10-29T18:30:00Z"},
+        {"id": "s4", "deviceDisplayName": "WS-0004", "status": "compliant", "lastReportedDateTime": "2026-10-10T00:00:00Z"},
+        {"id": "s5", "deviceDisplayName": "WS-0005", "status": "error", "lastReportedDateTime": "2026-07-01T00:00:00Z"}
+      ]
+    },
+    {
+      "id": "cp2",
+      "@odata.type": "#microsoft.graph.iosCompliancePolicy",
+      "displayName": "CP-IOS iOS baseline",
+      "assignments": [
+        {"id": "a3", "target": {"@odata.type": "#microsoft.graph.allLicensedUsersAssignmentTarget"}}
+      ],
+      "deviceStatuses": [
+        {"id": "s6", "deviceDisplayName": "IPH-0001", "status": "nonCompliant", "lastReportedDateTime": "2026-10-29T23:00:00Z"}
+      ]
+    },
+    {
+      "id": "cp3",
+      "@odata.type": "#microsoft.graph.macOSCompliancePolicy",
+      "displayName": "CP-099 Old macOS pilot",
+      "assignments": [],
+      "deviceStatuses": []
+    },
+    {
+      "id": "cp4",
+      "@odata.type": "#microsoft.graph.windows10CompliancePolicy",
+      "displayName": "CP-005 Kiosk and shared devices",
+      "assignments": [
+        {"id": "a4", "target": {"@odata.type": "#microsoft.graph.exclusionGroupAssignmentTarget", "groupId": "g-all-ws"}}
+      ],
+      "deviceStatuses": [
+        {"id": "s7", "deviceDisplayName": "KSK-0001", "status": "notAssigned", "lastReportedDateTime": "2026-09-01T00:00:00Z"}
+      ]
+    }
+  ],
+  "autopilotDevices": [
+    {"id": "ap1", "serialNumber": "SN-1001", "groupTag": "T1-STD", "enrollmentState": "enrolled", "deploymentProfileAssignmentStatus": "assignedInSync", "deploymentProfileAssignmentDetailedStatus": "none", "deploymentProfileAssignedDateTime": "2026-09-01T00:00:00Z", "managedDeviceId": "md1"},
+    {"id": "ap2", "serialNumber": "SN-1002", "groupTag": "T2-STD", "enrollmentState": "notContacted", "deploymentProfileAssignmentStatus": "notAssigned", "deploymentProfileAssignmentDetailedStatus": "none", "deploymentProfileAssignedDateTime": null, "managedDeviceId": null},
+    {"id": "ap3", "serialNumber": "SN-1003", "groupTag": "T2-STD", "enrollmentState": "notContacted", "deploymentProfileAssignmentStatus": "failed", "deploymentProfileAssignmentDetailedStatus": "hardwareRequirementsNotMet", "deploymentProfileAssignedDateTime": null, "managedDeviceId": null},
+    {"id": "ap4", "serialNumber": "SN-1004", "groupTag": "T1-STD", "enrollmentState": "enrolled", "deploymentProfileAssignmentStatus": "assignedOutOfSync", "deploymentProfileAssignmentDetailedStatus": "none", "deploymentProfileAssignedDateTime": "2026-08-15T00:00:00Z", "managedDeviceId": "md3"},
+    {"id": "ap5", "serialNumber": "SN-1005", "groupTag": null, "enrollmentState": "notContacted", "deploymentProfileAssignmentStatus": "pending", "deploymentProfileAssignmentDetailedStatus": "none", "deploymentProfileAssignedDateTime": null, "managedDeviceId": null},
+    {"id": "ap6", "serialNumber": "SN-1006", "groupTag": "T0-PAW", "enrollmentState": "enrolled", "deploymentProfileAssignmentStatus": "assignedInSync", "deploymentProfileAssignmentDetailedStatus": "none", "deploymentProfileAssignedDateTime": "2026-09-20T00:00:00Z", "managedDeviceId": "md5"}
+  ]
+}

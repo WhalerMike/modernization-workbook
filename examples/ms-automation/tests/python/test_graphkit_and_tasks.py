@@ -209,7 +209,8 @@ def test_expected_results_file_matches(tmp_path):
         "appCredentials": et.evaluate_app_credentials(load("apps")["applications"], AS_OF),
         "mfa": et.evaluate_mfa(load("mfa")["registrationDetails"]),
     }
-    assert json.loads(json.dumps(got)) == exp
+    assert set(exp) == set(got) | {"intune"}  # the intune block is checked in test_intune_tasks.py
+    assert json.loads(json.dumps(got)) == {k: exp[k] for k in got}
 
 
 def test_cli_from_json(tmp_path, capsys):

@@ -5,7 +5,7 @@ description: "Research draft: the foundations for scripting Microsoft Entra ID, 
 research-status: draft
 research-type: explainer
 research-book: "Books 02, 04, 05, 06, 10, 15"
-date-modified: 2026-10-25
+date-modified: 2026-10-30
 last-reviewed: 2026-10-25
 ---
 
@@ -17,12 +17,12 @@ The books keep asking for evidence a script collects and for changes a pipeline 
 |---|---|---|
 | **1. Foundations** (this page) | Clouds and endpoints, sign-in, permissions, tools, request patterns | Draft |
 | [2. Microsoft Entra ID](ms-automation-entra.md) | Users, groups, Conditional Access, PIM, applications, logs, authentication methods | Draft |
-| 3. Intune | Devices, compliance, configuration, Autopilot | Planned |
+| [3. Intune](ms-automation-intune.md) | Devices, compliance, configuration, Autopilot | Draft |
 | 4. Azure Arc and Azure Resource Manager | Resource Graph, Azure Policy, Update Manager, SQL Server | Planned |
 | 5. Teams Phone and Teams administration | Calling, policies, the Teams PowerShell module | Planned |
 | 6. Monitoring and evidence | Log Analytics and KQL, Defender, Sentinel | Planned |
 
-**The example code:** [examples/ms-automation on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation). A Graph client written with only the standard library, `graphkit.py`, does everything this page describes: picking the cloud, refusing other hosts, paging, retrying on throttling, batching and delta queries. Module 2's checks are built on it. Equivalent Python and PowerShell are included. Both are **illustrative: unit-tested against fixtures, not proven against live tenants**.
+**The example code:** [examples/ms-automation on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation). A Graph client written with only the standard library, `graphkit.py`, does everything this page describes: picking the cloud, refusing other hosts, paging, retrying on throttling, batching and delta queries. Modules 2 and 3 build their checks on it. Equivalent Python and PowerShell are included. Both are **illustrative: unit-tested against fixtures, not proven against live tenants**.
 
 ## The answer in brief
 
@@ -134,7 +134,7 @@ To move this page to **In review**:
 
 To move it to **Proved**: record a GCC run and, if the program has one, a GCC High run here. Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
 
-Related: [Module 2: Microsoft Entra ID](ms-automation-entra.md), the [Microsoft practice crosswalk](graph-practice-crosswalk.md), [Book 04 — Access & Privilege](../books/b04-access/index.md) and [Book 15 — Day-2 Operations](../books/b15-day2-operations/index.md).
+Related: [Module 2: Microsoft Entra ID](ms-automation-entra.md), [Module 3: Intune](ms-automation-intune.md), the [Microsoft practice crosswalk](graph-practice-crosswalk.md), [Book 04 — Access & Privilege](../books/b04-access/index.md) and [Book 15 — Day-2 Operations](../books/b15-day2-operations/index.md).
 
 [^m1-deploy]: Microsoft Learn, "Microsoft Graph national cloud deployments" (updated January 30, 2025), <https://learn.microsoft.com/en-us/graph/deployments>, accessed October 25, 2026.
 [^m1-natcloud]: Microsoft Learn, "Microsoft Entra authentication & national clouds" (updated January 15, 2025), <https://learn.microsoft.com/en-us/entra/identity-platform/authentication-national-cloud>, accessed October 25, 2026.

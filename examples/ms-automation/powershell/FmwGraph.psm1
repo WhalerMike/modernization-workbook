@@ -1,9 +1,9 @@
 #Requires -Version 7.5
 <#
 .SYNOPSIS
-    Read-only Microsoft Entra ID checks through Microsoft Graph PowerShell, for the workbook's
-    automation Modules 1 and 2. The same rules as python/entra_tasks.py, tested against the
-    same fixtures and expected results.
+    Read-only Microsoft Entra ID and Intune checks through Microsoft Graph PowerShell, for the
+    workbook's automation Modules 1, 2 and 3. The same rules as python/entra_tasks.py and
+    python/intune_tasks.py, tested against the same fixtures and expected results.
 
 .DESCRIPTION
     Connect-FmwGraph picks the right cloud (GCC is the worldwide service; GCC High and DoD
@@ -244,4 +244,225 @@ function Invoke-FmwEntraTask {
     }
 }
 
-Export-ModuleMember -Function Get-FmwCloud, Connect-FmwGraph, Get-FmwGraphCollection, Test-FmwStaleUser, ConvertTo-FmwCaExport, Test-FmwPim, Test-FmwAppCredential, Test-FmwMfaRegistration, Invoke-FmwEntraTask, ConvertTo-FmwUtc, Format-FmwUtc
+# ------------------------------------------------------------ Intune (Module 3)
+# The same rules as python/intune_tasks.py. Read-only; no task selects a user's name, email or UPN.
+
+$script:IntunePermissions = [ordered]@{
+    'noncompliant-devices' = @('DeviceManagementManagedDevices.Read.All', 'DeviceManagementConfiguration.Read.All')
+    'compliance-coverage'  = @('DeviceManagementManagedDevices.Read.All', 'DeviceManagementConfiguration.Read.All')
+    'stale-checkin'        = @('DeviceManagementManagedDevices.Read.All')
+    'device-posture'       = @('DeviceManagementManagedDevices.Read.All')
+    'autopilot-profiles'   = @('DeviceManagementServiceConfig.Read.All')   # beta endpoint
+}
+$script:DeviceSelect = 'id,deviceName,operatingSystem,osVersion,complianceState,lastSyncDateTime,complianceGracePeriodExpirationDateTime,isEncrypted,managedDeviceOwnerType,azureADDeviceId'
+$script:StatusSelect = 'id,deviceDisplayName,status,lastReportedDateTime'
+$script:AutopilotSelect = 'id,serialNumber,groupTag,enrollmentState,lastContactedDateTime,managedDeviceId,deploymentProfileAssignmentStatus,deploymentProfileAssignmentDetailedStatus,deploymentProfileAssignedDateTime'
+$script:ExclusionTarget = '#microsoft.graph.exclusionGroupAssignmentTarget'
+$script:AttentionStates = @('noncompliant', 'inGracePeriod', 'error', 'conflict')
+$script:FailingStatuses = @('nonCompliant', 'error', 'conflict')
+$script:NotAppliedStatuses = @('notApplicable', 'notAssigned')
+
+function Get-FmwIntunePermission {
+    <# The least-privileged application permissions for one Intune task, or all of them. #>
+    param([ValidateSet('noncompliant-devices', 'compliance-coverage', 'stale-checkin', 'device-posture', 'autopilot-profiles')][string]$Task)
+    if ($Task) { return , @($script:IntunePermissions[$Task]) }
+    , @($script:IntunePermissions.Values | ForEach-Object { $_ } | Sort-Object -Unique)
+}
+
+function Get-FmwNameCount {
+    param([object[]]$Devices)
+    $c = [System.Collections.Generic.Dictionary[string, int]]::new([System.StringComparer]::Ordinal)
+    foreach ($d in $Devices) { $n = [string](Get-FmwValue $d 'deviceName' ''); $c[$n] = 1 + $(if ($c.ContainsKey($n)) { $c[$n] } else { 0 }) }
+    , $c
+}
+
+function Test-FmwIntuneNoncompliant {
+    <# Devices whose compliance state needs attention, with the policies that report them failing. Joined on device name. #>
+    param([Parameter(Mandatory)][object[]]$Devices, [object[]]$Policies = @())
+    $counts = Get-FmwNameCount $Devices
+    $failing = [System.Collections.Generic.Dictionary[string, System.Collections.Generic.HashSet[string]]]::new([System.StringComparer]::Ordinal)
+    foreach ($p in $Policies) {
+        foreach ($s in @(Get-FmwValue $p 'deviceStatuses' @())) {
+            if ($null -eq $s) { continue }
+            $st = [string](Get-FmwValue $s 'status' '')
+            if ($script:FailingStatuses -cnotcontains $st) { continue }
+            $n = [string](Get-FmwValue $s 'deviceDisplayName' '')
+            if (-not $failing.ContainsKey($n)) { $failing[$n] = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal) }
+            [void]$failing[$n].Add("$(Get-FmwValue $p 'displayName' '') ($st)")
+        }
+    }
+    $rows = [System.Collections.Generic.List[object]]::new()
+    foreach ($d in $Devices) {
+        $state = [string](Get-FmwValue $d 'complianceState' 'unknown')
+        if ($script:AttentionStates -cnotcontains $state) { continue }
+        $name = [string](Get-FmwValue $d 'deviceName' '')
+        $fp = if ($failing.ContainsKey($name)) { @($failing[$name] | Sort-Object) } else { @() }
+        $rows.Add([ordered]@{
+                id              = $d.id
+                deviceName      = $name
+                operatingSystem = [string](Get-FmwValue $d 'operatingSystem' '')
+                complianceState = $state
+                graceExpires    = (Format-FmwUtc (ConvertTo-FmwUtc (Get-FmwValue $d 'complianceGracePeriodExpirationDateTime')))
+                failingPolicies = @($fp)
+                nameNotUnique   = ($counts[$name] -gt 1)
+            })
+    }
+    $sorted = @($rows | Sort-Object @{ e = { [array]::IndexOf($script:AttentionStates, $_.complianceState) } }, @{ e = { $_.deviceName } }, @{ e = { $_.id } })
+    $byState = [ordered]@{}
+    foreach ($s in $script:AttentionStates) { $byState[$s] = @($sorted | Where-Object { $_.complianceState -ceq $s }).Count }
+    [ordered]@{ devices = $sorted; counts = $byState }
+}
+
+function Test-FmwIntuneComplianceCoverage {
+    <# Compliance policies with no assignment or only exclusions; managed devices no compliance policy reports on. #>
+    param([Parameter(Mandatory)][object[]]$Devices, [object[]]$Policies = @())
+    $rows = [System.Collections.Generic.List[object]]::new()
+    foreach ($p in ($Policies | Sort-Object @{ e = { [string](Get-FmwValue $_ 'displayName' '') } }, @{ e = { $_.id } })) {
+        $types = @(@(Get-FmwValue $p 'assignments' @()) | Where-Object { $null -ne $_ } | ForEach-Object { [string](Get-FmwValue (Get-FmwValue $_ 'target') '@odata.type' '') })
+        $include = @($types | Where-Object { $_ -cne $script:ExclusionTarget })
+        $finding = if ($types.Count -eq 0) { 'unassigned' } elseif ($include.Count -eq 0) { 'exclusionOnly' } else { $null }
+        $rows.Add([ordered]@{
+                id             = $p.id
+                displayName    = [string](Get-FmwValue $p 'displayName' '')
+                type           = ([string](Get-FmwValue $p '@odata.type' '')).Replace('#microsoft.graph.', '')
+                includeTargets = $include.Count
+                excludeTargets = $types.Count - $include.Count
+                finding        = $finding
+            })
+    }
+    $covered = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
+    foreach ($p in $Policies) {
+        foreach ($s in @(Get-FmwValue $p 'deviceStatuses' @())) {
+            if ($null -ne $s -and $script:NotAppliedStatuses -cnotcontains [string](Get-FmwValue $s 'status' '')) { [void]$covered.Add([string](Get-FmwValue $s 'deviceDisplayName' '')) }
+        }
+    }
+    $uncovered = @($Devices | Where-Object { -not $covered.Contains([string](Get-FmwValue $_ 'deviceName' '')) } |
+            ForEach-Object { [ordered]@{ id = $_.id; deviceName = [string](Get-FmwValue $_ 'deviceName' ''); operatingSystem = [string](Get-FmwValue $_ 'operatingSystem' '') } } |
+            Sort-Object @{ e = { $_.deviceName } }, @{ e = { $_.id } })
+    $counts = Get-FmwNameCount $Devices
+    [ordered]@{
+        policies                    = @($rows)
+        policyFindings              = @($rows | Where-Object { $_.finding }).Count
+        devicesWithNoPolicyReported = $uncovered
+        ambiguousNames              = @($counts.Keys | Where-Object { $counts[$_] -gt 1 } | Sort-Object)
+    }
+}
+
+function Test-FmwIntuneStaleCheckin {
+    <# Managed devices whose last Intune sync is older than the compliance validity period or the cleanup age. #>
+    param([Parameter(Mandatory)][object[]]$Devices, [Parameter(Mandatory)][datetimeoffset]$AsOf, [int]$ValidityDays = 14, [int]$CleanupDays = 90)
+    $rows = [System.Collections.Generic.List[object]]::new()
+    foreach ($d in $Devices) {
+        $last = ConvertTo-FmwUtc (Get-FmwValue $d 'lastSyncDateTime')
+        if ($last -and $last.Year -le 1970) { $last = $null }   # placeholder date: never synced
+        $days = if ($last) { Get-FmwDays $last $AsOf } else { $null }
+        if ($null -ne $days -and $days -lt $ValidityDays) { continue }
+        $band = if ($null -eq $days) { 'noSync' } elseif ($days -ge $CleanupDays) { 'beyondCleanup' } else { 'beyondValidity' }
+        $rows.Add([ordered]@{
+                id = $d.id; deviceName = [string](Get-FmwValue $d 'deviceName' ''); operatingSystem = [string](Get-FmwValue $d 'operatingSystem' '')
+                lastSync = (Format-FmwUtc $last); daysSinceSync = $days; band = $band
+            })
+    }
+    , @($rows | Sort-Object @{ e = { $null -ne $_.daysSinceSync } }, @{ e = { - [int]($_.daysSinceSync ?? 0) } }, @{ e = { $_.deviceName } }, @{ e = { $_.id } })
+}
+
+function ConvertTo-FmwVersionPart {
+    <# '10.0.22631.4317' -> 10, 0, 22631, 4317; a part that isn't a number counts as 0. #>
+    param([string]$Value)
+    , @(([string]$Value).Split('.') | ForEach-Object { if ($_ -match '^\d+$') { [int]$_ } else { 0 } })
+}
+
+function Test-FmwVersionBelow {
+    param([string]$Version, [Parameter(Mandatory)][string]$Floor)
+    $a = ConvertTo-FmwVersionPart $Version; $b = ConvertTo-FmwVersionPart $Floor
+    $n = [math]::Max($a.Count, $b.Count)
+    for ($i = 0; $i -lt $n; $i++) {
+        $x = if ($i -lt $a.Count) { $a[$i] } else { 0 }; $y = if ($i -lt $b.Count) { $b[$i] } else { 0 }
+        if ($x -ne $y) { return $x -lt $y }
+    }
+    $false
+}
+
+function Test-FmwIntunePosture {
+    <# Devices not reporting encryption (on the platforms named), or below the OS floor for their platform. #>
+    param([Parameter(Mandatory)][object[]]$Devices, [System.Collections.IDictionary]$OsFloors = @{ Windows = '10.0.26100' }, [string[]]$EncryptionOs = @('Windows', 'macOS'))
+    $rows = [System.Collections.Generic.List[object]]::new()
+    foreach ($d in $Devices) {
+        $os = [string](Get-FmwValue $d 'operatingSystem' '')
+        $enc = Get-FmwValue $d 'isEncrypted'
+        $findings = [System.Collections.Generic.List[string]]::new()
+        if ($EncryptionOs -ccontains $os -and -not ($enc -is [bool] -and $enc)) { $findings.Add('notEncrypted') }
+        if ($OsFloors.Contains($os) -and (Test-FmwVersionBelow ([string](Get-FmwValue $d 'osVersion' '')) $OsFloors[$os])) { $findings.Add('belowOsFloor') }
+        if ($findings.Count) {
+            $rows.Add([ordered]@{
+                    id = $d.id; deviceName = [string](Get-FmwValue $d 'deviceName' ''); operatingSystem = $os
+                    osVersion = [string](Get-FmwValue $d 'osVersion' ''); isEncrypted = $enc; findings = @($findings)
+                })
+        }
+    }
+    $sorted = @($rows | Sort-Object @{ e = { $_.deviceName } }, @{ e = { $_.id } })
+    [ordered]@{
+        devices      = @($Devices).Count
+        notEncrypted = @($sorted | Where-Object { $_.findings -ccontains 'notEncrypted' }).Count
+        belowOsFloor = @($sorted | Where-Object { $_.findings -ccontains 'belowOsFloor' }).Count
+        findings     = $sorted
+    }
+}
+
+function Test-FmwAutopilotProfile {
+    <# Autopilot registrations by deployment profile assignment status (a beta-only property); every one not assignedInSync is listed. #>
+    param([Parameter(Mandatory)][object[]]$Identities)
+    $counts = [System.Collections.Generic.Dictionary[string, int]]::new([System.StringComparer]::Ordinal)
+    $rows = [System.Collections.Generic.List[object]]::new()
+    foreach ($a in $Identities) {
+        $status = [string](Get-FmwValue $a 'deploymentProfileAssignmentStatus' '')
+        if (-not $status) { $status = 'unknown' }
+        $counts[$status] = 1 + $(if ($counts.ContainsKey($status)) { $counts[$status] } else { 0 })
+        if ($status -cne 'assignedInSync') {
+            $rows.Add([ordered]@{
+                    id = $a.id; serialNumber = [string](Get-FmwValue $a 'serialNumber' ''); groupTag = [string](Get-FmwValue $a 'groupTag' '')
+                    status = $status; detail = [string](Get-FmwValue $a 'deploymentProfileAssignmentDetailedStatus' ''); enrollmentState = [string](Get-FmwValue $a 'enrollmentState' '')
+                })
+        }
+    }
+    $byStatus = [ordered]@{}
+    foreach ($k in ($counts.Keys | Sort-Object -CaseSensitive)) { $byStatus[$k] = $counts[$k] }
+    [ordered]@{
+        total     = @($Identities).Count
+        counts    = $byStatus
+        notInSync = @($rows | Sort-Object @{ e = { $_.status } }, @{ e = { $_.serialNumber } }, @{ e = { $_.id } })
+    }
+}
+
+function Get-FmwIntuneCompliancePolicy {
+    <# Each compliance policy with its assignments and per-device statuses embedded (the shape the Test- functions read). #>
+    foreach ($p in @(Get-FmwGraphCollection '/v1.0/deviceManagement/deviceCompliancePolicies?$select=id,displayName')) {
+        $base = "/v1.0/deviceManagement/deviceCompliancePolicies/$($p['id'])"
+        $p['assignments'] = @(Get-FmwGraphCollection "$base/assignments")
+        $p['deviceStatuses'] = @(Get-FmwGraphCollection "$base/deviceStatuses?`$select=$script:StatusSelect")
+        $p
+    }
+}
+
+function Invoke-FmwIntuneTask {
+    <# Fetch from Graph (after Connect-FmwGraph) and evaluate. Read-only. autopilot-profiles reads the beta endpoint. #>
+    param(
+        [Parameter(Mandatory)][ValidateSet('noncompliant-devices', 'compliance-coverage', 'stale-checkin', 'device-posture', 'autopilot-profiles')][string]$Task,
+        [int]$ValidityDays = 14,
+        [int]$CleanupDays = 90,
+        [System.Collections.IDictionary]$OsFloors = @{ Windows = '10.0.26100' }
+    )
+    if ($Task -eq 'autopilot-profiles') {
+        return Test-FmwAutopilotProfile -Identities @(Get-FmwGraphCollection "/beta/deviceManagement/windowsAutopilotDeviceIdentities?`$select=$script:AutopilotSelect")
+    }
+    $devices = @(Get-FmwGraphCollection "/v1.0/deviceManagement/managedDevices?`$select=$script:DeviceSelect")
+    switch ($Task) {
+        'noncompliant-devices' { Test-FmwIntuneNoncompliant -Devices $devices -Policies @(Get-FmwIntuneCompliancePolicy) }
+        'compliance-coverage' { Test-FmwIntuneComplianceCoverage -Devices $devices -Policies @(Get-FmwIntuneCompliancePolicy) }
+        'stale-checkin' { Test-FmwIntuneStaleCheckin -Devices $devices -AsOf ([datetimeoffset]::UtcNow) -ValidityDays $ValidityDays -CleanupDays $CleanupDays }
+        'device-posture' { Test-FmwIntunePosture -Devices $devices -OsFloors $OsFloors }
+    }
+}
+
+Export-ModuleMember -Function Get-FmwCloud, Connect-FmwGraph, Get-FmwGraphCollection, Test-FmwStaleUser, ConvertTo-FmwCaExport, Test-FmwPim, Test-FmwAppCredential, Test-FmwMfaRegistration, Invoke-FmwEntraTask, ConvertTo-FmwUtc, Format-FmwUtc,
+    Get-FmwIntunePermission, Test-FmwIntuneNoncompliant, Test-FmwIntuneComplianceCoverage, Test-FmwIntuneStaleCheckin, Test-FmwIntunePosture, Test-FmwAutopilotProfile, Test-FmwVersionBelow, Invoke-FmwIntuneTask
