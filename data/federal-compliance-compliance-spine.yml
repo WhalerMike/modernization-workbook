@@ -1,0 +1,461 @@
+# Federal compliance series: compliance spine.
+#
+# The single source for every "Authorities Closed Here" table in docs/compliance.
+# Each table names the page it appears on, its caption, and one row per NIST SP
+# 800-53 Rev 5 control the book closes. anchor: true marks a Closure-Necessity
+# anchor (shown as "†": no alternate closure path).
+#
+# Edit here, then run:  python scripts/render_authorities_table.py
+# The PR check runs it with --check, so a hand edit to a table fails.
+#
+# Configuration-baseline wording follows the series' Moderate civilian framing:
+# the agency's CM-6 baseline (CIS Benchmarks, vendor hardening guides, the NIST
+# National Checklist Program); DISA STIGs only as "(High only)" references.
+
+tables:
+  book-net-enforce:
+    page: docs/compliance/Vol_I_Book_07_Network_Enforcement_Substrate.md
+    caption: 'Authorities Closed Here — Network Enforcement Substrate (Cisco/Palo Alto/Juniper) († = Closure-Necessity anchor: no alternate closure path)'
+    rows:
+    - control: SC-8
+      anchor: true
+      title: Transmission Confidentiality and Integrity
+      mechanism: 'IPsec/MACsec overlay on customer-premises transport (function: network-layer encryption)'
+      gate: NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide)
+      drivers: NIST SP 800-53 Rev 5; EO 14028
+      slot: Network
+      ksi: KSI-CNA
+      attestable: 'No'
+    - control: SC-8(1)
+      title: Cryptographic Protection
+      mechanism: FIPS 140-3 validated cipher suite on the overlay
+      gate: NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide)
+      drivers: NIST SP 800-53 Rev 5
+      slot: Network
+      ksi: KSI-CNA
+      attestable: 'No'
+    - control: AC-19
+      title: Access Control for Mobile Devices
+      mechanism: NAC posture gating at the access layer
+      gate: NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide)
+      drivers: NIST SP 800-53 Rev 5; OMB M-22-09
+      slot: Endpoint
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: IA-3
+      anchor: true
+      title: Device Identification and Authentication
+      mechanism: '802.1X authenticator + NAC at the port (function: device identity at the edge)'
+      gate: NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide)
+      drivers: NIST SP 800-53 Rev 5; NIST SP 800-207; CISA ZTMM v2.0
+      slot: Network
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: AC-17
+      title: Remote Access
+      mechanism: 'Vendor ZTNA/remote-access gateway (function: per-session remote access)'
+      gate: NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide)
+      drivers: NIST SP 800-53 Rev 5; OMB M-22-09; CISA ZTMM v2.0
+      slot: Network
+      ksi: KSI-CNA
+      attestable: 'No'
+    - control: AC-4
+      title: Information Flow Enforcement
+      mechanism: Application-aware flow policy at the NGFW/SASE PEP
+      gate: NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide)
+      drivers: NIST SP 800-53 Rev 5; NIST SP 800-207; CISA TIC 3.0
+      slot: Network
+      ksi: KSI-CNA
+      attestable: 'No'
+    - control: SC-7
+      title: Boundary Protection
+      mechanism: 'NGFW boundary enforcement at the customer-owned edge (function: distributed policy enforcement point)'
+      gate: NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide)
+      drivers: NIST SP 800-53 Rev 5; CISA TIC 3.0; NIST SP 800-207
+      slot: Network
+      ksi: KSI-CNA
+      attestable: 'No'
+    - control: SC-7(8)
+      title: Route Traffic to Authenticated Proxy Servers
+      mechanism: Forced-proxy egress through the SASE/SWG enforcement point
+      gate: NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide)
+      drivers: NIST SP 800-53 Rev 5; CISA TIC 3.0
+      slot: Network
+      ksi: KSI-CNA
+      attestable: 'No'
+    - control: SI-4
+      title: System Monitoring
+      mechanism: Network detection/telemetry export from the enforcement substrate to the evidence contract
+      gate: NIAP CC + FIPS 140-3 + CM-6 baseline (CIS / vendor guide)
+      drivers: NIST SP 800-53 Rev 5; OMB M-26-14
+      slot: Telemetry
+      ksi: KSI-MLA
+      attestable: 'No'
+  book-patch-sysmgmt:
+    page: docs/compliance/Vol_III_Book_03_Patch_Systems_Management.md
+    caption: 'Authorities Closed Here — Patch & Systems Management (multi-CSP SI-2/CM) († = Closure-Necessity anchor: no alternate closure path)'
+    rows:
+    - control: CM-8
+      anchor: true
+      title: System Component Inventory
+      mechanism: IPAM-keyed asset identity as the join key correlating all native-stack inventories (naming-plane necessity)
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA BOD 23-01
+      slot: Network
+      ksi: KSI-PIY
+      attestable: 'No'
+    - control: RA-5
+      title: Vulnerability Monitoring and Scanning
+      mechanism: Assessment handoff FROM Book 11 (scan measures the gap; this book actuates remediation)
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA BOD 26-04
+      slot: Endpoint
+      ksi: KSI-MLA
+      attestable: 'No'
+    - control: CM-2
+      title: Baseline Configuration
+      mechanism: Desired-state config baseline per platform (Azure Machine Config, SSM State Manager, Aria, Ansible)
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB Circular A-130
+      slot: Endpoint
+      ksi: KSI-CMT
+      attestable: 'No'
+    - control: CM-6
+      title: Configuration Settings
+      mechanism: Drift detection + reconciliation against the baseline; drift record to the evidence contract
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA SCuBA
+      slot: Endpoint
+      ksi: KSI-CMT
+      attestable: 'No'
+    - control: SI-2
+      anchor: true
+      title: Flaw Remediation
+      mechanism: Platform-native patch orchestration per CSP × OS (Intune/Arc, SSM, OS Mgmt Hub/Ksplice, vLCM, Satellite/Ansible)
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA BOD 26-04; EO 14028
+      slot: Endpoint
+      ksi: KSI-SVC, KSI-MLA
+      attestable: 'No'
+    - control: SI-2(2)
+      title: Automated Flaw Remediation Status
+      mechanism: Machine-readable remediation-status record emitted by each native stack into the unified evidence contract
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA CDM
+      slot: Endpoint
+      ksi: KSI-SVC, KSI-MLA
+      attestable: 'No'
+    - control: SI-2(3)
+      title: Time to Remediate Flaws and Benchmarks for Corrective Actions
+      mechanism: Remediation-SLA class per asset, keyed to KEV/exposure (BOD 26-04 four-variable model)
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA BOD 26-04
+      slot: Endpoint
+      ksi: KSI-SVC
+      attestable: 'No'
+  book-cloudnative-posture:
+    page: docs/compliance/Vol_III_Book_04_Cloud_Native_Posture.md
+    caption: 'Authorities Closed Here — Cloud-Native Security Posture & Containers (CSPM/CNAPP, K8s) († = Closure-Necessity anchor: no alternate closure path)'
+    rows:
+    - control: CM-7
+      title: Least Functionality
+      mechanism: Container hardening + Kubernetes admission control (deny non-compliant workloads)
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5
+      slot: Security / supply chain
+      ksi: KSI-SVC
+      attestable: 'No'
+    - control: SC-7
+      title: Boundary Protection
+      mechanism: Cloud network-exposure and attack-path analysis (CNAPP) — internet-reachable workloads flagged
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; NIST SP 800-207
+      slot: Network
+      ksi: KSI-CNA
+      attestable: 'No'
+    - control: CM-6
+      title: Configuration Settings
+      mechanism: Cloud resource misconfiguration detection across CSPs (CSPM) — Defender for Cloud (Azure/AWS/GCP, Moderate default); AWS Config + Security Hub CSPM (AWS, owned, primary for AWS — Moderate in the commercial Regions, High-covers-Moderate in AWS GovCloud (US); both valid); Google Assured Workloads + Security Command Center (GCP, adoption default if procured — Assured Workloads native Moderate, SCC High-covers-Moderate); VCF Operations Security Posture Management with Broadcom's hardening guide and CIS ESXi (VMware, owned, boundary-inherited — not independently FedRAMP-authorized); OCI Cloud Guard (OCI, adoption default if procured, residual gap closer, High-covers-Moderate); Prisma Cloud (Moderate and High) / Wiz (High), alternatives
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA SCuBA
+      slot: Security / supply chain
+      ksi: KSI-CMT, KSI-SVC
+      attestable: 'No'
+    - control: RA-5
+      title: Vulnerability Monitoring and Scanning
+      mechanism: Agentless cloud-workload + container-image vulnerability scanning (CNAPP/CWPP)
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA BOD 26-04
+      slot: Security / supply chain
+      ksi: KSI-MLA
+      attestable: 'No'
+    - control: SA-11
+      title: Developer Testing and Evaluation
+      mechanism: Shift-left IaC and container-image scanning in CI (CNAPP code security)
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; NIST SP 800-218
+      slot: Security / supply chain
+      ksi: KSI-SVC
+      attestable: 'No'
+    - control: SI-3
+      title: Malicious Code Protection
+      mechanism: Container / workload runtime threat detection
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5
+      slot: Security / supply chain
+      ksi: KSI-MLA
+      attestable: 'No'
+  book-evidence-fabric:
+    page: docs/compliance/Vol_III_Book_07_Multi_Cloud_Evidence_Fabric.md
+    caption: 'Authorities Closed Here — Multi-Cloud Evidence Fabric (telemetry → CDM → KSI) († = Closure-Necessity anchor: no alternate closure path)'
+    rows:
+    - control: AU-12
+      title: Audit Record Generation
+      mechanism: Enterprise-wide audit generation spanning every CSP, NEM appliance, and OS agent
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB M-26-14
+      slot: Telemetry
+      ksi: KSI-MLA
+      attestable: 'No'
+    - control: AU-12(1)
+      anchor: true
+      title: System-wide and Time-correlated Audit Trail
+      mechanism: Cross-surface correlation keyed to authoritative asset identity (IPAM/DDI) + time — the join that makes one compliance picture
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA BOD 23-01
+      slot: Telemetry
+      ksi: KSI-MLA
+      attestable: 'No'
+    - control: AU-3
+      anchor: true
+      title: Content of Audit Records
+      mechanism: Unified machine-readable evidence-record contract every native stack emits (the coordination mechanism)
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB M-26-14
+      slot: Telemetry
+      ksi: KSI-MLA
+      attestable: 'No'
+    - control: AU-6(1)
+      title: Automated Process Integration
+      mechanism: Automated aggregation + analysis across CSP/NEM/OS sources into one lake (Sentinel default; Splunk alternative)
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; NIST SP 800-137
+      slot: Telemetry
+      ksi: KSI-MLA
+      attestable: 'No'
+    - control: CA-7
+      title: Continuous Monitoring
+      mechanism: The telemetry→evidence→CDM→KSI pipeline; ServiceNow coordinates workflow, CMDB reconciled to IPAM/DDI
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; NIST SP 800-137; CISA CDM; FedRAMP 20x KSIs
+      slot: Telemetry
+      ksi: KSI-MLA
+      attestable: 'No'
+    - control: SI-4(16)
+      title: Correlate Monitoring Information
+      mechanism: Correlation of monitoring data across vendor/surface boundaries in the unified fabric
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5
+      slot: Telemetry
+      ksi: KSI-MLA
+      attestable: 'No'
+  book-day2-landingzone:
+    page: docs/compliance/Vol_IX_Book_02_Landing_Zone_Front_Door.md
+    caption: 'Authorities Closed Here — Landing Zone Front Door (catalog → IaC → CMDB) († = Closure-Necessity anchor: no alternate closure path)'
+    rows:
+    - control: CM-8
+      title: System Component Inventory
+      mechanism: Subnet/address allocation reconciled to the authoritative IPAM/DDI record (CM-8) at provisioning time — no landing zone stood up outside the naming plane
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA BOD 23-01
+      slot: Network
+      ksi: KSI-PIY
+      attestable: 'No'
+    - control: CM-3
+      title: Configuration Change Control
+      mechanism: Catalog approval → speculative Terraform plan → apply → validation gate → CMDB close as the CM-3 gate for landing-zone changes
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB Circular A-130
+      slot: Security / supply chain
+      ksi: KSI-CMT
+      attestable: 'No'
+    - control: CM-2
+      title: Baseline Configuration
+      mechanism: Landing-zone catalog request drives the change-controlled IaC pipeline (Terraform/Bicep) — deployed state equals reviewed source
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB Circular A-130
+      slot: Security / supply chain
+      ksi: KSI-CMT
+      attestable: 'No'
+  book-day2-appreg:
+    page: docs/compliance/Vol_IX_Book_03_App_Registration_Governance.md
+    caption: 'Authorities Closed Here â€” App Registration Governance (request Â· consent Â· secret/cert lifecycle) (â€  = Closure-Necessity anchor: no alternate closure path)'
+    rows:
+    - control: AC-2
+      title: Account Management
+      mechanism: 'App registrations managed as machine joiner/mover/leaver: a governed request captures owner, purpose and the specific scopes needed before any credential exists, and orphaned registrations are retired through attestation'
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: AC-6
+      title: Least Privilege
+      mechanism: Scoped admin consent; over-broad/privileged scopes gated by a security approver; orphaned/expired app registrations flagged for attestation
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: IA-5(2)
+      title: Public Key-Based Authentication
+      mechanism: App-registration credentials issued as short-lived certs (ACME) with mandatory expiry and scheduled, owner-approved rotation â€” no long-lived secrets in config
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; EO 14028
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: SC-17
+      title: Public Key Infrastructure Certificates
+      mechanism: Certificate issuance and rotation for service principals via the governed catalog
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+  book-day2-iam:
+    page: docs/compliance/Vol_IX_Book_06_Identity_Access_Governance.md
+    caption: 'Authorities Closed Here — Identity & Access Governance (JML automation · certification campaigns · IAM evidence) († = Closure-Necessity anchor: no alternate closure path)'
+    rows:
+    - control: AC-2
+      title: Account Management
+      mechanism: Joiner/mover/leaver executed as lifecycle automation from effective-dated HR events — joiner provisioning, mover access re-derivation, leaver de-provisioning within SLA — with approval gates on high-risk events; extends the Book 01 request lane from operator-requested to event-driven
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB M-22-09
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: AC-5
+      title: Separation of Duties
+      mechanism: Requester, approver, and certifier are distinct roles enforced by the campaign and JML workflows; high-risk lifecycle events require a second-party approval gate
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: AC-6
+      title: Least Privilege
+      mechanism: Scheduled user / manager / application-owner / privileged access-certification campaigns with SSOT context; every revocation decision triggers a tracked remediation workflow
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB M-22-09
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: IA-4
+      title: Identifier Management
+      mechanism: Identifiers issued, re-derived, and retired as consequences of the authoritative worker-record lifecycle — no orphaned identifiers because retirement is an HR event, not a hygiene sweep
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: IA-5
+      title: Authenticator Management
+      mechanism: Authenticators disabled on the leaver event within the de-provisioning SLA and re-scoped on mover events, closing the ghost-credential window the request lane alone leaves open
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; EO 14028
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: AU-2
+      title: Event Logging
+      mechanism: Every JML action and certification decision an immutable, audited change record reconciled to the join key and exported OSCAL-compatibly into the attestation loop
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB M-26-14
+      slot: Telemetry
+      ksi: KSI-MLA
+      attestable: 'No'
+  book-sn-iam-rbac:
+    page: docs/compliance/Vol_VII_Book_08_Native_IAM_RBAC_Access_Governance.md
+    caption: 'Authorities Closed Here — Native Cloud IAM/RBAC Access-Governance Automation († = Closure-Necessity anchor: no alternate closure path)'
+    rows:
+    - control: AC-2
+      title: Account Management
+      mechanism: SailPoint ISC Governance (CIEM) findings on Azure RBAC and AWS IAM — over-privileged and idle entitlements — raised as ServiceNow remediation tasks; native IAM console actuates the revocation/rescoping, ServiceNow tracks to closure
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB M-22-09
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: AC-3
+      title: Access Enforcement
+      mechanism: Over-broad Azure RBAC/AWS IAM policy bindings surfaced by SailPoint ISC Governance become ServiceNow Change tasks with owner and approval before rescoping; the native role/policy binding remains the enforcement point the agency controls
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: AC-6
+      title: Least Privilege
+      mechanism: SailPoint CIEM identifies entitlements idle 90+ days on Azure RBAC and AWS IAM; ServiceNow raises a scoped-SLA remediation task tracked to closure with re-test evidence
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB M-22-09
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+  book-ddi-xplat:
+    page: docs/compliance/Vol_VIII_Book_00_DDI_Automation_Overview.md
+    caption: 'Authorities Closed Here — Cross-Platform Operations & Multi-Cloud Governance († = Closure-Necessity anchor: no alternate closure path)'
+    rows:
+    - control: CM-8
+      title: System Component Inventory
+      mechanism: IPAM as the authoritative multi-cloud address/subnet inventory (CM-8 join key) reconciled across per-CSP discovery adapters
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA BOD 23-01
+      slot: Network
+      ksi: KSI-PIY
+      attestable: 'No'
+    - control: SC-20
+      title: Secure Name/Address Resolution Service (Authoritative Source)
+      mechanism: One authoritative Infoblox DDI naming plane spanning Azure/AWS/GCP/OCI/VMware, per-cloud discovery adapters reconciling to it
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; CISA TIC 3.0
+      slot: Network
+      ksi: KSI-CNA
+      attestable: 'No'
+    - control: SC-22
+      title: Architecture and Provisioning for Name/Address Resolution Service
+      mechanism: HA/anycast DDI service architecture with fault-tolerant resolution across cloud boundaries
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5
+      slot: Network
+      ksi: KSI-CNA
+      attestable: 'No'
+  book-ddi-servicenow:
+    page: docs/compliance/Vol_VIII_Book_00_DDI_Automation_Overview.md
+    caption: 'Authorities Closed Here — ServiceNow Orchestration — Governed Front Door for DDI († = Closure-Necessity anchor: no alternate closure path)'
+    rows:
+    - control: CM-5
+      title: Access Restrictions for Change
+      mechanism: Separation-of-duties gate in the catalog approval flow (requester ≠ approver) over DDI changes
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5
+      slot: Identity
+      ksi: KSI-IAM
+      attestable: 'No'
+    - control: AU-2
+      title: Event Logging
+      mechanism: Immutable request/approval/apply/validation audit trail emitted from the ServiceNow closed loop into the evidence contract
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB M-26-14
+      slot: Telemetry
+      ksi: KSI-MLA
+      attestable: 'No'
+    - control: CM-3
+      title: Configuration Change Control
+      mechanism: 'Service Catalog → Flow Designer approval/SoD → Terraform apply → validation gate → CMDB close: DDI provisioning gated by an approved, audited change record'
+      gate: FedRAMP Moderate
+      drivers: NIST SP 800-53 Rev 5; OMB Circular A-130
+      slot: Security / supply chain
+      ksi: KSI-CMT
+      attestable: 'No'

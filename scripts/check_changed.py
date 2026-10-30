@@ -256,6 +256,9 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
             add("video-manifest", p)
         if p.startswith(("data/project-plans/", "scripts/project_plans/", "docs/project-plans/")):
             add("project-plans", p)
+        if p in ("data/federal-compliance-compliance-spine.yml", "scripts/render_authorities_table.py") or (
+                p.startswith("docs/compliance/") and p.endswith(".md")):
+            add("authorities", p)
         if p in ("scripts/check_changed.py", ".github/workflows/pr-checks.yml") or p.startswith("scripts/tests/"):
             add("unit-tests", p)
     return tasks
@@ -1025,6 +1028,9 @@ class Checker:
             steps.append(("Video manifest is current", self.simple([PY, "scripts/generate_video_manifest.py", "--check"])))
         if "project-plans" in t:
             steps.append(("Project plans are current", self.simple([PY, "scripts/project_plans/build.py", "--check"])))
+        if "authorities" in t:
+            steps.append(("Authorities tables match the spine",
+                          self.simple([PY, "scripts/render_authorities_table.py", "--check"])))
         if "unit-tests" in t:
             steps.append(("Unit tests (scripts/tests)", self.simple([PY, "-m", "unittest", "discover", "-s", "scripts/tests", "-v"])))
         return steps
