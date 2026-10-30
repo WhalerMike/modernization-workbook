@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.125
+One honest slide on what
+the overview simplified.
+
+2
+00:00:03.125 --> 00:00:05.437
+This framing is design guidance.
+
+3
+00:00:05.437 --> 00:00:08.351
+First, many groups don't
+follow the org chart.
+
+4
+00:00:08.351 --> 00:00:13.162
+Only a group whose membership follows
+attributes exactly becomes dynamic.
+
+5
+00:00:13.162 --> 00:00:18.140
+Others stay synced, go cloud-only or
+retire, privileged groups stay assigned,
+
+6
+00:00:18.140 --> 00:00:21.537
+and what a rule can't decide
+moves to access packages.
+
+7
+00:00:21.537 --> 00:00:22.875
+Expect a lot of them.
+
+8
+00:00:22.875 --> 00:00:27.437
+Second, Group Policy analytics tells
+you what can move, not what should.
+
+9
+00:00:27.437 --> 00:00:30.608
+It finds the landing zone;
+it never decides whether a
+
+10
+00:00:30.608 --> 00:00:34.000
+setting is still needed, so
+retire before you translate.
+
+11
+00:00:34.000 --> 00:00:38.463
+Third, running two tools side by
+side is where breakage hides.
+
+12
+00:00:38.463 --> 00:00:42.494
+GPOs beside Intune in the pilot,
+Group Policy beside Azure
+
+13
+00:00:42.494 --> 00:00:46.862
+Policy while auditing, Ansible
+beside machine configuration.
+
+14
+00:00:46.862 --> 00:00:50.899
+Each tests clean on its own,
+and the overlap is what fails.
+
+15
+00:00:50.899 --> 00:00:53.591
+So count the groups that won't go dynamic,
+
+16
+00:00:53.591 --> 00:00:56.420
+and test every overlap,
+not just each tool.

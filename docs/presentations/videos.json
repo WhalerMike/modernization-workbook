@@ -216,6 +216,36 @@
   ]
  },
  {
+  "id": "Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated",
+  "title": "Attribute-Driven Migration to Entra ID — deeper dive implementation, Part 1: reading the tree to flowing attributes",
+  "group": "book",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated.mp4",
+  "vtt": "presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated.vtt",
+  "deck": "presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narration_Script.md"
+ },
+ {
+  "id": "Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated",
+  "title": "Attribute-Driven Migration to Entra ID — deeper dive implementation, Part 2: groups, targeting and moving Group Policy",
+  "group": "book",
+  "minutes": 17,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated.mp4",
+  "vtt": "presentations/attribute-driven-migration-deeper-dive-part-2/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated.vtt",
+  "deck": "presentations/attribute-driven-migration-deeper-dive-part-2/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-2/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narration_Script.md"
+ },
+ {
+  "id": "Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated",
+  "title": "Attribute-Driven Migration to Entra ID — deeper dive implementation, Part 3: proving it, cutting over and keeping it true",
+  "group": "book",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated.mp4",
+  "vtt": "presentations/attribute-driven-migration-deeper-dive-part-3/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated.vtt",
+  "deck": "presentations/attribute-driven-migration-deeper-dive-part-3/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-deeper-dive-part-3/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narration_Script.md"
+ },
+ {
   "id": "Attribute_Driven_Migration_Technical_Part_1_Narrated",
   "title": "Attribute-Driven Migration to Entra ID — technical deep dive, Part 1: the model and the HR track",
   "group": "book",

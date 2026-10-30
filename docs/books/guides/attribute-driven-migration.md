@@ -25,6 +25,8 @@ What the migration accomplishes and how you know you're there, and the four trac
 
 **Technical deep dive, in two parts (about 18 minutes narrated each)**: Part 1 covers the model and the HR track (the four tracks, the end state, the federal requirements, the attributes primer, sourcing and proving the attributes, dynamic user groups, administrative units and Conditional Access); Part 2 covers devices, servers and non-person identities, PIV and CAC binding, and running the migration. Both are on the [Presentations](../../presentations/index.md#technical-attribute-driven-migration) page.
 
+**Deeper Dive Implementation, in three parts (about 15 minutes narrated each)**: the three-part **Deeper Dive Implementation** series (about 15 minutes narrated each) walks the ten gates at working level: [Part 1, Gates 0–3](../../presentations/index.md#deeper-dive-attribute-driven-migration-part-1), [Part 2, Gates 4–6](../../presentations/index.md#deeper-dive-attribute-driven-migration-part-2) and [Part 3, Gates 7–9](../../presentations/index.md#deeper-dive-attribute-driven-migration-part-3).
+
 **Step by step, the shared foundation**: [Attribute-Driven Migration: An Implementation Guide](attribute-driven-migration-implementation.md) runs the stages the four tracks share as ten gates, in the decks' order, each with the validation kit check that proves it, and the [Attribute-Driven Migration project plan](../../project-plans/attribute-driven-migration.md) schedules them against the track plans and the program's gates.
 :::
 

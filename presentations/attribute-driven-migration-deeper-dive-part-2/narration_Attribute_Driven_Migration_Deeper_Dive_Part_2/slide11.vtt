@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.662
+Servers have no Group Policy analytics.
+
+2
+00:00:02.662 --> 00:00:07.953
+Microsoft publishes no tool that imports
+a GPO into machine configuration,
+
+3
+00:00:07.953 --> 00:00:11.563
+but it does publish a path,
+and the program follows it.
+
+4
+00:00:11.563 --> 00:00:16.375
+Step one, audit beside Group Policy:
+let Group Policy keep enforcing while
+
+5
+00:00:16.375 --> 00:00:21.425
+Azure Policy audits the same settings,
+then move enforcement over gradually.
+
+6
+00:00:21.425 --> 00:00:22.588
+Two cautions.
+
+7
+00:00:22.588 --> 00:00:25.455
+Azure Policy settings
+don't show up in gpresult,
+
+8
+00:00:25.455 --> 00:00:28.175
+so the compliance reports
+become the record.
+
+9
+00:00:28.175 --> 00:00:32.363
+And per-user settings, like mapped
+drives, stay with Group Policy.
+
+10
+00:00:32.363 --> 00:00:36.050
+Step two, start from the built-in
+baselines and definitions,
+
+11
+00:00:36.050 --> 00:00:39.287
+which cover many settings
+with no conversion at all.
+
+12
+00:00:39.287 --> 00:00:43.963
+Step three, package what's left with
+Microsoft's GuestConfiguration module;
+
+13
+00:00:43.963 --> 00:00:47.450
+a package that applies settings
+needs a recent Arc agent.
+
+14
+00:00:47.450 --> 00:00:50.366
+Step four, treat a
+converted GPO as a draft,
+
+15
+00:00:50.366 --> 00:00:55.512
+because the conversion command is
+community-supported, not Microsoft's.
+
+16
+00:00:55.512 --> 00:00:58.920
+Test it in audit mode before
+anything enforces it.

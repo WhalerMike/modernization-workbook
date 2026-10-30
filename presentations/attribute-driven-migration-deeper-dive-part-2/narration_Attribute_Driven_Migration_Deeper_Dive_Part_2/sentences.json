@@ -1,0 +1,804 @@
+{
+ "1": [
+  [
+   0.05,
+   5.125,
+   "Welcome to Part 2 of the deeper dive on attribute-driven migration to Entra ID."
+  ],
+  [
+   5.175,
+   9.562,
+   "This series goes below the technical deep dive, down to the rule text, the commands, the input files and the failing checks an engineer actually works with."
+  ],
+  [
+   14.738,
+   11.488,
+   "Part 1 covered Gates 0 to 3: reading the organizational unit (O U) tree, fixing the schema and slots, proving the attributes, and mapping them through sync."
+  ],
+  [
+   26.225,
+   2.3,
+   "This part covers Gates 4 to 6."
+  ],
+  [
+   28.525,
+   10.713,
+   "That's the dynamic group library and administrative units, the Conditional Access personas and device targeting, moving Group Policy for devices and servers, and the piv binding."
+  ],
+  [
+   39.237,
+   6.15,
+   "Facts are as the workbook states them, design guidance is labeled, and beta features carry their stage."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.675,
+   "Here's what this part delivers."
+  ],
+  [
+   1.725,
+   8.925,
+   "Gate 4 is done when every governed rule is written on codes with its guards, tested and shadowed, and every administrative unit mirrors its group."
+  ],
+  [
+   10.65,
+   5.963,
+   "The validation kit's seven dynamic group checks prove it, and the identity engineering lead owns it."
+  ],
+  [
+   16.613,
+   10.0,
+   "Gate 5 is done when the personas come from codes, every grant has a paired block, and the device, server and non-person conventions are handed to their track guides."
+  ],
+  [
+   26.613,
+   5.638,
+   "Gate 6 is done when every pilot card holder is bound and high affinity has been piloted."
+  ],
+  [
+   32.25,
+   1.575,
+   "The see-so owns both."
+  ],
+  [
+   33.825,
+   11.488,
+   "Each now has a kit check: VK-CA-01 for the personas and VK-piv-01 for the binding, with the policy export and the sign-in logs alongside."
+  ],
+  [
+   45.312,
+   3.225,
+   "Below the table are the slots everything here reads."
+  ],
+  [
+   48.538,
+   7.612,
+   "On users, organization code is slot 10, worker type 11, position category 12, and division 6."
+  ],
+  [
+   56.15,
+   5.537,
+   "Devices have their own set: tier, role and environment in 11 to 13."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.6,
+   "Gate 4 starts with the rule text, because here a rule is an access grant."
+  ],
+  [
+   4.65,
+   3.038,
+   "Every governed group uses one of two patterns."
+  ],
+  [
+   7.688,
+   7.362,
+   "A node query selects people by one organization code, and uses the in operator for a roll-up instead of a chain of ors."
+  ],
+  [
+   15.05,
+   9.3,
+   "A functional query crosses the organization with another coded attribute, such as position category, to answer a question that isn't about where someone sits."
+  ],
+  [
+   24.35,
+   2.825,
+   "Every access rule carries two guards."
+  ],
+  [
+   27.175,
+   6.338,
+   "The account must be enabled, and the user type must be Member, which keeps out disabled accounts and guests."
+  ],
+  [
+   33.513,
+   5.562,
+   "An agent's user account is a kind of user, so user rules include it unless they exclude it."
+  ],
+  [
+   39.075,
+   4.138,
+   "The books don't give the clause, so prove yours with a named-user test."
+  ],
+  [
+   43.212,
+   7.075,
+   "Rules read codes, never department or job title, because a display string breaks the next time someone retypes it."
+  ],
+  [
+   50.288,
+   2.038,
+   "And privileged groups stay assigned."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.212,
+   "Next, prove each rule before it grants anything."
+  ],
+  [
+   3.263,
+   4.975,
+   "The validation kit is read-only, and runs with only the scopes its checks need."
+  ],
+  [
+   8.238,
+   9.95,
+   "VK-DG-03 reads rule-tests.json: a label, a member, the group or proposed rule, and whether that person should match."
+  ],
+  [
+   18.188,
+   9.55,
+   "It uses Graph's beta rule evaluation, which works only with delegated sign-in, as at least a Groups Administrator; an app-only run reports Error."
+  ],
+  [
+   27.738,
+   3.362,
+   "A result that differs from what you expected is a finding."
+  ],
+  [
+   31.1,
+   11.8,
+   "VK-DG-04 reads shadow-pairs.csv, the group being replaced and its proposed dynamic replacement, and lists everyone the new group adds or removes."
+  ],
+  [
+   42.9,
+   6.65,
+   "By default no difference is allowed, so each one is explained in the record before the rule grants production access."
+  ],
+  [
+   49.55,
+   3.212,
+   "A missing input means Not Applicable, never Pass."
+  ],
+  [
+   52.763,
+   8.7,
+   "And rollback is simple: a new group grants nothing until it's assigned, so unassign it, keep the old group, and revert the rule from Git."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.362,
+   "Two things change membership without anyone touching a rule."
+  ],
+  [
+   3.413,
+   1.275,
+   "The first is a date."
+  ],
+  [
+   4.688,
+   9.387,
+   "The memberOf rule preview ends on November 3, 2026, and groups, units and auto-assignment policies that use it freeze in their last state."
+  ],
+  [
+   14.075,
+   4.612,
+   "So Gate 4 uses no memberOf, and flattens nested chains instead."
+  ],
+  [
+   18.688,
+   11.387,
+   "VK-DG-06 lists any rule still using it, and any group whose processing is paused, because a paused group stops updating while every other check passes."
+  ],
+  [
+   30.075,
+   1.5,
+   "The second is volume."
+  ],
+  [
+   31.575,
+   10.637,
+   "VK-DG-05 compares each dynamic group's member count with the snapshot from the last run, and flags a change of more than ten percent and at least five members."
+  ],
+  [
+   42.212,
+   4.662,
+   "The first run writes the baseline, so take it now, before the mover proof."
+  ],
+  [
+   46.875,
+   4.963,
+   "And plan for processing time: usually a few hours, sometimes more than a day."
+  ],
+  [
+   51.837,
+   5.088,
+   "For a bulk change, pause nonessential groups for a day, then resume in phases."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.287,
+   "Administrative units replace O U delegation, in three tiers."
+  ],
+  [
+   4.338,
+   7.287,
+   "Tier 1 is read-only visibility, and its reader roles can't be scoped to a unit, so they sit at tenant scope."
+  ],
+  [
+   11.625,
+   7.438,
+   "Tier 2 is the department unit, whose rule lists the department's organization codes, the same roll-up its group uses."
+  ],
+  [
+   19.062,
+   6.088,
+   "Tier 3 is the division unit, created on demand, reading the division code in slot 6."
+  ],
+  [
+   25.15,
+   8.012,
+   "Scoped roles go to role-assignable groups whose members are eligible through pim, and each unit is created before the groups it holds."
+  ],
+  [
+   33.163,
+   2.825,
+   "The decision you can't undo is restriction."
+  ],
+  [
+   35.987,
+   10.262,
+   "Decide it before the unit exists, and default to no, because restriction takes members out of pim, entitlement management, Lifecycle Workflows and access reviews."
+  ],
+  [
+   46.25,
+   14.887,
+   "VK-DG-07 reads two small files: one maps each unit to its group, and flags a unit whose rule doesn't match; the other records why a unit is restricted, and flags any restricted unit with no reason."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.975,
+   "Gate 5 retires Group Policy inheritance for people, and the risk is policies that look strict but restrict nothing."
+  ],
+  [
+   7.025,
+   13.5,
+   "Personas come from codes: the internal workforce from the worker type in slot 11, administrators from the account type in slot 7, and the emergency-access group stays assigned and excluded from every blocking policy."
+  ],
+  [
+   20.525,
+   5.638,
+   "Target administrators by group, because role targeting misses roles scoped to a unit."
+  ],
+  [
+   26.163,
+   2.3,
+   "Then pair every grant with a block."
+  ],
+  [
+   28.462,
+   7.838,
+   "A policy that grants Finance the payroll app says nothing about anyone else, so a second policy blocks everyone except Finance."
+  ],
+  [
+   36.3,
+   7.6,
+   "And report empty slots first: a policy on a dynamic group silently misses everyone whose attribute is blank."
+  ],
+  [
+   43.9,
+   12.963,
+   "VK-CA-01 checks three things on every enabled and report-only policy: the emergency-access group is excluded, only governed groups are targeted, and every grant has its paired block."
+  ],
+  [
+   56.862,
+   10.4,
+   "It reads only who a policy targets, so keep the ca-export as the record, and read it for blocks narrower than their grants, with the list of users whose slot 11 is empty."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.6,
+   "Gate 5 also sets the conventions the device and server tracks build on."
+  ],
+  [
+   4.65,
+   7.45,
+   "Device attributes come from device provisioning, never from the user, and a device rule can never read its owner's attributes."
+  ],
+  [
+   12.1,
+   7.562,
+   "So the provisioning service writes tier, role and environment to the device's own slots at registration, running app-only."
+  ],
+  [
+   19.663,
+   4.325,
+   "Use a dynamic device group only where the rule has to read those slots."
+  ],
+  [
+   23.988,
+   6.65,
+   "Everywhere else, use an assignment filter on Intune's own properties, like ownership or enrollment profile."
+  ],
+  [
+   30.637,
+   2.85,
+   "A filter on a slot simply doesn't evaluate."
+  ],
+  [
+   33.487,
+   11.9,
+   "For anything time-sensitive, assign to a user group or All devices with a filter, and never use a dynamic device group as an exclusion, because late membership lets the policy land first."
+  ],
+  [
+   45.388,
+   11.688,
+   "VK-INT-01 flags managed devices missing their slots, and VK-INT-04 flags any exclusion built on a dynamic device group."
+  ],
+  [
+   57.075,
+   6.275,
+   "For servers, Arc tags reuse the same codes, and resource groups are the delegation scope."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.85,
+   "Now the core of this part: moving Group Policy."
+  ],
+  [
+   2.9,
+   2.175,
+   "The rule is adopt, don't build."
+  ],
+  [
+   5.075,
+   9.338,
+   "Microsoft already publishes the analysis and the conversion, and the program adds only the decision record per setting, the order of work, and the evidence."
+  ],
+  [
+   14.412,
+   2.112,
+   "Phase 1 runs in five steps."
+  ],
+  [
+   16.525,
+   10.225,
+   "First, Policy Analyzer and its command-line companion find settings that several GPOs write with conflicting values, the conflicts O U precedence used to hide."
+  ],
+  [
+   26.75,
+   3.875,
+   "Second, export every G P O as XML."
+  ],
+  [
+   30.625,
+   6.825,
+   "Third, import that into Intune's Group Policy analytics, which shows each setting's MDM equivalent."
+  ],
+  [
+   37.45,
+   5.213,
+   "Fourth, classify every setting, and capture a gpresult baseline per device tier."
+  ],
+  [
+   42.663,
+   1.712,
+   "Fifth, check it as data."
+  ],
+  [
+   44.375,
+   6.612,
+   "VK-INT-07 reads the beta Graph migration reports with a read-only permission."
+  ],
+  [
+   50.987,
+   10.262,
+   "It flags any G P O still targeted in A D whose readiness isn't complete, and, given your in-scope list, any G P O that was never imported at all."
+  ],
+  [
+   61.25,
+   6.287,
+   "And where an old G P O isn't worth carrying forward, start from an Intune security baseline instead."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.362,
+   "Phase 3 builds the policies and assigns none of them."
+  ],
+  [
+   3.413,
+   5.55,
+   "Group Policy analytics' Migrate step builds a settings catalog policy from the GPOs."
+  ],
+  [
+   8.963,
+   6.513,
+   "Select only the settings whose decision record says required, review the values, and leave assignments empty."
+  ],
+  [
+   15.475,
+   1.238,
+   "Know where it stops."
+  ],
+  [
+   16.712,
+   5.55,
+   "If two GPOs set one setting to different values, it won't continue until you keep one."
+  ],
+  [
+   22.262,
+   9.412,
+   "It's best effort, some settings fail and are listed in Notifications, and AppLocker and firewall rules don't migrate at all; build those in Endpoint security."
+  ],
+  [
+   31.675,
+   9.463,
+   "Phase 4 pilots on about five percent of the fleet, with the GPOs still linked, and compares each device's gpresult with Intune's per-setting status."
+  ],
+  [
+   41.138,
+   3.525,
+   "A conflict, an error or a different value is a finding."
+  ],
+  [
+   44.663,
+   3.95,
+   "For rollback, remember that the pilot doesn't clean up after itself."
+  ],
+  [
+   48.612,
+   7.612,
+   "Then, per population, back up the G P O and disable the link, not the G P O, so one command brings it back."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.612,
+   "Servers have no Group Policy analytics."
+  ],
+  [
+   2.663,
+   8.9,
+   "Microsoft publishes no tool that imports a G P O into machine configuration, but it does publish a path, and the program follows it."
+  ],
+  [
+   11.562,
+   9.863,
+   "Step one, audit beside Group Policy: let Group Policy keep enforcing while Azure Policy audits the same settings, then move enforcement over gradually."
+  ],
+  [
+   21.425,
+   1.163,
+   "Two cautions."
+  ],
+  [
+   22.587,
+   5.588,
+   "Azure Policy settings don't show up in gpresult, so the compliance reports become the record."
+  ],
+  [
+   28.175,
+   4.188,
+   "And per-user settings, like mapped drives, stay with Group Policy."
+  ],
+  [
+   32.362,
+   6.925,
+   "Step two, start from the built-in baselines and definitions, which cover many settings with no conversion at all."
+  ],
+  [
+   39.288,
+   8.162,
+   "Step three, package what's left with Microsoft's GuestConfiguration module; a package that applies settings needs a recent Arc agent."
+  ],
+  [
+   47.45,
+   8.062,
+   "Step four, treat a converted G P O as a draft, because the conversion command is community-supported, not Microsoft's."
+  ],
+  [
+   55.513,
+   3.35,
+   "Test it in audit mode before anything enforces it."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   14.113,
+   "Many estates already run Red Hat on AWS with Ansible, and Arc can connect it: Red Hat is on the agent's list, and EC2 instances take the agent one by one, since the multicloud connector isn't in Azure Government."
+  ],
+  [
+   14.162,
+   2.475,
+   "The danger is two tools on one setting."
+  ],
+  [
+   16.637,
+   7.138,
+   "Under auto-correct, Ansible and machine configuration can flip a value back and forth while both report success."
+  ],
+  [
+   23.775,
+   3.875,
+   "So the Ansible guide sets five rules, as design guidance."
+  ],
+  [
+   27.65,
+   4.25,
+   "The owner is an attribute, config_owner in the CMDB."
+  ],
+  [
+   31.9,
+   6.125,
+   "Ansible writes only what it owns, enforced by its inventory group and an assertion in the playbook."
+  ],
+  [
+   38.025,
+   1.688,
+   "Onboarding isn't owning."
+  ],
+  [
+   39.712,
+   2.1,
+   "An exception is a dated record."
+  ],
+  [
+   41.812,
+   5.737,
+   "And patching has one owner too, so where Ansible patches, Update Manager only assesses."
+  ],
+  [
+   47.55,
+   2.975,
+   "Both owners are mirrored to Arc tags at onboarding."
+  ],
+  [
+   50.525,
+   7.725,
+   "VK-ARC-07 then catches a server another tool owns that machine configuration is also enforcing."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.075,
+   "One honest slide on what the overview simplified."
+  ],
+  [
+   3.125,
+   2.312,
+   "This framing is design guidance."
+  ],
+  [
+   5.438,
+   2.913,
+   "First, many groups don't follow the org chart."
+  ],
+  [
+   8.35,
+   4.812,
+   "Only a group whose membership follows attributes exactly becomes dynamic."
+  ],
+  [
+   13.162,
+   8.375,
+   "Others stay synced, go cloud-only or retire, privileged groups stay assigned, and what a rule can't decide moves to access packages."
+  ],
+  [
+   21.538,
+   1.337,
+   "Expect a lot of them."
+  ],
+  [
+   22.875,
+   4.562,
+   "Second, Group Policy analytics tells you what can move, not what should."
+  ],
+  [
+   27.438,
+   6.562,
+   "It finds the landing zone; it never decides whether a setting is still needed, so retire before you translate."
+  ],
+  [
+   34.0,
+   4.463,
+   "Third, running two tools side by side is where breakage hides."
+  ],
+  [
+   38.462,
+   8.4,
+   "GPOs beside Intune in the pilot, Group Policy beside Azure Policy while auditing, Ansible beside machine configuration."
+  ],
+  [
+   46.862,
+   4.037,
+   "Each tests clean on its own, and the overlap is what fails."
+  ],
+  [
+   50.9,
+   5.463,
+   "So count the groups that won't go dynamic, and test every overlap, not just each tool."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.1,
+   "Gate 6 is the piv and CAC binding."
+  ],
+  [
+   3.15,
+   11.912,
+   "Certificate sign-in is attribute-driven too: Entra ID matches a field of the certificate to a field of the account, so whoever writes that field decides which certificate signs in as whom."
+  ],
+  [
+   15.062,
+   4.662,
+   "The binding lives in certificateUserIds, as prefixed values."
+  ],
+  [
+   19.725,
+   2.663,
+   "Names and email addresses are low affinity."
+  ],
+  [
+   22.387,
+   7.287,
+   "The key identifier, the public key hash, and issuer with serial number are high affinity, because they can't be reused."
+  ],
+  [
+   29.675,
+   3.837,
+   "That also means a reissued or renewed card changes the value."
+  ],
+  [
+   33.513,
+   6.3,
+   "The limits: ten values per user, each unique in the tenant, with case-sensitive prefixes."
+  ],
+  [
+   39.812,
+   5.25,
+   "For cloud-only users, a Privileged Authentication Administrator or Graph writes it."
+  ],
+  [
+   45.062,
+   8.725,
+   "For synced users, only Entra Connect can, from altSecurityIdentities in A D, and Microsoft doesn't document Cloud Sync for it."
+  ],
+  [
+   53.788,
+   3.125,
+   "Treat that A D write path like an access slot."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.75,
+   "The rest of Gate 6 is a short sequence."
+  ],
+  [
+   2.8,
+   6.463,
+   "Measure coverage for every pilot card holder, and list the gaps by account, never by certificate value."
+  ],
+  [
+   9.262,
+   8.3,
+   "Name the writer: the card management system, not HR, because a reissued card changes the binding, while HR supplies the person."
+  ],
+  [
+   17.562,
+   1.875,
+   "Decide the required affinity."
+  ],
+  [
+   19.438,
+   8.45,
+   "The tenant default is low, and sign-in is only as strong as the weakest binding allowed, so the program's position is high in production."
+  ],
+  [
+   27.887,
+   5.487,
+   "Pilot high affinity with a rule per issuer before you change the tenant, or people get locked out."
+  ],
+  [
+   33.375,
+   3.688,
+   "Make the leaver remove the binding as well as revoke the card."
+  ],
+  [
+   37.062,
+   2.175,
+   "And decide who writes it after A D."
+  ],
+  [
+   39.237,
+   8.012,
+   "The design is that the card system writes it through Graph at issuance, but that's unverified, and it's an open pilot in issue 130."
+  ],
+  [
+   47.25,
+   9.838,
+   "VK-piv-01 proves coverage: it lists pilot card holders with no value, or only low-affinity values, by account."
+  ],
+  [
+   57.087,
+   6.4,
+   "It can't tell whether a value is a current card, so reconcile with the card system, and check the sign-in logs."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.2,
+   "Four decisions close this part, each with one owner from the project plan."
+  ],
+  [
+   4.25,
+   5.625,
+   "Identity engineering decides restriction, unit by unit, before each unit exists."
+  ],
+  [
+   9.875,
+   4.875,
+   "The see-so decides the persona set, and the required affinity for piv."
+  ],
+  [
+   14.75,
+   10.625,
+   "And the eye-cam governance body decides who writes the binding after A D; that one can wait until issuance moves off A D CS, which gives the open pilot time to report."
+  ],
+  [
+   25.375,
+   1.712,
+   "Watch the margins, too."
+  ],
+  [
+   27.087,
+   7.537,
+   "The tightest here is just two working days, between the pilot's shadow comparison and the program assigning the pilot's policies."
+  ],
+  [
+   34.625,
+   11.613,
+   "Part 3 takes Gates 7 to 9: proving one mover across the tracks with no ticket, cutting over by attribute query and retiring the O U tree, and then keeping the attributes true."
+  ],
+  [
+   46.237,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

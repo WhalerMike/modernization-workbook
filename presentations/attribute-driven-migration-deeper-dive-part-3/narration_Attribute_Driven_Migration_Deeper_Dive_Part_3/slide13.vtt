@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.175
+The rule that makes drift close for
+good is simple: fix at the source.
+
+2
+00:00:04.175 --> 00:00:07.570
+Close each finding in the
+HR record or the rule,
+
+3
+00:00:07.570 --> 00:00:12.037
+never in the copy, because the
+next cycle overwrites the copy.
+
+4
+00:00:12.037 --> 00:00:15.105
+Access reviews don't
+change dynamic membership,
+
+5
+00:00:15.105 --> 00:00:17.712
+so review the rule and its inputs instead.
+
+6
+00:00:17.712 --> 00:00:19.836
+Logs leave Entra ID from day one,
+
+7
+00:00:19.836 --> 00:00:23.512
+because its retention is
+short and never retroactive.
+
+8
+00:00:23.512 --> 00:00:28.336
+Then keep a limits register and review it
+with every design change: rule length,
+
+9
+00:00:28.336 --> 00:00:33.308
+the dynamic group ceiling, the workflow
+and extension budgets, restricted units,
+
+10
+00:00:33.308 --> 00:00:37.612
+where dynamic units are available,
+and the memberOf preview's end date.
+
+11
+00:00:37.612 --> 00:00:41.275
+Every new workflow, unit
+or rule spends a budget.
+
+12
+00:00:41.275 --> 00:00:44.760
+Finally, run a full drift
+cycle across the whole estate,
+
+13
+00:00:44.760 --> 00:00:49.220
+closing findings at the source until
+the nightly plan is zero-action.

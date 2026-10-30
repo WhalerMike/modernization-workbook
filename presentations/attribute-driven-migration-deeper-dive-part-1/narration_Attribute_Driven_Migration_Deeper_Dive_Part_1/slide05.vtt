@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.263
+Gate 0 starts with the Start Kit,
+and the whole gate is read-only.
+
+2
+00:00:04.263 --> 00:00:08.013
+Start at Tier A, a standard
+account with no added rights.
+
+3
+00:00:08.013 --> 00:00:11.042
+Every run first checks what
+that account can read,
+
+4
+00:00:11.042 --> 00:00:13.850
+and writes up the gaps
+as a delegation request.
+
+5
+00:00:13.850 --> 00:00:17.325
+Add Tier B, narrow and
+time-bound read delegations,
+
+6
+00:00:17.325 --> 00:00:20.038
+only where Tier A can't see what you need.
+
+7
+00:00:20.038 --> 00:00:24.513
+Each run lands in a folder named
+for its date, host and tier.
+
+8
+00:00:24.513 --> 00:00:29.058
+A manifest hashes every file, so what
+you commit is provably what ran,
+
+9
+00:00:29.058 --> 00:00:31.900
+and a later run can be
+compared file by file.
+
+10
+00:00:31.900 --> 00:00:37.144
+Keep three things: every O U with its
+size and its hand-made access entries,
+
+11
+00:00:37.144 --> 00:00:39.767
+G P O links at domain, O U and site level,
+
+12
+00:00:39.767 --> 00:00:43.700
+and every count marked not
+collected rather than zero.
+
+13
+00:00:43.700 --> 00:00:46.224
+And tell security
+operations before you run,
+
+14
+00:00:46.224 --> 00:00:49.420
+because broad enumeration
+looks like reconnaissance.

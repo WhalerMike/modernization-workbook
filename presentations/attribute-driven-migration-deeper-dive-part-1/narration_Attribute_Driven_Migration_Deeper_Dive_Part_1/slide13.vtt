@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.700
+Gate 3 maps the attributes through
+sync, and its failures are quiet.
+
+2
+00:00:04.700 --> 00:00:06.325
+There are two landing zones.
+
+3
+00:00:06.325 --> 00:00:10.666
+For most users, HR writes into A
+D through the provisioning agent,
+
+4
+00:00:10.666 --> 00:00:12.713
+and sync carries the values up.
+
+5
+00:00:12.713 --> 00:00:16.525
+For cloud-mastered users,
+HR writes Entra directly.
+
+6
+00:00:16.525 --> 00:00:18.302
+Use the same carrier in both,
+
+7
+00:00:18.302 --> 00:00:21.625
+so a rule never has to know
+which zone a user came from.
+
+8
+00:00:21.625 --> 00:00:25.318
+Use Cloud Sync unless you need
+something only Connect Sync does,
+
+9
+00:00:25.318 --> 00:00:27.338
+and password hash sync everywhere.
+
+10
+00:00:27.338 --> 00:00:28.799
+Then map the slots.
+
+11
+00:00:28.799 --> 00:00:32.880
+The two date slots map to the
+native hire and leave dates,
+
+12
+00:00:32.880 --> 00:00:35.275
+in the format A D strings require.
+
+13
+00:00:35.275 --> 00:00:39.337
+The transitional rule derives
+account type from O U placement.
+
+14
+00:00:39.337 --> 00:00:43.137
+It's a bridge, not an end
+state, and Gate 8 removes it.
+
+15
+00:00:43.137 --> 00:00:46.130
+And the Do Not Sync filter
+keys on slot fifteen.

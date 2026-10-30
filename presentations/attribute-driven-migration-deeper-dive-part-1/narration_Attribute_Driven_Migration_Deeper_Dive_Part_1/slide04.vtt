@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.050
+Four read-only sources give
+the baseline its numbers.
+
+2
+00:00:03.050 --> 00:00:07.972
+The Start Kit reads the forest: enabled
+users, orphaned admin count accounts,
+
+3
+00:00:07.972 --> 00:00:11.488
+empty groups, and the
+delegations someone made by hand.
+
+4
+00:00:11.488 --> 00:00:17.026
+The validation kit's four HR checks, run
+against an HR export, give correlation
+
+5
+00:00:17.026 --> 00:00:22.563
+coverage, empty coded slots, counts per
+organization code, and duplicate keys.
+
+6
+00:00:22.563 --> 00:00:25.612
+Run this early, expect
+them to fail broadly.
+
+7
+00:00:25.612 --> 00:00:27.588
+That failure is your baseline.
+
+8
+00:00:27.588 --> 00:00:30.699
+The group-change audit gives
+the mover and leaver trail.
+
+9
+00:00:30.699 --> 00:00:34.479
+And joining the HR separation
+date to the disable date on the
+
+10
+00:00:34.479 --> 00:00:38.788
+employee I D gives stale access and
+the separation-to-block interval.
+
+11
+00:00:38.788 --> 00:00:39.901
+One trap here.
+
+12
+00:00:39.901 --> 00:00:45.512
+Entra's audit log keeps thirty days with
+P1 or P2, and it isn't retroactive.
+
+13
+00:00:45.512 --> 00:00:49.305
+So a ninety-day trace leans
+on HR, tickets and A D.
+
+14
+00:00:49.305 --> 00:00:51.170
+Route the logs out now.

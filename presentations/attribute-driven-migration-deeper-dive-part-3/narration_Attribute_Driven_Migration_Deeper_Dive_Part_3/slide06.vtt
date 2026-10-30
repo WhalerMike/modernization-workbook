@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.037
+Here's what a failing run looks like,
+so the first one isn't a surprise.
+
+2
+00:00:04.037 --> 00:00:07.162
+These rows come from the
+kit's own fictional tenant.
+
+3
+00:00:07.162 --> 00:00:10.766
+One user group shrank by a
+quarter since the last snapshot,
+
+4
+00:00:10.766 --> 00:00:14.670
+and a device group doubled, so both
+are findings; in a mover proof,
+
+5
+00:00:14.670 --> 00:00:18.049
+a finding on a group the move
+shouldn't touch means stop.
+
+6
+00:00:18.049 --> 00:00:19.625
+Read the status carefully.
+
+7
+00:00:19.625 --> 00:00:21.475
+Fail means at least one finding.
+
+8
+00:00:21.475 --> 00:00:23.150
+Warn means something to review.
+
+9
+00:00:23.150 --> 00:00:28.050
+Not applicable means nothing to check or
+a missing input, and it's never a pass.
+
+10
+00:00:28.050 --> 00:00:31.175
+Error means a read
+failed, also never a pass.
+
+11
+00:00:31.175 --> 00:00:34.963
+On the right is the evidence to
+keep, joined on the person key.
+
+12
+00:00:34.963 --> 00:00:39.025
+Entra ID keeps most of it for thirty
+days at best, and the provenance
+
+13
+00:00:39.025 --> 00:00:43.150
+record not at all, so route everything
+out from the pilot's first day.

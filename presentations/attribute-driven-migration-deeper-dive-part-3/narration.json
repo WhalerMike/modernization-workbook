@@ -1,0 +1,87 @@
+[
+  {
+    "slide": 1,
+    "title": "Part 3: Proving it, cutting over and keeping it true",
+    "say": "Welcome to Part 3 of the deeper dive on attribute-driven migration to Entra ID. Parts 1 and 2 built the foundation, Gates 0 to 6: the tree read, the schema, the proof, sync, the group library, the personas and the PIV binding. This part is the payoff. Gate 7 proves one mover across the tracks. Gate 8 cuts over by attribute query and retires the OU tree. Gate 9 keeps the attributes true for good. You'll see the validation kit's commands, the files it reads, what a failing check looks like, and the rollback each gate gives. The kit is read-only and fixture-tested, not proven against a live tenant, so run it in a test tenant first. Design guidance is labeled."
+  },
+  {
+    "slide": 2,
+    "title": "Gates 7 to 9 on one page",
+    "say": "Here are the three gates on one page, so you know where this is going. Gate 7 is done when one personnel action changes access only through the attributes. Gate 8 is done when every population has cut over by query and nothing reads OU placement any more. Gate 9 is done when drift scans run, findings close at the source, and the nightly plan has nothing to do. The CISO owns all three. Watch the schedule, because this is where the critical path lives. From the program's G3 in week 36 there's no float: the transitional sync rules come out, the tree freezes after the OU groups retire, and the last drift cycle closes both gates in week 40. Our running example is the same budget analyst, keyed by an existing enterprise ID."
+  },
+  {
+    "slide": 3,
+    "title": "Gate 7: set up the mover proof",
+    "say": "Gate 7 is the test of the whole model, and it runs before any population cuts over. The setup takes three steps. Pick a pilot user who sponsors a non-person identity and has a managed laptop, because one test then reaches three tracks. Record the starting state: groups, unit, persona, access packages, the device's groups and the sponsorship. Then take a baseline with the validation kit, running the HR and dynamic-group checks against an input folder. Three files matter: the owned exceptions list, the HR export of counts per organization code, and the previous membership snapshot. Each run writes its own snapshot, which becomes the next run's input. Finally, HR records the move as a personnel action, a reassignment from the ledger code to accounts payable. Nobody opens a ticket."
+  },
+  {
+    "slide": 4,
+    "title": "Gate 7: follow the personnel action through",
+    "say": "Now follow the action through every hop, and know where to look at each one. The middleware validates the event, writes a provenance record in the agency's log store, and sends the complete record. Because the analyst is still AD-mastered, the agent updates AD and the next sync carries it up; attribute-change triggers fire only after sync delivers it. Groups and units recompute, usually within hours, but it can take more than a day. The record carries a new division code too, so the analyst leaves the ledger groups and the old division unit and joins accounts payable's groups and its unit, while the analyst group and the persona stay put. The mover workflow swaps access packages and starts a review of what's left. And at a database engine, access ends only after tokens and sessions turn over. So latency is a design input: urgent removal never waits for a rule."
+  },
+  {
+    "slide": 5,
+    "title": "Gate 7: what must not change, and the proof",
+    "say": "What must not change proves as much as what does. The laptop's device groups stay put, because device rules can't read the user's attributes. The service principal the analyst sponsors still records the analyst's key, and a sponsor's own move belongs to the non-person track. Nothing is assigned by hand. Then the proof, owned by the CISO. Run the drift scan; it should find nothing. Rerun the kit with the earlier snapshot and a fresh HR export. The membership check should show exactly the expected changes and no others, the counts per organization code should reconcile with HR, and the mover workflow's own run history should show it ran for this user and what it did. The leaver-and-hire timeliness check doesn't prove that, because it reads hire and leave triggers only. Rollback is the simplest of any gate: reverse the personnel action in HR and let the same path undo the access. Never fix the directory by hand."
+  },
+  {
+    "slide": 6,
+    "title": "Gate 7: read the run, keep the evidence",
+    "say": "Here's what a failing run looks like, so the first one isn't a surprise. These rows come from the kit's own fictional tenant. One user group shrank by a quarter since the last snapshot, and a device group doubled, so both are findings; in a mover proof, a finding on a group the move shouldn't touch means stop. Read the status carefully. Fail means at least one finding. Warn means something to review. Not applicable means nothing to check or a missing input, and it's never a pass. Error means a read failed, also never a pass. On the right is the evidence to keep, joined on the person key. Entra ID keeps most of it for thirty days at best, and the provenance record not at all, so route everything out from the pilot's first day."
+  },
+  {
+    "slide": 7,
+    "title": "Gate 8: waves are attribute queries, leaver first",
+    "say": "Gate 8 begins by writing each wave as an attribute query. Because waves are defined by attribute values rather than OUs, each wave's scope is a query, and its dynamic groups already exist. Each track picks members from its own source: users by HR codes, devices by what provisioning writes on them, servers by resource group and tag, and non-person identities by their owning application. Start with the lowest-risk region and a pilot division, then two or three divisions at a time, each drift-clean before the next, with drift detection running daily from the first wave. GPO links come off a migrated OU only after seven clean days. The rule shown is the kit's fixture form, with its guards. And in every wave, leaver automation goes first, because revocation is where the risk and the evidence are."
+  },
+  {
+    "slide": 8,
+    "title": "Gate 8: the per-wave attribute gate",
+    "say": "Every wave passes the same attribute gate, straight from Book 03's Appendix C. First, a validation report, signed before the cutover is even scheduled. Second, a dry run on production data with writes switched off, where every difference from the directory gets explained. Third, the cutover, one population at a time, with named records spot-checked after the first cycle. Fourth, seven days in which every create, change and disable traces to an HR event. Anything in the audit log without a matching provisioning record is a finding, and the clock restarts. No kit check covers that week; the provisioning logs joined on the key are the evidence. Only then does the ticket path for account creation close. The kit still runs on every wave, including a shadow comparison for each group the wave replaces."
+  },
+  {
+    "slide": 9,
+    "title": "Gate 8: retarget provisioning; what still needs AD",
+    "say": "As each population becomes cloud-mastered, retarget its provisioning. Once its sync cycle completes, move it out of the HR-to-AD scope and into the HR-to-Entra configuration, leaving the AD leg dormant but intact. Microsoft lists entry checks: HR writes Entra ID directly, no on-premises Exchange, no federation for those users, and no apps that bind with passwords. Make those your per-population gate. One honest caveat: whether this source-of-authority transfer works in GCC is still unverified, so give that question an owner and a date, and plan on the AD-mastered path by default. On the right is what still needs AD, each with its response. And if a cutover goes wrong, pause the provisioning job, which keeps its state, quarantine the batch, and fall back to the prior process."
+  },
+  {
+    "slide": 10,
+    "title": "Gate 8: Lifecycle Workflows at agency scale",
+    "say": "At agency scale, Lifecycle Workflows' limits bite in predictable ways, and the responses here are design guidance. The tenant allows a hundred workflows; one per tree, event and worker type would already need a hundred and eight. So build a few general workflows that branch on codes. An on-demand run skips the workflow's own conditions and its execution limits, so run it on the wrong people and nothing stops it; treat every on-demand run as a change with a second person. Execution limits quarantine a mass event until someone approves, so plan a reorganization as a rehearsed change with an agreed release. The kit reports late HR data that missed the three-day catch-up, workflows with no execution limit, and a warning as you approach the ceiling."
+  },
+  {
+    "slide": 11,
+    "title": "Retiring the OU tree: disable, never delete",
+    "say": "Retiring the OU tree waits on the program twice. After the rollout is complete, remove the sync rule and scoping filters that still read OU placement. After the OU-based groups retire, remove the hand-made delegations, confirm no OU drives anything, and archive the tree's final export in Git. Destructive steps need approval one item at a time. To validate, a read-only script lists every OU that still has a GPO linked to it; on a retired estate that list is short and expected. Rollback means re-enabling, never re-creating: turn the accounts and GPO links back on, return the population to the AD provisioning scope, and reopen the ticket path. That's why you disable a link instead of deleting the GPO. Deleting throws away the one-command rollback."
+  },
+  {
+    "slide": 12,
+    "title": "Gate 9: drift classes and the two comparisons",
+    "say": "Gate 9 keeps it all true, and without it everything slowly decays. It starts with the pilot, not after cut-over. First, the CISO decides severity and response times, decision D-A8. Then two comparisons run on a schedule. On the left, HR against the directory: missing identities, stale access for people who've left, orphan accounts, attribute drift, unauthorized writes, credential drift and schema drift. The severities are the program's defaults, not an external standard. On the right, the unit and role registry against the tenant: unit rules that drifted, paused processing, role assignments nobody approved, and restriction mismatches. Each track's own reconciliation feeds the same findings queue. Expect a burst of high-severity findings in the first month. That's the measurement finally working, not the pipeline failing."
+  },
+  {
+    "slide": 13,
+    "title": "Gate 9: fix at the source; logs; the limits register",
+    "say": "The rule that makes drift close for good is simple: fix at the source. Close each finding in the HR record or the rule, never in the copy, because the next cycle overwrites the copy. Access reviews don't change dynamic membership, so review the rule and its inputs instead. Logs leave Entra ID from day one, because its retention is short and never retroactive. Then keep a limits register and review it with every design change: rule length, the dynamic group ceiling, the workflow and extension budgets, restricted units, where dynamic units are available, and the memberOf preview's end date. Every new workflow, unit or rule spends a budget. Finally, run a full drift cycle across the whole estate, closing findings at the source until the nightly plan is zero-action."
+  },
+  {
+    "slide": 14,
+    "title": "Gate 9: the standing checks, track by track",
+    "say": "Gate 9's proof isn't a one-time run; it's a set of standing checks on the drift cadence. For the HR track, the uncorrelated accounts, the counts per code and the duplicate keys. For groups and units, membership swings, paused processing and unit rules against their groups. Each track also runs its own standing checks in its own guide: devices missing their provisioning attributes and stale devices for Intune, seven checks for Arc servers from tags to role assignments, and owners, credentials and AI agent sponsors for non-person identities. The commands differ by track: delegated for HR, certificate-based for Intune, Reader on the subscriptions for Arc. Behind them sits Book 01's verification list, ending in zero drift findings. This gate has no rollback. It's the standing loop."
+  },
+  {
+    "slide": 15,
+    "title": "Where the kits stop",
+    "say": "Be clear about where the kits stop, because an assessor will ask. Every gate now has a kit check, but most leave a residual that no check reads, and the gate names the evidence that stands in. For this part, Gate 7's checks cover the membership change and the counts per code, but nothing proves the mover workflow ran, so its own run history stands in. Gate 8 has its per-wave checks, but nothing produces the seven-day sole-source report, so the provisioning logs joined on the key stand in. Gate 9 has the HR, group and track checks, but nothing compares role assignments with the registry, so the registry diff in Git stands in. The earlier gates follow the same pattern. Sync, Conditional Access and the PIV binding each have a check now, but the sync configuration, the report-only results and whether a binding belongs to a current card still come from a report or a record. Keep this table in the evidence packet. It shows which gates were proved by code and which by a record."
+  },
+  {
+    "slide": 16,
+    "title": "What the overview simplified",
+    "say": "One honest slide about what the overview made look simpler than it is. This is design guidance. First, a mover reaches more than groups. Access that came from a package or a direct assignment doesn't leave when a rule stops matching, and losing a licensed group can take a mailbox with it. That's why the review of what's left is a control. Second, hybrid lasts longer than planned. Retiring AD means clearing named dependencies, and the end state may be a dated Kerberos island, a program decision made at the start and revisited after rollout. An island with no end date goes to the authorizing official. Third, the numbers are proposals. Ninety-nine percent correlation is a starting point, not a federal requirement. Treat every threshold as a decision with an owner."
+  },
+  {
+    "slide": 17,
+    "title": "Decisions, the checklist, and where to go next",
+    "say": "To close, the decisions and who makes them. The CISO signs off the mover proof and owns drift severity and every finding, while HR fixes every wrong value. The executive sponsor sets the wave plan, and identity engineering calls each wave's go or no-go. A population's cutover is signed by HR, the identity owner, the ISSO and the business owner. The GCC question needs a named owner and a date, a reorganization's release is agreed in advance, and every destructive step gets its own approval. The checklist fits in three lines: one mover proved with no ticket; waves by query with seven days of proof and the tree archived; drift closed at the source. Next, take each track's own guide, and the project plan for the dates. Make the attributes true, and keep them true. Thank you."
+  }
+]

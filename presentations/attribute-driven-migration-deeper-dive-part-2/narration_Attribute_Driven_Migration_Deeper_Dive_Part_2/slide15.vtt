@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.800
+The rest of Gate 6 is a short sequence.
+
+2
+00:00:02.800 --> 00:00:05.724
+Measure coverage for
+every pilot card holder,
+
+3
+00:00:05.724 --> 00:00:09.263
+and list the gaps by account,
+never by certificate value.
+
+4
+00:00:09.263 --> 00:00:12.598
+Name the writer: the card
+management system, not HR,
+
+5
+00:00:12.598 --> 00:00:17.562
+because a reissued card changes the
+binding, while HR supplies the person.
+
+6
+00:00:17.562 --> 00:00:19.437
+Decide the required affinity.
+
+7
+00:00:19.437 --> 00:00:23.779
+The tenant default is low, and sign-in
+is only as strong as the weakest
+
+8
+00:00:23.779 --> 00:00:27.888
+binding allowed, so the program's
+position is high in production.
+
+9
+00:00:27.888 --> 00:00:30.735
+Pilot high affinity with
+a rule per issuer before
+
+10
+00:00:30.735 --> 00:00:33.374
+you change the tenant, or
+people get locked out.
+
+11
+00:00:33.374 --> 00:00:37.063
+Make the leaver remove the binding
+as well as revoke the card.
+
+12
+00:00:37.063 --> 00:00:39.237
+And decide who writes it after AD.
+
+13
+00:00:39.237 --> 00:00:43.749
+The design is that the card system
+writes it through Graph at issuance,
+
+14
+00:00:43.749 --> 00:00:47.249
+but that's unverified, and it's
+an open pilot in issue 130.
+
+15
+00:00:47.249 --> 00:00:53.469
+VK-PIV-01 proves coverage: it lists
+pilot card holders with no value,
+
+16
+00:00:53.469 --> 00:00:57.088
+or only low-affinity values, by account.
+
+17
+00:00:57.088 --> 00:00:59.840
+It can't tell whether a
+value is a current card,
+
+18
+00:00:59.840 --> 00:01:03.550
+so reconcile with the card system,
+and check the sign-in logs.

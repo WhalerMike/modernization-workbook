@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.173
+Gate 9's proof isn't a one-time run;
+
+2
+00:00:02.173 --> 00:00:05.438
+it's a set of standing
+checks on the drift cadence.
+
+3
+00:00:05.438 --> 00:00:08.423
+For the HR track, the
+uncorrelated accounts,
+
+4
+00:00:08.423 --> 00:00:11.326
+the counts per code
+and the duplicate keys.
+
+5
+00:00:11.326 --> 00:00:13.764
+For groups and units, membership swings,
+
+6
+00:00:13.764 --> 00:00:17.163
+paused processing and unit
+rules against their groups.
+
+7
+00:00:17.163 --> 00:00:21.013
+Each track also runs its own
+standing checks in its own guide:
+
+8
+00:00:21.013 --> 00:00:26.019
+devices missing their provisioning
+attributes and stale devices for Intune,
+
+9
+00:00:26.019 --> 00:00:29.792
+seven checks for Arc servers
+from tags to role assignments,
+
+10
+00:00:29.792 --> 00:00:34.413
+and owners, credentials and AI agent
+sponsors for non-person identities.
+
+11
+00:00:34.413 --> 00:00:37.488
+The commands differ by
+track: delegated for HR,
+
+12
+00:00:37.488 --> 00:00:41.938
+certificate-based for Intune, Reader
+on the subscriptions for Arc.
+
+13
+00:00:41.938 --> 00:00:47.613
+Behind them sits Book 01's verification
+list, ending in zero drift findings.
+
+14
+00:00:47.613 --> 00:00:49.374
+This gate has no rollback.
+
+15
+00:00:49.374 --> 00:00:50.780
+It's the standing loop.

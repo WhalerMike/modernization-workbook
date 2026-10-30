@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.412
+Two things change membership
+without anyone touching a rule.
+
+2
+00:00:03.412 --> 00:00:04.688
+The first is a date.
+
+3
+00:00:04.688 --> 00:00:08.916
+The memberOf rule preview ends
+on November 3, 2026, and groups,
+
+4
+00:00:08.916 --> 00:00:14.075
+units and auto-assignment policies that
+use it freeze in their last state.
+
+5
+00:00:14.075 --> 00:00:18.687
+So Gate 4 uses no memberOf, and
+flattens nested chains instead.
+
+6
+00:00:18.687 --> 00:00:24.662
+VK-DG-06 lists any rule still using it,
+and any group whose processing is paused,
+
+7
+00:00:24.662 --> 00:00:30.075
+because a paused group stops updating
+while every other check passes.
+
+8
+00:00:30.075 --> 00:00:31.575
+The second is volume.
+
+9
+00:00:31.575 --> 00:00:36.935
+VK-DG-05 compares each dynamic group's
+member count with the snapshot from the
+
+10
+00:00:36.935 --> 00:00:42.212
+last run, and flags a change of more than
+ten percent and at least five members.
+
+11
+00:00:42.212 --> 00:00:46.874
+The first run writes the baseline, so
+take it now, before the mover proof.
+
+12
+00:00:46.874 --> 00:00:51.838
+And plan for processing time: usually
+a few hours, sometimes more than a day.
+
+13
+00:00:51.838 --> 00:00:56.980
+For a bulk change, pause nonessential
+groups for a day, then resume in phases.

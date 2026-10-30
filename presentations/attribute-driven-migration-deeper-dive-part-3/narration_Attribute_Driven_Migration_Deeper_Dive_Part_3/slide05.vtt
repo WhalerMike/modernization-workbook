@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.713
+What must not change proves
+as much as what does.
+
+2
+00:00:02.713 --> 00:00:04.976
+The laptop's device groups stay put,
+
+3
+00:00:04.976 --> 00:00:08.412
+because device rules can't
+read the user's attributes.
+
+4
+00:00:08.412 --> 00:00:13.188
+The service principal the analyst
+sponsors still records the analyst's key,
+
+5
+00:00:13.188 --> 00:00:16.600
+and a sponsor's own move
+belongs to the non-person track.
+
+6
+00:00:16.600 --> 00:00:18.275
+Nothing is assigned by hand.
+
+7
+00:00:18.275 --> 00:00:20.675
+Then the proof, owned by the CISO.
+
+8
+00:00:20.675 --> 00:00:23.387
+Run the drift scan; it
+should find nothing.
+
+9
+00:00:23.387 --> 00:00:27.575
+Rerun the kit with the earlier
+snapshot and a fresh HR export.
+
+10
+00:00:27.575 --> 00:00:32.110
+The membership check should show exactly
+the expected changes and no others,
+
+11
+00:00:32.110 --> 00:00:36.361
+the counts per organization code should
+reconcile with HR, and the mover
+
+12
+00:00:36.361 --> 00:00:40.612
+workflow's own run history should show
+it ran for this user and what it did.
+
+13
+00:00:40.612 --> 00:00:43.952
+The leaver-and-hire timeliness
+check doesn't prove that,
+
+14
+00:00:43.952 --> 00:00:46.712
+because it reads hire
+and leave triggers only.
+
+15
+00:00:46.712 --> 00:00:49.291
+Rollback is the simplest of any gate:
+
+16
+00:00:49.291 --> 00:00:54.362
+reverse the personnel action in HR
+and let the same path undo the access.
+
+17
+00:00:54.362 --> 00:00:56.570
+Never fix the directory by hand.

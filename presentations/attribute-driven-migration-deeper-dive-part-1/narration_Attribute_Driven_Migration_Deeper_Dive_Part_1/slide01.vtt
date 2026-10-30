@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.296
+Welcome to Part 1 of the
+deeper dive implementation
+
+2
+00:00:03.296 --> 00:00:05.938
+of attribute-driven migration to Entra ID.
+
+3
+00:00:05.938 --> 00:00:08.400
+The technical deep dive
+explained the model.
+
+4
+00:00:08.400 --> 00:00:13.278
+This series goes below it, to the work
+an engineer actually runs: the commands,
+
+5
+00:00:13.278 --> 00:00:17.381
+the attribute slots, the checks
+and what their output looks like,
+
+6
+00:00:17.381 --> 00:00:19.162
+and how to back each step out.
+
+7
+00:00:19.162 --> 00:00:23.663
+It follows the implementation guide's ten
+gates and the project plan behind them.
+
+8
+00:00:23.663 --> 00:00:28.596
+Part 1 takes Gates 0 to 3: reading
+the organizational unit (OU) tree,
+
+9
+00:00:28.596 --> 00:00:34.925
+fixing the schema and slots, proving the
+attributes, and mapping them through sync.
+
+10
+00:00:34.925 --> 00:00:37.662
+Before that, we'll measure
+how things are done today.
+
+11
+00:00:37.662 --> 00:00:41.706
+Design guidance is labeled, and
+the example code is illustrative,
+
+12
+00:00:41.706 --> 00:00:44.900
+tested against fixtures
+rather than a live tenant.

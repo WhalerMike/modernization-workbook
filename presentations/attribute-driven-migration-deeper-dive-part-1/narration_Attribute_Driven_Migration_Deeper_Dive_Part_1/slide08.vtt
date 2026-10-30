@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.488
+Gate 1 fixes the slot register, the one
+map of user slots the whole workbook uses.
+
+2
+00:00:05.488 --> 00:00:08.712
+The employee I D attribute
+carries the person key.
+
+3
+00:00:08.712 --> 00:00:13.439
+Slots two and three carry the hire and
+leave dates on the A D side, and a sync
+
+4
+00:00:13.439 --> 00:00:18.401
+rule maps them to the native date
+properties that Lifecycle Workflows read.
+
+5
+00:00:18.401 --> 00:00:23.800
+Slot seven is account type, derived from
+O U placement only during the transition.
+
+6
+00:00:23.800 --> 00:00:27.338
+The three that drive access
+are ten, eleven and twelve.
+
+7
+00:00:27.338 --> 00:00:31.975
+That's the organization code, the worker
+type code, and the position category.
+
+8
+00:00:31.975 --> 00:00:36.438
+Rules can't read the native worker type,
+which is why slot eleven mirrors it.
+
+9
+00:00:36.438 --> 00:00:42.326
+Slot fifteen is Do Not Sync, read only by
+a sync filter, never by an access rule.
+
+10
+00:00:42.326 --> 00:00:45.338
+Slots one to three follow
+Microsoft's worksheet.
+
+11
+00:00:45.338 --> 00:00:48.460
+The rest are the workbook's
+proposals, to confirm.

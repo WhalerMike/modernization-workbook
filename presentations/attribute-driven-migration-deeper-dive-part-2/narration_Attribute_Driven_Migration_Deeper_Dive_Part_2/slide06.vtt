@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.337
+Administrative units replace
+OU delegation, in three tiers.
+
+2
+00:00:04.337 --> 00:00:08.025
+Tier 1 is read-only visibility,
+and its reader roles
+
+3
+00:00:08.025 --> 00:00:11.625
+can't be scoped to a unit,
+so they sit at tenant scope.
+
+4
+00:00:11.625 --> 00:00:14.869
+Tier 2 is the department
+unit, whose rule lists the
+
+5
+00:00:14.869 --> 00:00:19.063
+department's organization codes,
+the same roll-up its group uses.
+
+6
+00:00:19.063 --> 00:00:25.150
+Tier 3 is the division unit, created on
+demand, reading the division code in slot 6.
+
+7
+00:00:25.150 --> 00:00:30.103
+Scoped roles go to role-assignable groups
+whose members are eligible through PIM,
+
+8
+00:00:30.103 --> 00:00:33.162
+and each unit is created
+before the groups it holds.
+
+9
+00:00:33.162 --> 00:00:35.988
+The decision you can't
+undo is restriction.
+
+10
+00:00:35.988 --> 00:00:40.888
+Decide it before the unit exists, and
+default to no, because restriction takes
+
+11
+00:00:40.888 --> 00:00:46.249
+members out of PIM, entitlement management,
+Lifecycle Workflows and access reviews.
+
+12
+00:00:46.249 --> 00:00:50.987
+VK-DG-07 reads two small files:
+one maps each unit to its group,
+
+13
+00:00:50.987 --> 00:00:55.917
+and flags a unit whose rule doesn't
+match; the other records why
+
+14
+00:00:55.917 --> 00:01:01.200
+a unit is restricted, and flags
+any restricted unit with no reason.

@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.200
+Now follow the action through every hop,
+and know where to look at each one.
+
+2
+00:00:04.200 --> 00:00:07.979
+The middleware validates the
+event, writes a provenance record
+
+3
+00:00:07.979 --> 00:00:11.187
+in the agency's log store,
+and sends the complete record.
+
+4
+00:00:11.187 --> 00:00:16.041
+Because the analyst is still AD-mastered,
+the agent updates AD and the next
+
+5
+00:00:16.041 --> 00:00:21.213
+sync carries it up; attribute-change
+triggers fire only after sync delivers it.
+
+6
+00:00:21.213 --> 00:00:26.662
+Groups and units recompute, usually within
+hours, but it can take more than a day.
+
+7
+00:00:26.662 --> 00:00:29.138
+The record carries a
+new division code too,
+
+8
+00:00:29.138 --> 00:00:34.088
+so the analyst leaves the ledger groups and
+the old division unit and joins accounts
+
+9
+00:00:34.088 --> 00:00:38.613
+payable's groups and its unit, while the
+analyst group and the persona stay put.
+
+10
+00:00:38.613 --> 00:00:43.712
+The mover workflow swaps access packages
+and starts a review of what's left.
+
+11
+00:00:43.712 --> 00:00:49.074
+And at a database engine, access ends
+only after tokens and sessions turn over.
+
+12
+00:00:49.074 --> 00:00:54.290
+So latency is a design input: urgent
+removal never waits for a rule.
