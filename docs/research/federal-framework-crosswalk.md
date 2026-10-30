@@ -5,7 +5,7 @@ description: "Research under review: a crosswalk of the Federal Modernization Wo
 research-status: in review
 research-type: explainer
 research-book: "Books 00–17"
-date-modified: 2026-10-29
+date-modified: 2026-10-30
 last-reviewed: 2026-10-23
 ---
 
@@ -133,6 +133,10 @@ Each gap was closed in the books with endnoted text, checked against the primary
 
 *High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
+## Additions made, October 30, 2026
+
+- **OMB's AI memoranda.** M-25-21 and M-25-22 were rechecked against OMB's memoranda list: neither has been amended or rescinded, and the only later AI memorandum is M-26-04. Book 15, Chapter 13 cites all three of M-24-10, M-25-21 and M-25-22, and Book 18, Chapter 05 cites M-25-21 and M-25-22; the citing-book lists below now include them. No page in the workbook cites M-24-10 or M-24-18 as current. The research page [Governing and Buying AI Under M-25-21 and M-25-22](omb-ai-memos-m-25-21-m-25-22.md) covers the parts of both memos that Book 17 doesn't: the governance structure, the AI strategy and compliance plan, and M-25-22's acquisition lifecycle and contract terms.
+
 ## Every federal source the books cite
 
 The status table above covers the frameworks a modernization program is usually measured against. The books cite far more. A sweep of all 18 books on October 23, 2026 found **229 distinct federal instruments**: laws, regulations, executive orders, OMB memoranda and circulars, CISA directives and programs, NIST publications, FedRAMP rules, NARA schedules and other federal sources. They are listed below by category, with the books that cite each and its status as the books state it; each book checked its own citations against the primary source on the date it was built. Vendor documents, IETF RFCs and GAO reports are not listed.
@@ -245,11 +249,11 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 | M-23-16 | Update to M-22-18 | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization) | Rescinded by M-26-05 (Jan 23, 2026) |
 | M-23-22 | Delivering a digital-first public experience | Book 00 (Orientation & Program) | Cited as current |
 | M-24-08 | Digital accessibility and Section 508 management | Book 04 (Access & Privilege); Book 15 (Compliance Automation & Day-2 Operations); Book 16 (People: Training & Education) | Cited as current |
-| M-24-10 | Governance and risk management for agency use of AI | Book 17 (AI Identity Governance) | Replaced by M-25-21 (Apr 3, 2025) |
+| M-24-10 | Governance and risk management for agency use of AI | Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance) | Replaced by M-25-21 (Apr 3, 2025) |
 | M-24-15 | Modernizing FedRAMP | Book 10 (Cloud Boundary & Landing Zone); Book 13 (Governance, Drift & Evidence); Book 14 (Federal Compliance & Authorization) | In force; rescinded and replaced the 2011 FedRAMP memorandum |
 | M-24-18 | Responsible acquisition of AI | Book 17 (AI Identity Governance) | Rescinded by M-25-22 (Apr 3, 2025) |
-| M-25-21 | Federal use of AI: innovation, governance, public trust | Book 14 (Federal Compliance & Authorization); Book 17 (AI Identity Governance) | Cited as current |
-| M-25-22 | Efficient acquisition of AI | Book 17 (AI Identity Governance) | Cited as current |
+| M-25-21 | Federal use of AI: innovation, governance, public trust | Book 14 (Federal Compliance & Authorization); Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance); Book 18 (Application Modernization) | Cited as current; see [Governing and Buying AI Under M-25-21 and M-25-22](omb-ai-memos-m-25-21-m-25-22.md) |
+| M-25-22 | Efficient acquisition of AI | Book 15 (Compliance Automation & Day-2 Operations); Book 17 (AI Identity Governance); Book 18 (Application Modernization) | Cited as current; see [Governing and Buying AI Under M-25-21 and M-25-22](omb-ai-memos-m-25-21-m-25-22.md) |
 | M-26-04 | Unbiased AI principles (LLM procurement) | Book 17 (AI Identity Governance) | Cited as current |
 | M-26-05 | Risk-based approach to software and hardware security | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization) | Cited as current |
 | M-26-10 | Transparency, accountability and oversight of federal technology (FITARA) | Book 00 (Orientation & Program); Book 14 (Federal Compliance & Authorization); Book 17 (AI Identity Governance) | In force; monthly contract reporting sunsets after the October 2026 report |

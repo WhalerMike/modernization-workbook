@@ -21,3 +21,13 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 7 | DoD Cloud Computing SRG (IL4/IL5) labelled a High-only tier comparison | Other federal sources, DoD SRG row | restated | Brief |
 
 Kept unchanged: the FedRAMP Rev5 Low/Moderate/High baselines row (a tier list, not a target).
+
+## Additions, October 30, 2026
+
+Verified: 2026-10-30. Sources: OMB's memoranda list (read 2026-10-30) and a repository grep for M-24-10, M-24-18, M-25-21 and M-25-22. Details are in `omb-ai-memos-m-25-21-m-25-22.md` in this folder.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 8 | M-25-21 and M-25-22 not amended or rescinded; M-26-04 is the only later AI memo | Additions, October 30 | verified | OMB memoranda list (accessed Oct 30, 2026) |
+| 9 | Book 15 Ch13 cites M-24-10, M-25-21 and M-25-22; Book 18 Ch05 cites M-25-21 and M-25-22; citing-book lists updated | OMB memoranda table, M-24-10, M-25-21 and M-25-22 rows | verified (repository grep) | — |
+| 10 | No page cites M-24-10 or M-24-18 as current | Additions, October 30 | verified (repository grep) | — |
