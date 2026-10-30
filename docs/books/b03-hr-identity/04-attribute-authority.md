@@ -71,7 +71,7 @@ The discipline that makes the source of authority operable is a written, governe
 | Position, title, grade | HR system of record | Role-eligible access packages, approval routing |
 | Organizational placement (department, org code, cost center) | HR system of record | Dynamic group membership, ABAC attributes, chargeback |
 | Supervisor / reporting line | HR system of record | `manager` attribute, access-package approval routing, attestation campaigns |
-| Duty location | HR system of record | Population scoping, expected-location analysis, physical-access integration, E911 records, and exception routing; current sign-in signals remain the enforcement input for network-location policy |
+| Duty location | HR system of record | Population scoping, expected-location analysis, physical-access integration, the fallback emergency address and emergency-notification scoping (never the caller's 911 location; [Chapter 10](10-from-attributes-to-access.md#emergency-calling-what-hr-attributes-supply-and-what-they-dont)), and exception routing; current sign-in signals remain the enforcement input for network-location policy |
 | User principal name, mail, group memberships | Identity platform — *derived* from HR attributes by rule | Applications, token claims |
 | Device identity and certificates | Device management and PKI (Chapter 09) | Network admission, workload identity, TLS |
 | Credential strength, token claims format | Identity platform | Conditional Access, applications |
