@@ -1,0 +1,63 @@
+{
+  "_comment": "Chapter 05 fixture: the reviewed desired state of the fictional tenant contoso.example's PRV groups. Every ID is invented. A real file lives in the program's repository and changes only through a reviewed pull request.",
+  "approverGroups": {
+    "T0": "5a000000-0000-4000-8000-0000000000a0",
+    "T1": "5a000000-0000-4000-8000-0000000000a1",
+    "T2": "5a000000-0000-4000-8000-0000000000a2"
+  },
+  "groups": [
+    {
+      "displayName": "PRV-T0-PrivRoleAdmin",
+      "id": "5a000000-0000-4000-8000-000000000001",
+      "tier": "T0",
+      "holds": "entraRole",
+      "member": {
+        "active": [
+          { "principalId": "0b000000-0000-4000-8000-000000000001", "principalName": "ada.admin@contoso.example", "principalType": "user", "endDateTime": "2027-01-28T00:00:00Z", "ticket": "CHG-1001" }
+        ],
+        "eligible": []
+      },
+      "owner": { "active": [], "eligible": [] }
+    },
+    {
+      "displayName": "PRV-T1-ExchangeAdmin",
+      "id": "5a000000-0000-4000-8000-000000000002",
+      "tier": "T1",
+      "holds": "entraRole",
+      "member": {
+        "active": [
+          { "principalId": "0b000000-0000-4000-8000-000000000005", "principalName": "eve.exch@contoso.example", "principalType": "user", "endDateTime": "2027-04-28T00:00:00Z", "ticket": "CHG-1002" },
+          { "principalId": "0b000000-0000-4000-8000-000000000002", "principalName": "ben.ops@contoso.example", "principalType": "user", "endDateTime": "2027-04-28T00:00:00Z", "ticket": "CHG-1005" }
+        ],
+        "eligible": []
+      },
+      "owner": { "active": [], "eligible": [] }
+    },
+    {
+      "displayName": "PRV-T1-AzureOwner-SubWorkload",
+      "id": "5a000000-0000-4000-8000-000000000003",
+      "tier": "T1",
+      "holds": "azureRole",
+      "member": {
+        "active": [],
+        "eligible": [
+          { "principalId": "0b000000-0000-4000-8000-000000000003", "principalName": "cara.cloud@contoso.example", "principalType": "user", "endDateTime": "2027-04-28T00:00:00Z", "ticket": "CHG-1003" }
+        ]
+      },
+      "owner": { "active": [], "eligible": [] }
+    },
+    {
+      "displayName": "PRV-T2-HelpdeskAdmin-AU-Finance",
+      "id": "5a000000-0000-4000-8000-000000000004",
+      "tier": "T2",
+      "holds": "entraRole",
+      "member": {
+        "active": [
+          { "principalId": "0b000000-0000-4000-8000-000000000004", "principalName": "dan.desk@contoso.example", "principalType": "user", "endDateTime": "2027-04-28T00:00:00Z", "ticket": "CHG-1004" }
+        ],
+        "eligible": []
+      },
+      "owner": { "active": [], "eligible": [] }
+    }
+  ]
+}

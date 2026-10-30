@@ -1,0 +1,362 @@
+---
+title: "Chapter 05 — PIM for Groups and the PRV Groups"
+description: "Hold the PRV role-assignable groups, their PIM for Groups member and owner schedules and their two role management policies as reviewed JSON, starting from Microsoft's own PIM for Groups request samples (pinned in the repository) and adding what they leave to you: a read of the tenant first, checks against Learn's limits and the program's tiers, a plan with a diff, a dry run by default, guards that refuse unsafe changes, and least privilege per call, with labs against fixtures and a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-privileged-access
+part: How
+series-order: 5
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-04-01
+review-status: pending
+---
+
+# Chapter 05 — PIM for Groups and the PRV Groups
+
+*A role reaches a person through a PRV group, so whoever controls the group's members, owners and policy controls the role. That control belongs in a reviewed file, not in the admin center.*
+
+::: {.callout-note}
+## In this chapter
+The groups behind the plan's task A2.1, "PRV role-assignable groups hold the eligible assignments," and the membership that task A3.3 later publishes through access packages. You start with Microsoft's own PIM for Groups request samples, from the Microsoft Graph documentation, pinned in the repository, and send them unmodified to a fake Graph to see what they do and what they leave out. Then you add a module to `examples/privileged-access` for the rest: the PRV groups and their member and owner schedules as reviewed JSON, the two PIM policies each group carries, a read of the tenant before any write, findings, a plan with a diff, a dry run unless you pass `-Apply`, and guards that refuse the changes that lock people in or out. Lab 1 runs on a laptop with no tenant; Lab 2 uses a test tenant.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can keep the PRV groups as code: one reviewed file says who may be a member or owner of each group, until when, on which ticket, and under which activation policy. From that file the code produces a plan of Graph requests and a diff a reviewer can read, and applies it only when asked. You can say, for each rule, whether it is Microsoft's contract, Microsoft's sample, or the program's own design.
+
+**Audience.** Developers who build the project's write path for privileged groups, the identity engineers who own the PRV groups, and the ISSOs who review the changes. You should read PowerShell 7 and JSON, and know what an eligible assignment is. You don't need a tenant until Lab 2.
+
+## What the PRV groups have to hold
+
+Book 04 never assigns a privileged role to a person. It assigns the role to a role-assignable group named `PRV-<tier>-<role>[-<scope>]`, such as `PRV-T0-PrivRoleAdmin` or `PRV-T2-UserAdmin-AU-Finance`, so that the tier shows in every review, alert and audit record ([Book 04, Chapter 04](../../../books/b04-access/04-privileged-roles-and-tiers.md#role-assignable-groups)). [Chapter 01](01-privileged-inventory-as-code.md) reads those groups and flags a group that holds a role under any other name (PA-INV-03). This chapter writes them.
+
+Two Microsoft features meet in a PRV group, and they are independent of each other.[^pa05-concept]
+
+- **Role-assignable groups.** Only a group created with `isAssignableToRole` set to `true` can hold a Microsoft Entra role. The property is set at creation and can't be changed; an existing group can't be converted. A tenant can have at most 500 of them. Membership must be assigned, never dynamic, and a group can't be a member. Creating one needs at least Privileged Role Administrator. Changing the credentials of a member or owner needs at least Privileged Authentication Administrator. The feature needs Microsoft Entra ID P1; just-in-time activation through PIM needs P2.[^pa05-rag]
+- **PIM for Groups.** Just-in-time membership or ownership of a security or Microsoft 365 group, with policies like those for roles: approval, MFA, justification, a maximum activation time. Each group has two policies, one for membership and one for ownership. Any group can be managed except dynamic groups and groups synchronized from on-premises, and it doesn't have to be role-assignable.[^pa05-concept] [^pa05-overview]
+
+Book 04 uses them together in two ways ([Book 04, Chapter 04](../../../books/b04-access/04-privileged-roles-and-tiers.md#two-ways-to-model-eligibility-through-a-group)). For a Microsoft Entra role, the group holds an **eligible** role assignment and its members are active; the member activates the role, which keeps the activation on the role's own settings. Learn recommends this pattern for roles with permissions in SharePoint, Exchange or Microsoft Purview, because activating group membership can take significant time to reach them.[^pa05-concept] For privilege that isn't an Entra role (an Azure role, Intune scope, an application), the members are **eligible** for the group through PIM for Groups and activate their membership. This chapter's file carries both, as `holds: entraRole` or `holds: azureRole`.
+
+In both patterns the group's own state has to be governed: who is a member or owner, until when, and how membership or ownership is activated. In Graph that is three collections under `identityGovernance/privilegedAccess/group`, each read with a filter on the group, and one policy per access type:[^pa05-overview]
+
+| What | Where | Note |
+|---|---|---|
+| Eligible members and owners | `GET /identityGovernance/privilegedAccess/group/eligibilitySchedules?$filter=groupId eq '{id}'` | `accessId` is `member` or `owner`; the filter is required[^pa05-elig-list] |
+| Active members and owners | `GET .../assignmentSchedules?$filter=groupId eq '{id}'` | `assignmentType` tells an activation from a standing assignment[^pa05-asg-list] |
+| Member and owner policies | `GET /policies/roleManagementPolicyAssignments?$filter=scopeId eq '{id}' and scopeType eq 'Group'&$expand=policy($expand=rules)` | `roleDefinitionId` is `member` or `owner`; the policy ID starts with `Group_`[^pa05-pa-list] |
+| A change to a schedule | `POST .../eligibilityScheduleRequests` or `.../assignmentScheduleRequests` | `action` `adminAssign`, `adminUpdate`, `adminRemove` and others[^pa05-elig-req] [^pa05-asg-req] |
+| A change to a policy | `PATCH /policies/roleManagementPolicies/{policyId}/rules/{ruleId}` | The rule's `@odata.type` must be in the body[^pa05-rule-update] [^pa05-rules-howto] |
+
+Three facts from Learn shape the code. Eligible membership doesn't appear in the group's `members` list; only active membership does.[^pa05-overview] PIM onboards a group the first time you create a schedule or update its policy, the policy IDs change when it does, and a group can't be taken back out of PIM.[^pa05-overview] And administrators with group management roles, or group owners, can change membership through the groups API and override what PIM set.[^pa05-elig-req] [^pa05-discover] So the code reads the tenant before every plan, takes policy IDs from that read, and treats anything it didn't put there as drift.
+
+The workbook's outline also names the access packages that grant PRV membership with approval, expiry and review, the plan's task A3.3. They aren't built here (research gaps, row 58). The eligibility expiry this chapter sets matters to them: Learn warns that an access package's expiration must not exceed the PIM group's own expiry for eligible assignments, or people lose access while entitlement management still shows them assigned.[^pa05-em-eligible]
+
+### Which cloud, for these calls
+
+For Microsoft 365 GCC (Moderate), every call goes to `graph.microsoft.com`, the worldwide host, and sign-in to `login.microsoftonline.com`. GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pa05-deployments] Every PIM for Groups API page read for this chapter lists the global service, US Government L4 and US Government L5 in its national cloud table,[^pa05-elig-req] [^pa05-asg-req] [^pa05-pa-list] and Microsoft Entra ID Governance, which PIM needs, is available in GCC, GCC High and DoD.[^pa05-availability] The module takes the cloud from Chapter 01's table, by name, with no default.
+
+## Start with Microsoft's sample
+
+### What Microsoft gives you
+
+Learn has no end-to-end tutorial for PIM for Groups in Microsoft Graph. Its tutorial for roles ends by noting that you can assign an active role to the group and make members eligible through the PIM for Groups APIs, and leaves it there.[^pa05-roles-tutorial] What Microsoft publishes is a set of HTTP requests in the API reference and one how-to:
+
+- *Create eligibilityScheduleRequest*: an administrator makes a principal eligible (Example 1), or extends an eligibility (Example 2).[^pa05-elig-req]
+- *Create assignmentScheduleRequest*: an administrator assigns active membership for two hours (Example 1), or a user activates an eligible membership (Example 2).[^pa05-asg-req]
+- *Update rules in PIM by using Microsoft Graph*: six rule updates (activation duration, enablement rules, approval, and expiration for eligible and active assignments), with the permission for groups, `RoleManagementPolicy.ReadWrite.AzureADGroup`.[^pa05-rules-howto]
+
+### The pinned copy
+
+The requests exist only inside those pages, so the repository pins their source, unmodified, in [`examples/third_party/graph-pim-for-groups-pages`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/third_party/graph-pim-for-groups-pages): the three pages from microsoftgraph/microsoft-graph-docs-contrib at commit `a693031` (October 30, 2026), retrieved October 30, 2026, with the repository's licenses (documentation CC BY 4.0, code MIT).[^pa05-sample-src] `snapshot.json` records each file's SHA-256, checked against the upstream git blob hashes; a unit test checks them, and the weekly source watch reports new commits to each page. The pages' permission tables and SDK snippets are include files that aren't copied; this chapter cites the rendered pages for them.
+
+`tests/PimForGroupsSampleHarness.ps1` extracts the `http` requests from the pinned pages at test time and sends them, as published, to the chapter's fake Graph, `New-PaPgFixtureInvoker`. The fake answers the declared reads from `tests/fixtures/ch05/tenant.json` and checks a schedule request the way Learn says PIM does: a known group, `member` or `owner`, a documented action, and under an expiration rule an end within the policy's maximum.[^pa05-overview] It also refuses a schedule that has already ended; that rule is the fake's own (research gaps, row 57). Nothing is installed, nothing signs in, and nothing leaves the machine.
+
+### What it leaves to you
+
+Each row is pinned by a test in the first block of `tests/PimForGroups.Tests.ps1`, and the example's side by the second.
+
+| Microsoft's sample, as published | Why it matters | What `examples/privileged-access` adds |
+|---|---|---|
+| An `adminAssign` request with `accessId`, `principalId`, `groupId`, `action`, `scheduleInfo` and `justification` | — | Kept as the model: every request the plan writes has those fields |
+| Example 1 is titled an ownership request but sends `accessId` `member` | Copy the example for an owner and you grant membership | `accessId` comes from the file's `member` or `owner` list, never from a template |
+| Says the eligibility expires after two hours; the end is about a day after the start | The comment and the request disagree | The end comes from the file, and the fake checks it against the policy's maximum |
+| Dated 2023: sent today, the fake refuses both admin examples because the schedule has ended | A copied example fails, or worse, gets its dates edited by hand | Start is the run's time; end is the reviewed `endDateTime` |
+| `action` `AdminAssign`, while the page documents `adminAssign`; no `ticketInfo` | Case-sensitivity isn't stated (research gaps, row 51); no ticket ties the grant to a change | Documented values only; `ticketInfo` from the file, and a Warn for an entry with no ticket (PA-PG-06) |
+| No read before the write | A second run grants twice, and nothing removes what the file no longer lists | Reads schedules and policies first; `adminUpdate` and `adminRemove` where they differ |
+| Hard-coded `graph.microsoft.com` | Wrong for GCC High and DoD; the GCC High fake refuses it | Host from the cloud table |
+| Includes a `selfActivate` request | A user action, not an administrator's | The plan makes admin requests only; guard PA-PG-G7 refuses any `self*` action |
+| Every rule update targets a `DirectoryRole_` policy, and the page says PIM for Groups is beta only | The page predates v1.0 for groups, and gives no group policy ID | v1.0, with the `Group_` policy ID read from `roleManagementPolicyAssignments` |
+| Rule bodies, with a single user among the approvers | — for the shapes; one person as approver is a single point of failure | Same rule shapes; approvers are the tier's `PIM-Approvers-<tier>` group (*Design guidance*) |
+
+**The verdict.** Keep Microsoft's request and rule shapes; the plan writes nothing else. Don't run the samples as published: they are single requests with stale dates and no read of what is already there, and one of them is labeled for the wrong access type.
+
+## The code: `examples/privileged-access`
+
+This chapter adds its own module, `powershell/PimGroups/PimGroups.psm1`, its own call list, `config/calls-ch05.json`, the tier policy, `config/prv-group-policy.json`, and the entry script `Invoke-PaPimGroups.ps1`. It imports Chapter 01's module only for the cloud table and changes nothing in it. Notes for developers are in `examples/privileged-access/docs/ch05.md`.
+
+### The desired state
+
+`prv-groups.json` is the reviewed file. It names the approver group for each tier and lists each PRV group with its ID (absent for a group still to be created), tier, what it holds, and its `member` and `owner` entries, each `active` or `eligible`, with a principal ID, a name for the diff, a type, an end date and a ticket. `Read-PaPrvGroupConfig` refuses a name where an object ID belongs, an unknown tier, and a duplicate group.
+
+`config/prv-group-policy.json` sets the policy for each access type and tier. It is *Design guidance*: member activation of 4 hours for T0 and 8 for the rest, eligibility of 90, 180, 180 and 365 days, and approval for T0 and T1, from Book 04, Appendix B ([Appendix B](../../../books/b04-access/appendix-b-pim-role-settings.md)); owner activation of one hour with approval, from the example in Learn's PIM deployment plan.[^pa05-pim-plan] Two Learn pages differ on the longest activation: the Graph overview says activation is always time-bound for at most eight hours, and the settings page says one to 24.[^pa05-overview] [^pa05-settings] The code follows the stricter and flags anything over eight hours. The authentication context `c1` is Chapter 03's (planned); until then the rules require MFA, justification and a ticket.
+
+### The read and the findings
+
+`Get-PaPgTenantState` reads the role-assignable groups, the groups named `PRV-*`, and for each group in the file its schedules and its two policies. Like Chapter 01's reader, it sends only declared calls, only to the cloud's own host, and follows every page. `Test-PaPrvGroupConfig` checks the file before any read, as a pre-merge check; `Test-PaPgTenant` checks the tenant.
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| PA-PG-01 | Finding | A name that isn't `PRV-<tier>-<role>[-<scope>]`, or whose tier differs from the group's | *Design guidance* (Book 04, Chapter 04) |
+| PA-PG-02 | Finding; Warn; Info | A group that holds an Entra role but isn't role-assignable (Finding); another PRV group that isn't (Warn); a group not created yet (Info) | Learn: only role-assignable groups hold roles, and the property can't be changed;[^pa05-rag] role-assignable recommended for sensitive groups[^pa05-concept] |
+| PA-PG-03 | Finding | A dynamic group, or one synchronized from on-premises | Learn: PIM for Groups can't manage them[^pa05-concept] |
+| PA-PG-04 | Warn; Finding | 450 or more role-assignable groups (Warn); 500 (Finding) | Learn: at most 500;[^pa05-rag] the Warn threshold is *Design guidance* |
+| PA-PG-05 | Finding | A group as a member or owner, or a service principal made eligible | Learn: no active nesting in a role-assignable group,[^pa05-rag] nesting in PIM for Groups not recommended, and service principals can't be eligible;[^pa05-pim-plan] *Design guidance* to allow no group at all, because an eligible group hides its people from the review |
+| PA-PG-06 | Finding; Warn | An entry with no end, or one already ended (Finding); one with no ticket (Warn) | Learn: zero permanently active assignments except emergency accounts;[^pa05-pim-plan] *Design guidance* for eligibility and tickets |
+| PA-PG-07 | Finding | Eligible owners with no active owner; any owner on a T0 group | Learn: the last active owner can't be removed, so an activated owner's deactivation fails and, after 30 days, PIM stops trying;[^pa05-concept] *Design guidance* that T0 groups have no owners, since owners manage membership |
+| PA-PG-08 | Finding; Warn | A policy rule that differs from the reviewed setting (Finding on T0 and T1 and on any expiration rule, Warn otherwise); activation over 8 hours; approval with no approver group; a group approving itself; eligible members activating into an Entra role without approval (Warn) | Learn: approval recommended for groups that elevate into Entra roles;[^pa05-rag] approvers can't approve their own requests;[^pa05-approval] *Design guidance* for the settings |
+| PA-PG-09 | Finding; Warn | A schedule the file doesn't grant (Finding); a role-assignable or `PRV-*` group the file doesn't list (Warn) | *Design guidance*: anything outside the file is unreviewed |
+
+Activations, `assignmentType` `activated`, aren't standing state: the code leaves them out of both the findings and the plan.
+
+### The plan, the dry run and `-Apply`
+
+`New-PaPimGroupPlan` turns the differences into requests, in a fixed order: groups to create, then policy rules, so the rules are in force before anyone is granted, then grants and updates, then removals. Each operation carries its call ID, method, URI, body, its least-privileged permission and one diff line. `diff.txt` is the diff; `plan.json` is the exact requests.
+
+`Invoke-PaPgPlan` is a dry run unless you pass `-Apply`. With `-Apply` it refuses to start if any guard fails, sends each request through a declared write call on the cloud's own host, and stops at the first error. The guards are *Design guidance*, each tied to a rule above:
+
+| Guard | Refuses |
+|---|---|
+| PA-PG-G1 | A T0 or T1 policy losing approval, or its approvers |
+| PA-PG-G2 | An expiration rule that allows permanent grants, or a grant with no end |
+| PA-PG-G3 | A group set as its own approver |
+| PA-PG-G4 | Eligible owners with no active owner (Learn's deactivation trap) |
+| PA-PG-G5 | A group as a holder, or an eligible service principal |
+| PA-PG-G6 | More removals than `-MaxRemovals` (default 5), the sign of a wrong or truncated file |
+| PA-PG-G7 | A self-service action in the plan |
+
+A group the file lists without an ID becomes a `POST /groups` with `isAssignableToRole` `true`, `securityEnabled` `true` and assigned membership; rerun the plan once it exists to add its schedules and policy. Learn's pages differ on what else such a group needs: the group resource says `visibility` must be `Hidden`, the Create group example says `Private`, and one note says a role-assignable group can't have an owner while another says owners can be delegated.[^pa05-group-resource] [^pa05-group-create] [^pa05-rag] The code sets neither visibility nor owners (research gaps, row 56).
+
+### Least privilege per call
+
+| Call | Least-privileged application permission | Delegated role |
+|---|---|---|
+| List groups (`isAssignableToRole`, `PRV-*`) | `Group.ReadBasic.All`; Learn's table names `Group-NestingSupport.ReadWrite.All` as least privileged, a write permission, so the code takes the first read-only one (research gaps, row 52)[^pa05-group-list] | — |
+| List eligibilitySchedules | `PrivilegedEligibilitySchedule.Read.AzureADGroup`[^pa05-elig-list] | Global Reader or Privileged Role Administrator for role-assignable groups |
+| List assignmentSchedules | `PrivilegedAssignmentSchedule.Read.AzureADGroup`[^pa05-asg-list] | Same |
+| List roleManagementPolicyAssignments (groups) | `RoleManagementPolicy.Read.AzureADGroup`[^pa05-pa-list] | — |
+| Create eligibilityScheduleRequest | `PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup`[^pa05-elig-req] | Privileged Role Administrator for role-assignable groups |
+| Create assignmentScheduleRequest | `PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup`[^pa05-asg-req] | Same |
+| Update unifiedRoleManagementPolicyRule (groups) | `RoleManagementPolicy.ReadWrite.AzureADGroup`[^pa05-rule-update] | Privileged Role Administrator, per the how-to[^pa05-rules-howto] |
+| Create group (role-assignable) | `Group.Create`, and `RoleManagement.ReadWrite.Directory` to set `isAssignableToRole`[^pa05-group-create] [^pa05-group-resource] | At least Privileged Role Administrator[^pa05-rag] |
+
+The read task needs the first four and nothing that ends in `ReadWrite`. The plan lists the permissions its own operations need, so the app that applies it holds those and no more. *Design guidance*: create the PRV groups by hand, as a Privileged Role Administrator, and keep `RoleManagement.ReadWrite.Directory` off the pipeline's app; the code only plans the creation. One Learn statement needs Lab 2: the role-assignable groups page says managing their membership through Graph needs `RoleManagement.ReadWrite.Directory`, while the PIM for Groups request pages name only the `AzureADGroup` permissions (research gaps, row 53).
+
+### The tests
+
+Pester 5 under PowerShell 7. This chapter's are the 40 in `tests/PimForGroups.Tests.ps1`: 10 for Microsoft's samples as published, and 30 for the module (calls and permissions, refused calls and hosts, paging with page sizes of 1, 2 and 50, each finding, the plan's order and its empty result once the tenant matches, the dry run, `-Apply` against the fake, each guard, and the entry script's manifest). With Chapters 01 and 02, 118 Pester tests pass, with no module, tenant or network.
+
+::: {.callout-important}
+## Illustrative code
+The commands below send Microsoft's pinned requests to a fake, and run the example against a fictional tenant served by the same fake. They show what the code does, not that a tenant accepts the same requests. Review the code and the plan, and run Lab 2 in a test tenant, before `-Apply` touches production.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-access`.
+
+1. **Run Microsoft's samples against the fake:**
+
+   ```powershell
+   Invoke-Pester -Path tests/PimForGroups.Tests.ps1 -FullNameFilter '*as published*' -Output None -PassThru |
+       Select-Object PassedCount, FailedCount
+   ```
+
+   `PassedCount 10`, `FailedCount 0`.
+
+2. **Send Learn's Example 1 yourself:**
+
+   ```powershell
+   Import-Module ./powershell/PimGroups/PimGroups.psm1
+   . ./tests/PimForGroupsSampleHarness.ps1
+   $learn = Get-PgLearnRequest -Page eligibility
+   $learn[0].Title; $learn[0].Body.accessId
+   (Invoke-PgLearnRequest -Request $learn[0] -Fixture tests/fixtures/ch05/tenant.json -Policy).Status
+   ```
+
+   `Example 1: An admin creates an eligible group ownership request for a principal`, then `member`, then `400 Bad Request from the fake: the schedule ended at 2023-02-07T19:56:00.0000000Z, before the fake's clock`.
+
+3. **List the permissions:**
+
+   ```powershell
+   (Get-PaPgRequiredPermission -Task pim-groups-read).GraphPermissions -join ', '
+   ```
+
+   `Group.ReadBasic.All, PrivilegedAssignmentSchedule.Read.AzureADGroup, PrivilegedEligibilitySchedule.Read.AzureADGroup, RoleManagementPolicy.Read.AzureADGroup`. Nothing ends in `ReadWrite`.
+
+4. **Plan against the fictional tenant, as a dry run:**
+
+   ```powershell
+   ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
+       -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups
+   ```
+
+   ```text
+   PIM for Groups: 9 Finding, 3 Warn, 0 Info
+   Plan: 8 change(s) (3 assignment, 2 eligibility, 3 policy rule)
+   Guards: all passed
+   Dry run: nothing sent. Review diff.txt and plan.json, then rerun with -Apply
+   Written to out/pim-groups (manifest.json lists every request and file hash)
+   ```
+
+5. **Read the findings:**
+
+   ```powershell
+   Get-Content out/pim-groups/findings.json -Raw | ConvertFrom-Json | Format-Table Rule, Severity, Object
+   ```
+
+   On `PRV-T0-PrivRoleAdmin`: a permanent active member, `ben.ops`, whom the file doesn't grant (PA-PG-06 and PA-PG-09); an eligible owner, `cara.cloud`, with no active owner (PA-PG-07 and PA-PG-09); and member activation without approval and for 8 hours instead of 4 (two PA-PG-08). On `PRV-T1-AzureOwner-SubWorkload`: the group `Helpdesk-Admins-Legacy` nested as an eligible member (PA-PG-05 and PA-PG-09), an owner policy that doesn't require eligibility to expire (PA-PG-08), and a Warn because the group isn't role-assignable (PA-PG-02). Two Warns for groups the file doesn't list (PA-PG-09). Cara's activated membership of the Azure group isn't reported: it's an activation, not standing state.
+
+6. **Read the diff:**
+
+   ```powershell
+   Get-Content out/pim-groups/diff.txt
+   (Get-Content out/pim-groups/plan.json -Raw | ConvertFrom-Json).Permissions -join ', '
+   ```
+
+   Three policy rule changes (`~`), Eve's membership extended from December 31 to April 28 and Ben granted membership of `PRV-T1-ExchangeAdmin` on CHG-1005, then three removals (`-`). The plan needs `PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup, PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup, RoleManagementPolicy.ReadWrite.AzureADGroup`.
+
+7. **See a guard refuse:**
+
+   ```powershell
+   ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
+       -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-guard -MaxRemovals 2 -Apply
+   ```
+
+   `Refusing to apply: PA-PG-G6: 3 removals is more than 2; review them and rerun with a higher -MaxRemovals`. Nothing is sent.
+
+8. **Apply to the fake:**
+
+   ```powershell
+   ./Invoke-PaPimGroups.ps1 -Cloud gcc -FixturePath tests/fixtures/ch05/tenant.json `
+       -DesiredPath tests/fixtures/ch05/inputs/prv-groups.json -AsOf 2026-10-30 -OutputPath out/pim-groups-apply -Apply
+   ```
+
+   The same first three lines, then `Applied: 8 sent, 0 failed`. The fake records the requests and doesn't change its tenant.
+
+9. **Run the tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests
+   ```
+
+**Expected result:** 118 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+
+## Lab 2: test tenant
+
+Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID P2 or Governance licenses and fictional people, never production. The lab changes PIM settings and group membership, so it ends by removing what it made. Learn says a group can't be taken back out of PIM once onboarded,[^pa05-overview] so use groups made for the lab.
+
+1. **Make the lab groups by hand.** As a Privileged Role Administrator, create a role-assignable security group `PRV-T1-LabTest` and a security group `PIM-Approvers-T1` with two test approvers, as Learn's procedure describes.[^pa05-rag-create] Put their IDs, and two test users with end dates within 180 days and tickets, in your own `prv-groups.json`.
+2. **Register two apps with certificates.** The reader gets the four permissions from Lab 1, step 3. The writer gets those four and the three from Lab 1, step 6. Grant admin consent. Nothing else.
+3. **Plan as the reader:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <reader-app-id> -CertificateThumbprint <thumbprint>
+   ./Invoke-PaPimGroups.ps1 -Cloud gcc -DesiredPath prv-groups.json -OutputPath out/pim-groups-test -TenantId <tenant-id>
+   ```
+
+   Check two things in the run: the group rows carry `isAssignableToRole` (research gaps, row 52), and no PA-PG-08 Warn says a policy wasn't read. The plan should show the policy rules and two grants.
+4. **Apply as the writer.** Review `diff.txt`, sign in as the writer, and rerun with `-Apply`. Then open **ID Governance** > **Privileged Identity Management** > **Groups** > `PRV-T1-LabTest` and compare the member settings and assignments with the file. Record whether each request succeeded with the `AzureADGroup` permissions alone (research gaps, row 53) and whether the v1.0 rule update on the `Group_` policy took effect (row 55).
+5. **Rerun the plan.** It should report `Plan: 0 change(s)`. Then remove one user from the file and rerun with `-Apply`: the `adminRemove` request has no `scheduleInfo` (research gaps, row 51); record the result.
+6. **Back it out.** Empty both lists in your file and apply, so no schedule remains. Delete `PRV-T1-LabTest` and `PIM-Approvers-T1` (a role-assignable group is soft-deleted and can be restored for 30 days[^pa05-rag]), remove the permissions, delete both apps and their certificates, and delete `out/pim-groups-test`: it names the tenant's privileged holders.
+
+## Verified facts
+
+| Item | Value | US Government clouds | Stage | Source |
+|---|---|---|---|---|
+| Role-assignable groups | `isAssignableToRole` set only at creation; immutable; at most 500 per tenant; assigned membership only; no group members; Privileged Role Administrator to create; Privileged Authentication Administrator to change members' and owners' credentials; P1, and P2 for PIM | Entra ID Governance in GCC, GCC High and DoD | GA | [^pa05-rag] [^pa05-availability] |
+| PIM for Groups | Membership and ownership; two policies per group; not for dynamic or on-premises groups; role-assignable not required, but recommended for sensitive groups | Same | GA | [^pa05-concept] |
+| Last active owner | Can't be removed; an activated owner's deactivation is retried for up to 30 days, then stops | — | — | [^pa05-concept] |
+| Nesting | No group as an active member of a role-assignable group; a group can be an eligible member | — | — | [^pa05-concept] [^pa05-rag] |
+| Service principals | Can't be eligible for PIM for Groups; time-limited active is allowed; nesting groups in PIM for Groups isn't recommended | — | — | [^pa05-pim-plan] |
+| Onboarding | Automatic on the first schedule request or policy update; policy IDs change; no offboarding | — | — | [^pa05-overview] |
+| Eligible membership | Not in the group's `members` relationship until activated | — | — | [^pa05-overview] |
+| Activation length | At most 8 hours (Graph overview); 1 to 24 hours (settings page) | — | — | [^pa05-overview] [^pa05-settings] |
+| Approvers | No default approvers; select at least two; can't approve their own requests; service principals can't approve; 24 hours to approve | — | — | [^pa05-settings] [^pa05-approval] |
+| Create eligibilityScheduleRequest | `POST .../group/eligibilityScheduleRequests`; `PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup`; Privileged Role Administrator for role-assignable groups | L4 and L5 | v1.0 | [^pa05-elig-req] |
+| Create assignmentScheduleRequest | `POST .../group/assignmentScheduleRequests`; `PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup` | L4 and L5 | v1.0 | [^pa05-asg-req] |
+| List eligibilitySchedules, assignmentSchedules | `$filter` on `groupId` or `principalId` required; `PrivilegedEligibilitySchedule.Read.AzureADGroup`, `PrivilegedAssignmentSchedule.Read.AzureADGroup` | L4 and L5 | v1.0 | [^pa05-elig-list] [^pa05-asg-list] |
+| List roleManagementPolicyAssignments (groups) | `scopeId` the group, `scopeType` `Group`, `roleDefinitionId` `member` or `owner`; `RoleManagementPolicy.Read.AzureADGroup` | L4 and L5 | v1.0 | [^pa05-pa-list] |
+| Update unifiedRoleManagementPolicyRule (groups) | `PATCH /policies/roleManagementPolicies/{id}/rules/{id}`; `RoleManagementPolicy.ReadWrite.AzureADGroup`; `@odata.type` required in the body; 17 rules per policy | — | v1.0 | [^pa05-rule-update] [^pa05-rules-howto] [^pa05-rules-overview] |
+| `isValidationOnly` | On both request types; documented for checking an activation before submitting it | — | v1.0 | [^pa05-req-resource] |
+| List groups | Learn's least-privileged column: `Group-NestingSupport.ReadWrite.All`; read-only alternative `Group.ReadBasic.All` | — | v1.0 | [^pa05-group-list] |
+| Create group | `Group.Create` (application); `RoleManagement.ReadWrite.Directory` to set `isAssignableToRole` | — | v1.0 | [^pa05-group-create] [^pa05-group-resource] |
+| Graph hosts | `graph.microsoft.com` (worldwide and GCC), `graph.microsoft.us` (GCC High), `dod-graph.microsoft.us` (DoD) | — | — | [^pa05-deployments] |
+
+Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
+
+- **Activation length.** Eight hours in the Graph overview, 24 in the settings page. The code caps at eight (research gaps, row 54).
+- **v1.0 or beta.** The PIM for Groups API pages are v1.0. The *Update rules* how-to says PIM for Groups is beta only, and the PIM for Groups settings page shows a beta request.[^pa05-rules-howto] [^pa05-settings] The deployment plan still links PIM for Groups as a preview.[^pa05-pim-plan] The code uses v1.0 (research gaps, row 55).
+- **Permissions for role-assignable groups.** `RoleManagement.ReadWrite.Directory` on the role-assignable groups page; the `AzureADGroup` permissions on the PIM for Groups pages. The code declares the latter and Lab 2 checks it (research gaps, row 53).
+- **Creating a role-assignable group.** `visibility` `Hidden` or `Private`, and whether it can have owners, differ across three pages; Learn's own PowerShell for it signs in with `Group.ReadWrite.All` only.[^pa05-rag-create] The code declares both `Group.Create` and `RoleManagement.ReadWrite.Directory` (research gaps, row 56).
+- **The rule cmdlet.** `Update-MgPolicyRoleManagementPolicyRule` lists only the `Directory` permissions and no application support, while the API page lists `RoleManagementPolicy.ReadWrite.AzureADGroup` for applications.[^pa05-cmdlet] [^pa05-rule-update] The code calls the REST API (research gaps, row 59).
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A sample copied as published | An ownership grant becomes a membership, or a 2023 date fails, or is edited by hand | Requests come from the file; tests pin the sample's mismatches |
+| A change made in the admin center or the groups API | The tenant drifts from the file and nobody reviews it | Every run reads first; PA-PG-09 and a removal in the plan |
+| Approval dropped on a T0 or T1 group | A less-privileged admin who can reset a member's credentials activates on their behalf, the case Learn warns about[^pa05-rag] | PA-PG-08; guard G1 |
+| A permanent member or owner | Standing privilege through the group | PA-PG-06; guard G2 |
+| Eligible owner, no active owner | The owner activates and can't be deactivated | PA-PG-07; guard G4 |
+| A group nested in a PRV group | Its people hold the role and the review shows a group | PA-PG-05; guard G5 |
+| A truncated or wrong file | The plan removes everyone | Removals come last; guard G6 stops more than five |
+| A non-role-assignable group used for a role | It can't hold the role, and can't be converted | PA-PG-02 Finding; the plan creates groups as role-assignable |
+| The 500-group limit | New PRV groups can't be created | PA-PG-04 Warn at 450 |
+| A pipeline app with `RoleManagement.ReadWrite.Directory` | It can assign any directory role | Group creation is planned, not routinely applied; the plan lists only its own permissions |
+| Names in output | `diff.txt` and `findings.json` name privileged holders | Treat the run folder as evidence; delete lab copies |
+
+## Checklist
+
+- [ ] `prv-groups.json` passes `Test-PaPrvGroupConfig` with no Finding, and every entry has an end date and a ticket.
+- [ ] Every PRV group that holds an Entra role is role-assignable, and no PRV group is dynamic or synchronized.
+- [ ] No group and no eligible service principal is a member or owner of a PRV group, and no T0 group has an owner.
+- [ ] Member and owner policies match `prv-group-policy.json`: approval by the tier's approver group for T0 and T1, activation no longer than 8 hours, expiration required.
+- [ ] Each approver group has at least two members, and none of them is approving their own group.
+- [ ] The latest plan was reviewed by someone other than its author before `-Apply`, and a rerun shows no changes.
+- [ ] The reader app holds exactly the four read permissions; the writer holds those and only the write permissions the plan lists.
+- [ ] The pinned pages match their manifest, and every upstream commit since the pin has been reviewed.
+
+::: {.callout-tip}
+## Continue the book
+[← Chapter 02 — Emergency Access Accounts as Code](02-emergency-access-as-code.md) · [Chapter 01 — Privileged Inventory as Code](01-privileged-inventory-as-code.md) · [Workbook index](index.md)
+:::
+
+[^pa05-overview]: Microsoft Learn, "Govern membership and ownership of groups by using PIM for Groups," <https://learn.microsoft.com/graph/api/resources/privilegedidentitymanagement-for-groups-api-overview?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa05-concept]: Microsoft Learn, "Privileged Identity Management (PIM) for Groups," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/concept-pim-for-groups> (accessed Oct 30, 2026).
+[^pa05-rag]: Microsoft Learn, "Use Microsoft Entra groups to manage role assignments," <https://learn.microsoft.com/entra/identity/role-based-access-control/groups-concept> (accessed Oct 30, 2026).
+[^pa05-rag-create]: Microsoft Learn, "Create a role-assignable group in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/role-based-access-control/groups-create-eligible> (accessed Oct 30, 2026).
+[^pa05-group-resource]: Microsoft Learn, "group resource type," `isAssignableToRole`, <https://learn.microsoft.com/graph/api/resources/group?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa05-group-create]: Microsoft Learn, "Create group," permissions and Example 3, <https://learn.microsoft.com/graph/api/group-post-groups?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa05-group-list]: Microsoft Learn, "List groups," permissions, <https://learn.microsoft.com/graph/api/group-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa05-elig-req]: Microsoft Learn, "Create eligibilityScheduleRequest" (privilegedAccessGroup), <https://learn.microsoft.com/graph/api/privilegedaccessgroup-post-eligibilityschedulerequests?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa05-asg-req]: Microsoft Learn, "Create assignmentScheduleRequest" (privilegedAccessGroup), <https://learn.microsoft.com/graph/api/privilegedaccessgroup-post-assignmentschedulerequests?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa05-elig-list]: Microsoft Learn, "List eligibilitySchedules" (privilegedAccessGroup), <https://learn.microsoft.com/graph/api/privilegedaccessgroup-list-eligibilityschedules?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa05-asg-list]: Microsoft Learn, "List assignmentSchedules" (privilegedAccessGroup), <https://learn.microsoft.com/graph/api/privilegedaccessgroup-list-assignmentschedules?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa05-pa-list]: Microsoft Learn, "List roleManagementPolicyAssignments," permissions for PIM for Groups and Examples 3 and 4, <https://learn.microsoft.com/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa05-rule-update]: Microsoft Learn, "Update unifiedRoleManagementPolicyRule," permissions for PIM for Groups, <https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa05-rules-howto]: Microsoft Learn, "Update rules in PIM by using Microsoft Graph," <https://learn.microsoft.com/graph/how-to-pim-update-rules> (accessed Oct 30, 2026).
+[^pa05-rules-overview]: Microsoft Learn, "Rules in PIM - Mapping guide," <https://learn.microsoft.com/graph/identity-governance-pim-rules-overview> (accessed Oct 30, 2026).
+[^pa05-req-resource]: Microsoft Learn, "privilegedAccessGroupEligibilityScheduleRequest resource type" and "privilegedAccessGroupAssignmentScheduleRequest resource type," `isValidationOnly`, <https://learn.microsoft.com/graph/api/resources/privilegedaccessgroupeligibilityschedulerequest?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa05-settings]: Microsoft Learn, "Configure PIM for Groups settings," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/groups-role-settings> (accessed Oct 30, 2026).
+[^pa05-approval]: Microsoft Learn, "Approve activation requests for group members and owners," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/groups-approval-workflow> (accessed Oct 30, 2026).
+[^pa05-pim-plan]: Microsoft Learn, "Plan a Privileged Identity Management deployment," understand PIM and plan and implement PIM for Groups, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan> (accessed Oct 30, 2026).
+[^pa05-discover]: Microsoft Learn, "Bring groups into Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/groups-discover-groups> (accessed Oct 30, 2026).
+[^pa05-em-eligible]: Microsoft Learn, "Assign eligible group membership and ownership in access packages via Privileged Identity Management for Groups," <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-eligible> (accessed Oct 30, 2026).
+[^pa05-roles-tutorial]: Microsoft Learn, "Assign privileged roles using PIM for Microsoft Entra roles APIs," conclusion, <https://learn.microsoft.com/graph/tutorial-assign-azureadroles> (accessed Oct 30, 2026).
+[^pa05-cmdlet]: Microsoft Learn, "Update-MgPolicyRoleManagementPolicyRule" (Microsoft Graph PowerShell v1.0), <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.signins/update-mgpolicyrolemanagementpolicyrule?view=graph-powershell-1.0> (accessed Oct 30, 2026).
+[^pa05-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
+[^pa05-availability]: Microsoft Learn, "Microsoft Entra feature availability," other Microsoft Entra products, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
+[^pa05-sample-src]: Microsoft, microsoftgraph/microsoft-graph-docs-contrib, `api-reference/v1.0/api/privilegedaccessgroup-post-eligibilityschedulerequests.md`, `api-reference/v1.0/api/privilegedaccessgroup-post-assignmentschedulerequests.md` and `concepts/how-to-pim-update-rules.md` at commit `a69303123e9701eecbf56568d152ece936a97f1e` (October 30, 2026; the pages last changed October 24, 2025 and August 29, 2025), documentation CC BY 4.0 and code MIT, <https://github.com/microsoftgraph/microsoft-graph-docs-contrib/tree/a69303123e9701eecbf56568d152ece936a97f1e> (accessed Oct 30, 2026); pinned copy in `examples/third_party/graph-pim-for-groups-pages`.
