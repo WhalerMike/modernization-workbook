@@ -1,0 +1,78 @@
+{
+  "_comment": "Chapter 06 fixture: the reviewed desired state for PIM for Azure resources in the fictional contoso.example estate. Changes to this file are the change to the tenant: review it like code. Every ID is invented. Settings follow Book 04, Appendix B by tier (Design guidance); activeAssignmentMaxDuration is a placeholder for the shortest period a documented exception needs.",
+  "cloud": "gcc",
+  "scopes": [
+    "/providers/Microsoft.Management/managementGroups/contoso-root",
+    "/subscriptions/11111111-1111-4111-8111-111111111111",
+    "/subscriptions/22222222-2222-4222-8222-222222222222",
+    "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-payroll"
+  ],
+  "governedRoles": [
+    "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+    "b24988ac-6180-42a0-ab88-20f7382dd24c",
+    "18d7d88d-d35e-4fb5-a5c3-7773c20a72d9"
+  ],
+  "controlPlaneSubscriptionIds": [
+    "22222222-2222-4222-8222-222222222222"
+  ],
+  "authenticationContextPolicyConfirmed": true,
+  "settings": {
+    "T0": {
+      "maxActivation": "PT4H",
+      "eligibilityMaxDuration": "P90D",
+      "activeAssignmentMaxDuration": "P15D",
+      "approval": true,
+      "approverGroupId": "e5000000-0000-4000-8000-000000000000",
+      "approverGroupName": "PIM-Approvers-T0",
+      "endUserEnabledRules": ["Justification", "Ticketing"],
+      "authenticationContext": "c1"
+    },
+    "T1": {
+      "maxActivation": "PT8H",
+      "eligibilityMaxDuration": "P180D",
+      "activeAssignmentMaxDuration": "P15D",
+      "approval": true,
+      "approverGroupId": "e5000000-0000-4000-8000-000000000001",
+      "approverGroupName": "PIM-Approvers-T1",
+      "endUserEnabledRules": ["Justification", "Ticketing"],
+      "authenticationContext": "c1"
+    }
+  },
+  "convertStanding": true,
+  "eligible": [
+    {
+      "scope": "/subscriptions/11111111-1111-4111-8111-111111111111",
+      "roleDefinitionId": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+      "principalId": "b2000000-0000-4000-8000-000000000002",
+      "principalType": "Group",
+      "name": "PRV-T1-Owner-Workload",
+      "justification": "Workload owners activate Owner through PRV-T1-Owner-Workload (CHG-1042)"
+    },
+    {
+      "scope": "/subscriptions/11111111-1111-4111-8111-111111111111",
+      "roleDefinitionId": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+      "principalId": "a1000000-0000-4000-8000-000000000004",
+      "principalType": "User",
+      "name": "dana@contoso.example",
+      "justification": "Existing eligibility, kept (CHG-1042)"
+    },
+    {
+      "scope": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-payroll",
+      "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c",
+      "principalId": "b2000000-0000-4000-8000-000000000003",
+      "principalType": "Group",
+      "name": "PRV-T1-Contributor-Payroll",
+      "justification": "Payroll operators activate Contributor on rg-payroll (CHG-1043)"
+    }
+  ],
+  "standingExceptions": [
+    {
+      "scope": "/subscriptions/22222222-2222-4222-8222-222222222222",
+      "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c",
+      "principalId": "c3000000-0000-4000-8000-000000000002",
+      "name": "sp-log-export",
+      "reason": "Log export pipeline; a workload identity can't activate. Narrower role tracked in CHG-1050",
+      "owner": "identity-engineering@contoso.example"
+    }
+  ]
+}

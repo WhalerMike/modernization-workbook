@@ -416,6 +416,8 @@ The approval gate controls *use* of privilege; access reviews control *possessio
 | If reviewers don't respond | **Remove access** |
 | Justification | Required for approvals |
 
+One exception to "Remove access": a review whose scope covers the emergency access accounts' permanent Global Administrator assignment uses **No change** when reviewers don't respond, and each unreviewed item is followed up as a finding. Removing access on silence there could remove the accounts kept for the day everything else fails ([Step 0](#step-0-establish-emergency-access-accounts-first)). Every other privileged review removes access. The developer workbook's [Chapter 07](../../project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md) holds the rule as code.
+
 Reviewers are never the assignees themselves. Microsoft offers a self-review option, but when it's chosen, role-assignable groups are left out of the review entirely.[^c08-review] Because the program assigns every role to a group, a self-review would review nothing. The cadences are the same as in [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#delegation-principles) and [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#access-reviews): monthly for Tier 0, quarterly for every other privileged role. They are the program's design choice: AC-6(7) requires the review but leaves its frequency to the organization.[^c08-nist][^c08-fedramp-ac]
 
 ::: {.callout-note}
