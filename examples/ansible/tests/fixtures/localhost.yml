@@ -11,6 +11,7 @@ all:
       environment: nonproduction
       management_tier: 2
       config_owner: ansible
+      patch_owner: ansible
       arc_status: not_supported
     # A discovered-only record: in the CMDB, never contacted, reported as not_collected.
     legacy.contoso.example:
@@ -20,6 +21,7 @@ all:
       owner: ""
       management_tier: 3
       config_owner: none
+      patch_owner: none
   children:
     unmanaged: {hosts: {legacy.contoso.example: {}}}
     managed: {hosts: {localhost: {}}}

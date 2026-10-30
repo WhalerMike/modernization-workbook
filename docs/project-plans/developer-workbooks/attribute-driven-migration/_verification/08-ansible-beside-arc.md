@@ -1,0 +1,58 @@
+# Verification — Chapter 08, Ansible Beside Arc
+
+New material; it replaces no workbook page. Code: `examples/ansible` (extended): the `patch_owner` and `arc_wave` columns in `inventory/sample/cmdb_export.csv` (and a new record, `aws01`), owner groups, tags, waves and blocked candidates in `inventory/cmdb_inventory.py`, `playbooks/05_arc_wave_plan.yml` and `playbooks/06_arc_onboarding_role.yml` (new), the wave plan and owner checks in `02_arc_onboarding.yml`, `patch_owner` in `01_inventory_assessment.yml`'s CM-8 feed, `azure.azcollection` 4.2.0 in `requirements.yml`, `arc_cloud: AzureCloud` and commercial regions for the GCC sample estate, and the tests (`tests/test_microsoft_role.py` and `tests/fixtures/microsoft_role_check.yml` new). Pinned sample: `examples/third_party/azure-arc-role` (new), the `roles/azure_arc` folder and `LICENSE` of ansible-collections/azure at commit `afa62c3bcf3e283645336039e13c8e3019b8fcdd` (tag `v4.2.0`, October 30, 2026; GPL-3.0-or-later). Every file's git blob hash matched the upstream tree at that commit before `snapshot.json` was written, and the role files of `azure.azcollection` 4.2.0 installed from Ansible Galaxy matched the pinned SHA-256 values. One source-watch feed was added: `azure-arc-role-commits`.
+
+Test results on October 30, 2026. On Ubuntu 24.04 under WSL, as root, ansible-core 2.21.5, ansible-lint 26.10.1, yamllint 1.38.0, pytest 9.2.0, with the collections in `requirements.yml` installed: `bash tests/run_all.sh` passed yamllint `--strict`, ansible-lint `--strict` with the production profile (0 failures, 0 warnings), the syntax check of all six playbooks, and 90 tests. On Windows 11 with Python and PyYAML: 74 passed, 16 skipped (the local runs). `scripts/tests/test_third_party_snapshots.py`: 2 passed, covering all four snapshots. Every outbound request in the local runs went to a dead local proxy (`http://127.0.0.1:9`); nothing connected to Azure or to a server other than the control node, and no agent was installed.
+
+Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP tools: Connect machines to Azure Arc at scale with Ansible; azcmagent connect; azcmagent disconnect; Connected Machine agent network requirements; Connected Machine agent prerequisites (required permissions); Identity and authorization (Arc-enabled servers); Azure built-in roles for Management and governance; Plan and deploy Azure Arc-enabled servers; Planning identity for Azure Government applications; Use tags to organize your Azure resources; About dynamic scoping; Manage a dynamic scope; Azure Policy built-in definitions for Azure Arc-enabled servers; Uninstall the Azure Connected Machine agent; Get Started: Configure Ansible on an Azure VM; Tutorial: Configure dynamic inventories of your Azure resources using Ansible.
+
+Non-Learn sources, used only where Learn has nothing: the role's code on GitHub (what the role does; Learn's page describes its variables, not its tasks), and the Ansible documentation for `serial` and `max_fail_percentage`. Arc Jumpstart has Ansible onboarding scenarios; they weren't used, because Learn documents the role.
+
+## Claims log
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Microsoft documents Arc onboarding with Ansible through the `azure.azcollection` `azure_arc` role; installs and registers; idempotent, skips connected machines; doesn't discover machines | What Learn gives you; Verified facts | verified | Learn, onboard with Ansible |
+| 2 | Onboarding role at subscription or RG scope; `Microsoft.HybridCompute` and `Microsoft.GuestConfiguration` registered | What Learn gives you; Lab 2; Verified facts | verified | Learn, onboard with Ansible |
+| 3 | Role variables and `azure_arc_cloud` default `AzureCloud`; Learn's table gives default tags `{ archost: "true" }` | What Learn gives you; The pinned copy | verified; the default tag **differs from the code** (row 18) | Learn, onboard with Ansible |
+| 4 | `msi` recommended for production; `cli` for development; Automation Platform with managed identity or service principal (`auth_source: env`) | What Learn gives you; Verified facts | verified | Learn, onboard with Ansible |
+| 5 | Automation Platform: constructed inventories, including from a CMDB; schedule the job nightly | What Learn gives you | verified | Learn, onboard with Ansible |
+| 6 | Learn's `requirements.yml` sample names the collection and Galaxy, with no version | What it leaves to you | verified | Learn, onboard with Ansible |
+| 7 | Pilot a representative, non-critical set for at least 30 days, with a rollback plan | What Learn gives you; What it leaves to you; Checklist | verified | Learn, plan and deploy |
+| 8 | Office 365 GCC uses Microsoft Entra Public; an Azure Government subscription can't be associated with a directory there; GCC High and DoD use Microsoft Entra Government | Where Ansible sits; Verified facts | verified | Learn, planning identity for Azure Government |
+| 9 | `--cloud` values `AzureCloud`, `AzureUSGovernment`, `AzureChinaCloud`; default `AzureCloud` when not connected | Where Ansible sits; Verified facts | verified | Learn, azcmagent connect |
+| 10 | Commercial and Azure Government endpoint lists | Where Ansible sits; Verified facts | verified | Learn, network requirements |
+| 11 | `--tags` comma-delimited `Name=Value`; config file recommended for a secret; access tokens short-lived; `--enable-automatic-upgrade` public preview | The inventory; What it leaves to you; Verified facts | verified | Learn, azcmagent connect |
+| 12 | 50 tags per resource; values up to 256 characters | The inventory; Verified facts | verified | Learn, use tags |
+| 13 | Onboarding role can read and create Arc servers, not delete; Resource Administrator can delete | Lab 2; Verified facts | verified | Learn, identity and authorization; built-in roles |
+| 14 | Onboarding role and extensions: the security page says it can't manage extensions; the built-in roles page lists `machines/addExtensions/action` | Lab 2; Verified facts | **conflict between Learn pages**; the chapter cites both and follows the stricter (it can add extensions; remove the grant when the wave closes) | Learn, identity and authorization; built-in roles |
+| 15 | Update Manager dynamic scopes group by tags among other criteria, evaluated at run time; no patch orchestration prerequisite on Arc servers | Where Ansible sits; Verified facts | verified | Learn, about dynamic scoping; manage a dynamic scope |
+| 16 | Built-in periodic assessment policy for Arc servers can be scoped by tag | Where Ansible sits | verified | Learn, policy reference for Arc-enabled servers |
+| 17 | Back-out order: extensions, `azcmagent disconnect` with delete permission, uninstall (`apt purge` / `yum remove`) | Lab 2 | verified | Learn, uninstall the agent; azcmagent disconnect |
+| 18 | The role's default tag is `ArcSQLServerExtensionDeployment: Disabled`; passing tags replaces it | The pinned copy; What it leaves to you | verified by reading the pinned code; pinned in `test_microsoft_role.py`; **differs from Learn's table** (recorded in research-gaps.md row 11) | pinned role |
+| 19 | The role sends a signal with subscription, RG, tenant and region to `gbl.his.arc.azure.com` unless `azure_arc_log_enabled` is false; Learn's page doesn't mention it | The pinned copy; What it leaves to you | verified by reading; pinned in tests | pinned role |
+| 20 | The role requests its token for `https://management.azure.com/.default` | What it leaves to you | verified by reading; pinned in tests. Whether it then works for Azure Government is open (research-gaps.md row 10) | pinned role |
+| 21 | The role passes the access token on the `azcmagent connect` command line, with `no_log` | What it leaves to you | verified by reading; pinned in tests | pinned role |
+| 22 | The role can't run in check mode on a server without the agent: version check skipped with `rc` 0, installed fact true, status read fails | What it leaves to you; Lab 1 step 3 | verified by running (WSL, root, no agent, dead proxy); pinned in `test_microsoft_role.py` | local run |
+| 23 | Role files in Galaxy 4.2.0 equal the GitHub tag's | The pinned copy | verified by hashing the installed files | local run |
+| 24 | The collection's Galaxy manifest says GPL-2.0-or-later; the repository LICENSE and the role's meta say GPL-3.0 | The pinned copy (`SNAPSHOT.md`) | verified (installed `MANIFEST.json`; pinned files) | local run; pinned role |
+| 25 | `get_url` requested the installer URL in `02`'s dry run | What changed in the azcmagent playbook | verified by running with a dead proxy (connection refused in check mode); fixed by gating the download on `confirm_change`; pinned in `test_local_runs.py` | local run |
+| 26 | `serial` and `max_fail_percentage` semantics | Onboarding with Microsoft's role | Ansible documentation; Learn has no page on them | Ansible docs |
+| 27 | Learn's Ansible setup installs `azure.azcollection` and its Python requirements with `pip install -r` | Lab 2 | verified | Learn, configure Ansible on an Azure VM |
+| 28 | One owning tool per setting; `config_owner`, `patch_owner` (rule 5), `ConfigOwner`, `PatchOwner`; Update Manager assesses only where Ansible patches; wave plan with waves 0 and 1 non-production; `rg-arc-<team>-<env>`; decide `ArcSQLServerExtensionDeployment` before connect | Where Ansible sits; The code; Dangers | workbook cross-reference | Ansible guide; Arc track guide; Book 05, Chapter 09 |
+| 29 | VK-ARC-07 compares owner values without case or punctuation; VK-ARC-01 compares tags with the CMDB | Where Ansible sits; The inventory; Lab 2 | workbook cross-reference | `examples/validation-kit` (`Checks/ARC.ps1`); Arc track guide, Gate 3 |
+| 30 | Chapter 07's enforcing definitions filter on `ConfigOwner` | Where Ansible sits | workbook cross-reference | Chapter 07 (MC-POL-08) |
+| 31 | Waves 0 and 1 refuse production; signal off by default; scope Update Manager on `UpdateManager` only | The code; Dangers | restated-as-design (labeled) | — |
+| 32 | Lab 1 steps and outputs (four candidates; `ok=8 failed=1 skipped=19`, exit 2; `Wave 0 is ready: 1 to connect, 0 blocked`; the tag string; the `Would connect` line; the two broken exports and the blocked `app02`; 90 tests; 74 passed, 16 skipped on Windows) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
+
+## Carry-forward ledger
+
+| Source | Went to | Or why not carried |
+|---|---|---|
+| `research-gaps.md` row 5 (`patch_owner` missing from the sample export) | The `patch_owner` column; the inventory; the tests; the chapter's first code section | Resolved by this chapter's pull request |
+| Ansible guide, rule 5 (patching has one owner, mirrored to `PatchOwner`) | The inventory's tag mapping; Where Ansible sits | — |
+| Arc track guide, tag taxonomy (`ConfigOwner`, `PatchOwner`), wave plan, Step 3.3 rollback | The inventory; the wave plan; Lab 2 | The guide's `ArcOnboardedDate` tag isn't written: the guide says the onboarding run writes it, and the result file records the run time instead; a follow-up can add it |
+| `examples/validation-kit` VK-ARC-01 and VK-ARC-07 | Lab 2 step 6; Dangers | The checks are unchanged; this chapter adds the onboarding half |
+| Chapter 07, owner tag filter (MC-POL-08) | Where Ansible sits | — |
+| The existing `02_arc_onboarding.yml` | Kept for Azure Government and as the spelled-out version; now imports the wave plan | Not replaced: Microsoft's role requests a commercial token |
+| Index outline row 08 ("read `config_owner` and `patch_owner` from the CMDB, and onboard servers to Arc in waves") | The whole chapter | — |

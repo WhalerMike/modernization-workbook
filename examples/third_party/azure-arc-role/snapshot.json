@@ -1,0 +1,82 @@
+{
+  "_comment": "A pinned, unmodified copy of Microsoft's Azure Arc onboarding role from the azure.azcollection Ansible collection. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "azure.azcollection azure_arc role (Azure Arc onboarding with Ansible)",
+  "upstream_repo": "https://github.com/ansible-collections/azure",
+  "upstream_path": "roles/azure_arc",
+  "commit": "afa62c3bcf3e283645336039e13c8e3019b8fcdd",
+  "commit_date": "2026-10-30",
+  "release": "v4.2.0 (tag v4.2.0 points at this commit; azure.azcollection 4.2.0 on Ansible Galaxy holds byte-identical role files)",
+  "files_last_changed": "2026-08-13 (commit 7ecaba6c36c49d3f86f711bad767b032bd1b56b0, which changed tasks/main.yml; the signal tasks came on 2026-07-13 in dba5f53e2dbda6f7619501cf25a772bd0e9142c7)",
+  "retrieved": "2026-10-30",
+  "license": "GNU General Public License v3.0 or later (LICENSE, copied from the repository root; the role's meta/main.yml says GPL-3.0-or-later). The collection's Galaxy MANIFEST.json says GPL-2.0-or-later; the repository's LICENSE file is GPLv3.",
+  "documented_at": "https://learn.microsoft.com/azure/azure-arc/servers/onboard-ansible-playbooks",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "roles/azure_arc/*": "roles/azure_arc/<same path>"
+  },
+  "not_copied": [
+    "Everything else in ansible-collections/azure: the collection's modules (azure_rm_accesstoken_info and azure_rm_resourcegroup_info, which the role calls, are installed with the collection from requirements.yml), plugins, tests, CHANGELOG.md, galaxy.yml, requirements.txt and CI files."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 35148,
+      "sha256": "8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b"
+    },
+    "roles/azure_arc/defaults/main.yml": {
+      "bytes": 1563,
+      "sha256": "7b7d8bbd339570a1b4cf7d229b3fd2bc924daa8a4221ab437fb83a2a10c4880b"
+    },
+    "roles/azure_arc/meta/argument_specs.yml": {
+      "bytes": 1831,
+      "sha256": "d03a4a7ced5b0c64bea625719399fec841f3b64b7a0a61b42d14ab6b0a4a7d16"
+    },
+    "roles/azure_arc/meta/main.yml": {
+      "bytes": 1052,
+      "sha256": "d3024ec03e3f51f746b2675b379f819730f8d0c9280619a6a7a18fbfee24b722"
+    },
+    "roles/azure_arc/README.md": {
+      "bytes": 2146,
+      "sha256": "58f12e9336530cbfc2b8fdd7394dafbb0429a2370985a0258c64b61af9da0de7"
+    },
+    "roles/azure_arc/tasks/linux_connect.yml": {
+      "bytes": 846,
+      "sha256": "30a45cb6c0f0d883472ff1dda632ed628c59e3c713b36f28b65e78428ad11d71"
+    },
+    "roles/azure_arc/tasks/linux_install.yml": {
+      "bytes": 3879,
+      "sha256": "82b18dcd6f4af56f2b777ac9adab17cad38b05fd8d18571eb54f2296a7ce4297"
+    },
+    "roles/azure_arc/tasks/linux_proxy.yml": {
+      "bytes": 267,
+      "sha256": "2f10199f6923420a65b4fc16a81fe5e119231e0c8cbb40804da9aee87a3bc3b6"
+    },
+    "roles/azure_arc/tasks/linux_show.yml": {
+      "bytes": 332,
+      "sha256": "4e10a44812af9850c9ba1965972130e1c769370194713f0744f8ea0febd639e3"
+    },
+    "roles/azure_arc/tasks/log_signal.yml": {
+      "bytes": 2436,
+      "sha256": "bcc96cdf5a14012e2b81bd0ea36e9bcc4f2a2f8604e892c89df55a7e96b56934"
+    },
+    "roles/azure_arc/tasks/main.yml": {
+      "bytes": 6509,
+      "sha256": "6d647a259b5ffd8ba676ff723b46510e2a748972e1f5fe06de5908d0ce35e371"
+    },
+    "roles/azure_arc/tasks/windows_connect.yml": {
+      "bytes": 781,
+      "sha256": "2ced1714617dfd620d4e709705c70656a5ce39bef7e600baab85a46a60c159d0"
+    },
+    "roles/azure_arc/tasks/windows_install.yml": {
+      "bytes": 2536,
+      "sha256": "35271b50b1f22dcd5fb4638079abbf16dc9f2af9712096318e593752f4bf7fbc"
+    },
+    "roles/azure_arc/tasks/windows_proxy.yml": {
+      "bytes": 278,
+      "sha256": "6fa00c14ed8f35165c99b78668e62daea0c5fd21af7d59c5fcc15a86c6284b67"
+    },
+    "roles/azure_arc/tasks/windows_show.yml": {
+      "bytes": 380,
+      "sha256": "e2f3141be3cd03b9e32b98b77685eda96e52b9d564551c101d135dc2bad8b3be"
+    }
+  }
+}

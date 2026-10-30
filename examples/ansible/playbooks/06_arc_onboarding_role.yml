@@ -1,0 +1,115 @@
+---
+# Azure Arc onboarding in waves with Microsoft's own role, azure.azcollection.azure_arc.
+#
+# Microsoft's role installs the Connected Machine agent, connects the machine, and skips one
+# that's already connected. This playbook doesn't change what the role does. It adds what the
+# role leaves to you:
+#   1. The wave plan first (05_arc_wave_plan.yml): only the servers the CMDB plans for this
+#      wave and the inventory says are ready, checked and written down before anything runs.
+#   2. A dry run that works. The role can't run in check mode on a server without the agent
+#      (its install check is skipped, it decides the agent is installed, and its status read
+#      fails), so without -e confirm_change=true the role isn't called at all: each server
+#      reports what would be sent, and nothing is installed or connected.
+#   3. One canary server, then 5, then a quarter of the rest, stopping at the first failure.
+#   4. The CMDB's tags, ConfigOwner and PatchOwner included, with the role's own default tag
+#      kept, and the role's signal to Microsoft off unless the program turns it on.
+#   5. Commercial Azure only: the role asks for its token for management.azure.com, the
+#      commercial Resource Manager. For Azure Government use 02_arc_onboarding.yml.
+#
+#   ansible-playbook playbooks/06_arc_onboarding_role.yml -e onboarding_wave=0
+#   ansible-playbook playbooks/06_arc_onboarding_role.yml -e onboarding_wave=0 -e confirm_change=true
+#
+# Authentication is the role's: arc_auth_source msi (the control node's managed identity,
+# which Learn recommends for production), env (a service principal injected by Ansible
+# Automation Platform) or cli. The identity needs only the Azure Connected Machine Onboarding
+# role on the wave's resource groups. No secret is read by this playbook.
+
+- name: Plan the wave
+  ansible.builtin.import_playbook: 05_arc_wave_plan.yml
+
+- name: Onboard the wave with Microsoft's azure_arc role
+  hosts: "arc_onboarding_candidates:&arc_wave_{{ onboarding_wave | default('none') }}"
+  gather_facts: false
+  serial: [1, 5, "25%"]
+  max_fail_percentage: 0
+  vars:
+    confirm_change: false
+    # The CMDB's tags without empty values, and the role's own default tag kept.
+    arc_role_tags: >-
+      {{ arc_tags | default({}) | dict2items | selectattr('value') | items2dict
+         | combine({'ArcSQLServerExtensionDeployment': arc_sql_extension_deployment | default('Disabled')}) }}
+  check_mode: "{{ not (confirm_change | bool) }}"
+  pre_tasks:
+    - name: Refuse a server the plan wouldn't onboard
+      ansible.builtin.assert:
+        that:
+          - config_owner | default('') not in ['', 'none']
+          - patch_owner | default('') not in ['', 'none']
+          - arc_resource_group | default('') | length > 0
+          - arc_location | default('') | length > 0
+          - arc_wave | default(none) is not none
+          - (arc_wave | int) == (onboarding_wave | int)
+        fail_msg: >-
+          {{ inventory_hostname }} isn't ready for wave {{ onboarding_wave }}: its CMDB record needs both
+          owners, a resource group, a region and this wave.
+        quiet: true
+
+    - name: Refuse a cloud the role doesn't handle
+      ansible.builtin.assert:
+        that: arc_cloud == 'AzureCloud'
+        fail_msg: >-
+          Microsoft's azure_arc role requests its token for management.azure.com, commercial Azure's
+          Resource Manager. For {{ arc_cloud }} use 02_arc_onboarding.yml.
+        quiet: true
+
+  tasks:
+    - name: Report what the role would do (dry run)
+      ansible.builtin.debug:
+        msg: >-
+          Would connect {{ inventory_hostname }} to {{ arc_cloud }}, resource group {{ arc_resource_group }},
+          region {{ arc_location }}, with tags {{ arc_role_tags | to_json }}, authenticating with
+          {{ arc_auth_source | default('msi') }}. Run again with -e confirm_change=true to connect.
+      when: not (confirm_change | bool)
+
+    - name: Connect with Microsoft's role
+      ansible.builtin.include_role:
+        name: azure.azcollection.azure_arc
+      vars:
+        azure_arc_resource_group: "{{ arc_resource_group }}"
+        azure_arc_location: "{{ arc_location }}"
+        azure_arc_tenant_id: "{{ arc_tenant_id }}"
+        azure_arc_subscription_id: "{{ arc_subscription_id }}"
+        azure_arc_cloud: "{{ arc_cloud }}"
+        azure_arc_tags: "{{ arc_role_tags }}"
+        azure_arc_log_enabled: "{{ arc_role_log_enabled | default(false) | bool }}"
+        auth_source: "{{ arc_auth_source | default('msi') }}"
+      when: confirm_change | bool
+
+- name: Write the wave's result on the control node
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Collect each server's Arc resource ID
+      when: confirm_change | default(false) | bool
+      ansible.builtin.set_fact:
+        result_rows: >-
+          {{ result_rows | default([]) + [{
+               'host': record,
+               'cmdb_ci': hostvars[record].cmdb_ci | default(''),
+               'resource_id': hostvars[record].azure_arc_resource_id | default(''),
+               'state': 'connected' if hostvars[record].azure_arc_resource_id | default('') else 'not_connected'
+             }] }}
+      loop: >-
+        {{ groups['arc_onboarding_candidates'] | default([])
+           | intersect(groups['arc_wave_' ~ (onboarding_wave | int)] | default([])) | sort }}
+      loop_control:
+        loop_var: record
+
+    - name: Write the result as JSON
+      when: confirm_change | default(false) | bool
+      ansible.builtin.copy:
+        content: "{{ result_rows | default([]) | to_nice_json }}\n"
+        dest: "{{ report_dir }}/arc-wave-{{ onboarding_wave | int }}-result-{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}.json"
+        mode: "0640"
+      check_mode: false

@@ -400,6 +400,17 @@
         "DW"
       ],
       "source": "Commits to the Learn source pages that hold the five pause and resume samples, which examples/third_party/dynamic-membership-samples pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 04). A new commit means: review it, rerun examples/dynamic-rules/tests/LearnSamples.Tests.ps1 on the new pages, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "azure-arc-role-commits",
+      "name": "Microsoft's Azure Arc onboarding role for Ansible (ansible-collections/azure commits)",
+      "type": "github_commits",
+      "repo": "ansible-collections/azure",
+      "path": "roles/azure_arc",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the azure.azcollection azure_arc role, which examples/third_party/azure-arc-role pins at the v4.2.0 release and examples/ansible/requirements.yml installs (developer workbook Building the Attribute-Driven Migration, Chapter 08). A new commit means: review it, rerun examples/ansible/tests/test_microsoft_role.py against the new role, and move the snapshot and the pin only in a reviewed pull request."
     }
   ]
 }
