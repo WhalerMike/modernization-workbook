@@ -40,6 +40,7 @@ BeforeDiscovery {
         @{ Id = 'VK-NPI-08'; FailStatus = 'Fail'; FailCount = 1 }
         @{ Id = 'VK-NPI-09'; FailStatus = 'Fail'; FailCount = 3 }
         @{ Id = 'VK-SYNC-01'; FailStatus = 'Fail'; FailCount = 3 }
+        @{ Id = 'VK-SYNC-02'; FailStatus = 'Fail'; FailCount = 2 }
         @{ Id = 'VK-CA-01'; FailStatus = 'Fail'; FailCount = 4 }
         @{ Id = 'VK-PIV-01'; FailStatus = 'Fail'; FailCount = 3 }
     )
@@ -185,12 +186,51 @@ Describe 'Optional preview check VK-NPI-09' {
     }
 }
 
+Describe 'Optional check VK-SYNC-02 (Developer Workbook, Chapter 03)' {
+    It 'is not selected by default, because its live read needs Global Administrator' {
+        @((Get-VkCheckCatalog).Id) | Should -Not -Contain 'VK-SYNC-02'
+        $c = Get-VkCheckCatalog -CheckId 'VK-SYNC-02'
+        $c.Optional | Should -BeTrue
+        $c.DelegatedRole | Should -Match 'Global Administrator'
+    }
+    It 'reports soft match on UPN as Info, not as a finding' {
+        $r = Invoke-VkCheck -CheckId 'VK-SYNC-02' -Context $FailCtx
+        @($r.Details | Where-Object Severity -eq 'Info').Count | Should -Be 1
+        @($r.Details | Where-Object Severity -eq 'Finding').Issue | Should -Contain 'Soft match is not blocked'
+    }
+    It 'downgrades to Warn while an approved matching window is open, and fails once it closes' {
+        $fx = Join-Path $global:VkTestFixtureRoot 'fail'
+        $open = Get-VkRunContext -FixturePath $fx -AsOf '2026-10-29T00:00:00Z' -Option @{ MatchWindowOpenUntil = '2026-10-31' }
+        $r = Invoke-VkCheck -CheckId 'VK-SYNC-02' -Context $open
+        $r.Status | Should -Be 'Warn'
+        $r.Message | Should -Match '2026-10-31'
+        $closed = Get-VkRunContext -FixturePath $fx -AsOf '2026-11-01T00:00:00Z' -Option @{ MatchWindowOpenUntil = '2026-10-31' }
+        (Invoke-VkCheck -CheckId 'VK-SYNC-02' -Context $closed).Status | Should -Be 'Fail'
+    }
+    It 'prefers an administrator''s export over a live read' {
+        $in = Join-Path $TestDrive 'sync-in'
+        $null = New-Item -ItemType Directory -Path $in
+        [System.IO.File]::WriteAllText((Join-Path $in 'onprem-sync-export.json'),
+            '{"value":[{"id":"x","features":{"blockSoftMatchEnabled":true,"blockCloudObjectTakeoverThroughHardMatchEnabled":false}}]}')
+        $ctx = Get-VkRunContext -FixturePath (Join-Path $global:VkTestFixtureRoot 'pass') -InputPath $in -AsOf '2026-10-29T00:00:00Z'
+        $r = Invoke-VkCheck -CheckId 'VK-SYNC-02' -Context $ctx
+        $r.Count | Should -Be 1
+        @($r.Evidence.Queries.Source) | Should -Contain 'Input'
+    }
+    It 'is NotApplicable when the tenant has no synchronization object' {
+        $empty = Join-Path $TestDrive 'nosync'
+        $null = New-Item -ItemType Directory -Path $empty
+        [System.IO.File]::WriteAllText((Join-Path $empty 'onPremisesSynchronization.json'), '[]')
+        (Invoke-VkCheck -CheckId 'VK-SYNC-02' -Context (Get-VkRunContext -FixturePath $empty -AsOf '2026-10-29T00:00:00Z')).Status | Should -Be 'NotApplicable'
+    }
+}
+
 Describe 'The catalog' {
     It 'implements every check ID in the guides list, one function each, named after the ID' {
         $ids = @('VK-HR-01', 'VK-HR-02', 'VK-HR-03', 'VK-HR-04', 'VK-HR-05', 'VK-HR-06', 'VK-DG-01', 'VK-DG-02', 'VK-DG-03', 'VK-DG-04', 'VK-DG-05', 'VK-DG-06', 'VK-DG-07',
             'VK-INT-01', 'VK-INT-02', 'VK-INT-03', 'VK-INT-04', 'VK-INT-05', 'VK-INT-06', 'VK-INT-07', 'VK-ARC-01', 'VK-ARC-02', 'VK-ARC-03', 'VK-ARC-04', 'VK-ARC-05', 'VK-ARC-06', 'VK-ARC-07',
             'VK-NPI-01', 'VK-NPI-02', 'VK-NPI-03', 'VK-NPI-04', 'VK-NPI-05', 'VK-NPI-06', 'VK-NPI-07', 'VK-NPI-08', 'VK-NPI-09',
-            'VK-SYNC-01', 'VK-CA-01', 'VK-PIV-01')
+            'VK-SYNC-01', 'VK-SYNC-02', 'VK-CA-01', 'VK-PIV-01')
         $cat = @(Get-VkCheckCatalog -IncludeOptional)
         @($cat.Id) | Should -Be $ids
         foreach ($c in $cat) {

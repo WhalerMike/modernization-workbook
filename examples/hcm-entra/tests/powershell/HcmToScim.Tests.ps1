@@ -48,6 +48,12 @@ Describe 'Cross-implementation parity with the Python client' {
             $report.records[$i].payload_sha256 | Should -Be $expected[$i].payload_sha256
         }
     }
+    It 'produces the same provenance manifest hash as the Python fixture' {
+        $r = Invoke-TestConvert
+        $expected = (Get-Content -LiteralPath (Join-Path $script:Fx 'expected_provenance_sha256.txt') -Raw).Trim()
+        $manifest = Get-HcmProvenance -Result $r -AsOf $script:AsOf -ExtractSha256 ('a' * 64) -MappingSha256 ('b' * 64)
+        Get-HcmSha256 $manifest | Should -Be $expected
+    }
     It 'canonicalizes like Python json.dumps(sort_keys, compact, ensure_ascii=False)' {
         ConvertTo-HcmCanonicalJson ([ordered]@{ b = 1; a = @($true, $null, "J`u{00E9}`n`"q`"") }) |
             Should -Be ('{"a":[true,null,"J' + [char]0xE9 + '\n\"q\""],"b":1}')
@@ -234,6 +240,9 @@ Describe 'Invoke-HcmToScim.ps1 wrapper' {
             $LASTEXITCODE | Should -Be 2
             Test-Path (Join-Path $out 'bulk-request-001.json') | Should -BeTrue
             Test-Path (Join-Path $out 'validation-report.json') | Should -BeTrue
+            $manifest = Get-Content -LiteralPath (Join-Path $out 'provenance.json') -Raw | ConvertFrom-Json
+            $manifest.extract_sha256 | Should -Be (Get-HcmFileSha256 (Join-Path $script:Fx 'hcm_extract_sample.csv'))
+            $manifest.quarantined.Count | Should -Be 9
             Test-Path (Join-Path $out 'apply-results.json') | Should -BeFalse
         } finally { Remove-Item -LiteralPath $out -Recurse -Force -ErrorAction SilentlyContinue }
     }

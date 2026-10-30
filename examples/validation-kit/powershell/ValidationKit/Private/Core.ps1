@@ -54,6 +54,10 @@ $script:VkDefaultOptions = [ordered]@{
     PivCardHoldersFile       = 'pilot-card-holders.csv'
     AdSlotExportFile         = 'ad-slot-export.csv'
     GpoScopeFile             = 'gpo-scope.csv'
+    # VK-SYNC-02: an export of GET /directory/onPremisesSynchronization made by a Global Administrator.
+    OnPremSyncExportFile     = 'onprem-sync-export.json'
+    # VK-SYNC-02: the last day (yyyy-mm-dd) of an approved matching window, when blocking may be off.
+    MatchWindowOpenUntil     = ''
     # VK-PIV-01: High (the program's production position) or Low.
     RequiredAffinity         = 'High'
     # The program attribute map (Book 03, Chapter 06): organization code, worker type, position category.

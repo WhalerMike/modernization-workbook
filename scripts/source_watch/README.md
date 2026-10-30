@@ -98,6 +98,26 @@ and says when it's overdue, and the Research page lists it in a Reviewed
 column. Run `python scripts/source_watch/review_dates.py` to see what's
 due now.
 
+**Gated pages awaiting review.** Some books are held behind a review
+gate: today, the Developer Workbook (`docs/books/b19-developer-workbook/`).
+Its citations are watched like any book's. In addition, each of its pages
+records the owner's review in its front matter (`review-status`,
+`reviewed-sha256`, `last-reviewed`). A page that isn't approved, or whose
+body has changed since it was approved, is listed in the issue **every
+week** until the owner reads it and approves it. Work that builds on a page,
+such as its narrated chapter tour, waits for the approval. After reading a
+page, record the approval in a reviewed pull request:
+
+```sh
+python scripts/source_watch/review_gate.py                 # pages awaiting review
+python scripts/source_watch/review_gate.py --approve docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
+```
+
+The hash covers the page body, not its front matter, and ignores trailing
+spaces and line endings, so renaming a page or fixing whitespace doesn't
+reopen a review. Add a folder to `GATED` in `review_gate.py` to gate another
+book.
+
 ## How to read an issue
 
 The title is **Source watch — week of YYYY-MM-DD** (the Monday) and the
