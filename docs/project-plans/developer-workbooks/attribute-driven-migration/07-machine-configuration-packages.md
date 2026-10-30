@@ -294,7 +294,7 @@ The GuestConfiguration module version, its command list and its behavior describ
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 04 — Dynamic Rules as Code](04-dynamic-rules-as-code.md) · [Book index](index.md)
+[← Previous: Chapter 06 — Moving Group Policy as Code](06-group-policy-as-code.md) · [Workbook index](index.md) · [Next: Chapter 08 — Ansible Beside Arc →](08-ansible-beside-arc.md)
 :::
 
 [^c07-overview]: Microsoft Learn, "What is Azure Machine Configuration?," <https://learn.microsoft.com/azure/governance/machine-configuration/overview/01-overview-concepts> (accessed Oct 30, 2026).

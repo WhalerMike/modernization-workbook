@@ -316,7 +316,7 @@ Two places where Learn's pages differ, recorded so a later edit doesn't loosen t
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 01 — The HR-to-Entra Middleware](01-the-hr-to-entra-middleware.md) · [Book index](index.md) · [Next: Chapter 03 — Writing a Validation Kit Check →](03-writing-a-validation-kit-check.md)
+[← Previous: Chapter 01 — The HR-to-Entra Middleware](01-the-hr-to-entra-middleware.md) · [Workbook index](index.md) · [Next: Chapter 03 — Writing a Validation Kit Check →](03-writing-a-validation-kit-check.md)
 :::
 
 [^c02-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).

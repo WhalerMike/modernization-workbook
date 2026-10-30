@@ -253,7 +253,7 @@ Two things Learn states differently on different pages:
 
 ::: {.callout-tip}
 ## Continue the book
-[Book index](index.md) · [Next: Chapter 03 — Writing a Validation Kit Check →](03-writing-a-validation-kit-check.md)
+[Workbook index](index.md) · [Next: Chapter 02 — Graph Clients for the Government Clouds →](02-graph-clients-for-government-clouds.md)
 :::
 
 [^c01-csv2scim]: Microsoft Learn, "API-driven inbound provisioning with PowerShell script," <https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-powershell> (accessed Oct 30, 2026).

@@ -277,7 +277,7 @@ Learn states several things differently on different pages, recorded here so a l
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 04 — Dynamic Rules as Code](04-dynamic-rules-as-code.md) · [Book index](index.md) · [Next: Chapter 07 — Machine Configuration Packages →](07-machine-configuration-packages.md)
+[← Previous: Chapter 04 — Dynamic Rules as Code](04-dynamic-rules-as-code.md) · [Workbook index](index.md) · [Next: Chapter 06 — Moving Group Policy as Code →](06-group-policy-as-code.md)
 :::
 
 [^c05-ext]: Microsoft Learn, "Lifecycle Workflows custom task extension," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-extensibility> (accessed Oct 30, 2026).
