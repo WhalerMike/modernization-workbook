@@ -53,6 +53,7 @@ Grant only what the checks you run need. A delegated run asks for the union of t
 | VK-INT-04 | Graph | `DeviceManagementConfiguration.Read.All`, `Group.Read.All` | Intune Read Only Operator or Global Reader | v1.0 (settings catalog: beta, with -IncludeBeta) | [1](https://learn.microsoft.com/graph/api/intune-deviceconfig-deviceconfiguration-list?view=graph-rest-1.0) [2](https://learn.microsoft.com/graph/api/group-list?view=graph-rest-1.0) |
 | VK-INT-05 | Graph | `DeviceManagementConfiguration.Read.All`, `Group.Read.All`, `GroupMember.ReadBasic.All`, `Device.Read.All` | Intune Read Only Operator or Global Reader | v1.0 | [1](https://learn.microsoft.com/graph/api/intune-deviceconfig-deviceconfiguration-list?view=graph-rest-1.0) [2](https://learn.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0) |
 | VK-INT-06 | Graph + Input | `DeviceManagementManagedDevices.Read.All` | Intune Read Only Operator or Global Reader | v1.0 | [1](https://learn.microsoft.com/graph/api/intune-devices-manageddevice-list?view=graph-rest-1.0) |
+| VK-INT-07 | Graph (beta) + Input | `DeviceManagementConfiguration.Read.All` | Intune Read Only Operator or Global Reader | beta, with -IncludeBeta | [1](https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-grouppolicymigrationreport-list?view=graph-rest-beta) [2](https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-unsupportedgrouppolicyextension-list?view=graph-rest-beta) |
 | VK-ARC-01 | ResourceGraph + Input | none | Reader on the subscriptions or management group | GA | [1](https://learn.microsoft.com/azure/azure-arc/servers/resource-graph-samples) |
 | VK-ARC-02 | ResourceGraph | none | Reader | GA | [1](https://learn.microsoft.com/azure/azure-arc/servers/resource-graph-samples) [2](https://learn.microsoft.com/azure/azure-arc/servers/agent-release-notes) |
 | VK-ARC-03 | ResourceGraph | none | Reader | GA | [1](https://learn.microsoft.com/azure/governance/policy/samples/resource-graph-samples) |
@@ -81,6 +82,7 @@ Notes on the table:
 - **Lifecycle Workflows.** For listing workflows, Learn names `LifecycleWorkflows-Workflow.ReadBasic.All` as the least privileged permission, but it doesn't say which properties that permission returns. The kit reads execution conditions and settings, so it asks for `LifecycleWorkflows-Workflow.Read.All`. Reading `employeeLeaveDateTime` needs `User-LifeCycleInfo.Read.All`. The user resource page says so; it wasn't re-read on October 29.
 - **VK-DG-03** works with delegated permissions only, because Learn lists no application permission for evaluateDynamicMembership. The portal's equivalent, the Validate rules tab, needs at least Groups Administrator. An app-only run therefore reports `VK-DG-03` as `Error`.
 - **VK-NPI-08.** Learn lists only `AgentIdentity.ReadWrite.All` (application) for the per-agent sponsors call, and the kit doesn't request it. It asks for sponsors through `$expand` on the list call, which needs `AgentIdentity.Read.All`. Where the tenant doesn't return sponsors that way, the row is a Warn saying the sponsor wasn't readable. That behavior hasn't been seen against a live tenant.
+- **VK-INT-07** reads Intune's Group Policy analytics reports (beta `groupPolicyMigrationReports`) instead of parsing GPO XML itself, and runs only with `-IncludeBeta`. Learn's List page, read on October 30, 2026, names `DeviceManagementConfiguration.Read.All`, delegated and application, as the least privileged permission, and lists the API for the global service, which GCC uses, and US Government L4 and L5. The unsupported extensions are a relationship read with one GET per report, and only for the GPOs it flags. The kit never calls `createMigrationReport` or the report's create, update and delete methods, all of which need ReadWrite. It doesn't read the per-setting `groupPolicySettingMappings`; use Group Policy analytics in the admin center for those.
 - **VK-CA-01.** Learn's List policies page, read on October 30, 2026, names `Policy.Read.All` as the least privileged permission, delegated and application, and lists Global Reader, Security Reader, Security Administrator, Conditional Access Administrator and Global Secure Access Administrator as the roles for a delegated read.
 - **VK-PIV-01.** Learn's certificateUserIds page, read on October 30, 2026, reads the binding with `GET /v1.0/users/{id}?$select=authorizationInfo` and the `ConsistencyLevel: eventual` header, which the kit sends. Its Entra PowerShell examples sign in with `User.Read.All`, so the kit asks for that. Two things are unconfirmed. The v1.0 user resource page doesn't list `authorizationInfo`; only the beta `authorizationInfo` type page describes it. And Learn's page for `Get-EntraUserCBAAuthorizationInfo` names Privileged Authentication Administrator (cloud-only users) and Hybrid Identity Administrator (synced users) as the least privileged roles for a delegated read, not Global Reader. Run it app-only, or confirm in a test tenant that Global Reader returns the property. The affinity of each value comes from its `X509:` prefix, per Learn's username binding table: `PN`, `RFC822`, `I`+`S` and `S` are low affinity; `SKI`, `SHA1-PUKEY` and `I`+`SR` are high.
 - **VK-NPI-09** is **optional and preview**. It reads Graph's beta `servicePrincipalSignInActivities` report, which Learn documents for the global service, which GCC uses, but not for US Government L4 or L5. It's off by default. It runs only with `-IncludePreview`, and it reports `NotApplicable` for `-Cloud gcchigh` or `dod`.
@@ -95,7 +97,7 @@ Notes on the table:
 # Inputs (exceptions.csv, hr-export.csv, rule-tests.json, shadow-pairs.csv, the last snapshot) come from D:\Inputs.
 .\Invoke-ValidationKit.ps1 -OutputPath D:\Validation -Track HR, DG -InputPath D:\Inputs
 
-# Intune track, app-only with a certificate, including settings catalog policies (beta).
+# Intune track, app-only with a certificate, including settings catalog policies and Group Policy analytics (beta).
 .\Invoke-ValidationKit.ps1 -OutputPath D:\Validation -Track INT, DG -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint> -IncludeBeta
 
 # Arc track: Reader on the subscriptions; name the baseline assignment; CMDB, break-glass and wave lists in D:\Inputs.
@@ -134,6 +136,7 @@ Some checks compare the tenant with the program's own records. Put the files in 
 | `ad-slot-export.csv` | `EmployeeId` and one column per coded slot (`extensionAttribute10` to `12`), exported from AD for a sample | VK-SYNC-01 |
 | `governed-groups.csv`, `emergency-access-groups.csv` | `GroupId`, `Name`, `Owner`; `GroupId`, `Name` | VK-CA-01 |
 | `pilot-card-holders.csv` | `UserPrincipalName` or `Id` | VK-PIV-01 |
+| `gpo-scope.csv` (optional) | `GroupPolicyObjectId` or `DisplayName` of every in-scope GPO | VK-INT-07 (a GPO not imported is then a finding, not silently missing) |
 
 ### What a run writes
 
@@ -161,7 +164,8 @@ The results name users, devices and service principals, so store them as the age
 | Attribute-Driven Migration, Stage 4 (dynamic groups), dynamic group dangers | VK-DG-01, VK-DG-02, VK-DG-03, VK-DG-04, VK-DG-05, VK-DG-06 |
 | Attribute-Driven Migration, Stage 5 (administrative units) | VK-DG-07 |
 | Attribute-Driven Migration, Lifecycle Workflows at scale | VK-HR-05, VK-HR-06 |
-| [Attribute-Driven Migration implementation guide](../../docs/books/guides/attribute-driven-migration-implementation.md), Gate 1 (schema and slots) | VK-HR-01, VK-HR-04 |
+| [Attribute-Driven Migration implementation guide](../../docs/books/guides/attribute-driven-migration-implementation.md), Gate 0 (the tree read: GPOs split by track) | VK-INT-07 (with -IncludeBeta), VK-NPI-06 |
+| Attribute-Driven Migration implementation guide, Gate 1 (schema and slots) | VK-HR-01, VK-HR-04 |
 | Attribute-Driven Migration implementation guide, Gate 2 (attributes proven) | VK-HR-01, VK-HR-02, VK-HR-03, VK-HR-04 |
 | Attribute-Driven Migration implementation guide, Gate 3 (sync; before and after) | VK-SYNC-01, VK-HR-02, VK-HR-03 |
 | Attribute-Driven Migration implementation guide, Gate 4 (group library and units) | VK-DG-01 to VK-DG-07 |
@@ -171,6 +175,7 @@ The results name users, devices and service principals, so store them as the age
 | Attribute-Driven Migration implementation guide, Gate 8 (each wave) | VK-HR-01 to VK-HR-06, VK-DG-04, VK-DG-05 |
 | Attribute-Driven Migration implementation guide, Gate 9 (drift) | VK-HR-01, VK-HR-03, VK-HR-04, VK-DG-05, VK-DG-06, VK-DG-07, and each track's standing checks |
 | [Intune track](../../docs/books/guides/intune-track-implementation.md), Step 0.4 (coverage matrix and tiers) | VK-INT-06 |
+| Intune track, Gate 3, Step 3.1 (analyse: every in-scope GPO imported into Group Policy analytics) | VK-INT-07 (with -IncludeBeta) |
 | Intune track, Step 1.5 (close every other write path) | VK-INT-01, VK-INT-03, VK-DG-05, VK-NPI-05 |
 | Intune track, Step 2.4 (one owning policy per setting) | VK-DG-01 to VK-DG-04, VK-DG-06, VK-INT-04, VK-INT-05 |
 | Intune track, Steps 3.2 to 3.6 (policy library, rings, residual cleanup) | VK-INT-01, VK-INT-04, VK-INT-05 |
@@ -194,7 +199,7 @@ The results name users, devices and service principals, so store them as the age
 ## How read-only is enforced
 
 - **No write cmdlets.** `tests/powershell/Safety.Tests.ps1` parses every script and module in the kit and fails the build on any command with a state-changing verb, including `Set-`, `New-`, `Remove-`, `Update-`, `Add-`, `Enable-`, `Disable-`, `Grant-`, `Revoke-`, `Reset-`, `Start-` (except `Start-Sleep`), `Stop-`, `Publish-` and `Send-`. It also fails on `Out-File`, `Export-Csv`, `Set-Content`, `Invoke-RestMethod`, `Invoke-WebRequest`, `Invoke-AzRestMethod`, `Invoke-Command`, `Invoke-Expression`, run-command cmdlets, any native program, file redirection, and any .NET file write outside the guarded writers.
-- **Graph GET only.** Every `Invoke-MgGraphRequest` must carry a literal `-Method GET`. There is one exception, and the test pins it to one place: a POST to the beta `evaluateDynamicMembership` action inside `Invoke-VkRuleValidation`, for VK-DG-03. That action evaluates a rule and changes nothing. A test asserts it's the only non-GET Graph call in the kit. Graph beta paths are limited to a declared list: rule evaluation, settings catalog policies and the service principal sign-in report.
+- **Graph GET only.** Every `Invoke-MgGraphRequest` must carry a literal `-Method GET`. There is one exception, and the test pins it to one place: a POST to the beta `evaluateDynamicMembership` action inside `Invoke-VkRuleValidation`, for VK-DG-03. That action evaluates a rule and changes nothing. A test asserts it's the only non-GET Graph call in the kit. Graph beta paths are limited to a declared list: rule evaluation, settings catalog policies, Group Policy analytics reports and the service principal sign-in report.
 - **The token stays home.** Graph calls go to the cloud's own Graph host. A `nextLink` that points anywhere else is refused.
 - **Azure and AD reads.** Azure is read through `Search-AzGraph` (Resource Graph) and `Get-AzRoleEligibilitySchedule`. AD is read through `Get-ADUser` and `Get-ADServiceAccount`.
 - **Writes only under `-OutputPath`.** Every file goes through three guarded writers that refuse a path outside the registered output root. The runner test checks that nothing lands elsewhere, including in the kit itself.

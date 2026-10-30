@@ -56,7 +56,7 @@ New guide, first pass of 2026-10-29. The guide is a step-by-step route over Book
 
 ## Validation kit IDs referenced
 
-VK-INT-01 to VK-INT-06; VK-DG-01 to VK-DG-06 (VK-DG-01 and VK-DG-02 only for the user groups of Step 2.3; VK-DG-07 not used, since administrative units aren't part of this track's steps); VK-NPI-05 (cross-track, for Graph grants that can write device objects). No new IDs were added.
+VK-INT-01 to VK-INT-06; VK-DG-01 to VK-DG-06 (VK-DG-01 and VK-DG-02 only for the user groups of Step 2.3; VK-DG-07 not used, since administrative units aren't part of this track's steps); VK-NPI-05 (cross-track, for Graph grants that can write device objects). No new IDs were added in the first pass. On 2026-10-30 VK-INT-07 was added to the kit and named in Step 3.1's Validate. It reads Group Policy analytics' beta `groupPolicyMigrationReports` (`DeviceManagementConfiguration.Read.All`; global service, US Government L4 and L5; [Learn](https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-grouppolicymigrationreport-list?view=graph-rest-beta), read 2026-10-30). Its permission and stage are in the kit README.
 
 ## Not verified
 

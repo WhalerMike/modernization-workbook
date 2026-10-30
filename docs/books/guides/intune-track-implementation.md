@@ -239,7 +239,7 @@ This gate is Book 05's GPO sunset, run at the working level of [Chapter 08's sev
 3. **Tag and dispose** of every setting with the four tags and four questions ([Chapter 07, Step 2](../b05-devices/07-the-gpo-sunset-program.md#step-2-classify-each-setting); [Appendix A](../b05-devices/appendix-a-gpo-to-intune-crosswalk.md)). User-configuration settings go to the HR track's user groups (Step 2.3); this gate carries the computer half.
 4. **Capture the effective-policy baseline** per tier with `gpresult` on a sample.
 
-**Validate.** Every in-scope GPO imported and every setting tagged with a disposition and an owner in the setting register ([testing at each gate](../b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate), Phase 1).
+**Validate.** Every in-scope GPO imported and every setting tagged with a disposition and an owner in the setting register ([testing at each gate](../b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate), Phase 1). **VK-INT-07** (*Graph beta*, with `-IncludeBeta`) reads the Group Policy analytics reports. It shows every GPO in `gpo-scope.csv` imported, and lists every GPO targeted in AD that isn't *complete*, with its unsupported extensions.
 
 ### Step 3.2: build the policy library (Phases 2 and 3)
 

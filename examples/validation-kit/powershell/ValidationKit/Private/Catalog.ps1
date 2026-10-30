@@ -28,6 +28,8 @@ $script:VkLearn = @{
     Autopilot   = 'https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-list?view=graph-rest-1.0'
     DevConfig   = 'https://learn.microsoft.com/graph/api/intune-deviceconfig-deviceconfiguration-list?view=graph-rest-1.0'
     Managed     = 'https://learn.microsoft.com/graph/api/intune-devices-manageddevice-list?view=graph-rest-1.0'
+    GpAnalytics = 'https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-grouppolicymigrationreport-list?view=graph-rest-beta'
+    GpUnsupport = 'https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-unsupportedgrouppolicyextension-list?view=graph-rest-beta'
     ArgArc      = 'https://learn.microsoft.com/azure/azure-arc/servers/resource-graph-samples'
     ArgPolicy   = 'https://learn.microsoft.com/azure/governance/policy/samples/resource-graph-samples'
     ArcAgent    = 'https://learn.microsoft.com/azure/azure-arc/servers/agent-release-notes'
@@ -99,6 +101,9 @@ $script:VkCatalog = @(
         Source = 'Graph'; GraphPermissions = @('DeviceManagementConfiguration.Read.All', 'Group.Read.All', 'GroupMember.ReadBasic.All', 'Device.Read.All'); DelegatedRole = 'Intune Read Only Operator or Global Reader'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.DevConfig, $VkLearn.Members) }
     @{ Id = 'VK-INT-06'; Track = 'INT'; Title = 'Platform inventory by OS, version and ownership, against the coverage matrix (out-of-support platforms flagged)'
         Source = 'Graph + Input'; GraphPermissions = @('DeviceManagementManagedDevices.Read.All'); DelegatedRole = 'Intune Read Only Operator or Global Reader'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.Managed) }
+    @{ Id = 'VK-INT-07'; Track = 'INT'; Title = 'Group Policy analytics: imported GPOs targeted in AD whose migration readiness is not complete, and in-scope GPOs never imported'
+        Source = 'Graph (beta) + Input'; GraphPermissions = @('DeviceManagementConfiguration.Read.All'); DelegatedRole = 'Intune Read Only Operator or Global Reader'; AzureRole = ''
+        Stage = 'beta, with -IncludeBeta'; Learn = @($VkLearn.GpAnalytics, $VkLearn.GpUnsupport) }
 
     # ---- Arc track (servers) ----
     @{ Id = 'VK-ARC-01'; Track = 'ARC'; Title = 'Arc-enabled servers missing required tags (the tag taxonomy as input)'

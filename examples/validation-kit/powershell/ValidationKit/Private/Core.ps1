@@ -53,6 +53,7 @@ $script:VkDefaultOptions = [ordered]@{
     EmergencyAccessGroupsFile = 'emergency-access-groups.csv'
     PivCardHoldersFile       = 'pilot-card-holders.csv'
     AdSlotExportFile         = 'ad-slot-export.csv'
+    GpoScopeFile             = 'gpo-scope.csv'
     # VK-PIV-01: High (the program's production position) or Low.
     RequiredAffinity         = 'High'
     # The program attribute map (Book 03, Chapter 06): organization code, worker type, position category.

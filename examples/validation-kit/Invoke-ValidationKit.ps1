@@ -50,7 +50,7 @@ param(
     # Already signed in (Connect-MgGraph and Connect-AzAccount run beforehand).
     [switch]$SkipConnect,
     [switch]$SkipAD,
-    # Also read settings catalog policies (beta) in VK-INT-04 and VK-INT-05.
+    # Also read settings catalog policies (beta) in VK-INT-04 and VK-INT-05, and run VK-INT-07 (Group Policy analytics, beta).
     [switch]$IncludeBeta,
     # Also run the optional preview checks (VK-NPI-09, beta), which are off by default.
     [switch]$IncludePreview,

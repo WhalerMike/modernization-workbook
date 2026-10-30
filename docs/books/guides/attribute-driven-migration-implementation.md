@@ -95,7 +95,7 @@ Where the key is already issued to contractors with their PIV credential, contra
 
 | Gate | Stage in the companion guide | Done when | Validate with | Plan tasks |
 |---|---|---|---|---|
-| [0 The tree read](#gate-0-read-the-ou-tree) | 0 | The tree's encoding is in Git, split by track, with a decision for every group | Start Kit counts; VK-NPI-06 (handed to the non-person track) | A0.1–A0.4, AG0 |
+| [0 The tree read](#gate-0-read-the-ou-tree) | 0 | The tree's encoding is in Git, split by track, with a decision for every group | Start Kit counts; VK-INT-07 (beta, Intune track); VK-NPI-06 (handed to the non-person track) | A0.1–A0.4, AG0 |
 | [1 Schema and slots signed](#gate-1-schema-and-slots) | 1 | Every attribute that drives access has one store, one writer and one owner | VK-HR-01, VK-HR-04 (the key's carrier) | A1.1–A1.4, D-A1, D-A2, AG1 |
 | [2 Attributes proven](#gate-2-prove-the-attributes) | 2 | The correlation threshold is met on the pilot; other writers removed; logs leaving Entra ID | VK-HR-01 to 04 | A2.1–A2.3, D-A3, AG2 |
 | [3 Attributes flowing](#gate-3-map-the-attributes-through-sync) | 3 | Every slot arrives in Entra ID as HR sent it; shadow differences explained | VK-SYNC-01, with the sync reconciliation report | A3.1, AG3 |
@@ -159,6 +159,7 @@ The target has to reproduce intent, not structure, and you can't reproduce what 
 ::: {.callout-important}
 ## Validate (Gate 0: the tree read)
 - The Start Kit's summary counts OUs and their delegations, GPOs (empty, unlinked, conflicting, site-linked), users, groups, computers and service accounts, each traced to its source file. A count that couldn't be collected says *not collected*, never zero.
+- **VK-INT-07** (*Graph beta*, with `-IncludeBeta`; run by the Intune track) lists each GPO imported into Intune's Group Policy analytics with its migration readiness. It flags those targeted in AD that aren't *complete*, and, with `gpo-scope.csv`, every in-scope GPO that was never imported. Its rows feed the computer half of the GPO split.
 - **VK-NPI-06** (run by the non-person track) lists the AD service accounts with passwords that never expire, old passwords, SPNs or a type other than gMSA. Its rows are the ones step 6 hands over.
 - No kit check reads the per-group decision or the track tagging: the evidence is the decision record in Git, one row per group and per GPO half.
 - Gate owner: identity engineering lead. Gate 0 lands before the program's G0, and before the Endpoint and Non-Person plans' own Gate 0s, which use its export.
@@ -479,7 +480,7 @@ The kits cover most gates, but not all of them. Where no check exists, the gate'
 
 | Gate | What a kit covers | What no kit covers yet | Stand-in evidence |
 |---|---|---|---|
-| 0 | The Start Kit's forest, OU, delegation and GPO counts (site links included) | The per-group decision; the track tag for each OU and GPO half | The decision record in Git |
+| 0 | The Start Kit's forest, OU, delegation and GPO counts (site links included); VK-INT-07 for Group Policy analytics readiness (beta) | The per-group decision; the track tag for each OU and GPO half | The decision record in Git |
 | 1 | VK-HR-01 and VK-HR-04 on the key's carrier | The schema and slot register themselves | The signed register |
 | 2 | VK-HR-01 to 04 | A field-by-field HR-to-directory comparison (VK-HR-03 compares counts per code) | The HR plan's baseline (I1.5) |
 | 3 | VK-SYNC-01 on a sample; VK-HR-02 and VK-HR-03 before and after | Sync configuration, scoping, shadow differences, match blocking | The sync reconciliation report |
