@@ -1,0 +1,22 @@
+{
+  "displayName": "FIN-LED employees",
+  "mailNickname": "fin-led-emp",
+  "kind": "user",
+  "owner": "FIN-LED access owner",
+  "critical": false,
+  "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.extensionAttribute10 -eq \"FIN-LED\") -and (user.extensionAttribute11 -eq \"EMP\")",
+  "tests": [
+    {
+      "member": "u01",
+      "expected": true
+    },
+    {
+      "member": "u02",
+      "expected": false
+    },
+    {
+      "member": "u06",
+      "expected": false
+    }
+  ]
+}

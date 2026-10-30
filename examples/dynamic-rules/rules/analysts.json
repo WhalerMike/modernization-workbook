@@ -1,0 +1,22 @@
+{
+  "displayName": "Analysts, all organizations",
+  "mailNickname": "analysts",
+  "kind": "user",
+  "owner": "Analytics program owner",
+  "critical": false,
+  "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.extensionAttribute12 -eq \"ANALYST\")",
+  "tests": [
+    {
+      "member": "u01",
+      "expected": true
+    },
+    {
+      "member": "u07",
+      "expected": true
+    },
+    {
+      "member": "u02",
+      "expected": false
+    }
+  ]
+}

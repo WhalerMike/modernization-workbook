@@ -1,0 +1,153 @@
+[
+  {
+    "key": "u01",
+    "objectType": "user",
+    "objectId": "00000000-0000-0000-0001-000000000001",
+    "displayName": "Test User u01",
+    "accountEnabled": true,
+    "userType": "Member",
+    "extensionAttribute10": "FIN-LED",
+    "extensionAttribute11": "EMP",
+    "extensionAttribute12": "ANALYST",
+    "companyName": "Example Bureau",
+    "managerId": "00000000-0000-0000-0001-000000000009"
+  },
+  {
+    "key": "u02",
+    "objectType": "user",
+    "objectId": "00000000-0000-0000-0001-000000000002",
+    "displayName": "Test User u02",
+    "accountEnabled": true,
+    "userType": "Member",
+    "extensionAttribute10": "FIN-LED",
+    "extensionAttribute11": "CTR",
+    "extensionAttribute12": "",
+    "companyName": "Example Bureau",
+    "managerId": ""
+  },
+  {
+    "key": "u03",
+    "objectType": "user",
+    "objectId": "00000000-0000-0000-0001-000000000003",
+    "displayName": "Test User u03",
+    "accountEnabled": true,
+    "userType": "Member",
+    "extensionAttribute10": "FIN-AP",
+    "extensionAttribute11": "EMP",
+    "extensionAttribute12": "",
+    "companyName": "Example Bureau",
+    "managerId": ""
+  },
+  {
+    "key": "u04",
+    "objectType": "user",
+    "objectId": "00000000-0000-0000-0001-000000000004",
+    "displayName": "Test User u04",
+    "accountEnabled": false,
+    "userType": "Member",
+    "extensionAttribute10": "FIN-LED",
+    "extensionAttribute11": "EMP",
+    "extensionAttribute12": "",
+    "companyName": "Example Bureau",
+    "managerId": ""
+  },
+  {
+    "key": "u05",
+    "objectType": "user",
+    "objectId": "00000000-0000-0000-0001-000000000005",
+    "displayName": "Test User u05",
+    "accountEnabled": true,
+    "userType": "Guest",
+    "extensionAttribute10": "FIN-LED",
+    "extensionAttribute11": "EMP",
+    "extensionAttribute12": "",
+    "companyName": "Partner Co",
+    "managerId": ""
+  },
+  {
+    "key": "u06",
+    "objectType": "user",
+    "objectId": "00000000-0000-0000-0001-000000000006",
+    "displayName": "Test User u06",
+    "accountEnabled": true,
+    "userType": "Member",
+    "extensionAttribute10": "FIN-LED",
+    "extensionAttribute11": "",
+    "extensionAttribute12": "",
+    "companyName": "Example Bureau",
+    "managerId": ""
+  },
+  {
+    "key": "u07",
+    "objectType": "user",
+    "objectId": "00000000-0000-0000-0001-000000000007",
+    "displayName": "Test User u07",
+    "accountEnabled": true,
+    "userType": "Member",
+    "extensionAttribute10": "HR-OPS",
+    "extensionAttribute11": "EMP",
+    "extensionAttribute12": "ANALYST",
+    "companyName": "Example Bureau",
+    "managerId": ""
+  },
+  {
+    "key": "u08",
+    "objectType": "user",
+    "objectId": "00000000-0000-0000-0001-000000000008",
+    "displayName": "Test User u08",
+    "accountEnabled": true,
+    "userType": "Member",
+    "extensionAttribute10": "fin-led",
+    "extensionAttribute11": "EMP",
+    "extensionAttribute12": "",
+    "companyName": "Example Bureau",
+    "managerId": ""
+  },
+  {
+    "key": "u09",
+    "objectType": "user",
+    "objectId": "00000000-0000-0000-0001-000000000009",
+    "displayName": "Test User u09",
+    "accountEnabled": true,
+    "userType": "Member",
+    "extensionAttribute10": "FIN-LED",
+    "extensionAttribute11": "EMP",
+    "extensionAttribute12": "SUPERVISOR",
+    "companyName": "Example Bureau",
+    "managerId": ""
+  },
+  {
+    "key": "u10",
+    "objectType": "user",
+    "objectId": "00000000-0000-0000-0001-000000000010",
+    "displayName": "Test User u10",
+    "accountEnabled": true,
+    "userType": "Member",
+    "extensionAttribute10": "FIN-AP",
+    "extensionAttribute11": "CTR",
+    "extensionAttribute12": "",
+    "companyName": "Example Bureau",
+    "managerId": "00000000-0000-0000-0001-000000000009"
+  },
+  {
+    "key": "d01",
+    "objectType": "device",
+    "objectId": "00000000-0000-0000-0002-000000000001",
+    "deviceOSType": "Windows",
+    "deviceOwnership": "Company"
+  },
+  {
+    "key": "d02",
+    "objectType": "device",
+    "objectId": "00000000-0000-0000-0002-000000000002",
+    "deviceOSType": "Windows",
+    "deviceOwnership": "Personal"
+  },
+  {
+    "key": "d03",
+    "objectType": "device",
+    "objectId": "00000000-0000-0000-0002-000000000003",
+    "deviceOSType": "iPhone",
+    "deviceOwnership": "Company"
+  }
+]

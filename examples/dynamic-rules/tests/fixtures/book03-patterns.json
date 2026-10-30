@@ -1,0 +1,42 @@
+[
+  {
+    "pattern": "Organization",
+    "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.extensionAttribute10 -eq \"FIN-LED\")",
+    "kind": "user"
+  },
+  {
+    "pattern": "Several organizations",
+    "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.extensionAttribute10 -in [\"FIN-LED\",\"FIN-AP\"])",
+    "kind": "user"
+  },
+  {
+    "pattern": "Organization and worker type",
+    "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.extensionAttribute10 -eq \"FIN-LED\") -and (user.extensionAttribute11 -eq \"EMP\")",
+    "kind": "user"
+  },
+  {
+    "pattern": "Exclusion",
+    "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.extensionAttribute10 -eq \"FIN-LED\") -and (user.extensionAttribute11 -ne \"CTR\")",
+    "kind": "user"
+  },
+  {
+    "pattern": "Position category",
+    "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.extensionAttribute12 -eq \"ANALYST\")",
+    "kind": "user"
+  },
+  {
+    "pattern": "Legal employer",
+    "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.companyName -eq \"Example Bureau\")",
+    "kind": "user"
+  },
+  {
+    "pattern": "Direct reports",
+    "membershipRule": "Direct Reports for \"00000000-0000-0000-0001-000000000009\"",
+    "kind": "user"
+  },
+  {
+    "pattern": "Device class",
+    "membershipRule": "(device.deviceOSType -eq \"Windows\") -and (device.deviceOwnership -eq \"Company\")",
+    "kind": "device"
+  }
+]

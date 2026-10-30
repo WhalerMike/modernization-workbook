@@ -113,3 +113,11 @@ The "Organization and worker type" and "Exclusion" rows of the rule pattern tabl
 |---|---|---|---|---|
 | 1 | Members-only rule form: `(user.objectId -ne null) -and (user.userType -eq "Member")` excludes guests; `userType` takes `member`, `guest` or `null` | Rule pattern table, rows "Organization and worker type" and "Exclusion" | corrected | Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (accessed Oct 30, 2026) |
 | 2 | The Exclusion row's `-ne "CTR"` also matches a blank worker type | Exclusion row | not changed: noted for the owner's decision | Rule semantics; Learn page above (null checks) |
+
+## Correction, October 30, 2026 (later): the userType guard on the Legal employer pattern
+
+The "Legal employer" row had the `accountEnabled` guard but not `user.userType -eq "Member"`, so a guest whose `companyName` matched would have qualified. It now carries the guard, approved by the owner. Found by the rule linter in the developer workbook *Building the Attribute-Driven Migration* (Chapter 04, rule DR-04, under Projects); logged in `docs/project-plans/developer-workbooks/attribute-driven-migration/_verification/research-gaps.md`, gap 8. The row still reads `companyName`, which the validation kit's VK-DG-02 and the linter's DR-05 flag as a display-name attribute; that is left for the owner, since the row exists to show the legal-employer case.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 3 | Guests are excluded with `user.userType -eq "Member"` | Rule pattern table, row "Legal employer" | corrected | Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (accessed Oct 30, 2026) |

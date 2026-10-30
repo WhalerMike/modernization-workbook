@@ -1,0 +1,50 @@
+{
+  "_comment": "A pinned, unmodified copy of part of Microsoft's machine configuration package samples. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Azure Policy guest configuration package samples",
+  "upstream_repo": "https://github.com/Azure/azure-policy",
+  "upstream_path": "samples/GuestConfiguration/package-samples",
+  "commit": "ca85d6182e5a855bcdd1462421d5a1305c14c1df",
+  "commit_date": "2021-08-04",
+  "retrieved": "2026-10-30",
+  "license": "MIT (LICENSE, copied from the repository root)",
+  "documented_at": "https://learn.microsoft.com/azure/governance/machine-configuration/overview/01-overview-concepts",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "*": "samples/GuestConfiguration/<same path>"
+  },
+  "not_copied": [
+    "samples/GuestConfiguration/package-samples/configurations/ (37 compiled MOFs for built-in policies, including the 186 KB AzureWindowsBaseline.mof)",
+    "samples/GuestConfiguration/package-samples/resource-modules/ (21 DSC resource modules, including the Defender module with about 1.7 MB of help files)",
+    "samples/GuestConfiguration/installed-application-linux/ (policy definition samples)"
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1162,
+      "sha256": "27ebda9d51f0a56b7e281ccd8230a27236dcb51c05f64b07869ecf6e965d68b0"
+    },
+    "package-samples/.example-project/AdministratorsGroupMembers.mof": {
+      "bytes": 557,
+      "sha256": "a081ca6506a8a2a5619faf45adc0fab9c9748bd8d2b6611b59f2b3643759808f"
+    },
+    "package-samples/.example-project/createPackage.ps1": {
+      "bytes": 761,
+      "sha256": "75f3be4457c44dd6a0467ea7e27d242abf2fbec07e808952de161122e7db17f0"
+    },
+    "package-samples/.example-project/Modules/LocalGroup/DscResources/LocalGroup/LocalGroup.psm1": {
+      "bytes": 12628,
+      "sha256": "25d22579f465ea3632d350b39a03564bf0bf17025b509214493cfa7b36ebc6e8"
+    },
+    "package-samples/.example-project/Modules/LocalGroup/DscResources/LocalGroup/LocalGroup.schema.mof": {
+      "bytes": 600,
+      "sha256": "e3036524ca311551b7b2ded8ed74b3c25e80335e92455a26b33d177b08e8da70"
+    },
+    "package-samples/.example-project/Modules/LocalGroup/LocalGroup.psd1": {
+      "bytes": 827,
+      "sha256": "e0a02710ff6cf582c209f3f178dbaa12506e453c436f9981e735d7f679589402"
+    },
+    "package-samples/README.md": {
+      "bytes": 489,
+      "sha256": "784dbae2beef0881b33685d8dfc1b0ce7a33a61bb211cd106d50e3810f893f14"
+    }
+  }
+}

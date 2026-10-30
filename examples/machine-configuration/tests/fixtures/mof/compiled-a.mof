@@ -1,0 +1,55 @@
+/*
+@TargetNode='localhost'
+@GeneratedBy=builder
+@GenerationDate=10/30/2026 09:00:00
+@GenerationHost=BUILD01
+*/
+
+instance of MSFT_RegistryResource as $MSFT_RegistryResource1ref
+{
+SourceInfo = "C:\\build\\src\\configurations\\TlsServerProtocols.ps1::9::9::Registry";
+ Ensure = "Present";
+ ValueData = {
+    "0"
+};
+ ValueType = "DWord";
+ ModuleVersion = "2.12.0.0";
+ ModuleName = "PSDscResources";
+ Key = "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\SecurityProviders\\SCHANNEL\\Protocols\\TLS 1.0\\Server";
+ ResourceID = "[Registry]DisableTLS10Server";
+ ValueName = "Enabled";
+ ConfigurationName = "TlsServerProtocols";
+};
+instance of MSFT_RegistryResource as $MSFT_RegistryResource2ref
+{
+SourceInfo = "C:\\build\\src\\configurations\\TlsServerProtocols.ps1::9::9::Registry";
+ Ensure = "Present";
+ ValueData = {
+    "0"
+};
+ ValueType = "DWord";
+ ModuleVersion = "2.12.0.0";
+ ModuleName = "PSDscResources";
+ Key = "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\SecurityProviders\\SCHANNEL\\Protocols\\TLS 1.1\\Server";
+ ResourceID = "[Registry]DisableTLS11Server";
+ ValueName = "Enabled";
+ ConfigurationName = "TlsServerProtocols";
+};
+instance of OMI_ConfigurationDocument
+
+                    {
+ Version="2.0.0";
+
+                        MinimumCompatibleVersion = "1.0.0";
+
+                        CompatibleVersionAdditionalProperties= {"Omi_BaseResource:ConfigurationName"};
+
+                        Author="builder";
+
+                        GenerationDate="10/30/2026 09:00:00";
+
+                        GenerationHost="BUILD01";
+
+                        Name="TlsServerProtocols";
+
+                    };

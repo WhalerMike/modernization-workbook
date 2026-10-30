@@ -1,0 +1,26 @@
+{
+  "displayName": "Windows company devices",
+  "mailNickname": "win-company",
+  "kind": "device",
+  "owner": "Endpoint team",
+  "critical": true,
+  "membershipRule": "(device.deviceOSType -eq \"Windows\") -and (device.deviceOwnership -eq \"Company\")",
+  "tests": [
+    {
+      "member": "d01",
+      "expected": true
+    },
+    {
+      "member": "d02",
+      "expected": false
+    },
+    {
+      "member": "d03",
+      "expected": false
+    },
+    {
+      "member": "u01",
+      "expected": false
+    }
+  ]
+}

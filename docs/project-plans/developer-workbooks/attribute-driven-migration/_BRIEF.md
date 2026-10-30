@@ -7,10 +7,10 @@ Workbook folder: `docs/project-plans/developer-workbooks/attribute-driven-migrat
 | `01-the-hr-to-entra-middleware.md` | Chapter 01 — The HR-to-Entra Middleware | `examples/hcm-entra` (written) |
 | `02-graph-clients-for-government-clouds.md` | Chapter 02 — Graph Clients for the Government Clouds | `examples/ms-automation` |
 | `03-writing-a-validation-kit-check.md` | Chapter 03 — Writing a Validation Kit Check | `examples/validation-kit` (written) |
-| `04-dynamic-rules-as-code.md` | Chapter 04 — Dynamic Rules as Code | `examples/validation-kit` (DG checks) |
+| `04-dynamic-rules-as-code.md` | Chapter 04 — Dynamic Rules as Code | `examples/dynamic-rules` (written) |
 | `05-lifecycle-workflows-custom-extensions.md` | Chapter 05 — Lifecycle Workflows Custom Extensions | new example |
 | `06-group-policy-as-code.md` | Chapter 06 — Moving Group Policy as Code | `examples/validation-kit` (VK-INT-07) |
-| `07-machine-configuration-packages.md` | Chapter 07 — Machine Configuration Packages | new example |
+| `07-machine-configuration-packages.md` | Chapter 07 — Machine Configuration Packages | `examples/machine-configuration` (written) |
 | `08-ansible-beside-arc.md` | Chapter 08 — Ansible Beside Arc | `examples/ansible` |
 | `09-drift-pipelines-and-evidence.md` | Chapter 09 — Drift Pipelines and Evidence to the ISSO | the kits' run outputs |
 
