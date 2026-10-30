@@ -58,7 +58,7 @@ Each row is pinned by a test in the Chapter 07 sample block of `tests/AccessRevi
 
 | Learn's sample, as published | Why it matters | What `examples/privileged-access` adds |
 |---|---|---|
-| One role per review: a `principalResourceMembershipsScope` over `/users` and `/groups` and one `roleDefinitions/{id}` resource, active and eligible | — | Kept: the example's default role scope is the same JSON, byte for byte |
+| One role per review: a `principalResourceMembershipsScope` over `/users` and `/groups` and one `roleDefinitions/{id}` resource, active and eligible | — | Kept, with the `/groups` principal scope left out: a role series reviews users, and each group that holds the role has its own membership series (the owner's decision) |
 | Requests on a hard-coded `https://graph.microsoft.com` | GCC High and DoD use other hosts | The cloud table from Chapter 01, by name, no default |
 | A POST each run, with no read first; run twice, the fake holds two series of the same name | Reviewers get two reviews, and evidence splits | A dry run that reads first and says Create, Update, Replace or NoChange; two series with one name stop `-Apply` (PA-AR-12) |
 | One user as reviewer, no fallback reviewer | One person leaving stops the review | Reviewer groups, a fallback always (PA-AR-01, PA-AR-02) |
@@ -70,7 +70,7 @@ Each row is pinned by a test in the Chapter 07 sample block of `tests/AccessRevi
 | No Azure role, no PIM for Groups group | Two of the program's three review targets | Azure role series through Resource Manager (preview), group membership series |
 | `AccessReview.ReadWrite.All` for every step, reads included | A read-only job holds a write permission | Three tasks, each with its own least-privileged permission |
 
-**The verdict.** Keep the tutorial's scope as the model for a role review; it is Learn's documented shape for users and groups, active and eligible. Don't run the sample as published: it reviews one role once a quarter with nobody to step in, and leaves every decision for someone to apply.
+**The verdict.** Keep the tutorial's scope as the model for a role review, Learn's documented shape for active and eligible assignments, and review the groups in it through their own series. Don't run the sample as published: it reviews one role once a quarter with nobody to step in, and leaves every decision for someone to apply.
 
 ## The code: `examples/privileged-access`
 
@@ -78,19 +78,21 @@ This chapter adds a module of its own, `powershell/PaAccessReviews/PaAccessRevie
 
 ### The reviewed JSON
 
-One file holds every series. Each review has a name with the managed prefix (`PAR-`), a kind, a tier, a cadence, reviewers, fallback reviewers and a description for reviewers; defaults hold the rest. `Read-PaArConfig` refuses a reviewer named by UPN, a name without the prefix, a name used twice, and anything that isn't an object ID where one belongs. The fixture's five series follow Book 04, Chapter 09's schedule (*Design guidance*):
+One file holds every series. Each review has a name with the managed prefix (`PAR-`), a kind, a tier, a cadence, reviewers, fallback reviewers and a description for reviewers; defaults hold the rest. `Read-PaArConfig` refuses a reviewer named by UPN, a name without the prefix, a name used twice, and anything that isn't an object ID where one belongs. The fixture's seven series follow Book 04, Chapter 09's schedule (*Design guidance*):
 
 | Series | Kind | Scope | Cadence | Reviewers, fallback | On silence |
 |---|---|---|---|---|---|
-| `PAR-T0-GlobalAdministrator-Monthly` | Entra role | Users and groups, active and eligible | Monthly, 14 days | `PIM-Approvers-T0`, governance office | No change (PA-AR-06) |
+| `PAR-T0-GlobalAdministrator-Monthly` | Entra role | Users, active and eligible | Monthly, 14 days | `PIM-Approvers-T0`, governance office | No change (PA-AR-06) |
 | `PAR-T0-PrivilegedRoleAdministrator-Monthly` | Entra role | Same | Monthly | Same | Deny |
 | `PAR-T1-ExchangeAdministrator-Quarterly` | Entra role | Same | Quarterly | `PIM-Approvers-T1`, governance office | Deny |
 | `PAR-PRV-T0-GlobalAdmin-Monthly` | PIM for Groups group (preview) | Transitive members of `PRV-T0-GlobalAdmin` | Monthly | Governance office, Privileged Role Administrator group | Deny |
+| `PAR-PRV-T0-PrivRoleAdmin-Monthly` | PIM for Groups group (preview) | Transitive members of `PRV-T0-PrivRoleAdmin` | Monthly | Same | Deny |
+| `PAR-PRV-T1-ExchangeAdmin-Quarterly` | PIM for Groups group (preview) | Transitive members of `PRV-T1-ExchangeAdmin` | Quarterly | Same | Deny |
 | `PAR-AZ-T0-Owner-Platform-Monthly` | Azure role (preview API) | Eligible Owner at a platform subscription | Monthly | Named users | Deny |
 
 ### The bodies
 
-`New-PaArDefinitionBody` builds each body from Learn's documented shapes only. A Microsoft Entra role uses the tutorial's scope by default; `eligible` and `active` use the scope article's Example 12.2 queries, which Learn documents for users only.[^pa07-scope] A PIM for Groups group uses Example 1, the group's transitive members; Learn's admin center page says a review of a PIM for Groups group covers its eligible and active members, and that feature is in preview.[^pa07-pim-groups] A reviewer group becomes `/groups/{id}/transitiveMembers`, the reviewers article's Example 3.[^pa07-reviewers] Settings set auto-apply, the no-response default, justification, reminders and recommendations, with `removeAccessApplyAction`, the default action.[^pa07-settings] The recurrence uses only `type`, `interval` and `dayOfMonth`, the properties Learn says are supported.[^pa07-settings]
+`New-PaArDefinitionBody` builds each body from Learn's documented shapes only. A Microsoft Entra role series covers users. By default it uses the tutorial's scope with its `/groups` principal scope left out, so users with active or eligible assignments are in it; `eligible` and `active` use the scope article's Example 12.2 queries, which Learn documents for users only.[^pa07-scope] Groups that hold the role are reviewed through their own PIM for Groups membership series, not through the role review: that is the owner's decision (research gaps, row 73), and it matches Book 04, Appendix B's pairing of each role review with a review of its `PRV-*` group. Each role series lists the groups that hold the role (`eligibleGroupIds`), and the plan raises PA-AR-14 for any of them without a membership series. A PIM for Groups group uses Example 1, the group's transitive members; Learn's admin center page says a review of a PIM for Groups group covers its eligible and active members, and that feature is in preview.[^pa07-pim-groups] A reviewer group becomes `/groups/{id}/transitiveMembers`, the reviewers article's Example 3.[^pa07-reviewers] Settings set auto-apply, the no-response default, justification, reminders and recommendations, with `removeAccessApplyAction`, the default action.[^pa07-settings] The recurrence uses only `type`, `interval` and `dayOfMonth`, the properties Learn says are supported.[^pa07-settings]
 
 An Azure role series goes to Resource Manager, `Microsoft.Authorization/accessReviewScheduleDefinitions` at a subscription, API version `2021-12-01-preview`; Learn lists only preview versions.[^pa07-arm-put] [^pa07-arm-template] Its reviewers are principal IDs of users or service principals, not groups, and the scope names the subscription, the role definition, the principal type and `eligible` or `active`.[^pa07-arm-list] The definition ID is a GUID derived from the series name, so a rerun PUTs the same resource. Learn's request-body table for that PUT doesn't list the scope fields, only the response model does; Lab 2 confirms they take effect (research gaps, row 71).
 
@@ -113,8 +115,9 @@ An Azure role series goes to Resource Manager, `Microsoft.Authorization/accessRe
 | PA-AR-11 | Finding | A group as reviewer of an Azure role series | Learn: users and service principals only[^pa07-arm-list] |
 | PA-AR-12 | Finding | Two series in the tenant share a name | *Design guidance* |
 | PA-AR-13 | Warn | A series with the managed prefix that the JSON doesn't list | *Design guidance*: the code never deletes |
+| PA-AR-14 | Finding | A group that holds a reviewed role has no membership series of its own | The owner's decision (research gaps, row 73) |
 
-PA-AR-06 is the one guard that changes the program's setting. The emergency accounts hold Global Administrator as permanent active assignments ([Chapter 02](02-emergency-access-as-code.md)). A review of Global Administrator that covers active assignments, with "remove access" on silence and auto-apply on, removes them if the reviewers miss one month. So the fixture's Global Administrator series uses "no change" on silence, and an unreviewed item becomes an evidence finding instead (PA-AR-E04). A series scoped to eligible assignments only may use "Deny"; but Learn's eligible-only query covers users, and this program makes groups eligible, so it would review almost nothing (research gaps, rows 73 and 74).
+PA-AR-06 is the one guard that changes the program's setting. The emergency accounts hold Global Administrator as permanent active assignments ([Chapter 02](02-emergency-access-as-code.md)). A review of Global Administrator that covers active assignments, with "remove access" on silence and auto-apply on, removes them if the reviewers miss one month. So a review that covers the emergency accounts' permanent Global Administrator uses "no change" on silence, and an unreviewed item becomes an evidence finding instead (PA-AR-E04). Every other privileged series removes access on silence. That is the owner's decision (research gaps, row 74), and Book 04, Chapter 08's Step 8 records the exception ([Book 04, Chapter 08](../../../books/b04-access/08-pim-self-request-with-approval.md#step-8-access-reviews-of-eligibility)).
 
 ### The dry run, the diff and `-Apply`
 
@@ -162,7 +165,7 @@ The run writes `decisions.csv`, `instances.json`, `findings.json` and a manifest
 
 ### The tests
 
-This chapter's tests are the 55 in `tests/AccessReviews.Tests.ps1`: 11 on Learn's tutorial as published, then the calls and permissions, the reviewed JSON and bodies, each rule, the plan's actions, `-Apply` and its refusals, the evidence and its paging, and the entry script's manifest. With Chapters 01 to 03, 168 Pester tests pass under PowerShell 7, with no module, tenant or network.
+This chapter's tests are the 57 in `tests/AccessReviews.Tests.ps1`: 11 on Learn's tutorial as published, then the calls and permissions, the reviewed JSON and bodies, each rule, the plan's actions, `-Apply` and its refusals, the evidence and its paging, and the entry script's manifest. With Chapters 01, 02, 03 and 06, 208 Pester tests pass under PowerShell 7, with no module, tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -200,7 +203,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    ```
 
    ```text
-   Plan: 1 Create, 2 Update, 1 Replace, 1 NoChange, 1 Unmanaged
+   Plan: 1 Create, 2 Update, 1 Replace, 3 NoChange, 1 Unmanaged
    Checks: 0 Finding, 1 Warn, 1 Info
    Dry run: nothing sent (2 write(s) would be sent with -Apply)
    Written to out/reviews-plan (manifest.json lists every request and file hash)
@@ -212,7 +215,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Get-Content out/reviews-plan/plan.json -Raw | ConvertFrom-Json | Format-Table name, action, @{ n = 'changes'; e = { $_.changes -join ', ' } }
    ```
 
-   Global Administrator and the Azure Owner series: Update, `settings.instanceDurationInDays` (the tenant has 7 days, the JSON 14). Privileged Role Administrator: Create. Exchange: Replace, `reviewers` (an old reviewer group). `PRV-T0-GlobalAdmin`: NoChange. `PAR-T0-SecurityAdministrator-Monthly`, made by hand in the portal: Unmanaged. The application review without the prefix isn't listed. The two writes the dry run counts are the Graph ones; the Azure update needs `-IncludePreview`. `bodies/` holds each request body for review.
+   Global Administrator and the Azure Owner series: Update, `settings.instanceDurationInDays` (the tenant has 7 days, the JSON 14). Privileged Role Administrator: Create. Exchange: Replace, `reviewers` (an old reviewer group). The three `PRV-*` membership series: NoChange. `PAR-T0-SecurityAdministrator-Monthly`, made by hand in the portal: Unmanaged. The application review without the prefix isn't listed. The two writes the dry run counts are the Graph ones; the Azure update needs `-IncludePreview`. `bodies/` holds each request body for review.
 
 5. **Check Learn's body with the example's rules:**
 
@@ -231,7 +234,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Get-Content out/reviews-apply/results.json -Raw | ConvertFrom-Json | Format-Table Name, Action, Result, Note
    ```
 
-   `Applied: 2 write(s) sent; Replace and Unmanaged series are left for a person`. Global Administrator and Privileged Role Administrator are `Sent`, `read back`; Exchange, `PRV-T0`, the Azure series and the unmanaged one are `Skipped`, each with its reason. The fake starts from the fixture on every run, so nothing carries over to the next step.
+   `Applied: 2 write(s) sent; Replace and Unmanaged series are left for a person`. Global Administrator and Privileged Role Administrator are `Sent`, `read back`; Exchange, the three `PRV-*` series, the Azure series and the unmanaged one are `Skipped`, each with its reason. The fake starts from the fixture on every run, so nothing carries over to the next step.
 
 7. **Read the evidence:**
 
@@ -241,7 +244,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Get-Content out/reviews-evidence/findings.json -Raw | ConvertFrom-Json | Format-Table Rule, Severity, Object
    ```
 
-   `Evidence: 18 decisions in 5 instances; 7 Finding, 2 Warn`. PA-AR-E01 for Privileged Role Administrator (not in this tenant yet), PA-AR-E02 for `PRV-T0` (its last review ended September 15), PA-AR-E08 for `Emergency Access 02` (denied in October), PA-AR-E04 for Frank Ode (unreviewed, Tier 0) and as a Warn for Gina Lee (Tier 1), PA-AR-E05 for Carl Ops, PA-AR-E03 for Frank Ode's Exchange denial that didn't apply, PA-AR-E06 for Bo Chen, who approved himself, and PA-AR-E07 for one Exchange reviewer's five approvals in two minutes.
+   `Evidence: 18 decisions in 7 instances; 7 Finding, 2 Warn`. PA-AR-E01 for Privileged Role Administrator (not in this tenant yet), PA-AR-E02 for `PRV-T0-GlobalAdmin` (its last review ended September 15), PA-AR-E08 for `Emergency Access 02` (denied in October), PA-AR-E04 for Frank Ode (unreviewed, Tier 0) and as a Warn for Gina Lee (Tier 1), PA-AR-E05 for Carl Ops, PA-AR-E03 for Frank Ode's Exchange denial that didn't apply, PA-AR-E06 for Bo Chen, who approved himself, and PA-AR-E07 for one Exchange reviewer's five approvals in two minutes.
 
 8. **See the lockout guard:**
 
@@ -260,7 +263,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 168 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done; the evidence folder names people.
+**Expected result:** 208 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done; the evidence folder names people.
 
 ## Lab 2: test tenant
 
@@ -319,7 +322,7 @@ Four places where Learn's pages differ, recorded so a later edit doesn't loosen 
 | A rerun of a POST | Two series with one name, split evidence | The dry run reads first; PA-AR-12 stops `-Apply` |
 | A scope change sent as an update | Learn's update API doesn't list scope among the properties it takes, so the change can't be made in place | Replace, left to a person |
 | Deleting a series to replace it | Its instances and decisions go with it | The code never deletes; Lab 2 exports evidence first |
-| A role held by a group | The role review approves the group, not its members | A `PRV-*` membership series beside each role series (Appendix B's pairing) |
+| A role held by a group | A role review would approve the group, not its members | Role series cover users; each `PRV-*` group has its own membership series, and PA-AR-14 flags one that's missing |
 | An Azure role held by a group | A denied user stays in the group[^pa07-pim-review] | PA-AR-E03 doesn't see it; Chapter 01's inventory and the group's owner do |
 | Bulk approval | Decisions without reading | PA-AR-E07; justification required (PA-AR-08) |
 | A preview API changes | Azure series fail or change shape | `-IncludePreview` only; Lab 2 step 6; the source watch on the tutorial |
@@ -331,8 +334,9 @@ Four places where Learn's pages differ, recorded so a later edit doesn't loosen 
 - [ ] The reviewed JSON lists one series per privileged Entra role in use, one per `PRV-*` group, and one per privileged Azure role at each control-plane subscription, each with the managed prefix.
 - [ ] The dry run shows no Finding, and a second person read `plan.json` and `bodies/` before `-Apply`.
 - [ ] Every series has a reviewer group and a fallback; no series is a self-review.
+- [ ] Every group listed in a role series' `eligibleGroupIds` has its own membership series (no PA-AR-14).
 - [ ] Tier 0 series are monthly and the rest quarterly, 14 days, with auto-apply on and justification required.
-- [ ] The Global Administrator series doesn't remove on silence, and its unreviewed items are followed up.
+- [ ] Only a series that covers the emergency accounts' permanent Global Administrator keeps access on silence, and its unreviewed items are followed up; every other series removes access.
 - [ ] The plan identity holds only `AccessReview.Read.All` and Reader; the apply identity only `AccessReview.ReadWrite.All` and User Access Administrator where an Azure series exists.
 - [ ] Azure series are applied only with `-IncludePreview`, after Lab 2 step 6 passed in a test subscription.
 - [ ] Every closed instance has its `decisions.csv` and manifest in the evidence store, and every evidence Finding has an owner.

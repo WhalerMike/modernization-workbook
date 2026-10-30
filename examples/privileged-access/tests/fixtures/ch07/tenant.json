@@ -1,5 +1,5 @@
 {
-  "_comment": "Chapter 07: a fictional tenant (contoso.example) for the access reviews fake: Graph definitions, instances and decisions, and Resource Manager (preview API) definitions, instances and decisions. Every ID is invented. Generated once from the reviewed JSON and then edited by hand: the Global Administrator series has a 7-day duration (Update), Exchange has an old reviewer group (Replace), PRV-T0 matches (NoChange), Privileged Role Administrator is missing (Create), and a hand-made Security Administrator series carries the managed prefix (Unmanaged).",
+  "_comment": "Chapter 07: a fictional tenant (contoso.example) for the access reviews fake: Graph definitions, instances and decisions, and Resource Manager (preview API) definitions, instances and decisions. Every ID is invented. Generated once from the reviewed JSON and then edited by hand: role series cover users, and each PRV group has its own series; the Global Administrator series has a 7-day duration (Update), Exchange has an old reviewer group (Replace), PRV-T0 matches (NoChange), Privileged Role Administrator is missing (Create), and a hand-made Security Administrator series carries the managed prefix (Unmanaged).",
   "graphDefinitions": [
     {
       "displayName": "PAR-T0-GlobalAdministrator-Monthly",
@@ -11,11 +11,6 @@
           {
             "@odata.type": "#microsoft.graph.accessReviewQueryScope",
             "query": "/users",
-            "queryType": "MicrosoftGraph"
-          },
-          {
-            "@odata.type": "#microsoft.graph.accessReviewQueryScope",
-            "query": "/groups",
             "queryType": "MicrosoftGraph"
           }
         ],
@@ -91,11 +86,6 @@
             "@odata.type": "#microsoft.graph.accessReviewQueryScope",
             "query": "/users",
             "queryType": "MicrosoftGraph"
-          },
-          {
-            "@odata.type": "#microsoft.graph.accessReviewQueryScope",
-            "query": "/groups",
-            "queryType": "MicrosoftGraph"
           }
         ],
         "resourceScopes": [
@@ -108,8 +98,8 @@
       },
       "reviewers": [
         {
-          "query": "/groups/aa000000-0000-4000-8000-000000000013/transitiveMembers",
-          "queryType": "MicrosoftGraph"
+          "queryType": "MicrosoftGraph",
+          "query": "/groups/aa000000-0000-4000-8000-000000000013/transitiveMembers"
         }
       ],
       "fallbackReviewers": [
@@ -222,56 +212,180 @@
       "additionalNotificationRecipients": []
     },
     {
-      "settings": {
-        "defaultDecisionEnabled": false,
-        "autoApplyDecisionsEnabled": false,
-        "defaultDecision": "None",
-        "instanceDurationInDays": 3
-      },
+      "displayName": "PAR-PRV-T0-PrivRoleAdmin-Monthly",
+      "descriptionForAdmins": "Managed by examples/privileged-access (Chapter 07). Tier T0. Change it in the reviewed JSON, not here.",
+      "descriptionForReviewers": "Members of PRV-T0-PrivRoleAdmin, eligible and active. Approve only people with a current Tier 0 duty; unreviewed members are removed.",
       "scope": {
-        "resourceScopes": [
-          {
-            "query": "/roleManagement/directory/roleDefinitions/194ae4cb-b126-40b2-bd5b-6091b380977d",
-            "@odata.type": "#microsoft.graph.accessReviewQueryScope",
-            "queryType": "MicrosoftGraph"
-          }
-        ],
-        "principalScopes": [
-          {
-            "query": "/users",
-            "@odata.type": "#microsoft.graph.accessReviewQueryScope",
-            "queryType": "MicrosoftGraph"
-          }
-        ],
-        "@odata.type": "#microsoft.graph.principalResourceMembershipsScope"
-      },
-      "displayName": "PAR-T0-SecurityAdministrator-Monthly",
-      "id": "7a000000-0000-4000-8000-000000000005",
-      "reviewers": [],
-      "descriptionForAdmins": "Created by hand in the portal",
-      "status": "InProgress",
-      "fallbackReviewers": []
-    },
-    {
-      "settings": {
-        "instanceDurationInDays": 14
-      },
-      "scope": {
-        "query": "/groups/9e000000-0000-4000-8000-000000000020/transitiveMembers",
         "@odata.type": "#microsoft.graph.accessReviewQueryScope",
+        "query": "/groups/9e000000-0000-4000-8000-000000000002/transitiveMembers",
         "queryType": "MicrosoftGraph"
       },
-      "displayName": "Quarterly review - APP-PAYROLL-USERS-T1",
-      "id": "7a000000-0000-4000-8000-000000000006",
       "reviewers": [
         {
-          "query": "/groups/9e000000-0000-4000-8000-000000000020/owners",
+          "query": "/groups/aa000000-0000-4000-8000-000000000011/transitiveMembers",
           "queryType": "MicrosoftGraph"
         }
       ],
-      "descriptionForAdmins": "Tier 1 application access",
+      "fallbackReviewers": [
+        {
+          "query": "/groups/aa000000-0000-4000-8000-000000000014/transitiveMembers",
+          "queryType": "MicrosoftGraph"
+        }
+      ],
+      "settings": {
+        "mailNotificationsEnabled": true,
+        "reminderNotificationsEnabled": true,
+        "justificationRequiredOnApproval": true,
+        "defaultDecisionEnabled": true,
+        "defaultDecision": "Deny",
+        "instanceDurationInDays": 14,
+        "autoApplyDecisionsEnabled": true,
+        "recommendationsEnabled": true,
+        "recurrence": {
+          "pattern": {
+            "type": "absoluteMonthly",
+            "interval": 1,
+            "dayOfMonth": 1,
+            "month": 0,
+            "daysOfWeek": [],
+            "firstDayOfWeek": "sunday",
+            "index": "first"
+          },
+          "range": {
+            "type": "noEnd",
+            "startDate": "2026-12-01",
+            "numberOfOccurrences": 0,
+            "recurrenceTimeZone": null,
+            "endDate": null
+          }
+        },
+        "applyActions": [
+          {
+            "@odata.type": "#microsoft.graph.removeAccessApplyAction"
+          }
+        ],
+        "recommendationLookBackDuration": null,
+        "decisionHistoriesForReviewersEnabled": false,
+        "recommendationInsightSettings": []
+      },
+      "id": "7a000000-0000-4000-8000-000000000007",
       "status": "InProgress",
-      "fallbackReviewers": []
+      "stageSettings": [],
+      "additionalNotificationRecipients": []
+    },
+    {
+      "displayName": "PAR-PRV-T1-ExchangeAdmin-Quarterly",
+      "descriptionForAdmins": "Managed by examples/privileged-access (Chapter 07). Tier T1. Change it in the reviewed JSON, not here.",
+      "descriptionForReviewers": "Members of PRV-T1-ExchangeAdmin, eligible and active. Approve only people with a current Exchange duty; unreviewed members are removed.",
+      "scope": {
+        "@odata.type": "#microsoft.graph.accessReviewQueryScope",
+        "query": "/groups/9e000000-0000-4000-8000-000000000003/transitiveMembers",
+        "queryType": "MicrosoftGraph"
+      },
+      "reviewers": [
+        {
+          "query": "/groups/aa000000-0000-4000-8000-000000000011/transitiveMembers",
+          "queryType": "MicrosoftGraph"
+        }
+      ],
+      "fallbackReviewers": [
+        {
+          "query": "/groups/aa000000-0000-4000-8000-000000000014/transitiveMembers",
+          "queryType": "MicrosoftGraph"
+        }
+      ],
+      "settings": {
+        "mailNotificationsEnabled": true,
+        "reminderNotificationsEnabled": true,
+        "justificationRequiredOnApproval": true,
+        "defaultDecisionEnabled": true,
+        "defaultDecision": "Deny",
+        "instanceDurationInDays": 14,
+        "autoApplyDecisionsEnabled": true,
+        "recommendationsEnabled": true,
+        "recurrence": {
+          "pattern": {
+            "type": "absoluteMonthly",
+            "interval": 3,
+            "dayOfMonth": 1,
+            "month": 0,
+            "daysOfWeek": [],
+            "firstDayOfWeek": "sunday",
+            "index": "first"
+          },
+          "range": {
+            "type": "noEnd",
+            "startDate": "2026-12-01",
+            "numberOfOccurrences": 0,
+            "recurrenceTimeZone": null,
+            "endDate": null
+          }
+        },
+        "applyActions": [
+          {
+            "@odata.type": "#microsoft.graph.removeAccessApplyAction"
+          }
+        ],
+        "recommendationLookBackDuration": null,
+        "decisionHistoriesForReviewersEnabled": false,
+        "recommendationInsightSettings": []
+      },
+      "id": "7a000000-0000-4000-8000-000000000008",
+      "status": "InProgress",
+      "stageSettings": [],
+      "additionalNotificationRecipients": []
+    },
+    {
+      "status": "InProgress",
+      "descriptionForAdmins": "Created by hand in the portal",
+      "settings": {
+        "defaultDecision": "None",
+        "instanceDurationInDays": 3,
+        "defaultDecisionEnabled": false,
+        "autoApplyDecisionsEnabled": false
+      },
+      "displayName": "PAR-T0-SecurityAdministrator-Monthly",
+      "fallbackReviewers": [],
+      "scope": {
+        "@odata.type": "#microsoft.graph.principalResourceMembershipsScope",
+        "principalScopes": [
+          {
+            "queryType": "MicrosoftGraph",
+            "@odata.type": "#microsoft.graph.accessReviewQueryScope",
+            "query": "/users"
+          }
+        ],
+        "resourceScopes": [
+          {
+            "queryType": "MicrosoftGraph",
+            "@odata.type": "#microsoft.graph.accessReviewQueryScope",
+            "query": "/roleManagement/directory/roleDefinitions/194ae4cb-b126-40b2-bd5b-6091b380977d"
+          }
+        ]
+      },
+      "reviewers": [],
+      "id": "7a000000-0000-4000-8000-000000000005"
+    },
+    {
+      "status": "InProgress",
+      "descriptionForAdmins": "Tier 1 application access",
+      "settings": {
+        "instanceDurationInDays": 14
+      },
+      "displayName": "Quarterly review - APP-PAYROLL-USERS-T1",
+      "fallbackReviewers": [],
+      "scope": {
+        "queryType": "MicrosoftGraph",
+        "@odata.type": "#microsoft.graph.accessReviewQueryScope",
+        "query": "/groups/9e000000-0000-4000-8000-000000000020/transitiveMembers"
+      },
+      "reviewers": [
+        {
+          "queryType": "MicrosoftGraph",
+          "query": "/groups/9e000000-0000-4000-8000-000000000020/owners"
+        }
+      ],
+      "id": "7a000000-0000-4000-8000-000000000006"
     }
   ],
   "graphInstances": {
@@ -304,27 +418,26 @@
         "startDateTime": "2026-09-01T00:00:00Z",
         "endDateTime": "2026-09-15T00:00:00Z"
       }
+    ],
+    "7a000000-0000-4000-8000-000000000007": [
+      {
+        "id": "prvpra-2026-10",
+        "status": "Applied",
+        "startDateTime": "2026-10-01T00:00:00Z",
+        "endDateTime": "2026-10-15T00:00:00Z"
+      }
+    ],
+    "7a000000-0000-4000-8000-000000000008": [
+      {
+        "id": "prvexo-2026-09",
+        "status": "Applied",
+        "startDateTime": "2026-09-01T00:00:00Z",
+        "endDateTime": "2026-09-15T00:00:00Z"
+      }
     ]
   },
   "graphDecisions": {
     "ga-2026-09": [
-      {
-        "id": "d-ga9-1",
-        "decision": "Approve",
-        "justification": "PRV-T0 membership reviewed separately",
-        "recommendation": "NoInfoAvailable",
-        "reviewedBy": {
-          "id": "a0000000-0000-4000-8000-000000000013"
-        },
-        "reviewedDateTime": "2026-09-03T15:00:00Z",
-        "applyResult": "AppliedSuccessfully",
-        "appliedDateTime": null,
-        "principal": {
-          "id": "9e000000-0000-4000-8000-000000000006",
-          "displayName": "PRV-T0-GlobalAdmin",
-          "type": "group"
-        }
-      },
       {
         "id": "d-ga9-2",
         "decision": "Approve",
@@ -346,23 +459,6 @@
       }
     ],
     "ga-2026-10": [
-      {
-        "id": "d-ga10-1",
-        "decision": "Approve",
-        "justification": "PRV-T0 membership reviewed separately",
-        "recommendation": "NoInfoAvailable",
-        "reviewedBy": {
-          "id": "a0000000-0000-4000-8000-000000000013"
-        },
-        "reviewedDateTime": "2026-10-02T15:00:00Z",
-        "applyResult": "AppliedSuccessfully",
-        "appliedDateTime": null,
-        "principal": {
-          "id": "9e000000-0000-4000-8000-000000000006",
-          "displayName": "PRV-T0-GlobalAdmin",
-          "type": "group"
-        }
-      },
       {
         "id": "d-ga10-2",
         "decision": "Approve",
@@ -572,6 +668,48 @@
           "displayName": "Gina Lee",
           "type": "user",
           "userPrincipalName": "gina.lee@contoso.example"
+        }
+      }
+    ],
+    "prvpra-2026-10": [
+      {
+        "id": "d-prvpra-1",
+        "decision": "Approve",
+        "justification": "Tier 0 role administration rota",
+        "recommendation": "NoInfoAvailable",
+        "reviewedBy": {
+          "id": "a0000000-0000-4000-8000-000000000013"
+        },
+        "reviewedDateTime": "2026-10-05T09:00:00Z",
+        "applyResult": "AppliedSuccessfully",
+        "appliedDateTime": null,
+        "principal": {
+          "@odata.type": "#microsoft.graph.userIdentity",
+          "id": "a0000000-0000-4000-8000-000000000004",
+          "displayName": "Eli Park",
+          "type": "user",
+          "userPrincipalName": "eli.park@contoso.example"
+        }
+      }
+    ],
+    "prvexo-2026-09": [
+      {
+        "id": "d-prvexo-1",
+        "decision": "Approve",
+        "justification": "Exchange operations",
+        "recommendation": "NoInfoAvailable",
+        "reviewedBy": {
+          "id": "a0000000-0000-4000-8000-000000000013"
+        },
+        "reviewedDateTime": "2026-09-05T09:00:00Z",
+        "applyResult": "AppliedSuccessfully",
+        "appliedDateTime": null,
+        "principal": {
+          "@odata.type": "#microsoft.graph.userIdentity",
+          "id": "a0000000-0000-4000-8000-000000000003",
+          "displayName": "Dana Ruiz",
+          "type": "user",
+          "userPrincipalName": "dana.ruiz@contoso.example"
         }
       }
     ],

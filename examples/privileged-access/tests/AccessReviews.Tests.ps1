@@ -38,14 +38,16 @@ Describe 'Chapter 07: "Review access to administrative roles using access review
         $script:Req.Count | Should -BeGreaterThan 5
         foreach ($r in $script:Req) { $r.Uri | Should -BeLike 'https://graph.microsoft.com/v1.0/*' }
     }
-    It 'reviews one role, users and groups, active and eligible: the model the example keeps' {
+    It 'reviews one role, users and groups, active and eligible: the example keeps the shape and leaves groups to their own series' {
         $s = $script:Create.Body.scope
         $s['@odata.type'] | Should -Be '#microsoft.graph.principalResourceMembershipsScope'
         @($s.principalScopes.query) | Should -Be @('/users', '/groups')
         @($s.resourceScopes).Count | Should -Be 1
         $s.resourceScopes[0].query | Should -Match '^/roleManagement/directory/roleDefinitions/[0-9a-f-]{36}$'
         $mine = Get-PaArScope -Review @{ kind = 'entraRole'; name = 'x'; roleTemplateId = 'fe930be7-5e62-47db-91af-98c3a49a38b1'; assignments = 'activeAndEligible' }
-        ($mine | ConvertTo-Json -Depth 10 -Compress) | Should -Be ($s | ConvertTo-Json -Depth 10 -Compress)
+        $usersOnly = $s | ConvertTo-Json -Depth 10 | ConvertFrom-Json -AsHashtable -Depth 10
+        $usersOnly.principalScopes = @($usersOnly.principalScopes | Where-Object { $_.query -eq '/users' })
+        ($mine | ConvertTo-Json -Depth 10 -Compress) | Should -Be ($usersOnly | ConvertTo-Json -Depth 10 -Compress)
     }
     It 'runs against the fake: the POST creates a series, and a second run creates a second one' {
         $fake = New-PaArFake
@@ -145,8 +147,8 @@ Describe 'Calls and permissions (config/calls-ch07.json)' {
 }
 
 Describe 'The reviewed JSON and the bodies' {
-    It 'reads the fixture: five series, one per role or group' {
-        @((Get-Config).reviews).Count | Should -Be 5
+    It 'reads the fixture: seven series, one per role or group' {
+        @((Get-Config).reviews).Count | Should -Be 7
     }
     It 'refuses a reviewer named by UPN, a name without the prefix, and a name used twice' {
         $p = Join-Path ([IO.Path]::GetTempPath()) "pa-ar-$([guid]::NewGuid().Guid.Substring(0,8)).json"
@@ -248,6 +250,8 @@ Describe 'Get-PaArPlan: the dry run' {
         (Get-Item1 $script:Plan 'PAR-T0-PrivilegedRoleAdministrator-Monthly').Action | Should -Be 'Create'
         (Get-Item1 $script:Plan 'PAR-T1-ExchangeAdministrator-Quarterly').Action | Should -Be 'Replace'
         (Get-Item1 $script:Plan 'PAR-PRV-T0-GlobalAdmin-Monthly').Action | Should -Be 'NoChange'
+        (Get-Item1 $script:Plan 'PAR-PRV-T0-PrivRoleAdmin-Monthly').Action | Should -Be 'NoChange'
+        (Get-Item1 $script:Plan 'PAR-PRV-T1-ExchangeAdmin-Quarterly').Action | Should -Be 'NoChange'
         (Get-Item1 $script:Plan 'PAR-AZ-T0-Owner-Platform-Monthly').Action | Should -Be 'Update'
         (Get-Item1 $script:Plan 'PAR-T0-SecurityAdministrator-Monthly').Action | Should -Be 'Unmanaged'
         @($script:Plan.Items.Name) | Should -Not -Contain 'Quarterly review - APP-PAYROLL-USERS-T1'
@@ -266,6 +270,19 @@ Describe 'Get-PaArPlan: the dry run' {
         (Get-Item1 $p 'PAR-PRV-T0-GlobalAdmin-Monthly').Action | Should -Be 'Replace'
         $r = New-Run access-reviews-plan { param($t) $d = $t.graphDefinitions | Where-Object displayName -EQ 'PAR-PRV-T0-GlobalAdmin-Monthly'; $d.reviewers = @(@{ query = '/users/a0000000-0000-4000-8000-000000000013'; queryType = 'MicrosoftGraph' }) }
         (Get-Item1 (Get-PaArPlan -Client $r.Client -Config (Get-Config) -AsOf $script:AsOf) 'PAR-PRV-T0-GlobalAdmin-Monthly').Action | Should -Be 'Update'
+    }
+    It 'PA-AR-14: a group that holds a reviewed role but has no membership series of its own' {
+        $c = Get-Config { param($c) $c.reviews = @($c.reviews | Where-Object { $_.name -ne 'PAR-PRV-T1-ExchangeAdmin-Quarterly' }) }
+        $p = Get-PaArPlan -Client (New-Run).Client -Config $c -AsOf $script:AsOf
+        $f = Get-Rules $p.Findings 'PA-AR-14' 'Finding'
+        $f | Should -HaveCount 1
+        $f[0].Object | Should -Be 'PAR-T1-ExchangeAdministrator-Quarterly'
+    }
+    It 'reviews users only in a role series: groups never appear as a principal scope' {
+        $c = Get-Config
+        foreach ($r in @($c.reviews | Where-Object kind -EQ 'entraRole')) {
+            @((New-PaArDefinitionBody -Review $r -Config $c).Body.scope.principalScopes.query) | Should -Be @('/users')
+        }
     }
     It 'reports a name used twice in the tenant as a Conflict (PA-AR-12)' {
         $r = New-Run access-reviews-plan { param($t) $d = $t.graphDefinitions | Where-Object displayName -EQ 'PAR-PRV-T0-GlobalAdmin-Monthly'; $t.graphDefinitions.Add(($d | ConvertTo-Json -Depth 30 | ConvertFrom-Json -AsHashtable -Depth 30)) }
@@ -329,9 +346,9 @@ Describe 'Get-PaArEvidence: the results as evidence' {
     BeforeAll {
         $script:Ev = Get-PaArEvidence -Client (New-Run access-reviews-evidence).Client -Config (Get-Config) -AsOf $script:AsOf
     }
-    It 'reads 18 decisions in 5 instances across Graph and Resource Manager' {
+    It 'reads 18 decisions in 7 instances across Graph and Resource Manager' {
         $script:Ev.Rows.Count | Should -Be 18
-        $script:Ev.Instances.Count | Should -Be 5
+        $script:Ev.Instances.Count | Should -Be 7
         @($script:Ev.Rows | Where-Object Api -EQ 'arm').Count | Should -Be 2
     }
     It 'reports each evidence rule on the fixture' {
@@ -352,7 +369,8 @@ Describe 'Get-PaArEvidence: the results as evidence' {
         $null = Get-PaArEvidence -Client $r.Client -Config (Get-Config) -AsOf $script:AsOf
         $d = @($r.Fake.Calls.Uri | Where-Object { $_ -like '*/instances/ga-2026-10/decisions*' })
         $d[0] | Should -BeLike '*$top=100'
-        $d.Count | Should -Be 3
+        $d.Count | Should -Be 2
+        $d[1] | Should -BeLike '*$skiptoken=2'
     }
     It 'pages with $skip when a full page comes back without a next link' {
         $seen = [Collections.Generic.List[string]]::new()
@@ -377,7 +395,7 @@ Describe 'Invoke-PaAccessReviews.ps1' {
         $out = Join-Path ([IO.Path]::GetTempPath()) "pa-ar-$([guid]::NewGuid().Guid.Substring(0,8))"
         try {
             $text = & (Join-Path $script:Root 'Invoke-PaAccessReviews.ps1') -Cloud gcc -Mode Plan -ConfigPath $script:ConfigPath -FixturePath $script:Fixture -AsOf $script:AsOf -OutputPath $out
-            $text[0] | Should -Be 'Plan: 1 Create, 2 Update, 1 Replace, 1 NoChange, 1 Unmanaged'
+            $text[0] | Should -Be 'Plan: 1 Create, 2 Update, 1 Replace, 3 NoChange, 1 Unmanaged'
             $m = Get-Content (Join-Path $out 'manifest.json') -Raw | ConvertFrom-Json
             $m.task | Should -Be 'access-reviews-plan'
             @($m.graphPermissions) | Should -Be @('AccessReview.Read.All')

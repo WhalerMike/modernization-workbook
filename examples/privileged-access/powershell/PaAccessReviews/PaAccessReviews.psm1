@@ -327,6 +327,7 @@ function Read-PaArConfig {
             'pimGroup' { @($r.groupId) }
             'azureRole' { @($r.subscriptionId, $r.roleDefinitionId) }
         }
+        if ($r.kind -eq 'entraRole' -and $r.ContainsKey('eligibleGroupIds')) { $ids = @($ids) + @($r.eligibleGroupIds) }
         foreach ($id in $ids) { if ([string]$id -notmatch $script:Guid) { throw "Review '$($r.name)': '$id' isn't an object ID" } }
         foreach ($rv in @($r.reviewers) + @($(if ($r.ContainsKey('fallbackReviewers')) { $r.fallbackReviewers } else { @() }))) {
             $v = if ($rv.ContainsKey('group')) { $rv.group } elseif ($rv.ContainsKey('user')) { $rv.user } else { throw "Review '$($r.name)': a reviewer must be { group } or { user }" }
@@ -350,10 +351,12 @@ function ConvertTo-PaArReviewerScope {
 function Get-PaArScope {
     <#
     .SYNOPSIS
-        The Graph scope for one review, from Learn's documented patterns only: the tutorial's
-        principalResourceMembershipsScope (users and groups, active and eligible) for a role, the
-        scope article's Example 12.2 queries (users only) for eligible-only or active-only, and
-        Example 1 (transitive members) for a PIM for Groups group.
+        The Graph scope for one review, from Learn's documented patterns only. A role review covers
+        users: the tutorial's principalResourceMembershipsScope with its /groups principal scope
+        left out (users with active or eligible assignments), or the scope article's Example 12.2
+        queries for eligible-only or active-only. Groups that hold the role are reviewed through
+        their own PIM for Groups membership series (Example 1, transitive members), the owner's
+        decision (research gaps, row 73).
     #>
     param($Review)
     switch ($Review.kind) {
@@ -365,8 +368,7 @@ function Get-PaArScope {
                     [ordered]@{
                         '@odata.type'   = '#microsoft.graph.principalResourceMembershipsScope'
                         principalScopes = @(
-                            [ordered]@{ '@odata.type' = '#microsoft.graph.accessReviewQueryScope'; query = '/users'; queryType = 'MicrosoftGraph' },
-                            [ordered]@{ '@odata.type' = '#microsoft.graph.accessReviewQueryScope'; query = '/groups'; queryType = 'MicrosoftGraph' })
+                            [ordered]@{ '@odata.type' = '#microsoft.graph.accessReviewQueryScope'; query = '/users'; queryType = 'MicrosoftGraph' })
                         resourceScopes  = @(
                             [ordered]@{ '@odata.type' = '#microsoft.graph.accessReviewQueryScope'; query = "/roleManagement/directory/roleDefinitions/$rid"; queryType = 'MicrosoftGraph' })
                     }
@@ -599,6 +601,15 @@ function Get-PaArPlan {
     $built = @($Config.reviews | ForEach-Object { New-PaArDefinitionBody -Review $_ -Config $Config })
     foreach ($b in $built) {
         foreach ($x in (Test-PaArDefinition -Body $b.Body -Api $b.Api -Name $b.Name -Tier $b.Review.tier -ProtectedRoleTemplateIds $Config.protectedRoleTemplateIds -AsOf $AsOf)) { $findings.Add($x) }
+    }
+
+    # PA-AR-14: a group eligible for a reviewed role is reviewed by its own membership series
+    # (the owner's decision, research gaps row 73): the role review covers users only.
+    $groupSeries = @($Config.reviews | Where-Object { $_.kind -eq 'pimGroup' } | ForEach-Object { $_.groupId })
+    foreach ($r in @($Config.reviews | Where-Object { $_.kind -eq 'entraRole' -and $_.ContainsKey('eligibleGroupIds') })) {
+        foreach ($g in @($r.eligibleGroupIds)) {
+            if ($groupSeries -notcontains $g) { $findings.Add((New-PaArFinding 'PA-AR-14' 'Finding' $r.name "Group $g holds this role but has no PIM for Groups membership series; the role review covers users only")) }
+        }
     }
 
     $live = @(Invoke-PaArList -Client $Client -CallId 'ar-definitions-list')

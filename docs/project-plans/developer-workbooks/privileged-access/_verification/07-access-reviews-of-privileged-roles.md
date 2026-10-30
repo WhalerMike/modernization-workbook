@@ -2,7 +2,7 @@
 
 New material; it replaces no workbook page. Code: `examples/privileged-access`, in files of this chapter's own: `powershell/PaAccessReviews/PaAccessReviews.psm1` (imports `Get-PaCloud` from Chapter 01's module and changes nothing there), `Invoke-PaAccessReviews.ps1`, `config/calls-ch07.json`, `docs/ch07.md`, `tests/AccessReviews.Tests.ps1`, `tests/AccessReviewsSampleHarness.ps1`, `tests/fixtures/ch07/access-reviews.json` and `tests/fixtures/ch07/tenant.json`. Pinned sample: `examples/third_party/graph-access-reviews-roles-tutorial` (new), Learn's tutorial source `concepts/tutorial-accessreviews-roleassignments.md` from microsoftgraph/microsoft-graph-docs-contrib at commit `a69303123e9701eecbf56568d152ece936a97f1e` (October 30, 2026; the page last changed July 3, 2026; CC BY 4.0 documentation, MIT code), with the repository's `LICENSE` and `LICENSE-CODE`. Every file's git blob hash matched the upstream tree at that commit (`gh api` contents, October 30, 2026) before `snapshot.json` was written. Source-watch feed added: `graph-access-reviews-roles-tutorial-commits` (path to the page, books `DW`).
 
-Test results on October 30, 2026, Windows 11, PowerShell 7.6.9 with Pester 5.5.0: 168 passed across the example, Chapter 03 included after merging main; this chapter's are the 55 in `AccessReviews.Tests.ps1`, of which 11 run Learn's tutorial as published. The tutorial's create request was sent only to the example's fake; nothing was sent to a tenant.
+Test results on October 30, 2026, Windows 11, PowerShell 7.6.9 with Pester 5.5.0: 208 passed across the example, Chapters 03 and 06 included after merging main; this chapter's are the 57 in `AccessReviews.Tests.ps1`, of which 11 run Learn's tutorial as published. The tutorial's create request was sent only to the example's fake; nothing was sent to a tenant.
 
 **Why this sample.** The Graph tutorial is Microsoft's own walk-through for reviewing administrative role assignments through the access reviews API, and the only Microsoft sample found for creating such a review as code. Searched on October 30, 2026 with the Learn MCP tools (docs search and code sample search for access review definitions, privileged roles, PIM for Groups and Azure resource roles). No Microsoft sample was found for Azure resource role reviews through an API, or for PIM for Groups reviews through Graph: Learn documents both in the admin center, and the Azure one in the Resource Manager REST reference only. `microsoftgraph/*` and `Azure-Samples/*` weren't searched separately; the Learn sample search returns their Learn-published snippets, and the tutorial covers the task.
 
@@ -33,8 +33,15 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 19 | Book 04 settings: Step 8 eligible scope, monthly T0, quarterly others, auto-apply, remove access; Chapter 09 schedule and fallbacks; Appendix B pairing of role and `PRV-*` reviews; Chapter 10 review definitions as code | Why reviews; fixture | verified by reading the chapters on October 30, 2026 | Book 04, Chapters 08, 09, 10, Appendix B |
 | 20 | Sample behavior offline: duplicate on rerun; Step 6 filter string absent from Step 1; no Azure or PIM for Groups; checks flag PA-AR-02, 03, 05, 07, 10 on the tutorial body | Gap table; Lab 1 | verified by running the pinned requests against the fake | local run |
 | 21 | The rules' thresholds (35 and 100 days; five decisions in five minutes; 256 characters; managed prefix; never delete; Replace for scope and group reviewers) | The code | restated-as-design (labeled) except where a row above cites Learn | — |
-| 22 | Lab 1 outputs (11 passed; permissions; plan counts; diff; tutorial findings; apply results; evidence counts and findings; refusal text; 168 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
+| 22 | Lab 1 outputs (11 passed; permissions; plan counts; diff; tutorial findings; apply results; evidence counts and findings; refusal text; 208 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 23 | Lab 2 behavior | Lab 2 | not run against a tenant; research gaps, rows 71, 75, 77, 79 | — |
+| 24 | Owner's decision on row 73: eligible groups reviewed through their own `PRV-*` membership series; role series cover users (tutorial scope without `/groups`); PA-AR-14 | The bodies; checks; fixture; dangers | recorded as the owner's decision, October 30, 2026; code, fixture and tests changed to match | owner, through the coordinator |
+| 25 | Owner's decision on row 74: a review covering the emergency accounts' permanent Global Administrator uses "no change" on silence and raises a finding; every other privileged review removes access | PA-AR-06 paragraph; checklist | recorded as the owner's decision, October 30, 2026; Book 04, Chapter 08's Step 8 notes the exception, with a correction line in its verification log | owner, through the coordinator |
+
+## Owner's decisions
+
+- **Row 73 (closed).** Groups that hold a privileged role are reviewed through their own PIM for Groups membership series, not through the role review. Role series now leave the tutorial's `/groups` principal scope out; the fixture has a `PRV-*` series for each group that holds a reviewed role; PA-AR-14 flags a missing one; two tests pin it.
+- **Row 74 (closed).** The code's behavior stands: "no change" on silence only for a review covering the emergency accounts' permanent Global Administrator, with unreviewed items as findings; "remove access" everywhere else. Book 04, Chapter 08's Step 8 has a note recording the exception.
 
 ## Learn conflicts
 
@@ -53,7 +60,7 @@ None. Every external claim cites Microsoft Learn or a workbook chapter.
 | Source | Went to | Or why not carried |
 |---|---|---|
 | Project plan tasks A2.7, A3.7, decision D-A6 | In this chapter; PA-AR-09; checklist | — |
-| Book 04, Chapter 08, Step 8 (review settings) | Fixture settings; gap table; rows 73, 74 | Scope: eligible-only can't include groups through Learn's documented queries (row 73) |
+| Book 04, Chapter 08, Step 8 (review settings) | Fixture settings; gap table; rows 73, 74 | Scope: groups are reviewed through their own membership series (row 73, owner's decision); the Global Administrator exception is noted in Step 8 (row 74) |
 | Book 04, Chapter 09 (cadence, fallbacks, bulk decisions, evidence) | Fixture; PA-AR-E07; evidence | Review history reports aren't used; decisions are read per instance |
 | Book 04, Chapter 10 (review definitions as code; the Graph PowerShell example) | Why reviews as code | Its example reviews an application group; this chapter covers privileged roles |
 | Book 04, Appendix B (review cadence by tier; pairing with `PRV-*` reviews) | Fixture; dangers | Tier 2 and read-only reviewers (role owner, security office) are the agency's to fill in |
