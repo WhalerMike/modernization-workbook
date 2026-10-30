@@ -104,3 +104,12 @@ New section "Emergency calling: what HR attributes supply and what they don't," 
 | Assessment notes for this addition (session notes, not published) | This section | Law and Teams configuration detail already in Book 15 Ch05 linked, not repeated; Direct Routing PIDF-LO and ERSP setup, 933 testing and government-cloud table left in Book 15 |
 | 47 CFR 9.11 (interconnected VoIP) | Not carried | Binds the carriers, not the agency; out of scope for an identity chapter |
 | Front matter description and "In this chapter" callout | Same | edited to name the new section |
+
+## Correction, October 30, 2026: the userType guard on two rule patterns
+
+The "Organization and worker type" and "Exclusion" rows of the rule pattern table had the `accountEnabled` guard but not `user.userType -eq "Member"`, unlike the other three rows. Both now carry it. The validation kit's VK-DG-01 flags any user rule that lacks either guard, so a rule copied from those two rows would have failed the kit. Found while writing the Developer Workbook (Book 19); logged in `docs/books/b19-developer-workbook/_verification/research-gaps.md`, gap 4.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Members-only rule form: `(user.objectId -ne null) -and (user.userType -eq "Member")` excludes guests; `userType` takes `member`, `guest` or `null` | Rule pattern table, rows "Organization and worker type" and "Exclusion" | corrected | Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (accessed Oct 30, 2026) |
+| 2 | The Exclusion row's `-ne "CTR"` also matches a blank worker type | Exclusion row | not changed: noted for the owner's decision | Rule semantics; Learn page above (null checks) |
