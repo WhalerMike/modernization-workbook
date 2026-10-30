@@ -1,0 +1,60 @@
+{
+  "_comment": "Chapter 03: the fictional contoso.example tenant's Conditional Access objects, in Graph v1.0 shapes, served by New-PaCaFixtureInvoker. CA001 exists only in the tenant. CA004 lacks the persistent browser control the repository sets. CA005 matches the repository, with the extra null and empty properties Graph returns. Context c2 has an older description; c1 and the custom strength don't exist yet. Invented IDs.",
+  "policies": [
+    {
+      "id": "ca000000-0000-4000-8000-000000000001",
+      "displayName": "CA001-AllUsers-BlockLegacyAuth",
+      "state": "enabled",
+      "createdDateTime": "2026-03-02T15:00:00Z",
+      "modifiedDateTime": null,
+      "conditions": {
+        "users": { "includeUsers": ["All"], "excludeUsers": [], "includeGroups": [], "excludeGroups": ["9e000000-0000-4000-8000-000000000001"], "includeRoles": [], "excludeRoles": [] },
+        "applications": { "includeApplications": ["All"], "excludeApplications": [], "includeUserActions": [], "includeAuthenticationContextClassReferences": [] },
+        "clientAppTypes": ["exchangeActiveSync", "other"]
+      },
+      "grantControls": { "operator": "OR", "builtInControls": ["block"], "customAuthenticationFactors": [], "termsOfUse": [], "authenticationStrength": null },
+      "sessionControls": null
+    },
+    {
+      "id": "ca000000-0000-4000-8000-000000000004",
+      "displayName": "CA004-Admins-RequireCompliantDevice",
+      "state": "enabledForReportingButNotEnforced",
+      "createdDateTime": "2026-09-14T15:00:00Z",
+      "modifiedDateTime": null,
+      "conditions": {
+        "users": { "includeUsers": [], "excludeUsers": [], "includeGroups": ["9e000000-0000-4000-8000-000000000021"], "excludeGroups": ["9e000000-0000-4000-8000-000000000001"], "includeRoles": [], "excludeRoles": [] },
+        "applications": { "includeApplications": ["All"], "excludeApplications": [], "includeUserActions": [], "includeAuthenticationContextClassReferences": [] },
+        "clientAppTypes": ["all"],
+        "platforms": null,
+        "locations": null
+      },
+      "grantControls": { "operator": "OR", "builtInControls": ["compliantDevice"], "customAuthenticationFactors": [], "termsOfUse": [], "authenticationStrength": null },
+      "sessionControls": null
+    },
+    {
+      "id": "ca000000-0000-4000-8000-000000000005",
+      "displayName": "CA005-Admins-BlockUntrustedLocations",
+      "state": "enabledForReportingButNotEnforced",
+      "createdDateTime": "2026-09-14T15:05:00Z",
+      "modifiedDateTime": null,
+      "conditions": {
+        "users": { "includeUsers": [], "excludeUsers": [], "includeGroups": ["9e000000-0000-4000-8000-000000000021"], "excludeGroups": ["9e000000-0000-4000-8000-000000000001"], "includeRoles": [], "excludeRoles": [] },
+        "applications": { "includeApplications": ["All"], "excludeApplications": [], "includeUserActions": [], "includeAuthenticationContextClassReferences": [] },
+        "locations": { "includeLocations": ["All"], "excludeLocations": ["1c000000-0000-4000-8000-000000000001"] },
+        "clientAppTypes": ["all"],
+        "platforms": null
+      },
+      "grantControls": { "operator": "OR", "builtInControls": ["block"], "customAuthenticationFactors": [], "termsOfUse": [], "authenticationStrength": null },
+      "sessionControls": null
+    }
+  ],
+  "authenticationContextClassReferences": [
+    { "id": "c2", "displayName": "FMP-ProtectedActions", "description": "Protected actions (pilot)", "isAvailable": true }
+  ],
+  "authenticationStrengthPolicies": [
+    { "id": "00000000-0000-0000-0000-000000000002", "displayName": "Multifactor authentication", "policyType": "builtIn", "requirementsSatisfied": "mfa", "allowedCombinations": [] },
+    { "id": "00000000-0000-0000-0000-000000000003", "displayName": "Passwordless MFA", "policyType": "builtIn", "requirementsSatisfied": "mfa", "allowedCombinations": [] },
+    { "id": "00000000-0000-0000-0000-000000000004", "displayName": "Phishing-resistant MFA", "policyType": "builtIn", "requirementsSatisfied": "mfa", "allowedCombinations": ["windowsHelloForBusiness", "fido2", "x509CertificateMultiFactor"] }
+  ],
+  "templates": []
+}

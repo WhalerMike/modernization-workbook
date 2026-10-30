@@ -1,0 +1,11 @@
+{
+  "displayName": "CA004-Admins-RequireCompliantDevice",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": { "includeGroups": ["{group:CA-Persona-Admins}"], "excludeGroups": ["{group:CA-Exclude-EmergencyAccess}"] },
+    "applications": { "includeApplications": ["All"] },
+    "clientAppTypes": ["all"]
+  },
+  "grantControls": { "operator": "OR", "builtInControls": ["compliantDevice"] },
+  "sessionControls": { "persistentBrowser": { "isEnabled": true, "mode": "never" } }
+}

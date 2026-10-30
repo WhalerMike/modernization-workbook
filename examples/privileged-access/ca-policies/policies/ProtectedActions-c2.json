@@ -1,0 +1,14 @@
+{
+  "displayName": "ProtectedActions-c2",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": { "includeUsers": ["All"], "excludeGroups": ["{group:CA-Exclude-EmergencyAccess}"] },
+    "applications": { "includeAuthenticationContextClassReferences": ["c2"] },
+    "clientAppTypes": ["all"]
+  },
+  "grantControls": {
+    "operator": "AND",
+    "builtInControls": ["compliantDevice"],
+    "authenticationStrength": { "id": "{strength:FMP-Privileged-SeparateDevice}" }
+  }
+}

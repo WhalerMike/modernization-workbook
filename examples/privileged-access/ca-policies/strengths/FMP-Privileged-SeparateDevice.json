@@ -1,0 +1,13 @@
+{
+  "displayName": "FMP-Privileged-SeparateDevice",
+  "description": "Approved FIDO2 security keys or multifactor certificate-based authentication (PIV/CAC). For privileged roles.",
+  "requirementsSatisfied": "mfa",
+  "allowedCombinations": ["fido2", "x509CertificateMultiFactor"],
+  "combinationConfigurations": [
+    {
+      "@odata.type": "#microsoft.graph.fido2CombinationConfiguration",
+      "appliesToCombinations": ["fido2"],
+      "allowedAAGUIDs": ["{aaguid:approved-key-model-1}", "{aaguid:approved-key-model-2}"]
+    }
+  ]
+}
