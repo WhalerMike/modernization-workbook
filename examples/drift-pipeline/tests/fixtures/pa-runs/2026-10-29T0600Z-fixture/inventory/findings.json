@@ -1,0 +1,128 @@
+[
+  {
+    "Rule": "PA-INV-01",
+    "Severity": "Info",
+    "Object": "ea01@contosoexample.onmicrosoft.com",
+    "ObjectId": "0e000000-0000-4000-8000-000000000001",
+    "Issue": "Standing Global Administrator (T0) on the exceptions list: Emergency access account (Book 04 Chapter 04)"
+  },
+  {
+    "Rule": "PA-INV-01",
+    "Severity": "Finding",
+    "Object": "alex.kim@contoso.example",
+    "ObjectId": "a0000000-0000-4000-8000-000000000001",
+    "Issue": "Standing active Global Administrator (T0, Entra, scope /) outside the documented exceptions"
+  },
+  {
+    "Rule": "PA-INV-02",
+    "Severity": "Warn",
+    "Object": "alex.kim@contoso.example",
+    "ObjectId": "a0000000-0000-4000-8000-000000000001",
+    "Issue": "Global Administrator is assigned directly to the user (ActivePermanent); the program assigns roles to a PRV role-assignable group"
+  },
+  {
+    "Rule": "PA-INV-01",
+    "Severity": "Finding",
+    "Object": "Contoso-Mail-Automation",
+    "ObjectId": "5e000000-0000-4000-8000-000000000001",
+    "Issue": "Standing active Exchange Administrator (T1, Entra, scope /) outside the documented exceptions"
+  },
+  {
+    "Rule": "PA-INV-03",
+    "Severity": "Warn",
+    "Object": "Helpdesk Team",
+    "ObjectId": "9e000000-0000-4000-8000-000000000004",
+    "Issue": "Group holds Helpdesk Administrator (T2) but isn't named PRV-T2-<role>[-<scope>]"
+  },
+  {
+    "Rule": "PA-INV-02",
+    "Severity": "Warn",
+    "Object": "frank.ode@contoso.example",
+    "ObjectId": "a0000000-0000-4000-8000-000000000005",
+    "Issue": "Global Administrator is assigned directly to the user (EligiblePermanent); the program assigns roles to a PRV role-assignable group"
+  },
+  {
+    "Rule": "PA-INV-06",
+    "Severity": "Warn",
+    "Object": "frank.ode@contoso.example",
+    "ObjectId": "a0000000-0000-4000-8000-000000000005",
+    "Issue": "Global Administrator eligibility has no end date; Appendix B bounds eligibility by tier"
+  },
+  {
+    "Rule": "PA-INV-02",
+    "Severity": "Warn",
+    "Object": "gina.lee@contoso.example",
+    "ObjectId": "a0000000-0000-4000-8000-000000000006",
+    "Issue": "Security Administrator is assigned directly to the user (Eligible); the program assigns roles to a PRV role-assignable group"
+  },
+  {
+    "Rule": "PA-INV-05",
+    "Severity": "Warn",
+    "Object": "Contoso Directory Writer",
+    "ObjectId": "c0000000-0000-4000-8000-000000000001",
+    "Issue": "Role isn't in the tier map; classify it before it's treated as safe (frank.ode@contoso.example holds it)"
+  },
+  {
+    "Rule": "PA-INV-01",
+    "Severity": "Finding",
+    "Object": "a0000000-0000-4000-8000-000000000007",
+    "ObjectId": "a0000000-0000-4000-8000-000000000007",
+    "Issue": "Standing active Owner (T1, Azure, scope /subscriptions/11111111-1111-4111-8111-111111111111) outside the documented exceptions"
+  },
+  {
+    "Rule": "PA-INV-01",
+    "Severity": "Finding",
+    "Object": "a0000000-0000-4000-8000-000000000014",
+    "ObjectId": "a0000000-0000-4000-8000-000000000014",
+    "Issue": "Standing active Owner (T1, Azure, scope /subscriptions/11111111-1111-4111-8111-111111111111) outside the documented exceptions"
+  },
+  {
+    "Rule": "PA-INV-01",
+    "Severity": "Finding",
+    "Object": "a0000000-0000-4000-8000-000000000010",
+    "ObjectId": "a0000000-0000-4000-8000-000000000010",
+    "Issue": "Standing active User Access Administrator (T0, Azure, scope /providers/Microsoft.Management/managementGroups/contoso-root) outside the documented exceptions"
+  },
+  {
+    "Rule": "PA-INV-01",
+    "Severity": "Finding",
+    "Object": "a0000000-0000-4000-8000-000000000001",
+    "ObjectId": "a0000000-0000-4000-8000-000000000001",
+    "Issue": "Standing active User Access Administrator (T0, Azure, scope /) outside the documented exceptions"
+  },
+  {
+    "Rule": "PA-INV-07",
+    "Severity": "Finding",
+    "Object": "a0000000-0000-4000-8000-000000000001",
+    "ObjectId": "a0000000-0000-4000-8000-000000000001",
+    "Issue": "User Access Administrator at root scope (/): elevated access over every subscription and management group; remove it when the task is done"
+  },
+  {
+    "Rule": "PA-INV-01",
+    "Severity": "Finding",
+    "Object": "5e000000-0000-4000-8000-000000000002",
+    "ObjectId": "5e000000-0000-4000-8000-000000000002",
+    "Issue": "Standing active Contributor (T0, Azure, scope /subscriptions/22222222-2222-4222-8222-222222222222) outside the documented exceptions"
+  },
+  {
+    "Rule": "PA-INV-04",
+    "Severity": "Finding",
+    "Object": "Global Administrator",
+    "ObjectId": "62e90394-69f5-4237-9190-012177145e10",
+    "Issue": "5 principals hold or are eligible for Global Administrator; Learn advises fewer than five"
+  },
+  {
+    "Rule": "PA-INV-08",
+    "Severity": "Finding",
+    "Object": "/subscriptions/11111111-1111-4111-8111-111111111111",
+    "ObjectId": "/subscriptions/11111111-1111-4111-8111-111111111111",
+    "Issue": "5 Owner assignments on the subscription; Learn's best practice is at most 3"
+  },
+  {
+    "Rule": "PA-INV-09",
+    "Severity": "Warn",
+    "Object": "a0000000-0000-4000-8000-000000000012",
+    "ObjectId": "a0000000-0000-4000-8000-000000000012",
+    "Issue": "Member of PRV-T1-ExchangeAdmin returned with id and type only; grant User.ReadBasic.All, or the review sees an unnamed holder"
+  }
+]

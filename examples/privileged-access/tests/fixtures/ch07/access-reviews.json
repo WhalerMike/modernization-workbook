@@ -1,0 +1,97 @@
+{
+  "_comment": "Chapter 07: the reviewed JSON of privileged access review series for the fictional contoso.example tenant. Cadences, reviewers and no-response defaults are Book 04, Chapter 09's schedule (Design guidance). Every ID is invented. One review per role or group, as Learn's tutorial requires. A role review covers users; each group that holds a role (eligibleGroupIds) has its own PIM for Groups membership series (owner's decision, research gaps row 73). The code turns each into a Graph or Resource Manager body.",
+  "namePrefix": "PAR-",
+  "protectedRoleTemplateIds": ["62e90394-69f5-4237-9190-012177145e10"],
+  "emergencyAccountIds": ["0e000000-0000-4000-8000-000000000001", "0e000000-0000-4000-8000-000000000002"],
+  "defaults": {
+    "startDate": "2026-12-01",
+    "instanceDurationInDays": 14,
+    "mailNotificationsEnabled": true,
+    "reminderNotificationsEnabled": true,
+    "justificationRequiredOnApproval": true,
+    "recommendationsEnabled": true,
+    "autoApplyDecisionsEnabled": true,
+    "defaultDecision": "Deny"
+  },
+  "reviews": [
+    {
+      "name": "PAR-T0-GlobalAdministrator-Monthly",
+      "kind": "entraRole",
+      "tier": "T0",
+      "roleTemplateId": "62e90394-69f5-4237-9190-012177145e10",
+      "eligibleGroupIds": ["9e000000-0000-4000-8000-000000000006"],
+      "assignments": "activeAndEligible",
+      "cadence": "monthly",
+      "defaultDecision": "None",
+      "reviewers": [{ "group": "aa000000-0000-4000-8000-000000000010" }],
+      "fallbackReviewers": [{ "group": "aa000000-0000-4000-8000-000000000011" }],
+      "descriptionForReviewers": "Tier 0. Approve only assignments with a current need. The emergency access accounts must stay: approve them and cite the last drill. Questions: governance office."
+    },
+    {
+      "name": "PAR-T0-PrivilegedRoleAdministrator-Monthly",
+      "kind": "entraRole",
+      "tier": "T0",
+      "roleTemplateId": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+      "eligibleGroupIds": ["9e000000-0000-4000-8000-000000000002"],
+      "assignments": "activeAndEligible",
+      "cadence": "monthly",
+      "reviewers": [{ "group": "aa000000-0000-4000-8000-000000000010" }],
+      "fallbackReviewers": [{ "group": "aa000000-0000-4000-8000-000000000011" }],
+      "descriptionForReviewers": "Tier 0. Approve only assignments with a current need; unreviewed access is removed when the review ends. Questions: governance office."
+    },
+    {
+      "name": "PAR-T1-ExchangeAdministrator-Quarterly",
+      "kind": "entraRole",
+      "tier": "T1",
+      "roleTemplateId": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+      "eligibleGroupIds": ["9e000000-0000-4000-8000-000000000003"],
+      "assignments": "activeAndEligible",
+      "cadence": "quarterly",
+      "reviewers": [{ "group": "aa000000-0000-4000-8000-000000000012" }],
+      "fallbackReviewers": [{ "group": "aa000000-0000-4000-8000-000000000011" }],
+      "descriptionForReviewers": "Tier 1. Approve only assignments with a current need; unreviewed access is removed when the review ends. Questions: governance office."
+    },
+    {
+      "name": "PAR-PRV-T0-GlobalAdmin-Monthly",
+      "kind": "pimGroup",
+      "tier": "T0",
+      "groupId": "9e000000-0000-4000-8000-000000000006",
+      "cadence": "monthly",
+      "reviewers": [{ "group": "aa000000-0000-4000-8000-000000000011" }],
+      "fallbackReviewers": [{ "group": "aa000000-0000-4000-8000-000000000014" }],
+      "descriptionForReviewers": "Members of PRV-T0-GlobalAdmin, eligible and active. Approve only people with a current Tier 0 duty; unreviewed members are removed."
+    },
+    {
+      "name": "PAR-PRV-T0-PrivRoleAdmin-Monthly",
+      "kind": "pimGroup",
+      "tier": "T0",
+      "groupId": "9e000000-0000-4000-8000-000000000002",
+      "cadence": "monthly",
+      "reviewers": [{ "group": "aa000000-0000-4000-8000-000000000011" }],
+      "fallbackReviewers": [{ "group": "aa000000-0000-4000-8000-000000000014" }],
+      "descriptionForReviewers": "Members of PRV-T0-PrivRoleAdmin, eligible and active. Approve only people with a current Tier 0 duty; unreviewed members are removed."
+    },
+    {
+      "name": "PAR-PRV-T1-ExchangeAdmin-Quarterly",
+      "kind": "pimGroup",
+      "tier": "T1",
+      "groupId": "9e000000-0000-4000-8000-000000000003",
+      "cadence": "quarterly",
+      "reviewers": [{ "group": "aa000000-0000-4000-8000-000000000011" }],
+      "fallbackReviewers": [{ "group": "aa000000-0000-4000-8000-000000000014" }],
+      "descriptionForReviewers": "Members of PRV-T1-ExchangeAdmin, eligible and active. Approve only people with a current Exchange duty; unreviewed members are removed."
+    },
+    {
+      "name": "PAR-AZ-T0-Owner-Platform-Monthly",
+      "kind": "azureRole",
+      "tier": "T0",
+      "subscriptionId": "33333333-3333-4333-8333-333333333333",
+      "roleDefinitionId": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+      "assignments": "eligible",
+      "cadence": "monthly",
+      "reviewers": [{ "user": "a0000000-0000-4000-8000-000000000013" }],
+      "fallbackReviewers": [{ "user": "a0000000-0000-4000-8000-000000000002" }],
+      "descriptionForReviewers": "Eligible Owner on the platform subscription (Tier 0). Approve only people with a current need; unreviewed eligibility is removed."
+    }
+  ]
+}

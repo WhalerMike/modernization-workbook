@@ -1,0 +1,53 @@
+{
+  "_comment": "A pinned, unmodified copy of three Microsoft Graph documentation source pages that hold Microsoft's own PIM for Groups request samples: Create eligibilityScheduleRequest and Create assignmentScheduleRequest (privilegedAccess/group), and Update rules in PIM by using Microsoft Graph. Learn has no end-to-end PIM for Groups tutorial; the samples exist only inside these pages. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn samples: PIM for Groups schedule requests and PIM policy rule updates (Microsoft Graph v1.0)",
+  "upstream_repo": "https://github.com/microsoftgraph/microsoft-graph-docs-contrib",
+  "upstream_path": "api-reference/v1.0/api/privilegedaccessgroup-post-eligibilityschedulerequests.md",
+  "upstream_paths": [
+    "api-reference/v1.0/api/privilegedaccessgroup-post-eligibilityschedulerequests.md",
+    "api-reference/v1.0/api/privilegedaccessgroup-post-assignmentschedulerequests.md",
+    "concepts/how-to-pim-update-rules.md"
+  ],
+  "commit": "a69303123e9701eecbf56568d152ece936a97f1e",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "the two privilegedAccessGroup pages 2025-10-24 (commit c5bdea5b2d849451be9b260f1f9bbf3d27997198); how-to-pim-update-rules.md 2025-08-29 (commit 6f6ea4bab1b8a507923b8178639518bcb61ba882)",
+  "retrieved": "2026-10-30",
+  "license": "Documentation: Creative Commons Attribution 4.0 International (LICENSE). Code: MIT (LICENSE-CODE). Both copied from the repository root. Attribution: Microsoft, microsoftgraph/microsoft-graph-docs-contrib.",
+  "documented_at": "https://learn.microsoft.com/graph/api/privilegedaccessgroup-post-eligibilityschedulerequests?view=graph-rest-1.0",
+  "also_documented_at": [
+    "https://learn.microsoft.com/graph/api/privilegedaccessgroup-post-assignmentschedulerequests?view=graph-rest-1.0",
+    "https://learn.microsoft.com/graph/how-to-pim-update-rules"
+  ],
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "privilegedaccessgroup-post-eligibilityschedulerequests.md": "api-reference/v1.0/api/privilegedaccessgroup-post-eligibilityschedulerequests.md",
+    "privilegedaccessgroup-post-assignmentschedulerequests.md": "api-reference/v1.0/api/privilegedaccessgroup-post-assignmentschedulerequests.md",
+    "how-to-pim-update-rules.md": "concepts/how-to-pim-update-rules.md"
+  },
+  "not_copied": [
+    "Everything else in microsoftgraph/microsoft-graph-docs-contrib, including the include files the pages pull in for the permissions tables and the C#, Go, Java, JavaScript, PHP, PowerShell and Python snippets (api-reference/v1.0/includes): the HTTP requests are inline in these pages and are what the chapter runs; the permissions are read from the rendered Learn pages and cited there."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 18650,
+      "sha256": "7183ef9749eb9b75e710a81a4c812a9405cc184f087500581a973e5929ac3f5e"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "how-to-pim-update-rules.md": {
+      "bytes": 24816,
+      "sha256": "a97fd2104148714e317e70b22f080ef80ac43ebcad6383f3ac68d6ba12a761f2"
+    },
+    "privilegedaccessgroup-post-assignmentschedulerequests.md": {
+      "bytes": 12555,
+      "sha256": "e961197d334b9eb2c196596d5a6e6a0dfe7ef11edcfd8db4d8d0a7c8cecc37fe"
+    },
+    "privilegedaccessgroup-post-eligibilityschedulerequests.md": {
+      "bytes": 12258,
+      "sha256": "97bff72fd241faabad0983efaa12caf5043e0b47eb1677ae960c0329cfe1bfcf"
+    }
+  }
+}

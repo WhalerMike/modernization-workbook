@@ -1,0 +1,16 @@
+{
+  "_comment": "Design guidance: the PIM for Groups policy the program sets on every PRV group, by access (member or owner) and tier. Durations are ISO 8601. Member activation and eligibility follow Book 04, Appendix B's tiers (4 hours for T0, 8 for the rest; eligibility 90, 180, 180 and 365 days; approval for T0 and T1). Owner activation of one hour with approval follows the example in Learn's 'Plan a Privileged Identity Management deployment'. Learn's Graph overview caps PIM for Groups activation at eight hours, so nothing here may exceed PT8H. The authentication context c1 is added in Chapter 03 (planned); until then the enablement rules ask for MFA.",
+  "maxActivation": "PT8H",
+  "member": {
+    "T0": { "activationMaxDuration": "PT4H", "approvalRequired": true, "enabledRules": ["Justification", "MultiFactorAuthentication", "Ticketing"], "eligibilityMaxDuration": "P90D", "activeMaxDuration": "P90D" },
+    "T1": { "activationMaxDuration": "PT8H", "approvalRequired": true, "enabledRules": ["Justification", "MultiFactorAuthentication", "Ticketing"], "eligibilityMaxDuration": "P180D", "activeMaxDuration": "P180D" },
+    "T2": { "activationMaxDuration": "PT8H", "approvalRequired": false, "enabledRules": ["Justification", "MultiFactorAuthentication", "Ticketing"], "eligibilityMaxDuration": "P180D", "activeMaxDuration": "P180D" },
+    "RO": { "activationMaxDuration": "PT8H", "approvalRequired": false, "enabledRules": ["Justification", "MultiFactorAuthentication"], "eligibilityMaxDuration": "P365D", "activeMaxDuration": "P365D" }
+  },
+  "owner": {
+    "T0": { "activationMaxDuration": "PT1H", "approvalRequired": true, "enabledRules": ["Justification", "MultiFactorAuthentication", "Ticketing"], "eligibilityMaxDuration": "P90D", "activeMaxDuration": "P90D" },
+    "T1": { "activationMaxDuration": "PT1H", "approvalRequired": true, "enabledRules": ["Justification", "MultiFactorAuthentication", "Ticketing"], "eligibilityMaxDuration": "P90D", "activeMaxDuration": "P90D" },
+    "T2": { "activationMaxDuration": "PT1H", "approvalRequired": true, "enabledRules": ["Justification", "MultiFactorAuthentication", "Ticketing"], "eligibilityMaxDuration": "P90D", "activeMaxDuration": "P90D" },
+    "RO": { "activationMaxDuration": "PT1H", "approvalRequired": true, "enabledRules": ["Justification", "MultiFactorAuthentication", "Ticketing"], "eligibilityMaxDuration": "P90D", "activeMaxDuration": "P90D" }
+  }
+}

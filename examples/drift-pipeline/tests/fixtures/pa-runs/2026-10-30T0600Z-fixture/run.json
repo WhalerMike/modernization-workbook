@@ -1,0 +1,47 @@
+{
+  "schema": "fmp-pa-run/1",
+  "runId": "2026-10-30T0600Z-fixture",
+  "asOf": "2026-10-30T06:00:00Z",
+  "cloud": "gcc",
+  "tenantId": "11111111-1111-4111-8111-111111111111",
+  "mode": "Fixture",
+  "readOnly": true,
+  "auditWindow": {
+    "since": "2026-10-29T06:00:00Z",
+    "until": "2026-10-30T06:00:00Z"
+  },
+  "permissions": {
+    "Task": "evidence-run",
+    "GraphPermissions": [
+      "AuditLog.Read.All",
+      "GroupMember.ReadBasic.All",
+      "Policy.Read.All",
+      "RoleAssignmentSchedule.Read.Directory",
+      "RoleEligibilitySchedule.Read.Directory",
+      "RoleManagement.Read.Directory",
+      "User.Read.All",
+      "User.ReadBasic.All",
+      "UserAuthenticationMethod.Read.All"
+    ],
+    "AzureRoles": [
+      "Reader"
+    ]
+  },
+  "tasks": {
+    "inventory": {
+      "folder": "inventory",
+      "status": "OK",
+      "manifestSha256": "94488ad47cf1496347be7ffc6030a847f2b7d7f82483ddc63c86f0da63b10995"
+    },
+    "emergency-access": {
+      "folder": "emergency",
+      "status": "OK",
+      "manifestSha256": "16e00ab687560ea1fb039f6ac85bcd1b93eb695111878be165cffc53df5f3424"
+    },
+    "pim-audit": {
+      "folder": "pim-audit",
+      "status": "OK",
+      "manifestSha256": "310950b8930e1c1e009ef284c47a2db6b1ec8a708d656a87e5fec4fe1cb973f5"
+    }
+  }
+}

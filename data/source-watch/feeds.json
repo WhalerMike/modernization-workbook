@@ -512,6 +512,39 @@
       "source": "Commits to the folder that holds Microsoft's request and response examples for role eligibility and assignment schedule requests and role management policies, six of which examples/third_party/azure-pim-rest-examples pins at one commit (developer workbook Building Privileged Access, Chapter 06). A new commit means: review it, rerun examples/privileged-access/tests/AzurePim.Tests.ps1 against the new examples, and update the snapshot only in a reviewed pull request."
     },
     {
+      "id": "graph-access-reviews-roles-tutorial-commits",
+      "name": "Learn's access reviews tutorial for administrative roles (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "concepts/tutorial-accessreviews-roleassignments.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page of the Microsoft Graph tutorial for reviewing access to administrative roles with the access reviews APIs, which examples/third_party/graph-access-reviews-roles-tutorial pins at one commit (developer workbook Building Privileged Access, Chapter 07). A new commit means: review it, rerun examples/privileged-access/tests/AccessReviews.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-pim-groups-eligibility-page-commits",
+      "name": "Learn's PIM for Groups Create eligibilityScheduleRequest samples (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/privilegedaccessgroup-post-eligibilityschedulerequests.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Microsoft Graph documentation source page that holds Microsoft's HTTP samples for PIM for Groups eligible membership and ownership requests, which examples/third_party/graph-pim-for-groups-pages pins at one commit (developer workbook Building Privileged Access, Chapter 05). A new commit means: review it, rerun examples/privileged-access/tests/PimForGroups.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-pim-groups-assignment-page-commits",
+      "name": "Learn's PIM for Groups Create assignmentScheduleRequest samples (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/privilegedaccessgroup-post-assignmentschedulerequests.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Microsoft Graph documentation source page that holds Microsoft's HTTP samples for PIM for Groups active membership assignments and activations, which examples/third_party/graph-pim-for-groups-pages pins at one commit (developer workbook Building Privileged Access, Chapter 05). A new commit means: review it, rerun examples/privileged-access/tests/PimForGroups.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
       "id": "graph-pim-update-rules-page-commits",
       "name": "Learn's Update rules in PIM samples (microsoftgraph/microsoft-graph-docs-contrib commits)",
       "type": "github_commits",
@@ -520,7 +553,18 @@
       "books": [
         "DW"
       ],
-      "source": "Commits to the Learn source page that holds the Microsoft Graph samples for updating PIM role settings rules, which examples/third_party/graph-pim-rules-pages pins at one commit (developer workbook Building Privileged Access, Chapter 04). A new commit means: review it, rerun examples/privileged-access/tests/PimEntraRoles.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to the Microsoft Graph documentation source page that holds Microsoft's HTTP samples for updating PIM policy rules, which PIM for Groups policies share, which examples/third_party/graph-pim-for-groups-pages (Chapter 05) and examples/third_party/graph-pim-rules-pages (Chapter 04) each pin at one commit (developer workbook Building Privileged Access). A new commit means: review it, rerun examples/privileged-access/tests/PimForGroups.Tests.ps1 and examples/privileged-access/tests/PimEntraRoles.Tests.ps1 on the new page, and update each snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-pim-audit-page-commits",
+      "name": "Learn's PIM audit history page and its activation queries (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/id-governance/privileged-identity-management/pim-how-to-use-audit-log.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page for PIM audit history, which holds the sample Log Analytics queries that find role activations and correlate one activation cycle by roleAssignmentRequestId, and which examples/third_party/entra-pim-audit-page pins at one commit (developer workbook Building Privileged Access, Chapter 08). A new commit means: review it, rerun examples/privileged-access/tests/EvidenceDrift.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     },
     {
       "id": "graph-pim-tutorial-assign-roles-page-commits",

@@ -1,0 +1,26 @@
+[
+  {
+    "Rule": "PA-AUD-01",
+    "Severity": "Finding",
+    "Tier": "T0",
+    "Object": "a0000000-0000-4000-8000-000000000020",
+    "ObjectId": "a0000000-0000-4000-8000-000000000020",
+    "Issue": "Privileged Role Administrator (T0) assigned outside PIM ('Add member to role', Core Directory) by user a0000000-0000-4000-8000-000000000001"
+  },
+  {
+    "Rule": "PA-AUD-02",
+    "Severity": "Finding",
+    "Tier": "T0",
+    "Object": "a0000000-0000-4000-8000-000000000013",
+    "ObjectId": "a0000000-0000-4000-8000-000000000013",
+    "Issue": "Global Administrator (T0) activated with no approval record in the window (request 5eed0000-0000-4000-8000-000000000003); Appendix B requires approval for T0 and T1"
+  },
+  {
+    "Rule": "PA-AUD-04",
+    "Severity": "Finding",
+    "Tier": "T0",
+    "Object": "62e90394-69f5-4237-9190-012177145e10",
+    "ObjectId": "62e90394-69f5-4237-9190-012177145e10",
+    "Issue": "Role setting for Global Administrator (T0) changed in PIM by user a0000000-0000-4000-8000-000000000001 at 2026-10-29T12:00:00Z; reconcile it with a reviewed settings change"
+  }
+]

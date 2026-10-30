@@ -1,0 +1,39 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's page 'View audit history for Microsoft Entra roles in Privileged Identity Management', as its Learn source page: the sample Log Analytics queries for finding role activations and correlating one activation cycle exist only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn sample: PIM activation audit queries (Log Analytics)",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/id-governance/privileged-identity-management/pim-how-to-use-audit-log.md",
+  "commit": "07cb73d6c6380414eecd040ba5e14c1c94d48b66",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2026-09-03 (commit 2b6ec294a3ea57352b0a9aa12fc8c68ae5146f73)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: MIT (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "pim-how-to-use-audit-log.md": "docs/id-governance/privileged-identity-management/pim-how-to-use-audit-log.md"
+  },
+  "upstream_blobs": {
+    "LICENSE": "9e841e7a26e4eb057b24511e7b92d42b257a80e5",
+    "LICENSE-CODE": "b17b032a43088ac7f3d2f3e34a2431c778a95e6f",
+    "pim-how-to-use-audit-log.md": "3ea7f484537f5e40a164674845b34556e11fe773"
+  },
+  "not_copied": [
+    "Everything else in MicrosoftDocs/entra-docs, including the page's screenshots (docs/id-governance/privileged-identity-management/media/pim-how-use-audit-log): the queries exist only inside this one page, so the page is pinned whole; the chapter links Learn rather than quoting it."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "pim-how-to-use-audit-log.md": {
+      "bytes": 6481,
+      "sha256": "2e9865d3f78c01aac4a0b4cf5ac35575a364d435096614708b5682a9af62b502"
+    }
+  }
+}

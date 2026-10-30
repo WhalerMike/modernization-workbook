@@ -125,7 +125,7 @@ Before anything is written, `Test-PaPimSetting` and `New-PaPimPlan` report:
 | PA-PIM-05 | Warn | An authentication context: its Conditional Access policy must be On before the rule is set | Learn[^pa04-settings] |
 | PA-PIM-06 | Finding | No policy for the role at tenant scope | — |
 | PA-PIM-07 | Finding | An earlier rollout wave that doesn't match its files yet | *Design guidance*: the plan's order |
-| PA-PIM-08 | Warn | Eligibility outside the role's `PRV` group | *Design guidance*; the access review removes it (Chapter 07, planned) |
+| PA-PIM-08 | Warn | Eligibility outside the role's `PRV` group | *Design guidance*; the access review removes it (Chapter 07) |
 | PA-PIM-09 | Warn; Info | A standing active assignment: a user to convert, or a service principal to document (Warn); an emergency account or a documented exception (Info) | [Book 04, Chapter 08](../../../books/b04-access/08-pim-self-request-with-approval.md#step-5-convert-standing-assignments-to-eligible) |
 
 Any Finding blocks `-Apply`. PA-PIM-05 can't be checked from v1.0: the Conditional Access policy's authentication context target is a beta property.[^pa04-ca-apps] [^pa04-ca-apps-beta] So `-Apply` needs `-ActivationGateChecked`, a person's statement, made after Chapter 03's run shows no PA-CA-04 for `PIM-Activation-c1`, that the policy is On (research gaps, row 44). Chapter 06 asks the same of its Azure role settings.
@@ -161,7 +161,7 @@ Learn's rules on timing still apply: an assignment can't be removed within five 
 
 ### The tests
 
-This chapter's tests are the 50 in `tests/PimEntraRoles.Tests.ps1`: 13 run Learn's samples as published; the rest cover the role files and their refusals, the rules, each check, the client's permissions and refusals, the plan on the fixture, the apply and read-back, the conversion, the back-out, and the entry script. With the other chapters' tests in the example, 201 Pester tests pass under PowerShell 7, with no module, tenant or network.
+This chapter's tests are the 50 in `tests/PimEntraRoles.Tests.ps1`: 13 run Learn's samples as published; the rest cover the role files and their refusals, the rules, each check, the client's permissions and refusals, the plan on the fixture, the apply and read-back, the conversion, the back-out, and the entry script. With the other chapters' tests in the example, 330 Pester tests pass under PowerShell 7, with no module, tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -250,7 +250,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 201 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+**Expected result:** 330 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
@@ -310,7 +310,7 @@ Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 | A write nobody saw | The tenant changes from a copied script | Dry run by default; `-Apply` only from a reviewed plan; a read-only client throws on any write |
 | A write identity with read-write on everything | One stolen secret changes every role | Separate tasks and apps; the dry run's app holds no write permission; a test pins each task's permissions |
 | A sample copied with another tenant's policy ID | The write fails, or lands on the wrong role | Policy IDs come only from the read |
-| Settings set in the portal drift from the files | The control in the tenant isn't the one reviewed | The diff, every run; Chapter 08 (planned) schedules it |
+| Settings set in the portal drift from the files | The control in the tenant isn't the one reviewed | The diff, every run; Chapter 08 can add it to the scheduled run (research gaps, row 88) |
 | Eligibility longer than the tier allows | A Tier 2 holder is eligible for a year | `New-PaPimEligibilityRequest` refuses it; the role's rule is set before any request |
 | Removing a standing assignment before the person can activate | An administrator is stranded mid-conversion | Removal only after the group is eligible and the activation is confirmed with a ticket |
 | Tier 0 changed before the pilot is proven | A mistake hits the control plane first | PA-PIM-07 refuses a wave until earlier waves match |

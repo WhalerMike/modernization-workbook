@@ -1,0 +1,49 @@
+{
+  "task": "pim-audit",
+  "mode": "Fixture",
+  "cloud": "gcc",
+  "tenantId": "11111111-1111-4111-8111-111111111111",
+  "generated": "2026-10-30T22:10:33.4021821Z",
+  "graphPermissions": [
+    "AuditLog.Read.All"
+  ],
+  "azureRoles": [],
+  "requests": [
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-29T06:00:00Z and activityDateTime le 2026-10-30T06:00:00Z and loggedByService eq 'Privileged Identity Management'",
+      "at": "2026-10-30T22:10:33.2042809Z"
+    },
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime%20ge%202026-10-29T06%3A00%3A00Z%20and%20activityDateTime%20le%202026-10-30T06%3A00%3A00Z%20and%20loggedByService%20eq%20%27Privileged%20Identity%20Management%27&$skiptoken=2",
+      "at": "2026-10-30T22:10:33.2180108Z"
+    },
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime%20ge%202026-10-29T06%3A00%3A00Z%20and%20activityDateTime%20le%202026-10-30T06%3A00%3A00Z%20and%20loggedByService%20eq%20%27Privileged%20Identity%20Management%27&$skiptoken=4",
+      "at": "2026-10-30T22:10:33.2361166Z"
+    },
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-29T06:00:00Z and activityDateTime le 2026-10-30T06:00:00Z and loggedByService eq 'PIM'",
+      "at": "2026-10-30T22:10:33.2441264Z"
+    },
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-29T06:00:00Z and activityDateTime le 2026-10-30T06:00:00Z and activityDisplayName eq 'Add member to role'",
+      "at": "2026-10-30T22:10:33.2540013Z"
+    }
+  ],
+  "files": {
+    "events.json": "d91e6a9f67a867fc72d56f8641f21e077297536350df0317278ea2b463450d7f",
+    "findings.json": "c8f655c4f413394f6fff3f7e3e4daee52f2fac6883b66914977ebddd3c5340a0",
+    "requests.json": "9345f98c9d8154ae471489b37495868279ae50e360f20da0ed9f6e77857aa04e",
+    "summary.json": "d368984ae1cd4195a6742319b386dd8bea02a8ea74936d6ab8efe620b4b3d23b"
+  }
+}

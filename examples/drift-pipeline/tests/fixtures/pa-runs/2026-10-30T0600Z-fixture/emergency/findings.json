@@ -1,0 +1,51 @@
+[
+  {
+    "Rule": "PA-EA-02",
+    "Severity": "Finding",
+    "Object": "ea02@contoso.example",
+    "ObjectId": "0e000000-0000-4000-8000-000000000002",
+    "Issue": "Not on the tenant's *.onmicrosoft.com domain"
+  },
+  {
+    "Rule": "PA-EA-05",
+    "Severity": "Finding",
+    "Object": "ea02@contoso.example",
+    "ObjectId": "0e000000-0000-4000-8000-000000000002",
+    "Issue": "Not permanent active Global Administrator: Global Administrator is active but time-bound, activated or inherited"
+  },
+  {
+    "Rule": "PA-EA-06",
+    "Severity": "Finding",
+    "Object": "ea02@contoso.example",
+    "ObjectId": "0e000000-0000-4000-8000-000000000002",
+    "Issue": "Registered methods that aren't phishing-resistant: phoneAuthenticationMethod"
+  },
+  {
+    "Rule": "PA-EA-09",
+    "Severity": "Finding",
+    "Object": "ea02@contoso.example",
+    "ObjectId": "0e000000-0000-4000-8000-000000000002",
+    "Issue": "Last passing validation 2026-05-01 is older than 90 days"
+  },
+  {
+    "Rule": "PA-EA-08",
+    "Severity": "Finding",
+    "Object": "CA004-Admins-Require-compliant-device",
+    "ObjectId": "ca000000-0000-4000-8000-000000000004",
+    "Issue": "Enforced policy doesn't exclude 2 emergency account(s) through the exclusion group or directly"
+  },
+  {
+    "Rule": "PA-EA-08",
+    "Severity": "Info",
+    "Object": "CA090-Emergency-accounts-Report-sign-ins",
+    "ObjectId": "ca000000-0000-4000-8000-000000000090",
+    "Issue": "Report-only and not excluding the group: allowed (it records emergency sign-ins), but excluding it before enforcement is required"
+  },
+  {
+    "Rule": "PA-EA-10",
+    "Severity": "Finding",
+    "Object": "carl.ops@contoso.example",
+    "ObjectId": "a0000000-0000-4000-8000-000000000011",
+    "Issue": "Member of the emergency access exclusion group but not a configured emergency account: every policy that excludes the group excludes it too"
+  }
+]

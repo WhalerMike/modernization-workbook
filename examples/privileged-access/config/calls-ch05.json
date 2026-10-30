@@ -1,0 +1,90 @@
+{
+  "_comment": "Chapter 05 (PIM for Groups and the PRV groups): every call the PimGroups module makes, with its least-privileged Microsoft Graph application permission from the Learn page for that call, read on October 30, 2026. Reads are GET and belong to both tasks, 'pim-groups-read' and 'pim-groups-apply', because an apply reads the tenant first. Writes are POST or PATCH, belong to 'pim-groups-apply' only, and are sent only by Invoke-PaPgPlan -Apply after the plan's guards pass. Get-PaPgRequiredPermission returns the union for a task; a test keeps it equal to the union of the calls.",
+  "calls": [
+    {
+      "id": "groups-list",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/groups",
+      "permissions": ["Group.ReadBasic.All"],
+      "stage": "v1.0",
+      "tasks": ["pim-groups-read", "pim-groups-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/group-list?view=graph-rest-1.0",
+      "note": "Learn's table names Group-NestingSupport.ReadWrite.All as least privileged for List groups, a write permission. The module asks for the read-only Group.ReadBasic.All, the first read permission in the higher-privileged column; whether it returns isAssignableToRole is research gap 52."
+    },
+    {
+      "id": "pim-group-eligibility-schedules",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identityGovernance/privilegedAccess/group/eligibilitySchedules",
+      "permissions": ["PrivilegedEligibilitySchedule.Read.AzureADGroup"],
+      "stage": "v1.0",
+      "tasks": ["pim-groups-read", "pim-groups-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/privilegedaccessgroup-list-eligibilityschedules?view=graph-rest-1.0",
+      "note": "Requires $filter on groupId or principalId."
+    },
+    {
+      "id": "pim-group-assignment-schedules",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identityGovernance/privilegedAccess/group/assignmentSchedules",
+      "permissions": ["PrivilegedAssignmentSchedule.Read.AzureADGroup"],
+      "stage": "v1.0",
+      "tasks": ["pim-groups-read", "pim-groups-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/privilegedaccessgroup-list-assignmentschedules?view=graph-rest-1.0",
+      "note": "Requires $filter on groupId or principalId."
+    },
+    {
+      "id": "pim-group-policy-assignments",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/policies/roleManagementPolicyAssignments",
+      "permissions": ["RoleManagementPolicy.Read.AzureADGroup"],
+      "stage": "v1.0",
+      "tasks": ["pim-groups-read", "pim-groups-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0",
+      "note": "Requires $filter=scopeId eq '{groupId}' and scopeType eq 'Group'; $expand=policy($expand=rules) returns the rules."
+    },
+    {
+      "id": "group-create",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/groups",
+      "permissions": ["Group.Create", "RoleManagement.ReadWrite.Directory"],
+      "stage": "v1.0",
+      "tasks": ["pim-groups-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/group-post-groups?view=graph-rest-1.0",
+      "note": "Group.Create is the least-privileged application permission to create a group; Learn's group resource and Create group pages also require RoleManagement.ReadWrite.Directory to set isAssignableToRole."
+    },
+    {
+      "id": "pim-group-eligibility-request",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/identityGovernance/privilegedAccess/group/eligibilityScheduleRequests",
+      "permissions": ["PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup"],
+      "stage": "v1.0",
+      "tasks": ["pim-groups-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/privilegedaccessgroup-post-eligibilityschedulerequests?view=graph-rest-1.0"
+    },
+    {
+      "id": "pim-group-assignment-request",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/identityGovernance/privilegedAccess/group/assignmentScheduleRequests",
+      "permissions": ["PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup"],
+      "stage": "v1.0",
+      "tasks": ["pim-groups-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/privilegedaccessgroup-post-assignmentschedulerequests?view=graph-rest-1.0"
+    },
+    {
+      "id": "pim-group-policy-rule-update",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/policies/roleManagementPolicies/{policyId}/rules/{ruleId}",
+      "permissions": ["RoleManagementPolicy.ReadWrite.AzureADGroup"],
+      "stage": "v1.0",
+      "tasks": ["pim-groups-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0"
+    }
+  ]
+}
