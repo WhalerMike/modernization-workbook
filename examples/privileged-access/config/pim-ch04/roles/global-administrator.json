@@ -1,0 +1,29 @@
+{
+  "_comment": "Global Administrator: PIM role settings as code, from Book 04, Appendix B (T0). Review a change to this file as a change to the tenant. Approvers are named by alias; the tenant's bindings file gives each alias its group object ID.",
+  "role": "Global Administrator",
+  "roleTemplateId": "62e90394-69f5-4237-9190-012177145e10",
+  "tier": "T0",
+  "activation": {
+    "maximumDuration": "PT4H",
+    "authenticationContext": "c1",
+    "requireMfa": false,
+    "requireJustification": true,
+    "requireTicket": true
+  },
+  "approval": {
+    "required": true,
+    "approvers": [
+      "PIM-Approvers-T0"
+    ]
+  },
+  "assignment": {
+    "allowPermanentEligible": false,
+    "eligibleMaximumDuration": "P90D",
+    "allowPermanentActive": true,
+    "activeMaximumDuration": "P15D",
+    "requireMfaOnActive": true,
+    "requireJustificationOnActive": true,
+    "_comment": "Permanent active is allowed for Global Administrator only, for the emergency access accounts (Appendix B; Learn's emergency access standard)."
+  },
+  "eligibleTo": "PRV-T0-GlobalAdmin"
+}

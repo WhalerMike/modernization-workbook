@@ -553,7 +553,7 @@
       "books": [
         "DW"
       ],
-      "source": "Commits to the Microsoft Graph documentation source page that holds Microsoft's HTTP samples for updating PIM policy rules, which PIM for Groups policies share, which examples/third_party/graph-pim-for-groups-pages pins at one commit (developer workbook Building Privileged Access, Chapter 05). A new commit means: review it, rerun examples/privileged-access/tests/PimForGroups.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to the Microsoft Graph documentation source page that holds Microsoft's HTTP samples for updating PIM policy rules, which PIM for Groups policies share, which examples/third_party/graph-pim-for-groups-pages (Chapter 05) and examples/third_party/graph-pim-rules-pages (Chapter 04) each pin at one commit (developer workbook Building Privileged Access). A new commit means: review it, rerun examples/privileged-access/tests/PimForGroups.Tests.ps1 and examples/privileged-access/tests/PimEntraRoles.Tests.ps1 on the new page, and update each snapshot only in a reviewed pull request."
     },
     {
       "id": "entra-pim-audit-page-commits",
@@ -565,6 +565,17 @@
         "DW"
       ],
       "source": "Commits to the Learn source page for PIM audit history, which holds the sample Log Analytics queries that find role activations and correlate one activation cycle by roleAssignmentRequestId, and which examples/third_party/entra-pim-audit-page pins at one commit (developer workbook Building Privileged Access, Chapter 08). A new commit means: review it, rerun examples/privileged-access/tests/EvidenceDrift.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-pim-tutorial-assign-roles-page-commits",
+      "name": "Learn's tutorial Assign privileged roles using PIM for Microsoft Entra roles APIs (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "concepts/tutorial-assign-azureadroles.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page of the PIM tutorial that makes a role-assignable group eligible for a Microsoft Entra role, which examples/third_party/graph-pim-rules-pages pins at one commit (developer workbook Building Privileged Access, Chapter 04). A new commit means: review it, rerun examples/privileged-access/tests/PimEntraRoles.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     }
   ]
 }

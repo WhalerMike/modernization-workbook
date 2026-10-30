@@ -1,0 +1,54 @@
+# Verification — Chapter 04, PIM for Microsoft Entra Roles as Code
+
+New material; it replaces no workbook page. Code: `examples/privileged-access`, in files this chapter owns: the module `powershell/PimEntraRoles/PimEntraRoles.psm1` (imports Chapter 01's `PrivilegedAccess` module unchanged), the entry script `Invoke-PaPimRoleSettings.ps1`, the call list `config/calls-ch04.json`, the 22 role files and `tiers.json` in `config/pim-ch04`, `tests/PimEntraRoles.Tests.ps1`, `tests/PimLearnSampleHarness.ps1`, the fixtures under `tests/fixtures/ch04`, and the notes in `docs/ch04.md`. It reads Chapter 02's `tests/fixtures/inputs/emergency-access.json` and Chapter 01's `exceptions.csv` without changing them. Pinned sample: `examples/third_party/graph-pim-rules-pages` (new), Learn's page sources `concepts/how-to-pim-update-rules.md` and `concepts/tutorial-assign-azureadroles.md` from microsoftgraph/microsoft-graph-docs-contrib at commit `a69303123e9701eecbf56568d152ece936a97f1e` (October 30, 2026), with the repository's `LICENSE` (CC BY 4.0) and `LICENSE-CODE` (MIT). Every file's git blob hash matched the upstream tree at that commit before `snapshot.json` was written. Source-watch feeds added: `graph-pim-update-rules-page-commits` and `graph-pim-tutorial-assign-roles-page-commits` (books `DW`).
+
+Test results on October 30, 2026, Windows 11, PowerShell 7.6.9 with Pester 5.5.0: 330 passed across the example after merging main (Chapters 03, 05, 06, 07 and 08 landed while this one was written; 127 before); this chapter's are the 50 in `PimEntraRoles.Tests.ps1`, 13 of them Learn's samples as published. The pinned requests were sent only to the fake Graph in the module; nothing signed in and nothing left the machine.
+
+**Why these samples.** Searched on October 30, 2026 with the Learn MCP tools (docs search, docs fetch and code sample search). The how-to page *Update rules in PIM by using Microsoft Graph* is Microsoft's sample for setting role settings through Graph; the tutorial *Assign privileged roles using PIM for Microsoft Entra roles APIs* is Microsoft's sample for eligibility through a role-assignable group. The Graph PowerShell guide *Manage PIM policies in Microsoft Graph PowerShell* covers the same policies with cmdlets; it wasn't pinned, because its requests are the same calls and it asks for a broader permission. The API reference pages' examples were read for permissions and shapes and cited, not pinned. Book 04, Appendix B's `Set-FMPPimTierPolicy.ps1` is the program's own script, not Microsoft's.
+
+Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP tools: Update rules in PIM by using Microsoft Graph (full page); Rules in PIM - mapping guide (full page); Configure Microsoft Entra role settings in Privileged Identity Management (full page); Assign privileged roles using PIM for Microsoft Entra roles APIs; Manage Microsoft Entra role assignments by using PIM APIs; List roleManagementPolicyAssignments (full page); Update unifiedRoleManagementPolicyRule (full page); unifiedRoleManagementPolicyAuthenticationContextRule resource type; List roleEligibilitySchedules; Create roleEligibilityScheduleRequest; List roleEligibilityScheduleRequests; Create roleAssignmentScheduleRequests; List roleAssignmentScheduleRequests; Microsoft Graph permissions reference (RoleAssignmentSchedule and RoleEligibilitySchedule entries); Manage PIM policies in Microsoft Graph PowerShell; conditionalAccessApplications resource type (v1.0 and beta); Microsoft Entra feature availability. A search result from *Microsoft Entra releases and announcements* (April 2026) names a general availability item for enforcing Conditional Access on every PIM activation; it wasn't opened in full and isn't cited.
+
+## Claims log
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | The lockout: all PRA and GA eligible, approval required, no approvers; default approvers are active PRA and GA; fix with emergency accounts and named approvers | Context; checks; dangers | verified | Learn, Configure Microsoft Entra role settings |
+| 2 | Settings per role, independent; PRA to manage | Context; verified facts | verified | same |
+| 3 | 17 rules per policy, five derived types, rule IDs and callers | Context; rules | verified | Learn, Rules in PIM - mapping guide |
+| 4 | Context policy must exist and be On first; MFA fallback only with no targeting policy, not when off, report-only or excluding | Context; checks; dangers | verified | Learn, Configure Microsoft Entra role settings |
+| 5 | Auth context option labeled "(Preview)" in the mapping guide; no label on the settings page or the v1.0 resource | Context; verified facts | verified; open (research gaps, row 42) | Learn, mapping guide; settings page; resource page |
+| 6 | Activation 1 to 24 hours (settings page) vs at most 8 hours (PIM API overview) | Role files; verified facts | verified; Learn conflict, stricter followed (row 41) | Learn, settings page; PIM API overview |
+| 7 | MFA on activation may not prompt within a session | Gap table | verified | Learn, settings page |
+| 8 | How-to page: find policy via assignments; six PATCH samples; @odata.type required; 204; PRA least-privileged role; `RoleManagementPolicy.ReadWrite.Directory` | Sample section; gap table | verified in the pinned source and the rendered page | Learn, Update rules in PIM; pinned copy |
+| 9 | Sample behavior: no auth context sample; MFA on activation; hard-coded policy ID fails; with the right ID six rules still differ from Appendix B; single-user approver | Gap table | verified by sending the pinned requests to the fake; pinned in `PimEntraRoles.Tests.ps1` | local run |
+| 10 | Tutorial: group made eligible for User Administrator for a year; `RoleManagement.ReadWrite.Directory` and `Group.ReadWrite.All`; clean-up deletes `/groups/{test user's ID}`; no eligibility read; no role settings | Gap table | verified in the pinned source; pinned by tests | Learn, tutorial; pinned copy |
+| 11 | List roleManagementPolicyAssignments: `$filter` required on scopeId and scopeType; `Directory` or `DirectoryRole`; nested `$expand=policy($expand=rules)`; `RoleManagementPolicy.Read.Directory`; read roles; L4, L5 | Calls; verified facts | verified | Learn, List roleManagementPolicyAssignments |
+| 12 | Update rule: `RoleManagementPolicy.ReadWrite.Directory`; PRA for writes; @odata.type required; 200 OK with the rule; L4, L5 | Calls; verified facts | verified; 200 vs 204 recorded (row 46) | Learn, Update unifiedRoleManagementPolicyRule |
+| 13 | List roleEligibilitySchedules: `RoleEligibilitySchedule.Read.Directory`; L4, L5 | Calls | verified | Learn |
+| 14 | Create roleEligibilityScheduleRequest: `RoleEligibilitySchedule.ReadWrite.Directory`; actions include adminAssign and adminRemove; L4, L5 | Calls | verified; the delegated role (PRA) carried forward from Book 04, Chapter 08's reading of the same page | Learn |
+| 15 | Create roleAssignmentScheduleRequests: `RoleAssignmentSchedule.ReadWrite.Directory` least; `RoleAssignmentSchedule.Remove.Directory` listed as higher; PRA for writes; L4, L5 | Calls | verified; open (row 43) | Learn |
+| 16 | List roleAssignmentScheduleInstances: `RoleAssignmentSchedule.Read.Directory`; Global Reader | Calls | carried forward from Chapter 02's claims log (row 14) | Learn |
+| 17 | An expiration-rule violation returns 400 Bad Request; activation at most 8 hours | Sample section; verified facts | verified | Learn, PIM API overview |
+| 18 | Graph PowerShell guide asks for `RoleManagement.ReadWrite.Directory`; uses `DirectoryRole` then `Directory` | Calls; differences | verified (search excerpts of the page) | Learn, Manage PIM policies in Microsoft Graph PowerShell |
+| 19 | `includeAuthenticationContextClassReferences` in beta only; beta says `c1` to `c25` | Checks; verified facts | verified; open (row 44) | Learn, conditionalAccessApplications v1.0 and beta |
+| 20 | PIM available in Azure for US Government; ID Governance in GCC, GCC High, DoD | Which cloud | verified | Learn, Microsoft Entra feature availability |
+| 21 | Graph hosts per cloud | Which cloud | carried forward from Chapters 01 and 02 | Learn, national cloud deployments |
+| 22 | Appendix B values (tiers, durations, approvers, ticket, eligibility, permanent active for GA only); Book 04, Chapter 08 order, five-minute rule, last GA | Role files; conversion | verified by reading Book 04, Appendix B and Chapter 08 on October 30, 2026 | Book 04 |
+| 23 | Tier caps as checks; waves; groups-only approvers; PA-PIM-03, 07, 08, 09 behavior; users-only removal; `-ActivationGateChecked` | Code | restated-as-design (labeled) | — |
+| 24 | Lab 1 outputs (13 passed; permissions per task; 9 roles 0/13/0; 43, 8, 2; Exchange diff ten rows in three rules; wave 2 9/5/2 blocked; gate error text; 51 requests and 0 differences; 330 tests after merging main) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
+| 25 | Lab 2 behavior | Lab 2 | not run against a tenant; research gaps, rows 43, 44 and 47 | — |
+| 26 | Active assignments last at most 15 days (`P15D` in every role file, `maximumActive` in `tiers.json`, checked by PA-PIM-04) | Role files; checks | owner's decision (research gaps, row 48) | — |
+| 27 | The pilot class for D-A5 is Tier 1, rollout wave 1 | Context; rollout | owner's decision (research gaps, row 49) | Project plan, D-A5 |
+
+## Carry-forward ledger
+
+| Source | Went to | Or why not carried |
+|---|---|---|
+| Project plan tasks A1.6, A2.1, A2.2, A3.1; decisions D-A4, D-A5; Gates 1 and 2 | In this chapter; the rollout waves | D-A4 names Graph PowerShell for PIM role settings; this code calls Graph through `Invoke-MgGraphRequest`, the same module. D-A5 decided by the owner: Tier 1 is the pilot class, wave 1 (research gaps, row 49) |
+| Book 04, Appendix B (settings by role, common settings, template IDs, the tier script) | The 22 role files; `tiers.json`; "builds on" | Notifications by tier are not carried (research gaps, row 45); review cadence is Chapter 07 |
+| Book 04, Chapter 08 (Steps 0 to 5, the rules table, approver design) | Context; checks; conversion | Steps 6 to 9 (protected actions, notifications, reviews, export) are other chapters |
+| Book 04, Chapter 10 (one file per role policy, drift) | The role files; the diff | The scheduled drift run is Chapter 08, which can add this task to it (research gaps, row 88) |
+| Chapter 01 (cloud table, exceptions) and Chapter 02 (emergency accounts) | Imported, unchanged | — |
+| Research gaps, row 10 (custom roles and the beta privileged label) | Research gaps, row 46 | Chapter 04 doesn't read the beta label |
+
+Chapters 03 and 06 merged to main while this chapter was written. Its text now names Chapter 03's PA-CA-04 as the evidence behind `-ActivationGateChecked`, and research gaps row 42 answers row 67's question for Microsoft Entra roles.

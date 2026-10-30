@@ -1,0 +1,21 @@
+{
+  "_comment": "Chapter 04: the bounds every role file must sit inside, and the rollout order. learnBounds are Microsoft's: activation from 1 to 24 hours on the role settings page, but at most 8 hours on the PIM API overview; the stricter, 8 hours, is used. tierCaps are the program's (Book 04, Appendix B; Design guidance). maximumActive is the owner's decision (research gaps, row 48): an active, non-eligible assignment lasts at most 15 days, so every role file's activeMaximumDuration is P15D or less (Global Administrator also allows permanent active, for the emergency accounts only). The rollout follows the project plan: one role class first, Tier 1, as the owner decided for D-A5 (research gaps, row 49), then every tier, one wave at a time. A wave is refused until every earlier wave matches its files.",
+  "learnBounds": {
+    "minimumActivation": "PT1H",
+    "maximumActivation": "PT8H",
+    "approvalStageTimeOutInDays": 1
+  },
+  "maximumActive": "P15D",
+  "tierCaps": {
+    "T0": { "maximumActivation": "PT4H", "maximumEligibility": "P90D", "approvalRequired": true, "ticketRequired": true },
+    "T1": { "maximumActivation": "PT8H", "maximumEligibility": "P180D", "approvalRequired": true, "ticketRequired": true },
+    "T2": { "maximumActivation": "PT8H", "maximumEligibility": "P180D", "approvalRequired": false, "ticketRequired": true },
+    "RO": { "maximumActivation": "PT8H", "maximumEligibility": "P365D", "approvalRequired": false, "ticketRequired": false }
+  },
+  "rollout": [
+    { "wave": 1, "name": "Pilot class: Tier 1 (plan Phase 2, A2.1 and A2.2; decision D-A5, decided by the owner)", "tiers": ["T1"] },
+    { "wave": 2, "name": "Tier 0 (plan Phase 3, A3.1)", "tiers": ["T0"] },
+    { "wave": 3, "name": "Tier 2 (plan Phase 3, A3.1)", "tiers": ["T2"] },
+    { "wave": 4, "name": "Read-only (plan Phase 3, A3.1)", "tiers": ["RO"] }
+  ]
+}

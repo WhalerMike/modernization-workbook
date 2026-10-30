@@ -1,0 +1,28 @@
+{
+  "_comment": "Conditional Access Administrator: PIM role settings as code, from Book 04, Appendix B (T0). Review a change to this file as a change to the tenant. Approvers are named by alias; the tenant's bindings file gives each alias its group object ID.",
+  "role": "Conditional Access Administrator",
+  "roleTemplateId": "b1be1c3e-b65d-4f19-8427-f6fa0d97feb9",
+  "tier": "T0",
+  "activation": {
+    "maximumDuration": "PT4H",
+    "authenticationContext": "c1",
+    "requireMfa": false,
+    "requireJustification": true,
+    "requireTicket": true
+  },
+  "approval": {
+    "required": true,
+    "approvers": [
+      "PIM-Approvers-T0"
+    ]
+  },
+  "assignment": {
+    "allowPermanentEligible": false,
+    "eligibleMaximumDuration": "P90D",
+    "allowPermanentActive": false,
+    "activeMaximumDuration": "P15D",
+    "requireMfaOnActive": true,
+    "requireJustificationOnActive": true
+  },
+  "eligibleTo": "PRV-T0-CAAdmin"
+}

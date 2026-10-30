@@ -1,0 +1,42 @@
+{
+  "_comment": "A pinned, unmodified copy of two Learn pages, as their source in microsoftgraph/microsoft-graph-docs-contrib: 'Update rules in PIM by using Microsoft Graph' (the role settings samples) and 'Assign privileged roles using PIM for Microsoft Entra roles APIs' (the eligibility tutorial). Their HTTP samples exist only inside these pages. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn samples: PIM role settings rules and eligibility requests for Microsoft Entra roles (Microsoft Graph)",
+  "upstream_repo": "https://github.com/microsoftgraph/microsoft-graph-docs-contrib",
+  "upstream_path": "concepts/how-to-pim-update-rules.md",
+  "also_upstream_path": "concepts/tutorial-assign-azureadroles.md",
+  "commit": "a69303123e9701eecbf56568d152ece936a97f1e",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "how-to-pim-update-rules.md: 2025-08-29 (commit 6f6ea4bab1b8a507923b8178639518bcb61ba882); tutorial-assign-azureadroles.md: 2026-07-03 (commit 315abdcef4ad417ffe6767e45d4dd4cd5281f41d)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: Creative Commons Attribution 4.0 International (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/graph/how-to-pim-update-rules",
+  "also_documented_at": "https://learn.microsoft.com/graph/tutorial-assign-azureadroles",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "how-to-pim-update-rules.md": "concepts/how-to-pim-update-rules.md",
+    "tutorial-assign-azureadroles.md": "concepts/tutorial-assign-azureadroles.md"
+  },
+  "not_copied": [
+    "The SDK snippet include files the pages reference (includes/snippets/*/v1/how-to-pim-update-rules-*.md and tutorial-assign-azureadroles-*.md): generated per language from the HTTP samples, which are inline in the pages and are what the tests run.",
+    "Everything else in microsoftgraph/microsoft-graph-docs-contrib, including the API reference pages the chapter cites; the chapter links Learn rather than quoting it."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 18650,
+      "sha256": "7183ef9749eb9b75e710a81a4c812a9405cc184f087500581a973e5929ac3f5e"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "how-to-pim-update-rules.md": {
+      "bytes": 24816,
+      "sha256": "a97fd2104148714e317e70b22f080ef80ac43ebcad6383f3ac68d6ba12a761f2"
+    },
+    "tutorial-assign-azureadroles.md": {
+      "bytes": 26587,
+      "sha256": "9105fabfda74a843048cd1eba8cafffabb16341d1549903a5a59ebfb8d483aeb"
+    }
+  }
+}
