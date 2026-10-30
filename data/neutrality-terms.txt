@@ -1,0 +1,20 @@
+# Terms the workbook must not contain, as salted SHA-256 hashes, so this file
+# doesn't name them. scripts/check_neutrality.py reads it. To add a term, pipe
+# it in rather than typing it into a file:
+#
+#     python scripts/check_neutrality.py --add
+#
+# then commit this file. "SSN" and "Social Security number" are fine and are
+# not on the list.
+salt: fmp-neutrality-v1
+max-words: 4
+470b1077447129483bc802f3ee9b3a6ec4a0836fb942c0d78ef5a0f87a8b4e73  # 1 word
+db2ce055af8af4d215573e43bdc0c852d0383ce17df254b755a40d050b1f912a  # 3 words
+first: 83cd00b9df8a79aa6222475d5e6237297cae5b3c55f879f16a17a4e0722eb43d
+634095a11071660f53fd2d31f22baa18fae73e52e5dc359a572ef95b0f16908f  # 1 word
+fc729c6aa8d590d92385bde458bc6c921ab572b03abe0a6b678462f1f38d0e77  # 3 words
+first: 27ba68f8d309519bfb0e911f63d2ca407ca906a075cfde6708417ed4d51be649
+11727f161e9a37072c896989840022781246d93be52d618735676dc48f825555  # 3 words
+first: 6146ef5ce91c6057765095d5b84b3c126c4b0d3554a79260bc0d267ff8476dcd
+2be453f8adee8d7e11468f5d77b080333966f58ce130547611078ab43fc5c8f1  # 4 words
+first: 2f92d09cc108515a2add62df5c3105c78b07b88c5915dfc242ca3dcaa729a664

@@ -259,8 +259,20 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
         if p in ("data/federal-compliance-compliance-spine.yml", "scripts/render_authorities_table.py") or (
                 p.startswith("docs/compliance/") and p.endswith(".md")):
             add("authorities", p)
-        if p in ("scripts/check_changed.py", ".github/workflows/pr-checks.yml") or p.startswith("scripts/tests/"):
+        if p.startswith("examples/evidence-maps/") or p in ("data/schemas/evidence-map.schema.json",
+                                                             "scripts/check_evidence_maps.py"):
+            add("evidence-maps", p)
+        if p in ("scripts/check_changed.py", "scripts/check_evidence_maps.py", "scripts/check_neutrality.py",
+                 ".github/workflows/pr-checks.yml") or p.startswith("scripts/tests/"):
             add("unit-tests", p)
+    import check_neutrality
+
+    for p in live:
+        if check_neutrality.in_scope(p):
+            add("neutrality", p)
+    if any(p in ("scripts/check_neutrality.py", "data/neutrality-terms.txt", "data/neutrality-baseline.txt")
+           for p in every):
+        tasks["neutrality"] = ["*"]                 # the terms or the checker changed: every file
     return tasks
 
 
@@ -1025,6 +1037,13 @@ class Checker:
         if "authorities" in t:
             steps.append(("Authorities tables match the spine",
                           self.simple([PY, "scripts/render_authorities_table.py", "--check"])))
+        if "evidence-maps" in t:
+            steps.append(("Evidence maps follow the rules; summaries current",
+                          self.simple([PY, "scripts/check_evidence_maps.py", "--check"])))
+        if "neutrality" in t:
+            every_file = t["neutrality"] == ["*"]
+            steps.append(("Agency neutrality" + (" (every file)" if every_file else f" ({len(t['neutrality'])} file(s))"),
+                          self.simple([PY, "scripts/check_neutrality.py"] + ([] if every_file else t["neutrality"]))))
         if "unit-tests" in t:
             steps.append(("Unit tests (scripts/tests)", self.simple([PY, "-m", "unittest", "discover", "-s", "scripts/tests", "-v"])))
         return steps

@@ -1,0 +1,222 @@
+# A fictional dependency evidence map, in the shape Book 18 Chapter 02
+# ("Recording dependencies as an evidence map") describes. Every system,
+# document and partner here is invented and agency-neutral.
+#
+# Check it, and regenerate its summary, with:
+#
+#     python scripts/check_evidence_maps.py           # rewrite the summaries
+#     python scripts/check_evidence_maps.py --check   # exit 1 on a rule breach or a stale summary
+#
+# Schema: data/schemas/evidence-map.schema.json
+
+map:
+  id: FMP-EM-SAMPLE
+  title: Sample benefits portfolio
+  as_of: "2026-10-30"
+  example: true
+  stale_after_days: 365
+  notes: Illustrative only; not drawn from any agency.
+
+entities:
+  - id: E-PERSON-MASTER
+    type: data_store
+    name: Person master record
+    description: One row per enrolled person; the identifier every other system keys on.
+    owner: Records program office
+    master_record: true
+  - id: E-PAYMENTS-DB
+    type: data_store
+    name: Payments ledger
+    owner: Finance office
+    master_record: true
+  - id: E-CASE-APP
+    type: application
+    name: Case management system
+    owner: Benefits operations
+  - id: E-PORTAL
+    type: application
+    name: Public self-service portal
+    owner: Digital services
+  - id: E-NIGHTLY-RECON
+    type: process
+    name: Nightly status reconciliation
+    owner: Benefits operations
+  - id: E-STATUS-CODE
+    type: data_element
+    name: Person status code
+    description: One code value means "deceased"; payment rules stop on it.
+  - id: E-STOP-RULE
+    type: rule
+    name: Stop payment on deceased status
+    description: Lives in a COBOL paragraph in the payment run.
+  - id: E-STATE-FEED
+    type: data_exchange
+    name: Monthly eligibility feed to state partners
+    partner: State benefit agencies
+    term_ends: "2027-06-30"
+  - id: E-VERIFY-SVC
+    type: data_exchange
+    name: Identity verification service for a partner agency
+    partner: A federal partner agency
+    term_ends: "2027-01-31"
+  - id: E-SORN
+    type: governance_document
+    name: System of records notice for the person master record
+  - id: E-MATCH-AGREEMENT
+    type: governance_document
+    name: Computer matching agreement with state partners
+    term_ends: "2027-06-30"
+  - id: E-AUDIT-FINDING
+    type: finding
+    name: Oversight finding on erroneous status changes
+
+relationships:
+  - id: R-CASE-READS-PERSON
+    from: E-CASE-APP
+    to: E-PERSON-MASTER
+    kind: reads
+    basis: observed
+    evidence:
+      - ref: Database connection log extract, 30 days
+        revised: "2026-10-01"
+    observed: "2026-10-01"
+    confidence: measured
+    status: current
+  - id: R-CASE-WRITES-PERSON
+    from: E-CASE-APP
+    to: E-PERSON-MASTER
+    kind: writes
+    basis: observed
+    evidence:
+      - ref: Change data capture sample, 30 days
+        revised: "2026-10-01"
+    observed: "2026-10-01"
+    confidence: measured
+    status: current
+  - id: R-PORTAL-READS-PERSON
+    from: E-PORTAL
+    to: E-PERSON-MASTER
+    kind: reads
+    basis: documented
+    evidence:
+      - ref: Portal interface control document, section 4
+        revised: "2025-03-14"
+    observed: "2026-02-10"
+    confidence: attested
+    status: current
+  - id: R-RECON-READS-PERSON
+    from: E-NIGHTLY-RECON
+    to: E-PERSON-MASTER
+    kind: reads
+    basis: observed
+    evidence:
+      - ref: Batch schedule export
+        revised: "2026-09-15"
+    observed: "2026-09-15"
+    confidence: measured
+    status: current
+  - id: R-RECON-WRITES-PAYMENTS
+    from: E-NIGHTLY-RECON
+    to: E-PAYMENTS-DB
+    kind: writes
+    basis: observed
+    evidence:
+      - ref: Batch schedule export
+        revised: "2026-09-15"
+    observed: "2026-09-15"
+    confidence: measured
+    status: current
+  - id: R-PERSON-CONTAINS-STATUS
+    from: E-PERSON-MASTER
+    to: E-STATUS-CODE
+    kind: contains
+    basis: documented
+    evidence:
+      - ref: Record layout, version 12
+        revised: "2024-08-01"
+    observed: "2026-02-10"
+    confidence: attested
+    status: current
+  - id: R-RULE-READS-STATUS
+    from: E-STOP-RULE
+    to: E-STATUS-CODE
+    kind: reads
+    basis: observed
+    evidence:
+      - ref: Payment run source, paragraph 4100-CHECK-STATUS
+        revised: "2026-05-20"
+    observed: "2026-05-20"
+    confidence: measured
+    status: current
+  - id: R-STATE-FEED-READS-PERSON
+    from: E-STATE-FEED
+    to: E-PERSON-MASTER
+    kind: reads
+    basis: documented
+    evidence:
+      - ref: Computer matching agreement, section III
+        revised: "2025-12-19"
+    observed: "2026-01-05"
+    confidence: attested
+    status: current
+  - id: R-VERIFY-READS-PERSON
+    from: E-VERIFY-SVC
+    to: E-PERSON-MASTER
+    kind: reads
+    basis: documented
+    evidence: []
+    confidence: assumed
+    status: current
+    question: Q-VERIFY-FIELDS
+    notes: The partner's interface agreement wasn't on file; the link is assumed from the service's description.
+  - id: R-SORN-GOVERNS-PERSON
+    from: E-SORN
+    to: E-PERSON-MASTER
+    kind: governs
+    basis: documented
+    evidence:
+      - ref: Published system of records notice, routine uses
+        revised: "2023-04-11"
+    observed: "2026-02-10"
+    confidence: attested
+    status: current
+  - id: R-AGREEMENT-GOVERNS-FEED
+    from: E-MATCH-AGREEMENT
+    to: E-STATE-FEED
+    kind: governs
+    basis: documented
+    evidence:
+      - ref: Computer matching agreement, signature page
+        revised: "2025-12-19"
+    observed: "2026-01-05"
+    confidence: attested
+    status: current
+  - id: R-FINDING-ABOUT-STATUS
+    from: E-AUDIT-FINDING
+    to: E-STATUS-CODE
+    kind: governs
+    basis: documented
+    evidence:
+      - ref: Oversight report, recommendation 3
+        revised: "2026-03-02"
+    observed: "2026-03-02"
+    confidence: attested
+    status: current
+  - id: R-PORTAL-CALLS-CASE
+    from: E-PORTAL
+    to: E-CASE-APP
+    kind: calls
+    basis: planned
+    evidence:
+      - ref: Portal roadmap, release 7
+        revised: "2026-08-12"
+    confidence: attested
+    status: planned
+    target_date: "2027-03-31"
+
+open_questions:
+  - id: Q-VERIFY-FIELDS
+    about: [R-VERIFY-READS-PERSON, E-VERIFY-SVC]
+    question: Which person master fields does the partner verification service read, and is the status code among them?
+    owner: Interface agreements team
+    asked: "2026-10-14"
