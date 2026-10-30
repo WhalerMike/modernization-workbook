@@ -1,0 +1,13 @@
+# Get conditionalAccessTemplate: a pinned copy of Microsoft's template for administrators
+
+This folder is an unmodified copy of the Microsoft Learn source page for [Get conditionalAccessTemplate](https://learn.microsoft.com/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0). Its example response is one of Microsoft's own Conditional Access templates, "Require multifactor authentication for admins," as the Microsoft Graph v1.0 JSON that `GET /identity/conditionalAccess/templates/{id}` returns. Learn marks the response as possibly shortened. It comes from [microsoftgraph/microsoft-graph-docs-contrib](https://github.com/microsoftgraph/microsoft-graph-docs-contrib/blob/a69303123e9701eecbf56568d152ece936a97f1e/api-reference/v1.0/api/conditionalaccesstemplate-get.md) at commit `a69303123e9701eecbf56568d152ece936a97f1e` (October 30, 2026); the page last changed on July 22, 2025. The repository's documentation license (`LICENSE`) is Creative Commons Attribution 4.0 International, and its code license (`LICENSE-CODE`) is MIT.
+
+**Why the page, not just the JSON.** The template exists only inside this Learn page. Pinning the page byte for byte keeps the copy checkable against upstream. `examples/privileged-access` reads the example response, unmodified, with `Read-PaCaTemplatePage`, turns it into a policy body with `ConvertFrom-PaCaTemplate`, and runs the pre-merge check on it, all offline. Nothing is sent to a tenant. The [developer workbook *Building Privileged Access*, Chapter 03](../../../docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md) links Learn rather than quoting the page.
+
+**How it stays honest.**
+
+- `snapshot.json` records the upstream repository, path, commit, dates, licenses and the size and SHA-256 of every file here. Each file's git blob hash was checked against the upstream tree at that commit before the manifest was written. `scripts/tests/test_third_party_snapshots.py` fails if any file is changed, added or removed.
+- The weekly source watch follows commits to the upstream page (`conditional-access-template-page-commits` in `data/source-watch/feeds.json`) and reports each one in its issue under DW (developer workbooks).
+- To move to a newer upstream commit: review the upstream change, copy the page from that commit, regenerate `snapshot.json`, rerun `examples/privileged-access/tests/ConditionalAccess.Tests.ps1` and the Chapter 03 labs, and open a pull request. Never edit the files here; changes the program needs go in `examples/privileged-access`.
+
+These files keep their upstream bytes, line endings included, so the hashes match the upstream commit.

@@ -46,13 +46,13 @@ The code behind the plan's tasks A1.6, A2.1 and A2.2: "role settings for every t
 
 Rule IDs, types and the caller each one is enforced for are from Learn's mapping guide.[^pa04-rules]
 
-**The authentication context needs its policy first.** Learn says to create and enable the Conditional Access policy for the context before selecting the context in PIM. If no policy targets the context, activation falls back to MFA, but not when the policy is off, report-only, or excludes the user.[^pa04-settings] The program's context is `c1` and its policy is `PIM-Activation-c1` ([Book 04, Chapter 08](../../../books/b04-access/08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)); Chapter 03 (planned) builds it. Learn's mapping guide labels the admin center's authentication context option "(Preview)"; the role settings page and the v1.0 rule resource don't.[^pa04-rules] [^pa04-authctx-rule] This chapter treats it as preview, the stricter reading (research gaps, row 42).
+**The authentication context needs its policy first.** Learn says to create and enable the Conditional Access policy for the context before selecting the context in PIM. If no policy targets the context, activation falls back to MFA, but not when the policy is off, report-only, or excludes the user.[^pa04-settings] The program's context is `c1` and its policy is `PIM-Activation-c1` ([Book 04, Chapter 08](../../../books/b04-access/08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)). Chapter 03 builds both, report-only first, and its PA-CA-04 warns until the policy is On. Learn's mapping guide labels the admin center's authentication context option "(Preview)"; the role settings page and the v1.0 rule resource don't.[^pa04-rules] [^pa04-authctx-rule] This chapter treats it as preview, the stricter reading (research gaps, row 42).
 
 **The plan's order is fixed.** Emergency access first, then one role class under just-in-time elevation (the plan's Phase 2, with the class chosen by decision D-A5), then every tier (Phase 3, task A3.1), tier by tier ([project plan](../../privileged-access.md)). The code holds that order as rollout waves and refuses a wave until every earlier wave matches its files. *Design guidance.*
 
 ### Which cloud, for these calls
 
-Every call in this chapter is Microsoft Graph v1.0. For Microsoft 365 GCC, Graph is the worldwide host, `graph.microsoft.com`, and sign-in is `login.microsoftonline.com`; GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pa04-deployments] No call here uses Resource Manager; PIM for Azure resources is Chapter 06 (planned). Every call's Learn page lists the global service, US Government L4 and US Government L5 as available.[^pa04-list-rmpa] [^pa04-update-rule] [^pa04-res-list] [^pa04-res-request] [^pa04-ras-request] PIM is available in Azure for US Government, and Microsoft Entra ID Governance is available in GCC, GCC High and DoD.[^pa04-availability] The code takes an explicit cloud name and has no default.
+Every call in this chapter is Microsoft Graph v1.0. For Microsoft 365 GCC, Graph is the worldwide host, `graph.microsoft.com`, and sign-in is `login.microsoftonline.com`; GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pa04-deployments] No call here uses Resource Manager; PIM for Azure resources is Chapter 06. Every call's Learn page lists the global service, US Government L4 and US Government L5 as available.[^pa04-list-rmpa] [^pa04-update-rule] [^pa04-res-list] [^pa04-res-request] [^pa04-ras-request] PIM is available in Azure for US Government, and Microsoft Entra ID Governance is available in GCC, GCC High and DoD.[^pa04-availability] The code takes an explicit cloud name and has no default.
 
 ## Start with Microsoft's sample
 
@@ -128,7 +128,7 @@ Before anything is written, `Test-PaPimSetting` and `New-PaPimPlan` report:
 | PA-PIM-08 | Warn | Eligibility outside the role's `PRV` group | *Design guidance*; the access review removes it (Chapter 07, planned) |
 | PA-PIM-09 | Warn; Info | A standing active assignment: a user to convert, or a service principal to document (Warn); an emergency account or a documented exception (Info) | [Book 04, Chapter 08](../../../books/b04-access/08-pim-self-request-with-approval.md#step-5-convert-standing-assignments-to-eligible) |
 
-Any Finding blocks `-Apply`. PA-PIM-05 can't be checked from v1.0: the Conditional Access policy's authentication context target is a beta property.[^pa04-ca-apps] [^pa04-ca-apps-beta] So `-Apply` needs `-ActivationGateChecked`, a person's statement that `PIM-Activation-c1` is On (research gaps, row 44).
+Any Finding blocks `-Apply`. PA-PIM-05 can't be checked from v1.0: the Conditional Access policy's authentication context target is a beta property.[^pa04-ca-apps] [^pa04-ca-apps-beta] So `-Apply` needs `-ActivationGateChecked`, a person's statement, made after Chapter 03's run shows no PA-CA-04 for `PIM-Activation-c1`, that the policy is On (research gaps, row 44). Chapter 06 asks the same of its Azure role settings.
 
 ### The calls and their permissions
 
@@ -161,7 +161,7 @@ Learn's rules on timing still apply: an assignment can't be removed within five 
 
 ### The tests
 
-This chapter's tests are the 49 in `tests/PimEntraRoles.Tests.ps1`: 13 run Learn's samples as published; the rest cover the role files and their refusals, the rules, each check, the client's permissions and refusals, the plan on the fixture, the apply and read-back, the conversion, the back-out, and the entry script. With Chapters 01 and 02, 127 Pester tests pass under PowerShell 7, with no module, tenant or network.
+This chapter's tests are the 49 in `tests/PimEntraRoles.Tests.ps1`: 13 run Learn's samples as published; the rest cover the role files and their refusals, the rules, each check, the client's permissions and refusals, the plan on the fixture, the apply and read-back, the conversion, the back-out, and the entry script. With the other chapters' tests in the example, 200 Pester tests pass under PowerShell 7, with no module, tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -250,13 +250,13 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 127 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+**Expected result:** 200 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
 Use a test tenant in the worldwide or GCC cloud, never production, with Microsoft Entra ID P2 or ID Governance licenses for the test users and approvers. Work one role, in a test copy of the files.
 
-1. **Check the prerequisites.** Run Chapter 02's check against the test tenant's emergency accounts; it must show no Finding. Create authentication context `c1` and turn its Conditional Access policy On, as [Book 04, Chapter 08, Step 2](../../../books/b04-access/08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy) describes; report-only doesn't count.[^pa04-settings]
+1. **Check the prerequisites.** Run Chapter 02's check against the test tenant's emergency accounts; it must show no Finding. Create authentication context `c1` and turn `PIM-Activation-c1` On, with Chapter 03's code or as [Book 04, Chapter 08, Step 2](../../../books/b04-access/08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy) describes; report-only doesn't count.[^pa04-settings] Chapter 03's run must show no PA-CA-04 for it.
 2. **Make the lab's role and groups.** Copy one Tier 1 file into a lab folder: `New-Item -ItemType Directory lab-roles; Copy-Item config/pim-ch04/roles/teams-administrator.json lab-roles/`. In the test tenant, create a security group `PIM-Approvers-T1` with two test approvers, and a role-assignable group `PRV-T1-TeamsAdmin` with one test member. Write `lab-bindings.json` with their object IDs, in the shape of `tests/fixtures/ch04/inputs/pim-bindings.json`.
 3. **Register two apps** in the worldwide admin center, each with a certificate: a reader with the three `pim-plan` permissions from Lab 1, step 2, and a writer with the two `pim-apply` write permissions added. Grant admin consent, and nothing else.
 4. **Dry-run as the reader:**
@@ -270,7 +270,7 @@ Use a test tenant in the worldwide or GCC cloud, never production, with Microsof
    Read `diff.csv` and `plan.json` with a second person. Keep the folder.
 5. **Apply as the writer**, with the same parameters, `-OutputPath out/lab-apply -Apply -ActivationGateChecked`. The script must end with `0 differences from the role files after reading back`. Open the role's settings in the admin center and compare them with the file. Run step 4 again: the plan should have no rule updates and no eligibility requests. Check any eligibility that was longer than the new maximum before the change (research gaps, row 47).
 6. **Activate and convert.** Give a second test user a standing Teams Administrator assignment and add them to `PRV-T1-TeamsAdmin`. As that user, activate the role through the group; one approver approves. Add a row to `confirmed-activations.csv` with a ticket, grant the writer `RoleAssignmentSchedule.ReadWrite.Directory`, and run with `-Apply -Convert -ConfirmedPath confirmed-activations.csv`. The standing assignment goes; the eligibility stays. Wait five minutes after creating an assignment before removing it. To test research gaps, row 43, repeat with `RoleAssignmentSchedule.Remove.Directory` in place of `ReadWrite`.
-7. **Back it out.** As the writer, run with `-Apply -RestoreFrom out/lab-apply -OutputPath out/lab-restore`. It puts the role's seven rules back as `before.json` recorded them and removes the eligibility the run created; the read-back then shows the differences from the file again. Give the test user back their standing assignment if the test needs it. Delete the two groups, the two apps and their certificates, and the `out` folders. Keep the authentication context and its policy only if Chapter 03's lab uses them.
+7. **Back it out.** As the writer, run with `-Apply -RestoreFrom out/lab-apply -OutputPath out/lab-restore`. It puts the role's seven rules back as `before.json` recorded them and removes the eligibility the run created; the read-back then shows the differences from the file again. Give the test user back their standing assignment if the test needs it. Delete the two groups, the two apps and their certificates, and the `out` folders. Keep the authentication context and its policy only if Chapter 03's lab still needs them.
 
 ## Verified facts
 

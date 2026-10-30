@@ -1,0 +1,5 @@
+{
+  "_comment": "Chapter 03: settings for the pre-merge check and the plan. emergencyGroup is the placeholder the map resolves to the emergency access exclusion group's object ID. reportOnlyInstruments names policies that stay report-only for good and may leave the emergency group in scope, as Learn allows for report-only policies (Book 04, Chapter 07's CA090 is one); the check fails any of them that is ever set to enabled. Design guidance.",
+  "emergencyGroup": "{group:CA-Exclude-EmergencyAccess}",
+  "reportOnlyInstruments": []
+}

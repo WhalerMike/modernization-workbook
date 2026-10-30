@@ -1,0 +1,6 @@
+{
+  "id": "c2",
+  "displayName": "FMP-ProtectedActions",
+  "description": "Protected actions on Conditional Access policies and on the authentication contexts themselves.",
+  "isAvailable": true
+}

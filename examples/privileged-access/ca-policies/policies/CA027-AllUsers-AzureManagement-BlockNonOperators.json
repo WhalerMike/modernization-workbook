@@ -1,0 +1,13 @@
+{
+  "displayName": "CA027-AllUsers-AzureManagement-BlockNonOperators",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeUsers": ["All"],
+      "excludeGroups": ["{group:CA-Exclude-EmergencyAccess}", "{group:CA-Persona-Admins}", "{group:CA-Access-AzureOperators}"]
+    },
+    "applications": { "includeApplications": ["797f4846-ba00-4fd7-ba43-dac1f8f63013"] },
+    "clientAppTypes": ["all"]
+  },
+  "grantControls": { "operator": "OR", "builtInControls": ["block"] }
+}

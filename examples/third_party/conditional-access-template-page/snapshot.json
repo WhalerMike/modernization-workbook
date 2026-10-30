@@ -1,0 +1,34 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's page 'Get conditionalAccessTemplate', as its Learn source page: its example response is Microsoft's 'Require multifactor authentication for admins' Conditional Access template as Graph JSON, and exists only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn sample: a Conditional Access template for administrators, as Microsoft Graph JSON",
+  "upstream_repo": "https://github.com/microsoftgraph/microsoft-graph-docs-contrib",
+  "upstream_path": "api-reference/v1.0/api/conditionalaccesstemplate-get.md",
+  "commit": "a69303123e9701eecbf56568d152ece936a97f1e",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2025-07-22 (commit 82d0912dd8dd5a5f9a5e51d471f9c7f248f8e118)",
+  "retrieved": "2026-10-30",
+  "license": "Documentation: Creative Commons Attribution 4.0 International (LICENSE). Code: MIT (LICENSE-CODE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "conditionalaccesstemplate-get.md": "api-reference/v1.0/api/conditionalaccesstemplate-get.md"
+  },
+  "not_copied": [
+    "Everything else in microsoftgraph/microsoft-graph-docs-contrib, including the page's includes (the permissions table and the SDK snippets, which the page pulls in at build time): the template JSON exists only inside this one page, so the page is pinned whole; the chapter links Learn rather than quoting it."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 18650,
+      "sha256": "7183ef9749eb9b75e710a81a4c812a9405cc184f087500581a973e5929ac3f5e"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "conditionalaccesstemplate-get.md": {
+      "bytes": 10557,
+      "sha256": "de2bc1c3617f6364293af956634f8e9daed986e47d1a2740bb3b851bad57df9b"
+    }
+  }
+}
