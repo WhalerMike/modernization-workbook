@@ -1,0 +1,11 @@
+{
+  "displayName": "CA005-Admins-BlockUntrustedLocations",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": { "includeGroups": ["{group:CA-Persona-Admins}"], "excludeGroups": ["{group:CA-Exclude-EmergencyAccess}"] },
+    "applications": { "includeApplications": ["All"] },
+    "locations": { "includeLocations": ["All"], "excludeLocations": ["{location:NL-TrustedNetworks}"] },
+    "clientAppTypes": ["all"]
+  },
+  "grantControls": { "operator": "OR", "builtInControls": ["block"] }
+}
