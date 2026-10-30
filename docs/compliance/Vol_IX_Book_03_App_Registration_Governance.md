@@ -65,7 +65,7 @@ Volume I/VI prove that certificate-based, short-lived, least-privilege credentia
 
 Generated from the compliance spine (`federal-compliance-compliance-spine.yml`); not hand-edited here.
 
-<!-- authorities:book-day2-appreg â€” generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-day2-appreg — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | AC-2 | Account Management | App registrations managed as machine joiner/mover/leaver: a governed request captures owner, purpose and the specific scopes needed before any credential exists, and orphaned registrations are retired through attestation | FedRAMP Moderate | NIST SP 800-53 Rev 5 | Identity | KSI-IAM | No |

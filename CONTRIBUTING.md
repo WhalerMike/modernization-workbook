@@ -26,7 +26,7 @@ A full site render takes most of an hour, so pull requests get a tiered check in
 | **CHANGED** | Published pages changed, directly or through an image they embed | Site map; render only those pages to HTML; check their links and `#anchors`, and links from anywhere in `docs/` to their headings; check footnotes; build only the Word bundles that contain them; validate the redirect map |
 | **NONE** | Nothing the site publishes changed, for example only deck binaries, example code or unpublished notes | Only the checks below |
 
-Whatever the tier, the changed files also select: the deck accessibility check (`presentations/_build/a11y_check.py`) for changed decks, a kit zip build for a changed `examples/` kit, the video manifest and project plan staleness checks, and the script's unit tests (`scripts/tests/`).
+Whatever the tier, the changed files also select: the deck accessibility check (`presentations/_build/a11y_check.py`) for changed decks, a kit zip build for a changed `examples/` kit, the video manifest and project plan staleness checks, the authorities-table check (`scripts/render_authorities_table.py --check`, for the spine or a `docs/compliance/` page), and the script's unit tests (`scripts/tests/`).
 
 What the link and footnote checks look for:
 

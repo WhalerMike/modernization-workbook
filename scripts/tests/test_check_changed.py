@@ -190,6 +190,12 @@ class NonSiteTasks(unittest.TestCase):
     def test_project_plans(self):
         self.assertIn("project-plans", cc.non_site_tasks(mods("data/project-plans/network-access.yaml")))
 
+    def test_authorities_spine(self):
+        for path in ("data/federal-compliance-compliance-spine.yml", "scripts/render_authorities_table.py",
+                     "docs/compliance/Vol_I_Book_07_Network_Enforcement_Substrate.md"):
+            self.assertIn("authorities", cc.non_site_tasks(mods(path)), path)
+        self.assertNotIn("authorities", cc.non_site_tasks(mods("docs/books/b02-identity/index.md")))
+
     def test_unit_tests_run_when_the_checker_changes(self):
         self.assertIn("unit-tests", cc.non_site_tasks(mods("scripts/check_changed.py")))
         self.assertIn("unit-tests", cc.non_site_tasks(mods("scripts/tests/test_check_changed.py")))
