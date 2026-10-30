@@ -139,3 +139,9 @@ The onboarding playbook passes the secret through an `azcmagent connect --config
 ## Moderate civilian sweep (2026-10-29)
 
 The guide was reframed for FedRAMP Moderate civilian agencies. "STIG content" became "Baseline content" (`#baseline-content`): the agency's CM-6 settings drawn from CIS Benchmarks, Red Hat's SCAP Security Guide CIS profiles, the vendor's hardening guide and reviewed, pinned Ansible Lockdown CIS roles. The controller host is hardened to CIS RHEL 9 or 10 plus agency CM-6 settings. The DISA controller STIG and Broadcom's VCF STIG readiness content are kept as optional *High only* references, with the page's one explaining line under "How to read this guide". The FIPS paragraph no longer leans on the STIG profile. The phase-2 decision, the decisions in the checklist and the description frontmatter no longer offer STIG as a baseline option. The hosting table no longer implies a commercial Region is out of bounds; the managed offerings are excluded because they aren't FedRAMP-listed. New claims are rows 82 to 89 and 104. No personal name or email address was sent in any request.
+
+## Addition, October 30, 2026
+
+| Claim | Where | Verdict |
+|---|---|---|
+| Rule 5: one patch owner per server (`patch_owner`, mirrored to the Arc `PatchOwner` tag); Update Manager assesses only where Ansible patches | One owning tool per setting | design guidance (the rule list is labeled); links Book 05 Ch 09 |

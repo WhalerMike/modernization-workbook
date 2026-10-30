@@ -54,7 +54,7 @@ On those estimates the program reaches Phase 7 in roughly 34 weeks, with the las
 ### Phase 1: inventory and classify
 
 1. Export every GPO as XML and catalog its links, security filtering, WMI filters and settings. Chapter 07 gives the read-only export script; `Get-GPOReport -All -ReportType Xml` is the shape Group Policy analytics imports.[^c08-gpa]
-2. Find GPO-on-GPO conflicts: the same setting written by more than one GPO at different OU levels. These are the conflicts OU precedence hid, and each needs a decision before Intune can own the setting.
+2. Find GPO-on-GPO conflicts: the same setting written by more than one GPO at different OU levels. These are the conflicts OU precedence hid, and each needs a decision before Intune can own the setting. Microsoft's Policy Analyzer, in the Security Compliance Toolkit, does this from GPO backups: it treats a set of GPOs as one unit, highlights settings that are redundant or set to conflicting values, compares them with Microsoft's baselines, and diffs a snapshot taken later against the first. Its command-line companion, GPO2PolicyRules, converts GPO backups without the interface.[^c08-sct]
 3. Import the XML into **Devices** > **Group Policy analytics**. For each GPO the report shows how many settings have an MDM equivalent and, per setting, the CSP and OMA-URI behind it.[^c08-gpa] Use it to find the landing zone, never to decide whether a setting is still needed.
 4. Classify each setting using the four tags from Chapter 07 (required, obsolete, high-risk, redundant), and record what kind of equivalent exists: a direct Intune setting, a partial one that needs adapting, none (a custom OMA-URI, a Remediation or an exception), or deprecated in the cloud-native model.
 5. Capture the baseline: the effective policy per device tier, taken with `gpresult` on a sample of devices in each tier. Phases 4 and 5 test against it.
@@ -72,6 +72,7 @@ Build every policy in this chapter, but assign none of them.
 - Create attack surface reduction rules and controlled folder access in audit mode.
 - Apply scope tags so delegated administrators see only their policies.
 - Create the dynamic groups and filters from [the templates later in this chapter](#dynamic-group-and-filter-templates).
+- Where Group Policy analytics found a direct equivalent, build the settings catalog policy with its **Migrate** step rather than by hand: select the imported GPOs and the settings with a decision record that says *required*, review the values, and leave **Assignments** empty so the policy is saved unassigned. If two selected GPOs set the same setting to different values, the step refuses to continue until one is kept, and Microsoft advises against migrating every setting without review. Migrate is best effort: some settings map to an alternate setting with a similar effect, some fail and are listed in **Notifications**, and AppLocker and firewall rule settings can't be migrated this way at all; they're built in the Endpoint security workload instead.[^c08-gpa-migrate]
 - Peer review each policy against its decision records. The review checks two things: that every setting traces to a required setting in a decision record, and that no setting appears in two policies.
 
 ### Phase 4: pilot
@@ -108,6 +109,22 @@ The program doesn't block inheritance on migrated OUs: blocking inheritance stop
 ### Phase 7: formal retirement
 
 Disable each GPO object rather than deleting it and keep it for 90 days as a rollback net. After 90 days without a regression, back it up, archive the backup, and delete the GPO from Active Directory. Update the program's documentation so Intune is recorded as the authority for every migrated setting, and close the exception register with an owner and review date on every entry that remains.
+
+### Adopt, don't build: Microsoft's tools for this migration {#adopt-dont-build}
+
+Microsoft already publishes the analysis and conversion this chapter needs. The program adopts them and adds only what they can't supply: the decision record per setting, the order of work and the evidence.
+
+| Need | Adopt | Notes |
+|---|---|---|
+| Find duplicate and conflicting settings across a set of GPOs; compare with Microsoft's baselines | Policy Analyzer and GPO2PolicyRules, in the Security Compliance Toolkit[^c08-sct] | Phase 1. Works on GPO backups, offline |
+| Which settings have an MDM equivalent, with the CSP and OMA-URI | Group Policy analytics[^c08-gpa] | Phase 1. Windows only |
+| Build the settings catalog policy from the GPO | Group Policy analytics' **Migrate** step[^c08-gpa-migrate] | Phase 3. Best effort; stops on conflicting values; not for AppLocker or firewall rules |
+| Read the analysis as data, for the evidence store or a check | Microsoft Graph `groupPolicyMigrationReports`, **beta**: per GPO, its migration readiness (none, partial or complete) and supported-setting counts; read with `DeviceManagementConfiguration.Read.All`[^c08-gpa-graph] | Listed for the global service, which GCC uses, and US Government L4 and L5. Creating a report needs the ReadWrite permission, so the program's checks only read |
+| A starting point instead of a legacy GPO | Intune security baselines, built by the same Microsoft team as the Group Policy baselines, without the settings specific to domain controllers[^c08-baselines] | Phase 3, where the legacy GPO isn't worth carrying forward |
+
+: Microsoft's tools for each step {.striped .hover}
+
+Servers take the same approach with Azure Policy and machine configuration ([Chapter 09](09-servers-under-azure-arc.md#moving-server-gpos-adopt-microsofts-path)).
 
 ### Testing at each gate
 
@@ -932,5 +949,8 @@ A compliance policy needs its scheduled action, and SC-001 isn't a `windows10Gen
 [^c08-graph-w10cp-beta]: Microsoft Learn, "windows10CompliancePolicy resource type" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/resources/intune-deviceconfig-windows10compliancepolicy?view=graph-rest-beta> (accessed Oct 20, 2026).
 [^c08-graph-action]: Microsoft Learn, "deviceComplianceActionItem resource type" (Microsoft Graph v1.0), <https://learn.microsoft.com/graph/api/resources/intune-deviceconfig-devicecomplianceactionitem?view=graph-rest-1.0> (accessed Oct 20, 2026).
 [^c08-graph-configpolicy]: Microsoft Learn, "Create deviceManagementConfigurationPolicy" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationpolicy-create?view=graph-rest-beta> (accessed Oct 20, 2026).
-[^c08-gpa-migrate]: Microsoft Learn, "Create a Settings Catalog policy using your imported GPOs in Microsoft Intune," <https://learn.microsoft.com/intune/device-configuration/migrate-group-policy> (accessed Oct 20, 2026).
+[^c08-gpa-migrate]: Microsoft Learn, "Create a Settings Catalog policy using your imported GPOs in Microsoft Intune," sections "Review and migrate your GPOs to a Settings Catalog policy," "Conflicting settings are detected early" and "What you need to know," <https://learn.microsoft.com/intune/device-configuration/migrate-group-policy> (accessed Oct 30, 2026).
+[^c08-sct]: Microsoft Learn, "Microsoft Security Compliance Toolkit - How to use," sections "What is the Policy Analyzer tool?" and "What is the GPO to Policy Rules tool?," <https://learn.microsoft.com/windows/security/operating-system-security/device-management/windows-security-configuration-framework/security-compliance-toolkit-10> (accessed Oct 30, 2026).
+[^c08-gpa-graph]: Microsoft Learn, "List groupPolicyMigrationReports," Microsoft Graph beta (permissions; national cloud table), <https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-grouppolicymigrationreport-list?view=graph-rest-beta>; and "Create groupPolicyMigrationReport" (properties, including `migrationReadiness`; ReadWrite permission), <https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-grouppolicymigrationreport-create?view=graph-rest-beta> (both accessed Oct 30, 2026).
+[^c08-baselines]: Microsoft Learn, "Use security baselines to help secure Windows devices you manage with Microsoft Intune," Q & A ("Is there a difference in the recommendations for Windows security baselines for group policy vs. Intune?"), <https://learn.microsoft.com/intune/device-security/security-baselines/overview> (accessed Oct 30, 2026).
 [^c08-graph-intents]: Microsoft Learn, "deviceManagementIntent resource type" (Microsoft Graph beta; no v1.0 version), <https://learn.microsoft.com/graph/api/resources/intune-deviceintent-devicemanagementintent?view=graph-rest-beta> (accessed Oct 20, 2026).

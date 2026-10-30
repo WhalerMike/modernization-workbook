@@ -148,3 +148,16 @@ New section "Which servers Arc reaches" (coverage table, Arc-track signpost) and
 | A18 | SQL Server enabled by Azure Arc | Coverage table | carried by link to Book 06, Chapter 09; no new footnote | Book 06 |
 | A19 | Arc manages non-Microsoft platforms (Linux, VMware, AWS, GCP) | Coverage intro | verified by A4, A8, A10 | as above |
 | A20 | Arc-enabled VMware vSphere availability in Azure Government | — | not verified; not stated in the chapter | — |
+
+## Additions, October 30, 2026 (moving server GPOs; patch owner)
+
+Pages read on 2026-10-30 through the Microsoft Learn documentation service; no personal data sent.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| G1 | No Microsoft tool imports a GPO into machine configuration | Moving server GPOs | program reading: no such tool found in Microsoft Learn searches on 2026-10-30 (Group Policy analytics applies to Windows client MDM only); stated as "Microsoft publishes no tool" | `c08-gpa` (applies to Windows); searches |
+| G2 | Keep Group Policy enforcing while Azure Policy audits; shift gradually; avoid conflicting configurations; Azure Policy settings don't appear in RSoP or `gpresult`; per-user settings (mapped drives, screensaver, MSI installs) stay with Group Policy | Moving server GPOs, step 1 | verified | `c09-mc-coexist` |
+| G3 | Built-in definitions such as "Windows machines should meet requirements for 'Windows Firewall Properties'" | Step 2 | verified | `c09-arc-policy-ref` |
+| G4 | GuestConfiguration module creates, validates, tests, publishes and creates policy; PowerShell 7; PSDesiredStateConfiguration 2.0.7 for Windows; applying packages need Arc agent 1.10.0 or later | Step 3 | verified | `c09-mc-custom` |
+| G5 | `ConvertFrom-GPO` (BaselineManagement) converts GPO backups to DSC; community solution, supported by its maintainers, not Microsoft; quickstart applies to Windows PowerShell 4.0 and 5.0 | Step 4 | verified; "draft, recompile, test in audit" is labeled design guidance | `c09-gpo-dsc` |
+| G6 | One patch owner per server; Update Manager assessment only where another tool patches | Azure Update Manager | design guidance, labeled | — |
