@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.263
+Welcome to Part 3 of the deeper dive on
+attribute-driven migration to Entra ID.
+
+2
+00:00:05.263 --> 00:00:11.040
+Parts 1 and 2 built the foundation,
+Gates 0 to 6: the tree read, the schema,
+
+3
+00:00:11.040 --> 00:00:16.513
+the proof, sync, the group library,
+the personas and the PIV binding.
+
+4
+00:00:16.513 --> 00:00:17.974
+This part is the payoff.
+
+5
+00:00:17.974 --> 00:00:20.988
+Gate 7 proves one mover across the tracks.
+
+6
+00:00:20.988 --> 00:00:27.013
+Gate 8 cuts over by attribute query and
+retires the organizational unit (OU) tree.
+
+7
+00:00:27.013 --> 00:00:30.300
+Gate 9 keeps the attributes true for good.
+
+8
+00:00:30.300 --> 00:00:33.716
+You'll see the validation kit's
+commands, the files it reads,
+
+9
+00:00:33.716 --> 00:00:37.488
+what a failing check looks like,
+and the rollback each gate gives.
+
+10
+00:00:37.488 --> 00:00:40.206
+The kit is read-only and fixture-tested,
+
+11
+00:00:40.206 --> 00:00:44.625
+not proven against a live tenant,
+so run it in a test tenant first.
+
+12
+00:00:44.625 --> 00:00:46.510
+Design guidance is labeled.

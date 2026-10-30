@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.838
+Be clear about where the kits
+stop, because an assessor will ask.
+
+2
+00:00:03.838 --> 00:00:08.504
+Every gate now has a kit check, but most
+leave a residual that no check reads,
+
+3
+00:00:08.504 --> 00:00:11.412
+and the gate names the
+evidence that stands in.
+
+4
+00:00:11.412 --> 00:00:16.538
+For this part, Gate 7's checks cover the
+membership change and the counts per code,
+
+5
+00:00:16.538 --> 00:00:21.275
+but nothing proves the mover workflow
+ran, so its own run history stands in.
+
+6
+00:00:21.275 --> 00:00:25.149
+Gate 8 has its per-wave checks,
+but nothing produces the seven-day
+
+7
+00:00:25.149 --> 00:00:29.388
+sole-source report, so the provisioning
+logs joined on the key stand in.
+
+8
+00:00:29.388 --> 00:00:33.566
+Gate 9 has the HR, group and track
+checks, but nothing compares role
+
+9
+00:00:33.566 --> 00:00:37.899
+assignments with the registry, so
+the registry diff in Git stands in.
+
+10
+00:00:37.899 --> 00:00:40.088
+The earlier gates follow the same pattern.
+
+11
+00:00:40.088 --> 00:00:44.174
+Sync, Conditional Access and the
+PIV binding each have a check now,
+
+12
+00:00:44.174 --> 00:00:48.261
+but the sync configuration, the
+report-only results and whether a
+
+13
+00:00:48.261 --> 00:00:52.575
+binding belongs to a current card
+still come from a report or a record.
+
+14
+00:00:52.575 --> 00:00:54.900
+Keep this table in the evidence packet.
+
+15
+00:00:54.900 --> 00:00:58.660
+It shows which gates were proved
+by code and which by a record.

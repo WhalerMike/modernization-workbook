@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.150
+Gate 6 is the PIV and CAC binding.
+
+2
+00:00:03.150 --> 00:00:06.031
+Certificate sign-in is
+attribute-driven too:
+
+3
+00:00:06.031 --> 00:00:10.391
+Entra ID matches a field of the
+certificate to a field of the account,
+
+4
+00:00:10.391 --> 00:00:15.062
+so whoever writes that field decides
+which certificate signs in as whom.
+
+5
+00:00:15.062 --> 00:00:19.724
+The binding lives in
+certificateUserIds, as prefixed values.
+
+6
+00:00:19.724 --> 00:00:22.388
+Names and email addresses
+are low affinity.
+
+7
+00:00:22.388 --> 00:00:24.842
+The key identifier, the public key hash,
+
+8
+00:00:24.842 --> 00:00:29.674
+and issuer with serial number are high
+affinity, because they can't be reused.
+
+9
+00:00:29.674 --> 00:00:33.512
+That also means a reissued or
+renewed card changes the value.
+
+10
+00:00:33.512 --> 00:00:35.731
+The limits: ten values per user,
+
+11
+00:00:35.731 --> 00:00:39.813
+each unique in the tenant,
+with case-sensitive prefixes.
+
+12
+00:00:39.813 --> 00:00:45.062
+For cloud-only users, a Privileged
+Authentication Administrator or Graph writes it.
+
+13
+00:00:45.062 --> 00:00:50.365
+For synced users, only Entra Connect
+can, from altSecurityIdentities in AD,
+
+14
+00:00:50.365 --> 00:00:53.787
+and Microsoft doesn't
+document Cloud Sync for it.
+
+15
+00:00:53.787 --> 00:00:56.980
+Treat that AD write path
+like an access slot.

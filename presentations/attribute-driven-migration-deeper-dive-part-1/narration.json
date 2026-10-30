@@ -1,0 +1,87 @@
+[
+  {
+    "slide": 1,
+    "title": "Part 1: Reading the tree to flowing attributes",
+    "say": "Welcome to Part 1 of the deeper dive implementation of attribute-driven migration to Entra ID. The technical deep dive explained the model. This series goes below it, to the work an engineer actually runs: the commands, the attribute slots, the checks and what their output looks like, and how to back each step out. It follows the implementation guide's ten gates and the project plan behind them. Part 1 takes Gates 0 to 3: reading the OU tree, fixing the schema and slots, proving the attributes, and mapping them through sync. Before that, we'll measure how things are done today. Design guidance is labeled, and the example code is illustrative, tested against fixtures rather than a live tenant."
+  },
+  {
+    "slide": 2,
+    "title": "Gates 0–3 on one page: done when, proved by",
+    "say": "Here are the four gates on one page. Gate 0 is done when the tree's encoding is in Git, split by track, with a decision for every group. It's read-only, so there's nothing to roll back. Gate 1 is done when every attribute that drives access has one store, one writer and one owner. A slot can change only until a rule reads it. Gate 2 is done when the attributes are proven on the pilot, the other writers are gone, and logs are leaving Entra ID. Gate 3 is done when every slot arrives in Entra ID exactly as HR sent it. A sample check, V K sync oh one, compares the slot values, and a reconciliation report covers the rest. One key runs through all of it: an existing enterprise ID the agency already issues, carried in the employee I D attribute, which holds at most sixteen characters."
+  },
+  {
+    "slide": 3,
+    "title": "Baseline: trace the last real events, not the process",
+    "say": "Before touching the tree, measure how each task is done today. The method is design guidance. Take real joiner, mover and leaver events from the last ninety days, and follow each one through its records. For a joiner, that's the HR action date, the ticket, the account and group changes, and the device. For a mover, it's the groups added and removed, and whether the old access was ever reviewed. For a leaver, it's when the account was disabled and when sessions and credentials were revoked. And ask the right question: show me the last one you did, not describe the process. Take every timestamp from a record. A step with no record is a finding. These numbers have to be traced by hand, because a ticket-driven estate never records them as events."
+  },
+  {
+    "slide": 4,
+    "title": "Baseline evidence: where each number comes from",
+    "say": "Four read-only sources give the baseline its numbers. The Start Kit reads the forest: enabled users, orphaned admin count accounts, empty groups, and the delegations someone made by hand. The validation kit's four HR checks, run against an HR export, give correlation coverage, empty coded slots, counts per organization code, and duplicate keys. Run this early, expect them to fail broadly. That failure is your baseline. The group-change audit gives the mover and leaver trail. And joining the HR separation date to the disable date on the employee I D gives stale access and the separation-to-block interval. One trap here. Entra's audit log keeps thirty days with P1 or P2, and it isn't retroactive. So a ninety-day trace leans on HR, tickets and A D. Route the logs out now."
+  },
+  {
+    "slide": 5,
+    "title": "Gate 0: run the Start Kit, read-only, Tier A first",
+    "say": "Gate 0 starts with the Start Kit, and the whole gate is read-only. Start at Tier A, a standard account with no added rights. Every run first checks what that account can read, and writes up the gaps as a delegation request. Add Tier B, narrow and time-bound read delegations, only where Tier A can't see what you need. Each run lands in a folder named for its date, host and tier. A manifest hashes every file, so what you commit is provably what ran, and a later run can be compared file by file. Keep three things: every O U with its size and its hand-made access entries, G P O links at domain, O U and site level, and every count marked not collected rather than zero. And tell security operations before you run, because broad enumeration looks like reconnaissance."
+  },
+  {
+    "slide": 6,
+    "title": "Gate 0: the decision record, one row per group",
+    "say": "The rest of Gate 0 is a decision record in Git. No check reads it, so the record is the evidence. Every security group gets one decision. Keep it in A D if it only guards on-premises resources. Sync it if it guards both. Make it cloud-only if it guards only cloud resources. Convert it to dynamic only if its membership really follows the attributes. Retire it if it's empty. Then map each O U function. Policy scope goes to Conditional Access and Intune. Delegation goes to administrative units, or to Azure role scopes for servers. And tag every O U and every G P O half with its track. Record two traps. A site-linked G P O looks unlinked to an O U-only search. And admin count overstates privilege. The service accounts the kit flags go to the non-person track, and a beta Intune check, V K int oh seven, reads Group Policy analytics for the computer half of the split."
+  },
+  {
+    "slide": 7,
+    "title": "What the overview simplified",
+    "say": "One honest slide. The overview simplified three things, and at this depth they bite. This is design guidance. First, some O U's don't map cleanly. One may exist for a single hand-made delegation, a G P O link, or a sync filter. Record those rather than forcing them into the table. Second, HR codes aren't always access boundaries. Convert a group only when its membership really follows the codes, and give the misfits a reviewed exception. HR also enters actions late or future-dated, and worker types go well beyond employee and contractor. Third, removing the other writers can be a project in itself: the help desk, self-service, Exchange's custom-attribute commands, and O U write rights. Find every writer in the audit logs first. After Gate 2, any other write counts as drift."
+  },
+  {
+    "slide": 8,
+    "title": "Gate 1: the user slot register, slot by slot",
+    "say": "Gate 1 fixes the slot register, the one map of user slots the whole workbook uses. The employee I D attribute carries the person key. Slots two and three carry the hire and leave dates on the A D side, and a sync rule maps them to the native date properties that Lifecycle Workflows read. Slot seven is account type, derived from O U placement only during the transition. The three that drive access are ten, eleven and twelve. That's the organization code, the worker type code, and the position category. Rules can't read the native worker type, which is why slot eleven mirrors it. Slot fifteen is Do Not Sync, read only by a sync filter, never by an access rule. Slots one to three follow Microsoft's worksheet. The rest are the workbook's proposals, to confirm."
+  },
+  {
+    "slide": 9,
+    "title": "Gate 1: one store, one writer, one owner",
+    "say": "The rest of Gate 1 comes down to three rules: one store, one writer, one owner. The data architect picks the store, in order. Native properties come first, then extension attributes for anything a rule reads, then directory extensions if you need more slots. Custom security attributes hold sensitive values that no rule needs. The provisioning service becomes the only writer of every schema field. Every other path, the help desk, self-service, and Exchange administration, goes on a list for removal at Gate 2. Put codes, never display names, in anything a rule reads, and HR owns the code lists. To validate, run the two checks on the key's carrier, V K H R oh one and oh four, and expect findings. Sign the register early. Once a rule reads a slot, changing it means rewriting every rule that reads it."
+  },
+  {
+    "slide": 10,
+    "title": "Gate 2: run the HR checks against an HR export",
+    "say": "Gate 2 proves the attributes, starting with the kit's HR checks, first on the pilot and then on the estate. Run the validation kit with the HR and dynamic group tracks and an input folder. It signs in with only the read scopes those checks need. At this gate, read the HR rows. The input folder holds two files. The exceptions file lists accounts that legitimately have no key, each with an owner. An exception with no owner doesn't count. The HR export gives the worker count per organization code. Without it, the reconciliation check reports not applicable, never pass. Each check has one failure condition: an enabled account with no key, an empty coded slot, a count that differs from HR, or a key held twice. Fix each one at the source, never in the copy."
+  },
+  {
+    "slide": 11,
+    "title": "Reading a failing check: status, count, rows",
+    "say": "Here's what a failing check looks like, using the kit's own fictional fixture. V K H R oh one fails with a count of three. One row is the trap. That account is in the exceptions file, but with no owner, so the check still reports it, and says why. The reconciliation check shows each organization code. One code agrees. One has fewer users in Entra than in HR. One exists in Entra but not in HR, so someone typed it. And one is in HR but missing from Entra. Every row is fixed at HR, not the directory. The duplicate check finds one key held by two users. Fail means at least one finding. Not applicable and error are never a pass. Everything lands in a run folder with a hashed manifest, and that folder is Gate 2's evidence."
+  },
+  {
+    "slide": 12,
+    "title": "Gate 2: threshold, writers out, logs out",
+    "say": "Three more steps close Gate 2, each with its own owner. The authorizing official sets the correlation threshold through risk governance. Ninety-nine percent of the pilot is a proposed starting point, not a rule, and a risk-tiered threshold is usually better. Every enabled account is either correlated or on a dated exception list with an owner. Identity engineering removes the other writers: O U write rights and Exchange's commands in A D, and the help desk and self-service paths in Entra. Security operations routes the sign-in, audit and provisioning logs out before the pilot's first change. In the running example, a second account turns up holding the analyst's key, an old test account. HR confirms the real record, and the test account is disabled and listed. It isn't deleted. The C I S O owns this gate."
+  },
+  {
+    "slide": 13,
+    "title": "Gate 3: two landing zones, one carrier, mapped",
+    "say": "Gate 3 maps the attributes through sync, and its failures are quiet. There are two landing zones. For most users, HR writes into A D through the provisioning agent, and sync carries the values up. For cloud-mastered users, HR writes Entra directly. Use the same carrier in both, so a rule never has to know which zone a user came from. Use Cloud Sync unless you need something only Connect Sync does, and password hash sync everywhere. Then map the slots. The two date slots map to the native hire and leave dates, in the format A D strings require. The transitional rule derives account type from O U placement. It's a bridge, not an end state, and Gate 8 removes it. And the Do Not Sync filter keys on slot fifteen."
+  },
+  {
+    "slide": 14,
+    "title": "Gate 3: the /bulkUpload record, sent whole",
+    "say": "This is the record HR sends to the provisioning endpoint, one operation from the example code, trimmed. Each request holds at most fifty operations. The external I D carries the person number, and it matches the employee I D attribute. If nothing matches, a user is created. The enterprise extension carries department, division, cost center and manager. The agency's own extension carries the codes that land in the slots, plus the dates in U T C. The service answers two oh two accepted, with a link to the provisioning logs. Updates are just the same record posted again. And the rule that matters most: send the whole record every time, because a missing attribute can clear the target value. The example client dry-runs by default. Send five to ten records before the full extract."
+  },
+  {
+    "slide": 15,
+    "title": "Gate 3: the match trap and the April 7, 2027 deadline",
+    "say": "Two Gate 3 traps. The first is matching. When sync meets an object that already exists in the cloud, a hard match on the source anchor makes A D the source of authority. Failing that, a soft match on the user principal name and the email address applies, but only if the cloud object has no anchor yet. Either one overwrites the cloud values with A D's, the password hash included. So clean A D first, and keep both matches blocked outside a planned window. The second trap is a date. By April seventh, twenty twenty-seven, every Connect Sync server needs version two point six point eighty-four or later, plus application-based authentication. Otherwise sync stops. The upgrade alone isn't enough. You also have to run the wizard. And never run two active Connect Sync servers."
+  },
+  {
+    "slide": 16,
+    "title": "Gate 3: proving it flowed, and backing it out",
+    "say": "Gate 3's proof starts with a kit check, V K sync oh one. Export a sample of users from A D, with the employee I D and the three coded slots, and the check compares those values with Entra, joined on the key. It flags a sample row with no Entra user, a key held twice, and any slot that differs. It reads values, not the sync configuration, so the reconciliation report still covers the rest. That means counts within one percent, no sync errors, a full sync reconciled before deltas, shadow-mode differences explained, and zero unmatched creations. In the running example, the analyst's codes land in A D and arrive in Entra unchanged. To back out, turn the scoping filter back and let the next cycle remove the values. Never delete synced users in Entra, because sync just restores them. Pause the provisioning job. Don't restart it, because restart purges what's waiting."
+  },
+  {
+    "slide": 17,
+    "title": "Handing Gates 0–3 to Part 2",
+    "say": "To close, here's what each gate leaves in Git, and what comes next. Gate 0 leaves the Start Kit run, the group decisions and the unit map. Gate 1 leaves the signed slot register, which every rule and persona will read. Gate 2 leaves the validation run folder, the threshold, the owned exceptions, and the removed writers. Gate 3 leaves the sample check's result, the reconciliation report, and live pilot data for the shadow comparison. The attributes are now true and flowing. Part 2 takes Gates 4 to 6: the dynamic group library and administrative units, the Conditional Access personas and targeting conventions, and P I V binding. Those are the mechanisms that read the attributes. Thank you."
+  }
+]

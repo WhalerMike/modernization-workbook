@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.262
+Next, prove each rule
+before it grants anything.
+
+2
+00:00:03.262 --> 00:00:08.238
+The validation kit is read-only, and runs
+with only the scopes its checks need.
+
+3
+00:00:08.238 --> 00:00:12.329
+VK-DG-03 reads rule-tests.json:
+a label, a member,
+
+4
+00:00:12.329 --> 00:00:18.188
+the group or proposed rule, and
+whether that person should match.
+
+5
+00:00:18.188 --> 00:00:23.375
+It uses Graph's beta rule evaluation,
+which works only with delegated sign-in,
+
+6
+00:00:23.375 --> 00:00:27.738
+as at least a Groups Administrator;
+an app-only run reports Error.
+
+7
+00:00:27.738 --> 00:00:31.100
+A result that differs from what
+you expected is a finding.
+
+8
+00:00:31.100 --> 00:00:37.100
+VK-DG-04 reads shadow-pairs.csv, the
+group being replaced and its proposed
+
+9
+00:00:37.100 --> 00:00:42.900
+dynamic replacement, and lists everyone
+the new group adds or removes.
+
+10
+00:00:42.900 --> 00:00:44.978
+By default no difference is allowed,
+
+11
+00:00:44.978 --> 00:00:49.550
+so each one is explained in the record
+before the rule grants production access.
+
+12
+00:00:49.550 --> 00:00:52.762
+A missing input means Not
+Applicable, never Pass.
+
+13
+00:00:52.762 --> 00:00:57.398
+And rollback is simple: a new group
+grants nothing until it's assigned,
+
+14
+00:00:57.398 --> 00:01:01.510
+so unassign it, keep the old group,
+and revert the rule from Git.
