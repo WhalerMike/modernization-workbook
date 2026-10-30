@@ -1,0 +1,39 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's tutorial 'Review access to administrative roles using access reviews APIs', as its Learn source page: the sample requests for an access review of a privileged role exist only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn sample: access review of administrative roles (Microsoft Graph access reviews API tutorial)",
+  "upstream_repo": "https://github.com/microsoftgraph/microsoft-graph-docs-contrib",
+  "upstream_path": "concepts/tutorial-accessreviews-roleassignments.md",
+  "commit": "a69303123e9701eecbf56568d152ece936a97f1e",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2026-07-03 (commit 315abdcef4ad417ffe6767e45d4dd4cd5281f41d)",
+  "retrieved": "2026-10-30",
+  "license": "Documentation: CC BY 4.0 (LICENSE). Code: MIT (LICENSE-CODE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/graph/tutorial-accessreviews-roleassignments",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "tutorial-accessreviews-roleassignments.md": "concepts/tutorial-accessreviews-roleassignments.md"
+  },
+  "upstream_git_blobs": {
+    "LICENSE": "e056e7c3ec54533985dfb3a4c6ef70dab8ca2e42",
+    "LICENSE-CODE": "b17b032a43088ac7f3d2f3e34a2431c778a95e6f",
+    "tutorial-accessreviews-roleassignments.md": "eaa75562e7ae2aa62d9a1880cb918cdffcffbb1d"
+  },
+  "not_copied": [
+    "Everything else in microsoftgraph/microsoft-graph-docs-contrib, including the SDK snippet includes the page's language tabs pull in (includes/snippets/*): the HTTP requests are the sample, and they are inside this one page, so the page is pinned whole; the chapter links Learn rather than quoting it."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 18650,
+      "sha256": "7183ef9749eb9b75e710a81a4c812a9405cc184f087500581a973e5929ac3f5e"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "tutorial-accessreviews-roleassignments.md": {
+      "bytes": 37869,
+      "sha256": "206954dceea3d54641352b9a6631e93ef15e99391a6bb7224920738e953a36ae"
+    }
+  }
+}
