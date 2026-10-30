@@ -79,3 +79,10 @@ Labelled *(design guidance)* or stated as the program's position: the Mainframe 
 ## Gaps recorded in the guide
 
 The guide's "Where the kits stop" table states what no validation kit check reads and what stands in for it. After the second pass: the sync configuration, scoping and shadow differences (Gate 3, beside VK-SYNC-01's sample comparison), conditions other than users and applications in a grant and block pair and the report-only results (Gate 5, beside VK-CA-01), whether a binding value belongs to a current card and the tenant's affinity setting (Gate 6, beside VK-PIV-01), the field-by-field HR comparison (Gate 2), the seven-day sole-source report (Gate 8) and the registry-to-tenant role comparison (Gate 9).
+
+## Corrections, 2026-10-30 (found while writing the Deeper Dive decks)
+
+| Was | Now | Source |
+|---|---|---|
+| Gate 7 example: the analyst "stays in the same division unit" | The record carries a new division code, so the analyst leaves the old division unit and joins the new one | Companion guide, worked example, steps 1 and 3 |
+| Gate 7 Validate and the gate table: VK-HR-05 shows the mover's workflow record | VK-HR-05 reads hire and leave triggers only; the mover proof uses the workflow's own run history, now listed under "Where the kits stop" | `examples/validation-kit/powershell/ValidationKit/Checks/HR.ps1` (VK-HR-05) |

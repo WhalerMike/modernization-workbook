@@ -102,7 +102,7 @@ Where the key is already issued to contractors with their PIV credential, contra
 | [4 Group library and units](#gate-4-the-dynamic-group-library-and-administrative-units) | 4, 5 | Every rule on codes with guards, tested and shadowed; every unit mirrors its group | VK-DG-01 to 07 | A4.1–A4.4, D-A4, AG4 |
 | [5 Targeting conventions](#gate-5-personas-and-targeting-conventions) | 6 | Personas from codes, grants paired with blocks; device, server and non-person conventions handed off | VK-CA-01 for personas; VK-INT-01, VK-ARC-01, VK-NPI-01 in the track guides | A5.1–A5.4, D-A5, AG5 |
 | [6 PIV binding](#gate-6-piv-and-cac-binding) | PIV | Every pilot card holder bound; high affinity piloted | VK-PIV-01 | A6.1, A6.2, D-A6, D-A7, AG6 |
-| [7 Mover proven](#gate-7-prove-a-mover-across-the-tracks) | Worked example | One personnel action changes access only through the attributes | VK-DG-05, VK-HR-03, VK-HR-05 | A7.1, AG7 |
+| [7 Mover proven](#gate-7-prove-a-mover-across-the-tracks) | Worked example | One personnel action changes access only through the attributes | VK-DG-05, VK-HR-03; the workflow's run history | A7.1, AG7 |
 | [8 OU tree retired](#gate-8-cut-over-and-retire-the-ou-tree) | 7 | Every population cut over by query; nothing reads OU placement | VK-HR-01 to 06, VK-DG-04, VK-DG-05 per wave | A8.1–A8.4, AG8 |
 | [9 Attributes kept true](#gate-9-keep-the-attributes-true) | 8 | Drift scans running, findings closed at the source, zero-action plan | VK-HR-03, VK-DG-05, VK-DG-06, VK-DG-07, and each track's standing checks | A9.1–A9.3, D-A8, AG9 |
 
@@ -394,13 +394,13 @@ This gate is the test of the whole model. It runs before any population cuts ove
 5. Check what must not change. The device's groups stay put, because device rules can't see the user. The service principal's sponsor is still `MP0042137`; a sponsor's mover event goes to the non-person track ([non-person guide, Step 6](non-person-identity-implementation.md#step-6-run-the-lifecycle)).
 6. Run the drift scan. It should find nothing to fix.
 
-*The running example.* This is the analyst. The personnel action moves `MP0042137` from `FIN-LED` to `FIN-AP`. The analyst leaves the ledger groups, joins accounts payable's, and stays in the same division unit and persona. The laptop doesn't move.
+*The running example.* This is the analyst. The personnel action moves `MP0042137` from `FIN-LED` to `FIN-AP`, with the new division code. The analyst leaves the ledger groups and the old division unit, joins accounts payable's groups and its division unit, and stays in the same persona ([companion guide, worked example](attribute-driven-migration.md#worked-example-one-user-and-one-mover-event)). The laptop doesn't move.
 
 ::: {.callout-important}
 ## Validate (Gate 7: mover proven across the tracks)
 - **VK-DG-05**, against the step-2 snapshot, shows exactly the expected membership changes and no others.
 - **VK-HR-03** reconciles the counts per organization code with the HR export after the move.
-- **VK-HR-05** shows the mover's workflow record on time, with no unprocessed trigger.
+- The mover workflow's own run history shows it ran for the test user and what it did. **VK-HR-05** doesn't cover this: it reads hire and leave triggers only.
 - The evidence chain runs from the personnel action to the provisioning log entry, the group change and the drift report, joined on the key.
 - Gate owner: the CISO. Gate 7 closes before the program's G2.
 :::
@@ -487,7 +487,7 @@ The kits cover most gates, but not all of them. Where no check exists, the gate'
 | 4 | VK-DG-01 to 07 | — | — |
 | 5 | VK-CA-01 (emergency-access exclusion, governed groups, grant and block pairs on the users condition); VK-HR-02 for empty slots; the track checks for devices, servers and non-person identities | Conditions other than users and applications in a pair; the report-only results | The `ca-export` policy export and the report-only review, read against the persona design |
 | 6 | VK-PIV-01 (coverage and affinity, by account) | Whether each value belongs to a current card; the tenant's affinity setting | The card management system's issuance record; the sign-in logs |
-| 7 | VK-DG-05, VK-HR-03, VK-HR-05 | — | — |
+| 7 | VK-DG-05, VK-HR-03 | Proof that the mover workflow ran (VK-HR-05 reads hire and leave triggers only) | The workflow's run history |
 | 8 | VK-HR-01 to 06, VK-DG-04, VK-DG-05 per wave | The seven-day sole-source report | The provisioning logs, joined on the key |
 | 9 | VK-HR, VK-DG and each track's standing checks | The registry-to-tenant comparison of role assignments | The registry diff in Git |
 
@@ -519,7 +519,7 @@ The kits cover most gates, but not all of them. Where no check exists, the gate'
 - [ ] Every rule on codes with guards, tested and shadowed; no `memberOf`; restriction decided per unit before creation; unit rules mirror group rules (Gate 4; VK-DG-01 to 07)
 - [ ] Personas from codes, grants paired with blocks, empty slots reported; device, server and non-person conventions handed to their guides (Gate 5; VK-CA-01)
 - [ ] PIV binding coverage measured; high affinity piloted before the tenant changes; leaver removes the binding; writer after AD decided (Gate 6; VK-PIV-01)
-- [ ] One mover proved across the tracks with no ticket (Gate 7; VK-DG-05, VK-HR-03, VK-HR-05)
+- [ ] One mover proved across the tracks with no ticket (Gate 7; VK-DG-05, VK-HR-03)
 - [ ] Waves by attribute query, leaver first, seven days of sole-source proof; transitional rules removed; OU tree frozen and archived (Gate 8)
 - [ ] Drift scans scheduled for HR, units and roles; findings closed at the source; limits register kept (Gate 9)
 
