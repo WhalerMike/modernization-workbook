@@ -166,7 +166,7 @@ The project plan's A3.6 sets drift every six hours. A run that often only needs 
 
 ### The tests
 
-Pester 5 under PowerShell 7: `tests/EvidenceDrift.Tests.ps1`, 32 tests, 8 of them Learn's queries as published; with Chapters 01 and 02, 110 tests in `examples/privileged-access`. pytest: `tests/test_pa_evidence.py`, 41 tests over the two fixture runs; with the first workbook's, 115 tests in `examples/drift-pipeline`. A Pester test reruns the evidence run from the fixtures and checks that its data files match the fixture runs the Python tests read. None of them needs a tenant or a network.
+Pester 5 under PowerShell 7: `tests/EvidenceDrift.Tests.ps1`, 32 tests, 8 of them Learn's queries as published; the other chapters' test files in `examples/privileged-access` run beside it unchanged. pytest: `tests/test_pa_evidence.py`, 41 tests over the two fixture runs; with the first workbook's, 115 tests in `examples/drift-pipeline`. A Pester test reruns the evidence run from the fixtures and checks that its data files match the fixture runs the Python tests read. None of them needs a tenant or a network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -283,7 +283,7 @@ You need PowerShell 7.1 or later with Pester 5, Python 3.10 or later with pytest
 
     `verify` exits `1`: `drift/pa-drift-summary.md doesn't match its SHA-256`. The swapped compare exits `1`: the current run isn't later than the previous one. The workflow lints with `0 finding(s), 0 warning(s)`.
 
-**Expected result:** `Invoke-Pester -Path tests` in `examples/privileged-access` passes 110 tests, and `python -m pytest tests -q` in `examples/drift-pipeline` passes 115. Delete `out` in both folders when you're done.
+**Expected result:** `Invoke-Pester -Path tests/EvidenceDrift.Tests.ps1` in `examples/privileged-access` passes 32 tests, and `python -m pytest tests -q` in `examples/drift-pipeline` passes 115. `Invoke-Pester -Path tests` runs every chapter's tests and should pass them all. Delete `out` in both folders when you're done.
 
 ## Lab 2: test tenant
 

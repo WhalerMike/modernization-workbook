@@ -1,0 +1,11 @@
+{
+  "displayName": "CA025-Admins-BlockNonPAW",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": { "includeGroups": ["{group:CA-Persona-Admins}"], "excludeGroups": ["{group:CA-Exclude-EmergencyAccess}"] },
+    "applications": { "includeApplications": ["MicrosoftAdminPortals", "797f4846-ba00-4fd7-ba43-dac1f8f63013"] },
+    "devices": { "deviceFilter": { "mode": "exclude", "rule": "device.extensionAttribute12 -eq \"PAW\"" } },
+    "clientAppTypes": ["all"]
+  },
+  "grantControls": { "operator": "OR", "builtInControls": ["block"] }
+}
