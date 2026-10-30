@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.910
+Every wave passes the same attribute gate,
+
+2
+00:00:02.910 --> 00:00:07.813
+straight from the Federal Modernization
+Workbook's Book 03's Appendix C.
+
+3
+00:00:07.813 --> 00:00:12.862
+First, a validation report, signed
+before the cutover is even scheduled.
+
+4
+00:00:12.862 --> 00:00:16.525
+Second, a dry run on production
+data with writes switched off,
+
+5
+00:00:16.525 --> 00:00:20.113
+where every difference from
+the directory gets explained.
+
+6
+00:00:20.113 --> 00:00:22.930
+Third, the cutover, one
+population at a time,
+
+7
+00:00:22.930 --> 00:00:26.551
+with named records spot-checked
+after the first cycle.
+
+8
+00:00:26.551 --> 00:00:32.763
+Fourth, seven days in which every create,
+change and disable traces to an HR event.
+
+9
+00:00:32.763 --> 00:00:35.412
+Anything in the audit
+log without a matching
+
+10
+00:00:35.412 --> 00:00:38.776
+provisioning record is a
+finding, and the clock restarts.
+
+11
+00:00:38.776 --> 00:00:40.558
+No kit check covers that week;
+
+12
+00:00:40.558 --> 00:00:44.050
+the provisioning logs joined
+on the key are the evidence.
+
+13
+00:00:44.050 --> 00:00:47.400
+Only then does the ticket path
+for account creation close.
+
+14
+00:00:47.400 --> 00:00:49.449
+The kit still runs on every wave,
+
+15
+00:00:49.449 --> 00:00:53.690
+including a shadow comparison
+for each group the wave replaces.

@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.666
+This is the record HR sends
+to the provisioning endpoint,
+
+2
+00:00:03.666 --> 00:00:06.513
+one operation from the
+example code, trimmed.
+
+3
+00:00:06.513 --> 00:00:09.438
+Each request holds at
+most fifty operations.
+
+4
+00:00:09.438 --> 00:00:12.241
+The external I D carries
+the person number,
+
+5
+00:00:12.241 --> 00:00:14.963
+and it matches the employee I D attribute.
+
+6
+00:00:14.963 --> 00:00:17.663
+If nothing matches, a user is created.
+
+7
+00:00:17.663 --> 00:00:22.788
+The enterprise extension carries department,
+division, cost center and manager.
+
+8
+00:00:22.788 --> 00:00:26.013
+The agency's own extension
+carries the codes
+
+9
+00:00:26.013 --> 00:00:29.063
+that land in the slots,
+plus the dates in U T C.
+
+10
+00:00:29.063 --> 00:00:34.262
+The service answers two oh two accepted,
+with a link to the provisioning logs.
+
+11
+00:00:34.262 --> 00:00:36.963
+Updates are just the same
+record posted again.
+
+12
+00:00:36.963 --> 00:00:40.816
+And the rule that matters most:
+send the whole record every time,
+
+13
+00:00:40.816 --> 00:00:44.225
+because a missing attribute
+can clear the target value.
+
+14
+00:00:44.225 --> 00:00:46.812
+The example client dry-runs by default.
+
+15
+00:00:46.812 --> 00:00:50.040
+Send five to ten records
+before the full extract.

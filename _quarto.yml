@@ -42,6 +42,7 @@ project:
     # from the videos release; a caption track must come from the site itself.
     - "presentations/**/*_Narrated.vtt"
     - "docs/presentations/videos.json"
+    - "docs/presentations/fmw-chapters.js"
     - "docs/project-plans/files/*"
 
 # {{< fmw-video ID >}}: an in-browser video player (assets/fmw-video.lua).

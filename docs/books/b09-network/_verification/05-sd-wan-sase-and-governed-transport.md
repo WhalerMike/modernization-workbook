@@ -127,3 +127,18 @@ Applied from the two research briefs behind the workbook's SD-WAN platform deep 
 | 6 | KEV lists nine Cisco Catalyst SD-WAN CVEs added in 2026; newest CVE-2026-76504, added September 30, due October 3 | Same paragraph | added | `[^c05-kev2026]` (KEV JSON, catalog 2026.10.23) |
 | 7 | ED 26-03 names Manager and Controller, CVE-2026-20127 and CVE-2022-20775; directive sequence | Same paragraph | confirmed (no change) | `[^c05-ed2603]` |
 | 8 | Diagram ch05-governor-attack-surface: "ED 26-03 (2026): authentication bypass in a widely used SD-WAN manager and controller, actively exploited" | Figure | confirmed (still accurate; not edited) | `[^c05-ed2603]` |
+
+## Addition, October 30, 2026: Teams emergency calling as a path constraint
+
+New subsection "Teams emergency calling constrains the path" under "SASE above SD-WAN," and the "In this chapter" callout updated. Microsoft Learn pages opened on Oct 30, 2026 through the Learn MCP fetch. Consistent with Book 03 Chapter 10 and Book 15 Chapter 05, which carry the same facts under their own keys.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| T1 | LIS holds WAPs, switches, ports and subnets linked to emergency addresses | Teams emergency calling | verified | c05-teams-dynamic |
+| T2 | Subnet lookups only when the client's public IP is trusted; WAP and switch lookups regardless | Same | verified | c05-teams-dynamic |
+| T3 | Cloud proxy service deployments that modify Teams clients' source IPs don't support network configuration setting lookups | Same | verified (Important note, Configure network settings) | c05-teams-dynamic |
+| T4 | Network setting lookups carry site emergency policies and, via the trusted-address check, subnet location | Constraint 1 | verified as a reading of T2–T3 and the page's statement that network settings give dynamic policies and locations | c05-teams-dynamic |
+| T5 | US: typed address not from suggestions and address registered on the number are screened before transfer | Constraint 1 | verified | c05-teams-remote |
+| T6 | Confirm source rewriting with the SASE vendor; record the gap in the architecture decision | Constraint 1 | restated-as-design | — |
+| T7 | Full-tunnel VPN with mapped pool returns the pool's location; leave pools unmapped | Constraint 2 | inference, labeled as such in the text | — |
+| T8 | Microsoft recommends routing Optimize endpoints, including Teams media, around the VPN tunnel | Constraint 2 | verified | c05-vpn-split |

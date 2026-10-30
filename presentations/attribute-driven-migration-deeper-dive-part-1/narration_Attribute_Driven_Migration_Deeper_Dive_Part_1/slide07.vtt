@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.225
+One honest slide.
+
+2
+00:00:01.225 --> 00:00:05.350
+The overview simplified three
+things, and at this depth they bite.
+
+3
+00:00:05.350 --> 00:00:06.963
+This is design guidance.
+
+4
+00:00:06.963 --> 00:00:09.775
+First, some O U's don't map cleanly.
+
+5
+00:00:09.775 --> 00:00:15.475
+One may exist for a single hand-made
+delegation, a G P O link, or a sync filter.
+
+6
+00:00:15.475 --> 00:00:18.363
+Record those rather than
+forcing them into the table.
+
+7
+00:00:18.363 --> 00:00:22.013
+Second, HR codes aren't
+always access boundaries.
+
+8
+00:00:22.013 --> 00:00:25.916
+Convert a group only when its
+membership really follows the codes,
+
+9
+00:00:25.916 --> 00:00:28.400
+and give the misfits a reviewed exception.
+
+10
+00:00:28.400 --> 00:00:31.366
+HR also enters actions
+late or future-dated,
+
+11
+00:00:31.366 --> 00:00:35.238
+and worker types go well beyond
+employee and contractor.
+
+12
+00:00:35.238 --> 00:00:40.248
+Third, removing the other writers can
+be a project in itself: the help desk,
+
+13
+00:00:40.248 --> 00:00:45.175
+self-service, Exchange's custom-attribute
+commands, and O U write rights.
+
+14
+00:00:45.175 --> 00:00:48.225
+Find every writer in the audit logs first.
+
+15
+00:00:48.225 --> 00:00:51.580
+After Gate 2, any other
+write counts as drift.

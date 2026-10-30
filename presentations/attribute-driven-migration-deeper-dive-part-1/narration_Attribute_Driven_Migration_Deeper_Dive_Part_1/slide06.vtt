@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.313
+The rest of Gate 0 is a
+decision record in Git.
+
+2
+00:00:03.313 --> 00:00:06.600
+No check reads it, so the
+record is the evidence.
+
+3
+00:00:06.600 --> 00:00:09.075
+Every security group gets one decision.
+
+4
+00:00:09.075 --> 00:00:12.812
+Keep it in A D if it only
+guards on-premises resources.
+
+5
+00:00:12.812 --> 00:00:14.350
+Sync it if it guards both.
+
+6
+00:00:14.350 --> 00:00:17.925
+Make it cloud-only if it
+guards only cloud resources.
+
+7
+00:00:17.925 --> 00:00:22.600
+Convert it to dynamic only if its
+membership really follows the attributes.
+
+8
+00:00:22.600 --> 00:00:24.250
+Retire it if it's empty.
+
+9
+00:00:24.250 --> 00:00:26.312
+Then map each O U function.
+
+10
+00:00:26.312 --> 00:00:29.887
+Policy scope goes to
+Conditional Access and Intune.
+
+11
+00:00:29.887 --> 00:00:35.174
+Delegation goes to administrative units,
+or to Azure role scopes for servers.
+
+12
+00:00:35.174 --> 00:00:39.763
+And tag every O U and every
+G P O half with its track.
+
+13
+00:00:39.763 --> 00:00:41.238
+Record two traps.
+
+14
+00:00:41.238 --> 00:00:45.599
+A site-linked G P O looks
+unlinked to an O U-only search.
+
+15
+00:00:45.599 --> 00:00:47.962
+And admin count overstates privilege.
+
+16
+00:00:47.962 --> 00:00:51.922
+The service accounts the kit
+flags go to the non-person track,
+
+17
+00:00:51.922 --> 00:00:54.377
+and a beta Intune check, V K int oh seven,
+
+18
+00:00:54.377 --> 00:00:58.630
+reads Group Policy analytics for
+the computer half of the split.

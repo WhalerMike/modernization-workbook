@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.713
+Here are the three gates on one page,
+so you know where this is going.
+
+2
+00:00:03.713 --> 00:00:09.312
+Gate 7 is done when one personnel action
+changes access only through the attributes.
+
+3
+00:00:09.312 --> 00:00:12.724
+Gate 8 is done when every
+population has cut over
+
+4
+00:00:12.724 --> 00:00:16.137
+by query and nothing reads
+OU placement any more.
+
+5
+00:00:16.137 --> 00:00:20.460
+Gate 9 is done when drift scans
+run, findings close at the source,
+
+6
+00:00:20.460 --> 00:00:23.037
+and the nightly plan has nothing to do.
+
+7
+00:00:23.037 --> 00:00:24.988
+The CISO owns all three.
+
+8
+00:00:24.988 --> 00:00:28.763
+Watch the schedule, because this
+is where the critical path lives.
+
+9
+00:00:28.763 --> 00:00:31.987
+From the program's G3 in
+week 36 there's no float:
+
+10
+00:00:31.987 --> 00:00:37.674
+the transitional sync rules come out, the
+tree freezes after the OU groups retire,
+
+11
+00:00:37.674 --> 00:00:41.324
+and the last drift cycle
+closes both gates in week 40.
+
+12
+00:00:41.324 --> 00:00:46.580
+Our running example is the same budget
+analyst, keyed by an existing enterprise ID.

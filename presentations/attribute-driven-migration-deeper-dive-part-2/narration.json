@@ -1,0 +1,82 @@
+[
+  {
+    "slide": 1,
+    "title": "Part 2: Groups, targeting and moving Group Policy",
+    "say": "Welcome to Part 2 of the deeper dive on attribute-driven migration to Entra ID. This series goes below the technical deep dive, down to the rule text, the commands, the input files and the failing checks an engineer actually works with. Part 1 covered Gates 0 to 3: reading the OU tree, fixing the schema and slots, proving the attributes, and mapping them through sync. This part covers Gates 4 to 6. That's the dynamic group library and administrative units, the Conditional Access personas and device targeting, moving Group Policy for devices and servers, and the PIV binding. Facts are as the workbook states them, design guidance is labeled, and beta features carry their stage."
+  },
+  {
+    "slide": 2,
+    "title": "Gates 4–6 at a glance, and the slots they read",
+    "say": "Here's what this part delivers. Gate 4 is done when every governed rule is written on codes with its guards, tested and shadowed, and every administrative unit mirrors its group. The validation kit's seven dynamic group checks prove it, and the identity engineering lead owns it. Gate 5 is done when the personas come from codes, every grant has a paired block, and the device, server and non-person conventions are handed to their track guides. Gate 6 is done when every pilot card holder is bound and high affinity has been piloted. The CISO owns both. Each now has a kit check: VK-CA-01 for the personas and VK-PIV-01 for the binding, with the policy export and the sign-in logs alongside. Below the table are the slots everything here reads. On users, organization code is slot 10, worker type 11, position category 12, and division 6. Devices have their own set: tier, role and environment in 11 to 13."
+  },
+  {
+    "slide": 3,
+    "title": "Rule text: two patterns, with every guard",
+    "say": "Gate 4 starts with the rule text, because here a rule is an access grant. Every governed group uses one of two patterns. A node query selects people by one organization code, and uses the in operator for a roll-up instead of a chain of ors. A functional query crosses the organization with another coded attribute, such as position category, to answer a question that isn't about where someone sits. Every access rule carries two guards. The account must be enabled, and the user type must be Member, which keeps out disabled accounts and guests. An agent's user account is a kind of user, so user rules include it unless they exclude it. The books don't give the clause, so prove yours with a named-user test. Rules read codes, never department or job title, because a display string breaks the next time someone retypes it. And privileged groups stay assigned."
+  },
+  {
+    "slide": 4,
+    "title": "Test, then shadow: VK-DG-03 and VK-DG-04",
+    "say": "Next, prove each rule before it grants anything. The validation kit is read-only, and runs with only the scopes its checks need. VK-DG-03 reads rule-tests.json: a label, a member, the group or proposed rule, and whether that person should match. It uses Graph's beta rule evaluation, which works only with delegated sign-in, as at least a Groups Administrator; an app-only run reports Error. A result that differs from what you expected is a finding. VK-DG-04 reads shadow-pairs.csv, the group being replaced and its proposed dynamic replacement, and lists everyone the new group adds or removes. By default no difference is allowed, so each one is explained in the record before the rule grants production access. A missing input means Not Applicable, never Pass. And rollback is simple: a new group grants nothing until it's assigned, so unassign it, keep the old group, and revert the rule from Git."
+  },
+  {
+    "slide": 5,
+    "title": "The memberOf preview ends; watch membership deltas",
+    "say": "Two things change membership without anyone touching a rule. The first is a date. The memberOf rule preview ends on November 3, 2026, and groups, units and auto-assignment policies that use it freeze in their last state. So Gate 4 uses no memberOf, and flattens nested chains instead. VK-DG-06 lists any rule still using it, and any group whose processing is paused, because a paused group stops updating while every other check passes. The second is volume. VK-DG-05 compares each dynamic group's member count with the snapshot from the last run, and flags a change of more than ten percent and at least five members. The first run writes the baseline, so take it now, before the mover proof. And plan for processing time: usually a few hours, sometimes more than a day. For a bulk change, pause nonessential groups for a day, then resume in phases."
+  },
+  {
+    "slide": 6,
+    "title": "Administrative units: three tiers, restriction first",
+    "say": "Administrative units replace OU delegation, in three tiers. Tier 1 is read-only visibility, and its reader roles can't be scoped to a unit, so they sit at tenant scope. Tier 2 is the department unit, whose rule lists the department's organization codes, the same roll-up its group uses. Tier 3 is the division unit, created on demand, reading the division code in slot 6. Scoped roles go to role-assignable groups whose members are eligible through PIM, and each unit is created before the groups it holds. The decision you can't undo is restriction. Decide it before the unit exists, and default to no, because restriction takes members out of PIM, entitlement management, Lifecycle Workflows and access reviews. VK-DG-07 reads two small files: one maps each unit to its group, and flags a unit whose rule doesn't match; the other records why a unit is restricted, and flags any restricted unit with no reason."
+  },
+  {
+    "slide": 7,
+    "title": "Conditional Access personas from slot 11",
+    "say": "Gate 5 retires Group Policy inheritance for people, and the risk is policies that look strict but restrict nothing. Personas come from codes: the internal workforce from the worker type in slot 11, administrators from the account type in slot 7, and the emergency-access group stays assigned and excluded from every blocking policy. Target administrators by group, because role targeting misses roles scoped to a unit. Then pair every grant with a block. A policy that grants Finance the payroll app says nothing about anyone else, so a second policy blocks everyone except Finance. And report empty slots first: a policy on a dynamic group silently misses everyone whose attribute is blank. VK-CA-01 checks three things on every enabled and report-only policy: the emergency-access group is excluded, only governed groups are targeted, and every grant has its paired block. It reads only who a policy targets, so keep the ca-export as the record, and read it for blocks narrower than their grants, with the list of users whose slot 11 is empty."
+  },
+  {
+    "slide": 8,
+    "title": "Device targeting: device slots, groups, filters",
+    "say": "Gate 5 also sets the conventions the device and server tracks build on. Device attributes come from device provisioning, never from the user, and a device rule can never read its owner's attributes. So the provisioning service writes tier, role and environment to the device's own slots at registration, running app-only. Use a dynamic device group only where the rule has to read those slots. Everywhere else, use an assignment filter on Intune's own properties, like ownership or enrollment profile. A filter on a slot simply doesn't evaluate. For anything time-sensitive, assign to a user group or All devices with a filter, and never use a dynamic device group as an exclusion, because late membership lets the policy land first. VK-INT-01 flags managed devices missing their slots, and VK-INT-04 flags any exclusion built on a dynamic device group. For servers, Arc tags reuse the same codes, and resource groups are the delegation scope."
+  },
+  {
+    "slide": 9,
+    "title": "Moving device GPOs: adopt Microsoft's tools",
+    "say": "Now the core of this part: moving Group Policy. The rule is adopt, don't build. Microsoft already publishes the analysis and the conversion, and the program adds only the decision record per setting, the order of work, and the evidence. Phase 1 runs in five steps. First, Policy Analyzer and its command-line companion find settings that several GPOs write with conflicting values, the conflicts OU precedence used to hide. Second, export every GPO as XML. Third, import that into Intune's Group Policy analytics, which shows each setting's MDM equivalent. Fourth, classify every setting, and capture a gpresult baseline per device tier. Fifth, check it as data. VK-INT-07 reads the beta Graph migration reports with a read-only permission. It flags any GPO still targeted in AD whose readiness isn't complete, and, given your in-scope list, any GPO that was never imported at all. And where an old GPO isn't worth carrying forward, start from an Intune security baseline instead."
+  },
+  {
+    "slide": 10,
+    "title": "The Migrate step, the pilot, and rollback",
+    "say": "Phase 3 builds the policies and assigns none of them. Group Policy analytics' Migrate step builds a settings catalog policy from the GPOs. Select only the settings whose decision record says required, review the values, and leave assignments empty. Know where it stops. If two GPOs set one setting to different values, it won't continue until you keep one. It's best effort, some settings fail and are listed in Notifications, and AppLocker and firewall rules don't migrate at all; build those in Endpoint security. Phase 4 pilots on about five percent of the fleet, with the GPOs still linked, and compares each device's gpresult with Intune's per-setting status. A conflict, an error or a different value is a finding. For rollback, remember that the pilot doesn't clean up after itself. Then, per population, back up the GPO and disable the link, not the GPO, so one command brings it back."
+  },
+  {
+    "slide": 11,
+    "title": "Moving server GPOs: audit beside Group Policy first",
+    "say": "Servers have no Group Policy analytics. Microsoft publishes no tool that imports a GPO into machine configuration, but it does publish a path, and the program follows it. Step one, audit beside Group Policy: let Group Policy keep enforcing while Azure Policy audits the same settings, then move enforcement over gradually. Two cautions. Azure Policy settings don't show up in gpresult, so the compliance reports become the record. And per-user settings, like mapped drives, stay with Group Policy. Step two, start from the built-in baselines and definitions, which cover many settings with no conversion at all. Step three, package what's left with Microsoft's GuestConfiguration module; a package that applies settings needs a recent Arc agent. Step four, treat a converted GPO as a draft, because the conversion command is community-supported, not Microsoft's. Test it in audit mode before anything enforces it."
+  },
+  {
+    "slide": 12,
+    "title": "RHEL on AWS under Ansible: one owner per setting",
+    "say": "Many estates already run Red Hat on AWS with Ansible, and Arc can connect it: Red Hat is on the agent's list, and EC2 instances take the agent one by one, since the multicloud connector isn't in Azure Government. The danger is two tools on one setting. Under auto-correct, Ansible and machine configuration can flip a value back and forth while both report success. So the Ansible guide sets five rules, as design guidance. The owner is an attribute, config_owner in the CMDB. Ansible writes only what it owns, enforced by its inventory group and an assertion in the playbook. Onboarding isn't owning. An exception is a dated record. And patching has one owner too, so where Ansible patches, Update Manager only assesses. Both owners are mirrored to Arc tags at onboarding. VK-ARC-07 then catches a server another tool owns that machine configuration is also enforcing."
+  },
+  {
+    "slide": 13,
+    "title": "What the overview simplified",
+    "say": "One honest slide on what the overview simplified. This framing is design guidance. First, many groups don't follow the org chart. Only a group whose membership follows attributes exactly becomes dynamic. Others stay synced, go cloud-only or retire, privileged groups stay assigned, and what a rule can't decide moves to access packages. Expect a lot of them. Second, Group Policy analytics tells you what can move, not what should. It finds the landing zone; it never decides whether a setting is still needed, so retire before you translate. Third, running two tools side by side is where breakage hides. GPOs beside Intune in the pilot, Group Policy beside Azure Policy while auditing, Ansible beside machine configuration. Each tests clean on its own, and the overlap is what fails. So count the groups that won't go dynamic, and test every overlap, not just each tool."
+  },
+  {
+    "slide": 14,
+    "title": "PIV binding: certificateUserIds values and limits",
+    "say": "Gate 6 is the PIV and CAC binding. Certificate sign-in is attribute-driven too: Entra ID matches a field of the certificate to a field of the account, so whoever writes that field decides which certificate signs in as whom. The binding lives in certificateUserIds, as prefixed values. Names and email addresses are low affinity. The key identifier, the public key hash, and issuer with serial number are high affinity, because they can't be reused. That also means a reissued or renewed card changes the value. The limits: ten values per user, each unique in the tenant, with case-sensitive prefixes. For cloud-only users, a Privileged Authentication Administrator or Graph writes it. For synced users, only Entra Connect can, from altSecurityIdentities in AD, and Microsoft doesn't document Cloud Sync for it. Treat that AD write path like an access slot."
+  },
+  {
+    "slide": 15,
+    "title": "Affinity, the binding's writer, and the open pilot",
+    "say": "The rest of Gate 6 is a short sequence. Measure coverage for every pilot card holder, and list the gaps by account, never by certificate value. Name the writer: the card management system, not HR, because a reissued card changes the binding, while HR supplies the person. Decide the required affinity. The tenant default is low, and sign-in is only as strong as the weakest binding allowed, so the program's position is high in production. Pilot high affinity with a rule per issuer before you change the tenant, or people get locked out. Make the leaver remove the binding as well as revoke the card. And decide who writes it after AD. The design is that the card system writes it through Graph at issuance, but that's unverified, and it's an open pilot in issue 130. VK-PIV-01 proves coverage: it lists pilot card holders with no value, or only low-affinity values, by account. It can't tell whether a value is a current card, so reconcile with the card system, and check the sign-in logs."
+  },
+  {
+    "slide": 16,
+    "title": "Decisions, owners, and on to Part 3",
+    "say": "Four decisions close this part, each with one owner from the project plan. Identity engineering decides restriction, unit by unit, before each unit exists. The CISO decides the persona set, and the required affinity for PIV. And the ICAM governance body decides who writes the binding after AD; that one can wait until issuance moves off AD CS, which gives the open pilot time to report. Watch the margins, too. The tightest here is just two working days, between the pilot's shadow comparison and the program assigning the pilot's policies. Part 3 takes Gates 7 to 9: proving one mover across the tracks with no ticket, cutting over by attribute query and retiring the OU tree, and then keeping the attributes true. Thank you."
+  }
+]

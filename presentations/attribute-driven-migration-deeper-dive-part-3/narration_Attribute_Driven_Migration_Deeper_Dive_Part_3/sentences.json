@@ -1,0 +1,761 @@
+{
+ "1": [
+  [
+   0.05,
+   5.213,
+   "Welcome to Part 3 of the deeper dive on attribute-driven migration to Entra ID."
+  ],
+  [
+   5.263,
+   11.25,
+   "Parts 1 and 2 built the foundation, Gates 0 to 6: the tree read, the schema, the proof, sync, the group library, the personas and the piv binding."
+  ],
+  [
+   16.512,
+   1.462,
+   "This part is the payoff."
+  ],
+  [
+   17.975,
+   3.013,
+   "Gate 7 proves one mover across the tracks."
+  ],
+  [
+   20.988,
+   6.025,
+   "Gate 8 cuts over by attribute query and retires the organizational unit (O U) tree."
+  ],
+  [
+   27.012,
+   3.288,
+   "Gate 9 keeps the attributes true for good."
+  ],
+  [
+   30.3,
+   7.188,
+   "You'll see the validation kit's commands, the files it reads, what a failing check looks like, and the rollback each gate gives."
+  ],
+  [
+   37.487,
+   7.138,
+   "The kit is read-only and fixture-tested, not proven against a lyve tenant, so run it in a test tenant first."
+  ],
+  [
+   44.625,
+   1.825,
+   "Design guidance is labeled."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.663,
+   "Here are the three gates on one page, so you know where this is going."
+  ],
+  [
+   3.712,
+   5.6,
+   "Gate 7 is done when one personnel action changes access only through the attributes."
+  ],
+  [
+   9.312,
+   6.825,
+   "Gate 8 is done when every population has cut over by query and nothing reads O U placement any more."
+  ],
+  [
+   16.137,
+   6.9,
+   "Gate 9 is done when drift scans run, findings close at the source, and the nightly plan has nothing to do."
+  ],
+  [
+   23.038,
+   1.95,
+   "The see-so owns all three."
+  ],
+  [
+   24.988,
+   3.775,
+   "Watch the schedule, because this is where the critical path lives."
+  ],
+  [
+   28.762,
+   12.562,
+   "From the program's G3 in week 36 there's no float: the transitional sync rules come out, the tree freezes after the O U groups retire, and the last drift cycle closes both gates in week 40."
+  ],
+  [
+   41.325,
+   5.2,
+   "Our running example is the same budget analyst, keyed by an existing enterprise ID."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.612,
+   "Gate 7 is the test of the whole model, and it runs before any population cuts over."
+  ],
+  [
+   5.662,
+   2.138,
+   "The setup takes three steps."
+  ],
+  [
+   7.8,
+   7.8,
+   "Pick a pilot user who sponsors a non-person identity and has a managed laptop, because one test then reaches three tracks."
+  ],
+  [
+   15.6,
+   7.8,
+   "Record the starting state: groups, unit, persona, access packages, the device's groups and the sponsorship."
+  ],
+  [
+   23.4,
+   6.5,
+   "Then take a baseline with the validation kit, running the HR and dynamic-group checks against an input folder."
+  ],
+  [
+   29.9,
+   8.225,
+   "Three files matter: the owned exceptions list, the HR export of counts per organization code, and the previous membership snapshot."
+  ],
+  [
+   38.125,
+   4.525,
+   "Each run writes its own snapshot, which becomes the next run's input."
+  ],
+  [
+   42.65,
+   7.088,
+   "Finally, HR records the move as a personnel action, a reassignment from the ledger code to accounts payable."
+  ],
+  [
+   49.737,
+   1.512,
+   "Nobody opens a ticket."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.15,
+   "Now follow the action through every hop, and know where to look at each one."
+  ],
+  [
+   4.2,
+   6.987,
+   "The middleware validates the event, writes a provenance record in the agency's log store, and sends the complete record."
+  ],
+  [
+   11.188,
+   10.025,
+   "Because the analyst is still A D-mastered, the agent updates A D and the next sync carries it up; attribute-change triggers fire only after sync delivers it."
+  ],
+  [
+   21.212,
+   5.45,
+   "Groups and units recompute, usually within hours, but it can take more than a day."
+  ],
+  [
+   26.663,
+   11.95,
+   "The record carries a new division code too, so the analyst leaves the ledger groups and the old division unit and joins accounts payable's groups and its unit, while the analyst group and the persona stay put."
+  ],
+  [
+   38.612,
+   5.1,
+   "The mover workflow swaps access packages and starts a review of what's left."
+  ],
+  [
+   43.712,
+   5.362,
+   "And at a database engine, access ends only after tokens and sessions turn over."
+  ],
+  [
+   49.075,
+   5.162,
+   "So latency is a design input: urgent removal never waits for a rule."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.663,
+   "What must not change proves as much as what does."
+  ],
+  [
+   2.712,
+   5.7,
+   "The laptop's device groups stay put, because device rules can't read the user's attributes."
+  ],
+  [
+   8.412,
+   8.188,
+   "The service principal the analyst sponsors still records the analyst's key, and a sponsor's own move belongs to the non-person track."
+  ],
+  [
+   16.6,
+   1.675,
+   "Nothing is assigned by hand."
+  ],
+  [
+   18.275,
+   2.4,
+   "Then the proof, owned by the see-so."
+  ],
+  [
+   20.675,
+   2.712,
+   "Run the drift scan; it should find nothing."
+  ],
+  [
+   23.387,
+   4.188,
+   "Rerun the kit with the earlier snapshot and a fresh HR export."
+  ],
+  [
+   27.575,
+   13.037,
+   "The membership check should show exactly the expected changes and no others, the counts per organization code should reconcile with HR, and the mover workflow's own run history should show it ran for this user and what it did."
+  ],
+  [
+   40.612,
+   6.1,
+   "The leaver-and-hire timeliness check doesn't prove that, because it reads hire and leave triggers only."
+  ],
+  [
+   46.712,
+   7.65,
+   "Rollback is the simplest of any gate: reverse the personnel action in HR and let the same path undo the access."
+  ],
+  [
+   54.362,
+   2.15,
+   "Never fix the directory by hand."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.987,
+   "Here's what a failing run looks like, so the first one isn't a surprise."
+  ],
+  [
+   4.037,
+   3.125,
+   "These rows come from the kit's own fictional tenant."
+  ],
+  [
+   7.162,
+   10.887,
+   "One user group shrank by a quarter since the last snapshot, and a device group doubled, so both are findings; in a mover proof, a finding on a group the move shouldn't touch means stop."
+  ],
+  [
+   18.05,
+   1.575,
+   "Read the status carefully."
+  ],
+  [
+   19.625,
+   1.85,
+   "Fail means at least one finding."
+  ],
+  [
+   21.475,
+   1.675,
+   "Warn means something to review."
+  ],
+  [
+   23.15,
+   4.9,
+   "Not applicable means nothing to check or a missing input, and it's never a pass."
+  ],
+  [
+   28.05,
+   3.125,
+   "Error means a read failed, also never a pass."
+  ],
+  [
+   31.175,
+   3.788,
+   "On the right is the evidence to keep, joined on the person key."
+  ],
+  [
+   34.962,
+   8.125,
+   "Entra ID keeps most of it for thirty days at best, and the provenance record not at all, so route everything out from the pilot's first day."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.037,
+   "Gate 8 begins by writing each wave as an attribute query."
+  ],
+  [
+   4.088,
+   8.6,
+   "Because waves are defined by attribute values rather than O U's, each wave's scope is a query, and its dynamic groups already exist."
+  ],
+  [
+   12.688,
+   12.925,
+   "Each track picks members from its own source: users by HR codes, devices by what provisioning writes on them, servers by resource group and tag, and non-person identities by their owning application."
+  ],
+  [
+   25.613,
+   10.438,
+   "Start with the lowest-risk region and a pilot division, then two or three divisions at a time, each drift-clean before the next, with drift detection running daily from the first wave."
+  ],
+  [
+   36.05,
+   4.763,
+   "G P O links come off a migrated O U only after seven clean days."
+  ],
+  [
+   40.812,
+   3.7,
+   "The rule shown is the kit's fixture form, with its guards."
+  ],
+  [
+   44.513,
+   6.912,
+   "And in every wave, leaver automation goes first, because revocation is where the risk and the evidence are."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   7.763,
+   "Every wave passes the same attribute gate, straight from the Federal Modernization Workbook's Book 03's Appendix C."
+  ],
+  [
+   7.812,
+   5.05,
+   "First, a validation report, signed before the cutover is even scheduled."
+  ],
+  [
+   12.863,
+   7.25,
+   "Second, a dry run on production data with writes switched off, where every difference from the directory gets explained."
+  ],
+  [
+   20.113,
+   6.438,
+   "Third, the cutover, one population at a time, with named records spot-checked after the first cycle."
+  ],
+  [
+   26.55,
+   6.213,
+   "Fourth, seven days in which every create, change and disable traces to an HR event."
+  ],
+  [
+   32.763,
+   6.013,
+   "Anything in the audit log without a matching provisioning record is a finding, and the clock restarts."
+  ],
+  [
+   38.775,
+   5.275,
+   "No kit check covers that week; the provisioning logs joined on the key are the evidence."
+  ],
+  [
+   44.05,
+   3.35,
+   "Only then does the ticket path for account creation close."
+  ],
+  [
+   47.4,
+   6.225,
+   "The kit still runs on every wave, including a shadow comparison for each group the wave replaces."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.475,
+   "As each population becomes cloud-mastered, retarget its provisioning."
+  ],
+  [
+   4.525,
+   10.225,
+   "Once its sync cycle completes, move it out of the HR-to-A D scope and into the HR-to-Entra configuration, leaving the A D leg dormant but intact."
+  ],
+  [
+   14.75,
+   11.012,
+   "Microsoft lists entry checks: HR writes Entra ID directly, no on-premises Exchange, no federation for those users, and no apps that bind with passwords."
+  ],
+  [
+   25.762,
+   2.013,
+   "Make those your per-population gate."
+  ],
+  [
+   27.775,
+   12.15,
+   "One honest caveat: whether this source-of-authority transfer works in G C C is still unverified, so give that question an owner and a date, and plan on the A D-mastered path by default."
+  ],
+  [
+   39.925,
+   3.788,
+   "On the right is what still needs A D, each with its response."
+  ],
+  [
+   43.712,
+   8.4,
+   "And if a cutover goes wrong, pause the provisioning job, which keeps its state, quarantine the batch, and fall back to the prior process."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.5,
+   "At agency scale, Lifecycle Workflows' limits bite in predictable ways, and the responses here are design guidance."
+  ],
+  [
+   7.55,
+   6.825,
+   "The tenant allows a hundred workflows; one per tree, event and worker type would already need a hundred and eight."
+  ],
+  [
+   14.375,
+   3.188,
+   "So build a few general workflows that branch on codes."
+  ],
+  [
+   17.562,
+   11.35,
+   "An on-demand run skips the workflow's own conditions and its execution limits, so run it on the wrong people and nothing stops it; treat every on-demand run as a change with a second person."
+  ],
+  [
+   28.913,
+   8.588,
+   "Execution limits quarantine a mass event until someone approves, so plan a reorganization as a rehearsed change with an agreed release."
+  ],
+  [
+   37.5,
+   8.475,
+   "The kit reports late HR data that missed the three-day catch-up, workflows with no execution limit, and a warning as you approach the ceiling."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.288,
+   "Retiring the O U tree waits on the program twice."
+  ],
+  [
+   3.337,
+   6.463,
+   "After the rollout is complete, remove the sync rule and scoping filters that still read O U placement."
+  ],
+  [
+   9.8,
+   9.963,
+   "After the O U-based groups retire, remove the hand-made delegations, confirm no O U drives anything, and archive the tree's final export in Git."
+  ],
+  [
+   19.762,
+   3.087,
+   "Destructive steps need approval one item at a time."
+  ],
+  [
+   22.85,
+   9.312,
+   "To validate, a read-only script lists every O U that still has a G P O linked to it; on a retired estate that list is short and expected."
+  ],
+  [
+   32.163,
+   11.387,
+   "Rollback means re-enabling, never re-creating: turn the accounts and G P O links back on, return the population to the A D provisioning scope, and reopen the ticket path."
+  ],
+  [
+   43.55,
+   6.612,
+   "That's why you disable a link instead of deleting the G P O. Deleting throws away the one-command rollback."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.737,
+   "Gate 9 keeps it all true, and without it everything slowly decays."
+  ],
+  [
+   4.787,
+   2.825,
+   "It starts with the pilot, not after cut-over."
+  ],
+  [
+   7.612,
+   5.45,
+   "First, the see-so decides severity and response times, decision D-A8."
+  ],
+  [
+   13.062,
+   2.587,
+   "Then two comparisons run on a schedule."
+  ],
+  [
+   15.65,
+   12.137,
+   "On the left, HR against the directory: missing identities, stale access for people who've left, orphan accounts, attribute drift, unauthorized writes, credential drift and schema drift."
+  ],
+  [
+   27.788,
+   4.112,
+   "The severities are the program's defaults, not an external standard."
+  ],
+  [
+   31.9,
+   10.55,
+   "On the right, the unit and role registry against the tenant: unit rules that drifted, paused processing, role assignments nobody approved, and restriction mismatches."
+  ],
+  [
+   42.45,
+   3.9,
+   "Each track's own reconciliation feeds the same findings queue."
+  ],
+  [
+   46.35,
+   3.788,
+   "Expect a burst of high-severity findings in the first month."
+  ],
+  [
+   50.138,
+   3.562,
+   "That's the measurement finally working, not the pipeline failing."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.125,
+   "The rule that makes drift close for good is simple: fix at the source."
+  ],
+  [
+   4.175,
+   7.862,
+   "Close each finding in the HR record or the rule, never in the copy, because the next cycle overwrites the copy."
+  ],
+  [
+   12.037,
+   5.675,
+   "Access reviews don't change dynamic membership, so review the rule and its inputs instead."
+  ],
+  [
+   17.712,
+   5.8,
+   "Logs leave Entra ID from day one, because its retention is short and never retroactive."
+  ],
+  [
+   23.512,
+   14.1,
+   "Then keep a limits register and review it with every design change: rule length, the dynamic group ceiling, the workflow and extension budgets, restricted units, where dynamic units are available, and the memberOf preview's end date."
+  ],
+  [
+   37.612,
+   3.663,
+   "Every new workflow, unit or rule spends a budget."
+  ],
+  [
+   41.275,
+   7.9,
+   "Finally, run a full drift cycle across the whole estate, closing findings at the source until the nightly plan is zero-action."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.388,
+   "Gate 9's proof isn't a one-time run; it's a set of standing checks on the drift cadence."
+  ],
+  [
+   5.438,
+   5.888,
+   "For the HR track, the uncorrelated accounts, the counts per code and the duplicate keys."
+  ],
+  [
+   11.325,
+   5.838,
+   "For groups and units, membership swings, paused processing and unit rules against their groups."
+  ],
+  [
+   17.163,
+   17.25,
+   "Each track also runs its own standing checks in its own guide: devices missing their provisioning attributes and stale devices for Intune, seven checks for Arc servers from tags to role assignments, and owners, credentials and AI agent sponsors for non-person identities."
+  ],
+  [
+   34.413,
+   7.525,
+   "The commands differ by track: delegated for HR, certificate-based for Intune, Reader on the subscriptions for Arc."
+  ],
+  [
+   41.938,
+   5.675,
+   "Behind them sits Book 01's verification list, ending in zero drift findings."
+  ],
+  [
+   47.612,
+   1.762,
+   "This gate has no rollback."
+  ],
+  [
+   49.375,
+   1.35,
+   "It's the standing loop."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.788,
+   "Be clear about where the kits stop, because an assessor will ask."
+  ],
+  [
+   3.837,
+   7.575,
+   "Every gate now has a kit check, but most leave a residual that no check reads, and the gate names the evidence that stands in."
+  ],
+  [
+   11.412,
+   9.863,
+   "For this part, Gate 7's checks cover the membership change and the counts per code, but nothing proves the mover workflow ran, so its own run history stands in."
+  ],
+  [
+   21.275,
+   8.113,
+   "Gate 8 has its per-wave checks, but nothing produces the seven-day sole-source report, so the provisioning logs joined on the key stand in."
+  ],
+  [
+   29.387,
+   8.512,
+   "Gate 9 has the HR, group and track checks, but nothing compares role assignments with the registry, so the registry diff in Git stands in."
+  ],
+  [
+   37.9,
+   2.188,
+   "The earlier gates follow the same pattern."
+  ],
+  [
+   40.087,
+   12.488,
+   "Sync, Conditional Access and the piv binding each have a check now, but the sync configuration, the report-only results and whether a binding belongs to a current card still come from a report or a record."
+  ],
+  [
+   52.575,
+   2.325,
+   "Keep this table in the evidence packet."
+  ],
+  [
+   54.9,
+   3.7,
+   "It shows which gates were proved by code and which by a record."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   3.837,
+   "One honest slide about what the overview made look simpler than it is."
+  ],
+  [
+   3.888,
+   1.613,
+   "This is design guidance."
+  ],
+  [
+   5.5,
+   2.788,
+   "First, a mover reaches more than groups."
+  ],
+  [
+   8.287,
+   8.7,
+   "Access that came from a package or a direct assignment doesn't leave when a rule stops matching, and losing a licensed group can take a mailbox with it."
+  ],
+  [
+   16.988,
+   2.875,
+   "That's why the review of what's left is a control."
+  ],
+  [
+   19.863,
+   2.862,
+   "Second, hybrid lasts longer than planned."
+  ],
+  [
+   22.725,
+   10.387,
+   "Retiring A D means clearing named dependencies, and the end state may be a dated Kerberos island, a program decision made at the start and revisited after rollout."
+  ],
+  [
+   33.112,
+   3.812,
+   "An island with no end date goes to the authorizing official."
+  ],
+  [
+   36.925,
+   2.362,
+   "Third, the numbers are proposals."
+  ],
+  [
+   39.288,
+   4.713,
+   "Ninety-nine percent correlation is a starting point, not a federal requirement."
+  ],
+  [
+   44.0,
+   3.288,
+   "Treat every threshold as a decision with an owner."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.862,
+   "To close, the decisions and who makes them."
+  ],
+  [
+   2.913,
+   7.713,
+   "The see-so signs off the mover proof and owns drift severity and every finding, while HR fixes every wrong value."
+  ],
+  [
+   10.625,
+   6.225,
+   "The executive sponsor sets the wave plan, and identity engineering calls each wave's go or no-go."
+  ],
+  [
+   16.85,
+   6.75,
+   "A population's cutover is signed by HR, the identity owner, the I S S O and the business owner."
+  ],
+  [
+   23.6,
+   9.738,
+   "The G C C question needs a named owner and a date, a reorganization's release is agreed in advance, and every destructive step gets its own approval."
+  ],
+  [
+   33.337,
+   10.5,
+   "The checklist fits in three lines: one mover proved with no ticket; waves by query with seven days of proof and the tree archived; drift closed at the source."
+  ],
+  [
+   43.837,
+   4.6,
+   "Next, take each track's own guide, and the project plan for the dates."
+  ],
+  [
+   48.438,
+   2.938,
+   "Make the attributes true, and keep them true."
+  ],
+  [
+   51.375,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

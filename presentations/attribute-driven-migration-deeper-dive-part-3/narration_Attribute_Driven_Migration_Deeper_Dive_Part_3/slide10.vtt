@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.678
+At agency scale, Lifecycle Workflows'
+limits bite in predictable ways,
+
+2
+00:00:04.678 --> 00:00:07.550
+and the responses here
+are design guidance.
+
+3
+00:00:07.550 --> 00:00:10.666
+The tenant allows a hundred
+workflows; one per tree,
+
+4
+00:00:10.666 --> 00:00:14.375
+event and worker type would
+already need a hundred and eight.
+
+5
+00:00:14.375 --> 00:00:17.563
+So build a few general
+workflows that branch on codes.
+
+6
+00:00:17.563 --> 00:00:22.373
+An on-demand run skips the workflow's
+own conditions and its execution limits,
+
+7
+00:00:22.373 --> 00:00:25.379
+so run it on the wrong
+people and nothing stops it;
+
+8
+00:00:25.379 --> 00:00:28.912
+treat every on-demand run as
+a change with a second person.
+
+9
+00:00:28.912 --> 00:00:33.093
+Execution limits quarantine a mass
+event until someone approves,
+
+10
+00:00:33.093 --> 00:00:37.501
+so plan a reorganization as a rehearsed
+change with an agreed release.
+
+11
+00:00:37.501 --> 00:00:41.291
+The kit reports late HR data that
+missed the three-day catch-up,
+
+12
+00:00:41.291 --> 00:00:46.030
+workflows with no execution limit, and
+a warning as you approach the ceiling.
