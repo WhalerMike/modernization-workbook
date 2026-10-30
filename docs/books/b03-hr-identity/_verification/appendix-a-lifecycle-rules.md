@@ -41,3 +41,15 @@ Applied from the research page `docs/research/hcm-entra-implementation.md`; ever
 | 1 | Quarantine contract = middleware quarantine of failed records | The quarantine contract | confirmed; distinguished from Microsoft's provisioning-job quarantine | — |
 | 2 | Microsoft job quarantine: causes incl. empty notification email and accidental-deletion trips; notification email; cycles daily; disabled after four weeks | The quarantine contract | added | aA-ms-quar; aA-ms-config; aA-ms-accdel |
 | 3 | Each quarantine needs its own runbook | The quarantine contract | added (design guidance) | aA-ms-quar |
+
+## Additions, October 30, 2026 (the contractor PIV path)
+
+Added at the author's request. The path is set in Chapter 09, "The contractor PIV path", and its sources are logged in `_verification/09-credentials-and-certificates.md` (October 29) and the research page's log.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Contractor leavers: earliest end wins (conditions from Ch06); the middleware computes and sends the leave date and `active` false | Contractor leavers | design (labelled); conditions restated from Ch06 | — |
+| 2 | The card system is a leaver input for contractors and drift for employees | Contractor leavers | design; restated from Ch09 | — |
+| 3 | The end date as the notice that starts the 18-hour clock | Contractor leavers | restated from Ch09 (FIPS 201-3 §2.9.4 verified there) and linked | — |
+| 4 | No record, no card | Contractor leavers | design | — |
+| 5 | "In this appendix" lists the new section | Callout | editorial | — |

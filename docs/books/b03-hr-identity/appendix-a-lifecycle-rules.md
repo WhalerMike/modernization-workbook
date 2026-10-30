@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this appendix
-Which records are in scope. Why leave is not a leaver. What wins when two events land together. Rescinded offers, cancellations and partial leavers. The quarantine contract. Manager links, rehire and conversion.
+Which records are in scope. Why leave is not a leaver. What wins when two events land together. Rescinded offers, cancellations and partial leavers. The quarantine contract. Manager links. Contractor leavers. Rehire and conversion.
 :::
 
 ## Scope
@@ -69,6 +69,17 @@ The `manager` relationship carries approvals, reviews and org charts (Chapter 10
 - an unresolved manager reference never blocks a joiner — the account is created and the link is resolved when the supervisor's record arrives;
 - a manager reference that points at a separated person is a finding;
 - when a supervisor separates, their direct reports are handed back to HR for reassignment. HR, not IT, writes the new supervisor.
+
+## Contractor leavers {#contractor-leavers}
+
+Contractors have no separation action in HR, so the contractor source supplies the leaver, and these rules apply *(design guidance)*:
+
+- **Earliest end wins.** A contractor's access ends at the earliest of the end conditions in [Chapter 06](06-canonical-attribute-schema.md#one-fact-one-authority): the engagement end date, capped by the contract's current completion date; suitability withdrawn; the PIV card terminated; the sponsor leaving with no successor in the grace period; or a missed sponsor recertification. The middleware computes it and sends the leave date and `active` false itself, whatever the source's own end date does.
+- **The card system is a leaver input, not the leaver.** A termination or expiry reported by the card management system ends a contractor's engagement; a suspension or reissue doesn't, and only rewrites the certificate binding. For employees the same events are credential drift (Chapter 11), because HR owns employment.
+- **The end date is the notice.** On the earliest end date the leaver sends the PIV office its termination notice, so the 18-hour clock for a card that can't be collected starts on that date ([Chapter 09](09-credentials-and-certificates.md#the-contractor-piv-path)).
+- **No record, no card.** A card request starts only from a contractor joiner, and a card with no contractor record is a drift finding, not a request to create one.
+
+The evidence for each rule, and how agencies source contractors today, is in the research page [Contractors as Oracle Contingent Workers](../../research/oracle-contingent-worker-contractor-source.md).
 
 ## Rehire and conversion
 
