@@ -356,6 +356,15 @@
         "B12"
       ],
       "source": "Releases of https://github.com/cisagov/ScubaGear (CISA's M365 assessment tool; cisa.gov itself blocks automated readers, see README)."
+    },
+    {
+      "id": "csv2scim-commits",
+      "name": "Microsoft CSV2SCIM sample (AzureAD/entra-id-inbound-provisioning commits)",
+      "type": "github_commits",
+      "repo": "AzureAD/entra-id-inbound-provisioning",
+      "path": "PowerShell/CSV2SCIM",
+      "books": ["B19"],
+      "source": "Commits to Microsoft's CSV2SCIM sample, which examples/third_party/csv2scim pins at one commit (Developer Workbook, Chapter 01). A new commit means: review it, and update the snapshot only in a reviewed pull request."
     }
   ]
 }

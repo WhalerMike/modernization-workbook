@@ -1,8 +1,9 @@
 <#
 .SYNOPSIS
-    Sync: VK-SYNC-01. Read-only.
+    Sync: VK-SYNC-01 and VK-SYNC-02 (optional). Read-only.
     Sources: Attribute-Driven Migration implementation guide, Gate 3; Book 02, Chapter 10
-    (Phase 1 attribute spot check); Book 03, Chapter 12 (Phase 3 shadow mode).
+    (Phase 1 attribute spot check); Book 03, Chapter 12 (Phase 3 shadow mode); Developer
+    Workbook, Chapter 03 (VK-SYNC-02 is its worked example).
 #>
 
 function Invoke-VkSync01 {
@@ -60,5 +61,58 @@ function Invoke-VkSync01 {
             }
         }
         Get-VkOutcome -Rows @($rows) -Message ('{0} sample row(s), {1} compared, slots {2} (AD -> Entra ID)' -f $n, $compared, ($slots -join ', '))
+    }
+}
+
+$script:VkOnPremSyncUri = '/v1.0/directory/onPremisesSynchronization'
+
+function Invoke-VkSync02 {
+    <#
+    VK-SYNC-02 (optional). Whether the tenant blocks soft match (blockSoftMatchEnabled) and
+    cloud object takeover through hard match (blockCloudObjectTakeoverThroughHardMatchEnabled).
+    Learn advises keeping both on except while a matching procedure needs them off. Each one
+    that is off is a Finding, or a Warn while MatchWindowOpenUntil (an approved window's last
+    day) hasn't passed. softMatchOnUpnEnabled is reported as Info: once on, it can't be turned
+    off. Learn lists Global Administrator as the only role for this read, delegated only, so the
+    check prefers an export (onprem-sync-export.json, the GET's response saved by that
+    administrator) and reads Graph only when no export is supplied. NotApplicable when the
+    tenant has no synchronization object.
+    #>
+    [CmdletBinding()] param([Parameter(Mandatory)]$Context)
+    Invoke-VkCheckBody 'VK-SYNC-02' $Context {
+        param($Context)
+        $export = Read-VkInputJson -Context $Context -Option 'OnPremSyncExportFile'
+        if ($null -ne $export) {
+            $items = @($export)
+            if ($export.PSObject.Properties['value']) { $items = @($export.value) }
+        } else {
+            $items = @(Get-VkData -Context $Context -Name 'onPremisesSynchronization' -Uri $script:VkOnPremSyncUri)
+        }
+        $items = @($items | Where-Object { $null -ne $_ })
+        if ($items.Count -eq 0) { return Get-VkNotApplicable 'The tenant has no on-premises directory synchronization object' }
+
+        $until = "$($Context.Options['MatchWindowOpenUntil'])".Trim()
+        $windowOpen = $false
+        if ($until) { $windowOpen = (ConvertTo-VkUtc $until).UtcDateTime.Date -ge $Context.AsOf.UtcDateTime.Date }
+        $severity = if ($windowOpen) { 'Warn' } else { 'Finding' }
+        $flags = @(
+            @{ Name = 'blockSoftMatchEnabled'; Issue = 'Soft match is not blocked' },
+            @{ Name = 'blockCloudObjectTakeoverThroughHardMatchEnabled'; Issue = 'Cloud object takeover through hard match is not blocked' }
+        )
+        $rows = foreach ($o in $items) {
+            $f = Get-VkValue $o 'features'
+            foreach ($flag in $flags) {
+                if ((Get-VkValue $f $flag.Name $false) -ne $true) {
+                    $data = [ordered]@{ Feature = $flag.Name; Value = 'false' }
+                    if ($until) { $data['MatchWindowOpenUntil'] = $until }
+                    ConvertTo-VkFinding -Severity $severity -Object 'onPremisesSynchronization' -ObjectId "$($o.id)" -Issue $flag.Issue -Data $data
+                }
+            }
+            if ((Get-VkValue $f 'softMatchOnUpnEnabled' $false) -eq $true) {
+                ConvertTo-VkFinding -Severity Info -Object 'onPremisesSynchronization' -ObjectId "$($o.id)" -Issue 'Soft match on UPN is on; it cannot be turned off once enabled' -Data ([ordered]@{ Feature = 'softMatchOnUpnEnabled'; Value = 'true' })
+            }
+        }
+        $msg = if ($windowOpen) { "Matching window open until $until" } else { '' }
+        Get-VkOutcome -Rows @($rows) -Message $msg
     }
 }

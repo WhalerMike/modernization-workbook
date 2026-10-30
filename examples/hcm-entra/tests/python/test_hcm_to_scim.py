@@ -212,6 +212,35 @@ def test_operational_report_carries_no_payload_or_names(result):
     assert all(len(r["payload_sha256"]) in (0, 64) for r in h.report(result)["records"])
 
 
+# ---------------------------------------------------------------- provenance
+
+FAKE_EXTRACT_SHA = "a" * 64
+FAKE_MAPPING_SHA = "b" * 64
+
+
+def test_provenance_links_inputs_to_batches(result):
+    manifest = h.provenance(result, AS_OF, FAKE_EXTRACT_SHA, FAKE_MAPPING_SHA)
+    assert manifest["schema"] == "fmp-hcm-provenance/1"
+    assert manifest["as_of"] == "2026-10-25"
+    assert manifest["extract_sha256"] == FAKE_EXTRACT_SHA and manifest["mapping_sha256"] == FAKE_MAPPING_SHA
+    assert [b["batch_sha256"] for b in manifest["batches"]] == [h.sha256_hex(b) for b in result.batches]
+    sent = [k for b in manifest["batches"] for k in b["person_keys"]]
+    assert sorted(sent) == sorted(o.person_key for o in result.outcomes if o.status == "ready")
+    assert len(manifest["quarantined"]) == 9
+
+
+def test_provenance_matches_the_cross_implementation_fixture(result):
+    manifest = h.provenance(result, AS_OF, FAKE_EXTRACT_SHA, FAKE_MAPPING_SHA)
+    expected = (FX / "expected_provenance_sha256.txt").read_text(encoding="utf-8").strip()
+    assert h.sha256_hex(manifest) == expected
+
+
+def test_provenance_carries_no_names_or_payloads(result):
+    text = json.dumps(h.provenance(result, AS_OF, FAKE_EXTRACT_SHA, FAKE_MAPPING_SHA), ensure_ascii=False)
+    for name in ("Avery", "Ramírez", "morgan.lee", "Program Analyst", "givenName"):
+        assert name not in text
+
+
 # ---------------------------------------------------------------- guards (Book 03, Appendix B)
 
 def test_large_delta_holds_the_run(rows, mapping, settings):
@@ -319,6 +348,9 @@ def test_cli_dry_run_writes_files_and_makes_no_calls(tmp_path, monkeypatch):
     assert (tmp_path / "bulk-request-001.json").exists()
     assert (tmp_path / "validation-report.json").exists()
     assert (tmp_path / "quarantine.json").exists()
+    manifest = json.loads((tmp_path / "provenance.json").read_text(encoding="utf-8"))
+    assert manifest["extract_sha256"] == h.file_sha256(FX / "hcm_extract_sample.csv")
+    assert manifest["mapping_sha256"] == h.file_sha256(KIT / "config" / "mapping.json")
     assert not (tmp_path / "apply-results.json").exists()
 
 

@@ -1,6 +1,6 @@
 ---
 title: "The Workbook Books"
-subtitle: "The workbook's documents organized into nineteen topic books, each framed Why / What / Who / How"
+subtitle: "The workbook's documents organized into nineteen topic books, each framed Why / What / Who / How, and a code-first Developer Workbook"
 description: "The Federal Modernization Workbook organized as nineteen topic books. Each book consolidates the workbook's pages on one topic into an ordered, footnoted reading sequence with a Word edition and a 15-minute presentation."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
@@ -12,7 +12,7 @@ lifecycle_review: 2027-04-01
 
 # The Workbook Books {.unnumbered}
 
-The workbook grew as separate whitepapers, guides, series and case studies. The books reorganize that material by topic. Each book opens with one question (its **Why**), then covers **What** changes, **Who** owns it, and **How** to do it. Every external claim is checked against a primary source and endnoted, diagrams follow one house style, and each book has a Word edition and a 15-minute narrated presentation. This site publishes only the books. When a book is built, the pages it replaces move to the repository's `archive/` folder and their old addresses forward to the new chapters. All nineteen books are now published; the archived sources stay in the [repository](https://github.com/WhalerMike/modernization-workbook). Each book's deck is on the [Presentations](../presentations/index.md) page.
+The workbook grew as separate whitepapers, guides, series and case studies. The books reorganize that material by topic. Each book opens with one question (its **Why**), then covers **What** changes, **Who** owns it, and **How** to do it. Every external claim is checked against a primary source and endnoted, diagrams follow one house style, and each book has a Word edition and a 15-minute narrated presentation. This site publishes only the books. When a book is built, the pages it replaces move to the repository's `archive/` folder and their old addresses forward to the new chapters. All nineteen topic books are now published; the archived sources stay in the [repository](https://github.com/WhalerMike/modernization-workbook). Book 19, the [Developer Workbook](b19-developer-workbook/index.md), is different: it is a code-first companion to the Attribute-Driven Migration for the developers who build its middleware, checks and pipelines, written in stages and held for review page by page. Each book's deck is on the [Presentations](../presentations/index.md) page.
 
 ::: {.fmw-books-table}
 | Book | Topic | Opening question | Status | Chapters | Pages | Last updated |
@@ -36,6 +36,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Draft** | 10 + 1 app. | 185 | 2026-10-28 |
 | **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Draft** | 10 + 1 app. | 210 | 2026-10-28 |
 | **B18** | **[Application Modernization](b18-application-modernization/index.md)** | **Why is application modernization a portfolio decision, not a rewrite?** | **Draft** | 10 | 130 | 2026-10-29 |
+| **B19** | **[Developer Workbook](b19-developer-workbook/index.md)** | **Why does the migration need code with tests, not only runbooks?** | **Draft** | 2 | 20 | 2026-10-30 |
 :::
 
 **Chapters** counts each book's chapters and appendices. **Pages** is the estimated page count of its Word edition, worked out from its words, tables and diagrams and checked against Word's own count (within about 7%). **Last updated** is the date of the book's latest change. All three are recalculated on every site build.

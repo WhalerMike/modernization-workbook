@@ -44,8 +44,8 @@ Write rules against the canonical schema of Chapter 06: native attributes where 
 |---|---|---|
 | Organization | `(user.accountEnabled -eq true) -and (user.userType -eq "Member") -and (user.extensionAttribute10 -eq "FIN-LED")` | Organization-scoped access |
 | Several organizations | `(user.accountEnabled -eq true) -and (user.userType -eq "Member") -and (user.extensionAttribute10 -in ["FIN-LED","FIN-AP"])` | Roll-up without chains of `-or` |
-| Organization and worker type | `(user.accountEnabled -eq true) -and (user.extensionAttribute10 -eq "FIN-LED") -and (user.extensionAttribute11 -eq "EMP")` | Employees only |
-| Exclusion | `(user.accountEnabled -eq true) -and (user.extensionAttribute10 -eq "FIN-LED") -and (user.extensionAttribute11 -ne "CTR")` | Everyone but contractors |
+| Organization and worker type | `(user.accountEnabled -eq true) -and (user.userType -eq "Member") -and (user.extensionAttribute10 -eq "FIN-LED") -and (user.extensionAttribute11 -eq "EMP")` | Employees only |
+| Exclusion | `(user.accountEnabled -eq true) -and (user.userType -eq "Member") -and (user.extensionAttribute10 -eq "FIN-LED") -and (user.extensionAttribute11 -ne "CTR")` | Everyone but contractors |
 | Position category | `(user.accountEnabled -eq true) -and (user.userType -eq "Member") -and (user.extensionAttribute12 -eq "ANALYST")` | Role-like access across organizations |
 | Legal employer | `(user.accountEnabled -eq true) -and (user.companyName -eq "Example Bureau")` | Component-wide baseline |
 | Direct reports | `Direct Reports for "<manager object ID>"` | A supervisor's team, maintained from `manager` |

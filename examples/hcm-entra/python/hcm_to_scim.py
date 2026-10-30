@@ -384,6 +384,37 @@ def quarantine_entries(result: RunResult) -> list[dict[str, Any]]:
     ]
 
 
+def file_sha256(path: Path) -> str:
+    """sha256 of a file's bytes, so the manifest names the exact extract and mapping used."""
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def provenance(result: RunResult, as_of: dt.date, extract_sha256: str, mapping_sha256: str) -> dict[str, Any]:
+    """The run's provenance manifest: which inputs produced which batches, by hash and person key.
+    No names and no payloads, so it can go to the evidence store beside the operational report.
+    Each batch_sha256 matches the one apply-results.json records for that batch when it is sent."""
+    counts: dict[str, int] = {}
+    for o in result.outcomes:
+        counts[o.status] = counts.get(o.status, 0) + 1
+    return {
+        "schema": "fmp-hcm-provenance/1",
+        "as_of": as_of.isoformat(),
+        "extract_sha256": extract_sha256,
+        "mapping_sha256": mapping_sha256,
+        "counts": counts,
+        "held": result.held,
+        "batches": [
+            {
+                "batch": index,
+                "batch_sha256": sha256_hex(batch),
+                "person_keys": [op["bulkId"] for op in batch["Operations"]],
+            }
+            for index, batch in enumerate(result.batches, start=1)
+        ],
+        "quarantined": [o.person_key for o in result.outcomes if o.status == "quarantined"],
+    }
+
+
 # ---------------------------------------------------------------- apply
 
 Poster = Callable[[str, bytes, dict[str, str]], tuple[int, dict[str, str], bytes]]
@@ -469,6 +500,8 @@ def main(argv: list[str] | None = None) -> int:
     summary = report(result)
     (args.out / "validation-report.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
     (args.out / "quarantine.json").write_text(json.dumps(quarantine_entries(result), indent=2, ensure_ascii=False), encoding="utf-8")
+    manifest = provenance(result, dt.date.fromisoformat(args.as_of), file_sha256(args.extract), file_sha256(args.mapping))
+    (args.out / "provenance.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(json.dumps({k: summary[k] for k in ("counts", "batches", "disables", "held", "hold_reason")}))
 
     if result.held and not args.confirm_large_delta:

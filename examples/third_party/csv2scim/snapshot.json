@@ -1,0 +1,73 @@
+{
+  "_comment": "A pinned, unmodified copy of Microsoft's CSV2SCIM sample. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "CSV2SCIM",
+  "upstream_repo": "https://github.com/AzureAD/entra-id-inbound-provisioning",
+  "upstream_path": "PowerShell/CSV2SCIM",
+  "commit": "f2e8c59f0af497b066c3484fc36a4197c2b37711",
+  "commit_date": "2026-03-02",
+  "retrieved": "2026-10-30",
+  "license": "MIT (LICENSE, copied from the repository root)",
+  "documented_at": "https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-powershell",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "*": "PowerShell/CSV2SCIM/<same path>"
+  },
+  "not_copied": [
+    "PowerShell/CSV2SCIM/Samples/csv-with-1000-records.csv",
+    "PowerShell/CSV2SCIM/Samples/Sample1/ (three AttributeMapping files, Sample1.ps1 and three CSV files of about 85 KB)"
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "readme.md": {
+      "bytes": 1331,
+      "sha256": "9c68288cec9ed70fada2ca5966fc12ec789adb3b803e162995c72d4b8adfea38"
+    },
+    "Samples/AttributeMapping.psd1": {
+      "bytes": 1019,
+      "sha256": "daec3dd58b0558f2f36cdcd08c0c045e5fa6e1b605dfed84d0d897186bfa9cef"
+    },
+    "Samples/csv-with-2-records.csv": {
+      "bytes": 653,
+      "sha256": "1ce4608786ef843a2c78eafbd687a6c84ba519a16743996e4569fe088956cd85"
+    },
+    "Samples/Extended-SCIM-bulk-request-Core+Enterprise.json": {
+      "bytes": 2901,
+      "sha256": "5598654f87afc9c084c50a990b318342972bc3ba94fd76106a01ce65b7dab4c4"
+    },
+    "Samples/Sample-CSV-2-SCIM-payload.json": {
+      "bytes": 3156,
+      "sha256": "6ebf4c78c473028a9011e8dafe272a8736580ebf394424864c24acada149d22d"
+    },
+    "Samples/Test-ScriptCommands.ps1": {
+      "bytes": 1897,
+      "sha256": "b6880a66912143e9b41669deea726d837d2b5f12f6491c02795d42cc26efa50b"
+    },
+    "Samples/UseClientCertificate.ps1": {
+      "bytes": 715,
+      "sha256": "33eb6c806b8d788352290dc74e846d7e5a5218f7851b1c3fc3546318fb5d2b45"
+    },
+    "src/CSV2SCIM.ps1": {
+      "bytes": 62951,
+      "sha256": "3d1d82ce956ecd8923f41c39ae2b1f73756dd2a6c0032e0ff04e6740c1b6896b"
+    },
+    "src/ScimSchemaRepresentations/EnterpriseUser.json": {
+      "bytes": 3422,
+      "sha256": "924702a2edd76075a440fbcd59b49a9619f4a53099af0ca07af825bf75d30486"
+    },
+    "src/ScimSchemaRepresentations/Group.json": {
+      "bytes": 2049,
+      "sha256": "3390e8a4d56254ab329ed050fef2e4a6508c13ae0eadaef5412649212e727e05"
+    },
+    "src/ScimSchemaRepresentations/Schema.json": {
+      "bytes": 11445,
+      "sha256": "f833bd6ea1d8ba80307a2e758c7f64981a455a6d24283c60b3d8f96b79778031"
+    },
+    "src/ScimSchemaRepresentations/User.json": {
+      "bytes": 26608,
+      "sha256": "f07cf39604032c45a7242cbf2b0f4e8ed9f6d6d5fbcb8ac07d27ce64c660b036"
+    }
+  }
+}

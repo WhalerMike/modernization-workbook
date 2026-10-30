@@ -3,6 +3,10 @@
 > **Status: illustrative. Unit-tested against fixtures, not proven against live tenants.**
 > This is one way to build the middleware's validate and normalize duties from [Book 03, Chapter 05](../../docs/books/b03-hr-identity/05-the-provisioning-pipeline.md), using the canonical schema and program attribute map in [Chapter 06](../../docs/books/b03-hr-identity/06-canonical-attribute-schema.md). It isn't an endorsement of any product by any agency, and no agency has adopted it. Product and API facts were checked against Microsoft Learn and Oracle's documentation on October 25, 2026. The explanation, with sources, is the research page [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../../docs/research/hcm-entra-implementation.md).
 
+## Start with Microsoft's sample
+
+Microsoft publishes a PowerShell sample for this integration, CSV2SCIM, documented on Learn in [API-driven inbound provisioning with PowerShell script](https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-powershell). A pinned, unmodified copy is in [`../third_party/csv2scim`](../third_party/csv2scim/SNAPSHOT.md), and `config/csv2scim/AttributeMapping.psd1` maps this example's extract columns for it. Use the sample to validate a mapping, extend the provisioning app's schema (`-UpdateSchema`) and read cycle logs in a worldwide or GCC tenant. This example adds what the sample leaves to you: record validation and quarantine, ordering, the mass-disable hold, pacing and the call budget, the US Government clouds, a single least-privileged permission, a repeatable `bulkId` and the provenance manifest. `tests/powershell/Csv2ScimBaseline.Tests.ps1` runs the sample offline on the same fixture and pins the differences. The [Developer Workbook, Chapter 01](../../docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md) walks through both.
+
 ## What it does
 
 Two equivalent clients, `python/hcm_to_scim.py` and `powershell/Invoke-HcmToScim.ps1` (with `HcmToScim.psm1`), read an HCM Extract CSV, validate each row, and turn it into a SCIM bulk request for the API-driven inbound provisioning app. By default they only write files:
@@ -12,9 +16,10 @@ Two equivalent clients, `python/hcm_to_scim.py` and `powershell/Invoke-HcmToScim
 | `bulk-request-NNN.json` | SCIM `BulkRequest` payloads, at most 50 operations each, leavers first, managers before their reports | The `/bulkUpload` contract (Chapter 05) |
 | `validation-report.json` | Counts, and per record: person key, status, leaver flag, payload SHA-256, reasons and warnings. **No names or payloads** | Operational log (Appendix B: person key and payload hash only) |
 | `quarantine.json` | Each refused record: reasons, the unchanged HR row and the attempted payload. **Contains personal data**: keep it in the access-controlled audit store | The quarantine contract (Appendix A) |
+| `provenance.json` | The run's manifest: the sha256 of the extract and mapping files, the run date, counts, and per batch its SHA-256 and the person keys it carries. **No names or payloads** | Provenance: ties each sent batch to the exact inputs that produced it ([Developer Workbook, Chapter 01](../../docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md)) |
 | `apply-results.json` | Only with `--apply` / `-Apply`: per batch, the HTTP status, attempts, the `Location` header that points at the provisioning logs, and the batch hash | Reconcile duty (Chapter 05) |
 
-Both clients produce the same operations and the same payload hashes for the same input; the tests assert that against a shared fixture.
+Both clients produce the same operations, the same payload hashes and the same provenance manifest for the same input; the tests assert that against shared fixtures.
 
 ## The mapping it applies
 
@@ -86,7 +91,7 @@ The tests use `tests/fixtures/hcm_extract_sample.csv` (fictional workers at a pl
 
 ## Known limits
 
-- **Not the whole middleware.** This covers validate and normalize, the start of sequence (ordering within a run) and the send. It doesn't read Atom feeds, hold future-dated events, write provenance to an evidence store, or read the provisioning logs back per record; the research page describes those duties.
+- **Not the whole middleware.** This covers validate and normalize, the start of sequence (ordering within a run) and the send. It doesn't read Atom feeds, hold future-dated events, ship `provenance.json` to an evidence store (it only writes it), or read the provisioning logs back per record; the research page describes those duties.
 - **Fixed UTC offsets.** Hire and leave times are converted with a fixed offset per row (or the default). Emit the offset in force on each date from the extract; daylight saving time isn't computed here.
 - **Assignment status values are this example's.** Oracle's assignment status types and your extract's values may differ; map them in `assignment_status_types`.
 - **Pending workers are refused.** If your design provisions from the pending worker record, change `refused_worker_types` and the scoping rules together.
@@ -97,10 +102,11 @@ examples/hcm-entra/
   README.md
   config/mapping.json            mapping, code lists, validation rules (shared)
   config/settings.example.json   non-secret settings; placeholders only
+  config/csv2scim/               the same columns as a CSV2SCIM AttributeMapping.psd1
   python/hcm_to_scim.py          converter, validator, dry-run-first sender
   powershell/HcmToScim.psm1      the same in PowerShell 7
   powershell/Invoke-HcmToScim.ps1  wrapper script
-  tests/fixtures/                sample extract, expected payload, hashes
+  tests/fixtures/                sample extract, expected payload, hashes, provenance hash
   tests/python/                  pytest
-  tests/powershell/              Pester 5
+  tests/powershell/              Pester 5, including the CSV2SCIM baseline comparison
 ```

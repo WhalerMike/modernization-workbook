@@ -6,7 +6,8 @@
 .DESCRIPTION
     ILLUSTRATIVE: unit-tested against fixtures, not proven against live tenants.
     Writes bulk-request-NNN.json, validation-report.json (person key and payload hash only) and
-    quarantine.json (personal data: keep it in the access-controlled audit store).
+    quarantine.json (personal data: keep it in the access-controlled audit store) and
+    provenance.json (input and batch hashes with person keys; no names or payloads).
     -Apply reads a bearer token from the HCM_ENTRA_BEARER_TOKEN environment variable; obtain it
     outside this script, preferably from a managed identity or a certificate credential.
     Exit codes: 0 all sent or ready, 1 error, 2 some records quarantined, 3 run held for confirmation.
@@ -47,6 +48,8 @@ foreach ($b in $result.Batches) {
 $report = Get-HcmReport -Result $result
 $report | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $Out 'validation-report.json') -Encoding utf8NoBOM
 @(Get-HcmQuarantineEntry -Result $result) | ConvertTo-Json -Depth 12 -AsArray | Set-Content -LiteralPath (Join-Path $Out 'quarantine.json') -Encoding utf8NoBOM
+Get-HcmProvenance -Result $result -AsOf $asOfDate -ExtractSha256 (Get-HcmFileSha256 $Extract) -MappingSha256 (Get-HcmFileSha256 $Mapping) |
+    ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $Out 'provenance.json') -Encoding utf8NoBOM
 [ordered]@{ counts = $report.counts; batches = $report.batches; disables = $report.disables; held = $report.held; hold_reason = $report.hold_reason } | ConvertTo-Json -Compress
 
 if ($result.Held -and -not $ConfirmLargeDelta) { exit 3 }

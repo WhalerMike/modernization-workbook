@@ -52,6 +52,8 @@ $script:VkLearn = @{
     CbaUserIds  = 'https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids'
     CbaAffinity = 'https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-technical-deep-dive#username-binding-policy'
     AuthzInfo   = 'https://learn.microsoft.com/graph/api/resources/authorizationinfo?view=graph-rest-beta'
+    OnPremSync  = 'https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-get?view=graph-rest-1.0'
+    MatchBlock  = 'https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-existing-tenant'
 }
 
 $script:VkCatalog = @(
@@ -145,6 +147,10 @@ $script:VkCatalog = @(
     # ---- Cross-track foundation (Attribute-Driven Migration implementation guide, Gates 3, 5 and 6) ----
     @{ Id = 'VK-SYNC-01'; Track = 'SYNC'; Title = 'Coded slot values in an AD export compared with Entra ID for a sample, joined on employeeId'
         Source = 'Graph + Input'; GraphPermissions = @('User.Read.All'); DelegatedRole = 'Global Reader'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.Users) }
+    @{ Id = 'VK-SYNC-02'; Track = 'SYNC'; Title = 'Optional: soft match and hard match takeover not blocked outside an approved matching window'
+        Source = 'Input (export), or Graph delegated'; GraphPermissions = @('OnPremDirectorySynchronization.Read.All')
+        DelegatedRole = 'Global Administrator (the only role Learn lists; delegated only, no application permission)'; AzureRole = ''; Stage = 'v1.0'
+        Optional = $true; Learn = @($VkLearn.OnPremSync, $VkLearn.MatchBlock) }
     @{ Id = 'VK-CA-01'; Track = 'CA'; Title = 'Conditional Access personas: emergency-access group excluded, only governed groups targeted, every group grant paired with a block'
         Source = 'Graph + Input'; GraphPermissions = @('Policy.Read.All'); DelegatedRole = 'Global Reader, Security Reader or Conditional Access Administrator'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.Ca) }
     @{ Id = 'VK-PIV-01'; Track = 'PIV'; Title = 'PIV binding coverage: pilot card holders with no certificateUserIds value, or only low-affinity values (reported by account, never by value)'

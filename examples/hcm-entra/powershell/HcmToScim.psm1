@@ -364,6 +364,42 @@ function Get-HcmQuarantineEntry {
     }
 }
 
+function Get-HcmFileSha256 {
+    <# sha256 of a file's bytes, so the manifest names the exact extract and mapping used. #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$Path)
+    return [Convert]::ToHexString([System.Security.Cryptography.SHA256]::HashData([IO.File]::ReadAllBytes($Path))).ToLowerInvariant()
+}
+
+function Get-HcmProvenance {
+    <# The run's provenance manifest: which inputs produced which batches, by hash and person key.
+       No names and no payloads. Each batch_sha256 matches apply-results.json for that batch. #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]$Result,
+        [Parameter(Mandatory)][datetime]$AsOf,
+        [Parameter(Mandatory)][string]$ExtractSha256,
+        [Parameter(Mandatory)][string]$MappingSha256
+    )
+    $counts = [ordered]@{}
+    foreach ($o in $Result.Outcomes) { $counts[$o.Status] = 1 + $(if ($counts.Contains($o.Status)) { $counts[$o.Status] } else { 0 }) }
+    $index = 0
+    $batches = foreach ($b in $Result.Batches) {
+        $index++
+        [ordered]@{ batch = $index; batch_sha256 = (Get-HcmSha256 $b); person_keys = @($b.Operations | ForEach-Object { $_.bulkId }) }
+    }
+    return [ordered]@{
+        schema = 'fmp-hcm-provenance/1'
+        as_of = $AsOf.ToString('yyyy-MM-dd', $script:Inv)
+        extract_sha256 = $ExtractSha256
+        mapping_sha256 = $MappingSha256
+        counts = $counts
+        held = [bool]$Result.Held
+        batches = @($batches)
+        quarantined = @($Result.Outcomes | Where-Object { $_.Status -eq 'quarantined' } | ForEach-Object { $_.PersonKey })
+    }
+}
+
 # ------------------------------------------------------------------ apply
 
 function Invoke-HcmDefaultPost {
@@ -414,5 +450,5 @@ function Invoke-HcmBulkUpload {
 }
 
 Export-ModuleMember -Function Get-HcmMapping, Get-HcmSettings, Test-HcmSettings, Test-HcmEndpoint, ConvertTo-HcmCanonicalJson,
-    Get-HcmSha256, ConvertTo-HcmUtcIso, ConvertTo-HcmScimOperation, Convert-HcmExtract, Get-HcmReport,
+    Get-HcmSha256, Get-HcmFileSha256, Get-HcmProvenance, ConvertTo-HcmUtcIso, ConvertTo-HcmScimOperation, Convert-HcmExtract, Get-HcmReport,
     Get-HcmQuarantineEntry, Invoke-HcmBulkUpload
