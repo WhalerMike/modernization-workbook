@@ -26,6 +26,25 @@ local function esc(s)
   return (s:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"):gsub('"', "&quot;"))
 end
 
+-- The slide list under the player: one button per slide, which
+-- docs/presentations/fmw-chapters.js turns into a jump to that slide.
+local function chapters(v, root)
+  if not v.chapters then return "" end
+  local items = {}
+  for _, c in ipairs(v.chapters) do
+    local s = math.floor(c[1])
+    local stamp = string.format("%d:%02d", s // 60, s % 60)
+    items[#items + 1] = '<li><button type="button" class="btn btn-link p-0 text-start" data-fmw-t="' .. s .. '">' .. stamp .. ' ' .. esc(c[2]) .. '</button></li>'
+  end
+  return table.concat({
+    '<details class="fmw-chapters" style="font-size:.9rem;margin-top:.25rem"><summary>Jump to a slide (' .. #items .. ')</summary>',
+    '<ol style="margin:.25rem 0 0;padding-left:1.5rem">',
+    table.concat(items, "\n"),
+    '</ol></details>',
+    '<script src="' .. esc(root .. "docs/presentations/fmw-chapters.js") .. '" defer></script>',
+  }, "\n")
+end
+
 return {
   ["fmw-video"] = function(args)
     local id = pandoc.utils.stringify(args[1])
@@ -41,7 +60,7 @@ return {
     if v.youtube then
       player = table.concat({
         '<div style="width:100%;max-width:960px;aspect-ratio:16/9;border:1px solid #dfe5ec;border-radius:6px;overflow:hidden;background:#000">',
-        '<iframe src="https://www.youtube-nocookie.com/embed/' .. esc(v.youtube) .. '?rel=0" title="' .. title .. ', a ' .. v.minutes .. '-minute narrated video" style="width:100%;height:100%;border:0" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>',
+        '<iframe src="https://www.youtube-nocookie.com/embed/' .. esc(v.youtube) .. '?rel=0&amp;enablejsapi=1" title="' .. title .. ', a ' .. v.minutes .. '-minute narrated video" style="width:100%;height:100%;border:0" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>',
         '</div>',
       }, "\n")
     else
@@ -54,11 +73,12 @@ return {
       }, "\n")
     end
     local html = table.concat({
-      '<figure class="fmw-video">',
+      '<figure class="fmw-video" data-fmw-player>',
       player,
       '<figcaption style="font-size:.9rem;color:#475569">' .. title .. ' · ' .. v.minutes .. ' minutes · captions from the player\'s CC button · ',
       '<a href="' .. esc(v.mp4) .. '">Download MP4</a> · ',
       '<a href="' .. esc(root .. "docs/presentations/watch.html?v=" .. v.id) .. '">All videos</a></figcaption>',
+      chapters(v, root),
       '</figure>',
     }, "\n")
     return pandoc.RawBlock("html", html)

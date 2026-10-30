@@ -8,7 +8,49 @@
   "youtube": null,
   "vtt": "presentations/start-here/Start_Here_Narrated.vtt",
   "deck": "presentations/start-here/Start_Here_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-here/Start_Here_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-here/Start_Here_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Start Here: Where Modernization Begins"
+   ],
+   [
+    31,
+    "Four reasons to start now"
+   ],
+   [
+    60,
+    "The clocks nobody can move"
+   ],
+   [
+    102,
+    "Everything decides on identity"
+   ],
+   [
+    137,
+    "HR is being rebuilt anyway"
+   ],
+   [
+    183,
+    "The access risk agencies already carry"
+   ],
+   [
+    220,
+    "The first ask: four weeks, no vendor decision"
+   ],
+   [
+    255,
+    "The finish line: Gate G1, Foundation Complete"
+   ],
+   [
+    291,
+    "Who decides, and what to bring"
+   ],
+   [
+    331,
+    "Where to go next"
+   ]
+  ]
  },
  {
   "id": "Start_02_First_Four_Weeks_Narrated",
@@ -19,7 +61,53 @@
   "youtube": null,
   "vtt": "presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks_Narrated.vtt",
   "deck": "presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "The First Four Weeks: What Phase 0 Produces"
+   ],
+   [
+    31,
+    "Four weeks, one goal, one exit"
+   ],
+   [
+    64,
+    "Day one: three entry conditions"
+   ],
+   [
+    99,
+    "The platform host: where every decision is written down"
+   ],
+   [
+    131,
+    "Reading the estate without changing it"
+   ],
+   [
+    168,
+    "What the assessment inventories"
+   ],
+   [
+    202,
+    "Provenance, and seeding the repository"
+   ],
+   [
+    241,
+    "Least privilege for the program's own access"
+   ],
+   [
+    273,
+    "Owners named, findings classified"
+   ],
+   [
+    307,
+    "Gate G0, Ready to Plan: the checklist"
+   ],
+   [
+    342,
+    "What leadership sees at week four"
+   ]
+  ]
  },
  {
   "id": "Start_03_Foundation_to_G1_Narrated",
@@ -30,7 +118,49 @@
   "youtube": null,
   "vtt": "presentations/start-03-foundation-to-g1/Start_03_Foundation_to_G1_Narrated.vtt",
   "deck": "presentations/start-03-foundation-to-g1/Start_03_Foundation_to_G1_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-03-foundation-to-g1/Start_03_Foundation_to_G1_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-03-foundation-to-g1/Start_03_Foundation_to_G1_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Foundation to Gate G1: Weeks Five to Eight"
+   ],
+   [
+    37,
+    "Five workstreams, one foundation"
+   ],
+   [
+    73,
+    "Groups and administrative units: scope from attributes"
+   ],
+   [
+    109,
+    "The Conditional Access baseline, report-only first"
+   ],
+   [
+    146,
+    "Emergency access: the one standing exception"
+   ],
+   [
+    185,
+    "The first HR feed, for a foundation scope"
+   ],
+   [
+    223,
+    "Address management for Tier 0, Arc for pilot servers"
+   ],
+   [
+    263,
+    "Gate G1 is measured from data, not signature"
+   ],
+   [
+    300,
+    "What can go wrong in weeks five to eight"
+   ],
+   [
+    339,
+    "What leadership sees at Gate G1"
+   ]
+  ]
  },
  {
   "id": "Start_04_Making_the_Case_Narrated",
@@ -41,7 +171,49 @@
   "youtube": null,
   "vtt": "presentations/start-04-making-the-case/Start_04_Making_the_Case_Narrated.vtt",
   "deck": "presentations/start-04-making-the-case/Start_04_Making_the_Case_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-04-making-the-case/Start_04_Making_the_Case_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-04-making-the-case/Start_04_Making_the_Case_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Making the Case at Your Agency"
+   ],
+   [
+    32,
+    "One page, one decision"
+   ],
+   [
+    65,
+    "Four local numbers that make it real"
+   ],
+   [
+    105,
+    "For the CIO: the clocks and the cost"
+   ],
+   [
+    142,
+    "For the CISO: leavers and account findings"
+   ],
+   [
+    179,
+    "For the CHCO: HR 2.0 and the contractor source"
+   ],
+   [
+    218,
+    "For the authorizing official: evidence over attestation"
+   ],
+   [
+    255,
+    "The decision: an owner, a date and a first gate"
+   ],
+   [
+    290,
+    "Charter roles: who signs what"
+   ],
+   [
+    328,
+    "What to bring to the meeting"
+   ]
+  ]
  },
  {
   "id": "Attribute_Driven_Migration_Technical_Part_1_Narrated",
@@ -49,9 +221,124 @@
   "group": "book",
   "minutes": 18,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Attribute_Driven_Migration_Technical_Part_1_Narrated.mp4",
+  "youtube": null,
   "vtt": "presentations/attribute-driven-migration-technical-part-1/Attribute_Driven_Migration_Technical_Part_1_Narrated.vtt",
   "deck": "presentations/attribute-driven-migration-technical-part-1/Attribute_Driven_Migration_Technical_Part_1_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-technical-part-1/Attribute_Driven_Migration_Technical_Part_1_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-technical-part-1/Attribute_Driven_Migration_Technical_Part_1_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Part 1: The model and the HR track"
+   ],
+   [
+    38,
+    "Why this matters: the attributes now decide"
+   ],
+   [
+    78,
+    "Module 1: The model, from placement to attributes"
+   ],
+   [
+    98,
+    "What the OU tree encoded, and where each job goes"
+   ],
+   [
+    137,
+    "Four tracks, four sources of truth"
+   ],
+   [
+    174,
+    "What this migration accomplishes, and how you know"
+   ],
+   [
+    218,
+    "Federal requirements each track satisfies"
+   ],
+   [
+    265,
+    "AD vs Entra ID: the model"
+   ],
+   [
+    303,
+    "The attributes you know, side by side"
+   ],
+   [
+    338,
+    "Attribute stores and who can read them"
+   ],
+   [
+    374,
+    "Nine stages, each with a decider and a gate"
+   ],
+   [
+    409,
+    "Stage 0: read what the tree encodes before moving it"
+   ],
+   [
+    448,
+    "Module 2: Sourcing and proving the attributes"
+   ],
+   [
+    478,
+    "Stage 1: HR is the authority, one fact to one system"
+   ],
+   [
+    517,
+    "Federal HR 2.0: the coming source and what OPM leaves open"
+   ],
+   [
+    558,
+    "API-driven inbound provisioning and the two landing zones"
+   ],
+   [
+    600,
+    "What HR doesn't supply: contractors and other writers"
+   ],
+   [
+    641,
+    "The canonical schema, and one writer per attribute"
+   ],
+   [
+    684,
+    "Stage 2: prove the attributes true before use"
+   ],
+   [
+    726,
+    "Stage 3: map the attributes through sync"
+   ],
+   [
+    769,
+    "Module 3: HR-track mechanisms"
+   ],
+   [
+    791,
+    "Stage 4: OU subtrees become dynamic-group rules"
+   ],
+   [
+    835,
+    "Stage 5: delegation moves to administrative units"
+   ],
+   [
+    872,
+    "Stage 6: Conditional Access targets personas, not the tree"
+   ],
+   [
+    916,
+    "Dynamic user groups: the dangers, and how to avoid them"
+   ],
+   [
+    954,
+    "Limits: dynamic membership and latency"
+   ],
+   [
+    990,
+    "Part 1 decisions: the HR track, owners, where to start"
+   ],
+   [
+    1027,
+    "What's in Part 2"
+   ]
+  ]
  },
  {
   "id": "Attribute_Driven_Migration_Technical_Part_2_Narrated",
@@ -59,9 +346,124 @@
   "group": "book",
   "minutes": 18,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Attribute_Driven_Migration_Technical_Part_2_Narrated.mp4",
+  "youtube": null,
   "vtt": "presentations/attribute-driven-migration-technical-part-2/Attribute_Driven_Migration_Technical_Part_2_Narrated.vtt",
   "deck": "presentations/attribute-driven-migration-technical-part-2/Attribute_Driven_Migration_Technical_Part_2_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-technical-part-2/Attribute_Driven_Migration_Technical_Part_2_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-technical-part-2/Attribute_Driven_Migration_Technical_Part_2_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Part 2: Devices, servers and non-person identities"
+   ],
+   [
+    36,
+    "Recap: four tracks, and where the attributes live"
+   ],
+   [
+    76,
+    "Module 1: The Intune and Arc tracks"
+   ],
+   [
+    93,
+    "What Intune covers"
+   ],
+   [
+    138,
+    "Intune targeting: device groups, and prefer filters"
+   ],
+   [
+    183,
+    "Beyond users: Intune and Entra devices"
+   ],
+   [
+    226,
+    "Dynamic device groups: the dangers, and how to avoid them"
+   ],
+   [
+    265,
+    "What Azure Arc covers"
+   ],
+   [
+    309,
+    "Beyond users: Azure Arc servers, through Resource Manager"
+   ],
+   [
+    349,
+    "Devices neither covers: the strategy"
+   ],
+   [
+    394,
+    "Module 2: The non-person track and PIV"
+   ],
+   [
+    417,
+    "Non-person track: service accounts, MSAs and gMSAs"
+   ],
+   [
+    462,
+    "Non-person track: workload identities and AI agents"
+   ],
+   [
+    510,
+    "Beyond users: service principals and custom attributes"
+   ],
+   [
+    553,
+    "The object-type crosswalk: stores, writers, consumers"
+   ],
+   [
+    592,
+    "PIV and CAC: the certificate binding is an attribute"
+   ],
+   [
+    632,
+    "certificateUserIds: who writes it, and the open pilot"
+   ],
+   [
+    678,
+    "Module 3: Running the migration"
+   ],
+   [
+    696,
+    "Worked example: one analyst, every mechanism"
+   ],
+   [
+    734,
+    "The mover event: one personnel action, no ticket"
+   ],
+   [
+    770,
+    "Stage 7: cut over in phases, wave by wave"
+   ],
+   [
+    811,
+    "Stage 8: detect drift and fix it at the source"
+   ],
+   [
+    850,
+    "Limits: administrative units"
+   ],
+   [
+    889,
+    "Lifecycle Workflows: the pieces and the limits"
+   ],
+   [
+    931,
+    "Lifecycle Workflows at our scale: what could break"
+   ],
+   [
+    977,
+    "What still needs AD during hybrid"
+   ],
+   [
+    1019,
+    "The checklist, stage by stage"
+   ],
+   [
+    1059,
+    "Decisions, owners, and where to start"
+   ]
+  ]
  },
  {
   "id": "B00_Orientation_Executive_Narrated",
@@ -72,7 +474,89 @@
   "youtube": null,
   "vtt": "presentations/b00-orientation-executive/B00_Orientation_Executive_Narrated.vtt",
   "deck": "presentations/b00-orientation-executive/B00_Orientation_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b00-orientation-executive/B00_Orientation_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b00-orientation-executive/B00_Orientation_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "What Must Leadership Decide, and When?"
+   ],
+   [
+    71,
+    "The directory governed the estate, and nobody wrote it down"
+   ],
+   [
+    140,
+    "Federal policy now sets the dates"
+   ],
+   [
+    223,
+    "Vendor support dates cluster on the same estate"
+   ],
+   [
+    307,
+    "Read the clocks exactly, then run one program"
+   ],
+   [
+    381,
+    "The charter: the page the sponsor signs"
+   ],
+   [
+    455,
+    "Six success criteria, each tested at a gate"
+   ],
+   [
+    525,
+    "Fifteen principles, one idea underneath"
+   ],
+   [
+    589,
+    "Seven phases, six gates, and who clears each"
+   ],
+   [
+    661,
+    "Five workstreams in parallel, one critical path"
+   ],
+   [
+    732,
+    "Seven projects, run inside the program"
+   ],
+   [
+    803,
+    "Who decides: one decider per row"
+   ],
+   [
+    875,
+    "Three decisions the plans put on the wrong desk"
+   ],
+   [
+    944,
+    "The people the program needs, and its rhythm"
+   ],
+   [
+    1014,
+    "Pre-flight: assessment before action"
+   ],
+   [
+    1083,
+    "Foundation and pilot: prove it on one division"
+   ],
+   [
+    1156,
+    "Roll out in waves, then retire only what nothing uses"
+   ],
+   [
+    1229,
+    "Steady state, and what success looks like"
+   ],
+   [
+    1299,
+    "The risk register: what can sink the program"
+   ],
+   [
+    1377,
+    "Decisions to make, and who makes them"
+   ]
+  ]
  },
  {
   "id": "B00_Orientation_Narrated",
@@ -83,7 +567,61 @@
   "youtube": null,
   "vtt": "presentations/b00-orientation/B00_Orientation_Narrated.vtt",
   "deck": "presentations/b00-orientation/B00_Orientation_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b00-orientation/B00_Orientation_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b00-orientation/B00_Orientation_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Modernize, and Why Now?"
+   ],
+   [
+    49,
+    "Active Directory did governance nobody wrote down"
+   ],
+   [
+    106,
+    "The schedule now belongs to OMB, CISA, FedRAMP and vendors"
+   ],
+   [
+    170,
+    "Read the clocks exactly, then run one program"
+   ],
+   [
+    234,
+    "How the workbook works: eighteen books, four questions"
+   ],
+   [
+    291,
+    "The charter: the page the sponsor signs"
+   ],
+   [
+    354,
+    "Six success criteria, each tested at a gate"
+   ],
+   [
+    411,
+    "Fifteen principles in five groups"
+   ],
+   [
+    469,
+    "Seven phases and six gates: Book 01's model"
+   ],
+   [
+    534,
+    "Seven complementary projects, run inside the program"
+   ],
+   [
+    595,
+    "Who decides: one owner for every decision"
+   ],
+   [
+    652,
+    "From pre-flight to steady state: what each stretch proves"
+   ],
+   [
+    712,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B01_Transformation_Arc_Executive_Narrated",
@@ -94,7 +632,89 @@
   "youtube": null,
   "vtt": "presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narrated.vtt",
   "deck": "presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Who Leads the Governance Rebuild?"
+   ],
+   [
+    64,
+    "Every new mandate assumes a foundation never built"
+   ],
+   [
+    136,
+    "Active Directory was the governance nobody wrote down"
+   ],
+   [
+    218,
+    "Five things must be true before the target holds"
+   ],
+   [
+    294,
+    "Platform: one governed host, one authoritative writer"
+   ],
+   [
+    373,
+    "Identity: the attributes have to be true first"
+   ],
+   [
+    449,
+    "Four tracks, four sources of truth, one end state"
+   ],
+   [
+    504,
+    "Policy: regenerate Group Policy; don't copy it"
+   ],
+   [
+    585,
+    "Network services: DNS, DHCP and IPAM move together"
+   ],
+   [
+    665,
+    "Compute: the domain join is the last thing to go"
+   ],
+   [
+    743,
+    "Access: log in to applications, not networks"
+   ],
+   [
+    826,
+    "Microsoft supplies the instruments, not the orchestra"
+   ],
+   [
+    904,
+    "One decider per decision; the AO signs for risk"
+   ],
+   [
+    981,
+    "Three decisions that land on the wrong desk"
+   ],
+   [
+    1057,
+    "Analyze the estate first: read-only, with provenance"
+   ],
+   [
+    1130,
+    "Analyze, plan, deliver: nothing moves without a plan"
+   ],
+   [
+    1205,
+    "The roadmap: seven phases, six gates, five workstreams"
+   ],
+   [
+    1277,
+    "Gates go green on data, and rollback has an end"
+   ],
+   [
+    1354,
+    "The clocks: FedRAMP's dates don't set the agency's"
+   ],
+   [
+    1445,
+    "Decisions, owners, and where to start"
+   ]
+  ]
  },
  {
   "id": "B01_Transformation_Arc_Narrated",
@@ -105,7 +725,77 @@
   "youtube": null,
   "vtt": "presentations/b01-transformation-arc/B01_Transformation_Arc_Narrated.vtt",
   "deck": "presentations/b01-transformation-arc/B01_Transformation_Arc_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b01-transformation-arc/B01_Transformation_Arc_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b01-transformation-arc/B01_Transformation_Arc_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Is Modernization So Hard?"
+   ],
+   [
+    42,
+    "Four eras built the estate; none kept one truth"
+   ],
+   [
+    96,
+    "Sessions carried trust; tokens are checked each time"
+   ],
+   [
+    143,
+    "The OU tree was the governance tree"
+   ],
+   [
+    197,
+    "Eleven categories, and the failures are silent"
+   ],
+   [
+    251,
+    "One governed host, five roles, one writer"
+   ],
+   [
+    303,
+    "Identity: one HR stamp drives five outcomes"
+   ],
+   [
+    358,
+    "Four tracks, each with its own source of truth"
+   ],
+   [
+    411,
+    "Policy: regenerate Group Policy, don't copy it"
+   ],
+   [
+    471,
+    "DNS, DHCP and IPAM move together, and with AD"
+   ],
+   [
+    528,
+    "Compute: the domain join is the last thing to go"
+   ],
+   [
+    583,
+    "The access plane: every request decided again"
+   ],
+   [
+    644,
+    "Instruments versus orchestra: who leads it"
+   ],
+   [
+    696,
+    "Inventory first: read-only, with provenance"
+   ],
+   [
+    748,
+    "Analyze, plan, deliver, under an actuation ceiling"
+   ],
+   [
+    802,
+    "The roadmap: seven phases, gated by data"
+   ],
+   [
+    855,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B02_Identity_Executive_Narrated",
@@ -116,7 +806,85 @@
   "youtube": null,
   "vtt": "presentations/b02-identity-executive/B02_Identity_Executive_Narrated.vtt",
   "deck": "presentations/b02-identity-executive/B02_Identity_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity-executive/B02_Identity_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity-executive/B02_Identity_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Identity & Directory: the executive briefing"
+   ],
+   [
+    56,
+    "The access decision has moved to identity"
+   ],
+   [
+    104,
+    "AD isn't retiring, but the dates are already set"
+   ],
+   [
+    157,
+    "Lift-and-shift copies the risk into the tenant"
+   ],
+   [
+    204,
+    "Placement becomes attributes: governance by rule"
+   ],
+   [
+    257,
+    "Four tracks: what Book 02 moves, and where the rest goes"
+   ],
+   [
+    306,
+    "Kerberos and NTLM never reach Conditional Access"
+   ],
+   [
+    358,
+    "The hidden surface: eleven object types, not two"
+   ],
+   [
+    409,
+    "Delegation without OUs: scope by attribute"
+   ],
+   [
+    462,
+    "One decider per decision, many doers"
+   ],
+   [
+    508,
+    "Who decides what in the migration"
+   ],
+   [
+    561,
+    "Microsoft supplies the tools; someone owns the gaps"
+   ],
+   [
+    611,
+    "Start read-only, then ask for exactly what's missing"
+   ],
+   [
+    661,
+    "Build the target: Cloud Sync, PHS, no standing admin"
+   ],
+   [
+    713,
+    "Phishing-resistant sign-in: PIV first, not last"
+   ],
+   [
+    763,
+    "Eleven phases in five waves, each one gated"
+   ],
+   [
+    814,
+    "Retire Active Directory last, on six conditions"
+   ],
+   [
+    863,
+    "Evidence that comes out of operations"
+   ],
+   [
+    908,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B02_Identity_Narrated",
@@ -127,7 +895,57 @@
   "youtube": null,
   "vtt": "presentations/b02-identity/B02_Identity_Narrated.vtt",
   "deck": "presentations/b02-identity/B02_Identity_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity/B02_Identity_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity/B02_Identity_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Does Identity Matter?"
+   ],
+   [
+    52,
+    "Identity is now where access is decided"
+   ],
+   [
+    110,
+    "AD isn't retiring — but every road now points to the cloud"
+   ],
+   [
+    178,
+    "Two directories, two different models"
+   ],
+   [
+    238,
+    "Four tracks: what Book 02 moves, and where the rest goes"
+   ],
+   [
+    290,
+    "The migration surface is much larger than users and groups"
+   ],
+   [
+    346,
+    "Delegation has to be rebuilt without OUs"
+   ],
+   [
+    404,
+    "Sign-in moves to phishing-resistant credentials"
+   ],
+   [
+    466,
+    "Who decides, who does the work"
+   ],
+   [
+    526,
+    "How: discover, assess, build, migrate, prove"
+   ],
+   [
+    587,
+    "What a reference deployment produces"
+   ],
+   [
+    642,
+    "What we're asking for"
+   ]
+  ]
  },
  {
   "id": "B02_Identity_Technical_Narrated",
@@ -138,7 +956,125 @@
   "youtube": null,
   "vtt": "presentations/b02-identity-technical/B02_Identity_Technical_Narrated.vtt",
   "deck": "presentations/b02-identity-technical/B02_Identity_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity-technical/B02_Identity_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b02-identity-technical/B02_Identity_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Identity & Directory: the technical deep dive"
+   ],
+   [
+    51,
+    "Why this matters: identity now decides access"
+   ],
+   [
+    106,
+    "What the migration actually has to move"
+   ],
+   [
+    163,
+    "Module 1: Read-only discovery"
+   ],
+   [
+    185,
+    "What a standard account can read in a default forest"
+   ],
+   [
+    234,
+    "Where the default read boundary sits"
+   ],
+   [
+    283,
+    "From gap list to a narrow, time-bound delegation request"
+   ],
+   [
+    336,
+    "Module 2: Assessing the forest"
+   ],
+   [
+    358,
+    "Eight collection areas, each on the narrowest right"
+   ],
+   [
+    410,
+    "Topology, OUs and Group Policy: what the inventory must get right"
+   ],
+   [
+    463,
+    "AD CS: the escalation patterns the assessment checks"
+   ],
+   [
+    516,
+    "Delegation, privileged groups and service accounts"
+   ],
+   [
+    565,
+    "Trusts: decode the bits, state the direction plainly"
+   ],
+   [
+    618,
+    "Every run is evidence: manifest, Git and drift"
+   ],
+   [
+    670,
+    "Module 3: Building the Entra ID target"
+   ],
+   [
+    692,
+    "Decompose first: where each AD construct lands, and its license"
+   ],
+   [
+    747,
+    "The attributes you know, side by side"
+   ],
+   [
+    797,
+    "Choosing the sync engine: Cloud Sync unless a Connect-only need applies"
+   ],
+   [
+    846,
+    "Sign-in method and object matching"
+   ],
+   [
+    901,
+    "Groups and service accounts: one recorded decision per object"
+   ],
+   [
+    958,
+    "Privileged access: no standing admin, two break-glass accounts"
+   ],
+   [
+    1011,
+    "Conditional Access: personas, a baseline, and a staged rollout"
+   ],
+   [
+    1071,
+    "Module 4: Migrating, governing and proving it"
+   ],
+   [
+    1091,
+    "Governance runs as a loop: joiner, mover, leaver, review"
+   ],
+   [
+    1143,
+    "Phishing-resistant authentication, then the legacy cutoff"
+   ],
+   [
+    1198,
+    "The eleven-phase playbook: each phase gated on validation"
+   ],
+   [
+    1252,
+    "Proving it: logs, FedRAMP 20x indicators and drift"
+   ],
+   [
+    1307,
+    "Reference deployment: one estate, five gated phases"
+   ],
+   [
+    1365,
+    "What the assessor receives, and what the agency keeps"
+   ]
+  ]
  },
  {
   "id": "B03_HR_Identity_Executive_Narrated",
@@ -149,7 +1085,85 @@
   "youtube": null,
   "vtt": "presentations/b03-hr-identity-executive/B03_HR_Identity_Executive_Narrated.vtt",
   "deck": "presentations/b03-hr-identity-executive/B03_HR_Identity_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity-executive/B03_HR_Identity_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity-executive/B03_HR_Identity_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "HR-Driven Identity: the executive briefing"
+   ],
+   [
+    51,
+    "Book 03 is the HR track: people, from their records"
+   ],
+   [
+    103,
+    "Access now runs on employee data"
+   ],
+   [
+    153,
+    "Why orphans keep coming back: no channel from HR"
+   ],
+   [
+    202,
+    "Federal HR 2.0: the window closes at interconnection"
+   ],
+   [
+    251,
+    "One owner per fact: the attribute authority map"
+   ],
+   [
+    299,
+    "One person, one key, through every source change"
+   ],
+   [
+    347,
+    "Map to OPM's standards once, not to vendor fields"
+   ],
+   [
+    398,
+    "The provisioning pipeline, at decision level"
+   ],
+   [
+    450,
+    "Owners, users and guards of workforce identity"
+   ],
+   [
+    501,
+    "Who decides what for workforce identity"
+   ],
+   [
+    550,
+    "Privacy and PIV: guards with clocks of their own"
+   ],
+   [
+    598,
+    "Joiner, mover, leaver: by code, not by ticket"
+   ],
+   [
+    648,
+    "Block first, then reconcile every credential"
+   ],
+   [
+    700,
+    "Contractors: the source decision is still open"
+   ],
+   [
+    753,
+    "Seven gated phases, and the feed Gate G1 needs"
+   ],
+   [
+    799,
+    "Cut over one population at a time, then close tickets"
+   ],
+   [
+    847,
+    "How you'll know it works: six numbers"
+   ],
+   [
+    894,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B03_HR_Identity_Narrated",
@@ -160,7 +1174,57 @@
   "youtube": null,
   "vtt": "presentations/b03-hr-identity/B03_HR_Identity_Narrated.vtt",
   "deck": "presentations/b03-hr-identity/B03_HR_Identity_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity/B03_HR_Identity_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity/B03_HR_Identity_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Should HR Decide Who Exists?"
+   ],
+   [
+    40,
+    "Book 03 is the HR track: people, from their records"
+   ],
+   [
+    91,
+    "Identity is built by hand, and the mission is outgrowing it"
+   ],
+   [
+    149,
+    "Why now: two migrations open one design window"
+   ],
+   [
+    216,
+    "Four options, weighed against what leadership must balance"
+   ],
+   [
+    281,
+    "One owner per fact, one model, one person key"
+   ],
+   [
+    341,
+    "Provisioning: personnel records in, governed identities out"
+   ],
+   [
+    404,
+    "Who owns, who uses, who guards"
+   ],
+   [
+    465,
+    "Personnel actions drive joiner, mover and leaver"
+   ],
+   [
+    522,
+    "From attributes to access, with evidence built in"
+   ],
+   [
+    582,
+    "Seven phases, each gate the next phase's precondition"
+   ],
+   [
+    639,
+    "How we'll know it works, and what we need"
+   ]
+  ]
  },
  {
   "id": "B03_HR_Identity_Technical_Narrated",
@@ -171,7 +1235,137 @@
   "youtube": null,
   "vtt": "presentations/b03-hr-identity-technical/B03_HR_Identity_Technical_Narrated.vtt",
   "deck": "presentations/b03-hr-identity-technical/B03_HR_Identity_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity-technical/B03_HR_Identity_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b03-hr-identity-technical/B03_HR_Identity_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "HR-Driven Identity: the technical deep dive"
+   ],
+   [
+    43,
+    "This is the HR track: what it moves and how you know"
+   ],
+   [
+    93,
+    "Why this matters: a token can't prove the claim is true"
+   ],
+   [
+    134,
+    "The architecture, the boundaries and the principles"
+   ],
+   [
+    176,
+    "Module 1: Attribute authority and the canonical schema"
+   ],
+   [
+    200,
+    "One master per attribute: the authority map"
+   ],
+   [
+    240,
+    "One person, layered identifiers, one key decision"
+   ],
+   [
+    284,
+    "OPM standards are the contract, not vendor fields"
+   ],
+   [
+    327,
+    "The crosswalk: native attributes first, three coded slots"
+   ],
+   [
+    373,
+    "The program attribute map, and one writer per slot"
+   ],
+   [
+    410,
+    "Module 2: The provisioning pipeline"
+   ],
+   [
+    432,
+    "Federal HR 2.0: the window and what SCIM covers"
+   ],
+   [
+    480,
+    "Logical architecture, replaceable Microsoft realization"
+   ],
+   [
+    524,
+    "Oracle source surfaces and five duties per event"
+   ],
+   [
+    565,
+    "The /bulkUpload contract: limits, rights and licenses"
+   ],
+   [
+    604,
+    "Two landing zones across the Entra ID migration"
+   ],
+   [
+    651,
+    "Module 3: Lifecycle, credentials and access"
+   ],
+   [
+    675,
+    "Personnel actions are the triggers, by NOA family"
+   ],
+   [
+    723,
+    "Provisioning creates accounts; workflows act on them"
+   ],
+   [
+    766,
+    "Binding the PIV card: certificateUserIds and its writer"
+   ],
+   [
+    812,
+    "Revocation: CRLs, device certificates and reissue traps"
+   ],
+   [
+    854,
+    "The leaver sequence: block first, reconcile to the end"
+   ],
+   [
+    900,
+    "From attributes to access, and where rules stop"
+   ],
+   [
+    947,
+    "Module 4: Evidence, ownership and the execution plan"
+   ],
+   [
+    969,
+    "Six lifecycle metrics, and the drift classes behind them"
+   ],
+   [
+    1012,
+    "Evidence that outlives the account"
+   ],
+   [
+    1051,
+    "Control support, not control closure"
+   ],
+   [
+    1089,
+    "Who owns workforce identity: one decider per row"
+   ],
+   [
+    1130,
+    "Seven phases, and the HR feed Gate G1 needs"
+   ],
+   [
+    1175,
+    "Cutover: prove HR is the sole source, then close tickets"
+   ],
+   [
+    1214,
+    "Contractors: the source-of-authority decision still open"
+   ],
+   [
+    1257,
+    "Decisions to make, and next steps for HR-driven identity"
+   ]
+  ]
  },
  {
   "id": "B04_Access_Executive_Narrated",
@@ -182,7 +1376,85 @@
   "youtube": null,
   "vtt": "presentations/b04-access-executive/B04_Access_Executive_Narrated.vtt",
   "deck": "presentations/b04-access-executive/B04_Access_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access-executive/B04_Access_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access-executive/B04_Access_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Access & Privilege: the executive briefing"
+   ],
+   [
+    44,
+    "Every access decision is a policy decision"
+   ],
+   [
+    93,
+    "Membership and location decide once; policy, every time"
+   ],
+   [
+    144,
+    "Standing privilege is an open door"
+   ],
+   [
+    192,
+    "What least privilege requires, and what policy says"
+   ],
+   [
+    242,
+    "The Conditional Access baseline, built to BOD 25-01"
+   ],
+   [
+    296,
+    "Phishing-resistant MFA is the end state"
+   ],
+   [
+    344,
+    "Policies come in pairs, and Microsoft adds its own"
+   ],
+   [
+    392,
+    "Privileged roles are tiered by what they can take over"
+   ],
+   [
+    444,
+    "Just in time, approved from outside the tier"
+   ],
+   [
+    492,
+    "Four things that can quietly undo the gate"
+   ],
+   [
+    540,
+    "Break-glass: the one governed exception"
+   ],
+   [
+    595,
+    "Deciding isn't doing: rules Entra doesn't enforce"
+   ],
+   [
+    641,
+    "Application risk tiers set the approval chain"
+   ],
+   [
+    690,
+    "Applications are identities, with owners and an end"
+   ],
+   [
+    738,
+    "Who decides what for access"
+   ],
+   [
+    787,
+    "Govern access with packages, reviews and expiry"
+   ],
+   [
+    835,
+    "Access as code, and the evidence it leaves"
+   ],
+   [
+    882,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B04_Access_Narrated",
@@ -193,7 +1465,49 @@
   "youtube": null,
   "vtt": "presentations/b04-access/B04_Access_Narrated.vtt",
   "deck": "presentations/b04-access/B04_Access_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access/B04_Access_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access/B04_Access_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Is Every Access Decision a Policy Decision?"
+   ],
+   [
+    41,
+    "Access is decided per request, by policy"
+   ],
+   [
+    103,
+    "Standing privilege is an open door"
+   ],
+   [
+    161,
+    "What Conditional Access evaluates"
+   ],
+   [
+    223,
+    "Privilege and applications, structured"
+   ],
+   [
+    278,
+    "Who decides access, and who executes it"
+   ],
+   [
+    333,
+    "The policy library, rolled out in waves"
+   ],
+   [
+    393,
+    "PIM: eligible, requested, approved, logged"
+   ],
+   [
+    448,
+    "Govern access, manage it as code, prove it"
+   ],
+   [
+    501,
+    "What we need"
+   ]
+  ]
  },
  {
   "id": "B04_Access_Technical_Narrated",
@@ -204,7 +1518,121 @@
   "youtube": null,
   "vtt": "presentations/b04-access-technical/B04_Access_Technical_Narrated.vtt",
   "deck": "presentations/b04-access-technical/B04_Access_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access-technical/B04_Access_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b04-access-technical/B04_Access_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Access & Privilege: The Technical Deep Dive"
+   ],
+   [
+    51,
+    "Every access decision is a policy decision"
+   ],
+   [
+    107,
+    "How Conditional Access computes the decision"
+   ],
+   [
+    161,
+    "Module 1 — The Conditional Access policy library"
+   ],
+   [
+    185,
+    "One library, numbered once"
+   ],
+   [
+    240,
+    "Personas decide who each policy reaches"
+   ],
+   [
+    297,
+    "Five enforcement waves, CA001 to CA090"
+   ],
+   [
+    354,
+    "Why the library looks like this: BOD 25-01"
+   ],
+   [
+    413,
+    "Module 2 — Rollout, exclusions and break-glass"
+   ],
+   [
+    436,
+    "Every policy passes the same gates"
+   ],
+   [
+    491,
+    "Reading report-only, rolling back without deleting"
+   ],
+   [
+    544,
+    "Exclusions are governed objects"
+   ],
+   [
+    597,
+    "Break-glass: the one standing exception"
+   ],
+   [
+    652,
+    "Monitoring: what the sign-in logs must show"
+   ],
+   [
+    703,
+    "Module 3 — PIM self-request with approval"
+   ],
+   [
+    723,
+    "Eligible, requested, approved: the activation gate"
+   ],
+   [
+    778,
+    "Activation controls, set per role and by tier"
+   ],
+   [
+    831,
+    "Build it in order: emergency access first"
+   ],
+   [
+    884,
+    "Approvers, alerts and the record PIM leaves"
+   ],
+   [
+    938,
+    "Module 4 — Access governance"
+   ],
+   [
+    959,
+    "Access packages: who requests, who approves, how long"
+   ],
+   [
+    1014,
+    "Reviews on a calendar, removals by default"
+   ],
+   [
+    1069,
+    "Lifecycle events and guest access"
+   ],
+   [
+    1126,
+    "Module 5 — Access as code, and the evidence"
+   ],
+   [
+    1146,
+    "One file per object, one writer per class"
+   ],
+   [
+    1198,
+    "Change control, and closing drift at the source"
+   ],
+   [
+    1253,
+    "What the assessor reads"
+   ],
+   [
+    1307,
+    "Taking it back to the tenant"
+   ]
+  ]
  },
  {
   "id": "B05_Devices_Executive_Narrated",
@@ -215,7 +1643,93 @@
   "youtube": null,
   "vtt": "presentations/b05-devices-executive/B05_Devices_Executive_Narrated.vtt",
   "deck": "presentations/b05-devices-executive/B05_Devices_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices-executive/B05_Devices_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices-executive/B05_Devices_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Devices & Endpoints: the executive briefing"
+   ],
+   [
+    43,
+    "Book 05 is the Intune and Arc tracks: devices, servers"
+   ],
+   [
+    90,
+    "What Intune and Arc cover, and the strategy for the rest"
+   ],
+   [
+    144,
+    "Group Policy governed by position; the cloud has none"
+   ],
+   [
+    188,
+    "Running both isn't a safe middle ground"
+   ],
+   [
+    234,
+    "Hybrid join is a waypoint, not a destination"
+   ],
+   [
+    283,
+    "What an ungoverned flip loses, and never covers"
+   ],
+   [
+    335,
+    "Each fact about a device has one source"
+   ],
+   [
+    381,
+    "Intune-first: no ungoverned device, ever"
+   ],
+   [
+    429,
+    "Compliance is the access signal; make it fail closed"
+   ],
+   [
+    478,
+    "The device that can't enroll is a governed exception"
+   ],
+   [
+    526,
+    "Three paths to one governed end state"
+   ],
+   [
+    572,
+    "Who owns the endpoint: deciding isn't doing"
+   ],
+   [
+    620,
+    "Who decides what for devices and servers"
+   ],
+   [
+    670,
+    "Sunset Group Policy setting by setting"
+   ],
+   [
+    719,
+    "Seven phases, about 34 weeks, each with a gate"
+   ],
+   [
+    770,
+    "Servers come under governance through Azure Arc"
+   ],
+   [
+    821,
+    "The support dates that bind the fleet now"
+   ],
+   [
+    873,
+    "Update rings set the patch clock"
+   ],
+   [
+    921,
+    "Run the fleet on records, and retire it in order"
+   ],
+   [
+    967,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B05_Devices_Narrated",
@@ -226,7 +1740,61 @@
   "youtube": null,
   "vtt": "presentations/b05-devices/B05_Devices_Narrated.vtt",
   "deck": "presentations/b05-devices/B05_Devices_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices/B05_Devices_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices/B05_Devices_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Can't Group Policy Come to the Cloud?"
+   ],
+   [
+    47,
+    "Book 05 is the Intune and Arc tracks: devices, servers"
+   ],
+   [
+    94,
+    "What Intune and Arc cover, and the strategy for the rest"
+   ],
+   [
+    149,
+    "Group Policy governed by position. Intune has no position."
+   ],
+   [
+    204,
+    "Hybrid join is a waypoint, not a destination"
+   ],
+   [
+    261,
+    "Devices and servers take different roads"
+   ],
+   [
+    318,
+    "Intune-first: no ungoverned device, ever"
+   ],
+   [
+    380,
+    "Three paths to the same governed state"
+   ],
+   [
+    437,
+    "Who decides, who does the work for the endpoint"
+   ],
+   [
+    499,
+    "Sunset Group Policy as a program, setting by setting"
+   ],
+   [
+    557,
+    "Migrate the fleet in seven phases, about 34 weeks"
+   ],
+   [
+    615,
+    "Servers under Azure Arc, and the dates that matter"
+   ],
+   [
+    672,
+    "Run it, prove it, and what we need"
+   ]
+  ]
  },
  {
   "id": "B05_Devices_Technical_Narrated",
@@ -237,7 +1805,137 @@
   "youtube": null,
   "vtt": "presentations/b05-devices-technical/B05_Devices_Technical_Narrated.vtt",
   "deck": "presentations/b05-devices-technical/B05_Devices_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices-technical/B05_Devices_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b05-devices-technical/B05_Devices_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Devices & Endpoints: the technical deep dive"
+   ],
+   [
+    53,
+    "Book 05 is the Intune and Arc tracks: devices, servers"
+   ],
+   [
+    101,
+    "Why Group Policy can't come to the cloud"
+   ],
+   [
+    155,
+    "The hybrid-join trap, and where each device fact lives"
+   ],
+   [
+    212,
+    "Module 1: Intune-first onboarding and the paths"
+   ],
+   [
+    234,
+    "Intune-first: five pillars and a five-phase process"
+   ],
+   [
+    287,
+    "Which end-user platforms Intune covers, and how"
+   ],
+   [
+    338,
+    "Windows in a GCC tenant: Autopilot or device preparation"
+   ],
+   [
+    392,
+    "Carrying the purchase order to the device's configuration"
+   ],
+   [
+    447,
+    "The day-zero baseline, and the four exception paths"
+   ],
+   [
+    500,
+    "Three paths to one end state: governed, manual and retrofit"
+   ],
+   [
+    556,
+    "The runbook's sharp edges: precedence, NTLM and SPNs"
+   ],
+   [
+    616,
+    "Module 2: The GPO sunset and policy migration"
+   ],
+   [
+    639,
+    "The sunset pipeline and Group Policy analytics"
+   ],
+   [
+    692,
+    "Classify, then dispose: tags, questions, landing zones"
+   ],
+   [
+    742,
+    "Coexistence: who wins while GPOs and Intune both apply"
+   ],
+   [
+    799,
+    "Seven phases at working level: durations, gates and waves"
+   ],
+   [
+    853,
+    "The policy library: attribute targeting and the compliance set"
+   ],
+   [
+    910,
+    "Endpoint security settings, and the crosswalk traps"
+   ],
+   [
+    964,
+    "Module 3: Servers under Azure Arc"
+   ],
+   [
+    983,
+    "What Arc changes, and what it doesn't"
+   ],
+   [
+    1038,
+    "Which servers Arc reaches, and four tiers for the rest"
+   ],
+   [
+    1090,
+    "Before you onboard: roles, network, tags and images"
+   ],
+   [
+    1144,
+    "Onboarding a wave with a least-privileged principal"
+   ],
+   [
+    1195,
+    "The day-one baseline: configuration, patching and protection"
+   ],
+   [
+    1246,
+    "Extended Security Updates, Entra ID sign-in and rollback"
+   ],
+   [
+    1303,
+    "Module 4: Operating and evidencing the fleet"
+   ],
+   [
+    1323,
+    "Making the compliance signal accurate"
+   ],
+   [
+    1375,
+    "Windows updates: rings, Autopatch and version currency"
+   ],
+   [
+    1429,
+    "Reconciling three inventories, and retiring a device in order"
+   ],
+   [
+    1482,
+    "Drift detection: what the logs can tell you, and when"
+   ],
+   [
+    1533,
+    "The evidence an assessor reads, and the GCC boundary facts"
+   ]
+  ]
  },
  {
   "id": "B06_Data_Platform_Executive_Narrated",
@@ -248,7 +1946,89 @@
   "youtube": null,
   "vtt": "presentations/b06-data-platform-executive/B06_Data_Platform_Executive_Narrated.vtt",
   "deck": "presentations/b06-data-platform-executive/B06_Data_Platform_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform-executive/B06_Data_Platform_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform-executive/B06_Data_Platform_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "SQL Server Identity: the executive briefing"
+   ],
+   [
+    49,
+    "The database is where legacy authentication hides"
+   ],
+   [
+    95,
+    "Silent NTLM fallback is invisible until measured"
+   ],
+   [
+    139,
+    "Three drivers end it; 2027-04-01 is the program's date"
+   ],
+   [
+    188,
+    "Count the estate before deciding anything"
+   ],
+   [
+    235,
+    "Retain, consolidate or retire gates everything"
+   ],
+   [
+    281,
+    "The audit sorts survivors into three categories"
+   ],
+   [
+    327,
+    "The target: every connection carries an Entra token"
+   ],
+   [
+    372,
+    "Five positions the engine decision settles"
+   ],
+   [
+    424,
+    "Where it runs, and what it costs"
+   ],
+   [
+    472,
+    "Access is now decided in five places"
+   ],
+   [
+    517,
+    "DBAs run the engine; application owners own the chain"
+   ],
+   [
+    562,
+    "Privileged steps sit outside the DBA team on purpose"
+   ],
+   [
+    606,
+    "Applications are the other half of the chain"
+   ],
+   [
+    646,
+    "NTLM: discover, restrict, then block on 2027-04-01"
+   ],
+   [
+    698,
+    "Certificates the AD CS retirement plan can't see"
+   ],
+   [
+    750,
+    "Done means five conditions, proven continuously"
+   ],
+   [
+    796,
+    "Risks that can still derail the schedule"
+   ],
+   [
+    841,
+    "The platform question comes after, per data domain"
+   ],
+   [
+    889,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B06_Data_Platform_Narrated",
@@ -259,7 +2039,53 @@
   "youtube": null,
   "vtt": "presentations/b06-data-platform/B06_Data_Platform_Narrated.vtt",
   "deck": "presentations/b06-data-platform/B06_Data_Platform_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform/B06_Data_Platform_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform/B06_Data_Platform_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Is the Database Where Legacy Authentication Hides?"
+   ],
+   [
+    40,
+    "SQL Server trusts whatever Windows tells it"
+   ],
+   [
+    92,
+    "Three drivers, and what is really due in 2027"
+   ],
+   [
+    157,
+    "Rationalize the estate before migrating it"
+   ],
+   [
+    212,
+    "Azure Arc gives each instance an Entra identity"
+   ],
+   [
+    273,
+    "Logins move to Entra principals, in parallel"
+   ],
+   [
+    333,
+    "Who decides, who does the work for the data platform"
+   ],
+   [
+    396,
+    "Eliminate NTLM in three phases"
+   ],
+   [
+    461,
+    "Access by attribute, applications by driver"
+   ],
+   [
+    519,
+    "Closure is a posture you keep proving"
+   ],
+   [
+    582,
+    "What we need"
+   ]
+  ]
  },
  {
   "id": "B06_Data_Platform_Technical_Narrated",
@@ -270,7 +2096,121 @@
   "youtube": null,
   "vtt": "presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narrated.vtt",
   "deck": "presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "SQL Server Identity: Strategy and the DBA Runbooks"
+   ],
+   [
+    53,
+    "Module 1 — The inheritance and the estate"
+   ],
+   [
+    72,
+    "Windows Authentication, precisely"
+   ],
+   [
+    125,
+    "Three drivers end it; four 2027 dates are real"
+   ],
+   [
+    180,
+    "Inventory, rationalize, then gate"
+   ],
+   [
+    234,
+    "Module 2 — The audit, the principals and the decision"
+   ],
+   [
+    254,
+    "What the authentication audit reads"
+   ],
+   [
+    297,
+    "Arc eligibility: three categories, two layers"
+   ],
+   [
+    355,
+    "Three principal types replace Windows logins"
+   ],
+   [
+    412,
+    "The parallel run and the five decisions"
+   ],
+   [
+    463,
+    "Module 3 — NTLM, applications and closure"
+   ],
+   [
+    483,
+    "Four patterns that generate NTLM"
+   ],
+   [
+    534,
+    "Discover, restrict, eliminate"
+   ],
+   [
+    589,
+    "Applications: four classes, two axes"
+   ],
+   [
+    643,
+    "Closure: five conditions, held continuously"
+   ],
+   [
+    697,
+    "Module 4 — Runbooks R01–R05: inventory to Entra logins"
+   ],
+   [
+    720,
+    "R01 — Prerequisites and the evidence model"
+   ],
+   [
+    773,
+    "R02 — Estate discovery and the consolidation gate"
+   ],
+   [
+    831,
+    "R03 — The authentication audit"
+   ],
+   [
+    884,
+    "R04 — Arc deployment and the managed identity"
+   ],
+   [
+    936,
+    "R05 — Login migration and the parallel run"
+   ],
+   [
+    991,
+    "Module 5 — Runbooks R06–R10: NTLM to certificates"
+   ],
+   [
+    1015,
+    "R06 — NTLM detection and remediation"
+   ],
+   [
+    1074,
+    "R07 — Groups, admin units and the CA perimeter"
+   ],
+   [
+    1129,
+    "R08 — Application chain and connection strings"
+   ],
+   [
+    1183,
+    "R09 — Continuous monitoring and closure"
+   ],
+   [
+    1238,
+    "R10 — Certificate discovery for AD CS"
+   ],
+   [
+    1294,
+    "What to take back to the estate"
+   ]
+  ]
  },
  {
   "id": "B07_PKI_Executive_Narrated",
@@ -281,7 +2221,81 @@
   "youtube": null,
   "vtt": "presentations/b07-pki-executive/B07_PKI_Executive_Narrated.vtt",
   "deck": "presentations/b07-pki-executive/B07_PKI_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki-executive/B07_PKI_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki-executive/B07_PKI_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "PKI & Certificates: the executive briefing"
+   ],
+   [
+    48,
+    "A certificate keeps working after its directory moves"
+   ],
+   [
+    93,
+    "Two clocks: cutover dates and expiry dates"
+   ],
+   [
+    137,
+    "Lifetimes are shrinking on a fixed public schedule"
+   ],
+   [
+    185,
+    "First, inventory what AD CS actually holds up"
+   ],
+   [
+    230,
+    "Harden what stays before anything migrates"
+   ],
+   [
+    275,
+    "The target is four issuers, not one replacement"
+   ],
+   [
+    320,
+    "Anchor to the existing root, and keep its CRL alive"
+   ],
+   [
+    365,
+    "Servers renew through one lifecycle platform"
+   ],
+   [
+    414,
+    "PIV and certificate sign-in: trust, not issue"
+   ],
+   [
+    460,
+    "No one decided who owns the CA; now name one per row"
+   ],
+   [
+    510,
+    "Four permission systems, one access model"
+   ],
+   [
+    558,
+    "Six gated waves, each with a tested rollback"
+   ],
+   [
+    604,
+    "Coexistence: both PKIs are production"
+   ],
+   [
+    648,
+    "Monitoring turns expiries into signals, not outages"
+   ],
+   [
+    694,
+    "Retire AD CS last, CA by CA, with evidence"
+   ],
+   [
+    741,
+    "Risks that turn into outages or findings"
+   ],
+   [
+    789,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B07_PKI_Narrated",
@@ -292,7 +2306,61 @@
   "youtube": null,
   "vtt": "presentations/b07-pki/B07_PKI_Narrated.vtt",
   "deck": "presentations/b07-pki/B07_PKI_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki/B07_PKI_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki/B07_PKI_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Do Certificates Outlive Every Migration?"
+   ],
+   [
+    48,
+    "Certificates fail at expiry, not at cutover"
+   ],
+   [
+    103,
+    "The rules are moving under certificates already issued"
+   ],
+   [
+    169,
+    "What AD CS holds up, and the four verdicts"
+   ],
+   [
+    229,
+    "Harden what stays before anything moves"
+   ],
+   [
+    284,
+    "Four issuers, each for what only it can serve"
+   ],
+   [
+    351,
+    "One lifecycle platform: CyberArk Certificate Manager"
+   ],
+   [
+    413,
+    "Who decides, who does the work for certificates"
+   ],
+   [
+    475,
+    "Intune delivers the certificate, strongly mapped"
+   ],
+   [
+    539,
+    "Entra CBA validates certificates; it issues none"
+   ],
+   [
+    603,
+    "Run both PKIs, then migrate in six gated waves"
+   ],
+   [
+    663,
+    "Keep it renewed and checkable, then retire AD CS last"
+   ],
+   [
+    729,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B07_PKI_Technical_Narrated",
@@ -303,7 +2371,129 @@
   "youtube": null,
   "vtt": "presentations/b07-pki-technical/B07_PKI_Technical_Narrated.vtt",
   "deck": "presentations/b07-pki-technical/B07_PKI_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki-technical/B07_PKI_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b07-pki-technical/B07_PKI_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "PKI & Certificates: the technical deep dive"
+   ],
+   [
+    53,
+    "Why this matters: certificates fail at expiry, not at cutover"
+   ],
+   [
+    104,
+    "What AD CS holds up, and the four verdicts"
+   ],
+   [
+    158,
+    "Module 1: Hardening what stays"
+   ],
+   [
+    178,
+    "The gate, and where the misconfigurations live"
+   ],
+   [
+    234,
+    "Template classes ESC1–ESC4: detect and fix"
+   ],
+   [
+    286,
+    "Directory and CA classes ESC5–ESC8, then ESC11 and ESC15"
+   ],
+   [
+    340,
+    "Turn on CA auditing, then watch the baseline events"
+   ],
+   [
+    392,
+    "The risk-scoring matrix, and what closed means"
+   ],
+   [
+    446,
+    "Hardening baselines: retained AD CS, Cloud PKI and Entra CBA"
+   ],
+   [
+    497,
+    "Module 2: The target PKI"
+   ],
+   [
+    521,
+    "Microsoft Cloud PKI: what it can and can't issue"
+   ],
+   [
+    576,
+    "Two ways to anchor trust: a cloud root or bring-your-own-CA"
+   ],
+   [
+    624,
+    "The deployment-model decision, and the program's choice"
+   ],
+   [
+    677,
+    "What AD CS is kept for, and who issues server certificates"
+   ],
+   [
+    732,
+    "Federal PKI for PIV, and one lifecycle platform"
+   ],
+   [
+    786,
+    "Module 3: Device and user certificates"
+   ],
+   [
+    807,
+    "Three delivery paths, one trusted certificate profile first"
+   ],
+   [
+    859,
+    "NDES and the connector, and which profile for which use"
+   ],
+   [
+    912,
+    "Strong certificate mapping: Full Enforcement is the present"
+   ],
+   [
+    968,
+    "Entra CBA: the sign-in, the trust store and revocation"
+   ],
+   [
+    1020,
+    "Username bindings, affinity and factors"
+   ],
+   [
+    1072,
+    "Staged rollout, and moving off AD FS"
+   ],
+   [
+    1124,
+    "Module 4: Coexistence, migration and retirement"
+   ],
+   [
+    1145,
+    "Coexistence: five rules and trust in both directions"
+   ],
+   [
+    1198,
+    "CRL availability: outages are revocation outages"
+   ],
+   [
+    1253,
+    "Six gated waves, each with a tested rollback"
+   ],
+   [
+    1309,
+    "The template matrix: classify by what was actually issued"
+   ],
+   [
+    1362,
+    "Renewal at scale, monitoring and drift"
+   ],
+   [
+    1416,
+    "Retire AD CS last, and hand the assessor the evidence"
+   ]
+  ]
  },
  {
   "id": "B08_DDI_Executive_Narrated",
@@ -314,7 +2504,85 @@
   "youtube": null,
   "vtt": "presentations/b08-ddi-executive/B08_DDI_Executive_Narrated.vtt",
   "deck": "presentations/b08-ddi-executive/B08_DDI_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi-executive/B08_DDI_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi-executive/B08_DDI_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "DNS, DHCP & IPAM: the executive briefing"
+   ],
+   [
+    51,
+    "DNS now decides far more than an address"
+   ],
+   [
+    97,
+    "Several platforms, no shared state: split-brain"
+   ],
+   [
+    143,
+    "Encrypted and Protective DNS are requirements"
+   ],
+   [
+    194,
+    "Logging, DNSSEC and IPv6 complete the floor"
+   ],
+   [
+    243,
+    "Leaving AD DNS is an inventory problem first"
+   ],
+   [
+    288,
+    "Where a query slips past agency policy"
+   ],
+   [
+    335,
+    "Certificates and tokens fail when names do"
+   ],
+   [
+    380,
+    "IPAM is the address record of the estate"
+   ],
+   [
+    425,
+    "Five settings carry almost all of the risk"
+   ],
+   [
+    471,
+    "Choosing the platform and the source of truth"
+   ],
+   [
+    516,
+    "One decider per decision, named on purpose"
+   ],
+   [
+    563,
+    "Who decides what for DNS, DHCP and IPAM"
+   ],
+   [
+    609,
+    "Most record changes need no change board"
+   ],
+   [
+    655,
+    "Six phases, each closed by its evidence"
+   ],
+   [
+    700,
+    "AD DNS retires through gates, not on a date"
+   ],
+   [
+    747,
+    "Operate it as one plane, and prove it"
+   ],
+   [
+    792,
+    "Price the meters; keep the residual risk on record"
+   ],
+   [
+    836,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B08_DDI_Narrated",
@@ -325,7 +2593,65 @@
   "youtube": null,
   "vtt": "presentations/b08-ddi/B08_DDI_Narrated.vtt",
   "deck": "presentations/b08-ddi/B08_DDI_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi/B08_DDI_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi/B08_DDI_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Is DNS Now the Control Plane?"
+   ],
+   [
+    46,
+    "DNS now does six jobs it was never designed for"
+   ],
+   [
+    106,
+    "Split-brain DNS fails quietly, as something else"
+   ],
+   [
+    164,
+    "The mandates name no product, but describe one layer"
+   ],
+   [
+    229,
+    "Entra ID inherits none of what AD DNS does"
+   ],
+   [
+    285,
+    "Three ways a query escapes the governed path"
+   ],
+   [
+    341,
+    "Every certificate check starts with a DNS lookup"
+   ],
+   [
+    401,
+    "Forward the public zone to one point in Azure"
+   ],
+   [
+    457,
+    "One governed path, five decisions that fail silently"
+   ],
+   [
+    515,
+    "Who decides, who does the work for DNS, DHCP and IPAM"
+   ],
+   [
+    577,
+    "Six phases, one cutover loop, rollback at every step"
+   ],
+   [
+    638,
+    "Operate it as one plane, and keep the evidence"
+   ],
+   [
+    698,
+    "Choose on evidence, price the meters, record the risk"
+   ],
+   [
+    760,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B08_DDI_Technical_Narrated",
@@ -336,7 +2662,125 @@
   "youtube": null,
   "vtt": "presentations/b08-ddi-technical/B08_DDI_Technical_Narrated.vtt",
   "deck": "presentations/b08-ddi-technical/B08_DDI_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi-technical/B08_DDI_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi-technical/B08_DDI_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "DNS, DHCP & IPAM: the technical deep dive"
+   ],
+   [
+    53,
+    "Why this matters: DNS now decides far more than an address"
+   ],
+   [
+    111,
+    "What the mandates require, and the sequence that meets them"
+   ],
+   [
+    172,
+    "Module 1: Split-brain DNS and the AD DNS departure"
+   ],
+   [
+    196,
+    "Split-brain: same name, different answers, and no error"
+   ],
+   [
+    248,
+    "AD-integrated DNS: seven components, seven decisions"
+   ],
+   [
+    304,
+    "Locator records: what Netlogon registers, what fails"
+   ],
+   [
+    361,
+    "Secure dynamic updates, and the DHCP server's part in them"
+   ],
+   [
+    416,
+    "What Entra ID doesn't carry, and what to reprovision"
+   ],
+   [
+    469,
+    "Module 2: Edge interception, DNS identity and DNSSEC"
+   ],
+   [
+    492,
+    "SD-WAN redirect-dns: the destination decides policy"
+   ],
+   [
+    547,
+    "Encrypted DNS: terminate at agency resolvers"
+   ],
+   [
+    605,
+    "Rogue DHCP and router advertisements"
+   ],
+   [
+    659,
+    "DNS identity: certificate and token failures"
+   ],
+   [
+    711,
+    "DNSSEC: sign external zones, validate on resolvers"
+   ],
+   [
+    766,
+    "Operating DNSSEC and moving signed zones"
+   ],
+   [
+    818,
+    "Module 3: Private endpoints, IPAM and the reference architecture"
+   ],
+   [
+    838,
+    "Four private DNS models, and Azure private endpoints"
+   ],
+   [
+    889,
+    "Forward the public zone; Private Resolver in the hub"
+   ],
+   [
+    941,
+    "IPAM is the authority for address blocks"
+   ],
+   [
+    992,
+    "The governed path, and five decisions that fail silently"
+   ],
+   [
+    1048,
+    "The policy plane, and what federal clouds change"
+   ],
+   [
+    1108,
+    "Module 4: Migration sequence and operating the control plane"
+   ],
+   [
+    1131,
+    "Six phases, each closed by its validation, not by a date"
+   ],
+   [
+    1184,
+    "Phases 1 and 2: sort every component, then coexist"
+   ],
+   [
+    1235,
+    "Phase 3: move zones, scopes and clients, with a way back"
+   ],
+   [
+    1287,
+    "Phases 4 and 5: prove it, then decommission by gate"
+   ],
+   [
+    1338,
+    "Operating the plane: delegation, one API, telemetry"
+   ],
+   [
+    1390,
+    "Keeping it honest: troubleshooting and the evidence checklist"
+   ]
+  ]
  },
  {
   "id": "B09_Network_Executive_Narrated",
@@ -347,7 +2791,73 @@
   "youtube": null,
   "vtt": "presentations/b09-network-executive/B09_Network_Executive_Narrated.vtt",
   "deck": "presentations/b09-network-executive/B09_Network_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network-executive/B09_Network_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network-executive/B09_Network_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Network & Transport: The Executive Decisions"
+   ],
+   [
+    56,
+    "Seven decisions this briefing asks for"
+   ],
+   [
+    132,
+    "Transport is physics; control is compliance"
+   ],
+   [
+    208,
+    "The external clocks are already running"
+   ],
+   [
+    302,
+    "The risk of not acting is not standing still"
+   ],
+   [
+    394,
+    "TIC 3.0 as republished in September 2026"
+   ],
+   [
+    480,
+    "Technology-neutral is not requirement-free"
+   ],
+   [
+    571,
+    "Logging and CISA telemetry after MTIPS"
+   ],
+   [
+    659,
+    "The long interim: the case by elimination"
+   ],
+   [
+    742,
+    "BOD 26-02 makes the refresh the fork in the road"
+   ],
+   [
+    833,
+    "Where to invest, and in what order"
+   ],
+   [
+    921,
+    "Field offices: fix the circuit, not the content"
+   ],
+   [
+    1016,
+    "Network access control: the last Active Directory tie"
+   ],
+   [
+    1105,
+    "One decider per row: the network decision register"
+   ],
+   [
+    1191,
+    "Governor before traffic, boundary before cutover"
+   ],
+   [
+    1271,
+    "Start now: the work that needs no award"
+   ]
+  ]
  },
  {
   "id": "B09_Network_Narrated",
@@ -358,7 +2868,69 @@
   "youtube": null,
   "vtt": "presentations/b09-network/B09_Network_Narrated.vtt",
   "deck": "presentations/b09-network/B09_Network_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network/B09_Network_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network/B09_Network_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Does Physics Decide the Architecture?"
+   ],
+   [
+    39,
+    "Distance sets a latency floor no product moves"
+   ],
+   [
+    94,
+    "Transport is physics; control is compliance"
+   ],
+   [
+    150,
+    "TIC 3.0 sets goals, but it isn't requirement-free"
+   ],
+   [
+    210,
+    "Centralize the truth; let tokens carry the trust"
+   ],
+   [
+    266,
+    "SD-WAN reaches the floor; SASE makes it lawful"
+   ],
+   [
+    324,
+    "On re-routed paths, design around the real list"
+   ],
+   [
+    383,
+    "802.1X proves the device; NPS is the last AD tie"
+   ],
+   [
+    441,
+    "One rule, four branch patterns, five decisions"
+   ],
+   [
+    496,
+    "Who decides, who does the work for the network"
+   ],
+   [
+    555,
+    "The long interim: the refresh is the fork"
+   ],
+   [
+    609,
+    "Field offices: fix the circuit, not the content"
+   ],
+   [
+    665,
+    "Microsoft 365 Optimize: a signed SC-7(4) exception"
+   ],
+   [
+    719,
+    "Governor before traffic, boundary before cutover"
+   ],
+   [
+    780,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B09_Network_Technical_Narrated",
@@ -369,7 +2941,137 @@
   "youtube": null,
   "vtt": "presentations/b09-network-technical/B09_Network_Technical_Narrated.vtt",
   "deck": "presentations/b09-network-technical/B09_Network_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network-technical/B09_Network_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network-technical/B09_Network_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Network & Transport: the technical deep dive"
+   ],
+   [
+    50,
+    "Why this matters: the floor, the pipe and the governor"
+   ],
+   [
+    92,
+    "The order of operations, and where this deck goes"
+   ],
+   [
+    137,
+    "Module 1: TIC 3.0 in practice, and token security"
+   ],
+   [
+    162,
+    "TIC 3.0 as written: four use cases, two hard rules"
+   ],
+   [
+    204,
+    "Technology-neutral, not requirement-free"
+   ],
+   [
+    249,
+    "The branch as boundary: control assertions and SC-8"
+   ],
+   [
+    295,
+    "DNS, logging and CISA telemetry after MTIPS"
+   ],
+   [
+    336,
+    "Policy currency, and why FedRAMP never decides a route"
+   ],
+   [
+    376,
+    "Token security and consistency classes in practice"
+   ],
+   [
+    423,
+    "Module 2: Governed transport and legacy protocols"
+   ],
+   [
+    444,
+    "SD-WAN works the gap above the floor, and the tail"
+   ],
+   [
+    482,
+    "SASE above SD-WAN: who closes which control"
+   ],
+   [
+    522,
+    "Securing the governor before it carries traffic"
+   ],
+   [
+    567,
+    "The governed path, and the records the fabric emits"
+   ],
+   [
+    605,
+    "What breaks on re-routed paths, and what doesn't"
+   ],
+   [
+    651,
+    "A defined domain controller path for every branch"
+   ],
+   [
+    695,
+    "Round trips dominate; egress must be deterministic"
+   ],
+   [
+    739,
+    "Module 3: Network access control after AD"
+   ],
+   [
+    765,
+    "Port admission: 802.1X roles and the EAP choice"
+   ],
+   [
+    807,
+    "NPS is the AD dependency: the replacement options"
+   ],
+   [
+    849,
+    "Posture from Intune: compliance retrieval and CoA"
+   ],
+   [
+    891,
+    "Five policy tiers, MAB and session timers"
+   ],
+   [
+    928,
+    "RADIUS hardening, Wi-Fi and the server certificates"
+   ],
+   [
+    974,
+    "Rollout in four phases, and the controls it closes"
+   ],
+   [
+    1014,
+    "Module 4: Reference architecture and ownership"
+   ],
+   [
+    1037,
+    "One rule: align consistency class with transport class"
+   ],
+   [
+    1075,
+    "Four branch egress patterns, compared"
+   ],
+   [
+    1113,
+    "Five design decisions, and how to check each"
+   ],
+   [
+    1147,
+    "One decider per row: the network responsibility matrix"
+   ],
+   [
+    1184,
+    "An owner per gate, and the boundary-change evidence"
+   ],
+   [
+    1219,
+    "Decisions for the owners, and next steps"
+   ]
+  ]
  },
  {
   "id": "B09_SDWAN_Technical_Narrated",
@@ -380,7 +3082,133 @@
   "youtube": null,
   "vtt": "presentations/b09-sdwan-technical/B09_SDWAN_Technical_Narrated.vtt",
   "deck": "presentations/b09-sdwan-technical/B09_SDWAN_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-sdwan-technical/B09_SDWAN_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-sdwan-technical/B09_SDWAN_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "SD-WAN: the technical deep dive"
+   ],
+   [
+    42,
+    "Why this matters: three layers and one question"
+   ],
+   [
+    81,
+    "Four modules hung on one sequence"
+   ],
+   [
+    121,
+    "Module 1: Transport physics, and what SD-WAN can fix"
+   ],
+   [
+    146,
+    "The floor and the gap: what engineering can reach"
+   ],
+   [
+    182,
+    "Route inflation: the ratio that caps path selection"
+   ],
+   [
+    220,
+    "Lean and bulk: path classes mirror the data layer"
+   ],
+   [
+    262,
+    "Tail tools, and what each one costs"
+   ],
+   [
+    301,
+    "The transport menu: every underlay is a pipe"
+   ],
+   [
+    345,
+    "Module 2: The branch edge and TIC 3.0"
+   ],
+   [
+    374,
+    "What DIA plus SASE still leaves ungoverned"
+   ],
+   [
+    409,
+    "TIC 3.0 at the branch: parity on every path"
+   ],
+   [
+    451,
+    "Placing SASE: geography, listings and the EIS order"
+   ],
+   [
+    491,
+    "Four egress patterns, and choosing one per site"
+   ],
+   [
+    531,
+    "Microsoft 365 Optimize: three sets, one exception"
+   ],
+   [
+    572,
+    "Exemption mechanics: TRv2, egress ranges, three signers"
+   ],
+   [
+    611,
+    "Module 3: Securing and governing the fabric"
+   ],
+   [
+    635,
+    "The governor's attack surface, piece by piece"
+   ],
+   [
+    677,
+    "Step zero, made checkable: the governor's controls"
+   ],
+   [
+    716,
+    "The governed path: leased per intent (proposed)"
+   ],
+   [
+    752,
+    "The fabric's evidence: records, declarations and drift"
+   ],
+   [
+    792,
+    "What the fabric owes the applications riding on it"
+   ],
+   [
+    834,
+    "Module 4: The field-office transformation"
+   ],
+   [
+    860,
+    "The case: 1,500 distribution points, or the WAN"
+   ],
+   [
+    901,
+    "The target: 12 hubs and a 24-DP content tier"
+   ],
+   [
+    944,
+    "Branch tiers and the Year 1 bill of materials"
+   ],
+   [
+    987,
+    "The cost model, and the MPLS number that decides it"
+   ],
+   [
+    1026,
+    "The roadmap, and five gates before the last DP retires"
+   ],
+   [
+    1066,
+    "The long interim, and the refresh fork"
+   ],
+   [
+    1107,
+    "Cost structure, phase inversion and the paired branch"
+   ],
+   [
+    1145,
+    "What to decide, what to evidence, what to start"
+   ]
+  ]
  },
  {
   "id": "B09_SDWAN_Executive_Narrated",
@@ -391,7 +3219,57 @@
   "youtube": null,
   "vtt": "presentations/b09-sdwan-executive/B09_SDWAN_Executive_Narrated.vtt",
   "deck": "presentations/b09-sdwan-executive/B09_SDWAN_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-sdwan-executive/B09_SDWAN_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-sdwan-executive/B09_SDWAN_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "The Field-Office WAN Case: SD-WAN for Executives"
+   ],
+   [
+    34,
+    "The problem: 1,500 servers doing a circuit's job"
+   ],
+   [
+    72,
+    "What SD-WAN fixes, and the floor it can't move"
+   ],
+   [
+    108,
+    "The target: 12 hubs and 24 distribution points"
+   ],
+   [
+    149,
+    "What it costs: about $10 million in Year 1"
+   ],
+   [
+    187,
+    "Five years out, and the one number that decides it"
+   ],
+   [
+    226,
+    "Security: the branch edge becomes a control"
+   ],
+   [
+    267,
+    "The roadmap: hubs first, offices at renewal"
+   ],
+   [
+    310,
+    "A gate, not a date: retiring the last server"
+   ],
+   [
+    345,
+    "Risks, and the assumptions to check first"
+   ],
+   [
+    385,
+    "The decision to ask for"
+   ],
+   [
+    427,
+    "Where to read next"
+   ]
+  ]
  },
  {
   "id": "B10_Cloud_Boundary_Executive_Narrated",
@@ -402,7 +3280,73 @@
   "youtube": null,
   "vtt": "presentations/b10-cloud-boundary-executive/B10_Cloud_Boundary_Executive_Narrated.vtt",
   "deck": "presentations/b10-cloud-boundary-executive/B10_Cloud_Boundary_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary-executive/B10_Cloud_Boundary_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary-executive/B10_Cloud_Boundary_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "What Does the Authorization Boundary Let You Use?"
+   ],
+   [
+    62,
+    "Three checks, three owners decide what you can use"
+   ],
+   [
+    146,
+    "Why the gap stays invisible, and the example corrected"
+   ],
+   [
+    228,
+    "FedRAMP 2026: services are certified, and you still authorize"
+   ],
+   [
+    310,
+    "\"The boundary\" is now four sets of obligations, and yours"
+   ],
+   [
+    391,
+    "Change is notified, not re-approved, and evidence becomes a feed"
+   ],
+   [
+    477,
+    "GCC is the worldwide service, minus a published list"
+   ],
+   [
+    560,
+    "A higher certification class won't bring the features back"
+   ],
+   [
+    644,
+    "One decider per row: who owns the boundary"
+   ],
+   [
+    727,
+    "Five decisions that look like engineering tickets"
+   ],
+   [
+    808,
+    "Three honest responses when a capability is outside"
+   ],
+   [
+    891,
+    "Exceptions: the provider's path, and the rules' limits"
+   ],
+   [
+    976,
+    "The alternative path: change the suite, keep the identity plane"
+   ],
+   [
+    1064,
+    "What to ask a cloud provider for"
+   ],
+   [
+    1151,
+    "Evidence the boundary in your own package"
+   ],
+   [
+    1232,
+    "Five decisions, five owners, and the next step"
+   ]
+  ]
  },
  {
   "id": "B10_Cloud_Boundary_Narrated",
@@ -413,7 +3357,69 @@
   "youtube": null,
   "vtt": "presentations/b10-cloud-boundary/B10_Cloud_Boundary_Narrated.vtt",
   "deck": "presentations/b10-cloud-boundary/B10_Cloud_Boundary_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary/B10_Cloud_Boundary_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary/B10_Cloud_Boundary_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Does the Authorization Boundary Decide What You Can Use?"
+   ],
+   [
+    45,
+    "Three checks, three owners decide what you can use"
+   ],
+   [
+    101,
+    "The invisible boundary, and the example corrected"
+   ],
+   [
+    159,
+    "Four things change across any boundary"
+   ],
+   [
+    216,
+    "FedRAMP 2026: classes, obligations, business days"
+   ],
+   [
+    275,
+    "GCC is the worldwide service, minus a list"
+   ],
+   [
+    334,
+    "The landing zone turns the boundary into policy"
+   ],
+   [
+    389,
+    "The address plan is the join key the evidence needs"
+   ],
+   [
+    448,
+    "The front door: no landing zone without a request"
+   ],
+   [
+    506,
+    "Who decides, who keeps the record, who does the work"
+   ],
+   [
+    563,
+    "Inventory, probe, then compensate or except"
+   ],
+   [
+    616,
+    "Change the suite, keep the identity plane"
+   ],
+   [
+    672,
+    "Write the boundary once; cite it everywhere"
+   ],
+   [
+    728,
+    "What to ask a cloud provider for"
+   ],
+   [
+    773,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B10_Cloud_Boundary_Technical_Narrated",
@@ -424,7 +3430,137 @@
   "youtube": null,
   "vtt": "presentations/b10-cloud-boundary-technical/B10_Cloud_Boundary_Technical_Narrated.vtt",
   "deck": "presentations/b10-cloud-boundary-technical/B10_Cloud_Boundary_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary-technical/B10_Cloud_Boundary_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b10-cloud-boundary-technical/B10_Cloud_Boundary_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Cloud Boundary & Landing Zone: the technical deep dive"
+   ],
+   [
+    38,
+    "Why this matters: the license is not the boundary"
+   ],
+   [
+    80,
+    "Module 1: Why the boundary decides"
+   ],
+   [
+    100,
+    "Three checks, three owners, one overlap you can use"
+   ],
+   [
+    141,
+    "Why the boundary stays invisible, and a claim corrected"
+   ],
+   [
+    183,
+    "Four dimensions change across any boundary"
+   ],
+   [
+    223,
+    "FedRAMP 2026: services are certified; agencies authorize"
+   ],
+   [
+    268,
+    "Minimum Assessment Scope: a data test, per resource"
+   ],
+   [
+    308,
+    "Change is notified, not re-approved; data becomes a feed"
+   ],
+   [
+    348,
+    "Module 2: GCC, the gap and three responses"
+   ],
+   [
+    368,
+    "GCC is the worldwide service minus a published list"
+   ],
+   [
+    410,
+    "The largest documented loss: network observability"
+   ],
+   [
+    452,
+    "Three packages, and why High won't bring features back"
+   ],
+   [
+    492,
+    "Work the gap as a list: register, probe, equivalent"
+   ],
+   [
+    530,
+    "Exceptions, scope arguments and buying the capability"
+   ],
+   [
+    571,
+    "Change the suite, keep the identity plane"
+   ],
+   [
+    613,
+    "Module 3: Landing zone and front door"
+   ],
+   [
+    631,
+    "The hierarchy is where boundary policy lands"
+   ],
+   [
+    671,
+    "Five boundary decisions, five enforced mechanisms"
+   ],
+   [
+    714,
+    "AWS, GovCloud and automation that declares its boundary"
+   ],
+   [
+    764,
+    "The address plan: the denominator every inventory needs"
+   ],
+   [
+    802,
+    "Mirror the authority, enforce the pool"
+   ],
+   [
+    841,
+    "Network as code: five modules in dependency order"
+   ],
+   [
+    882,
+    "The front door: six steps from request to closed change"
+   ],
+   [
+    924,
+    "Building the loop, and why the pipeline is in scope"
+   ],
+   [
+    961,
+    "Module 4: Who owns it, and the package"
+   ],
+   [
+    977,
+    "One decider per row: who owns the boundary"
+   ],
+   [
+    1019,
+    "The boundary record: write it once, cite it everywhere"
+   ],
+   [
+    1058,
+    "Narratives at the boundary, and whose package you read"
+   ],
+   [
+    1095,
+    "Keeping the package current: one review, one decider"
+   ],
+   [
+    1134,
+    "What to ask a cloud provider for, with the basis"
+   ],
+   [
+    1174,
+    "Decisions to make, and the first week's work"
+   ]
+  ]
  },
  {
   "id": "B11_Zero_Trust_Executive_Narrated",
@@ -435,7 +3571,73 @@
   "youtube": null,
   "vtt": "presentations/b11-zero-trust-executive/B11_Zero_Trust_Executive_Narrated.vtt",
   "deck": "presentations/b11-zero-trust-executive/B11_Zero_Trust_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust-executive/B11_Zero_Trust_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust-executive/B11_Zero_Trust_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Who Decides Zero Trust for the Whole Agency?"
+   ],
+   [
+    64,
+    "Three reports stapled together are not one score"
+   ],
+   [
+    154,
+    "The worst failures sat beneath any one tool"
+   ],
+   [
+    242,
+    "Maturity is decided by governance, which nobody sells"
+   ],
+   [
+    331,
+    "Only one Zero Trust document sets requirements"
+   ],
+   [
+    424,
+    "M-22-09 still binds: read it as an existing obligation"
+   ],
+   [
+    524,
+    "BOD 25-01: six actions, and the half that matters"
+   ],
+   [
+    620,
+    "Reporting to CISA, and where deviations go"
+   ],
+   [
+    703,
+    "Two assessment tools, two questions, no verdict"
+   ],
+   [
+    798,
+    "Beyond Microsoft 365, each tool answers for itself"
+   ],
+   [
+    889,
+    "Every pillar has an owner; the posture needs one too"
+   ],
+   [
+    975,
+    "Who owns each pillar, and three calls that go astray"
+   ],
+   [
+    1056,
+    "Close before you assess: assessors run at step five"
+   ],
+   [
+    1141,
+    "Read the result before you count it"
+   ],
+   [
+    1226,
+    "From findings to a program the AO can see"
+   ],
+   [
+    1310,
+    "Decisions to make this quarter, and who makes them"
+   ]
+  ]
  },
  {
   "id": "B11_Zero_Trust_Narrated",
@@ -446,7 +3648,65 @@
   "youtube": null,
   "vtt": "presentations/b11-zero-trust/B11_Zero_Trust_Narrated.vtt",
   "deck": "presentations/b11-zero-trust/B11_Zero_Trust_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust/B11_Zero_Trust_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust/B11_Zero_Trust_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Is Zero Trust a Whole-Agency Property, Not a Product?"
+   ],
+   [
+    46,
+    "Three reports stapled together are not one score"
+   ],
+   [
+    102,
+    "Evidence, not verdicts: failures beneath any one tool"
+   ],
+   [
+    161,
+    "Five governance principles, none of them a purchase"
+   ],
+   [
+    224,
+    "Only one Zero Trust document sets requirements"
+   ],
+   [
+    287,
+    "BOD 25-01: six actions and 50 required policies"
+   ],
+   [
+    348,
+    "Two assessment tools answer two different questions"
+   ],
+   [
+    412,
+    "Beyond Microsoft 365: networks, clouds, hypervisors"
+   ],
+   [
+    473,
+    "Who owns the posture, not just the pillars"
+   ],
+   [
+    532,
+    "Close before you assess: assessors run at step five"
+   ],
+   [
+    595,
+    "Run the assessment: pin it, record it, never edit it"
+   ],
+   [
+    656,
+    "Ingest the evidence: four stages to OSCAL"
+   ],
+   [
+    717,
+    "From findings to a program the AO can see"
+   ],
+   [
+    780,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B11_Zero_Trust_Technical_Narrated",
@@ -457,7 +3717,137 @@
   "youtube": null,
   "vtt": "presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical_Narrated.vtt",
   "deck": "presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Zero Trust & Assessment: the technical deep dive"
+   ],
+   [
+    39,
+    "Why this matters: the worst failures sat beneath any tool"
+   ],
+   [
+    79,
+    "Module 1: A whole-agency property and its mandates"
+   ],
+   [
+    98,
+    "The guidance describes the enterprise, not a tenant"
+   ],
+   [
+    139,
+    "Five pillars, three capabilities: why programs stall"
+   ],
+   [
+    177,
+    "Principles one and two: defend identity and privilege"
+   ],
+   [
+    221,
+    "Principles three to five: evidence, enforcement, boundary"
+   ],
+   [
+    259,
+    "Four documents, four kinds of authority, no score"
+   ],
+   [
+    300,
+    "What M-22-09 requires, pillar by pillar, in October 2026"
+   ],
+   [
+    340,
+    "Module 2: SCuBA, the two tools and beyond Microsoft 365"
+   ],
+   [
+    359,
+    "BOD 25-01: six required actions and a tight scope"
+   ],
+   [
+    403,
+    "The mandatory list is a subset of the baselines"
+   ],
+   [
+    444,
+    "Reporting to CISA, and what the directive doesn't cover"
+   ],
+   [
+    484,
+    "ScubaGear and the Zero Trust Assessment at a glance"
+   ],
+   [
+    526,
+    "Where the two tools overlap, and the inverse gap"
+   ],
+   [
+    568,
+    "Beyond Microsoft 365: each tool answers for its platform"
+   ],
+   [
+    608,
+    "Reconcile first: inventory, naming, no implicit trust"
+   ],
+   [
+    648,
+    "Module 3: Who owns Zero Trust, and close before assessing"
+   ],
+   [
+    666,
+    "The posture needs an owner no pillar or provider holds"
+   ],
+   [
+    707,
+    "The responsibility matrix: one decider per row"
+   ],
+   [
+    745,
+    "Least-privilege roles for running and reading the tools"
+   ],
+   [
+    784,
+    "Architecture first: the assessors run at step five"
+   ],
+   [
+    823,
+    "Route every finding to one of three responses"
+   ],
+   [
+    860,
+    "Module 4: Running the assessment, evidence not verdicts"
+   ],
+   [
+    878,
+    "Before the first run: scope, host, accounts, output, logs"
+   ],
+   [
+    919,
+    "Running both tools: pin, record, never edit the output"
+   ],
+   [
+    957,
+    "From result to claim: four stages and one worked trace"
+   ],
+   [
+    995,
+    "Findings, manual checks and absence of evidence"
+   ],
+   [
+    1032,
+    "Score, rank and reconcile at the control, not the tool"
+   ],
+   [
+    1069,
+    "Exceptions, POA&Ms and re-assessment on a cadence"
+   ],
+   [
+    1108,
+    "Requirements mapping: the controls the evidence supports"
+   ],
+   [
+    1145,
+    "Decisions for this quarter, none of them a purchase"
+   ]
+  ]
  },
  {
   "id": "B12_Security_Operations_Executive_Narrated",
@@ -468,7 +3858,85 @@
   "youtube": null,
   "vtt": "presentations/b12-security-operations-executive/B12_Security_Operations_Executive_Narrated.vtt",
   "deck": "presentations/b12-security-operations-executive/B12_Security_Operations_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations-executive/B12_Security_Operations_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations-executive/B12_Security_Operations_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Security Operations: the executive briefing"
+   ],
+   [
+    45,
+    "A dashboard measures what arrived, not what didn't"
+   ],
+   [
+    88,
+    "Storing logs isn't detecting with them"
+   ],
+   [
+    131,
+    "M-26-14 is the logging requirement now"
+   ],
+   [
+    182,
+    "One evidence contract, one join key"
+   ],
+   [
+    227,
+    "Six planes, each emitting on purpose"
+   ],
+   [
+    275,
+    "Keep telemetry flowing through the migration"
+   ],
+   [
+    322,
+    "The SIEM decision: one queue, clear division"
+   ],
+   [
+    366,
+    "Retention: searchable, retrievable, then kept"
+   ],
+   [
+    410,
+    "Cost is where visibility gaps get decided"
+   ],
+   [
+    454,
+    "Every finding lands in one queue, on a clock"
+   ],
+   [
+    500,
+    "The SOC runs the queue; it doesn't decide alone"
+   ],
+   [
+    547,
+    "Who decides what in security operations"
+   ],
+   [
+    595,
+    "Accepting the risk of what isn't seen"
+   ],
+   [
+    639,
+    "Detections need rules; rules need owners"
+   ],
+   [
+    686,
+    "Response climbs a ladder, gated by a person"
+   ],
+   [
+    734,
+    "Evidence an assessor can verify, and re-run"
+   ],
+   [
+    776,
+    "Metrics that say whether monitoring works"
+   ],
+   [
+    822,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B12_Security_Operations_Narrated",
@@ -479,7 +3947,65 @@
   "youtube": null,
   "vtt": "presentations/b12-security-operations/B12_Security_Operations_Narrated.vtt",
   "deck": "presentations/b12-security-operations/B12_Security_Operations_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations/B12_Security_Operations_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations/B12_Security_Operations_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Can't You Defend What You Can't See?"
+   ],
+   [
+    49,
+    "A log warehouse is not a detection engine"
+   ],
+   [
+    104,
+    "Coverage gaps raise no alarm on their own"
+   ],
+   [
+    158,
+    "The evidence contract: one record, one join key"
+   ],
+   [
+    220,
+    "What each plane must emit, and how each goes quiet"
+   ],
+   [
+    282,
+    "Warehouse to detection: rules, incidents, closure"
+   ],
+   [
+    339,
+    "The federal clocks: BOD 26-04 and M-26-14"
+   ],
+   [
+    400,
+    "Vulnerability and patch: a scanner fixes nothing"
+   ],
+   [
+    459,
+    "Configuration, posture and CUI data share the queue"
+   ],
+   [
+    517,
+    "Who runs security operations, and who decides"
+   ],
+   [
+    573,
+    "Detection engineering: rules as code, tested, owned"
+   ],
+   [
+    632,
+    "Response within the actuation ladder"
+   ],
+   [
+    693,
+    "Continuous monitoring: metrics that prove it works"
+   ],
+   [
+    754,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B12_Security_Operations_Technical_Narrated",
@@ -490,7 +4016,137 @@
   "youtube": null,
   "vtt": "presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narrated.vtt",
   "deck": "presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Security Operations: the technical deep dive"
+   ],
+   [
+    43,
+    "Why this matters: a coverage gap looks like quiet"
+   ],
+   [
+    81,
+    "Module 1: The evidence contract and identity"
+   ],
+   [
+    100,
+    "The evidence contract: eight fields, every source"
+   ],
+   [
+    137,
+    "The join key: naming-plane identity plus observed time"
+   ],
+   [
+    176,
+    "One queue for every finding, and what closes it"
+   ],
+   [
+    212,
+    "Entra ID: categories, tables and the tiers to enable"
+   ],
+   [
+    251,
+    "Deploy from code; set retention in the workspace"
+   ],
+   [
+    288,
+    "Prove emission, and use Graph as a magnifying glass"
+   ],
+   [
+    327,
+    "Module 2: Platform telemetry to detection"
+   ],
+   [
+    346,
+    "Azure: the activity log and resource logs"
+   ],
+   [
+    384,
+    "Azure Policy keeps new resources emitting, not old ones"
+   ],
+   [
+    425,
+    "The unified audit log: verify, collect, deduplicate"
+   ],
+   [
+    464,
+    "Unified audit retention follows the user's license"
+   ],
+   [
+    504,
+    "From warehouse to detection: the MTTD floor"
+   ],
+   [
+    538,
+    "Connector paths, and the table each one lands in"
+   ],
+   [
+    576,
+    "Prove connectors deliver; split the work with XDR"
+   ],
+   [
+    611,
+    "Module 3: Vulnerability, patch and posture"
+   ],
+   [
+    633,
+    "BOD 26-04: four questions set the remediation clock"
+   ],
+   [
+    672,
+    "The daily queue: inputs, defaults and the record"
+   ],
+   [
+    712,
+    "Defender Vulnerability Management: prove the coverage"
+   ],
+   [
+    752,
+    "Actuation is platform-native; governance is unified"
+   ],
+   [
+    791,
+    "Baselines that record their own drift"
+   ],
+   [
+    831,
+    "Cloud posture: owned tool first, then one queue"
+   ],
+   [
+    871,
+    "Module 4: Data protection and who runs it"
+   ],
+   [
+    884,
+    "CUI to sensitivity labels: the Registry decides"
+   ],
+   [
+    925,
+    "DLP on three surfaces, simulated before enforced"
+   ],
+   [
+    964,
+    "Three meanings of customer-managed key"
+   ],
+   [
+    1007,
+    "Who runs security operations: decide, do, consult"
+   ],
+   [
+    1044,
+    "The responsibility matrix: rows that narrow visibility"
+   ],
+   [
+    1079,
+    "Owners, roles and separations that keep evidence honest"
+   ],
+   [
+    1118,
+    "Decisions to make, and what to run on Monday"
+   ]
+  ]
  },
  {
   "id": "B13_Governance_Executive_Narrated",
@@ -501,7 +4157,85 @@
   "youtube": null,
   "vtt": "presentations/b13-governance-executive/B13_Governance_Executive_Narrated.vtt",
   "deck": "presentations/b13-governance-executive/B13_Governance_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance-executive/B13_Governance_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance-executive/B13_Governance_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Governance, Drift & Evidence: the executive briefing"
+   ],
+   [
+    45,
+    "Compliance decays the day after the audit"
+   ],
+   [
+    88,
+    "Federal policy already points past the snapshot"
+   ],
+   [
+    137,
+    "Drift: continuous, silent, and the opening for attack"
+   ],
+   [
+    184,
+    "One record, and one owner for every fact in it"
+   ],
+   [
+    232,
+    "Every change travels one path; urgency gets no second"
+   ],
+   [
+    276,
+    "From gate G0: no new dependency on Active Directory"
+   ],
+   [
+    324,
+    "A closure without its proof is prose, not evidence"
+   ],
+   [
+    372,
+    "Evidence anyone can re-run, not a statement to trust"
+   ],
+   [
+    423,
+    "The drift engine: severity is computed, not argued"
+   ],
+   [
+    469,
+    "Who governs: one decider for every decision"
+   ],
+   [
+    518,
+    "Exceptions: bounded by the CISO, open-ended by the AO"
+   ],
+   [
+    564,
+    "The AO's part: small in time, large in consequence"
+   ],
+   [
+    610,
+    "The record is a federal record: never rewrite history"
+   ],
+   [
+    658,
+    "Ticket to machine: the person's role stops at approval"
+   ],
+   [
+    705,
+    "Reuse by default; every agency still signs for itself"
+   ],
+   [
+    759,
+    "Ongoing authorization: a standing decision on evidence"
+   ],
+   [
+    812,
+    "At scale: classify coverage and register every gap"
+   ],
+   [
+    856,
+    "Governance decisions: owners and timing"
+   ]
+  ]
  },
  {
   "id": "B13_Governance_Narrated",
@@ -512,7 +4246,65 @@
   "youtube": null,
   "vtt": "presentations/b13-governance/B13_Governance_Narrated.vtt",
   "deck": "presentations/b13-governance/B13_Governance_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance/B13_Governance_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance/B13_Governance_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Why Does Compliance Decay After the Audit?"
+   ],
+   [
+    46,
+    "A package is true on the day it's signed"
+   ],
+   [
+    103,
+    "Drift is the primary threat"
+   ],
+   [
+    163,
+    "One authoritative record; every copy is a pointer"
+   ],
+   [
+    222,
+    "Every change travels one path, and leaves its proof"
+   ],
+   [
+    280,
+    "Deterministic rules: same inputs, same evidence"
+   ],
+   [
+    335,
+    "The drift engine: one model, computed severity"
+   ],
+   [
+    392,
+    "Evidence over attestation"
+   ],
+   [
+    453,
+    "Adapters: every platform, one record"
+   ],
+   [
+    513,
+    "Who keeps the record, and who decides"
+   ],
+   [
+    574,
+    "Ticket to machine, within the actuation ladder"
+   ],
+   [
+    635,
+    "Reciprocity: shared evidence, each agency's decision"
+   ],
+   [
+    695,
+    "Governance at scale: small definitions, honest coverage"
+   ],
+   [
+    750,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B13_Governance_Technical_Narrated",
@@ -523,7 +4315,137 @@
   "youtube": null,
   "vtt": "presentations/b13-governance-technical/B13_Governance_Technical_Narrated.vtt",
   "deck": "presentations/b13-governance-technical/B13_Governance_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance-technical/B13_Governance_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-governance-technical/B13_Governance_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Governance, Drift & Evidence: the technical deep dive"
+   ],
+   [
+    41,
+    "Why this matters: a signed package starts aging at once"
+   ],
+   [
+    80,
+    "Module 1: Drift, the record and change control"
+   ],
+   [
+    100,
+    "Drift: five sources, silent unless something compares"
+   ],
+   [
+    144,
+    "Five drift classes, each a question asked of the record"
+   ],
+   [
+    185,
+    "One authoritative record: every copy is a pointer"
+   ],
+   [
+    227,
+    "Six control planes, cut by authority, not by log source"
+   ],
+   [
+    267,
+    "The five-clause path every MACD-R change travels"
+   ],
+   [
+    309,
+    "Changing the record: the pull request is the authorization"
+   ],
+   [
+    351,
+    "No closure counts unless it carries its proof"
+   ],
+   [
+    393,
+    "Module 2: Deterministic rules and the drift engine"
+   ],
+   [
+    412,
+    "Determinism, not automation, is what an assessor can check"
+   ],
+   [
+    453,
+    "Three rule layers, three change boundaries"
+   ],
+   [
+    489,
+    "Rules as code, and where they meet OSCAL's models"
+   ],
+   [
+    532,
+    "The drift engine compares against a versioned record"
+   ],
+   [
+    572,
+    "One drift model: domain checks are instances, not lists"
+   ],
+   [
+    611,
+    "Severity sets the clock; the ladder sets who acts"
+   ],
+   [
+    650,
+    "Module 3: Evidence over attestation, and adapters"
+   ],
+   [
+    667,
+    "Attestation names who's accountable; evidence shows it"
+   ],
+   [
+    707,
+    "The evidence chain and the provenance envelope"
+   ],
+   [
+    749,
+    "Hash, hash chain, signature: what each one proves"
+   ],
+   [
+    788,
+    "Adapters: one platform's dialect into one record"
+   ],
+   [
+    828,
+    "The adapter contract, versioning and lifecycle"
+   ],
+   [
+    869,
+    "Module 4: Who governs, reciprocity and scale"
+   ],
+   [
+    887,
+    "Who governs: five questions, one owner each"
+   ],
+   [
+    930,
+    "Exceptions, the board, and who governs the governors"
+   ],
+   [
+    972,
+    "Ticket to machine, in brief: the person stops at approval"
+   ],
+   [
+    1012,
+    "Reciprocity: one package, each agency's own decision"
+   ],
+   [
+    1053,
+    "Ongoing authorization, indicators and signed manifests"
+   ],
+   [
+    1095,
+    "Continuous monitoring run as a chartered project"
+   ],
+   [
+    1134,
+    "Coverage, the gap register, and three ways a gap closes"
+   ],
+   [
+    1176,
+    "Decisions to make, and what to start on Monday"
+   ]
+  ]
  },
  {
   "id": "B13_Ticket_to_Machine_Narrated",
@@ -534,7 +4456,77 @@
   "youtube": null,
   "vtt": "presentations/b13-ticket-to-machine/B13_Ticket_to_Machine_Narrated.vtt",
   "deck": "presentations/b13-ticket-to-machine/B13_Ticket_to_Machine_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-ticket-to-machine/B13_Ticket_to_Machine_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b13-ticket-to-machine/B13_Ticket_to_Machine_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Book 13 — Ticket-to-Machine Reference"
+   ],
+   [
+    40,
+    "A ticket is evidence only when a re-read proves it"
+   ],
+   [
+    78,
+    "The coordination loop: five steps, native surfaces"
+   ],
+   [
+    118,
+    "The five-clause request chain"
+   ],
+   [
+    158,
+    "Five lanes: who approves, what runs, what it proves"
+   ],
+   [
+    197,
+    "Change classes to lanes: drift, patching and access"
+   ],
+   [
+    240,
+    "Change classes to lanes: big changes, records, exceptions"
+   ],
+   [
+    278,
+    "Drift classes and their default lanes"
+   ],
+   [
+    314,
+    "Severity and tempo: four windows"
+   ],
+   [
+    354,
+    "What the tempo shows leadership: five measures"
+   ],
+   [
+    391,
+    "The evidence record: one shape for every lane"
+   ],
+   [
+    436,
+    "Worked examples: a drifted setting and an access request"
+   ],
+   [
+    475,
+    "Worked examples: an unknown issuer and no actuator yet"
+   ],
+   [
+    515,
+    "The certificate exception: volume rules out a ticket"
+   ],
+   [
+    556,
+    "One front door for detection tools"
+   ],
+   [
+    598,
+    "Failure modes from a reference implementation review"
+   ],
+   [
+    636,
+    "What to decide, and where to read next"
+   ]
+  ]
  },
  {
   "id": "B14_Compliance_Executive_Narrated",
@@ -545,7 +4537,85 @@
   "youtube": null,
   "vtt": "presentations/b14-compliance-executive/B14_Compliance_Executive_Narrated.vtt",
   "deck": "presentations/b14-compliance-executive/B14_Compliance_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b14-compliance-executive/B14_Compliance_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b14-compliance-executive/B14_Compliance_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Federal Compliance & Authorization: executive briefing"
+   ],
+   [
+    49,
+    "A promise ages; proof can be checked again"
+   ],
+   [
+    93,
+    "“Moderate” is a commitment of a known size"
+   ],
+   [
+    142,
+    "Annual is the floor, and tools only confirm a design"
+   ],
+   [
+    191,
+    "The federal clock: the dates ahead, and whom they bind"
+   ],
+   [
+    245,
+    "Directives leave standing work; support dates bind too"
+   ],
+   [
+    297,
+    "Two facts and one index: the baseline and the crosswalk"
+   ],
+   [
+    343,
+    "A control closes only with its proof"
+   ],
+   [
+    388,
+    "Program management: the agency's, never the provider's"
+   ],
+   [
+    436,
+    "Contingency: a plan, not a capability"
+   ],
+   [
+    484,
+    "Supply chain: know what you run; contract for the rest"
+   ],
+   [
+    541,
+    "Privacy: a public promise the agency keeps true"
+   ],
+   [
+    587,
+    "Training: a record with a denominator"
+   ],
+   [
+    634,
+    "Who owns compliance: one decider per row"
+   ],
+   [
+    682,
+    "The authorization path, and what keeps it honest"
+   ],
+   [
+    732,
+    "The package: four linked, machine-readable records"
+   ],
+   [
+    780,
+    "Continuous monitoring keeps the package current"
+   ],
+   [
+    833,
+    "What remains: the residual risk the AO must see"
+   ],
+   [
+    882,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B14_Compliance_Narrated",
@@ -556,7 +4626,61 @@
   "youtube": null,
   "vtt": "presentations/b14-compliance/B14_Compliance_Narrated.vtt",
   "deck": "presentations/b14-compliance/B14_Compliance_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b14-compliance/B14_Compliance_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b14-compliance/B14_Compliance_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Can Your Authorization Prove Itself?"
+   ],
+   [
+    47,
+    "Who owes which proof"
+   ],
+   [
+    102,
+    "The federal clock: the dates still ahead"
+   ],
+   [
+    161,
+    "Moderate: two facts, not one"
+   ],
+   [
+    214,
+    "A control closes only with its proof"
+   ],
+   [
+    270,
+    "Program management: the agency's, never the provider's"
+   ],
+   [
+    328,
+    "Contingency and supply chain close through governance"
+   ],
+   [
+    388,
+    "Privacy and training close by records, not settings"
+   ],
+   [
+    444,
+    "One owner for every step"
+   ],
+   [
+    500,
+    "The package: four linked, machine-readable records"
+   ],
+   [
+    557,
+    "Continuous monitoring keeps the package current"
+   ],
+   [
+    613,
+    "The series as a map, and what stays open"
+   ],
+   [
+    667,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B15_InHouse_Automation_Executive_Narrated",
@@ -567,7 +4691,57 @@
   "youtube": null,
   "vtt": "presentations/b15-inhouse-automation-executive/B15_InHouse_Automation_Executive_Narrated.vtt",
   "deck": "presentations/b15-inhouse-automation-executive/B15_InHouse_Automation_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-inhouse-automation-executive/B15_InHouse_Automation_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-inhouse-automation-executive/B15_InHouse_Automation_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Building Day-Two Automation In-House"
+   ],
+   [
+    46,
+    "The problem: procedures that leave no evidence"
+   ],
+   [
+    88,
+    "Why the funded options are off the table"
+   ],
+   [
+    135,
+    "The no-cost path on the instance we already own"
+   ],
+   [
+    188,
+    "AI-assisted development, with guardrails"
+   ],
+   [
+    245,
+    "Sandbox to production, with two gates"
+   ],
+   [
+    292,
+    "What the standards ask, and how the path meets it"
+   ],
+   [
+    335,
+    "Who writes, reviews, approves and operates"
+   ],
+   [
+    383,
+    "The evidence it produces"
+   ],
+   [
+    428,
+    "Honest limits"
+   ],
+   [
+    470,
+    "The decision: approve a small pilot"
+   ],
+   [
+    516,
+    "Where to read next"
+   ]
+  ]
  },
  {
   "id": "B15_Day2_Operations_Executive_Narrated",
@@ -578,7 +4752,81 @@
   "youtube": null,
   "vtt": "presentations/b15-day2-operations-executive/B15_Day2_Operations_Executive_Narrated.vtt",
   "deck": "presentations/b15-day2-operations-executive/B15_Day2_Operations_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations-executive/B15_Day2_Operations_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations-executive/B15_Day2_Operations_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Day-2 Operations: the executive briefing"
+   ],
+   [
+    47,
+    "The estate is judged on day two, at the help desk"
+   ],
+   [
+    92,
+    "An authenticator reset hands over the account"
+   ],
+   [
+    141,
+    "Day-two volume is where controls erode"
+   ],
+   [
+    186,
+    "Buy the contract, not the product"
+   ],
+   [
+    229,
+    "One front door, routed by the authority a task needs"
+   ],
+   [
+    277,
+    "The help desk executes; it never decides"
+   ],
+   [
+    320,
+    "High-risk tasks need two approvers besides the executor"
+   ],
+   [
+    368,
+    "Consent says who may approve; only a verdict says whether"
+   ],
+   [
+    416,
+    "The inventory is only as good as its reconciliation"
+   ],
+   [
+    460,
+    "One loop on every cloud, closed on a re-test"
+   ],
+   [
+    505,
+    "Who runs day two: decisions away from the keyboard"
+   ],
+   [
+    551,
+    "Measure day-two health where the work happens"
+   ],
+   [
+    596,
+    "The CAB authorizes changes; it never accepts risk"
+   ],
+   [
+    637,
+    "Prove with systems; attest only what no system sees"
+   ],
+   [
+    682,
+    "Buy the native compliance apps first; build the gaps"
+   ],
+   [
+    731,
+    "The runbook checks the automation, not just the estate"
+   ],
+   [
+    775,
+    "Day-two decisions: owners and timing"
+   ]
+  ]
  },
  {
   "id": "B15_Day2_Operations_Narrated",
@@ -589,7 +4837,61 @@
   "youtube": null,
   "vtt": "presentations/b15-day2-operations/B15_Day2_Operations_Narrated.vtt",
   "deck": "presentations/b15-day2-operations/B15_Day2_Operations_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations/B15_Day2_Operations_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations/B15_Day2_Operations_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Can Your Help Desk Run the New Estate?"
+   ],
+   [
+    39,
+    "The help desk holds the keys"
+   ],
+   [
+    96,
+    "Federal guidance treats recovery as a bypass"
+   ],
+   [
+    152,
+    "Compliance decays a click at a time"
+   ],
+   [
+    212,
+    "One front door, triage by authority"
+   ],
+   [
+    268,
+    "Least-privileged roles, and verify before acting"
+   ],
+   [
+    327,
+    "Catalogs and SaaS: typed requests, verdict first"
+   ],
+   [
+    387,
+    "The CMDB is a reconciled projection"
+   ],
+   [
+    445,
+    "Control automation per cloud, and the gaps"
+   ],
+   [
+    502,
+    "Native ServiceNow capabilities first"
+   ],
+   [
+    559,
+    "One decider per row, and nobody holding the keyboard"
+   ],
+   [
+    619,
+    "The runbook, and harnesses that check the automation"
+   ],
+   [
+    675,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B15_Day2_Operations_Technical_Narrated",
@@ -600,7 +4902,125 @@
   "youtube": null,
   "vtt": "presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narrated.vtt",
   "deck": "presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Day-2 Operations: the technical deep dive"
+   ],
+   [
+    44,
+    "Why this matters: a reset can hand over the account"
+   ],
+   [
+    90,
+    "Three questions, one contract, five operating rules"
+   ],
+   [
+    135,
+    "Module 1: Intake, triage and routing"
+   ],
+   [
+    157,
+    "One front door: redirect, filter, reroute"
+   ],
+   [
+    203,
+    "Triage by required authority: first match wins"
+   ],
+   [
+    250,
+    "Prefer the connector, but check what it covers"
+   ],
+   [
+    294,
+    "Verify the person: the program's verification ladder"
+   ],
+   [
+    338,
+    "Close with evidence: three records that must agree"
+   ],
+   [
+    379,
+    "Module 2: Help desk authority in Entra ID"
+   ],
+   [
+    407,
+    "Five roles, and whose accounts each can touch"
+   ],
+   [
+    454,
+    "Scope and reach: AUs, restricted units and PIM"
+   ],
+   [
+    500,
+    "Recovery with a Temporary Access Pass"
+   ],
+   [
+    543,
+    "High-risk tasks: two approvers besides the executor"
+   ],
+   [
+    585,
+    "Module 3: Catalogs, SaaS and the CMDB"
+   ],
+   [
+    610,
+    "The identity catalog: ten items, five verbs"
+   ],
+   [
+    658,
+    "Teams Phone: emergency calling is the operator's duty"
+   ],
+   [
+    706,
+    "SaaS integrations: a verdict before any configuration"
+   ],
+   [
+    749,
+    "The least-privileged Graph surface for SaaS"
+   ],
+   [
+    797,
+    "The CMDB is a projection of the naming plane"
+   ],
+   [
+    843,
+    "Duplicates, stale CIs and what they break"
+   ],
+   [
+    891,
+    "Module 4: Control automation and who runs it"
+   ],
+   [
+    911,
+    "One loop, and the Microsoft 365 evidence sources"
+   ],
+   [
+    957,
+    "Azure: Policy, Defender for Cloud and Resource Graph"
+   ],
+   [
+    998,
+    "Three routes into the ITSM platform, one clock"
+   ],
+   [
+    1042,
+    "AWS: Config and Security Hub CSPM, not Audit Manager"
+   ],
+   [
+    1091,
+    "VMware: the evidence the agency produces itself"
+   ],
+   [
+    1135,
+    "Who runs day two: one decider per row"
+   ],
+   [
+    1180,
+    "Decisions to make, and next steps for day two"
+   ]
+  ]
  },
  {
   "id": "B16_People_Executive_Narrated",
@@ -611,7 +5031,89 @@
   "youtube": null,
   "vtt": "presentations/b16-people-executive/B16_People_Executive_Narrated.vtt",
   "deck": "presentations/b16-people-executive/B16_People_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b16-people-executive/B16_People_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b16-people-executive/B16_People_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "People & Training: the executive briefing"
+   ],
+   [
+    44,
+    "The tools enforce; people make the decisions"
+   ],
+   [
+    85,
+    "Every book moves a decision to someone new"
+   ],
+   [
+    130,
+    "Training scheduled last is paid for twice"
+   ],
+   [
+    172,
+    "What federal workforce rules actually require"
+   ],
+   [
+    220,
+    "Coded positions are the cleanest roster source"
+   ],
+   [
+    268,
+    "Education first, then a track for every role"
+   ],
+   [
+    312,
+    "Engineers: a build is done when its evidence lands"
+   ],
+   [
+    353,
+    "Certify what people can show, not attendance"
+   ],
+   [
+    397,
+    "Labs: practice everything, touch nothing real"
+   ],
+   [
+    442,
+    "Every user signs in differently by the last wave"
+   ],
+   [
+    485,
+    "The help desk is trained first, and is a target"
+   ],
+   [
+    527,
+    "Waves move on readiness, not on the calendar"
+   ],
+   [
+    567,
+    "Who owns workforce readiness: one decider per row"
+   ],
+   [
+    612,
+    "The training lead reports; others decide"
+   ],
+   [
+    654,
+    "Training runs on the roadmap, phase by phase"
+   ],
+   [
+    697,
+    "Keep the knowledge when people and contracts change"
+   ],
+   [
+    741,
+    "Readiness is measured on the job, not in the course"
+   ],
+   [
+    788,
+    "What the steering committee should see"
+   ],
+   [
+    831,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B16_People_Narrated",
@@ -622,7 +5124,65 @@
   "youtube": null,
   "vtt": "presentations/b16-people/B16_People_Narrated.vtt",
   "deck": "presentations/b16-people/B16_People_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b16-people/B16_People_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b16-people/B16_People_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Who Will Run the New Estate?"
+   ],
+   [
+    42,
+    "Tools enforce; people decide"
+   ],
+   [
+    92,
+    "Training last is paid for twice"
+   ],
+   [
+    146,
+    "What federal workforce rules require"
+   ],
+   [
+    199,
+    "Education first, then training by role"
+   ],
+   [
+    257,
+    "The compliance track teaches tracing"
+   ],
+   [
+    314,
+    "Implementation: done means the evidence landed"
+   ],
+   [
+    372,
+    "Certify what people can show"
+   ],
+   [
+    429,
+    "Vendor training, and labs that can't hurt production"
+   ],
+   [
+    482,
+    "Every user signs in differently"
+   ],
+   [
+    537,
+    "One decider per row; the reporter doesn't decide"
+   ],
+   [
+    589,
+    "Run training on the roadmap's calendar"
+   ],
+   [
+    642,
+    "Measure readiness, not attendance"
+   ],
+   [
+    697,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B17_AI_Identity_Executive_Narrated",
@@ -633,7 +5193,81 @@
   "youtube": null,
   "vtt": "presentations/b17-ai-identity-executive/B17_AI_Identity_Executive_Narrated.vtt",
   "deck": "presentations/b17-ai-identity-executive/B17_AI_Identity_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity-executive/B17_AI_Identity_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity-executive/B17_AI_Identity_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "AI Identity Governance: the executive briefing"
+   ],
+   [
+    50,
+    "An agent that acts is an account"
+   ],
+   [
+    97,
+    "AI arrived outside the identity program"
+   ],
+   [
+    148,
+    "The controls already apply; coverage is the gap"
+   ],
+   [
+    197,
+    "What federal AI rules require, and what they don't"
+   ],
+   [
+    253,
+    "Two signatures before high-impact AI deploys"
+   ],
+   [
+    302,
+    "The inventory is a seed list, not an identity source"
+   ],
+   [
+    350,
+    "Kinds of AI identity, and what your cloud has today"
+   ],
+   [
+    399,
+    "A named human, and a lifecycle that ends"
+   ],
+   [
+    445,
+    "No stored secrets, no standing privilege"
+   ],
+   [
+    493,
+    "Watch it, and find what nobody declared"
+   ],
+   [
+    541,
+    "Two decision tracks meet on one AI system"
+   ],
+   [
+    592,
+    "Who decides what for an AI identity"
+   ],
+   [
+    644,
+    "Run the inventory scan on the agency's own file"
+   ],
+   [
+    692,
+    "A central scan starts the conversation, not the fix"
+   ],
+   [
+    735,
+    "Evidence the authorizing official can use"
+   ],
+   [
+    783,
+    "Keep the evidence current: three AI clocks"
+   ],
+   [
+    831,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B17_AI_Identity_Narrated",
@@ -644,7 +5278,65 @@
   "youtube": null,
   "vtt": "presentations/b17-ai-identity/B17_AI_Identity_Narrated.vtt",
   "deck": "presentations/b17-ai-identity/B17_AI_Identity_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity/B17_AI_Identity_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity/B17_AI_Identity_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Every AI System Needs an Identity"
+   ],
+   [
+    47,
+    "An agent that acts is an account"
+   ],
+   [
+    100,
+    "AI arrived outside the identity program"
+   ],
+   [
+    157,
+    "What federal AI rules require, and don't"
+   ],
+   [
+    217,
+    "The inventory is a seed list, not an identity source"
+   ],
+   [
+    271,
+    "Whose token does it present?"
+   ],
+   [
+    325,
+    "Release stage and government cloud, October 2026"
+   ],
+   [
+    387,
+    "A named human, and a lifecycle that ends"
+   ],
+   [
+    441,
+    "No stored secrets, no standing privilege"
+   ],
+   [
+    493,
+    "Watch it, find what nobody declared, raise findings"
+   ],
+   [
+    552,
+    "Two decision tracks, one identity record"
+   ],
+   [
+    607,
+    "Run the inventory scan"
+   ],
+   [
+    663,
+    "Evidence the authorizing official can use"
+   ],
+   [
+    719,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B17_AI_Identity_Technical_Narrated",
@@ -655,7 +5347,137 @@
   "youtube": null,
   "vtt": "presentations/b17-ai-identity-technical/B17_AI_Identity_Technical_Narrated.vtt",
   "deck": "presentations/b17-ai-identity-technical/B17_AI_Identity_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity-technical/B17_AI_Identity_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b17-ai-identity-technical/B17_AI_Identity_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "AI Identity Governance: the technical deep dive"
+   ],
+   [
+    44,
+    "Why this matters: an agent that acts is an account"
+   ],
+   [
+    86,
+    "Module 1: AI agents as identities, and the federal rules"
+   ],
+   [
+    109,
+    "AI arrived outside the program; the controls still apply"
+   ],
+   [
+    150,
+    "Seven things every AI identity needs"
+   ],
+   [
+    190,
+    "The rule set: what binds, what guides, what's missing"
+   ],
+   [
+    232,
+    "No AI-specific ATO: two decisions, one record"
+   ],
+   [
+    274,
+    "Module 2: The inventory and the kinds of AI identity"
+   ],
+   [
+    296,
+    "The inventory read as identity data: anchors and gaps"
+   ],
+   [
+    334,
+    "A use case isn't an identity: join on the directory"
+   ],
+   [
+    374,
+    "High-impact fields report status, not evidence"
+   ],
+   [
+    416,
+    "Whose token does it present? Three subjects and a key"
+   ],
+   [
+    456,
+    "Agent ID: the blueprint is the credential boundary"
+   ],
+   [
+    495,
+    "What's GA, what's preview, and what each cloud has"
+   ],
+   [
+    537,
+    "Six kinds of AI identity, and where the risk sits"
+   ],
+   [
+    578,
+    "Module 3: Owners, lifecycle, credentials and privilege"
+   ],
+   [
+    601,
+    "Owner, sponsor and manager, and the program's rule"
+   ],
+   [
+    643,
+    "The sponsor's HR events have to reach the agent"
+   ],
+   [
+    682,
+    "Retirement and orphans: disable first, then delete"
+   ],
+   [
+    728,
+    "Credential order: no stored secrets on the blueprint"
+   ],
+   [
+    768,
+    "Least privilege: Microsoft's block list is only a floor"
+   ],
+   [
+    812,
+    "Conditional Access follows the token subject"
+   ],
+   [
+    855,
+    "Three boundaries on what an agent can call"
+   ],
+   [
+    896,
+    "Module 4: Monitoring, the scan and authorization"
+   ],
+   [
+    915,
+    "Where AI sign-ins and changes land in the logs"
+   ],
+   [
+    957,
+    "Shadow AI: four surfaces, one reconciliation"
+   ],
+   [
+    999,
+    "AI drift findings: class, severity and who decides"
+   ],
+   [
+    1042,
+    "The inventory scan: answers first, then the directory"
+   ],
+   [
+    1082,
+    "A central scan: CDM's split, not its tooling"
+   ],
+   [
+    1123,
+    "Five questions the authorizing official asks"
+   ],
+   [
+    1167,
+    "OSCAL, the AI clocks, and overlays still to come"
+   ],
+   [
+    1209,
+    "Decisions, owners, and what to start on Monday"
+   ]
+  ]
  },
  {
   "id": "B18_Application_Modernization_Executive_Narrated",
@@ -666,7 +5488,89 @@
   "youtube": null,
   "vtt": "presentations/b18-application-modernization-executive/B18_Application_Modernization_Executive_Narrated.vtt",
   "deck": "presentations/b18-application-modernization-executive/B18_Application_Modernization_Executive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization-executive/B18_Application_Modernization_Executive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization-executive/B18_Application_Modernization_Executive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Application Modernization: the executive briefing"
+   ],
+   [
+    47,
+    "Most IT money keeps existing systems running"
+   ],
+   [
+    86,
+    "Big-bang rewrites fail; policy asks for segments"
+   ],
+   [
+    128,
+    "The application is the unit of decision"
+   ],
+   [
+    171,
+    "Six dispositions, cheapest first"
+   ],
+   [
+    215,
+    "Approve the rubric, not each decision"
+   ],
+   [
+    259,
+    "One target architecture, and a budget to keep it current"
+   ],
+   [
+    302,
+    "Replace in increments behind a stable interface"
+   ],
+   [
+    344,
+    "Data moves once, and the move must be proven"
+   ],
+   [
+    385,
+    "Coexist without dual writes; settle the engine early"
+   ],
+   [
+    422,
+    "AI with an owner: agents read and propose"
+   ],
+   [
+    465,
+    "Compliance carried by the platform, not each app"
+   ],
+   [
+    508,
+    "Privacy and records come in at design review"
+   ],
+   [
+    550,
+    "One decider for every architecture decision"
+   ],
+   [
+    594,
+    "Four gates, and each one leaves proof"
+   ],
+   [
+    638,
+    "A reference implementation that states its limits"
+   ],
+   [
+    680,
+    "TOGAF is the order; Zachman is the checklist"
+   ],
+   [
+    722,
+    "Run the portfolio in waves on the program's gates"
+   ],
+   [
+    764,
+    "Fund by wave, and measure from records"
+   ],
+   [
+    807,
+    "Decisions to make, owners and timing"
+   ]
+  ]
  },
  {
   "id": "B18_Application_Modernization_Narrated",
@@ -677,7 +5581,61 @@
   "youtube": null,
   "vtt": "presentations/b18-application-modernization/B18_Application_Modernization_Narrated.vtt",
   "deck": "presentations/b18-application-modernization/B18_Application_Modernization_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization/B18_Application_Modernization_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization/B18_Application_Modernization_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "A Portfolio, Not a Rewrite"
+   ],
+   [
+    45,
+    "Most IT money keeps existing systems running"
+   ],
+   [
+    86,
+    "Big rewrites fail, and policy asks for segments"
+   ],
+   [
+    130,
+    "Triage every application into one of six"
+   ],
+   [
+    176,
+    "One target architecture, replaced piece by piece"
+   ],
+   [
+    223,
+    "Move the data once, and prove nothing was lost"
+   ],
+   [
+    267,
+    "AI joins with an identity, an owner and no write power"
+   ],
+   [
+    310,
+    "Compliance by design: the platform carries controls"
+   ],
+   [
+    353,
+    "One owner per decision, four gates per change"
+   ],
+   [
+    399,
+    "A reference implementation you can run"
+   ],
+   [
+    444,
+    "TOGAF gives the order; Zachman, the checklist"
+   ],
+   [
+    486,
+    "Run the portfolio in waves"
+   ],
+   [
+    527,
+    "Decisions to make, and next steps"
+   ]
+  ]
  },
  {
   "id": "B18_Application_Modernization_Technical_Narrated",
@@ -688,7 +5646,145 @@
   "youtube": null,
   "vtt": "presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narrated.vtt",
   "deck": "presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Application Modernization: the technical deep dive"
+   ],
+   [
+    45,
+    "Why this matters: a portfolio, not a rewrite"
+   ],
+   [
+    87,
+    "Module 1: The portfolio and the triage"
+   ],
+   [
+    109,
+    "Six dispositions, in rising order of cost and risk"
+   ],
+   [
+    147,
+    "Six criteria, each scored from data you already hold"
+   ],
+   [
+    183,
+    "Two axes, a confidence flag, and where the grid points"
+   ],
+   [
+    224,
+    "The decision table: seven rules, first match wins"
+   ],
+   [
+    262,
+    "Owner review, the decision record and calibration"
+   ],
+   [
+    301,
+    "Module 2: The target architecture and the data"
+   ],
+   [
+    327,
+    "One target: the layers and the program's choices"
+   ],
+   [
+    366,
+    "Support windows: build the upgrade cadence in"
+   ],
+   [
+    404,
+    "Contracts first, thin layers, configuration from outside"
+   ],
+   [
+    442,
+    "The strangler fig, and the NIST security references"
+   ],
+   [
+    480,
+    "Moving the data: convert, move, prove, then cut over"
+   ],
+   [
+    516,
+    "Schema conversion: the dangerous conversions succeed"
+   ],
+   [
+    553,
+    "The conversion tools as of October 2026"
+   ],
+   [
+    591,
+    "Proving nothing was lost: three checks, three blind spots"
+   ],
+   [
+    628,
+    "Cut-over and coexistence: one writer per table"
+   ],
+   [
+    665,
+    "Module 3: AI, compliance and governance"
+   ],
+   [
+    688,
+    "Where AI fits, behind one provider-neutral interface"
+   ],
+   [
+    725,
+    "Agent guardrails: read, propose, never write"
+   ],
+   [
+    764,
+    "Compliance by design: controls across the life cycle"
+   ],
+   [
+    804,
+    "Secure development, privacy, data and records"
+   ],
+   [
+    841,
+    "The architecture review board: one decider each"
+   ],
+   [
+    880,
+    "Four gates, and the evidence each one leaves"
+   ],
+   [
+    918,
+    "Module 4: Reference implementation, frameworks, waves"
+   ],
+   [
+    941,
+    "The reference implementation: one application in miniature"
+   ],
+   [
+    979,
+    "What the code shows: contract, three checks, guardrails"
+   ],
+   [
+    1015,
+    "What was verified on October 28, 2026, and what wasn't"
+   ],
+   [
+    1054,
+    "TOGAF: the ADM phases, and the chapters that do them"
+   ],
+   [
+    1093,
+    "Zachman: the cells filled, and the gaps that show"
+   ],
+   [
+    1128,
+    "The waves on the program's phases and gates"
+   ],
+   [
+    1166,
+    "Move groups, the factory, metrics and funding"
+   ],
+   [
+    1204,
+    "Decisions, owners, and what to start on Monday"
+   ]
+  ]
  },
  {
   "id": "Guide_Ansible_Technical_Narrated",
@@ -696,9 +5792,128 @@
   "group": "book",
   "minutes": 19,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Guide_Ansible_Technical_Narrated.mp4",
+  "youtube": null,
   "vtt": "presentations/guide-ansible-technical/Guide_Ansible_Technical_Narrated.vtt",
   "deck": "presentations/guide-ansible-technical/Guide_Ansible_Technical_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-ansible-technical/Guide_Ansible_Technical_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-ansible-technical/Guide_Ansible_Technical_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Ansible for Configuration Automation: technical deep dive"
+   ],
+   [
+    34,
+    "Why this matters: Ansible can write almost anywhere"
+   ],
+   [
+    74,
+    "Module 1: What Ansible is, and where it fits"
+   ],
+   [
+    96,
+    "What Ansible is, and what it isn't"
+   ],
+   [
+    137,
+    "Five tools, and the population each one owns"
+   ],
+   [
+    178,
+    "One owning tool per setting, recorded in the CMDB"
+   ],
+   [
+    222,
+    "Ansible across the coverage tiers and the four tracks"
+   ],
+   [
+    263,
+    "Arc onboarding at scale: Microsoft's role, three sign-ins"
+   ],
+   [
+    299,
+    "Onboarding waves: CMDB tags, secrets off the console"
+   ],
+   [
+    338,
+    "Tier 2: Unix, Linux beyond Arc, and network gear"
+   ],
+   [
+    384,
+    "VMware, Infoblox, Windows and cloud VMs: who owns what"
+   ],
+   [
+    426,
+    "Module 2: Ansible Automation Platform in a federal setting"
+   ],
+   [
+    452,
+    "Versions, and authorization status as published"
+   ],
+   [
+    494,
+    "FIPS mode and baseline content: what's published"
+   ],
+   [
+    553,
+    "Where the controller can run"
+   ],
+   [
+    597,
+    "Sign-in, logging and content: the controls to set"
+   ],
+   [
+    642,
+    "The controller is a non-person identity"
+   ],
+   [
+    684,
+    "Module 3: Evidence and dangers"
+   ],
+   [
+    707,
+    "Evidence for CM-2, CM-3, CM-6, CM-7 and CM-8"
+   ],
+   [
+    747,
+    "Audit, privilege, supply chain, and the evidence store"
+   ],
+   [
+    783,
+    "Dangers: blast radius, inventory drift, credential sprawl"
+   ],
+   [
+    829,
+    "Dangers: two tools, Galaxy content, root and idempotence"
+   ],
+   [
+    872,
+    "Module 4: Adoption and the example playbooks"
+   ],
+   [
+    896,
+    "A phased path: read-only first, enforcement later"
+   ],
+   [
+    939,
+    "The CMDB-driven inventory: groups from attributes"
+   ],
+   [
+    979,
+    "Four example playbooks, and what each one proves"
+   ],
+   [
+    1021,
+    "How the examples are tested, and what they don't prove"
+   ],
+   [
+    1060,
+    "The adoption checklist, area by area"
+   ],
+   [
+    1096,
+    "Decisions, owners, and where to start"
+   ]
+  ]
  },
  {
   "id": "Guide_Effective_Meetings_Narrated",
@@ -706,9 +5921,100 @@
   "group": "book",
   "minutes": 14,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Guide_Effective_Meetings_Narrated.mp4",
+  "youtube": null,
   "vtt": "presentations/guide-effective-meetings/Guide_Effective_Meetings_Narrated.vtt",
   "deck": "presentations/guide-effective-meetings/Guide_Effective_Meetings_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-effective-meetings/Guide_Effective_Meetings_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-effective-meetings/Guide_Effective_Meetings_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Effective Meetings"
+   ],
+   [
+    40,
+    "A modernization program runs on its meetings"
+   ],
+   [
+    78,
+    "The habits are old, and they work"
+   ],
+   [
+    121,
+    "Before, during, after: what each phase produces"
+   ],
+   [
+    160,
+    "Is a meeting needed at all?"
+   ],
+   [
+    198,
+    "Meet, write it down, or retire it"
+   ],
+   [
+    237,
+    "Three kinds of meeting, and what each is for"
+   ],
+   [
+    282,
+    "Don't do the work in the room; name the shift"
+   ],
+   [
+    322,
+    "The agenda defines the meeting, and its end"
+   ],
+   [
+    363,
+    "Around the items: purpose, title, timing, headcount"
+   ],
+   [
+    408,
+    "Six roles, and everyone knows which they hold"
+   ],
+   [
+    445,
+    "Who's taking notes? Combining and rotating roles"
+   ],
+   [
+    481,
+    "Four phases, one loop: before, during, close, after"
+   ],
+   [
+    519,
+    "Before: confirm, write, assign, remind"
+   ],
+   [
+    555,
+    "Start on time, and stay on the agenda"
+   ],
+   [
+    594,
+    "The parking lot, and notes worth keeping"
+   ],
+   [
+    630,
+    "Close: read back decisions, owners and dates"
+   ],
+   [
+    661,
+    "After: notes the same day, no meeting after"
+   ],
+   [
+    695,
+    "Template: the agenda"
+   ],
+   [
+    733,
+    "Template: notes and action items"
+   ],
+   [
+    767,
+    "The one-page checklist"
+   ],
+   [
+    798,
+    "Further reading, and the standard in one line"
+   ]
+  ]
  },
  {
   "id": "B08_DDI_Requirements_Narrated",
@@ -719,7 +6025,73 @@
   "youtube": null,
   "vtt": "presentations/research-ddi-requirements/B08_DDI_Requirements_Narrated.vtt",
   "deck": "presentations/research-ddi-requirements/B08_DDI_Requirements_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ddi-requirements/B08_DDI_Requirements_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ddi-requirements/B08_DDI_Requirements_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "What a Federal DDI Platform Must Do"
+   ],
+   [
+    46,
+    "DNS, DHCP and IPAM now form a control plane"
+   ],
+   [
+    97,
+    "No rule names a vendor; the rules name capabilities"
+   ],
+   [
+    154,
+    "Authoritative DNS across clouds, with DNSSEC kept central"
+   ],
+   [
+    208,
+    "DNS security: agency policy first, Protective DNS upstream"
+   ],
+   [
+    257,
+    "IPAM as the address authority, DHCP that stays up"
+   ],
+   [
+    307,
+    "Automation and logging: every change and query on record"
+   ],
+   [
+    356,
+    "Before you buy: check the evidence, not the brochure"
+   ],
+   [
+    417,
+    "Product evidence status, as of October 22, 2026"
+   ],
+   [
+    469,
+    "Divisions get a fenced scope; everything else is denied"
+   ],
+   [
+    520,
+    "Overlapping space, views and tags keep divisions apart"
+   ],
+   [
+    569,
+    "Approvals work only if nothing goes around them"
+   ],
+   [
+    619,
+    "Four delegation patterns, four sets of trade-offs"
+   ],
+   [
+    666,
+    "Worked example: four divisions, one governed platform"
+   ],
+   [
+    715,
+    "Who decides, under Book 08's responsibility matrix"
+   ],
+   [
+    764,
+    "Decisions to make, and the next steps"
+   ]
+  ]
  },
  {
   "id": "Research_Cisco_SDWAN_Narrated",
@@ -730,7 +6102,89 @@
   "youtube": null,
   "vtt": "presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narrated.vtt",
   "deck": "presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Book 09's SD-WAN Design on Cisco Catalyst SD-WAN"
+   ],
+   [
+    51,
+    "Why this guide starts with a directive"
+   ],
+   [
+    98,
+    "ED 26-03: what it required, and when"
+   ],
+   [
+    149,
+    "Nine exploited flaws: a standing posture"
+   ],
+   [
+    197,
+    "The fixed-release floor, train by train"
+   ],
+   [
+    246,
+    "Hunt and harden: CISA's companion guidance"
+   ],
+   [
+    297,
+    "Hosted or on-premises, and why the gate stays"
+   ],
+   [
+    350,
+    "The 12-hub fabric on Catalyst SD-WAN"
+   ],
+   [
+    399,
+    "Path classes and lane discipline"
+   ],
+   [
+    453,
+    "Segmentation and network access control"
+   ],
+   [
+    507,
+    "Certificates and onboarding from the agency PKI"
+   ],
+   [
+    558,
+    "FIPS and Common Criteria: controllers vs edges"
+   ],
+   [
+    611,
+    "TIC 3.0 patterns on Catalyst"
+   ],
+   [
+    664,
+    "Secure Access, Global Secure Access and GCC"
+   ],
+   [
+    718,
+    "Evidence and telemetry the fabric emits"
+   ],
+   [
+    766,
+    "The phased build, mapped to Book 09's gates"
+   ],
+   [
+    816,
+    "Where this changes Book 09's planning"
+   ],
+   [
+    868,
+    "Risks and vendor asks"
+   ],
+   [
+    916,
+    "The example collector: read-only, illustrative"
+   ],
+   [
+    965,
+    "What to verify, decide, and read next"
+   ]
+  ]
  },
  {
   "id": "Research_CyberArk_CLM_Narrated",
@@ -741,7 +6195,145 @@
   "youtube": null,
   "vtt": "presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.vtt",
   "deck": "presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cyberark-clm/Research_CyberArk_CLM_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cyberark-clm/Research_CyberArk_CLM_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Certificate Lifecycle on CyberArk Certificate Manager"
+   ],
+   [
+    44,
+    "What this guide implements: Book 07's issuer map"
+   ],
+   [
+    90,
+    "Prerequisites and decisions before you build"
+   ],
+   [
+    130,
+    "Inside the platform: what it is made of"
+   ],
+   [
+    165,
+    "Inside the platform: the server roles"
+   ],
+   [
+    210,
+    "The web tier: consoles, API and sign-in"
+   ],
+   [
+    248,
+    "The back end: engines, log servers and message bus"
+   ],
+   [
+    291,
+    "Components: switched on server by server"
+   ],
+   [
+    328,
+    "Drivers, agents, the database and the keys"
+   ],
+   [
+    370,
+    "What the platform connects to"
+   ],
+   [
+    408,
+    "A two-site reference topology"
+   ],
+   [
+    451,
+    "One certificate's journey through the platform"
+   ],
+   [
+    492,
+    "Part 1: Build the platform"
+   ],
+   [
+    507,
+    "Architecture: cluster, components and availability"
+   ],
+   [
+    546,
+    "FIPS posture: what you can and can't claim"
+   ],
+   [
+    581,
+    "Console sign-in: Entra SSO with certificate-based auth"
+   ],
+   [
+    617,
+    "Hardening and least-privilege service accounts"
+   ],
+   [
+    654,
+    "Backup and disaster recovery: database and keys"
+   ],
+   [
+    690,
+    "Part 2: Connect the issuers"
+   ],
+   [
+    705,
+    "The AD CS driver: permissions, templates, versions"
+   ],
+   [
+    746,
+    "Scoping the CLM's CA account under ESC7"
+   ],
+   [
+    782,
+    "Public and cloud CA drivers in 26.1"
+   ],
+   [
+    818,
+    "Intune coexistence: who owns device certificates"
+   ],
+   [
+    854,
+    "Part 3: Discover, own and automate"
+   ],
+   [
+    868,
+    "Discovery scans and CA import"
+   ],
+   [
+    901,
+    "Ownership: policy folders, owners and the CMDB"
+   ],
+   [
+    938,
+    "Enrollment automation: ACME, EST, SCEP, REST, agents"
+   ],
+   [
+    973,
+    "Kubernetes, ServiceNow and SIEM inside the boundary"
+   ],
+   [
+    1008,
+    "Part 4: Migrate and operate"
+   ],
+   [
+    1024,
+    "Build sequence mapped to Book 07's six waves"
+   ],
+   [
+    1061,
+    "Renewal as public TLS lifetimes shrink"
+   ],
+   [
+    1095,
+    "Monitoring and drift on the CLM platform"
+   ],
+   [
+    1126,
+    "Decommissioning AD CS with the CLM inventory"
+   ],
+   [
+    1161,
+    "Decisions, vendor asks and next steps"
+   ]
+  ]
  },
  {
   "id": "Research_Hybrid_Credentials_Narrated",
@@ -752,7 +6344,77 @@
   "youtube": null,
   "vtt": "presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narrated.vtt",
   "deck": "presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Certificates, Tokens and Keys Across the Hybrid Estate"
+   ],
+   [
+    43,
+    "What AD does for credentials today"
+   ],
+   [
+    80,
+    "Three stages, five paths"
+   ],
+   [
+    118,
+    "SQL Server: one server, three credentials"
+   ],
+   [
+    160,
+    "SQL Server: the TLS certificate becomes mandatory"
+   ],
+   [
+    204,
+    "SQL Server across the three stages"
+   ],
+   [
+    245,
+    "The clouds' key vaults: one renewer per certificate"
+   ],
+   [
+    287,
+    "Azure, AWS and Google: who renews what"
+   ],
+   [
+    325,
+    "PIV: the card stays, AD's side goes"
+   ],
+   [
+    365,
+    "PIV today: strong mapping for non-Microsoft CAs"
+   ],
+   [
+    408,
+    "PIV in coexistence: Entra CBA and certificateUserIds"
+   ],
+   [
+    450,
+    "PIV after AD: who writes the binding"
+   ],
+   [
+    489,
+    "RADIUS: there is no Entra RADIUS"
+   ],
+   [
+    530,
+    "802.1X with Intune: EAP-TLS and compliance"
+   ],
+   [
+    570,
+    "RADIUS and NAC across the three stages"
+   ],
+   [
+    607,
+    "Who issues and who renews: the whole estate"
+   ],
+   [
+    640,
+    "What changed in the books, and next steps"
+   ]
+  ]
  },
  {
   "id": "Research_HR_Identity_DNS_Narrated",
@@ -763,7 +6425,57 @@
   "youtube": null,
   "vtt": "presentations/research-hr-identity-dns/Research_HR_Identity_DNS_Narrated.vtt",
   "deck": "presentations/research-hr-identity-dns/Research_HR_Identity_DNS_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-hr-identity-dns/Research_HR_Identity_DNS_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-hr-identity-dns/Research_HR_Identity_DNS_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "DNS for HR-Driven Identity Across Clouds"
+   ],
+   [
+    51,
+    "The HR-driven chain, end to end"
+   ],
+   [
+    102,
+    "Almost every name is public and vendor-owned"
+   ],
+   [
+    152,
+    "What must resolve where"
+   ],
+   [
+    200,
+    "Government clouds use different names"
+   ],
+   [
+    244,
+    "Oracle: private access is routing, not DNS"
+   ],
+   [
+    296,
+    "Amazon Connect and VMware"
+   ],
+   [
+    347,
+    "The clouds disagree on precedence"
+   ],
+   [
+    393,
+    "How it breaks: seven failure modes"
+   ],
+   [
+    439,
+    "Hub, not mesh"
+   ],
+   [
+    487,
+    "What the agency must do"
+   ],
+   [
+    538,
+    "Decisions, next steps and where this fits"
+   ]
+  ]
  },
  {
   "id": "Research_Infoblox_Impl_Narrated",
@@ -774,7 +6486,125 @@
   "youtube": null,
   "vtt": "presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.vtt",
   "deck": "presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-impl/Research_Infoblox_Impl_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-impl/Research_Infoblox_Impl_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Implementing Book 08 on Infoblox NIOS"
+   ],
+   [
+    50,
+    "What this guide implements: Book 08 on a Grid"
+   ],
+   [
+    99,
+    "Phase 0: decide these before you build anything"
+   ],
+   [
+    150,
+    "Part 1: Build the Grid"
+   ],
+   [
+    167,
+    "The Grid Master: an HA pair, built in order"
+   ],
+   [
+    210,
+    "The candidate, joining members, and Grid ports"
+   ],
+   [
+    251,
+    "Time first, then licenses: two quiet failure modes"
+   ],
+   [
+    301,
+    "vNIOS on VMware, Azure and AWS"
+   ],
+   [
+    352,
+    "Part 2: Migrate from Microsoft"
+   ],
+   [
+    371,
+    "Method A: manage the Windows servers, then take over"
+   ],
+   [
+    420,
+    "Method B: import zones by transfer; bulk data by CSV"
+   ],
+   [
+    467,
+    "AD zones and Kerberos-signed updates: use AES"
+   ],
+   [
+    521,
+    "DHCP takeover: change assignments, never remove first"
+   ],
+   [
+    568,
+    "DHCP failover and DHCPv6 on NIOS"
+   ],
+   [
+    617,
+    "Rollback: what reverses, and how"
+   ],
+   [
+    667,
+    "Part 3: Sign and harden"
+   ],
+   [
+    686,
+    "DNSSEC on NIOS: set parameters before you sign"
+   ],
+   [
+    735,
+    "The HSM and DS publication"
+   ],
+   [
+    782,
+    "Hardening NIOS: the agency's settings baseline"
+   ],
+   [
+    854,
+    "FIPS mode: the procedure and what it changes"
+   ],
+   [
+    900,
+    "Administrator access and two upgrade gates"
+   ],
+   [
+    947,
+    "Part 4: Operate and evidence"
+   ],
+   [
+    964,
+    "Upgrades: five steps, and the point of no return"
+   ],
+   [
+    1014,
+    "Patching: hotfixes, images and known exploits"
+   ],
+   [
+    1056,
+    "Backup, restore and Grid Master recovery"
+   ],
+   [
+    1105,
+    "Logging and evidence for the SIEM"
+   ],
+   [
+    1152,
+    "Automation: what you can codify, and what you can't"
+   ],
+   [
+    1198,
+    "The build mapped to Book 08's six phases"
+   ],
+   [
+    1248,
+    "Decisions, vendor asks and next steps"
+   ]
+  ]
  },
  {
   "id": "Infoblox_DDI_Federal_Deep_Dive_Narrated",
@@ -785,7 +6615,145 @@
   "youtube": null,
   "vtt": "presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narrated.vtt",
   "deck": "presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Infoblox DDI for Federal Agencies"
+   ],
+   [
+    53,
+    "DNS, DHCP and IPAM are one control plane"
+   ],
+   [
+    105,
+    "What federal rules require, and what none of them say"
+   ],
+   [
+    159,
+    "Module 1: The platform"
+   ],
+   [
+    178,
+    "Grid architecture: one database, many members"
+   ],
+   [
+    230,
+    "Universal DDI and the Infoblox Portal, with its limits"
+   ],
+   [
+    280,
+    "DNS: views, DNSSEC, DNS Firewall and encrypted DNS"
+   ],
+   [
+    335,
+    "DHCP and IPAM: failover, network views, discovery"
+   ],
+   [
+    385,
+    "Threat Defense: DNS-layer security and intelligence"
+   ],
+   [
+    438,
+    "Automation and logging: APIs, IaC, SIEM, reporting"
+   ],
+   [
+    489,
+    "Module 2: Why Infoblox, and why federal needs it"
+   ],
+   [
+    509,
+    "From requirement to capability to Infoblox feature"
+   ],
+   [
+    563,
+    "FedRAMP scope: what the Moderate listing covers"
+   ],
+   [
+    616,
+    "Trinzic hardware against the workbook's design"
+   ],
+   [
+    669,
+    "Trinzic alone, or with cloud DDI?"
+   ],
+   [
+    726,
+    "Assurance: baselines, FIPS 140, NIAP and SP 800-81r3"
+   ],
+   [
+    791,
+    "A fair comparison: dedicated DDI and native clouds"
+   ],
+   [
+    849,
+    "Risks: certifications, vulnerabilities, authorization"
+   ],
+   [
+    901,
+    "Risks: cost, capacity, features, and procurement asks"
+   ],
+   [
+    951,
+    "Module 3: Divisions on NIOS"
+   ],
+   [
+    969,
+    "The NIOS permission model: deny first, most specific"
+   ],
+   [
+    1017,
+    "Scoping an admin group to one division"
+   ],
+   [
+    1064,
+    "Network views, DNS views and extensible attributes"
+   ],
+   [
+    1114,
+    "Approval workflow, and the CSV import gap"
+   ],
+   [
+    1162,
+    "Admin sign-in: CAC/PIV, SAML with Entra, directories"
+   ],
+   [
+    1210,
+    "Microsoft servers, what stays central, and reporting"
+   ],
+   [
+    1263,
+    "Separating DNS, DHCP and IPAM by team"
+   ],
+   [
+    1315,
+    "Service teams and divisions together"
+   ],
+   [
+    1366,
+    "Module 4: Universal DDI divisions and operating model"
+   ],
+   [
+    1384,
+    "Universal DDI: access views, IP spaces, federation"
+   ],
+   [
+    1438,
+    "Four delegation patterns and their trade-offs"
+   ],
+   [
+    1489,
+    "Worked example: four divisions on one Grid"
+   ],
+   [
+    1539,
+    "Who does what: the DDI responsibility matrix"
+   ],
+   [
+    1590,
+    "Rollout sequence, decisions and next steps"
+   ]
+  ]
  },
  {
   "id": "Research_Trinzic_MultiCloud_Narrated",
@@ -796,7 +6764,49 @@
   "youtube": null,
   "vtt": "presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narrated.vtt",
   "deck": "presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Trinzic Alone, or Trinzic Plus Cloud DDI?"
+   ],
+   [
+    50,
+    "The words you need before we start"
+   ],
+   [
+    103,
+    "What Trinzic is, and what it does well on premises"
+   ],
+   [
+    157,
+    "What Trinzic alone sees in the clouds, and can't control"
+   ],
+   [
+    206,
+    "Option A: vNIOS members inside each cloud"
+   ],
+   [
+    261,
+    "Option B: the Grid joined to Universal DDI"
+   ],
+   [
+    312,
+    "Option C: Trinzic alongside native cloud DNS"
+   ],
+   [
+    363,
+    "The rules that prevent split-brain"
+   ],
+   [
+    411,
+    "Which option fits your agency? Design guidance"
+   ],
+   [
+    468,
+    "Where this fits the workbook, and next steps"
+   ]
+  ]
  },
  {
   "id": "Research_Device_Naming_Narrated",
@@ -807,7 +6817,61 @@
   "youtube": null,
   "vtt": "presentations/research-device-naming/Research_Device_Naming_Narrated.vtt",
   "deck": "presentations/research-device-naming/Research_Device_Naming_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-device-naming/Research_Device_Naming_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-device-naming/Research_Device_Naming_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Who Names the Device After AD?"
+   ],
+   [
+    46,
+    "Two jobs Active Directory did at once"
+   ],
+   [
+    91,
+    "Who names the device now"
+   ],
+   [
+    140,
+    "Why devices can't register themselves securely"
+   ],
+   [
+    185,
+    "DHCP registers the record on the device's behalf"
+   ],
+   [
+    229,
+    "The migration trap: who owns the existing names"
+   ],
+   [
+    283,
+    "IPv6: addresses that nobody registers"
+   ],
+   [
+    334,
+    "Servers and the cloud register differently"
+   ],
+   [
+    384,
+    "Remote and VPN clients: resolved, not registered"
+   ],
+   [
+    430,
+    "Why device names still matter after AD"
+   ],
+   [
+    480,
+    "Platform by platform: who names, who registers"
+   ],
+   [
+    528,
+    "What the agency must do: before, cutover, after"
+   ],
+   [
+    579,
+    "Decisions, next steps and where this fits"
+   ]
+  ]
  },
  {
   "id": "Research_TTM_ServiceNow_SailPoint_Narrated",
@@ -818,7 +6882,61 @@
   "youtube": null,
   "vtt": "presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated.vtt",
   "deck": "presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Ticket-to-Machine on ServiceNow and SailPoint"
+   ],
+   [
+    43,
+    "An example, not a recommendation"
+   ],
+   [
+    89,
+    "The products and their FedRAMP status"
+   ],
+   [
+    141,
+    "The picture: the loop on ServiceNow and SailPoint"
+   ],
+   [
+    187,
+    "How the two products hand work to each other"
+   ],
+   [
+    240,
+    "The loop, step by step, on these products"
+   ],
+   [
+    287,
+    "The lanes on these products"
+   ],
+   [
+    335,
+    "Gaps 1 and 2: ticket status, and who approves"
+   ],
+   [
+    382,
+    "Gaps 3 and 4: change records, and one writer"
+   ],
+   [
+    433,
+    "Identity fixes: HR facts, leavers and stray writes"
+   ],
+   [
+    477,
+    "Identity fixes: matching, contractors and rules"
+   ],
+   [
+    523,
+    "Federal availability and cautions"
+   ],
+   [
+    577,
+    "What to verify, decide, and read next"
+   ]
+  ]
  },
  {
   "id": "HR_Driven_Identity_AnyAgency_Narrated",
@@ -829,7 +6947,73 @@
   "youtube": null,
   "vtt": "presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency_Narrated.vtt",
   "deck": "presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "HR-Driven Identity Modernization"
+   ],
+   [
+    60,
+    "Use the onboarding window to design HR-driven identity"
+   ],
+   [
+    117,
+    "Why we need HR-driven ICAM now"
+   ],
+   [
+    192,
+    "The everyday impact of manually provisioned ICAM"
+   ],
+   [
+    242,
+    "The window closes at the agency’s interconnection go-live"
+   ],
+   [
+    316,
+    "Drive identity from OPM’s standard HR data"
+   ],
+   [
+    409,
+    "Proposed identity interpretation of OPM nature-of-action families"
+   ],
+   [
+    480,
+    "Model the person, not the account: layered identifiers"
+   ],
+   [
+    552,
+    "Proposed physical mapping: HR to Entra ID and AD"
+   ],
+   [
+    600,
+    "Logical architecture and Microsoft realization"
+   ],
+   [
+    652,
+    "ICAM: attributes drive credentials, assurance and access"
+   ],
+   [
+    715,
+    "Privacy by design: HR data in identity is a disclosure"
+   ],
+   [
+    772,
+    "The governance I’d bring to deliver it safely"
+   ],
+   [
+    817,
+    "A reusable HR-driven ICAM model for interagency evaluation"
+   ],
+   [
+    869,
+    "Roadmap and the ask"
+   ],
+   [
+    924,
+    "More modernizations I’ve designed"
+   ]
+  ]
  },
  {
   "id": "HR_Driven_Identity_Exec_AnyAgency_Narrated",
@@ -840,7 +7024,45 @@
   "youtube": null,
   "vtt": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Exec_AnyAgency_Narrated.vtt",
   "deck": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Exec_AnyAgency_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_Exec_AnyAgency_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_Exec_AnyAgency_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "HR-Driven Identity Modernization"
+   ],
+   [
+    41,
+    "Identity is built by hand — and the mission is outgrowing it"
+   ],
+   [
+    145,
+    "Four options, weighed against what leadership must balance"
+   ],
+   [
+    239,
+    "Recommendation: HR as the source of truth, starting now"
+   ],
+   [
+    361,
+    "Who: the owners, the partners, and my role"
+   ],
+   [
+    463,
+    "How: the data model, logical to physical"
+   ],
+   [
+    508,
+    "How: data, security and operations"
+   ],
+   [
+    593,
+    "How we’ll know it works — and what I need"
+   ],
+   [
+    670,
+    "More modernizations I’ve designed"
+   ]
+  ]
  },
  {
   "id": "HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated",
@@ -851,6 +7073,36 @@
   "youtube": null,
   "vtt": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.vtt",
   "deck": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.pptx",
-  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_Contractor_Source_AnyAgency_Narration_Script.md"
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/hr-driven-identity-interview/HR_Driven_Identity_Contractor_Source_AnyAgency_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Who is authoritative for a contractor?"
+   ],
+   [
+    49,
+    "Contractors need an equivalent personnel authority"
+   ],
+   [
+    150,
+    "Three operational contexts hold contractor information"
+   ],
+   [
+    248,
+    "Four candidate sources, compared"
+   ],
+   [
+    316,
+    "Working position: one fact, one authority"
+   ],
+   [
+    440,
+    "What must be true before a register can be an authority"
+   ],
+   [
+    524,
+    "Sequence: start with what already exists"
+   ]
+  ]
  }
 ]

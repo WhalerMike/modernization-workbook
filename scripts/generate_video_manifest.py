@@ -14,7 +14,8 @@ The browser streams each MP4 from the release; the caption tracks are
 published with the site, because a <track> must come from the page's own
 origin. A video that is also on the workbook's YouTube channel carries its
 YouTube ID (from data/youtube-ids.json), and the players embed it from
-youtube-nocookie.com instead, keeping the MP4 as the download.
+youtube-nocookie.com instead, keeping the MP4 as the download. Each video
+also lists its slides as chapters, so the players can jump to any slide.
 
     python scripts/generate_video_manifest.py            # write both files
     python scripts/generate_video_manifest.py --check    # exit 1 if either is stale
@@ -31,6 +32,7 @@ import struct
 import subprocess
 import sys
 import urllib.request
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -112,6 +114,34 @@ def probe_seconds(url: str, size: int) -> float:
     raise SystemExit(f"video manifest: no mvhd box found in {url}")
 
 
+def chapters_of(deck: Path, script: Path) -> list[list] | None:
+    """[start second, slide title] for each slide: the narrated deck's advance
+    times (what the video export follows) summed, and the script's headings."""
+    if not (deck.exists() and script.exists()):
+        return None
+    with zipfile.ZipFile(deck) as z:
+        rels = {
+            a["Id"]: a["Target"]
+            for m in re.finditer(r"<Relationship [^>]*>", z.read("ppt/_rels/presentation.xml.rels").decode("utf-8"))
+            for a in [dict(re.findall(r'(\w+)="([^"]*)"', m.group(0)))]
+        }
+        order = re.findall(r'<p:sldId [^>]*r:id="(rId\d+)"', z.read("ppt/presentation.xml").decode("utf-8"))
+        advances = []
+        for rid in order:
+            m = re.search(r'advTm="(\d+)"', z.read("ppt/" + rels[rid]).decode("utf-8"))
+            if not m:
+                raise SystemExit(f"video manifest: {deck.name}: {rels[rid]} has no advance time")
+            advances.append(int(m.group(1)) / 1000)
+    titles = dict(re.findall(r"^## Slide (\d+) — (.+?)\s*$", script.read_text(encoding="utf-8"), re.M))
+    if len(titles) != len(advances):
+        raise SystemExit(f"video manifest: {script.name} heads {len(titles)} slides but {deck.name} has {len(advances)}")
+    chapters, t = [], 0.0
+    for i, adv in enumerate(advances, 1):
+        chapters.append([int(t), titles[str(i)]])
+        t += adv
+    return chapters
+
+
 def collect() -> list[dict]:
     seconds = json.loads(DURATIONS.read_text(encoding="utf-8")) if DURATIONS.exists() else {}
     youtube = json.loads(YOUTUBE.read_text(encoding="utf-8")) if YOUTUBE.exists() else {}
@@ -133,6 +163,7 @@ def collect() -> list[dict]:
                 "vtt": f"{rel}/{vtt.name}",
                 "deck": f"{rel}/{deck.name}" if deck.exists() else None,
                 "script": f"{GH}/{rel}/{script.name}" if script.exists() else None,
+                "chapters": chapters_of(deck, script),
             }
         )
     unknown = sorted(set(youtube) - {v["id"] for v in videos})
