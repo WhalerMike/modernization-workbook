@@ -64,3 +64,11 @@ Checked October 20, 2026. Sources: the existing series page (Next Generation DDI
 |---|---|---|---|---|
 | CP-1 | Ask: the DNS/DDI team settles the five configuration decisions (network engineering configures the edge for Decisions 1 and 2), replacing "the enterprise architecture or network operations lead" | The case in one paragraph (Ask) | aligned to Chapter 09 (program design) | Chapter 09 responsibility matrix: DNS/DDI team holds D on Decisions 1-5; network engineering R on Decisions 1-2 |
 | CP-2 | Table row: "DNS resolver policy (formerly DNS security policy)" is the current Azure name | Cloud platforms table | re-verified | Microsoft Learn, "DNS resolver policy," <https://learn.microsoft.com/en-us/azure/dns/dns-security-policy> (opened Oct 21, 2026): page title and every heading use "DNS resolver policy"; portal resource "DNS Resolver Policies"; URL keeps `dns-security-policy`; networking design guide <https://learn.microsoft.com/azure/networking/design-guide/dns-security> still says "DNS security policy" |
+
+## Addition, October 30, 2026: Oracle Cloud row; NSX source refreshed
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| OC-1 | Oracle Cloud Infrastructure: VCN resolver at 169.254.169.254, private views (attached in order, default last), listening and forwarding endpoints with resolver rules; no private-DNS security policy | Landscape table | verified (added); platform count in the opening and the landscape paragraph now six | c01-oci (Oracle "Private DNS" and "Traffic Management Steering Policies," accessed Oct 30, 2026) |
+| OC-2 | NSX forwarder limits unchanged in NSX 4.2 | Landscape table | re-verified; citation moved from the NSX 4.1 docs.vmware.com URL (now redirects to the guide landing page) to Broadcom TechDocs 4.2 | c01-nsx |
+| OC-3 | Pointer to Chapter 07's logging, limits and failure-behavior comparison | After the landscape table | cross-reference | — |
