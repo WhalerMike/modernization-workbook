@@ -69,6 +69,8 @@ Microsoft's warning about synced users belongs in the security plan: **Active Di
 
 ### The contractor PIV path {#the-contractor-piv-path}
 
+**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../research/oracle-contingent-worker-contractor-source.md#status-and-review).
+
 For an employee, the HR joiner starts sponsorship and HR's separation starts the leaver. A contractor has neither: there's no HR record, and the contractor source chosen in Chapter 06 has to supply both ends. Three links make the path whole; they are the program's design, built on the requirements cited.
 
 1. **The contractor joiner starts sponsorship.** A credential is issued only after "a proper authority has authorized issuance,"[^c09-fips201] and only the organization can decide which of its contractors must apply for a PIV card, so sponsorship can't be outsourced.[^c09-sp80079] Make the sponsorship request an output of the contractor source's joiner: a record with a federal sponsor, a contract reference and a start date. No contractor record, no card request. The Temporary Access Pass bridge above applies to contractors too.

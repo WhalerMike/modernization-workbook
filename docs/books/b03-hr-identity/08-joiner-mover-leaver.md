@@ -66,6 +66,8 @@ The table is a proposed interpretation, not an OPM rule. HR, security, labor-rel
 
 Contractors and vendors have no SF-50 and no nature-of-action codes. Their joiner and leaver events are the contract or sponsorship start and end dates in their own source, and a sponsor's withdrawal is a leaver event (Chapter 06). The PIV card follows the same two events *(design guidance)*: the contractor joiner sends the sponsorship request, and a termination or expiry reported by the card management system is a contractor leaver input, while a reissue isn't ([Chapter 09](09-credentials-and-certificates.md#the-contractor-piv-path)).
 
+**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../research/oracle-contingent-worker-contractor-source.md#status-and-review).
+
 Three rules follow, and Appendix A sets out the rest:
 
 - **Leave is not a leaver.** Furlough, leave without pay and suspension (the 4xx family) keep the person; deprovisioning them as leavers locks out people who are still employed.

@@ -106,3 +106,23 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 
 - The wave lists in the memo's Appendix A name agencies. Only the wave years are given, so the page names no agency outside its cited sources.
 - Facts from press or secondary sources weren't used: DOT and DHS OIG counts, and the GCIMS sponsor role.
+
+## Independent verification pass, October 30, 2026
+
+Every footnote was re-checked against raw sources by the independent pass (`docs/research/_verification/verification-pass-2026-10.md`). Its mechanical corrections were applied here; its substantive findings (DOIAccess and FBMS, DHS IDMS de-provisioning, Oracle person security profiles, the contract number, Change Worker Type, the leaver templates, A-108 §6.b(1), "regardless of affiliation", and smaller overstatements and labels) await the author's approval and aren't yet reflected on the page.
+
+| # | Correction | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Quote made verbatim: "personnel termination and transfer processes" | Part 3, AC-2 row | corrected | cw-sp80053 (OSCAL 5.2.0) |
+| 2 | "within 18 hours of notification", with the can't-be-collected condition, replaces the fragment "of notification" | Part 5, link 3 | corrected | cw-fips201 §2.9.4 |
+| 3 | FPDS page title "Period of Performance Start Date" | cw-fpds | corrected | fpds.gov |
+| 4 | Guide and page title for the work-relationship attributes | cw-ora-pos | corrected | Oracle |
+| 5 | EBS footnote restated to what the page says; "projected assignment end" isn't on it | cw-ora-ebs | corrected | Oracle EBS |
+| 6 | Guide title *HCM Data Loading Business Objects* | cw-ora-hdl, cw-ora-hdl-term | corrected | Oracle |
+| 7 | SailPoint page title | cw-nerm | corrected | SailPoint |
+| 8 | Offer worker type added to the footnote's list | cw-ora-wr | corrected | Oracle |
+| 9 | CLIN 0003 p. 10; §5.2 Agency Transition; Req. 60 p. 64; §5.1.1(7) | cw-pws-clin, cw-pws-config, cw-pws-affiliate, cw-pws-pia | corrected | Amendment 4 |
+| 10 | Q&A set 2 cited for the "either set" absence claim; search re-run | cw-qa1, Findings | corrected | Q&A set 2 |
+| 11 | Titles as published | cw-opm-award, cw-govt1, cw-govt7-2006, cw-dhs-oig-26 | corrected | OPM, Federal Register, oversight.gov |
+| 12 | EPA quote location: system overview, p. 2 | cw-epa-epacs | corrected | EPA PIA |
+| 13 | DOE OIG printed pp. 1–2, PDF pp. 2–3 | cw-doe-oig | corrected | DOE OIG |

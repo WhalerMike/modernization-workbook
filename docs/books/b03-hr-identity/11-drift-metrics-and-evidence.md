@@ -60,6 +60,8 @@ Drift is any difference between what the HR record says and what the directory h
 
 : Drift classes and how to detect them {.striped .hover}
 
+**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../research/oracle-contingent-worker-contractor-source.md#status-and-review).
+
 The severities are this program's defaults, not an external standard. The provisioning logs are the first source for most of these: the API client already reads them for each record's result (Chapter 05). The rest are joins between the HR extract, the directory and the CMS, on the one identifier they share. Microsoft Entra ID Governance also offers Account Discovery, which finds existing accounts in a target application and identifies which have matching Entra accounts and which are orphans;[^c11-gov-licensing] it extends the orphan class past the directory.
 
 In the first month of a new pipeline, expect a burst of high-severity findings: leavers the manual process hadn't caught up with, and orphan accounts that years of ticket-driven account creation left behind and the HR-driven pipeline can now see. That burst is the measurement working, not the pipeline failing.
@@ -103,7 +105,7 @@ The agency's full requirements mapping should separate binding authorities (OMB 
 [← Previous: Chapter 10 — From Attributes to Access](10-from-attributes-to-access.md) · [Book index](index.md) · [Next: Chapter 12 — Execution Plan →](12-execution-plan.md)
 :::
 
-[^c11-nist-80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020; Release 5.2.0, August 27, 2025), controls AC-2, AC-2(1), AU-6, AU-11, CA-7, IA-4, IA-4(4), PS-4, PS-5 and SI-12, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026); control text checked against NIST's OSCAL catalog, Release 5.2.0, <https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (accessed Oct 20, 2026).
+[^c11-nist-80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020; Release 5.2.0, August 27, 2025), controls AC-2, AC-2(1), AU-6, AU-11, CA-7, IA-4, IA-4(4), PS-4, PS-5, PS-7 and SI-12, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026); control text checked against NIST's OSCAL catalog, Release 5.2.0, <https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (accessed Oct 20, 2026).
 [^c11-lcw-schedule]: Microsoft Learn, "Customize a workflow schedule," <https://learn.microsoft.com/en-us/entra/id-governance/customize-workflow-schedule> (accessed Oct 20, 2026).
 [^c11-gov-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals" (section "Account Discovery"), <https://learn.microsoft.com/en-us/entra/id-governance/licensing-fundamentals> (accessed Oct 20, 2026).
 [^c11-prov-logs]: Microsoft Learn, "How to download and analyze the Microsoft Entra provisioning logs" (section "What you should know"), <https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-analyze-provisioning-logs> (accessed Oct 20, 2026).

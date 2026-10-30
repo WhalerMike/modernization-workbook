@@ -588,6 +588,8 @@ Certificate-based authentication (CBA) is attribute-driven too: Entra ID finds t
 
 **Contractors.** A contractor has no HR record, so the contractor source chosen in Stage 1 supplies the three links HR supplies for employees *(design guidance)*: its joiner sends the sponsorship request, so no card is requested for someone it doesn't hold; the card management system publishes termination, revocation and expiry events back to the pipeline, where a contractor's termination or expiry ends the engagement and a reissue only rewrites the binding; and the contractor's end date, capped by the contract's completion date, is the notification that starts FIPS 201-3's 18-hour termination clock for a card that can't be collected.[^adm-fips201] Until the card arrives, a Temporary Access Pass registers a FIDO2 key that meets the phishing-resistant strength ([Book 04, Chapter 03](../b04-access/03-the-conditional-access-model.md#authentication-strengths)). The path is set out in [Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#the-contractor-piv-path) and [Book 07, Chapter 04](../b07-pki/04-the-target-pki.md#the-contractor-piv-path), with the evidence in the research page [Contractors as Oracle Contingent Workers](../../research/oracle-contingent-worker-contractor-source.md#part-5-the-contractor-piv-path).
 
+**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../research/oracle-contingent-worker-contractor-source.md#status-and-review).
+
 ## Limits
 
 These are the limits as the chapters state them, with the Learn pages re-checked on October 29, 2026 where noted.

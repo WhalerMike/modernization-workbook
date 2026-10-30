@@ -49,3 +49,11 @@ Added at the author's request. The path is set in Chapter 09, "The contractor PI
 |---|---|---|---|---|
 | 1 | Phase 1 decision: the contractor PIV path, owned by the PIV office | Phase 1 | design (ownership follows Ch07's PIV office role) | — |
 | 2 | Verification register row: can the card management system publish events keyed on the enterprise person key, and how fast | Verification register | open item (not a claim) | — |
+
+## Additions, October 30, 2026 (contractor PIV path marked pending proof)
+
+Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | Workstream bullet "Decide the contractor PIV path", appended sentence | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |

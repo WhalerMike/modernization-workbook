@@ -107,3 +107,11 @@ Added at the author's request: new subsection "The contractor PIV path" after "B
 | 6 | FAR 52.204-9: return upon contract completion or termination | Contractor PIV path, 3 | verified; footnote c09-far52049 added | acquisition.gov |
 | 7 | PS-7: provider notifies terminations within a defined time | Contractor PIV path, 3 | verified; footnote c09-sp80053-ps7 added (c09-sp80053 stays PS-4) | SP 800-53 Rev. 5 PS-7(d) |
 | 8 | Pipeline notifies the PIV office at the earliest end date, capped by the contract's completion date | Contractor PIV path, 3 | design | — |
+
+## Additions, October 30, 2026 (contractor PIV path marked pending proof)
+
+Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | "The contractor PIV path", first line | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |

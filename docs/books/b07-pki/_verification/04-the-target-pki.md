@@ -119,3 +119,19 @@ Added at the author's request: new subsection "The contractor PIV path" in "Fede
 | 4 | Account disable, not the CRL, stops sign-in | Revoke and report | restated from Book 03 Ch09 and this book's Ch08 (linked) | — |
 | 5 | 18-hour termination clock from notification | End | verified | FIPS 201-3 §2.9.4 (c04-fips201) |
 | 6 | Sponsorship from the contractor joiner; CMS events back to the pipeline; end date as the notification | All four | design (labelled) | — |
+
+## Additions, October 30, 2026 (contractor PIV path marked pending proof)
+
+Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | "The contractor PIV path", first line | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |
+
+## Independent verification pass, October 30, 2026
+
+"The contractor PIV path" re-checked against FIPS 201-3 and the Entra CBA CRL page (`docs/research/_verification/verification-pass-2026-10.md`): supported.
+
+| # | Correction | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | `c04-fips201` names §2.1 (proper authority) and §2.9.4 (18 hours of notification if the card can't be collected) | Footnotes | corrected | FIPS 201-3 |

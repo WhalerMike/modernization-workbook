@@ -53,3 +53,11 @@ Added at the author's request. The path is set in Chapter 09, "The contractor PI
 | 3 | The end date as the notice that starts the 18-hour clock | Contractor leavers | restated from Ch09 (FIPS 201-3 §2.9.4 verified there) and linked | — |
 | 4 | No record, no card | Contractor leavers | design | — |
 | 5 | "In this appendix" lists the new section | Callout | editorial | — |
+
+## Additions, October 30, 2026 (contractor PIV path marked pending proof)
+
+Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | "Contractor leavers", first line | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |
