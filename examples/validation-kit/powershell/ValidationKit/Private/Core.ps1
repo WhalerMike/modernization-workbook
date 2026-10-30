@@ -222,7 +222,9 @@ function Get-VkRunContext {
         [hashtable]$Option = @{},
         [switch]$SkipAD,
         [switch]$IncludeBeta,
-        [switch]$IncludePreview
+        [switch]$IncludePreview,
+        # The tenant the run was told to read (-TenantId). Recorded in the manifest when no session says otherwise.
+        [string]$TenantId
     )
     $options = [ordered]@{}
     foreach ($k in $script:VkDefaultOptions.Keys) { $options[$k] = $script:VkDefaultOptions[$k] }
@@ -251,8 +253,52 @@ function Get-VkRunContext {
         SkipAD      = [bool]$SkipAD
         IncludeBeta = [bool]$IncludeBeta
         IncludePreview = [bool]$IncludePreview
+        TenantId    = $(if ($TenantId) { $TenantId.Trim() } else { $null })
         Cache       = @{}
     }
+}
+
+function Resolve-VkRunTenant {
+    <#
+    .SYNOPSIS
+        The tenant a run read, for ValidationManifest.json: @{ TenantId; TenantIdSource }.
+    .DESCRIPTION
+        Fixture runs: tenantId from the fixture's tenant.json, a placeholder (source Fixture).
+        Live runs: the Microsoft Graph session's TenantId, which the Graph PowerShell SDK takes from
+        the access token's tid claim (GraphSession); else the Azure PowerShell session's tenant
+        (AzureSession); else the -TenantId the run was given (Parameter). TenantId is $null when
+        none of them is known, and the drift pipeline then refuses to compare the run. A session
+        tenant that differs from a -TenantId GUID is an error: the run read the wrong tenant.
+    #>
+    param([Parameter(Mandatory)]$Context)
+    $none = [ordered]@{ TenantId = $null; TenantIdSource = $null }
+    if ($Context.Mode -eq 'Fixture') {
+        $file = Join-Path $Context.FixturePath 'tenant.json'
+        if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { return $none }
+        $id = "$(Get-VkValue (ConvertFrom-Json -InputObject ([System.IO.File]::ReadAllText($file))) 'tenantId')".Trim()
+        if (-not $id) { return $none }
+        return [ordered]@{ TenantId = $id; TenantIdSource = 'Fixture' }
+    }
+    $configured = "$(Get-VkValue $Context 'TenantId')".Trim()
+    $session = $null
+    $source = $null
+    if (Get-Command -Name Get-MgContext -ErrorAction SilentlyContinue) {
+        $mg = Get-MgContext
+        if ($mg -and "$($mg.TenantId)") { $session = "$($mg.TenantId)"; $source = 'GraphSession' }
+    }
+    if (-not $session -and (Get-Command -Name Get-AzContext -ErrorAction SilentlyContinue)) {
+        $az = Get-AzContext
+        if ($az -and $az.Tenant -and "$($az.Tenant.Id)") { $session = "$($az.Tenant.Id)"; $source = 'AzureSession' }
+    }
+    if ($session) {
+        $g = [guid]::Empty
+        if ($configured -and [guid]::TryParse($configured, [ref]$g) -and $g -ne [guid]$session) {
+            throw "The signed-in tenant ($session) isn't the -TenantId the run was given ($configured)"
+        }
+        return [ordered]@{ TenantId = $session; TenantIdSource = $source }
+    }
+    if ($configured) { return [ordered]@{ TenantId = $configured; TenantIdSource = 'Parameter' } }
+    $none
 }
 
 function ConvertTo-VkFullPath {
@@ -706,7 +752,7 @@ function Get-VkModuleVersions {
 }
 
 function Write-VkManifest {
-    <# ValidationManifest.json at the run root: who, when, where, with what, and a SHA-256 of every other file. #>
+    <# ValidationManifest.json at the run root: who, when, where (cloud and tenant), with what, and a SHA-256 of every other file. #>
     param(
         [Parameter(Mandatory)][string]$RunPath,
         [Parameter(Mandatory)][string]$RunId,
@@ -714,9 +760,12 @@ function Write-VkManifest {
         [Parameter(Mandatory)]$Context,
         [object[]]$Results = @(),
         [hashtable]$Parameters = @{},
-        [string[]]$RequestedScopes = @()
+        [string[]]$RequestedScopes = @(),
+        # From Resolve-VkRunTenant; resolved here when not given.
+        [System.Collections.IDictionary]$Tenant
     )
     $files = @(Get-VkFileManifest -Root $RunPath -Exclude 'ValidationManifest.json')
+    $tenant = if ($Tenant) { $Tenant } else { Resolve-VkRunTenant -Context $Context }
     $manifest = [ordered]@{
         Schema          = 'fmw-validation-kit/manifest/1'
         RunId           = $RunId
@@ -724,6 +773,8 @@ function Write-VkManifest {
         ReadOnly        = $true
         Mode            = $Context.Mode
         Cloud           = $Context.Cloud
+        TenantId        = $tenant.TenantId
+        TenantIdSource  = $tenant.TenantIdSource
         AsOfUtc         = Format-VkUtc $Context.AsOf
         ExecutedBy      = Get-VkExecutor
         ComputerName    = [Environment]::MachineName
@@ -794,6 +845,8 @@ function Write-VkRunOutput {
         [hashtable]$Parameters = @{},
         [string[]]$RequestedScopes = @()
     )
+    # Before any file is written: a run that read the wrong tenant leaves no output to mistake for evidence.
+    $tenant = Resolve-VkRunTenant -Context $Context
     $runId = ConvertTo-VkRunId -AsOf $StartTime -HostName ([Environment]::MachineName) -Mode $Context.Mode
     $base = Resolve-VkOutputRoot -OutputPath $OutputPath
     $run = Resolve-VkOutputRoot -OutputPath (Join-Path $base $runId)
@@ -821,6 +874,6 @@ function Write-VkRunOutput {
             }
             Checks = @($Results | ForEach-Object { [ordered]@{ CheckId = $_.CheckId; Status = $_.Status; Count = $_.Count } })
         }) -Path (Join-Path (Join-Path $run 'Summary') 'ValidationSummary.json')
-    $manifest = Write-VkManifest -RunPath $run -RunId $runId -StartTime $StartTime -Context $Context -Results $Results -Parameters $Parameters -RequestedScopes $RequestedScopes
+    $manifest = Write-VkManifest -RunPath $run -RunId $runId -StartTime $StartTime -Context $Context -Results $Results -Parameters $Parameters -RequestedScopes $RequestedScopes -Tenant $tenant
     [pscustomobject]@{ RunId = $runId; RunPath = $run; FileCount = $manifest.FileCount; Summary = (Join-Path (Join-Path $run 'Summary') 'ValidationSummary.md') }
 }

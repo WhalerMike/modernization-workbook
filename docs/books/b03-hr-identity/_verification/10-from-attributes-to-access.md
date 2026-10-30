@@ -121,3 +121,11 @@ The "Legal employer" row had the `accountEnabled` guard but not `user.userType -
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 3 | Guests are excluded with `user.userType -eq "Member"` | Rule pattern table, row "Legal employer" | corrected | Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (accessed Oct 30, 2026) |
+
+## Correction, October 30, 2026 (later): an empty worker type no longer passes the Exclusion pattern
+
+The "Exclusion" row's `(user.extensionAttribute11 -ne "CTR")` also matched a person whose worker-type slot was empty. The owner decided that a person with an empty worker type must not qualify, so the row now ends `-and (user.extensionAttribute11 -ne null)`. Learn's rules page says to compare with `null`, unquoted, to test for a null value. This settles claim 2 above. Found by the rule linter in the developer workbook *Building the Attribute-Driven Migration* (Chapter 04, rule DR-10, under Projects); logged in `docs/project-plans/developer-workbooks/attribute-driven-migration/_verification/research-gaps.md`, gap 9.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 4 | A null check is written `-ne null`, without quotes; an `-ne "CTR"` comparison alone admits an empty value | Rule pattern table, row "Exclusion" | corrected (owner's decision, October 30, 2026) | Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (accessed Oct 30, 2026) |

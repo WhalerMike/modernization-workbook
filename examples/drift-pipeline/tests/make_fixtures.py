@@ -81,6 +81,8 @@ CURRENT = {
                  [row("Finding", "Require MFA", "ca-users", "Emergency-access group not excluded", "State=enabled; MissingExclusions=" + U + "900")]),
 }
 
+# The kit's fixture tenant placeholder (examples/validation-kit/tests/fixtures/*/tenant.json).
+TENANT = "11111111-1111-4111-8111-111111111111"
 OPTIONS = {"MaxSecretDays": 180, "MinOwners": 2, "MinSupportedAgentVersion": "1.58", "StaleDays": 90}
 
 
@@ -121,7 +123,7 @@ def write_run(parent: Path, run_id: str, as_of: str, checks: dict) -> None:
         (run / rel).write_bytes(data)
     manifest = {
         "Schema": "fmw-validation-kit/manifest/1", "RunId": run_id, "KitVersion": "0.1.0", "ReadOnly": True,
-        "Mode": "Fixture", "Cloud": "gcc", "AsOfUtc": as_of, "ExecutedBy": "runner", "ComputerName": "fixture-runner",
+        "Mode": "Fixture", "Cloud": "gcc", "TenantId": TENANT, "TenantIdSource": "Fixture", "AsOfUtc": as_of, "ExecutedBy": "runner", "ComputerName": "fixture-runner",
         "StartTimeUtc": as_of, "EndTimeUtc": as_of, "PowerShell": {"Version": "7.6.9", "Edition": "Core"},
         "Options": OPTIONS, "RequestedScopes": [],
         "Checks": [{"CheckId": r["CheckId"], "Status": r["Status"], "Count": r["Count"], "Queries": []} for r in results],

@@ -29,12 +29,12 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 17 | Learn's examples print an en dash (–eq) | Parse | verified | Learn, rules page (null and precedence examples) |
 | 18 | Direct reports rule can't be combined; adds the manager | Lint; evaluator; Verified facts | verified | Learn, rules page; Book 03, Chapter 10 |
 | 19 | Extension attributes 1–15 as string properties; multi-value extension properties unsupported | Verified facts | verified | Learn, rules page |
-| 20 | Book 03 table: Legal employer lacked userType (now fixed, owner approved) and reads companyName; Exclusion admits an empty worker type | Lint | verified by running the linter on the table; the Legal employer row was corrected in the same pull request and the fixture follows the published table (a test compares them) | Book 03, Chapter 10 (October 30, 2026) |
+| 20 | Book 03 table: Legal employer lacked userType (now fixed, owner approved) and reads companyName; Exclusion admitted an empty worker type (now fixed, owner decided October 30, 2026: an empty worker type must not qualify) | Lint | verified by running the linter on the table; the Legal employer row was corrected in the same pull request as this chapter, and the Exclusion row gained `-and (user.extensionAttribute11 -ne null)` in a later one (research-gaps.md row 9); the fixture follows the published table (a test compares them), and the linter now finds nothing in Exclusion | Book 03, Chapter 10 (October 30, 2026) |
 | 21 | evaluateDynamicMembership permissions and clouds (global, L4, L5) | Lab 2; Verified facts | verified | Learn, evaluateDynamicMembership |
 | 22 | New-MgGroup permissions: Group.ReadWrite.All delegated, Group.Create application | Lab 2; Verified facts | verified | Learn, New-MgGroup |
 | 23 | Processing state values On and Paused; Update complete status | Lab 2; Verified facts | verified | Learn, group resource type; create or update a dynamic group |
 | 24 | Guards ANDed at the top; `-ne` on coded slots and empty slots; 24-hour default | Lint; pause manifest; Dangers | restated-as-design (labeled where stated) | — |
-| 25 | Lab 1 outputs (both groups On; Graph host for GCCHigh; three lint rows after the Legal employer fix; members u01, u02, u06, u08, u09; exit 0 then 2 with adds u06) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
+| 25 | Lab 1 outputs (both groups On; Graph host for GCCHigh; two lint rows after the Legal employer and Exclusion fixes; members u01, u02, u06, u08, u09; exit 0 then 2 with adds u06) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 
 ## Carry-forward ledger
 

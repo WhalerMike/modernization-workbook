@@ -25,7 +25,7 @@ Python 3.10 or later; PyYAML for the workflow checks. Work in this folder.
 
 | Command | What it does | Exit codes |
 |---|---|---|
-| `python python/drift_pipeline.py compare [--previous <kit-run>] --current <kit-run> --out <dir>` | Checks both runs against their own `ValidationManifest.json`, refuses runs that can't be compared, and writes `drift-report.json` and `drift-summary.md`. Without `--previous`, the run is the baseline | 0 no drift, 2 drift, 1 refused |
+| `python python/drift_pipeline.py compare [--previous <kit-run>] --current <kit-run> --out <dir> [--allow-tenant-mismatch]` | Checks both runs against their own `ValidationManifest.json`, refuses runs that can't be compared, and writes `drift-report.json` and `drift-summary.md`. Without `--previous`, the run is the baseline | 0 no drift, 2 drift, 1 refused |
 | `python python/drift_pipeline.py issues --diff <dir>/drift-report.json --out <file>` | Drafts what to open, comment on and close, one entry per finding, keyed by a fingerprint. No object names unless `--include-names` | 0, 1 |
 | `python python/drift_pipeline.py package --kit-run <kit-run> --diff <report> --provenance <kind>=<file> ... [--previous-manifest <file>] --out <dir>` | Writes `<dir>/<run-id>/` with the kit run, the drift report, the provenance files, `EVIDENCE-MANIFEST.json` and `SHA256SUMS` | 0, 1 |
 | `python python/drift_pipeline.py verify <package>` | Rechecks every file, `SHA256SUMS` and the kit run's own manifest | 0, 1 |
@@ -45,7 +45,7 @@ Provenance kinds: `hcm-entra` (`provenance.json`, schema `fmp-hcm-provenance/1`)
 | unverified | The check ended in `Error` or `NotApplicable`, or didn't run | an issue; earlier findings stay open |
 | unchanged | The same row | nothing |
 
-Runs are refused when the mode or cloud differs, when the current run isn't later, or when either fails its own manifest. A changed `-Option` value is noted in the report.
+Runs are refused when the mode or cloud differs, when the current run isn't later, or when either fails its own manifest. They are also refused when their manifests record different tenant IDs (compared without regard to case), or when either records none, as a manifest written before the kit recorded the tenant doesn't. `--allow-tenant-mismatch` compares them anyway, for a reviewed exception, and writes the reason into the report's notes; it doesn't bypass the other refusals. The drift report and the evidence manifest carry each run's `tenant_id`. A changed `-Option` value is noted in the report.
 
 ## Test
 
@@ -53,10 +53,10 @@ Runs are refused when the mode or cloud differs, when the current run isn't late
 python -m pytest tests -q
 ```
 
-64 tests, no tenant and no network.
+74 tests, no tenant and no network.
 
 ## Not covered
 
 - It doesn't run the validation kit or sign in; the workflow does both, and it hasn't been run against Azure.
 - It doesn't sign the package. The SHA-256 manifest shows that nothing changed after packaging; the immutable container keeps it from changing afterwards. Signing is open (see the chapter's verification log).
-- The kit manifest doesn't record the tenant ID. Keep one pipeline, one environment and one evidence container per tenant.
+- It trusts the tenant ID the kit wrote into its manifest; it can't check it against the tenant. Still keep one pipeline, one environment and one evidence container per tenant (*design guidance*).

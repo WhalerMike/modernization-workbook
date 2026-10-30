@@ -77,7 +77,7 @@ Running Learn's definition against the fakes shows what it does well and what it
 | Default retry policy, implicit | Fine on its own; once you add work, retries have to fit inside the wait | Explicit exponential retries with a `maximumInterval`; the lint checks the worst case against the extension's timeout |
 | Authorization policy set by hand in the portal; the `appid` value printed on the page is a documentation placeholder | A policy typed by hand drifts; a placeholder `appid` would block every call | `accessControl` built from the registry, with SAS turned off as Learn's security guidance asks;[^c05-security] the builder refuses the placeholder |
 
-The `appid` row needs a word. Learn's page says the `appid` claim "represents Lifecycle Workflows and is always the same", and prints `00001111-aaaa-2222-bbbb-3333cccc4444`, the format Learn uses for example GUIDs. The page's own `azp` row, in the bearer-token policy, prints `ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7`, and the page's history shows the `appid` row held that value until a documentation sweep in May 2024.[^c05-configure][^c05-sample-code] The registry uses `ce79fdc4-…`, and Lab 2 confirms it in the tenant before anything depends on it (*design guidance*; research gap 10).
+The `appid` row needs a word. Learn's page says the `appid` claim "represents Lifecycle Workflows and is always the same", and prints `00001111-aaaa-2222-bbbb-3333cccc4444`, the format Learn uses for example GUIDs. The page's own `azp` row, in the bearer-token policy, prints `ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7`, and the page's history shows the `appid` row held that value until a documentation sweep in May 2024.[^c05-configure][^c05-sample-code] Learn's access token claims reference settles it: `azp`, in v2.0 tokens, is "a replacement for `appid`", and both hold the application ID of the client using the token.[^c05-claims] The PoP policy reads a v1.0 token's `appid`, the bearer policy a v2.0 token's `azp`, and the client is Lifecycle Workflows in both, so the value is `ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7`. The entra-docs repository's own list of known GUIDs names that value "Lifecycle Workflows".[^c05-known-guids] The registry uses it, a test pins it to the `azp` row of the pinned page, and Lab 2 still reads the service principal in the tenant before anything depends on it (research gap 10, closed).
 
 **The verdict.** Learn's definition is the right shape and the right trigger, and the program keeps both. It isn't safe to run as the leaver's credential revocation as published: it can report success for work that failed, it reports nothing for work that failed after you add it, and it works only in the worldwide cloud. Use it as the model and run the program's definition.
 
@@ -137,7 +137,7 @@ For the callback, the Logic App's managed identity needs no Graph permission. Ap
 
 ### The tests
 
-`tests/test_wdl.py` has 15 tests for the interpreter. `tests/test_learn_sample.py` has 9 that run Learn's definition, unmodified, against the fakes. `tests/test_extension.py` has 30 for the program's definition, the clouds, the outcomes, the builders and the read-back checks. None needs a package, a tenant or a network.
+`tests/test_wdl.py` has 15 tests for the interpreter. `tests/test_learn_sample.py` has 9 that run Learn's definition, unmodified, against the fakes. `tests/test_extension.py` has 31 for the program's definition, the clouds, the outcomes, the builders and the read-back checks. None needs a package, a tenant or a network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -200,7 +200,7 @@ You need Python 3.10 or later. Work in `examples/lifecycle-extensions`.
 
 7. **Run the tests:** `python -m unittest discover -s tests -v`.
 
-**Expected result:** 54 tests passing, and each difference in the table above seen with your own eyes.
+**Expected result:** 55 tests passing, and each difference in the table above seen with your own eyes.
 
 ## Lab 2: test tenant
 
@@ -301,4 +301,6 @@ Learn states several things differently on different pages, recorded here so a l
 [^c05-la-security]: Microsoft Learn, "Secure access and data for workflows in Azure Logic Apps" (authorization policies in ARM templates; disabling SAS; securing inputs and outputs in run history), <https://learn.microsoft.com/azure/logic-apps/set-up-security-permissions> (accessed Oct 30, 2026).
 [^c05-azgov]: Microsoft Learn, "Compare Azure Government and global Azure," section "Guidance for developers," <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers> (accessed Oct 30, 2026).
 [^c05-remove]: Microsoft Learn, "Remove-MgIdentityGovernanceLifecycleWorkflowCustomTaskExtension" (a custom task extension can only be deleted if no task references it), <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/remove-mgidentitygovernancelifecycleworkflowcustomtaskextension?view=graph-powershell-1.0> (accessed Oct 30, 2026).
+[^c05-claims]: Microsoft Learn, "Access token claims reference," section "Payload claims," <https://learn.microsoft.com/entra/identity-platform/access-token-claims-reference#payload-claims> (accessed Oct 30, 2026).
+[^c05-known-guids]: Microsoft, MicrosoftDocs/entra-docs, `.docutune/dictionaries/known-guids.json` at commit `4ed6827815ecbf4e021fc736d75fdda6a2fd6272` (October 28, 2026), entry "Lifecycle Workflows", read with `gh api` (accessed Oct 30, 2026). Not a Learn page: the repository's list of GUIDs its documentation tooling treats as real values.
 [^c05-sample-code]: Microsoft, MicrosoftDocs/entra-docs, `docs/id-governance/configure-logic-app-lifecycle-workflows.md` and `docs/id-governance/lifecycle-workflow-extensibility.md` at commit `07cb73d6c6380414eecd040ba5e14c1c94d48b66` (October 30, 2026), code under the MIT License, <https://github.com/MicrosoftDocs/entra-docs/tree/07cb73d6c6380414eecd040ba5e14c1c94d48b66/docs/id-governance>; commit `b7e8790374026b37be320fe091aefb0747e54809` (May 15, 2024) replaced the `appid` rows' `ce79fdc4-…` with the placeholder (accessed Oct 30, 2026); pinned copy in `examples/third_party/lifecycle-workflows-logic-app`.
