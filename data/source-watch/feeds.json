@@ -400,6 +400,17 @@
         "DW"
       ],
       "source": "Commits to the Learn source pages that hold the five pause and resume samples, which examples/third_party/dynamic-membership-samples pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 04). A new commit means: review it, rerun examples/dynamic-rules/tests/LearnSamples.Tests.ps1 on the new pages, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "mggraph-intune-samples-commits",
+      "name": "Microsoft Intune settings catalog samples (microsoft/mggraph-intune-samples commits)",
+      "type": "github_commits",
+      "repo": "microsoft/mggraph-intune-samples",
+      "path": "SettingsCatalog",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to Microsoft's settings catalog export and import samples, which examples/third_party/mggraph-intune-samples pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 06). A new commit means: review it, rerun examples/group-policy-as-code/tests/MicrosoftSamples.Tests.ps1 on the new scripts, and update the snapshot only in a reviewed pull request."
     }
   ]
 }
