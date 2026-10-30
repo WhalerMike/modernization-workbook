@@ -240,6 +240,9 @@ function Test-PaPimSetting {
         } elseif ((ConvertTo-PaPimDuration $s.assignment.eligibleMaximumDuration) -gt (ConvertTo-PaPimDuration $cap.maximumEligibility)) {
             $f.Add((New-PaPimFinding 'PA-PIM-04' 'Finding' $s.role "Eligibility $($s.assignment.eligibleMaximumDuration) exceeds the $($s.tier) cap of $($cap.maximumEligibility)"))
         }
+        if ($Tiers.ContainsKey('maximumActive') -and (ConvertTo-PaPimDuration $s.assignment.activeMaximumDuration) -gt (ConvertTo-PaPimDuration $Tiers.maximumActive)) {
+            $f.Add((New-PaPimFinding 'PA-PIM-04' 'Finding' $s.role "Active assignments of $($s.assignment.activeMaximumDuration) exceed the decided maximum of $($Tiers.maximumActive)"))
+        }
         if ($s.assignment.allowPermanentActive -and $s.roleTemplateId -ne $script:GlobalAdmin) {
             $f.Add((New-PaPimFinding 'PA-PIM-04' 'Finding' $s.role 'Permanent active assignment allowed; only Global Administrator allows it, for the emergency accounts'))
         }

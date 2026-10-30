@@ -201,6 +201,7 @@ Describe 'Test-PaPimSetting' {
         @{ Rule = 'PA-PIM-04'; Case = 'activation over Learn''s 8 hours'; Role = 'Global Reader'; Edit = { param($s) $s.activation.maximumDuration = 'PT9H' } }
         @{ Rule = 'PA-PIM-04'; Case = 'Tier 0 activation over its 4-hour cap'; Role = 'Security Administrator'; Edit = { param($s) $s.activation.maximumDuration = 'PT8H' } }
         @{ Rule = 'PA-PIM-04'; Case = 'Tier 1 eligibility over 180 days'; Role = 'Teams Administrator'; Edit = { param($s) $s.assignment.eligibleMaximumDuration = 'P365D' } }
+        @{ Rule = 'PA-PIM-04'; Case = 'active assignments over the decided 15 days'; Role = 'Exchange Administrator'; Edit = { param($s) $s.assignment.activeMaximumDuration = 'P30D' } }
         @{ Rule = 'PA-PIM-04'; Case = 'permanent active on a role that isn''t Global Administrator'; Role = 'Intune Administrator'; Edit = { param($s) $s.assignment.allowPermanentActive = $true } }
         @{ Rule = 'PA-PIM-04'; Case = 'Tier 1 without approval'; Role = 'Intune Administrator'; Edit = { param($s) $s.approval.required = $false } }
     ) {

@@ -48,7 +48,7 @@ Rule IDs, types and the caller each one is enforced for are from Learn's mapping
 
 **The authentication context needs its policy first.** Learn says to create and enable the Conditional Access policy for the context before selecting the context in PIM. If no policy targets the context, activation falls back to MFA, but not when the policy is off, report-only, or excludes the user.[^pa04-settings] The program's context is `c1` and its policy is `PIM-Activation-c1` ([Book 04, Chapter 08](../../../books/b04-access/08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)). Chapter 03 builds both, report-only first, and its PA-CA-04 warns until the policy is On. Learn's mapping guide labels the admin center's authentication context option "(Preview)"; the role settings page and the v1.0 rule resource don't.[^pa04-rules] [^pa04-authctx-rule] This chapter treats it as preview, the stricter reading (research gaps, row 42).
 
-**The plan's order is fixed.** Emergency access first, then one role class under just-in-time elevation (the plan's Phase 2, with the class chosen by decision D-A5), then every tier (Phase 3, task A3.1), tier by tier ([project plan](../../privileged-access.md)). The code holds that order as rollout waves and refuses a wave until every earlier wave matches its files. *Design guidance.*
+**The plan's order is fixed.** Emergency access first, then one role class under just-in-time elevation (the plan's Phase 2; for decision D-A5 the owner chose Tier 1, the management-plane roles, as the pilot class), then every tier (Phase 3, task A3.1), tier by tier ([project plan](../../privileged-access.md)). The code holds that order as rollout waves: Tier 1, then Tier 0, Tier 2 and read-only. It refuses a wave until every earlier wave matches its files (research gaps, row 49). The order of the waves after the first is *Design guidance*.
 
 ### Which cloud, for these calls
 
@@ -106,7 +106,7 @@ The files name approvers by alias. `pim-bindings.json`, one per tenant, gives ea
 
 `Read-PaPimRoleSetting` refuses a file with a missing key, a name where a template ID belongs, an unknown tier, a duration that isn't ISO 8601, or a second file for the same role. A malformed file never reaches the tenant.
 
-`config/pim-ch04/tiers.json` holds the bounds every file must sit inside. Learn's bounds come first. The role settings page says an activation lasts one to 24 hours, but the PIM API overview says an activation is always at most eight hours.[^pa04-settings] [^pa04-pim-api] The code follows the stricter, eight hours (research gaps, row 41). The tier caps are Appendix B's: four hours for Tier 0, eight for the rest; eligibility of 90, 180 or 365 days; approval for Tier 0 and Tier 1; a ticket for every tier but read-only. *Design guidance.* The active assignment maximum, `P15D` in every file, is a placeholder for Appendix B's "the shortest period the documented exception needs" (research gaps, row 48).
+`config/pim-ch04/tiers.json` holds the bounds every file must sit inside. Learn's bounds come first. The role settings page says an activation lasts one to 24 hours, but the PIM API overview says an activation is always at most eight hours.[^pa04-settings] [^pa04-pim-api] The code follows the stricter, eight hours (research gaps, row 41). The tier caps are Appendix B's: four hours for Tier 0, eight for the rest; eligibility of 90, 180 or 365 days; approval for Tier 0 and Tier 1; a ticket for every tier but read-only. *Design guidance.* Appendix B sets the active assignment maximum at "the shortest period the documented exception needs"; the owner has decided it is at most 15 days, `P15D` in every file and `maximumActive` in `tiers.json`, and PA-PIM-04 flags a file that asks for more (research gaps, row 48).
 
 ### The rules
 
@@ -121,7 +121,7 @@ Before anything is written, `Test-PaPimSetting` and `New-PaPimPlan` report:
 | PA-PIM-01 | Finding | Approval required with no approver | Learn: half of the documented lockout[^pa04-settings] |
 | PA-PIM-02 | Finding | Fewer emergency accounts with permanent, active, direct Global Administrator than `emergency-access.json` requires | Learn: the other half;[^pa04-settings] Chapter 02 |
 | PA-PIM-03 | Finding | An approver group that is also the role's eligible group | *Design guidance*: [Book 04, Chapter 08](../../../books/b04-access/08-pim-self-request-with-approval.md#approver-design-and-separation-of-duties) |
-| PA-PIM-04 | Finding | A file outside Learn's bounds or its tier's cap: activation, eligibility, permanent eligible, permanent active on any role but Global Administrator, missing approval or ticket | Learn's bounds; Appendix B's caps (*Design guidance*) |
+| PA-PIM-04 | Finding | A file outside Learn's bounds or its tier's cap: activation, eligibility, permanent eligible, active assignments over 15 days, permanent active on any role but Global Administrator, missing approval or ticket | Learn's bounds; Appendix B's caps (*Design guidance*); the owner's 15-day decision |
 | PA-PIM-05 | Warn | An authentication context: its Conditional Access policy must be On before the rule is set | Learn[^pa04-settings] |
 | PA-PIM-06 | Finding | No policy for the role at tenant scope | — |
 | PA-PIM-07 | Finding | An earlier rollout wave that doesn't match its files yet | *Design guidance*: the plan's order |
@@ -161,7 +161,7 @@ Learn's rules on timing still apply: an assignment can't be removed within five 
 
 ### The tests
 
-This chapter's tests are the 49 in `tests/PimEntraRoles.Tests.ps1`: 13 run Learn's samples as published; the rest cover the role files and their refusals, the rules, each check, the client's permissions and refusals, the plan on the fixture, the apply and read-back, the conversion, the back-out, and the entry script. With the other chapters' tests in the example, 200 Pester tests pass under PowerShell 7, with no module, tenant or network.
+This chapter's tests are the 50 in `tests/PimEntraRoles.Tests.ps1`: 13 run Learn's samples as published; the rest cover the role files and their refusals, the rules, each check, the client's permissions and refusals, the plan on the fixture, the apply and read-back, the conversion, the back-out, and the entry script. With the other chapters' tests in the example, 201 Pester tests pass under PowerShell 7, with no module, tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -194,7 +194,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    pim-convert: RoleAssignmentSchedule.Read.Directory, RoleAssignmentSchedule.ReadWrite.Directory, RoleEligibilitySchedule.Read.Directory, RoleManagementPolicy.Read.Directory
    ```
 
-3. **Dry-run wave 1, the pilot class:**
+3. **Dry-run wave 1, the pilot class (Tier 1):**
 
    ```powershell
    $lab = @{ Cloud = 'gcc'; FixturePath = 'tests/fixtures/ch04/tenant.json'; BindingsPath = 'tests/fixtures/ch04/inputs/pim-bindings.json'
@@ -250,7 +250,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 200 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+**Expected result:** 201 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
