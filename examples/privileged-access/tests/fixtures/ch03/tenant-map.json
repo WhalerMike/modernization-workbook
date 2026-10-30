@@ -1,0 +1,9 @@
+{
+  "_comment": "Chapter 03: the fictional contoso.example tenant's placeholder map. Object IDs are invented. {strength:...} isn't here: the plan resolves it from the tenant's authentication strengths by display name, so a policy can't point at a strength that doesn't exist yet.",
+  "{group:CA-Exclude-EmergencyAccess}": "9e000000-0000-4000-8000-000000000001",
+  "{group:CA-Persona-Admins}": "9e000000-0000-4000-8000-000000000021",
+  "{group:CA-Access-AzureOperators}": "9e000000-0000-4000-8000-000000000022",
+  "{location:NL-TrustedNetworks}": "1c000000-0000-4000-8000-000000000001",
+  "{aaguid:approved-key-model-1}": "aa000000-0000-4000-8000-000000000001",
+  "{aaguid:approved-key-model-2}": "aa000000-0000-4000-8000-000000000002"
+}

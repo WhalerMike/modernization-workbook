@@ -1,0 +1,98 @@
+{
+  "_comment": "Chapter 03: every call the Conditional Access module makes, with the least-privileged Graph permission from the Learn page for that call, read on October 30, 2026. Task ca-read is GET only. Task ca-apply adds the writes, and the module refuses them unless the client was made with -Apply. There is no DELETE: the program turns a policy off or to report-only, never deletes it. Get-PaCaRequiredPermission returns the union for a task; a test keeps it equal to the calls.",
+  "calls": [
+    {
+      "id": "ca-policies",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/policies",
+      "permissions": ["Policy.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["ca-read", "ca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0"
+    },
+    {
+      "id": "ca-auth-contexts",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/authenticationContextClassReferences",
+      "permissions": ["AuthenticationContext.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["ca-read", "ca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-list-authenticationcontextclassreferences?view=graph-rest-1.0",
+      "note": "Policy.Read.All isn't listed for this call; AuthenticationContext.Read.All is the least privileged."
+    },
+    {
+      "id": "auth-strengths",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/policies/authenticationStrengthPolicies",
+      "permissions": ["Policy.Read.AuthenticationMethod"],
+      "stage": "v1.0",
+      "tasks": ["ca-read", "ca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0",
+      "note": "Returns built-in and custom strengths. Policy.Read.All is a higher-privileged alternative on the same page."
+    },
+    {
+      "id": "ca-templates",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/templates",
+      "permissions": ["Policy.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["ca-read"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0",
+      "note": "Microsoft's Conditional Access templates as Graph JSON; the Get page's example is pinned in examples/third_party/conditional-access-template-page."
+    },
+    {
+      "id": "ca-policy-create",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/policies",
+      "permissions": ["Policy.Read.All", "Policy.ReadWrite.ConditionalAccess"],
+      "stage": "v1.0",
+      "tasks": ["ca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0",
+      "note": "Learn lists the pair as least privileged, and notes a known issue that may need consent to more permissions."
+    },
+    {
+      "id": "ca-policy-update",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/policies/{id}",
+      "permissions": ["Policy.Read.All", "Policy.ReadWrite.ConditionalAccess"],
+      "stage": "v1.0",
+      "tasks": ["ca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0"
+    },
+    {
+      "id": "auth-context-upsert",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/authenticationContextClassReferences/{id}",
+      "permissions": ["AuthenticationContext.ReadWrite.All"],
+      "stage": "v1.0",
+      "tasks": ["ca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0",
+      "note": "Create or update: a PATCH to an ID that doesn't exist creates it. The POST create method is documented under beta only."
+    },
+    {
+      "id": "auth-strength-create",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/policies/authenticationStrengthPolicies",
+      "permissions": ["Policy.ReadWrite.ConditionalAccess"],
+      "stage": "v1.0",
+      "tasks": ["ca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/authenticationstrengthroot-post-policies?view=graph-rest-1.0"
+    }
+  ]
+}
