@@ -1,0 +1,7 @@
+# Lines excused by scripts/check_neutrality.py because they predate it: one
+# '<file> <line hash>' each, so only that exact line text passes. This list
+# only shrinks; a full run fails on an entry that no longer matches.
+#
+# Redirect aliases: old published URLs, kept so inbound links still resolve.
+docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md a9ebe86a08ba22446b261c42e07a00d02068f6411f2dabeff2051d8bbbc8086e
+docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md bbad553271e4b5c55253b255a7679c64d7bfe3fbeea2207c06f1784fdd85a28c

@@ -166,7 +166,8 @@ class NoneTier(unittest.TestCase):
     def test_unpublished_notes(self):
         plan = decide(mods("docs/books/b07-pki/_verification/03-x.md", "InBox/draft.md", "STATUS.md"))
         self.assertEqual(plan.tier, "NONE")
-        self.assertEqual(plan.tasks, {})
+        # The repository is public, so unpublished notes still get the neutrality check; the inbox doesn't.
+        self.assertEqual(plan.tasks, {"neutrality": ["docs/books/b07-pki/_verification/03-x.md", "STATUS.md"]})
 
     def test_deleted_unpublished_file_is_not_full(self):
         plan = decide([Change("D", "presentations/old/Old.pptx")])
@@ -199,6 +200,25 @@ class NonSiteTasks(unittest.TestCase):
     def test_unit_tests_run_when_the_checker_changes(self):
         self.assertIn("unit-tests", cc.non_site_tasks(mods("scripts/check_changed.py")))
         self.assertIn("unit-tests", cc.non_site_tasks(mods("scripts/tests/test_check_changed.py")))
+        self.assertIn("unit-tests", cc.non_site_tasks(mods("scripts/check_neutrality.py")))
+
+    def test_evidence_maps(self):
+        for path in ("examples/evidence-maps/sample-portfolio.yml", "data/schemas/evidence-map.schema.json",
+                     "scripts/check_evidence_maps.py"):
+            self.assertIn("evidence-maps", cc.non_site_tasks(mods(path)), path)
+        self.assertNotIn("evidence-maps", cc.non_site_tasks(mods("docs/books/b02-identity/index.md")))
+
+    def test_neutrality_checks_changed_text_files(self):
+        t = cc.non_site_tasks(mods("docs/books/b02-identity/index.md", "docs/images/x/svg/a.svg",
+                                   "presentations/a/A.pptx", "archive/old.md"))
+        self.assertEqual(t["neutrality"], ["docs/books/b02-identity/index.md", "docs/images/x/svg/a.svg"])
+
+    def test_neutrality_terms_change_checks_every_file(self):
+        for path in ("data/neutrality-terms.txt", "data/neutrality-baseline.txt", "scripts/check_neutrality.py"):
+            self.assertEqual(cc.non_site_tasks(mods(path))["neutrality"], ["*"], path)
+
+    def test_neutrality_skips_deleted_files(self):
+        self.assertNotIn("neutrality", cc.non_site_tasks([Change("D", "docs/books/b02-identity/old.md")]))
 
 
 class RenderTargets(unittest.TestCase):
