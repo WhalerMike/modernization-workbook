@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """List the gated pages that are waiting for the owner's review.
 
-Some books are published as drafts but held behind a review gate: the
-Developer Workbook (`docs/books/b19-developer-workbook/`) is the first. Each of
-its pages records the review in its front matter:
+Some pages are published as drafts but held behind a review gate: the
+developer workbooks under Projects (`docs/project-plans/developer-workbooks/`)
+are the first. Each gated page records the review in its front matter:
 
     review-status: approved          # or pending
     reviewed-sha256: 3f9c...         # sha256 of the page body when it was approved
@@ -17,7 +17,7 @@ page, such as its narrated chapter tour, waits for the page's approval.
 
     python scripts/source_watch/review_gate.py                 # waiting pages
     python scripts/source_watch/review_gate.py --json          # as JSON
-    python scripts/source_watch/review_gate.py --approve docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
+    python scripts/source_watch/review_gate.py --approve docs/project-plans/developer-workbooks/attribute-driven-migration/01-the-hr-to-entra-middleware.md
 
 --approve records the owner's approval of the page as it is now. Run it only
 after reading the page, and commit the change in a reviewed pull request.
@@ -35,7 +35,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-GATED = ["docs/books/b19-developer-workbook"]
+GATED = ["docs/project-plans/developer-workbooks"]
 
 FRONT_MATTER = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.S)
 FIELD = re.compile(r"^([A-Za-z][\w-]*):\s*(.*?)\s*$", re.M)
@@ -69,7 +69,10 @@ def gated_pages(root: Path = ROOT) -> list[Path]:
     for folder in GATED:
         base = root / folder
         if base.is_dir():
-            pages += sorted(p for p in base.glob("*.md") if not p.name.startswith("_"))
+            # Every page in the folder and its subfolders; `_` files and folders (briefs,
+            # verification logs) aren't published and aren't gated.
+            pages += sorted(p for p in base.rglob("*.md")
+                            if not any(part.startswith("_") for part in p.relative_to(base).parts))
     return pages
 
 

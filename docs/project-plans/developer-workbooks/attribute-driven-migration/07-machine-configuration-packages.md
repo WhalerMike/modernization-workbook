@@ -3,8 +3,7 @@ title: "Chapter 07 — Machine Configuration Packages"
 description: "Building Azure Machine Configuration content from Learn's own procedure and Microsoft's pinned samples, then adding only what a federal pipeline needs on top: a MOF free of build-host data that compiles to the same bytes every time, a package and policy definition checked against a reviewed release registry, the owner tag that keeps two tools off one setting, Arc and Azure Government scope, and a provenance manifest, with labs offline and in a test subscription."
 doc-type: workbook-chapter
 audience: [Technical]
-family: b19-developer-workbook
-book: B19
+family: dw-attribute-driven-migration
 part: How
 series-order: 7
 status: draft
@@ -12,6 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: pending
+aliases:
+  - /docs/books/b19-developer-workbook/07-machine-configuration-packages.html
 ---
 
 # Chapter 07 — Machine Configuration Packages
@@ -31,7 +32,7 @@ How a server setting becomes Azure Machine Configuration content: a DSC configur
 
 ## Where machine configuration sits
 
-The [Arc track](../guides/arc-track-implementation.md) puts each server under one owning tool per setting, recorded as `config_owner` in the CMDB and mirrored in the `ConfigOwner` tag ([Ansible guide](../guides/ansible-configuration-automation.md#one-owning-tool-per-setting)). For the settings machine configuration owns, the code is a DSC configuration, and Azure Policy delivers it.
+The [Arc track](../../../books/guides/arc-track-implementation.md) puts each server under one owning tool per setting, recorded as `config_owner` in the CMDB and mirrored in the `ConfigOwner` tag ([Ansible guide](../../../books/guides/ansible-configuration-automation.md#one-owning-tool-per-setting)). For the settings machine configuration owns, the code is a DSC configuration, and Azure Policy delivers it.
 
 Learn's model has three parts.[^c07-overview] A **package** (a `.zip` with the compiled MOF and the DSC resource modules it uses) says what the machine should look like. A **policy definition** in the category `Guest Configuration` points at the package by URI and hash. When the definition is assigned, the service creates a **guest assignment** (`Microsoft.GuestConfiguration/guestConfigurationAssignments`) on each machine in scope, and the agent on the machine downloads the package, evaluates it and reports compliance.[^c07-assignments] A machine can hold up to 50 guest assignments.[^c07-overview]
 
@@ -116,7 +117,7 @@ Two smaller differences from Learn's text, found by running 4.12.0 and pinned in
 }
 ```
 
-The policy ID never changes; Learn says to reuse it so updates replace the definition.[^c07-policy] `mode` is checked case-sensitively against the three assignment types. `published` moves up in the same pull request that publishes a new version, so a second build of `1.0.0` fails MC-POL-06. `identity: system` builds definitions that read the package with each machine's system-assigned identity, which Learn says works for Arc-enabled servers; a user-assigned identity doesn't.[^c07-access] The owner tag value is the one the [Arc track](../guides/arc-track-implementation.md) uses.
+The policy ID never changes; Learn says to reuse it so updates replace the definition.[^c07-policy] `mode` is checked case-sensitively against the three assignment types. `published` moves up in the same pull request that publishes a new version, so a second build of `1.0.0` fails MC-POL-06. `identity: system` builds definitions that read the package with each machine's system-assigned identity, which Learn says works for Arc-enabled servers; a user-assigned identity doesn't.[^c07-access] The owner tag value is the one the [Arc track](../../../books/guides/arc-track-implementation.md) uses.
 
 ### Clean the MOF
 
@@ -132,7 +133,7 @@ The policy ID never changes; Learn says to reuse it so updates replace the defin
 
 ### The provenance manifest
 
-`provenance.json` follows the pattern of [Book 13, Chapter 04](../b13-governance/04-change-control-and-provenance.md): what was built, from what, and what shipped.
+`provenance.json` follows the pattern of [Book 13, Chapter 04](../../../books/b13-governance/04-change-control-and-provenance.md): what was built, from what, and what shipped.
 
 ```json
 {

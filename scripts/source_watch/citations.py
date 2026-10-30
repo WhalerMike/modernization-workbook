@@ -33,6 +33,8 @@ ROOT = Path(__file__).resolve().parents[2]
 BOOKS = ROOT / "docs" / "books"
 RESEARCH = ROOT / "docs" / "research"
 RESEARCH_CODE = "RES"  # research pages are reported together, after the books
+WORKBOOKS = ROOT / "docs" / "project-plans" / "developer-workbooks"
+WORKBOOKS_CODE = "DW"  # developer workbooks (under Projects) are reported together, after the books
 
 FOOTNOTE = re.compile(r"^\[\^([^\]]+)\]:(.*)$")
 INLINE_CODE = re.compile(r"`[^`]*`")
@@ -106,9 +108,18 @@ def research_files() -> list[Path]:
     return [p for p in chapter_files(RESEARCH) if p.name != "index.md"] if RESEARCH.is_dir() else []
 
 
+def workbook_files() -> list[Path]:
+    """Developer workbook pages, landing pages included; `_` files and folders are skipped."""
+    if not WORKBOOKS.is_dir():
+        return []
+    return sorted(p for p in WORKBOOKS.rglob("*.md")
+                  if not any(part.startswith("_") for part in p.relative_to(WORKBOOKS).parts))
+
+
 def sources() -> list[tuple[str, Path]]:
-    """(code, file) for every book chapter, then every research page."""
+    """(code, file) for every book chapter, then every developer workbook page, then every research page."""
     out = [(book_code(folder), path) for folder in book_folders() for path in chapter_files(folder)]
+    out += [(WORKBOOKS_CODE, path) for path in workbook_files()]
     return out + [(RESEARCH_CODE, path) for path in research_files()]
 
 
@@ -150,6 +161,8 @@ def books() -> dict[str, dict[str, str]]:
     for folder in book_folders():
         out.setdefault(book_code(folder), {"title": folder.name, "folder": folder.name, "status": ""})
     out = dict(sorted(out.items()))
+    if workbook_files():
+        out[WORKBOOKS_CODE] = {"title": "Developer workbooks (Projects)", "folder": "", "status": ""}
     if research_files():
         out[RESEARCH_CODE] = {"title": "Research pages", "folder": "", "status": ""}
     return out

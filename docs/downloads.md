@@ -56,6 +56,14 @@ Each book downloads as one Word document with its chapters in reading order, its
 | [Azure Arc Track: Implementation Guide](books/guides/arc-track-implementation.md) | [arc-track-implementation-guide.docx](../downloads/arc-track-implementation-guide.docx) |
 | [Non-Person Identity: An Implementation Guide](books/guides/non-person-identity-implementation.md) | [non-person-identity-implementation-guide.docx](../downloads/non-person-identity-implementation-guide.docx) |
 
+## Developer workbooks as Word documents
+
+Draft, held for review page by page; see [Developer Workbooks](project-plans/developer-workbooks/index.md).
+
+| Developer workbook | Word edition |
+|---|---|
+| [Building the Attribute-Driven Migration](project-plans/developer-workbooks/attribute-driven-migration/index.md) | [building-the-attribute-driven-migration-bundle.docx](../downloads/building-the-attribute-driven-migration-bundle.docx) |
+
 ## Videos and presentations
 
 - **Narrated presentation videos:** watch them on the [Videos](presentations/watch.md) page, or download the MP4s from the [October 23, 2026 video release](https://github.com/WhalerMike/modernization-workbook/releases/tag/videos-2026-10-23).

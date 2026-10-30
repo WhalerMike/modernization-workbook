@@ -2,7 +2,7 @@
 # Microsoft's CSV2SCIM sample (pinned in examples/third_party/csv2scim) run offline on this example's
 # fixture, beside this example's client: what the baseline sends, and what this client adds on top.
 # CSV2SCIM is only used in its payload-generation mode here, which reads the CSV and makes no calls.
-# Developer Workbook, Chapter 01.
+# developer workbook Building the Attribute-Driven Migration, Chapter 01.
 
 BeforeAll {
     $script:Kit = Resolve-Path (Join-Path -Path $PSScriptRoot -ChildPath '../..')

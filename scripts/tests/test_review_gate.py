@@ -44,6 +44,14 @@ class Gate(unittest.TestCase):
         self.assertEqual([r["page"] for r in rows], [f"{rg.GATED[0]}/01-test.md"])
         self.assertEqual(rows[0]["reason"], "not yet reviewed")
 
+    def test_pages_in_a_workbook_subfolder_wait_but_its_underscore_folders_dont(self):
+        wb = self.book / "attribute-driven-migration"
+        (wb / "_verification").mkdir(parents=True)
+        (wb / "index.md").write_text(PAGE, encoding="utf-8")
+        (wb / "_verification" / "01-test.md").write_text(PAGE, encoding="utf-8")
+        pages = [r["page"] for r in rg.waiting(self.root)]
+        self.assertEqual(pages, [f"{rg.GATED[0]}/01-test.md", f"{rg.GATED[0]}/attribute-driven-migration/index.md"])
+
     def test_an_approved_page_stops_waiting(self):
         self.page.write_text(rg.approve(self.page, dt.date(2026, 11, 2)), encoding="utf-8")
         self.assertEqual(rg.waiting(self.root), [])
@@ -76,16 +84,16 @@ class Gate(unittest.TestCase):
 
 class Report(unittest.TestCase):
     def test_waiting_pages_make_a_section_and_count_as_findings(self):
-        results = {"week_of": "2026-11-02", "review_gate": [{"page": "docs/books/b19-developer-workbook/01-x.md", "title": "Chapter 01 — X",
+        results = {"week_of": "2026-11-02", "review_gate": [{"page": "docs/project-plans/developer-workbooks/attribute-driven-migration/01-x.md", "title": "Chapter 01 — X",
                                     "reason": "not yet reviewed", "last_reviewed": ""}]}
         self.assertTrue(report.has_findings(results))
         text = report.render(results)
-        self.assertIn("## Developer Workbook awaiting review", text)
+        self.assertIn("## Developer workbooks awaiting review", text)
         self.assertIn("not yet reviewed", text)
 
     def test_no_waiting_pages_no_section(self):
         self.assertFalse(report.has_findings({"review_gate": []}))
-        self.assertNotIn("## Developer Workbook awaiting review", report.render({"week_of": "2026-11-02", "review_gate": []}))
+        self.assertNotIn("## Developer workbooks awaiting review", report.render({"week_of": "2026-11-02", "review_gate": []}))
 
 
 if __name__ == "__main__":

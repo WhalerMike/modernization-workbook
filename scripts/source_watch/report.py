@@ -260,7 +260,7 @@ def render(results: dict, budget: int | None = None) -> str:
         f"# {title_for(results)}",
         "",
         f"**{n['changed']} changed, {n['moved']} moved, {n['gone']} gone** of {c.get('checked', 0):,} cited sources checked; "
-        f"**{len(results.get('feed_items', []))} new publications**; **{len(manual)} need a manual check**; **{len(reviews)} research pages due for review**; **{len(gated)} Developer Workbook pages awaiting review**.",
+        f"**{len(results.get('feed_items', []))} new publications**; **{len(manual)} need a manual check**; **{len(reviews)} research pages due for review**; **{len(gated)} developer workbook pages awaiting review**.",
         "",
         "Each run compares against the previous one, so each change is reported once. Review the chapters below, "
         "then close this issue. See [how to read this issue](https://github.com/"
@@ -320,7 +320,7 @@ def render(results: dict, budget: int | None = None) -> str:
             add(row, "reviews")
     if gated:
         add(
-            "\n## Developer Workbook awaiting review\n\nThese pages are gated: each waits for the owner's review, and a page "
+            "\n## Developer workbooks awaiting review\n\nThese pages are gated: each waits for the owner's review, and a page "
             "changed after approval waits again. Work that builds on a page, such as its narrated chapter tour, waits too. "
             "After reading a page, approve it with `python scripts/source_watch/review_gate.py --approve <page>` in a reviewed pull request; "
             "it is listed every week until then.\n\n| Page | Why it is listed |\n|---|---|",

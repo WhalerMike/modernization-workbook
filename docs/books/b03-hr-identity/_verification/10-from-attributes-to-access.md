@@ -107,7 +107,7 @@ New section "Emergency calling: what HR attributes supply and what they don't," 
 
 ## Correction, October 30, 2026: the userType guard on two rule patterns
 
-The "Organization and worker type" and "Exclusion" rows of the rule pattern table had the `accountEnabled` guard but not `user.userType -eq "Member"`, unlike the other three rows. Both now carry it. The validation kit's VK-DG-01 flags any user rule that lacks either guard, so a rule copied from those two rows would have failed the kit. Found while writing the Developer Workbook (Book 19); logged in `docs/books/b19-developer-workbook/_verification/research-gaps.md`, gap 4.
+The "Organization and worker type" and "Exclusion" rows of the rule pattern table had the `accountEnabled` guard but not `user.userType -eq "Member"`, unlike the other three rows. Both now carry it. The validation kit's VK-DG-01 flags any user rule that lacks either guard, so a rule copied from those two rows would have failed the kit. Found while writing the developer workbook *Building the Attribute-Driven Migration* (under Projects); logged in `docs/project-plans/developer-workbooks/attribute-driven-migration/_verification/research-gaps.md`, gap 4.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
@@ -116,7 +116,7 @@ The "Organization and worker type" and "Exclusion" rows of the rule pattern tabl
 
 ## Correction, October 30, 2026 (later): the userType guard on the Legal employer pattern
 
-The "Legal employer" row had the `accountEnabled` guard but not `user.userType -eq "Member"`, so a guest whose `companyName` matched would have qualified. It now carries the guard, approved by the owner. Found by the Developer Workbook's rule linter (Book 19, Chapter 04, rule DR-04); logged in `docs/books/b19-developer-workbook/_verification/research-gaps.md`, gap 8. The row still reads `companyName`, which the validation kit's VK-DG-02 and the linter's DR-05 flag as a display-name attribute; that is left for the owner, since the row exists to show the legal-employer case.
+The "Legal employer" row had the `accountEnabled` guard but not `user.userType -eq "Member"`, so a guest whose `companyName` matched would have qualified. It now carries the guard, approved by the owner. Found by the rule linter in the developer workbook *Building the Attribute-Driven Migration* (Chapter 04, rule DR-04, under Projects); logged in `docs/project-plans/developer-workbooks/attribute-driven-migration/_verification/research-gaps.md`, gap 8. The row still reads `companyName`, which the validation kit's VK-DG-02 and the linter's DR-05 flag as a display-name attribute; that is left for the owner, since the row exists to show the legal-employer case.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|

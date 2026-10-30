@@ -364,9 +364,9 @@
       "repo": "AzureAD/entra-id-inbound-provisioning",
       "path": "PowerShell/CSV2SCIM",
       "books": [
-        "B19"
+        "DW"
       ],
-      "source": "Commits to Microsoft's CSV2SCIM sample, which examples/third_party/csv2scim pins at one commit (Developer Workbook, Chapter 01). A new commit means: review it, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to Microsoft's CSV2SCIM sample, which examples/third_party/csv2scim pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 01). A new commit means: review it, and update the snapshot only in a reviewed pull request."
     },
     {
       "id": "guest-configuration-samples-commits",
@@ -375,9 +375,9 @@
       "repo": "Azure/azure-policy",
       "path": "samples/GuestConfiguration",
       "books": [
-        "B19"
+        "DW"
       ],
-      "source": "Commits to Microsoft's guest configuration package samples, which examples/third_party/guest-configuration-samples pins at one commit (Developer Workbook, Chapter 07). A new commit means: review it, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to Microsoft's guest configuration package samples, which examples/third_party/guest-configuration-samples pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 07). A new commit means: review it, and update the snapshot only in a reviewed pull request."
     },
     {
       "id": "guestconfiguration-module-commits",
@@ -386,9 +386,9 @@
       "repo": "Azure/GuestConfiguration",
       "path": "source",
       "books": [
-        "B19"
+        "DW"
       ],
-      "source": "Commits to the GuestConfiguration module's source. examples/machine-configuration pins version 4.12.0 in RequiredModules.psd1 (Developer Workbook, Chapter 07). A change here means: rerun tests/LearnBaseline.Tests.ps1 against the new version before moving the pin, in a reviewed pull request."
+      "source": "Commits to the GuestConfiguration module's source. examples/machine-configuration pins version 4.12.0 in RequiredModules.psd1 (developer workbook Building the Attribute-Driven Migration, Chapter 07). A change here means: rerun tests/LearnBaseline.Tests.ps1 against the new version before moving the pin, in a reviewed pull request."
     },
     {
       "id": "dynamic-membership-samples-commits",
@@ -397,9 +397,9 @@
       "repo": "MicrosoftDocs/entra-docs",
       "path": "docs/identity/users/scripts",
       "books": [
-        "B19"
+        "DW"
       ],
-      "source": "Commits to the Learn source pages that hold the five pause and resume samples, which examples/third_party/dynamic-membership-samples pins at one commit (Developer Workbook, Chapter 04). A new commit means: review it, rerun examples/dynamic-rules/tests/LearnSamples.Tests.ps1 on the new pages, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to the Learn source pages that hold the five pause and resume samples, which examples/third_party/dynamic-membership-samples pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 04). A new commit means: review it, rerun examples/dynamic-rules/tests/LearnSamples.Tests.ps1 on the new pages, and update the snapshot only in a reviewed pull request."
     }
   ]
 }

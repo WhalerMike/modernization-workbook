@@ -1,6 +1,6 @@
 # Machine configuration packages: a checked build
 
-A build for Azure Machine Configuration content that runs Learn's own **GuestConfiguration** cmdlets and checks what they produce before anything is published. It is the code for the [Developer Workbook, Chapter 07](../../docs/books/b19-developer-workbook/07-machine-configuration-packages.md).
+A build for Azure Machine Configuration content that runs Learn's own **GuestConfiguration** cmdlets and checks what they produce before anything is published. It is the code for the [developer workbook *Building the Attribute-Driven Migration*, Chapter 07](../../docs/project-plans/developer-workbooks/attribute-driven-migration/07-machine-configuration-packages.md).
 
 Illustrative: tested against fixtures and run offline on Windows with the module versions below, not proven against a production tenant.
 

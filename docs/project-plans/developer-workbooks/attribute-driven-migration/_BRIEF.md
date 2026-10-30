@@ -1,6 +1,6 @@
-# B19 Developer Workbook — chapter-writer brief
+# Building the Attribute-Driven Migration (developer workbook) — chapter-writer brief
 
-Book folder: `docs/books/b19-developer-workbook/`. Files and folders starting with `_` aren't rendered. The book index (`index.md`) holds the full outline; write chapters with the file names below.
+Workbook folder: `docs/project-plans/developer-workbooks/attribute-driven-migration/`. Files and folders starting with `_` aren't rendered. The workbook index (`index.md`) holds the full outline; write chapters with the file names below.
 
 | File | Title | Code |
 |---|---|---|
@@ -24,7 +24,7 @@ Goal and audience; the code (what it builds on, what the chapter adds, the tests
 - No narrated chapter tour until the chapter is approved.
 - **Microsoft Learn first, and as much of it as possible.** For anything about a Microsoft product, API, cmdlet, permission, limit or migration step, cite Microsoft Learn (learn.microsoft.com), found with the Microsoft Learn MCP tools. Prefer Learn's own procedures, commands and code samples over writing new ones, and follow Learn's wording for names and limits. Use a non-Learn source (GitHub samples, Arc Jumpstart, blogs, Q&A answers) only when Learn has nothing, say so in the verification log, and replace it once Learn covers the point. When two Learn pages disagree, cite both and follow the stricter.
 - **Microsoft's own samples before our code.** When Microsoft publishes a sample for the task (Learn tutorials usually link one), start the chapter from it, run it in Lab 1, and build our code only for what it leaves out, with a table of the gaps and tests that pin them. Keep a pinned, unmodified copy under `examples/third_party/<name>/` with `snapshot.json` (upstream repository, path, commit, dates, license, per-file SHA-256) and `SNAPSHOT.md`, add a `github_commits` feed for its upstream path in `data/source-watch/feeds.json`, and update the copy only in a reviewed pull request. Link Learn pages; don't copy their text.
-- Every new external claim cites Microsoft Learn (or a workbook chapter) first, with an access date. Footnote keys are unique in the book: `[^cNN-key]`, `[^i-key]` on the index.
+- Every new external claim cites Microsoft Learn (or a workbook chapter) first, with an access date. Footnote keys are unique in the workbook: `[^cNN-key]`, `[^i-key]` on the index.
 - Label the program's own positions *Design guidance*. Give every preview or beta feature its stage.
 - Never name an agency. Use the fictional `contoso.example` tenant in fixtures.
 - Code changes come with tests in the example's own suite, and both language clients stay in step where an example has two.

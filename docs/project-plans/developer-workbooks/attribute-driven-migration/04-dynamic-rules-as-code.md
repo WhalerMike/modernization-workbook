@@ -3,8 +3,7 @@ title: "Chapter 04 — Dynamic Rules as Code"
 description: "Keeping dynamic membership rules in Git as code: one file per group with an owner and membership tests, a parser and offline evaluator for the rule syntax Learn documents, a linter for the guards every access rule needs, a shadow diff on every change, and an incident path built on Learn's own pause and resume samples (pinned in the repository) with the record they leave out, with labs against fixtures and a test tenant."
 doc-type: workbook-chapter
 audience: [Technical]
-family: b19-developer-workbook
-book: B19
+family: dw-attribute-driven-migration
 part: How
 series-order: 4
 status: draft
@@ -12,6 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: pending
+aliases:
+  - /docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html
 ---
 
 # Chapter 04 — Dynamic Rules as Code
@@ -31,7 +32,7 @@ The rules that place people and devices in dynamic membership groups, which the 
 
 ## Where the rules sit
 
-In the migration, a person's access follows their HR record: HR attributes land in coded slots (`extensionAttribute10` for organization, `11` for worker type, `12` for position category), and dynamic membership rules read those slots ([Book 03, Chapter 10](../b03-hr-identity/10-from-attributes-to-access.md)). Every rule that grants access ANDs two guards at the top: `(user.accountEnabled -eq true)` and `(user.userType -eq "Member")`. The validation kit already reads the rules live in a tenant (VK-DG-01 to VK-DG-07, [Chapter 03](03-writing-a-validation-kit-check.md)). This chapter moves the same checks earlier, into the pull request that changes a rule.
+In the migration, a person's access follows their HR record: HR attributes land in coded slots (`extensionAttribute10` for organization, `11` for worker type, `12` for position category), and dynamic membership rules read those slots ([Book 03, Chapter 10](../../../books/b03-hr-identity/10-from-attributes-to-access.md)). Every rule that grants access ANDs two guards at the top: `(user.accountEnabled -eq true)` and `(user.userType -eq "Member")`. The validation kit already reads the rules live in a tenant (VK-DG-01 to VK-DG-07, [Chapter 03](03-writing-a-validation-kit-check.md)). This chapter moves the same checks earlier, into the pull request that changes a rule.
 
 What Learn says about the engine sets the stakes:
 

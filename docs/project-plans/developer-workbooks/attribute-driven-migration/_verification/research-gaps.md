@@ -1,6 +1,6 @@
-# Research gaps for the Developer Workbook
+# Research gaps for the developer workbook *Building the Attribute-Driven Migration*
 
-Five gaps were handed to the session that started this book; rows 6 and 7 were found while writing Chapter 07, rows 8 and 9 while writing Chapter 04. Each was researched on Microsoft Learn (MCP tools) or in the repository on October 30, 2026. Where a later chapter depends on one, the outline in `index.md` says so.
+Five gaps were handed to the session that started this workbook; rows 6 and 7 were found while writing Chapter 07, rows 8 and 9 while writing Chapter 04. Each was researched on Microsoft Learn (MCP tools) or in the repository on October 30, 2026. Where a later chapter depends on one, the outline in `index.md` says so.
 
 | # | Gap | Finding | Status | Source |
 |---|---|---|---|---|

@@ -186,7 +186,7 @@ Describe 'Optional preview check VK-NPI-09' {
     }
 }
 
-Describe 'Optional check VK-SYNC-02 (Developer Workbook, Chapter 03)' {
+Describe 'Optional check VK-SYNC-02 (developer workbook Building the Attribute-Driven Migration, Chapter 03)' {
     It 'is not selected by default, because its live read needs Global Administrator' {
         @((Get-VkCheckCatalog).Id) | Should -Not -Contain 'VK-SYNC-02'
         $c = Get-VkCheckCatalog -CheckId 'VK-SYNC-02'

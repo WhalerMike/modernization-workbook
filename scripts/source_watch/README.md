@@ -98,9 +98,10 @@ and says when it's overdue, and the Research page lists it in a Reviewed
 column. Run `python scripts/source_watch/review_dates.py` to see what's
 due now.
 
-**Gated pages awaiting review.** Some books are held behind a review
-gate: today, the Developer Workbook (`docs/books/b19-developer-workbook/`).
-Its citations are watched like any book's. In addition, each of its pages
+**Gated pages awaiting review.** Some pages are held behind a review
+gate: today, the developer workbooks under Projects
+(`docs/project-plans/developer-workbooks/`). Their citations are watched like
+a book's, reported under the code `DW`. In addition, each of its pages
 records the owner's review in its front matter (`review-status`,
 `reviewed-sha256`, `last-reviewed`). A page that isn't approved, or whose
 body has changed since it was approved, is listed in the issue **every
@@ -110,7 +111,7 @@ page, record the approval in a reviewed pull request:
 
 ```sh
 python scripts/source_watch/review_gate.py                 # pages awaiting review
-python scripts/source_watch/review_gate.py --approve docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
+python scripts/source_watch/review_gate.py --approve docs/project-plans/developer-workbooks/attribute-driven-migration/01-the-hr-to-entra-middleware.md
 ```
 
 The hash covers the page body, not its front matter, and ignores trailing
