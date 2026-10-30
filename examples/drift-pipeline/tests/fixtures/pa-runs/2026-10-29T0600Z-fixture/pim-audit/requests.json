@@ -1,0 +1,54 @@
+[
+  {
+    "RequestId": "5eed0000-0000-4000-8000-000000000001",
+    "RoleId": "194ae4cb-b126-40b2-bd5b-6091b380977d",
+    "Tier": "T0",
+    "PrincipalId": "a0000000-0000-4000-8000-000000000006",
+    "RequesterId": "a0000000-0000-4000-8000-000000000006",
+    "ApproverIds": [
+      "a0000000-0000-4000-8000-000000000030"
+    ],
+    "States": [
+      "Requested",
+      "ApprovalRequested",
+      "Approved",
+      "Activated",
+      "Deactivated"
+    ],
+    "First": "2026-10-28T09:00:00Z",
+    "Last": "2026-10-28T13:20:02Z",
+    "Events": [
+      "PIM_0001_fixture",
+      "PIM_0002_fixture",
+      "PIM_0003_fixture",
+      "PIM_0004_fixture",
+      "PIM_0005_fixture"
+    ]
+  },
+  {
+    "RequestId": "5eed0000-0000-4000-8000-000000000002",
+    "RoleId": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+    "Tier": "T1",
+    "PrincipalId": "a0000000-0000-4000-8000-000000000004",
+    "RequesterId": "a0000000-0000-4000-8000-000000000004",
+    "ApproverIds": [
+      "a0000000-0000-4000-8000-000000000030"
+    ],
+    "States": [
+      "Requested",
+      "Approved",
+      "Activated",
+      "DeactivationRequested",
+      "Deactivated"
+    ],
+    "First": "2026-10-28T15:00:00Z",
+    "Last": "2026-10-28T16:00:01Z",
+    "Events": [
+      "PIM_0006_fixture",
+      "PIM_0007_fixture",
+      "PIM_0008_fixture",
+      "PIM_0009_fixture",
+      "PIM_0010_fixture"
+    ]
+  }
+]

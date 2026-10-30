@@ -1,0 +1,799 @@
+{
+  "_comment": "Fictional Microsoft Entra directory audit items (contoso.example) in the shape of Microsoft Graph's directoryAudit resource, served by the Chapter 08 fake. Every name and ID is invented; IP addresses are from the documentation range 192.0.2.0/24. The day 1 window is 2026-10-28T06:00Z to 2026-10-29T06:00Z and day 2 runs to 2026-10-30T06:00Z. The additionalDetails key roleAssignmentRequestId and a Role target whose id is the role template ID are assumptions (research gaps).",
+  "directoryAudits": [
+    {
+      "id": "PIM_0001_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000001",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role requested (PIM activation)",
+      "activityDateTime": "2026-10-28T09:00:00Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000006",
+          "displayName": "Gina Lee",
+          "userPrincipalName": "gina.lee@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "194ae4cb-b126-40b2-bd5b-6091b380977d",
+          "displayName": "Security Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000006",
+          "displayName": "Gina Lee",
+          "type": "User",
+          "userPrincipalName": "gina.lee@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000001"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2001"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0002_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000001",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role approval requested (PIM activation)",
+      "activityDateTime": "2026-10-28T09:00:05Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000006",
+          "displayName": "Gina Lee",
+          "userPrincipalName": "gina.lee@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "194ae4cb-b126-40b2-bd5b-6091b380977d",
+          "displayName": "Security Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000006",
+          "displayName": "Gina Lee",
+          "type": "User",
+          "userPrincipalName": "gina.lee@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000001"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2002"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0003_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000002",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role request approved (PIM activation)",
+      "activityDateTime": "2026-10-28T09:20:00Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000030",
+          "displayName": "Ivy Tran",
+          "userPrincipalName": "ivy.tran@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "194ae4cb-b126-40b2-bd5b-6091b380977d",
+          "displayName": "Security Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000006",
+          "displayName": "Gina Lee",
+          "type": "User",
+          "userPrincipalName": "gina.lee@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000001"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2003"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0004_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000003",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role completed (PIM activation)",
+      "activityDateTime": "2026-10-28T09:20:02Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000006",
+          "displayName": "Gina Lee",
+          "userPrincipalName": "gina.lee@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "194ae4cb-b126-40b2-bd5b-6091b380977d",
+          "displayName": "Security Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000006",
+          "displayName": "Gina Lee",
+          "type": "User",
+          "userPrincipalName": "gina.lee@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000001"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2004"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0005_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000003",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Remove member from role (PIM activation expired)",
+      "activityDateTime": "2026-10-28T13:20:02Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000006",
+          "displayName": "Gina Lee",
+          "userPrincipalName": "gina.lee@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "194ae4cb-b126-40b2-bd5b-6091b380977d",
+          "displayName": "Security Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000006",
+          "displayName": "Gina Lee",
+          "type": "User",
+          "userPrincipalName": "gina.lee@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000001"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2005"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0006_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000004",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role requested (PIM activation)",
+      "activityDateTime": "2026-10-28T15:00:00Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000004",
+          "displayName": "Eli Park",
+          "userPrincipalName": "eli.park@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+          "displayName": "Exchange Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000004",
+          "displayName": "Eli Park",
+          "type": "User",
+          "userPrincipalName": "eli.park@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000002"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2006"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0007_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000005",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role request approved (PIM activation)",
+      "activityDateTime": "2026-10-28T15:10:00Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000030",
+          "displayName": "Ivy Tran",
+          "userPrincipalName": "ivy.tran@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+          "displayName": "Exchange Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000004",
+          "displayName": "Eli Park",
+          "type": "User",
+          "userPrincipalName": "eli.park@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000002"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2007"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0008_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000006",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role completed (PIM activation)",
+      "activityDateTime": "2026-10-28T15:10:03Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000004",
+          "displayName": "Eli Park",
+          "userPrincipalName": "eli.park@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+          "displayName": "Exchange Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000004",
+          "displayName": "Eli Park",
+          "type": "User",
+          "userPrincipalName": "eli.park@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000002"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2008"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0009_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000007",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Remove member from role requested (PIM deactivate)",
+      "activityDateTime": "2026-10-28T16:00:00Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000004",
+          "displayName": "Eli Park",
+          "userPrincipalName": "eli.park@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+          "displayName": "Exchange Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000004",
+          "displayName": "Eli Park",
+          "type": "User",
+          "userPrincipalName": "eli.park@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000002"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2009"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0010_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000007",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Remove member from role completed (PIM deactivate)",
+      "activityDateTime": "2026-10-28T16:00:01Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000004",
+          "displayName": "Eli Park",
+          "userPrincipalName": "eli.park@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+          "displayName": "Exchange Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000004",
+          "displayName": "Eli Park",
+          "type": "User",
+          "userPrincipalName": "eli.park@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2010"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0011_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000008",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to group",
+      "activityDateTime": "2026-10-28T17:00:00Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000001",
+          "displayName": "Alex Kim",
+          "userPrincipalName": "alex.kim@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "a0000000-0000-4000-8000-000000000002",
+          "displayName": "Bo Chen",
+          "type": "User",
+          "userPrincipalName": "bo.chen@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2011"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0012_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000009",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role",
+      "activityDateTime": "2026-10-29T08:00:00Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000001",
+          "displayName": "Alex Kim",
+          "userPrincipalName": "alex.kim@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+          "displayName": "Privileged Role Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000020",
+          "displayName": "Hank Soto",
+          "type": "User",
+          "userPrincipalName": "hank.soto@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2012"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0013_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000009",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role outside of PIM (permanent)",
+      "activityDateTime": "2026-10-29T08:00:01Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000001",
+          "displayName": "Alex Kim",
+          "userPrincipalName": "alex.kim@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+          "displayName": "Privileged Role Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000020",
+          "displayName": "Hank Soto",
+          "type": "User",
+          "userPrincipalName": "hank.soto@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2013"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0014_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000010",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role requested (PIM activation)",
+      "activityDateTime": "2026-10-29T10:00:00Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000013",
+          "displayName": "Lee Moss",
+          "userPrincipalName": "lee.moss@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "62e90394-69f5-4237-9190-012177145e10",
+          "displayName": "Global Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000013",
+          "displayName": "Lee Moss",
+          "type": "User",
+          "userPrincipalName": "lee.moss@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000003"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2014"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0015_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000010",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role completed (PIM activation)",
+      "activityDateTime": "2026-10-29T10:00:04Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000013",
+          "displayName": "Lee Moss",
+          "userPrincipalName": "lee.moss@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "62e90394-69f5-4237-9190-012177145e10",
+          "displayName": "Global Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000013",
+          "displayName": "Lee Moss",
+          "type": "User",
+          "userPrincipalName": "lee.moss@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000003"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2015"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0016_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000011",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role requested (PIM activation)",
+      "activityDateTime": "2026-10-29T11:00:00Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000002",
+          "displayName": "Bo Chen",
+          "userPrincipalName": "bo.chen@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+          "displayName": "Privileged Role Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000002",
+          "displayName": "Bo Chen",
+          "type": "User",
+          "userPrincipalName": "bo.chen@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000004"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2016"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0017_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000012",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add member to role request denied (PIM activation)",
+      "activityDateTime": "2026-10-29T11:30:00Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000030",
+          "displayName": "Ivy Tran",
+          "userPrincipalName": "ivy.tran@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+          "displayName": "Privileged Role Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        },
+        {
+          "id": "a0000000-0000-4000-8000-000000000002",
+          "displayName": "Bo Chen",
+          "type": "User",
+          "userPrincipalName": "bo.chen@contoso.example",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "roleAssignmentRequestId",
+          "value": "5eed0000-0000-4000-8000-000000000004"
+        },
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2017"
+        }
+      ]
+    },
+    {
+      "id": "PIM_0018_fixture",
+      "category": "RoleManagement",
+      "correlationId": "c0ffee00-0000-4000-8000-000000000013",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Update role setting in PIM",
+      "activityDateTime": "2026-10-29T12:00:00Z",
+      "loggedByService": "Privileged Identity Management",
+      "operationType": "Assign",
+      "initiatedBy": {
+        "user": {
+          "id": "a0000000-0000-4000-8000-000000000001",
+          "displayName": "Alex Kim",
+          "userPrincipalName": "alex.kim@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "62e90394-69f5-4237-9190-012177145e10",
+          "displayName": "Global Administrator",
+          "type": "Role",
+          "userPrincipalName": null,
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "TicketNumber",
+          "value": "CHG-2018"
+        }
+      ]
+    }
+  ]
+}
