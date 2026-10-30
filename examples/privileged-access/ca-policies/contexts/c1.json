@@ -1,0 +1,6 @@
+{
+  "id": "c1",
+  "displayName": "FMP-PIM-Activation",
+  "description": "Privileged role activation in PIM: phishing-resistant authentication from a compliant device, every time.",
+  "isAvailable": true
+}

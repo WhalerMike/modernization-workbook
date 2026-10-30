@@ -490,6 +490,17 @@
       "source": "Commits to the Learn source page that sets the standard for emergency access accounts and holds the sample alert queries for their use, which examples/third_party/entra-emergency-access-page pins at one commit (developer workbook Building Privileged Access, Chapter 02). A new commit means: review it, rerun examples/privileged-access/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     },
     {
+      "id": "conditional-access-template-page-commits",
+      "name": "Learn's Get conditionalAccessTemplate page and its example template (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/conditionalaccesstemplate-get.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page for Get conditionalAccessTemplate, whose example response is Microsoft's 'Require multifactor authentication for admins' Conditional Access template as Graph JSON, which examples/third_party/conditional-access-template-page pins at one commit (developer workbook Building Privileged Access, Chapter 03). A new commit means: review it, rerun examples/privileged-access/tests/ConditionalAccess.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
       "id": "azure-pim-rest-examples-commits",
       "name": "Microsoft's REST examples for PIM for Azure resources, 2020-10-01 (Azure/azure-rest-api-specs commits)",
       "type": "github_commits",
