@@ -735,16 +735,10 @@ def tool(name: str) -> str:
 PY = sys.executable or "python3"
 
 
-def windows_bundle_result(code: int, lines: list[str]) -> Result:
-    """A bundle build failure. On Windows, pandoc can't find images the bundle
-    filter (scripts/bundle-filter.lua) re-points with POSIX-only path handling;
-    build_bundles.py has already confirmed every image exists by then, so that
-    one failure is reported as a warning and left to the Linux CI run."""
-    if os.name == "nt" and any("Could not fetch resource" in l for l in lines):
-        return Result("", "warn", detail=[
-            "not verified on Windows: pandoc could not fetch the bundle's images through "
-            "scripts/bundle-filter.lua's POSIX-only image paths (every image exists; the Linux CI run builds it)"])
+def bundle_failure(code: int) -> Result:
     return Result("", "fail", detail=[f"build_bundles.py exited {code}"])
+
+
 REDIRECT_NOISE = re.compile(r"^redirects: WARNING target not rendered")
 
 
@@ -933,16 +927,16 @@ class Checker:
             return Result("", "skip", detail=["no Word bundle contains a changed page"])
         out = Path(tempfile.mkdtemp(prefix="pr-bundles-"))
         try:
-            code, lines = run([PY, "scripts/build_bundles.py", "--only", *names, "--out", str(out)])
+            code, _ = run([PY, "scripts/build_bundles.py", "--only", *names, "--out", str(out)])
         finally:
             shutil.rmtree(out, ignore_errors=True)
         if code == 0:
             return Result("", "pass", detail=[f"built {', '.join(names)}"])
-        return windows_bundle_result(code, lines)
+        return bundle_failure(code)
 
     def bundles_full(self) -> Result:
-        code, lines = run([PY, "scripts/build_bundles.py", "--out", "_site/downloads"])
-        return Result("", "pass") if code == 0 else windows_bundle_result(code, lines)
+        code, _ = run([PY, "scripts/build_bundles.py", "--out", "_site/downloads"])
+        return Result("", "pass") if code == 0 else bundle_failure(code)
 
     def kits(self, kits: list[str], out: str | None) -> Result:
         tmp = None if out else Path(tempfile.mkdtemp(prefix="pr-kits-"))
