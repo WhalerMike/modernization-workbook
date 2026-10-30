@@ -16,7 +16,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 |---|---|---|---|---|
 | 1 | Learn's three samples: CLI, CLI and PowerShell, US Government; `id-token: write`; IDs in secrets "for security reasons"; audience default and non-public clouds | Start with Learn's sample; Verified facts | verified | Learn, Azure Login OIDC page |
 | 2 | Samples use `azure/login@v2`, `azure/cli@v2`, `azure/powershell@v2`, `latest` versions, `on: [push]` | What it leaves to you | verified by parsing the pinned page; pinned in `test_workflow_lint.py` | pinned page; local run |
-| 3 | The US Government sample isn't valid YAML (`with:` indented under `uses:`); its environment and audience pair is right once indented | What it leaves to you; Lab 1 | verified by parsing (PyYAML: "mapping values are not allowed here"); pinned in tests; research-gaps.md row 18 | pinned page; local run |
+| 3 | The US Government sample isn't valid YAML (`with:` indented under `uses:`); its environment and audience pair is right once indented | What it leaves to you; Lab 1 | verified by parsing (PyYAML: "mapping values are not allowed here"); pinned in tests; research-gaps.md row 23 | pinned page; local run |
 | 4 | Azure Login current release v3.1.0 (September 10, 2026), runs on Node 24; v3.0.0 moved from Node 20 | What it leaves to you; Verified facts | verified | Azure/login releases and `action.yml` (GitHub, Microsoft-published) |
 | 5 | GitHub advises pinning actions to a full commit SHA; tags can be moved | What it leaves to you | verified | GitHub Docs, Secure use reference |
 | 6 | Token subject depends on branch or event unless the job names an environment; environment subject format | What it leaves to you; Lab 2 | verified | GitHub Docs, OIDC reference; Learn, create-trust page |
@@ -25,7 +25,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 9 | 20 federated credentials per app; issuer and subject unique; propagation and `AADSTS70021` | Lab 2; Verified facts | verified | Learn, considerations page |
 | 10 | Audiences per cloud (Global, US Government, China) | Clouds; Verified facts | verified | Learn, Configure an application to trust a managed identity |
 | 11 | Graph hosts per cloud; GCC keeps worldwide endpoints; US Government authority; tokens not interchangeable | Clouds; Verified facts | verified | Learn, Microsoft Graph national cloud deployments |
-| 12 | `Connect-MgGraph -Environment` names Global, USGov, USGovDoD; `-AccessToken` typed SecureString | Clouds; Verified facts | verified; conflicts with the IDX14102 article (research-gaps.md row 15) | Learn, Connect-MgGraph; IDX14102 article |
+| 12 | `Connect-MgGraph -Environment` names Global, USGov, USGovDoD; `-AccessToken` typed SecureString | Clouds; Verified facts | verified; conflicts with the IDX14102 article (research-gaps.md row 20) | Learn, Connect-MgGraph; IDX14102 article |
 | 13 | `Get-AzAccessToken -AsSecureString -ResourceUrl`; the URL must match the current environment | The workflow; Verified facts | verified | Learn, Get-AzAccessToken |
 | 14 | Azure Pipelines' automatic workload identity app registration doesn't apply to Azure US Government | Why GitHub Actions; Verified facts | verified | Learn, Connect to Azure with an ARM service connection |
 | 15 | Immutable storage: retention 1 to 146,000 days; locked can't be deleted or shortened; five extensions for a container policy; lock typically within 24 hours; unlocked for testing; account deletion blocked | Evidence package; Lab 2; Verified facts; Dangers | verified | Learn, immutable storage overview; configure container policies; container-level WORM |
@@ -44,7 +44,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | Source | Went to | Or why not carried |
 |---|---|---|
 | Book 13, Chapter 06 (drift engine, cadence, what's built) | Where the pipeline sits: the pipeline finds change between runs; each check compares with the record | The five drift classes and severities aren't assigned by the comparator; the kit's checks don't carry a class yet |
-| Book 13, Chapter 04 (provenance, no closure without proof, reports as derivations) | Resolved only from a run that read the tenant; closes cite the run and manifest hash; packages rebuild to the same bytes; hash chain | The signature in Chapter 04's integrity field: open (research-gaps.md row 17) |
+| Book 13, Chapter 04 (provenance, no closure without proof, reports as derivations) | Resolved only from a run that read the tenant; closes cite the run and manifest hash; packages rebuild to the same bytes; hash chain | The signature in Chapter 04's integrity field: open (research-gaps.md row 22) |
 | Book 12, Chapter 02 (evidence contract; closing on a later observation) | The unverified rule; the package as the evidence handed on | The contract's `asset_id` and `control` fields aren't added to kit rows; that mapping belongs to Book 12's pipeline |
 | Index outline row 09 | The chapter | — |
-| `examples/validation-kit` run output | Fixtures and `load_run()` | The kit manifest's missing tenant ID: research-gaps.md row 19 |
+| `examples/validation-kit` run output | Fixtures and `load_run()` | The kit manifest's missing tenant ID: research-gaps.md row 24 |
