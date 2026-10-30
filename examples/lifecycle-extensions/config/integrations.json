@@ -1,0 +1,32 @@
+{
+  "_comment": "One entry per integration: one Logic App, one managed identity, one custom task extension. Fictional values for contoso.example. A change here changes what a lifecycle workflow can make another system do; review it like code.",
+  "integrations": [
+    {
+      "name": "cms-revocation",
+      "description": "Revoke the leaver's PIV credential in the card management system (Book 03, Chapter 09, the canonical leaver sequence, step 3).",
+      "tenantCloud": "Global",
+      "azureCloud": "AzureCloud",
+      "lcwAppId": "ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7",
+      "logicApp": {
+        "subscriptionId": "5f0c2b7e-0d1a-4c3e-9b8a-0c0a7050e001",
+        "resourceGroup": "rg-identity-lcw-extensions",
+        "name": "la-lcw-cms-revocation",
+        "location": "eastus"
+      },
+      "definition": "logicapp/integration.workflow.json",
+      "integrationUri": "https://cms.contoso.example/api/v1/lifecycle-events",
+      "integrationAudience": "api://cms.contoso.example",
+      "workflows": [
+        {"workflowId": "0d6f5b1c-3a2e-4f7d-9c1b-1e2a3b4c5d01", "scenario": "leaver", "operation": "revoke", "book03": "Leaver: revoke credentials after the block"},
+        {"workflowId": "0d6f5b1c-3a2e-4f7d-9c1b-1e2a3b4c5d02", "scenario": "leaver", "operation": "revoke", "book03": "Contractor leaver: earliest end wins"}
+      ],
+      "extension": {
+        "displayName": "CMS - revoke PIV credential",
+        "description": "Calls la-lcw-cms-revocation and waits for its callback.",
+        "maximumRetries": 1,
+        "timeoutInMilliseconds": 1000,
+        "timeoutDuration": "PT1H"
+      }
+    }
+  ]
+}
