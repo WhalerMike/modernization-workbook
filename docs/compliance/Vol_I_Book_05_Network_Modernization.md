@@ -431,7 +431,7 @@ The integration is implemented through **Cisco SD-WAN Cloud OnRamp for SaaS**, a
 
 3. **Microsoft Peering Service (MAPS).** For agencies with MPLS circuits from carriers that participate in **Microsoft Azure Peering Service (MAPS)**, Cisco Catalyst SD-WAN can route M365-bound traffic to the carrier's MAPS hand-off point. The carrier then delivers the traffic directly to the nearest Microsoft edge over a private BGP-peered connection — bypassing the public internet entirely while maintaining the local breakout benefit. This is the highest-fidelity INR activation path for agencies with qualified MPLS carriers.
 
-4. **Azure Virtual WAN integration.** For agencies using Azure for other workloads, Cisco Catalyst SD-WAN can peer directly with **Azure Virtual WAN hubs**. In this architecture, M365 traffic flows from the branch WAN Edge through an IPsec tunnel to the Azure Virtual WAN hub in the geographically nearest Azure region, then onto Microsoft's backbone to the M365 service. This is the preferred architecture for agencies already using Azure Government — it unifies the WAN topology.
+4. **Azure Virtual WAN integration.** For agencies using Azure for other workloads, Cisco Catalyst SD-WAN can peer directly with **Azure Virtual WAN hubs**. In this architecture, M365 traffic flows from the branch WAN Edge through an IPsec tunnel to the Azure Virtual WAN hub in the geographically nearest Azure region, then onto Microsoft's backbone to the M365 service. This is the preferred architecture for agencies already using Azure — it unifies the WAN topology.
 
 | Integration Path | What Agency Has | What INR Quality Level It Achieves |
 |---|---|---|

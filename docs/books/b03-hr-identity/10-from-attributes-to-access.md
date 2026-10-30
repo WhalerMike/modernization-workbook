@@ -1,6 +1,6 @@
 ---
 title: "Chapter 10 — From Attributes to Access"
-description: "The derivation chain from worker record to entitlement: rules for dynamic membership written against the canonical schema, administrative units for delegation, access packages and access reviews routed to the supervisor of record, and where PIM and assigned groups take over."
+description: "The derivation chain from worker record to entitlement: rules for dynamic membership written against the canonical schema, administrative units for delegation, access packages and access reviews routed to the supervisor of record, emergency calling policies driven by HR attributes while the caller's location comes from the network, and where PIM and assigned groups take over."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b03-hr-identity
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The derivation chain. Valid rule patterns against the canonical schema, with Microsoft's limits. Administrative units. Access packages and access reviews that route to the supervisor of record, and the licenses they need. Where dynamic membership stops: privileged roles, PIM and break-glass.
+The derivation chain. Valid rule patterns against the canonical schema, with Microsoft's limits. Administrative units. Access packages and access reviews that route to the supervisor of record, and the licenses they need. Emergency calling: which Teams policies HR attributes can drive, and why the caller's location never comes from HR. Where dynamic membership stops: privileged roles, PIM and break-glass.
 :::
 
 ## The derivation chain
@@ -87,6 +87,71 @@ Restricted management administrative units protect sensitive objects from tenant
 
 Entitlement management and access reviews are Microsoft Entra ID Governance features for the organization's member users, including everyone who reviews access or has access reviewed; the capabilities that were generally available in Entra ID P2, including managers as access package approvers, also operate under P2, but Microsoft is adding no new governance features to P2.[^c10-gov-licensing] Several things this book relies on need ID Governance (or the Entra Suite) rather than P2: Lifecycle Workflows, automatic assignment policies, managers requesting access on behalf of their employees, and PIM for Groups eligibility delivered through an access package.[^c10-gov-licensing] An ID Governance subscription also needs a prerequisite product with the P1 or P2 service plan in the tenant, and ID Governance for Government is offered in GCC, GCC High and DoD.[^c10-gov-licensing]
 
+## Emergency calling: what HR attributes supply and what they don't
+
+When Teams Phone replaces a PBX, every Teams-enabled laptop and phone becomes a way to call 911. The FCC reads "multi-line telephone system" to cover cloud systems and over-the-top applications, and the record it relied on named softphone clients and mobile devices.[^c10-fcc1976] The HR record already holds a duty station, so it is tempting to stamp that as everyone's emergency address. Don't. The duty station says where a person is assigned; the 911 rules ask where the caller is when they call. [Book 15, Chapter 05](../b15-day2-operations/05-the-service-catalogs.md) covers the rules and the Teams configuration as operator tasks. This section draws the line between what the identity pipeline can supply and what it must leave to the network and the device.
+
+### The rules ask where the caller is
+
+A dispatchable location is the validated street address of the calling party plus the suite, floor or similar detail needed to find them.[^c10-cfr93] For a device the user can move, which the FCC defines as one the user can move from one endpoint to another without help,[^c10-fcc1976] the rule is tiered. On the premises, the system must send an automated dispatchable location when technically feasible, and otherwise one based on the user's manual update or alternative location information. Off the premises, it must send an automatic dispatchable location if technically feasible, and otherwise one based on the user's manual update or the best available location obtainable at reasonable cost, which may be coordinates.[^c10-cfr916] The FCC allowed systems to rely on the user to provide or confirm a location in response to a prompt, and it noted the risk that manually entered locations go stale.[^c10-fcc1976]
+
+Two things follow for an identity program. A softphone is a non-fixed device, so a location keyed to the person rather than to the network or the device answers the wrong question. And the FCC clarified that the companies that manage and operate these systems may rely on their enterprise customers to acquire, maintain and update location information.[^c10-fcc1976] The location data is the agency's to keep, whoever carries the calls.
+
+::: {.callout-note}
+## Interpretation: does the rule bind a federal agency?
+The statutory definition of a multi-line telephone system includes systems owned or leased by governmental agencies.[^c10-usc1471] The obligations, though, fall on "a person engaged in the business of" installing, managing or operating one,[^c10-usc623] and the Communications Act defines "person" to include an individual, partnership, association, joint-stock company, trust or corporation, with no mention of government.[^c10-usc153] The FCC's order implementing Kari's Law and Section 506 of RAY BAUM'S Act doesn't discuss federal agencies as operators.[^c10-fcc1976] So the text leaves open whether the FCC could enforce these rules against an agency that runs its own system; the carriers and Microsoft are covered either way. This book's position is to configure the system as if the agency is bound, because the system plainly is one the rules describe. The agency's counsel makes the compliance determination.
+:::
+
+### How Teams chooses the location it sends
+
+When a user dials an emergency number, Teams uses the first location available in this order:[^c10-remote-loc]
+
+1. An address the Location Information Service returns for the network element the client is connected to.
+2. An address the user confirmed or edited for the network the client is on.
+3. An address the operating system suggests.
+4. An address the user typed without it being resolved by the address service.
+5. An address an administrator assigned statically to the user's phone number.
+
+The tier decides the routing. In the United States, a dynamically acquired address, an operating-system address the user confirmed, and an address picked from the address suggestions go straight to the 911 call center. A statically assigned user address, an unconfirmed operating-system address, a typed address and no address at all are screened by a national call center first, which then transfers the call.[^c10-remote-loc] For Calling Plan users, a call that doesn't get a dynamic address is screened, and if the caller can't give the screening center a location, it is transferred to the 911 call center serving the registered address.[^c10-cp-e911]
+
+![Teams sends the first location it has, from the network map down to an address an administrator assigned to the phone number; the bottom tiers are screened before the call reaches the 911 call center, and an address derived from HR lands in the bottom tier.](../../images/diagrams/b03-hr-identity/svg/ch10-emergency-location-precedence.svg){#fig-ch10-emergency-location-precedence fig-alt="Five stacked boxes from top to bottom. One, green: network location from the Location Information Service, matched by access point, switch port, switch or subnet; routed directly to the 911 call center. Two, green: an address the user confirmed or edited for this network; direct. Three, amber: an address the operating system suggests; direct if the user confirms it, screened if not. Four, amber: an address the user typed; direct only if picked from the address suggestions, otherwise screened. Five, red: an address an administrator assigned to the phone number; screened by a national call center, which falls back to it only if the caller can't give a location. A violet box on the side, HR duty station, points with a dashed arrow to box five, labelled fallback only."}
+
+An address written from the HR duty station onto the user's number is the fifth tier. It has a job, as the registered address the screening center falls back on, and for Calling Plan users in the United States an emergency location has to exist when the number is assigned.[^c10-cp-e911] But it is never what a softphone user's 911 call should depend on.
+
+### What HR attributes drive
+
+The identity pipeline's contribution is to put each person under the right emergency *policies*. Teams applies the emergency calling policy, which sets security desk notification and the remote-location experience, to all four ways of connecting to the phone network, and lets it be assigned to users or to network sites; a site assignment wins when the user is at that site.[^c10-dynamic]
+
+| HR-sourced input (Chapter 06) | Teams setting it drives | Why it is safe to drive from HR |
+|---|---|---|
+| Work country, through the `usageLocation` expression | The emergency numbers a Calling Plan, Operator Connect or Teams Phone Mobile user can dial[^c10-dynamic] | It selects a country's numbers, not a location |
+| Organization or region code (`extensionAttribute10`, `extensionAttribute4`), through a dynamic group | The emergency calling policy that names the security desk to notify and how: a chat message, or conferenced in muted or unmuted[^c10-ecp] | It decides who hears about a call. When the user is on a mapped network site, the site's policy overrides it[^c10-ecp] |
+| Worker type and position category (`extensionAttribute11`, `extensionAttribute12`): the population licensed for Teams Phone, through a dynamic group | An emergency calling policy with external location lookup turned on, so users off the corporate network can confirm or enter their address, and with an emergency service disclaimer reminding them to[^c10-ecp] | It turns on the prompt; the address comes from the device and the user |
+| Duty station, through the facilities inventory | The registered address on the user's number | It is the fallback for screening, the fifth tier, never the answer |
+| Separation and reassignment actions (Chapter 08) | Group membership, and with it the policies, removed or re-scoped | The policies follow the person without a ticket |
+
+Give every softphone user the remote-location policy, not only those with a telework agreement. Occasional teleworkers, travelers and people working from another office all leave the mapped network. On the premises the network location is the first tier and wins anyway.[^c10-remote-loc] The schema in Chapter 06 carries no telework attribute, and this design doesn't need one; where the HR system records telework agreements, they are a good trigger for training and reminders, not for the policy.
+
+Assign the policies to groups, with these Teams rules in mind:
+
+- **Group assignment works for the emergency calling policy.** `Grant-CsTeamsEmergencyCallingPolicy` takes a group, with a rank among the groups that hold the same policy type.[^c10-ecp-grant]
+- **A direct assignment beats every group.** A policy assigned directly to a user takes precedence over any group assignment, so a one-off assignment silently takes that user out of the HR-driven design.[^c10-gpa] Count each direct assignment against derivation purity, the share of assignments computed by rule ([Chapter 11](11-drift-metrics-and-evidence.md#the-measured-lifecycle)).
+- **Keep the groups flat.** Assignments reach only direct members, not members of nested groups; a policy type can be assigned to at most 64 groups; and for large groups a membership change can take 24 hours or more to reach every member.[^c10-gpa] Allow for that lag before treating a mover's old notification policy as drift.
+- **Route Direct Routing calls by site.** Microsoft's pages disagree on whether the emergency call routing policy can be assigned to groups: the cmdlet reference shows a group parameter, while the group-assignment reference lists that policy type as excluded.[^c10-ecrp-grant][^c10-gpa] Assigning it to network sites, which Microsoft supports and which follows the caller's actual location, avoids the question.[^c10-dynamic]
+
+### Where the location data comes from
+
+The Location Information Service needs network identifiers, each linked to a validated emergency address with geocodes: subnets, wireless access points by BSSID, switches and switch ports.[^c10-dynamic] None of that is HR data. Validated addresses and floors come from the facilities inventory, subnets from the address-management system ([Book 08, Chapter 07](../b08-ddi/07-cloud-private-endpoints-and-ipam.md)), access points from the wireless controllers, and switch ports from the network access control inventory ([Book 09, Chapter 07](../b09-network/07-network-access-control.md)). Their owners keep them current; the identity team doesn't.
+
+Four network behaviors look like identity failures and aren't. The identity team should know them so it doesn't chase them in the provisioning logs.
+
+- **Subnet lookups depend on trusted IP addresses.** Teams tries a subnet-based location only when the client's public IP address is on the tenant's trusted list; access point and switch lookups happen regardless.[^c10-dynamic]
+- **A cloud proxy that rewrites source addresses breaks the lookup.** Microsoft states that cloud proxy deployments that change the source IP addresses of Teams clients don't support network setting lookups,[^c10-dynamic] which matters wherever SASE carries Teams traffic ([Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md)).
+- **A full-tunnel VPN can hand a home worker the office's address.** This is an inference from the trusted-address rule, not a Microsoft statement: the VPN's exit address is trusted, so if the VPN address pool is mapped to a location, a remote user gets that location. Leave VPN pools unmapped and keep Teams media out of the tunnel.
+- **IPv6 can match the site but not the location.** Windows can report a stateful DHCPv6 address with a /128 prefix; the client then matches its network site and gets that site's policies while failing the subnet location match. Microsoft's fix is an IPv4 subnet, switch or access point entry, and its Locations and Networks report shows which requests matched.[^c10-dynamic][^c10-loc-report]
+
+On the device, the remote-location experience runs in Teams on Windows and Mac; Teams mobile detects location automatically but doesn't take a typed address, and Teams phones don't support it.[^c10-remote-loc] Teams asks users for consent to use location unless the operating system's location setting is managed; Windows devices can be managed that way, while macOS doesn't allow full control of Location Services.[^c10-consent] The device-management baseline, not the identity pipeline, sets that switch ([Book 05](../b05-devices/index.md)).
+
 ## Where dynamic membership stops
 
 - **Privileged roles use assigned groups.** Role-assignable groups require assigned membership, which Microsoft notes already removes the attribute-write risk.[^c10-dyn-rules] A tenant can have at most 500 role-assignable groups.[^c10-pim-groups]
@@ -118,3 +183,18 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c10-gov-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals," <https://learn.microsoft.com/en-us/entra/id-governance/licensing-fundamentals> (accessed Oct 20, 2026).
 [^c10-pim-groups]: Microsoft Learn, "Privileged Identity Management (PIM) for Groups," <https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups> (accessed Oct 20, 2026).
 [^c10-emergency]: Microsoft Learn, "Manage emergency access admin accounts," <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access> (accessed Oct 20, 2026).
+[^c10-fcc1976]: Federal Communications Commission, FCC 19-76, *Report and Order, Implementing Kari's Law and Section 506 of RAY BAUM'S Act; Inquiry Concerning 911 Access, Routing, and Location in Enterprise Communications Systems*, PS Docket Nos. 18-261 and 17-239, adopted August 1, 2019, paras. 48 (scope of MLTS), 153–154 (user-provided or confirmed location), 164 (reliance on enterprise customers) and note 402 (fixed and non-fixed devices), <https://docs.fcc.gov/public/attachments/FCC-19-76A1.pdf> (accessed Oct 30, 2026).
+[^c10-cfr93]: Electronic Code of Federal Regulations, 47 CFR § 9.3, definitions of "Dispatchable location," "Alternative location information" and "Multi-line telephone system or MLTS," <https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-9/subpart-A/section-9.3> (accessed Oct 30, 2026).
+[^c10-cfr916]: Electronic Code of Federal Regulations, 47 CFR § 9.16(b)(3)(ii)–(iii), dispatchable location for on-premises non-fixed and off-premises devices, <https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-9/subpart-F/section-9.16> (accessed Oct 30, 2026).
+[^c10-usc1471]: 47 U.S.C. § 1471(2), definition of "multi-line telephone system," <https://www.govinfo.gov/link/uscode/47/1471?link-type=html> (accessed Oct 30, 2026).
+[^c10-usc623]: 47 U.S.C. § 623(b)–(c), configuration of multi-line telephone systems for direct dialing of 9-1-1 (Kari's Law), <https://www.govinfo.gov/link/uscode/47/623?link-type=html> (accessed Oct 30, 2026).
+[^c10-usc153]: 47 U.S.C. § 153(39), definition of "person," <https://www.govinfo.gov/link/uscode/47/153?link-type=html> (accessed Oct 30, 2026).
+[^c10-remote-loc]: Microsoft Learn, "Emergency addresses for remote locations," sections Location precedence, Emergency address classification and routing, and Notes and restrictions, <https://learn.microsoft.com/microsoftteams/emergency-calling-dispatchable-location> (accessed Oct 30, 2026).
+[^c10-cp-e911]: Microsoft Learn, "Emergency calling considerations for Microsoft Calling Plans," sections Emergency call enablement, Dynamic emergency calling and Emergency call routing (United States), <https://learn.microsoft.com/microsoftteams/considerations-calling-plan> (accessed Oct 30, 2026).
+[^c10-dynamic]: Microsoft Learn, "Plan and configure dynamic emergency calling," sections Configure network settings, Configure Location Information Service, IPv6 subnet matching and Configure emergency policies, <https://learn.microsoft.com/microsoftteams/configure-dynamic-emergency-calling> (accessed Oct 30, 2026).
+[^c10-ecp]: Microsoft Learn, "Manage emergency calling policies in Microsoft Teams," including Create a custom emergency calling policy, <https://learn.microsoft.com/microsoftteams/manage-emergency-calling-policies> (accessed Oct 30, 2026).
+[^c10-ecp-grant]: Microsoft Learn, "Grant-CsTeamsEmergencyCallingPolicy," GrantToGroup parameter set, <https://learn.microsoft.com/powershell/module/microsoftteams/grant-csteamsemergencycallingpolicy> (accessed Oct 30, 2026).
+[^c10-ecrp-grant]: Microsoft Learn, "Grant-CsTeamsEmergencyCallRoutingPolicy," GrantToGroup parameter set, <https://learn.microsoft.com/powershell/module/microsoftteams/grant-csteamsemergencycallroutingpolicy> (accessed Oct 30, 2026).
+[^c10-gpa]: Microsoft Learn, "New-CsGroupPolicyAssignment," description and notes (excluded policy types, rank, direct-assignment precedence, nested groups, 64-group limit, propagation time), <https://learn.microsoft.com/powershell/module/microsoftteams/new-csgrouppolicyassignment> (accessed Oct 30, 2026).
+[^c10-loc-report]: Microsoft Learn, "Microsoft Teams Locations and Networks report," <https://learn.microsoft.com/microsoftteams/teams-analytics-and-reports/locations-networks> (accessed Oct 30, 2026).
+[^c10-consent]: Microsoft Learn, "User location consent experience in Microsoft Teams," <https://learn.microsoft.com/microsoftteams/privacy/user-location-data> (accessed Oct 30, 2026).

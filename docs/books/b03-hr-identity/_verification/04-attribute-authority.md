@@ -65,3 +65,9 @@ Applied from the research page `docs/research/hcm-entra-implementation.md`; ever
 | 1 | Lifecycle Workflows' Enable, Disable and Delete user tasks can write account state for synced AD accounts through the provisioning agent | Operating rules | added | c04-lcw-tasks; c04-lcw-onprem |
 | 2 | Rule: one writer per state transition, recorded in the authority map | Operating rules | added (design guidance) | c04-lcw-tasks; c04-lcw-onprem |
 | 3 | Oracle Fusion Cloud "FedRAMP Authorized, Moderate" (c04-fedramp-fusion) | What a human capital system owns | not changed (out of this pass's scope): Marketplace now shows F1603257882 as FedRAMP Certified, Class C / Moderate, certified Jan 13, 2020; whether OPM's Core HCM instance runs under this package wasn't verified | research page he-fr |
+
+## Change, October 30, 2026: duty location and E911
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | "E911 records" replaced with "the fallback emergency address and emergency-notification scoping (never the caller's 911 location)", linked to Chapter 10 | Authority table, Duty location row | corrected: the 911 rules ask for the caller's dispatchable location (47 CFR 9.3, 9.16), and Teams screens calls that rely on an address assigned to the user's number; the HR duty station can only select that fallback | Chapter 10 c10-cfr93, c10-cfr916, c10-remote-loc |
