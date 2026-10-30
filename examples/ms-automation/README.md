@@ -29,15 +29,21 @@ No Intune task selects a user's name, email address or user principal name, and 
 
 The Python version also has a small Graph client, `python/graphkit.py`, standard library only, that:
 
-- picks the endpoints for the cloud: `gcc` and `global` use `graph.microsoft.com`, `gcchigh` uses `graph.microsoft.us`, and `dod` uses `dod-graph.microsoft.us`;
+- picks the endpoints for the cloud: `gcc` and `global` use `login.microsoftonline.com` and `graph.microsoft.com`, `gcchigh` uses `login.microsoftonline.us` and `graph.microsoft.us`, and `dod` uses `login.microsoftonline.us` and `dod-graph.microsoft.us`; an unknown cloud name is an error, never a default;
+- knows the Azure Resource Manager host that goes with each: `management.azure.com` for `gcc` and `global` (GCC runs with commercial Azure), `management.usgovcloudapi.net` for `gcchigh` and `dod`;
+- signs in with the US Government authority for `gcchigh` and `dod`;
 - refuses to send its token to any other host, including an `@odata.nextLink` that points elsewhere;
-- follows `@odata.nextLink`;
-- retries 429, 503 and 504 after `Retry-After`;
-- batches at most 20 requests per `$batch`, retrying throttled items;
+- makes only the calls `graph-calls.json` declares for the task, and checks the token's `roles` claim against the task's permissions before a live run (missing stops the run; extra is a warning);
+- follows `@odata.nextLink`, sending the same headers on every page;
+- retries 429, 503 and 504 after `Retry-After` (seconds or an HTTP date), backing off exponentially when the header is missing;
+- refuses a `/beta` call that no declared call names, and reads the one beta collection through `try_beta`, so a missing beta shape, or a cloud where the feature isn't offered, gives "not evaluated" instead of a failed run;
+- batches at most 20 requests per `$batch`, checking each one and retrying throttled items;
 - tracks `@odata.deltaLink`;
 - sends `x-ms-throttle-priority: Low`, because these are background jobs.
 
-The PowerShell module, `powershell/FmwGraph.psm1`, uses `Connect-MgGraph -Environment` and `Invoke-MgGraphRequest` from Microsoft Graph PowerShell for the same thing.
+The PowerShell module, `powershell/FmwGraph.psm1`, uses `Connect-MgGraph -Environment` and `Invoke-MgGraphRequest` from Microsoft Graph PowerShell for the same thing, and reads the same `graph-calls.json` (`Assert-FmwGraphCall`, `Get-FmwCallPermission`, `Test-FmwTokenRole`, `Get-FmwBetaCollection`).
+
+The [developer workbook's Chapter 02](../../docs/project-plans/developer-workbooks/attribute-driven-migration/02-graph-clients-for-government-clouds.md) explains each rule, starting from Microsoft's own Graph SDK snippets, which `examples/third_party/msgraph-snippets-python` pins and `tests/python/test_learn_sample.py` runs against stand-ins.
 
 ## Run it
 
@@ -99,11 +105,14 @@ Nothing calls the network. The tests prove the code does what this README says a
 - **Beta.** `autopilot-profiles` reads `deploymentProfileAssignmentStatus`, which is only in the beta endpoint. Microsoft lists Windows Autopilot as not available in GCC High and DoD.
 - **No export jobs.** Creating an Intune `reports/exportJobs` job needs a write permission, so the checks page through the list APIs instead.
 - **Throttling in PowerShell.** `Invoke-MgGraphRequest` relies on the Graph PowerShell SDK's own retry handling. The PowerShell module doesn't add its own retry loop.
+- **Autopilot in GCC High and DoD.** The beta API page lists the endpoint in the US Government clouds, but Intune's government service description lists Windows Autopilot as not available there. `graph-calls.json` follows the stricter statement, so `autopilot-profiles` reports "not evaluated" in `gcchigh` and `dod` without calling Graph.
+- **The token check reads, it doesn't validate.** `audit_roles` and `Test-FmwTokenRole` decode the `roles` claim of the run's own token as a pre-flight check. They never make an authorization decision. The PowerShell tasks don't run the check on their own, because `Connect-MgGraph` holds the token; pass a token to `Test-FmwTokenRole` yourself.
 
 ```
 examples/ms-automation/
   README.md
-  python/graphkit.py              Graph client: clouds, paging, retry, batch, delta
+  graph-calls.json                every Graph call the tasks make, with permission and stage; both clients read it
+  python/graphkit.py              Graph client: clouds, calls, paging, retry, beta, batch, delta
   python/entra_tasks.py           the five Entra ID checks and a command line
   python/intune_tasks.py          the five Intune checks and a command line
   powershell/FmwGraph.psm1        the same Entra ID and Intune checks for Microsoft Graph PowerShell

@@ -1,0 +1,7 @@
+{
+  "_comment": "Expected endpoints per cloud, checked by both clients' tests (Microsoft Learn: Microsoft Graph national cloud deployments; Get-MgEnvironment; Compare Azure Government and global Azure). GCC is the worldwide service with commercial Azure.",
+  "global": { "login": "https://login.microsoftonline.com", "graph": "https://graph.microsoft.com", "arm": "https://management.azure.com", "ps_env": "Global", "azure_env": "AzureCloud" },
+  "gcc": { "login": "https://login.microsoftonline.com", "graph": "https://graph.microsoft.com", "arm": "https://management.azure.com", "ps_env": "Global", "azure_env": "AzureCloud" },
+  "gcchigh": { "login": "https://login.microsoftonline.us", "graph": "https://graph.microsoft.us", "arm": "https://management.usgovcloudapi.net", "ps_env": "USGov", "azure_env": "AzureUSGovernment" },
+  "dod": { "login": "https://login.microsoftonline.us", "graph": "https://dod-graph.microsoft.us", "arm": "https://management.usgovcloudapi.net", "ps_env": "USGovDoD", "azure_env": "AzureUSGovernment" }
+}

@@ -1,0 +1,127 @@
+{
+  "_comment": "Every Microsoft Graph call the example's tasks make, with its least-privileged application permission and release stage. Both clients read this file: python/graphkit.py and powershell/FmwGraph.psm1 refuse a call that isn't listed for the task, and the tests check that each task's permissions are the union of its calls. Add a call here, with its Learn page, before code makes it. 'not_in_clouds' lists clouds where Learn says the feature isn't offered, even if the API page's national cloud table shows the endpoint.",
+  "schema": "fmp-graph-calls/1",
+  "calls": [
+    {
+      "id": "users-sign-in",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/users",
+      "permissions": ["User.Read.All", "AuditLog.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["stale-users"],
+      "note": "signInActivity needs AuditLog.Read.All and Microsoft Entra ID P1 or P2"
+    },
+    {
+      "id": "ca-policies",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/policies",
+      "permissions": ["Policy.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["ca-export"],
+      "note": "Learn's throttling limits page says conditional access resources don't return Retry-After on 429"
+    },
+    {
+      "id": "ca-named-locations",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/namedLocations",
+      "permissions": ["Policy.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["ca-export"]
+    },
+    {
+      "id": "role-definitions",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleDefinitions",
+      "permissions": ["RoleManagement.Read.Directory"],
+      "stage": "v1.0",
+      "tasks": ["pim-report"]
+    },
+    {
+      "id": "role-eligibility-schedules",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleEligibilitySchedules",
+      "permissions": ["RoleEligibilitySchedule.Read.Directory"],
+      "stage": "v1.0",
+      "tasks": ["pim-report"]
+    },
+    {
+      "id": "role-assignment-schedules",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleAssignmentSchedules",
+      "permissions": ["RoleAssignmentSchedule.Read.Directory"],
+      "stage": "v1.0",
+      "tasks": ["pim-report"]
+    },
+    {
+      "id": "applications",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["app-credentials"]
+    },
+    {
+      "id": "user-registration-details",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/reports/authenticationMethods/userRegistrationDetails",
+      "permissions": ["AuditLog.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["mfa-registration"]
+    },
+    {
+      "id": "managed-devices",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/deviceManagement/managedDevices",
+      "permissions": ["DeviceManagementManagedDevices.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["noncompliant-devices", "compliance-coverage", "stale-checkin", "device-posture"]
+    },
+    {
+      "id": "compliance-policies",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/deviceManagement/deviceCompliancePolicies",
+      "permissions": ["DeviceManagementConfiguration.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["noncompliant-devices", "compliance-coverage"]
+    },
+    {
+      "id": "compliance-policy-assignments",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/deviceManagement/deviceCompliancePolicies/{id}/assignments",
+      "permissions": ["DeviceManagementConfiguration.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["noncompliant-devices", "compliance-coverage"]
+    },
+    {
+      "id": "compliance-policy-device-statuses",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/deviceManagement/deviceCompliancePolicies/{id}/deviceStatuses",
+      "permissions": ["DeviceManagementConfiguration.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["noncompliant-devices", "compliance-coverage"]
+    },
+    {
+      "id": "autopilot-device-identities",
+      "method": "GET",
+      "version": "beta",
+      "path": "/deviceManagement/windowsAutopilotDeviceIdentities",
+      "permissions": ["DeviceManagementServiceConfig.Read.All"],
+      "stage": "beta",
+      "tasks": ["autopilot-profiles"],
+      "not_in_clouds": ["gcchigh", "dod"],
+      "note": "deploymentProfileAssignmentStatus is beta only. The API page's national cloud table lists L4 and L5, but Intune's government service description lists Windows Autopilot as not available in GCC High and DoD; the stricter statement wins"
+    }
+  ]
+}
