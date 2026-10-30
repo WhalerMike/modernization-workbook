@@ -134,3 +134,38 @@ One bullet added to "Operational implications." Microsoft Learn page opened on O
 | TL-1 | Dynamic emergency calling matches the client's network against subnets, access points and switches in the LIS | Operational implications | verified | c07-teams-lis |
 | TL-2 | LIS computes the network ID from client address and reported prefix; must match a configured subnet; site subnets must be redefined in LIS; changes take up to four hours | Same | verified | c07-teams-lis |
 | TL-3 | IPAM is the source for LIS subnet entries; subnet changes raise a network-to-location change in the Teams Phone catalog; VPN pools stay out | Same | restated-as-design (links Book 15 Ch05 and Book 09 Ch05) | — |
+
+## Addition, October 30, 2026: platform comparison extended, Oracle Cloud added
+
+"How each platform implements private DNS" gained an Oracle Cloud Infrastructure row, a second table (logging, limits, failure behavior), an estate subsection and a check table. Microsoft facts were checked through the Learn MCP search and fetch tools; AWS, Google Cloud, Oracle and Broadcom facts against their own documentation, all on Oct 30, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| PD-1 | NSX row was sourced from an Azure VMware Solution page; on-premises NSX 4.2 and VCF 9.0 guides still give a default zone + 5 FQDN zones x 3 servers on a tier-0/tier-1 gateway | Platform table | corrected (source replaced; limits re-verified) | c07-nsx |
+| PD-2 | NSX has no DNS-layer policy; Distributed Firewall FQDN filtering acts on traffic using snooped DNS answers | Platform table | verified (added) | c07-nsxfqdn |
+| PD-3 | OCI: dedicated VCN resolver at 169.254.169.254; attached views in order, default view last; listening endpoint 1 IP, forwarding endpoint 2, IPv4-only subnet | Platform table | verified (added) | c07-ocipdns |
+| PD-4 | OCI resolver rules: client CIDR or domain condition, first match, 50 per resolver, 10 conditions per rule | Platform table, limits table | verified (added) | c07-ocirules |
+| PD-5 | OCI has no native DNS firewall for private DNS; steering policies public only | Platform table | verified (no Oracle page found describing one) | c07-ocitm |
+| PD-6 | Route 53 Resolver query logging: sources, destinations, cached answers not logged | Limits table | verified | c07-r53ql |
+| PD-7 | 10,000 UDP QPS per endpoint IP; ~1,500 under connection tracking or behind NLB | Limits table | verified (refines "per ENI" in the research page brief) | c07-r53quota |
+| PD-8 | 1,024 PPS link-local cap covers all link-local services, not DNS alone; not adjustable | Limits table | verified (refined) | c07-awsdns |
+| PD-9 | VPC Resolver retries a random other target; no published timeout | Limits table | verified | c07-r53out |
+| PD-10 | Azure resolver policy logs to `DNSQueryLogs` with resolution path, policy action, Private Resolver endpoint and ruleset | Limits table | verified; no Learn statement found on a separate native log for 168.63.129.16, so none claimed | c07-azresolverpolicy, c07-azdnsmon |
+| PD-11 | 1,000 QPS and 200 pending per VM to 168.63.129.16, excess dropped; 10,000 QPS per Private Resolver endpoint | Limits table | verified | c07-azlimits |
+| PD-12 | Ruleset targets: first used unless unresponsive, then next; exponential backoff | Limits table | verified | c07-azrulesets |
+| PD-13 | Cloud DNS logging per network via DNS policy to Cloud Logging; cached responses not logged by default | Limits table | verified | c07-gcplog |
+| PD-14 | 100,000 queries per 10 s per VPC network per Google Cloud zone; 50 forwarding targets | Limits table | verified; no per-VM DNS limit documented, so none claimed | c07-gcpquota |
+| PD-15 | Forwarding targets ranked by success and latency; SERVFAIL if none reply; on-premises targets must answer within 4 s | Limits table | verified | c07-gcpzones, c07-gcptrouble |
+| PD-16 | OCI private resolver query/response logs; documented for commercial realms only | Limits table, estate | verified | c07-ocilog |
+| PD-17 | OCI: unreachable forward target ends rule processing; stale cache answers with 30 s TTL | Limits table | verified | c07-ocitrouble |
+| PD-18 | NSX: no per-query log; service log level; Edge CLI statistics; 1,024 KB default cache (~8k answers) | Limits table, checks | verified; API schema's "Max of 5 DNS servers" conflicts with the guide's 3 and is not used | c07-nsxapi, c07-nsxcli |
+| PD-19 | NSX forwarder failover follows the gateway's active-standby Edge nodes | Limits table | inference (labelled); forwarder docs silent | c07-nsxt1 |
+| PD-20 | AWS partitions are a hard boundary; RAM-shared Resolver rules and PHZ associations stay within a partition | Estate | partition boundary verified; Resolver/PHZ consequence is inference (labelled), no AWS page states it | c07-awspartition |
+| PD-21 | Resolver endpoints (2019), query logging (2020), DNS Firewall (2021) available in GovCloud (US) | Estate | verified | c07-r53gov |
+| PD-22 | GovCloud user guide says Resolver delegation unavailable; April 8, 2026 What's New says available | Estate | conflict recorded; reader told to check | c07-r53gov |
+| PD-23 | Route 53 Global Resolver: internet-reachable anycast resolver; commercial Regions only | Estate | verified | c07-r53gr |
+| PD-24 | Fusion Applications private access needs a VCN in the customer's OCI tenancy plus VPN or FastConnect; Oracle's page has no DNS guidance | Estate | verified | c07-ocifusion |
+| PD-25 | Autonomous Database private endpoint name form `<prefix>.adb.<region>.oraclecloud.com`; conditional forwarding to the VCN resolver | Estate, checks | verified | c07-ociadb |
+| PD-26 | OCI US Government Cloud: private DNS zones supported, public DNS not available | Estate | verified | c07-ocigov |
+| PD-27 | Estate profile (M365 GCC, commercial Azure, GovCloud plus commercial contact center, on-premises VMware with DDI grid and AD DNS, HR platform on Oracle Cloud) and the per-row guidance | Estate | design guidance (labelled); agency-neutral | — |
+| PD-28 | CLI syntax: `list-resolver-rule-associations --filters Name=VPCId,...`; `oci network vcn-dns-resolver-association get --vcn-id`; NSX `get dns-forwarder <uuid> stats` on an Edge node | Checks | verified against command references; `Get-AzDnsForwardingRulesetVirtualNetworkLink -DnsForwardingRulesetName -ResourceGroupName` verified against the Az.DnsResolver reference on Microsoft Learn; `gcloud dns policies list` and `managed-zones list` are standard gcloud list commands; illustrative callout added | c07-awscli, c07-ocicli, c07-nsxcli |
