@@ -141,5 +141,221 @@
     "adminsNoPhishingResistantMethod": [
       "ben@contoso.example"
     ]
+  },
+  "intune": {
+    "noncompliant": {
+      "devices": [
+        {
+          "id": "md7",
+          "deviceName": "IPH-0001",
+          "operatingSystem": "iOS",
+          "complianceState": "noncompliant",
+          "graceExpires": null,
+          "failingPolicies": [
+            "CP-IOS iOS baseline (nonCompliant)"
+          ],
+          "nameNotUnique": false
+        },
+        {
+          "id": "md2",
+          "deviceName": "WS-0002",
+          "operatingSystem": "Windows",
+          "complianceState": "noncompliant",
+          "graceExpires": null,
+          "failingPolicies": [
+            "CP-001 Windows workstation baseline (nonCompliant)"
+          ],
+          "nameNotUnique": true
+        },
+        {
+          "id": "md3",
+          "deviceName": "WS-0003",
+          "operatingSystem": "Windows",
+          "complianceState": "inGracePeriod",
+          "graceExpires": "2026-10-31T00:00:00Z",
+          "failingPolicies": [
+            "CP-001 Windows workstation baseline (nonCompliant)"
+          ],
+          "nameNotUnique": false
+        },
+        {
+          "id": "md5",
+          "deviceName": "WS-0005",
+          "operatingSystem": "Windows",
+          "complianceState": "error",
+          "graceExpires": null,
+          "failingPolicies": [
+            "CP-001 Windows workstation baseline (error)"
+          ],
+          "nameNotUnique": false
+        }
+      ],
+      "counts": {
+        "noncompliant": 2,
+        "inGracePeriod": 1,
+        "error": 1,
+        "conflict": 0
+      }
+    },
+    "coverage": {
+      "policies": [
+        {
+          "id": "cp1",
+          "displayName": "CP-001 Windows workstation baseline",
+          "type": "windows10CompliancePolicy",
+          "includeTargets": 1,
+          "excludeTargets": 1,
+          "finding": null
+        },
+        {
+          "id": "cp4",
+          "displayName": "CP-005 Kiosk and shared devices",
+          "type": "windows10CompliancePolicy",
+          "includeTargets": 0,
+          "excludeTargets": 1,
+          "finding": "exclusionOnly"
+        },
+        {
+          "id": "cp3",
+          "displayName": "CP-099 Old macOS pilot",
+          "type": "macOSCompliancePolicy",
+          "includeTargets": 0,
+          "excludeTargets": 0,
+          "finding": "unassigned"
+        },
+        {
+          "id": "cp2",
+          "displayName": "CP-IOS iOS baseline",
+          "type": "iosCompliancePolicy",
+          "includeTargets": 1,
+          "excludeTargets": 0,
+          "finding": null
+        }
+      ],
+      "policyFindings": 2,
+      "devicesWithNoPolicyReported": [
+        {
+          "id": "md9",
+          "deviceName": "KSK-0001",
+          "operatingSystem": "Windows"
+        },
+        {
+          "id": "md6",
+          "deviceName": "MAC-0001",
+          "operatingSystem": "macOS"
+        }
+      ],
+      "ambiguousNames": [
+        "WS-0002"
+      ]
+    },
+    "staleCheckin": [
+      {
+        "id": "md9",
+        "deviceName": "KSK-0001",
+        "operatingSystem": "Windows",
+        "lastSync": null,
+        "daysSinceSync": null,
+        "band": "noSync"
+      },
+      {
+        "id": "md5",
+        "deviceName": "WS-0005",
+        "operatingSystem": "Windows",
+        "lastSync": "2026-07-01T00:00:00Z",
+        "daysSinceSync": 121,
+        "band": "beyondCleanup"
+      },
+      {
+        "id": "md4",
+        "deviceName": "WS-0004",
+        "operatingSystem": "Windows",
+        "lastSync": "2026-10-10T00:00:00Z",
+        "daysSinceSync": 20,
+        "band": "beyondValidity"
+      }
+    ],
+    "posture": {
+      "devices": 9,
+      "notEncrypted": 3,
+      "belowOsFloor": 1,
+      "findings": [
+        {
+          "id": "md9",
+          "deviceName": "KSK-0001",
+          "operatingSystem": "Windows",
+          "osVersion": "10.0.26100.1",
+          "isEncrypted": null,
+          "findings": [
+            "notEncrypted"
+          ]
+        },
+        {
+          "id": "md6",
+          "deviceName": "MAC-0001",
+          "operatingSystem": "macOS",
+          "osVersion": "15.6",
+          "isEncrypted": false,
+          "findings": [
+            "notEncrypted"
+          ]
+        },
+        {
+          "id": "md2",
+          "deviceName": "WS-0002",
+          "operatingSystem": "Windows",
+          "osVersion": "10.0.22631.4317",
+          "isEncrypted": false,
+          "findings": [
+            "notEncrypted",
+            "belowOsFloor"
+          ]
+        }
+      ]
+    },
+    "autopilot": {
+      "total": 6,
+      "counts": {
+        "assignedInSync": 2,
+        "assignedOutOfSync": 1,
+        "failed": 1,
+        "notAssigned": 1,
+        "pending": 1
+      },
+      "notInSync": [
+        {
+          "id": "ap4",
+          "serialNumber": "SN-1004",
+          "groupTag": "T1-STD",
+          "status": "assignedOutOfSync",
+          "detail": "none",
+          "enrollmentState": "enrolled"
+        },
+        {
+          "id": "ap3",
+          "serialNumber": "SN-1003",
+          "groupTag": "T2-STD",
+          "status": "failed",
+          "detail": "hardwareRequirementsNotMet",
+          "enrollmentState": "notContacted"
+        },
+        {
+          "id": "ap2",
+          "serialNumber": "SN-1002",
+          "groupTag": "T2-STD",
+          "status": "notAssigned",
+          "detail": "none",
+          "enrollmentState": "notContacted"
+        },
+        {
+          "id": "ap5",
+          "serialNumber": "SN-1005",
+          "groupTag": "",
+          "status": "pending",
+          "detail": "none",
+          "enrollmentState": "notContacted"
+        }
+      ]
+    }
   }
 }
