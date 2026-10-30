@@ -251,7 +251,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 118 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+**Expected result:** every test passing (153 with Chapters 01 to 03), and each row of the gap table seen with your own eyes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
