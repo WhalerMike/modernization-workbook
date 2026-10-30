@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.205
+Many estates already run Red Hat on AWS
+with Ansible, and Arc can connect it:
+
+2
+00:00:05.205 --> 00:00:10.107
+Red Hat is on the agent's list, and EC2
+instances take the agent one by one,
+
+3
+00:00:10.107 --> 00:00:14.163
+since the multicloud connector
+isn't in Azure Government.
+
+4
+00:00:14.163 --> 00:00:16.637
+The danger is two tools on one setting.
+
+5
+00:00:16.637 --> 00:00:20.168
+Under auto-correct, Ansible
+and machine configuration
+
+6
+00:00:20.168 --> 00:00:23.775
+can flip a value back and forth
+while both report success.
+
+7
+00:00:23.775 --> 00:00:27.650
+So the Ansible guide sets five
+rules, as design guidance.
+
+8
+00:00:27.650 --> 00:00:31.900
+The owner is an attribute,
+config_owner in the CMDB.
+
+9
+00:00:31.900 --> 00:00:33.942
+Ansible writes only what it owns,
+
+10
+00:00:33.942 --> 00:00:38.025
+enforced by its inventory group
+and an assertion in the playbook.
+
+11
+00:00:38.025 --> 00:00:39.713
+Onboarding isn't owning.
+
+12
+00:00:39.713 --> 00:00:41.812
+An exception is a dated record.
+
+13
+00:00:41.812 --> 00:00:43.832
+And patching has one owner too,
+
+14
+00:00:43.832 --> 00:00:47.549
+so where Ansible patches,
+Update Manager only assesses.
+
+15
+00:00:47.549 --> 00:00:50.525
+Both owners are mirrored
+to Arc tags at onboarding.
+
+16
+00:00:50.525 --> 00:00:54.045
+VK-ARC-07 then catches
+a server another tool
+
+17
+00:00:54.045 --> 00:00:58.320
+owns that machine configuration
+is also enforcing.

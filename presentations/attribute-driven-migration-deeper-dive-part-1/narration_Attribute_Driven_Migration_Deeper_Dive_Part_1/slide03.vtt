@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.950
+Before touching the tree, measure
+how each task is done today.
+
+2
+00:00:03.950 --> 00:00:05.912
+The method is design guidance.
+
+3
+00:00:05.912 --> 00:00:10.099
+Take real joiner, mover and leaver
+events from the last ninety days,
+
+4
+00:00:10.099 --> 00:00:12.612
+and follow each one through its records.
+
+5
+00:00:12.612 --> 00:00:16.026
+For a joiner, that's the HR
+action date, the ticket,
+
+6
+00:00:16.026 --> 00:00:19.263
+the account and group
+changes, and the device.
+
+7
+00:00:19.263 --> 00:00:22.098
+For a mover, it's the
+groups added and removed,
+
+8
+00:00:22.098 --> 00:00:25.012
+and whether the old
+access was ever reviewed.
+
+9
+00:00:25.012 --> 00:00:27.673
+For a leaver, it's when
+the account was disabled
+
+10
+00:00:27.673 --> 00:00:30.475
+and when sessions and
+credentials were revoked.
+
+11
+00:00:30.475 --> 00:00:35.275
+And ask the right question: show me the
+last one you did, not describe the process.
+
+12
+00:00:35.275 --> 00:00:37.487
+Take every timestamp from a record.
+
+13
+00:00:37.487 --> 00:00:39.862
+A step with no record is a finding.
+
+14
+00:00:39.862 --> 00:00:42.233
+These numbers have to be traced by hand,
+
+15
+00:00:42.233 --> 00:00:46.010
+because a ticket-driven estate
+never records them as events.

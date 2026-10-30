@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Gate 8 begins by writing each
+wave as an attribute query.
+
+2
+00:00:04.087 --> 00:00:08.347
+Because waves are defined by
+attribute values rather than OUs,
+
+3
+00:00:08.347 --> 00:00:12.688
+each wave's scope is a query, and
+its dynamic groups already exist.
+
+4
+00:00:12.688 --> 00:00:16.757
+Each track picks members from its
+own source: users by HR codes,
+
+5
+00:00:16.757 --> 00:00:21.943
+devices by what provisioning writes on
+them, servers by resource group and tag,
+
+6
+00:00:21.943 --> 00:00:25.613
+and non-person identities by
+their owning application.
+
+7
+00:00:25.613 --> 00:00:28.787
+Start with the lowest-risk
+region and a pilot division,
+
+8
+00:00:28.787 --> 00:00:32.807
+then two or three divisions at a time,
+each drift-clean before the next,
+
+9
+00:00:32.807 --> 00:00:36.051
+with drift detection running
+daily from the first wave.
+
+10
+00:00:36.051 --> 00:00:40.813
+GPO links come off a migrated
+OU only after seven clean days.
+
+11
+00:00:40.813 --> 00:00:44.512
+The rule shown is the kit's
+fixture form, with its guards.
+
+12
+00:00:44.512 --> 00:00:47.611
+And in every wave, leaver
+automation goes first,
+
+13
+00:00:47.611 --> 00:00:51.480
+because revocation is where
+the risk and the evidence are.

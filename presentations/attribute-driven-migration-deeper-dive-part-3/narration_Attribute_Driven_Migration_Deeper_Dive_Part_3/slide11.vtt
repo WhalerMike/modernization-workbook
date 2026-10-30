@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.338
+Retiring the OU tree waits
+on the program twice.
+
+2
+00:00:03.338 --> 00:00:05.284
+After the rollout is complete,
+
+3
+00:00:05.284 --> 00:00:09.800
+remove the sync rule and scoping
+filters that still read OU placement.
+
+4
+00:00:09.800 --> 00:00:14.607
+After the OU-based groups retire,
+remove the hand-made delegations,
+
+5
+00:00:14.607 --> 00:00:19.763
+confirm no OU drives anything, and
+archive the tree's final export in Git.
+
+6
+00:00:19.763 --> 00:00:22.849
+Destructive steps need
+approval one item at a time.
+
+7
+00:00:22.849 --> 00:00:28.437
+To validate, a read-only script lists
+every OU that still has a GPO linked to it;
+
+8
+00:00:28.437 --> 00:00:32.162
+on a retired estate that
+list is short and expected.
+
+9
+00:00:32.162 --> 00:00:37.899
+Rollback means re-enabling, never re-creating:
+turn the accounts and GPO links back
+
+10
+00:00:37.899 --> 00:00:43.550
+on, return the population to the AD
+provisioning scope, and reopen the ticket path.
+
+11
+00:00:43.550 --> 00:00:47.128
+That's why you disable a link
+instead of deleting the GPO.
+
+12
+00:00:47.128 --> 00:00:50.230
+Deleting throws away the
+one-command rollback.

@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.088
+Here are the four gates on one page.
+
+2
+00:00:02.088 --> 00:00:05.406
+Gate 0 is done when the
+tree's encoding is in Git,
+
+3
+00:00:05.406 --> 00:00:08.725
+split by track, with a
+decision for every group.
+
+4
+00:00:08.725 --> 00:00:11.500
+It's read-only, so there's
+nothing to roll back.
+
+5
+00:00:11.500 --> 00:00:14.746
+Gate 1 is done when every
+attribute that drives
+
+6
+00:00:14.746 --> 00:00:17.825
+access has one store,
+one writer and one owner.
+
+7
+00:00:17.825 --> 00:00:20.613
+A slot can change only
+until a rule reads it.
+
+8
+00:00:20.613 --> 00:00:24.308
+Gate 2 is done when the attributes
+are proven on the pilot,
+
+9
+00:00:24.308 --> 00:00:27.925
+the other writers are gone,
+and logs are leaving Entra ID.
+
+10
+00:00:27.925 --> 00:00:33.725
+Gate 3 is done when every slot arrives
+in Entra ID exactly as HR sent it.
+
+11
+00:00:33.725 --> 00:00:37.704
+A sample check, V K sync oh
+one, compares the slot values,
+
+12
+00:00:37.704 --> 00:00:41.050
+and a reconciliation
+report covers the rest.
+
+13
+00:00:41.050 --> 00:00:46.569
+One key runs through all of it: an existing
+enterprise ID the agency already issues,
+
+14
+00:00:46.569 --> 00:00:51.820
+carried in the employee I D attribute,
+which holds at most sixteen characters.

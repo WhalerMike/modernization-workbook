@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.475
+Here's what a failing check looks like,
+using the kit's own fictional fixture.
+
+2
+00:00:04.475 --> 00:00:07.675
+V K H R oh one fails
+with a count of three.
+
+3
+00:00:07.675 --> 00:00:09.175
+One row is the trap.
+
+4
+00:00:09.175 --> 00:00:12.654
+That account is in the exceptions
+file, but with no owner,
+
+5
+00:00:12.654 --> 00:00:15.225
+so the check still
+reports it, and says why.
+
+6
+00:00:15.225 --> 00:00:18.687
+The reconciliation check
+shows each organization code.
+
+7
+00:00:18.687 --> 00:00:19.963
+One code agrees.
+
+8
+00:00:19.963 --> 00:00:22.850
+One has fewer users in Entra than in HR.
+
+9
+00:00:22.850 --> 00:00:26.675
+One exists in Entra but not
+in HR, so someone typed it.
+
+10
+00:00:26.675 --> 00:00:29.363
+And one is in HR but missing from Entra.
+
+11
+00:00:29.363 --> 00:00:32.413
+Every row is fixed at
+HR, not the directory.
+
+12
+00:00:32.413 --> 00:00:35.801
+The duplicate check finds
+one key held by two users.
+
+13
+00:00:35.801 --> 00:00:37.650
+Fail means at least one finding.
+
+14
+00:00:37.650 --> 00:00:40.512
+Not applicable and error are never a pass.
+
+15
+00:00:40.512 --> 00:00:44.162
+Everything lands in a run
+folder with a hashed manifest,
+
+16
+00:00:44.162 --> 00:00:46.510
+and that folder is Gate 2's evidence.

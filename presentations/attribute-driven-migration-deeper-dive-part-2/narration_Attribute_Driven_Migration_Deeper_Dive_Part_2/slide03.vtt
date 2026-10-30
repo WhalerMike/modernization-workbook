@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.650
+Gate 4 starts with the rule text,
+because here a rule is an access grant.
+
+2
+00:00:04.650 --> 00:00:07.688
+Every governed group uses
+one of two patterns.
+
+3
+00:00:07.688 --> 00:00:11.134
+A node query selects people
+by one organization code,
+
+4
+00:00:11.134 --> 00:00:15.050
+and uses the in operator for a
+roll-up instead of a chain of ors.
+
+5
+00:00:15.050 --> 00:00:19.523
+A functional query crosses the
+organization with another coded attribute,
+
+6
+00:00:19.523 --> 00:00:24.350
+such as position category, to answer a
+question that isn't about where someone sits.
+
+7
+00:00:24.350 --> 00:00:27.175
+Every access rule carries two guards.
+
+8
+00:00:27.175 --> 00:00:30.745
+The account must be enabled, and
+the user type must be Member,
+
+9
+00:00:30.745 --> 00:00:33.513
+which keeps out disabled
+accounts and guests.
+
+10
+00:00:33.513 --> 00:00:36.020
+An agent's user account is a kind of user,
+
+11
+00:00:36.020 --> 00:00:39.075
+so user rules include it
+unless they exclude it.
+
+12
+00:00:39.075 --> 00:00:43.213
+The books don't give the clause, so
+prove yours with a named-user test.
+
+13
+00:00:43.213 --> 00:00:46.179
+Rules read codes, never
+department or job title,
+
+14
+00:00:46.179 --> 00:00:50.287
+because a display string breaks
+the next time someone retypes it.
+
+15
+00:00:50.287 --> 00:00:52.390
+And privileged groups stay assigned.

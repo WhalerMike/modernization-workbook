@@ -25,6 +25,8 @@ The shared foundation of the [Attribute-Driven Migration guide](attribute-driven
 
 **The decks it follows (about 18 minutes narrated each).** [Part 1, the model and the HR track](../../presentations/index.md#technical-attribute-driven-migration) ([▶ watch](../../presentations/watch.html?v=Attribute_Driven_Migration_Technical_Part_1_Narrated)) and [Part 2, devices, servers, non-person identities and running the migration](../../presentations/index.md#technical-attribute-driven-migration-part-2) ([▶ watch](../../presentations/watch.html?v=Attribute_Driven_Migration_Technical_Part_2_Narrated)).
 
+**Deeper Dive Implementation.** Below the two overview decks, the three-part **Deeper Dive Implementation** series (about 15 minutes narrated each) walks the ten gates at working level: [Part 1, Gates 0–3](../../presentations/index.md#deeper-dive-attribute-driven-migration-part-1), [Part 2, Gates 4–6](../../presentations/index.md#deeper-dive-attribute-driven-migration-part-2) and [Part 3, Gates 7–9](../../presentations/index.md#deeper-dive-attribute-driven-migration-part-3).
+
 **The schedule.** The [Attribute-Driven Migration project plan](../../project-plans/attribute-driven-migration.md) schedules these gates, with owners, decide-by weeks and the margin against each track plan and program gate it hands to. Each section below names the plan tasks it carries out.
 :::
 

@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.525
+As each population becomes
+cloud-mastered, retarget its provisioning.
+
+2
+00:00:04.525 --> 00:00:09.321
+Once its sync cycle completes, move
+it out of the HR-to-AD scope and
+
+3
+00:00:09.321 --> 00:00:14.750
+into the HR-to-Entra configuration,
+leaving the AD leg dormant but intact.
+
+4
+00:00:14.750 --> 00:00:20.838
+Microsoft lists entry checks: HR writes
+Entra ID directly, no on-premises Exchange,
+
+5
+00:00:20.838 --> 00:00:25.762
+no federation for those users, and
+no apps that bind with passwords.
+
+6
+00:00:25.762 --> 00:00:27.775
+Make those your per-population gate.
+
+7
+00:00:27.775 --> 00:00:33.434
+One honest caveat: whether this
+source-of-authority transfer works in GCC is still
+
+8
+00:00:33.434 --> 00:00:37.012
+unverified, so give that
+question an owner and a date,
+
+9
+00:00:37.012 --> 00:00:39.925
+and plan on the AD-mastered
+path by default.
+
+10
+00:00:39.925 --> 00:00:43.713
+On the right is what still needs
+AD, each with its response.
+
+11
+00:00:43.713 --> 00:00:47.180
+And if a cutover goes wrong,
+pause the provisioning job,
+
+12
+00:00:47.180 --> 00:00:52.180
+which keeps its state, quarantine the
+batch, and fall back to the prior process.

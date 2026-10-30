@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.650
+Gate 5 also sets the conventions the
+device and server tracks build on.
+
+2
+00:00:04.650 --> 00:00:08.845
+Device attributes come from device
+provisioning, never from the user,
+
+3
+00:00:08.845 --> 00:00:12.100
+and a device rule can never
+read its owner's attributes.
+
+4
+00:00:12.100 --> 00:00:14.671
+So the provisioning service writes tier,
+
+5
+00:00:14.671 --> 00:00:19.662
+role and environment to the device's own
+slots at registration, running app-only.
+
+6
+00:00:19.662 --> 00:00:23.988
+Use a dynamic device group only where
+the rule has to read those slots.
+
+7
+00:00:23.988 --> 00:00:28.247
+Everywhere else, use an assignment
+filter on Intune's own properties,
+
+8
+00:00:28.247 --> 00:00:30.638
+like ownership or enrollment profile.
+
+9
+00:00:30.638 --> 00:00:33.487
+A filter on a slot
+simply doesn't evaluate.
+
+10
+00:00:33.487 --> 00:00:38.610
+For anything time-sensitive, assign to a
+user group or All devices with a filter,
+
+11
+00:00:38.610 --> 00:00:41.998
+and never use a dynamic
+device group as an exclusion,
+
+12
+00:00:41.998 --> 00:00:45.387
+because late membership
+lets the policy land first.
+
+13
+00:00:45.387 --> 00:00:50.623
+VK-INT-01 flags managed
+devices missing their slots,
+
+14
+00:00:50.623 --> 00:00:57.076
+and VK-INT-04 flags any exclusion
+built on a dynamic device group.
+
+15
+00:00:57.076 --> 00:01:00.038
+For servers, Arc tags
+reuse the same codes,
+
+16
+00:01:00.038 --> 00:01:03.410
+and resource groups are
+the delegation scope.

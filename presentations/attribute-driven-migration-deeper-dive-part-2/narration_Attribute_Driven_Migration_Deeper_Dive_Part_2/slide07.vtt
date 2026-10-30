@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.207
+Gate 5 retires Group Policy
+inheritance for people,
+
+2
+00:00:03.207 --> 00:00:07.025
+and the risk is policies that
+look strict but restrict nothing.
+
+3
+00:00:07.025 --> 00:00:12.031
+Personas come from codes: the internal
+workforce from the worker type in slot 11,
+
+4
+00:00:12.031 --> 00:00:16.581
+administrators from the account type
+in slot 7, and the emergency-access
+
+5
+00:00:16.581 --> 00:00:20.525
+group stays assigned and excluded
+from every blocking policy.
+
+6
+00:00:20.525 --> 00:00:22.669
+Target administrators by group,
+
+7
+00:00:22.669 --> 00:00:26.163
+because role targeting misses
+roles scoped to a unit.
+
+8
+00:00:26.163 --> 00:00:28.463
+Then pair every grant with a block.
+
+9
+00:00:28.463 --> 00:00:33.165
+A policy that grants Finance the payroll
+app says nothing about anyone else,
+
+10
+00:00:33.165 --> 00:00:36.300
+so a second policy blocks
+everyone except Finance.
+
+11
+00:00:36.300 --> 00:00:39.801
+And report empty slots
+first: a policy on a dynamic
+
+12
+00:00:39.801 --> 00:00:43.900
+group silently misses everyone
+whose attribute is blank.
+
+13
+00:00:43.900 --> 00:00:48.805
+VK-CA-01 checks three things on
+every enabled and report-only policy:
+
+14
+00:00:48.805 --> 00:00:51.695
+the emergency-access group is excluded,
+
+15
+00:00:51.695 --> 00:00:56.863
+only governed groups are targeted,
+and every grant has its paired block.
+
+16
+00:00:56.863 --> 00:01:01.241
+It reads only who a policy targets,
+so keep the ca-export as the record,
+
+17
+00:01:01.241 --> 00:01:04.447
+and read it for blocks
+narrower than their grants,
+
+18
+00:01:04.447 --> 00:01:07.320
+with the list of users
+whose slot 11 is empty.

@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.064
+Gate 2 proves the attributes,
+starting with the kit's HR checks,
+
+2
+00:00:04.064 --> 00:00:06.662
+first on the pilot and then on the estate.
+
+3
+00:00:06.662 --> 00:00:11.850
+Run the validation kit with the HR and
+dynamic group tracks and an input folder.
+
+4
+00:00:11.850 --> 00:00:15.275
+It signs in with only the read
+scopes those checks need.
+
+5
+00:00:15.275 --> 00:00:17.900
+At this gate, read the HR rows.
+
+6
+00:00:17.900 --> 00:00:20.200
+The input folder holds two files.
+
+7
+00:00:20.200 --> 00:00:22.653
+The exceptions file lists accounts that
+
+8
+00:00:22.653 --> 00:00:25.250
+legitimately have no
+key, each with an owner.
+
+9
+00:00:25.250 --> 00:00:27.763
+An exception with no owner doesn't count.
+
+10
+00:00:27.763 --> 00:00:31.675
+The HR export gives the worker
+count per organization code.
+
+11
+00:00:31.675 --> 00:00:36.300
+Without it, the reconciliation check
+reports not applicable, never pass.
+
+12
+00:00:36.300 --> 00:00:41.225
+Each check has one failure condition:
+an enabled account with no key,
+
+13
+00:00:41.225 --> 00:00:45.975
+an empty coded slot, a count that
+differs from HR, or a key held twice.
+
+14
+00:00:45.975 --> 00:00:49.150
+Fix each one at the
+source, never in the copy.

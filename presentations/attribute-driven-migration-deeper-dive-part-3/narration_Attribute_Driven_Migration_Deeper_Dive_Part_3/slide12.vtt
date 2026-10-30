@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.787
+Gate 9 keeps it all true, and
+without it everything slowly decays.
+
+2
+00:00:04.787 --> 00:00:07.612
+It starts with the pilot,
+not after cut-over.
+
+3
+00:00:07.612 --> 00:00:13.062
+First, the CISO decides severity
+and response times, decision D-A8.
+
+4
+00:00:13.062 --> 00:00:15.649
+Then two comparisons run on a schedule.
+
+5
+00:00:15.649 --> 00:00:19.428
+On the left, HR against the
+directory: missing identities,
+
+6
+00:00:19.428 --> 00:00:24.009
+stale access for people who've left,
+orphan accounts, attribute drift,
+
+7
+00:00:24.009 --> 00:00:27.787
+unauthorized writes, credential
+drift and schema drift.
+
+8
+00:00:27.787 --> 00:00:31.900
+The severities are the program's
+defaults, not an external standard.
+
+9
+00:00:31.900 --> 00:00:36.597
+On the right, the unit and role registry
+against the tenant: unit rules that
+
+10
+00:00:36.597 --> 00:00:38.369
+drifted, paused processing,
+
+11
+00:00:38.369 --> 00:00:42.450
+role assignments nobody approved,
+and restriction mismatches.
+
+12
+00:00:42.450 --> 00:00:46.350
+Each track's own reconciliation
+feeds the same findings queue.
+
+13
+00:00:46.350 --> 00:00:50.138
+Expect a burst of high-severity
+findings in the first month.
+
+14
+00:00:50.138 --> 00:00:53.760
+That's the measurement finally
+working, not the pipeline failing.

@@ -1,0 +1,1172 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.175
+Welcome to Part 2 of the deeper dive on
+attribute-driven migration to Entra ID.
+
+2
+00:00:05.175 --> 00:00:10.260
+This series goes below the technical deep
+dive, down to the rule text, the commands,
+
+3
+00:00:10.260 --> 00:00:14.737
+the input files and the failing checks
+an engineer actually works with.
+
+4
+00:00:14.737 --> 00:00:19.875
+Part 1 covered Gates 0 to 3: reading
+the organizational unit (OU) tree,
+
+5
+00:00:19.875 --> 00:00:26.226
+fixing the schema and slots, proving the
+attributes, and mapping them through sync.
+
+6
+00:00:26.226 --> 00:00:28.525
+This part covers Gates 4 to 6.
+
+7
+00:00:28.525 --> 00:00:32.072
+That's the dynamic group library
+and administrative units,
+
+8
+00:00:32.072 --> 00:00:35.402
+the Conditional Access
+personas and device targeting,
+
+9
+00:00:35.402 --> 00:00:39.238
+moving Group Policy for devices
+and servers, and the PIV binding.
+
+10
+00:00:39.238 --> 00:00:41.507
+Facts are as the workbook states them,
+
+11
+00:00:41.507 --> 00:00:45.760
+design guidance is labeled, and
+beta features carry their stage.
+
+12
+00:00:49.510 --> 00:00:51.185
+Here's what this part delivers.
+
+13
+00:00:51.185 --> 00:00:55.760
+Gate 4 is done when every governed rule
+is written on codes with its guards,
+
+14
+00:00:55.760 --> 00:01:00.110
+tested and shadowed, and every
+administrative unit mirrors its group.
+
+15
+00:01:00.110 --> 00:01:03.528
+The validation kit's seven
+dynamic group checks prove it,
+
+16
+00:01:03.528 --> 00:01:06.073
+and the identity engineering lead owns it.
+
+17
+00:01:06.073 --> 00:01:10.921
+Gate 5 is done when the personas come from
+codes, every grant has a paired block,
+
+18
+00:01:10.921 --> 00:01:16.073
+and the device, server and non-person
+conventions are handed to their track guides.
+
+19
+00:01:16.073 --> 00:01:18.852
+Gate 6 is done when
+every pilot card holder
+
+20
+00:01:18.852 --> 00:01:21.711
+is bound and high affinity
+has been piloted.
+
+21
+00:01:21.711 --> 00:01:23.285
+The CISO owns both.
+
+22
+00:01:23.285 --> 00:01:30.004
+Each now has a kit check: VK-CA-01 for the
+personas and VK-PIV-01 for the binding,
+
+23
+00:01:30.004 --> 00:01:34.773
+with the policy export and
+the sign-in logs alongside.
+
+24
+00:01:34.773 --> 00:01:37.997
+Below the table are the
+slots everything here reads.
+
+25
+00:01:37.997 --> 00:01:41.230
+On users, organization code is slot 10,
+
+26
+00:01:41.230 --> 00:01:45.610
+worker type 11, position
+category 12, and division 6.
+
+27
+00:01:45.610 --> 00:01:51.510
+Devices have their own set: tier,
+role and environment in 11 to 13.
+
+28
+00:01:55.260 --> 00:01:59.860
+Gate 4 starts with the rule text,
+because here a rule is an access grant.
+
+29
+00:01:59.860 --> 00:02:02.898
+Every governed group uses
+one of two patterns.
+
+30
+00:02:02.898 --> 00:02:06.344
+A node query selects people
+by one organization code,
+
+31
+00:02:06.344 --> 00:02:10.260
+and uses the in operator for a
+roll-up instead of a chain of ors.
+
+32
+00:02:10.260 --> 00:02:14.733
+A functional query crosses the
+organization with another coded attribute,
+
+33
+00:02:14.733 --> 00:02:19.560
+such as position category, to answer a
+question that isn't about where someone sits.
+
+34
+00:02:19.560 --> 00:02:22.385
+Every access rule carries two guards.
+
+35
+00:02:22.385 --> 00:02:25.955
+The account must be enabled, and
+the user type must be Member,
+
+36
+00:02:25.955 --> 00:02:28.723
+which keeps out disabled
+accounts and guests.
+
+37
+00:02:28.723 --> 00:02:31.230
+An agent's user account is a kind of user,
+
+38
+00:02:31.230 --> 00:02:34.285
+so user rules include it
+unless they exclude it.
+
+39
+00:02:34.285 --> 00:02:38.423
+The books don't give the clause, so
+prove yours with a named-user test.
+
+40
+00:02:38.423 --> 00:02:41.389
+Rules read codes, never
+department or job title,
+
+41
+00:02:41.389 --> 00:02:45.497
+because a display string breaks
+the next time someone retypes it.
+
+42
+00:02:45.497 --> 00:02:47.900
+And privileged groups stay assigned.
+
+43
+00:02:51.650 --> 00:02:54.862
+Next, prove each rule
+before it grants anything.
+
+44
+00:02:54.862 --> 00:02:59.838
+The validation kit is read-only, and runs
+with only the scopes its checks need.
+
+45
+00:02:59.838 --> 00:03:03.929
+VK-DG-03 reads rule-tests.json:
+a label, a member,
+
+46
+00:03:03.929 --> 00:03:09.788
+the group or proposed rule, and
+whether that person should match.
+
+47
+00:03:09.788 --> 00:03:14.975
+It uses Graph's beta rule evaluation,
+which works only with delegated sign-in,
+
+48
+00:03:14.975 --> 00:03:19.338
+as at least a Groups Administrator;
+an app-only run reports Error.
+
+49
+00:03:19.338 --> 00:03:22.700
+A result that differs from what
+you expected is a finding.
+
+50
+00:03:22.700 --> 00:03:28.700
+VK-DG-04 reads shadow-pairs.csv, the
+group being replaced and its proposed
+
+51
+00:03:28.700 --> 00:03:34.500
+dynamic replacement, and lists everyone
+the new group adds or removes.
+
+52
+00:03:34.500 --> 00:03:36.578
+By default no difference is allowed,
+
+53
+00:03:36.578 --> 00:03:41.150
+so each one is explained in the record
+before the rule grants production access.
+
+54
+00:03:41.150 --> 00:03:44.362
+A missing input means Not
+Applicable, never Pass.
+
+55
+00:03:44.362 --> 00:03:48.998
+And rollback is simple: a new group
+grants nothing until it's assigned,
+
+56
+00:03:48.998 --> 00:03:53.410
+so unassign it, keep the old group,
+and revert the rule from Git.
+
+57
+00:03:57.160 --> 00:04:00.522
+Two things change membership
+without anyone touching a rule.
+
+58
+00:04:00.522 --> 00:04:01.798
+The first is a date.
+
+59
+00:04:01.798 --> 00:04:06.026
+The memberOf rule preview ends
+on November 3, 2026, and groups,
+
+60
+00:04:06.026 --> 00:04:11.185
+units and auto-assignment policies that
+use it freeze in their last state.
+
+61
+00:04:11.185 --> 00:04:15.797
+So Gate 4 uses no memberOf, and
+flattens nested chains instead.
+
+62
+00:04:15.797 --> 00:04:21.772
+VK-DG-06 lists any rule still using it,
+and any group whose processing is paused,
+
+63
+00:04:21.772 --> 00:04:27.185
+because a paused group stops updating
+while every other check passes.
+
+64
+00:04:27.185 --> 00:04:28.685
+The second is volume.
+
+65
+00:04:28.685 --> 00:04:34.045
+VK-DG-05 compares each dynamic group's
+member count with the snapshot from the
+
+66
+00:04:34.045 --> 00:04:39.322
+last run, and flags a change of more than
+ten percent and at least five members.
+
+67
+00:04:39.322 --> 00:04:43.984
+The first run writes the baseline, so
+take it now, before the mover proof.
+
+68
+00:04:43.984 --> 00:04:48.948
+And plan for processing time: usually
+a few hours, sometimes more than a day.
+
+69
+00:04:48.948 --> 00:04:54.390
+For a bulk change, pause nonessential
+groups for a day, then resume in phases.
+
+70
+00:04:58.140 --> 00:05:02.427
+Administrative units replace
+OU delegation, in three tiers.
+
+71
+00:05:02.427 --> 00:05:06.115
+Tier 1 is read-only visibility,
+and its reader roles
+
+72
+00:05:06.115 --> 00:05:09.715
+can't be scoped to a unit,
+so they sit at tenant scope.
+
+73
+00:05:09.715 --> 00:05:12.959
+Tier 2 is the department
+unit, whose rule lists the
+
+74
+00:05:12.959 --> 00:05:17.153
+department's organization codes,
+the same roll-up its group uses.
+
+75
+00:05:17.153 --> 00:05:23.240
+Tier 3 is the division unit, created on
+demand, reading the division code in slot 6.
+
+76
+00:05:23.240 --> 00:05:28.193
+Scoped roles go to role-assignable groups
+whose members are eligible through PIM,
+
+77
+00:05:28.193 --> 00:05:31.252
+and each unit is created
+before the groups it holds.
+
+78
+00:05:31.252 --> 00:05:34.078
+The decision you can't
+undo is restriction.
+
+79
+00:05:34.078 --> 00:05:38.978
+Decide it before the unit exists, and
+default to no, because restriction takes
+
+80
+00:05:38.978 --> 00:05:44.339
+members out of PIM, entitlement management,
+Lifecycle Workflows and access reviews.
+
+81
+00:05:44.339 --> 00:05:49.077
+VK-DG-07 reads two small files:
+one maps each unit to its group,
+
+82
+00:05:49.077 --> 00:05:54.007
+and flags a unit whose rule doesn't
+match; the other records why
+
+83
+00:05:54.007 --> 00:05:59.590
+a unit is restricted, and flags
+any restricted unit with no reason.
+
+84
+00:06:03.340 --> 00:06:06.497
+Gate 5 retires Group Policy
+inheritance for people,
+
+85
+00:06:06.497 --> 00:06:10.315
+and the risk is policies that
+look strict but restrict nothing.
+
+86
+00:06:10.315 --> 00:06:15.321
+Personas come from codes: the internal
+workforce from the worker type in slot 11,
+
+87
+00:06:15.321 --> 00:06:19.871
+administrators from the account type
+in slot 7, and the emergency-access
+
+88
+00:06:19.871 --> 00:06:23.815
+group stays assigned and excluded
+from every blocking policy.
+
+89
+00:06:23.815 --> 00:06:25.959
+Target administrators by group,
+
+90
+00:06:25.959 --> 00:06:29.453
+because role targeting misses
+roles scoped to a unit.
+
+91
+00:06:29.453 --> 00:06:31.753
+Then pair every grant with a block.
+
+92
+00:06:31.753 --> 00:06:36.455
+A policy that grants Finance the payroll
+app says nothing about anyone else,
+
+93
+00:06:36.455 --> 00:06:39.590
+so a second policy blocks
+everyone except Finance.
+
+94
+00:06:39.590 --> 00:06:43.091
+And report empty slots
+first: a policy on a dynamic
+
+95
+00:06:43.091 --> 00:06:47.190
+group silently misses everyone
+whose attribute is blank.
+
+96
+00:06:47.190 --> 00:06:52.095
+VK-CA-01 checks three things on
+every enabled and report-only policy:
+
+97
+00:06:52.095 --> 00:06:54.985
+the emergency-access group is excluded,
+
+98
+00:06:54.985 --> 00:07:00.153
+only governed groups are targeted,
+and every grant has its paired block.
+
+99
+00:07:00.153 --> 00:07:04.531
+It reads only who a policy targets,
+so keep the ca-export as the record,
+
+100
+00:07:04.531 --> 00:07:07.737
+and read it for blocks
+narrower than their grants,
+
+101
+00:07:07.737 --> 00:07:10.910
+with the list of users
+whose slot 11 is empty.
+
+102
+00:07:14.660 --> 00:07:19.260
+Gate 5 also sets the conventions the
+device and server tracks build on.
+
+103
+00:07:19.260 --> 00:07:23.455
+Device attributes come from device
+provisioning, never from the user,
+
+104
+00:07:23.455 --> 00:07:26.710
+and a device rule can never
+read its owner's attributes.
+
+105
+00:07:26.710 --> 00:07:29.281
+So the provisioning service writes tier,
+
+106
+00:07:29.281 --> 00:07:34.272
+role and environment to the device's own
+slots at registration, running app-only.
+
+107
+00:07:34.272 --> 00:07:38.598
+Use a dynamic device group only where
+the rule has to read those slots.
+
+108
+00:07:38.598 --> 00:07:42.857
+Everywhere else, use an assignment
+filter on Intune's own properties,
+
+109
+00:07:42.857 --> 00:07:45.248
+like ownership or enrollment profile.
+
+110
+00:07:45.248 --> 00:07:48.097
+A filter on a slot
+simply doesn't evaluate.
+
+111
+00:07:48.097 --> 00:07:53.220
+For anything time-sensitive, assign to a
+user group or All devices with a filter,
+
+112
+00:07:53.220 --> 00:07:56.608
+and never use a dynamic
+device group as an exclusion,
+
+113
+00:07:56.608 --> 00:07:59.997
+because late membership
+lets the policy land first.
+
+114
+00:07:59.997 --> 00:08:05.233
+VK-INT-01 flags managed
+devices missing their slots,
+
+115
+00:08:05.233 --> 00:08:11.686
+and VK-INT-04 flags any exclusion
+built on a dynamic device group.
+
+116
+00:08:11.686 --> 00:08:14.648
+For servers, Arc tags
+reuse the same codes,
+
+117
+00:08:14.648 --> 00:08:18.320
+and resource groups are
+the delegation scope.
+
+118
+00:08:22.070 --> 00:08:24.920
+Now the core of this
+part: moving Group Policy.
+
+119
+00:08:24.920 --> 00:08:27.095
+The rule is adopt, don't build.
+
+120
+00:08:27.095 --> 00:08:31.837
+Microsoft already publishes the analysis
+and the conversion, and the program
+
+121
+00:08:31.837 --> 00:08:36.433
+adds only the decision record per setting,
+the order of work, and the evidence.
+
+122
+00:08:36.433 --> 00:08:38.544
+Phase 1 runs in five steps.
+
+123
+00:08:38.544 --> 00:08:43.812
+First, Policy Analyzer and its command-line
+companion find settings that several
+
+124
+00:08:43.812 --> 00:08:48.770
+GPOs write with conflicting values, the
+conflicts OU precedence used to hide.
+
+125
+00:08:48.770 --> 00:08:52.645
+Second, export every GPO as XML.
+
+126
+00:08:52.645 --> 00:08:56.521
+Third, import that into Intune's
+Group Policy analytics,
+
+127
+00:08:56.521 --> 00:08:59.470
+which shows each setting's MDM equivalent.
+
+128
+00:08:59.470 --> 00:09:04.683
+Fourth, classify every setting, and capture
+a gpresult baseline per device tier.
+
+129
+00:09:04.683 --> 00:09:06.395
+Fifth, check it as data.
+
+130
+00:09:06.395 --> 00:09:13.007
+VK-INT-07 reads the beta Graph migration
+reports with a read-only permission.
+
+131
+00:09:13.007 --> 00:09:18.231
+It flags any GPO still targeted in
+AD whose readiness isn't complete,
+
+132
+00:09:18.231 --> 00:09:23.269
+and, given your in-scope list, any
+GPO that was never imported at all.
+
+133
+00:09:23.269 --> 00:09:26.413
+And where an old GPO isn't
+worth carrying forward,
+
+134
+00:09:26.413 --> 00:09:29.930
+start from an Intune
+security baseline instead.
+
+135
+00:09:33.680 --> 00:09:37.042
+Phase 3 builds the policies
+and assigns none of them.
+
+136
+00:09:37.042 --> 00:09:42.593
+Group Policy analytics' Migrate step builds
+a settings catalog policy from the GPOs.
+
+137
+00:09:42.593 --> 00:09:46.315
+Select only the settings whose
+decision record says required,
+
+138
+00:09:46.315 --> 00:09:49.106
+review the values, and
+leave assignments empty.
+
+139
+00:09:49.106 --> 00:09:50.343
+Know where it stops.
+
+140
+00:09:50.343 --> 00:09:53.525
+If two GPOs set one setting
+to different values,
+
+141
+00:09:53.525 --> 00:09:55.892
+it won't continue until you keep one.
+
+142
+00:09:55.892 --> 00:10:00.230
+It's best effort, some settings fail
+and are listed in Notifications, and
+
+143
+00:10:00.230 --> 00:10:05.304
+AppLocker and firewall rules don't migrate
+at all; build those in Endpoint security.
+
+144
+00:10:05.304 --> 00:10:10.235
+Phase 4 pilots on about five percent of
+the fleet, with the GPOs still linked,
+
+145
+00:10:10.235 --> 00:10:14.768
+and compares each device's gpresult
+with Intune's per-setting status.
+
+146
+00:10:14.768 --> 00:10:18.293
+A conflict, an error or a
+different value is a finding.
+
+147
+00:10:18.293 --> 00:10:22.243
+For rollback, remember that the
+pilot doesn't clean up after itself.
+
+148
+00:10:22.243 --> 00:10:26.674
+Then, per population, back up
+the GPO and disable the link,
+
+149
+00:10:26.674 --> 00:10:30.210
+not the GPO, so one
+command brings it back.
+
+150
+00:10:33.960 --> 00:10:36.572
+Servers have no Group Policy analytics.
+
+151
+00:10:36.572 --> 00:10:41.863
+Microsoft publishes no tool that imports
+a GPO into machine configuration,
+
+152
+00:10:41.863 --> 00:10:45.473
+but it does publish a path,
+and the program follows it.
+
+153
+00:10:45.473 --> 00:10:50.285
+Step one, audit beside Group Policy:
+let Group Policy keep enforcing while
+
+154
+00:10:50.285 --> 00:10:55.335
+Azure Policy audits the same settings,
+then move enforcement over gradually.
+
+155
+00:10:55.335 --> 00:10:56.498
+Two cautions.
+
+156
+00:10:56.498 --> 00:10:59.365
+Azure Policy settings
+don't show up in gpresult,
+
+157
+00:10:59.365 --> 00:11:02.085
+so the compliance reports
+become the record.
+
+158
+00:11:02.085 --> 00:11:06.273
+And per-user settings, like mapped
+drives, stay with Group Policy.
+
+159
+00:11:06.273 --> 00:11:09.960
+Step two, start from the built-in
+baselines and definitions,
+
+160
+00:11:09.960 --> 00:11:13.197
+which cover many settings
+with no conversion at all.
+
+161
+00:11:13.197 --> 00:11:17.873
+Step three, package what's left with
+Microsoft's GuestConfiguration module;
+
+162
+00:11:17.873 --> 00:11:21.360
+a package that applies settings
+needs a recent Arc agent.
+
+163
+00:11:21.360 --> 00:11:24.276
+Step four, treat a
+converted GPO as a draft,
+
+164
+00:11:24.276 --> 00:11:29.422
+because the conversion command is
+community-supported, not Microsoft's.
+
+165
+00:11:29.422 --> 00:11:33.130
+Test it in audit mode before
+anything enforces it.
+
+166
+00:11:36.880 --> 00:11:42.035
+Many estates already run Red Hat on AWS
+with Ansible, and Arc can connect it:
+
+167
+00:11:42.035 --> 00:11:46.937
+Red Hat is on the agent's list, and EC2
+instances take the agent one by one,
+
+168
+00:11:46.937 --> 00:11:50.993
+since the multicloud connector
+isn't in Azure Government.
+
+169
+00:11:50.993 --> 00:11:53.467
+The danger is two tools on one setting.
+
+170
+00:11:53.467 --> 00:11:56.998
+Under auto-correct, Ansible
+and machine configuration
+
+171
+00:11:56.998 --> 00:12:00.605
+can flip a value back and forth
+while both report success.
+
+172
+00:12:00.605 --> 00:12:04.480
+So the Ansible guide sets five
+rules, as design guidance.
+
+173
+00:12:04.480 --> 00:12:08.730
+The owner is an attribute,
+config_owner in the CMDB.
+
+174
+00:12:08.730 --> 00:12:10.772
+Ansible writes only what it owns,
+
+175
+00:12:10.772 --> 00:12:14.855
+enforced by its inventory group
+and an assertion in the playbook.
+
+176
+00:12:14.855 --> 00:12:16.543
+Onboarding isn't owning.
+
+177
+00:12:16.543 --> 00:12:18.642
+An exception is a dated record.
+
+178
+00:12:18.642 --> 00:12:20.662
+And patching has one owner too,
+
+179
+00:12:20.662 --> 00:12:24.379
+so where Ansible patches,
+Update Manager only assesses.
+
+180
+00:12:24.379 --> 00:12:27.355
+Both owners are mirrored
+to Arc tags at onboarding.
+
+181
+00:12:27.355 --> 00:12:30.875
+VK-ARC-07 then catches
+a server another tool
+
+182
+00:12:30.875 --> 00:12:35.450
+owns that machine configuration
+is also enforcing.
+
+183
+00:12:39.200 --> 00:12:42.275
+One honest slide on what
+the overview simplified.
+
+184
+00:12:42.275 --> 00:12:44.587
+This framing is design guidance.
+
+185
+00:12:44.587 --> 00:12:47.501
+First, many groups don't
+follow the org chart.
+
+186
+00:12:47.501 --> 00:12:52.312
+Only a group whose membership follows
+attributes exactly becomes dynamic.
+
+187
+00:12:52.312 --> 00:12:57.290
+Others stay synced, go cloud-only or
+retire, privileged groups stay assigned,
+
+188
+00:12:57.290 --> 00:13:00.687
+and what a rule can't decide
+moves to access packages.
+
+189
+00:13:00.687 --> 00:13:02.025
+Expect a lot of them.
+
+190
+00:13:02.025 --> 00:13:06.587
+Second, Group Policy analytics tells
+you what can move, not what should.
+
+191
+00:13:06.587 --> 00:13:09.758
+It finds the landing zone;
+it never decides whether a
+
+192
+00:13:09.758 --> 00:13:13.150
+setting is still needed, so
+retire before you translate.
+
+193
+00:13:13.150 --> 00:13:17.613
+Third, running two tools side by
+side is where breakage hides.
+
+194
+00:13:17.613 --> 00:13:21.644
+GPOs beside Intune in the pilot,
+Group Policy beside Azure
+
+195
+00:13:21.644 --> 00:13:26.012
+Policy while auditing, Ansible
+beside machine configuration.
+
+196
+00:13:26.012 --> 00:13:30.049
+Each tests clean on its own,
+and the overlap is what fails.
+
+197
+00:13:30.049 --> 00:13:32.741
+So count the groups that won't go dynamic,
+
+198
+00:13:32.741 --> 00:13:35.870
+and test every overlap,
+not just each tool.
+
+199
+00:13:39.620 --> 00:13:42.720
+Gate 6 is the PIV and CAC binding.
+
+200
+00:13:42.720 --> 00:13:45.601
+Certificate sign-in is
+attribute-driven too:
+
+201
+00:13:45.601 --> 00:13:49.961
+Entra ID matches a field of the
+certificate to a field of the account,
+
+202
+00:13:49.961 --> 00:13:54.632
+so whoever writes that field decides
+which certificate signs in as whom.
+
+203
+00:13:54.632 --> 00:13:59.294
+The binding lives in
+certificateUserIds, as prefixed values.
+
+204
+00:13:59.294 --> 00:14:01.958
+Names and email addresses
+are low affinity.
+
+205
+00:14:01.958 --> 00:14:04.412
+The key identifier, the public key hash,
+
+206
+00:14:04.412 --> 00:14:09.244
+and issuer with serial number are high
+affinity, because they can't be reused.
+
+207
+00:14:09.244 --> 00:14:13.082
+That also means a reissued or
+renewed card changes the value.
+
+208
+00:14:13.082 --> 00:14:15.301
+The limits: ten values per user,
+
+209
+00:14:15.301 --> 00:14:19.383
+each unique in the tenant,
+with case-sensitive prefixes.
+
+210
+00:14:19.383 --> 00:14:24.632
+For cloud-only users, a Privileged
+Authentication Administrator or Graph writes it.
+
+211
+00:14:24.632 --> 00:14:29.935
+For synced users, only Entra Connect
+can, from altSecurityIdentities in AD,
+
+212
+00:14:29.935 --> 00:14:33.357
+and Microsoft doesn't
+document Cloud Sync for it.
+
+213
+00:14:33.357 --> 00:14:36.850
+Treat that AD write path
+like an access slot.
+
+214
+00:14:40.600 --> 00:14:43.350
+The rest of Gate 6 is a short sequence.
+
+215
+00:14:43.350 --> 00:14:46.274
+Measure coverage for
+every pilot card holder,
+
+216
+00:14:46.274 --> 00:14:49.813
+and list the gaps by account,
+never by certificate value.
+
+217
+00:14:49.813 --> 00:14:53.148
+Name the writer: the card
+management system, not HR,
+
+218
+00:14:53.148 --> 00:14:58.112
+because a reissued card changes the
+binding, while HR supplies the person.
+
+219
+00:14:58.112 --> 00:14:59.987
+Decide the required affinity.
+
+220
+00:14:59.987 --> 00:15:04.329
+The tenant default is low, and sign-in
+is only as strong as the weakest
+
+221
+00:15:04.329 --> 00:15:08.438
+binding allowed, so the program's
+position is high in production.
+
+222
+00:15:08.438 --> 00:15:11.285
+Pilot high affinity with
+a rule per issuer before
+
+223
+00:15:11.285 --> 00:15:13.924
+you change the tenant, or
+people get locked out.
+
+224
+00:15:13.924 --> 00:15:17.613
+Make the leaver remove the binding
+as well as revoke the card.
+
+225
+00:15:17.613 --> 00:15:19.787
+And decide who writes it after AD.
+
+226
+00:15:19.787 --> 00:15:24.299
+The design is that the card system
+writes it through Graph at issuance,
+
+227
+00:15:24.299 --> 00:15:27.799
+but that's unverified, and it's
+an open pilot in issue 130.
+
+228
+00:15:27.799 --> 00:15:34.019
+VK-PIV-01 proves coverage: it lists
+pilot card holders with no value,
+
+229
+00:15:34.019 --> 00:15:37.638
+or only low-affinity values, by account.
+
+230
+00:15:37.638 --> 00:15:40.390
+It can't tell whether a
+value is a current card,
+
+231
+00:15:40.390 --> 00:15:44.400
+so reconcile with the card system,
+and check the sign-in logs.
+
+232
+00:15:48.150 --> 00:15:52.350
+Four decisions close this part, each
+with one owner from the project plan.
+
+233
+00:15:52.350 --> 00:15:57.975
+Identity engineering decides restriction,
+unit by unit, before each unit exists.
+
+234
+00:15:57.975 --> 00:16:02.850
+The CISO decides the persona set,
+and the required affinity for PIV.
+
+235
+00:16:02.850 --> 00:16:08.162
+And the ICAM governance body decides who
+writes the binding after AD; that one
+
+236
+00:16:08.162 --> 00:16:13.475
+can wait until issuance moves off AD CS,
+which gives the open pilot time to report.
+
+237
+00:16:13.475 --> 00:16:15.187
+Watch the margins, too.
+
+238
+00:16:15.187 --> 00:16:18.813
+The tightest here is just two
+working days, between the pilot's
+
+239
+00:16:18.813 --> 00:16:22.724
+shadow comparison and the program
+assigning the pilot's policies.
+
+240
+00:16:22.724 --> 00:16:27.821
+Part 3 takes Gates 7 to 9: proving one
+mover across the tracks with no ticket,
+
+241
+00:16:27.821 --> 00:16:31.748
+cutting over by attribute
+query and retiring the OU tree,
+
+242
+00:16:31.748 --> 00:16:34.338
+and then keeping the attributes true.
+
+243
+00:16:34.338 --> 00:16:35.160
+Thank you.

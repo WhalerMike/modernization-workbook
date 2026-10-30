@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.175
+Welcome to Part 2 of the deeper dive on
+attribute-driven migration to Entra ID.
+
+2
+00:00:05.175 --> 00:00:10.260
+This series goes below the technical deep
+dive, down to the rule text, the commands,
+
+3
+00:00:10.260 --> 00:00:14.737
+the input files and the failing checks
+an engineer actually works with.
+
+4
+00:00:14.737 --> 00:00:19.875
+Part 1 covered Gates 0 to 3: reading
+the organizational unit (OU) tree,
+
+5
+00:00:19.875 --> 00:00:26.226
+fixing the schema and slots, proving the
+attributes, and mapping them through sync.
+
+6
+00:00:26.226 --> 00:00:28.525
+This part covers Gates 4 to 6.
+
+7
+00:00:28.525 --> 00:00:32.072
+That's the dynamic group library
+and administrative units,
+
+8
+00:00:32.072 --> 00:00:35.402
+the Conditional Access
+personas and device targeting,
+
+9
+00:00:35.402 --> 00:00:39.238
+moving Group Policy for devices
+and servers, and the PIV binding.
+
+10
+00:00:39.238 --> 00:00:41.507
+Facts are as the workbook states them,
+
+11
+00:00:41.507 --> 00:00:45.460
+design guidance is labeled, and
+beta features carry their stage.

@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.412
+Phase 3 builds the policies
+and assigns none of them.
+
+2
+00:00:03.412 --> 00:00:08.963
+Group Policy analytics' Migrate step builds
+a settings catalog policy from the GPOs.
+
+3
+00:00:08.963 --> 00:00:12.685
+Select only the settings whose
+decision record says required,
+
+4
+00:00:12.685 --> 00:00:15.476
+review the values, and
+leave assignments empty.
+
+5
+00:00:15.476 --> 00:00:16.713
+Know where it stops.
+
+6
+00:00:16.713 --> 00:00:19.895
+If two GPOs set one setting
+to different values,
+
+7
+00:00:19.895 --> 00:00:22.262
+it won't continue until you keep one.
+
+8
+00:00:22.262 --> 00:00:26.600
+It's best effort, some settings fail
+and are listed in Notifications, and
+
+9
+00:00:26.600 --> 00:00:31.674
+AppLocker and firewall rules don't migrate
+at all; build those in Endpoint security.
+
+10
+00:00:31.674 --> 00:00:36.605
+Phase 4 pilots on about five percent of
+the fleet, with the GPOs still linked,
+
+11
+00:00:36.605 --> 00:00:41.138
+and compares each device's gpresult
+with Intune's per-setting status.
+
+12
+00:00:41.138 --> 00:00:44.663
+A conflict, an error or a
+different value is a finding.
+
+13
+00:00:44.663 --> 00:00:48.613
+For rollback, remember that the
+pilot doesn't clean up after itself.
+
+14
+00:00:48.613 --> 00:00:53.044
+Then, per population, back up
+the GPO and disable the link,
+
+15
+00:00:53.044 --> 00:00:56.280
+not the GPO, so one
+command brings it back.

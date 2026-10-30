@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.900
+Now the core of this
+part: moving Group Policy.
+
+2
+00:00:02.900 --> 00:00:05.075
+The rule is adopt, don't build.
+
+3
+00:00:05.075 --> 00:00:09.817
+Microsoft already publishes the analysis
+and the conversion, and the program
+
+4
+00:00:09.817 --> 00:00:14.413
+adds only the decision record per setting,
+the order of work, and the evidence.
+
+5
+00:00:14.413 --> 00:00:16.524
+Phase 1 runs in five steps.
+
+6
+00:00:16.524 --> 00:00:21.792
+First, Policy Analyzer and its command-line
+companion find settings that several
+
+7
+00:00:21.792 --> 00:00:26.750
+GPOs write with conflicting values, the
+conflicts OU precedence used to hide.
+
+8
+00:00:26.750 --> 00:00:30.625
+Second, export every GPO as XML.
+
+9
+00:00:30.625 --> 00:00:34.501
+Third, import that into Intune's
+Group Policy analytics,
+
+10
+00:00:34.501 --> 00:00:37.450
+which shows each setting's MDM equivalent.
+
+11
+00:00:37.450 --> 00:00:42.663
+Fourth, classify every setting, and capture
+a gpresult baseline per device tier.
+
+12
+00:00:42.663 --> 00:00:44.375
+Fifth, check it as data.
+
+13
+00:00:44.375 --> 00:00:50.987
+VK-INT-07 reads the beta Graph migration
+reports with a read-only permission.
+
+14
+00:00:50.987 --> 00:00:56.211
+It flags any GPO still targeted in
+AD whose readiness isn't complete,
+
+15
+00:00:56.211 --> 00:01:01.249
+and, given your in-scope list, any
+GPO that was never imported at all.
+
+16
+00:01:01.249 --> 00:01:04.394
+And where an old GPO isn't
+worth carrying forward,
+
+17
+00:01:04.394 --> 00:01:07.610
+start from an Intune
+security baseline instead.
