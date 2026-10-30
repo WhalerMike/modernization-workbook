@@ -8,7 +8,11 @@
 .DESCRIPTION
     Connect-FmwGraph picks the right cloud (GCC is the worldwide service; GCC High and DoD
     have their own environments) and signs in with a certificate or a managed identity,
-    never a client secret. Get-FmwGraphCollection follows @odata.nextLink. The Test-* and
+    never a client secret. Get-FmwGraphCollection follows @odata.nextLink, and checks every
+    page with Assert-FmwGraphCall: the token stays on the cloud's Graph host, a task makes only
+    the calls graph-calls.json declares for it, and a beta call must be declared. Test-FmwTokenRole
+    compares a token's roles with a task's permissions. Get-FmwBetaCollection reads a beta
+    collection without depending on it (developer workbook, Chapter 02). The Test-* and
     ConvertTo-* functions are pure: they take Graph objects and return findings, so they
     can be tested without a tenant.
 
@@ -20,13 +24,20 @@ Set-StrictMode -Version Latest
 
 $script:GlobalAdmin = '62e90394-69f5-4237-9190-012177145e10'   # Global Administrator role template ID
 
-# Microsoft Learn, "Use Microsoft Graph PowerShell authentication commands" (Get-MgEnvironment).
+# Microsoft Learn, "Use Microsoft Graph PowerShell authentication commands" (Get-MgEnvironment),
+# "Microsoft Graph national cloud deployments" and "Compare Azure Government and global Azure".
+# GCC is the worldwide service, paired with Microsoft Entra ID in commercial Azure, so its Azure
+# Resource Manager host is the commercial one. The same values as CLOUDS in python/graphkit.py.
 $script:Clouds = @{
-    global  = @{ Environment = 'Global';   Graph = 'https://graph.microsoft.com' }
-    gcc     = @{ Environment = 'Global';   Graph = 'https://graph.microsoft.com' }
-    gcchigh = @{ Environment = 'USGov';    Graph = 'https://graph.microsoft.us' }
-    dod     = @{ Environment = 'USGovDoD'; Graph = 'https://dod-graph.microsoft.us' }
+    global  = @{ Environment = 'Global';   Login = 'https://login.microsoftonline.com'; Graph = 'https://graph.microsoft.com';    Arm = 'https://management.azure.com';          AzureEnvironment = 'AzureCloud' }
+    gcc     = @{ Environment = 'Global';   Login = 'https://login.microsoftonline.com'; Graph = 'https://graph.microsoft.com';    Arm = 'https://management.azure.com';          AzureEnvironment = 'AzureCloud' }
+    gcchigh = @{ Environment = 'USGov';    Login = 'https://login.microsoftonline.us';  Graph = 'https://graph.microsoft.us';     Arm = 'https://management.usgovcloudapi.net'; AzureEnvironment = 'AzureUSGovernment' }
+    dod     = @{ Environment = 'USGovDoD'; Login = 'https://login.microsoftonline.us';  Graph = 'https://dod-graph.microsoft.us'; Arm = 'https://management.usgovcloudapi.net'; AzureEnvironment = 'AzureUSGovernment' }
 }
+$script:ConnectedCloud = $null
+
+# Every Graph call the tasks make, with its least-privileged permission: the file python/graphkit.py reads.
+$script:Calls = @((Get-Content -Raw -Path (Join-Path $PSScriptRoot '..' 'graph-calls.json') | ConvertFrom-Json -AsHashtable)['calls'])
 
 $script:Permissions = [ordered]@{
     'stale-users'      = @('User.Read.All', 'AuditLog.Read.All')
@@ -56,6 +67,7 @@ function Connect-FmwGraph {
         [Parameter(ParameterSetName = 'ManagedIdentity')][string]$ManagedIdentityClientId
     )
     $envName = (Get-FmwCloud $Cloud).Environment
+    $script:ConnectedCloud = $Cloud
     if ($PSCmdlet.ParameterSetName -eq 'Certificate') {
         Connect-MgGraph -Environment $envName -TenantId $TenantId -ClientId $ClientId -CertificateThumbprint $CertificateThumbprint -NoWelcome
     } elseif ($ManagedIdentityClientId) {
@@ -65,16 +77,129 @@ function Connect-FmwGraph {
     }
 }
 
+function Get-FmwGraphCall {
+    <# The declared Graph calls (graph-calls.json), or one task's. #>
+    param([string]$Task)
+    if (-not $Task) { return , @($script:Calls) }
+    $c = @($script:Calls | Where-Object { $_['tasks'] -contains $Task })
+    if (-not $c) { throw "No calls declared for task '$Task' in graph-calls.json" }
+    , $c
+}
+
+function Get-FmwCallPermission {
+    <# The union of the least-privileged permissions a task's calls need, sorted. #>
+    param([Parameter(Mandatory)][string]$Task)
+    $calls = Get-FmwGraphCall -Task $Task
+    , @($(foreach ($c in $calls) { $c['permissions'] }) | Sort-Object -Unique -CaseSensitive)
+}
+
+function Assert-FmwGraphCall {
+    <#
+    Refuse a Graph call this run wasn't given: an absolute URI on another host than the cloud's Graph
+    host (so the token never leaves), an undeclared call when a task is named, any beta call no listed
+    call declares, or a call graph-calls.json says this cloud doesn't offer. Returns the matching call.
+    #>
+    param(
+        [Parameter(Mandatory)][string]$Method,
+        [Parameter(Mandatory)][string]$Uri,
+        [Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+        [string]$Task
+    )
+    $graphHost = ([uri](Get-FmwCloud $Cloud).Graph).Host
+    if ($Uri -match '^[a-z]+://') {
+        $u = [uri]$Uri
+        if ($u.Scheme -ne 'https' -or $u.Host -ne $graphHost) { throw "Refusing to send the token to ${Uri}: not https://$graphHost" }
+        $path = $u.AbsolutePath
+    } else {
+        $path = ($Uri -split '\?', 2)[0]
+    }
+    $parts = $path.TrimStart('/') -split '/', 2
+    $version = $parts[0]
+    $rest = '/' + $(if ($parts.Count -gt 1) { $parts[1] } else { '' })
+    if ($version -notin @('v1.0', 'beta')) { throw "Unknown Graph version in $Uri; use /v1.0 or /beta" }
+    $declared = if ($Task) { Get-FmwGraphCall -Task $Task } else { Get-FmwGraphCall }
+    $call = $null
+    foreach ($c in $declared) {
+        $rx = '^' + ([regex]::Escape($c['path']) -replace '\\\{[^}]+}', '[^/]+') + '$'
+        if ($c['method'] -eq $Method.ToUpperInvariant() -and $c['version'] -eq $version -and $rest -match $rx) { $call = $c; break }
+    }
+    if (-not $call -and ($Task -or $version -ne 'v1.0')) {
+        $kind = if ($version -eq 'beta') { 'beta call' } else { 'call' }
+        throw "Undeclared ${kind}: $Method /$version$rest; add it to graph-calls.json with its permission"
+    }
+    if ($call -and $call.ContainsKey('not_in_clouds') -and $call['not_in_clouds'] -contains $Cloud) {
+        throw "$($call['id']) isn't offered in $Cloud (graph-calls.json not_in_clouds)"
+    }
+    $call
+}
+
 function Get-FmwGraphCollection {
-    <# Every item of a collection, following @odata.nextLink. Invoke-MgGraphRequest retries throttled calls itself. #>
-    param([Parameter(Mandatory)][string]$Uri, [switch]$Advanced)
+    <#
+    Every item of a collection, following @odata.nextLink. Each page is checked by Assert-FmwGraphCall
+    and sent with the same headers. Invoke-MgGraphRequest relies on the Graph PowerShell SDK's own
+    retry handling for throttled calls.
+    #>
+    param(
+        [Parameter(Mandatory)][string]$Uri,
+        [switch]$Advanced,
+        [string]$Task,
+        [ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud = $script:ConnectedCloud
+    )
+    if (-not $Cloud) { throw 'No cloud: run Connect-FmwGraph first, or pass -Cloud' }
     $headers = @{ 'x-ms-throttle-priority' = 'Low' }
     if ($Advanced) { $headers['ConsistencyLevel'] = 'eventual' }
     $next = $Uri
     while ($next) {
+        $null = Assert-FmwGraphCall -Method GET -Uri $next -Cloud $Cloud -Task $Task
         $page = Invoke-MgGraphRequest -Method GET -Uri $next -Headers $headers -OutputType Hashtable
         foreach ($item in $page['value']) { $item }
         $next = $page['@odata.nextLink']
+    }
+}
+
+function Get-FmwBetaCollection {
+    <#
+    Read a beta collection without depending on it: @{ stage; available; items; reason }. A refused call
+    (undeclared, or not offered in this cloud) and a 400, 404 or 501 from Graph give available = false,
+    so the report says "not evaluated". Anything else, including 403, still throws.
+    #>
+    param(
+        [Parameter(Mandatory)][string]$Path,
+        [Parameter(Mandatory)][string]$Task,
+        [ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud = $script:ConnectedCloud
+    )
+    $uri = '/beta' + $(if ($Path.StartsWith('/')) { $Path } else { "/$Path" })
+    try { $null = Assert-FmwGraphCall -Method GET -Uri $uri -Cloud $Cloud -Task $Task }
+    catch { return [ordered]@{ stage = 'beta'; available = $false; items = @(); reason = $_.Exception.Message } }
+    try {
+        $items = @(Get-FmwGraphCollection -Uri $uri -Task $Task -Cloud $Cloud)
+        [ordered]@{ stage = 'beta'; available = $true; items = $items; reason = '' }
+    } catch {
+        if ($_.Exception.Message -match '\b(400|404|501)\b|BadRequest|ResourceNotFound|NotFound') {
+            return [ordered]@{ stage = 'beta'; available = $false; items = @(); reason = $_.Exception.Message }
+        }
+        throw
+    }
+}
+
+function Get-FmwTokenRole {
+    <# The roles claim (application permissions) of an access token. Read, not validated: a pre-flight check only. #>
+    param([Parameter(Mandatory)][string]$Token)
+    $parts = $Token.Split('.')
+    if ($parts.Count -lt 2) { throw 'Not a JWT access token' }
+    $p = $parts[1].Replace('-', '+').Replace('_', '/')
+    $p += '=' * ((4 - $p.Length % 4) % 4)
+    $claims = [System.Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($p)) | ConvertFrom-Json -AsHashtable
+    if ($claims.ContainsKey('roles')) { , @($claims['roles']) } else { , @() }
+}
+
+function Test-FmwTokenRole {
+    <# What the token lacks for the task (Missing) and holds beyond it (Extra: unused permissions). #>
+    param([Parameter(Mandatory)][string]$Token, [Parameter(Mandatory)][AllowEmptyCollection()][string[]]$Needed)
+    $have = Get-FmwTokenRole -Token $Token
+    [ordered]@{
+        Missing = @($Needed | Where-Object { $_ -cnotin $have } | Sort-Object -Unique -CaseSensitive)
+        Extra   = @($have | Where-Object { $_ -cnotin $Needed } | Sort-Object -Unique -CaseSensitive)
     }
 }
 
@@ -224,9 +349,9 @@ function Invoke-FmwEntraTask {
     )
     $asOf = [datetimeoffset]::UtcNow
     switch ($Task) {
-        'stale-users' { Test-FmwStaleUser -Users @(Get-FmwGraphCollection '/v1.0/users?$select=id,userPrincipalName,accountEnabled,userType,createdDateTime,signInActivity&$top=500') -AsOf $asOf -Days $Days }
+        'stale-users' { Test-FmwStaleUser -Users @(Get-FmwGraphCollection '/v1.0/users?$select=id,userPrincipalName,accountEnabled,userType,createdDateTime,signInActivity&$top=500' -Task $Task) -AsOf $asOf -Days $Days }
         'ca-export' {
-            $export = ConvertTo-FmwCaExport -Policies @(Get-FmwGraphCollection '/v1.0/identity/conditionalAccess/policies') -NamedLocations @(Get-FmwGraphCollection '/v1.0/identity/conditionalAccess/namedLocations')
+            $export = ConvertTo-FmwCaExport -Policies @(Get-FmwGraphCollection '/v1.0/identity/conditionalAccess/policies' -Task $Task) -NamedLocations @(Get-FmwGraphCollection '/v1.0/identity/conditionalAccess/namedLocations' -Task $Task)
             if ($OutDirectory) {
                 New-Item -ItemType Directory -Force -Path $OutDirectory | Out-Null
                 foreach ($id in $export.policies.Keys) { $export.policies[$id] | ConvertTo-Json -Depth 20 | Set-Content -Path (Join-Path $OutDirectory "$id.json") -Encoding utf8NoBOM }
@@ -235,12 +360,12 @@ function Invoke-FmwEntraTask {
             [ordered]@{ summary = $export.summary; counts = $export.counts }
         }
         'pim-report' {
-            Test-FmwPim -RoleDefinitions @(Get-FmwGraphCollection '/v1.0/roleManagement/directory/roleDefinitions?$select=id,templateId,displayName,isBuiltIn') `
-                -Eligibility @(Get-FmwGraphCollection '/v1.0/roleManagement/directory/roleEligibilitySchedules') `
-                -Assignments @(Get-FmwGraphCollection '/v1.0/roleManagement/directory/roleAssignmentSchedules') -PrivilegedRoleIds $PrivilegedRoleIds
+            Test-FmwPim -RoleDefinitions @(Get-FmwGraphCollection '/v1.0/roleManagement/directory/roleDefinitions?$select=id,templateId,displayName,isBuiltIn' -Task $Task) `
+                -Eligibility @(Get-FmwGraphCollection '/v1.0/roleManagement/directory/roleEligibilitySchedules' -Task $Task) `
+                -Assignments @(Get-FmwGraphCollection '/v1.0/roleManagement/directory/roleAssignmentSchedules' -Task $Task) -PrivilegedRoleIds $PrivilegedRoleIds
         }
-        'app-credentials' { Test-FmwAppCredential -Applications @(Get-FmwGraphCollection '/v1.0/applications?$select=id,appId,displayName,passwordCredentials,keyCredentials&$top=999') -AsOf $asOf }
-        'mfa-registration' { Test-FmwMfaRegistration -Details @(Get-FmwGraphCollection '/v1.0/reports/authenticationMethods/userRegistrationDetails') }
+        'app-credentials' { Test-FmwAppCredential -Applications @(Get-FmwGraphCollection '/v1.0/applications?$select=id,appId,displayName,passwordCredentials,keyCredentials&$top=999' -Task $Task) -AsOf $asOf }
+        'mfa-registration' { Test-FmwMfaRegistration -Details @(Get-FmwGraphCollection '/v1.0/reports/authenticationMethods/userRegistrationDetails' -Task $Task) }
     }
 }
 
@@ -436,10 +561,11 @@ function Test-FmwAutopilotProfile {
 
 function Get-FmwIntuneCompliancePolicy {
     <# Each compliance policy with its assignments and per-device statuses embedded (the shape the Test- functions read). #>
-    foreach ($p in @(Get-FmwGraphCollection '/v1.0/deviceManagement/deviceCompliancePolicies?$select=id,displayName')) {
+    param([Parameter(Mandatory)][string]$Task)
+    foreach ($p in @(Get-FmwGraphCollection '/v1.0/deviceManagement/deviceCompliancePolicies?$select=id,displayName' -Task $Task)) {
         $base = "/v1.0/deviceManagement/deviceCompliancePolicies/$($p['id'])"
-        $p['assignments'] = @(Get-FmwGraphCollection "$base/assignments")
-        $p['deviceStatuses'] = @(Get-FmwGraphCollection "$base/deviceStatuses?`$select=$script:StatusSelect")
+        $p['assignments'] = @(Get-FmwGraphCollection "$base/assignments" -Task $Task)
+        $p['deviceStatuses'] = @(Get-FmwGraphCollection "$base/deviceStatuses?`$select=$script:StatusSelect" -Task $Task)
         $p
     }
 }
@@ -453,16 +579,23 @@ function Invoke-FmwIntuneTask {
         [System.Collections.IDictionary]$OsFloors = @{ Windows = '10.0.26100' }
     )
     if ($Task -eq 'autopilot-profiles') {
-        return Test-FmwAutopilotProfile -Identities @(Get-FmwGraphCollection "/beta/deviceManagement/windowsAutopilotDeviceIdentities?`$select=$script:AutopilotSelect")
+        # Beta, read without depending on it: not offered in GCC High or DoD, or a changed beta shape,
+        # gives "not evaluated" instead of a failed run.
+        $beta = Get-FmwBetaCollection -Path "/deviceManagement/windowsAutopilotDeviceIdentities?`$select=$script:AutopilotSelect" -Task $Task
+        if (-not $beta.available) { return [ordered]@{ stage = 'beta'; evaluated = $false; reason = $beta.reason } }
+        $r = [ordered]@{ stage = 'beta'; evaluated = $true }
+        $eval = Test-FmwAutopilotProfile -Identities $beta.items
+        foreach ($k in $eval.Keys) { $r[$k] = $eval[$k] }
+        return $r
     }
-    $devices = @(Get-FmwGraphCollection "/v1.0/deviceManagement/managedDevices?`$select=$script:DeviceSelect")
+    $devices = @(Get-FmwGraphCollection "/v1.0/deviceManagement/managedDevices?`$select=$script:DeviceSelect" -Task $Task)
     switch ($Task) {
-        'noncompliant-devices' { Test-FmwIntuneNoncompliant -Devices $devices -Policies @(Get-FmwIntuneCompliancePolicy) }
-        'compliance-coverage' { Test-FmwIntuneComplianceCoverage -Devices $devices -Policies @(Get-FmwIntuneCompliancePolicy) }
+        'noncompliant-devices' { Test-FmwIntuneNoncompliant -Devices $devices -Policies @(Get-FmwIntuneCompliancePolicy -Task $Task) }
+        'compliance-coverage' { Test-FmwIntuneComplianceCoverage -Devices $devices -Policies @(Get-FmwIntuneCompliancePolicy -Task $Task) }
         'stale-checkin' { Test-FmwIntuneStaleCheckin -Devices $devices -AsOf ([datetimeoffset]::UtcNow) -ValidityDays $ValidityDays -CleanupDays $CleanupDays }
         'device-posture' { Test-FmwIntunePosture -Devices $devices -OsFloors $OsFloors }
     }
 }
 
-Export-ModuleMember -Function Get-FmwCloud, Connect-FmwGraph, Get-FmwGraphCollection, Test-FmwStaleUser, ConvertTo-FmwCaExport, Test-FmwPim, Test-FmwAppCredential, Test-FmwMfaRegistration, Invoke-FmwEntraTask, ConvertTo-FmwUtc, Format-FmwUtc,
+Export-ModuleMember -Function Get-FmwCloud, Connect-FmwGraph, Get-FmwGraphCollection, Get-FmwGraphCall, Get-FmwCallPermission, Assert-FmwGraphCall, Get-FmwBetaCollection, Get-FmwTokenRole, Test-FmwTokenRole,Test-FmwStaleUser, ConvertTo-FmwCaExport, Test-FmwPim, Test-FmwAppCredential, Test-FmwMfaRegistration, Invoke-FmwEntraTask, ConvertTo-FmwUtc, Format-FmwUtc,
     Get-FmwIntunePermission, Test-FmwIntuneNoncompliant, Test-FmwIntuneComplianceCoverage, Test-FmwIntuneStaleCheckin, Test-FmwIntunePosture, Test-FmwAutopilotProfile, Test-FmwVersionBelow, Invoke-FmwIntuneTask

@@ -1,0 +1,45 @@
+{
+  "_comment": "A pinned, unmodified copy of the Learn source pages that hold Microsoft's Logic App definition for Lifecycle Workflows custom task extensions. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn's Logic App definition and authorization policies for Lifecycle Workflows custom task extensions",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/id-governance",
+  "commit": "07cb73d6c6380414eecd040ba5e14c1c94d48b66",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "configure-logic-app-lifecycle-workflows.md 2026-04-08 (commit b1d8035662138137d21c4e1b407e2c89b3408e10); lifecycle-workflow-extensibility.md 2026-04-08 (commit e68f3b7ef18cfa985cd9c75c54f7257adcd9507c)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: the repository's LICENSE. Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/id-governance/configure-logic-app-lifecycle-workflows",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "configure-logic-app-lifecycle-workflows.md": "docs/id-governance/configure-logic-app-lifecycle-workflows.md",
+    "lifecycle-workflow-extensibility.md": "docs/id-governance/lifecycle-workflow-extensibility.md"
+  },
+  "not_copied": [
+    "docs/id-governance/trigger-custom-task.md: the admin center procedure; the chapter links it and uses no code from it.",
+    "docs/id-governance/custom-extension-security.md: security guidance; the chapter links it and uses no code from it.",
+    "Everything else in MicrosoftDocs/entra-docs. Microsoft publishes no GitHub sample, ARM template or Bicep file for this integration (searched October 30, 2026); the definition exists only inside the configure page, so the page is pinned whole."
+  ],
+  "files": {
+    "configure-logic-app-lifecycle-workflows.md": {
+      "bytes": 13496,
+      "sha256": "2723163d991d5eb0ee2c9d23252cb30724a2521f2bce8a8f6b1ea572938042d3",
+      "git_blob": "f918f54a4c5d736df35d9057cef7abd2b3ba2581"
+    },
+    "lifecycle-workflow-extensibility.md": {
+      "bytes": 6919,
+      "sha256": "6836fc1e2eef3501803dc081394f00ced0476195567a62b993b5761d1edc0d07",
+      "git_blob": "e589d2e66fe36a8a7f4a2242c190b3fe3f8d5a3d"
+    },
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "git_blob": "9e841e7a26e4eb057b24511e7b92d42b257a80e5"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2",
+      "git_blob": "b17b032a43088ac7f3d2f3e34a2431c778a95e6f"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# Lifecycle Workflows Logic App: a pinned copy of Learn's definition
+
+This folder is an unmodified copy of two Microsoft Learn source pages: [Configure a Logic App for Lifecycle Workflow use](https://learn.microsoft.com/entra/id-governance/configure-logic-app-lifecycle-workflows), which holds Microsoft's Logic App workflow definition for a custom task extension (a Request trigger with the payload schema, and the callback that resumes the task) and the authorization policies, and [Lifecycle Workflows custom task extension](https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-extensibility), which describes launch and continue, launch and wait, and response authorization. They come from [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs/tree/07cb73d6c6380414eecd040ba5e14c1c94d48b66/docs/id-governance) at commit `07cb73d6c6380414eecd040ba5e14c1c94d48b66` (October 30, 2026); both pages last changed on April 8, 2026. The code is MIT-licensed (`LICENSE-CODE`); `LICENSE` is the repository's documentation license.
+
+**Why the pages, not just the definition.** Microsoft publishes no GitHub sample, ARM template or Bicep file for this integration; the definition exists only inside the Learn page. Pinning the pages byte for byte keeps the copy checkable against upstream. `examples/lifecycle-extensions/tools/lcwext.py` extracts the definition at test time, unmodified, and `tests/test_learn_sample.py` runs it against fakes. The [developer workbook *Building the Attribute-Driven Migration*, Chapter 05](../../../docs/project-plans/developer-workbooks/attribute-driven-migration/05-lifecycle-workflows-custom-extensions.md) links Learn rather than quoting the pages.
+
+**How it stays honest.**
+
+- `snapshot.json` records the upstream repository, path, commit, dates, licenses, and the size, SHA-256 and git blob hash of every file here. Each blob hash matched the upstream tree at the pinned commit when the copy was made. `scripts/tests/test_third_party_snapshots.py` fails if any file is changed, added or removed.
+- The weekly source watch follows commits to the configure page (`lifecycle-workflows-logic-app-commits` in `data/source-watch/feeds.json`) and reports each one in its issue under DW (developer workbooks).
+- To move to a newer upstream commit: review the upstream change, copy the pages from that commit, regenerate `snapshot.json`, rerun `examples/lifecycle-extensions/tests/test_learn_sample.py` and the Chapter 05 labs, and open a pull request. Never edit the files here; changes the program needs go in `examples/lifecycle-extensions`.
+
+These files keep their upstream bytes, line endings included, so the hashes match the upstream commit.

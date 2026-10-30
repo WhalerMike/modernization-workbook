@@ -1,0 +1,13 @@
+{
+  "_comment": "Fictional: GET /identityGovernance/lifecycleWorkflows/workflows/{id}?$expand=tasks for a contoso.example leaver workflow, ordered as Book 03, Chapter 09 asks: block first, then the custom task, then the access removals.",
+  "id": "0d6f5b1c-3a2e-4f7d-9c1b-1e2a3b4c5d01",
+  "category": "leaver",
+  "displayName": "Leaver - separation date",
+  "tasks": [
+    {"executionSequence": 1, "displayName": "Disable user account", "taskDefinitionId": "1dfdfcc7-52fa-4c2e-bf3a-e3919cc12950", "continueOnError": false, "isEnabled": true, "arguments": []},
+    {"executionSequence": 2, "displayName": "Revoke all refresh tokens for user", "taskDefinitionId": "509589a4-0466-4471-829e-49c5e502bdee", "continueOnError": false, "isEnabled": true, "arguments": []},
+    {"executionSequence": 3, "displayName": "CMS - revoke PIV credential", "taskDefinitionId": "4262b724-8dba-4fad-afc3-43fcbb497a0e", "continueOnError": true, "isEnabled": true, "arguments": [{"name": "customTaskExtensionID", "value": "c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e01"}]},
+    {"executionSequence": 4, "displayName": "Remove user from all groups", "taskDefinitionId": "b3a31406-2a15-4c9a-b25b-a658fa5f07fc", "continueOnError": true, "isEnabled": true, "arguments": []},
+    {"executionSequence": 5, "displayName": "Remove all license assignments from user", "taskDefinitionId": "8fa97d28-3e52-4985-b3a9-a1126f9b8b4e", "continueOnError": true, "isEnabled": true, "arguments": []}
+  ]
+}

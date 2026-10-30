@@ -24,7 +24,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from graphkit import CLOUDS, GraphClient, azure_identity_provider  # noqa: E402
+from graphkit import CLOUDS, GraphClient, azure_identity_provider, load_calls, preflight  # noqa: E402
 
 GLOBAL_ADMIN = "62e90394-69f5-4237-9190-012177145e10"  # Global Administrator role template ID
 
@@ -236,7 +236,10 @@ def main(argv: list[str] | None = None) -> int:
     else:
         if not a.tenant:
             p.error("--tenant is required unless --from-json is given")
-        g = GraphClient(a.cloud, azure_identity_provider(a.cloud, a.tenant, a.client, a.cert))
+        # Only this task's declared calls, and a token checked against their permissions first.
+        g = GraphClient(a.cloud, azure_identity_provider(a.cloud, a.tenant, a.client, a.cert), calls=load_calls(a.task))
+        if not preflight(g, PERMISSIONS[a.task], lambda m: print(m, file=sys.stderr)):
+            return 2
         data = {}
         if a.task == "stale-users":
             data["users"] = fetch_users(g)

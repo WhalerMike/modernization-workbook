@@ -1,0 +1,46 @@
+{
+  "_comment": "A pinned, unmodified copy of Microsoft's Graph Python SDK snippets that Learn's national cloud page renders. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Microsoft Graph Python SDK snippets (national clouds and client creation)",
+  "upstream_repo": "https://github.com/microsoftgraph/msgraph-snippets-python",
+  "upstream_path": "src/snippets",
+  "commit": "3ef43818c946ef595e8d90fa6ec63edec1fb3628",
+  "commit_date": "2026-10-20",
+  "files_last_changed": "national_clouds.py: 2024-09-23 (commit 4b0c490b9b5382031a7f59cbb94af81ab2252969)",
+  "retrieved": "2026-10-30",
+  "license": "MIT (LICENSE, copied from the repository root)",
+  "documented_at": "https://learn.microsoft.com/graph/sdks/national-clouds",
+  "also_documented_at": "https://learn.microsoft.com/graph/sdks/choose-authentication-providers",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "README.md": "README.md (repository root)",
+    "requirements.in": "requirements.in (repository root)",
+    "src/snippets/*": "src/snippets/<same name>"
+  },
+  "not_copied": [
+    "src/main.py, src/graph.py and src/config.cfg (an interactive device code sign-in app; the chapter never signs in)",
+    "src/snippets/create_requests.py, src/snippets/custom_clients.py and src/snippets/middleware/ (request and middleware snippets the chapter doesn't use)",
+    "requirements.txt, pylintrc, .github/, .vscode/ and the repository's other housekeeping files"
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1068,
+      "sha256": "86acc66adf31a6428c6e3c70d037df0194c9c37dfb4ea20a33e23a146e44511d"
+    },
+    "README.md": {
+      "bytes": 2889,
+      "sha256": "c69e574ad5adfe4bd7a04ef534201d89b072bba79109f27f5e81e2df5e872799"
+    },
+    "requirements.in": {
+      "bytes": 27,
+      "sha256": "e0e4d84f9a2e9344340da4fa396eae6ed149b0822286fe389b67333969a084b8"
+    },
+    "src/snippets/create_clients.py": {
+      "bytes": 6472,
+      "sha256": "b5b2152da11ce53c9dac056cc24c05b0c04e981cb998900a3286549a40497039"
+    },
+    "src/snippets/national_clouds.py": {
+      "bytes": 1346,
+      "sha256": "1d0bb28af8af19017f71276f565d62868f304416965c25cec0319bf848c39d00"
+    }
+  }
+}

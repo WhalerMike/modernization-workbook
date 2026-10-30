@@ -150,9 +150,23 @@ def test_fetch_compliance_policies_embeds_assignments_and_statuses():
 
 
 def test_fetch_autopilot_uses_beta_on_the_clouds_host():
-    g, fake = client({"/beta/deviceManagement/windowsAutopilotDeviceIdentities?$select=" + it.AUTOPILOT_SELECT: {"value": []}}, cloud="gcchigh")
-    assert it.fetch_autopilot(g) == []
-    assert fake.urls[0].startswith("https://graph.microsoft.us/beta/deviceManagement/windowsAutopilotDeviceIdentities")
+    g, fake = client({"/beta/deviceManagement/windowsAutopilotDeviceIdentities?$select=" + it.AUTOPILOT_SELECT: {"value": [{"id": "ap1"}]}}, cloud="gcc")
+    r = it.fetch_autopilot(g)
+    assert r == {"stage": "beta", "available": True, "items": [{"id": "ap1"}], "reason": ""}
+    assert fake.urls[0].startswith("https://graph.microsoft.com/beta/deviceManagement/windowsAutopilotDeviceIdentities")
+
+
+def test_fetch_autopilot_not_offered_in_gcchigh_makes_no_call():
+    # Intune's government service description lists Windows Autopilot as not available in GCC High and DoD.
+    g, fake = client({}, cloud="gcchigh")
+    r = it.fetch_autopilot(g)
+    assert r["available"] is False and "isn't offered in gcchigh" in r["reason"] and fake.urls == []
+
+
+def test_fetch_autopilot_beta_gone_is_not_evaluated_not_a_crash():
+    g, fake = client({}, cloud="gcc")  # every URL answers 404
+    r = it.fetch_autopilot(g)
+    assert r == {"stage": "beta", "available": False, "items": [], "reason": "Graph 404 NotFound"}
 
 
 def test_cli_from_json(tmp_path, capsys):
