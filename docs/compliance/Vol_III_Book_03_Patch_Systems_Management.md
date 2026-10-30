@@ -68,7 +68,7 @@ channel. That is a complete and correct *reference implementation* — for the
 Azure estate. It is not the whole estate.
 
 A federal agency operating under FedRAMP Moderate typically runs compute on more
-than one authorized platform at once: Azure Government / M365 GCC, **AWS** (GovCloud (US) and
+than one authorized platform at once: Azure (commercial, paired with the M365 GCC tenant), **AWS** (GovCloud (US) and
 commercial Regions, both valid Moderate locations), **Oracle Cloud Infrastructure (OCI)**, on-premises **VMware**, and
 **Red Hat** across all of them. Each platform ships its own patch and
 systems-management stack, each spanning Windows, Linux, and — above the guest OS
