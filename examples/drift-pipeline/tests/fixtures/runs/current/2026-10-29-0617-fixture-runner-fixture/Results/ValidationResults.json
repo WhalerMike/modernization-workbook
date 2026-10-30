@@ -1,0 +1,252 @@
+[
+  {
+    "CheckId": "VK-HR-01",
+    "Track": "HR",
+    "Title": "Enabled member users with no employeeId (uncorrelated), excluding listed exception owners",
+    "Status": "Fail",
+    "Count": 2,
+    "Message": "",
+    "Details": [
+      {
+        "Severity": "Finding",
+        "Object": "dave@contoso.example",
+        "ObjectId": "00000000-0000-4000-8000-000000000007",
+        "Issue": "No employeeId: not correlated to an HR record",
+        "Detail": ""
+      },
+      {
+        "Severity": "Finding",
+        "Object": "gina@contoso.example",
+        "ObjectId": "00000000-0000-4000-8000-000000000011",
+        "Issue": "No employeeId: not correlated to an HR record",
+        "Detail": ""
+      }
+    ],
+    "Evidence": {
+      "Mode": "Fixture",
+      "Source": "Graph",
+      "Queries": [],
+      "Permissions": [
+        "User.Read.All"
+      ],
+      "AzureRole": "",
+      "Stage": "v1.0",
+      "AsOfUtc": "2026-10-29T06:17:00Z",
+      "CollectedAtUtc": "2026-10-29T06:17:00Z"
+    }
+  },
+  {
+    "CheckId": "VK-HR-02",
+    "Track": "HR",
+    "Title": "Coded attribute slots empty on enabled members",
+    "Status": "Fail",
+    "Count": 2,
+    "Message": "Slots checked: extensionAttribute10, extensionAttribute11, extensionAttribute12",
+    "Details": [
+      {
+        "Severity": "Finding",
+        "Object": "dave@contoso.example",
+        "ObjectId": "00000000-0000-4000-8000-000000000007",
+        "Issue": "Coded attribute slot empty",
+        "Detail": "Missing=extensionAttribute12"
+      },
+      {
+        "Severity": "Finding",
+        "Object": "erin@contoso.example",
+        "ObjectId": "00000000-0000-4000-8000-000000000008",
+        "Issue": "Coded attribute slot empty",
+        "Detail": "Missing=extensionAttribute10,extensionAttribute11"
+      }
+    ],
+    "Evidence": {
+      "Mode": "Fixture",
+      "Source": "Graph",
+      "Queries": [],
+      "Permissions": [
+        "User.Read.All"
+      ],
+      "AzureRole": "",
+      "Stage": "v1.0",
+      "AsOfUtc": "2026-10-29T06:17:00Z",
+      "CollectedAtUtc": "2026-10-29T06:17:00Z"
+    }
+  },
+  {
+    "CheckId": "VK-DG-01",
+    "Track": "DG",
+    "Title": "User rules without the accountEnabled and userType guards",
+    "Status": "Fail",
+    "Count": 2,
+    "Message": "",
+    "Details": [
+      {
+        "Severity": "Finding",
+        "Object": "Finance (legacy)",
+        "ObjectId": "00000000-0000-4000-8000-000000000106",
+        "Issue": "User rule lacks the guards every access rule needs",
+        "Detail": "Missing=accountEnabled,userType"
+      },
+      {
+        "Severity": "Finding",
+        "Object": "All staff (nested)",
+        "ObjectId": "00000000-0000-4000-8000-000000000108",
+        "Issue": "User rule lacks the guards every access rule needs",
+        "Detail": "Missing=accountEnabled,userType"
+      }
+    ],
+    "Evidence": {
+      "Mode": "Fixture",
+      "Source": "Graph",
+      "Queries": [],
+      "Permissions": [
+        "Group.Read.All"
+      ],
+      "AzureRole": "",
+      "Stage": "v1.0",
+      "AsOfUtc": "2026-10-29T06:17:00Z",
+      "CollectedAtUtc": "2026-10-29T06:17:00Z"
+    }
+  },
+  {
+    "CheckId": "VK-INT-05",
+    "Track": "INT",
+    "Title": "Devices reached by more than one policy of the same type",
+    "Status": "Warn",
+    "Count": 1,
+    "Message": "",
+    "Details": [
+      {
+        "Severity": "Warn",
+        "Object": "PC-001",
+        "ObjectId": "00000000-0000-4000-8000-000000000200",
+        "Issue": "Reached by more than one policy of the same type (conflict candidate)",
+        "Detail": "Policies=Win11 general (pilot),Win11 general (Tier2)"
+      }
+    ],
+    "Evidence": {
+      "Mode": "Fixture",
+      "Source": "Graph",
+      "Queries": [],
+      "Permissions": [
+        "DeviceManagementConfiguration.Read.All"
+      ],
+      "AzureRole": "",
+      "Stage": "v1.0",
+      "AsOfUtc": "2026-10-29T06:17:00Z",
+      "CollectedAtUtc": "2026-10-29T06:17:00Z"
+    }
+  },
+  {
+    "CheckId": "VK-ARC-02",
+    "Track": "ARC",
+    "Title": "Arc servers disconnected, expired or on an unsupported agent",
+    "Status": "Fail",
+    "Count": 1,
+    "Message": "Minimum supported agent 1.58",
+    "Details": [
+      {
+        "Severity": "Finding",
+        "Object": "srv-old01",
+        "ObjectId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-old01",
+        "Issue": "Status Disconnected; Agent 1.40.02664.1 older than 1.58",
+        "Detail": "Status=Disconnected; Agent=1.40.02664.1"
+      }
+    ],
+    "Evidence": {
+      "Mode": "Fixture",
+      "Source": "ResourceGraph",
+      "Queries": [],
+      "Permissions": [],
+      "AzureRole": "Reader",
+      "Stage": "GA",
+      "AsOfUtc": "2026-10-29T06:17:00Z",
+      "CollectedAtUtc": "2026-10-29T06:17:00Z"
+    }
+  },
+  {
+    "CheckId": "VK-NPI-01",
+    "Track": "NPI",
+    "Title": "App registrations and service principals with fewer than two owners",
+    "Status": "Fail",
+    "Count": 2,
+    "Message": "Minimum human owners: 2",
+    "Details": [
+      {
+        "Severity": "Finding",
+        "Object": "Report Bot",
+        "ObjectId": "aaaaaaaa-0000-4000-8000-000000000303",
+        "Issue": "App registration with 1 owner(s), fewer than 2",
+        "Detail": "ObjectType=Application; Owners=1"
+      },
+      {
+        "Severity": "Finding",
+        "Object": "Report Bot",
+        "ObjectId": "aaaaaaaa-0000-4000-8000-000000000303",
+        "Issue": "Service principal with 1 owner(s), fewer than 2",
+        "Detail": "ObjectType=ServicePrincipal; Owners=1"
+      }
+    ],
+    "Evidence": {
+      "Mode": "Fixture",
+      "Source": "Graph",
+      "Queries": [],
+      "Permissions": [
+        "Application.Read.All"
+      ],
+      "AzureRole": "",
+      "Stage": "v1.0",
+      "AsOfUtc": "2026-10-29T06:17:00Z",
+      "CollectedAtUtc": "2026-10-29T06:17:00Z"
+    }
+  },
+  {
+    "CheckId": "VK-NPI-03",
+    "Track": "NPI",
+    "Title": "Client secrets past the maximum lifetime",
+    "Status": "Error",
+    "Count": 0,
+    "Message": "Response status code does not indicate success: 403 (Forbidden).",
+    "Details": [],
+    "Evidence": {
+      "Mode": "Fixture",
+      "Source": "Graph",
+      "Queries": [],
+      "Permissions": [
+        "Application.Read.All"
+      ],
+      "AzureRole": "",
+      "Stage": "v1.0",
+      "AsOfUtc": "2026-10-29T06:17:00Z",
+      "CollectedAtUtc": "2026-10-29T06:17:00Z"
+    }
+  },
+  {
+    "CheckId": "VK-CA-01",
+    "Track": "CA",
+    "Title": "Conditional Access personas: emergency-access group excluded, only governed groups targeted",
+    "Status": "Fail",
+    "Count": 1,
+    "Message": "4 user-targeting policy(ies) read",
+    "Details": [
+      {
+        "Severity": "Finding",
+        "Object": "Require MFA",
+        "ObjectId": "ca-users",
+        "Issue": "Emergency-access group not excluded",
+        "Detail": "State=enabled; MissingExclusions=00000000-0000-4000-8000-000000000900"
+      }
+    ],
+    "Evidence": {
+      "Mode": "Fixture",
+      "Source": "Graph",
+      "Queries": [],
+      "Permissions": [
+        "Policy.Read.All"
+      ],
+      "AzureRole": "",
+      "Stage": "v1.0",
+      "AsOfUtc": "2026-10-29T06:17:00Z",
+      "CollectedAtUtc": "2026-10-29T06:17:00Z"
+    }
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "schema": "fmp-hcm-provenance/1",
+  "as_of": "2026-10-30",
+  "extract_sha256": "ca06b111d5fdd45b8355952d0a9beb403eb442af61a6f4a5dc0f0ef9bb643344",
+  "mapping_sha256": "f3c9f3bfe786be3296c3eb94dc0b6fb46c49cc500859682175649fb5472cd424",
+  "counts": {
+    "ready": 9,
+    "quarantined": 9,
+    "superseded": 1
+  },
+  "held": false,
+  "batches": [
+    {
+      "batch": 1,
+      "batch_sha256": "419d719f12756d6442ff0e944d148794264989320c4774dd3a91882a5e444b59",
+      "person_keys": [
+        "100003",
+        "100008",
+        "100013",
+        "100000",
+        "100001",
+        "100004",
+        "100005",
+        "100002",
+        "100011"
+      ]
+    }
+  ],
+  "quarantined": [
+    "100006",
+    "100007",
+    "(missing)",
+    "12345678901234567",
+    "100009",
+    "100010",
+    "100014",
+    "100015",
+    "100016"
+  ]
+}

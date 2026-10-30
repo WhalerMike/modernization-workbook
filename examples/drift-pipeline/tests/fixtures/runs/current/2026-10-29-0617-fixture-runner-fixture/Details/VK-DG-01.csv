@@ -1,0 +1,3 @@
+"Severity","Object","ObjectId","Issue","Detail"
+"Finding","Finance (legacy)","00000000-0000-4000-8000-000000000106","User rule lacks the guards every access rule needs","Missing=accountEnabled,userType"
+"Finding","All staff (nested)","00000000-0000-4000-8000-000000000108","User rule lacks the guards every access rule needs","Missing=accountEnabled,userType"

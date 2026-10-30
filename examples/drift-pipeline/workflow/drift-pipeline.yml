@@ -1,0 +1,189 @@
+# Drift checks and evidence for the ISSO: a sample workflow for a GCC tenant with commercial Azure.
+#
+# Illustrative. This file is NOT active in the modernization-workbook repository: it lives under
+# examples/, not .github/workflows/. Copy it into the estate's own repository, review every line,
+# and run it there first against a test tenant (Chapter 09, Lab 2). It is checked offline by
+# python/workflow_lint.py and tests/test_workflow_lint.py; it has not been run against Azure.
+#
+# What it does, once a day and on demand:
+#   1. signs in with a federated credential (OIDC): no client secret anywhere;
+#   2. runs the validation kit read-only (GET only) against Microsoft Graph and Azure Resource Graph;
+#   3. fetches the previous evidence package, verifies it, and compares the two runs;
+#   4. packages the run, the drift report and the other kits' provenance with a SHA-256 per file,
+#      chained to the previous package, and writes it to an immutable container;
+#   5. in a second job with no Azure access, opens issues for new, changed and unverified
+#      findings and closes the ones a later run shows resolved.
+#
+# GCC uses the worldwide endpoints (login.microsoftonline.com, graph.microsoft.com, AzureCloud,
+# audience api://AzureADTokenExchange). For GCC High set CLOUD: gcchigh, GRAPH_HOST:
+# https://graph.microsoft.us, MG_ENVIRONMENT: USGov, and on azure/login environment:
+# AzureUSGovernment with audience: api://AzureADTokenExchangeUSGov. DoD is the same except
+# CLOUD: dod, GRAPH_HOST: https://dod-graph.microsoft.us and MG_ENVIRONMENT: USGovDoD.
+# `python python/drift_pipeline.py cloud --name <cloud>` prints the values.
+#
+# Repository settings it expects (identifiers, not credentials):
+#   secrets AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID (Learn's sample keeps them as secrets)
+#   variables EVIDENCE_STORAGE_ACCOUNT, AZ_PS_VERSION, GRAPH_PS_VERSION (exact versions, never "latest")
+#   an environment named drift-gcc, deployable only from the default branch; the app's federated
+#   credential subject is repo:<owner>/<repo>:environment:drift-gcc.
+
+name: Drift checks and evidence (GCC)
+
+on:
+  schedule:
+    - cron: "17 6 * * *"        # 06:17 UTC daily; off the hour, when GitHub's load is lower
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: drift-gcc
+  cancel-in-progress: false
+
+env:
+  CLOUD: gcc
+  GRAPH_HOST: https://graph.microsoft.com
+  MG_ENVIRONMENT: Global
+  EVIDENCE_ACCOUNT: ${{ vars.EVIDENCE_STORAGE_ACCOUNT }}
+  EVIDENCE_CONTAINER: drift-evidence
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    environment: drift-gcc
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      id-token: write
+    outputs:
+      run_id: ${{ steps.run.outputs.run_id }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Sign in with the federated credential
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3.1.0
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          environment: AzureCloud
+          audience: api://AzureADTokenExchange
+          enable-AzPSSession: true
+
+      - name: Run the read-only checks
+        uses: azure/powershell@f5b8adcfff1904872c7b98d4012d4914d74b1a82 # v3.0.0
+        with:
+          azPSVersion: ${{ vars.AZ_PS_VERSION }}
+          inlineScript: |
+            Install-Module Microsoft.Graph.Authentication -RequiredVersion $env:GRAPH_PS_VERSION -Scope CurrentUser -Force
+            # The Graph token comes from the same federated sign-in; it never touches disk or the log.
+            $token = Get-AzAccessToken -ResourceUrl $env:GRAPH_HOST -AsSecureString
+            Connect-MgGraph -AccessToken $token.Token -Environment $env:MG_ENVIRONMENT -NoWelcome
+            ./examples/validation-kit/Invoke-ValidationKit.ps1 -OutputPath runs -Cloud $env:CLOUD -SkipConnect -SkipAD -InputPath inputs | Out-Null
+        env:
+          GRAPH_PS_VERSION: ${{ vars.GRAPH_PS_VERSION }}
+
+      - name: Name the run
+        id: run
+        run: |
+          run_id=$(ls runs | sort | tail -n 1)
+          test -n "$run_id"
+          echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch and verify the previous evidence package
+        run: |
+          mkdir -p previous provenance
+          prev=$(az storage blob list --account-name "$EVIDENCE_ACCOUNT" --container-name "$EVIDENCE_CONTAINER" \
+                   --auth-mode login --prefix runs/ --num-results "*" \
+                   --query "[?ends_with(name, '/EVIDENCE-MANIFEST.json')].name" -o tsv | sort | tail -n 1)
+          if [ -n "$prev" ]; then
+            prev_id=$(basename "$(dirname "$prev")")
+            az storage blob download-batch --account-name "$EVIDENCE_ACCOUNT" --source "$EVIDENCE_CONTAINER" \
+              --auth-mode login --pattern "runs/$prev_id/*" --destination previous
+            python examples/drift-pipeline/python/drift_pipeline.py verify "previous/runs/$prev_id"
+            echo "PREV_ID=$prev_id" >> "$GITHUB_ENV"
+          fi
+          # Each kit's own pipeline writes its latest provenance file here.
+          az storage blob download-batch --account-name "$EVIDENCE_ACCOUNT" --source "$EVIDENCE_CONTAINER" \
+            --auth-mode login --pattern "provenance/*" --destination .
+
+      - name: Compare with the previous run
+        run: |
+          set +e
+          if [ -n "${PREV_ID:-}" ]; then
+            python examples/drift-pipeline/python/drift_pipeline.py compare \
+              --previous "previous/runs/$PREV_ID/kit-run" --current "runs/${{ steps.run.outputs.run_id }}" --out drift
+          else
+            python examples/drift-pipeline/python/drift_pipeline.py compare \
+              --current "runs/${{ steps.run.outputs.run_id }}" --out drift
+          fi
+          rc=$?
+          set -e
+          # 0 no drift, 2 drift: both go on to the evidence. 1 is a refusal and stops the run.
+          [ "$rc" -eq 0 ] || [ "$rc" -eq 2 ]
+
+      - name: Package the evidence
+        run: |
+          prev_args=()
+          if [ -n "${PREV_ID:-}" ]; then prev_args=(--previous-manifest "previous/runs/$PREV_ID/EVIDENCE-MANIFEST.json"); fi
+          python examples/drift-pipeline/python/drift_pipeline.py package \
+            --kit-run "runs/${{ steps.run.outputs.run_id }}" --diff drift/drift-report.json \
+            --provenance hcm-entra=provenance/hcm-entra/provenance.json \
+            --provenance machine-configuration=provenance/machine-configuration/provenance.json \
+            --provenance dynamic-rules=provenance/dynamic-rules/check-results.json \
+            "${prev_args[@]}" --meta-from-env --out evidence
+          python examples/drift-pipeline/python/drift_pipeline.py verify "evidence/${{ steps.run.outputs.run_id }}"
+
+      - name: Write the package to the immutable container
+        run: |
+          # No --overwrite: a package is written once. The container's locked time-based
+          # retention policy keeps it from being changed or deleted.
+          az storage blob upload-batch --account-name "$EVIDENCE_ACCOUNT" --destination "$EVIDENCE_CONTAINER" \
+            --auth-mode login --source evidence --destination-path runs
+
+      - name: Hand the drift report to the findings job
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: drift-report
+          path: drift/drift-report.json
+          retention-days: 7
+
+  findings:
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Get the drift report
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: drift-report
+          path: drift
+
+      - name: Open and close findings
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python examples/drift-pipeline/python/drift_pipeline.py issues --diff drift/drift-report.json --out drift/issues.json
+          jq -c '.[]' drift/issues.json | while read -r item; do
+            action=$(jq -r .action <<<"$item"); fp=$(jq -r .fingerprint <<<"$item")
+            existing=$(gh issue list --state open --label drift --search "$fp in:body" --json number --jq '.[0].number')
+            if [ "$action" = "comment" ] && [ -n "$existing" ]; then
+              gh issue comment "$existing" --body "$(jq -r .body <<<"$item")"
+            elif [ "$action" != "close" ] && [ -z "$existing" ]; then
+              gh issue create --title "$(jq -r .title <<<"$item")" --body "$(jq -r .body <<<"$item")" \
+                $(jq -r '.labels[] | "--label " + .' <<<"$item")
+            elif [ "$action" = "close" ] && [ -n "$existing" ]; then
+              gh issue close "$existing" --comment "$(jq -r .body <<<"$item")"
+            fi
+          done

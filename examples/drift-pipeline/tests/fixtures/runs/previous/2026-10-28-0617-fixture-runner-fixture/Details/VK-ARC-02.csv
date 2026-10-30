@@ -1,0 +1,2 @@
+"Severity","Object","ObjectId","Issue","Detail"
+"Finding","srv-old01","/subscriptions/22222222-2222-4222-8222-222222222222/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-old01","Agent 1.40.02664.1 older than 1.58","Status=Connected; Agent=1.40.02664.1"
