@@ -124,3 +124,13 @@ The workbook targets FedRAMP Moderate civilian agencies. Configuration authority
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | MS-1 | GovCloud (US) is a valid Moderate location, so the missing VPC IPAM–Infoblox integration there is a Moderate concern; mixed GovCloud/commercial estates automate only the commercial side | Amazon VPC IPAM paragraph | design (labelled); GovCloud-at-Moderate per fact pack fact 12 | c07-awsipam (existing); AWS FedRAMP pages (fact pack) |
+
+## Addition, October 30, 2026: IPAM feeds the Teams emergency location map
+
+One bullet added to "Operational implications." Microsoft Learn page opened on Oct 30, 2026 through the Learn MCP fetch.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| TL-1 | Dynamic emergency calling matches the client's network against subnets, access points and switches in the LIS | Operational implications | verified | c07-teams-lis |
+| TL-2 | LIS computes the network ID from client address and reported prefix; must match a configured subnet; site subnets must be redefined in LIS; changes take up to four hours | Same | verified | c07-teams-lis |
+| TL-3 | IPAM is the source for LIS subnet entries; subnet changes raise a network-to-location change in the Teams Phone catalog; VPN pools stay out | Same | restated-as-design (links Book 15 Ch05 and Book 09 Ch05) | — |
