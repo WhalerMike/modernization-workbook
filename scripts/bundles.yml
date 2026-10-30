@@ -55,6 +55,11 @@ bundles:
     subtitle: "A cross-book reference guide — Federal Modernization Workbook companion guide"
     root: docs/books/guides
     pages: [attribute-driven-migration.md]
+  - output: attribute-driven-migration-implementation-guide.docx
+    title: "Attribute-Driven Migration: An Implementation Guide"
+    subtitle: "The cross-track implementation guide — Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [attribute-driven-migration-implementation.md]
   - output: intune-track-implementation-guide.docx
     title: "Intune Track Implementation: Attribute-Driven Management of End-User Devices"
     subtitle: "A track implementation guide — Federal Modernization Workbook companion guide"

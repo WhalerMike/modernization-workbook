@@ -125,8 +125,14 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 
 | This plan's item | When | Linked plan | Relationship | Float or margin |
 |---|---|---|---|---|
+| D-I1  Enterprise person key, and how source keys map to it | end of wk 1 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-DI1) | Waits for it | 3 d |
+| I1.2  Attribute authority map signed | wk 3 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-I12) | Waits for it | 2 d |
+| I1.5  HR data baselined; employeeId populated; orphan candidates owned | wk 2–4 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-I15) | Waits for it | 20 d |
+| IG3  Gate 3 — HR feed live for the foundation scope | end of wk 8 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-IG3) | Waits for it | 4 d |
 | IG3  Gate 3 — HR feed live for the foundation scope | end of wk 8 | [Program master schedule](program-master-schedule.md) (X-IDL) | Waits for it | 2 d |
+| I4.3  Joiner and mover automation; rehire and conversion matching validated | wk 10–12 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-I43) | Waits for it | 14 d |
 | IG4  Gate 4 — Lifecycle automated | end of wk 16 | [Non-Person Identity Modernization](non-person-identity.md) (X-IG4) | Waits for it | 60 d |
+| IG5  Gate 5 — Populations cloud-mastered | end of wk 26 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-IG5) | Reference only | — |
 
 : Plans that take a date from this one {.striped .hover}
 

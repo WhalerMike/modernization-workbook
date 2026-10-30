@@ -24,6 +24,8 @@ What the migration accomplishes and how you know you're there, and the four trac
 **[attribute-driven-migration-guide.docx](../../../downloads/attribute-driven-migration-guide.docx)**: this guide as a Word document, regenerated on every site deploy.
 
 **Technical deep dive, in two parts (about 18 minutes narrated each)**: Part 1 covers the model and the HR track (the four tracks, the end state, the federal requirements, the attributes primer, sourcing and proving the attributes, dynamic user groups, administrative units and Conditional Access); Part 2 covers devices, servers and non-person identities, PIV and CAC binding, and running the migration. Both are on the [Presentations](../../presentations/index.md#technical-attribute-driven-migration) page.
+
+**Step by step, the shared foundation**: [Attribute-Driven Migration: An Implementation Guide](attribute-driven-migration-implementation.md) runs the stages the four tracks share as ten gates, in the decks' order, each with the validation kit check that proves it, and the [Attribute-Driven Migration project plan](../../project-plans/attribute-driven-migration.md) schedules them against the track plans and the program's gates.
 :::
 
 ## How to read this guide
@@ -88,7 +90,7 @@ One Active Directory OU tree holds four different populations of identity: the p
 - **What each track's tools cover, including non-Microsoft platforms, AWS, Google Cloud and VMware, and the strategy for what they don't:** [Intune coverage](#intune-coverage) and [Arc coverage](#arc-coverage).
 - **Non-person:** service accounts in [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#service-accounts) ("Service accounts" and [Modernizing service accounts](../b02-identity/09-building-the-entra-target.md#modernizing-service-accounts)); SQL Server service accounts and application principals in [Book 06](../b06-data-platform/09-what-arc-provides-to-sql-server.md#the-managed-identity-and-the-service-account); AI agents in [Book 17](../b17-ai-identity/index.md); service principal attributes in [this guide's non-person identity track](#non-person-identity-track).
 
-**Step by step, the HR track:** the stages below, built through [Building Book 03's HR Pipeline](../../research/hcm-entra-implementation.md) as its implementation guide (research, under review) and scheduled in the [Identity Lifecycle & Provisioning plan](../../project-plans/identity-lifecycle.md).
+**Step by step, the HR track:** the stages below, built through [Building Book 03's HR Pipeline](../../research/hcm-entra-implementation.md) as its implementation guide (research, under review) and scheduled in the [Identity Lifecycle & Provisioning plan](../../project-plans/identity-lifecycle.md). What the four tracks share (the schema and slots, the proof, sync, the group library and units, the personas, PIV binding, the mover proof, the cut-over and drift) runs as ten gates in [Attribute-Driven Migration: An Implementation Guide](attribute-driven-migration-implementation.md), scheduled in the [Attribute-Driven Migration plan](../../project-plans/attribute-driven-migration.md).
 
 ## Attributes: what you know from AD, and what Entra ID gives you {#attributes}
 
@@ -415,7 +417,7 @@ The stages above move people. This section is the home of the other three [track
 
 **Done when** *(design guidance)*: every managed device carries attributes written by provisioning, its policy is targeted by them, and computer-side GPO links are disabled population by population, with rollback tested ([Book 05's gates](../b05-devices/08-gpo-to-intune-policy-migration.md#testing-at-each-gate)). **Federal requirement:** CM-2, CM-6, CM-8 and IA-3, and M-22-09's device inventory and signal ([mapping](#federal-requirements)).
 
-**Step by step:** the [Intune Track Implementation guide](intune-track-implementation.md) runs this track as seven gates, each with the validation kit checks that prove it.
+**Step by step:** the [Intune Track Implementation guide](intune-track-implementation.md) runs this track as seven gates, each with the validation kit checks that prove it. The device targeting conventions it builds on are set in [Gate 5 of the Attribute-Driven Migration implementation guide](attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions).
 
 **What Microsoft documents for targeting by attribute: yes.**
 
@@ -457,7 +459,7 @@ Intune isn't only for Microsoft platforms: it manages Apple, Android and Linux d
 
 **Done when** *(design guidance)*: every in-scope server is Arc-enabled with its tag taxonomy applied, and its baseline is assigned and evaluated by Azure Policy ([the day-one baseline](../b05-devices/09-servers-under-azure-arc.md#the-day-one-baseline)). **Federal requirement:** CM-2, CM-6 and CM-8; IA-9 for the server's workload identity ([mapping](#federal-requirements)).
 
-**Step by step:** the [Azure Arc Track: Implementation Guide](arc-track-implementation.md) runs this track as eight gated steps, and the [Endpoint & Device plan's Phase 4](../../project-plans/endpoint-device.md#phase-4-servers-under-azure-arc) schedules it.
+**Step by step:** the [Azure Arc Track: Implementation Guide](arc-track-implementation.md) runs this track as eight gated steps, and the [Endpoint & Device plan's Phase 4](../../project-plans/endpoint-device.md#phase-4-servers-under-azure-arc) schedules it. The server targeting conventions it builds on are set in [Gate 5 of the Attribute-Driven Migration implementation guide](attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions).
 
 **What Microsoft documents for targeting by attribute: yes, through Azure Resource Manager.**
 
@@ -513,7 +515,7 @@ The tiers are how the inventory meets CM-8, System Component Inventory, in the p
 
 **Done when** *(design guidance)*: every service account and service principal has an owner and sponsor, a reason and a target; each one is retired, re-platformed to a managed identity or gMSA, or made a certificate or federated-credential workload identity; none holds a password that never expires, and none is orphaned. Book 02's Phase 4 is the gate for service accounts ([Chapter 10](../b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)). **Federal requirement:** AC-2, AC-6(5), IA-4, IA-5 and IA-9, and M-25-21 for AI ([mapping](#federal-requirements)).
 
-**Step by step:** [Non-Person Identity: An Implementation Guide](non-person-identity-implementation.md) runs this track as six gated steps, and the [Non-Person Identity Modernization plan](../../project-plans/non-person-identity.md) schedules it.
+**Step by step:** [Non-Person Identity: An Implementation Guide](non-person-identity-implementation.md) runs this track as six gated steps, and the [Non-Person Identity Modernization plan](../../project-plans/non-person-identity.md) schedules it. Owners and sponsors are recorded by the enterprise person key, a convention set in [Gate 5 of the Attribute-Driven Migration implementation guide](attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions).
 
 #### Service accounts, MSAs, gMSAs and dMSAs
 

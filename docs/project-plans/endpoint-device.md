@@ -127,6 +127,16 @@ Each gate is the next phase's entry condition. The approver signs it against the
 - **X-P37, Every server Arc-connected or excepted (program P3.7),** is P3.7 in the [Program master schedule](program-master-schedule.md) plan (Every server Arc-connected or excepted), end of wk 28. This plan must finish EG4 by then: a margin of 5 d. The program's G3 fails its every-server-Arc-connected-or-excepted criterion.
 - **X-D08, Program decision D08: end dates for legacy authentication and NTLM,** is D08 in the [Program master schedule](program-master-schedule.md) plan (End dates for legacy authentication and NTLM), end of wk 16. This plan waits for it; it can slip 119 d before it moves this plan. NTLM stage 3 has no date for application owners to plan against.
 
+Other plans that take a date from this one. *Waits for it*: that plan can't move until this item finishes, and its float says how far this item can slip before it moves that plan. *Must finish by it*: that plan's work has to be done before this item, and the margin says by how much.
+
+| This plan's item | When | Linked plan | Relationship | Float or margin |
+|---|---|---|---|---|
+| EG0  Gate 0 — Observation signed off | end of wk 4 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-EG0) | Must finish A0.4 by it | 8 d margin |
+| E4.2  Tag taxonomy fixed from the asset record: Environment, Workload, Criticality, Owner, CostCenter, PatchGroup, ArcOnboardedDate; SQL Server opt-out tag where needed | wk 5 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-E42) | Must finish A5.3 by it | 6 d margin |
+| start of E1.2  Policy library built unassigned: compliance, configuration, endpoint security, app protection; groups, filters and scope tags | wk 5–7 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-E12) | Must finish A5.2 by it | 4 d margin |
+
+: Plans that take a date from this one {.striped .hover}
+
 ## Work breakdown and schedule
 
 Every row, by phase. *Float* is total float in working days; **bold** rows are on the critical path. Each row links to the chapter it comes from.
