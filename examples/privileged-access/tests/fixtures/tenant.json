@@ -1,0 +1,148 @@
+{
+  "_comment": "A fictional tenant (contoso.example, initial domain contosoexample.onmicrosoft.com) for the fake Graph and Resource Manager. Every name and ID is invented. roleAssignments is what Learn's List role assignments sample reads (active assignments only); the other collections are what the example reads.",
+  "roleDefinitions": [
+    { "id": "62e90394-69f5-4237-9190-012177145e10", "templateId": "62e90394-69f5-4237-9190-012177145e10", "displayName": "Global Administrator", "isBuiltIn": true },
+    { "id": "e8611ab8-c189-46e8-94e1-60213ab1f814", "templateId": "e8611ab8-c189-46e8-94e1-60213ab1f814", "displayName": "Privileged Role Administrator", "isBuiltIn": true },
+    { "id": "194ae4cb-b126-40b2-bd5b-6091b380977d", "templateId": "194ae4cb-b126-40b2-bd5b-6091b380977d", "displayName": "Security Administrator", "isBuiltIn": true },
+    { "id": "29232cdf-9323-42fd-ade2-1d097af3e4de", "templateId": "29232cdf-9323-42fd-ade2-1d097af3e4de", "displayName": "Exchange Administrator", "isBuiltIn": true },
+    { "id": "729827e3-9c14-49f7-bb1b-9608f156bbb8", "templateId": "729827e3-9c14-49f7-bb1b-9608f156bbb8", "displayName": "Helpdesk Administrator", "isBuiltIn": true },
+    { "id": "fe930be7-5e62-47db-91af-98c3a49a38b1", "templateId": "fe930be7-5e62-47db-91af-98c3a49a38b1", "displayName": "User Administrator", "isBuiltIn": true },
+    { "id": "c0000000-0000-4000-8000-000000000001", "templateId": "c0000000-0000-4000-8000-000000000001", "displayName": "Contoso Directory Writer", "isBuiltIn": false }
+  ],
+  "roleAssignments": [
+    { "id": "ra-ea01-ga", "principalId": "0e000000-0000-4000-8000-000000000001", "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10", "directoryScopeId": "/" },
+    { "id": "ra-ea02-ga", "principalId": "0e000000-0000-4000-8000-000000000002", "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10", "directoryScopeId": "/" },
+    { "id": "ra-alex-ga", "principalId": "a0000000-0000-4000-8000-000000000001", "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10", "directoryScopeId": "/" },
+    { "id": "ra-sp-exo", "principalId": "5e000000-0000-4000-8000-000000000001", "roleDefinitionId": "29232cdf-9323-42fd-ade2-1d097af3e4de", "directoryScopeId": "/" },
+    { "id": "ra-gina-sec", "principalId": "a0000000-0000-4000-8000-000000000006", "roleDefinitionId": "194ae4cb-b126-40b2-bd5b-6091b380977d", "directoryScopeId": "/" },
+    { "id": "ra-prv-t2-ua", "principalId": "9e000000-0000-4000-8000-000000000008", "roleDefinitionId": "fe930be7-5e62-47db-91af-98c3a49a38b1", "directoryScopeId": "/administrativeUnits/7a000000-0000-4000-8000-000000000002" }
+  ],
+  "roleAssignmentScheduleInstances": [
+    { "id": "rasi-ea01-ga", "principalId": "0e000000-0000-4000-8000-000000000001", "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10", "directoryScopeId": "/", "startDateTime": null, "endDateTime": null, "assignmentType": "Assigned", "memberType": "Direct",
+      "principal": { "@odata.type": "#microsoft.graph.user", "id": "0e000000-0000-4000-8000-000000000001", "displayName": "Emergency Access 01", "userPrincipalName": "ea01@contosoexample.onmicrosoft.com" } },
+    { "id": "rasi-ea02-ga", "principalId": "0e000000-0000-4000-8000-000000000002", "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10", "directoryScopeId": "/", "startDateTime": "2026-07-01T00:00:00Z", "endDateTime": "2026-12-31T00:00:00Z", "assignmentType": "Assigned", "memberType": "Direct",
+      "principal": { "@odata.type": "#microsoft.graph.user", "id": "0e000000-0000-4000-8000-000000000002", "displayName": "Emergency Access 02", "userPrincipalName": "ea02@contoso.example" } },
+    { "id": "rasi-alex-ga", "principalId": "a0000000-0000-4000-8000-000000000001", "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10", "directoryScopeId": "/", "startDateTime": null, "endDateTime": null, "assignmentType": "Assigned", "memberType": "Direct",
+      "principal": { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000001", "displayName": "Alex Kim", "userPrincipalName": "alex.kim@contoso.example" } },
+    { "id": "rasi-sp-exo", "principalId": "5e000000-0000-4000-8000-000000000001", "roleDefinitionId": "29232cdf-9323-42fd-ade2-1d097af3e4de", "directoryScopeId": "/", "startDateTime": null, "endDateTime": null, "assignmentType": "Assigned", "memberType": "Direct",
+      "principal": { "@odata.type": "#microsoft.graph.servicePrincipal", "id": "5e000000-0000-4000-8000-000000000001", "displayName": "Contoso-Mail-Automation" } },
+    { "id": "rasi-gina-sec", "principalId": "a0000000-0000-4000-8000-000000000006", "roleDefinitionId": "194ae4cb-b126-40b2-bd5b-6091b380977d", "directoryScopeId": "/", "startDateTime": "2026-10-30T14:00:00Z", "endDateTime": "2026-10-30T18:00:00Z", "assignmentType": "Activated", "memberType": "Direct",
+      "principal": { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000006", "displayName": "Gina Lee", "userPrincipalName": "gina.lee@contoso.example" } },
+    { "id": "rasi-prv-t2-ua", "principalId": "9e000000-0000-4000-8000-000000000008", "roleDefinitionId": "fe930be7-5e62-47db-91af-98c3a49a38b1", "directoryScopeId": "/administrativeUnits/7a000000-0000-4000-8000-000000000002", "startDateTime": null, "endDateTime": null, "assignmentType": "Assigned", "memberType": "Direct",
+      "principal": { "@odata.type": "#microsoft.graph.group", "id": "9e000000-0000-4000-8000-000000000008", "displayName": "PRV-T2-UserAdmin-AU-Finance" } }
+  ],
+  "roleEligibilitySchedules": [
+    { "id": "res-prv-t0-pra", "principalId": "9e000000-0000-4000-8000-000000000002", "roleDefinitionId": "e8611ab8-c189-46e8-94e1-60213ab1f814", "directoryScopeId": "/", "memberType": "Direct", "status": "Provisioned",
+      "scheduleInfo": { "startDateTime": "2026-10-30T00:00:00Z", "expiration": { "type": "afterDateTime", "endDateTime": "2027-01-28T00:00:00Z" } },
+      "principal": { "@odata.type": "#microsoft.graph.group", "id": "9e000000-0000-4000-8000-000000000002", "displayName": "PRV-T0-PrivRoleAdmin" } },
+    { "id": "res-prv-t0-ga", "principalId": "9e000000-0000-4000-8000-000000000006", "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10", "directoryScopeId": "/", "memberType": "Direct", "status": "Provisioned",
+      "scheduleInfo": { "startDateTime": "2026-10-30T00:00:00Z", "expiration": { "type": "afterDateTime", "endDateTime": "2027-01-28T00:00:00Z" } },
+      "principal": { "@odata.type": "#microsoft.graph.group", "id": "9e000000-0000-4000-8000-000000000006", "displayName": "PRV-T0-GlobalAdmin" } },
+    { "id": "res-prv-t1-exo", "principalId": "9e000000-0000-4000-8000-000000000003", "roleDefinitionId": "29232cdf-9323-42fd-ade2-1d097af3e4de", "directoryScopeId": "/", "memberType": "Direct", "status": "Provisioned",
+      "scheduleInfo": { "startDateTime": "2026-10-30T00:00:00Z", "expiration": { "type": "afterDateTime", "endDateTime": "2027-04-28T00:00:00Z" } },
+      "principal": { "@odata.type": "#microsoft.graph.group", "id": "9e000000-0000-4000-8000-000000000003", "displayName": "PRV-T1-ExchangeAdmin" } },
+    { "id": "res-helpdesk", "principalId": "9e000000-0000-4000-8000-000000000004", "roleDefinitionId": "729827e3-9c14-49f7-bb1b-9608f156bbb8", "directoryScopeId": "/administrativeUnits/7a000000-0000-4000-8000-000000000001", "memberType": "Direct", "status": "Provisioned",
+      "scheduleInfo": { "startDateTime": "2026-10-30T00:00:00Z", "expiration": { "type": "afterDateTime", "endDateTime": "2027-04-28T00:00:00Z" } },
+      "principal": { "@odata.type": "#microsoft.graph.group", "id": "9e000000-0000-4000-8000-000000000004", "displayName": "Helpdesk Team" } },
+    { "id": "res-frank-ga", "principalId": "a0000000-0000-4000-8000-000000000005", "roleDefinitionId": "62e90394-69f5-4237-9190-012177145e10", "directoryScopeId": "/", "memberType": "Direct", "status": "Provisioned",
+      "scheduleInfo": { "startDateTime": "2025-03-01T00:00:00Z", "expiration": { "type": "noExpiration", "endDateTime": null } },
+      "principal": { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000005", "displayName": "Frank Ode", "userPrincipalName": "frank.ode@contoso.example" } },
+    { "id": "res-gina-sec", "principalId": "a0000000-0000-4000-8000-000000000006", "roleDefinitionId": "194ae4cb-b126-40b2-bd5b-6091b380977d", "directoryScopeId": "/", "memberType": "Direct", "status": "Provisioned",
+      "scheduleInfo": { "startDateTime": "2026-10-30T00:00:00Z", "expiration": { "type": "afterDateTime", "endDateTime": "2027-01-28T00:00:00Z" } },
+      "principal": { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000006", "displayName": "Gina Lee", "userPrincipalName": "gina.lee@contoso.example" } },
+    { "id": "res-frank-custom", "principalId": "a0000000-0000-4000-8000-000000000005", "roleDefinitionId": "c0000000-0000-4000-8000-000000000001", "directoryScopeId": "/", "memberType": "Direct", "status": "Provisioned",
+      "scheduleInfo": { "startDateTime": "2026-10-30T00:00:00Z", "expiration": { "type": "afterDateTime", "endDateTime": "2027-01-28T00:00:00Z" } },
+      "principal": { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000005", "displayName": "Frank Ode", "userPrincipalName": "frank.ode@contoso.example" } }
+  ],
+  "groupMembers": {
+    "9e000000-0000-4000-8000-000000000001": [
+      { "@odata.type": "#microsoft.graph.user", "id": "0e000000-0000-4000-8000-000000000001", "displayName": "Emergency Access 01", "userPrincipalName": "ea01@contosoexample.onmicrosoft.com" },
+      { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000011", "displayName": "Carl Ops", "userPrincipalName": "carl.ops@contoso.example" }
+    ],
+    "9e000000-0000-4000-8000-000000000002": [
+      { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000002", "displayName": "Bo Chen", "userPrincipalName": "bo.chen@contoso.example" },
+      { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000003", "displayName": "Dana Ruiz", "userPrincipalName": "dana.ruiz@contoso.example" }
+    ],
+    "9e000000-0000-4000-8000-000000000003": [
+      { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000004", "displayName": "Eli Park", "userPrincipalName": "eli.park@contoso.example" },
+      { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000012", "displayName": null, "userPrincipalName": null }
+    ],
+    "9e000000-0000-4000-8000-000000000004": [
+      { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000003", "displayName": "Dana Ruiz", "userPrincipalName": "dana.ruiz@contoso.example" }
+    ],
+    "9e000000-0000-4000-8000-000000000008": [
+      { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000002", "displayName": "Bo Chen", "userPrincipalName": "bo.chen@contoso.example" }
+    ],
+    "9e000000-0000-4000-8000-000000000006": [
+      { "@odata.type": "#microsoft.graph.user", "id": "a0000000-0000-4000-8000-000000000013", "displayName": "Lee Moss", "userPrincipalName": "lee.moss@contoso.example" }
+    ]
+  },
+  "users": {
+    "0e000000-0000-4000-8000-000000000001": { "id": "0e000000-0000-4000-8000-000000000001", "userPrincipalName": "ea01@contosoexample.onmicrosoft.com", "accountEnabled": true, "onPremisesSyncEnabled": null },
+    "0e000000-0000-4000-8000-000000000002": { "id": "0e000000-0000-4000-8000-000000000002", "userPrincipalName": "ea02@contoso.example", "accountEnabled": true, "onPremisesSyncEnabled": null }
+  },
+  "authMethods": {
+    "0e000000-0000-4000-8000-000000000001": [
+      { "@odata.type": "#microsoft.graph.passwordAuthenticationMethod", "id": "28c10230-6103-485e-b985-444c60001490" },
+      { "@odata.type": "#microsoft.graph.fido2AuthenticationMethod", "id": "f1d00000-0000-4000-8000-000000000001", "displayName": "Security key A" }
+    ],
+    "0e000000-0000-4000-8000-000000000002": [
+      { "@odata.type": "#microsoft.graph.passwordAuthenticationMethod", "id": "28c10230-6103-485e-b985-444c60001490" },
+      { "@odata.type": "#microsoft.graph.phoneAuthenticationMethod", "id": "3179e48a-750b-4051-897c-87b9720928f7", "phoneType": "mobile" },
+      { "@odata.type": "#microsoft.graph.fido2AuthenticationMethod", "id": "f1d00000-0000-4000-8000-000000000002", "displayName": "Security key B" }
+    ]
+  },
+  "conditionalAccessPolicies": [
+    { "id": "ca000000-0000-4000-8000-000000000001", "displayName": "CA001-All-Block-legacy-authentication", "state": "enabled",
+      "conditions": { "users": { "includeUsers": ["All"], "excludeUsers": [], "includeGroups": [], "excludeGroups": ["9e000000-0000-4000-8000-000000000001"] } } },
+    { "id": "ca000000-0000-4000-8000-000000000004", "displayName": "CA004-Admins-Require-compliant-device", "state": "enabled",
+      "conditions": { "users": { "includeUsers": [], "excludeUsers": [], "includeGroups": [], "excludeGroups": [], "includeRoles": ["62e90394-69f5-4237-9190-012177145e10"] } } },
+    { "id": "ca000000-0000-4000-8000-000000000090", "displayName": "CA090-Emergency-accounts-Report-sign-ins", "state": "enabledForReportingButNotEnforced",
+      "conditions": { "users": { "includeUsers": ["0e000000-0000-4000-8000-000000000001", "0e000000-0000-4000-8000-000000000002"], "excludeUsers": [], "includeGroups": [], "excludeGroups": [] } } },
+    { "id": "ca000000-0000-4000-8000-000000000099", "displayName": "CA099-Retired-Pilot", "state": "disabled",
+      "conditions": { "users": { "includeUsers": ["All"], "excludeUsers": [], "includeGroups": [], "excludeGroups": [] } } },
+    { "id": "ca000000-0000-4000-8000-0000000000c1", "displayName": "PIM-Activation-c1", "state": "enabled",
+      "conditions": { "users": { "includeUsers": ["All"], "excludeUsers": [], "includeGroups": [], "excludeGroups": ["9e000000-0000-4000-8000-000000000001"] } } }
+  ],
+  "azure": {
+    "/subscriptions/11111111-1111-4111-8111-111111111111": {
+      "roleAssignmentSchedules": [
+        { "id": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleAssignmentSchedules/as-hana-owner", "name": "as-hana-owner",
+          "properties": { "scope": "/subscriptions/11111111-1111-4111-8111-111111111111", "roleDefinitionId": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635", "principalId": "a0000000-0000-4000-8000-000000000007", "principalType": "User", "memberType": "Direct", "assignmentType": "Assigned", "startDateTime": "2024-02-01T00:00:00Z", "endDateTime": null, "status": "Provisioned" } },
+        { "id": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleAssignmentSchedules/as-jo-owner", "name": "as-jo-owner",
+          "properties": { "scope": "/subscriptions/11111111-1111-4111-8111-111111111111", "roleDefinitionId": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635", "principalId": "a0000000-0000-4000-8000-000000000009", "principalType": "User", "memberType": "Direct", "assignmentType": "Assigned", "startDateTime": "2026-10-01T00:00:00Z", "endDateTime": "2026-11-15T00:00:00Z", "status": "Provisioned" } },
+        { "id": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleAssignmentSchedules/as-mike-owner", "name": "as-mike-owner",
+          "properties": { "scope": "/subscriptions/11111111-1111-4111-8111-111111111111", "roleDefinitionId": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635", "principalId": "a0000000-0000-4000-8000-000000000014", "principalType": "User", "memberType": "Direct", "assignmentType": "Assigned", "startDateTime": "2023-06-01T00:00:00Z", "endDateTime": null, "status": "Provisioned" } },
+        { "id": "/providers/Microsoft.Management/managementGroups/contoso-root/providers/Microsoft.Authorization/roleAssignmentSchedules/as-kai-uaa", "name": "as-kai-uaa",
+          "properties": { "scope": "/providers/Microsoft.Management/managementGroups/contoso-root", "roleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/18d7d88d-d35e-4fb5-a5c3-7773c20a72d9", "principalId": "a0000000-0000-4000-8000-000000000010", "principalType": "User", "memberType": "Direct", "assignmentType": "Assigned", "startDateTime": "2022-01-01T00:00:00Z", "endDateTime": null, "status": "Provisioned" } },
+        { "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-app/providers/Microsoft.Authorization/roleAssignmentSchedules/as-vmc", "name": "as-vmc",
+          "properties": { "scope": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-app", "roleDefinitionId": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c", "principalId": "9e000000-0000-4000-8000-000000000007", "principalType": "Group", "memberType": "Direct", "assignmentType": "Assigned", "startDateTime": "2025-01-01T00:00:00Z", "endDateTime": null, "status": "Provisioned" } }
+      ],
+      "roleEligibilitySchedules": [
+        { "id": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleEligibilitySchedules/es-ivan-owner", "name": "es-ivan-owner",
+          "properties": { "scope": "/subscriptions/11111111-1111-4111-8111-111111111111", "roleDefinitionId": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635", "principalId": "a0000000-0000-4000-8000-000000000008", "principalType": "User", "memberType": "Direct", "startDateTime": "2026-10-30T00:00:00Z", "endDateTime": "2027-01-28T00:00:00Z", "status": "Provisioned" } },
+        { "id": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleEligibilitySchedules/es-grp-owner", "name": "es-grp-owner",
+          "properties": { "scope": "/subscriptions/11111111-1111-4111-8111-111111111111", "roleDefinitionId": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635", "principalId": "9e000000-0000-4000-8000-000000000005", "principalType": "Group", "memberType": "Direct", "startDateTime": "2026-10-30T00:00:00Z", "endDateTime": "2027-04-28T00:00:00Z", "status": "Provisioned" } }
+      ]
+    },
+    "/providers/Microsoft.Management/managementGroups/contoso-root": {
+      "roleAssignmentSchedules": [
+        { "id": "/providers/Microsoft.Management/managementGroups/contoso-root/providers/Microsoft.Authorization/roleAssignmentSchedules/as-kai-uaa", "name": "as-kai-uaa",
+          "properties": { "scope": "/providers/Microsoft.Management/managementGroups/contoso-root", "roleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/18d7d88d-d35e-4fb5-a5c3-7773c20a72d9", "principalId": "a0000000-0000-4000-8000-000000000010", "principalType": "User", "memberType": "Direct", "assignmentType": "Assigned", "startDateTime": "2022-01-01T00:00:00Z", "endDateTime": null, "status": "Provisioned" } },
+        { "id": "/providers/Microsoft.Authorization/roleAssignmentSchedules/as-alex-elevate", "name": "as-alex-elevate",
+          "properties": { "scope": "/", "roleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/18d7d88d-d35e-4fb5-a5c3-7773c20a72d9", "principalId": "a0000000-0000-4000-8000-000000000001", "principalType": "User", "memberType": "Direct", "assignmentType": "Assigned", "startDateTime": "2026-10-28T09:00:00Z", "endDateTime": null, "status": "Provisioned" } }
+      ],
+      "roleEligibilitySchedules": []
+    },
+    "/subscriptions/22222222-2222-4222-8222-222222222222": {
+      "roleAssignmentSchedules": [
+        { "id": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/Microsoft.Authorization/roleAssignmentSchedules/as-sp-contrib", "name": "as-sp-contrib",
+          "properties": { "scope": "/subscriptions/22222222-2222-4222-8222-222222222222", "roleDefinitionId": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c", "principalId": "5e000000-0000-4000-8000-000000000002", "principalType": "ServicePrincipal", "memberType": "Direct", "assignmentType": "Assigned", "startDateTime": "2025-05-01T00:00:00Z", "endDateTime": null, "status": "Provisioned" } }
+      ],
+      "roleEligibilitySchedules": [
+        { "id": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/Microsoft.Authorization/roleEligibilitySchedules/es-gina-contrib", "name": "es-gina-contrib",
+          "properties": { "scope": "/subscriptions/22222222-2222-4222-8222-222222222222", "roleDefinitionId": "/subscriptions/22222222-2222-4222-8222-222222222222/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c", "principalId": "a0000000-0000-4000-8000-000000000006", "principalType": "User", "memberType": "Direct", "startDateTime": "2026-10-30T00:00:00Z", "endDateTime": "2027-01-28T00:00:00Z", "status": "Provisioned" } }
+      ]
+    }
+  }
+}

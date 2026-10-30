@@ -1,0 +1,15 @@
+{
+  "_comment": "Exported log rows (fictional) as a workspace would hold them: Table names the Log Analytics table. Six events in one window: a validation drill, a token refresh, a role change by an emergency account, a change to an emergency account by someone else, a sign-in after the account was renamed, and an ordinary user.",
+  "rows": [
+    { "Table": "SigninLogs", "TimeGenerated": "2026-10-29T14:02:11Z", "UserId": "0e000000-0000-4000-8000-000000000001", "UserPrincipalName": "ea01@contosoexample.onmicrosoft.com", "OperationName": "Sign-in activity", "ResultType": "0", "IPAddress": "192.0.2.10" },
+    { "Table": "AADNonInteractiveUserSignInLogs", "TimeGenerated": "2026-10-29T14:31:40Z", "UserId": "0e000000-0000-4000-8000-000000000001", "UserPrincipalName": "ea01@contosoexample.onmicrosoft.com", "OperationName": "Sign-in activity", "ResultType": "0", "IPAddress": "192.0.2.10" },
+    { "Table": "AuditLogs", "TimeGenerated": "2026-10-29T14:05:02Z", "OperationName": "Add member to role", "ResultType": "Success",
+      "InitiatedBy": { "user": { "id": "0e000000-0000-4000-8000-000000000002", "userPrincipalName": "ea02@contoso.example" } },
+      "TargetResources": [ { "id": "a0000000-0000-4000-8000-000000000001", "type": "User" } ] },
+    { "Table": "AuditLogs", "TimeGenerated": "2026-10-29T15:12:55Z", "OperationName": "User registered security info", "ResultType": "Success",
+      "InitiatedBy": { "user": { "id": "a0000000-0000-4000-8000-000000000001", "userPrincipalName": "alex.kim@contoso.example" } },
+      "TargetResources": [ { "id": "0e000000-0000-4000-8000-000000000001", "type": "User" } ] },
+    { "Table": "SigninLogs", "TimeGenerated": "2026-10-29T16:44:09Z", "UserId": "0e000000-0000-4000-8000-000000000002", "UserPrincipalName": "ea02-renamed@contoso.example", "OperationName": "Sign-in activity", "ResultType": "0", "IPAddress": "198.51.100.7" },
+    { "Table": "SigninLogs", "TimeGenerated": "2026-10-29T16:50:00Z", "UserId": "a0000000-0000-4000-8000-000000000003", "UserPrincipalName": "dana.ruiz@contoso.example", "OperationName": "Sign-in activity", "ResultType": "0", "IPAddress": "198.51.100.8" }
+  ]
+}

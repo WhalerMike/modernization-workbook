@@ -1,0 +1,306 @@
+---
+title: "Chapter 01 — Privileged Inventory as Code"
+description: "Read every privileged assignment in the estate as code, starting from Learn's own samples for listing Microsoft Entra role assignments (pinned in the repository) and adding what they leave to you: eligible as well as active assignments, role-assignable groups expanded to their members, Azure role assignment and eligibility schedules through Resource Manager, a tier for every row, findings for standing privilege, and a manifest the ISSO can check, with labs against fixtures and a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-privileged-access
+part: How
+series-order: 1
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-04-01
+review-status: pending
+---
+
+# Chapter 01 — Privileged Inventory as Code
+
+*You can't make privilege just-in-time until you can list it: who holds which role, at which scope, standing or eligible, directly or through a group, and in which tier.*
+
+::: {.callout-note}
+## In this chapter
+The read behind the project plan's Gate 0, "standing administrative privilege inventoried and classified by tier." You start with Learn's own samples for listing Microsoft Entra role assignments, which the repository keeps as a pinned copy, and run them against stand-ins to see what they return and what they miss. Then you build `examples/privileged-access` for what they leave to you: eligible assignments, group members, Azure role assignment and eligibility schedules, a tier for every row, findings, and a manifest. Lab 1 runs on a laptop with no tenant; Lab 2 uses a test tenant.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can produce, from code, the inventory the plan's tasks A0.1 and A0.2 ask for: every Microsoft Entra directory role assignment, active and eligible, and every Azure role assignment and eligibility on the scopes you name, each classified by the program's tiers, with the findings a reviewer acts on and a manifest that says which calls produced it. You can say, for each rule in the code, whether it is Microsoft's contract, Microsoft's sample, or the program's own design.
+
+**Audience.** Developers who build the project's read path, and the identity engineers and ISSOs who review it. You should read PowerShell 7 and know what a role assignment is. You don't need a tenant until Lab 2.
+
+## What the inventory has to hold
+
+A role reaches a person in four ways that look the same on an admin's screen and very different to an attacker. Learn names them: permanent eligible, permanent active, time-bound eligible and time-bound active, and says to keep zero permanently active assignments for roles other than the emergency access accounts.[^pa01-pim-plan] An eligible assignment the holder has activated shows up as active for the activation window. And a role assigned to a role-assignable group reaches every member of it, which is how Book 04 wants it to work: the program assigns roles to `PRV-<tier>-<role>` groups, never to a person ([Book 04, Chapter 04](../../../books/b04-access/04-privileged-roles-and-tiers.md#how-a-role-reaches-a-person)).
+
+So the inventory reads three Graph collections and two Resource Manager ones:
+
+| What | Where | Why this one |
+|---|---|---|
+| Role definitions | `GET /v1.0/roleManagement/directory/roleDefinitions` | Names and template IDs, including custom roles[^pa01-roledefs] |
+| Active assignments | `GET /v1.0/roleManagement/directory/roleAssignmentScheduleInstances` | Every active assignment, whether made through PIM or directly, with `assignmentType` (`Assigned` or `Activated`), `memberType` (`Direct`, `Group` or `Inherited`) and `endDateTime`[^pa01-rasi] [^pa01-rasi-type] |
+| Eligible assignments | `GET /v1.0/roleManagement/directory/roleEligibilitySchedules` | Every eligibility, with its expiration[^pa01-res] |
+| Group members | `GET /v1.0/groups/{id}/members` | Who a role-assignable group passes its role to[^pa01-members] |
+| Azure assignments and eligibility | `GET {scope}/providers/Microsoft.Authorization/roleAssignmentSchedules` and `roleEligibilitySchedules`, `api-version=2020-10-01` | Active and eligible Azure roles; Learn's PowerShell for the same list uses the eligibility and assignment schedule cmdlets[^pa01-azure-pim] [^pa01-azure-api] |
+
+The tier comes from the program, not from Microsoft. Microsoft marks some Entra roles **PRIVILEGED**, but the label is a preview and listing it through Graph uses the beta endpoint;[^pa01-privileged] Book 04 treats it as an input to tiering, not the tier itself. The example keeps Book 04's tiers in `config/tiers.json`, keyed by role template ID, which is the same in every tenant ([Appendix B](../../../books/b04-access/appendix-b-pim-role-settings.md#role-template-ids)). A role that isn't in the file is reported as unclassified, never assumed safe. *Design guidance.*
+
+### Which cloud, for this read
+
+For the target estate, Microsoft 365 GCC with commercial Azure, every host is a worldwide one: Graph at `graph.microsoft.com` and Resource Manager at `management.azure.com`. GCC High uses `graph.microsoft.us`, DoD `dod-graph.microsoft.us`, and both use Azure Government's `management.usgovcloudapi.net`.[^pa01-deployments] [^pa01-compare] Microsoft Entra ID P1 and P2 for GCC are hosted in the Azure commercial environment,[^pa01-ems-gcc] and Microsoft Entra ID Governance, which PIM needs, is available in GCC, GCC High and DoD.[^pa01-availability] Every Graph call in this chapter lists the global service, US Government L4 and US Government L5 in its national cloud table.[^pa01-rasi] [^pa01-res] [^pa01-roledefs] [^pa01-list-ra] The code takes `gcc` as an explicit cloud name and refuses any name it doesn't know, the pattern the first workbook's [Chapter 02](../attribute-driven-migration/02-graph-clients-for-government-clouds.md) sets.
+
+## Start with Microsoft's sample
+
+### What Microsoft gives you
+
+Learn's page *List Microsoft Entra role assignments* is Microsoft's procedure for this read. It covers the admin center, Microsoft Graph PowerShell and the Graph API: assignments for one role, across all roles, for a principal (direct and, through a beta API, transitive), for a group, and at administrative unit scope.[^pa01-view] Its all-roles PowerShell sample reads every role definition with `Get-MgRoleManagementDirectoryRoleDefinition` and then lists each role's assignments with `Get-MgRoleManagementDirectoryRoleAssignment`. The admin center also downloads all active assignments as a CSV through a bulk operation, which Learn says runs for up to an hour and has limits in large tenants.[^pa01-view]
+
+Learn's Azure page for the same question, *Eligible and time-bound role assignments in Azure RBAC*, says there's no single PowerShell command for both kinds and lists eligible assignments with `Get-AzRoleEligibilitySchedule` and active ones with `Get-AzRoleAssignmentSchedule`.[^pa01-azure-pim] The example's Resource Manager calls are the REST form of those two cmdlets.
+
+### The pinned copy
+
+The samples exist only inside the Learn page, so the repository pins the page's source, unmodified, in [`examples/third_party/entra-role-assignments-page`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/third_party/entra-role-assignments-page): `view-assignments.md` from MicrosoftDocs/entra-docs at commit `07cb73d` (October 30, 2026), retrieved October 30, 2026, with the repository's MIT licenses.[^pa01-sample-src] `snapshot.json` records each file's SHA-256, checked against the upstream git blob hashes, and a unit test checks them. The weekly source watch reports new commits to the page. Updating the copy is a reviewed pull request.
+
+`tests/LearnSampleHarness.ps1` extracts the PowerShell samples from the pinned page at test time and runs them unmodified against stand-ins for `Connect-MgGraph` and the two cmdlets. The stand-ins record their parameters and answer from the fixture tenant's active assignments, which is what the List unifiedRoleAssignments API returns.[^pa01-list-ra] Nothing is installed and nothing signs in.
+
+### What it leaves to you
+
+Running the samples against the fixture tenant shows what they do and what they leave out. Each row is pinned by a test: in `tests/MicrosoftSamples.Tests.ps1` for the sample, and in `tests/PrivilegedInventory.Tests.ps1` for the example.
+
+| Learn's sample, as published | Why it matters | What `examples/privileged-access` adds |
+|---|---|---|
+| Lists every active assignment across all roles | — | Kept as the model, through `roleAssignmentScheduleInstances`, which returns the same active assignments with `assignmentType` and `endDateTime`[^pa01-rasi] |
+| Sees no eligible assignment: the fixture's eligible-only holders are missing | Under PIM almost every human holder is eligible, so an active-only list shrinks as the project succeeds and stops being an inventory | Reads `roleEligibilitySchedules` and reports permanent eligibility (PA-INV-06) |
+| One assignment call per role definition, plus one for the definitions | More than a hundred calls for one list, each a chance to be throttled | One paged call per collection |
+| Passes neither `-All` nor `-PageSize` | Whether each call returns every page isn't stated on the page (research gaps, row 1) | Follows `@odata.nextLink` and Resource Manager's `nextLink`, only on the cloud's own host, as Learn's paging guidance asks[^pa01-paging] |
+| Returns a role-assignable group as one principal and never reads its members | The people who hold the role are invisible | Expands each group once, marks member rows `Via Group`, and never drops a member it can't name (PA-INV-09) |
+| Prints role definition and principal IDs; no names, no tier | A reviewer can't act on a GUID | Names from the definitions and the expanded principal, a tier from `config/tiers.json`, and Unclassified for anything else (PA-INV-05) |
+| Signs in with `Connect-MgGraph` and no environment or scopes | The worldwide cloud and whatever scopes the session already has | An explicit cloud, the call list in `config/calls.json` with each call's least-privileged permission, and a refusal of any call the task doesn't declare |
+| Reads transitive assignments from beta, on a hard-coded `graph.microsoft.com` | Beta can change;[^pa01-versioning] the host is wrong for GCC High and DoD | v1.0 only, with the host from the cloud table |
+| Nothing for Azure | Owner, User Access Administrator and Contributor are privileged too[^pa01-azure-roles] | Resource Manager schedules by scope, placed in tiers by role and scope, with PA-INV-07 and PA-INV-08 |
+
+**The verdict.** Use Learn's page as the model for what to read and as the admin center's cross-check (Lab 2 compares the two). Don't use its all-roles loop for the inventory: it can't see eligibility, which is the state the project is moving every human assignment into.
+
+## The code: `examples/privileged-access`
+
+[`examples/privileged-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access) is new. It is one PowerShell module, `powershell/PrivilegedAccess/PrivilegedAccess.psm1`, two entry scripts, the call list and the tier map. This chapter's entry script is `Invoke-PaInventory.ps1`.
+
+### The reader
+
+Every call goes through one reader, built for one task in one cloud: `New-PaReader -Cloud gcc -Task inventory -Invoke <script block>`. The script block is the only thing that touches the network: `New-PaLiveInvoker` for a real run, which uses `Invoke-MgGraphRequest` and `Invoke-AzRestMethod` and refuses to start if either session is signed in to another cloud, or `New-PaFixtureInvoker` for labs and tests. The reader enforces four rules:
+
+- **Only declared calls.** `config/calls.json` lists each call with its method, version, path, least-privileged permission (or Azure role), stage and Learn page. A call the task doesn't declare throws before anything is sent.
+- **GET only.** The reader refuses any other method, and so does the fake.
+- **One host.** Every URL, including every next link, must start with the cloud's own Graph or Resource Manager host, or the token isn't sent.
+- **Every page.** Collections are followed to the end. The fake serves pages of two by default, so the tests exercise paging on every collection.
+
+The inventory's permissions are the union of its calls:
+
+| Call | Least-privileged permission | Delegated role |
+|---|---|---|
+| List roleDefinitions | `RoleManagement.Read.Directory`[^pa01-roledefs] | Directory Readers, Global Reader or Privileged Role Administrator |
+| List roleAssignmentScheduleInstances | `RoleAssignmentSchedule.Read.Directory`[^pa01-rasi] | Global Reader (read) |
+| List roleEligibilitySchedules | `RoleEligibilitySchedule.Read.Directory`[^pa01-res] | Global Reader (read) |
+| List group members | `GroupMember.ReadBasic.All`, with `User.ReadBasic.All` so user members come back with names[^pa01-members] [^pa01-limited] | Group owners or members, or a role with members read |
+| Azure schedules | Reader on each scope (`*/read`)[^pa01-azure-roles] | — |
+
+The `User.ReadBasic.All` row matters. Learn says that when an app can read a group's membership but not a member's object type, the member comes back with only its `id` and `@odata.type`.[^pa01-limited] The example asks for the extra permission, and if a member still comes back unnamed it keeps the row and raises PA-INV-09 rather than dropping someone who holds a role.
+
+### The rows
+
+`Get-PaPrivilegedInventory` returns one row per assignment: plane (Entra or Azure), role, tier, scope, state (`ActivePermanent`, `ActiveTimeBound`, `Activated`, `Eligible` or `EligiblePermanent`), end date, principal, and whether it came directly or through a group. Active instances with `memberType` `Group` are skipped, because the example expands the group itself and would otherwise count its members twice.[^pa01-rasi-type] Azure schedules are read for each scope you list and de-duplicated by ID, because a list at one scope also returns schedules above and below it; schedules with `memberType` `Inherited` are skipped for the same reason (research gaps, row 3).
+
+Azure rows get their tier from Book 04, Chapter 04's placement table: a role that can assign roles at root or management group scope is T0, any privileged administrator role on a subscription you list as control plane (identity, PIM evidence, the log workspace) is T0, Owner or Contributor on a workload subscription is T1, other roles are T2, and Reader is read-only. Learn's privileged administrator roles are Owner, Contributor, Reservations Administrator, Role Based Access Control Administrator and User Access Administrator.[^pa01-azure-roles] *Design guidance* for the placements.
+
+### The findings
+
+`Test-PaInventory` turns the rows into findings. Two thresholds are Learn's; the rest are the program's.
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| PA-INV-01 | Finding (Info when on the exceptions list) | Permanent active T0 or T1, in Entra or Azure, outside `exceptions.csv`; an exception with no owner doesn't count | Learn: zero permanently active assignments except the emergency accounts[^pa01-pim-plan] |
+| PA-INV-02 | Warn | An Entra role assigned straight to a user | *Design guidance* (roles reach people through PRV groups); Learn recommends groups for role assignments[^pa01-best] |
+| PA-INV-03 | Warn | A group holding a role that isn't named `PRV-<tier>-...` for that tier | *Design guidance* |
+| PA-INV-04 | Finding | Five or more principals with Global Administrator, active or eligible, group members counted | Learn: fewer than five[^pa01-best] |
+| PA-INV-05 | Warn | A role that isn't in the tier map | *Design guidance* |
+| PA-INV-06 | Warn | Eligibility with no end date | *Design guidance* (Appendix B bounds eligibility by tier) |
+| PA-INV-07 | Finding | User Access Administrator at root scope (`/`), which is what elevate access grants | Learn: a Global Administrator who elevates gets User Access Administrator on all subscriptions;[^pa01-elevate] Book 04 treats it as a Tier 0 event |
+| PA-INV-08 | Finding | More than three Owners on a subscription | Learn: a maximum of three subscription owners[^pa01-azure-best] |
+| PA-INV-09 | Warn | A group member returned with ID and type only | Learn: limited information for inaccessible member objects[^pa01-limited] |
+
+### The run and its manifest
+
+`Invoke-PaInventory.ps1` reads, classifies, finds, and writes `inventory.json`, `inventory.csv`, `findings.json` and `manifest.json`. The manifest records the task, the mode (`Fixture` or `Live`), the cloud, the tenant ID if you give one, the permissions the task needs, every request with its time, and the SHA-256 of each file. It names no one; the inventory does, so treat the run's folder as sensitive.
+
+### The tests
+
+Pester 5 under PowerShell 7, 78 tests in three files, none needing a module, a tenant or a network. This chapter's are:
+
+- `tests/MicrosoftSamples.Tests.ps1`, 9 tests in the Chapter 01 block: Learn's samples, run as published.
+- `tests/PrivilegedInventory.Tests.ps1`, 33 tests: clouds and the call list, refused calls and hosts, paging with page sizes of 1, 2 and 50, eligible and activated states, group expansion, tiers, Azure de-duplication, each finding, the whole fixture's counts, and the manifest's hashes.
+
+The other 7 sample tests and the 29 in `tests/EmergencyAccess.Tests.ps1` are Chapter 02's.
+
+::: {.callout-important}
+## Illustrative code
+The commands below run Learn's pinned samples against stand-ins, and the example against a fictional tenant served by a fake. They show what the code does, not that a tenant returns the same shapes. Review the code, and run Lab 2 in a test tenant, before it reads a real one.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-access`.
+
+1. **Run Learn's samples against the stand-ins:**
+
+   ```powershell
+   Invoke-Pester -Path tests/MicrosoftSamples.Tests.ps1 -FullNameFilter '*Chapter 01*' -Output None -PassThru |
+       Select-Object PassedCount, FailedCount, NotRunCount
+   ```
+
+   `PassedCount 9`, `FailedCount 0`, `NotRunCount 7` (the seven are Chapter 02's). Open the test file and read the second test: the fixture's eligible-only holders never appear in the sample's output.
+
+2. **List the permissions the inventory needs:**
+
+   ```powershell
+   Import-Module ./powershell/PrivilegedAccess/PrivilegedAccess.psm1
+   (Get-PaRequiredPermission -Task inventory).GraphPermissions -join ', '
+   ```
+
+   `GroupMember.ReadBasic.All, RoleAssignmentSchedule.Read.Directory, RoleEligibilitySchedule.Read.Directory, RoleManagement.Read.Directory, User.ReadBasic.All`. Nothing ends in `ReadWrite`.
+
+3. **Run the inventory against the fictional tenant:**
+
+   ```powershell
+   ./Invoke-PaInventory.ps1 -FixturePath tests/fixtures/tenant.json -OutputPath out/inventory `
+       -AzureScope /subscriptions/11111111-1111-4111-8111-111111111111, /providers/Microsoft.Management/managementGroups/contoso-root, /subscriptions/22222222-2222-4222-8222-222222222222 `
+       -ExceptionsPath tests/fixtures/inputs/exceptions.csv -ControlPlaneSubscriptionId 22222222-2222-4222-8222-222222222222
+   ```
+
+   ```text
+   Assignments: 30 rows (Azure T0=4, Azure T1=5, Azure T2=1, Entra T0=8, Entra T1=2, Entra T2=2, Entra Unclassified=1)
+   Findings: 10 Finding, 7 Warn, 1 Info
+   Written to out/inventory (manifest.json lists every request and file hash)
+   ```
+
+4. **Read the findings:**
+
+   ```powershell
+   Get-Content out/inventory/findings.json -Raw | ConvertFrom-Json | Where-Object Severity -eq 'Finding' | Format-Table Rule, Object
+   ```
+
+   Seven PA-INV-01 rows (a standing Global Administrator, the mail automation service principal whose exception has no owner, two standing subscription Owners, a standing User Access Administrator at the management group, the same Global Administrator's User Access Administrator at root, and a log-export service principal with standing Contributor on the control-plane subscription), PA-INV-07 for the root-scope elevation, PA-INV-04 (five Global Administrators, one of them through `PRV-T0-GlobalAdmin`), and PA-INV-08 (five Owners on the workload subscription). Azure rows show object IDs, because Resource Manager returns IDs, not names. The emergency account `ea01` is Info, not a Finding: it's on the exceptions list with an owner.
+
+5. **See the reader refuse:**
+
+   ```powershell
+   $r = New-PaReader -Cloud gcc -Task inventory -Invoke (New-PaFixtureInvoker -Path tests/fixtures/tenant.json).Invoke
+   Invoke-PaList -Reader $r -CallId ca-policies
+   Get-PaCloud GCCHigh
+   ```
+
+   Two errors: `Undeclared call 'ca-policies' for task 'inventory'; add it to config/calls.json with its permission.` and `Unknown cloud 'GCCHigh'. Use global, gcc, gcchigh or dod.`
+
+6. **Run the tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests
+   ```
+
+**Expected result:** 78 tests passing, every row of the gap table seen with your own eyes, and `out/inventory/manifest.json` listing 24 GET requests. Delete `out` when you're done.
+
+## Lab 2: test tenant
+
+Use a test tenant in the worldwide or GCC cloud with a test Azure subscription, never production, with fictional people. The run only reads.
+
+1. **Register the app in the tenant's own cloud.** For a GCC tenant that's the worldwide Microsoft Entra admin center. Add a certificate credential, not a secret.
+2. **Grant the five application permissions** from Lab 1, step 2, and grant admin consent. Nothing else.
+3. **Grant Reader** to the app's service principal on the test subscription.
+4. **Sign in and run:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+   Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <app-id> -CertificateThumbprint <thumbprint>
+   ./Invoke-PaInventory.ps1 -Cloud gcc -OutputPath out/inventory-test -AzureScope /subscriptions/<test-subscription-id> -TenantId <tenant-id>
+   ```
+
+5. **Cross-check against the admin center.** On **Roles and administrators**, select **Download assignments** for all roles, as Learn's procedure describes.[^pa01-view] Every active row in the CSV should be in `inventory.csv`, and `inventory.csv` should hold the eligible rows the CSV doesn't.
+6. **Check the two things the fixture assumed.** Open `inventory.json` and confirm that rows read with `$expand=principal` have a principal type (research gaps, row 2), and that each Azure schedule appears once.
+7. **Back it out.** Remove the Reader assignment and the five permissions, delete the app registration and its certificate, and delete `out/inventory-test`: it holds the tenant's privileged holders.
+
+## Verified facts
+
+| Item | Value | US Government clouds | Stage | Source |
+|---|---|---|---|---|
+| List roleDefinitions | `GET /roleManagement/directory/roleDefinitions`; `RoleManagement.Read.Directory` | L4 and L5 | v1.0 | [^pa01-roledefs] |
+| List roleAssignmentScheduleInstances | Active assignments made through PIM or directly; `RoleAssignmentSchedule.Read.Directory`; Global Reader for a delegated read | L4 and L5 | v1.0 | [^pa01-rasi] |
+| Active instance properties | `assignmentType` `Assigned` or `Activated`; `memberType` `Inherited`, `Direct` or `Group`; `endDateTime` | — | v1.0 | [^pa01-rasi-type] |
+| List roleEligibilitySchedules | `RoleEligibilitySchedule.Read.Directory`; `scheduleInfo.expiration` | L4 and L5 | v1.0 | [^pa01-res] |
+| List unifiedRoleAssignments (Learn's sample) | Active assignments; `RoleManagement.Read.Directory` | L4 and L5 | v1.0 | [^pa01-list-ra] |
+| Transitive role assignments (Learn's sample) | `/beta/roleManagement/directory/transitiveRoleAssignments` | — | Beta | [^pa01-view] [^pa01-versioning] |
+| List group members | `GroupMember.ReadBasic.All`; members of unreadable types return `id` and `@odata.type` only; `User.ReadBasic.All` for user members' basic properties | Not read for this chapter | v1.0 | [^pa01-members] [^pa01-limited] |
+| Privileged label | `isPrivileged` on role definitions, listed through the beta endpoint | — | Preview | [^pa01-privileged] |
+| Global Administrators | Fewer than five | — | — | [^pa01-best] |
+| Permanent active assignments | Zero, except the emergency access accounts | — | — | [^pa01-pim-plan] |
+| Azure eligibility and active schedules | `Get-AzRoleEligibilitySchedule`, `Get-AzRoleAssignmentSchedule`; no single command lists both | — | GA | [^pa01-azure-pim] |
+| Azure PIM REST types | Role assignment and eligibility schedules GA in `2020-10-01` | Azure Government host `management.usgovcloudapi.net` | GA | [^pa01-azure-api] [^pa01-compare] |
+| Azure privileged administrator roles | Owner, Contributor, Reservations Administrator, Role Based Access Control Administrator, User Access Administrator, with their IDs | — | — | [^pa01-azure-roles] |
+| Subscription owners | A maximum of three | — | — | [^pa01-azure-best] |
+| Elevate access | A Global Administrator who elevates gets User Access Administrator on all subscriptions | — | — | [^pa01-elevate] |
+| Licensing and clouds | Entra ID P1 and P2 for GCC hosted in Azure commercial; Entra ID Governance in GCC, GCC High and DoD | GCC High and DoD in Azure Government | — | [^pa01-ems-gcc] [^pa01-availability] |
+
+No two Learn pages read for this chapter disagree on a fact the code depends on. One question is open: whether `Get-MgRoleManagementDirectoryRoleAssignment` without `-All` returns every page. The cmdlet's reference page, read on October 30, 2026, lists `-PageSize` but the part read didn't show `-All` (research gaps, row 1). The example doesn't depend on the answer, because it reads through Graph and follows the next links itself.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| An active-only inventory | As holders become eligible, the list shrinks and Gate 0 passes on an empty table | Eligibility read and reported; a test pins that the sample misses it |
+| A group counted as one holder | The people behind `PRV-T0-GlobalAdmin` aren't reviewed or counted | Groups expanded, members marked `Via Group`, counted in PA-INV-04 |
+| A member dropped because its name wasn't readable | Someone holds a role and isn't in the inventory | Rows kept with the ID; PA-INV-09 says which permission is missing |
+| A custom role treated as harmless | A custom role with privileged permissions sits outside every tier | Unclassified, PA-INV-05, never a default tier |
+| An exception list nobody owns | Standing privilege hides behind an "exception" | An exception without an owner doesn't count (PA-INV-01) |
+| Reading only some Azure scopes | A management group or subscription you didn't list isn't read | The manifest lists every request, so the reviewer sees the scopes read; discovering every scope is open (research gaps, row 4) |
+| Counting an Azure assignment twice | A schedule returned at two scopes inflates Owner counts | De-duplicated by schedule ID; inherited rows skipped |
+| The wrong cloud | A GCC High run reads `graph.microsoft.com`, or the token goes to another host | Explicit cloud, no default, host checked on every page, live sessions checked before the run |
+| A broad permission | `Directory.Read.All` or a write permission granted "to make it work" | The call list; the test pins the task's exact permissions, none `ReadWrite` |
+| The inventory as a leak | The folder names every privileged holder | The manifest names no one; Lab 2 deletes the output |
+
+## Checklist
+
+- [ ] The run reads eligible as well as active assignments, and the counts by state match the admin center's download plus PIM's eligible list.
+- [ ] Every role-assignable group is expanded, and no member was dropped.
+- [ ] Every role in the tenant is in `config/tiers.json`, or its PA-INV-05 has an owner and a decision.
+- [ ] `exceptions.csv` lists only the emergency accounts and service principals that can't activate, each with an owner and a reason.
+- [ ] The Azure scopes read are the agency's whole hierarchy, or the gap is written down.
+- [ ] The app holds exactly the five Graph permissions and Reader, with a certificate or managed identity, never a secret.
+- [ ] The cloud is explicit, and nothing in a GCC configuration is a `.us` host.
+- [ ] The manifest's hashes match the files handed to the ISSO.
+- [ ] The pinned Learn page matches its manifest, and every upstream commit since the pin has been reviewed.
+
+::: {.callout-tip}
+## Continue the book
+[Workbook index](index.md) · [Next: Chapter 02 — Emergency Access Accounts as Code →](02-emergency-access-as-code.md)
+:::
+
+[^pa01-pim-plan]: Microsoft Learn, "Plan a Privileged Identity Management deployment," understand PIM, type of assignments, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan> (accessed Oct 30, 2026).
+[^pa01-roledefs]: Microsoft Learn, "List roleDefinitions," <https://learn.microsoft.com/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa01-rasi]: Microsoft Learn, "List roleAssignmentScheduleInstances," <https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignmentscheduleinstances?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa01-rasi-type]: Microsoft Learn, "unifiedRoleAssignmentScheduleInstance resource type," properties, <https://learn.microsoft.com/graph/api/resources/unifiedroleassignmentscheduleinstance?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa01-res]: Microsoft Learn, "List roleEligibilitySchedules," <https://learn.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa01-members]: Microsoft Learn, "List group members," permissions, <https://learn.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa01-limited]: Microsoft Learn, "Overview of Microsoft Graph permissions," limited information returned for inaccessible member objects, <https://learn.microsoft.com/graph/permissions-overview> (accessed Oct 30, 2026).
+[^pa01-azure-pim]: Microsoft Learn, "Eligible and time-bound role assignments in Azure RBAC," how to list eligible and time-bound role assignments, <https://learn.microsoft.com/azure/role-based-access-control/pim-integration> (accessed Oct 30, 2026).
+[^pa01-azure-api]: Microsoft Learn, "API versions of Azure RBAC REST APIs," release notes for 2020-10-01, <https://learn.microsoft.com/rest/api/authorization/versions> (accessed Oct 30, 2026).
+[^pa01-privileged]: Microsoft Learn, "Privileged roles and permissions in Microsoft Entra ID (preview)," <https://learn.microsoft.com/entra/identity/role-based-access-control/privileged-roles-permissions> (accessed Oct 30, 2026).
+[^pa01-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
+[^pa01-compare]: Microsoft Learn, "Compare Azure Government and global Azure," guidance for developers, <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Oct 30, 2026; read for the first workbook's Chapter 02).
+[^pa01-ems-gcc]: Microsoft Learn, "Enterprise Mobility + Security for US Government service description," EMS for US GCC customers, <https://learn.microsoft.com/enterprise-mobility-security/solutions/ems-govt-service-description> (accessed Oct 30, 2026).
+[^pa01-availability]: Microsoft Learn, "Microsoft Entra feature availability," other Microsoft Entra products, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
+[^pa01-list-ra]: Microsoft Learn, "List unifiedRoleAssignments," <https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa01-view]: Microsoft Learn, "List Microsoft Entra role assignments," <https://learn.microsoft.com/entra/identity/role-based-access-control/view-assignments> (accessed Oct 30, 2026).
+[^pa01-sample-src]: Microsoft, MicrosoftDocs/entra-docs, `docs/identity/role-based-access-control/view-assignments.md` at commit `07cb73d6c6380414eecd040ba5e14c1c94d48b66` (October 30, 2026; the page last changed February 24, 2026), MIT License, <https://github.com/MicrosoftDocs/entra-docs/blob/07cb73d6c6380414eecd040ba5e14c1c94d48b66/docs/identity/role-based-access-control/view-assignments.md> (accessed Oct 30, 2026); pinned copy in `examples/third_party/entra-role-assignments-page`.
+[^pa01-paging]: Microsoft Learn, "Page through a collection using the Microsoft Graph SDKs," <https://learn.microsoft.com/graph/sdks/paging> (accessed Oct 30, 2026; read for the first workbook's Chapter 02).
+[^pa01-versioning]: Microsoft Learn, "Versioning, support, and breaking change policies for Microsoft Graph," <https://learn.microsoft.com/graph/versioning-and-support> (accessed Oct 30, 2026; read for the first workbook's Chapter 02).
+[^pa01-azure-roles]: Microsoft Learn, "Azure built-in roles," privileged and general, <https://learn.microsoft.com/azure/role-based-access-control/built-in-roles>, and "Azure built-in roles for Privileged," <https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/privileged> (accessed Oct 30, 2026).
+[^pa01-best]: Microsoft Learn, "Best practices for Microsoft Entra roles," sections 5 to 7, <https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices> (accessed Oct 30, 2026).
+[^pa01-elevate]: Microsoft Learn, "Azure roles, Microsoft Entra roles, and classic subscription administrator roles," do Azure roles and Microsoft Entra roles overlap, <https://learn.microsoft.com/azure/role-based-access-control/rbac-and-directory-admin-roles> (accessed Oct 30, 2026).
+[^pa01-azure-best]: Microsoft Learn, "Best practices for Azure RBAC," limit the number of subscription owners, <https://learn.microsoft.com/azure/role-based-access-control/best-practices> (accessed Oct 30, 2026).

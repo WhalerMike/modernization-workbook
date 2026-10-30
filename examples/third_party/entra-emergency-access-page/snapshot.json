@@ -1,0 +1,34 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's page 'Manage emergency access accounts in Microsoft Entra ID', as its Learn source page: the sample log queries for the emergency access alert exist only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn sample: emergency access account alert queries (Azure Monitor)",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/identity/role-based-access-control/security-emergency-access.md",
+  "commit": "07cb73d6c6380414eecd040ba5e14c1c94d48b66",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2026-06-04 (commit 149f9bd83afb633f3c3672127255a095e6561bf2)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: MIT (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "security-emergency-access.md": "docs/identity/role-based-access-control/security-emergency-access.md"
+  },
+  "not_copied": [
+    "Everything else in MicrosoftDocs/entra-docs, including the page's screenshots (docs/identity/role-based-access-control/media/security-emergency-access): the queries exist only inside this one page, so the page is pinned whole; the chapter links Learn rather than quoting it."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "security-emergency-access.md": {
+      "bytes": 22132,
+      "sha256": "78fa742328544a8eda4a71507ae1d8f0c09dd12fda9b98fd7f9ec3098198ef2a"
+    }
+  }
+}

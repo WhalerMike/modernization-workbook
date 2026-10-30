@@ -1,0 +1,48 @@
+# Verification — Chapter 01, Privileged Inventory as Code
+
+New material; it replaces no workbook page. Code: `examples/privileged-access` (new): `powershell/PrivilegedAccess/PrivilegedAccess.psm1` (clouds, the call list reader, the live and fixture invokers, `Get-PaPrivilegedInventory`, `Test-PaInventory`, `Export-PaRun`), `Invoke-PaInventory.ps1`, `config/calls.json`, `config/tiers.json`, `tests/fixtures/tenant.json`, `tests/fixtures/inputs/exceptions.csv`, `tests/LearnSampleHarness.ps1`, `tests/MicrosoftSamples.Tests.ps1` (Chapter 01 block), `tests/PrivilegedInventory.Tests.ps1`, and the README. Pinned sample: `examples/third_party/entra-role-assignments-page` (new), Learn's page source `docs/identity/role-based-access-control/view-assignments.md` from MicrosoftDocs/entra-docs at commit `07cb73d6c6380414eecd040ba5e14c1c94d48b66` (October 30, 2026; MIT), with the repository's `LICENSE` and `LICENSE-CODE`. Every file's git blob hash matched the upstream tree at that commit (checked with `gh api`, recomputed locally with `git hash-object`) before `snapshot.json` was written. Source-watch feed added: `entra-role-assignments-page-commits` (path to the page, books `DW`).
+
+Test results on October 30, 2026, Windows 11, PowerShell 7.6.9 with Pester 5.5.0: 78 passed across the example (16 in `MicrosoftSamples.Tests.ps1`, 9 of them Chapter 01's; 33 in `PrivilegedInventory.Tests.ps1`; 29 in `EmergencyAccess.Tests.ps1`, Chapter 02's). `scripts/tests/test_third_party_snapshots.py` covers the new snapshot. The pinned samples ran only against stand-in functions: no module was installed, nothing signed in, and no request left the machine.
+
+**Why this sample.** Learn's *List Microsoft Entra role assignments* is the Microsoft page for listing role assignments, and its PowerShell and Graph API samples are the only Microsoft code for the task found. Searched on October 30, 2026 with the Learn MCP tools (`microsoft_docs_search`, `microsoft_code_sample_search`): the code sample search returned the same all-roles loop from this page first. The Graph tutorial *Assign privileged roles using PIM for Microsoft Entra roles APIs* is about assigning, not listing, and is the candidate for Chapter 04. No `microsoftgraph/*` or `Azure-Samples/*` repository was found that lists active and eligible assignments together. The Azure side has Learn's cmdlet example on *Eligible and time-bound role assignments in Azure RBAC*, cited rather than pinned because it is two one-line commands.
+
+Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP tools: Manage emergency access accounts in Microsoft Entra ID; List unifiedRoleAssignments; List roleEligibilitySchedules; List roleAssignmentScheduleInstances; unifiedRoleAssignmentScheduleInstance resource type; List roleDefinitions; Get-MgRoleManagementDirectoryRoleAssignment (excerpt); Privileged roles and permissions in Microsoft Entra ID (preview); Best practices for Microsoft Entra roles; Plan a Privileged Identity Management deployment; Eligible and time-bound role assignments in Azure RBAC; API versions of Azure RBAC REST APIs; Azure built-in roles (privileged); Best practices for Azure RBAC; Azure roles, Microsoft Entra roles, and classic subscription administrator roles; List group members; Overview of Microsoft Graph permissions (limited information for inaccessible member objects); Microsoft Entra feature availability; Enterprise Mobility + Security for US Government service description; List Microsoft Entra role assignments (search excerpt; the full page is the pinned source).
+
+## Claims log
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Four assignment types; keep zero permanently active assignments except the emergency accounts | What the inventory has to hold; PA-INV-01 | verified | Learn, Plan a PIM deployment |
+| 2 | roleAssignmentScheduleInstances returns active assignments made through PIM or directly; `RoleAssignmentSchedule.Read.Directory`; L4 and L5; Global Reader among read roles | Table; reader; Verified facts | verified | Learn, List roleAssignmentScheduleInstances |
+| 3 | `assignmentType` Assigned or Activated; `memberType` Inherited, Direct or Group; `$expand` of principal supported | Table; the rows | verified | Learn, unifiedRoleAssignmentScheduleInstance |
+| 4 | roleEligibilitySchedules: `RoleEligibilitySchedule.Read.Directory`; L4 and L5; `scheduleInfo.expiration` | Table; Verified facts | verified | Learn, List roleEligibilitySchedules |
+| 5 | roleDefinitions: `RoleManagement.Read.Directory`; Directory Readers, Global Reader, Privileged Role Administrator; L4 and L5 | Table; Verified facts | verified | Learn, List roleDefinitions |
+| 6 | List unifiedRoleAssignments: `RoleManagement.Read.Directory`; L4 and L5 | Sample section; Verified facts | verified | Learn, List unifiedRoleAssignments |
+| 7 | Group members: `GroupMember.ReadBasic.All`; inaccessible member types return `id` and `@odata.type` only; `User.ReadBasic.All` for user basic properties | Reader; PA-INV-09 | verified | Learn, List group members; permissions overview |
+| 8 | Privileged label is preview; listing through beta | What the inventory has to hold; Verified facts | verified | Learn, Privileged roles and permissions (preview) |
+| 9 | Global Administrators fewer than five; groups recommended for role assignments | PA-INV-02, PA-INV-04 | verified | Learn, Best practices for Microsoft Entra roles |
+| 10 | No single PowerShell command lists both Azure eligible and active; `Get-AzRoleEligibilitySchedule`, `Get-AzRoleAssignmentSchedule` | Sample section; Verified facts | verified | Learn, Eligible and time-bound role assignments in Azure RBAC |
+| 11 | Azure PIM REST types GA in 2020-10-01 | Table; Verified facts | verified | Learn, API versions of Azure RBAC REST APIs |
+| 12 | Azure privileged administrator roles and IDs; Reader `*/read` | Tiers; reader; `config/tiers.json` | verified | Learn, Azure built-in roles |
+| 13 | Maximum of three subscription owners | PA-INV-08 | verified | Learn, Best practices for Azure RBAC |
+| 14 | Elevated Global Administrator gets User Access Administrator on all subscriptions | PA-INV-07 | verified | Learn, Azure roles, Microsoft Entra roles, and classic subscription administrator roles |
+| 15 | Entra ID P1/P2 for GCC hosted in Azure commercial; Entra ID Governance in GCC, GCC High, DoD | Which cloud; Verified facts | verified | Learn, EMS US Government service description; Microsoft Entra feature availability |
+| 16 | Graph hosts per cloud; Azure Government Resource Manager host; paging; beta policy | Which cloud; gap table | carried forward from the first workbook's Chapter 02 (read October 30, 2026) | Learn pages cited there |
+| 17 | Learn's page: admin center, PowerShell and Graph API samples; all-roles loop; bulk download up to 1 hour with limits | Sample section; Lab 2 | verified in the pinned page source | pinned `view-assignments.md` |
+| 18 | Sample behavior: active only, one call per role, no `-All`/`-PageSize`, group not expanded, IDs only, `Connect-MgGraph` with no environment or scopes, transitive on beta on `graph.microsoft.com`, no Azure | Gap table | verified by running the pinned samples against stand-ins; pinned in `MicrosoftSamples.Tests.ps1` | local run |
+| 19 | Whether the cmdlet returns every page without `-All` | Verified facts; gap table | open (research gaps, row 1) | Learn, Get-MgRoleManagementDirectoryRoleAssignment (excerpt) |
+| 20 | Tier placements (Entra by template ID, Azure by role and scope), PRV naming, unclassified never safe, exception needs an owner, permanent eligibility a Warn | Tiers; findings | restated-as-design (labeled) from Book 04, Chapter 04 and Appendix B | Book 04 |
+| 21 | Role template IDs | `config/tiers.json` | carried forward from Book 04, Appendix B | Book 04 |
+| 22 | Lab 1 outputs (9 passed; permission list; 30 rows and tier counts; 10/7/1; the Finding rows; two error texts; 24 requests; 78 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
+| 23 | Lab 2 behavior (admin center CSV contains every active row; expanded principal carries a type; Azure schedules appear once) | Lab 2 | not run against a tenant; rows 2 and 3 of research-gaps.md | — |
+
+## Carry-forward ledger
+
+| Source | Went to | Or why not carried |
+|---|---|---|
+| Project plan tasks A0.1, A0.2 and Gate 0 | Goal; In this chapter | — |
+| Book 04, Chapter 04 (tiers, PRV groups, Azure placements, elevate access) | Tiers; findings; `config/tiers.json` | AWS and vSphere tiers aren't read by this code; out of scope for the Graph and Resource Manager inventory |
+| Book 04, Appendix B (template IDs, eligibility bounded by tier) | `config/tiers.json`; PA-INV-06 | Per-tier hour counts are Chapter 04's (planned) |
+| Book 04, Chapter 05 (app registrations inventory, plan task A0.3) | Not carried | Service principals' Graph app permissions are covered by the validation kit's VK-NPI-05; directory role assignments to service principals are in this inventory |
+| The first workbook's Chapter 02 (cloud table, declared calls, no default, host check) | The reader | Python client there; the same rules in PowerShell here |
+| The validation kit's VK-ARC-06 (role assignments on Arc scopes) | Not carried | The kit's check stays the Arc gate; this inventory reads every scope listed, not only Arc ones |
