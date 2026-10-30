@@ -139,3 +139,11 @@ Book-internal consistency fixes. Factual changes were checked against sources op
 |---|---|---|---|---|
 | C1 | `PIM-Activation-c1` described as an authentication-context policy named for its context, outside the Ch07 numbering (Step 2, with link to Ch07 conventions); the protected-actions policy is named `ProtectedActions-c2` (Step 6) and in the evidence table. Resolves the editor note "Chapter 07 has no numbered policy": the decision is not to number them, because the library's numbers count user/resource policies (Ch07 "twenty-two more", CA018–CA038 plus CA090) and these policies follow their context's lifecycle (On before the context is selected) | Step 2; Step 6; evidence table | design-consistency | — |
 | C2 | Step 2 grammar: "and excluding" → "and exclude" | Step 2 | editorial | — |
+
+## Correction, October 30, 2026: the no-response default for a review that covers the emergency accounts
+
+The owner's decision on the developer workbook's research gap row 74 (*Building Privileged Access*, Chapter 07), recorded as design; no new external claim.
+
+| # | Where | Old text | New text | Verdict |
+|---|---|---|---|---|
+| 1 | Step 8, after the settings table | The table's "If reviewers don't respond: Remove access", with no exception | A note: a review whose scope covers the emergency access accounts' permanent Global Administrator assignment uses "No change" on silence, and each unreviewed item is followed up as a finding; every other privileged review removes access | design (owner's decision); Chapter 07's PA-AR-06 enforces it in code |
