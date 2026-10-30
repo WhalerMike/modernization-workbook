@@ -1,0 +1,297 @@
+# Sample project plan: Attribute-Driven Migration, the cross-track foundation.
+# scripts/project_plans/build.py reads this file and writes the page, the
+# Gantt chart and the downloads. Edit this file, never the outputs.
+#
+# Durations are working days and illustrative. The phases follow the nine
+# stages of the Attribute-Driven Migration companion guide and its two
+# technical deep-dive decks, plus PIV binding and the mover proof. This plan
+# owns only what the four tracks share: the attribute schema and the AD-to-Entra
+# mapping, the coded slots, the proof of the attributes, sync, the dynamic group
+# library and administrative units, the Conditional Access personas, the device
+# and server targeting conventions, the PIV binding, the mover proof, the
+# retirement of the OU tree, and drift. The tracks keep their own plans: the HR
+# track is Identity Lifecycle & Provisioning, the Intune and Arc tracks are
+# Endpoint & Device (Arc is its Phase 4), and the non-person track is Non-Person
+# Identity Modernization. Each handoff is an external milestone. Most of this
+# plan's work lands just before the program task that consumes it (P1.1, P1.2,
+# P1.5, P1.7, P2.2, P2.8), so those program tasks are its deadlines.
+
+slug: attribute-driven-migration
+title: "Attribute-Driven Migration: The Cross-Track Attribute Foundation"
+short_title: "Attribute-Driven Migration"
+subtitle: "A sample project plan for the attribute foundation the HR, Intune, Arc and non-person identity tracks share: one schema, one writer per attribute, attributes proven before anything reads them, and the OU tree retired once nothing depends on it"
+description: "A sample PMP-style project plan for the cross-track foundation of the Attribute-Driven Migration companion guide and its two technical deep-dive decks: reading the OU tree, the attribute schema and AD-to-Entra mapping, the coded extension-attribute slots, proving the attributes, sync, the dynamic group library with its guards, administrative units, Conditional Access personas, device and server targeting conventions, PIV and CAC binding, the mover proof, cut-over and the OU tree's retirement, and drift. Handoffs to the track plans and the program's gates are linked milestones with computed margins; every decision has an owner and a decide-by week."
+plan_type: "Project"
+covers: "The nine stages of the companion guide, PIV binding and the mover proof: the parts the four tracks share, with the tracks themselves handed to their own plans"
+books: "Books 01, 02, 03, 04, 05 and 07; the companion guide"
+sponsor: "Executive sponsor and CIO; CISO"
+manager: "Identity engineering lead, with the data architect, the HR integrated project team lead and the endpoint lead"
+start_label: "Week 1 = the program's Phase 0 approval"
+project_start: 2027-01-04
+
+purpose: |
+  This plan runs the shared foundation of the [Attribute-Driven Migration companion guide](../books/guides/attribute-driven-migration.md): the part of the move from Active Directory to Entra ID that no single track owns. In AD, an object's place in the OU tree decided what applied to it. In Entra ID, what the object says about itself decides. So the attributes have to be defined once, written by exactly one source, proved true, and only then read by groups, administrative units, Conditional Access, Intune and Azure Policy. The plan follows the guide's [nine stages](../books/guides/attribute-driven-migration.md#the-path-on-one-page) in the order the two technical deep-dive decks present them: [Part 1, the model and the HR track](../presentations/index.md#technical-attribute-driven-migration) ([▶ watch](../presentations/watch.html?v=Attribute_Driven_Migration_Technical_Part_1_Narrated)), and [Part 2, devices, servers, non-person identities and running the migration](../presentations/index.md#technical-attribute-driven-migration-part-2) ([▶ watch](../presentations/watch.html?v=Attribute_Driven_Migration_Technical_Part_2_Narrated)). The step-by-step work, with the validation kit check that proves each gate, is in [Attribute-Driven Migration: An Implementation Guide](../books/guides/attribute-driven-migration-implementation.md).
+
+  It doesn't re-plan the four tracks. The HR track is the [Identity Lifecycle & Provisioning plan](identity-lifecycle.md), built through the research page [Building Book 03's HR Pipeline](../research/hcm-entra-implementation.md). The Intune and Arc tracks are the [Endpoint & Device plan](endpoint-device.md), with servers under Arc as its Phase 4. The non-person track is the [Non-Person Identity Modernization plan](non-person-identity.md). This plan takes from them the decisions it builds on (the HR plan's person key, authority map and mover automation) and hands them the conventions they build on (the slot register, device and server targeting, the key that records owners and sponsors). It runs inside the [program master schedule](program-master-schedule.md). Most of its work lands just before the program task that uses it: the attribute taxonomy (P1.1), the group and unit design (P1.2), the Conditional Access design (P1.5), the sync design (P1.7), the pilot assignments (P2.2) and PIV sign-in (P2.8). Its last phases follow the program's rollout to G3 and retire the OU tree before the program freezes AD (P5.1).
+
+critical_path_note: |
+  The computed critical path doesn't start in week 1. This plan's early work lands ahead of the program and track tasks that use it, so it carries float, and its finish is set by the program's rollout. The zero-float chain starts at the program's G3 (end of week 36). First the transitional sync rules that still read OU placement come out (A8.3). Once the program has retired the OU-based groups (P4.2, week 38), the OU tree is frozen (A8.4). The last full drift cycle then closes Gates 8 and 9 in week 40. The only way to finish sooner is a shorter rollout.
+
+  Before G3, the plan works against deadlines in the program and the track plans, and the margins are what to watch. The tightest are two working days each: the pilot's shadow comparison (A4.4) before the program assigns the pilot's policies (P2.2), and the non-person conventions (A5.4) before the [Non-Person Identity](non-person-identity.md) plan starts recording sponsors (N1.2). Next, with four days each, come the device targeting conventions (A5.2) before the [Endpoint](endpoint-device.md) plan builds its policy library (E1.2), and Gate 0 before the program's G0. The schema waits on the [Identity Lifecycle](identity-lifecycle.md) plan's person key (D-I1) and attribute authority map (I1.2, week 3), and Gate 1 still reaches the program's attribute taxonomy (P1.1) with eight days in hand. The group library and unit design reach the program's group design (P1.2) with eight, the persona set reaches the Conditional Access design (P1.5) with twelve, and the PIV binding pilot reaches the program's PIV sign-in (P2.8) with ten. The mover proof waits on the HR plan's mover automation (I4.3, week 12) and closes 17 days before the program's G2. Gate 8 lands 20 working days before the program freezes AD (P5.1), and Gate 9 40 before G5. The writer of the PIV binding after AD (D-A7) can wait until week 39, when the program moves issuance off AD CS (P4.5). Deciding it earlier leaves time for the open pilot to report.
+
+assumptions:
+  - "The person key is decided in the [Identity Lifecycle plan](identity-lifecycle.md) (D-I1). This plan carries it in `employeeId` in both directories. Where the agency already has a long-standing enterprise identifier, such as a Mainframe PIN, that is the natural candidate ([Book 03, Chapter 04](../books/b03-hr-identity/04-attribute-authority.md#one-person-layered-identifiers))."
+  - "Attribute slots follow the [program attribute map](../books/b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map): organization, worker type and position category in `extensionAttribute10` to `12`. Codes such as `FIN-LED` stand in for the agency's own code lists."
+  - "Users stay AD-mastered and synced through most of this plan, so their attribute values are written in AD and read-only in Entra ID until each population becomes cloud-mastered ([companion guide, Stage 1](../books/guides/attribute-driven-migration.md#building-the-attributes-from-federal-hr-2.0))."
+  - "The validation kit's checks are read-only and fixture-tested, not proven against a live tenant. Where no kit check exists for a gate (sync mapping, Conditional Access personas, the PIV binding), the gate's evidence is the export or report named in the implementation guide."
+  - "Durations are illustrative. Most of this plan is design and verification work that lands just before a program task uses it; its finish follows the program's rollout."
+
+risks:
+  - risk: "A rule reads an attribute that more than one system writes"
+    impact: "Access changes with whichever writer ran last, and drift can't be fixed at the source"
+    response: "One writer per attribute in the slot register; other write paths removed before the first rule grants access (A1.3, A2.2; [Book 03, Chapter 06](../books/b03-hr-identity/06-canonical-attribute-schema.md#writers))"
+  - risk: "A dynamic rule is written on a display name, or without guards"
+    impact: "The group breaks when someone retypes a name, or includes disabled accounts and guests"
+    response: "Rules on codes only, every rule with `accountEnabled` and `userType` guards, checked by the validation kit before any rule grants access (A4.2; [companion guide](../books/guides/attribute-driven-migration.md#dynamic-group-dangers))"
+  - risk: "A soft or hard match overwrites cloud values with stale AD values"
+    impact: "Coded attributes revert across a population at the next sync"
+    response: "Clean AD first, keep both match types blocked outside a planned window (A3.1; [Book 02, Chapter 09](../books/b02-identity/09-building-the-entra-target.md#soft-match-and-hard-match))"
+  - risk: "A Conditional Access persona includes a group built from an empty attribute"
+    impact: "Users whose attribute is empty are silently outside the policy"
+    response: "Pair every grant with a block, and report empty slots before enforcement (A5.1; [Book 04, Chapter 03](../books/b04-access/03-the-conditional-access-model.md#exclusions))"
+  - risk: "The tenant is set to high-affinity PIV binding before every account's value is right"
+    impact: "Card holders are locked out"
+    response: "Measure binding coverage, then pilot high affinity before the tenant setting changes (A6.2; [companion guide](../books/guides/attribute-driven-migration.md#pki-binding))"
+  - risk: "Entra ID's logs expire before an assessor asks for them"
+    impact: "The evidence for the pilot's changes is gone, and the logs aren't retroactive"
+    response: "Route logs outside Entra ID from the pilot's first day (A2.3; [Book 03, Chapter 11](../books/b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves))"
+
+tasks:
+  # ------------------------------------------------- Phase 0 — read the tree
+  - {id: A0.1, phase: 0, name: "OU tree exported read-only: placement and size, GPO links at domain, OU and site, inheritance, and hand-made delegations; every OU and each GPO half tagged with its track", dur: 8, owner: "Identity engineering",
+     source: "../books/guides/attribute-driven-migration.md#stage-0-read-what-the-ou-tree-encodes"}
+  - {id: A0.2, phase: 0, name: "A decision for every security group: keep synced, convert to cloud-only, convert to dynamic, or retire", dur: 8, after: [A0.1], owner: "Identity engineering, with application owners",
+     source: "../books/b02-identity/09-building-the-entra-target.md#the-per-group-decision"}
+  - {id: A0.3, phase: 0, name: "OU-to-unit mapping drafted: which OU delegations become administrative units, and which become Azure RBAC scopes for servers", dur: 4, after: [A0.1], owner: "Identity engineering",
+     source: "../books/b02-identity/09-building-the-entra-target.md#organizational-units"}
+  - {id: A0.4, phase: 0, name: "GPO settings split by track: user halves to the HR track's policy design, computer halves to the Endpoint plan", dur: 4, after: [A0.1], owner: "Identity engineering, with the endpoint lead",
+     source: "../books/guides/attribute-driven-migration.md#four-tracks"}
+  - {id: X-EG0, kind: external, phase: 0, name: "Device and server observation signed off (Endpoint plan, Gate 0)", ref: "endpoint-device:EG0", after: [A0.4], owner: "ISSO (Endpoint plan)",
+     late: "The Endpoint plan triages Group Policy without knowing which halves belong to people",
+     source: "endpoint-device.md"}
+  - {id: X-NG0, kind: external, phase: 0, name: "Non-person identities inventoried (Non-Person Identity plan, Gate 0)", ref: "non-person-identity:NG0", after: [A0.1], owner: "ISSO (Non-Person Identity plan)",
+     late: "Service accounts in the tree are inventoried without their OU placement and delegations",
+     source: "non-person-identity.md"}
+  - {id: AG0, kind: gate, phase: 0, name: "Gate 0 — The tree read", after: [A0.2, A0.3, A0.4], owner: "Identity engineering lead",
+     criteria: "Inventory in Git, site-linked GPOs included; every OU and every GPO half tagged with its track; a decision for every group; the OU-to-unit mapping drafted; nothing changed in the forest",
+     source: "../books/b02-identity/10-migrating-and-governing.md#phase-0-assessment"}
+  - {id: X-G0, kind: external, phase: 0, name: "Program G0 — Ready to Plan: the read-only assessment committed", ref: "program-master-schedule:G0", after: [AG0], owner: "Steward (program)",
+     late: "The program plans Phase 1 without knowing what the OU tree encodes",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Phase 1 — schema and slots
+  - {id: A1.1, phase: 1, name: "AD attribute inventory: which attributes are populated, by whom and how fully; which extension attributes are free to carry codes", dur: 5, owner: "Identity engineering",
+     source: "../books/guides/attribute-driven-migration.md#compared-with-active-directory"}
+  - {id: X-DI1, kind: external, phase: 1, name: "Enterprise person key, and how source keys map to it (Identity Lifecycle plan, D-I1)", ref: "identity-lifecycle:D-I1", owner: "ICAM governance body (Identity Lifecycle plan)",
+     late: "The mapping has no key to carry in employeeId",
+     source: "identity-lifecycle.md"}
+  - {id: A1.2, phase: 1, name: "AD-to-Entra mapping for every attribute that drives access, per object type: users, devices, Arc servers, service principals; the store for each from the store table", dur: 7, after: [A1.1, X-DI1], owner: "Data architect, with identity engineering",
+     source: "../books/guides/attribute-driven-migration.md#the-attribute-stores-in-the-order-to-reach-for-them"}
+  - {id: X-I12, kind: external, phase: 1, name: "Attribute authority map signed (Identity Lifecycle plan, I1.2)", ref: "identity-lifecycle:I1.2", owner: "ICAM governance body (Identity Lifecycle plan)",
+     late: "The schema can't name a writer for an attribute whose authority isn't decided",
+     source: "identity-lifecycle.md"}
+  - {id: D-A1, kind: decision, phase: 1, name: "Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks", after: [A1.2, X-I12], owner: "Data architect",
+     options: "Native properties first, then extension attributes 1–15 for what rules read, directory extensions for more slots, custom security attributes for sensitive values rules don't need, device properties, Azure tags and certificateUserIds (the store table); or a broader use of directory extensions from the start",
+     late: "No slot can be assigned, and every group rule, persona and targeting convention waits",
+     source: "../books/guides/attribute-driven-migration.md#attributes"}
+  - {id: D-A2, kind: decision, phase: 1, name: "The coded slot register: which extension attribute carries which code, on users and on devices", after: [D-A1], owner: "Data architect, with HR for the code lists",
+     options: "The program attribute map (organization, worker type and position category in extensionAttribute10 to 12; region, cost center, division, account type, clearance and DoNotSync in their slots; device tier, role and environment on the device object); or an agency map that keeps the same rule: codes, never names, one writer per slot",
+     late: "Rules and filters are written against slots that may move, and every one is rewritten later",
+     source: "../books/b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map"}
+  - {id: A1.3, phase: 1, name: "Slot register published: one writer per slot, the code list owner, what reads it; the help desk, self-service and Exchange write paths listed for removal", dur: 4, after: [D-A2], owner: "Data architect",
+     source: "../books/b03-hr-identity/06-canonical-attribute-schema.md#writers"}
+  - {id: A1.4, phase: 1, name: "Device, server and non-person attribute authorities named: the procurement record through the Autopilot group tag, the asset record through Arc onboarding tags, the owning system's record", dur: 3, after: [D-A1], owner: "Data architect, with the endpoint lead",
+     source: "../books/guides/attribute-driven-migration.md#stage-1-source-the-attributes"}
+  - {id: AG1, kind: gate, phase: 1, name: "Gate 1 — Schema and slots signed", after: [A1.3, A1.4], owner: "ICAM governance body",
+     criteria: "Every attribute that drives access has one store, one writer and one owner, in all four tracks; the slot register published; the person key carried in employeeId in both directories; codes, never display names, in anything a rule reads",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema"}
+  - {id: X-P11, kind: external, phase: 1, name: "Attribute taxonomy finalized (program P1.1)", ref: "program-master-schedule:P1.1", after: [AG1], owner: "Data architect (program)",
+     late: "The program's taxonomy is finalized without the cross-track slot register",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Phase 2 — prove the attributes
+  - {id: X-I15, kind: external, phase: 2, name: "HR data baselined; employeeId populated; orphan candidates owned (Identity Lifecycle plan, I1.5)", ref: "identity-lifecycle:I1.5", owner: "HR data steward (Identity Lifecycle plan)",
+     late: "The coverage baseline measures data the HR plan hasn't yet corrected",
+     source: "identity-lifecycle.md"}
+  - {id: A2.1, phase: 2, name: "Coverage baseline across the tracks: uncorrelated accounts, empty coded slots, counts per organization code against an HR export, duplicate keys; device and server attribute coverage", dur: 5, after: [AG1, X-I15], owner: "Identity engineering",
+     source: "../books/guides/attribute-driven-migration.md#stage-2-prove-the-attributes-are-true-before-anything-depends-on-them"}
+  - {id: D-A3, kind: decision, phase: 2, name: "Correlation threshold before any rule grants access", after: [A2.1], owner: "Authorizing official, through the agency's risk governance",
+     options: "99% of the pilot cohort correlated (a proposed starting point); a risk-tiered threshold, stricter for privileged and leaver-sensitive populations; 100% with a dated exception list",
+     late: "No group can be piloted, because nobody has said how true the attributes must be",
+     source: "../books/b03-hr-identity/12-execution-plan.md#sequencing-principle"}
+  - {id: A2.2, phase: 2, name: "Other write paths removed: help desk and self-service edits to the access slots, Exchange custom-attribute cmdlets, write rights on the target OUs", dur: 8, after: [A1.3], owner: "Identity engineering, with security",
+     source: "../books/b03-hr-identity/06-canonical-attribute-schema.md#writers"}
+  - {id: A2.3, phase: 2, name: "Entra ID sign-in, audit and provisioning logs routed outside Entra ID before the pilot's first change", dur: 5, after: [AG1], owner: "Security operations",
+     source: "../books/b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves"}
+  - {id: AG2, kind: gate, phase: 2, name: "Gate 2 — Attributes proven for the pilot", after: [D-A3, A2.2, A2.3], owner: "CISO",
+     criteria: "Correlation threshold met on the pilot cohort; every enabled account correlated or on a dated exception list; no duplicate keys; every other write path to the access slots removed in AD and Entra ID; logs leaving Entra ID",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema"}
+  # ------------------------------------------------- Phase 3 — sync
+  - {id: A3.1, phase: 3, name: "Sync mapping for the slot register: carriers in the provisioning apps' target lists, date mappings, the transitional account-type rule, the DoNotSync filter; soft and hard match blocked", dur: 5, after: [AG1], owner: "Identity engineering",
+     source: "../books/guides/attribute-driven-migration.md#stage-3-map-the-attributes-through-sync"}
+  - {id: X-P17, kind: external, phase: 3, name: "Sync and DNS Private Resolver designs (program P1.7)", ref: "program-master-schedule:P1.7", after: [A3.1], owner: "Identity engineering (program)",
+     late: "The sync design is approved without the attribute flow for the coded slots",
+     source: "program-master-schedule.md"}
+  - {id: X-IG3, kind: external, phase: 3, name: "HR feed live for the foundation scope, shadow differences explained (Identity Lifecycle plan, Gate 3)", ref: "identity-lifecycle:IG3", owner: "ISSO (Identity Lifecycle plan)",
+     late: "The coded slots have no live writer, so the group library can't be shadowed on real data",
+     source: "identity-lifecycle.md"}
+  - {id: AG3, kind: gate, phase: 3, name: "Gate 3 — Attributes flowing", after: [A3.1, X-IG3, AG2], owner: "Identity engineering lead",
+     criteria: "Object counts within ±1%; no sync errors; every slot in the register arrives in Entra ID with the value HR sent; shadow-mode differences explained; both match types blocked outside a planned window",
+     source: "../books/b02-identity/10-migrating-and-governing.md#phase-1-sync-deployment-and-initial-sync"}
+  # ------------------------------------------------- Phase 4 — groups and administrative units
+  - {id: A4.1, phase: 4, name: "Dynamic user group library: node and functional rules on codes; every access rule guarded by accountEnabled and userType and excluding agents' accounts; nesting flattened; no memberOf", dur: 5, after: [AG1, A0.2], owner: "Identity engineering, with application owners",
+     source: "../books/guides/attribute-driven-migration.md#stage-4-materialize-ou-subtrees-as-dynamic-groups"}
+  - {id: A4.2, phase: 4, name: "Rules checked before they exist in production: guards, codes not names, paused processing; each rule tested against named users", dur: 3, after: [A4.1], owner: "Identity engineering",
+     source: "../books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md#writing-naming-and-testing-rules"}
+  - {id: D-A4, kind: decision, phase: 4, name: "Restricted management, unit by unit, before each unit exists", after: [A0.3], owner: "Identity engineering",
+     options: "No (the default): the unit scopes writes and stays in governance automation; yes, for a small set of sensitive accounts, accepting that they leave PIM, entitlement management, Lifecycle Workflows and access reviews",
+     late: "A unit is created without the decision, and restriction can't be changed afterward",
+     source: "../books/b02-identity/05-delegation-without-ous.md#restricted-management-a-per-au-decision"}
+  - {id: A4.3, phase: 4, name: "Unit registry: tenant readers, department and division units whose rules mirror the group rules; scoped roles to PIM-eligible role-assignable groups; each unit created before the groups it holds", dur: 5, after: [D-A4, AG1], owner: "Identity engineering",
+     source: "../books/guides/attribute-driven-migration.md#stage-5-delegate-with-administrative-units"}
+  - {id: AG4, kind: gate, phase: 4, name: "Gate 4 — Group library and units designed", after: [A4.2, A4.3], owner: "Identity engineering lead",
+     criteria: "Every governed group on one of the two patterns, on codes, with guards; every unit rule mirroring its group rule; restriction decided for every unit; every role assignment in the matrix",
+     source: "../books/b01-transformation-arc/04-identity-transformation.md#verification"}
+  - {id: X-P12, kind: external, phase: 4, name: "Dynamic group design tested; enterprise groups and administrative units built (program P1.2)", ref: "program-master-schedule:P1.2", after: [AG4], owner: "Identity engineering (program)",
+     late: "The program builds groups and units from a design that hasn't been checked",
+     source: "program-master-schedule.md"}
+  - {id: X-P21S, kind: external, phase: 4, name: "Pilot attributes, groups and units going live (program P2.1, its start)", ref: "program-master-schedule:P2.1:start", owner: "Identity engineering (program)",
+     late: "There's no live pilot data to shadow the rules against",
+     source: "program-master-schedule.md"}
+  - {id: A4.4, phase: 4, name: "Shadow comparison on the pilot: each dynamic group against the group it replaces, every add and remove explained; membership-delta alerts on", dur: 8, after: [X-P21S, AG3], owner: "Identity engineering, with application owners",
+     source: "../books/guides/attribute-driven-migration.md#dynamic-user-groups-hr-track"}
+  - {id: X-P22, kind: external, phase: 4, name: "Pilot Conditional Access and Intune policies assigned (program P2.2, its start)", ref: "program-master-schedule:P2.2:start", after: [A4.4], owner: "Identity engineering (program)",
+     late: "Policies are assigned to groups whose membership hasn't been reconciled",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Phase 5 — targeting
+  - {id: A5.1, phase: 5, name: "Conditional Access personas from coded attributes (worker type for internals and externals); every grant paired with a block; empty-slot users reported; emergency access excluded", dur: 5, after: [D-A2], owner: "Identity engineering",
+     source: "../books/guides/attribute-driven-migration.md#stage-6-replace-gpo-inheritance-with-conditional-access-and-intune-targeting"}
+  - {id: D-A5, kind: decision, phase: 5, name: "The persona set the Conditional Access library targets", after: [A5.1], owner: "CISO",
+     options: "The program's personas, built from the worker type and account type codes; personas plus division-specific overlays; fewer personas with more exclusions (not recommended)",
+     late: "The Conditional Access design runs in report-only without the groups it will enforce on",
+     source: "../books/b04-access/03-the-conditional-access-model.md#naming-and-the-persona-model"}
+  - {id: X-P15, kind: external, phase: 5, name: "Conditional Access design running in report-only (program P1.5)", ref: "program-master-schedule:P1.5", after: [D-A5], owner: "Identity engineering (program)",
+     late: "Report-only runs against personas that may change",
+     source: "program-master-schedule.md"}
+  - {id: A5.2, phase: 5, name: "Device targeting conventions: device slots written at registration by the provisioning service; dynamic device groups only where a rule reads tier or role; filters otherwise; no dynamic device group as an exclusion", dur: 3, after: [D-A2], owner: "Endpoint lead, with the data architect",
+     source: "../books/guides/attribute-driven-migration.md#intune-track"}
+  - {id: X-E12, kind: external, phase: 5, name: "Intune policy library built unassigned, with groups, filters and scope tags (Endpoint plan, E1.2, its start)", ref: "endpoint-device:E1.2:start", after: [A5.2], owner: "Endpoint lead (Endpoint plan)",
+     late: "The policy library is built on targeting the foundation may change",
+     source: "endpoint-device.md"}
+  - {id: A5.3, phase: 5, name: "Server targeting conventions: the Arc tag taxonomy drawn from the asset record and aligned with the device slots; resource groups as the delegation scope", dur: 3, after: [A1.4], owner: "Server infrastructure, with the data architect",
+     source: "../books/guides/attribute-driven-migration.md#arc-track"}
+  - {id: X-E42, kind: external, phase: 5, name: "Tag taxonomy fixed from the asset record (Endpoint plan, E4.2)", ref: "endpoint-device:E4.2", after: [A5.3], owner: "Server infrastructure (Endpoint plan)",
+     late: "Arc servers are tagged with a taxonomy the device and user sides don't share",
+     source: "endpoint-device.md"}
+  - {id: A5.4, phase: 5, name: "Non-person conventions: owners and sponsors recorded by the enterprise person key; custom security attributes for service principals (system, environment, tier) defined", dur: 3, after: [D-A1], owner: "Identity engineering, with the identity governance officer",
+     source: "../books/guides/attribute-driven-migration.md#what-microsoft-documents-for-targeting-service-principals-by-attribute-partly"}
+  - {id: X-N12, kind: external, phase: 5, name: "AI accountability: sponsors mastered in HR (Non-Person Identity plan, N1.2, its start)", ref: "non-person-identity:N1.2:start", after: [A5.4], owner: "Identity governance officer (Non-Person Identity plan)",
+     late: "Sponsors are recorded by name rather than by key, and a sponsor's move or departure can't be matched",
+     source: "non-person-identity.md"}
+  - {id: AG5, kind: gate, phase: 5, name: "Gate 5 — Targeting conventions set", after: [D-A5, A5.2, A5.3, A5.4], owner: "CISO",
+     criteria: "Personas from authoritative codes, grant and block in pairs, empty slots reported; device and server conventions published and handed to the Endpoint plan; non-person owners and sponsors keyed to the person key",
+     source: "../books/guides/attribute-driven-migration.md#attribute-to-mechanism-crosswalk"}
+  # ------------------------------------------------- Phase 6 — PIV binding
+  - {id: A6.1, phase: 6, name: "Binding coverage measured: certificateUserIds or altSecurityIdentities present and correct for every pilot card holder; the card management system named as the binding writer", dur: 5, after: [AG3], owner: "Identity engineering, with the PIV program office",
+     source: "../books/guides/attribute-driven-migration.md#pki-binding"}
+  - {id: D-A6, kind: decision, phase: 6, name: "Required affinity binding for PIV and CAC", after: [A6.1], owner: "CISO",
+     options: "High affinity in production (the program's position), with a custom rule per issuer during the pilot; low affinity until coverage is complete, with a dated end; mixed by issuer",
+     late: "PIV sign-in goes to the pilot at the tenant default, which is low affinity",
+     source: "../books/b07-pki/06-device-and-user-certificates.md#username-bindings-and-affinity"}
+  - {id: A6.2, phase: 6, name: "High affinity piloted on the pilot cohort before the tenant setting changes; multifactor binding rule by issuer or policy OID", dur: 5, after: [D-A6], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/09-credentials-and-certificates.md#binding-the-piv-certificate-to-the-entra-user"}
+  - {id: X-P28, kind: external, phase: 6, name: "Certificate-based authentication for PIV and CAC holders (program P2.8)", ref: "program-master-schedule:P2.8", after: [A6.2], owner: "Identity engineering (program)",
+     late: "PIV sign-in reaches the pilot with bindings nobody has measured",
+     source: "program-master-schedule.md"}
+  - {id: D-A7, kind: decision, phase: 6, name: "Who writes the binding after AD", after: [A6.2], owner: "ICAM governance body",
+     options: "The card management system writes certificateUserIds through Microsoft Graph at issuance (design guidance, an open pilot); Entra Connect keeps syncing from altSecurityIdentities while any AD remains; manual entry by a Privileged Authentication Administrator (not at scale)",
+     late: "User issuance can't move off AD CS, because nothing writes the binding without AD",
+     source: "../books/guides/attribute-driven-migration.md#pki-binding"}
+  - {id: X-P45, kind: external, phase: 6, name: "User and device issuance off AD CS; smart-card logon GPO retired (program P4.5)", ref: "program-master-schedule:P4.5", after: [D-A7], owner: "PKI lead (program)",
+     late: "Issuance moves off AD CS with no writer for the binding",
+     source: "program-master-schedule.md"}
+  - {id: AG6, kind: gate, phase: 6, name: "Gate 6 — PIV binding proven on the pilot", after: [A6.2], owner: "CISO",
+     criteria: "Every pilot card holder bound; high affinity piloted with no lockouts; phishing-resistant strength for CBA users; the leaver removes the binding as well as revoking the card",
+     source: "../books/guides/attribute-driven-migration.md#pki-binding"}
+  # ------------------------------------------------- Phase 7 — the mover proof
+  - {id: X-I43, kind: external, phase: 7, name: "Joiner and mover automation (Identity Lifecycle plan, I4.3)", ref: "identity-lifecycle:I4.3", owner: "Identity engineering (Identity Lifecycle plan)",
+     late: "There's no mover workflow to prove the foundation against",
+     source: "identity-lifecycle.md"}
+  - {id: A7.1, phase: 7, name: "Mover proof on the pilot: one personnel action moves a test user's organization code; groups, unit, persona and access packages change with no ticket; the device stays put; a drift scan comes back clean", dur: 5, after: [X-I43, X-P22, AG5], owner: "Identity engineering, with HR",
+     source: "../books/guides/attribute-driven-migration.md#worked-example-one-user-and-one-mover-event"}
+  - {id: AG7, kind: gate, phase: 7, name: "Gate 7 — Mover proven across the tracks", after: [A7.1, AG6], owner: "CISO",
+     criteria: "The test mover's access changed only through the attributes, within the measured latency; nothing assigned by hand; the device's groups unchanged; the sponsor of any non-person identity the user sponsors notified; the change traced from the personnel action to the drift report",
+     source: "../books/guides/attribute-driven-migration.md#worked-example-one-user-and-one-mover-event"}
+  - {id: X-G2, kind: external, phase: 7, name: "Program G2 — Pilot Clean", ref: "program-master-schedule:G2", after: [AG7], owner: "Steward (program)",
+     late: "The pilot is called clean without a mover having been proved",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Phase 8 — cut-over and the OU tree
+  - {id: A8.1, phase: 8, name: "Wave scopes written as attribute queries whose groups already exist; leaver automation first in every wave", dur: 3, after: [AG7], owner: "Identity engineering",
+     source: "../books/guides/attribute-driven-migration.md#stage-7-cut-over-in-phases"}
+  - {id: X-D07, kind: external, phase: 8, name: "Wave plan: which divisions, in which order (program D07)", ref: "program-master-schedule:D07", after: [A8.1], owner: "Executive sponsor (program)",
+     late: "Waves are drawn by OU, not by attribute value",
+     source: "program-master-schedule.md"}
+  - {id: A8.2, phase: 8, name: "Per-wave attribute gate: coverage of the wave's query, shadow diff, a dry run with writes off, then seven days in which every change traces to HR before the ticket path closes", dur: 5, after: [A8.1], owner: "Identity engineering",
+     source: "../books/b03-hr-identity/appendix-c-acceptance-and-cutover.md#proving-hr-is-the-sole-source"}
+  - {id: X-P31, kind: external, phase: 8, name: "Wave 1, first region (program P3.1)", ref: "program-master-schedule:P3.1", after: [A8.2], owner: "Identity engineering (program)",
+     late: "Wave 1 closes with no attribute gate",
+     source: "program-master-schedule.md"}
+  - {id: X-IG5, kind: external, phase: 8, name: "Populations cloud-mastered (Identity Lifecycle plan, Gate 5)", ref: "identity-lifecycle:IG5", owner: "ISSO (Identity Lifecycle plan)",
+     late: "Shown for reference: the HR plan's own cut-over",
+     source: "identity-lifecycle.md"}
+  - {id: X-G3, kind: external, phase: 8, name: "Program G3 — Rollout Complete", ref: "program-master-schedule:G3", owner: "Steward (program)",
+     late: "The transitional sync rules that read OU placement can't come out while any population still depends on them",
+     source: "program-master-schedule.md"}
+  - {id: A8.3, phase: 8, name: "Transitional rules removed: the account-type sync rule that reads OU placement, OU-based scoping filters and the provisioning OU computation for cloud-mastered populations", dur: 10, after: [X-G3], owner: "Identity engineering",
+     source: "../books/b02-identity/09-building-the-entra-target.md#attribute-flow-and-transformations"}
+  - {id: X-P42, kind: external, phase: 8, name: "OU-based security groups retired (program P4.2)", ref: "program-master-schedule:P4.2", owner: "Identity engineering (program)",
+     late: "The OU tree still grants access through its groups",
+     source: "program-master-schedule.md"}
+  - {id: A8.4, phase: 8, name: "OU tree frozen: hand-made delegations removed; no OU drives access, scoping or policy; the tree's final export archived in Git as the record", dur: 10, after: [A8.3, X-P42], owner: "Identity engineering",
+     source: "../books/b01-transformation-arc/04-identity-transformation.md#phase-4-legacy-retirement"}
+  - {id: AG8, kind: gate, phase: 8, name: "Gate 8 — OU tree retired as a control", after: [A8.4], owner: "CISO",
+     criteria: "Every population cut over by attribute query with its gate passed; no sync rule, scoping filter, group, delegation or policy reads OU placement; the final tree archived; rollback by re-enabling, never by re-creating",
+     source: "../books/guides/attribute-driven-migration.md#stage-7-cut-over-in-phases"}
+  - {id: X-P51, kind: external, phase: 8, name: "AD changes frozen; final assessment (program P5.1, its start)", ref: "program-master-schedule:P5.1:start", after: [AG8], owner: "Steward (program)",
+     late: "AD is frozen while something still reads the OU tree",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Phase 9 — drift, limits, steady state
+  - {id: D-A8, kind: decision, phase: 9, name: "Drift severity and response times", after: [AG2], owner: "CISO",
+     options: "The program's classes (missing identity, stale access, orphan, attribute drift, unauthorized write, credential drift, schema drift) with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots",
+     late: "Drift findings pile up with nobody obliged to close them",
+     source: "../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory"}
+  - {id: A9.1, phase: 9, name: "Drift scans scheduled: HR against the directory, the unit and role registry against the tenant, membership deltas; each track's own reconciliation pointed at the same findings queue", dur: 5, after: [AG4, AG3, D-A8], owner: "Security operations",
+     source: "../books/guides/attribute-driven-migration.md#stage-8-detect-and-correct-drift"}
+  - {id: X-P211, kind: external, phase: 9, name: "Drift-clean hold on the pilot (program P2.11, its start)", ref: "program-master-schedule:P2.11:start", after: [A9.1], owner: "Steward (program)",
+     late: "The drift-clean hold has no scan to measure it",
+     source: "program-master-schedule.md"}
+  - {id: A9.2, phase: 9, name: "Limits register: dynamic group and rule limits, the 100-workflow Lifecycle Workflows budget, administrative unit limits, dynamic units' cloud availability; reviewed with every design change", dur: 3, after: [AG4], owner: "Identity engineering",
+     source: "../books/guides/attribute-driven-migration.md#limits"}
+  - {id: A9.3, phase: 9, name: "A full drift cycle on the whole estate: findings closed at the source; the nightly plan zero-action", dur: 10, after: [A9.1, A8.3], owner: "Security operations, with HR",
+     source: "../books/b01-transformation-arc/04-identity-transformation.md#verification"}
+  - {id: AG9, kind: gate, phase: 9, name: "Gate 9 — Attributes kept true", after: [A9.2, A9.3, AG8], owner: "CISO",
+     criteria: "Valid attributes for every HR-listed worker; every group on one of the two patterns; every unit rule mirroring its group with processing on; every policy targeting only governed groups; zero open high-severity drift findings; logs outside Entra ID; the six lifecycle metrics on the ConMon cadence",
+     source: "../books/b03-hr-identity/12-execution-plan.md#phase-6-sustained-posture"}
+  - {id: X-G5, kind: external, phase: 9, name: "Program G5 — AD Retired", ref: "program-master-schedule:G5", after: [AG9], owner: "Executive sponsor and CIO (program)",
+     late: "AD is retired with attribute drift still open",
+     source: "program-master-schedule.md"}
+
+phases:
+  0: "Phase 0 — Read the tree"
+  1: "Phase 1 — Schema and slots"
+  2: "Phase 2 — Prove the attributes"
+  3: "Phase 3 — Sync"
+  4: "Phase 4 — Groups and administrative units"
+  5: "Phase 5 — Personas and targeting conventions"
+  6: "Phase 6 — PIV and CAC binding"
+  7: "Phase 7 — The mover proof"
+  8: "Phase 8 — Cut-over and the OU tree"
+  9: "Phase 9 — Drift, limits and steady state"

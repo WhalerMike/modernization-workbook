@@ -109,6 +109,8 @@ website:
             text: "Book 18 — Application Modernization"
           - href: docs/books/guides/attribute-driven-migration.md
             text: "Guide: Attribute-Driven Migration to Entra ID"
+          - href: docs/books/guides/attribute-driven-migration-implementation.md
+            text: "Guide: Attribute-Driven Migration Implementation"
           - href: docs/books/guides/intune-track-implementation.md
             text: "Guide: Intune Track Implementation"
           - href: docs/books/guides/arc-track-implementation.md
@@ -233,6 +235,7 @@ website:
         - section: "Companion guides"
           contents:
             - docs/books/guides/attribute-driven-migration.md
+            - docs/books/guides/attribute-driven-migration-implementation.md
             - docs/books/guides/intune-track-implementation.md
             - docs/books/guides/arc-track-implementation.md
             - docs/books/guides/non-person-identity-implementation.md

@@ -126,6 +126,15 @@ Each gate is the next phase's entry condition. The approver signs it against the
 - **X-D11, Provisional target end state: AD retired, or a dated Kerberos island (program D11),** is D11 in the [Program master schedule](program-master-schedule.md) plan (Provisional target end state: AD retired, or a dated Kerberos island), end of wk 4. This plan waits for it; it can slip 133 d before it moves this plan. The gMSA and dMSA reconciliation has no target to reconcile against.
 - **X-G5, Program G5 — AD Retired,** is G5 in the [Program master schedule](program-master-schedule.md) plan (G5 — AD Retired), end of wk 48. This plan must finish N7.3 by then: a margin of 72 d. A workload still running under a gMSA loses its credential when the last domain controller is demoted.
 
+Other plans that take a date from this one. *Waits for it*: that plan can't move until this item finishes, and its float says how far this item can slip before it moves that plan. *Must finish by it*: that plan's work has to be done before this item, and the margin says by how much.
+
+| This plan's item | When | Linked plan | Relationship | Float or margin |
+|---|---|---|---|---|
+| NG0  Gate 0 — Non-person identities inventoried | end of wk 4 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-NG0) | Must finish A0.1 by it | 10 d margin |
+| start of N1.2  AI accountability: a federal sponsor mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor, and a matching inventory record | wk 4–7 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-N12) | Must finish A5.4 by it | 2 d margin |
+
+: Plans that take a date from this one {.striped .hover}
+
 ## Work breakdown and schedule
 
 Every row, by phase. *Float* is total float in working days; **bold** rows are on the critical path. Each row links to the chapter it comes from.

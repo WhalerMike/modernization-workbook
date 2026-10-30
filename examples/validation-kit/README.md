@@ -153,6 +153,14 @@ The results name users, devices and service principals, so store them as the age
 | Attribute-Driven Migration, Stage 4 (dynamic groups), dynamic group dangers | VK-DG-01, VK-DG-02, VK-DG-03, VK-DG-04, VK-DG-05, VK-DG-06 |
 | Attribute-Driven Migration, Stage 5 (administrative units) | VK-DG-07 |
 | Attribute-Driven Migration, Lifecycle Workflows at scale | VK-HR-05, VK-HR-06 |
+| [Attribute-Driven Migration implementation guide](../../docs/books/guides/attribute-driven-migration-implementation.md), Gate 1 (schema and slots) | VK-HR-01, VK-HR-04 |
+| Attribute-Driven Migration implementation guide, Gate 2 (attributes proven) | VK-HR-01, VK-HR-02, VK-HR-03, VK-HR-04 |
+| Attribute-Driven Migration implementation guide, Gate 3 (sync; before and after) | VK-HR-02, VK-HR-03 |
+| Attribute-Driven Migration implementation guide, Gate 4 (group library and units) | VK-DG-01 to VK-DG-07 |
+| Attribute-Driven Migration implementation guide, Gate 5 (targeting conventions, handed to the tracks) | VK-HR-02, VK-INT-01, VK-INT-04, VK-ARC-01, VK-NPI-01, VK-NPI-08 |
+| Attribute-Driven Migration implementation guide, Gate 7 (mover proof) | VK-DG-05, VK-HR-03, VK-HR-05 |
+| Attribute-Driven Migration implementation guide, Gate 8 (each wave) | VK-HR-01 to VK-HR-06, VK-DG-04, VK-DG-05 |
+| Attribute-Driven Migration implementation guide, Gate 9 (drift) | VK-HR-01, VK-HR-03, VK-HR-04, VK-DG-05, VK-DG-06, VK-DG-07, and each track's standing checks |
 | [Intune track](../../docs/books/guides/intune-track-implementation.md), Step 0.4 (coverage matrix and tiers) | VK-INT-06 |
 | Intune track, Step 1.5 (close every other write path) | VK-INT-01, VK-INT-03, VK-DG-05, VK-NPI-05 |
 | Intune track, Step 2.4 (one owning policy per setting) | VK-DG-01 to VK-DG-04, VK-DG-06, VK-INT-04, VK-INT-05 |

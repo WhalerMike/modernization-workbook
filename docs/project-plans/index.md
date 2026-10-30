@@ -49,10 +49,13 @@ The program master schedule is the integrated plan, and the project plans link t
 | [Privileged Access & Administrative Identity](privileged-access.md) | Sample ready | [Book 04](../books/b04-access/index.md) |
 | [Data Platform Identity Transformation](data-platform.md) | Sample ready | [Book 06](../books/b06-data-platform/index.md) |
 | [Non-Person Identity Modernization](non-person-identity.md) | Sample ready | [Book 02, Chapters 09 and 10](../books/b02-identity/09-building-the-entra-target.md#modernizing-service-accounts); [Book 17](../books/b17-ai-identity/index.md); the companion guide's [non-person identity track](../books/guides/attribute-driven-migration.md#non-person-identity-track) |
+| [Attribute-Driven Migration](attribute-driven-migration.md) | Sample ready | The [Attribute-Driven Migration guide](../books/guides/attribute-driven-migration.md) and its [implementation guide](../books/guides/attribute-driven-migration-implementation.md); the two technical deep-dive decks on the [Presentations](../presentations/index.md#technical-attribute-driven-migration) page |
 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) | Sample ready | [Book 13](../books/b13-governance/index.md) |
 | [Supply Chain & Software Bill of Materials](supply-chain-sbom.md) | Sample ready | [Book 14](../books/b14-compliance/index.md) |
 
-: The plan set: the seven projects in [Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md), plus the non-person identity track of the [Attribute-Driven Migration guide](../books/guides/attribute-driven-migration.md#four-tracks) {.striped .hover}
+: The plan set: the seven projects in [Book 00, Chapter 06](../books/b00-orientation/06-the-project-portfolio.md), plus the non-person identity track and the cross-track attribute foundation of the [Attribute-Driven Migration guide](../books/guides/attribute-driven-migration.md#four-tracks) {.striped .hover}
+
+**Where the Attribute-Driven Migration plan sits.** The guide's four tracks each have their own plan: HR in [Identity Lifecycle & Provisioning](identity-lifecycle.md), end-user devices and Arc servers in [Endpoint & Device Modernization](endpoint-device.md) (Arc is its Phase 4), and service accounts, workload identities and AI agents in [Non-Person Identity Modernization](non-person-identity.md). The [Attribute-Driven Migration](attribute-driven-migration.md) plan sits across them and under the program. It owns only what they share: the schema and slots, the proof of the attributes, sync, the group library and units, the personas and targeting conventions, PIV binding, the mover proof, the OU tree's retirement and drift. Each handoff to a track plan or a program gate is a linked milestone with its margin.
 
 ## How to read a plan
 

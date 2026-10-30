@@ -1,0 +1,238 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="1536" viewBox="0 0 980 1536" role="img" aria-labelledby="t d" font-family="Inter, 'DM Sans', Arial, sans-serif">
+<title id="t">Attribute-Driven Migration: schedule</title>
+<desc id="d">Gantt chart of 76 tasks over 40 weeks. Critical-path tasks are red; other tasks are blue, with a grey line for their float. Gates are violet diamonds, decisions amber diamonds, and milestones from another plan green diamonds.</desc>
+<rect width="980" height="1536" fill="#ffffff"/>
+<line x1="360.0" y1="28" x2="360.0" y2="1496" stroke="#e2e8f0" stroke-width="1"/>
+<text x="362.0" y="22" font-size="10" fill="#64748b">wk 1</text>
+<line x1="420.0" y1="28" x2="420.0" y2="1496" stroke="#e2e8f0" stroke-width="1"/>
+<text x="422.0" y="22" font-size="10" fill="#64748b">wk 5</text>
+<line x1="480.0" y1="28" x2="480.0" y2="1496" stroke="#e2e8f0" stroke-width="1"/>
+<text x="482.0" y="22" font-size="10" fill="#64748b">wk 9</text>
+<line x1="540.0" y1="28" x2="540.0" y2="1496" stroke="#e2e8f0" stroke-width="1"/>
+<text x="542.0" y="22" font-size="10" fill="#64748b">wk 13</text>
+<line x1="600.0" y1="28" x2="600.0" y2="1496" stroke="#e2e8f0" stroke-width="1"/>
+<text x="602.0" y="22" font-size="10" fill="#64748b">wk 17</text>
+<line x1="660.0" y1="28" x2="660.0" y2="1496" stroke="#e2e8f0" stroke-width="1"/>
+<text x="662.0" y="22" font-size="10" fill="#64748b">wk 21</text>
+<line x1="720.0" y1="28" x2="720.0" y2="1496" stroke="#e2e8f0" stroke-width="1"/>
+<text x="722.0" y="22" font-size="10" fill="#64748b">wk 25</text>
+<line x1="780.0" y1="28" x2="780.0" y2="1496" stroke="#e2e8f0" stroke-width="1"/>
+<text x="782.0" y="22" font-size="10" fill="#64748b">wk 29</text>
+<line x1="840.0" y1="28" x2="840.0" y2="1496" stroke="#e2e8f0" stroke-width="1"/>
+<text x="842.0" y="22" font-size="10" fill="#64748b">wk 33</text>
+<line x1="900.0" y1="28" x2="900.0" y2="1496" stroke="#e2e8f0" stroke-width="1"/>
+<text x="902.0" y="22" font-size="10" fill="#64748b">wk 37</text>
+<line x1="960.0" y1="28" x2="960.0" y2="1496" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="0" y="34" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="46.5" font-size="11" font-weight="600" fill="#1e293b">Phase 0 — Read the tree</text>
+<text x="14" y="63" font-size="10.5" fill="#64748b">A0.1  OU tree exported read-only: placement and size, GP…</text>
+<line x1="384.0" y1="59.5" x2="396.0" y2="59.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="55" width="24.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="80" font-size="10.5" fill="#64748b">A0.2  A decision for every security group: keep synced,…</text>
+<line x1="408.0" y1="76.5" x2="420.0" y2="76.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="384.0" y="72" width="24.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="97" font-size="10.5" fill="#64748b">A0.3  OU-to-unit mapping drafted: which OU delegations b…</text>
+<line x1="396.0" y1="93.5" x2="420.0" y2="93.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="384.0" y="89" width="12.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="114" font-size="10.5" fill="#64748b">A0.4  GPO settings split by track: user halves to the HR…</text>
+<line x1="396.0" y1="110.5" x2="420.0" y2="110.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="384.0" y="106" width="12.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="131" font-size="10.5" fill="#64748b">X-EG0  Device and server observation signed off (Endpoin…</text>
+<path d="M420.0 122.0 L425.5 127.5 L420.0 133.0 L414.5 127.5 Z" fill="#059669"/>
+<text x="14" y="148" font-size="10.5" fill="#64748b">X-NG0  Non-person identities inventoried (Non-Person Ide…</text>
+<path d="M414.0 139.0 L419.5 144.5 L414.0 150.0 L408.5 144.5 Z" fill="#059669"/>
+<text x="14" y="165" font-size="10.5" fill="#64748b">AG0  Gate 0 — The tree read</text>
+<path d="M408.0 156.0 L413.5 161.5 L408.0 167.0 L402.5 161.5 Z" fill="#7C3AED"/>
+<text x="14" y="182" font-size="10.5" fill="#64748b">X-G0  Program G0 — Ready to Plan: the read-only assessme…</text>
+<path d="M420.0 173.0 L425.5 178.5 L420.0 184.0 L414.5 178.5 Z" fill="#059669"/>
+<rect x="0" y="187" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="199.5" font-size="11" font-weight="600" fill="#1e293b">Phase 1 — Schema and slots</text>
+<text x="14" y="216" font-size="10.5" fill="#64748b">A1.1  AD attribute inventory: which attributes are popul…</text>
+<line x1="375.0" y1="212.5" x2="384.0" y2="212.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="208" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="233" font-size="10.5" fill="#64748b">X-DI1  Enterprise person key, and how source keys map to…</text>
+<path d="M375.0 224.0 L380.5 229.5 L375.0 235.0 L369.5 229.5 Z" fill="#059669"/>
+<text x="14" y="250" font-size="10.5" fill="#64748b">A1.2  AD-to-Entra mapping for every attribute that drive…</text>
+<line x1="396.0" y1="246.5" x2="405.0" y2="246.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="375.0" y="242" width="21.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="267" font-size="10.5" fill="#64748b">X-I12  Attribute authority map signed (Identity Lifecycl…</text>
+<path d="M399.0 258.0 L404.5 263.5 L399.0 269.0 L393.5 263.5 Z" fill="#059669"/>
+<text x="14" y="284" font-size="10.5" fill="#64748b">D-A1  Attribute schema: the store and the single writer…</text>
+<path d="M399.0 275.0 L404.5 280.5 L399.0 286.0 L393.5 280.5 Z" fill="#D97706"/>
+<text x="14" y="301" font-size="10.5" fill="#64748b">D-A2  The coded slot register: which extension attribute…</text>
+<path d="M399.0 292.0 L404.5 297.5 L399.0 303.0 L393.5 297.5 Z" fill="#D97706"/>
+<text x="14" y="318" font-size="10.5" fill="#64748b">A1.3  Slot register published: one writer per slot, the…</text>
+<line x1="411.0" y1="314.5" x2="435.0" y2="314.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="399.0" y="310" width="12.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="335" font-size="10.5" fill="#64748b">A1.4  Device, server and non-person attribute authoritie…</text>
+<line x1="408.0" y1="331.5" x2="426.0" y2="331.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="399.0" y="327" width="9.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="352" font-size="10.5" fill="#64748b">AG1  Gate 1 — Schema and slots signed</text>
+<path d="M411.0 343.0 L416.5 348.5 L411.0 354.0 L405.5 348.5 Z" fill="#7C3AED"/>
+<text x="14" y="369" font-size="10.5" fill="#64748b">X-P11  Attribute taxonomy finalized (program P1.1)</text>
+<path d="M435.0 360.0 L440.5 365.5 L435.0 371.0 L429.5 365.5 Z" fill="#059669"/>
+<rect x="0" y="374" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="386.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Prove the attributes</text>
+<text x="14" y="403" font-size="10.5" fill="#64748b">X-I15  HR data baselined; employeeId populated; orphan c…</text>
+<path d="M411.0 394.0 L416.5 399.5 L411.0 405.0 L405.5 399.5 Z" fill="#059669"/>
+<text x="14" y="420" font-size="10.5" fill="#64748b">A2.1  Coverage baseline across the tracks: uncorrelated…</text>
+<line x1="426.0" y1="416.5" x2="486.0" y2="416.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="411.0" y="412" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="437" font-size="10.5" fill="#64748b">D-A3  Correlation threshold before any rule grants access</text>
+<path d="M426.0 428.0 L431.5 433.5 L426.0 439.0 L420.5 433.5 Z" fill="#D97706"/>
+<text x="14" y="454" font-size="10.5" fill="#64748b">A2.2  Other write paths removed: help desk and self-serv…</text>
+<line x1="435.0" y1="450.5" x2="486.0" y2="450.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="411.0" y="446" width="24.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="471" font-size="10.5" fill="#64748b">A2.3  Entra ID sign-in, audit and provisioning logs rout…</text>
+<line x1="426.0" y1="467.5" x2="486.0" y2="467.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="411.0" y="463" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="488" font-size="10.5" fill="#64748b">AG2  Gate 2 — Attributes proven for the pilot</text>
+<path d="M435.0 479.0 L440.5 484.5 L435.0 490.0 L429.5 484.5 Z" fill="#7C3AED"/>
+<rect x="0" y="493" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="505.5" font-size="11" font-weight="600" fill="#1e293b">Phase 3 — Sync</text>
+<text x="14" y="522" font-size="10.5" fill="#64748b">A3.1  Sync mapping for the slot register: carriers in th…</text>
+<line x1="426.0" y1="518.5" x2="450.0" y2="518.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="411.0" y="514" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="539" font-size="10.5" fill="#64748b">X-P17  Sync and DNS Private Resolver designs (program P1…</text>
+<path d="M450.0 530.0 L455.5 535.5 L450.0 541.0 L444.5 535.5 Z" fill="#059669"/>
+<text x="14" y="556" font-size="10.5" fill="#64748b">X-IG3  HR feed live for the foundation scope, shadow dif…</text>
+<path d="M474.0 547.0 L479.5 552.5 L474.0 558.0 L468.5 552.5 Z" fill="#059669"/>
+<text x="14" y="573" font-size="10.5" fill="#64748b">AG3  Gate 3 — Attributes flowing</text>
+<path d="M474.0 564.0 L479.5 569.5 L474.0 575.0 L468.5 569.5 Z" fill="#7C3AED"/>
+<rect x="0" y="578" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="590.5" font-size="11" font-weight="600" fill="#1e293b">Phase 4 — Groups and administrative units</text>
+<text x="14" y="607" font-size="10.5" fill="#64748b">A4.1  Dynamic user group library: node and functional ru…</text>
+<line x1="426.0" y1="603.5" x2="450.0" y2="603.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="411.0" y="599" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="624" font-size="10.5" fill="#64748b">A4.2  Rules checked before they exist in production: gua…</text>
+<line x1="435.0" y1="620.5" x2="459.0" y2="620.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="426.0" y="616" width="9.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="641" font-size="10.5" fill="#64748b">D-A4  Restricted management, unit by unit, before each u…</text>
+<path d="M396.0 632.0 L401.5 637.5 L396.0 643.0 L390.5 637.5 Z" fill="#D97706"/>
+<text x="14" y="658" font-size="10.5" fill="#64748b">A4.3  Unit registry: tenant readers, department and divi…</text>
+<line x1="426.0" y1="654.5" x2="459.0" y2="654.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="411.0" y="650" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="675" font-size="10.5" fill="#64748b">AG4  Gate 4 — Group library and units designed</text>
+<path d="M435.0 666.0 L440.5 671.5 L435.0 677.0 L429.5 671.5 Z" fill="#7C3AED"/>
+<text x="14" y="692" font-size="10.5" fill="#64748b">X-P12  Dynamic group design tested; enterprise groups an…</text>
+<path d="M459.0 683.0 L464.5 688.5 L459.0 694.0 L453.5 688.5 Z" fill="#059669"/>
+<text x="14" y="709" font-size="10.5" fill="#64748b">X-P21S  Pilot attributes, groups and units going live (p…</text>
+<path d="M480.0 700.0 L485.5 705.5 L480.0 711.0 L474.5 705.5 Z" fill="#059669"/>
+<text x="14" y="726" font-size="10.5" fill="#64748b">A4.4  Shadow comparison on the pilot: each dynamic group…</text>
+<line x1="504.0" y1="722.5" x2="510.0" y2="722.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="480.0" y="718" width="24.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="743" font-size="10.5" fill="#64748b">X-P22  Pilot Conditional Access and Intune policies assi…</text>
+<path d="M510.0 734.0 L515.5 739.5 L510.0 745.0 L504.5 739.5 Z" fill="#059669"/>
+<rect x="0" y="748" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="760.5" font-size="11" font-weight="600" fill="#1e293b">Phase 5 — Personas and targeting conventions</text>
+<text x="14" y="777" font-size="10.5" fill="#64748b">A5.1  Conditional Access personas from coded attributes…</text>
+<line x1="414.0" y1="773.5" x2="450.0" y2="773.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="399.0" y="769" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="794" font-size="10.5" fill="#64748b">D-A5  The persona set the Conditional Access library tar…</text>
+<path d="M414.0 785.0 L419.5 790.5 L414.0 796.0 L408.5 790.5 Z" fill="#D97706"/>
+<text x="14" y="811" font-size="10.5" fill="#64748b">X-P15  Conditional Access design running in report-only…</text>
+<path d="M450.0 802.0 L455.5 807.5 L450.0 813.0 L444.5 807.5 Z" fill="#059669"/>
+<text x="14" y="828" font-size="10.5" fill="#64748b">A5.2  Device targeting conventions: device slots written…</text>
+<line x1="408.0" y1="824.5" x2="420.0" y2="824.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="399.0" y="820" width="9.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="845" font-size="10.5" fill="#64748b">X-E12  Intune policy library built unassigned, with grou…</text>
+<path d="M420.0 836.0 L425.5 841.5 L420.0 847.0 L414.5 841.5 Z" fill="#059669"/>
+<text x="14" y="862" font-size="10.5" fill="#64748b">A5.3  Server targeting conventions: the Arc tag taxonomy…</text>
+<line x1="417.0" y1="858.5" x2="435.0" y2="858.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="408.0" y="854" width="9.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="879" font-size="10.5" fill="#64748b">X-E42  Tag taxonomy fixed from the asset record (Endpoin…</text>
+<path d="M435.0 870.0 L440.5 875.5 L435.0 881.0 L429.5 875.5 Z" fill="#059669"/>
+<text x="14" y="896" font-size="10.5" fill="#64748b">A5.4  Non-person conventions: owners and sponsors record…</text>
+<line x1="408.0" y1="892.5" x2="414.0" y2="892.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="399.0" y="888" width="9.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="913" font-size="10.5" fill="#64748b">X-N12  AI accountability: sponsors mastered in HR (Non-P…</text>
+<path d="M414.0 904.0 L419.5 909.5 L414.0 915.0 L408.5 909.5 Z" fill="#059669"/>
+<text x="14" y="930" font-size="10.5" fill="#64748b">AG5  Gate 5 — Targeting conventions set</text>
+<path d="M417.0 921.0 L422.5 926.5 L417.0 932.0 L411.5 926.5 Z" fill="#7C3AED"/>
+<rect x="0" y="935" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="947.5" font-size="11" font-weight="600" fill="#1e293b">Phase 6 — PIV and CAC binding</text>
+<text x="14" y="964" font-size="10.5" fill="#64748b">A6.1  Binding coverage measured: certificateUserIds or a…</text>
+<line x1="489.0" y1="960.5" x2="519.0" y2="960.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="474.0" y="956" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="981" font-size="10.5" fill="#64748b">D-A6  Required affinity binding for PIV and CAC</text>
+<path d="M489.0 972.0 L494.5 977.5 L489.0 983.0 L483.5 977.5 Z" fill="#D97706"/>
+<text x="14" y="998" font-size="10.5" fill="#64748b">A6.2  High affinity piloted on the pilot cohort before t…</text>
+<line x1="504.0" y1="994.5" x2="534.0" y2="994.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="489.0" y="990" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1015" font-size="10.5" fill="#64748b">X-P28  Certificate-based authentication for PIV and CAC…</text>
+<path d="M534.0 1006.0 L539.5 1011.5 L534.0 1017.0 L528.5 1011.5 Z" fill="#059669"/>
+<text x="14" y="1032" font-size="10.5" fill="#64748b">D-A7  Who writes the binding after AD</text>
+<path d="M504.0 1023.0 L509.5 1028.5 L504.0 1034.0 L498.5 1028.5 Z" fill="#D97706"/>
+<text x="14" y="1049" font-size="10.5" fill="#64748b">X-P45  User and device issuance off AD CS; smart-card lo…</text>
+<path d="M945.0 1040.0 L950.5 1045.5 L945.0 1051.0 L939.5 1045.5 Z" fill="#059669"/>
+<text x="14" y="1066" font-size="10.5" fill="#64748b">AG6  Gate 6 — PIV binding proven on the pilot</text>
+<path d="M504.0 1057.0 L509.5 1062.5 L504.0 1068.0 L498.5 1062.5 Z" fill="#7C3AED"/>
+<rect x="0" y="1071" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="1083.5" font-size="11" font-weight="600" fill="#1e293b">Phase 7 — The mover proof</text>
+<text x="14" y="1100" font-size="10.5" fill="#64748b">X-I43  Joiner and mover automation (Identity Lifecycle p…</text>
+<path d="M534.0 1091.0 L539.5 1096.5 L534.0 1102.0 L528.5 1096.5 Z" fill="#059669"/>
+<text x="14" y="1117" font-size="10.5" fill="#64748b">A7.1  Mover proof on the pilot: one personnel action mov…</text>
+<line x1="549.0" y1="1113.5" x2="591.0" y2="1113.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="534.0" y="1109" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1134" font-size="10.5" fill="#64748b">AG7  Gate 7 — Mover proven across the tracks</text>
+<path d="M549.0 1125.0 L554.5 1130.5 L549.0 1136.0 L543.5 1130.5 Z" fill="#7C3AED"/>
+<text x="14" y="1151" font-size="10.5" fill="#64748b">X-G2  Program G2 — Pilot Clean</text>
+<path d="M600.0 1142.0 L605.5 1147.5 L600.0 1153.0 L594.5 1147.5 Z" fill="#059669"/>
+<rect x="0" y="1156" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="1168.5" font-size="11" font-weight="600" fill="#1e293b">Phase 8 — Cut-over and the OU tree</text>
+<text x="14" y="1185" font-size="10.5" fill="#64748b">A8.1  Wave scopes written as attribute queries whose gro…</text>
+<line x1="558.0" y1="1181.5" x2="600.0" y2="1181.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="549.0" y="1177" width="9.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1202" font-size="10.5" fill="#64748b">X-D07  Wave plan: which divisions, in which order (progr…</text>
+<path d="M600.0 1193.0 L605.5 1198.5 L600.0 1204.0 L594.5 1198.5 Z" fill="#059669"/>
+<text x="14" y="1219" font-size="10.5" fill="#64748b">A8.2  Per-wave attribute gate: coverage of the wave&#x27;s qu…</text>
+<line x1="573.0" y1="1215.5" x2="666.0" y2="1215.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="558.0" y="1211" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1236" font-size="10.5" fill="#64748b">X-P31  Wave 1, first region (program P3.1)</text>
+<path d="M666.0 1227.0 L671.5 1232.5 L666.0 1238.0 L660.5 1232.5 Z" fill="#059669"/>
+<text x="14" y="1253" font-size="10.5" fill="#64748b">X-IG5  Populations cloud-mastered (Identity Lifecycle pl…</text>
+<path d="M744.0 1244.0 L749.5 1249.5 L744.0 1255.0 L738.5 1249.5 Z" fill="#059669"/>
+<text x="14" y="1270" font-size="10.5" fill="#64748b">X-G3  Program G3 — Rollout Complete</text>
+<path d="M900.0 1261.0 L905.5 1266.5 L900.0 1272.0 L894.5 1266.5 Z" fill="#059669"/>
+<text x="14" y="1287" font-size="10.5" fill="#1e293b">A8.3  Transitional rules removed: the account-type sync…</text>
+<rect x="900.0" y="1279" width="30.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1304" font-size="10.5" fill="#64748b">X-P42  OU-based security groups retired (program P4.2)</text>
+<path d="M930.0 1295.0 L935.5 1300.5 L930.0 1306.0 L924.5 1300.5 Z" fill="#059669"/>
+<text x="14" y="1321" font-size="10.5" fill="#1e293b">A8.4  OU tree frozen: hand-made delegations removed; no…</text>
+<rect x="930.0" y="1313" width="30.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1338" font-size="10.5" fill="#1e293b">AG8  Gate 8 — OU tree retired as a control</text>
+<path d="M960.0 1329.0 L965.5 1334.5 L960.0 1340.0 L954.5 1334.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="1355" font-size="10.5" fill="#64748b">X-P51  AD changes frozen; final assessment (program P5.1…</text>
+<path d="M1020.0 1346.0 L1025.5 1351.5 L1020.0 1357.0 L1014.5 1351.5 Z" fill="#059669"/>
+<rect x="0" y="1360" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="1372.5" font-size="11" font-weight="600" fill="#1e293b">Phase 9 — Drift, limits and steady state</text>
+<text x="14" y="1389" font-size="10.5" fill="#64748b">D-A8  Drift severity and response times</text>
+<path d="M435.0 1380.0 L440.5 1385.5 L435.0 1391.0 L429.5 1385.5 Z" fill="#D97706"/>
+<text x="14" y="1406" font-size="10.5" fill="#64748b">A9.1  Drift scans scheduled: HR against the directory, t…</text>
+<line x1="489.0" y1="1402.5" x2="570.0" y2="1402.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="474.0" y="1398" width="15.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1423" font-size="10.5" fill="#64748b">X-P211  Drift-clean hold on the pilot (program P2.11, it…</text>
+<path d="M570.0 1414.0 L575.5 1419.5 L570.0 1425.0 L564.5 1419.5 Z" fill="#059669"/>
+<text x="14" y="1440" font-size="10.5" fill="#64748b">A9.2  Limits register: dynamic group and rule limits, th…</text>
+<line x1="444.0" y1="1436.5" x2="960.0" y2="1436.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="435.0" y="1432" width="9.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="1457" font-size="10.5" fill="#1e293b">A9.3  A full drift cycle on the whole estate: findings c…</text>
+<rect x="930.0" y="1449" width="30.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="1474" font-size="10.5" fill="#1e293b">AG9  Gate 9 — Attributes kept true</text>
+<path d="M960.0 1465.0 L965.5 1470.5 L960.0 1476.0 L954.5 1470.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="1491" font-size="10.5" fill="#64748b">X-G5  Program G5 — AD Retired</text>
+<path d="M1080.0 1482.0 L1085.5 1487.5 L1080.0 1493.0 L1074.5 1487.5 Z" fill="#059669"/>
+<rect x="14" y="1509" width="18" height="9" rx="2" fill="#DC2626"/>
+<text x="38" y="1518" font-size="10.5" fill="#1e293b">Critical path</text>
+<rect x="140.60000000000002" y="1509" width="18" height="9" rx="2" fill="#2563EB"/>
+<text x="164.60000000000002" y="1518" font-size="10.5" fill="#1e293b">Other task</text>
+<line x1="248.60000000000002" y1="1513.5" x2="266.6" y2="1513.5" stroke="#cbd5e1" stroke-width="2"/>
+<text x="272.6" y="1518" font-size="10.5" fill="#1e293b">Float</text>
+<path d="M334.6 1508 L340.1 1513.5 L334.6 1519 L329.1 1513.5 Z" fill="#7C3AED"/>
+<text x="349.6" y="1518" font-size="10.5" fill="#1e293b">Gate</text>
+<path d="M405.40000000000003 1508 L410.90000000000003 1513.5 L405.40000000000003 1519 L399.90000000000003 1513.5 Z" fill="#D97706"/>
+<text x="420.40000000000003" y="1518" font-size="10.5" fill="#1e293b">Decision</text>
+<path d="M501.0 1508 L506.5 1513.5 L501.0 1519 L495.5 1513.5 Z" fill="#059669"/>
+<text x="516.0" y="1518" font-size="10.5" fill="#1e293b">From another plan</text>
+<text x="966" y="1518" font-size="10.5" fill="#64748b" text-anchor="end">A red outline marks a milestone on the critical path</text>
+</svg>
