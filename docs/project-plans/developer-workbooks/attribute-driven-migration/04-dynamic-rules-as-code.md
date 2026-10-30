@@ -262,7 +262,7 @@ One thing Learn states differently on two pages, recorded so a later edit doesn'
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 03 — Writing a Validation Kit Check](03-writing-a-validation-kit-check.md) · [Book index](index.md) · [Next: Chapter 07 — Machine Configuration Packages →](07-machine-configuration-packages.md)
+[← Previous: Chapter 03 — Writing a Validation Kit Check](03-writing-a-validation-kit-check.md) · [Workbook index](index.md) · [Next: Chapter 05 — Lifecycle Workflows Custom Extensions →](05-lifecycle-workflows-custom-extensions.md)
 :::
 
 [^c04-rules]: Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (accessed Oct 30, 2026).

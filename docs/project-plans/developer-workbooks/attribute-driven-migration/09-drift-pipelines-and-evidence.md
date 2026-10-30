@@ -298,7 +298,7 @@ Three places where sources state things differently, recorded so a later edit do
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 07 — Machine Configuration Packages](07-machine-configuration-packages.md) · [Book index](index.md)
+[← Previous: Chapter 08 — Ansible Beside Arc](08-ansible-beside-arc.md) · [Workbook index](index.md)
 :::
 
 [^c09-oidc]: Microsoft Learn, "Use the Azure Login action with OpenID Connect," <https://learn.microsoft.com/azure/developer/github/connect-from-azure-openid-connect> (accessed Oct 30, 2026).

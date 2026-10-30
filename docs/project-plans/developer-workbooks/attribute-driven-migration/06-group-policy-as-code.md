@@ -303,7 +303,7 @@ Three things Learn doesn't say yet, recorded so a later edit doesn't assume them
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 04 — Dynamic Rules as Code](04-dynamic-rules-as-code.md) · [Book index](index.md) · [Next: Chapter 07 — Machine Configuration Packages →](07-machine-configuration-packages.md)
+[← Previous: Chapter 05 — Lifecycle Workflows Custom Extensions](05-lifecycle-workflows-custom-extensions.md) · [Workbook index](index.md) · [Next: Chapter 07 — Machine Configuration Packages →](07-machine-configuration-packages.md)
 :::
 
 [^c06-gpa]: Microsoft Learn, "Import and analyze your on-premises GPOs using Group Policy analytics in Microsoft Intune," <https://learn.microsoft.com/intune/device-configuration/import-group-policy-analytics> (accessed Oct 30, 2026).

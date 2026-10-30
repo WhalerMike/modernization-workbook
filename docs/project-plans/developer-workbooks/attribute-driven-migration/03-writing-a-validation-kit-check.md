@@ -256,7 +256,7 @@ Use a test tenant that has Microsoft Entra Connect or Cloud Sync configured. The
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 01 — The HR-to-Entra Middleware](01-the-hr-to-entra-middleware.md) · [Book index](index.md) · [Next: Chapter 04 — Dynamic Rules as Code →](04-dynamic-rules-as-code.md)
+[← Previous: Chapter 02 — Graph Clients for the Government Clouds](02-graph-clients-for-government-clouds.md) · [Workbook index](index.md) · [Next: Chapter 04 — Dynamic Rules as Code →](04-dynamic-rules-as-code.md)
 :::
 
 [^c03-existing]: Microsoft Learn, "Configure Microsoft Entra Connect for an existing tenant," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-existing-tenant> (accessed Oct 30, 2026).

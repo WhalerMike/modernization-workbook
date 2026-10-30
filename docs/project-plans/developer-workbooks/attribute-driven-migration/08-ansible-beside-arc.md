@@ -290,7 +290,7 @@ Use a commercial test subscription in the GCC tenant and a Linux server you can 
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 07 — Machine Configuration Packages](07-machine-configuration-packages.md) · [Book index](index.md)
+[← Previous: Chapter 07 — Machine Configuration Packages](07-machine-configuration-packages.md) · [Workbook index](index.md) · [Next: Chapter 09 — Drift Pipelines and Evidence to the ISSO →](09-drift-pipelines-and-evidence.md)
 :::
 
 [^c08-ansible]: Microsoft Learn, "Connect machines to Azure Arc at scale with Ansible," <https://learn.microsoft.com/azure/azure-arc/servers/onboard-ansible-playbooks> (accessed Oct 30, 2026).
