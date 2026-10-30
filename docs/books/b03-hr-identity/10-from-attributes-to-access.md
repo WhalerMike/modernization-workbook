@@ -135,8 +135,8 @@ Give every softphone user the remote-location policy, not only those with a tele
 Assign the policies to groups, with these Teams rules in mind:
 
 - **Group assignment works for the emergency calling policy.** `Grant-CsTeamsEmergencyCallingPolicy` takes a group, with a rank among the groups that hold the same policy type.[^c10-ecp-grant]
-- **A direct assignment beats every group.** A policy assigned directly to a user takes precedence over any group assignment, so a one-off assignment silently takes that user out of the HR-driven design.[^c10-gpa] Direct assignments count as drift (Chapter 11).
-- **Keep the groups flat.** Assignments reach only direct members, not members of nested groups; a policy type can be assigned to at most 64 groups; and for large groups a membership change can take 24 hours or more to reach every member.[^c10-gpa] That lag belongs in the mover metrics.
+- **A direct assignment beats every group.** A policy assigned directly to a user takes precedence over any group assignment, so a one-off assignment silently takes that user out of the HR-driven design.[^c10-gpa] Count each direct assignment against derivation purity, the share of assignments computed by rule ([Chapter 11](11-drift-metrics-and-evidence.md#the-measured-lifecycle)).
+- **Keep the groups flat.** Assignments reach only direct members, not members of nested groups; a policy type can be assigned to at most 64 groups; and for large groups a membership change can take 24 hours or more to reach every member.[^c10-gpa] Allow for that lag before treating a mover's old notification policy as drift.
 - **Route Direct Routing calls by site.** Microsoft's pages disagree on whether the emergency call routing policy can be assigned to groups: the cmdlet reference shows a group parameter, while the group-assignment reference lists that policy type as excluded.[^c10-ecrp-grant][^c10-gpa] Assigning it to network sites, which Microsoft supports and which follows the caller's actual location, avoids the question.[^c10-dynamic]
 
 ### Where the location data comes from
