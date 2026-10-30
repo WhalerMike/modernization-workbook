@@ -1,0 +1,21 @@
+{
+  "_comment": "Chapter 08's own calls: GET only, with the least-privileged Graph permission from the Learn page for the call, read on October 30, 2026. The evidence run also makes Chapter 01's inventory calls and Chapter 02's emergency-access calls, which stay declared in calls.json; Get-PaEvidencePermission returns the union of all three tasks. Tests fail when a call is made that isn't listed.",
+  "calls": [
+    {
+      "id": "directory-audits",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/auditLogs/directoryAudits",
+      "permissions": ["AuditLog.Read.All"],
+      "delegatedRoles": ["Reports Reader", "Security Reader", "Security Administrator"],
+      "stage": "v1.0",
+      "tasks": ["pim-audit"],
+      "learn": "https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0",
+      "note": "Filtered by activityDateTime (ge, le), loggedByService (eq) and activityDisplayName (eq), the filters the directoryAudit resource page lists for those properties. Directory.Read.All is the higher-privileged alternative and is never requested."
+    }
+  ],
+  "runs": {
+    "evidence-run": ["inventory", "emergency-access", "pim-audit"]
+  }
+}

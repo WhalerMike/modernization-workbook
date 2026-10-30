@@ -1,0 +1,61 @@
+{
+  "task": "pim-audit",
+  "mode": "Fixture",
+  "cloud": "gcc",
+  "tenantId": "11111111-1111-4111-8111-111111111111",
+  "generated": "2026-10-30T22:10:32.2253364Z",
+  "graphPermissions": [
+    "AuditLog.Read.All"
+  ],
+  "azureRoles": [],
+  "requests": [
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-28T06:00:00Z and activityDateTime le 2026-10-29T06:00:00Z and loggedByService eq 'Privileged Identity Management'",
+      "at": "2026-10-30T22:10:31.4097245Z"
+    },
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime%20ge%202026-10-28T06%3A00%3A00Z%20and%20activityDateTime%20le%202026-10-29T06%3A00%3A00Z%20and%20loggedByService%20eq%20%27Privileged%20Identity%20Management%27&$skiptoken=2",
+      "at": "2026-10-30T22:10:31.7033128Z"
+    },
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime%20ge%202026-10-28T06%3A00%3A00Z%20and%20activityDateTime%20le%202026-10-29T06%3A00%3A00Z%20and%20loggedByService%20eq%20%27Privileged%20Identity%20Management%27&$skiptoken=4",
+      "at": "2026-10-30T22:10:31.7220588Z"
+    },
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime%20ge%202026-10-28T06%3A00%3A00Z%20and%20activityDateTime%20le%202026-10-29T06%3A00%3A00Z%20and%20loggedByService%20eq%20%27Privileged%20Identity%20Management%27&$skiptoken=6",
+      "at": "2026-10-30T22:10:31.7392295Z"
+    },
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime%20ge%202026-10-28T06%3A00%3A00Z%20and%20activityDateTime%20le%202026-10-29T06%3A00%3A00Z%20and%20loggedByService%20eq%20%27Privileged%20Identity%20Management%27&$skiptoken=8",
+      "at": "2026-10-30T22:10:31.7557565Z"
+    },
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-28T06:00:00Z and activityDateTime le 2026-10-29T06:00:00Z and loggedByService eq 'PIM'",
+      "at": "2026-10-30T22:10:31.7760809Z"
+    },
+    {
+      "call": "directory-audits",
+      "method": "GET",
+      "uri": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-28T06:00:00Z and activityDateTime le 2026-10-29T06:00:00Z and activityDisplayName eq 'Add member to role'",
+      "at": "2026-10-30T22:10:31.7914592Z"
+    }
+  ],
+  "files": {
+    "events.json": "315a687718f967901f5c5cb24d47571eeb0b7bb1b7a3ab2a30b44805151a0802",
+    "findings.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "requests.json": "54d594608d0181d8ea1f535fca9e3eddc54f4f03e138485f577a7d28e9aae31b",
+    "summary.json": "4e99aef3a50a5de94c6390c7efaab2a7bdf82a6997928a60911adfd74e6aa15a"
+  }
+}

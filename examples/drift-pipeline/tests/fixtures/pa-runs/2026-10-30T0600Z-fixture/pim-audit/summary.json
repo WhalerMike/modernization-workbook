@@ -1,0 +1,31 @@
+{
+  "window": {
+    "since": "2026-10-29T06:00:00Z",
+    "until": "2026-10-30T06:00:00Z"
+  },
+  "eventsRead": 7,
+  "byActivity": {
+    "Add member to role": 1,
+    "Add member to role completed (PIM activation)": 1,
+    "Add member to role outside of PIM (permanent)": 1,
+    "Add member to role request denied (PIM activation)": 1,
+    "Add member to role requested (PIM activation)": 2,
+    "Update role setting in PIM": 1
+  },
+  "requests": 2,
+  "activations": 1,
+  "activationsByTier": {
+    "T0": 1,
+    "T1": 0,
+    "T2": 0,
+    "RO": 0,
+    "Unclassified": 0
+  },
+  "approved": 0,
+  "denied": 1,
+  "requestsExpired": 0,
+  "deactivations": 0,
+  "outsidePim": 2,
+  "settingChanges": 1,
+  "unclassifiedEvents": 0
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "RequestId": "5eed0000-0000-4000-8000-000000000003",
+    "RoleId": "62e90394-69f5-4237-9190-012177145e10",
+    "Tier": "T0",
+    "PrincipalId": "a0000000-0000-4000-8000-000000000013",
+    "RequesterId": "a0000000-0000-4000-8000-000000000013",
+    "ApproverIds": [],
+    "States": [
+      "Requested",
+      "Activated"
+    ],
+    "First": "2026-10-29T10:00:00Z",
+    "Last": "2026-10-29T10:00:04Z",
+    "Events": [
+      "PIM_0014_fixture",
+      "PIM_0015_fixture"
+    ]
+  },
+  {
+    "RequestId": "5eed0000-0000-4000-8000-000000000004",
+    "RoleId": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+    "Tier": "T0",
+    "PrincipalId": "a0000000-0000-4000-8000-000000000002",
+    "RequesterId": "a0000000-0000-4000-8000-000000000002",
+    "ApproverIds": [],
+    "States": [
+      "Requested",
+      "Denied"
+    ],
+    "First": "2026-10-29T11:00:00Z",
+    "Last": "2026-10-29T11:30:00Z",
+    "Events": [
+      "PIM_0016_fixture",
+      "PIM_0017_fixture"
+    ]
+  }
+]
