@@ -160,7 +160,7 @@ The program draws five working conclusions from the rules. They are the program'
 4. **Consume change notifications and trust-center data as feeds.** Both are machine-readable by rule. Routing them into the agency's own continuous monitoring is cheaper than reading PDFs.
 5. **Keep two vocabularies for a while.** Rev5 packages describe boundaries; 20x packages describe scope. Don't force one into the other.
 
-[Chapter 04](04-gcc-and-the-feature-gap.md) shows why the first of these matters for Microsoft 365 GCC in particular, and [Chapter 09](09-equivalents-and-exceptions.md) turns the second, third and fourth into an agency playbook.
+[Chapter 04](04-gcc-and-the-feature-gap.md) shows why the first of these matters for Microsoft 365 GCC in particular, and [Chapter 09](09-equivalents-and-exceptions.md) turns the second, third and fourth into an agency playbook. The research page [Federal HR 2.0 Across Agencies and Boundaries](../../research/hr2-shared-governance-fedramp-boundary.md) applies the rules to one Rev5 platform, the HR 2.0 Core HCM service, including when its scope has to become public.
 
 ::: {.callout-tip}
 ## Continue the book

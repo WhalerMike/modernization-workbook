@@ -78,3 +78,7 @@ Applied from the research page `docs/research/hcm-entra-implementation.md`; ever
 | 9 | Platform identity: OPM MS Entra-based solution | Program facts (new row) | added | c03-pws-core |
 | 10 | Agency-specific integrations approved by the Steering Committee; sample identity interconnection | Program facts (new row) | added | c03-pws-appb |
 | 11 | Diagram ch03-hr20-window: "onboarding months 1 to 5, the window" | Figure | not changed; still consistent (no wrong fact) | — |
+
+## Additions, October 30, 2026
+
+A one-line link was added at the end of the paragraph saying HR 2.0 covers federal employees. It points to the research page `docs/research/hr2-shared-governance-fedramp-boundary.md`, whose log is `docs/research/_verification/hr2-shared-governance-fedramp-boundary.md`. The link adds no new claims.

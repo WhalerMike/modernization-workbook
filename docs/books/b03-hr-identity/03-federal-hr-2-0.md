@@ -86,7 +86,7 @@ An agency doesn't choose whether to implement Federal HR 2.0; the memo and the w
 
 : What Federal HR 2.0 rebuilds anyway, and what that gives identity {.striped .hover}
 
-One limit applies to all four: Federal HR 2.0 is a program for **federal employees**. Contractors and vendors are not in it. Their source is a separate decision (Chapter 06), and the HR 2.0 onboarding is the right time to make it, because the contingent-worker capability of the same platform is one of the options.
+One limit applies to all four: Federal HR 2.0 is a program for **federal employees**. Contractors and vendors are not in it. Their source is a separate decision (Chapter 06), and the HR 2.0 onboarding is the right time to make it, because the contingent-worker capability of the same platform is one of the options. Where agencies can share HR 2.0 implementation work, and what the platform's FedRAMP status means for data crossing to an agency's systems, is in the research page [Federal HR 2.0 Across Agencies and Boundaries](../../research/hr2-shared-governance-fedramp-boundary.md).
 
 The agency's own move from Active Directory to Entra ID is the second half of the opening (Chapter 05): the directory that HR will drive is being redesigned at the same time.
 
