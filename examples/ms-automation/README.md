@@ -41,7 +41,7 @@ The Python version also has a small Graph client, `python/graphkit.py`, standard
 - tracks `@odata.deltaLink`;
 - sends `x-ms-throttle-priority: Low`, because these are background jobs.
 
-The PowerShell module, `powershell/FmwGraph.psm1`, uses `Connect-MgGraph -Environment` and `Invoke-MgGraphRequest` from Microsoft Graph PowerShell for the same thing, and reads the same `graph-calls.json` (`Assert-FmwGraphCall`, `Get-FmwCallPermission`, `Test-FmwTokenRole`, `Get-FmwBetaCollection`).
+The PowerShell module, `powershell/FmwGraph.psm1`, uses `Connect-MgGraph -Environment` and `Invoke-MgGraphRequest` from Microsoft Graph PowerShell for the same thing, and reads the same `graph-calls.json` (`Assert-FmwGraphCall`, `Get-FmwCallPermission`, `Test-FmwTokenRole`, `Test-FmwSessionRole`, `Get-FmwBetaCollection`).
 
 The [developer workbook's Chapter 02](../../docs/project-plans/developer-workbooks/attribute-driven-migration/02-graph-clients-for-government-clouds.md) explains each rule, starting from Microsoft's own Graph SDK snippets, which `examples/third_party/msgraph-snippets-python` pins and `tests/python/test_learn_sample.py` runs against stand-ins.
 
@@ -106,7 +106,7 @@ Nothing calls the network. The tests prove the code does what this README says a
 - **No export jobs.** Creating an Intune `reports/exportJobs` job needs a write permission, so the checks page through the list APIs instead.
 - **Throttling in PowerShell.** `Invoke-MgGraphRequest` relies on the Graph PowerShell SDK's own retry handling. The PowerShell module doesn't add its own retry loop.
 - **Autopilot in GCC High and DoD.** The beta API page lists the endpoint in the US Government clouds, but Intune's government service description lists Windows Autopilot as not available there. `graph-calls.json` follows the stricter statement, so `autopilot-profiles` reports "not evaluated" in `gcchigh` and `dod` without calling Graph.
-- **The token check reads, it doesn't validate.** `audit_roles` and `Test-FmwTokenRole` decode the `roles` claim of the run's own token as a pre-flight check. They never make an authorization decision. The PowerShell tasks don't run the check on their own, because `Connect-MgGraph` holds the token; pass a token to `Test-FmwTokenRole` yourself.
+- **The token check reads, it doesn't validate.** `audit_roles` and `Test-FmwTokenRole` decode the `roles` claim of the run's own token as a pre-flight check. They never make an authorization decision. In PowerShell, `Connect-MgGraph` holds the token, so `Test-FmwSessionRole` reads the session's permissions from `Get-MgContext`'s `Scopes`, which in an app-only session holds the token's `roles` claim (Learn, "Use app-only authentication with the Microsoft Graph PowerShell SDK"). `Invoke-FmwEntraTask` and `Invoke-FmwIntuneTask` stop before any call when the session lacks a permission, and warn for each extra one.
 
 ```
 examples/ms-automation/

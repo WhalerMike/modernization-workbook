@@ -171,6 +171,69 @@ def test_runs_from_different_clouds_are_not_compared(tmp_path):
         d.compare(d.load_run(PREV), d.load_run(run))
 
 
+OTHER_TENANT = "22222222-2222-4222-8222-222222222222"
+
+
+def test_runs_record_the_fixture_tenant():
+    assert d.load_run(PREV)["tenant_id"] == d.load_run(CURR)["tenant_id"] == "11111111-1111-4111-8111-111111111111"
+
+
+def test_runs_from_different_tenants_are_not_compared(tmp_path):
+    run = copy_run(CURR, tmp_path)
+    rewrite_manifest(run, TenantId=OTHER_TENANT)
+    with pytest.raises(d.DriftError, match="tenant differs: 11111111-1111-4111-8111-111111111111 then " + OTHER_TENANT):
+        d.compare(d.load_run(PREV), d.load_run(run))
+
+
+@pytest.mark.parametrize("which", ["previous", "current", "both"])
+def test_a_run_without_a_tenant_id_is_not_compared(tmp_path, which):
+    prev, curr = copy_run(PREV, tmp_path), copy_run(CURR, tmp_path)
+    for name, run in (("previous", prev), ("current", curr)):
+        if which in (name, "both"):
+            m = json.loads((run / d.KIT_MANIFEST).read_text(encoding="utf-8"))
+            del m["TenantId"]
+            (run / d.KIT_MANIFEST).write_text(json.dumps(m, indent=2), encoding="utf-8")
+    expected = "previous and current" if which == "both" else which
+    with pytest.raises(d.DriftError, match=f"no tenant ID in the {expected} run's kit manifest"):
+        d.compare(d.load_run(prev), d.load_run(curr))
+
+
+def test_tenant_ids_compare_without_regard_to_case(tmp_path):
+    run = copy_run(CURR, tmp_path)
+    rewrite_manifest(run, TenantId="11111111-1111-4111-8111-111111111111".upper())
+    assert d.compare(d.load_run(PREV), d.load_run(run))["counts"]["new"] == 3
+
+
+def test_the_override_compares_and_says_so(tmp_path):
+    run = copy_run(CURR, tmp_path)
+    rewrite_manifest(run, TenantId=OTHER_TENANT)
+    rep = d.compare(d.load_run(PREV), d.load_run(run), allow_tenant_mismatch=True)
+    assert rep["counts"]["new"] == 3
+    assert any(n.startswith("Compared despite a tenant check failure") and OTHER_TENANT in n for n in rep["notes"])
+    assert rep["previous"]["tenant_id"] != rep["current"]["tenant_id"]
+
+
+def test_the_override_does_not_bypass_mode_or_cloud(tmp_path):
+    run = copy_run(CURR, tmp_path)
+    rewrite_manifest(run, TenantId=OTHER_TENANT, Cloud="gcchigh")
+    with pytest.raises(d.DriftError, match="cloud differs"):
+        d.compare(d.load_run(PREV), d.load_run(run), allow_tenant_mismatch=True)
+
+
+def test_cli_refuses_a_tenant_mismatch_unless_told(tmp_path, capsys):
+    run = copy_run(CURR, tmp_path)
+    rewrite_manifest(run, TenantId=OTHER_TENANT)
+    args = ["compare", "--previous", str(PREV), "--current", str(run), "--out", str(tmp_path / "out")]
+    assert d.main(args) == d.EXIT_ERROR
+    assert "tenant differs" in capsys.readouterr().err
+    assert d.main(args + ["--allow-tenant-mismatch"]) == d.EXIT_DRIFT
+
+
+def test_the_package_records_the_tenant(tmp_path):
+    dest = d.package(CURR, d.compare(None, d.load_run(CURR)), PROV, tmp_path / "evidence")
+    assert json.loads((dest / d.EVIDENCE_MANIFEST).read_text(encoding="utf-8"))["tenant_id"] == "11111111-1111-4111-8111-111111111111"
+
+
 def test_runs_out_of_order_are_not_compared():
     with pytest.raises(d.DriftError, match="isn't later"):
         d.compare(d.load_run(CURR), d.load_run(PREV))

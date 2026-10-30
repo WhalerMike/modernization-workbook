@@ -5,6 +5,8 @@
   "ReadOnly": true,
   "Mode": "Fixture",
   "Cloud": "gcc",
+  "TenantId": "11111111-1111-4111-8111-111111111111",
+  "TenantIdSource": "Fixture",
   "AsOfUtc": "2026-10-29T06:17:00Z",
   "ExecutedBy": "runner",
   "ComputerName": "fixture-runner",

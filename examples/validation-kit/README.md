@@ -147,15 +147,17 @@ Everything goes under `<OutputPath>\<run-id>`. The run ID is `YYYY-MM-DD-HHmm-<h
 
 ```text
 <run-id>\
-├── ValidationManifest.json   who, when (UTC), host, mode, cloud, options, the scopes requested, every
-│                             check's status and queries, PowerShell and module versions, and the size
-│                             and SHA-256 of every other file
+├── ValidationManifest.json   who, when (UTC), host, mode, cloud, tenant ID and its source, options, the
+│                             scopes requested, every check's status and queries, PowerShell and module
+│                             versions, and the size and SHA-256 of every other file
 ├── Results\        ValidationResults.csv (one row per check, with its queries and collection time),
 │                   ValidationResults.json (with every detail row and the full evidence)
 ├── Details\        <CheckId>.csv for each check that has rows
 ├── Summary\        ValidationSummary.md (the one-page summary), ValidationSummary.json
 └── Snapshot\       membership-snapshot.json: this run's dynamic group counts, the next run's VK-DG-05 input
 ```
+
+`TenantId` is the tenant the run read. A live run takes it from the Microsoft Graph session (`Get-MgContext`, which the Graph PowerShell SDK fills from the access token's `tid` claim), else from the Azure session, else from `-TenantId`; `TenantIdSource` says which (`GraphSession`, `AzureSession`, `Parameter`). If the session's tenant isn't the `-TenantId` GUID you gave, the run stops before it writes anything. A fixture run records the fixture's `tenant.json` placeholder (`Fixture`). The drift pipeline (`examples/drift-pipeline`) refuses to compare two runs whose tenant IDs differ, or where either has none, unless told `--allow-tenant-mismatch`.
 
 The results name users, devices and service principals, so store them as the agency's data classification requires.
 

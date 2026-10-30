@@ -121,7 +121,7 @@ Learn says an app in a Microsoft 365 GCC environment keeps using the worldwide e
 
 `load_run()` reads a kit run and checks it against the kit's own `ValidationManifest.json`: every listed file with the same SHA-256, nothing missing, nothing added, and `ReadOnly: true`. A run edited after the kit wrote it is refused.
 
-`compare()` takes the Finding and Warn rows (the kit's `Count`; Info rows don't count) and keys each by check, object ID and issue. It refuses to compare runs from different modes or clouds, or a "current" run that isn't later. A changed `-Option` value, such as `MaxSecretDays`, is noted, because it can move findings without the tenant moving.
+`compare()` takes the Finding and Warn rows (the kit's `Count`; Info rows don't count) and keys each by check, object ID and issue. It refuses to compare runs from different modes or clouds, or a "current" run that isn't later. It also refuses two runs from different tenants, which share a cloud and look alike: the kit's manifest records `TenantId`, taken from the Graph session, which the Graph PowerShell SDK fills from the access token's `tid` claim, the tenant that issued the token.[^c09-tid][^c09-mg-tid] A run whose manifest has no tenant ID is refused too, because nothing shows which tenant it read. `--allow-tenant-mismatch` overrides both refusals for a reviewed exception and writes the reason into the report's notes (*design guidance*). The drift report and the evidence manifest carry each run's tenant ID. A changed `-Option` value, such as `MaxSecretDays`, is noted, because it can move findings without the tenant moving.
 
 | Result | Meaning | In the tracker |
 |---|---|---|
@@ -149,11 +149,11 @@ Each finding has a fingerprint: the first 16 hex characters of a SHA-256 over ch
 
 The previous package's manifest hash makes the packages a chain. A package that was replaced, or a day that is missing, shows up as a break. The same inputs give the same bytes, so a package can be rebuilt from its inputs and compared, which is Book 13's "reports are derivations". `verify()` is what the ISSO runs; `sha256sum -c SHA256SUMS` gives the same answer without our code.
 
-The packager doesn't sign. The hashes show that nothing changed after packaging; the container's locked time-based retention policy keeps it from changing afterwards: blobs can be created and read, but not modified or deleted, until the retention interval ends.[^c09-immutable] Signing is an open question in the verification log.
+The packager doesn't sign. The hashes show that nothing changed after packaging; the container's locked time-based retention policy keeps it from changing afterwards: blobs can be created and read, but not modified or deleted, until the retention interval ends.[^c09-immutable] Neither binds the package to the pipeline's identity. Microsoft documents two ways to add that, and the choice of method and key custody stays with the ISSO. Azure Key Vault's **Sign** operation creates a signature from a digest with a key that never leaves the vault, and **Verify** checks it; the caller needs the `keys/sign` permission, and the SHA-256 of `EVIDENCE-MANIFEST.json` is the digest to sign.[^c09-kv-sign] **Azure Artifact Signing** is Microsoft's managed signing service, at FIPS 140-3 Level 3, with a GitHub Action, and signs the file types SignTool supports, or OCI artifacts through Notation; an evidence package is neither, so it would need a signable wrapper such as a catalog file.[^c09-artifact-signing][^c09-artifact-signing-faq] Signing stays open in the verification log.
 
 ### The tests
 
-`tests/test_drift_pipeline.py` has 44 tests: loading and refusing runs, every result type, issue drafts, provenance, packaging, the hash chain, verification and the cloud table. `tests/test_workflow_lint.py` has 20: Learn's three samples as published, the pinned action, and the sample workflow with one defect introduced at a time. Neither needs a tenant or a network. The fixtures are two fictional kit runs for `contoso.example`, one day apart, written by `tests/make_fixtures.py`, and the provenance files the other kits wrote from their own fixtures.
+`tests/test_drift_pipeline.py` has 54 tests: loading and refusing runs (including runs of different or unrecorded tenants, and the override), every result type, issue drafts, provenance, packaging, the hash chain, verification and the cloud table. `tests/test_workflow_lint.py` has 20: Learn's three samples as published, the pinned action, and the sample workflow with one defect introduced at a time. Neither needs a tenant or a network. The fixtures are two fictional kit runs for `contoso.example`, one day apart, written by `tests/make_fixtures.py`, and the provenance files the other kits wrote from their own fixtures.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -186,7 +186,7 @@ You need Python 3.10 or later with PyYAML and pytest, and a shell with `sha256su
    python python/drift_pipeline.py package --kit-run $PREV --diff out/day1/drift-report.json $P --out out/evidence
    ```
 
-   The compare exits `2` with `"baseline": true` and ten new findings. The package's `evidence_manifest_sha256` is `968fe4ea…`.
+   The compare exits `2` with `"baseline": true` and ten new findings. The package's `evidence_manifest_sha256` is `6d9fffbc…`.
 
 5. **Compare the next day:**
 
@@ -214,13 +214,13 @@ You need Python 3.10 or later with PyYAML and pytest, and a shell with `sha256su
    (cd out/evidence/2026-10-29-0617-fixture-runner-fixture && sha256sum -c --quiet SHA256SUMS)
    ```
 
-   The manifest hash is `6668a0ff…`, `verify` reports 16 files, and `sha256sum` exits `0`. Open `EVIDENCE-MANIFEST.json`: `previous.evidence_manifest_sha256` is the day 1 hash, `968fe4ea…`.
+   The manifest hash is `0932f0a3…`, `verify` reports 16 files, and `sha256sum` exits `0`. Open `EVIDENCE-MANIFEST.json`: `previous.evidence_manifest_sha256` is the day 1 hash, `6d9fffbc…`, and `tenant_id` is the fixture tenant's placeholder, `11111111-1111-4111-8111-111111111111`.
 
 8. **Break it on purpose.** Append a line to `out/evidence/2026-10-29-0617-fixture-runner-fixture/drift/drift-summary.md` and run `verify` again: exit `1`, `drift/drift-summary.md doesn't match its SHA-256`. Then swap the runs: `compare --previous $CURR --current $PREV` exits `1`: the current run isn't later than the previous one.
 
 9. **Run the tests:** `python -m pytest tests -q`.
 
-**Expected result:** 64 tests passing, and each row of the gap table seen with your own eyes.
+**Expected result:** 74 tests passing, and each row of the gap table seen with your own eyes.
 
 ## Lab 2: test tenant and test subscription
 
@@ -259,7 +259,7 @@ In production, lock the retention policy once Lab 2 passes. Learn recommends loc
 
 Three places where sources state things differently, recorded so a later edit doesn't loosen the code:
 
-- **Graph token type.** `Connect-MgGraph`'s reference page types `-AccessToken` as `SecureString`;[^c09-mggraph] a Learn troubleshooting article says Microsoft Graph PowerShell 2.28.0 and later accept only a plain string.[^c09-idx14102] The workflow passes the `SecureString`, which keeps the token out of plain text, and Lab 2 step 5 confirms it on the pinned version.
+- **Graph token type.** `Connect-MgGraph`'s reference page types `-AccessToken` as `SecureString`;[^c09-mggraph] a Learn troubleshooting article says Microsoft Graph PowerShell 2.28.0 and later accept only a plain string.[^c09-idx14102] The module's own source still declares the parameter `SecureString` (rechecked October 30, 2026, release v2.41.1).[^c09-mggraph-src] The workflow passes the `SecureString`, which keeps the token out of plain text, and Lab 2 step 5 confirms it on the pinned version.
 - **Issuer with a trailing slash.** Learn's federated credential page shows the GitHub issuer both with and without a trailing slash in its examples.[^c09-fic] It also says the issuer must match the token's `iss` claim, which GitHub documents without the slash.[^c09-gh-oidc] The lab uses the form without the slash.
 - **Pull request subject.** Learn writes the pull request subject as `repo:<org>/<repo>:pull-request`;[^c09-fic] GitHub documents `pull_request`.[^c09-gh-oidc] The pipeline doesn't run on pull requests, so it uses neither.
 
@@ -270,6 +270,7 @@ Three places where sources state things differently, recorded so a later edit do
 | A failed read reported as a fix | A 403 makes yesterday's findings disappear, and their issues close | `Error`, `NotApplicable` and "not run" leave findings unverified; only a check that read the tenant resolves them |
 | A run edited after the kit wrote it | The comparison, and the evidence, describe a run that never happened | `load_run()` checks every file against the kit's own manifest; `verify()` checks the package |
 | Comparing a fixture run with a live one, or two clouds | Every finding looks new or resolved | `compare()` refuses a different mode or cloud, or runs out of order |
+| Comparing two tenants in one cloud | A test tenant's run is diffed against production's, and every finding opens or closes | The kit records `TenantId`; `compare()` refuses different or missing tenant IDs unless `--allow-tenant-mismatch`, which the report notes |
 | A threshold changed between runs | Findings move with no change in the tenant | Changed options are noted in the report |
 | A secret in the pipeline | It leaks, or expires and the checks stop | A federated credential; WF-06 fails `creds`; no secret is stored |
 | A moved action tag | Code you didn't review signs in to your tenant | Actions pinned to commits (WF-05); source watch on Azure Login |
@@ -310,6 +311,12 @@ Three places where sources state things differently, recorded so a later edit do
 [^c09-graph-clouds]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
 [^c09-mggraph]: Microsoft Learn, "Connect-MgGraph," <https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/connect-mggraph?view=graph-powershell-1.0> (accessed Oct 30, 2026).
 [^c09-azaccesstoken]: Microsoft Learn, "Get-AzAccessToken," <https://learn.microsoft.com/powershell/module/az.accounts/get-azaccesstoken> (accessed Oct 30, 2026).
+[^c09-tid]: Microsoft Learn, "Access token claims reference," `tid` in "Payload claims," <https://learn.microsoft.com/entra/identity-platform/access-token-claims-reference#payload-claims> (accessed Oct 30, 2026).
+[^c09-mg-tid]: Microsoft, microsoftgraph/msgraph-sdk-powershell, `src/Authentication/Authentication.Core/Utilities/JwtHelpers.cs` (`authContext.TenantId = jwtPayload?.Tid ?? …`, applied to a token passed with `-AccessToken` as well), last changed in commit `0fceedbba17c1dec4d9bb292910a5f286cd7454e` (October 30, 2023), read with `gh api` (accessed Oct 30, 2026). Not a Learn page: Learn's `Get-MgContext` page lists `TenantID` among the session details without saying where it comes from.
+[^c09-mggraph-src]: Microsoft, microsoftgraph/msgraph-sdk-powershell, `src/Authentication/Authentication/Cmdlets/ConnectMgGraph.cs` (`public SecureString AccessToken`), last changed in commit `34e2549948690924ff403975de39603c1d4043bc` (July 22, 2026), read with `gh api` (accessed Oct 30, 2026). Not a Learn page.
+[^c09-kv-sign]: Microsoft Learn, "Azure Key Vault REST API reference," key operations Sign and Verify, <https://learn.microsoft.com/rest/api/keyvault/>; "az keyvault key sign," <https://learn.microsoft.com/cli/azure/keyvault/key>; CryptographyClient sign (`keys/sign` permission), <https://learn.microsoft.com/java/api/com.azure.security.keyvault.keys.cryptography.cryptographyclient> (accessed Oct 30, 2026).
+[^c09-artifact-signing]: Microsoft Learn, "Set up signing integrations to use Artifact Signing," <https://learn.microsoft.com/azure/artifact-signing/how-to-signing-integrations>; "Overview of signing and verifying OCI artifacts," <https://learn.microsoft.com/azure/container-registry/overview-sign-verify-artifacts> (accessed Oct 30, 2026).
+[^c09-artifact-signing-faq]: Microsoft Learn, "Artifact Signing FAQ," <https://learn.microsoft.com/azure/artifact-signing/faq> (accessed Oct 30, 2026).
 [^c09-idx14102]: Microsoft Learn, "Microsoft Graph PowerShell throws error 'IDX14102: Unable to decode the header'," <https://learn.microsoft.com/troubleshoot/entra/entra-id/users-groups-entra-apis/unable-to-decode-header-error> (accessed Oct 30, 2026).
 [^c09-ado-wif]: Microsoft Learn, "Connect to Azure with an Azure Resource Manager service connection," <https://learn.microsoft.com/azure/devops/pipelines/library/connect-to-azure?view=azure-devops> (accessed Oct 30, 2026).
 [^c09-immutable]: Microsoft Learn, "Store business-critical blob data with immutable storage in a write once, read many (WORM) state," <https://learn.microsoft.com/azure/storage/blobs/immutable-storage-overview> (accessed Oct 30, 2026).

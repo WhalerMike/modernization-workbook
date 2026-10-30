@@ -7,6 +7,7 @@ BeforeAll {
     # Stand-ins so Pester can mock the Microsoft Graph PowerShell commands without the module.
     function global:Connect-MgGraph { param([string]$Environment, [string]$TenantId, [string]$ClientId, [string]$CertificateThumbprint, [switch]$Identity, [switch]$NoWelcome) }
     function global:Invoke-MgGraphRequest { param([string]$Method, [string]$Uri, $Headers, [string]$OutputType) }
+    function global:Get-MgContext { }
     Import-Module (Join-Path $PSScriptRoot '..' '..' 'powershell' 'FmwGraph.psm1') -Force
     $fix = Join-Path $PSScriptRoot '..' 'fixtures'
     $expectedClouds = Get-Content -Raw (Join-Path $fix 'clouds.json') | ConvertFrom-Json -AsHashtable
@@ -14,11 +15,13 @@ BeforeAll {
         $enc = { param($o) [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes(($o | ConvertTo-Json -Compress))).TrimEnd('=').Replace('+', '-').Replace('/', '_') }
         "$(& $enc @{ alg = 'none' }).$(& $enc @{ roles = $Roles }).sig"
     }
+    # An app-only session as Get-MgContext reports it: Scopes holds the application permissions.
+    function New-TestContext([string]$AuthType = 'AppOnly', [string[]]$Scopes) { [pscustomobject]@{ AuthType = $AuthType; Scopes = $Scopes } }
 }
 
 AfterAll {
     Remove-Module FmwGraph -ErrorAction SilentlyContinue
-    Remove-Item function:global:Connect-MgGraph, function:global:Invoke-MgGraphRequest -ErrorAction SilentlyContinue
+    Remove-Item function:global:Connect-MgGraph, function:global:Invoke-MgGraphRequest, function:global:Get-MgContext -ErrorAction SilentlyContinue
 }
 
 Describe 'The right cloud' {
@@ -83,6 +86,7 @@ Describe 'Least privilege per call' {
     It 'the Entra task sends only its declared calls' {
         Mock Connect-MgGraph -ModuleName FmwGraph {}
         Mock Invoke-MgGraphRequest -ModuleName FmwGraph { @{ value = @() } }
+        Mock Get-MgContext -ModuleName FmwGraph { New-TestContext -Scopes (Get-FmwCallPermission -Task 'pim-report') }
         Connect-FmwGraph -Cloud gcc -Identity
         $null = Invoke-FmwEntraTask -Task 'pim-report'
         Should -Invoke Invoke-MgGraphRequest -ModuleName FmwGraph -Times 3 -Exactly
@@ -93,6 +97,35 @@ Describe 'Least privilege per call' {
         $r.Missing | Should -Be @('AuditLog.Read.All')
         $r.Extra | Should -Be @('Directory.Read.All')
         { Get-FmwTokenRole -Token 'not-a-jwt' } | Should -Throw
+    }
+    It 'reads a Graph PowerShell session''s permissions from Get-MgContext (research gap 16)' {
+        Mock Get-MgContext -ModuleName FmwGraph { New-TestContext -Scopes 'Policy.Read.All', 'Directory.Read.All' }
+        $r = Test-FmwSessionRole -Needed 'Policy.Read.All', 'AuditLog.Read.All'
+        $r.Missing | Should -Be @('AuditLog.Read.All')
+        $r.Extra | Should -Be @('Directory.Read.All')
+    }
+    It 'refuses a missing or delegated session' {
+        Mock Get-MgContext -ModuleName FmwGraph { $null }
+        { Test-FmwSessionRole -Needed 'Policy.Read.All' } | Should -Throw '*Connect-FmwGraph*'
+        Mock Get-MgContext -ModuleName FmwGraph { New-TestContext -AuthType 'Delegated' -Scopes 'Policy.Read.All' }
+        { Test-FmwSessionRole -Needed 'Policy.Read.All' } | Should -Throw '*delegated*'
+    }
+    It 'stops a task before any Graph call when the session lacks a permission' {
+        Mock Connect-MgGraph -ModuleName FmwGraph {}
+        Mock Invoke-MgGraphRequest -ModuleName FmwGraph { @{ value = @() } }
+        Mock Get-MgContext -ModuleName FmwGraph { New-TestContext -Scopes 'RoleManagement.Read.Directory' }
+        Connect-FmwGraph -Cloud gcc -Identity
+        { Invoke-FmwEntraTask -Task 'pim-report' } | Should -Throw '*lacks RoleAssignmentSchedule.Read.Directory, RoleEligibilitySchedule.Read.Directory*'
+        { Invoke-FmwIntuneTask -Task 'stale-checkin' } | Should -Throw '*lacks DeviceManagementManagedDevices.Read.All*'
+        Should -Invoke Invoke-MgGraphRequest -ModuleName FmwGraph -Times 0 -Exactly
+    }
+    It 'warns for each permission the session holds beyond the task' {
+        Mock Connect-MgGraph -ModuleName FmwGraph {}
+        Mock Invoke-MgGraphRequest -ModuleName FmwGraph { @{ value = @() } }
+        Mock Get-MgContext -ModuleName FmwGraph { New-TestContext -Scopes ((Get-FmwCallPermission -Task 'pim-report') + 'Directory.ReadWrite.All') }
+        Connect-FmwGraph -Cloud gcc -Identity
+        $null = Invoke-FmwEntraTask -Task 'pim-report' -WarningVariable w -WarningAction SilentlyContinue
+        "$w" | Should -BeLike '*Directory.ReadWrite.All*'
     }
 }
 
@@ -127,6 +160,7 @@ Describe 'Beta without depending on it' {
     It 'the Autopilot task says not evaluated in GCC High' {
         Mock Connect-MgGraph -ModuleName FmwGraph {}
         Mock Invoke-MgGraphRequest -ModuleName FmwGraph { @{ value = @() } }
+        Mock Get-MgContext -ModuleName FmwGraph { New-TestContext -Scopes 'DeviceManagementServiceConfig.Read.All' }
         Connect-FmwGraph -Cloud gcchigh -Identity
         $r = Invoke-FmwIntuneTask -Task 'autopilot-profiles'
         $r.stage | Should -Be 'beta'
@@ -136,6 +170,7 @@ Describe 'Beta without depending on it' {
     It 'the Autopilot task evaluates and labels the stage in GCC' {
         Mock Connect-MgGraph -ModuleName FmwGraph {}
         Mock Invoke-MgGraphRequest -ModuleName FmwGraph { @{ value = @(@{ id = 'ap1'; serialNumber = 'SN1'; deploymentProfileAssignmentStatus = 'assignedInSync' }) } }
+        Mock Get-MgContext -ModuleName FmwGraph { New-TestContext -Scopes 'DeviceManagementServiceConfig.Read.All' }
         Connect-FmwGraph -Cloud gcc -Identity
         $r = Invoke-FmwIntuneTask -Task 'autopilot-profiles'
         @($r.stage, $r.evaluated, $r.total) | Should -Be @('beta', $true, 1)

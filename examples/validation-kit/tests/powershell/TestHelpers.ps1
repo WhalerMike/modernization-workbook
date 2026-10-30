@@ -17,7 +17,7 @@ $stubBody = {
         $Scope, $LDAPFilter, $Filter, $Properties)
     throw "Stub $($MyInvocation.MyCommand.Name) was called without a mock."
 }
-foreach ($n in 'Invoke-MgGraphRequest', 'Connect-MgGraph', 'Get-MgContext', 'Search-AzGraph', 'Connect-AzAccount',
+foreach ($n in 'Invoke-MgGraphRequest', 'Connect-MgGraph', 'Get-MgContext', 'Search-AzGraph', 'Connect-AzAccount', 'Get-AzContext',
     'Get-AzRoleEligibilitySchedule', 'Get-ADUser', 'Get-ADServiceAccount') {
     if (-not (Get-Command -Name $n -ErrorAction SilentlyContinue)) { Set-Item -Path "function:global:$n" -Value $stubBody }
 }

@@ -42,6 +42,8 @@ param(
     # Folder with the input files (exceptions.csv, hr-export.csv, cmdb.csv, ...). Defaults to -FixturePath.
     [string]$InputPath,
     [ValidateSet('gcc', 'global', 'gcchigh', 'dod')][string]$Cloud = 'gcc',
+    # The tenant to sign in to. ValidationManifest.json records the tenant the session signed in to (the
+    # token's tid claim), or this value when there is no session; a session in another tenant is an error.
     [string]$TenantId,
     # App-only sign-in with a certificate (Graph and Azure permissions come from the app's grants).
     [string]$ClientId,
@@ -66,7 +68,7 @@ if (-not (Get-Module -Name ValidationKit)) { Import-Module (Join-Path (Join-Path
 $start = Get-Date
 $checks = @(Get-VkCheckCatalog -Track $Track -CheckId $CheckId -IncludeOptional:$IncludePreview)
 if ($checks.Count -eq 0) { throw 'No checks selected.' }
-$context = Get-VkRunContext -FixturePath $FixturePath -InputPath $InputPath -AsOf $AsOf -Cloud $Cloud -Option $Option -SkipAD:$SkipAD -IncludeBeta:$IncludeBeta -IncludePreview:$IncludePreview
+$context = Get-VkRunContext -FixturePath $FixturePath -InputPath $InputPath -AsOf $AsOf -Cloud $Cloud -Option $Option -SkipAD:$SkipAD -IncludeBeta:$IncludeBeta -IncludePreview:$IncludePreview -TenantId $TenantId
 $scopes = @(Get-VkRequiredScope -Checks $checks)
 
 if ($context.Mode -eq 'Live' -and -not $SkipConnect) {

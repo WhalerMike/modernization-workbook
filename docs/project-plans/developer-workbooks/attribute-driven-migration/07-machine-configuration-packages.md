@@ -91,6 +91,8 @@ Running Learn's commands offline, on the sample and on this chapter's configurat
 
 Two smaller differences from Learn's text, found by running 4.12.0 and pinned in the baseline test. The definition file is named `<package>_AuditIfNotExists.json` or `<package>_DeployIfNotExists.json`, not `auditIfNotExists.json` as Learn's page says.[^c07-policy] The `-Tag` parameter takes one hashtable; the array of hashtables Learn describes fails to bind. The package also holds only the configuration's own resource module, not the `GuestConfiguration` and `DscNativeResources` folders Learn lists in a package's expected contents.[^c07-create] The package works either way; the test pins what 4.12.0 does.
 
+An enforcing definition also grants its remediation identity a role, and the generated `DeployIfNotExists` definition names it only by ID: `088ab73d-1256-47ae-bea9-9de8e7131f31`. Learn's built-in roles reference doesn't list that ID. Microsoft's own role tables name it **Guest Configuration Resource Contributor**, "Lets you read, write Guest Configuration Resource",[^c07-gcrole] and a Learn page for Azure Local tells you to pick that role by name for machine configuration policy definitions.[^c07-gcrole-learn] Before an assignment relies on it, read the definition in the test subscription with `Get-AzRoleDefinition -Id 088ab73d-1256-47ae-bea9-9de8e7131f31` and record its name and actions. The test pins that 4.12.0 grants this one role and no other.
+
 **The verdict.** Learn's procedure is the procedure: the build calls its cmdlets in its order and replaces none of them. What the build adds sits between the steps: clean the MOF before packaging, check the package before defining, check the definition before publishing, and record what was built.
 
 ## The code: what `examples/machine-configuration` adds
@@ -154,7 +156,7 @@ The MOF hash is the reviewable one: it is the same for anyone who builds the sam
 
 ### The tests
 
-`tests/McPipeline.Tests.ps1` has 48 fixture tests and needs no module: it zips packages in a temporary folder and uses two definitions 4.12.0 wrote, with the package hash replaced by a placeholder. `tests/LearnBaseline.Tests.ps1` has 16 tests that run Learn's cmdlets and the pinned sample offline. They skip unless the pinned module versions are found.
+`tests/McPipeline.Tests.ps1` has 49 fixture tests and needs no module: it zips packages in a temporary folder and uses two definitions 4.12.0 wrote, with the package hash replaced by a placeholder. `tests/LearnBaseline.Tests.ps1` has 16 tests that run Learn's cmdlets and the pinned sample offline. They skip unless the pinned module versions are found.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -226,7 +228,7 @@ You need Windows with PowerShell 7.1 or later and Pester 5. Nothing in this lab 
    Invoke-Pester ./tests
    ```
 
-**Expected result:** 64 tests passing (48 if `MC_MODULE_PATH` isn't set, with 16 skipped), and each difference in the table above seen with your own eyes.
+**Expected result:** 65 tests passing (49 if `MC_MODULE_PATH` isn't set, with 16 skipped), and each difference in the table above seen with your own eyes.
 
 ## Lab 2: test subscription and a disposable server
 
@@ -254,6 +256,7 @@ To try an enforcing version, rebuild with the registry mode set to `ApplyAndMoni
 | Assignment types | `Audit`, `ApplyAndMonitor`, `ApplyAndAutoCorrect`, case sensitive | [^c07-remediation] |
 | Guest assignments per machine | Up to 50 | [^c07-overview] |
 | Publish the definition | `New-AzPolicyDefinition`; recommended role Resource Policy Contributor | [^c07-policy] |
+| Role granted to an enforcing definition's remediation identity | `088ab73d-1256-47ae-bea9-9de8e7131f31`, Guest Configuration Resource Contributor (name from Microsoft's role tables, not Learn's built-in roles reference; confirm with `Get-AzRoleDefinition` in Lab 2) | [^c07-gcrole] [^c07-gcrole-learn] |
 | Package access | System-assigned identity works for Arc-enabled servers; user-assigned identity doesn't, and needs `-ExcludeArcMachines`; either needs Storage Blob Data Reader and anonymous blob access disabled | [^c07-policy] [^c07-access] |
 | Signing | `Protect-GuestConfigurationPackage`; public key in Trusted Publishers (Windows) or `/usr/local/share/ca-certificates/gc` (Linux); tag `GuestConfigPolicyCertificateValidation` = `enabled` on machines that must require it | [^c07-sign] |
 | Turning off remediation of custom content on one machine | Tag `CustomGuestConfigurationSetPolicy` = `disable` | [^c07-remediation] |
@@ -312,4 +315,6 @@ The GuestConfiguration module version, its command list and its behavior describ
 [^c07-arcnet]: Microsoft Learn, "Connected Machine agent network requirements," <https://learn.microsoft.com/azure/azure-arc/servers/network-requirements> (accessed Oct 30, 2026).
 [^c07-billing]: Microsoft Learn, "Windows Server Management enabled by Azure Arc," <https://learn.microsoft.com/azure/azure-arc/servers/windows-server-management-overview> (accessed Oct 30, 2026).
 [^c07-samples-code]: Microsoft, Azure Policy samples, Azure/azure-policy, `samples/GuestConfiguration/package-samples` at commit `ca85d6182e5a855bcdd1462421d5a1305c14c1df` (August 4, 2021), MIT License, <https://github.com/Azure/azure-policy/tree/ca85d6182e5a855bcdd1462421d5a1305c14c1df/samples/GuestConfiguration/package-samples> (accessed Oct 30, 2026); pinned copy in `examples/third_party/guest-configuration-samples`.
+[^c07-gcrole]: Microsoft, Azure/Azure-Sentinel, `Sample Data/Feeds/AzureBuiltInRole.csv` at commit `16a027b6208ceb97869df85ea2e1ce4d0cad3408` (August 28, 2026), row "Guest Configuration Resource Contributor", and MicrosoftDocs/entra-docs, `.docutune/dictionaries/known-guids.json` at commit `4ed6827815ecbf4e021fc736d75fdda6a2fd6272` (October 28, 2026), both mapping the name to `088ab73d-1256-47ae-bea9-9de8e7131f31`, read with `gh api` (accessed Oct 30, 2026). Not Learn pages: Learn's "Azure built-in roles" and its Management and governance page don't list the ID (searched Oct 30, 2026).
+[^c07-gcrole-learn]: Microsoft Learn, "Enable Insights for Azure Local at scale using Azure policies," <https://learn.microsoft.com/azure/azure-local/manage/monitor-multi-azure-policies> (accessed Oct 30, 2026); it names the role but not its ID.
 [^c07-module]: PowerShell Gallery, "GuestConfiguration 4.12.0," <https://www.powershellgallery.com/packages/GuestConfiguration/4.12.0> (accessed Oct 30, 2026). Not a Learn page: Learn's setup page installs the module from the gallery without naming a current version.

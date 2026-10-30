@@ -138,7 +138,7 @@ That line buys four tests: the pass fixture gives `Pass` with a count of 0; the 
 - an export in `-InputPath` is read instead of Graph, and the evidence shows `Input`;
 - a tenant with no synchronization object is `NotApplicable`.
 
-The catalog test that lists every check ID in order also gains `VK-SYNC-02`, and the README gains its row. With those, the kit's suite is 274 tests on PowerShell 7, all passing.
+The catalog test that lists every check ID in order also gains `VK-SYNC-02`, and the README gains its row. With those, the kit's suite was 274 tests on PowerShell 7, all passing. Six more came with the tenant ID in the run manifest (below), for 280.
 
 ### The safety tests
 
@@ -216,7 +216,7 @@ Use a test tenant that has Microsoft Entra Connect or Cloud Sync configured. The
 
 3. **Compare with the source.** Check the result against the `features` block in the export itself, line by line. If a property the check reads is missing or named differently, the response shape differs from Learn's example; fix the fixture and the check together.
 
-4. **Back it out.** Delete the export when the run's evidence is stored; it isn't evidence by itself, the run's manifest is.
+4. **Back it out.** Delete the export when the run's evidence is stored; it isn't evidence by itself, the run's manifest is. The manifest, `ValidationManifest.json`, records the cloud and the tenant the run read: `TenantId` comes from the Graph session, which takes it from the token's `tid` claim, and a session in another tenant than the `-TenantId` you gave stops the run before it writes anything. [Chapter 09](09-drift-pipelines-and-evidence.md)'s comparator refuses to compare two runs of different tenants.
 
 ## Verified facts
 

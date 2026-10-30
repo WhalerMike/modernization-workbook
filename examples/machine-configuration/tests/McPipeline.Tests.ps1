@@ -251,3 +251,15 @@ Describe 'Get-McProvenance' {
         $script:Prov.mof.sha256 | Should -Be (Get-McFileSha256 $other.FullName)
     }
 }
+
+Describe 'Generated DeployIfNotExists definition' {
+    # research-gaps.md row 7: 4.12.0 grants the remediation identity one role,
+    # 088ab73d-1256-47ae-bea9-9de8e7131f31, Guest Configuration Resource Contributor. Learn's
+    # built-in roles reference doesn't list it; Microsoft's own role tables name it (Chapter 07).
+    It 'grants the remediation identity only Guest Configuration Resource Contributor' {
+        $def = Get-Content -LiteralPath (Join-Path $script:Fx 'policy/deploy.json') -Raw | ConvertFrom-Json
+        $ids = @($def.properties.policyRule.then.details.roleDefinitionIds)
+        $ids.Count | Should -Be 1
+        $ids[0] | Should -BeExactly '/providers/Microsoft.Authorization/roleDefinitions/088ab73d-1256-47ae-bea9-9de8e7131f31'
+    }
+}

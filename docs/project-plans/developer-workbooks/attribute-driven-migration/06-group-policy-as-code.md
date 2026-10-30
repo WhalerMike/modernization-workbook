@@ -156,7 +156,7 @@ GPC-10 warns on a string value whose setting name suggests a secret. Learn says 
 
 `Invoke-GpcSync.ps1` runs it all. Without `-Apply` it is a dry run: it signs in with `Read.All` and sends only GET. With `-Apply` it signs in with `ReadWrite.All` and POSTs each `Create`, reads it back, and compares again. It writes nothing if the lint has a finding or any policy is `Drift` or `Duplicate`.
 
-It never sends PATCH or DELETE. Learn documents both,[^c06-cp-update][^c06-cp-delete] but the Update page's body lists the policy's own properties, not its settings. A policy that differs from Git is a decision for a person: someone changed it in the admin center, or Git changed it on purpose. To change a policy, the program creates the new version under a new name, moves the assignment in a reviewed change, and deletes the old one by hand (*design guidance*).
+It never sends PATCH or DELETE. Learn documents both,[^c06-cp-update][^c06-cp-delete] and the Update page's body lists the policy's own properties, not its settings. A policy's settings change one at a time: the beta reference documents `PATCH /deviceManagement/configurationPolicies/{policyId}/settings/{settingId}` with a `settingInstance` body and `DeviceManagementConfiguration.ReadWrite.All`.[^c06-setting-update] So an update is possible; the sync still doesn't make one. A policy that differs from Git is a decision for a person: someone changed it in the admin center, or Git changed it on purpose. To change a policy, the program creates the new version under a new name, moves the assignment in a reviewed change, and deletes the old one by hand (*design guidance*).
 
 ### The tests
 
@@ -257,6 +257,7 @@ When the policies are assigned later, Learn's guidance applies: use an assignmen
 | List a policy's settings | `GET /beta/deviceManagement/configurationPolicies/{id}/settings`; `DeviceManagementConfiguration.Read.All` | [^c06-settings-list] |
 | Create a settings catalog policy | `POST /beta/deviceManagement/configurationPolicies`; `DeviceManagementConfiguration.ReadWrite.All` least privileged; `201 Created`; global, L4 and L5 | [^c06-cp-create] |
 | Update and delete | `PATCH` and `DELETE` on `/configurationPolicies/{id}`; `DeviceManagementConfiguration.ReadWrite.All` (the sync uses neither) | [^c06-cp-update] [^c06-cp-delete] |
+| Change one setting | `PATCH /beta/deviceManagement/configurationPolicies/{policyId}/settings/{settingId}`, body a `deviceManagementConfigurationSetting` with its `settingInstance`; `DeviceManagementConfiguration.ReadWrite.All`; beta; global, US Government L4 and L5 (the sync doesn't use it) | [^c06-setting-update] |
 | Release stage | Beta for every call above; Microsoft supports Intune beta APIs, but they change more often; the Graph API for Intune needs an active Intune license | [^c06-gpmr-list] [^c06-cp-create] |
 | Graph host per cloud | GCC: `https://graph.microsoft.com`; GCC High: `https://graph.microsoft.us`; DoD: `https://dod-graph.microsoft.us`; a token for one cloud doesn't work in another | [^c06-deployments] |
 | `Connect-MgGraph -Environment` | `Global`, `USGov`, `USGovDoD` | [^c06-mgenv] |
@@ -270,7 +271,7 @@ When the policies are assigned later, Learn's guidance applies: use an assignmen
 
 What the samples do, and what the module does, come from running them, not from Learn. The setting definition IDs in the library come from Learn's settings catalog examples; the fixture's mappings that point to them are fictional.
 
-Three things Learn doesn't say yet, recorded so a later edit doesn't assume them. The Update page doesn't document how to change a policy's settings, so the code never updates. Learn documents no Graph equivalent of the Migrate step, so Lab 2 compares the two by hand. And no Learn page states that the Group Policy analytics import works in GCC High and DoD, although the Graph pages list both clouds; confirm it in a GCC High test tenant first.
+Two things Learn doesn't say yet, recorded so a later edit doesn't assume them, and one it now does. A policy's settings can be changed one at a time through the setting's own `PATCH`;[^c06-setting-update] the code still never updates, by design. Learn documents no Graph equivalent of the Migrate step, so Lab 2 compares the two by hand. And no Learn page states that the Group Policy analytics import works in GCC High and DoD, although the Graph pages list both clouds; confirm it in a GCC High test tenant first.
 
 ## Dangers
 
@@ -314,6 +315,7 @@ Three things Learn doesn't say yet, recorded so a later edit doesn't assume them
 [^c06-gpsm]: Microsoft Learn, "groupPolicySettingMapping resource type" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/resources/intune-gpanalyticsservice-grouppolicysettingmapping?view=graph-rest-beta> (accessed Oct 30, 2026).
 [^c06-cp-create]: Microsoft Learn, "Create deviceManagementConfigurationPolicy" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationpolicy-create?view=graph-rest-beta> (accessed Oct 30, 2026).
 [^c06-cp-list]: Microsoft Learn, "List deviceManagementConfigurationPolicies" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationpolicy-list?view=graph-rest-beta> (accessed Oct 30, 2026).
+[^c06-setting-update]: Microsoft Learn, "Update deviceManagementConfigurationSetting" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationsetting-update?view=graph-rest-beta> (accessed Oct 30, 2026).
 [^c06-cp-update]: Microsoft Learn, "Update deviceManagementConfigurationPolicy" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationpolicy-update?view=graph-rest-beta> (accessed Oct 30, 2026).
 [^c06-cp-delete]: Microsoft Learn, "Delete deviceManagementConfigurationPolicy" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationpolicy-delete?view=graph-rest-beta> (accessed Oct 30, 2026).
 [^c06-settings-list]: Microsoft Learn, "List deviceManagementConfigurationSettings" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationsetting-list?view=graph-rest-beta> (accessed Oct 30, 2026).
