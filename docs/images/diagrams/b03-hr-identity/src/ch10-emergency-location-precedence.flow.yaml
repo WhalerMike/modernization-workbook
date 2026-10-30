@@ -1,0 +1,24 @@
+# Chapter 10 — which emergency location Teams sends: the first available of
+# five tiers, and whether the call goes straight to the 911 call center or is
+# screened first. An address derived from the HR duty station is the fifth
+# tier: the screening center's fallback, never the answer. Sources: Microsoft
+# Learn, "Emergency addresses for remote locations" (location precedence and
+# routing table) and "Emergency calling considerations for Microsoft Calling
+# Plans" (United States routing).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  t1: {tone: green, width: 420, tag: "1", title: "Network location", body: ["=From the Location Information Service: access point, switch port, switch or subnet. Direct to the 911 call center"], size: 11}
+  t2: {tone: green, width: 420, tag: "2", title: "User-confirmed address for this network", body: ["=Confirmed or edited by the user. Direct"], size: 11}
+  t3: {tone: amber, width: 420, tag: "3", title: "Address the operating system suggests", body: ["=Direct if the user confirms it; screened if not"], size: 11}
+  t4: {tone: amber, width: 420, tag: "4", title: "Address the user typed", body: ["=Direct only if picked from the address suggestions; otherwise screened"], size: 11}
+  t5: {tone: red, width: 420, tag: "5", title: "Address assigned to the phone number", body: ["=Screened by a national call center, which falls back to it only if the caller can't give a location"], size: 11}
+  hr: {tone: violet, width: 180, title: "HR duty station", body: ["=Selects the registered address; never the caller's location"], size: 11}
+edges:
+  - [t1, t2, {label: "none found"}]
+  - [t2, t3, {label: "none found"}]
+  - [t3, t4, {label: "none found"}]
+  - [t4, t5, {label: "none found"}]
+  - [hr, t5, {style: dashed, tone: violet, label: "fallback only"}]
+ranks:
+  - [t5, hr]
