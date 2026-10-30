@@ -36,7 +36,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Draft** | 10 + 1 app. | 185 | 2026-10-28 |
 | **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Draft** | 10 + 1 app. | 210 | 2026-10-28 |
 | **B18** | **[Application Modernization](b18-application-modernization/index.md)** | **Why is application modernization a portfolio decision, not a rewrite?** | **Draft** | 10 | 130 | 2026-10-29 |
-| **B19** | **[Developer Workbook](b19-developer-workbook/index.md)** | **Why does the migration need code with tests, not only runbooks?** | **Draft** | 3 | 40 | 2026-10-30 |
+| **B19** | **[Developer Workbook](b19-developer-workbook/index.md)** | **Why does the migration need code with tests, not only runbooks?** | **Draft** | 4 | 40 | 2026-10-30 |
 :::
 
 **Chapters** counts each book's chapters and appendices. **Pages** is the estimated page count of its Word edition, worked out from its words, tables and diagrams and checked against Word's own count (within about 7%). **Last updated** is the date of the book's latest change. All three are recalculated on every site build.

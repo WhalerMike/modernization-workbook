@@ -389,6 +389,17 @@
         "B19"
       ],
       "source": "Commits to the GuestConfiguration module's source. examples/machine-configuration pins version 4.12.0 in RequiredModules.psd1 (Developer Workbook, Chapter 07). A change here means: rerun tests/LearnBaseline.Tests.ps1 against the new version before moving the pin, in a reviewed pull request."
+    },
+    {
+      "id": "dynamic-membership-samples-commits",
+      "name": "Learn's dynamic membership processing samples (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/users/scripts",
+      "books": [
+        "B19"
+      ],
+      "source": "Commits to the Learn source pages that hold the five pause and resume samples, which examples/third_party/dynamic-membership-samples pins at one commit (Developer Workbook, Chapter 04). A new commit means: review it, rerun examples/dynamic-rules/tests/LearnSamples.Tests.ps1 on the new pages, and update the snapshot only in a reviewed pull request."
     }
   ]
 }

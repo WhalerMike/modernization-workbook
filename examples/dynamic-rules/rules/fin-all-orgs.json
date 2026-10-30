@@ -1,0 +1,22 @@
+{
+  "displayName": "FIN all organizations",
+  "mailNickname": "fin-all-orgs",
+  "kind": "user",
+  "owner": "FIN access owner",
+  "critical": false,
+  "membershipRule": "(user.accountEnabled -eq true) -and (user.userType -eq \"Member\") -and (user.extensionAttribute10 -in [\"FIN-LED\",\"FIN-AP\"])",
+  "tests": [
+    {
+      "member": "u01",
+      "expected": true
+    },
+    {
+      "member": "u03",
+      "expected": true
+    },
+    {
+      "member": "u07",
+      "expected": false
+    }
+  ]
+}

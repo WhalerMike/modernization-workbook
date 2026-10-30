@@ -293,7 +293,7 @@ The GuestConfiguration module version, its command list and its behavior describ
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 03 — Writing a Validation Kit Check](03-writing-a-validation-kit-check.md) · [Book index](index.md)
+[← Previous: Chapter 04 — Dynamic Rules as Code](04-dynamic-rules-as-code.md) · [Book index](index.md)
 :::
 
 [^c07-overview]: Microsoft Learn, "What is Azure Machine Configuration?," <https://learn.microsoft.com/azure/governance/machine-configuration/overview/01-overview-concepts> (accessed Oct 30, 2026).
