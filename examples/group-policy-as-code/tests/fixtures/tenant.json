@@ -1,0 +1,249 @@
+{
+  "_comment": "Fictional tenant (contoso.example) for examples/group-policy-as-code: Group Policy analytics (beta) reports and setting mappings, and settings catalog policies as Graph returns them, with '@odata.type' without '#' inside settings, null template references and an id per setting.",
+  "groupPolicyMigrationReports": [
+    {
+      "id": "gpr-1",
+      "groupPolicyObjectId": "00000000-0000-4000-8000-000000001001",
+      "displayName": "FMP-Workstation-Baseline",
+      "ouDistinguishedName": "OU=Workstations,DC=contoso,DC=example",
+      "migrationReadiness": "partial",
+      "targetedInActiveDirectory": true,
+      "totalSettingsCount": 8,
+      "supportedSettingsCount": 6,
+      "supportedSettingsPercent": 75
+    },
+    {
+      "id": "gpr-2",
+      "groupPolicyObjectId": "00000000-0000-4000-8000-000000001005",
+      "displayName": "Workstation-Power",
+      "ouDistinguishedName": "OU=Laptops,OU=Workstations,DC=contoso,DC=example",
+      "migrationReadiness": "complete",
+      "targetedInActiveDirectory": true,
+      "totalSettingsCount": 2,
+      "supportedSettingsCount": 2,
+      "supportedSettingsPercent": 100
+    },
+    {
+      "id": "gpr-3",
+      "groupPolicyObjectId": "00000000-0000-4000-8000-000000001002",
+      "displayName": "Workstation-Drive-Maps",
+      "ouDistinguishedName": "OU=Workstations,DC=contoso,DC=example",
+      "migrationReadiness": "none",
+      "targetedInActiveDirectory": true,
+      "totalSettingsCount": 1,
+      "supportedSettingsCount": 0,
+      "supportedSettingsPercent": 0
+    }
+  ],
+  "groupPolicySettingMappings": {
+    "gpr-1": [
+      {
+        "id": "m-101",
+        "settingName": "Disable Windows Error Reporting",
+        "settingDisplayName": "Disable Windows Error Reporting",
+        "settingValue": "Enabled",
+        "settingScope": "device",
+        "settingType": "policy",
+        "mdmCspName": "Policy",
+        "mdmSupportedState": "supported",
+        "isMdmSupported": true,
+        "intuneSettingDefinitionId": "device_vendor_msft_policy_config_errorreporting_disablewindowserrorreporting"
+      },
+      {
+        "id": "m-102",
+        "settingName": "Allow crash dump",
+        "settingDisplayName": "Allow crash dump",
+        "settingValue": "Disabled",
+        "settingScope": "device",
+        "settingType": "policy",
+        "mdmCspName": "Policy",
+        "mdmSupportedState": "supported",
+        "isMdmSupported": true,
+        "intuneSettingDefinitionId": "device_vendor_msft_policy_config_memorydump_allowcrashdump"
+      },
+      {
+        "id": "m-103",
+        "settingName": "Allow live dump",
+        "settingDisplayName": "Allow live dump",
+        "settingValue": "Disabled",
+        "settingScope": "device",
+        "settingType": "policy",
+        "mdmCspName": "Policy",
+        "mdmSupportedState": "supported",
+        "isMdmSupported": true,
+        "intuneSettingDefinitionId": "device_vendor_msft_policy_config_memorydump_allowlivedump"
+      },
+      {
+        "id": "m-104",
+        "settingName": "Sign-in and lock last interactive user automatically after a restart",
+        "settingDisplayName": "Sign-in and lock last interactive user automatically after a restart",
+        "settingValue": "Disabled",
+        "settingScope": "device",
+        "settingType": "policy",
+        "mdmCspName": "Policy",
+        "mdmSupportedState": "supported",
+        "isMdmSupported": true,
+        "intuneSettingDefinitionId": "device_vendor_msft_policy_config_windowslogon_allowautomaticrestartsignon"
+      },
+      {
+        "id": "m-105",
+        "settingName": "Allow hibernate",
+        "settingDisplayName": "Allow hibernate",
+        "settingValue": "Disabled",
+        "settingScope": "device",
+        "settingType": "policy",
+        "mdmCspName": "Policy",
+        "mdmSupportedState": "supported",
+        "isMdmSupported": true,
+        "intuneSettingDefinitionId": "device_vendor_msft_policy_config_power_allowhibernate"
+      },
+      {
+        "id": "m-106",
+        "settingName": "Inbound rule: Contoso line-of-business app",
+        "settingDisplayName": "Inbound rule: Contoso line-of-business app",
+        "settingValue": "Allow",
+        "settingScope": "device",
+        "settingType": "windowsFirewallSettings",
+        "mdmCspName": "Firewall",
+        "mdmSupportedState": "supported",
+        "isMdmSupported": true,
+        "intuneSettingDefinitionId": ""
+      },
+      {
+        "id": "m-107",
+        "settingName": "Configure Windows NTP Client",
+        "settingDisplayName": "Configure Windows NTP Client",
+        "settingValue": "Enabled",
+        "settingScope": "device",
+        "settingType": "policy",
+        "mdmCspName": "",
+        "mdmSupportedState": "unsupported",
+        "isMdmSupported": false,
+        "intuneSettingDefinitionId": ""
+      },
+      {
+        "id": "m-108",
+        "settingName": "Turn off Internet Explorer 11 First Run",
+        "settingDisplayName": "Turn off Internet Explorer 11 First Run",
+        "settingValue": "Enabled",
+        "settingScope": "user",
+        "settingType": "policy",
+        "mdmCspName": "",
+        "mdmSupportedState": "deprecated",
+        "isMdmSupported": false,
+        "intuneSettingDefinitionId": ""
+      }
+    ],
+    "gpr-2": [
+      {
+        "id": "m-201",
+        "settingName": "Allow hibernate",
+        "settingDisplayName": "Allow hibernate",
+        "settingValue": "Enabled",
+        "settingScope": "device",
+        "settingType": "policy",
+        "mdmCspName": "Policy",
+        "mdmSupportedState": "supported",
+        "isMdmSupported": true,
+        "intuneSettingDefinitionId": "device_vendor_msft_policy_config_power_allowhibernate"
+      },
+      {
+        "id": "m-202",
+        "settingName": "Prohibit access to Control Panel and PC settings",
+        "settingDisplayName": "Prohibit access to Control Panel and PC settings",
+        "settingValue": "Enabled",
+        "settingScope": "user",
+        "settingType": "policy",
+        "mdmCspName": "Policy",
+        "mdmSupportedState": "supported",
+        "isMdmSupported": true,
+        "intuneSettingDefinitionId": "user_vendor_msft_policy_config_admx_controlpanel_nocontrolpanel"
+      }
+    ],
+    "gpr-3": [
+      {
+        "id": "m-301",
+        "settingName": "Drive map H: to the home share on fs01.contoso.example",
+        "settingDisplayName": "Drive map H: to the home share on fs01.contoso.example",
+        "settingValue": "Create",
+        "settingScope": "user",
+        "settingType": "driveMapSettings",
+        "mdmCspName": "",
+        "mdmSupportedState": "unsupported",
+        "isMdmSupported": false,
+        "intuneSettingDefinitionId": ""
+      }
+    ]
+  },
+  "configurationPolicies": [
+    {
+      "id": "6f1c2b9e-0000-4000-8000-000000002202",
+      "name": "FMP-SC-202-Sign-in-and-power",
+      "description": "From FMP-Workstation-Baseline and Workstation-Power: no automatic sign-in after restart, no hibernation",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "roleScopeTagIds": [
+        "0"
+      ],
+      "settingCount": 2,
+      "creationSource": "",
+      "isAssigned": false,
+      "settings": [
+        {
+          "@odata.type": "#microsoft.graph.deviceManagementConfigurationSetting",
+          "id": "0",
+          "settingInstance": {
+            "@odata.type": "microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+            "settingDefinitionId": "device_vendor_msft_policy_config_windowslogon_allowautomaticrestartsignon",
+            "choiceSettingValue": {
+              "@odata.type": "microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+              "value": "device_vendor_msft_policy_config_windowslogon_allowautomaticrestartsignon_0",
+              "children": [],
+              "settingValueTemplateReference": null
+            },
+            "settingInstanceTemplateReference": null
+          }
+        },
+        {
+          "@odata.type": "#microsoft.graph.deviceManagementConfigurationSetting",
+          "id": "1",
+          "settingInstance": {
+            "@odata.type": "microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+            "settingDefinitionId": "device_vendor_msft_policy_config_power_allowhibernate",
+            "choiceSettingValue": {
+              "@odata.type": "microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+              "value": "device_vendor_msft_policy_config_power_allowhibernate_0",
+              "children": [],
+              "settingValueTemplateReference": null
+            },
+            "settingInstanceTemplateReference": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "6f1c2b9e-0000-4000-8000-000000009001",
+      "name": "Contoso kiosk lockdown (portal)",
+      "description": "Built in the admin center",
+      "platforms": "windows10",
+      "technologies": "mdm",
+      "roleScopeTagIds": [
+        "0"
+      ],
+      "settings": [
+        {
+          "id": "0",
+          "settingInstance": {
+            "@odata.type": "microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+            "settingDefinitionId": "device_vendor_msft_policy_config_start_hidepowerbutton",
+            "choiceSettingValue": {
+              "@odata.type": "microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+              "value": "device_vendor_msft_policy_config_start_hidepowerbutton_1",
+              "children": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

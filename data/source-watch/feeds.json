@@ -424,6 +424,17 @@
       "source": "Commits to the Graph SDK snippets that Learn's national cloud and authentication provider pages render, which examples/third_party/msgraph-snippets-python pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 02). A new commit means: review it, rerun examples/ms-automation/tests/python/test_learn_sample.py on the new files, and update the snapshot only in a reviewed pull request."
     },
     {
+      "id": "mggraph-intune-samples-commits",
+      "name": "Microsoft Intune settings catalog samples (microsoft/mggraph-intune-samples commits)",
+      "type": "github_commits",
+      "repo": "microsoft/mggraph-intune-samples",
+      "path": "SettingsCatalog",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to Microsoft's settings catalog export and import samples, which examples/third_party/mggraph-intune-samples pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 06). A new commit means: review it, rerun examples/group-policy-as-code/tests/MicrosoftSamples.Tests.ps1 on the new scripts, and update the snapshot only in a reviewed pull request."
+    },
+    {
       "id": "azure-login-oidc-sample-commits",
       "name": "Learn's Azure Login OpenID Connect sample workflows (MicrosoftDocs/azure-dev-docs commits)",
       "type": "github_commits",
