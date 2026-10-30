@@ -162,7 +162,7 @@ The run writes `decisions.csv`, `instances.json`, `findings.json` and a manifest
 
 ### The tests
 
-This chapter's tests are the 55 in `tests/AccessReviews.Tests.ps1`: 11 on Learn's tutorial as published, then the calls and permissions, the reviewed JSON and bodies, each rule, the plan's actions, `-Apply` and its refusals, the evidence and its paging, and the entry script's manifest. With Chapters 01 and 02, 133 Pester tests pass under PowerShell 7, with no module, tenant or network.
+This chapter's tests are the 55 in `tests/AccessReviews.Tests.ps1`: 11 on Learn's tutorial as published, then the calls and permissions, the reviewed JSON and bodies, each rule, the plan's actions, `-Apply` and its refusals, the evidence and its paging, and the entry script's manifest. With Chapters 01 to 03, 168 Pester tests pass under PowerShell 7, with no module, tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -260,7 +260,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-acc
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 133 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done; the evidence folder names people.
+**Expected result:** 168 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done; the evidence folder names people.
 
 ## Lab 2: test tenant
 

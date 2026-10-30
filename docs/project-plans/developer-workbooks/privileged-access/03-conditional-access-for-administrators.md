@@ -1,0 +1,342 @@
+---
+title: "Chapter 03 — Conditional Access for Administrators and the Activation Gate"
+description: "Hold the Conditional Access policies for administrators as reviewed JSON, starting from Microsoft's own template for administrators as Graph returns it (pinned in the repository) and adding what it leaves to you: the emergency access exclusion, the phishing-resistant authentication strength, the PIM activation gate through authentication context c1, a pre-merge check, a diff against the tenant and a dry run, with every new policy created report-only, with labs against fixtures and a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-privileged-access
+part: How
+series-order: 3
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-04-01
+review-status: pending
+---
+
+# Chapter 03 — Conditional Access for Administrators and the Activation Gate
+
+*The administrator policies and the activation gate are the program's first writes to a tenant, so they are files a reviewer reads, and the code that writes them does nothing until it is told to.*
+
+::: {.callout-note}
+## In this chapter
+The policies behind the plan's tasks A1.5, A2.3, A2.5 and A2.6: phishing-resistant authentication for administrators, the PIM activation gate through authentication context `c1`, and the administrator policies of Book 04's Wave 2. You start with Microsoft's own Conditional Access template for administrators, as Microsoft Graph returns it, pinned in the repository, and check it offline to see what it leaves out. Then you use `examples/privileged-access` for what it leaves to you: the policies as reviewed JSON, a pre-merge check, a diff against the tenant and a dry run, with every new policy created report-only. Lab 1 runs on a laptop with no tenant; Lab 2 uses a test tenant.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can keep the administrator policies, the privileged authentication strength and the authentication contexts as files, check them before they merge, and see exactly what a run would change in a tenant before it changes anything. You can say, for each rule, whether it is Learn's guidance, Microsoft's template, or the program's own design.
+
+**Audience.** Developers who build the project's foundation, and the identity engineers and ISSOs who review Conditional Access changes. You should read PowerShell 7 and the Graph `conditionalAccessPolicy` JSON. You don't need a tenant until Lab 2.
+
+## The context the code depends on
+
+Three pieces of Book 04 meet here. Chapter 07's Wave 2 is the administrator policy set: CA003 (phishing-resistant MFA by group and by role), CA004 (compliant device), CA005 (trusted networks), CA025 (PAW only) and CA027 (Azure management for operators only) ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#wave-2-administrators)). Chapter 08's Step 2 is the activation gate: authentication context `c1` and its policy `PIM-Activation-c1`, which demand a fresh phishing-resistant proof from a compliant device at the moment of elevation ([Book 04, Chapter 08](../../../books/b04-access/08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)). Appendix A has the JSON for both, and the custom strength `FMP-Privileged-SeparateDevice` ([Appendix A](../../../books/b04-access/appendix-a-conditional-access-templates.md#custom-authentication-strength)).
+
+Learn sets the order. Create and enable the Conditional Access policy for an authentication context before you select that context in PIM. If no policy targets the context, PIM falls back to requiring MFA, but that fallback doesn't trigger when the policy is off, in report-only mode, or excludes the eligible user. Don't scope the policy to both the context and a directory role: at activation the user doesn't hold the role yet, so the policy wouldn't apply.[^pa03-pim-settings] And whoever can edit Conditional Access can weaken the gate, so Learn says to treat those roles as highly privileged.[^pa03-pim-settings]
+
+So this chapter builds the gate and leaves it unselected. Chapter 04 (planned) selects `c1` in PIM's role settings, and only after this chapter's run shows `PIM-Activation-c1` is On.
+
+### Which cloud, for these calls
+
+Every call in this chapter is Microsoft Graph v1.0, apart from the protected actions API, which is beta. For Microsoft 365 GCC the host is the worldwide `graph.microsoft.com`; GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pa03-deployments] The methods for policies, contexts, strengths and templates list the global service, US Government L4 and US Government L5 in their national cloud tables.[^pa03-ca-list] [^pa03-ca-create] [^pa03-ca-update] [^pa03-ctx-list] [^pa03-strength-list] [^pa03-template-get] Conditional Access and PIM are available in Azure for US Government.[^pa03-availability] The code takes `gcc` as an explicit cloud name and has no default. In Azure Government, a policy that targets Azure management names a different application than the Windows Azure Service Management API that CA025 and CA027 use ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#government-cloud-notes)); a GCC High program changes those two files.
+
+## Start with Microsoft's sample
+
+### What Microsoft gives you
+
+Learn publishes Conditional Access templates in the admin center, grouped by scenario. The "Protect administrator" group includes "Require phishing-resistant multifactor authentication for administrators."[^pa03-templates] That policy's Learn page is the procedure: include at least fourteen directory roles, exclude the emergency access accounts, require the built-in phishing-resistant MFA strength, and create it in report-only before you turn it on.[^pa03-admin-phish] It also warns that role targeting covers built-in roles only, and that administrators must register phishing-resistant methods first or you risk locking yourself out.[^pa03-admin-phish]
+
+The same templates are in Microsoft Graph. `GET /identity/conditionalAccess/templates/{id}` returns a template's conditions and controls as policy JSON, with `Policy.Read.All`.[^pa03-template-get] Learn's page for that method shows one in full: "Require multifactor authentication for admins," Microsoft's template for administrators.[^pa03-template-get] It is the only Conditional Access policy JSON for administrators that Microsoft publishes on Learn in Graph form. The Create method's examples cover Exchange Online, not administrators,[^pa03-ca-create] and the policy pages give admin center steps.
+
+The repository's search on October 30, 2026 found no other Microsoft sample to start from. `Azure-Samples` has no Conditional Access policy repository. `microsoft/ConditionalAccessforZeroTrustResources` holds Microsoft365DSC and Terraform examples, not Graph JSON, and hasn't changed since February 2024; it wasn't used.
+
+### The pinned copy
+
+The template exists only inside the Learn page, so the repository pins the page's source, unmodified, in [`examples/third_party/conditional-access-template-page`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/third_party/conditional-access-template-page): `conditionalaccesstemplate-get.md` from microsoftgraph/microsoft-graph-docs-contrib at commit `a693031` (October 30, 2026), retrieved October 30, 2026, with the repository's licenses (documentation CC BY 4.0, code MIT).[^pa03-sample-src] `snapshot.json` records each file's SHA-256, checked against the upstream git blob hashes; a unit test checks them, and the weekly source watch reports new commits to the page.
+
+`Read-PaCaTemplatePage` extracts the example response from the pinned page, unmodified. `ConvertFrom-PaCaTemplate` turns a template into a policy body, adding only its name and report-only state, and fixes nothing. Then the pre-merge check reads it as if it were a file in the repository. Nothing is sent to a tenant.
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/ConditionalAccess.Tests.ps1`: the first block for the template as published, the others for the example.
+
+| Microsoft's template, as published | Why it matters | What `examples/privileged-access` adds |
+|---|---|---|
+| Targets administrators by role, all resources, all client apps | — | Kept as the model: CA003 targets roles and all resources |
+| Learn marks the response as possibly shortened, and it lists 2 roles | Learn's procedure names 14 roles at a minimum;[^pa03-admin-phish] a copy of the example covers two | CA003 lists Book 04's 15 (Learn's 14 and Hybrid Identity Administrator); PA-CA-07 warns on any policy that targets roles and leaves one of the 14 out |
+| Grants plain MFA, with no authentication strength | Learn's admin page recommends the phishing-resistant strength;[^pa03-admin-phish] plain MFA and a strength can't be combined in one policy[^pa03-strengths] | `FMP-Privileged-SeparateDevice` as a reviewed file; PA-CA-06 |
+| Excludes "Current administrator will be excluded," display text where an object ID belongs | Not an object ID; the admin center replaces it, a script doesn't | PA-CA-03 fails any user target that isn't an object ID or a Graph keyword |
+| Doesn't exclude the emergency access group | The emergency accounts must stay out of every policy that blocks or restricts[^pa03-emergency] | PA-CA-01, before merge; `Invoke-PaCaPlan` refuses to write a policy without it |
+| Carries no state | Nothing in it says to start in report-only | Every new policy is created report-only, whatever its file says; enforcing needs `-AllowEnforce` |
+| Targets no authentication context | The activation gate isn't in it | Contexts `c1` and `c2`, `PIM-Activation-c1` and `ProtectedActions-c2`, with PA-CA-04, PA-CA-05 and PA-CA-08 |
+| A read; nothing compares it with a tenant or writes it | A policy changed in the portal drifts unseen | `Get-PaCaPlan`: a diff by property, a dry run, and writes only with `-Apply` |
+
+**The verdict.** Keep Microsoft's template as the model for CA003's targeting. Don't create it as published: it would land with no emergency exclusion, text where an ID belongs, and plain MFA.
+
+## The code: `examples/privileged-access`
+
+This chapter adds its own module, `powershell/PaConditionalAccess`, which imports `Get-PaCloud` from [Chapter 01](01-privileged-inventory-as-code.md)'s module for the cloud table. It adds its own call list `config/calls-ch03.json`, the policy files in `ca-policies/`, the entry script `Invoke-PaCaAdmin.ps1` and notes in `docs/ch03.md`. Unlike Chapters 01 and 02, it can write. *Design guidance:* it writes only with `-Apply`, creates every new policy report-only, enforces only with `-AllowEnforce`, and has no delete.
+
+### The files
+
+`ca-policies/` holds one JSON file per object, as Book 04, Chapter 10 asks ([Book 04, Chapter 10](../../../books/b04-access/10-access-as-code-and-evidence.md#what-goes-in-the-repository)):
+
+| Folder | Files | Source |
+|---|---|---|
+| `contexts/` | `c1` (`FMP-PIM-Activation`), `c2` (`FMP-ProtectedActions`) | Book 04, Chapter 08, Steps 2 and 6 |
+| `strengths/` | `FMP-Privileged-SeparateDevice`: FIDO2 keys from an approved list, or multifactor certificate-based authentication | Appendix A |
+| `policies/` | CA003, CA004, CA005, CA025, CA027 | Appendix A, Wave 2 |
+| `policies/` | `PIM-Activation-c1`: all users but the emergency group, context `c1`, the strength **and** a compliant device, sign-in frequency every time | Book 04, Chapter 08, Step 2; Learn's PIM settings[^pa03-pim-settings] |
+| `policies/` | `ProtectedActions-c2`: the same controls on context `c2` | Book 04, Chapter 08, Step 6 |
+
+Placeholders such as `{group:CA-Exclude-EmergencyAccess}` are Appendix A's. A per-tenant map resolves them. `{strength:FMP-Privileged-SeparateDevice}` isn't in the map: the plan resolves it from the tenant by name, so a policy can't point at a strength that doesn't exist yet. CA026 isn't a file yet; it reuses CA003 with Appendix A's differences.
+
+### The pre-merge check
+
+`Test-PaCaRepository` reads the files only, and runs in the pull request pipeline:
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| PA-CA-01 | Finding; Info | A policy that isn't disabled and doesn't exclude the emergency group (Finding); a named report-only instrument without it (Info) | Learn[^pa03-emergency]; *Design guidance* for report-only files (see below) |
+| PA-CA-02 | Finding | A report-only instrument set to enabled | *Design guidance* |
+| PA-CA-03 | Finding | An unresolved placeholder, or a user target that isn't an object ID or a Graph keyword | *Design guidance* |
+| PA-CA-04 | Warn | An authentication context policy that isn't On | Learn: report-only doesn't trigger PIM's fallback[^pa03-pim-settings] or satisfy a protected action[^pa03-protected-add] |
+| PA-CA-05 | Finding | An authentication context policy that also targets directory roles | Learn[^pa03-pim-settings] |
+| PA-CA-06 | Finding; Warn | MFA and an authentication strength together (Finding); administrator roles with plain MFA (Warn) | Learn[^pa03-strengths] [^pa03-admin-phish] |
+| PA-CA-07 | Warn | A policy targeting roles that leaves out any of the 14 Learn recommends | Learn[^pa03-admin-phish] |
+| PA-CA-08 | Finding | A context outside `c1` to `c25`, or a policy naming a context the repository doesn't define | Learn's stricter range[^pa03-ctx-create-beta] |
+| PA-CA-09 | Warn | A report-only policy requiring a compliant device that doesn't exclude Android, iOS and macOS | Learn[^pa03-report-only] (research gaps, row 37) |
+
+On the repository as merged, the check passes with five Warn: the two context policies are still report-only, and three report-only policies require a compliant device. Those are the decisions the rollout makes, not mistakes in the files.
+
+### Report-only policies and the emergency exclusion
+
+Book 04 disagrees with itself here, and research gaps row 5 records it. Learn's emergency access page says it three times: exclude the emergency accounts from policies that block or restrict sign-in, and report-only policies don't block access and don't need the exclusion.[^pa03-emergency] Book 04, Chapter 04 says the same. Book 04, Chapter 10's pre-merge check fails any enabled or report-only policy file that doesn't exclude the group ([Book 04, Chapter 10](../../../books/b04-access/10-access-as-code-and-evidence.md#a-pre-merge-check-for-the-emergency-access-exclusion)). That check would also fail Book 04, Chapter 07's CA090, the report-only probe that excludes nobody on purpose.
+
+**The finding.** Learn doesn't require the exclusion on a report-only policy. Chapter 10's rule is stricter than Learn, not in conflict with it. The two Learn pages read for this chapter agree with each other.[^pa03-emergency] [^pa03-report-only]
+
+**What the code does.** *Design guidance:* every policy file carries the exclusion whatever its state, because a file is enforced by changing one word, its state, and the exclusion must already be there when that happens. That is Chapter 10's rule, and it costs nothing Learn requires. The one exception is a policy named in `ca-config.json` as a report-only instrument, like CA090: it may leave the group in scope, as Learn allows, it is reported as Info, and PA-CA-02 fails it the moment it is set to enabled. Chapter 02's tenant check, PA-EA-08, still reports a report-only policy without the group as Info. Whether Chapter 10's script should gain the instrument exception is the owner's decision; this chapter doesn't change Book 04 or row 5 (research gaps, row 31).
+
+### The plan, the dry run and the writes
+
+`Get-PaCaTenant` reads the tenant's policies, authentication contexts and strengths: three GETs, every page, only on the cloud's own host. `Get-PaCaPlan` compares each file with the tenant, property by property, and only on the properties the file sets, so the nulls and empty lists Graph returns don't show as changes. It plans in Learn's order, contexts and the strength before the policies that use them:
+
+| Action | When |
+|---|---|
+| Create | Not in the tenant. A policy is always created report-only |
+| Update | Differs; the PATCH carries only the changed top-level properties, as Learn advises[^pa03-ca-update] |
+| NoChange | Matches |
+| Blocked | The policy needs a strength or context the tenant doesn't have yet; the next run creates it |
+| Held | The file says `enabled`, the tenant doesn't, and `-AllowEnforce` wasn't given |
+| Differs | A strength that differs; the code doesn't update strengths (research gaps, row 36) |
+| NotInRepository | In the tenant, not in the files; reported, never deleted |
+
+`Invoke-PaCaPlan` turns the plan into requests. Without `-Apply` it returns them with `Sent` false, and the client it runs under can't send a write. With `-Apply` it refuses to start if the pre-merge check has a Finding, or if any policy it would write leaves out the emergency group. Policies are matched by display name, so a rename in the portal shows as one Create and one NotInRepository. Rollback follows Book 04, Chapter 07: change the file's state to report-only or disabled and apply; never delete ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#rollback)).
+
+### Least privilege
+
+| Call | Least-privileged permission | Delegated role | Task |
+|---|---|---|---|
+| List policies | `Policy.Read.All`[^pa03-ca-list] | Global Reader or Security Reader | read |
+| List authentication contexts | `AuthenticationContext.Read.All`[^pa03-ctx-list] | Global Reader or Security Reader | read |
+| List authentication strengths | `Policy.Read.AuthenticationMethod`[^pa03-strength-list] | Security Reader | read |
+| Get a template | `Policy.Read.All`[^pa03-template-get] | Global Reader or Security Reader | read |
+| Create or update a policy | `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`[^pa03-ca-create] [^pa03-ca-update] | Conditional Access Administrator or Security Administrator | `-Apply` |
+| Create or update an authentication context | `AuthenticationContext.ReadWrite.All`[^pa03-ctx-upsert] | Conditional Access Administrator or Security Administrator | `-Apply` |
+| Create an authentication strength | `Policy.ReadWrite.ConditionalAccess`[^pa03-strength-create] | Conditional Access Administrator or Security Administrator | `-Apply` |
+
+The read task needs three read permissions. `Policy.Read.All` alone isn't listed for authentication contexts, and is a higher-privileged choice for strengths, so the code declares the narrower two. `-Apply` adds `Policy.ReadWrite.ConditionalAccess` and `AuthenticationContext.ReadWrite.All`, and nothing else. Learn's create and update pages note a known issue that may require consent to more permissions;[^pa03-ca-create] Lab 2 records whether it does (research gaps, row 35). A test keeps each task's permissions equal to the union of its calls.
+
+### The tests
+
+This chapter's tests are the 35 in `tests/ConditionalAccess.Tests.ps1`: 7 on Microsoft's template as published, then the calls and clouds, each rule on the repository and on a file changed in memory, the plan and the dry run, two applies against the fake, the refusals, and the entry script's manifest and exit code. With Chapters 01 and 02, 113 Pester tests pass under PowerShell 7, with no module, tenant or network.
+
+::: {.callout-important}
+## Illustrative code
+The commands below check Microsoft's pinned template and the repository's files, and plan against a fictional tenant served by a fake. They show what the code does, not that a tenant accepts the same JSON. This code writes Conditional Access policies when given `-Apply`. Review it and the files, and run Lab 2 in a test tenant, before it goes near production.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/privileged-access`.
+
+1. **Check Microsoft's template as published:**
+
+   ```powershell
+   Invoke-Pester -Path tests/ConditionalAccess.Tests.ps1 -FullNameFilter '*Get conditionalAccessTemplate*' -Output None -PassThru |
+       Select-Object PassedCount, FailedCount
+   ```
+
+   `PassedCount 7`, `FailedCount 0`.
+
+2. **List the permissions each task needs:**
+
+   ```powershell
+   Import-Module ./powershell/PaConditionalAccess/PaConditionalAccess.psm1
+   (Get-PaCaRequiredPermission -Task ca-read).GraphPermissions -join ', '
+   (Get-PaCaRequiredPermission -Task ca-apply).GraphPermissions -join ', '
+   ```
+
+   `AuthenticationContext.Read.All, Policy.Read.All, Policy.Read.AuthenticationMethod`, then the same three with `AuthenticationContext.ReadWrite.All` and `Policy.ReadWrite.ConditionalAccess`.
+
+3. **Run the pre-merge check on the repository's files:**
+
+   ```powershell
+   ./Invoke-PaCaAdmin.ps1 -CheckOnly -MapPath tests/fixtures/ch03/tenant-map.json
+   ```
+
+   `Pre-merge check: 0 Finding, 5 Warn, 0 Info`. A Finding would print its rule and file and exit with code 1, which fails the pipeline.
+
+4. **Run the same check on Microsoft's template:**
+
+   ```powershell
+   $t = Read-PaCaTemplatePage -Path ../third_party/conditional-access-template-page/conditionalaccesstemplate-get.md
+   $repo = Read-PaCaRepository -Path ca-policies -MapPath tests/fixtures/ch03/tenant-map.json
+   Test-PaCaPolicyBody -Body (ConvertFrom-PaCaTemplate -Template $t) -Repository $repo | Format-Table Rule, Severity
+   ```
+
+   Four rows: PA-CA-01 Finding (no emergency exclusion), PA-CA-03 Finding (the display text in `excludeUsers`), PA-CA-06 Warn (plain MFA) and PA-CA-07 Warn (12 of Learn's 14 roles missing).
+
+5. **Plan against the fictional tenant, sending nothing:**
+
+   ```powershell
+   ./Invoke-PaCaAdmin.ps1 -Cloud gcc -MapPath tests/fixtures/ch03/tenant-map.json -FixturePath tests/fixtures/ch03/tenant.json -OutputPath out/ca
+   Get-Content out/ca/plan.json -Raw | ConvertFrom-Json | Format-Table Kind, Name, Action
+   ```
+
+   ```text
+   Pre-merge check: 0 Finding, 5 Warn, 0 Info
+   Plan: 3 Blocked, 4 Create, 1 NoChange, 1 NotInRepository, 2 Update
+   Dry run: 6 request(s) written to requests.json, none sent; rerun with -Apply to send them
+   Written to out/ca (manifest.json lists every request and file hash)
+   ```
+
+   Context `c1` and the strength are Create; `c2` is Update (its description). CA004 is Update (its persistent browser control), CA005 is NoChange, and CA025 and CA027 are Create. CA003, `PIM-Activation-c1` and `ProtectedActions-c2` are Blocked: the strength, and for the context policies `c1`, don't exist yet. CA001 is NotInRepository. `manifest.json` lists five GETs and no write.
+
+6. **Apply against the fake, three times:**
+
+   ```powershell
+   $fake = New-PaCaFixtureInvoker -Path tests/fixtures/ch03/tenant.json -Cloud gcc
+   $findings = Test-PaCaRepository -Repository $repo
+   foreach ($run in 1..3) {
+       $client = New-PaCaClient -Cloud gcc -Invoke $fake.Invoke -Apply
+       $plan = Get-PaCaPlan -Repository $repo -Tenant (Get-PaCaTenant -Client $client)
+       $sent = @(Invoke-PaCaPlan -Client $client -Plan $plan -Findings $findings -EmergencyGroupId $repo.EmergencyGroupId | Where-Object Sent)
+       "Run ${run}: $($sent.Count) sent"
+   }
+   ($fake.Tenant.policies | Where-Object displayName -EQ 'PIM-Activation-c1').state
+   ```
+
+   `Run 1: 6 sent`, `Run 2: 3 sent`, `Run 3: 0 sent`, then `enabledForReportingButNotEnforced`. The first run creates the contexts and the strength; the second the three policies that needed them, report-only; the third finds nothing to do. CA001 is still there.
+
+7. **Run the tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests
+   ```
+
+**Expected result:** 113 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+
+## Lab 2: test tenant
+
+Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID P1, never production. Build Chapter 02's emergency accounts and exclusion group first, and confirm one emergency account can sign in. Register at least one phishing-resistant method for each test administrator before any policy here is enforced: Learn warns that enabling the policy first risks locking you out.[^pa03-admin-phish] Don't select `c1` in PIM in this lab; Chapter 04 does that.
+
+1. **Write your map.** Copy `tests/fixtures/ch03/tenant-map.json` and put in the test tenant's object IDs: the emergency group, the admins persona group, the Azure operators group, the trusted network location and your key models' AAGUIDs.
+2. **Register the app** in the worldwide admin center with a certificate, and grant only the three read permissions from Lab 1, step 2, with admin consent.
+3. **Plan, sending nothing:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+   ./Invoke-PaCaAdmin.ps1 -Cloud gcc -MapPath my-map.json -OutputPath out/ca-test -TenantId <tenant-id>
+   ```
+
+   Read `plan.json` and `requests.json`. Every policy that already exists should show only the changes you expect.
+4. **Apply, report-only.** Add `Policy.ReadWrite.ConditionalAccess` and `AuthenticationContext.ReadWrite.All` to the app, reconnect, and run step 3 again with `-Apply`, then once more. Confirm in the admin center that every new policy is **Report-only**. Record whether Graph accepted `PIM-Activation-c1`'s every-time sign-in frequency (research gaps, row 32) and whether any create asked for another permission (row 35).
+5. **Watch report-only.** Sign in as a test administrator and as an emergency account, then read each policy's report-only result in the sign-in log and the policy impact view (preview).[^pa03-report-only] Book 04, Chapter 07 asks for at least seven days before enforcement ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)).
+6. **Enforce the gate alone.** In a separate change, set `PIM-Activation-c1`'s file to `enabled` and run with `-Apply -AllowEnforce`. The plan shows it as Update with the state change; everything else stays as it was. PA-CA-04 clears for that policy.
+7. **Back it out.** Set each file this lab created to `disabled` and run with `-Apply` (turning a policy off needs no `-AllowEnforce`), or turn them off in the admin center. The code doesn't delete; if you delete the policies by hand in the test tenant, Learn's 30-day restore applies ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#rollback)). Set the contexts' `isAvailable` to false. Remove the two write permissions, delete the app and its certificate, and delete `out/ca-test`.
+
+## Verified facts
+
+| Item | Value | US Government clouds | Stage | Source |
+|---|---|---|---|---|
+| Conditional Access templates | In the admin center by scenario; "Protect administrator" includes phishing-resistant MFA for administrators | — | GA | [^pa03-templates] |
+| Get a template | `GET /identity/conditionalAccess/templates/{id}`; `Policy.Read.All` | L4 and L5 | v1.0 | [^pa03-template-get] |
+| Phishing-resistant MFA for administrators | At least 14 roles; exclude emergency accounts; built-in phishing-resistant strength; report-only first; built-in roles only | — | GA | [^pa03-admin-phish] |
+| List policies | `Policy.Read.All` | L4 and L5 | v1.0 | [^pa03-ca-list] |
+| Create a policy | `POST /identity/conditionalAccess/policies`; `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`; known consent issue | L4 and L5 | v1.0 | [^pa03-ca-create] |
+| Update a policy | `PATCH .../policies/{id}`; same permissions; send only changed values | L4 and L5 | v1.0 | [^pa03-ca-update] |
+| List authentication contexts | `AuthenticationContext.Read.All` | L4 and L5 | v1.0 | [^pa03-ctx-list] |
+| Create or update an authentication context | `PATCH .../authenticationContextClassReferences/{id}` creates when missing; `AuthenticationContext.ReadWrite.All` | — | v1.0 | [^pa03-ctx-upsert] |
+| Authentication context IDs | `c1` to `c25` (Graph create, beta); up to 99, `c1` to `c99` (admin center) | L4 and L5 | — | [^pa03-ctx-create-beta] [^pa03-ctx-concept] |
+| List authentication strengths | `Policy.Read.AuthenticationMethod`; built-in and custom | L4 and L5 | v1.0 | [^pa03-strength-list] |
+| Create an authentication strength | `Policy.ReadWrite.ConditionalAccess` | L4 and L5 | v1.0 | [^pa03-strength-create] |
+| Built-in phishing-resistant strength | Windows Hello for Business or platform credential, FIDO2 security key, multifactor CBA; can't combine with "Require MFA" | — | GA | [^pa03-strengths] |
+| PIM and authentication context | Policy enabled before selection; fallback MFA not triggered by off, report-only or excluded; don't scope to roles; every-time sign-in frequency; 10-minute window | Conditional Access and PIM available | GA | [^pa03-pim-settings] [^pa03-availability] |
+| Sign-in frequency `everyTime` | Graph: for risky users, risky sign-ins and Intune enrollment; Learn's PIM page: on the authentication context policy | — | v1.0 | [^pa03-sif] [^pa03-pim-settings] [^pa03-session] |
+| Report-only | Evaluated, not enforced; not for user actions; compliant-device checks can prompt Mac, iOS and Android users; policy impact view is preview | — | GA; impact view preview | [^pa03-report-only] |
+| Emergency exclusion | Exclude from policies that block or restrict; report-only doesn't need it | — | GA | [^pa03-emergency] |
+| Protected actions | Conditional Access on permissions such as policy create, update and delete; exclude an emergency account; P1; a policy that is off or report-only is never satisfied; assigning through Graph is beta | Not stated | GA (no preview label on the page); Graph API beta | [^pa03-protected] [^pa03-protected-add] |
+
+Where the sources differ, recorded so a later edit doesn't loosen the code:
+
+- **Report-only and the emergency exclusion.** Learn and Book 04, Chapter 04: not needed. Book 04, Chapter 10: needed. The code follows Chapter 10 for every file and exempts only a named report-only instrument (research gaps, rows 5 and 31).
+- **Every-time sign-in frequency.** The Graph resource page lists `everyTime` for risky users, risky sign-ins and Intune device enrollment;[^pa03-sif] Learn's PIM pages and the session lifetime page say to use it on the authentication context policy.[^pa03-pim-settings] [^pa03-session] The file follows the PIM page; Lab 2 confirms Graph accepts it (research gaps, row 32).
+- **Authentication context IDs.** The Graph create method allows `c1` to `c25`;[^pa03-ctx-create-beta] the admin center allows 99.[^pa03-ctx-concept] PA-CA-08 follows the stricter range (row 33).
+- **Protected actions' stage.** The workbook's outline calls protected actions a preview. Learn's overview page, read on October 30, 2026, carries no preview label, and assigning them through Graph is documented under beta only.[^pa03-protected] [^pa03-protected-add] The code defines `c2` and its policy but doesn't assign protected actions (rows 34 and 38).
+- **The brief's `Policy.Read.All`.** Learn lists narrower permissions for reading contexts and strengths, and the code uses them.[^pa03-ctx-list] [^pa03-strength-list]
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A policy enforced before the emergency accounts work | The documented lockout, by Conditional Access instead of PIM | Chapter 02 first; PA-CA-01 before merge; `-Apply` refuses a write without the exclusion |
+| Microsoft's template created as published | No emergency exclusion, display text where an ID belongs, plain MFA | PA-CA-01, PA-CA-03, PA-CA-06; the template is a model, not a file |
+| A policy switched straight to On | Users blocked with no measurement | Every Create is report-only; enforcement needs `-AllowEnforce` in its own change |
+| `c1` selected in PIM while its policy is report-only | No gate, and no MFA fallback either | PA-CA-04 warns until it is On; Chapter 04 checks the state before it selects `c1` |
+| The gate scoped to a directory role | It never applies at activation | PA-CA-05 |
+| Administrators without a phishing-resistant method when CA003 is enforced | They can't sign in | Lab 2's registration step; the report-only week; Book 04's readiness gate |
+| A pipeline that deletes a policy no file names | A portal-made policy, perhaps a needed one, disappears | No DELETE in the call list; NotInRepository is reported only |
+| A compliant-device policy in report-only | Mac, iOS and Android users prompted for a certificate | PA-CA-09 warns; exclude those platforms in the report-only phase if the prompts matter |
+| Whoever edits Conditional Access edits the gate | The gate is weakened or removed | Protected actions on `c2` (Book 04, Chapter 08, Step 6); the planned Chapter 08 compares the tenant with these files |
+| The write permission left on the app | A standing write path to Conditional Access | Grant it only for `-Apply` runs, from the pipeline identity; Lab 2 removes it |
+
+## Checklist
+
+- [ ] The pre-merge check runs on every pull request that touches `ca-policies/` and has no Finding.
+- [ ] Every policy file excludes the emergency access group, except a report-only instrument named in `ca-config.json`.
+- [ ] CA003 targets all 14 roles Learn recommends, and the persona group.
+- [ ] `PIM-Activation-c1` targets all users and context `c1` only, requires the strength and a compliant device, and is On before Chapter 04 selects `c1`.
+- [ ] Every plan was read as a dry run before the same plan was applied.
+- [ ] Every new policy appeared in the tenant as report-only, and each enforcement was its own reviewed change with `-AllowEnforce`.
+- [ ] The read app holds the three read permissions; the write permissions exist only on the pipeline identity that applies.
+- [ ] The pinned Learn page matches its manifest, and every upstream commit since the pin has been reviewed.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 02 — Emergency Access Accounts as Code](02-emergency-access-as-code.md) · [Workbook index](index.md)
+:::
+
+[^pa03-pim-settings]: Microsoft Learn, "Configure Microsoft Entra role settings in Privileged Identity Management," on activation, require Microsoft Entra Conditional Access authentication context, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings> (accessed Oct 30, 2026).
+[^pa03-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
+[^pa03-ca-list]: Microsoft Learn, "List policies" (conditionalAccessRoot), <https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa03-ca-create]: Microsoft Learn, "Create conditionalAccessPolicy," permissions and examples, <https://learn.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa03-ca-update]: Microsoft Learn, "Update conditionalaccesspolicy," permissions and request body, <https://learn.microsoft.com/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa03-ctx-list]: Microsoft Learn, "List authenticationContextClassReferences," <https://learn.microsoft.com/graph/api/conditionalaccessroot-list-authenticationcontextclassreferences?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa03-ctx-upsert]: Microsoft Learn, "Create or Update authenticationContextClassReference," <https://learn.microsoft.com/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa03-ctx-create-beta]: Microsoft Learn, "Create authenticationContextClassReference" (beta), request body, <https://learn.microsoft.com/graph/api/conditionalaccessroot-post-authenticationcontextclassreferences?view=graph-rest-beta> (accessed Oct 30, 2026).
+[^pa03-ctx-concept]: Microsoft Learn, "Conditional Access: Target resources," authentication context, <https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-cloud-apps> (accessed Oct 30, 2026).
+[^pa03-strength-list]: Microsoft Learn, "List authenticationStrengthPolicies," <https://learn.microsoft.com/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa03-strength-create]: Microsoft Learn, "Create authenticationStrengthPolicy," <https://learn.microsoft.com/graph/api/authenticationstrengthroot-post-policies?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa03-template-get]: Microsoft Learn, "Get conditionalAccessTemplate," <https://learn.microsoft.com/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa03-availability]: Microsoft Learn, "Microsoft Entra feature availability," Microsoft Entra ID, authorization and Conditional Access, and identity governance, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
+[^pa03-templates]: Microsoft Learn, "Conditional Access policy templates," template categories, <https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-policy-common> (accessed Oct 30, 2026).
+[^pa03-admin-phish]: Microsoft Learn, "Require phishing-resistant multifactor authentication for administrators," <https://learn.microsoft.com/entra/identity/conditional-access/policy-admin-phish-resistant-mfa> (accessed Oct 30, 2026).
+[^pa03-sample-src]: Microsoft, microsoftgraph/microsoft-graph-docs-contrib, `api-reference/v1.0/api/conditionalaccesstemplate-get.md` at commit `a69303123e9701eecbf56568d152ece936a97f1e` (October 30, 2026; the page last changed July 22, 2025), CC BY 4.0 (documentation) and MIT (code), <https://github.com/microsoftgraph/microsoft-graph-docs-contrib/blob/a69303123e9701eecbf56568d152ece936a97f1e/api-reference/v1.0/api/conditionalaccesstemplate-get.md> (accessed Oct 30, 2026); pinned copy in `examples/third_party/conditional-access-template-page`.
+[^pa03-strengths]: Microsoft Learn, "Conditional Access authentication strengths," built-in strengths and limitations, <https://learn.microsoft.com/entra/identity/authentication/concept-authentication-strengths> (accessed Oct 30, 2026).
+[^pa03-emergency]: Microsoft Learn, "Manage emergency access accounts in Microsoft Entra ID," Conditional Access considerations, <https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access> (accessed Oct 30, 2026).
+[^pa03-report-only]: Microsoft Learn, "Analyze Conditional Access policy impact," <https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-report-only> (accessed Oct 30, 2026).
+[^pa03-sif]: Microsoft Learn, "signInFrequencySessionControl resource type," <https://learn.microsoft.com/graph/api/resources/signinfrequencysessioncontrol?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa03-session]: Microsoft Learn, "Conditional Access adaptive session lifetime policies," user sign-in frequency, <https://learn.microsoft.com/entra/identity/conditional-access/concept-session-lifetime> (accessed Oct 30, 2026).
+[^pa03-protected]: Microsoft Learn, "What are protected actions in Microsoft Entra ID?," <https://learn.microsoft.com/entra/identity/role-based-access-control/protected-actions-overview> (accessed Oct 30, 2026).
+[^pa03-protected-add]: Microsoft Learn, "Add, test, or remove protected actions in Microsoft Entra ID," Microsoft Graph, <https://learn.microsoft.com/entra/identity/role-based-access-control/protected-actions-add> (accessed Oct 30, 2026).
