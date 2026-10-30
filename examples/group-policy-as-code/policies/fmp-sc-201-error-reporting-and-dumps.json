@@ -1,0 +1,59 @@
+{
+  "owner": "Workstation baseline owner (Intune track)",
+  "configOwner": "Intune",
+  "sourceGpos": [
+    "FMP-Workstation-Baseline"
+  ],
+  "decisions": {
+    "device_vendor_msft_policy_config_errorreporting_disablewindowserrorreporting": "DR-0101",
+    "device_vendor_msft_policy_config_memorydump_allowcrashdump": "DR-0102",
+    "device_vendor_msft_policy_config_memorydump_allowlivedump": "DR-0103"
+  },
+  "policy": {
+    "name": "FMP-SC-201-Error-reporting-and-dumps",
+    "description": "From FMP-Workstation-Baseline: Windows Error Reporting off, crash and live dumps off",
+    "platforms": "windows10",
+    "technologies": "mdm",
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settings": [
+      {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationSetting",
+        "settingInstance": {
+          "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+          "settingDefinitionId": "device_vendor_msft_policy_config_errorreporting_disablewindowserrorreporting",
+          "choiceSettingValue": {
+            "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+            "value": "device_vendor_msft_policy_config_errorreporting_disablewindowserrorreporting_1",
+            "children": []
+          }
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationSetting",
+        "settingInstance": {
+          "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+          "settingDefinitionId": "device_vendor_msft_policy_config_memorydump_allowcrashdump",
+          "choiceSettingValue": {
+            "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+            "value": "device_vendor_msft_policy_config_memorydump_allowcrashdump_0",
+            "children": []
+          }
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationSetting",
+        "settingInstance": {
+          "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+          "settingDefinitionId": "device_vendor_msft_policy_config_memorydump_allowlivedump",
+          "choiceSettingValue": {
+            "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+            "value": "device_vendor_msft_policy_config_memorydump_allowlivedump_0",
+            "children": []
+          }
+        }
+      }
+    ]
+  }
+}

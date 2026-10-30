@@ -1,0 +1,47 @@
+{
+  "owner": "Workstation baseline owner (Intune track)",
+  "configOwner": "Intune",
+  "sourceGpos": [
+    "FMP-Workstation-Baseline",
+    "Workstation-Power"
+  ],
+  "decisions": {
+    "device_vendor_msft_policy_config_windowslogon_allowautomaticrestartsignon": "DR-0104",
+    "device_vendor_msft_policy_config_power_allowhibernate": "DR-0105"
+  },
+  "policy": {
+    "name": "FMP-SC-202-Sign-in-and-power",
+    "description": "From FMP-Workstation-Baseline and Workstation-Power: no automatic sign-in after restart, no hibernation",
+    "platforms": "windows10",
+    "technologies": "mdm",
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settings": [
+      {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationSetting",
+        "settingInstance": {
+          "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+          "settingDefinitionId": "device_vendor_msft_policy_config_windowslogon_allowautomaticrestartsignon",
+          "choiceSettingValue": {
+            "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+            "value": "device_vendor_msft_policy_config_windowslogon_allowautomaticrestartsignon_0",
+            "children": []
+          }
+        }
+      },
+      {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationSetting",
+        "settingInstance": {
+          "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+          "settingDefinitionId": "device_vendor_msft_policy_config_power_allowhibernate",
+          "choiceSettingValue": {
+            "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue",
+            "value": "device_vendor_msft_policy_config_power_allowhibernate_0",
+            "children": []
+          }
+        }
+      }
+    ]
+  }
+}
