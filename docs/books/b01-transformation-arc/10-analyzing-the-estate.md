@@ -142,6 +142,8 @@ PowerShell is good at Active Directory reads; it is less good at graph analysis.
 
 The analyzer writes JSON and Markdown reports into an analysis folder, readable by the engine and by a human reviewer.
 
+These graphs cover the infrastructure an application leans on. The application side (which systems read which master records, which outside partners depend on them, and on what evidence) is recorded as an evidence map in [Book 18, Chapter 02](../b18-application-modernization/02-triaging-the-portfolio.md#recording-dependencies-as-an-evidence-map). The two should share identifiers, so an application's map can point at its SPNs, certificates and service accounts here.
+
 ## One artifact set per run
 
 Every run produces the same folder layout, committed under `assessments/<run-id>/`. The run identifier is `YYYY-MM-DD-HHmm-<host>-<tier>` (UTC).
