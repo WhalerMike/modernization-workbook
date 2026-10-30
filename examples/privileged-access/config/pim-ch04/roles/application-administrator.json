@@ -1,0 +1,28 @@
+{
+  "_comment": "Application Administrator: PIM role settings as code, from Book 04, Appendix B (T1). Review a change to this file as a change to the tenant. Approvers are named by alias; the tenant's bindings file gives each alias its group object ID.",
+  "role": "Application Administrator",
+  "roleTemplateId": "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3",
+  "tier": "T1",
+  "activation": {
+    "maximumDuration": "PT8H",
+    "authenticationContext": "c1",
+    "requireMfa": false,
+    "requireJustification": true,
+    "requireTicket": true
+  },
+  "approval": {
+    "required": true,
+    "approvers": [
+      "PIM-Approvers-T1"
+    ]
+  },
+  "assignment": {
+    "allowPermanentEligible": false,
+    "eligibleMaximumDuration": "P180D",
+    "allowPermanentActive": false,
+    "activeMaximumDuration": "P15D",
+    "requireMfaOnActive": true,
+    "requireJustificationOnActive": true
+  },
+  "eligibleTo": "PRV-T1-AppAdmin"
+}

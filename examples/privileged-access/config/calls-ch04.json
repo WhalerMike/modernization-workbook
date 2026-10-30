@@ -1,0 +1,81 @@
+{
+  "_comment": "Chapter 04: every call the PIM role settings code makes, with the least-privileged Graph permission from the Learn page for that call, read on October 30, 2026. Reads and writes are separate tasks: pim-plan only reads; pim-apply adds the two writes for role settings and eligibility; pim-convert adds the removal of a standing assignment. Get-PaPimRequiredPermission returns the union for a task, and a test keeps it equal to the union of the task's calls. A call that isn't listed here, or a method other than the one listed, throws before anything is sent.",
+  "calls": [
+    {
+      "id": "pim-policy-assignment",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/policies/roleManagementPolicyAssignments",
+      "permissions": ["RoleManagementPolicy.Read.Directory"],
+      "delegatedRole": "Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator",
+      "stage": "v1.0",
+      "tasks": ["pim-plan", "pim-apply", "pim-convert"],
+      "learn": "https://learn.microsoft.com/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0",
+      "note": "Learn's Example 2: $filter on scopeId '/', scopeType 'DirectoryRole' and roleDefinitionId, with $expand=policy($expand=rules). One call per role returns the policy ID and all 17 rules."
+    },
+    {
+      "id": "pim-eligibility-schedules",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleEligibilitySchedules",
+      "permissions": ["RoleEligibilitySchedule.Read.Directory"],
+      "delegatedRole": "Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator",
+      "stage": "v1.0",
+      "tasks": ["pim-plan", "pim-apply", "pim-convert"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0"
+    },
+    {
+      "id": "pim-active-instances",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleAssignmentScheduleInstances",
+      "permissions": ["RoleAssignmentSchedule.Read.Directory"],
+      "delegatedRole": "Global Reader (read)",
+      "stage": "v1.0",
+      "tasks": ["pim-plan", "pim-apply", "pim-convert"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignmentscheduleinstances?view=graph-rest-1.0",
+      "note": "Read with $expand=principal: the emergency accounts' Global Administrator for the lockout guard, and the standing assignments to convert."
+    },
+    {
+      "id": "pim-policy-rule-update",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/policies/roleManagementPolicies/{policyId}/rules/{ruleId}",
+      "permissions": ["RoleManagementPolicy.ReadWrite.Directory"],
+      "delegatedRole": "Privileged Role Administrator",
+      "stage": "v1.0",
+      "tasks": ["pim-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0",
+      "note": "The body must carry the derived rule's @odata.type. The Update page documents 200 OK with the rule; the how-to page documents 204 No Content. Both are accepted."
+    },
+    {
+      "id": "pim-eligibility-request",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleEligibilityScheduleRequests",
+      "permissions": ["RoleEligibilitySchedule.ReadWrite.Directory"],
+      "delegatedRole": "Privileged Role Administrator",
+      "stage": "v1.0",
+      "tasks": ["pim-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-post-roleeligibilityschedulerequests?view=graph-rest-1.0"
+    },
+    {
+      "id": "pim-assignment-request",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleAssignmentScheduleRequests",
+      "permissions": ["RoleAssignmentSchedule.ReadWrite.Directory"],
+      "delegatedRole": "Privileged Role Administrator",
+      "stage": "v1.0",
+      "tasks": ["pim-convert"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-post-roleassignmentschedulerequests?view=graph-rest-1.0",
+      "note": "Used only with action adminRemove. Learn lists RoleAssignmentSchedule.ReadWrite.Directory as least privileged and RoleAssignmentSchedule.Remove.Directory as higher privileged for this call (research gaps, row 43)."
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "_comment": "Chapter 04: this tenant's object IDs for the names the role files use (fictional). approverGroups maps each approver alias to its group. eligibility lists, for every role, the PRV role-assignable group that holds the eligible assignment and its scope; Tier 2 roles are scoped to an administrative unit.",
+  "tenantId": "c0000000-0000-4000-8000-000000000001",
+  "approverGroups": {
+    "PIM-Approvers-T0": "9e000000-0000-4000-8000-000000000010",
+    "PIM-Approvers-T1": "9e000000-0000-4000-8000-000000000011"
+  },
+  "eligibility": [
+    {
+      "roleTemplateId": "b1be1c3e-b65d-4f19-8427-f6fa0d97feb9",
+      "role": "Conditional Access Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000101",
+      "groupName": "PRV-T0-CAAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "62e90394-69f5-4237-9190-012177145e10",
+      "role": "Global Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000102",
+      "groupName": "PRV-T0-GlobalAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "7be44c8a-adaf-4e2a-84d6-ab2649e08a13",
+      "role": "Privileged Authentication Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000103",
+      "groupName": "PRV-T0-PrivAuthAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "e8611ab8-c189-46e8-94e1-60213ab1f814",
+      "role": "Privileged Role Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000104",
+      "groupName": "PRV-T0-PrivRoleAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "194ae4cb-b126-40b2-bd5b-6091b380977d",
+      "role": "Security Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000105",
+      "groupName": "PRV-T0-SecurityAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3",
+      "role": "Application Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000106",
+      "groupName": "PRV-T1-AppAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "0526716b-113d-4c15-b2c8-68e3c22b9f80",
+      "role": "Authentication Policy Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000107",
+      "groupName": "PRV-T1-AuthPolicyAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "158c047a-c907-4556-b7ef-446551a6b5f7",
+      "role": "Cloud Application Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000108",
+      "groupName": "PRV-T1-CloudAppAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "17315797-102d-40b4-93e0-432062caca18",
+      "role": "Compliance Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000109",
+      "groupName": "PRV-T1-ComplianceAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "29232cdf-9323-42fd-ade2-1d097af3e4de",
+      "role": "Exchange Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000110",
+      "groupName": "PRV-T1-ExchangeAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "8ac3fc64-6eca-42ea-9e69-59f4c7b60eb2",
+      "role": "Hybrid Identity Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000111",
+      "groupName": "PRV-T1-HybridIdentityAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "3a2c62db-5318-420d-8d74-23affee5d9d5",
+      "role": "Intune Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000112",
+      "groupName": "PRV-T1-IntuneAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "f28a1f50-f6e7-4571-818b-6a12f2af6b6c",
+      "role": "SharePoint Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000113",
+      "groupName": "PRV-T1-SharePointAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "69091246-20e8-4a56-aa4d-066075b2a7a8",
+      "role": "Teams Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000114",
+      "groupName": "PRV-T1-TeamsAdmin",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "c4e39bd9-1100-46d3-8c65-fb160da0071f",
+      "role": "Authentication Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000115",
+      "groupName": "PRV-T2-AuthAdmin-North",
+      "directoryScopeId": "/administrativeUnits/a0000000-0000-4000-8000-0000000000a1"
+    },
+    {
+      "roleTemplateId": "fdd7a751-b60b-444a-984c-02652fe8fa1c",
+      "role": "Groups Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000116",
+      "groupName": "PRV-T2-GroupsAdmin-North",
+      "directoryScopeId": "/administrativeUnits/a0000000-0000-4000-8000-0000000000a1"
+    },
+    {
+      "roleTemplateId": "729827e3-9c14-49f7-bb1b-9608f156bbb8",
+      "role": "Helpdesk Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000117",
+      "groupName": "PRV-T2-HelpdeskAdmin-North",
+      "directoryScopeId": "/administrativeUnits/a0000000-0000-4000-8000-0000000000a1"
+    },
+    {
+      "roleTemplateId": "966707d0-3269-4727-9be2-8c3a10f19b9d",
+      "role": "Password Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000118",
+      "groupName": "PRV-T2-PasswordAdmin-North",
+      "directoryScopeId": "/administrativeUnits/a0000000-0000-4000-8000-0000000000a1"
+    },
+    {
+      "roleTemplateId": "fe930be7-5e62-47db-91af-98c3a49a38b1",
+      "role": "User Administrator",
+      "groupId": "9e000000-0000-4000-8000-000000000119",
+      "groupName": "PRV-T2-UserAdmin-North",
+      "directoryScopeId": "/administrativeUnits/a0000000-0000-4000-8000-0000000000a1"
+    },
+    {
+      "roleTemplateId": "f2ef992c-3afb-46b9-b7cf-a126ee74c451",
+      "role": "Global Reader",
+      "groupId": "9e000000-0000-4000-8000-000000000120",
+      "groupName": "PRV-RO-GlobalReader",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "4a5d8f65-41da-4de4-8968-e035b65339cf",
+      "role": "Reports Reader",
+      "groupId": "9e000000-0000-4000-8000-000000000121",
+      "groupName": "PRV-RO-ReportsReader",
+      "directoryScopeId": "/"
+    },
+    {
+      "roleTemplateId": "5d6b6bb7-de71-4623-b4af-96380a352509",
+      "role": "Security Reader",
+      "groupId": "9e000000-0000-4000-8000-000000000122",
+      "groupName": "PRV-RO-SecurityReader",
+      "directoryScopeId": "/"
+    }
+  ]
+}

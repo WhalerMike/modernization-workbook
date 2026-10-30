@@ -1,0 +1,26 @@
+{
+  "_comment": "Security Reader: PIM role settings as code, from Book 04, Appendix B (RO). Review a change to this file as a change to the tenant. Approvers are named by alias; the tenant's bindings file gives each alias its group object ID.",
+  "role": "Security Reader",
+  "roleTemplateId": "5d6b6bb7-de71-4623-b4af-96380a352509",
+  "tier": "RO",
+  "activation": {
+    "maximumDuration": "PT8H",
+    "authenticationContext": "c1",
+    "requireMfa": false,
+    "requireJustification": true,
+    "requireTicket": false
+  },
+  "approval": {
+    "required": false,
+    "approvers": []
+  },
+  "assignment": {
+    "allowPermanentEligible": false,
+    "eligibleMaximumDuration": "P365D",
+    "allowPermanentActive": false,
+    "activeMaximumDuration": "P15D",
+    "requireMfaOnActive": true,
+    "requireJustificationOnActive": true
+  },
+  "eligibleTo": "PRV-RO-SecurityReader"
+}

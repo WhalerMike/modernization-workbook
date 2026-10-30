@@ -488,6 +488,28 @@
         "DW"
       ],
       "source": "Commits to the Learn source page that sets the standard for emergency access accounts and holds the sample alert queries for their use, which examples/third_party/entra-emergency-access-page pins at one commit (developer workbook Building Privileged Access, Chapter 02). A new commit means: review it, rerun examples/privileged-access/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-pim-update-rules-page-commits",
+      "name": "Learn's Update rules in PIM samples (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "concepts/how-to-pim-update-rules.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Microsoft Graph samples for updating PIM role settings rules, which examples/third_party/graph-pim-rules-pages pins at one commit (developer workbook Building Privileged Access, Chapter 04). A new commit means: review it, rerun examples/privileged-access/tests/PimEntraRoles.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-pim-tutorial-assign-roles-page-commits",
+      "name": "Learn's tutorial Assign privileged roles using PIM for Microsoft Entra roles APIs (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "concepts/tutorial-assign-azureadroles.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page of the PIM tutorial that makes a role-assignable group eligible for a Microsoft Entra role, which examples/third_party/graph-pim-rules-pages pins at one commit (developer workbook Building Privileged Access, Chapter 04). A new commit means: review it, rerun examples/privileged-access/tests/PimEntraRoles.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     }
   ]
 }
