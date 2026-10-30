@@ -1,0 +1,48 @@
+# Verification — Chapter 06, Moving Group Policy as Code
+
+New material; it replaces no workbook page. Code: `examples/group-policy-as-code` (new): `GroupPolicyAsCode.psm1`, `Invoke-GpcSync.ps1`, two library policies, a fictional fixture tenant, and two Pester files with a harness. Pinned sample: `examples/third_party/mggraph-intune-samples` (new), the `SettingsCatalog` folder (export script, import script, readme) and the repository's `LICENSE` from microsoft/mggraph-intune-samples at commit `2e668455288ebc43b7356b2d9b0c537e24c409f4` (September 25, 2026; the scripts last changed July 3, 2026, commit `631eea28`; MIT). Every file's git blob hash matched the upstream tree at that commit (`gh api repos/microsoft/mggraph-intune-samples/git/trees/<commit>`) before `snapshot.json` was written. Source-watch feed added: `mggraph-intune-samples-commits`. Validation kit: README only (VK-INT-07's note now points to the move plan); no check, catalog entry or test changed.
+
+Test results on October 30, 2026, Windows 11, PowerShell 7.6.9, Pester 5.5.0: `GroupPolicyAsCode.Tests.ps1` 34 passed; `MicrosoftSamples.Tests.ps1` 12 passed. Validation kit tests: see the pull request. `scripts/tests/test_third_party_snapshots.py` covers all four snapshots. Microsoft's samples were run only against the fake Graph in `GroupPolicyAsCode.psm1` (`New-GpcFixtureInvoke`) through `tests/MicrosoftSampleHarness.ps1`: nothing signed in and no Graph call left the machine.
+
+Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP tools: Import and analyze your on-premises GPOs using Group Policy analytics; Create a Settings Catalog policy using your imported GPOs; List groupPolicyMigrationReports; groupPolicyMigrationReport resource type; List groupPolicySettingMappings; groupPolicySettingMapping resource type; Create, List, Update and Delete deviceManagementConfigurationPolicy (beta; the v1.0 view returns the beta page); List deviceManagementConfigurationSettings; Microsoft Graph national cloud deployments; Authentication module cmdlets in Microsoft Graph PowerShell and Get-MgEnvironment; Microsoft Intune for US Government GCC High and DoD service description; US government endpoints for Microsoft Intune; Migration guide: Set up or move to Microsoft Intune; Role-based access control with Microsoft Intune and Built-in role permissions; Performance recommendations for grouping, targeting, and filtering; Assign policies in Microsoft Intune; Use assignment filters; Apply features and settings on your devices using device profiles; Configure Personal Data Encryption (its Graph example, found with microsoft_code_sample_search).
+
+Non-Learn sources: the GitHub repository microsoft/mggraph-intune-samples (the sample itself, which Learn links); the GitHub API for the repository state of `microsoftgraph/powershell-intune-samples` (404 on October 30, 2026) and the upstream blob hashes. Learn has no page that states the old repository's status.
+
+## Claims log
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Group Policy analytics: Windows only; XML under 4 MB; mapping updates without reimport; non-ADMX English only; OMA-URI shown for custom profiles; delete imported GPOs | Where this sits; read side; Lab 2; Verified facts | verified | Learn, Import and analyze GPOs |
+| 2 | Migrate: best effort; don't include every setting without review; stops on conflicting values; disabled for AppLocker and firewall rules; Assignments step | Where this sits; plan dispositions; Lab 2 step 6 | verified | Learn, Create a Settings Catalog policy using your imported GPOs |
+| 3 | groupPolicyMigrationReports and groupPolicySettingMappings: beta; Read.All least privileged, delegated and application; global, L4, L5 | Where this sits; Verified facts | verified | Learn, List pages |
+| 4 | migrationReadiness values; mdmSupportedState, settingScope, settingType values; intuneSettingDefinitionId | Move plan; Verified facts | verified | Learn, resource type pages |
+| 5 | Intune beta APIs supported but change more often; Graph API for Intune needs an active Intune license | Where this sits; Verified facts | verified | Learn, banner on every Intune Graph page opened |
+| 6 | configurationPolicies documented in beta only | Where this sits; Verified facts | verified (the v1.0 view of the List page returns the beta page); consistent with Book 05, Chapter 08 | Learn, List and Create pages |
+| 7 | Create: POST, ReadWrite.All least privileged, 201 Created, global, L4, L5 | The code; Verified facts | verified | Learn, Create page |
+| 8 | List policies and list settings: Read.All least privileged | The code; Verified facts | verified | Learn, List pages |
+| 9 | Update (PATCH) and Delete exist with ReadWrite.All; Update body lists the policy's own properties, not settings | Diff, then create; Verified facts | verified | Learn, Update and Delete pages |
+| 10 | Response examples show @odata.type without # inside settings, nulls, an id per setting | Diff, then create | verified | Learn, List deviceManagementConfigurationSettings (example response) |
+| 11 | Graph hosts per cloud; GCC uses worldwide; tokens not interchangeable | Gap table; Lab 2; Verified facts | verified | Learn, national cloud deployments |
+| 12 | Connect-MgGraph environments Global, USGov, USGovDoD | Verified facts; code | verified | Learn, authentication commands; Get-MgEnvironment |
+| 13 | Intune GCC is the commercial instance; GCC High and DoD share the government instance; intune.microsoft.us | Lab 2; Verified facts | verified | Learn, government service description; US government endpoints |
+| 14 | Learn's migration guide links microsoft/mggraph-intune-samples (link text still says microsoftgraph/powershell-intune-samples); as-is; validate in a test tenant; not every policy type | What Microsoft gives you; Verified facts | verified | Learn, Migration guide (Tenant to tenant migration) |
+| 15 | The old repository no longer resolves | What Microsoft gives you | verified on GitHub (API 404), not on Learn | GitHub API |
+| 16 | No Microsoft sample reads Group Policy analytics through Graph | What Microsoft gives you | verified by search (Learn code samples, the sample repository's tree) | Learn MCP; repository tree at the pinned commit |
+| 17 | Import sample: one POST to beta configurationPolicies; always graph.microsoft.com; no sign-in; one prompt; duplicates on rerun; strips service-set properties and adds #; drops assignments; records nothing | Gap table | verified by running the pinned script against the fake Graph; pinned in `MicrosoftSamples.Tests.ps1` | local run |
+| 18 | Export sample: technologies has 'mdm'; follows nextLink; timestamped file names; keeps name, description, platforms, technologies, settings; drops scope tags; round-trips with import | Gap table | verified by running; pinned in tests | local run |
+| 19 | Roles: Read Only Operator reads device configurations and security baselines; Policy and Profile Manager manages configuration profiles | Lab 2; Verified facts | verified | Learn, RBAC overview; built-in role permissions |
+| 20 | Filters instead of dynamic groups when only Intune uses the group; dynamic device group exclusions not recommended where latency matters | Lab 2; Dangers | verified | Learn, performance recommendations; Assign policies |
+| 21 | Values in profiles readable by anyone with read access | GPC-10; Verified facts | verified (the page discusses custom profile properties; GPC-10 applies the same caution to settings catalog strings, labeled as the lint's warning) | Learn, device profiles overview |
+| 22 | Library setting definition IDs appear in Learn's settings catalog example | Write | verified | Learn, Configure Personal Data Encryption (Graph example) |
+| 23 | One owning tool per setting (config_owner); build unassigned; decision record per setting; never PATCH or DELETE; new version under a new name | The code; Dangers | restated-as-design (labeled where stated) | Ansible guide; Book 05, Chapters 07 and 08; Intune track guide |
+| 24 | Lab 1 outputs (VK-INT-07 Fail with five rows; two POSTs and a duplicate name; eleven plan rows with one Conflict pair; one GPC-08 Info row; dry run Create and NoChange exit 0; apply Created exit 0; gcchigh host; usgov exit 1; Drift exit 2 and no create with -Apply; 46 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
+
+## Carry-forward ledger
+
+| Source | Went to | Or why not carried |
+|---|---|---|
+| Book 05, Chapter 08 (phases, Adopt don't build, Graph templates, assignment strategy) | Cross-references in Where this sits, the move plan and Lab 2 | Not repeated: the chapter links the operator procedure |
+| Intune track guide, Steps 2.3, 2.4, 3.1 and 3.2 | Where this sits; the move plan's scope column; GPC-06 | Not repeated |
+| Ansible guide, one owning tool per setting | GPC-02 | The CMDB's `config_owner` decides assignment, which this chapter doesn't do |
+| `examples/validation-kit` VK-INT-07 | Lab 1 step 1 and Lab 2 step 2 as the gate | Unchanged; its README now names the move plan for per-setting mappings |
+| Index outline row 06 | The chapter | Built a new example for the write side instead of extending the validation kit, because the kit is GET-only by rule |

@@ -1,0 +1,33 @@
+{
+  "schema": "fmp-mc-provenance/1",
+  "built_at": "2026-10-27T14:00:00Z",
+  "configuration": "TlsServerProtocols",
+  "version": "1.0.0",
+  "policy_id": "ca593085-dfcb-425d-ac9c-12870a55bbaa",
+  "platform": "Windows",
+  "mode": "Audit",
+  "mof": {
+    "file": "TlsServerProtocols.mof",
+    "sha256": "ecffd7955ac51247f156e6a41c430ba04b549f11dfaed3036ba56fa4d2bb364f"
+  },
+  "package": {
+    "file": "TlsServerProtocols_1.0.0.zip",
+    "sha256": "32b6bfd1b9e530eb0a1bdc0cc712a09aa4092000c9c2936c1318934806d9dda5",
+    "bytes": 525
+  },
+  "policy": {
+    "file": "audit.json",
+    "sha256": "a8c14b0aa3d2dc13b1b45d3fa1b665d90f2088d8a86cc7d5245ddd4c903b6451"
+  },
+  "modules": {
+    "GuestConfiguration": "4.12.0",
+    "PSDesiredStateConfiguration": "2.0.7",
+    "PSDscResources": "2.12.0.0"
+  },
+  "findings": {
+    "Finding": 0,
+    "Warn": 0,
+    "Info": 0
+  },
+  "finding_rules": []
+}

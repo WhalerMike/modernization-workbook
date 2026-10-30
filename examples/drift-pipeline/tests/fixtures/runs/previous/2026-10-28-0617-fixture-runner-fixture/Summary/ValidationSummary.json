@@ -1,0 +1,60 @@
+{
+  "RunId": "2026-10-28-0617-fixture-runner-fixture",
+  "Mode": "Fixture",
+  "AsOfUtc": "2026-10-28T06:17:00Z",
+  "Counts": {
+    "Checks": 9,
+    "Pass": 2,
+    "Fail": 6,
+    "Warn": 1,
+    "NotApplicable": 0,
+    "Error": 0
+  },
+  "Checks": [
+    {
+      "CheckId": "VK-HR-01",
+      "Status": "Fail",
+      "Count": 2
+    },
+    {
+      "CheckId": "VK-HR-02",
+      "Status": "Fail",
+      "Count": 2
+    },
+    {
+      "CheckId": "VK-DG-01",
+      "Status": "Fail",
+      "Count": 1
+    },
+    {
+      "CheckId": "VK-INT-05",
+      "Status": "Warn",
+      "Count": 1
+    },
+    {
+      "CheckId": "VK-ARC-02",
+      "Status": "Fail",
+      "Count": 1
+    },
+    {
+      "CheckId": "VK-NPI-01",
+      "Status": "Fail",
+      "Count": 2
+    },
+    {
+      "CheckId": "VK-NPI-03",
+      "Status": "Fail",
+      "Count": 1
+    },
+    {
+      "CheckId": "VK-CA-01",
+      "Status": "Pass",
+      "Count": 0
+    },
+    {
+      "CheckId": "VK-PIV-01",
+      "Status": "Pass",
+      "Count": 0
+    }
+  ]
+}

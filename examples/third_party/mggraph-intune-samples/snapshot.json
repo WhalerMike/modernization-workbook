@@ -1,0 +1,38 @@
+{
+  "_comment": "A pinned, unmodified copy of Microsoft's settings catalog samples from microsoft/mggraph-intune-samples. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Microsoft Intune Graph PowerShell SDK samples: Settings Catalog",
+  "upstream_repo": "https://github.com/microsoft/mggraph-intune-samples",
+  "upstream_path": "SettingsCatalog",
+  "commit": "2e668455288ebc43b7356b2d9b0c537e24c409f4",
+  "commit_date": "2026-09-25",
+  "files_last_changed": "2026-07-03 (commit 631eea28ae4be8265b89727ffa9b9e90f94a15c2)",
+  "retrieved": "2026-10-30",
+  "license": "MIT (LICENSE, copied from the repository root)",
+  "documented_at": "https://learn.microsoft.com/intune/fundamentals/setup-migration",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "SettingsCatalog/*": "SettingsCatalog/<same name>"
+  },
+  "not_copied": [
+    "Every other folder in microsoft/mggraph-intune-samples (compliance policies, device configuration, filters, apps, enrollment, reports and others): the chapter uses only the settings catalog export and import scripts.",
+    "Repository files outside the sample folders (README.md, AGENTS.md, docs/, scripts/verify.ps1, .github/)."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "SettingsCatalog/readme.md": {
+      "bytes": 6571,
+      "sha256": "6a302a1bddb02505cfb0c29f1f4d7572c40f0d23c2057e3ec386db26d4287cd6"
+    },
+    "SettingsCatalog/SettingsCatalog_Export.ps1": {
+      "bytes": 15039,
+      "sha256": "2f0315dadd9043a93cda47bee83ab5d7762712217518ddc4018e9b584dff8956"
+    },
+    "SettingsCatalog/SettingsCatalog_Import_FromJSON.ps1": {
+      "bytes": 7053,
+      "sha256": "080784b414aeae3078b15363055da95954c3fe9883d55c43b184ec48b58efac4"
+    }
+  }
+}
