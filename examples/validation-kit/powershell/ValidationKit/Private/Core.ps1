@@ -49,6 +49,12 @@ $script:VkDefaultOptions = [ordered]@{
     BreakGlassFile           = 'break-glass.csv'
     OnboardingWavesFile      = 'onboarding-waves.csv'
     HighPrivilegeRolesFile   = 'high-privilege-graph-roles.json'
+    GovernedGroupsFile       = 'governed-groups.csv'
+    EmergencyAccessGroupsFile = 'emergency-access-groups.csv'
+    PivCardHoldersFile       = 'pilot-card-holders.csv'
+    AdSlotExportFile         = 'ad-slot-export.csv'
+    # VK-PIV-01: High (the program's production position) or Low.
+    RequiredAffinity         = 'High'
     # The program attribute map (Book 03, Chapter 06): organization code, worker type, position category.
     CodedSlots               = @('extensionAttribute10', 'extensionAttribute11', 'extensionAttribute12')
     OrgCodeSlot              = 'extensionAttribute10'

@@ -35,7 +35,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory)][string]$OutputPath,
-    [ValidateSet('HR', 'DG', 'INT', 'ARC', 'NPI')][string[]]$Track,
+    [ValidateSet('HR', 'DG', 'INT', 'ARC', 'NPI', 'SYNC', 'CA', 'PIV')][string[]]$Track,
     [string[]]$CheckId,
     # Saved data: <FixturePath>\<name>.json per data set. No sign-in.
     [string]$FixturePath,

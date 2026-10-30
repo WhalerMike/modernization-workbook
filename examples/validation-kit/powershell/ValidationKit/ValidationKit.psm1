@@ -14,7 +14,7 @@
 $here = $PSScriptRoot
 . (Join-Path (Join-Path $here 'Private') 'Core.ps1')
 . (Join-Path (Join-Path $here 'Private') 'Catalog.ps1')
-foreach ($track in 'HR', 'DG', 'INT', 'ARC', 'NPI') {
+foreach ($track in 'HR', 'DG', 'INT', 'ARC', 'NPI', 'SYNC', 'CA', 'PIV') {
     . (Join-Path (Join-Path $here 'Checks') "$track.ps1")
 }
 

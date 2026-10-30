@@ -1,7 +1,7 @@
 # Validation kit: read-only checks for the track implementation guides
 
 > **Status: illustrative. Unit-tested against fixtures, not tested against a live tenant.**
-> These checks are the executable form of the **Validate** step at each gate of the track implementation guides: the [Intune track](../../docs/books/guides/intune-track-implementation.md), the [Azure Arc track](../../docs/books/guides/arc-track-implementation.md) and the [non-person identity track](../../docs/books/guides/non-person-identity-implementation.md). They build on the [Attribute-Driven Migration guide](../../docs/books/guides/attribute-driven-migration.md). The HR checks follow the guide's Stages 1 and 2 and its "Lifecycle Workflows at scale" section. The kit reads Microsoft Graph, Azure Resource Graph and, optionally, Active Directory. It changes nothing in any of them. Review every function, sign the module, and run it first in a test tenant. No agency has endorsed or adopted it.
+> These checks are the executable form of the **Validate** step at each gate of the track implementation guides: the [Attribute-Driven Migration implementation guide](../../docs/books/guides/attribute-driven-migration-implementation.md), the [Intune track](../../docs/books/guides/intune-track-implementation.md), the [Azure Arc track](../../docs/books/guides/arc-track-implementation.md) and the [non-person identity track](../../docs/books/guides/non-person-identity-implementation.md). They build on the [Attribute-Driven Migration guide](../../docs/books/guides/attribute-driven-migration.md). The HR checks follow the guide's Stages 1 and 2 and its "Lifecycle Workflows at scale" section. The kit reads Microsoft Graph, Azure Resource Graph and, optionally, Active Directory. It changes nothing in any of them. Review every function, sign the module, and run it first in a test tenant. No agency has endorsed or adopted it.
 
 **Download:** [validation-kit.zip](https://whalermike.github.io/modernization-workbook/downloads/validation-kit.zip). It's rebuilt from this folder on every site deploy. **Source:** [examples/validation-kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit). The zip also holds a plain-text copy of every script, module, fixture and test, named with `.txt` added (`Invoke-ValidationKit.ps1.txt`). It's there for tools that refuse `.ps1` files. Run the originals.
 
@@ -11,7 +11,7 @@ Each check is one function named after its ID: `VK-HR-01` is `Invoke-VkHr01` and
 
 | Field | What it holds |
 |---|---|
-| `CheckId`, `Track`, `Title` | The check ID, as the guides cite it; its track (`HR`, `DG`, `INT`, `ARC`, `NPI`); what it checks |
+| `CheckId`, `Track`, `Title` | The check ID, as the guides cite it; its track (`HR`, `DG`, `INT`, `ARC`, `NPI`, `SYNC`, `CA`, `PIV`); what it checks |
 | `Status` | `Pass`, `Fail`, `Warn`, `NotApplicable` or `Error`. A read that fails gives `Error`, never `Pass`. |
 | `Count` | The rows that need action, Finding and Warn (Info rows give context and don't count) |
 | `Details` | One row per object: `Severity`, `Object`, `ObjectId`, `Issue`, `Detail` |
@@ -69,6 +69,9 @@ Grant only what the checks you run need. A delegated run asks for the union of t
 | VK-NPI-07 | Graph + ResourceGraph | `Application.Read.All` | Global Reader; Reader | v1.0 / GA | [1](https://learn.microsoft.com/graph/api/serviceprincipal-list?view=graph-rest-1.0) [2](https://learn.microsoft.com/azure/governance/resource-graph/reference/supported-tables-resources) |
 | VK-NPI-08 | Graph | `AgentIdentity.Read.All` | Agent ID Administrator or Global Reader | v1.0 (Agent ID platform generally available April 2026) | [1](https://learn.microsoft.com/graph/api/agentidentity-list?view=graph-rest-1.0) [2](https://learn.microsoft.com/graph/api/agentidentity-list-sponsors?view=graph-rest-1.0) |
 | VK-NPI-09 | Graph (beta) | `AuditLog.Read.All`, `Application.Read.All` | Reports Reader | beta; documented for the global service (which GCC uses), not for US Government L4 or L5 | [1](https://learn.microsoft.com/graph/api/reportroot-list-serviceprincipalsigninactivities?view=graph-rest-beta) |
+| VK-SYNC-01 | Graph + Input | `User.Read.All` | Global Reader | v1.0 | [1](https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0) |
+| VK-CA-01 | Graph + Input | `Policy.Read.All` | Global Reader, Security Reader or Conditional Access Administrator | v1.0 | [1](https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0) |
+| VK-PIV-01 | Graph + Input | `User.Read.All` | Global Reader (not confirmed for `authorizationInfo`; see the notes) | v1.0 path shown on Learn's certificateUserIds page; the `authorizationInfo` type is documented under beta | [1](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids) [2](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-technical-deep-dive#username-binding-policy) [3](https://learn.microsoft.com/graph/api/resources/authorizationinfo?view=graph-rest-beta) |
 
 
 Notes on the table:
@@ -78,6 +81,8 @@ Notes on the table:
 - **Lifecycle Workflows.** For listing workflows, Learn names `LifecycleWorkflows-Workflow.ReadBasic.All` as the least privileged permission, but it doesn't say which properties that permission returns. The kit reads execution conditions and settings, so it asks for `LifecycleWorkflows-Workflow.Read.All`. Reading `employeeLeaveDateTime` needs `User-LifeCycleInfo.Read.All`. The user resource page says so; it wasn't re-read on October 29.
 - **VK-DG-03** works with delegated permissions only, because Learn lists no application permission for evaluateDynamicMembership. The portal's equivalent, the Validate rules tab, needs at least Groups Administrator. An app-only run therefore reports `VK-DG-03` as `Error`.
 - **VK-NPI-08.** Learn lists only `AgentIdentity.ReadWrite.All` (application) for the per-agent sponsors call, and the kit doesn't request it. It asks for sponsors through `$expand` on the list call, which needs `AgentIdentity.Read.All`. Where the tenant doesn't return sponsors that way, the row is a Warn saying the sponsor wasn't readable. That behavior hasn't been seen against a live tenant.
+- **VK-CA-01.** Learn's List policies page, read on October 30, 2026, names `Policy.Read.All` as the least privileged permission, delegated and application, and lists Global Reader, Security Reader, Security Administrator, Conditional Access Administrator and Global Secure Access Administrator as the roles for a delegated read.
+- **VK-PIV-01.** Learn's certificateUserIds page, read on October 30, 2026, reads the binding with `GET /v1.0/users/{id}?$select=authorizationInfo` and the `ConsistencyLevel: eventual` header, which the kit sends. Its Entra PowerShell examples sign in with `User.Read.All`, so the kit asks for that. Two things are unconfirmed. The v1.0 user resource page doesn't list `authorizationInfo`; only the beta `authorizationInfo` type page describes it. And Learn's page for `Get-EntraUserCBAAuthorizationInfo` names Privileged Authentication Administrator (cloud-only users) and Hybrid Identity Administrator (synced users) as the least privileged roles for a delegated read, not Global Reader. Run it app-only, or confirm in a test tenant that Global Reader returns the property. The affinity of each value comes from its `X509:` prefix, per Learn's username binding table: `PN`, `RFC822`, `I`+`S` and `S` are low affinity; `SKI`, `SHA1-PUKEY` and `I`+`SR` are high.
 - **VK-NPI-09** is **optional and preview**. It reads Graph's beta `servicePrincipalSignInActivities` report, which Learn documents for the global service, which GCC uses, but not for US Government L4 or L5. It's off by default. It runs only with `-IncludePreview`, and it reports `NotApplicable` for `-Cloud gcchigh` or `dod`.
 
 ## Run it
@@ -105,7 +110,7 @@ Connect-VkGraph -Cloud gcc -Scopes (Get-VkRequiredScope -Checks (Get-VkCheckCata
 Invoke-VkHr01 -Context (Get-VkRunContext -InputPath D:\Inputs)
 ```
 
-`-Track` takes `HR`, `DG`, `INT`, `ARC` and `NPI`, and `-CheckId` takes one or more IDs. With neither, every default check runs. `-Option` overrides a threshold or an input file name. The keys and defaults are in `$script:VkDefaultOptions` in `powershell/ValidationKit/Private/Core.ps1`. They include `StaleDays` (90), `ExpiringDays` (30), `MaxSecretDays` (180), `MaxCertificateDays` (365), `MinOwners` (2), `LookbackDays` (30) and `CatchUpDays` (3) for Lifecycle Workflows, `DeltaThresholdPercent` (10) and `DeltaThresholdMinimum` (5), `MinSupportedAgentVersion` (1.58), `PatchAssessmentDays` (7), `SpInactiveDays` (90), the coded slots (`extensionAttribute10` to `12`) and the device slots (`extensionAttribute11` to `13`). Sign the module and run it under an `AllSigned` or `RemoteSigned` policy rather than bypassing execution policy.
+`-Track` takes `HR`, `DG`, `INT`, `ARC`, `NPI`, `SYNC`, `CA` and `PIV`, and `-CheckId` takes one or more IDs. With neither, every default check runs. `-Option` overrides a threshold or an input file name. The keys and defaults are in `$script:VkDefaultOptions` in `powershell/ValidationKit/Private/Core.ps1`. They include `StaleDays` (90), `ExpiringDays` (30), `MaxSecretDays` (180), `MaxCertificateDays` (365), `MinOwners` (2), `LookbackDays` (30) and `CatchUpDays` (3) for Lifecycle Workflows, `DeltaThresholdPercent` (10) and `DeltaThresholdMinimum` (5), `MinSupportedAgentVersion` (1.58), `PatchAssessmentDays` (7), `SpInactiveDays` (90), `RequiredAffinity` (`High`) for VK-PIV-01, the coded slots (`extensionAttribute10` to `12`) and the device slots (`extensionAttribute11` to `13`). Sign the module and run it under an `AllSigned` or `RemoteSigned` policy rather than bypassing execution policy.
 
 ### Inputs
 
@@ -126,6 +131,9 @@ Some checks compare the tenant with the program's own records. Put the files in 
 | `break-glass.csv`, `onboarding-waves.csv` | `PrincipalId`, `Name`; `Scope`, `Wave`, `Status` (Open or Closed) | VK-ARC-06 |
 | `secret-exceptions.csv` | `AppId`, `Reason` | VK-NPI-03 |
 | `high-privilege-graph-roles.json` (default in `config/`) | Graph application permission names | VK-NPI-05 |
+| `ad-slot-export.csv` | `EmployeeId` and one column per coded slot (`extensionAttribute10` to `12`), exported from AD for a sample | VK-SYNC-01 |
+| `governed-groups.csv`, `emergency-access-groups.csv` | `GroupId`, `Name`, `Owner`; `GroupId`, `Name` | VK-CA-01 |
+| `pilot-card-holders.csv` | `UserPrincipalName` or `Id` | VK-PIV-01 |
 
 ### What a run writes
 
@@ -155,9 +163,10 @@ The results name users, devices and service principals, so store them as the age
 | Attribute-Driven Migration, Lifecycle Workflows at scale | VK-HR-05, VK-HR-06 |
 | [Attribute-Driven Migration implementation guide](../../docs/books/guides/attribute-driven-migration-implementation.md), Gate 1 (schema and slots) | VK-HR-01, VK-HR-04 |
 | Attribute-Driven Migration implementation guide, Gate 2 (attributes proven) | VK-HR-01, VK-HR-02, VK-HR-03, VK-HR-04 |
-| Attribute-Driven Migration implementation guide, Gate 3 (sync; before and after) | VK-HR-02, VK-HR-03 |
+| Attribute-Driven Migration implementation guide, Gate 3 (sync; before and after) | VK-SYNC-01, VK-HR-02, VK-HR-03 |
 | Attribute-Driven Migration implementation guide, Gate 4 (group library and units) | VK-DG-01 to VK-DG-07 |
-| Attribute-Driven Migration implementation guide, Gate 5 (targeting conventions, handed to the tracks) | VK-HR-02, VK-INT-01, VK-INT-04, VK-ARC-01, VK-NPI-01, VK-NPI-08 |
+| Attribute-Driven Migration implementation guide, Gate 5 (personas, and the conventions handed to the tracks) | VK-CA-01, VK-HR-02, VK-INT-01, VK-INT-04, VK-ARC-01, VK-NPI-01, VK-NPI-08 |
+| Attribute-Driven Migration implementation guide, Gate 6 (PIV binding) | VK-PIV-01 |
 | Attribute-Driven Migration implementation guide, Gate 7 (mover proof) | VK-DG-05, VK-HR-03, VK-HR-05 |
 | Attribute-Driven Migration implementation guide, Gate 8 (each wave) | VK-HR-01 to VK-HR-06, VK-DG-04, VK-DG-05 |
 | Attribute-Driven Migration implementation guide, Gate 9 (drift) | VK-HR-01, VK-HR-03, VK-HR-04, VK-DG-05, VK-DG-06, VK-DG-07, and each track's standing checks |
@@ -214,6 +223,9 @@ The fixtures describe a fictional tenant, `contoso.example`, in two versions. `t
 - **VK-ARC-06** evaluates assignments at machine, resource group and subscription scope. It doesn't evaluate management-group assignments, because Resource Graph's role assignment rows don't say which subscriptions a management group holds. A user is flagged unless it's on the break-glass list. Check non-person assignees' owners with VK-NPI-01.
 - **VK-ARC-07** flags `ApplyAndMonitor`, `ApplyAndAutoCorrect` and `DeployAndAutoCorrect`. Learn says `assignmentType` is case sensitive and spells it both `ApplyAndMonitor` and `ApplyandMonitor`, so the kit compares without regard to case.
 - **VK-NPI-03** lists every app with a client secret unless `secret-exceptions.csv` records why it must keep one. Whether a certificate or federated credential is possible is a judgment the kit can't make.
+- **VK-SYNC-01** compares the sample in the export, not the estate, and joins on `employeeId`, so a user with no key in Entra ID shows as missing. It compares values exactly, case included. It doesn't read the sync engine's configuration, scoping filters or error log, which stay with the reconciliation report.
+- **VK-CA-01** reads the users condition only: a grant is paired when a block on all users, for an overlapping application, excludes every group the grant includes. It doesn't compare other conditions such as platforms, locations or client apps, so a block that is narrower than its grant passes. Workload identity policies are VK-NPI-04's. Microsoft-managed policies are read like any other, because they also need the emergency-access exclusion.
+- **VK-PIV-01** can't tell whether a value belongs to a current card. It reports a value whose prefix matches no supported pattern as a Warn.
 - **VK-NPI-06** treats a user object with an SPN, or a name that starts with `svc`, as a service account. Change the hint with `ServiceAccountNameHint`.
 
 ```
@@ -225,7 +237,7 @@ examples/validation-kit/
     ValidationKit.psd1, .psm1            the module (one function per check ID)
     Private/Core.ps1                     context, data access, Graph and Resource Graph clients, writers, manifest
     Private/Catalog.ps1                  every check's track, source, permission, role, stage and Learn page
-    Checks/HR.ps1, DG.ps1, INT.ps1, ARC.ps1, NPI.ps1
+    Checks/HR.ps1, DG.ps1, INT.ps1, ARC.ps1, NPI.ps1, SYNC.ps1, CA.ps1, PIV.ps1
   tests/fixtures/pass, tests/fixtures/fail    the fictional tenant, with and without the problems
   tests/powershell/                      Pester 5: checks, live client, safety (AST), runner
 ```

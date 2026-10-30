@@ -1,0 +1,34 @@
+{
+  "alice@contoso.example": {
+    "id": "00000000-0000-4000-8000-000000000001",
+    "userPrincipalName": "alice@contoso.example",
+    "accountEnabled": true,
+    "onPremisesSyncEnabled": true,
+    "authorizationInfo": {
+      "certificateUserIds": [
+        "X509:<SKI>00000000000000000000000000000000000000A1"
+      ]
+    }
+  },
+  "bob@contoso.example": {
+    "id": "00000000-0000-4000-8000-000000000002",
+    "userPrincipalName": "bob@contoso.example",
+    "accountEnabled": true,
+    "onPremisesSyncEnabled": false,
+    "authorizationInfo": {
+      "certificateUserIds": [
+        "X509:<PN>bob@contoso.example",
+        "X509:<I>DC=example,DC=contoso,CN=Contoso Issuing CA<S>DC=example,DC=contoso,CN=bob"
+      ]
+    }
+  },
+  "carol@contoso.example": {
+    "id": "00000000-0000-4000-8000-000000000003",
+    "userPrincipalName": "carol@contoso.example",
+    "accountEnabled": true,
+    "onPremisesSyncEnabled": true,
+    "authorizationInfo": {
+      "certificateUserIds": []
+    }
+  }
+}

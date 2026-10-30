@@ -17,7 +17,97 @@
     "displayName": "Require MFA",
     "state": "enabled",
     "conditions": {
-      "clientApplications": null
+      "clientApplications": null,
+      "applications": {
+        "includeApplications": [
+          "All"
+        ],
+        "excludeApplications": []
+      },
+      "users": {
+        "includeUsers": [
+          "All"
+        ],
+        "excludeUsers": [],
+        "includeGroups": [],
+        "excludeGroups": [
+          "00000000-0000-4000-8000-000000000900"
+        ],
+        "includeRoles": [],
+        "excludeRoles": []
+      }
+    },
+    "grantControls": {
+      "operator": "OR",
+      "builtInControls": [
+        "mfa"
+      ]
+    }
+  },
+  {
+    "id": "ca-payroll-grant",
+    "displayName": "Payroll: finance persona, phishing-resistant MFA and compliant device",
+    "state": "enabledForReportingButNotEnforced",
+    "conditions": {
+      "clientApplications": null,
+      "applications": {
+        "includeApplications": [
+          "00000000-0000-4000-8000-000000000920"
+        ],
+        "excludeApplications": []
+      },
+      "users": {
+        "includeUsers": [],
+        "excludeUsers": [],
+        "includeGroups": [
+          "00000000-0000-4000-8000-000000000910"
+        ],
+        "excludeGroups": [
+          "00000000-0000-4000-8000-000000000900"
+        ],
+        "includeRoles": [],
+        "excludeRoles": []
+      }
+    },
+    "grantControls": {
+      "operator": "OR",
+      "builtInControls": [
+        "mfa",
+        "compliantDevice"
+      ]
+    }
+  },
+  {
+    "id": "ca-payroll-block",
+    "displayName": "Payroll: block everyone outside the finance persona",
+    "state": "enabledForReportingButNotEnforced",
+    "conditions": {
+      "clientApplications": null,
+      "applications": {
+        "includeApplications": [
+          "00000000-0000-4000-8000-000000000920"
+        ],
+        "excludeApplications": []
+      },
+      "users": {
+        "includeUsers": [
+          "All"
+        ],
+        "excludeUsers": [],
+        "includeGroups": [],
+        "excludeGroups": [
+          "00000000-0000-4000-8000-000000000910",
+          "00000000-0000-4000-8000-000000000900"
+        ],
+        "includeRoles": [],
+        "excludeRoles": []
+      }
+    },
+    "grantControls": {
+      "operator": "OR",
+      "builtInControls": [
+        "block"
+      ]
     }
   }
 ]

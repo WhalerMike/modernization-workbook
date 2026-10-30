@@ -84,6 +84,19 @@ Describe 'Checks in live mode' {
         $r.Status | Should -Be 'Pass'
         Should -Invoke -ModuleName ValidationKit Invoke-MgGraphRequest -Times 2 -Exactly -ParameterFilter { $Method -eq 'POST' -and $Uri -like '/beta/groups/*/evaluateDynamicMembership' }
     }
+    It 'reads each pilot card holder''s binding with one GET, $select=authorizationInfo and the eventual-consistency header' {
+        $inputs = Join-Path $TestDrive 'piv'
+        $null = New-Item -ItemType Directory -Path $inputs
+        Copy-Item (Join-Path (Join-Path $global:VkTestFixtureRoot 'pass') 'pilot-card-holders.csv') $inputs
+        Mock -ModuleName ValidationKit Invoke-MgGraphRequest {
+            [pscustomobject]@{ id = 'u1'; userPrincipalName = 'x@contoso.example'; onPremisesSyncEnabled = $false; authorizationInfo = [pscustomobject]@{ certificateUserIds = @('X509:<SKI>00A1') } }
+        }
+        $r = Invoke-VkCheck -CheckId 'VK-PIV-01' -Context (Get-VkRunContext -InputPath $inputs -AsOf '2026-10-29T00:00:00Z')
+        $r.Status | Should -Be 'Pass'
+        Should -Invoke -ModuleName ValidationKit Invoke-MgGraphRequest -Times 2 -Exactly -ParameterFilter {
+            $Method -eq 'GET' -and $Uri -like '/v1.0/users/*%40contoso.example?$select=*authorizationInfo' -and $Headers['ConsistencyLevel'] -eq 'eventual'
+        }
+    }
     It 'pages Resource Graph with the skip token' {
         Mock -ModuleName ValidationKit Search-AzGraph {
             if ($SkipToken) { return [pscustomobject]@{ Data = @([pscustomobject]@{ id = 'm2' }); SkipToken = $null } }
