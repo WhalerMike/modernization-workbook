@@ -24,5 +24,162 @@
         "excludeServicePrincipals": []
       }
     }
+  },
+  {
+    "id": "ca-users",
+    "displayName": "Require MFA",
+    "state": "enabled",
+    "conditions": {
+      "clientApplications": null,
+      "applications": {
+        "includeApplications": [
+          "All"
+        ],
+        "excludeApplications": []
+      },
+      "users": {
+        "includeUsers": [
+          "All"
+        ],
+        "excludeUsers": [],
+        "includeGroups": [],
+        "excludeGroups": [],
+        "includeRoles": [],
+        "excludeRoles": []
+      }
+    },
+    "grantControls": {
+      "operator": "OR",
+      "builtInControls": [
+        "mfa"
+      ]
+    }
+  },
+  {
+    "id": "ca-payroll-grant",
+    "displayName": "Payroll: finance persona, MFA",
+    "state": "enabled",
+    "conditions": {
+      "clientApplications": null,
+      "applications": {
+        "includeApplications": [
+          "00000000-0000-4000-8000-000000000920"
+        ],
+        "excludeApplications": []
+      },
+      "users": {
+        "includeUsers": [],
+        "excludeUsers": [],
+        "includeGroups": [
+          "00000000-0000-4000-8000-000000000910"
+        ],
+        "excludeGroups": [
+          "00000000-0000-4000-8000-000000000900"
+        ],
+        "includeRoles": [],
+        "excludeRoles": []
+      }
+    },
+    "grantControls": {
+      "operator": "OR",
+      "builtInControls": [
+        "mfa"
+      ]
+    }
+  },
+  {
+    "id": "ca-portal-grant",
+    "displayName": "Portal: legacy group, MFA",
+    "state": "enabled",
+    "conditions": {
+      "clientApplications": null,
+      "applications": {
+        "includeApplications": [
+          "All"
+        ],
+        "excludeApplications": []
+      },
+      "users": {
+        "includeUsers": [],
+        "excludeUsers": [],
+        "includeGroups": [
+          "00000000-0000-4000-8000-000000000911"
+        ],
+        "excludeGroups": [
+          "00000000-0000-4000-8000-000000000900"
+        ],
+        "includeRoles": [],
+        "excludeRoles": []
+      }
+    },
+    "grantControls": {
+      "operator": "OR",
+      "builtInControls": [
+        "mfa"
+      ]
+    }
+  },
+  {
+    "id": "ca-portal-block",
+    "displayName": "Portal: block everyone outside the legacy group",
+    "state": "enabled",
+    "conditions": {
+      "clientApplications": null,
+      "applications": {
+        "includeApplications": [
+          "All"
+        ],
+        "excludeApplications": []
+      },
+      "users": {
+        "includeUsers": [
+          "All"
+        ],
+        "excludeUsers": [],
+        "includeGroups": [],
+        "excludeGroups": [
+          "00000000-0000-4000-8000-000000000911",
+          "00000000-0000-4000-8000-000000000900"
+        ],
+        "includeRoles": [],
+        "excludeRoles": []
+      }
+    },
+    "grantControls": {
+      "operator": "OR",
+      "builtInControls": [
+        "block"
+      ]
+    }
+  },
+  {
+    "id": "ca-old-draft",
+    "displayName": "Old draft, off",
+    "state": "disabled",
+    "conditions": {
+      "clientApplications": null,
+      "applications": {
+        "includeApplications": [
+          "All"
+        ],
+        "excludeApplications": []
+      },
+      "users": {
+        "includeUsers": [],
+        "excludeUsers": [],
+        "includeGroups": [
+          "00000000-0000-4000-8000-000000000911"
+        ],
+        "excludeGroups": [],
+        "includeRoles": [],
+        "excludeRoles": []
+      }
+    },
+    "grantControls": {
+      "operator": "OR",
+      "builtInControls": [
+        "mfa"
+      ]
+    }
   }
 ]

@@ -39,6 +39,9 @@ BeforeDiscovery {
         @{ Id = 'VK-NPI-07'; FailStatus = 'Warn'; FailCount = 1 }
         @{ Id = 'VK-NPI-08'; FailStatus = 'Fail'; FailCount = 1 }
         @{ Id = 'VK-NPI-09'; FailStatus = 'Fail'; FailCount = 3 }
+        @{ Id = 'VK-SYNC-01'; FailStatus = 'Fail'; FailCount = 3 }
+        @{ Id = 'VK-CA-01'; FailStatus = 'Fail'; FailCount = 4 }
+        @{ Id = 'VK-PIV-01'; FailStatus = 'Fail'; FailCount = 3 }
     )
 }
 
@@ -110,6 +113,59 @@ Describe 'What the checks find' {
         @(@($r.Details | Where-Object Severity -eq 'Finding').Object | Sort-Object) | Should -Be @('IPHONE-OLD', 'PC-OLD')
         ($r.Details | Where-Object Severity -eq 'Warn').Object | Should -Be 'PC-W10'
     }
+    It 'VK-SYNC-01 reports a missing key, a duplicate key and a slot that differs' {
+        $r = Invoke-VkCheck -CheckId 'VK-SYNC-01' -Context $FailCtx
+        @($r.Details.Object | Sort-Object) | Should -Be @('E1002', 'E9999', 'erin@contoso.example')
+        ($r.Details | Where-Object Object -eq 'erin@contoso.example').Detail | Should -Match 'extensionAttribute10=ORG-C -> \(blank\)'
+    }
+    It 'VK-CA-01 reports the missing exclusion, the unpaired grant and both policies on an ungoverned group, and skips Off and workload policies' {
+        $r = Invoke-VkCheck -CheckId 'VK-CA-01' -Context $FailCtx
+        ($r.Details | Where-Object Issue -like 'Emergency-access*').ObjectId | Should -Be 'ca-users'
+        ($r.Details | Where-Object Issue -like 'Grant with no paired block*').ObjectId | Should -Be 'ca-payroll-grant'
+        @(($r.Details | Where-Object Issue -like '*governed-group list').ObjectId | Sort-Object) | Should -Be @('ca-portal-block', 'ca-portal-grant')
+        @($r.Details.ObjectId) | Should -Not -Contain 'ca-old-draft'
+        @($r.Details.ObjectId) | Should -Not -Contain 'ca-block-workload-identities-off-network'
+    }
+    It 'VK-CA-01 is NotApplicable without the governed-group list' {
+        $ctx = Get-TestContext 'fail' -Option @{ GovernedGroupsFile = 'no-such-file.csv' }
+        (Invoke-VkCheck -CheckId 'VK-CA-01' -Context $ctx).Status | Should -Be 'NotApplicable'
+    }
+    It 'VK-PIV-01 names accounts and binding types, never a certificate value' {
+        $r = Invoke-VkCheck -CheckId 'VK-PIV-01' -Context $FailCtx
+        @($r.Details.Object | Sort-Object) | Should -Be @('bob@contoso.example', 'carol@contoso.example', 'dave@contoso.example')
+        ($r.Details | Where-Object Object -eq 'bob@contoso.example').Detail | Should -Match 'Types=IssuerAndSubject,PrincipalName'
+        ($r.Details | Where-Object Object -eq 'carol@contoso.example').Issue | Should -Match 'altSecurityIdentities'
+        foreach ($row in $r.Details) { "$($row.Issue) $($row.Detail)" | Should -Not -Match 'X509:' }
+    }
+    It 'VK-PIV-01 treats low-affinity-only values as context when RequiredAffinity is Low' {
+        $ctx = Get-TestContext 'fail' -Option @{ RequiredAffinity = 'Low' }
+        (Invoke-VkCheck -CheckId 'VK-PIV-01' -Context $ctx).Count | Should -Be 2
+    }
+}
+
+Describe 'Beta check VK-INT-07 (Group Policy analytics)' {
+    BeforeAll {
+        $script:BetaPass = Get-VkRunContext -FixturePath (Join-Path $global:VkTestFixtureRoot 'pass') -AsOf '2026-10-29T00:00:00Z' -IncludeBeta
+        $script:BetaFail = Get-VkRunContext -FixturePath (Join-Path $global:VkTestFixtureRoot 'fail') -AsOf '2026-10-29T00:00:00Z' -IncludeBeta
+    }
+    It 'is NotApplicable without -IncludeBeta' {
+        (Invoke-VkCheck -CheckId 'VK-INT-07' -Context $FailCtx).Status | Should -Be 'NotApplicable'
+    }
+    It 'passes on the pass fixture, listing each imported GPO as context' {
+        $r = Invoke-VkCheck -CheckId 'VK-INT-07' -Context $BetaPass
+        $r.Status | Should -Be 'Pass' -Because $r.Message
+        $r.Count | Should -Be 0
+        @($r.Details | Where-Object Severity -eq 'Info').Count | Should -Be 2
+    }
+    It 'flags targeted GPOs that are not complete, warns on notApplicable, and reports an in-scope GPO never imported' {
+        $r = Invoke-VkCheck -CheckId 'VK-INT-07' -Context $BetaFail
+        $r.Status | Should -Be 'Fail'
+        $r.Count | Should -Be 4
+        @(($r.Details | Where-Object Severity -eq 'Finding').Object | Sort-Object) | Should -Be @('Workstation-Drive-Maps', 'Workstation-Printers', 'Workstation-Scripts')
+        ($r.Details | Where-Object Severity -eq 'Warn').Object | Should -Be 'Workstation-Empty'
+        ($r.Details | Where-Object Object -eq 'Workstation-Drive-Maps').Detail | Should -Match 'UnsupportedExtensions=2'
+        $r.Evidence.Stage | Should -Match 'beta'
+    }
 }
 
 Describe 'Optional preview check VK-NPI-09' {
@@ -132,8 +188,9 @@ Describe 'Optional preview check VK-NPI-09' {
 Describe 'The catalog' {
     It 'implements every check ID in the guides list, one function each, named after the ID' {
         $ids = @('VK-HR-01', 'VK-HR-02', 'VK-HR-03', 'VK-HR-04', 'VK-HR-05', 'VK-HR-06', 'VK-DG-01', 'VK-DG-02', 'VK-DG-03', 'VK-DG-04', 'VK-DG-05', 'VK-DG-06', 'VK-DG-07',
-            'VK-INT-01', 'VK-INT-02', 'VK-INT-03', 'VK-INT-04', 'VK-INT-05', 'VK-INT-06', 'VK-ARC-01', 'VK-ARC-02', 'VK-ARC-03', 'VK-ARC-04', 'VK-ARC-05', 'VK-ARC-06', 'VK-ARC-07',
-            'VK-NPI-01', 'VK-NPI-02', 'VK-NPI-03', 'VK-NPI-04', 'VK-NPI-05', 'VK-NPI-06', 'VK-NPI-07', 'VK-NPI-08', 'VK-NPI-09')
+            'VK-INT-01', 'VK-INT-02', 'VK-INT-03', 'VK-INT-04', 'VK-INT-05', 'VK-INT-06', 'VK-INT-07', 'VK-ARC-01', 'VK-ARC-02', 'VK-ARC-03', 'VK-ARC-04', 'VK-ARC-05', 'VK-ARC-06', 'VK-ARC-07',
+            'VK-NPI-01', 'VK-NPI-02', 'VK-NPI-03', 'VK-NPI-04', 'VK-NPI-05', 'VK-NPI-06', 'VK-NPI-07', 'VK-NPI-08', 'VK-NPI-09',
+            'VK-SYNC-01', 'VK-CA-01', 'VK-PIV-01')
         $cat = @(Get-VkCheckCatalog -IncludeOptional)
         @($cat.Id) | Should -Be $ids
         foreach ($c in $cat) {

@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Intune track (end-user devices): VK-INT-01 to VK-INT-06. Read-only.
+    Intune track (end-user devices): VK-INT-01 to VK-INT-07. Read-only.
     Sources: Attribute-Driven Migration guide, "Intune track", "Which end-user devices Intune
     covers" and "Dynamic device groups"; Book 05, Chapters 03, 04, 08 and 10.
 #>
@@ -234,5 +234,54 @@ function Invoke-VkInt06 {
             $rows.Add((ConvertTo-VkFinding -Severity Info -Object 'Inventory' -Issue 'Devices by OS, version and ownership' -Data ([ordered]@{ OS = $os; Version = $ver; Ownership = $own; Devices = $g.Count })))
         }
         Get-VkOutcome -Rows $rows.ToArray() -Message ('{0} managed device(s)' -f $md.Count)
+    }
+}
+
+function Invoke-VkInt07 {
+    <#
+    VK-INT-07. Intune's Group Policy analytics reports (beta groupPolicyMigrationReports), one
+    row per imported GPO. A GPO targeted in AD whose migrationReadiness isn't complete is a
+    finding, with its unsupported extensions counted (read per report); notApplicable is a
+    warning; the rest are context. With gpo-scope.csv (GroupPolicyObjectId or DisplayName), an
+    in-scope GPO that hasn't been imported is a finding rather than silently missing. Runs only
+    with -IncludeBeta. Reads only: the kit never calls createMigrationReport or the create,
+    update or delete methods, which need ReadWrite. Permission: DeviceManagementConfiguration.Read.All.
+    #>
+    [CmdletBinding()] param([Parameter(Mandatory)]$Context)
+    Invoke-VkCheckBody 'VK-INT-07' $Context {
+        param($Context)
+        if (-not $Context.IncludeBeta) { return Get-VkNotApplicable 'Graph beta read (Group Policy analytics): run with -IncludeBeta' }
+        $reports = @(Get-VkData -Context $Context -Name 'groupPolicyMigrationReports' -Uri '/beta/deviceManagement/groupPolicyMigrationReports')
+        $scope = Read-VkInputCsv -Context $Context -Option 'GpoScopeFile'
+        $rows = [System.Collections.Generic.List[object]]::new()
+        foreach ($r in $reports) {
+            $readiness = "$(Get-VkValue $r 'migrationReadiness' '')"
+            $targeted = (Get-VkValue $r 'targetedInActiveDirectory' $false) -eq $true
+            $data = [ordered]@{
+                OU = (Get-VkValue $r 'ouDistinguishedName'); Readiness = $readiness; TargetedInAD = $targeted
+                Settings = (Get-VkValue $r 'totalSettingsCount'); Supported = (Get-VkValue $r 'supportedSettingsCount'); SupportedPercent = (Get-VkValue $r 'supportedSettingsPercent')
+            }
+            if ($targeted -and $readiness -ne 'complete' -and $readiness -ne 'notApplicable') {
+                $ext = @(Get-VkData -Context $Context -Name 'unsupportedGroupPolicyExtensions' -Key $r.id -Uri "/beta/deviceManagement/groupPolicyMigrationReports/$($r.id)/unsupportedGroupPolicyExtensions")
+                $data['UnsupportedExtensions'] = $ext.Count
+                $rows.Add((ConvertTo-VkFinding -Severity Finding -Object $r.displayName -ObjectId (Get-VkValue $r 'groupPolicyObjectId' $r.id) -Issue "Targeted in AD, migration readiness '$readiness': settings Intune can't take over" -Data $data))
+            } elseif ($targeted -and $readiness -eq 'notApplicable') {
+                $rows.Add((ConvertTo-VkFinding -Severity Warn -Object $r.displayName -ObjectId (Get-VkValue $r 'groupPolicyObjectId' $r.id) -Issue 'Targeted in AD, readiness notApplicable: confirm where its settings go' -Data $data))
+            } else {
+                $rows.Add((ConvertTo-VkFinding -Severity Info -Object $r.displayName -ObjectId (Get-VkValue $r 'groupPolicyObjectId' $r.id) -Issue 'Imported GPO' -Data $data))
+            }
+        }
+        if ($null -ne $scope) {
+            $ids = @($reports | ForEach-Object { "$(Get-VkValue $_ 'groupPolicyObjectId' '')".ToLowerInvariant() })
+            $names = @($reports | ForEach-Object { "$($_.displayName)".ToLowerInvariant() })
+            foreach ($s in $scope) {
+                $id = "$(Get-VkValue $s 'GroupPolicyObjectId' '')".Trim().ToLowerInvariant()
+                $name = "$(Get-VkValue $s 'DisplayName' '')".Trim()
+                if (($id -and $ids -contains $id) -or (-not $id -and $name -and $names -contains $name.ToLowerInvariant())) { continue }
+                if (-not $id -and -not $name) { continue }
+                $rows.Add((ConvertTo-VkFinding -Severity Finding -Object $(if ($name) { $name } else { $id }) -ObjectId $id -Issue 'In scope, but not imported into Group Policy analytics'))
+            }
+        }
+        Get-VkOutcome -Rows $rows.ToArray() -Message ('Microsoft Graph beta; {0} imported GPO(s){1}' -f $reports.Count, $(if ($null -ne $scope) { "; $(@($scope).Count) in scope" } else { '; no gpo-scope.csv, so a GPO that was never imported is not reported' }))
     }
 }

@@ -29,7 +29,7 @@ BeforeAll {
     $script:Writers = 'Resolve-VkOutputRoot', 'Assert-VkWritePath', 'Write-VkJson', 'Write-VkCsv', 'Write-VkText'
     $script:WriteMembers = 'WriteAllText|WriteAllBytes|WriteAllLines|AppendAllText|AppendAllLines|AppendText|CreateText|Create|CreateDirectory|Delete|Move|Copy|Replace|Encrypt|Decrypt|SetAccessControl|SetAttributes|OpenWrite'
     # The only Graph beta reads the kit makes, each marked beta in the catalog and the README.
-    $script:AllowedBeta = @('/beta/groups/evaluateDynamicMembership', '/beta/groups', '/beta/deviceManagement/configurationPolicies', '/beta/reports/servicePrincipalSignInActivities')
+    $script:AllowedBeta = @('/beta/groups/evaluateDynamicMembership', '/beta/groups', '/beta/deviceManagement/configurationPolicies', '/beta/reports/servicePrincipalSignInActivities', '/beta/deviceManagement/groupPolicyMigrationReports')
 
     function Get-Ast([string]$Path) {
         $tokens = $null; $errors = $null

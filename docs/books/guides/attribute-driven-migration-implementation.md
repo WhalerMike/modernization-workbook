@@ -43,9 +43,9 @@ The shared foundation of the [Attribute-Driven Migration guide](attribute-driven
 
 This guide owns what those four don't. It owns the attribute schema and the AD-to-Entra mapping, the coded slots, and the proof that the values are true. It owns sync, the dynamic group library with its guards, and the administrative units. It owns the Conditional Access personas and the targeting conventions the device, server and non-person tracks build on. It also owns the PIV binding, the mover proof, the cross-track cut-over, the retirement of the OU tree, and drift. Where a step belongs to a track, the step says which guide carries it and stops there.
 
-**Where the facts come from.** Facts come from the linked chapters and from the companion guide, which rely on their own verification logs; this guide adds no new external facts, and its [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/guides/_verification/attribute-driven-migration-implementation.md) traces each claim to its section. Statements marked *(design guidance)* are the program's recommendations. Preview features carry their stage. The audience is a civilian agency at FedRAMP Moderate, usually in Microsoft 365 GCC, where Entra ID runs in Microsoft's commercial cloud ([Book 14, Chapter 03](../b14-compliance/03-the-baseline-and-the-crosswalk.md#two-facts-not-one)). Codes such as `FIN-LED` stand in for the agency's own code lists, and attribute slots follow the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map).
+**Where the facts come from.** Facts come from the linked chapters and from the companion guide, which rely on their own verification logs; this guide adds no new external facts (the validation kit's checks rest on the Microsoft Learn pages its README cites), and its [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/guides/_verification/attribute-driven-migration-implementation.md) traces each claim to its section. Statements marked *(design guidance)* are the program's recommendations. Preview features carry their stage. The audience is a civilian agency at FedRAMP Moderate, usually in Microsoft 365 GCC, where Entra ID runs in Microsoft's commercial cloud ([Book 14, Chapter 03](../b14-compliance/03-the-baseline-and-the-crosswalk.md#two-facts-not-one)). Codes such as `FIN-LED` stand in for the agency's own code lists, and attribute slots follow the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map).
 
-**The validation kit.** Each gate's **Validate** step names the read-only [validation kit](../../../downloads/validation-kit.zip) checks that prove it ([source](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit)). The checks read Microsoft Graph, Azure Resource Graph or an export and report; none of them changes the tenant or the forest. This guide uses the HR and dynamic group checks directly. It also points to the Intune, Arc and non-person checks the track guides run.
+**The validation kit.** Each gate's **Validate** step names the read-only [validation kit](../../../downloads/validation-kit.zip) checks that prove it ([source](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit)). The checks read Microsoft Graph, Azure Resource Graph or an export and report; none of them changes the tenant or the forest. This guide uses the HR, dynamic group, sync, Conditional Access and PIV checks directly. It also points to the Intune, Arc and non-person checks the track guides run.
 
 | ID | What it reports |
 |---|---|
@@ -62,10 +62,13 @@ This guide owns what those four don't. It owns the attribute schema and the AD-t
 | VK-DG-05 | Membership change over a threshold since the last snapshot |
 | VK-DG-06 | Paused dynamic processing, and rules using the `memberOf` preview |
 | VK-DG-07 | Administrative units whose dynamic rule doesn't mirror its group; restricted units listed with their reason |
+| VK-SYNC-01 | Coded slots in an AD export compared with Entra ID for a sample, joined on `employeeId` |
+| VK-CA-01 | Conditional Access personas: the emergency-access group not excluded, a group outside the governed list, a group grant with no paired block |
+| VK-PIV-01 | Pilot card holders with no `certificateUserIds` value, or only low-affinity values, by account, never by value |
 
 : Validation kit checks this guide runs {.striped .hover}
 
-Run them as the kit's README shows: for example `.\Invoke-ValidationKit.ps1 -OutputPath D:\Validation -Track HR, DG -InputPath D:\Inputs` with delegated sign-in and only the read scopes those checks need. A missing input makes a check *NotApplicable*, never *Pass*. The checks are illustrative and fixture-tested, not proven against a live tenant: run each one first in a test tenant. Three gates have no kit check yet (sync mapping, the Conditional Access personas and the PIV binding); their **Validate** steps name the export or report that proves them instead, and [Where the kits stop](#where-the-kits-stop) lists them.
+Run them as the kit's README shows: for example `.\Invoke-ValidationKit.ps1 -OutputPath D:\Validation -Track HR, DG, SYNC, CA, PIV -InputPath D:\Inputs` with delegated sign-in and only the read scopes those checks need. A missing input makes a check *NotApplicable*, never *Pass*. The checks are illustrative and fixture-tested, not proven against a live tenant: run each one first in a test tenant. Three gates that had no kit check now have one that covers part of the gate: VK-SYNC-01 for sync (Gate 3), VK-CA-01 for the personas (Gate 5) and VK-PIV-01 for the PIV binding (Gate 6). Each needs an input the program keeps: a sample AD export, the governed-group and emergency-access lists, and the pilot card holder list. Their **Validate** steps name the report that still covers the rest, and [Where the kits stop](#where-the-kits-stop) lists what no check reads yet.
 
 ## One identifier through every gate {#one-identifier-through-every-gate}
 
@@ -92,13 +95,13 @@ Where the key is already issued to contractors with their PIV credential, contra
 
 | Gate | Stage in the companion guide | Done when | Validate with | Plan tasks |
 |---|---|---|---|---|
-| [0 The tree read](#gate-0-read-the-ou-tree) | 0 | The tree's encoding is in Git, split by track, with a decision for every group | Start Kit counts; VK-NPI-06 (handed to the non-person track) | A0.1–A0.4, AG0 |
+| [0 The tree read](#gate-0-read-the-ou-tree) | 0 | The tree's encoding is in Git, split by track, with a decision for every group | Start Kit counts; VK-INT-07 (beta, Intune track); VK-NPI-06 (handed to the non-person track) | A0.1–A0.4, AG0 |
 | [1 Schema and slots signed](#gate-1-schema-and-slots) | 1 | Every attribute that drives access has one store, one writer and one owner | VK-HR-01, VK-HR-04 (the key's carrier) | A1.1–A1.4, D-A1, D-A2, AG1 |
 | [2 Attributes proven](#gate-2-prove-the-attributes) | 2 | The correlation threshold is met on the pilot; other writers removed; logs leaving Entra ID | VK-HR-01 to 04 | A2.1–A2.3, D-A3, AG2 |
-| [3 Attributes flowing](#gate-3-map-the-attributes-through-sync) | 3 | Every slot arrives in Entra ID as HR sent it; shadow differences explained | No kit check: the sync reconciliation report | A3.1, AG3 |
+| [3 Attributes flowing](#gate-3-map-the-attributes-through-sync) | 3 | Every slot arrives in Entra ID as HR sent it; shadow differences explained | VK-SYNC-01, with the sync reconciliation report | A3.1, AG3 |
 | [4 Group library and units](#gate-4-the-dynamic-group-library-and-administrative-units) | 4, 5 | Every rule on codes with guards, tested and shadowed; every unit mirrors its group | VK-DG-01 to 07 | A4.1–A4.4, D-A4, AG4 |
-| [5 Targeting conventions](#gate-5-personas-and-targeting-conventions) | 6 | Personas from codes, grants paired with blocks; device, server and non-person conventions handed off | No kit check for personas; VK-INT-01, VK-ARC-01, VK-NPI-01 in the track guides | A5.1–A5.4, D-A5, AG5 |
-| [6 PIV binding](#gate-6-piv-and-cac-binding) | PIV | Every pilot card holder bound; high affinity piloted | No kit check: the binding coverage export | A6.1, A6.2, D-A6, D-A7, AG6 |
+| [5 Targeting conventions](#gate-5-personas-and-targeting-conventions) | 6 | Personas from codes, grants paired with blocks; device, server and non-person conventions handed off | VK-CA-01 for personas; VK-INT-01, VK-ARC-01, VK-NPI-01 in the track guides | A5.1–A5.4, D-A5, AG5 |
+| [6 PIV binding](#gate-6-piv-and-cac-binding) | PIV | Every pilot card holder bound; high affinity piloted | VK-PIV-01 | A6.1, A6.2, D-A6, D-A7, AG6 |
 | [7 Mover proven](#gate-7-prove-a-mover-across-the-tracks) | Worked example | One personnel action changes access only through the attributes | VK-DG-05, VK-HR-03, VK-HR-05 | A7.1, AG7 |
 | [8 OU tree retired](#gate-8-cut-over-and-retire-the-ou-tree) | 7 | Every population cut over by query; nothing reads OU placement | VK-HR-01 to 06, VK-DG-04, VK-DG-05 per wave | A8.1–A8.4, AG8 |
 | [9 Attributes kept true](#gate-9-keep-the-attributes-true) | 8 | Drift scans running, findings closed at the source, zero-action plan | VK-HR-03, VK-DG-05, VK-DG-06, VK-DG-07, and each track's standing checks | A9.1–A9.3, D-A8, AG9 |
@@ -156,6 +159,7 @@ The target has to reproduce intent, not structure, and you can't reproduce what 
 ::: {.callout-important}
 ## Validate (Gate 0: the tree read)
 - The Start Kit's summary counts OUs and their delegations, GPOs (empty, unlinked, conflicting, site-linked), users, groups, computers and service accounts, each traced to its source file. A count that couldn't be collected says *not collected*, never zero.
+- **VK-INT-07** (*Graph beta*, with `-IncludeBeta`; run by the Intune track) lists each GPO imported into Intune's Group Policy analytics with its migration readiness. It flags those targeted in AD that aren't *complete*, and, with `gpo-scope.csv`, every in-scope GPO that was never imported. Its rows feed the computer half of the GPO split.
 - **VK-NPI-06** (run by the non-person track) lists the AD service accounts with passwords that never expire, old passwords, SPNs or a type other than gMSA. Its rows are the ones step 6 hands over.
 - No kit check reads the per-group decision or the track tagging: the evidence is the decision record in Git, one row per group and per GPO half.
 - Gate owner: identity engineering lead. Gate 0 lands before the program's G0, and before the Endpoint and Non-Person plans' own Gate 0s, which use its export.
@@ -253,14 +257,14 @@ This gate covers the plumbing between HR, AD and Entra ID while they coexist. It
 
 ::: {.callout-important}
 ## Validate (Gate 3: attributes flowing)
-- **No validation kit check covers sync mapping yet** ([Where the kits stop](#where-the-kits-stop)). The evidence is Book 02's Phase 1 gate: object counts within ±1%, no sync errors, and an attribute spot check ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#phase-1-sync-deployment-and-initial-sync)). Add Book 03's Phase 3 gate: the initial full sync reconciled before deltas, shadow mode with every difference between the pipeline and the directory explained, and zero unmatched-record creations ([Book 03, Chapter 12](../b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot)).
+- **VK-SYNC-01** compares the coded slots for a sample, exported from AD (`ad-slot-export.csv`), with the same slots in Entra ID, joined on `employeeId`. It reports zero sample rows with no Entra user, zero keys held twice, and zero slots that differ. It reads values, not the sync configuration, so the rest of the evidence still comes from the reconciliation report ([Where the kits stop](#where-the-kits-stop)). That's Book 02's Phase 1 gate: object counts within ±1%, no sync errors, and an attribute spot check ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#phase-1-sync-deployment-and-initial-sync)). Add Book 03's Phase 3 gate: the initial full sync reconciled before deltas, shadow mode with every difference between the pipeline and the directory explained, and zero unmatched-record creations ([Book 03, Chapter 12](../b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot)).
 - **VK-HR-02** and **VK-HR-03**, re-run after the first full sync, show the slots arrived: the coverage and the counts per organization code should match Gate 2's.
 - Gate owner: identity engineering lead.
 :::
 
 **Rollback.** Turn the scoping filter back to exclude the population and let the next cycle remove the values from scope. Don't delete synced users in Entra ID; the next sync restores them ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md#deletion)).
 
-**Evidence.** The sync configuration export, the reconciliation report, the shadow-mode difference log with each difference explained, and the before and after VK-HR-02 and VK-HR-03 results.
+**Evidence.** The sync configuration export, the reconciliation report, the shadow-mode difference log with each difference explained, VK-SYNC-01's result for the sample, and the before and after VK-HR-02 and VK-HR-03 results.
 
 ## Gate 4: the dynamic group library and administrative units {#gate-4-the-dynamic-group-library-and-administrative-units}
 
@@ -332,14 +336,14 @@ Group Policy inheritance retires here. The risk is policies that look strict but
 
 ::: {.callout-important}
 ## Validate (Gate 5: targeting conventions set)
-- **No validation kit check reads the Conditional Access personas yet** ([Where the kits stop](#where-the-kits-stop)). The evidence is the policy export from the automation reference's `ca-export` task: one file per policy. Read it for three things. Every grant has its paired block. Every policy targets only governed groups ([Book 01, Chapter 04](../b01-transformation-arc/04-identity-transformation.md#verification)). The emergency-access group is excluded everywhere. Add the report-only results reviewed, and **VK-HR-02**'s list of users with an empty slot 11, who sit outside every persona built from it.
+- **VK-CA-01** reads every enabled and report-only policy that targets users and reports zero of three things. A policy that doesn't exclude the emergency-access group (`emergency-access-groups.csv`). A policy that targets a group outside the governed list (`governed-groups.csv`; [Book 01, Chapter 04](../b01-transformation-arc/04-identity-transformation.md#verification)). A grant on groups with no paired block: a block on all users, for the same application, that excludes those groups. It reads the users condition only, so keep the policy export from the automation reference's `ca-export` task as the record, and read it for blocks narrower than their grants ([Where the kits stop](#where-the-kits-stop)). Add the report-only results reviewed, and **VK-HR-02**'s list of users with an empty slot 11, who sit outside every persona built from it.
 - For the conventions handed off, the track guides' own checks measure them: **VK-INT-01** (managed devices missing provisioning-written slots) and **VK-INT-04** (dynamic device groups against filters, and no dynamic device group used as an exclusion); **VK-ARC-01** (servers missing required tags); **VK-NPI-01** and **VK-NPI-08** (owners and sponsors present).
 - Gate owner: the CISO. The persona set lands before the program's Conditional Access design runs in report-only (P1.5).
 :::
 
 **Rollback.** A policy goes back to report-only. A wave's GPO links are re-enabled, never re-created, because they were disabled rather than deleted ([Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md#rollback)).
 
-**Evidence.** The persona definitions, the policy export, the report-only review, the enforcement waves, and the published device, server and non-person conventions with the track guides' check results.
+**Evidence.** The persona definitions, the policy export, VK-CA-01's result, the report-only review, the enforcement waves, and the published device, server and non-person conventions with the track guides' check results.
 
 ## Gate 6: PIV and CAC binding {#gate-6-piv-and-cac-binding}
 
@@ -364,14 +368,14 @@ The contractor path, where a contractor source supplies what HR supplies for emp
 
 ::: {.callout-important}
 ## Validate (Gate 6: PIV binding proven on the pilot)
-- **No validation kit check reads the binding yet** ([Where the kits stop](#where-the-kits-stop)). The evidence is a coverage export. For every pilot card holder, record whether `certificateUserIds` (or `altSecurityIdentities` for synced users) holds a value for a current card. List holders with no value, or only a low-affinity one, by account, never by certificate value.
+- **VK-PIV-01** reads `certificateUserIds` for every holder in `pilot-card-holders.csv` and reports zero holders not found, zero with no value and zero with only low-affinity values, by account and binding type, never by certificate value. For a synced holder with no value, the row points at `altSecurityIdentities` in AD. The check can't tell whether a value belongs to a current card, so reconcile its rows with the card management system ([Where the kits stop](#where-the-kits-stop)).
 - The pilot's sign-in logs show CBA sign-ins succeeding under the high-affinity rule, with no lockouts.
 - Gate owner: the CISO. Gate 6 lands before the program turns on PIV sign-in for the pilot (P2.8).
 :::
 
 **Rollback.** Set the tenant's required affinity back to its previous value, or remove the per-issuer high-affinity rule. Rolling back a binding value means restoring it from the card management system, not editing it in the directory.
 
-**Evidence.** The coverage export, the affinity decision, the pilot's sign-in results, the leaver sequence with the binding removal, and the decision record for the writer after AD.
+**Evidence.** VK-PIV-01's coverage result, the affinity decision, the pilot's sign-in results, the leaver sequence with the binding removal, and the decision record for the writer after AD.
 
 ## Gate 7: prove a mover across the tracks {#gate-7-prove-a-mover-across-the-tracks}
 
@@ -476,13 +480,13 @@ The kits cover most gates, but not all of them. Where no check exists, the gate'
 
 | Gate | What a kit covers | What no kit covers yet | Stand-in evidence |
 |---|---|---|---|
-| 0 | The Start Kit's forest, OU, delegation and GPO counts (site links included) | The per-group decision; the track tag for each OU and GPO half | The decision record in Git |
+| 0 | The Start Kit's forest, OU, delegation and GPO counts (site links included); VK-INT-07 for Group Policy analytics readiness (beta) | The per-group decision; the track tag for each OU and GPO half | The decision record in Git |
 | 1 | VK-HR-01 and VK-HR-04 on the key's carrier | The schema and slot register themselves | The signed register |
 | 2 | VK-HR-01 to 04 | A field-by-field HR-to-directory comparison (VK-HR-03 compares counts per code) | The HR plan's baseline (I1.5) |
-| 3 | VK-HR-02 and VK-HR-03 before and after | Sync mapping, scoping, shadow differences, match blocking | The sync reconciliation report |
+| 3 | VK-SYNC-01 on a sample; VK-HR-02 and VK-HR-03 before and after | Sync configuration, scoping, shadow differences, match blocking | The sync reconciliation report |
 | 4 | VK-DG-01 to 07 | — | — |
-| 5 | The track checks for devices, servers and non-person identities | Conditional Access personas: grant and block pairs, empty-slot coverage | The `ca-export` policy export, read against the persona design |
-| 6 | — | The PIV binding: coverage and affinity | The coverage export |
+| 5 | VK-CA-01 (emergency-access exclusion, governed groups, grant and block pairs on the users condition); VK-HR-02 for empty slots; the track checks for devices, servers and non-person identities | Conditions other than users and applications in a pair; the report-only results | The `ca-export` policy export and the report-only review, read against the persona design |
+| 6 | VK-PIV-01 (coverage and affinity, by account) | Whether each value belongs to a current card; the tenant's affinity setting | The card management system's issuance record; the sign-in logs |
 | 7 | VK-DG-05, VK-HR-03, VK-HR-05 | — | — |
 | 8 | VK-HR-01 to 06, VK-DG-04, VK-DG-05 per wave | The seven-day sole-source report | The provisioning logs, joined on the key |
 | 9 | VK-HR, VK-DG and each track's standing checks | The registry-to-tenant comparison of role assignments | The registry diff in Git |
@@ -511,10 +515,10 @@ The kits cover most gates, but not all of them. Where no check exists, the gate'
 - [ ] OU tree exported read-only with site links; every OU and GPO half tagged with its track; a decision for every group (Gate 0)
 - [ ] Enterprise person key, such as a Mainframe PIN, carried in `employeeId` in both directories; schema and slot register signed with one writer per slot (Gate 1; VK-HR-01, 04)
 - [ ] Correlation threshold met on the pilot; other write paths removed; logs leaving Entra ID (Gate 2; VK-HR-01 to 04)
-- [ ] Slots mapped through sync; match blocked outside a window; shadow differences explained (Gate 3)
+- [ ] Slots mapped through sync; match blocked outside a window; shadow differences explained (Gate 3; VK-SYNC-01)
 - [ ] Every rule on codes with guards, tested and shadowed; no `memberOf`; restriction decided per unit before creation; unit rules mirror group rules (Gate 4; VK-DG-01 to 07)
-- [ ] Personas from codes, grants paired with blocks, empty slots reported; device, server and non-person conventions handed to their guides (Gate 5)
-- [ ] PIV binding coverage measured; high affinity piloted before the tenant changes; leaver removes the binding; writer after AD decided (Gate 6)
+- [ ] Personas from codes, grants paired with blocks, empty slots reported; device, server and non-person conventions handed to their guides (Gate 5; VK-CA-01)
+- [ ] PIV binding coverage measured; high affinity piloted before the tenant changes; leaver removes the binding; writer after AD decided (Gate 6; VK-PIV-01)
 - [ ] One mover proved across the tracks with no ticket (Gate 7; VK-DG-05, VK-HR-03, VK-HR-05)
 - [ ] Waves by attribute query, leaver first, seven days of sole-source proof; transitional rules removed; OU tree frozen and archived (Gate 8)
 - [ ] Drift scans scheduled for HR, units and roles; findings closed at the source; limits register kept (Gate 9)

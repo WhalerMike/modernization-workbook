@@ -1,0 +1,18 @@
+{
+  "gpr-2": [
+    {
+      "id": "ext-1",
+      "settingScope": "device",
+      "namespaceUrl": "http://www.microsoft.com/GroupPolicy/Settings/DriveMaps",
+      "extensionType": "DriveMapSettings",
+      "nodeName": "DriveMapSettings"
+    },
+    {
+      "id": "ext-2",
+      "settingScope": "user",
+      "namespaceUrl": "http://www.microsoft.com/GroupPolicy/Settings/Files",
+      "extensionType": "FilesSettings",
+      "nodeName": "FilesSettings"
+    }
+  ]
+}

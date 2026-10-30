@@ -1,0 +1,24 @@
+[
+  {
+    "id": "gpr-1",
+    "groupPolicyObjectId": "00000000-0000-4000-8000-000000001001",
+    "displayName": "FMP-Workstation-Baseline",
+    "ouDistinguishedName": "OU=Workstations,DC=contoso,DC=example",
+    "migrationReadiness": "complete",
+    "targetedInActiveDirectory": true,
+    "totalSettingsCount": 40,
+    "supportedSettingsCount": 40,
+    "supportedSettingsPercent": 100
+  },
+  {
+    "id": "gpr-2",
+    "groupPolicyObjectId": "00000000-0000-4000-8000-000000001002",
+    "displayName": "Old-Kiosk-Lockdown",
+    "ouDistinguishedName": "OU=Workstations,DC=contoso,DC=example",
+    "migrationReadiness": "partial",
+    "targetedInActiveDirectory": false,
+    "totalSettingsCount": 12,
+    "supportedSettingsCount": 7,
+    "supportedSettingsPercent": 58
+  }
+]

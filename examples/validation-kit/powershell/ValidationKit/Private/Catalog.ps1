@@ -28,6 +28,8 @@ $script:VkLearn = @{
     Autopilot   = 'https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-list?view=graph-rest-1.0'
     DevConfig   = 'https://learn.microsoft.com/graph/api/intune-deviceconfig-deviceconfiguration-list?view=graph-rest-1.0'
     Managed     = 'https://learn.microsoft.com/graph/api/intune-devices-manageddevice-list?view=graph-rest-1.0'
+    GpAnalytics = 'https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-grouppolicymigrationreport-list?view=graph-rest-beta'
+    GpUnsupport = 'https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-unsupportedgrouppolicyextension-list?view=graph-rest-beta'
     ArgArc      = 'https://learn.microsoft.com/azure/azure-arc/servers/resource-graph-samples'
     ArgPolicy   = 'https://learn.microsoft.com/azure/governance/policy/samples/resource-graph-samples'
     ArcAgent    = 'https://learn.microsoft.com/azure/azure-arc/servers/agent-release-notes'
@@ -47,6 +49,9 @@ $script:VkLearn = @{
     McModes     = 'https://learn.microsoft.com/azure/governance/machine-configuration/concepts/remediation-options'
     McArg       = 'https://learn.microsoft.com/azure/governance/machine-configuration/how-to/view-compliance'
     SpSignIn    = 'https://learn.microsoft.com/graph/api/reportroot-list-serviceprincipalsigninactivities?view=graph-rest-beta'
+    CbaUserIds  = 'https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids'
+    CbaAffinity = 'https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-technical-deep-dive#username-binding-policy'
+    AuthzInfo   = 'https://learn.microsoft.com/graph/api/resources/authorizationinfo?view=graph-rest-beta'
 }
 
 $script:VkCatalog = @(
@@ -96,6 +101,9 @@ $script:VkCatalog = @(
         Source = 'Graph'; GraphPermissions = @('DeviceManagementConfiguration.Read.All', 'Group.Read.All', 'GroupMember.ReadBasic.All', 'Device.Read.All'); DelegatedRole = 'Intune Read Only Operator or Global Reader'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.DevConfig, $VkLearn.Members) }
     @{ Id = 'VK-INT-06'; Track = 'INT'; Title = 'Platform inventory by OS, version and ownership, against the coverage matrix (out-of-support platforms flagged)'
         Source = 'Graph + Input'; GraphPermissions = @('DeviceManagementManagedDevices.Read.All'); DelegatedRole = 'Intune Read Only Operator or Global Reader'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.Managed) }
+    @{ Id = 'VK-INT-07'; Track = 'INT'; Title = 'Group Policy analytics: imported GPOs targeted in AD whose migration readiness is not complete, and in-scope GPOs never imported'
+        Source = 'Graph (beta) + Input'; GraphPermissions = @('DeviceManagementConfiguration.Read.All'); DelegatedRole = 'Intune Read Only Operator or Global Reader'; AzureRole = ''
+        Stage = 'beta, with -IncludeBeta'; Learn = @($VkLearn.GpAnalytics, $VkLearn.GpUnsupport) }
 
     # ---- Arc track (servers) ----
     @{ Id = 'VK-ARC-01'; Track = 'ARC'; Title = 'Arc-enabled servers missing required tags (the tag taxonomy as input)'
@@ -133,6 +141,15 @@ $script:VkCatalog = @(
     @{ Id = 'VK-NPI-09'; Track = 'NPI'; Title = 'Optional, preview: service principals with no sign-in activity in N days (service principal sign-in activity report, beta)'
         Source = 'Graph (beta)'; GraphPermissions = @('AuditLog.Read.All', 'Application.Read.All'); DelegatedRole = 'Reports Reader'; AzureRole = ''
         Stage = 'beta; documented for the global service (which GCC uses), not for US Government L4 or L5'; Optional = $true; Preview = $true; Learn = @($VkLearn.SpSignIn) }
+
+    # ---- Cross-track foundation (Attribute-Driven Migration implementation guide, Gates 3, 5 and 6) ----
+    @{ Id = 'VK-SYNC-01'; Track = 'SYNC'; Title = 'Coded slot values in an AD export compared with Entra ID for a sample, joined on employeeId'
+        Source = 'Graph + Input'; GraphPermissions = @('User.Read.All'); DelegatedRole = 'Global Reader'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.Users) }
+    @{ Id = 'VK-CA-01'; Track = 'CA'; Title = 'Conditional Access personas: emergency-access group excluded, only governed groups targeted, every group grant paired with a block'
+        Source = 'Graph + Input'; GraphPermissions = @('Policy.Read.All'); DelegatedRole = 'Global Reader, Security Reader or Conditional Access Administrator'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.Ca) }
+    @{ Id = 'VK-PIV-01'; Track = 'PIV'; Title = 'PIV binding coverage: pilot card holders with no certificateUserIds value, or only low-affinity values (reported by account, never by value)'
+        Source = 'Graph + Input'; GraphPermissions = @('User.Read.All'); DelegatedRole = 'Global Reader (not confirmed for authorizationInfo; see the README)'; AzureRole = ''
+        Stage = 'v1.0 path shown on Learn''s certificateUserIds page; the authorizationInfo type is documented under beta'; Learn = @($VkLearn.CbaUserIds, $VkLearn.CbaAffinity, $VkLearn.AuthzInfo) }
 )
 
 function Get-VkFunctionName {
