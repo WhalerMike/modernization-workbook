@@ -34,6 +34,10 @@ Every plan here is an illustrative sample built from the books. The durations ar
 ::: {#project-plans}
 :::
 
+## Developer workbooks
+
+The plans have code-first companions for the developers who build each project's software: the [developer workbooks](developer-workbooks/index.md). The first, [*Building the Attribute-Driven Migration*](developer-workbooks/attribute-driven-migration/index.md), goes with the [Attribute-Driven Migration](attribute-driven-migration.md) plan; one per project track is planned.
+
 The program master schedule is the integrated plan, and the project plans link to it in both directions:
 
 - **A project waits for the program.** The Data Platform plan can't start its pilot until the program's pilot servers are under Arc, so it takes that date from the program and shows how far it can slip.

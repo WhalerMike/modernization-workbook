@@ -75,11 +75,12 @@ bundles:
     subtitle: "A track implementation guide — Federal Modernization Workbook companion guide"
     root: docs/books/guides
     pages: [non-person-identity-implementation.md]
-  - output: b19-developer-workbook-bundle.docx
-    title: "Book 19 — Developer Workbook"
-    subtitle: "Building the Attribute-Driven Migration in code — Federal Modernization Workbook, combined edition"
-    root: docs/books/b19-developer-workbook
-    image_dir: docs/images/diagrams/b19-developer-workbook
+  - output: building-the-attribute-driven-migration-bundle.docx
+    aliases: [b19-developer-workbook-bundle.docx]
+    title: "Building the Attribute-Driven Migration"
+    subtitle: "A developer workbook for the Attribute-Driven Migration project — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/attribute-driven-migration
+    image_dir: docs/images/diagrams/developer-workbooks/attribute-driven-migration
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
   - output: b18-application-modernization-bundle.docx

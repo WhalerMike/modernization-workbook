@@ -1,11 +1,11 @@
 ---
-title: "Book 19 — Developer Workbook"
+title: "Building the Attribute-Driven Migration"
 subtitle: "Why the Attribute-Driven Migration needs code with tests, not only runbooks: the HR middleware, Graph clients for the government clouds, validation kit checks, dynamic rules as code, Lifecycle Workflows extensions, Group Policy and machine configuration as code, Ansible beside Arc, and drift pipelines that hand evidence to the ISSO"
-description: "Book 19 of the Federal Modernization Workbook: a code-first companion to the Attribute-Driven Migration for the developers who build its middleware, automation, checks and pipelines. Each chapter builds on runnable code in the repository's examples folder, runs a lab against fixtures with no tenant, then a step in a test tenant, and lists the verified Graph and Azure facts, the dangers and a checklist."
+description: "A developer workbook for the Attribute-Driven Migration project: a code-first companion for the developers who build its middleware, automation, checks and pipelines. Each chapter builds on runnable code in the repository's examples folder, runs a lab against fixtures with no tenant, then a step in a test tenant, and lists the verified Graph and Azure facts, the dangers and a checklist."
 doc-type: section-landing
+fmw-eyebrow: "Projects · Developer workbook"
 audience: [Technical]
-family: b19-developer-workbook
-book: B19
+family: dw-attribute-driven-migration
 listing:
   - id: chapters
     contents:
@@ -19,18 +19,22 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: pending
+aliases:
+  - /docs/books/b19-developer-workbook/index.html
 ---
 
-# Book 19 — Developer Workbook: Building the Attribute-Driven Migration in Code {.unnumbered}
+# Building the Attribute-Driven Migration {.unnumbered}
+
+*A developer workbook for the Attribute-Driven Migration project*
 
 ::: {.callout-important appearance="default"}
 ## Status: draft, under review
-This book is new material and is being written in stages. Chapters 01 and 03 are written. The others are outlined below and will follow. Every page is held for the owner's review: until a page is approved it is listed in the weekly source watch issue, and an approved page that changes goes back on that list. The narrated chapter tours will be recorded only after a chapter is approved. Every external claim was checked against Microsoft Learn or a workbook chapter on October 30, 2026 and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures, but it has not been run against a production tenant.
+This workbook is new material and is being written in stages. Chapters 01 and 03 are written. The others are outlined below and will follow. Every page is held for the owner's review: until a page is approved it is listed in the weekly source watch issue, and an approved page that changes goes back on that list. The narrated chapter tours will be recorded only after a chapter is approved. Every external claim was checked against Microsoft Learn or a workbook chapter on October 30, 2026 and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures, but it has not been run against a production tenant.
 :::
 
-The [Attribute-Driven Migration](../guides/attribute-driven-migration.md) moves an agency from Active Directory to Microsoft Entra ID by placing every person, device and server in policy through attributes instead of OU placement. Its operator material already exists: the companion guide, the [implementation guide](../guides/attribute-driven-migration-implementation.md) with its ten gates, the [project plan](../../project-plans/attribute-driven-migration.md) and the narrated decks. Those tell an operator what to do and how to prove it was done. They don't teach anyone to build the software the migration runs on: the middleware between the HR system and Entra ID, the Graph clients, the checks that prove each gate, the rule library, the workflow extensions, and the pipelines that catch drift and hand evidence to the ISSO.
+The [Attribute-Driven Migration](../../../books/guides/attribute-driven-migration.md) moves an agency from Active Directory to Microsoft Entra ID by placing every person, device and server in policy through attributes instead of OU placement. Its operator material already exists: the companion guide, the [implementation guide](../../../books/guides/attribute-driven-migration-implementation.md) with its ten gates, the [project plan](../../attribute-driven-migration.md) and the narrated decks. Those tell an operator what to do and how to prove it was done. They don't teach anyone to build the software the migration runs on: the middleware between the HR system and Entra ID, the Graph clients, the checks that prove each gate, the rule library, the workflow extensions, and the pipelines that catch drift and hand evidence to the ISSO.
 
-This book is for the developers who build those pieces. It is code first. Each chapter starts from working code in the repository's [`examples`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples) folder, extends it where the chapter needs to, and adds tests. Each has a lab that runs on a laptop against fixtures with no tenant at all, then a short step in a test tenant. Each lists the Graph and Azure facts the code depends on (endpoints, the least-privileged permission, availability in the US Government clouds), footnoted to Microsoft Learn with the date the page was read, then the dangers and a checklist.
+This workbook is for the developers who build those pieces. It is code first. Each chapter starts from working code in the repository's [`examples`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples) folder, extends it where the chapter needs to, and adds tests. Each has a lab that runs on a laptop against fixtures with no tenant at all, then a short step in a test tenant. Each lists the Graph and Azure facts the code depends on (endpoints, the least-privileged permission, availability in the US Government clouds), footnoted to Microsoft Learn with the date the page was read, then the dangers and a checklist.
 
 ## How each chapter is built
 
@@ -44,7 +48,7 @@ This book is for the developers who build those pieces. It is code first. Each c
 | Dangers | What breaks in production, and the guard the code has for it |
 | Checklist | What a reviewer checks before the code ships |
 
-*Design guidance* in this book is marked as such: it is the program's position, not a vendor statement. Preview and beta features carry their stage wherever they appear.
+*Design guidance* in this workbook is marked as such: it is the program's position, not a vendor statement. Preview and beta features carry their stage wherever they appear.
 
 ## Chapters
 
@@ -67,18 +71,18 @@ Chapter 02 is the foundation chapters 01 and 03 lean on. They were written first
 - **Chapter 01 starts from Microsoft's sample.** Microsoft publishes CSV2SCIM for this integration and documents it on Learn. The chapter runs it first, on the same HR fixture, and builds the hardened client only for what the sample leaves out. The repository keeps a pinned copy so the labs stay stable.
 - **Chapter 03's worked example is a new check.** The outline proposed walking through an existing check. The chapter builds VK-SYNC-02 instead, because its live read needs Global Administrator, which makes it the clearest case for the kit's rule that a read-only check still has to ask for the least privilege it can.
 - **Chapter 04 will cover agents' user accounts.** Learn says an agent's user account is evaluated by user-based membership rules like any other user, and that a rule can exclude such accounts, but its rule property tables, read on October 30, 2026, don't name the property to use.[^i-agentusers] The chapter will give the clause when Learn documents it, and VK-DG-01's guards will grow to match.
-- **Chapter 08 needs one input first.** The [Ansible guide](../guides/ansible-configuration-automation.md) names a `patch_owner` field in the CMDB, but the sample CMDB export in `examples/ansible` doesn't carry it yet. The chapter will add the column, with tests, before it relies on it.
+- **Chapter 08 needs one input first.** The [Ansible guide](../../../books/guides/ansible-configuration-automation.md) names a `patch_owner` field in the CMDB, but the sample CMDB export in `examples/ansible` doesn't carry it yet. The chapter will add the column, with tests, before it relies on it.
 
 ## Reading paths
 
-- **Developers new to the migration:** the [companion guide](../guides/attribute-driven-migration.md) first, then Chapter 01.
+- **Developers new to the migration:** the [companion guide](../../../books/guides/attribute-driven-migration.md) first, then Chapter 01.
 - **Developers extending the validation kit:** Chapter 03, then Chapter 04.
 - **Platform and pipeline engineers:** Chapters 07, 08 and 09.
 - **ISSOs and reviewers of the code:** the checklists at the end of each chapter, and Chapter 09.
 
-## Where this book sits in the workbook
+## Where this workbook sits
 
-This is Book 19 of the [Federal Modernization Workbook](../index.md). The HR side of the migration, its schema and its lifecycle rules are [Book 03](../b03-hr-identity/index.md). The directory, sync and matching are [Book 02](../b02-identity/index.md). Devices, Intune and Azure Arc are [Book 05](../b05-devices/index.md). Change control, provenance and the drift engine are [Book 13](../b13-governance/index.md). The gates each chapter's code proves are in the [implementation guide](../guides/attribute-driven-migration-implementation.md).
+This is the developer workbook for the [Attribute-Driven Migration project](../../attribute-driven-migration.md), one of the [developer workbooks](../index.md) under Projects in the Federal Modernization Workbook. The HR side of the migration, its schema and its lifecycle rules are [Book 03](../../../books/b03-hr-identity/index.md). The directory, sync and matching are [Book 02](../../../books/b02-identity/index.md). Devices, Intune and Azure Arc are [Book 05](../../../books/b05-devices/index.md). Change control, provenance and the drift engine are [Book 13](../../../books/b13-governance/index.md). The gates each chapter's code proves are in the [implementation guide](../../../books/guides/attribute-driven-migration-implementation.md).
 
 ## Chapters
 

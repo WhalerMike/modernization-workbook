@@ -363,8 +363,8 @@
       "type": "github_commits",
       "repo": "AzureAD/entra-id-inbound-provisioning",
       "path": "PowerShell/CSV2SCIM",
-      "books": ["B19"],
-      "source": "Commits to Microsoft's CSV2SCIM sample, which examples/third_party/csv2scim pins at one commit (Developer Workbook, Chapter 01). A new commit means: review it, and update the snapshot only in a reviewed pull request."
+      "books": ["DW"],
+      "source": "Commits to Microsoft's CSV2SCIM sample, which examples/third_party/csv2scim pins at one commit (developer workbook Building the Attribute-Driven Migration, Chapter 01). A new commit means: review it, and update the snapshot only in a reviewed pull request."
     }
   ]
 }

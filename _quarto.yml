@@ -108,8 +108,6 @@ website:
             text: "Book 17 — AI Identity Governance"
           - href: docs/books/b18-application-modernization/index.md
             text: "Book 18 — Application Modernization"
-          - href: docs/books/b19-developer-workbook/index.md
-            text: "Book 19 — Developer Workbook"
           - href: docs/books/guides/attribute-driven-migration.md
             text: "Guide: Attribute-Driven Migration to Entra ID"
           - href: docs/books/guides/attribute-driven-migration-implementation.md
@@ -124,8 +122,14 @@ website:
             text: "Guide: Ansible for Configuration Automation"
           - href: docs/books/guides/effective-meetings.md
             text: "Guide: Effective Meetings"
-      - href: docs/project-plans/index.md
-        text: "Projects"
+      - text: "Projects"
+        menu:
+          - href: docs/project-plans/index.md
+            text: "Project Plans"
+          - href: docs/project-plans/developer-workbooks/index.md
+            text: "Developer Workbooks"
+          - href: docs/project-plans/developer-workbooks/attribute-driven-migration/index.md
+            text: "Building the Attribute-Driven Migration"
       - href: docs/presentations/index.md
         text: "Presentations"
       - href: docs/presentations/watch.md
@@ -153,6 +157,22 @@ website:
       style: docked
       contents:
         - auto: "docs/research/*.md"
+    - id: projects
+      title: "Projects"
+      style: docked
+      collapse-level: 2
+      contents:
+        - section: "Project Plans"
+          href: docs/project-plans/index.md
+          contents:
+            - auto: "docs/project-plans/*-*.md"
+        - section: "Developer Workbooks"
+          href: docs/project-plans/developer-workbooks/index.md
+          contents:
+            - section: "Building the Attribute-Driven Migration"
+              href: docs/project-plans/developer-workbooks/attribute-driven-migration/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/attribute-driven-migration/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked
@@ -235,10 +255,6 @@ website:
           href: docs/books/b18-application-modernization/index.md
           contents:
             - auto: "docs/books/b18-application-modernization/*-*.md"
-        - section: "Book 19 — Developer Workbook"
-          href: docs/books/b19-developer-workbook/index.md
-          contents:
-            - auto: "docs/books/b19-developer-workbook/*-*.md"
         - section: "Companion guides"
           contents:
             - docs/books/guides/attribute-driven-migration.md
