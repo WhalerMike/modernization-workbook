@@ -23,6 +23,7 @@ project:
     - "docs/books/**/*.md"
     - "docs/presentations/**/*.md"
     - "docs/inspiration/**/*.md"
+    - "docs/about/**/*.md"
     # Research under review: published in its own area, labeled, kept out of
     # the books (see docs/research/index.md and assets/research-banner.lua).
     - "docs/research/**/*.md"
@@ -132,6 +133,8 @@ website:
         menu:
           - href: docs/inspiration/index.md
             text: "Inspiration"
+          - href: docs/about/sources-and-verification.md
+            text: "Sources and Verification"
       - href: sitemap.qmd
         text: "Site Map"
     right:

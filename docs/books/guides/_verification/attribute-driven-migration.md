@@ -212,3 +212,11 @@ Same day, second pass. The guide gained: "What this migration accomplishes" (goa
 | ESXi hosts taking no agent; vendor appliances not covered | The program's reading, labeled in the Arc coverage table |
 | Thin clients and printers in Intune | Placed by absence from Microsoft's supported list |
 | User source-of-authority transfer in GCC | Still open (Book 03 Ch12 register); the guide asks for an owner and a decide-by date |
+
+## Additions, October 30, 2026 (contractor PIV path marked pending proof)
+
+Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | PKI binding, after the "Contractors" paragraph | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |

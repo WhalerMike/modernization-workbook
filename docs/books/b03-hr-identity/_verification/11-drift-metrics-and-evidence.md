@@ -57,3 +57,19 @@ Added at the author's request. The path is set in Chapter 09, "The contractor PI
 | 1 | New drift class: contractor credential drift (card with no contractor record; terminated or expired card with an open engagement) | Drift classes table | design (program default severity, as the table's note says) | — |
 | 2 | PS-7 row: provider notifies terminations within an organization-defined period (PS-7d) | Control table | verified against SP 800-53 Rev. 5 PS-7(d) (c11-nist-80053); contribution and evidence columns are design | SP 800-53 Rev. 5 |
 | 3 | "In this chapter" lists PS-7 | Callout | editorial | — |
+
+## Additions, October 30, 2026 (contractor PIV path marked pending proof)
+
+Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | After the drift-classes table (covers the contractor credential drift row and the PS-7 row) | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |
+
+## Independent verification pass, October 30, 2026
+
+Contractor credential drift and PS-7 rows re-checked against the OSCAL catalog (`docs/research/_verification/verification-pass-2026-10.md`).
+
+| # | Correction | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | PS-7 added to the controls listed in `c11-nist-80053`, which the PS-7 row cites; PS-7(d) wording supported | Footnotes | corrected | SP 800-53 Rev. 5 (OSCAL 5.2.0) |

@@ -128,3 +128,11 @@ Added at the author's request. The path is set in Chapter 09, "The contractor PI
 |---|---|---|---|---|
 | 1 | Contractor joiner sends the sponsorship request; card termination or expiry is a leaver input, reissue isn't | Contractors paragraph after the nature-of-action table | design (labelled); restated from Ch09 and linked | — |
 | 2 | The custom task sends the PIV office the termination notice on the end date | After the built-in tasks table | design; restated from Ch09 and linked | — |
+
+## Additions, October 30, 2026 (contractor PIV path marked pending proof)
+
+Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | Nature-of-action triggers, after the contractors paragraph | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |

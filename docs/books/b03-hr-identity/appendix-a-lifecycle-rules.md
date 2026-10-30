@@ -72,6 +72,8 @@ The `manager` relationship carries approvals, reviews and org charts (Chapter 10
 
 ## Contractor leavers {#contractor-leavers}
 
+**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../research/oracle-contingent-worker-contractor-source.md#status-and-review).
+
 Contractors have no separation action in HR, so the contractor source supplies the leaver, and these rules apply *(design guidance)*:
 
 - **Earliest end wins.** A contractor's access ends at the earliest of the end conditions in [Chapter 06](06-canonical-attribute-schema.md#one-fact-one-authority): the engagement end date, capped by the contract's current completion date; suitability withdrawn; the PIV card terminated; the sponsor leaving with no successor in the grace period; or a missed sponsor recertification. The middleware computes it and sends the leave date and `active` false itself, whatever the source's own end date does.

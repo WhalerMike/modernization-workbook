@@ -141,6 +141,8 @@ What the target PKI has to do for PIV is trust, not issue:
 
 ### The contractor PIV path {#the-contractor-piv-path}
 
+**Pending proof.** The contractor PIV path is the program's design and hasn't yet been validated in practice; the criteria for Proved are in the research page's [Status and review](../../research/oracle-contingent-worker-contractor-source.md#status-and-review).
+
 Contractors get PIV cards from the same issuers, but no HR record starts or ends them. [Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#the-contractor-piv-path) sets the path; in PKI terms it has four points *(design guidance)*:
 
 - **Issue.** The contractor source's joiner sends the sponsorship request, because FIPS 201-3 allows issuance only once a proper authority has authorized it.[^c04-fips201] No contractor record, no certificate request.
@@ -190,7 +192,7 @@ Two facts from the vendor documentation and the FedRAMP Marketplace shape how th
 [^c04-templates]: Microsoft Learn, "Manage AD CS certificate templates on an enterprise CA," <https://learn.microsoft.com/windows-server/identity/ad-cs/manage-certificate-templates> (accessed Oct 20, 2026).
 [^c04-tpf-msca]: CyberArk, "Microsoft Active Directory Certificate Services (ADCS) - Enterprise and Standalone" (Trust Protection Foundation CA template), documentation version 26.1, <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/cco-MicrosoftCertServices-CATemplate-tpp.php> (accessed Oct 20, 2026).
 [^c04-fpki]: GSA, IDManagement.gov, "Federal Public Key Infrastructure 101," <https://www.idmanagement.gov/university/fpki/> (accessed Oct 20, 2026).
-[^c04-fips201]: NIST, FIPS 201-3, *Personal Identity Verification (PIV) of Federal Employees and Contractors*, January 2022, <https://csrc.nist.gov/pubs/fips/201-3/final> (accessed Oct 20, 2026).
+[^c04-fips201]: NIST, FIPS 201-3, *Personal Identity Verification (PIV) of Federal Employees and Contractors*, January 2022, §2.1 (issuance only after a proper authority has authorized it) and §2.9.4 (if the card can't be collected, termination within 18 hours of notification), <https://csrc.nist.gov/pubs/fips/201-3/final> (accessed Oct 20, 2026; §2.1 and §2.9.4 re-checked Oct 30, 2026).
 [^c04-venafi]: Thoma Bravo, "CyberArk Completes Acquisition of Machine Identity Management Leader Venafi," October 1, 2024, <https://www.thomabravo.com/press-releases/cyberark-completes-acquisition-of-machine-identity-management-leader-venafi> (accessed Oct 20, 2026).
 [^c04-pan]: Palo Alto Networks, "Palo Alto Networks Completes Acquisition of CyberArk to Secure the AI Era," press release, February 11, 2026, filed as Exhibit 99.1 to Form 8-K, <https://www.sec.gov/Archives/edgar/data/1327567/000119312526045600/d40626dex991.htm> (accessed Oct 21, 2026).
 [^c04-cpki-graph]: Microsoft Learn, "retrieveCloudPkiLeafCertificateSummaryReport" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-cloudpkigraphservice-devicemanagementreports-retrievecloudpkileafcertificatesummaryreport?view=graph-rest-beta> (accessed Oct 22, 2026); CyberArk, Certificate Manager, Self-Hosted 26.1 documentation, CA import types (Microsoft CA, Amazon Private CA, Certificate Manager SaaS) (accessed Oct 22, 2026).

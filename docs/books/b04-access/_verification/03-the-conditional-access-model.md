@@ -134,3 +134,11 @@ Added at the author's request: paragraph "Contractors and the PIV path" at the e
 | 4 | Only internal guest accounts can be issued a TAP | Before the card | verified (raw page text) | c03-tap |
 | 5 | PIV revocation reaches Entra only when the CRL refreshes; the leaver's disable stops sign-in | After the card | restated from Book 03 Ch09 (linked) | — |
 | 6 | Register FIDO2 with the TAP; decide member or guest on purpose | Before the card | design (labelled) | — |
+
+## Additions, October 30, 2026 (contractor PIV path marked pending proof)
+
+Added at the author's request during the independent verification pass (`docs/research/_verification/verification-pass-2026-10.md`). No content removed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | "Pending proof": the contractor PIV path is the program's design and hasn't yet been validated in practice; links to the Proved criteria | Authentication strengths, after "Contractors and the PIV path" | restated-as-design (status statement; nothing external claimed) | `docs/research/oracle-contingent-worker-contractor-source.md#status-and-review` |
