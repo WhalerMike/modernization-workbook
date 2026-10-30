@@ -1,0 +1,34 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's page 'Use the Azure Login action with OpenID Connect', as its Learn source page: the three sample workflows exist only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn sample workflows: Azure Login action with OpenID Connect",
+  "upstream_repo": "https://github.com/MicrosoftDocs/azure-dev-docs",
+  "upstream_path": "articles/github/connect-from-azure-openid-connect.md",
+  "commit": "23900ce00d955ff876f1a2df6a00d52f1a2f3df3",
+  "commit_date": "2026-10-28",
+  "files_last_changed": "2026-01-21 (commit 97adfb52dc40d282ea57bd5f217fd7729bfe7af5)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: CC BY 4.0 (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/azure/developer/github/connect-from-azure-openid-connect",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "connect-from-azure-openid-connect.md": "articles/github/connect-from-azure-openid-connect.md"
+  },
+  "not_copied": [
+    "Everything else in MicrosoftDocs/azure-dev-docs, including the page's screenshots (articles/github/media) and the sibling pages connect-from-azure.md, connect-from-azure-identity.md and connect-from-azure-secret.md: the workflows exist only inside this one page, so the page is pinned whole; the chapter links Learn rather than quoting it."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 18650,
+      "sha256": "7183ef9749eb9b75e710a81a4c812a9405cc184f087500581a973e5929ac3f5e"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "connect-from-azure-openid-connect.md": {
+      "bytes": 8827,
+      "sha256": "a05cb25d8ffb65dc924771fc28fa9ce8547b6171b0bdefb262c4fb99fcede590"
+    }
+  }
+}

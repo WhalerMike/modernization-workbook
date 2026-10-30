@@ -1,0 +1,31 @@
+{
+  "_comment": "A pinned, unmodified copy of the Azure Login action's metadata file (action.yml) at release v3.1.0. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Azure Login action (action.yml)",
+  "upstream_repo": "https://github.com/Azure/login",
+  "upstream_path": "action.yml",
+  "commit": "a641126d1b8aa4d1fa005f4f92df94a3a4c4c906",
+  "commit_date": "2026-09-10",
+  "release": "v3.1.0 (published 2026-09-10)",
+  "files_last_changed": "2026-09-10 (commit 3c5b5ce5ad792113eb9ae7c228a7f10434d2abd8)",
+  "retrieved": "2026-10-30",
+  "license": "MIT (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/azure/developer/github/connect-from-azure-openid-connect",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "action.yml": "action.yml"
+  },
+  "not_copied": [
+    "README.md: its sample workflows duplicate the Learn page pinned in ../azure-login-oidc-sample; the chapter links it.",
+    "src/, lib/ (the compiled action), __tests__/, scripts/, package.json, package-lock.json and the rest: examples/drift-pipeline only reads the declared inputs and their defaults, and never runs the action."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1162,
+      "sha256": "9906940f61b1f0b533fa7d99baf55178b2808fbe113ea51dfbfad8572ccd5f2b"
+    },
+    "action.yml": {
+      "bytes": 2319,
+      "sha256": "aa1f4cf750a70f88eaaa03d4505afcd73b299c690d5df6efaff84b2b8ea6fa30"
+    }
+  }
+}

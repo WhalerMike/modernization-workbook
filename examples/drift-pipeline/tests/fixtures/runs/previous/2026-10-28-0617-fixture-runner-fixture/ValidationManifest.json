@@ -1,0 +1,128 @@
+{
+  "Schema": "fmw-validation-kit/manifest/1",
+  "RunId": "2026-10-28-0617-fixture-runner-fixture",
+  "KitVersion": "0.1.0",
+  "ReadOnly": true,
+  "Mode": "Fixture",
+  "Cloud": "gcc",
+  "AsOfUtc": "2026-10-28T06:17:00Z",
+  "ExecutedBy": "runner",
+  "ComputerName": "fixture-runner",
+  "StartTimeUtc": "2026-10-28T06:17:00Z",
+  "EndTimeUtc": "2026-10-28T06:17:00Z",
+  "PowerShell": {
+    "Version": "7.6.9",
+    "Edition": "Core"
+  },
+  "Options": {
+    "MaxSecretDays": 180,
+    "MinOwners": 2,
+    "MinSupportedAgentVersion": "1.58",
+    "StaleDays": 90
+  },
+  "RequestedScopes": [],
+  "Checks": [
+    {
+      "CheckId": "VK-HR-01",
+      "Status": "Fail",
+      "Count": 2,
+      "Queries": []
+    },
+    {
+      "CheckId": "VK-HR-02",
+      "Status": "Fail",
+      "Count": 2,
+      "Queries": []
+    },
+    {
+      "CheckId": "VK-DG-01",
+      "Status": "Fail",
+      "Count": 1,
+      "Queries": []
+    },
+    {
+      "CheckId": "VK-INT-05",
+      "Status": "Warn",
+      "Count": 1,
+      "Queries": []
+    },
+    {
+      "CheckId": "VK-ARC-02",
+      "Status": "Fail",
+      "Count": 1,
+      "Queries": []
+    },
+    {
+      "CheckId": "VK-NPI-01",
+      "Status": "Fail",
+      "Count": 2,
+      "Queries": []
+    },
+    {
+      "CheckId": "VK-NPI-03",
+      "Status": "Fail",
+      "Count": 1,
+      "Queries": []
+    },
+    {
+      "CheckId": "VK-CA-01",
+      "Status": "Pass",
+      "Count": 0,
+      "Queries": []
+    },
+    {
+      "CheckId": "VK-PIV-01",
+      "Status": "Pass",
+      "Count": 0,
+      "Queries": []
+    }
+  ],
+  "FileCount": 9,
+  "Files": [
+    {
+      "RelativePath": "Details/VK-ARC-02.csv",
+      "SizeBytes": 279,
+      "SHA256": "522FADE2B3AC74DEF57112F9C0B2F221C1AA1A027A1C881A322D04EB4B8E548E"
+    },
+    {
+      "RelativePath": "Details/VK-DG-01.csv",
+      "SizeBytes": 203,
+      "SHA256": "06FB02D6FA70DAC44423428849CCA1D4821D3BF4A7EB96ACEBEFE8ECC8B66F5E"
+    },
+    {
+      "RelativePath": "Details/VK-HR-01.csv",
+      "SizeBytes": 295,
+      "SHA256": "FD2943FE638C823C3684240CDCBBD794511071781ECE15050130DF1A789AEED0"
+    },
+    {
+      "RelativePath": "Details/VK-HR-02.csv",
+      "SizeBytes": 312,
+      "SHA256": "0164D439865651CB92CDE1C320FC5060583BD0CD6BA0FD40BA4971359CD73925"
+    },
+    {
+      "RelativePath": "Details/VK-INT-05.csv",
+      "SizeBytes": 230,
+      "SHA256": "422EF989B3FCCB17EE1EE6A27F2A61E297139E7BF85B79213EF8732E2E10D42D"
+    },
+    {
+      "RelativePath": "Details/VK-NPI-01.csv",
+      "SizeBytes": 346,
+      "SHA256": "3C952207EBB3DC338F3A014EE8BB1C90D8008AD7C1DCBD6EDE9A335B5622DE3E"
+    },
+    {
+      "RelativePath": "Details/VK-NPI-03.csv",
+      "SizeBytes": 175,
+      "SHA256": "13E05B53D938CD27EE4B05962406402DE4F4E64A02F006858CD0979549527698"
+    },
+    {
+      "RelativePath": "Results/ValidationResults.json",
+      "SizeBytes": 7327,
+      "SHA256": "960C14E92183F4530048F360794D754F86DEFB13EF943AA026C62C93F984C9F9"
+    },
+    {
+      "RelativePath": "Summary/ValidationSummary.json",
+      "SizeBytes": 1004,
+      "SHA256": "0D2FE416049F897DD479ED9840D1A9C24D174F7BD36A84C52AA15F781B2C011D"
+    }
+  ]
+}

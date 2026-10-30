@@ -1,0 +1,2 @@
+"Severity","Object","ObjectId","Issue","Detail"
+"Finding","Payroll Export","aaaaaaaa-0000-4000-8000-000000000305","Client secret valid for 730 days, more than 180","KeyId=k1"

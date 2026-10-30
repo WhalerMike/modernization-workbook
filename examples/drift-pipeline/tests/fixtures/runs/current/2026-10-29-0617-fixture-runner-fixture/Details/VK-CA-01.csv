@@ -1,0 +1,2 @@
+"Severity","Object","ObjectId","Issue","Detail"
+"Finding","Require MFA","ca-users","Emergency-access group not excluded","State=enabled; MissingExclusions=00000000-0000-4000-8000-000000000900"

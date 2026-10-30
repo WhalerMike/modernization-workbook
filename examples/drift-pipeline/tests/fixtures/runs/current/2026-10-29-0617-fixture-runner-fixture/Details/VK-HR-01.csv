@@ -1,0 +1,3 @@
+"Severity","Object","ObjectId","Issue","Detail"
+"Finding","dave@contoso.example","00000000-0000-4000-8000-000000000007","No employeeId: not correlated to an HR record",""
+"Finding","gina@contoso.example","00000000-0000-4000-8000-000000000011","No employeeId: not correlated to an HR record",""

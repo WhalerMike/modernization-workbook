@@ -1,0 +1,3 @@
+"Severity","Object","ObjectId","Issue","Detail"
+"Finding","Report Bot","aaaaaaaa-0000-4000-8000-000000000303","App registration with 1 owner(s), fewer than 2","ObjectType=Application; Owners=1"
+"Finding","Report Bot","aaaaaaaa-0000-4000-8000-000000000303","Service principal with 1 owner(s), fewer than 2","ObjectType=ServicePrincipal; Owners=1"

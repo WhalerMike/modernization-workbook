@@ -1,0 +1,2 @@
+"Severity","Object","ObjectId","Issue","Detail"
+"Warn","PC-001","00000000-0000-4000-8000-000000000200","Reached by more than one policy of the same type (conflict candidate)","Policies=Win11 general (pilot),Win11 general (Tier2)"
