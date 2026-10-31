@@ -13,6 +13,14 @@ Modernization Workbook's HR-driven identity book; this file is an example, not
 an agency's implementation.
 
 Standard library only; Python 3.10 or later.
+
+Examples (from the kit root):
+
+  # Dry run: write the bulk requests, validation report, quarantine and provenance to out/
+  python python/hcm_to_scim.py --extract tests/fixtures/hcm_extract_sample.csv --as-of 2026-10-25 --out out
+
+  # Send the batches (bearer token in HCM_ENTRA_BEARER_TOKEN; endpoint from the settings file)
+  python python/hcm_to_scim.py --extract extract.csv --settings config/settings.json --apply
 """
 from __future__ import annotations
 

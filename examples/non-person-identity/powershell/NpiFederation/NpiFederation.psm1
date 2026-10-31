@@ -36,12 +36,28 @@ $script:AssertionType = 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'
 # ----------------------------------------------------------------------------- the call list
 
 function Get-NpiWifCallList {
+    <#
+    .SYNOPSIS
+        Reads Chapter 05's call list (config/calls-ch05.json unless -Path names another file) and
+        returns it as a hashtable with its calls and tasks.
+    .EXAMPLE
+        # The two tasks: federation (read) and federation-apply (write).
+        (Get-NpiWifCallList).tasks.Keys
+    #>
     [CmdletBinding()]
     param([string]$Path = $script:ConfigPath)
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
 }
 
 function Get-NpiWifTask {
+    <#
+    .SYNOPSIS
+        Returns one task's declaration from config/calls-ch05.json: its mode and the permissions,
+        roles and rights it holds. Throws for a task the call list doesn't declare.
+    .EXAMPLE
+        # 'write': the reviewed write path.
+        (Get-NpiWifTask -Task federation-apply).mode
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Task)
     $t = (Get-NpiWifCallList).tasks
@@ -50,7 +66,14 @@ function Get-NpiWifTask {
 }
 
 function Get-NpiWifRequiredPermission {
-    <# The union of a task's calls: Graph permissions, Azure roles, AD rights and methods. #>
+    <#
+    .SYNOPSIS
+        The union of a task's calls: Graph permissions, Azure roles, AD rights and methods.
+        Returns an object with Task, GraphPermissions, AzureRoles, AdRights and Methods.
+    .EXAMPLE
+        # What the read task needs: Application.Read.All and AuditLog.Read.All, among others.
+        Get-NpiWifRequiredPermission -Task federation
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Task)
     $null = Get-NpiWifTask -Task $Task
@@ -73,6 +96,11 @@ function New-NpiWifClient {
         for Graph and Resource Manager; -AdInvoke is { param($Cmdlet, [hashtable]$Params) };
         -TokenEndpoint is a fake from New-NpiWifFakeTokenEndpoint, the only place the token
         exchange test is ever sent.
+    .EXAMPLE
+        # A read client over the fixture tenant, with the fake token endpoint for the exchange test.
+        $fake = New-NpiWifFake -Path tests/fixtures/ch05/tenant.json
+        $ep = New-NpiWifFakeTokenEndpoint -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -AsOf ([datetime]'2026-10-30T12:00:00Z')
+        $client = New-NpiWifClient -Cloud gcc -Task federation -TenantId c0ffee00-0000-4000-8000-000000000001 -Invoke $fake.Invoke -AdInvoke $fake.AdInvoke -TokenEndpoint $ep
     #>
     [CmdletBinding()]
     param(
@@ -105,6 +133,19 @@ function Get-NpiWifCall {
 }
 
 function Resolve-NpiWifUri {
+    <#
+    .SYNOPSIS
+        Builds the full URL for one declared Graph, Resource Manager or sign-in call on the client's
+        cloud and returns @{ Call; Uri; Host }. Throws for an undeclared call, an Active Directory call
+        or an unbound placeholder; the caller checks the method.
+    .EXAMPLE
+        $fake = New-NpiWifFake -Path tests/fixtures/ch05/tenant.json
+        $ep = New-NpiWifFakeTokenEndpoint -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -AsOf ([datetime]'2026-10-30T12:00:00Z')
+        $client = New-NpiWifClient -Cloud gcc -Task federation -TenantId c0ffee00-0000-4000-8000-000000000001 -Invoke $fake.Invoke -AdInvoke $fake.AdInvoke -TokenEndpoint $ep
+        # https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000004/federatedIdentityCredentials
+        (Resolve-NpiWifUri -Client $client -CallId 'ch05-application-fics' -Bind @{ id = '0a000000-0000-4000-8000-000000000004' }).Uri
+    #>
+
     # The URL for a declared call, on the cloud's own host; refuses an unbound placeholder.
     param($Client, [string]$CallId, [hashtable]$Bind = @{}, [string]$Query)
     $call = Get-NpiWifCall -Client $Client -CallId $CallId
@@ -136,6 +177,12 @@ function Invoke-NpiWifGet {
     .SYNOPSIS
         GET a declared call and follow every page on the cloud's own host. Returns the items of a
         collection, or the object. With -AllowNotFound a 404 returns $null instead of throwing.
+    .EXAMPLE
+        $fake = New-NpiWifFake -Path tests/fixtures/ch05/tenant.json
+        $ep = New-NpiWifFakeTokenEndpoint -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -AsOf ([datetime]'2026-10-30T12:00:00Z')
+        $client = New-NpiWifClient -Cloud gcc -Task federation -TenantId c0ffee00-0000-4000-8000-000000000001 -Invoke $fake.Invoke -AdInvoke $fake.AdInvoke -TokenEndpoint $ep
+        # The federated credentials on one app registration, every page.
+        Invoke-NpiWifGet -Client $client -CallId 'ch05-application-fics' -Bind @{ id = '0a000000-0000-4000-8000-000000000004' }
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string]$CallId, [hashtable]$Bind = @{}, [string]$Query, [switch]$AllowNotFound)
@@ -157,6 +204,18 @@ function Invoke-NpiWifGet {
 }
 
 function Invoke-NpiWifAdRead {
+    <#
+    .SYNOPSIS
+        Runs one declared Active Directory read (a Get-AD* cmdlet named by the call list, never by the
+        caller) through the client's AD invoker, records the cmdlet and its parameters in the evidence,
+        and returns what the cmdlet returns.
+    .EXAMPLE
+        $fake = New-NpiWifFake -Path tests/fixtures/ch05/tenant.json
+        $ep = New-NpiWifFakeTokenEndpoint -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -AsOf ([datetime]'2026-10-30T12:00:00Z')
+        $client = New-NpiWifClient -Cloud gcc -Task federation -TenantId c0ffee00-0000-4000-8000-000000000001 -Invoke $fake.Invoke -AdInvoke $fake.AdInvoke -TokenEndpoint $ep
+        # Whether the legacy account is still enabled, and its last logon.
+        Invoke-NpiWifAdRead -Client $client -CallId 'ch05-ad-legacy' -Params @{ Identity = 'ad000000-0000-4000-8000-000000000001'; Properties = @('Enabled', 'LastLogonDate') }
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string]$CallId, [hashtable]$Params = @{})
     $call = Get-NpiWifCall -Client $Client -CallId $CallId
@@ -177,6 +236,9 @@ function Get-NpiWifPresentedClaims {
         name-based subject format; a pull request subject, an immutable subject or any other
         platform needs the subject captured from a test run (capturedSubject). Kubernetes uses
         system:serviceaccount:<namespace>:<name>.
+    .EXAMPLE
+        # Subject repo:contoso/intranet:environment:production, derived from Learn's format.
+        $presented = Get-NpiWifPresentedClaims -Workload @{ platform = 'github'; repository = 'contoso/intranet'; entity = 'environment'; value = 'production'; subjectFormat = 'name-based' }
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Workload)
@@ -220,6 +282,10 @@ function Test-NpiWifCredential {
         wildcards, exactly one audience, the recommended audience, issuer and subject that match
         the token exactly) and the program's (no preview flexible credentials). Returns a list of
         @{ Rule; Issue }; empty means it passes.
+    .EXAMPLE
+        # Empty: the credential passes Learn's rules and matches what the workflow presents.
+        $presented = Get-NpiWifPresentedClaims -Workload @{ platform = 'github'; repository = 'contoso/intranet'; entity = 'environment'; value = 'production'; subjectFormat = 'name-based' }
+        Test-NpiWifCredential -Credential @{ name = 'github-intranet'; issuer = 'https://token.actions.githubusercontent.com'; subject = 'repo:contoso/intranet:environment:production'; audiences = @('api://AzureADTokenExchange') } -Presented $presented
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Credential, $Presented, [string]$ParentKind = 'application')
@@ -246,7 +312,15 @@ function Test-NpiWifCredential {
 }
 
 function Test-NpiWifOrder {
-    <# The plan's order: a managed identity where the host is in Azure, else a federated credential where it has an OIDC issuer, else a certificate. #>
+    <#
+    .SYNOPSIS
+        The plan's order: a managed identity where the host is in Azure, else a federated credential where it has an OIDC issuer, else a certificate.
+        Returns $null when the conversion's target kind fits, or a sentence naming the kind that
+        should come first.
+    .EXAMPLE
+        # A certificate for an Azure-hosted workload: the message says a managed identity comes first.
+        Test-NpiWifOrder -Conversion @{ host = @{ azureHosted = $true; oidcIssuer = $false }; target = @{ kind = 'certificate'; credentials = @() } }
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Conversion)
     $h = $Conversion.host; $k = $Conversion.target.kind
@@ -265,6 +339,14 @@ function ConvertTo-NpiWifBase64Url {
 }
 
 function ConvertFrom-NpiWifBase64Url {
+    <#
+    .SYNOPSIS
+        Decodes a base64url string (the encoding of a JWT's header and claims) and returns the UTF-8
+        text.
+    .EXAMPLE
+        # {"typ":"JWT"}
+        ConvertFrom-NpiWifBase64Url 'eyJ0eXAiOiJKV1QifQ'
+    #>
     param([string]$Text)
     $s = $Text.Replace('-', '+').Replace('_', '/'); switch ($s.Length % 4) { 2 { $s += '==' } 3 { $s += '=' } }
     [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($s))
@@ -275,6 +357,10 @@ function New-NpiWifTestAssertion {
     .SYNOPSIS
         An unsigned test assertion with the claims the workload's issuer will present. For the fake
         token endpoint only: it has no valid signature, and Microsoft Entra ID would refuse it.
+    .EXAMPLE
+        # Three dot-separated parts; the third says it isn't signed.
+        $presented = Get-NpiWifPresentedClaims -Workload @{ platform = 'github'; repository = 'contoso/intranet'; entity = 'environment'; value = 'production'; subjectFormat = 'name-based' }
+        New-NpiWifTestAssertion -Presented $presented -AsOf ([datetime]'2026-10-30T12:00:00Z')
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Presented, [Parameter(Mandatory)][datetime]$AsOf)
@@ -293,6 +379,10 @@ function New-NpiWifFakeTokenEndpoint {
         subject and audience exactly and case-sensitively, an issuer with leading or trailing
         whitespace blocked, an expired assertion refused. It checks no signature and no issuer
         keys. -Credentials is @{ ClientId; Name; Id; Issuer; Subject; Audiences }.
+    .EXAMPLE
+        # A fake endpoint that knows one federated credential.
+        $cred = [pscustomobject]@{ ClientId = 'c1'; Name = 'n'; Id = 'i'; Issuer = 'https://contoso.example'; Subject = 's'; Audiences = @('api://AzureADTokenExchange') }
+        $ep = New-NpiWifFakeTokenEndpoint -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -AsOf ([datetime]'2026-10-30T12:00:00Z') -Credentials @($cred)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [object[]]$Credentials = @(), [datetime]$AsOf = [datetime]::UtcNow)
@@ -329,6 +419,13 @@ function Test-NpiWifTokenExchange {
         The client credentials request with a federated credential (Learn's third case), sent
         only to the fake token endpoint on the client: the code refuses to send an assertion
         anywhere else. Passes only if the named credential is the one that matched.
+    .EXAMPLE
+        # Passed is True: the fake endpoint matches the credential named 'n'.
+        $cred = [pscustomobject]@{ ClientId = 'c1'; Name = 'n'; Id = 'i'; Issuer = 'https://contoso.example'; Subject = 's'; Audiences = @('api://AzureADTokenExchange') }
+        $ep = New-NpiWifFakeTokenEndpoint -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -AsOf ([datetime]'2026-10-30T12:00:00Z') -Credentials @($cred)
+        $client = New-NpiWifClient -Cloud gcc -Task federation -TenantId c0ffee00-0000-4000-8000-000000000001 -TokenEndpoint $ep
+        $presented = [pscustomobject]@{ Issuer = 'https://contoso.example'; Subject = 's'; Audience = 'api://AzureADTokenExchange'; Note = $null }
+        Test-NpiWifTokenExchange -Client $client -ClientId 'c1' -Presented $presented -CredentialName 'n' -AsOf ([datetime]'2026-10-30T12:00:00Z')
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string]$ClientId, [Parameter(Mandatory)]$Presented, [Parameter(Mandatory)][string]$CredentialName, [Parameter(Mandatory)][datetime]$AsOf, [string]$Scope)
@@ -351,7 +448,14 @@ function Test-NpiWifTokenExchange {
 # ----------------------------------------------------------------------------- inputs
 
 function Import-NpiWifConversions {
-    <# The reviewed conversion file, with its SHA-256. #>
+    <#
+    .SYNOPSIS
+        The reviewed conversion file, with its SHA-256.
+        Returns @{ Data; Conversions; Sha256 } and throws if two conversions share an ID.
+    .EXAMPLE
+        # The fixture's reviewed conversions.
+        Import-NpiWifConversions -Path tests/fixtures/ch05/conversions.json
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
     $data = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable -Depth 50
@@ -361,6 +465,13 @@ function Import-NpiWifConversions {
 }
 
 function Import-NpiWifCutoverLog {
+    <#
+    .SYNOPSIS
+        Reads the cutover log CSV and returns @{ Rows; Sha256 }, with Rows keyed by ConversionId.
+    .EXAMPLE
+        # Each conversion's cutover date and disable approval, if recorded.
+        Import-NpiWifCutoverLog -Path tests/fixtures/ch05/cutover-log.csv
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
     $rows = @(Import-Csv -LiteralPath $Path)
@@ -370,6 +481,15 @@ function Import-NpiWifCutoverLog {
 }
 
 function Format-NpiWifTime {
+    <#
+    .SYNOPSIS
+        Returns a time as an ISO 8601 UTC string (yyyy-MM-ddTHH:mm:ssZ), whether JSON parsing turned it
+        into a DateTime or left a string. $null or an empty value returns $null.
+    .EXAMPLE
+        # 2026-10-30T12:00:00Z
+        Format-NpiWifTime '2026-10-30T12:00:00Z'
+    #>
+
     # A sign-in time as ISO 8601 UTC, whether JSON parsing turned it into a DateTime or left a string.
     param($Value)
     if ($null -eq $Value -or "$Value" -eq '') { return $null }
@@ -378,6 +498,14 @@ function Format-NpiWifTime {
 }
 
 function ConvertTo-NpiWifDate {
+    <#
+    .SYNOPSIS
+        Parses a date or date-time string as UTC (a value with no offset is taken as UTC) and returns a
+        DateTime. An empty string returns $null.
+    .EXAMPLE
+        # Midnight UTC on 1 October 2026, as the cutover log records a date.
+        ConvertTo-NpiWifDate '2026-10-01'
+    #>
     param([string]$Text)
     if (-not $Text) { return $null }
     [datetime]::Parse($Text, [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AdjustToUniversal -bor [Globalization.DateTimeStyles]::AssumeUniversal)
@@ -405,6 +533,14 @@ function New-NpiWifPlan {
         fake endpoint, the diff (create, no change, review, unmanaged), managed identities created
         or recorded with their role assignments, and the parallel run from sign-in evidence. The
         plan only describes writes; nothing here sends one.
+    .EXAMPLE
+        # The plan for the fixture tenant, with the read client.
+        $fake = New-NpiWifFake -Path tests/fixtures/ch05/tenant.json
+        $ep = New-NpiWifFakeTokenEndpoint -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -AsOf ([datetime]'2026-10-30T12:00:00Z')
+        $client = New-NpiWifClient -Cloud gcc -Task federation -TenantId c0ffee00-0000-4000-8000-000000000001 -Invoke $fake.Invoke -AdInvoke $fake.AdInvoke -TokenEndpoint $ep
+        $conv = Import-NpiWifConversions -Path tests/fixtures/ch05/conversions.json
+        $cut = Import-NpiWifCutoverLog -Path tests/fixtures/ch05/cutover-log.csv
+        $r = New-NpiWifPlan -Client $client -Conversions $conv -CutoverLog $cut -AsOf ([datetime]'2026-10-30T12:00:00Z')
     #>
     [CmdletBinding()]
     param(
@@ -594,7 +730,17 @@ function New-NpiWifPlan {
 # ----------------------------------------------------------------------------- the reviewed write path
 
 function Assert-NpiWifPlannedWrite {
-    <# Every write must be a declared federation-apply call with its method, its target on the cloud's host, and only the body it allows. #>
+    <#
+    .SYNOPSIS
+        Every write must be a declared federation-apply call with its method, its target on the cloud's host, and only the body it allows.
+        A federated credential's body goes through Test-NpiWifCredential again. Throws with the reason;
+        returns nothing when the write is allowed.
+    .EXAMPLE
+        # $r is New-NpiWifPlan's result; check its first write with a federation-apply client.
+        $fake = New-NpiWifFake -Path tests/fixtures/ch05/tenant.json -AllowWrite
+        $writer = New-NpiWifClient -Cloud gcc -Task federation-apply -TenantId c0ffee00-0000-4000-8000-000000000001 -Invoke $fake.Invoke -AdInvoke $fake.AdInvoke
+        Assert-NpiWifPlannedWrite -Client $writer -Action @($r.Plan.actions | Where-Object Write)[0]
+    #>
     param($Client, $Action)
     $call = @($Client.Calls | Where-Object { $_.id -eq $Action.Call })
     if (-not $call) { throw "Action $($Action.ConversionId)/$($Action.Name): '$($Action.Call)' isn't declared for federation-apply." }
@@ -640,6 +786,12 @@ function Invoke-NpiWifPlan {
         sent. With -Apply it sends the plan's writes in order, one at a time, only if the plan
         file's SHA-256 is the approved one, the plan is for this tenant and cloud and no older
         than seven days, and each precheck still holds.
+    .EXAMPLE
+        # A dry run of a reviewed plan against the fake; add -Apply to send the writes.
+        $fake = New-NpiWifFake -Path tests/fixtures/ch05/tenant.json -AllowWrite
+        $writer = New-NpiWifClient -Cloud gcc -Task federation-apply -TenantId c0ffee00-0000-4000-8000-000000000001 -Invoke $fake.Invoke -AdInvoke $fake.AdInvoke
+        Invoke-NpiWifPlan -PlanPath out/federation/plan.json -ApprovedSha256 (Get-NpiFileHash -Path out/federation/plan.json) `
+            -Client $writer -AsOf ([datetime]'2026-10-30T12:00:00Z')
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$PlanPath, [Parameter(Mandatory)][string]$ApprovedSha256, [Parameter(Mandatory)]$Client, [Parameter(Mandatory)][datetime]$AsOf, [switch]$Apply)
@@ -716,6 +868,10 @@ function New-NpiWifLiveInvoker {
         The live invoker: Graph through Invoke-MgGraphRequest, Resource Manager through
         Invoke-AzRestMethod. Refuses a session in another cloud or tenant, refuses anything but GET
         unless -AllowWrite, and never sends DELETE.
+    .EXAMPLE
+        # After Connect-MgGraph and Connect-AzAccount to the same GCC tenant; GET only.
+        $invoke = New-NpiWifLiveInvoker -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001
+        $client = New-NpiWifClient -Cloud gcc -Task federation -TenantId c0ffee00-0000-4000-8000-000000000001 -Invoke $invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [switch]$SkipAzure, [switch]$AllowWrite)
@@ -761,6 +917,9 @@ function New-NpiWifFake {
         Learn documents (exactly one audience, the name rules, a unique issuer and subject, 20 per
         parent, an existing parent identity) and nothing else: a wrong subject or audience is
         accepted at creation, as Learn says the service accepts it.
+    .EXAMPLE
+        # The fixture tenant; pass $fake.Invoke and $fake.AdInvoke to New-NpiWifClient.
+        $fake = New-NpiWifFake -Path tests/fixtures/ch05/tenant.json -PageSize 2
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [string]$Cloud = 'gcc', [int]$PageSize = 2, [switch]$AllowWrite)
@@ -791,6 +950,17 @@ function Test-NpiWifFakeCreate {
 }
 
 function Invoke-NpiWifFakeHttp {
+    <#
+    .SYNOPSIS
+        The fake's HTTP handler, called through New-NpiWifFake's Invoke scriptblock. It records the
+        call, serves the Graph and Resource Manager routes Chapter 05 uses from the fixture tenant in
+        pages, and creates a credential or identity only when the state allows writes, with Learn's
+        creation errors. Returns the response body; throws for a route it doesn't know.
+    .EXAMPLE
+        # Usually called through $fake.Invoke; called directly here for one app registration.
+        $fake = New-NpiWifFake -Path tests/fixtures/ch05/tenant.json
+        Invoke-NpiWifFakeHttp -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000004'
+    #>
     param($State, [string]$Method, [string]$Uri, $Body, $Headers)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri; Body = $Body })
     $u = [Uri]$Uri
@@ -889,6 +1059,16 @@ function Invoke-NpiWifFakeHttp {
 }
 
 function Invoke-NpiWifFakeAd {
+    <#
+    .SYNOPSIS
+        The fake Active Directory handler, called through New-NpiWifFake's AdInvoke scriptblock. It
+        records the call, returns SamAccountName, ObjectGUID, Enabled and LastLogonDate for one fixture
+        account on Get-ADUser, and runs Disable-ADAccount only when the state allows writes.
+    .EXAMPLE
+        # Usually called through $fake.AdInvoke; called directly here for the legacy account.
+        $fake = New-NpiWifFake -Path tests/fixtures/ch05/tenant.json
+        Invoke-NpiWifFakeAd -State $fake -Cmdlet Get-ADUser -Params @{ Identity = 'svc-hrsync' }
+    #>
     param($State, [string]$Cmdlet, [hashtable]$Params)
     $State.Calls.Add([pscustomobject]@{ Method = $Cmdlet; Uri = "-Identity $($Params.Identity)"; Body = $null })
     $o = @($State.Estate.ad.objects | Where-Object { $_.ObjectGUID -eq $Params.Identity -or $_.SamAccountName -eq $Params.Identity })
@@ -903,7 +1083,15 @@ function Invoke-NpiWifFakeAd {
 # ----------------------------------------------------------------------------- the run
 
 function Export-NpiWifRun {
-    <# Write a run's files and a manifest: task, mode, cloud, tenant, as-of, the task's permissions, every request, and a SHA-256 per file. #>
+    <#
+    .SYNOPSIS
+        Write a run's files and a manifest: task, mode, cloud, tenant, as-of, the task's permissions, every request, and a SHA-256 per file.
+        Returns the manifest.json file.
+    .EXAMPLE
+        # $r is New-NpiWifPlan's result and $client its read client.
+        Export-NpiWifRun -OutputPath out/federation -Task federation -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -AsOf 2026-10-30 `
+            -Evidence $client.Evidence.ToArray() -Files @{ 'plan.json' = $r.Plan; 'findings.json' = @($r.Findings) }
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$OutputPath, [Parameter(Mandatory)][string]$Task, [Parameter(Mandatory)][hashtable]$Files, [Parameter(Mandatory)][string]$Cloud,
         [Parameter(Mandatory)][string]$TenantId, [string]$AsOf, [object[]]$Evidence = @(), [string]$Mode = 'Fixture', [hashtable]$Extra = @{})

@@ -30,12 +30,28 @@ $script:GuidRx = '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0
 # ----------------------------------------------------------------------------- the call list (calls-ch07.json)
 
 function Get-NpiLpCallList {
+    <#
+    .SYNOPSIS
+        Reads Chapter 07's call list (config/calls-ch07.json unless -Path names another file) and
+        returns it as a hashtable of tasks and calls.
+    .EXAMPLE
+        # List the IDs of the calls Chapter 07 declares.
+        (Get-NpiLpCallList).calls | ForEach-Object { $_.id }
+    #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'calls-ch07.json'))
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
 }
 
 function Get-NpiLpTask {
+    <#
+    .SYNOPSIS
+        Returns one task's declaration from Chapter 07's call list, such as its mode (read or
+        write). Throws if the task isn't declared.
+    .EXAMPLE
+        # Confirm the apply task is declared as a write task.
+        (Get-NpiLpTask -Task least-privilege-apply).mode
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Task)
     $t = (Get-NpiLpCallList).tasks
@@ -44,6 +60,14 @@ function Get-NpiLpTask {
 }
 
 function Get-NpiLpCall {
+    <#
+    .SYNOPSIS
+        Returns the calls in Chapter 07's call list, narrowed to those declared for -Task when it is
+        given.
+    .EXAMPLE
+        # The methods and IDs of the write task's calls.
+        Get-NpiLpCall -Task least-privilege-apply | Select-Object method, id
+    #>
     [CmdletBinding()]
     param([string]$Task)
     $calls = @((Get-NpiLpCallList).calls)
@@ -52,6 +76,15 @@ function Get-NpiLpCall {
 }
 
 function Get-NpiLpRequiredPermission {
+    <#
+    .SYNOPSIS
+        Returns the Microsoft Graph permissions, Azure roles and methods that a Chapter 07 task's
+        declared calls need, combined into one object.
+    .EXAMPLE
+        # What the read-only sweep must be granted.
+        Get-NpiLpRequiredPermission -Task least-privilege
+    .DESCRIPTION
+    #>
     <# The union of a Chapter 07 task's calls: Graph permissions, Azure roles, methods. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Task)
@@ -66,6 +99,15 @@ function Get-NpiLpRequiredPermission {
 }
 
 function Get-NpiLpConfig {
+    <#
+    .SYNOPSIS
+        Reads the least-privilege settings (config/least-privilege.json unless -Path names another
+        file): the reviewed list of broad permissions, their proposed replacements, directory role
+        names and privileged Azure roles. Returns them as a hashtable.
+    .EXAMPLE
+        # Show the broad delegated scopes the check looks for.
+        (Get-NpiLpConfig).broadDelegatedScopes
+    #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'least-privilege.json'))
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
@@ -76,6 +118,10 @@ function New-NpiLpReader {
     .SYNOPSIS
         A read-only client for the least-privilege task, shaped like NpiCore's reader so its
         Invoke-NpiList and Invoke-NpiGetOne send only these declared GETs, on the cloud's own hosts.
+    .EXAMPLE
+        # A reader over the Chapter 07 fake.
+        $fake = New-NpiLpFixtureInvoker -Path tests/fixtures/ch07/estate-ch07.json
+        $reader = New-NpiLpReader -Cloud gcc -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][scriptblock]$Invoke)
@@ -93,6 +139,15 @@ function ConvertTo-NpiLpDate {
 }
 
 function Import-NpiLpRegister {
+    <#
+    .SYNOPSIS
+        Reads Chapter 01's register from a run folder and returns @{ Rows; Manifest; Sha256 }.
+        Throws if register.json's SHA-256 isn't the one manifest.json records.
+    .EXAMPLE
+        # Load Chapter 01's fixture run from out/inventory.
+        $register = Import-NpiLpRegister -RunPath out/inventory
+    .DESCRIPTION
+    #>
     <# Chapter 01's register, refused unless its SHA-256 is the one its manifest records. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$RunPath)
@@ -106,6 +161,14 @@ function Import-NpiLpRegister {
 }
 
 function Import-NpiLpInput {
+    <#
+    .SYNOPSIS
+        Reads a CSV input file and returns its rows. Returns an empty array when the path is empty
+        or the file doesn't exist, so an optional input can be left out.
+    .EXAMPLE
+        # The Azure scopes to sweep, from the Chapter 07 fixture inputs.
+        Import-NpiLpInput -Path tests/fixtures/ch07/inputs/azure-scopes.csv | ForEach-Object Scope
+    #>
     param([string]$Path)
     if (-not $Path -or -not (Test-Path -LiteralPath $Path)) { return @() }
     @(Import-Csv -LiteralPath $Path)
@@ -114,6 +177,15 @@ function Import-NpiLpInput {
 # ----------------------------------------------------------------------------- the sweep (read only)
 
 function Get-NpiLpScopeLevel {
+    <#
+    .SYNOPSIS
+        Returns the level of an Azure role assignment scope as text: Root, ManagementGroup,
+        Subscription, ResourceGroup, Resource, or Unknown when the string matches none of them.
+    .EXAMPLE
+        # A key vault's scope is at the Resource level.
+        Get-NpiLpScopeLevel -Scope '/subscriptions/1/resourceGroups/rg/providers/Microsoft.KeyVault/vaults/kv'
+    .DESCRIPTION
+    #>
     <# Root, ManagementGroup, Subscription, ResourceGroup or Resource, from an Azure scope string. #>
     param([Parameter(Mandatory)][string]$Scope)
     $s = $Scope.TrimEnd('/')
@@ -131,6 +203,13 @@ function Get-NpiLpSweep {
         Read every in-scope service principal's permissions: app role assignments on every
         resource, delegated grants, directory roles, and for managed identities their Azure role
         assignments at the scopes listed. Returns @{ Identities; Grants; Skipped; Evidence }.
+    .EXAMPLE
+        # Sweep the fixture register through the Chapter 07 fake.
+        $register = Import-NpiLpRegister -RunPath out/inventory
+        $fake = New-NpiLpFixtureInvoker -Path tests/fixtures/ch07/estate-ch07.json
+        $reader = New-NpiLpReader -Cloud gcc -Invoke $fake.Invoke
+        $scopes = @(Import-NpiLpInput tests/fixtures/ch07/inputs/azure-scopes.csv | ForEach-Object Scope)
+        $sweep = Get-NpiLpSweep -Reader $reader -Rows $register.Rows -AzureScopes $scopes
     #>
     [CmdletBinding()]
     param(
@@ -265,6 +344,10 @@ function Test-NpiLeastPrivilege {
         Findings NPI-LP-01 to NPI-LP-09 over a sweep, the privileged service principals handed to
         the Privileged Access plan, and a proposal for each broad grant. Returns
         @{ Grants (each with Broad, Class, Proposal, Exception); Findings; Handoff }.
+    .EXAMPLE
+        # Check a sweep against the fixture exceptions.
+        $check = Test-NpiLeastPrivilege -Sweep $sweep -Exceptions (Import-NpiLpInput tests/fixtures/ch07/inputs/permission-exceptions.csv) -AsOf '2026-10-30T12:00:00Z'
+        $check.Findings | Group-Object Rule
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Sweep, [object[]]$Exceptions = @(), [Parameter(Mandatory)][datetime]$AsOf, $Config = (Get-NpiLpConfig))
@@ -357,6 +440,15 @@ function Test-NpiLeastPrivilege {
 # ----------------------------------------------------------------------------- the quarterly owner review
 
 function Get-NpiLpQuarter {
+    <#
+    .SYNOPSIS
+        Returns the calendar quarter that contains -AsOf: its name (for example 2026-Q4) and its
+        start and end as UTC dates. The owner review uses it to tell this quarter's decisions from
+        older ones.
+    .EXAMPLE
+        # The quarter for 30 October 2026 is 2026-Q4.
+        Get-NpiLpQuarter -AsOf '2026-10-30'
+    #>
     param([datetime]$AsOf)
     $q = [int][Math]::Ceiling($AsOf.Month / 3)
     $start = [datetime]::new($AsOf.Year, ($q - 1) * 3 + 1, 1, 0, 0, 0, [DateTimeKind]::Utc)
@@ -370,6 +462,10 @@ function New-NpiLpOwnerReview {
         sweeps, with its owners, whether it's broad, its exception and the proposal, and the
         owner's decision this quarter if there is one. Privileged service principals aren't in it:
         their review is the Privileged Access plan's. Returns @{ Rows; Status }.
+    .EXAMPLE
+        # Build this quarter's review packet with the fixture owner decisions.
+        $review = New-NpiLpOwnerReview -Check $check -Sweep $sweep -Decisions (Import-NpiLpInput tests/fixtures/ch07/inputs/owner-decisions.csv) -AsOf '2026-10-30T12:00:00Z'
+        $review.Status
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Check, [Parameter(Mandatory)]$Sweep, [object[]]$Decisions = @(), [Parameter(Mandatory)][datetime]$AsOf)
@@ -407,6 +503,10 @@ function New-NpiLpPlan {
         Turn the owners' decisions into one action per broad grant and per decided change. Only two
         actions write: RemoveAppRole (DELETE the assignment through the resource service principal)
         and NarrowGrant (PATCH a delegated grant's scope to a non-empty subset). Nothing in it writes.
+    .EXAMPLE
+        # Turn the review into a dry-run plan for the fixture tenant.
+        $plan = New-NpiLpPlan -Check $check -Review $review -AsOf '2026-10-30T12:00:00Z' -Cloud gcc -TenantId $register.Manifest.tenantId -RegisterSha256 $register.Sha256
+        $plan.actions | Where-Object Write
     #>
     [CmdletBinding()]
     param(
@@ -475,6 +575,10 @@ function New-NpiLpWriter {
     .SYNOPSIS
         The writer for least-privilege-apply: the only object in this chapter that can send a
         DELETE or a PATCH, and only the two calls calls-ch07.json declares for that task.
+    .EXAMPLE
+        # A writer over the Chapter 07 fake, which accepts writes only with -AllowWrite.
+        $fake = New-NpiLpFixtureInvoker -Path tests/fixtures/ch07/estate-ch07.json -AllowWrite
+        $writer = New-NpiLpWriter -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [Parameter(Mandatory)][scriptblock]$Invoke)
@@ -484,6 +588,17 @@ function New-NpiLpWriter {
 }
 
 function Assert-NpiLpPlannedWrite {
+    <#
+    .SYNOPSIS
+        Throws unless a plan action is a write declared for least-privilege-apply, with the declared
+        method, the expected target shape and an allowed body. Returns nothing when the action
+        passes.
+    .EXAMPLE
+        # Check every write in a saved plan before anything is sent.
+        $plan = Get-Content -LiteralPath out/least-privilege/lp-plan.json -Raw | ConvertFrom-Json
+        foreach ($a in @($plan.actions | Where-Object Write)) { Assert-NpiLpPlannedWrite -Writer $writer -Action $a }
+    .DESCRIPTION
+    #>
     <# Every write must be a declared least-privilege-apply call, with its method, target shape and body. #>
     param($Writer, $Action)
     $call = $Writer.Calls | Where-Object { $_.id -eq $Action.Call }
@@ -531,6 +646,11 @@ function Invoke-NpiLpPlan {
         runs every precheck, and sends nothing. With -Apply it sends only the plan's writes, only if
         the plan file's SHA-256 is the one the reviewer approved, the plan is for this tenant and
         cloud and no older than seven days, and each precheck still holds.
+    .EXAMPLE
+        # A dry run of the reviewed plan against the fake; add -Apply to send the writes.
+        $sha = (Get-FileHash -Algorithm SHA256 -LiteralPath out/least-privilege/lp-plan.json).Hash
+        $run = Invoke-NpiLpPlan -PlanPath out/least-privilege/lp-plan.json -ApprovedSha256 $sha -Writer $writer -AsOf '2026-10-30T12:00:00Z'
+        $run.Results | Format-Table Outcome, Action, Target
     #>
     [CmdletBinding()]
     param(
@@ -589,6 +709,16 @@ function Invoke-NpiLpPlan {
 # ----------------------------------------------------------------------------- the run manifest
 
 function Export-NpiLpRun {
+    <#
+    .SYNOPSIS
+        Writes each entry of -Files into -OutputPath (CSV for a .csv name, JSON otherwise) plus a
+        manifest.json with the task's permissions, every request and each file's SHA-256, and
+        returns the manifest file.
+    .EXAMPLE
+        # Write the findings and the owner review with a manifest.
+        Export-NpiLpRun -OutputPath out/least-privilege -Task least-privilege -Cloud gcc -TenantId $register.Manifest.tenantId -AsOf '2026-10-30' -Evidence $reader.Evidence -Files @{ 'findings.json' = @($check.Findings); 'owner-review.csv' = @($review.Rows) }
+    .DESCRIPTION
+    #>
     <# Write a run's files and a manifest: task, mode, cloud, tenant, permissions held, every request, a SHA-256 per file. #>
     [CmdletBinding()]
     param(
@@ -630,6 +760,10 @@ function New-NpiLpFixtureInvoker {
         an app role assignment through its resource service principal (404 through any other),
         the DELETE of a delegated grant (Learn's sample) and a PATCH of a grant's scope. Collections
         come in pages of -PageSize; every call is recorded in .Calls.
+    .EXAMPLE
+        # The fake with one item per page, then the calls it received after a run.
+        $fake = New-NpiLpFixtureInvoker -Path tests/fixtures/ch07/estate-ch07.json -PageSize 1
+        $fake.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [int]$PageSize = 2, [string]$Cloud = 'gcc', [switch]$AllowWrite)
@@ -642,6 +776,17 @@ function New-NpiLpFixtureInvoker {
 }
 
 function Invoke-NpiLpFake {
+    <#
+    .SYNOPSIS
+        The Chapter 07 fake's dispatcher: records the request in the state's Calls, then answers it
+        from the fixture by host, method and path (paging collections), or throws for a request it
+        doesn't serve and for a write when the state doesn't allow writes. New-NpiLpFixtureInvoker's
+        Invoke calls it.
+    .EXAMPLE
+        # Ask the fake directly for one service principal's delegated grants.
+        $fake = New-NpiLpFixtureInvoker -Path tests/fixtures/ch07/estate-ch07.json
+        Invoke-NpiLpFake -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/servicePrincipals/00000000-0000-0000-0000-000000000000/oauth2PermissionGrants'
+    #>
     param($State, [string]$Method, [string]$Uri, $Body, $Headers)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri; Body = $Body })
     $g = $State.Estate.graph

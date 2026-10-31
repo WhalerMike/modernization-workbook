@@ -16,6 +16,14 @@ For each ServiceNow record in the awaiting-verification state:
 Read-only by default: prints what it would do. Pass --apply to write.
 Illustrative: unit-tested against mocked responses, not yet proven against
 live tenants.
+
+Examples (from the kit root):
+
+  # Dry run: print what would be closed or reopened
+  python clients/python/reread_verification.py --config config/config.example.json
+
+  # Write outcomes, with a 12-hour grace period for ISC aggregation
+  python clients/python/reread_verification.py --config config/config.example.json --apply --grace-hours 12 --out-json reread-results.json
 """
 
 from __future__ import annotations

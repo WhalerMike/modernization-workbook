@@ -31,6 +31,15 @@ $script:CloudRows = @{
 foreach ($k in $script:CloudRows.Keys) { $script:Clouds[$k] = $script:CloudRows[$k] }
 
 function Get-PaCloud {
+    <#
+    .SYNOPSIS
+        Returns the Graph and Resource Manager hosts and the sign-in environment names for one
+        cloud: global, gcc, gcchigh or dod. Any other name throws; there is no default cloud.
+    .EXAMPLE
+        # The Graph host for GCC High: https://graph.microsoft.us
+        (Get-PaCloud -Cloud gcchigh).Graph
+    #>
+
     <# Endpoints for global, gcc, gcchigh or dod. Any other name throws: there is no default. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud)
@@ -41,6 +50,15 @@ function Get-PaCloud {
 }
 
 function Get-PaCall {
+    <#
+    .SYNOPSIS
+        Returns the calls declared in config/calls.json, optionally only those for one task or
+        the one with -Id. Each call carries its method, path, API and least-privileged permission.
+    .EXAMPLE
+        # The ids of the calls the inventory task may send.
+        Get-PaCall -Task inventory | ForEach-Object { $_.id }
+    #>
+
     <# The declared calls, optionally for one task or one id. #>
     [CmdletBinding()]
     param([string]$Task, [string]$Id)
@@ -52,6 +70,15 @@ function Get-PaCall {
 }
 
 function Get-PaRequiredPermission {
+    <#
+    .SYNOPSIS
+        Returns, for the inventory or emergency-access task, the union of its Graph permissions
+        and the Azure roles its Resource Manager calls need.
+    .EXAMPLE
+        # Sign in to Graph with exactly the scopes the inventory needs.
+        Connect-MgGraph -Environment Global -Scopes (Get-PaRequiredPermission -Task inventory).GraphPermissions
+    #>
+
     <# The union of a task's Graph permissions, and the Azure role its ARM calls need. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][ValidateSet('inventory', 'emergency-access')][string]$Task)
@@ -64,6 +91,15 @@ function Get-PaRequiredPermission {
 }
 
 function Get-PaTierMap {
+    <#
+    .SYNOPSIS
+        Reads the tier map (config/tiers.json, or -Path) and returns it as a hashtable: the tier of
+        each Entra and Azure role, and the control-plane subscriptions.
+    .EXAMPLE
+        # The tier of Global Administrator in the default map.
+        $map = Get-PaTierMap
+        $map.entra['62e90394-69f5-4237-9190-012177145e10'].tier
+    #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'tiers.json'))
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
@@ -77,6 +113,10 @@ function New-PaReader {
         A read-only client for one task in one cloud. -Invoke is a script block
         { param($Method, $Uri) } that returns the parsed JSON body as a hashtable: the fake from
         New-PaFixtureInvoker, or New-PaLiveInvoker for a real run.
+    .EXAMPLE
+        # A reader over the fictional tenant, no sign-in.
+        $invoke = (New-PaFixtureInvoker -Path tests/fixtures/tenant.json -Cloud gcc).Invoke
+        $reader = New-PaReader -Cloud gcc -Task inventory -Invoke $invoke
     #>
     [CmdletBinding()]
     param(
@@ -125,6 +165,10 @@ function Invoke-PaList {
     .SYNOPSIS
         GET a declared collection and follow every page (@odata.nextLink for Graph, nextLink for
         Resource Manager), only on the cloud's own host. Records each request in the evidence.
+    .EXAMPLE
+        # Every Entra role definition, all pages, from the fictional tenant.
+        $reader = New-PaReader -Cloud gcc -Task inventory -Invoke (New-PaFixtureInvoker -Path tests/fixtures/tenant.json).Invoke
+        $defs = Invoke-PaList -Reader $reader -CallId entra-role-definitions -Query '$select=id,templateId,displayName,isBuiltIn'
     #>
     [CmdletBinding()]
     param(
@@ -149,6 +193,15 @@ function Invoke-PaList {
 }
 
 function Invoke-PaGetOne {
+    <#
+    .SYNOPSIS
+        GETs one declared resource (no paging) on the cloud's own host, records the request in
+        the reader's evidence, and returns the parsed body.
+    .EXAMPLE
+        # One emergency access account from the fictional tenant.
+        $reader = New-PaReader -Cloud gcc -Task emergency-access -Invoke (New-PaFixtureInvoker -Path tests/fixtures/tenant.json).Invoke
+        Invoke-PaGetOne -Reader $reader -CallId user -Bind @{ id = '0e000000-0000-4000-8000-000000000001' } -Query '$select=id,userPrincipalName,accountEnabled'
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Reader, [Parameter(Mandatory)][string]$CallId, [hashtable]$Bind = @{}, [string]$Query)
     $r = Resolve-PaUri -Reader $Reader -CallId $CallId -Bind $Bind -Query $Query
@@ -164,6 +217,10 @@ function New-PaLiveInvoker {
         Invoke-AzRestMethod. It refuses to run if either session is signed in to another cloud.
         Sign in first: Connect-MgGraph -Environment <GraphEnvironment> with the task's scopes,
         and Connect-AzAccount -Environment <AzureEnvironment> for the inventory's Azure reads.
+    .EXAMPLE
+        # Live, GCC: sign in to Graph with the task's scopes, then read Graph only.
+        Connect-MgGraph -Environment Global -Scopes (Get-PaRequiredPermission -Task emergency-access).GraphPermissions
+        $reader = New-PaReader -Cloud gcc -Task emergency-access -Invoke (New-PaLiveInvoker -Cloud gcc -SkipAzure)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [switch]$SkipAzure)
@@ -198,6 +255,11 @@ function New-PaFixtureInvoker {
         A fake Graph and Resource Manager served from a fixture tenant file, for labs and tests.
         GET only; any other method throws. Collections are served in pages of -PageSize with a
         next link on the same host, so paging is exercised. Every call is recorded in .Calls.
+    .EXAMPLE
+        # Serve the fictional tenant, then see which requests the reader sent.
+        $fake = New-PaFixtureInvoker -Path tests/fixtures/tenant.json -Cloud gcc
+        $reader = New-PaReader -Cloud gcc -Task inventory -Invoke $fake.Invoke
+        $fake.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [int]$PageSize = 2, [string]$Cloud = 'gcc')
@@ -210,6 +272,16 @@ function New-PaFixtureInvoker {
 }
 
 function Invoke-PaFake {
+    <#
+    .SYNOPSIS
+        The fake's request handler: records the call in -State.Calls, then answers a GET from the
+        fixture tenant in -State, a page at a time, and throws for any other method, host or route.
+        New-PaFixtureInvoker wires it into .Invoke; call it directly only to test the fake.
+    .EXAMPLE
+        # The first page of role definitions, straight from the fake.
+        $fake = New-PaFixtureInvoker -Path tests/fixtures/tenant.json
+        Invoke-PaFake -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/roleManagement/directory/roleDefinitions'
+    #>
     param($State, [string]$Method, [string]$Uri)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri })
     if ($Method -ne 'GET') { throw "The fake refuses $Method" }
@@ -286,6 +358,17 @@ function Get-PaPrincipalType {
 function Get-PaValue { param($Hash, [string]$Key) if ($Hash -is [hashtable] -and $Hash.ContainsKey($Key)) { $Hash[$Key] } else { $null } }
 
 function Get-PaAzureTier {
+    <#
+    .SYNOPSIS
+        Returns the tier (T0, T1, T2 or RO) of an Azure role assignment from its role ID, its scope
+        and the tier map. A role not in the map is T2 and one that isn't a privileged administrator
+        role is RO; a privileged role at root or management group scope, or on a control-plane
+        subscription, can be T0; otherwise T1.
+    .EXAMPLE
+        # Owner on an ordinary subscription: T1.
+        Get-PaAzureTier -RoleId 8e3af657-a8ff-443c-a75c-2fe8c4bcb635 -Scope /subscriptions/11111111-1111-4111-8111-111111111111 -TierMap (Get-PaTierMap)
+    #>
+
     <# Design guidance: Book 04, Chapter 04's placement of an Azure assignment by role and scope. #>
     param([string]$RoleId, [string]$Scope, $TierMap)
     $role = $TierMap.azure[$RoleId]
@@ -306,6 +389,11 @@ function Get-PaPrivilegedInventory {
         members and every row given a tier from config/tiers.json.
     .OUTPUTS
         @{ Rows; Unreadable; Evidence; Cloud }
+    .EXAMPLE
+        # The fictional tenant's inventory, with one Azure subscription.
+        $reader = New-PaReader -Cloud gcc -Task inventory -Invoke (New-PaFixtureInvoker -Path tests/fixtures/tenant.json).Invoke
+        $inventory = Get-PaPrivilegedInventory -Reader $reader -AzureScope /subscriptions/11111111-1111-4111-8111-111111111111
+        $inventory.Rows | Group-Object Tier
     #>
     [CmdletBinding()]
     param(
@@ -410,6 +498,14 @@ function New-PaFinding {
 }
 
 function Import-PaExceptions {
+    <#
+    .SYNOPSIS
+        Reads an exceptions CSV (PrincipalId, Name, Reason, Owner) and returns only the rows that
+        have both a PrincipalId and an Owner. A missing path, or no path, returns an empty array.
+    .EXAMPLE
+        Import-PaExceptions -Path tests/fixtures/inputs/exceptions.csv
+    #>
+
     <# exceptions.csv: PrincipalId, Name, Reason, Owner. A row with no Owner doesn't count. #>
     param([string]$Path)
     if (-not $Path -or -not (Test-Path -LiteralPath $Path)) { return @() }
@@ -422,6 +518,10 @@ function Test-PaInventory {
         The inventory's findings, PA-INV-01 to PA-INV-09. Thresholds follow Learn where Learn
         gives one (fewer than five Global Administrators; at most three subscription owners) and
         the program's design elsewhere.
+    .EXAMPLE
+        # Findings for an inventory from Get-PaPrivilegedInventory, with the documented exceptions.
+        $findings = Test-PaInventory -Inventory $inventory -Exceptions (Import-PaExceptions -Path tests/fixtures/inputs/exceptions.csv)
+        $findings | Where-Object Severity -EQ 'Finding'
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Inventory, [object[]]$Exceptions = @(), [int]$MaxGlobalAdmins = 4, [int]$MaxSubscriptionOwners = 3)
@@ -497,6 +597,12 @@ function Export-PaRun {
     .SYNOPSIS
         Write a run's outputs and a manifest with the SHA-256 of each file, the cloud, the calls
         sent and their permissions, so the ISSO can check what the evidence is and how it was read.
+    .EXAMPLE
+        # Write the inventory run and its manifest to out/inventory.
+        Export-PaRun -OutputPath out/inventory -Task inventory -Cloud gcc -Mode Fixture -Evidence $inventory.Evidence -Files @{
+            'inventory.json' = @($inventory.Rows)
+            'findings.json'  = @($findings)
+        }
     #>
     [CmdletBinding()]
     param(
@@ -547,6 +653,8 @@ function Read-PaEmergencyConfig {
     .SYNOPSIS
         emergency-access.json: accounts (id, userPrincipalName), exclusionGroupId, and optional
         minimumAccounts (2) and maxValidationAgeDays (90). Malformed input throws.
+    .EXAMPLE
+        $config = Read-PaEmergencyConfig -Path tests/fixtures/inputs/emergency-access.json
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -568,6 +676,11 @@ function Test-PaEmergencyAccess {
         Check the emergency access accounts against Learn's standard and Book 04's: PA-EA-01 to
         PA-EA-10. Reads users, their methods, their Global Administrator assignment, the exclusion
         group and every Conditional Access policy. Changes nothing.
+    .EXAMPLE
+        # Check the fictional tenant's emergency access accounts as of a fixed date.
+        $config = Read-PaEmergencyConfig -Path tests/fixtures/inputs/emergency-access.json
+        $reader = New-PaReader -Cloud gcc -Task emergency-access -Invoke (New-PaFixtureInvoker -Path tests/fixtures/tenant.json).Invoke
+        Test-PaEmergencyAccess -Reader $reader -Config $config -Validations @(Import-Csv tests/fixtures/inputs/emergency-validations.csv) -AsOf 2026-10-30
     #>
     [CmdletBinding()]
     param(
@@ -665,6 +778,8 @@ function Get-PaEmergencyQuery {
     .SYNOPSIS
         The KQL for the emergency access alert: interactive and non-interactive sign-ins, and
         audit events the accounts initiate or are the target of, matched by object ID.
+    .EXAMPLE
+        Get-PaEmergencyQuery -AccountId 0e000000-0000-4000-8000-000000000001, 0e000000-0000-4000-8000-000000000002
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string[]]$AccountId)
@@ -696,6 +811,12 @@ function New-PaEmergencyAlertRule {
         search alert over the workspace that receives the Entra logs, severity 0, any result
         fires, every 5 minutes. Returned as an ordered hashtable for review and a deployment the
         operator runs; this function deploys nothing.
+    .EXAMPLE
+        # The alert rule for the two fictional emergency accounts, as JSON for review.
+        New-PaEmergencyAlertRule -AccountId 0e000000-0000-4000-8000-000000000001, 0e000000-0000-4000-8000-000000000002 `
+            -WorkspaceResourceId /subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-logs/providers/Microsoft.OperationalInsights/workspaces/law-identity `
+            -ActionGroupResourceId /subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-logs/providers/Microsoft.Insights/actionGroups/ag-soc `
+            -Location eastus | ConvertTo-Json -Depth 20
     #>
     [CmdletBinding()]
     param(
@@ -752,6 +873,10 @@ function Find-PaEmergencyActivity {
     .SYNOPSIS
         Offline, the same match as Get-PaEmergencyQuery over exported log rows (each with a Table
         field): for a lab, a drill review, or to compare with another query. Not a KQL engine.
+    .EXAMPLE
+        # Match the fictional exported log rows against the two emergency accounts.
+        $rows = @((Get-Content tests/fixtures/signin-export.json -Raw | ConvertFrom-Json).rows)
+        Find-PaEmergencyActivity -Rows $rows -AccountId 0e000000-0000-4000-8000-000000000001, 0e000000-0000-4000-8000-000000000002
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][object[]]$Rows, [Parameter(Mandatory)][string[]]$AccountId)

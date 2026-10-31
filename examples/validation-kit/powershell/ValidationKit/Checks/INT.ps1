@@ -14,6 +14,16 @@ function Get-VkDevices {
 }
 
 function Invoke-VkInt01 {
+    <#
+    .SYNOPSIS
+        Implements VK-INT-01: lists enabled managed devices with an empty tier, role or environment
+        slot (the device attribute schema's extension attributes), which the dynamic device groups need.
+    .EXAMPLE
+        # From the kit folder: against the fictional "fail" fixture tenant (no sign-in).
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkInt01 -Context $ctx
+    .DESCRIPTION
+    #>
     <# VK-INT-01. Enabled managed devices with an empty tier, role or environment slot (Book 05, Chapter 08's device attribute schema). #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-INT-01' $Context {
@@ -31,6 +41,15 @@ function Invoke-VkInt01 {
 }
 
 function Invoke-VkInt02 {
+    <#
+    .SYNOPSIS
+        Implements VK-INT-02: lists enabled devices with no sign-in in StaleDays, and device names
+        held by both a hybrid-joined and an Entra-joined object.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -Option @{ StaleDays = 60 }
+        Invoke-VkInt02 -Context $ctx
+    .DESCRIPTION
+    #>
     <# VK-INT-02. Enabled devices with no sign-in in StaleDays, and names held by both a hybrid-joined (ServerAD) and an Entra-joined (AzureAD) object. #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-INT-02' $Context {
@@ -58,6 +77,15 @@ function Invoke-VkInt02 {
 }
 
 function Invoke-VkInt03 {
+    <#
+    .SYNOPSIS
+        Implements VK-INT-03: lists Windows Autopilot devices with no group tag, or one not in the
+        controlled vocabulary (autopilot-group-tags.csv).
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkInt03 -Context $ctx
+    .DESCRIPTION
+    #>
     <# VK-INT-03. Autopilot devices with an empty group tag, or one not in autopilot-group-tags.csv (GroupTag column). #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-INT-03' $Context {
@@ -107,6 +135,15 @@ function Get-VkPolicyName { param($Policy) "$(Get-VkValue $Policy 'displayName' 
 
 function Invoke-VkInt04 {
     <#
+    .SYNOPSIS
+        Implements VK-INT-04: fails on Intune policy exclusions that target a dynamic device group,
+        and lists inclusions of dynamic device groups with whether a filter narrows them.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkInt04 -Context $ctx | Select-Object -ExpandProperty Details
+    .DESCRIPTION
+    #>
+    <#
     VK-INT-04. Exclusions that target a dynamic device group are findings (a dynamic exclusion
     computed late lets the policy reach the device first; Book 05, Chapter 08). Inclusions of
     dynamic device groups are listed with whether a filter narrows them.
@@ -139,6 +176,15 @@ function Invoke-VkInt04 {
 }
 
 function Invoke-VkInt05 {
+    <#
+    .SYNOPSIS
+        Implements VK-INT-05: lists devices that two or more policies of the same type reach, as
+        conflict candidates (Warn) to confirm in Intune's per-setting status report.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkInt05 -Context $ctx
+    .DESCRIPTION
+    #>
     <#
     VK-INT-05. Conflict candidates: a device that two or more policies of the same type reach,
     through included groups (exclusions removed) or All devices. Same type is the policy's
@@ -202,6 +248,16 @@ function Get-VkCoverage {
 
 function Invoke-VkInt06 {
     <#
+    .SYNOPSIS
+        Implements VK-INT-06: compares managed devices by OS, version and ownership with the
+        coverage matrix (platform-matrix.csv). NotSupported platforms fail it; Limited coverage and
+        an OS missing from the matrix are warnings.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkInt06 -Context $ctx
+    .DESCRIPTION
+    #>
+    <#
     VK-INT-06. Managed devices by OS, version and ownership against platform-matrix.csv
     (OperatingSystem, MinVersion, Coverage Managed|Limited|NotSupported, Note). The kit ships a
     default matrix in config/ taken from the guide's coverage table; replace it with the agency's.
@@ -238,6 +294,16 @@ function Invoke-VkInt06 {
 }
 
 function Invoke-VkInt07 {
+    <#
+    .SYNOPSIS
+        Implements VK-INT-07: reads Intune's Group Policy analytics reports (beta) and fails on a
+        GPO targeted in AD whose migration readiness isn't complete, or an in-scope GPO
+        (gpo-scope.csv) never imported. NotApplicable without -IncludeBeta.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -IncludeBeta
+        Invoke-VkInt07 -Context $ctx | Select-Object -ExpandProperty Details
+    .DESCRIPTION
+    #>
     <#
     VK-INT-07. Intune's Group Policy analytics reports (beta groupPolicyMigrationReports), one
     row per imported GPO. A GPO targeted in AD whose migrationReadiness isn't complete is a

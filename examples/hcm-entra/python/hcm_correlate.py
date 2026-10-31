@@ -30,6 +30,13 @@ account matched to a worker record before the first full sync"), field by field.
 when nothing needs a decision, 2 when the quarantine has entries, 1 on an error.
 
 Standard library only; Python 3.10 or later.
+
+Examples (from the kit root):
+
+  python python/hcm_correlate.py --extract tests/fixtures/hcm_extract_sample.csv --ad tests/fixtures/correlation/ad-user-export.csv --entra tests/fixtures/correlation/entra-users.json --as-of 2026-10-25 --out out
+
+  # Without an Entra ID export: HR against AD only
+  python python/hcm_correlate.py --extract tests/fixtures/hcm_extract_sample.csv --ad tests/fixtures/correlation/ad-user-export.csv --out out
 """
 from __future__ import annotations
 

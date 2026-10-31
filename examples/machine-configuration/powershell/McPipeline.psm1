@@ -21,6 +21,13 @@ $script:McSecretNames = '(?i)^\s*(password|passphrase|secret|connectionstring|ac
 $script:McSecretValues = '(?i)(sig=[A-Za-z0-9%]{10,}|AccountKey=|SharedAccessSignature|-----BEGIN [A-Z ]*PRIVATE KEY-----|instance of MSFT_Credential)'
 
 function New-McFinding {
+    <#
+    .SYNOPSIS
+        Creates one finding row (Severity, Rule, Issue, Detail), the shape the package and policy checks
+        return.
+    .EXAMPLE
+        New-McFinding -Severity Info -Rule 'MC-POL-09' -Issue 'IncludeArcMachines defaults to false'
+    #>
     param(
         [Parameter(Mandatory)][ValidateSet('Finding', 'Warn', 'Info')][string]$Severity,
         [Parameter(Mandatory)][string]$Rule,
@@ -31,12 +38,27 @@ function New-McFinding {
 }
 
 function Get-McFileSha256 {
+    <#
+    .SYNOPSIS
+        Returns the SHA-256 of a file's bytes as lowercase hex, the form provenance.json uses.
+    .EXAMPLE
+        Get-McFileSha256 -Path ./tests/fixtures/mof/compiled-a.mof
+    #>
+
     <# SHA-256 of a file's bytes, lowercase hex, the form provenance.json uses. #>
     param([Parameter(Mandatory)][string]$Path)
     (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
 }
 
 function Get-McReleaseEntry {
+    <#
+    .SYNOPSIS
+        Returns one configuration's entry from the release registry (config/releases.json), with its
+        name added. Throws when the entry is missing, incomplete, or has an unknown mode or a non-GUID policy ID.
+    .EXAMPLE
+        Get-McReleaseEntry -Path ./config/releases.json -Name TlsServerProtocols
+    #>
+
     <#
     One configuration's row from the release registry (config/releases.json): its fixed policy ID,
     platform, mode, last published version, owner tag and identity. The registry is the reviewed
@@ -58,6 +80,14 @@ function Get-McReleaseEntry {
 }
 
 function Get-McPackageType {
+    <#
+    .SYNOPSIS
+        Returns the package type New-GuestConfigurationPackage needs for a policy mode: Audit for
+        Audit, AuditAndSet for ApplyAndMonitor and ApplyAndAutoCorrect.
+    .EXAMPLE
+        Get-McPackageType -Mode ApplyAndMonitor   # AuditAndSet
+    #>
+
     <# The package type New-GuestConfigurationPackage needs for a policy mode. #>
     param([Parameter(Mandatory)][string]$Mode)
     if ($Mode -ceq 'Audit') { 'Audit' } else { 'AuditAndSet' }
@@ -113,6 +143,14 @@ function Format-McMofValue {
 
 function ConvertTo-McCleanMof {
     <#
+    .SYNOPSIS
+        Rewrites a compiled MOF without build-host data and with each instance's properties sorted,
+        so the same configuration gives the same bytes on any host. Writes -Destination and returns the file.
+    .EXAMPLE
+        ConvertTo-McCleanMof -Path ./tests/fixtures/mof/compiled-a.mof -Destination ./out/TlsServerProtocols_1.0.0.mof
+    #>
+
+    <#
     Rewrite a compiled MOF into a canonical form with nothing about the build host:
       - drop the header comment (@GeneratedBy, @GenerationDate, @GenerationHost);
       - drop the Author, GenerationDate and GenerationHost properties of the configuration document;
@@ -158,6 +196,14 @@ function ConvertTo-McCleanMof {
 }
 
 function Test-McMofText {
+    <#
+    .SYNOPSIS
+        Checks MOF text for build-host data or an absolute build path (MC-PKG-04) and for anything
+        that looks like a secret (MC-PKG-05). Returns finding rows.
+    .EXAMPLE
+        Test-McMofText -Text (Get-Content ./tests/fixtures/mof/compiled-a.mof -Raw) -Where compiled-a.mof
+    #>
+
     <# Rules on a MOF's text: build-host data (MC-PKG-04) and anything that looks like a secret (MC-PKG-05). #>
     param([Parameter(Mandatory)][AllowEmptyString()][string]$Text, [string]$Where = 'MOF')
     if ($Text -match '@Generat(edBy|ionHost|ionDate)=' -or $Text -match '(?m)^\s*(Author|GenerationHost|GenerationDate)\s*=') {
@@ -175,6 +221,14 @@ function Test-McMofText {
 }
 
 function Get-McMofModules {
+    <#
+    .SYNOPSIS
+        Returns the module name and version pairs a MOF's resources import, sorted, excluding the
+        configuration document.
+    .EXAMPLE
+        Get-McMofModules -Text (Get-Content ./tests/fixtures/mof/compiled-a.mof -Raw)
+    #>
+
     <# ModuleName and ModuleVersion pairs a MOF imports, excluding the configuration document. #>
     param([Parameter(Mandatory)][string]$Text)
     $seen = @{}
@@ -191,6 +245,14 @@ function Get-McMofModules {
 }
 
 function Test-McPackage {
+    <#
+    .SYNOPSIS
+        Inspects a package .zip without expanding it and returns findings for rules MC-PKG-01 to
+        MC-PKG-07. An empty result means the package passed.
+    .EXAMPLE
+        Test-McPackage -Path ./out/TlsServerProtocols_1.0.0/TlsServerProtocols_1.0.0.zip -Name TlsServerProtocols_1.0.0 -ExpectedType Audit
+    #>
+
     <#
     Inspect a package .zip without expanding it to disk. Rules:
       MC-PKG-01 <Name>.mof and <Name>.metaconfig.json at the root
@@ -250,6 +312,13 @@ function Test-McPackage {
 }
 
 function Get-McSasExpiry {
+    <#
+    .SYNOPSIS
+        Returns the signed expiry (se=) of a SAS URI as a DateTimeOffset, or $null when it has none.
+    .EXAMPLE
+        Get-McSasExpiry -Uri 'https://a/b.zip?se=2029-10-30T00%3A00%3A00Z&sig=x'
+    #>
+
     <# The se= (signed expiry) of a SAS URI, or $null. #>
     param([string]$Uri)
     $m = [regex]::Match($Uri, '[?&]se=([^&]+)')
@@ -266,6 +335,17 @@ function Get-McDeployments {
 }
 
 function Test-McPolicy {
+    <#
+    .SYNOPSIS
+        Checks a policy definition New-GuestConfigurationPolicy wrote against its package and the
+        release registry entry, and returns findings for rules MC-POL-01 to MC-POL-09.
+    .EXAMPLE
+        $release = Get-McReleaseEntry -Path ./config/releases.json -Name TlsServerProtocols
+        $out = './out/TlsServerProtocols_1.0.0'
+        $policy = Get-ChildItem "$out/policy" -Filter *.json | Select-Object -First 1
+        Test-McPolicy -Path $policy.FullName -PackagePath "$out/TlsServerProtocols_1.0.0.zip" -Release $release -Version 1.0.0
+    #>
+
     <#
     Check a definition New-GuestConfigurationPolicy wrote against the package it was built from and
     the release registry entry. Rules:
@@ -362,6 +442,18 @@ function Test-McPolicy {
 }
 
 function Get-McProvenance {
+    <#
+    .SYNOPSIS
+        Builds the provenance manifest for one build: what was built, the hashes of the cleaned MOF,
+        package and definition, the module versions, and the finding counts.
+    .EXAMPLE
+        # As in Invoke-McBuild.ps1, after the package and policy checks
+        $prov = Get-McProvenance -Release $release -Version 1.0.0 -MofPath $mof.FullName -PackagePath $pkg.Path `
+            -PolicyPath $policy.Path -Modules (Import-PowerShellDataFile ./RequiredModules.psd1) `
+            -BuiltAt '2026-10-30T00:00:00Z' -Findings $findings
+        $prov | ConvertTo-Json -Depth 5
+    #>
+
     <#
     The provenance manifest for one build: what was built (configuration, version, policy ID,
     mode), from what (MOF hash after cleaning, module versions), what shipped (package and

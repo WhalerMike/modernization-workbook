@@ -3,6 +3,8 @@
 /_docx/
 # generated at build time by scripts/generate_sitemap.py
 /_sitemap-tree.md
+# generated at build time by scripts/command_reference.py
+/docs/reference/_commands-body.md
 
 **/*.quarto_ipynb
 

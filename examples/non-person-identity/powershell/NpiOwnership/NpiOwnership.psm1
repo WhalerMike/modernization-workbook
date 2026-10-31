@@ -32,6 +32,10 @@ function Import-NpiRegister {
     .SYNOPSIS
         Chapter 01's register, checked against its run manifest: the file's SHA-256 must be the
         one manifest.json records, so the ownership check runs on the evidence the ISSO received.
+    .EXAMPLE
+        # Load Chapter 01's fixture run from out/inventory.
+        $register = Import-NpiRegister -RunPath out/inventory
+        $register.Rows.Count
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$RunPath)
@@ -45,6 +49,15 @@ function Import-NpiRegister {
 }
 
 function Import-NpiInput {
+    <#
+    .SYNOPSIS
+        Reads a CSV input file and returns its rows. Returns an empty array when the path is empty
+        or the file doesn't exist, so an optional input can be left out.
+    .EXAMPLE
+        # Read the application owners file from the fixture inputs.
+        Import-NpiInput -Path tests/fixtures/inputs/application-owners.csv
+    .DESCRIPTION
+    #>
     <# A CSV input, or nothing when the path is empty or missing. #>
     param([string]$Path)
     if (-not $Path -or -not (Test-Path -LiteralPath $Path)) { return @() }
@@ -81,6 +94,11 @@ function Test-NpiOwnership {
         Check every identity in the register against the program's ownership rule and return
         @{ Identities; Findings; AiSponsorFields; Evidence }. Findings NPI-OWN-01 to NPI-OWN-09,
         each with a stable ID (rule:identity).
+    .EXAMPLE
+        # Check Chapter 01's fixture register against the fixture inputs.
+        $register = Import-NpiRegister -RunPath out/inventory
+        $reader = New-NpiReader -Cloud gcc -Task ownership -Invoke (New-NpiFixtureInvoker -Path tests/fixtures/estate.json -Cloud gcc).Invoke
+        $own = Test-NpiOwnership -Reader $reader -Rows $register.Rows -ApplicationOwners (Import-NpiInput tests/fixtures/inputs/application-owners.csv) -ServiceRecords (Import-NpiInput tests/fixtures/inputs/service-records.csv)
     #>
     [CmdletBinding()]
     param(
@@ -165,6 +183,9 @@ function New-NpiOrphanPlan {
         only after the identity governance officer confirms it in the confirmations log; the claim
         window is 30 days from the disable. Owner nominations become AddOwner actions for app
         registrations, after the nominee is checked. Nothing here writes.
+    .EXAMPLE
+        # Build the dry-run plan from an ownership result ($own from Test-NpiOwnership).
+        $plan = New-NpiOrphanPlan -Reader $reader -Ownership $own -Rows $register.Rows -AsOf '2026-10-30T12:00:00Z' -Cloud gcc -TenantId $register.Manifest.tenantId -RegisterSha256 $register.Sha256 -Confirmations (Import-NpiInput tests/fixtures/inputs/igo-confirmations.csv) -Claims (Import-NpiInput tests/fixtures/inputs/owner-claims.csv)
     #>
     [CmdletBinding()]
     param(
@@ -259,6 +280,11 @@ function New-NpiWriter {
     .SYNOPSIS
         The writer for the orphan-apply task: the only object in this example that can send a
         PATCH, a POST or Disable-ADAccount, and only the calls calls.json declares for that task.
+    .EXAMPLE
+        # A writer over the fake Graph and fake AD, which accept writes only with -AllowWrite.
+        $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json -Cloud gcc -AllowWrite
+        $fakeAd = New-NpiFixtureAdInvoker -Path tests/fixtures/estate.json -AllowWrite
+        $writer = New-NpiWriter -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -Invoke $fake.Invoke -AdInvoke $fakeAd.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [Parameter(Mandatory)][scriptblock]$Invoke, [scriptblock]$AdInvoke)
@@ -268,6 +294,17 @@ function New-NpiWriter {
 }
 
 function Assert-NpiPlannedWrite {
+    <#
+    .SYNOPSIS
+        Throws unless a plan action is a write declared for the orphan-apply task, with the declared
+        method, the expected target shape and, for a disable, the only allowed body. Returns nothing
+        when the action passes.
+    .EXAMPLE
+        # Check every write in a saved orphan plan before anything is sent.
+        $plan = Get-Content -LiteralPath out/ownership/orphan-plan.json -Raw | ConvertFrom-Json
+        foreach ($a in @($plan.actions | Where-Object Write)) { Assert-NpiPlannedWrite -Writer $writer -Action $a }
+    #>
+
     # Every write must be a declared orphan-apply call, with the method and the body the call list allows.
     param($Writer, $Action)
     $call = $Writer.Calls | Where-Object { $_.id -eq $Action.Call }
@@ -316,6 +353,11 @@ function Invoke-NpiOrphanPlan {
         every precheck, and sends nothing. With -Apply it sends only the plan's writes, only if
         the plan file's SHA-256 is the one the reviewer approved, the plan is for this tenant and
         cloud and no older than seven days, and each precheck still holds.
+    .EXAMPLE
+        # A dry run of the reviewed plan against the fake; add -Apply to send the writes.
+        $sha = (Get-FileHash -Algorithm SHA256 -LiteralPath out/ownership/orphan-plan.json).Hash
+        $run = Invoke-NpiOrphanPlan -PlanPath out/ownership/orphan-plan.json -ApprovedSha256 $sha -Writer $writer -AsOf '2026-10-30T12:00:00Z'
+        $run.Results | Format-Table Outcome, Action, Target
     #>
     [CmdletBinding()]
     param(

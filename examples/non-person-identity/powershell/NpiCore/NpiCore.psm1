@@ -30,7 +30,15 @@ $script:CloudRows = @{
 foreach ($k in $script:CloudRows.Keys) { $script:Clouds[$k] = $script:CloudRows[$k] }
 
 function Get-NpiCloud {
-    <# Endpoints for global, gcc, gcchigh or dod. Any other name throws: there is no default. #>
+    <#
+    .SYNOPSIS
+        Endpoints for global, gcc, gcchigh or dod. Any other name throws: there is no default.
+        Returns an object with the Graph, Resource Manager and sign-in URLs and the Graph and Azure
+        environment names for that cloud.
+    .EXAMPLE
+        # The hosts for Microsoft 365 GCC (Moderate), which uses the worldwide endpoints.
+        Get-NpiCloud -Cloud gcc
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud)
     if (-not $script:Clouds.ContainsKey($Cloud)) { throw "Unknown cloud '$Cloud'. Use global, gcc, gcchigh or dod." }
@@ -40,13 +48,28 @@ function Get-NpiCloud {
 # ----------------------------------------------------------------------------- the call list
 
 function Get-NpiCallList {
+    <#
+    .SYNOPSIS
+        Reads the declared call list (config/calls.json unless -Path names another file) and returns
+        it as a hashtable with its calls and tasks.
+    .EXAMPLE
+        # The ID of every declared call.
+        (Get-NpiCallList).calls | ForEach-Object { $_.id }
+    #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'calls.json'))
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
 }
 
 function Get-NpiCall {
-    <# The declared calls, optionally for one task or one id. #>
+    <#
+    .SYNOPSIS
+        The declared calls, optionally for one task or one id.
+        Returns an array of call entries from config/calls.json.
+    .EXAMPLE
+        # The calls the inventory task may send.
+        Get-NpiCall -Task inventory
+    #>
     [CmdletBinding()]
     param([string]$Task, [string]$Id)
     $calls = @((Get-NpiCallList).calls)
@@ -56,7 +79,14 @@ function Get-NpiCall {
 }
 
 function Get-NpiTask {
-    <# A task's declaration from calls.json: mode, permissions, Azure roles, AD rights. #>
+    <#
+    .SYNOPSIS
+        A task's declaration from calls.json: mode, permissions, Azure roles, AD rights.
+        Throws for a task the call list doesn't declare.
+    .EXAMPLE
+        # 'read' or 'write'.
+        (Get-NpiTask -Task inventory).mode
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Task)
     $t = (Get-NpiCallList).tasks
@@ -65,7 +95,14 @@ function Get-NpiTask {
 }
 
 function Get-NpiRequiredPermission {
-    <# The union of a task's calls: Graph permissions, Azure roles and Active Directory rights. #>
+    <#
+    .SYNOPSIS
+        The union of a task's calls: Graph permissions, Azure roles and Active Directory rights.
+        Returns an object with Task, GraphPermissions, AzureRoles, AdRights and Methods.
+    .EXAMPLE
+        # What to grant the inventory task's identity before a live run.
+        Get-NpiRequiredPermission -Task inventory
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Task)
     $null = Get-NpiTask -Task $Task
@@ -87,6 +124,11 @@ function New-NpiReader {
         A read-only client for one read task in one cloud. -Invoke is { param($Method, $Uri, $Body, $Headers) }
         and returns the parsed JSON body as a hashtable; -AdInvoke is { param($Cmdlet, [hashtable]$Params) }
         and returns Active Directory objects. A write task can't have a reader.
+    .EXAMPLE
+        # A reader for the inventory task against the fictional estate, with the fake Graph and AD.
+        $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json
+        $ad = New-NpiFixtureAdInvoker -Path tests/fixtures/estate.json
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $fake.Invoke -AdInvoke $ad.Invoke
     #>
     [CmdletBinding()]
     param(
@@ -108,6 +150,19 @@ function New-NpiReader {
 }
 
 function Resolve-NpiUri {
+    <#
+    .SYNOPSIS
+        Builds the full URL for one declared Graph or Resource Manager call on the reader's cloud and
+        returns @{ Call; Uri; Host }. Throws for an undeclared call, a method not in -AllowedMethods
+        (GET by default), an Active Directory call or an unbound placeholder.
+    .EXAMPLE
+        $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json
+        $ad = New-NpiFixtureAdInvoker -Path tests/fixtures/estate.json
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $fake.Invoke -AdInvoke $ad.Invoke
+        # https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000001/owners
+        (Resolve-NpiUri -Reader $reader -CallId 'graph-application-owners' -Bind @{ id = '0a000000-0000-4000-8000-000000000001' }).Uri
+    #>
+
     # Build the URL for a declared call; refuse an undeclared call, a non-GET, or an unbound placeholder.
     param($Reader, [string]$CallId, [hashtable]$Bind = @{}, [string]$Query, [string[]]$AllowedMethods = @('GET'))
     $call = $Reader.Calls | Where-Object { $_.id -eq $CallId }
@@ -130,6 +185,14 @@ function Resolve-NpiUri {
 }
 
 function Assert-NpiHost {
+    <#
+    .SYNOPSIS
+        Throws unless -Uri starts with -ExpectedHost and a slash, so a token (or a next link) never goes
+        to another host. Returns nothing when the host matches.
+    .EXAMPLE
+        # Passes: the URL is on the cloud's own Graph host.
+        Assert-NpiHost -Uri 'https://graph.microsoft.com/v1.0/applications' -ExpectedHost 'https://graph.microsoft.com'
+    #>
     param([string]$Uri, [string]$ExpectedHost)
     if (-not $Uri.StartsWith("$ExpectedHost/", [StringComparison]::OrdinalIgnoreCase)) {
         throw "Refusing to send the token to $Uri`: not $ExpectedHost"
@@ -141,6 +204,12 @@ function Invoke-NpiList {
     .SYNOPSIS
         GET a declared collection and follow every page (@odata.nextLink for Graph, nextLink for
         Resource Manager), only on the cloud's own host. Records each request in the evidence.
+    .EXAMPLE
+        $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json
+        $ad = New-NpiFixtureAdInvoker -Path tests/fixtures/estate.json
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $fake.Invoke -AdInvoke $ad.Invoke
+        # Every application, all pages, with only the properties the register needs.
+        Invoke-NpiList -Reader $reader -CallId 'graph-applications' -Query '$select=id,appId,displayName'
     #>
     [CmdletBinding()]
     param(
@@ -166,6 +235,17 @@ function Invoke-NpiList {
 }
 
 function Invoke-NpiGetOne {
+    <#
+    .SYNOPSIS
+        GETs one declared object on the cloud's own host, records the request in the reader's
+        evidence, and returns the parsed body. It doesn't follow next links.
+    .EXAMPLE
+        $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json
+        $ad = New-NpiFixtureAdInvoker -Path tests/fixtures/estate.json
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $fake.Invoke -AdInvoke $ad.Invoke
+        # Microsoft Graph's own service principal, for its app role IDs.
+        Invoke-NpiGetOne -Reader $reader -CallId 'graph-resource-sp' -Bind @{ appId = '00000003-0000-0000-c000-000000000000' } -Query '$select=id,appId,appRoles'
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Reader, [Parameter(Mandatory)][string]$CallId, [hashtable]$Bind = @{}, [string]$Query)
     $r = Resolve-NpiUri -Reader $Reader -CallId $CallId -Bind $Bind -Query $Query
@@ -179,6 +259,12 @@ function Invoke-NpiAdRead {
     .SYNOPSIS
         Run a declared Active Directory read. The cmdlet comes from the call list, never from the
         caller, and must be a Get-AD* cmdlet; the parameters are recorded in the evidence.
+    .EXAMPLE
+        $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json
+        $ad = New-NpiFixtureAdInvoker -Path tests/fixtures/estate.json
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $fake.Invoke -AdInvoke $ad.Invoke
+        # Every group managed service account, through the declared Get-ADServiceAccount call.
+        Invoke-NpiAdRead -Reader $reader -CallId 'ad-managed-service-accounts' -Params @{ Filter = '*' }
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Reader, [Parameter(Mandatory)][string]$CallId, [hashtable]$Params = @{})
@@ -199,6 +285,10 @@ function New-NpiLiveInvoker {
         The live invoker: Graph through Invoke-MgGraphRequest, Resource Manager through
         Invoke-AzRestMethod. It refuses to start if either session is in another cloud, or signed in
         to a tenant other than -TenantId. -AllowWrite is for NpiOwnership's writer only.
+    .EXAMPLE
+        # After Connect-MgGraph and Connect-AzAccount to the same GCC tenant.
+        $invoke = New-NpiLiveInvoker -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [switch]$SkipAzure, [switch]$AllowWrite)
@@ -238,6 +328,10 @@ function New-NpiLiveAdInvoker {
     .SYNOPSIS
         The live Active Directory invoker. It runs only the Get-AD* cmdlets the call list declares
         (and Disable-ADAccount when -AllowWrite), against -Server, with the ActiveDirectory module.
+    .EXAMPLE
+        # Read-only AD reads against the domain, for the inventory task.
+        $adInvoke = New-NpiLiveAdInvoker -Server corp.contoso.example
+        $reader = New-NpiReader -Cloud gcc -Task inventory -AdInvoke $adInvoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Server, [switch]$AllowWrite)
@@ -262,6 +356,10 @@ function New-NpiFixtureInvoker {
         tests. GET only unless -AllowWrite, which accepts only the two writes Chapter 02 declares.
         Collections come in pages of -PageSize with a next link on the same host. Every call is
         recorded in .Calls, and writes change .Estate so a test can read the result back.
+    .EXAMPLE
+        # The fictional estate in pages of two; $fake.Calls lists every request it received.
+        $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json -PageSize 2
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [int]$PageSize = 2, [string]$Cloud = 'gcc', [switch]$AllowWrite)
@@ -280,6 +378,17 @@ function Get-NpiFakeOwners {
 }
 
 function Invoke-NpiFake {
+    <#
+    .SYNOPSIS
+        The fake's request handler, called through the scriptblock New-NpiFixtureInvoker returns. It
+        records the call in -State.Calls, serves the Graph and Resource Manager routes the chapters use
+        from the fixture estate in pages, and applies the two declared writes only when the state
+        allows writes. Returns the response body as a hashtable; throws for a route it doesn't know.
+    .EXAMPLE
+        # Usually called through $fake.Invoke; called directly here for the first page of applications.
+        $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json
+        Invoke-NpiFake -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/applications'
+    #>
     param($State, [string]$Method, [string]$Uri, $Body, $Headers)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri; Body = $Body; Headers = $Headers })
     $g = $State.Estate.graph
@@ -391,9 +500,14 @@ $script:AdAttributeMap = @{
 
 function Test-NpiLdapFilter {
     <#
+    .SYNOPSIS
     The fake's LDAP evaluator: (&...), (|...), (attr=*), (attr=value) with * wildcards, and the
     bitwise-AND matching rule 1.2.840.113556.1.4.803. Anything else throws, so a query the fake
     can't evaluate fails a test instead of returning a wrong answer.
+    Returns $true when -Object (a fixture AD object) matches -Filter, else $false.
+    .EXAMPLE
+        # True: the object is a person with a service principal name.
+        Test-NpiLdapFilter -Filter '(&(objectCategory=person)(servicePrincipalName=*))' -Object @{ ObjectCategory = 'person'; ServicePrincipalName = @('HTTP/web01') }
     #>
     param([Parameter(Mandatory)][string]$Filter, [Parameter(Mandatory)]$Object)
     $f = $Filter.Trim()
@@ -458,6 +572,10 @@ function New-NpiFixtureAdInvoker {
         A fake Active Directory served from the fixture's "ad" section: Get-ADUser with -LDAPFilter
         or -Identity, Get-ADServiceAccount with -Filter * or -Identity, and Disable-ADAccount only
         with -AllowWrite. Every call is recorded in .Calls.
+    .EXAMPLE
+        # The fixture's AD; the scriptblock takes a cmdlet name and its parameters.
+        $ad = New-NpiFixtureAdInvoker -Path tests/fixtures/estate.json
+        & $ad.Invoke 'Get-ADUser' @{ Identity = 'svc-hrsync' }
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [switch]$AllowWrite)
@@ -469,6 +587,17 @@ function New-NpiFixtureAdInvoker {
 }
 
 function Invoke-NpiFakeAd {
+    <#
+    .SYNOPSIS
+        The fake Active Directory's handler, called through the scriptblock New-NpiFixtureAdInvoker
+        returns. It records the call, answers Get-ADUser and Get-ADServiceAccount from the fixture's
+        "ad" section with the properties the real cmdlets compute, and runs Disable-ADAccount only when
+        the state allows writes. Throws for any other cmdlet or parameter set.
+    .EXAMPLE
+        # Usually called through $ad.Invoke; called directly here for one account.
+        $ad = New-NpiFixtureAdInvoker -Path tests/fixtures/estate.json
+        Invoke-NpiFakeAd -State $ad -Cmdlet Get-ADUser -Params @{ Identity = 'svc-hrsync' }
+    #>
     param($State, [string]$Cmdlet, [hashtable]$Params)
     $State.Calls.Add([pscustomobject]@{ Cmdlet = $Cmdlet; Params = $Params })
     $ad = $State.Estate.ad
@@ -504,18 +633,41 @@ function Invoke-NpiFakeAd {
 # ----------------------------------------------------------------------------- findings and the run
 
 function New-NpiFinding {
-    <# A finding with a stable ID, Rule:ObjectKey, so the same gap keeps its ID from run to run. #>
+    <#
+    .SYNOPSIS
+        A finding with a stable ID, Rule:ObjectKey, so the same gap keeps its ID from run to run.
+        Returns an object with Id, Rule, Severity, ObjectKey, Object and Issue.
+    .EXAMPLE
+        # Id is NPI-INV-04:app:0a000000-0000-4000-8000-000000000002.
+        New-NpiFinding -Rule 'NPI-INV-04' -Severity Warn -ObjectKey 'app:0a000000-0000-4000-8000-000000000002' -Object 'HR Connector (AppRegistration)' -Issue 'Holds 1 client secret(s)'
+    #>
     param([string]$Rule, [ValidateSet('Finding', 'Warn', 'Info')][string]$Severity, [string]$ObjectKey, [string]$Object, [string]$Issue)
     [pscustomobject]@{ Id = "$Rule`:$ObjectKey"; Rule = $Rule; Severity = $Severity; ObjectKey = $ObjectKey; Object = $Object; Issue = $Issue }
 }
 
 function Write-NpiJson {
+    <#
+    .SYNOPSIS
+        Writes -Value to -Path as JSON (depth 20), UTF-8 without a byte order mark and with LF line
+        endings on every platform, so a manifest's hashes are the same on Windows and Linux. Returns
+        nothing.
+    .EXAMPLE
+        # A full path: the .NET write doesn't follow the PowerShell location.
+        Write-NpiJson -Path (Join-Path ([IO.Path]::GetTempPath()) 'sample.json') -Value @{ task = 'inventory'; asOf = '2026-10-30' }
+    #>
     param([string]$Path, $Value)
     # LF on every platform: ConvertTo-Json uses the platform newline, and the manifest hashes these files.
     [IO.File]::WriteAllText($Path, (ConvertTo-Json -InputObject $Value -Depth 20).Replace("`r`n", "`n") + "`n", [Text.UTF8Encoding]::new($false))
 }
 
 function Get-NpiFileHash {
+    <#
+    .SYNOPSIS
+        Returns the lowercase hexadecimal SHA-256 of one file, the form every manifest records.
+    .EXAMPLE
+        # The hash a run records for the call list it read.
+        Get-NpiFileHash -Path config/calls.json
+    #>
     param([Parameter(Mandatory)][string]$Path)
     (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
 }
@@ -526,6 +678,10 @@ function Export-NpiRun {
         Write a run's outputs and a manifest: the task, mode, cloud, tenant ID, domain, as-of date,
         the permissions and rights the task holds, every request or AD read, and the SHA-256 of each
         file, so the ISSO can check what the evidence is and how it was read.
+    .EXAMPLE
+        # $reader read the estate; $rows and $findings are the inventory's output.
+        Export-NpiRun -OutputPath out/inventory -Task inventory -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -Domain corp.contoso.example `
+            -AsOf 2026-10-30 -Evidence $reader.Evidence.ToArray() -Files @{ 'register.json' = $rows; 'findings.json' = $findings }
     #>
     [CmdletBinding()]
     param(

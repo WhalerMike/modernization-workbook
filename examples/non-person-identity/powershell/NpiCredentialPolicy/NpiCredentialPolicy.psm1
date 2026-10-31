@@ -47,6 +47,15 @@ function ConvertTo-NpiUtc {
 }
 
 function ConvertFrom-NpiIsoDuration {
+    <#
+    .SYNOPSIS
+        Converts an ISO 8601 duration in days and time only (such as P180D or P4DT12H30M5S)
+        to a TimeSpan. Throws for years or months, whose length varies.
+    .EXAMPLE
+        # A TimeSpan of 180 days: the certificate lifetime cap.
+        ConvertFrom-NpiIsoDuration -Duration 'P180D'
+    #>
+
     <# An ISO 8601 duration in days and time only (P180D, P4DT12H30M5S). Years and months are refused: their length varies. #>
     param([Parameter(Mandatory)][string]$Duration)
     if ($Duration -notmatch '^P(?!$)(\d+D)?(T(?=\d)(\d+H)?(\d+M)?(\d+S)?)?$') { throw "Unsupported duration '$Duration': use days and time only, such as P180D." }
@@ -54,6 +63,15 @@ function ConvertFrom-NpiIsoDuration {
 }
 
 function Format-NpiDate {
+    <#
+    .SYNOPSIS
+        Formats a date or date string as ISO 8601 UTC (yyyy-MM-ddTHH:mm:ssZ), or as yyyy-MM-dd
+        with -DateOnly. Returns an empty string for an empty value.
+    .EXAMPLE
+        # Returns 2026-10-30.
+        Format-NpiDate -Value '2026-10-30T00:00:00Z' -DateOnly
+    #>
+
     # A date for people and plans: ConvertFrom-Json turns ISO strings into DateTime, so print them back the same way.
     param($Value, [switch]$DateOnly)
     if ($null -eq $Value -or "$Value" -eq '') { return '' }
@@ -62,6 +80,15 @@ function Format-NpiDate {
 }
 
 function ConvertTo-NpiSortedNode {
+    <#
+    .SYNOPSIS
+        Returns a copy of a value with the keys of every dictionary and object sorted (as
+        ordered hashtables) and dates as ISO 8601 UTC strings, so its JSON is the same on every run.
+    .EXAMPLE
+        $config = Get-Content -LiteralPath config/app-management-policy.json -Raw | ConvertFrom-Json -AsHashtable
+        ConvertTo-NpiSortedNode -Value $config | ConvertTo-Json -Depth 20
+    #>
+
     <# The same data with keys sorted at every level and dates as ISO strings, so the JSON is the same on every run. #>
     param($Value)
     $v = $Value
@@ -79,12 +106,30 @@ function ConvertTo-NpiSortedNode {
 }
 
 function ConvertTo-NpiCanonicalJson {
+    <#
+    .SYNOPSIS
+        Returns compact JSON for a value, with keys sorted at every level and dates as ISO
+        strings, so two reads of the same object give the same text and the same hash.
+    .EXAMPLE
+        # Returns {"displayName":"Default","isEnabled":true} whatever the key order.
+        ConvertTo-NpiCanonicalJson -Value @{ isEnabled = $true; displayName = 'Default' }
+    #>
+
     <# Compact JSON with keys sorted at every level, so two reads of the same object hash the same. #>
     param($Value)
     ConvertTo-Json -InputObject (ConvertTo-NpiSortedNode $Value) -Depth 30 -Compress
 }
 
 function Write-NpiSortedJson {
+    <#
+    .SYNOPSIS
+        Writes a value to a JSON file whose bytes depend only on its data: keys sorted, dates
+        as ISO strings, LF line endings, UTF-8 without a BOM. Returns nothing.
+    .EXAMPLE
+        # $out comes from New-NpiPolicyPlan.
+        Write-NpiSortedJson -Path out/policy/policy-plan.json -Value $out.Plan
+    #>
+
     <# A file whose bytes depend only on its data: keys sorted, dates as ISO strings, LF, no BOM. #>
     param([string]$Path, $Value)
     $json = (ConvertTo-Json -InputObject (ConvertTo-NpiSortedNode $Value) -Depth 30) -replace "`r`n", "`n"
@@ -105,6 +150,16 @@ function ConvertTo-NpiHashtable {
 }
 
 function ConvertFrom-NpiX5t {
+    <#
+    .SYNOPSIS
+        Converts Key Vault's x5t value (the base64url SHA-1 thumbprint of a certificate) to an
+        upper-case hex thumbprint. Returns $null for an empty value.
+    .EXAMPLE
+        $fake = New-NpiCh04FixtureInvoker -Path tests/fixtures/ch04/tenant.json
+        $kv = & $fake.Invoke 'GET' 'https://kv-npi-contoso.vault.azure.net/certificates/vendor-portal?api-version=2025-07-01' $null $null
+        ConvertFrom-NpiX5t -X5t $kv.x5t
+    #>
+
     <# Key Vault's x5t (base64url SHA-1 thumbprint) as upper-case hex. #>
     param([string]$X5t)
     if (-not $X5t) { return $null }
@@ -113,6 +168,16 @@ function ConvertFrom-NpiX5t {
 }
 
 function ConvertFrom-NpiCustomKeyIdentifier {
+    <#
+    .SYNOPSIS
+        Converts Graph's customKeyIdentifier on a keyCredential (base64 of the thumbprint
+        bytes) to an upper-case hex thumbprint. Returns $null if the value is empty or isn't base64.
+    .EXAMPLE
+        $fake = New-NpiCh04FixtureInvoker -Path tests/fixtures/ch04/tenant.json
+        $app = & $fake.Invoke 'GET' 'https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000007?$select=keyCredentials' $null $null
+        $app.keyCredentials | ForEach-Object { ConvertFrom-NpiCustomKeyIdentifier -Value $_.customKeyIdentifier }
+    #>
+
     <# Graph's customKeyIdentifier (base64 of the thumbprint bytes) as upper-case hex (Design guidance; research gaps, row 36). #>
     param([string]$Value)
     if (-not $Value) { return $null }
@@ -122,12 +187,27 @@ function ConvertFrom-NpiCustomKeyIdentifier {
 # ----------------------------------------------------------------------------- the call list
 
 function Get-NpiCh04CallList {
+    <#
+    .SYNOPSIS
+        Reads the Chapter 04 call list (config/calls-ch04.json unless -Path is given) and
+        returns it as a hashtable of tasks and calls.
+    .EXAMPLE
+        (Get-NpiCh04CallList).calls | ForEach-Object { '{0} {1}' -f $_.method, $_.id }
+    #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'calls-ch04.json'))
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
 }
 
 function Get-NpiCh04Task {
+    <#
+    .SYNOPSIS
+        Returns one Chapter 04 task's declaration from the call list (app-policy, policy-apply,
+        rotation or rotation-apply), including its mode. Throws for an unknown task.
+    .EXAMPLE
+        # 'read' or 'write'.
+        (Get-NpiCh04Task -Task rotation).mode
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Task)
     $t = (Get-NpiCh04CallList).tasks
@@ -136,6 +216,13 @@ function Get-NpiCh04Task {
 }
 
 function Get-NpiCh04Call {
+    <#
+    .SYNOPSIS
+        Returns the declared Chapter 04 calls as an array, narrowed to one task with -Task and
+        to one call with -Id.
+    .EXAMPLE
+        Get-NpiCh04Call -Task policy-apply | ForEach-Object { '{0} {1}' -f $_.method, $_.path }
+    #>
     [CmdletBinding()]
     param([string]$Task, [string]$Id)
     $calls = @((Get-NpiCh04CallList).calls)
@@ -145,6 +232,15 @@ function Get-NpiCh04Call {
 }
 
 function Get-NpiCh04RequiredPermission {
+    <#
+    .SYNOPSIS
+        Returns what a Chapter 04 task needs: the union of its calls' Graph permissions, Azure
+        roles (Resource Manager and Key Vault data plane), AD rights and methods, with the task's mode
+        and delegated role.
+    .EXAMPLE
+        Get-NpiCh04RequiredPermission -Task rotation-apply
+    #>
+
     <# The union of a task's calls: Graph permissions and Azure roles (Resource Manager and Key Vault data plane). #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Task)
@@ -162,6 +258,16 @@ function Get-NpiCh04RequiredPermission {
 }
 
 function Get-NpiVaultHost {
+    <#
+    .SYNOPSIS
+        Returns the Key Vault data-plane URL for a vault in a cloud: https://<vault>.vault.azure.net
+        for commercial and GCC, .vault.usgovcloudapi.net for Azure Government. Throws for an unknown
+        cloud or a name that isn't a key vault name.
+    .EXAMPLE
+        # Returns https://kv-npi-contoso.vault.azure.net
+        Get-NpiVaultHost -Cloud gcc -Vault 'kv-npi-contoso'
+    #>
+
     <# https://<vault>.vault.azure.net (commercial, and GCC's commercial Azure) or .vault.usgovcloudapi.net (Azure Government). #>
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$Vault)
     $null = Get-NpiCloud -Cloud $Cloud
@@ -177,6 +283,11 @@ function New-NpiCh04Client {
         A client for one Chapter 04 task in one cloud. A read task's client sends only its declared
         GETs; a write task's client is the only object that can send this chapter's PATCHes and
         POSTs, and only through Invoke-NpiCredentialPlan. -Invoke is { param($Method, $Uri, $Body, $Headers) }.
+    .EXAMPLE
+        # A reader for the app-policy task, against the fake tenant.
+        $register = Import-NpiCh04Register -RunPath out/inventory
+        $fake = New-NpiCh04FixtureInvoker -Path tests/fixtures/ch04/tenant.json
+        $reader = New-NpiCh04Client -Cloud gcc -Task app-policy -Invoke $fake.Invoke -TenantId $register.Manifest.tenantId
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$Task, [Parameter(Mandatory)][scriptblock]$Invoke, [string]$TenantId)
@@ -193,6 +304,16 @@ function New-NpiCh04Client {
 }
 
 function Resolve-NpiCh04Uri {
+    <#
+    .SYNOPSIS
+        Builds the request URL for a declared Chapter 04 call: binds the path placeholders, adds
+        the query, and uses the cloud's Graph host or the vault's host. Returns the call, the URI and
+        the host; throws for an undeclared call or an unbound placeholder.
+    .EXAMPLE
+        $fake = New-NpiCh04FixtureInvoker -Path tests/fixtures/ch04/tenant.json
+        $reader = New-NpiCh04Client -Cloud gcc -Task rotation -Invoke $fake.Invoke
+        (Resolve-NpiCh04Uri -Client $reader -CallId 'kv-ch04-certificate-get' -Bind @{ name = 'vendor-portal' } -Vault 'kv-npi-contoso').Uri
+    #>
     param($Client, [string]$CallId, [hashtable]$Bind = @{}, [string]$Query, [string]$Vault)
     $call = $Client.Calls | Where-Object { $_.id -eq $CallId }
     if (-not $call) { throw "Undeclared call '$CallId' for task '$($Client.Task)'; add it to config/calls-ch04.json with its permission." }
@@ -216,6 +337,9 @@ function Invoke-NpiCh04Get {
     .SYNOPSIS
         GET a declared call and follow @odata.nextLink pages on the same host. Returns the items of
         a collection, or the object itself. Every request is recorded in the client's evidence.
+    .EXAMPLE
+        # The tenant default app management policy, as one object.
+        Invoke-NpiCh04Get -Client $reader -CallId 'graph-ch04-default-policy-get' -Single
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string]$CallId, [hashtable]$Bind = @{}, [string]$Query, [string]$Vault, [hashtable]$Headers, [switch]$Single)
@@ -242,6 +366,10 @@ function New-NpiCh04LiveInvoker {
         Graph through Invoke-MgGraphRequest; Key Vault's data plane through Invoke-AzRestMethod
         with -ResourceId set to the vault audience of this cloud (research gaps, row 38). Refuses to
         start if either session is in another cloud or tenant. -AllowWrite for the writer only.
+    .EXAMPLE
+        # After Connect-MgGraph to the GCC tenant; -SkipAzure because the policy task makes no Key Vault calls.
+        $invoke = New-NpiCh04LiveInvoker -Cloud gcc -TenantId $register.Manifest.tenantId -SkipAzure
+        $reader = New-NpiCh04Client -Cloud gcc -Task app-policy -Invoke $invoke -TenantId $register.Manifest.tenantId
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [switch]$SkipAzure, [switch]$AllowWrite)
@@ -289,6 +417,10 @@ function New-NpiCh04FixtureInvoker {
         adds more), replaces a restriction collection as a PATCH does, enforces one app management
         policy per app and the certificate lifetime cap on a new keyCredential, and completes a Key
         Vault create on the first poll. Every call is recorded in .Calls; writes change .Tenant.
+    .EXAMPLE
+        $fake = New-NpiCh04FixtureInvoker -Path tests/fixtures/ch04/tenant.json -Cloud gcc
+        $reader = New-NpiCh04Client -Cloud gcc -Task app-policy -Invoke $fake.Invoke
+        $fake.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [string]$Cloud = 'gcc', [int]$PageSize = 2, [switch]$AllowWrite)
@@ -345,6 +477,15 @@ function Get-NpiFakeEffectiveCertCap {
 }
 
 function ConvertFrom-NpiFakeCert {
+    <#
+    .SYNOPSIS
+        Decodes a test certificate blob made by New-NpiFakeCertBlob and returns its thumbprint,
+        validity dates and subject. Throws if the blob isn't one. Used by the fake only.
+    .EXAMPLE
+        $blob = New-NpiFakeCertBlob -Thumbprint ('AB' * 20) -Nbf ([datetime]'2026-10-30Z').ToUniversalTime() -Exp ([datetime]'2027-04-28Z').ToUniversalTime() -Subject 'CN=deploy-bot'
+        ConvertFrom-NpiFakeCert -Blob $blob
+    #>
+
     # The fixtures' fake certificate: base64 of "NPI-FAKE-CERT;thumbprint=..;nbf=..;exp=..;subject=..".
     param([string]$Blob)
     $text = try { [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($Blob)) } catch { '' }
@@ -354,6 +495,14 @@ function ConvertFrom-NpiFakeCert {
 }
 
 function New-NpiFakeCertBlob {
+    <#
+    .SYNOPSIS
+        Builds a test certificate blob, the base64 text the fake Graph and Key Vault accept as a
+        certificate key, from a thumbprint, validity dates and subject. Not a real certificate.
+    .EXAMPLE
+        # A 180-day certificate for the fake, to test the lifetime cap.
+        New-NpiFakeCertBlob -Thumbprint ('AB' * 20) -Nbf ([datetime]'2026-10-30Z').ToUniversalTime() -Exp ([datetime]'2027-04-28Z').ToUniversalTime() -Subject 'CN=deploy-bot'
+    #>
     param([string]$Thumbprint, [datetime]$Nbf, [datetime]$Exp, [string]$Subject)
     [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("NPI-FAKE-CERT;thumbprint=$Thumbprint;nbf=$($Nbf.ToString('yyyy-MM-ddTHH:mm:ssZ'));exp=$($Exp.ToString('yyyy-MM-ddTHH:mm:ssZ'));subject=$Subject"))
 }
@@ -369,6 +518,15 @@ function ConvertTo-NpiFakeKvCertificate {
 }
 
 function Invoke-NpiCh04Fake {
+    <#
+    .SYNOPSIS
+        The request handler behind New-NpiCh04FixtureInvoker: answers one request from the fake
+        Graph and Key Vault state, records it in State.Calls, and throws as the service would for a
+        request it refuses. Normally called through the invoker's .Invoke script block.
+    .EXAMPLE
+        $fake = New-NpiCh04FixtureInvoker -Path tests/fixtures/ch04/tenant.json
+        Invoke-NpiCh04Fake -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/policies/defaultAppManagementPolicy'
+    #>
     param($State, [string]$Method, [string]$Uri, $Body, $Headers)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri; Body = (ConvertTo-NpiHashtable $Body); Headers = $Headers })
     if ($Method -eq 'DELETE') { throw 'The fake refuses DELETE' }
@@ -527,6 +685,16 @@ function Invoke-NpiCh04Fake {
 # ----------------------------------------------------------------------------- inputs and outputs
 
 function Import-NpiCh04Register {
+    <#
+    .SYNOPSIS
+        Reads Chapter 01's register.json from an inventory run and checks it against the run's
+        manifest. Returns the rows, the manifest and the register's SHA-256; throws if a file is
+        missing, the run isn't an inventory run, or the register has changed.
+    .EXAMPLE
+        # out/inventory was written by ./Invoke-NpiInventory.ps1 -Cloud gcc -FixturePath tests/fixtures/estate.json -OutputPath out/inventory
+        $register = Import-NpiCh04Register -RunPath out/inventory
+    #>
+
     <# Chapter 01's register, checked against its run manifest, as Chapter 02 does. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$RunPath)
@@ -540,12 +708,29 @@ function Import-NpiCh04Register {
 }
 
 function Import-NpiCh04Input {
+    <#
+    .SYNOPSIS
+        Reads one reviewed CSV input (certificate bindings, rotation approvals or verifications)
+        and returns its rows. Returns an empty array if the path is empty or the file doesn't exist.
+    .EXAMPLE
+        Import-NpiCh04Input -Path tests/fixtures/ch04/inputs/rotation-approvals.csv
+    #>
     param([string]$Path)
     if (-not $Path -or -not (Test-Path -LiteralPath $Path)) { return @() }
     @(Import-Csv -LiteralPath $Path)
 }
 
 function Export-NpiCh04Run {
+    <#
+    .SYNOPSIS
+        Writes each of a run's files as sorted JSON under -OutputPath, then manifest.json with
+        the task, mode, cloud, tenant, the permissions the task needs, every request made and a
+        SHA-256 per file. Returns the manifest file.
+    .EXAMPLE
+        # $reader, $state and $out come from New-NpiCh04Client, Get-NpiAppPolicyState and New-NpiPolicyPlan.
+        Export-NpiCh04Run -OutputPath out/policy -Task app-policy -Cloud gcc -Mode Fixture -TenantId $register.Manifest.tenantId -AsOf '2026-10-30' -Evidence $reader.Evidence -Files @{ 'policy-plan.json' = $out.Plan; 'policy-diff.json' = @($out.Diff) }
+    #>
+
     <# Write a run's files and a manifest (task, mode, cloud, tenant, permissions held, every request, a SHA-256 per file). #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$OutputPath, [Parameter(Mandatory)][string]$Task, [Parameter(Mandatory)][hashtable]$Files, [Parameter(Mandatory)][string]$Cloud,
@@ -582,6 +767,10 @@ function Get-NpiAppPolicyState {
     .SYNOPSIS
         Read the tenant default policy, every app management policy with what it applies to, and,
         for each app registration in the register, its creation date and app instance lock.
+    .EXAMPLE
+        $register = Import-NpiCh04Register -RunPath out/inventory
+        $reader = New-NpiCh04Client -Cloud gcc -Task app-policy -Invoke (New-NpiCh04FixtureInvoker -Path tests/fixtures/ch04/tenant.json).Invoke -TenantId $register.Manifest.tenantId
+        $state = Get-NpiAppPolicyState -Client $reader -Rows $register.Rows
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][object[]]$Rows)
@@ -624,6 +813,10 @@ function Compare-NpiAppPolicy {
         Compare the tenant default policy with the reviewed file. Returns the rows of the diff and the
         merged PATCH body: every restriction the tenant already has is carried, the program's are added
         or tightened, and none is ever loosened or dropped (Design guidance).
+    .EXAMPLE
+        # $state comes from Get-NpiAppPolicyState.
+        $config = Get-Content -LiteralPath config/app-management-policy.json -Raw | ConvertFrom-Json -AsHashtable
+        (Compare-NpiAppPolicy -State $state -Config $config).Rows | Format-Table Scope, RestrictionType, Change
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$State, [Parameter(Mandatory)]$Config)
@@ -676,6 +869,10 @@ function New-NpiPolicyPlan {
         The policy plan: PATCH the tenant default when it differs, create and assign each exception
         that's in force, and lock every app registration that isn't fully locked. No write weakens
         a restriction, drops one, or deletes anything. Same inputs, same plan, byte for byte.
+    .EXAMPLE
+        # $state from Get-NpiAppPolicyState, $config from config/app-management-policy.json.
+        $out = New-NpiPolicyPlan -State $state -Config $config -AsOf ([datetime]'2026-10-30') -Cloud gcc -TenantId $register.Manifest.tenantId -RegisterSha256 $register.Sha256
+        $out.Plan.actions | Format-Table ActionId, Action, Name, Write
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$State, [Parameter(Mandatory)]$Config, [Parameter(Mandatory)][datetime]$AsOf, [Parameter(Mandatory)][string]$Cloud,
@@ -772,6 +969,13 @@ function New-NpiRotationPlan {
         certificate checked against its Key Vault binding, the owner's approval and verification,
         and given one step: wait, renew in Key Vault, attach the new certificate, wait out the
         overlap, or remove the old one. Same inputs, same plan, byte for byte.
+    .EXAMPLE
+        $reader = New-NpiCh04Client -Cloud gcc -Task rotation -Invoke (New-NpiCh04FixtureInvoker -Path tests/fixtures/ch04/tenant.json).Invoke -TenantId $register.Manifest.tenantId
+        $config = Get-Content -LiteralPath config/rotation.json -Raw | ConvertFrom-Json -AsHashtable
+        $policy = Get-Content -LiteralPath config/app-management-policy.json -Raw | ConvertFrom-Json -AsHashtable
+        New-NpiRotationPlan -Client $reader -Rows $register.Rows -Bindings (Import-NpiCh04Input tests/fixtures/ch04/inputs/certificate-bindings.csv) `
+            -Approvals (Import-NpiCh04Input tests/fixtures/ch04/inputs/rotation-approvals.csv) -Config $config -EffectiveDate (Format-NpiDate $policy.effectiveDate) `
+            -AsOf ([datetime]'2026-10-30') -Cloud gcc -TenantId $register.Manifest.tenantId
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][object[]]$Rows, [object[]]$Bindings = @(), [object[]]$Approvals = @(), [object[]]$Verifications = @(),
@@ -924,6 +1128,10 @@ function Assert-NpiCh04PlannedWrite {
     .SYNOPSIS
         Every write must be a declared call of the writer's task, with the declared method, on this
         cloud's host, with a body this function allows. DELETE and PUT are never sent.
+    .EXAMPLE
+        # Throws on the first write in the plan that the policy-apply task doesn't allow.
+        $writer = New-NpiCh04Client -Cloud gcc -Task policy-apply -Invoke (New-NpiCh04FixtureInvoker -Path tests/fixtures/ch04/tenant.json -AllowWrite).Invoke -TenantId $register.Manifest.tenantId
+        foreach ($a in @($out.Plan.actions | Where-Object Write)) { Assert-NpiCh04PlannedWrite -Writer $writer -Action $a }
     #>
     param($Writer, $Action)
     $call = $Writer.Calls | Where-Object { $_.id -eq $Action.Call }
@@ -994,6 +1202,17 @@ function Assert-NpiCh04PlannedWrite {
 }
 
 function Test-NpiNoWeakening {
+    <#
+    .SYNOPSIS
+        Checks a PATCH body for the tenant default policy against the live policy. Returns the
+        first restriction the body would drop or loosen (as scope.restrictionType), or $null when
+        every enabled restriction is kept at least as strict.
+    .EXAMPLE
+        $live = Invoke-NpiCh04Get -Client $reader -CallId 'graph-ch04-default-policy-get' -Single
+        $patch = @($out.Plan.actions | Where-Object Action -EQ 'PatchDefaultPolicy')[0]
+        Test-NpiNoWeakening -Live $live -Body $patch.Body
+    #>
+
     # Every restriction live now must still be in the body, enabled, and at least as strict.
     param($Live, $Body)
     $l = ConvertTo-NpiHashtable $Live; $b = ConvertTo-NpiHashtable $Body
@@ -1017,6 +1236,11 @@ function Invoke-NpiCredentialPlan {
         and runs every precheck, and sends nothing. With -Apply it sends only the plan's writes, only
         if the plan file's SHA-256 is the one approved, the plan is for this tenant, cloud and task,
         no older than seven days, and each precheck still holds.
+    .EXAMPLE
+        # A dry run of a reviewed policy plan against the fake: no -Apply, so nothing is sent.
+        $sha = Get-NpiFileHash -Path out/policy/policy-plan.json
+        $writer = New-NpiCh04Client -Cloud gcc -Task policy-apply -Invoke (New-NpiCh04FixtureInvoker -Path tests/fixtures/ch04/tenant.json -AllowWrite).Invoke -TenantId $register.Manifest.tenantId
+        Invoke-NpiCredentialPlan -PlanPath out/policy/policy-plan.json -ApprovedSha256 $sha -Writer $writer -AsOf ([datetime]'2026-10-30')
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$PlanPath, [Parameter(Mandatory)][string]$ApprovedSha256, [Parameter(Mandatory)]$Writer, [Parameter(Mandatory)][datetime]$AsOf, [int]$MaxPlanAgeDays = 7, [switch]$Apply)

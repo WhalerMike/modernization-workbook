@@ -227,6 +227,12 @@ function Get-VkRunContext {
     .SYNOPSIS
         The settings every check reads: fixture or live mode, where the inputs are, the as-of
         time, the cloud and the thresholds (defaults merged with -Option).
+    .EXAMPLE
+        # Fixture mode: reads saved data from the folder; no sign-in.
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\pass -AsOf '2026-10-29T00:00:00Z' -Option @{ BaselineAssignmentName = 'server-baseline' }
+    .EXAMPLE
+        # Live mode: inputs from D:\Inputs, the HR checks on one wave of the Start Kit's waves.csv.
+        $ctx = Get-VkRunContext -InputPath D:\Inputs -Cloud gcc -Option @{ WaveId = 'W01' }
     #>
     [CmdletBinding()]
     param(
@@ -445,6 +451,14 @@ function Connect-VkGraph {
         Signs in to Microsoft Graph for the chosen cloud. Delegated with the least-privileged
         read scopes the selected checks need, or app-only with a certificate or a managed
         identity (permissions then come from the app's admin-consented grants).
+    .EXAMPLE
+        Connect-VkGraph -Cloud gcc -Scopes (Get-VkRequiredScope -Checks (Get-VkCheckCatalog -CheckId VK-HR-01))
+
+        Delegated sign-in with only the scopes VK-HR-01 needs.
+    .EXAMPLE
+        Connect-VkGraph -Cloud gcc -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+
+        App-only sign-in with a certificate; permissions come from the app's admin-consented grants.
     #>
     [CmdletBinding(DefaultParameterSetName = 'Delegated')]
     param(
@@ -467,6 +481,14 @@ function Connect-VkGraph {
 }
 
 function Connect-VkAzure {
+    <#
+    .SYNOPSIS
+        Signs in to Azure (Connect-AzAccount) in the chosen cloud for the Resource Graph reads of
+        the Arc track and VK-NPI-07. Reader at the scope is enough.
+    .EXAMPLE
+        Connect-VkAzure -Cloud gcc -TenantId <tenant-id>
+    .DESCRIPTION
+    #>
     <# Signs in to Azure for Resource Graph reads; Reader at the scope is enough. #>
     [CmdletBinding()]
     param(
@@ -850,6 +872,14 @@ function Write-VkRunOutput {
         Writes a run under <OutputPath>\<run-id>: Results (CSV and JSON), Details per check,
         Summary (Markdown and JSON), the membership snapshot when VK-DG-05 ran, and
         ValidationManifest.json last, with a SHA-256 of every other file.
+    .EXAMPLE
+        $start = Get-Date
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        $results = @(Get-VkCheckCatalog -Track HR | ForEach-Object { Invoke-VkCheck -CheckId $_.Id -Context $ctx })
+        Write-VkRunOutput -OutputPath D:\Validation -StartTime $start -Context $ctx -Results $results
+
+        How Invoke-ValidationKit.ps1 writes a run; returns the run folder, the file count and the
+        summary path.
     #>
     [CmdletBinding()]
     param(

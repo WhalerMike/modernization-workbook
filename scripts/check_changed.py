@@ -74,6 +74,7 @@ FULL_FILES = {
     "_quarto.yml": "site configuration",
     "docs/presentations/videos.json": "video manifest (every video player reads it)",
     "scripts/write_redirects.py": "post-render redirect writer",
+    "scripts/command_reference.py": "Command Reference generator (a pre-render script)",
     "scripts/redirects.yml": "redirect map",
     "scripts/build_bundles.py": "Word bundle builder",
     "scripts/bundles.yml": "Word bundle manifests",
@@ -279,11 +280,14 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
         if p in ("data/federal-compliance-compliance-spine.yml", "scripts/render_authorities_table.py") or (
                 p.startswith("docs/compliance/") and p.endswith(".md")):
             add("authorities", p)
+        code = len(parts) > 2 and parts[0] == "examples" and p.endswith((".ps1", ".psm1", ".psd1", ".py"))
+        if code or p == "scripts/command_reference.py":
+            add("command-help", p)
         if p.startswith("examples/evidence-maps/") or p in ("data/schemas/evidence-map.schema.json",
                                                              "scripts/check_evidence_maps.py"):
             add("evidence-maps", p)
         if p in ("scripts/check_changed.py", "scripts/check_evidence_maps.py", "scripts/check_neutrality.py",
-                 "scripts/generate_revisions.py", "scripts/deck_assets.py",
+                 "scripts/generate_revisions.py", "scripts/deck_assets.py", "scripts/command_reference.py",
                  "scripts/run_example_tests.py", ".github/workflows/pr-checks.yml") or p.startswith("scripts/tests/"):
             add("unit-tests", p)
     import check_neutrality
@@ -820,8 +824,12 @@ class Checker:
 
     # ------------------------------------------------------------- steps
     def sitemap(self) -> Result:
-        code, _ = run([PY, "scripts/generate_sitemap.py"])
-        return Result("", "pass" if code == 0 else "fail", detail=[] if code == 0 else [f"exit {code}"])
+        # Both generated files are includes Quarto resolves before its pre-render scripts run.
+        for script in ("scripts/generate_sitemap.py", "scripts/command_reference.py"):
+            code, _ = run([PY, script])
+            if code != 0:
+                return Result("", "fail", detail=[f"{script}: exit {code}"])
+        return Result("", "pass")
 
     def render_pages(self) -> Result:
         quarto = tool("quarto")
@@ -1034,7 +1042,7 @@ class Checker:
         steps: list[tuple[str, Callable]] = []
         if p.tier == "FULL":
             steps += [
-                ("Generate site map", self.sitemap),
+                ("Generate site map and command reference", self.sitemap),
                 ("Render site" + ("" if a.skip_docx else " (DOCX, then HTML)"), self.render_full),
                 ("Links and anchors (every published page)", self.link_check),
                 ("Footnotes (every page and bundle)", self.footnote_check),
@@ -1048,7 +1056,7 @@ class Checker:
             ]
         elif p.tier == "CHANGED":
             steps += [
-                ("Generate site map", self.sitemap),
+                ("Generate site map and command reference", self.sitemap),
                 (f"Render {len(p.pages)} page(s) to HTML", self.render_pages),
                 ("Links and anchors (changed pages, inbound)", self.link_check),
                 ("Footnotes (changed pages, their bundles)", self.footnote_check),
@@ -1076,6 +1084,9 @@ class Checker:
         if "authorities" in t:
             steps.append(("Authorities tables match the spine",
                           self.simple([PY, "scripts/render_authorities_table.py", "--check"])))
+        if "command-help" in t:
+            steps.append(("Every example command has a synopsis and an example",
+                          self.simple([PY, "scripts/command_reference.py", "--check"])))
         if "evidence-maps" in t:
             steps.append(("Evidence maps follow the rules; summaries current",
                           self.simple([PY, "scripts/check_evidence_maps.py", "--check"])))

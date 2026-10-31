@@ -41,6 +41,13 @@ param(
 Import-Module (Join-Path $PSScriptRoot 'IdentityKit.psm1') -Force
 
 function Read-KitJsonFile([string]$Path) {
+    <#
+    .SYNOPSIS
+    Read a JSON file and return its items: the 'value' array of a Graph-style page, or the
+    parsed content as an array. Returns $null when no path is given.
+    .EXAMPLE
+    $graphUsers = Read-KitJsonFile ./tests/fixtures/graph_users.json
+    #>
     if (-not $Path) { return $null }
     $data = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json
     if ($data -isnot [array] -and $null -ne $data.value) { return @($data.value) }

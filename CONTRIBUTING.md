@@ -26,7 +26,7 @@ A full site render takes most of an hour, so pull requests get a tiered check in
 | **CHANGED** | Published pages changed, directly or through an image they embed | Site map; render only those pages to HTML; check their links and `#anchors`, and links from anywhere in `docs/` to their headings; check footnotes; build only the Word bundles that contain them; validate the redirect map |
 | **NONE** | Nothing the site publishes changed, for example only deck binaries, example code or unpublished notes | Only the checks below |
 
-Whatever the tier, the changed files also select: the deck accessibility check (`presentations/_build/a11y_check.py`) for changed decks, a kit zip build for a changed `examples/` kit, the kit's own test suites for a changed `examples/` kit that has a `tests/` folder (`scripts/run_example_tests.py`: Pester and pytest, on Linux; every kit's when the runner or the workflow changes; the drift pipeline's too when `non-person-identity` or `privileged-access` changes, because its tests read their evidence runs), the video manifest and project plan staleness checks, the authorities-table check (`scripts/render_authorities_table.py --check`, for the spine or a `docs/compliance/` page), the evidence-map check (`scripts/check_evidence_maps.py --check`, for a map in `examples/evidence-maps/` or its schema), the agency-neutrality check (`scripts/check_neutrality.py`, on every changed text file, or on every file when the term list, the baseline or the checker changes), and the script's unit tests (`scripts/tests/`).
+Whatever the tier, the changed files also select: the deck accessibility check (`presentations/_build/a11y_check.py`) for changed decks, a kit zip build for a changed `examples/` kit, the kit's own test suites for a changed `examples/` kit that has a `tests/` folder (`scripts/run_example_tests.py`: Pester and pytest, on Linux; every kit's when the runner or the workflow changes; the drift pipeline's too when `non-person-identity` or `privileged-access` changes, because its tests read their evidence runs), the video manifest and project plan staleness checks, the authorities-table check (`scripts/render_authorities_table.py --check`, for the spine or a `docs/compliance/` page), the evidence-map check (`scripts/check_evidence_maps.py --check`, for a map in `examples/evidence-maps/` or its schema), the command-help check (`scripts/command_reference.py --check`, for changed example code), the agency-neutrality check (`scripts/check_neutrality.py`, on every changed text file, or on every file when the term list, the baseline or the checker changes), and the script's unit tests (`scripts/tests/`).
 
 Two of those also run weekly on all of `main`, in the **Weekly gates** workflow (`.github/workflows/weekly-gates.yml`, Mondays after Source watch): the neutrality check over every file, which catches a direct push, and the evidence maps judged at today's date, so a stale link or an agreement term coming due is reported without anyone editing the map. Findings go to one open issue, "Weekly gates: findings," which is closed when a run comes back clean.
 
@@ -54,6 +54,15 @@ python scripts/run_example_tests.py privileged-access   # one kit's suites (need
 ```
 
 Locally the changed files include uncommitted edits to tracked files (`--committed-only` leaves them out; `--include-untracked` adds new files). `--files a.md b.svg` (or `--files @list.txt`) plans for a given file list, `--max-pages N` moves the FULL threshold, and `--skip-docx` drops the slow per-page DOCX render from a local FULL run. A CHANGED run renders into `_site/` and puts back the books table that the pre-render step rewrites, so it leaves no edits behind. Run `git fetch origin main` first so the comparison is against the current `main`.
+
+## Help for example commands
+
+Every command in `examples/` needs help, because the [Command Reference](docs/reference/commands.md) is built from it on every deploy:
+
+- **A PowerShell function a module exports, or a script:** comment-based help with a `.SYNOPSIS` and at least one `.EXAMPLE`. Put a function's help just inside its body, before `param`, and a script's at the top of the file. `Get-Help <command> -Full` and `<command> -?` then show it.
+- **A Python tool** (a file with `if __name__ == "__main__"`): a module docstring whose first line is the synopsis and which contains at least one line that runs the tool (`python tool.py --fixture ...`). Use argparse, so `--help` works.
+
+`python scripts/command_reference.py --missing [--kit <kit>]` lists what's missing; the pull request checks fail while anything is. Files under a kit's `tests` folder and the pinned samples in `examples/third_party` aren't commands. Run `python scripts/command_reference.py` to build the page body locally before a render.
 
 ## Versioning
 

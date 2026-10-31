@@ -53,11 +53,26 @@ $script:Permissions = [ordered]@{
 $script:PhishingResistant = @('passKeyDeviceBound', 'passKeyDeviceBoundAuthenticator', 'passKeyDeviceBoundWindowsHello', 'windowsHelloForBusiness', 'fido2SecurityKey')
 
 function Get-FmwCloud {
+    <#
+    .SYNOPSIS
+        Returns the sign-in, Graph and Azure Resource Manager endpoints and the Connect-MgGraph
+        environment name for a cloud. GCC uses the worldwide service; GCC High and DoD have their own.
+    .EXAMPLE
+        (Get-FmwCloud -Cloud gcchigh).Graph   # https://graph.microsoft.us
+    #>
     param([Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud)
     $script:Clouds[$Cloud]
 }
 
 function Connect-FmwGraph {
+    <#
+    .SYNOPSIS
+        Signs in to Microsoft Graph app-only in the chosen cloud, with a certificate or a managed
+        identity (never a client secret), and remembers the cloud for later calls.
+    .EXAMPLE
+        Connect-FmwGraph -Cloud gcchigh -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+    #>
+
     <# App-only sign-in: a certificate from the CurrentUser or LocalMachine store, or a managed identity. #>
     [CmdletBinding(DefaultParameterSetName = 'Certificate')]
     param(
@@ -80,6 +95,14 @@ function Connect-FmwGraph {
 }
 
 function Get-FmwGraphCall {
+    <#
+    .SYNOPSIS
+        Returns the Graph calls declared in graph-calls.json, or only those for one task.
+        Throws when no call is declared for the task.
+    .EXAMPLE
+        Get-FmwGraphCall -Task pim-report | ForEach-Object { $_['id'] }
+    #>
+
     <# The declared Graph calls (graph-calls.json), or one task's. #>
     param([string]$Task)
     if (-not $Task) { return , @($script:Calls) }
@@ -89,6 +112,14 @@ function Get-FmwGraphCall {
 }
 
 function Get-FmwCallPermission {
+    <#
+    .SYNOPSIS
+        Returns the least-privileged permissions a task's declared Graph calls need, sorted and
+        without duplicates.
+    .EXAMPLE
+        Get-FmwCallPermission -Task pim-report
+    #>
+
     <# The union of the least-privileged permissions a task's calls need, sorted. #>
     param([Parameter(Mandatory)][string]$Task)
     $calls = Get-FmwGraphCall -Task $Task
@@ -96,6 +127,14 @@ function Get-FmwCallPermission {
 }
 
 function Assert-FmwGraphCall {
+    <#
+    .SYNOPSIS
+        Checks one Graph call before it is sent: the URI must stay on the cloud's Graph host, and the
+        call must be declared in graph-calls.json for the task. Throws on a refused call; returns the matching call.
+    .EXAMPLE
+        Assert-FmwGraphCall -Method GET -Uri '/v1.0/deviceManagement/deviceCompliancePolicies/cp1/assignments' -Cloud gcc -Task compliance-coverage
+    #>
+
     <#
     Refuse a Graph call this run wasn't given: an absolute URI on another host than the cloud's Graph
     host (so the token never leaves), an undeclared call when a task is named, any beta call no listed
@@ -137,6 +176,15 @@ function Assert-FmwGraphCall {
 
 function Get-FmwGraphCollection {
     <#
+    .SYNOPSIS
+        Returns every item of a Graph collection, following @odata.nextLink. Each page is checked
+        with Assert-FmwGraphCall (cloud host, declared calls) before it is sent.
+    .EXAMPLE
+        # After Connect-FmwGraph
+        Get-FmwGraphCollection -Uri '/v1.0/identity/conditionalAccess/policies' -Task ca-export
+    #>
+
+    <#
     Every item of a collection, following @odata.nextLink. Each page is checked by Assert-FmwGraphCall
     and sent with the same headers. Invoke-MgGraphRequest relies on the Graph PowerShell SDK's own
     retry handling for throttled calls.
@@ -160,6 +208,14 @@ function Get-FmwGraphCollection {
 }
 
 function Get-FmwBetaCollection {
+    <#
+    .SYNOPSIS
+        Reads a beta collection without depending on it. A refused call, or a 400, 404 or 501 from
+        Graph, returns available = false with the reason instead of an error.
+    .EXAMPLE
+        Get-FmwBetaCollection -Path '/deviceManagement/windowsAutopilotDeviceIdentities' -Task autopilot-profiles -Cloud gcchigh
+    #>
+
     <#
     Read a beta collection without depending on it: @{ stage; available; items; reason }. A refused call
     (undeclared, or not offered in this cloud) and a 400, 404 or 501 from Graph give available = false,
@@ -185,6 +241,15 @@ function Get-FmwBetaCollection {
 }
 
 function Get-FmwTokenRole {
+    <#
+    .SYNOPSIS
+        Returns the roles claim (application permissions) of an access token. The token is decoded,
+        not validated: this is a pre-flight check only.
+    .EXAMPLE
+        # $token holds an app-only access token for Microsoft Graph
+        Get-FmwTokenRole -Token $token
+    #>
+
     <# The roles claim (application permissions) of an access token. Read, not validated: a pre-flight check only. #>
     param([Parameter(Mandatory)][string]$Token)
     $parts = $Token.Split('.')
@@ -196,6 +261,15 @@ function Get-FmwTokenRole {
 }
 
 function Test-FmwTokenRole {
+    <#
+    .SYNOPSIS
+        Compares a token's roles with the permissions a task needs. Returns Missing (needed, not held)
+        and Extra (held, not used).
+    .EXAMPLE
+        # $token holds an app-only access token for Microsoft Graph
+        Test-FmwTokenRole -Token $token -Needed (Get-FmwCallPermission -Task ca-export)
+    #>
+
     <# What the token lacks for the task (Missing) and holds beyond it (Extra: unused permissions). #>
     param([Parameter(Mandatory)][string]$Token, [Parameter(Mandatory)][AllowEmptyCollection()][string[]]$Needed)
     $have = Get-FmwTokenRole -Token $Token
@@ -206,6 +280,15 @@ function Test-FmwTokenRole {
 }
 
 function Test-FmwSessionRole {
+    <#
+    .SYNOPSIS
+        Compares the permissions of the current app-only Graph PowerShell session (Get-MgContext Scopes)
+        with those a task needs, and returns Missing and Extra. Throws when there is no session or it is delegated.
+    .EXAMPLE
+        # After Connect-FmwGraph
+        Test-FmwSessionRole -Needed (Get-FmwCallPermission -Task pim-report)
+    #>
+
     <#
     The same pre-flight as Test-FmwTokenRole, for a Graph PowerShell session, whose token the module
     never sees. Learn's app-only guide shows Get-MgContext's Scopes holding the application's
@@ -225,6 +308,14 @@ function Test-FmwSessionRole {
 }
 
 function Assert-FmwSessionRole {
+    <#
+    .SYNOPSIS
+        Stops before a live task when the Graph session lacks a permission the task's calls need,
+        and warns for each permission the session holds that the task doesn't use.
+    .EXAMPLE
+        Assert-FmwSessionRole -Task stale-users
+    #>
+
     <# Before a live task: stop if the session lacks a permission the task's calls need; warn for each extra one. #>
     param([Parameter(Mandatory)][string]$Task)
     $audit = Test-FmwSessionRole -Needed (Get-FmwCallPermission -Task $Task)
@@ -233,6 +324,13 @@ function Assert-FmwSessionRole {
 }
 
 function ConvertTo-FmwUtc {
+    <#
+    .SYNOPSIS
+        Converts a string, DateTime or DateTimeOffset to a UTC DateTimeOffset. Returns $null for an
+        empty value.
+    .EXAMPLE
+        ConvertTo-FmwUtc -Value '2026-07-01T00:00:00Z'
+    #>
     param($Value)
     if ($null -eq $Value -or "$Value" -eq '') { return $null }
     if ($Value -is [datetime]) { return [datetimeoffset]::new($Value.ToUniversalTime(), [timespan]::Zero) }
@@ -241,6 +339,13 @@ function ConvertTo-FmwUtc {
 }
 
 function Format-FmwUtc {
+    <#
+    .SYNOPSIS
+        Formats a date as a UTC ISO 8601 string ending in Z, such as 2026-07-01T00:00:00Z. Returns
+        $null for $null.
+    .EXAMPLE
+        Format-FmwUtc -Value (ConvertTo-FmwUtc '2026-07-01T00:00:00Z')   # 2026-07-01T00:00:00Z
+    #>
     param($Value)
     if ($null -eq $Value) { return $null }
     $Value.ToUniversalTime().ToString("yyyy-MM-dd'T'HH:mm:ss'Z'", [cultureinfo]::InvariantCulture)
@@ -261,6 +366,15 @@ function Get-FmwValue {
 }
 
 function Test-FmwStaleUser {
+    <#
+    .SYNOPSIS
+        Lists enabled member accounts with no interactive or non-interactive sign-in for -Days days as
+        of -AsOf, skipping accounts created within that window. Makes no Graph call.
+    .EXAMPLE
+        $users = (Get-Content ./tests/fixtures/users.json -Raw | ConvertFrom-Json -AsHashtable -DateKind String).users
+        Test-FmwStaleUser -Users $users -AsOf ([datetimeoffset]'2026-10-25T00:00:00Z') -Days 90
+    #>
+
     <# Enabled members with no interactive or non-interactive sign-in in $Days days. Needs Entra ID P1 for signInActivity. #>
     param([Parameter(Mandatory)][object[]]$Users, [Parameter(Mandatory)][datetimeoffset]$AsOf, [int]$Days = 90)
     $rows = [System.Collections.Generic.List[object]]::new()
@@ -280,6 +394,14 @@ function Test-FmwStaleUser {
 }
 
 function ConvertTo-FmwCaExport {
+    <#
+    .SYNOPSIS
+        Summarizes Conditional Access policies (name, state, grant controls, report-only) with counts
+        by state, and keys the full policies and named locations by ID for export. Makes no Graph call.
+    .EXAMPLE
+        $ca = Get-Content ./tests/fixtures/ca.json -Raw | ConvertFrom-Json -AsHashtable -DateKind String
+        (ConvertTo-FmwCaExport -Policies $ca.policies -NamedLocations $ca.namedLocations).counts
+    #>
     param([Parameter(Mandatory)][object[]]$Policies, [object[]]$NamedLocations = @())
     $summary = [System.Collections.Generic.List[object]]::new()
     foreach ($p in ($Policies | Sort-Object { [string](Get-FmwValue $_ 'displayName' '') })) {
@@ -302,6 +424,15 @@ function ConvertTo-FmwCaExport {
 }
 
 function Test-FmwPim {
+    <#
+    .SYNOPSIS
+        Checks role assignments against ScubaGear MS.AAD.7.1v1 (2 to 8 Global Administrators) and
+        MS.AAD.7.4v1 (no permanent active assignment to a privileged role). Makes no Graph call.
+    .EXAMPLE
+        $pim = Get-Content ./tests/fixtures/pim.json -Raw | ConvertFrom-Json -AsHashtable -DateKind String
+        Test-FmwPim -RoleDefinitions $pim.roleDefinitions -Eligibility $pim.eligibility -Assignments $pim.assignments -PrivilegedRoleIds 62e90394-69f5-4237-9190-012177145e10
+    #>
+
     <# ScubaGear MS.AAD.7.1v1 (2 to 8 Global Administrators) and MS.AAD.7.4v1 (no permanent active privileged assignment). #>
     param([object[]]$RoleDefinitions, [object[]]$Eligibility = @(), [object[]]$Assignments = @(), [Parameter(Mandatory)][string[]]$PrivilegedRoleIds)
     $names = @{}
@@ -328,6 +459,15 @@ function Test-FmwPim {
 }
 
 function Test-FmwAppCredential {
+    <#
+    .SYNOPSIS
+        Lists every application password and certificate with its lifetime and days left, flagged
+        against ScubaGear MS.AAD.5.5v1, 5.6v1 and 5.7v1, and marked expired or expiring. Makes no Graph call.
+    .EXAMPLE
+        $apps = (Get-Content ./tests/fixtures/apps.json -Raw | ConvertFrom-Json -AsHashtable -DateKind String).applications
+        Test-FmwAppCredential -Applications $apps -AsOf ([datetimeoffset]'2026-10-25T00:00:00Z')
+    #>
+
     <# ScubaGear MS.AAD.5.5v1 (no app passwords), 5.6v1 (password lifetime <= 180 days), 5.7v1 (certificate <= 365). #>
     param([Parameter(Mandatory)][object[]]$Applications, [Parameter(Mandatory)][datetimeoffset]$AsOf, [int]$ExpiringDays = 30)
     $rows = [System.Collections.Generic.List[object]]::new()
@@ -355,6 +495,15 @@ function Test-FmwAppCredential {
 }
 
 function Test-FmwMfaRegistration {
+    <#
+    .SYNOPSIS
+        Counts members who aren't MFA registered or have no phishing-resistant method, and lists admins
+        without one, toward ScubaGear MS.AAD.3.1v1. Makes no Graph call.
+    .EXAMPLE
+        $mfa = Get-Content ./tests/fixtures/mfa.json -Raw | ConvertFrom-Json -AsHashtable
+        Test-FmwMfaRegistration -Details $mfa.registrationDetails
+    #>
+
     <# Counts toward ScubaGear MS.AAD.3.1v1 (phishing-resistant MFA for all users). #>
     param([Parameter(Mandatory)][object[]]$Details)
     $members = @($Details | Where-Object { (Get-FmwValue $_ 'userType' 'member') -eq 'member' })
@@ -369,6 +518,14 @@ function Test-FmwMfaRegistration {
 }
 
 function Invoke-FmwEntraTask {
+    <#
+    .SYNOPSIS
+        Runs one read-only Entra ID task after Connect-FmwGraph: checks the session's permissions,
+        reads the data from Graph and returns the findings. For ca-export, -OutDirectory also writes the policies as JSON.
+    .EXAMPLE
+        Invoke-FmwEntraTask -Task pim-report -PrivilegedRoleIds 62e90394-69f5-4237-9190-012177145e10, e8611ab8-c189-46e8-94e1-60213ab1f814
+    #>
+
     <# Fetch from Graph (after Connect-FmwGraph) and evaluate. Read-only. #>
     param(
         [Parameter(Mandatory)][ValidateSet('stale-users', 'ca-export', 'pim-report', 'app-credentials', 'mfa-registration')][string]$Task,
@@ -418,6 +575,14 @@ $script:FailingStatuses = @('nonCompliant', 'error', 'conflict')
 $script:NotAppliedStatuses = @('notApplicable', 'notAssigned')
 
 function Get-FmwIntunePermission {
+    <#
+    .SYNOPSIS
+        Returns the least-privileged application permissions for one Intune task, or the sorted
+        union for all of them.
+    .EXAMPLE
+        Get-FmwIntunePermission -Task autopilot-profiles
+    #>
+
     <# The least-privileged application permissions for one Intune task, or all of them. #>
     param([ValidateSet('noncompliant-devices', 'compliance-coverage', 'stale-checkin', 'device-posture', 'autopilot-profiles')][string]$Task)
     if ($Task) { return , @($script:IntunePermissions[$Task]) }
@@ -432,6 +597,15 @@ function Get-FmwNameCount {
 }
 
 function Test-FmwIntuneNoncompliant {
+    <#
+    .SYNOPSIS
+        Lists managed devices whose compliance state needs attention (noncompliant, in grace period,
+        error or conflict) with the policies that report them failing, and counts by state.
+    .EXAMPLE
+        $intune = Get-Content ./tests/fixtures/intune.json -Raw | ConvertFrom-Json -AsHashtable -DateKind String
+        Test-FmwIntuneNoncompliant -Devices $intune.managedDevices -Policies $intune.compliancePolicies
+    #>
+
     <# Devices whose compliance state needs attention, with the policies that report them failing. Joined on device name. #>
     param([Parameter(Mandatory)][object[]]$Devices, [object[]]$Policies = @())
     $counts = Get-FmwNameCount $Devices
@@ -469,6 +643,15 @@ function Test-FmwIntuneNoncompliant {
 }
 
 function Test-FmwIntuneComplianceCoverage {
+    <#
+    .SYNOPSIS
+        Finds compliance policies with no assignment or only exclusions, and managed devices that
+        no compliance policy reports on. Also lists device names that aren't unique.
+    .EXAMPLE
+        $intune = Get-Content ./tests/fixtures/intune.json -Raw | ConvertFrom-Json -AsHashtable -DateKind String
+        Test-FmwIntuneComplianceCoverage -Devices $intune.managedDevices -Policies $intune.compliancePolicies
+    #>
+
     <# Compliance policies with no assignment or only exclusions; managed devices no compliance policy reports on. #>
     param([Parameter(Mandatory)][object[]]$Devices, [object[]]$Policies = @())
     $rows = [System.Collections.Generic.List[object]]::new()
@@ -504,6 +687,15 @@ function Test-FmwIntuneComplianceCoverage {
 }
 
 function Test-FmwIntuneStaleCheckin {
+    <#
+    .SYNOPSIS
+        Lists managed devices whose last Intune sync is at least -ValidityDays old, or that never
+        synced, banded as beyondValidity, beyondCleanup (-CleanupDays) or noSync.
+    .EXAMPLE
+        $intune = Get-Content ./tests/fixtures/intune.json -Raw | ConvertFrom-Json -AsHashtable -DateKind String
+        Test-FmwIntuneStaleCheckin -Devices $intune.managedDevices -AsOf ([datetimeoffset]'2026-10-30T00:00:00Z') -ValidityDays 30 -CleanupDays 120
+    #>
+
     <# Managed devices whose last Intune sync is older than the compliance validity period or the cleanup age. #>
     param([Parameter(Mandatory)][object[]]$Devices, [Parameter(Mandatory)][datetimeoffset]$AsOf, [int]$ValidityDays = 14, [int]$CleanupDays = 90)
     $rows = [System.Collections.Generic.List[object]]::new()
@@ -528,6 +720,13 @@ function ConvertTo-FmwVersionPart {
 }
 
 function Test-FmwVersionBelow {
+    <#
+    .SYNOPSIS
+        Returns $true when a dotted version is lower than -Floor, compared part by part. A missing
+        or non-numeric part counts as 0.
+    .EXAMPLE
+        Test-FmwVersionBelow -Version '10.0.22631.4317' -Floor '10.0.26100'   # True
+    #>
     param([string]$Version, [Parameter(Mandatory)][string]$Floor)
     $a = ConvertTo-FmwVersionPart $Version; $b = ConvertTo-FmwVersionPart $Floor
     $n = [math]::Max($a.Count, $b.Count)
@@ -539,6 +738,15 @@ function Test-FmwVersionBelow {
 }
 
 function Test-FmwIntunePosture {
+    <#
+    .SYNOPSIS
+        Lists devices that don't report encryption on the platforms in -EncryptionOs, or whose OS
+        version is below the floor for their platform in -OsFloors, with counts.
+    .EXAMPLE
+        $intune = Get-Content ./tests/fixtures/intune.json -Raw | ConvertFrom-Json -AsHashtable -DateKind String
+        Test-FmwIntunePosture -Devices $intune.managedDevices -OsFloors @{ Windows = '10.0.26200'; iOS = '26.0' }
+    #>
+
     <# Devices not reporting encryption (on the platforms named), or below the OS floor for their platform. #>
     param([Parameter(Mandatory)][object[]]$Devices, [System.Collections.IDictionary]$OsFloors = @{ Windows = '10.0.26100' }, [string[]]$EncryptionOs = @('Windows', 'macOS'))
     $rows = [System.Collections.Generic.List[object]]::new()
@@ -565,6 +773,15 @@ function Test-FmwIntunePosture {
 }
 
 function Test-FmwAutopilotProfile {
+    <#
+    .SYNOPSIS
+        Counts Windows Autopilot registrations by deployment profile assignment status (a beta-only
+        property) and lists every one that isn't assignedInSync.
+    .EXAMPLE
+        $intune = Get-Content ./tests/fixtures/intune.json -Raw | ConvertFrom-Json -AsHashtable -DateKind String
+        Test-FmwAutopilotProfile -Identities $intune.autopilotDevices
+    #>
+
     <# Autopilot registrations by deployment profile assignment status (a beta-only property); every one not assignedInSync is listed. #>
     param([Parameter(Mandatory)][object[]]$Identities)
     $counts = [System.Collections.Generic.Dictionary[string, int]]::new([System.StringComparer]::Ordinal)
@@ -601,6 +818,14 @@ function Get-FmwIntuneCompliancePolicy {
 }
 
 function Invoke-FmwIntuneTask {
+    <#
+    .SYNOPSIS
+        Runs one read-only Intune task after Connect-FmwGraph: checks the session's permissions, reads
+        devices and compliance policies from Graph and returns the findings. autopilot-profiles reads beta.
+    .EXAMPLE
+        Invoke-FmwIntuneTask -Task device-posture -OsFloors @{ Windows = '10.0.26100' }
+    #>
+
     <# Fetch from Graph (after Connect-FmwGraph) and evaluate. Read-only. autopilot-profiles reads the beta endpoint. #>
     param(
         [Parameter(Mandatory)][ValidateSet('noncompliant-devices', 'compliance-coverage', 'stale-checkin', 'device-posture', 'autopilot-profiles')][string]$Task,

@@ -45,6 +45,15 @@ $script:LearnAdminRoles = [ordered]@{
 # ----------------------------------------------------------------------------- calls and the client
 
 function Get-PaCaCall {
+    <#
+    .SYNOPSIS
+        Returns the Chapter 03 calls declared in config/calls-ch03.json, or only those for one task
+        (ca-read or ca-apply) when -Task is given.
+    .EXAMPLE
+        # The read task's calls are all GETs.
+        Get-PaCaCall -Task ca-read | Select-Object id, method, permissions
+    #>
+
     <# The declared Chapter 03 calls, optionally for one task. #>
     [CmdletBinding()]
     param([ValidateSet('ca-read', 'ca-apply')][string]$Task)
@@ -54,6 +63,14 @@ function Get-PaCaCall {
 }
 
 function Get-PaCaRequiredPermission {
+    <#
+    .SYNOPSIS
+        Returns the union of the Graph permissions a task's declared calls need, as
+        GraphPermissions: ca-read for the GETs, ca-apply for the GETs and the writes.
+    .EXAMPLE
+        (Get-PaCaRequiredPermission -Task ca-apply).GraphPermissions
+    #>
+
     <# The union of a task's Graph permissions: ca-read (GET only) or ca-apply (adds the writes). #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][ValidateSet('ca-read', 'ca-apply')][string]$Task)
@@ -69,6 +86,10 @@ function New-PaCaClient {
         A Graph client for Chapter 03 in one cloud. -Invoke is { param($Method, $Uri, $Body) } and
         returns the parsed body as a hashtable. Without -Apply the client is task ca-read and
         refuses every write; with -Apply it is task ca-apply.
+    .EXAMPLE
+        # A dry-run client over the fictional tenant: it refuses every write.
+        $fake = New-PaCaFixtureInvoker -Path tests/fixtures/ch03/tenant.json -Cloud gcc
+        $client = New-PaCaClient -Cloud gcc -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param(
@@ -108,6 +129,16 @@ function Assert-PaCaHost {
 }
 
 function Invoke-PaCaList {
+    <#
+    .SYNOPSIS
+        Sends GET for a declared Chapter 03 call and returns every item from every page, following
+        @odata.nextLink only on the cloud's own Graph host. Each request is added to the client's
+        Evidence.
+    .EXAMPLE
+        # Every Conditional Access policy in the tenant.
+        Invoke-PaCaList -Client $client -CallId ca-policies
+    #>
+
     <# GET a declared collection, following every @odata.nextLink on the cloud's own host. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string]$CallId)
@@ -141,6 +172,10 @@ function New-PaCaLiveInvoker {
         The live invoker, through Invoke-MgGraphRequest. Refuses to run if the Graph session is in
         another cloud. Writes are allowed only with -AllowWrite. Sign in first with
         Connect-MgGraph -Environment <GraphEnvironment> and only the task's permissions.
+    .EXAMPLE
+        # GCC uses the Global Graph environment: sign in, then make a dry-run client on the live invoker.
+        Connect-MgGraph -Environment Global
+        $client = New-PaCaClient -Cloud gcc -Invoke (New-PaCaLiveInvoker -Cloud gcc)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [switch]$AllowWrite)
@@ -165,6 +200,11 @@ function New-PaCaFixtureInvoker {
         A fake Graph for Chapter 03, served from a fixture file: the three collections and the
         templates, paged with a next link, and the four writes applied in memory so a test can
         read the tenant back. DELETE throws. Every call is recorded in .Calls.
+    .EXAMPLE
+        # Serve the fictional tenant, then list every call the fake answered.
+        $fake = New-PaCaFixtureInvoker -Path tests/fixtures/ch03/tenant.json -Cloud gcc -PageSize 2
+        $client = New-PaCaClient -Cloud gcc -Invoke $fake.Invoke
+        $fake.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][string]$Cloud, [int]$PageSize = 2)
@@ -255,6 +295,9 @@ function Read-PaCaRepository {
         Read ca-policies/: the contexts, strengths and policies, with every placeholder resolved
         from the tenant map except {strength:...}, which the plan resolves from the tenant. Returns
         the objects and the configuration; unresolved placeholders are left for PA-CA-03.
+    .EXAMPLE
+        $repo = Read-PaCaRepository -Path ca-policies -MapPath tests/fixtures/ch03/tenant-map.json
+        $repo.Objects | Select-Object Kind, Name, File
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][string]$MapPath)
@@ -283,6 +326,10 @@ function ConvertFrom-PaCaTemplate {
         Microsoft's Conditional Access template (a conditionalAccessTemplate, from Graph or from
         the pinned Learn page) as a policy body, unchanged except for a name and report-only
         state. The pre-merge check then says what it lacks; this function fixes nothing.
+    .EXAMPLE
+        # Turn Learn's example template into a report-only policy body.
+        $template = Read-PaCaTemplatePage -Path ../third_party/conditional-access-template-page/conditionalaccesstemplate-get.md
+        ConvertFrom-PaCaTemplate -Template $template
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][hashtable]$Template)
@@ -297,6 +344,9 @@ function Read-PaCaTemplatePage {
     .SYNOPSIS
         The example response from the pinned Learn page "Get conditionalAccessTemplate", unmodified:
         the first HTTP 200 block. Throws if the page no longer has it in that shape.
+    .EXAMPLE
+        $template = Read-PaCaTemplatePage -Path ../third_party/conditional-access-template-page/conditionalaccesstemplate-get.md
+        $template.name
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -307,6 +357,17 @@ function Read-PaCaTemplatePage {
 }
 
 function Test-PaCaPolicyBody {
+    <#
+    .SYNOPSIS
+        Runs the pre-merge check on one policy body as if it were a file in the repository, and
+        returns only that policy's findings. Use it on a converted template before saving it.
+    .EXAMPLE
+        # What Learn's template lacks before it can join ca-policies/.
+        $repo = Read-PaCaRepository -Path ca-policies -MapPath tests/fixtures/ch03/tenant-map.json
+        $body = ConvertFrom-PaCaTemplate -Template (Read-PaCaTemplatePage -Path ../third_party/conditional-access-template-page/conditionalaccesstemplate-get.md)
+        Test-PaCaPolicyBody -Body $body -Repository $repo -Name learn-template
+    #>
+
     <# Check one policy body (a converted template, say) as if it were a file in the repository. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][Collections.IDictionary]$Body, [Parameter(Mandatory)]$Repository, [string]$Name = 'candidate')
@@ -335,6 +396,9 @@ function Test-PaCaRepository {
     .SYNOPSIS
         The pre-merge check: PA-CA-01 to PA-CA-09 over the repository's objects. Reads files only.
         Findings stop -Apply; Warn and Info don't.
+    .EXAMPLE
+        $repo = Read-PaCaRepository -Path ca-policies -MapPath tests/fixtures/ch03/tenant-map.json
+        Test-PaCaRepository -Repository $repo | Where-Object Severity -EQ 'Finding'
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Repository)
@@ -405,6 +469,15 @@ function Test-PaCaRepository {
 # ----------------------------------------------------------------------------- the plan
 
 function Compare-PaCaValue {
+    <#
+    .SYNOPSIS
+        Returns the dotted property paths where a repository value differs from the tenant's. Only
+        properties the repository sets are compared; arrays compare as sets, values case-sensitively.
+    .EXAMPLE
+        # Returns state and conditions.users.excludeGroups.
+        Compare-PaCaValue -Repo @{ state = 'enabled'; conditions = @{ users = @{ excludeGroups = @('9e000000-0000-4000-8000-000000000001') } } } -Tenant @{ state = 'disabled' } -Path ''
+    #>
+
     # Paths where the repository's value differs from the tenant's. Driven by the repository: a
     # property the file doesn't set isn't compared. Arrays compare as sets.
     param($Repo, $Tenant, [string]$Path)
@@ -424,6 +497,15 @@ function Compare-PaCaValue {
 }
 
 function Get-PaCaTenant {
+    <#
+    .SYNOPSIS
+        Reads the tenant's Conditional Access policies, authentication contexts and authentication
+        strengths, every page, through three declared GETs. Returns Policies, Contexts and Strengths.
+    .EXAMPLE
+        $tenant = Get-PaCaTenant -Client $client
+        $tenant.Policies | Select-Object displayName, state
+    #>
+
     <# Read the tenant's policies, authentication contexts and strengths: three GETs, every page. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client)
@@ -446,6 +528,10 @@ function Get-PaCaPlan {
         strengths, policies. Create, Update, NoChange, Blocked (a strength or context it needs
         doesn't exist yet), Held (an enforcement without -AllowEnforce), Differs (a strength,
         which this code doesn't update) and NotInRepository (never deleted). Sends nothing.
+    .EXAMPLE
+        # $repo from Read-PaCaRepository, $client from New-PaCaClient.
+        $plan = @(Get-PaCaPlan -Repository $repo -Tenant (Get-PaCaTenant -Client $client))
+        $plan | Select-Object Kind, Name, Action, Note
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Repository, [Parameter(Mandatory)]$Tenant, [switch]$AllowEnforce)
@@ -518,6 +604,10 @@ function Invoke-PaCaPlan {
         Carry out a plan. A dry run unless the client was made with -Apply: it returns each request
         it would send with Sent = $false. With -Apply it refuses to start if the pre-merge check has
         a Finding, or if any policy it would write leaves out the emergency access group.
+    .EXAMPLE
+        # Dry run on a client made without -Apply: returns each request with Sent = $false.
+        $findings = @(Test-PaCaRepository -Repository $repo)
+        Invoke-PaCaPlan -Client $client -Plan $plan -Findings $findings -EmergencyGroupId $repo.EmergencyGroupId -ReportOnlyInstrument $repo.ReportOnlyInstruments
     #>
     [CmdletBinding()]
     param(
@@ -549,6 +639,15 @@ function Invoke-PaCaPlan {
 }
 
 function Export-PaCaRun {
+    <#
+    .SYNOPSIS
+        Writes each entry of -Files to -OutputPath as JSON, then manifest.json with each file's
+        SHA-256, the task, mode, cloud, the task's Graph permissions and every request in -Evidence.
+        Returns the manifest file.
+    .EXAMPLE
+        Export-PaCaRun -OutputPath out/ca -Cloud gcc -Task $client.Task -Mode Fixture-DryRun -Evidence $client.Evidence -Files @{ 'plan.json' = @($plan) }
+    #>
+
     <# Write a run's files and a manifest with each file's SHA-256, the cloud, the mode and every request. #>
     [CmdletBinding()]
     param(

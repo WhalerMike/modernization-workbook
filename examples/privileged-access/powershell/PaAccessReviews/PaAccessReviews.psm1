@@ -28,6 +28,15 @@ $script:EmptyGuid = '00000000-0000-0000-0000-000000000000'
 # ----------------------------------------------------------------------------- calls and permissions
 
 function Get-PaArCall {
+    <#
+    .SYNOPSIS
+        Returns the calls declared in config/calls-ch07.json, optionally only those for one task
+        (access-reviews-plan, access-reviews-apply or access-reviews-evidence).
+    .EXAMPLE
+        # The calls the apply task may send, with their methods.
+        Get-PaArCall -Task access-reviews-apply | ForEach-Object { "$($_.method) $($_.id)" }
+    #>
+
     <# The declared Chapter 07 calls, optionally for one task. #>
     [CmdletBinding()]
     param([ValidateSet('access-reviews-plan', 'access-reviews-apply', 'access-reviews-evidence')][string]$Task)
@@ -42,6 +51,8 @@ function Get-PaArRequiredPermission {
         A task's Microsoft Graph permissions and Azure roles: the union of its calls, with a
         Read.All permission dropped when the task also holds the matching ReadWrite.All, which
         Learn lists as the higher-privileged permission for the same reads.
+    .EXAMPLE
+        (Get-PaArRequiredPermission -Task access-reviews-plan).GraphPermissions
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][ValidateSet('access-reviews-plan', 'access-reviews-apply', 'access-reviews-evidence')][string]$Task)
@@ -60,6 +71,10 @@ function New-PaArClient {
     .SYNOPSIS
         A client for one task in one cloud. -Invoke is { param($Method, $Uri, $Body) } returning
         the parsed JSON body as a hashtable: the fake's .Invoke, or New-PaArLiveInvoker.
+    .EXAMPLE
+        # A plan client over the fictional Chapter 07 tenant.
+        $fake = New-PaArFake -Path tests/fixtures/ch07/tenant.json
+        $client = New-PaArClient -Cloud gcc -Task access-reviews-plan -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param(
@@ -114,6 +129,9 @@ function Invoke-PaArList {
         (Resource Manager) on the same host. For a Graph call with $top, a full page with no
         next link is followed with $skip, because Learn documents $skip and $top paging for the
         access reviews lists.
+    .EXAMPLE
+        # Every access review definition in the tenant, all pages.
+        Invoke-PaArList -Client $client -CallId ar-definitions-list
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string]$CallId, [hashtable]$Bind = @{}, [int]$Top = 0)
@@ -156,6 +174,9 @@ function New-PaArLiveInvoker {
         any write unless -AllowWrite, and refuses to run if a session is signed in to another
         cloud. Sign in first: Connect-MgGraph -Environment <GraphEnvironment>, and
         Connect-AzAccount -Environment <AzureEnvironment> unless -SkipAzure.
+    .EXAMPLE
+        # Live, GCC, Graph only: a dry-run client that can't write.
+        $client = New-PaArClient -Cloud gcc -Task access-reviews-plan -Invoke (New-PaArLiveInvoker -Cloud gcc -SkipAzure)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [switch]$AllowWrite, [switch]$SkipAzure)
@@ -195,6 +216,11 @@ function New-PaArFake {
         (or empty). GET pages collections by -PageSize with a next link; POST creates a definition
         with a new ID (it never refuses a duplicate name, as Learn documents no such check); PUT
         replaces one. DELETE and anything else throw. Every request is recorded in .Calls.
+    .EXAMPLE
+        # Serve the fictional tenant, then see which requests were sent.
+        $fake = New-PaArFake -Path tests/fixtures/ch07/tenant.json -Cloud gcc
+        $client = New-PaArClient -Cloud gcc -Task access-reviews-plan -Invoke $fake.Invoke
+        $fake.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([string]$Path, [int]$PageSize = 2, [string]$Cloud = 'gcc')
@@ -211,6 +237,17 @@ function New-PaArFake {
 }
 
 function Invoke-PaArFake {
+    <#
+    .SYNOPSIS
+        The access reviews fake's request handler: records the call in -State.Calls and answers it
+        from -State.Tenant. GET pages a collection, POST adds a Graph definition with a new ID, and
+        PUT replaces a Graph definition or writes a Resource Manager one. Any other method or route
+        throws. New-PaArFake wires it into .Invoke.
+    .EXAMPLE
+        # The first page of Graph definitions, straight from the fake.
+        $fake = New-PaArFake -Path tests/fixtures/ch07/tenant.json
+        Invoke-PaArFake -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/identityGovernance/accessReviews/definitions'
+    #>
     param($State, [string]$Method, [string]$Uri, $Body)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri; Body = $Body })
     $t = $State.Tenant
@@ -307,6 +344,8 @@ function Read-PaArConfig {
     .SYNOPSIS
         Read and check the reviewed JSON of review series. Names must be unique and start with the
         managed prefix; IDs must be object IDs; each review names exactly one role or group.
+    .EXAMPLE
+        $config = Read-PaArConfig -Path tests/fixtures/ch07/access-reviews.json
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -357,6 +396,9 @@ function Get-PaArScope {
         queries for eligible-only or active-only. Groups that hold the role are reviewed through
         their own PIM for Groups membership series (Example 1, transitive members), the owner's
         decision (research gaps, row 73).
+    .EXAMPLE
+        # The scope for a review of the users eligible for Global Administrator.
+        Get-PaArScope -Review @{ kind = 'entraRole'; name = 'x'; roleTemplateId = '62e90394-69f5-4237-9190-012177145e10'; assignments = 'eligible' }
     #>
     param($Review)
     switch ($Review.kind) {
@@ -392,6 +434,11 @@ function New-PaArDefinitionBody {
         The request body for one review series: a Graph accessReviewScheduleDefinition for an Entra
         role or a PIM for Groups group, or the Resource Manager accessReviewScheduleDefinition
         properties for an Azure role (preview API). Returns @{ Api; Body; Name; Review }.
+    .EXAMPLE
+        # The Graph body for one configured series.
+        $review = $config.reviews | Where-Object { $_.name -eq 'PAR-T0-GlobalAdministrator-Monthly' }
+        $b = New-PaArDefinitionBody -Review $review -Config $config
+        $b.Body | ConvertTo-Json -Depth 20
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Review, [Parameter(Mandatory)]$Config)
@@ -453,6 +500,14 @@ function New-PaArDefinitionBody {
 }
 
 function Get-PaArStableId {
+    <#
+    .SYNOPSIS
+        Returns a GUID derived from a review series name (an MD5 hash of the name with a fixed
+        prefix), so a rerun PUTs the same Resource Manager definition.
+    .EXAMPLE
+        Get-PaArStableId -Name PAR-AZ-T0-Owner-Platform-Monthly
+    #>
+
     <# A stable GUID for a Resource Manager definition, from its name, so a rerun PUTs the same resource. #>
     param([Parameter(Mandatory)][string]$Name)
     $md5 = [Security.Cryptography.MD5]::Create()
@@ -464,6 +519,17 @@ function Get-PaArStableId {
 function New-PaArFinding { param($Rule, $Severity, $Object, $Message) [pscustomobject]@{ Rule = $Rule; Severity = $Severity; Object = $Object; Message = $Message } }
 
 function Get-PaArScopeFacts {
+    <#
+    .SYNOPSIS
+        Returns what a definition body's scope covers: the role template ID or group ID, whether
+        active and eligible assignments are in it, and how many scope queries it has. Works on Graph
+        bodies and on Resource Manager properties (-Api arm).
+    .EXAMPLE
+        # What a body built from the reviewed JSON reviews.
+        $b = New-PaArDefinitionBody -Review $review -Config $config
+        Get-PaArScopeFacts -Body $b.Body -Api $b.Api
+    #>
+
     <# What a Graph or Resource Manager scope covers: the role or group, and whether active and eligible assignments are in it. #>
     param($Body, [string]$Api)
     if ($Api -eq 'arm') {
@@ -489,6 +555,10 @@ function Test-PaArDefinition {
         Check one definition body against Learn's rules and the program's (PA-AR-01 to PA-AR-11).
         Works on the bodies this module builds and on any Graph body, including Learn's sample.
         -Tier and -Cadence come from the reviewed JSON; without them the tier rules are skipped.
+    .EXAMPLE
+        # Check one built body with its tier from the reviewed JSON.
+        $b = New-PaArDefinitionBody -Review $review -Config $config
+        Test-PaArDefinition -Body $b.Body -Api $b.Api -Name $b.Name -Tier $b.Review.tier -AsOf 2026-10-30
     #>
     [CmdletBinding()]
     param(
@@ -558,6 +628,16 @@ function Test-PaArDefinition {
 # ----------------------------------------------------------------------------- the diff
 
 function ConvertTo-PaArComparable {
+    <#
+    .SYNOPSIS
+        Returns a copy of a value normalized for comparison: round-tripped through JSON into
+        hashtables, with a leading /v1.0 or /beta removed from every scope query. $null returns
+        $null.
+    .EXAMPLE
+        # The query comes back as /groups/abc/transitiveMembers.
+        ConvertTo-PaArComparable -Value @{ scope = @{ query = '/v1.0/groups/abc/transitiveMembers' } }
+    #>
+
     # Normalize for comparison: strip /v1.0 or /beta from queries, and JSON-round-trip.
     param($Value)
     if ($null -eq $Value) { return $null }
@@ -567,6 +647,16 @@ function ConvertTo-PaArComparable {
 }
 
 function Compare-PaArSubset {
+    <#
+    .SYNOPSIS
+        Returns the property paths, such as settings.instanceDurationInDays, where -Desired differs
+        from -Live, looking only at what -Desired sets. Lists compare as sorted sets. No output means
+        -Live already holds everything -Desired sets.
+    .EXAMPLE
+        # settings.instanceDurationInDays
+        Compare-PaArSubset -Desired @{ settings = @{ instanceDurationInDays = 14 } } -Live @{ settings = @{ instanceDurationInDays = 7 } }
+    #>
+
     <# Paths where -Desired differs from -Live, looking only at what -Desired sets. #>
     param($Desired, $Live, [string]$Path = '')
     $out = [Collections.Generic.List[string]]::new()
@@ -593,6 +683,10 @@ function Get-PaArPlan {
         (GET only) and say for each series what -Apply would do: Create, Update, Replace (scope or
         group reviewers changed, which the update API can't change), NoChange, or Unmanaged (in the
         tenant with the managed prefix but not in the JSON; never deleted). Writes nothing.
+    .EXAMPLE
+        # Dry run of the reviewed JSON against the fictional tenant.
+        $plan = Get-PaArPlan -Client $client -Config $config -AsOf 2026-10-30
+        $plan.Items | Select-Object Name, Action
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)]$Config, [datetime]$AsOf = [datetime]::UtcNow)
@@ -660,6 +754,12 @@ function Invoke-PaArApply {
         -Apply: refuses if the plan has any Finding; POSTs Create and PUTs Update for Graph; PUTs
         Azure (preview) only with -IncludePreview; never deletes, so Replace and Conflict are left
         for a person. Each write is followed by a read-back.
+    .EXAMPLE
+        # Without -Apply: what would be sent, and nothing is sent.
+        Invoke-PaArApply -Client $client -Plan $plan
+        # With -Apply, through a client for the apply task.
+        $writer = New-PaArClient -Cloud gcc -Task access-reviews-apply -Invoke $fake.Invoke
+        Invoke-PaArApply -Client $writer -Plan $plan -Apply
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)]$Plan, [switch]$Apply, [switch]$IncludePreview)
@@ -734,6 +834,11 @@ function Get-PaArEvidence {
         every decision, as rows; and the findings an ISSO checks (PA-AR-E01 to PA-AR-E08).
     .OUTPUTS
         @{ Rows; Instances; Findings; Evidence }
+    .EXAMPLE
+        # The decisions and evidence findings from the fictional tenant.
+        $reader = New-PaArClient -Cloud gcc -Task access-reviews-evidence -Invoke $fake.Invoke
+        $ev = Get-PaArEvidence -Client $reader -Config $config -AsOf 2026-10-30
+        $ev.Findings
     #>
     [CmdletBinding()]
     param(
@@ -820,6 +925,11 @@ function Export-PaArRun {
     .SYNOPSIS
         Write a run's files and a manifest: the SHA-256 of each file, the cloud, the mode, the
         task's permissions and every request sent (method and URI), for the ISSO.
+    .EXAMPLE
+        Export-PaArRun -OutputPath out/reviews-evidence -Task access-reviews-evidence -Cloud gcc -Mode Fixture -Evidence $reader.Evidence -Files @{
+            'decisions.csv' = @($ev.Rows)
+            'findings.json' = @($ev.Findings)
+        }
     #>
     [CmdletBinding()]
     param(

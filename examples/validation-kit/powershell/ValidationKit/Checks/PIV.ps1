@@ -28,6 +28,17 @@ function Get-VkBindingType {
 
 function Invoke-VkPiv01 {
     <#
+    .SYNOPSIS
+        Implements VK-PIV-01: PIV binding coverage. Fails on pilot card holders
+        (pilot-card-holders.csv) not found or with no certificateUserIds value, and, when
+        RequiredAffinity is High, holders with only low-affinity values. Reports accounts, never values.
+    .EXAMPLE
+        # From the kit folder: against the fictional "fail" fixture tenant (no sign-in).
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkPiv01 -Context $ctx
+    .DESCRIPTION
+    #>
+    <#
     VK-PIV-01. Binding coverage for the pilot card holders in pilot-card-holders.csv
     (UserPrincipalName or Id): each holder's certificateUserIds, read one user at a time with
     $select=authorizationInfo (User.Read.All). Reports holders not found, holders with no value,

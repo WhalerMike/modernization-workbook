@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
     Shared helpers for the Start Kit modules: the output guard, the writers and the
-    provenance manifest. Dot-sourced by FMPADAssessment.psm1 and FMPSqlEstate.psm1, so each
-    module gets its own copy in its own scope.
+    provenance manifest. Dot-sourced by each of the five FMP modules and by
+    Invoke-FMPStartKit.ps1, so each gets its own copy in its own scope.
 
 .DESCRIPTION
     Every file the kit writes goes through Write-FMPJson, Write-FMPCsv, Write-FMPText or
@@ -12,6 +12,12 @@
     (tests/powershell/Safety.Tests.ps1) fail if any other function does.
 
     Windows PowerShell 5.1 and PowerShell 7: no PowerShell 7-only syntax here.
+
+.EXAMPLE
+    . (Join-Path (Split-Path -Parent $PSScriptRoot) 'StartKit.Common.ps1')
+
+    How each module loads the helpers from its own folder. Invoke-FMPStartKit.ps1 dot-sources
+    the same file for the run folder and the manifest.
 #>
 
 $script:FMPKitVersion = '1.3.0'
