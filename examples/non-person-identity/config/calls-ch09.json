@@ -7,7 +7,7 @@
       "graphPermissions": ["AgentIdentity.Read.All", "AgentIdentityBlueprint.Read.All", "Application.Read.All", "AuditLog.Read.All", "CustomSecAttributeAssignment.Read.All", "LifecycleWorkflows-Workflow.Read.All", "LifecycleWorkflows-Workflow.ReadBasic.All", "Policy.Read.All", "RoleManagement.Read.Directory", "User.Read.All"],
       "azureRoles": [],
       "adRights": [],
-      "delegatedRoles": ["Global Reader", "Attribute Assignment Reader", "Reports Reader"]
+      "delegatedRoles": ["Global Reader", "Attribute Assignment Reader", "Reports Reader", "Agent ID Administrator"]
     },
     "agent-ca-apply": {
       "mode": "write",
@@ -124,7 +124,7 @@
       "stage": "v1.0",
       "tasks": ["agent-id"],
       "learn": "https://learn.microsoft.com/graph/custom-security-attributes-examples",
-      "note": "Only $select=id,customSecurityAttributes. Learn: reading attribute assignments on service principals takes CustomSecAttributeAssignment.Read.All and Application.Read.All, and a person needs Attribute Assignment Reader; no other administrator role reads them by default."
+      "note": "Only $select=id,customSecurityAttributes. Learn: reading attribute assignments on service principals takes CustomSecAttributeAssignment.Read.All and Application.Read.All, and a person needs Attribute Assignment Reader or Attribute Assignment Administrator."
     },
     {
       "id": "agid-identity-app-roles",
@@ -170,8 +170,8 @@
       "permissions": ["Policy.Read.All"],
       "stage": "beta (agent targeting and agent risk: preview)",
       "tasks": ["agent-id", "agent-ca-apply"],
-      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0",
-      "note": "includeAgentIdServicePrincipals, agentIdServicePrincipalFilter and agentIdRiskLevels are beta properties; v1.0 doesn't return them."
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-beta",
+      "note": "includeAgentIdServicePrincipals, agentIdServicePrincipalFilter and agentIdRiskLevels are beta properties; v1.0 doesn't return them. Learn's beta page has an example that filters on them (read October 31, 2026)."
     },
     {
       "id": "agid-lcw-workflows",

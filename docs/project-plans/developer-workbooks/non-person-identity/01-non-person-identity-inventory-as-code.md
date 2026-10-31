@@ -72,7 +72,7 @@ Running the samples against the fixture estate shows what they do and what they 
 
 | Learn's sample, as published | Why it matters | What `examples/non-person-identity` adds |
 |---|---|---|
-| Finds user accounts with SPNs, accounts trusted for delegation and passwords that never expire | — | Kept as the model: the same three criteria, plus the naming convention and description Learn recommends[^np01-user-svc] |
+| Finds user accounts with SPNs, accounts trusted for delegation and passwords that never expire | — | Kept as the model: the same three criteria, plus the naming convention Learn recommends for them[^np01-user-svc] and the description attribute Learn suggests for on-premises service accounts[^np01-onprem] |
 | Reads every user with `-Filter *` and filters on the client, in three separate queries | Three full reads of the domain, and an account in two lists appears twice; no list is a register | One `Get-ADUser -LDAPFilter` query, one row per account, `DetectedBy` saying which criteria matched |
 | The password-never-expires query returns a person, with nothing to tell them apart | A person's account lands on a service account list, or a service account is dismissed as a person | Kept, marked "detected only by a password that never expires" (NPI-INV-08), so someone confirms before Chapter 02 applies the ownership rule |
 | The delegation query returns computer accounts | A domain-joined server sits among the service accounts | User objects only; computer accounts are left to Chapter 06 (research gaps, row 8) |
@@ -83,7 +83,7 @@ Running the samples against the fixture estate shows what they do and what they 
 | The tag filter it offers for multitenant apps returns single-tenant apps; the Entra PowerShell reference uses the same tag to list all enterprise apps[^np01-entra-sp] | A single-tenant app is treated as a third party's, or the reverse | `appOwnerOrganizationId` compared with the tenant ID, and `signInAudience` recorded (research gaps, row 6) |
 | The export script lists every secret and certificate on every app registration | — | Kept as the model: secrets, certificates, expired credentials and the next expiry on each row |
 | Prompts for the output path with `Read-Host` | It can't run unattended or on a schedule | Every input is a parameter; the run writes to `-OutputPath` |
-| Calls `Get-MgApplication` again for every app, and `Get-MgApplicationOwner` once per credential, without `-All` | One extra call per app and per credential; whether every owner page is read isn't stated | One paged list with `$select`, owners read once per app, every page followed on the cloud's own host, as Learn's paging guidance asks[^np01-paging] |
+| Calls `Get-MgApplication` again for every app, and `Get-MgApplicationOwner` once per credential, without `-All` | One extra call per app and per credential; whether every owner page is read isn't stated | One paged list with `$select`, owners read once per app, every page followed, as Learn's paging guidance asks,[^np01-paging] and on the cloud's own host (the program's rule, *Design guidance*) |
 | Reads no owners for an app with no credential, and reports a guest owner like any other; counts nothing | An ownerless federated app is invisible, and Chapter 02 has nothing to count | `OwnerCount`, `OwnerIds` and `OwnerTypes` for every app registration and legacy service principal |
 | Flags no expired credential, though the page's explanation says the admin "is asked about the expiration date" | The page and its code disagree, and an expired credential left on an app is noise an attacker can hide in | `ExpiredCredentials` and NPI-INV-05 |
 | Reads no federated credentials, service principals, managed identities, permissions or consent grants | Most of Gate 0's register is missing | All of them, including a user-assigned identity's federated credentials from Resource Manager |
@@ -112,8 +112,8 @@ The inventory's needs are the union of its calls:
 | Call | Least-privileged permission, role or right | Delegated role |
 |---|---|---|
 | `Get-ADUser`, `Get-ADServiceAccount` | The default read of an authenticated domain user (research gaps, row 2)[^np01-get-aduser] [^np01-get-adsa] | — |
-| List applications, owners, federated credentials | `Application.Read.All`[^np01-app-list] [^np01-app-owners] [^np01-fic-list] | Directory Readers, Global Reader, Cloud Application Administrator |
-| List service principals, owners, app role assignments | `Application.Read.All`[^np01-sp-list] [^np01-sp-owners] [^np01-approle-to] | Directory Readers, Global Reader |
+| List applications, owners, federated credentials | `Application.Read.All`[^np01-app-list] [^np01-app-owners] [^np01-fic-list] | Applications and owners: Directory Readers, Global Reader; federated credentials: the app's owner, Cloud Application Administrator or Application Administrator (Learn lists neither Directory Readers nor Global Reader for them) |
+| List service principals, owners, app role assignments | `Application.Read.All`[^np01-sp-list] [^np01-sp-owners] [^np01-approle-to] | Directory Readers, Global Reader; app role assignments: Directory Readers (Learn doesn't list Global Reader for them) |
 | List delegated permission grants | `Directory.Read.All`[^np01-grants] | Global Reader, Directory Readers |
 | A user-assigned identity's federated credentials | Reader on the identity | — |
 
@@ -314,7 +314,7 @@ Where Learn's pages differ: the List and Get pages for federated identity creden
 [Workbook index](index.md) · [Next: Chapter 02 — Ownership and the Orphan Rule →](02-ownership-and-the-orphan-rule.md)
 :::
 
-[^np01-user-svc]: Microsoft Learn, "Secure user-based service accounts in Active Directory," find on-premises user accounts used as service accounts; assess on-premises user account security, <https://learn.microsoft.com/entra/architecture/service-accounts-user-on-premises> (accessed Oct 30, 2026).
+[^np01-user-svc]: Microsoft Learn, "Secure user-based service accounts in Active Directory," find on-premises user accounts used as service accounts; assess on-premises user account security, <https://learn.microsoft.com/entra/architecture/service-accounts-user-on-premises> (accessed Oct 31, 2026).
 [^np01-gmsa]: Microsoft Learn, "Secure group managed service accounts," benefits; find gMSAs, <https://learn.microsoft.com/entra/architecture/service-accounts-group-managed> (accessed Oct 30, 2026).
 [^np01-sp-secure]: Microsoft Learn, "Securing service principals in Microsoft Entra ID," find accounts; assess service principal security, <https://learn.microsoft.com/entra/architecture/service-accounts-principal> (accessed Oct 30, 2026).
 [^np01-entra-sp]: Microsoft Learn, "Get-EntraServicePrincipal," example 7, retrieve all enterprise apps, <https://learn.microsoft.com/powershell/module/microsoft.entra.applications/get-entraserviceprincipal?view=entra-powershell> (accessed Oct 30, 2026).
@@ -329,17 +329,18 @@ Where Learn's pages differ: the List and Get pages for federated identity creden
 [^np01-lastlogon]: Microsoft Learn, "Last-Logon-Timestamp attribute," <https://learn.microsoft.com/windows/win32/adschema/a-lastlogontimestamp> (accessed Oct 30, 2026).
 [^np01-app-list]: Microsoft Learn, "List applications," national cloud table, permissions, optional query parameters, <https://learn.microsoft.com/graph/api/application-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^np01-app-owners]: Microsoft Learn, "List owners of an application," <https://learn.microsoft.com/graph/api/application-list-owners?view=graph-rest-1.0> (accessed Oct 30, 2026).
-[^np01-fic-list]: Microsoft Learn, "List federatedIdentityCredential objects," <https://learn.microsoft.com/graph/api/federatedidentitycredential-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np01-fic-list]: Microsoft Learn, "List federatedIdentityCredential objects," <https://learn.microsoft.com/graph/api/federatedidentitycredential-list?view=graph-rest-1.0> (accessed Oct 31, 2026).
 [^np01-fic-get]: Microsoft Learn, "Get federatedIdentityCredential," permissions, <https://learn.microsoft.com/graph/api/federatedidentitycredential-get?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^np01-sp-list]: Microsoft Learn, "List servicePrincipals," permissions, <https://learn.microsoft.com/graph/api/serviceprincipal-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^np01-sp-owners]: Microsoft Learn, "List owners of a service principal," permissions, <https://learn.microsoft.com/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^np01-sp-type]: Microsoft Learn, "Microsoft.Graph servicePrincipals" (Bicep reference), property values, `servicePrincipalType`, <https://learn.microsoft.com/graph/templates/bicep/reference/serviceprincipals?view=graph-bicep-1.0> (accessed Oct 30, 2026).
 [^np01-sp-update]: Microsoft Learn, "Update servicePrincipal," request body, `alternativeNames`, <https://learn.microsoft.com/graph/api/serviceprincipal-update?view=graph-rest-1.0> (accessed Oct 30, 2026).
-[^np01-approle-to]: Microsoft Learn, "List appRoleAssignments granted for a service principal," permissions, <https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np01-approle-to]: Microsoft Learn, "List appRoleAssignments granted for a service principal," permissions, <https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0> (accessed Oct 31, 2026).
 [^np01-grants]: Microsoft Learn, "List oauth2PermissionGrants (delegated permission grants)," <https://learn.microsoft.com/graph/api/oauth2permissiongrant-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^np01-arm-fic]: Microsoft Learn, "Federated Identity Credentials - List" (Managed Identity REST API, 2024-11-30), <https://learn.microsoft.com/rest/api/managedidentity/federated-identity-credentials/list> (accessed Oct 30, 2026).
 [^np01-ownership]: Microsoft Learn, "Overview of enterprise application ownership in Microsoft Entra ID," FAQ, <https://learn.microsoft.com/entra/identity/enterprise-apps/overview-assign-app-owners> (accessed Oct 30, 2026).
 [^np01-mi-view]: Microsoft Learn, "View the service principal of a managed identity," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/how-to-view-managed-identity-service-principal> (accessed Oct 30, 2026).
 [^np01-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
 [^np01-compare]: Microsoft Learn, "Compare Azure Government and global Azure," guidance for developers, <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Oct 30, 2026; read for the first workbook's Chapter 02).
-[^np01-paging]: Microsoft Learn, "Page through a collection using the Microsoft Graph SDKs," <https://learn.microsoft.com/graph/sdks/paging> (accessed Oct 30, 2026; read for the first workbook's Chapter 02).
+[^np01-paging]: Microsoft Learn, "Page through a collection using the Microsoft Graph SDKs," <https://learn.microsoft.com/graph/sdks/paging> (accessed Oct 31, 2026).
+[^np01-onprem]: Microsoft Learn, "Securing on-premises service accounts," types of on-premises service accounts, <https://learn.microsoft.com/entra/architecture/service-accounts-on-premises> (accessed Oct 31, 2026).

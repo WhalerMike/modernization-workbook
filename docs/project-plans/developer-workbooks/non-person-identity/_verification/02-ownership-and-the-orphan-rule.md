@@ -36,6 +36,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 22 | Lab 1 outputs (10 passed; permissions; 22 identities, 7 candidates, 20/3/1, 2 AI rows; the plan table and its hash; dry run; apply; the refusal; 14 user reads; 97 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 23 | Lab 2 behavior (guest `userType`; the AD right for the disable; activation status after the disable) | Lab 2 | not run against a tenant or domain; rows 15 and 16 | — |
 | 24 | Lab 1 rerun after NpiCore's JSON writer switched to LF on every platform: the plan hash | Lab 1 | updated by running the commands as written; the counts and findings didn't change | local run, October 31, 2026 |
+| 25 | Owners of a service principal are users or service principals | Context | corrected: the cmdlet page names users and service principals as owners and doesn't say groups can't own one, so that clause is dropped | [^np02-sp-owners-cmdlet], accessed October 31, 2026 |
 
 ## Carry-forward ledger
 

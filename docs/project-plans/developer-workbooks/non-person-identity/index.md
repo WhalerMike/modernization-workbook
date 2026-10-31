@@ -34,7 +34,7 @@ The [Non-Person Identity Modernization project](../../non-person-identity.md) ru
 
 This workbook is for the developers who build that software. It is code first, and it starts from Microsoft. Each chapter begins with Microsoft Learn's own procedure or sample, runs it offline against fakes, and builds only what it leaves out, in the repository's [`examples`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples) folder, with tests. Each has a lab that runs on a laptop against fixtures with no tenant and no domain, then a short step in a test tenant with a way to back it out. Each lists the Graph, Azure and Active Directory facts the code depends on (endpoints, the least-privileged permission or right, availability in the US Government clouds, release stage), footnoted to Microsoft Learn with the date the page was read, then the dangers and a checklist.
 
-The target estate is Microsoft 365 GCC (Moderate) with commercial Azure, and an on-premises Active Directory until the program retires it at G5. GCC uses the worldwide endpoints: `login.microsoftonline.com`, `graph.microsoft.com` and `management.azure.com`. GCC High and DoD have separate hosts.[^npi-deployments] Every chapter says so where an endpoint matters.
+The target estate is Microsoft 365 GCC (Moderate) with commercial Azure, and an on-premises Active Directory until the program retires it at G5. GCC uses the worldwide endpoints: `login.microsoftonline.com`, `graph.microsoft.com` and `management.azure.com`. GCC High and DoD have separate hosts.[^npi-deployments] [^npi-compare] Every chapter says so where an endpoint matters.
 
 ## How each chapter is built
 
@@ -88,3 +88,4 @@ This is the developer workbook for the [Non-Person Identity Modernization projec
 :::
 
 [^npi-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
+[^npi-compare]: Microsoft Learn, "Compare Azure Government and global Azure," guidance for developers (Azure Resource Manager endpoints), <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Oct 31, 2026).

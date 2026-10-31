@@ -58,7 +58,7 @@
       "stage": "v1.0",
       "tasks": ["wca-read", "wca-apply"],
       "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0",
-      "note": "Confirms each in-scope object ID is a service principal (Learn: an app registration's object ID can't be used), its type and its owner tenant."
+      "note": "Confirms each in-scope object ID is a service principal (Learn's Conditional Access for workload identities: an app registration's object ID can't be used), its type and its owner tenant."
     },
     {
       "id": "wca-service-principals",
