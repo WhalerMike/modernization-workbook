@@ -226,9 +226,14 @@ def render_targets(pages: list[str], published_pages: Iterable[str]) -> list[str
 
 
 def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit", "copilot-agent-pack",
-                                                                     "app-modernization", "ansible")) -> dict:
-    """Checks that don't need the site, keyed by task name."""
+                                                                     "app-modernization", "ansible"),
+                   bundles: dict | None = None) -> dict:
+    """Checks that don't need the site, keyed by task name.
+
+    bundles maps a kit built from several examples folders to those folders
+    (build_start_kit_zip.BUNDLES), so a change in any of them rebuilds it."""
     kits = tuple(kits)
+    bundles = bundles or {}
     live = [c.path for c in changes if c.status != "D"]
     every = [p for c in changes for p in ([c.path] + ([c.old] if c.old else []))]
     tasks: dict[str, list[str]] = {}
@@ -247,6 +252,10 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
         parts = p.split("/")
         if len(parts) > 2 and parts[0] == "examples" and parts[1] in kits:
             add("kits", parts[1])
+        if len(parts) > 2 and parts[0] == "examples":
+            for bundle, folders in bundles.items():
+                if bundle in kits and any(p.startswith(f"examples/{f}/") for f in folders):
+                    add("kits", bundle)
         if p == "scripts/build_start_kit_zip.py":
             for k in kits:
                 add("kits", k)
@@ -526,6 +535,7 @@ class Repo:
         self._rules = build_bundles.RenderRules()
         self._bb = build_bundles
         self.kits = tuple(build_start_kit_zip.KITS)
+        self.kit_bundles = dict(build_start_kit_zip.BUNDLES)
         self.zip_names = {build_start_kit_zip.ZIP_NAMES.get(k, k) + ".zip" for k in self.kits}
         cfg = yaml.safe_load((REPO / "scripts/bundles.yml").read_text(encoding="utf-8"))
         self.bundle_names = set()
@@ -1147,7 +1157,7 @@ def main(argv: list[str] | None = None) -> int:
         max_pages=args.max_pages,
         force_full=args.force_full,
     )
-    plan.tasks = non_site_tasks(changes, repo.kits)
+    plan.tasks = non_site_tasks(changes, repo.kits, repo.kit_bundles)
     checker = Checker(repo, plan, args)
     steps = checker.steps()
     source = "--files" if args.files else f"{args.base}...{args.head}" + (
