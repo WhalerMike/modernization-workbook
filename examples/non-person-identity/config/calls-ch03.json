@@ -1,0 +1,38 @@
+{
+  "_comment": "Chapter 03's calls, in the same schema as calls.json, kept in their own file so chapters written in parallel don't collide. Each call names the least-privileged Microsoft Graph permission from its Learn page, read on October 30, 2026. The migration matrix is offline logic over Chapter 01's register and Chapter 02's ownership run; its only network calls are two reads. tests/NpiMatrix.Tests.ps1 fails when the task's declaration isn't exactly the union of its calls, or when it declares anything but GET.",
+  "tasks": {
+    "migration-matrix": {
+      "mode": "read",
+      "chapter": "03",
+      "graphPermissions": ["LicenseAssignment.Read.All", "User.Read.All"],
+      "azureRoles": [],
+      "adRights": []
+    }
+  },
+  "calls": [
+    {
+      "id": "matrix-user",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/users/{id}",
+      "permissions": ["User.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["migration-matrix"],
+      "learn": "https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0",
+      "note": "Reads the SPN owner named for each account kept on Kerberos and the rollback owner named for each wave, with $select=id,userPrincipalName,userType,accountEnabled, so only an enabled member counts (Chapter 02's rule)."
+    },
+    {
+      "id": "matrix-subscribed-skus",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/subscribedSkus",
+      "permissions": ["LicenseAssignment.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["migration-matrix"],
+      "learn": "https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0",
+      "note": "Reads whether the tenant holds a Workload ID Premium subscription (service plans AAD_WRKLDID_P1 or AAD_WRKLDID_P2) and how many units are enabled, for the D-N4 scope. Supports $select only, not $filter."
+    }
+  ]
+}

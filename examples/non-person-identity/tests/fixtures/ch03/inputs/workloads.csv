@@ -1,0 +1,15 @@
+IdentityId,Location,MiSupported,Dmsa,Issuer,RecordedBy
+ad:ad000000-0000-4000-8000-000000000001,OnPremKerberos,,Yes,,alice@contoso.example
+ad:ad000000-0000-4000-8000-000000000003,OnPremKerberos,,No,,frank@contoso.example
+ad:ad000000-0000-4000-8000-000000000009,OnPremKerberos,,Yes,,erin@contoso.example
+ad:ad000000-0000-4000-8000-000000000012,OnPremKerberos,,No,,erin@contoso.example
+ad:ad000000-0000-4000-8000-000000000021,OnPremKerberos,,,,gina@contoso.example
+ad:ad000000-0000-4000-8000-000000000022,OnPremKerberos,,,,erin@contoso.example
+ad:ad000000-0000-4000-8000-000000000024,OnPremKerberos,,,,harry@contoso.example
+ad:ad000000-0000-4000-8000-000000000025,OnPremKerberos,,,,alice@contoso.example
+app:1a000000-0000-4000-8000-000000000001,Azure,Yes,,,alice@contoso.example
+app:1a000000-0000-4000-8000-000000000003,EntraApiNoIssuer,,,,carol@contoso.example
+app:1a000000-0000-4000-8000-000000000004,OidcIssuer,,,https://token.actions.githubusercontent.com,harry@contoso.example
+app:1a000000-0000-4000-8000-000000000005,EntraApiNoIssuer,,,,carol@contoso.example
+app:1a000000-0000-4000-8000-000000000006,OidcIssuer,,,https://token.actions.githubusercontent.com,bob@contoso.example
+app:1a000000-0000-4000-8000-000000000007,Azure,Yes,,,harry@contoso.example
