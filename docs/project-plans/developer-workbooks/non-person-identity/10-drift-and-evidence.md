@@ -416,7 +416,7 @@ Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 09 — AI Agent Identities](09-ai-agent-identities.md) · [Workbook index](index.md)
+← Previous: Chapter 09 — AI Agent Identities · [Workbook index](index.md)
 :::
 
 [^np10-secops]: Microsoft Learn, "Microsoft Entra security operations guide for applications," application credentials; application permissions; end-user consent, <https://learn.microsoft.com/entra/architecture/security-operations-applications> (accessed Oct 30, 2026).
