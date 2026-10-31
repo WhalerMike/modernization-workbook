@@ -10,6 +10,7 @@ BeforeDiscovery {
         @{ Id = 'VK-HR-04'; FailStatus = 'Fail'; FailCount = 1 }
         @{ Id = 'VK-HR-05'; FailStatus = 'Fail'; FailCount = 3 }
         @{ Id = 'VK-HR-06'; FailStatus = 'Fail'; FailCount = 1 }
+        @{ Id = 'VK-HR-07'; FailStatus = 'Fail'; FailCount = 10 }
         @{ Id = 'VK-DG-01'; FailStatus = 'Fail'; FailCount = 2 }
         @{ Id = 'VK-DG-02'; FailStatus = 'Fail'; FailCount = 2 }
         @{ Id = 'VK-DG-03'; FailStatus = 'Fail'; FailCount = 1 }
@@ -41,6 +42,7 @@ BeforeDiscovery {
         @{ Id = 'VK-NPI-09'; FailStatus = 'Fail'; FailCount = 3 }
         @{ Id = 'VK-SYNC-01'; FailStatus = 'Fail'; FailCount = 3 }
         @{ Id = 'VK-SYNC-02'; FailStatus = 'Fail'; FailCount = 2 }
+        @{ Id = 'VK-SYNC-03'; FailStatus = 'Fail'; FailCount = 5 }
         @{ Id = 'VK-CA-01'; FailStatus = 'Fail'; FailCount = 4 }
         @{ Id = 'VK-PIV-01'; FailStatus = 'Fail'; FailCount = 3 }
     )
@@ -118,6 +120,74 @@ Describe 'What the checks find' {
         $r = Invoke-VkCheck -CheckId 'VK-SYNC-01' -Context $FailCtx
         @($r.Details.Object | Sort-Object) | Should -Be @('E1002', 'E9999', 'erin@contoso.example')
         ($r.Details | Where-Object Object -eq 'erin@contoso.example').Detail | Should -Match 'extensionAttribute10=ORG-C -> \(blank\)'
+    }
+    It 'VK-SYNC-03 joins on the SID and reports each way AD and Entra ID part' {
+        $r = Invoke-VkCheck -CheckId 'VK-SYNC-03' -Context $FailCtx
+        $f = @($r.Details | Where-Object Severity -eq 'Finding')
+        ($f | Where-Object Object -eq 'bob@contoso.example').Detail | Should -Match 'Department=ORG-A -> ORG-B; extensionAttribute10=ORG-B -> ORG-A'
+        ($f | Where-Object Object -eq 'ghost@contoso.example').Issue | Should -Match 'no Entra user carries its SID'
+        ($f | Where-Object Object -eq 'frank@contoso.example').Issue | Should -Match 'no longer syncs'
+        ($f | Where-Object Object -eq 'svcbreak@contoso.example').Issue | Should -Match 'Marked DoNotSync'
+        ($f | Where-Object Object -eq 'erin@contoso.example').Issue | Should -Match 'isn''t in the export'
+        ($r.Details | Where-Object Severity -eq 'Info').Issue | Should -Match '1 synced user\(s\) from domains the export doesn''t cover'
+    }
+    It 'VK-SYNC-03 limits the scope to the named domains' {
+        $ctx = Get-TestContext 'fail' -Option @{ SyncScopeDomains = @('field.contoso.example') }
+        $r = Invoke-VkCheck -CheckId 'VK-SYNC-03' -Context $ctx
+        @($r.Details | Where-Object Object -eq 'ghost@contoso.example') | Should -BeNullOrEmpty
+        $r.Message | Should -Match '^0 AD user\(s\) in scope'
+    }
+    It 'VK-SYNC-03 is NotApplicable without the AD export' {
+        $ctx = Get-TestContext 'fail' -Option @{ AdUserExportFile = 'no-such-file.csv' }
+        (Invoke-VkCheck -CheckId 'VK-SYNC-03' -Context $ctx).Status | Should -Be 'NotApplicable'
+    }
+    It 'VK-HR-07 reports the fill rates under the threshold and every value-quality rule' {
+        $r = Invoke-VkCheck -CheckId 'VK-HR-07' -Context $FailCtx
+        @(($r.Details | Where-Object { $_.Severity -eq 'Finding' -and $_.Issue -like 'Fill rate*' }).Object | Sort-Object) | Should -Be @('employeeId', 'employeeType', 'extensionAttribute10', 'extensionAttribute12')
+        ($r.Details | Where-Object Object -eq 'employeeId').Detail | Should -Match 'Populated=4; Population=7'
+        ($r.Details | Where-Object Object -eq 'bob@contoso.example').Issue | Should -Match 'employeeType has leading or trailing whitespace'
+        ($r.Details | Where-Object Object -eq 'dave@contoso.example').Issue | Should -Match 'mail is held by another'
+        ($r.Details | Where-Object Object -eq 'erin@contoso.example').Issue | Should -Match 'manager''s account is disabled'
+        ($r.Details | Where-Object Object -eq 'frank@contoso.example').Issue | Should -Match 'ORG-C'' isn''t on the code list'
+        ($r.Details | Where-Object Object -eq 'svcbreak@contoso.example').Issue | Should -Match 'manager has no employeeId'
+        @($r.Details.Object) | Should -Not -Contain 'breakglass@contoso.example'
+    }
+    It 'VK-HR-07 checks the key format when KeyPattern is set' {
+        $r = Invoke-VkCheck -CheckId 'VK-HR-07' -Context (Get-TestContext 'pass' -Option @{ KeyPattern = '^E\d{4}$' })
+        $r.Status | Should -Be 'Pass'
+        $r = Invoke-VkCheck -CheckId 'VK-HR-07' -Context (Get-TestContext 'pass' -Option @{ KeyPattern = '^MP\d{7}$' })
+        @($r.Details | Where-Object Issue -like '*doesn''t match*').Count | Should -Be 3
+    }
+    It 'VK-HR-07 warns, and still measures the rest, when managers can''t be read' {
+        $empty = Join-Path $TestDrive 'nomgr'
+        $null = New-Item -ItemType Directory -Path $empty
+        Copy-Item (Join-Path $VkTestFixtureRoot 'pass\users.json') $empty
+        $r = Invoke-VkCheck -CheckId 'VK-HR-07' -Context (Get-VkRunContext -FixturePath $empty -AsOf '2026-10-29T00:00:00Z')
+        $r.Status | Should -Not -Be 'Error'
+        ($r.Details | Where-Object Severity -eq 'Warn').Object | Should -Be 'manager'
+        @($r.Details | Where-Object { $_.Object -eq 'manager' -and $_.Issue -like 'Fill rate*' }) | Should -BeNullOrEmpty
+        @($r.Details | Where-Object { $_.Object -eq 'employeeId' -and $_.Issue -like 'Fill rate*' }) | Should -Not -BeNullOrEmpty
+    }
+    It 'VK-HR-01 and VK-HR-04 run on one wave from the Start Kit''s waves.csv' {
+        $w1 = Get-TestContext 'fail' -Option @{ WaveId = 'W1' }
+        $r = Invoke-VkCheck -CheckId 'VK-HR-01' -Context $w1
+        @($r.Details.Object | Sort-Object) | Should -Be @('dave@contoso.example', 'frank@contoso.example')
+        $r.Message | Should -Match 'wave W1: 3 of its 3 user\(s\) found in Entra ID'
+        (Invoke-VkCheck -CheckId 'VK-HR-04' -Context $w1).Count | Should -Be 0
+        (Invoke-VkCheck -CheckId 'VK-HR-04' -Context (Get-TestContext 'fail' -Option @{ WaveId = 'W2' })).Count | Should -Be 1
+    }
+    It 'VK-HR-02, VK-HR-03 and VK-HR-07 run on one wave' {
+        $w1 = Get-TestContext 'fail' -Option @{ WaveId = 'W1' }
+        @((Invoke-VkCheck -CheckId 'VK-HR-02' -Context $w1).Details.Object) | Should -Be @('dave@contoso.example')
+        @((Invoke-VkCheck -CheckId 'VK-HR-03' -Context $w1).Details.Object | Sort-Object) | Should -Be @('ORG-A', 'ORG-B', 'ORG-C')
+        (Invoke-VkCheck -CheckId 'VK-HR-07' -Context $w1).Message | Should -Match '^3 enabled member'
+    }
+    It 'reports a wave with no users, or no wave file, as an error, never as the whole tenant' {
+        (Invoke-VkCheck -CheckId 'VK-HR-01' -Context (Get-TestContext 'fail' -Option @{ WaveId = 'W9' })).Status | Should -Be 'Error'
+        (Invoke-VkCheck -CheckId 'VK-HR-01' -Context (Get-TestContext 'pass' -Option @{ WaveId = 'W1' })).Status | Should -Be 'Error'
+        $r = Invoke-VkCheck -CheckId 'VK-HR-01' -Context (Get-TestContext 'fail' -Option @{ WaveId = 'W3' })
+        $r.Status | Should -Be 'Pass'
+        $r.Message | Should -Match '0 of its 1 user'
     }
     It 'VK-CA-01 reports the missing exclusion, the unpaired grant and both policies on an ungoverned group, and skips Off and workload policies' {
         $r = Invoke-VkCheck -CheckId 'VK-CA-01' -Context $FailCtx
@@ -227,10 +297,10 @@ Describe 'Optional check VK-SYNC-02 (developer workbook Building the Attribute-D
 
 Describe 'The catalog' {
     It 'implements every check ID in the guides list, one function each, named after the ID' {
-        $ids = @('VK-HR-01', 'VK-HR-02', 'VK-HR-03', 'VK-HR-04', 'VK-HR-05', 'VK-HR-06', 'VK-DG-01', 'VK-DG-02', 'VK-DG-03', 'VK-DG-04', 'VK-DG-05', 'VK-DG-06', 'VK-DG-07',
+        $ids = @('VK-HR-01', 'VK-HR-02', 'VK-HR-03', 'VK-HR-04', 'VK-HR-05', 'VK-HR-06', 'VK-HR-07', 'VK-DG-01', 'VK-DG-02', 'VK-DG-03', 'VK-DG-04', 'VK-DG-05', 'VK-DG-06', 'VK-DG-07',
             'VK-INT-01', 'VK-INT-02', 'VK-INT-03', 'VK-INT-04', 'VK-INT-05', 'VK-INT-06', 'VK-INT-07', 'VK-ARC-01', 'VK-ARC-02', 'VK-ARC-03', 'VK-ARC-04', 'VK-ARC-05', 'VK-ARC-06', 'VK-ARC-07',
             'VK-NPI-01', 'VK-NPI-02', 'VK-NPI-03', 'VK-NPI-04', 'VK-NPI-05', 'VK-NPI-06', 'VK-NPI-07', 'VK-NPI-08', 'VK-NPI-09',
-            'VK-SYNC-01', 'VK-SYNC-02', 'VK-CA-01', 'VK-PIV-01')
+            'VK-SYNC-01', 'VK-SYNC-02', 'VK-SYNC-03', 'VK-CA-01', 'VK-PIV-01')
         $cat = @(Get-VkCheckCatalog -IncludeOptional)
         @($cat.Id) | Should -Be $ids
         foreach ($c in $cat) {

@@ -53,6 +53,21 @@ $script:VkDefaultOptions = [ordered]@{
     EmergencyAccessGroupsFile = 'emergency-access-groups.csv'
     PivCardHoldersFile       = 'pilot-card-holders.csv'
     AdSlotExportFile         = 'ad-slot-export.csv'
+    # VK-SYNC-03: the Start Kit's Get-FMPAttributeSurvey export, and what it compares.
+    AdUserExportFile         = 'ad-user-export.csv'
+    ParityAttributes         = @('UserPrincipalName', 'Mail', 'EmployeeId', 'Department', 'Enabled')
+    DoNotSyncSlot            = 'extensionAttribute15'
+    DoNotSyncValue           = 'DoNotSync'
+    # VK-SYNC-03: the domains the sync engine reads (empty: every domain in the export).
+    SyncScopeDomains         = @()
+    # VK-HR-07: the attributes surveyed (with CodedSlots), the fill threshold, the key format, the code lists.
+    SurveyAttributes         = @('employeeId', 'employeeType', 'department', 'mail', 'manager')
+    SurveyThresholdPercent   = 99
+    KeyPattern               = ''
+    CodeListFile             = 'code-lists.csv'
+    # VK-HR-01 to 04 and VK-HR-07 on one wave: the Start Kit's waves.csv and the wave's ID (empty: the whole tenant).
+    WaveFile                 = 'waves.csv'
+    WaveId                   = ''
     GpoScopeFile             = 'gpo-scope.csv'
     # VK-SYNC-02: an export of GET /directory/onPremisesSynchronization made by a Global Administrator.
     OnPremSyncExportFile     = 'onprem-sync-export.json'

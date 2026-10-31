@@ -14,6 +14,7 @@
 $script:VkLearn = @{
     Users       = 'https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0'
     UserRes     = 'https://learn.microsoft.com/graph/api/resources/user?view=graph-rest-1.0'
+    Manager     = 'https://learn.microsoft.com/graph/api/user-list-manager?view=graph-rest-1.0'
     LcwList     = 'https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-workflows?view=graph-rest-1.0'
     LcwResults  = 'https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0'
     LcwSettings = 'https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-get?view=graph-rest-1.0'
@@ -72,6 +73,8 @@ $script:VkCatalog = @(
     @{ Id = 'VK-HR-06'; Track = 'HR'; Title = 'Lifecycle Workflows execution limits (quarantine thresholds) configured; workflow count against the 100 ceiling'
         Source = 'Graph'; GraphPermissions = @('LifecycleWorkflows.Read.All', 'LifecycleWorkflows-Workflow.Read.All')
         DelegatedRole = 'Global Reader or Lifecycle Workflows Administrator'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.LcwSettings, $VkLearn.LcwList, $VkLearn.LcwLimits) }
+    @{ Id = 'VK-HR-07'; Track = 'HR'; Title = 'Attribute survey in Entra ID: fill rate of the key, worker type, department, mail, manager and coded slots, and values that break the survey rules'
+        Source = 'Graph + Input'; GraphPermissions = @('User.Read.All'); DelegatedRole = 'Global Reader'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.Users, $VkLearn.Manager) }
 
     # ---- Dynamic groups and administrative units ----
     @{ Id = 'VK-DG-01'; Track = 'DG'; Title = 'Dynamic user groups whose rule lacks accountEnabled and userType guards'
@@ -151,6 +154,8 @@ $script:VkCatalog = @(
         Source = 'Input (export), or Graph delegated'; GraphPermissions = @('OnPremDirectorySynchronization.Read.All')
         DelegatedRole = 'Global Administrator (the only role Learn lists; delegated only, no application permission)'; AzureRole = ''; Stage = 'v1.0'
         Optional = $true; Learn = @($VkLearn.OnPremSync, $VkLearn.MatchBlock) }
+    @{ Id = 'VK-SYNC-03'; Track = 'SYNC'; Title = 'Sync parity for the estate: the Start Kit''s AD export against Entra ID, joined on the on-premises SID; in scope but missing, synced without an AD object, and attribute differences'
+        Source = 'Graph + Input'; GraphPermissions = @('User.Read.All'); DelegatedRole = 'Global Reader'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.Users, $VkLearn.UserRes) }
     @{ Id = 'VK-CA-01'; Track = 'CA'; Title = 'Conditional Access personas: emergency-access group excluded, only governed groups targeted, every group grant paired with a block'
         Source = 'Graph + Input'; GraphPermissions = @('Policy.Read.All'); DelegatedRole = 'Global Reader, Security Reader or Conditional Access Administrator'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.Ca) }
     @{ Id = 'VK-PIV-01'; Track = 'PIV'; Title = 'PIV binding coverage: pilot card holders with no certificateUserIds value, or only low-affinity values (reported by account, never by value)'

@@ -40,6 +40,7 @@ Grant only what the checks you run need. A delegated run asks for the union of t
 | VK-HR-04 | Graph | `User.Read.All` | Global Reader | v1.0 | [1](https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0) |
 | VK-HR-05 | Graph | `User.Read.All`, `User-LifeCycleInfo.Read.All`, `LifecycleWorkflows-Workflow.Read.All`, `LifecycleWorkflows-Reports.Read.All` | Global Reader or Lifecycle Workflows Administrator | v1.0 | [1](https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-workflows?view=graph-rest-1.0) [2](https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0) [3](https://learn.microsoft.com/graph/api/resources/user?view=graph-rest-1.0) |
 | VK-HR-06 | Graph | `LifecycleWorkflows.Read.All`, `LifecycleWorkflows-Workflow.Read.All` | Global Reader or Lifecycle Workflows Administrator | v1.0 | [1](https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-get?view=graph-rest-1.0) [2](https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-workflows?view=graph-rest-1.0) [3](https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-limits) |
+| VK-HR-07 | Graph + Input | `User.Read.All` | Global Reader | v1.0 | [1](https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0) [2](https://learn.microsoft.com/graph/api/user-list-manager?view=graph-rest-1.0) |
 | VK-DG-01 | Graph | `Group.Read.All` | Global Reader | v1.0 | [1](https://learn.microsoft.com/graph/api/group-list?view=graph-rest-1.0) |
 | VK-DG-02 | Graph | `Group.Read.All` | Global Reader | v1.0 | [1](https://learn.microsoft.com/graph/api/group-list?view=graph-rest-1.0) |
 | VK-DG-03 | Graph (beta) | `Group.Read.All`, `User.Read.All`, `Device.Read.All` | Groups Administrator (delegated only; application permissions not supported) | beta | [1](https://learn.microsoft.com/graph/api/group-evaluatedynamicmembership?view=graph-rest-beta) [2](https://learn.microsoft.com/entra/identity/users/groups-dynamic-rule-validation) |
@@ -72,6 +73,7 @@ Grant only what the checks you run need. A delegated run asks for the union of t
 | VK-NPI-09 | Graph (beta) | `AuditLog.Read.All`, `Application.Read.All` | Reports Reader | beta; documented for the global service (which GCC uses), not for US Government L4 or L5 | [1](https://learn.microsoft.com/graph/api/reportroot-list-serviceprincipalsigninactivities?view=graph-rest-beta) |
 | VK-SYNC-01 | Graph + Input | `User.Read.All` | Global Reader | v1.0 | [1](https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0) |
 | VK-SYNC-02 | Input (export), or Graph delegated | `OnPremDirectorySynchronization.Read.All` (delegated only; no application permission) | Global Administrator (the only role Learn lists) | v1.0; optional | [1](https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-get?view=graph-rest-1.0) [2](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-existing-tenant) |
+| VK-SYNC-03 | Graph + Input | `User.Read.All` | Global Reader | v1.0 | [1](https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0) [2](https://learn.microsoft.com/graph/api/resources/user?view=graph-rest-1.0) |
 | VK-CA-01 | Graph + Input | `Policy.Read.All` | Global Reader, Security Reader or Conditional Access Administrator | v1.0 | [1](https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0) |
 | VK-PIV-01 | Graph + Input | `User.Read.All` | Global Reader (not confirmed for `authorizationInfo`; see the notes) | v1.0 path shown on Learn's certificateUserIds page; the `authorizationInfo` type is documented under beta | [1](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids) [2](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-technical-deep-dive#username-binding-policy) [3](https://learn.microsoft.com/graph/api/resources/authorizationinfo?view=graph-rest-beta) |
 
@@ -87,6 +89,8 @@ Notes on the table:
 - **VK-CA-01.** Learn's List policies page, read on October 30, 2026, names `Policy.Read.All` as the least privileged permission, delegated and application, and lists Global Reader, Security Reader, Security Administrator, Conditional Access Administrator and Global Secure Access Administrator as the roles for a delegated read.
 - **VK-PIV-01.** Learn's certificateUserIds page, read on October 30, 2026, reads the binding with `GET /v1.0/users/{id}?$select=authorizationInfo` and the `ConsistencyLevel: eventual` header, which the kit sends. Its Entra PowerShell examples sign in with `User.Read.All`, so the kit asks for that. Two things are unconfirmed. The v1.0 user resource page doesn't list `authorizationInfo`; only the beta `authorizationInfo` type page describes it. And Learn's page for `Get-EntraUserCBAAuthorizationInfo` names Privileged Authentication Administrator (cloud-only users) and Hybrid Identity Administrator (synced users) as the least privileged roles for a delegated read, not Global Reader. Run it app-only, or confirm in a test tenant that Global Reader returns the property. The affinity of each value comes from its `X509:` prefix, per Learn's username binding table: `PN`, `RFC822`, `I`+`S` and `S` are low affinity; `SKI`, `SHA1-PUKEY` and `I`+`SR` are high.
 - **VK-SYNC-02** is **optional**, and it isn't in a default run. It checks that soft match and cloud object takeover through hard match are blocked, which Learn advises except while a matching procedure needs them off. Learn's Get onPremisesDirectorySynchronization page, read on October 30, 2026, supports delegated access only and lists Global Administrator as the only role, so a live read needs the most privileged role in the tenant. Prefer the export: a Global Administrator saves the response of `GET /v1.0/directory/onPremisesSynchronization` as `onprem-sync-export.json` in `-InputPath`, and the kit reads that file instead of calling Graph. Set `MatchWindowOpenUntil` to the last day of an approved matching window to report the flags as Warn until then. The [developer workbook *Building the Attribute-Driven Migration*, Chapter 03](../../docs/project-plans/developer-workbooks/attribute-driven-migration/03-writing-a-validation-kit-check.md) builds this check step by step.
+- **VK-HR-07** reads the users list with the properties the survey needs, then the managers with `GET /v1.0/users?$select=id&$expand=manager($select=id,employeeId,accountEnabled)`. Learn's List manager page, read on October 31, 2026, shows `GET /users?$expand=manager` for the list and keeps `$levels` to a single user, so only the direct manager is read. The user resource page says `employeeType` and `onPremisesExtensionAttributes` are returned only with `$select`, which the kit sends. When the manager read fails or isn't permitted, the check gives a Warn row and measures the rest.
+- **VK-SYNC-03** joins on `onPremisesSecurityIdentifier`, which the user resource page, read on October 31, 2026, describes as the on-premises SID synchronized to the cloud and returns only with `$select`. It reads `onPremisesSyncEnabled`, `onPremisesUserPrincipalName`, `onPremisesSamAccountName` and `onPremisesDomainName` the same way. The on-premises UPN, not `userPrincipalName`, is compared with AD's UPN, so an agency that signs in with an alternate ID doesn't see a false difference.
 - **VK-NPI-09** is **optional and preview**. It reads Graph's beta `servicePrincipalSignInActivities` report, which Learn documents for the global service, which GCC uses, but not for US Government L4 or L5. It's off by default. It runs only with `-IncludePreview`, and it reports `NotApplicable` for `-Cloud gcchigh` or `dod`.
 
 ## Run it
@@ -116,13 +120,21 @@ Invoke-VkHr01 -Context (Get-VkRunContext -InputPath D:\Inputs)
 
 `-Track` takes `HR`, `DG`, `INT`, `ARC`, `NPI`, `SYNC`, `CA` and `PIV`, and `-CheckId` takes one or more IDs. With neither, every default check runs. `-Option` overrides a threshold or an input file name. The keys and defaults are in `$script:VkDefaultOptions` in `powershell/ValidationKit/Private/Core.ps1`. They include `StaleDays` (90), `ExpiringDays` (30), `MaxSecretDays` (180), `MaxCertificateDays` (365), `MinOwners` (2), `LookbackDays` (30) and `CatchUpDays` (3) for Lifecycle Workflows, `DeltaThresholdPercent` (10) and `DeltaThresholdMinimum` (5), `MinSupportedAgentVersion` (1.58), `PatchAssessmentDays` (7), `SpInactiveDays` (90), `RequiredAffinity` (`High`) for VK-PIV-01, the coded slots (`extensionAttribute10` to `12`) and the device slots (`extensionAttribute11` to `13`). Sign the module and run it under an `AllSigned` or `RemoteSigned` policy rather than bypassing execution policy.
 
+### One wave at a time
+
+Gate 8 runs the HR checks on each wave's query. Set the `WaveId` option, and VK-HR-01 to 04 and VK-HR-07 read only the users the Start Kit's `Get-FMPWaveList` put in that wave, from `waves.csv` in `-InputPath` (another name with `WaveFile`). A user matches on `userPrincipalName` or `employeeId`. Each result's message says how many of the wave's users were found in Entra ID, so a wave user missing from the tenant shows. VK-HR-04 reports a key held twice when at least one holder is in the wave, wherever the other one is. VK-HR-03 compares only the organization codes the wave's users hold, because the HR export counts the whole agency. A wave ID with no users, or a missing `waves.csv`, gives `Error`, never a whole-tenant result. Without `WaveId`, every check reads the whole tenant.
+
+```powershell
+.\Invoke-ValidationKit.ps1 -OutputPath D:\Validation\W2 -Track HR -InputPath D:\Inputs -Option @{ WaveId = 'W2' }
+```
+
 ### Inputs
 
 Some checks compare the tenant with the program's own records. Put the files in `-InputPath`. Fixture runs read them from the fixture folder. A missing input makes that check `NotApplicable`, never `Pass`. Three inputs ship with defaults in `config/`: the platform coverage matrix (taken from the companion guide's coverage table), the Arc tag taxonomy (Book 05, Chapter 09) and the list of high-privilege Graph permissions. Replace them with the agency's own.
 
 | File | Columns | Used by |
 |---|---|---|
-| `exceptions.csv` | `UserPrincipalName` or `Id`, `Owner`, `Reason` | VK-HR-01 to 03 (an exception with no owner doesn't count) |
+| `exceptions.csv` | `UserPrincipalName` or `Id`, `Owner`, `Reason` | VK-HR-01 to 03 and VK-HR-07 (an exception with no owner doesn't count) |
 | `hr-export.csv` | `OrgCode`, `Count` | VK-HR-03 |
 | `rule-tests.json` | `Label`, `MemberId`, `GroupId` or `MembershipRule`, `Expected` | VK-DG-03 |
 | `shadow-pairs.csv` | `CurrentGroupId`, `ProposedGroupId` | VK-DG-04 |
@@ -135,7 +147,10 @@ Some checks compare the tenant with the program's own records. Put the files in 
 | `break-glass.csv`, `onboarding-waves.csv` | `PrincipalId`, `Name`; `Scope`, `Wave`, `Status` (Open or Closed) | VK-ARC-06 |
 | `secret-exceptions.csv` | `AppId`, `Reason` | VK-NPI-03 |
 | `high-privilege-graph-roles.json` (default in `config/`) | Graph application permission names | VK-NPI-05 |
-| `ad-slot-export.csv` | `EmployeeId` and one column per coded slot (`extensionAttribute10` to `12`), exported from AD for a sample | VK-SYNC-01 |
+| `ad-slot-export.csv` | `EmployeeId` and one column per coded slot (`extensionAttribute10` to `12`), exported from AD for a sample. The Start Kit's `ad-user-export.csv` has these columns, so it can be renamed and used for a whole-estate run | VK-SYNC-01 |
+| `ad-user-export.csv` | The Start Kit's `Get-FMPAttributeSurvey` export: `Domain`, `SID`, `SamAccountName`, `Enabled`, `UserPrincipalName`, `Mail`, `EmployeeId`, `EmployeeType`, `Department`, `extensionAttribute1` to `15`, and more | VK-SYNC-03 |
+| `code-lists.csv` (optional) | `Attribute`, `Code`: the values each coded attribute may hold, the same file the Start Kit's survey reads | VK-HR-07 |
+| `waves.csv` (only with `WaveId`) | The Start Kit's `Get-FMPWaveList` output: `WaveId`, `ObjectType`, `UserPrincipalName`, `EmployeeId` | VK-HR-01 to 04, VK-HR-07 on one wave |
 | `governed-groups.csv`, `emergency-access-groups.csv` | `GroupId`, `Name`, `Owner`; `GroupId`, `Name` | VK-CA-01 |
 | `pilot-card-holders.csv` | `UserPrincipalName` or `Id` | VK-PIV-01 |
 | `onprem-sync-export.json` (optional) | The response of `GET /v1.0/directory/onPremisesSynchronization`, saved by a Global Administrator | VK-SYNC-02 (read instead of Graph when present) |
@@ -170,15 +185,15 @@ The results name users, devices and service principals, so store them as the age
 | Attribute-Driven Migration, Stage 5 (administrative units) | VK-DG-07 |
 | Attribute-Driven Migration, Lifecycle Workflows at scale | VK-HR-05, VK-HR-06 |
 | [Attribute-Driven Migration implementation guide](../../docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md), Gate 0 (the tree read: GPOs split by track) | VK-INT-07 (with -IncludeBeta), VK-NPI-06 |
-| Attribute-Driven Migration implementation guide, Gate 1 (schema and slots) | VK-HR-01, VK-HR-04 |
-| Attribute-Driven Migration implementation guide, Gate 2 (attributes proven) | VK-HR-01, VK-HR-02, VK-HR-03, VK-HR-04 |
-| Attribute-Driven Migration implementation guide, Gate 3 (sync; before and after) | VK-SYNC-01, VK-HR-02, VK-HR-03, and VK-SYNC-02 (optional) |
+| Attribute-Driven Migration implementation guide, Gate 1 (schema and slots) | VK-HR-01, VK-HR-04, VK-HR-07 |
+| Attribute-Driven Migration implementation guide, Gate 2 (attributes proven) | VK-HR-01, VK-HR-02, VK-HR-03, VK-HR-04, VK-HR-07 |
+| Attribute-Driven Migration implementation guide, Gate 3 (sync; before and after) | VK-SYNC-01, VK-SYNC-03, VK-HR-02, VK-HR-03, and VK-SYNC-02 (optional) |
 | Attribute-Driven Migration implementation guide, Gate 4 (group library and units) | VK-DG-01 to VK-DG-07 |
 | Attribute-Driven Migration implementation guide, Gate 5 (personas, and the conventions handed to the tracks) | VK-CA-01, VK-HR-02, VK-INT-01, VK-INT-04, VK-ARC-01, VK-NPI-01, VK-NPI-08 |
 | Attribute-Driven Migration implementation guide, Gate 6 (PIV binding) | VK-PIV-01 |
 | Attribute-Driven Migration implementation guide, Gate 7 (mover proof) | VK-DG-05, VK-HR-03 |
-| Attribute-Driven Migration implementation guide, Gate 8 (each wave) | VK-HR-01 to VK-HR-06, VK-DG-04, VK-DG-05 |
-| Attribute-Driven Migration implementation guide, Gate 9 (drift) | VK-HR-01, VK-HR-03, VK-HR-04, VK-DG-05, VK-DG-06, VK-DG-07, and each track's standing checks |
+| Attribute-Driven Migration implementation guide, Gate 8 (each wave) | VK-HR-01 to VK-HR-04 and VK-HR-07 with `WaveId`; VK-HR-05, VK-HR-06, VK-DG-04, VK-DG-05 |
+| Attribute-Driven Migration implementation guide, Gate 9 (drift) | VK-HR-01, VK-HR-03, VK-HR-04, VK-HR-07, VK-SYNC-03, VK-DG-05, VK-DG-06, VK-DG-07, and each track's standing checks |
 | [Intune track](../../docs/books/guides/intune-track-implementation.md), Step 0.4 (coverage matrix and tiers) | VK-INT-06 |
 | Intune track, Gate 3, Step 3.1 (analyse: every in-scope GPO imported into Group Policy analytics) | VK-INT-07 (with -IncludeBeta) |
 | Intune track, Step 1.5 (close every other write path) | VK-INT-01, VK-INT-03, VK-DG-05, VK-NPI-05 |
@@ -234,6 +249,8 @@ The fixtures describe a fictional tenant, `contoso.example`, in two versions. `t
 - **VK-ARC-07** flags `ApplyAndMonitor`, `ApplyAndAutoCorrect` and `DeployAndAutoCorrect`. Learn says `assignmentType` is case sensitive and spells it both `ApplyAndMonitor` and `ApplyandMonitor`, so the kit compares without regard to case.
 - **VK-NPI-03** lists every app with a client secret unless `secret-exceptions.csv` records why it must keep one. Whether a certificate or federated credential is possible is a judgment the kit can't make.
 - **VK-SYNC-01** compares the sample in the export, not the estate, and joins on `employeeId`, so a user with no key in Entra ID shows as missing. It compares values exactly, case included. It doesn't read the sync engine's configuration, scoping filters or error log, which stay with the reconciliation report.
+- **VK-SYNC-03** knows the sync scope only as far as `DoNotSyncSlot` and `SyncScopeDomains` describe it. It doesn't read the sync engine's OU, group or attribute filters, so an AD user an OU filter leaves out shows as missing from Entra ID: set `SyncScopeDomains`, or read those rows against the filter record. It compares what the export holds when it was taken, so take the export and run the check close together. `EmployeeType` isn't compared by default, because not every sync configuration carries it; add it to `ParityAttributes` when yours does.
+- **VK-HR-07** applies the survey's rules to enabled members only. A display string in a coded slot is a value with a space in it, so a code list that allows spaces needs `code-lists.csv` instead. The fill threshold (99% by default, `SurveyThresholdPercent`) is the program's starting point for the correlation threshold, not the agency's decision (D-A3).
 - **VK-CA-01** reads the users condition only: a grant is paired when a block on all users, for an overlapping application, excludes every group the grant includes. It doesn't compare other conditions such as platforms, locations or client apps, so a block that is narrower than its grant passes. Workload identity policies are VK-NPI-04's. Microsoft-managed policies are read like any other, because they also need the emergency-access exclusion.
 - **VK-PIV-01** can't tell whether a value belongs to a current card. It reports a value whose prefix matches no supported pattern as a Warn.
 - **VK-NPI-06** treats a user object with an SPN, or a name that starts with `svc`, as a service account. Change the hint with `ServiceAccountNameHint`.

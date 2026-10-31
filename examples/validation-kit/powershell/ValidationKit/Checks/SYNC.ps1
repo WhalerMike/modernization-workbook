@@ -1,9 +1,10 @@
 <#
 .SYNOPSIS
-    Sync: VK-SYNC-01 and VK-SYNC-02 (optional). Read-only.
-    Sources: Attribute-Driven Migration implementation guide, Gate 3; Book 02, Chapter 10
-    (Phase 1 attribute spot check); Book 03, Chapter 12 (Phase 3 shadow mode); Developer
-    Workbook, Chapter 03 (VK-SYNC-02 is its worked example).
+    Sync: VK-SYNC-01, VK-SYNC-02 (optional) and VK-SYNC-03. Read-only.
+    Sources: Attribute-Driven Migration implementation guide, Gate 3; Book 02, Chapter 09
+    (filtering) and Chapter 10 (Phase 1 attribute spot check and object counts); Book 03,
+    Chapter 12 (Phase 3 shadow mode); Developer Workbook, Chapter 03 (VK-SYNC-02 is its worked
+    example).
 #>
 
 function Invoke-VkSync01 {
@@ -114,5 +115,118 @@ function Invoke-VkSync02 {
         }
         $msg = if ($windowOpen) { "Matching window open until $until" } else { '' }
         Get-VkOutcome -Rows @($rows) -Message $msg
+    }
+}
+
+# VK-SYNC-03: export column -> how Entra ID holds the synced value. Compared case-insensitively
+# for names and addresses, exactly otherwise.
+$script:VkParityMap = [ordered]@{
+    UserPrincipalName = 'onPremisesUserPrincipalName'
+    SamAccountName    = 'onPremisesSamAccountName'
+    Mail              = 'mail'
+    EmployeeId        = 'employeeId'
+    EmployeeType      = 'employeeType'
+    Department        = 'department'
+    Enabled           = 'accountEnabled'
+}
+$script:VkParityCaseless = @('UserPrincipalName', 'SamAccountName', 'Mail')
+
+function Get-VkParityValue {
+    # The Entra ID side of one export column, as a string ('' when unset).
+    param($User, [string]$Column)
+    if ($Column -like 'extensionAttribute*') { $v = Get-VkValue (Get-VkValue $User 'onPremisesExtensionAttributes') $Column }
+    else { $v = Get-VkValue $User $script:VkParityMap[$Column] }
+    if ($null -eq $v) { return '' }
+    if ($v -is [bool]) { if ($v) { return 'True' } else { return 'False' } }
+    "$v".Trim()
+}
+
+function Invoke-VkSync03 {
+    <#
+    VK-SYNC-03. Sync parity for the whole estate: the Start Kit's AD export (ad-user-export.csv
+    from Get-FMPAttributeSurvey) against Entra ID, joined on the on-premises SID
+    (onPremisesSecurityIdentifier), which doesn't depend on the key being right. Reports:
+    an AD user in sync scope with no Entra user; one marked DoNotSync (DoNotSyncSlot) that is
+    in Entra ID anyway; a matched user whose Entra object no longer syncs; each attribute in
+    ParityAttributes and the coded slots that differs; and a synced Entra user whose AD object
+    isn't in the export, when the export covers that domain (onPremisesDomainName). In scope
+    means not DoNotSync and, with SyncScopeDomains set, in one of those domains: the sync
+    engine's OU and group filters aren't read, so record them beside the result. Permission:
+    User.Read.All. NotApplicable without the export.
+    #>
+    [CmdletBinding()] param([Parameter(Mandatory)]$Context)
+    Invoke-VkCheckBody 'VK-SYNC-03' $Context {
+        param($Context)
+        $export = Read-VkInputCsv -Context $Context -Option 'AdUserExportFile'
+        if ($null -eq $export) { return Get-VkNotApplicable "No AD user export ($($Context.Options['AdUserExportFile'])) supplied; the Start Kit's Get-FMPAttributeSurvey writes it" }
+        $columns = @(@($Context.Options['ParityAttributes']) + @($Context.Options['CodedSlots']) | Select-Object -Unique)
+        $unknown = @($columns | Where-Object { $_ -notlike 'extensionAttribute*' -and -not $script:VkParityMap.Contains($_) })
+        if ($unknown.Count) { throw "ParityAttributes names columns VK-SYNC-03 can't map: $($unknown -join ', ')" }
+        $dnsSlot = "$($Context.Options['DoNotSyncSlot'])"
+        $dnsValue = "$($Context.Options['DoNotSyncValue'])"
+        $domains = @($Context.Options['SyncScopeDomains'] | Where-Object { $_ } | ForEach-Object { "$_".ToLowerInvariant() })
+
+        $bySid = @{}
+        foreach ($u in @(Get-VkData -Context $Context -Name 'users' -Uri $script:VkUsersUri)) {
+            $sid = "$(Get-VkValue $u 'onPremisesSecurityIdentifier' '')".Trim().ToUpperInvariant()
+            if ($sid) { $bySid[$sid] = $u }
+        }
+        $exportDomains = @{}
+        $seen = @{}
+        $inScope = 0; $matched = 0
+        $rows = foreach ($r in $export) {
+            $sid = "$(Get-VkValue $r 'SID' '')".Trim().ToUpperInvariant()
+            if (-not $sid) { continue }
+            $domain = "$(Get-VkValue $r 'Domain' '')".Trim().ToLowerInvariant()
+            if ($domain) { $exportDomains[$domain] = $true }
+            $name = "$(Get-VkValue $r 'SamAccountName' '')"
+            if ($domain) { $name = "$name@$domain" }
+            $u = $null
+            if ($bySid.ContainsKey($sid)) { $u = $bySid[$sid]; $seen[$sid] = $true }
+            $excluded = $dnsSlot -and "$(Get-VkValue $r $dnsSlot '')".Trim() -eq $dnsValue
+            $outside = $domains.Count -gt 0 -and $domains -notcontains $domain
+            if ($excluded -or $outside) {
+                if ($u -and $excluded) {
+                    ConvertTo-VkFinding -Severity Finding -Object $u.userPrincipalName -ObjectId $u.id -Issue "Marked $dnsValue in AD ($dnsSlot), but in Entra ID" -Data ([ordered]@{ AdAccount = $name })
+                }
+                continue
+            }
+            $inScope++
+            if (-not $u) {
+                ConvertTo-VkFinding -Severity Finding -Object $name -Issue 'In sync scope in AD, but no Entra user carries its SID' -Data ([ordered]@{ Sid = $sid; EmployeeId = "$(Get-VkValue $r 'EmployeeId' '')" })
+                continue
+            }
+            $matched++
+            if ((Get-VkValue $u 'onPremisesSyncEnabled') -ne $true) {
+                ConvertTo-VkFinding -Severity Finding -Object $u.userPrincipalName -ObjectId $u.id -Issue 'Matched on SID, but the Entra user no longer syncs from AD (onPremisesSyncEnabled isn''t true)' -Data ([ordered]@{ AdAccount = $name })
+                continue
+            }
+            $diff = [ordered]@{}
+            foreach ($c in $columns) {
+                if (-not $r.PSObject.Properties[$c]) { continue }
+                $ad = "$($r.$c)".Trim()
+                $entra = Get-VkParityValue $u $c
+                $same = if ($script:VkParityCaseless -contains $c) { $ad -ieq $entra } else { $ad -ceq $entra }
+                if (-not $same) { $diff[$c] = '{0} -> {1}' -f $(if ($ad) { $ad } else { '(blank)' }), $(if ($entra) { $entra } else { '(blank)' }) }
+            }
+            if ($diff.Count) {
+                $data = [ordered]@{ AdAccount = $name }
+                foreach ($k in $diff.Keys) { $data[$k] = $diff[$k] }
+                ConvertTo-VkFinding -Severity Finding -Object $u.userPrincipalName -ObjectId $u.id -Issue ('Entra ID differs from AD: {0}' -f (@($diff.Keys) -join ', ')) -Data $data
+            }
+        }
+        $rows = @($rows)
+        $orphans = 0; $elsewhere = 0
+        foreach ($sid in $bySid.Keys) {
+            if ($seen.ContainsKey($sid)) { continue }
+            $u = $bySid[$sid]
+            if ((Get-VkValue $u 'onPremisesSyncEnabled') -ne $true) { continue }
+            $d = "$(Get-VkValue $u 'onPremisesDomainName' '')".Trim().ToLowerInvariant()
+            if ($d -and -not $exportDomains.ContainsKey($d)) { $elsewhere++; continue }
+            $orphans++
+            $rows += ConvertTo-VkFinding -Severity Finding -Object $u.userPrincipalName -ObjectId $u.id -Issue 'Synced from AD, but its AD object isn''t in the export' -Data ([ordered]@{ Sid = $sid; OnPremisesDomainName = $d })
+        }
+        if ($elsewhere) { $rows += ConvertTo-VkFinding -Severity Info -Object '(other domains)' -Issue "$elsewhere synced user(s) from domains the export doesn't cover weren't compared" }
+        Get-VkOutcome -Rows $rows -Message ('{0} AD user(s) in scope, {1} matched on SID, {2} synced Entra user(s) with no AD object in the export; compared {3}' -f $inScope, $matched, $orphans, ($columns -join ', '))
     }
 }
