@@ -59,6 +59,41 @@ Locally the changed files include uncommitted edits to tracked files (`--committ
 
 - Major structural changes (new series, renamed sections) are noted in `STATUS.md`.
 - Individual documents carry a short provenance note; full history is in git.
+- Published states of the workbook are kept as **editions**, below.
+
+## Editions and the archive
+
+The site always shows `main`. An **edition** is a fixed state of it: a git tag `edition-YYYY.MM`, named for the month it is cut (a second cut in the same month is `edition-YYYY.MM.N`), and a GitHub Release on that tag holding the edition's built files. Large binaries belong on Releases, not in git: each asset can be up to 2 GiB, a Release holds up to 1,000 assets, and Releases don't count toward the repository's size.
+
+| What | Where |
+|---|---|
+| The record of every edition: date, summary, and the changes to each book, guide and developer workbook | `data/editions.yml` (hand-edited after the cut script drafts it) |
+| Each edition's file list | `data/edition-assets/<edition>.json` (written by the cut script from the Release) |
+| Each book's version and revision history | The "Version and revision history" section at the end of the book's `index.md` (each guide's page, each developer workbook's `index.md`), generated |
+| Every edition and its files, and the other releases (kits, video sets) | The [Archive](docs/about/archive.md) page, generated |
+| The files themselves | The edition's Release: `https://github.com/WhalerMike/modernization-workbook/releases/tag/<edition>` |
+
+A book is version 1.0 in the first edition it appears in, and one step up (1.1, 1.2) in each later edition that changes it. To start a new major version, set `version: "2.0"` on the book's entry in that edition. `scripts/generate_revisions.py` writes the history sections and the Archive from the record; never edit between the `revisions:start` / `revisions:end` or `archive:start` / `archive:end` comments. Its `--check` runs in the pull request checks whenever the record, a carrying page or the Archive changes (and in the FULL tier): it fails on a stale section, an edition id or date out of order, a book the record names that doesn't exist, or an edition with no tag.
+
+### Cutting an edition
+
+From a clean checkout of `main`, with the GitHub CLI signed in:
+
+```bash
+git fetch origin main --tags
+python scripts/cut_edition.py edition-2026.10 --summary "One or two sentences on this edition." --dry-run
+python scripts/cut_edition.py edition-2026.10 --summary "One or two sentences on this edition." --asset "<folder>/*.pptx" --asset "<folder>/*.zip"
+```
+
+1. The dry run prints the drafted entry: for each book, guide and developer workbook, the subjects of the pull requests merged since the previous edition that touched its folder, its diagrams or its decks. Nothing changes.
+2. The real run creates the Release, and the tag with it, on `origin/main`, not marked as the repository's latest release (the kit releases keep that label). It uploads the `--asset` files, writes the entry into `data/editions.yml` and the file list into `data/edition-assets/`, and regenerates the history sections and the Archive. It never deletes or replaces a release asset.
+3. Publishing the Release starts the **Edition files** workflow (`.github/workflows/edition.yml`). It builds the Word editions and kit zips from the tagged commit and attaches them. To rerun it, use **Run workflow** with the tag; it skips files already on the Release.
+4. When the workflow finishes, run `python scripts/cut_edition.py --refresh-assets edition-2026.10` to record the Word editions too.
+5. Edit the drafted change lines in `data/editions.yml` if they need it (one short line each), run `python scripts/generate_revisions.py`, and open a pull request with `data/editions.yml`, `data/edition-assets/` and the regenerated pages.
+
+An edition is never changed after it is published. A correction goes in the next edition, or a reissue in the same month (`edition-2026.10.1`). Deleting a Release or an asset needs the maintainer's explicit approval.
+
+The repository's history still holds every deck and narration file committed before they moved to Releases. Rewriting history to drop them is written up, as an option only, in [`docs/project-management/history-rewrite-option.md`](docs/project-management/history-rewrite-option.md).
 
 ## Deferred material
 

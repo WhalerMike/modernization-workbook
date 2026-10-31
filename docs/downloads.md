@@ -70,4 +70,5 @@ Draft, held for review page by page; see [Developer Workbooks](project-plans/dev
 
 - **Narrated presentation videos:** watch them on the [Videos](presentations/watch.md) page, or download the MP4s from the [October 23, 2026 video release](https://github.com/WhalerMike/modernization-workbook/releases/tag/videos-2026-10-23).
 - **HR-driven identity interview videos:** the [October 20, 2026 release](https://github.com/WhalerMike/modernization-workbook/releases/tag/hr-identity-interview-2026-10-20).
+- **Earlier editions:** every edition of the workbook, with its Word editions, decks, narration audio and videos, is kept on the [Archive](about/archive.md) page.
 - **Decks** (PowerPoint, with and without narration), scripts and captions: the [Presentations](presentations/index.md) page.
