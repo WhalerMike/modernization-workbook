@@ -300,7 +300,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 158 tests passing across the example (Chapters 01, 02 and 06), `out/kerberos/manifest.json` listing seven AD reads and the SHA-256 of the register and each input, and `out/kerberos-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done.
+**Expected result:** 512 tests passing across the example, `out/kerberos/manifest.json` listing seven AD reads and the SHA-256 of the register and each input, and `out/kerberos-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done.
 
 ## Lab 2: test domain
 
@@ -376,7 +376,7 @@ Where Learn's pages differ: the dMSA set-up page sets `msDS-DelegatedMSAState` w
 
 ::: {.callout-tip}
 ## Continue the book
-← Previous: Chapter 05 — Workload Identity Federation and Managed Identities · [Workbook index](index.md) · Next: Chapter 07 — Least Privilege for Service Principals →
+[← Previous: Chapter 05 — Workload Identity Federation and Managed Identities](05-workload-identity-federation-and-managed-identities.md) · [Workbook index](index.md) · [Next: Chapter 07 — Least Privilege for Service Principals →](07-least-privilege-for-service-principals.md)
 :::
 
 [^np06-gmsa-manage]: Microsoft Learn, "Manage group Managed Service Accounts," prerequisites; create a gMSA; install a gMSA, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts> (accessed Oct 30, 2026).

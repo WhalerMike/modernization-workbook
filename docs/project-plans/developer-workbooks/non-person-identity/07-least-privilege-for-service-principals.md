@@ -298,7 +298,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 141 tests passing across the example, `out/least-privilege/manifest.json` listing 45 reads (12 app role assignment pages, 11 grant lists, 11 directory role lists, 2 resource service principals, 4 role assignment lists and 5 role definitions), and `out/lp-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done: the review names owners.
+**Expected result:** 512 tests passing across the example, `out/least-privilege/manifest.json` listing 45 reads (12 app role assignment pages, 11 grant lists, 11 directory role lists, 2 resource service principals, 4 role assignment lists and 5 role definitions), and `out/lp-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done: the review names owners.
 
 ## Lab 2: test tenant
 
@@ -372,7 +372,7 @@ Where Learn's pages differ: the review page's PowerShell script removes applicat
 
 ::: {.callout-tip}
 ## Continue the book
-← Previous: Chapter 06 — gMSAs, dMSAs and the Kerberos Island · [Workbook index](index.md) · Next: Chapter 08 — Conditional Access for Workload Identities →
+[← Previous: Chapter 06 — gMSAs, dMSAs and the Kerberos Island](06-gmsa-dmsa-and-the-kerberos-island.md) · [Workbook index](index.md) · [Next: Chapter 08 — Conditional Access for Workload Identities →](08-conditional-access-for-workload-identities.md)
 :::
 
 [^np07-sp-approles]: Microsoft Learn, "List appRoleAssignments granted to a service principal," permissions, HTTP request and note, <https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0> (accessed Oct 30, 2026).

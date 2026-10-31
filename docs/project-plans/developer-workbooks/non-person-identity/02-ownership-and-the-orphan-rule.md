@@ -261,7 +261,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 97 tests passing, `out/ownership/manifest.json` listing 14 user reads and the SHA-256 of the register and of each input, and `out/orphan-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done.
+**Expected result:** 512 tests passing, `out/ownership/manifest.json` listing 14 user reads and the SHA-256 of the register and of each input, and `out/orphan-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
@@ -336,7 +336,7 @@ Where Learn's pages differ: the tutorial labels its ownerless read with `Applica
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 01 — Non-Person Identity Inventory as Code](01-non-person-identity-inventory-as-code.md) · [Workbook index](index.md) · Next: Chapter 03 — The Migration Path Matrix as Code (planned)
+[← Previous: Chapter 01 — Non-Person Identity Inventory as Code](01-non-person-identity-inventory-as-code.md) · [Workbook index](index.md) · [Next: Chapter 03 — The Migration Path Matrix as Code →](03-the-migration-path-matrix-as-code.md)
 :::
 
 [^np02-ownership]: Microsoft Learn, "Overview of enterprise application ownership in Microsoft Entra ID," FAQ, <https://learn.microsoft.com/entra/identity/enterprise-apps/overview-assign-app-owners> (accessed Oct 30, 2026).

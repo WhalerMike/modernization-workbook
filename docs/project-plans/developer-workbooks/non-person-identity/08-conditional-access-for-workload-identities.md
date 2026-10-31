@@ -316,7 +316,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
     Invoke-Pester -Path tests
     ```
 
-**Expected result:** 145 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+**Expected result:** 512 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
@@ -398,7 +398,7 @@ Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 
 ::: {.callout-tip}
 ## Continue the book
-← Previous: Chapter 07 — Least Privilege for Service Principals · [Workbook index](index.md) · Next: Chapter 09 — AI Agent Identities →
+[← Previous: Chapter 07 — Least Privilege for Service Principals](07-least-privilege-for-service-principals.md) · [Workbook index](index.md) · [Next: Chapter 09 — AI Agent Identities →](09-ai-agent-identities.md)
 :::
 
 [^np08-wid]: Microsoft Learn, "Conditional Access for workload identities," overview, implementation, roll back, sign-in logs, reference, <https://learn.microsoft.com/entra/identity/conditional-access/workload-identity> (accessed Oct 30, 2026).

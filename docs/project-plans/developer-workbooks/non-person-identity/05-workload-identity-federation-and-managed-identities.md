@@ -127,13 +127,13 @@ Nothing in the plan writes. Each conversion gets one or more actions:
 | `NoChange`, `ReviewChange` | In the tenant as reviewed; or in the tenant with other values. Credentials aren't changed in place: a new name and its own parallel run (*Design guidance*) | No |
 | `Blocked` | A credential or conversion that fails a check or its exchange test | No |
 | `Unmanaged` | In the tenant, not in the file; reported, never deleted | No |
-| `HandOffChapter04` | A certificate target: issued from the vault and rotated under Chapter 04 | No |
+| `HandOffChapter04` | A certificate target: issued from the vault and rotated under [Chapter 04](04-app-management-policies-and-certificate-rotation.md) | No |
 | `AwaitingCutover` | No cutover recorded; the conversion's cutover gate says Ready, NotReady or Blocked, and why | No |
 | `ParallelRunning` | Day N of 30, with the date the window ends and the new identity's sign-ins | No |
 | `LegacyStillInUse`, `NewCredentialFailing`, `NoSignInsOnNewCredential` | The run isn't clean (NPI-WIF-09) | No |
 | `AwaitingOwnerApproval` | A clean 30 days; the application owner approves the disable in the cutover log | No |
 | `DisableLegacy` | A clean 30 days and the owner's approval: `Disable-ADAccount -Identity <objectGUID>` | Yes, after review |
-| `RemoveSecretByOwner` | A clean 30 days for an app registration's secret: the owner removes it through Chapter 04's reviewed change; this code removes no credential | No |
+| `RemoveSecretByOwner` | A clean 30 days for an app registration's secret: the owner removes it through [Chapter 04](04-app-management-policies-and-certificate-rotation.md)'s reviewed change; this code removes no credential | No |
 | `Converted` | `DisabledOn` recorded: record the target, the date and the disabled object's ID | No |
 
 **The evidence for a clean run.** The new identity's sign-ins come from Graph's beta sign-in log, filtered by time, `appId` and `signInEventTypes` (`managedIdentity` or `servicePrincipal`), because only beta returns service principal and managed identity sign-ins, and only beta carries `clientCredentialType` and `federatedCredentialId`.[^np05-signins] [^np05-signin-resource] A new credential's sign-in is one with `clientCredentialType` `federatedIdentityCredential` and the credential's own ID, or `managedIdentity` for a managed identity. The legacy credential is in use if a `clientSecret` sign-in appears on the app after cutover, or the legacy AD account's `LastLogonDate` is after it, which is a lead to confirm on the domain controllers, not a fact (Chapter 01's research gaps, row 3). *Design guidance:* 30 days with no legacy use, no failed sign-ins on the new credential, at least one successful one, and a week with none is a finding.
@@ -297,7 +297,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 152 tests passing across the example, `out/federation/manifest.json` listing 20 reads (5 application reads, 4 credential lists, 1 service principal, 4 sign-in pages, 2 identities, 2 role assignment reads, 2 AD reads) and 6 token exchange tests sent to the fake, and `out/federation-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done.
+**Expected result:** 512 tests passing across the example, `out/federation/manifest.json` listing 20 reads (5 application reads, 4 credential lists, 1 service principal, 4 sign-in pages, 2 identities, 2 role assignment reads, 2 AD reads) and 6 token exchange tests sent to the fake, and `out/federation-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
@@ -359,7 +359,7 @@ Where Learn's pages differ: the GitHub issuer has no trailing slash in the CLI a
 | Credentials created in parallel | 409 under one identity | One write at a time, the identity first |
 | The first exchange right after creation | `AADSTS70021` during propagation | The apply says to wait; Lab 2 waits and retries |
 | A disable on a stale lead | The job fails because the old account was still in use | 30 days, sign-ins on the new identity, no legacy use, the owner's approval, and a re-read before the write |
-| A delete | The rollback is gone | No delete action; the writer refuses `DELETE`; secrets are removed by the owner through Chapter 04 |
+| A delete | The rollback is gone | No delete action; the writer refuses `DELETE`; secrets are removed by the owner through [Chapter 04](04-app-management-policies-and-certificate-rotation.md) |
 | A secret removed too early | The workload falls back and fails | `RemoveSecretByOwner` only after a clean run; `clientSecret` sign-ins after cutover keep the run open |
 | An assertion sent to a real endpoint | A token, or a test assertion, leaves the machine | The exchange test runs only against the fake; the manifest records the call, never the assertion |
 | An unattended app with `Application.ReadWrite.All` | A standing permission that can add a credential to any app | The write path is a person's delegated session; the read path holds `Application.Read.All` and `AuditLog.Read.All` |
@@ -374,13 +374,13 @@ Where Learn's pages differ: the GitHub issuer has no trailing slash in the CLI a
 - [ ] Every user-assigned identity was created by the write path, and every managed identity's role assignments are in its record for Chapter 07.
 - [ ] The plan's SHA-256 was approved by someone other than the person who applied it, and the write path ran as a person, delegated.
 - [ ] Every cutover is in the cutover log, and every parallel run shows sign-ins on the new identity, no legacy use, and 30 days.
-- [ ] Every disable has the owner's approval and a `DisabledOn`; every secret is removed through Chapter 04's change, after its run.
+- [ ] Every disable has the owner's approval and a `DisabledOn`; every secret is removed through [Chapter 04](04-app-management-policies-and-certificate-rotation.md)'s change, after its run.
 - [ ] Nothing was deleted by this code; rollback (re-enable, revert the configuration) is still possible.
 - [ ] The pinned samples match their manifests, and every upstream commit since the pins has been reviewed.
 
 ::: {.callout-tip}
 ## Continue the book
-← Previous: Chapter 04 — App Management Policies and Certificate Rotation · [Workbook index](index.md) · Next: Chapter 06 — gMSAs, dMSAs and the Kerberos Island →
+[← Previous: Chapter 04 — App Management Policies and Certificate Rotation](04-app-management-policies-and-certificate-rotation.md) · [Workbook index](index.md) · [Next: Chapter 06 — gMSAs, dMSAs and the Kerberos Island →](06-gmsa-dmsa-and-the-kerberos-island.md)
 :::
 
 [^np05-concepts]: Microsoft Learn, "Workload identity federation concepts," how it works (the case-sensitive match), <https://learn.microsoft.com/entra/workload-id/workload-identity-federation> (accessed Oct 30, 2026).
