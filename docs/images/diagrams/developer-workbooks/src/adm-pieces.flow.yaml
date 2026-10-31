@@ -1,0 +1,30 @@
+# Building the Attribute-Driven Migration — the pieces of the project and how
+# they connect: the plan schedules the implementation guide's gates; the guide
+# says what each gate needs built and its Validate steps run validation kit
+# checks; the developer workbook builds that code in examples/; the decks follow
+# the guide and the chapters; the code ships as one download.
+#
+# svg/adm-pieces.svg was first drawn by hand in this palette on a machine
+# without Graphviz; re-rendering this source replaces it with the generated
+# layout.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.45}
+nodes:
+  plan: {tone: slate, width: 170, tag: "Project plan", title: "The project plan", body: ["Phases, owners, dates", "Exit criteria per gate"], size: 12}
+  guide: {tone: blue, width: 300, tag: "Implementation guide", title: "How to run the migration", body: ["Ten gates, 0 to 9, from reading the OU tree to keeping attributes true", "Each gate: steps, Validate, rollback, evidence"], size: 12}
+  workbook: {tone: green, width: 300, tag: "Developer workbook", title: "Building the Attribute-Driven Migration", body: ["Chapters 01 to 09, code first", "Labs on fixtures, then a test tenant", "Verified facts, dangers, a checklist", "Each chapter names the code it extends"], size: 12}
+  decks: {tone: violet, width: 160, tag: "Presentations", title: "Decks and videos", body: ["Technical, Parts 1–2", "Deeper Dive, Parts 1–3", "A narrated deck and video per chapter (in production)"], size: 12}
+  code: {tone: slate, width: 300, tag: "Code", title: "The repository's examples/ folder", body: ["=`hcm-entra` `ms-automation` `validation-kit` `dynamic-rules` `lifecycle-extensions`", "=`group-policy-as-code` `machine-configuration` `ansible` `drift-pipeline` `third_party` (pinned)"], size: 12}
+  zip: {tone: plain, width: 160, tag: "Download", title: "`attribute-driven-migration-code.zip`", body: ["=Every folder, with tests"], size: 12}
+edges:
+  - [plan, guide, {label: "gates"}]
+  - [guide, workbook, {label: "what each gate needs built"}]
+  - [workbook, code, {label: "chapters build on it, with tests"}]
+  - [guide, code, {label: "each gate's Validate step runs a validation kit check", lw: 130}]
+  - [guide, decks, {label: "decks follow the gates"}]
+  - [workbook, decks, {label: "a tour per chapter"}]
+  - [code, zip, {label: "packed"}]
+ranks:
+  - [plan, guide]
+  - [workbook, decks]
+  - [code, zip]

@@ -6,6 +6,9 @@ Chapter 13 links the Copilot agent pack (--kit copilot-agent-pack), and Book 18 
 the application modernization reference implementation (--kit app-modernization), and the
 Ansible companion guide links its example playbooks (--kit ansible, published as ansible-examples.zip),
 and the track implementation guides link the validation kit (--kit validation-kit).
+The developer workbook Building the Attribute-Driven Migration links the code its nine
+chapters build on (--kit attribute-driven-migration-code), a bundle of several examples
+folders rather than one: see BUNDLES.
 This packs the folder as
 it is in the repository, scripts, README, fixtures and tests, under a top-level <kit>/
 folder. The archive is reproducible: entries are sorted, timestamps fixed and
@@ -30,12 +33,28 @@ import zipfile
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "validation-kit")
+KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "validation-kit",
+        "attribute-driven-migration-code")
+# Kits packed from several examples folders, each kept under its own path, instead of
+# from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
+# build on these folders and the Microsoft samples pinned under third_party/.
+BUNDLES = {
+    "attribute-driven-migration-code": (
+        "hcm-entra", "ms-automation", "validation-kit", "dynamic-rules", "lifecycle-extensions",
+        "group-policy-as-code", "machine-configuration", "ansible", "drift-pipeline",
+        "third_party/csv2scim", "third_party/msgraph-snippets-python",
+        "third_party/dynamic-membership-samples", "third_party/lifecycle-workflows-logic-app",
+        "third_party/mggraph-intune-samples", "third_party/guest-configuration-samples",
+        "third_party/azure-arc-role", "third_party/azure-login-action",
+        "third_party/azure-login-oidc-sample",
+    ),
+}
 # Kits whose download name differs from their folder name.
 ZIP_NAMES = {"ansible": "ansible-examples"}
 # Files that must stay executable once extracted, beyond shell scripts: Ansible runs an
 # inventory script only if it has the execute bit.
-EXECUTABLES = {"ansible": {"inventory/cmdb_inventory.py"}}
+EXECUTABLES = {"ansible": {"inventory/cmdb_inventory.py"},
+               "attribute-driven-migration-code": {"ansible/inventory/cmdb_inventory.py"}}
 FIXED_TIME = (2026, 1, 1, 0, 0, 0)
 SKIP_PARTS = {"__pycache__", ".pytest_cache", "node_modules", "target", "dist", "reports"}
 # Windows can't create these names, so a file called one would break extraction there.
@@ -49,12 +68,14 @@ TXT_COPY = {
 TXT_COPY_NAMES = {"mvnw", "Dockerfile"}
 
 
-def kit_files(kit: Path) -> list[Path]:
+def kit_files(kit: Path, base: Path | None = None) -> list[Path]:
+    """Files under kit; reserved names are checked on the path relative to base (default kit)."""
+    base = base or kit
     files = []
     for path in sorted(kit.rglob("*")):
         if not path.is_file() or SKIP_PARTS.intersection(path.parts):
             continue
-        for part in path.relative_to(kit).parts:
+        for part in path.relative_to(base).parts:
             if part.split(".")[0].lower() in RESERVED:
                 raise SystemExit(f"Reserved Windows file name in the kit: {path.relative_to(REPO)}")
         files.append(path)
@@ -79,8 +100,17 @@ def entries(kit: Path, files: list[Path]) -> list[tuple[str, Path]]:
 
 
 def build(out_dir: Path, name: str = "start-kit") -> Path:
-    kit = REPO / "examples" / name
-    files = kit_files(kit)
+    if name in BUNDLES:
+        kit = REPO / "examples"
+        files = []
+        for folder in BUNDLES[name]:
+            part = kit_files(kit / folder, base=kit)
+            if not part:
+                raise SystemExit(f"No files under examples/{folder}")
+            files += part
+    else:
+        kit = REPO / "examples" / name
+        files = kit_files(kit)
     if not files:
         raise SystemExit(f"No files under {kit.relative_to(REPO)}")
     out_dir.mkdir(parents=True, exist_ok=True)

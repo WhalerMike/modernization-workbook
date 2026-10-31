@@ -188,6 +188,15 @@ class NonSiteTasks(unittest.TestCase):
         t = cc.non_site_tasks(mods("scripts/build_start_kit_zip.py"))
         self.assertEqual(t["kits"], ["start-kit", "copilot-agent-pack", "app-modernization", "ansible"])
 
+    def test_bundle_kit_rebuilds_when_one_of_its_folders_changes(self):
+        bundles = {"attribute-driven-migration-code": ("hcm-entra", "third_party/csv2scim")}
+        kits = ("validation-kit", "attribute-driven-migration-code")
+        t = cc.non_site_tasks(mods("examples/third_party/csv2scim/README.md"), kits, bundles)
+        self.assertEqual(t["kits"], ["attribute-driven-migration-code"])
+        t = cc.non_site_tasks(mods("examples/hcm-entra/README.md", "examples/validation-kit/README.md"), kits, bundles)
+        self.assertEqual(t["kits"], ["attribute-driven-migration-code", "validation-kit"])
+        self.assertNotIn("kits", cc.non_site_tasks(mods("examples/privileged-access/README.md"), kits, bundles))
+
     def test_example_tests_run_for_each_changed_kit(self):
         t = cc.non_site_tasks(mods("examples/privileged-access/PaCore/PaCore.psm1", "examples/hcm-entra/README.md",
                                    "examples/privileged-access/tests/AzurePim.Tests.ps1"))

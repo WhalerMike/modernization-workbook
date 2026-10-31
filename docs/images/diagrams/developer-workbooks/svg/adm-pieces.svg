@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="570" viewBox="0 0 800 570" font-family="Inter, 'Segoe UI', Arial, sans-serif">
+  <rect width="800" height="570" fill="#FFFFFF"/>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748B"/>
+    </marker>
+  </defs>
+
+  <!-- Arrows -->
+  <g fill="none" stroke="#64748B" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M200,70 L248,70"/>
+    <path d="M410,150 L410,208"/>
+    <path d="M410,360 L410,418"/>
+    <path d="M250,120 L225,120 L225,500 L248,500"/>
+    <path d="M570,285 L623,285"/>
+    <path d="M570,60 L705,60 L705,208"/>
+    <path d="M570,485 L623,485"/>
+  </g>
+  <g font-size="11" fill="#475569">
+    <text x="224" y="62" text-anchor="middle">gates</text>
+    <text x="580" y="52">decks follow the gates</text>
+    <text x="418" y="184">what each gate needs built</text>
+    <text x="418" y="394">chapters build on it, with tests</text>
+    <text x="597" y="302" text-anchor="middle">a tour per</text>
+    <text x="597" y="316" text-anchor="middle">chapter</text>
+    <text x="597" y="477" text-anchor="middle">packed</text>
+    <text x="215" y="250" text-anchor="end">Each gate's</text>
+    <text x="215" y="266" text-anchor="end">Validate step</text>
+    <text x="215" y="282" text-anchor="end">runs a validation</text>
+    <text x="215" y="298" text-anchor="end">kit check</text>
+  </g>
+
+  <!-- Project plan (slate) -->
+  <rect x="20" y="20" width="180" height="100" rx="8" fill="#F8FAFC" stroke="#64748B" stroke-width="1.6"/>
+  <text x="32" y="40" font-size="11" font-weight="700" fill="#64748B">PROJECT PLAN</text>
+  <text x="32" y="60" font-size="15" font-weight="600" fill="#334155">The project plan</text>
+  <g font-size="12" fill="#1E293B">
+    <text x="32" y="82">• Phases, owners, dates</text>
+    <text x="32" y="98">• Exit criteria per gate</text>
+  </g>
+
+  <!-- Implementation guide (blue) -->
+  <rect x="250" y="20" width="320" height="130" rx="8" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.6"/>
+  <text x="264" y="40" font-size="11" font-weight="700" fill="#2563EB">IMPLEMENTATION GUIDE</text>
+  <text x="264" y="60" font-size="15" font-weight="600" fill="#1D4ED8">How to run the migration</text>
+  <g font-size="12.5" fill="#1E293B">
+    <text x="264" y="82">• Ten gates, 0 to 9, from reading the</text>
+    <text x="275" y="98">OU tree to keeping attributes true</text>
+    <text x="264" y="114">• Each gate: steps, Validate, rollback,</text>
+    <text x="275" y="130">evidence</text>
+  </g>
+
+  <!-- Developer workbook (green) -->
+  <rect x="250" y="210" width="320" height="150" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="1.6"/>
+  <text x="264" y="230" font-size="11" font-weight="700" fill="#059669">DEVELOPER WORKBOOK</text>
+  <text x="264" y="250" font-size="15" font-weight="600" fill="#047857">Building the Attribute-Driven</text>
+  <text x="264" y="268" font-size="15" font-weight="600" fill="#047857">Migration</text>
+  <g font-size="12.5" fill="#1E293B">
+    <text x="264" y="290">• Chapters 01 to 09, code first</text>
+    <text x="264" y="306">• Labs on fixtures, then a test tenant</text>
+    <text x="264" y="322">• Verified facts, dangers, a checklist</text>
+    <text x="264" y="338">• Each chapter names the code it extends</text>
+  </g>
+
+  <!-- Presentations (violet) -->
+  <rect x="625" y="210" width="160" height="150" rx="8" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.6"/>
+  <text x="637" y="230" font-size="11" font-weight="700" fill="#7C3AED">PRESENTATIONS</text>
+  <text x="637" y="250" font-size="15" font-weight="600" fill="#6D28D9">Decks and videos</text>
+  <g font-size="12" fill="#1E293B">
+    <text x="637" y="272">• Technical, Parts 1–2</text>
+    <text x="637" y="288">• Deeper Dive, Parts 1–3</text>
+    <text x="637" y="304">• A narrated deck and</text>
+    <text x="648" y="320">video per chapter</text>
+    <text x="648" y="336">(in production)</text>
+  </g>
+
+  <!-- Code (slate) -->
+  <rect x="250" y="420" width="320" height="130" rx="8" fill="#F8FAFC" stroke="#64748B" stroke-width="1.6"/>
+  <text x="264" y="440" font-size="11" font-weight="700" fill="#64748B">CODE</text>
+  <text x="264" y="460" font-size="15" font-weight="600" fill="#334155">The repository's examples/ folder</text>
+  <g font-size="11" fill="#1E293B" font-family="'IBM Plex Mono', Consolas, 'Courier New', monospace">
+    <text x="264" y="480">hcm-entra</text>
+    <text x="264" y="496">ms-automation</text>
+    <text x="264" y="512">validation-kit</text>
+    <text x="264" y="528">dynamic-rules</text>
+    <text x="264" y="544">lifecycle-extensions</text>
+    <text x="420" y="480">group-policy-as-code</text>
+    <text x="420" y="496">machine-configuration</text>
+    <text x="420" y="512">ansible</text>
+    <text x="420" y="528">drift-pipeline</text>
+    <text x="420" y="544">third_party (pinned)</text>
+  </g>
+
+  <!-- Code .zip (plain) -->
+  <rect x="625" y="440" width="160" height="90" rx="8" fill="#FFFFFF" stroke="#64748B" stroke-width="1.6"/>
+  <text x="637" y="460" font-size="11" font-weight="700" fill="#64748B">DOWNLOAD</text>
+  <g font-size="11.5" font-weight="700" fill="#334155" font-family="'IBM Plex Mono', Consolas, 'Courier New', monospace">
+    <text x="637" y="480">attribute-driven-</text>
+    <text x="637" y="496">migration-code.zip</text>
+  </g>
+  <text x="637" y="518" font-size="12" fill="#1E293B">Every folder, with tests</text>
+</svg>

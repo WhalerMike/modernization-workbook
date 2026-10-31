@@ -103,6 +103,13 @@ jobs:
         # Chapter 10 and the Downloads page.
         run: python3 scripts/build_start_kit_zip.py --kit validation-kit --out _site/downloads
 
+      - name: Build the Attribute-Driven Migration code download
+        # downloads/attribute-driven-migration-code.zip: the examples folders the nine
+        # chapters of the developer workbook Building the Attribute-Driven Migration build
+        # on, with the pinned Microsoft samples (BUNDLES in build_start_kit_zip.py), linked
+        # from that workbook's landing page and the Downloads page.
+        run: python3 scripts/build_start_kit_zip.py --kit attribute-driven-migration-code --out _site/downloads
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
