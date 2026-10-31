@@ -301,7 +301,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
     Invoke-Pester -Path tests
     ```
 
-**Expected result:** 159 tests passing, and `out/agent-id/manifest.json` listing 45 requests, the D-N6 mode, the SHA-256 of the register, of Chapter 02's sponsor fields and of each input. Delete `out` when you're done.
+**Expected result:** 512 tests passing, and `out/agent-id/manifest.json` listing 45 requests, the D-N6 mode, the SHA-256 of the register, of Chapter 02's sponsor fields and of each input. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
@@ -389,7 +389,7 @@ Where Learn's pages differ: List agentIdentity sponsors names a write permission
 
 ::: {.callout-tip}
 ## Continue the book
-← Previous: Chapter 08 — Conditional Access for Workload Identities · [Workbook index](index.md) · Next: Chapter 10 — Drift and Evidence for the ISSO →
+[← Previous: Chapter 08 — Conditional Access for Workload Identities](08-conditional-access-for-workload-identities.md) · [Workbook index](index.md) · [Next: Chapter 10 — Drift and Evidence for the ISSO →](10-drift-and-evidence.md)
 :::
 
 [^np09-agent-sps]: Microsoft Learn, "Agent identities, service principals, and applications," key differences, <https://learn.microsoft.com/entra/agent-id/agent-service-principals> (accessed Oct 30, 2026).

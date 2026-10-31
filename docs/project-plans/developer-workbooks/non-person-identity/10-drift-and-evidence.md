@@ -330,7 +330,7 @@ You need PowerShell 7.1 or later with Pester 5, Python 3.10 or later with pytest
 
     `verify` exits `1`: `summary.md doesn't match its SHA-256`. The swapped package exits `1`: `this run (2026-10-29T06:00:00Z) isn't later than the previous package (2026-10-30T06:00:00Z)`. The workflow lints with `0 finding(s), 0 warning(s)`.
 
-**Expected result:** `Invoke-Pester -Path tests` in `examples/non-person-identity` passes 148 tests, and `python -m pytest tests -q` in `examples/drift-pipeline` passes 136. Delete `out` in both folders when you're done.
+**Expected result:** `Invoke-Pester -Path tests` in `examples/non-person-identity` passes 512 tests, and `python -m pytest tests -q` in `examples/drift-pipeline` passes 136. Delete `out` in both folders when you're done.
 
 ## Lab 2: test tenant
 
@@ -416,7 +416,7 @@ Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 
 ::: {.callout-tip}
 ## Continue the book
-← Previous: Chapter 09 — AI Agent Identities · [Workbook index](index.md)
+[← Previous: Chapter 09 — AI Agent Identities](09-ai-agent-identities.md) · [Workbook index](index.md)
 :::
 
 [^np10-secops]: Microsoft Learn, "Microsoft Entra security operations guide for applications," application credentials; application permissions; end-user consent, <https://learn.microsoft.com/entra/architecture/security-operations-applications> (accessed Oct 30, 2026).

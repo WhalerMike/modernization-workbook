@@ -255,7 +255,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 140 tests passing, and `out/matrix/manifest.json` listing three requests, all GET: two user reads (the SPN owner and the rollback owner) and one read of the subscriptions. Delete `out` when you're done: it names accounts and owners.
+**Expected result:** 512 tests passing, and `out/matrix/manifest.json` listing three requests, all GET: two user reads (the SPN owner and the rollback owner) and one read of the subscriptions. Delete `out` when you're done: it names accounts and owners.
 
 ## Lab 2: test tenant
 
@@ -322,7 +322,7 @@ Where Learn's pages differ: the on-premises table has no dMSA column where Windo
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 02 — Ownership and the Orphan Rule](02-ownership-and-the-orphan-rule.md) · [Workbook index](index.md) · Next: Chapter 04 — App Management Policies and Certificate Rotation →
+[← Previous: Chapter 02 — Ownership and the Orphan Rule](02-ownership-and-the-orphan-rule.md) · [Workbook index](index.md) · [Next: Chapter 04 — App Management Policies and Certificate Rotation →](04-app-management-policies-and-certificate-rotation.md)
 :::
 
 [^np03-onprem]: Microsoft Learn, "Securing on-premises service accounts," types of on-premises service accounts; choose the right type of service account, <https://learn.microsoft.com/entra/architecture/service-accounts-on-premises> (accessed Oct 30, 2026).
