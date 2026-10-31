@@ -1,0 +1,397 @@
+---
+title: "Chapter 06 — gMSAs, dMSAs and the Kerberos Island"
+description: "Move the Kerberos-only workloads in Chapter 01's register as reviewed code, starting from Learn's own gMSA, dMSA and KDS root key procedures (pinned in the repository): MSAs upgraded to gMSAs; traditional accounts, IIS application pools and scheduled tasks moved to a gMSA or a Windows Server 2025 dMSA through a dry-run plan applied only with -Apply, which never deletes the old account; the KDS root key checked read-only; the principals allowed to retrieve each managed password held as reviewed data; the accounts that stay on Kerberos recorded with an SPN owner and an end date within the program's D08 and exported for its SPN retirement; and every gMSA and dMSA reconciled with the provisional end state before AD is retired, with labs against fixtures and a test domain."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-non-person-identity
+part: How
+series-order: 6
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-04-01
+review-status: pending
+---
+
+# Chapter 06 — gMSAs, dMSAs and the Kerberos Island
+
+*A gMSA is a good credential with a known expiry date: the day the last domain controller is demoted. The code's job is to make sure every one of them is gone, or on a dated list, before that day.*
+
+::: {.callout-note}
+## In this chapter
+The Kerberos-only part of credential modernization (the project plan's N3.5 and N3.6) and the reconciliation before AD is retired (N7.3). You start with Learn's own procedures for group managed service accounts (gMSAs), delegated managed service accounts (dMSAs, Windows Server 2025) and the KDS root key, which the repository keeps as a pinned copy, and you run them against stand-ins to see what they do and what they leave to you. Then you use `examples/non-person-identity` for the rest: a plan per Kerberos account from reviewed data, the KDS root key checked without reading the key, the password retrievers held as reviewed data, a separate write path that creates, migrates and disables but never deletes, the island list for the program's SPN retirement, and the reconciliation with the program's end state. Lab 1 runs on a laptop with no domain; Lab 2 uses a test domain.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can produce, from code and reviewed data, the three things the plan asks for here: N3.5, "MSAs upgraded to gMSAs; traditional accounts, IIS application pools and scheduled tasks moved to a gMSA or a dMSA"; N3.6, the Kerberos accounts that stay, each with "SPN owner and an end date within D08 recorded", and "the islanded list handed to the program's SPN retirement" (P4.6); and N7.3, "gMSAs and dMSAs reconciled with the provisional end state: moved to a workload identity, or listed for the Kerberos island with an end-of-life date". Every change to the domain is a plan file a reviewer approves by its SHA-256 before anything runs. You can say, for each rule, whether it is Learn's, Learn's procedure, or the program's design.
+
+**Audience.** Developers who build the project's Active Directory code, the server and Active Directory engineers who run the write path and change the hosts, the application owners who name an SPN owner and an end date, and the ISSO who reviews the island list. You should read PowerShell 7 and know Chapter 01's register. You don't need a domain until Lab 2.
+
+## The context the code depends on
+
+**What a gMSA and a dMSA are.** A gMSA is a domain account whose password the domain controllers manage and which several servers can retrieve; services that use the Service Control Manager, IIS application pools and Task Scheduler tasks can run as one.[^np06-gmsa-manage] Learn's Entra guidance says to use gMSAs for on-premises services unless a service, such as failover clustering, doesn't support them, and that Windows changes the password every 30 days.[^np06-entra-gmsa] A dMSA, new in Windows Server 2025, supersedes a traditional service account: once the migration completes, the old account's password can no longer be used, authentication is tied to the machines mapped to the dMSA, and the original account is disabled.[^np06-dmsa-overview] Book 02's [matrix](../../../books/b02-identity/09-building-the-entra-target.md#the-migration-path-matrix) gives the targets: a traditional account that serves Kerberos on-premises goes to a gMSA, or a dMSA on a Windows Server 2025 domain; an MSA is upgraded to a gMSA first; IIS application pools and scheduled tasks go to a gMSA now and to a managed identity once they move to Azure.
+
+**Why this chapter has an end date built in.** A gMSA works only while AD is authoritative ([companion guide](../../../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsas-and-dmsas)). The program decides at G0 whether its end state is AD retired or a dated Kerberos island (D11, provisional), sets end dates for legacy authentication and NTLM at D08, and retires AD at G5. The project plan's risk register is blunt: a workload still running under a gMSA loses its credential when the last domain controller is demoted. So the code doesn't stop at "converted": every gMSA and dMSA ends this chapter either moving to a workload identity (Chapter 05), retiring, or on the island list with an end date, and the island list is what the program's SPN retirement (P4.6) works from. Book 02, Chapter 10's [What still needs AD after Phase 10](../../../books/b02-identity/10-migrating-and-governing.md#what-still-needs-ad-after-phase-10) lists Kerberos applications as one of the dependencies AD retirement has to clear.
+
+The program's rules for this chapter *(Design guidance)*:
+
+- **Every Kerberos account has a reviewed disposition:** `Convert` (to a gMSA or a dMSA), `Island` (it stays, with an SPN owner and an end date), `WorkloadIdentity` (Chapter 05 moves it) or `Retire`, in `kerberos-dispositions.csv`, kept with the application records. A Kerberos account here is an enabled traditional account with an SPN, an MSA, a gMSA or a dMSA from Chapter 01's register. SQL Server's go to the Data Platform plan.
+- **Who may retrieve a managed password is reviewed data**, in `password-retrievers.json`, not whatever AD holds today.
+- **Every account that stays on Kerberos has an SPN owner and an end date no later than D08's;** every gMSA and dMSA ends no later than G5 if D11 retires AD, or than the island's end of life if D11 keeps one.
+- **Never delete.** The old account is disabled at most, by `Complete-ADServiceAccountMigration` for a dMSA or by `Disable-ADAccount` after a clean 30-day parallel run on a gMSA ([Book 02, Chapter 10, Phase 4](../../../books/b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)); retirement goes through the plan's reviewed decommission process.
+
+### Which domain, and which cloud
+
+Every call in this chapter is an Active Directory cmdlet against the program's domain (`corp.contoso.example` in the fixtures), sent to the domain controller named with `-Server`. The writes don't work against a read-only domain controller.[^np06-new-adsa] [^np06-start-mig] No Graph or Resource Manager endpoint is called, so the US Government clouds don't change anything here; the run still takes `-Cloud` and refuses a register read in another cloud, so the evidence matches Chapter 01's. The moves to a workload identity happen in Chapter 05, against the cloud's own endpoints.
+
+## Start with Microsoft's sample
+
+### What Microsoft gives you
+
+Learn has four procedures for this chapter. *Setting up delegated Managed Service Accounts* is a PowerShell walk-through: check the KDS root key with `Get-KdsRootKey`, create a dMSA with `New-ADServiceAccount -CreateDelegatedServiceAccount`, grant a machine its password with `Set-ADServiceAccount`, set `msDS-DelegatedMSAState`, start the migration with `Start-ADServiceAccountMigration`, set a registry value on the host, restart the host's services, complete it with `Complete-ADServiceAccountMigration`, and undo or reset it.[^np06-dmsa-setup] *Delegated Managed Service Accounts overview* gives the limits and what each step changes in AD.[^np06-dmsa-overview] *Manage group Managed Service Accounts* (formerly *Get started with group managed service accounts*) creates a gMSA with `New-ADServiceAccount -PrincipalsAllowedToRetrieveManagedPassword` and installs it on each host.[^np06-gmsa-manage] *Create a Key Distribution Service (KDS) root key* covers the one-time prerequisite.[^np06-kds] Learn's Entra page *Secure group managed service accounts*, pinned for Chapter 01, gives the seven steps to move a service to a gMSA.[^np06-entra-gmsa]
+
+### The pinned copy
+
+The procedures exist only inside the Learn pages, so the repository pins the pages' source, unmodified, in [`examples/third_party/windows-server-msa-pages`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/third_party/windows-server-msa-pages): four pages from MicrosoftDocs/windowsserverdocs at commit `2205ce8` (October 30, 2026), retrieved October 30, 2026, with the repository's licenses (Creative Commons Attribution 4.0 for documentation, MIT for code).[^np06-src] `snapshot.json` records each file's SHA-256 and git blob hash, checked against the upstream tree, and a unit test checks them. The weekly source watch reports new commits to each page. Updating the copy is a reviewed pull request.
+
+`tests/KerberosIslandSampleHarness.ps1` finds each PowerShell block by its content in the page's source, strips the Markdown quote and list indentation, and runs it unmodified against stand-ins for the Active Directory, registry and service cmdlets it calls. The stand-ins take the parameters Learn's cmdlet references list, so a parameter a cmdlet doesn't have fails here as it would on a server.
+
+### What it leaves to you
+
+Each row is pinned by a test: in `tests/KerberosIslandSamples.Tests.ps1` for the procedures, and in `tests/NpiKerberosIsland.Tests.ps1` for the example.
+
+| Learn's procedure, as published | Why it matters | What `examples/non-person-identity` adds |
+|---|---|---|
+| Creates a dMSA with `-CreateDelegatedServiceAccount` and AES256; creates a gMSA with its retrievers | — | Kept as the model: `CreateDmsa` and `CreateGmsa`, each a declared call with only these parameters |
+| Checks the KDS root key with `Get-KdsRootKey`, which returns each root key's value[^np06-get-kdsrootkey] | The prerequisite check reads the secret every gMSA password derives from | A read of `msKds-UseStartTime` and `msKds-CreateTime` only, from the container Learn's KDS page names, with a delegated read (research gaps, row 52); the fake refuses to return the key data |
+| Offers `Add-KdsRootKey` backdated 10 hours, which the KDS page reserves for a test environment with one domain controller[^np06-kds] | A production root key used before it replicates fails gMSA password retrieval | The code never creates a root key; it waits until a key has been usable for 10 hours (NPI-KRB-01) |
+| Sets `msDS-DelegatedMSAState` with `Set-ADServiceAccount -Properties`, a parameter the cmdlet doesn't have[^np06-set-adsa] | Fails as published | The migration path doesn't set state 3; `Start-` and `Complete-ADServiceAccountMigration` set 1 and 2 (research gaps, row 51) |
+| Names the account `ServiceAccountName`, `DMSA Name` and `dMSAsnmp` in successive steps, and grants retrieval to one machine typed by hand | Placeholders that differ step to step invite a wrong account | Names from the reviewed dispositions; retrievers from `password-retrievers.json` (NPI-KRB-03) |
+| Has no wait between start and complete; the overview says at least two ticket lifetimes (14 days), four (28 days) recommended[^np06-dmsa-overview] | Completing early loses hosts the dMSA hasn't learned yet | `CompleteDmsaMigration` only 28 days after `MigrationStartedOn` (research gaps, row 54) |
+| Doesn't check the overview's limits: no MSA or gMSA to dMSA; unconstrained delegation stops working; every machine using the account must support dMSA[^np06-dmsa-overview]; one dMSA per service account and at least one Windows Server 2025 domain controller[^np06-dmsa-faq] | A migration that disables the old account on a host that can't use the new one breaks the service | Each limit is checked before a dMSA is planned (NPI-KRB-04) |
+| Restarts every running service on the host to pick up the dMSA | A restart of unrelated services | Host steps are the server owner's, recorded, never run by this code (research gaps, row 57) |
+| Warns never to delete the original account,[^np06-dmsa-setup] while the Entra page's move to a gMSA ends by deleting it[^np06-entra-gmsa] | The pages disagree; a deleted account can't be reverted to | Never delete, the stricter: no delete, uninstall, undo or reset call exists; the old gMSA source is disabled after a 30-day parallel run (research gaps, rows 55 and 56) |
+| gMSA commands are templates with `<placeholders>` that don't parse; no Kerberos encryption type | — | Concrete parameters from reviewed data; `KerberosEncryptionType AES256`, as the gMSA overview advises AES[^np06-gmsa-overview] |
+| No SPN owner, end date, D08, D11 or G5 | N3.6 and N7.3 are left to you | The island list and the reconciliation (NPI-KRB-05 to -07) |
+
+**The verdict.** Use Learn's cmdlets and their order as the model for every write. Don't use the procedures as the program: they read the KDS key, skip the migration's own limits and waits, and stop at "migrated", with nothing that keeps the account from being forgotten at G5.
+
+## The code: what `examples/non-person-identity` adds
+
+This chapter's code is `powershell/NpiKerberosIsland/NpiKerberosIsland.psm1`, two entry scripts (`Invoke-NpiKerberosIsland.ps1`, which only reads, and `Invoke-NpiKerberosIslandAction.ps1`, the write path), its own call list `config/calls-ch06.json` with the `kerberos-island` and `kerberos-apply` tasks, and three reviewed inputs. It builds on Chapter 01's register and NpiCore's findings, hashes and fixtures, and adds a fake Active Directory for this chapter's cmdlets.
+
+### The inputs
+
+| File | Who keeps it | What it holds |
+|---|---|---|
+| Chapter 01's run folder | The pipeline | `register.json` and `manifest.json`; the run refuses a register whose SHA-256 isn't the manifest's |
+| `kerberos-dispositions.csv` | Application owners, through identity engineering | Per Kerberos account: `Disposition`; for `Convert`, `Target` (`gMSA` or `dMSA`), `NewAccount`, `Workload` (`Service`, `IisAppPool` or `ScheduledTask`) and `Hosts`; `SpnOwnerUpn`; `EndDate`; `Reference` for a workload identity; then `HostChangedOn` and `MigrationStartedOn` as the work happens |
+| `password-retrievers.json` | Server and AD engineering, reviewed | Per gMSA and dMSA, the distinguished names allowed to retrieve its password; Learn recommends a security group of the hosts[^np06-gmsa-manage] |
+| `end-state.json` | Identity engineering lead, from the program master schedule | D11's decision (`AdRetired` or `KerberosIsland` with an end of life), D08's end date and G5's date. There is no default; a missing or unknown decision stops the run |
+
+### The check and the plan
+
+`Read-NpiKrbDomain` reads, through a reader for the read task: the KDS root keys (`msKds-UseStartTime` only), every managed service account with `PrincipalsAllowedToRetrieveManagedPassword`, `msDS-DelegatedMSAState` and `msDS-ManagedAccountPrecededByLink`, and, for a dMSA conversion, the account's distinguished name, the domain controllers and each host's operating system. `Test-NpiKerberosIsland` returns the findings, the plan, the island list and the reconciliation.
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| NPI-KRB-01 | Finding / Warn | No KDS root key (no gMSA or dMSA can be created); or one usable less than 10 hours ago | Learn[^np06-kds] |
+| NPI-KRB-02 | Finding | A Kerberos account with no disposition, or an unknown one | Project plan, D-N3 (*Design guidance*) |
+| NPI-KRB-03 | Finding | A gMSA or dMSA whose retrievers in AD differ from the reviewed list, or that has no reviewed list, or an empty one | *Design guidance* |
+| NPI-KRB-04 | Finding | A target that can't be used: a dMSA from an MSA, or with unconstrained delegation, a host or a domain without Windows Server 2025, one dMSA for two accounts; a gMSA with no reviewed retrievers; a gMSA or dMSA converted again | Learn[^np06-dmsa-overview] [^np06-dmsa-faq] |
+| NPI-KRB-05 | Finding | An account that stays on Kerberos with no SPN owner | Project plan, N3.6 |
+| NPI-KRB-06 | Finding / Warn | No end date, or one after D08's; Warn while D08 isn't set | Project plan, N3.6 |
+| NPI-KRB-07 | Finding | A gMSA or dMSA not reconciled with D11: no destination; a move or retirement after G5; an island account past G5 when AD is retired, or past the island's end of life | Project plan, N7.3 and G5 |
+| NPI-KRB-08 | Warn | A managed service account in a privileged group | Learn[^np06-entra-gmsa] |
+| NPI-KRB-09 | Info | A SQL Server account, handed to the Data Platform plan | Chapter 01 |
+
+Every finding has a stable ID, `<rule>:<account>`. The plan turns each account into one action:
+
+| Action | When | Writes? |
+|---|---|---|
+| `CreateGmsa` | `Convert` to a gMSA, the gMSA doesn't exist, the root key is ready, the retrievers are reviewed: `New-ADServiceAccount -Name -DNSHostName -PrincipalsAllowedToRetrieveManagedPassword -KerberosEncryptionType AES256` | Yes, after review |
+| `AwaitHostChange`, `AwaitParallelRun` | The gMSA exists; the server owner installs it on the hosts and changes the service, application pool or task identity, then records `HostChangedOn`; 30 days follow | No |
+| `DisableSuperseded` | 30 days after `HostChangedOn`, the old account still enabled: `Disable-ADAccount -Identity <objectGUID>` | Yes, after review |
+| `CreateDmsa` | `Convert` to a dMSA that passes every limit, and doesn't exist: `New-ADServiceAccount -CreateDelegatedServiceAccount -KerberosEncryptionType AES256` | Yes, after review |
+| `StartDmsaMigration` | The dMSA exists with `msDS-DelegatedMSAState` 0: `Start-ADServiceAccountMigration -Identity <dMSA> -SupersededAccount <DN>` | Yes, after review |
+| `AwaitMigrationWindow` | In migration, less than 28 days since `MigrationStartedOn`, or no date recorded | No |
+| `CompleteDmsaMigration` | State 1 and 28 days passed: `Complete-ADServiceAccountMigration`, which disables the old account and moves its SPNs to the dMSA[^np06-dmsa-overview] | Yes, after review |
+| `SetRetrievers` | A gMSA or dMSA whose retrievers differ from the reviewed list: `Set-ADServiceAccount -Identity -PrincipalsAllowedToRetrieveManagedPassword` | Yes, after review |
+| `Island`, `MovesToWorkloadIdentity`, `RetireThroughDecommission`, `MigrationComplete`, `Superseded`, `HandedOff`, `Blocked`, `AwaitDisposition` | Recorded, with the reason | No |
+
+The plan is written as `kerberos-plan.json` with the register's SHA-256, the SHA-256 of each input, the tenant, the cloud, the domain and the date. The same inputs give the same plan, byte for byte, so a reviewer approves a hash.
+
+### The island list and the reconciliation
+
+`island-list.csv` holds every account that stays on Kerberos under the name it will have (the dMSA or gMSA a conversion creates, or the account itself), with its SPNs, SPN owner, end date, whether the date is within D08 and whether it is ready for the program's SPN retirement (P4.6). The run's manifest records `islandHandoffReady`, true only when D08 is set and every row is ready.
+
+`reconciliation.json` holds every gMSA and dMSA, existing or planned, with its destination and outcome: `MovesToWorkloadIdentity`, `Retires`, `OnIslandList`, `HandedOff` or `Unreconciled`. When the program confirms or revises D11 (D09, week 36), `end-state.json` changes in a reviewed pull request and the run is repeated inside the 72-day margin before G5.
+
+### The separate write path
+
+`Invoke-NpiKerberosIslandAction.ps1` is the only code in this chapter that can write, and it writes only through `New-NpiKrbWriter`, whose calls are the `kerberos-apply` task's. It refuses to run unless:
+
+- the plan file's SHA-256 is the one passed as `-ApprovedSha256`;
+- the plan is for this tenant and this domain, and no more than seven days old (*Design guidance*);
+- each write is a declared `kerberos-apply` call with its cmdlet and only its `allowedParams`; a new account is AES256, a retriever list is never empty, a superseded account is a distinguished name, and no cmdlet that removes, uninstalls, undoes or resets is ever run;
+- a live run is a person's session against a read-write domain controller, never a computer or service identity.
+
+Before each write it re-reads the target and skips the write if the precheck no longer holds: the root key isn't ready, the account already exists, the retrievers changed since review, the migration state moved, or the old account is already disabled. Without `-Apply` it stops after the prechecks and reports `WouldSend`.
+
+| Task | Cmdlets | Active Directory right |
+|---|---|---|
+| `kerberos-island` (read) | `Get-ADObject` (KDS root keys), `Get-ADServiceAccount`, `Get-ADUser`, `Get-ADDomainController`, `Get-ADComputer` | The default read of an authenticated domain user, plus a delegated read of `msKds-UseStartTime` and `msKds-CreateTime` in `CN=Master Root Keys`, whose class's default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM only[^np06-kds-class] (research gaps, rows 52 and 53) |
+| `kerberos-apply` (write, a person) | The reads, `New-ADServiceAccount`, `Set-ADServiceAccount`, `Start-` and `Complete-ADServiceAccountMigration`, `Disable-ADAccount` | Domain Admins or Enterprise Admins, or equivalent, to create or migrate to a dMSA;[^np06-dmsa-setup] Domain Admins or a delegated right to create gMSAs;[^np06-gmsa-manage] write of `msDS-GroupMSAMembership`; a delegated right to disable accounts in the account's OU |
+
+The read task holds no domain administration. The write task does, because Learn's dMSA procedure needs it: that is why it is a separate script, run by a person, on a plan someone else approved.
+
+### The tests
+
+Pester 5 under PowerShell 7. This chapter's are:
+
+- `tests/KerberosIslandSamples.Tests.ps1`, 17 tests: Learn's procedures, run as published against stand-ins.
+- `tests/NpiKerberosIsland.Tests.ps1`, 44 tests: the call list and its least-privilege check, the reader's refusals, the register's hash, the end state with no default, the KDS root key read, each rule, gMSA and dMSA paths step by step, the retrievers, the island list and its hand-off, the reconciliation under each D11 decision, the deterministic plan, the writer's refusals (hash, tenant, domain, age, delete, undeclared call, parameter, empty list, encryption type, distinguished name), dry run, `-Apply`, the prechecks that skip a write, and the entry scripts.
+
+::: {.callout-important}
+## Illustrative code
+The commands below run Learn's pinned procedures against stand-ins, and run the example against a fictional estate and a fake Active Directory. `-Apply` in Lab 1 changes only the fake, in memory. Review the code, and run Lab 2 in a test domain, before it reads or writes a real one.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-identity`, with Chapter 01's `out/inventory` in place (Lab 1 of [Chapter 01](01-non-person-identity-inventory-as-code.md#lab-1-fixtures-no-tenant), step 3).
+
+1. **Run Learn's procedures against the stand-ins:**
+
+   ```powershell
+   Invoke-Pester -Path tests/KerberosIslandSamples.Tests.ps1 -Output None -PassThru |
+       Select-Object PassedCount, FailedCount, NotRunCount
+   ```
+
+   `PassedCount 17`, `FailedCount 0`, `NotRunCount 0`. Read the test for the state-3 step: Learn's block fails with `A parameter cannot be found that matches parameter name 'Properties'`.
+
+2. **List what each task runs:**
+
+   ```powershell
+   Import-Module ./powershell/NpiKerberosIsland/NpiKerberosIsland.psm1
+   foreach ($t in 'kerberos-island', 'kerberos-apply') { $r = Get-NpiKrbRequiredRight -Task $t; "$t : " + ($r.Cmdlets -join ', ') }
+   ```
+
+   ```text
+   kerberos-island : Get-ADComputer, Get-ADDomainController, Get-ADObject, Get-ADServiceAccount, Get-ADUser
+   kerberos-apply : Complete-ADServiceAccountMigration, Disable-ADAccount, Get-ADComputer, Get-ADDomainController, Get-ADObject, Get-ADServiceAccount, Get-ADUser, New-ADServiceAccount, Set-ADServiceAccount, Start-ADServiceAccountMigration
+   ```
+
+3. **Check the Kerberos accounts and build the plan:**
+
+   ```powershell
+   ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -InputPath tests/fixtures/ch06/inputs -OutputPath out/kerberos
+   ```
+
+   ```text
+   Kerberos accounts: 9 in scope; KDS root key Ready
+   Findings: 6 Finding, 1 Warn, 2 Info
+   Plan: 9 actions, 4 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 1 SetRetrievers); nothing sent
+   Island list: 5 accounts, 3 ready for P4.6; hand-off ready: False
+   Reconciliation (D11 KerberosIsland): 1 HandedOff, 1 MovesToWorkloadIdentity, 3 OnIslandList, 1 Unreconciled
+   Plan SHA-256: 092c28742af95012c0a46dcc8b6e95cecd7bfb6c8096b74ec687246a78438ca0
+   ```
+
+   The plan's hash is the same on every run with these inputs.
+
+4. **Read the findings:**
+
+   ```powershell
+   Get-Content out/kerberos/findings.json -Raw | ConvertFrom-Json | Sort-Object Rule | Format-Table Rule, Severity, ObjectKey
+   ```
+
+   ```text
+   Rule       Severity ObjectKey
+   ----       -------- ---------
+   NPI-KRB-03 Finding  gmsa-web$
+   NPI-KRB-04 Finding  svc-webfront
+   NPI-KRB-05 Finding  svc-intranet
+   NPI-KRB-06 Finding  gmsa-web$
+   NPI-KRB-06 Finding  svc-intranet
+   NPI-KRB-07 Finding  gmsa-intranet$
+   NPI-KRB-08 Warn     gmsa-ops$
+   NPI-KRB-09 Info     gmsa-sql$
+   NPI-KRB-09 Info     svc-sqlprod
+   ```
+
+   `svc-webfront` is trusted for unconstrained delegation, which stops working once a dMSA migration completes, so its dMSA is blocked. `gmsa-web$`'s reviewed retrievers add `WEB03`, and its end date (September 30, 2027) is after D08's (June 30, 2027). `svc-intranet` has no SPN owner, and its end date (2028) is after D08 and after the island's end of life, so its planned gMSA isn't reconciled. `gmsa-ops$` is in Domain Admins.
+
+5. **Read the plan:**
+
+   ```powershell
+   Get-Content out/kerberos/kerberos-plan.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty actions | Format-Table Action, Account, Write, Cmdlet
+   ```
+
+   ```text
+   Action                  Account      Write Cmdlet
+   ------                  -------      ----- ------
+   MovesToWorkloadIdentity gmsa-ops$    False
+   HandedOff               gmsa-sql$    False
+   Island                  gmsa-web$    False
+   SetRetrievers           gmsa-web$     True Set-ADServiceAccount
+   CreateGmsa              msa-print01$  True New-ADServiceAccount
+   CompleteDmsaMigration   svc-hrsync    True Complete-ADServiceAccountMigration
+   CreateGmsa              svc-intranet  True New-ADServiceAccount
+   HandedOff               svc-sqlprod  False
+   Blocked                 svc-webfront False
+   ```
+
+   `svc-hrsync`'s migration to `dmsa-hrsync$` started on September 20, 40 days ago, so it can complete. The MSA `msa-print01$` gets a new gMSA for its scheduled task; the IIS application pool's account `svc-intranet` gets one whose retrievers are a group.
+
+6. **Read the island list and the reconciliation:**
+
+   ```powershell
+   Import-Csv out/kerberos/island-list.csv | Format-Table Account, Type, SpnOwnerUpn, EndDate, ReadyForP46
+   Get-Content out/kerberos/reconciliation.json -Raw | ConvertFrom-Json | Format-Table Account, Type, Planned, Destination, Outcome
+   ```
+
+   ```text
+   Account        Type        SpnOwnerUpn                   EndDate    ReadyForP46
+   -------        ----        -----------                   -------    -----------
+   dmsa-hrsync$   dMSA        hr-apps.owner@contoso.example 2027-06-30 True
+   gmsa-intranet$ gMSA                                      2028-12-31 False
+   gmsa-print$    gMSA        print.owner@contoso.example   2027-06-30 True
+   gmsa-web$      gMSA        web.owner@contoso.example     2027-09-30 False
+   svc-webfront   Traditional web.owner@contoso.example     2027-06-30 True
+
+   Account        Type Planned Destination      Outcome
+   -------        ---- ------- -----------      -------
+   dmsa-hrsync$   dMSA   False Island           OnIslandList
+   gmsa-ops$      gMSA   False WorkloadIdentity MovesToWorkloadIdentity
+   gmsa-sql$      gMSA   False HandedOff        HandedOff
+   gmsa-web$      gMSA   False Island           OnIslandList
+   gmsa-intranet$ gMSA    True Island           Unreconciled
+   gmsa-print$    gMSA    True Island           OnIslandList
+   ```
+
+7. **Dry-run the plan with its approved hash:**
+
+   ```powershell
+   $sha = (Get-FileHash out/kerberos/kerberos-plan.json -Algorithm SHA256).Hash.ToLower()
+   ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-dryrun
+   ```
+
+   ```text
+   DryRun: 4 WouldSend
+     WouldSend SetRetrievers         gmsa-web$       Set-ADServiceAccount
+     WouldSend CreateGmsa            msa-print01$    New-ADServiceAccount
+     WouldSend CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
+     WouldSend CreateGmsa            svc-intranet    New-ADServiceAccount
+   ```
+
+8. **Apply it to the fake, then try a hash nobody approved:**
+
+   ```powershell
+   ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-apply -Apply
+   ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
+   ```
+
+   `Apply: 4 Sent`; `results.json` tells the operator what comes next (install each gMSA on its hosts and record `HostChangedOn`; the old `svc-hrsync` is disabled and kept). Then the refusal: `The plan's SHA-256 is 092c2874…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+
+9. **Run the tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests
+   ```
+
+**Expected result:** 158 tests passing across the example (Chapters 01, 02 and 06), `out/kerberos/manifest.json` listing seven AD reads and the SHA-256 of the register and each input, and `out/kerberos-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done.
+
+## Lab 2: test domain
+
+Use a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, and Chapter 01's Lab 2 run (`out/inventory-test`). The KDS root key must already exist; in a test domain with one domain controller, Learn's KDS page shows how to create one usable at once.[^np06-kds]
+
+1. **Make two test accounts:** a traditional test service account (`svc-` prefix) with an SPN, running a test Windows service on the 2025 member server, and a test MSA. Add both to `kerberos-dispositions.csv`: the first `Convert` to a dMSA on that host, the second `Convert` to a gMSA, each with a test SPN owner and an end date before your test D08. Add the gMSA's retrievers to `password-retrievers.json` and a test `end-state.json`.
+2. **Grant the read:** give the account that runs the read a delegated read of `msKds-UseStartTime` and `msKds-CreateTime` on `CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,CN=Configuration,<forest>`, nothing else, and record whether the read works without access to the key data (research gaps, row 52). Record whether `PrincipalsAllowedToRetrieveManagedPassword` comes back for that account (row 53).
+3. **Run the check:**
+
+   ```powershell
+   ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test
+   ```
+
+   Expect `CreateDmsa` and `CreateGmsa`. Have a second person review `kerberos-plan.json` and pass you its SHA-256.
+4. **Dry-run, then apply,** signed in to the domain as a person with the test domain's Domain Admins or equivalent rights, against a writable domain controller:
+
+   ```powershell
+   ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos-test/kerberos-plan.json -ApprovedSha256 <sha> -Server <test-dc> -OutputPath out/kerberos-test-dry
+   ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos-test/kerberos-plan.json -ApprovedSha256 <sha> -Server <test-dc> -OutputPath out/kerberos-test-apply -Apply
+   ```
+
+5. **Run the next plan:** the check now plans `StartDmsaMigration` for the dMSA and `AwaitHostChange` for the gMSA. Review, apply, record `MigrationStartedOn`. On the member server, set the host's registry value and restart only the test service, as Learn's procedure does for all services;[^np06-dmsa-setup] watch Kerberos events 307 to 309 in the Security-Kerberos Operational log. Record whether the dMSA's state is 1 without first setting it to 3 (row 51).
+6. **Complete, or back out.** After 28 days the check plans `CompleteDmsaMigration`; apply it and confirm the old account is disabled and its SPNs are on the dMSA. To back out instead, run Learn's `Undo-ADServiceAccountMigration` by hand (this code never runs it),[^np06-dmsa-setup] re-enable the test account, then remove the test dMSA, gMSA, MSA and account by hand in the test domain, and delete the `out` folders.
+
+## Verified facts
+
+Every item is Active Directory on-premises: no US Government cloud endpoint applies, and none is marked preview on Learn.
+
+| Item | Value | US Government clouds | Stage | Source |
+|---|---|---|---|---|
+| gMSA prerequisites | Domain Admins or Enterprise Admins; domain and forest functional level Windows Server 2012 or later; a KDS root key | n/a (AD) | GA | [^np06-gmsa-manage] |
+| gMSA create | `New-ADServiceAccount -Name -DNSHostName -PrincipalsAllowedToRetrieveManagedPassword`; a gMSA by default; services, IIS application pools and Task Scheduler tasks can run as one; failover clusters can't | n/a (AD) | GA | [^np06-gmsa-manage] [^np06-new-adsa] |
+| gMSA password | Changed by Windows every 30 days; review privileged group membership | n/a (AD) | GA | [^np06-entra-gmsa] |
+| Encryption types | Always configure AES for MSAs | n/a (AD) | GA | [^np06-gmsa-overview] |
+| KDS root key | Domain controllers wait up to 10 hours after it becomes effective; Domain Admins or Enterprise Admins create it; stored under `CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,CN=Configuration` | n/a (AD) | GA | [^np06-kds] |
+| `msKds-ProvRootKey` | Default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM; `msKds-UseStartTime` is when the key may be used | n/a (AD) | GA | [^np06-kds-class] [^np06-kds-usestart] |
+| `Get-KdsRootKey` | Returns each root key's identifier and value | n/a (AD) | GA | [^np06-get-kdsrootkey] |
+| `Set-ADServiceAccount` | `-PrincipalsAllowedToRetrieveManagedPassword` sets `msDS-GroupMSAMembership`; no `-Properties` parameter; not against a read-only domain controller | n/a (AD) | GA | [^np06-set-adsa] |
+| dMSA prerequisites | Windows Server 2025; at least one Windows Server 2025 domain controller; Domain Admins or Enterprise Admins, or equivalent; a KDS root key | n/a (AD) | GA (Windows Server 2025) | [^np06-dmsa-setup] [^np06-dmsa-faq] |
+| dMSA migration limits | No MSA or gMSA to dMSA; wait two ticket lifetimes (14 days), four (28) recommended; a read-write domain controller; unconstrained delegation stops; every machine must support dMSA; one dMSA per service account | n/a (AD) | GA (Windows Server 2025) | [^np06-dmsa-overview] [^np06-dmsa-faq] |
+| `Start-` / `Complete-ADServiceAccountMigration` | `-Identity` the dMSA, `-SupersededAccount` a distinguished name; complete copies the SPNs, delegation and authentication policy, disables the account and removes its SPNs | n/a (AD) | GA (Windows Server 2025) | [^np06-start-mig] [^np06-complete-mig] [^np06-dmsa-overview] |
+| Never delete | Never delete the original account after a dMSA migration; keep it intact | n/a (AD) | — | [^np06-dmsa-setup] [^np06-dmsa-faq] |
+| `Disable-ADAccount` | Disables a user, computer or service account | n/a (AD) | GA | [^np06-disable] |
+
+Where Learn's pages differ: the dMSA set-up page sets `msDS-DelegatedMSAState` with a parameter `Set-ADServiceAccount` doesn't have (research gaps, row 51); the set-up page completes with no wait while the overview asks for two to four ticket lifetimes (row 54); the Entra gMSA page deletes the old account while the dMSA pages say never to (row 55); and the dMSA page checks the root key with a cmdlet that returns the key, where the code reads only its start time (row 52). The code follows the stricter reading in each case.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A gMSA left behind at G5 | The workload loses its credential when the last domain controller is demoted | Every gMSA and dMSA reconciled with D11 and G5 (NPI-KRB-07); the run repeated when D11 changes |
+| A dMSA migration completed too early, or on a host that can't use it | The old account is disabled; the service fails on hosts the dMSA hasn't learned | Complete only 28 days after the start; Windows Server 2025 on every host and one domain controller; no unconstrained delegation (NPI-KRB-04) |
+| The old account deleted | No way back; the service and the dMSA link to it | No delete, uninstall, undo or reset call exists; the writer refuses them by name |
+| A root key used before it replicates | gMSA password retrieval fails on other domain controllers | Creations wait until a key has been usable for 10 hours (NPI-KRB-01); the code never creates a key |
+| The root key read as a secret | Whoever runs the check holds the input to every gMSA password | Only `msKds-UseStartTime` and `msKds-CreateTime` are read, with a delegated read |
+| Retrievers widened by hand | Another host can read the gMSA's password and act as the service | Retrievers are reviewed data; drift is a finding and a reviewed `SetRetrievers` |
+| A restart of every service | Learn's step restarts unrelated services on the host | Host steps are the server owner's, scoped to the service, never run by this code |
+| A plan changed after review | Different writes from the ones approved | The approved SHA-256; this tenant and domain; no older than seven days |
+| Domain administration held by a job | A standing credential that can create and migrate any account | The write path runs as a person; the read path holds no administration |
+| An island with no owner or end | SPNs nobody retires; P4.6 has no list to work from | NPI-KRB-05 and -06; the island list is ready for hand-off only when every row is |
+
+## Checklist
+
+- [ ] Every Kerberos account in the register has a reviewed disposition, or a finding with an owner of the fix.
+- [ ] The KDS root key check ran with a delegated read of the start time only, not as a Domain Admin.
+- [ ] Every gMSA's and dMSA's retrievers match `password-retrievers.json`.
+- [ ] No dMSA was planned for an MSA, an account with unconstrained delegation, or a host without Windows Server 2025, and none was completed before 28 days.
+- [ ] Every plan's SHA-256 was approved by someone other than the person who applied it, and the write path's manifest is filed with the change record.
+- [ ] No old account was deleted; each superseded one is disabled and has a retirement decision.
+- [ ] Every account on the island list has an SPN owner and an end date within D08, and the list went to the program's SPN retirement (P4.6) only when `islandHandoffReady` was true.
+- [ ] Every gMSA and dMSA is `MovesToWorkloadIdentity`, `Retires`, `OnIslandList` or `HandedOff` against the current `end-state.json`, and the run was repeated after D11 was confirmed.
+- [ ] The pinned Learn pages match their manifest, and every upstream commit since the pin has been reviewed.
+
+::: {.callout-tip}
+## Continue the book
+← Previous: Chapter 05 — Workload Identity Federation and Managed Identities · [Workbook index](index.md) · Next: Chapter 07 — Least Privilege for Service Principals →
+:::
+
+[^np06-gmsa-manage]: Microsoft Learn, "Manage group Managed Service Accounts," prerequisites; create a gMSA; install a gMSA, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts> (accessed Oct 30, 2026).
+[^np06-gmsa-overview]: Microsoft Learn, "Group Managed Service Accounts overview," software requirements, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/group-managed-service-accounts-overview> (accessed Oct 30, 2026).
+[^np06-entra-gmsa]: Microsoft Learn, "Secure group managed service accounts," benefits; using gMSAs; assess gMSA security posture; move to a gMSA, <https://learn.microsoft.com/entra/architecture/service-accounts-group-managed> (accessed Oct 30, 2026); pinned copy in `examples/third_party/entra-service-account-pages`.
+[^np06-dmsa-setup]: Microsoft Learn, "Setting up delegated Managed Service Accounts," prerequisites; create a standalone dMSA; migrate to a dMSA; complete account migration, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa> (accessed Oct 30, 2026).
+[^np06-dmsa-overview]: Microsoft Learn, "Delegated Managed Service Accounts overview," migration flow; account attributes for dMSA, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview> (accessed Oct 30, 2026).
+[^np06-dmsa-faq]: Microsoft Learn, "Delegated Managed Service Accounts FAQ," general; migration, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-faq> (accessed Oct 30, 2026).
+[^np06-kds]: Microsoft Learn, "Create a Key Distribution Service (KDS) root key," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key> (accessed Oct 30, 2026).
+[^np06-kds-class]: Microsoft Learn, "ms-Kds-Prov-RootKey class," default security descriptor, <https://learn.microsoft.com/windows/win32/adschema/c-mskds-provrootkey> (accessed Oct 30, 2026).
+[^np06-kds-usestart]: Microsoft Learn, "ms-Kds-UseStartTime attribute," <https://learn.microsoft.com/windows/win32/adschema/a-mskds-usestarttime> (accessed Oct 30, 2026).
+[^np06-get-kdsrootkey]: Microsoft Learn, "Get-KdsRootKey," description, <https://learn.microsoft.com/powershell/module/kds/get-kdsrootkey> (accessed Oct 30, 2026).
+[^np06-new-adsa]: Microsoft Learn, "New-ADServiceAccount," description; `-CreateDelegatedServiceAccount`; notes, <https://learn.microsoft.com/powershell/module/activedirectory/new-adserviceaccount> (accessed Oct 30, 2026).
+[^np06-set-adsa]: Microsoft Learn, "Set-ADServiceAccount," syntax; `-PrincipalsAllowedToRetrieveManagedPassword`; notes, <https://learn.microsoft.com/powershell/module/activedirectory/set-adserviceaccount> (accessed Oct 30, 2026).
+[^np06-start-mig]: Microsoft Learn, "Start-ADServiceAccountMigration," description and notes, <https://learn.microsoft.com/powershell/module/activedirectory/start-adserviceaccountmigration> (accessed Oct 30, 2026).
+[^np06-complete-mig]: Microsoft Learn, "Complete-ADServiceAccountMigration," description and notes, <https://learn.microsoft.com/powershell/module/activedirectory/complete-adserviceaccountmigration> (accessed Oct 30, 2026).
+[^np06-disable]: Microsoft Learn, "Disable-ADAccount," description, <https://learn.microsoft.com/powershell/module/activedirectory/disable-adaccount> (accessed Oct 30, 2026).
+[^np06-src]: Microsoft, MicrosoftDocs/windowsserverdocs, `WindowsServerDocs/identity/ad-ds/manage/delegated-managed-service-accounts/` (`delegated-managed-service-accounts-set-up-dmsa.md`, `delegated-managed-service-accounts-overview.md`) and `WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/` (`manage-group-managed-service-accounts.md`, `create-the-key-distribution-services-kds-root-key.md`) at commit `2205ce8e55001a9b5e8e0de43981baa8ad782562` (October 30, 2026), documentation Creative Commons Attribution 4.0, code MIT License, <https://github.com/MicrosoftDocs/windowsserverdocs/tree/2205ce8e55001a9b5e8e0de43981baa8ad782562/WindowsServerDocs/identity/ad-ds/manage> (accessed Oct 30, 2026); pinned copy in `examples/third_party/windows-server-msa-pages`.

@@ -1,0 +1,62 @@
+{
+  "_comment": "Design guidance: Book 02, Chapter 09's migration path matrix and the implementation guide's Step 2 as reviewed data (Chapter 03). Rows are tried in order and the first match proposes the target; the owner's disposition (D-N3) decides. Learn's own tables (pinned in examples/third_party/entra-service-account-choice-pages) are the model for the on-premises and cloud choices; the rows add what they leave out. Change this file in a reviewed pull request; the run records its SHA-256 in its manifest.",
+  "inScopeTypes": ["Traditional", "MSA", "gMSA", "dMSA", "UnknownServiceAccount", "AppRegistration", "LegacyServicePrincipal", "ManagedIdentitySystemAssigned", "ManagedIdentityUserAssigned"],
+  "outOfScope": {
+    "ServicePrincipal": "Governed through its app registration's row",
+    "ExternalServicePrincipal": "Credentials and lifecycle are in the home tenant: review consent and permissions (Chapter 07)",
+    "AgentIdentity": "AI agent identity: Chapter 09",
+    "AgentIdentityBlueprint": "AI agent identity blueprint: Chapter 09"
+  },
+  "workloadLocations": ["Azure", "ArcServer", "OidcIssuer", "EntraApiNoIssuer", "OnPremKerberos", "Hybrid"],
+  "targets": {
+    "Retire": { "label": "Retire through the reviewed decommission process", "family": "Retire", "rollback": "Re-enable the account or service principal; restore within the recycle bin's 30 days" },
+    "ManagedIdentity": { "label": "Managed identity (user-assigned preferred)", "family": "Entra", "rollback": "Re-enable the legacy account; revert the application's configuration to it" },
+    "AppRegistrationFederated": { "label": "App registration with a federated identity credential", "family": "Entra", "rollback": "Re-enable the legacy account or credential; revert the application's configuration; remove the federated credential" },
+    "AppRegistrationCertificate": { "label": "App registration with a certificate credential", "family": "Entra", "rollback": "Re-enable the legacy account or secret; revert the application's configuration; remove the new certificate" },
+    "gMSA": { "label": "Group managed service account", "family": "Kerberos", "rollback": "Re-enable the legacy account; set the service back to it" },
+    "dMSA": { "label": "Delegated managed service account (Windows Server 2025)", "family": "Kerberos", "rollback": "Undo-ADServiceAccountMigration (Learn's undo for a dMSA migration); the superseded account is kept, never deleted" },
+    "GmsaPlusAppRegistration": { "label": "Keep the gMSA, plus an app registration for the cloud calls", "family": "Split", "rollback": "Remove the app registration's credential; the gMSA is unchanged" },
+    "Keep": { "label": "Keep: already at its target", "family": "Keep", "rollback": "Nothing changes" },
+    "KeepKerberos": { "label": "Keep on Kerberos, islanded, with an SPN owner and an end date the authorizing official accepts", "family": "Keep", "rollback": "Nothing changes" }
+  },
+  "dispositions": {
+    "Retire": ["Retire"],
+    "Replatform": ["ManagedIdentity", "AppRegistrationFederated", "AppRegistrationCertificate", "gMSA", "dMSA", "GmsaPlusAppRegistration"],
+    "Keep": ["Keep"],
+    "KeepKerberos": ["KeepKerberos"]
+  },
+  "retireWhen": "Chapter 02 found no owner (an orphan candidate not claimed and not excepted), or the account is disabled: the guide's 'disabled, unused, or no owner' row",
+  "rows": [
+    { "id": "M01", "types": ["Traditional", "UnknownServiceAccount"], "locations": ["Azure"], "miSupported": true, "target": "ManagedIdentity", "source": "Book 02 matrix: traditional account, Azure resource; Learn: managed identity if the service supports one" },
+    { "id": "M02", "types": ["Traditional", "UnknownServiceAccount"], "locations": ["Azure"], "miSupported": false, "target": "AppRegistrationFederated", "source": "Learn workload identity federation: an app on Azure compute trusting a user-assigned managed identity" },
+    { "id": "M03", "types": ["Traditional", "UnknownServiceAccount"], "locations": ["ArcServer"], "target": "ManagedIdentity", "source": "Implementation guide, Step 2: a managed identity if the host is Arc-enabled" },
+    { "id": "M04", "types": ["Traditional", "UnknownServiceAccount"], "locations": ["OidcIssuer"], "target": "AppRegistrationFederated", "source": "Book 02 matrix: federated credential where the host has an OIDC issuer" },
+    { "id": "M05", "types": ["Traditional", "UnknownServiceAccount"], "locations": ["EntraApiNoIssuer"], "target": "AppRegistrationCertificate", "source": "Book 02 matrix: certificate only where neither applies" },
+    { "id": "M06", "types": ["Traditional", "UnknownServiceAccount"], "locations": ["OnPremKerberos"], "dmsa": true, "target": "dMSA", "source": "Book 02 matrix: a dMSA on a Windows Server 2025 domain; Learn: dMSA supersedes a traditional account" },
+    { "id": "M07", "types": ["Traditional", "UnknownServiceAccount"], "locations": ["OnPremKerberos", "Hybrid"], "target": "gMSA", "source": "Book 02 matrix: gMSA for Kerberos only; Learn: use gMSAs whenever possible" },
+    { "id": "M08", "types": ["MSA"], "locations": ["OnPremKerberos", "Hybrid"], "target": "gMSA", "source": "Book 02 matrix: upgrade to a gMSA; Learn: an MSA or gMSA can't be migrated to a dMSA" },
+    { "id": "M09", "types": ["MSA", "gMSA"], "locations": ["Azure", "ArcServer"], "target": "ManagedIdentity", "source": "Book 02 matrix: gMSA moving to the cloud" },
+    { "id": "M10", "types": ["MSA", "gMSA"], "locations": ["OidcIssuer"], "target": "AppRegistrationFederated", "source": "Book 02 matrix: gMSA moving to the cloud" },
+    { "id": "M11", "types": ["gMSA"], "locations": ["OnPremKerberos"], "target": "Keep", "source": "Implementation guide, Step 2: gMSA staying on premises, keep" },
+    { "id": "M12", "types": ["gMSA"], "locations": ["Hybrid", "EntraApiNoIssuer"], "target": "GmsaPlusAppRegistration", "source": "Book 02 matrix: gMSA, hybrid" },
+    { "id": "M13", "types": ["dMSA"], "locations": ["OnPremKerberos", "Hybrid"], "target": "Keep", "source": "Book 02 matrix: keep the dMSA" },
+    { "id": "M14", "types": ["AppRegistration", "LegacyServicePrincipal"], "locations": ["Azure"], "miSupported": true, "credentialKinds": ["Secret", "SecretAndCertificate", "Certificate", "None"], "target": "ManagedIdentity", "source": "Book 02 and Book 04: replace a secret with a managed identity first" },
+    { "id": "M15", "types": ["AppRegistration", "LegacyServicePrincipal"], "locations": ["Azure", "OidcIssuer"], "credentialKinds": ["Secret", "SecretAndCertificate", "Certificate", "None"], "target": "AppRegistrationFederated", "source": "Book 02 and Book 04: then a federated credential; Learn workload identity federation" },
+    { "id": "M16", "types": ["AppRegistration", "LegacyServicePrincipal"], "locations": ["EntraApiNoIssuer", "ArcServer", "OnPremKerberos", "Hybrid"], "credentialKinds": ["Secret", "SecretAndCertificate", "None"], "target": "AppRegistrationCertificate", "source": "Book 02 and Book 04: then a certificate" },
+    { "id": "M17", "types": ["LegacyServicePrincipal"], "locations": ["EntraApiNoIssuer", "ArcServer", "OnPremKerberos", "Hybrid"], "credentialKinds": ["Certificate"], "target": "AppRegistrationCertificate", "source": "Chapter 01: replace a legacy service principal with an app registration and service principal" },
+    { "id": "M18", "types": ["AppRegistration"], "locations": ["Azure", "ArcServer", "OidcIssuer", "EntraApiNoIssuer", "OnPremKerberos", "Hybrid"], "credentialKinds": ["Certificate", "Federated", "FederatedAndCertificate"], "target": "Keep", "source": "Book 02: certificate on the rotation schedule, or no stored secret" },
+    { "id": "M19", "types": ["ManagedIdentitySystemAssigned", "ManagedIdentityUserAssigned"], "locations": ["*"], "target": "Keep", "source": "Book 02 matrix: managed identity, no stored credential" }
+  ],
+  "neverAllowed": [
+    { "types": ["MSA", "gMSA"], "target": "dMSA", "why": "Learn: you can't migrate from a managed service account or a gMSA to a dMSA" },
+    { "types": ["dMSA", "gMSA", "MSA", "AppRegistration", "LegacyServicePrincipal", "ManagedIdentitySystemAssigned", "ManagedIdentityUserAssigned"], "target": "KeepKerberos", "why": "Keep on Kerberos is the islanding exception for a traditional account; a managed account that stays is Keep" }
+  ],
+  "keepKerberosTypes": ["Traditional", "UnknownServiceAccount"],
+  "parallelRunDays": 30,
+  "firstWave": 1,
+  "workloadIdPremium": {
+    "servicePlanIds": ["84c289f0-efcb-486f-8581-07f44fc9efad", "7dc0e92d-bf15-401d-907e-0884efe7c760"],
+    "servicePlanNames": ["AAD_WRKLDID_P1", "AAD_WRKLDID_P2"],
+    "options": ["Tier1", "Wide", "None"]
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "_comment": "The reviewed conversion file for waves 1 and 2 (fictional): one entry per legacy credential, its target in the plan's order (managed identity, then federated credential, then certificate), what the host allows, and, for each federated credential, the workload whose issuer will present the token. Kept in source control and changed only in a reviewed pull request; the run's plan is built from it. Chapter 03's wave plan names the accounts; this file holds the credentials.",
+  "version": 1,
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "conversions": [
+    {
+      "id": "conv-01", "wave": 1, "risk": "HIGH", "owner": "hr-systems@contoso.example",
+      "legacy": { "kind": "adAccount", "name": "svc-hrsync", "objectId": "ad000000-0000-4000-8000-000000000001" },
+      "host": { "description": "HR sync job on an Azure VM", "azureHosted": true, "oidcIssuer": false },
+      "target": {
+        "kind": "managedIdentity", "identityType": "userAssigned", "createIfMissing": true, "location": "eastus",
+        "resourceId": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hrsync",
+        "credentials": []
+      }
+    },
+    {
+      "id": "conv-02", "wave": 1, "risk": "HIGH", "owner": "payroll-team@contoso.example",
+      "legacy": { "kind": "appSecret", "name": "Payroll Export secret payroll-2026", "applicationObjectId": "0a000000-0000-4000-8000-000000000001", "keyId": "5e000000-0000-4000-8000-000000000001" },
+      "host": { "description": "GitHub Actions workflow", "azureHosted": false, "oidcIssuer": true },
+      "target": {
+        "kind": "federatedCredential", "on": "application", "applicationObjectId": "0a000000-0000-4000-8000-000000000001",
+        "credentials": [
+          {
+            "name": "payroll-prod", "issuer": "https://token.actions.githubusercontent.com/", "subject": "repo:contoso/payroll:environment:Production",
+            "audiences": [ "api://AzureADTokenExchange" ], "description": "Wave 1: replaces payroll-2026",
+            "workload": { "platform": "github", "repository": "contoso/payroll", "entity": "environment", "value": "production", "subjectFormat": "name-based" }
+          }
+        ]
+      }
+    },
+    {
+      "id": "conv-03", "wave": 1, "risk": "HIGH", "owner": "web-team@contoso.example",
+      "legacy": { "kind": "adAccount", "name": "svc-intranet", "objectId": "ad000000-0000-4000-8000-000000000012" },
+      "host": { "description": "GitHub Actions deployment of the intranet site", "azureHosted": false, "oidcIssuer": true },
+      "target": {
+        "kind": "federatedCredential", "on": "application", "applicationObjectId": "0a000000-0000-4000-8000-000000000004",
+        "credentials": [
+          {
+            "name": "github-main", "issuer": "https://token.actions.githubusercontent.com", "subject": "repo:contoso/build:ref:refs/heads/main",
+            "audiences": [ "api://AzureADTokenExchange" ],
+            "workload": { "platform": "github", "repository": "contoso/build", "entity": "branch", "value": "main", "subjectFormat": "name-based" }
+          },
+          {
+            "name": "github-intranet", "issuer": "https://token.actions.githubusercontent.com", "subject": "repo:contoso/intranet:environment:production",
+            "audiences": [ "api://AzureADTokenExchange" ], "description": "Wave 1: replaces svc-intranet",
+            "workload": { "platform": "github", "repository": "contoso/intranet", "entity": "environment", "value": "production", "subjectFormat": "name-based" }
+          },
+          {
+            "name": "github-intranet-tag", "issuer": "https://token.actions.githubusercontent.com", "subject": "repo:contoso/intranet:ref:refs/tags/v2",
+            "audiences": [ " api://AzureADTokenExchange" ], "description": "Audience copied from a template default",
+            "workload": { "platform": "github", "repository": "contoso/intranet", "entity": "tag", "value": "v2", "subjectFormat": "name-based" }
+          }
+        ]
+      }
+    },
+    {
+      "id": "conv-04", "wave": 1, "risk": "HIGH", "owner": "web-team@contoso.example",
+      "legacy": { "kind": "adAccount", "name": "svc-webfront", "objectId": "ad000000-0000-4000-8000-000000000009" },
+      "host": { "description": "Web front end on an AKS cluster with workload identity", "azureHosted": true, "oidcIssuer": true },
+      "target": {
+        "kind": "managedIdentity", "identityType": "userAssigned", "createIfMissing": true, "location": "eastus",
+        "resourceId": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-webfront",
+        "credentials": [
+          {
+            "name": "aks-webfront", "issuer": "https://oidc.prod-aks.azure.com/c0ffee00-0000-4000-8000-000000000001/5f000000-0000-4000-8000-000000000001/", "subject": "system:serviceaccount:web:webfront",
+            "audiences": [ "api://AzureADTokenExchange" ],
+            "workload": { "platform": "kubernetes", "issuer": "https://oidc.prod-aks.azure.com/c0ffee00-0000-4000-8000-000000000001/5f000000-0000-4000-8000-000000000001/", "namespace": "web", "serviceAccount": "webfront" }
+          }
+        ]
+      }
+    },
+    {
+      "id": "conv-05", "wave": 2, "risk": "MEDIUM", "owner": "messaging@contoso.example",
+      "legacy": { "kind": "appSecret", "name": "Mail Automation secret mail-secret", "applicationObjectId": "0a000000-0000-4000-8000-000000000006", "keyId": "5e000000-0000-4000-8000-000000000006" },
+      "host": { "description": "Scheduled task on an on-premises server, no OIDC issuer", "azureHosted": false, "oidcIssuer": false },
+      "target": { "kind": "certificate", "applicationObjectId": "0a000000-0000-4000-8000-000000000006", "credentials": [] }
+    },
+    {
+      "id": "conv-06", "wave": 2, "risk": "MEDIUM", "owner": "platform@contoso.example",
+      "legacy": { "kind": "adAccount", "name": "svc-mailer", "objectId": "ad000000-0000-4000-8000-000000000022" },
+      "host": { "description": "Azure Functions app", "azureHosted": true, "oidcIssuer": false },
+      "target": { "kind": "certificate", "applicationObjectId": "0a000000-0000-4000-8000-000000000007", "credentials": [] }
+    },
+    {
+      "id": "conv-07", "wave": 2, "risk": "MEDIUM", "owner": "batch-ops@contoso.example",
+      "legacy": { "kind": "adAccount", "name": "svc-batch", "objectId": "ad000000-0000-4000-8000-000000000021" },
+      "host": { "description": "Batch jobs on vm-batch01", "azureHosted": true, "oidcIssuer": false },
+      "target": { "kind": "managedIdentity", "identityType": "systemAssigned", "servicePrincipalId": "5b000000-0000-4000-8000-000000000013", "hostResourceId": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-batch/providers/Microsoft.Compute/virtualMachines/vm-batch01", "credentials": [] }
+    },
+    {
+      "id": "conv-08", "wave": 1, "risk": "HIGH", "owner": "reporting@contoso.example",
+      "legacy": { "kind": "appSecret", "name": "Legacy Reports secret reports-secret", "applicationObjectId": "0a000000-0000-4000-8000-000000000003", "keyId": "5e000000-0000-4000-8000-000000000003" },
+      "host": { "description": "GitHub Actions workflow", "azureHosted": false, "oidcIssuer": true },
+      "target": {
+        "kind": "federatedCredential", "on": "application", "applicationObjectId": "0a000000-0000-4000-8000-000000000003",
+        "credentials": [
+          {
+            "name": "gh-reports", "issuer": "https://token.actions.githubusercontent.com", "subject": "repo:contoso/reports:environment:production",
+            "audiences": [ "api://AzureADTokenExchange" ], "description": "Wave 1: replaces reports-secret",
+            "workload": { "platform": "github", "repository": "contoso/reports", "entity": "environment", "value": "production", "subjectFormat": "name-based" }
+          }
+        ]
+      }
+    }
+  ]
+}

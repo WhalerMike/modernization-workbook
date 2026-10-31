@@ -1,0 +1,22 @@
+{
+  "displayName": "NPI-AGENT-01 Block agent identities not approved in the handshake (report-only)",
+  "conditions": {
+    "clientApplications": {
+      "includeAgentIdServicePrincipals": ["All"],
+      "excludeAgentIdServicePrincipals": [],
+      "agentIdServicePrincipalFilter": {
+        "mode": "exclude",
+        "rule": "CustomSecurityAttribute.AgentAttributes_AgentApprovalStatus -contains \"Production_Approved\""
+      }
+    },
+    "applications": {
+      "includeApplications": ["All"],
+      "excludeApplications": []
+    }
+  },
+  "grantControls": {
+    "operator": "AND",
+    "builtInControls": ["block"]
+  },
+  "state": "enabledForReportingButNotEnforced"
+}

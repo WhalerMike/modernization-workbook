@@ -1,0 +1,35 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's page 'Conditional Access for workload identities', as its Learn source page: the Graph JSON sample for a location-based workload identity policy, and the admin center procedures for the location and risk-based policies, exist only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn sample: Conditional Access for workload identities (Graph JSON and the location and risk procedures)",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/identity/conditional-access/workload-identity.md",
+  "commit": "7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2026-05-16 (commit 09b6a3eb78dc8f9066a4b6a8540ac73f43feda1c)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: MIT (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/identity/conditional-access/workload-identity",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "workload-identity.md": "docs/identity/conditional-access/workload-identity.md"
+  },
+  "not_copied": [
+    "The page's screenshot (docs/identity/conditional-access/media/workload-identity) and everything else in MicrosoftDocs/entra-docs: the sample exists only inside this one page, so the page is pinned whole; the chapter links Learn rather than quoting it.",
+    "Learn's 'Securing workload identities' (ID Protection) page, which has no code sample; the chapter cites it."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "workload-identity.md": {
+      "bytes": 8392,
+      "sha256": "e3bc8a0f1301fa8e2cc8ff03dc040f88dde3bc8b4ccc207498b32406476b0036"
+    }
+  }
+}

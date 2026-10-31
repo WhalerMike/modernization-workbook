@@ -1,0 +1,4 @@
+IdentityId,Kind,ResourceAppId,Permission,Justification,Control,ApprovedBy,ApprovedOn,ExpiresOn
+app:1a000000-0000-4000-8000-000000000006,Application,00000003-0000-0000-c000-000000000000,Mail.Send,Sends case notices from the shared notices mailbox,ExchangeRbacScope,ciso-office@contoso.example,2026-08-01,2027-07-31
+app:1a000000-0000-4000-8000-000000000005,Application,00000002-0000-0ff1-ce00-000000000000,full_access_as_app,Reads the vendor intake mailbox only,ApplicationAccessPolicy,ciso-office@contoso.example,2026-04-01,2027-03-31
+app:1a000000-0000-4000-8000-000000000002,Application,00000003-0000-0000-c000-000000000000,Sites.FullControl.All,Held during the move to Sites.Selected,,ciso-office@contoso.example,2026-03-01,2026-09-30

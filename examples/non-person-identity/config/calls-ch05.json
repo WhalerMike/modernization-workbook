@@ -1,0 +1,179 @@
+{
+  "_comment": "Chapter 05 (workload identity federation and managed identities): every call the NpiFederation module makes, with the least-privileged Microsoft Graph permission, Azure role or Active Directory right from the Learn page for that call, read on October 30, 2026. Same schema as calls.json; kept in its own file so chapters written in parallel don't collide. 'federation' only reads (GET and Get-AD*), plus the token exchange test, which is fixture-only and never leaves the machine. 'federation-apply' is the separate, delegated write path, run only with an approved plan hash and -Apply. tests/NpiFederation.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls.",
+  "tasks": {
+    "federation": {
+      "mode": "read",
+      "chapter": "05",
+      "graphPermissions": ["Application.Read.All", "AuditLog.Read.All"],
+      "azureRoles": ["Reader"],
+      "adRights": ["Read (default for authenticated domain users)"]
+    },
+    "federation-apply": {
+      "mode": "write",
+      "chapter": "05",
+      "graphPermissions": ["Application.Read.All", "Application.ReadWrite.All"],
+      "azureRoles": ["Managed Identity Contributor", "Reader"],
+      "adRights": ["Delegated right to disable accounts in the account's OU", "Read (default for authenticated domain users)"],
+      "delegatedOnly": true,
+      "delegatedRole": "Cloud Application Administrator"
+    }
+  },
+  "calls": [
+    {
+      "id": "ch05-application",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications/{id}",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["federation"],
+      "learn": "https://learn.microsoft.com/graph/api/application-get?view=graph-rest-1.0",
+      "note": "Reads appId, passwordCredentials and keyCredentials ($select) so the token exchange test has the client ID and the parallel run knows the legacy secret."
+    },
+    {
+      "id": "ch05-application-fics",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications/{id}/federatedIdentityCredentials",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["federation", "federation-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/federatedidentitycredential-list?view=graph-rest-1.0",
+      "note": "The List page names Application.Read.All; the Get page names Application.ReadWrite.OwnedBy (Chapter 01's research gap 4). The apply re-reads before each create."
+    },
+    {
+      "id": "ch05-service-principal",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{id}",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["federation"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0",
+      "note": "Confirms a system-assigned managed identity's service principal exists (servicePrincipalType ManagedIdentity) and gives its client ID for the sign-in evidence."
+    },
+    {
+      "id": "ch05-signins",
+      "api": "graph",
+      "method": "GET",
+      "version": "beta",
+      "path": "/auditLogs/signIns",
+      "permissions": ["AuditLog.Read.All"],
+      "stage": "beta",
+      "tasks": ["federation"],
+      "learn": "https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-beta",
+      "note": "Service principal and managed identity sign-ins, with clientCredentialType and federatedCredentialId, are on beta only; Learn needs an explicit signInEventTypes filter and a P1 or P2 license. Delegated, the person needs Reports Reader or another listed role."
+    },
+    {
+      "id": "ch05-uami",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2024-11-30",
+      "path": "{resourceId}",
+      "azureRole": "Reader",
+      "stage": "GA",
+      "tasks": ["federation", "federation-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/managedidentity/user-assigned-identities/get",
+      "note": "Learn's how-to names Managed Identity Operator or Managed Identity Contributor for reading a user-assigned identity; Reader holds */read and nothing else (research gaps, row 45). A 404 means the identity doesn't exist yet."
+    },
+    {
+      "id": "ch05-uami-fics",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2024-11-30",
+      "path": "{resourceId}/federatedIdentityCredentials",
+      "azureRole": "Reader",
+      "stage": "GA",
+      "tasks": ["federation", "federation-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/managedidentity/federated-identity-credentials/list"
+    },
+    {
+      "id": "ch05-role-assignments",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2022-04-01",
+      "path": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/roleAssignments",
+      "azureRole": "Reader",
+      "stage": "GA",
+      "tasks": ["federation"],
+      "learn": "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-list-rest",
+      "note": "Records a managed identity's Azure role assignments ($filter=assignedTo('{objectId}')) in its conversion record. Changing them is Chapter 07's work, not this chapter's."
+    },
+    {
+      "id": "ch05-ad-legacy",
+      "api": "ad",
+      "method": "READ",
+      "cmdlet": "Get-ADUser",
+      "adRight": "Read (default for authenticated domain users)",
+      "stage": "GA",
+      "tasks": ["federation", "federation-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-aduser",
+      "note": "The legacy account's Enabled and LastLogonDate during the parallel run; the apply re-reads Enabled before the disable. LastLogonDate is a lead, not a fact (Chapter 01's research gap 3)."
+    },
+    {
+      "id": "ch05-token-exchange-test",
+      "api": "login",
+      "method": "POST",
+      "path": "/{tenantId}/oauth2/v2.0/token",
+      "permissions": [],
+      "fixtureOnly": true,
+      "stage": "GA",
+      "tasks": ["federation"],
+      "learn": "https://learn.microsoft.com/entra/identity-platform/v2-oauth2-client-creds-grant-flow#third-case-access-token-request-with-a-federated-credential",
+      "note": "The client credentials request with a federated credential, sent only to the fake token endpoint in this module. The code refuses to send it anywhere else: a real exchange runs inside the workload, with the workload's own token (Lab 2)."
+    },
+    {
+      "id": "ch05-fic-create",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/applications/{id}/federatedIdentityCredentials",
+      "permissions": ["Application.ReadWrite.All"],
+      "allowedBody": { "name": "", "issuer": "", "subject": "", "audiences": [], "description": "" },
+      "stage": "v1.0",
+      "tasks": ["federation-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/application-post-federatedidentitycredentials?view=graph-rest-1.0",
+      "note": "Delegated Application.ReadWrite.All is the only delegated permission Learn lists; the application permission Application.ReadWrite.OwnedBy reaches only apps the caller owns. The write path is a person's delegated session with Cloud Application Administrator, or the app's owner."
+    },
+    {
+      "id": "ch05-uami-create",
+      "api": "arm",
+      "method": "PUT",
+      "apiVersion": "2024-11-30",
+      "path": "{resourceId}",
+      "azureRole": "Managed Identity Contributor",
+      "allowedBody": { "location": "", "tags": {} },
+      "stage": "GA",
+      "tasks": ["federation-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/managedidentity/user-assigned-identities/create-or-update",
+      "note": "Learn: creating a user-assigned managed identity needs Managed Identity Contributor. The precheck refuses a PUT on an identity that already exists, so the PUT never updates one."
+    },
+    {
+      "id": "ch05-uami-fic-create",
+      "api": "arm",
+      "method": "PUT",
+      "apiVersion": "2024-11-30",
+      "path": "{resourceId}/federatedIdentityCredentials/{name}",
+      "azureRole": "Managed Identity Contributor",
+      "allowedBody": { "properties": { "issuer": "", "subject": "", "audiences": [] } },
+      "stage": "GA",
+      "tasks": ["federation-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/managedidentity/federated-identity-credentials/create-or-update",
+      "note": "Learn's trust page names Contributor or Owner; the Managed Identity Contributor built-in role holds federatedIdentityCredentials/write (research gaps, row 45). Sent one at a time per identity: concurrent creates under one identity fail with 409."
+    },
+    {
+      "id": "ch05-ad-disable",
+      "api": "ad",
+      "method": "WRITE",
+      "cmdlet": "Disable-ADAccount",
+      "adRight": "Delegated right to disable accounts in the account's OU",
+      "stage": "GA",
+      "tasks": ["federation-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/disable-adaccount",
+      "note": "Disables the legacy AD account after a clean 30-day parallel run and the application owner's approval. Never deletes (Chapter 02's research gap 15 for the right)."
+    }
+  ]
+}

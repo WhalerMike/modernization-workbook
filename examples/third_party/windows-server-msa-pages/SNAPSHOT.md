@@ -1,0 +1,20 @@
+# Group and delegated managed service accounts: a pinned copy of Learn's procedures
+
+This folder is an unmodified copy of four Microsoft Learn source pages from [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowsserverdocs/tree/2205ce8e55001a9b5e8e0de43981baa8ad782562/WindowsServerDocs/identity/ad-ds/manage) at commit `2205ce8e55001a9b5e8e0de43981baa8ad782562` (October 30, 2026):
+
+- [Setting up delegated Managed Service Accounts](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa) (`delegated-managed-service-accounts-set-up-dmsa.md`, last changed September 12, 2025): the PowerShell procedure that creates a dMSA, grants a machine its password, and starts, completes, undoes and resets the migration from a traditional service account.
+- [Delegated Managed Service Accounts overview](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview) (`delegated-managed-service-accounts-overview.md`, last changed February 16, 2026): the migration's limits and the attributes each step changes.
+- [Manage group Managed Service Accounts](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts) (`manage-group-managed-service-accounts.md`, last changed April 16, 2026), Learn's former *Get started with group managed service accounts*: the gMSA procedure.
+- [Create a Key Distribution Service (KDS) root key](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key) (`create-the-key-distribution-services-kds-root-key.md`, last changed September 22, 2025).
+
+The repository's documentation license (`LICENSE`) is Creative Commons Attribution 4.0 International; its code license (`LICENSE-CODE`) is MIT.
+
+**Why the pages, not just the commands.** The procedures exist only inside these Learn pages. Pinning the pages byte for byte keeps the copy checkable against upstream. `examples/non-person-identity/tests/KerberosIslandSampleHarness.ps1` extracts each PowerShell block, unmodified, at test time and runs it against stand-ins for the Active Directory, registry and service cmdlets it calls. Nothing is installed, nothing touches a domain, the registry or a service, and nothing signs in. The [developer workbook *Building Non-Person Identity*, Chapter 06](../../../docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md) links Learn rather than quoting the pages.
+
+**How it stays honest.**
+
+- `snapshot.json` records the upstream repository, paths, commit, dates, licenses and the size, SHA-256 and git blob hash of every file here. Each file's git blob hash was checked against the upstream tree at that commit (`gh api repos/MicrosoftDocs/windowsserverdocs/contents/<path>?ref=<commit>`) before the manifest was written. `scripts/tests/test_third_party_snapshots.py` fails if any file is changed, added or removed.
+- The weekly source watch follows commits to each upstream page (`windows-server-dmsa-setup-page-commits`, `windows-server-dmsa-overview-page-commits`, `windows-server-gmsa-manage-page-commits` and `windows-server-kds-root-key-page-commits` in `data/source-watch/feeds.json`) and reports each one in its issue under DW (developer workbooks).
+- To move to a newer upstream commit: review the upstream change, copy the pages from that commit, regenerate `snapshot.json`, rerun `examples/non-person-identity/tests/KerberosIslandSamples.Tests.ps1` and the Chapter 06 labs, and open a pull request. Never edit the files here; changes the program needs go in `examples/non-person-identity`.
+
+These files keep their upstream bytes, line endings included (the KDS page uses CRLF), so the hashes match the upstream commit.
