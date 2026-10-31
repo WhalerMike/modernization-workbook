@@ -1,0 +1,11 @@
+{
+  "displayName": "CA037-WorkloadIdentities-HighRisk-Block",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "clientApplications": { "includeServicePrincipals": ["{scope:ring}"] },
+    "applications": { "includeApplications": ["All"] },
+    "servicePrincipalRiskLevels": ["high"],
+    "clientAppTypes": ["all"]
+  },
+  "grantControls": { "operator": "OR", "builtInControls": ["block"] }
+}

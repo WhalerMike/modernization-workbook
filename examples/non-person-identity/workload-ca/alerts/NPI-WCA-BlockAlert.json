@@ -1,0 +1,13 @@
+{
+  "name": "NPI-WCA-BlockAlert",
+  "description": "A workload identity in scope of CA015 or CA037 was blocked by Conditional Access (AADSTS53003). Security operations triages it as a possible stolen credential or a workload that moved; the application owner is told the same day.",
+  "table": "AADServicePrincipalSignInLogs",
+  "query": "AADServicePrincipalSignInLogs\n| where tostring(ResultType) == \"53003\"\n| where ServicePrincipalId in ({scope:inScope})\n| project TimeGenerated, ServicePrincipalId, AppId, IPAddress, ResultType, ConditionalAccessPolicies",
+  "severity": 1,
+  "evaluationFrequency": "PT5M",
+  "windowSize": "PT15M",
+  "operator": "GreaterThan",
+  "threshold": 0,
+  "actionGroup": "{actionGroup:SecurityOperations}",
+  "deployment": "Reviewed definition only: deploy it as a log search alert rule on the Log Analytics workspace that receives the service principal sign-in logs, in its own reviewed change. This code doesn't write to Azure Monitor."
+}

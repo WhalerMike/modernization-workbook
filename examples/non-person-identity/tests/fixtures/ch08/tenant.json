@@ -1,0 +1,91 @@
+{
+  "_comment": "The fictional contoso.example tenant as Chapter 08's fake Microsoft Graph serves it: Conditional Access policies, named locations, service principals (the same objects as tests/fixtures/estate.json) and sign-in log entries. IP addresses are documentation ranges (RFC 5737, RFC 3849). Nothing here is real.",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "asOf": "2026-10-30T12:00:00Z",
+  "policies": [
+    {
+      "id": "ca000000-0000-4000-8000-000000000001",
+      "displayName": "CA001-AllUsers-BlockLegacyAuthentication",
+      "state": "enabled",
+      "conditions": {
+        "users": { "includeUsers": ["All"], "excludeGroups": ["9e000000-0000-4000-8000-000000000001"] },
+        "applications": { "includeApplications": ["All"] },
+        "clientAppTypes": ["exchangeActiveSync", "other"]
+      },
+      "grantControls": { "operator": "OR", "builtInControls": ["block"] }
+    },
+    {
+      "id": "ca000000-0000-4000-8000-000000000015",
+      "displayName": "CA015-ServiceAccounts-LocationRestriction-Ring1",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "users": null,
+        "clientApplications": { "includeServicePrincipals": ["5b000000-0000-4000-8000-000000000001", "5b000000-0000-4000-8000-000000000006"], "excludeServicePrincipals": [] },
+        "applications": { "includeApplications": ["All"], "excludeApplications": [] },
+        "locations": { "includeLocations": ["All"], "excludeLocations": ["10c00000-0000-4000-8000-000000000001"] },
+        "servicePrincipalRiskLevels": [],
+        "clientAppTypes": ["all"]
+      },
+      "grantControls": { "operator": "OR", "builtInControls": ["block"] }
+    },
+    {
+      "id": "ca000000-0000-4000-8000-000000000099",
+      "displayName": "Workloads - block outside office (made in the portal)",
+      "state": "disabled",
+      "conditions": {
+        "clientApplications": { "includeServicePrincipals": ["ServicePrincipalsInMyTenant"] },
+        "applications": { "includeApplications": ["All"] },
+        "locations": { "includeLocations": ["All"], "excludeLocations": ["AllTrusted"] },
+        "clientAppTypes": ["all"]
+      },
+      "grantControls": { "operator": "OR", "builtInControls": ["block"] }
+    }
+  ],
+  "namedLocations": [
+    {
+      "@odata.type": "#microsoft.graph.ipNamedLocation",
+      "id": "10c00000-0000-4000-8000-000000000001",
+      "displayName": "NL-WorkloadEgress",
+      "isTrusted": false,
+      "ipRanges": [
+        { "@odata.type": "#microsoft.graph.iPv4CidrRange", "cidrAddress": "192.0.2.0/28" },
+        { "@odata.type": "#microsoft.graph.iPv4CidrRange", "cidrAddress": "198.51.100.32/29" }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.ipNamedLocation",
+      "id": "10c00000-0000-4000-8000-000000000002",
+      "displayName": "NL-TrustedNetworks",
+      "isTrusted": true,
+      "ipRanges": [
+        { "@odata.type": "#microsoft.graph.iPv4CidrRange", "cidrAddress": "203.0.113.0/26" }
+      ]
+    }
+  ],
+  "servicePrincipals": [
+    { "id": "5b000000-0000-4000-8000-000000000001", "appId": "1a000000-0000-4000-8000-000000000001", "displayName": "Payroll Export", "servicePrincipalType": "Application", "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001", "signInAudience": "AzureADMyOrg", "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000002", "appId": "1a000000-0000-4000-8000-000000000002", "displayName": "HR Connector", "servicePrincipalType": "Application", "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001", "signInAudience": "AzureADMyOrg", "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000003", "appId": "1a000000-0000-4000-8000-000000000003", "displayName": "Legacy Reports", "servicePrincipalType": "Application", "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001", "signInAudience": "AzureADMyOrg", "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000004", "appId": "1a000000-0000-4000-8000-000000000004", "displayName": "Build Pipeline", "servicePrincipalType": "Application", "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001", "signInAudience": "AzureADMyOrg", "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000005", "appId": "1a000000-0000-4000-8000-000000000005", "displayName": "Vendor Portal", "servicePrincipalType": "Application", "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001", "signInAudience": "AzureADMultipleOrgs", "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000006", "appId": "1a000000-0000-4000-8000-000000000006", "displayName": "Mail Automation", "servicePrincipalType": "Application", "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001", "signInAudience": "AzureADMyOrg", "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000007", "appId": "1a000000-0000-4000-8000-000000000007", "displayName": "Deploy Bot", "servicePrincipalType": "Application", "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001", "signInAudience": "AzureADMyOrg", "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000010", "appId": "00000003-0000-0000-c000-000000000000", "displayName": "Microsoft Graph", "servicePrincipalType": "Application", "appOwnerOrganizationId": "0e0e0e0e-0000-4000-8000-0000000000aa", "signInAudience": "AzureADMultipleOrgs", "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000011", "appId": "1b000000-0000-4000-8000-000000000011", "displayName": "Partner CRM", "servicePrincipalType": "Application", "appOwnerOrganizationId": "0e0e0e0e-0000-4000-8000-000000000099", "signInAudience": "AzureADMultipleOrgs", "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000012", "appId": "1b000000-0000-4000-8000-000000000012", "displayName": "Old SAML Connector", "servicePrincipalType": "Legacy", "appOwnerOrganizationId": null, "signInAudience": null, "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000013", "appId": "1b000000-0000-4000-8000-000000000013", "displayName": "vm-batch01", "servicePrincipalType": "ManagedIdentity", "appOwnerOrganizationId": null, "signInAudience": null, "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000014", "appId": "1b000000-0000-4000-8000-000000000014", "displayName": "id-deploy", "servicePrincipalType": "ManagedIdentity", "appOwnerOrganizationId": null, "signInAudience": null, "accountEnabled": true },
+    { "id": "5b000000-0000-4000-8000-000000000015", "appId": "1b000000-0000-4000-8000-000000000015", "displayName": "Benefits Q&A Agent", "servicePrincipalType": "ServiceIdentity", "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001", "signInAudience": "AzureADMyOrg", "accountEnabled": true }
+  ],
+  "signIns": [
+    { "id": "51000000-0000-4000-8000-000000000001", "createdDateTime": "2026-10-01T03:00:00Z", "signInEventTypes": ["servicePrincipal"], "servicePrincipalId": "5b000000-0000-4000-8000-000000000001", "servicePrincipalName": "Payroll Export", "appId": "1a000000-0000-4000-8000-000000000001", "ipAddress": "203.0.113.200", "status": { "errorCode": 0 }, "appliedConditionalAccessPolicies": [] },
+    { "id": "51000000-0000-4000-8000-000000000002", "createdDateTime": "2026-10-14T03:00:00Z", "signInEventTypes": ["servicePrincipal"], "servicePrincipalId": "5b000000-0000-4000-8000-000000000001", "servicePrincipalName": "Payroll Export", "appId": "1a000000-0000-4000-8000-000000000001", "ipAddress": "192.0.2.5", "status": { "errorCode": 0 }, "appliedConditionalAccessPolicies": [ { "id": "ca000000-0000-4000-8000-000000000015", "displayName": "CA015-ServiceAccounts-LocationRestriction-Ring1", "result": "reportOnlyNotApplied" } ] },
+    { "id": "51000000-0000-4000-8000-000000000003", "createdDateTime": "2026-10-21T03:00:00Z", "signInEventTypes": ["servicePrincipal"], "servicePrincipalId": "5b000000-0000-4000-8000-000000000001", "servicePrincipalName": "Payroll Export", "appId": "1a000000-0000-4000-8000-000000000001", "ipAddress": "192.0.2.9", "status": { "errorCode": 0 }, "appliedConditionalAccessPolicies": [ { "id": "ca000000-0000-4000-8000-000000000015", "displayName": "CA015-ServiceAccounts-LocationRestriction-Ring1", "result": "reportOnlyNotApplied" } ] },
+    { "id": "51000000-0000-4000-8000-000000000004", "createdDateTime": "2026-10-20T09:30:00Z", "signInEventTypes": ["servicePrincipal"], "servicePrincipalId": "5b000000-0000-4000-8000-000000000006", "servicePrincipalName": "Mail Automation", "appId": "1a000000-0000-4000-8000-000000000006", "ipAddress": "198.51.100.34", "status": { "errorCode": 0 }, "appliedConditionalAccessPolicies": [ { "id": "ca000000-0000-4000-8000-000000000015", "displayName": "CA015-ServiceAccounts-LocationRestriction-Ring1", "result": "reportOnlyNotApplied" } ] },
+    { "id": "51000000-0000-4000-8000-000000000005", "createdDateTime": "2026-10-22T11:00:00Z", "signInEventTypes": ["servicePrincipal"], "servicePrincipalId": "5b000000-0000-4000-8000-000000000007", "servicePrincipalName": "Deploy Bot", "appId": "1a000000-0000-4000-8000-000000000007", "ipAddress": "2001:db8:10::5", "status": { "errorCode": 0 }, "appliedConditionalAccessPolicies": [] },
+    { "id": "51000000-0000-4000-8000-000000000006", "createdDateTime": "2026-10-25T11:00:00Z", "signInEventTypes": ["servicePrincipal"], "servicePrincipalId": "5b000000-0000-4000-8000-000000000007", "servicePrincipalName": "Deploy Bot", "appId": "1a000000-0000-4000-8000-000000000007", "ipAddress": "203.0.113.7", "status": { "errorCode": 0 }, "appliedConditionalAccessPolicies": [] },
+    { "id": "51000000-0000-4000-8000-000000000007", "createdDateTime": "2026-10-26T08:00:00Z", "signInEventTypes": ["servicePrincipal"], "servicePrincipalId": "5b000000-0000-4000-8000-000000000011", "servicePrincipalName": "Partner CRM", "appId": "1b000000-0000-4000-8000-000000000011", "ipAddress": "203.0.113.90", "status": { "errorCode": 0 }, "appliedConditionalAccessPolicies": [] },
+    { "id": "51000000-0000-4000-8000-000000000008", "createdDateTime": "2026-10-26T08:05:00Z", "signInEventTypes": ["managedIdentity"], "servicePrincipalId": "5b000000-0000-4000-8000-000000000013", "servicePrincipalName": "vm-batch01", "appId": "1b000000-0000-4000-8000-000000000013", "ipAddress": "203.0.113.91", "status": { "errorCode": 0 }, "appliedConditionalAccessPolicies": [] },
+    { "id": "51000000-0000-4000-8000-000000000009", "createdDateTime": "2026-10-27T14:00:00Z", "signInEventTypes": ["interactiveUser"], "servicePrincipalId": "", "servicePrincipalName": "", "appId": "c44b4083-0000-4000-8000-000000000001", "ipAddress": "203.0.113.92", "status": { "errorCode": 0 }, "appliedConditionalAccessPolicies": [] }
+  ]
+}
