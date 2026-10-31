@@ -4,7 +4,7 @@
   "cloud": "gcc",
   "runId": "2026-10-29T0600Z-fixture",
   "asOf": "2026-10-29T06:00:00Z",
-  "registerSha256": "20fa096244e51bf3613e758b5129daf88df945c1ef8a9b85c1632373561a4d07",
+  "registerSha256": "44b2c80e2edd56a9d1c2b053089abddd19da9efb618c86bd07339fc62b3e6c35",
   "columns": [
     "IdentityId",
     "Type",

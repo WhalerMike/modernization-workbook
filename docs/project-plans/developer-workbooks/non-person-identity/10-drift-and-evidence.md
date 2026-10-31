@@ -226,7 +226,7 @@ You need PowerShell 7.1 or later with Pester 5, Python 3.10 or later with pytest
    ```text
    Run 2026-10-29T0600Z-fixture (Fixture, gcc): inventory OK, ownership OK, drift OK
    Audit window 2026-10-28T06:00:00Z to 2026-10-29T06:00:00Z; baseline none: this run is a baseline candidate
-   Drift findings: 14 Finding, 4 Warn, 5 Info; baseline candidate SHA-256 cb2ecc5d13a19ad0ab6e3e4513e4479f0cd9e8a62625146c257ec39bd09d371e
+   Drift findings: 14 Finding, 4 Warn, 5 Info; baseline candidate SHA-256 604ee088ae43a964072671234833aeb71bccd082fa9ce4032a55d2fc4b146cc8
    Written to <path>/out/runs/2026-10-29T0600Z-fixture (run.json lists each task's manifest hash)
    ```
 
@@ -240,12 +240,12 @@ You need PowerShell 7.1 or later with Pester 5, Python 3.10 or later with pytest
 
    ```text
    Run 2026-10-30T0600Z-fixture (Fixture, gcc): inventory OK, ownership OK, drift OK
-   Audit window 2026-10-29T06:00:00Z to 2026-10-30T06:00:00Z; baseline 2026-10-29T0600Z-fixture (cb2ecc5d13a1…)
-   Drift findings: 18 Finding, 11 Warn, 5 Info; baseline candidate SHA-256 f8f71dc96b4c4689b35ce6bd071c794a710e55e48465661517766acedb063aae
+   Audit window 2026-10-29T06:00:00Z to 2026-10-30T06:00:00Z; baseline 2026-10-29T0600Z-fixture (604ee088ae43…)
+   Drift findings: 18 Finding, 11 Warn, 5 Info; baseline candidate SHA-256 fbe346457c070d6bb7de0fbb43f35d54315b42d46e6ba26b245d33efa6dc840c
    Written to <path>/out/runs/2026-10-30T0600Z-fixture (run.json lists each task's manifest hash)
    ```
 
-   In a real run a second person reviews the candidate and passes you its hash. The two candidate hashes are the ones Windows gives: the candidate records the register's SHA-256, and Chapter 01 writes CRLF line endings on Windows and LF elsewhere, so on Linux or macOS the hashes differ and the findings don't.
+   In a real run a second person reviews the candidate and passes you its hash. The candidate records the register's SHA-256, and every chapter writes LF line endings on every platform, so the two hashes are the same on Windows, Linux and macOS.
 
 5. **Read the drift:**
 
@@ -293,8 +293,8 @@ You need PowerShell 7.1 or later with Pester 5, Python 3.10 or later with pytest
    ```
 
    ```text
-   {"evidence_manifest_sha256": "54c5676ad8e92dc1bea902ef40bb3d2cbd7904532d24bbfe4ebdb6b67b46a862", "new": 62, "open": 62, "package": "2026-10-29T0600Z-fixture", "resolved": 0}
-   {"evidence_manifest_sha256": "563b8c05e259f2093ced6fa095a2846a88a9b9e05c9ec5592b4b4c47337e9b47", "new": 19, "open": 80, "package": "2026-10-30T0600Z-fixture", "resolved": 1}
+   {"evidence_manifest_sha256": "574efc052d254f1e0046ad4e85985f6a6604a9ecc5bc52d1cf4ac3405a3a5169", "new": 62, "open": 62, "package": "2026-10-29T0600Z-fixture", "resolved": 0}
+   {"evidence_manifest_sha256": "35993595b6a84a8c911d5127d3627fda40eb1bbdaadebf1fd0eeed5d4225d1a0", "new": 19, "open": 80, "package": "2026-10-30T0600Z-fixture", "resolved": 1}
    ```
 
    Every chapter's open findings are counted, Chapters 01 and 02's with them, and compared by fingerprint: 19 opened on day 2, one closed (Vendor Portal's NPI-DRF-05).
@@ -307,7 +307,7 @@ You need PowerShell 7.1 or later with Pester 5, Python 3.10 or later with pytest
    grep -c contoso out/evidence/2026-10-30T0600Z-fixture/summary.md
    ```
 
-   `verify` reports 21 files and the manifest hash `563b8c05…`, `sha256sum` exits `0`, and `grep` prints `0`: no user principal name in the summary. In `EVIDENCE-MANIFEST.json`, `previous.evidence_manifest_sha256` is day 1's hash and `tenant_id` is the fixture tenant's.
+   `verify` reports 21 files and the manifest hash `35993595…`, `sha256sum` exits `0`, and `grep` prints `0`: no user principal name in the summary. In `EVIDENCE-MANIFEST.json`, `previous.evidence_manifest_sha256` is day 1's hash and `tenant_id` is the fixture tenant's.
 
 9. **Assemble the period for the ISSO, with the vintage:**
 
@@ -330,7 +330,7 @@ You need PowerShell 7.1 or later with Pester 5, Python 3.10 or later with pytest
 
     `verify` exits `1`: `summary.md doesn't match its SHA-256`. The swapped package exits `1`: `this run (2026-10-29T06:00:00Z) isn't later than the previous package (2026-10-30T06:00:00Z)`. The workflow lints with `0 finding(s), 0 warning(s)`.
 
-**Expected result:** `Invoke-Pester -Path tests` in `examples/non-person-identity` passes 512 tests, and `python -m pytest tests -q` in `examples/drift-pipeline` passes 136. Delete `out` in both folders when you're done.
+**Expected result:** `Invoke-Pester -Path tests` in `examples/non-person-identity` passes 513 tests, and `python -m pytest tests -q` in `examples/drift-pipeline` passes 136. Delete `out` in both folders when you're done.
 
 ## Lab 2: test tenant
 

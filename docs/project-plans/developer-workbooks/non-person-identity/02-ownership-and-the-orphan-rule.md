@@ -196,7 +196,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Ownership: 22 identities checked; 7 orphan candidates
    Findings: 20 Finding, 3 Warn, 1 Info. AI sponsor fields recorded for Chapter 09: 2
    Orphan plan: 10 actions, 3 of them writes (1 AddOwner, 2 Disable); nothing sent
-   Plan SHA-256: 073aea8a6a3ae6ed7e9b27ed9ff406e588b0af770ca2fcce00afee99019ecb84
+   Plan SHA-256: 1e1799d7181bd1a3dc271c645fff8a60fc741ab1ebc219bb3011cc25953bad3e
    ```
 
    The plan's hash is the same on every run with these inputs.
@@ -253,7 +253,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    ./Invoke-NpiOrphanAction.ps1 -Cloud gcc -PlanPath out/ownership/orphan-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/estate.json -OutputPath out/orphan-x
    ```
 
-   `Apply: 3 Sent`, each disable's detail saying to record `DisabledOn 2026-10-30` and that the claim window ends `2026-11-29`; then the refusal, `The plan's SHA-256 is 073aea8a…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+   `Apply: 3 Sent`, each disable's detail saying to record `DisabledOn 2026-10-30` and that the claim window ends `2026-11-29`; then the refusal, `The plan's SHA-256 is 1e1799d7…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 8. **Run the tests:**
 
@@ -261,7 +261,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 512 tests passing, `out/ownership/manifest.json` listing 14 user reads and the SHA-256 of the register and of each input, and `out/orphan-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done.
+**Expected result:** 513 tests passing, `out/ownership/manifest.json` listing 14 user reads and the SHA-256 of the register and of each input, and `out/orphan-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
