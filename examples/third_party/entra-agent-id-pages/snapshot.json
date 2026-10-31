@@ -1,0 +1,60 @@
+{
+  "_comment": "A pinned, unmodified copy of three Learn pages, as their source in MicrosoftDocs/entra-docs: 'Create an agent identity blueprint' (the HTTP samples that create a blueprint with a sponsor and owner, add a managed identity as a federated identity credential, and add a password), 'Configure inheritable permissions for agent identity blueprints' (the inheritablePermissions samples) and 'Disable agent identities in your tenant' (the Microsoft Graph bodies of the three agent Conditional Access policies). The samples exist only inside these pages. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn samples: Microsoft Entra Agent ID blueprints, credentials, inheritable permissions and agent Conditional Access (HTTP)",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/agent-id/create-blueprint.md",
+  "also_upstream_path": [
+    "docs/agent-id/configure-inheritable-permissions-blueprints.md",
+    "docs/agent-id/disable-agent-identities.md"
+  ],
+  "commit": "7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "create-blueprint.md: 2026-10-12 (commit 97366337175f17ae5947dbcd87c166ed63b57ae3); configure-inheritable-permissions-blueprints.md: 2026-06-15 (commit fcc5c73aed5dc4dec675d62ce9a4f6ba99b6311d); disable-agent-identities.md: 2026-10-13 (commit 384d2e819fbe17bbb0e3ca167abe41629f0f4856)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: MIT (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/agent-id/create-blueprint",
+  "also_documented_at": [
+    "https://learn.microsoft.com/entra/agent-id/configure-inheritable-permissions-blueprints",
+    "https://learn.microsoft.com/entra/agent-id/disable-agent-identities"
+  ],
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "create-blueprint.md": "docs/agent-id/create-blueprint.md",
+    "configure-inheritable-permissions-blueprints.md": "docs/agent-id/configure-inheritable-permissions-blueprints.md",
+    "disable-agent-identities.md": "docs/agent-id/disable-agent-identities.md"
+  },
+  "git_blobs": {
+    "configure-inheritable-permissions-blueprints.md": "92bb1c1fcf2151908321151dd45a96a557a9758e",
+    "create-blueprint.md": "92aea5827f45e32a4c5982bed09fb692feda9f5d",
+    "disable-agent-identities.md": "47ec770e86daba70d2db6033fdfbd8278842f32f",
+    "LICENSE": "9e841e7a26e4eb057b24511e7b92d42b257a80e5",
+    "LICENSE-CODE": "b17b032a43088ac7f3d2f3e34a2431c778a95e6f"
+  },
+  "not_copied": [
+    "The other Agent ID pages the chapter cites (owners and sponsors, authorization, best practices, Conditional Access for agents, agent sign-in and audit logs): they hold no sample the chapter runs; the chapter links them.",
+    "Everything else in MicrosoftDocs/entra-docs, including the pages' screenshots and include files."
+  ],
+  "files": {
+    "configure-inheritable-permissions-blueprints.md": {
+      "bytes": 12670,
+      "sha256": "58d2a94852463c1188d3a01930a877993440eccb3d77c932181ff66bc8c7f47d"
+    },
+    "create-blueprint.md": {
+      "bytes": 22651,
+      "sha256": "4cd6cd3a5eed564b4097c12d3f198f27df70af1aa2c1379ca79b370387cd4110"
+    },
+    "disable-agent-identities.md": {
+      "bytes": 21704,
+      "sha256": "bf04db65c215b6803256f7b9d354ed49233cfa18ea4f708c0ca761ea36e3c525"
+    },
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    }
+  }
+}

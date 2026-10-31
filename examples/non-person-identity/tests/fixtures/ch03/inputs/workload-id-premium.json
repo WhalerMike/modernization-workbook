@@ -1,0 +1,12 @@
+{
+  "_comment": "Decision D-N4, the Workload ID Premium licensing scope, owned by the CISO. Options: Tier1 (the single-tenant service principals the identity governance officer classified Tier 1, Book 04's position), Wide (every eligible one, now and after conversion), None (with compensating controls recorded). Fictional values for the lab.",
+  "decision": "Tier1",
+  "decidedBy": "ciso@contoso.example",
+  "decidedOn": "2026-10-28",
+  "tier1": [
+    "app:1a000000-0000-4000-8000-000000000006",
+    "app:1a000000-0000-4000-8000-000000000001",
+    "app:1a000000-0000-4000-8000-000000000005"
+  ],
+  "compensatingControls": []
+}

@@ -1,0 +1,54 @@
+{
+  "_comment": "A pinned, unmodified copy of three Learn pages, as their source in MicrosoftDocs/entra-docs: 'Securing on-premises service accounts' (the table 'Choose the right type of service account'), 'Securing cloud-based service accounts' (the table of managed identity, service principal and user account by service hosting) and 'Frequently asked questions about Microsoft Entra Workload ID' (the Free and Premium capability table and the licensing answers). The tables exist only inside these pages. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn decision tables: choosing a service account type on premises and in Microsoft Entra ID, and what Workload ID Premium adds",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/architecture/service-accounts-on-premises.md",
+  "also_upstream_path": [
+    "docs/architecture/secure-service-accounts.md",
+    "docs/workload-id/workload-identities-faqs.md"
+  ],
+  "commit": "7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "service-accounts-on-premises.md and secure-service-accounts.md: 2026-02-25 (commit 3e7bfc8000ef8389e948449892e4ab7044ab6efc); workload-identities-faqs.md: 2026-06-15 (commit 949ccfc1c8db4cd8e5c644e07b410a6f155a130d)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: MIT (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/architecture/service-accounts-on-premises",
+  "also_documented_at": [
+    "https://learn.microsoft.com/entra/architecture/secure-service-accounts",
+    "https://learn.microsoft.com/entra/workload-id/workload-identities-faqs"
+  ],
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "service-accounts-on-premises.md": "docs/architecture/service-accounts-on-premises.md",
+    "secure-service-accounts.md": "docs/architecture/secure-service-accounts.md",
+    "workload-identities-faqs.md": "docs/workload-id/workload-identities-faqs.md"
+  },
+  "not_copied": [
+    "Windows Server's 'Service accounts' page, whose choice table has a dMSA column: it lives in a different repository; the chapter cites it.",
+    "Learn's workload identity federation, managed identity and dMSA pages: they hold no decision table the chapter runs; the chapter cites them.",
+    "Everything else in MicrosoftDocs/entra-docs, including the pages' images; the chapter links Learn rather than quoting it."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "secure-service-accounts.md": {
+      "bytes": 3561,
+      "sha256": "acd08c3443c76e69add58fc7bfcf6ccb3eb27a7269be9b1448e13aa381b0205f"
+    },
+    "service-accounts-on-premises.md": {
+      "bytes": 7757,
+      "sha256": "366ef8d59ec49a7da78fb85052e90dfa15b20bdda1950bda7805563243543a56"
+    },
+    "workload-identities-faqs.md": {
+      "bytes": 7477,
+      "sha256": "1ccfa0a09863c11243d0e72d14cc5856228f7280e59adc17d27d9780b9768193"
+    }
+  }
+}
