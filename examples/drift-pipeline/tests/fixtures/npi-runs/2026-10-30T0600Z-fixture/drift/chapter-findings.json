@@ -1,0 +1,22 @@
+[
+  {
+    "Id": "NPI-SAMPLE-01:app:1a000000-0000-4000-8000-000000000006",
+    "Rule": "NPI-SAMPLE-01",
+    "Severity": "Finding",
+    "Chapter": "07",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000006",
+    "Object": "app:1a000000-0000-4000-8000-000000000006",
+    "Issue": "Holds Directory.ReadWrite.All; a narrower permission is available",
+    "Fingerprint": "8cf0a41ece74962e"
+  },
+  {
+    "Id": "NPI-SAMPLE-02:sp:5b000000-0000-4000-8000-000000000015",
+    "Rule": "NPI-SAMPLE-02",
+    "Severity": "Warn",
+    "Chapter": "09",
+    "ObjectKey": "sp:5b000000-0000-4000-8000-000000000015",
+    "Object": "sp:5b000000-0000-4000-8000-000000000015",
+    "Issue": "Sponsor field empty",
+    "Fingerprint": "2003487c2262442f"
+  }
+]

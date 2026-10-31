@@ -1,0 +1,18 @@
+{
+  "schema": "fmp-npi-findings/1",
+  "chapter": "09",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "producedAt": "2026-10-28T06:00:00Z",
+  "_comment": "A sample of the contract Chapter 09 can emit. NPI-SAMPLE rules are fixture rules, not Chapter 09's.",
+  "findings": [
+    {
+      "id": "NPI-SAMPLE-02:sp:5b000000-0000-4000-8000-000000000015",
+      "rule": "NPI-SAMPLE-02",
+      "severity": "Warn",
+      "chapter": "09",
+      "objectKey": "sp:5b000000-0000-4000-8000-000000000015",
+      "fingerprint": "2003487c2262442f",
+      "issue": "Sponsor field empty"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+# Non-person identity drift and evidence for the ISSO: a sample workflow for a GCC tenant with
+# commercial Azure.
+#
+# Illustrative. This file is NOT active in the modernization-workbook repository: it lives under
+# examples/, not .github/workflows/. Copy it into the estate's own repository, review every line,
+# and run it there first against a test tenant (developer workbook Building Non-Person Identity,
+# Chapter 10, Lab 2). It is checked offline by python/workflow_lint.py and tests/test_npi_evidence.py;
+# it has not been run against Azure.
+#
+# What it does, once a day and on demand:
+#   1. signs in with a federated credential (OIDC), as drift-pipeline.yml does: no secret anywhere;
+#   2. fetches the previous package and verifies it, and the approved baseline and its SHA-256;
+#   3. runs examples/non-person-identity/Invoke-NpiDriftRun.ps1 read-only: Chapter 01's register,
+#      Chapter 02's ownership check, and the credential and consent events since the last window,
+#      compared with the approved baseline by fingerprint;
+#   4. packages the run with a SHA-256 per file, chained to the previous package, and writes it to
+#      an immutable container;
+#   5. on the first day of a month, assembles the previous month's packages for the ISSO (N7.4).
+# The Active Directory reads need a runner inside the domain; this sample skips them (-SkipAd), and
+# the domain's own scheduled run writes its register beside this one.
+#
+# GCC uses the worldwide endpoints (login.microsoftonline.com, graph.microsoft.com,
+# management.azure.com). GCC High and DoD use separate hosts; `python
+# examples/drift-pipeline/python/drift_pipeline.py cloud --name <cloud>` prints them.
+#
+# Repository settings it expects (identifiers, not credentials):
+#   secrets AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID
+#   variables EVIDENCE_STORAGE_ACCOUNT, AZ_PS_VERSION, GRAPH_PS_VERSION (exact versions, never "latest"),
+#     NPI_BASELINE_SHA256 (the SHA-256 a reviewer approved for baseline/baseline.json)
+#   an environment named npi-evidence-gcc, deployable only from the default branch; the app's
+#   federated credential subject is repo:<owner>/<repo>:environment:npi-evidence-gcc
+#   inputs/ in the repository: Chapter 02's input files, pipeline-identities.csv and contract/
+
+name: Non-person identity drift and evidence (GCC)
+
+on:
+  schedule:
+    - cron: "41 6 * * *"        # 06:41 UTC daily
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: npi-evidence-gcc
+  cancel-in-progress: false
+
+env:
+  CLOUD: gcc
+  GRAPH_HOST: https://graph.microsoft.com
+  MG_ENVIRONMENT: Global
+  EVIDENCE_ACCOUNT: ${{ vars.EVIDENCE_STORAGE_ACCOUNT }}
+  EVIDENCE_CONTAINER: npi-evidence
+
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    environment: npi-evidence-gcc
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Sign in with the federated credential
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3.1.0
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          environment: AzureCloud
+          audience: api://AzureADTokenExchange
+          enable-AzPSSession: true
+
+      - name: Fetch and verify the previous evidence package and the approved baseline
+        run: |
+          mkdir -p previous baseline
+          az storage blob download --account-name "$EVIDENCE_ACCOUNT" --container-name "$EVIDENCE_CONTAINER" \
+            --auth-mode login --name baseline/baseline.json --file baseline/baseline.json
+          prev=$(az storage blob list --account-name "$EVIDENCE_ACCOUNT" --container-name "$EVIDENCE_CONTAINER" \
+                   --auth-mode login --prefix runs/ --num-results "*" \
+                   --query "[?ends_with(name, '/EVIDENCE-MANIFEST.json')].name" -o tsv | sort | tail -n 1)
+          if [ -n "$prev" ]; then
+            prev_id=$(basename "$(dirname "$prev")")
+            az storage blob download-batch --account-name "$EVIDENCE_ACCOUNT" --source "$EVIDENCE_CONTAINER" \
+              --auth-mode login --pattern "runs/$prev_id/*" --destination previous
+            python examples/drift-pipeline/python/npi_evidence.py verify "previous/runs/$prev_id"
+            echo "PREV_ID=$prev_id" >> "$GITHUB_ENV"
+            # The new window starts where the last one ended, so no hour goes unread.
+            since=$(jq -r .audit_window.until "previous/runs/$prev_id/EVIDENCE-MANIFEST.json")
+            echo "NPI_SINCE=$since" >> "$GITHUB_ENV"
+          fi
+
+      - name: Run the read-only drift run
+        uses: azure/powershell@f5b8adcfff1904872c7b98d4012d4914d74b1a82 # v3.0.0
+        with:
+          azPSVersion: ${{ vars.AZ_PS_VERSION }}
+          inlineScript: |
+            Install-Module Microsoft.Graph.Authentication -RequiredVersion $env:GRAPH_PS_VERSION -Scope CurrentUser -Force
+            $token = Get-AzAccessToken -ResourceUrl $env:GRAPH_HOST -AsSecureString
+            Connect-MgGraph -AccessToken $token.Token -Environment $env:MG_ENVIRONMENT -NoWelcome
+            $a = @{ Cloud = $env:CLOUD; TenantId = $env:AZURE_TENANT_ID; OutputPath = 'runs'; InputPath = 'inputs'
+                    ContractPath = 'inputs/contract'; PipelineIdentitiesPath = 'inputs/pipeline-identities.csv'; SkipAd = $true
+                    BaselinePath = 'baseline/baseline.json'; ApprovedBaselineSha256 = $env:NPI_BASELINE_SHA256 }
+            if ($env:NPI_SINCE) { $a.Since = [datetime]::Parse($env:NPI_SINCE, [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AdjustToUniversal) }
+            ./examples/non-person-identity/Invoke-NpiDriftRun.ps1 @a
+        env:
+          GRAPH_PS_VERSION: ${{ vars.GRAPH_PS_VERSION }}
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          NPI_BASELINE_SHA256: ${{ vars.NPI_BASELINE_SHA256 }}
+
+      - name: Package and write the evidence
+        run: |
+          run_id=$(ls runs | sort | tail -n 1)
+          prev_args=()
+          if [ -n "${PREV_ID:-}" ]; then prev_args=(--previous-manifest "previous/runs/$PREV_ID/EVIDENCE-MANIFEST.json"); fi
+          python examples/drift-pipeline/python/npi_evidence.py package --run "runs/$run_id" "${prev_args[@]}" --meta-from-env --out evidence
+          python examples/drift-pipeline/python/npi_evidence.py verify "evidence/$run_id"
+          # No --overwrite: a package is written once; the locked retention policy keeps it.
+          az storage blob upload-batch --account-name "$EVIDENCE_ACCOUNT" --destination "$EVIDENCE_CONTAINER" \
+            --auth-mode login --source evidence --destination-path runs
+
+      - name: Assemble last month's evidence for the ISSO
+        run: |
+          if [ "$(date -u +%d)" != "01" ]; then exit 0; fi
+          since=$(date -u -d "$(date -u +%Y-%m-01) -1 month" +%Y-%m-%dT00:00:00Z)
+          until=$(date -u +%Y-%m-01T00:00:00Z)
+          az storage blob download-batch --account-name "$EVIDENCE_ACCOUNT" --source "$EVIDENCE_CONTAINER" \
+            --auth-mode login --pattern "runs/*" --destination month
+          set +e
+          python examples/drift-pipeline/python/npi_evidence.py period --evidence month/runs --since "$since" --until "$until" --out periods
+          rc=$?
+          set -e
+          # 0 complete, 2 gaps or open Gate 7 criteria: both are evidence. 1 is a refusal and stops the run.
+          [ "$rc" -eq 0 ] || [ "$rc" -eq 2 ]
+          az storage blob upload-batch --account-name "$EVIDENCE_ACCOUNT" --destination "$EVIDENCE_CONTAINER" \
+            --auth-mode login --source periods --destination-path periods

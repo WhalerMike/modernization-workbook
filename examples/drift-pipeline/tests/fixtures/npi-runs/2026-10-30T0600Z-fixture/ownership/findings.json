@@ -1,0 +1,210 @@
+[
+  {
+    "Id": "NPI-OWN-08:ad:ad000000-0000-4000-8000-000000000003",
+    "Rule": "NPI-OWN-08",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000003",
+    "Object": "svc-backup (Traditional)",
+    "Issue": "No valid application owner (frank@contoso.example is disabled): an orphan candidate under the orphan rule (D-N2)"
+  },
+  {
+    "Id": "NPI-OWN-08:ad:ad000000-0000-4000-8000-000000000004",
+    "Rule": "NPI-OWN-08",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000004",
+    "Object": "svc-oldftp (Traditional)",
+    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-N2)"
+  },
+  {
+    "Id": "NPI-OWN-06:ad:ad000000-0000-4000-8000-000000000004",
+    "Rule": "NPI-OWN-06",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000004",
+    "Object": "svc-oldftp (Traditional)",
+    "Issue": "No service-management reference: set serviceManagementReference (or the owners file's ApplicationRecord) to the record in the system inventory"
+  },
+  {
+    "Id": "NPI-OWN-08:ad:ad000000-0000-4000-8000-000000000005",
+    "Rule": "NPI-OWN-08",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000005",
+    "Object": "svc-reports (Traditional)",
+    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-N2)"
+  },
+  {
+    "Id": "NPI-OWN-06:ad:ad000000-0000-4000-8000-000000000005",
+    "Rule": "NPI-OWN-06",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000005",
+    "Object": "svc-reports (Traditional)",
+    "Issue": "No service-management reference: set serviceManagementReference (or the owners file's ApplicationRecord) to the record in the system inventory"
+  },
+  {
+    "Id": "NPI-OWN-08:ad:ad000000-0000-4000-8000-000000000006",
+    "Rule": "NPI-OWN-08",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000006",
+    "Object": "sa-printsvc (Traditional)",
+    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-N2)"
+  },
+  {
+    "Id": "NPI-OWN-06:ad:ad000000-0000-4000-8000-000000000006",
+    "Rule": "NPI-OWN-06",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000006",
+    "Object": "sa-printsvc (Traditional)",
+    "Issue": "No service-management reference: set serviceManagementReference (or the owners file's ApplicationRecord) to the record in the system inventory"
+  },
+  {
+    "Id": "NPI-OWN-09:ad:ad000000-0000-4000-8000-000000000007",
+    "Rule": "NPI-OWN-09",
+    "Severity": "Info",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000007",
+    "Object": "jdoe (Traditional)",
+    "Issue": "Not checked: confirm it is a service account before the ownership rule applies"
+  },
+  {
+    "Id": "NPI-OWN-07:ad:ad000000-0000-4000-8000-000000000008",
+    "Rule": "NPI-OWN-07",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000008",
+    "Object": "svc-ldapbind (Traditional)",
+    "Issue": "Reference 'CMDB-1700' names no record in the system inventory"
+  },
+  {
+    "Id": "NPI-OWN-08:ad:ad000000-0000-4000-8000-000000000024",
+    "Rule": "NPI-OWN-08",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000024",
+    "Object": "gmsa-ops$ (gMSA)",
+    "Issue": "No valid application owner (no application owner in the owners file): an orphan candidate under the orphan rule (D-N2)"
+  },
+  {
+    "Id": "NPI-OWN-06:ad:ad000000-0000-4000-8000-000000000024",
+    "Rule": "NPI-OWN-06",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000024",
+    "Object": "gmsa-ops$ (gMSA)",
+    "Issue": "No service-management reference: set serviceManagementReference (or the owners file's ApplicationRecord) to the record in the system inventory"
+  },
+  {
+    "Id": "NPI-OWN-02:app:1a000000-0000-4000-8000-000000000002",
+    "Rule": "NPI-OWN-02",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000002",
+    "Object": "HR Connector (AppRegistration)",
+    "Issue": "One valid human owner; the rule is two"
+  },
+  {
+    "Id": "NPI-OWN-06:app:1a000000-0000-4000-8000-000000000002",
+    "Rule": "NPI-OWN-06",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000002",
+    "Object": "HR Connector (AppRegistration)",
+    "Issue": "No service-management reference: set serviceManagementReference (or the owners file's ApplicationRecord) to the record in the system inventory"
+  },
+  {
+    "Id": "NPI-OWN-01:app:1a000000-0000-4000-8000-000000000003",
+    "Rule": "NPI-OWN-01",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000003",
+    "Object": "Legacy Reports (AppRegistration)",
+    "Issue": "No valid human owner: an orphan candidate under the orphan rule (D-N2)"
+  },
+  {
+    "Id": "NPI-OWN-06:app:1a000000-0000-4000-8000-000000000003",
+    "Rule": "NPI-OWN-06",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000003",
+    "Object": "Legacy Reports (AppRegistration)",
+    "Issue": "No service-management reference: set serviceManagementReference (or the owners file's ApplicationRecord) to the record in the system inventory"
+  },
+  {
+    "Id": "NPI-OWN-03:app:1a000000-0000-4000-8000-000000000004",
+    "Rule": "NPI-OWN-03",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000004",
+    "Object": "Build Pipeline (AppRegistration)",
+    "Issue": "Owner 5b000000-0000-4000-8000-000000000007 is a servicePrincipal, not a person; it doesn't count toward the two"
+  },
+  {
+    "Id": "NPI-OWN-02:app:1a000000-0000-4000-8000-000000000004",
+    "Rule": "NPI-OWN-02",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000004",
+    "Object": "Build Pipeline (AppRegistration)",
+    "Issue": "One valid human owner; the rule is two"
+  },
+  {
+    "Id": "NPI-OWN-07:app:1a000000-0000-4000-8000-000000000004",
+    "Rule": "NPI-OWN-07",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000004",
+    "Object": "Build Pipeline (AppRegistration)",
+    "Issue": "Reference 'Owners aliases: Build team @ build@contoso.example;' isn't a record key; it must name a record, not hold free text"
+  },
+  {
+    "Id": "NPI-OWN-04:app:1a000000-0000-4000-8000-000000000005",
+    "Rule": "NPI-OWN-04",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000005",
+    "Object": "Vendor Portal (AppRegistration)",
+    "Issue": "Owner dave_partner.example#EXT#@contosoexample.onmicrosoft.com is guest; it doesn't count toward the two"
+  },
+  {
+    "Id": "NPI-OWN-02:app:1a000000-0000-4000-8000-000000000005",
+    "Rule": "NPI-OWN-02",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000005",
+    "Object": "Vendor Portal (AppRegistration)",
+    "Issue": "One valid human owner; the rule is two"
+  },
+  {
+    "Id": "NPI-OWN-07:app:1a000000-0000-4000-8000-000000000005",
+    "Rule": "NPI-OWN-07",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000005",
+    "Object": "Vendor Portal (AppRegistration)",
+    "Issue": "Record CMDB-2001 is Retired"
+  },
+  {
+    "Id": "NPI-OWN-05:app:1a000000-0000-4000-8000-000000000006",
+    "Rule": "NPI-OWN-05",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000006",
+    "Object": "Mail Automation (AppRegistration)",
+    "Issue": "Owner frank@contoso.example is disabled; it doesn't count toward the two"
+  },
+  {
+    "Id": "NPI-OWN-02:app:1a000000-0000-4000-8000-000000000006",
+    "Rule": "NPI-OWN-02",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000006",
+    "Object": "Mail Automation (AppRegistration)",
+    "Issue": "One valid human owner; the rule is two"
+  },
+  {
+    "Id": "NPI-OWN-02:app:1a000000-0000-4000-8000-000000000009",
+    "Rule": "NPI-OWN-02",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000009",
+    "Object": "Survey Tool (AppRegistration)",
+    "Issue": "One valid human owner; the rule is two"
+  },
+  {
+    "Id": "NPI-OWN-06:app:1a000000-0000-4000-8000-000000000009",
+    "Rule": "NPI-OWN-06",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000009",
+    "Object": "Survey Tool (AppRegistration)",
+    "Issue": "No service-management reference: set serviceManagementReference (or the owners file's ApplicationRecord) to the record in the system inventory"
+  },
+  {
+    "Id": "NPI-OWN-01:sp:5b000000-0000-4000-8000-000000000012",
+    "Rule": "NPI-OWN-01",
+    "Severity": "Finding",
+    "ObjectKey": "sp:5b000000-0000-4000-8000-000000000012",
+    "Object": "Old SAML Connector (LegacyServicePrincipal)",
+    "Issue": "No valid human owner: an orphan candidate under the orphan rule (D-N2)"
+  }
+]

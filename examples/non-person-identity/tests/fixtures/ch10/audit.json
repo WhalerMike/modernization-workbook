@@ -1,0 +1,387 @@
+{
+  "_comment": "Chapter 10: fictional directoryAudit items in Microsoft Graph's shape (List directoryAudits) for Lab 1's two windows (2026-10-28T06:00Z to 2026-10-29T06:00Z, and on to 2026-10-30T06:00Z), plus one older event and one failure. KeyDescription values follow the format Learn's linked Sentinel rule parses. contoso.example, invented IDs, a documentation IP address.",
+  "directoryAudits": [
+    {
+      "id": "Directory_aud-00",
+      "category": "ApplicationManagement",
+      "correlationId": "c0000000-0000-4000-8000-000000000000",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Update application - Certificates and secrets management",
+      "activityDateTime": "2026-10-20T10:00:00Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Update",
+      "initiatedBy": {
+        "user": {
+          "id": "5a000000-0000-4000-8000-000000000001",
+          "displayName": null,
+          "userPrincipalName": "alice@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "0a000000-0000-4000-8000-000000000006",
+          "displayName": "Mail Automation",
+          "type": "Application",
+          "modifiedProperties": [
+            {
+              "displayName": "KeyDescription",
+              "oldValue": "[]",
+              "newValue": "[\"[KeyIdentifier=9c000000-0000-4000-8000-000000000006,KeyType=Password,KeyUsage=Verify,DisplayName=automation]\"]"
+            }
+          ]
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "User-Agent",
+          "value": "fixture"
+        }
+      ]
+    },
+    {
+      "id": "Directory_aud-01",
+      "category": "ApplicationManagement",
+      "correlationId": "c0000000-0000-4000-8000-000000000001",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Update application - Certificates and secrets management",
+      "activityDateTime": "2026-10-29T20:00:05Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Update",
+      "initiatedBy": {
+        "user": {
+          "id": "5a000000-0000-4000-8000-000000000003",
+          "displayName": null,
+          "userPrincipalName": "carol@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "0a000000-0000-4000-8000-000000000002",
+          "displayName": "HR Connector",
+          "type": "Application",
+          "modifiedProperties": [
+            {
+              "displayName": "KeyDescription",
+              "oldValue": "[\"[KeyIdentifier=9c000000-0000-4000-8000-000000000002,KeyType=AsymmetricX509Cert,KeyUsage=Verify,DisplayName=CN=hr-connector]\"]",
+              "newValue": "[\"[KeyIdentifier=9c000000-0000-4000-8000-000000000002,KeyType=AsymmetricX509Cert,KeyUsage=Verify,DisplayName=CN=hr-connector]\", \"[KeyIdentifier=9c000000-0000-4000-8000-000000000031,KeyType=Password,KeyUsage=Verify,DisplayName=added]\"]"
+            }
+          ]
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "User-Agent",
+          "value": "fixture"
+        }
+      ]
+    },
+    {
+      "id": "Directory_aud-02",
+      "category": "ApplicationManagement",
+      "correlationId": "c0000000-0000-4000-8000-000000000002",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Update application - Certificates and secrets management",
+      "activityDateTime": "2026-10-29T22:00:00Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Update",
+      "initiatedBy": {
+        "user": null,
+        "app": {
+          "appId": "1c000000-0000-4000-8000-000000000020",
+          "displayName": "Credential Rotation Pipeline",
+          "servicePrincipalId": "5b000000-0000-4000-8000-000000000020",
+          "servicePrincipalName": "Credential Rotation Pipeline"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "0a000000-0000-4000-8000-000000000007",
+          "displayName": "Deploy Bot",
+          "type": "Application",
+          "modifiedProperties": [
+            {
+              "displayName": "KeyDescription",
+              "oldValue": "[\"[KeyIdentifier=9c000000-0000-4000-8000-000000000007,KeyType=AsymmetricX509Cert,KeyUsage=Verify,DisplayName=CN=deploy-bot]\"]",
+              "newValue": "[\"[KeyIdentifier=9c000000-0000-4000-8000-000000000007,KeyType=AsymmetricX509Cert,KeyUsage=Verify,DisplayName=CN=deploy-bot]\", \"[KeyIdentifier=9c000000-0000-4000-8000-000000000032,KeyType=AsymmetricX509Cert,KeyUsage=Verify,DisplayName=CN=deploy-bot]\"]"
+            }
+          ]
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "User-Agent",
+          "value": "fixture"
+        }
+      ]
+    },
+    {
+      "id": "Directory_aud-03",
+      "category": "ApplicationManagement",
+      "correlationId": "c0000000-0000-4000-8000-000000000003",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add service principal credentials",
+      "activityDateTime": "2026-10-30T01:15:00Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Update",
+      "initiatedBy": {
+        "user": null,
+        "app": {
+          "appId": "1c000000-0000-4000-8000-000000000006",
+          "displayName": "Mail Automation",
+          "servicePrincipalId": "5b000000-0000-4000-8000-000000000006",
+          "servicePrincipalName": "Mail Automation"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "5b000000-0000-4000-8000-000000000001",
+          "displayName": "Payroll Export",
+          "type": "ServicePrincipal",
+          "modifiedProperties": [
+            {
+              "displayName": "KeyDescription",
+              "oldValue": "[]",
+              "newValue": "[\"[KeyIdentifier=9c000000-0000-4000-8000-000000000033,KeyType=Password,KeyUsage=Verify,DisplayName=sp-secret]\"]"
+            }
+          ]
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "User-Agent",
+          "value": "fixture"
+        }
+      ]
+    },
+    {
+      "id": "Directory_aud-04",
+      "category": "ApplicationManagement",
+      "correlationId": "c0000000-0000-4000-8000-000000000004",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Update application - Certificates and secrets management",
+      "activityDateTime": "2026-10-30T02:00:00Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Update",
+      "initiatedBy": {
+        "user": {
+          "id": "5a000000-0000-4000-8000-000000000003",
+          "displayName": null,
+          "userPrincipalName": "carol@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "0a000000-0000-4000-8000-000000000004",
+          "displayName": "Build Pipeline",
+          "type": "Application",
+          "modifiedProperties": [
+            {
+              "displayName": "KeyDescription",
+              "oldValue": "[]",
+              "newValue": "[\"[KeyIdentifier=9c000000-0000-4000-8000-000000000034,KeyType=Password,KeyUsage=Verify,DisplayName=ci]\"]"
+            }
+          ]
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "User-Agent",
+          "value": "fixture"
+        }
+      ]
+    },
+    {
+      "id": "Directory_aud-05",
+      "category": "ApplicationManagement",
+      "correlationId": "c0000000-0000-4000-8000-000000000005",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Consent to application",
+      "activityDateTime": "2026-10-30T03:00:00Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Update",
+      "initiatedBy": {
+        "user": {
+          "id": "5a000000-0000-4000-8000-000000000001",
+          "displayName": null,
+          "userPrincipalName": "alice@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "5b000000-0000-4000-8000-000000000006",
+          "displayName": "Mail Automation",
+          "type": "ServicePrincipal",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "User-Agent",
+          "value": "fixture"
+        }
+      ]
+    },
+    {
+      "id": "Directory_aud-06",
+      "category": "ApplicationManagement",
+      "correlationId": "c0000000-0000-4000-8000-000000000006",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add delegated permission grant",
+      "activityDateTime": "2026-10-30T03:00:01Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Update",
+      "initiatedBy": {
+        "user": {
+          "id": "5a000000-0000-4000-8000-000000000001",
+          "displayName": null,
+          "userPrincipalName": "alice@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "5b000000-0000-4000-8000-000000000006",
+          "displayName": "Mail Automation",
+          "type": "ServicePrincipal",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "User-Agent",
+          "value": "fixture"
+        }
+      ]
+    },
+    {
+      "id": "Directory_aud-07",
+      "category": "ApplicationManagement",
+      "correlationId": "c0000000-0000-4000-8000-000000000007",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Add service principal",
+      "activityDateTime": "2026-10-29T09:00:00Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Update",
+      "initiatedBy": {
+        "user": {
+          "id": "5a000000-0000-4000-8000-000000000007",
+          "displayName": null,
+          "userPrincipalName": "gina@contoso.example",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "5b000000-0000-4000-8000-000000000009",
+          "displayName": "Survey Tool",
+          "type": "ServicePrincipal",
+          "modifiedProperties": []
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "User-Agent",
+          "value": "fixture"
+        }
+      ]
+    },
+    {
+      "id": "Directory_aud-08",
+      "category": "ApplicationManagement",
+      "correlationId": "c0000000-0000-4000-8000-000000000008",
+      "result": "failure",
+      "resultReason": "",
+      "activityDisplayName": "Update application - Certificates and secrets management",
+      "activityDateTime": "2026-10-29T23:00:00Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Update",
+      "initiatedBy": {
+        "user": {
+          "id": "5a000000-0000-4000-8000-000000000004",
+          "displayName": null,
+          "userPrincipalName": "dave_partner.example#EXT#@contosoexample.onmicrosoft.com",
+          "ipAddress": "192.0.2.10"
+        },
+        "app": null
+      },
+      "targetResources": [
+        {
+          "id": "0a000000-0000-4000-8000-000000000002",
+          "displayName": "HR Connector",
+          "type": "Application",
+          "modifiedProperties": [
+            {
+              "displayName": "KeyDescription",
+              "oldValue": "[\"[KeyIdentifier=9c000000-0000-4000-8000-000000000002,KeyType=AsymmetricX509Cert,KeyUsage=Verify,DisplayName=CN=hr-connector]\"]",
+              "newValue": "[\"[KeyIdentifier=9c000000-0000-4000-8000-000000000002,KeyType=AsymmetricX509Cert,KeyUsage=Verify,DisplayName=CN=hr-connector]\", \"[KeyIdentifier=9c000000-0000-4000-8000-000000000035,KeyType=Password,KeyUsage=Verify,DisplayName=x]\"]"
+            }
+          ]
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "User-Agent",
+          "value": "fixture"
+        }
+      ]
+    },
+    {
+      "id": "Directory_aud-09",
+      "category": "ApplicationManagement",
+      "correlationId": "c0000000-0000-4000-8000-000000000009",
+      "result": "success",
+      "resultReason": "",
+      "activityDisplayName": "Update application - Certificates and secrets management",
+      "activityDateTime": "2026-10-30T04:00:00Z",
+      "loggedByService": "Core Directory",
+      "operationType": "Update",
+      "initiatedBy": {
+        "user": null,
+        "app": {
+          "appId": "1c000000-0000-4000-8000-000000000020",
+          "displayName": "Credential Rotation Pipeline",
+          "servicePrincipalId": "5b000000-0000-4000-8000-000000000020",
+          "servicePrincipalName": "Credential Rotation Pipeline"
+        }
+      },
+      "targetResources": [
+        {
+          "id": "0a000000-0000-4000-8000-000000000005",
+          "displayName": "Vendor Portal",
+          "type": "Application",
+          "modifiedProperties": [
+            {
+              "displayName": "KeyDescription",
+              "oldValue": "[\"[KeyIdentifier=9c000000-0000-4000-8000-000000000005,KeyType=AsymmetricX509Cert,KeyUsage=Verify,DisplayName=CN=vendor-portal]\"]",
+              "newValue": "[\"[KeyIdentifier=9c000000-0000-4000-8000-000000000036,KeyType=AsymmetricX509Cert,KeyUsage=Verify,DisplayName=CN=vendor-portal]\"]"
+            }
+          ]
+        }
+      ],
+      "additionalDetails": [
+        {
+          "key": "User-Agent",
+          "value": "fixture"
+        }
+      ]
+    }
+  ]
+}

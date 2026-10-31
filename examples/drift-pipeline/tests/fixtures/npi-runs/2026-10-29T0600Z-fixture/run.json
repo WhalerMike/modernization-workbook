@@ -1,0 +1,45 @@
+{
+  "schema": "fmp-npi-run/1",
+  "runId": "2026-10-29T0600Z-fixture",
+  "asOf": "2026-10-29T06:00:00Z",
+  "cloud": "gcc",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "mode": "Fixture",
+  "readOnly": true,
+  "auditWindow": {
+    "since": "2026-10-28T06:00:00Z",
+    "until": "2026-10-29T06:00:00Z"
+  },
+  "baseline": null,
+  "permissions": {
+    "graphPermissions": [
+      "Application.Read.All",
+      "AuditLog.Read.All",
+      "Directory.Read.All",
+      "User.Read.All"
+    ],
+    "azureRoles": [
+      "Reader"
+    ],
+    "adRights": [
+      "Read (default for authenticated domain users)"
+    ]
+  },
+  "tasks": {
+    "inventory": {
+      "folder": "inventory",
+      "status": "OK",
+      "manifestSha256": "42a1bf67d3a0c0d043ed0241d7738e0b4d24e8a524f130e0869d37ba37411df1"
+    },
+    "ownership": {
+      "folder": "ownership",
+      "status": "OK",
+      "manifestSha256": "d3b479859eb3042b571df04adfd5895c74986710e413895415e4e38adff37c0b"
+    },
+    "drift": {
+      "folder": "drift",
+      "status": "OK",
+      "manifestSha256": "d616853b87155fb6c74b956b3b93ed5b0422121895c8843cd173481a536b8f60"
+    }
+  }
+}

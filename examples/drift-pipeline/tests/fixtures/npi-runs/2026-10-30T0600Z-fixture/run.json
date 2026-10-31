@@ -1,0 +1,48 @@
+{
+  "schema": "fmp-npi-run/1",
+  "runId": "2026-10-30T0600Z-fixture",
+  "asOf": "2026-10-30T06:00:00Z",
+  "cloud": "gcc",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "mode": "Fixture",
+  "readOnly": true,
+  "auditWindow": {
+    "since": "2026-10-29T06:00:00Z",
+    "until": "2026-10-30T06:00:00Z"
+  },
+  "baseline": {
+    "runId": "2026-10-29T0600Z-fixture",
+    "sha256": "cb2ecc5d13a19ad0ab6e3e4513e4479f0cd9e8a62625146c257ec39bd09d371e"
+  },
+  "permissions": {
+    "graphPermissions": [
+      "Application.Read.All",
+      "AuditLog.Read.All",
+      "Directory.Read.All",
+      "User.Read.All"
+    ],
+    "azureRoles": [
+      "Reader"
+    ],
+    "adRights": [
+      "Read (default for authenticated domain users)"
+    ]
+  },
+  "tasks": {
+    "inventory": {
+      "folder": "inventory",
+      "status": "OK",
+      "manifestSha256": "022e9ad155021d2e77d709c14b2818475158d204dfc9e5f7672344f8ad1f91d1"
+    },
+    "ownership": {
+      "folder": "ownership",
+      "status": "OK",
+      "manifestSha256": "278cad24d2062b8e369993745a2350cd59ad7436de4c3a62706130cfb9ff9494"
+    },
+    "drift": {
+      "folder": "drift",
+      "status": "OK",
+      "manifestSha256": "8b3d013755d732222b6c9895fe58e8399e6a258de07af17a2d5b0b7ba9fe5fed"
+    }
+  }
+}

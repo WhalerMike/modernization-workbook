@@ -1,0 +1,92 @@
+[
+  {
+    "IdentityId": "app:1a000000-0000-4000-8000-000000000001",
+    "Type": "AppRegistration",
+    "HoldsPermissions": true,
+    "OwnerReview": "2026-09-15",
+    "SponsorAttestation": null,
+    "AgentAssignments": 0,
+    "NextAssignmentExpiry": null
+  },
+  {
+    "IdentityId": "app:1a000000-0000-4000-8000-000000000002",
+    "Type": "AppRegistration",
+    "HoldsPermissions": false,
+    "OwnerReview": null,
+    "SponsorAttestation": null,
+    "AgentAssignments": 0,
+    "NextAssignmentExpiry": null
+  },
+  {
+    "IdentityId": "app:1a000000-0000-4000-8000-000000000003",
+    "Type": "AppRegistration",
+    "HoldsPermissions": false,
+    "OwnerReview": null,
+    "SponsorAttestation": null,
+    "AgentAssignments": 0,
+    "NextAssignmentExpiry": null
+  },
+  {
+    "IdentityId": "app:1a000000-0000-4000-8000-000000000004",
+    "Type": "AppRegistration",
+    "HoldsPermissions": true,
+    "OwnerReview": null,
+    "SponsorAttestation": null,
+    "AgentAssignments": 0,
+    "NextAssignmentExpiry": null
+  },
+  {
+    "IdentityId": "app:1a000000-0000-4000-8000-000000000005",
+    "Type": "AppRegistration",
+    "HoldsPermissions": false,
+    "OwnerReview": null,
+    "SponsorAttestation": null,
+    "AgentAssignments": 0,
+    "NextAssignmentExpiry": null
+  },
+  {
+    "IdentityId": "app:1a000000-0000-4000-8000-000000000006",
+    "Type": "AppRegistration",
+    "HoldsPermissions": true,
+    "OwnerReview": "2026-05-01",
+    "SponsorAttestation": null,
+    "AgentAssignments": 0,
+    "NextAssignmentExpiry": null
+  },
+  {
+    "IdentityId": "app:1a000000-0000-4000-8000-000000000008",
+    "Type": "AgentIdentityBlueprint",
+    "HoldsPermissions": false,
+    "OwnerReview": null,
+    "SponsorAttestation": "2026-04-01",
+    "AgentAssignments": 0,
+    "NextAssignmentExpiry": null
+  },
+  {
+    "IdentityId": "app:1a000000-0000-4000-8000-000000000007",
+    "Type": "AppRegistration",
+    "HoldsPermissions": false,
+    "OwnerReview": null,
+    "SponsorAttestation": null,
+    "AgentAssignments": 0,
+    "NextAssignmentExpiry": null
+  },
+  {
+    "IdentityId": "sp:5b000000-0000-4000-8000-000000000012",
+    "Type": "LegacyServicePrincipal",
+    "HoldsPermissions": false,
+    "OwnerReview": null,
+    "SponsorAttestation": null,
+    "AgentAssignments": 0,
+    "NextAssignmentExpiry": null
+  },
+  {
+    "IdentityId": "sp:5b000000-0000-4000-8000-000000000015",
+    "Type": "AgentIdentity",
+    "HoldsPermissions": false,
+    "OwnerReview": null,
+    "SponsorAttestation": null,
+    "AgentAssignments": 2,
+    "NextAssignmentExpiry": "2027-01-31"
+  }
+]

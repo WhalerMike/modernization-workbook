@@ -1,0 +1,13 @@
+# New access credential added to Application or Service Principal: a pinned copy of Microsoft's Sentinel rule
+
+This folder is an unmodified copy of Microsoft's Sentinel analytics rule *New access credential added to Application or Service Principal*, which Learn's [Microsoft Entra security operations guide for applications](https://learn.microsoft.com/entra/architecture/security-operations-applications#application-credentials) links as the pre-built alert for credentials added to existing applications. It comes from [Azure/Azure-Sentinel](https://github.com/Azure/Azure-Sentinel/blob/2985095e602f32c493e43998856ac9bcf1382afd/Solutions/Microsoft%20Entra%20ID/Analytic%20Rules/NewAppOrServicePrincipalCredential.yaml) at commit `2985095e602f32c493e43998856ac9bcf1382afd` (October 30, 2026); the rule last changed on January 8, 2024. The repository's license (`LICENSE`) is MIT.
+
+**Why this rule.** Learn names the activities to watch and links this rule for them; it is Microsoft's own query for a credential added to an application. Learn links the rule's earlier path, `Detections/AuditLogs/NewAppOrServicePrincipalCredential.yaml`, which upstream now keeps as a stub pointing here. `examples/non-person-identity/tests/SentinelRuleHarness.ps1` reads the query from this file at test time, splits it into its pipeline stages, and evaluates each stage it recognizes by its exact text over fictional `AuditLogs` rows; any stage it doesn't recognize throws. Nothing is sent to a workspace. The [developer workbook *Building Non-Person Identity*, Chapter 10](../../../docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md) links Learn rather than quoting the page.
+
+**How it stays honest.**
+
+- `snapshot.json` records the upstream repository, path, commit, dates, license and the size and SHA-256 of every file here. Each file's git blob hash was checked against the upstream tree at that commit before the manifest was written. `scripts/tests/test_third_party_snapshots.py` fails if any file is changed, added or removed.
+- The weekly source watch follows commits to the upstream rule (`sentinel-app-credential-rule-commits` in `data/source-watch/feeds.json`) and reports each one in its issue under DW (developer workbooks).
+- To move to a newer upstream commit: review the upstream change, copy the rule from that commit, regenerate `snapshot.json`, rerun `examples/non-person-identity/tests/NpiDrift.Tests.ps1` and the Chapter 10 labs, and open a pull request. Never edit the files here; changes the program needs go in `examples/non-person-identity`.
+
+These files keep their upstream bytes, line endings included, so the hashes match the upstream commit.

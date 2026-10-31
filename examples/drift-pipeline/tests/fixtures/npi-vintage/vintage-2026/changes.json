@@ -1,0 +1,38 @@
+[
+  {
+    "UseCaseId": "UC-002",
+    "Change": "Retired",
+    "Stage": "Retired",
+    "Identities": [
+      "app:1a000000-0000-4000-8000-000000000006"
+    ]
+  },
+  {
+    "UseCaseId": "UC-003",
+    "Change": "AuthorizationChanged",
+    "Stage": "Deployed",
+    "Identities": [
+      "app:1a000000-0000-4000-8000-000000000001"
+    ]
+  },
+  {
+    "UseCaseId": "UC-005",
+    "Change": "New",
+    "Stage": "Deployed",
+    "Identities": []
+  },
+  {
+    "UseCaseId": "UC-006",
+    "Change": "New",
+    "Stage": "Pilot",
+    "Identities": [
+      "app:1a000000-0000-4000-8000-000000000007"
+    ]
+  },
+  {
+    "UseCaseId": "UC-004",
+    "Change": "Left",
+    "Stage": "Pilot",
+    "Identities": []
+  }
+]

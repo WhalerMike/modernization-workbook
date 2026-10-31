@@ -1,0 +1,22 @@
+[
+  {
+    "IdentityId": "app:1a000000-0000-4000-8000-000000000008",
+    "Name": "Benefits Agent Blueprint",
+    "Type": "AgentIdentityBlueprint",
+    "FederalSponsor": "",
+    "SponsoringGroup": "",
+    "TechnicalOwner": "",
+    "InventoryRecord": "CMDB-4001",
+    "Status": "Recorded for Chapter 09; not read or checked in this chapter"
+  },
+  {
+    "IdentityId": "sp:5b000000-0000-4000-8000-000000000015",
+    "Name": "Benefits Q&A Agent",
+    "Type": "AgentIdentity",
+    "FederalSponsor": "",
+    "SponsoringGroup": "",
+    "TechnicalOwner": "",
+    "InventoryRecord": "",
+    "Status": "Recorded for Chapter 09; not read or checked in this chapter"
+  }
+]

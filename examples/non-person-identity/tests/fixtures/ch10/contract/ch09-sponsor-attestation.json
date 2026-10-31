@@ -1,0 +1,15 @@
+{
+  "schema": "fmp-npi-review/1",
+  "chapter": "09",
+  "kind": "sponsor-attestation",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "_comment": "A sample of the sponsor attestation records Chapter 09 can emit.",
+  "records": [
+    {
+      "identityKey": "app:1a000000-0000-4000-8000-000000000008",
+      "reviewedOn": "2026-04-01",
+      "decision": "Attested",
+      "reviewerId": "5a000000-0000-4000-8000-000000000002"
+    }
+  ]
+}

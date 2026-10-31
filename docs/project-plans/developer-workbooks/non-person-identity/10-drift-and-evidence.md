@@ -1,0 +1,436 @@
+---
+title: "Chapter 10 — Drift and Evidence for the ISSO"
+description: "Run Chapter 01's register and Chapter 02's ownership check on a schedule, compare the register with the last approved baseline by fingerprint, and raise the drift the plan names (ownerless, unused or expiring registrations, passwords that never expire, credentials added outside the pipeline, new consent grants), starting from the Sentinel rule Learn links for added credentials (pinned in the repository) and run offline; then read the review cycle's records from Chapters 07 and 09, take Chapters 03 to 09's findings through a small documented contract, compare the AI use-case inventory vintages, and package each run with a SHA-256 per file, the tenant ID and a hash chain into the period evidence for AC-2, AC-6(5), IA-4, IA-5, IA-9 and M-25-21, with labs against fixtures and a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-non-person-identity
+part: How
+series-order: 10
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-04-01
+review-status: pending
+---
+
+# Chapter 10 — Drift and Evidence for the ISSO
+
+*A register approved once proves the day it was approved. The ISSO needs to know what changed since, who changed it, and that nobody edited the record afterwards.*
+
+::: {.callout-note}
+## In this chapter
+The evidence behind the project plan's tasks N7.1, N7.2 and N7.4 and its Gate 7, "steady state." You start with the Sentinel analytics rule that Learn's security operations guide for applications links for credentials added to existing applications, which the repository keeps as a pinned copy, and run its query offline over fictional audit rows to see what it catches and what it misses. Then you build the drift run in `examples/non-person-identity`: [Chapter 01](01-non-person-identity-inventory-as-code.md)'s register and [Chapter 02](02-ownership-and-the-orphan-rule.md)'s ownership check, run together, compared with the last approved baseline by fingerprint, with the credential and consent events from Microsoft Graph's directory audit log and the service principal sign-in activity report. You read the review cycle's records and the other chapters' findings through a small contract, compare one AI use-case inventory vintage with the last, and extend the first workbook's `examples/drift-pipeline` with new files that package each run in a hash chain and assemble a period for the ISSO. Lab 1 runs on a laptop with no tenant; Lab 2 uses a test tenant.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can run the plan's register drift check (N7.1: "ownerless, unused or expiring registrations, passwords that never expire, credentials added outside the pipeline") on a schedule against a baseline someone approved, show the review cycle (N7.2) from the records the reviewing chapters write, and hand the ISSO a package and a period summary for AC-2, AC-6(5), IA-4, IA-5, IA-9 and M-25-21 that they can check with `sha256sum` alone (N7.4), with the annual inventory vintage comparison beside it. For each rule you can say whether it is Learn's, Microsoft's sample, the first two workbooks' pipeline, or the program's design.
+
+**Audience.** Developers and pipeline engineers who own the scheduled checks, the identity governance officer who owns N7.2 and N7.4, and the ISSO who receives the evidence and signs Gate 7. You should read PowerShell 7 and Python and know Chapters 01 and 02. You don't need a tenant until Lab 2.
+
+## What the evidence has to show
+
+Four pages already say what this evidence is for, and this chapter builds it without repeating them.
+
+- **The plan.** N7.1 schedules the register drift; N7.2 asks for "a full review cycle: owners' quarterly permission review, sponsors' attestation, expiry-based recertification of agent access"; N7.4 asks for "evidence to the ISSO for AC-2, AC-6(5), IA-4, IA-5 and IA-9, and for M-25-21; the annual inventory vintage comparison scheduled." Gate 7 asks that every service account and service principal has an owner and sponsor, a reason and a target, that none holds a password that never expires and none is orphaned, that drift checks and review cycles run, and that every remaining gMSA and dMSA is moved or in the dated Kerberos island ([project plan](../../non-person-identity.md)).
+- **Book 02, Chapter 10** sets the pattern: inventories committed as a baseline, each later run compared with it, new objects, removed objects and attribute changes as drift, and each finding closed at the source, never by editing the copy ([Book 02, Chapter 10](../../../books/b02-identity/10-migrating-and-governing.md#git-based-drift-detection)).
+- **The companion guide's federal requirements** map the non-person identity track to AC-2, AC-6(5), IA-4, IA-5 and IA-9, and M-25-21 for AI, as the program's reading; the assessor and the authorizing official decide each control ([companion guide](../../../books/guides/attribute-driven-migration.md#federal-requirements)).
+- **Book 17** sets the AI side: expiry is the agent's review ([Chapter 05](../../../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#recertification-expiry-is-the-review)), and each new vintage of the AI use-case inventory is compared with the last by use case ID for four kinds of change ([Chapter 09](../../../books/b17-ai-identity/09-running-the-inventory-scan.md#the-annual-refresh-compare-one-vintage-with-the-next)).
+
+Learn gives the facts the design turns on. Its security operations guide for applications rates credentials added to existing applications as high risk, says any credential added outside expected processes could be a malicious actor's, and says application and service principal updates are logged as two entries.[^np10-secops] Its activity list names the events: `Update application - Certificates and secrets management`, `Add service principal credentials`, `Consent to application`, `Add delegated permission grant` and `Add app role assignment to service principal`, all logged by Core Directory in the ApplicationManagement category.[^np10-activities] Audit logs are kept 30 days with Microsoft Entra ID P1 or P2, and seven on Free.[^np10-retention] Learn's recommendations call an application credential expiring when it ends within the next 30 days, and an application unused when it hasn't been used for over 90 days.[^np10-expiring] [^np10-unused]
+
+So the run has the same three parts as the first two workbooks' evidence runs. Chapters 01 and 02 describe the *state*: what exists, who owns it, what it holds. The audit read describes the *events* in a window: who added a credential or a grant, and whether the pipeline did. A comparison with the approved baseline turns the state into drift, and a chain of windows with no gap between them is what "drift checks running" means in code. *Design guidance.*
+
+Chapters 03 to 09 are written alongside this one, and their outputs aren't fixed. This chapter reads Chapter 01's and Chapter 02's run folders directly, and defines a small contract the others can write to: a findings file with `id`, `rule`, `severity`, `chapter`, `objectKey` and `fingerprint`, review records, and the rotation pipeline's credential log ([the contract](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity/docs/ch10-contract.md)). Until a chapter writes its file, the run says so, and the period marks the controls that depend on it as incomplete.
+
+### Which cloud, for this read
+
+The audit and sign-in reads call Microsoft Graph: `graph.microsoft.com` for GCC, which uses the worldwide endpoints; GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^np10-deployments] List directoryAudits is available in the global service, US Government L4 and US Government L5.[^np10-audit-list] The service principal sign-in activity report is beta and is listed for the global service only, not L4 or L5,[^np10-signin] so a GCC tenant can read it on the worldwide endpoint, and a GCC High or DoD run doesn't send the call and records the unused check as not read (research gaps, row 93). The run takes the cloud as a required parameter with no default and uses Chapter 01's reader, which sends the token only to that cloud's host.
+
+## Start with Microsoft's sample
+
+### What Microsoft gives you
+
+Learn's *Microsoft Entra security operations guide for applications* is Microsoft's procedure for this chapter. Its "Application credentials" table says what to monitor (credentials added to existing applications, high risk; credentials with lifetimes longer than policy allows, medium), where (the audit log, filtered to Core Directory and ApplicationManagement), and when to alert ("outside of normal business hours or workflows"), and it links a pre-built Microsoft Sentinel rule, *New access credential added to Application or Service Principal*.[^np10-secops] Its "Application permissions" and "End-user consent" tables name the consent and grant activities to watch.[^np10-secops] Learn's *List directoryAudits* gives the Graph read and its filters,[^np10-audit-list] and the recommendations for expiring credentials and unused applications give the thresholds.[^np10-expiring] [^np10-unused]
+
+### The pinned copy
+
+The query lives in Microsoft's Azure-Sentinel repository, so the repository pins the rule, unmodified, in [`examples/third_party/sentinel-app-credential-rule`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/third_party/sentinel-app-credential-rule): `Solutions/Microsoft Entra ID/Analytic Rules/NewAppOrServicePrincipalCredential.yaml` at commit `2985095` (October 30, 2026), retrieved October 30, 2026, with the repository's MIT license.[^np10-sample-src] Learn links the rule's earlier path, which upstream now keeps as a stub pointing to this one. `snapshot.json` records each file's SHA-256 and upstream git blob hash, checked with `gh api` before the manifest was written; a unit test checks the hashes, and the weekly source watch reports new commits to the rule.
+
+`tests/SentinelRuleHarness.ps1` reads the query from the pinned YAML at test time, splits it into its 20 pipeline stages, and evaluates each one it recognizes by its exact text over `tests/fixtures/ch10/audit.json`, ten fictional audit items shaped as the `AuditLogs` table's columns. A stage it doesn't recognize throws, so a new upstream query fails the tests instead of being half-run. It isn't a KQL engine, and nothing is sent to a workspace.
+
+### What it leaves to you
+
+Each row is pinned by a test: in the "as published" block of `tests/NpiDrift.Tests.ps1` for the sample, and in the rest of that file or in `examples/drift-pipeline/tests/test_npi_evidence.py` for the code.
+
+| Microsoft's rule, as published | Why it matters | What the code adds |
+|---|---|---|
+| Finds the client secret a person added to HR Connector, an app that already had a certificate | — | Kept as the model: the activity names and the `KeyDescription` key list, read from the same events (NPI-DRF-07) |
+| Requires the initiator to carry an "@": a user principal name, or an app whose display name has one | A credential added by an app, whether the rotation pipeline or an app holding `Application.ReadWrite.All` (here Mail Automation adding a secret to Payroll Export), is never seen | Every initiator is read, user or app; the pipeline is named in a reviewed list, not inferred |
+| Keeps only events whose old key list isn't empty | The first secret on an app that had none, the riskiest kind, is dropped | Every added key ID, compared old against new |
+| Keeps only targets of type Application, even when a person adds the credential | A credential added to a service principal (`Add service principal credentials`) is dropped; Learn notes such updates are logged as separate entries[^np10-secops] | Service principal targets resolved to the app registration's register row |
+| Alerts on the pipeline's own rotation when a person runs it | It knows no pipeline and no change record, so every rotation alerts and the alert is ignored | Inside the pipeline only when the initiator is a listed pipeline identity **and** the key is in the pipeline's credential log (Chapter 04) |
+| Parses only the first of several credentials added in one event | A second key added at the same moment is missed | Every key in the difference |
+| Carries the initiator's user principal name into the alert, split into `Name` and `UPNSuffix` | Names travel wherever the alert goes | Events kept as object IDs and key IDs; names dropped |
+| Looks back one hour, in a Sentinel workspace, with no link to the register, the owners, the expiry or the consent grants | Needs the workspace and its diagnostic setting before any evidence exists, and says nothing about the rest of N7.1 | The Graph audit read with `AuditLog.Read.All`, refused past the 30 days the log keeps,[^np10-retention] joined to the register, the baseline and Chapter 02's ownership check |
+
+**The verdict.** Use Learn's activity names and the rule's `KeyDescription` comparison as the model for the credential read. Don't use the rule as the N7.1 check: it misses app-initiated and first credentials and service principal targets, can't tell the pipeline from an attacker, and covers one item of five.
+
+## The code: what the drift run builds on and adds
+
+The run is two pieces, each in its own files. `examples/non-person-identity` gains `Invoke-NpiDriftRun.ps1`, `Invoke-NpiVintage.ps1`, the module `powershell/NpiDrift/NpiDrift.psm1`, the call list `config/calls-ch10.json`, the thresholds `config/drift-ch10.json`, the contract notes `docs/ch10-contract.md` and its tests. `examples/drift-pipeline` gains `python/npi_evidence.py`, `workflow/npi-evidence.yml`, `tests/test_npi_evidence.py` and two fixture folders, as new files: `drift_pipeline.py`, `pa_evidence.py` and their tests are unchanged, and `npi_evidence.py` imports their hashing, JSON, fingerprint, refusal, row-reading and time helpers. Chapter 01's and Chapter 02's modules, scripts and tests are unchanged too.
+
+### The run
+
+`Invoke-NpiDriftRun.ps1 -Cloud gcc -TenantId <id>` writes one folder per run, named by its time and mode, such as `2026-10-30T0600Z-fixture`, as [Building Privileged Access, Chapter 08](../privileged-access/08-evidence-and-drift.md#the-run) does:
+
+- `inventory/`, written by Chapter 01's `Invoke-NpiInventory.ps1`, unchanged;
+- `ownership/`, written by Chapter 02's `Invoke-NpiOwnership.ps1`, unchanged (its orphan plan is written and nothing is sent);
+- `drift/`, this chapter's: `events.json`, `signin-activity.json`, `findings.json`, `chapter-findings.json`, `review-cycle.json`, `summary.json`, `baseline-candidate.json` and a `manifest.json` in the same shape as the other two;
+- `run.json`: the run ID, the as-of time, the cloud, the tenant ID, the mode, the audit window, the approved baseline's run and SHA-256, the permissions, and each task's status with the SHA-256 of its manifest.
+
+The cloud and the tenant ID are required. In a live run the tenant ID must match the Graph session's. A task that fails is recorded as `Error` in `run.json` and leaves no folder; the drift task needs the inventory, so it fails with it. The audit window runs from `-Since` (by default 24 hours before `-AsOf`) to `-AsOf`; the sample workflow starts each window where the last package's ended. *Design guidance.*
+
+### The approved baseline
+
+A run without `-BaselinePath` compares with nothing and writes `drift/baseline-candidate.json`: each identity's fingerprint, a SHA-256 over 20 governance columns of its register row (owners, record, credentials and their next expiry, federated subjects, Graph permissions, grants, tenant-wide consent, privileged groups, delegation, SPNs, enabled), with the tenant, cloud, run and register hash. Last logon, password age and the stale lead are left out: they move every day and aren't drift. A reviewer approves a candidate by passing its SHA-256 to the next run as `-ApprovedBaselineSha256`, as Chapter 02's write path approves a plan; the run refuses a baseline whose hash differs, or that is for another tenant or cloud. *Design guidance*, following Book 02's committed baseline.
+
+### The audit and sign-in reads
+
+`Get-NpiAuditEvent` reads `GET /v1.0/auditLogs/directoryAudits` once for each activity name in `config/drift-ch10.json`, filtered by `activityDateTime` (`ge`, `le`) and `activityDisplayName` (`eq`), the filters Learn's directoryAudit resource page lists.[^np10-audit-resource] It goes through Chapter 01's reader, so the call must be declared in `config/calls-ch10.json`, is a GET, goes only to the cloud's Graph host, and follows every page. It refuses a window that starts more than 30 days before the run.[^np10-retention] Each event is kept as IDs: the activity and its class, the result, the initiator (user ID or app service principal ID), the target, and the key IDs, types and usages added or removed. Names and key display names are dropped. *Design guidance.*
+
+`Get-NpiSignInActivity` reads `GET /beta/reports/servicePrincipalSignInActivities` for each app's last sign-in, in clouds where Learn lists it.[^np10-signin]
+
+| Task | Calls | Least-privileged permission | Delegated role |
+|---|---|---|---|
+| `drift` (read) | List directoryAudits; List servicePrincipalSignInActivities (beta) | `AuditLog.Read.All`[^np10-audit-list] [^np10-signin] | Reports Reader, Security Reader or Security Administrator[^np10-audit-list] |
+
+With Chapter 01's `inventory` and Chapter 02's `ownership` tasks, the run needs four Graph application permissions (`Application.Read.All`, `AuditLog.Read.All`, `Directory.Read.All`, `User.Read.All`), none a write, Reader on the user-assigned identities, and the default Active Directory read. `Directory.Read.All` is Chapter 01's, for delegated permission grants (Chapter 01's research gaps, row 5); this chapter adds nothing broader than `AuditLog.Read.All`.
+
+### The register drift findings
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| NPI-DRF-01 | Warn | An identity new since the approved baseline | Book 02, Chapter 10: new objects are drift |
+| NPI-DRF-02 | Warn; Info when removed | An identity whose fingerprint changed, with the columns that changed; one in the baseline that is gone | Book 02, Chapter 10: attribute changes and removed objects |
+| NPI-DRF-03 | Finding | Ownerless: an orphan candidate in Chapter 02's run. The orphan rule decides; this code disables nothing | Plan N7.1; Chapter 02 |
+| NPI-DRF-04 | Warn | An app registration or legacy service principal with no sign-in for over 90 days, or none at all; one new since the baseline isn't judged | Learn: unused for over 90 days[^np10-unused] |
+| NPI-DRF-05 | Warn | A credential that expires within 30 days | Learn: expiring within the next 30 days[^np10-expiring] |
+| NPI-DRF-06 | Finding | An enabled AD account whose password never expires, except one found only that way (Chapter 02, NPI-OWN-09) | Plan N7.1 and Gate 7: none |
+| NPI-DRF-07 | Finding | A credential added outside the pipeline, one per key | Learn: credentials added outside expected processes, high[^np10-secops] |
+| NPI-DRF-08 | Finding when tenant-wide or a high-privilege Graph permission; Warn otherwise | A new consent grant or application permission, from the baseline and the audit events | Learn: grants of highly privileged permissions, high[^np10-secops] |
+| NPI-DRF-09 | Warn or Info | An evidence gap: a contract file refused, a chapter that sent nothing, the sign-in report unavailable in the cloud, the ownership check failed | *Design guidance* |
+
+Every finding has the stable ID Chapters 01 and 02 use, `<rule>:<objectKey>`, and a fingerprint: the first 16 hex characters of SHA-256 over `<rule>|<objectKey>|`, the first workbook's `fingerprint()` with an empty issue, so the fingerprint stays the same however the issue text changes. Chapters 03 to 09 compute it the same way, and `npi_evidence.py` checks every one.
+
+**Inside the pipeline.** A credential counts as the pipeline's only when two independent records agree: the event's initiator is a service principal in the reviewed `pipeline-identities.csv`, and the target and key ID are in the credential log Chapter 04's rotation pipeline writes. The pipeline's identity adding a key it didn't log, or a person adding a key the log lists, is still NPI-DRF-07 (research gaps, row 96). *Design guidance.*
+
+### The review cycle
+
+N7.2 is the identity governance officer's. Chapters 07 and 09 build the reviews; this chapter reads only their records, through the contract's `fmp-npi-review/1` files, and writes `review-cycle.json`: for each app registration, legacy service principal, agent identity and blueprint, the last owners' permission review, the last sponsor attestation, and the agent's access assignments with their next expiry.
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| NPI-REV-01 | Finding | An app registration holding Graph permissions with no owners' permission review in the last 92 days | Plan N7.2: quarterly (*Design guidance* for the days) |
+| NPI-REV-02 | Finding | An agent identity or blueprint with no sponsor attestation in the last 365 days | Learn: sponsors attest every six to twelve months[^np10-agent-bp] |
+| NPI-REV-03 | Finding | An agent access assignment with no end date, an end more than 365 days away, or recorded as active after it | Book 17, Chapter 05: expiry is the review; no agent access without an end date (research gaps, row 97) |
+| NPI-REV-04 | Warn | A kind of review record not received this run | *Design guidance*: a missing record isn't a passed review |
+
+### The annual vintage comparison
+
+`Invoke-NpiVintage.ps1` compares this year's AI use-case inventory vintage with last year's by use case ID, Book 17, Chapter 09's four changes, and joins both to the register through a use-case map (`UseCaseId`, `RecordId`) and Chapter 02's service records. It writes `vintage-<year>/` with its findings, the changes and a manifest holding the register's and each input's SHA-256.
+
+| Rule | Severity | What it flags |
+|---|---|---|
+| NPI-VIN-01 | Finding; Info when matched | A new piloted or deployed entry with no identity in the register |
+| NPI-VIN-02 | Finding | An entry retired whose identities are still enabled: start the leaver process |
+| NPI-VIN-03 | Warn | An authorization answer changed |
+| NPI-VIN-04 | Finding | An entry that left the inventory without being reported as retired |
+| NPI-VIN-05 | Warn | An agent identity, blueprint or AI record whose record maps to no use case in this vintage |
+
+The first four are Book 17, Chapter 09's; the fifth is its "identity with no inventory row" check, run against the register.
+
+### The package and the chain
+
+`npi_evidence.py package` writes `<run-id>/` with the run as written (`run/`), a `summary.md` with rule IDs, object keys and fingerprints but no names, an `EVIDENCE-MANIFEST.json` and a `SHA256SUMS` that `sha256sum -c` reads. It checks the run first, as the first two workbooks' pipelines do: `run.json`, each task manifest by its hash, every file against its manifest, nothing extra, every recorded request a GET or a Get-AD* read, one tenant, cloud and mode throughout, and every finding's fingerprint. The manifest records the run, the cloud, the tenant ID, the mode, the audit window, the approved baseline, each task's status, the `run.json` hash, the GitHub run identifiers when there are any, every open finding from every chapter by fingerprint, what opened and what closed since the previous package, a SHA-256 and size for every file, and the previous package's run ID and manifest hash. That last hash makes the packages a chain: a replaced package or a missing day shows up as a break. The same inputs give the same bytes. `verify` is what the ISSO runs.
+
+The packager doesn't sign, for the reason the first workbook gives: the hashes show nothing changed after packaging, and a container with a locked time-based retention policy keeps blobs from being modified or deleted until the interval ends.[^np10-immutable] Signing stays the ISSO's choice (research gaps, row 99).
+
+### What the ISSO receives
+
+`npi_evidence.py period --since <start> --until <end> [--vintage <dir>]` is the plan's N7.4. It verifies every package whose window falls in the period, checks the chain and that the windows cover the period with no gap, lists the findings opened and closed by fingerprint, and writes `PERIOD-MANIFEST.json`, `period-summary.md` and `SHA256SUMS`. The packages stay where they are, cited by their manifest hashes.
+
+| Control | Rules and chapters that give its evidence (*Design guidance*) |
+|---|---|
+| AC-2 Account Management | NPI-INV-02, -03; NPI-OWN-01, -02, -08; NPI-DRF-01 to -04; NPI-REV-02; Chapter 03 |
+| AC-6(5) Privileged Accounts | NPI-INV-01, -06; NPI-DRF-08; NPI-REV-01; Chapter 07 |
+| IA-4 Identifier Management | NPI-OWN-06, -07; NPI-INV-09; NPI-DRF-01; NPI-VIN-01, -05 |
+| IA-5 Authenticator Management | NPI-INV-04, -05; NPI-DRF-05 to -07; Chapters 04 and 06 |
+| IA-9 Service Identification and Authentication | NPI-DRF-07; Chapters 05 and 08 |
+| M-25-21 | NPI-REV-02, -03; NPI-VIN-01 to -05; Chapter 09; the vintage comparison |
+
+For each control the period gives the open Findings and Warns at the period's end and the sources it didn't receive; its status is "evidence present; the assessor decides" or "evidence incomplete." The mapping is the program's reading, from the companion guide; it decides nothing about the control (research gaps, row 98). For Gate 7 it gives:
+
+| Gate 7 criterion | What the period shows | Who decides |
+|---|---|---|
+| Every service account and service principal has an owner and sponsor, a reason and a target | NPI-DRF-03, NPI-REV-02, and whether Chapter 03's decisions arrived | The ISSO; Chapter 03's dispositions |
+| None holds a password that never expires | NPI-DRF-06 at period end | The ISSO |
+| None is orphaned | NPI-DRF-03 at period end | The ISSO; the orphan rule (D-N2) |
+| Drift checks and review cycles running | Packages, coverage gaps, chain breaks, unverified task runs; NPI-REV-01 to -04 | The ISSO, from the period |
+| Every remaining gMSA and dMSA moved or in the dated Kerberos island | Chapter 06's findings, when they arrive | Identity engineering (N7.3) |
+
+### The schedule
+
+`workflow/npi-evidence.yml` is a sample GitHub Actions workflow, not active in this repository. It follows the first workbook's: Learn's Azure Login sign-in with a federated credential and no secret, pinned actions, and a job that can request a token but write nothing else.[^np10-oidc] It runs daily, starts each audit window where the last package's ended, fetches the approved baseline and its SHA-256 from repository settings, and on the first of the month assembles the previous month's period. It skips the Active Directory reads, which need a runner inside the domain. The first workbook's `workflow_lint.py` checks it with no findings. The plan doesn't set a frequency for N7.1; daily is the sample's choice. *Design guidance.*
+
+### The tests
+
+Pester 5 under PowerShell 7: `tests/NpiDrift.Tests.ps1`, 51 tests, 11 of them Microsoft's rule as published, beside Chapters 01 and 02's tests, unchanged: 148 in `examples/non-person-identity`. pytest: `tests/test_npi_evidence.py`, 21 tests over the two fixture runs and the vintage comparison; with the first two workbooks', 136 in `examples/drift-pipeline`. A Pester test reruns the drift run and the vintage comparison from the fixtures and checks that their data files match the fixtures the Python tests read. None of them needs a tenant or a network.
+
+::: {.callout-important}
+## Illustrative code
+The commands below run Microsoft's pinned Sentinel rule over fictional audit rows, and the example against a fictional estate served by fakes. The sample workflow has been parsed and linted, not run. They show what the code does, not that a tenant returns the same shapes. Review the code, and run Lab 2 in a test tenant, before it produces evidence anyone relies on.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5, Python 3.10 or later with pytest and PyYAML, and a shell with `sha256sum` (Linux, macOS or Git Bash). Steps 1 to 6 run in `examples/non-person-identity` in PowerShell; steps 7 to 10 in `examples/drift-pipeline` in a POSIX shell.
+
+1. **Run Microsoft's rule over the fixture:**
+
+   ```powershell
+   Invoke-Pester -Path tests/NpiDrift.Tests.ps1 -FullNameFilter '*as published*' -Output None -PassThru |
+       Select-Object PassedCount, FailedCount, NotRunCount
+   ```
+
+   `PassedCount 11`, `FailedCount 0`, `NotRunCount 40`. Read the third and fifth tests: of the four credentials added in the second day's window, the rule finds one.
+
+2. **List what the run needs:**
+
+   ```powershell
+   Import-Module ./powershell/NpiDrift/NpiDrift.psm1
+   (Get-NpiDriftPermission -Task drift-run).GraphPermissions -join ', '
+   ```
+
+   `Application.Read.All, AuditLog.Read.All, Directory.Read.All, User.Read.All`. The drift task alone needs `AuditLog.Read.All`. Nothing ends in `ReadWrite`.
+
+3. **Run the first day, with no baseline:**
+
+   ```powershell
+   $lab = @{ Cloud = 'gcc'; TenantId = 'c0ffee00-0000-4000-8000-000000000001'; OutputPath = 'out/runs'; InputPath = 'tests/fixtures/inputs'
+       AuditFixturePath = 'tests/fixtures/ch10/audit.json'; SignInFixturePath = 'tests/fixtures/ch10/signin-activity.json'
+       ContractPath = 'tests/fixtures/ch10/contract'; PipelineIdentitiesPath = 'tests/fixtures/ch10/inputs/pipeline-identities.csv' }
+   ./Invoke-NpiDriftRun.ps1 @lab -FixturePath tests/fixtures/ch10/estate-day1.json -AsOf 2026-10-29T06:00:00Z
+   ```
+
+   ```text
+   Run 2026-10-29T0600Z-fixture (Fixture, gcc): inventory OK, ownership OK, drift OK
+   Audit window 2026-10-28T06:00:00Z to 2026-10-29T06:00:00Z; baseline none: this run is a baseline candidate
+   Drift findings: 14 Finding, 4 Warn, 5 Info; baseline candidate SHA-256 cb2ecc5d13a19ad0ab6e3e4513e4479f0cd9e8a62625146c257ec39bd09d371e
+   Written to <path>/out/runs/2026-10-29T0600Z-fixture (run.json lists each task's manifest hash)
+   ```
+
+4. **Approve the baseline and run the second day:**
+
+   ```powershell
+   $base = 'out/runs/2026-10-29T0600Z-fixture/drift/baseline-candidate.json'
+   $sha = (Get-FileHash $base -Algorithm SHA256).Hash.ToLower()
+   ./Invoke-NpiDriftRun.ps1 @lab -FixturePath tests/fixtures/ch10/estate-day2.json -AsOf 2026-10-30T06:00:00Z -BaselinePath $base -ApprovedBaselineSha256 $sha
+   ```
+
+   ```text
+   Run 2026-10-30T0600Z-fixture (Fixture, gcc): inventory OK, ownership OK, drift OK
+   Audit window 2026-10-29T06:00:00Z to 2026-10-30T06:00:00Z; baseline 2026-10-29T0600Z-fixture (cb2ecc5d13a1…)
+   Drift findings: 18 Finding, 11 Warn, 5 Info; baseline candidate SHA-256 f8f71dc96b4c4689b35ce6bd071c794a710e55e48465661517766acedb063aae
+   Written to <path>/out/runs/2026-10-30T0600Z-fixture (run.json lists each task's manifest hash)
+   ```
+
+   In a real run a second person reviews the candidate and passes you its hash. The two candidate hashes are the ones Windows gives: the candidate records the register's SHA-256, and Chapter 01 writes CRLF line endings on Windows and LF elsewhere, so on Linux or macOS the hashes differ and the findings don't.
+
+5. **Read the drift:**
+
+   ```powershell
+   Get-Content out/runs/2026-10-30T0600Z-fixture/drift/findings.json -Raw | ConvertFrom-Json | Group-Object Rule, Severity | Sort-Object Name | Format-Table Name, Count
+   ```
+
+   ```text
+   Name                Count
+   ----                -----
+   NPI-DRF-01, Warn        2
+   NPI-DRF-02, Warn        6
+   NPI-DRF-03, Finding     7
+   NPI-DRF-04, Warn        2
+   NPI-DRF-06, Finding     3
+   NPI-DRF-07, Finding     3
+   NPI-DRF-08, Finding     1
+   NPI-DRF-09, Info        5
+   NPI-DRF-09, Warn        1
+   NPI-REV-01, Finding     2
+   NPI-REV-02, Finding     1
+   NPI-REV-03, Finding     1
+   ```
+
+   NPI-DRF-07 holds the three credentials added outside the pipeline: a secret a person added to HR Connector, a secret Mail Automation added to Payroll Export's service principal, and the first secret on Build Pipeline. The pipeline's two certificate rotations, on Deploy Bot and Vendor Portal, aren't there: both are by the listed identity and in the credential log. Vendor Portal's expiring certificate (NPI-DRF-05 on day 1) is gone. NPI-DRF-08 is Mail Automation's new grant for all users, with the two audit events behind it. NPI-DRF-04 is Legacy Reports (last sign-in May 1) and Old SAML Connector (none); Survey Tool, new since the baseline, isn't judged. NPI-DRF-09's Warn is the sample Chapter 05 file, refused because its fingerprint is wrong; its Infos are the five chapters that sent nothing. Open `events.json`: object IDs and key IDs, no names. Open `review-cycle.json`: Payroll Export's last owners' review is 2026-09-15; Mail Automation's, 2026-05-01, is too old (NPI-REV-01).
+
+6. **Compare the AI use-case inventory vintages:**
+
+   ```powershell
+   ./Invoke-NpiVintage.ps1 -RegisterRun out/runs/2026-10-30T0600Z-fixture/inventory -Vintage 2026 `
+       -CurrentPath tests/fixtures/ch10/vintage/ai-inventory-2026.csv -PriorPath tests/fixtures/ch10/vintage/ai-inventory-2025.csv `
+       -UseCaseMapPath tests/fixtures/ch10/vintage/ai-use-cases.csv -ServiceRecordsPath tests/fixtures/inputs/service-records.csv -OutputPath out/vintage
+   ```
+
+   `Vintage 2026: 5 changes (1 AuthorizationChanged, 1 Left, 2 New, 1 Retired); findings 3 Finding, 2 Warn, 1 Info`. UC-005 is a new deployed agentic entry with no identity, UC-002 was retired while Mail Automation is still enabled, UC-004 left without being retired, and the Benefits Q&A agent identity maps to no use case. Delete `out` when you're done; the runs in step 7 are the repository's copies of these two, which a Pester test checks against a fresh run.
+
+7. **Package both days, chained.** In `examples/drift-pipeline`:
+
+   ```bash
+   DAY1=tests/fixtures/npi-runs/2026-10-29T0600Z-fixture
+   DAY2=tests/fixtures/npi-runs/2026-10-30T0600Z-fixture
+   python python/npi_evidence.py package --run $DAY1 --out out/evidence
+   python python/npi_evidence.py package --run $DAY2 \
+     --previous-manifest out/evidence/2026-10-29T0600Z-fixture/EVIDENCE-MANIFEST.json --out out/evidence
+   ```
+
+   ```text
+   {"evidence_manifest_sha256": "54c5676ad8e92dc1bea902ef40bb3d2cbd7904532d24bbfe4ebdb6b67b46a862", "new": 62, "open": 62, "package": "2026-10-29T0600Z-fixture", "resolved": 0}
+   {"evidence_manifest_sha256": "563b8c05e259f2093ced6fa095a2846a88a9b9e05c9ec5592b4b4c47337e9b47", "new": 19, "open": 80, "package": "2026-10-30T0600Z-fixture", "resolved": 1}
+   ```
+
+   Every chapter's open findings are counted, Chapters 01 and 02's with them, and compared by fingerprint: 19 opened on day 2, one closed (Vendor Portal's NPI-DRF-05).
+
+8. **Verify the second package:**
+
+   ```bash
+   python python/npi_evidence.py verify out/evidence/2026-10-30T0600Z-fixture
+   (cd out/evidence/2026-10-30T0600Z-fixture && sha256sum -c --quiet SHA256SUMS)
+   grep -c contoso out/evidence/2026-10-30T0600Z-fixture/summary.md
+   ```
+
+   `verify` reports 21 files and the manifest hash `563b8c05…`, `sha256sum` exits `0`, and `grep` prints `0`: no user principal name in the summary. In `EVIDENCE-MANIFEST.json`, `previous.evidence_manifest_sha256` is day 1's hash and `tenant_id` is the fixture tenant's.
+
+9. **Assemble the period for the ISSO, with the vintage:**
+
+   ```bash
+   python python/npi_evidence.py period --evidence out/evidence --since 2026-10-28T06:00:00Z --until 2026-10-30T06:00:00Z \
+     --vintage tests/fixtures/npi-vintage/vintage-2026 --out out/periods
+   cat out/periods/period-2026-10-28_2026-10-30/period-summary.md
+   ```
+
+   Exit `2`: `{"chain_breaks": 0, "closed": 1, "complete": false, "coverage_gaps": 0, "opened": 19, "packages": 2, ...}`. The control table shows AC-2 incomplete without Chapter 03, IA-5 without Chapters 04 and 06, IA-9 without Chapters 05 and 08, and AC-6(5), IA-4 and M-25-21 with evidence present. In the Gate 7 table, "None holds a password that never expires" (three accounts) and "None is orphaned" (seven candidates) are not met, the review cycle is not met (four review findings), and the owner-and-reason and Kerberos island criteria are "not decided by this code" until Chapters 03 and 06 send their findings.
+
+10. **Break it on purpose:**
+
+    ```bash
+    echo edited >> out/evidence/2026-10-30T0600Z-fixture/summary.md
+    python python/npi_evidence.py verify out/evidence/2026-10-30T0600Z-fixture
+    python python/npi_evidence.py package --run $DAY1 --previous-manifest out/evidence/2026-10-30T0600Z-fixture/EVIDENCE-MANIFEST.json --out out/swap
+    python python/workflow_lint.py workflow/npi-evidence.yml
+    ```
+
+    `verify` exits `1`: `summary.md doesn't match its SHA-256`. The swapped package exits `1`: `this run (2026-10-29T06:00:00Z) isn't later than the previous package (2026-10-30T06:00:00Z)`. The workflow lints with `0 finding(s), 0 warning(s)`.
+
+**Expected result:** `Invoke-Pester -Path tests` in `examples/non-person-identity` passes 148 tests, and `python -m pytest tests -q` in `examples/drift-pipeline` passes 136. Delete `out` in both folders when you're done.
+
+## Lab 2: test tenant
+
+Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID P1 or P2, never production, with fictional people. The run only reads; the changes in step 2 are made by hand in the test tenant.
+
+1. **Register the reader app** in the tenant's own cloud (for GCC, the worldwide Microsoft Entra admin center) with a certificate. Grant the four application permissions from Lab 1, step 2, with admin consent, and nothing else; grant Reader on the test subscription. With Chapter 02's Lab 2 inputs in place, run step 3's command once without `-BaselinePath` and `-ApprovedBaselineSha256`, and have a second person review that run's `drift/baseline-candidate.json` and pass you its SHA-256.
+2. **Make three changes to see.** As a test administrator: add a client secret to a test app registration that has a certificate; add the first secret to a second test app that has no credential; and grant admin consent for a delegated Graph permission to a third test app.
+3. **Run the drift run** with your own inputs and the approved baseline:
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+   Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <app-id> -CertificateThumbprint <thumbprint>
+   ./Invoke-NpiDriftRun.ps1 -Cloud gcc -TenantId <tenant-id> -Domain <test-domain> -InputPath <inputs> -OutputPath out/runs-test `
+       -BaselinePath <baseline-candidate.json> -ApprovedBaselineSha256 <sha> -PipelineIdentitiesPath <pipeline-identities.csv>
+   ```
+
+4. **Check what the fixture assumed.** In `drift/events.json`, record the exact `activityDisplayName` of each credential event, hyphen or dash (research gaps, row 91); whether a secret added to the service principal is logged as `Add service principal credentials`, `Update service principal`, or both (row 92); and whether `KeysAdded` holds the key IDs, which means the `KeyDescription` format is the one Microsoft's rule parses. NPI-DRF-07 should list both secrets, NPI-DRF-08 the consent. In `drift/signin-activity.json`, record whether the beta report returned rows (row 93).
+5. **Cross-check against Learn's procedure.** In the admin center, open **Monitoring & health** > **Audit logs**, filter on the ApplicationManagement category and the window, as Learn's security operations guide describes:[^np10-secops] every credential and consent event there should be in `events.json`. If the tenant sends audit logs to a Log Analytics workspace, run Microsoft's rule there: it should return the first secret's event and not the second.
+6. **Package and verify locally.** Run Lab 1, steps 7 and 8, on the test run.
+7. **Back it out.** Remove both secrets and the consent grant from the test apps, remove the four permissions and the Reader assignment, delete the reader app's registration and certificate, and delete `out/runs-test` and the packages: they hold the tenant's identities and owners. If you ran the sample workflow in a test repository, follow the first workbook's [Chapter 09, Lab 2](../attribute-driven-migration/09-drift-pipelines-and-evidence.md#lab-2-test-tenant-and-test-subscription) for its federated credential, an unlocked retention policy, and its back-out.
+
+In production, lock the evidence container's retention policy once Lab 2 passes; Learn says an unlocked policy is for testing only.[^np10-immutable]
+
+## Verified facts
+
+| Item | Value | US Government clouds | Stage | Source |
+|---|---|---|---|---|
+| List directoryAudits | `GET /auditLogs/directoryAudits`; `AuditLog.Read.All` (higher: `Directory.Read.All`); delegated roles Reports Reader, Security Administrator, Security Reader; `$filter` (`eq`, `ge`, `le`, `startswith`), `$top`, `$orderby`, `skiptoken` | L4 and L5 | v1.0 | [^np10-audit-list] |
+| directoryAudit filters | `activityDateTime` `eq`, `ge`, `le`; `activityDisplayName` `eq`, `startswith`; `result` `success`, `failure`, `timeout` | — | v1.0 | [^np10-audit-resource] |
+| Activity names | `Update application - Certificates and secrets management`, `Add service principal credentials`, `Remove service principal credentials`, `Consent to application`, `Add delegated permission grant`, `Add app role assignment to service principal`; Core Directory, ApplicationManagement | — | — | [^np10-activities] |
+| Monitoring application credentials and consent | Credentials added to existing applications, high; application and service principal updates logged as two entries; alert outside normal workflows; grants of highly privileged permissions, high; end-user consent, low | — | — | [^np10-secops] |
+| List servicePrincipalSignInActivities | `GET /reports/servicePrincipalSignInActivities`; `AuditLog.Read.All` (higher: `Directory.Read.All`); Reports Reader, Security Reader, Security Administrator | Global service only; L4 and L5 not available | Beta | [^np10-signin] |
+| Expiring application credentials | On an app registration and expiring within the next 30 days | — | Preview | [^np10-expiring] |
+| Unused applications | Not used for over 90 days; managed identities and apps created within 90 days exempt; Learn's action plan soft-deletes, then permanently deletes after 15 days | — | Preview | [^np10-unused] |
+| Audit log retention | Free seven days; P1 and P2 30 days | — | — | [^np10-retention] |
+| Agent sponsors | Attest every six to twelve months that each agent is still needed; quarterly review for missing sponsors, outdated metadata or no recent activity | — | Agent ID: see below | [^np10-agent-bp] [^np10-agent-stage] |
+| Graph hosts | GCC `graph.microsoft.com`; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | — | — | [^np10-deployments] |
+| Sign-in from GitHub Actions | Azure Login with a federated credential; the job needs `id-token: write`; US Government audience `api://AzureADTokenExchangeUSGov` | Azure Government environment | Azure Login v3.1.0 | [^np10-oidc] |
+| Immutable evidence | Time-based retention; a locked policy can't be deleted or shortened; unlocked is for testing | — | GA | [^np10-immutable] |
+
+Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
+
+- **The credential activity's name.** The activity list writes `Update application - Certificates and secrets management`;[^np10-activities] the security operations guide writes `Update Application-Certificates and secrets management`.[^np10-secops] The code filters on the activity list's name, the one Microsoft's rule also uses, and normalizes a dash; Lab 2 records the live value (research gaps, row 91).
+- **Service principal credentials.** The activity list has `Add service principal credentials`;[^np10-activities] the security operations guide's filter for added credentials names `Update Service principal/Update Application`.[^np10-secops] The code reads the activity list's name; Lab 2 records which a tenant logs (row 92).
+- **Unused applications.** The recommendation's action plan deletes an unused app and permanently deletes it after 15 days;[^np10-unused] Learn's governance guidance for service accounts says to disable an account, not delete it, until the review is complete.[^np10-govern] The code follows the stricter: unused is a Warn for the owner, and the orphan rule disables (row 95).
+- **Agent ID's stage.** Learn's Agent ID overview says it is in preview; Learn's *What's new* lists the Agent ID platform as generally available in April 2026.[^np10-agent-stage] This chapter only reads the review records Chapter 09 writes; the stage of each agent feature is Chapter 09's to record.
+- **The linked rule's path.** The security operations guide links `Detections/AuditLogs/NewAppOrServicePrincipalCredential.yaml`,[^np10-secops] which upstream now keeps as a stub pointing to the solution path pinned here.[^np10-sample-src]
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A baseline nobody approved | Drift is measured against whatever the last run happened to see, and a malicious change becomes the new normal | The baseline is compared only with an approved SHA-256, for this tenant and cloud |
+| A failed read reported as a fix | A 403 makes yesterday's findings disappear | A failed task is `Error` with no folder; a missing contract file or review kind is NPI-DRF-09 or NPI-REV-04, never a pass |
+| A day nobody read | A credential added in the gap has no evidence, and Gate 7's "drift checks running" passes on the days that were read | Each window starts where the last ended; a gap is a coverage gap in the period |
+| A window older than the log | The read returns part of the window and looks complete | Refused past 30 days; read the gap from the workspace and attach it |
+| Trusting Microsoft's rule as the check | App-initiated, first and service principal credentials go unseen | The Graph read of every initiator and target, every added key; tests pin what the rule misses |
+| Every rotation alerts | The pipeline's own rotations bury the one that matters, and the alert is ignored | Inside the pipeline needs both the listed identity and the credential log entry |
+| A pipeline identity misused | An attacker with the pipeline's credential adds a key | A key not in the credential log is still NPI-DRF-07 |
+| Names in the tracker or the summary | Owners and initiators are listed for everyone who can read it | Events keep IDs; summaries carry rule IDs, object keys and fingerprints; a test searches them for every name in the fixtures |
+| A finding's text changes and it looks new | Every date in an issue reopens it | The fingerprint is the rule and object key only |
+| Another chapter's file accepted as written | A wrong tenant, a forged fingerprint or a misnamed rule enters the evidence | Each contract file is checked whole and refused with the reason |
+| A run edited, or swapped with another tenant's | The evidence describes a run that never happened | Every file checked against its manifest, each manifest against `run.json`; tenant, cloud and mode must match through the chain |
+| A replaced package | A bad day is quietly rewritten | The hash chain; `period` reports the break; a locked retention policy |
+| Unused treated as delete | A seasonal app is removed | NPI-DRF-04 is a Warn; nothing here writes; retirement is the decommission process |
+| The wrong cloud | A GCC High run reads `graph.microsoft.com`, or sends a beta call the cloud lacks | Required cloud, no default; the sign-in report isn't sent where Learn doesn't list it |
+
+## Checklist
+
+- [ ] The run reads the register, the ownership check and the audit, and `run.json` shows all three `OK`.
+- [ ] The reader app holds exactly the four Graph permissions and Reader, with a certificate or a federated credential, never a secret.
+- [ ] The baseline in use was approved by someone other than the person who runs the pipeline, and its SHA-256 is in the run's `run.json`.
+- [ ] Each audit window starts where the last one ended, and the newest package is from today.
+- [ ] `pipeline-identities.csv` is reviewed, and Chapter 04's pipeline writes the credential log.
+- [ ] Lab 2 recorded the activity names, the service principal credential event and the sign-in report, and the code matches what it found.
+- [ ] Every NPI-DRF-07 has an owner's explanation or an incident record.
+- [ ] The review records from Chapters 07 and 09 arrive every run, and NPI-REV-04 is zero.
+- [ ] Each package verifies with `sha256sum -c SHA256SUMS`, and the period shows no chain break and no coverage gap.
+- [ ] The evidence container has a locked time-based retention policy in production.
+- [ ] The vintage comparison ran on the latest AI use-case inventory vintage, and its findings went to their owners.
+- [ ] The period summary, with its Gate 7 table, is signed by the identity governance officer and reviewed by the ISSO.
+- [ ] The pinned Sentinel rule matches its manifest, and every upstream commit since the pin has been reviewed.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 09 — AI Agent Identities](09-ai-agent-identities.md) · [Workbook index](index.md)
+:::
+
+[^np10-secops]: Microsoft Learn, "Microsoft Entra security operations guide for applications," application credentials; application permissions; end-user consent, <https://learn.microsoft.com/entra/architecture/security-operations-applications> (accessed Oct 30, 2026).
+[^np10-activities]: Microsoft Learn, "Microsoft Entra audit log categories and activities," Core Directory, <https://learn.microsoft.com/entra/identity/monitoring-health/reference-audit-activities> (accessed Oct 30, 2026; source checked in MicrosoftDocs/entra-docs).
+[^np10-audit-list]: Microsoft Learn, "List directoryAudits," <https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np10-audit-resource]: Microsoft Learn, "directoryAudit resource type," properties, <https://learn.microsoft.com/graph/api/resources/directoryaudit?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np10-signin]: Microsoft Learn, "List servicePrincipalSignInActivities," <https://learn.microsoft.com/graph/api/reportroot-list-serviceprincipalsigninactivities?view=graph-rest-beta> (accessed Oct 30, 2026).
+[^np10-expiring]: Microsoft Learn, "Microsoft Entra recommendation: Renew expiring application credentials (preview)," description, <https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-renew-expiring-application-credential> (accessed Oct 30, 2026).
+[^np10-unused]: Microsoft Learn, "Microsoft Entra recommendation: Remove unused applications (preview)," description and action plan, <https://learn.microsoft.com/entra/identity/monitoring-health/recommendation-remove-unused-apps> (accessed Oct 30, 2026).
+[^np10-govern]: Microsoft Learn, "Governing Microsoft Entra service accounts," build a lifecycle process, <https://learn.microsoft.com/entra/architecture/govern-service-accounts> (accessed Oct 30, 2026; read for Chapter 02).
+[^np10-retention]: Microsoft Learn, "Microsoft Entra data retention," activity reports, <https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention> (accessed Oct 30, 2026).
+[^np10-agent-bp]: Microsoft Learn, "Best practices for Microsoft Entra Agent ID," govern the agent lifecycle, <https://learn.microsoft.com/entra/agent-id/best-practices-agent-id> (accessed Oct 30, 2026).
+[^np10-agent-stage]: Microsoft Learn, "What is Microsoft Entra Agent ID?" (preview notice), <https://learn.microsoft.com/entra/agent-id/identity-professional/microsoft-entra-agent-identities-for-ai-agents>, and "Microsoft Entra releases and announcements," April 2026, <https://learn.microsoft.com/entra/fundamentals/whats-new> (accessed Oct 30, 2026).
+[^np10-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026; read for Chapter 01).
+[^np10-oidc]: Microsoft Learn, "Use the Azure Login action with OpenID Connect," <https://learn.microsoft.com/azure/developer/github/connect-from-azure-openid-connect> (accessed Oct 30, 2026; read for the first workbook's Chapter 09, which pins it in `examples/third_party/azure-login-oidc-sample`).
+[^np10-immutable]: Microsoft Learn, "Store business-critical blob data with immutable storage in a write once, read many (WORM) state," <https://learn.microsoft.com/azure/storage/blobs/immutable-storage-overview> (accessed Oct 30, 2026; read for the first workbook's Chapter 09).
+[^np10-sample-src]: Microsoft, Azure/Azure-Sentinel, `Solutions/Microsoft Entra ID/Analytic Rules/NewAppOrServicePrincipalCredential.yaml` at commit `2985095e602f32c493e43998856ac9bcf1382afd` (October 30, 2026; the rule last changed January 8, 2024), MIT License, <https://github.com/Azure/Azure-Sentinel/blob/2985095e602f32c493e43998856ac9bcf1382afd/Solutions/Microsoft%20Entra%20ID/Analytic%20Rules/NewAppOrServicePrincipalCredential.yaml> (accessed Oct 30, 2026); pinned copy in `examples/third_party/sentinel-app-credential-rule`.
