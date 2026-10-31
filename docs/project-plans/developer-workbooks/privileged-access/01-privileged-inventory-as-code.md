@@ -71,7 +71,7 @@ Running the samples against the fixture tenant shows what they do and what they 
 | Lists every active assignment across all roles | — | Kept as the model, through `roleAssignmentScheduleInstances`, which returns the same active assignments with `assignmentType` and `endDateTime`[^pa01-rasi] |
 | Sees no eligible assignment: the fixture's eligible-only holders are missing | Under PIM almost every human holder is eligible, so an active-only list shrinks as the project succeeds and stops being an inventory | Reads `roleEligibilitySchedules` and reports permanent eligibility (PA-INV-06) |
 | One assignment call per role definition, plus one for the definitions | More than a hundred calls for one list, each a chance to be throttled | One paged call per collection |
-| Passes neither `-All` nor `-PageSize` | Whether each call returns every page isn't stated on the page (research gaps, row 1) | Follows `@odata.nextLink` and Resource Manager's `nextLink`, only on the cloud's own host, as Learn's paging guidance asks[^pa01-paging] |
+| Passes neither `-All` nor `-PageSize` | The cmdlet's reference lists `-All` as the switch that lists all pages, off by default,[^pa01-cmdlet] so each call can stop at the first page | Follows `@odata.nextLink` and Resource Manager's `nextLink`, only on the cloud's own host, as Learn's paging guidance asks[^pa01-paging] |
 | Returns a role-assignable group as one principal and never reads its members | The people who hold the role are invisible | Expands each group once, marks member rows `Via Group`, and never drops a member it can't name (PA-INV-09) |
 | Prints role definition and principal IDs; no names, no tier | A reviewer can't act on a GUID | Names from the definitions and the expanded principal, a tier from `config/tiers.json`, and Unclassified for anything else (PA-INV-05) |
 | Signs in with `Connect-MgGraph` and no environment or scopes | The worldwide cloud and whatever scopes the session already has | An explicit cloud, the call list in `config/calls.json` with each call's least-privileged permission, and a refusal of any call the task doesn't declare |
@@ -236,7 +236,7 @@ Use a test tenant in the worldwide or GCC cloud with a test Azure subscription, 
 | List roleEligibilitySchedules | `RoleEligibilitySchedule.Read.Directory`; `scheduleInfo.expiration` | L4 and L5 | v1.0 | [^pa01-res] |
 | List unifiedRoleAssignments (Learn's sample) | Active assignments; `RoleManagement.Read.Directory` | L4 and L5 | v1.0 | [^pa01-list-ra] |
 | Transitive role assignments (Learn's sample) | `/beta/roleManagement/directory/transitiveRoleAssignments` | — | Beta | [^pa01-view] [^pa01-versioning] |
-| List group members | `GroupMember.ReadBasic.All`; members of unreadable types return `id` and `@odata.type` only; `User.ReadBasic.All` for user members' basic properties | Not read for this chapter | v1.0 | [^pa01-members] [^pa01-limited] |
+| List group members | `GroupMember.ReadBasic.All`; members of unreadable types return `id` and `@odata.type` only; `User.ReadBasic.All` for user members' basic properties; known issue: v1.0 doesn't return service principal members | L4 and L5 | v1.0 | [^pa01-members] [^pa01-limited] [^pa01-members-known-issue] |
 | Privileged label | `isPrivileged` on role definitions, listed through the beta endpoint | — | Preview | [^pa01-privileged] |
 | Global Administrators | Fewer than five | — | — | [^pa01-best] |
 | Permanent active assignments | Zero, except the emergency access accounts | — | — | [^pa01-pim-plan] |
@@ -247,7 +247,9 @@ Use a test tenant in the worldwide or GCC cloud with a test Azure subscription, 
 | Elevate access | A Global Administrator who elevates gets User Access Administrator on all subscriptions | — | — | [^pa01-elevate] |
 | Licensing and clouds | Entra ID P1 and P2 for GCC hosted in Azure commercial; Entra ID Governance in GCC, GCC High and DoD | GCC High and DoD in Azure Government | — | [^pa01-ems-gcc] [^pa01-availability] |
 
-No two Learn pages read for this chapter disagree on a fact the code depends on. One question is open: whether `Get-MgRoleManagementDirectoryRoleAssignment` without `-All` returns every page. The cmdlet's reference page, read on October 30, 2026, lists `-PageSize` but the part read didn't show `-All` (research gaps, row 1). The example doesn't depend on the answer, because it reads through Graph and follows the next links itself.
+No two Learn pages read for this chapter disagree on a fact the code depends on. The paging question first raised on October 30, 2026 (research gaps, row 1) is narrower now: the full reference page for `Get-MgRoleManagementDirectoryRoleAssignment` lists both `-PageSize` and `-All`, and describes `-All` as listing all pages, with a default of off.[^pa01-cmdlet] Learn doesn't state in words what a call without `-All` returns; the switch's default is the evidence that the sample's loop can stop at the first page of each role. The example doesn't depend on the answer, because it reads through Graph and follows the next links itself.
+
+One Learn caveat touches the group expansion. The List group members page carries a known issue: on v1.0, the call doesn't return service principals that are members of the group, and Learn's workarounds are the beta endpoint or `/groups/{id}?$expand=members`.[^pa01-members] [^pa01-members-known-issue] The example reads members through v1.0, so a service principal placed in a role-assignable group isn't in the inventory and PA-INV-09 doesn't fire for it. Neither workaround fits the call list as it stands (beta isn't allowed, and Learn's query limits say `$expand` on directory-object relationships returns at most 20 objects with no next link[^pa01-members-known-issue]), so the gap is recorded rather than closed here (research gaps, row 91).
 
 ## Dangers
 
@@ -255,7 +257,7 @@ No two Learn pages read for this chapter disagree on a fact the code depends on.
 |---|---|---|
 | An active-only inventory | As holders become eligible, the list shrinks and Gate 0 passes on an empty table | Eligibility read and reported; a test pins that the sample misses it |
 | A group counted as one holder | The people behind `PRV-T0-GlobalAdmin` aren't reviewed or counted | Groups expanded, members marked `Via Group`, counted in PA-INV-04 |
-| A member dropped because its name wasn't readable | Someone holds a role and isn't in the inventory | Rows kept with the ID; PA-INV-09 says which permission is missing |
+| A member dropped because its name wasn't readable | Someone holds a role and isn't in the inventory | Rows kept with the ID; PA-INV-09 says which permission is missing. Not guarded: a service principal member, which v1.0 doesn't return at all (see Verified facts) |
 | A custom role treated as harmless | A custom role with privileged permissions sits outside every tier | Unclassified, PA-INV-05, never a default tier |
 | An exception list nobody owns | Standing privilege hides behind an "exception" | An exception without an owner doesn't count (PA-INV-01) |
 | Reading only some Azure scopes | A management group or subscription you didn't list isn't read | The manifest lists every request, so the reviewer sees the scopes read; discovering every scope is open (research gaps, row 4) |
@@ -286,7 +288,9 @@ No two Learn pages read for this chapter disagree on a fact the code depends on.
 [^pa01-rasi]: Microsoft Learn, "List roleAssignmentScheduleInstances," <https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignmentscheduleinstances?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^pa01-rasi-type]: Microsoft Learn, "unifiedRoleAssignmentScheduleInstance resource type," properties, <https://learn.microsoft.com/graph/api/resources/unifiedroleassignmentscheduleinstance?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^pa01-res]: Microsoft Learn, "List roleEligibilitySchedules," <https://learn.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0> (accessed Oct 30, 2026).
-[^pa01-members]: Microsoft Learn, "List group members," permissions, <https://learn.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa01-members]: Microsoft Learn, "List group members," permissions and the known issue for service principals in v1.0, <https://learn.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0> (accessed Oct 31, 2026).
+[^pa01-members-known-issue]: Microsoft Learn, "Known issues in Microsoft Graph," GET /groups/{id}/members doesn't return service principals in v1.0, and query parameter limitations for `$expand`, <https://learn.microsoft.com/graph/known-issues#get-groupsidmembers-doesnt-return-service-principals-in-v10> (accessed Oct 31, 2026).
+[^pa01-cmdlet]: Microsoft Learn, "Get-MgRoleManagementDirectoryRoleAssignment," syntax and the `-All` and `-PageSize` parameters, <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/get-mgrolemanagementdirectoryroleassignment> (accessed Oct 31, 2026).
 [^pa01-limited]: Microsoft Learn, "Overview of Microsoft Graph permissions," limited information returned for inaccessible member objects, <https://learn.microsoft.com/graph/permissions-overview> (accessed Oct 30, 2026).
 [^pa01-azure-pim]: Microsoft Learn, "Eligible and time-bound role assignments in Azure RBAC," how to list eligible and time-bound role assignments, <https://learn.microsoft.com/azure/role-based-access-control/pim-integration> (accessed Oct 30, 2026).
 [^pa01-azure-api]: Microsoft Learn, "API versions of Azure RBAC REST APIs," release notes for 2020-10-01, <https://learn.microsoft.com/rest/api/authorization/versions> (accessed Oct 30, 2026).
