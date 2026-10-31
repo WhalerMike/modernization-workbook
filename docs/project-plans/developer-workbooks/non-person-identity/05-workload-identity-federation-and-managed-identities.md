@@ -201,7 +201,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Findings: 7 Finding, 1 Warn
    Plan: 20 actions, 4 of them writes (2 CreateCredential, 1 CreateIdentity, 1 DisableLegacy); nothing sent
    Parallel runs: conv-01 ReadyToDisableLegacy; conv-02 AwaitingCutover; conv-03 AwaitingCutover; conv-04 AwaitingCutover; conv-05 AwaitingCutover; conv-06 AwaitingCutover; conv-07 ParallelRunning; conv-08 LegacyStillInUse
-   Plan SHA-256: cbfac196a59f7517304c5d13c49764f4b40e3ee4fff1b39d27063f36147a0006
+   Plan SHA-256: 5ec0a52c70dc49ac6904c6923ac9b292e3c312d38594b6210cc9178c9f188bf2
    ```
 
    The plan's hash is the same on every run with these inputs.
@@ -289,7 +289,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    ./Invoke-NpiFederation.ps1 -Cloud gcc -PlanPath out/federation/plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch05/tenant.json -OutputPath out/federation-x
    ```
 
-   `Apply: 4 Sent`, in the same order, the identity before its credential; then the refusal, `The plan's SHA-256 is cbfac196…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+   `Apply: 4 Sent`, in the same order, the identity before its credential; then the refusal, `The plan's SHA-256 is 5ec0a52c…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 9. **Run the tests:**
 
@@ -297,7 +297,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 512 tests passing across the example, `out/federation/manifest.json` listing 20 reads (5 application reads, 4 credential lists, 1 service principal, 4 sign-in pages, 2 identities, 2 role assignment reads, 2 AD reads) and 6 token exchange tests sent to the fake, and `out/federation-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done.
+**Expected result:** 513 tests passing across the example, `out/federation/manifest.json` listing 20 reads (5 application reads, 4 credential lists, 1 service principal, 4 sign-in pages, 2 identities, 2 role assignment reads, 2 AD reads) and 6 token exchange tests sent to the fake, and `out/federation-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 

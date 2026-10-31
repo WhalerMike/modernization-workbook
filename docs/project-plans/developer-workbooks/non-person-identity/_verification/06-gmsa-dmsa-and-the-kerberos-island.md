@@ -35,6 +35,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 21 | Dispositions, reviewed retrievers, end dates within D08 and G5, never delete, 28 days, 10 hours, seven-day plan, person-only writes | Rules; write path; Dangers | restated-as-design (labeled) | — |
 | 22 | Lab 1 outputs (17 passed; the cmdlets per task; 9 in scope, 6/1/2, 9 actions and 4 writes, island list 5/3, reconciliation counts, plan hash; findings table; plan table; island and reconciliation tables; dry run; apply; refusal; seven reads; 158 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 23 | Lab 2 behavior (delegated KDS read; retrievers on a default read; state 0 accepted by Start; completion after 28 days; Undo by hand) | Lab 2 | not run against a domain; rows 51 to 53 | — |
+| 24 | Lab 1 rerun after NpiCore's JSON writer switched to LF on every platform: the plan hash | Lab 1 | updated by running the commands as written; the counts and findings didn't change | local run, October 31, 2026 |
 
 ## Carry-forward ledger
 

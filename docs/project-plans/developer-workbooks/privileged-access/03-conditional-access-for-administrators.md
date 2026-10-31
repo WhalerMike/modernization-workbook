@@ -38,7 +38,7 @@ So this chapter builds the gate and leaves it unselected. Chapter 04 (planned) s
 
 ### Which cloud, for these calls
 
-Every call in this chapter is Microsoft Graph v1.0, apart from the protected actions API, which is beta. For Microsoft 365 GCC the host is the worldwide `graph.microsoft.com`; GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pa03-deployments] The methods for policies, contexts, strengths and templates list the global service, US Government L4 and US Government L5 in their national cloud tables.[^pa03-ca-list] [^pa03-ca-create] [^pa03-ca-update] [^pa03-ctx-list] [^pa03-strength-list] [^pa03-template-get] Conditional Access and PIM are available in Azure for US Government.[^pa03-availability] The code takes `gcc` as an explicit cloud name and has no default. In Azure Government, a policy that targets Azure management names a different application than the Windows Azure Service Management API that CA025 and CA027 use ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#government-cloud-notes)); a GCC High program changes those two files.
+Every call in this chapter is Microsoft Graph v1.0, apart from the protected actions API, which is beta. For Microsoft 365 GCC the host is the worldwide `graph.microsoft.com`; GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pa03-deployments] The methods for policies, contexts, strengths and templates list the global service, US Government L4 and US Government L5 in their national cloud tables.[^pa03-ca-list] [^pa03-ca-create] [^pa03-ca-update] [^pa03-ctx-list] [^pa03-ctx-upsert] [^pa03-strength-list] [^pa03-template-get] Conditional Access and PIM are available in Azure for US Government.[^pa03-availability] The code takes `gcc` as an explicit cloud name and has no default. In Azure Government, a policy that targets Azure management names a different application than the Windows Azure Service Management API that CA025 and CA027 use ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#government-cloud-notes)); a GCC High program changes those two files.
 
 ## Start with Microsoft's sample
 
@@ -145,7 +145,7 @@ Book 04 disagrees with itself here, and research gaps row 5 records it. Learn's 
 | Create or update an authentication context | `AuthenticationContext.ReadWrite.All`[^pa03-ctx-upsert] | Conditional Access Administrator or Security Administrator | `-Apply` |
 | Create an authentication strength | `Policy.ReadWrite.ConditionalAccess`[^pa03-strength-create] | Conditional Access Administrator or Security Administrator | `-Apply` |
 
-The read task needs three read permissions. `Policy.Read.All` alone isn't listed for authentication contexts, and is a higher-privileged choice for strengths, so the code declares the narrower two. `-Apply` adds `Policy.ReadWrite.ConditionalAccess` and `AuthenticationContext.ReadWrite.All`, and nothing else. Learn's create and update pages note a known issue that may require consent to more permissions;[^pa03-ca-create] Lab 2 records whether it does (research gaps, row 35). A test keeps each task's permissions equal to the union of its calls.
+The read task needs three read permissions. `Policy.Read.All` alone isn't listed for authentication contexts, and is a higher-privileged choice for strengths, so the code declares the narrower two. `-Apply` adds `Policy.ReadWrite.ConditionalAccess` and `AuthenticationContext.ReadWrite.All`, and nothing else. Learn's create and update pages, and the create-or-update page for authentication contexts, note a known issue that may require consent to more permissions;[^pa03-ca-create] [^pa03-ctx-upsert] Lab 2 records whether it does (research gaps, row 35). A test keeps each task's permissions equal to the union of its calls.
 
 ### The tests
 
@@ -267,7 +267,7 @@ Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID P1, neve
 | Create a policy | `POST /identity/conditionalAccess/policies`; `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`; known consent issue | L4 and L5 | v1.0 | [^pa03-ca-create] |
 | Update a policy | `PATCH .../policies/{id}`; same permissions; send only changed values | L4 and L5 | v1.0 | [^pa03-ca-update] |
 | List authentication contexts | `AuthenticationContext.Read.All` | L4 and L5 | v1.0 | [^pa03-ctx-list] |
-| Create or update an authentication context | `PATCH .../authenticationContextClassReferences/{id}` creates when missing; `AuthenticationContext.ReadWrite.All` | — | v1.0 | [^pa03-ctx-upsert] |
+| Create or update an authentication context | `PATCH .../authenticationContextClassReferences/{id}` creates when missing; `AuthenticationContext.ReadWrite.All`; known consent issue, as for policies | L4 and L5 | v1.0 | [^pa03-ctx-upsert] |
 | Authentication context IDs | `c1` to `c25` (Graph create, beta); up to 99, `c1` to `c99` (admin center) | L4 and L5 | — | [^pa03-ctx-create-beta] [^pa03-ctx-concept] |
 | List authentication strengths | `Policy.Read.AuthenticationMethod`; built-in and custom | L4 and L5 | v1.0 | [^pa03-strength-list] |
 | Create an authentication strength | `Policy.ReadWrite.ConditionalAccess` | L4 and L5 | v1.0 | [^pa03-strength-create] |
@@ -323,7 +323,7 @@ Where the sources differ, recorded so a later edit doesn't loosen the code:
 [^pa03-ca-create]: Microsoft Learn, "Create conditionalAccessPolicy," permissions and examples, <https://learn.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^pa03-ca-update]: Microsoft Learn, "Update conditionalaccesspolicy," permissions and request body, <https://learn.microsoft.com/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^pa03-ctx-list]: Microsoft Learn, "List authenticationContextClassReferences," <https://learn.microsoft.com/graph/api/conditionalaccessroot-list-authenticationcontextclassreferences?view=graph-rest-1.0> (accessed Oct 30, 2026).
-[^pa03-ctx-upsert]: Microsoft Learn, "Create or Update authenticationContextClassReference," <https://learn.microsoft.com/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^pa03-ctx-upsert]: Microsoft Learn, "Create or Update authenticationContextClassReference," <https://learn.microsoft.com/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0> (accessed Oct 31, 2026).
 [^pa03-ctx-create-beta]: Microsoft Learn, "Create authenticationContextClassReference" (beta), request body, <https://learn.microsoft.com/graph/api/conditionalaccessroot-post-authenticationcontextclassreferences?view=graph-rest-beta> (accessed Oct 30, 2026).
 [^pa03-ctx-concept]: Microsoft Learn, "Conditional Access: Target resources," authentication context, <https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-cloud-apps> (accessed Oct 30, 2026).
 [^pa03-strength-list]: Microsoft Learn, "List authenticationStrengthPolicies," <https://learn.microsoft.com/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0> (accessed Oct 30, 2026).

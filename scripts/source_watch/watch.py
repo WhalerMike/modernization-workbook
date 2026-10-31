@@ -60,6 +60,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import citations  # noqa: E402
 import feeds as feedlib  # noqa: E402
+import gitsource  # noqa: E402
 import report  # noqa: E402
 import review_dates  # noqa: E402
 import review_gate  # noqa: E402
@@ -174,7 +175,8 @@ class _Text(HTMLParser):
         a = {k.lower(): (v or "") for k, v in attrs}
         if tag == "meta":
             name = (a.get("name") or a.get("property") or "").lower()
-            if name in {"ms.date", "updated_at", "og:title", "article:modified_time", "dcterms.modified"}:
+            if name in {"ms.date", "updated_at", "og:title", "article:modified_time", "dcterms.modified",
+                        "original_content_git_url", "git_commit_id"}:
                 self.meta[name] = a.get("content", "").strip()
             return
         if tag == "title":
@@ -282,6 +284,9 @@ def html_fingerprint(body: bytes, content_type: str, min_chars: int) -> tuple[di
     for key in ("ms.date", "updated_at"):
         if parser.meta.get(key):
             fp[key.replace(".", "_")] = parser.meta[key]
+    # learn.microsoft.com: the source file and the commit the page was built at (see gitsource.py).
+    if parser.meta.get("original_content_git_url") and parser.meta.get("git_commit_id"):
+        fp["git_url"], fp["git_commit"] = parser.meta["original_content_git_url"], parser.meta["git_commit_id"]
     return fp, paras
 
 
@@ -338,7 +343,7 @@ def fingerprint(resp, min_chars: int) -> tuple[dict, list[str]]:
 
 # --------------------------------------------------------------- classification
 
-FINGERPRINT_KEYS = ("kind", "title", "paras", "text_hash", "ms_date", "updated_at", "sha256", "size")
+FINGERPRINT_KEYS = ("kind", "title", "paras", "text_hash", "ms_date", "updated_at", "git_url", "git_commit", "sha256", "size")
 
 
 def norm_url(url: str) -> str:
@@ -369,7 +374,13 @@ def compare(old: dict, new: dict, paras: list[str], cfg: dict) -> dict | None:
     added, removed = sum(added_c.values()), sum(removed_c.values())
     pct = (added + removed) / max(len(olds), len(news), 1) * 100
     date_moved = bool(old.get("ms_date") and new.get("ms_date") and old["ms_date"] != new["ms_date"])
-    if not date_moved and (added + removed == 0 or pct < cfg["threshold_pct"]):
+    # A Learn page whose source file has a new commit changed for real, so any changed
+    # paragraph counts, however few. A new commit with no visible change (metadata, a
+    # typo in a comment) isn't reported.
+    commit_moved = bool(old.get("git_commit") and new.get("git_commit") and old["git_commit"] != new["git_commit"])
+    if added + removed == 0 and not date_moved:
+        return None
+    if not date_moved and not commit_moved and pct < cfg["threshold_pct"]:
         return None
     excerpts, seen = [], set(added_c)
     for p in paras:
@@ -387,6 +398,8 @@ def compare(old: dict, new: dict, paras: list[str], cfg: dict) -> dict | None:
     }
     if date_moved:
         out["ms_date"] = [old["ms_date"], new["ms_date"]]
+    if commit_moved:
+        out["git_commit"] = [old["git_commit"], new["git_commit"]]
     return out
 
 
@@ -461,6 +474,43 @@ def classify(url: str, resp, prev: dict, cfg: dict, today: str) -> tuple[dict, d
     return entry, event
 
 
+def git_history(url: str, prev: dict, entry: dict, event: dict | None, get=gitsource.api_get) -> dict | None:
+    """Add what git says to a source's check (see gitsource.py); returns the event to report.
+
+    - A GitHub file or folder cited at a branch: its latest commit is looked up and kept
+      in the state. A new commit is reported as a change, with the commits and changed
+      lines; an unchanged commit means the cited file didn't change, so a "changed" from
+      the page's HTML (GitHub's own page furniture) is dropped.
+    - A changed Learn page whose source commit moved: the commits and changed lines from
+      the source's public copy, when it has one.
+    """
+    target = gitsource.github_branch_target(url)
+    if target:
+        if entry.get("status") != "ok":
+            return event
+        repo, ref, path = target
+        old = prev.get("git_commit", "")
+        sha = gitsource.latest_commit(repo, ref, path, get)
+        entry["git_commit"] = sha or old
+        if not sha or not old or (event and event["type"] == "moved"):
+            return event
+        if sha == old:
+            return None if event and event["type"] == "changed" else event
+        git = gitsource.changes(repo, path, old, sha, ref=ref, get=get)
+        what = "folder" if "/tree/" in url else "file"
+        magnitude = f"{len(git['commits'])}{'+' if git['more_commits'] else ''} new commit(s) to the cited {what}"
+        if not event or event["type"] != "changed":
+            event = {"type": "changed", "pct": 0.0}
+        event.update({"magnitude": magnitude, "git_commit": [old, sha], "git": git})
+        return event
+    if event and event["type"] == "changed" and event.get("git_commit"):
+        src = gitsource.learn_source(entry.get("git_url", ""))
+        if src:
+            old, new = event["git_commit"]
+            event["git"] = gitsource.changes(gitsource.public_repo(src[0]), src[1], old, new, get=get)
+    return event
+
+
 # ------------------------------------------------------------------- the run
 
 
@@ -533,6 +583,7 @@ def check_sources(cited: dict, state: dict, cfg: dict, args, today: str, log) ->
         for u, resp in pool.map(work, urls):
             prev = sources.get(u, {})
             entry, event = classify(u, resp, prev, cfg, today)
+            event = git_history(u, prev, entry, event)
             sources[u] = entry
             counts["checked"] += 1
             counts[entry.get("status", "error")] += 1

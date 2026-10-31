@@ -119,13 +119,16 @@ Invoke-NpiTask 'drift' 'drift' {
         chaptersReceived = @($contract.Chapters); reviewKindsReceived = @($contract.Reviews.Keys | Sort-Object); contractFilesRefused = @($contract.Refused).Count
         byRule = $byRule
     }
+    # Sorted by app ID: a hashtable's key order changes from run to run, and the manifest hashes this file.
+    $lastSignIn = [ordered]@{}
+    foreach ($k in ($signIn.ByAppId.Keys | Sort-Object)) { $lastSignIn[$k] = $signIn.ByAppId[$k] }
     $inputs = [ordered]@{ policy = (Get-NpiFileHash -Path $policy['_path']) }
     if ($PipelineIdentitiesPath) { $inputs['pipeline-identities.csv'] = Get-NpiFileHash -Path $PipelineIdentitiesPath }
     foreach ($k in $contract.Files.Keys) { $inputs["contract/$k"] = $contract.Files[$k] }
     $null = Export-NpiDriftTask -OutputPath $dir -Task drift -Cloud $Cloud -TenantId $TenantId -Mode $mode -AsOf $asOfUtc.ToString('yyyy-MM-ddTHH:mm:ssZ') -Evidence $reader.Evidence `
         -Extra ([ordered]@{ registerSha256 = $register.Sha256; baselineSha256 = $(if ($baseline) { $baseline['_sha256'] } else { $null }); inputs = $inputs }) -Files ([ordered]@{
             'events.json'             = $events
-            'signin-activity.json'    = [ordered]@{ status = $signIn.Status; lastSignIn = $signIn.ByAppId }
+            'signin-activity.json'    = [ordered]@{ status = $signIn.Status; lastSignIn = $lastSignIn }
             'findings.json'           = $findings
             'chapter-findings.json'   = @($contract.Findings)
             'review-cycle.json'       = @($review.Record)

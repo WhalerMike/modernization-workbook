@@ -320,7 +320,7 @@ In production, lock the evidence container's retention policy once Lab 2 passes;
 | Monitoring PIM | Alert on roles assigned outside PIM (high); always alert on PIM setting changes for Privileged Role Administrator and Global Administrator; baseline requires approval to activate | — | — | [^pa08-secops] |
 | Graph hosts | GCC `graph.microsoft.com`; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | — | — | [^pa08-deployments] |
 | Microsoft Entra ID Governance | Available in GCC, GCC High and DoD | Available | GA | [^pa08-availability] |
-| Sign-in from GitHub Actions | Azure Login with a federated credential; the job needs `id-token: write`; US Government audience `api://AzureADTokenExchangeUSGov` | Azure Government environment | Azure Login v3.1.0 | [^pa08-oidc] |
+| Sign-in from GitHub Actions | Azure Login with a federated credential; the job needs `id-token: write`; US Government audience `api://AzureADTokenExchangeUSGov` | Azure Government environment | Learn's samples use `azure/login@v2`; the sample workflow pins v3.1.0 by commit, as the first workbook's [Chapter 09](../attribute-driven-migration/09-drift-pipelines-and-evidence.md#verified-facts) does | [^pa08-oidc] |
 | Immutable evidence | Time-based retention; a locked policy can't be deleted or shortened; unlocked is for testing | — | GA | [^pa08-immutable] |
 
 Two places where Learn's pages differ, recorded so a later edit doesn't loosen the code:
@@ -373,5 +373,5 @@ The roles Learn names for reading differ by surface, without contradicting each 
 [^pa08-secops]: Microsoft Learn, "Microsoft Entra security operations for Privileged Identity Management," baselines, PIM alerts and Microsoft Entra roles assignment, <https://learn.microsoft.com/entra/architecture/security-operations-privileged-identity-management> (accessed Oct 30, 2026).
 [^pa08-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026; read for Chapter 01).
 [^pa08-availability]: Microsoft Learn, "Microsoft Entra feature availability," other Microsoft Entra products, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026; read for Chapter 01).
-[^pa08-oidc]: Microsoft Learn, "Use the Azure Login action with OpenID Connect," <https://learn.microsoft.com/azure/developer/github/connect-from-azure-openid-connect> (accessed Oct 30, 2026; read for the first workbook's Chapter 09, which pins it in `examples/third_party/azure-login-oidc-sample`).
+[^pa08-oidc]: Microsoft Learn, "Use the Azure Login action with OpenID Connect," <https://learn.microsoft.com/azure/developer/github/connect-from-azure-openid-connect> (accessed Oct 31, 2026; first read for the first workbook's Chapter 09, which pins it in `examples/third_party/azure-login-oidc-sample`).
 [^pa08-immutable]: Microsoft Learn, "Store business-critical blob data with immutable storage in a write once, read many (WORM) state," <https://learn.microsoft.com/azure/storage/blobs/immutable-storage-overview> (accessed Oct 30, 2026; read for the first workbook's Chapter 09).

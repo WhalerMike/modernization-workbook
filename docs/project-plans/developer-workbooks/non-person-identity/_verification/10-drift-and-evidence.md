@@ -38,6 +38,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 22 | The baseline, fingerprint, inside-the-pipeline, review-cycle, contract and package designs | The code; Dangers | restated-as-design (labeled) | — |
 | 23 | Lab 1 outputs (11 passed; permissions; both runs' lines and hashes; the drift table; the vintage line; both package hashes; 21 files; `0`; the period line and tables; the refusals; 148 and 136 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 24 | Lab 2 behavior (activity names, the service principal credential event, `KeyDescription` format, the beta report in GCC) | Lab 2 | not run against a tenant; rows 91 to 93 | — |
+| 25 | Lab 1 rerun after NpiCore's JSON writer switched to LF on every platform: both candidate hashes and both evidence package hashes; the kept runs in `examples/drift-pipeline/tests/fixtures/npi-runs` regenerated with LF | Lab 1 | updated by running the commands as written; the counts and findings didn't change | local run, October 31, 2026 |
 
 ## Carry-forward ledger
 

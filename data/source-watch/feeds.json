@@ -358,6 +358,17 @@
       "source": "Releases of https://github.com/cisagov/ScubaGear (CISA's M365 assessment tool; cisa.gov itself blocks automated readers, see README)."
     },
     {
+      "id": "scubagoggles-releases",
+      "name": "CISA ScubaGoggles releases",
+      "type": "github_releases",
+      "repo": "cisagov/ScubaGoggles",
+      "books": [
+        "B11",
+        "B12"
+      ],
+      "source": "Releases of https://github.com/cisagov/ScubaGoggles (CISA's Google Workspace assessment tool, ScubaGear's counterpart)."
+    },
+    {
       "id": "csv2scim-commits",
       "name": "Microsoft CSV2SCIM sample (AzureAD/entra-id-inbound-provisioning commits)",
       "type": "github_commits",

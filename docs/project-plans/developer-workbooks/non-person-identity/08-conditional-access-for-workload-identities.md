@@ -264,7 +264,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Ring2: not ready
      Deploy Bot       WouldBlock   sign-ins 2; outside the egress ranges: 203.0.113.7
      HR Connector     NoSignIns    sign-ins 0
-   Summary SHA-256: 3eb3656e9761e6f258b568858610f5036eefe5784f2b31458dde1e6300840f3a
+   Summary SHA-256: d7767949b75e1e5d3f6a6bef6501eb7de8e98ddd8a9f22e1eb82698969d8752e
    ```
 
    The fixture's interactive user sign-in and its managed identity sign-in never come back: the filter asks for service principals only. Partner CRM's sign-in is counted as another service principal's, not judged. The hash is the same on every run with these inputs.
@@ -316,7 +316,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
     Invoke-Pester -Path tests
     ```
 
-**Expected result:** 512 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+**Expected result:** 513 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 

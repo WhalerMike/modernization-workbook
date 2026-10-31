@@ -195,7 +195,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Plan: 9 actions, 4 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 1 SetRetrievers); nothing sent
    Island list: 5 accounts, 3 ready for P4.6; hand-off ready: False
    Reconciliation (D11 KerberosIsland): 1 HandedOff, 1 MovesToWorkloadIdentity, 3 OnIslandList, 1 Unreconciled
-   Plan SHA-256: 092c28742af95012c0a46dcc8b6e95cecd7bfb6c8096b74ec687246a78438ca0
+   Plan SHA-256: 5e1f7c33491948026603746e933fafed0572fb77532ff1477ad452397c353746
    ```
 
    The plan's hash is the same on every run with these inputs.
@@ -292,7 +292,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
    ```
 
-   `Apply: 4 Sent`; `results.json` tells the operator what comes next (install each gMSA on its hosts and record `HostChangedOn`; the old `svc-hrsync` is disabled and kept). Then the refusal: `The plan's SHA-256 is 092c2874…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+   `Apply: 4 Sent`; `results.json` tells the operator what comes next (install each gMSA on its hosts and record `HostChangedOn`; the old `svc-hrsync` is disabled and kept). Then the refusal: `The plan's SHA-256 is 5e1f7c33…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 9. **Run the tests:**
 
@@ -300,7 +300,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 512 tests passing across the example, `out/kerberos/manifest.json` listing seven AD reads and the SHA-256 of the register and each input, and `out/kerberos-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done.
+**Expected result:** 513 tests passing across the example, `out/kerberos/manifest.json` listing seven AD reads and the SHA-256 of the register and each input, and `out/kerberos-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done.
 
 ## Lab 2: test domain
 
