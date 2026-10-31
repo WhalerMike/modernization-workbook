@@ -1,0 +1,34 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's page 'Configure restrictions on how applications can be configured', as its source in MicrosoftDocs/entra-docs: the procedure (admin center and Microsoft Graph) for enabling app management policy restrictions tenant-wide, granting an app or a caller an exception, applying a restriction to one app and fixing the policy state for the admin center. The Graph requests exist only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn procedure: Configure restrictions on how applications can be configured (app management policies)",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/identity/enterprise-apps/configure-app-management-policies.md",
+  "commit": "7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "configure-app-management-policies.md 2026-06-15 (commit 7e7f75a19b7980129c9e082f14d3885ef7d15f4a)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: MIT (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "configure-app-management-policies.md": "docs/identity/enterprise-apps/configure-app-management-policies.md"
+  },
+  "not_copied": [
+    "The page's screenshots (media/configure-app-management-policies/*) and includes; everything else in MicrosoftDocs/entra-docs."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "configure-app-management-policies.md": {
+      "bytes": 27940,
+      "sha256": "af58dafc29ed480126516d447bf6400782be9ab2ad27d2269596dd92ce4e6edd"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "_comment": "Design guidance: the program's app management policy as reviewed data (Chapter 04; Book 04, Chapter 05, 'Enforcing the order with app management policies'). Microsoft's recommended settings: new client secrets and symmetric keys blocked, certificates capped at 180 days, for apps created after the effective date; the same restrictions on application and service principal objects, so the admin center can still edit them. Exceptions are app management policies with a record and an end date. The lock applies to every app registration in Chapter 01's register. Change this file only in a reviewed pull request; each run records its SHA-256.",
+  "effectiveDate": "2026-11-15T00:00:00Z",
+  "tenantDefault": {
+    "isEnabled": true,
+    "scopes": ["applicationRestrictions", "servicePrincipalRestrictions"],
+    "restrictions": [
+      { "collection": "passwordCredentials", "restrictionType": "passwordAddition", "state": "enabled", "maxLifetime": null },
+      { "collection": "passwordCredentials", "restrictionType": "symmetricKeyAddition", "state": "enabled", "maxLifetime": null },
+      { "collection": "keyCredentials", "restrictionType": "asymmetricKeyLifetime", "state": "enabled", "maxLifetime": "P180D" }
+    ]
+  },
+  "exceptions": [
+    {
+      "record": "EXC-NPI-0001",
+      "application": "0a000000-0000-4000-8000-000000000006",
+      "name": "Mail Automation",
+      "endsOn": "2027-01-31",
+      "displayName": "NPI exception EXC-NPI-0001: Mail Automation",
+      "description": "Mail Automation can't use a certificate until its vendor's next release. Secrets stay allowed, capped at 30 days, until 2027-01-31 (record EXC-NPI-0001).",
+      "restrictions": {
+        "passwordCredentials": [
+          { "restrictionType": "passwordAddition", "state": "disabled", "maxLifetime": null, "restrictForAppsCreatedAfterDateTime": "2015-01-01T00:00:00Z" },
+          { "restrictionType": "passwordLifetime", "state": "enabled", "maxLifetime": "P30D", "restrictForAppsCreatedAfterDateTime": "2015-01-01T00:00:00Z" }
+        ],
+        "keyCredentials": []
+      }
+    }
+  ],
+  "lock": { "isEnabled": true, "allProperties": true }
+}

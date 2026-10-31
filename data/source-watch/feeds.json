@@ -631,6 +631,83 @@
         "DW"
       ],
       "source": "Commits to the Learn source page that holds the HTTP samples for finding ownerless service principals, assigning owners and setting serviceManagementReference, which examples/third_party/graph-applications-tutorial-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 02). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-tenant-app-policy-update-commits",
+      "name": "Learn's Update tenantAppManagementPolicy (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/tenantappmanagementpolicy-update.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the v1.0 HTTP sample for the tenant default app management policy, which examples/third_party/graph-app-credential-policy-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-app-policy-create-commits",
+      "name": "Learn's Create appManagementPolicy (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/appmanagementpolicy-post.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the v1.0 HTTP sample for creating an app management policy, which examples/third_party/graph-app-credential-policy-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-app-policy-assign-commits",
+      "name": "Learn's Assign appliesTo for app management policies (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/appmanagementpolicy-post-appliesto.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the v1.0 HTTP samples for assigning an app management policy to an application or service principal, which examples/third_party/graph-app-credential-policy-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-add-certificate-howto-commits",
+      "name": "Learn's Add a certificate to an app by using Microsoft Graph (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "concepts/applications-how-to-add-certificate.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the HTTP samples for adding a certificate to an application's keyCredentials, which examples/third_party/graph-app-credential-policy-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-app-management-policies-page-commits",
+      "name": "Learn's Configure restrictions on how applications can be configured (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/enterprise-apps/configure-app-management-policies.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn procedure for app management policies (tenant-wide restrictions, exceptions, the admin center's expected state), which examples/third_party/entra-app-management-policies-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "az-keyvault-add-certificate-help-commits",
+      "name": "Az.KeyVault Add-AzKeyVaultCertificate help (Azure/azure-powershell commits)",
+      "type": "github_commits",
+      "repo": "Azure/azure-powershell",
+      "path": "src/KeyVault/KeyVault/help/Add-AzKeyVaultCertificate.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the help page Learn's Add-AzKeyVaultCertificate reference is generated from, whose example 1 examples/third_party/az-keyvault-certificate-help pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "az-keyvault-set-certificate-policy-help-commits",
+      "name": "Az.KeyVault Set-AzKeyVaultCertificatePolicy help (Azure/azure-powershell commits)",
+      "type": "github_commits",
+      "repo": "Azure/azure-powershell",
+      "path": "src/KeyVault/KeyVault/help/Set-AzKeyVaultCertificatePolicy.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the help page Learn's Set-AzKeyVaultCertificatePolicy reference is generated from, whose example 1 examples/third_party/az-keyvault-certificate-help pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
     }
   ]
 }

@@ -1,0 +1,4 @@
+AppObjectId,Application,Vault,CertificateName
+0a000000-0000-4000-8000-000000000002,HR Connector,kv-npi-contoso,hr-connector
+0a000000-0000-4000-8000-000000000005,Vendor Portal,kv-npi-contoso,vendor-portal
+0a000000-0000-4000-8000-000000000007,Deploy Bot,kv-npi-contoso,deploy-bot
