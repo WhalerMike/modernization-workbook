@@ -1,0 +1,8 @@
+AssetName,AssetType,OwnerEmployeeId,OwnerUserPrincipalName
+LT-0001,Device,MP0042137,
+LT-0002,Device,,field.one@contoso.example
+SRV-FIN01,Server,MP0040001,
+SRV-SHARED,Server,MP0040001,
+SRV-SHARED,Server,MP0050001,
+LT-0003,Device,MP0049999,
+LT-0004,Device,MP0099999,

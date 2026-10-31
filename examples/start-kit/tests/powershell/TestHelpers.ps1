@@ -20,7 +20,7 @@ $stubBody = {
     [CmdletBinding()]
     param($Filter, $LDAPFilter, $Identity, $Server, $Properties, $SearchBase, $SearchScope, $Domain, $DomainName,
         [switch]$All, $Guid, $ReportType, $ComputerName, $ZoneName, [switch]$Recursive, $Target, $ResultSetSize,
-        [switch]$IncludeDeletedObjects, $ScopeId, [switch]$Discover, $Type, $Name)
+        [switch]$IncludeDeletedObjects, $ScopeId, [switch]$Discover, $Type, $Name, $Service)
     throw "Stub $($MyInvocation.MyCommand.Name) was called without a mock."
 }
 foreach ($n in $stubNames) {
@@ -38,6 +38,8 @@ $global:FMPNpsFix = Read-KitFixture 'nps.json'
 $global:FMPNpsConfigPath = Join-Path $script:FixturePath 'nps-ias.xml'
 $global:FMPGpoPath = Join-Path $script:FixturePath 'gpo'
 $global:FMPTxPath = Join-Path $script:FixturePath 'transactions'
+$global:FMPAttrFix = Read-KitFixture 'attribute-survey.json'
+$global:FMPAttrPath = Join-Path $script:FixturePath 'attributes'
 $global:FMPAsOf = [datetime]'2026-10-27T00:00:00'
 
 function global:Get-FixDomain($Server) {
@@ -224,5 +226,42 @@ function global:Register-KitSqlMocks {
             'sys\.servers' { 'LinkedServers'; break }
         }
         @($target.Value.$name)
+    }
+}
+
+function global:Select-FixUser($User, [string[]]$Properties) {
+    # What Get-ADUser returns: its default properties plus those asked for (null when unset).
+    $o = [ordered]@{}
+    foreach ($n in 'DistinguishedName', 'Enabled', 'Name', 'ObjectClass', 'ObjectGUID', 'SamAccountName', 'SID', 'UserPrincipalName') { $o[$n] = $User.$n }
+    foreach ($n in @($Properties)) {
+        $p = $User.PSObject.Properties[$n]
+        $o[$n] = if ($p) { $p.Value } else { $null }
+    }
+    [pscustomobject]$o
+}
+
+function global:Register-KitSurveyMocks {
+    # The attribute survey's forest: two trees, one Global Catalog. On port 3268 a read returns
+    # only the attributes the fixture schema puts in the partial attribute set, and a subtree
+    # search returns child domains too, as a real Global Catalog does.
+    $m = @{ ModuleName = 'FMPAttributeSurvey' }
+    Mock @m Get-ADForest { $global:FMPAttrFix.forest }
+    Mock @m Get-ADRootDSE { $global:FMPAttrFix.rootDse }
+    Mock @m Get-ADDomainController { [pscustomobject]@{ HostName = @($global:FMPAttrFix.globalCatalog) } }
+    Mock @m Get-ADObject {
+        $names = @([regex]::Matches("$LDAPFilter", 'lDAPDisplayName=([^)]+)') | ForEach-Object { $_.Groups[1].Value })
+        @($global:FMPAttrFix.schema | Where-Object { $names -contains $_.lDAPDisplayName })
+    }
+    Mock @m Get-ADUser {
+        $all = @($global:FMPAttrFix.users.PSObject.Properties | ForEach-Object { $_.Value } | ForEach-Object { $_ })
+        if ("$Server" -match ':3268$') {
+            $inGc = @($global:FMPAttrFix.schema | Where-Object isMemberOfPartialAttributeSet | ForEach-Object lDAPDisplayName)
+            $props = @($Properties | Where-Object { $inGc -contains $_ })
+            return @($all | Where-Object { $_.DistinguishedName -like "*,$SearchBase" } | ForEach-Object { Select-FixUser $_ $props })
+        }
+        if (@($global:FMPAttrFix.dcFailures) -contains "$Server") { throw 'The server is not operational.' }
+        $p = $global:FMPAttrFix.users.PSObject.Properties["$Server"]
+        if (-not $p) { throw "Unable to contact the server $Server." }
+        @($p.Value | ForEach-Object { Select-FixUser $_ $Properties })
     }
 }
