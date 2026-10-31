@@ -57,3 +57,9 @@ Verified: 2026-10-20
 | same — Control mapping | "NIST SP 800-53 Rev. 5 control mapping" (expanded table) | — |
 | same — footer | Not carried | Provenance boilerplate |
 | `docs/learning/README.md` | Not carried (see Chapter 03 ledger) | Navigation page only |
+| H1 | HISG is vendor-neutral and not prescriptive; sets no requirements | CISA Hybrid Identity Solutions Guidance | verified (added Oct 31, 2026) | aA-hisg, HISG §1.3 <https://www.cisa.gov/resources-tools/services/hybrid-identity-solutions-guidance-hisg> |
+| H2 | HISG recommendation-to-row mapping | Same, first table | restated-as-design | mapping is the program's; each recommendation verified against HISG §1.4 and §3.1–3.6 |
+| H3 | ED 21-01 closed Jan 8, 2026, purpose met; ED 21-02 closed, actions to BOD 22-01 | Same, second table | verified (added) | aA-ed2101, aA-ed2102 |
+| H4 | M-22-09 not rescinded, FY 2024 deadlines passed, treated as in force | Same, second table | verified (added) | consistent with Book 11 Ch03 (c03-omb-index) |
+| H5 | ZTMM June 2021 draft superseded by v2.0 April 2023; HISG's draft link returned HTTP 404 on Oct 31, 2026 | Same, second table | verified (added) | aA-ztmm; curl check Oct 31, 2026 |
+| H6 | NIST SP 800-207, August 2020, current | Same, second table | verified (added) | aA-sp800207; consistent with Book 11 citations |

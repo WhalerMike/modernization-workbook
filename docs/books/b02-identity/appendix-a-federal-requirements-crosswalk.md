@@ -162,6 +162,36 @@ Two of these interact with Active Directory directly. MS.AAD.7.3v1, cloud-only p
 
 OMB M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, sets the identity goals that the phishing-resistant rows serve: enterprise-managed identities for agency staff, protected by phishing-resistant multifactor authentication.[^aA-m2209][^aA-ms-m2209]
 
+### CISA Hybrid Identity Solutions Guidance
+
+CISA's Hybrid Identity Solutions Guidance (HISG), written under the SCuBA project, is the federal guidance closest to this book's subject: how on-premises and cloud identity services work together, and what each sign-in architecture costs. It's vendor-neutral and, in its own words, not prescriptive or a source of requirements, so it adds no mandatory rows. It's guidance the crosswalk rows already serve.[^aA-hisg]
+
+| HISG recommendation | Crosswalk row or SCuBA policy | Where the workbook builds it |
+|---|---|---|
+| Migrate to cloud-based, passwordless authentication with PKI and PIV or CAC, or with FIDO2 and WebAuthn | All user sign-in activity uses phishing-resistant authentication methods (MS.AAD.3.1v1) | [Chapter 10](10-migrating-and-governing.md#the-phishing-resistant-authentication-roadmap), phishing-resistant roadmap |
+| Move from on-premises federation to cloud primary authentication; treat federation, pass-through authentication and password sync as transitional | Use cloud authentication | [Chapter 09](09-building-the-entra-target.md#choosing-the-sign-in-method), sign-in method; [Chapter 10](10-migrating-and-governing.md#authentication-modernization) |
+| Check that password sync doesn't fall back to a weaker hash | — | [Chapter 09](09-building-the-entra-target.md#choosing-the-sign-in-method): PHS runs the AD hash through PBKDF2 with HMAC-SHA256 before it leaves the server[^aA-phs] |
+| Keep privileged accounts cloud-only, not trusting on-premises federation | Privileged accounts are cloud native identities (MS.AAD.7.3v1) | [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md); [Chapter 01](01-why-identity-matters.md#what-a-lift-and-shift-puts-at-risk) |
+| Use phishing-resistant MFA | Privileged accounts have phishing-resistant methods registered (MS.AAD.3.6v1) | [Chapter 10](10-migrating-and-governing.md#authentication-methods-policy) |
+| Support passkeys in public-facing applications; weigh synced passkeys case by case; no synced authenticators for AAL3 | — | [Chapter 10](10-migrating-and-governing.md#the-phishing-resistant-authentication-roadmap), passkey profiles |
+| Prefer SSO over open standards such as OpenID Connect and OAuth 2.0; reach applications that can't modernize through a proxy | Block legacy authentication policy is configured (MS.AAD.1.1v1) | [Chapter 10](10-migrating-and-governing.md#passwords-that-remain-sso-first-then-a-password-manager); [Book 04](../b04-access/index.md) |
+| Where passwords remain, prefer SSO, then an enterprise password manager | — | [Chapter 10](10-migrating-and-governing.md#passwords-that-remain-sso-first-then-a-password-manager) |
+| Make access decisions on context per request | Restrict high risk sign-ins (MS.AAD.2.3v1); All sign-in activity comes from managed devices | [Chapter 09](09-building-the-entra-target.md#the-policy-set), the Conditional Access policy set |
+
+: HISG recommendations and where the workbook meets them {.striped .hover}
+
+The HISG grounds its case in five sources. Their status on October 31, 2026:
+
+| HISG source | Status | Where the workbook uses it |
+|---|---|---|
+| CISA Emergency Directive 21-01, SolarWinds Orion | Closed January 8, 2026; CISA judged its purpose met[^aA-ed2101] | [Chapter 01](01-why-identity-matters.md#what-a-lift-and-shift-puts-at-risk); [Book 14, Chapter 02](../b14-compliance/02-the-federal-clock.md) |
+| CISA Emergency Directive 21-02, on-premises Exchange | Closed January 8, 2026; remaining actions moved to BOD 22-01[^aA-ed2102] | [Chapter 01](01-why-identity-matters.md#what-a-lift-and-shift-puts-at-risk); [Book 14, Chapter 02](../b14-compliance/02-the-federal-clock.md) |
+| OMB M-22-09 | Not rescinded; its FY 2024 deadlines have passed, and the program treats it as in force | This appendix; [Book 11, Chapter 03](../b11-zero-trust/03-what-the-mandates-require.md) |
+| CISA Zero Trust Maturity Model, June 2021 draft | Superseded by Version 2.0, April 2023; the HISG's link to the draft no longer resolves[^aA-ztmm] | [Book 11](../b11-zero-trust/index.md) cites Version 2.0 |
+| NIST SP 800-207, *Zero Trust Architecture*, August 2020 | Current[^aA-sp800207] | [Book 11](../b11-zero-trust/index.md) |
+
+: The HISG's background sources today {.striped .hover}
+
 ## The identity modernization specification
 
 The program's identity modernization specification is the cross-adapter contract for modernizing identity without building any vendor's quirks into the authoritative source. It's the program's design, not an external requirement, and it's what the crosswalk's evidence rests on.
@@ -230,6 +260,11 @@ The specification supports account management, access enforcement, and continuou
 [^aA-zt-identities]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities> (accessed Oct 20, 2026).
 [^aA-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, <https://bidenwhitehouse.archives.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Oct 20, 2026).
 [^aA-ms-m2209]: Microsoft Learn, "Meet multifactor authentication requirements of memorandum 22-09," <https://learn.microsoft.com/entra/standards/memo-22-09-multi-factor-authentication> (accessed Oct 20, 2026).
+[^aA-hisg]: Cybersecurity and Infrastructure Security Agency, *Hybrid Identity Solutions Guidance*, §1.3 (vendor-neutral; not prescriptive and sets no requirements), §1.4 (primary recommendation), §3.1–3.6, <https://www.cisa.gov/resources-tools/services/hybrid-identity-solutions-guidance-hisg> (accessed Oct 31, 2026).
+[^aA-ed2101]: Cybersecurity and Infrastructure Security Agency, Emergency Directive 21-01, "Mitigate SolarWinds Orion Code Compromise" (closed January 8, 2026), <https://www.cisa.gov/emergency-directive-21-01> (accessed Oct 31, 2026).
+[^aA-ed2102]: Cybersecurity and Infrastructure Security Agency, Emergency Directive 21-02, "Mitigate Microsoft Exchange On-Premises Product Vulnerabilities" (closed January 8, 2026; required actions transitioned to BOD 22-01), <https://www.cisa.gov/emergency-directive-21-02> (accessed Oct 31, 2026).
+[^aA-ztmm]: Cybersecurity and Infrastructure Security Agency, *Zero Trust Maturity Model*, Version 2.0, April 2023, <https://www.cisa.gov/sites/default/files/2023-04/CISA_Zero_Trust_Maturity_Model_Version_2_508c.pdf> (accessed Oct 31, 2026). The HISG cites the June 2021 draft at <https://www.cisa.gov/sites/default/files/publications/CISA%20Zero%20Trust%20Maturity%20Model_Draft.pdf>, which returned HTTP 404 on October 31, 2026.
+[^aA-sp800207]: National Institute of Standards and Technology, SP 800-207, *Zero Trust Architecture*, August 2020, <https://doi.org/10.6028/NIST.SP.800-207> (accessed Oct 31, 2026).
 [^aA-bod2501]: Cybersecurity and Infrastructure Security Agency, BOD 25-01, *Implementing Secure Practices for Cloud Services*, December 17, 2024, <https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services> (accessed Oct 20, 2026).
 [^aA-sync-scheduler]: Microsoft Learn, "Microsoft Entra Connect Sync: Scheduler," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-feature-scheduler> (accessed Oct 20, 2026).
 [^aA-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020; Release 5.2.0, August 27, 2025), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026).

@@ -244,6 +244,8 @@ Phase 1 runs first, so administrators are protected before anyone else. Phases 2
 
 All four methods meet the built-in phishing-resistant MFA authentication strength (passkeys in Authenticator count as FIDO2 passkeys).[^c10-auth-strengths] Passkey profiles let you set different rules for different groups; for example, device-bound passkeys with attestation enforced for administrators, and synced passkeys allowed for lower-risk populations.[^c10-passkeys]
 
+That split follows CISA's Hybrid Identity Solutions Guidance. CISA recommends that agencies support passkeys, synced or device-bound, in public-facing applications, and weigh synced passkeys for employees and contractors case by case: syncing puts the key material at more risk, but it also survives a lost device and can replace a password or another phishable method. CISA advises against synced authenticators for Authenticator Assurance Level 3 (AAL3) scenarios, which it notes require resident keys.[^c10-hisg] So the program's privileged population, and any system the agency rates at AAL3, uses device-bound passkeys or PIV, never synced passkeys.
+
 ### Authentication methods policy
 
 The Authentication methods policy decides which methods are available to which users. The program's configuration:
@@ -267,6 +269,16 @@ The remediation sequence:
 2. **Remediate** applications and devices onto modern authentication (OAuth 2.0), the Microsoft Graph mail APIs, or a supported relay.
 3. **Block** with policy CA001 from [Chapter 09](09-building-the-entra-target.md#the-policy-set).
 4. **Monitor** for 30 days after enforcement and confirm zero successful legacy sign-ins.
+
+### Passwords that remain: SSO first, then a password manager
+
+Some applications won't reach single sign-on or passwordless sign-in soon: unmanaged vendor portals, appliances, applications with a local form login. CISA's guidance puts SSO and passwordless first and treats password managers as the bridge for what's left, with SSO preferred where both would work.[^c10-hisg] In order:
+
+1. **Federate the application** through Entra ID with SAML or OpenID Connect where it supports either.
+2. **Use Entra ID's password-based SSO** for a web application with an HTML sign-in form. Entra ID stores the credentials encrypted in the directory and fills them in through the My Apps Secure Sign-in Extension. The user authenticates to Entra ID first, so the application gets Entra ID's pre-authentication, and an on-premises application can be published the same way through Application Proxy.[^c10-pwd-sso] Shared accounts work the same way: the group gets the application, Entra ID holds the password, and no one needs to know it.[^c10-shared-accounts]
+3. **Use an enterprise password manager** for the rest. CISA's selection points are end-to-end encryption, a zero-knowledge design in which the vendor can't read a vault, MFA on the vault (phishing-resistant, by this program's standard), role-based permissions, policy enforcement and SSO integration, and, for any product not hosted on premises, data stored on servers in the United States.[^c10-hisg] A vault is a single point of failure, both for a breach and for an outage, so pick a product with encryption at rest and a cached vault on the device.
+
+Treat every password in a vault or in password-based SSO as debt. Each one is a candidate for federation the next time its application is upgraded or re-procured.
 
 ::: {.callout-warning}
 ## Illustrative code
@@ -634,6 +646,9 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c10-authenticator-passkey]: Microsoft Learn, "Enable passkeys in Authenticator," <https://learn.microsoft.com/entra/identity/authentication/how-to-enable-authenticator-passkey> (accessed Oct 20, 2026).
 [^c10-auth-strengths]: Microsoft Learn, "Conditional Access authentication strengths," <https://learn.microsoft.com/entra/identity/authentication/concept-authentication-strengths> (accessed Oct 20, 2026).
 [^c10-passkeys]: Microsoft Learn, "How to enable passkeys (FIDO2) in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/authentication/how-to-authentication-passkeys-fido2> (accessed Oct 20, 2026).
+[^c10-hisg]: Cybersecurity and Infrastructure Security Agency, *Hybrid Identity Solutions Guidance*, §3.4 (passkeys: support in public-facing applications; synced authenticators weighed case by case and not used for AAL3) and §3.5 (password managers), <https://www.cisa.gov/resources-tools/services/hybrid-identity-solutions-guidance-hisg> (accessed Oct 31, 2026).
+[^c10-pwd-sso]: Microsoft Learn, "Password-based authentication with Microsoft Entra ID," <https://learn.microsoft.com/entra/architecture/auth-password-based-sso>, and "Add password-based single sign-on to an application," <https://learn.microsoft.com/entra/identity/enterprise-apps/configure-password-single-sign-on-non-gallery-applications> (accessed Oct 31, 2026).
+[^c10-shared-accounts]: Microsoft Learn, "Share accounts with Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/users-sharing-accounts> (accessed Oct 31, 2026).
 [^c10-number-match]: Microsoft Learn, "How number matching works in MFA push notifications for Authenticator," <https://learn.microsoft.com/entra/identity/authentication/how-to-mfa-number-match> (accessed Oct 20, 2026).
 [^c10-tap]: Microsoft Learn, "Configure Temporary Access Pass to register passwordless authentication methods," <https://learn.microsoft.com/entra/identity/authentication/howto-authentication-temporary-access-pass> (accessed Oct 20, 2026).
 [^c10-basic-auth]: Microsoft Learn, "Deprecation of Basic authentication in Exchange Online," <https://learn.microsoft.com/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online> (accessed Oct 20, 2026).
