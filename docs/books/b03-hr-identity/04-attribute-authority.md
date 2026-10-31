@@ -51,6 +51,8 @@ Naming the HCM as the source of authority for identity invites a predictable mis
 
 : The division of labor between the system of record and the identity platform {.striped .hover}
 
+CISA's Hybrid Identity Solutions Guidance uses a third phrase, **source of identity**, for the directory that governs a sign-in: the on-premises directory when an agency federates, uses pass-through authentication or synchronizes passwords, and the cloud identity service under cloud primary authentication.[^c04-hisg] In this book's terms that's the account's object SOA and the identity platform, not the system of record. The guidance doesn't address HR. Its recommendation to move the source of identity to the cloud changes where accounts are mastered and how sign-in is proven; HR stays the source of authority for the person either way, and [Chapter 05](05-the-provisioning-pipeline.md#over-the-entra-id-migration) shows how provisioning follows the move.
+
 
 ## Effective dating: truth with a timeline
 
@@ -139,5 +141,6 @@ The HR system is a Privacy Act system of records, and moving its data into a dir
 [^c04-a108]: Office of Management and Budget, Circular A-108, *Federal Agency Responsibilities for Review, Reporting, and Publication under the Privacy Act*, December 2016, "Routine Uses," <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A108/omb_circular_a-108.pdf> (accessed Oct 21, 2026).
 [^c04-sorn]: Office of Personnel Management, "Privacy Act of 1974; System of Records" (notice of a modified system of records, OPM/GOVT-1 General Personnel Records), *Federal Register* 88, no. 158, August 17, 2023, <https://www.govinfo.gov/content/pkg/FR-2023-08-17/html/2023-17651.htm> (accessed Oct 20, 2026).
 [^c04-soa]: Microsoft Learn, "Transfer user Source of Authority (SOA) to Microsoft Entra ID," <https://learn.microsoft.com/en-us/entra/identity/hybrid/user-source-of-authority-overview> (accessed Oct 21, 2026).
+[^c04-hisg]: Cybersecurity and Infrastructure Security Agency, *Hybrid Identity Solutions Guidance*, §3.1.1–3.1.4 (the source of identity in federation, pass-through authentication, password synchronization and cloud primary authentication), <https://www.cisa.gov/resources-tools/services/hybrid-identity-solutions-guidance-hisg> (accessed Oct 31, 2026).
 [^c04-lcw-tasks]: Microsoft Learn, "Lifecycle Workflows tasks and definitions" (Enable, Disable and Delete user tasks with the `enableOnPremisesAccount`, `disableOnPremisesAccount` and `deleteOnPremisesAccount` arguments), <https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-tasks> (accessed Oct 25, 2026).
 [^c04-lcw-onprem]: Microsoft Learn, "Managing Users synchronized from Active Directory Domain Services to Microsoft Entra ID with Lifecycle Workflows" (user account tasks for synchronized users through the Microsoft Entra provisioning agent), <https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-on-premises> (accessed Oct 25, 2026).

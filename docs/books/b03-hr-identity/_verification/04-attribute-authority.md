@@ -71,3 +71,5 @@ Applied from the research page `docs/research/hcm-entra-implementation.md`; ever
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | "E911 records" replaced with "the fallback emergency address and emergency-notification scoping (never the caller's 911 location)", linked to Chapter 10 | Authority table, Duty location row | corrected: the 911 rules ask for the caller's dispatchable location (47 CFR 9.3, 9.16), and Teams screens calls that rely on an address assigned to the user's number; the HR duty station can only select that fallback | Chapter 10 c10-cfr93, c10-cfr916, c10-remote-loc |
+| H1 | HISG's "source of identity" is the directory governing sign-in: on-premises under federation, PTA and password sync; the cloud identity service under cloud primary | System of record versus identity provider | verified (added Oct 31, 2026) | c04-hisg, HISG §3.1.1–3.1.4 <https://www.cisa.gov/resources-tools/services/hybrid-identity-solutions-guidance-hisg> |
+| H2 | HISG doesn't address HR; in this book's terms its source of identity is the object SOA and identity platform | Same | restated-as-design | book's terminology mapping; HISG scope §1.2 |
