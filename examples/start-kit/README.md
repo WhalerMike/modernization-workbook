@@ -29,6 +29,8 @@ One run produces a one-page summary (`Summary/StartKitSummary.md`) with these co
 | **SQL Server instances and hosts**, by version, edition, domain and authentication mode | `Invoke-FMPSqlEstateDiscovery` | Book 06, Runbooks R02 and R03 |
 | **NPS servers, RADIUS clients, network and connection request policies**, the AD groups and certificates each policy authorizes against, and the KB5040268 hardening state | `Invoke-FMPNpsInventory` | RADIUS and NPS inventory (Book 00 Chapter 08, M-009; Book 02 Chapter 04, DM_030; Book 09 Chapter 07) |
 | **Transaction profiles**: measured round trips per business transaction for each application proposed to move away from its data, what they cost at the target round-trip time, and which applications clear the separation gate | `Invoke-FMPTransactionProfile` | Transaction profiling (Book 01 Chapter 10; Chapter 07's co-location rule; Chapter 11's gated actuation) |
+| **Attribute survey**: users surveyed, the enterprise person key's fill rate, keys held twice, value-quality findings by rule, free extension attribute slots | `Get-FMPAttributeSurvey` | Attribute-Driven Migration, Gates 0 and 1 (A1.1) |
+| **Migration waves**: waves, users placed, users and assets left out by reason | `Get-FMPWaveList` | Attribute-Driven Migration, Gate 8 (A8.1) |
 
 ### How it counts SQL Server
 
@@ -67,6 +69,29 @@ Book 02 Chapter 04 rates RADIUS and NPS critical (DM_030): if NPS goes before it
 
 The budget and the target round-trip time are the program's decisions, not the kit's: the budget comes from the application owner's response-time requirement, and the target from where the application would run ([Book 09, Chapter 01](../../docs/books/b09-network/01-why-physics-decides-the-architecture.md) has the physics, [Chapter 13](../../docs/books/b09-network/13-sequencing-cost-and-evidence.md) how to measure it). `Measure-FMPTcpRoundTrip` times TCP connection setup to a port, from wherever it runs; run it from the application host for today's figure and from the target location for the other.
 
+### How it surveys attributes and builds waves
+
+The [Attribute-Driven Migration implementation guide](../../docs/books/guides/attribute-driven-migration-implementation.md) reads the enterprise person key and the coded slots at Gate 0, inventories them at Gate 1 (task A1.1: how fully each attribute is populated, and which `extensionAttribute` slots are free) and writes each wave as an attribute query at Gate 8 (A8.1). `Get-FMPAttributeSurvey` and `Get-FMPWaveList` do the reading and the wave arithmetic. Nothing is written to the directory.
+
+1. **Ask the schema what the Global Catalog holds.** The Global Catalog has every user of every domain tree, but only the attributes in the partial attribute set. Learn's schema reference lists `employeeID`, `employeeType` and `department` as *not* in the Global Catalog by default and `manager` as in it ([Employee-ID](https://learn.microsoft.com/windows/win32/adschema/a-employeeid), [Employee-Type](https://learn.microsoft.com/windows/win32/adschema/a-employeetype), [Department](https://learn.microsoft.com/windows/win32/adschema/a-department), [Manager](https://learn.microsoft.com/windows/win32/adschema/a-manager); read October 31, 2026). Exchange's schema preparation adds attributes, and an agency may have added `employeeID`, so the survey reads `isMemberOfPartialAttributeSet` from the schema at run time instead of assuming. `GcCoverage.csv` records the answer for every attribute.
+2. **Read the Global Catalog, then the rest per domain.** One Global Catalog read per domain naming context (port 3268, found with `Get-ADDomainController -Discover -Service GlobalCatalog`, or named with `-GlobalCatalog`), for the attributes it holds. A subtree search of a parent domain on the Global Catalog also returns its child domains' users, so each read keeps only its own domain's. Then one read of each domain from its own domain controllers for the attributes the Global Catalog doesn't hold, joined on `objectGUID`. When no Global Catalog answers, every attribute is read per domain. A domain whose domain controllers refuse the read keeps what the Global Catalog gave, and its other attributes are *not collected*, never empty.
+3. **Measure fill and quality.** The population is enabled users that aren't service accounts (no SPN). `FillRate.csv` gives, per domain and for the forest, how many hold each attribute. `ValueQuality.csv` has one row per value that breaks a rule:
+
+   | Rule | Finds |
+   |---|---|
+   | `DuplicateKey`, `DuplicateUpn`, `DuplicateMail` | A key, UPN or mail address held by more than one account anywhere in the forest, in any state (trimmed and case-folded, as VK-HR-04 compares keys) |
+   | `KeyFormat` | A key that doesn't match `-KeyPattern`, such as `'^MP\d{7}$'` |
+   | `Whitespace` | Leading or trailing spaces in the key, worker type, department, coded slots, UPN or mail |
+   | `CodeNotInList` | A value not on its code list (`-CodeListPath`, a CSV of `Attribute,Code`; the attribute is an export column such as `extensionAttribute10` or `EmployeeType`) |
+   | `DisplayStringInCodeSlot` | A coded slot holding text with spaces: a display string where a code belongs ([Book 03, Chapter 06](../../docs/books/b03-hr-identity/06-canonical-attribute-schema.md#design-rules)) |
+   | `ManagerNotFound`, `ManagerIsSelf`, `ManagerDisabled`, `ManagerHasNoKey` | A manager that isn't a surveyed user, is the account itself, is disabled, or has no key, so the HR manager link can't be built |
+   | `UpnSuffixNotListed` | A UPN suffix outside `-UpnSuffix`, the suffixes routable in the tenant |
+
+4. **Report the slots.** `SlotUsage.csv` marks each of `extensionAttribute1` to `15` *Coded* (named in `-CodedSlots`, by default 10 to 12 as in the program attribute map), *Free* (held by no account) or *InUse* (held by something else, which has to move before the slot can carry a code).
+5. **Build the waves.** `Get-FMPWaveList` reads `ad-user-export.csv`. A wave plan (`-WavePlan`: `wave-plan.csv` with `WaveId`, `Attribute`, `Value`; several rows for one wave are alternatives) places each user whose attribute matches. With no plan, each organization code (`-GroupBy`, by default `extensionAttribute10`) is a candidate wave. Devices and servers (`-AssetOwnership`: `asset-ownership.csv` with `AssetName`, `AssetType`, and `OwnerEmployeeId` or `OwnerUserPrincipalName`; build it from Intune's primary user and the asset record) go with their owner. Everything left out goes to `wave-exclusions.csv` with the reason: `Disabled`, `ServiceAccount` (the non-person track moves it), `Privileged` (`adminCount` set, which overstates current privilege, so it's placed by hand; `-IncludePrivileged` keeps them), `DoNotSync`, `NoKey`, `DuplicateKey`, `NoWaveValue`, `NotInPlan` and `MoreThanOneWave`; for assets, `OwnerNotFound`, `OwnerExcluded` and `OwnersInMoreThanOneWave`.
+
+`ad-user-export.csv` is the one AD export the other attribute tools read: the validation kit's VK-SYNC-01 (its `EmployeeId` and slot columns) and VK-SYNC-03, and the [HCM-to-Entra correlation tool](../hcm-entra/README.md). `waves.csv` is what the validation kit reads to run its HR checks on one wave. **The export holds personal data** (names, UPNs, mail, keys): keep the run folder in the access-controlled evidence store, as with `UserInventory.json`.
+
 ## Pointing the kit at your own forest
 
 Nothing in the kit is tied to a forest name. `contoso.example`, `child.contoso.example` and `partner.example` appear only in the test fixtures (`tests/fixtures/`) and in examples; at run time the kit asks Active Directory which forest it's in and reads every domain of it.
@@ -84,6 +109,9 @@ Nothing in the kit is tied to a forest name. `contoso.example`, `child.contoso.e
 | Inventory NPS from configuration exports, with no access to the servers | `Invoke-FMPNpsInventory -OutputPath <folder> -NpsConfigPath D:\Exports\nps01.xml -SkipDirectory` (group names stay as SIDs without the directory) |
 | Change the shared-secret rule or the certificate warning | `Invoke-FMPNpsInventory -SecretMinLength 32 -CertificateWarningDays 60 -EventDays 30` |
 | Profile your own applications | Fill in the catalog template a run writes, with your applications, stores and budgets; keep the capture exports beside it and name them relative to the catalog's folder; run with `-TransactionCatalog` |
+| Survey against your own key format, code lists and UPN suffixes | `-KeyPattern '^MP\d{7}$' -CodeListPath D:\Inputs\code-lists.csv -UpnSuffix agency.example` |
+| Build waves from your own plan, with devices and servers | `-WavePlan D:\Inputs\wave-plan.csv -AssetOwnership D:\Inputs\asset-ownership.csv`; or `Get-FMPWaveList -GroupBy City` for candidate waves by location |
+| Read a particular Global Catalog | `Get-FMPAttributeSurvey -OutputPath <folder> -GlobalCatalog gc01.corp.agency.example` |
 | Recognize your own schema extensions | Add a line to `$script:FMPKnownExtensions` in `FMPADAssessment.psm1` |
 | Count a different set of privileged groups | Edit `$script:FMPPrivilegedGroups` in `FMPADAssessment.psm1` |
 | Run the tests against your own data shapes | Copy `tests/fixtures/ad-forest.json`, replace the objects with sanitized exports of your own (`Get-ADUser ... \| ConvertTo-Json`), keep the same keys, and adjust the expected counts in `tests/powershell/ADAssessment.Tests.ps1`. Never commit real exports. |
@@ -116,6 +144,7 @@ The assessment never uses Domain Admins, DnsAdmins, the CA administrator role or
 | Part | Tier A (default read) | Tier B (narrow addition) |
 |---|---|---|
 | Topology, OUs, users, groups, computers, trusts, SPNs, schema | Authenticated user | Read permissions on OUs whose ACLs aren't readable by default |
+| Attribute survey and wave lists | Authenticated user, on the Global Catalog and each domain. An attribute the agency has marked confidential reads as empty without a grant, so check `FillRate.csv` against a sample you know | Read on any confidential attribute the survey needs |
 | Group Policy | Read on GPOs and SYSVOL, usually default | Read on GPOs that security filtering hides |
 | DNS zones and records | Often readable on AD-integrated zones | Read permission on each DNS server object for aging, scavenging and forwarders (never DnsAdmins) |
 | AD CS templates and CAs | Read on the Public Key Services container (default) | Read access to each CA for `certutil -getreg`, or an administrator export |
@@ -153,6 +182,15 @@ Measure-FMPSqlRoundTrip -OutputPath D:\Profiles -ServerName sql01 -InstanceName 
 # Export a capture's packet fields for the catalog (tab-separated, the tshark default).
 tshark -r payroll-submit.pcapng -Y "tcp.port==1433" -T fields -E header=y -e frame.time_epoch -e tcp.stream -e ip.src -e ipv6.src -e tcp.srcport -e ip.dst -e ipv6.dst -e tcp.dstport -e tcp.len -e tcp.flags.syn -e tcp.flags.ack | Out-File -Encoding utf8 D:\Profiles\captures\payroll-submit-baseline.tsv
 
+# Attribute survey with the agency's key format, code lists and UPN suffixes; waves from a plan.
+.\Invoke-FMPStartKit.ps1 -OutputPath D:\Assessment -KeyPattern '^MP\d{7}$' -CodeListPath D:\Inputs\code-lists.csv -UpnSuffix agency.example `
+    -WavePlan D:\Inputs\wave-plan.csv -AssetOwnership D:\Inputs\asset-ownership.csv
+
+# Only the attribute survey, and candidate waves by organization code.
+Import-Module .\powershell\FMPAttributeSurvey
+Get-FMPAttributeSurvey -OutputPath D:\Assessment\attributes -KeyPattern '^MP\d{7}$'
+Get-FMPWaveList -OutputPath D:\Assessment\attributes
+
 # Only the SQL Server count, sweeping every enabled Windows Server for Express instances.
 Import-Module .\powershell\FMPSqlEstate
 Invoke-FMPSqlEstateDiscovery -OutputPath D:\Assessment\sql -ProbeAllServers -QueryInstances
@@ -183,6 +221,9 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 │                   applications\<name>.json (one per application, for its plan review),
 │                   measurements\ (what each capture showed); with no catalog, only
 │                   TransactionCatalog.template.csv and TransactionSummary.json
+├── AttributeSurvey\  ad-user-export.csv (personal data), FillRate.csv, ValueQuality.csv,
+│                   SlotUsage.csv, GcCoverage.csv, AttributeSurvey.json
+├── Waves\          waves.csv, wave-summary.csv, wave-exclusions.csv, WaveSummary.json
 ├── <forest root>\  Forest\, Domains\, Schema\, PKI\, Kerberos\, DHCP\  (forest-wide)
 └── <each domain>\  OUs\, GPOs\, DNS\, Objects\, ServiceAccounts\, Trusts\, Ldap\
 ```
@@ -240,17 +281,20 @@ Pester 5.5 or later. Windows PowerShell ships with Pester 3.4, so install Pester
 - **Round trips from SQL Server counters.** `sys.dm_exec_connections.num_reads` counts network reads (Microsoft's documentation calls them byte reads), so a request larger than the packet size counts more than once, and a connection that closes between two polls loses its last reads. The measurement says when that happened; a packet capture has neither limit. It also counts everything else on the application's connections in the window, so measure when no one else is using the application from that host.
 - **Round trips from a capture.** A round trip is counted when the store sends data after the client did. A protocol that streams results without waiting for the client, or pipelines several requests before reading any answer, is counted by its turns, which can undercount its requests; the waits that matter for separation are the turns. A capture with no SYN flags column can't count new connections.
 - **The budget is an input.** The kit checks a transaction against the budget and target round-trip time the team enters; it doesn't derive either. Concurrency, server time and bandwidth aren't modeled: the rule is Book 01's round-trip arithmetic, and performance testing after reduction is the proof Chapter 10 asks for.
+- **The survey reads values, not writers.** Who wrote an attribute needs the replication metadata or the change audit, which the survey doesn't read; Gate 1's single-writer list comes from the delegation export and the audit log. A confidential attribute read without its grant looks empty, and a manager in another forest shows as `ManagerNotFound`.
+- **Waves follow the export.** A wave plan matches exact values, ignoring case, so ranges and prefixes are written out as values. An asset with no ownership row isn't listed at all: check the asset count against the asset record.
 - **Not covered:** the plan generators, and ESC patterns beyond ESC1, 2, 4 and 6.
 
 ```
 examples/start-kit/
   README.md
-  Invoke-FMPStartKit.ps1                  the run: pre-flight, assessment, SQL, NPS, transaction profiles, summary, manifest
+  Invoke-FMPStartKit.ps1                  the run: pre-flight, assessment, SQL, NPS, transaction profiles, attribute survey, waves, summary, manifest
   powershell/StartKit.Common.ps1          output guard, writers, provenance manifest
   powershell/FMPADAssessment/             Appendix B's module, packaged, plus the added collectors
   powershell/FMPSqlEstate/                SQL Server signals, T-SQL pass, fusion and counts
   powershell/FMPNpsInventory/             NPS servers, RADIUS clients, policies, groups, findings
   powershell/FMPTransactionProfile/       round-trip measurement, profiles, the separation gate
-  tests/fixtures/                         the fictional forest, SQL estate, NPS configuration, transaction catalog
-  tests/powershell/                       Pester 5: safety, SQL, AD, NPS, transaction profiles, end to end
+  powershell/FMPAttributeSurvey/          attribute survey through the Global Catalog, wave lists
+  tests/fixtures/                         the fictional forest, SQL estate, NPS configuration, transaction catalog, the attribute survey's two-tree forest
+  tests/powershell/                       Pester 5: safety, SQL, AD, NPS, transaction profiles, attribute survey, end to end
 ```

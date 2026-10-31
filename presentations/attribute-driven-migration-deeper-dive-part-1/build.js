@@ -8,7 +8,7 @@
 //   Gate 3 — Sync:              landing zones and mappings; the /bulkUpload record; the match trap and the
 //                               Connect Sync deadline; proving it flowed and backing it out.
 //   Close:                      the handoff to Part 2 (Gates 4–6).
-// Sources: docs/books/guides/attribute-driven-migration-implementation.md and its plan
+// Sources: docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md and its plan
 // (data/project-plans/attribute-driven-migration.yaml), the companion guide, the chapters they cite, the research page
 // docs/research/hcm-entra-implementation.md, and examples/ (start-kit, validation-kit, hcm-entra). No new external facts.
 // The slide helpers come from the technical deep dive's shared builders (../attribute-driven-migration-technical-part-1/slides.js).

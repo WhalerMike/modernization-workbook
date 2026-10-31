@@ -3,7 +3,7 @@
 //   Gate 5: Conditional Access personas, device targeting, and moving Group Policy for devices and servers ("adopt, don't
 //           build"), with one owning tool per setting for fleets Ansible already runs.
 //   Gate 6: the PIV and CAC binding (certificateUserIds, affinity, the writer, the open pilot).
-// Follows docs/books/guides/attribute-driven-migration-implementation.md and data/project-plans/attribute-driven-migration.yaml.
+// Follows docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md and data/project-plans/attribute-driven-migration.yaml.
 // Every fact, command, rule and payload is taken from a workbook chapter, a guide, docs/research or examples/; nothing is
 // added from outside. Design guidance is labeled; beta and preview features carry their stage.
 // Shared builders come from ../attribute-driven-migration-technical-part-1/slides.js (only its helpers are used here).
@@ -660,7 +660,7 @@ endModule(M3);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources behind Gate 4 — groups and units", [
-  "Implementation guide (docs/books/guides/attribute-driven-migration-implementation.md): \"The path on one page,\" Gate 4 steps, Validate, Rollback, Evidence; \"Where the kits stop.\" Project plan: A4.1–A4.4, D-A4, AG4.",
+  "Implementation guide (docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md): \"The path on one page,\" Gate 4 steps, Validate, Rollback, Evidence; \"Where the kits stop.\" Project plan: A4.1–A4.4, D-A4, AG4.",
   "Book 01, Ch 04 \"The two query patterns.\" Book 03, Ch 06 program attribute map; Ch 10 \"Rule patterns,\" \"Limits and efficiency,\" \"Administrative units,\" \"Where dynamic membership stops.\"",
   "Book 06, Ch 17 \"Choosing the attributes,\" \"Writing, naming and testing rules,\" \"Scoped delegation with administrative units.\" Book 02, Ch 05 (three tiers, registry, illustrative code, restriction); Ch 09 (nesting, memberOf, per-group decision).",
   "Companion guide (attribute-driven-migration.md): \"Limits\" (rule limits, latency, administrative units), dynamic group dangers.",

@@ -31,7 +31,7 @@ The anatomy of a validation kit check, built end to end on a new one, VK-SYNC-02
 
 **Audience.** Developers and engineers who extend the kit, and ISSOs who want to know what a check's result can and can't be trusted to mean. You should read PowerShell and know Pester's `Describe` and `It`.
 
-The kit is the executable form of the **Validate** step at each gate of the [implementation guide](../../../books/guides/attribute-driven-migration-implementation.md) and the three track guides. Its [README](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit) lists every check, its permission and its Learn page. [Book 13, Chapter 07](../../../books/b13-governance/07-evidence-over-attestation.md) explains why the program wants evidence a machine produced over a statement someone signed.
+The kit is the executable form of the **Validate** step at each gate of the [implementation guide](implementation-guide.md) and the three track guides. Its [README](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit) lists every check, its permission and its Learn page. [Book 13, Chapter 07](../../../books/b13-governance/07-evidence-over-attestation.md) explains why the program wants evidence a machine produced over a statement someone signed.
 
 ## Why this check
 

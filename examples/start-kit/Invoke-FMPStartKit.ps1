@@ -14,8 +14,13 @@
       4. Invoke-FMPNpsInventory      NPS servers, RADIUS clients and policies (unless -SkipNps)
       5. Invoke-FMPTransactionProfile  transaction profiles and the separation gate, from
                                      -TransactionCatalog; without one, a catalog template
-      6. Get-FMPStartKitSummary      Summary\StartKitSummary.md and .json
-      7. AssessmentManifest.json     who, when, where, module versions, SHA-256 of every file
+      6. Get-FMPAttributeSurvey      fill rate and value quality of the migration's
+                                     attributes, through the Global Catalog (unless
+                                     -SkipAttributeSurvey)
+      7. Get-FMPWaveList             migration waves from those attributes: from -WavePlan,
+                                     or one per organization code
+      8. Get-FMPStartKitSummary      Summary\StartKitSummary.md and .json
+      9. AssessmentManifest.json     who, when, where, module versions, SHA-256 of every file
 
     Nothing here writes to Active Directory, DNS, DHCP, AD CS, NPS or SQL Server. Every file
     goes under the run folder. Tier B adds the collectors that need the narrow delegations
@@ -59,12 +64,20 @@ param(
     [switch]$SkipTransactionProfiles,
     # The team's transaction catalog, and folders of measurements taken before the run.
     [string]$TransactionCatalog,
-    [string[]]$TransactionMeasurementPath = @()
+    [string[]]$TransactionMeasurementPath = @(),
+    [switch]$SkipAttributeSurvey,
+    # A pattern every enterprise person key matches, the code lists, the tenant's routable UPN suffixes.
+    [string]$KeyPattern,
+    [string]$CodeListPath,
+    [string[]]$UpnSuffix = @(),
+    # wave-plan.csv (WaveId, Attribute, Value) and asset-ownership.csv for the wave lists.
+    [string]$WavePlan,
+    [string]$AssetOwnership
 )
 
 $ErrorActionPreference = 'Stop'
 # Imported once; a session that already loaded them (the tests, or a signed copy) keeps its own.
-foreach ($m in 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory', 'FMPTransactionProfile') {
+foreach ($m in 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory', 'FMPTransactionProfile', 'FMPAttributeSurvey') {
     if (-not (Get-Module -Name $m)) { Import-Module (Join-Path (Join-Path $PSScriptRoot 'powershell') $m) }
 }
 # The run script uses the shared helpers directly for the run folder and the manifest.
@@ -107,6 +120,15 @@ if (-not $SkipTransactionProfiles) {
         Invoke-FMPTransactionProfile -OutputPath $runPath -CatalogPath $TransactionCatalog -MeasurementPath $TransactionMeasurementPath -AsOf $start
     }
 }
+if (-not $SkipAttributeSurvey) {
+    $steps += Invoke-FMPStep 'Attribute survey' {
+        Get-FMPAttributeSurvey -OutputPath $runPath -Forest $adForest.Name -Domain $Domain -KeyPattern $KeyPattern `
+            -CodeListPath $CodeListPath -UpnSuffix $UpnSuffix -AsOf $start
+    }
+    $steps += Invoke-FMPStep 'Wave lists' {
+        Get-FMPWaveList -OutputPath $runPath -WavePlanPath $WavePlan -OwnershipPath $AssetOwnership -AsOf $start
+    }
+}
 $steps += Invoke-FMPStep 'Summary' { Get-FMPStartKitSummary -RunPath $runPath }
 
 $parameters = @{
@@ -116,6 +138,8 @@ $parameters = @{
     SkipNps = [bool]$SkipNps; NpsServerCount = @($NpsServers).Count; NpsConfigFileCount = @($NpsConfigPath).Count
     SkipTransactionProfiles = [bool]$SkipTransactionProfiles; TransactionCatalog = [bool]$TransactionCatalog
     TransactionMeasurementPathCount = @($TransactionMeasurementPath).Count
+    SkipAttributeSurvey = [bool]$SkipAttributeSurvey; KeyPattern = [bool]$KeyPattern; CodeList = [bool]$CodeListPath
+    UpnSuffixCount = @($UpnSuffix).Count; WavePlan = [bool]$WavePlan; AssetOwnership = [bool]$AssetOwnership
 }
 $manifest = Write-FMPManifest -RunPath $runPath -RunId $runId -StartTime $start -Tier $Tier -Forest $adForest.Name `
     -Domains $Domain -ServedBy $servedBy -Steps $steps -Parameters $parameters

@@ -1,0 +1,370 @@
+{
+  "_comment": "Fictional forest for the attribute survey: two trees (contoso.example with child.contoso.example, and research.example). research.example's domain controllers refuse the read, so the attributes outside the Global Catalog are not collected there.",
+  "forest": {
+    "Name": "contoso.example",
+    "RootDomain": "contoso.example",
+    "Domains": [
+      "contoso.example",
+      "child.contoso.example",
+      "research.example"
+    ]
+  },
+  "rootDse": {
+    "schemaNamingContext": "CN=Schema,CN=Configuration,DC=contoso,DC=example"
+  },
+  "globalCatalog": "gc01.contoso.example",
+  "schema": [
+    {
+      "lDAPDisplayName": "userPrincipalName",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "mail",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "manager",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "physicalDeliveryOfficeName",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "l",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "servicePrincipalName",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute1",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute2",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute3",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute4",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute5",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute6",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute7",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute8",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute9",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute10",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute11",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute12",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute13",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute14",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "extensionAttribute15",
+      "isMemberOfPartialAttributeSet": true
+    },
+    {
+      "lDAPDisplayName": "employeeID",
+      "isMemberOfPartialAttributeSet": false
+    },
+    {
+      "lDAPDisplayName": "employeeNumber",
+      "isMemberOfPartialAttributeSet": false
+    },
+    {
+      "lDAPDisplayName": "employeeType",
+      "isMemberOfPartialAttributeSet": false
+    },
+    {
+      "lDAPDisplayName": "department",
+      "isMemberOfPartialAttributeSet": false
+    },
+    {
+      "lDAPDisplayName": "adminCount",
+      "isMemberOfPartialAttributeSet": false
+    }
+  ],
+  "dcFailures": [
+    "research.example"
+  ],
+  "users": {
+    "contoso.example": [
+      {
+        "DistinguishedName": "CN=ana.lyst,OU=Staff,DC=contoso,DC=example",
+        "Enabled": true,
+        "Name": "ana.lyst",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000001",
+        "SID": "S-1-5-21-1000-1101",
+        "SamAccountName": "ana.lyst",
+        "UserPrincipalName": "ana.lyst@contoso.example",
+        "mail": "ana.lyst@contoso.example",
+        "employeeID": "MP0042137",
+        "employeeType": "Employee",
+        "department": "FIN-LED",
+        "manager": "CN=mgr.one,OU=Staff,DC=contoso,DC=example",
+        "physicalDeliveryOfficeName": "HQ-3",
+        "l": "Washington",
+        "extensionAttribute10": "FIN-LED",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "ANL"
+      },
+      {
+        "DistinguishedName": "CN=mgr.one,OU=Staff,DC=contoso,DC=example",
+        "Enabled": true,
+        "Name": "mgr.one",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000002",
+        "SID": "S-1-5-21-1000-1102",
+        "SamAccountName": "mgr.one",
+        "UserPrincipalName": "mgr.one@contoso.example",
+        "mail": "mgr.one@contoso.example",
+        "employeeID": "MP0040001",
+        "employeeType": "Employee",
+        "department": "FIN-LED",
+        "physicalDeliveryOfficeName": "HQ-3",
+        "l": "Washington",
+        "extensionAttribute10": "FIN-LED",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "MGR"
+      },
+      {
+        "DistinguishedName": "CN=test.old,OU=Staff,DC=contoso,DC=example",
+        "Enabled": true,
+        "Name": "test.old",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000003",
+        "SID": "S-1-5-21-1000-1103",
+        "SamAccountName": "test.old",
+        "UserPrincipalName": "test.old@contoso.example",
+        "employeeID": "MP0042137",
+        "extensionAttribute10": "FIN-LED",
+        "extensionAttribute5": "legacy-tag"
+      },
+      {
+        "DistinguishedName": "CN=no.key,OU=Staff,DC=contoso,DC=example",
+        "Enabled": true,
+        "Name": "no.key",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000004",
+        "SID": "S-1-5-21-1000-1104",
+        "SamAccountName": "no.key",
+        "UserPrincipalName": "no.key@contoso.example",
+        "mail": "no.key@contoso.example",
+        "employeeType": "Contractor",
+        "department": "Finance",
+        "manager": "CN=left.user,OU=Staff,DC=contoso,DC=example",
+        "extensionAttribute10": "Finance Ledger",
+        "extensionAttribute11": "CTR"
+      },
+      {
+        "DistinguishedName": "CN=left.user,OU=Staff,DC=contoso,DC=example",
+        "Enabled": false,
+        "Name": "left.user",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000005",
+        "SID": "S-1-5-21-1000-1105",
+        "SamAccountName": "left.user",
+        "UserPrincipalName": "left.user@contoso.example",
+        "employeeID": "MP0049999",
+        "extensionAttribute10": "FIN-LED"
+      },
+      {
+        "DistinguishedName": "CN=svc-app,OU=Service Accounts,DC=contoso,DC=example",
+        "Enabled": true,
+        "Name": "svc-app",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000006",
+        "SID": "S-1-5-21-1000-1106",
+        "SamAccountName": "svc-app",
+        "UserPrincipalName": "svc-app@contoso.example",
+        "servicePrincipalName": [
+          "HTTP/app01.contoso.example"
+        ],
+        "extensionAttribute5": "app01"
+      },
+      {
+        "DistinguishedName": "CN=admin.x,OU=Staff,DC=contoso,DC=example",
+        "Enabled": true,
+        "Name": "admin.x",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000007",
+        "SID": "S-1-5-21-1000-1107",
+        "SamAccountName": "admin.x",
+        "UserPrincipalName": "admin.x@contoso.example",
+        "mail": "admin.x@contoso.example",
+        "employeeID": "MP0040100",
+        "employeeType": "Employee",
+        "adminCount": 1,
+        "manager": "CN=mgr.one,OU=Staff,DC=contoso,DC=example",
+        "extensionAttribute10": "FIN-BUD",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "ITS"
+      },
+      {
+        "DistinguishedName": "CN=space.key,OU=Staff,DC=contoso,DC=example",
+        "Enabled": true,
+        "Name": "space.key",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000008",
+        "SID": "S-1-5-21-1000-1108",
+        "SamAccountName": "space.key",
+        "UserPrincipalName": "space.key@contoso.example",
+        "mail": "space.key@contoso.example",
+        "employeeID": "MP0040200 ",
+        "employeeType": "Employee",
+        "manager": "CN=no.key,OU=Staff,DC=contoso,DC=example",
+        "extensionAttribute10": "HR-OPS",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "SPC"
+      },
+      {
+        "DistinguishedName": "CN=dns.user,OU=Staff,DC=contoso,DC=example",
+        "Enabled": true,
+        "Name": "dns.user",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000009",
+        "SID": "S-1-5-21-1000-1109",
+        "SamAccountName": "dns.user",
+        "UserPrincipalName": "dns.user@contoso.example",
+        "mail": "dns.user@contoso.example",
+        "employeeID": "MP0040300",
+        "employeeType": "Employee",
+        "manager": "CN=mgr.one,OU=Staff,DC=contoso,DC=example",
+        "extensionAttribute10": "FIN-LED",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "ANL",
+        "extensionAttribute15": "DoNotSync"
+      }
+    ],
+    "child.contoso.example": [
+      {
+        "DistinguishedName": "CN=field.one,OU=Staff,DC=child,DC=contoso,DC=example",
+        "Enabled": true,
+        "Name": "field.one",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000011",
+        "SID": "S-1-5-21-2000-1111",
+        "SamAccountName": "field.one",
+        "UserPrincipalName": "field.one@contoso.example",
+        "mail": "field@contoso.example",
+        "employeeID": "MP0050001",
+        "employeeType": "Employee",
+        "department": "FLD-NE",
+        "manager": "CN=mgr.one,OU=Staff,DC=contoso,DC=example",
+        "physicalDeliveryOfficeName": "NE-1",
+        "l": "Boston",
+        "extensionAttribute10": "FLD-NE",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "ANL"
+      },
+      {
+        "DistinguishedName": "CN=field.two,OU=Staff,DC=child,DC=contoso,DC=example",
+        "Enabled": true,
+        "Name": "field.two",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000012",
+        "SID": "S-1-5-21-2000-1112",
+        "SamAccountName": "field.two",
+        "UserPrincipalName": "field.two@contoso.example",
+        "mail": "field@contoso.example",
+        "employeeID": "MP0050002",
+        "employeeType": "Employee",
+        "department": "FLD-NE",
+        "manager": "CN=field.one,OU=Staff,DC=child,DC=contoso,DC=example",
+        "physicalDeliveryOfficeName": "NE-1",
+        "l": "Boston",
+        "extensionAttribute10": "FLD-NE",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "ANL"
+      },
+      {
+        "DistinguishedName": "CN=field.three,OU=Staff,DC=child,DC=contoso,DC=example",
+        "Enabled": true,
+        "Name": "field.three",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000013",
+        "SID": "S-1-5-21-2000-1113",
+        "SamAccountName": "field.three",
+        "UserPrincipalName": "field.three@contoso.local",
+        "mail": "field.three@contoso.example",
+        "employeeID": "X123",
+        "employeeType": "Employee",
+        "manager": "CN=mgr.one,OU=Staff,DC=contoso,DC=example",
+        "extensionAttribute10": "ZZZ-999",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "ANL"
+      }
+    ],
+    "research.example": [
+      {
+        "DistinguishedName": "CN=res.one,OU=Staff,DC=research,DC=example",
+        "Enabled": true,
+        "Name": "res.one",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000021",
+        "SID": "S-1-5-21-3000-1121",
+        "SamAccountName": "res.one",
+        "UserPrincipalName": "res.one@research.example",
+        "mail": "res.one@research.example",
+        "employeeID": "MP0060001",
+        "employeeType": "Employee",
+        "extensionAttribute10": "RES-LAB",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "SCI",
+        "l": "Denver"
+      },
+      {
+        "DistinguishedName": "CN=res.two,OU=Staff,DC=research,DC=example",
+        "Enabled": true,
+        "Name": "res.two",
+        "ObjectClass": "user",
+        "ObjectGUID": "5a000000-0000-4000-8000-000000000022",
+        "SID": "S-1-5-21-3000-1122",
+        "SamAccountName": "res.two",
+        "UserPrincipalName": "res.two@research.example",
+        "mail": "res.two@research.example",
+        "employeeID": "MP0060002",
+        "manager": "CN=gone.user,OU=Staff,DC=research,DC=example",
+        "extensionAttribute10": "RES-LAB",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "SCI"
+      }
+    ]
+  }
+}

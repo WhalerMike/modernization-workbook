@@ -14,7 +14,7 @@
     Windows PowerShell 5.1 and PowerShell 7: no PowerShell 7-only syntax here.
 #>
 
-$script:FMPKitVersion = '1.2.0'
+$script:FMPKitVersion = '1.3.0'
 $script:FMPAllowedRoots = [System.Collections.Generic.List[string]]::new()
 $script:FMPUtf8 = [System.Text.UTF8Encoding]::new($false)
 
