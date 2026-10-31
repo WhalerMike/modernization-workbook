@@ -430,7 +430,7 @@ Where Learn's pages differ: the Graph pages name Cloud Application Administrator
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 03 — The Migration Path Matrix as Code](03-the-migration-path-matrix-as-code.md) · [Workbook index](index.md) · [Next: Chapter 05 — Workload Identity Federation and Managed Identities →](05-workload-identity-federation-and-managed-identities.md)
+← Previous: Chapter 03 — The Migration Path Matrix as Code · [Workbook index](index.md) · Next: Chapter 05 — Workload Identity Federation and Managed Identities →
 :::
 
 [^np04-amp-overview]: Microsoft Learn, "Microsoft Entra application management policies API overview" (v1.0), tenant default policy; app management policy; restrictions; single vs multitenant apps; requirements, <https://learn.microsoft.com/graph/api/resources/applicationauthenticationmethodpolicy?view=graph-rest-1.0> (accessed Oct 30, 2026).
