@@ -127,7 +127,7 @@ Nothing in the plan writes. Each conversion gets one or more actions:
 | `NoChange`, `ReviewChange` | In the tenant as reviewed; or in the tenant with other values. Credentials aren't changed in place: a new name and its own parallel run (*Design guidance*) | No |
 | `Blocked` | A credential or conversion that fails a check or its exchange test | No |
 | `Unmanaged` | In the tenant, not in the file; reported, never deleted | No |
-| `HandOffChapter04` | A certificate target: issued from the vault and rotated under [Chapter 04](04-app-management-policies-and-certificate-rotation.md) | No |
+| `HandOffChapter04` | A certificate target: issued from the vault and rotated under Chapter 04 | No |
 | `AwaitingCutover` | No cutover recorded; the conversion's cutover gate says Ready, NotReady or Blocked, and why | No |
 | `ParallelRunning` | Day N of 30, with the date the window ends and the new identity's sign-ins | No |
 | `LegacyStillInUse`, `NewCredentialFailing`, `NoSignInsOnNewCredential` | The run isn't clean (NPI-WIF-09) | No |
