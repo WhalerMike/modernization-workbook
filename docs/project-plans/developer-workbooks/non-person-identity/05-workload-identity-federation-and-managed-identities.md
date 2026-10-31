@@ -380,7 +380,7 @@ Where Learn's pages differ: the GitHub issuer has no trailing slash in the CLI a
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 04 — App Management Policies and Certificate Rotation](04-app-management-policies-and-certificate-rotation.md) · [Workbook index](index.md) · [Next: Chapter 06 — gMSAs, dMSAs and the Kerberos Island →](06-gmsa-dmsa-and-the-kerberos-island.md)
+← Previous: Chapter 04 — App Management Policies and Certificate Rotation · [Workbook index](index.md) · Next: Chapter 06 — gMSAs, dMSAs and the Kerberos Island →
 :::
 
 [^np05-concepts]: Microsoft Learn, "Workload identity federation concepts," how it works (the case-sensitive match), <https://learn.microsoft.com/entra/workload-id/workload-identity-federation> (accessed Oct 30, 2026).
