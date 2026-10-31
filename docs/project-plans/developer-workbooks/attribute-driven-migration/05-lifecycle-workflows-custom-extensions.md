@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 51b9a8ca5925c313094d13cfaf9adf52702e10de15249ae3ee3c14955e75597e
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 05 — Lifecycle Workflows Custom Extensions
 
 *A custom task extension hands a leaver, a joiner or a mover to code you wrote. Lifecycle Workflows then waits for that code to say what happened. Make sure it always says, says the truth, and says it to the right cloud.*

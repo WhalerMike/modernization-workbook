@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: e32dc97641c9a5f15b6a98215d3fd3c16f2ce394a721f067e4d38b8393e1fa97
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 01 — Privileged Inventory as Code
 
 *You can't make privilege just-in-time until you can list it: who holds which role, at which scope, standing or eligible, directly or through a group, and in which tier.*

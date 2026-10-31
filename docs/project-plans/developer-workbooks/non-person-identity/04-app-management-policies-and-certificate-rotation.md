@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 16d0084492498e27a3693b93f8f95287a8e99afb895db0291de2439d091c7d35
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 04 — App Management Policies and Certificate Rotation
 
 *A policy nobody can diff is a setting somebody changed once, and a certificate nobody rotates is an outage with a date on it.*

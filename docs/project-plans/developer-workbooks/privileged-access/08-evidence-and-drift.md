@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 01e39aae02bf88b486d52a4dacd50723a20772479bc98caf721f1f25f8f50606
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 08 — Evidence and Drift for the ISSO
 
 *An inventory taken once proves the day it was taken. The ISSO needs every day of the period, every elevation in it, and a record nobody could have edited afterwards.*

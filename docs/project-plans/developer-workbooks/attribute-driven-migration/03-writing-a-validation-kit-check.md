@@ -10,11 +10,12 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
 aliases:
   - /docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html
+review-status: approved
+reviewed-sha256: 1cb918f50d3ebb8f34d7701b20257897d0f15a8f3a0b997bb9e72f542505d88d
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 03 — Writing a Validation Kit Check
 
 *A check is only evidence if it can't change what it measures, can't pass when it failed to look, and asks for no more access than the question needs.*

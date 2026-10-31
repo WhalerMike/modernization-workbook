@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 81badc234450e1e320de2b0ccdfc64af6656e241e51134bd3d4e39d3ec331064
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 10 — Drift and Evidence for the ISSO
 
 *A register approved once proves the day it was approved. The ISSO needs to know what changed since, who changed it, and that nobody edited the record afterwards.*

@@ -18,9 +18,10 @@ listing:
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 98cc23a29a2ceb876fc2da5337957a22f17e701b0f26a1f1cc330acff3d0bd88
+last-reviewed: 2026-10-31
 ---
-
 # Building Non-Person Identity {.unnumbered}
 
 *A developer workbook for the Non-Person Identity Modernization project*

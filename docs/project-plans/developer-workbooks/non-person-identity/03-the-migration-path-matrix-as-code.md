@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 85565216a5fe04f3dc9333d15cef87c3e5890890aab68dd6ecb71ab2e4e28c68
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 03 — The Migration Path Matrix as Code
 
 *A matrix in a book proposes; an owner decides; a gate checks that every account has both, and that is three different things to hold in code.*

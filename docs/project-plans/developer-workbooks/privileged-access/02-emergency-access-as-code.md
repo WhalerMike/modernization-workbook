@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: f0051837fa2e51cd1b1696a090bf4f4d0447cfc44173b8234b67e8765ceab317
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 02 — Emergency Access Accounts as Code
 
 *The emergency accounts are the one standing privilege the program keeps on purpose, so they get checked every run and watched every minute, by code someone reviewed.*

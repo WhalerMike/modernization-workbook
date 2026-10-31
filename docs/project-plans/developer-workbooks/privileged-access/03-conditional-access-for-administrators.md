@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 954b5aeef5708f40715d4cb224167195fff9f06d1771cc92a70fc809affdd1ae
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 03 — Conditional Access for Administrators and the Activation Gate
 
 *The administrator policies and the activation gate are the program's first writes to a tenant, so they are files a reviewer reads, and the code that writes them does nothing until it is told to.*

@@ -12,9 +12,10 @@ listing:
     fields: [title, description]
     sort-ui: false
     filter-ui: false
-review-status: pending
+review-status: approved
+reviewed-sha256: 4af882dc3007271be6f5e1946f6cf307a6ff58b21f4871f571675c646c230b72
+last-reviewed: 2026-10-31
 ---
-
 # Developer Workbooks {.unnumbered}
 
 The [project plans](../index.md) say what each project delivers and when. A developer workbook is for the people who write the project's software: the middleware between systems, the checks that prove each gate, the rules and policies kept as code, and the pipelines that hand evidence to the ISSO. Each one starts from Microsoft Learn and from Microsoft's own samples where they exist, builds only what those leave out, and keeps that code, with its tests, in the repository's [`examples`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples) folder.

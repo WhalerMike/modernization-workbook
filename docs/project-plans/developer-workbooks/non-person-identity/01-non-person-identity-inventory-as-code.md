@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: b0f03da9cfee1e32445e61562695b19b1244593454f1fda5551c8640d78c1e16
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 01 — Non-Person Identity Inventory as Code
 
 *No account can be given an owner, a decision or a new credential until it is on one list, and Microsoft's own commands give you five lists that don't agree.*

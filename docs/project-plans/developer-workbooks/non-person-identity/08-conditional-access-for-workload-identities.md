@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: ec82700b92fa44ee7b3db28d5212cd39393187b493ca822c03b3f9646c0305c8
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 08 — Conditional Access for Workload Identities
 
 *A stolen client secret works from anywhere unless something says where the workload is allowed to be, so that place is written down, reviewed, and enforced one ring at a time.*

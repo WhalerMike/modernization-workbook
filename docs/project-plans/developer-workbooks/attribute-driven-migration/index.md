@@ -18,11 +18,12 @@ listing:
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
 aliases:
   - /docs/books/b19-developer-workbook/index.html
+review-status: approved
+reviewed-sha256: 5aa5f4cfb6697c83c52fd9baf1dcf1dc8f7c4c139ce24d11ce148a9431b8d536
+last-reviewed: 2026-10-31
 ---
-
 # Building the Attribute-Driven Migration {.unnumbered}
 
 *A developer workbook for the Attribute-Driven Migration project*

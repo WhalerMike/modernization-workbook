@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: d1d18b6b94f854742edb2d3d3b0ca0f1ce4778d0658abec4ca06a4297059b711
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 07 — Least Privilege for Service Principals
 
 *A permission nobody reviews stays forever, so the sweep reads every grant, asks its owner once a quarter, and removes only what a reviewer approved.*
