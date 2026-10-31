@@ -9,7 +9,8 @@ no issue.
 
 It runs as the [Source watch](../../.github/workflows/source-watch.yml)
 workflow, Mondays at 11:00 UTC, and on demand from the Actions tab. It uses
-the Python standard library only.
+the Python standard library only, plus `curl` for the few hosts that refuse
+Python (see Limits).
 
 ## What it checks
 
@@ -206,12 +207,22 @@ next run then opens a new "baseline established" issue.
 
 ## Limits
 
-- **Sites that block bots.** Some sites refuse automated requests. On
-  2026-10-21, www.cisa.gov answered 403 to every page and RSS feed requested
-  from Python, though the same URLs, with the same User-Agent, work from curl. The KEV
-  JSON file still worked. The watcher identifies itself honestly and
-  doesn't try to get around blocking, so blocked sources are listed once
-  under "Needs manual check" and then left to you.
+- **Sites that block bots.** Some sites refuse automated requests. The
+  watcher identifies itself honestly and doesn't try to get around
+  blocking, so blocked sources are listed once under "Needs manual check"
+  and then left to you. On October 31, 2026 that was 19 of the cited
+  federal URLs: GAO (12), Oversight.gov (3), SEC (2), war.gov and dhs.gov.
+  GAO, Oversight.gov and war.gov refuse curl too.
+- **Hosts that refuse Python but not curl.** www.cisa.gov answers 403 to
+  every page and RSS feed requested by Python's HTTP client, though the same
+  URLs, with the same User-Agent and headers, work from curl. Hosts listed in
+  `curl_hosts` in `config.json` (today `cisa.gov` and its subdomains) are
+  therefore fetched by running `curl`, with the same User-Agent, headers,
+  pacing, timeouts and retries; the redirect chain is read from the headers
+  of every hop, so *moved* still works. This is the same request, made by a
+  different client, not a disguise. On October 31, 2026 it brought all 68
+  cited CISA URLs and the three CISA RSS feeds back under watch. Without a
+  `curl` binary the watcher logs a warning and uses Python as before.
 - **Agencies rename PDFs when they republish.** White House and CISA PDFs
   often reappear at a new path with no redirect. "Gone" or "moved" on a
   PDF usually means "find the new URL", not that the document was
@@ -259,12 +270,12 @@ Files:
 | File | What it does |
 |---|---|
 | `citations.py` | Extracts the footnoted URLs and maps each to book, chapter and footnote. Reads the books list from `docs/books/index.md`. |
-| `netfetch.py` | HTTP: the generic User-Agent, per-host pacing, retries and the redirect record. |
+| `netfetch.py` | HTTP: the generic User-Agent, per-host pacing, retries and the redirect record; `curl` for the `curl_hosts`. |
 | `gitsource.py` | Git history from the GitHub API: a Learn page's source repository and its public copy, a cited branch's latest commit, and the commits and changed lines between two commits. Called with the workflow's token. |
 | `watch.py` | Fingerprints and classifies each source, polls the feeds, and writes the state and results. |
 | `feeds.py` | The feed readers and the topic matching. |
 | `report.py` | Renders the Markdown digest and opens the issue. |
 | `review_dates.py` | Lists the research pages due for review (`last-reviewed` older than 90 days, or missing), and the pages whose `lifecycle_review` date has passed. |
-| `data/source-watch/config.json` | Threshold, concurrency, timeouts, per-host delays and skipped hosts. |
+| `data/source-watch/config.json` | Threshold, concurrency, timeouts, per-host delays, skipped hosts and curl hosts. |
 | `data/source-watch/feeds.json` | The feeds and the topic → book map. |
 | `source-watch-state` branch | `data/source-watch/state.json`: per-source fingerprints and per-feed seen ids. Kept off main, because every push to main redeploys the site. |

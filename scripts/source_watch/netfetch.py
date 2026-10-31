@@ -5,7 +5,7 @@ headers. No email address, name or other personal data is ever sent. The
 GitHub API is the one exception that gets an extra header: the workflow's
 own GITHUB_TOKEN, when it is set (see `github_headers`).
 
-Standard library only.
+Standard library only, plus the `curl` binary for the hosts in `CURL_HOSTS`.
 """
 
 from __future__ import annotations
@@ -13,14 +13,19 @@ from __future__ import annotations
 import gzip
 import http.cookiejar
 import os
+import re
+import shutil
 import socket
+import subprocess
+import tempfile
 import threading
 import time
 import urllib.error
 import urllib.request
 import zlib
 from dataclasses import dataclass, field
-from urllib.parse import urlsplit
+from pathlib import Path
+from urllib.parse import urljoin, urlsplit
 
 USER_AGENT = "FederalModernizationWorkbook-SourceWatch/1.0 (+https://github.com/WhalerMike/modernization-workbook)"
 BASE_HEADERS = {
@@ -31,6 +36,15 @@ BASE_HEADERS = {
 }
 PERMANENT = {301, 308}
 RETRY_STATUS = {429, 500, 502, 503, 504}
+
+# Hosts fetched with curl instead of urllib, a host and its subdomains. www.cisa.gov
+# answers 403 to every request from Python's HTTP client, whatever its headers, but
+# serves the same URL, with the same User-Agent and headers, to curl. watch.py sets
+# this from `curl_hosts` in config.json. Without a curl binary, urllib is used.
+CURL_HOSTS: list[str] = []
+CURL = shutil.which("curl")
+_CURL_MARK = "--source-watch-status--"
+_STATUS_LINE = re.compile(r"^HTTP/\S+\s+(\d{3})")
 
 
 @dataclass
@@ -98,6 +112,90 @@ def _decode(body: bytes, encoding: str) -> bytes:
     return body
 
 
+def use_curl(url: str) -> bool:
+    """True when `url` is on a CURL_HOSTS host and a curl binary is installed."""
+    host = (urlsplit(url).hostname or "").lower()
+    return bool(CURL) and any(host == d or host.endswith("." + d) for d in CURL_HOSTS)
+
+
+def _urllib_get(resp: Response, url: str, headers: dict[str, str], timeout: float, max_bytes: int) -> tuple[bytes, float]:
+    """One GET through urllib. Fills `resp`; returns (raw body, Retry-After seconds)."""
+    recorder = _Recorder()
+    opener = urllib.request.build_opener(recorder, urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+    req = urllib.request.Request(url, headers=headers, method="GET")
+    retry_after = 0.0
+    try:
+        with opener.open(req, timeout=timeout) as r:
+            resp.status = r.status
+            resp.final_url = r.geturl()
+            resp.headers = {k.lower(): v for k, v in r.headers.items()}
+            raw = r.read(max_bytes + 1)
+    except urllib.error.HTTPError as e:
+        resp.status = e.code
+        resp.final_url = e.geturl() or url
+        resp.headers = {k.lower(): v for k, v in (e.headers or {}).items()}
+        try:
+            raw = e.read(1_000_000)
+        except (OSError, ValueError):
+            raw = b""
+        ra = resp.headers.get("retry-after", "")
+        retry_after = float(ra) if ra.isdigit() else 0.0
+    except (urllib.error.URLError, socket.timeout, TimeoutError, ConnectionError, OSError, ValueError) as e:
+        reason = getattr(e, "reason", e)
+        resp.error = f"{type(reason).__name__}: {reason}"[:200]
+        raw = b""
+    except Exception as e:  # http.client oddities (IncompleteRead, BadStatusLine, ...)
+        resp.error = f"{type(e).__name__}: {e}"[:200]
+        raw = b""
+    resp.chain = recorder.chain
+    return raw, retry_after
+
+
+def parse_curl_headers(text: str) -> list[tuple[int, dict[str, str]]]:
+    """(status, lower-cased headers) for each response curl -D wrote, one per redirect hop."""
+    blocks: list[tuple[int, dict[str, str]]] = []
+    for line in text.splitlines():
+        m = _STATUS_LINE.match(line)
+        if m:
+            blocks.append((int(m.group(1)), {}))
+        elif blocks and ":" in line:
+            k, v = line.split(":", 1)
+            blocks[-1][1][k.strip().lower()] = v.strip()
+    return blocks
+
+
+def _curl_get(resp: Response, url: str, headers: dict[str, str], timeout: float, max_bytes: int) -> tuple[bytes, float]:
+    """One GET through curl, with the same headers. Fills `resp` like `_urllib_get`,
+    including the redirect chain, read from the headers of every hop."""
+    cmd = [CURL, "-sS", "-L", "--max-redirs", "10", "--compressed", "-m", str(int(timeout)), "-w", _CURL_MARK + "%{http_code}"]
+    for k, v in headers.items():
+        if k.lower() != "accept-encoding":  # --compressed asks for what this curl can decode
+            cmd += ["-H", f"{k}: {v}"]
+    with tempfile.TemporaryDirectory() as tmp:
+        head = Path(tmp) / "headers"
+        try:
+            p = subprocess.run([*cmd, "-D", str(head), url], capture_output=True, timeout=timeout + 15)
+        except (subprocess.TimeoutExpired, OSError) as e:
+            resp.error = f"curl: {type(e).__name__}"
+            return b"", 0.0
+        blocks = parse_curl_headers(head.read_text("latin-1")) if head.exists() else []
+    raw, _, code = p.stdout.rpartition(_CURL_MARK.encode())
+    resp.status = int(code) if code.isdigit() else 0
+    if not resp.status:
+        resp.error = f"curl exit {p.returncode}: {p.stderr.decode('utf-8', 'replace').strip()}"[:200]
+        return b"", 0.0
+    current = url
+    for status, hop in blocks[:-1]:
+        if 300 <= status < 400 and hop.get("location"):
+            current = urljoin(current, hop["location"])
+            resp.chain.append((status, current))
+    resp.final_url = current
+    resp.headers = blocks[-1][1] if blocks else {}
+    resp.headers.pop("content-encoding", None)  # curl has already decoded the body
+    ra = resp.headers.get("retry-after", "")
+    return raw[: max_bytes + 1], float(ra) if ra.isdigit() else 0.0
+
+
 def fetch(
     url: str,
     *,
@@ -110,38 +208,12 @@ def fetch(
     """GET `url`, following redirects. Retries timeouts, connection errors,
     429 and 5xx with backoff (honouring a short Retry-After)."""
     resp = Response(url=url)
+    get = _curl_get if use_curl(url) else _urllib_get
     for attempt in range(retries + 1):
         resp = Response(url=url, attempts=attempt + 1)
         if pacer:
             pacer.wait(url)
-        recorder = _Recorder()
-        opener = urllib.request.build_opener(recorder, urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
-        req = urllib.request.Request(url, headers={**BASE_HEADERS, **(headers or {})}, method="GET")
-        retry_after = 0.0
-        try:
-            with opener.open(req, timeout=timeout) as r:
-                resp.status = r.status
-                resp.final_url = r.geturl()
-                resp.headers = {k.lower(): v for k, v in r.headers.items()}
-                raw = r.read(max_bytes + 1)
-        except urllib.error.HTTPError as e:
-            resp.status = e.code
-            resp.final_url = e.geturl() or url
-            resp.headers = {k.lower(): v for k, v in (e.headers or {}).items()}
-            try:
-                raw = e.read(1_000_000)
-            except (OSError, ValueError):
-                raw = b""
-            ra = resp.headers.get("retry-after", "")
-            retry_after = float(ra) if ra.isdigit() else 0.0
-        except (urllib.error.URLError, socket.timeout, TimeoutError, ConnectionError, OSError, ValueError) as e:
-            reason = getattr(e, "reason", e)
-            resp.error = f"{type(reason).__name__}: {reason}"[:200]
-            raw = b""
-        except Exception as e:  # http.client oddities (IncompleteRead, BadStatusLine, ...)
-            resp.error = f"{type(e).__name__}: {e}"[:200]
-            raw = b""
-        resp.chain = recorder.chain
+        raw, retry_after = get(resp, url, {**BASE_HEADERS, **(headers or {})}, timeout, max_bytes)
         if len(raw) > max_bytes:
             raw, resp.truncated = raw[:max_bytes], True
         resp.body = _decode(raw, resp.headers.get("content-encoding", ""))

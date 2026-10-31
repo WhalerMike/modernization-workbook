@@ -1,5 +1,5 @@
 {
-  "_comment": "Settings for scripts/source_watch/watch.py (see its README). threshold_pct: a page counts as changed only when at least this share of its paragraphs were added or removed (learn.microsoft.com ms.date moves and any PDF hash change always count). fail_runs_before_blocked: runs in a row with no answer before a source is reported as needing a manual check.",
+  "_comment": "Settings for scripts/source_watch/watch.py (see its README). threshold_pct: a page counts as changed only when at least this share of its paragraphs were added or removed (learn.microsoft.com ms.date moves and any PDF hash change always count). fail_runs_before_blocked: runs in a row with no answer before a source is reported as needing a manual check. curl_hosts: hosts (and their subdomains) fetched with curl instead of Python, because they refuse Python's HTTP client but serve curl the same URL with the same User-Agent.",
   "threshold_pct": 2.0,
   "concurrency": 8,
   "timeout_s": 30,
@@ -11,6 +11,7 @@
   "fail_runs_before_blocked": 2,
   "max_bytes": 50000000,
   "skip_hosts": [],
+  "curl_hosts": ["cisa.gov"],
   "excerpt_chars": 280,
   "max_excerpts": 3,
   "min_paragraph_chars": 20
