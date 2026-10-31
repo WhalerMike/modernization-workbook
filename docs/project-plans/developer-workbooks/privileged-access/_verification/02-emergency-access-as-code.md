@@ -34,6 +34,8 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 20 | Every enforced policy must exclude; disabled accounts, extra group members are Findings; 5-minute evaluation; no `isfuzzy` | Rules; the alert | restated-as-design (labeled) | — |
 | 21 | Lab 1 outputs (7 passed; permission list; 9/0/1; findings; five matched rows; error text; template type, version, severity; 78 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 22 | Lab 2 behavior (query runs in a workspace; alert fires in two evaluation periods) | Lab 2 | not run against a tenant; research gaps, rows 7 and 8 | — |
+| 23 | Since April 11, 2025, new sign-ins that obtain a refresh token with FIDO2 keys are logged in the non-interactive sign-in logs | Gap table | updated October 31, 2026: new claim from the special considerations on the page; strengthens the non-interactive leg, because passkey is the method Learn recommends for these accounts | Learn, What are non-interactive user sign-ins in Microsoft Entra?, October 31, 2026 |
+| 24 | Learn's report-only page doesn't mention emergency accounts; report-only policies requiring a compliant device can prompt macOS, iOS and Android users for a device certificate, and Learn says to exclude those platforms | Verified facts, differences | updated October 31, 2026: new claim, recorded for research gaps row 5 without deciding it; the emergency access page still says report-only policies need no exclusion | Learn, Analyze Conditional Access policy impact (report-only); Manage emergency access accounts, October 31, 2026 |
 
 ## Carry-forward ledger
 
