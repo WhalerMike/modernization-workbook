@@ -5,7 +5,7 @@
   "asOf": "2026-10-30",
   "cloud": "gcc",
   "tenantId": "c0ffee00-0000-4000-8000-000000000001",
-  "registerSha256": "d4636f74835c936467851dcad9ca3b57adf820280453f546d4a3c595ea5bcab2",
+  "registerSha256": "899b2465c08fa427db9fc6f57be0c0c10730fa5062ad91e6e64596c9ffa6c9bc",
   "claimWindowDays": 30,
   "actions": [
     {

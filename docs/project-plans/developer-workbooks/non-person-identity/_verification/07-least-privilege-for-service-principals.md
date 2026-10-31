@@ -39,6 +39,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 23 | The reviewed list, its classes, the exception fields, the quarter rule, the plan actions, the writer's guards (hash, tenant, cloud, seven days, targets, bodies, delegated only, prechecks) | The code; Dangers | restated-as-design (labeled) | — |
 | 24 | Lab 1 outputs (10 passed; the two permission lines; 11 / 20 / 2 / 3; 7 / 3 / 3; review 15 / 9 / 6 / 4; 11 actions, 3 writes; the plan's hash; the findings by rule and the hand-off; the open rows; the plan table; dry run; apply; refusal; 45 reads; 141 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 25 | Lab 2 behavior (inherited assignments at a subscription list; Graph's answer to the script's request; Directory Writers after the removal) | Lab 2 | not run against a tenant; rows 61, 65 and 68 | — |
+| 26 | Lab 1 rerun after NpiCore's JSON writer switched to LF on every platform: the plan hash | Lab 1 | updated by running the commands as written; the counts and findings didn't change | local run, October 31, 2026 |
 
 ## Carry-forward ledger
 

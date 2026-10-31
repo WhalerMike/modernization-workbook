@@ -511,7 +511,8 @@ function New-NpiFinding {
 
 function Write-NpiJson {
     param([string]$Path, $Value)
-    [IO.File]::WriteAllText($Path, (ConvertTo-Json -InputObject $Value -Depth 20) + "`n", [Text.UTF8Encoding]::new($false))
+    # LF on every platform: ConvertTo-Json uses the platform newline, and the manifest hashes these files.
+    [IO.File]::WriteAllText($Path, (ConvertTo-Json -InputObject $Value -Depth 20).Replace("`r`n", "`n") + "`n", [Text.UTF8Encoding]::new($false))
 }
 
 function Get-NpiFileHash {

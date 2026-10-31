@@ -202,7 +202,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Findings: 7 Finding, 3 Warn, 3 Info
    Owner review 2026-Q4: 15 rows, 9 decided, 6 open, 4 changes pending; closed: False
    Plan: 11 actions, 3 of them writes (1 NarrowGrant, 2 RemoveAppRole); nothing sent
-   Plan SHA-256: 807ddb7bcafd7154a9cb9a1b6e2052cee0059f61b18155e806c352cadf71ddb1
+   Plan SHA-256: fca44f9f423c5c3590bf1b90b36e13a8cc9c4565dc0fdb30c9d6ef4ce1a1a0f8
    ```
 
    The two skipped are the agent identity and its blueprint, Chapter 09's. The plan's hash is the same on every run with these inputs.
@@ -290,7 +290,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    ./Invoke-NpiLeastPrivilegeAction.ps1 -Cloud gcc -PlanPath out/least-privilege/lp-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch07/estate-ch07.json -OutputPath out/lp-x
    ```
 
-   `Apply: 3 Sent`, then the refusal, `The plan's SHA-256 is 807ddb7b…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+   `Apply: 3 Sent`, then the refusal, `The plan's SHA-256 is fca44f9f…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 9. **Run the tests:**
 
@@ -298,7 +298,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 512 tests passing across the example, `out/least-privilege/manifest.json` listing 45 reads (12 app role assignment pages, 11 grant lists, 11 directory role lists, 2 resource service principals, 4 role assignment lists and 5 role definitions), and `out/lp-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done: the review names owners.
+**Expected result:** 513 tests passing across the example, `out/least-privilege/manifest.json` listing 45 reads (12 app role assignment pages, 11 grant lists, 11 directory role lists, 2 resource service principals, 4 role assignment lists and 5 role definitions), and `out/lp-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done: the review names owners.
 
 ## Lab 2: test tenant
 

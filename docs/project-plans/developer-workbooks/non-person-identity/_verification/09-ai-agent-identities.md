@@ -53,6 +53,8 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 37 | The writer's guards (approved hash, tenant, cloud, seven days, report-only Block only, POST to the cloud's beta endpoint, delegated, re-read) | Write path; Dangers | restated-as-design (labeled); tested | — |
 | 38 | Lab 1 outputs (13 passed; permissions; D-N6 table; 8 identities, 22/6/4, 4 P1, 2 P2, 2 orphans, plan hash 64d649cf…; findings list; sponsor table; gcchigh fallback output and hash 8ad4b483…; dry run; apply; refusal; 159 tests; 45 requests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 39 | Lab 2 behavior (expand sponsors under Read.All; admin center policy JSON; report-only results) | Lab 2 | not run against a tenant; rows 82, 84, 85 | — |
+| 40 | Lab 1 rerun after NpiCore's JSON writer switched to LF on every platform: the plan hashes | Lab 1 | updated by running the commands as written; the counts and findings didn't change | local run, October 31, 2026 |
+| 41 | Agent ID platform generally available in April 2026 (the stage paragraph) | Agent ID and its stages | verified against Learn's release notes and Agent ID's What's new; the older overview's preview notice no longer shows at its address, which opens the current overview | [^np09-ga], accessed October 31, 2026 |
 
 ## Carry-forward ledger
 
