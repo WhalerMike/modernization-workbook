@@ -40,6 +40,8 @@ What the link and footnote checks look for:
 
 In the FULL tier the link and footnote checks cover every published page, but only problems on pages the change touched, or links to them, fail the run; the rest are listed as warnings.
 
+When the check renders pages (the CHANGED and FULL tiers), the run keeps them for 7 days as the `rendered-pages` artifact, without the Word bundles and kit zips, and its summary links the download and lists the pages. Unzip it and open a page in a browser to see the change as the site will show it, without rendering locally.
+
 Run it locally before opening a pull request (Python 3.10+ with PyYAML, and Quarto on `PATH`):
 
 ```bash
