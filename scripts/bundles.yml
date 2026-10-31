@@ -15,7 +15,8 @@
 #                  folder, so adding or deleting pages never breaks the build.
 #              A page is included once, at its first match. Pages the site
 #              does not publish (see project.render in _quarto.yml) are skipped.
-#   exclude    Globs removed from the result.
+#   exclude    Globs removed from the result. An excluded page is left out on
+#              purpose, so warn_unlisted doesn't report it.
 #   title      Title page. Default: the first page's front-matter title.
 #   subtitle   Subtitle line. Default: defaults.subtitle.
 #   aliases    Extra file names that get a copy of the same bundle.
@@ -83,6 +84,9 @@ bundles:
     image_dir: docs/images/diagrams/developer-workbooks/attribute-driven-migration
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+    # The implementation guide lives in this folder but has its own Word edition
+    # (attribute-driven-migration-implementation-guide.docx above).
+    exclude: [implementation-guide.md]
   - output: building-privileged-access-bundle.docx
     title: "Building Privileged Access"
     subtitle: "A developer workbook for the Privileged Access & Administrative Identity project — Federal Modernization Workbook, combined edition"
