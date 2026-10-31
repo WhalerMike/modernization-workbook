@@ -75,6 +75,12 @@ This is Book 00 of the [Federal Modernization Workbook](../index.md), the front 
 
 ## Version and revision history {#version-history}
 
-This book has not been published in an edition yet. Each edition is kept, with its Word editions, decks and videos, on the [Archive](../../about/archive.md) page. Every change so far is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b00-orientation).
+**Version 1.0**, in [edition 2026.10](../../about/archive.md#edition-2026-10) (October 31, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/b00-orientation).
+
+| Version | Edition | Date | Changes |
+|---|---|---|---|
+| 1.0 | [2026.10](../../about/archive.md#edition-2026-10) | 2026-10-31 | First edition (23 merged changes since the book began) |
+
+: Versions of this book, newest first {.striped .hover}
 
 <!-- revisions:end -->

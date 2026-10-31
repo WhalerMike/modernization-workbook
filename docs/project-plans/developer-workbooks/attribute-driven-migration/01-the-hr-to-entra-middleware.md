@@ -31,7 +31,7 @@ The middleware that reads an HR extract and feeds Microsoft Entra ID's API-drive
 ## Narrated tour
 {{< fmw-video DW_ADM_01_HR_Entra_Middleware_Narrated >}}
 
-[Deck](../../../../presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware.pptx) · [Narrated deck](../../../../presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_ADM_01_HR_Entra_Middleware.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_ADM_01_HR_Entra_Middleware_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

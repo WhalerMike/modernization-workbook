@@ -24,6 +24,15 @@ presentations/**/*.mp4
 # Except the Start Here web video (720p, embedded on docs/start-here.md)
 !presentations/start-here/Start_Here_720p.mp4
 
+# Decks and narration audio are built on a workstation and published on the
+# current edition's Release (scripts/deck_assets.py, data/deck-assets.json);
+# git keeps their sources, timings and captions.
+presentations/**/*.pptx
+presentations/**/narration_*/*.mp3
+# Staging and download folders for those files (cut_edition.py --decks, deck_assets.py fetch)
+/_edition-decks/
+/_deck-cache/
+
 # Source watcher: the state lives on the source-watch-state branch, never main
 # (see scripts/source_watch/README.md); a local run's copy and its output stay untracked.
 /data/source-watch/state.json

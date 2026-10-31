@@ -29,7 +29,7 @@ The evidence behind the project plan's tasks A3.6 and A4.3: "drift every six hou
 ## Narrated tour
 {{< fmw-video DW_PA_08_Evidence_Drift_Narrated >}}
 
-[Deck](../../../../presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift.pptx) · [Narrated deck](../../../../presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift_Narrated.pptx) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_PA_08_Evidence_Drift.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_PA_08_Evidence_Drift_Narrated.pptx) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

@@ -31,7 +31,7 @@ The anatomy of a validation kit check, built end to end on a new one, VK-SYNC-02
 ## Narrated tour
 {{< fmw-video DW_ADM_03_Validation_Kit_Check_Narrated >}}
 
-[Deck](../../../../presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check.pptx) · [Narrated deck](../../../../presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_ADM_03_Validation_Kit_Check.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_ADM_03_Validation_Kit_Check_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

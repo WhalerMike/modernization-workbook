@@ -234,6 +234,12 @@ class NonSiteTasks(unittest.TestCase):
                      "docs/project-plans/developer-workbooks/index.md"):
             self.assertNotIn("revisions", cc.non_site_tasks(mods(path)), path)
 
+    def test_deck_links(self):
+        for path in ("docs/presentations/index.md", "data/deck-assets.json", "scripts/deck_assets.py",
+                     "data/edition-assets/edition-2026.10.json", "presentations/b02-identity/README.md"):
+            self.assertIn("deck-links", cc.non_site_tasks(mods(path)), path)
+        self.assertNotIn("deck-links", cc.non_site_tasks(mods("presentations/b02-identity/build.js")))
+
     def test_authorities_spine(self):
         for path in ("data/federal-compliance-compliance-spine.yml", "scripts/render_authorities_table.py",
                      "docs/compliance/Vol_I_Book_07_Network_Enforcement_Substrate.md"):

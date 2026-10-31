@@ -272,6 +272,10 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
             add("project-plans", p)
         if REVISIONS.fullmatch(p):
             add("revisions", p)
+        if (p.endswith(PAGE_SUFFIXES) and p.startswith(("docs/", "presentations/", "index.qmd"))
+                and not any(part.startswith("_") for part in p.split("/")[:-1])) or p.startswith(
+                "data/edition-assets/") or p in ("data/deck-assets.json", "scripts/deck_assets.py"):
+            add("deck-links", p)
         if p in ("data/federal-compliance-compliance-spine.yml", "scripts/render_authorities_table.py") or (
                 p.startswith("docs/compliance/") and p.endswith(".md")):
             add("authorities", p)
@@ -279,7 +283,7 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
                                                              "scripts/check_evidence_maps.py"):
             add("evidence-maps", p)
         if p in ("scripts/check_changed.py", "scripts/check_evidence_maps.py", "scripts/check_neutrality.py",
-                 "scripts/generate_revisions.py",
+                 "scripts/generate_revisions.py", "scripts/deck_assets.py",
                  "scripts/run_example_tests.py", ".github/workflows/pr-checks.yml") or p.startswith("scripts/tests/"):
             add("unit-tests", p)
     import check_neutrality
@@ -1040,6 +1044,7 @@ class Checker:
                 ("Video manifest is current", self.simple([PY, "scripts/generate_video_manifest.py", "--check"])),
                 ("Revision histories and the Archive are current",
                  self.simple([PY, "scripts/generate_revisions.py", "--check"])),
+                ("Deck links reach the edition's Release", self.simple([PY, "scripts/deck_assets.py", "links", "--check"])),
             ]
         elif p.tier == "CHANGED":
             steps += [
@@ -1060,6 +1065,9 @@ class Checker:
                           self.a11y))
         if "video-manifest" in t and p.tier != "FULL":
             steps.append(("Video manifest is current", self.simple([PY, "scripts/generate_video_manifest.py", "--check"])))
+        if "deck-links" in t and p.tier != "FULL":
+            steps.append(("Deck links reach the edition's Release",
+                          self.simple([PY, "scripts/deck_assets.py", "links", "--check"])))
         if "revisions" in t and p.tier != "FULL":
             steps.append(("Revision histories and the Archive are current",
                           self.simple([PY, "scripts/generate_revisions.py", "--check"])))

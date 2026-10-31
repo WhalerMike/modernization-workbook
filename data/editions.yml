@@ -25,7 +25,96 @@
 # The Release's file list is in data/edition-assets/<id>.json
 # (`python scripts/cut_edition.py --refresh-assets <id>`).
 
-editions: []
+editions:
+  - id: edition-2026.10
+    date: 2026-10-31
+    commit: 7b1fe22021fde11bcbbec80b8d30b756f7889d82
+    summary: "The first edition: the 19 books, six companion guides and three developer workbooks as of October 31, 2026, with every presentation deck, narrated deck and narration audio file."
+    units:
+      b00-orientation:
+        changes:
+          - "First edition (23 merged changes since the book began)"
+      b01-transformation-arc:
+        changes:
+          - "First edition (20 merged changes since the book began)"
+      b02-identity:
+        changes:
+          - "First edition (35 merged changes since the book began)"
+      b03-hr-identity:
+        changes:
+          - "First edition (32 merged changes since the book began)"
+      b04-access:
+        changes:
+          - "First edition (30 merged changes since the book began)"
+      b05-devices:
+        changes:
+          - "First edition (26 merged changes since the book began)"
+      b06-data-platform:
+        changes:
+          - "First edition (25 merged changes since the book began)"
+      b07-pki:
+        changes:
+          - "First edition (20 merged changes since the book began)"
+      b08-ddi:
+        changes:
+          - "First edition (23 merged changes since the book began)"
+      b09-network:
+        changes:
+          - "First edition (22 merged changes since the book began)"
+      b10-cloud-boundary:
+        changes:
+          - "First edition (17 merged changes since the book began)"
+      b11-zero-trust:
+        changes:
+          - "First edition (17 merged changes since the book began)"
+      b12-security-operations:
+        changes:
+          - "First edition (20 merged changes since the book began)"
+      b13-governance:
+        changes:
+          - "First edition (17 merged changes since the book began)"
+      b14-compliance:
+        changes:
+          - "First edition (15 merged changes since the book began)"
+      b15-day2-operations:
+        changes:
+          - "First edition (24 merged changes since the book began)"
+      b16-people:
+        changes:
+          - "First edition (14 merged changes since the book began)"
+      b17-ai-identity:
+        changes:
+          - "First edition (17 merged changes since the book began)"
+      b18-application-modernization:
+        changes:
+          - "First edition (5 merged changes since the book began)"
+      guides/ansible-configuration-automation:
+        changes:
+          - "First edition (4 merged changes since the guide began)"
+      guides/arc-track-implementation:
+        changes:
+          - "First edition (3 merged changes since the guide began)"
+      guides/attribute-driven-migration:
+        changes:
+          - "First edition (9 merged changes since the guide began)"
+      guides/effective-meetings:
+        changes:
+          - "First edition (3 merged changes since the guide began)"
+      guides/intune-track-implementation:
+        changes:
+          - "First edition (3 merged changes since the guide began)"
+      guides/non-person-identity-implementation:
+        changes:
+          - "First edition (2 merged changes since the guide began)"
+      developer-workbooks/attribute-driven-migration:
+        changes:
+          - "First edition (18 merged changes since the workbook began)"
+      developer-workbooks/non-person-identity:
+        changes:
+          - "First edition (15 merged changes since the workbook began)"
+      developer-workbooks/privileged-access:
+        changes:
+          - "First edition (12 merged changes since the workbook began)"
 # (scripts/cut_edition.py adds each new edition at the end of the list above.)
 
 # Releases that aren't editions (kits, video sets), listed on the Archive page.

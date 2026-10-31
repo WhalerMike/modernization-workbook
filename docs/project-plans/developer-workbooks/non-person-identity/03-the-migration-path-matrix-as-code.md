@@ -29,7 +29,7 @@ The decisions behind the project plan's Gate 2, "every account has a decision." 
 ## Narrated tour
 {{< fmw-video DW_NPI_03_Migration_Path_Matrix_Narrated >}}
 
-[Deck](../../../../presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix.pptx) · [Narrated deck](../../../../presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_NPI_03_Migration_Path_Matrix.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_NPI_03_Migration_Path_Matrix_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

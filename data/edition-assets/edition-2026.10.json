@@ -1,0 +1,1722 @@
+[
+ {
+  "name": "access-plane-bundle.docx",
+  "size": 3336357
+ },
+ {
+  "name": "ansible-examples.zip",
+  "size": 82256
+ },
+ {
+  "name": "app-modernization.zip",
+  "size": 193221
+ },
+ {
+  "name": "Appendix_A-bundle.docx",
+  "size": 19760
+ },
+ {
+  "name": "Appendix_B-bundle.docx",
+  "size": 225318
+ },
+ {
+  "name": "Applicability-bundle.docx",
+  "size": 18611
+ },
+ {
+  "name": "arc-track-implementation-guide.docx",
+  "size": 41254
+ },
+ {
+  "name": "attribute-driven-migration-guide.docx",
+  "size": 88934
+ },
+ {
+  "name": "attribute-driven-migration-implementation-guide.docx",
+  "size": 42590
+ },
+ {
+  "name": "Attribute_Driven_Migration_Deeper_Dive_Part_1.pptx",
+  "size": 240301
+ },
+ {
+  "name": "Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated.pptx",
+  "size": 5371188
+ },
+ {
+  "name": "Attribute_Driven_Migration_Deeper_Dive_Part_1_narration_audio.zip",
+  "size": 5099176
+ },
+ {
+  "name": "Attribute_Driven_Migration_Deeper_Dive_Part_2.pptx",
+  "size": 236492
+ },
+ {
+  "name": "Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated.pptx",
+  "size": 5881964
+ },
+ {
+  "name": "Attribute_Driven_Migration_Deeper_Dive_Part_2_narration_audio.zip",
+  "size": 5614342
+ },
+ {
+  "name": "Attribute_Driven_Migration_Deeper_Dive_Part_3.pptx",
+  "size": 249114
+ },
+ {
+  "name": "Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated.pptx",
+  "size": 5464024
+ },
+ {
+  "name": "Attribute_Driven_Migration_Deeper_Dive_Part_3_narration_audio.zip",
+  "size": 5187592
+ },
+ {
+  "name": "Attribute_Driven_Migration_Technical_Part_1.pptx",
+  "size": 1803183
+ },
+ {
+  "name": "Attribute_Driven_Migration_Technical_Part_1_Narrated.pptx",
+  "size": 7565837
+ },
+ {
+  "name": "Attribute_Driven_Migration_Technical_Part_1_narration_audio.zip",
+  "size": 5725758
+ },
+ {
+  "name": "Attribute_Driven_Migration_Technical_Part_2.pptx",
+  "size": 1131027
+ },
+ {
+  "name": "Attribute_Driven_Migration_Technical_Part_2_Narrated.pptx",
+  "size": 7130383
+ },
+ {
+  "name": "Attribute_Driven_Migration_Technical_Part_2_narration_audio.zip",
+  "size": 5962062
+ },
+ {
+  "name": "b00-orientation-bundle.docx",
+  "size": 3098358
+ },
+ {
+  "name": "B00_Orientation.pptx",
+  "size": 332152
+ },
+ {
+  "name": "B00_Orientation_Executive.pptx",
+  "size": 426519
+ },
+ {
+  "name": "B00_Orientation_Executive_Narrated.pptx",
+  "size": 8633606
+ },
+ {
+  "name": "B00_Orientation_Executive_narration_audio.zip",
+  "size": 8280974
+ },
+ {
+  "name": "B00_Orientation_Narrated.pptx",
+  "size": 4691030
+ },
+ {
+  "name": "B00_Orientation_narration_audio.zip",
+  "size": 4353652
+ },
+ {
+  "name": "b01-transformation-arc-bundle.docx",
+  "size": 4200426
+ },
+ {
+  "name": "B01_Transformation_Arc.pptx",
+  "size": 389315
+ },
+ {
+  "name": "B01_Transformation_Arc_Executive.pptx",
+  "size": 454034
+ },
+ {
+  "name": "B01_Transformation_Arc_Executive_Narrated.pptx",
+  "size": 9057314
+ },
+ {
+  "name": "B01_Transformation_Arc_Executive_narration_audio.zip",
+  "size": 8669622
+ },
+ {
+  "name": "B01_Transformation_Arc_Narrated.pptx",
+  "size": 5427369
+ },
+ {
+  "name": "B01_Transformation_Arc_narration_audio.zip",
+  "size": 5053610
+ },
+ {
+  "name": "b02-identity-bundle.docx",
+  "size": 4134855
+ },
+ {
+  "name": "B02_Identity.pptx",
+  "size": 309008
+ },
+ {
+  "name": "B02_Identity_Executive.pptx",
+  "size": 2325631
+ },
+ {
+  "name": "B02_Identity_Executive_Narrated.pptx",
+  "size": 7593704
+ },
+ {
+  "name": "B02_Identity_Executive_narration_audio.zip",
+  "size": 5306946
+ },
+ {
+  "name": "B02_Identity_Narrated.pptx",
+  "size": 4229877
+ },
+ {
+  "name": "B02_Identity_narration_audio.zip",
+  "size": 3918694
+ },
+ {
+  "name": "B02_Identity_Technical.pptx",
+  "size": 348375
+ },
+ {
+  "name": "B02_Identity_Technical_Narrated.pptx",
+  "size": 8231209
+ },
+ {
+  "name": "B02_Identity_Technical_narration_audio.zip",
+  "size": 7838954
+ },
+ {
+  "name": "b03-hr-identity-01.docx",
+  "size": 166998
+ },
+ {
+  "name": "b03-hr-identity-02.docx",
+  "size": 234671
+ },
+ {
+  "name": "b03-hr-identity-03.docx",
+  "size": 138983
+ },
+ {
+  "name": "b03-hr-identity-04.docx",
+  "size": 276141
+ },
+ {
+  "name": "b03-hr-identity-05.docx",
+  "size": 246418
+ },
+ {
+  "name": "b03-hr-identity-06.docx",
+  "size": 233586
+ },
+ {
+  "name": "b03-hr-identity-07.docx",
+  "size": 290760
+ },
+ {
+  "name": "b03-hr-identity-08.docx",
+  "size": 299369
+ },
+ {
+  "name": "b03-hr-identity-09.docx",
+  "size": 504088
+ },
+ {
+  "name": "b03-hr-identity-10.docx",
+  "size": 269631
+ },
+ {
+  "name": "b03-hr-identity-11.docx",
+  "size": 105289
+ },
+ {
+  "name": "b03-hr-identity-12.docx",
+  "size": 126079
+ },
+ {
+  "name": "b03-hr-identity-13.docx",
+  "size": 136940
+ },
+ {
+  "name": "b03-hr-identity-bundle.docx",
+  "size": 3176781
+ },
+ {
+  "name": "B03_HR_Identity.pptx",
+  "size": 283785
+ },
+ {
+  "name": "B03_HR_Identity_Executive.pptx",
+  "size": 2000088
+ },
+ {
+  "name": "B03_HR_Identity_Executive_Narrated.pptx",
+  "size": 7176885
+ },
+ {
+  "name": "B03_HR_Identity_Executive_narration_audio.zip",
+  "size": 5225844
+ },
+ {
+  "name": "B03_HR_Identity_Narrated.pptx",
+  "size": 4205053
+ },
+ {
+  "name": "B03_HR_Identity_narration_audio.zip",
+  "size": 3914302
+ },
+ {
+  "name": "B03_HR_Identity_Technical.pptx",
+  "size": 988519
+ },
+ {
+  "name": "B03_HR_Identity_Technical_Narrated.pptx",
+  "size": 8079101
+ },
+ {
+  "name": "B03_HR_Identity_Technical_narration_audio.zip",
+  "size": 7048790
+ },
+ {
+  "name": "b04-access-bundle.docx",
+  "size": 3336357
+ },
+ {
+  "name": "B04_Access.pptx",
+  "size": 272612
+ },
+ {
+  "name": "B04_Access_Executive.pptx",
+  "size": 1995629
+ },
+ {
+  "name": "B04_Access_Executive_Narrated.pptx",
+  "size": 7112203
+ },
+ {
+  "name": "B04_Access_Executive_narration_audio.zip",
+  "size": 5176118
+ },
+ {
+  "name": "B04_Access_Narrated.pptx",
+  "size": 3385501
+ },
+ {
+  "name": "B04_Access_narration_audio.zip",
+  "size": 3119166
+ },
+ {
+  "name": "B04_Access_Technical.pptx",
+  "size": 426143
+ },
+ {
+  "name": "B04_Access_Technical_Narrated.pptx",
+  "size": 7931708
+ },
+ {
+  "name": "B04_Access_Technical_narration_audio.zip",
+  "size": 7525478
+ },
+ {
+  "name": "b05-devices-bundle.docx",
+  "size": 3364857
+ },
+ {
+  "name": "B05_Devices.pptx",
+  "size": 282382
+ },
+ {
+  "name": "B05_Devices_Executive.pptx",
+  "size": 1916829
+ },
+ {
+  "name": "B05_Devices_Executive_Narrated.pptx",
+  "size": 7495772
+ },
+ {
+  "name": "B05_Devices_Executive_narration_audio.zip",
+  "size": 5627344
+ },
+ {
+  "name": "B05_Devices_Narrated.pptx",
+  "size": 4385733
+ },
+ {
+  "name": "B05_Devices_narration_audio.zip",
+  "size": 4102124
+ },
+ {
+  "name": "B05_Devices_Technical.pptx",
+  "size": 329445
+ },
+ {
+  "name": "B05_Devices_Technical_Narrated.pptx",
+  "size": 9184946
+ },
+ {
+  "name": "B05_Devices_Technical_narration_audio.zip",
+  "size": 8802022
+ },
+ {
+  "name": "b06-data-platform-appendix-a.docx",
+  "size": 19760
+ },
+ {
+  "name": "b06-data-platform-appendix-b.docx",
+  "size": 225318
+ },
+ {
+  "name": "b06-data-platform-applicability.docx",
+  "size": 18611
+ },
+ {
+  "name": "b06-data-platform-book-01.docx",
+  "size": 1005883
+ },
+ {
+  "name": "b06-data-platform-book-02.docx",
+  "size": 984218
+ },
+ {
+  "name": "b06-data-platform-book-03.docx",
+  "size": 826655
+ },
+ {
+  "name": "b06-data-platform-book-04.docx",
+  "size": 659610
+ },
+ {
+  "name": "b06-data-platform-book-05.docx",
+  "size": 740285
+ },
+ {
+  "name": "b06-data-platform-book-06.docx",
+  "size": 803778
+ },
+ {
+  "name": "b06-data-platform-book-07.docx",
+  "size": 937536
+ },
+ {
+  "name": "b06-data-platform-book-08.docx",
+  "size": 771960
+ },
+ {
+  "name": "b06-data-platform-book-09.docx",
+  "size": 734887
+ },
+ {
+  "name": "b06-data-platform-book-10.docx",
+  "size": 589208
+ },
+ {
+  "name": "b06-data-platform-book-11.docx",
+  "size": 241024
+ },
+ {
+  "name": "b06-data-platform-bundle.docx",
+  "size": 9418772
+ },
+ {
+  "name": "b06-data-platform-runbooks.docx",
+  "size": 120440
+ },
+ {
+  "name": "B06_Data_Platform.pptx",
+  "size": 273973
+ },
+ {
+  "name": "B06_Data_Platform_Executive.pptx",
+  "size": 2922223
+ },
+ {
+  "name": "B06_Data_Platform_Executive_Narrated.pptx",
+  "size": 8037477
+ },
+ {
+  "name": "B06_Data_Platform_Executive_narration_audio.zip",
+  "size": 5168062
+ },
+ {
+  "name": "B06_Data_Platform_Narrated.pptx",
+  "size": 3909153
+ },
+ {
+  "name": "B06_Data_Platform_narration_audio.zip",
+  "size": 3639588
+ },
+ {
+  "name": "B06_Data_Platform_Technical.pptx",
+  "size": 356579
+ },
+ {
+  "name": "B06_Data_Platform_Technical_Narrated.pptx",
+  "size": 7822842
+ },
+ {
+  "name": "B06_Data_Platform_Technical_narration_audio.zip",
+  "size": 7435438
+ },
+ {
+  "name": "b07-pki-bundle.docx",
+  "size": 4235605
+ },
+ {
+  "name": "B07_PKI.pptx",
+  "size": 335991
+ },
+ {
+  "name": "B07_PKI_Executive.pptx",
+  "size": 2780667
+ },
+ {
+  "name": "B07_PKI_Executive_Narrated.pptx",
+  "size": 7355001
+ },
+ {
+  "name": "B07_PKI_Executive_narration_audio.zip",
+  "size": 4615690
+ },
+ {
+  "name": "B07_PKI_Narrated.pptx",
+  "size": 4774294
+ },
+ {
+  "name": "B07_PKI_narration_audio.zip",
+  "size": 4450644
+ },
+ {
+  "name": "B07_PKI_Technical.pptx",
+  "size": 353386
+ },
+ {
+  "name": "B07_PKI_Technical_Narrated.pptx",
+  "size": 8512095
+ },
+ {
+  "name": "B07_PKI_Technical_narration_audio.zip",
+  "size": 8119762
+ },
+ {
+  "name": "b08-ddi-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "B08_DDI.pptx",
+  "size": 338598
+ },
+ {
+  "name": "B08_DDI_Executive.pptx",
+  "size": 1914054
+ },
+ {
+  "name": "B08_DDI_Executive_Narrated.pptx",
+  "size": 6757485
+ },
+ {
+  "name": "B08_DDI_Executive_narration_audio.zip",
+  "size": 4885556
+ },
+ {
+  "name": "B08_DDI_Narrated.pptx",
+  "size": 4961509
+ },
+ {
+  "name": "B08_DDI_narration_audio.zip",
+  "size": 4628474
+ },
+ {
+  "name": "B08_DDI_Requirements.pptx",
+  "size": 291677
+ },
+ {
+  "name": "B08_DDI_Requirements_Narrated.pptx",
+  "size": 4812713
+ },
+ {
+  "name": "B08_DDI_Requirements_narration_audio.zip",
+  "size": 4506470
+ },
+ {
+  "name": "B08_DDI_Technical.pptx",
+  "size": 352166
+ },
+ {
+  "name": "B08_DDI_Technical_Narrated.pptx",
+  "size": 8374105
+ },
+ {
+  "name": "B08_DDI_Technical_narration_audio.zip",
+  "size": 7979208
+ },
+ {
+  "name": "b09-network-bundle.docx",
+  "size": 5491631
+ },
+ {
+  "name": "B09_Network.pptx",
+  "size": 357704
+ },
+ {
+  "name": "B09_Network_Executive.pptx",
+  "size": 365348
+ },
+ {
+  "name": "B09_Network_Executive_Narrated.pptx",
+  "size": 8121148
+ },
+ {
+  "name": "B09_Network_Executive_narration_audio.zip",
+  "size": 7780630
+ },
+ {
+  "name": "B09_Network_Narrated.pptx",
+  "size": 5048356
+ },
+ {
+  "name": "B09_Network_narration_audio.zip",
+  "size": 4715416
+ },
+ {
+  "name": "B09_Network_Technical.pptx",
+  "size": 650430
+ },
+ {
+  "name": "B09_Network_Technical_Narrated.pptx",
+  "size": 7514026
+ },
+ {
+  "name": "B09_Network_Technical_narration_audio.zip",
+  "size": 6818566
+ },
+ {
+  "name": "B09_SDWAN_Executive.pptx",
+  "size": 843041
+ },
+ {
+  "name": "B09_SDWAN_Executive_Narrated.pptx",
+  "size": 3355980
+ },
+ {
+  "name": "B09_SDWAN_Executive_narration_audio.zip",
+  "size": 2489806
+ },
+ {
+  "name": "B09_SDWAN_Technical.pptx",
+  "size": 2032692
+ },
+ {
+  "name": "B09_SDWAN_Technical_Narrated.pptx",
+  "size": 8483386
+ },
+ {
+  "name": "B09_SDWAN_Technical_narration_audio.zip",
+  "size": 6408456
+ },
+ {
+  "name": "b10-cloud-boundary-bundle.docx",
+  "size": 3661741
+ },
+ {
+  "name": "B10_Cloud_Boundary.pptx",
+  "size": 332976
+ },
+ {
+  "name": "B10_Cloud_Boundary_Executive.pptx",
+  "size": 354388
+ },
+ {
+  "name": "B10_Cloud_Boundary_Executive_Narrated.pptx",
+  "size": 7864282
+ },
+ {
+  "name": "B10_Cloud_Boundary_Executive_narration_audio.zip",
+  "size": 7536198
+ },
+ {
+  "name": "B10_Cloud_Boundary_Narrated.pptx",
+  "size": 4942276
+ },
+ {
+  "name": "B10_Cloud_Boundary_narration_audio.zip",
+  "size": 4624618
+ },
+ {
+  "name": "B10_Cloud_Boundary_Technical.pptx",
+  "size": 2642607
+ },
+ {
+  "name": "B10_Cloud_Boundary_Technical_Narrated.pptx",
+  "size": 9214681
+ },
+ {
+  "name": "B10_Cloud_Boundary_Technical_narration_audio.zip",
+  "size": 6533174
+ },
+ {
+  "name": "b11-zero-trust-bundle.docx",
+  "size": 2774364
+ },
+ {
+  "name": "B11_Zero_Trust.pptx",
+  "size": 334543
+ },
+ {
+  "name": "B11_Zero_Trust_Executive.pptx",
+  "size": 354884
+ },
+ {
+  "name": "B11_Zero_Trust_Executive_Narrated.pptx",
+  "size": 8309373
+ },
+ {
+  "name": "B11_Zero_Trust_Executive_narration_audio.zip",
+  "size": 7988518
+ },
+ {
+  "name": "B11_Zero_Trust_Narrated.pptx",
+  "size": 5050799
+ },
+ {
+  "name": "B11_Zero_Trust_narration_audio.zip",
+  "size": 4718958
+ },
+ {
+  "name": "B11_Zero_Trust_Technical.pptx",
+  "size": 2137033
+ },
+ {
+  "name": "B11_Zero_Trust_Technical_Narrated.pptx",
+  "size": 8518285
+ },
+ {
+  "name": "B11_Zero_Trust_Technical_narration_audio.zip",
+  "size": 6341686
+ },
+ {
+  "name": "b12-security-operations-bundle.docx",
+  "size": 3719063
+ },
+ {
+  "name": "B12_Security_Operations.pptx",
+  "size": 338715
+ },
+ {
+  "name": "B12_Security_Operations_Executive.pptx",
+  "size": 1729678
+ },
+ {
+  "name": "B12_Security_Operations_Executive_Narrated.pptx",
+  "size": 6472586
+ },
+ {
+  "name": "B12_Security_Operations_Executive_narration_audio.zip",
+  "size": 4784356
+ },
+ {
+  "name": "B12_Security_Operations_Narrated.pptx",
+  "size": 4853467
+ },
+ {
+  "name": "B12_Security_Operations_narration_audio.zip",
+  "size": 4532010
+ },
+ {
+  "name": "B12_Security_Operations_Technical.pptx",
+  "size": 844548
+ },
+ {
+  "name": "B12_Security_Operations_Technical_Narrated.pptx",
+  "size": 7063687
+ },
+ {
+  "name": "B12_Security_Operations_Technical_narration_audio.zip",
+  "size": 6173206
+ },
+ {
+  "name": "b13-governance-bundle.docx",
+  "size": 3529366
+ },
+ {
+  "name": "B13_Governance.pptx",
+  "size": 334788
+ },
+ {
+  "name": "B13_Governance_Executive.pptx",
+  "size": 2264907
+ },
+ {
+  "name": "B13_Governance_Executive_Narrated.pptx",
+  "size": 7209877
+ },
+ {
+  "name": "B13_Governance_Executive_narration_audio.zip",
+  "size": 4986190
+ },
+ {
+  "name": "B13_Governance_Narrated.pptx",
+  "size": 4846201
+ },
+ {
+  "name": "B13_Governance_narration_audio.zip",
+  "size": 4534638
+ },
+ {
+  "name": "B13_Governance_Technical.pptx",
+  "size": 2981868
+ },
+ {
+  "name": "B13_Governance_Technical_Narrated.pptx",
+  "size": 9563034
+ },
+ {
+  "name": "B13_Governance_Technical_narration_audio.zip",
+  "size": 6536230
+ },
+ {
+  "name": "B13_Ticket_to_Machine.pptx",
+  "size": 516354
+ },
+ {
+  "name": "B13_Ticket_to_Machine_Narrated.pptx",
+  "size": 4191672
+ },
+ {
+  "name": "B13_Ticket_to_Machine_narration_audio.zip",
+  "size": 3646696
+ },
+ {
+  "name": "b14-compliance-bundle.docx",
+  "size": 3680214
+ },
+ {
+  "name": "B14_Compliance.pptx",
+  "size": 320173
+ },
+ {
+  "name": "B14_Compliance_Executive.pptx",
+  "size": 2150396
+ },
+ {
+  "name": "B14_Compliance_Executive_Narrated.pptx",
+  "size": 7248940
+ },
+ {
+  "name": "B14_Compliance_Executive_narration_audio.zip",
+  "size": 5147326
+ },
+ {
+  "name": "B14_Compliance_Narrated.pptx",
+  "size": 4324411
+ },
+ {
+  "name": "B14_Compliance_narration_audio.zip",
+  "size": 4026746
+ },
+ {
+  "name": "b15-day2-operations-bundle.docx",
+  "size": 4248057
+ },
+ {
+  "name": "B15_Day2_Operations.pptx",
+  "size": 334970
+ },
+ {
+  "name": "B15_Day2_Operations_Executive.pptx",
+  "size": 2014590
+ },
+ {
+  "name": "B15_Day2_Operations_Executive_Narrated.pptx",
+  "size": 6502570
+ },
+ {
+  "name": "B15_Day2_Operations_Executive_narration_audio.zip",
+  "size": 4526410
+ },
+ {
+  "name": "B15_Day2_Operations_Narrated.pptx",
+  "size": 4441843
+ },
+ {
+  "name": "B15_Day2_Operations_narration_audio.zip",
+  "size": 4125660
+ },
+ {
+  "name": "B15_Day2_Operations_Technical.pptx",
+  "size": 860611
+ },
+ {
+  "name": "B15_Day2_Operations_Technical_Narrated.pptx",
+  "size": 7556485
+ },
+ {
+  "name": "B15_Day2_Operations_Technical_narration_audio.zip",
+  "size": 6653808
+ },
+ {
+  "name": "B15_InHouse_Automation_Executive.pptx",
+  "size": 343661
+ },
+ {
+  "name": "B15_InHouse_Automation_Executive_Narrated.pptx",
+  "size": 3331153
+ },
+ {
+  "name": "B15_InHouse_Automation_Executive_narration_audio.zip",
+  "size": 2958550
+ },
+ {
+  "name": "b16-people-bundle.docx",
+  "size": 2854905
+ },
+ {
+  "name": "B16_People.pptx",
+  "size": 338282
+ },
+ {
+  "name": "B16_People_Executive.pptx",
+  "size": 2090239
+ },
+ {
+  "name": "B16_People_Executive_Narrated.pptx",
+  "size": 6802310
+ },
+ {
+  "name": "B16_People_Executive_narration_audio.zip",
+  "size": 4782438
+ },
+ {
+  "name": "B16_People_Narrated.pptx",
+  "size": 4543682
+ },
+ {
+  "name": "B16_People_narration_audio.zip",
+  "size": 4209374
+ },
+ {
+  "name": "b17-ai-identity-bundle.docx",
+  "size": 3159994
+ },
+ {
+  "name": "B17_AI_Identity.pptx",
+  "size": 327925
+ },
+ {
+  "name": "B17_AI_Identity_Executive.pptx",
+  "size": 1923224
+ },
+ {
+  "name": "B17_AI_Identity_Executive_Narrated.pptx",
+  "size": 6766818
+ },
+ {
+  "name": "B17_AI_Identity_Executive_narration_audio.zip",
+  "size": 4881658
+ },
+ {
+  "name": "B17_AI_Identity_Narrated.pptx",
+  "size": 4680292
+ },
+ {
+  "name": "B17_AI_Identity_narration_audio.zip",
+  "size": 4361434
+ },
+ {
+  "name": "B17_AI_Identity_Technical.pptx",
+  "size": 2492616
+ },
+ {
+  "name": "B17_AI_Identity_Technical_Narrated.pptx",
+  "size": 9308142
+ },
+ {
+  "name": "B17_AI_Identity_Technical_narration_audio.zip",
+  "size": 6767990
+ },
+ {
+  "name": "b18-application-modernization-bundle.docx",
+  "size": 2147331
+ },
+ {
+  "name": "B18_Application_Modernization.pptx",
+  "size": 878722
+ },
+ {
+  "name": "B18_Application_Modernization_Executive.pptx",
+  "size": 2101085
+ },
+ {
+  "name": "B18_Application_Modernization_Executive_Narrated.pptx",
+  "size": 6700738
+ },
+ {
+  "name": "B18_Application_Modernization_Executive_narration_audio.zip",
+  "size": 4656910
+ },
+ {
+  "name": "B18_Application_Modernization_Narrated.pptx",
+  "size": 3983977
+ },
+ {
+  "name": "B18_Application_Modernization_narration_audio.zip",
+  "size": 3115616
+ },
+ {
+  "name": "B18_Application_Modernization_Technical.pptx",
+  "size": 2296405
+ },
+ {
+  "name": "B18_Application_Modernization_Technical_Narrated.pptx",
+  "size": 9026901
+ },
+ {
+  "name": "B18_Application_Modernization_Technical_narration_audio.zip",
+  "size": 6684178
+ },
+ {
+  "name": "b19-developer-workbook-bundle.docx",
+  "size": 379418
+ },
+ {
+  "name": "Book_01-bundle.docx",
+  "size": 1005883
+ },
+ {
+  "name": "Book_02-bundle.docx",
+  "size": 984218
+ },
+ {
+  "name": "Book_03-bundle.docx",
+  "size": 826655
+ },
+ {
+  "name": "Book_04-bundle.docx",
+  "size": 659610
+ },
+ {
+  "name": "Book_05-bundle.docx",
+  "size": 740285
+ },
+ {
+  "name": "Book_06-bundle.docx",
+  "size": 803778
+ },
+ {
+  "name": "Book_07-bundle.docx",
+  "size": 937536
+ },
+ {
+  "name": "Book_08-bundle.docx",
+  "size": 771960
+ },
+ {
+  "name": "Book_09-bundle.docx",
+  "size": 734887
+ },
+ {
+  "name": "Book_10-bundle.docx",
+  "size": 589208
+ },
+ {
+  "name": "Book_11-bundle.docx",
+  "size": 241024
+ },
+ {
+  "name": "building-non-person-identity-bundle.docx",
+  "size": 255057
+ },
+ {
+  "name": "building-privileged-access-bundle.docx",
+  "size": 178090
+ },
+ {
+  "name": "building-the-attribute-driven-migration-bundle.docx",
+  "size": 379418
+ },
+ {
+  "name": "client-server-to-hybrid-cloud-bundle.docx",
+  "size": 4200426
+ },
+ {
+  "name": "copilot-agent-pack.zip",
+  "size": 26773
+ },
+ {
+  "name": "DW_ADM_01_HR_Entra_Middleware.pptx",
+  "size": 259827
+ },
+ {
+  "name": "DW_ADM_01_HR_Entra_Middleware_Narrated.pptx",
+  "size": 3798208
+ },
+ {
+  "name": "DW_ADM_01_HR_Entra_Middleware_narration_audio.zip",
+  "size": 3514234
+ },
+ {
+  "name": "DW_ADM_02_Graph_Clients.pptx",
+  "size": 247812
+ },
+ {
+  "name": "DW_ADM_02_Graph_Clients_Narrated.pptx",
+  "size": 3940995
+ },
+ {
+  "name": "DW_ADM_02_Graph_Clients_narration_audio.zip",
+  "size": 3671122
+ },
+ {
+  "name": "DW_ADM_03_Validation_Kit_Check.pptx",
+  "size": 282588
+ },
+ {
+  "name": "DW_ADM_03_Validation_Kit_Check_Narrated.pptx",
+  "size": 3867806
+ },
+ {
+  "name": "DW_ADM_03_Validation_Kit_Check_narration_audio.zip",
+  "size": 3557470
+ },
+ {
+  "name": "DW_ADM_04_Dynamic_Rules.pptx",
+  "size": 256235
+ },
+ {
+  "name": "DW_ADM_04_Dynamic_Rules_Narrated.pptx",
+  "size": 3751984
+ },
+ {
+  "name": "DW_ADM_04_Dynamic_Rules_narration_audio.zip",
+  "size": 3470530
+ },
+ {
+  "name": "DW_ADM_05_Lifecycle_Extensions.pptx",
+  "size": 252582
+ },
+ {
+  "name": "DW_ADM_05_Lifecycle_Extensions_Narrated.pptx",
+  "size": 4028360
+ },
+ {
+  "name": "DW_ADM_05_Lifecycle_Extensions_narration_audio.zip",
+  "size": 3748990
+ },
+ {
+  "name": "DW_ADM_06_Group_Policy_as_Code.pptx",
+  "size": 249228
+ },
+ {
+  "name": "DW_ADM_06_Group_Policy_as_Code_Narrated.pptx",
+  "size": 3933247
+ },
+ {
+  "name": "DW_ADM_06_Group_Policy_as_Code_narration_audio.zip",
+  "size": 3653806
+ },
+ {
+  "name": "DW_ADM_07_Machine_Configuration.pptx",
+  "size": 256287
+ },
+ {
+  "name": "DW_ADM_07_Machine_Configuration_Narrated.pptx",
+  "size": 3912267
+ },
+ {
+  "name": "DW_ADM_07_Machine_Configuration_narration_audio.zip",
+  "size": 3626338
+ },
+ {
+  "name": "DW_ADM_08_Ansible_Beside_Arc.pptx",
+  "size": 247258
+ },
+ {
+  "name": "DW_ADM_08_Ansible_Beside_Arc_Narrated.pptx",
+  "size": 3928551
+ },
+ {
+  "name": "DW_ADM_08_Ansible_Beside_Arc_narration_audio.zip",
+  "size": 3656614
+ },
+ {
+  "name": "DW_ADM_09_Drift_Pipelines_Evidence.pptx",
+  "size": 257843
+ },
+ {
+  "name": "DW_ADM_09_Drift_Pipelines_Evidence_Narrated.pptx",
+  "size": 3951714
+ },
+ {
+  "name": "DW_ADM_09_Drift_Pipelines_Evidence_narration_audio.zip",
+  "size": 3665326
+ },
+ {
+  "name": "DW_NPI_01_Inventory_as_Code.pptx",
+  "size": 243608
+ },
+ {
+  "name": "DW_NPI_01_Inventory_as_Code_Narrated.pptx",
+  "size": 3979748
+ },
+ {
+  "name": "DW_NPI_01_Inventory_as_Code_narration_audio.zip",
+  "size": 3705394
+ },
+ {
+  "name": "DW_NPI_02_Ownership_Orphan_Rule.pptx",
+  "size": 240778
+ },
+ {
+  "name": "DW_NPI_02_Ownership_Orphan_Rule_Narrated.pptx",
+  "size": 3680666
+ },
+ {
+  "name": "DW_NPI_02_Ownership_Orphan_Rule_narration_audio.zip",
+  "size": 3407564
+ },
+ {
+  "name": "DW_NPI_03_Migration_Path_Matrix.pptx",
+  "size": 254256
+ },
+ {
+  "name": "DW_NPI_03_Migration_Path_Matrix_Narrated.pptx",
+  "size": 3944773
+ },
+ {
+  "name": "DW_NPI_03_Migration_Path_Matrix_narration_audio.zip",
+  "size": 3664498
+ },
+ {
+  "name": "DW_NPI_04_App_Policy_Rotation.pptx",
+  "size": 271476
+ },
+ {
+  "name": "DW_NPI_04_App_Policy_Rotation_Narrated.pptx",
+  "size": 3895229
+ },
+ {
+  "name": "DW_NPI_04_App_Policy_Rotation_narration_audio.zip",
+  "size": 3597754
+ },
+ {
+  "name": "DW_NPI_05_Workload_Federation.pptx",
+  "size": 263271
+ },
+ {
+  "name": "DW_NPI_05_Workload_Federation_Narrated.pptx",
+  "size": 4122129
+ },
+ {
+  "name": "DW_NPI_05_Workload_Federation_narration_audio.zip",
+  "size": 3836218
+ },
+ {
+  "name": "DW_NPI_06_gMSA_dMSA.pptx",
+  "size": 246039
+ },
+ {
+  "name": "DW_NPI_06_gMSA_dMSA_Narrated.pptx",
+  "size": 3916251
+ },
+ {
+  "name": "DW_NPI_06_gMSA_dMSA_narration_audio.zip",
+  "size": 3641026
+ },
+ {
+  "name": "DW_NPI_07_Least_Privilege.pptx",
+  "size": 262159
+ },
+ {
+  "name": "DW_NPI_07_Least_Privilege_Narrated.pptx",
+  "size": 3996917
+ },
+ {
+  "name": "DW_NPI_07_Least_Privilege_narration_audio.zip",
+  "size": 3704458
+ },
+ {
+  "name": "DW_NPI_08_Workload_CA.pptx",
+  "size": 265334
+ },
+ {
+  "name": "DW_NPI_08_Workload_CA_Narrated.pptx",
+  "size": 3946713
+ },
+ {
+  "name": "DW_NPI_08_Workload_CA_narration_audio.zip",
+  "size": 3651610
+ },
+ {
+  "name": "DW_NPI_09_AI_Agent_Identities.pptx",
+  "size": 274214
+ },
+ {
+  "name": "DW_NPI_09_AI_Agent_Identities_Narrated.pptx",
+  "size": 4088433
+ },
+ {
+  "name": "DW_NPI_09_AI_Agent_Identities_narration_audio.zip",
+  "size": 3788122
+ },
+ {
+  "name": "DW_NPI_10_Drift_Evidence.pptx",
+  "size": 248796
+ },
+ {
+  "name": "DW_NPI_10_Drift_Evidence_Narrated.pptx",
+  "size": 3847969
+ },
+ {
+  "name": "DW_NPI_10_Drift_Evidence_narration_audio.zip",
+  "size": 3566878
+ },
+ {
+  "name": "DW_PA_01_Privileged_Inventory.pptx",
+  "size": 253903
+ },
+ {
+  "name": "DW_PA_01_Privileged_Inventory_Narrated.pptx",
+  "size": 3921225
+ },
+ {
+  "name": "DW_PA_01_Privileged_Inventory_narration_audio.zip",
+  "size": 3637786
+ },
+ {
+  "name": "DW_PA_02_Emergency_Access.pptx",
+  "size": 243849
+ },
+ {
+  "name": "DW_PA_02_Emergency_Access_Narrated.pptx",
+  "size": 3433327
+ },
+ {
+  "name": "DW_PA_02_Emergency_Access_narration_audio.zip",
+  "size": 3166998
+ },
+ {
+  "name": "DW_PA_03_CA_Activation_Gate.pptx",
+  "size": 252127
+ },
+ {
+  "name": "DW_PA_03_CA_Activation_Gate_Narrated.pptx",
+  "size": 3931300
+ },
+ {
+  "name": "DW_PA_03_CA_Activation_Gate_narration_audio.zip",
+  "size": 3650530
+ },
+ {
+  "name": "DW_PA_04_PIM_Entra_Roles.pptx",
+  "size": 252791
+ },
+ {
+  "name": "DW_PA_04_PIM_Entra_Roles_Narrated.pptx",
+  "size": 3888644
+ },
+ {
+  "name": "DW_PA_04_PIM_Entra_Roles_narration_audio.zip",
+  "size": 3606214
+ },
+ {
+  "name": "DW_PA_05_PIM_for_Groups.pptx",
+  "size": 254096
+ },
+ {
+  "name": "DW_PA_05_PIM_for_Groups_Narrated.pptx",
+  "size": 3859808
+ },
+ {
+  "name": "DW_PA_05_PIM_for_Groups_narration_audio.zip",
+  "size": 3575074
+ },
+ {
+  "name": "DW_PA_06_PIM_Azure_Resources.pptx",
+  "size": 267184
+ },
+ {
+  "name": "DW_PA_06_PIM_Azure_Resources_Narrated.pptx",
+  "size": 4086009
+ },
+ {
+  "name": "DW_PA_06_PIM_Azure_Resources_narration_audio.zip",
+  "size": 3789958
+ },
+ {
+  "name": "DW_PA_07_Access_Reviews.pptx",
+  "size": 250433
+ },
+ {
+  "name": "DW_PA_07_Access_Reviews_Narrated.pptx",
+  "size": 4047040
+ },
+ {
+  "name": "DW_PA_07_Access_Reviews_narration_audio.zip",
+  "size": 3766018
+ },
+ {
+  "name": "DW_PA_08_Evidence_Drift.pptx",
+  "size": 255233
+ },
+ {
+  "name": "DW_PA_08_Evidence_Drift_Narrated.pptx",
+  "size": 4028444
+ },
+ {
+  "name": "DW_PA_08_Evidence_Drift_narration_audio.zip",
+  "size": 3736210
+ },
+ {
+  "name": "Guide_Ansible_Technical.pptx",
+  "size": 328807
+ },
+ {
+  "name": "Guide_Ansible_Technical_Narrated.pptx",
+  "size": 6543926
+ },
+ {
+  "name": "Guide_Ansible_Technical_narration_audio.zip",
+  "size": 6170052
+ },
+ {
+  "name": "Guide_Effective_Meetings.pptx",
+  "size": 525259
+ },
+ {
+  "name": "Guide_Effective_Meetings_Narrated.pptx",
+  "size": 4920116
+ },
+ {
+  "name": "Guide_Effective_Meetings_narration_audio.zip",
+  "size": 4477942
+ },
+ {
+  "name": "hr-driven-iam-00.docx",
+  "size": 166998
+ },
+ {
+  "name": "hr-driven-iam-01.docx",
+  "size": 234671
+ },
+ {
+  "name": "hr-driven-iam-02.docx",
+  "size": 138983
+ },
+ {
+  "name": "hr-driven-iam-03.docx",
+  "size": 276141
+ },
+ {
+  "name": "hr-driven-iam-04.docx",
+  "size": 246418
+ },
+ {
+  "name": "hr-driven-iam-05.docx",
+  "size": 233586
+ },
+ {
+  "name": "hr-driven-iam-06.docx",
+  "size": 299369
+ },
+ {
+  "name": "hr-driven-iam-07.docx",
+  "size": 504088
+ },
+ {
+  "name": "hr-driven-iam-08.docx",
+  "size": 269631
+ },
+ {
+  "name": "hr-driven-iam-09.docx",
+  "size": 105289
+ },
+ {
+  "name": "hr-driven-iam-10.docx",
+  "size": 126079
+ },
+ {
+  "name": "hr-driven-iam-11.docx",
+  "size": 136940
+ },
+ {
+  "name": "hr-driven-iam-bundle.docx",
+  "size": 3176781
+ },
+ {
+  "name": "HR_Driven_Identity_AnyAgency.pptx",
+  "size": 380102
+ },
+ {
+  "name": "HR_Driven_Identity_AnyAgency_Narrated.pptx",
+  "size": 5921126
+ },
+ {
+  "name": "HR_Driven_Identity_AnyAgency_narration_audio.zip",
+  "size": 5521062
+ },
+ {
+  "name": "HR_Driven_Identity_Contractor_Source_AnyAgency.pptx",
+  "size": 207974
+ },
+ {
+  "name": "HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.pptx",
+  "size": 3720559
+ },
+ {
+  "name": "HR_Driven_Identity_Contractor_Source_AnyAgency_narration_audio.zip",
+  "size": 3489474
+ },
+ {
+  "name": "HR_Driven_Identity_Exec_AnyAgency.pptx",
+  "size": 537267
+ },
+ {
+  "name": "HR_Driven_Identity_Exec_AnyAgency_Narrated.pptx",
+  "size": 4454296
+ },
+ {
+  "name": "HR_Driven_Identity_Exec_AnyAgency_narration_audio.zip",
+  "size": 4163008
+ },
+ {
+  "name": "Infoblox_DDI_Federal_Deep_Dive.pptx",
+  "size": 354709
+ },
+ {
+  "name": "Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx",
+  "size": 9449561
+ },
+ {
+  "name": "Infoblox_DDI_Federal_Deep_Dive_narration_audio.zip",
+  "size": 9048478
+ },
+ {
+  "name": "intune-track-implementation-guide.docx",
+  "size": 36776
+ },
+ {
+  "name": "next-generation-ddi-appb-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-ch01-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-ch02-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-ch03-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-ch04-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-ch05-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-ch06-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-ch07-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-ch08-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-ch09-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-ch10-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "next-generation-ddi-ch11-bundle.docx",
+  "size": 3073876
+ },
+ {
+  "name": "non-person-identity-implementation-guide.docx",
+  "size": 37751
+ },
+ {
+  "name": "Research_Cisco_SDWAN.pptx",
+  "size": 976853
+ },
+ {
+  "name": "Research_Cisco_SDWAN_Narrated.pptx",
+  "size": 6597663
+ },
+ {
+  "name": "Research_Cisco_SDWAN_narration_audio.zip",
+  "size": 5594022
+ },
+ {
+  "name": "Research_CyberArk_CLM.pptx",
+  "size": 1278191
+ },
+ {
+  "name": "Research_CyberArk_CLM_Narrated.pptx",
+  "size": 7750226
+ },
+ {
+  "name": "Research_CyberArk_CLM_narration_audio.zip",
+  "size": 6435418
+ },
+ {
+  "name": "Research_Device_Naming.pptx",
+  "size": 232262
+ },
+ {
+  "name": "Research_Device_Naming_Narrated.pptx",
+  "size": 3700398
+ },
+ {
+  "name": "Research_Device_Naming_narration_audio.zip",
+  "size": 3459018
+ },
+ {
+  "name": "Research_HR_Identity_DNS.pptx",
+  "size": 223890
+ },
+ {
+  "name": "Research_HR_Identity_DNS_Narrated.pptx",
+  "size": 3451506
+ },
+ {
+  "name": "Research_HR_Identity_DNS_narration_audio.zip",
+  "size": 3227926
+ },
+ {
+  "name": "Research_Hybrid_Credentials.pptx",
+  "size": 1080032
+ },
+ {
+  "name": "Research_Hybrid_Credentials_Narrated.pptx",
+  "size": 4769515
+ },
+ {
+  "name": "Research_Hybrid_Credentials_narration_audio.zip",
+  "size": 3664612
+ },
+ {
+  "name": "Research_Infoblox_Impl.pptx",
+  "size": 307127
+ },
+ {
+  "name": "Research_Infoblox_Impl_Narrated.pptx",
+  "size": 7477875
+ },
+ {
+  "name": "Research_Infoblox_Impl_narration_audio.zip",
+  "size": 7139978
+ },
+ {
+  "name": "Research_Trinzic_MultiCloud.pptx",
+  "size": 194364
+ },
+ {
+  "name": "Research_Trinzic_MultiCloud_Narrated.pptx",
+  "size": 3066021
+ },
+ {
+  "name": "Research_Trinzic_MultiCloud_narration_audio.zip",
+  "size": 2862178
+ },
+ {
+  "name": "Research_TTM_ServiceNow_SailPoint.pptx",
+  "size": 405319
+ },
+ {
+  "name": "Research_TTM_ServiceNow_SailPoint_Narrated.pptx",
+  "size": 3866018
+ },
+ {
+  "name": "Research_TTM_ServiceNow_SailPoint_narration_audio.zip",
+  "size": 3437416
+ },
+ {
+  "name": "sql-server-narrative-bundle.docx",
+  "size": 9418772
+ },
+ {
+  "name": "sql-server-narrative-standalone-bundle.docx",
+  "size": 9418772
+ },
+ {
+  "name": "start-kit.zip",
+  "size": 269325
+ },
+ {
+  "name": "Start_02_First_Four_Weeks.pptx",
+  "size": 587516
+ },
+ {
+  "name": "Start_02_First_Four_Weeks_Narrated.pptx",
+  "size": 2618242
+ },
+ {
+  "name": "Start_02_First_Four_Weeks_narration_audio.zip",
+  "size": 2010692
+ },
+ {
+  "name": "Start_03_Foundation_to_G1.pptx",
+  "size": 323395
+ },
+ {
+  "name": "Start_03_Foundation_to_G1_Narrated.pptx",
+  "size": 2373548
+ },
+ {
+  "name": "Start_03_Foundation_to_G1_narration_audio.zip",
+  "size": 2035146
+ },
+ {
+  "name": "Start_04_Making_the_Case.pptx",
+  "size": 395934
+ },
+ {
+  "name": "Start_04_Making_the_Case_Narrated.pptx",
+  "size": 2358837
+ },
+ {
+  "name": "Start_04_Making_the_Case_narration_audio.zip",
+  "size": 1941958
+ },
+ {
+  "name": "Start_Here.pptx",
+  "size": 534738
+ },
+ {
+  "name": "Start_Here_Narrated.pptx",
+  "size": 2522648
+ },
+ {
+  "name": "Start_Here_narration_audio.zip",
+  "size": 1963278
+ },
+ {
+  "name": "target-surface-bundle.docx",
+  "size": 3364857
+ },
+ {
+  "name": "validation-kit.zip",
+  "size": 256303
+ }
+]

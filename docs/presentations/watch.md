@@ -65,7 +65,7 @@ fmw-eyebrow: "Videos"
       links.textContent = v.minutes + " minutes · captions from the player's CC button · ";
       links.appendChild(link(v.mp4, "Download MP4"));
       if (v.youtube) { links.appendChild(document.createTextNode(" · ")); links.appendChild(link("https://www.youtube.com/watch?v=" + v.youtube, "Watch on YouTube")); }
-      if (v.deck) { links.appendChild(document.createTextNode(" · ")); links.appendChild(link("../../" + v.deck, "Narrated deck")); }
+      if (v.deck) { links.appendChild(document.createTextNode(" · ")); links.appendChild(link(v.deck, "Narrated deck")); }
       if (v.script) { links.appendChild(document.createTextNode(" · ")); links.appendChild(link(v.script, "Script")); }
       if (v.chapters) {
         // One button per slide; fmw-chapters.js jumps the player to it.

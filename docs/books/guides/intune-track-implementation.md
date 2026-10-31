@@ -413,7 +413,13 @@ The M-22-09 rows follow [Book 11, Appendix A](../b11-zero-trust/appendix-a-requi
 
 ## Version and revision history {#version-history}
 
-This guide has not been published in an edition yet. Each edition is kept, with its Word editions, decks and videos, on the [Archive](../../about/archive.md) page. Every change so far is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/intune-track-implementation.md).
+**Version 1.0**, in [edition 2026.10](../../about/archive.md#edition-2026-10) (October 31, 2026). Every edition is kept on the [Archive](../../about/archive.md) page; every change between editions is in the [commit history](https://github.com/WhalerMike/modernization-workbook/commits/main/docs/books/guides/intune-track-implementation.md).
+
+| Version | Edition | Date | Changes |
+|---|---|---|---|
+| 1.0 | [2026.10](../../about/archive.md#edition-2026-10) | 2026-10-31 | First edition (3 merged changes since the guide began) |
+
+: Versions of this guide, newest first {.striped .hover}
 
 <!-- revisions:end -->
 
