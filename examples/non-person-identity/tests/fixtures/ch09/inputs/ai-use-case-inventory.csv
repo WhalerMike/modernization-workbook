@@ -1,0 +1,7 @@
+UseCaseId,Name,Classification,Stage,RecordId,IdentityType,IdentityObjectId,BlueprintAppId,FederalSponsorUpn,SponsoringGroupId,TechnicalOwnerUpn,Placement
+UC-2026-001,Benefits Q&A,Agentic AI,Deployed,CMDB-4001,AgentIdentity,5b000000-0000-4000-8000-000000000015,1a000000-0000-4000-8000-000000000008,erin@contoso.example,6a000000-0000-4000-8000-000000000001,alice@contoso.example,ORG-BEN
+UC-2026-007,Case Triage,Agentic AI,Deployed,CMDB-4002,AgentIdentity,5b000000-0000-4000-8000-000000000016,1a000000-0000-4000-8000-000000000009,carol@contoso.example,,carol@contoso.example,ORG-CASE
+UC-2026-009,Records Search,Agentic AI,Deployed,CMDB-4003,AgentIdentity,5b000000-0000-4000-8000-000000000017,1a000000-0000-4000-8000-000000000008,bob@contoso.example,6a000000-0000-4000-8000-000000000001,alice@contoso.example,ORG-REC
+UC-2026-014,Correspondence Drafting,Agentic AI,Deployed,CMDB-1100,ServicePrincipal,5b000000-0000-4000-8000-000000000006,1a000000-0000-4000-8000-000000000006,erin@contoso.example,6a000000-0000-4000-8000-000000000001,alice@contoso.example,ORG-BEN
+UC-2026-020,Claims Summarizer,Agentic AI,Piloted,CMDB-4005,None,,,carol@contoso.example,,alice@contoso.example,ORG-CLM
+UC-2026-021,Public FAQ Chatbot,Generative AI,Deployed,CMDB-4006,None,,,erin@contoso.example,,alice@contoso.example,ORG-PUB
