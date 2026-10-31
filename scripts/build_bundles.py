@@ -418,12 +418,12 @@ def load_bundles(rules: RenderRules) -> list[Bundle]:
                 tree = ordered_tree(root, rules, fm_cache)
             rx = glob_regex(entry)
             pages += [p for p in tree if rx.match(str(p.relative_to(root))) and p not in pages]
-        for pattern in spec.get("exclude", []):
-            rx = glob_regex(pattern)
-            pages = [p for p in pages if not rx.match(str(p.relative_to(root)))]
+        excluded = [glob_regex(pattern) for pattern in spec.get("exclude", [])]
+        pages = [p for p in pages if not any(rx.match(str(p.relative_to(root))) for rx in excluded)]
         for pattern in spec.get("warn_unlisted", []):
             for p in sorted(root.glob(pattern)):
-                if p not in pages and rules.published(p):
+                # An excluded page is left out on purpose, so it isn't "unlisted".
+                if p not in pages and rules.published(p) and not any(rx.match(str(p.relative_to(root))) for rx in excluded):
                     warn(f"{name}: {rel(p)} matches {pattern} but is not in its manifest")
         if not pages:
             warn(f"{name}: manifest matched no published pages; bundle skipped")
