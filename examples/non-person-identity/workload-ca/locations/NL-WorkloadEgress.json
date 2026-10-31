@@ -1,0 +1,6 @@
+{
+  "@odata.type": "#microsoft.graph.ipNamedLocation",
+  "displayName": "NL-WorkloadEgress",
+  "isTrusted": false,
+  "ipRanges": ["{egress:NL-WorkloadEgress}"]
+}

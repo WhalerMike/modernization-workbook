@@ -1,0 +1,425 @@
+---
+title: "Chapter 08 — Conditional Access for Workload Identities"
+description: "Hold Conditional Access for workload identities as reviewed data and code, starting from Learn's own Graph JSON sample for a workload identity policy (pinned in the repository) and adding what it leaves to you: the scope as a reviewed file (Tier 1 single-tenant service principals assigned directly by object ID, never through a group; the workload egress ranges as a named location; managed identities, multitenant and SaaS apps recorded out of scope with the control that covers each), the program's CA015 location restriction and CA037 high-risk block rendered ring by ring and always created report-only, a pre-merge check, a tenant check, a reader for the service principal sign-in logs (Graph beta) that summarizes the report-only results per principal, enforcement only with -AllowEnforce after decision D-N5, and an alert definition for block events, with labs against fixtures and a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-non-person-identity
+part: How
+series-order: 8
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-04-01
+review-status: pending
+---
+
+# Chapter 08 — Conditional Access for Workload Identities
+
+*A stolen client secret works from anywhere unless something says where the workload is allowed to be, so that place is written down, reviewed, and enforced one ring at a time.*
+
+::: {.callout-note}
+## In this chapter
+The policies behind the project plan's Phase 5 and its Gate 5, "workload identities under Conditional Access." You start with Learn's own Graph JSON sample for a location-based policy that targets service principals, which the repository keeps as a pinned copy, and you send it to a fake Graph and the pre-merge check to see what it leaves to you. Then you use `examples/non-person-identity` for the rest: the scope as a reviewed file, the program's CA015 and CA037 rendered per ring and always created report-only, a check before merge and a check against the tenant, a reader that summarizes the service principal sign-in logs per principal, enforcement only after decision D-N5 and only with `-AllowEnforce`, and an alert definition for block events. Lab 1 runs on a laptop with no tenant; Lab 2 uses a test tenant.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can do the plan's three tasks from code. N5.1, "scope set: Tier 1 single-tenant service principals assigned directly, never through a group; workload egress ranges named; managed identities and multitenant apps recorded as out of scope." N5.2, "CA015 location restriction and CA037 high-risk block in report-only; service principal sign-in logs read." N5.3, after the CISO's decision D-N5, "policies enforced ring by ring; block events alerted to security operations." You can show the CISO the evidence Gate 5 asks for, and say for each rule whether it is Learn's, Learn's sample, or the program's design.
+
+**Audience.** Developers who build the project's Conditional Access code, the identity engineers who own the policies, the application owners whose workloads are in scope, and the ISSO and security operations staff who review the results. You should read PowerShell 7 and the Graph `conditionalAccessPolicy` JSON, and know [Chapter 01](01-non-person-identity-inventory-as-code.md)'s register. You don't need a tenant until Lab 2.
+
+## The context the code depends on
+
+Learn is short and firm about what Conditional Access for workload identities can do. A policy can block a service principal from outside known public IP ranges, on risk detected by Microsoft Entra ID Protection, or with authentication contexts; block is the only grant control.[^np08-wid] The limits decide the scope:[^np08-wid]
+
+- **Licensing.** Workload Identities Premium licenses are required to create or modify these policies. Without them, existing policies keep working but can't be changed.
+- **Single-tenant only.** Policies apply to single-tenant service principals registered in the tenant. Microsoft and third-party SaaS apps, including multitenant apps, aren't covered.
+- **No managed identities.** Managed identities aren't covered; Learn suggests an access review for them instead.
+- **Direct assignment.** A policy assigned to a group that contains a service principal isn't enforced for it. The service principal has to be assigned directly, by the enterprise application's object ID; the app registration's object ID can't be used.
+
+[Book 02, Chapter 09](../../../books/b02-identity/09-building-the-entra-target.md#conditional-access-for-workload-identities) and [Book 04, Chapter 05](../../../books/b04-access/05-applications-and-workload-identities.md#conditional-access-for-workload-identities) state the same limits. The program's two policies are Book 04's Wave 4: **CA015-ServiceAccounts-LocationRestriction** blocks workload identities, assigned directly, from any location except `NL-WorkloadEgress`, and **CA037-WorkloadIdentities-HighRisk-Block** blocks them at high service principal risk ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-risk-and-workload-identities)); Appendix A has CA015's JSON ([Appendix A](../../../books/b04-access/appendix-a-conditional-access-templates.md)). Book 04's rollout rule applies: report-only first, then rings, never deleted on rollback ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#rollout-from-report-only-to-enforcement)).
+
+**Licensing, D-N4.** Workload ID Premium is a standalone product, not part of other premium plans. Only workload identities eligible for premium features need licenses; license assignment isn't required, and one license in the tenant unlocks the features. Conditional Access for workload identities covers single-tenant applications; ID Protection covers single-tenant and multitenant apps; Microsoft apps and managed identities are eligible for neither.[^np08-faq] The plan's decision D-N4 licenses the single-tenant service principals classified Tier 1 in [Book 04, Chapter 06](../../../books/b04-access/06-who-decides-access.md#risk-tiers-set-the-approval-chain), Book 04's position ([Book 04, Chapter 05](../../../books/b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)). The scope file records D-N4, and the check fails without it.
+
+**Risk, CA037.** ID Protection detects risk on workload identities from offline indicators (leaked credentials, suspicious sign-ins against a learned baseline, threat intelligence, an admin's confirmation of compromise and others); full risk details and risk-based controls need Workload Identities Premium, and managed identities aren't in scope.[^np08-risk] CA037 has nothing to act on until ID Protection raises a service principal's risk to high, so its report-only results are usually empty; that is expected, not a gap in the evidence.
+
+**Enforcement, D-N5.** The CISO's decision has three options: enforce; extend report-only; or enforce with named exclusions, each with an owner and an end date. Gate 5 then asks for "every Tier 1 single-tenant service principal assigned directly to the enforced location and risk policies; report-only results reviewed before enforcement; every out-of-scope identity (managed identities, multitenant and SaaS apps) recorded with the control that covers it instead" ([project plan](../../non-person-identity.md)). The code holds each of those as a file or a check.
+
+### Which cloud, for these calls
+
+The target estate is Microsoft 365 GCC, whose Microsoft Entra tenant uses the worldwide endpoints: Graph at `graph.microsoft.com`. GCC High and DoD use `graph.microsoft.us` and `dod-graph.microsoft.us`.[^np08-deployments] Listing and changing Conditional Access policies and named locations list the global service, US Government L4 and US Government L5,[^np08-ca-list] [^np08-ca-create] [^np08-ca-update] [^np08-nl-list] [^np08-nl-create] [^np08-nl-update] and so does the beta sign-in log read.[^np08-signins] Learn's feature availability page for Azure for US Government lists Conditional Access as available and says Workload Identities Premium is available there; the Workload ID FAQ says to contact the account manager in the Azure Government clouds, where the free trial isn't offered.[^np08-availability] [^np08-faq] That page's ID Protection table lists user risk detections only; whether workload identity risk detections, which CA037 depends on, run in GCC High and DoD is open (research gaps, row 75). The code takes the cloud as an explicit name and has no default.
+
+## Start with Microsoft's sample
+
+### What Microsoft gives you
+
+Learn's page *Conditional Access for workload identities* is Microsoft's procedure. It gives the admin center steps for a location-based policy and for a risk-based one, says to save either in report-only to estimate its effect, and says where report-only results appear: the service principal sign-ins in the admin center, and the Conditional Access insights and reporting workbook. It ends with "Sample JSON for location-based configuration using the Microsoft Graph beta endpoint."[^np08-wid] Learn's ID Protection page for workload identities explains the risk the risk-based policy acts on, and has no code.[^np08-risk]
+
+The repository's search on October 30, 2026 found no other Microsoft sample to start from: no `microsoftgraph/*` or `Azure-Samples/*` repository holds a workload identity Conditional Access policy, and the Create conditionalAccessPolicy page's examples don't target service principals.[^np08-ca-create]
+
+### The pinned copy
+
+The sample exists only inside the Learn page, so the repository pins the page's source, unmodified, in [`examples/third_party/entra-workload-identity-ca-page`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/third_party/entra-workload-identity-ca-page): `workload-identity.md` from MicrosoftDocs/entra-docs at commit `7f78b50` (October 30, 2026), retrieved October 30, 2026, with the repository's licenses (MIT for both).[^np08-src] `snapshot.json` records each file's SHA-256, checked against the upstream git blob hashes; a unit test checks them, and the weekly source watch reports new commits to the page. Updating the copy is a reviewed pull request.
+
+`Read-NpiWcaLearnSample` extracts the page's one JSON block, unmodified. The tests send it to the fake Graph's create route and run the pre-merge check on it, as if it were a file in the repository. Nothing is sent to a tenant.
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/NpiWorkloadCa.Tests.ps1`: the first block for Learn's sample as published, the others for the example.
+
+| Learn's sample, as published | Why it matters | What `examples/non-person-identity` adds |
+|---|---|---|
+| Targets service principals through `clientApplications`, all resources, all locations but an excluded one, block | — | Kept as the model: CA015 has the same shape |
+| Labeled for the Graph beta endpoint | The v1.0 condition set has `clientApplications` and `servicePrincipalRiskLevels`[^np08-conditionset] [^np08-clientapps] | The code writes v1.0 (research gaps, row 71) |
+| `state` and the IDs are display text ("enabled OR disabled OR …", "[Service principal Object ID]") | Not a value Graph accepts; the fake refuses it with 400, as Graph's state values allow | Every value comes from a reviewed file; NPI-WCA-07 fails any state other than report-only in a file |
+| Offers `ServicePrincipalsInMyTenant` | Sweeps in every service principal, Tier 1 or not, and nobody reviewed the list | NPI-WCA-01: only the ring's object IDs from the scope file |
+| Offers `AllTrusted` as the allowed location | Trusts every network marked trusted for users, too | NPI-WCA-08: only the `NL-WorkloadEgress` named location, kept untrusted |
+| No `clientAppTypes` | v1.0 marks it required[^np08-conditionset] | `["all"]`, as Appendix A does (research gaps, row 72) |
+| Location only; the risk policy is admin center steps | CA037 has no published JSON | CA037 as a reviewed file with `servicePrincipalRiskLevels: ["high"]` |
+| Report-only results read in the admin center | Nothing a pipeline can keep as evidence | The beta sign-in reader and a per-principal summary with its SHA-256 |
+| One policy, no scope beyond the IDs typed in | No record of who is in, who is out, and why | The scope file: Tier 1, rings, egress ranges, the out-of-scope identities with their controls, D-N4 and D-N5 |
+| No rings, no alert | Enforcement is all or nothing, and nobody hears about a block | Per-ring policies, enforcement only with `-AllowEnforce` after D-N5, and the block alert definition |
+
+**The verdict.** Keep Learn's JSON as the model for CA015's shape. Don't create it as published: Graph would refuse it, and with its placeholders filled the easy way it would cover every service principal in the tenant and trust every trusted network.
+
+## The code: what `examples/non-person-identity` adds
+
+This chapter adds its own module, `powershell/NpiWorkloadCa`, which imports [Chapter 01](01-non-person-identity-inventory-as-code.md)'s `NpiCore` for the cloud table, the host check and the run manifest's helpers. It adds its own call list `config/calls-ch08.json`, the reviewed files in `workload-ca/`, the entry script `Invoke-NpiWorkloadCa.ps1`, and fixtures in `tests/fixtures/ch08/`. Unlike Chapters 01 and 02's read paths, it can write Conditional Access. *Design guidance:* it writes only as the `wca-apply` task, creates every new policy report-only, enforces a ring only with `-AllowEnforce` after D-N5, and has no delete.
+
+### The files
+
+| File | Who keeps it | What it holds |
+|---|---|---|
+| `workload-ca/policies/CA015-ServiceAccounts-LocationRestriction.json` | Identity engineering | Book 04's CA015: `{scope:ring}` in `includeServicePrincipals`, `{location:NL-WorkloadEgress}` excluded, all resources, all client app types, block, report-only |
+| `workload-ca/policies/CA037-WorkloadIdentities-HighRisk-Block.json` | Identity engineering | Book 04's CA037: the same targeting, `servicePrincipalRiskLevels: ["high"]`, block, report-only |
+| `workload-ca/locations/NL-WorkloadEgress.json` | Identity engineering | An untrusted `ipNamedLocation`; its ranges come from the scope |
+| `workload-ca/alerts/NPI-WCA-BlockAlert.json` | Security operations | The block alert definition (below) |
+| The scope file (`tests/fixtures/ch08/scope.json` in Lab 1) | The identity governance officer, with application owners | Tenant and cloud; the D-N4 record; the egress ranges; the rings; each in-scope service principal by object ID with its tier, type, audience, ring and record; each out-of-scope identity with its class, the control that covers it and who reviewed it; the enforcement record (D-N5, the rings marked, each ring's reviewed sign-in summary, dated exclusions) |
+
+The fixture's egress ranges are documentation ranges (`192.0.2.0/28`, `198.51.100.32/29`, `2001:db8:10::/48`). A real tenant keeps its scope file with its decision records, and every change to it is a reviewed pull request.
+
+**One policy per ring.** *Design guidance:* each template is rendered once per ring, named `<template>-<ring>`, with that ring's object IDs. Enforcing a ring changes one policy's state and leaves the next ring in report-only. Book 04 names one CA015 and one CA037; the suffix is the program's (research gaps, row 78).
+
+### The pre-merge check
+
+`Test-NpiWcaRepository` reads files only, and runs in the pull request pipeline. `Test-NpiWcaTenantScope` runs the rules that need the tenant on every plan.
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| NPI-WCA-01 | Finding | A policy that targets users, groups or roles, a filter, `ServicePrincipalsInMyTenant` or text instead of the ring's object IDs | Learn: a group isn't enforced; assign directly[^np08-wid] |
+| NPI-WCA-02 | Finding | A managed identity in scope, in the file or in the tenant | Learn[^np08-wid] |
+| NPI-WCA-03 | Finding | A service principal in scope that isn't an application registered in this tenant and single-tenant | Learn[^np08-wid] |
+| NPI-WCA-04 | Finding; Warn | An in-scope object ID that isn't a service principal here (an app registration's object ID, say) or whose `appId` differs (Finding); one that is disabled (Warn) | Learn: the registration's object ID can't be used[^np08-wid] |
+| NPI-WCA-05 | Finding | No D-N4 record; a principal that isn't Tier 1; an unknown ring; a duplicate | Learn: Premium to create or modify[^np08-wid]; D-N4 (*Design guidance*) |
+| NPI-WCA-06 | Finding; Info | An out-of-scope record with no control, reviewer or date, or a managed identity, multitenant, SaaS, agent or legacy service principal in the tenant with no record (Finding); an eligible single-tenant app that isn't Tier 1 (Info) | Gate 5 |
+| NPI-WCA-07 | Finding | A policy file that isn't report-only, grants anything but block, doesn't target all resources, has no `clientAppTypes: ["all"]`, or has neither a location nor a risk condition | Learn: block only[^np08-wid]; v1.0 condition set[^np08-conditionset] |
+| NPI-WCA-08 | Finding; Warn | An egress range that isn't CIDR or is broader than /16 (IPv4) or /32 (IPv6), or a policy that excludes anything but `NL-WorkloadEgress` (Finding); a named location marked trusted (Warn) | *Design guidance* |
+| NPI-WCA-09 | Finding | A ring marked for enforcement with no D-N5 record or no reviewed sign-in summary, a ring enforced before an earlier one, an exclusion with no owner, reason or end date, or one that has ended | D-N5; Gate 5 (*Design guidance*) |
+
+On the fixture scope and the repository's files the check passes with nothing to report, and the tenant check reports two Info: Legacy Reports and Build Pipeline are single-tenant and eligible, but not Tier 1, so D-N4 leaves them uncovered. Microsoft's own apps are recognized by the owner tenant IDs the scope lists (research gaps, row 76).
+
+### The plan, the dry run and the writes
+
+`Get-NpiWcaTenant` reads the tenant's policies and named locations: two GETs, every page, only on the cloud's own host. `Get-NpiWcaPlan` compares the files and scope with the tenant, property by property and only on the properties the files set, with lists compared as sets. The named location comes first, because CA015 excludes it by ID.
+
+| Action | When |
+|---|---|
+| Create | Not in the tenant. A policy is always created report-only, whatever its ring's state |
+| Update | Differs; the PATCH carries only the changed top-level properties |
+| NoChange | Matches |
+| Blocked | A CA015 policy whose named location doesn't exist yet; the next run creates it |
+| Held | The ring is marked for enforcement, but this run may not enforce it (below) |
+| NotInRepository | A workload identity policy in the tenant that no file names: reported, never deleted |
+
+`Invoke-NpiWcaPlan` turns the plan into requests. As the read task it returns them with `Sent` false, and its client can't send a write. As `wca-apply` it refuses to start if the pre-merge or tenant check has a Finding, refuses to create a policy that isn't report-only or assigns anything but object IDs, and refuses to enable a policy the plan didn't mark as an allowed enforcement. Policies are matched by display name. Rollback follows Book 04: remove the ring from the enforcement record and apply, and its policies go back to report-only; Learn's own rollback says to delete or disable the policies,[^np08-wid] and this code does neither by itself.
+
+### Enforcement, ring by ring
+
+`Get-NpiWcaEnforcement` decides, for each ring, whether this run may set its policies to `enabled`. All of these must hold, or the ring is Held in report-only with the reason:
+
+1. The scope's enforcement record marks the ring, under a D-N5 record whose outcome is Enforce or EnforceWithExclusions, with who decided and when.
+2. The run was given `-AllowEnforce`, in the change that enforces it.
+3. `-SignInSummaryPath` names a sign-in summary whose SHA-256 is the one the ring's record cites, with its reviewer and date: the report-only results were reviewed before enforcement, as Gate 5 asks.
+4. That summary shows the ring ready.
+5. Every earlier ring is enforced.
+
+A policy created on the run that enforces its ring is still created report-only, and turns on in the next run. Exclusions are D-N5's third option: each names a principal of the ring, an owner, a reason and an end date, goes into `excludeServicePrincipals` for that ring's policies, and drops out on its end date.
+
+### The sign-in reader
+
+Learn's List signIns returns only interactive sign-ins unless the filter names an event type, and gives the filter for service principal sign-ins: a time range and `signInEventTypes/any(t: t eq 'servicePrincipal')`. That filter is on the **beta** endpoint (research gaps, row 73).[^np08-signins] The `appliedConditionalAccessPolicies` property is omitted unless the caller can read Conditional Access data: an app needs `Policy.Read.All`, `Policy.Read.ConditionalAccess` or `Policy.ReadWrite.ConditionalAccess`.[^np08-signins] And the report-only results (`reportOnlySuccess`, `reportOnlyFailure`, `reportOnlyNotApplied`, `reportOnlyInterrupted`) are members of an evolvable enumeration that comes back only with the request header `Prefer: include-unknown-enum-members`.[^np08-applied]
+
+`Get-NpiWcaSignIn` sends that filter with that header, follows every page, and throws if any result still comes back as `unknownFutureValue`. `Get-NpiWcaSignInSummary` keeps only service principal sign-ins, and for each in-scope principal records its sign-ins, the results our CA015 and CA037 policies recorded, the addresses outside the reviewed egress ranges, and any block (`53003`, BlockedByConditionalAccess[^np08-errors]). Each principal gets a status:
+
+| Status | Meaning |
+|---|---|
+| NoSignIns | Nothing in the window: nothing to judge |
+| NotEvaluated | Sign-ins, but no result from our policies yet (the ring's policy wasn't there) |
+| WouldBlock | A report-only failure, a block, or an address outside the egress ranges |
+| Clear | Evaluated by our policies, with nothing that would block |
+
+A ring is ready when every principal is Clear and the window is at least 14 days. *Design guidance:* Book 04 asks for at least two weeks of report-only for the risk wave ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#wave-4-risk-and-workload-identities)), and the code applies the same to CA015 (research gaps, row 79). The summary holds no user data: service principal sign-ins only, by object ID and address. The same sign-ins give the same file, byte for byte, so the reviewer approves a hash and the enforcement record cites it.
+
+### The block alert
+
+N5.3 asks for block events alerted to security operations. `New-NpiWcaAlertRule` renders `workload-ca/alerts/NPI-WCA-BlockAlert.json` with the in-scope object IDs: a log search over `AADServicePrincipalSignInLogs` for result `53003`, every five minutes over fifteen, severity 1, to the security operations action group. The table has `ServicePrincipalId`, `AppId`, `IPAddress`, `ConditionalAccessStatus` and `ConditionalAccessPolicies` columns.[^np08-la-table] [^np08-la-queries] *Design guidance:* the definition is written to the run folder for a reviewed deployment as a log search alert rule;[^np08-alert] this code doesn't write to Azure Monitor, and the sign-in logs have to reach a Log Analytics workspace first (research gaps, row 77). Each alert is triaged as a possible stolen credential or a workload that moved, and the application owner is told the same day.
+
+### Least privilege
+
+| Task | Calls | Permissions | Delegated role |
+|---|---|---|---|
+| `wca-read` | List policies; list named locations; get and list service principals | `Policy.Read.All`,[^np08-ca-list] [^np08-nl-list] `Application.Read.All`[^np08-sp-get] [^np08-sp-list] | Global Reader or Security Reader |
+| `wca-signins` | List signIns (beta) | `AuditLog.Read.All`, `Policy.Read.ConditionalAccess`[^np08-signins] | Global Reader, Reports Reader, Security Reader, Security Operator or Security Administrator[^np08-signins] |
+| `wca-apply` | The reads; create and update policies; create and update the named location | `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`,[^np08-ca-create] [^np08-ca-update] [^np08-nl-create] [^np08-nl-update] `Application.Read.All` | Conditional Access Administrator or Security Administrator |
+
+`Policy.Read.ConditionalAccess` is the narrowest of the three permissions Learn lists for reading the Conditional Access results in sign-ins; Learn's page doesn't rank them (research gaps, row 74). A test keeps each task's permissions equal to the union of its calls, and no call is a DELETE.
+
+### The tests
+
+This chapter's tests are the 48 in `tests/NpiWorkloadCa.Tests.ps1`: 9 on Learn's sample and page as published, then the call list, the clouds and hosts, each rule on the files and on a file changed in memory, the tenant check, the plan, the dry run and the applies against the fake, the refusals, enforcement ring by ring, the sign-in reader and its summary, the alert, and the entry script's manifest and exit code. With Chapters 01 and 02, 145 Pester tests pass under PowerShell 7, with no module, tenant or network.
+
+::: {.callout-important}
+## Illustrative code
+The commands below check Learn's pinned sample and the repository's files, and plan against a fictional tenant served by a fake. They show what the code does, not that a tenant accepts the same JSON. This code writes Conditional Access policies when run as `wca-apply`, and enforces them when given `-AllowEnforce`. Review it and the files, and run Lab 2 in a test tenant, before it goes near production.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-identity`. The dates are the fixture's: the run is "as of" October 30, 2026.
+
+1. **Check Learn's sample and page as published:**
+
+   ```powershell
+   Invoke-Pester -Path tests/NpiWorkloadCa.Tests.ps1 -FullNameFilter '*(Learn), run as published*' -Output None -PassThru |
+       Select-Object PassedCount, FailedCount, NotRunCount
+   ```
+
+   `PassedCount 9`, `FailedCount 0`, `NotRunCount 39`. Read the test that posts the sample to the fake: it answers `400`, because the sample's `state` is display text.
+
+2. **List what each task needs:**
+
+   ```powershell
+   Import-Module ./powershell/NpiWorkloadCa/NpiWorkloadCa.psm1
+   foreach ($t in 'wca-read', 'wca-signins', 'wca-apply') { "$t : " + ((Get-NpiWcaRequiredPermission -Task $t).GraphPermissions -join ', ') }
+   ```
+
+   ```text
+   wca-read : Application.Read.All, Policy.Read.All
+   wca-signins : AuditLog.Read.All, Policy.Read.ConditionalAccess
+   wca-apply : Application.Read.All, Policy.Read.All, Policy.ReadWrite.ConditionalAccess
+   ```
+
+3. **Run the pre-merge check on the files and the fixture scope:**
+
+   ```powershell
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Check -ScopePath tests/fixtures/ch08/scope.json
+   ```
+
+   `Pre-merge check: 0 Finding, 0 Warn, 0 Info`. A Finding prints its rule and object and exits with code 1, which fails the pipeline.
+
+4. **Run the same check on Learn's sample:**
+
+   ```powershell
+   Test-NpiWcaPolicyBody -Body (Read-NpiWcaLearnSample -Path ../third_party/entra-workload-identity-ca-page/workload-identity.md) -EgressName NL-WorkloadEgress -Name learn-sample |
+       Format-Table Rule, Severity
+   ```
+
+   Five Findings: NPI-WCA-01 twice (the text in `includeServicePrincipals`, with `ServicePrincipalsInMyTenant`, and in `excludeServicePrincipals`), NPI-WCA-07 twice (the display-text state, no `clientAppTypes`) and NPI-WCA-08 (`AllTrusted` offered in `excludeLocations`).
+
+5. **Check the scope against the fictional tenant and plan, sending nothing:**
+
+   ```powershell
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath tests/fixtures/ch08/scope.json -FixturePath tests/fixtures/ch08/tenant.json -OutputPath out/wca
+   Get-Content out/wca/plan.json -Raw | ConvertFrom-Json | Format-Table Kind, Name, Action
+   ```
+
+   ```text
+   Checks: 0 Finding, 0 Warn, 2 Info
+   Plan: 3 Create, 1 NoChange, 1 NotInRepository, 1 Update
+   Dry run: 4 request(s) written to requests.json, none sent; rerun with -Apply to send them
+
+   Kind     Name                                                  Action
+   ----     ----                                                  ------
+   location NL-WorkloadEgress                                     Update
+   policy   CA015-ServiceAccounts-LocationRestriction-Ring1       NoChange
+   policy   CA037-WorkloadIdentities-HighRisk-Block-Ring1         Create
+   policy   CA015-ServiceAccounts-LocationRestriction-Ring2       Create
+   policy   CA037-WorkloadIdentities-HighRisk-Block-Ring2         Create
+   policy   Workloads - block outside office (made in the portal) NotInRepository
+   ```
+
+   The named location lacks the IPv6 range, so it is Update. Ring 1's CA015 already exists, report-only, and matches. The portal-made policy that targets `ServicePrincipalsInMyTenant` is reported and left alone. The two Info are Legacy Reports and Build Pipeline, eligible but not Tier 1. `manifest.json` lists fourteen GETs and no write.
+
+6. **Read the service principal sign-ins and summarize them:**
+
+   ```powershell
+   ./Invoke-NpiWorkloadCa.ps1 -Mode SignIns -Cloud gcc -ScopePath tests/fixtures/ch08/scope.json -FixturePath tests/fixtures/ch08/tenant.json -From 2026-10-12 -To 2026-10-30T12:00:00 -OutputPath out/wca-signins
+   ```
+
+   ```text
+   Service principal sign-ins 2026-10-12T00:00:00Z to 2026-10-30T12:00:00Z (18 days): 6 read
+   Ring1: ready for enforcement
+     Mail Automation  Clear        sign-ins 1
+     Payroll Export   Clear        sign-ins 2
+   Ring2: not ready
+     Deploy Bot       WouldBlock   sign-ins 2; outside the egress ranges: 203.0.113.7
+     HR Connector     NoSignIns    sign-ins 0
+   Summary SHA-256: 3eb3656e9761e6f258b568858610f5036eefe5784f2b31458dde1e6300840f3a
+   ```
+
+   The fixture's interactive user sign-in and its managed identity sign-in never come back: the filter asks for service principals only. Partner CRM's sign-in is counted as another service principal's, not judged. The hash is the same on every run with these inputs.
+
+7. **Apply against the fake, twice:**
+
+   ```powershell
+   $scope = Read-NpiWcaScope -Path tests/fixtures/ch08/scope.json
+   $repo = Read-NpiWcaRepository
+   $asOf = [datetime]'2026-10-30T12:00:00'
+   $fake = New-NpiWcaFixtureInvoker -Path tests/fixtures/ch08/tenant.json -Cloud gcc
+   $findings = @(Test-NpiWcaRepository -Repository $repo -Scope $scope -AsOf $asOf)
+   foreach ($run in 1..2) {
+       $client = New-NpiWcaClient -Cloud gcc -Task wca-apply -Invoke $fake.Invoke
+       $plan = Get-NpiWcaPlan -Repository $repo -Scope $scope -Tenant (Get-NpiWcaTenant -Client $client) -Enforcement (Get-NpiWcaEnforcement -Scope $scope) -AsOf $asOf
+       $sent = @(Invoke-NpiWcaPlan -Client $client -Plan $plan -Findings $findings | Where-Object Sent)
+       "Run ${run}: $($sent.Count) sent"
+   }
+   $fake.Tenant.policies | Where-Object { $_.displayName -like 'CA0*' } | ForEach-Object { '{0,-50} {1}' -f $_.displayName, $_.state }
+   ```
+
+   `Run 1: 4 sent`, `Run 2: 0 sent`, then every CA015 and CA037 policy `enabledForReportingButNotEnforced`. CA001, a user policy, is untouched.
+
+8. **Try to enforce Ring 1:** record D-N5 and the reviewed summary's hash in a copy of the scope, then plan without and with `-AllowEnforce`:
+
+   ```powershell
+   $sha = (Get-FileHash out/wca-signins/signin-summary.json -Algorithm SHA256).Hash.ToLower()
+   $s = Get-Content tests/fixtures/ch08/scope.json -Raw | ConvertFrom-Json -AsHashtable
+   $s.enforcement = @{ decision = @{ id = 'D-N5'; outcome = 'Enforce'; decidedBy = 'CISO'; decidedOn = '2026-10-30' }
+                       rings = @(@{ ring = 'Ring1'; enforce = $true; signInReview = $sha; reviewedBy = 'ISSO'; reviewedOn = '2026-10-30' }); exclusions = @() }
+   $s | ConvertTo-Json -Depth 10 | Set-Content out/scope-ring1.json
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath out/scope-ring1.json -FixturePath tests/fixtures/ch08/tenant.json -OutputPath out/wca-held
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath out/scope-ring1.json -FixturePath tests/fixtures/ch08/tenant.json -OutputPath out/wca-enforce -AllowEnforce -SignInSummaryPath out/wca-signins/signin-summary.json
+   ```
+
+   The first plan shows `Plan: 3 Create, 1 Held, 1 NotInRepository, 1 Update`: Ring 1's CA015 is Held, "needs -AllowEnforce in the change that enforces it." The second shows `Plan: 3 Create, 1 NotInRepository, 2 Update`: CA015-Ring1 goes from report-only to enabled "under D-N5 (2026-10-30)", CA037-Ring1 is created report-only to be enforced on the next run, and Ring 2 stays report-only. Change one byte of the summary and the second plan holds Ring 1 again.
+
+9. **Read the alert definition:**
+
+   ```powershell
+   (Get-Content out/wca/alert-rule.json -Raw | ConvertFrom-Json).query
+   ```
+
+   A query over `AADServicePrincipalSignInLogs` for `tostring(ResultType) == "53003"` and the four in-scope object IDs.
+
+10. **Run the tests:**
+
+    ```powershell
+    Invoke-Pester -Path tests
+    ```
+
+**Expected result:** 145 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done.
+
+## Lab 2: test tenant
+
+Use a test tenant in the worldwide or GCC cloud, never production, with a Workload Identities Premium trial or license (Learn: the trial isn't offered in the Azure Government clouds[^np08-faq]). You need one test app registration with a certificate and a host whose public egress address you know.
+
+1. **Write the scope.** Copy `tests/fixtures/ch08/scope.json`; set the tenant ID; put the test app's **enterprise application** object ID in `inScope`, in Ring1 (Learn: not the app registration's[^np08-wid]); set the egress ranges to the test host's address as a /32; record D-N4; record the tenant's managed identities and multitenant apps in `outOfScope`, and Microsoft's owner tenant ID in `microsoftOwnerTenantIds` (research gaps, row 76).
+2. **Register the reading app** in the admin center with a certificate, and grant only `Application.Read.All` and `Policy.Read.All`, with admin consent.
+3. **Plan, sending nothing:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Check -ScopePath my-scope.json
+   ./Invoke-NpiWorkloadCa.ps1 -Mode Plan -Cloud gcc -ScopePath my-scope.json -OutputPath out/wca-test
+   ```
+
+   The tenant check should report no Finding. Read `plan.json` and `requests.json`.
+4. **Apply, report-only.** Add `Policy.ReadWrite.ConditionalAccess` to the app, reconnect, and run step 3's plan with `-Apply`, then once more. Confirm in the admin center that the named location is untrusted and every new policy is **Report-only**, and record whether Graph v1.0 accepted the policies with `clientApplications` (research gaps, rows 71 and 72).
+5. **Generate sign-ins and read them.** Have the test app get a token with its certificate from the egress host, and once from another network. After the logs catch up, register a separate reading app with only `AuditLog.Read.All` and `Policy.Read.ConditionalAccess` (or sign in as a Security Reader), and run `-Mode SignIns` over the window. Confirm that the sign-in from the egress host shows `reportOnlyNotApplied` for CA015-Ring1 and the other `reportOnlyFailure`, and that `appliedConditionalAccessPolicies` came back with that permission (research gaps, rows 74 and 79). Compare with the admin center's service principal sign-ins and their **Report-only** tab.[^np08-wid]
+6. **Enforce Ring 1 in a separate change.** After at least 14 days with the ring Clear, have a reviewer record the summary's SHA-256 and D-N5 in the scope, and run with `-Apply -AllowEnforce -SignInSummaryPath <summary>`, twice. Get a token from the other network again: it should fail with AADSTS53003, "Access has been blocked by Conditional Access policies,"[^np08-errors] and, if the sign-in logs reach a test Log Analytics workspace, the query in `alert-rule.json` should return it (row 77).
+7. **Back it out.** Remove Ring 1 from the enforcement record and run with `-Apply`: both policies return to report-only. Then set both to Off in the admin center, or delete them by hand in the test tenant (the code never deletes). Delete the named location, remove `Policy.ReadWrite.ConditionalAccess`, delete the apps and their certificates, and delete the `out` folders.
+
+## Verified facts
+
+| Item | Value | US Government clouds | Stage | Source |
+|---|---|---|---|---|
+| Conditional Access for workload identities | Block from outside known IP ranges, on ID Protection risk, or with authentication contexts; block is the only grant; report-only available; Premium licenses to create or modify; single-tenant service principals registered in the tenant; not SaaS, multitenant or managed identities; group assignment not enforced; enterprise application's object ID, not the registration's | Conditional Access available; Workload ID Premium available in Azure for US Government | No preview label on the page | [^np08-wid] [^np08-availability] |
+| Learn's Graph sample | Location-based policy JSON "using the Microsoft Graph beta endpoint" | — | Labeled beta | [^np08-wid] |
+| `conditionalAccessClientApplications` | `includeServicePrincipals`: service principal IDs or `ServicePrincipalsInMyTenant`; `excludeServicePrincipals`; `servicePrincipalFilter` | — | v1.0 | [^np08-clientapps] |
+| `conditionalAccessConditionSet` | `clientApplications` or `users` required; `servicePrincipalRiskLevels` low, medium, high, none; `clientAppTypes` required | — | v1.0 | [^np08-conditionset] |
+| List policies | `Policy.Read.All` | L4 and L5 | v1.0 | [^np08-ca-list] |
+| Create and update a policy | `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess` | L4 and L5 | v1.0 | [^np08-ca-create] [^np08-ca-update] |
+| List named locations | `Policy.Read.All`; Global Reader, Security Reader, Security Administrator, Conditional Access Administrator, Global Secure Access Administrator | L4 and L5 | v1.0 | [^np08-nl-list] |
+| Create a named location | `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`; Security Administrator or Conditional Access Administrator; `@odata.type` of the derived type required; IPv4 CIDR or IPv6 ranges | L4 and L5 | v1.0 | [^np08-nl-create] |
+| Update an ipNamedLocation | Same permissions and roles | L4 and L5 | v1.0 | [^np08-nl-update] |
+| List signIns | `AuditLog.Read.All`; only interactive sign-ins without an event type filter; service principal filter `signInEventTypes/any(t: t eq 'servicePrincipal')`; Conditional Access results need `Policy.Read.All`, `Policy.Read.ConditionalAccess` or `Policy.ReadWrite.ConditionalAccess`; descending by time; page size up to 1,000 | L4 and L5 | Beta | [^np08-signins] |
+| `appliedConditionalAccessPolicy` | `result` includes `reportOnlySuccess`, `reportOnlyFailure`, `reportOnlyNotApplied`, `reportOnlyInterrupted`, returned with `Prefer: include-unknown-enum-members` | — | Beta | [^np08-applied] |
+| Block error | AADSTS53003 BlockedByConditionalAccess | — | — | [^np08-errors] |
+| ID Protection for workload identities | Offline detections; full details and risk-based controls with Premium; single-tenant, SaaS and multitenant apps detected; managed identities not in scope | Not stated for workload identities | No preview label on the page | [^np08-risk] [^np08-availability] |
+| Workload ID Premium | Standalone; only eligible workload identities need licenses; no license assignment; CA for single-tenant apps; Microsoft apps and managed identities ineligible; Azure Government through the account manager; no trial there | Available; no trial | GA | [^np08-faq] |
+| `AADServicePrincipalSignInLogs` | `ServicePrincipalId`, `AppId`, `IPAddress`, `ConditionalAccessStatus`, `ConditionalAccessPolicies`; Learn's sample queries filter on `ResultType` | — | — | [^np08-la-table] [^np08-la-queries] |
+| Get and list service principals | `Application.Read.All` | — | v1.0 | [^np08-sp-get] [^np08-sp-list] |
+
+Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
+
+- **Beta or v1.0.** The workload identity page labels its JSON for the beta endpoint; the v1.0 resource pages have `clientApplications`, `ServicePrincipalsInMyTenant` and `servicePrincipalRiskLevels`.[^np08-wid] [^np08-clientapps] [^np08-conditionset] The code writes v1.0, and Lab 2 confirms it (row 71).
+- **`clientAppTypes`.** v1.0 marks it required; Learn's sample leaves it out.[^np08-conditionset] [^np08-wid] The files set `["all"]` (row 72).
+- **Reading the Conditional Access results.** The sign-in page lists three permissions without ranking them; the code declares the narrowest by name (row 74).
+- **Rollback.** Learn's page says to delete or disable the policies;[^np08-wid] Book 04 says never delete during a rollback ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#rollback)). The code follows Book 04, the stricter.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A service principal assigned through a group | The policy reports as configured and enforces nothing for it | NPI-WCA-01; only object IDs from the scope file reach `includeServicePrincipals`; `-Apply` refuses anything else |
+| An app registration's object ID in scope | The policy targets nothing | NPI-WCA-04 from the tenant check |
+| `ServicePrincipalsInMyTenant` or `AllTrusted` from Learn's sample | Every workload, Tier 1 or not, blocked from anywhere but every trusted user network | NPI-WCA-01 and NPI-WCA-08; the sample is a model, not a file |
+| A managed identity or SaaS app assumed covered | Gate 5 passes on a control that doesn't exist | NPI-WCA-02, -03 and -06: each recorded out of scope with the control that covers it |
+| An egress range too broad, or the location marked trusted | The policy blocks nothing, or user policies trust workload networks | NPI-WCA-08: CIDR, no broader than /16 or /32, untrusted |
+| A policy switched straight to On | A workload that moved, or a range nobody listed, stops at once | Every create is report-only; enforcement needs D-N5, `-AllowEnforce` and a reviewed summary that shows the ring ready |
+| Report-only results that were never returned | The summary looks clean because the results were dropped | The Prefer header on every read; the reader throws on `unknownFutureValue`; `Policy.Read.ConditionalAccess` declared |
+| An enforced block nobody hears about | A production job fails silently, or an attacker's attempt goes unnoticed | The alert definition on 53003, reviewed and deployed with the enforcement |
+| A pipeline that deletes a policy no file names | A portal-made policy, perhaps a needed one, disappears | No DELETE in the call list; NotInRepository is reported only |
+| A license that lapses | Existing policies keep working but can't be changed, so a fix can't ship[^np08-wid] | D-N4 recorded in the scope; NPI-WCA-05 fails without it |
+| The write permission left on the app | A standing path to change every Conditional Access policy | Grant `Policy.ReadWrite.ConditionalAccess` only for `-Apply` runs, from the pipeline identity; Lab 2 removes it |
+
+## Checklist
+
+- [ ] D-N4 is recorded in the scope file, and the tenant holds Workload Identities Premium.
+- [ ] Every in-scope service principal is Tier 1, single-tenant, an application registered here, listed by its enterprise application object ID, in exactly one ring.
+- [ ] Every managed identity, multitenant, SaaS, agent and legacy service principal in the tenant has an out-of-scope record naming the control that covers it and who reviewed it.
+- [ ] `NL-WorkloadEgress` holds only the workloads' egress ranges and is untrusted.
+- [ ] The pre-merge check runs on every pull request that touches `workload-ca/` or the scope file, and has no Finding.
+- [ ] Every new policy appeared in the tenant as report-only, and every plan was read as a dry run first.
+- [ ] Each ring's sign-in summary covers at least 14 days, shows every principal Clear, and its SHA-256 was recorded by a reviewer.
+- [ ] Each enforcement was its own change, under D-N5, with `-AllowEnforce`, one ring at a time; every exclusion has an owner, a reason and an end date.
+- [ ] The block alert is deployed to security operations before the first ring is enforced.
+- [ ] The read app holds only the read permissions; the write permission exists only on the identity that applies.
+- [ ] The pinned Learn page matches its manifest, and every upstream commit since the pin has been reviewed.
+
+::: {.callout-tip}
+## Continue the book
+← Previous: Chapter 07 — Least Privilege for Service Principals · [Workbook index](index.md) · Next: Chapter 09 — AI Agent Identities →
+:::
+
+[^np08-wid]: Microsoft Learn, "Conditional Access for workload identities," overview, implementation, roll back, sign-in logs, reference, <https://learn.microsoft.com/entra/identity/conditional-access/workload-identity> (accessed Oct 30, 2026).
+[^np08-risk]: Microsoft Learn, "Securing workload identities" (Microsoft Entra ID Protection), <https://learn.microsoft.com/entra/id-protection/concept-workload-identity-risk> (accessed Oct 30, 2026).
+[^np08-faq]: Microsoft Learn, "Frequently asked questions about Microsoft Entra Workload ID," <https://learn.microsoft.com/entra/workload-id/workload-identities-faqs> (accessed Oct 30, 2026).
+[^np08-availability]: Microsoft Learn, "Microsoft Entra feature availability," Microsoft Entra ID, ID Protection, and other Microsoft Entra products, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
+[^np08-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
+[^np08-clientapps]: Microsoft Learn, "conditionalAccessClientApplications resource type," <https://learn.microsoft.com/graph/api/resources/conditionalaccessclientapplications?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np08-conditionset]: Microsoft Learn, "conditionalAccessConditionSet resource type," <https://learn.microsoft.com/graph/api/resources/conditionalaccessconditionset?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np08-ca-list]: Microsoft Learn, "List policies" (conditionalAccessRoot), <https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np08-ca-create]: Microsoft Learn, "Create conditionalAccessPolicy," permissions and examples, <https://learn.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np08-ca-update]: Microsoft Learn, "Update conditionalaccesspolicy," <https://learn.microsoft.com/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np08-nl-list]: Microsoft Learn, "List namedLocations," <https://learn.microsoft.com/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np08-nl-create]: Microsoft Learn, "Create namedLocation," <https://learn.microsoft.com/graph/api/conditionalaccessroot-post-namedlocations?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np08-nl-update]: Microsoft Learn, "Update ipNamedlocation," <https://learn.microsoft.com/graph/api/ipnamedlocation-update?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np08-signins]: Microsoft Learn, "List signIns" (beta), permissions and optional query parameters, <https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-beta> (accessed Oct 30, 2026).
+[^np08-applied]: Microsoft Learn, "appliedConditionalAccessPolicy resource type" (beta), <https://learn.microsoft.com/graph/api/resources/appliedconditionalaccesspolicy?view=graph-rest-beta> (accessed Oct 30, 2026).
+[^np08-errors]: Microsoft Learn, "Microsoft Entra authentication and authorization error codes," AADSTS53003, <https://learn.microsoft.com/entra/identity-platform/reference-error-codes>, and "Troubleshoot sign-in problems with Conditional Access," <https://learn.microsoft.com/entra/identity/conditional-access/troubleshoot-conditional-access> (accessed Oct 30, 2026).
+[^np08-la-table]: Microsoft Learn, "AADServicePrincipalSignInLogs" (Azure Monitor Logs reference), <https://learn.microsoft.com/azure/azure-monitor/reference/tables/aadserviceprincipalsigninlogs> (accessed Oct 30, 2026).
+[^np08-la-queries]: Microsoft Learn, "Queries for the AADServicePrincipalSignInLogs table," <https://learn.microsoft.com/azure/azure-monitor/reference/queries/aadserviceprincipalsigninlogs> (accessed Oct 30, 2026).
+[^np08-alert]: Microsoft Learn, "Create or edit a log search alert rule," <https://learn.microsoft.com/azure/azure-monitor/alerts/alerts-create-log-alert-rule> (accessed Oct 30, 2026).
+[^np08-sp-get]: Microsoft Learn, "Get servicePrincipal," <https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0> (accessed Oct 30, 2026); declared for the same call in Chapter 01's call list.
+[^np08-sp-list]: Microsoft Learn, "List servicePrincipals," permissions, <https://learn.microsoft.com/graph/api/serviceprincipal-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np08-src]: Microsoft, MicrosoftDocs/entra-docs, `docs/identity/conditional-access/workload-identity.md` at commit `7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4` (October 30, 2026; the page last changed May 16, 2026), MIT License, <https://github.com/MicrosoftDocs/entra-docs/blob/7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4/docs/identity/conditional-access/workload-identity.md> (accessed Oct 30, 2026); pinned copy in `examples/third_party/entra-workload-identity-ca-page`.

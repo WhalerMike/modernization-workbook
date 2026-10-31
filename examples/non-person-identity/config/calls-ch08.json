@@ -1,0 +1,133 @@
+{
+  "_comment": "Chapter 08's calls (Conditional Access for workload identities), with the least-privileged Microsoft Graph permission from the Learn page for each call, read on October 30, 2026. Same schema as calls.json. A task may make only its own calls. tests/NpiWorkloadCa.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls, when a read task declares anything but GET, or when any call is a DELETE.",
+  "tasks": {
+    "wca-read": {
+      "mode": "read",
+      "chapter": "08",
+      "graphPermissions": ["Application.Read.All", "Policy.Read.All"],
+      "azureRoles": [],
+      "adRights": []
+    },
+    "wca-signins": {
+      "mode": "read",
+      "chapter": "08",
+      "graphPermissions": ["AuditLog.Read.All", "Policy.Read.ConditionalAccess"],
+      "azureRoles": [],
+      "adRights": [],
+      "delegatedRole": "Security Reader or Global Reader (reads sign-ins and the Conditional Access results in them)"
+    },
+    "wca-apply": {
+      "mode": "write",
+      "chapter": "08",
+      "graphPermissions": ["Application.Read.All", "Policy.Read.All", "Policy.ReadWrite.ConditionalAccess"],
+      "azureRoles": [],
+      "adRights": [],
+      "delegatedRole": "Conditional Access Administrator"
+    }
+  },
+  "calls": [
+    {
+      "id": "wca-policies",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/policies",
+      "permissions": ["Policy.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["wca-read", "wca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0"
+    },
+    {
+      "id": "wca-named-locations",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/namedLocations",
+      "permissions": ["Policy.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["wca-read", "wca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0"
+    },
+    {
+      "id": "wca-service-principal",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{id}",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["wca-read", "wca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0",
+      "note": "Confirms each in-scope object ID is a service principal (Learn: an app registration's object ID can't be used), its type and its owner tenant."
+    },
+    {
+      "id": "wca-service-principals",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["wca-read", "wca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-list?view=graph-rest-1.0",
+      "note": "Every service principal, so each managed identity and multitenant or SaaS app is either recorded out of scope or reported."
+    },
+    {
+      "id": "wca-signins",
+      "api": "graph",
+      "method": "GET",
+      "version": "beta",
+      "path": "/auditLogs/signIns",
+      "permissions": ["AuditLog.Read.All", "Policy.Read.ConditionalAccess"],
+      "stage": "beta",
+      "tasks": ["wca-signins"],
+      "learn": "https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-beta",
+      "note": "Service principal sign-ins need the beta filter signInEventTypes/any(t: t eq 'servicePrincipal'); without it only interactive sign-ins return. appliedConditionalAccessPolicies is omitted unless the app also holds Policy.Read.All, Policy.Read.ConditionalAccess or Policy.ReadWrite.ConditionalAccess, and the report-only results need the header Prefer: include-unknown-enum-members (research gaps, rows 73 and 74)."
+    },
+    {
+      "id": "wca-policy-create",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/policies",
+      "permissions": ["Policy.Read.All", "Policy.ReadWrite.ConditionalAccess"],
+      "stage": "v1.0",
+      "tasks": ["wca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0",
+      "note": "Always sent with state enabledForReportingButNotEnforced."
+    },
+    {
+      "id": "wca-policy-update",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/policies/{id}",
+      "permissions": ["Policy.Read.All", "Policy.ReadWrite.ConditionalAccess"],
+      "stage": "v1.0",
+      "tasks": ["wca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0"
+    },
+    {
+      "id": "wca-location-create",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/namedLocations",
+      "permissions": ["Policy.Read.All", "Policy.ReadWrite.ConditionalAccess"],
+      "stage": "v1.0",
+      "tasks": ["wca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-post-namedlocations?view=graph-rest-1.0"
+    },
+    {
+      "id": "wca-location-update",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/identity/conditionalAccess/namedLocations/{id}",
+      "permissions": ["Policy.Read.All", "Policy.ReadWrite.ConditionalAccess"],
+      "stage": "v1.0",
+      "tasks": ["wca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/ipnamedlocation-update?view=graph-rest-1.0"
+    }
+  ]
+}

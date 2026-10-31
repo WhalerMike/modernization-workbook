@@ -633,6 +633,17 @@
       "source": "Commits to the Learn source page that holds the HTTP samples for finding ownerless service principals, assigning owners and setting serviceManagementReference, which examples/third_party/graph-applications-tutorial-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 02). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     },
     {
+      "id": "entra-workload-identity-ca-page-commits",
+      "name": "Learn's Conditional Access for workload identities (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/conditional-access/workload-identity.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Graph JSON sample for a workload identity Conditional Access policy and the location and risk procedures, which examples/third_party/entra-workload-identity-ca-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 08). A new commit means: review it, rerun examples/non-person-identity/tests/NpiWorkloadCa.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
       "id": "windows-server-dmsa-setup-page-commits",
       "name": "Learn's Setting up delegated Managed Service Accounts (MicrosoftDocs/windowsserverdocs commits)",
       "type": "github_commits",

@@ -1,0 +1,31 @@
+{
+  "_comment": "Chapter 08's reviewed scope for the fictional contoso.example tenant: which service principals CA015 and CA037 cover, in which ring, the workload egress ranges (documentation ranges from RFC 5737 and RFC 3849, never real ones), the identities out of scope with the control that covers each instead, and the enforcement record. A real tenant keeps its own copy beside its decision records; every change is a reviewed pull request.",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "cloud": "gcc",
+  "licensing": { "decision": "D-N4", "outcome": "License the Tier 1 single-tenant service principals", "decidedBy": "CISO", "decidedOn": "2026-10-02" },
+  "microsoftOwnerTenantIds": ["0e0e0e0e-0000-4000-8000-0000000000aa"],
+  "egress": { "name": "NL-WorkloadEgress", "ranges": ["192.0.2.0/28", "198.51.100.32/29", "2001:db8:10::/48"] },
+  "rings": [
+    { "name": "Ring1", "order": 1 },
+    { "name": "Ring2", "order": 2 }
+  ],
+  "inScope": [
+    { "objectId": "5b000000-0000-4000-8000-000000000001", "appId": "1a000000-0000-4000-8000-000000000001", "name": "Payroll Export", "tier": "Tier1", "servicePrincipalType": "Application", "signInAudience": "AzureADMyOrg", "ring": "Ring1", "record": "CMDB-1042" },
+    { "objectId": "5b000000-0000-4000-8000-000000000006", "appId": "1a000000-0000-4000-8000-000000000006", "name": "Mail Automation", "tier": "Tier1", "servicePrincipalType": "Application", "signInAudience": "AzureADMyOrg", "ring": "Ring1", "record": "CMDB-1100" },
+    { "objectId": "5b000000-0000-4000-8000-000000000007", "appId": "1a000000-0000-4000-8000-000000000007", "name": "Deploy Bot", "tier": "Tier1", "servicePrincipalType": "Application", "signInAudience": "AzureADMyOrg", "ring": "Ring2", "record": "CMDB-1300" },
+    { "objectId": "5b000000-0000-4000-8000-000000000002", "appId": "1a000000-0000-4000-8000-000000000002", "name": "HR Connector", "tier": "Tier1", "servicePrincipalType": "Application", "signInAudience": "AzureADMyOrg", "ring": "Ring2", "record": "pending (Chapter 02, NPI-OWN-06)" }
+  ],
+  "outOfScope": [
+    { "objectId": "5b000000-0000-4000-8000-000000000013", "name": "vm-batch01", "class": "ManagedIdentity", "control": "Not covered by Conditional Access (Learn). Azure role assignments scoped to the resource (Chapter 07) and an access review of the identity (Learn suggests one for managed identities)", "reviewedBy": "Identity governance officer", "reviewedOn": "2026-10-20" },
+    { "objectId": "5b000000-0000-4000-8000-000000000014", "name": "id-deploy", "class": "ManagedIdentity", "control": "Not covered by Conditional Access (Learn). Federated credential limited to one repository and branch (Chapter 05); role assignments scoped to the resource group (Chapter 07)", "reviewedBy": "Identity governance officer", "reviewedOn": "2026-10-20" },
+    { "objectId": "5b000000-0000-4000-8000-000000000011", "name": "Partner CRM", "class": "SaaS", "control": "A third party's multitenant app: admin consent review of its permissions and the quarterly owner review (Chapter 07); ID Protection still detects risk on it (Learn)", "reviewedBy": "Identity governance officer", "reviewedOn": "2026-10-20" },
+    { "objectId": "5b000000-0000-4000-8000-000000000005", "name": "Vendor Portal", "class": "Multitenant", "control": "Registered here but multitenant: Chapter 03's disposition re-registers it single-tenant, then it joins Ring2", "reviewedBy": "Identity governance officer", "reviewedOn": "2026-10-20" },
+    { "objectId": "5b000000-0000-4000-8000-000000000015", "name": "Benefits Q&A Agent", "class": "AgentIdentity", "control": "An AI agent identity: Chapter 09's controls; agent Conditional Access is preview and stays a watch item", "reviewedBy": "Identity governance officer", "reviewedOn": "2026-10-20" },
+    { "objectId": "5b000000-0000-4000-8000-000000000012", "name": "Old SAML Connector", "class": "Legacy", "control": "A legacy service principal with no registration: Chapter 02's orphan rule, then retirement", "reviewedBy": "Identity governance officer", "reviewedOn": "2026-10-20" }
+  ],
+  "enforcement": {
+    "decision": null,
+    "rings": [],
+    "exclusions": []
+  }
+}
