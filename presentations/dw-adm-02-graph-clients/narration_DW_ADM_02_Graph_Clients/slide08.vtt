@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.537
+The second half is about running safely.
+
+2
+00:00:02.537 --> 00:00:05.775
+The snippets have no Resource
+Manager endpoints at all.
+
+3
+00:00:05.775 --> 00:00:08.256
+Nothing ties a call to
+the permission it needs,
+
+4
+00:00:08.256 --> 00:00:11.913
+though Learn asks for the least
+privileged permission for each one.
+
+5
+00:00:11.913 --> 00:00:14.579
+There's no paging in the Python snippets,
+
+6
+00:00:14.579 --> 00:00:19.912
+the SDK won't retry throttled items inside
+a batch, and there's nothing about beta.
+
+7
+00:00:19.912 --> 00:00:24.536
+So the verdict: use Learn's page as the
+model for the three things that change per
+
+8
+00:00:24.536 --> 00:00:28.802
+cloud, add the authority, and for
+background jobs use the hardened client,
+
+9
+00:00:28.802 --> 00:00:33.480
+because a reviewer will ask which calls,
+with which permissions, in which cloud.

@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.775
+Why does this chapter exist?
+
+2
+00:00:01.775 --> 00:00:06.699
+Because the program's last gates ask for
+things a single snapshot can't give: a
+
+3
+00:00:06.699 --> 00:00:12.013
+Tier 0 drift handled as an incident, and
+evidence for every elevation in the period.
+
+4
+00:00:12.013 --> 00:00:15.262
+Book 04 already says what
+goes in the package.
+
+5
+00:00:15.262 --> 00:00:18.300
+Learn supplies the two
+facts the design turns on.
+
+6
+00:00:18.300 --> 00:00:21.207
+First, the audit log
+only keeps thirty days,
+
+7
+00:00:21.207 --> 00:00:24.612
+so evidence has to be
+collected before it ages out.
+
+8
+00:00:24.612 --> 00:00:29.288
+Second, one activation can show
+up under several correlation IDs,
+
+9
+00:00:29.288 --> 00:00:31.626
+but its request ID never changes.
+
+10
+00:00:31.626 --> 00:00:33.980
+That request ID becomes the key.

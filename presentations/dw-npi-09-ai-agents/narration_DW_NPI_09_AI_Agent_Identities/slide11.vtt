@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.862
+The only thing this chapter ever writes
+is the two agent policies, report-only.
+
+2
+00:00:04.862 --> 00:00:07.885
+The plan compares the reviewed
+files with the tenant,
+
+3
+00:00:07.885 --> 00:00:11.114
+and where the program's
+decision says agent Conditional
+
+4
+00:00:11.114 --> 00:00:14.412
+Access isn't published, it
+simply marks them not available.
+
+5
+00:00:14.412 --> 00:00:18.965
+The write path refuses unless the plan
+is the approved one, recent, and for
+
+6
+00:00:18.965 --> 00:00:23.974
+this tenant, and every write creates a
+report-only block policy and nothing else.
+
+7
+00:00:23.974 --> 00:00:27.988
+It runs as a person with the
+Conditional Access administrator role.
+
+8
+00:00:27.988 --> 00:00:32.540
+And it never turns a policy on; that
+waits until the feature leaves preview.

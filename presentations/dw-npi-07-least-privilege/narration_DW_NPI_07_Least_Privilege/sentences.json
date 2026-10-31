@@ -1,0 +1,558 @@
+{
+ "1": [
+  [
+   0.05,
+   5.862,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Non-Person Identity."
+  ],
+  [
+   5.912,
+   3.9,
+   "This is Chapter 7: least privilege for service principals."
+  ],
+  [
+   9.812,
+   10.275,
+   "A permission nobody reviews stays forever, so this chapter's sweep reads every grant, asks its owner once a quarter, and removes only what a reviewer approved."
+  ],
+  [
+   20.087,
+   12.7,
+   "We'll start from Learn's own review-and-revoke script, see why it shouldn't be run as published, then walk the sweep, the rules, the owner review, the plan and its write path, two labs and the dangers."
+  ],
+  [
+   32.788,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.938,
+   "Start with what we're actually measuring."
+  ],
+  [
+   1.988,
+   12.438,
+   "An app can hold two kinds of permission: an application permission, which is a role it holds on another app's service principal, and a delegated permission, which is a grant to act for one person or for everyone."
+  ],
+  [
+   14.425,
+   7.688,
+   "Learn's way to see what an app can reach is to walk every service principal's role assignments, paying close attention to Microsoft Graph."
+  ],
+  [
+   22.113,
+   4.175,
+   "And remember that directory roles and mail roles grant access too."
+  ],
+  [
+   26.288,
+   8.162,
+   "For this estate, everything goes to the worldwide Graph and commercial Azure, and every call is available in the government clouds as well."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.125,
+   "The program adds its rules on top, marked as design guidance."
+  ],
+  [
+   4.175,
+   2.487,
+   "Owners review every grant each quarter."
+  ],
+  [
+   6.662,
+   5.112,
+   "No broad tenant-wide permission stands without a written, dated justification."
+  ],
+  [
+   11.775,
+   10.838,
+   "Where Learn documents a narrower replacement, like selected sites, or scoped mail access, that's the target, and for mail the old unscoped grant has to go or the scope means nothing."
+  ],
+  [
+   22.613,
+   4.3,
+   "Managed identities get Azure roles at the resource, not the subscription."
+  ],
+  [
+   26.913,
+   3.837,
+   "Privileged service principals belong to the Privileged Access plan."
+  ],
+  [
+   30.75,
+   2.85,
+   "And the code removes a grant, never an app."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.875,
+   "Here's Microsoft's starting point."
+  ],
+  [
+   1.925,
+   11.675,
+   "Learn's review page has a PowerShell script that finds one app, removes all of its delegated grants, then tries to remove all of its application permissions, plus the matching Graph requests."
+  ],
+  [
+   13.6,
+   6.438,
+   "A separate tutorial shows how to grant and revoke, which the second lab uses to restore what it removes."
+  ],
+  [
+   20.038,
+   5.963,
+   "As in earlier chapters, the page is pinned unmodified with checked hashes and a weekly watch."
+  ],
+  [
+   26.0,
+   7.15,
+   "The harness then runs the script exactly as published, against stand-ins that follow Learn's own A P I contract."
+  ],
+  [
+   33.15,
+   2.5,
+   "That contract is where things get interesting."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.413,
+   "Run as published, the script has two opposite problems."
+  ],
+  [
+   3.462,
+   13.463,
+   "First, it's indiscriminate: it removes every delegated grant and tries every application permission, with no list of what to keep and no dry run, so a permission someone formally approved goes along with the rest."
+  ],
+  [
+   16.925,
+   12.775,
+   "Second, on Learn's own A P I contract, its application permission removals miss entirely: it passes the app's own I D where the reference says the resource belongs, so all three answer not found."
+  ],
+  [
+   29.7,
+   6.062,
+   "The code keeps the requests as its model, and adds the keep list, the decisions and the plan."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.925,
+   "The rest of the gaps are about scope and privilege."
+  ],
+  [
+   2.975,
+   4.688,
+   "To find one app's grants, the script reads every grant in the tenant."
+  ],
+  [
+   7.662,
+   7.487,
+   "To review, it signs in with write permissions, including the very broad directory one this chapter is trying to remove."
+  ],
+  [
+   15.15,
+   4.013,
+   "It names a different administrator role than the A P I reference does."
+  ],
+  [
+   19.163,
+   2.288,
+   "It hard-codes the worldwide host."
+  ],
+  [
+   21.45,
+   10.688,
+   "And it never looks at directory roles or Azure role assignments, so an app in a directory role, or a managed identity that's Contributor on a subscription, passes unseen."
+  ],
+  [
+   32.138,
+   3.362,
+   "So the verdict: use the requests, not the script."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.225,
+   "What does the code add?"
+  ],
+  [
+   1.275,
+   10.9,
+   "A module, two entry scripts, one that only reads and one that writes, its own call list, and a reviewed list of what counts as broad, with Learn's replacement for each class."
+  ],
+  [
+   12.175,
+   8.925,
+   "Three small files carry the human decisions: exceptions from the security office, the owners' quarterly answers, and the Azure scopes to look at."
+  ],
+  [
+   21.1,
+   12.512,
+   "The sweep then reads every service principal in the register: its roles on every resource, not just Graph, its delegated grants, its directory roles, and for a managed identity, its Azure roles."
+  ],
+  [
+   33.612,
+   2.025,
+   "Every grant gets a stable key."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.45,
+   "The check compares the sweep with the reviewed list and the exceptions, and applies nine rules."
+  ],
+  [
+   5.5,
+   9.8,
+   "The heart of it: a broad permission with no current, complete exception is a finding, whether it's an application permission or a delegated one granted to everyone."
+  ],
+  [
+   15.3,
+   9.875,
+   "Two rules cover mail, including a subtle one: if the exception relies on scoped mail access but the unscoped grant is still there, the scope does nothing."
+  ],
+  [
+   25.175,
+   4.537,
+   "Two more grade managed identities' Azure roles by how wide the scope is."
+  ],
+  [
+   29.712,
+   3.675,
+   "Privileged apps are only noted here, because they're handed off."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.775,
+   "Two pieces sit between the check and the plan."
+  ],
+  [
+   2.825,
+   7.275,
+   "First, the escalation class: a handful of permissions that let an app grant itself more, or act as others."
+  ],
+  [
+   10.1,
+   6.35,
+   "Any app holding one is handed off whole to the Privileged Access plan, with everything it holds listed."
+  ],
+  [
+   16.45,
+   7.65,
+   "Second, the quarterly owner review: one row per grant, sent to the owners, and only answers dated this quarter count."
+  ],
+  [
+   24.1,
+   5.25,
+   "It closes when every row is decided and nothing approved for removal is still granted."
+  ],
+  [
+   29.35,
+   5.963,
+   "Access reviews for privileged apps belong to the other workbook, and the chapter treats them as preview."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.938,
+   "The plan turns the owners' answers into one action each, and only two kinds ever write."
+  ],
+  [
+   5.987,
+   8.412,
+   "Removing an application permission happens through the resource, and only once any replacement, like selected sites, is already in place."
+  ],
+  [
+   14.4,
+   4.325,
+   "Narrowing a delegated grant can only make it smaller, never empty."
+  ],
+  [
+   18.725,
+   12.325,
+   "Everything else is recorded: waiting for a decision or a replacement, kept under an exception, or handed to someone else's reviewed process, such as re-scoping an Azure role in infrastructure code."
+  ],
+  [
+   31.05,
+   5.775,
+   "As before, identical inputs give an identical file, so a reviewer approves one hash."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.3,
+   "As in the last chapter, writing is a separate script with strict refusals."
+  ],
+  [
+   4.35,
+   5.463,
+   "The plan must be the approved one, for this tenant and cloud, and less than a week old."
+  ],
+  [
+   9.812,
+   6.787,
+   "It can only delete one kind of thing, a role assignment through its resource, and it can only shrink a delegated grant."
+  ],
+  [
+   16.6,
+   4.025,
+   "And it runs as a person, signed in with the right administrator role."
+  ],
+  [
+   20.625,
+   1.062,
+   "Why not an app?"
+  ],
+  [
+   21.688,
+   5.188,
+   "Because the permissions it needs are exactly the escalation permissions the sweep flags."
+  ],
+  [
+   26.875,
+   4.475,
+   "Before each write it re-reads the target, and skips anything that changed."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   1.837,
+   "Developers build the tooling."
+  ],
+  [
+   2.938,
+   3.125,
+   "Application owners answer the quarterly review."
+  ],
+  [
+   6.062,
+   7.175,
+   "The identity governance officer closes it and receives the hand-off of privileged apps, and the security officers check the gate."
+  ],
+  [
+   13.238,
+   2.362,
+   "The permission split mirrors the code."
+  ],
+  [
+   15.6,
+   5.112,
+   "The sweep holds three read permissions in Graph and Reader in Azure, nothing that writes."
+  ],
+  [
+   20.712,
+   9.65,
+   "The write task holds the two grant-management permissions and the administrator role, but only in a person's signed-in session, so nothing standing can grant itself more."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.175,
+   "Lab 1 runs on a laptop with Chapter 1's inventory in place."
+  ],
+  [
+   4.225,
+   10.575,
+   "First, Learn's script against the stand-ins: read the test where all three application permission removals come back not found, because the script named the wrong service principal."
+  ],
+  [
+   14.8,
+   4.763,
+   "Then list the permissions each task needs, which match the table we just saw."
+  ],
+  [
+   19.562,
+   10.912,
+   "Then run the sweep over a fictional estate: eleven service principals, twenty grants, three handed to the Privileged Access plan, and an owner review that isn't closed yet."
+  ],
+  [
+   30.475,
+   3.737,
+   "Two agent identities are skipped, because they're Chapter 9's."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.362,
+   "Now read the findings, and each rule shows up in a realistic shape."
+  ],
+  [
+   4.412,
+   4.612,
+   "A mail automation app holds the broad directory permission with no exception."
+  ],
+  [
+   9.025,
+   3.163,
+   "A connector's exception quietly ended last month."
+  ],
+  [
+   12.188,
+   6.588,
+   "A mail permission is \"scoped\" in Exchange, but the unscoped grant is still there, so the scope does nothing."
+  ],
+  [
+   18.775,
+   4.925,
+   "A batch machine's managed identity holds roles at the subscription and the management group."
+  ],
+  [
+   23.7,
+   3.475,
+   "Three apps can grant themselves more, so they're handed off."
+  ],
+  [
+   27.175,
+   5.35,
+   "And in the review, one answer from July doesn't count any more, because it's a new quarter."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.938,
+   "Then the plan."
+  ],
+  [
+   0.988,
+   15.738,
+   "Of eleven actions, three write: a connector's full-control site permission is removed because its selected-sites replacement is already granted, the broad directory permission is removed, and a partner app's all-users grant is narrowed to just reading profiles."
+  ],
+  [
+   16.725,
+   8.738,
+   "The dry run shows the point of the whole exercise: both removals go through Microsoft Graph's service principal, the resource, not the app."
+  ],
+  [
+   25.462,
+   5.138,
+   "Applying it to the fake sends three writes, and a hash nobody approved is refused."
+  ],
+  [
+   30.6,
+   4.362,
+   "Delete the output afterwards, because the review names real owners."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.45,
+   "Lab 2 uses a test tenant and subscription, never production, with fictional people."
+  ],
+  [
+   5.5,
+   9.088,
+   "You create a broad grant and an over-scoped managed identity on purpose, then sweep with read-only permissions and confirm both findings appear."
+  ],
+  [
+   14.588,
+   6.675,
+   "An owner decision of remove goes in, a second person approves the plan's hash, and you apply it as a person."
+  ],
+  [
+   21.262,
+   5.263,
+   "You also try the script's original request shape once, and write down what Graph really answers."
+  ],
+  [
+   26.525,
+   5.425,
+   "After a few minutes, the grant is gone and the audit log shows a person as the actor."
+  ],
+  [
+   31.95,
+   1.462,
+   "Then restore everything."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.275,
+   "Each danger here has a guard in the code."
+  ],
+  [
+   2.325,
+   6.55,
+   "The most direct is simply running Learn's script against a real tenant, which removes far more than anyone planned."
+  ],
+  [
+   8.875,
+   9.412,
+   "Close behind are deleting an app instead of a grant, and removing a broad permission before its replacement is in place, which takes a workload down in production."
+  ],
+  [
+   18.288,
+   13.037,
+   "Then the subtle ones: a mail scope that does nothing while the old grant stays, a narrowing that actually widens, last quarter's answer passing as this quarter's, and a permission quietly re-granted at the next consent."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   3.513,
+   "Every service principal was swept, or skipped with a reason."
+  ],
+  [
+   4.912,
+   5.925,
+   "Every broad permission has a current, complete exception or a decision to remove or narrow it."
+  ],
+  [
+   10.838,
+   7.162,
+   "No mail scope is pretending while the old grant stays, and every managed identity's Azure role sits at the resource."
+  ],
+  [
+   18.0,
+   4.188,
+   "The privileged apps went to the Privileged Access plan and were closed there."
+  ],
+  [
+   22.188,
+   6.025,
+   "The quarter's review is closed, and every write ran as a person, on a plan someone else approved."
+  ],
+  [
+   28.212,
+   4.263,
+   "Next, Chapter 8 puts Conditional Access on workload identities."
+  ],
+  [
+   32.475,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

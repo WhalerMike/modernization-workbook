@@ -1,0 +1,823 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:10.162
+This is Chapter 2: Graph clients
+for the government clouds.
+
+4
+00:00:10.162 --> 00:00:15.558
+Every piece of code in this workbook that
+calls Microsoft Graph should follow one
+
+5
+00:00:15.558 --> 00:00:20.717
+pattern: know which cloud it's in, send its
+token nowhere else, ask for no more than
+
+6
+00:00:20.717 --> 00:00:25.875
+each call needs, and keep working when
+Graph says slow down or a beta API changes.
+
+7
+00:00:25.875 --> 00:00:30.347
+We'll sort out which cloud is which,
+run Microsoft's own snippets to see
+
+8
+00:00:30.347 --> 00:00:34.975
+what they leave out, walk the client's
+rules, then two labs and the dangers.
+
+9
+00:00:34.975 --> 00:00:40.480
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+10
+00:00:44.230 --> 00:00:46.330
+Why does this chapter matter so much?
+
+11
+00:00:46.330 --> 00:00:50.076
+Because every other chapter's
+code talks to Graph or to Azure,
+
+12
+00:00:50.076 --> 00:00:53.597
+and a client that gets the cloud
+wrong, or asks for too much,
+
+13
+00:00:53.597 --> 00:00:56.668
+carries that mistake into
+everything built on it.
+
+14
+00:00:56.668 --> 00:01:01.469
+So the goal is a client that reaches the
+right cloud, asks for the right token,
+
+15
+00:01:01.469 --> 00:01:06.580
+makes only the calls it declares, and pages
+and retries the way Microsoft says to.
+
+16
+00:01:06.580 --> 00:01:11.192
+Just as important, for each rule in the
+code you should be able to say whether
+
+17
+00:01:11.192 --> 00:01:15.580
+it's Microsoft's contract, Microsoft's
+sample, or the program's own design.
+
+18
+00:01:15.580 --> 00:01:17.580
+Let's start with the clouds.
+
+19
+00:01:21.330 --> 00:01:25.005
+Get this right first, because
+every other rule depends on it.
+
+20
+00:01:25.005 --> 00:01:28.860
+A GCC Moderate tenant uses
+the worldwide endpoints,
+
+21
+00:01:28.860 --> 00:01:32.805
+the same as a commercial
+tenant: Learn says so plainly.
+
+22
+00:01:32.805 --> 00:01:36.288
+GCC was built when Microsoft
+had one cloud directory,
+
+23
+00:01:36.288 --> 00:01:39.217
+and it still uses that
+commercial directory.
+
+24
+00:01:39.217 --> 00:01:44.116
+It's GCC High and the Department of
+Defense cloud that have their own hosts,
+
+25
+00:01:44.116 --> 00:01:47.168
+for tokens, for Graph
+and for Resource Manager.
+
+26
+00:01:47.168 --> 00:01:50.479
+And a token from one cloud
+simply doesn't work in another.
+
+27
+00:01:50.479 --> 00:01:52.394
+The slide maps all four clouds,
+
+28
+00:01:52.394 --> 00:01:56.360
+including the PowerShell
+environment names you'll pass.
+
+29
+00:02:00.110 --> 00:02:04.016
+The target estate for this
+migration is Microsoft 365
+
+30
+00:02:04.016 --> 00:02:07.835
+GCC with commercial Azure,
+so let's make that concrete.
+
+31
+00:02:07.835 --> 00:02:11.197
+Nothing in its configuration
+is a dot-u-s host.
+
+32
+00:02:11.197 --> 00:02:15.495
+A run that reads both Graph and
+Resource Manager needs two tokens,
+
+33
+00:02:15.495 --> 00:02:18.997
+because one token request
+can only name one resource.
+
+34
+00:02:18.997 --> 00:02:23.234
+The code still calls the cloud "gcc"
+by name, even though it resolves
+
+35
+00:02:23.234 --> 00:02:27.548
+to the worldwide endpoints, so the
+evidence says what was intended.
+
+36
+00:02:27.548 --> 00:02:32.507
+And watch for a second tenant: if a
+workload ever lands in an Azure Government
+
+37
+00:02:32.507 --> 00:02:37.440
+subscription, it has its own hosts, and
+the run has to be told, never guess.
+
+38
+00:02:41.190 --> 00:02:44.628
+This chapter is the reference
+for clients that already exist.
+
+39
+00:02:44.628 --> 00:02:47.140
+Chapters 1, 3 and 4 were written first,
+
+40
+00:02:47.140 --> 00:02:51.664
+and each has its own Graph client
+that follows part of the pattern.
+
+41
+00:02:51.664 --> 00:02:54.029
+They name the clouds two different ways:
+
+42
+00:02:54.029 --> 00:02:58.040
+the program's short names, and
+Learn's PowerShell environment names.
+
+43
+00:02:58.040 --> 00:03:01.290
+That's fine, because the
+table maps one to the other.
+
+44
+00:03:01.290 --> 00:03:03.052
+What isn't fine is a default.
+
+45
+00:03:03.052 --> 00:03:06.473
+A cloud name a client doesn't
+recognize has to stop the run,
+
+46
+00:03:06.473 --> 00:03:09.965
+because quietly falling back
+to worldwide is exactly how
+
+47
+00:03:09.965 --> 00:03:13.530
+a government run ends up
+talking to the wrong service.
+
+48
+00:03:17.280 --> 00:03:18.992
+Here's what Microsoft gives you.
+
+49
+00:03:18.992 --> 00:03:23.973
+Learn's page on national clouds for the
+Graph SDKs names the three things a client
+
+50
+00:03:23.973 --> 00:03:26.798
+has to change per cloud:
+where it gets its token,
+
+51
+00:03:26.798 --> 00:03:30.292
+where Graph lives, and any
+scope that names the Graph host.
+
+52
+00:03:30.292 --> 00:03:33.092
+Its example connects to GCC High.
+
+53
+00:03:33.092 --> 00:03:36.106
+Other Learn pages cover
+paging and throttling.
+
+54
+00:03:36.106 --> 00:03:41.056
+The Python examples live in Microsoft's
+snippets repository, so the workbook
+
+55
+00:03:41.056 --> 00:03:45.693
+pins an unmodified copy of the two files
+it uses, with a hash a test checks.
+
+56
+00:03:45.693 --> 00:03:49.274
+A test then runs them against
+stand-ins that record exactly
+
+57
+00:03:49.274 --> 00:03:52.790
+what they'd sign in to,
+without signing in to anything.
+
+58
+00:03:56.540 --> 00:04:00.397
+Running the snippets against the
+stand-ins shows what they leave to you,
+
+59
+00:04:00.397 --> 00:04:03.077
+and the first half is about
+cloud and credentials.
+
+60
+00:04:03.077 --> 00:04:05.348
+The surprise is the Python credential:
+
+61
+00:04:05.348 --> 00:04:09.817
+on the same page where the other languages
+set the government authority, the
+
+62
+00:04:09.817 --> 00:04:14.640
+Python example doesn't, and Python's identity
+library defaults to the public cloud.
+
+63
+00:04:14.640 --> 00:04:18.865
+Copy it for GCC High and the
+app signs in to the wrong cloud.
+
+64
+00:04:18.865 --> 00:04:22.170
+There's also nothing for the
+Department of Defense cloud,
+
+65
+00:04:22.170 --> 00:04:25.616
+a certificate snippet that
+hard-codes the worldwide scope,
+
+66
+00:04:25.616 --> 00:04:29.000
+and a client secret, which is
+just a password in a file.
+
+67
+00:04:32.750 --> 00:04:35.237
+The second half is about running safely.
+
+68
+00:04:35.237 --> 00:04:38.475
+The snippets have no Resource
+Manager endpoints at all.
+
+69
+00:04:38.475 --> 00:04:40.956
+Nothing ties a call to
+the permission it needs,
+
+70
+00:04:40.956 --> 00:04:44.613
+though Learn asks for the least
+privileged permission for each one.
+
+71
+00:04:44.613 --> 00:04:47.279
+There's no paging in the Python snippets,
+
+72
+00:04:47.279 --> 00:04:52.612
+the SDK won't retry throttled items inside
+a batch, and there's nothing about beta.
+
+73
+00:04:52.612 --> 00:04:57.236
+So the verdict: use Learn's page as the
+model for the three things that change per
+
+74
+00:04:57.236 --> 00:05:01.502
+cloud, add the authority, and for
+background jobs use the hardened client,
+
+75
+00:05:01.502 --> 00:05:06.480
+because a reviewer will ask which calls,
+with which permissions, in which cloud.
+
+76
+00:05:10.230 --> 00:05:11.530
+Now the code itself.
+
+77
+00:05:11.530 --> 00:05:14.446
+Everything about a cloud
+comes from one table:
+
+78
+00:05:14.446 --> 00:05:17.823
+ask for a cloud by name and
+you get its token authority,
+
+79
+00:05:17.823 --> 00:05:22.505
+its Graph host and its Resource Manager
+host, and anything else is an error.
+
+80
+00:05:22.505 --> 00:05:25.443
+The client won't send its
+token to any other host.
+
+81
+00:05:25.443 --> 00:05:28.493
+Then there's the call list,
+one entry per Graph call,
+
+82
+00:05:28.493 --> 00:05:33.405
+with the least privileged permission from
+the API page and the tasks that use it.
+
+83
+00:05:33.405 --> 00:05:36.707
+Two rules follow: a task
+can make only its own calls,
+
+84
+00:05:36.707 --> 00:05:40.493
+and its permissions are exactly
+the union of those calls.
+
+85
+00:05:40.493 --> 00:05:43.740
+Add one without the other,
+and the build fails.
+
+86
+00:05:47.490 --> 00:05:49.510
+The third rule is the token check,
+
+87
+00:05:49.510 --> 00:05:52.428
+and it runs before a live
+job makes a single call.
+
+88
+00:05:52.428 --> 00:05:56.440
+An app-only token lists its
+application permissions in one claim,
+
+89
+00:05:56.440 --> 00:05:59.339
+so the Python client reads
+it from its own token.
+
+90
+00:05:59.339 --> 00:06:02.077
+If a permission is missing, the run stops.
+
+91
+00:06:02.077 --> 00:06:04.840
+If there's one the task
+doesn't use, it warns,
+
+92
+00:06:04.840 --> 00:06:08.090
+because an unused permission
+is still exposure.
+
+93
+00:06:08.090 --> 00:06:11.124
+PowerShell is trickier,
+since the Graph SDK
+
+94
+00:06:11.124 --> 00:06:14.327
+signs in for you and never
+hands over the token.
+
+95
+00:06:14.327 --> 00:06:18.020
+It turns out the session's context
+reports the same permissions,
+
+96
+00:06:18.020 --> 00:06:21.720
+read from the same claim, so
+the module checks that instead.
+
+97
+00:06:25.470 --> 00:06:28.970
+Paging and throttling are
+where clients quietly break.
+
+98
+00:06:28.970 --> 00:06:32.608
+When Graph returns a next link,
+the client follows it to the end,
+
+99
+00:06:32.608 --> 00:06:36.887
+and it sends the same headers on every
+page, because Learn says they aren't
+
+100
+00:06:36.887 --> 00:06:41.095
+carried forward by default, and an
+advanced query changes without them.
+
+101
+00:06:41.095 --> 00:06:45.207
+When Graph says slow down, the
+client waits as long as it's told.
+
+102
+00:06:45.207 --> 00:06:49.396
+When it isn't told, which really
+happens for Conditional Access,
+
+103
+00:06:49.396 --> 00:06:50.846
+it backs off, with a cap.
+
+104
+00:06:50.846 --> 00:06:56.220
+It also marks its requests as low priority,
+so background reads give way to people.
+
+105
+00:06:56.220 --> 00:07:00.520
+And inside a batch, it retries
+throttled items itself.
+
+106
+00:07:04.270 --> 00:07:09.807
+Beta APIs can change or disappear, and
+Learn says not to use them in production.
+
+107
+00:07:09.807 --> 00:07:13.102
+But sometimes the only place
+a property lives is beta,
+
+108
+00:07:13.102 --> 00:07:16.021
+like the Autopilot status
+this workbook needs.
+
+109
+00:07:16.021 --> 00:07:17.852
+So beta calls must be declared,
+
+110
+00:07:17.852 --> 00:07:21.809
+they're read through a wrapper that
+turns a missing shape into "not
+
+111
+00:07:21.809 --> 00:07:26.133
+evaluated" rather than a failed run,
+and the stage is always in the output.
+
+112
+00:07:26.133 --> 00:07:28.551
+The Autopilot case also shows two Learn
+
+113
+00:07:28.551 --> 00:07:31.483
+pages disagreeing about
+the government clouds.
+
+114
+00:07:31.483 --> 00:07:33.733
+The code follows the stricter one,
+
+115
+00:07:33.733 --> 00:07:37.640
+because an API that answers
+isn't a feature you can use.
+
+116
+00:07:41.390 --> 00:07:42.452
+Who is this for?
+
+117
+00:07:42.452 --> 00:07:45.892
+Developers who build any code
+in this workbook that calls
+
+118
+00:07:45.892 --> 00:07:49.403
+Graph or Resource Manager, and
+the reviewers who approve it.
+
+119
+00:07:49.403 --> 00:07:53.497
+You'll want to read Python or PowerShell,
+and know what an access token is;
+
+120
+00:07:53.497 --> 00:07:55.927
+you don't need a tenant
+until the second lab.
+
+121
+00:07:55.927 --> 00:07:58.712
+The reviewer's question
+is always the same:
+
+122
+00:07:58.712 --> 00:08:02.053
+which calls, with which
+permissions, in which cloud.
+
+123
+00:08:02.053 --> 00:08:03.564
+The call list answers it.
+
+124
+00:08:03.564 --> 00:08:06.962
+And the app registration
+itself is part of the answer:
+
+125
+00:08:06.962 --> 00:08:11.285
+exactly the task's permissions, a
+certificate or a managed identity,
+
+126
+00:08:11.285 --> 00:08:14.880
+never a secret, registered
+in the tenant's own cloud.
+
+127
+00:08:18.630 --> 00:08:23.355
+Lab 1 needs only a laptop, with
+Python and PowerShell, and no tenant.
+
+128
+00:08:23.355 --> 00:08:26.891
+First you run Microsoft's own
+snippets against the stand-ins,
+
+129
+00:08:26.891 --> 00:08:30.993
+and read the test that proves the
+Python credential gets no authority.
+
+130
+00:08:30.993 --> 00:08:35.929
+Then you print the endpoints for this
+estate, and see that nothing for GCC is
+
+131
+00:08:35.929 --> 00:08:40.467
+a dot-u-s host, and that a misspelled
+cloud name is an error, not a default.
+
+132
+00:08:40.467 --> 00:08:43.298
+Then you list a task's
+permissions from its calls,
+
+133
+00:08:43.298 --> 00:08:45.492
+and try a call the task never declared.
+
+134
+00:08:45.492 --> 00:08:48.230
+It's refused before anything is sent.
+
+135
+00:08:51.980 --> 00:08:55.018
+The rest of the lab covers
+beta and PowerShell.
+
+136
+00:08:55.018 --> 00:08:59.406
+Ask for Autopilot in GCC High and
+the client makes no call at all:
+
+137
+00:08:59.406 --> 00:09:03.205
+it reports not available, with
+the reason and the stage.
+
+138
+00:09:03.205 --> 00:09:08.286
+Then you run the same rules in PowerShell:
+an undeclared beta call is refused,
+
+139
+00:09:08.286 --> 00:09:13.367
+and so is a worldwide address from a GCC
+High session, which won't get the token.
+
+140
+00:09:13.367 --> 00:09:18.707
+Finally you run both suites, seventy
+Python tests and forty-four in Pester, and
+
+141
+00:09:18.707 --> 00:09:22.128
+you've seen every row of
+the gap table for yourself,
+
+142
+00:09:22.128 --> 00:09:24.750
+with no module, tenant or network.
+
+143
+00:09:28.500 --> 00:09:33.062
+Lab 2 moves to a test tenant, never
+production, with fictional data.
+
+144
+00:09:33.062 --> 00:09:37.500
+It uses the Conditional Access export
+because it needs just one permission.
+
+145
+00:09:37.500 --> 00:09:40.296
+You register the app in
+the tenant's own cloud,
+
+146
+00:09:40.296 --> 00:09:44.150
+with a certificate, grant that
+one permission, and run the task.
+
+147
+00:09:44.150 --> 00:09:48.269
+Then you watch the token check do
+its job: grant an extra permission
+
+148
+00:09:48.269 --> 00:09:52.388
+and you get a warning, leave one out
+and the run stops before any call.
+
+149
+00:09:52.388 --> 00:09:55.463
+Finally, point it at the
+wrong cloud on purpose.
+
+150
+00:09:55.463 --> 00:09:58.397
+Sign-in goes to the government authority,
+
+151
+00:09:58.397 --> 00:10:02.210
+which doesn't hold a GCC
+tenant, so it fails closed.
+
+152
+00:10:05.960 --> 00:10:08.435
+Each of these dangers
+has a guard in the code.
+
+153
+00:10:08.435 --> 00:10:13.872
+The two that bite this estate first are
+treating GCC as a government dot-u-s cloud,
+
+154
+00:10:13.872 --> 00:10:17.497
+and a cloud name that silently
+defaults to worldwide.
+
+155
+00:10:17.497 --> 00:10:21.214
+The most dangerous is a
+token sent to the wrong host,
+
+156
+00:10:21.214 --> 00:10:24.223
+so every address, on
+every page, is checked.
+
+157
+00:10:24.223 --> 00:10:27.946
+Others creep in slowly:
+permissions the job doesn't need,
+
+158
+00:10:27.946 --> 00:10:32.884
+a call added without its permission,
+or a beta property renamed overnight.
+
+159
+00:10:32.884 --> 00:10:37.718
+And the subtlest is an API that answers
+where the feature isn't offered,
+
+160
+00:10:37.718 --> 00:10:40.990
+handing you a clean,
+empty, and wrong result.
+
+161
+00:10:44.740 --> 00:10:46.090
+Here's what done looks like.
+
+162
+00:10:46.090 --> 00:10:50.840
+On the cloud side: an explicit cloud
+name that fails on anything unknown,
+
+163
+00:10:50.840 --> 00:10:53.899
+no government hosts in
+the GCC configuration,
+
+164
+00:10:53.899 --> 00:10:57.360
+the right authority and
+scope for every credential,
+
+165
+00:10:57.360 --> 00:11:02.190
+one token per resource, and the token
+never leaving the cloud's Graph host.
+
+166
+00:11:02.190 --> 00:11:07.023
+On the run side: every call declared
+with its least privileged permission,
+
+167
+00:11:07.023 --> 00:11:09.083
+an app that holds exactly those,
+
+168
+00:11:09.083 --> 00:11:13.678
+paging and retries done Microsoft's
+way, and beta declared and labeled.
+
+169
+00:11:13.678 --> 00:11:18.215
+Next, Chapter 3 uses these rules
+to write a validation kit check.
+
+170
+00:11:18.215 --> 00:11:19.370
+Thanks for watching.

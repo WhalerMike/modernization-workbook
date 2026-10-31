@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.738
+Evidence fails in quiet ways,
+so each of these has a guard.
+
+2
+00:00:03.738 --> 00:00:07.724
+A baseline nobody approved lets
+a malicious change become normal.
+
+3
+00:00:07.724 --> 00:00:12.738
+A failed read can look like a fix, because
+yesterday's findings simply disappear.
+
+4
+00:00:12.738 --> 00:00:16.588
+A day nobody read leaves a gap
+where a credential could be added.
+
+5
+00:00:16.588 --> 00:00:20.400
+Trusting the Sentinel rule
+misses the riskiest credentials,
+
+6
+00:00:20.400 --> 00:00:24.512
+while alerting on every rotation
+teaches people to ignore alerts.
+
+7
+00:00:24.512 --> 00:00:29.275
+And a package edited or swapped after the
+fact describes a run that never happened.
+
+8
+00:00:29.275 --> 00:00:34.150
+The hash chain, the approved baseline
+and honest gap reporting close each one.

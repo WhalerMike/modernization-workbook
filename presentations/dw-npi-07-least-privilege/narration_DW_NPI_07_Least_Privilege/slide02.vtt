@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.988
+Start with what we're actually measuring.
+
+2
+00:00:01.988 --> 00:00:06.036
+An app can hold two kinds of
+permission: an application permission,
+
+3
+00:00:06.036 --> 00:00:09.569
+which is a role it holds on
+another app's service principal,
+
+4
+00:00:09.569 --> 00:00:14.426
+and a delegated permission, which is a
+grant to act for one person or for everyone.
+
+5
+00:00:14.426 --> 00:00:17.926
+Learn's way to see what an app
+can reach is to walk every service
+
+6
+00:00:17.926 --> 00:00:22.113
+principal's role assignments, paying
+close attention to Microsoft Graph.
+
+7
+00:00:22.113 --> 00:00:26.288
+And remember that directory roles
+and mail roles grant access too.
+
+8
+00:00:26.288 --> 00:00:30.870
+For this estate, everything goes to the
+worldwide Graph and commercial Azure,
+
+9
+00:00:30.870 --> 00:00:34.510
+and every call is available in
+the government clouds as well.

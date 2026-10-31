@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.038
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.038 --> 00:00:05.688
+Building Privileged Access.
+
+3
+00:00:05.688 --> 00:00:11.225
+This is Chapter 3: Conditional Access for
+administrators, and the activation gate.
+
+4
+00:00:11.225 --> 00:00:15.434
+These policies are the program's first
+writes to a tenant, so they're files a
+
+5
+00:00:15.434 --> 00:00:19.713
+reviewer reads, and the code that writes
+them does nothing until it's told to.
+
+6
+00:00:19.713 --> 00:00:23.819
+We'll start from Microsoft's
+own template for administrators,
+
+7
+00:00:23.819 --> 00:00:27.846
+see what it leaves out, then walk
+the files, the pre-merge check,
+
+8
+00:00:27.846 --> 00:00:30.987
+the plan and the dry run,
+two labs and the dangers.
+
+9
+00:00:30.987 --> 00:00:36.190
+One note before we begin: the code is
+illustrative, tested against fixtures.

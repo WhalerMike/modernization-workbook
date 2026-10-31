@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.575
+Why build a pipeline at all?
+
+2
+00:00:01.575 --> 00:00:06.461
+Because three earlier books already say
+what continuous monitoring must produce:
+
+3
+00:00:06.461 --> 00:00:10.710
+drift measured against a versioned
+record, no closure without its proof,
+
+4
+00:00:10.710 --> 00:00:14.038
+and a finding closed only when
+a later look shows it fixed.
+
+5
+00:00:14.038 --> 00:00:18.550
+Each validation kit check already compares
+the tenant with the program's record.
+
+6
+00:00:18.550 --> 00:00:23.025
+The pipeline adds one more comparison:
+today's run against yesterday's.
+
+7
+00:00:23.025 --> 00:00:24.350
+That finds change.
+
+8
+00:00:24.350 --> 00:00:26.800
+And it puts the closing rule into code.
+
+9
+00:00:26.800 --> 00:00:29.513
+A finding is resolved
+only if the same check
+
+10
+00:00:29.513 --> 00:00:31.850
+read the tenant again and didn't see it.
+
+11
+00:00:31.850 --> 00:00:33.890
+A check that errored proves nothing.

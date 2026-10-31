@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.813
+There are two checks: one reads only
+files and runs on every pull request,
+
+2
+00:00:04.813 --> 00:00:07.962
+the other runs against
+the tenant on every plan.
+
+3
+00:00:07.962 --> 00:00:12.852
+Most of the nine rules come straight from
+Learn's limits: assign by object ID,
+
+4
+00:00:12.852 --> 00:00:16.874
+never by group; no managed
+identities; single-tenant apps only;
+
+5
+00:00:16.874 --> 00:00:20.738
+and an object ID that really
+is the enterprise application.
+
+6
+00:00:20.738 --> 00:00:24.972
+The program adds its own: the
+licensing decision must be recorded,
+
+7
+00:00:24.972 --> 00:00:29.990
+every policy file stays report-only and
+block-only, egress ranges stay narrow,
+
+8
+00:00:29.990 --> 00:00:35.450
+and enforcement needs the security chief's
+decision and a reviewed sign-in summary.

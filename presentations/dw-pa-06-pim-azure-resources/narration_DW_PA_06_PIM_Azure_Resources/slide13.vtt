@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:03.409
+The platform engineers who own the Azure
+
+3
+00:00:03.409 --> 00:00:06.313
+management group hierarchy
+write and keep the file.
+
+4
+00:00:06.313 --> 00:00:10.506
+The identity engineers and the
+information system security officers
+
+5
+00:00:10.506 --> 00:00:14.699
+review every change before it's applied,
+by reading the diff and the plan.
+
+6
+00:00:14.699 --> 00:00:18.740
+The eligible holders are people
+and groups, licensed for PIM,
+
+7
+00:00:18.740 --> 00:00:22.538
+who'll now activate with a
+reason, a ticket and an approval.
+
+8
+00:00:22.538 --> 00:00:27.792
+And the automation itself runs with as
+little as possible: Reader for the dry run,
+
+9
+00:00:27.792 --> 00:00:32.010
+User Access Administrator held only
+for a day or so for the apply,
+
+10
+00:00:32.010 --> 00:00:34.940
+never Owner, and no
+Graph permissions at all.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.725
+Each of these dangers is
+ordinary, and each has a guard.
+
+2
+00:00:03.725 --> 00:00:07.607
+The most tempting is sending a sample's
+output straight to production,
+
+3
+00:00:07.607 --> 00:00:11.087
+which lets pending workers and
+duplicates into the directory.
+
+4
+00:00:11.087 --> 00:00:14.690
+The most damaging is one bad
+extract disabling hundreds
+
+5
+00:00:14.690 --> 00:00:18.063
+of people before anyone looks,
+and the hold stops that.
+
+6
+00:00:18.063 --> 00:00:21.488
+The quietest is treating an
+accepted response as success,
+
+7
+00:00:21.488 --> 00:00:24.200
+when the record may have
+failed inside the job.
+
+8
+00:00:24.200 --> 00:00:27.914
+Notice that every guard is something
+the code does on every run,
+
+9
+00:00:27.914 --> 00:00:30.260
+not something a person has to remember.

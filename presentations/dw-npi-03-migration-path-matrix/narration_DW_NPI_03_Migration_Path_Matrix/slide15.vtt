@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.350
+Next, the waves.
+
+2
+00:00:01.350 --> 00:00:04.925
+The first wave has a named rollback
+owner and a clear way back.
+
+3
+00:00:04.925 --> 00:00:09.837
+The second has an empty owner, which is
+exactly why it drew a finding a moment ago.
+
+4
+00:00:09.837 --> 00:00:14.829
+Then the licensing scope: six apps could
+be covered by Conditional Access today,
+
+5
+00:00:14.829 --> 00:00:16.796
+but only four after conversion,
+
+6
+00:00:16.796 --> 00:00:20.426
+because one moves to a managed
+identity and one is retired.
+
+7
+00:00:20.426 --> 00:00:23.737
+That's the kind of thing you'd want
+to know before buying licenses.
+
+8
+00:00:23.737 --> 00:00:28.287
+Finally, run the whole suite:
+five hundred thirteen tests pass,
+
+9
+00:00:28.287 --> 00:00:31.730
+and the run made just
+three requests, all reads.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:06.227
+Developers building the write path, the
+identity engineers who own the groups
+
+3
+00:00:06.227 --> 00:00:10.476
+and the file, and the I S S O's who
+review each plan before it's applied.
+
+4
+00:00:10.476 --> 00:00:12.287
+Then, what the code may do.
+
+5
+00:00:12.287 --> 00:00:14.987
+Every call gets its
+least-privileged permission.
+
+6
+00:00:14.987 --> 00:00:18.401
+The read side needs four permissions
+and none of them can write.
+
+7
+00:00:18.401 --> 00:00:22.212
+The plan lists exactly the
+permissions its own changes need,
+
+8
+00:00:22.212 --> 00:00:25.262
+so the app that applies it
+holds those and no more.
+
+9
+00:00:25.262 --> 00:00:30.029
+And the one powerful permission, the
+one that can assign any directory role,
+
+10
+00:00:30.029 --> 00:00:34.010
+is kept off the pipeline entirely:
+create these groups by hand.

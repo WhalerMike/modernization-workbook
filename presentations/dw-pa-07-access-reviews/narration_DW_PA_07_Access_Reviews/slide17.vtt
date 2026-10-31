@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.238
+Each of these dangers is a review
+that looks fine and quietly isn't.
+
+2
+00:00:04.238 --> 00:00:07.582
+The worst ties back to Chapter
+2: a setting that removes
+
+3
+00:00:07.582 --> 00:00:11.075
+the emergency accounts the
+first month nobody responds.
+
+4
+00:00:11.075 --> 00:00:15.075
+Close behind are self-reviews,
+reviews with nobody to step in,
+
+5
+00:00:15.075 --> 00:00:19.075
+and denials that never take
+effect because auto-apply is off.
+
+6
+00:00:19.075 --> 00:00:23.396
+Some are traps of the API itself:
+a scope that can't change in place,
+
+7
+00:00:23.396 --> 00:00:26.250
+or a delete that takes
+the evidence with it.
+
+8
+00:00:26.250 --> 00:00:28.301
+And one the code can't fix alone:
+
+9
+00:00:28.301 --> 00:00:32.710
+a user denied an Azure role still
+sits in the group that grants it.

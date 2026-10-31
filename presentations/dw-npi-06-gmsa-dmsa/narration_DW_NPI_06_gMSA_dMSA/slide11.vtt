@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.661
+Writing to the domain
+is the dangerous part,
+
+2
+00:00:02.661 --> 00:00:07.375
+so it lives in its own script that refuses
+to run unless several things are true.
+
+3
+00:00:07.375 --> 00:00:11.325
+The plan must be the exact one
+a reviewer approved, by hash.
+
+4
+00:00:11.325 --> 00:00:14.325
+It must be for this domain
+and less than a week old.
+
+5
+00:00:14.325 --> 00:00:18.862
+Every write must be a declared call
+with only its allowed parameters,
+
+6
+00:00:18.862 --> 00:00:23.400
+and nothing that deletes, uninstalls,
+undoes or resets exists to call.
+
+7
+00:00:23.400 --> 00:00:25.913
+It runs as a person, never a job.
+
+8
+00:00:25.913 --> 00:00:28.647
+Then, before each write,
+it checks the target
+
+9
+00:00:28.647 --> 00:00:31.970
+again and skips anything
+that changed since review.

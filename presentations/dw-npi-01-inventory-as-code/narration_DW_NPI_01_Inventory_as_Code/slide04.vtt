@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.900
+So what does the register have to hold?
+
+2
+00:00:01.900 --> 00:00:04.560
+On the directory side,
+Book 02 gives the types:
+
+3
+00:00:04.560 --> 00:00:07.365
+the traditional user
+account used as a service,
+
+4
+00:00:07.365 --> 00:00:10.169
+the managed service
+account tied to one server,
+
+5
+00:00:10.169 --> 00:00:14.771
+the group managed service account shared
+by several, and on newer domains the
+
+6
+00:00:14.771 --> 00:00:19.588
+delegated managed service account, which
+takes over from a traditional account.
+
+7
+00:00:19.588 --> 00:00:22.969
+Learn warns that nothing marks
+a service account as one,
+
+8
+00:00:22.969 --> 00:00:25.175
+so its search criteria can miss some.
+
+9
+00:00:25.175 --> 00:00:29.570
+On the Entra side, the list is always
+longer than the apps anyone asked for,
+
+10
+00:00:29.570 --> 00:00:34.100
+and each service principal carries a
+type that tells you what it really is.

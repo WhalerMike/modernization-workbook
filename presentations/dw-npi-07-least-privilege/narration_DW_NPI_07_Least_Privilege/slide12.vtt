@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:02.937
+Developers build the tooling.
+
+3
+00:00:02.937 --> 00:00:06.063
+Application owners answer
+the quarterly review.
+
+4
+00:00:06.063 --> 00:00:09.884
+The identity governance officer
+closes it and receives the hand-off
+
+5
+00:00:09.884 --> 00:00:13.237
+of privileged apps, and the
+security officers check the gate.
+
+6
+00:00:13.237 --> 00:00:15.600
+The permission split mirrors the code.
+
+7
+00:00:15.600 --> 00:00:18.051
+The sweep holds three read permissions in
+
+8
+00:00:18.051 --> 00:00:20.712
+Graph and Reader in Azure,
+nothing that writes.
+
+9
+00:00:20.712 --> 00:00:25.433
+The write task holds the two grant-management
+permissions and the administrator
+
+10
+00:00:25.433 --> 00:00:27.932
+role, but only in a
+person's signed-in session,
+
+11
+00:00:27.932 --> 00:00:30.430
+so nothing standing can grant itself more.

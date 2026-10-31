@@ -1,0 +1,603 @@
+{
+ "1": [
+  [
+   0.05,
+   5.862,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Non-Person Identity."
+  ],
+  [
+   5.912,
+   4.725,
+   "This is Chapter 4: app management policies and certificate rotation."
+  ],
+  [
+   10.637,
+   1.887,
+   "The chapter does two jobs."
+  ],
+  [
+   12.525,
+   12.0,
+   "It holds the tenant's rules for app credentials in a reviewed file that can be compared and applied without ever loosening, and it rotates app certificates through Key Vault, with an owner's approval and an overlap."
+  ],
+  [
+   24.525,
+   6.6,
+   "We'll start from Microsoft's own samples, see what they leave out, then walk the code, the labs and the dangers."
+  ],
+  [
+   31.125,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.512,
+   "Why does this chapter matter?"
+  ],
+  [
+   1.562,
+   2.5,
+   "Because both of its subjects fail quietly."
+  ],
+  [
+   4.062,
+   7.2,
+   "A tenant policy that someone set once in the portal can't be reviewed or compared, so nobody notices when it drifts."
+  ],
+  [
+   11.262,
+   4.6,
+   "And a certificate that nobody rotates is simply an outage waiting for its date."
+  ],
+  [
+   15.863,
+   7.4,
+   "So the chapter turns the policy into a reviewed file, compared with the tenant and applied through a path that can only tighten it."
+  ],
+  [
+   23.262,
+   8.338,
+   "And it turns rotation into a plan: raised early, approved by an owner, renewed, overlapped, and only then cleaned up."
+  ],
+  [
+   31.6,
+   1.475,
+   "Let's see where it runs."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   3.663,
+   "This chapter talks to two services, so it needs two hosts."
+  ],
+  [
+   5.075,
+   8.938,
+   "The policy and application calls go to Microsoft Graph, and for a G C C tenant like this estate's, that's the worldwide Graph endpoint."
+  ],
+  [
+   14.012,
+   8.2,
+   "The certificates liv in Key Vault, and because G C C's estate uses commercial Azure, the vault sits on the commercial vault domain."
+  ],
+  [
+   22.212,
+   8.162,
+   "G C C High and D O D have their own hosts for both, and every policy page the chapter calls lists the U S Government clouds."
+  ],
+  [
+   30.375,
+   4.612,
+   "The code never guesses: you pass the cloud, and it builds both hosts from it."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.825,
+   "Before the code, the model."
+  ],
+  [
+   1.875,
+   2.388,
+   "Learn describes two kinds of policy."
+  ],
+  [
+   4.263,
+   9.438,
+   "There's one tenant default, which always exists and starts switched off, with separate restrictions for apps that liv in the tenant and apps provisioned from elsewhere."
+  ],
+  [
+   13.7,
+   6.275,
+   "And there are app-specific policies, one per app at most, which override the default for whatever they define."
+  ],
+  [
+   19.975,
+   6.925,
+   "Restrictions only bite on apps created after a date you choose, and they never stop an existing app from getting tokens."
+  ],
+  [
+   26.9,
+   2.325,
+   "They just refuse the change that breaks them."
+  ],
+  [
+   29.225,
+   4.4,
+   "Beta adds more restriction types, but this chapter stays on version one."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.362,
+   "Here are the program's own rules, and most of them are labeled design guidance."
+  ],
+  [
+   4.412,
+   9.188,
+   "New apps can't use secrets, and their certificates are capped at a hundred and eighty days, set on both object types because the admin center expects them to match."
+  ],
+  [
+   13.6,
+   5.0,
+   "An app that truly can't use a certificate gets a time-limited exception with a record."
+  ],
+  [
+   18.6,
+   2.362,
+   "Older apps get a year while they're fixed."
+  ],
+  [
+   20.962,
+   2.65,
+   "Every registered app gets the property lock."
+  ],
+  [
+   23.613,
+   1.825,
+   "No extra license is needed."
+  ],
+  [
+   25.438,
+   7.138,
+   "And rotation joins Key Vault, which can renew a certificate, to the app registration, which renews nothing on its own."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.675,
+   "Here's what Microsoft gives you: five Learn sources that, between them, hold the whole procedure."
+  ],
+  [
+   5.725,
+   11.75,
+   "There's the request that turns on the tenant default, the pair that create and assign an app policy, Learn's configuration walkthrough, the request that adds a certificate to an app, and the Key Vault examples."
+  ],
+  [
+   17.475,
+   8.863,
+   "Those samples only liv inside web pages, so the repository pins their sources, unmodified and hashed, with a weekly watch for changes."
+  ],
+  [
+   26.337,
+   5.375,
+   "Then a harness sends each request, exactly as written, to a fake Graph."
+  ],
+  [
+   31.712,
+   2.7,
+   "That's how you find out what each one really does."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.188,
+   "This is where the samples get interesting, because run as published, several of them would hurt you."
+  ],
+  [
+   5.237,
+   6.713,
+   "The tenant update's start dates reach back years, so it would refuse the next normal certificate on an old app."
+  ],
+  [
+   11.95,
+   1.988,
+   "Its body isn't even strict."
+  ],
+  [
+   13.938,
+   8.887,
+   "Learn's own procedure updates only two restrictions, and since an update replaces the whole collection, anything it forgets is silently switched off."
+  ],
+  [
+   22.825,
+   5.8,
+   "The assignment sample sends a placeholder, and the tutorial uses a property version one refuses."
+  ],
+  [
+   28.625,
+   5.237,
+   "The code keeps the good shape and fixes each of these, and a test pins every row."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.5,
+   "The certificate samples have a sharper problem."
+  ],
+  [
+   2.55,
+   10.137,
+   "Learn's first example for adding a certificate replaces every certificate the app had, so the old one vanishes the instant the new one lands, with no overlap at all."
+  ],
+  [
+   12.688,
+   4.213,
+   "The Key Vault example asks for six months, which is just over the cap."
+  ],
+  [
+   16.9,
+   6.5,
+   "And none of the samples ever puts the renewed certificate on the app, asks the owner, or removes the old one."
+  ],
+  [
+   23.4,
+   6.763,
+   "So the verdict is: keep the version one requests as models for the writes, and don't run any of them as published."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.325,
+   "So what does the code add?"
+  ],
+  [
+   1.375,
+   5.175,
+   "One module, two scripts that only read, and a single separate script that can write."
+  ],
+  [
+   6.55,
+   4.275,
+   "What drives it is a handful of small files, each with a clear keeper."
+  ],
+  [
+   10.825,
+   8.3,
+   "Identity engineering owns the reviewed policy file and the rotation settings, like how early to raise and how long to overlap."
+  ],
+  [
+   19.125,
+   10.512,
+   "Application owners keep three simple records: which vault holds each app's certificate, who approved each rotation, and who confirmed the workload signs in with the new one."
+  ],
+  [
+   29.637,
+   4.188,
+   "Every rotation carries one request I D from start to finish."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.9,
+   "Here's how the policy side works."
+  ],
+  [
+   1.95,
+   6.225,
+   "The code reads the tenant's default, every app policy and what it's assigned to, and each app's lock."
+  ],
+  [
+   8.175,
+   4.537,
+   "Then it compares, restriction by restriction, on both object types."
+  ],
+  [
+   12.713,
+   3.388,
+   "Where the tenant is weaker, it adds the program's rule."
+  ],
+  [
+   16.1,
+   6.188,
+   "Where the tenant is already stricter, or holds something the file doesn't mention, it keeps the tenant's."
+  ],
+  [
+   22.288,
+   5.138,
+   "That merged body is the key: an update can never drop or loosen anything."
+  ],
+  [
+   27.425,
+   5.688,
+   "The plan then turns the diff, the exceptions and the locks into actions, and nothing in it writes."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.375,
+   "Rotation works the same way: read everything, then give each certificate exactly one next step."
+  ],
+  [
+   6.425,
+   3.112,
+   "A certificate far from expiry is left alone."
+  ],
+  [
+   9.537,
+   6.3,
+   "One that's due waits for an owner's approval, and an approval only counts if it's recent and from an enabled owner."
+  ],
+  [
+   15.838,
+   3.888,
+   "Approved, it's renewed in Key Vault using the vault's own policy."
+  ],
+  [
+   19.725,
+   9.438,
+   "The new certificate is attached beside the old one, the owner confirms the workload uses it, a week of overlap runs, and only then does the old one go."
+  ],
+  [
+   29.163,
+   1.887,
+   "Secrets aren't rotated at all."
+  ],
+  [
+   31.05,
+   1.7,
+   "They're flagged for replacement."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.888,
+   "Only one script in this chapter can write, and it's built to say no."
+  ],
+  [
+   3.938,
+   8.662,
+   "It won't run a plan unless the plan's hash matches the one a reviewer approved, and the plan is for this tenant, this cloud, and less than a week old."
+  ],
+  [
+   12.6,
+   10.512,
+   "Every request body is checked against what's allowed: the policy can't loosen, an attach adds exactly one certificate, and the Key Vault request can't change the vault's policy."
+  ],
+  [
+   23.113,
+   4.95,
+   "Just before each write, it re-reads the target and skips anything that changed."
+  ],
+  [
+   28.062,
+   4.525,
+   "And a lyve run is always a signed-in person, never an unattended app."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.062,
+   "Who is this for?"
+  ],
+  [
+   1.113,
+   0.988,
+   "Four groups."
+  ],
+  [
+   2.1,
+   1.387,
+   "Developers build it."
+  ],
+  [
+   3.487,
+   3.538,
+   "Identity engineers run it and keep the reviewed files."
+  ],
+  [
+   7.025,
+   5.388,
+   "Application owners approve each rotation and confirm their workloads still sign in."
+  ],
+  [
+   12.412,
+   3.087,
+   "And the I S S Os review the evidence."
+  ],
+  [
+   15.5,
+   7.975,
+   "The permissions are split cleanly: the reads hold only read permissions, and anything that writes is delegated to a signed-in person."
+  ],
+  [
+   23.475,
+   6.85,
+   "That matters, because an unattended app with permission to update every application could add a credential to all of them."
+  ],
+  [
+   30.325,
+   4.963,
+   "Microsoft does offer a self-rolling key option, but it skips the owner's approval."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.162,
+   "Lab 1 needs only a laptop, PowerShell 7 and Pester."
+  ],
+  [
+   4.213,
+   9.125,
+   "First you send Microsoft's samples to the fakes, and the tests show what you'd otherwise take on trust, including Learn's own update quietly dropping a restriction."
+  ],
+  [
+   13.338,
+   2.938,
+   "Then you compare the policy and build its plan."
+  ],
+  [
+   16.275,
+   6.112,
+   "It finds six restrictions to add, one to change, and one to keep exactly as the tenant has it."
+  ],
+  [
+   22.387,
+   5.15,
+   "You dry-run the plan, apply it to the fake, and then try a hash nobody approved."
+  ],
+  [
+   27.538,
+   1.538,
+   "The script refuses."
+  ],
+  [
+   29.075,
+   2.038,
+   "Next, the rotation half."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.362,
+   "The rotation plan is where the design becomes concrete."
+  ],
+  [
+   3.413,
+   3.0,
+   "Each fictional app is at a different point in its life."
+  ],
+  [
+   6.412,
+   3.925,
+   "One is due and freshly approved, so it's renewed in Key Vault."
+  ],
+  [
+   10.338,
+   5.237,
+   "One was already renewed by the vault, so the new certificate is attached beside the old."
+  ],
+  [
+   15.575,
+   4.875,
+   "One has been verified and has finished its overlap, so its old certificate goes."
+  ],
+  [
+   20.45,
+   4.25,
+   "And three apps still use secrets, which are flagged for replacement."
+  ],
+  [
+   24.7,
+   5.138,
+   "Apply it to the fake, run the full suite, and five hundred thirteen tests pass."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   9.325,
+   "Lab 2 moves to a test tenant and a test vault, never production, and it's built to answer the open questions the chapter couldn't settle from documentation alone."
+  ],
+  [
+   9.375,
+   9.125,
+   "You read and plan with read-only rights, keep the policy as it was before, then apply as a signed-in administrator and check the admin center agrees."
+  ],
+  [
+   18.5,
+   2.25,
+   "You try to break the policy on purpose."
+  ],
+  [
+   20.75,
+   6.588,
+   "Then you carry one certificate through a full rotation, recording what Graph and Key Vault actually return."
+  ],
+  [
+   27.337,
+   4.838,
+   "Finally, because this code never loosens a policy, a person backs it out."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   4.338,
+   "Each of these dangers has a guard in the code, not a reminder in a runbook."
+  ],
+  [
+   4.388,
+   9.95,
+   "The most dangerous is the quiet one: an update that forgets a restriction and switches it off, so the writer re-reads the lyve policy and refuses anything looser."
+  ],
+  [
+   14.338,
+   4.138,
+   "A retroactive start date breaks rotations on the very day they're due."
+  ],
+  [
+   18.475,
+   3.737,
+   "A certificate that replaces the old one takes the workload down."
+  ],
+  [
+   22.212,
+   6.938,
+   "And an unattended app that can update every application is a standing risk, so writes are always a signed-in person."
+  ],
+  [
+   29.15,
+   3.3,
+   "Notice the pattern: each guard runs every time."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   14.825,
+   "On the policy side: a reviewed file with an approved effective date, the tenant default matching it on both object types with no warning in the admin center, every app policy accounted for, every exception dated, and every registered app locked."
+  ],
+  [
+   16.225,
+   12.912,
+   "On the rotation side: every certificate bound to a vault, every rotation approved and overlapped, every plan approved by someone other than the person who applied it, and the pinned samples still the ones you reviewed."
+  ],
+  [
+   29.137,
+   5.65,
+   "Next, Chapter 5 replaces those flagged secrets with federation and managed identities."
+  ],
+  [
+   34.788,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

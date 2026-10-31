@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:09.762
+This is Chapter 3: writing
+a validation kit check.
+
+4
+00:00:09.762 --> 00:00:13.787
+A check is only evidence if it can't
+change what it measures, can't pass
+
+5
+00:00:13.787 --> 00:00:18.100
+when it failed to look, and asks for no
+more access than the question needs.
+
+6
+00:00:18.100 --> 00:00:22.752
+We'll build one new check end to end,
+on soft match and hard match takeover,
+
+7
+00:00:22.752 --> 00:00:27.325
+and along the way meet a read that
+only a Global Administrator can make.
+
+8
+00:00:27.325 --> 00:00:31.625
+Then the tests, the safety
+rules, two labs and the dangers.
+
+9
+00:00:31.625 --> 00:00:36.840
+One note before we begin: the code is
+illustrative, tested against fixtures.

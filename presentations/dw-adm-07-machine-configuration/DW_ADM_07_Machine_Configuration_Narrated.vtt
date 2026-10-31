@@ -1,0 +1,842 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:10.050
+This is Chapter 7: machine
+configuration packages.
+
+4
+00:00:10.050 --> 00:00:13.524
+Learn's cmdlets will build you a
+package and a policy definition,
+
+5
+00:00:13.524 --> 00:00:17.063
+but nothing in them says whether
+this is the package you reviewed,
+
+6
+00:00:17.063 --> 00:00:19.947
+whether it leaks details of
+the machine that built it,
+
+7
+00:00:19.947 --> 00:00:22.700
+or whether it will reach
+servers another tool owns.
+
+8
+00:00:22.700 --> 00:00:24.587
+That check is the pipeline's job.
+
+9
+00:00:24.587 --> 00:00:27.881
+We'll follow Learn's procedure
+and Microsoft's sample,
+
+10
+00:00:27.881 --> 00:00:31.999
+see what they leave out, then walk
+the build, two labs and the dangers.
+
+11
+00:00:31.999 --> 00:00:37.500
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+12
+00:00:41.250 --> 00:00:43.675
+Why does a package need
+a pipeline around it?
+
+13
+00:00:43.675 --> 00:00:47.250
+Because three questions go
+unanswered by Microsoft's tools.
+
+14
+00:00:47.250 --> 00:00:49.850
+Is the package going out
+the one somebody reviewed?
+
+15
+00:00:49.850 --> 00:00:53.917
+Does it carry details of the
+person and machine that built it,
+
+16
+00:00:53.917 --> 00:00:56.113
+into a file every server can read?
+
+17
+00:00:56.113 --> 00:01:00.512
+And will an enforcing policy reach servers
+that another tool is supposed to own?
+
+18
+00:01:00.512 --> 00:01:04.403
+On the Arc track, every setting
+has exactly one owning tool,
+
+19
+00:01:04.403 --> 00:01:08.537
+recorded in the configuration
+database and mirrored in a tag.
+
+20
+00:01:08.537 --> 00:01:11.343
+For the settings machine
+configuration owns,
+
+21
+00:01:11.343 --> 00:01:16.060
+the code is a desired state configuration,
+and Azure Policy delivers it.
+
+22
+00:01:19.810 --> 00:01:22.210
+Here's Learn's model, in three parts.
+
+23
+00:01:22.210 --> 00:01:24.723
+A package says what the
+machine should look like.
+
+24
+00:01:24.723 --> 00:01:29.023
+A policy definition points at that
+package by its address and its hash.
+
+25
+00:01:29.023 --> 00:01:34.119
+And when the definition is assigned, every
+machine in scope gets a guest assignment:
+
+26
+00:01:34.119 --> 00:01:37.960
+the agent downloads the package,
+evaluates it and reports back.
+
+27
+00:01:37.960 --> 00:01:41.270
+Each assignment is one of
+three types: audit only,
+
+28
+00:01:41.270 --> 00:01:45.160
+apply once and report drift,
+or apply and keep correcting.
+
+29
+00:01:45.160 --> 00:01:48.173
+The spelling is case sensitive,
+which will matter later.
+
+30
+00:01:48.173 --> 00:01:51.774
+Custom content for audit and
+apply is generally available,
+
+31
+00:01:51.774 --> 00:01:54.640
+with minimum agent versions on the slide.
+
+32
+00:01:58.390 --> 00:02:00.715
+Which cloud matters here in three ways.
+
+33
+00:02:00.715 --> 00:02:05.095
+The endpoints differ: servers in
+Azure Government reach a government
+
+34
+00:02:05.095 --> 00:02:09.777
+machine configuration host, with regional
+endpoints in the US Gov regions.
+
+35
+00:02:09.777 --> 00:02:12.372
+The way machines read the package matters:
+
+36
+00:02:12.372 --> 00:02:15.412
+the build uses each machine's
+own system identity,
+
+37
+00:02:15.412 --> 00:02:20.378
+because Learn says a user-assigned identity
+doesn't work for Arc-enabled servers.
+
+38
+00:02:20.378 --> 00:02:25.525
+And cost: for Arc-enabled Windows servers
+with the right licensing, it's included,
+
+39
+00:02:25.525 --> 00:02:29.424
+but that activation isn't offered
+in two of the US Gov regions,
+
+40
+00:02:29.424 --> 00:02:30.828
+so plan to buy it there.
+
+41
+00:02:30.828 --> 00:02:34.180
+This estate's servers
+report to commercial Azure.
+
+42
+00:02:37.930 --> 00:02:40.266
+Learn documents the whole procedure,
+
+43
+00:02:40.266 --> 00:02:43.355
+one page per step, and the
+build follows it exactly.
+
+44
+00:02:43.355 --> 00:02:45.554
+You set up an authoring environment,
+
+45
+00:02:45.554 --> 00:02:48.705
+write a desired state
+configuration and compile it.
+
+46
+00:02:48.705 --> 00:02:52.480
+You package it, and test it with
+the same agent the servers run.
+
+47
+00:02:52.480 --> 00:02:55.815
+You publish the package to
+storage, optionally sign it,
+
+48
+00:02:55.815 --> 00:02:59.818
+and generate a policy definition
+that records the package's hash.
+
+49
+00:02:59.818 --> 00:03:02.106
+Then you publish the definition to Azure.
+
+50
+00:03:02.106 --> 00:03:05.618
+That's eight steps and eight
+commands, all on the slide.
+
+51
+00:03:05.618 --> 00:03:07.418
+The build replaces none of them.
+
+52
+00:03:07.418 --> 00:03:09.450
+What it adds goes between them.
+
+53
+00:03:13.200 --> 00:03:16.012
+Learn is clear about three
+things you must not do.
+
+54
+00:03:16.012 --> 00:03:17.937
+Don't put secrets in a package.
+
+55
+00:03:17.937 --> 00:03:19.937
+Don't exceed a hundred megabytes.
+
+56
+00:03:19.937 --> 00:03:22.083
+And when you release a new version,
+
+57
+00:03:22.083 --> 00:03:27.218
+give the package a new name but keep the
+same policy identifier, raise the version,
+
+58
+00:03:27.218 --> 00:03:32.199
+and let the hash be recomputed; change
+only the address and the agent rejects it.
+
+59
+00:03:32.199 --> 00:03:37.487
+The repository also pins Microsoft's
+sample project, with hashes a test checks.
+
+60
+00:03:37.487 --> 00:03:40.926
+It's five years older than
+the module the chapter uses,
+
+61
+00:03:40.926 --> 00:03:44.912
+and two things in it no longer
+hold, including a renamed cmdlet.
+
+62
+00:03:44.912 --> 00:03:47.510
+Its compiled file still packages.
+
+63
+00:03:51.260 --> 00:03:54.505
+Running Learn's commands offline
+shows what they don't do,
+
+64
+00:03:54.505 --> 00:03:57.473
+and the first set of gaps is
+about the package itself.
+
+65
+00:03:57.473 --> 00:04:00.964
+The compiled file records who
+built it, on which machine,
+
+66
+00:04:00.964 --> 00:04:04.911
+and where, and that file goes to
+storage the whole fleet can read.
+
+67
+00:04:04.911 --> 00:04:09.151
+Compiling twice gives different
+bytes, and so does packaging twice,
+
+68
+00:04:09.151 --> 00:04:12.104
+so a reviewer can't tell
+a real change from noise,
+
+69
+00:04:12.104 --> 00:04:15.285
+and a rebuilt package won't
+match the reviewed hash.
+
+70
+00:04:15.285 --> 00:04:17.085
+Nothing scans for secrets.
+
+71
+00:04:17.085 --> 00:04:18.873
+And module versions float.
+
+72
+00:04:18.873 --> 00:04:22.710
+Each gap has a fix in the
+example, pinned by a test.
+
+73
+00:04:26.460 --> 00:04:29.547
+The second set of gaps is
+in the policy definition.
+
+74
+00:04:29.547 --> 00:04:33.913
+The cmdlet accepts whatever identifier
+and version you give it, so a fresh
+
+75
+00:04:33.913 --> 00:04:38.636
+identifier quietly creates a second
+definition instead of updating the first.
+
+76
+00:04:38.636 --> 00:04:43.872
+An enforcing definition reaches every
+machine in scope, whoever owns the setting.
+
+77
+00:04:43.872 --> 00:04:48.635
+The switch that includes Arc-enabled servers
+defaults to off, and nothing tells you.
+
+78
+00:04:48.635 --> 00:04:51.885
+And Learn's storage token
+example lasts three years.
+
+79
+00:04:51.885 --> 00:04:55.449
+The verdict is simple: Learn's
+procedure is the procedure,
+
+80
+00:04:55.449 --> 00:04:57.497
+and the build replaces none of it.
+
+81
+00:04:57.497 --> 00:05:01.100
+It cleans, checks and
+records in between the steps.
+
+82
+00:05:04.850 --> 00:05:07.298
+Running the current
+module also turned up a
+
+83
+00:05:07.298 --> 00:05:09.813
+few places where it
+differs from Learn's text.
+
+84
+00:05:09.813 --> 00:05:12.164
+The file names, a
+parameter's shape and the
+
+85
+00:05:12.164 --> 00:05:15.138
+package contents aren't
+quite what Learn describes.
+
+86
+00:05:15.138 --> 00:05:19.500
+The package works either way, and the
+test pins what the module actually does.
+
+87
+00:05:19.500 --> 00:05:21.000
+The bigger one is a role.
+
+88
+00:05:21.000 --> 00:05:25.550
+An enforcing definition grants its
+remediation identity a role named
+
+89
+00:05:25.550 --> 00:05:30.100
+only by an identifier that Learn's
+built-in roles reference doesn't list.
+
+90
+00:05:30.100 --> 00:05:32.625
+Microsoft's own role tables name it.
+
+91
+00:05:32.625 --> 00:05:34.064
+So before relying on it,
+
+92
+00:05:34.064 --> 00:05:38.220
+read the role in a test subscription
+and record what it can do.
+
+93
+00:05:41.970 --> 00:05:43.508
+So what does the example add?
+
+94
+00:05:43.508 --> 00:05:46.530
+One configuration, which
+audits that old protocol
+
+95
+00:05:46.530 --> 00:05:49.482
+versions are explicitly
+switched off on servers.
+
+96
+00:05:49.482 --> 00:05:54.263
+It's audit only, and a server with no
+explicit setting counts as non-compliant,
+
+97
+00:05:54.263 --> 00:05:58.057
+on purpose, because the baseline
+wants the setting on record.
+
+98
+00:05:58.057 --> 00:06:02.257
+A module of checks, and a build script
+that runs the whole thing offline.
+
+99
+00:06:02.257 --> 00:06:04.598
+The heart of it is the release registry:
+
+100
+00:06:04.598 --> 00:06:07.232
+the reviewed record of
+what's in production.
+
+101
+00:06:07.232 --> 00:06:11.872
+It fixes the policy identifier forever,
+the mode, the published version,
+
+102
+00:06:11.872 --> 00:06:16.470
+the identity, and the owner tag that
+keeps other tools' servers out.
+
+103
+00:06:20.220 --> 00:06:22.582
+The first thing the
+build adds is a cleaner.
+
+104
+00:06:22.582 --> 00:06:26.053
+It rewrites the compiled file
+into one canonical form:
+
+105
+00:06:26.053 --> 00:06:29.985
+it strips out who built it and
+when, keeps source references in
+
+106
+00:06:29.985 --> 00:06:34.071
+the short form Microsoft's own
+sample uses, and sorts everything.
+
+107
+00:06:34.071 --> 00:06:38.658
+Compile three times and you get three
+different files, but one cleaned file.
+
+108
+00:06:38.658 --> 00:06:43.770
+A test confirms the cleaned file means the
+same thing to the desired state engine.
+
+109
+00:06:43.770 --> 00:06:48.552
+Then the package check opens the zip
+in memory and applies seven rules,
+
+110
+00:06:48.552 --> 00:06:52.700
+from its layout and size to
+secrets and module versions.
+
+111
+00:06:56.450 --> 00:06:59.155
+Next the build checks
+the definition against
+
+112
+00:06:59.155 --> 00:07:01.788
+the package and the
+registry, with nine rules.
+
+113
+00:07:01.788 --> 00:07:06.757
+The one that catches the most is the hash
+check: an enforcing definition carries
+
+114
+00:07:06.757 --> 00:07:11.501
+the package hash in four places, and
+every copy must match this exact package.
+
+115
+00:07:11.501 --> 00:07:15.450
+So a hand edit or a rebuild
+fails here, not on a server.
+
+116
+00:07:15.450 --> 00:07:17.713
+Then the build writes a provenance record.
+
+117
+00:07:17.713 --> 00:07:19.799
+Notice there are two kinds of hash.
+
+118
+00:07:19.799 --> 00:07:25.075
+The cleaned file's hash is reproducible,
+so a reviewer can rebuild and match it.
+
+119
+00:07:25.075 --> 00:07:28.090
+The package hash identifies
+the bytes that shipped,
+
+120
+00:07:28.090 --> 00:07:31.520
+so the security officer can
+match the published file.
+
+121
+00:07:35.270 --> 00:07:36.258
+Who's this for?
+
+122
+00:07:36.258 --> 00:07:40.917
+The developers and platform engineers who
+write server baselines for the Arc track,
+
+123
+00:07:40.917 --> 00:07:44.045
+and the engineers and security
+officers who review them.
+
+124
+00:07:44.045 --> 00:07:48.066
+You'll want to be comfortable in
+PowerShell and know what a desired state
+
+125
+00:07:48.066 --> 00:07:52.020
+configuration is; the chapter covers
+the parts of Azure Policy you need.
+
+126
+00:07:52.020 --> 00:07:53.982
+The roles are few and narrow.
+
+127
+00:07:53.982 --> 00:07:57.544
+Publishing a definition needs
+the policy contributor role.
+
+128
+00:07:57.544 --> 00:08:00.812
+Machines read the package
+with their own identity
+
+129
+00:08:00.812 --> 00:08:03.457
+and a read-only storage
+role, never a token.
+
+130
+00:08:03.457 --> 00:08:07.920
+And the remediation role is the one
+to confirm before you rely on it.
+
+131
+00:08:11.670 --> 00:08:17.370
+Lab 1 runs on a Windows laptop and never
+signs in, uploads or installs the agent.
+
+132
+00:08:17.370 --> 00:08:20.932
+You save the pinned modules to a
+folder rather than installing them.
+
+133
+00:08:20.932 --> 00:08:23.964
+Then you follow Learn's
+steps by hand: compile once,
+
+134
+00:08:23.964 --> 00:08:27.957
+package twice, and you get two
+different hashes from the same file.
+
+135
+00:08:27.957 --> 00:08:31.431
+Open the compiled file and
+you'll find your own user name,
+
+136
+00:08:31.431 --> 00:08:33.319
+computer name and folder path.
+
+137
+00:08:33.319 --> 00:08:35.108
+The checks catch exactly that.
+
+138
+00:08:35.108 --> 00:08:40.028
+Then you run Microsoft's old sample with
+the current module: it still packages,
+
+139
+00:08:40.028 --> 00:08:44.700
+its cmdlet has been renamed, and
+its published file is already clean.
+
+140
+00:08:48.450 --> 00:08:49.650
+Now the checked build.
+
+141
+00:08:49.650 --> 00:08:52.892
+It runs offline, passes,
+and gives one reminder:
+
+142
+00:08:52.892 --> 00:08:56.475
+the switch for Arc-enabled
+servers defaults to off.
+
+143
+00:08:56.475 --> 00:09:00.025
+Build it a second time and compare
+the two provenance records.
+
+144
+00:09:00.025 --> 00:09:04.538
+The cleaned file's hash matches across
+builds; the package hashes don't.
+
+145
+00:09:04.538 --> 00:09:08.574
+That's exactly why you publish the
+bytes you checked, and never rebuild.
+
+146
+00:09:08.574 --> 00:09:13.467
+Then break it on purpose: reuse a version,
+mistype the mode's capital letter,
+
+147
+00:09:13.467 --> 00:09:18.038
+or enforce without the owner tag, and
+each one fails for its own reason.
+
+148
+00:09:18.038 --> 00:09:21.080
+Run the tests, and sixty-five pass.
+
+149
+00:09:24.830 --> 00:09:28.447
+Lab 2 needs a test subscription
+and a server you can throw away,
+
+150
+00:09:28.447 --> 00:09:31.567
+because local testing changes
+the machine it runs on.
+
+151
+00:09:31.567 --> 00:09:34.013
+First you test the package on that server:
+
+152
+00:09:34.013 --> 00:09:38.042
+it should fail on a default build
+and pass once both settings are off.
+
+153
+00:09:38.042 --> 00:09:40.992
+That's what proves the agent
+accepts the cleaned file.
+
+154
+00:09:40.992 --> 00:09:46.380
+Then you upload the exact package from Lab
+1, never a rebuild, and check its hash.
+
+155
+00:09:46.380 --> 00:09:48.605
+Machines read it with their own identity.
+
+156
+00:09:48.605 --> 00:09:52.514
+Publish, assign with Arc servers
+included, read the result,
+
+157
+00:09:52.514 --> 00:09:57.020
+and back it all out, including
+any leftover guest assignments.
+
+158
+00:10:00.770 --> 00:10:04.995
+Every danger here has a guard, and
+they cluster around a few ideas.
+
+159
+00:10:04.995 --> 00:10:08.207
+One owning tool per setting,
+enforced by a tag filter
+
+160
+00:10:08.207 --> 00:10:11.270
+at build time and checked
+again after assignment.
+
+161
+00:10:11.270 --> 00:10:16.358
+Never rebuild at release time: publish the
+bytes you checked, and match their hash.
+
+162
+00:10:16.358 --> 00:10:19.707
+Keep build-host details and
+secrets out of the package.
+
+163
+00:10:19.707 --> 00:10:23.670
+Use the machine's own identity
+rather than a long-lived token.
+
+164
+00:10:23.670 --> 00:10:26.270
+Remember the Arc switch is off by default.
+
+165
+00:10:26.270 --> 00:10:30.062
+And if signing is required,
+sign first, then generate the
+
+166
+00:10:30.062 --> 00:10:34.790
+definition from the signed file,
+so the hash is the one that ships.
+
+167
+00:10:38.540 --> 00:10:39.890
+Here's what done looks like.
+
+168
+00:10:39.890 --> 00:10:44.515
+The configuration and its registry
+entry arrive in the same pull request.
+
+169
+00:10:44.515 --> 00:10:47.440
+The build used the pinned
+modules and found nothing.
+
+170
+00:10:47.440 --> 00:10:51.378
+Anyone can rebuild the commit and
+match the cleaned file's hash.
+
+171
+00:10:51.378 --> 00:10:53.838
+The package was tested
+on a throwaway server,
+
+172
+00:10:53.838 --> 00:10:58.227
+and the published file's hash matches
+the record and the definition everywhere.
+
+173
+00:10:58.227 --> 00:11:02.679
+No long-lived token, the owner tag
+filter on anything that enforces,
+
+174
+00:11:02.679 --> 00:11:07.615
+Arc servers included where they belong,
+and the records filed as evidence.
+
+175
+00:11:07.615 --> 00:11:10.677
+Next, Chapter 8 puts Ansible beside Arc.
+
+176
+00:11:10.677 --> 00:11:11.830
+Thanks for watching.

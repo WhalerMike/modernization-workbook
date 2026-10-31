@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:09.175
+This is Chapter 9: AI agent identities.
+
+4
+00:00:09.175 --> 00:00:11.854
+An agent can act at a speed no person can,
+
+5
+00:00:11.854 --> 00:00:16.711
+so the questions the program asks of
+every identity, who answers for it,
+
+6
+00:00:16.711 --> 00:00:20.144
+what it holds, how it proves
+itself and when it ends,
+
+7
+00:00:20.144 --> 00:00:25.000
+are asked before it exists, written
+down, and checked by code every week.
+
+8
+00:00:25.000 --> 00:00:29.078
+We'll cover what's generally
+available and what's still preview,
+
+9
+00:00:29.078 --> 00:00:33.627
+the program's decision as data, Learn's
+samples and their gaps, the rules,
+
+10
+00:00:33.627 --> 00:00:38.725
+the sponsor checks, the agent Conditional
+Access plan, two labs and the dangers.
+
+11
+00:00:38.725 --> 00:00:43.940
+One note before we begin: the code is
+illustrative, tested against fixtures.

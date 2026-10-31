@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.762
+Here's what Microsoft gives you.
+
+2
+00:00:01.762 --> 00:00:04.759
+Learn has three walkthroughs, one per job:
+
+3
+00:00:04.759 --> 00:00:08.637
+eligible access, active
+access, and the role settings.
+
+4
+00:00:08.637 --> 00:00:12.177
+Together they show how to
+list, grant, remove, activate,
+
+5
+00:00:12.177 --> 00:00:17.325
+and patch a role's rules, and which errors
+come back when a request breaks a rule.
+
+6
+00:00:17.325 --> 00:00:20.238
+Their source isn't public,
+so they can't be pinned.
+
+7
+00:00:20.238 --> 00:00:24.630
+But Microsoft's request and response
+examples for the same calls are,
+
+8
+00:00:24.630 --> 00:00:29.176
+so the repository pins six of them,
+unmodified, with hashes a test checks.
+
+9
+00:00:29.176 --> 00:00:32.933
+A stand-in Resource Manager then
+replays them through the code,
+
+10
+00:00:32.933 --> 00:00:35.520
+and nothing signs in
+or leaves the machine.

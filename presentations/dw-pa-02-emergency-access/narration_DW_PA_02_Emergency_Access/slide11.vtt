@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:02.151
+Three groups.
+
+3
+00:00:02.151 --> 00:00:03.537
+Developers build it.
+
+4
+00:00:03.537 --> 00:00:06.054
+The identity engineers own the accounts,
+
+5
+00:00:06.054 --> 00:00:09.088
+the exclusion group and
+the record of every drill.
+
+6
+00:00:09.088 --> 00:00:11.663
+And security operations receive the alert,
+
+7
+00:00:11.663 --> 00:00:14.238
+and hear about each
+drill before it happens.
+
+8
+00:00:14.238 --> 00:00:16.847
+The reader app gets six Graph permissions,
+
+9
+00:00:16.847 --> 00:00:20.275
+each the least privileged for
+its call, and nothing more.
+
+10
+00:00:20.275 --> 00:00:22.507
+Two of those choices are worth noticing:
+
+11
+00:00:22.507 --> 00:00:26.701
+reading whether an account is enabled
+or synchronized needs the full user
+
+12
+00:00:26.701 --> 00:00:30.700
+read permission, because those
+properties aren't in the basic profile.

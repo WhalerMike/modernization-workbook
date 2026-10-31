@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:10.500
+This is Chapter 5: Lifecycle
+Workflows custom extensions.
+
+4
+00:00:10.500 --> 00:00:15.052
+A custom task extension hands a leaver,
+a joiner or a mover to code you wrote,
+
+5
+00:00:15.052 --> 00:00:18.037
+and then waits for that
+code to say what happened.
+
+6
+00:00:18.037 --> 00:00:20.467
+The chapter makes sure it always says,
+
+7
+00:00:20.467 --> 00:00:23.288
+says the truth, and says
+it to the right cloud.
+
+8
+00:00:23.288 --> 00:00:27.328
+We'll start from the Logic App
+definition Microsoft publishes,
+
+9
+00:00:27.328 --> 00:00:30.668
+see what it leaves to you,
+walk the program's Logic App,
+
+10
+00:00:30.668 --> 00:00:33.776
+registry and tools, then
+two labs and the dangers.
+
+11
+00:00:33.776 --> 00:00:38.980
+One note before we begin: the code is
+illustrative, tested against fixtures.

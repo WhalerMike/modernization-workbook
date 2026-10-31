@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.679
+Every danger here has a guard,
+
+2
+00:00:01.679 --> 00:00:05.750
+and the theme is that nothing important
+depends on someone remembering.
+
+3
+00:00:05.750 --> 00:00:09.853
+The worst is enforcing a policy
+before the emergency accounts work,
+
+4
+00:00:09.853 --> 00:00:13.662
+which is the same lockout as Chapter
+2, just by a different route.
+
+5
+00:00:13.662 --> 00:00:18.655
+The quietest is selecting the gate in PIM
+while its policy is still report-only:
+
+6
+00:00:18.655 --> 00:00:21.037
+you get no gate and no fallback either.
+
+7
+00:00:21.037 --> 00:00:25.986
+Others are about speed and reach: switching
+policies straight on, a pipeline that
+
+8
+00:00:25.986 --> 00:00:30.700
+deletes, and a write permission left
+lying on the app after the change is done.

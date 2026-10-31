@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:02.500
+Developers build it.
+
+3
+00:00:02.500 --> 00:00:06.400
+Identity engineers run the waves
+and keep the conversion file.
+
+4
+00:00:06.400 --> 00:00:09.770
+And the application owners
+switch each workload,
+
+5
+00:00:09.770 --> 00:00:12.975
+keep the cutover log, and
+approve every disable.
+
+6
+00:00:12.975 --> 00:00:14.787
+The access is split in two.
+
+7
+00:00:14.787 --> 00:00:19.024
+The read path is an app with read-only
+permissions and the Reader role.
+
+8
+00:00:19.024 --> 00:00:22.985
+The write path is only ever a person,
+signed in with their own roles,
+
+9
+00:00:22.985 --> 00:00:26.797
+because a standing app with the
+right to add credentials to any
+
+10
+00:00:26.797 --> 00:00:30.537
+application is exactly what this
+program is trying to remove.
+
+11
+00:00:30.537 --> 00:00:32.366
+For the identity's credential,
+
+12
+00:00:32.366 --> 00:00:36.000
+the code picks the narrower
+built-in role over Contributor.

@@ -1,0 +1,737 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.038
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.038 --> 00:00:05.688
+Building Privileged Access.
+
+3
+00:00:05.688 --> 00:00:09.451
+This is Chapter 2: emergency
+access accounts as code.
+
+4
+00:00:09.451 --> 00:00:13.756
+These accounts are the one standing
+privilege the program keeps on purpose,
+
+5
+00:00:13.756 --> 00:00:16.627
+so the chapter checks them
+on every run and watches
+
+6
+00:00:16.627 --> 00:00:19.225
+them every minute, with
+code someone reviewed.
+
+7
+00:00:19.225 --> 00:00:24.136
+We'll start from Microsoft's own
+emergency access page, see what its sample
+
+8
+00:00:24.136 --> 00:00:28.563
+alert misses, then walk the check,
+the alert, two labs and the dangers.
+
+9
+00:00:28.563 --> 00:00:31.773
+One note before we begin:
+the code is illustrative,
+
+10
+00:00:31.773 --> 00:00:35.410
+tested against fixtures
+rather than a live tenant.
+
+11
+00:00:39.160 --> 00:00:40.198
+Why start here?
+
+12
+00:00:40.198 --> 00:00:41.810
+Because the order matters.
+
+13
+00:00:41.810 --> 00:00:47.214
+If approval for privileged roles is switched
+on before working emergency accounts
+
+14
+00:00:47.214 --> 00:00:51.692
+exist, you can lock everyone out:
+every administrator role is eligible,
+
+15
+00:00:51.692 --> 00:00:54.935
+approval is required, and
+nobody is left to approve.
+
+16
+00:00:54.935 --> 00:00:56.964
+That's the documented lockout,
+
+17
+00:00:56.964 --> 00:01:00.698
+and it's why Book 04 makes this
+step the one that can't move.
+
+18
+00:01:00.698 --> 00:01:03.554
+The emergency accounts
+are also the program's
+
+19
+00:01:03.554 --> 00:01:06.035
+main exception to zero standing access.
+
+20
+00:01:06.035 --> 00:01:08.604
+The inventory in Chapter
+1 lets them through
+
+21
+00:01:08.604 --> 00:01:11.035
+only because they're listed as exceptions.
+
+22
+00:01:11.035 --> 00:01:13.970
+This chapter makes sure
+that exception is real.
+
+23
+00:01:17.720 --> 00:01:19.083
+Next, which cloud.
+
+24
+00:01:19.083 --> 00:01:23.008
+The check reads Microsoft Graph,
+and the host depends on the tenant.
+
+25
+00:01:23.008 --> 00:01:27.682
+For a GCC tenant like this estate's,
+that's the worldwide Graph endpoint,
+
+26
+00:01:27.682 --> 00:01:32.033
+and the alert sits in Azure Monitor
+in a commercial subscription.
+
+27
+00:01:32.033 --> 00:01:34.554
+The template the code
+writes names no host,
+
+28
+00:01:34.554 --> 00:01:38.228
+so the same file could deploy in
+Azure Government for GCC High,
+
+29
+00:01:38.228 --> 00:01:42.695
+although the chapter flags that full
+availability there wasn't confirmed.
+
+30
+00:01:42.695 --> 00:01:46.972
+And the two sign-in methods Learn
+wants for these accounts, passkeys and
+
+31
+00:01:46.972 --> 00:01:52.050
+certificate-based authentication, are
+available in every one of these clouds.
+
+32
+00:01:55.800 --> 00:01:57.512
+Here's what Microsoft gives you.
+
+33
+00:01:57.512 --> 00:02:00.211
+Learn's emergency access
+page is the standard:
+
+34
+00:02:00.211 --> 00:02:03.691
+at least two cloud-only accounts
+on the onmicrosoft domain,
+
+35
+00:02:03.691 --> 00:02:08.308
+strong phishing-resistant sign-in that's
+different from your everyday admins,
+
+36
+00:02:08.308 --> 00:02:10.723
+Global Administrator held permanently,
+
+37
+00:02:10.723 --> 00:02:14.700
+and exclusion from blocking policies
+through one dedicated group.
+
+38
+00:02:14.700 --> 00:02:17.244
+Then you have to run
+them: watch their logs,
+
+39
+00:02:17.244 --> 00:02:19.713
+and test them at least every ninety days.
+
+40
+00:02:19.713 --> 00:02:24.467
+Book 04 adopts the same standard
+and adds two things of its own:
+
+41
+00:02:24.467 --> 00:02:27.990
+dual custody, and a
+review after every use.
+
+42
+00:02:31.740 --> 00:02:36.445
+Learn also gives you a sample alert:
+three short queries over the sign-in logs,
+
+43
+00:02:36.445 --> 00:02:40.777
+and portal steps to turn them into an
+alert rule where any result fires.
+
+44
+00:02:40.777 --> 00:02:43.613
+Those queries only exist
+inside the web page,
+
+45
+00:02:43.613 --> 00:02:48.439
+so the repository pins the page's source,
+unmodified, with a hash a test checks,
+
+46
+00:02:48.439 --> 00:02:52.116
+and a weekly watch that reports
+when Microsoft changes it.
+
+47
+00:02:52.116 --> 00:02:57.103
+A small harness then runs the sample's
+filters over a handful of fictional log rows,
+
+48
+00:02:57.103 --> 00:03:00.990
+so you can see exactly what the
+sample catches and what it misses.
+
+49
+00:03:00.990 --> 00:03:03.500
+It's a test, not a query engine.
+
+50
+00:03:07.250 --> 00:03:09.012
+This is the heart of the chapter.
+
+51
+00:03:09.012 --> 00:03:11.868
+Run as published, the
+sample watches only one of
+
+52
+00:03:11.868 --> 00:03:14.725
+the three places an
+emergency account shows up.
+
+53
+00:03:14.725 --> 00:03:18.652
+It misses the non-interactive sign-in,
+which is exactly what a stolen
+
+54
+00:03:18.652 --> 00:03:23.000
+session looks like, and Learn notes that
+passkey sign-ins now land there too.
+
+55
+00:03:23.000 --> 00:03:27.838
+It misses the audit events, like a new
+method quietly registered on the account.
+
+56
+00:03:27.838 --> 00:03:31.324
+And if you copy it with its
+placeholders, it alerts on nothing.
+
+57
+00:03:31.324 --> 00:03:34.825
+So the verdict is: keep
+Learn's object-ID query and its
+
+58
+00:03:34.825 --> 00:03:38.840
+alert settings as the core,
+and let the code add the rest.
+
+59
+00:03:42.590 --> 00:03:43.915
+So what does the code add?
+
+60
+00:03:43.915 --> 00:03:48.378
+Four commands and an entry script,
+added to the module from Chapter 1.
+
+61
+00:03:48.378 --> 00:03:50.766
+One checks the accounts
+against the standard.
+
+62
+00:03:50.766 --> 00:03:53.827
+One writes the alert query
+from the account IDs.
+
+63
+00:03:53.827 --> 00:03:57.927
+One wraps that query in a deployable
+template, without deploying it.
+
+64
+00:03:57.927 --> 00:04:03.440
+And one runs the same match over exported
+rows, so you can review a drill offline.
+
+65
+00:04:03.440 --> 00:04:07.409
+Two small files drive it: one
+names the accounts and their
+
+66
+00:04:07.409 --> 00:04:11.378
+exclusion group by object ID,
+and one records every drill.
+
+67
+00:04:11.378 --> 00:04:15.500
+It reuses Chapter 1's reader,
+so it only ever reads.
+
+68
+00:04:19.250 --> 00:04:22.225
+Here are the ten rules the
+check applies on every run.
+
+69
+00:04:22.225 --> 00:04:26.821
+Most come straight from Learn's standard:
+enough accounts, the right domain,
+
+70
+00:04:26.821 --> 00:04:30.824
+cloud-only, Global Administrator
+held permanently and directly,
+
+71
+00:04:30.824 --> 00:04:34.530
+the right sign-in methods,
+membership in the exclusion group,
+
+72
+00:04:34.530 --> 00:04:37.125
+and a passing drill in
+the last ninety days.
+
+73
+00:04:37.125 --> 00:04:40.800
+Two are the program's own design,
+and they're labeled that way:
+
+74
+00:04:40.800 --> 00:04:45.825
+a disabled emergency account is a finding,
+and so is anyone in the exclusion group
+
+75
+00:04:45.825 --> 00:04:50.850
+who isn't an emergency account, because
+everyone in that group skips every policy.
+
+76
+00:04:50.850 --> 00:04:53.290
+The full wording is on the slide.
+
+77
+00:04:57.040 --> 00:04:58.790
+One rule needs a closer look.
+
+78
+00:04:58.790 --> 00:05:01.595
+Learn says to exclude
+the emergency accounts
+
+79
+00:05:01.595 --> 00:05:04.327
+from policies that block
+or restrict sign-in.
+
+80
+00:05:04.327 --> 00:05:07.083
+Deciding which policies
+do that is a judgment,
+
+81
+00:05:07.083 --> 00:05:11.940
+and the code shouldn't make judgments, so
+it checks every enforced policy instead.
+
+82
+00:05:11.940 --> 00:05:14.556
+The sources also disagree in two places,
+
+83
+00:05:14.556 --> 00:05:19.153
+and the chapter records both so nobody
+quietly loosens the code later.
+
+84
+00:05:19.153 --> 00:05:23.390
+Report-only policies are reported
+as information, not failures.
+
+85
+00:05:23.390 --> 00:05:28.221
+And whether the accounts belong to
+individuals is something Graph can't see,
+
+86
+00:05:28.221 --> 00:05:31.110
+so the program's position stays Book 04's.
+
+87
+00:05:34.860 --> 00:05:35.898
+Now the alert.
+
+88
+00:05:35.898 --> 00:05:40.568
+The query has three legs: interactive
+sign-ins, non-interactive sign-ins,
+
+89
+00:05:40.568 --> 00:05:45.159
+and audit events where an emergency
+account is the actor or the target.
+
+90
+00:05:45.159 --> 00:05:49.783
+It deliberately doesn't use a fuzzy
+union, because if a table never arrives,
+
+91
+00:05:49.783 --> 00:05:53.572
+a fuzzy union returns nothing,
+and silence looks like safety.
+
+92
+00:05:53.572 --> 00:05:58.058
+The template keeps Learn's settings,
+severity zero and any result fires,
+
+93
+00:05:58.058 --> 00:06:01.935
+and checks that it points at a
+real workspace and action group.
+
+94
+00:06:01.935 --> 00:06:05.435
+It deploys nothing; that's
+the reviewed pipeline's job.
+
+95
+00:06:05.435 --> 00:06:07.680
+And remember the two prerequisites:
+
+96
+00:06:07.680 --> 00:06:11.330
+the logs have to be sent, and
+the license has to be there.
+
+97
+00:06:15.080 --> 00:06:16.142
+Who is this for?
+
+98
+00:06:16.142 --> 00:06:17.181
+Three groups.
+
+99
+00:06:17.181 --> 00:06:18.567
+Developers build it.
+
+100
+00:06:18.567 --> 00:06:21.084
+The identity engineers own the accounts,
+
+101
+00:06:21.084 --> 00:06:24.118
+the exclusion group and
+the record of every drill.
+
+102
+00:06:24.118 --> 00:06:26.693
+And security operations receive the alert,
+
+103
+00:06:26.693 --> 00:06:29.268
+and hear about each
+drill before it happens.
+
+104
+00:06:29.268 --> 00:06:31.877
+The reader app gets six Graph permissions,
+
+105
+00:06:31.877 --> 00:06:35.305
+each the least privileged for
+its call, and nothing more.
+
+106
+00:06:35.305 --> 00:06:37.537
+Two of those choices are worth noticing:
+
+107
+00:06:37.537 --> 00:06:41.731
+reading whether an account is enabled
+or synchronized needs the full user
+
+108
+00:06:41.731 --> 00:06:46.030
+read permission, because those
+properties aren't in the basic profile.
+
+109
+00:06:49.780 --> 00:06:56.092
+Lab 1 needs nothing but a laptop: PowerShell
+7 and Pester, no tenant and no network.
+
+110
+00:06:56.092 --> 00:06:59.807
+First you run Learn's own queries
+over the fictional export,
+
+111
+00:06:59.807 --> 00:07:03.523
+and the tests show what you'd
+otherwise have to take on trust:
+
+112
+00:07:03.523 --> 00:07:06.404
+of five emergency events,
+the sample finds two.
+
+113
+00:07:06.404 --> 00:07:10.843
+Then you list the six permissions, and
+run the check against a fictional tenant.
+
+114
+00:07:10.843 --> 00:07:14.968
+It reports nine findings, no
+warnings and one informational item,
+
+115
+00:07:14.968 --> 00:07:17.718
+and it writes the alert
+template for review.
+
+116
+00:07:17.718 --> 00:07:20.340
+Next, let's read those findings.
+
+117
+00:07:24.090 --> 00:07:27.115
+Reading the findings is
+where the rules become real.
+
+118
+00:07:27.115 --> 00:07:29.115
+One fictional account passes.
+
+119
+00:07:29.115 --> 00:07:31.285
+The other fails five different ways,
+
+120
+00:07:31.285 --> 00:07:35.553
+from the wrong domain to an expiring
+Global Administrator assignment.
+
+121
+00:07:35.553 --> 00:07:38.457
+Three enforced policies
+don't exclude the accounts,
+
+122
+00:07:38.457 --> 00:07:42.240
+and someone who shouldn't be there
+is sitting in the exclusion group.
+
+123
+00:07:42.240 --> 00:07:45.963
+Then the offline match finds
+all five emergency events,
+
+124
+00:07:45.963 --> 00:07:50.252
+where the sample found two, and
+ignores an ordinary user's sign-in.
+
+125
+00:07:50.252 --> 00:07:54.715
+Finally you try to feed it a user name
+instead of an ID, and it refuses.
+
+126
+00:07:54.715 --> 00:07:58.560
+Run the whole suite, and three
+hundred thirty tests pass.
+
+127
+00:08:02.310 --> 00:08:05.560
+Lab 2 moves to a test
+tenant, never production.
+
+128
+00:08:05.560 --> 00:08:08.785
+You send the three log
+categories to a test workspace,
+
+129
+00:08:08.785 --> 00:08:13.697
+register a reader app with exactly the six
+permissions, and run the check for real.
+
+130
+00:08:13.697 --> 00:08:18.147
+Then the important step: paste the query
+into the workspace and run it by hand,
+
+131
+00:08:18.147 --> 00:08:22.173
+because an error that names a table
+tells you the logs aren't arriving.
+
+132
+00:08:22.173 --> 00:08:24.747
+After that you deploy
+the reviewed template,
+
+133
+00:08:24.747 --> 00:08:28.573
+sign in once with a test emergency
+account, and watch the alert land.
+
+134
+00:08:28.573 --> 00:08:32.059
+Record the drill, and the
+ninety-day finding clears.
+
+135
+00:08:32.059 --> 00:08:33.900
+Then back everything out.
+
+136
+00:08:37.650 --> 00:08:42.113
+Every one of these dangers has happened
+somewhere, and each has a guard in the code.
+
+137
+00:08:42.113 --> 00:08:45.032
+The worst is the lockout,
+and the guard is simply
+
+138
+00:08:45.032 --> 00:08:47.801
+that this check is the
+gate's test, on every run.
+
+139
+00:08:47.801 --> 00:08:52.010
+The quietest is a fuzzy query
+over a table that never arrives:
+
+140
+00:08:52.010 --> 00:08:55.125
+nothing fires, and
+silence looks like safety.
+
+141
+00:08:55.125 --> 00:09:00.575
+Others are slower: an assignment that
+expires, a phone method tied to one person,
+
+142
+00:09:00.575 --> 00:09:04.600
+an exclusion group that grows,
+or a drill nobody wrote down.
+
+143
+00:09:04.600 --> 00:09:05.737
+Notice the pattern.
+
+144
+00:09:05.737 --> 00:09:10.520
+Each guard is a rule that runs every
+time, not a person remembering.
+
+145
+00:09:14.270 --> 00:09:15.620
+Here's what done looks like.
+
+146
+00:09:15.620 --> 00:09:19.831
+On the account side: at least two
+accounts named by ID, no findings,
+
+147
+00:09:19.831 --> 00:09:24.598
+every enforced policy excluding a
+group that holds only those accounts,
+
+148
+00:09:24.598 --> 00:09:27.458
+and a recorded drill in
+the last ninety days.
+
+149
+00:09:27.458 --> 00:09:30.929
+On the alert side: the logs
+arrive, the query runs cleanly,
+
+150
+00:09:30.929 --> 00:09:35.607
+the deployed rule matches the reviewed
+template, the reader holds exactly
+
+151
+00:09:35.607 --> 00:09:40.058
+six permissions, and the pinned Learn
+page is still the one you reviewed.
+
+152
+00:09:40.058 --> 00:09:42.198
+With the emergency accounts proven,
+
+153
+00:09:42.198 --> 00:09:46.195
+Chapter 3 can safely build
+Conditional Access for administrators.
+
+154
+00:09:46.195 --> 00:09:47.360
+Thanks for watching.

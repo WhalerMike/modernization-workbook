@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.525
+Here are the facts the code
+depends on, as Learn states them.
+
+2
+00:00:03.525 --> 00:00:06.852
+Every call is beta, every
+read needs only the device
+
+3
+00:00:06.852 --> 00:00:11.050
+configuration read permission,
+and only the create needs write.
+
+4
+00:00:11.050 --> 00:00:15.488
+Learn lists all of them for the
+worldwide and both US Government levels.
+
+5
+00:00:15.488 --> 00:00:18.738
+The chapter is just as careful
+about what Learn doesn't say.
+
+6
+00:00:18.738 --> 00:00:21.717
+There's no Graph equivalent
+of the Migrate button,
+
+7
+00:00:21.717 --> 00:00:24.188
+so the second lab
+compares the two by hand.
+
+8
+00:00:24.188 --> 00:00:28.615
+And no Learn page confirms the
+analytics import itself works in GCC
+
+9
+00:00:28.615 --> 00:00:33.260
+High or the Defense cloud, so that
+gets confirmed in a test tenant first.

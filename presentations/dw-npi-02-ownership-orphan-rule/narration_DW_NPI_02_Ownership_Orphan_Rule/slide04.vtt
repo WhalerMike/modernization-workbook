@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+So what's the rule?
+
+2
+00:00:01.112 --> 00:00:03.773
+Learn is permissive: a service principal's
+
+3
+00:00:03.773 --> 00:00:06.813
+owners can be users or
+other service principals.
+
+4
+00:00:06.813 --> 00:00:10.662
+The program is stricter, and
+this is labeled design guidance.
+
+5
+00:00:10.662 --> 00:00:16.012
+Every app needs two human owners who are
+enabled members, not guests and not bots.
+
+6
+00:00:16.012 --> 00:00:18.895
+Its reference has to
+point at a real record in
+
+7
+00:00:18.895 --> 00:00:21.700
+the system inventory,
+not a line of free text.
+
+8
+00:00:21.700 --> 00:00:25.200
+And every directory service
+account needs an application owner.
+
+9
+00:00:25.200 --> 00:00:28.882
+Active Directory has no owners
+attribute the code can trust,
+
+10
+00:00:28.882 --> 00:00:32.040
+so that owner comes from a
+file kept with the record.

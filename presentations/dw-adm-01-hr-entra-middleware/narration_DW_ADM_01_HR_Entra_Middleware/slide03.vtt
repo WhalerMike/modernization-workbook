@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.783
+Which cloud you're in decides which
+Graph host you call and where your
+
+2
+00:00:03.783 --> 00:00:07.712
+token comes from, and a token from one
+cloud simply doesn't work in another.
+
+3
+00:00:07.712 --> 00:00:11.633
+A G C C tenant like this estate's
+uses the worldwide endpoint,
+
+4
+00:00:11.633 --> 00:00:14.513
+so Microsoft's sample
+works here as written.
+
+5
+00:00:14.513 --> 00:00:17.347
+The higher government clouds
+have their own hosts,
+
+6
+00:00:17.347 --> 00:00:20.587
+and the sample's address is
+hard-coded, so it can't reach them.
+
+7
+00:00:20.587 --> 00:00:23.777
+The hardened client takes
+its endpoint from settings
+
+8
+00:00:23.777 --> 00:00:26.399
+and only accepts one of
+the three Graph hosts.
+
+9
+00:00:26.399 --> 00:00:29.040
+Now let's see what Microsoft
+actually gives you.

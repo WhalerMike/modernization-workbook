@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.812
+This is the heart of the chapter.
+
+2
+00:00:01.812 --> 00:00:04.668
+Run as published, the
+sample watches only one of
+
+3
+00:00:04.668 --> 00:00:07.525
+the three places an
+emergency account shows up.
+
+4
+00:00:07.525 --> 00:00:11.452
+It misses the non-interactive sign-in,
+which is exactly what a stolen
+
+5
+00:00:11.452 --> 00:00:15.800
+session looks like, and Learn notes that
+passkey sign-ins now land there too.
+
+6
+00:00:15.800 --> 00:00:20.638
+It misses the audit events, like a new
+method quietly registered on the account.
+
+7
+00:00:20.638 --> 00:00:24.124
+And if you copy it with its
+placeholders, it alerts on nothing.
+
+8
+00:00:24.124 --> 00:00:27.625
+So the verdict is: keep
+Learn's object-ID query and its
+
+9
+00:00:27.625 --> 00:00:31.340
+alert settings as the core,
+and let the code add the rest.

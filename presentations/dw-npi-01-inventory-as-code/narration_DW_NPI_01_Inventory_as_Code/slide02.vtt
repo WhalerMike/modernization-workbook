@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.663
+Why start with an inventory?
+
+2
+00:00:01.663 --> 00:00:04.993
+Because everything else in this
+project acts on an account,
+
+3
+00:00:04.993 --> 00:00:07.575
+and you can't act on an
+account you haven't found.
+
+4
+00:00:07.575 --> 00:00:12.203
+The plan's first gate asks for every
+service account, app registration,
+
+5
+00:00:12.203 --> 00:00:15.954
+service principal and managed
+identity in one register,
+
+6
+00:00:15.954 --> 00:00:18.587
+with a type, a risk
+and a candidate target.
+
+7
+00:00:18.587 --> 00:00:22.801
+The plan's critical path runs through
+ownership, and an owner has to be
+
+8
+00:00:22.801 --> 00:00:27.237
+found before anything is touched, so
+this chapter and the next come first.
+
+9
+00:00:27.237 --> 00:00:29.634
+The trouble is that
+Microsoft's own commands
+
+10
+00:00:29.634 --> 00:00:31.970
+give you several lists,
+and they don't agree.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.525
+The repository keeps an unmodified copy
+of the role, from the released version,
+
+2
+00:00:04.525 --> 00:00:09.275
+with every file's hash checked against
+upstream and against the published package.
+
+3
+00:00:09.275 --> 00:00:11.674
+The collection is pinned to that version,
+
+4
+00:00:11.674 --> 00:00:15.062
+and a test fails if the installed
+role isn't the pinned copy.
+
+5
+00:00:15.062 --> 00:00:18.624
+Reading the code turned up two
+things Learn's page doesn't say.
+
+6
+00:00:18.624 --> 00:00:22.462
+The role's default tag is different
+from the one Learn's table gives.
+
+7
+00:00:22.462 --> 00:00:26.676
+And unless you turn it off, it sends
+a signal about your subscription,
+
+8
+00:00:26.676 --> 00:00:29.912
+resource group, tenant and
+region back to Microsoft.
+
+9
+00:00:29.912 --> 00:00:33.190
+The chapter follows the code,
+because that's what runs.

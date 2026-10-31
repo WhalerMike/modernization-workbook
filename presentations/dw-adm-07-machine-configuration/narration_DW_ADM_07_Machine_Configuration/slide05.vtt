@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.386
+Learn documents the whole procedure,
+
+2
+00:00:02.386 --> 00:00:05.475
+one page per step, and the
+build follows it exactly.
+
+3
+00:00:05.475 --> 00:00:07.674
+You set up an authoring environment,
+
+4
+00:00:07.674 --> 00:00:10.825
+write a desired state
+configuration and compile it.
+
+5
+00:00:10.825 --> 00:00:14.600
+You package it, and test it with
+the same agent the servers run.
+
+6
+00:00:14.600 --> 00:00:17.935
+You publish the package to
+storage, optionally sign it,
+
+7
+00:00:17.935 --> 00:00:21.938
+and generate a policy definition
+that records the package's hash.
+
+8
+00:00:21.938 --> 00:00:24.226
+Then you publish the definition to Azure.
+
+9
+00:00:24.226 --> 00:00:27.738
+That's eight steps and eight
+commands, all on the slide.
+
+10
+00:00:27.738 --> 00:00:29.538
+The build replaces none of them.
+
+11
+00:00:29.538 --> 00:00:31.270
+What it adds goes between them.

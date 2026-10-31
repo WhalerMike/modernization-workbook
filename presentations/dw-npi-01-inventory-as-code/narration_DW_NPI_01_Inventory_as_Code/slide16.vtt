@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.712
+Lab 2 moves to a test tenant and a test
+domain, never production, and it only reads.
+
+2
+00:00:05.712 --> 00:00:09.503
+You register the app in the tenant's
+own cloud with a certificate,
+
+3
+00:00:09.503 --> 00:00:14.438
+grant exactly the two permissions, and give
+it Reader where one test identity lives.
+
+4
+00:00:14.438 --> 00:00:18.063
+Then you run it from a domain-joined
+host as an ordinary user.
+
+5
+00:00:18.063 --> 00:00:21.396
+The point of this lab is to check
+what the permissions assumed:
+
+6
+00:00:21.396 --> 00:00:26.039
+that federated credentials are actually
+readable, that a delegated managed service
+
+7
+00:00:26.039 --> 00:00:30.550
+account is recognized, and that an ordinary
+user can read the directory attributes.
+
+8
+00:00:30.550 --> 00:00:33.650
+Then cross-check the admin
+center, and back it all out.

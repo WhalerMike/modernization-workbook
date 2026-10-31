@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Next, which cloud.
+
+2
+00:00:01.413 --> 00:00:05.076
+This chapter talks to two
+services, so it needs two hosts.
+
+3
+00:00:05.076 --> 00:00:08.918
+The policy and application
+calls go to Microsoft Graph,
+
+4
+00:00:08.918 --> 00:00:14.013
+and for a GCC tenant like this estate's,
+that's the worldwide Graph endpoint.
+
+5
+00:00:14.013 --> 00:00:19.244
+The certificates live in Key Vault, and
+because GCC's estate uses commercial Azure,
+
+6
+00:00:19.244 --> 00:00:22.212
+the vault sits on the
+commercial vault domain.
+
+7
+00:00:22.212 --> 00:00:25.358
+GCC High and DoD have
+their own hosts for both,
+
+8
+00:00:25.358 --> 00:00:30.374
+and every policy page the chapter
+calls lists the US Government clouds.
+
+9
+00:00:30.374 --> 00:00:35.040
+The code never guesses: you pass the
+cloud, and it builds both hosts from it.

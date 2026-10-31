@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:05.611
+On the account side: at least two
+accounts named by ID, no findings,
+
+3
+00:00:05.611 --> 00:00:10.378
+every enforced policy excluding a
+group that holds only those accounts,
+
+4
+00:00:10.378 --> 00:00:13.238
+and a recorded drill in
+the last ninety days.
+
+5
+00:00:13.238 --> 00:00:16.709
+On the alert side: the logs
+arrive, the query runs cleanly,
+
+6
+00:00:16.709 --> 00:00:21.387
+the deployed rule matches the reviewed
+template, the reader holds exactly
+
+7
+00:00:21.387 --> 00:00:25.838
+six permissions, and the pinned Learn
+page is still the one you reviewed.
+
+8
+00:00:25.838 --> 00:00:27.978
+With the emergency accounts proven,
+
+9
+00:00:27.978 --> 00:00:31.975
+Chapter 3 can safely build
+Conditional Access for administrators.
+
+10
+00:00:31.975 --> 00:00:33.140
+Thanks for watching.

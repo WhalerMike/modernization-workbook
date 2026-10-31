@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Now the rows.
+
+2
+00:00:01.088 --> 00:00:04.387
+A block that's off is a
+finding, and the check fails.
+
+3
+00:00:04.387 --> 00:00:06.898
+But if there's an
+approved matching window,
+
+4
+00:00:06.898 --> 00:00:10.700
+the same state is a warning: someone
+should look, it isn't a failure.
+
+5
+00:00:10.700 --> 00:00:13.542
+The window is a date, so
+the day after it closes,
+
+6
+00:00:13.542 --> 00:00:18.075
+the warning turns back into a finding
+without anyone editing anything.
+
+7
+00:00:18.075 --> 00:00:20.588
+Soft match on user name is just context,
+
+8
+00:00:20.588 --> 00:00:24.200
+since Microsoft says it can't
+be turned off once enabled.
+
+9
+00:00:24.200 --> 00:00:28.987
+And one rule matters more than it
+looks: a missing value is read as off.
+
+10
+00:00:28.987 --> 00:00:33.260
+If the response shape changes, you
+get a finding, not a silent pass.

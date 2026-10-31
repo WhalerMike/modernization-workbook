@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.725
+The plan also reports what it found, and
+just as important, what it won't touch.
+
+2
+00:00:04.725 --> 00:00:08.400
+Standing privileged roles outside
+owned exceptions are findings.
+
+3
+00:00:08.400 --> 00:00:13.187
+A service principal is reported, never
+converted, because it can't activate.
+
+4
+00:00:13.187 --> 00:00:16.076
+Root-scope elevation is
+flagged for removal.
+
+5
+00:00:16.076 --> 00:00:20.072
+The identity running the plan
+never plans away its own access;
+
+6
+00:00:20.072 --> 00:00:22.737
+that's decided last, from another session.
+
+7
+00:00:22.737 --> 00:00:26.600
+And a subscription that would end up
+with more than three owners is flagged.
+
+8
+00:00:26.600 --> 00:00:29.678
+Writing, meanwhile, is
+hard to do by accident:
+
+9
+00:00:29.678 --> 00:00:34.295
+it's a dry run unless you ask to
+apply, and every run leaves evidence,
+
+10
+00:00:34.295 --> 00:00:37.850
+including the state as read,
+which is your back-out.

@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.484
+Several of these dangers are quiet ones:
+
+2
+00:00:02.484 --> 00:00:07.500
+a policy that looks configured and enforces
+nothing, because the app was assigned
+
+3
+00:00:07.500 --> 00:00:12.000
+through a group, or by the registration's
+ID instead of the enterprise app's.
+
+4
+00:00:12.000 --> 00:00:15.183
+Others are loud: switching
+a policy straight on,
+
+5
+00:00:15.183 --> 00:00:17.713
+so a workload that moved stops at once.
+
+6
+00:00:17.713 --> 00:00:22.285
+And some hide in the evidence:
+report-only results that never came back,
+
+7
+00:00:22.285 --> 00:00:25.912
+so the summary looks clean, or
+a block nobody hears about.
+
+8
+00:00:25.912 --> 00:00:29.389
+Then the slow ones: a lapsed
+license, so a fix can't ship,
+
+9
+00:00:29.389 --> 00:00:32.138
+and a write permission left lying around.
+
+10
+00:00:32.138 --> 00:00:33.260
+Each has a guard.

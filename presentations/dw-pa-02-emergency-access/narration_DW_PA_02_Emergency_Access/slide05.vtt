@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.755
+Learn also gives you a sample alert:
+three short queries over the sign-in logs,
+
+2
+00:00:04.755 --> 00:00:09.087
+and portal steps to turn them into an
+alert rule where any result fires.
+
+3
+00:00:09.087 --> 00:00:11.922
+Those queries only exist
+inside the web page,
+
+4
+00:00:11.922 --> 00:00:16.749
+so the repository pins the page's source,
+unmodified, with a hash a test checks,
+
+5
+00:00:16.749 --> 00:00:20.426
+and a weekly watch that reports
+when Microsoft changes it.
+
+6
+00:00:20.426 --> 00:00:25.413
+A small harness then runs the sample's
+filters over a handful of fictional log rows,
+
+7
+00:00:25.413 --> 00:00:29.300
+so you can see exactly what the
+sample catches and what it misses.
+
+8
+00:00:29.300 --> 00:00:31.510
+It's a test, not a query engine.

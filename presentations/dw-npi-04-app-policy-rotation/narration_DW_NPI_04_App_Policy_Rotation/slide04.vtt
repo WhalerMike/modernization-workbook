@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.875
+Before the code, the model.
+
+2
+00:00:01.875 --> 00:00:04.263
+Learn describes two kinds of policy.
+
+3
+00:00:04.263 --> 00:00:08.269
+There's one tenant default, which
+always exists and starts switched off,
+
+4
+00:00:08.269 --> 00:00:10.985
+with separate restrictions
+for apps that live in
+
+5
+00:00:10.985 --> 00:00:13.701
+the tenant and apps
+provisioned from elsewhere.
+
+6
+00:00:13.701 --> 00:00:16.873
+And there are app-specific
+policies, one per app at most,
+
+7
+00:00:16.873 --> 00:00:19.975
+which override the default
+for whatever they define.
+
+8
+00:00:19.975 --> 00:00:23.649
+Restrictions only bite on apps
+created after a date you choose,
+
+9
+00:00:23.649 --> 00:00:26.900
+and they never stop an existing
+app from getting tokens.
+
+10
+00:00:26.900 --> 00:00:29.225
+They just refuse the
+change that breaks them.
+
+11
+00:00:29.225 --> 00:00:33.700
+Beta adds more restriction types, but
+this chapter stays on version one.

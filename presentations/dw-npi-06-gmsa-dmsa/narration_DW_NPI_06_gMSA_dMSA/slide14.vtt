@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.275
+Reading the findings is where
+the rules become concrete.
+
+2
+00:00:03.275 --> 00:00:07.027
+One web server account is trusted
+for unconstrained delegation,
+
+3
+00:00:07.027 --> 00:00:11.613
+which stops working after a delegated
+migration, so that conversion is blocked.
+
+4
+00:00:11.613 --> 00:00:15.946
+Another account's reviewed retrievers
+add a server that Active Directory
+
+5
+00:00:15.946 --> 00:00:19.650
+doesn't have yet, and its end date
+runs past the program's deadline.
+
+6
+00:00:19.650 --> 00:00:23.491
+An intranet account has no
+owner and an end date years out,
+
+7
+00:00:23.491 --> 00:00:25.125
+so it can't be reconciled.
+
+8
+00:00:25.125 --> 00:00:27.150
+One sits in Domain Admins.
+
+9
+00:00:27.150 --> 00:00:31.367
+Meanwhile the plan completes a
+migration that started forty days ago,
+
+10
+00:00:31.367 --> 00:00:33.530
+and creates two new group accounts.

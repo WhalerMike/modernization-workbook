@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.775
+Next you plan against a fictional
+tenant without sending anything.
+
+2
+00:00:03.775 --> 00:00:07.772
+The plan explains itself: the
+context and strength get created,
+
+3
+00:00:07.772 --> 00:00:12.461
+two objects get small updates, one
+matches, and three policies are blocked,
+
+4
+00:00:12.461 --> 00:00:16.150
+because the strength and context
+they need don't exist yet.
+
+5
+00:00:16.150 --> 00:00:19.300
+A portal-made policy is
+reported, never deleted.
+
+6
+00:00:19.300 --> 00:00:21.875
+Then you apply to the fake three times.
+
+7
+00:00:21.875 --> 00:00:26.222
+The first run creates the building
+blocks, the second creates the three
+
+8
+00:00:26.222 --> 00:00:30.200
+blocked policies in report-only,
+and the third finds nothing to do.
+
+9
+00:00:30.200 --> 00:00:33.050
+That's what a safe,
+repeatable write looks like.

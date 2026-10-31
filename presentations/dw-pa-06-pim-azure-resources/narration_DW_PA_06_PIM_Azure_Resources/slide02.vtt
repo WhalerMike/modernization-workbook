@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:04.312
+Because a standing Owner is
+privilege that's always on.
+
+3
+00:00:04.312 --> 00:00:07.409
+Nobody has to activate it,
+approve it, or explain it,
+
+4
+00:00:07.409 --> 00:00:11.337
+so an attacker who takes the
+account doesn't have to wait either.
+
+5
+00:00:11.337 --> 00:00:14.430
+The fix is the one you
+already know from Entra roles:
+
+6
+00:00:14.430 --> 00:00:17.301
+make the role eligible,
+time-bound and approved.
+
+7
+00:00:17.301 --> 00:00:21.075
+What's different in Azure is that
+every scope keeps its own rules.
+
+8
+00:00:21.075 --> 00:00:25.878
+The chapter governs the three roles the
+plan names, Owner, Contributor and User
+
+9
+00:00:25.878 --> 00:00:31.100
+Access Administrator, with Microsoft's
+ceiling of three subscription owners on top.

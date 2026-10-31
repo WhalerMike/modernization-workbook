@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.100
+The rest of the gaps are
+about evidence and permission.
+
+2
+00:00:03.100 --> 00:00:06.159
+The tutorial gives
+reviewers no instructions,
+
+3
+00:00:06.159 --> 00:00:08.825
+though the API marks that field required.
+
+4
+00:00:08.825 --> 00:00:12.839
+It collects evidence by writing a
+report and handing you a link that
+
+5
+00:00:12.839 --> 00:00:16.925
+expires in a day, and its report may
+not even include the review it made.
+
+6
+00:00:16.925 --> 00:00:20.293
+It never touches Azure roles
+or the privileged groups,
+
+7
+00:00:20.293 --> 00:00:22.388
+two of the program's three targets.
+
+8
+00:00:22.388 --> 00:00:26.050
+And it uses the write permission
+for everything, even reads.
+
+9
+00:00:26.050 --> 00:00:29.340
+So the verdict: keep the
+tutorial's scope as the model,
+
+10
+00:00:29.340 --> 00:00:31.150
+but don't run it as published.

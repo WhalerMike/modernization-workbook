@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.475
+This file is what an
+auditor will thank you for.
+
+2
+00:00:02.475 --> 00:00:07.608
+It ties every batch to the exact extract
+and mapping that produced it, by hash,
+
+3
+00:00:07.608 --> 00:00:11.763
+so you can walk from a line in
+the provisioning logs to a person,
+
+4
+00:00:11.763 --> 00:00:13.637
+to a batch, to the input files.
+
+5
+00:00:13.637 --> 00:00:16.321
+That only works because each operation's
+
+6
+00:00:16.321 --> 00:00:19.400
+identifier is the person
+key, not a random value.
+
+7
+00:00:19.400 --> 00:00:23.613
+It holds keys and hashes only, so
+it can live in the evidence store.
+
+8
+00:00:23.613 --> 00:00:28.102
+Both clients pass the same tests, and
+seven of them pin the sample's behavior,
+
+9
+00:00:28.102 --> 00:00:32.350
+so if Microsoft improves it, you'll
+know it's time to shrink your own code.

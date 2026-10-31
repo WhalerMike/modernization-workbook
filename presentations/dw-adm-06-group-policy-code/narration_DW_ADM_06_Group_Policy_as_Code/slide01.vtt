@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:09.725
+This is Chapter 6: moving
+Group Policy as code.
+
+4
+00:00:09.725 --> 00:00:13.658
+Group Policy analytics tells you
+which settings Intune can take,
+
+5
+00:00:13.658 --> 00:00:18.100
+but not which ones should move, who owns
+them, or what's already in the tenant.
+
+6
+00:00:18.100 --> 00:00:19.975
+Those are the pipeline's questions.
+
+7
+00:00:19.975 --> 00:00:25.329
+We'll start from Microsoft's own settings
+catalog samples, see what they leave out,
+
+8
+00:00:25.329 --> 00:00:27.646
+then walk the move plan, the library,
+
+9
+00:00:27.646 --> 00:00:30.762
+the linter and the sync,
+two labs and the dangers.
+
+10
+00:00:30.762 --> 00:00:35.980
+One note before we begin: the code is
+illustrative, tested against fixtures.

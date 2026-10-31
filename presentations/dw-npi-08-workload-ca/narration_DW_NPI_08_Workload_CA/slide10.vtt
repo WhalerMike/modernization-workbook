@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.534
+Turning a policy on is the moment
+a production job can stop,
+
+2
+00:00:03.534 --> 00:00:05.856
+so the code asks for five things at once,
+
+3
+00:00:05.856 --> 00:00:09.775
+or the ring stays held in report-only
+with the reason written down.
+
+4
+00:00:09.775 --> 00:00:12.725
+The security chief's
+decision must mark the ring.
+
+5
+00:00:12.725 --> 00:00:15.638
+The change must explicitly
+allow enforcement.
+
+6
+00:00:15.638 --> 00:00:19.162
+A reviewed sign-in summary
+must be cited by its hash.
+
+7
+00:00:19.162 --> 00:00:21.413
+That summary must show the ring ready.
+
+8
+00:00:21.413 --> 00:00:24.451
+And every earlier ring
+must already be enforced.
+
+9
+00:00:24.451 --> 00:00:27.808
+Exclusions are allowed,
+but each one has an owner,
+
+10
+00:00:27.808 --> 00:00:32.830
+a reason and an end date, and it drops
+out by itself when that date arrives.

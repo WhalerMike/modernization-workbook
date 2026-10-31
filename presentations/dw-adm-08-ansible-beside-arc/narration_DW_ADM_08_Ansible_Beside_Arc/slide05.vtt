@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.762
+Here's what Microsoft gives you.
+
+2
+00:00:01.762 --> 00:00:04.526
+Learn documents Arc
+onboarding with Ansible
+
+3
+00:00:04.526 --> 00:00:06.999
+through one role in the Azure collection.
+
+4
+00:00:06.999 --> 00:00:10.050
+It installs the agent
+and registers each host,
+
+5
+00:00:10.050 --> 00:00:14.062
+and it's idempotent, so a connected
+machine is simply skipped.
+
+6
+00:00:14.062 --> 00:00:18.547
+Learn's page covers the onboarding
+role, the variables, and authentication,
+
+7
+00:00:18.547 --> 00:00:21.584
+recommending the control
+node's managed identity
+
+8
+00:00:21.584 --> 00:00:24.550
+in production because it
+removes stored secrets.
+
+9
+00:00:24.550 --> 00:00:27.213
+It also suggests scheduling
+the job nightly.
+
+10
+00:00:27.213 --> 00:00:31.896
+But Learn's planning page adds something
+the role page doesn't: pilot first,
+
+11
+00:00:31.896 --> 00:00:36.410
+on non-critical machines, for at least
+thirty days, with a rollback plan.

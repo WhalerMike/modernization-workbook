@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.651
+Run over the fixture, the rule
+does catch the obvious case:
+
+2
+00:00:03.651 --> 00:00:07.712
+a person adding a secret to an app
+that already had a certificate.
+
+3
+00:00:07.712 --> 00:00:11.263
+But three filters make it
+blind in the riskiest places.
+
+4
+00:00:11.263 --> 00:00:15.562
+It only looks at initiators with
+an at sign, so a credential added
+
+5
+00:00:15.562 --> 00:00:20.024
+by an app is never seen, including
+an app abusing a broad permission.
+
+6
+00:00:20.024 --> 00:00:23.273
+It drops events where the
+old key list was empty,
+
+7
+00:00:23.273 --> 00:00:26.187
+so the very first secret
+on an app vanishes.
+
+8
+00:00:26.187 --> 00:00:28.564
+And it keeps only application targets,
+
+9
+00:00:28.564 --> 00:00:32.260
+so a credential added to a
+service principal is dropped too.

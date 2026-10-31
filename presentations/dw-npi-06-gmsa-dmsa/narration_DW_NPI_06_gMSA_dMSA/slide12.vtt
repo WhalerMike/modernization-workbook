@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:02.838
+Developers build the code.
+
+3
+00:00:02.838 --> 00:00:07.312
+Server and directory engineers run
+the write path and change the hosts.
+
+4
+00:00:07.312 --> 00:00:12.248
+Application owners name who owns each
+service principal name and when it ends,
+
+5
+00:00:12.248 --> 00:00:15.362
+and the security officer
+reviews the island list.
+
+6
+00:00:15.362 --> 00:00:17.663
+The rights split is the important part.
+
+7
+00:00:17.663 --> 00:00:21.160
+The read task holds no domain
+administration at all,
+
+8
+00:00:21.160 --> 00:00:24.575
+just a narrow delegated read
+of the root key's dates.
+
+9
+00:00:24.575 --> 00:00:27.447
+The write task does need
+administrator rights,
+
+10
+00:00:27.447 --> 00:00:31.497
+because Learn's procedure requires
+them, and that's exactly why it's
+
+11
+00:00:31.497 --> 00:00:35.450
+a separate script, run by a person,
+on a plan someone else approved.

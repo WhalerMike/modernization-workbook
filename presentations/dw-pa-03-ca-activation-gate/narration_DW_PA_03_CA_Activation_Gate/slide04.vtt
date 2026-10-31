@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Next, which cloud.
+
+2
+00:00:01.413 --> 00:00:04.990
+Every call in this chapter is
+on the stable Graph version,
+
+3
+00:00:04.990 --> 00:00:07.501
+except protected actions, which is beta.
+
+4
+00:00:07.501 --> 00:00:12.081
+For this estate's GCC tenant the host
+is the worldwide Graph endpoint,
+
+5
+00:00:12.081 --> 00:00:17.225
+and every method used lists the government
+clouds in its availability table.
+
+6
+00:00:17.225 --> 00:00:21.512
+Conditional Access and PIM are
+available in the government clouds too.
+
+7
+00:00:21.512 --> 00:00:25.921
+One thing does change there: the
+two policies about Azure management
+
+8
+00:00:25.921 --> 00:00:30.562
+name a different application, so a GCC
+High program edits those two files.
+
+9
+00:00:30.562 --> 00:00:33.500
+The code never assumes
+a cloud; you name it.

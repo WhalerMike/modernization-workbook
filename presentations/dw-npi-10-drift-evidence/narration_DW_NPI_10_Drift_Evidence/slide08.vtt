@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.150
+Nine drift rules run against
+the approved baseline.
+
+2
+00:00:03.150 --> 00:00:08.000
+New and changed identities are warnings,
+with the exact columns that changed.
+
+3
+00:00:08.000 --> 00:00:11.178
+Ownerless identities,
+passwords that never expire,
+
+4
+00:00:11.178 --> 00:00:14.725
+and credentials added outside
+the pipeline are findings.
+
+5
+00:00:14.725 --> 00:00:18.712
+Unused and expiring use
+Learn's ninety and thirty days.
+
+6
+00:00:18.712 --> 00:00:20.824
+A new broad grant is a finding.
+
+7
+00:00:20.824 --> 00:00:23.264
+And the ninth rule is the honest one:
+
+8
+00:00:23.264 --> 00:00:27.300
+any gap in the evidence is
+reported, never treated as a pass.
+
+9
+00:00:27.300 --> 00:00:31.509
+The key rule is what counts as the
+pipeline: both a listed identity
+
+10
+00:00:31.509 --> 00:00:35.620
+and a logged key, so a stolen
+pipeline credential still shows up.

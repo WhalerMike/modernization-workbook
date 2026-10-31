@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.343
+Before anything merges,
+Test-PaCaRepository reads the files,
+
+2
+00:00:04.343 --> 00:00:07.625
+and only the files, in
+the pull request pipeline.
+
+3
+00:00:07.625 --> 00:00:09.375
+The nine rules are on the slide.
+
+4
+00:00:09.375 --> 00:00:14.312
+Most come from Learn: exclude the emergency
+group, don't scope the gate to a role,
+
+5
+00:00:14.312 --> 00:00:18.708
+don't mix plain multifactor with a
+strength, cover the fourteen roles,
+
+6
+00:00:18.708 --> 00:00:22.025
+and keep context identifiers
+in the stricter range.
+
+7
+00:00:22.025 --> 00:00:24.114
+A few are the program's own design,
+
+8
+00:00:24.114 --> 00:00:27.750
+like refusing display text
+where an identifier belongs.
+
+9
+00:00:27.750 --> 00:00:31.772
+On the repository as merged, the
+check passes with five warnings,
+
+10
+00:00:31.772 --> 00:00:36.380
+and they're deliberate: the rollout
+hasn't switched those policies on yet.

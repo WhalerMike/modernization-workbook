@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.250
+Each of these dangers has a
+guard that runs every time.
+
+2
+00:00:03.250 --> 00:00:05.333
+The two worst are the lockout halves,
+
+3
+00:00:05.333 --> 00:00:08.875
+and both are checked against the
+live tenant before any write.
+
+4
+00:00:08.875 --> 00:00:13.935
+A context switched on before its policy is
+on looks protective but enforces nothing,
+
+5
+00:00:13.935 --> 00:00:16.537
+which is why a person
+has to confirm the gate.
+
+6
+00:00:16.537 --> 00:00:21.315
+Then there are the quieter ones: a script
+nobody reviewed, one identity that can
+
+7
+00:00:21.315 --> 00:00:26.313
+change everything, settings drifting in the
+portal, and a back-out done from memory.
+
+8
+00:00:26.313 --> 00:00:30.980
+The pattern holds: rules and saved
+files, not people remembering.

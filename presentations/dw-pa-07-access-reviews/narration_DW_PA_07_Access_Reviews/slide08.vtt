@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Each request body is built only
+from shapes Learn documents.
+
+2
+00:00:04.087 --> 00:00:06.288
+A role series reviews users.
+
+3
+00:00:06.288 --> 00:00:09.673
+The groups that hold the role
+aren't reviewed inside it;
+
+4
+00:00:09.673 --> 00:00:13.361
+each gets its own membership
+series, which matches Book 04's
+
+5
+00:00:13.361 --> 00:00:17.500
+pairing of every role review with
+a review of its privileged group.
+
+6
+00:00:17.500 --> 00:00:21.525
+Group reviews cover the group's
+members, a feature still in preview.
+
+7
+00:00:21.525 --> 00:00:25.377
+Azure role reviews go to Resource
+Manager on a preview version,
+
+8
+00:00:25.377 --> 00:00:29.600
+and their reviewers must be people
+or service principals, not groups.
+
+9
+00:00:29.600 --> 00:00:33.349
+One honest gap: Learn's
+request table doesn't list some
+
+10
+00:00:33.349 --> 00:00:37.080
+fields the code sets, so Lab
+2 checks they take effect.

@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:04.998
+The platform and pipeline engineers
+who own the scheduled checks,
+
+3
+00:00:04.998 --> 00:00:09.675
+and the security officers and reviewers
+who receive the evidence and verify it.
+
+4
+00:00:09.675 --> 00:00:11.912
+The permissions are deliberately split.
+
+5
+00:00:11.912 --> 00:00:13.952
+A handful of administrator roles,
+
+6
+00:00:13.952 --> 00:00:17.012
+or the app's owner, can add
+the federated credential.
+
+7
+00:00:17.012 --> 00:00:21.276
+The pipeline's identity gets only
+the read permissions its checks need,
+
+8
+00:00:21.276 --> 00:00:23.950
+plus write access to
+one evidence container.
+
+9
+00:00:23.950 --> 00:00:28.888
+And only the second job, which has no
+Azure access at all, can write issues.
+
+10
+00:00:28.888 --> 00:00:32.760
+No identity both reads the tenant
+and writes to the tracker.

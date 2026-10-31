@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.337
+Lab 1 runs on a laptop with PowerShell
+7 and Pester; nothing signs in.
+
+2
+00:00:05.337 --> 00:00:10.141
+First you run the new check against the
+failing fixture and see a failure with a
+
+3
+00:00:10.141 --> 00:00:13.096
+count of two: two findings,
+one informational row,
+
+4
+00:00:13.096 --> 00:00:15.313
+and one read logged from the fixture.
+
+5
+00:00:15.313 --> 00:00:18.119
+Then you open a matching
+window that ends tomorrow,
+
+6
+00:00:18.119 --> 00:00:19.924
+and the result becomes a warning.
+
+7
+00:00:19.924 --> 00:00:23.575
+Move the date a day past the
+window, and it's a failure again.
+
+8
+00:00:23.575 --> 00:00:26.111
+Finally you hand it a small export file,
+
+9
+00:00:26.111 --> 00:00:30.600
+and the evidence shows the result
+came from the input, not from Graph.

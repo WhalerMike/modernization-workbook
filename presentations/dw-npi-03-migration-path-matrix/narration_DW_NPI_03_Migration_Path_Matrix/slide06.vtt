@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.812
+The cloud side has gaps too.
+
+2
+00:00:01.812 --> 00:00:05.795
+The table recommends a managed
+identity if the service supports one,
+
+3
+00:00:05.795 --> 00:00:10.337
+but leaves you to find out whether it does,
+so the code makes that a required fact.
+
+4
+00:00:10.337 --> 00:00:14.148
+It offers a service principal
+only certificates and secrets,
+
+5
+00:00:14.148 --> 00:00:16.838
+missing federation,
+which the book prefers.
+
+6
+00:00:16.838 --> 00:00:21.472
+It happily recommends a service principal
+for a multitenant app, without saying that
+
+7
+00:00:21.472 --> 00:00:25.912
+Conditional Access can't cover one, so you
+could license something and buy nothing.
+
+8
+00:00:25.912 --> 00:00:28.013
+And nothing records a decision at all.
+
+9
+00:00:28.013 --> 00:00:32.787
+The verdict: Learn's tables define
+preference, but they aren't the matrix.
+
+10
+00:00:32.787 --> 00:00:34.060
+Let's look at the code.

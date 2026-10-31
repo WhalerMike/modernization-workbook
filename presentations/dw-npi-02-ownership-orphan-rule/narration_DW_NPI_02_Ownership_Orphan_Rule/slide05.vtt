@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.750
+Now the orphan rule itself.
+
+2
+00:00:01.750 --> 00:00:05.996
+The plan's decision, owned by the
+chief information security officer,
+
+3
+00:00:05.996 --> 00:00:10.168
+is to disable first, once the
+identity governance officer confirms,
+
+4
+00:00:10.168 --> 00:00:12.850
+then give the office
+thirty days to claim it.
+
+5
+00:00:12.850 --> 00:00:14.740
+Book 04 runs the other way round,
+
+6
+00:00:14.740 --> 00:00:19.100
+and the chapter keeps that difference
+open rather than quietly picking.
+
+7
+00:00:19.100 --> 00:00:22.450
+Learn agrees on the shape:
+disable, don't delete.
+
+8
+00:00:22.450 --> 00:00:24.975
+It offers two reversible switches.
+
+9
+00:00:24.975 --> 00:00:27.913
+One deactivates the
+registration everywhere,
+
+10
+00:00:27.913 --> 00:00:30.850
+but its procedure is still
+on the beta endpoint.
+
+11
+00:00:30.850 --> 00:00:34.757
+The other disables sign-in in this
+tenant on the stable endpoint,
+
+12
+00:00:34.757 --> 00:00:36.650
+and that's the one the code uses.

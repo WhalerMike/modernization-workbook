@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.612
+Lab 2 moves to a test tenant, never
+production, with fictional data.
+
+2
+00:00:04.612 --> 00:00:09.050
+It uses the Conditional Access export
+because it needs just one permission.
+
+3
+00:00:09.050 --> 00:00:11.846
+You register the app in
+the tenant's own cloud,
+
+4
+00:00:11.846 --> 00:00:15.700
+with a certificate, grant that
+one permission, and run the task.
+
+5
+00:00:15.700 --> 00:00:19.819
+Then you watch the token check do
+its job: grant an extra permission
+
+6
+00:00:19.819 --> 00:00:23.938
+and you get a warning, leave one out
+and the run stops before any call.
+
+7
+00:00:23.938 --> 00:00:27.013
+Finally, point it at the
+wrong cloud on purpose.
+
+8
+00:00:27.013 --> 00:00:29.947
+Sign-in goes to the government authority,
+
+9
+00:00:29.947 --> 00:00:33.460
+which doesn't hold a GCC
+tenant, so it fails closed.

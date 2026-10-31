@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.725
+Lab 2 moves to a test tenant with
+Intune licenses, never production.
+
+2
+00:00:04.725 --> 00:00:07.933
+You import a test policy
+object into analytics,
+
+3
+00:00:07.933 --> 00:00:12.375
+then run the gate and build the plan
+for real, with read-only access.
+
+4
+00:00:12.375 --> 00:00:16.150
+Any setting in your library that
+isn't in the plan is a finding.
+
+5
+00:00:16.150 --> 00:00:18.879
+The dry run asks only for read; the apply,
+
+6
+00:00:18.879 --> 00:00:23.825
+under the profile manager role,
+creates policies with no assignments.
+
+7
+00:00:23.825 --> 00:00:25.752
+Then the interesting comparison:
+
+8
+00:00:25.752 --> 00:00:29.400
+run Microsoft's Migrate button on
+the same settings, and compare.
+
+9
+00:00:29.400 --> 00:00:34.812
+Drill drift by editing a value by hand,
+and finally delete everything the lab made.
+
+10
+00:00:34.812 --> 00:00:36.940
+The sync itself never deletes.

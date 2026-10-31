@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Now the code.
+
+2
+00:00:00.988 --> 00:00:05.717
+It's a second module that imports
+Chapter 1's and changes nothing in it,
+
+3
+00:00:05.717 --> 00:00:09.451
+so every read is declared,
+paged to the end, and recorded.
+
+4
+00:00:09.451 --> 00:00:11.438
+The call list has two tasks.
+
+5
+00:00:11.438 --> 00:00:13.188
+Reading needs only Reader.
+
+6
+00:00:13.188 --> 00:00:16.952
+Writing needs User Access
+Administrator, which can manage role
+
+7
+00:00:16.952 --> 00:00:21.213
+assignments but can't change the
+resources themselves, the way Owner can.
+
+8
+00:00:21.213 --> 00:00:25.422
+There's one more candidate, the
+role-based access control administrator,
+
+9
+00:00:25.422 --> 00:00:27.387
+which holds the same write action.
+
+10
+00:00:27.387 --> 00:00:31.532
+But the PIM pages name only Owner
+and User Access Administrator,
+
+11
+00:00:31.532 --> 00:00:35.980
+so the code takes the stricter
+reading until a lab proves otherwise.

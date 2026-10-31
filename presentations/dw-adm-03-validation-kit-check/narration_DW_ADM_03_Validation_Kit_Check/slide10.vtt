@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.338
+A check is tested in both directions.
+
+2
+00:00:02.338 --> 00:00:05.883
+The fixtures are a fictional
+tenant in two states:
+
+3
+00:00:05.883 --> 00:00:08.737
+one with both blocks
+on, one with both off.
+
+4
+00:00:08.737 --> 00:00:13.044
+Each copies the shape of Learn's example
+response, with one extra property
+
+5
+00:00:13.044 --> 00:00:17.138
+the check shouldn't read, so a check
+that reads the wrong one gets caught.
+
+6
+00:00:17.138 --> 00:00:20.804
+Adding the check to the
+table-driven test is a single line,
+
+7
+00:00:20.804 --> 00:00:24.862
+and that line buys four tests,
+including an exact failure count.
+
+8
+00:00:24.862 --> 00:00:28.538
+Then a short block covers what's
+particular to this check:
+
+9
+00:00:28.538 --> 00:00:31.275
+the window, the export,
+and the empty tenant.
+
+10
+00:00:31.275 --> 00:00:35.300
+With the README and catalog
+updated, the whole suite passes.

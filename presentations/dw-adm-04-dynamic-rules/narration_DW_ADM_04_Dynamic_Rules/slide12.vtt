@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Two more pieces finish the code.
+
+2
+00:00:02.025 --> 00:00:07.031
+The shadow diff runs the old rule and
+the new one over the fictional population
+
+3
+00:00:07.031 --> 00:00:12.037
+and lists exactly who a change adds and
+who it removes, right in the pull request.
+
+4
+00:00:12.037 --> 00:00:15.200
+The same idea runs live
+in the validation kit.
+
+5
+00:00:15.200 --> 00:00:18.926
+The pause manifest is the record
+Learn's samples leave out:
+
+6
+00:00:18.926 --> 00:00:22.808
+before anything is paused, it
+writes down every group's state,
+
+7
+00:00:22.808 --> 00:00:27.000
+then pauses only what was on, and
+later resumes only what it paused.
+
+8
+00:00:27.000 --> 00:00:31.220
+Seventy tests cover all of it,
+with no tenant and no network.

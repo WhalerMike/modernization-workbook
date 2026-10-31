@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.638
+This is where the samples fall short,
+and every row is pinned by a test.
+
+2
+00:00:04.638 --> 00:00:08.475
+Learn's read and its rule shapes
+are good, so the code keeps them.
+
+3
+00:00:08.475 --> 00:00:13.579
+But there's no sample for the authentication
+context rule at all, and the activation
+
+4
+00:00:13.579 --> 00:00:18.387
+sample relies on MFA, which may not prompt
+again in a session that already did it.
+
+5
+00:00:18.387 --> 00:00:23.612
+Every update names a policy from somebody
+else's tenant, so a copied script fails.
+
+6
+00:00:23.612 --> 00:00:26.488
+And even with the right
+policy, the samples leave a
+
+7
+00:00:26.488 --> 00:00:29.713
+role different from the
+program's settings in six rules.
+
+8
+00:00:29.713 --> 00:00:31.730
+So the code adds a real diff.

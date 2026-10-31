@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.900
+The read side has two parts.
+
+2
+00:00:01.900 --> 00:00:06.034
+First, a gate from the validation
+kit, which works per policy object:
+
+3
+00:00:06.034 --> 00:00:09.643
+anything targeted in the
+directory that isn't fully ready,
+
+4
+00:00:09.643 --> 00:00:12.950
+or anything in scope that
+was never imported, fails it.
+
+5
+00:00:12.950 --> 00:00:15.012
+Then the move plan works per setting.
+
+6
+00:00:15.012 --> 00:00:18.848
+Every setting gets a row and a
+disposition: a candidate to move,
+
+7
+00:00:18.848 --> 00:00:23.737
+a conflict between two policies, something
+that belongs in Endpoint security,
+
+8
+00:00:23.737 --> 00:00:28.100
+something with no catalog equivalent,
+or something that stays behind.
+
+9
+00:00:28.100 --> 00:00:31.200
+And here's the important part:
+the plan decides nothing.
+
+10
+00:00:31.200 --> 00:00:33.740
+A person decides, and records why.

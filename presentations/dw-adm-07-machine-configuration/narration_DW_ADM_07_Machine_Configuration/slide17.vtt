@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.275
+Every danger here has a guard, and
+they cluster around a few ideas.
+
+2
+00:00:04.275 --> 00:00:07.487
+One owning tool per setting,
+enforced by a tag filter
+
+3
+00:00:07.487 --> 00:00:10.550
+at build time and checked
+again after assignment.
+
+4
+00:00:10.550 --> 00:00:15.638
+Never rebuild at release time: publish the
+bytes you checked, and match their hash.
+
+5
+00:00:15.638 --> 00:00:18.987
+Keep build-host details and
+secrets out of the package.
+
+6
+00:00:18.987 --> 00:00:22.950
+Use the machine's own identity
+rather than a long-lived token.
+
+7
+00:00:22.950 --> 00:00:25.550
+Remember the Arc switch is off by default.
+
+8
+00:00:25.550 --> 00:00:29.342
+And if signing is required,
+sign first, then generate the
+
+9
+00:00:29.342 --> 00:00:33.770
+definition from the signed file,
+so the hash is the one that ships.

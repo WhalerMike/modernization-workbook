@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.463
+Why GitHub Actions?
+
+2
+00:00:01.463 --> 00:00:04.536
+Learn documents two ways
+to run a scheduled job
+
+3
+00:00:04.536 --> 00:00:07.374
+that signs in to Azure
+with no stored secret.
+
+4
+00:00:07.374 --> 00:00:10.362
+The chapter picks GitHub
+Actions for three reasons.
+
+5
+00:00:10.362 --> 00:00:13.615
+Learn publishes complete
+sample workflows for it,
+
+6
+00:00:13.615 --> 00:00:15.938
+including the US Government sign-in.
+
+7
+00:00:15.938 --> 00:00:20.100
+The sign-in action is Microsoft's
+own, with its source published.
+
+8
+00:00:20.100 --> 00:00:22.492
+And for the other option, Azure Pipelines,
+
+9
+00:00:22.492 --> 00:00:25.587
+the automatic setup doesn't
+work in Azure Government.
+
+10
+00:00:25.587 --> 00:00:27.653
+For this estate either would do,
+
+11
+00:00:27.653 --> 00:00:32.262
+but one path that also documents the
+higher clouds is easier to hand on.
+
+12
+00:00:32.262 --> 00:00:35.830
+And the comparator and packager
+work the same under either.

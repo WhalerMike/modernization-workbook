@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.463
+This is the deliverable.
+
+2
+00:00:01.463 --> 00:00:05.623
+For any period, the code verifies
+every package, checks the chain,
+
+3
+00:00:05.623 --> 00:00:09.235
+confirms the windows cover
+the whole period with no gap,
+
+4
+00:00:09.235 --> 00:00:12.062
+and writes a summary
+laid out against Gate 4.
+
+5
+00:00:12.062 --> 00:00:14.247
+It's clear about who decides what:
+
+6
+00:00:14.247 --> 00:00:18.618
+the authorizing official accepts
+residual standing privilege,
+
+7
+00:00:18.618 --> 00:00:21.936
+the ISSO judges the
+elevations, and one criterion,
+
+8
+00:00:21.936 --> 00:00:26.387
+retiring old group policy settings,
+simply isn't a privileged read.
+
+9
+00:00:26.387 --> 00:00:30.729
+The sample workflow runs daily with
+a federated sign-in and no secret,
+
+10
+00:00:30.729 --> 00:00:33.624
+and assembles last month's
+period on the first.
+
+11
+00:00:33.624 --> 00:00:36.700
+Six-hourly runs need
+only a shorter schedule.

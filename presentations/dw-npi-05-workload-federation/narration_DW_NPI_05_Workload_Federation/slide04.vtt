@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.887
+So what is a federated credential?
+
+2
+00:00:01.887 --> 00:00:06.499
+It's a trust you put on an app registration
+or a user-assigned managed identity.
+
+3
+00:00:06.499 --> 00:00:10.262
+The workload, say a GitHub
+workflow or a Kubernetes pod,
+
+4
+00:00:10.262 --> 00:00:15.696
+presents a token from its own issuer, and
+Microsoft Entra swaps it for an access
+
+5
+00:00:15.696 --> 00:00:20.963
+token, but only if three values match:
+the issuer, the subject and the audience.
+
+6
+00:00:20.963 --> 00:00:25.300
+The match is exact, down to the
+letter case, with no wildcards.
+
+7
+00:00:25.300 --> 00:00:28.412
+A system-assigned identity
+can't hold one at all.
+
+8
+00:00:28.412 --> 00:00:31.603
+And managed identities, the
+first choice in the order,
+
+9
+00:00:31.603 --> 00:00:36.100
+get their access from Azure role
+assignments, which this chapter records.

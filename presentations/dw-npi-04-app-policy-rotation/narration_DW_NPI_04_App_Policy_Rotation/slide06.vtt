@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.397
+Here's what Microsoft gives
+you: five Learn sources that,
+
+2
+00:00:03.397 --> 00:00:05.725
+between them, hold the whole procedure.
+
+3
+00:00:05.725 --> 00:00:08.715
+There's the request that
+turns on the tenant default,
+
+4
+00:00:08.715 --> 00:00:13.373
+the pair that create and assign an app
+policy, Learn's configuration walkthrough,
+
+5
+00:00:13.373 --> 00:00:17.475
+the request that adds a certificate to
+an app, and the Key Vault examples.
+
+6
+00:00:17.475 --> 00:00:22.679
+Those samples only live inside web pages,
+so the repository pins their sources,
+
+7
+00:00:22.679 --> 00:00:26.338
+unmodified and hashed, with
+a weekly watch for changes.
+
+8
+00:00:26.338 --> 00:00:31.712
+Then a harness sends each request,
+exactly as written, to a fake Graph.
+
+9
+00:00:31.712 --> 00:00:34.460
+That's how you find out
+what each one really does.

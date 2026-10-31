@@ -1,0 +1,845 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:10.037
+This is Chapter 8: Conditional
+Access for workload identities.
+
+4
+00:00:10.037 --> 00:00:12.587
+A stolen client secret
+works from anywhere,
+
+5
+00:00:12.587 --> 00:00:15.987
+unless something says where
+the workload is allowed to be.
+
+6
+00:00:15.987 --> 00:00:20.850
+So that place is written down, reviewed,
+and enforced one ring at a time.
+
+7
+00:00:20.850 --> 00:00:23.613
+We'll start from Learn's
+own sample policy,
+
+8
+00:00:23.613 --> 00:00:28.812
+see why Graph would refuse it as published,
+then walk the scope file, the checks,
+
+9
+00:00:28.812 --> 00:00:30.763
+the plan, enforcement by ring,
+
+10
+00:00:30.763 --> 00:00:34.500
+the sign-in reader and the
+alert, two labs and the dangers.
+
+11
+00:00:34.500 --> 00:00:40.020
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+12
+00:00:43.770 --> 00:00:45.282
+Why does this chapter matter?
+
+13
+00:00:45.282 --> 00:00:48.057
+Because a stolen secret
+works from anywhere,
+
+14
+00:00:48.057 --> 00:00:52.257
+and Conditional Access is how you
+pin a workload to its own networks.
+
+15
+00:00:52.257 --> 00:00:55.126
+Learn is short and firm
+about what it can do:
+
+16
+00:00:55.126 --> 00:01:00.207
+block from outside known ranges, or on
+risk, and blocking is the only control.
+
+17
+00:01:00.207 --> 00:01:04.460
+Four limits then decide the whole
+scope: you need the premium license,
+
+18
+00:01:04.460 --> 00:01:08.340
+only single-tenant apps are
+covered, managed identities aren't,
+
+19
+00:01:08.340 --> 00:01:11.995
+and a policy assigned through
+a group simply isn't enforced.
+
+20
+00:01:11.995 --> 00:01:16.610
+For this estate, everything goes
+to the worldwide Graph endpoint.
+
+21
+00:01:20.360 --> 00:01:23.885
+The program's design comes
+from Book 4: two policies.
+
+22
+00:01:23.885 --> 00:01:28.285
+One blocks workloads from anywhere
+except their named egress ranges.
+
+23
+00:01:28.285 --> 00:01:32.447
+The other blocks them when Microsoft's
+risk detection marks them high.
+
+24
+00:01:32.447 --> 00:01:35.616
+They roll out report-only
+first, then ring by ring,
+
+25
+00:01:35.616 --> 00:01:38.072
+and they're never deleted on rollback.
+
+26
+00:01:38.072 --> 00:01:39.560
+Two decisions frame it.
+
+27
+00:01:39.560 --> 00:01:43.260
+The licensing decision covers
+the top-tier single-tenant apps.
+
+28
+00:01:43.260 --> 00:01:46.580
+The enforcement decision
+is the security chief's:
+
+29
+00:01:46.580 --> 00:01:50.223
+enforce, wait longer, or
+enforce with dated exclusions.
+
+30
+00:01:50.223 --> 00:01:53.286
+And don't worry when the
+risk policy reports nothing;
+
+31
+00:01:53.286 --> 00:01:56.490
+that's normal until
+something is actually risky.
+
+32
+00:02:00.240 --> 00:02:02.115
+Here's Microsoft's starting point.
+
+33
+00:02:02.115 --> 00:02:05.558
+Learn's page gives portal
+steps for both kinds of policy,
+
+34
+00:02:05.558 --> 00:02:09.899
+says to save them report-only first,
+tells you where to read the results,
+
+35
+00:02:09.899 --> 00:02:14.165
+and ends with one sample policy in
+JSON for the beta Graph endpoint.
+
+36
+00:02:14.165 --> 00:02:16.700
+The repository searched Microsoft's sample
+
+37
+00:02:16.700 --> 00:02:19.577
+repositories and found
+nothing else to start from.
+
+38
+00:02:19.577 --> 00:02:24.224
+So the page is pinned, unmodified, with
+checked hashes and a weekly watch,
+
+39
+00:02:24.224 --> 00:02:28.792
+and its one JSON block is extracted
+and sent to a fake Graph and to the
+
+40
+00:02:28.792 --> 00:02:33.560
+program's own pre-merge check, exactly
+as if someone had committed it.
+
+41
+00:02:37.310 --> 00:02:38.924
+The sample's shape is right,
+
+42
+00:02:38.924 --> 00:02:42.372
+and the code keeps it as the
+model for the location policy.
+
+43
+00:02:42.372 --> 00:02:44.160
+But the values aren't values.
+
+44
+00:02:44.160 --> 00:02:49.015
+The state field is literally the text
+"enabled or disabled", and the service
+
+45
+00:02:49.015 --> 00:02:53.710
+principal ID is a placeholder in
+brackets, so Graph refuses it outright.
+
+46
+00:02:53.710 --> 00:02:56.772
+Worse, the easy ways to
+fill it in are dangerous.
+
+47
+00:02:56.772 --> 00:03:01.647
+One option covers every service
+principal in the tenant, reviewed or not.
+
+48
+00:03:01.647 --> 00:03:05.522
+Another trusts every network you've
+marked trusted for people, too.
+
+49
+00:03:05.522 --> 00:03:09.965
+The code allows only reviewed
+object IDs and one dedicated,
+
+50
+00:03:09.965 --> 00:03:12.310
+untrusted named location.
+
+51
+00:03:16.060 --> 00:03:19.885
+The rest of the gaps are about what
+a program needs around one policy.
+
+52
+00:03:19.885 --> 00:03:23.347
+A field the stable API
+marks required is missing.
+
+53
+00:03:23.347 --> 00:03:26.011
+There's no JSON at all
+for the risk policy.
+
+54
+00:03:26.011 --> 00:03:28.623
+The results live only in the admin center,
+
+55
+00:03:28.623 --> 00:03:31.473
+where a pipeline can't
+keep them as evidence.
+
+56
+00:03:31.473 --> 00:03:34.960
+There's no record of who's in
+scope, who's out, and why.
+
+57
+00:03:34.960 --> 00:03:37.160
+And there are no rings and no alert,
+
+58
+00:03:37.160 --> 00:03:41.247
+so enforcement is all or nothing
+and nobody hears about a block.
+
+59
+00:03:41.247 --> 00:03:46.000
+So the verdict: keep the sample's shape,
+and don't create it as published.
+
+60
+00:03:49.750 --> 00:03:50.975
+What does the code add?
+
+61
+00:03:50.975 --> 00:03:55.782
+Its own module, building on Chapter 1's
+core, and unlike the earlier read paths,
+
+62
+00:03:55.782 --> 00:03:59.750
+this one can write Conditional
+Access, so it's careful about how.
+
+63
+00:03:59.750 --> 00:04:04.200
+The two policies, the named location
+and the alert are reviewed files.
+
+64
+00:04:04.200 --> 00:04:09.714
+The scope file is the record Gate 5 asks
+for: who's in, by object ID and ring,
+
+65
+00:04:09.714 --> 00:04:14.087
+who's out and what covers them
+instead, and the decisions.
+
+66
+00:04:14.087 --> 00:04:16.598
+Each policy is rendered once per ring,
+
+67
+00:04:16.598 --> 00:04:22.230
+so enforcing one ring changes one policy
+and leaves the next one in report-only.
+
+68
+00:04:25.980 --> 00:04:30.743
+There are two checks: one reads only
+files and runs on every pull request,
+
+69
+00:04:30.743 --> 00:04:33.892
+the other runs against
+the tenant on every plan.
+
+70
+00:04:33.892 --> 00:04:38.782
+Most of the nine rules come straight from
+Learn's limits: assign by object ID,
+
+71
+00:04:38.782 --> 00:04:42.804
+never by group; no managed
+identities; single-tenant apps only;
+
+72
+00:04:42.804 --> 00:04:46.668
+and an object ID that really
+is the enterprise application.
+
+73
+00:04:46.668 --> 00:04:50.902
+The program adds its own: the
+licensing decision must be recorded,
+
+74
+00:04:50.902 --> 00:04:55.920
+every policy file stays report-only and
+block-only, egress ranges stay narrow,
+
+75
+00:04:55.920 --> 00:05:01.680
+and enforcement needs the security chief's
+decision and a reviewed sign-in summary.
+
+76
+00:05:05.430 --> 00:05:08.191
+The plan compares the
+files with the tenant,
+
+77
+00:05:08.191 --> 00:05:11.643
+property by property, and
+gives each policy one action.
+
+78
+00:05:11.643 --> 00:05:13.068
+Two details matter.
+
+79
+00:05:13.068 --> 00:05:15.990
+A new policy is always
+created report-only,
+
+80
+00:05:15.990 --> 00:05:20.831
+even if its ring is approved for
+enforcement; it turns on in the next run.
+
+81
+00:05:20.831 --> 00:05:25.242
+And a policy someone made by hand in
+the portal is reported, never deleted.
+
+82
+00:05:25.242 --> 00:05:29.055
+Run as the read task, the client
+simply can't send a write.
+
+83
+00:05:29.055 --> 00:05:32.605
+Run as the apply task, it
+refuses on any finding.
+
+84
+00:05:32.605 --> 00:05:36.138
+Rollback follows Book 4: take
+the ring off the record,
+
+85
+00:05:36.138 --> 00:05:39.140
+and its policies go back to report-only.
+
+86
+00:05:42.890 --> 00:05:46.374
+Turning a policy on is the moment
+a production job can stop,
+
+87
+00:05:46.374 --> 00:05:48.696
+so the code asks for five things at once,
+
+88
+00:05:48.696 --> 00:05:52.615
+or the ring stays held in report-only
+with the reason written down.
+
+89
+00:05:52.615 --> 00:05:55.565
+The security chief's
+decision must mark the ring.
+
+90
+00:05:55.565 --> 00:05:58.478
+The change must explicitly
+allow enforcement.
+
+91
+00:05:58.478 --> 00:06:02.002
+A reviewed sign-in summary
+must be cited by its hash.
+
+92
+00:06:02.002 --> 00:06:04.253
+That summary must show the ring ready.
+
+93
+00:06:04.253 --> 00:06:07.291
+And every earlier ring
+must already be enforced.
+
+94
+00:06:07.291 --> 00:06:10.648
+Exclusions are allowed,
+but each one has an owner,
+
+95
+00:06:10.648 --> 00:06:15.970
+a reason and an end date, and it drops
+out by itself when that date arrives.
+
+96
+00:06:19.720 --> 00:06:23.010
+The evidence comes from the
+service principal sign-in logs,
+
+97
+00:06:23.010 --> 00:06:24.420
+and there are three traps.
+
+98
+00:06:24.420 --> 00:06:27.657
+Without the right filter you
+only get interactive sign-ins.
+
+99
+00:06:27.657 --> 00:06:30.495
+Without a Conditional
+Access read permission,
+
+100
+00:06:30.495 --> 00:06:32.969
+the policy results are silently left out.
+
+101
+00:06:32.969 --> 00:06:35.341
+And without a special request header,
+
+102
+00:06:35.341 --> 00:06:38.707
+the report-only results come
+back as an unknown value.
+
+103
+00:06:38.707 --> 00:06:42.670
+The reader handles all three,
+and throws rather than guessing.
+
+104
+00:06:42.670 --> 00:06:44.795
+It gives each principal a status,
+
+105
+00:06:44.795 --> 00:06:48.258
+and a ring is ready when
+everyone's clear for two weeks.
+
+106
+00:06:48.258 --> 00:06:52.710
+Once enforced, a block alert
+goes to security operations.
+
+107
+00:06:56.460 --> 00:06:57.510
+Who's involved?
+
+108
+00:06:57.510 --> 00:06:58.897
+Developers build it.
+
+109
+00:06:58.897 --> 00:07:01.609
+Identity engineers own the policies.
+
+110
+00:07:01.609 --> 00:07:05.302
+Application owners have workloads
+in scope, and the security
+
+111
+00:07:05.302 --> 00:07:09.573
+officer and security operations
+review results and receive the alert.
+
+112
+00:07:09.573 --> 00:07:11.735
+Three tasks split the permissions.
+
+113
+00:07:11.735 --> 00:07:14.885
+Reading needs only policy
+and application read.
+
+114
+00:07:14.885 --> 00:07:19.596
+Reading sign-ins needs the audit log
+permission plus the narrowest of the three
+
+115
+00:07:19.596 --> 00:07:24.235
+ways to see policy results; Learn doesn't
+rank them, so the chapter picked by name.
+
+116
+00:07:24.235 --> 00:07:28.213
+Only the apply task holds the
+write permission, and a test keeps
+
+117
+00:07:28.213 --> 00:07:32.850
+every task's permissions equal to
+its calls, with no delete anywhere.
+
+118
+00:07:36.600 --> 00:07:41.438
+Lab 1 runs on a laptop, with the fixture's
+date fixed at the end of October.
+
+119
+00:07:41.438 --> 00:07:45.633
+First you run the tests on Learn's
+sample as published, and read the one
+
+120
+00:07:45.633 --> 00:07:49.901
+where the fake Graph refuses it,
+because its state is just display text.
+
+121
+00:07:49.901 --> 00:07:52.050
+Then list what each task needs.
+
+122
+00:07:52.050 --> 00:07:55.600
+Then run the pre-merge check
+on the repository's own files,
+
+123
+00:07:55.600 --> 00:07:59.075
+which passes cleanly; a finding
+would fail the pipeline.
+
+124
+00:07:59.075 --> 00:08:02.948
+And then the instructive step: run
+the same check on Learn's sample,
+
+125
+00:08:02.948 --> 00:08:08.190
+and it reports five findings, one for each
+of the dangers we walked through earlier.
+
+126
+00:08:11.940 --> 00:08:15.590
+Next, plan against the fictional
+tenant, sending nothing.
+
+127
+00:08:15.590 --> 00:08:20.353
+The named location is missing its
+IPv6 range, so it's an update.
+
+128
+00:08:20.353 --> 00:08:24.228
+Ring 1's location policy
+already exists and matches.
+
+129
+00:08:24.228 --> 00:08:25.641
+Three policies are new.
+
+130
+00:08:25.641 --> 00:08:28.136
+And a policy someone made in the portal,
+
+131
+00:08:28.136 --> 00:08:32.115
+covering every service principal,
+is reported but left alone.
+
+132
+00:08:32.115 --> 00:08:33.790
+Then read the sign-ins.
+
+133
+00:08:33.790 --> 00:08:35.728
+Ring 1 is clear and ready.
+
+134
+00:08:35.728 --> 00:08:40.387
+In Ring 2, a deploy bot signed in from
+an address outside the egress ranges,
+
+135
+00:08:40.387 --> 00:08:43.339
+so it would be blocked,
+and that ring isn't ready.
+
+136
+00:08:43.339 --> 00:08:46.410
+Notice that no user
+sign-ins come back at all.
+
+137
+00:08:50.160 --> 00:08:52.823
+Now apply the plan to the fake, twice.
+
+138
+00:08:52.823 --> 00:08:56.700
+The first run sends four requests,
+and the second sends none,
+
+139
+00:08:56.700 --> 00:09:01.844
+because everything already matches; and
+every workload policy is report-only,
+
+140
+00:09:01.844 --> 00:09:04.772
+while an unrelated user
+policy is untouched.
+
+141
+00:09:04.772 --> 00:09:06.522
+Then try to enforce Ring 1.
+
+142
+00:09:06.522 --> 00:09:09.194
+Record the decision
+and the summary's hash,
+
+143
+00:09:09.194 --> 00:09:13.773
+and plan without the enforcement switch:
+the ring is held, with the reason.
+
+144
+00:09:13.773 --> 00:09:17.667
+Add the switch and the summary,
+and the location policy turns on,
+
+145
+00:09:17.667 --> 00:09:20.961
+while the brand-new risk
+policy waits for the next run.
+
+146
+00:09:20.961 --> 00:09:24.300
+Change one byte of the
+summary, and it's held again.
+
+147
+00:09:28.050 --> 00:09:32.375
+Lab 2 uses a test tenant with a
+Premium trial, never production.
+
+148
+00:09:32.375 --> 00:09:36.944
+You write a scope with one test app,
+by its enterprise application ID,
+
+149
+00:09:36.944 --> 00:09:39.800
+and an egress range of
+exactly one address.
+
+150
+00:09:39.800 --> 00:09:42.400
+A reading app plans with
+read permissions only.
+
+151
+00:09:42.400 --> 00:09:45.308
+Then you add the write
+permission, apply twice,
+
+152
+00:09:45.308 --> 00:09:48.062
+and confirm everything landed report-only.
+
+153
+00:09:48.062 --> 00:09:51.140
+Generate sign-ins from inside
+and outside the range,
+
+154
+00:09:51.140 --> 00:09:53.287
+and read them with a separate reader.
+
+155
+00:09:53.287 --> 00:09:56.934
+After two clear weeks, enforce
+Ring 1 in its own change,
+
+156
+00:09:56.934 --> 00:09:59.751
+and watch the outside sign-in get blocked.
+
+157
+00:09:59.751 --> 00:10:01.320
+Then back it all out.
+
+158
+00:10:05.070 --> 00:10:07.504
+Several of these dangers are quiet ones:
+
+159
+00:10:07.504 --> 00:10:12.520
+a policy that looks configured and enforces
+nothing, because the app was assigned
+
+160
+00:10:12.520 --> 00:10:17.020
+through a group, or by the registration's
+ID instead of the enterprise app's.
+
+161
+00:10:17.020 --> 00:10:20.203
+Others are loud: switching
+a policy straight on,
+
+162
+00:10:20.203 --> 00:10:22.733
+so a workload that moved stops at once.
+
+163
+00:10:22.733 --> 00:10:27.305
+And some hide in the evidence:
+report-only results that never came back,
+
+164
+00:10:27.305 --> 00:10:30.932
+so the summary looks clean, or
+a block nobody hears about.
+
+165
+00:10:30.932 --> 00:10:34.409
+Then the slow ones: a lapsed
+license, so a fix can't ship,
+
+166
+00:10:34.409 --> 00:10:37.158
+and a write permission left lying around.
+
+167
+00:10:37.158 --> 00:10:38.580
+Each has a guard.
+
+168
+00:10:42.330 --> 00:10:43.680
+Here's what done looks like.
+
+169
+00:10:43.680 --> 00:10:45.943
+The licensing decision is recorded.
+
+170
+00:10:45.943 --> 00:10:48.737
+Every in-scope app is
+top-tier, single-tenant,
+
+171
+00:10:48.737 --> 00:10:52.619
+listed by its enterprise
+application ID, in exactly one ring,
+
+172
+00:10:52.619 --> 00:10:57.043
+and everything out of scope names
+the control that covers it instead.
+
+173
+00:10:57.043 --> 00:11:01.667
+The egress location holds only the
+workload ranges and isn't trusted.
+
+174
+00:11:01.667 --> 00:11:03.892
+Every policy started report-only.
+
+175
+00:11:03.892 --> 00:11:06.561
+Each ring was enforced in its own change,
+
+176
+00:11:06.561 --> 00:11:11.331
+on two clean weeks of reviewed evidence,
+with the alert already in place.
+
+177
+00:11:11.331 --> 00:11:14.942
+Next, Chapter 9 takes
+on AI agent identities.
+
+178
+00:11:14.942 --> 00:11:16.100
+Thanks for watching.

@@ -1,0 +1,573 @@
+{
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Privileged Access."
+  ],
+  [
+   5.688,
+   3.55,
+   "This is Chapter 6: pim for Azure resources."
+  ],
+  [
+   9.238,
+   11.35,
+   "Standing Owner and Contributor are what an attacker hopes to find, so this chapter makes those roles eligible, time-bound and approved, and holds the settings as reviewed code at every scope."
+  ],
+  [
+   20.587,
+   10.688,
+   "We'll start from Learn's walkthroughs and Microsoft's own request examples, see what they leave to you, then walk the plan, the dry run, the apply, two labs and the dangers."
+  ],
+  [
+   31.275,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   3.112,
+   "Because a standing Owner is privilege that's always on."
+  ],
+  [
+   4.312,
+   7.025,
+   "Nobody has to activate it, approve it, or explain it, so an attacker who takes the account doesn't have to wait either."
+  ],
+  [
+   11.338,
+   5.963,
+   "The fix is the one you already know from Entra roles: make the role eligible, time-bound and approved."
+  ],
+  [
+   17.3,
+   3.775,
+   "What's different in Azure is that every scope keeps its own rules."
+  ],
+  [
+   21.075,
+   9.975,
+   "The chapter governs the three roles the plan names, Owner, Contributor and User Access Administrator, with Microsoft's ceiling of three subscription owners on top."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   9.762,
+   "This estate's tenant is G C C on the worldwide endpoints, with commercial Azure, so every call in this chapter goes to the commercial Resource Manager host."
+  ],
+  [
+   11.175,
+   6.1,
+   "G C C High and Department of Defense subscriptions liv in Azure Government, which has its own host."
+  ],
+  [
+   17.275,
+   12.925,
+   "The licensing pim needs is available in all of these clouds, but notice the honest gap: no page the chapter read states the pim Resource Manager A P I's availability in Azure Government outright."
+  ],
+  [
+   30.2,
+   5.55,
+   "So the code makes you name the cloud every time, and refuses a file written for a different one."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.35,
+   "Here's the first thing to know: pim for Azure resources isn't in Microsoft Graph at all."
+  ],
+  [
+   5.4,
+   7.275,
+   "Entra roles and groups are managed through Graph, but Azure resources go through Resource Manager, with no Graph permissions."
+  ],
+  [
+   12.675,
+   8.512,
+   "Three resource types do the work: one for eligible assignments, one for active assignments and activations, and one for the role settings."
+  ],
+  [
+   21.188,
+   4.825,
+   "The schedules they produce are the same lists Chapter 1's inventory already reads."
+  ],
+  [
+   26.012,
+   8.988,
+   "And there's a deadline: the old beta endpoint stops returning data at the end of October 2026, so the chapter uses only the current A P I."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.688,
+   "Three facts shape the code."
+  ],
+  [
+   1.738,
+   10.537,
+   "First, the version: the generally available release covers every pim resource type, and the code pins it, even though one of Learn's how-to pages still shows an older preview."
+  ],
+  [
+   12.275,
+   5.925,
+   "When Learn's pages disagree, the chapter follows the stricter one and writes the disagreement down."
+  ],
+  [
+   18.2,
+   2.2,
+   "Second, settings don't inherit."
+  ],
+  [
+   20.4,
+   6.3,
+   "A resource group under a governed subscription keeps its defaults, so the file has to list every scope."
+  ],
+  [
+   26.7,
+   3.337,
+   "Third, only users and groups can be eligible."
+  ],
+  [
+   30.038,
+   4.2,
+   "A pipeline's service principal can't activate, so it can't be converted."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.712,
+   "Here's what Microsoft gives you."
+  ],
+  [
+   1.762,
+   6.875,
+   "Learn has three walkthroughs, one per job: eligible access, active access, and the role settings."
+  ],
+  [
+   8.637,
+   8.688,
+   "Together they show how to list, grant, remove, activate, and patch a role's rules, and which errors come back when a request breaks a rule."
+  ],
+  [
+   17.325,
+   2.913,
+   "Their source isn't public, so they can't be pinned."
+  ],
+  [
+   20.238,
+   8.938,
+   "But Microsoft's request and response examples for the same calls are, so the repository pins six of them, unmodified, with hashes a test checks."
+  ],
+  [
+   29.175,
+   6.287,
+   "A stand-in Resource Manager then replays them through the code, and nothing signs in or leaves the machine."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.038,
+   "Replaying the examples turns up some real traps."
+  ],
+  [
+   3.087,
+   6.312,
+   "The list examples show one page for one person, but a busy subscription spans many pages."
+  ],
+  [
+   9.4,
+   7.037,
+   "One example's role I D and its friendly name disagree, so code that trusts the name files a row under the wrong role."
+  ],
+  [
+   16.438,
+   7.062,
+   "Another example says \"assigned\", but it's really an activation, and read naively it looks like standing access."
+  ],
+  [
+   23.5,
+   4.688,
+   "The scope is written three different ways, which quietly breaks any diff."
+  ],
+  [
+   28.188,
+   6.213,
+   "And the sample eligibility lasts a year, with no justification, longer than any tier allows."
+  ],
+  [
+   34.4,
+   2.112,
+   "Each of these is pinned by a test."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.525,
+   "The rest of the gaps aren't mistakes, they're things the examples never try to do."
+  ],
+  [
+   4.575,
+   6.463,
+   "They show one rule patched at one subscription, but settings don't inherit, so every scope needs its own."
+  ],
+  [
+   11.037,
+   4.088,
+   "Nothing in them finds standing Owner, which is the whole point of the project."
+  ],
+  [
+   15.125,
+   4.612,
+   "Every write is a request you send by hand, with nothing to review first."
+  ],
+  [
+   19.738,
+   2.85,
+   "And every request goes to the commercial host."
+  ],
+  [
+   22.587,
+   7.85,
+   "So the verdict: use the walkthroughs as the procedure and the examples as the contract for shapes, but don't drive the estate from them."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.938,
+   "Now the code."
+  ],
+  [
+   0.988,
+   8.463,
+   "It's a second module that imports Chapter 1's and changes nothing in it, so every read is declared, paged to the end, and recorded."
+  ],
+  [
+   9.45,
+   1.988,
+   "The call list has two tasks."
+  ],
+  [
+   11.438,
+   1.75,
+   "Reading needs only Reader."
+  ],
+  [
+   13.188,
+   8.025,
+   "Writing needs User Access Administrator, which can manage role assignments but can't change the resources themselves, the way Owner can."
+  ],
+  [
+   21.212,
+   6.175,
+   "There's one more candidate, the role-based access control administrator, which holds the same write action."
+  ],
+  [
+   27.387,
+   8.525,
+   "But the pim pages name only Owner and User Access Administrator, so the code takes the stricter reading until a lab proves otherwise."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.125,
+   "The heart of the configuration is one reviewed file."
+  ],
+  [
+   3.175,
+   16.75,
+   "It names the scopes, the roles, who's eligible, and the settings for each tier, taken from Book 04's role settings: shorter activations and tighter eligibility for the most sensitive tier, approval by a named group, and a justification and ticket on every activation."
+  ],
+  [
+   19.925,
+   2.75,
+   "Those values are the program's design guidance."
+  ],
+  [
+   22.675,
+   3.85,
+   "The loader also refuses what Learn or the program rules out."
+  ],
+  [
+   26.525,
+   10.1,
+   "The subtle one is authentication context: Learn says to create its Conditional Access policy before you point pim at it, so the file can't use it until that's confirmed."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.013,
+   "The read is straightforward: at each governed scope, both schedule lists and one policy per role."
+  ],
+  [
+   6.062,
+   7.287,
+   "A schedule counts as permanently active only when it's assigned, never ends, isn't an activation, and is direct."
+  ],
+  [
+   13.35,
+   1.95,
+   "The plan is where order matters."
+  ],
+  [
+   15.3,
+   4.763,
+   "Policies go first, because a request that breaks the policy is refused."
+  ],
+  [
+   20.062,
+   2.212,
+   "New eligible assignments go second."
+  ],
+  [
+   22.275,
+   5.612,
+   "And standing access is removed last, so nobody loses a role before they can activate it."
+  ],
+  [
+   27.887,
+   7.925,
+   "Anything eligible that the file doesn't mention is reported, not removed: taking access away is its own reviewed change."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.675,
+   "The plan also reports what it found, and just as important, what it won't touch."
+  ],
+  [
+   4.725,
+   3.675,
+   "Standing privileged roles outside owned exceptions are findings."
+  ],
+  [
+   8.4,
+   4.787,
+   "A service principal is reported, never converted, because it can't activate."
+  ],
+  [
+   13.188,
+   2.888,
+   "Root-scope elevation is flagged for removal."
+  ],
+  [
+   16.075,
+   6.662,
+   "The identity running the plan never plans away its own access; that's decided last, from another session."
+  ],
+  [
+   22.738,
+   3.862,
+   "And a subscription that would end up with more than three owners is flagged."
+  ],
+  [
+   26.6,
+   11.2,
+   "Writing, meanwhile, is hard to do by accident: it's a dry run unless you ask to apply, and every run leaves evidence, including the state as read, which is your back-out."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.062,
+   "Who is this for?"
+  ],
+  [
+   1.113,
+   5.2,
+   "The platform engineers who own the Azure management group hierarchy write and keep the file."
+  ],
+  [
+   6.312,
+   8.387,
+   "The identity engineers and the information system security officers review every change before it's applied, by reading the diff and the plan."
+  ],
+  [
+   14.7,
+   7.838,
+   "The eligible holders are people and groups, licensed for pim, who'll now activate with a reason, a ticket and an approval."
+  ],
+  [
+   22.538,
+   12.338,
+   "And the automation itself runs with as little as possible: Reader for the dry run, User Access Administrator held only for a day or so for the apply, never Owner, and no Graph permissions at all."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.05,
+   "Lab 1 runs on a laptop, with no tenant and no network."
+  ],
+  [
+   4.1,
+   4.463,
+   "First you replay Microsoft's own examples, and the six tests pass."
+  ],
+  [
+   8.562,
+   4.85,
+   "Read the second one: Microsoft's assignment example is really an activation."
+  ],
+  [
+   13.412,
+   3.737,
+   "Next, ask the code which roles each task needs."
+  ],
+  [
+   17.15,
+   1.788,
+   "Owner isn't needed for anything."
+  ],
+  [
+   18.938,
+   3.837,
+   "Then plan against a small fictional estate, as a dry run."
+  ],
+  [
+   22.775,
+   10.387,
+   "It reads the schedules and policies, plans eleven policy updates, five new eligible assignments and three removals, and writes nineteen requests without sending one."
+  ],
+  [
+   33.163,
+   1.375,
+   "Let's read what it planned."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.275,
+   "Now read the plan the way a reviewer would."
+  ],
+  [
+   2.325,
+   7.162,
+   "Three standing assignments become eligible, each with a matching removal, and two declared groups gain eligibility."
+  ],
+  [
+   9.488,
+   4.85,
+   "Seventy policy rules change, but a policy that's already right isn't touched."
+  ],
+  [
+   14.338,
+   12.85,
+   "The findings tell the rest: the automation's own access is left alone, a root-scope elevation is flagged, a pipeline's service principal is reported, not converted, and one subscription would have four owners."
+  ],
+  [
+   27.188,
+   4.612,
+   "Then apply against the fake, and a fresh read shows nothing left to change."
+  ],
+  [
+   31.8,
+   5.025,
+   "Finally, watch the code refuse an undeclared write and a scope it doesn't govern."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.562,
+   "Lab 2 moves to a test tenant and a test subscription, never production."
+  ],
+  [
+   4.612,
+   10.812,
+   "You give a reader app nothing but Reader, write a small desired state with one hand-made standing Owner to convert, and plan liv, comparing what the code read with what the admin center shows."
+  ],
+  [
+   15.425,
+   6.688,
+   "Then you grant the write role for a single day, apply, and activate as the test user to see the approval flow."
+  ],
+  [
+   22.113,
+   4.688,
+   "There's also a small experiment to settle an open question about the narrower role."
+  ],
+  [
+   26.8,
+   5.963,
+   "And to back it out, wait five minutes first: Learn says a new assignment can't be removed sooner."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   6.15,
+   "Every danger here is a way a well-meant change goes wrong in production, and each has a guard in the code."
+  ],
+  [
+   6.2,
+   8.012,
+   "The worst is order: remove standing Owner before the eligible role exists and someone loses access in the middle of a task."
+  ],
+  [
+   14.213,
+   5.162,
+   "Close behind is the automation removing its own access halfway through a run."
+  ],
+  [
+   19.375,
+   9.988,
+   "Others are quieter: a resource group nobody listed keeps its defaults, an authentication context points at a policy that isn't there, or a typo lands unreviewed."
+  ],
+  [
+   29.363,
+   6.062,
+   "The pattern is the same as before: a dry run by default, and rules that run every time."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   17.775,
+   "On the estate side: every governed scope is listed, and you've written down what isn't; each role's settings match the tier everywhere, and a fresh read after the apply shows nothing left; no standing privileged roles remain outside owned exceptions; and no subscription has more than three owners."
+  ],
+  [
+   19.175,
+   10.262,
+   "On the run side: the right roles, held briefly, the right cloud, a reviewer who read the plan before the apply, and pinned examples still matching what was reviewed."
+  ],
+  [
+   29.438,
+   4.0,
+   "Next, Chapter 7 reviews who holds these privileged roles."
+  ],
+  [
+   33.438,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

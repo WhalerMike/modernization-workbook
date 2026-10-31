@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.209
+Reading day two's drift, the three credentials
+the rule couldn't see are all there:
+
+2
+00:00:05.209 --> 00:00:09.898
+one added by a person, one added by
+another app abusing a broad permission,
+
+3
+00:00:09.898 --> 00:00:12.087
+and the very first secret on an app.
+
+4
+00:00:12.087 --> 00:00:16.480
+Just as important is what's missing:
+the pipeline's own two rotations,
+
+5
+00:00:16.480 --> 00:00:19.538
+because both the identity
+and the key log agree.
+
+6
+00:00:19.538 --> 00:00:23.751
+An expiring certificate from day
+one is gone, because it was rotated.
+
+7
+00:00:23.751 --> 00:00:27.075
+A chapter file with a forged
+fingerprint is refused.
+
+8
+00:00:27.075 --> 00:00:31.665
+Then the vintage comparison finds a
+new deployed agent with no identity,
+
+9
+00:00:31.665 --> 00:00:34.780
+and a retired use case
+whose app is still enabled.

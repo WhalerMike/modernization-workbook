@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.775
+The check compares the
+sweep with the reviewed
+
+2
+00:00:02.775 --> 00:00:05.500
+list and the exceptions,
+and applies nine rules.
+
+3
+00:00:05.500 --> 00:00:09.995
+The heart of it: a broad permission with
+no current, complete exception is a
+
+4
+00:00:09.995 --> 00:00:12.942
+finding, whether it's an
+application permission
+
+5
+00:00:12.942 --> 00:00:15.300
+or a delegated one granted to everyone.
+
+6
+00:00:15.300 --> 00:00:20.397
+Two rules cover mail, including a subtle
+one: if the exception relies on scoped
+
+7
+00:00:20.397 --> 00:00:25.175
+mail access but the unscoped grant is
+still there, the scope does nothing.
+
+8
+00:00:25.175 --> 00:00:29.712
+Two more grade managed identities'
+Azure roles by how wide the scope is.
+
+9
+00:00:29.712 --> 00:00:33.460
+Privileged apps are only noted
+here, because they're handed off.

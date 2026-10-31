@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.075
+The safety tests are why you can trust
+a new check without re-proving it.
+
+2
+00:00:04.075 --> 00:00:08.699
+They parse every script in the kit and
+fail the build on anything that could
+
+3
+00:00:08.699 --> 00:00:12.950
+change state, and every Graph call has
+to say, literally, that it's a read.
+
+4
+00:00:12.950 --> 00:00:14.767
+There's one pinned exception,
+
+5
+00:00:14.767 --> 00:00:18.250
+a beta action that evaluates
+a rule and changes nothing.
+
+6
+00:00:18.250 --> 00:00:21.949
+Because this check reads only
+through the shared data path,
+
+7
+00:00:21.949 --> 00:00:23.987
+it passes those tests untouched.
+
+8
+00:00:23.987 --> 00:00:27.838
+And the fix for a finding is a write,
+so it never goes in the check.
+
+9
+00:00:27.838 --> 00:00:32.520
+It goes in the change record, run by
+the identity team under change control.

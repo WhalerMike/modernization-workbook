@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.475
+So what does the code build?
+
+2
+00:00:01.475 --> 00:00:03.499
+One run, written as one folder:
+
+3
+00:00:03.499 --> 00:00:07.970
+Chapter 1's inventory and Chapter
+2's ownership check, unchanged,
+
+4
+00:00:07.970 --> 00:00:13.537
+plus this chapter's drift folder and a run
+record that ties them together by hash.
+
+5
+00:00:13.537 --> 00:00:18.112
+A task that fails is recorded as an
+error, never as an empty result.
+
+6
+00:00:18.112 --> 00:00:22.539
+The baseline is a fingerprint per
+identity over twenty governance columns,
+
+7
+00:00:22.539 --> 00:00:25.629
+leaving out things like last
+logon that change daily,
+
+8
+00:00:25.629 --> 00:00:28.650
+and it counts only once a
+reviewer approves its hash.
+
+9
+00:00:28.650 --> 00:00:32.116
+The audit read is narrow:
+declared calls only,
+
+10
+00:00:32.116 --> 00:00:35.740
+thirty days at most, and
+identifiers, not names.

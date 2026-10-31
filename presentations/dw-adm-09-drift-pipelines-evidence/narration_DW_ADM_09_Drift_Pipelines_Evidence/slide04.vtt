@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.478
+Which cloud matters at every step:
+the sign-in authority, the Graph host,
+
+2
+00:00:04.478 --> 00:00:07.609
+the Azure environment,
+the token audience and the
+
+3
+00:00:07.609 --> 00:00:10.663
+Graph PowerShell environment
+all have to agree.
+
+4
+00:00:10.663 --> 00:00:13.043
+For a GCC tenant like this estate's,
+
+5
+00:00:13.043 --> 00:00:16.699
+Learn says apps keep using
+the worldwide endpoints.
+
+6
+00:00:16.699 --> 00:00:21.176
+The higher clouds share a government
+sign-in authority, and here's the trap:
+
+7
+00:00:21.176 --> 00:00:24.405
+the Azure sign-in environment
+is the same for GCC High
+
+8
+00:00:24.405 --> 00:00:27.487
+and the Defense cloud, but
+their Graph hosts differ.
+
+9
+00:00:27.487 --> 00:00:31.813
+So the Graph host must come from the
+cloud profile, never from the sign-in.
+
+10
+00:00:31.813 --> 00:00:34.820
+An unknown cloud name is refused outright.

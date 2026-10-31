@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.675
+Before comparing anything, the pipeline
+makes sure the comparison means something.
+
+2
+00:00:04.675 --> 00:00:07.929
+It checks each run against
+the kit's own manifest,
+
+3
+00:00:07.929 --> 00:00:10.613
+so a run edited after the fact is refused.
+
+4
+00:00:10.613 --> 00:00:15.725
+Then it refuses to compare runs from
+different modes or clouds, or out of order.
+
+5
+00:00:15.725 --> 00:00:17.359
+The subtle one is tenants:
+
+6
+00:00:17.359 --> 00:00:21.250
+a test tenant and production can
+share a cloud and look alike.
+
+7
+00:00:21.250 --> 00:00:24.295
+The kit records the tenant
+the token was issued for,
+
+8
+00:00:24.295 --> 00:00:28.572
+and the pipeline refuses to compare
+two different tenants, or a run with
+
+9
+00:00:28.572 --> 00:00:32.900
+no tenant recorded at all, unless
+someone records a reviewed exception.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.713
+Now apply the plan to the fake, twice.
+
+2
+00:00:02.713 --> 00:00:06.590
+The first run sends four requests,
+and the second sends none,
+
+3
+00:00:06.590 --> 00:00:11.734
+because everything already matches; and
+every workload policy is report-only,
+
+4
+00:00:11.734 --> 00:00:14.662
+while an unrelated user
+policy is untouched.
+
+5
+00:00:14.662 --> 00:00:16.412
+Then try to enforce Ring 1.
+
+6
+00:00:16.412 --> 00:00:19.084
+Record the decision
+and the summary's hash,
+
+7
+00:00:19.084 --> 00:00:23.663
+and plan without the enforcement switch:
+the ring is held, with the reason.
+
+8
+00:00:23.663 --> 00:00:27.556
+Add the switch and the summary,
+and the location policy turns on,
+
+9
+00:00:27.556 --> 00:00:30.851
+while the brand-new risk
+policy waits for the next run.
+
+10
+00:00:30.851 --> 00:00:33.890
+Change one byte of the
+summary, and it's held again.

@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Next, which cloud.
+
+2
+00:00:01.413 --> 00:00:06.384
+This chapter talks to three hosts:
+Microsoft Graph for app registrations and
+
+3
+00:00:06.384 --> 00:00:11.588
+sign-ins, Resource Manager for managed
+identities, and the sign-in host for tokens.
+
+4
+00:00:11.588 --> 00:00:15.041
+The estate is a G C C tenant
+with commercial Azure,
+
+5
+00:00:15.041 --> 00:00:17.976
+so all three are the worldwide endpoints.
+
+6
+00:00:17.976 --> 00:00:22.102
+G C C High and the Defense Department
+clouds have their own hosts,
+
+7
+00:00:22.102 --> 00:00:24.438
+and the code switches only for those.
+
+8
+00:00:24.438 --> 00:00:29.202
+One gap worth knowing: the managed identity
+pages the chapter read don't say whether
+
+9
+00:00:29.202 --> 00:00:31.411
+they're available in Azure Government,
+
+10
+00:00:31.411 --> 00:00:34.920
+which is fine here because this
+estate's Azure is commercial.

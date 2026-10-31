@@ -1,0 +1,513 @@
+{
+ "1": [
+  [
+   0.05,
+   5.862,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Non-Person Identity."
+  ],
+  [
+   5.912,
+   4.55,
+   "This is Chapter 1: the non-person identity inventory, as code."
+  ],
+  [
+   10.463,
+   8.825,
+   "No account can be given an owner, a decision or a new credential until it's on one list, and Microsoft's own commands give you several lists that don't agree."
+  ],
+  [
+   19.288,
+   11.925,
+   "We'll run Learn's commands and export script against stand-ins, see what they miss, then build one register with owners, credentials, permissions and risk, and walk two labs and the dangers."
+  ],
+  [
+   31.212,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.613,
+   "Why start with an inventory?"
+  ],
+  [
+   1.663,
+   5.912,
+   "Because everything else in this project acts on an account, and you can't act on an account you haven't found."
+  ],
+  [
+   7.575,
+   11.012,
+   "The plan's first gate asks for every service account, app registration, service principal and managed identity in one register, with a type, a risk and a candidate target."
+  ],
+  [
+   18.587,
+   8.65,
+   "The plan's critical path runs through ownership, and an owner has to be found before anything is touched, so this chapter and the next come first."
+  ],
+  [
+   27.238,
+   4.662,
+   "The trouble is that Microsoft's own commands give you several lists, and they don't agree."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   11.425,
+   "This estate is a G C C tenant with commercial Azure, so every host the read touches is a worldwide one: the worldwide Graph endpoint and the commercial Resource Manager endpoint."
+  ],
+  [
+   12.838,
+   8.613,
+   "G C C High and the Defense Department clouds have their own hosts, and the Graph pages this chapter relies on list the government service levels."
+  ],
+  [
+   21.45,
+   5.5,
+   "The code never guesses: you name the cloud explicitly, and it refuses one it doesn't know."
+  ],
+  [
+   26.95,
+   7.775,
+   "The directory reads work the same way, going only to the domain you name, never to whatever domain the machine happens to be in."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.85,
+   "So what does the register have to hold?"
+  ],
+  [
+   1.9,
+   17.688,
+   "On the directory side, Book 02 gives the types: the traditional user account used as a service, the managed service account tied to one server, the group managed service account shared by several, and on newer domains the delegated managed service account, which takes over from a traditional account."
+  ],
+  [
+   19.587,
+   5.588,
+   "Learn warns that nothing marks a service account as one, so its search criteria can miss some."
+  ],
+  [
+   25.175,
+   8.863,
+   "On the Entra side, the list is always longer than the apps anyone asked for, and each service principal carries a type that tells you what it really is."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   7.2,
+   "Put together, the register reads two collections from Active Directory, nine from Graph, and one from Resource Manager."
+  ],
+  [
+   7.25,
+   3.163,
+   "The slide shows each read and why it was chosen."
+  ],
+  [
+   10.412,
+   16.325,
+   "The pattern is worth noticing: one server-side query for the user accounts instead of reading every user three times, owners and credentials read where they actually liv, on the app registration, and Graph's own app roles read so a permission shows up by name rather than as a number."
+  ],
+  [
+   26.738,
+   7.725,
+   "And one read that people forget: a user-assigned identity's federated credentials liv in Resource Manager, not in Graph."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.237,
+   "Here's an important line between Microsoft and the program."
+  ],
+  [
+   3.288,
+   4.3,
+   "Microsoft tells you how to find accounts; it doesn't tell you which ones are risky."
+  ],
+  [
+   7.588,
+   12.15,
+   "The risk rules, the candidate target and the stale threshold are the program's, from the plan and Book 02, and the code keeps them in one configuration file and labels them as design guidance."
+  ],
+  [
+   19.738,
+   9.45,
+   "And notice why stale is only ever a lead: the last logon attribute isn't updated on every sign-in, so an account that looks idle may not be."
+  ],
+  [
+   29.188,
+   4.55,
+   "The plan says to confirm against the sign-in logs before retiring anything."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.887,
+   "Now Microsoft's starting point."
+  ],
+  [
+   1.938,
+   16.512,
+   "Learn's service account series is Microsoft's procedure for this read: a few PowerShell commands for user accounts, managed service accounts and service principals, a page that says what to record about each account, and a script that exports every app registration's secrets and certificates."
+  ],
+  [
+   18.45,
+   10.1,
+   "Those commands liv only inside web pages, so the repository pins the pages' source, unchanged, with hashes a test checks and a weekly watch for changes."
+  ],
+  [
+   28.55,
+   5.7,
+   "A harness then runs them exactly as published, against stand-ins built from a fictional estate."
+  ],
+  [
+   34.25,
+   2.638,
+   "Nothing is installed, and nothing signs in."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.375,
+   "This is where running the samples pays off."
+  ],
+  [
+   2.425,
+   4.412,
+   "On the directory side, the criteria are right, so the code keeps them."
+  ],
+  [
+   6.838,
+   6.263,
+   "But the samples read every user three times and give you three overlapping lists, not a register."
+  ],
+  [
+   13.1,
+   3.163,
+   "The never-expires query happily returns a person."
+  ],
+  [
+   16.262,
+   2.663,
+   "The delegation query returns servers."
+  ],
+  [
+   18.925,
+   5.938,
+   "Nothing reads last logon or group membership, so you can't compute stale or over-privileged."
+  ],
+  [
+   24.863,
+   6.4,
+   "And a delegated managed service account comes back unlabeled, while the group managed filter drops it entirely."
+  ],
+  [
+   31.262,
+   2.675,
+   "Each row on the slide is pinned by a test."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.463,
+   "On the Entra side, the export script is a good model for the credential columns, so the code keeps it as one."
+  ],
+  [
+   6.513,
+   4.675,
+   "But the multitenant filter it suggests actually returns single-tenant apps too."
+  ],
+  [
+   11.188,
+   4.45,
+   "The script stops to ask for an output path, so it can't run on a schedule."
+  ],
+  [
+   15.637,
+   6.625,
+   "It makes extra calls per app and per credential, never counts owners, and misses an app with no credential at all."
+  ],
+  [
+   22.262,
+   7.688,
+   "And it ignores federated credentials, managed identities, permissions and consent, which is most of what the gate needs."
+  ],
+  [
+   29.95,
+   4.7,
+   "So the verdict: use Learn's commands as the definition, not as the register."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.425,
+   "So what does the code build?"
+  ],
+  [
+   1.475,
+   4.013,
+   "It starts with one reader that every chapter in this workbook shares."
+  ],
+  [
+   5.487,
+   6.588,
+   "Its script blocks are the only things that touch the network, a live one for real runs and a fake one for labs."
+  ],
+  [
+   12.075,
+   13.7,
+   "And it enforces five simple rules: it makes only the calls the configuration declares, it only reads, it sends the token only to the cloud's own host, it checks it's signed in to the right tenant, and it reads every page."
+  ],
+  [
+   25.775,
+   4.787,
+   "The fake hands back tiny pages on purpose, so paging gets tested everywhere."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.025,
+   "The register gives every identity one row with the same columns, whatever its type, so it all lands in one file."
+  ],
+  [
+   7.075,
+   9.262,
+   "Directory accounts carry password age, last logon and privileged groups; Entra objects carry owners, credentials and permissions."
+  ],
+  [
+   16.337,
+   4.6,
+   "An app's permissions are counted once, so nothing high risk is counted twice."
+  ],
+  [
+   20.938,
+   7.45,
+   "Then the program's rules apply: high, medium or low risk, and a candidate target from Book 02's matrix."
+  ],
+  [
+   28.387,
+   4.4,
+   "That target is only a candidate, Chapter 3 makes the decision."
+  ],
+  [
+   32.788,
+   3.725,
+   "And sequel Server accounts are handed to the Data Platform plan."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.1,
+   "The register then becomes findings, nine rules, each with a stable I D so the same gap keeps its name from run to run."
+  ],
+  [
+   8.15,
+   3.325,
+   "Only one is a hard finding: a high-risk identity."
+  ],
+  [
+   11.475,
+   11.6,
+   "The rest are warnings to act on, like a stale lead to confirm, an app with fewer than two owners, a client secret, consent granted for everyone, or an account that might really be a person."
+  ],
+  [
+   23.075,
+   9.25,
+   "The run writes a manifest with the tenant, every request and a hash of every file, and Chapter 2 refuses a register whose hash doesn't match."
+  ],
+  [
+   32.325,
+   2.95,
+   "All of it is covered by tests that need no network."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.062,
+   "Who is this for?"
+  ],
+  [
+   1.113,
+   6.975,
+   "Developers build the read path, the identity and directory engineers run it, and the security officers review it."
+  ],
+  [
+   8.088,
+   3.525,
+   "Nobody needs a tenant or a domain until the second lab."
+  ],
+  [
+   11.613,
+   7.9,
+   "What it may read is short: an ordinary domain user's read on the directory, two Graph permissions and Reader on the identities."
+  ],
+  [
+   19.512,
+   9.312,
+   "One choice deserves attention: listing delegated consent grants needs the broad directory read, and that's the only reason the inventory holds it."
+  ],
+  [
+   28.825,
+   6.088,
+   "Without permission to read users, owners come back as bare I D's, which is all a count needs."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.2,
+   "Lab 1 needs only a laptop with PowerShell 7 and Pester: no tenant, no domain."
+  ],
+  [
+   6.25,
+   10.15,
+   "First, run Learn's own samples against the stand-ins, and read the test for the delegated managed service account: Microsoft's command returns it, and nothing says what it is."
+  ],
+  [
+   16.4,
+   4.513,
+   "Second, list what the inventory needs, and notice that nothing can write."
+  ],
+  [
+   20.913,
+   3.612,
+   "Third, run the inventory over the fictional estate."
+  ],
+  [
+   24.525,
+   8.213,
+   "You get thirty-five identities, eight of them high risk, a set of findings and warnings, and three accounts handed to the Data Platform plan."
+  ],
+  [
+   32.737,
+   1.45,
+   "Next, we read them."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.362,
+   "Reading the high-risk rows is where the rules become real."
+  ],
+  [
+   3.413,
+   10.65,
+   "Two accounts have passwords that haven't changed in years; others sit in powerful groups or are trusted for unconstrained delegation; one app holds a directory-wide write permission."
+  ],
+  [
+   14.062,
+   4.888,
+   "One account is also a stale lead, so the note says to verify use first."
+  ],
+  [
+   18.95,
+   5.575,
+   "And one looks like a person, so it's flagged to confirm rather than treated as a service account."
+  ],
+  [
+   24.525,
+   7.612,
+   "Then you watch the reader refuse an undeclared call and a cloud name in the wrong case, and you see who's handed to the Data Platform plan."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.662,
+   "Lab 2 moves to a test tenant and a test domain, never production, and it only reads."
+  ],
+  [
+   5.713,
+   8.725,
+   "You register the app in the tenant's own cloud with a certificate, grant exactly the two permissions, and give it Reader where one test identity lives."
+  ],
+  [
+   14.438,
+   3.625,
+   "Then you run it from a domain-joined host as an ordinary user."
+  ],
+  [
+   18.062,
+   12.488,
+   "The point of this lab is to check what the permissions assumed: that federated credentials are actually readable, that a delegated managed service account is recognized, and that an ordinary user can read the directory attributes."
+  ],
+  [
+   30.55,
+   3.05,
+   "Then cross-check the admin center, and back it all out."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.475,
+   "Each of these dangers has a guard in the code."
+  ],
+  [
+   2.525,
+   11.537,
+   "The two that hurt people most: a person mistaken for a service account, which the orphan rule could disable, and a stale account retired on a guess, which breaks the job that only runs once a quarter."
+  ],
+  [
+   14.062,
+   5.037,
+   "The code flags the first, and never disables or deletes anything for the second."
+  ],
+  [
+   19.1,
+   10.425,
+   "Others are quieter: a broad permission granted just to make it work, the wrong cloud, throttling on credential reads, and the register itself as a map for an attacker."
+  ],
+  [
+   29.525,
+   3.175,
+   "Notice the guards are rules and tests, not memory."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   17.137,
+   "On the register side: every account and every app in the test estate appears exactly once, anything that might be a person has been confirmed, every high-risk row is lined up for the first wave, every stale lead has been checked against the logs, and the database accounts have gone to their own plan."
+  ],
+  [
+   18.538,
+   10.412,
+   "On the code side: exactly two Graph permissions with a certificate, an explicit cloud, hashes that match what the security officer received, and pinned pages still reviewed."
+  ],
+  [
+   28.95,
+   5.338,
+   "Next, Chapter 2 finds an owner for every account, and applies the orphan rule."
+  ],
+  [
+   34.288,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

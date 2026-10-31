@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.275
+So the check does three
+things differently.
+
+2
+00:00:02.275 --> 00:00:05.137
+It's optional: it never
+runs unless you name it.
+
+3
+00:00:05.137 --> 00:00:09.955
+It prefers an export: a Global Administrator
+who's already signed in for other
+
+4
+00:00:09.955 --> 00:00:12.213
+reasons saves the response to a file,
+
+5
+00:00:12.213 --> 00:00:15.675
+and the kit reads the file
+without ever needing the role.
+
+6
+00:00:15.675 --> 00:00:18.392
+And it says so, in plain
+words in the catalog,
+
+7
+00:00:18.392 --> 00:00:23.438
+so a security officer knows what a live
+run would demand before anyone tries it.
+
+8
+00:00:23.438 --> 00:00:27.809
+The program's design guidance follows
+from that: never create a standing
+
+9
+00:00:27.809 --> 00:00:31.940
+Global Administrator identity just
+so a check can run on a schedule.

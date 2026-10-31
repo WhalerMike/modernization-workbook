@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Now the code.
+
+2
+00:00:00.988 --> 00:00:05.610
+It's a new module, and unlike the earlier
+chapters, it can write to a tenant,
+
+3
+00:00:05.610 --> 00:00:10.701
+but only with the apply switch, only what
+the dry run listed, and it never deletes.
+
+4
+00:00:10.701 --> 00:00:12.950
+One file holds every series.
+
+5
+00:00:12.950 --> 00:00:16.926
+Each has a managed name prefix,
+a kind, a tier, a cadence,
+
+6
+00:00:16.926 --> 00:00:21.087
+reviewers, a fallback and
+instructions for reviewers.
+
+7
+00:00:21.087 --> 00:00:24.617
+The fixture's seven series
+follow Book 04's schedule:
+
+8
+00:00:24.617 --> 00:00:29.050
+role reviews, reviews of the
+privileged groups, and one Azure role.
+
+9
+00:00:29.050 --> 00:00:33.750
+Notice the first row: Global
+Administrator makes no change on silence.
+
+10
+00:00:33.750 --> 00:00:35.380
+We'll see why in a moment.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.231
+Lab 2 moves to a test tenant with
+fictional people, never production,
+
+2
+00:00:04.231 --> 00:00:08.562
+and because a group can never leave
+PIM, you make groups just for the lab.
+
+3
+00:00:08.562 --> 00:00:11.304
+Create them by hand, register two apps,
+
+4
+00:00:11.304 --> 00:00:14.400
+a reader and a writer,
+and plan as the reader.
+
+5
+00:00:14.400 --> 00:00:17.788
+Then apply as the writer and
+compare the portal with your file.
+
+6
+00:00:17.788 --> 00:00:22.706
+This lab also settles open questions:
+whether the narrower permissions are enough,
+
+7
+00:00:22.706 --> 00:00:25.200
+and whether the policy update really took.
+
+8
+00:00:25.200 --> 00:00:27.938
+Rerun to see zero
+changes, try one removal,
+
+9
+00:00:27.938 --> 00:00:32.900
+and then back everything out, because
+the output names privileged people.

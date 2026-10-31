@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.353
+Authorization is where hand-typed
+settings usually drift,
+
+2
+00:00:03.353 --> 00:00:05.712
+so the builder writes
+it from the registry.
+
+3
+00:00:05.712 --> 00:00:09.487
+On the Logic App, shared access
+signatures are switched off and
+
+4
+00:00:09.487 --> 00:00:13.551
+Learn's proof-of-possession policy
+goes in with Learn's exact claims.
+
+5
+00:00:13.551 --> 00:00:17.808
+On the extension, the code asks for
+proof-of-possession, following Learn's
+
+6
+00:00:17.808 --> 00:00:22.350
+security guidance even though one example
+still shows the older bearer type.
+
+7
+00:00:22.350 --> 00:00:26.494
+And the identity stays small: because
+the Logic App is an authorized
+
+8
+00:00:26.494 --> 00:00:30.637
+app on the extension, it can call
+back with no Graph permission at all.
+
+9
+00:00:30.637 --> 00:00:34.099
+The tenant-wide alternative is
+what Learn advises against.
+
+10
+00:00:34.099 --> 00:00:35.520
+Now, who does this work?

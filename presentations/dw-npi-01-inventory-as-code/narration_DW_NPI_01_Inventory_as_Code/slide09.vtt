@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.167
+On the Entra side, the export
+script is a good model
+
+2
+00:00:03.167 --> 00:00:06.513
+for the credential columns,
+so the code keeps it as one.
+
+3
+00:00:06.513 --> 00:00:11.188
+But the multitenant filter it suggests
+actually returns single-tenant apps too.
+
+4
+00:00:11.188 --> 00:00:15.638
+The script stops to ask for an output
+path, so it can't run on a schedule.
+
+5
+00:00:15.638 --> 00:00:18.476
+It makes extra calls per
+app and per credential,
+
+6
+00:00:18.476 --> 00:00:22.262
+never counts owners, and misses
+an app with no credential at all.
+
+7
+00:00:22.262 --> 00:00:26.067
+And it ignores federated
+credentials, managed identities,
+
+8
+00:00:26.067 --> 00:00:29.950
+permissions and consent, which
+is most of what the gate needs.
+
+9
+00:00:29.950 --> 00:00:34.700
+So the verdict: use Learn's commands as
+the definition, not as the register.

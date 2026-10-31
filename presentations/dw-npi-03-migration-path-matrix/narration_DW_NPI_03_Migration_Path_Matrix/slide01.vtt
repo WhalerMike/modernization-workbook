@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:09.762
+This is Chapter 3: the
+migration path matrix as code.
+
+4
+00:00:09.762 --> 00:00:14.512
+Every service account and app needs a
+decision before anything is converted,
+
+5
+00:00:14.512 --> 00:00:19.559
+and this chapter turns the book's matrix
+into reviewed data and code that proposes
+
+6
+00:00:19.559 --> 00:00:24.087
+a target, checks the owner's choice,
+sequences the waves and checks the gate.
+
+7
+00:00:24.087 --> 00:00:26.852
+We'll start from Learn's
+own decision tables,
+
+8
+00:00:26.852 --> 00:00:30.999
+see what they leave out, then walk
+the code, two labs and the dangers.
+
+9
+00:00:30.999 --> 00:00:36.220
+One note before we begin: the code is
+illustrative, tested against fixtures.

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.950
+Which cloud?
+
+2
+00:00:00.950 --> 00:00:04.017
+Most of this chapter never
+touches a cloud at all:
+
+3
+00:00:04.017 --> 00:00:08.463
+the matrix is offline logic over the
+files from the first two chapters.
+
+4
+00:00:08.463 --> 00:00:12.030
+It makes just two reads,
+both to Microsoft Graph,
+
+5
+00:00:12.030 --> 00:00:17.151
+and for a GCC tenant like this
+estate's, that's the worldwide endpoint.
+
+6
+00:00:17.151 --> 00:00:19.825
+The higher government clouds
+have their own hosts.
+
+7
+00:00:19.825 --> 00:00:22.428
+One open question is the licensing trial:
+
+8
+00:00:22.428 --> 00:00:26.408
+Learn says there's no free trial
+in the Azure Government clouds,
+
+9
+00:00:26.408 --> 00:00:29.393
+but a GCC tenant signs in
+to the worldwide cloud,
+
+10
+00:00:29.393 --> 00:00:33.450
+so the chapter leaves it as something
+to check in the test tenant.
+
+11
+00:00:33.450 --> 00:00:35.300
+Now, what Microsoft gives you.

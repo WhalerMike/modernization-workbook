@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.862
+One rule needs a closer look,
+because the sources don't line up.
+
+2
+00:00:03.862 --> 00:00:06.991
+Learn says report-only
+policies don't block anyone,
+
+3
+00:00:06.991 --> 00:00:09.599
+so they don't need the
+emergency exclusion.
+
+4
+00:00:09.599 --> 00:00:15.034
+Book 04's pre-merge check is stricter,
+and fails any report-only file without it,
+
+5
+00:00:15.034 --> 00:00:18.175
+even the probe that's
+meant to exclude nobody.
+
+6
+00:00:18.175 --> 00:00:22.575
+The chapter's finding is that the
+stricter rule isn't wrong, just stricter.
+
+7
+00:00:22.575 --> 00:00:26.629
+So the code puts the exclusion in
+every file whatever its state,
+
+8
+00:00:26.629 --> 00:00:29.825
+because enforcing a file
+means changing one word.
+
+9
+00:00:29.825 --> 00:00:32.836
+Only a named report-only
+instrument may skip it,
+
+10
+00:00:32.836 --> 00:00:35.590
+and it fails the moment
+someone enables it.

@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.038
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.038 --> 00:00:05.688
+Building Privileged Access.
+
+3
+00:00:05.688 --> 00:00:09.626
+This is Chapter 7: access
+reviews of privileged roles.
+
+4
+00:00:09.626 --> 00:00:14.263
+Eligibility only ever grows unless
+someone confirms it on a calendar,
+
+5
+00:00:14.263 --> 00:00:19.222
+so this chapter makes the reviews code:
+one file says who reviews which role
+
+6
+00:00:19.222 --> 00:00:24.100
+and when, a dry run shows the change,
+and the decisions come back as evidence.
+
+7
+00:00:24.100 --> 00:00:28.536
+We'll start from Learn's tutorial
+for reviewing administrative roles,
+
+8
+00:00:28.536 --> 00:00:31.366
+see what it leaves to you,
+then walk the series,
+
+9
+00:00:31.366 --> 00:00:34.425
+the checks, the evidence,
+two labs and the dangers.
+
+10
+00:00:34.425 --> 00:00:39.620
+One note before we begin: the code is
+illustrative, tested against fixtures.

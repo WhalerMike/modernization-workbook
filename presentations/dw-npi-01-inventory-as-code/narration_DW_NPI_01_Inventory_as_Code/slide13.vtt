@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:05.838
+Developers build the read path, the
+identity and directory engineers run it,
+
+3
+00:00:05.838 --> 00:00:08.088
+and the security officers review it.
+
+4
+00:00:08.088 --> 00:00:11.613
+Nobody needs a tenant or a
+domain until the second lab.
+
+5
+00:00:11.613 --> 00:00:16.183
+What it may read is short: an ordinary
+domain user's read on the directory,
+
+6
+00:00:16.183 --> 00:00:19.513
+two Graph permissions and
+Reader on the identities.
+
+7
+00:00:19.513 --> 00:00:24.360
+One choice deserves attention: listing
+delegated consent grants needs the
+
+8
+00:00:24.360 --> 00:00:28.824
+broad directory read, and that's the
+only reason the inventory holds it.
+
+9
+00:00:28.824 --> 00:00:31.193
+Without permission to read users,
+
+10
+00:00:31.193 --> 00:00:34.970
+owners come back as bare IDs,
+which is all a count needs.

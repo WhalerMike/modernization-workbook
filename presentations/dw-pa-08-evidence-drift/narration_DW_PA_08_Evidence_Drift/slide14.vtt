@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.850
+Lab 1 runs on a laptop with no tenant.
+
+2
+00:00:02.850 --> 00:00:06.700
+First, run Learn's queries
+over the fictional audit rows.
+
+3
+00:00:06.700 --> 00:00:09.446
+Eight tests pass, and
+the third shows the trap:
+
+4
+00:00:09.446 --> 00:00:13.900
+two of the rows the first query returns
+are assignments made outside PIM.
+
+5
+00:00:13.900 --> 00:00:16.225
+Next, list the run's permissions.
+
+6
+00:00:16.225 --> 00:00:18.625
+There are nine, and
+none of them can write.
+
+7
+00:00:18.625 --> 00:00:21.513
+Then run two days against
+the fictional tenant.
+
+8
+00:00:21.513 --> 00:00:26.028
+The second day has three Tier 0
+findings: a role assigned outside PIM,
+
+9
+00:00:26.028 --> 00:00:29.899
+an activation nobody approved,
+and a changed role setting.
+
+10
+00:00:29.899 --> 00:00:33.890
+Open the events file, and
+you'll see IDs, not names.

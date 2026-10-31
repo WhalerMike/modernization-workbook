@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:03.663
+The licensing decision is recorded.
+
+3
+00:00:03.663 --> 00:00:06.457
+Every in-scope app is
+top-tier, single-tenant,
+
+4
+00:00:06.457 --> 00:00:10.339
+listed by its enterprise
+application ID, in exactly one ring,
+
+5
+00:00:10.339 --> 00:00:14.763
+and everything out of scope names
+the control that covers it instead.
+
+6
+00:00:14.763 --> 00:00:19.387
+The egress location holds only the
+workload ranges and isn't trusted.
+
+7
+00:00:19.387 --> 00:00:21.612
+Every policy started report-only.
+
+8
+00:00:21.612 --> 00:00:24.281
+Each ring was enforced in its own change,
+
+9
+00:00:24.281 --> 00:00:29.051
+on two clean weeks of reviewed evidence,
+with the alert already in place.
+
+10
+00:00:29.051 --> 00:00:32.662
+Next, Chapter 9 takes
+on AI agent identities.
+
+11
+00:00:32.662 --> 00:00:33.820
+Thanks for watching.

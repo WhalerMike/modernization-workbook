@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Now the code.
+
+2
+00:00:00.988 --> 00:00:06.251
+It's one PowerShell module, two entry
+scripts, the call list and the tier map.
+
+3
+00:00:06.251 --> 00:00:10.580
+Every call goes through one reader,
+built for one task in one cloud,
+
+4
+00:00:10.580 --> 00:00:15.712
+and the only thing that touches the network
+is a small script block you hand it:
+
+5
+00:00:15.712 --> 00:00:19.000
+a live one for real runs, or
+a fake for labs and tests.
+
+6
+00:00:19.000 --> 00:00:22.325
+The reader enforces four
+rules, shown on the slide.
+
+7
+00:00:22.325 --> 00:00:25.771
+It only makes calls the
+task declares, only reads,
+
+8
+00:00:25.771 --> 00:00:31.180
+only sends its token to the cloud's own
+host, and always reads to the last page.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.755
+Next the build checks
+the definition against
+
+2
+00:00:02.755 --> 00:00:05.388
+the package and the
+registry, with nine rules.
+
+3
+00:00:05.388 --> 00:00:10.357
+The one that catches the most is the hash
+check: an enforcing definition carries
+
+4
+00:00:10.357 --> 00:00:15.101
+the package hash in four places, and
+every copy must match this exact package.
+
+5
+00:00:15.101 --> 00:00:19.050
+So a hand edit or a rebuild
+fails here, not on a server.
+
+6
+00:00:19.050 --> 00:00:21.313
+Then the build writes a provenance record.
+
+7
+00:00:21.313 --> 00:00:23.399
+Notice there are two kinds of hash.
+
+8
+00:00:23.399 --> 00:00:28.675
+The cleaned file's hash is reproducible,
+so a reviewer can rebuild and match it.
+
+9
+00:00:28.675 --> 00:00:31.690
+The package hash identifies
+the bytes that shipped,
+
+10
+00:00:31.690 --> 00:00:34.820
+so the security officer can
+match the published file.

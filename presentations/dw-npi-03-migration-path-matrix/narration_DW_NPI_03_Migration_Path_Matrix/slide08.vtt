@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.687
+Here's how a proposal is made.
+
+2
+00:00:01.687 --> 00:00:05.819
+First, scope: some accounts belong
+to another plan, some are covered by
+
+3
+00:00:05.819 --> 00:00:10.313
+their app registration, and some are
+out of scope with a reason written down.
+
+4
+00:00:10.313 --> 00:00:14.942
+Then retirement comes first: if
+Chapter 2 found an account unowned,
+
+5
+00:00:14.942 --> 00:00:18.562
+or it's already disabled,
+the proposal is to retire it.
+
+6
+00:00:18.562 --> 00:00:22.421
+Otherwise, the first matrix row
+that matches the account's type,
+
+7
+00:00:22.421 --> 00:00:25.687
+where it runs and its
+credential proposes the target.
+
+8
+00:00:25.687 --> 00:00:29.734
+And each proposal carries Learn's
+cautions, like the fact that an Arc
+
+9
+00:00:29.734 --> 00:00:34.270
+server's managed identity is shared by
+every app its administrators allow.

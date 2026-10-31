@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.125
+Writing is a separate path, and
+it's deliberately hard to misuse.
+
+2
+00:00:04.125 --> 00:00:07.943
+It runs only against a plan
+whose hash a reviewer approved,
+
+3
+00:00:07.943 --> 00:00:11.125
+for this tenant and cloud,
+and no older than a week.
+
+4
+00:00:11.125 --> 00:00:15.156
+Every credential is checked again
+against the plan's recorded claims,
+
+5
+00:00:15.156 --> 00:00:19.187
+so a hand-edited plan can't sneak
+through, and it never deletes anything.
+
+6
+00:00:19.187 --> 00:00:22.201
+It runs as a person,
+not an unattended app.
+
+7
+00:00:22.201 --> 00:00:26.240
+Before each write it looks again,
+and it sends one write at a time,
+
+8
+00:00:26.240 --> 00:00:31.212
+identity first, because Learn says
+parallel creates under one identity fail.
+
+9
+00:00:31.212 --> 00:00:35.260
+A new credential also needs a few
+minutes to propagate before it works.

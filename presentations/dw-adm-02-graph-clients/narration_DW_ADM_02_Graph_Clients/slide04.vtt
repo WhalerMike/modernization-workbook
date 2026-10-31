@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.956
+The target estate for this
+migration is Microsoft 365
+
+2
+00:00:03.956 --> 00:00:07.775
+GCC with commercial Azure,
+so let's make that concrete.
+
+3
+00:00:07.775 --> 00:00:11.137
+Nothing in its configuration
+is a dot-u-s host.
+
+4
+00:00:11.137 --> 00:00:15.435
+A run that reads both Graph and
+Resource Manager needs two tokens,
+
+5
+00:00:15.435 --> 00:00:18.937
+because one token request
+can only name one resource.
+
+6
+00:00:18.937 --> 00:00:23.174
+The code still calls the cloud "gcc"
+by name, even though it resolves
+
+7
+00:00:23.174 --> 00:00:27.488
+to the worldwide endpoints, so the
+evidence says what was intended.
+
+8
+00:00:27.488 --> 00:00:32.447
+And watch for a second tenant: if a
+workload ever lands in an Azure Government
+
+9
+00:00:32.447 --> 00:00:37.080
+subscription, it has its own hosts, and
+the run has to be told, never guess.

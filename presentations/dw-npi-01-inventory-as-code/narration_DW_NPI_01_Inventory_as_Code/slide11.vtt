@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.233
+The register gives every identity
+one row with the same columns,
+
+2
+00:00:04.233 --> 00:00:07.075
+whatever its type, so it
+all lands in one file.
+
+3
+00:00:07.075 --> 00:00:12.258
+Directory accounts carry password age,
+last logon and privileged groups;
+
+4
+00:00:12.258 --> 00:00:16.337
+Entra objects carry owners,
+credentials and permissions.
+
+5
+00:00:16.337 --> 00:00:20.937
+An app's permissions are counted once,
+so nothing high risk is counted twice.
+
+6
+00:00:20.937 --> 00:00:25.035
+Then the program's rules apply:
+high, medium or low risk,
+
+7
+00:00:25.035 --> 00:00:28.388
+and a candidate target
+from Book 02's matrix.
+
+8
+00:00:28.388 --> 00:00:32.787
+That target is only a candidate,
+Chapter 3 makes the decision.
+
+9
+00:00:32.787 --> 00:00:36.580
+And SQL Server accounts are
+handed to the Data Platform plan.

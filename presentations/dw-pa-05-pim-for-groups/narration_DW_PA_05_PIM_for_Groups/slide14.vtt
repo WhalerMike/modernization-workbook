@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.950
+Lab 1 runs on a laptop: PowerShell 7
+and Pester, no tenant and no network.
+
+2
+00:00:05.950 --> 00:00:09.113
+First you send Microsoft's
+samples, as published,
+
+3
+00:00:09.113 --> 00:00:12.750
+to the fake, and the tests
+confirm each gap from the table.
+
+4
+00:00:12.750 --> 00:00:16.781
+Then you send the first example
+by hand and see it for yourself:
+
+5
+00:00:16.781 --> 00:00:19.706
+it's titled ownership,
+it asks for membership,
+
+6
+00:00:19.706 --> 00:00:23.500
+and the fake refuses it because
+its end date passed in 2023.
+
+7
+00:00:23.500 --> 00:00:27.425
+Next you list the read permissions,
+four and none that can write.
+
+8
+00:00:27.425 --> 00:00:31.225
+Finally you plan against a
+fictional tenant, as a dry run.
+
+9
+00:00:31.225 --> 00:00:32.640
+Let's read what it found.

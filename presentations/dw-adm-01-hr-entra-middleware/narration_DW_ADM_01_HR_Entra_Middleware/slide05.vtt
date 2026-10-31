@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.249
+Microsoft publishes a PowerShell
+sample for exactly this integration,
+
+2
+00:00:04.249 --> 00:00:06.488
+and Learn walks through it step by step.
+
+3
+00:00:06.488 --> 00:00:07.887
+It has five modes.
+
+4
+00:00:07.887 --> 00:00:13.088
+Two run entirely offline: checking your
+mapping file and generating the payload.
+
+5
+00:00:13.088 --> 00:00:17.754
+The other three talk to Graph: sending,
+extending the provisioning app's schema,
+
+6
+00:00:17.754 --> 00:00:20.913
+and summarizing what happened
+in recent sync cycles.
+
+7
+00:00:20.913 --> 00:00:23.688
+The chapter's advice is simple: use it.
+
+8
+00:00:23.688 --> 00:00:27.222
+Most of what a first integration
+needs is already there,
+
+9
+00:00:27.222 --> 00:00:31.063
+maintained by Microsoft, with
+a Learn page behind every step.
+
+10
+00:00:31.063 --> 00:00:33.430
+Next, the idea at its center.

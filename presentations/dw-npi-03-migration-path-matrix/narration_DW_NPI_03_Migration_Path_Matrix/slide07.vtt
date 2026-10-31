@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+So what does the code add?
+
+2
+00:00:01.375 --> 00:00:05.365
+One module and an entry script,
+built on the module from Chapter 2,
+
+3
+00:00:05.365 --> 00:00:08.225
+and changing nothing in
+the earlier chapters.
+
+4
+00:00:08.225 --> 00:00:11.025
+What matters most is who keeps each input.
+
+5
+00:00:11.025 --> 00:00:14.427
+The matrix itself belongs
+to identity engineering
+
+6
+00:00:14.427 --> 00:00:17.275
+and changes only in a
+reviewed pull request.
+
+7
+00:00:17.275 --> 00:00:19.675
+The application owners keep two files:
+
+8
+00:00:19.675 --> 00:00:23.650
+where each workload runs, and what
+they decided for each account.
+
+9
+00:00:23.650 --> 00:00:25.835
+The waves, the program's dates and the
+
+10
+00:00:25.835 --> 00:00:28.675
+licensing decision each
+have their own keeper.
+
+11
+00:00:28.675 --> 00:00:32.545
+And the earlier chapters' outputs
+are refused if their hashes don't
+
+12
+00:00:32.545 --> 00:00:36.890
+match the manifests, so nobody decides
+on evidence the reviewer never saw.

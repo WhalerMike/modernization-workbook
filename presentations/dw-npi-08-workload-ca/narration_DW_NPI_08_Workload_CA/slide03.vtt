@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.575
+The program's design comes
+from Book 4: two policies.
+
+2
+00:00:03.575 --> 00:00:07.975
+One blocks workloads from anywhere
+except their named egress ranges.
+
+3
+00:00:07.975 --> 00:00:12.137
+The other blocks them when Microsoft's
+risk detection marks them high.
+
+4
+00:00:12.137 --> 00:00:15.306
+They roll out report-only
+first, then ring by ring,
+
+5
+00:00:15.306 --> 00:00:17.762
+and they're never deleted on rollback.
+
+6
+00:00:17.762 --> 00:00:19.250
+Two decisions frame it.
+
+7
+00:00:19.250 --> 00:00:22.950
+The licensing decision covers
+the top-tier single-tenant apps.
+
+8
+00:00:22.950 --> 00:00:26.270
+The enforcement decision
+is the security chief's:
+
+9
+00:00:26.270 --> 00:00:29.913
+enforce, wait longer, or
+enforce with dated exclusions.
+
+10
+00:00:29.913 --> 00:00:32.976
+And don't worry when the
+risk policy reports nothing;
+
+11
+00:00:32.976 --> 00:00:35.880
+that's normal until
+something is actually risky.

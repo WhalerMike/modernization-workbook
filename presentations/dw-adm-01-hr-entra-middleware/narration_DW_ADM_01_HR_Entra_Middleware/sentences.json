@@ -1,0 +1,563 @@
+{
+ "1": [
+  [
+   0.05,
+   6.237,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building the Attribute-Driven Migration."
+  ],
+  [
+   6.287,
+   5.6,
+   "This is Chapter 1: the middleware between the H R extract and Microsoft Entra I D."
+  ],
+  [
+   11.887,
+   7.675,
+   "The provisioning service will do whatever the payload tells it, so the code that builds the payload is where the H R record stays true."
+  ],
+  [
+   19.562,
+   9.075,
+   "We'll start from Microsoft's own sample, C S V to skim, see what it leaves to you, then walk the hardened client, two labs and the dangers."
+  ],
+  [
+   28.637,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.1,
+   "Why does this chapter matter so much?"
+  ],
+  [
+   2.15,
+   2.775,
+   "Because the provisioning service is obedient."
+  ],
+  [
+   4.925,
+   8.562,
+   "It owns the mapping to directory attributes, the matching and the write, and Microsoft deliberately keeps the comparison logic out of the client."
+  ],
+  [
+   13.488,
+   7.525,
+   "That means everything before the post belongs to you: what gets sent, in what order, how fast, and what record you keep."
+  ],
+  [
+   21.012,
+   2.3,
+   "And the endpoint is asynchronous."
+  ],
+  [
+   23.312,
+   8.037,
+   "An accepted response only means the batch was staged, not that anyone was written, so reading the logs afterwards is part of the job."
+  ],
+  [
+   31.35,
+   1.413,
+   "Next, which cloud."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   7.662,
+   "Which cloud you're in decides which Graph host you call and where your token comes from, and a token from one cloud simply doesn't work in another."
+  ],
+  [
+   7.713,
+   6.8,
+   "A G C C tenant like this estate's uses the worldwide endpoint, so Microsoft's sample works here as written."
+  ],
+  [
+   14.512,
+   6.075,
+   "The higher government clouds have their own hosts, and the sample's address is hard-coded, so it can't reach them."
+  ],
+  [
+   20.587,
+   5.812,
+   "The hardened client takes its endpoint from settings and only accepts one of the three Graph hosts."
+  ],
+  [
+   26.4,
+   2.587,
+   "Now let's see what Microsoft actually gives you."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.312,
+   "Here's the whole pipeline on one slide."
+  ],
+  [
+   2.362,
+   3.688,
+   "An H R extract comes in as a C S V file."
+  ],
+  [
+   6.05,
+   9.075,
+   "The middleware validates it, normalizes it, orders it, batches it and paces the calls, then posts bulk requests to the provisioning endpoint."
+  ],
+  [
+   15.125,
+   2.05,
+   "Along the way it writes four files."
+  ],
+  [
+   17.175,
+   5.025,
+   "Three of them carry only keys and hashes, so they can liv in the evidence store."
+  ],
+  [
+   22.2,
+   7.388,
+   "The quarantine file holds the refused rows, real personal data, so it goes only to the access-controlled audit store."
+  ],
+  [
+   29.587,
+   4.1,
+   "Keep those four files in mind; the labs read every one."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.438,
+   "Microsoft publishes a PowerShell sample for exactly this integration, and Learn walks through it step by step."
+  ],
+  [
+   6.487,
+   1.4,
+   "It has five modes."
+  ],
+  [
+   7.888,
+   5.2,
+   "Two run entirely offline: checking your mapping file and generating the payload."
+  ],
+  [
+   13.088,
+   7.825,
+   "The other three talk to Graph: sending, extending the provisioning app's schema, and summarizing what happened in recent sync cycles."
+  ],
+  [
+   20.913,
+   2.775,
+   "The chapter's advice is simple: use it."
+  ],
+  [
+   23.688,
+   7.375,
+   "Most of what a first integration needs is already there, maintained by Microsoft, with a Learn page behind every step."
+  ],
+  [
+   31.062,
+   2.312,
+   "Next, the idea at its center."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.75,
+   "The sample's main idea is its mapping file."
+  ],
+  [
+   2.8,
+   9.325,
+   "Each skim attribute names a column in your extract, or a tiny script that computes the value, like turning a worker status into active or inactive."
+  ],
+  [
+   12.125,
+   6.912,
+   "Learn is careful to say this only maps the file to skim; mapping skim to the directory stays in the provisioning app."
+  ],
+  [
+   19.038,
+   9.037,
+   "And because a link to a sample's main branch changes under you, the repository keeps an unmodified, hashed copy, with a weekly watch on upstream."
+  ],
+  [
+   28.075,
+   4.162,
+   "A new version becomes a decision someone reviews, never a surprise."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.762,
+   "This is the heart of the chapter."
+  ],
+  [
+   1.812,
+   5.05,
+   "Run Microsoft's sample on the book's nineteen-row fixture and it sends all nineteen."
+  ],
+  [
+   6.862,
+   4.787,
+   "That's not a bug; it's a converter, and Learn says validation is something you add."
+  ],
+  [
+   11.65,
+   9.025,
+   "But look at what gets through: a blank key, a pending worker sent as active, the same person twice, a future hire who could sign in before day one."
+  ],
+  [
+   20.675,
+   9.15,
+   "The hardened client refuses nine of those rows, sends leavers first and managers before their reports, and holds a run that would disable too many people."
+  ],
+  [
+   29.825,
+   2.0,
+   "There's a second half to this table."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.538,
+   "The second half is about running it safely."
+  ],
+  [
+   2.587,
+   9.162,
+   "The sample has no pacing of its own, it only reaches the worldwide endpoint, and its sign-in asks for a permission that can change any app in the tenant."
+  ],
+  [
+   11.75,
+   8.912,
+   "It also gives every operation a fresh random identifier, so the same input never produces the same batch, and its only record is the console."
+  ],
+  [
+   20.663,
+   10.325,
+   "The verdict is balanced: keep using the sample where it's strong, for checking mappings, extending the schema and reading logs, and send production data through the hardened client."
+  ],
+  [
+   30.988,
+   2.263,
+   "Or contribute these changes upstream."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.538,
+   "So what does the example add?"
+  ],
+  [
+   1.587,
+   8.625,
+   "Two clients, one in Python and one in PowerShell, that read the same mapping file and produce exactly the same output for the same input."
+  ],
+  [
+   10.213,
+   3.312,
+   "The Python one needs nothing beyond the standard library."
+  ],
+  [
+   13.525,
+   11.062,
+   "One mapping file holds the column map, the code lists, the worker types and the length limits, and a settings file holds the non-secret knobs, like the disable threshold and the call budget."
+  ],
+  [
+   24.587,
+   3.4,
+   "The payload itself keeps the shape of Learn's own examples."
+  ],
+  [
+   27.988,
+   1.812,
+   "Let's look at the rules it applies."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.763,
+   "Validation is where a bad H R row stops before it becomes a bad account."
+  ],
+  [
+   4.812,
+   9.225,
+   "Each row either becomes a skim operation or is refused with reasons and goes to quarantine, along with the unchanged row and the payload it would have sent."
+  ],
+  [
+   14.037,
+   6.612,
+   "Some things are only warnings: someone on leave isn't a leaver, and a departing manager never blocks a new hire."
+  ],
+  [
+   20.65,
+   7.112,
+   "The chapter's rule of thumb is that every new check starts as a refusal until the H R owner agrees it can be a warning."
+  ],
+  [
+   27.762,
+   6.938,
+   "And the client always sends the complete record, because with clearing switched on, a missing value can wipe the target."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.3,
+   "Next, the order and the speed."
+  ],
+  [
+   2.35,
+   8.412,
+   "Leavers go first, so a departing mover never briefly gains access, and managers go before their reports so the references resolve."
+  ],
+  [
+   10.762,
+   10.287,
+   "Two guards hold the whole run until a person confirms it: too many disables, or more calls than the daily budget, which follows Microsoft's tenant quota by license."
+  ],
+  [
+   21.05,
+   11.25,
+   "On speed, two Learn pages disagree on the rate limit, so the client paces to the stricter one, honors the retry header, and stops at the first failure rather than retrying in a loop."
+  ],
+  [
+   32.3,
+   1.975,
+   "Next, the record it keeps."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.425,
+   "This file is what an auditor will thank you for."
+  ],
+  [
+   2.475,
+   11.162,
+   "It ties every batch to the exact extract and mapping that produced it, by hash, so you can walk from a line in the provisioning logs to a person, to a batch, to the input files."
+  ],
+  [
+   13.637,
+   5.763,
+   "That only works because each operation's identifier is the person key, not a random value."
+  ],
+  [
+   19.4,
+   4.213,
+   "It holds keys and hashes only, so it can liv in the evidence store."
+  ],
+  [
+   23.613,
+   8.688,
+   "Both clients pass the same tests, and seven of them pin the sample's behavior, so if Microsoft improves it, you'll know it's time to shrink your own code."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.062,
+   "Who is this for?"
+  ],
+  [
+   1.113,
+   8.675,
+   "Developers who own the H R integration, comfortable in PowerShell or Python and familiar with skim, but they don't need to know the H R product."
+  ],
+  [
+   9.787,
+   4.812,
+   "The engineers who review it, who should be able to say where every rule came from."
+  ],
+  [
+   14.6,
+   3.888,
+   "And the security officer, who needs records rather than a screen."
+  ],
+  [
+   18.488,
+   2.388,
+   "The permissions are the other half of who."
+  ],
+  [
+   20.875,
+   5.688,
+   "The sender gets one upload permission and nothing else; reading the logs is a separate identity."
+  ],
+  [
+   26.562,
+   6.588,
+   "And note that two Learn pages name different log permissions, so try the narrower one first in your test tenant."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.837,
+   "Lab 1 runs on a laptop with no tenant and no network."
+  ],
+  [
+   3.888,
+   2.763,
+   "First you run Microsoft's sample on the fixture."
+  ],
+  [
+   6.65,
+   4.4,
+   "The mapping checks out, and the payload holds all nineteen operations."
+  ],
+  [
+   11.05,
+   6.875,
+   "Then go looking: the pending worker is active, one person appears twice, and one operation has an empty key."
+  ],
+  [
+   17.925,
+   3.013,
+   "Next you run the hardened client on the same file."
+  ],
+  [
+   20.938,
+   9.238,
+   "It exits with a code that says rows were refused: nine ready, nine quarantined, one superseded, and the PowerShell client agrees exactly."
+  ],
+  [
+   30.175,
+   1.312,
+   "Now compare the two."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.8,
+   "Now the comparison makes the gap table real."
+  ],
+  [
+   2.85,
+   3.087,
+   "The pending worker sits in quarantine with its reason."
+  ],
+  [
+   5.938,
+   8.637,
+   "Our first operation is the leaver, while the sample starts at the top of the file, and the future hire is disabled in ours but active in the sample's."
+  ],
+  [
+   14.575,
+   7.4,
+   "Hash the extract yourself and it matches the manifest; run each tool twice and only ours gives identical batches."
+  ],
+  [
+   21.975,
+   7.088,
+   "Then break things on purpose: a lower-case department code is refused, and a strict disable limit holds the run."
+  ],
+  [
+   29.062,
+   3.388,
+   "Finish with the tests, forty-eight in each language."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.475,
+   "Lab 2 moves to a test tenant with fictional records, never production."
+  ],
+  [
+   4.525,
+   10.2,
+   "You create the provisioning app, extend its schema with Microsoft's sample, and give the sender one upload permission through a managed identity or a certificate, never a secret."
+  ],
+  [
+   14.725,
+   6.312,
+   "Start the job with its safety nets on: the notification email and accidental-deletion prevention."
+  ],
+  [
+   21.038,
+   3.275,
+   "Then send five records and get one accepted batch."
+  ],
+  [
+   24.312,
+   3.2,
+   "The step people skip is the next one: reconcile."
+  ],
+  [
+   27.512,
+   4.425,
+   "Every person key in the manifest should show up in the provisioning logs."
+  ],
+  [
+   31.938,
+   1.212,
+   "Then back it all out."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   3.675,
+   "Each of these dangers is ordinary, and each has a guard."
+  ],
+  [
+   3.725,
+   7.362,
+   "The most tempting is sending a sample's output straight to production, which lets pending workers and duplicates into the directory."
+  ],
+  [
+   11.088,
+   6.975,
+   "The most damaging is one bad extract disabling hundreds of people before anyone looks, and the hold stops that."
+  ],
+  [
+   18.062,
+   6.138,
+   "The quietest is treating an accepted response as success, when the record may have failed inside the job."
+  ],
+  [
+   24.2,
+   6.0,
+   "Notice that every guard is something the code does on every run, not something a person has to remember."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   11.925,
+   "On the code side: the sample's mapping validates, the pinned copy is unchanged and reviewed, production goes through the hardened client, both clients pass, and new rules refuse by default."
+  ],
+  [
+   13.325,
+   14.762,
+   "On the run side: the hold and the budget are set from your own numbers and license, the sender has one permission and no secret, the quarantine file stays in the audit store, every missing person key becomes a finding, and the endpoint matches the cloud."
+  ],
+  [
+   28.087,
+   3.462,
+   "Chapter 2 builds Graph clients for the government clouds."
+  ],
+  [
+   31.55,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

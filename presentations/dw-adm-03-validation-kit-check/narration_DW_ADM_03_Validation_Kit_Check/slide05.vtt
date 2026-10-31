@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.225
+Here's the catalog entry,
+and the lesson hiding in it.
+
+2
+00:00:03.225 --> 00:00:06.926
+The read itself is innocent:
+get the tenant's sync settings,
+
+3
+00:00:06.926 --> 00:00:10.087
+with a read-only permission
+that sounds harmless.
+
+4
+00:00:10.087 --> 00:00:13.538
+But Learn lists no application
+permission for it at all,
+
+5
+00:00:13.538 --> 00:00:18.638
+and for a signed-in user it names exactly
+one supported role, Global Administrator.
+
+6
+00:00:18.638 --> 00:00:20.846
+So a check that only reads, run live,
+
+7
+00:00:20.846 --> 00:00:24.037
+would need the most powerful
+role in the tenant.
+
+8
+00:00:24.037 --> 00:00:27.375
+Being read-only is necessary,
+but it isn't enough.
+
+9
+00:00:27.375 --> 00:00:29.950
+The next slide shows what
+the check does about it.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Next, which cloud.
+
+2
+00:00:01.413 --> 00:00:04.740
+Everything here is Microsoft
+Graph, version one,
+
+3
+00:00:04.740 --> 00:00:10.063
+with no Resource Manager calls at all;
+Azure resource roles wait for Chapter 6.
+
+4
+00:00:10.063 --> 00:00:14.208
+This estate's tenant is GCC,
+so Graph is the worldwide
+
+5
+00:00:14.208 --> 00:00:17.775
+host and sign-in is the
+worldwide sign-in page.
+
+6
+00:00:17.775 --> 00:00:22.091
+GCC High and the Defense Department
+cloud would use their own hosts,
+
+7
+00:00:22.091 --> 00:00:26.638
+and every call's Learn page lists the
+US Government clouds as available.
+
+8
+00:00:26.638 --> 00:00:31.111
+One small design choice matters: the
+code takes an explicit cloud name
+
+9
+00:00:31.111 --> 00:00:35.710
+and has no default, so nobody runs it
+against the wrong cloud by accident.

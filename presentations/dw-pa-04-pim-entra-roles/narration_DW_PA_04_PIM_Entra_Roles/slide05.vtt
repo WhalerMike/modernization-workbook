@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.162
+The authentication context deserves its
+own slide, because it's easy to get wrong.
+
+2
+00:00:05.162 --> 00:00:09.202
+Learn says the Conditional Access
+policy behind the context must
+
+3
+00:00:09.202 --> 00:00:12.875
+exist and be switched on before
+you select the context in PIM.
+
+4
+00:00:12.875 --> 00:00:16.845
+If no policy targets it,
+activation falls back to MFA,
+
+5
+00:00:16.845 --> 00:00:21.738
+but if the policy is off or report-only,
+nothing is enforced at all.
+
+6
+00:00:21.738 --> 00:00:25.381
+Even with it on, you only get
+a prompt on every activation if
+
+7
+00:00:25.381 --> 00:00:29.176
+that policy asks for it, and a
+ten-minute window still applies.
+
+8
+00:00:29.176 --> 00:00:32.983
+Learn's pages also disagree on
+whether the option is in preview,
+
+9
+00:00:32.983 --> 00:00:35.450
+so the chapter keeps calling it preview.

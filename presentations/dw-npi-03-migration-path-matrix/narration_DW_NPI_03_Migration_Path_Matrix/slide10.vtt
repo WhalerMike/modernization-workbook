@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.014
+A conversion with no way back turns
+a failed change into an outage,
+
+2
+00:00:04.014 --> 00:00:06.950
+so the waves get as much
+attention as the targets.
+
+3
+00:00:06.950 --> 00:00:11.386
+Every rollback owner and service
+principal name owner is looked up once,
+
+4
+00:00:11.386 --> 00:00:15.600
+and counts only if they're an enabled
+member, the same rule as Chapter 2.
+
+5
+00:00:15.600 --> 00:00:18.704
+An account the owner didn't
+place in a wave is proposed
+
+6
+00:00:18.704 --> 00:00:21.950
+for the first wave if it's
+high-risk, the second otherwise.
+
+7
+00:00:21.950 --> 00:00:25.579
+And each wave's rollback is
+assembled from its members' targets,
+
+8
+00:00:25.579 --> 00:00:29.137
+including Learn's own undo for
+a delegated account migration,
+
+9
+00:00:29.137 --> 00:00:32.210
+which keeps the old account
+rather than deleting it.

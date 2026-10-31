@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.713
+Learn sets the order, and getting
+it wrong leaves no gate at all.
+
+2
+00:00:03.713 --> 00:00:08.182
+You create and switch on the policy
+for the authentication context first,
+
+3
+00:00:08.182 --> 00:00:10.600
+and only then select that context in PIM.
+
+4
+00:00:10.600 --> 00:00:15.118
+If no policy targets it, PIM falls back
+to asking for multifactor sign-in,
+
+5
+00:00:15.118 --> 00:00:19.713
+but that fallback doesn't happen when
+the policy is off or only reporting.
+
+6
+00:00:19.713 --> 00:00:23.905
+And if you also scope the policy to
+a directory role, it never applies,
+
+7
+00:00:23.905 --> 00:00:27.499
+because at activation the person
+doesn't hold the role yet.
+
+8
+00:00:27.499 --> 00:00:31.630
+So this chapter builds the gate, and
+leaves selecting it to Chapter 4.

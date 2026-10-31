@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Here's Microsoft's starting point.
+
+2
+00:00:01.925 --> 00:00:05.368
+Learn's page gives portal
+steps for both kinds of policy,
+
+3
+00:00:05.368 --> 00:00:09.709
+says to save them report-only first,
+tells you where to read the results,
+
+4
+00:00:09.709 --> 00:00:13.975
+and ends with one sample policy in
+JSON for the beta Graph endpoint.
+
+5
+00:00:13.975 --> 00:00:16.510
+The repository searched Microsoft's sample
+
+6
+00:00:16.510 --> 00:00:19.387
+repositories and found
+nothing else to start from.
+
+7
+00:00:19.387 --> 00:00:24.034
+So the page is pinned, unmodified, with
+checked hashes and a weekly watch,
+
+8
+00:00:24.034 --> 00:00:28.602
+and its one JSON block is extracted
+and sent to a fake Graph and to the
+
+9
+00:00:28.602 --> 00:00:33.070
+program's own pre-merge check, exactly
+as if someone had committed it.

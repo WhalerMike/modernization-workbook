@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.887
+Lab 1 runs on a laptop with
+no tenant and no network.
+
+2
+00:00:03.887 --> 00:00:06.651
+First you run Microsoft's
+sample on the fixture.
+
+3
+00:00:06.651 --> 00:00:11.050
+The mapping checks out, and the
+payload holds all nineteen operations.
+
+4
+00:00:11.050 --> 00:00:14.008
+Then go looking: the
+pending worker is active,
+
+5
+00:00:14.008 --> 00:00:17.925
+one person appears twice, and
+one operation has an empty key.
+
+6
+00:00:17.925 --> 00:00:20.938
+Next you run the hardened
+client on the same file.
+
+7
+00:00:20.938 --> 00:00:24.933
+It exits with a code that says
+rows were refused: nine ready,
+
+8
+00:00:24.933 --> 00:00:30.176
+nine quarantined, one superseded, and
+the PowerShell client agrees exactly.
+
+9
+00:00:30.176 --> 00:00:31.540
+Now compare the two.

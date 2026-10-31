@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.300
+Why reviews at all?
+
+2
+00:00:01.300 --> 00:00:05.787
+The approval gate from the earlier
+chapters controls when privilege is used.
+
+3
+00:00:05.787 --> 00:00:08.787
+Reviews control who keeps
+the right to use it.
+
+4
+00:00:08.787 --> 00:00:11.712
+Without them, eligibility only grows.
+
+5
+00:00:11.712 --> 00:00:16.065
+Book 04 sets the schedule: the
+most sensitive tier every month,
+
+6
+00:00:16.065 --> 00:00:21.100
+the rest every quarter, with access
+removed when reviewers stay silent.
+
+7
+00:00:21.100 --> 00:00:22.312
+And why as code?
+
+8
+00:00:22.312 --> 00:00:24.825
+Because a review set up by hand drifts.
+
+9
+00:00:24.825 --> 00:00:27.573
+Someone leaves, a duration gets shortened,
+
+10
+00:00:27.573 --> 00:00:30.713
+auto-apply is switched off
+once and never back on.
+
+11
+00:00:30.713 --> 00:00:35.110
+In code, every series has a
+file, a diff and a reviewer.

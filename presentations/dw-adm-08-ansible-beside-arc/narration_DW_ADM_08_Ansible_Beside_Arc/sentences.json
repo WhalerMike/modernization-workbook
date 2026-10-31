@@ -1,0 +1,593 @@
+{
+ "1": [
+  [
+   0.05,
+   6.237,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building the Attribute-Driven Migration."
+  ],
+  [
+   6.287,
+   12.05,
+   "This is Chapter 8: Ansible beside Arc. Microsoft's role connects a server to Azure Arc, but it doesn't know which tool owns the server's settings, which tool patches it, or which wave it belongs to."
+  ],
+  [
+   18.337,
+   5.45,
+   "The configuration database knows, and the inventory has to carry that to every connect."
+  ],
+  [
+   23.788,
+   9.488,
+   "We'll start from Microsoft's own role, see what it leaves out, then walk the inventory, the wave plan, the onboarding playbook, two labs and the dangers."
+  ],
+  [
+   33.275,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.512,
+   "Why does this chapter matter?"
+  ],
+  [
+   1.562,
+   8.988,
+   "Because the program gives every setting one owning tool, and every server one patching tool, and both are recorded in the configuration database."
+  ],
+  [
+   10.55,
+   1.725,
+   "Arc doesn't change any of that."
+  ],
+  [
+   12.275,
+   7.188,
+   "What it does is turn the server into an Azure resource, and from then on, tags tell Azure's tools which servers are theirs."
+  ],
+  [
+   19.462,
+   3.35,
+   "Those tags are written once, at the moment of connection."
+  ],
+  [
+   22.812,
+   4.625,
+   "So the onboarding run is the one place owners get read, checked and carried."
+  ],
+  [
+   27.438,
+   4.725,
+   "Connect a server without them, and it belongs to whichever tool reaches it first."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.975,
+   "Here's who reads those tags once a server is connected."
+  ],
+  [
+   3.025,
+   6.95,
+   "Machine configuration, from the last chapter, only enforces on servers whose configuration owner tag names it."
+  ],
+  [
+   9.975,
+   9.463,
+   "Update Manager's dynamic scopes can group machines by tag, and they're evaluated at every scheduled run, so a scope on the patch owner tag follows the tag."
+  ],
+  [
+   19.438,
+   3.438,
+   "The built-in assessment policy can be scoped by tag too."
+  ],
+  [
+   22.875,
+   4.6,
+   "And the validation kit checks afterward for a server carrying enforcement it shouldn't."
+  ],
+  [
+   27.475,
+   3.513,
+   "Every one of them depends on the tag being right from the start."
+  ],
+  [
+   30.988,
+   1.5,
+   "Next, which Azure."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   0.875,
+   "Which Azure?"
+  ],
+  [
+   0.925,
+   1.525,
+   "This is easy to get wrong."
+  ],
+  [
+   2.45,
+   10.975,
+   "The estate is a Microsoft 365 G C C tenant, and Learn says G C C uses the public directory, which can't be associated with an Azure Government subscription."
+  ],
+  [
+   13.425,
+   7.688,
+   "So the estate's Arc servers go to a commercial subscription, using the agent's default cloud and the commercial endpoints on the slide."
+  ],
+  [
+   21.113,
+   7.975,
+   "G C C High and Defense tenants are different: they use the government directory, Azure Government, and the dot U S endpoints."
+  ],
+  [
+   29.087,
+   2.888,
+   "The code guards both directions, as we'll see."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.712,
+   "Here's what Microsoft gives you."
+  ],
+  [
+   1.762,
+   5.237,
+   "Learn documents Arc onboarding with Ansible through one role in the Azure collection."
+  ],
+  [
+   7.0,
+   7.062,
+   "It installs the agent and registers each host, and it's idempotent, so a connected machine is simply skipped."
+  ],
+  [
+   14.062,
+   10.488,
+   "Learn's page covers the onboarding role, the variables, and authentication, recommending the control node's managed identity in production because it removes stored secrets."
+  ],
+  [
+   24.55,
+   2.663,
+   "It also suggests scheduling the job nightly."
+  ],
+  [
+   27.212,
+   9.137,
+   "But Learn's planning page adds something the role page doesn't: pilot first, on non-critical machines, for at least thirty days, with a rollback plan."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   9.225,
+   "The repository keeps an unmodified copy of the role, from the released version, with every file's hash checked against upstream and against the published package."
+  ],
+  [
+   9.275,
+   5.787,
+   "The collection is pinned to that version, and a test fails if the installed role isn't the pinned copy."
+  ],
+  [
+   15.062,
+   3.562,
+   "Reading the code turned up two things Learn's page doesn't say."
+  ],
+  [
+   18.625,
+   3.837,
+   "The role's default tag is different from the one Learn's table gives."
+  ],
+  [
+   22.462,
+   7.45,
+   "And unless you turn it off, it sends a signal about your subscription, resource group, tenant and region back to Microsoft."
+  ],
+  [
+   29.913,
+   3.212,
+   "The chapter follows the code, because that's what runs."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.15,
+   "Running the role offline, and reading it, shows what it leaves to you, starting with owners and waves."
+  ],
+  [
+   6.2,
+   4.013,
+   "It connects whatever the inventory names, with no owner tags."
+  ],
+  [
+   10.213,
+   4.675,
+   "It has no waves or batches, so one mistake reaches everything at once."
+  ],
+  [
+   14.887,
+   7.2,
+   "It can't do a real dry run on a server without the agent; it wrongly decides the agent is installed, then fails."
+  ],
+  [
+   22.087,
+   5.888,
+   "Passing your own tags silently drops its default that keeps database servers from auto-onboarding."
+  ],
+  [
+   27.975,
+   2.05,
+   "And it sends that signal by default."
+  ],
+  [
+   30.025,
+   3.4,
+   "Each gap gets a fix, and each is pinned by a test."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.038,
+   "The rest of the gaps are about the cloud and the record."
+  ],
+  [
+   3.087,
+   10.575,
+   "The role's token is for commercial Resource Manager, which is right for this estate, so the role-based playbook refuses any other cloud, and a separate playbook handles Azure Government."
+  ],
+  [
+   13.662,
+   7.013,
+   "The token is briefly visible on the server's command line; the chapter accepts that, since tokens are short-lived."
+  ],
+  [
+   20.675,
+   6.55,
+   "Nothing checks the region against the cloud, nothing is written down, and Learn's setup installs whatever's newest."
+  ],
+  [
+   27.225,
+   4.925,
+   "The verdict: use Microsoft's role, unchanged, and put the checks around it."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   10.85,
+   "The first change is small but essential: a patch owner column in the configuration database export, right beside the configuration owner, with the onboarding wave after the region."
+  ],
+  [
+   10.9,
+   4.275,
+   "The guide had named that field, but the sample export never carried it."
+  ],
+  [
+   15.175,
+   9.363,
+   "Look at the server on Amazon's cloud: Ansible configures it and patches it, but it still goes to Arc, for inventory, assessment and Defender."
+  ],
+  [
+   24.538,
+   5.325,
+   "Its patch owner tag says Ansible, so Update Manager assesses it and schedules nothing."
+  ],
+  [
+   29.863,
+   5.487,
+   "And because this is a G C C estate, the sample now uses commercial regions."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   11.6,
+   "The inventory script turns each owner into an Ansible group and an Azure tag, using the Arc track's spellings; the validation kit compares them without caring about case or punctuation."
+  ],
+  [
+   11.65,
+   1.8,
+   "Three rules fail closed."
+  ],
+  [
+   13.45,
+   7.2,
+   "An owner name it doesn't recognize stops the run, because a typo would quietly drop a server out of the group that protects it."
+  ],
+  [
+   20.65,
+   2.05,
+   "A wave that isn't a number stops it."
+  ],
+  [
+   22.7,
+   5.95,
+   "And a server is only a candidate if its record is complete and its tags are values Arc will accept."
+  ],
+  [
+   28.65,
+   3.15,
+   "Otherwise it's blocked, with the reason written down."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.675,
+   "Before anything touches a server, the wave plan runs on the control node alone."
+  ],
+  [
+   4.725,
+   11.875,
+   "You give it a wave number, and it writes down exactly what it intends: every ready server, every blocked one, the resource group, region, cloud, both owners and the exact tag string."
+  ],
+  [
+   16.6,
+   9.537,
+   "It refuses to go on if there's no wave, if a region belongs to the other cloud, if a production server has slipped into a pilot wave, or if an owner is missing."
+  ],
+  [
+   26.137,
+   6.125,
+   "Both onboarding playbooks start with this plan, so if the plan stops, no server is contacted at all."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.625,
+   "Now the onboarding itself."
+  ],
+  [
+   1.675,
+   8.912,
+   "The role-based playbook works one wave at a time: a single canary server, then five percent, then a quarter, and it stops at the first failure."
+  ],
+  [
+   10.588,
+   2.925,
+   "Each server is checked again before anything happens."
+  ],
+  [
+   13.512,
+   8.488,
+   "Without an explicit confirmation flag, it never calls the role; it just prints what each server would get, which is the dry run the role can't do."
+  ],
+  [
+   22.0,
+   8.438,
+   "With confirmation, it calls Microsoft's role unchanged, with the database's values and no stored secret, and writes a result file."
+  ],
+  [
+   30.438,
+   3.475,
+   "The older step-by-step playbook stays for Azure Government."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   9.762,
+   "Platform engineers who run Ansible beside Arc, the developers who keep the inventory and playbooks, and the reviewers who read the plan before and the result after."
+  ],
+  [
+   10.863,
+   6.65,
+   "The onboarding identity gets one narrow role: it can read and create Arc servers, but it can't delete them."
+  ],
+  [
+   17.512,
+   11.562,
+   "There's a wrinkle: one Learn page says it can't manage extensions, another lists an add-extensions permission in it, so the chapter takes the stricter reading and removes the assignment when the wave closes."
+  ],
+  [
+   29.075,
+   2.812,
+   "Disconnecting needs a different, stronger role."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   8.963,
+   "Lab 1 runs on a Linux control node with no subscription, and after setup every outbound request goes to a dead local proxy, so nothing can leave."
+  ],
+  [
+   9.012,
+   6.062,
+   "Use a disposable node, because one step runs Microsoft's role as root against the node itself."
+  ],
+  [
+   15.075,
+   7.737,
+   "First, look at what the database export becomes: four candidates, and the Amazon-hosted server tagged with Ansible for both owners."
+  ],
+  [
+   22.812,
+   3.763,
+   "Then run Microsoft's role, unchanged, in check mode."
+  ],
+  [
+   26.575,
+   8.175,
+   "It fails, and the verbose output shows why: check mode skipped the version check, so the role concluded the agent was already installed."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.45,
+   "Now the kit's own path."
+  ],
+  [
+   1.5,
+   6.65,
+   "Plan wave zero, and it's ready: one server, with its exact tag string written to a file you can review."
+  ],
+  [
+   8.15,
+   9.062,
+   "Dry-run the wave with the role-based playbook, and it prints what that server would get, including the restored database default, while the connect itself is skipped."
+  ],
+  [
+   17.212,
+   2.1,
+   "Then break the export on purpose."
+  ],
+  [
+   19.312,
+   3.825,
+   "Put a production server into the pilot wave, and the plan stops."
+  ],
+  [
+   23.137,
+   3.325,
+   "Misspell a patch owner, and the inventory refuses."
+  ],
+  [
+   26.462,
+   3.425,
+   "Clear one owner, and that server is blocked with its reason."
+  ],
+  [
+   29.887,
+   2.688,
+   "Run the suite, and ninety tests pass."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   7.85,
+   "Lab 2 connects one disposable server for real, in a commercial test subscription in the G C C tenant, never production."
+  ],
+  [
+   7.9,
+   4.787,
+   "The control node runs somewhere with a managed identity, so no secret is stored."
+  ],
+  [
+   12.688,
+   8.325,
+   "Prepare a resource group, grant the onboarding role to that identity and nothing else, and describe the one server in a tiny export."
+  ],
+  [
+   21.012,
+   5.438,
+   "Then the same three commands every wave uses: plan, dry run, connect."
+  ],
+  [
+   26.45,
+   5.7,
+   "Check the agent says connected, the tags match the database, and the validation kit agrees."
+  ],
+  [
+   32.15,
+   3.237,
+   "Then back it out in Learn's order, and file the records."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   6.088,
+   "Each danger has a guard, and the theme is that the connect is irreversible enough to deserve care."
+  ],
+  [
+   6.138,
+   4.625,
+   "Owners must be present and spelled right, or the server isn't a candidate."
+  ],
+  [
+   10.762,
+   4.5,
+   "Patching has one owner, so Update Manager schedules only what it owns."
+  ],
+  [
+   15.262,
+   6.15,
+   "Waves, a canary and a pilot that refuses production keep one mistake from reaching everything."
+  ],
+  [
+   21.413,
+   2.175,
+   "The dry run must really be dry."
+  ],
+  [
+   23.587,
+   1.938,
+   "The cloud must match the tenant."
+  ],
+  [
+   25.525,
+   4.862,
+   "And defaults that send data or onboard databases become decisions on record."
+  ],
+  [
+   30.387,
+   4.388,
+   "Finally, a managed identity means there's no stored secret to steal."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   6.112,
+   "Every tier one server in the export has both owners and a wave, or a ticket explaining why not."
+  ],
+  [
+   7.513,
+   1.712,
+   "The cloud matches the tenant."
+  ],
+  [
+   9.225,
+   4.85,
+   "The wave plan was reviewed and filed before the run, and the dry run matched it."
+  ],
+  [
+   14.075,
+   5.987,
+   "The onboarding identity holds one narrow role, and the two risky defaults are decisions on record."
+  ],
+  [
+   20.062,
+   3.913,
+   "The pilot ran on non-production servers for at least thirty days."
+  ],
+  [
+   23.975,
+   4.938,
+   "Afterward, the tags in Azure match the database and the validation kit is clean."
+  ],
+  [
+   28.913,
+   5.013,
+   "Next, Chapter 9: drift pipelines and evidence for the security officer."
+  ],
+  [
+   33.925,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

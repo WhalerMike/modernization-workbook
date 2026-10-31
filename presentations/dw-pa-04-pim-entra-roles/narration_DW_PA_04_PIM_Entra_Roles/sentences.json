@@ -1,0 +1,523 @@
+{
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Privileged Access."
+  ],
+  [
+   5.688,
+   4.162,
+   "This is Chapter 4: pim for Microsoft Entra roles as code."
+  ],
+  [
+   9.85,
+   12.15,
+   "A role setting someone changed in the portal is a control nobody reviewed, so this chapter holds each role's settings in a reviewed file, compares the file with the tenant, and changes the tenant only from the file."
+  ],
+  [
+   22.0,
+   9.588,
+   "We'll start from Microsoft's two samples, see what they leave out, then walk the role files, the checks, the diff and the rollout, two labs and the dangers."
+  ],
+  [
+   31.587,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.725,
+   "Why does this chapter exist?"
+  ],
+  [
+   1.775,
+   4.975,
+   "Because a setting someone changed by hand in the portal is a control nobody reviewed."
+  ],
+  [
+   6.75,
+   2.337,
+   "And because the order of changes matters."
+  ],
+  [
+   9.088,
+   8.475,
+   "Learn documents a lockout: every top administrator eligible, none active, approval required, and nobody named to approve."
+  ],
+  [
+   17.562,
+   10.012,
+   "So the chapter won't touch any role setting until the emergency accounts from Chapter 2 hold in the tenant, and it refuses any file that asks for approval without an approver."
+  ],
+  [
+   27.575,
+   6.037,
+   "The plan's order is fixed too: one pilot class first, then every tier, one at a time."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   8.65,
+   "Everything here is Microsoft Graph, version one, with no Resource Manager calls at all; Azure resource roles wait for Chapter 6."
+  ],
+  [
+   10.062,
+   7.713,
+   "This estate's tenant is G C C, so Graph is the worldwide host and sign-in is the worldwide sign-in page."
+  ],
+  [
+   17.775,
+   8.863,
+   "G C C High and the Defense Department cloud would use their own hosts, and every call's Learn page lists the U S Government clouds as available."
+  ],
+  [
+   26.637,
+   9.025,
+   "One small design choice matters: the code takes an explicit cloud name and has no default, so nobody runs it against the wrong cloud by accident."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.913,
+   "Here's the shape of what we're managing."
+  ],
+  [
+   1.962,
+   7.838,
+   "Every Microsoft Entra role has its own settings, independent of every other role, and every assignment of that role follows them."
+  ],
+  [
+   9.8,
+   10.037,
+   "In Graph, each role gets one policy, and each policy holds seventeen rules with fixed names, grouped into activation, assignment and notification."
+  ],
+  [
+   19.837,
+   9.213,
+   "This chapter manages the seven activation and assignment rules that Book 4 lists, the ones on the slide, and deliberately leaves the notification rules alone."
+  ],
+  [
+   29.05,
+   3.7,
+   "Each of those seven becomes a few lines in a reviewed file."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.112,
+   "The authentication context deserves its own slide, because it's easy to get wrong."
+  ],
+  [
+   5.162,
+   7.713,
+   "Learn says the Conditional Access policy behind the context must exist and be switched on before you select the context in pim."
+  ],
+  [
+   12.875,
+   8.863,
+   "If no policy targets it, activation falls back to M F A, but if the policy is off or report-only, nothing is enforced at all."
+  ],
+  [
+   21.738,
+   7.438,
+   "Even with it on, you only get a prompt on every activation if that policy asks for it, and a ten-minute window still applies."
+  ],
+  [
+   29.175,
+   6.225,
+   "Learn's pages also disagree on whether the option is in preview, so the chapter keeps calling it preview."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.962,
+   "Microsoft gives you two samples."
+  ],
+  [
+   2.013,
+   6.763,
+   "One shows how to find a role's policy and then update its rules, six requests, each carrying the right type."
+  ],
+  [
+   8.775,
+   10.6,
+   "The other is a tutorial that makes a group eligible for a role and has a member activate it, which is exactly Book 4's pattern: roles are eligible to a group, never to a person."
+  ],
+  [
+   19.375,
+   8.3,
+   "Those samples liv only inside web pages, so the repository pins the pages' source, unmodified, with hashes a test checks."
+  ],
+  [
+   27.675,
+   5.213,
+   "Then a harness sends every request to a fake Graph, so you can see what they really do."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.588,
+   "This is where the samples fall short, and every row is pinned by a test."
+  ],
+  [
+   4.638,
+   3.837,
+   "Learn's read and its rule shapes are good, so the code keeps them."
+  ],
+  [
+   8.475,
+   9.912,
+   "But there's no sample for the authentication context rule at all, and the activation sample relies on M F A, which may not prompt again in a session that already did it."
+  ],
+  [
+   18.387,
+   5.225,
+   "Every update names a policy from somebody else's tenant, so a copied script fails."
+  ],
+  [
+   23.613,
+   6.1,
+   "And even with the right policy, the samples leave a role different from the program's settings in six rules."
+  ],
+  [
+   29.712,
+   1.95,
+   "So the code adds a real diff."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.112,
+   "The rest of the gaps are about safety."
+  ],
+  [
+   2.163,
+   7.388,
+   "Nothing in the samples reads before writing, offers a dry run, or reads back afterward, and nothing checks for the lockout."
+  ],
+  [
+   9.55,
+   8.363,
+   "The tutorial asks for a year of eligibility, twice what the program allows for that tier, and for permissions far broader than the request needs."
+  ],
+  [
+   17.913,
+   2.45,
+   "Its clean-up would delete the wrong object."
+  ],
+  [
+   20.363,
+   7.362,
+   "So the verdict is clear: keep Learn's read, its rule shapes and its write permission, but don't run the samples as published."
+  ],
+  [
+   27.725,
+   2.188,
+   "Let's look at what the code builds instead."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.325,
+   "So what does the code add?"
+  ],
+  [
+   1.375,
+   11.175,
+   "A module of its own, building on Book 4's appendix script, with one reviewed file per role, twenty-two in all, so a reviewer reads a change to a file as a change to the tenant."
+  ],
+  [
+   12.55,
+   9.838,
+   "Approvers appear by alias, and a small bindings file per tenant turns each alias into a real group, so the same files serve a test tenant and production."
+  ],
+  [
+   22.387,
+   2.163,
+   "Every file sits inside bounds."
+  ],
+  [
+   24.55,
+   9.588,
+   "Where Learn's pages disagree on the longest activation, the code takes the stricter eight hours, and the owner capped standing active assignments at fifteen days."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.9,
+   "Before anything is written, nine checks run."
+  ],
+  [
+   2.95,
+   8.088,
+   "The first two are the two halves of the lockout: approval with no approver, and too few emergency accounts holding Global Administrator."
+  ],
+  [
+   11.037,
+   8.5,
+   "Others keep approvers separate from the people they approve, keep every file inside its bounds, and refuse a wave until the earlier ones match."
+  ],
+  [
+   19.538,
+   1.85,
+   "Any finding blocks the write."
+  ],
+  [
+   21.387,
+   11.088,
+   "One check can't be automated: whether the activation gate's policy is on lives in a beta property, so a person has to state it, with a flag, after Chapter 3's run shows it's on."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.825,
+   "Reading and writing are different jobs here, with different permissions."
+  ],
+  [
+   3.875,
+   9.55,
+   "Every read uses a read-only permission, and the client refuses anything but a read unless it was built for writing, which only happens when you ask to apply."
+  ],
+  [
+   13.425,
+   7.638,
+   "Rule updates and new eligibility need two write permissions; removing a standing assignment is a third task with its own."
+  ],
+  [
+   21.062,
+   7.425,
+   "Learn's PowerShell guide and the tutorial ask for broader permissions, so the code follows the narrower reference pages instead."
+  ],
+  [
+   28.488,
+   3.913,
+   "And a test makes sure the dry run's app never holds a write permission."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.075,
+   "This is the write path, and it's careful by design."
+  ],
+  [
+   3.125,
+   7.85,
+   "First it reads each role's policy, then compares the seven rules with the file, after smoothing out differences that don't matter."
+  ],
+  [
+   10.975,
+   3.025,
+   "The plan lists every change and sends nothing."
+  ],
+  [
+   14.0,
+   7.612,
+   "Only when you ask to apply does it write: rules first, then eligibility, so each request meets the new limits."
+  ],
+  [
+   21.613,
+   5.35,
+   "Then it reads the tenant again, and that read-back is the evidence, not the response."
+  ],
+  [
+   26.962,
+   7.7,
+   "Converting standing access follows Book 4's order: eligible first, activation confirmed, and only then removed."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.413,
+   "Who is this chapter for?"
+  ],
+  [
+   1.462,
+   7.225,
+   "Developers build the write path, and they need PowerShell, the file format, and a sense of what an eligible assignment is."
+  ],
+  [
+   8.688,
+   5.925,
+   "The identity engineers own pim itself: the role files, the bindings, and the groups."
+  ],
+  [
+   14.613,
+   9.525,
+   "And the information system security officers review the changes, because every file is read by two people and every apply follows a reviewed dry run."
+  ],
+  [
+   24.137,
+   8.738,
+   "The identities are split the same way: a reader for dry runs, a writer for applying, and the removal permission held only for a conversion run."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.987,
+   "Lab 1 needs only a laptop: PowerShell 7 and Pester, no tenant and no network."
+  ],
+  [
+   6.037,
+   10.963,
+   "First you send Learn's own samples to the fake and watch thirteen tests pass, including the one that shows the samples applying cleanly and still leaving a role six rules away from its file."
+  ],
+  [
+   17.0,
+   5.15,
+   "Then you list each task's permissions, and see that a dry run needs only reads."
+  ],
+  [
+   22.15,
+   10.25,
+   "Finally you dry-run the pilot wave: nine roles, no findings, a plan of rule updates, eligibility requests and two conversions, and nothing sent."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.288,
+   "Now read what came out."
+  ],
+  [
+   1.337,
+   7.6,
+   "One role was partly set by hand, so its diff is short and touches only what's wrong; what already matches isn't touched."
+  ],
+  [
+   8.938,
+   8.088,
+   "The findings name the people holding standing access, an automation account with no documented owner, and someone eligible outside their group."
+  ],
+  [
+   17.025,
+   6.412,
+   "Then you try Tier zero too early, and the run blocks, one finding for each pilot role not yet done."
+  ],
+  [
+   23.438,
+   7.713,
+   "Applying the pilot wave stops once to make you confirm the activation gate, then sends everything and reads back zero differences."
+  ],
+  [
+   31.15,
+   1.512,
+   "The whole suite passes."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.412,
+   "Lab 2 moves to a test tenant, never production, and works one role."
+  ],
+  [
+   4.463,
+   7.688,
+   "First the prerequisites: the emergency accounts pass, and the activation gate's policy is truly on, not report-only."
+  ],
+  [
+   12.15,
+   5.287,
+   "You create the approver group and the role's group, and two apps, a reader and a writer."
+  ],
+  [
+   17.438,
+   6.862,
+   "Dry-run as the reader and review the plan with a second person, then apply as the writer and expect zero differences."
+  ],
+  [
+   24.3,
+   5.3,
+   "Next, convert one standing assignment the safe way, after a confirmed activation."
+  ],
+  [
+   29.6,
+   4.125,
+   "And finally, restore the rules from the saved copy and clean up."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   3.2,
+   "Each of these dangers has a guard that runs every time."
+  ],
+  [
+   3.25,
+   5.625,
+   "The two worst are the lockout halves, and both are checked against the lyve tenant before any write."
+  ],
+  [
+   8.875,
+   7.662,
+   "A context switched on before its policy is on looks protective but enforces nothing, which is why a person has to confirm the gate."
+  ],
+  [
+   16.538,
+   9.775,
+   "Then there are the quieter ones: a script nobody reviewed, one identity that can change everything, settings drifting in the portal, and a back-out done from memory."
+  ],
+  [
+   26.312,
+   4.6,
+   "The pattern holds: rules and saved files, not people remembering."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   7.05,
+   "Every role file has had two reviewers, the bindings name every group, and no approver group can approve itself."
+  ],
+  [
+   8.45,
+   6.0,
+   "The emergency accounts pass, and the activation gate's policy is on before anyone says so."
+  ],
+  [
+   14.45,
+   4.412,
+   "The reader, the writer and the conversion run each hold only what they need."
+  ],
+  [
+   18.863,
+   9.463,
+   "Every apply followed a reviewed dry run and read back clean, every removal has a confirmed activation, and every run folder is kept as evidence."
+  ],
+  [
+   28.325,
+   5.175,
+   "Next, Chapter 5 builds pim for Groups, the groups that hold this eligibility."
+  ],
+  [
+   33.5,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.287
+Why treat a one-line rule as code?
+
+2
+00:00:02.287 --> 00:00:06.400
+Because in this migration,
+access follows the HR record.
+
+3
+00:00:06.400 --> 00:00:09.275
+HR values land in a few coded attributes,
+
+4
+00:00:09.275 --> 00:00:14.588
+and dynamic rules read them to decide
+who gets access, licenses and policy.
+
+5
+00:00:14.588 --> 00:00:18.205
+Every rule that grants access
+starts with two guards:
+
+6
+00:00:18.205 --> 00:00:21.575
+the account is enabled, and
+it's a member, not a guest.
+
+7
+00:00:21.575 --> 00:00:26.225
+The validation kit from Chapter 3 already
+checks the rules live in a tenant.
+
+8
+00:00:26.225 --> 00:00:29.892
+This chapter moves those checks
+earlier, into the pull request,
+
+9
+00:00:29.892 --> 00:00:33.550
+so a bad rule is caught before
+the engine starts moving people.

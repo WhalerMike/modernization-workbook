@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.813
+Validation is where a bad H R row
+stops before it becomes a bad account.
+
+2
+00:00:04.813 --> 00:00:09.388
+Each row either becomes a SCIM operation
+or is refused with reasons and goes
+
+3
+00:00:09.388 --> 00:00:14.037
+to quarantine, along with the unchanged
+row and the payload it would have sent.
+
+4
+00:00:14.037 --> 00:00:17.752
+Some things are only warnings:
+someone on leave isn't a leaver,
+
+5
+00:00:17.752 --> 00:00:20.649
+and a departing manager
+never blocks a new hire.
+
+6
+00:00:20.649 --> 00:00:24.244
+The chapter's rule of thumb is
+that every new check starts
+
+7
+00:00:24.244 --> 00:00:27.762
+as a refusal until the H R owner
+agrees it can be a warning.
+
+8
+00:00:27.762 --> 00:00:30.594
+And the client always
+sends the complete record,
+
+9
+00:00:30.594 --> 00:00:34.750
+because with clearing switched on,
+a missing value can wipe the target.

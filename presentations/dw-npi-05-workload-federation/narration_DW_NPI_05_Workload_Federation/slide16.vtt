@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.300
+Lab 2 moves to a test
+tenant, never production.
+
+2
+00:00:03.300 --> 00:00:06.912
+You set up one small conversion:
+a test app with a secret,
+
+3
+00:00:06.912 --> 00:00:12.050
+a test service account, and a test
+repository whose workflow signs in to Azure.
+
+4
+00:00:12.050 --> 00:00:14.242
+The key step is capturing the claims:
+
+5
+00:00:14.242 --> 00:00:18.333
+have the workflow print the decoded
+issuer and subject of its token,
+
+6
+00:00:18.333 --> 00:00:22.862
+never the token itself, because that's
+the truth the check compares against.
+
+7
+00:00:22.862 --> 00:00:26.173
+Then plan, get a second
+person to approve the hash,
+
+8
+00:00:26.173 --> 00:00:29.813
+apply, and watch a real exchange
+land in the sign-in log.
+
+9
+00:00:29.813 --> 00:00:31.933
+Try a wrong subject on purpose,
+
+10
+00:00:31.933 --> 00:00:35.810
+run the parallel run forward,
+and back it all out by hand.

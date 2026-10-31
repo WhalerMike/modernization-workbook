@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:04.350
+Every conversion followed
+the order or says why.
+
+3
+00:00:04.350 --> 00:00:09.190
+Every federated credential was checked
+against claims captured from a real run,
+
+4
+00:00:09.190 --> 00:00:11.863
+and passed its exchange
+test, before cutover.
+
+5
+00:00:11.863 --> 00:00:14.638
+Nothing sits in the tenant
+that nobody reviewed.
+
+6
+00:00:14.638 --> 00:00:18.300
+The plan was approved by someone
+other than the person who applied it.
+
+7
+00:00:18.300 --> 00:00:23.454
+Every parallel run had thirty clean days,
+every disable has the owner's approval,
+
+8
+00:00:23.454 --> 00:00:26.812
+and nothing was deleted, so
+the way back is still open.
+
+9
+00:00:26.812 --> 00:00:30.345
+Next, Chapter 6 turns to group
+managed service accounts,
+
+10
+00:00:30.345 --> 00:00:34.262
+delegated managed service
+accounts, and the Kerberos island.
+
+11
+00:00:34.262 --> 00:00:35.420
+Thanks for watching.

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+The rest of the lab covers
+beta and PowerShell.
+
+2
+00:00:03.088 --> 00:00:07.476
+Ask for Autopilot in GCC High and
+the client makes no call at all:
+
+3
+00:00:07.476 --> 00:00:11.275
+it reports not available, with
+the reason and the stage.
+
+4
+00:00:11.275 --> 00:00:16.356
+Then you run the same rules in PowerShell:
+an undeclared beta call is refused,
+
+5
+00:00:16.356 --> 00:00:21.437
+and so is a worldwide address from a GCC
+High session, which won't get the token.
+
+6
+00:00:21.437 --> 00:00:26.777
+Finally you run both suites, seventy
+Python tests and forty-four in Pester, and
+
+7
+00:00:26.777 --> 00:00:30.198
+you've seen every row of
+the gap table for yourself,
+
+8
+00:00:30.198 --> 00:00:32.520
+with no module, tenant or network.

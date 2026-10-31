@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.925
+Microsoft doesn't publish an end-to-end
+tutorial for PIM for Groups in Graph.
+
+2
+00:00:04.925 --> 00:00:09.670
+What it does publish is a handful of
+single requests in the API reference,
+
+3
+00:00:09.670 --> 00:00:12.200
+plus a how-to for updating policy rules.
+
+4
+00:00:12.200 --> 00:00:17.294
+Those requests only exist inside web
+pages, so the repository pins the page
+
+5
+00:00:17.294 --> 00:00:22.388
+source unmodified, with hashes a test
+checks and a weekly watch for changes.
+
+6
+00:00:22.388 --> 00:00:26.527
+Then a small harness sends each
+request, exactly as published,
+
+7
+00:00:26.527 --> 00:00:30.424
+to a fake Graph that checks them
+the way Learn says PIM does.
+
+8
+00:00:30.424 --> 00:00:33.260
+Nothing signs in and
+nothing leaves the machine.

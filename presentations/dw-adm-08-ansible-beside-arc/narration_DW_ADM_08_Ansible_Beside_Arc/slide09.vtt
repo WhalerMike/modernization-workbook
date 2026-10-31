@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.453
+The first change is small but essential:
+
+2
+00:00:02.453 --> 00:00:06.021
+a patch owner column in the
+configuration database export,
+
+3
+00:00:06.021 --> 00:00:10.900
+right beside the configuration owner, with
+the onboarding wave after the region.
+
+4
+00:00:10.900 --> 00:00:15.175
+The guide had named that field, but
+the sample export never carried it.
+
+5
+00:00:15.175 --> 00:00:20.191
+Look at the server on Amazon's cloud:
+Ansible configures it and patches it,
+
+6
+00:00:20.191 --> 00:00:24.538
+but it still goes to Arc, for
+inventory, assessment and Defender.
+
+7
+00:00:24.538 --> 00:00:26.563
+Its patch owner tag says Ansible,
+
+8
+00:00:26.563 --> 00:00:29.863
+so Update Manager assesses
+it and schedules nothing.
+
+9
+00:00:29.863 --> 00:00:35.400
+And because this is a GCC estate, the
+sample now uses commercial regions.

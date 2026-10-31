@@ -1,0 +1,794 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.038
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.038 --> 00:00:05.688
+Building Privileged Access.
+
+3
+00:00:05.688 --> 00:00:11.225
+This is Chapter 3: Conditional Access for
+administrators, and the activation gate.
+
+4
+00:00:11.225 --> 00:00:15.434
+These policies are the program's first
+writes to a tenant, so they're files a
+
+5
+00:00:15.434 --> 00:00:19.713
+reviewer reads, and the code that writes
+them does nothing until it's told to.
+
+6
+00:00:19.713 --> 00:00:23.819
+We'll start from Microsoft's
+own template for administrators,
+
+7
+00:00:23.819 --> 00:00:27.846
+see what it leaves out, then walk
+the files, the pre-merge check,
+
+8
+00:00:27.846 --> 00:00:30.987
+the plan and the dry run,
+two labs and the dangers.
+
+9
+00:00:30.987 --> 00:00:36.490
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+10
+00:00:40.240 --> 00:00:42.340
+Why does this chapter matter so much?
+
+11
+00:00:42.340 --> 00:00:45.378
+Because it's the first time
+the program writes to a tenant.
+
+12
+00:00:45.378 --> 00:00:49.505
+Book 04 gives it three things to
+build: the administrator policy set,
+
+13
+00:00:49.505 --> 00:00:54.517
+the gate that demands a fresh phishing-resistant
+proof from a compliant device at
+
+14
+00:00:54.517 --> 00:00:59.528
+the moment someone elevates, and the custom
+authentication strength both rely on.
+
+15
+00:00:59.528 --> 00:01:03.302
+Unlike the first two chapters,
+this code can change things.
+
+16
+00:01:03.302 --> 00:01:08.940
+So its design is cautious on purpose: it
+writes only when told, creates every new
+
+17
+00:01:08.940 --> 00:01:14.860
+policy in report-only, enforces only with
+a separate switch, and never deletes.
+
+18
+00:01:18.610 --> 00:01:22.273
+Learn sets the order, and getting
+it wrong leaves no gate at all.
+
+19
+00:01:22.273 --> 00:01:26.742
+You create and switch on the policy
+for the authentication context first,
+
+20
+00:01:26.742 --> 00:01:29.160
+and only then select that context in PIM.
+
+21
+00:01:29.160 --> 00:01:33.678
+If no policy targets it, PIM falls back
+to asking for multifactor sign-in,
+
+22
+00:01:33.678 --> 00:01:38.273
+but that fallback doesn't happen when
+the policy is off or only reporting.
+
+23
+00:01:38.273 --> 00:01:42.465
+And if you also scope the policy to
+a directory role, it never applies,
+
+24
+00:01:42.465 --> 00:01:46.059
+because at activation the person
+doesn't hold the role yet.
+
+25
+00:01:46.059 --> 00:01:50.490
+So this chapter builds the gate, and
+leaves selecting it to Chapter 4.
+
+26
+00:01:54.240 --> 00:01:55.603
+Next, which cloud.
+
+27
+00:01:55.603 --> 00:01:59.180
+Every call in this chapter is
+on the stable Graph version,
+
+28
+00:01:59.180 --> 00:02:01.691
+except protected actions, which is beta.
+
+29
+00:02:01.691 --> 00:02:06.271
+For this estate's GCC tenant the host
+is the worldwide Graph endpoint,
+
+30
+00:02:06.271 --> 00:02:11.415
+and every method used lists the government
+clouds in its availability table.
+
+31
+00:02:11.415 --> 00:02:15.702
+Conditional Access and PIM are
+available in the government clouds too.
+
+32
+00:02:15.702 --> 00:02:20.111
+One thing does change there: the
+two policies about Azure management
+
+33
+00:02:20.111 --> 00:02:24.752
+name a different application, so a GCC
+High program edits those two files.
+
+34
+00:02:24.752 --> 00:02:27.990
+The code never assumes
+a cloud; you name it.
+
+35
+00:02:31.740 --> 00:02:34.928
+Microsoft's starting point
+is its policy templates.
+
+36
+00:02:34.928 --> 00:02:40.069
+The protect-administrators group includes
+one requiring phishing-resistant sign-in
+
+37
+00:02:40.069 --> 00:02:44.782
+for administrators, and its Learn page is
+the procedure: at least fourteen roles,
+
+38
+00:02:44.782 --> 00:02:46.710
+exclude the emergency accounts,
+
+39
+00:02:46.710 --> 00:02:50.852
+use the built-in phishing-resistant
+strength, and start in report-only.
+
+40
+00:02:50.852 --> 00:02:54.511
+The same templates come back from
+Graph as policy definitions,
+
+41
+00:02:54.511 --> 00:02:59.365
+and that's the only administrator policy
+Microsoft publishes on Learn in that form.
+
+42
+00:02:59.365 --> 00:03:03.939
+So the repository pins the page
+unmodified, checks its hashes, and converts
+
+43
+00:03:03.939 --> 00:03:08.730
+the template without fixing anything,
+then checks it like any other file.
+
+44
+00:03:12.480 --> 00:03:14.237
+This is the heart of the chapter:
+
+45
+00:03:14.237 --> 00:03:18.155
+what happens if you create Microsoft's
+template exactly as published.
+
+46
+00:03:18.155 --> 00:03:21.068
+The targeting is good, so
+it's kept as the model.
+
+47
+00:03:21.068 --> 00:03:23.751
+But the published example
+lists only two roles
+
+48
+00:03:23.751 --> 00:03:26.229
+where Learn's own
+procedure wants fourteen.
+
+49
+00:03:26.229 --> 00:03:29.269
+It grants plain multifactor
+sign-in instead of the
+
+50
+00:03:29.269 --> 00:03:32.743
+phishing-resistant strength,
+and the two can't be combined.
+
+51
+00:03:32.743 --> 00:03:37.147
+And it excludes a line of display text
+where an object identifier belongs,
+
+52
+00:03:37.147 --> 00:03:40.830
+which the admin center would
+replace for you, but a script won't.
+
+53
+00:03:40.830 --> 00:03:43.310
+Each of these is pinned by a test.
+
+54
+00:03:47.060 --> 00:03:49.485
+The rest of the gaps
+are the dangerous ones.
+
+55
+00:03:49.485 --> 00:03:52.850
+The template doesn't exclude
+the emergency access group,
+
+56
+00:03:52.850 --> 00:03:57.647
+and those accounts must stay out of every
+policy that blocks or restricts sign-in.
+
+57
+00:03:57.647 --> 00:04:01.634
+It carries no state, so nothing
+tells you to start in report-only.
+
+58
+00:04:01.634 --> 00:04:06.422
+It has no authentication context, so
+the activation gate isn't there at all.
+
+59
+00:04:06.422 --> 00:04:09.845
+And it's just a read: nothing
+compares it with the tenant,
+
+60
+00:04:09.845 --> 00:04:12.735
+so a policy edited in
+the portal drifts unseen.
+
+61
+00:04:12.735 --> 00:04:15.930
+The verdict: keep the template's
+targeting as the model,
+
+62
+00:04:15.930 --> 00:04:18.200
+and never create it as published.
+
+63
+00:04:21.950 --> 00:04:22.888
+Now the code.
+
+64
+00:04:22.888 --> 00:04:27.786
+This chapter adds its own module,
+its own call list, an entry script,
+
+65
+00:04:27.786 --> 00:04:32.775
+and the policy files themselves, one
+file per object, as Book 04 asks.
+
+66
+00:04:32.775 --> 00:04:36.717
+There are the two authentication
+contexts, the custom strength,
+
+67
+00:04:36.717 --> 00:04:40.362
+the five administrator policies,
+and the two gate policies,
+
+68
+00:04:40.362 --> 00:04:43.412
+one for activation and
+one for protected actions.
+
+69
+00:04:43.412 --> 00:04:48.562
+The activation gate demands the strength
+and a compliant device, every single time.
+
+70
+00:04:48.562 --> 00:04:53.403
+Placeholders resolve from a per-tenant map,
+except the strength, which is looked up
+
+71
+00:04:53.403 --> 00:04:58.250
+by name in the tenant, so a policy can
+never point at a strength that isn't there.
+
+72
+00:05:02.000 --> 00:05:06.292
+Before anything merges,
+Test-PaCaRepository reads the files,
+
+73
+00:05:06.292 --> 00:05:09.575
+and only the files, in
+the pull request pipeline.
+
+74
+00:05:09.575 --> 00:05:11.325
+The nine rules are on the slide.
+
+75
+00:05:11.325 --> 00:05:16.262
+Most come from Learn: exclude the emergency
+group, don't scope the gate to a role,
+
+76
+00:05:16.262 --> 00:05:20.658
+don't mix plain multifactor with a
+strength, cover the fourteen roles,
+
+77
+00:05:20.658 --> 00:05:23.975
+and keep context identifiers
+in the stricter range.
+
+78
+00:05:23.975 --> 00:05:26.064
+A few are the program's own design,
+
+79
+00:05:26.064 --> 00:05:29.700
+like refusing display text
+where an identifier belongs.
+
+80
+00:05:29.700 --> 00:05:33.722
+On the repository as merged, the
+check passes with five warnings,
+
+81
+00:05:33.722 --> 00:05:38.630
+and they're deliberate: the rollout
+hasn't switched those policies on yet.
+
+82
+00:05:42.380 --> 00:05:46.192
+One rule needs a closer look,
+because the sources don't line up.
+
+83
+00:05:46.192 --> 00:05:49.321
+Learn says report-only
+policies don't block anyone,
+
+84
+00:05:49.321 --> 00:05:51.929
+so they don't need the
+emergency exclusion.
+
+85
+00:05:51.929 --> 00:05:57.364
+Book 04's pre-merge check is stricter,
+and fails any report-only file without it,
+
+86
+00:05:57.364 --> 00:06:00.505
+even the probe that's
+meant to exclude nobody.
+
+87
+00:06:00.505 --> 00:06:04.905
+The chapter's finding is that the
+stricter rule isn't wrong, just stricter.
+
+88
+00:06:04.905 --> 00:06:08.959
+So the code puts the exclusion in
+every file whatever its state,
+
+89
+00:06:08.959 --> 00:06:12.155
+because enforcing a file
+means changing one word.
+
+90
+00:06:12.155 --> 00:06:15.166
+Only a named report-only
+instrument may skip it,
+
+91
+00:06:15.166 --> 00:06:18.220
+and it fails the moment
+someone enables it.
+
+92
+00:06:21.970 --> 00:06:24.532
+Here's how a change actually
+reaches the tenant.
+
+93
+00:06:24.532 --> 00:06:28.307
+The code reads the tenant's
+policies, contexts and strengths,
+
+94
+00:06:28.307 --> 00:06:32.987
+then compares each file with what's
+there, property by property, but only the
+
+95
+00:06:32.987 --> 00:06:37.819
+properties the file sets, so the noise
+Graph returns doesn't look like a change.
+
+96
+00:06:37.819 --> 00:06:39.284
+It plans in Learn's order,
+
+97
+00:06:39.284 --> 00:06:42.945
+the contexts and strength before
+the policies that use them.
+
+98
+00:06:42.945 --> 00:06:46.895
+Every plan line gets an action,
+and nothing is ever deleted.
+
+99
+00:06:46.895 --> 00:06:50.007
+Without the apply switch, it
+can't send a write at all.
+
+100
+00:06:50.007 --> 00:06:52.834
+With it, it still refuses
+if the check found a
+
+101
+00:06:52.834 --> 00:06:56.490
+problem or a policy lacks
+the emergency exclusion.
+
+102
+00:07:00.240 --> 00:07:04.173
+The chapter keeps a short record of
+where Learn's pages don't agree,
+
+103
+00:07:04.173 --> 00:07:06.940
+so a later edit doesn't
+quietly loosen the code.
+
+104
+00:07:06.940 --> 00:07:09.891
+The biggest is the every-time
+sign-in frequency:
+
+105
+00:07:09.891 --> 00:07:14.657
+the Graph reference doesn't list it for
+this use, but the PIM pages say to use it,
+
+106
+00:07:14.657 --> 00:07:18.440
+so the file follows PIM and the
+lab confirms Graph accepts it.
+
+107
+00:07:18.440 --> 00:07:22.165
+Context identifiers follow
+the stricter of two ranges.
+
+108
+00:07:22.165 --> 00:07:25.646
+And protected actions, called
+a preview in the outline,
+
+109
+00:07:25.646 --> 00:07:30.210
+carry no preview label on Learn, but
+their Graph assignment is beta only,
+
+110
+00:07:30.210 --> 00:07:33.590
+so the code defines the
+context and stops there.
+
+111
+00:07:37.340 --> 00:07:38.402
+Who is this for?
+
+112
+00:07:38.402 --> 00:07:41.907
+Developers build it, and
+identity engineers and the I
+
+113
+00:07:41.907 --> 00:07:45.491
+S S O's review every Conditional
+Access change it makes.
+
+114
+00:07:45.491 --> 00:07:48.628
+The permissions split
+cleanly into two tasks.
+
+115
+00:07:48.628 --> 00:07:50.895
+Reading needs three read permissions,
+
+116
+00:07:50.895 --> 00:07:54.578
+and the code picks narrower ones
+than the obvious broad choice.
+
+117
+00:07:54.578 --> 00:07:58.578
+Applying adds exactly two write
+permissions, and nothing else.
+
+118
+00:07:58.578 --> 00:08:02.287
+Learn notes a known issue that may
+ask for more consent on create,
+
+119
+00:08:02.287 --> 00:08:05.016
+and the test-tenant lab
+records whether it does.
+
+120
+00:08:05.016 --> 00:08:09.440
+A test keeps each task's permissions
+equal to the calls it makes.
+
+121
+00:08:13.190 --> 00:08:18.153
+Lab 1 needs only a laptop:
+PowerShell 7 and Pester, no tenant.
+
+122
+00:08:18.153 --> 00:08:22.725
+You run the tests on Microsoft's template
+as published, list the permissions for
+
+123
+00:08:22.725 --> 00:08:27.366
+reading and for applying, and run the
+pre-merge check on the repository's own files.
+
+124
+00:08:27.366 --> 00:08:32.415
+It passes with the five expected warnings;
+a real finding would fail the pipeline.
+
+125
+00:08:32.415 --> 00:08:36.503
+Then the revealing step: run the
+same check on Microsoft's template.
+
+126
+00:08:36.503 --> 00:08:41.633
+It comes back with two findings and two
+warnings, the missing emergency exclusion,
+
+127
+00:08:41.633 --> 00:08:44.500
+the display text, the
+plain multifactor grant,
+
+128
+00:08:44.500 --> 00:08:47.420
+and twelve of the fourteen roles missing.
+
+129
+00:08:51.170 --> 00:08:54.895
+Next you plan against a fictional
+tenant without sending anything.
+
+130
+00:08:54.895 --> 00:08:58.892
+The plan explains itself: the
+context and strength get created,
+
+131
+00:08:58.892 --> 00:09:03.581
+two objects get small updates, one
+matches, and three policies are blocked,
+
+132
+00:09:03.581 --> 00:09:07.270
+because the strength and context
+they need don't exist yet.
+
+133
+00:09:07.270 --> 00:09:10.420
+A portal-made policy is
+reported, never deleted.
+
+134
+00:09:10.420 --> 00:09:12.995
+Then you apply to the fake three times.
+
+135
+00:09:12.995 --> 00:09:17.342
+The first run creates the building
+blocks, the second creates the three
+
+136
+00:09:17.342 --> 00:09:21.320
+blocked policies in report-only,
+and the third finds nothing to do.
+
+137
+00:09:21.320 --> 00:09:24.470
+That's what a safe,
+repeatable write looks like.
+
+138
+00:09:28.220 --> 00:09:33.095
+Lab 2 moves to a test tenant, never
+production, and it's careful about order.
+
+139
+00:09:33.095 --> 00:09:35.553
+Build Chapter 2's
+emergency accounts first,
+
+140
+00:09:35.553 --> 00:09:39.649
+and register phishing-resistant
+methods for your test administrators
+
+141
+00:09:39.649 --> 00:09:43.882
+before anything is enforced, because
+Learn warns you can lock yourself out.
+
+142
+00:09:43.882 --> 00:09:47.983
+Then write your map, register a
+read-only app, and read the plan.
+
+143
+00:09:47.983 --> 00:09:52.882
+Add the write permissions and apply:
+every new policy lands in report-only.
+
+144
+00:09:52.882 --> 00:09:55.032
+Watch the results for at least a week.
+
+145
+00:09:55.032 --> 00:09:58.571
+Then enforce the gate on its
+own, in a separate change.
+
+146
+00:09:58.571 --> 00:10:02.170
+Backing out means turning
+policies off, never deleting.
+
+147
+00:10:05.920 --> 00:10:07.549
+Every danger here has a guard,
+
+148
+00:10:07.549 --> 00:10:11.620
+and the theme is that nothing important
+depends on someone remembering.
+
+149
+00:10:11.620 --> 00:10:15.723
+The worst is enforcing a policy
+before the emergency accounts work,
+
+150
+00:10:15.723 --> 00:10:19.532
+which is the same lockout as Chapter
+2, just by a different route.
+
+151
+00:10:19.532 --> 00:10:24.525
+The quietest is selecting the gate in PIM
+while its policy is still report-only:
+
+152
+00:10:24.525 --> 00:10:26.907
+you get no gate and no fallback either.
+
+153
+00:10:26.907 --> 00:10:31.856
+Others are about speed and reach: switching
+policies straight on, a pipeline that
+
+154
+00:10:31.856 --> 00:10:36.870
+deletes, and a write permission left
+lying on the app after the change is done.
+
+155
+00:10:40.620 --> 00:10:41.970
+Here's what done looks like.
+
+156
+00:10:41.970 --> 00:10:46.353
+On the file side: the check runs on
+every pull request with no findings,
+
+157
+00:10:46.353 --> 00:10:51.583
+every file carries the emergency exclusion,
+the administrator policy covers all
+
+158
+00:10:51.583 --> 00:10:56.658
+fourteen roles, and the activation gate
+is switched on before anyone selects it.
+
+159
+00:10:56.658 --> 00:11:00.181
+On the run side: every plan
+was read as a dry run first,
+
+160
+00:11:00.181 --> 00:11:04.628
+every new policy landed in
+report-only, each enforcement was its
+
+161
+00:11:04.628 --> 00:11:08.907
+own reviewed change, and only
+the pipeline holds write access.
+
+162
+00:11:08.907 --> 00:11:14.732
+Next, Chapter 4 builds PIM for Microsoft
+Entra roles as code, and selects this gate.
+
+163
+00:11:14.732 --> 00:11:15.900
+Thanks for watching.

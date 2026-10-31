@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.675
+Now the onboarding itself.
+
+2
+00:00:01.675 --> 00:00:06.290
+The role-based playbook works one wave
+at a time: a single canary server,
+
+3
+00:00:06.290 --> 00:00:10.587
+then five percent, then a quarter,
+and it stops at the first failure.
+
+4
+00:00:10.587 --> 00:00:13.513
+Each server is checked again
+before anything happens.
+
+5
+00:00:13.513 --> 00:00:17.350
+Without an explicit confirmation
+flag, it never calls the role;
+
+6
+00:00:17.350 --> 00:00:22.000
+it just prints what each server would get,
+which is the dry run the role can't do.
+
+7
+00:00:22.000 --> 00:00:25.697
+With confirmation, it calls
+Microsoft's role unchanged,
+
+8
+00:00:25.697 --> 00:00:30.438
+with the database's values and no stored
+secret, and writes a result file.
+
+9
+00:00:30.438 --> 00:00:33.980
+The older step-by-step playbook
+stays for Azure Government.

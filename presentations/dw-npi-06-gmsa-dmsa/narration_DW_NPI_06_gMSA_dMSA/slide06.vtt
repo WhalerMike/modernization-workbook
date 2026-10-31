@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.900
+The rest of the gaps are
+about timing and safety.
+
+2
+00:00:02.900 --> 00:00:05.958
+The walk-through completes
+a migration with no wait,
+
+3
+00:00:05.958 --> 00:00:10.012
+while the overview asks for weeks,
+so the code waits twenty-eight days.
+
+4
+00:00:10.012 --> 00:00:13.805
+It never checks the limits, like
+unconstrained delegation that
+
+5
+00:00:13.805 --> 00:00:17.812
+silently stops working, so the code
+checks each one before planning.
+
+6
+00:00:17.812 --> 00:00:20.462
+It restarts every service on the host.
+
+7
+00:00:20.462 --> 00:00:23.594
+And the pages disagree on
+deleting the old account;
+
+8
+00:00:23.594 --> 00:00:27.024
+the code takes the stricter
+side and has no delete at all.
+
+9
+00:00:27.024 --> 00:00:30.283
+So the verdict: use Learn's
+commands and their order,
+
+10
+00:00:30.283 --> 00:00:32.740
+but not the procedures as the program.

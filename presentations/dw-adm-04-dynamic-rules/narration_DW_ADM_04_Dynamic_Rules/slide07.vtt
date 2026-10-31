@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.812
+This is the heart of the chapter.
+
+2
+00:00:01.812 --> 00:00:06.325
+Learn's pause script does its job well,
+and the code keeps it as the model.
+
+3
+00:00:06.325 --> 00:00:08.675
+But it records nothing
+about what it paused.
+
+4
+00:00:08.675 --> 00:00:12.284
+So when you resume, Learn's script
+turns on every paused group,
+
+5
+00:00:12.284 --> 00:00:16.687
+including one that was deliberately
+frozen before the incident started.
+
+6
+00:00:16.687 --> 00:00:20.660
+It also falls back to the worldwide
+cloud on an answer it doesn't know,
+
+7
+00:00:20.660 --> 00:00:23.213
+and nothing makes you
+wait before resuming.
+
+8
+00:00:23.213 --> 00:00:25.000
+The verdict: during recovery,
+
+9
+00:00:25.000 --> 00:00:28.650
+the questions are what did we
+pause, and what was already off.
+
+10
+00:00:28.650 --> 00:00:30.310
+Only a record answers them.

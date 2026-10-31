@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:10.037
+This is Chapter 8: Conditional
+Access for workload identities.
+
+4
+00:00:10.037 --> 00:00:12.587
+A stolen client secret
+works from anywhere,
+
+5
+00:00:12.587 --> 00:00:15.987
+unless something says where
+the workload is allowed to be.
+
+6
+00:00:15.987 --> 00:00:20.850
+So that place is written down, reviewed,
+and enforced one ring at a time.
+
+7
+00:00:20.850 --> 00:00:23.613
+We'll start from Learn's
+own sample policy,
+
+8
+00:00:23.613 --> 00:00:28.812
+see why Graph would refuse it as published,
+then walk the scope file, the checks,
+
+9
+00:00:28.812 --> 00:00:30.763
+the plan, enforcement by ring,
+
+10
+00:00:30.763 --> 00:00:34.500
+the sign-in reader and the
+alert, two labs and the dangers.
+
+11
+00:00:34.500 --> 00:00:39.720
+One note before we begin: the code is
+illustrative, tested against fixtures.

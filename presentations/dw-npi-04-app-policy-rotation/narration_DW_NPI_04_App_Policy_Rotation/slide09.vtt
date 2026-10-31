@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+So what does the code add?
+
+2
+00:00:01.375 --> 00:00:06.550
+One module, two scripts that only read, and
+a single separate script that can write.
+
+3
+00:00:06.550 --> 00:00:10.825
+What drives it is a handful of small
+files, each with a clear keeper.
+
+4
+00:00:10.825 --> 00:00:16.092
+Identity engineering owns the reviewed
+policy file and the rotation settings,
+
+5
+00:00:16.092 --> 00:00:19.125
+like how early to raise
+and how long to overlap.
+
+6
+00:00:19.125 --> 00:00:22.012
+Application owners keep
+three simple records:
+
+7
+00:00:22.012 --> 00:00:26.232
+which vault holds each app's
+certificate, who approved each rotation,
+
+8
+00:00:26.232 --> 00:00:29.637
+and who confirmed the workload
+signs in with the new one.
+
+9
+00:00:29.637 --> 00:00:33.890
+Every rotation carries one
+request ID from start to finish.

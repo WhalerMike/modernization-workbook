@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.950
+Here's how the policy side works.
+
+2
+00:00:01.950 --> 00:00:04.264
+The code reads the tenant's default,
+
+3
+00:00:04.264 --> 00:00:08.175
+every app policy and what it's
+assigned to, and each app's lock.
+
+4
+00:00:08.175 --> 00:00:12.712
+Then it compares, restriction by
+restriction, on both object types.
+
+5
+00:00:12.712 --> 00:00:16.101
+Where the tenant is weaker,
+it adds the program's rule.
+
+6
+00:00:16.101 --> 00:00:18.384
+Where the tenant is already stricter,
+
+7
+00:00:18.384 --> 00:00:22.288
+or holds something the file doesn't
+mention, it keeps the tenant's.
+
+8
+00:00:22.288 --> 00:00:27.426
+That merged body is the key: an update
+can never drop or loosen anything.
+
+9
+00:00:27.426 --> 00:00:29.102
+The plan then turns the diff,
+
+10
+00:00:29.102 --> 00:00:33.170
+the exceptions and the locks into
+actions, and nothing in it writes.

@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.370
+Lab 2 moves to a test
+domain, never production,
+
+2
+00:00:03.370 --> 00:00:08.125
+with a Windows Server 2025 domain
+controller and member server.
+
+3
+00:00:08.125 --> 00:00:10.807
+You make two test accounts,
+one for each path,
+
+4
+00:00:10.807 --> 00:00:15.202
+and grant the reader only a narrow
+delegated read of the root key's dates,
+
+5
+00:00:15.202 --> 00:00:19.075
+recording whether that really
+works without exposing the key.
+
+6
+00:00:19.075 --> 00:00:22.513
+A second person reviews the
+plan and hands you its hash.
+
+7
+00:00:22.513 --> 00:00:26.937
+You apply it as a person, then run
+the next plan to start the migration,
+
+8
+00:00:26.937 --> 00:00:30.887
+restart only the test service,
+and watch the Kerberos events.
+
+9
+00:00:30.887 --> 00:00:34.730
+After twenty-eight days, complete
+it, or back it out by hand.

@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.038
+Who's this for?
+
+2
+00:00:01.038 --> 00:00:03.488
+Developers build the decision records.
+
+3
+00:00:03.488 --> 00:00:07.724
+Identity engineers propose the
+targets and keep the matrix itself.
+
+4
+00:00:07.724 --> 00:00:10.462
+The application owners make the real call,
+
+5
+00:00:10.462 --> 00:00:13.825
+account by account, and say
+where each workload runs.
+
+6
+00:00:13.825 --> 00:00:17.806
+The chief information security
+officer decides the licensing scope,
+
+7
+00:00:17.806 --> 00:00:21.100
+and the security officer for
+the system approves the gate.
+
+8
+00:00:21.100 --> 00:00:25.507
+As for the tenant, the code asks for
+very little: two read permissions,
+
+9
+00:00:25.507 --> 00:00:30.770
+one to look up the owners and one to read
+the subscriptions, and it only ever reads.

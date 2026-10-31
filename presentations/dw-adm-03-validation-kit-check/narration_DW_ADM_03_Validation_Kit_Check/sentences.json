@@ -1,0 +1,598 @@
+{
+ "1": [
+  [
+   0.05,
+   6.237,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building the Attribute-Driven Migration."
+  ],
+  [
+   6.287,
+   3.475,
+   "This is Chapter 3: writing a validation kit check."
+  ],
+  [
+   9.762,
+   8.338,
+   "A check is only evidence if it can't change what it measures, can't pass when it failed to look, and asks for no more access than the question needs."
+  ],
+  [
+   18.1,
+   9.225,
+   "We'll build one new check end to end, on soft match and hard match takeover, and along the way meet a read that only a Global Administrator can make."
+  ],
+  [
+   27.325,
+   4.3,
+   "Then the tests, the safety rules, two labs and the dangers."
+  ],
+  [
+   31.625,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.988,
+   "Why this check?"
+  ],
+  [
+   1.038,
+   12.363,
+   "Gate 3 of the implementation guide maps attributes through sync, and before the first user from Active Directory lands in a tenant that already has cloud accounts, the sync engine has to decide who matches whom."
+  ],
+  [
+   13.4,
+   6.725,
+   "It can join on an email address or user name, which is soft match, or on the source anchor, which is hard match."
+  ],
+  [
+   20.125,
+   4.925,
+   "Left open, either one lets an on-premises object take over a cloud account."
+  ],
+  [
+   25.05,
+   4.713,
+   "Microsoft says keep both blocked except during an approved matching window."
+  ],
+  [
+   29.762,
+   3.438,
+   "So the question is simple, which makes it a good first check."
+  ],
+  [
+   33.2,
+   1.475,
+   "It also hides a lesson."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   3.975,
+   "The kit reads Microsoft Graph, and the host depends on the tenant."
+  ],
+  [
+   5.388,
+   9.812,
+   "A G C C tenant sits on the worldwide endpoints, so it reads the same Graph host as a commercial tenant; G C C High and the Defense cloud have their own."
+  ],
+  [
+   15.2,
+   4.975,
+   "The sync read this chapter needs is available in all of them, at version one point oh."
+  ],
+  [
+   20.175,
+   10.713,
+   "And the kit holds the line on hosts: if Graph hands back a next page that points anywhere other than the cloud's own Graph host, the kit refuses it, so the token never leaves."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   6.838,
+   "Every check in the kit has the same five parts, and once you see them, adding a check is mostly filling in a pattern."
+  ],
+  [
+   6.888,
+   4.287,
+   "There's a catalog entry that says what the check is and what access it needs."
+  ],
+  [
+   11.175,
+   2.425,
+   "A function, named from the check's I D."
+  ],
+  [
+   13.6,
+   2.35,
+   "A read through the kit's single data path."
+  ],
+  [
+   15.95,
+   3.638,
+   "Rows that turn what was read into findings and a status."
+  ],
+  [
+   19.587,
+   6.713,
+   "And fixtures with tests, so the check has to pass clean data and fail planted problems, with an exact count."
+  ],
+  [
+   26.3,
+   4.787,
+   "The read me's permission table mirrors the catalog, and a test keeps them in step."
+  ],
+  [
+   31.087,
+   1.35,
+   "Let's build each part."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.175,
+   "Here's the catalog entry, and the lesson hiding in it."
+  ],
+  [
+   3.225,
+   6.862,
+   "The read itself is innocent: get the tenant's sync settings, with a read-only permission that sounds harmless."
+  ],
+  [
+   10.088,
+   8.55,
+   "But Learn lists no application permission for it at all, and for a signed-in user it names exactly one supported role, Global Administrator."
+  ],
+  [
+   18.637,
+   5.4,
+   "So a check that only reads, run liv, would need the most powerful role in the tenant."
+  ],
+  [
+   24.038,
+   3.337,
+   "Being read-only is necessary, but it isn't enough."
+  ],
+  [
+   27.375,
+   2.513,
+   "The next slide shows what the check does about it."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.225,
+   "So the check does three things differently."
+  ],
+  [
+   2.275,
+   2.862,
+   "It's optional: it never runs unless you name it."
+  ],
+  [
+   5.138,
+   10.537,
+   "It prefers an export: a Global Administrator who's already signed in for other reasons saves the response to a file, and the kit reads the file without ever needing the role."
+  ],
+  [
+   15.675,
+   7.763,
+   "And it says so, in plain words in the catalog, so a security officer knows what a lyve run would demand before anyone tries it."
+  ],
+  [
+   23.438,
+   8.45,
+   "The program's design guidance follows from that: never create a standing Global Administrator identity just so a check can run on a schedule."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.113,
+   "Here's the function."
+  ],
+  [
+   1.163,
+   8.463,
+   "It reads the export if there is one, otherwise it asks Graph, and if the tenant has no sync object at all, it says the check doesn't apply."
+  ],
+  [
+   9.625,
+   2.375,
+   "The important part is the wrapper around it."
+  ],
+  [
+   12.0,
+   9.65,
+   "Every check runs inside the same body wrapper, which looks up the catalog entry, records every read, and turns any exception into an error result."
+  ],
+  [
+   21.65,
+   3.388,
+   "That means a read that throws can never come back as a pass."
+  ],
+  [
+   25.038,
+   4.95,
+   "So resist the urge to catch exceptions inside your check to make it more robust."
+  ],
+  [
+   29.988,
+   2.7,
+   "That's exactly how a check passes while blind."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.175,
+   "There's exactly one way a check reads tenant data, and that's on purpose."
+  ],
+  [
+   4.225,
+   4.225,
+   "In a fixture run, the data path reads a file from the fixture folder."
+  ],
+  [
+   8.45,
+   2.525,
+   "Liv, it calls Graph with the address."
+  ],
+  [
+   10.975,
+   2.663,
+   "And an export comes in through the input reader."
+  ],
+  [
+   13.637,
+   12.9,
+   "All three are logged the same way, so when a reviewer opens the evidence, they can tell from the evidence alone which path a result came from: a fixture, a lyve tenant, or a file a Global Administrator saved."
+  ],
+  [
+   26.538,
+   6.275,
+   "That matters for this check above all, because the path is what tells you whether the powerful role was ever needed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.038,
+   "Now the rows."
+  ],
+  [
+   1.087,
+   3.3,
+   "A block that's off is a finding, and the check fails."
+  ],
+  [
+   4.388,
+   6.312,
+   "But if there's an approved matching window, the same state is a warning: someone should look, it isn't a failure."
+  ],
+  [
+   10.7,
+   7.375,
+   "The window is a date, so the day after it closes, the warning turns back into a finding without anyone editing anything."
+  ],
+  [
+   18.075,
+   6.125,
+   "Soft match on user name is just context, since Microsoft says it can't be turned off once enabled."
+  ],
+  [
+   24.2,
+   4.787,
+   "And one rule matters more than it looks: a missing value is read as off."
+  ],
+  [
+   28.988,
+   4.213,
+   "If the response shape changes, you get a finding, not a silent pass."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.288,
+   "A check is tested in both directions."
+  ],
+  [
+   2.337,
+   6.4,
+   "The fixtures are a fictional tenant in two states: one with both blocks on, one with both off."
+  ],
+  [
+   8.738,
+   8.4,
+   "Each copies the shape of Learn's example response, with one extra property the check shouldn't read, so a check that reads the wrong one gets caught."
+  ],
+  [
+   17.137,
+   7.725,
+   "Adding the check to the table-driven test is a single line, and that line buys four tests, including an exact failure count."
+  ],
+  [
+   24.863,
+   6.412,
+   "Then a short block covers what's particular to this check: the window, the export, and the empty tenant."
+  ],
+  [
+   31.275,
+   3.975,
+   "With the read me and catalog updated, the whole suite passes."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.025,
+   "The safety tests are why you can trust a new check without re-proving it."
+  ],
+  [
+   4.075,
+   8.875,
+   "They parse every script in the kit and fail the build on anything that could change state, and every Graph call has to say, literally, that it's a read."
+  ],
+  [
+   12.95,
+   5.3,
+   "There's one pinned exception, a beta action that evaluates a rule and changes nothing."
+  ],
+  [
+   18.25,
+   5.737,
+   "Because this check reads only through the shared data path, it passes those tests untouched."
+  ],
+  [
+   23.988,
+   3.85,
+   "And the fix for a finding is a write, so it never goes in the check."
+  ],
+  [
+   27.837,
+   4.625,
+   "It goes in the change record, run by the identity team under change control."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.475,
+   "This is the chapter's verified-facts table, the calls the check depends on."
+  ],
+  [
+   4.525,
+   7.037,
+   "The read needs only a read permission, but only a Global Administrator can make it, and only as a signed-in user."
+  ],
+  [
+   11.562,
+   3.4,
+   "The fix needs the matching write permission and the same role."
+  ],
+  [
+   14.963,
+   7.275,
+   "The kit's one exception to read-only, the rule evaluation, is still in beta, and that's labeled wherever it appears."
+  ],
+  [
+   22.238,
+   11.85,
+   "Underneath it all, the shared reader does two things every Graph client must: it follows the next page link as given until there isn't one, and when Graph says slow down, it waits as told."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   5.713,
+   "Developers and engineers extend the kit, and they need PowerShell and the basics of Pester."
+  ],
+  [
+   6.812,
+   6.3,
+   "Security officers read the results, and the catalog tells them up front what access a lyve run would take."
+  ],
+  [
+   13.113,
+   6.85,
+   "A Global Administrator appears exactly once, to save the export while they're already signed in for something else."
+  ],
+  [
+   19.962,
+   2.888,
+   "Nothing in the kit itself ever runs with that role."
+  ],
+  [
+   22.85,
+   6.8,
+   "And when a finding needs fixing, the identity team makes the change, from the change record, under change control."
+  ],
+  [
+   29.65,
+   1.975,
+   "The check only ever reports."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.287,
+   "Lab 1 runs on a laptop with PowerShell 7 and Pester; nothing signs in."
+  ],
+  [
+   5.338,
+   9.975,
+   "First you run the new check against the failing fixture and see a failure with a count of two: two findings, one informational row, and one read logged from the fixture."
+  ],
+  [
+   15.312,
+   4.612,
+   "Then you open a matching window that ends tomorrow, and the result becomes a warning."
+  ],
+  [
+   19.925,
+   3.65,
+   "Move the date a day past the window, and it's a failure again."
+  ],
+  [
+   23.575,
+   6.975,
+   "Finally you hand it a small export file, and the evidence shows the result came from the input, not from Graph."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.725,
+   "The rest of Lab 1 shows the guardrails."
+  ],
+  [
+   2.775,
+   7.9,
+   "You ask the kit what a lyve run would need, and it prints the permission and names the Global Administrator role, before anyone signs in."
+  ],
+  [
+   10.675,
+   2.812,
+   "You confirm the check isn't part of a default run."
+  ],
+  [
+   13.488,
+   2.075,
+   "You run the kit's whole test suite."
+  ],
+  [
+   15.562,
+   5.787,
+   "And then the best step: you deliberately break the check so it reads a property that doesn't exist."
+  ],
+  [
+   21.35,
+   6.438,
+   "The failing fixture still fails, but now the passing one fails too, because a missing value reads as off."
+  ],
+  [
+   27.788,
+   2.525,
+   "That's the unsafe default doing its job."
+  ],
+  [
+   30.312,
+   2.675,
+   "Put it back, and you've seen every outcome."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.275,
+   "Lab 2 uses a test tenant that already syncs from Active Directory."
+  ],
+  [
+   4.325,
+   7.375,
+   "The export is the only step that needs a Global Administrator: they sign in, save the response to a file, and sign out."
+  ],
+  [
+   11.7,
+   4.6,
+   "Read that file before you take it; it's configuration, not personal data."
+  ],
+  [
+   16.3,
+   7.1,
+   "Then anyone runs the check on the export, without signing in, and the evidence says the result came from the input."
+  ],
+  [
+   23.4,
+   6.025,
+   "Compare it line by line with the file, because that's how you catch a response shape that differs from Learn's example."
+  ],
+  [
+   29.425,
+   4.088,
+   "Then delete the export; the run's manifest is the evidence."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.487,
+   "Each of these dangers is a way a check can quietly stop being evidence, and each has a guard."
+  ],
+  [
+   5.537,
+   8.5,
+   "The most tempting is creating a standing Global Administrator so a check can run on a timer; the guard is an optional check that reads an export."
+  ],
+  [
+   14.037,
+   6.487,
+   "The most dangerous is a failed read that reports a pass; the wrapper turns every exception into an error."
+  ],
+  [
+   20.525,
+   8.338,
+   "Others are subtler: a missing property read as on, a fixture that matches the code instead of the service, a warning that never expires."
+  ],
+  [
+   28.863,
+   3.45,
+   "Notice that every guard is built in, not remembered."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   3.025,
+   "Here's what a reviewer checks before a new check ships."
+  ],
+  [
+   3.075,
+   2.413,
+   "The name, function and track agree."
+  ],
+  [
+   5.487,
+   8.312,
+   "The catalog names the least privilege and the role straight from Learn, and if that role is privileged, the check is optional and reads an export."
+  ],
+  [
+   13.8,
+   6.963,
+   "It reads only through the shared data path, hides no failed read, and treats every missing control as off."
+  ],
+  [
+   20.762,
+   8.088,
+   "Its fixtures follow Learn's shape, its tests cover every status, the read me knows about it, and the safety tests pass untouched."
+  ],
+  [
+   28.85,
+   3.325,
+   "Next up is Chapter 4, dynamic rules as code."
+  ],
+  [
+   32.175,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

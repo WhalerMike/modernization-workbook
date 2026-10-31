@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:04.440
+On the code side: the
+sample's mapping validates,
+
+3
+00:00:04.440 --> 00:00:09.038
+the pinned copy is unchanged and
+reviewed, production goes through the
+
+4
+00:00:09.038 --> 00:00:13.325
+hardened client, both clients pass,
+and new rules refuse by default.
+
+5
+00:00:13.325 --> 00:00:18.052
+On the run side: the hold and the budget
+are set from your own numbers and license,
+
+6
+00:00:18.052 --> 00:00:20.670
+the sender has one
+permission and no secret,
+
+7
+00:00:20.670 --> 00:00:23.360
+the quarantine file
+stays in the audit store,
+
+8
+00:00:23.360 --> 00:00:28.087
+every missing person key becomes a finding,
+and the endpoint matches the cloud.
+
+9
+00:00:28.087 --> 00:00:31.549
+Chapter 2 builds Graph clients
+for the government clouds.
+
+10
+00:00:31.549 --> 00:00:32.710
+Thanks for watching.

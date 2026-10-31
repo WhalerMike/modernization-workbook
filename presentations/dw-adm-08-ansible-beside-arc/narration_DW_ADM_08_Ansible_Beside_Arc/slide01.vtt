@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:08.619
+This is Chapter 8: Ansible beside Arc.
+
+4
+00:00:08.619 --> 00:00:13.517
+Microsoft's role connects a server to
+Azure Arc, but it doesn't know which tool
+
+5
+00:00:13.517 --> 00:00:18.337
+owns the server's settings, which tool
+patches it, or which wave it belongs to.
+
+6
+00:00:18.337 --> 00:00:20.532
+The configuration database knows,
+
+7
+00:00:20.532 --> 00:00:23.787
+and the inventory has to
+carry that to every connect.
+
+8
+00:00:23.787 --> 00:00:28.453
+We'll start from Microsoft's own role,
+see what it leaves out, then walk the
+
+9
+00:00:28.453 --> 00:00:33.276
+inventory, the wave plan, the onboarding
+playbook, two labs and the dangers.
+
+10
+00:00:33.276 --> 00:00:38.500
+One note before we begin: the code is
+illustrative, tested against fixtures.

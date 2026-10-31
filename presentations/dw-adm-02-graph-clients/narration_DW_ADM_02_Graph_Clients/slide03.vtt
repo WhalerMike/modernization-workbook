@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.725
+Get this right first, because
+every other rule depends on it.
+
+2
+00:00:03.725 --> 00:00:07.580
+A GCC Moderate tenant uses
+the worldwide endpoints,
+
+3
+00:00:07.580 --> 00:00:11.525
+the same as a commercial
+tenant: Learn says so plainly.
+
+4
+00:00:11.525 --> 00:00:15.008
+GCC was built when Microsoft
+had one cloud directory,
+
+5
+00:00:15.008 --> 00:00:17.937
+and it still uses that
+commercial directory.
+
+6
+00:00:17.937 --> 00:00:22.836
+It's GCC High and the Department of
+Defense cloud that have their own hosts,
+
+7
+00:00:22.836 --> 00:00:25.888
+for tokens, for Graph
+and for Resource Manager.
+
+8
+00:00:25.888 --> 00:00:29.199
+And a token from one cloud
+simply doesn't work in another.
+
+9
+00:00:29.199 --> 00:00:31.114
+The slide maps all four clouds,
+
+10
+00:00:31.114 --> 00:00:34.780
+including the PowerShell
+environment names you'll pass.

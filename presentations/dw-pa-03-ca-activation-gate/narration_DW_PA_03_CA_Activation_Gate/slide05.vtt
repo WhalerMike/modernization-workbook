@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.238
+Microsoft's starting point
+is its policy templates.
+
+2
+00:00:03.238 --> 00:00:08.379
+The protect-administrators group includes
+one requiring phishing-resistant sign-in
+
+3
+00:00:08.379 --> 00:00:13.092
+for administrators, and its Learn page is
+the procedure: at least fourteen roles,
+
+4
+00:00:13.092 --> 00:00:15.020
+exclude the emergency accounts,
+
+5
+00:00:15.020 --> 00:00:19.162
+use the built-in phishing-resistant
+strength, and start in report-only.
+
+6
+00:00:19.162 --> 00:00:22.821
+The same templates come back from
+Graph as policy definitions,
+
+7
+00:00:22.821 --> 00:00:27.675
+and that's the only administrator policy
+Microsoft publishes on Learn in that form.
+
+8
+00:00:27.675 --> 00:00:32.249
+So the repository pins the page
+unmodified, checks its hashes, and converts
+
+9
+00:00:32.249 --> 00:00:36.740
+the template without fixing anything,
+then checks it like any other file.

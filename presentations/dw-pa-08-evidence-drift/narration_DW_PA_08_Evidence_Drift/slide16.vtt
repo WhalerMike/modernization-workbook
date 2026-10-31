@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.988
+Lab 2 uses a test tenant, never
+production, and the run only reads.
+
+2
+00:00:04.988 --> 00:00:10.104
+You register the reader app with the nine
+permissions, make one test activation
+
+3
+00:00:10.104 --> 00:00:14.600
+of a low-tier role, and run the evidence
+twice, once before and once after.
+
+4
+00:00:14.600 --> 00:00:18.756
+Then comes the real point of the lab:
+checking what the fixtures assumed,
+
+5
+00:00:18.756 --> 00:00:23.475
+like which service name PIM's events carry
+and whether the request ID is filled in.
+
+6
+00:00:23.475 --> 00:00:26.296
+Cross-check against PIM's own audit view,
+
+7
+00:00:26.296 --> 00:00:30.313
+as Learn describes, then compare
+and package the two runs.
+
+8
+00:00:30.313 --> 00:00:34.060
+Back it out, and in production,
+lock the retention policy.

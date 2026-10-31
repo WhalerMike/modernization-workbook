@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.762
+Here's what Microsoft gives you.
+
+2
+00:00:01.762 --> 00:00:05.557
+Learn's tutorial walks through
+the whole life of one review:
+
+3
+00:00:05.557 --> 00:00:08.965
+create a recurring review
+of one administrator role,
+
+4
+00:00:08.965 --> 00:00:13.457
+list its instances and decisions,
+approve one person and deny another,
+
+5
+00:00:13.457 --> 00:00:17.562
+apply the decisions, pull a history
+report, and delete the review.
+
+6
+00:00:17.562 --> 00:00:21.399
+It also makes a useful point:
+one review covers one role.
+
+7
+00:00:21.399 --> 00:00:24.402
+The requests only exist
+inside the web page,
+
+8
+00:00:24.402 --> 00:00:29.738
+so the repository pins the page's source,
+unmodified, with hashes a test checks.
+
+9
+00:00:29.738 --> 00:00:33.104
+Then the tests send the tutorial's
+request to a fake Graph,
+
+10
+00:00:33.104 --> 00:00:35.090
+so you can see what it really does.

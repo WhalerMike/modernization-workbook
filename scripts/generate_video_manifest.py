@@ -61,6 +61,7 @@ GROUPS = [
     ("start", "The Start series"),
     ("book", "Book presentations and briefings"),
     ("research", "Research"),
+    ("developer", "Developer workbook chapter tours"),
     ("interview", "HR-driven identity interview set"),
 ]
 
@@ -72,6 +73,8 @@ def group_of(folder: str) -> str:
         return "research"
     if folder.startswith("hr-driven"):
         return "interview"
+    if folder.startswith("dw-"):
+        return "developer"
     return "book"
 
 

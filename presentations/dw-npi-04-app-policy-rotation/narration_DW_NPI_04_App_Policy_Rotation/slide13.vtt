@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:02.101
+Four groups.
+
+3
+00:00:02.101 --> 00:00:03.487
+Developers build it.
+
+4
+00:00:03.487 --> 00:00:07.025
+Identity engineers run it
+and keep the reviewed files.
+
+5
+00:00:07.025 --> 00:00:12.413
+Application owners approve each rotation
+and confirm their workloads still sign in.
+
+6
+00:00:12.413 --> 00:00:15.499
+And the I S S Os review the evidence.
+
+7
+00:00:15.499 --> 00:00:19.890
+The permissions are split cleanly:
+the reads hold only read permissions,
+
+8
+00:00:19.890 --> 00:00:23.475
+and anything that writes is
+delegated to a signed-in person.
+
+9
+00:00:23.475 --> 00:00:26.798
+That matters, because an
+unattended app with permission to
+
+10
+00:00:26.798 --> 00:00:30.325
+update every application could
+add a credential to all of them.
+
+11
+00:00:30.325 --> 00:00:35.350
+Microsoft does offer a self-rolling key
+option, but it skips the owner's approval.

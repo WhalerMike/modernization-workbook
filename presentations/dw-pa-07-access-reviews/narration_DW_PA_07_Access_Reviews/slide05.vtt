@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.813
+Run against the fake, the tutorial
+shows its limits quickly.
+
+2
+00:00:03.813 --> 00:00:08.406
+It sends a create request every time
+without reading first, so run it twice
+
+3
+00:00:08.406 --> 00:00:12.925
+and you get two reviews with the same
+name, and your evidence splits in two.
+
+4
+00:00:12.925 --> 00:00:15.345
+It names a single person as reviewer,
+
+5
+00:00:15.345 --> 00:00:18.813
+with no fallback, so one
+departure stalls the review.
+
+6
+00:00:18.813 --> 00:00:23.454
+It sets no default decision and no
+auto-apply, so silence keeps privilege,
+
+7
+00:00:23.454 --> 00:00:27.400
+and a denial changes nothing
+until someone applies it by hand.
+
+8
+00:00:27.400 --> 00:00:31.950
+And its schedule, one day every
+three months, isn't the program's.
+
+9
+00:00:31.950 --> 00:00:35.540
+The code keeps the tutorial's
+scope and fixes the rest.

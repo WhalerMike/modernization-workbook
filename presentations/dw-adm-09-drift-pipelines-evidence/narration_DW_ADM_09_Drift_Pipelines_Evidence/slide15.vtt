@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.512
+Now compare the second day with the first.
+
+2
+00:00:02.512 --> 00:00:05.582
+You'll see each kind of
+result, and one matters most:
+
+3
+00:00:05.582 --> 00:00:08.875
+a check whose read failed
+with an access-denied error.
+
+4
+00:00:08.875 --> 00:00:12.837
+Its finding isn't resolved; it's
+unverified, and stays open.
+
+5
+00:00:12.837 --> 00:00:15.978
+Draft the issues and search
+for a person's name:
+
+6
+00:00:15.978 --> 00:00:18.788
+it isn't there, only
+the object identifier.
+
+7
+00:00:18.788 --> 00:00:21.386
+Package the second run,
+chained to the first,
+
+8
+00:00:21.386 --> 00:00:24.850
+and verify it with the pipeline
+and with the standard tool.
+
+9
+00:00:24.850 --> 00:00:28.363
+Then tamper with one file,
+and verification fails.
+
+10
+00:00:28.363 --> 00:00:31.313
+Swap the runs, and the comparison refuses.
+
+11
+00:00:31.313 --> 00:00:33.940
+Run the tests, and seventy-four pass.

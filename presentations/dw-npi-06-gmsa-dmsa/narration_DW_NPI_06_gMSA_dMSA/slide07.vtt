@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+So what does the code add?
+
+2
+00:00:01.375 --> 00:00:04.544
+A module, two entry scripts
+kept strictly apart,
+
+3
+00:00:04.544 --> 00:00:09.338
+one that only reads and one that writes,
+and its own list of allowed calls.
+
+4
+00:00:09.338 --> 00:00:14.176
+It builds on Chapter 1's register and
+refuses one whose hash doesn't match.
+
+5
+00:00:14.176 --> 00:00:19.357
+Then three reviewed files drive it: the
+owners' decision for each account, the list
+
+6
+00:00:19.357 --> 00:00:24.462
+of who may fetch each managed password, and
+the program's end state, with its dates.
+
+7
+00:00:24.462 --> 00:00:26.900
+Notice that the end state has no default.
+
+8
+00:00:26.900 --> 00:00:31.060
+If the decision is missing, the run
+simply stops rather than guessing.

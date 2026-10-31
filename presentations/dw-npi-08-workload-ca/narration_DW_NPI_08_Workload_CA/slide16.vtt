@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.375
+Lab 2 uses a test tenant with a
+Premium trial, never production.
+
+2
+00:00:04.375 --> 00:00:08.944
+You write a scope with one test app,
+by its enterprise application ID,
+
+3
+00:00:08.944 --> 00:00:11.800
+and an egress range of
+exactly one address.
+
+4
+00:00:11.800 --> 00:00:14.400
+A reading app plans with
+read permissions only.
+
+5
+00:00:14.400 --> 00:00:17.308
+Then you add the write
+permission, apply twice,
+
+6
+00:00:17.308 --> 00:00:20.062
+and confirm everything landed report-only.
+
+7
+00:00:20.062 --> 00:00:23.140
+Generate sign-ins from inside
+and outside the range,
+
+8
+00:00:23.140 --> 00:00:25.287
+and read them with a separate reader.
+
+9
+00:00:25.287 --> 00:00:28.934
+After two clear weeks, enforce
+Ring 1 in its own change,
+
+10
+00:00:28.934 --> 00:00:31.751
+and watch the outside sign-in get blocked.
+
+11
+00:00:31.751 --> 00:00:33.020
+Then back it all out.

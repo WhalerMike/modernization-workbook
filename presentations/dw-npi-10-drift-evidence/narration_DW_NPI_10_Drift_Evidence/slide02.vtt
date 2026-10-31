@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.900
+Why does this chapter come last?
+
+2
+00:00:01.900 --> 00:00:04.692
+Because everything before
+it produces state,
+
+3
+00:00:04.692 --> 00:00:07.338
+and state proves only
+the moment it was read.
+
+4
+00:00:07.338 --> 00:00:10.388
+Four sources already say
+what the evidence is for.
+
+5
+00:00:10.388 --> 00:00:13.081
+The plan asks for scheduled drift checks,
+
+6
+00:00:13.081 --> 00:00:16.725
+a full review cycle, and
+evidence for specific controls.
+
+7
+00:00:16.725 --> 00:00:19.477
+Book 2 sets the pattern:
+commit a baseline,
+
+8
+00:00:19.477 --> 00:00:23.363
+compare every run with it, and
+close findings at the source.
+
+9
+00:00:23.363 --> 00:00:27.576
+The companion guide maps the
+controls, while the assessor decides.
+
+10
+00:00:27.576 --> 00:00:30.338
+And Book 17 adds the AI side.
+
+11
+00:00:30.338 --> 00:00:32.425
+The code's job is to turn state,
+
+12
+00:00:32.425 --> 00:00:36.740
+events and an approved baseline
+into evidence with no gaps.

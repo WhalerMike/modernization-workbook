@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.988
+Lab 1 needs only a laptop: PowerShell
+7 and Pester, no tenant, no network.
+
+2
+00:00:05.988 --> 00:00:10.711
+First you run Learn's own samples against
+the stand-ins, and one test shows what
+
+3
+00:00:10.711 --> 00:00:15.362
+you'd otherwise take on trust: the
+eligible-only holders simply never appear.
+
+4
+00:00:15.362 --> 00:00:19.138
+Then you list the permissions,
+five of them, and none can write.
+
+5
+00:00:19.138 --> 00:00:24.174
+Finally you run the inventory against a
+fictional tenant with three Azure scopes.
+
+6
+00:00:24.174 --> 00:00:27.819
+It returns thirty rows across
+the tiers, ten findings,
+
+7
+00:00:27.819 --> 00:00:30.800
+seven warnings and one informational item.
+
+8
+00:00:30.800 --> 00:00:32.520
+Let's read those findings.

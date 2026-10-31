@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.925
+Lab 2 moves to a test tenant, never
+production, and it's careful about order.
+
+2
+00:00:04.925 --> 00:00:07.383
+Build Chapter 2's
+emergency accounts first,
+
+3
+00:00:07.383 --> 00:00:11.479
+and register phishing-resistant
+methods for your test administrators
+
+4
+00:00:11.479 --> 00:00:15.712
+before anything is enforced, because
+Learn warns you can lock yourself out.
+
+5
+00:00:15.712 --> 00:00:19.813
+Then write your map, register a
+read-only app, and read the plan.
+
+6
+00:00:19.813 --> 00:00:24.712
+Add the write permissions and apply:
+every new policy lands in report-only.
+
+7
+00:00:24.712 --> 00:00:26.862
+Watch the results for at least a week.
+
+8
+00:00:26.862 --> 00:00:30.401
+Then enforce the gate on its
+own, in a separate change.
+
+9
+00:00:30.401 --> 00:00:33.700
+Backing out means turning
+policies off, never deleting.

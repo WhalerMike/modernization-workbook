@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.775
+The rest of Lab 1 shows the guardrails.
+
+2
+00:00:02.775 --> 00:00:06.869
+You ask the kit what a live run would
+need, and it prints the permission
+
+3
+00:00:06.869 --> 00:00:10.675
+and names the Global Administrator
+role, before anyone signs in.
+
+4
+00:00:10.675 --> 00:00:13.487
+You confirm the check isn't
+part of a default run.
+
+5
+00:00:13.487 --> 00:00:15.563
+You run the kit's whole test suite.
+
+6
+00:00:15.563 --> 00:00:18.565
+And then the best step:
+you deliberately break the
+
+7
+00:00:18.565 --> 00:00:21.349
+check so it reads a property
+that doesn't exist.
+
+8
+00:00:21.349 --> 00:00:25.489
+The failing fixture still fails,
+but now the passing one fails too,
+
+9
+00:00:25.489 --> 00:00:27.788
+because a missing value reads as off.
+
+10
+00:00:27.788 --> 00:00:30.313
+That's the unsafe default doing its job.
+
+11
+00:00:30.313 --> 00:00:33.050
+Put it back, and you've
+seen every outcome.

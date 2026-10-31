@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.637
+Which cloud you're in
+matters here in a quiet way.
+
+2
+00:00:02.637 --> 00:00:05.507
+Learn's incident samples
+ask you for the cloud,
+
+3
+00:00:05.507 --> 00:00:10.489
+but if they don't recognize your answer,
+they fall back to the worldwide endpoint,
+
+4
+00:00:10.489 --> 00:00:14.113
+so a GCC High tenant could be
+signed in to as the wrong cloud.
+
+5
+00:00:14.113 --> 00:00:18.788
+The chapter's code uses the same hosts
+but refuses a cloud name it doesn't know.
+
+6
+00:00:18.788 --> 00:00:22.865
+Graph's own rule evaluator is
+a beta, delegated-only action,
+
+7
+00:00:22.865 --> 00:00:27.026
+listed for the global service
+and the US Government clouds.
+
+8
+00:00:27.026 --> 00:00:29.797
+And the memberOf preview
+is public cloud only,
+
+9
+00:00:29.797 --> 00:00:32.860
+which is one more reason
+the library doesn't use it.

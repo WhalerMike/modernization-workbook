@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.412
+Here are the program's own rules, and
+most of them are labeled design guidance.
+
+2
+00:00:04.412 --> 00:00:08.797
+New apps can't use secrets, and their
+certificates are capped at a hundred and
+
+3
+00:00:08.797 --> 00:00:11.373
+eighty days, set on both
+object types because
+
+4
+00:00:11.373 --> 00:00:13.600
+the admin center expects them to match.
+
+5
+00:00:13.600 --> 00:00:15.991
+An app that truly can't use a certificate
+
+6
+00:00:15.991 --> 00:00:18.600
+gets a time-limited
+exception with a record.
+
+7
+00:00:18.600 --> 00:00:20.962
+Older apps get a year while they're fixed.
+
+8
+00:00:20.962 --> 00:00:23.612
+Every registered app
+gets the property lock.
+
+9
+00:00:23.612 --> 00:00:25.438
+No extra license is needed.
+
+10
+00:00:25.438 --> 00:00:29.120
+And rotation joins Key Vault,
+which can renew a certificate,
+
+11
+00:00:29.120 --> 00:00:32.640
+to the app registration, which
+renews nothing on its own.

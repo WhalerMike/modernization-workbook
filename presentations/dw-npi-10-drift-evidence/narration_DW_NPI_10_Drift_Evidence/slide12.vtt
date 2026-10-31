@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.200
+Lab 1 needs PowerShell and Python
+on a laptop, and nothing else.
+
+2
+00:00:04.200 --> 00:00:07.202
+First, run Microsoft's
+rule over the fixture:
+
+3
+00:00:07.202 --> 00:00:11.038
+of four credentials added on
+the second day, it finds one.
+
+4
+00:00:11.038 --> 00:00:15.287
+Then confirm the run needs four read
+permissions and nothing that writes.
+
+5
+00:00:15.287 --> 00:00:17.531
+Run the first day with no baseline,
+
+6
+00:00:17.531 --> 00:00:20.737
+and it writes a baseline
+candidate with its hash.
+
+7
+00:00:20.737 --> 00:00:25.438
+In real life a second person reviews
+that candidate and passes you the hash.
+
+8
+00:00:25.438 --> 00:00:28.847
+Then run the second day
+against the approved baseline,
+
+9
+00:00:28.847 --> 00:00:33.070
+and the drift appears: more findings
+and more warnings than day one.

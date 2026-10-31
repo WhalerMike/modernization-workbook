@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:06.239
+Every privileged role, every privileged
+group, and every privileged Azure role at
+
+3
+00:00:06.239 --> 00:00:09.300
+the control-plane subscriptions
+has its own series,
+
+4
+00:00:09.300 --> 00:00:11.150
+and none of them is a self-review.
+
+5
+00:00:11.150 --> 00:00:14.208
+The cadence matches the
+tier, auto-apply is on,
+
+6
+00:00:14.208 --> 00:00:18.588
+and only the emergency accounts'
+series keeps access on silence.
+
+7
+00:00:18.588 --> 00:00:23.094
+The identities hold only what their
+task needs, preview Azure series wait
+
+8
+00:00:23.094 --> 00:00:27.675
+for the lab, and every closed review
+has its decisions in the evidence store.
+
+9
+00:00:27.675 --> 00:00:33.537
+Next, Chapter 8 brings it all together:
+evidence and drift, for the ISSO.
+
+10
+00:00:33.537 --> 00:00:34.700
+Thanks for watching.

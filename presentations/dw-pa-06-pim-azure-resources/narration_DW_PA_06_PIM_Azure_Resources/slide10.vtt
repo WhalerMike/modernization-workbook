@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.175
+The heart of the configuration
+is one reviewed file.
+
+2
+00:00:03.175 --> 00:00:07.927
+It names the scopes, the roles, who's
+eligible, and the settings for each tier,
+
+3
+00:00:07.927 --> 00:00:10.109
+taken from Book 04's role settings:
+
+4
+00:00:10.109 --> 00:00:14.939
+shorter activations and tighter
+eligibility for the most sensitive tier,
+
+5
+00:00:14.939 --> 00:00:19.925
+approval by a named group, and a
+justification and ticket on every activation.
+
+6
+00:00:19.925 --> 00:00:22.675
+Those values are the
+program's design guidance.
+
+7
+00:00:22.675 --> 00:00:26.525
+The loader also refuses what
+Learn or the program rules out.
+
+8
+00:00:26.525 --> 00:00:29.124
+The subtle one is authentication context:
+
+9
+00:00:29.124 --> 00:00:33.877
+Learn says to create its Conditional
+Access policy before you point PIM at it,
+
+10
+00:00:33.877 --> 00:00:36.700
+so the file can't use it
+until that's confirmed.

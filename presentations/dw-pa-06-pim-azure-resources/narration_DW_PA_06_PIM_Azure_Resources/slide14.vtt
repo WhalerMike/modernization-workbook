@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.100
+Lab 1 runs on a laptop, with
+no tenant and no network.
+
+2
+00:00:04.100 --> 00:00:08.563
+First you replay Microsoft's own
+examples, and the six tests pass.
+
+3
+00:00:08.563 --> 00:00:13.412
+Read the second one: Microsoft's assignment
+example is really an activation.
+
+4
+00:00:13.412 --> 00:00:17.149
+Next, ask the code which
+roles each task needs.
+
+5
+00:00:17.149 --> 00:00:18.938
+Owner isn't needed for anything.
+
+6
+00:00:18.938 --> 00:00:22.775
+Then plan against a small
+fictional estate, as a dry run.
+
+7
+00:00:22.775 --> 00:00:27.968
+It reads the schedules and policies, plans
+eleven policy updates, five new eligible
+
+8
+00:00:27.968 --> 00:00:33.162
+assignments and three removals, and writes
+nineteen requests without sending one.
+
+9
+00:00:33.162 --> 00:00:34.610
+Let's read what it planned.

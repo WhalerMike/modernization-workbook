@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.975
+The rest of the gaps are
+about scope and privilege.
+
+2
+00:00:02.975 --> 00:00:07.663
+To find one app's grants, the script
+reads every grant in the tenant.
+
+3
+00:00:07.663 --> 00:00:10.518
+To review, it signs in
+with write permissions,
+
+4
+00:00:10.518 --> 00:00:15.149
+including the very broad directory
+one this chapter is trying to remove.
+
+5
+00:00:15.149 --> 00:00:19.163
+It names a different administrator
+role than the API reference does.
+
+6
+00:00:19.163 --> 00:00:21.451
+It hard-codes the worldwide host.
+
+7
+00:00:21.451 --> 00:00:25.585
+And it never looks at directory
+roles or Azure role assignments,
+
+8
+00:00:25.585 --> 00:00:27.379
+so an app in a directory role,
+
+9
+00:00:27.379 --> 00:00:32.138
+or a managed identity that's Contributor
+on a subscription, passes unseen.
+
+10
+00:00:32.138 --> 00:00:35.570
+So the verdict: use the
+requests, not the script.

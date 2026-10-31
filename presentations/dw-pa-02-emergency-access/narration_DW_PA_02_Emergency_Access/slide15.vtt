@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.513
+Every one of these dangers has happened
+somewhere, and each has a guard in the code.
+
+2
+00:00:04.513 --> 00:00:07.432
+The worst is the lockout,
+and the guard is simply
+
+3
+00:00:07.432 --> 00:00:10.201
+that this check is the
+gate's test, on every run.
+
+4
+00:00:10.201 --> 00:00:14.410
+The quietest is a fuzzy query
+over a table that never arrives:
+
+5
+00:00:14.410 --> 00:00:17.525
+nothing fires, and
+silence looks like safety.
+
+6
+00:00:17.525 --> 00:00:22.975
+Others are slower: an assignment that
+expires, a phone method tied to one person,
+
+7
+00:00:22.975 --> 00:00:27.000
+an exclusion group that grows,
+or a drill nobody wrote down.
+
+8
+00:00:27.000 --> 00:00:28.137
+Notice the pattern.
+
+9
+00:00:28.137 --> 00:00:32.620
+Each guard is a rule that runs every
+time, not a person remembering.

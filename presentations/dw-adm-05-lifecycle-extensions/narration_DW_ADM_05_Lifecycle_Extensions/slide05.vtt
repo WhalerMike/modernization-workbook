@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.358
+Running Learn's definition
+against the fakes
+
+2
+00:00:02.358 --> 00:00:04.787
+shows what it gets right
+and what it leaves to you.
+
+3
+00:00:04.787 --> 00:00:07.277
+It gets the identity right: no secret,
+
+4
+00:00:07.277 --> 00:00:11.675
+just the Logic App's managed
+identity, and the program keeps that.
+
+5
+00:00:11.675 --> 00:00:17.195
+But the callback is hard-wired to the
+worldwide cloud and the beta endpoint,
+
+6
+00:00:17.195 --> 00:00:20.400
+so in GCC High or DoD it
+simply never arrives.
+
+7
+00:00:20.400 --> 00:00:22.621
+It trusts whatever path it's handed,
+
+8
+00:00:22.621 --> 00:00:27.062
+which means a forged payload could
+aim that identity's token anywhere.
+
+9
+00:00:27.062 --> 00:00:31.287
+And it always says the work completed,
+even when the revocation failed.
+
+10
+00:00:31.287 --> 00:00:34.200
+Each of those has a fix, pinned by a test.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.095
+Which cloud matters,
+because Microsoft's import
+
+2
+00:00:03.095 --> 00:00:05.988
+sample always calls the
+worldwide Graph host.
+
+3
+00:00:05.988 --> 00:00:09.593
+For a GCC tenant like this
+estate's, that's correct:
+
+4
+00:00:09.593 --> 00:00:15.812
+GCC uses the worldwide Graph and the same
+Intune instance as commercial customers.
+
+5
+00:00:15.812 --> 00:00:19.397
+GCC High and the Defense cloud
+have their own Graph hosts,
+
+6
+00:00:19.397 --> 00:00:23.439
+a shared government Intune instance
+and their own admin center,
+
+7
+00:00:23.439 --> 00:00:26.337
+and a token from one cloud
+won't work in another.
+
+8
+00:00:26.337 --> 00:00:29.277
+So the example maps each cloud name to its
+
+9
+00:00:29.277 --> 00:00:32.562
+host and refuses any name
+it doesn't recognize.
+
+10
+00:00:32.562 --> 00:00:34.370
+Now, Microsoft's samples.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.850
+Lab 2 uses a licensed test tenant with
+fictional people, never production.
+
+2
+00:00:04.850 --> 00:00:07.730
+Read the blueprint-creation
+setting yourself,
+
+3
+00:00:07.730 --> 00:00:12.087
+since there's no Graph property for it,
+set it to No, and record the reading.
+
+4
+00:00:12.087 --> 00:00:15.915
+Then build one properly governed
+agent from Learn's sample:
+
+5
+00:00:15.915 --> 00:00:19.742
+a sponsor who isn't the owner,
+a managed identity credential,
+
+6
+00:00:19.742 --> 00:00:23.413
+a handshake, an inventory row,
+and the approval attribute.
+
+7
+00:00:23.413 --> 00:00:25.926
+Run the check with read permissions only,
+
+8
+00:00:25.926 --> 00:00:29.474
+compare the policy shape with
+one made in the admin center,
+
+9
+00:00:29.474 --> 00:00:33.613
+apply the plan as a person, and
+confirm both policies are report-only.
+
+10
+00:00:33.613 --> 00:00:35.350
+Then remove it all by hand.

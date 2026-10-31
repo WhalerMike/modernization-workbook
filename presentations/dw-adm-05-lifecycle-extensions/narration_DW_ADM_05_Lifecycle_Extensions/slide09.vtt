@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.213
+Two ideas hold the design together.
+
+2
+00:00:02.213 --> 00:00:04.112
+The first is idempotency.
+
+3
+00:00:04.112 --> 00:00:06.133
+The key isn't a Microsoft feature;
+
+4
+00:00:06.133 --> 00:00:10.325
+it's a promise the downstream system
+makes to do the work once per key.
+
+5
+00:00:10.325 --> 00:00:15.852
+That matters because the same task can
+arrive twice: the extension may retry its
+
+6
+00:00:15.852 --> 00:00:17.778
+call, a workflow can be rerun,
+
+7
+00:00:17.778 --> 00:00:21.462
+and Book 03 resumes a partial
+leaver where it stopped.
+
+8
+00:00:21.462 --> 00:00:25.683
+The second is the registry: one
+reviewed entry per integration,
+
+9
+00:00:25.683 --> 00:00:28.524
+holding every value the deployment needs.
+
+10
+00:00:28.524 --> 00:00:31.387
+Its extension settings
+have sensible defaults,
+
+11
+00:00:31.387 --> 00:00:34.800
+and the builder refuses anything
+outside Learn's ranges.

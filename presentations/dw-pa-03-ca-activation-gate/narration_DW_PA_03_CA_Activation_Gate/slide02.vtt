@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Why does this chapter matter so much?
+
+2
+00:00:02.150 --> 00:00:05.188
+Because it's the first time
+the program writes to a tenant.
+
+3
+00:00:05.188 --> 00:00:09.315
+Book 04 gives it three things to
+build: the administrator policy set,
+
+4
+00:00:09.315 --> 00:00:14.327
+the gate that demands a fresh phishing-resistant
+proof from a compliant device at
+
+5
+00:00:14.327 --> 00:00:19.338
+the moment someone elevates, and the custom
+authentication strength both rely on.
+
+6
+00:00:19.338 --> 00:00:23.112
+Unlike the first two chapters,
+this code can change things.
+
+7
+00:00:23.112 --> 00:00:28.750
+So its design is cautious on purpose: it
+writes only when told, creates every new
+
+8
+00:00:28.750 --> 00:00:34.370
+policy in report-only, enforces only with
+a separate switch, and never deletes.

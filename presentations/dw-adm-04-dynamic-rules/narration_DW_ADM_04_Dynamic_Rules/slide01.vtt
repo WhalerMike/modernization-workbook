@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:09.362
+This is Chapter 4: dynamic rules as code.
+
+4
+00:00:09.362 --> 00:00:13.413
+A dynamic membership rule is
+access policy written as one line,
+
+5
+00:00:13.413 --> 00:00:16.216
+so the chapter treats
+it like code: reviewed,
+
+6
+00:00:16.216 --> 00:00:20.188
+tested against people you can
+name, and diffed before it ships.
+
+7
+00:00:20.188 --> 00:00:25.210
+We'll look at what Microsoft's engine and
+samples give you, what they leave out,
+
+8
+00:00:25.210 --> 00:00:28.398
+then the rule library, the
+linter, the shadow diff,
+
+9
+00:00:28.398 --> 00:00:31.188
+the incident path, two
+labs and the dangers.
+
+10
+00:00:31.188 --> 00:00:36.410
+One note before we begin: the code is
+illustrative, tested against fixtures.

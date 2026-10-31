@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.556
+Running the role offline, and reading it,
+
+2
+00:00:02.556 --> 00:00:06.200
+shows what it leaves to you,
+starting with owners and waves.
+
+3
+00:00:06.200 --> 00:00:10.213
+It connects whatever the inventory
+names, with no owner tags.
+
+4
+00:00:10.213 --> 00:00:14.888
+It has no waves or batches, so one
+mistake reaches everything at once.
+
+5
+00:00:14.888 --> 00:00:18.446
+It can't do a real dry run on
+a server without the agent;
+
+6
+00:00:18.446 --> 00:00:22.087
+it wrongly decides the agent
+is installed, then fails.
+
+7
+00:00:22.087 --> 00:00:24.996
+Passing your own tags
+silently drops its default
+
+8
+00:00:24.996 --> 00:00:27.975
+that keeps database servers
+from auto-onboarding.
+
+9
+00:00:27.975 --> 00:00:30.025
+And it sends that signal by default.
+
+10
+00:00:30.025 --> 00:00:33.480
+Each gap gets a fix, and
+each is pinned by a test.

@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.838
+The bigger gaps are about scale and proof.
+
+2
+00:00:02.838 --> 00:00:07.062
+The queries look at one request at
+a time, with no window, no tier,
+
+3
+00:00:07.062 --> 00:00:09.548
+and no check that anyone approved it,
+
+4
+00:00:09.548 --> 00:00:14.187
+and "every elevation in the period"
+can't be shown one request at a time.
+
+5
+00:00:14.187 --> 00:00:16.524
+They also only run in Log Analytics,
+
+6
+00:00:16.524 --> 00:00:19.988
+which needs a workspace
+before any evidence exists.
+
+7
+00:00:19.988 --> 00:00:23.316
+And they stop at the
+query: nothing compares,
+
+8
+00:00:23.316 --> 00:00:26.275
+packages or hands anything to the ISSO.
+
+9
+00:00:26.275 --> 00:00:30.960
+So the verdict: keep Learn's request
+ID as the key and its activity names
+
+10
+00:00:30.960 --> 00:00:35.950
+as the vocabulary, but don't treat the
+first query as evidence of elevation.

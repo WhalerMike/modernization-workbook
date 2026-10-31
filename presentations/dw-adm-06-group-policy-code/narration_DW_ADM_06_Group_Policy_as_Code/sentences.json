@@ -1,0 +1,608 @@
+{
+ "1": [
+  [
+   0.05,
+   6.237,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building the Attribute-Driven Migration."
+  ],
+  [
+   6.287,
+   3.438,
+   "This is Chapter 6: moving Group Policy as code."
+  ],
+  [
+   9.725,
+   8.375,
+   "Group Policy analytics tells you which settings Intune can take, but not which ones should move, who owns them, or what's already in the tenant."
+  ],
+  [
+   18.1,
+   1.875,
+   "Those are the pipeline's questions."
+  ],
+  [
+   19.975,
+   10.787,
+   "We'll start from Microsoft's own settings catalog samples, see what they leave out, then walk the move plan, the library, the linter and the sync, two labs and the dangers."
+  ],
+  [
+   30.762,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.562,
+   "Why does this need code at all?"
+  ],
+  [
+   1.613,
+   13.325,
+   "Because the operator side is already written, in Book 5's sunset program and the Intune track's gates, and what's missing is the software for two of those steps: importing the policies for analysis, and building the library."
+  ],
+  [
+   14.938,
+   3.375,
+   "Two rules from those pages shape everything that follows."
+  ],
+  [
+   18.312,
+   7.1,
+   "Every setting has exactly one owning policy and one owning tool, so the library only holds what Intune owns."
+  ],
+  [
+   25.413,
+   5.438,
+   "And policies are built with no assignments; assigning them is a separate, reviewed step."
+  ],
+  [
+   30.85,
+   2.875,
+   "Let's see what Microsoft's tools say about the stakes."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.15,
+   "Here's what Microsoft itself says about these tools, and it's why a pipeline is worth building."
+  ],
+  [
+   5.2,
+   9.325,
+   "Group Policy analytics reads your exports and tells you which settings have an equivalent, but only for Windows, and it only parses some settings, and only in English."
+  ],
+  [
+   14.525,
+   8.7,
+   "The Migrate button is called best effort; Learn tells you not to move everything without review, and it simply stops when two policies disagree."
+  ],
+  [
+   23.225,
+   6.013,
+   "And everything in Graph here, both the analytics reports and the settings catalog itself, is beta."
+  ],
+  [
+   29.238,
+   2.337,
+   "Supported, but liable to change."
+  ],
+  [
+   31.575,
+   1.413,
+   "Next, which cloud."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.938,
+   "Which cloud matters, because Microsoft's import sample always calls the worldwide Graph host."
+  ],
+  [
+   5.987,
+   9.825,
+   "For a G C C tenant like this estate's, that's correct: G C C uses the worldwide Graph and the same Intune instance as commercial customers."
+  ],
+  [
+   15.812,
+   10.525,
+   "G C C High and the Defense cloud have their own Graph hosts, a shared government Intune instance and their own admin center, and a token from one cloud won't work in another."
+  ],
+  [
+   26.337,
+   6.225,
+   "So the example maps each cloud name to its host and refuses any name it doesn't recognize."
+  ],
+  [
+   32.562,
+   1.75,
+   "Now, Microsoft's samples."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.2,
+   "Microsoft does give you a starting point."
+  ],
+  [
+   2.25,
+   11.787,
+   "Learn's Intune migration guide points to its Graph samples, and their settings catalog folder has two scripts: one exports every policy to a file, one imports a file as a new policy."
+  ],
+  [
+   14.037,
+   5.375,
+   "Learn is candid that they change your tenant, come as-is, and should be tried somewhere safe first."
+  ],
+  [
+   19.413,
+   11.35,
+   "The repository keeps an unmodified copy, with hashes a test checks, and a harness that runs both scripts against a fake Graph, replacing only the commands they call outside themselves."
+  ],
+  [
+   30.762,
+   4.112,
+   "Notice what's absent: no sample reads the analytics through Graph."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   11.463,
+   "Running the samples against the fake Graph shows what they do well, and the example keeps that: the same create call, the same filter, the same paging, and policies created with no assignments."
+  ],
+  [
+   11.512,
+   1.613,
+   "The gaps are about safety."
+  ],
+  [
+   13.125,
+   2.837,
+   "The import always calls the worldwide host."
+  ],
+  [
+   15.963,
+   2.825,
+   "It writes with whatever session you happen to have open."
+  ],
+  [
+   18.788,
+   1.375,
+   "There's no dry run."
+  ],
+  [
+   20.163,
+   6.138,
+   "And if you run it twice, you get two policies with the same name, because it never looks at the tenant first."
+  ],
+  [
+   26.3,
+   2.525,
+   "Each of those gaps is pinned by a test."
+  ],
+  [
+   28.825,
+   2.125,
+   "There are more, on the record side."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.188,
+   "The rest of the gaps are about the record."
+  ],
+  [
+   2.237,
+   9.338,
+   "The import quietly edits the file before sending it, so what reached the tenant isn't what anyone reviewed; the example refuses such a file instead."
+  ],
+  [
+   11.575,
+   2.888,
+   "The import leaves nothing for the security officer."
+  ],
+  [
+   14.463,
+   10.488,
+   "The export stamps each file with the time, so Git can never show a change, and it drops the scope tags, so a re-imported policy is visible to the wrong administrators."
+  ],
+  [
+   24.95,
+   2.525,
+   "And neither script knows who owns a setting."
+  ],
+  [
+   27.475,
+   6.737,
+   "The verdict: keep Microsoft's create call as the model, and let the sync ask what's already there before it writes."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.85,
+   "The read side has two parts."
+  ],
+  [
+   1.9,
+   11.05,
+   "First, a gate from the validation kit, which works per policy object: anything targeted in the directory that isn't fully ready, or anything in scope that was never imported, fails it."
+  ],
+  [
+   12.95,
+   2.062,
+   "Then the move plan works per setting."
+  ],
+  [
+   15.012,
+   13.088,
+   "Every setting gets a row and a disposition: a candidate to move, a conflict between two policies, something that belongs in Endpoint security, something with no catalog equivalent, or something that stays behind."
+  ],
+  [
+   28.1,
+   3.1,
+   "And here's the important part: the plan decides nothing."
+  ],
+  [
+   31.2,
+   2.475,
+   "A person decides, and records why."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.463,
+   "On the write side, each policy is one file in Git, and the file has two halves."
+  ],
+  [
+   5.513,
+   7.513,
+   "The policy half is exactly the body Graph will receive, in the shape Learn documents, so what's reviewed is what's sent."
+  ],
+  [
+   13.025,
+   9.912,
+   "The other half is the record: who approves a change, which tool owns these settings, which old policies they came from, and a decision record for every single setting."
+  ],
+  [
+   22.938,
+   10.588,
+   "The setting identifiers in the two sample files come from Learn's own examples, and the chapter's advice is to export one from the admin center and compare before trusting any other."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.8,
+   "The linter is where the program's own rules liv."
+  ],
+  [
+   2.85,
+   2.125,
+   "Four rules carry most of the weight."
+  ],
+  [
+   4.975,
+   3.038,
+   "Only settings Intune owns go in the library."
+  ],
+  [
+   8.012,
+   5.713,
+   "No setting may appear in two policies, which is exactly the conflict a peer reviewer hunts for."
+  ],
+  [
+   13.725,
+   2.237,
+   "Every setting needs a decision record."
+  ],
+  [
+   15.963,
+   7.7,
+   "And anything that isn't a clean candidate from the plan raises a warning, so a setting added by hand is a choice someone made on purpose."
+  ],
+  [
+   23.663,
+   7.213,
+   "One more rule watches for secrets, because Learn says anyone who can read device configuration can read those values."
+  ],
+  [
+   30.875,
+   1.225,
+   "Then comes the diff."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.275,
+   "Now the heart of the sync: it diffs before it writes."
+  ],
+  [
+   3.325,
+   8.713,
+   "It reads the tenant's policies, normalizes both sides so harmless formatting differences don't count, and gives each policy one action."
+  ],
+  [
+   12.037,
+   1.35,
+   "New ones get created."
+  ],
+  [
+   13.387,
+   1.75,
+   "Matching ones are left alone."
+  ],
+  [
+   15.137,
+   4.662,
+   "Anything that has drifted, or appears twice, stops the whole release."
+  ],
+  [
+   19.8,
+   6.075,
+   "By default it's a dry run with read-only permission; only with the apply switch does it ask for write."
+  ],
+  [
+   25.875,
+   4.162,
+   "And it never updates or deletes, even though Graph allows both."
+  ],
+  [
+   30.038,
+   5.15,
+   "A policy that differs from Git is a question for a person, not something to overwrite."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.475,
+   "Here are the facts the code depends on, as Learn states them."
+  ],
+  [
+   3.525,
+   7.525,
+   "Every call is beta, every read needs only the device configuration read permission, and only the create needs write."
+  ],
+  [
+   11.05,
+   4.438,
+   "Learn lists all of them for the worldwide and both U S Government levels."
+  ],
+  [
+   15.488,
+   3.25,
+   "The chapter is just as careful about what Learn doesn't say."
+  ],
+  [
+   18.738,
+   5.45,
+   "There's no Graph equivalent of the Migrate button, so the second lab compares the two by hand."
+  ],
+  [
+   24.188,
+   9.012,
+   "And no Learn page confirms the analytics import itself works in G C C High or the Defense cloud, so that gets confirmed in a test tenant first."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   10.338,
+   "The developers and Intune engineers who build the library, the reviewers who approve each file, and the owner named in every file, who approves changes to that policy."
+  ],
+  [
+   11.438,
+   3.625,
+   "The roles follow the same least-privilege line as the code."
+  ],
+  [
+   15.062,
+   6.963,
+   "Importing a policy object for analysis needs an Intune administrator or a role with two specific permissions."
+  ],
+  [
+   22.025,
+   4.275,
+   "Reading, planning and the dry run need only a read-only operator."
+  ],
+  [
+   26.3,
+   6.112,
+   "Only the final apply needs the built-in role that manages configuration profiles, with write permission."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.8,
+   "Lab 1 runs on a laptop with no tenant."
+  ],
+  [
+   2.85,
+   6.45,
+   "First you run the validation kit's gate against its failing fixture, and see three real findings and a warning."
+  ],
+  [
+   9.3,
+   8.025,
+   "Then comes the revealing step: you run Microsoft's own import sample twice against the fake Graph, and the policy appears twice."
+  ],
+  [
+   17.325,
+   4.812,
+   "The call log shows two creates and not a single read; the script never looked."
+  ],
+  [
+   22.137,
+   8.938,
+   "Then you build the move plan, and the eleven rows show every kind of disposition, including a hibernate setting where two old policies disagree."
+  ],
+  [
+   31.075,
+   2.237,
+   "Next, the lint and the sync."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   7.5,
+   "Then you lint the library against the plan, and the only thing it reports is that hibernate conflict, with the decision that settled it."
+  ],
+  [
+   7.55,
+   8.175,
+   "The dry run says one policy will be created and one is already in place, and applying it creates exactly that one and writes a record."
+  ],
+  [
+   15.725,
+   5.537,
+   "Point it at another cloud and the host changes; give it a name it doesn't know and it refuses."
+  ],
+  [
+   21.262,
+   7.388,
+   "Then break something on purpose: change one value in a file, and the sync reports drift and refuses to write anything at all."
+  ],
+  [
+   28.65,
+   2.45,
+   "Run the tests, and forty-six pass."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.675,
+   "Lab 2 moves to a test tenant with Intune licenses, never production."
+  ],
+  [
+   4.725,
+   7.65,
+   "You import a test policy object into analytics, then run the gate and build the plan for real, with read-only access."
+  ],
+  [
+   12.375,
+   3.775,
+   "Any setting in your library that isn't in the plan is a finding."
+  ],
+  [
+   16.15,
+   7.675,
+   "The dry run asks only for read; the apply, under the profile manager role, creates policies with no assignments."
+  ],
+  [
+   23.825,
+   5.575,
+   "Then the interesting comparison: run Microsoft's Migrate button on the same settings, and compare."
+  ],
+  [
+   29.4,
+   5.412,
+   "Drill drift by editing a value by hand, and finally delete everything the lab made."
+  ],
+  [
+   34.812,
+   2.062,
+   "The sync itself never deletes."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.037,
+   "Each of these dangers has a guard, and most of them come back to the same few ideas."
+  ],
+  [
+   5.088,
+   7.638,
+   "One setting, one policy, one owning tool, checked in the pull request, so two systems never fight over a value."
+  ],
+  [
+   12.725,
+   3.163,
+   "Read before you write, so running twice is harmless."
+  ],
+  [
+   15.887,
+   3.513,
+   "Treat drift as a stop, never something to overwrite."
+  ],
+  [
+   19.4,
+   2.575,
+   "Keep the write permission for the moment of writing."
+  ],
+  [
+   21.975,
+   6.463,
+   "And because the A P I's are beta, keep the pinned tests and run the test-tenant lab before each release."
+  ],
+  [
+   28.438,
+   6.2,
+   "When the policies are assigned later, Learn prefers filters over dynamic groups that only Intune uses."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   2.388,
+   "The gate passes for the whole population."
+  ],
+  [
+   3.788,
+   4.713,
+   "The move plan travels with the pull request, and every conflict has a decision."
+  ],
+  [
+   8.5,
+   7.013,
+   "Each library file names its owner, its source policies and a decision per setting, and no setting appears twice."
+  ],
+  [
+   15.512,
+   3.9,
+   "The dry run is clean and someone actually read what it will create."
+  ],
+  [
+   19.413,
+   4.688,
+   "The release wrote its record, and afterward the dry run shows nothing left to do."
+  ],
+  [
+   24.1,
+   5.025,
+   "Everything was created unassigned, and the pinned samples are still the ones you reviewed."
+  ],
+  [
+   29.125,
+   4.088,
+   "Next, Chapter 7 builds machine configuration packages."
+  ],
+  [
+   33.212,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

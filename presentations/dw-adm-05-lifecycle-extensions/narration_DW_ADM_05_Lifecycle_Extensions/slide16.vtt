@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.300
+Lab 2 moves to a test
+tenant, never production.
+
+2
+00:00:03.300 --> 00:00:07.745
+You let the admin center create the extension
+and Logic App the way Learn describes,
+
+3
+00:00:07.745 --> 00:00:11.417
+then record exactly what it made
+and compare it with what the builder
+
+4
+00:00:11.417 --> 00:00:15.025
+would have written; any difference
+is a finding against the builder.
+
+5
+00:00:15.025 --> 00:00:17.478
+Then you swap in the program's definition,
+
+6
+00:00:17.478 --> 00:00:22.312
+build a small leaver workflow in the right
+order, and run it for one fictional user.
+
+7
+00:00:22.312 --> 00:00:25.412
+That run also confirms
+the real callback path.
+
+8
+00:00:25.412 --> 00:00:30.376
+Finally, drill the failure: the task
+should fail within minutes, not an hour.
+
+9
+00:00:30.376 --> 00:00:31.920
+Then back everything out.

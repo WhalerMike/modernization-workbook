@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.025
+Here's who reads those tags
+once a server is connected.
+
+2
+00:00:03.025 --> 00:00:05.896
+Machine configuration,
+from the last chapter,
+
+3
+00:00:05.896 --> 00:00:09.975
+only enforces on servers whose
+configuration owner tag names it.
+
+4
+00:00:09.975 --> 00:00:15.012
+Update Manager's dynamic scopes can group
+machines by tag, and they're evaluated
+
+5
+00:00:15.012 --> 00:00:19.438
+at every scheduled run, so a scope on
+the patch owner tag follows the tag.
+
+6
+00:00:19.438 --> 00:00:22.876
+The built-in assessment policy
+can be scoped by tag too.
+
+7
+00:00:22.876 --> 00:00:25.207
+And the validation kit
+checks afterward for
+
+8
+00:00:25.207 --> 00:00:27.475
+a server carrying
+enforcement it shouldn't.
+
+9
+00:00:27.475 --> 00:00:30.988
+Every one of them depends on the
+tag being right from the start.
+
+10
+00:00:30.988 --> 00:00:32.540
+Next, which Azure.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.321
+Before any code, you need to
+know what's actually available,
+
+2
+00:00:03.321 --> 00:00:05.775
+because the pieces are
+at different stages.
+
+3
+00:00:05.775 --> 00:00:08.288
+The core objects are generally available.
+
+4
+00:00:08.288 --> 00:00:12.115
+Conditional Access for agents
+and agent risk are preview,
+
+5
+00:00:12.115 --> 00:00:16.262
+and the Graph properties for
+agent policies exist only in beta.
+
+6
+00:00:16.262 --> 00:00:18.263
+In this estate's G C C cloud,
+
+7
+00:00:18.263 --> 00:00:23.124
+the documented subset is listed,
+mostly for delegated access.
+
+8
+00:00:23.124 --> 00:00:26.413
+In the higher government clouds,
+nothing is published yet.
+
+9
+00:00:26.413 --> 00:00:31.609
+So the program's decision is held as data:
+in G C C the code reads agent identities,
+
+10
+00:00:31.609 --> 00:00:36.790
+and elsewhere it falls back to applying
+the same rules to service principals.

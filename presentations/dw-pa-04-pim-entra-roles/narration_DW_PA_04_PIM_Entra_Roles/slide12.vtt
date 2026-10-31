@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.125
+This is the write path,
+and it's careful by design.
+
+2
+00:00:03.125 --> 00:00:07.835
+First it reads each role's policy, then
+compares the seven rules with the file,
+
+3
+00:00:07.835 --> 00:00:10.975
+after smoothing out
+differences that don't matter.
+
+4
+00:00:10.975 --> 00:00:14.000
+The plan lists every
+change and sends nothing.
+
+5
+00:00:14.000 --> 00:00:17.675
+Only when you ask to apply
+does it write: rules first,
+
+6
+00:00:17.675 --> 00:00:21.612
+then eligibility, so each
+request meets the new limits.
+
+7
+00:00:21.612 --> 00:00:23.609
+Then it reads the tenant again,
+
+8
+00:00:23.609 --> 00:00:26.963
+and that read-back is the
+evidence, not the response.
+
+9
+00:00:26.963 --> 00:00:30.477
+Converting standing access
+follows Book 4's order:
+
+10
+00:00:30.477 --> 00:00:34.730
+eligible first, activation
+confirmed, and only then removed.

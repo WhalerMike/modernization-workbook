@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.862
+Learn is clear about three
+things you must not do.
+
+2
+00:00:02.862 --> 00:00:04.787
+Don't put secrets in a package.
+
+3
+00:00:04.787 --> 00:00:06.787
+Don't exceed a hundred megabytes.
+
+4
+00:00:06.787 --> 00:00:08.933
+And when you release a new version,
+
+5
+00:00:08.933 --> 00:00:14.068
+give the package a new name but keep the
+same policy identifier, raise the version,
+
+6
+00:00:14.068 --> 00:00:19.049
+and let the hash be recomputed; change
+only the address and the agent rejects it.
+
+7
+00:00:19.049 --> 00:00:24.337
+The repository also pins Microsoft's
+sample project, with hashes a test checks.
+
+8
+00:00:24.337 --> 00:00:27.776
+It's five years older than
+the module the chapter uses,
+
+9
+00:00:27.776 --> 00:00:31.762
+and two things in it no longer
+hold, including a renamed cmdlet.
+
+10
+00:00:31.762 --> 00:00:34.060
+Its compiled file still packages.

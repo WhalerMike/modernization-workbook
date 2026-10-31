@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.825
+The comparison is where
+state becomes drift.
+
+2
+00:00:02.825 --> 00:00:08.174
+Before it compares anything, it checks both
+runs: every file against its manifest,
+
+3
+00:00:08.174 --> 00:00:12.725
+the same tenant, cloud and mode, and
+a current run that's actually later.
+
+4
+00:00:12.725 --> 00:00:14.800
+Then every difference gets a result.
+
+5
+00:00:14.800 --> 00:00:16.875
+Two of them are careful by design.
+
+6
+00:00:16.875 --> 00:00:20.372
+A task that failed this time
+is unverified, not resolved,
+
+7
+00:00:20.372 --> 00:00:24.250
+so a permissions error can't make
+yesterday's findings vanish.
+
+8
+00:00:24.250 --> 00:00:27.178
+And activations are left
+out of assignment drift,
+
+9
+00:00:27.178 --> 00:00:31.463
+because they come and go within hours
+and the audit already records them.
+
+10
+00:00:31.463 --> 00:00:36.050
+Any Tier 0 change is an
+incident, as Book 04 says.

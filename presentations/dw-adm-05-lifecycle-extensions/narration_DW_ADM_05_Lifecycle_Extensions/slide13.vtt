@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:06.020
+Developers and identity engineers who
+build the integrations behind joiners,
+
+3
+00:00:06.020 --> 00:00:09.588
+movers and leavers, and the
+reviewers who approve each one.
+
+4
+00:00:09.588 --> 00:00:14.313
+You'll want to read JSON and Python,
+and you don't need a tenant until Lab 2.
+
+5
+00:00:14.313 --> 00:00:15.887
+The roles are worth noticing.
+
+6
+00:00:15.887 --> 00:00:20.962
+Creating an extension takes the Lifecycle
+Workflows administrator role plus a
+
+7
+00:00:20.962 --> 00:00:26.037
+contributor role on the Logic App's resource
+group; the operator role isn't enough.
+
+8
+00:00:26.037 --> 00:00:29.595
+The Logic App itself needs no
+Graph permission to call back,
+
+9
+00:00:29.595 --> 00:00:33.650
+and its downstream access should
+be as narrow as the target allows.

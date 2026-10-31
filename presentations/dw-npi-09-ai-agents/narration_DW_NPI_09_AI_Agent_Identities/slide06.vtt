@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.338
+The list requests are a good
+model, but they stop short.
+
+2
+00:00:03.338 --> 00:00:07.258
+They read one page, and a page
+holds at most a hundred agents,
+
+3
+00:00:07.258 --> 00:00:09.300
+so a bigger tenant is half-read.
+
+4
+00:00:09.300 --> 00:00:11.550
+They hard-code the worldwide host.
+
+5
+00:00:11.550 --> 00:00:14.211
+The agent sponsor
+request returns IDs only,
+
+6
+00:00:14.211 --> 00:00:17.315
+and names only a write
+permission for what is a read,
+
+7
+00:00:17.315 --> 00:00:21.750
+so the code expands sponsors on the
+list under a read permission instead.
+
+8
+00:00:21.750 --> 00:00:25.719
+And the blueprint sample makes
+the same person sponsor and owner,
+
+9
+00:00:25.719 --> 00:00:29.762
+meaning whoever decides an agent
+should exist also holds its keys.
+
+10
+00:00:29.762 --> 00:00:31.150
+The code flags that.

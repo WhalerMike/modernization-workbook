@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+Replaying the examples
+turns up some real traps.
+
+2
+00:00:03.088 --> 00:00:06.418
+The list examples show
+one page for one person,
+
+3
+00:00:06.418 --> 00:00:09.399
+but a busy subscription spans many pages.
+
+4
+00:00:09.399 --> 00:00:12.689
+One example's role ID and
+its friendly name disagree,
+
+5
+00:00:12.689 --> 00:00:16.437
+so code that trusts the name
+files a row under the wrong role.
+
+6
+00:00:16.437 --> 00:00:20.405
+Another example says "assigned",
+but it's really an activation,
+
+7
+00:00:20.405 --> 00:00:23.500
+and read naively it looks
+like standing access.
+
+8
+00:00:23.500 --> 00:00:28.188
+The scope is written three different
+ways, which quietly breaks any diff.
+
+9
+00:00:28.188 --> 00:00:30.922
+And the sample eligibility lasts a year,
+
+10
+00:00:30.922 --> 00:00:34.401
+with no justification,
+longer than any tier allows.
+
+11
+00:00:34.401 --> 00:00:36.580
+Each of these is pinned by a test.

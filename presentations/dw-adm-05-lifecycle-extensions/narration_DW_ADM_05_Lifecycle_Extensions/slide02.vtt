@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.562
+Why does this chapter matter?
+
+2
+00:00:01.562 --> 00:00:05.395
+Book 03 splits the work:
+provisioning creates accounts,
+
+3
+00:00:05.395 --> 00:00:09.562
+and Lifecycle Workflows act on
+accounts that already exist.
+
+4
+00:00:09.562 --> 00:00:14.631
+The built-in tasks handle the account
+itself, but everything else in a leaver,
+
+5
+00:00:14.631 --> 00:00:17.527
+the PIV credential, the
+devices, the servers,
+
+6
+00:00:17.527 --> 00:00:21.550
+goes through a custom task
+extension, which is code you write.
+
+7
+00:00:21.550 --> 00:00:26.904
+Book 03 also sets three rules: one
+reusable Logic App per integration,
+
+8
+00:00:26.904 --> 00:00:31.600
+block the account first, and make
+custom tasks safe to repeat.
+
+9
+00:00:31.600 --> 00:00:35.985
+Learn sets the contract on the other
+side: how the Logic App is started,
+
+10
+00:00:35.985 --> 00:00:39.600
+how long the workflow waits,
+and how the answer comes back.
+
+11
+00:00:39.600 --> 00:00:41.180
+Let's see where that runs.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.038
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.038 --> 00:00:05.688
+Building Privileged Access.
+
+3
+00:00:05.688 --> 00:00:09.850
+This is Chapter 4: PIM for
+Microsoft Entra roles as code.
+
+4
+00:00:09.850 --> 00:00:14.134
+A role setting someone changed in the
+portal is a control nobody reviewed,
+
+5
+00:00:14.134 --> 00:00:17.646
+so this chapter holds each role's
+settings in a reviewed file,
+
+6
+00:00:17.646 --> 00:00:22.000
+compares the file with the tenant, and
+changes the tenant only from the file.
+
+7
+00:00:22.000 --> 00:00:26.754
+We'll start from Microsoft's two samples,
+see what they leave out, then walk
+
+8
+00:00:26.754 --> 00:00:31.588
+the role files, the checks, the diff and
+the rollout, two labs and the dangers.
+
+9
+00:00:31.588 --> 00:00:36.790
+One note before we begin: the code is
+illustrative, tested against fixtures.

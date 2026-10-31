@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.125
+The rest of the gaps are
+about identity and scope.
+
+2
+00:00:03.125 --> 00:00:07.635
+The sample jobs name no environment,
+so the token's subject changes with
+
+3
+00:00:07.635 --> 00:00:12.450
+the branch or event, and a federated
+credential matches one subject exactly.
+
+4
+00:00:12.450 --> 00:00:16.625
+The pipeline runs in a named
+environment, so the subject is fixed.
+
+5
+00:00:16.625 --> 00:00:19.816
+The samples stop right
+after signing in to Azure:
+
+6
+00:00:19.816 --> 00:00:22.687
+no Graph token, nothing
+on the higher clouds.
+
+7
+00:00:22.687 --> 00:00:24.913
+They don't stop two runs overlapping.
+
+8
+00:00:24.913 --> 00:00:26.988
+And after sign-in there's nothing at all.
+
+9
+00:00:26.988 --> 00:00:30.401
+The verdict: use Learn's
+sign-in exactly as published,
+
+10
+00:00:30.401 --> 00:00:33.860
+pin it, schedule it, and put
+everything else behind it.

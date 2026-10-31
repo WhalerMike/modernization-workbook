@@ -23,7 +23,8 @@ For each bundle the script:
      included. A missing literal page fails the build; glob entries simply
      follow the folder, so deleting a page never breaks the build.
   2. Prepares each page: drops the YAML front matter, resolves Quarto
-     `{{< meta >}}` and `{{< include >}}` shortcodes, and adds the page title
+     `{{< meta >}}` and `{{< include >}}` shortcodes, turns `{{< fmw-video >}}`
+     into a link to the video, and adds the page title
      as a heading if the body has no level-1 heading.
   3. Resolves every image relative to the page that references it. A missing
      image fails the build. SVGs are converted to PNG, and files whose
@@ -246,7 +247,21 @@ class RenderRules:
 FRONT_MATTER = re.compile(r"\A---[ \t]*\n(.*?\n)(?:---|\.\.\.)[ \t]*\n", re.S)
 META_SC = re.compile(r"\{\{<\s*meta\s+([A-Za-z0-9_.-]+)\s*>\}\}")
 INCLUDE_SC = re.compile(r"^\{\{<\s*include\s+(\S+)\s*>\}\}[ \t]*$", re.M)
+VIDEO_SC = re.compile(r"\{\{<\s*fmw-video\s+([A-Za-z0-9_.-]+)\s*>\}\}")
 _dir_meta_cache: dict[Path, dict] = {}
+_videos: dict[str, dict] | None = None
+
+
+def video_link(page: Path, m: re.Match) -> str:
+    """A `{{< fmw-video ID >}}` player as Word gets it from assets/fmw-video.lua: a link to the video."""
+    global _videos
+    if _videos is None:
+        _videos = {v["id"]: v for v in json.loads((REPO / "docs/presentations/videos.json").read_text(encoding="utf-8"))}
+    v = _videos.get(m.group(1))
+    if v is None:
+        raise BuildError(f"{rel(page)}: no video '{m.group(1)}' in docs/presentations/videos.json")
+    href = f"https://www.youtube.com/watch?v={v['youtube']}" if v.get("youtube") else v["mp4"]
+    return f"[Watch the video: {v['title']} ({v['minutes']} minutes)]({href})"
 
 
 def split_front_matter(text: str) -> tuple[dict, str]:
@@ -323,6 +338,7 @@ def prepare_page(page: Path) -> tuple[str, dict]:
         return value
 
     body = META_SC.sub(meta_value, body)
+    body = VIDEO_SC.sub(lambda m: video_link(page, m), body)
     if "{{<" in body:
         sc = re.search(r"\{\{<.*?>\}\}", body)
         raise BuildError(f"{rel(page)}: unsupported Quarto shortcode {sc.group(0) if sc else '{{<'}")

@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.725
+These are the checks the code
+runs on every body it builds,
+
+2
+00:00:03.725 --> 00:00:06.462
+and on any Graph body,
+including Learn's own.
+
+3
+00:00:06.462 --> 00:00:10.803
+Some come straight from Learn: an
+empty reviewer list is a self-review,
+
+4
+00:00:10.803 --> 00:00:14.763
+reviewers need instructions, a
+monthly review can't run longer
+
+5
+00:00:14.763 --> 00:00:18.875
+than twenty-seven days, and Azure
+series can't use group reviewers.
+
+6
+00:00:18.875 --> 00:00:23.348
+Others are the program's design:
+auto-apply on, justification required,
+
+7
+00:00:23.348 --> 00:00:26.279
+the right cadence per
+tier, no duplicate names,
+
+8
+00:00:26.279 --> 00:00:29.750
+and every privileged group
+paired with its own review.
+
+9
+00:00:29.750 --> 00:00:34.080
+One rule, about the emergency
+accounts, deserves its own slide.

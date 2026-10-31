@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Then the plan.
+
+2
+00:00:00.988 --> 00:00:02.818
+Of eleven actions, three write:
+
+3
+00:00:02.818 --> 00:00:07.796
+a connector's full-control site permission
+is removed because its selected-sites
+
+4
+00:00:07.796 --> 00:00:12.407
+replacement is already granted, the
+broad directory permission is removed,
+
+5
+00:00:12.407 --> 00:00:16.726
+and a partner app's all-users grant
+is narrowed to just reading profiles.
+
+6
+00:00:16.726 --> 00:00:20.938
+The dry run shows the point of the
+whole exercise: both removals go
+
+7
+00:00:20.938 --> 00:00:25.463
+through Microsoft Graph's service
+principal, the resource, not the app.
+
+8
+00:00:25.463 --> 00:00:30.600
+Applying it to the fake sends three writes,
+and a hash nobody approved is refused.
+
+9
+00:00:30.600 --> 00:00:35.020
+Delete the output afterwards,
+because the review names real owners.

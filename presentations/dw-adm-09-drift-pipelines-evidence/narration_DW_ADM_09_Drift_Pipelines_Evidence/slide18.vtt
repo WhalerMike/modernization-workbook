@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:04.650
+The workflow lints clean,
+with every action pinned.
+
+3
+00:00:04.650 --> 00:00:08.529
+The app signs in with a federated
+credential and nothing stored,
+
+4
+00:00:08.529 --> 00:00:12.262
+holds only the reads it needs,
+and the cloud settings all agree.
+
+5
+00:00:12.262 --> 00:00:14.849
+Reading and writing stay in separate jobs.
+
+6
+00:00:14.849 --> 00:00:20.300
+Findings from a failed check stay open,
+and issues carry identifiers, not names.
+
+7
+00:00:20.300 --> 00:00:25.292
+Every package verifies with a standard tool
+and chains to the one before, retention
+
+8
+00:00:25.292 --> 00:00:29.850
+is locked in production, and someone
+checks every day that a package arrived.
+
+9
+00:00:29.850 --> 00:00:32.075
+That's the last chapter of the workbook.
+
+10
+00:00:32.075 --> 00:00:33.240
+Thanks for watching.

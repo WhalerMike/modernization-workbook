@@ -1,0 +1,523 @@
+{
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Privileged Access."
+  ],
+  [
+   5.688,
+   5.537,
+   "This is Chapter 3: Conditional Access for administrators, and the activation gate."
+  ],
+  [
+   11.225,
+   8.488,
+   "These policies are the program's first writes to a tenant, so they're files a reviewer reads, and the code that writes them does nothing until it's told to."
+  ],
+  [
+   19.712,
+   11.275,
+   "We'll start from Microsoft's own template for administrators, see what it leaves out, then walk the files, the pre-merge check, the plan and the dry run, two labs and the dangers."
+  ],
+  [
+   30.988,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.1,
+   "Why does this chapter matter so much?"
+  ],
+  [
+   2.15,
+   3.038,
+   "Because it's the first time the program writes to a tenant."
+  ],
+  [
+   5.188,
+   14.15,
+   "Book 04 gives it three things to build: the administrator policy set, the gate that demands a fresh phishing-resistant proof from a compliant device at the moment someone elevates, and the custom authentication strength both rely on."
+  ],
+  [
+   19.337,
+   3.775,
+   "Unlike the first two chapters, this code can change things."
+  ],
+  [
+   23.113,
+   11.188,
+   "So its design is cautious on purpose: it writes only when told, creates every new policy in report-only, enforces only with a separate switch, and never deletes."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.663,
+   "Learn sets the order, and getting it wrong leaves no gate at all."
+  ],
+  [
+   3.712,
+   6.888,
+   "You create and switch on the policy for the authentication context first, and only then select that context in pim."
+  ],
+  [
+   10.6,
+   9.113,
+   "If no policy targets it, pim falls back to asking for multifactor sign-in, but that fallback doesn't happen when the policy is off or only reporting."
+  ],
+  [
+   19.712,
+   7.787,
+   "And if you also scope the policy to a directory role, it never applies, because at activation the person doesn't hold the role yet."
+  ],
+  [
+   27.5,
+   4.075,
+   "So this chapter builds the gate, and leaves selecting it to Chapter 4."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   6.088,
+   "Every call in this chapter is on the stable Graph version, except protected actions, which is beta."
+  ],
+  [
+   7.5,
+   9.725,
+   "For this estate's G C C tenant the host is the worldwide Graph endpoint, and every method used lists the government clouds in its availability table."
+  ],
+  [
+   17.225,
+   4.287,
+   "Conditional Access and pim are available in the government clouds too."
+  ],
+  [
+   21.512,
+   9.05,
+   "One thing does change there: the two policies about Azure management name a different application, so a G C C High program edits those two files."
+  ],
+  [
+   30.562,
+   2.875,
+   "The code never assumes a cloud; you name it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.188,
+   "Microsoft's starting point is its policy templates."
+  ],
+  [
+   3.237,
+   15.925,
+   "The protect-administrators group includes one requiring phishing-resistant sign-in for administrators, and its Learn page is the procedure: at least fourteen roles, exclude the emergency accounts, use the built-in phishing-resistant strength, and start in report-only."
+  ],
+  [
+   19.163,
+   8.512,
+   "The same templates come back from Graph as policy definitions, and that's the only administrator policy Microsoft publishes on Learn in that form."
+  ],
+  [
+   27.675,
+   9.0,
+   "So the repository pins the page unmodified, checks its hashes, and converts the template without fixing anything, then checks it like any other file."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.675,
+   "This is the heart of the chapter: what happens if you create Microsoft's template exactly as published."
+  ],
+  [
+   5.725,
+   2.913,
+   "The targeting is good, so it's kept as the model."
+  ],
+  [
+   8.637,
+   5.162,
+   "But the published example lists only two roles where Learn's own procedure wants fourteen."
+  ],
+  [
+   13.8,
+   6.513,
+   "It grants plain multifactor sign-in instead of the phishing-resistant strength, and the two can't be combined."
+  ],
+  [
+   20.312,
+   8.088,
+   "And it excludes a line of display text where an object identifier belongs, which the admin center would replace for you, but a script won't."
+  ],
+  [
+   28.4,
+   2.112,
+   "Each of these is pinned by a test."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.425,
+   "The rest of the gaps are the dangerous ones."
+  ],
+  [
+   2.475,
+   8.162,
+   "The template doesn't exclude the emergency access group, and those accounts must stay out of every policy that blocks or restricts sign-in."
+  ],
+  [
+   10.637,
+   3.987,
+   "It carries no state, so nothing tells you to start in report-only."
+  ],
+  [
+   14.625,
+   4.787,
+   "It has no authentication context, so the activation gate isn't there at all."
+  ],
+  [
+   19.413,
+   6.312,
+   "And it's just a read: nothing compares it with the tenant, so a policy edited in the portal drifts unseen."
+  ],
+  [
+   25.725,
+   5.112,
+   "The verdict: keep the template's targeting as the model, and never create it as published."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.938,
+   "Now the code."
+  ],
+  [
+   0.988,
+   9.887,
+   "This chapter adds its own module, its own call list, an entry script, and the policy files themselves, one file per object, as Book 04 asks."
+  ],
+  [
+   10.875,
+   10.637,
+   "There are the two authentication contexts, the custom strength, the five administrator policies, and the two gate policies, one for activation and one for protected actions."
+  ],
+  [
+   21.512,
+   5.15,
+   "The activation gate demands the strength and a compliant device, every single time."
+  ],
+  [
+   26.663,
+   9.325,
+   "Placeholders resolve from a per-tenant map, except the strength, which is looked up by name in the tenant, so a policy can never point at a strength that isn't there."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   7.575,
+   "Before anything merges, Test-PaCaRepository reads the files, and only the files, in the pull request pipeline."
+  ],
+  [
+   7.625,
+   1.75,
+   "The nine rules are on the slide."
+  ],
+  [
+   9.375,
+   12.65,
+   "Most come from Learn: exclude the emergency group, don't scope the gate to a role, don't mix plain multifactor with a strength, cover the fourteen roles, and keep context identifiers in the stricter range."
+  ],
+  [
+   22.025,
+   5.725,
+   "A few are the program's own design, like refusing display text where an identifier belongs."
+  ],
+  [
+   27.75,
+   8.575,
+   "On the repository as merged, the check passes with five warnings, and they're deliberate: the rollout hasn't switched those policies on yet."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.812,
+   "One rule needs a closer look, because the sources don't line up."
+  ],
+  [
+   3.862,
+   5.737,
+   "Learn says report-only policies don't block anyone, so they don't need the emergency exclusion."
+  ],
+  [
+   9.6,
+   8.575,
+   "Book 04's pre-merge check is stricter, and fails any report-only file without it, even the probe that's meant to exclude nobody."
+  ],
+  [
+   18.175,
+   4.4,
+   "The chapter's finding is that the stricter rule isn't wrong, just stricter."
+  ],
+  [
+   22.575,
+   7.25,
+   "So the code puts the exclusion in every file whatever its state, because enforcing a file means changing one word."
+  ],
+  [
+   29.825,
+   5.713,
+   "Only a named report-only instrument may skip it, and it fails the moment someone enables it."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.562,
+   "Here's how a change actually reaches the tenant."
+  ],
+  [
+   2.612,
+   13.287,
+   "The code reads the tenant's policies, contexts and strengths, then compares each file with what's there, property by property, but only the properties the file sets, so the noise Graph returns doesn't look like a change."
+  ],
+  [
+   15.9,
+   5.125,
+   "It plans in Learn's order, the contexts and strength before the policies that use them."
+  ],
+  [
+   21.025,
+   3.95,
+   "Every plan line gets an action, and nothing is ever deleted."
+  ],
+  [
+   24.975,
+   3.112,
+   "Without the apply switch, it can't send a write at all."
+  ],
+  [
+   28.087,
+   6.125,
+   "With it, it still refuses if the check found a problem or a policy lacks the emergency exclusion."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.7,
+   "The chapter keeps a short record of where Learn's pages don't agree, so a later edit doesn't quietly loosen the code."
+  ],
+  [
+   6.75,
+   11.5,
+   "The biggest is the every-time sign-in frequency: the Graph reference doesn't list it for this use, but the pim pages say to use it, so the file follows pim and the lab confirms Graph accepts it."
+  ],
+  [
+   18.25,
+   3.725,
+   "Context identifiers follow the stricter of two ranges."
+  ],
+  [
+   21.975,
+   11.062,
+   "And protected actions, called a preview in the outline, carry no preview label on Learn, but their Graph assignment is beta only, so the code defines the context and stops there."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.062,
+   "Who is this for?"
+  ],
+  [
+   1.113,
+   7.088,
+   "Developers build it, and identity engineers and the I S S O's review every Conditional Access change it makes."
+  ],
+  [
+   8.2,
+   3.138,
+   "The permissions split cleanly into two tasks."
+  ],
+  [
+   11.338,
+   5.95,
+   "Reading needs three read permissions, and the code picks narrower ones than the obvious broad choice."
+  ],
+  [
+   17.288,
+   4.0,
+   "Applying adds exactly two write permissions, and nothing else."
+  ],
+  [
+   21.288,
+   6.438,
+   "Learn notes a known issue that may ask for more consent on create, and the test-tenant lab records whether it does."
+  ],
+  [
+   27.725,
+   4.062,
+   "A test keeps each task's permissions equal to the calls it makes."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.963,
+   "Lab 1 needs only a laptop: PowerShell 7 and Pester, no tenant."
+  ],
+  [
+   5.013,
+   9.213,
+   "You run the tests on Microsoft's template as published, list the permissions for reading and for applying, and run the pre-merge check on the repository's own files."
+  ],
+  [
+   14.225,
+   5.05,
+   "It passes with the five expected warnings; a real finding would fail the pipeline."
+  ],
+  [
+   19.275,
+   4.088,
+   "Then the revealing step: run the same check on Microsoft's template."
+  ],
+  [
+   23.363,
+   10.562,
+   "It comes back with two findings and two warnings, the missing emergency exclusion, the display text, the plain multifactor grant, and twelve of the fourteen roles missing."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.725,
+   "Next you plan against a fictional tenant without sending anything."
+  ],
+  [
+   3.775,
+   12.375,
+   "The plan explains itself: the context and strength get created, two objects get small updates, one matches, and three policies are blocked, because the strength and context they need don't exist yet."
+  ],
+  [
+   16.15,
+   3.15,
+   "A portal-made policy is reported, never deleted."
+  ],
+  [
+   19.3,
+   2.575,
+   "Then you apply to the fake three times."
+  ],
+  [
+   21.875,
+   8.325,
+   "The first run creates the building blocks, the second creates the three blocked policies in report-only, and the third finds nothing to do."
+  ],
+  [
+   30.2,
+   2.788,
+   "That's what a safe, repeatable write looks like."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.875,
+   "Lab 2 moves to a test tenant, never production, and it's careful about order."
+  ],
+  [
+   4.925,
+   10.787,
+   "Build Chapter 2's emergency accounts first, and register phishing-resistant methods for your test administrators before anything is enforced, because Learn warns you can lock yourself out."
+  ],
+  [
+   15.713,
+   4.1,
+   "Then write your map, register a read-only app, and read the plan."
+  ],
+  [
+   19.812,
+   4.9,
+   "Add the write permissions and apply: every new policy lands in report-only."
+  ],
+  [
+   24.712,
+   2.15,
+   "Watch the results for at least a week."
+  ],
+  [
+   26.863,
+   3.538,
+   "Then enforce the gate on its own, in a separate change."
+  ],
+  [
+   30.4,
+   3.225,
+   "Backing out means turning policies off, never deleting."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.7,
+   "Every danger here has a guard, and the theme is that nothing important depends on someone remembering."
+  ],
+  [
+   5.75,
+   7.912,
+   "The worst is enforcing a policy before the emergency accounts work, which is the same lockout as Chapter 2, just by a different route."
+  ],
+  [
+   13.662,
+   7.375,
+   "The quietest is selecting the gate in pim while its policy is still report-only: you get no gate and no fallback either."
+  ],
+  [
+   21.038,
+   9.6,
+   "Others are about speed and reach: switching policies straight on, a pipeline that deletes, and a write permission left lying on the app after the change is done."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   14.688,
+   "On the file side: the check runs on every pull request with no findings, every file carries the emergency exclusion, the administrator policy covers all fourteen roles, and the activation gate is switched on before anyone selects it."
+  ],
+  [
+   16.087,
+   12.25,
+   "On the run side: every plan was read as a dry run first, every new policy landed in report-only, each enforcement was its own reviewed change, and only the pipeline holds write access."
+  ],
+  [
+   28.337,
+   5.825,
+   "Next, Chapter 4 builds pim for Microsoft Entra roles as code, and selects this gate."
+  ],
+  [
+   34.163,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:11.462
+This is Chapter 9: drift pipelines
+and evidence to the ISSO.
+
+4
+00:00:11.462 --> 00:00:15.063
+A check that runs when someone
+remembers is a spot check.
+
+5
+00:00:15.063 --> 00:00:18.676
+A check that runs every day,
+says what moved since yesterday,
+
+6
+00:00:18.676 --> 00:00:23.175
+and leaves evidence nobody can edit
+afterward is continuous monitoring.
+
+7
+00:00:23.175 --> 00:00:28.298
+We'll start from Learn's sample workflows
+for signing in from GitHub Actions without
+
+8
+00:00:28.298 --> 00:00:31.739
+a secret, see what they leave
+out, then walk the comparison,
+
+9
+00:00:31.739 --> 00:00:35.325
+the findings, the evidence
+package, two labs and the dangers.
+
+10
+00:00:35.325 --> 00:00:40.540
+One note before we begin: the code is
+illustrative, tested against fixtures.

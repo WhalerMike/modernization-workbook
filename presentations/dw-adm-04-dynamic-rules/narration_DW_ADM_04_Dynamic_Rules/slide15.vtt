@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.412
+Now the part that makes
+the case for all this.
+
+2
+00:00:02.412 --> 00:00:07.638
+Run the pull request check and it
+passes cleanly: six rules, no findings.
+
+3
+00:00:07.638 --> 00:00:10.554
+Then break a rule on purpose
+by deleting the clause
+
+4
+00:00:10.554 --> 00:00:13.401
+that keeps out empty worker
+types, and run it again.
+
+5
+00:00:13.401 --> 00:00:15.100
+Three things fire at once.
+
+6
+00:00:15.100 --> 00:00:19.634
+The linter flags the empty-slot risk,
+the membership test for the worker with
+
+7
+00:00:19.634 --> 00:00:24.025
+no type fails, and the shadow diff shows
+exactly who the change would let in.
+
+8
+00:00:24.025 --> 00:00:28.370
+Put the clause back, run the whole
+suite, and seventy tests pass.

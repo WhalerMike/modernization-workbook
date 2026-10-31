@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.112
+Each of these dangers has
+a matching rule or guard.
+
+2
+00:00:03.112 --> 00:00:07.338
+The quietest is drift: someone
+changes membership in the portal,
+
+3
+00:00:07.338 --> 00:00:12.600
+and nobody ever reviews it, so every run
+reads first and flags what it didn't grant.
+
+4
+00:00:12.600 --> 00:00:15.725
+The sharpest is dropping
+approval on a top-tier group,
+
+5
+00:00:15.725 --> 00:00:20.412
+which Learn specifically warns lets a
+lesser admin act on someone else's behalf.
+
+6
+00:00:20.412 --> 00:00:24.388
+And the bluntest is a truncated
+file that would remove everyone,
+
+7
+00:00:24.388 --> 00:00:28.438
+which is why removals go last and
+a guard stops more than a handful.
+
+8
+00:00:28.438 --> 00:00:32.230
+Notice again: each guard is
+code that runs every time.

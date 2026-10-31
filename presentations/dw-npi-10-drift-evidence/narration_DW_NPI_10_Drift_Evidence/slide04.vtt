@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.525
+Microsoft's starting point is the security
+operations guide for applications.
+
+2
+00:00:04.525 --> 00:00:08.038
+It says what to watch, where
+to find it in the audit log,
+
+3
+00:00:08.038 --> 00:00:11.550
+and when to alert: outside
+normal hours or workflows.
+
+4
+00:00:11.550 --> 00:00:14.232
+And it links a ready-made
+Sentinel rule for new
+
+5
+00:00:14.232 --> 00:00:17.125
+credentials added to an
+app or service principal.
+
+6
+00:00:17.125 --> 00:00:20.501
+That rule lives in Microsoft's
+Sentinel repository,
+
+7
+00:00:20.501 --> 00:00:24.662
+so it's pinned unmodified, with
+checked hashes and a weekly watch.
+
+8
+00:00:24.662 --> 00:00:28.023
+A harness then splits
+the query into its twenty
+
+9
+00:00:28.023 --> 00:00:31.900
+stages and runs each one over
+ten fictional audit rows.
+
+10
+00:00:31.900 --> 00:00:33.693
+An unfamiliar stage throws,
+
+11
+00:00:33.693 --> 00:00:37.900
+so an upstream change fails the
+tests rather than being half-run.

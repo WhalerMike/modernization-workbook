@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.463
+Who is this chapter for?
+
+2
+00:00:01.463 --> 00:00:05.001
+Developers build the write
+path, and they need PowerShell,
+
+3
+00:00:05.001 --> 00:00:08.687
+the file format, and a sense of
+what an eligible assignment is.
+
+4
+00:00:08.687 --> 00:00:14.613
+The identity engineers own PIM itself: the
+role files, the bindings, and the groups.
+
+5
+00:00:14.613 --> 00:00:18.872
+And the information system security
+officers review the changes,
+
+6
+00:00:18.872 --> 00:00:24.138
+because every file is read by two people
+and every apply follows a reviewed dry run.
+
+7
+00:00:24.138 --> 00:00:27.816
+The identities are split the
+same way: a reader for dry runs,
+
+8
+00:00:27.816 --> 00:00:32.930
+a writer for applying, and the removal
+permission held only for a conversion run.

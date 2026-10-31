@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.468
+Each run writes the inventory, the findings
+and a manifest the reviewer can check:
+
+2
+00:00:05.468 --> 00:00:10.400
+which task, which cloud, every request
+with its time, and a hash of every file.
+
+3
+00:00:10.400 --> 00:00:16.163
+The manifest names no one, but the inventory
+does, so treat the folder as sensitive.
+
+4
+00:00:16.163 --> 00:00:18.963
+The chapter's tests run
+with no tenant at all.
+
+5
+00:00:18.963 --> 00:00:22.290
+And here's an honest gap:
+Learn documents that the stable
+
+6
+00:00:22.290 --> 00:00:25.762
+members call doesn't return
+service principals in a group.
+
+7
+00:00:25.762 --> 00:00:28.500
+Neither workaround fits
+the reader's rules,
+
+8
+00:00:28.500 --> 00:00:32.140
+so that gap is recorded rather
+than quietly papered over.

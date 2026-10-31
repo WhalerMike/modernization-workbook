@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.425
+This is where running
+the samples pays off.
+
+2
+00:00:02.425 --> 00:00:06.837
+On the directory side, the criteria
+are right, so the code keeps them.
+
+3
+00:00:06.837 --> 00:00:09.930
+But the samples read
+every user three times and
+
+4
+00:00:09.930 --> 00:00:13.101
+give you three overlapping
+lists, not a register.
+
+5
+00:00:13.101 --> 00:00:16.263
+The never-expires query
+happily returns a person.
+
+6
+00:00:16.263 --> 00:00:18.925
+The delegation query returns servers.
+
+7
+00:00:18.925 --> 00:00:21.934
+Nothing reads last logon
+or group membership,
+
+8
+00:00:21.934 --> 00:00:24.863
+so you can't compute
+stale or over-privileged.
+
+9
+00:00:24.863 --> 00:00:28.441
+And a delegated managed service
+account comes back unlabeled,
+
+10
+00:00:28.441 --> 00:00:31.263
+while the group managed
+filter drops it entirely.
+
+11
+00:00:31.263 --> 00:00:34.010
+Each row on the slide is pinned by a test.

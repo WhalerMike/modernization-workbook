@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.413
+Learn's pages disagree in
+two places that matter here,
+
+2
+00:00:03.413 --> 00:00:08.075
+and the chapter writes both down so
+nobody quietly loosens the code later.
+
+3
+00:00:08.075 --> 00:00:10.833
+They name PIM's logging
+service differently,
+
+4
+00:00:10.833 --> 00:00:14.187
+so the code asks for both
+names and removes duplicates.
+
+5
+00:00:14.187 --> 00:00:16.713
+And they disagree on where
+approvals are logged.
+
+6
+00:00:16.713 --> 00:00:21.253
+The code reads PIM's service, so if an
+approval only shows up somewhere else,
+
+7
+00:00:21.253 --> 00:00:23.412
+the no-approval check fires anyway.
+
+8
+00:00:23.412 --> 00:00:28.601
+That's deliberate: it fails closed, giving
+a false finding rather than a missed one.
+
+9
+00:00:28.601 --> 00:00:32.860
+The lab in a test tenant then records
+which way each one really goes.

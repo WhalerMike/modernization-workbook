@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.038
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.038 --> 00:00:05.688
+Building Privileged Access.
+
+3
+00:00:05.688 --> 00:00:09.451
+This is Chapter 2: emergency
+access accounts as code.
+
+4
+00:00:09.451 --> 00:00:13.756
+These accounts are the one standing
+privilege the program keeps on purpose,
+
+5
+00:00:13.756 --> 00:00:16.627
+so the chapter checks them
+on every run and watches
+
+6
+00:00:16.627 --> 00:00:19.225
+them every minute, with
+code someone reviewed.
+
+7
+00:00:19.225 --> 00:00:24.136
+We'll start from Microsoft's own
+emergency access page, see what its sample
+
+8
+00:00:24.136 --> 00:00:28.563
+alert misses, then walk the check,
+the alert, two labs and the dangers.
+
+9
+00:00:28.563 --> 00:00:31.773
+One note before we begin:
+the code is illustrative,
+
+10
+00:00:31.773 --> 00:00:35.110
+tested against fixtures
+rather than a live tenant.

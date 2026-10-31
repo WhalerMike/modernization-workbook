@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.350
+The licensing decision belongs to the
+chief information security officer,
+
+2
+00:00:04.350 --> 00:00:06.125
+and the code makes it checkable.
+
+3
+00:00:06.125 --> 00:00:10.272
+Premium adds things like Conditional
+Access for workload identities,
+
+4
+00:00:10.272 --> 00:00:13.505
+but that only covers
+single-tenant service principals:
+
+5
+00:00:13.505 --> 00:00:16.387
+not managed identities,
+and not multitenant apps.
+
+6
+00:00:16.387 --> 00:00:20.827
+So the code works out who could be covered
+today and who will leave or join after
+
+7
+00:00:20.827 --> 00:00:23.696
+conversion, reads the
+tenant's subscriptions once,
+
+8
+00:00:23.696 --> 00:00:26.087
+and checks the decision file against both.
+
+9
+00:00:26.087 --> 00:00:28.312
+It never buys or assigns anything.
+
+10
+00:00:28.312 --> 00:00:31.530
+Then the gate check reports
+Gate 2's five criteria,
+
+11
+00:00:31.530 --> 00:00:34.512
+and the gate is met only
+when no finding is open.
+
+12
+00:00:34.512 --> 00:00:35.660
+Who's involved?

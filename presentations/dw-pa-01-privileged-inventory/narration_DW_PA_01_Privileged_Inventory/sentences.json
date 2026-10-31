@@ -1,0 +1,533 @@
+{
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Privileged Access."
+  ],
+  [
+   5.688,
+   3.413,
+   "This is Chapter 1: privileged inventory as code."
+  ],
+  [
+   9.1,
+   10.45,
+   "You can't make privilege just-in-time until you can list it: who holds which role, at which scope, standing or eligible, directly or through a group, and in which tier."
+  ],
+  [
+   19.55,
+   10.575,
+   "We'll start from Microsoft's own samples for listing role assignments, see what they miss, then build the reader, the rows and the findings, and finish with two labs and the dangers."
+  ],
+  [
+   30.125,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.613,
+   "Why start with an inventory?"
+  ],
+  [
+   1.663,
+   2.212,
+   "Because you can't fix what you can't list."
+  ],
+  [
+   3.875,
+   9.95,
+   "A role reaches a person in four ways that look the same on an admin's screen and very different to an attacker: permanent or time-bound, eligible or active."
+  ],
+  [
+   13.825,
+   5.4,
+   "An activated role looks active for a while, and a role on a group reaches everyone in it."
+  ],
+  [
+   19.225,
+   9.762,
+   "Microsoft's own target is zero permanently active assignments outside the emergency accounts, and the program wants roles to reach people only through named groups."
+  ],
+  [
+   28.988,
+   5.425,
+   "So the first gate is simply this: know what's standing today, and classify it by tier."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   11.963,
+   "For this estate's tenant, Microsoft 365 G C C with commercial Azure, every host is a worldwide one: the normal Graph endpoint and the normal Resource Manager endpoint."
+  ],
+  [
+   13.375,
+   4.4,
+   "G C C High and the Defense Department cloud use their own hosts."
+  ],
+  [
+   17.775,
+   11.312,
+   "The licenses for G C C are hosted in Azure commercial, and the governance product that pim needs is available in every one of these clouds, as is every Graph call the chapter uses."
+  ],
+  [
+   29.087,
+   6.537,
+   "The code never guesses: you name the cloud explicitly, and it refuses any name it doesn't recognize."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.112,
+   "So what does the inventory actually read?"
+  ],
+  [
+   2.163,
+   17.825,
+   "On the Microsoft Entra side: the role definitions, so every row gets a name; the active assignments, with whether each one is assigned or activated, direct or through a group, and when it ends; the eligible assignments, with their expiration; and the members of each role-assignable group."
+  ],
+  [
+   19.988,
+   7.062,
+   "On the Azure side, two Resource Manager collections give active and eligible role schedules for each scope you name."
+  ],
+  [
+   27.05,
+   3.663,
+   "Everything is on the stable, generally available versions."
+  ],
+  [
+   30.712,
+   2.062,
+   "Next, where the tier comes from."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.438,
+   "Where does the tier come from?"
+  ],
+  [
+   1.488,
+   1.413,
+   "Not from Microsoft."
+  ],
+  [
+   2.9,
+   10.25,
+   "Microsoft does label some roles as privileged, but that label is still a preview, read through the beta endpoint, so the program treats it as an input, not the answer."
+  ],
+  [
+   13.15,
+   7.85,
+   "The tiers liv in a small file the program owns, keyed by each role's template identifier, which is the same in every tenant."
+  ],
+  [
+   21.0,
+   5.375,
+   "Any role that isn't in the file is reported as unclassified, never assumed safe."
+  ],
+  [
+   26.375,
+   5.475,
+   "Azure roles get their tier from Book 04's placement table, by role and by scope."
+  ],
+  [
+   31.85,
+   2.087,
+   "Both are labeled design guidance."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.338,
+   "Microsoft's starting point is Learn's page on listing role assignments."
+  ],
+  [
+   4.388,
+   9.975,
+   "It covers the admin center, PowerShell and Graph itself, and its all-roles sample reads every role definition, then lists each role's assignments one by one."
+  ],
+  [
+   14.363,
+   7.025,
+   "For Azure, Learn says there's no single command for both kinds, so you list eligible and active schedules separately."
+  ],
+  [
+   21.387,
+   10.137,
+   "Those samples only liv inside the web page, so the repository pins the page's source unmodified, checks its hash in a test, and watches for upstream changes."
+  ],
+  [
+   31.525,
+   5.037,
+   "A harness then runs the samples, exactly as published, against stand-ins."
+  ],
+  [
+   36.562,
+   1.2,
+   "Nothing signs in."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.762,
+   "This is the heart of the chapter."
+  ],
+  [
+   1.812,
+   6.638,
+   "Run against the fixture tenant, Learn's sample lists the active assignments well, so that part is kept as the model."
+  ],
+  [
+   8.45,
+   11.988,
+   "But it can't see eligibility at all, and under pim eligibility is where almost every human holder ends up, so an active-only list shrinks as the project succeeds and stops being an inventory."
+  ],
+  [
+   20.438,
+   8.55,
+   "It also makes one call per role, never asks for every page, and treats a group as a single holder, so the people behind it are invisible."
+  ],
+  [
+   28.988,
+   2.5,
+   "Each of those misses is pinned by a test."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.938,
+   "The rest of the gaps are about trust and reach."
+  ],
+  [
+   2.987,
+   6.688,
+   "The sample prints raw identifiers with no names and no tier, and a reviewer can't act on an identifier."
+  ],
+  [
+   9.675,
+   3.975,
+   "It signs in without naming a cloud or limiting its permissions."
+  ],
+  [
+   13.65,
+   6.4,
+   "Its transitive read uses beta on a hard-coded worldwide host, which is wrong for the government clouds."
+  ],
+  [
+   20.05,
+   5.862,
+   "And it says nothing about Azure, where Owner and User Access Administrator are just as privileged."
+  ],
+  [
+   25.913,
+   6.6,
+   "So the verdict is: keep Learn's page as the model and the cross-check, but don't use its loop as the inventory."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.938,
+   "Now the code."
+  ],
+  [
+   0.988,
+   5.263,
+   "It's one PowerShell module, two entry scripts, the call list and the tier map."
+  ],
+  [
+   6.25,
+   12.75,
+   "Every call goes through one reader, built for one task in one cloud, and the only thing that touches the network is a small script block you hand it: a live one for real runs, or a fake for labs and tests."
+  ],
+  [
+   19.0,
+   3.325,
+   "The reader enforces four rules, shown on the slide."
+  ],
+  [
+   22.325,
+   8.787,
+   "It only makes calls the task declares, only reads, only sends its token to the cloud's own host, and always reads to the last page."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   12.688,
+   "What comes out is one row per assignment, with everything a reviewer needs on it: which plane, which role and tier, which scope, what state it's in, when it ends, and whether it arrived directly or through a group."
+  ],
+  [
+   12.738,
+   3.612,
+   "The subtle part is counting each assignment exactly once."
+  ],
+  [
+   16.35,
+   8.062,
+   "Microsoft returns group-delivered assignments as their own active rows, but the code expands the group itself, so it skips those."
+  ],
+  [
+   24.413,
+   7.237,
+   "And Azure returns the same schedule from more than one scope, so the code removes duplicates and skips inherited rows."
+  ],
+  [
+   31.65,
+   1.55,
+   "Next, the findings."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.537,
+   "Test-PaInventory turns those rows into the nine findings on the slide."
+  ],
+  [
+   4.588,
+   7.55,
+   "Two thresholds come straight from Learn: fewer than five Global Administrators, and no more than three owners on a subscription."
+  ],
+  [
+   12.137,
+   13.863,
+   "Learn also backs the biggest one, standing privilege in the top tiers outside a short, owned exceptions list, and the root-scope finding, because elevating access hands someone User Access Administrator over every subscription."
+  ],
+  [
+   26.0,
+   10.012,
+   "The rest are the program's own design, labeled that way: roles assigned straight to people, badly named groups, unmapped roles, and eligibility that never ends."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   10.35,
+   "Each run writes the inventory, the findings and a manifest the reviewer can check: which task, which cloud, every request with its time, and a hash of every file."
+  ],
+  [
+   10.4,
+   5.763,
+   "The manifest names no one, but the inventory does, so treat the folder as sensitive."
+  ],
+  [
+   16.163,
+   2.8,
+   "The chapter's tests run with no tenant at all."
+  ],
+  [
+   18.962,
+   6.8,
+   "And here's an honest gap: Learn documents that the stable members call doesn't return service principals in a group."
+  ],
+  [
+   25.762,
+   6.312,
+   "Neither workaround fits the reader's rules, so that gap is recorded rather than quietly papered over."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.062,
+   "Who is this for?"
+  ],
+  [
+   1.113,
+   2.163,
+   "Developers build the read path."
+  ],
+  [
+   3.275,
+   4.463,
+   "Identity engineers and the I S S O's review what it produces."
+  ],
+  [
+   7.737,
+   6.888,
+   "The app's permissions are the union of its calls, each the least privileged for the job, and nothing in the list can write."
+  ],
+  [
+   14.625,
+   11.65,
+   "One choice is worth noticing: the basic user read permission is added alongside group members, because without it, Learn says, a member comes back with only an identifier and a type."
+  ],
+  [
+   26.275,
+   7.3,
+   "If a member still comes back unnamed, the code keeps the row and raises a warning rather than dropping someone who holds a role."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.938,
+   "Lab 1 needs only a laptop: PowerShell 7 and Pester, no tenant, no network."
+  ],
+  [
+   5.987,
+   9.375,
+   "First you run Learn's own samples against the stand-ins, and one test shows what you'd otherwise take on trust: the eligible-only holders simply never appear."
+  ],
+  [
+   15.363,
+   3.775,
+   "Then you list the permissions, five of them, and none can write."
+  ],
+  [
+   19.137,
+   5.037,
+   "Finally you run the inventory against a fictional tenant with three Azure scopes."
+  ],
+  [
+   24.175,
+   6.625,
+   "It returns thirty rows across the tiers, ten findings, seven warnings and one informational item."
+  ],
+  [
+   30.8,
+   1.65,
+   "Let's read those findings."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.025,
+   "Reading the findings is where the rules become real."
+  ],
+  [
+   3.075,
+   8.738,
+   "Seven rows are standing privilege in the top tiers, including a service principal whose exception nobody owns, so the exception doesn't count."
+  ],
+  [
+   11.812,
+   3.163,
+   "One Global Administrator also elevated to root."
+  ],
+  [
+   14.975,
+   6.275,
+   "There are five Global Administrators once the group's members are counted, and five owners on one subscription."
+  ],
+  [
+   21.25,
+   5.612,
+   "The emergency account is only informational, because it's a listed exception with an owner."
+  ],
+  [
+   26.863,
+   4.438,
+   "Then you watch the reader refuse an undeclared call and an unknown cloud."
+  ],
+  [
+   31.3,
+   3.1,
+   "The whole suite passes, three hundred thirty tests."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.562,
+   "Lab 2 moves to a test tenant with fictional people, never production, and it only reads."
+  ],
+  [
+   5.612,
+   9.238,
+   "You register the app in the tenant's own cloud with a certificate, grant exactly the five permissions plus Reader on a test subscription, sign in, and run."
+  ],
+  [
+   14.85,
+   6.513,
+   "Then comes the useful part: download the admin center's list of assignments, as Learn describes, and compare."
+  ],
+  [
+   21.363,
+   7.312,
+   "Every active row should be in the inventory, and the inventory should also hold the eligible rows the download can't see."
+  ],
+  [
+   28.675,
+   4.013,
+   "Check the two assumptions the fixture made, then back everything out."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.562,
+   "Every danger here has a guard in the code, and most of them are about something quietly going missing."
+  ],
+  [
+   5.612,
+   7.987,
+   "The worst is an active-only inventory: as the project succeeds, the list shrinks, and the gate passes on an empty table."
+  ],
+  [
+   13.6,
+   8.387,
+   "Close behind are a group counted as one person, a member dropped because its name couldn't be read, and an exceptions list nobody owns."
+  ],
+  [
+   21.988,
+   4.862,
+   "Notice the one honest gap: service principals in a group aren't returned at all."
+  ],
+  [
+   26.85,
+   5.35,
+   "And remember the inventory itself is sensitive, because it names every privileged holder."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   7.213,
+   "The inventory reads eligible as well as active assignments, and its counts match what the admin center and pim show."
+  ],
+  [
+   8.613,
+   8.363,
+   "Every group is expanded with nobody dropped, every role has a tier or an owned decision, and the exceptions list is short and owned."
+  ],
+  [
+   16.975,
+   8.713,
+   "On the other side, the app holds exactly its five permissions and Reader with a certificate, the cloud is explicit, and the evidence hashes match."
+  ],
+  [
+   25.688,
+   6.412,
+   "Next, Chapter 2 builds the emergency access accounts, the one exception this inventory lets through."
+  ],
+  [
+   32.1,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

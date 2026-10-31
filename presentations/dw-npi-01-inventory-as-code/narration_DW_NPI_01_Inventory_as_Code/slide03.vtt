@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Next, which cloud.
+
+2
+00:00:01.413 --> 00:00:04.644
+This estate is a GCC tenant
+with commercial Azure,
+
+3
+00:00:04.644 --> 00:00:07.795
+so every host the read
+touches is a worldwide one:
+
+4
+00:00:07.795 --> 00:00:12.838
+the worldwide Graph endpoint and the
+commercial Resource Manager endpoint.
+
+5
+00:00:12.838 --> 00:00:16.707
+GCC High and the Defense Department
+clouds have their own hosts,
+
+6
+00:00:16.707 --> 00:00:21.451
+and the Graph pages this chapter relies
+on list the government service levels.
+
+7
+00:00:21.451 --> 00:00:24.858
+The code never guesses: you
+name the cloud explicitly,
+
+8
+00:00:24.858 --> 00:00:26.950
+and it refuses one it doesn't know.
+
+9
+00:00:26.950 --> 00:00:31.371
+The directory reads work the same way,
+going only to the domain you name,
+
+10
+00:00:31.371 --> 00:00:34.780
+never to whatever domain the
+machine happens to be in.

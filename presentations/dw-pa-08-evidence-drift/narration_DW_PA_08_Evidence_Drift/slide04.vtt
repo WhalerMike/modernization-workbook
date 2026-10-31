@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.762
+Here's what Microsoft gives you.
+
+2
+00:00:01.762 --> 00:00:06.774
+Learn's audit history page shows PIM's own
+audit view, says it covers thirty days,
+
+3
+00:00:06.774 --> 00:00:11.555
+and gives three sample queries: one for
+role activations, one that follows a
+
+4
+00:00:11.555 --> 00:00:16.875
+single request, and one that follows a
+whole cycle from activation to deactivation.
+
+5
+00:00:16.875 --> 00:00:19.964
+Learn's activity list
+names every event PIM logs,
+
+6
+00:00:19.964 --> 00:00:23.362
+and its security operations
+guide says what to watch.
+
+7
+00:00:23.362 --> 00:00:27.791
+The queries only exist in the web
+page, so the repository pins it,
+
+8
+00:00:27.791 --> 00:00:32.900
+unmodified, and the tests run all three
+over a set of fictional audit rows.
+
+9
+00:00:32.900 --> 00:00:35.110
+It's a test, not a query engine.

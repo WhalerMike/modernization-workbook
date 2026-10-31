@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.025
+Two Microsoft features meet in a P R V
+group, and it helps to keep them apart.
+
+2
+00:00:05.025 --> 00:00:09.473
+A role-assignable group is the only kind
+that can hold an Entra role; you choose
+
+3
+00:00:09.473 --> 00:00:13.713
+that at creation and can never change
+it, and there's a limit of five hundred.
+
+4
+00:00:13.713 --> 00:00:15.532
+PIM for Groups is separate:
+
+5
+00:00:15.532 --> 00:00:19.750
+just-in-time membership or
+ownership, each with its own policy.
+
+6
+00:00:19.750 --> 00:00:22.400
+Book 04 combines them two ways.
+
+7
+00:00:22.400 --> 00:00:26.950
+For an Entra role, the group is eligible
+and its members activate the role.
+
+8
+00:00:26.950 --> 00:00:30.338
+For anything else, people are
+eligible for the group itself.
+
+9
+00:00:30.338 --> 00:00:31.900
+The file records which.

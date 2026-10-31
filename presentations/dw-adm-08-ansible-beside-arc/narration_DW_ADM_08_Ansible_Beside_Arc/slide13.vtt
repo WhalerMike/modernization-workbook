@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:06.234
+Platform engineers who run Ansible beside
+Arc, the developers who keep the inventory
+
+3
+00:00:06.234 --> 00:00:10.862
+and playbooks, and the reviewers who read
+the plan before and the result after.
+
+4
+00:00:10.862 --> 00:00:13.836
+The onboarding identity
+gets one narrow role:
+
+5
+00:00:13.836 --> 00:00:17.513
+it can read and create Arc
+servers, but it can't delete them.
+
+6
+00:00:17.513 --> 00:00:21.091
+There's a wrinkle: one Learn page
+says it can't manage extensions,
+
+7
+00:00:21.091 --> 00:00:25.082
+another lists an add-extensions
+permission in it, so the chapter takes
+
+8
+00:00:25.082 --> 00:00:29.074
+the stricter reading and removes
+the assignment when the wave closes.
+
+9
+00:00:29.074 --> 00:00:31.940
+Disconnecting needs a
+different, stronger role.

@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:04.813
+Developers build and maintain
+the library and its checks.
+
+3
+00:00:04.813 --> 00:00:07.519
+Identity engineers own the group library,
+
+4
+00:00:07.519 --> 00:00:11.387
+and every rule file names the
+owner who approves its changes.
+
+5
+00:00:11.387 --> 00:00:15.624
+Reviewers approve each change, with
+the shadow diff in front of them.
+
+6
+00:00:15.624 --> 00:00:18.225
+And each step asks for the least it needs.
+
+7
+00:00:18.225 --> 00:00:22.512
+Creating groups needs group write rights
+with the Groups Administrator role.
+
+8
+00:00:22.512 --> 00:00:26.999
+Testing a rule with Graph needs only
+read rights when you supply the rule.
+
+9
+00:00:26.999 --> 00:00:29.924
+Pausing administrative
+units is the heavier one:
+
+10
+00:00:29.924 --> 00:00:32.620
+it needs the Privileged
+Role Administrator.

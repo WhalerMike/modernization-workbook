@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.200
+Two practical questions next: what
+does it cost, and where does it run.
+
+2
+00:00:04.200 --> 00:00:07.512
+Access reviews belong
+to Entra ID Governance.
+
+3
+00:00:07.512 --> 00:00:11.046
+Learn's tutorial says the P2
+license or Governance will do,
+
+4
+00:00:11.046 --> 00:00:16.125
+but the licensing page asks for Governance
+for everyone who reviews or is reviewed,
+
+5
+00:00:16.125 --> 00:00:18.775
+so the program budgets
+for the stricter one.
+
+6
+00:00:18.775 --> 00:00:22.122
+As for the cloud, this
+estate's GCC tenant uses the
+
+7
+00:00:22.122 --> 00:00:25.887
+worldwide Graph endpoint,
+and its Azure is commercial.
+
+8
+00:00:25.887 --> 00:00:29.949
+The Graph review APIs are listed
+for the government clouds too.
+
+9
+00:00:29.949 --> 00:00:33.428
+The Azure role reviews,
+though, run on a preview API,
+
+10
+00:00:33.428 --> 00:00:37.130
+and their government
+availability isn't confirmed.

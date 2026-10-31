@@ -59,6 +59,11 @@ PHON = [
     (r"\bto-live\b", "to-liv"),
     (r"\b([Ll])ive(?= (?:in|on|under|above|below|with|as|side|there|here|inside|outside|within|alongside|together|only|"
      r"for|is)\b|[.,;:?!\"]|$)", r"\1iv"),
+    # Added for the developer workbook chapter tours.
+    (r"\bIDs\b", "I D's"), (r"\bID\b", "I D"), (r"\bAPIs\b", "A P I's"), (r"\bAPI\b", "A P I"), (r"\bUS\b", "U S"),
+    (r"\bJSON\b", "jay-son"), (r"\bDoD\b", "D O D"), (r"\bREADME\b", "read me"), (r"\bHR\b", "H R"),
+    (r"\bSDKs\b", "S D K's"), (r"\bSDK\b", "S D K"), (r"\bSQL\b", "sequel"), (r"\bANDed\b", "and-ed"),
+    (r"\bISSOs\b", "I S S O's"), (r"\bPRV\b", "P R V"), (r"\bIPv6\b", "I P version six"), (r"\bAI\b", "A I"), (r"\bKQL\b", "K Q L"), (r"\bCSV\b", "C S V"),
     (r"—", ", "),
 ]
 

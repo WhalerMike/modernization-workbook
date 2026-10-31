@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.035
+Lab 2 moves to a test
+tenant, never production,
+
+2
+00:00:03.035 --> 00:00:06.263
+with fictional users that
+match the population.
+
+3
+00:00:06.263 --> 00:00:11.300
+You create the groups from the library,
+paused, so they can't move anyone yet.
+
+4
+00:00:11.300 --> 00:00:15.283
+Then the key step: ask Graph's own
+evaluator about every test user,
+
+5
+00:00:15.283 --> 00:00:17.988
+and compare its answer
+with the offline one.
+
+6
+00:00:17.988 --> 00:00:21.888
+Any disagreement is a finding
+against the offline evaluator.
+
+7
+00:00:21.888 --> 00:00:25.212
+Next you turn processing on
+and diff two rules live.
+
+8
+00:00:25.212 --> 00:00:28.865
+Finally you drill an incident:
+take the record, pause,
+
+9
+00:00:28.865 --> 00:00:33.170
+resume the critical groups by
+name, then back everything out.

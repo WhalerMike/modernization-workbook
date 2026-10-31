@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.287
+Here's an important line between
+Microsoft and the program.
+
+2
+00:00:03.287 --> 00:00:07.588
+Microsoft tells you how to find accounts;
+it doesn't tell you which ones are risky.
+
+3
+00:00:07.588 --> 00:00:12.637
+The risk rules, the candidate target and
+the stale threshold are the program's,
+
+4
+00:00:12.637 --> 00:00:15.872
+from the plan and Book 02,
+and the code keeps them in
+
+5
+00:00:15.872 --> 00:00:19.738
+one configuration file and
+labels them as design guidance.
+
+6
+00:00:19.738 --> 00:00:24.333
+And notice why stale is only ever
+a lead: the last logon attribute
+
+7
+00:00:24.333 --> 00:00:29.188
+isn't updated on every sign-in, so an
+account that looks idle may not be.
+
+8
+00:00:29.188 --> 00:00:33.790
+The plan says to confirm against the
+sign-in logs before retiring anything.

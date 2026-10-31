@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.075
+Here's what a reviewer checks
+before a new check ships.
+
+2
+00:00:03.075 --> 00:00:05.488
+The name, function and track agree.
+
+3
+00:00:05.488 --> 00:00:09.643
+The catalog names the least privilege
+and the role straight from Learn,
+
+4
+00:00:09.643 --> 00:00:13.799
+and if that role is privileged, the
+check is optional and reads an export.
+
+5
+00:00:13.799 --> 00:00:16.667
+It reads only through
+the shared data path,
+
+6
+00:00:16.667 --> 00:00:20.763
+hides no failed read, and treats
+every missing control as off.
+
+7
+00:00:20.763 --> 00:00:24.845
+Its fixtures follow Learn's shape,
+its tests cover every status,
+
+8
+00:00:24.845 --> 00:00:28.850
+the README knows about it, and
+the safety tests pass untouched.
+
+9
+00:00:28.850 --> 00:00:32.175
+Next up is Chapter 4,
+dynamic rules as code.
+
+10
+00:00:32.175 --> 00:00:33.340
+Thanks for watching.

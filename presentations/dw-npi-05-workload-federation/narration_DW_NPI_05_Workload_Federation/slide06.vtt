@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.812
+This is the heart of the chapter.
+
+2
+00:00:01.812 --> 00:00:06.349
+Run against the fakes, Microsoft's
+samples show the risk on their own terms.
+
+3
+00:00:06.349 --> 00:00:09.650
+Graph happily creates a
+credential with any subject.
+
+4
+00:00:09.650 --> 00:00:13.063
+Learn's samples don't even
+agree on the GitHub issuer:
+
+5
+00:00:13.063 --> 00:00:17.350
+one has a trailing slash and the
+others don't, and the match is exact.
+
+6
+00:00:17.350 --> 00:00:21.128
+One template defaults the audience
+with a stray leading space,
+
+7
+00:00:21.128 --> 00:00:22.363
+so it can never match.
+
+8
+00:00:22.363 --> 00:00:26.238
+And two Learn pages give two
+different pull request subjects.
+
+9
+00:00:26.238 --> 00:00:30.776
+So the code checks each credential against
+what the workload will really present,
+
+10
+00:00:30.776 --> 00:00:33.770
+and derives a subject only
+when the format is certain.

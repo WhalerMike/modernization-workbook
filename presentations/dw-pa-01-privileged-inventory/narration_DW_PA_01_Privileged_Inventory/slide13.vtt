@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:03.276
+Developers build the read path.
+
+3
+00:00:03.276 --> 00:00:07.738
+Identity engineers and the I S
+S O's review what it produces.
+
+4
+00:00:07.738 --> 00:00:10.506
+The app's permissions are
+the union of its calls,
+
+5
+00:00:10.506 --> 00:00:14.625
+each the least privileged for the job,
+and nothing in the list can write.
+
+6
+00:00:14.625 --> 00:00:16.527
+One choice is worth noticing:
+
+7
+00:00:16.527 --> 00:00:22.075
+the basic user read permission is added
+alongside group members, because without it,
+
+8
+00:00:22.075 --> 00:00:26.275
+Learn says, a member comes back
+with only an identifier and a type.
+
+9
+00:00:26.275 --> 00:00:29.890
+If a member still comes back
+unnamed, the code keeps the row and
+
+10
+00:00:29.890 --> 00:00:33.620
+raises a warning rather than
+dropping someone who holds a role.

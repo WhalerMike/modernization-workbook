@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:02.487
+Developers build it.
+
+3
+00:00:02.487 --> 00:00:05.199
+Identity engineers own the policies.
+
+4
+00:00:05.199 --> 00:00:08.892
+Application owners have workloads
+in scope, and the security
+
+5
+00:00:08.892 --> 00:00:13.163
+officer and security operations
+review results and receive the alert.
+
+6
+00:00:13.163 --> 00:00:15.325
+Three tasks split the permissions.
+
+7
+00:00:15.325 --> 00:00:18.475
+Reading needs only policy
+and application read.
+
+8
+00:00:18.475 --> 00:00:23.186
+Reading sign-ins needs the audit log
+permission plus the narrowest of the three
+
+9
+00:00:23.186 --> 00:00:27.825
+ways to see policy results; Learn doesn't
+rank them, so the chapter picked by name.
+
+10
+00:00:27.825 --> 00:00:31.803
+Only the apply task holds the
+write permission, and a test keeps
+
+11
+00:00:31.803 --> 00:00:36.140
+every task's permissions equal to
+its calls, with no delete anywhere.

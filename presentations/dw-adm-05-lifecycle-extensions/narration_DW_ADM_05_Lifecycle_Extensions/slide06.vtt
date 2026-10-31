@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.238
+The second half of the gap table is about
+what happens once you add real work.
+
+2
+00:00:04.238 --> 00:00:07.518
+If your added step fails,
+Learn's definition sends nothing,
+
+3
+00:00:07.518 --> 00:00:11.825
+so the workflow sits there for the whole
+wait before it calls the task failed.
+
+4
+00:00:11.825 --> 00:00:14.588
+There's no protection
+against doing the work twice.
+
+5
+00:00:14.588 --> 00:00:17.278
+The subject's name, email and manager land
+
+6
+00:00:17.278 --> 00:00:19.888
+in run history for anyone who can read it.
+
+7
+00:00:19.888 --> 00:00:24.255
+The retries are implicit, and the
+authorization policy is typed by hand,
+
+8
+00:00:24.255 --> 00:00:27.512
+with a placeholder value
+that would block every call.
+
+9
+00:00:27.512 --> 00:00:30.500
+The program's definition closes each one.
