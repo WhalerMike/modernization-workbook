@@ -351,6 +351,15 @@ Microsoft recommends PHS for cloud authentication, and recommends enabling it wh
 PHS is the program's sign-in method. Where PTA or federation is still in place, turn PHS on anyway so that the fallback and risk detections exist before they're needed.
 :::
 
+#### What CISA's hybrid identity guidance adds
+
+CISA's Hybrid Identity Solutions Guidance, written under the SCuBA project, compares the same choices from the federal side and adds a fourth: federation, pass-through authentication, password synchronization, and **cloud primary authentication**, in which users sign in to the cloud identity service with a modern, passwordless authenticator, such as PIV or FIDO2, and on-premises identity services play a shrinking, secondary role.[^c09-hisg] It's vendor-neutral and not prescriptive, but its direction matches the program's:
+
+- **The first three share one weakness.** In federation, pass-through authentication and password synchronization alike, the source of identity is the on-premises directory, so a compromise there can reach the cloud. CISA recommends shifting from all three toward cloud primary authentication over time.[^c09-hisg]
+- **CISA's primary recommendation** is to migrate to cloud-based, passwordless authentication, using existing PKI and PIV or CAC investments or FIDO2 and WebAuthn, and to move from on-premises federation to cloud-primary authentication with modern authenticators and open standards.[^c09-hisg] In this program that's PHS now, then the phishing-resistant roadmap and AD FS decommissioning in [Chapter 10](10-migrating-and-governing.md#authentication-modernization).
+- **Check the hash.** For password synchronization, CISA warns that mismatched hash functions on-premises and in the cloud could leave a weaker algorithm in use.[^c09-hisg] PHS doesn't send the Active Directory hash: the sync agent salts it per user and runs it through PBKDF2 with 1,000 iterations of HMAC-SHA256, so what Entra ID stores can't be replayed against Active Directory in a pass-the-hash attack.[^c09-phs-hash]
+- **Keep privileged accounts cloud-only** whatever the sign-in method, so a compromised on-premises environment reaches only lower-privilege accounts.[^c09-hisg] [Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md) sets the program's standard.
+
 ### Soft match and hard match
 
 When the sync engine adds an object that might already exist in the cloud, Entra ID looks for a match in this order:[^c09-existing-tenant]
@@ -842,6 +851,8 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c09-graph-clouds]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 20, 2026).
 [^c09-upn-population]: Microsoft Learn, "Microsoft Entra UserPrincipalName population," <https://learn.microsoft.com/entra/identity/hybrid/connect/plan-connect-userprincipalname> (accessed Oct 20, 2026).
 [^c09-existing-tenant]: Microsoft Learn, "Configure Microsoft Entra Connect for an existing tenant," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-existing-tenant> (accessed Oct 20, 2026).
+[^c09-hisg]: Cybersecurity and Infrastructure Security Agency, *Hybrid Identity Solutions Guidance*, §1.4 (primary recommendation), §3.1.1–3.1.5 (federation, pass-through authentication, password synchronization, cloud primary authentication, comparison), <https://www.cisa.gov/resources-tools/services/hybrid-identity-solutions-guidance-hisg> (accessed Oct 31, 2026).
+[^c09-phs-hash]: Microsoft Learn, "Implement password hash synchronization with Microsoft Entra Connect Sync" (how password hash synchronization works; security considerations), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-password-hash-synchronization> (accessed Oct 31, 2026).
 [^c09-au-licensing]: Microsoft Learn, "Administrative units in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units> (accessed Oct 20, 2026).
 [^c09-adminsdholder]: Microsoft Learn, "Appendix C: Protected Accounts and Groups in Active Directory," <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/appendix-c--protected-accounts-and-groups-in-active-directory> (accessed Oct 20, 2026).
 [^c09-ad-attack-surface]: Microsoft Learn, "Reducing the Active Directory Attack Surface," <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/reducing-the-active-directory-attack-surface> (accessed Oct 20, 2026).

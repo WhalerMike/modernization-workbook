@@ -89,3 +89,7 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 |---|---|---|---|---|
 | R1 | "Administrative unit (AU)" expanded at first use in prose and in the figure's alt text, with Microsoft's definition | Least-privileged choices; tiers figure alt | verified | c04-au <https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units> |
 | R2 | Tier 1 example list adds Authentication Policy and Compliance Administrator, matching Appendix B | Program's privilege tiers table | restated-as-design | Appendix B (internal) |
+| H1 | Every tier is held by cloud-only accounts; Microsoft Zero Trust guidance makes privileged accounts cloud-native | Five placements | verified (added Oct 31, 2026) | c04-cloud-only <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities> |
+| H2 | HISG recommends cloud-only privileged accounts so lateral movement reaches only lower-privilege accounts | Same | verified (added) | c04-hisg, HISG §3.1.1 <https://www.cisa.gov/resources-tools/services/hybrid-identity-solutions-guidance-hisg> |
+| H3 | MS.AAD.7.3v1 is a SCuBA mandatory policy under BOD 25-01 | Same | verified (added) | Book 02 Appendix A crosswalk row and BOD 25-01 Required Configurations |
+| H4 | Administrators keep a synchronized account for daily work and a separate cloud-only account for the role | Same | restated-as-design | program position |
