@@ -59,6 +59,7 @@ This guide owns what those four don't. It owns the attribute schema and the AD-t
 | VK-HR-04 | Duplicate `employeeId` values |
 | VK-HR-05 | Lifecycle Workflows: a hire or leave date in the past with no processing record (late HR data) |
 | VK-HR-06 | Lifecycle Workflows execution limits set; workflow count against the 100 ceiling |
+| VK-HR-07 | Attribute survey in Entra ID: fill rate of the key, worker type, department, mail, manager and coded slots against a threshold, and values that break the survey's rules |
 | VK-DG-01 | Dynamic user groups whose rule lacks the `accountEnabled` and `userType` guards |
 | VK-DG-02 | Rules that read display-name attributes instead of coded slots |
 | VK-DG-03 | A rule tested against named users before a change (*Graph beta*) |
@@ -67,6 +68,7 @@ This guide owns what those four don't. It owns the attribute schema and the AD-t
 | VK-DG-06 | Paused dynamic processing, and rules using the `memberOf` preview |
 | VK-DG-07 | Administrative units whose dynamic rule doesn't mirror its group; restricted units listed with their reason |
 | VK-SYNC-01 | Coded slots in an AD export compared with Entra ID for a sample, joined on `employeeId` |
+| VK-SYNC-03 | Sync parity for the estate: the Start Kit's AD export against Entra ID, joined on the on-premises SID |
 | VK-CA-01 | Conditional Access personas: the emergency-access group not excluded, a group outside the governed list, a group grant with no paired block |
 | VK-PIV-01 | Pilot card holders with no `certificateUserIds` value, or only low-affinity values, by account, never by value |
 
@@ -99,15 +101,15 @@ Where the key is already issued to contractors with their PIV credential, contra
 
 | Gate | Stage in the companion guide | Done when | Validate with | Plan tasks |
 |---|---|---|---|---|
-| [0 The tree read](#gate-0-read-the-ou-tree) | 0 | The tree's encoding is in Git, split by track, with a decision for every group | Start Kit counts; VK-INT-07 (beta, Intune track); VK-NPI-06 (handed to the non-person track) | A0.1–A0.4, AG0 |
-| [1 Schema and slots signed](#gate-1-schema-and-slots) | 1 | Every attribute that drives access has one store, one writer and one owner | VK-HR-01, VK-HR-04 (the key's carrier) | A1.1–A1.4, D-A1, D-A2, AG1 |
-| [2 Attributes proven](#gate-2-prove-the-attributes) | 2 | The correlation threshold is met on the pilot; other writers removed; logs leaving Entra ID | VK-HR-01 to 04 | A2.1–A2.3, D-A3, AG2 |
-| [3 Attributes flowing](#gate-3-map-the-attributes-through-sync) | 3 | Every slot arrives in Entra ID as HR sent it; shadow differences explained | VK-SYNC-01, with the sync reconciliation report | A3.1, AG3 |
+| [0 The tree read](#gate-0-read-the-ou-tree) | 0 | The tree's encoding is in Git, split by track, with a decision for every group | Start Kit counts and attribute survey; VK-INT-07 (beta, Intune track); VK-NPI-06 (handed to the non-person track) | A0.1–A0.4, AG0 |
+| [1 Schema and slots signed](#gate-1-schema-and-slots) | 1 | Every attribute that drives access has one store, one writer and one owner | Start Kit attribute survey; VK-HR-01, VK-HR-04, VK-HR-07 | A1.1–A1.4, D-A1, D-A2, AG1 |
+| [2 Attributes proven](#gate-2-prove-the-attributes) | 2 | The correlation threshold is met on the pilot; other writers removed; logs leaving Entra ID | VK-HR-01 to 04, VK-HR-07; the HCM correlation report | A2.1–A2.3, D-A3, AG2 |
+| [3 Attributes flowing](#gate-3-map-the-attributes-through-sync) | 3 | Every slot arrives in Entra ID as HR sent it; shadow differences explained | VK-SYNC-01, VK-SYNC-03, with the sync reconciliation report | A3.1, AG3 |
 | [4 Group library and units](#gate-4-the-dynamic-group-library-and-administrative-units) | 4, 5 | Every rule on codes with guards, tested and shadowed; every unit mirrors its group | VK-DG-01 to 07 | A4.1–A4.4, D-A4, AG4 |
 | [5 Targeting conventions](#gate-5-personas-and-targeting-conventions) | 6 | Personas from codes, grants paired with blocks; device, server and non-person conventions handed off | VK-CA-01 for personas; VK-INT-01, VK-ARC-01, VK-NPI-01 in the track guides | A5.1–A5.4, D-A5, AG5 |
 | [6 PIV binding](#gate-6-piv-and-cac-binding) | PIV | Every pilot card holder bound; high affinity piloted | VK-PIV-01 | A6.1, A6.2, D-A6, D-A7, AG6 |
 | [7 Mover proven](#gate-7-prove-a-mover-across-the-tracks) | Worked example | One personnel action changes access only through the attributes | VK-DG-05, VK-HR-03; the workflow's run history | A7.1, AG7 |
-| [8 OU tree retired](#gate-8-cut-over-and-retire-the-ou-tree) | 7 | Every population cut over by query; nothing reads OU placement | VK-HR-01 to 06, VK-DG-04, VK-DG-05 per wave | A8.1–A8.4, AG8 |
+| [8 OU tree retired](#gate-8-cut-over-and-retire-the-ou-tree) | 7 | Every population cut over by query; nothing reads OU placement | Start Kit wave lists; VK-HR-01 to 04 and VK-HR-07 per wave; VK-HR-05, 06, VK-DG-04, VK-DG-05 | A8.1–A8.4, AG8 |
 | [9 Attributes kept true](#gate-9-keep-the-attributes-true) | 8 | Drift scans running, findings closed at the source, zero-action plan | VK-HR-03, VK-DG-05, VK-DG-06, VK-DG-07, and each track's standing checks | A9.1–A9.3, D-A8, AG9 |
 
 : The ten gates of the attribute foundation {.striped .hover}
@@ -134,9 +136,9 @@ The gates are this guide's numbering. The companion guide numbers [stages](../..
 
 **Tools, all read-only until a gate says otherwise.**
 
-- The [Start Kit](../../../../downloads/start-kit.zip) for the forest: OUs and their delegations, GPOs with their domain, OU and site links, users, groups, computers and service accounts ([Book 00, Chapter 08](../../../books/b00-orientation/08-pre-flight-and-assessment.md)).
+- The [Start Kit](../../../../downloads/start-kit.zip) for the forest: OUs and their delegations, GPOs with their domain, OU and site links, users, groups, computers and service accounts ([Book 00, Chapter 08](../../../books/b00-orientation/08-pre-flight-and-assessment.md)). Its [attribute survey](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit#how-it-surveys-attributes-and-builds-waves) reads the key, the coded slots and the other attributes this guide depends on across every domain tree, through the Global Catalog, and its wave lists turn them into Gate 8's waves.
 - The [validation kit](../../../../downloads/validation-kit.zip) for the tenant.
-- The [HCM-to-Entra example code](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra), which applies the attribute map and code lists and refuses bad records ([research guide, the example code](../../../research/hcm-entra-implementation.md#the-example-code)).
+- The [HCM-to-Entra example code](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra), which applies the attribute map and code lists and refuses bad records ([research guide, the example code](../../../research/hcm-entra-implementation.md#the-example-code)), and whose [correlation tool](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra#correlate-hr-with-the-directories) matches the HR extract to both directories, record by record, for Gate 2.
 - The [Microsoft automation reference](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation), whose `ca-export` task exports the Conditional Access policies for Gate 5.
 
 **Before Gate 0.** The program's Phase 0 is approved, the read-only assessment identities exist, and logs can leave Entra ID from the first change (Gate 2 makes that a gate item, but start now) ([Book 03, Chapter 11](../../../books/b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves)).
@@ -163,6 +165,7 @@ The target has to reproduce intent, not structure, and you can't reproduce what 
 ::: {.callout-important}
 ## Validate (Gate 0: the tree read)
 - The Start Kit's summary counts OUs and their delegations, GPOs (empty, unlinked, conflicting, site-linked), users, groups, computers and service accounts, each traced to its source file. A count that couldn't be collected says *not collected*, never zero.
+- The Start Kit's **attribute survey** (`Get-FMPAttributeSurvey`, part of the run) shows where the key and the codes live today: `FillRate.csv` per domain, and in `ValueQuality.csv` the keys held twice, display strings in coded slots and managers that can't be resolved. `GcCoverage.csv` records which attributes the Global Catalog held and which were read from each domain's controllers. Its `ad-user-export.csv` is the AD export Gates 2 and 3 read.
 - **VK-INT-07** (*Graph beta*, with `-IncludeBeta`; run by the Intune track) lists each GPO imported into Intune's Group Policy analytics with its migration readiness. It flags those targeted in AD that aren't *complete*, and, with `gpo-scope.csv`, every in-scope GPO that was never imported. Its rows feed the computer half of the GPO split.
 - **VK-NPI-06** (run by the non-person track) lists the AD service accounts with passwords that never expire, old passwords, SPNs or a type other than gMSA. Its rows are the ones step 6 hands over.
 - No kit check reads the per-group decision or the track tagging: the evidence is the decision record in Git, one row per group and per GPO half.
@@ -198,6 +201,7 @@ Every later mechanism reads these values, so this gate decides where each attrib
 ::: {.callout-important}
 ## Validate (Gate 1: schema and slots signed)
 - **VK-HR-04** reports zero duplicate `employeeId` values in the tenant, and **VK-HR-01** lists every enabled account without one. Together they measure the key's carrier before anything depends on it. Expect findings here: Gate 2 closes them.
+- The A1.1 inventory comes from the Start Kit's attribute survey: `FillRate.csv` for how fully each attribute is populated, per domain tree, and `SlotUsage.csv` for which of `extensionAttribute1` to `15` are free, in use by something else, or already coded. **VK-HR-07** gives the same fill rates and value rules for Entra ID, so the two sides compare. The survey reads values, not writers: who writes each attribute still comes from the delegation export and the audit log.
 - No kit check reads the schema itself. The evidence is the signed schema and slot register: for every attribute that drives access, its store, its one writer, its owner and its readers, in all four tracks.
 - Gate owner: the ICAM governance body. Gate 1 lands before the program finalizes its attribute taxonomy (P1.1).
 :::
@@ -217,7 +221,7 @@ A bad HR record becomes bad access faster than any ticket queue. Everything down
 **Steps.**
 
 1. **Baseline coverage (A2.1).** Run VK-HR-01 to 04 against the pilot cohort and then the estate. Run the device and server coverage checks the track guides use too: VK-INT-01 for device slots and VK-ARC-01 for tags. They show how far each track's writer has to go. Fix every wrong value at the source, never in the copy ([Book 03, Chapter 04](../../../books/b03-hr-identity/04-attribute-authority.md#authoritative-versus-derived-attributes)).
-2. **Match every enabled account to a worker record before the first full sync.** The match is what prevents duplicate identities at go-live ([Book 03, Chapter 05](../../../books/b03-hr-identity/05-the-provisioning-pipeline.md#the-source-oracle-fusion-cloud-hcm)). An unmatched enabled account is an orphan candidate with an owner, or it goes on a dated exception list.
+2. **Match every enabled account to a worker record before the first full sync.** The match is what prevents duplicate identities at go-live ([Book 03, Chapter 05](../../../books/b03-hr-identity/05-the-provisioning-pipeline.md#the-source-oracle-fusion-cloud-hcm)). An unmatched enabled account is an orphan candidate with an owner, or it goes on a dated exception list. The HCM example's [correlation tool](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra#correlate-hr-with-the-directories) does the match: the HR extract against the Start Kit's AD export and an Entra ID export, on the key.
 3. **Decide the threshold (D-A3).** The agency sets it through its risk governance. 99% of the pilot cohort is a proposed starting point, not a rule, and a risk-tiered threshold is usually better ([Book 03, Chapter 12](../../../books/b03-hr-identity/12-execution-plan.md#sequencing-principle)).
 4. **Remove the other writers (A2.2).** In AD, remove write rights on the target OUs and Exchange's custom-attribute cmdlets. In Entra ID, remove the help desk and self-service paths to the access slots. From here on, any other write is drift ([Book 03, Chapter 06](../../../books/b03-hr-identity/06-canonical-attribute-schema.md#writers)).
 5. **Route logs out (A2.3).** Send Entra ID's sign-in, audit and provisioning logs outside Entra ID before the pilot's first change. Their retention is far shorter than federal records schedules, and it isn't retroactive ([Book 03, Chapter 11](../../../books/b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves)).
@@ -232,13 +236,15 @@ The non-person equivalent of this gate, correlating every service account and se
 - **VK-HR-02** reports the coded slots populated for the pilot cohort at the agreed threshold.
 - **VK-HR-03** reconciles the counts per organization code with an HR export.
 - **VK-HR-04** reports zero duplicate keys.
+- **VK-HR-07** reports the survey attributes populated at the threshold, and no value that breaks a rule: whitespace, a key outside the agency's format, a code off the list, a display string in a coded slot, a manager disabled or without a key.
+- The **correlation report** (`correlation-report.json`) shows every key matched, or quarantined with a decision. Its rates, active workers matched and enabled accounts matched, are what the threshold (D-A3) is measured against. Every `matched_with_conflicts` row is closed in the HR record, and every `directory_only` account has an owner or a dated exception. The report holds keys and statuses only; the quarantine file holds the personal data and stays in the audit store.
 - Expect a burst of high-severity findings in the first month of a new pipeline: that's the measurement working ([Book 03, Chapter 11](../../../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory)).
 - Gate owner: the CISO.
 :::
 
 **Rollback.** Restore a removed write permission through a recorded change, for a named reason and an end date. A corrected HR value is corrected again at the source, never in the directory.
 
-**Evidence.** The validation kit's run folder (results, summary and per-check details); the threshold decision; the exception list with owners and dates; the change records that removed the other writers; the log routing configuration.
+**Evidence.** The validation kit's run folder (results, summary and per-check details); the correlation report; the threshold decision; the exception list with owners and dates; the change records that removed the other writers; the log routing configuration.
 
 ## Gate 3: map the attributes through sync {#gate-3-map-the-attributes-through-sync}
 
@@ -262,13 +268,14 @@ This gate covers the plumbing between HR, AD and Entra ID while they coexist. It
 ::: {.callout-important}
 ## Validate (Gate 3: attributes flowing)
 - **VK-SYNC-01** compares the coded slots for a sample, exported from AD (`ad-slot-export.csv`), with the same slots in Entra ID, joined on `employeeId`. It reports zero sample rows with no Entra user, zero keys held twice, and zero slots that differ. It reads values, not the sync configuration, so the rest of the evidence still comes from the reconciliation report ([Where the kits stop](#where-the-kits-stop)). That's Book 02's Phase 1 gate: object counts within ±1%, no sync errors, and an attribute spot check ([Book 02, Chapter 10](../../../books/b02-identity/10-migrating-and-governing.md#phase-1-sync-deployment-and-initial-sync)). Add Book 03's Phase 3 gate: the initial full sync reconciled before deltas, shadow mode with every difference between the pipeline and the directory explained, and zero unmatched-record creations ([Book 03, Chapter 12](../../../books/b03-hr-identity/12-execution-plan.md#phase-3-hybrid-go-live-pilot)).
+- **VK-SYNC-03** does the same for the whole estate. It joins the Start Kit's `ad-user-export.csv` to Entra ID on the on-premises SID and reports zero users in sync scope missing from Entra ID, zero marked `DoNotSync` that synced anyway, zero matched users that no longer sync, zero synced users with no AD object, and zero attributes that differ. Name the domains the sync engine reads in `SyncScopeDomains`: the check doesn't read the engine's OU or group filters.
 - **VK-HR-02** and **VK-HR-03**, re-run after the first full sync, show the slots arrived: the coverage and the counts per organization code should match Gate 2's.
 - Gate owner: identity engineering lead.
 :::
 
 **Rollback.** Turn the scoping filter back to exclude the population and let the next cycle remove the values from scope. Don't delete synced users in Entra ID; the next sync restores them ([Book 03, Chapter 08](../../../books/b03-hr-identity/08-joiner-mover-leaver.md#deletion)).
 
-**Evidence.** The sync configuration export, the reconciliation report, the shadow-mode difference log with each difference explained, VK-SYNC-01's result for the sample, and the before and after VK-HR-02 and VK-HR-03 results.
+**Evidence.** The sync configuration export, the reconciliation report, the shadow-mode difference log with each difference explained, VK-SYNC-01's result for the sample, VK-SYNC-03's for the estate, and the before and after VK-HR-02 and VK-HR-03 results.
 
 ## Gate 4: the dynamic group library and administrative units {#gate-4-the-dynamic-group-library-and-administrative-units}
 
@@ -423,7 +430,7 @@ Cut-over is a runbook, not a flag day, which keeps rollback possible. Retiring t
 
 **Steps: cut-over.**
 
-1. **Write each wave as an attribute query (A8.1).** Users and devices by attribute value, servers by resource group and tag, non-person identities by the application that owns them. Each wave's groups already exist ([Book 00, Chapter 09](../../../books/b00-orientation/09-design-pilot-and-rollout.md#waves-defined-by-attribute-values)). Start with the pilot division, two or three divisions at a time after that, each drift-clean before the next ([Book 01, Chapter 04](../../../books/b01-transformation-arc/04-identity-transformation.md#migration-phases)).
+1. **Write each wave as an attribute query (A8.1).** Users and devices by attribute value, servers by resource group and tag, non-person identities by the application that owns them. Each wave's groups already exist ([Book 00, Chapter 09](../../../books/b00-orientation/09-design-pilot-and-rollout.md#waves-defined-by-attribute-values)). The Start Kit's `Get-FMPWaveList` writes the waves from a wave plan (`WaveId`, attribute, value) or one per organization code, sends devices and servers with their owners, and lists everything it leaves out with the reason ([how it builds waves](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit#how-it-surveys-attributes-and-builds-waves)). Start with the pilot division, two or three divisions at a time after that, each drift-clean before the next ([Book 01, Chapter 04](../../../books/b01-transformation-arc/04-identity-transformation.md#migration-phases)).
 2. **Put leaver automation first in every wave.** Revocation is where the risk and the evidence are ([Book 03, Chapter 12](../../../books/b03-hr-identity/12-execution-plan.md#phase-4-lifecycle-automation-and-attribute-derived-access)).
 3. **Run the per-wave attribute gate (A8.2).** A signed validation report, then a dry run on production data with writes disabled. Then seven days after cut-over in which every change for the population traces to an HR event. Only then does the ticket path for account creation close ([Book 03, Appendix C](../../../books/b03-hr-identity/appendix-c-acceptance-and-cutover.md#proving-hr-is-the-sole-source)).
 4. **Retarget provisioning per population.** As a population becomes cloud-mastered, move it from the HR-to-AD provisioning scope to the HR-to-Entra configuration, with the AD leg dormant but intact ([companion guide, Stage 7](../../../books/guides/attribute-driven-migration.md#stage-7-cut-over-in-phases)). The populations themselves move in the HR plan (I5.1, I5.2). Whether moving a population's source of authority works in GCC is still unverified ([what still needs AD](../../../books/guides/attribute-driven-migration.md#what-still-needs-ad-during-hybrid)).
@@ -439,14 +446,14 @@ Cut-over is a runbook, not a flag day, which keeps rollback possible. Retiring t
 
 ::: {.callout-important}
 ## Validate (Gate 8: OU tree retired as a control)
-- For each wave: **VK-HR-01** to **04** on the wave's query, **VK-DG-04** for any group the wave replaces, and **VK-DG-05** for the wave's membership change against the threshold. **VK-HR-05** and **VK-HR-06** show the leaver path on time and the execution limits set. Each track's own wave checks run in its guide.
+- For each wave: **VK-HR-01** to **04** and **VK-HR-07** on the wave's query, run with the `WaveId` option and the Start Kit's `waves.csv` ([one wave at a time](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit#one-wave-at-a-time)); `wave-exclusions.csv` with every left-out user and asset decided; **VK-DG-04** for any group the wave replaces, and **VK-DG-05** for the wave's membership change against the threshold. **VK-HR-05** and **VK-HR-06** show the leaver path on time and the execution limits set. Each track's own wave checks run in its guide.
 - For the tree: the sync configuration export shows no rule or scoping filter reading OU placement. The final OU export shows no delegation that grants access, and no GPO link left that the Endpoint plan hasn't retired.
 - Gate owner: the CISO. Gate 8 lands before the program freezes AD (P5.1).
 :::
 
 **Rollback.** A wave rolls back by re-enabling, never by re-creating. Re-enable the disabled AD accounts and the disabled GPO links, put the population back in the HR-to-AD provisioning scope, and reopen the ticket path. Don't delete a GPO instead of disabling its links, because that removes the one-command rollback ([Book 05, Chapter 08](../../../books/b05-devices/08-gpo-to-intune-policy-migration.md#rollback)).
 
-**Evidence.** Each wave's signed validation report, dry run and seven-day sole-source report. The provisioning retargeting record. The removed transitional rules. The final OU export. The approval for each destructive item.
+**Evidence.** Each wave's list and exclusions, signed validation report, dry run and seven-day sole-source report. The provisioning retargeting record. The removed transitional rules. The final OU export. The approval for each destructive item.
 
 ## Gate 9: keep the attributes true {#gate-9-keep-the-attributes-true}
 
@@ -468,7 +475,7 @@ Without this gate, everything slowly decays. It starts with the pilot, not after
 
 ::: {.callout-important}
 ## Validate (Gate 9: attributes kept true)
-- On the drift cadence: **VK-HR-03** (counts per organization code against HR), **VK-HR-01** and **VK-HR-04** (uncorrelated accounts and duplicate keys), **VK-DG-05** (membership change over the threshold), **VK-DG-06** (paused processing) and **VK-DG-07** (unit rules against the registry).
+- On the drift cadence: **VK-HR-03** (counts per organization code against HR), **VK-HR-01** and **VK-HR-04** (uncorrelated accounts and duplicate keys), the HCM correlation report (record by record: missing identities, orphan accounts, attribute drift), **VK-SYNC-03** (AD and Entra ID apart while they coexist), **VK-DG-05** (membership change over the threshold), **VK-DG-06** (paused processing) and **VK-DG-07** (unit rules against the registry).
 - Each track's standing checks, run in its guide: VK-INT-01 and VK-INT-02, VK-ARC-01 to VK-ARC-07, and VK-NPI-01, VK-NPI-02 and VK-NPI-08.
 - Book 01's verification list holds. Every HR-listed worker has valid attributes, every group is on one of the two patterns, and every unit rule mirrors its group with processing on. Every policy targets only governed groups, drift findings are zero, and the nightly plan is zero-action ([Book 01, Chapter 04](../../../books/b01-transformation-arc/04-identity-transformation.md#verification)). Book 03's six lifecycle metrics are within thresholds on the ConMon cadence ([Book 03, Chapter 12](../../../books/b03-hr-identity/12-execution-plan.md#phase-6-sustained-posture)).
 - Gate owner: the CISO.
@@ -484,15 +491,15 @@ The kits cover most gates, but not all of them. Where no check exists, the gate'
 
 | Gate | What a kit covers | What no kit covers yet | Stand-in evidence |
 |---|---|---|---|
-| 0 | The Start Kit's forest, OU, delegation and GPO counts (site links included); VK-INT-07 for Group Policy analytics readiness (beta) | The per-group decision; the track tag for each OU and GPO half | The decision record in Git |
-| 1 | VK-HR-01 and VK-HR-04 on the key's carrier | The schema and slot register themselves | The signed register |
-| 2 | VK-HR-01 to 04 | A field-by-field HR-to-directory comparison (VK-HR-03 compares counts per code) | The HR plan's baseline (I1.5) |
-| 3 | VK-SYNC-01 on a sample; VK-HR-02 and VK-HR-03 before and after | Sync configuration, scoping, shadow differences, match blocking | The sync reconciliation report |
+| 0 | The Start Kit's forest, OU, delegation and GPO counts (site links included) and its attribute survey; VK-INT-07 for Group Policy analytics readiness (beta) | The per-group decision; the track tag for each OU and GPO half | The decision record in Git |
+| 1 | The Start Kit's attribute survey (fill rate, value quality, free slots); VK-HR-01, VK-HR-04 and VK-HR-07 | The schema and slot register themselves; who writes each attribute | The signed register; the delegation export and the audit log |
+| 2 | VK-HR-01 to 04 and VK-HR-07; the HCM correlation tool, record by record and field by field | Correcting the HR data itself | The HR plan's baseline (I1.5) |
+| 3 | VK-SYNC-01 on a sample; VK-SYNC-03 for the estate; VK-HR-02 and VK-HR-03 before and after; VK-SYNC-02 (optional) for match blocking | Sync configuration and its OU and group filters, shadow differences | The sync reconciliation report |
 | 4 | VK-DG-01 to 07 | — | — |
 | 5 | VK-CA-01 (emergency-access exclusion, governed groups, grant and block pairs on the users condition); VK-HR-02 for empty slots; the track checks for devices, servers and non-person identities | Conditions other than users and applications in a pair; the report-only results | The `ca-export` policy export and the report-only review, read against the persona design |
 | 6 | VK-PIV-01 (coverage and affinity, by account) | Whether each value belongs to a current card; the tenant's affinity setting | The card management system's issuance record; the sign-in logs |
 | 7 | VK-DG-05, VK-HR-03 | Proof that the mover workflow ran (VK-HR-05 reads hire and leave triggers only) | The workflow's run history |
-| 8 | VK-HR-01 to 06, VK-DG-04, VK-DG-05 per wave | The seven-day sole-source report | The provisioning logs, joined on the key |
+| 8 | The Start Kit's wave lists; VK-HR-01 to 04 and VK-HR-07 on each wave; VK-HR-05, VK-HR-06, VK-DG-04, VK-DG-05 | The seven-day sole-source report | The provisioning logs, joined on the key |
 | 9 | VK-HR, VK-DG and each track's standing checks | The registry-to-tenant comparison of role assignments | The registry diff in Git |
 
 : Where the kits stop, by gate {.striped .hover}
@@ -517,14 +524,14 @@ The kits cover most gates, but not all of them. Where no check exists, the gate'
 ## Checklist
 
 - [ ] OU tree exported read-only with site links; every OU and GPO half tagged with its track; a decision for every group (Gate 0)
-- [ ] Enterprise person key, such as a Mainframe PIN, carried in `employeeId` in both directories; schema and slot register signed with one writer per slot (Gate 1; VK-HR-01, 04)
-- [ ] Correlation threshold met on the pilot; other write paths removed; logs leaving Entra ID (Gate 2; VK-HR-01 to 04)
-- [ ] Slots mapped through sync; match blocked outside a window; shadow differences explained (Gate 3; VK-SYNC-01)
+- [ ] Enterprise person key, such as a Mainframe PIN, carried in `employeeId` in both directories; schema and slot register signed with one writer per slot (Gate 1; attribute survey; VK-HR-01, 04, 07)
+- [ ] Correlation threshold met on the pilot; other write paths removed; logs leaving Entra ID (Gate 2; VK-HR-01 to 04, 07; correlation report)
+- [ ] Slots mapped through sync; match blocked outside a window; shadow differences explained (Gate 3; VK-SYNC-01, 03)
 - [ ] Every rule on codes with guards, tested and shadowed; no `memberOf`; restriction decided per unit before creation; unit rules mirror group rules (Gate 4; VK-DG-01 to 07)
 - [ ] Personas from codes, grants paired with blocks, empty slots reported; device, server and non-person conventions handed to their guides (Gate 5; VK-CA-01)
 - [ ] PIV binding coverage measured; high affinity piloted before the tenant changes; leaver removes the binding; writer after AD decided (Gate 6; VK-PIV-01)
 - [ ] One mover proved across the tracks with no ticket (Gate 7; VK-DG-05, VK-HR-03)
-- [ ] Waves by attribute query, leaver first, seven days of sole-source proof; transitional rules removed; OU tree frozen and archived (Gate 8)
+- [ ] Waves by attribute query, leaver first, seven days of sole-source proof; transitional rules removed; OU tree frozen and archived (Gate 8; wave lists, HR checks per wave)
 - [ ] Drift scans scheduled for HR, units and roles; findings closed at the source; limits register kept (Gate 9)
 
 ## Back to the books
