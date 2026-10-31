@@ -1,0 +1,21 @@
+{
+  "schema": "fmp-npi-review/1",
+  "chapter": "07",
+  "kind": "owner-permission-review",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "_comment": "A sample of the owners' quarterly permission review records Chapter 07 can emit. Reviewer IDs are object IDs.",
+  "records": [
+    {
+      "identityKey": "app:1a000000-0000-4000-8000-000000000001",
+      "reviewedOn": "2026-09-15",
+      "decision": "Approved",
+      "reviewerId": "5a000000-0000-4000-8000-000000000001"
+    },
+    {
+      "identityKey": "app:1a000000-0000-4000-8000-000000000006",
+      "reviewedOn": "2026-05-01",
+      "decision": "Approved",
+      "reviewerId": "5a000000-0000-4000-8000-000000000001"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "task": "ownership",
+  "mode": "Fixture",
+  "cloud": "gcc",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "domain": "corp.contoso.example",
+  "asOf": "2026-10-29",
+  "generated": "2026-10-31T01:51:05.6871797Z",
+  "graphPermissions": [
+    "User.Read.All"
+  ],
+  "azureRoles": [],
+  "adRights": [],
+  "requests": [
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/alice%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.1535274Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/bob%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.1991716Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/frank%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.2038116Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/gina%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.2172124Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/erin%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.2235838Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000001?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.2517094Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000002?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.2807369Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000003?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.2915109Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000004?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.2980986Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000005?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.3025009Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000006?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.3114743Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/5a000000-0000-4000-8000-000000000008?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.3205079Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/gina%40contoso.example?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.5648703Z"
+    },
+    {
+      "call": "graph-user",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/users/dave_partner.example%23EXT%23%40contosoexample.onmicrosoft.com?$select=id,userPrincipalName,userType,accountEnabled",
+      "at": "2026-10-31T01:51:05.5741238Z"
+    }
+  ],
+  "files": {
+    "ai-sponsor-fields.json": "a07151479214fdb97ea93b8bb7af1ec96ae75b682d92d9e2175e03b59e94c227",
+    "findings.json": "fbad52d2c3f5752720d3be6ac742284853e89205a13d5b011a4a141bfa4c15cd",
+    "orphan-plan.json": "d5d1213c5100f2c1ec1351ae0d36389dafa795d7aae2aa2f7412b98d03fa23a7",
+    "ownership.json": "77e13984f5f3be1477775588021cb6e8be7eaf6fc96012b5f47e62e996dcefbc"
+  },
+  "inputs": {
+    "owner-claims.csv": "c8747deba7fed22b99c140a56bb8e9cbc9bbfaad0c71698d407772f55b14100a",
+    "igo-confirmations.csv": "abcd6322ca462f35cc1464024b9f54209924d6520e2a566bc4362be16a988332",
+    "application-owners.csv": "2767dd162f713e89227875d875f1b7f5d87e02c72a2e0e66eb105e548fc3a7c1",
+    "service-records.csv": "7d4152a3146f6032b5bda1b34e8087a42d6b2a9a590fe0b29ffc06a6e57ef836"
+  },
+  "registerSha256": "20fa096244e51bf3613e758b5129daf88df945c1ef8a9b85c1632373561a4d07"
+}

@@ -1,0 +1,61 @@
+{
+  "_comment": "Chapter 10: fictional rows of the service principal sign-in activity report (beta) in Graph's shape. Legacy Reports last signed in on 2026-05-01; Old SAML Connector and Survey Tool have no row.",
+  "servicePrincipalSignInActivities": [
+    {
+      "id": "si-01",
+      "appId": "1a000000-0000-4000-8000-000000000001",
+      "lastSignInActivity": {
+        "lastSignInDateTime": "2026-10-29T05:00:00Z",
+        "lastSignInRequestId": "e0000000-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "id": "si-02",
+      "appId": "1a000000-0000-4000-8000-000000000002",
+      "lastSignInActivity": {
+        "lastSignInDateTime": "2026-10-28T23:00:00Z",
+        "lastSignInRequestId": "e0000000-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "id": "si-03",
+      "appId": "1a000000-0000-4000-8000-000000000003",
+      "lastSignInActivity": {
+        "lastSignInDateTime": "2026-05-01T08:00:00Z",
+        "lastSignInRequestId": "e0000000-0000-4000-8000-000000000003"
+      }
+    },
+    {
+      "id": "si-04",
+      "appId": "1a000000-0000-4000-8000-000000000004",
+      "lastSignInActivity": {
+        "lastSignInDateTime": "2026-10-30T04:00:00Z",
+        "lastSignInRequestId": "e0000000-0000-4000-8000-000000000004"
+      }
+    },
+    {
+      "id": "si-05",
+      "appId": "1a000000-0000-4000-8000-000000000005",
+      "lastSignInActivity": {
+        "lastSignInDateTime": "2026-10-15T12:00:00Z",
+        "lastSignInRequestId": "e0000000-0000-4000-8000-000000000005"
+      }
+    },
+    {
+      "id": "si-06",
+      "appId": "1a000000-0000-4000-8000-000000000006",
+      "lastSignInActivity": {
+        "lastSignInDateTime": "2026-10-29T03:00:00Z",
+        "lastSignInRequestId": "e0000000-0000-4000-8000-000000000006"
+      }
+    },
+    {
+      "id": "si-07",
+      "appId": "1a000000-0000-4000-8000-000000000007",
+      "lastSignInActivity": {
+        "lastSignInDateTime": "2026-10-29T23:30:00Z",
+        "lastSignInRequestId": "e0000000-0000-4000-8000-000000000007"
+      }
+    }
+  ]
+}

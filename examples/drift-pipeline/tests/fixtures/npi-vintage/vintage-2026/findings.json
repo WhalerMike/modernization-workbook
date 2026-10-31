@@ -1,0 +1,62 @@
+[
+  {
+    "Id": "NPI-VIN-02:usecase:UC-002",
+    "Rule": "NPI-VIN-02",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "usecase:UC-002",
+    "Object": "UC-002",
+    "Issue": "Retired in the 2026 vintage, but app:1a000000-0000-4000-8000-000000000006 still enabled: start the leaver process",
+    "Fingerprint": "ba8fae1a6ec91b2b"
+  },
+  {
+    "Id": "NPI-VIN-03:usecase:UC-003",
+    "Rule": "NPI-VIN-03",
+    "Severity": "Warn",
+    "Chapter": "10",
+    "ObjectKey": "usecase:UC-003",
+    "Object": "UC-003",
+    "Issue": "Authorization answer changed from 'No' to 'Yes': the ISSO re-checks it against the authorization records",
+    "Fingerprint": "b5ae258480d875e0"
+  },
+  {
+    "Id": "NPI-VIN-01:usecase:UC-005",
+    "Rule": "NPI-VIN-01",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "usecase:UC-005",
+    "Object": "UC-005",
+    "Issue": "New Deployed entry in the 2026 vintage (Agentic AI) with no identity in the register: issue a governed identity with a sponsor before its next sign-in, or correct the entry",
+    "Fingerprint": "a8d07f27bc66ba53"
+  },
+  {
+    "Id": "NPI-VIN-01:usecase:UC-006",
+    "Rule": "NPI-VIN-01",
+    "Severity": "Info",
+    "Chapter": "10",
+    "ObjectKey": "usecase:UC-006",
+    "Object": "UC-006",
+    "Issue": "New Pilot entry in the 2026 vintage, matched to app:1a000000-0000-4000-8000-000000000007",
+    "Fingerprint": "28e2851f67d19c9e"
+  },
+  {
+    "Id": "NPI-VIN-04:usecase:UC-004",
+    "Rule": "NPI-VIN-04",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "usecase:UC-004",
+    "Object": "UC-004",
+    "Issue": "Left the inventory without being reported as retired: its identities may still hold credentials",
+    "Fingerprint": "de26b045d957012d"
+  },
+  {
+    "Id": "NPI-VIN-05:sp:5b000000-0000-4000-8000-000000000015",
+    "Rule": "NPI-VIN-05",
+    "Severity": "Warn",
+    "Chapter": "10",
+    "ObjectKey": "sp:5b000000-0000-4000-8000-000000000015",
+    "Object": "Benefits Q&A Agent (AgentIdentity)",
+    "Issue": "An AI identity whose record (none) maps to no use case in the 2026 vintage: report it, or retire it",
+    "Fingerprint": "1f376640a7fab7ce"
+  }
+]

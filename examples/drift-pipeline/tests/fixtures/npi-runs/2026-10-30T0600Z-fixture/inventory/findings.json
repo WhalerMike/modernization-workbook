@@ -1,0 +1,218 @@
+[
+  {
+    "Id": "NPI-INV-01:ad:ad000000-0000-4000-8000-000000000001",
+    "Rule": "NPI-INV-01",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000001",
+    "Object": "svc-hrsync (Traditional)",
+    "Issue": "HIGH risk: password never expires; password not changed in 2799 days. Candidate: gMSA, or a dMSA on a Windows Server 2025 domain (Kerberos service)"
+  },
+  {
+    "Id": "NPI-INV-01:ad:ad000000-0000-4000-8000-000000000002",
+    "Rule": "NPI-INV-01",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000002",
+    "Object": "svc-sqlprod (Traditional)",
+    "Issue": "HIGH risk: password never expires; password not changed in 1967 days. Candidate: Data Platform plan (SPN MSSQLSvc/sql01.corp.contoso.example:1433): gMSA, or a dMSA on a Windows Server 2025 domain (Kerberos service)"
+  },
+  {
+    "Id": "NPI-INV-07:ad:ad000000-0000-4000-8000-000000000002",
+    "Rule": "NPI-INV-07",
+    "Severity": "Info",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000002",
+    "Object": "svc-sqlprod (Traditional)",
+    "Issue": "SQL Server account: handed to the Data Platform plan (task N0.4)"
+  },
+  {
+    "Id": "NPI-INV-01:ad:ad000000-0000-4000-8000-000000000003",
+    "Rule": "NPI-INV-01",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000003",
+    "Object": "svc-backup (Traditional)",
+    "Issue": "HIGH risk: member of Backup Operators. Candidate: Managed identity if the workload runs in Azure; otherwise an app registration with a federated credential or certificate"
+  },
+  {
+    "Id": "NPI-INV-01:ad:ad000000-0000-4000-8000-000000000004",
+    "Rule": "NPI-INV-01",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000004",
+    "Object": "svc-oldftp (Traditional)",
+    "Issue": "HIGH risk: password never expires; password not changed in 3214 days. Candidate: Verify use first (stale lead); retirement candidate if unused"
+  },
+  {
+    "Id": "NPI-INV-02:ad:ad000000-0000-4000-8000-000000000004",
+    "Rule": "NPI-INV-02",
+    "Severity": "Warn",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000004",
+    "Object": "svc-oldftp (Traditional)",
+    "Issue": "No logon since 2025-11-02. Lead only: confirm against domain controller and Entra sign-in logs before any change. This run retires nothing."
+  },
+  {
+    "Id": "NPI-INV-01:ad:ad000000-0000-4000-8000-000000000007",
+    "Rule": "NPI-INV-01",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000007",
+    "Object": "jdoe (Traditional)",
+    "Issue": "HIGH risk: password never expires. Candidate: Managed identity if the workload runs in Azure; otherwise an app registration with a federated credential or certificate"
+  },
+  {
+    "Id": "NPI-INV-08:ad:ad000000-0000-4000-8000-000000000007",
+    "Rule": "NPI-INV-08",
+    "Severity": "Warn",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000007",
+    "Object": "jdoe (Traditional)",
+    "Issue": "Detected only by a password that never expires: may be a person; confirm it is a service account"
+  },
+  {
+    "Id": "NPI-INV-07:ad:ad000000-0000-4000-8000-000000000008",
+    "Rule": "NPI-INV-07",
+    "Severity": "Info",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000008",
+    "Object": "svc-ldapbind (Traditional)",
+    "Issue": "SQL Server account: handed to the Data Platform plan (task N0.4)"
+  },
+  {
+    "Id": "NPI-INV-01:ad:ad000000-0000-4000-8000-000000000009",
+    "Rule": "NPI-INV-01",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000009",
+    "Object": "svc-webfront (Traditional)",
+    "Issue": "HIGH risk: trusted for unconstrained delegation. Candidate: gMSA, or a dMSA on a Windows Server 2025 domain (Kerberos service)"
+  },
+  {
+    "Id": "NPI-INV-07:ad:ad000000-0000-4000-8000-000000000023",
+    "Rule": "NPI-INV-07",
+    "Severity": "Info",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000023",
+    "Object": "gmsa-sql$ (gMSA)",
+    "Issue": "SQL Server account: handed to the Data Platform plan (task N0.4)"
+  },
+  {
+    "Id": "NPI-INV-01:ad:ad000000-0000-4000-8000-000000000024",
+    "Rule": "NPI-INV-01",
+    "Severity": "Finding",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000024",
+    "Object": "gmsa-ops$ (gMSA)",
+    "Issue": "HIGH risk: member of Domain Admins. Candidate: Keep for on-premises Kerberos; workload identity federation or a managed identity when the workload moves"
+  },
+  {
+    "Id": "NPI-INV-04:app:1a000000-0000-4000-8000-000000000001",
+    "Rule": "NPI-INV-04",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000001",
+    "Object": "Payroll Export (AppRegistration)",
+    "Issue": "Holds 1 client secret(s)"
+  },
+  {
+    "Id": "NPI-INV-03:app:1a000000-0000-4000-8000-000000000002",
+    "Rule": "NPI-INV-03",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000002",
+    "Object": "HR Connector (AppRegistration)",
+    "Issue": "1 owner(s); Chapter 02 checks who they are against the two-human-owner rule"
+  },
+  {
+    "Id": "NPI-INV-04:app:1a000000-0000-4000-8000-000000000002",
+    "Rule": "NPI-INV-04",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000002",
+    "Object": "HR Connector (AppRegistration)",
+    "Issue": "Holds 1 client secret(s)"
+  },
+  {
+    "Id": "NPI-INV-03:app:1a000000-0000-4000-8000-000000000003",
+    "Rule": "NPI-INV-03",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000003",
+    "Object": "Legacy Reports (AppRegistration)",
+    "Issue": "0 owner(s); Chapter 02 checks who they are against the two-human-owner rule"
+  },
+  {
+    "Id": "NPI-INV-04:app:1a000000-0000-4000-8000-000000000003",
+    "Rule": "NPI-INV-04",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000003",
+    "Object": "Legacy Reports (AppRegistration)",
+    "Issue": "Holds 1 client secret(s)"
+  },
+  {
+    "Id": "NPI-INV-05:app:1a000000-0000-4000-8000-000000000003",
+    "Rule": "NPI-INV-05",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000003",
+    "Object": "Legacy Reports (AppRegistration)",
+    "Issue": "1 expired credential(s) still on the object; remove unused credentials"
+  },
+  {
+    "Id": "NPI-INV-04:app:1a000000-0000-4000-8000-000000000004",
+    "Rule": "NPI-INV-04",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000004",
+    "Object": "Build Pipeline (AppRegistration)",
+    "Issue": "Holds 1 client secret(s)"
+  },
+  {
+    "Id": "NPI-INV-01:app:1a000000-0000-4000-8000-000000000006",
+    "Rule": "NPI-INV-01",
+    "Severity": "Finding",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000006",
+    "Object": "Mail Automation (AppRegistration)",
+    "Issue": "HIGH risk: holds Directory.ReadWrite.All. Candidate: Replace the client secret: managed identity, then federated credential, then certificate"
+  },
+  {
+    "Id": "NPI-INV-04:app:1a000000-0000-4000-8000-000000000006",
+    "Rule": "NPI-INV-04",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000006",
+    "Object": "Mail Automation (AppRegistration)",
+    "Issue": "Holds 1 client secret(s)"
+  },
+  {
+    "Id": "NPI-INV-06:app:1a000000-0000-4000-8000-000000000006",
+    "Rule": "NPI-INV-06",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000006",
+    "Object": "Mail Automation (AppRegistration)",
+    "Issue": "Holds a delegated grant consented for all users (consentType AllPrincipals)"
+  },
+  {
+    "Id": "NPI-INV-03:app:1a000000-0000-4000-8000-000000000009",
+    "Rule": "NPI-INV-03",
+    "Severity": "Warn",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000009",
+    "Object": "Survey Tool (AppRegistration)",
+    "Issue": "1 owner(s); Chapter 02 checks who they are against the two-human-owner rule"
+  },
+  {
+    "Id": "NPI-INV-04:sp:5b000000-0000-4000-8000-000000000001",
+    "Rule": "NPI-INV-04",
+    "Severity": "Warn",
+    "ObjectKey": "sp:5b000000-0000-4000-8000-000000000001",
+    "Object": "Payroll Export (ServicePrincipal)",
+    "Issue": "Holds 1 client secret(s)"
+  },
+  {
+    "Id": "NPI-INV-06:sp:5b000000-0000-4000-8000-000000000011",
+    "Rule": "NPI-INV-06",
+    "Severity": "Warn",
+    "ObjectKey": "sp:5b000000-0000-4000-8000-000000000011",
+    "Object": "Partner CRM (ExternalServicePrincipal)",
+    "Issue": "Holds a delegated grant consented for all users (consentType AllPrincipals)"
+  },
+  {
+    "Id": "NPI-INV-03:sp:5b000000-0000-4000-8000-000000000012",
+    "Rule": "NPI-INV-03",
+    "Severity": "Warn",
+    "ObjectKey": "sp:5b000000-0000-4000-8000-000000000012",
+    "Object": "Old SAML Connector (LegacyServicePrincipal)",
+    "Issue": "0 owner(s); Chapter 02 checks who they are against the two-human-owner rule"
+  },
+  {
+    "Id": "NPI-INV-04:sp:5b000000-0000-4000-8000-000000000012",
+    "Rule": "NPI-INV-04",
+    "Severity": "Warn",
+    "ObjectKey": "sp:5b000000-0000-4000-8000-000000000012",
+    "Object": "Old SAML Connector (LegacyServicePrincipal)",
+    "Issue": "Holds 1 client secret(s)"
+  }
+]

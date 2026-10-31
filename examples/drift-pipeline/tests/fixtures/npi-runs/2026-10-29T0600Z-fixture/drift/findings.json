@@ -1,0 +1,232 @@
+[
+  {
+    "Id": "NPI-DRF-03:ad:ad000000-0000-4000-8000-000000000003",
+    "Rule": "NPI-DRF-03",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000003",
+    "Object": "svc-backup (Traditional)",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Fingerprint": "096d9e51a904f05e"
+  },
+  {
+    "Id": "NPI-DRF-03:ad:ad000000-0000-4000-8000-000000000004",
+    "Rule": "NPI-DRF-03",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000004",
+    "Object": "svc-oldftp (Traditional)",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Fingerprint": "0ddaf54f215fcf84"
+  },
+  {
+    "Id": "NPI-DRF-03:ad:ad000000-0000-4000-8000-000000000005",
+    "Rule": "NPI-DRF-03",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000005",
+    "Object": "svc-reports (Traditional)",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Fingerprint": "c1d94f86210d0db3"
+  },
+  {
+    "Id": "NPI-DRF-03:ad:ad000000-0000-4000-8000-000000000006",
+    "Rule": "NPI-DRF-03",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000006",
+    "Object": "sa-printsvc (Traditional)",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Fingerprint": "46d90322794c3f60"
+  },
+  {
+    "Id": "NPI-DRF-03:ad:ad000000-0000-4000-8000-000000000024",
+    "Rule": "NPI-DRF-03",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000024",
+    "Object": "gmsa-ops$ (gMSA)",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Fingerprint": "cf38b8402f5add75"
+  },
+  {
+    "Id": "NPI-DRF-03:app:1a000000-0000-4000-8000-000000000003",
+    "Rule": "NPI-DRF-03",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000003",
+    "Object": "Legacy Reports (AppRegistration)",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Fingerprint": "2fc525c2ededa1a9"
+  },
+  {
+    "Id": "NPI-DRF-03:sp:5b000000-0000-4000-8000-000000000012",
+    "Rule": "NPI-DRF-03",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "sp:5b000000-0000-4000-8000-000000000012",
+    "Object": "Old SAML Connector (LegacyServicePrincipal)",
+    "Issue": "Ownerless: an orphan candidate in Chapter 02's run; the orphan rule (D-N2) decides, and nothing here disables it",
+    "Fingerprint": "c13f916350edc908"
+  },
+  {
+    "Id": "NPI-DRF-04:app:1a000000-0000-4000-8000-000000000003",
+    "Rule": "NPI-DRF-04",
+    "Severity": "Warn",
+    "Chapter": "10",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000003",
+    "Object": "Legacy Reports (AppRegistration)",
+    "Issue": "Last sign-in 2026-05-01, 180 days ago: unused for over 90 days",
+    "Fingerprint": "64cc4b3055e83b8a"
+  },
+  {
+    "Id": "NPI-DRF-04:sp:5b000000-0000-4000-8000-000000000012",
+    "Rule": "NPI-DRF-04",
+    "Severity": "Warn",
+    "Chapter": "10",
+    "ObjectKey": "sp:5b000000-0000-4000-8000-000000000012",
+    "Object": "Old SAML Connector (LegacyServicePrincipal)",
+    "Issue": "No sign-in in the service principal sign-in activity report: unused for over 90 days, or never used; confirm with the owner, then the orphan rule or decommission",
+    "Fingerprint": "960a4f0f425b34b8"
+  },
+  {
+    "Id": "NPI-DRF-05:app:1a000000-0000-4000-8000-000000000005",
+    "Rule": "NPI-DRF-05",
+    "Severity": "Warn",
+    "Chapter": "10",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000005",
+    "Object": "Vendor Portal (AppRegistration)",
+    "Issue": "A credential expires 2026-11-20, in 21 days: rotate it through the pipeline, approved by the owner",
+    "Fingerprint": "ccf788de083c1243"
+  },
+  {
+    "Id": "NPI-DRF-06:ad:ad000000-0000-4000-8000-000000000001",
+    "Rule": "NPI-DRF-06",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000001",
+    "Object": "svc-hrsync (Traditional)",
+    "Issue": "Password never expires. Candidate: gMSA, or a dMSA on a Windows Server 2025 domain (Kerberos service)",
+    "Fingerprint": "e59b9ab41fe84a9e"
+  },
+  {
+    "Id": "NPI-DRF-06:ad:ad000000-0000-4000-8000-000000000002",
+    "Rule": "NPI-DRF-06",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000002",
+    "Object": "svc-sqlprod (Traditional)",
+    "Issue": "Password never expires; a SQL Server account, handed to the Data Platform plan. Candidate: Data Platform plan (SPN MSSQLSvc/sql01.corp.contoso.example:1433): gMSA, or a dMSA on a Windows Server 2025 domain (Kerberos service)",
+    "Fingerprint": "0d6f0e587f5d6b14"
+  },
+  {
+    "Id": "NPI-DRF-06:ad:ad000000-0000-4000-8000-000000000004",
+    "Rule": "NPI-DRF-06",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "ad:ad000000-0000-4000-8000-000000000004",
+    "Object": "svc-oldftp (Traditional)",
+    "Issue": "Password never expires. Candidate: Verify use first (stale lead); retirement candidate if unused",
+    "Fingerprint": "d4a4a5efec40e602"
+  },
+  {
+    "Id": "NPI-DRF-09:contract:ch05-findings.json",
+    "Rule": "NPI-DRF-09",
+    "Severity": "Warn",
+    "Chapter": "10",
+    "ObjectKey": "contract:ch05-findings.json",
+    "Object": "ch05-findings.json",
+    "Issue": "Refused: ch05-findings.json: finding NPI-SAMPLE-03:app:1a000000-0000-4000-8000-000000000004 has fingerprint 0000000000000000, not 8e13c859e0cf66e6",
+    "Fingerprint": "0eeba54f329ca045"
+  },
+  {
+    "Id": "NPI-DRF-09:contract:chapter-03",
+    "Rule": "NPI-DRF-09",
+    "Severity": "Info",
+    "Chapter": "10",
+    "ObjectKey": "contract:chapter-03",
+    "Object": "Chapter 03",
+    "Issue": "No findings file from Chapter 03 this run",
+    "Fingerprint": "82fdd1525acc41b3"
+  },
+  {
+    "Id": "NPI-DRF-09:contract:chapter-04",
+    "Rule": "NPI-DRF-09",
+    "Severity": "Info",
+    "Chapter": "10",
+    "ObjectKey": "contract:chapter-04",
+    "Object": "Chapter 04",
+    "Issue": "No findings file from Chapter 04 this run",
+    "Fingerprint": "ade07cbff7d1ac0a"
+  },
+  {
+    "Id": "NPI-DRF-09:contract:chapter-05",
+    "Rule": "NPI-DRF-09",
+    "Severity": "Info",
+    "Chapter": "10",
+    "ObjectKey": "contract:chapter-05",
+    "Object": "Chapter 05",
+    "Issue": "No findings file from Chapter 05 this run",
+    "Fingerprint": "d1a11acf5af9880f"
+  },
+  {
+    "Id": "NPI-DRF-09:contract:chapter-06",
+    "Rule": "NPI-DRF-09",
+    "Severity": "Info",
+    "Chapter": "10",
+    "ObjectKey": "contract:chapter-06",
+    "Object": "Chapter 06",
+    "Issue": "No findings file from Chapter 06 this run",
+    "Fingerprint": "ae63234f9c1be5aa"
+  },
+  {
+    "Id": "NPI-DRF-09:contract:chapter-08",
+    "Rule": "NPI-DRF-09",
+    "Severity": "Info",
+    "Chapter": "10",
+    "ObjectKey": "contract:chapter-08",
+    "Object": "Chapter 08",
+    "Issue": "No findings file from Chapter 08 this run",
+    "Fingerprint": "6984544dfd3f0a73"
+  },
+  {
+    "Id": "NPI-REV-01:app:1a000000-0000-4000-8000-000000000004",
+    "Rule": "NPI-REV-01",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000004",
+    "Object": "Build Pipeline (AppRegistration)",
+    "Issue": "Holds Graph permissions (Application.ReadWrite.OwnedBy) with no owners' permission review in the last 92 days",
+    "Fingerprint": "e45c72e73eb41333"
+  },
+  {
+    "Id": "NPI-REV-01:app:1a000000-0000-4000-8000-000000000006",
+    "Rule": "NPI-REV-01",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "app:1a000000-0000-4000-8000-000000000006",
+    "Object": "Mail Automation (AppRegistration)",
+    "Issue": "Holds Graph permissions (Directory.ReadWrite.All; Mail.Send) with no owners' permission review in the last 92 days; last 2026-05-01",
+    "Fingerprint": "70db376b7fe43ea8"
+  },
+  {
+    "Id": "NPI-REV-02:sp:5b000000-0000-4000-8000-000000000015",
+    "Rule": "NPI-REV-02",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "sp:5b000000-0000-4000-8000-000000000015",
+    "Object": "Benefits Q&A Agent (AgentIdentity)",
+    "Issue": "No sponsor attestation in the last 365 days",
+    "Fingerprint": "9896452a67c0f59a"
+  },
+  {
+    "Id": "NPI-REV-03:sp:5b000000-0000-4000-8000-000000000015/assignment:AP-02",
+    "Rule": "NPI-REV-03",
+    "Severity": "Finding",
+    "Chapter": "10",
+    "ObjectKey": "sp:5b000000-0000-4000-8000-000000000015/assignment:AP-02",
+    "Object": "Benefits Q&A Agent (AgentIdentity)",
+    "Issue": "Access assignment AP-02 has no end date: expiry is the agent's review",
+    "Fingerprint": "e4301496248fcaf8"
+  }
+]

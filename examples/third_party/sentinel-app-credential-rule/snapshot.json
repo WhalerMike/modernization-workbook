@@ -1,0 +1,35 @@
+{
+  "_comment": "A pinned, unmodified copy of Microsoft's Sentinel analytics rule 'New access credential added to Application or Service Principal', which Learn's 'Microsoft Entra security operations guide for applications' links as the pre-built alert for credentials added to existing applications. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Microsoft Sentinel rule: New access credential added to Application or Service Principal",
+  "upstream_repo": "https://github.com/Azure/Azure-Sentinel",
+  "upstream_path": "Solutions/Microsoft Entra ID/Analytic Rules/NewAppOrServicePrincipalCredential.yaml",
+  "commit": "2985095e602f32c493e43998856ac9bcf1382afd",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2024-01-08 (commit e61a9180a9f1cf888496cd6b5873a686a4483353)",
+  "retrieved": "2026-10-30",
+  "license": "MIT (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/entra/architecture/security-operations-applications",
+  "learn_link_note": "Learn links the rule's earlier path, Detections/AuditLogs/NewAppOrServicePrincipalCredential.yaml, which upstream now keeps as a stub whose description points to this path.",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "NewAppOrServicePrincipalCredential.yaml": "Solutions/Microsoft Entra ID/Analytic Rules/NewAppOrServicePrincipalCredential.yaml"
+  },
+  "upstream_blob_sha1": {
+    "LICENSE": "21071075c24599ee98254f702bcfc504cdc275a6",
+    "NewAppOrServicePrincipalCredential.yaml": "0891903c98ee41f9bf2a07bbe664c644a633b83a"
+  },
+  "not_copied": [
+    "The stub at Detections/AuditLogs/NewAppOrServicePrincipalCredential.yaml that Learn links, which holds only a pointer to this path.",
+    "The rest of the Microsoft Entra ID solution and everything else in Azure/Azure-Sentinel."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1162,
+      "sha256": "27ebda9d51f0a56b7e281ccd8230a27236dcb51c05f64b07869ecf6e965d68b0"
+    },
+    "NewAppOrServicePrincipalCredential.yaml": {
+      "bytes": 4516,
+      "sha256": "72c3ec66a00ef4a3138cb13973bbe7445d83f824a8ad2a4b5f20de0d35e7498a"
+    }
+  }
+}

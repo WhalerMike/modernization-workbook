@@ -1,0 +1,6 @@
+id,development_stage,classification,have_ato
+UC-001,Deployed,Agentic AI,Yes
+UC-002,Retired,Generative AI,No
+UC-003,Deployed,Classical ML,Yes
+UC-005,Deployed,Agentic AI,No
+UC-006,Pilot,Generative AI,No

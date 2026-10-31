@@ -1,0 +1,21 @@
+{
+  "schema": "fmp-npi-review/1",
+  "chapter": "09",
+  "kind": "agent-access-recertification",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "_comment": "A sample of the agent access assignments Chapter 09 can emit, with their end dates: expiry is the review.",
+  "records": [
+    {
+      "identityKey": "sp:5b000000-0000-4000-8000-000000000015",
+      "assignmentId": "AP-01",
+      "expires": "2027-01-31",
+      "decision": "Active"
+    },
+    {
+      "identityKey": "sp:5b000000-0000-4000-8000-000000000015",
+      "assignmentId": "AP-02",
+      "expires": null,
+      "decision": "Active"
+    }
+  ]
+}

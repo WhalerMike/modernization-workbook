@@ -1,0 +1,26 @@
+{
+  "_comment": "Chapter 10's thresholds and vocabulary. The activity names are Learn's (Microsoft Entra audit log categories and activities, Core Directory, ApplicationManagement), read on October 30, 2026; the thresholds marked design are the program's (Design guidance). The pipeline's own service principals are tenant data and come from -PipelineIdentitiesPath, never from this file.",
+  "activities": {
+    "Update application - Certificates and secrets management": "CredentialChange",
+    "Add service principal credentials": "CredentialAdded",
+    "Remove service principal credentials": "CredentialRemoved",
+    "Consent to application": "Consent",
+    "Add delegated permission grant": "DelegatedGrant",
+    "Add app role assignment to service principal": "AppRoleGrant"
+  },
+  "expiringDays": 30,
+  "expiringDaysSource": "Learn: the Renew expiring application credentials recommendation (preview) flags credentials expiring within the next 30 days",
+  "unusedDays": 90,
+  "unusedDaysSource": "Learn: the Remove unused applications recommendation (preview) flags apps not used for over 90 days",
+  "maxWindowDays": 30,
+  "maxWindowDaysSource": "Learn: Microsoft Entra audit logs are kept 30 days with P1 or P2, seven days on Free",
+  "ownerReviewDays": 92,
+  "ownerReviewDaysSource": "design: the plan's N7.2 asks for a quarterly owners' permission review",
+  "attestationDays": 365,
+  "attestationDaysSource": "design: Learn's agent best practices say sponsors attest every six to twelve months; the code holds the longer bound and the program's policy may shorten it",
+  "maxAgentAssignmentDays": 365,
+  "maxAgentAssignmentDaysSource": "design: Book 17, Chapter 05 never creates agent access without an end date; the maximum by risk tier is the program's decision (research gaps, row 97)",
+  "ownerRuleTypes": ["AppRegistration", "LegacyServicePrincipal"],
+  "agentTypes": ["AgentIdentity", "AgentIdentityBlueprint"],
+  "chapterContract": ["03", "04", "05", "06", "07", "08", "09"]
+}

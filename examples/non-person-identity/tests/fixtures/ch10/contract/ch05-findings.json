@@ -1,0 +1,18 @@
+{
+  "schema": "fmp-npi-findings/1",
+  "chapter": "05",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "producedAt": "2026-10-28T06:00:00Z",
+  "_comment": "A deliberately broken sample: its fingerprint isn't SHA-256(rule|objectKey|), so the drift run refuses the file (NPI-DRF-09).",
+  "findings": [
+    {
+      "id": "NPI-SAMPLE-03:app:1a000000-0000-4000-8000-000000000004",
+      "rule": "NPI-SAMPLE-03",
+      "severity": "Warn",
+      "chapter": "05",
+      "objectKey": "app:1a000000-0000-4000-8000-000000000004",
+      "fingerprint": "0000000000000000",
+      "issue": "Federated credential subject is a branch, not an environment"
+    }
+  ]
+}

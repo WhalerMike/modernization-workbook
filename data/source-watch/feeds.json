@@ -633,6 +633,17 @@
       "source": "Commits to the Learn source page that holds the HTTP samples for finding ownerless service principals, assigning owners and setting serviceManagementReference, which examples/third_party/graph-applications-tutorial-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 02). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     },
     {
+      "id": "sentinel-app-credential-rule-commits",
+      "name": "Microsoft Sentinel rule New access credential added to Application or Service Principal (Azure/Azure-Sentinel commits)",
+      "type": "github_commits",
+      "repo": "Azure/Azure-Sentinel",
+      "path": "Solutions/Microsoft Entra ID/Analytic Rules/NewAppOrServicePrincipalCredential.yaml",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to Microsoft's Sentinel analytics rule for credentials added to an application or service principal, which Learn's security operations guide for applications links and examples/third_party/sentinel-app-credential-rule pins at one commit (developer workbook Building Non-Person Identity, Chapter 10). A new commit means: review it, rerun examples/non-person-identity/tests/NpiDrift.Tests.ps1 on the new rule, and update the snapshot only in a reviewed pull request."
+    },
+    {
       "id": "entra-workload-identity-ca-page-commits",
       "name": "Learn's Conditional Access for workload identities (MicrosoftDocs/entra-docs commits)",
       "type": "github_commits",

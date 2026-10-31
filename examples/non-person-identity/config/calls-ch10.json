@@ -1,0 +1,46 @@
+{
+  "_comment": "Chapter 10's own calls, in the same schema as calls.json: GET only, each with the least-privileged Microsoft Graph permission from the Learn page for the call, read on October 30, 2026. The drift run also runs Chapter 01's inventory task and Chapter 02's ownership task, whose calls stay declared in calls.json; Get-NpiDriftPermission -Task drift-run returns the union. tests/NpiDrift.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls, or when this file declares anything but a GET.",
+  "tasks": {
+    "drift": {
+      "mode": "read",
+      "chapter": "10",
+      "graphPermissions": ["AuditLog.Read.All"],
+      "azureRoles": [],
+      "adRights": [],
+      "delegatedRoles": ["Reports Reader", "Security Administrator", "Security Reader"]
+    }
+  },
+  "calls": [
+    {
+      "id": "directory-audits",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/auditLogs/directoryAudits",
+      "permissions": ["AuditLog.Read.All"],
+      "delegatedRoles": ["Reports Reader", "Security Administrator", "Security Reader"],
+      "stage": "v1.0",
+      "clouds": ["global", "gcc", "gcchigh", "dod"],
+      "tasks": ["drift"],
+      "learn": "https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0",
+      "note": "One GET per activity name, filtered by activityDateTime (ge, le) and activityDisplayName (eq). Directory.Read.All is the higher-privileged alternative and is never requested. Available in the global service, US Government L4 and L5."
+    },
+    {
+      "id": "sp-signin-activities",
+      "api": "graph",
+      "method": "GET",
+      "version": "beta",
+      "path": "/reports/servicePrincipalSignInActivities",
+      "permissions": ["AuditLog.Read.All"],
+      "delegatedRoles": ["Reports Reader", "Security Administrator", "Security Reader"],
+      "stage": "beta",
+      "clouds": ["global", "gcc"],
+      "tasks": ["drift"],
+      "learn": "https://learn.microsoft.com/graph/api/reportroot-list-serviceprincipalsigninactivities?view=graph-rest-beta",
+      "note": "Beta, and available only in the global service: Learn marks US Government L4 and L5 unavailable, so a gcchigh or dod run doesn't send it and records the unused check as not read (research gaps, row 93)."
+    }
+  ],
+  "runs": {
+    "drift-run": ["inventory", "ownership", "drift"]
+  }
+}

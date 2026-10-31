@@ -1,0 +1,876 @@
+{
+  "_comment": "Chapter 10, day 1: Chapter 01's fictional estate (estate.json) with one change, Vendor Portal's certificate ending 2026-11-20, inside the 30 days the expiry check uses. contoso.example, invented IDs, no real people.",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "domain": "corp.contoso.example",
+  "asOf": "2026-10-29T06:00:00Z",
+  "ad": {
+    "objects": [
+      {
+        "SamAccountName": "svc-hrsync",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000001",
+        "ObjectClass": "user",
+        "ObjectCategory": "person",
+        "DistinguishedName": "CN=svc-hrsync,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 66048,
+        "PasswordLastSet": "2019-03-01T08:00:00Z",
+        "LastLogonDate": "2026-10-28T06:10:00Z",
+        "ServicePrincipalName": [
+          "HTTP/hrapp.corp.contoso.example"
+        ],
+        "MemberOf": [],
+        "Description": "HR sync service account",
+        "UserPrincipalName": "svc-hrsync@corp.contoso.example",
+        "AllowedToDelegateTo": []
+      },
+      {
+        "SamAccountName": "svc-sqlprod",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000002",
+        "ObjectClass": "user",
+        "ObjectCategory": "person",
+        "DistinguishedName": "CN=svc-sqlprod,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 66048,
+        "PasswordLastSet": "2021-06-10T08:00:00Z",
+        "LastLogonDate": "2026-10-29T01:00:00Z",
+        "ServicePrincipalName": [
+          "MSSQLSvc/sql01.corp.contoso.example:1433"
+        ],
+        "MemberOf": [],
+        "Description": "SQL Server engine, SQL01",
+        "UserPrincipalName": "svc-sqlprod@corp.contoso.example",
+        "AllowedToDelegateTo": []
+      },
+      {
+        "SamAccountName": "svc-backup",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000003",
+        "ObjectClass": "user",
+        "ObjectCategory": "person",
+        "DistinguishedName": "CN=svc-backup,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 512,
+        "PasswordLastSet": "2026-06-01T08:00:00Z",
+        "LastLogonDate": "2026-10-29T02:00:00Z",
+        "ServicePrincipalName": [],
+        "MemberOf": [
+          "CN=Backup Operators,CN=Builtin,DC=corp,DC=contoso,DC=example"
+        ],
+        "Description": "Nightly backup agent",
+        "UserPrincipalName": "svc-backup@corp.contoso.example",
+        "AllowedToDelegateTo": []
+      },
+      {
+        "SamAccountName": "svc-oldftp",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000004",
+        "ObjectClass": "user",
+        "ObjectCategory": "person",
+        "DistinguishedName": "CN=svc-oldftp,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 66048,
+        "PasswordLastSet": "2018-01-10T08:00:00Z",
+        "LastLogonDate": "2025-11-02T09:00:00Z",
+        "ServicePrincipalName": [],
+        "MemberOf": [],
+        "Description": "FTP drop for a retired vendor feed",
+        "UserPrincipalName": "svc-oldftp@corp.contoso.example",
+        "AllowedToDelegateTo": []
+      },
+      {
+        "SamAccountName": "svc-reports",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000005",
+        "ObjectClass": "user",
+        "ObjectCategory": "person",
+        "DistinguishedName": "CN=svc-reports,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 514,
+        "PasswordLastSet": "2024-01-15T08:00:00Z",
+        "LastLogonDate": "2026-08-30T09:00:00Z",
+        "ServicePrincipalName": [
+          "HTTP/reports.corp.contoso.example"
+        ],
+        "MemberOf": [],
+        "Description": "Reporting front end",
+        "UserPrincipalName": "svc-reports@corp.contoso.example",
+        "AllowedToDelegateTo": [
+          "MSSQLSvc/sql01.corp.contoso.example:1433"
+        ]
+      },
+      {
+        "SamAccountName": "sa-printsvc",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000006",
+        "ObjectClass": "user",
+        "ObjectCategory": "person",
+        "DistinguishedName": "CN=sa-printsvc,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 514,
+        "PasswordLastSet": "2022-02-01T08:00:00Z",
+        "LastLogonDate": "2024-02-01T09:00:00Z",
+        "ServicePrincipalName": [],
+        "MemberOf": [],
+        "Description": "",
+        "UserPrincipalName": "",
+        "AllowedToDelegateTo": []
+      },
+      {
+        "SamAccountName": "jdoe",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000007",
+        "ObjectClass": "user",
+        "ObjectCategory": "person",
+        "DistinguishedName": "CN=Jordan Doe,OU=Staff,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 66048,
+        "PasswordLastSet": "2025-12-01T08:00:00Z",
+        "LastLogonDate": "2026-10-29T13:00:00Z",
+        "ServicePrincipalName": [],
+        "MemberOf": [],
+        "Description": "",
+        "UserPrincipalName": "jdoe@contoso.example",
+        "AllowedToDelegateTo": []
+      },
+      {
+        "SamAccountName": "svc-ldapbind",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000008",
+        "ObjectClass": "user",
+        "ObjectCategory": "person",
+        "DistinguishedName": "CN=svc-ldapbind,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 512,
+        "PasswordLastSet": "2026-09-01T08:00:00Z",
+        "LastLogonDate": "2026-10-29T14:00:00Z",
+        "ServicePrincipalName": [],
+        "MemberOf": [],
+        "Description": "LDAP bind for the intranet application",
+        "UserPrincipalName": "svc-ldapbind@corp.contoso.example",
+        "AllowedToDelegateTo": []
+      },
+      {
+        "SamAccountName": "svc-webfront",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000009",
+        "ObjectClass": "user",
+        "ObjectCategory": "person",
+        "DistinguishedName": "CN=svc-webfront,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 524800,
+        "PasswordLastSet": "2026-05-01T08:00:00Z",
+        "LastLogonDate": "2026-10-30T07:00:00Z",
+        "ServicePrincipalName": [
+          "HTTP/web.corp.contoso.example"
+        ],
+        "MemberOf": [],
+        "Description": "Public web front end",
+        "UserPrincipalName": "svc-webfront@corp.contoso.example",
+        "AllowedToDelegateTo": []
+      },
+      {
+        "SamAccountName": "mmiller",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000010",
+        "ObjectClass": "user",
+        "ObjectCategory": "person",
+        "DistinguishedName": "CN=Morgan Miller,OU=Staff,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 512,
+        "PasswordLastSet": "2026-09-15T08:00:00Z",
+        "LastLogonDate": "2026-10-30T08:00:00Z",
+        "ServicePrincipalName": [],
+        "MemberOf": [],
+        "Description": "",
+        "UserPrincipalName": "mmiller@contoso.example",
+        "AllowedToDelegateTo": []
+      },
+      {
+        "SamAccountName": "SRV-APP01$",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000011",
+        "ObjectClass": "computer",
+        "ObjectCategory": "computer",
+        "DistinguishedName": "CN=SRV-APP01,OU=Servers,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 528384,
+        "PasswordLastSet": "2026-10-20T08:00:00Z",
+        "LastLogonDate": "2026-10-30T08:00:00Z",
+        "ServicePrincipalName": [
+          "HOST/SRV-APP01.corp.contoso.example"
+        ],
+        "MemberOf": [],
+        "Description": "",
+        "UserPrincipalName": "",
+        "AllowedToDelegateTo": []
+      },
+      {
+        "SamAccountName": "svc-intranet",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000012",
+        "ObjectClass": "user",
+        "ObjectCategory": "person",
+        "DistinguishedName": "CN=svc-intranet,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 16777728,
+        "PasswordLastSet": "2026-04-01T08:00:00Z",
+        "LastLogonDate": "2026-10-29T15:00:00Z",
+        "ServicePrincipalName": [
+          "HTTP/intranet.corp.contoso.example"
+        ],
+        "MemberOf": [],
+        "Description": "Intranet front end",
+        "UserPrincipalName": "svc-intranet@corp.contoso.example",
+        "AllowedToDelegateTo": [
+          "HTTP/intranet-be.corp.contoso.example"
+        ]
+      }
+    ],
+    "serviceAccounts": [
+      {
+        "SamAccountName": "msa-print01$",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000021",
+        "ObjectClass": "msDS-ManagedServiceAccount",
+        "DistinguishedName": "CN=msa-print01,CN=Managed Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 4096,
+        "LastLogonDate": "2026-10-29T03:00:00Z",
+        "ServicePrincipalName": [],
+        "MemberOf": [],
+        "HostComputers": [
+          "CN=PRINT01,OU=Servers,DC=corp,DC=contoso,DC=example"
+        ]
+      },
+      {
+        "SamAccountName": "gmsa-web$",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000022",
+        "ObjectClass": "msDS-GroupManagedServiceAccount",
+        "DistinguishedName": "CN=gmsa-web,CN=Managed Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 4096,
+        "LastLogonDate": "2026-10-30T03:00:00Z",
+        "ServicePrincipalName": [
+          "HTTP/web2.corp.contoso.example"
+        ],
+        "MemberOf": [],
+        "PrincipalsAllowedToRetrieveManagedPassword": [
+          "CN=WEB01,OU=Servers,DC=corp,DC=contoso,DC=example",
+          "CN=WEB02,OU=Servers,DC=corp,DC=contoso,DC=example"
+        ]
+      },
+      {
+        "SamAccountName": "gmsa-sql$",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000023",
+        "ObjectClass": "msDS-GroupManagedServiceAccount",
+        "DistinguishedName": "CN=gmsa-sql,CN=Managed Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 4096,
+        "LastLogonDate": "2026-10-30T02:00:00Z",
+        "ServicePrincipalName": [
+          "MSSQLSvc/sql02.corp.contoso.example:1433"
+        ],
+        "MemberOf": [],
+        "PrincipalsAllowedToRetrieveManagedPassword": [
+          "CN=SQL02,OU=Servers,DC=corp,DC=contoso,DC=example"
+        ]
+      },
+      {
+        "SamAccountName": "gmsa-ops$",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000024",
+        "ObjectClass": "msDS-GroupManagedServiceAccount",
+        "DistinguishedName": "CN=gmsa-ops,CN=Managed Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 4096,
+        "LastLogonDate": "2026-10-30T01:00:00Z",
+        "ServicePrincipalName": [],
+        "MemberOf": [
+          "CN=Domain Admins,CN=Users,DC=corp,DC=contoso,DC=example"
+        ],
+        "PrincipalsAllowedToRetrieveManagedPassword": [
+          "CN=OPS01,OU=Servers,DC=corp,DC=contoso,DC=example"
+        ]
+      },
+      {
+        "SamAccountName": "dmsa-hrsync$",
+        "ObjectGUID": "ad000000-0000-4000-8000-000000000025",
+        "ObjectClass": "msDS-DelegatedManagedServiceAccount",
+        "DistinguishedName": "CN=dmsa-hrsync,CN=Managed Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 4096,
+        "LastLogonDate": "2026-10-30T04:00:00Z",
+        "ServicePrincipalName": [],
+        "MemberOf": [],
+        "PrincipalsAllowedToRetrieveManagedPassword": [
+          "CN=HR01,OU=Servers,DC=corp,DC=contoso,DC=example"
+        ]
+      }
+    ]
+  },
+  "graph": {
+    "users": [
+      {
+        "id": "5a000000-0000-4000-8000-000000000001",
+        "displayName": "Alice Ng",
+        "userPrincipalName": "alice@contoso.example",
+        "userType": "Member",
+        "accountEnabled": true
+      },
+      {
+        "id": "5a000000-0000-4000-8000-000000000002",
+        "displayName": "Bob Ortiz",
+        "userPrincipalName": "bob@contoso.example",
+        "userType": "Member",
+        "accountEnabled": true
+      },
+      {
+        "id": "5a000000-0000-4000-8000-000000000003",
+        "displayName": "Carol Diaz",
+        "userPrincipalName": "carol@contoso.example",
+        "userType": "Member",
+        "accountEnabled": true
+      },
+      {
+        "id": "5a000000-0000-4000-8000-000000000004",
+        "displayName": "Dave Partner",
+        "userPrincipalName": "dave_partner.example#EXT#@contosoexample.onmicrosoft.com",
+        "userType": "Guest",
+        "accountEnabled": true
+      },
+      {
+        "id": "5a000000-0000-4000-8000-000000000005",
+        "displayName": "Erin Shaw",
+        "userPrincipalName": "erin@contoso.example",
+        "userType": "Member",
+        "accountEnabled": true
+      },
+      {
+        "id": "5a000000-0000-4000-8000-000000000006",
+        "displayName": "Frank Lee",
+        "userPrincipalName": "frank@contoso.example",
+        "userType": "Member",
+        "accountEnabled": false
+      },
+      {
+        "id": "5a000000-0000-4000-8000-000000000007",
+        "displayName": "Gina Park",
+        "userPrincipalName": "gina@contoso.example",
+        "userType": "Member",
+        "accountEnabled": true
+      },
+      {
+        "id": "5a000000-0000-4000-8000-000000000008",
+        "displayName": "Harry Cole",
+        "userPrincipalName": "harry@contoso.example",
+        "userType": "Member",
+        "accountEnabled": true
+      }
+    ],
+    "applications": [
+      {
+        "id": "0a000000-0000-4000-8000-000000000001",
+        "appId": "1a000000-0000-4000-8000-000000000001",
+        "displayName": "Payroll Export",
+        "signInAudience": "AzureADMyOrg",
+        "serviceManagementReference": "CMDB-1042",
+        "passwordCredentials": [
+          {
+            "keyId": "9c000000-0000-4000-8000-000000000001",
+            "displayName": "prod",
+            "startDateTime": "2026-03-01T00:00:00Z",
+            "endDateTime": "2027-03-01T00:00:00Z"
+          }
+        ],
+        "keyCredentials": []
+      },
+      {
+        "id": "0a000000-0000-4000-8000-000000000002",
+        "appId": "1a000000-0000-4000-8000-000000000002",
+        "displayName": "HR Connector",
+        "signInAudience": "AzureADMyOrg",
+        "serviceManagementReference": null,
+        "passwordCredentials": [],
+        "keyCredentials": [
+          {
+            "keyId": "9c000000-0000-4000-8000-000000000002",
+            "displayName": "CN=hr-connector",
+            "startDateTime": "2026-01-15T00:00:00Z",
+            "endDateTime": "2027-01-15T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "id": "0a000000-0000-4000-8000-000000000003",
+        "appId": "1a000000-0000-4000-8000-000000000003",
+        "displayName": "Legacy Reports",
+        "signInAudience": "AzureADMyOrg",
+        "serviceManagementReference": null,
+        "passwordCredentials": [
+          {
+            "keyId": "9c000000-0000-4000-8000-000000000003",
+            "displayName": "old",
+            "startDateTime": "2023-12-31T00:00:00Z",
+            "endDateTime": "2025-12-31T00:00:00Z"
+          }
+        ],
+        "keyCredentials": [
+          {
+            "keyId": "9c000000-0000-4000-8000-000000000004",
+            "displayName": "CN=legacy-reports",
+            "startDateTime": "2025-06-30T00:00:00Z",
+            "endDateTime": "2027-06-30T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "id": "0a000000-0000-4000-8000-000000000004",
+        "appId": "1a000000-0000-4000-8000-000000000004",
+        "displayName": "Build Pipeline",
+        "signInAudience": "AzureADMyOrg",
+        "serviceManagementReference": "Owners aliases: Build team @ build@contoso.example;",
+        "passwordCredentials": [],
+        "keyCredentials": []
+      },
+      {
+        "id": "0a000000-0000-4000-8000-000000000005",
+        "appId": "1a000000-0000-4000-8000-000000000005",
+        "displayName": "Vendor Portal",
+        "signInAudience": "AzureADMultipleOrgs",
+        "serviceManagementReference": "CMDB-2001",
+        "passwordCredentials": [],
+        "keyCredentials": [
+          {
+            "keyId": "9c000000-0000-4000-8000-000000000005",
+            "displayName": "CN=vendor-portal",
+            "startDateTime": "2025-12-01T00:00:00Z",
+            "endDateTime": "2026-11-20T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "id": "0a000000-0000-4000-8000-000000000006",
+        "appId": "1a000000-0000-4000-8000-000000000006",
+        "displayName": "Mail Automation",
+        "signInAudience": "AzureADMyOrg",
+        "serviceManagementReference": "CMDB-1100",
+        "passwordCredentials": [
+          {
+            "keyId": "9c000000-0000-4000-8000-000000000006",
+            "displayName": "automation",
+            "startDateTime": "2026-05-01T00:00:00Z",
+            "endDateTime": "2027-05-01T00:00:00Z"
+          }
+        ],
+        "keyCredentials": []
+      },
+      {
+        "@odata.type": "#microsoft.graph.agentIdentityBlueprint",
+        "id": "0a000000-0000-4000-8000-000000000008",
+        "appId": "1a000000-0000-4000-8000-000000000008",
+        "displayName": "Benefits Agent Blueprint",
+        "signInAudience": "AzureADMyOrg",
+        "serviceManagementReference": "CMDB-4001",
+        "passwordCredentials": [],
+        "keyCredentials": []
+      },
+      {
+        "id": "0a000000-0000-4000-8000-000000000007",
+        "appId": "1a000000-0000-4000-8000-000000000007",
+        "displayName": "Deploy Bot",
+        "signInAudience": "AzureADMyOrg",
+        "serviceManagementReference": "CMDB-1300",
+        "passwordCredentials": [],
+        "keyCredentials": [
+          {
+            "keyId": "9c000000-0000-4000-8000-000000000007",
+            "displayName": "CN=deploy-bot",
+            "startDateTime": "2026-02-01T00:00:00Z",
+            "endDateTime": "2027-02-01T00:00:00Z"
+          }
+        ]
+      }
+    ],
+    "applicationOwners": {
+      "0a000000-0000-4000-8000-000000000001": [
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000001"
+        },
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000002"
+        }
+      ],
+      "0a000000-0000-4000-8000-000000000002": [
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000001"
+        }
+      ],
+      "0a000000-0000-4000-8000-000000000003": [],
+      "0a000000-0000-4000-8000-000000000004": [
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000003"
+        },
+        {
+          "@odata.type": "#microsoft.graph.servicePrincipal",
+          "id": "5b000000-0000-4000-8000-000000000007"
+        }
+      ],
+      "0a000000-0000-4000-8000-000000000005": [
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000004"
+        },
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000005"
+        }
+      ],
+      "0a000000-0000-4000-8000-000000000006": [
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000006"
+        },
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000001"
+        }
+      ],
+      "0a000000-0000-4000-8000-000000000007": [
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000003"
+        },
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000008"
+        }
+      ],
+      "0a000000-0000-4000-8000-000000000008": [
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000001"
+        }
+      ]
+    },
+    "federatedIdentityCredentials": {
+      "0a000000-0000-4000-8000-000000000004": [
+        {
+          "id": "fc000000-0000-4000-8000-000000000001",
+          "name": "github-main",
+          "issuer": "https://token.actions.githubusercontent.com",
+          "subject": "repo:contoso/build:ref:refs/heads/main",
+          "audiences": [
+            "api://AzureADTokenExchange"
+          ]
+        }
+      ]
+    },
+    "servicePrincipals": [
+      {
+        "id": "5b000000-0000-4000-8000-000000000001",
+        "appId": "1a000000-0000-4000-8000-000000000001",
+        "displayName": "Payroll Export",
+        "servicePrincipalType": "Application",
+        "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001",
+        "accountEnabled": true,
+        "signInAudience": "AzureADMyOrg",
+        "alternativeNames": [],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": [
+          "WindowsAzureActiveDirectoryIntegratedApp"
+        ]
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000002",
+        "appId": "1a000000-0000-4000-8000-000000000002",
+        "displayName": "HR Connector",
+        "servicePrincipalType": "Application",
+        "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001",
+        "accountEnabled": true,
+        "signInAudience": "AzureADMyOrg",
+        "alternativeNames": [],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": [
+          "WindowsAzureActiveDirectoryIntegratedApp"
+        ]
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000003",
+        "appId": "1a000000-0000-4000-8000-000000000003",
+        "displayName": "Legacy Reports",
+        "servicePrincipalType": "Application",
+        "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001",
+        "accountEnabled": true,
+        "signInAudience": "AzureADMyOrg",
+        "alternativeNames": [],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": []
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000004",
+        "appId": "1a000000-0000-4000-8000-000000000004",
+        "displayName": "Build Pipeline",
+        "servicePrincipalType": "Application",
+        "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001",
+        "accountEnabled": true,
+        "signInAudience": "AzureADMyOrg",
+        "alternativeNames": [],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": []
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000005",
+        "appId": "1a000000-0000-4000-8000-000000000005",
+        "displayName": "Vendor Portal",
+        "servicePrincipalType": "Application",
+        "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001",
+        "accountEnabled": true,
+        "signInAudience": "AzureADMultipleOrgs",
+        "alternativeNames": [],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": [
+          "WindowsAzureActiveDirectoryIntegratedApp"
+        ]
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000006",
+        "appId": "1a000000-0000-4000-8000-000000000006",
+        "displayName": "Mail Automation",
+        "servicePrincipalType": "Application",
+        "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001",
+        "accountEnabled": true,
+        "signInAudience": "AzureADMyOrg",
+        "alternativeNames": [],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": []
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000007",
+        "appId": "1a000000-0000-4000-8000-000000000007",
+        "displayName": "Deploy Bot",
+        "servicePrincipalType": "Application",
+        "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001",
+        "accountEnabled": true,
+        "signInAudience": "AzureADMyOrg",
+        "alternativeNames": [],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": []
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000010",
+        "appId": "00000003-0000-0000-c000-000000000000",
+        "displayName": "Microsoft Graph",
+        "servicePrincipalType": "Application",
+        "appOwnerOrganizationId": "0e0e0e0e-0000-4000-8000-0000000000aa",
+        "accountEnabled": true,
+        "signInAudience": "AzureADMultipleOrgs",
+        "alternativeNames": [],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": [],
+        "appRoles": [
+          {
+            "id": "a0000000-0000-4000-8000-000000000001",
+            "value": "Directory.ReadWrite.All"
+          },
+          {
+            "id": "a0000000-0000-4000-8000-000000000002",
+            "value": "Mail.Send"
+          },
+          {
+            "id": "a0000000-0000-4000-8000-000000000003",
+            "value": "User.Read.All"
+          },
+          {
+            "id": "a0000000-0000-4000-8000-000000000004",
+            "value": "Application.ReadWrite.OwnedBy"
+          }
+        ]
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000011",
+        "appId": "1b000000-0000-4000-8000-000000000011",
+        "displayName": "Partner CRM",
+        "servicePrincipalType": "Application",
+        "appOwnerOrganizationId": "0e0e0e0e-0000-4000-8000-000000000099",
+        "accountEnabled": true,
+        "signInAudience": "AzureADMultipleOrgs",
+        "alternativeNames": [],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": [
+          "WindowsAzureActiveDirectoryIntegratedApp"
+        ]
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000012",
+        "appId": "1b000000-0000-4000-8000-000000000012",
+        "displayName": "Old SAML Connector",
+        "servicePrincipalType": "Legacy",
+        "appOwnerOrganizationId": null,
+        "accountEnabled": true,
+        "signInAudience": null,
+        "alternativeNames": [],
+        "passwordCredentials": [
+          {
+            "keyId": "9c000000-0000-4000-8000-000000000012",
+            "displayName": "legacy",
+            "startDateTime": "2025-08-01T00:00:00Z",
+            "endDateTime": "2027-08-01T00:00:00Z"
+          }
+        ],
+        "keyCredentials": [],
+        "tags": []
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000013",
+        "appId": "1b000000-0000-4000-8000-000000000013",
+        "displayName": "vm-batch01",
+        "servicePrincipalType": "ManagedIdentity",
+        "appOwnerOrganizationId": null,
+        "accountEnabled": true,
+        "signInAudience": null,
+        "alternativeNames": [
+          "isExplicit=False",
+          "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-batch/providers/Microsoft.Compute/virtualMachines/vm-batch01"
+        ],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": []
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000014",
+        "appId": "1b000000-0000-4000-8000-000000000014",
+        "displayName": "id-deploy",
+        "servicePrincipalType": "ManagedIdentity",
+        "appOwnerOrganizationId": null,
+        "accountEnabled": true,
+        "signInAudience": null,
+        "alternativeNames": [
+          "isExplicit=True",
+          "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-deploy"
+        ],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": []
+      },
+      {
+        "id": "5b000000-0000-4000-8000-000000000015",
+        "appId": "1b000000-0000-4000-8000-000000000015",
+        "displayName": "Benefits Q&A Agent",
+        "servicePrincipalType": "ServiceIdentity",
+        "appOwnerOrganizationId": "c0ffee00-0000-4000-8000-000000000001",
+        "accountEnabled": true,
+        "signInAudience": "AzureADMyOrg",
+        "alternativeNames": [],
+        "passwordCredentials": [],
+        "keyCredentials": [],
+        "tags": []
+      }
+    ],
+    "servicePrincipalOwners": {
+      "5b000000-0000-4000-8000-000000000001": [
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000001"
+        },
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000002"
+        }
+      ],
+      "5b000000-0000-4000-8000-000000000002": [
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000001"
+        },
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000007"
+        }
+      ],
+      "5b000000-0000-4000-8000-000000000004": [
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000003"
+        },
+        {
+          "@odata.type": "#microsoft.graph.servicePrincipal",
+          "id": "5b000000-0000-4000-8000-000000000007"
+        }
+      ],
+      "5b000000-0000-4000-8000-000000000005": [
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000004"
+        },
+        {
+          "@odata.type": "#microsoft.graph.user",
+          "id": "5a000000-0000-4000-8000-000000000005"
+        }
+      ]
+    },
+    "appRoleAssignedTo": [
+      {
+        "id": "ar-01",
+        "resourceId": "5b000000-0000-4000-8000-000000000010",
+        "principalId": "5b000000-0000-4000-8000-000000000006",
+        "principalType": "ServicePrincipal",
+        "appRoleId": "a0000000-0000-4000-8000-000000000001"
+      },
+      {
+        "id": "ar-02",
+        "resourceId": "5b000000-0000-4000-8000-000000000010",
+        "principalId": "5b000000-0000-4000-8000-000000000006",
+        "principalType": "ServicePrincipal",
+        "appRoleId": "a0000000-0000-4000-8000-000000000002"
+      },
+      {
+        "id": "ar-03",
+        "resourceId": "5b000000-0000-4000-8000-000000000010",
+        "principalId": "5b000000-0000-4000-8000-000000000001",
+        "principalType": "ServicePrincipal",
+        "appRoleId": "a0000000-0000-4000-8000-000000000003"
+      },
+      {
+        "id": "ar-04",
+        "resourceId": "5b000000-0000-4000-8000-000000000010",
+        "principalId": "5b000000-0000-4000-8000-000000000013",
+        "principalType": "ServicePrincipal",
+        "appRoleId": "a0000000-0000-4000-8000-000000000003"
+      },
+      {
+        "id": "ar-05",
+        "resourceId": "5b000000-0000-4000-8000-000000000010",
+        "principalId": "5b000000-0000-4000-8000-000000000004",
+        "principalType": "ServicePrincipal",
+        "appRoleId": "a0000000-0000-4000-8000-000000000004"
+      },
+      {
+        "id": "ar-06",
+        "resourceId": "5b000000-0000-4000-8000-000000000010",
+        "principalId": "5a000000-0000-4000-8000-000000000003",
+        "principalType": "User",
+        "appRoleId": "a0000000-0000-4000-8000-000000000003"
+      }
+    ],
+    "oauth2PermissionGrants": [
+      {
+        "id": "og-01",
+        "clientId": "5b000000-0000-4000-8000-000000000011",
+        "consentType": "AllPrincipals",
+        "principalId": null,
+        "resourceId": "5b000000-0000-4000-8000-000000000010",
+        "scope": "User.Read Mail.Read"
+      },
+      {
+        "id": "og-02",
+        "clientId": "5b000000-0000-4000-8000-000000000001",
+        "consentType": "Principal",
+        "principalId": "5a000000-0000-4000-8000-000000000001",
+        "resourceId": "5b000000-0000-4000-8000-000000000010",
+        "scope": "Files.Read"
+      }
+    ]
+  },
+  "azure": {
+    "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-deploy": {
+      "federatedIdentityCredentials": [
+        {
+          "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-deploy/federatedIdentityCredentials/gh-deploy",
+          "name": "gh-deploy",
+          "type": "Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials",
+          "properties": {
+            "issuer": "https://token.actions.githubusercontent.com",
+            "subject": "repo:contoso/infra:environment:production",
+            "audiences": [
+              "api://AzureADTokenExchange"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

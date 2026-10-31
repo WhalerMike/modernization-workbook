@@ -1,0 +1,64 @@
+{
+  "window": {
+    "since": "2026-10-28T06:00:00Z",
+    "until": "2026-10-29T06:00:00Z"
+  },
+  "identities": 35,
+  "eventsRead": 0,
+  "credentialEvents": 0,
+  "consentEvents": 0,
+  "signInActivity": "Read",
+  "baseline": null,
+  "chaptersReceived": [
+    "07",
+    "09"
+  ],
+  "reviewKindsReceived": [
+    "agent-access-recertification",
+    "owner-permission-review",
+    "sponsor-attestation"
+  ],
+  "contractFilesRefused": 1,
+  "byRule": {
+    "NPI-DRF-03": {
+      "Finding": 7,
+      "Warn": 0,
+      "Info": 0
+    },
+    "NPI-DRF-04": {
+      "Finding": 0,
+      "Warn": 2,
+      "Info": 0
+    },
+    "NPI-DRF-05": {
+      "Finding": 0,
+      "Warn": 1,
+      "Info": 0
+    },
+    "NPI-DRF-06": {
+      "Finding": 3,
+      "Warn": 0,
+      "Info": 0
+    },
+    "NPI-DRF-09": {
+      "Finding": 0,
+      "Warn": 1,
+      "Info": 5
+    },
+    "NPI-REV-01": {
+      "Finding": 2,
+      "Warn": 0,
+      "Info": 0
+    },
+    "NPI-REV-02": {
+      "Finding": 1,
+      "Warn": 0,
+      "Info": 0
+    },
+    "NPI-REV-03": {
+      "Finding": 1,
+      "Warn": 0,
+      "Info": 0
+    }
+  }
+}

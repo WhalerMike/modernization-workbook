@@ -1,0 +1,245 @@
+{
+  "task": "inventory",
+  "mode": "Fixture",
+  "cloud": "gcc",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "domain": "corp.contoso.example",
+  "asOf": "2026-10-29",
+  "generated": "2026-10-31T01:51:04.6762584Z",
+  "graphPermissions": [
+    "Application.Read.All",
+    "Directory.Read.All"
+  ],
+  "azureRoles": [
+    "Reader"
+  ],
+  "adRights": [
+    "Read (default for authenticated domain users)"
+  ],
+  "requests": [
+    {
+      "call": "ad-service-users",
+      "method": "READ",
+      "target": "Get-ADUser -LDAPFilter (&(objectCategory=person)(objectClass=user)(|(servicePrincipalName=*)(msDS-AllowedToDelegateTo=*)(userAccountControl:1.2.840.113556.1.4.803:=65536)(userAccountControl:1.2.840.113556.1.4.803:=524288)(userAccountControl:1.2.840.113556.1.4.803:=16777216)(sAMAccountName=svc-*)(sAMAccountName=svc_*)(sAMAccountName=sa-*)(description=*service account*))) -Properties SamAccountName,UserPrincipalName,Description,Enabled,PasswordNeverExpires,PasswordLastSet,LastLogonDate,ServicePrincipalName,MemberOf,TrustedForDelegation,TrustedToAuthForDelegation,msDS-AllowedToDelegateTo,userAccountControl,ObjectGUID",
+      "at": "2026-10-31T01:51:02.1889667Z"
+    },
+    {
+      "call": "ad-managed-service-accounts",
+      "method": "READ",
+      "target": "Get-ADServiceAccount -Filter * -Properties Enabled,ObjectClass,ServicePrincipalName,MemberOf,PrincipalsAllowedToRetrieveManagedPassword,HostComputers,LastLogonDate,ObjectGUID",
+      "at": "2026-10-31T01:51:02.8064717Z"
+    },
+    {
+      "call": "graph-resource-sp",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals(appId='00000003-0000-0000-c000-000000000000')?$select=id,appId,appRoles",
+      "at": "2026-10-31T01:51:02.9701515Z"
+    },
+    {
+      "call": "graph-app-role-assigned-to",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals/5b000000-0000-4000-8000-000000000010/appRoleAssignedTo",
+      "at": "2026-10-31T01:51:03.1108031Z"
+    },
+    {
+      "call": "graph-app-role-assigned-to",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals/5b000000-0000-4000-8000-000000000010/appRoleAssignedTo?$skiptoken=2",
+      "at": "2026-10-31T01:51:03.1580069Z"
+    },
+    {
+      "call": "graph-app-role-assigned-to",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals/5b000000-0000-4000-8000-000000000010/appRoleAssignedTo?$skiptoken=4",
+      "at": "2026-10-31T01:51:03.1684619Z"
+    },
+    {
+      "call": "graph-oauth2-grants",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/oauth2PermissionGrants",
+      "at": "2026-10-31T01:51:03.1875559Z"
+    },
+    {
+      "call": "graph-service-principals",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals?$select=id,appId,displayName,servicePrincipalType,appOwnerOrganizationId,accountEnabled,alternativeNames,passwordCredentials,keyCredentials,signInAudience",
+      "at": "2026-10-31T01:51:03.2235593Z"
+    },
+    {
+      "call": "graph-service-principals",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals?$select=id%2CappId%2CdisplayName%2CservicePrincipalType%2CappOwnerOrganizationId%2CaccountEnabled%2CalternativeNames%2CpasswordCredentials%2CkeyCredentials%2CsignInAudience&$skiptoken=2",
+      "at": "2026-10-31T01:51:03.2389739Z"
+    },
+    {
+      "call": "graph-service-principals",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals?$select=id%2CappId%2CdisplayName%2CservicePrincipalType%2CappOwnerOrganizationId%2CaccountEnabled%2CalternativeNames%2CpasswordCredentials%2CkeyCredentials%2CsignInAudience&$skiptoken=4",
+      "at": "2026-10-31T01:51:03.2453246Z"
+    },
+    {
+      "call": "graph-service-principals",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals?$select=id%2CappId%2CdisplayName%2CservicePrincipalType%2CappOwnerOrganizationId%2CaccountEnabled%2CalternativeNames%2CpasswordCredentials%2CkeyCredentials%2CsignInAudience&$skiptoken=6",
+      "at": "2026-10-31T01:51:03.2501226Z"
+    },
+    {
+      "call": "graph-service-principals",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals?$select=id%2CappId%2CdisplayName%2CservicePrincipalType%2CappOwnerOrganizationId%2CaccountEnabled%2CalternativeNames%2CpasswordCredentials%2CkeyCredentials%2CsignInAudience&$skiptoken=8",
+      "at": "2026-10-31T01:51:03.2539492Z"
+    },
+    {
+      "call": "graph-service-principals",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals?$select=id%2CappId%2CdisplayName%2CservicePrincipalType%2CappOwnerOrganizationId%2CaccountEnabled%2CalternativeNames%2CpasswordCredentials%2CkeyCredentials%2CsignInAudience&$skiptoken=10",
+      "at": "2026-10-31T01:51:03.2571859Z"
+    },
+    {
+      "call": "graph-service-principals",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals?$select=id%2CappId%2CdisplayName%2CservicePrincipalType%2CappOwnerOrganizationId%2CaccountEnabled%2CalternativeNames%2CpasswordCredentials%2CkeyCredentials%2CsignInAudience&$skiptoken=12",
+      "at": "2026-10-31T01:51:03.2606147Z"
+    },
+    {
+      "call": "graph-applications",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications?$select=id,appId,displayName,signInAudience,passwordCredentials,keyCredentials,serviceManagementReference",
+      "at": "2026-10-31T01:51:03.2715581Z"
+    },
+    {
+      "call": "graph-applications",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications?$select=id%2CappId%2CdisplayName%2CsignInAudience%2CpasswordCredentials%2CkeyCredentials%2CserviceManagementReference&$skiptoken=2",
+      "at": "2026-10-31T01:51:03.2781466Z"
+    },
+    {
+      "call": "graph-applications",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications?$select=id%2CappId%2CdisplayName%2CsignInAudience%2CpasswordCredentials%2CkeyCredentials%2CserviceManagementReference&$skiptoken=4",
+      "at": "2026-10-31T01:51:03.2836854Z"
+    },
+    {
+      "call": "graph-applications",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications?$select=id%2CappId%2CdisplayName%2CsignInAudience%2CpasswordCredentials%2CkeyCredentials%2CserviceManagementReference&$skiptoken=6",
+      "at": "2026-10-31T01:51:03.2872449Z"
+    },
+    {
+      "call": "graph-application-owners",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000001/owners?$select=id",
+      "at": "2026-10-31T01:51:03.2920662Z"
+    },
+    {
+      "call": "graph-application-fics",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000001/federatedIdentityCredentials",
+      "at": "2026-10-31T01:51:03.3680140Z"
+    },
+    {
+      "call": "graph-application-owners",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000002/owners?$select=id",
+      "at": "2026-10-31T01:51:03.5856939Z"
+    },
+    {
+      "call": "graph-application-fics",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000002/federatedIdentityCredentials",
+      "at": "2026-10-31T01:51:03.6057561Z"
+    },
+    {
+      "call": "graph-application-owners",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000003/owners?$select=id",
+      "at": "2026-10-31T01:51:03.6179143Z"
+    },
+    {
+      "call": "graph-application-fics",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000003/federatedIdentityCredentials",
+      "at": "2026-10-31T01:51:03.6236627Z"
+    },
+    {
+      "call": "graph-application-owners",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000004/owners?$select=id",
+      "at": "2026-10-31T01:51:03.6488809Z"
+    },
+    {
+      "call": "graph-application-fics",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000004/federatedIdentityCredentials",
+      "at": "2026-10-31T01:51:03.6548654Z"
+    },
+    {
+      "call": "graph-application-owners",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000005/owners?$select=id",
+      "at": "2026-10-31T01:51:03.6719044Z"
+    },
+    {
+      "call": "graph-application-fics",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000005/federatedIdentityCredentials",
+      "at": "2026-10-31T01:51:03.6852760Z"
+    },
+    {
+      "call": "graph-application-owners",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000006/owners?$select=id",
+      "at": "2026-10-31T01:51:03.6956482Z"
+    },
+    {
+      "call": "graph-application-fics",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000006/federatedIdentityCredentials",
+      "at": "2026-10-31T01:51:03.7095531Z"
+    },
+    {
+      "call": "graph-application-owners",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000008/owners?$select=id",
+      "at": "2026-10-31T01:51:03.7355293Z"
+    },
+    {
+      "call": "graph-application-fics",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000008/federatedIdentityCredentials",
+      "at": "2026-10-31T01:51:03.7407690Z"
+    },
+    {
+      "call": "graph-application-owners",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000007/owners?$select=id",
+      "at": "2026-10-31T01:51:03.7508192Z"
+    },
+    {
+      "call": "graph-application-fics",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000007/federatedIdentityCredentials",
+      "at": "2026-10-31T01:51:03.7689269Z"
+    },
+    {
+      "call": "graph-service-principal-owners",
+      "method": "GET",
+      "target": "https://graph.microsoft.com/v1.0/servicePrincipals/5b000000-0000-4000-8000-000000000012/owners?$select=id",
+      "at": "2026-10-31T01:51:03.8535546Z"
+    },
+    {
+      "call": "arm-uami-fics",
+      "method": "GET",
+      "target": "https://management.azure.com/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-deploy/federatedIdentityCredentials?api-version=2024-11-30",
+      "at": "2026-10-31T01:51:03.9519890Z"
+    }
+  ],
+  "files": {
+    "data-platform-handoff.csv": "828611af3171c7a45f12c9f7b44ecd51c1cde685cacfb63f0f10210bbe616a25",
+    "findings.json": "3276a9492b2c45bdd746427e13745761abc60d6691d3d904aba021d7bd3e33e5",
+    "register.csv": "527ecb76f8f3922dc55d507bb41bad4a713a6b2e72c9dcda813f56671b79d9b7",
+    "register.json": "20fa096244e51bf3613e758b5129daf88df945c1ef8a9b85c1632373561a4d07"
+  },
+  "configSha256": "65fac90164ff981b74409f296d5304ef3b8d3e148675c1d81283afc0bf47d348",
+  "skipped": []
+}

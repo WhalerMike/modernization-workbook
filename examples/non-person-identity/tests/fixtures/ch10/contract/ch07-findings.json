@@ -1,0 +1,18 @@
+{
+  "schema": "fmp-npi-findings/1",
+  "chapter": "07",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "producedAt": "2026-10-28T06:00:00Z",
+  "_comment": "A sample of the contract Chapter 07 can emit. NPI-SAMPLE rules are fixture rules, not Chapter 07's.",
+  "findings": [
+    {
+      "id": "NPI-SAMPLE-01:app:1a000000-0000-4000-8000-000000000006",
+      "rule": "NPI-SAMPLE-01",
+      "severity": "Finding",
+      "chapter": "07",
+      "objectKey": "app:1a000000-0000-4000-8000-000000000006",
+      "fingerprint": "8cf0a41ece74962e",
+      "issue": "Holds Directory.ReadWrite.All; a narrower permission is available"
+    }
+  ]
+}

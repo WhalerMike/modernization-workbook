@@ -1,0 +1,156 @@
+[
+  {
+    "Id": "Directory_aud-01",
+    "ActivityDateTime": "2026-10-29T20:00:05Z",
+    "Activity": "Update application - Certificates and secrets management",
+    "Class": "CredentialChange",
+    "Result": "success",
+    "CorrelationId": "c0000000-0000-4000-8000-000000000001",
+    "InitiatorType": "user",
+    "InitiatorId": "5a000000-0000-4000-8000-000000000003",
+    "TargetType": "Application",
+    "TargetId": "0a000000-0000-4000-8000-000000000002",
+    "KeysAdded": [
+      {
+        "KeyId": "9c000000-0000-4000-8000-000000000031",
+        "KeyType": "Password",
+        "KeyUsage": "Verify"
+      }
+    ],
+    "KeysRemoved": []
+  },
+  {
+    "Id": "Directory_aud-02",
+    "ActivityDateTime": "2026-10-29T22:00:00Z",
+    "Activity": "Update application - Certificates and secrets management",
+    "Class": "CredentialChange",
+    "Result": "success",
+    "CorrelationId": "c0000000-0000-4000-8000-000000000002",
+    "InitiatorType": "app",
+    "InitiatorId": "5b000000-0000-4000-8000-000000000020",
+    "TargetType": "Application",
+    "TargetId": "0a000000-0000-4000-8000-000000000007",
+    "KeysAdded": [
+      {
+        "KeyId": "9c000000-0000-4000-8000-000000000032",
+        "KeyType": "AsymmetricX509Cert",
+        "KeyUsage": "Verify"
+      }
+    ],
+    "KeysRemoved": []
+  },
+  {
+    "Id": "Directory_aud-08",
+    "ActivityDateTime": "2026-10-29T23:00:00Z",
+    "Activity": "Update application - Certificates and secrets management",
+    "Class": "CredentialChange",
+    "Result": "failure",
+    "CorrelationId": "c0000000-0000-4000-8000-000000000008",
+    "InitiatorType": "user",
+    "InitiatorId": "5a000000-0000-4000-8000-000000000004",
+    "TargetType": "Application",
+    "TargetId": "0a000000-0000-4000-8000-000000000002",
+    "KeysAdded": [
+      {
+        "KeyId": "9c000000-0000-4000-8000-000000000035",
+        "KeyType": "Password",
+        "KeyUsage": "Verify"
+      }
+    ],
+    "KeysRemoved": []
+  },
+  {
+    "Id": "Directory_aud-03",
+    "ActivityDateTime": "2026-10-30T01:15:00Z",
+    "Activity": "Add service principal credentials",
+    "Class": "CredentialAdded",
+    "Result": "success",
+    "CorrelationId": "c0000000-0000-4000-8000-000000000003",
+    "InitiatorType": "app",
+    "InitiatorId": "5b000000-0000-4000-8000-000000000006",
+    "TargetType": "ServicePrincipal",
+    "TargetId": "5b000000-0000-4000-8000-000000000001",
+    "KeysAdded": [
+      {
+        "KeyId": "9c000000-0000-4000-8000-000000000033",
+        "KeyType": "Password",
+        "KeyUsage": "Verify"
+      }
+    ],
+    "KeysRemoved": []
+  },
+  {
+    "Id": "Directory_aud-04",
+    "ActivityDateTime": "2026-10-30T02:00:00Z",
+    "Activity": "Update application - Certificates and secrets management",
+    "Class": "CredentialChange",
+    "Result": "success",
+    "CorrelationId": "c0000000-0000-4000-8000-000000000004",
+    "InitiatorType": "user",
+    "InitiatorId": "5a000000-0000-4000-8000-000000000003",
+    "TargetType": "Application",
+    "TargetId": "0a000000-0000-4000-8000-000000000004",
+    "KeysAdded": [
+      {
+        "KeyId": "9c000000-0000-4000-8000-000000000034",
+        "KeyType": "Password",
+        "KeyUsage": "Verify"
+      }
+    ],
+    "KeysRemoved": []
+  },
+  {
+    "Id": "Directory_aud-05",
+    "ActivityDateTime": "2026-10-30T03:00:00Z",
+    "Activity": "Consent to application",
+    "Class": "Consent",
+    "Result": "success",
+    "CorrelationId": "c0000000-0000-4000-8000-000000000005",
+    "InitiatorType": "user",
+    "InitiatorId": "5a000000-0000-4000-8000-000000000001",
+    "TargetType": "ServicePrincipal",
+    "TargetId": "5b000000-0000-4000-8000-000000000006",
+    "KeysAdded": [],
+    "KeysRemoved": []
+  },
+  {
+    "Id": "Directory_aud-06",
+    "ActivityDateTime": "2026-10-30T03:00:01Z",
+    "Activity": "Add delegated permission grant",
+    "Class": "DelegatedGrant",
+    "Result": "success",
+    "CorrelationId": "c0000000-0000-4000-8000-000000000006",
+    "InitiatorType": "user",
+    "InitiatorId": "5a000000-0000-4000-8000-000000000001",
+    "TargetType": "ServicePrincipal",
+    "TargetId": "5b000000-0000-4000-8000-000000000006",
+    "KeysAdded": [],
+    "KeysRemoved": []
+  },
+  {
+    "Id": "Directory_aud-09",
+    "ActivityDateTime": "2026-10-30T04:00:00Z",
+    "Activity": "Update application - Certificates and secrets management",
+    "Class": "CredentialChange",
+    "Result": "success",
+    "CorrelationId": "c0000000-0000-4000-8000-000000000009",
+    "InitiatorType": "app",
+    "InitiatorId": "5b000000-0000-4000-8000-000000000020",
+    "TargetType": "Application",
+    "TargetId": "0a000000-0000-4000-8000-000000000005",
+    "KeysAdded": [
+      {
+        "KeyId": "9c000000-0000-4000-8000-000000000036",
+        "KeyType": "AsymmetricX509Cert",
+        "KeyUsage": "Verify"
+      }
+    ],
+    "KeysRemoved": [
+      {
+        "KeyId": "9c000000-0000-4000-8000-000000000005",
+        "KeyType": "AsymmetricX509Cert",
+        "KeyUsage": "Verify"
+      }
+    ]
+  }
+]
