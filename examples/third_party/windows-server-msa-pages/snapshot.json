@@ -1,0 +1,67 @@
+{
+  "_comment": "A pinned, unmodified copy of four Learn pages, as their source in MicrosoftDocs/windowsserverdocs: 'Setting up delegated Managed Service Accounts' (the PowerShell procedure that creates a dMSA and starts, completes, undoes and resets the migration from a traditional service account), 'Delegated Managed Service Accounts overview' (the migration's limits and the attributes each step changes), 'Manage group Managed Service Accounts' (the gMSA procedure; Learn's former 'Get started with group managed service accounts') and 'Create a Key Distribution Service (KDS) root key'. The procedures exist only inside these pages. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn procedures: group and delegated managed service accounts and the KDS root key (Active Directory PowerShell)",
+  "upstream_repo": "https://github.com/MicrosoftDocs/windowsserverdocs",
+  "upstream_path": "WindowsServerDocs/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa.md",
+  "also_upstream_path": [
+    "WindowsServerDocs/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview.md",
+    "WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts.md",
+    "WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key.md"
+  ],
+  "commit": "2205ce8e55001a9b5e8e0de43981baa8ad782562",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "delegated-managed-service-accounts-set-up-dmsa.md: 2025-09-12 (16dafaddc757fb0b4ad7e5f8da33fbfc888fbcd4); delegated-managed-service-accounts-overview.md: 2026-02-16 (ef9afdb74d7e649d54aeaf104efe28dcd857ff2f); manage-group-managed-service-accounts.md: 2026-04-16 (3342a899baae09d688bc5291f16ab95bebdcee3d); create-the-key-distribution-services-kds-root-key.md: 2025-09-22 (b81f4cc63976d2a5834df5b805eae0fb0f7114c0)",
+  "retrieved": "2026-10-30",
+  "license": "Documentation: Creative Commons Attribution 4.0 International (LICENSE). Code: MIT (LICENSE-CODE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa",
+  "also_documented_at": [
+    "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview",
+    "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts",
+    "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key"
+  ],
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "delegated-managed-service-accounts-set-up-dmsa.md": "WindowsServerDocs/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa.md",
+    "delegated-managed-service-accounts-overview.md": "WindowsServerDocs/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview.md",
+    "manage-group-managed-service-accounts.md": "WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts.md",
+    "create-the-key-distribution-services-kds-root-key.md": "WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key.md"
+  },
+  "not_copied": [
+    "The dMSA FAQ (delegated-managed-service-accounts-faq.yml) and the other gMSA pages (overview, Kerberos delegation, Credential Guard-protected machine accounts): they hold no procedure the chapter runs; the chapter links them.",
+    "Learn's Entra page 'Secure group managed service accounts': already pinned for Chapter 01 in examples/third_party/entra-service-account-pages, and read from there.",
+    "Everything else in MicrosoftDocs/windowsserverdocs, including the pages' screenshots and include files; the chapter links Learn rather than quoting it."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 18653,
+      "sha256": "9bbc1ea9fe5c96df01b311a2ac864d5b18fc87b9948bfd14770e4b44db755ee9",
+      "git_blob": "a2c95fc1559c88a47f83793422c3fc20424e1f21"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2",
+      "git_blob": "b17b032a43088ac7f3d2f3e34a2431c778a95e6f"
+    },
+    "create-the-key-distribution-services-kds-root-key.md": {
+      "bytes": 4390,
+      "sha256": "217335aae6e5bc05766647e02474069f8d9dcf82dda81aa10440a636266afbff",
+      "git_blob": "03eec09d81c1cffcab8e39919dabecb730b659ac"
+    },
+    "delegated-managed-service-accounts-overview.md": {
+      "bytes": 8718,
+      "sha256": "3eb387b9caf66872e19d3abcf0eb67ada0fb8290a9a6da55ba86c2dee5b50f56",
+      "git_blob": "f536e582c58631f0c4248d1f3e1c3d7f25b829f4"
+    },
+    "delegated-managed-service-accounts-set-up-dmsa.md": {
+      "bytes": 8306,
+      "sha256": "a3e9c2a498040a01b0a9ed1f513af4a10c34dbce6743b1418f127bdeabd9c0c0",
+      "git_blob": "8ad6f18fa0f280712629106106b34ea9ee62705f"
+    },
+    "manage-group-managed-service-accounts.md": {
+      "bytes": 16836,
+      "sha256": "f1b2786b43d79fa1f2659c371cdf316e3df06f07dfc04fd4eace80756c313adc",
+      "git_blob": "3c97367f133691a15e8fbe5f49a431676a725d38"
+    }
+  }
+}

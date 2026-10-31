@@ -1,0 +1,6 @@
+{
+  "_comment": "Reviewed data: the program decisions this chapter reconciles against, copied from the program master schedule by the identity engineering lead. D11 is the provisional target end state set at G0 (AdRetired, or KerberosIsland with an end-of-life date); D08 is the end date for legacy authentication and NTLM, which bounds every Kerberos account that stays; G5 is the date AD is retired. Fictional dates.",
+  "d11": { "decision": "KerberosIsland", "status": "Provisional", "islandEndOfLife": "2028-06-30" },
+  "d08": { "kerberosEndDate": "2027-06-30" },
+  "g5": { "date": "2027-09-30" }
+}
