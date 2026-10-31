@@ -64,6 +64,7 @@ import gitsource  # noqa: E402
 import report  # noqa: E402
 import review_dates  # noqa: E402
 import review_gate  # noqa: E402
+import netfetch  # noqa: E402
 from netfetch import HostPacer, fetch  # noqa: E402
 
 ROOT = citations.ROOT
@@ -83,6 +84,7 @@ DEFAULTS = {
     "fail_runs_before_blocked": 2,
     "max_bytes": 50_000_000,
     "skip_hosts": [],
+    "curl_hosts": [],
     "excerpt_chars": 280,
     "max_excerpts": 3,
     "min_paragraph_chars": 20,
@@ -635,6 +637,9 @@ def main() -> int:
             stream.reconfigure(encoding="utf-8", errors="replace")
     log = lambda msg: print(msg, file=sys.stderr, flush=True)  # noqa: E731
     cfg = {**DEFAULTS, **load_json(args.config, {})}
+    netfetch.CURL_HOSTS[:] = cfg["curl_hosts"]
+    if cfg["curl_hosts"] and not netfetch.CURL:
+        log(f"no curl binary: fetching {', '.join(cfg['curl_hosts'])} with urllib")
     feeds_cfg = load_json(args.feeds, {"topics": [], "feeds": []})
     state = load_json(args.state, {})
     now = dt.datetime.now(dt.timezone.utc)
