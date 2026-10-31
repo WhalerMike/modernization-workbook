@@ -30,7 +30,7 @@ The check and the plan behind the project plan's Gate 1, "every non-person ident
 
 ## The rule the code holds
 
-Owners are the most misunderstood control on an application: an owner can add a credential and act as the app ([Book 04, Chapter 05](../../../books/b04-access/05-applications-and-workload-identities.md#ownership)). Learn recommends monitoring so that every application has at least two owners where possible, and using the application's `serviceManagementReference` to reference the team contact from the organization's service or asset management database, so a contact survives any one person leaving.[^np02-ownership] Learn's owners of a service principal are users or service principals; groups can't own one.[^np02-sp-owners-cmdlet] Learn's guidance for application owners is to keep ownership to a minimal set of people and review the list every few months.[^np02-best]
+Owners are the most misunderstood control on an application: an owner can add a credential and act as the app ([Book 04, Chapter 05](../../../books/b04-access/05-applications-and-workload-identities.md#ownership)). Learn recommends monitoring so that every application has at least two owners where possible, and using the application's `serviceManagementReference` to reference the team contact from the organization's service or asset management database, so a contact survives any one person leaving.[^np02-ownership] Learn describes a service principal's owners as users or service principals.[^np02-sp-owners-cmdlet] Learn's guidance for application owners is to keep ownership to a minimal set of people and review the list every few months.[^np02-best]
 
 The program's rule, from the plan and Book 02, is stricter *(Design guidance)*:
 
@@ -340,7 +340,7 @@ Where Learn's pages differ: the tutorial labels its ownerless read with `Applica
 :::
 
 [^np02-ownership]: Microsoft Learn, "Overview of enterprise application ownership in Microsoft Entra ID," FAQ, <https://learn.microsoft.com/entra/identity/enterprise-apps/overview-assign-app-owners> (accessed Oct 30, 2026).
-[^np02-sp-owners-cmdlet]: Microsoft Learn, "Get-MgServicePrincipalOwner," description, <https://learn.microsoft.com/powershell/module/microsoft.graph.applications/get-mgserviceprincipalowner?view=graph-powershell-1.0> (accessed Oct 30, 2026).
+[^np02-sp-owners-cmdlet]: Microsoft Learn, "Get-MgServicePrincipalOwner," description, <https://learn.microsoft.com/powershell/module/microsoft.graph.applications/get-mgserviceprincipalowner?view=graph-powershell-1.0> (accessed Oct 31, 2026).
 [^np02-best]: Microsoft Learn, "Security best practices for application properties in Microsoft Entra ID," app ownership configuration, <https://learn.microsoft.com/entra/identity-platform/security-best-practices-for-app-registration> (accessed Oct 30, 2026).
 [^np02-govern-entra]: Microsoft Learn, "Governing Microsoft Entra service accounts," build a lifecycle process, <https://learn.microsoft.com/entra/architecture/govern-service-accounts> (accessed Oct 30, 2026).
 [^np02-govern-onprem]: Microsoft Learn, "Govern on-premises service accounts," deprovision service accounts, <https://learn.microsoft.com/entra/architecture/service-accounts-govern-on-premises> (accessed Oct 30, 2026).

@@ -49,6 +49,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 27 | Lab 1 outputs (17 passed; permissions; 8 conversions, 4/2 exchange tests, 7 Finding and 1 Warn, 20 actions with 4 writes, the parallel run statuses and the plan's hash; findings, exchange tests and conversion tables; dry run; apply; the refusal; 20 reads and 6 fake exchanges; 152 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 28 | Lab 2 behavior (the real `iss` and `sub`; the real mismatch error; whether a secret's key ID appears; the Azure roles) | Lab 2 | not run against a tenant; rows 41, 43, 44, 45, 47 | — |
 | 29 | Lab 1 rerun after NpiCore's JSON writer switched to LF on every platform: the plan hash | Lab 1 | updated by running the commands as written; the counts and findings didn't change | local run, October 31, 2026 |
+| 30 | Resource Manager hosts; the P1 or P2 license for the sign-in log | Context; Verified facts | corrected sources: the national cloud deployments page names no Resource Manager host, so the hosts now cite *Compare Azure Government and global Azure*; the license is on the signIn resource page, not the List signIns page | [^np05-compare], [^np05-signin-resource], accessed October 31, 2026 |
 
 ## Carry-forward ledger
 

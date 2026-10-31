@@ -36,6 +36,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 22 | Book 02's table and function disagree on MSA and gMSA risk | Risk | recorded (row 9) | Book 02, Chapter 09 |
 | 23 | Lab 1 outputs (20 passed; permissions; 35 identities, risk and findings counts; the eight HIGH rows; two error texts; the hand-off rows; 36 requests; 97 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 24 | Lab 2 behavior (federated credentials readable with `Application.Read.All`; `nextLink` host; dMSA class; default read returns the AD properties) | Lab 2 | not run against a tenant or domain; rows 1, 2, 4 and 7 | — |
+| 25 | Delegated roles for listing federated credentials and an app's appRoleAssignedTo; where the description attribute comes from; the paging host rule | Calls; the model table; the gap table | corrected: Learn's federated credential list names the owner, Cloud Application Administrator or Application Administrator, not Directory Readers or Global Reader; appRoleAssignedTo lists Directory Readers, not Global Reader; the description attribute is on *Securing on-premises service accounts*; the paging page doesn't mention the host, so that rule is labeled the program's | [^np01-fic-list], [^np01-approle-to], [^np01-onprem], [^np01-paging], accessed October 31, 2026 |
 
 ## Carry-forward ledger
 
