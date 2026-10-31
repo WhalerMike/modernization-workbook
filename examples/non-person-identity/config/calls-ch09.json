@@ -1,0 +1,225 @@
+{
+  "_comment": "Chapter 09: every call NpiAgentId makes, with the least-privileged Microsoft Graph permission from the Learn page for that call, read on October 30, 2026. Same schema as calls.json. 'tasks' declares what each task needs; tests/NpiAgentId.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls, or when the read task holds anything but GET or a permission ending in ReadWrite. The agent-id read task never runs in a cloud where D-N6 says agent identities aren't available (config/agent-id-capabilities-ch09.json); the fallback reads only the policies, roles, users, workflows and audit log. The agent Conditional Access properties exist only on beta (research gaps, row 85).",
+  "tasks": {
+    "agent-id": {
+      "mode": "read",
+      "chapter": "09",
+      "graphPermissions": ["AgentIdentity.Read.All", "AgentIdentityBlueprint.Read.All", "Application.Read.All", "AuditLog.Read.All", "CustomSecAttributeAssignment.Read.All", "LifecycleWorkflows-Workflow.Read.All", "LifecycleWorkflows-Workflow.ReadBasic.All", "Policy.Read.All", "RoleManagement.Read.Directory", "User.Read.All"],
+      "azureRoles": [],
+      "adRights": [],
+      "delegatedRoles": ["Global Reader", "Attribute Assignment Reader", "Reports Reader"]
+    },
+    "agent-ca-apply": {
+      "mode": "write",
+      "chapter": "09",
+      "graphPermissions": ["Policy.Read.All", "Policy.ReadWrite.ConditionalAccess"],
+      "azureRoles": [],
+      "adRights": [],
+      "delegatedOnly": true,
+      "delegatedRole": "Conditional Access Administrator"
+    }
+  },
+  "calls": [
+    {
+      "id": "agid-authorization-policy",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/policies/authorizationPolicy",
+      "permissions": ["Policy.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/authorizationpolicy-get?view=graph-rest-1.0",
+      "note": "Reads allowedToCreateApps (Users can register applications) and permissionGrantPoliciesAssigned (user consent). Learn documents no Graph property for 'Users can create agent blueprints' (research gaps, row 81), so that setting comes from a dated attestation."
+    },
+    {
+      "id": "agid-blueprints",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications/microsoft.graph.agentIdentityBlueprint",
+      "permissions": ["AgentIdentityBlueprint.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/agentidentityblueprint-list?view=graph-rest-1.0",
+      "note": "Returns blueprints only, not other applications. keyCredentials and passwordCredentials come back; the key thumbprint only with $select, which the check doesn't need."
+    },
+    {
+      "id": "agid-blueprint-sponsors",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications/{id}/microsoft.graph.agentIdentityBlueprint/sponsors",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/agentidentityblueprint-list-sponsors?view=graph-rest-1.0",
+      "note": "This page names Application.Read.All as least privileged, where the blueprint's other read pages name AgentIdentityBlueprint.Read.All (research gaps, row 83)."
+    },
+    {
+      "id": "agid-blueprint-owners",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications/{id}/microsoft.graph.agentIdentityBlueprint/owners",
+      "permissions": ["AgentIdentityBlueprint.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/agentidentityblueprint-list-owners?view=graph-rest-1.0"
+    },
+    {
+      "id": "agid-blueprint-fics",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications/{id}/federatedIdentityCredentials",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/federatedidentitycredential-list?view=graph-rest-1.0",
+      "note": "A managed identity is added to a blueprint as a federated identity credential whose issuer is the tenant's own login endpoint (Learn, Create an agent identity blueprint)."
+    },
+    {
+      "id": "agid-blueprint-inheritable",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications/{id}/microsoft.graph.agentIdentityBlueprint/inheritablePermissions",
+      "permissions": ["AgentIdentityBlueprint.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/agentidentityblueprint-list-inheritablepermissions?view=graph-rest-1.0",
+      "note": "The API reference puts the type cast after the ID; Learn's procedure page puts it before (research gaps, row 84). The code uses the API reference's form."
+    },
+    {
+      "id": "agid-identities",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals/microsoft.graph.agentIdentity",
+      "permissions": ["AgentIdentity.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/agentidentity-list?view=graph-rest-1.0",
+      "note": "Sponsors are read with $expand=sponsors($select=id) on this list, because Learn's List agentIdentity sponsors page names only the application permission AgentIdentity.ReadWrite.All, a write permission for a read (research gaps, row 82)."
+    },
+    {
+      "id": "agid-identity-owners",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{id}/microsoft.graph.agentIdentity/owners",
+      "permissions": ["AgentIdentity.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/agentidentity-list-owners?view=graph-rest-1.0"
+    },
+    {
+      "id": "agid-identity-attributes",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{id}",
+      "permissions": ["Application.Read.All", "CustomSecAttributeAssignment.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/custom-security-attributes-examples",
+      "note": "Only $select=id,customSecurityAttributes. Learn: reading attribute assignments on service principals takes CustomSecAttributeAssignment.Read.All and Application.Read.All, and a person needs Attribute Assignment Reader; no other administrator role reads them by default."
+    },
+    {
+      "id": "agid-identity-app-roles",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{id}/appRoleAssignments",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0"
+    },
+    {
+      "id": "agid-role-assignments",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleAssignments",
+      "permissions": ["RoleManagement.Read.Directory"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0",
+      "note": "One read per AI identity with $filter=principalId eq '{id}'. Active assignments are what the identity holds now: standing, or activated."
+    },
+    {
+      "id": "agid-user",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/users/{id}",
+      "permissions": ["User.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0",
+      "note": "Each sponsor and technical owner once, $select=id,userPrincipalName,userType,accountEnabled,employeeType. employeeType as the HR-mastered employee marker is the program's assumption (research gaps, row 89)."
+    },
+    {
+      "id": "agid-ca-policies",
+      "api": "graph",
+      "method": "GET",
+      "version": "beta",
+      "path": "/identity/conditionalAccess/policies",
+      "permissions": ["Policy.Read.All"],
+      "stage": "beta (agent targeting and agent risk: preview)",
+      "tasks": ["agent-id", "agent-ca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0",
+      "note": "includeAgentIdServicePrincipals, agentIdServicePrincipalFilter and agentIdRiskLevels are beta properties; v1.0 doesn't return them."
+    },
+    {
+      "id": "agid-lcw-workflows",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identityGovernance/lifecycleWorkflows/workflows",
+      "permissions": ["LifecycleWorkflows-Workflow.ReadBasic.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-workflows?view=graph-rest-1.0"
+    },
+    {
+      "id": "agid-lcw-workflow-tasks",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identityGovernance/lifecycleWorkflows/workflows/{id}/tasks",
+      "permissions": ["LifecycleWorkflows-Workflow.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-task?view=graph-rest-1.0",
+      "note": "Looks for the three sponsor task definition IDs Learn publishes."
+    },
+    {
+      "id": "agid-directory-audits",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/auditLogs/directoryAudits",
+      "permissions": ["AuditLog.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["agent-id"],
+      "learn": "https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0",
+      "note": "$filter=category eq 'ApplicationManagement' and activityDateTime ge {since}. Agent objects appear under the base type's activities; targetResources carry agentType (Learn, Microsoft Entra Agent ID logs)."
+    },
+    {
+      "id": "agid-ca-create",
+      "api": "graph",
+      "method": "POST",
+      "version": "beta",
+      "path": "/identity/conditionalAccess/policies",
+      "permissions": ["Policy.Read.All", "Policy.ReadWrite.ConditionalAccess"],
+      "allowedBody": { "state": "enabledForReportingButNotEnforced", "grantControls.builtInControls": ["block"] },
+      "stage": "beta (agent targeting and agent risk: preview)",
+      "tasks": ["agent-ca-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0",
+      "note": "Learn: Policy.Read.All and Policy.ReadWrite.ConditionalAccess together; Conditional Access Administrator. The writer sends only report-only Block policies, never PATCH or DELETE."
+    }
+  ]
+}
