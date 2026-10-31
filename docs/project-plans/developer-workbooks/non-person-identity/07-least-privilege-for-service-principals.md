@@ -372,7 +372,7 @@ Where Learn's pages differ: the review page's PowerShell script removes applicat
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 06 — gMSAs, dMSAs and the Kerberos Island](06-gmsa-dmsa-and-the-kerberos-island.md) · [Workbook index](index.md) · [Next: Chapter 08 — Conditional Access for Workload Identities →](08-conditional-access-for-workload-identities.md)
+← Previous: Chapter 06 — gMSAs, dMSAs and the Kerberos Island · [Workbook index](index.md) · Next: Chapter 08 — Conditional Access for Workload Identities →
 :::
 
 [^np07-sp-approles]: Microsoft Learn, "List appRoleAssignments granted to a service principal," permissions, HTTP request and note, <https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0> (accessed Oct 30, 2026).
