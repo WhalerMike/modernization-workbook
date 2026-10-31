@@ -825,7 +825,9 @@ class Checker:
     # ------------------------------------------------------------- steps
     def sitemap(self) -> Result:
         # Both generated files are includes Quarto resolves before its pre-render scripts run.
-        for script in ("scripts/generate_sitemap.py", "scripts/command_reference.py"):
+        # The command reference goes first: the site map runs `quarto inspect`, which needs
+        # every include to exist.
+        for script in ("scripts/command_reference.py", "scripts/generate_sitemap.py"):
             code, _ = run([PY, script])
             if code != 0:
                 return Result("", "fail", detail=[f"{script}: exit {code}"])
