@@ -89,6 +89,11 @@ FULL_PREFIXES = {
 }
 GENERATOR = re.compile(r"scripts/generate_[^/]*\.py")
 DOCS_UNDERSCORE = re.compile(r"docs/_[^/]*(/.*)?")   # docs/_* includes and partials
+# The edition record, and the pages that carry a generated version history or
+# the Archive (scripts/generate_revisions.py).
+REVISIONS = re.compile(r"data/editions\.yml|data/edition-assets/[^/]+\.json|scripts/(generate_revisions|cut_edition)\.py"
+                       r"|docs/about/archive\.md|docs/books/(b\d\d-[^/]+/index|guides/[^/_][^/]*)\.md"
+                       r"|docs/project-plans/developer-workbooks/[^/]+/index\.md")
 
 
 @dataclass(frozen=True)
@@ -265,6 +270,8 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
             add("video-manifest", p)
         if p.startswith(("data/project-plans/", "scripts/project_plans/", "docs/project-plans/")):
             add("project-plans", p)
+        if REVISIONS.fullmatch(p):
+            add("revisions", p)
         if p in ("data/federal-compliance-compliance-spine.yml", "scripts/render_authorities_table.py") or (
                 p.startswith("docs/compliance/") and p.endswith(".md")):
             add("authorities", p)
@@ -272,6 +279,7 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
                                                              "scripts/check_evidence_maps.py"):
             add("evidence-maps", p)
         if p in ("scripts/check_changed.py", "scripts/check_evidence_maps.py", "scripts/check_neutrality.py",
+                 "scripts/generate_revisions.py",
                  "scripts/run_example_tests.py", ".github/workflows/pr-checks.yml") or p.startswith("scripts/tests/"):
             add("unit-tests", p)
     import check_neutrality
@@ -1030,6 +1038,8 @@ class Checker:
                 ("Kit zips (all)", lambda: self.kits(list(self.repo.kits), "_site/downloads")),
                 ("Redirects", self.redirects),
                 ("Video manifest is current", self.simple([PY, "scripts/generate_video_manifest.py", "--check"])),
+                ("Revision histories and the Archive are current",
+                 self.simple([PY, "scripts/generate_revisions.py", "--check"])),
             ]
         elif p.tier == "CHANGED":
             steps += [
@@ -1050,6 +1060,9 @@ class Checker:
                           self.a11y))
         if "video-manifest" in t and p.tier != "FULL":
             steps.append(("Video manifest is current", self.simple([PY, "scripts/generate_video_manifest.py", "--check"])))
+        if "revisions" in t and p.tier != "FULL":
+            steps.append(("Revision histories and the Archive are current",
+                          self.simple([PY, "scripts/generate_revisions.py", "--check"])))
         if "project-plans" in t:
             steps.append(("Project plans are current", self.simple([PY, "scripts/project_plans/build.py", "--check"])))
         if "authorities" in t:

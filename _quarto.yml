@@ -148,6 +148,8 @@ website:
             text: "Inspiration"
           - href: docs/about/sources-and-verification.md
             text: "Sources and Verification"
+          - href: docs/about/archive.md
+            text: "Archive: every edition"
       - href: sitemap.qmd
         text: "Site Map"
     right:
