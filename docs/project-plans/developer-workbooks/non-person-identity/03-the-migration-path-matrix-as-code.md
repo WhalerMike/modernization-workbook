@@ -322,7 +322,7 @@ Where Learn's pages differ: the on-premises table has no dMSA column where Windo
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 02 — Ownership and the Orphan Rule](02-ownership-and-the-orphan-rule.md) · [Workbook index](index.md) · [Next: Chapter 04 — App Management Policies and Certificate Rotation →](04-app-management-policies-and-certificate-rotation.md)
+[← Previous: Chapter 02 — Ownership and the Orphan Rule](02-ownership-and-the-orphan-rule.md) · [Workbook index](index.md) · Next: Chapter 04 — App Management Policies and Certificate Rotation →
 :::
 
 [^np03-onprem]: Microsoft Learn, "Securing on-premises service accounts," types of on-premises service accounts; choose the right type of service account, <https://learn.microsoft.com/entra/architecture/service-accounts-on-premises> (accessed Oct 30, 2026).
