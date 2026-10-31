@@ -72,13 +72,26 @@ The validation kit gained VK-SYNC-01, VK-CA-01 and VK-PIV-01 for the gates the f
 
 **Checks run for the second pass.** Pester on PowerShell 7: 265 passed, 0 failed (`examples/validation-kit/tests/powershell`), including `Safety.Tests.ps1` (GET only; the new checks add no beta path and no non-GET call). Windows PowerShell 5.1: the four new checks give Pass on the pass fixture and the expected Fail and count on the fail fixture (Pester 5 isn't installed for 5.1 on the machine that ran this pass). `PYTHONUTF8=1 python scripts/check_neutrality.py`: pass. `python scripts/project_plans/build.py --check`: pass, after the plan's risk note was updated to name the three checks.
 
+## Third pass, 2026-10-31: attribute assessment tools for Gates 0 to 3, 8 and 9
+
+Four tools were added for the attribute assessments the guide asked for and no kit performed: the Start Kit's attribute survey and wave lists (`Get-FMPAttributeSurvey`, `Get-FMPWaveList`), the validation kit's VK-HR-07 (the survey on the Entra side) and VK-SYNC-03 (sync parity for the estate, joined on the on-premises SID), the `WaveId` option that runs VK-HR-01 to 04 and VK-HR-07 on one wave, and the HCM example's correlation tool (HR extract against AD and Entra ID, record by record). The guide's kit table, path table, Validate steps for Gates 0, 1, 2, 3, 8 and 9, evidence lists, "Where the kits stop" rows 0 to 3 and 8, and checklist now name them.
+
+| # | Fact | Where in guide | Source (read 2026-10-31) |
+|---|---|---|---|
+| 43 | `employeeID`, `employeeType` and `department` aren't in the Global Catalog by default; `manager` is. The survey reads `isMemberOfPartialAttributeSet` at run time instead of relying on that | Gate 0 Validate (`GcCoverage.csv`); Prerequisites | Learn's schema pages, cited in `examples/start-kit/README.md` ("How it surveys attributes and builds waves") |
+| 44 | `onPremisesSecurityIdentifier`, `onPremisesSyncEnabled`, `employeeType` and `onPremisesExtensionAttributes` are returned only with `$select`; the manager is read with `GET /users?$expand=manager`, and `$levels` only applies to a single user | Gates 1 to 3 Validate (VK-HR-07, VK-SYNC-03) | Learn's user resource and List manager pages, cited in `examples/validation-kit/README.md` |
+
+The guide still states no Microsoft fact itself: rows 43 and 44 are the kits' facts, recorded here because the Validate steps rely on them.
+
+**Checks run for the third pass.** Every `VK-*` ID in the guide is in the catalog (now including VK-HR-07 and VK-SYNC-03). The three kits' suites: Start Kit Pester 246 passed (PowerShell 7) and the survey, end-to-end and safety files 115 passed on Windows PowerShell 5.1; validation kit Pester 297 passed on both; HCM example pytest 70 and Pester 62 passed, both clients asserted against the same expected correlation report and quarantine. The README anchors the guide links to (`#how-it-surveys-attributes-and-builds-waves`, `#one-wave-at-a-time`, `#correlate-hr-with-the-directories`) exist.
+
 ## Design guidance in the guide
 
 Labelled *(design guidance)* or stated as the program's position: the Mainframe PIN running example and its per-gate table (the identifier decision itself is the agency's); the device, server and non-person targeting conventions in Gate 5, including recording owners and sponsors by the enterprise person key; the mover proof as a gate before cut-over; and the post-AD binding writer (also marked unverified, an open pilot).
 
 ## Gaps recorded in the guide
 
-The guide's "Where the kits stop" table states what no validation kit check reads and what stands in for it. After the second pass: the sync configuration, scoping and shadow differences (Gate 3, beside VK-SYNC-01's sample comparison), conditions other than users and applications in a grant and block pair and the report-only results (Gate 5, beside VK-CA-01), whether a binding value belongs to a current card and the tenant's affinity setting (Gate 6, beside VK-PIV-01), the field-by-field HR comparison (Gate 2), the seven-day sole-source report (Gate 8) and the registry-to-tenant role comparison (Gate 9).
+The guide's "Where the kits stop" table states what no validation kit check reads and what stands in for it. After the third pass, Gate 2's field-by-field HR comparison is covered by the correlation tool; who writes each attribute (Gate 1) and the sync engine's own filters (Gate 3) remain gaps. After the second pass: the sync configuration, scoping and shadow differences (Gate 3, beside VK-SYNC-01's sample comparison), conditions other than users and applications in a grant and block pair and the report-only results (Gate 5, beside VK-CA-01), whether a binding value belongs to a current card and the tenant's affinity setting (Gate 6, beside VK-PIV-01), the field-by-field HR comparison (Gate 2), the seven-day sole-source report (Gate 8) and the registry-to-tenant role comparison (Gate 9).
 
 ## Corrections, 2026-10-30 (found while writing the Deeper Dive decks)
 
