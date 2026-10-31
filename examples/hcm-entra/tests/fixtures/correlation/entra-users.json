@@ -1,0 +1,121 @@
+{
+  "value": [
+    {
+      "id": "00000000-0000-4000-8000-000000000301",
+      "userPrincipalName": "morgan.lee@contoso.example",
+      "userType": "Member",
+      "accountEnabled": true,
+      "employeeId": "100000",
+      "employeeType": "Employee",
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": "ORG-100",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "EXE"
+      },
+      "manager": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000302",
+      "userPrincipalName": "jose.ramirez@contoso.example",
+      "userType": "Member",
+      "accountEnabled": true,
+      "employeeId": "100002",
+      "employeeType": "Employee",
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": "ORG-210",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "TEC"
+      },
+      "manager": {
+        "id": "00000000-0000-4000-8000-000000000402",
+        "employeeId": "100001"
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000303",
+      "userPrincipalName": "riley.chen@contoso.example",
+      "userType": "Member",
+      "accountEnabled": false,
+      "employeeId": "100003",
+      "employeeType": "Employee",
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": "ORG-100",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "PRO"
+      },
+      "manager": {
+        "id": "00000000-0000-4000-8000-000000000403",
+        "employeeId": "100000"
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000304",
+      "userPrincipalName": "kai.morales@contoso.example",
+      "userType": "Member",
+      "accountEnabled": true,
+      "employeeId": "100014",
+      "employeeType": "Employee",
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": "ORG-100",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "PRO"
+      },
+      "manager": {
+        "id": "00000000-0000-4000-8000-000000000404",
+        "employeeId": "100000"
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000305",
+      "userPrincipalName": "blair.stone@contoso.example",
+      "userType": "Member",
+      "accountEnabled": true,
+      "employeeId": "100016",
+      "employeeType": "Employee",
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": "org 300",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "PRO"
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000306",
+      "userPrincipalName": "cloud.orphan@contoso.example",
+      "userType": "Member",
+      "accountEnabled": true,
+      "employeeId": "300001",
+      "employeeType": "Employee",
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": "ORG-100",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "PRO"
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000307",
+      "userPrincipalName": "partner_guest#EXT#@contoso.example",
+      "userType": "Guest",
+      "accountEnabled": true,
+      "employeeId": "",
+      "employeeType": null,
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": null,
+        "extensionAttribute11": null,
+        "extensionAttribute12": null
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000308",
+      "userPrincipalName": "kiosk@contoso.example",
+      "userType": "Member",
+      "accountEnabled": true,
+      "employeeId": "",
+      "employeeType": null,
+      "onPremisesExtensionAttributes": {
+        "extensionAttribute10": null,
+        "extensionAttribute11": null,
+        "extensionAttribute12": null
+      }
+    }
+  ]
+}

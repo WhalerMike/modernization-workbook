@@ -1,0 +1,325 @@
+{
+  "schema": "fmp-hcm-correlation/1",
+  "as_of": "2026-10-25",
+  "counts": {
+    "matched": 7,
+    "matched_with_conflicts": 3,
+    "hr_only": 4,
+    "hr_only_inactive": 1,
+    "directory_only": 2,
+    "directory_only_disabled": 1,
+    "duplicate_key": 2,
+    "no_key": 2,
+    "hr_no_key": 1
+  },
+  "totals": {
+    "hr_records": 19,
+    "ad_accounts": 15,
+    "ad_service_accounts_skipped": 1,
+    "entra_accounts": 7,
+    "quarantined": 14
+  },
+  "rates": {
+    "active_workers_matched_percent": 61.5,
+    "enabled_accounts_matched_percent": 63.2
+  },
+  "conflicts_by_field": {
+    "ad.account_enabled": 1,
+    "ad.org_code": 1,
+    "ad.worker_type": 1,
+    "ad.worker_type_code": 1
+  },
+  "records": [
+    {
+      "person_key": "100000",
+      "status": "matched",
+      "sides": {
+        "hr": 1,
+        "ad": 1,
+        "entra": 1
+      },
+      "conflicts": [],
+      "reasons": []
+    },
+    {
+      "person_key": "100001",
+      "status": "matched",
+      "sides": {
+        "hr": 1,
+        "ad": 1,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": []
+    },
+    {
+      "person_key": "100002",
+      "status": "matched_with_conflicts",
+      "sides": {
+        "hr": 1,
+        "ad": 1,
+        "entra": 1
+      },
+      "conflicts": [
+        "ad.org_code"
+      ],
+      "reasons": [
+        "AD extensionAttribute10 differs from HR's organization code"
+      ]
+    },
+    {
+      "person_key": "100003",
+      "status": "matched_with_conflicts",
+      "sides": {
+        "hr": 1,
+        "ad": 1,
+        "entra": 1
+      },
+      "conflicts": [
+        "ad.account_enabled"
+      ],
+      "reasons": [
+        "HR status INACTIVE, but the AD account is enabled"
+      ]
+    },
+    {
+      "person_key": "100004",
+      "status": "matched_with_conflicts",
+      "sides": {
+        "hr": 1,
+        "ad": 1,
+        "entra": 0
+      },
+      "conflicts": [
+        "ad.worker_type_code",
+        "ad.worker_type"
+      ],
+      "reasons": [
+        "AD extensionAttribute11 differs from HR's worker type code",
+        "AD employeeType differs from HR's worker type"
+      ]
+    },
+    {
+      "person_key": "100005",
+      "status": "matched",
+      "sides": {
+        "hr": 1,
+        "ad": 1,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": []
+    },
+    {
+      "person_key": "100006",
+      "status": "hr_only",
+      "sides": {
+        "hr": 1,
+        "ad": 0,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": [
+        "an active worker with no account in either directory: a missing identity"
+      ]
+    },
+    {
+      "person_key": "100007",
+      "status": "hr_only",
+      "sides": {
+        "hr": 1,
+        "ad": 0,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": [
+        "an active worker with no account in either directory: a missing identity"
+      ]
+    },
+    {
+      "person_key": "100008",
+      "status": "duplicate_key",
+      "sides": {
+        "hr": 2,
+        "ad": 1,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": [
+        "held by 2 records in HR"
+      ]
+    },
+    {
+      "person_key": "100009",
+      "status": "matched",
+      "sides": {
+        "hr": 1,
+        "ad": 1,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": []
+    },
+    {
+      "person_key": "100010",
+      "status": "hr_only_inactive",
+      "sides": {
+        "hr": 1,
+        "ad": 0,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": []
+    },
+    {
+      "person_key": "100011",
+      "status": "hr_only",
+      "sides": {
+        "hr": 1,
+        "ad": 0,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": [
+        "an active worker with no account in either directory: a missing identity"
+      ]
+    },
+    {
+      "person_key": "100013",
+      "status": "matched",
+      "sides": {
+        "hr": 1,
+        "ad": 1,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": []
+    },
+    {
+      "person_key": "100014",
+      "status": "matched",
+      "sides": {
+        "hr": 1,
+        "ad": 0,
+        "entra": 1
+      },
+      "conflicts": [],
+      "reasons": []
+    },
+    {
+      "person_key": "100015",
+      "status": "duplicate_key",
+      "sides": {
+        "hr": 1,
+        "ad": 2,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": [
+        "held by 2 records in AD"
+      ]
+    },
+    {
+      "person_key": "100016",
+      "status": "matched",
+      "sides": {
+        "hr": 1,
+        "ad": 1,
+        "entra": 1
+      },
+      "conflicts": [],
+      "reasons": []
+    },
+    {
+      "person_key": "12345678901234567",
+      "status": "hr_only",
+      "sides": {
+        "hr": 1,
+        "ad": 0,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": [
+        "an active worker with no account in either directory: a missing identity"
+      ]
+    },
+    {
+      "person_key": "200001",
+      "status": "directory_only",
+      "sides": {
+        "hr": 0,
+        "ad": 1,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": [
+        "an enabled account no worker record holds: an orphan candidate, owned or on a dated exception"
+      ]
+    },
+    {
+      "person_key": "200002",
+      "status": "directory_only_disabled",
+      "sides": {
+        "hr": 0,
+        "ad": 1,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": []
+    },
+    {
+      "person_key": "300001",
+      "status": "directory_only",
+      "sides": {
+        "hr": 0,
+        "ad": 0,
+        "entra": 1
+      },
+      "conflicts": [],
+      "reasons": [
+        "an enabled account no worker record holds: an orphan candidate, owned or on a dated exception"
+      ]
+    },
+    {
+      "person_key": "",
+      "account": "ad:S-1-5-21-1000-2015",
+      "status": "no_key",
+      "sides": {
+        "hr": 0,
+        "ad": 1,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": [
+        "an enabled account with no person key: it can't be correlated"
+      ]
+    },
+    {
+      "person_key": "",
+      "account": "entra:00000000-0000-4000-8000-000000000308",
+      "status": "no_key",
+      "sides": {
+        "hr": 0,
+        "ad": 0,
+        "entra": 1
+      },
+      "conflicts": [],
+      "reasons": [
+        "an enabled account with no person key: it can't be correlated"
+      ]
+    },
+    {
+      "person_key": "",
+      "status": "hr_no_key",
+      "sides": {
+        "hr": 1,
+        "ad": 0,
+        "entra": 0
+      },
+      "conflicts": [],
+      "reasons": [
+        "an HR record with no person number: it can't be correlated"
+      ]
+    }
+  ]
+}

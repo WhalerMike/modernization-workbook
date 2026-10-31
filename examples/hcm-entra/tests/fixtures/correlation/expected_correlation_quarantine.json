@@ -1,0 +1,748 @@
+[
+  {
+    "person_key": "100002",
+    "status": "matched_with_conflicts",
+    "reasons": [
+      "AD extensionAttribute10 differs from HR's organization code"
+    ],
+    "hr_records": [
+      {
+        "PersonNumber": "100002",
+        "AssignmentStatusType": "ACTIVE",
+        "WorkerType": "EMP",
+        "FirstName": "José",
+        "LastName": "Ramírez",
+        "DisplayName": "José Ramírez",
+        "JobName": "IT Specialist",
+        "JobCode": "IT-2210",
+        "DepartmentName": "Infrastructure Services",
+        "DepartmentCode": "ORG-210",
+        "BusinessUnit": "Technology",
+        "CostCenter": "CC-5200",
+        "LegalEmployer": "Contoso Agency",
+        "ManagerPersonNumber": "100001",
+        "PositionCategory": "TEC",
+        "WorkCountry": "US",
+        "HireDate": "2019-06-17",
+        "TerminationDate": "",
+        "UtcOffset": "-08:00",
+        "UserName": ""
+      }
+    ],
+    "ad_accounts": [
+      {
+        "Domain": "contoso.example",
+        "ObjectGUID": "5c000000-0000-4000-8000-000000000003",
+        "SID": "S-1-5-21-1000-2003",
+        "SamAccountName": "jose.ramirez",
+        "Enabled": "True",
+        "UserPrincipalName": "jose.ramirez@contoso.example",
+        "Mail": "jose.ramirez@contoso.example",
+        "EmployeeId": "100002",
+        "EmployeeNumber": "",
+        "EmployeeType": "Employee",
+        "Department": "",
+        "Manager": "",
+        "Office": "",
+        "City": "",
+        "extensionAttribute1": "",
+        "extensionAttribute2": "",
+        "extensionAttribute3": "",
+        "extensionAttribute4": "",
+        "extensionAttribute5": "",
+        "extensionAttribute6": "",
+        "extensionAttribute7": "",
+        "extensionAttribute8": "",
+        "extensionAttribute9": "",
+        "extensionAttribute10": "ORG-200",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "TEC",
+        "extensionAttribute13": "",
+        "extensionAttribute14": "",
+        "extensionAttribute15": "",
+        "ManagerEmployeeId": "100001",
+        "AdminCount": "0",
+        "HasSpn": "False",
+        "DistinguishedName": "CN=jose.ramirez,OU=Staff,DC=contoso,DC=example"
+      }
+    ],
+    "entra_accounts": [
+      {
+        "id": "00000000-0000-4000-8000-000000000302",
+        "userPrincipalName": "jose.ramirez@contoso.example",
+        "userType": "Member",
+        "accountEnabled": true,
+        "employeeId": "100002",
+        "employeeType": "Employee",
+        "onPremisesExtensionAttributes": {
+          "extensionAttribute10": "ORG-210",
+          "extensionAttribute11": "EMP",
+          "extensionAttribute12": "TEC"
+        },
+        "manager": {
+          "id": "00000000-0000-4000-8000-000000000402",
+          "employeeId": "100001"
+        }
+      }
+    ]
+  },
+  {
+    "person_key": "100003",
+    "status": "matched_with_conflicts",
+    "reasons": [
+      "HR status INACTIVE, but the AD account is enabled"
+    ],
+    "hr_records": [
+      {
+        "PersonNumber": "100003",
+        "AssignmentStatusType": "INACTIVE",
+        "WorkerType": "E",
+        "FirstName": "Riley",
+        "LastName": "Chen",
+        "DisplayName": "Riley Chen",
+        "JobName": "Management Analyst",
+        "JobCode": "MA-0343",
+        "DepartmentName": "Program Operations",
+        "DepartmentCode": "ORG-100",
+        "BusinessUnit": "Operations",
+        "CostCenter": "CC-4100",
+        "LegalEmployer": "Contoso Agency",
+        "ManagerPersonNumber": "100000",
+        "PositionCategory": "PRO",
+        "WorkCountry": "US",
+        "HireDate": "2018-01-08",
+        "TerminationDate": "2026-10-23",
+        "UtcOffset": "",
+        "UserName": ""
+      }
+    ],
+    "ad_accounts": [
+      {
+        "Domain": "contoso.example",
+        "ObjectGUID": "5c000000-0000-4000-8000-000000000004",
+        "SID": "S-1-5-21-1000-2004",
+        "SamAccountName": "riley.chen",
+        "Enabled": "True",
+        "UserPrincipalName": "riley.chen@contoso.example",
+        "Mail": "riley.chen@contoso.example",
+        "EmployeeId": "100003",
+        "EmployeeNumber": "",
+        "EmployeeType": "Employee",
+        "Department": "",
+        "Manager": "",
+        "Office": "",
+        "City": "",
+        "extensionAttribute1": "",
+        "extensionAttribute2": "",
+        "extensionAttribute3": "",
+        "extensionAttribute4": "",
+        "extensionAttribute5": "",
+        "extensionAttribute6": "",
+        "extensionAttribute7": "",
+        "extensionAttribute8": "",
+        "extensionAttribute9": "",
+        "extensionAttribute10": "ORG-100",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "PRO",
+        "extensionAttribute13": "",
+        "extensionAttribute14": "",
+        "extensionAttribute15": "",
+        "ManagerEmployeeId": "100000",
+        "AdminCount": "0",
+        "HasSpn": "False",
+        "DistinguishedName": "CN=riley.chen,OU=Staff,DC=contoso,DC=example"
+      }
+    ],
+    "entra_accounts": [
+      {
+        "id": "00000000-0000-4000-8000-000000000303",
+        "userPrincipalName": "riley.chen@contoso.example",
+        "userType": "Member",
+        "accountEnabled": false,
+        "employeeId": "100003",
+        "employeeType": "Employee",
+        "onPremisesExtensionAttributes": {
+          "extensionAttribute10": "ORG-100",
+          "extensionAttribute11": "EMP",
+          "extensionAttribute12": "PRO"
+        },
+        "manager": {
+          "id": "00000000-0000-4000-8000-000000000403",
+          "employeeId": "100000"
+        }
+      }
+    ]
+  },
+  {
+    "person_key": "100004",
+    "status": "matched_with_conflicts",
+    "reasons": [
+      "AD extensionAttribute11 differs from HR's worker type code",
+      "AD employeeType differs from HR's worker type"
+    ],
+    "hr_records": [
+      {
+        "PersonNumber": "100004",
+        "AssignmentStatusType": "ACTIVE",
+        "WorkerType": "C",
+        "FirstName": "Sam",
+        "LastName": "Patel",
+        "DisplayName": "Sam Patel",
+        "JobName": "Contract Developer",
+        "JobCode": "CT-9001",
+        "DepartmentName": "Infrastructure Services",
+        "DepartmentCode": "ORG-210",
+        "BusinessUnit": "Technology",
+        "CostCenter": "CC-5200",
+        "LegalEmployer": "Contoso Agency",
+        "ManagerPersonNumber": "100000",
+        "PositionCategory": "TEC",
+        "WorkCountry": "US",
+        "HireDate": "2026-02-02",
+        "TerminationDate": "2026-12-31",
+        "UtcOffset": "",
+        "UserName": ""
+      }
+    ],
+    "ad_accounts": [
+      {
+        "Domain": "contoso.example",
+        "ObjectGUID": "5c000000-0000-4000-8000-000000000005",
+        "SID": "S-1-5-21-1000-2005",
+        "SamAccountName": "sam.patel",
+        "Enabled": "True",
+        "UserPrincipalName": "sam.patel@contoso.example",
+        "Mail": "sam.patel@contoso.example",
+        "EmployeeId": "100004",
+        "EmployeeNumber": "",
+        "EmployeeType": "Employee",
+        "Department": "",
+        "Manager": "",
+        "Office": "",
+        "City": "",
+        "extensionAttribute1": "",
+        "extensionAttribute2": "",
+        "extensionAttribute3": "",
+        "extensionAttribute4": "",
+        "extensionAttribute5": "",
+        "extensionAttribute6": "",
+        "extensionAttribute7": "",
+        "extensionAttribute8": "",
+        "extensionAttribute9": "",
+        "extensionAttribute10": "ORG-210",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "TEC",
+        "extensionAttribute13": "",
+        "extensionAttribute14": "",
+        "extensionAttribute15": "",
+        "ManagerEmployeeId": "100000",
+        "AdminCount": "0",
+        "HasSpn": "False",
+        "DistinguishedName": "CN=sam.patel,OU=Staff,DC=contoso,DC=example"
+      }
+    ],
+    "entra_accounts": []
+  },
+  {
+    "person_key": "100006",
+    "status": "hr_only",
+    "reasons": [
+      "an active worker with no account in either directory: a missing identity"
+    ],
+    "hr_records": [
+      {
+        "PersonNumber": "100006",
+        "AssignmentStatusType": "ACTIVE",
+        "WorkerType": "P",
+        "FirstName": "Taylor",
+        "LastName": "Brooks",
+        "DisplayName": "Taylor Brooks",
+        "JobName": "Program Analyst",
+        "JobCode": "PA-0343",
+        "DepartmentName": "Program Operations",
+        "DepartmentCode": "ORG-100",
+        "BusinessUnit": "Operations",
+        "CostCenter": "CC-4100",
+        "LegalEmployer": "Contoso Agency",
+        "ManagerPersonNumber": "100000",
+        "PositionCategory": "PRO",
+        "WorkCountry": "US",
+        "HireDate": "2026-12-07",
+        "TerminationDate": "",
+        "UtcOffset": "",
+        "UserName": ""
+      }
+    ],
+    "ad_accounts": [],
+    "entra_accounts": []
+  },
+  {
+    "person_key": "100007",
+    "status": "hr_only",
+    "reasons": [
+      "an active worker with no account in either directory: a missing identity"
+    ],
+    "hr_records": [
+      {
+        "PersonNumber": "100007",
+        "AssignmentStatusType": "ACTIVE",
+        "WorkerType": "X",
+        "FirstName": "Casey",
+        "LastName": "Diaz",
+        "DisplayName": "Casey Diaz",
+        "JobName": "Program Analyst",
+        "JobCode": "PA-0343",
+        "DepartmentName": "Program Operations",
+        "DepartmentCode": "ORG-100",
+        "BusinessUnit": "Operations",
+        "CostCenter": "CC-4100",
+        "LegalEmployer": "Contoso Agency",
+        "ManagerPersonNumber": "100000",
+        "PositionCategory": "PRO",
+        "WorkCountry": "US",
+        "HireDate": "2024-04-01",
+        "TerminationDate": "",
+        "UtcOffset": "",
+        "UserName": ""
+      }
+    ],
+    "ad_accounts": [],
+    "entra_accounts": []
+  },
+  {
+    "person_key": "100008",
+    "status": "duplicate_key",
+    "reasons": [
+      "held by 2 records in HR"
+    ],
+    "hr_records": [
+      {
+        "PersonNumber": "100008",
+        "AssignmentStatusType": "ACTIVE",
+        "WorkerType": "E",
+        "FirstName": "Drew",
+        "LastName": "Novak",
+        "DisplayName": "Drew Novak",
+        "JobName": "Network Engineer",
+        "JobCode": "IT-2210",
+        "DepartmentName": "Infrastructure Services",
+        "DepartmentCode": "ORG-210",
+        "BusinessUnit": "Technology",
+        "CostCenter": "CC-5200",
+        "LegalEmployer": "Contoso Agency",
+        "ManagerPersonNumber": "100000",
+        "PositionCategory": "TEC",
+        "WorkCountry": "US",
+        "HireDate": "2020-05-11",
+        "TerminationDate": "",
+        "UtcOffset": "",
+        "UserName": ""
+      },
+      {
+        "PersonNumber": "100008",
+        "AssignmentStatusType": "INACTIVE",
+        "WorkerType": "E",
+        "FirstName": "Drew",
+        "LastName": "Novak",
+        "DisplayName": "Drew Novak",
+        "JobName": "Network Engineer",
+        "JobCode": "IT-2210",
+        "DepartmentName": "Infrastructure Services",
+        "DepartmentCode": "ORG-210",
+        "BusinessUnit": "Technology",
+        "CostCenter": "CC-5200",
+        "LegalEmployer": "Contoso Agency",
+        "ManagerPersonNumber": "100000",
+        "PositionCategory": "TEC",
+        "WorkCountry": "US",
+        "HireDate": "2020-05-11",
+        "TerminationDate": "2026-10-24",
+        "UtcOffset": "",
+        "UserName": ""
+      }
+    ],
+    "ad_accounts": [
+      {
+        "Domain": "contoso.example",
+        "ObjectGUID": "5c000000-0000-4000-8000-000000000007",
+        "SID": "S-1-5-21-1000-2007",
+        "SamAccountName": "drew.novak",
+        "Enabled": "True",
+        "UserPrincipalName": "drew.novak@contoso.example",
+        "Mail": "drew.novak@contoso.example",
+        "EmployeeId": "100008",
+        "EmployeeNumber": "",
+        "EmployeeType": "Employee",
+        "Department": "",
+        "Manager": "",
+        "Office": "",
+        "City": "",
+        "extensionAttribute1": "",
+        "extensionAttribute2": "",
+        "extensionAttribute3": "",
+        "extensionAttribute4": "",
+        "extensionAttribute5": "",
+        "extensionAttribute6": "",
+        "extensionAttribute7": "",
+        "extensionAttribute8": "",
+        "extensionAttribute9": "",
+        "extensionAttribute10": "ORG-210",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "TEC",
+        "extensionAttribute13": "",
+        "extensionAttribute14": "",
+        "extensionAttribute15": "",
+        "ManagerEmployeeId": "100000",
+        "AdminCount": "0",
+        "HasSpn": "False",
+        "DistinguishedName": "CN=drew.novak,OU=Staff,DC=contoso,DC=example"
+      }
+    ],
+    "entra_accounts": []
+  },
+  {
+    "person_key": "100011",
+    "status": "hr_only",
+    "reasons": [
+      "an active worker with no account in either directory: a missing identity"
+    ],
+    "hr_records": [
+      {
+        "PersonNumber": "100011",
+        "AssignmentStatusType": "ACTIVE",
+        "WorkerType": "E",
+        "FirstName": "Hayden",
+        "LastName": "Ito",
+        "DisplayName": "Hayden Ito",
+        "JobName": "Program Analyst",
+        "JobCode": "PA-0343",
+        "DepartmentName": "Program Operations",
+        "DepartmentCode": "ORG-100",
+        "BusinessUnit": "Operations",
+        "CostCenter": "CC-4100",
+        "LegalEmployer": "Contoso Agency",
+        "ManagerPersonNumber": "100003",
+        "PositionCategory": "PRO",
+        "WorkCountry": "US",
+        "HireDate": "2026-10-26",
+        "TerminationDate": "",
+        "UtcOffset": "",
+        "UserName": ""
+      }
+    ],
+    "ad_accounts": [],
+    "entra_accounts": []
+  },
+  {
+    "person_key": "100015",
+    "status": "duplicate_key",
+    "reasons": [
+      "held by 2 records in AD"
+    ],
+    "hr_records": [
+      {
+        "PersonNumber": "100015",
+        "AssignmentStatusType": "ACTIVE",
+        "WorkerType": "E",
+        "FirstName": "Emerson",
+        "LastName": "Hale",
+        "DisplayName": "Emerson Hale",
+        "JobName": "Program Analyst",
+        "JobCode": "PA-0343",
+        "DepartmentName": "Program Operations",
+        "DepartmentCode": "ORG-100",
+        "BusinessUnit": "Operations",
+        "CostCenter": "CC-4100",
+        "LegalEmployer": "Contoso Agency",
+        "ManagerPersonNumber": "100000",
+        "PositionCategory": "ZZZ",
+        "WorkCountry": "US",
+        "HireDate": "2024-04-01",
+        "TerminationDate": "",
+        "UtcOffset": "",
+        "UserName": ""
+      }
+    ],
+    "ad_accounts": [
+      {
+        "Domain": "contoso.example",
+        "ObjectGUID": "5c000000-0000-4000-8000-000000000010",
+        "SID": "S-1-5-21-1000-2010",
+        "SamAccountName": "emerson.hale",
+        "Enabled": "True",
+        "UserPrincipalName": "emerson.hale@contoso.example",
+        "Mail": "emerson.hale@contoso.example",
+        "EmployeeId": "100015",
+        "EmployeeNumber": "",
+        "EmployeeType": "Employee",
+        "Department": "",
+        "Manager": "",
+        "Office": "",
+        "City": "",
+        "extensionAttribute1": "",
+        "extensionAttribute2": "",
+        "extensionAttribute3": "",
+        "extensionAttribute4": "",
+        "extensionAttribute5": "",
+        "extensionAttribute6": "",
+        "extensionAttribute7": "",
+        "extensionAttribute8": "",
+        "extensionAttribute9": "",
+        "extensionAttribute10": "ORG-100",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "ZZZ",
+        "extensionAttribute13": "",
+        "extensionAttribute14": "",
+        "extensionAttribute15": "",
+        "ManagerEmployeeId": "100000",
+        "AdminCount": "0",
+        "HasSpn": "False",
+        "DistinguishedName": "CN=emerson.hale,OU=Staff,DC=contoso,DC=example"
+      },
+      {
+        "Domain": "contoso.example",
+        "ObjectGUID": "5c000000-0000-4000-8000-000000000011",
+        "SID": "S-1-5-21-1000-2011",
+        "SamAccountName": "emerson.hale2",
+        "Enabled": "True",
+        "UserPrincipalName": "emerson.hale2@contoso.example",
+        "Mail": "emerson.hale2@contoso.example",
+        "EmployeeId": "100015",
+        "EmployeeNumber": "",
+        "EmployeeType": "Employee",
+        "Department": "",
+        "Manager": "",
+        "Office": "",
+        "City": "",
+        "extensionAttribute1": "",
+        "extensionAttribute2": "",
+        "extensionAttribute3": "",
+        "extensionAttribute4": "",
+        "extensionAttribute5": "",
+        "extensionAttribute6": "",
+        "extensionAttribute7": "",
+        "extensionAttribute8": "",
+        "extensionAttribute9": "",
+        "extensionAttribute10": "ORG-100",
+        "extensionAttribute11": "EMP",
+        "extensionAttribute12": "ZZZ",
+        "extensionAttribute13": "",
+        "extensionAttribute14": "",
+        "extensionAttribute15": "",
+        "ManagerEmployeeId": "100000",
+        "AdminCount": "0",
+        "HasSpn": "False",
+        "DistinguishedName": "CN=emerson.hale2,OU=Staff,DC=contoso,DC=example"
+      }
+    ],
+    "entra_accounts": []
+  },
+  {
+    "person_key": "12345678901234567",
+    "status": "hr_only",
+    "reasons": [
+      "an active worker with no account in either directory: a missing identity"
+    ],
+    "hr_records": [
+      {
+        "PersonNumber": "12345678901234567",
+        "AssignmentStatusType": "ACTIVE",
+        "WorkerType": "E",
+        "FirstName": "Long",
+        "LastName": "Key",
+        "DisplayName": "Long Key",
+        "JobName": "Program Analyst",
+        "JobCode": "PA-0343",
+        "DepartmentName": "Program Operations",
+        "DepartmentCode": "ORG-100",
+        "BusinessUnit": "Operations",
+        "CostCenter": "CC-4100",
+        "LegalEmployer": "Contoso Agency",
+        "ManagerPersonNumber": "100000",
+        "PositionCategory": "PRO",
+        "WorkCountry": "US",
+        "HireDate": "2024-04-01",
+        "TerminationDate": "",
+        "UtcOffset": "",
+        "UserName": ""
+      }
+    ],
+    "ad_accounts": [],
+    "entra_accounts": []
+  },
+  {
+    "person_key": "200001",
+    "status": "directory_only",
+    "reasons": [
+      "an enabled account no worker record holds: an orphan candidate, owned or on a dated exception"
+    ],
+    "hr_records": [],
+    "ad_accounts": [
+      {
+        "Domain": "contoso.example",
+        "ObjectGUID": "5c000000-0000-4000-8000-000000000013",
+        "SID": "S-1-5-21-1000-2013",
+        "SamAccountName": "old.contractor",
+        "Enabled": "True",
+        "UserPrincipalName": "old.contractor@contoso.example",
+        "Mail": "old.contractor@contoso.example",
+        "EmployeeId": "200001",
+        "EmployeeNumber": "",
+        "EmployeeType": "Contractor",
+        "Department": "",
+        "Manager": "",
+        "Office": "",
+        "City": "",
+        "extensionAttribute1": "",
+        "extensionAttribute2": "",
+        "extensionAttribute3": "",
+        "extensionAttribute4": "",
+        "extensionAttribute5": "",
+        "extensionAttribute6": "",
+        "extensionAttribute7": "",
+        "extensionAttribute8": "",
+        "extensionAttribute9": "",
+        "extensionAttribute10": "ORG-210",
+        "extensionAttribute11": "CTR",
+        "extensionAttribute12": "TEC",
+        "extensionAttribute13": "",
+        "extensionAttribute14": "",
+        "extensionAttribute15": "",
+        "ManagerEmployeeId": "",
+        "AdminCount": "0",
+        "HasSpn": "False",
+        "DistinguishedName": "CN=old.contractor,OU=Staff,DC=contoso,DC=example"
+      }
+    ],
+    "entra_accounts": []
+  },
+  {
+    "person_key": "300001",
+    "status": "directory_only",
+    "reasons": [
+      "an enabled account no worker record holds: an orphan candidate, owned or on a dated exception"
+    ],
+    "hr_records": [],
+    "ad_accounts": [],
+    "entra_accounts": [
+      {
+        "id": "00000000-0000-4000-8000-000000000306",
+        "userPrincipalName": "cloud.orphan@contoso.example",
+        "userType": "Member",
+        "accountEnabled": true,
+        "employeeId": "300001",
+        "employeeType": "Employee",
+        "onPremisesExtensionAttributes": {
+          "extensionAttribute10": "ORG-100",
+          "extensionAttribute11": "EMP",
+          "extensionAttribute12": "PRO"
+        }
+      }
+    ]
+  },
+  {
+    "person_key": "",
+    "account": "ad:S-1-5-21-1000-2015",
+    "status": "no_key",
+    "reasons": [
+      "an enabled account with no person key: it can't be correlated"
+    ],
+    "hr_records": [],
+    "ad_accounts": [
+      {
+        "Domain": "contoso.example",
+        "ObjectGUID": "5c000000-0000-4000-8000-000000000015",
+        "SID": "S-1-5-21-1000-2015",
+        "SamAccountName": "shared.desk",
+        "Enabled": "True",
+        "UserPrincipalName": "shared.desk@contoso.example",
+        "Mail": "shared.desk@contoso.example",
+        "EmployeeId": "",
+        "EmployeeNumber": "",
+        "EmployeeType": "",
+        "Department": "",
+        "Manager": "",
+        "Office": "",
+        "City": "",
+        "extensionAttribute1": "",
+        "extensionAttribute2": "",
+        "extensionAttribute3": "",
+        "extensionAttribute4": "",
+        "extensionAttribute5": "",
+        "extensionAttribute6": "",
+        "extensionAttribute7": "",
+        "extensionAttribute8": "",
+        "extensionAttribute9": "",
+        "extensionAttribute10": "",
+        "extensionAttribute11": "",
+        "extensionAttribute12": "",
+        "extensionAttribute13": "",
+        "extensionAttribute14": "",
+        "extensionAttribute15": "",
+        "ManagerEmployeeId": "",
+        "AdminCount": "0",
+        "HasSpn": "False",
+        "DistinguishedName": "CN=shared.desk,OU=Staff,DC=contoso,DC=example"
+      }
+    ],
+    "entra_accounts": []
+  },
+  {
+    "person_key": "",
+    "account": "entra:00000000-0000-4000-8000-000000000308",
+    "status": "no_key",
+    "reasons": [
+      "an enabled account with no person key: it can't be correlated"
+    ],
+    "hr_records": [],
+    "ad_accounts": [],
+    "entra_accounts": [
+      {
+        "id": "00000000-0000-4000-8000-000000000308",
+        "userPrincipalName": "kiosk@contoso.example",
+        "userType": "Member",
+        "accountEnabled": true,
+        "employeeId": "",
+        "employeeType": null,
+        "onPremisesExtensionAttributes": {
+          "extensionAttribute10": null,
+          "extensionAttribute11": null,
+          "extensionAttribute12": null
+        }
+      }
+    ]
+  },
+  {
+    "person_key": "",
+    "status": "hr_no_key",
+    "reasons": [
+      "an HR record with no person number: it can't be correlated"
+    ],
+    "hr_records": [
+      {
+        "PersonNumber": "",
+        "AssignmentStatusType": "ACTIVE",
+        "WorkerType": "E",
+        "FirstName": "Blank",
+        "LastName": "Key",
+        "DisplayName": "Blank Key",
+        "JobName": "Program Analyst",
+        "JobCode": "PA-0343",
+        "DepartmentName": "Program Operations",
+        "DepartmentCode": "ORG-100",
+        "BusinessUnit": "Operations",
+        "CostCenter": "CC-4100",
+        "LegalEmployer": "Contoso Agency",
+        "ManagerPersonNumber": "100000",
+        "PositionCategory": "PRO",
+        "WorkCountry": "US",
+        "HireDate": "2024-04-01",
+        "TerminationDate": "",
+        "UtcOffset": "",
+        "UserName": ""
+      }
+    ],
+    "ad_accounts": [],
+    "entra_accounts": []
+  }
+]
