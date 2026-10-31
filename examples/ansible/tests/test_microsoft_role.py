@@ -37,8 +37,8 @@ def tasks(name: str) -> list[dict]:
     return yaml.safe_load((ROLE / "tasks" / name).read_text(encoding="utf-8"))
 
 
-def installed_role() -> Path | None:
-    """The installed collection's role folder, or None."""
+def installed_collection() -> tuple[Path, str] | None:
+    """The installed collection's role folder and version, or None."""
     if shutil.which("ansible-galaxy") is None:
         return None
     result = subprocess.run(["ansible-galaxy", "collection", "list", "azure.azcollection", "--format", "json"],
@@ -47,8 +47,15 @@ def installed_role() -> Path | None:
         return None
     for path, collections in json.loads(result.stdout).items():
         if "azure.azcollection" in collections:
-            return Path(path) / "azure" / "azcollection" / "roles" / "azure_arc"
+            version = str(collections["azure.azcollection"].get("version", ""))
+            return Path(path) / "azure" / "azcollection" / "roles" / "azure_arc", version
     return None
+
+
+def installed_role() -> Path | None:
+    """The installed collection's role folder, or None."""
+    found = installed_collection()
+    return found[0] if found else None
 
 
 @needs_snapshot
@@ -105,10 +112,16 @@ def test_role_knows_nothing_of_owners_waves_or_batches():
 
 @needs_snapshot
 def test_installed_role_is_the_pinned_copy():
-    role = installed_role()
-    if role is None or not role.is_dir():
+    found = installed_collection()
+    if found is None or not found[0].is_dir():
         pytest.skip("azure.azcollection isn't installed")
+    role, version = found
     manifest = json.loads((SNAPSHOT / "snapshot.json").read_text(encoding="utf-8"))
+    pinned = manifest["release"].split()[0].lstrip("v")
+    if version != pinned:
+        # requirements.yml installs the pinned version; a control node (or CI runner) with another
+        # version of the collection already installed can't be compared byte for byte.
+        pytest.skip(f"azure.azcollection {version} is installed, not the pinned {pinned}")
     for rel, meta in manifest["files"].items():
         if not rel.startswith("roles/azure_arc/"):
             continue

@@ -89,6 +89,19 @@ DEAD_PROXY_ENV = {k: "http://127.0.0.1:9" for k in ("HTTPS_PROXY", "HTTP_PROXY",
 LEFTOVERS = [Path("/opt/azcmagent"), Path("/root/.arc-onboarding.json"), Path("/tmp/install_linux_azcmagent.sh")]
 
 
+def leftovers() -> list[Path]:
+    """The LEFTOVERS present. A path this user can't read (/root, when not root) can't have been
+    written by this user's run either, so it counts as absent."""
+    present = []
+    for p in LEFTOVERS:
+        try:
+            if p.exists():
+                present.append(p)
+        except PermissionError:
+            pass
+    return present
+
+
 def test_wave_plan_writes_the_plan(tmp_path):
     result = play("05_arc_wave_plan.yml", ARC_CANDIDATE, "-e", "onboarding_wave=0", "-e", f"report_dir={tmp_path}")
     assert result.returncode == 0, result.stdout + result.stderr
@@ -137,7 +150,7 @@ def test_wave_plan_stops_a_server_without_a_patch_owner(tmp_path):
 
 @pytest.mark.skipif(not hasattr(os, "geteuid") or os.geteuid() != 0, reason="needs root on the control node")
 def test_onboarding_without_confirmation_changes_nothing(tmp_path):
-    already = [p for p in LEFTOVERS if p.exists()]
+    already = leftovers()
     if already:
         pytest.skip(f"control node already has {already}")
     # Every outbound request goes to a dead local proxy: the dry run must not need the network.
@@ -145,7 +158,7 @@ def test_onboarding_without_confirmation_changes_nothing(tmp_path):
                   env={"ARC_SP_SECRET": "not-a-real-secret", **DEAD_PROXY_ENV})
     assert result.returncode == 0, result.stdout + result.stderr
     assert "not-a-real-secret" not in result.stdout + result.stderr
-    assert not [p for p in LEFTOVERS if p.exists()]
+    assert not leftovers()
 
 
 def test_onboarding_stops_without_a_secret(tmp_path):
@@ -164,7 +177,7 @@ def test_onboarding_stops_before_any_server_when_the_plan_fails(tmp_path):
 
 
 def test_role_playbook_dry_run_calls_nothing(tmp_path):
-    already = [p for p in LEFTOVERS if p.exists()]
+    already = leftovers()
     result = play("06_arc_onboarding_role.yml", ARC_CANDIDATE, "-e", "onboarding_wave=0", "-e", f"report_dir={tmp_path}",
                   env=DEAD_PROXY_ENV)
     assert result.returncode == 0, result.stdout + result.stderr
@@ -174,7 +187,7 @@ def test_role_playbook_dry_run_calls_nothing(tmp_path):
     # Microsoft's role was skipped, not run in check mode: none of its tasks appear.
     assert "azure.azcollection.azure_arc :" not in result.stdout
     assert not list(tmp_path.glob("arc-wave-0-result-*.json"))
-    assert [p for p in LEFTOVERS if p.exists()] == already
+    assert leftovers() == already
 
 
 def test_role_playbook_refuses_azure_government(tmp_path):
