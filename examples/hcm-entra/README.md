@@ -82,7 +82,7 @@ Before the first real run, start the provisioning job (it must be listening), se
 
 ## Correlate HR with the directories
 
-Before the first full sync, every enabled account has to match exactly one worker record, and each matched record has to agree with what the directories hold: the [Attribute-Driven Migration implementation guide's Gate 2](../../docs/books/guides/attribute-driven-migration-implementation.md#gate-2-prove-the-attributes) and [Book 03, Chapter 05](../../docs/books/b03-hr-identity/05-the-provisioning-pipeline.md#the-source-oracle-fusion-cloud-hcm). The validation kit's VK-HR-03 compares counts per organization code. The correlation tool compares record by record. It's read-only: it reads three files and writes two, and sends nothing.
+Before the first full sync, every enabled account has to match exactly one worker record, and each matched record has to agree with what the directories hold: the [Attribute-Driven Migration implementation guide's Gate 2](../../docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md#gate-2-prove-the-attributes) and [Book 03, Chapter 05](../../docs/books/b03-hr-identity/05-the-provisioning-pipeline.md#the-source-oracle-fusion-cloud-hcm). The validation kit's VK-HR-03 compares counts per organization code. The correlation tool compares record by record. It's read-only: it reads three files and writes two, and sends nothing.
 
 | Input | What it is |
 |---|---|
