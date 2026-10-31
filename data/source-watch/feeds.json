@@ -633,6 +633,39 @@
       "source": "Commits to the Learn source page that holds the HTTP samples for finding ownerless service principals, assigning owners and setting serviceManagementReference, which examples/third_party/graph-applications-tutorial-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 02). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     },
     {
+      "id": "entra-service-accounts-onprem-choice-page-commits",
+      "name": "Learn's Securing on-premises service accounts (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/architecture/service-accounts-on-premises.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the table 'Choose the right type of service account', which examples/third_party/entra-service-account-choice-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 03). A new commit means: review it, rerun examples/non-person-identity/tests/NpiMatrix.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-service-accounts-cloud-choice-page-commits",
+      "name": "Learn's Securing cloud-based service accounts (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/architecture/secure-service-accounts.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the table of managed identity, service principal and user account by service hosting, which examples/third_party/entra-service-account-choice-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 03). A new commit means: review it, rerun examples/non-person-identity/tests/NpiMatrix.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-workload-id-faq-page-commits",
+      "name": "Learn's Frequently asked questions about Microsoft Entra Workload ID (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/workload-id/workload-identities-faqs.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds Workload ID's Free and Premium capability table and its licensing answers, which examples/third_party/entra-service-account-choice-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 03, decision D-N4). A new commit means: review it, rerun examples/non-person-identity/tests/NpiMatrix.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
       "id": "npi-agent-create-blueprint-page-commits",
       "name": "Learn's Create an agent identity blueprint (MicrosoftDocs/entra-docs commits)",
       "type": "github_commits",
