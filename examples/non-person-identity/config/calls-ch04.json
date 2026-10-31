@@ -1,0 +1,210 @@
+{
+  "_comment": "Chapter 04's calls, in the same schema as calls.json: each call with its least-privileged Microsoft Graph permission or Azure role from the Learn page for that call, read on October 30, 2026. Key Vault data-plane calls use api 'keyvault' and an azureRole. A task may make only its own calls. tests/NpiCredentialPolicy.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls, or when a read task declares anything but GET.",
+  "tasks": {
+    "app-policy": {
+      "mode": "read",
+      "chapter": "04",
+      "graphPermissions": ["Application.Read.All", "Policy.Read.All"],
+      "azureRoles": [],
+      "adRights": []
+    },
+    "policy-apply": {
+      "mode": "write",
+      "chapter": "04",
+      "graphPermissions": ["Application.Read.All", "Application.ReadWrite.All", "Policy.Read.All", "Policy.ReadWrite.ApplicationConfiguration"],
+      "azureRoles": [],
+      "adRights": [],
+      "delegatedOnly": true,
+      "delegatedRole": "Cloud Application Administrator"
+    },
+    "rotation": {
+      "mode": "read",
+      "chapter": "04",
+      "graphPermissions": ["Application.Read.All", "User.Read.All"],
+      "azureRoles": ["Key Vault Reader"],
+      "adRights": []
+    },
+    "rotation-apply": {
+      "mode": "write",
+      "chapter": "04",
+      "graphPermissions": ["Application.Read.All", "Application.ReadWrite.All"],
+      "azureRoles": ["Key Vault Certificates Officer", "Key Vault Reader"],
+      "adRights": [],
+      "delegatedOnly": true,
+      "delegatedRole": "Cloud Application Administrator"
+    }
+  },
+  "calls": [
+    {
+      "id": "graph-ch04-default-policy-get",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/policies/defaultAppManagementPolicy",
+      "permissions": ["Policy.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["app-policy", "policy-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/tenantappmanagementpolicy-get?view=graph-rest-1.0",
+      "note": "Global Reader is the least-privileged role for a delegated read."
+    },
+    {
+      "id": "graph-ch04-app-policies-list",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/policies/appManagementPolicies",
+      "permissions": ["Policy.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["app-policy", "policy-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/appmanagementpolicy-list?view=graph-rest-1.0"
+    },
+    {
+      "id": "graph-ch04-app-policy-applies-to",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/policies/appManagementPolicies/{id}/appliesTo",
+      "permissions": ["Application.Read.All", "Policy.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["app-policy", "policy-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/appmanagementpolicy-list-appliesto?view=graph-rest-1.0"
+    },
+    {
+      "id": "graph-ch04-application-get",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications/{id}",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["app-policy", "policy-apply", "rotation", "rotation-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/application-get?view=graph-rest-1.0",
+      "note": "Read with $select: createdDateTime and servicePrincipalLockConfiguration for the policy; keyCredentials (whose key is returned only on a single-object read with $select) and passwordCredentials for the rotation."
+    },
+    {
+      "id": "graph-ch04-application-owners",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications/{id}/owners",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["rotation"],
+      "learn": "https://learn.microsoft.com/graph/api/application-list-owners?view=graph-rest-1.0",
+      "note": "The approver of a rotation must be a current owner of the app registration."
+    },
+    {
+      "id": "graph-ch04-user",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/users/{id}",
+      "permissions": ["User.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["rotation"],
+      "learn": "https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0",
+      "note": "Reads userType and accountEnabled of the approver: only an enabled member who owns the app can approve its rotation."
+    },
+    {
+      "id": "kv-ch04-certificate-get",
+      "api": "keyvault",
+      "method": "GET",
+      "apiVersion": "2025-07-01",
+      "path": "/certificates/{name}",
+      "azureRole": "Key Vault Reader",
+      "stage": "GA",
+      "tasks": ["rotation", "rotation-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/keyvault/certificates/get-certificate/get-certificate",
+      "note": "The current version's x5t, cer, attributes and policy. Key Vault Reader's data actions include vaults/*/read, which reads certificate metadata and the public certificate; it can't read the private key (research gaps, row 35)."
+    },
+    {
+      "id": "graph-ch04-default-policy-update",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/policies/defaultAppManagementPolicy",
+      "permissions": ["Policy.ReadWrite.ApplicationConfiguration"],
+      "allowedBody": { "keys": ["isEnabled", "applicationRestrictions", "servicePrincipalRestrictions"] },
+      "stage": "v1.0",
+      "tasks": ["policy-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/tenantappmanagementpolicy-update?view=graph-rest-1.0",
+      "note": "Cloud Application Administrator or Application Administrator. The body carries every existing restriction as well as the program's, so a PATCH never drops one."
+    },
+    {
+      "id": "graph-ch04-app-policy-create",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/policies/appManagementPolicies",
+      "permissions": ["Policy.ReadWrite.ApplicationConfiguration"],
+      "allowedBody": { "keys": ["displayName", "description", "isEnabled", "restrictions"] },
+      "stage": "v1.0",
+      "tasks": ["policy-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/appmanagementpolicy-post?view=graph-rest-1.0"
+    },
+    {
+      "id": "graph-ch04-app-policy-assign",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/applications/{id}/appManagementPolicies/$ref",
+      "permissions": ["Application.Read.All", "Policy.ReadWrite.ApplicationConfiguration"],
+      "allowedBody": { "@odata.id": "policies/appManagementPolicies" },
+      "stage": "v1.0",
+      "tasks": ["policy-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/appmanagementpolicy-post-appliesto?view=graph-rest-1.0",
+      "note": "Only one app management policy can be assigned to an application or service principal."
+    },
+    {
+      "id": "graph-ch04-app-lock",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/applications/{id}",
+      "permissions": ["Application.ReadWrite.All"],
+      "allowedBody": { "servicePrincipalLockConfiguration": { "isEnabled": true, "allProperties": true } },
+      "stage": "v1.0",
+      "tasks": ["policy-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/application-update?view=graph-rest-1.0",
+      "note": "Delegated Application.ReadWrite.All is least privileged; the application permission Application.ReadWrite.OwnedBy reaches only apps the caller owns."
+    },
+    {
+      "id": "kv-ch04-certificate-create",
+      "api": "keyvault",
+      "method": "POST",
+      "apiVersion": "2025-07-01",
+      "path": "/certificates/{name}/create",
+      "azureRole": "Key Vault Certificates Officer",
+      "allowedBody": {},
+      "stage": "GA",
+      "tasks": ["rotation-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/keyvault/certificates/create-certificate/create-certificate",
+      "note": "Sent with an empty body, so the vault's existing policy creates the next version; the rotation path never changes a certificate policy."
+    },
+    {
+      "id": "kv-ch04-certificate-pending",
+      "api": "keyvault",
+      "method": "GET",
+      "apiVersion": "2025-07-01",
+      "path": "/certificates/{name}/pending",
+      "azureRole": "Key Vault Certificates Officer",
+      "stage": "GA",
+      "tasks": ["rotation-apply"],
+      "learn": "https://learn.microsoft.com/rest/api/keyvault/certificates/get-certificate-operation/get-certificate-operation",
+      "note": "Polls the create operation until it completes."
+    },
+    {
+      "id": "graph-ch04-app-keys-update",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/applications/{id}",
+      "permissions": ["Application.ReadWrite.All"],
+      "allowedBody": { "keys": ["keyCredentials"] },
+      "stage": "v1.0",
+      "tasks": ["rotation-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/application-update?view=graph-rest-1.0",
+      "note": "keyCredentials is replaced as a whole collection: the body carries every certificate to keep, with its key, plus the new one, or minus the one the overlap has retired."
+    }
+  ]
+}

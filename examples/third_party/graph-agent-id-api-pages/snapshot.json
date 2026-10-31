@@ -1,0 +1,96 @@
+{
+  "_comment": "A pinned, unmodified copy of four Microsoft Graph v1.0 API reference pages, as their source in microsoftgraph/microsoft-graph-docs-contrib, with the generated permission tables they include: List agentIdentityBlueprint, List agentIdentity, List agentIdentityBlueprint sponsors and List agentIdentity sponsors. The HTTP request samples and the least-privileged permissions exist only inside these files. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn samples: Microsoft Graph agent identity and blueprint list requests and their permissions",
+  "upstream_repo": "https://github.com/microsoftgraph/microsoft-graph-docs-contrib",
+  "upstream_path": "api-reference/v1.0/api/agentidentity-list.md",
+  "also_upstream_path": [
+    "api-reference/v1.0/api/agentidentity-list-sponsors.md",
+    "api-reference/v1.0/api/agentidentityblueprint-list-sponsors.md",
+    "api-reference/v1.0/api/agentidentityblueprint-list.md",
+    "api-reference/v1.0/includes/permissions/agentidentity-list-permissions.md",
+    "api-reference/v1.0/includes/permissions/agentidentity-list-sponsors-permissions.md",
+    "api-reference/v1.0/includes/permissions/agentidentityblueprint-list-permissions.md",
+    "api-reference/v1.0/includes/permissions/agentidentityblueprint-list-sponsors-permissions.md"
+  ],
+  "commit": "bb35043c742d4406d73ccae904c05fbfca7c7428",
+  "commit_date": "2026-10-31",
+  "files_last_changed": "agentidentity-list-sponsors.md: 2026-03-20 (commit ac8623553c5627e7bdf1daa25d1173d60fd64d81); agentidentity-list.md: 2026-06-06 (commit c9d79f36a38ef89adfcc9a5a0163f3c51512cf58); agentidentityblueprint-list-sponsors.md: 2026-03-20 (commit ac8623553c5627e7bdf1daa25d1173d60fd64d81); agentidentityblueprint-list.md: 2026-06-06 (commit 5499650d45a42bc6a400da02fde10e11d26db669); includes/permissions/agentidentity-list-permissions.md: 2026-04-30 (commit 50d2160b67c584ace0622d11ce34a2da5d9a8e68); includes/permissions/agentidentity-list-sponsors-permissions.md: 2026-02-26 (commit 47c8d514faff1f94443a4dddb4b0622a3f051295); includes/permissions/agentidentityblueprint-list-permissions.md: 2026-04-30 (commit 50d2160b67c584ace0622d11ce34a2da5d9a8e68); includes/permissions/agentidentityblueprint-list-sponsors-permissions.md: 2026-02-26 (commit 47c8d514faff1f94443a4dddb4b0622a3f051295)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: Creative Commons Attribution 4.0 International (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/graph/api/agentidentity-list?view=graph-rest-1.0",
+  "also_documented_at": [
+    "https://learn.microsoft.com/graph/api/agentidentityblueprint-list?view=graph-rest-1.0",
+    "https://learn.microsoft.com/graph/api/agentidentityblueprint-list-sponsors?view=graph-rest-1.0",
+    "https://learn.microsoft.com/graph/api/agentidentity-list-sponsors?view=graph-rest-1.0"
+  ],
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "agentidentity-list-sponsors.md": "api-reference/v1.0/api/agentidentity-list-sponsors.md",
+    "agentidentity-list.md": "api-reference/v1.0/api/agentidentity-list.md",
+    "agentidentityblueprint-list-sponsors.md": "api-reference/v1.0/api/agentidentityblueprint-list-sponsors.md",
+    "agentidentityblueprint-list.md": "api-reference/v1.0/api/agentidentityblueprint-list.md",
+    "includes/permissions/agentidentity-list-permissions.md": "api-reference/v1.0/includes/permissions/agentidentity-list-permissions.md",
+    "includes/permissions/agentidentity-list-sponsors-permissions.md": "api-reference/v1.0/includes/permissions/agentidentity-list-sponsors-permissions.md",
+    "includes/permissions/agentidentityblueprint-list-permissions.md": "api-reference/v1.0/includes/permissions/agentidentityblueprint-list-permissions.md",
+    "includes/permissions/agentidentityblueprint-list-sponsors-permissions.md": "api-reference/v1.0/includes/permissions/agentidentityblueprint-list-sponsors-permissions.md"
+  },
+  "git_blobs": {
+    "LICENSE": "e056e7c3ec54533985dfb3a4c6ef70dab8ca2e42",
+    "LICENSE-CODE": "b17b032a43088ac7f3d2f3e34a2431c778a95e6f",
+    "agentidentity-list-sponsors.md": "c620f52eb304faae067f20718a63df33aa3e34aa",
+    "agentidentity-list.md": "a6a51dcf446b578215c6ede36b587880f0bb7a61",
+    "agentidentityblueprint-list-sponsors.md": "401142ff4ed52f73f0847d006051628f24155c95",
+    "agentidentityblueprint-list.md": "f1e4d129849d76c32cd27b45152cc625116352b5",
+    "includes/permissions/agentidentity-list-permissions.md": "8988e0423832ea349a47c9cfeb141ca4ebf8d2af",
+    "includes/permissions/agentidentity-list-sponsors-permissions.md": "6e1cb5261c51cc3a48e5fca2f325f244b2950676",
+    "includes/permissions/agentidentityblueprint-list-permissions.md": "cbf7564cf9730785fb5ea74422a0d4be2e9e9192",
+    "includes/permissions/agentidentityblueprint-list-sponsors-permissions.md": "3c065ea715a778d138029b32f9103922215f535e"
+  },
+  "not_copied": [
+    "The SDK snippet include files the pages reference (includes/snippets/*): generated per language from the HTTP samples, which are inline in the pages and are what the tests run.",
+    "The role-based access include files (includes/rbac-for-apis/*) and every other page in the repository; the chapter links Learn."
+  ],
+  "files": {
+    "agentidentity-list-sponsors.md": {
+      "bytes": 2940,
+      "sha256": "b34202196f02521d42c0d8738b6af28e5afde9703dda0bb16cb1ec48310578ee"
+    },
+    "agentidentity-list.md": {
+      "bytes": 4944,
+      "sha256": "1b953926f9bdb9e16e21f2e7a09a9de5a20c773b3efa58d02dc63e8289bbd82b"
+    },
+    "agentidentityblueprint-list-sponsors.md": {
+      "bytes": 3088,
+      "sha256": "38b447a3c61808955064ac3ee2ca4a163418398163725845942b8877d4bfd2d3"
+    },
+    "agentidentityblueprint-list.md": {
+      "bytes": 6842,
+      "sha256": "37f70359885f38106ce9eda1cb8325149402de866a6651945e840b74b4dd2903"
+    },
+    "includes/permissions/agentidentity-list-permissions.md": {
+      "bytes": 437,
+      "sha256": "298daa18a8b1e2871d2a625a828182e0146ec26c5d1b7f38f9cedefbe8a4a5de"
+    },
+    "includes/permissions/agentidentity-list-sponsors-permissions.md": {
+      "bytes": 411,
+      "sha256": "36f254ae06f044a549e86555f414eee1dc81b32d023066ebe56f4cfe670aad34"
+    },
+    "includes/permissions/agentidentityblueprint-list-permissions.md": {
+      "bytes": 473,
+      "sha256": "c9621484295159dec767c8d1af4cc81430cc6391ac2d09904a194f0d89ecf051"
+    },
+    "includes/permissions/agentidentityblueprint-list-sponsors-permissions.md": {
+      "bytes": 413,
+      "sha256": "dbab98ad30bb2e8f8d2997f0f11825758096f47dd3e81b544597179a63754940"
+    },
+    "LICENSE": {
+      "bytes": 18650,
+      "sha256": "7183ef9749eb9b75e710a81a4c812a9405cc184f087500581a973e5929ac3f5e"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    }
+  }
+}

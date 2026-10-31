@@ -1,0 +1,8 @@
+{
+  "setting": "Users can create agent blueprints",
+  "value": "No",
+  "readBy": "ian@contoso.example",
+  "readOn": "2026-10-28",
+  "where": "Microsoft Entra admin center, Entra ID > Users > User settings",
+  "evidence": "EV-0912 (screenshot filed with the decision record)"
+}
