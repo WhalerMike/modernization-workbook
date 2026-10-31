@@ -53,7 +53,7 @@ The program master schedule is the integrated plan, and the project plans link t
 | [Privileged Access & Administrative Identity](privileged-access.md) | Sample ready | [Book 04](../books/b04-access/index.md) |
 | [Data Platform Identity Transformation](data-platform.md) | Sample ready | [Book 06](../books/b06-data-platform/index.md) |
 | [Non-Person Identity Modernization](non-person-identity.md) | Sample ready | [Book 02, Chapters 09 and 10](../books/b02-identity/09-building-the-entra-target.md#modernizing-service-accounts); [Book 17](../books/b17-ai-identity/index.md); the companion guide's [non-person identity track](../books/guides/attribute-driven-migration.md#non-person-identity-track) |
-| [Attribute-Driven Migration](attribute-driven-migration.md) | Sample ready | The [Attribute-Driven Migration guide](../books/guides/attribute-driven-migration.md) and its [implementation guide](../books/guides/attribute-driven-migration-implementation.md); the two technical deep-dive decks on the [Presentations](../presentations/index.md#technical-attribute-driven-migration) page |
+| [Attribute-Driven Migration](attribute-driven-migration.md) | Sample ready | The [Attribute-Driven Migration guide](../books/guides/attribute-driven-migration.md) and its [implementation guide](developer-workbooks/attribute-driven-migration/implementation-guide.md); the two technical deep-dive decks on the [Presentations](../presentations/index.md#technical-attribute-driven-migration) page |
 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) | Sample ready | [Book 13](../books/b13-governance/index.md) |
 | [Supply Chain & Software Bill of Materials](supply-chain-sbom.md) | Sample ready | [Book 14](../books/b14-compliance/index.md) |
 

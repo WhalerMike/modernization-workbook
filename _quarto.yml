@@ -110,8 +110,6 @@ website:
             text: "Book 18 — Application Modernization"
           - href: docs/books/guides/attribute-driven-migration.md
             text: "Guide: Attribute-Driven Migration to Entra ID"
-          - href: docs/books/guides/attribute-driven-migration-implementation.md
-            text: "Guide: Attribute-Driven Migration Implementation"
           - href: docs/books/guides/intune-track-implementation.md
             text: "Guide: Intune Track Implementation"
           - href: docs/books/guides/arc-track-implementation.md
@@ -130,6 +128,8 @@ website:
             text: "Developer Workbooks"
           - href: docs/project-plans/developer-workbooks/attribute-driven-migration/index.md
             text: "Building the Attribute-Driven Migration"
+          - href: docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md
+            text: "Attribute-Driven Migration: Implementation Guide"
           - href: docs/project-plans/developer-workbooks/privileged-access/index.md
             text: "Building Privileged Access"
           - href: docs/project-plans/developer-workbooks/non-person-identity/index.md
@@ -176,7 +176,8 @@ website:
             - section: "Building the Attribute-Driven Migration"
               href: docs/project-plans/developer-workbooks/attribute-driven-migration/index.md
               contents:
-                - auto: "docs/project-plans/developer-workbooks/attribute-driven-migration/*-*.md"
+                - docs/project-plans/developer-workbooks/attribute-driven-migration/implementation-guide.md
+                - auto: "docs/project-plans/developer-workbooks/attribute-driven-migration/[0-9][0-9]-*.md"
             - section: "Building Privileged Access"
               href: docs/project-plans/developer-workbooks/privileged-access/index.md
               contents:
@@ -270,7 +271,6 @@ website:
         - section: "Companion guides"
           contents:
             - docs/books/guides/attribute-driven-migration.md
-            - docs/books/guides/attribute-driven-migration-implementation.md
             - docs/books/guides/intune-track-implementation.md
             - docs/books/guides/arc-track-implementation.md
             - docs/books/guides/non-person-identity-implementation.md
