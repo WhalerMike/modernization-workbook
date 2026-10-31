@@ -58,12 +58,27 @@ function Get-NpiWcaList {
 # ----------------------------------------------------------------------------- calls and the client
 
 function Get-NpiWcaCallList {
+    <#
+    .SYNOPSIS
+        Reads the Chapter 08 call list (config/calls-ch08.json unless -Path is given) and
+        returns it as a hashtable of tasks and calls.
+    .EXAMPLE
+        (Get-NpiWcaCallList).tasks.Keys
+    #>
     [CmdletBinding()]
     param([string]$Path = $script:CallsPath)
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
 }
 
 function Get-NpiWcaCall {
+    <#
+    .SYNOPSIS
+        Returns the declared Chapter 08 calls as an array, narrowed to one task (wca-read,
+        wca-signins or wca-apply) with -Task.
+    .EXAMPLE
+        Get-NpiWcaCall -Task wca-apply | ForEach-Object { '{0} {1}' -f $_.method, $_.path }
+    #>
+
     <# The declared Chapter 08 calls, optionally for one task. #>
     [CmdletBinding()]
     param([ValidateSet('wca-read', 'wca-signins', 'wca-apply')][string]$Task)
@@ -73,6 +88,15 @@ function Get-NpiWcaCall {
 }
 
 function Get-NpiWcaRequiredPermission {
+    <#
+    .SYNOPSIS
+        Returns the Graph permissions and methods a Chapter 08 task needs, the union of its
+        declared calls, with the task's mode.
+    .EXAMPLE
+        # Application.Read.All and Policy.Read.All.
+        (Get-NpiWcaRequiredPermission -Task wca-read).GraphPermissions
+    #>
+
     <# The union of a task's calls: Graph permissions and methods. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][ValidateSet('wca-read', 'wca-signins', 'wca-apply')][string]$Task)
@@ -91,6 +115,9 @@ function New-NpiWcaClient {
         A Graph client for one Chapter 08 task in one cloud. -Invoke is
         { param($Method, $Uri, $Body, $Headers) } and returns the parsed body as a hashtable.
         Only the wca-apply task can write.
+    .EXAMPLE
+        $fake = New-NpiWcaFixtureInvoker -Path tests/fixtures/ch08/tenant.json -Cloud gcc
+        $client = New-NpiWcaClient -Cloud gcc -Task wca-read -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param(
@@ -110,6 +137,17 @@ function New-NpiWcaClient {
 }
 
 function Resolve-NpiWcaRequest {
+    <#
+    .SYNOPSIS
+        Builds the request for a declared Chapter 08 call on the cloud's Graph host and returns
+        the call, its method and the URI. Throws for an undeclared call, a write from a read task,
+        DELETE, or a bound value that isn't an object ID.
+    .EXAMPLE
+        $fake = New-NpiWcaFixtureInvoker -Path tests/fixtures/ch08/tenant.json -Cloud gcc
+        $writer = New-NpiWcaClient -Cloud gcc -Task wca-apply -Invoke $fake.Invoke
+        Resolve-NpiWcaRequest -Client $writer -CallId 'wca-policy-update' -Bind @{ id = 'ca000000-0000-4000-8000-000000000101' }
+    #>
+
     # The URL for a declared call. Refuses an undeclared call, a write from a read task, DELETE,
     # and a bound value that isn't an object ID.
     param($Client, [string]$CallId, [hashtable]$Bind = @{}, [string]$Query)
@@ -130,6 +168,16 @@ function Resolve-NpiWcaRequest {
 }
 
 function Invoke-NpiWcaGet {
+    <#
+    .SYNOPSIS
+        Sends a declared Chapter 08 GET to the cloud's own Graph host, follows every
+        @odata.nextLink, and returns all the items; -One returns the single response body. Each
+        request is recorded in the client's evidence.
+    .EXAMPLE
+        # Every Conditional Access policy, all pages.
+        Invoke-NpiWcaGet -Client $client -CallId 'wca-policies'
+    #>
+
     <# GET a declared call on the cloud's own host, following every @odata.nextLink. -One returns the single body. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string]$CallId, [hashtable]$Bind = @{}, [string]$Query, [hashtable]$Headers, [switch]$One)
@@ -170,6 +218,11 @@ function New-NpiWcaFixtureInvoker {
         only interactive sign-ins unless the filter asks for service principals, and returns the
         report-only results as unknownFutureValue unless the request carries
         Prefer: include-unknown-enum-members. DELETE throws. Every call is recorded in .Calls.
+    .EXAMPLE
+        $fake = New-NpiWcaFixtureInvoker -Path tests/fixtures/ch08/tenant.json -Cloud gcc
+        $client = New-NpiWcaClient -Cloud gcc -Task wca-read -Invoke $fake.Invoke
+        $tenant = Get-NpiWcaTenant -Client $client
+        $fake.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][string]$Cloud, [int]$PageSize = 2)
@@ -185,6 +238,16 @@ function New-NpiWcaFixtureInvoker {
 }
 
 function Invoke-NpiWcaFake {
+    <#
+    .SYNOPSIS
+        The request handler behind New-NpiWcaFixtureInvoker: answers one Graph request from the
+        fixture tenant in -State, applies a POST or PATCH to it, records the call in State.Calls, and
+        throws as Graph would for a request it refuses. Normally called through the invoker's .Invoke
+        script block.
+    .EXAMPLE
+        $fake = New-NpiWcaFixtureInvoker -Path tests/fixtures/ch08/tenant.json -Cloud gcc
+        Invoke-NpiWcaFake -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies'
+    #>
     param($State, [string]$Method, [string]$Uri, $Body, $Headers)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri; Body = $Body; Headers = $Headers })
     $u = [Uri]$Uri
@@ -284,6 +347,15 @@ function Invoke-NpiWcaFake {
 # ----------------------------------------------------------------------------- the repository and the scope
 
 function Read-NpiWcaScope {
+    <#
+    .SYNOPSIS
+        Reads the reviewed scope file and returns it as a hashtable, with the file's SHA-256 added
+        under the _sha256 key.
+    .EXAMPLE
+        $scope = Read-NpiWcaScope -Path tests/fixtures/ch08/scope.json
+        $scope['egress']['ranges']
+    #>
+
     <# The reviewed scope file, as a hashtable, with its SHA-256. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -293,6 +365,15 @@ function Read-NpiWcaScope {
 }
 
 function Read-NpiWcaRepository {
+    <#
+    .SYNOPSIS
+        Reads the policy templates, named locations and alert definitions under workload-ca/
+        (or -Path) and returns each file's kind, path, name, text and parsed body.
+    .EXAMPLE
+        $repo = Read-NpiWcaRepository
+        $repo.Policies.Name
+    #>
+
     <# The policy templates, the named location and the alert definition in workload-ca/. #>
     [CmdletBinding()]
     param([string]$Path = $script:RepoPath)
@@ -309,6 +390,9 @@ function Read-NpiWcaLearnSample {
     .SYNOPSIS
         The Graph JSON sample from the pinned Learn page "Conditional Access for workload
         identities", unmodified: its one json block. Throws if the page no longer has exactly one.
+    .EXAMPLE
+        # The pinned Learn page, relative to examples/non-person-identity.
+        Read-NpiWcaLearnSample -Path ../third_party/entra-workload-identity-ca-page/workload-identity.md
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -321,6 +405,14 @@ function Read-NpiWcaLearnSample {
 # ----------------------------------------------------------------------------- addresses
 
 function ConvertTo-NpiWcaCidr {
+    <#
+    .SYNOPSIS
+        Parses a CIDR range such as 198.51.100.32/29 and returns its text, address family,
+        address bytes and prefix length, or $null if it isn't a valid range.
+    .EXAMPLE
+        ConvertTo-NpiWcaCidr -Text '2001:db8:10::/48'
+    #>
+
     <# Parse a CIDR range; $null if it isn't one. #>
     param([string]$Text)
     if ($Text -notmatch '^([0-9a-fA-F:.]+)/(\d{1,3})$') { return $null }
@@ -334,6 +426,15 @@ function ConvertTo-NpiWcaCidr {
 }
 
 function Test-NpiWcaIpInRange {
+    <#
+    .SYNOPSIS
+        Returns $true when an IP address is inside any of the CIDR ranges given, and $false
+        when it isn't or the address doesn't parse.
+    .EXAMPLE
+        # True: .39 is inside 198.51.100.32/29.
+        Test-NpiWcaIpInRange -Ip '198.51.100.39' -Ranges '198.51.100.32/29'
+    #>
+
     <# True when an IP address is inside any of the CIDR ranges. #>
     param([string]$Ip, [string[]]$Ranges)
     $a = $null
@@ -364,6 +465,9 @@ function Test-NpiWcaPolicyBody {
     .SYNOPSIS
         NPI-WCA-01, -07 and -08 on one policy body: a repository template, a rendered policy, or
         Learn's sample. Reads the body only.
+    .EXAMPLE
+        $sample = Read-NpiWcaLearnSample -Path ../third_party/entra-workload-identity-ca-page/workload-identity.md
+        Test-NpiWcaPolicyBody -Body $sample -EgressName 'NL-WorkloadEgress' -Name 'learn-sample'
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][Collections.IDictionary]$Body, [Parameter(Mandatory)][string]$EgressName, [string]$Name, [switch]$Rendered)
@@ -405,6 +509,9 @@ function Test-NpiWcaRepository {
     .SYNOPSIS
         The pre-merge check: NPI-WCA-01 to -09 over the policy templates, the named location and the
         scope file. Reads files only, and runs in the pull request pipeline. A Finding stops -Apply.
+    .EXAMPLE
+        # The pre-merge check; no tenant is read.
+        Test-NpiWcaRepository -Repository (Read-NpiWcaRepository) -Scope (Read-NpiWcaScope -Path tests/fixtures/ch08/scope.json) -AsOf ([datetime]'2026-10-30')
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Repository, [Parameter(Mandatory)][hashtable]$Scope, [Parameter(Mandatory)][datetime]$AsOf)
@@ -479,6 +586,10 @@ function Test-NpiWcaTenantScope {
         an app registration's object ID), an Application registered in this tenant, single-tenant
         and enabled (NPI-WCA-02 to -04), and every managed identity, multitenant, SaaS, agent or
         legacy service principal in the tenant is recorded out of scope (NPI-WCA-06). Reads only.
+    .EXAMPLE
+        $scope = Read-NpiWcaScope -Path tests/fixtures/ch08/scope.json
+        $client = New-NpiWcaClient -Cloud gcc -Task wca-read -Invoke (New-NpiWcaFixtureInvoker -Path tests/fixtures/ch08/tenant.json -Cloud gcc).Invoke
+        (Test-NpiWcaTenantScope -Client $client -Scope $scope).Findings
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][hashtable]$Scope)
@@ -524,6 +635,9 @@ function Get-NpiWcaEnforcement {
         D-N5 is recorded, -AllowEnforce was given, the sign-in summary at -SignInSummaryPath has
         the SHA-256 the ring's record cites and shows the ring ready, and every earlier ring is
         enforced too. Anything else holds the ring in report-only, with the reason.
+    .EXAMPLE
+        # Without -AllowEnforce every ring stays report-only, with the reason in Note.
+        Get-NpiWcaEnforcement -Scope (Read-NpiWcaScope -Path tests/fixtures/ch08/scope.json) -SignInSummaryPath out/wca-signins/signin-summary.json
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][hashtable]$Scope, [switch]$AllowEnforce, [string]$SignInSummaryPath)
@@ -556,6 +670,15 @@ function Get-NpiWcaEnforcement {
 # ----------------------------------------------------------------------------- desired state and the plan
 
 function Get-NpiWcaDesiredLocation {
+    <#
+    .SYNOPSIS
+        Returns the named location body from the repository with its ipRanges set from the
+        scope's egress ranges, in Graph's iPv4CidrRange and iPv6CidrRange shape. Throws if no
+        location file matches the scope's egress name.
+    .EXAMPLE
+        Get-NpiWcaDesiredLocation -Repository (Read-NpiWcaRepository) -Scope (Read-NpiWcaScope -Path tests/fixtures/ch08/scope.json)
+    #>
+
     <# The named location file with the scope's egress ranges in Graph's ipRange shape. #>
     param($Repository, [hashtable]$Scope)
     $l = $Repository.Locations | Where-Object { $_.Body['displayName'] -eq $Scope['egress']['name'] } | Select-Object -First 1
@@ -575,6 +698,10 @@ function Get-NpiWcaDesiredPolicy {
         Each policy template rendered once per ring: '<template>-<ring>', the ring's service
         principals by object ID, its dated exclusions, and the egress location's ID. State is
         report-only, or enabled for a ring Get-NpiWcaEnforcement says may be enforced.
+    .EXAMPLE
+        $scope = Read-NpiWcaScope -Path tests/fixtures/ch08/scope.json
+        $enf = Get-NpiWcaEnforcement -Scope $scope
+        Get-NpiWcaDesiredPolicy -Repository (Read-NpiWcaRepository) -Scope $scope -LocationId '10c00000-0000-4000-8000-000000000101' -Enforcement $enf -AsOf ([datetime]'2026-10-30')
     #>
     param($Repository, [hashtable]$Scope, [string]$LocationId, $Enforcement, [datetime]$AsOf)
     foreach ($ring in @($Scope['rings'] | Sort-Object { [int]$_['order'] })) {
@@ -610,6 +737,16 @@ function ConvertTo-NpiWcaCanonical {
 }
 
 function Compare-NpiWcaValue {
+    <#
+    .SYNOPSIS
+        Compares a value from the repository with the tenant's and returns the dotted path of
+        each difference, walking the repository's keys. Arrays compare as sets. Returns nothing when
+        they match.
+    .EXAMPLE
+        # Returns 'state'.
+        Compare-NpiWcaValue -Repo @{ state = 'enabled'; grantControls = @{ builtInControls = @('block') } } -Tenant @{ state = 'disabled'; grantControls = @{ builtInControls = @('block') } } -Path ''
+    #>
+
     # Paths where the repository's value differs from the tenant's, driven by the repository.
     # Arrays compare as sets.
     param($Repo, $Tenant, [string]$Path)
@@ -629,6 +766,15 @@ function Compare-NpiWcaValue {
 }
 
 function Get-NpiWcaTenant {
+    <#
+    .SYNOPSIS
+        Reads the tenant's Conditional Access policies and named locations, every page, and
+        returns them as Policies and Locations.
+    .EXAMPLE
+        $client = New-NpiWcaClient -Cloud gcc -Task wca-read -Invoke (New-NpiWcaFixtureInvoker -Path tests/fixtures/ch08/tenant.json -Cloud gcc).Invoke
+        $tenant = Get-NpiWcaTenant -Client $client
+    #>
+
     <# Read the tenant's Conditional Access policies and named locations: two GETs, every page. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client)
@@ -651,6 +797,10 @@ function Get-NpiWcaPlan {
         NoChange, Blocked (its named location doesn't exist yet), Held (an enforcement that isn't
         allowed on this run) and NotInRepository (a workload policy nobody's files name: reported,
         never deleted). Sends nothing.
+    .EXAMPLE
+        # $repo, $scope and $client as in the examples above; a plan sends nothing.
+        $plan = @(Get-NpiWcaPlan -Repository $repo -Scope $scope -Tenant (Get-NpiWcaTenant -Client $client) -Enforcement (Get-NpiWcaEnforcement -Scope $scope) -AsOf ([datetime]'2026-10-30'))
+        $plan | Format-Table Kind, Name, Ring, Action, Note
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Repository, [Parameter(Mandatory)][hashtable]$Scope, [Parameter(Mandatory)]$Tenant, [Parameter(Mandatory)]$Enforcement, [Parameter(Mandatory)][datetime]$AsOf)
@@ -709,6 +859,10 @@ function Invoke-NpiWcaPlan {
         tenant check has a Finding, and refuses any policy write that assigns anything but object
         IDs, grants anything but block, creates a policy that isn't report-only, or enables one the
         plan didn't mark as an allowed enforcement.
+    .EXAMPLE
+        # With a wca-read client this is a dry run: every row comes back with Sent = $false.
+        $findings = @(Test-NpiWcaRepository -Repository $repo -Scope $scope -AsOf ([datetime]'2026-10-30'))
+        Invoke-NpiWcaPlan -Client $client -Plan $plan -Findings $findings -EgressName $scope['egress']['name']
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Plan, [Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Findings, [string]$EgressName = 'NL-WorkloadEgress')
@@ -745,6 +899,9 @@ function Get-NpiWcaSignIn {
         Service principal sign-ins between -From and -To, from Graph beta (List signIns), with the
         filter Learn gives for service principal sign-ins and the Prefer header that returns the
         report-only results. Throws if a result still comes back as unknownFutureValue.
+    .EXAMPLE
+        $client = New-NpiWcaClient -Cloud gcc -Task wca-signins -Invoke (New-NpiWcaFixtureInvoker -Path tests/fixtures/ch08/tenant.json -Cloud gcc).Invoke
+        $rows = Get-NpiWcaSignIn -Client $client -From ([datetime]'2026-10-12T00:00:00Z') -To ([datetime]'2026-10-30T12:00:00Z')
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][datetime]$From, [Parameter(Mandatory)][datetime]$To)
@@ -765,6 +922,10 @@ function Get-NpiWcaSignInSummary {
         our policies yet), WouldBlock (a report-only failure, a block, or an address outside the
         ranges) or Clear. A ring is ready when every principal is Clear and the window is at least
         14 days (Design guidance). Same inputs, same file, byte for byte.
+    .EXAMPLE
+        # $rows from Get-NpiWcaSignIn over the same window.
+        $summary = Get-NpiWcaSignInSummary -SignIns $rows -Scope $scope -Repository $repo -From ([datetime]'2026-10-12T00:00:00Z') -To ([datetime]'2026-10-30T12:00:00Z')
+        $summary.rings | ForEach-Object { '{0}: ready {1}' -f $_.ring, $_.ready }
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][AllowEmptyCollection()][object[]]$SignIns, [Parameter(Mandatory)][hashtable]$Scope, [Parameter(Mandatory)]$Repository, [Parameter(Mandatory)][datetime]$From, [Parameter(Mandatory)][datetime]$To)
@@ -814,6 +975,8 @@ function New-NpiWcaAlertRule {
         The block-event alert for security operations, rendered from the reviewed definition in
         workload-ca/alerts with the scope's service principal IDs. A definition for a reviewed
         deployment; this code doesn't write to Azure Monitor.
+    .EXAMPLE
+        New-NpiWcaAlertRule -Repository (Read-NpiWcaRepository) -Scope (Read-NpiWcaScope -Path tests/fixtures/ch08/scope.json)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Repository, [Parameter(Mandatory)][hashtable]$Scope)
@@ -828,6 +991,16 @@ function New-NpiWcaAlertRule {
 # ----------------------------------------------------------------------------- the run
 
 function Export-NpiWcaRun {
+    <#
+    .SYNOPSIS
+        Writes each of a run's files as JSON under -OutputPath, then manifest.json with the
+        task, mode, cloud, tenant, the Graph permissions the task holds, every request made and a
+        SHA-256 per file. Returns the manifest file.
+    .EXAMPLE
+        # $client and $summary as in the Get-NpiWcaSignInSummary example.
+        Export-NpiWcaRun -OutputPath out/wca-signins -Cloud gcc -Task wca-signins -Mode Fixture -TenantId $scope['tenantId'] -Evidence $client.Evidence -Files @{ 'signin-summary.json' = $summary }
+    #>
+
     <# Write a run's files and a manifest: task, mode, cloud, tenant, the permissions the task holds, every request, a SHA-256 per file. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$OutputPath, [Parameter(Mandatory)][hashtable]$Files, [Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$Task,

@@ -40,14 +40,29 @@ $script:FingerprintColumns = @(
 # ----------------------------------------------------------------------------- calls, policy, permissions
 
 function Get-NpiDriftCallList {
-    <# Chapter 10's call list, config/calls-ch10.json, in calls.json's schema. #>
+    <#
+    .SYNOPSIS
+        Chapter 10's call list, config/calls-ch10.json, in calls.json's schema.
+        Returns it as a hashtable with its calls, tasks and runs.
+    .EXAMPLE
+        # The ID of each call the drift task may send.
+        (Get-NpiDriftCallList).calls | ForEach-Object { $_.id }
+    #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'calls-ch10.json'))
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
 }
 
 function Get-NpiDriftPolicy {
-    <# Thresholds and Learn's activity names, config/drift-ch10.json. #>
+    <#
+    .SYNOPSIS
+        Thresholds and Learn's activity names, config/drift-ch10.json.
+        Returns the policy as a hashtable, with the resolved file path added as _path so a run can
+        record the policy's SHA-256.
+    .EXAMPLE
+        # The audit activity names the drift task reads, and the class each one maps to.
+        (Get-NpiDriftPolicy).activities
+    #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'drift-ch10.json'))
     $p = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
@@ -60,6 +75,9 @@ function Get-NpiDriftPermission {
     .SYNOPSIS
         What a task needs: drift (this chapter's calls), or drift-run, the union of Chapter 01's
         inventory, Chapter 02's ownership and this chapter's drift task.
+    .EXAMPLE
+        # Everything the scheduled run needs: inventory, ownership and the drift task's own calls.
+        Get-NpiDriftPermission -Task drift-run
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][ValidateSet('drift', 'drift-run')][string]$Task)
@@ -89,6 +107,10 @@ function New-NpiDriftReader {
     .SYNOPSIS
         A read-only client for the drift task: NpiCore's reader shape with this chapter's call list,
         so Invoke-NpiList sends only declared GETs to the cloud's own host and follows every page.
+    .EXAMPLE
+        # A reader over the fake audit log and sign-in activity report.
+        $fake = New-NpiDriftFixtureInvoker -AuditPath tests/fixtures/ch10/audit.json -SignInPath tests/fixtures/ch10/signin-activity.json
+        $reader = New-NpiDriftReader -Cloud gcc -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][scriptblock]$Invoke)
@@ -109,6 +131,16 @@ function New-NpiDriftReader {
 # ----------------------------------------------------------------------------- the fake
 
 function ConvertTo-NpiUtc {
+    <#
+    .SYNOPSIS
+        Returns -Value as a UTC DateTime, whether it is a DateTime (as ConvertFrom-Json parses it), a
+        DateTimeOffset or an ISO 8601 string, without applying the local offset. $null or an empty
+        string returns $null.
+    .EXAMPLE
+        # 2026-10-29 06:00:00, Kind Utc.
+        ConvertTo-NpiUtc '2026-10-29T06:00:00Z'
+    #>
+
     # ConvertFrom-Json turns ISO 8601 strings into DateTime; a string round trip would apply the local offset.
     param($Value)
     if ($null -eq $Value -or "$Value" -eq '') { return $null }
@@ -128,6 +160,10 @@ function New-NpiDriftFixtureInvoker {
         activity report from -SignInPath ('servicePrincipalSignInActivities'). It evaluates only the
         filter terms this chapter sends and refuses any other, serves pages of -PageSize with a next
         link on the same host, and records every call.
+    .EXAMPLE
+        # The fixture audit log and sign-in report; $fake.Calls lists every request it received.
+        $fake = New-NpiDriftFixtureInvoker -AuditPath tests/fixtures/ch10/audit.json -SignInPath tests/fixtures/ch10/signin-activity.json
+        $reader = New-NpiDriftReader -Cloud gcc -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$AuditPath, [string]$SignInPath, [int]$PageSize = 2, [string]$Cloud = 'gcc')
@@ -141,6 +177,17 @@ function New-NpiDriftFixtureInvoker {
 }
 
 function Invoke-NpiDriftFake {
+    <#
+    .SYNOPSIS
+        The fake's request handler, called through the scriptblock New-NpiDriftFixtureInvoker returns.
+        It records the call, serves the directory audit log and the sign-in activity report from the
+        fixtures, applies only the activityDateTime and activityDisplayName filter terms, and returns
+        one page with a next link on the same host. Throws for a non-GET, another host or another route.
+    .EXAMPLE
+        # Usually called through $fake.Invoke; called directly here for the first page of audit events.
+        $fake = New-NpiDriftFixtureInvoker -AuditPath tests/fixtures/ch10/audit.json
+        Invoke-NpiDriftFake -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/auditLogs/directoryAudits'
+    #>
     param($State, [string]$Method, [string]$Uri)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri })
     if ($Method -ne 'GET') { throw "The fake refuses $Method" }
@@ -181,6 +228,15 @@ function Invoke-NpiDriftFake {
 function Get-NpiHashValue { param($Hash, [string]$Key) if ($Hash -is [System.Collections.IDictionary] -and $Hash.Contains($Key)) { $Hash[$Key] } else { $null } }
 
 function ConvertTo-NpiActivityName {
+    <#
+    .SYNOPSIS
+        Returns an audit activity name with any en or em dash replaced by a hyphen and the ends
+        trimmed, so it matches the activity names in the policy.
+    .EXAMPLE
+        # 'Update application - Certificates and secrets management', with a hyphen.
+        ConvertTo-NpiActivityName "Update application $([char]0x2013) Certificates and secrets management"
+    #>
+
     # Learn's activity list writes "Update application - Certificates and secrets management" with a
     # hyphen; a dash typed elsewhere is read as the same name (research gaps, row 91).
     param([string]$Name)
@@ -188,6 +244,16 @@ function ConvertTo-NpiActivityName {
 }
 
 function Get-NpiKeyDescription {
+    <#
+    .SYNOPSIS
+        Parses a KeyDescription value from an audit event's modified properties (a JSON array string
+        or a list of entries) and returns one object per credential with KeyId, KeyType and KeyUsage.
+        The display name is dropped. $null or an empty value returns an empty array.
+    .EXAMPLE
+        # One credential: KeyId 9c000000-0000-4000-8000-000000000031, KeyType Password, KeyUsage Verify.
+        Get-NpiKeyDescription '["[KeyIdentifier=9c000000-0000-4000-8000-000000000031,KeyType=Password,KeyUsage=Verify,DisplayName=a]"]'
+    #>
+
     # Credentials in a KeyDescription value, in the format Learn's linked Sentinel rule parses:
     # [KeyIdentifier=<id>,KeyType=<type>,KeyUsage=<usage>,DisplayName=<name>]. The display name is
     # dropped: it is free text that can name a person.
@@ -207,6 +273,10 @@ function ConvertTo-NpiAuditEvent {
     .SYNOPSIS
         One directoryAudit item as an evidence row: the activity and its class, the initiator and the
         target as IDs, and the credentials added or removed (key ID, type, usage). No names.
+    .EXAMPLE
+        # The first event in the fixture audit log, as an evidence row.
+        $item = (Get-Content tests/fixtures/ch10/audit.json -Raw | ConvertFrom-Json -AsHashtable -Depth 50).directoryAudits[0]
+        ConvertTo-NpiAuditEvent -Item $item -Policy (Get-NpiDriftPolicy)
     #>
     param([Parameter(Mandatory)]$Item, [Parameter(Mandatory)]$Policy)
     $init = Get-NpiHashValue $Item 'initiatedBy'
@@ -254,6 +324,11 @@ function Get-NpiAuditEvent {
         in the policy (credential changes on applications and service principals, consent, delegated
         grants, app role assignments). Events are de-duplicated by ID and sorted by time. Refuses a
         window that starts more than 30 days before -AsOf: the log keeps 30 days with P1 or P2.
+    .EXAMPLE
+        $fake = New-NpiDriftFixtureInvoker -AuditPath tests/fixtures/ch10/audit.json -SignInPath tests/fixtures/ch10/signin-activity.json
+        $reader = New-NpiDriftReader -Cloud gcc -Invoke $fake.Invoke
+        # One day's credential and consent events.
+        Get-NpiAuditEvent -Reader $reader -Since ([datetime]'2026-10-29T06:00:00Z') -Until ([datetime]'2026-10-30T06:00:00Z')
     #>
     [CmdletBinding()]
     param(
@@ -287,6 +362,11 @@ function Get-NpiSignInActivity {
     .SYNOPSIS
         The service principal sign-in activity report (beta): the last sign-in per app ID. Learn lists
         it in the global service only, so in gcchigh or dod it isn't sent and Status is NotAvailable.
+    .EXAMPLE
+        $fake = New-NpiDriftFixtureInvoker -AuditPath tests/fixtures/ch10/audit.json -SignInPath tests/fixtures/ch10/signin-activity.json
+        $reader = New-NpiDriftReader -Cloud gcc -Invoke $fake.Invoke
+        # Status is Read in gcc; ByAppId maps each app ID to its last sign-in.
+        (Get-NpiSignInActivity -Reader $reader).ByAppId
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Reader)
@@ -308,6 +388,9 @@ function Get-NpiFingerprint {
         A finding's fingerprint: the first 16 hex characters of SHA-256("<rule>|<objectKey>|"), the
         first workbook's fingerprint() with an empty issue, so the same finding has the same value
         every run however its text changes. Chapters 03 to 09 compute it the same way.
+    .EXAMPLE
+        # The same 16 hex characters in every run that raises this finding.
+        Get-NpiFingerprint -Rule 'NPI-DRF-06' -ObjectKey 'ad:ad000000-0000-4000-8000-000000000001'
     #>
     param([Parameter(Mandatory)][string]$Rule, [Parameter(Mandatory)][string]$ObjectKey)
     $b = [Text.Encoding]::UTF8.GetBytes("$Rule|$ObjectKey|")
@@ -315,6 +398,15 @@ function Get-NpiFingerprint {
 }
 
 function New-NpiDriftFinding {
+    <#
+    .SYNOPSIS
+        Builds one Chapter 10 finding: NpiCore's finding (ID Rule:ObjectKey) with Chapter set to 10
+        and the finding's fingerprint added. Returns an object with Id, Rule, Severity, Chapter,
+        ObjectKey, Object, Issue and Fingerprint.
+    .EXAMPLE
+        # The evidence-gap finding a run raises when a chapter sent no findings file.
+        New-NpiDriftFinding -Rule 'NPI-DRF-09' -Severity Info -ObjectKey 'contract:chapter-03' -Object 'Chapter 03' -Issue 'No findings file from Chapter 03 this run'
+    #>
     param([string]$Rule, [string]$Severity, [string]$ObjectKey, [string]$Object, [string]$Issue)
     $f = New-NpiFinding -Rule $Rule -Severity $Severity -ObjectKey $ObjectKey -Object $Object -Issue $Issue
     [pscustomobject][ordered]@{ Id = $f.Id; Rule = $Rule; Severity = $Severity; Chapter = '10'; ObjectKey = $ObjectKey; Object = $Object; Issue = $Issue; Fingerprint = (Get-NpiFingerprint -Rule $Rule -ObjectKey $ObjectKey) }
@@ -337,7 +429,15 @@ function Get-NpiRowValues {
 }
 
 function Get-NpiRowFingerprint {
-    <# SHA-256 over the row's governance columns, as name=value lines in a fixed order. #>
+    <#
+    .SYNOPSIS
+        SHA-256 over the row's governance columns, as name=value lines in a fixed order.
+        Returns the lowercase hexadecimal digest; the baseline compares register rows by it.
+    .EXAMPLE
+        # The fingerprint of the first row of a run's register.
+        $rows = @(Get-Content out/runs/2026-10-29T0600Z-fixture/inventory/register.json -Raw | ConvertFrom-Json)
+        Get-NpiRowFingerprint -Row $rows[0]
+    #>
     param([Parameter(Mandatory)]$Row)
     $v = Get-NpiRowValues $Row
     $text = ($v.Keys | ForEach-Object { "$_=$($v[$_])" }) -join "`n"
@@ -350,6 +450,11 @@ function New-NpiDriftBaseline {
         A baseline candidate from one register: each identity's fingerprint and governance columns,
         with the tenant, cloud, run and the register's SHA-256. It becomes the approved baseline when
         a reviewer passes its SHA-256 to the next run as -ApprovedBaselineSha256.
+    .EXAMPLE
+        # A candidate from Lab 1's register (Import-NpiRegister is in NpiInventory).
+        $register = Import-NpiRegister -RunPath out/runs/2026-10-29T0600Z-fixture/inventory
+        New-NpiDriftBaseline -Rows @($register.Rows) -TenantId c0ffee00-0000-4000-8000-000000000001 -Cloud gcc `
+            -RunId 2026-10-29T0600Z-fixture -AsOf 2026-10-29T06:00:00Z -RegisterSha256 $register.Sha256
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][object[]]$Rows, [Parameter(Mandatory)][string]$TenantId, [Parameter(Mandatory)][string]$Cloud,
@@ -364,6 +469,10 @@ function Import-NpiDriftBaseline {
     .SYNOPSIS
         The approved baseline: its SHA-256 must be the one the reviewer approved, and it must be for
         this tenant and cloud, or the run refuses to compare against it.
+    .EXAMPLE
+        # $approved is the SHA-256 the reviewer approved for this file.
+        Import-NpiDriftBaseline -Path out/runs/2026-10-29T0600Z-fixture/drift/baseline-candidate.json -ApprovedSha256 $approved `
+            -TenantId c0ffee00-0000-4000-8000-000000000001 -Cloud gcc
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][string]$ApprovedSha256, [Parameter(Mandatory)][string]$TenantId, [Parameter(Mandatory)][string]$Cloud)
@@ -386,6 +495,9 @@ function Read-NpiContractFile {
         fmp-npi-findings/1 (findings with id, rule, severity, chapter, objectKey, fingerprint),
         fmp-npi-review/1 (review records) and fmp-npi-credential-log/1 (credentials a pipeline added).
         Returns @{ Schema; Chapter; Data } or throws with the reason.
+    .EXAMPLE
+        # Chapter 07's sample findings file from the fixtures.
+        Read-NpiContractFile -Path tests/fixtures/ch10/contract/ch07-findings.json -TenantId c0ffee00-0000-4000-8000-000000000001
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][string]$TenantId, $Policy = (Get-NpiDriftPolicy))
@@ -437,6 +549,10 @@ function Import-NpiContract {
         Every *.json file in -Path, read through Read-NpiContractFile. A file that fails its check is
         refused and listed with the reason, never half-read. Returns @{ Findings; Reviews; CredentialLog;
         Chapters; Refused; Files }.
+    .EXAMPLE
+        # Every file the fixture chapters handed over; .Refused lists the ones that failed a check.
+        $contract = Import-NpiContract -Path tests/fixtures/ch10/contract -TenantId c0ffee00-0000-4000-8000-000000000001
+        $contract.Refused
     #>
     [CmdletBinding()]
     param([string]$Path, [Parameter(Mandatory)][string]$TenantId, $Policy = (Get-NpiDriftPolicy))
@@ -485,6 +601,12 @@ function Test-NpiRegisterDrift {
         candidate in Chapter 02's run); 04 unused for 90 days by the sign-in activity report; 05 a
         credential expiring within 30 days; 06 a password that never expires; 07 a credential added
         outside the pipeline; 08 a new consent grant or application permission; 09 an evidence gap.
+    .EXAMPLE
+        # $events and $signIn come from Get-NpiAuditEvent and Get-NpiSignInActivity; $baseline from
+        # Import-NpiDriftBaseline.
+        $register = Import-NpiRegister -RunPath out/runs/2026-10-30T0600Z-fixture/inventory
+        Test-NpiRegisterDrift -Rows @($register.Rows) -AsOf ([datetime]'2026-10-30T06:00:00Z') -Events $events -SignIn $signIn `
+            -Baseline $baseline -Cloud gcc
     #>
     [CmdletBinding()]
     param(
@@ -610,6 +732,11 @@ function Test-NpiReviewCycle {
         in the last 12 months. NPI-REV-03: an agent's access assignment with no end date, an end
         past the maximum, or still active after it. NPI-REV-04: a kind of review record not received.
         Returns @{ Findings; Record }.
+    .EXAMPLE
+        # The review records the fixture chapters handed over, checked against Lab 2's register.
+        $register = Import-NpiRegister -RunPath out/runs/2026-10-30T0600Z-fixture/inventory
+        $contract = Import-NpiContract -Path tests/fixtures/ch10/contract -TenantId c0ffee00-0000-4000-8000-000000000001
+        Test-NpiReviewCycle -Rows @($register.Rows) -AsOf ([datetime]'2026-10-30T06:00:00Z') -Reviews $contract.Reviews
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][object[]]$Rows, [Parameter(Mandatory)][datetime]$AsOf, [hashtable]$Reviews = @{}, $Policy = (Get-NpiDriftPolicy))
@@ -675,6 +802,13 @@ function Compare-NpiAiVintage {
         whose identities are still enabled; 03 an authorization answer changed; 04 an entry that left
         the inventory without being retired; 05 an AI identity whose record maps to no use case in
         this vintage. Returns @{ Findings; Changes }.
+    .EXAMPLE
+        # The 2026 vintage against 2025, as Invoke-NpiVintage.ps1 runs it.
+        $register = Import-NpiRegister -RunPath out/runs/2026-10-30T0600Z-fixture/inventory
+        Compare-NpiAiVintage -Current @(Import-Csv tests/fixtures/ch10/vintage/ai-inventory-2026.csv) `
+            -Prior @(Import-Csv tests/fixtures/ch10/vintage/ai-inventory-2025.csv) `
+            -UseCaseMap @(Import-Csv tests/fixtures/ch10/vintage/ai-use-cases.csv) -Rows @($register.Rows) `
+            -ServiceRecords @(Import-Csv tests/fixtures/inputs/service-records.csv) -Vintage 2026
     #>
     [CmdletBinding()]
     param(
@@ -737,6 +871,14 @@ function Compare-NpiAiVintage {
 # ----------------------------------------------------------------------------- writing the run
 
 function Write-NpiDriftJson {
+    <#
+    .SYNOPSIS
+        Writes -Value to -Path as JSON (depth 20), UTF-8 without a byte order mark and with LF line
+        endings on every platform, so the files a run hashes are the same everywhere. Returns nothing.
+    .EXAMPLE
+        # A full path: the .NET write doesn't follow the PowerShell location.
+        Write-NpiDriftJson -Path (Join-Path ([IO.Path]::GetTempPath()) 'sample.json') -Value @{ task = 'drift'; asOf = '2026-10-30T06:00:00Z' }
+    #>
     param([string]$Path, $Value)
     # LF on every platform: ConvertTo-Json uses the platform newline.
     [IO.File]::WriteAllText($Path, (ConvertTo-Json -InputObject $Value -Depth 20).Replace("`r`n", "`n") + "`n", [Text.UTF8Encoding]::new($false))
@@ -748,6 +890,10 @@ function Export-NpiDriftTask {
         Write one task folder of this chapter (drift or vintage): its files and a manifest in the
         shape Chapters 01 and 02 write (task, mode, cloud, tenant, permissions, every request sent,
         a SHA-256 per file), plus -Extra.
+    .EXAMPLE
+        # $reader and $events from Get-NpiAuditEvent; writes events.json and manifest.json.
+        Export-NpiDriftTask -OutputPath out/drift -Task drift -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -AsOf 2026-10-30T06:00:00Z `
+            -Evidence $reader.Evidence -Files ([ordered]@{ 'events.json' = $events })
     #>
     [CmdletBinding()]
     param(
@@ -783,7 +929,13 @@ function Export-NpiDriftTask {
 }
 
 function Get-NpiRunId {
-    <# A sortable run ID from the as-of time and the mode, for example 2026-10-30T0600Z-fixture. #>
+    <#
+    .SYNOPSIS
+        A sortable run ID from the as-of time and the mode, for example 2026-10-30T0600Z-fixture.
+    .EXAMPLE
+        # 2026-10-30T0600Z-fixture
+        Get-NpiRunId -AsOf ([datetime]'2026-10-30T06:00:00Z') -Mode Fixture
+    #>
     param([Parameter(Mandatory)][datetime]$AsOf, [Parameter(Mandatory)][string]$Mode)
     "$($AsOf.ToUniversalTime().ToString('yyyy-MM-ddTHHmm'))Z-$($Mode.ToLowerInvariant())"
 }
@@ -794,6 +946,11 @@ function Write-NpiRunIndex {
         run.json: the run's ID, as-of time, cloud, tenant, mode, audit window, approved baseline, the
         permissions, and each task's status (OK or Error, with the message) with the SHA-256 of its
         manifest. A task that failed has no folder: its findings are unverified, never resolved.
+    .EXAMPLE
+        # $tasks holds each task's Folder and Status (and Message on Error), as the entry script builds it.
+        Write-NpiRunIndex -RunPath out/runs/2026-10-30T0600Z-fixture -RunId 2026-10-30T0600Z-fixture -AsOf ([datetime]'2026-10-30T06:00:00Z') `
+            -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -Mode Fixture -Since ([datetime]'2026-10-29T06:00:00Z') `
+            -Until ([datetime]'2026-10-30T06:00:00Z') -Tasks $tasks -Baseline $baseline
     #>
     [CmdletBinding()]
     param(

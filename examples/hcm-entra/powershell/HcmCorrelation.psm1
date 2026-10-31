@@ -35,6 +35,14 @@ function Get-NormKey($Value) { (Get-Text $Value).ToUpperInvariant() }
 function Test-True($Value) { $Value -is [bool] -and $Value -or (Get-Text $Value).ToLowerInvariant() -eq 'true' }
 
 function Read-HcmEntraExport {
+    <#
+    .SYNOPSIS
+        Read a saved Entra ID users export (a JSON array of Graph users, or a saved
+        {"value": [...]} page) and return the member users; guests are left out.
+    .EXAMPLE
+        $entra = @(Read-HcmEntraExport -Path ./tests/fixtures/correlation/entra-users.json)
+    #>
+
     # A JSON array of Graph users, or a saved {"value": [...]} page. Guests aren't the workforce.
     param([Parameter(Mandatory)][string]$Path)
     $data = Get-Content -LiteralPath $Path -Raw -Encoding utf8 | ConvertFrom-Json -AsHashtable
@@ -118,6 +126,12 @@ function Invoke-HcmCorrelationJoin {
         The join: every key's status, conflicts and reasons, the counts and rates, and the
         quarantine entries. Rows are the extract and the AD export as Import-Csv reads them;
         EntraUsers is $null when no Entra export was given.
+    .EXAMPLE
+        # From the kit root, with HcmToScim.psm1 also imported for Get-HcmMapping.
+        $map = Get-HcmMapping -Path ./config/mapping.json
+        $hrRows = @(Import-Csv -LiteralPath ./tests/fixtures/hcm_extract_sample.csv -Encoding utf8)
+        $adRows = @(Import-Csv -LiteralPath ./tests/fixtures/correlation/ad-user-export.csv -Encoding utf8)
+        $result = Invoke-HcmCorrelationJoin -HrRows $hrRows -AdRows $adRows -EntraUsers $entra -Mapping $map
     #>
     [CmdletBinding()]
     param(
@@ -247,6 +261,15 @@ function Invoke-HcmCorrelationJoin {
 }
 
 function Get-HcmCorrelationReport {
+    <#
+    .SYNOPSIS
+        Build the correlation report's content from a join result: keys, statuses, counts, rates
+        and conflict field names, with no names and no values.
+    .EXAMPLE
+        $inputs = [ordered]@{ extract_sha256 = (Get-HcmFileSha256 -Path ./tests/fixtures/hcm_extract_sample.csv) }
+        Get-HcmCorrelationReport -Result $result -AsOf ([datetime]'2026-10-25') -Inputs $inputs | ConvertTo-Json -Depth 10
+    #>
+
     # The report file's content: keys, statuses, counts and conflict field names; no names, no values.
     param([Parameter(Mandatory)]$Result, [Parameter(Mandatory)][datetime]$AsOf, [Parameter(Mandatory)]$Inputs)
     [ordered]@{

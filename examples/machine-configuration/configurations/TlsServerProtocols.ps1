@@ -1,3 +1,12 @@
+<#
+.SYNOPSIS
+    Defines the TlsServerProtocols DSC configuration, which audits that the server side of TLS 1.0
+    and TLS 1.1 is disabled in the SCHANNEL registry keys. Dot-source it, then run it to compile a MOF.
+.EXAMPLE
+    . ./configurations/TlsServerProtocols.ps1
+    TlsServerProtocols -OutputPath ./out/compiled   # writes localhost.mof
+#>
+
 # Audit that the server side of TLS 1.0 and TLS 1.1 is explicitly disabled in SCHANNEL.
 # Compiles with PSDesiredStateConfiguration 2.0.7 and PSDscResources (versions in
 # ../RequiredModules.psd1). Audit only: the release registry (../config/releases.json) records

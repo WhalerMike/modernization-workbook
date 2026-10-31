@@ -95,6 +95,19 @@ function Test-VkException {
 }
 
 function Invoke-VkHr01 {
+    <#
+    .SYNOPSIS
+        Implements VK-HR-01: lists enabled member users with no employeeId, leaving out exceptions
+        that name an owner. It passes only when every other enabled member is correlated to an HR record.
+    .EXAMPLE
+        # From the kit folder: against the fictional "fail" fixture tenant (no sign-in).
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkHr01 -Context $ctx | Select-Object -ExpandProperty Details
+    .EXAMPLE
+        # Live, on one wave: only the users Get-FMPWaveList put in wave W01 (waves.csv in D:\Inputs).
+        Invoke-VkHr01 -Context (Get-VkRunContext -InputPath D:\Inputs -Option @{ WaveId = 'W01' })
+    .DESCRIPTION
+    #>
     <# VK-HR-01. Enabled member users with no employeeId, excluding exceptions that name an owner. #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-HR-01' $Context {
@@ -113,6 +126,16 @@ function Invoke-VkHr01 {
 }
 
 function Invoke-VkHr02 {
+    <#
+    .SYNOPSIS
+        Implements VK-HR-02: lists enabled member users whose organization code, worker type or
+        position category slot (extensionAttribute10 to 12 by default) is empty. It proves the coded
+        attributes the dynamic groups depend on are populated.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkHr02 -Context $ctx
+    .DESCRIPTION
+    #>
     <# VK-HR-02. Enabled members with an empty organization code, worker type or position category slot. #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-HR-02' $Context {
@@ -132,6 +155,16 @@ function Invoke-VkHr02 {
 }
 
 function Invoke-VkHr03 {
+    <#
+    .SYNOPSIS
+        Implements VK-HR-03: counts enabled member users per organization code in Entra ID and
+        compares each count with the HR export (hr-export.csv: OrgCode, Count). Any code whose counts
+        differ fails it; NotApplicable without the export.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkHr03 -Context $ctx | Select-Object -ExpandProperty Details
+    .DESCRIPTION
+    #>
     <# VK-HR-03. Users per organization code in Entra ID against the HR export's count per code. #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-HR-03' $Context {
@@ -165,6 +198,15 @@ function Invoke-VkHr03 {
 }
 
 function Invoke-VkHr04 {
+    <#
+    .SYNOPSIS
+        Implements VK-HR-04: lists employeeId values held by more than one user, in any account
+        state. It passes only when every key is unique.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkHr04 -Context $ctx
+    .DESCRIPTION
+    #>
     <#
     VK-HR-04. employeeId values held by more than one user (any state). On a wave, the keys held
     twice where at least one holder is in the wave: the other holder can be anywhere.
@@ -216,6 +258,16 @@ function Read-VkCodeLists {
 }
 
 function Invoke-VkHr07 {
+    <#
+    .SYNOPSIS
+        Implements VK-HR-07: the attribute survey on the Entra ID side. Reports the fill rate of
+        each survey attribute against SurveyThresholdPercent, and values that break the same rules
+        as the Start Kit's Get-FMPAttributeSurvey.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -Option @{ KeyPattern = '^MP\d{7}$' }
+        Invoke-VkHr07 -Context $ctx | Select-Object -ExpandProperty Details
+    .DESCRIPTION
+    #>
     <#
     VK-HR-07. The attribute survey on the Entra side: for enabled members (exceptions with an
     owner left out), the fill rate of each survey attribute (employeeId, employeeType,
@@ -323,6 +375,16 @@ function Test-VkLcwScope {
 
 function Invoke-VkHr05 {
     <#
+    .SYNOPSIS
+        Implements VK-HR-05: for each enabled, scheduled Lifecycle Workflow with a time-based
+        trigger, lists users whose trigger date passed in the lookback window with no processing
+        record. Past the 3-day catch-up it is a finding; inside it, a warning.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -Option @{ LookbackDays = 30 }
+        Invoke-VkHr05 -Context $ctx
+    .DESCRIPTION
+    #>
+    <#
     VK-HR-05. For each enabled, scheduled workflow with a time-based trigger: users whose trigger
     date (the attribute plus offsetInDays) fell in the lookback window and has passed, with no
     processing record. Past the 3-day catch-up: a finding. Inside it: a warning.
@@ -386,6 +448,15 @@ function Invoke-VkHr05 {
 }
 
 function Invoke-VkHr06 {
+    <#
+    .SYNOPSIS
+        Implements VK-HR-06: confirms every enabled, scheduled Lifecycle Workflow has an execution
+        limit (tenant-wide or its own) and reports the workflow count against the default ceiling of 100.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkHr06 -Context $ctx | Select-Object -ExpandProperty Details
+    .DESCRIPTION
+    #>
     <#
     VK-HR-06. Execution limits: the tenant-wide quarantineConfiguration in the Lifecycle Workflows
     settings, or the workflow's own settings.quarantineConfiguration, for every enabled scheduled

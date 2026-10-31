@@ -31,6 +31,15 @@ function ConvertTo-NpiMatrixDate {
 # ----------------------------------------------------------------------------- the call list (calls-ch03.json)
 
 function Get-NpiMatrixCallList {
+    <#
+    .SYNOPSIS
+        Reads Chapter 03's call list (config/calls-ch03.json unless -Path names another file) and
+        returns it as a hashtable of tasks and calls.
+    .EXAMPLE
+        # List the IDs of the calls Chapter 03 declares.
+        (Get-NpiMatrixCallList).calls | ForEach-Object { $_.id }
+    .DESCRIPTION
+    #>
     <# Chapter 03's own call list, in calls.json's schema. #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'calls-ch03.json'))
@@ -38,6 +47,15 @@ function Get-NpiMatrixCallList {
 }
 
 function Get-NpiMatrixRequiredPermission {
+    <#
+    .SYNOPSIS
+        Returns the Microsoft Graph permissions, Azure roles, AD rights and methods that a task's
+        declared calls in Chapter 03's call list need, combined into one object.
+    .EXAMPLE
+        # What the migration-matrix task must be granted.
+        Get-NpiMatrixRequiredPermission -Task migration-matrix
+    .DESCRIPTION
+    #>
     <# The union of the migration-matrix task's calls: Graph permissions, Azure roles, AD rights, methods. #>
     [CmdletBinding()]
     param([string]$Task = 'migration-matrix')
@@ -58,6 +76,10 @@ function New-NpiMatrixReader {
     .SYNOPSIS
         A read-only client for the migration-matrix task, shaped like NpiCore's reader so its
         Invoke-NpiGetOne and Invoke-NpiList work, but with Chapter 03's own call list.
+    .EXAMPLE
+        # A reader over the fake Graph with the Chapter 03 SKU fixture.
+        $fake = New-NpiMatrixFixtureInvoker -Path tests/fixtures/estate.json -SkuPath tests/fixtures/ch03/subscribed-skus.json
+        $reader = New-NpiMatrixReader -Cloud gcc -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][scriptblock]$Invoke)
@@ -79,6 +101,10 @@ function New-NpiMatrixFixtureInvoker {
     .SYNOPSIS
         NpiCore's fake Graph for the estate, plus a GET /subscribedSkus route served from a
         Chapter 03 fixture. GET only; every call is recorded in .Calls.
+    .EXAMPLE
+        # The fake, then the calls it received after a run.
+        $fake = New-NpiMatrixFixtureInvoker -Path tests/fixtures/estate.json -SkuPath tests/fixtures/ch03/subscribed-skus.json -Cloud gcc
+        $fake.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][string]$SkuPath, [string]$Cloud = 'gcc')
@@ -124,6 +150,17 @@ function Test-NpiMatrixPerson {
 # ----------------------------------------------------------------------------- inputs
 
 function Import-NpiMatrixConfig {
+    <#
+    .SYNOPSIS
+        Reads the migration matrix (config/migration-matrix.json unless -Path names another file),
+        checks that every row names a known target, and returns it as a hashtable with the file's
+        SHA-256 under the sha256 key.
+    .EXAMPLE
+        # Load the reviewed matrix and show its hash for the manifest.
+        $config = Import-NpiMatrixConfig
+        $config.sha256
+    .DESCRIPTION
+    #>
     <# config/migration-matrix.json, with its SHA-256 for the manifest. #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'migration-matrix.json'))
@@ -138,6 +175,10 @@ function Import-NpiOwnershipRun {
     .SYNOPSIS
         Chapter 02's run, checked against its manifest: ownership.json and orphan-plan.json must
         have the SHA-256 the manifest records, and the run must have checked this very register.
+    .EXAMPLE
+        # Load Chapter 02's run for the register Chapter 01 wrote.
+        $register = Import-NpiRegister -RunPath out/inventory
+        $ownership = Import-NpiOwnershipRun -RunPath out/ownership -RegisterSha256 $register.Sha256
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$RunPath, [Parameter(Mandatory)][string]$RegisterSha256)
@@ -162,6 +203,14 @@ function Import-NpiOwnershipRun {
 }
 
 function Import-NpiMatrixJson {
+    <#
+    .SYNOPSIS
+        Reads a JSON input file and returns it as a hashtable. Returns $null when the path is empty
+        or the file doesn't exist, so an optional input can be left out.
+    .EXAMPLE
+        # Read the program dates from the Chapter 03 fixture inputs.
+        Import-NpiMatrixJson -Path tests/fixtures/ch03/inputs/program-dates.json
+    #>
     param([string]$Path)
     if (-not $Path -or -not (Test-Path -LiteralPath $Path)) { return $null }
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable -Depth 20
@@ -178,6 +227,9 @@ function Get-NpiMatrixProposal {
         A proposed target for every identity in the register (N2.1): Retire for an unowned or
         disabled one, otherwise the first matrix row that matches its type, its workload's location
         and facts, and its credential kind. Identities outside the matrix get a reason, not a row.
+    .EXAMPLE
+        # Propose a target for every row, using the fixture workload facts.
+        $proposals = Get-NpiMatrixProposal -Rows $register.Rows -Ownership $ownership -Config (Import-NpiMatrixConfig) -Workloads (Import-NpiInput tests/fixtures/ch03/inputs/workloads.csv)
     #>
     [CmdletBinding()]
     param(
@@ -257,6 +309,11 @@ function Test-NpiMigrationDecision {
         Check each owner's disposition (D-N3) against the matrix's proposal, sequence the waves
         (N2.2) and return @{ Decisions; Waves; Findings }. Findings NPI-MAT-01 to NPI-MAT-08,
         each with a stable ID (rule:identity, or rule:wave-N).
+    .EXAMPLE
+        # Check the fixture dispositions and waves against the proposals.
+        $fake = New-NpiMatrixFixtureInvoker -Path tests/fixtures/estate.json -SkuPath tests/fixtures/ch03/subscribed-skus.json
+        $reader = New-NpiMatrixReader -Cloud gcc -Invoke $fake.Invoke
+        $decision = Test-NpiMigrationDecision -Reader $reader -Proposals $proposals -Config (Import-NpiMatrixConfig) -AsOf '2026-10-30T12:00:00Z' -Dispositions (Import-NpiInput tests/fixtures/ch03/inputs/dispositions.csv) -Waves (Import-NpiInput tests/fixtures/ch03/inputs/waves.csv) -ProgramDates (Import-NpiMatrixJson tests/fixtures/ch03/inputs/program-dates.json)
     #>
     [CmdletBinding()]
     param(
@@ -386,6 +443,10 @@ function Get-NpiWorkloadIdScope {
         register, the decisions and the tenant's subscriptions: which identities Conditional Access
         and ID Protection for workload identities can cover, now and after conversion, how many each
         option scopes, and whether the tenant holds the license. Finding NPI-MAT-09.
+    .EXAMPLE
+        # Check the fixture D-N4 decision against the register and the decisions.
+        $wid = Get-NpiWorkloadIdScope -Reader $reader -Rows $register.Rows -Decisions $decision.Decisions -Config (Import-NpiMatrixConfig) -Decision (Import-NpiMatrixJson tests/fixtures/ch03/inputs/workload-id-premium.json)
+        $wid.Scope.scope
     #>
     [CmdletBinding()]
     param(
@@ -462,6 +523,10 @@ function Test-NpiGate2 {
         Gate 2, "every account has a decision": every account in scope has a disposition and a
         target from the matrix; HIGH-risk accounts in the first wave; every kept Kerberos account
         has an SPN owner; waves and their rollback recorded; the D-N4 scope decided.
+    .EXAMPLE
+        # Gate 2 over the decision and scope findings.
+        $gate = Test-NpiGate2 -Findings (@($decision.Findings) + @($wid.Findings)) -Decisions $decision.Decisions
+        $gate.criteria | Where-Object { -not $_.met }
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][object[]]$Findings, [Parameter(Mandatory)][object[]]$Decisions)
@@ -489,6 +554,9 @@ function Export-NpiMatrixRun {
         Write the run's files and a manifest: task, mode, cloud, tenant, as-of date, the permissions
         the task holds (from calls-ch03.json), every request, the SHA-256 of the register, the
         ownership run, the matrix and each input, and of each file written.
+    .EXAMPLE
+        # Write the proposals and findings with a manifest.
+        Export-NpiMatrixRun -OutputPath out/matrix -Cloud gcc -TenantId $register.Manifest.tenantId -AsOf '2026-10-30' -Evidence $reader.Evidence -Files @{ 'proposals.json' = @($proposals); 'findings.json' = @($decision.Findings) }
     #>
     [CmdletBinding()]
     param(

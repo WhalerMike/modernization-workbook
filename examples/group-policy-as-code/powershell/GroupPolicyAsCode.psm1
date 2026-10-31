@@ -42,6 +42,14 @@ $script:GpcServerProperties = @('id', 'createdDateTime', 'creationDateTime', 'la
 $script:GpcEndpointSecurityTypes = @('appLockerRuleCollection', 'windowsFirewallSettings')
 
 function Get-GpcCloud {
+    <#
+    .SYNOPSIS
+        Returns the Graph host and Connect-MgGraph environment name for a cloud: gcc, global, gcchigh
+        or dod. An unknown name throws.
+    .EXAMPLE
+        Get-GpcCloud -Cloud gcchigh
+    #>
+
     <# The Graph host and Connect-MgGraph environment for a cloud. Refuses a name it doesn't know. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud)
@@ -53,6 +61,14 @@ function Get-GpcCloud {
 }
 
 function Get-GpcRequiredScope {
+    <#
+    .SYNOPSIS
+        Returns the least-privileged delegated Graph permission for an action:
+        DeviceManagementConfiguration.Read.All for Plan and DryRun, ReadWrite.All for Apply.
+    .EXAMPLE
+        Get-GpcRequiredScope -Action DryRun
+    #>
+
     <#
     The least-privileged delegated permission for each action, from Learn's API pages:
     reading reports, mappings, policies and their settings needs DeviceManagementConfiguration.Read.All;
@@ -98,6 +114,9 @@ function Get-GpcMovePlan {
         row a Conflict, the case Learn's Migrate step refuses to continue on. AppLocker and
         firewall settings go to Endpoint security, as Learn says. The plan decides nothing: a
         person still decides, per setting, whether it moves (Book 05, Chapter 08, Phase 1).
+    .EXAMPLE
+        $g = New-GpcFixtureInvoke -Path ./tests/fixtures/tenant.json
+        Get-GpcMovePlan -Invoke $g.Invoke | Group-Object Disposition
     #>
     [CmdletBinding()]
     param(
@@ -146,6 +165,14 @@ function Get-GpcMovePlan {
 }
 
 function Read-GpcLibrary {
+    <#
+    .SYNOPSIS
+        Reads every *.json file in the policy library folder, in name order, and returns each with its
+        file name, path, SHA-256, data and policy body. Throws on a missing folder or invalid JSON.
+    .EXAMPLE
+        Read-GpcLibrary -Path ./policies
+    #>
+
     <# Read every *.json file in the library folder, in name order. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -213,6 +240,9 @@ function Test-GpcLibrary {
         Lint the policy library. Rules GPC-01 to GPC-10; the README lists them.
     .PARAMETER Plan
         The move plan from Get-GpcMovePlan (or its CSV). When given, each setting is traced to it.
+    .EXAMPLE
+        $g = New-GpcFixtureInvoke -Path ./tests/fixtures/tenant.json
+        Test-GpcLibrary -Library (Read-GpcLibrary -Path ./policies) -Plan (Get-GpcMovePlan -Invoke $g.Invoke)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][object[]]$Library, [object[]]$Plan)
@@ -278,6 +308,15 @@ function Test-GpcLibrary {
 
 function ConvertTo-GpcCanonical {
     <#
+    .SYNOPSIS
+        Returns one canonical JSON string for a setting instance, so a library file and the tenant's
+        copy compare equal when they mean the same thing.
+    .EXAMPLE
+        $lib = Read-GpcLibrary -Path ./policies
+        ConvertTo-GpcCanonical -Node $lib[0].Policy.settings[0].settingInstance
+    #>
+
+    <#
     One canonical JSON string for a setting instance, so a file and the tenant's copy compare equal
     when they mean the same thing: keys sorted, nulls and empty arrays dropped, '@odata.type'
     without its leading '#', and ids dropped. Graph's responses omit the '#' and add nulls.
@@ -315,6 +354,9 @@ function Get-GpcTenantPolicy {
         GET /beta/deviceManagement/configurationPolicies?$filter=technologies has 'mdm' (the filter
         Microsoft's export sample uses), then GET /configurationPolicies/{id}/settings for each
         policy named in the library. Both need DeviceManagementConfiguration.Read.All.
+    .EXAMPLE
+        $g = New-GpcFixtureInvoke -Path ./tests/fixtures/tenant.json
+        Get-GpcTenantPolicy -Invoke $g.Invoke -Name 'FMP-SC-202-Sign-in-and-power'
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][scriptblock]$Invoke, [Parameter(Mandatory)][string[]]$Name, [string]$Cloud = 'gcc')
@@ -337,6 +379,17 @@ function Get-GpcTenantPolicy {
 }
 
 function Compare-GpcPolicy {
+    <#
+    .SYNOPSIS
+        Compares one library policy body with one tenant policy from Get-GpcTenantPolicy. Returns the
+        settings added, removed and changed, the differing properties, and Same.
+    .EXAMPLE
+        $g = New-GpcFixtureInvoke -Path ./tests/fixtures/tenant.json
+        $lib = Read-GpcLibrary -Path ./policies
+        $tenant = Get-GpcTenantPolicy -Invoke $g.Invoke -Name 'FMP-SC-202-Sign-in-and-power'
+        Compare-GpcPolicy -Desired $lib[1].Policy -Actual $tenant[0]
+    #>
+
     <# Compare one library policy body with one tenant policy. Returns the differences. #>
     param([Parameter(Mandatory)]$Desired, [Parameter(Mandatory)]$Actual)
     $want = @{}; foreach ($s in @(Get-GpcProp $Desired 'settings' @())) { $i = Get-GpcProp $s 'settingInstance'; $want["$(Get-GpcProp $i 'settingDefinitionId')"] = ConvertTo-GpcCanonical $i }
@@ -357,6 +410,11 @@ function Compare-GpcLibrary {
     <#
     .SYNOPSIS
         The diff between the library and the tenant: Create, NoChange, Drift or Duplicate per policy.
+    .EXAMPLE
+        $g = New-GpcFixtureInvoke -Path ./tests/fixtures/tenant.json
+        $lib = Read-GpcLibrary -Path ./policies
+        $names = $lib | ForEach-Object { $_.Policy['name'] }
+        Compare-GpcLibrary -Library $lib -Tenant @(Get-GpcTenantPolicy -Invoke $g.Invoke -Name $names)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][object[]]$Library, [Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Tenant)
@@ -387,6 +445,10 @@ function Invoke-GpcSync {
         POSTs each policy to create, reads it back and compares it with the file. It never sends
         PATCH or DELETE. Returns a record for the evidence store, with an ExitCode: 0 clean, 2 when
         something needs a person, 1 when a call failed.
+    .EXAMPLE
+        # Dry run against the fixture tenant: GET only
+        $g = New-GpcFixtureInvoke -Path ./tests/fixtures/tenant.json
+        Invoke-GpcSync -Library (Read-GpcLibrary -Path ./policies) -Invoke $g.Invoke
     #>
     [CmdletBinding()]
     param(
@@ -451,6 +513,15 @@ function Get-GpcFakePage {
 }
 
 function Invoke-GpcFakeGraph {
+    <#
+    .SYNOPSIS
+        Answers one Graph call from the fixture tenant behind New-GpcFixtureInvoke and records it in
+        the state's Calls. Serves only the routes this example reads and the one POST it sends.
+    .EXAMPLE
+        $g = New-GpcFixtureInvoke -Path ./tests/fixtures/tenant.json
+        Invoke-GpcFakeGraph -State $g -Method GET -Uri 'https://graph.microsoft.com/beta/deviceManagement/groupPolicyMigrationReports'
+    #>
+
     <# The fake Graph behind New-GpcFixtureInvoke. Serves only the routes this example reads and the one POST it sends. #>
     param([Parameter(Mandatory)]$State, $Method, $Uri, $Body, $Headers)
     $s = $State
@@ -492,8 +563,12 @@ function New-GpcFixtureInvoke {
     .DESCRIPTION
         Serves GET for Group Policy analytics reports and setting mappings, settings catalog
         policies and their settings, and POST to configurationPolicies (stored in memory). Any other
-        method throws, so a test fails if code sends PATCH or DELETE. Every call is recorded in
-        .Calls on the returned object; .Invoke is the script block to pass as -Invoke.
+        method throws, so a test fails if code sends PATCH or DELETE. Every call is recorded in the
+        returned object's Calls property; its Invoke property is the script block to pass as -Invoke.
+    .EXAMPLE
+        $g = New-GpcFixtureInvoke -Path ./tests/fixtures/tenant.json -PageSize 2
+        Get-GpcMovePlan -Invoke $g.Invoke | Out-Null
+        $g.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [int]$PageSize = 50)

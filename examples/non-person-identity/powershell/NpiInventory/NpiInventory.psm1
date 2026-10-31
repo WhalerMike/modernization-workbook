@@ -26,6 +26,14 @@ $script:AdServiceAccountProperties = @(
 $script:StaleNote = 'Lead only: confirm against domain controller and Entra sign-in logs before any change. This run retires nothing.'
 
 function Get-NpiRegisterConfig {
+    <#
+    .SYNOPSIS
+        Reads the register settings (config/register.json unless -Path names another file) and
+        returns them as a hashtable, with the resolved file path added under the _path key.
+    .EXAMPLE
+        # Load the kit's default register settings.
+        $config = Get-NpiRegisterConfig
+    #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'register.json'))
     $c = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
@@ -35,10 +43,18 @@ function Get-NpiRegisterConfig {
 
 function Get-NpiServiceUserLdapFilter {
     <#
+    .SYNOPSIS
+        Returns the LDAP filter string that Get-NpiAdServiceAccount passes to Get-ADUser to find
+        user accounts that may be service accounts, built from the naming patterns and description
+        pattern in the register settings.
+    .DESCRIPTION
     The one LDAP query for user objects that may be service accounts: Learn's three criteria (an
     SPN; trusted for delegation, constrained or not; a password that never expires) plus the naming
     convention and description Learn recommends. userAccountControl bits as in Learn's sample:
     0x10000 DONT_EXPIRE_PASSWORD, 0x80000 TRUSTED_FOR_DELEGATION, 0x1000000 TRUSTED_TO_AUTH_FOR_DELEGATION.
+    .EXAMPLE
+        # Show the filter the AD read will use.
+        Get-NpiServiceUserLdapFilter -Config (Get-NpiRegisterConfig)
     #>
     param($Config = (Get-NpiRegisterConfig))
     $names = ($Config.namingPatterns | ForEach-Object { "(sAMAccountName=$_)" }) -join ''
@@ -59,6 +75,15 @@ function Get-NpiDataPlatformMatch {
 }
 
 function New-NpiRow {
+    <#
+    .SYNOPSIS
+        Returns one register row with every register column, filled from the -Values hashtable and
+        defaulted otherwise. It throws on a column name the register doesn't have.
+    .EXAMPLE
+        # A row for an AD service account of a type the register doesn't classify.
+        New-NpiRow @{ IdentityId = 'ad:x'; Source = 'AD'; Type = 'UnknownServiceAccount'; Name = 'odd$'; Enabled = $true; Note = 'Object class x' }
+    #>
+
     # Every row has the same columns, so the register writes to one CSV.
     param([hashtable]$Values)
     $row = [ordered]@{
@@ -87,6 +112,12 @@ function Get-NpiAdServiceAccount {
         The Active Directory side of the register: one Get-ADUser LDAP query for user accounts that
         match any of Learn's criteria or the naming convention, and one Get-ADServiceAccount for
         MSAs, gMSAs and dMSAs. Computer accounts aren't read (research gaps, row 8).
+    .EXAMPLE
+        # Read the AD side of the fixture estate, no domain needed.
+        $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json -Cloud gcc
+        $ad = New-NpiFixtureAdInvoker -Path tests/fixtures/estate.json
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $fake.Invoke -AdInvoke $ad.Invoke
+        Get-NpiAdServiceAccount -Reader $reader -AsOf '2026-10-30T12:00:00Z'
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Reader, [Parameter(Mandatory)][datetime]$AsOf, $Config = (Get-NpiRegisterConfig))
@@ -178,6 +209,12 @@ function Get-NpiEntraWorkloadIdentity {
         credentials, every service principal by type, managed identities (user-assigned ones with
         their federated credentials from Resource Manager), Microsoft Graph application permissions
         and delegated consent grants.
+    .EXAMPLE
+        # Read the Entra side of the fixture estate, skipping the Resource Manager reads.
+        $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json -Cloud gcc
+        $ad = New-NpiFixtureAdInvoker -Path tests/fixtures/estate.json
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $fake.Invoke -AdInvoke $ad.Invoke
+        Get-NpiEntraWorkloadIdentity -Reader $reader -TenantId c0ffee00-0000-4000-8000-000000000001 -AsOf '2026-10-30T12:00:00Z' -SkipAzure
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Reader, [Parameter(Mandatory)][string]$TenantId, [Parameter(Mandatory)][datetime]$AsOf, $Config = (Get-NpiRegisterConfig), [switch]$SkipAzure)
@@ -292,9 +329,17 @@ function Get-NpiEntraWorkloadIdentity {
 
 function Get-NpiRisk {
     <#
+    .SYNOPSIS
+        Classifies one register row as HIGH, MEDIUM or LOW risk and returns an object with Risk and
+        Reasons.
+    .DESCRIPTION
     Design guidance: the project plan's rule (HIGH = password never expires or over-privileged),
     with Book 02, Chapter 09's 365-day password age, and over-privileged meaning a privileged AD
     group, unconstrained delegation, or a high-privilege Microsoft Graph application permission.
+    .EXAMPLE
+        # An enabled account whose password never expires is HIGH risk.
+        $row = New-NpiRow @{ Type = 'Traditional'; Enabled = $true; PasswordNeverExpires = $true; PasswordAgeDays = 30 }
+        Get-NpiRisk -Row $row -Config (Get-NpiRegisterConfig)
     #>
     param($Row, $Config)
     $reasons = [Collections.Generic.List[string]]::new()
@@ -315,6 +360,15 @@ function Get-NpiRisk {
 }
 
 function Get-NpiCandidateTarget {
+    <#
+    .SYNOPSIS
+        Returns the candidate migration target for one register row as text, chosen by the row's
+        type and facts. It is a candidate only; Chapter 03 makes the decision.
+    .EXAMPLE
+        # An MSA's candidate is an upgrade to a gMSA.
+        Get-NpiCandidateTarget -Row (New-NpiRow @{ Type = 'MSA'; Enabled = $true })
+    .DESCRIPTION
+    #>
     <# Book 02, Chapter 09's migration path matrix, as a candidate only; Chapter 03 decides. #>
     param($Row)
     switch ($Row.Type) {
@@ -349,6 +403,13 @@ function Get-NpiRegister {
     .SYNOPSIS
         The whole register: AD and Entra rows, each with a risk, a candidate target and a Data
         Platform hand-off where it applies. Returns @{ Rows; Evidence }.
+    .EXAMPLE
+        # Build the whole register from the fixture estate.
+        $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json -Cloud gcc
+        $ad = New-NpiFixtureAdInvoker -Path tests/fixtures/estate.json
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $fake.Invoke -AdInvoke $ad.Invoke
+        $register = Get-NpiRegister -Reader $reader -TenantId c0ffee00-0000-4000-8000-000000000001 -AsOf '2026-10-30T12:00:00Z'
+        $register.Rows | Group-Object Risk
     #>
     [CmdletBinding()]
     param(
@@ -378,6 +439,10 @@ function Test-NpiRegister {
     <#
     .SYNOPSIS
         The register's findings, NPI-INV-01 to NPI-INV-09, each with a stable ID (rule:identity).
+    .EXAMPLE
+        # Findings for a register built by Get-NpiRegister.
+        $findings = Test-NpiRegister -Register $register
+        $findings | Group-Object Rule
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Register, $Config = (Get-NpiRegisterConfig))

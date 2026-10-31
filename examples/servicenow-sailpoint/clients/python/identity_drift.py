@@ -20,6 +20,14 @@ Book 13's tempo is program design guidance.
 Illustrative: unit-tested against mocked responses, not yet proven against
 live tenants. Nothing here writes to Entra ID or ISC. --push-to-servicenow
 lists what it would send unless --apply is also given.
+
+Examples (from the kit root):
+
+  # Offline, against the saved test fixtures
+  python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json
+
+  # Live reads, with the Entra audit since a given time
+  python clients/python/identity_drift.py --hr-csv hr.csv --config config/config.example.json --include-audit 2026-10-17T00:00:00Z
 """
 
 from __future__ import annotations

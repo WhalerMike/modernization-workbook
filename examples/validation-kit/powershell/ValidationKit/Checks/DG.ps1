@@ -27,6 +27,17 @@ function ConvertTo-VkRuleText {
 }
 
 function Invoke-VkDg01 {
+    <#
+    .SYNOPSIS
+        Implements VK-DG-01: lists dynamic user groups whose rule lacks the user.accountEnabled -eq
+        true or user.userType -eq "Member" guard. It proves disabled accounts and guests can't fall
+        into rule-based access.
+    .EXAMPLE
+        # From the kit folder: against the fictional "fail" fixture tenant (no sign-in).
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkDg01 -Context $ctx
+    .DESCRIPTION
+    #>
     <# VK-DG-01. User rules without user.accountEnabled -eq true and user.userType -eq "Member". #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-DG-01' $Context {
@@ -46,6 +57,15 @@ function Invoke-VkDg01 {
 }
 
 function Invoke-VkDg02 {
+    <#
+    .SYNOPSIS
+        Implements VK-DG-02: lists dynamic group rules that read user.department, user.jobTitle or
+        user.companyName instead of the coded slots.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkDg02 -Context $ctx
+    .DESCRIPTION
+    #>
     <# VK-DG-02. Rules reading user.department, user.jobTitle or user.companyName. #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-DG-02' $Context {
@@ -62,6 +82,20 @@ function Invoke-VkDg02 {
 }
 
 function Invoke-VkDg03 {
+    <#
+    .SYNOPSIS
+        Implements VK-DG-03: evaluates each test in rule-tests.json with Microsoft Graph's beta
+        evaluateDynamicMembership action and fails when a result differs from the expected
+        membership. Proves a rule change before it is made; delegated sign-in only.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkDg03 -Context $ctx
+    .EXAMPLE
+        # Live: a delegated sign-in (Groups Administrator), with rule-tests.json in D:\Inputs.
+        Connect-VkGraph -Cloud gcc -Scopes (Get-VkRequiredScope -Checks (Get-VkCheckCatalog -CheckId VK-DG-03))
+        Invoke-VkDg03 -Context (Get-VkRunContext -InputPath D:\Inputs)
+    .DESCRIPTION
+    #>
     <#
     VK-DG-03. Each test in rule-tests.json (Label, MemberId, GroupId or MembershipRule, Expected)
     is evaluated with Graph's beta evaluateDynamicMembership; a result that differs from
@@ -98,6 +132,16 @@ function Get-VkGroupMemberIds {
 }
 
 function Invoke-VkDg04 {
+    <#
+    .SYNOPSIS
+        Implements VK-DG-04: the shadow diff. For each pair in shadow-pairs.csv (CurrentGroupId,
+        ProposedGroupId), lists the members the proposed group adds and removes; more differences
+        than ShadowAllowedDifferences fail it.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkDg04 -Context $ctx | Select-Object -ExpandProperty Details
+    .DESCRIPTION
+    #>
     <# VK-DG-04. For each pair in shadow-pairs.csv (CurrentGroupId, ProposedGroupId): who the proposed group adds and removes. #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-DG-04' $Context {
@@ -122,6 +166,16 @@ function Invoke-VkDg04 {
 }
 
 function Invoke-VkDg05 {
+    <#
+    .SYNOPSIS
+        Implements VK-DG-05: compares each dynamic group's transitive member count with the last
+        run's snapshot (membership-snapshot.json) and fails on a change over DeltaThresholdPercent
+        and DeltaThresholdMinimum. The first run records the baseline.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -Option @{ DeltaThresholdPercent = 10 }
+        Invoke-VkDg05 -Context $ctx
+    .DESCRIPTION
+    #>
     <#
     VK-DG-05. Current transitive member count of every dynamic group against the snapshot from
     the last run (membership-snapshot.json). A change over DeltaThresholdPercent and at least
@@ -168,6 +222,15 @@ function Invoke-VkDg05 {
 }
 
 function Invoke-VkDg06 {
+    <#
+    .SYNOPSIS
+        Implements VK-DG-06: lists dynamic groups whose processing is paused, and rules that use
+        the memberOf preview, so no group silently stops updating.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkDg06 -Context $ctx
+    .DESCRIPTION
+    #>
     <# VK-DG-06. Groups with membershipRuleProcessingState Paused, and rules using memberOf (preview ending November 3, 2026). #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-DG-06' $Context {
@@ -185,6 +248,16 @@ function Invoke-VkDg06 {
 }
 
 function Invoke-VkDg07 {
+    <#
+    .SYNOPSIS
+        Implements VK-DG-07: checks that each dynamic administrative unit's rule matches the group
+        it mirrors (au-group-map.csv), and that each restricted management unit has a recorded
+        reason (restricted-au-reasons.csv).
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkDg07 -Context $ctx
+    .DESCRIPTION
+    #>
     <#
     VK-DG-07. Dynamic administrative units whose rule differs from the group it mirrors
     (au-group-map.csv: AdministrativeUnitId, GroupId), and restricted management units with no

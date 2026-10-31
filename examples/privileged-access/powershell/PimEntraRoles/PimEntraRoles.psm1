@@ -41,6 +41,15 @@ $script:ManagedRules = [ordered]@{
 # ----------------------------------------------------------------------------- calls and permissions
 
 function Get-PaPimCall {
+    <#
+    .SYNOPSIS
+        Returns the calls declared in config/calls-ch04.json, optionally only those for one task
+        (pim-plan, pim-apply or pim-convert) or the one with -Id.
+    .EXAMPLE
+        # The permission the rule update needs.
+        (Get-PaPimCall -Id pim-policy-rule-update).permissions
+    #>
+
     <# The declared calls, optionally for one task or one id. #>
     [CmdletBinding()]
     param([string]$Task, [string]$Id)
@@ -51,6 +60,16 @@ function Get-PaPimCall {
 }
 
 function Get-PaPimRequiredPermission {
+    <#
+    .SYNOPSIS
+        Returns a task's Graph permissions (all of them, and the reads and writes separately) and
+        the delegated role it needs: Privileged Role Administrator for a task that writes, Global
+        Reader for pim-plan.
+    .EXAMPLE
+        # Sign in for a dry run with exactly the scopes pim-plan needs.
+        Connect-MgGraph -Environment Global -Scopes (Get-PaPimRequiredPermission -Task pim-plan).GraphPermissions
+    #>
+
     <# The union of a task's Graph permissions, split into reads and writes. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][ValidateSet('pim-plan', 'pim-apply', 'pim-convert')][string]$Task)
@@ -67,12 +86,30 @@ function Get-PaPimRequiredPermission {
 # ----------------------------------------------------------------------------- configuration
 
 function ConvertTo-PaPimDuration {
+    <#
+    .SYNOPSIS
+        Converts an ISO 8601 duration such as PT4H or P90D to a TimeSpan. Anything else throws.
+    .EXAMPLE
+        # 08:00:00
+        ConvertTo-PaPimDuration -Value PT8H
+    #>
+
     <# An ISO 8601 duration (PT4H, P90D) as a TimeSpan. Anything else throws. #>
     param([Parameter(Mandatory)][string]$Value)
     try { [System.Xml.XmlConvert]::ToTimeSpan($Value) } catch { throw "'$Value' isn't an ISO 8601 duration" }
 }
 
 function Read-PaPimTierConfig {
+    <#
+    .SYNOPSIS
+        Reads the Chapter 04 tier settings (config/pim-ch04/tiers.json, or -Path) as a hashtable:
+        Learn's duration bounds, each tier's caps, the maximum active assignment and the rollout
+        waves.
+    .EXAMPLE
+        # List the rollout waves and the tiers in each.
+        $tiers = Read-PaPimTierConfig
+        $tiers.rollout | ForEach-Object { "$($_.wave): $($_.tiers -join ', ')" }
+    #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'pim-ch04/tiers.json'))
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
@@ -84,6 +121,8 @@ function Read-PaPimRoleSetting {
         Read the role files (one file, or every *.json in a folder). A file with a missing key,
         an ID that isn't a GUID, an unknown tier or a duration that isn't ISO 8601 throws: a
         malformed file never reaches the tenant.
+    .EXAMPLE
+        $settings = @(Read-PaPimRoleSetting -Path config/pim-ch04/roles)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -113,6 +152,15 @@ function Read-PaPimRoleSetting {
 }
 
 function Read-PaPimBinding {
+    <#
+    .SYNOPSIS
+        Reads the bindings file that maps the role files' names to the tenant's object IDs: the
+        approver groups by alias, and the PRV group eligible for each role at its directory scope.
+        A missing key, or an ID that isn't a GUID, throws.
+    .EXAMPLE
+        $binding = Read-PaPimBinding -Path tests/fixtures/ch04/inputs/pim-bindings.json
+    #>
+
     <# The tenant's object IDs for the role files' names: approver groups and PRV eligibility. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -127,6 +175,17 @@ function Read-PaPimBinding {
 }
 
 function Get-PaPimWaveRole {
+    <#
+    .SYNOPSIS
+        Returns the role settings whose tier is in one rollout wave of the tier settings, or with
+        -Before, the role settings in every earlier wave. A wave that isn't in tiers.json throws,
+        unless -Before is set.
+    .EXAMPLE
+        # The role files in wave 1 (the Tier 1 pilot).
+        $settings = @(Read-PaPimRoleSetting -Path config/pim-ch04/roles)
+        Get-PaPimWaveRole -Settings $settings -Tiers (Read-PaPimTierConfig) -Wave 1 | ForEach-Object { $_.role }
+    #>
+
     <# The role files in one rollout wave, or in every wave before it with -Before. #>
     param([object[]]$Settings, $Tiers, [int]$Wave, [switch]$Before)
     $waves = @($Tiers.rollout | Where-Object { if ($Before) { $_.wave -lt $Wave } else { $_.wave -eq $Wave } })
@@ -148,6 +207,11 @@ function ConvertTo-PaPimRule {
         One role file as the seven PATCH bodies for its policy's rules, in Learn's shapes (Update
         rules in PIM): each body carries the derived @odata.type, the rule id and its target.
         Approver aliases are resolved through the bindings; an alias with no group throws.
+    .EXAMPLE
+        # The seven rule bodies for Exchange Administrator, with approvers resolved from the bindings.
+        $setting = $settings | Where-Object role -EQ 'Exchange Administrator'
+        $rules = ConvertTo-PaPimRule -Setting $setting -Binding (Read-PaPimBinding -Path tests/fixtures/ch04/inputs/pim-bindings.json)
+        $rules['Expiration_EndUser_Assignment']
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Setting, [Parameter(Mandatory)]$Binding)
@@ -213,6 +277,8 @@ function Test-PaPimSetting {
         approver: half of Learn's documented lockout), PA-PIM-03 (approvers who are the eligible
         group), PA-PIM-04 (outside Learn's bounds or the tier's cap) and PA-PIM-05 (an
         authentication context, whose Conditional Access policy must be On first).
+    .EXAMPLE
+        Test-PaPimSetting -Settings $settings -Binding $binding -Tiers (Read-PaPimTierConfig)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][object[]]$Settings, [Parameter(Mandatory)]$Binding, [Parameter(Mandatory)]$Tiers)
@@ -267,6 +333,10 @@ function New-PaPimClient {
         A client for one task in one cloud. -Invoke is { param($Method, $Uri, $Body) } returning
         the parsed body as a hashtable (or $null for 204): the fake from New-PaPimFixtureInvoker
         or New-PaPimLiveInvoker. Without -AllowWrite every method but GET throws, whatever the task.
+    .EXAMPLE
+        # A read-only client over the fictional Chapter 04 tenant.
+        $fake = New-PaPimFixtureInvoker -Path tests/fixtures/ch04/tenant.json
+        $client = New-PaPimClient -Cloud gcc -Task pim-plan -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param(
@@ -292,6 +362,9 @@ function Invoke-PaPimRequest {
         Send one declared call. GET follows every @odata.nextLink on the cloud's own host. PATCH and
         POST need a client built with -AllowWrite. Every request is recorded, writes with the
         SHA-256 of their body.
+    .EXAMPLE
+        # Every active role assignment instance, with its principal, all pages.
+        Invoke-PaPimRequest -Client $client -CallId pim-active-instances -Query '$expand=principal'
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string]$CallId, [hashtable]$Bind = @{}, [string]$Query, $Body)
@@ -329,6 +402,10 @@ function New-PaPimLiveInvoker {
     .SYNOPSIS
         Graph through Invoke-MgGraphRequest. Refuses to start if the session is in another cloud.
         Sign in first: Connect-MgGraph -Environment <GraphEnvironment> with the task's permissions.
+    .EXAMPLE
+        # Live, GCC: sign in with the dry run's scopes, then build a read-only client.
+        Connect-MgGraph -Environment Global -Scopes (Get-PaPimRequiredPermission -Task pim-plan).GraphPermissions
+        $client = New-PaPimClient -Cloud gcc -Task pim-plan -Invoke (New-PaPimLiveInvoker -Cloud gcc)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud)
@@ -351,6 +428,8 @@ function Get-PaPimTenantState {
         Read what the plan needs: for each role, its policy and rules (Learn's Example 2, one call
         per role), every eligibility schedule, and every active assignment instance with its
         principal. GET only.
+    .EXAMPLE
+        $state = Get-PaPimTenantState -Client $client -Settings $settings
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][object[]]$Settings)
@@ -373,6 +452,17 @@ function Get-PaPimTenantState {
 # ----------------------------------------------------------------------------- the diff
 
 function Get-PaPimRuleView {
+    <#
+    .SYNOPSIS
+        Returns the properties of one managed rule, normalized for comparison: durations as
+        TimeSpans, enabled rules and approvers sorted, and only the properties that apply. With no
+        -Rule it returns present = missing. Compare-PaPimPolicy compares these views.
+    .EXAMPLE
+        # The comparable view of the approval rule a role file asks for.
+        $desired = ConvertTo-PaPimRule -Setting $setting -Binding $binding
+        Get-PaPimRuleView -RuleId Approval_EndUser_Assignment -Rule $desired['Approval_EndUser_Assignment']
+    #>
+
     # The properties of a rule this chapter owns, normalized so the tenant and the file compare:
     # durations as TimeSpans, enabled rules and approvers sorted, nothing that doesn't apply.
     param([string]$RuleId, $Rule)
@@ -418,6 +508,9 @@ function Compare-PaPimPolicy {
     .SYNOPSIS
         The differences between one role file and its policy in the tenant, one row per property
         of the seven managed rules. No rows means the tenant matches the file.
+    .EXAMPLE
+        # How the tenant's policy for one role differs from its role file.
+        Compare-PaPimPolicy -Setting $setting -Binding $binding -Policy $state.Policies[$setting.roleTemplateId]
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Setting, [Parameter(Mandatory)]$Binding, $Policy)
@@ -444,6 +537,10 @@ function New-PaPimEligibilityRequest {
         end when the file doesn't allow permanent eligibility, throws before anything is sent:
         PIM would reject it with 400 for the expiration rule, or, if the tenant's rule is still
         looser, accept what the file forbids.
+    .EXAMPLE
+        # A request body making a PRV group eligible for the role file's maximum duration.
+        New-PaPimEligibilityRequest -Setting $setting -PrincipalId 9e000000-0000-4000-8000-000000000101 -Start 2026-10-30 `
+            -Duration $setting.assignment.eligibleMaximumDuration
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Setting, [Parameter(Mandatory)][string]$PrincipalId, [string]$DirectoryScopeId = '/',
@@ -494,6 +591,12 @@ function New-PaPimPlan {
         The plan for one rollout wave: the config checks, the lockout guard, the wave guard
         (PA-PIM-07: every earlier wave must match its files), the rule diff, the eligibility
         requests, and the standing assignments to convert. Writes nothing. Any Finding blocks.
+    .EXAMPLE
+        # Dry run of wave 1 against the fictional tenant state from Get-PaPimTenantState.
+        $plan = New-PaPimPlan -Settings $settings -Binding $binding -Tiers (Read-PaPimTierConfig) -State $state -Wave 1 `
+            -Emergency (Read-PaEmergencyConfig -Path tests/fixtures/inputs/emergency-access.json) `
+            -Exceptions @(Import-PaExceptions -Path tests/fixtures/inputs/exceptions.csv) -AsOf 2026-10-30
+        $plan.Findings | Where-Object Severity -EQ 'Finding'
     #>
     [CmdletBinding()]
     param(
@@ -587,6 +690,10 @@ function Invoke-PaPimPlan {
         PATCHes, then the eligibility requests (task pim-apply). -Kind Convert sends only the
         removals whose status is Confirmed (task pim-convert). A blocked plan, or one that sets an
         authentication context without -ActivationGateChecked, is refused before any request.
+    .EXAMPLE
+        # Send the plan's rule updates and eligibility requests to the fake through a write client.
+        $writer = New-PaPimClient -Cloud gcc -Task pim-apply -Invoke $fake.Invoke -AllowWrite
+        Invoke-PaPimPlan -Plan $plan -Client $writer -Kind Settings -ActivationGateChecked
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Plan, [Parameter(Mandatory)]$Client, [ValidateSet('Settings', 'Convert')][string]$Kind = 'Settings', [switch]$ActivationGateChecked)
@@ -610,6 +717,16 @@ function Invoke-PaPimPlan {
 # ----------------------------------------------------------------------------- the back-out
 
 function Get-PaPimBefore {
+    <#
+    .SYNOPSIS
+        Returns a copy of the managed rules of each role in -Roles as the tenant state holds them
+        now: the record a back-out restores from (before.json). Roles with no policy are left out,
+        and nothing is returned when none has one.
+    .EXAMPLE
+        # Record wave 1's rules before any change.
+        $before = @(Get-PaPimBefore -State $state -Roles (Get-PaPimWaveRole -Settings $settings -Tiers (Read-PaPimTierConfig) -Wave 1))
+    #>
+
     <# The managed rules of each role in a wave as the tenant holds them now: the back-out record. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$State, [Parameter(Mandatory)][object[]]$Roles)
@@ -630,6 +747,10 @@ function New-PaPimRestorePlan {
         A plan that puts the managed rules back as before.json recorded them, and removes the
         eligibility a run created (the AssignEligibility actions in its plan.json, sent with
         adminRemove). Carried out by Invoke-PaPimPlan like any plan, with the same guards.
+    .EXAMPLE
+        # Put back the rules recorded in $before and remove the eligibility the applied plan created.
+        $restore = New-PaPimRestorePlan -Before $before -AppliedActions $plan.Actions -Cloud gcc
+        Invoke-PaPimPlan -Plan $restore -Client $writer
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][object[]]$Before, [object[]]$AppliedActions = @(), [string]$Cloud = 'gcc')
@@ -655,6 +776,20 @@ function New-PaPimRestorePlan {
 # ----------------------------------------------------------------------------- the run
 
 function Export-PaPimRun {
+    <#
+    .SYNOPSIS
+        Writes each entry of -Files to -OutputPath (CSV for a .csv name, JSON otherwise) and a
+        manifest.json with each file's SHA-256, the task's permissions and delegated role, the wave,
+        whether the run applied, and every request sent with its body hash. Returns the manifest
+        file.
+    .EXAMPLE
+        # Write a dry run's plan and findings with their manifest.
+        Export-PaPimRun -OutputPath out/pim-wave1 -Task pim-plan -Cloud gcc -Mode Fixture -Evidence $client.Evidence -Wave 1 -Applied $false -Files @{
+            'findings.json' = @($plan.Findings)
+            'diff.csv'      = @($plan.Changes)
+        }
+    #>
+
     <# Write a run's files and a manifest with each file's SHA-256, the permissions and every request. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$OutputPath, [Parameter(Mandatory)][string]$Task, [Parameter(Mandatory)][hashtable]$Files,
@@ -690,6 +825,11 @@ function New-PaPimFixtureInvoker {
         PATCH of a rule (the @odata.type must match the rule's, as Learn requires; 204); POST of
         eligibility requests (checked against the policy's Expiration_Admin_Eligibility rule, as
         PIM does; 201) and of adminRemove assignment requests. Every call is recorded in .Calls.
+    .EXAMPLE
+        # Serve the fictional Chapter 04 tenant, then see which requests were sent.
+        $fake = New-PaPimFixtureInvoker -Path tests/fixtures/ch04/tenant.json -Cloud gcc
+        $client = New-PaPimClient -Cloud gcc -Task pim-plan -Invoke $fake.Invoke
+        $fake.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [int]$PageSize = 2, [string]$Cloud = 'gcc')
@@ -701,6 +841,17 @@ function New-PaPimFixtureInvoker {
 }
 
 function Invoke-PaPimFake {
+    <#
+    .SYNOPSIS
+        The Chapter 04 fake's request handler: records the call in -State.Calls and answers it from
+        the fixture tenant in -State (paged GETs, PATCH of a rule, POST of eligibility and assignment
+        requests), changing the fixture as Graph would. Anything else throws. New-PaPimFixtureInvoker
+        wires it into .Invoke.
+    .EXAMPLE
+        # The first page of active assignment instances, straight from the fake.
+        $fake = New-PaPimFixtureInvoker -Path tests/fixtures/ch04/tenant.json
+        Invoke-PaPimFake -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/roleManagement/directory/roleAssignmentScheduleInstances'
+    #>
     param($State, [string]$Method, [string]$Uri, $Body)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri; Body = $Body })
     $t = $State.Tenant

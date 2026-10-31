@@ -39,6 +39,17 @@ function Test-VkCaAppOverlap {
 
 function Invoke-VkCa01 {
     <#
+    .SYNOPSIS
+        Implements VK-CA-01: checks the Conditional Access persona policies. Fails on a policy that
+        doesn't exclude every emergency-access group, targets a group outside governed-groups.csv,
+        or grants to groups with no paired block. NotApplicable without both inputs.
+    .EXAMPLE
+        # From the kit folder: against the fictional "fail" fixture tenant (no sign-in).
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkCa01 -Context $ctx | Select-Object -ExpandProperty Details
+    .DESCRIPTION
+    #>
+    <#
     VK-CA-01. The persona policies, read against two inputs: governed-groups.csv (GroupId, Name,
     Owner), the groups the persona design may target, and emergency-access-groups.csv (GroupId,
     Name). Reports each policy that doesn't exclude every emergency-access group; each policy

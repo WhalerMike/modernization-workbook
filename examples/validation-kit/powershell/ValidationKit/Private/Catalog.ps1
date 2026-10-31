@@ -175,6 +175,13 @@ function Get-VkCheckCatalog {
     <#
     .SYNOPSIS
         The catalog entries, all or filtered by -Track or -CheckId, each with its function name.
+    .EXAMPLE
+        Get-VkCheckCatalog -Track HR, DG | Format-Table Id, Function, GraphPermissions
+    .EXAMPLE
+        Get-VkCheckCatalog -CheckId VK-NPI-09
+
+        One check returns one row; VK-NPI-09 is optional, so it appears in a -Track listing only
+        with -IncludeOptional.
     #>
     [CmdletBinding()]
     param([string[]]$Track, [string[]]$CheckId, [switch]$IncludeOptional)
@@ -206,12 +213,30 @@ function Get-VkCheckCatalog {
 }
 
 function Get-VkRequiredScope {
+    <#
+    .SYNOPSIS
+        Returns the union of the Microsoft Graph permissions the selected checks need: the scopes
+        to request for a delegated sign-in.
+    .EXAMPLE
+        Get-VkRequiredScope -Checks (Get-VkCheckCatalog -Track HR)
+    .DESCRIPTION
+    #>
     <# The union of Graph permissions the selected checks need: the scopes for a delegated sign-in. #>
     param([object[]]$Checks)
     @($Checks | ForEach-Object { $_.GraphPermissions } | Where-Object { $_ } | Sort-Object -Unique)
 }
 
 function Invoke-VkCheck {
+    <#
+    .SYNOPSIS
+        Runs one check by its ID (VK-HR-01 calls Invoke-VkHr01) against a run context and returns
+        the check's result object. Throws on an unknown ID.
+    .EXAMPLE
+        # From the kit folder: against the fictional "fail" fixture tenant (no sign-in).
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkCheck -CheckId VK-HR-04 -Context $ctx | Select-Object CheckId, Status, Count, Message
+    .DESCRIPTION
+    #>
     <# Runs one check by ID. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$CheckId, [Parameter(Mandatory)]$Context)

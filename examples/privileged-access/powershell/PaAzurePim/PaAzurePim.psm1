@@ -31,6 +31,15 @@ $script:UserAccessAdmin = '18d7d88d-d35e-4fb5-a5c3-7773c20a72d9'
 # ----------------------------------------------------------------------------- calls and client
 
 function Get-PaAzCall {
+    <#
+    .SYNOPSIS
+        Returns the Chapter 06 calls declared in config/calls-ch06.json, or only those for one task
+        when -Task is given. Each call carries its id, method, path, API version and Azure role.
+    .EXAMPLE
+        # The three GET calls the read task may make.
+        Get-PaAzCall -Task azure-pim-read | Select-Object id, method, azureRole
+    #>
+
     <# The Chapter 06 call list, optionally for one task. #>
     [CmdletBinding()]
     param([ValidateSet('azure-pim-read', 'azure-pim-apply')][string]$Task)
@@ -40,6 +49,15 @@ function Get-PaAzCall {
 }
 
 function Get-PaAzRequiredRole {
+    <#
+    .SYNOPSIS
+        Returns the Azure roles a task's declared calls need (AzureRoles) and its write calls
+        (Writes), so the identity that runs it can be given only those roles.
+    .EXAMPLE
+        # Reader and User Access Administrator for the apply task.
+        (Get-PaAzRequiredRole -Task azure-pim-apply).AzureRoles
+    #>
+
     <# The union of the Azure roles a task's calls need, and the calls that need each. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][ValidateSet('azure-pim-read', 'azure-pim-apply')][string]$Task)
@@ -58,6 +76,10 @@ function New-PaAzClient {
         reader, so Invoke-PaList pages and host-checks its GETs; Invoke-PaAzWrite sends its writes.
         -Invoke is { param($Method, $Uri, $Body) } returning the parsed body as a hashtable:
         New-PaAzFixtureInvoker for labs and tests, New-PaAzLiveInvoker for a real run.
+    .EXAMPLE
+        # A read client over the fictional estate: no sign-in, nothing sent to a tenant.
+        $fake = New-PaAzFixtureInvoker -Path tests/fixtures/ch06/estate.json
+        $client = New-PaAzClient -Cloud gcc -Task azure-pim-read -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param(
@@ -75,6 +97,15 @@ function New-PaAzClient {
 }
 
 function ConvertTo-PaAzScope {
+    <#
+    .SYNOPSIS
+        Returns a Resource Manager scope in normal form, without a trailing slash. Throws unless it is
+        the root, a management group, a subscription or a resource group scope.
+    .EXAMPLE
+        # Returns /subscriptions/11111111-1111-4111-8111-111111111111
+        ConvertTo-PaAzScope -Scope '/subscriptions/11111111-1111-4111-8111-111111111111/'
+    #>
+
     <# '/subscriptions/x/' -> '/subscriptions/x'. Refuses anything that isn't an ARM scope. #>
     param([Parameter(Mandatory)][string]$Scope)
     $s = $Scope.Trim()
@@ -92,6 +123,12 @@ function Invoke-PaAzWrite {
     .SYNOPSIS
         Build one write (PUT or PATCH) for a declared call. Without -Apply it only returns the
         request. With -Apply it checks the host and sends it through the client's invoker.
+    .EXAMPLE
+        # Build the request for a plan's first operation; without -Apply nothing is sent.
+        $fake = New-PaAzFixtureInvoker -Path tests/fixtures/ch06/estate.json
+        $client = New-PaAzClient -Cloud gcc -Task azure-pim-apply -Invoke $fake.Invoke
+        $op = $plan.Operations[0]   # $plan from New-PaAzPlan
+        Invoke-PaAzWrite -Client $client -CallId $op.CallId -Bind $op.Bind -Body $op.Body
     #>
     [CmdletBinding()]
     param(
@@ -127,6 +164,10 @@ function New-PaAzLiveInvoker {
         The live invoker: Invoke-AzRestMethod for GET, PUT and PATCH. It refuses to run if the Az
         session is signed in to another cloud. Sign in first: Connect-AzAccount -Environment
         <AzureEnvironment>, as an identity holding the task's roles (Get-PaAzRequiredRole).
+    .EXAMPLE
+        # GCC with commercial Azure: sign in, then make a read client on the live invoker.
+        Connect-AzAccount -Environment AzureCloud
+        $client = New-PaAzClient -Cloud gcc -Task azure-pim-read -Invoke (New-PaAzLiveInvoker -Cloud gcc)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud)
@@ -155,6 +196,11 @@ function New-PaAzFixtureInvoker {
         to the in-memory estate the way Learn describes: AdminAssign adds an eligibility, AdminRemove
         removes an eligibility or a standing assignment, PATCH merges policy rules by id. A request
         longer than the policy's maximum fails with ExpirationRule. Every call is recorded in .Calls.
+    .EXAMPLE
+        # Serve the fictional estate two items a page, then list every call the fake answered.
+        $fake = New-PaAzFixtureInvoker -Path tests/fixtures/ch06/estate.json -PageSize 2 -Cloud gcc
+        $client = New-PaAzClient -Cloud gcc -Task azure-pim-read -Invoke $fake.Invoke
+        $fake.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [int]$PageSize = 2, [string]$Cloud = 'gcc')
@@ -173,6 +219,16 @@ function Get-PaAzFakeScope {
 }
 
 function Invoke-PaAzFake {
+    <#
+    .SYNOPSIS
+        The fake Resource Manager behind New-PaAzFixtureInvoker. Answers one request against the
+        in-memory estate in -State, records it in State.Calls and returns the response body as a
+        hashtable. Throws for another host, an unknown route or a request the fake refuses.
+    .EXAMPLE
+        # Usually reached through the invoker's .Invoke; called directly here to list one scope's eligibility.
+        $fake = New-PaAzFixtureInvoker -Path tests/fixtures/ch06/estate.json
+        Invoke-PaAzFake -State $fake -Method GET -Uri 'https://management.azure.com/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleEligibilitySchedules?api-version=2020-10-01'
+    #>
     param($State, [string]$Method, [string]$Uri, $Body)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri; Body = $Body })
     $u = [Uri]$Uri
@@ -279,6 +335,16 @@ function Get-PaAzFakeMaxEligibility {
 function Get-PaAzValue { param($Hash, [string]$Key) if ($Hash -is [System.Collections.IDictionary] -and $Hash.Contains($Key)) { $Hash[$Key] } else { $null } }
 
 function ConvertTo-PaAzRow {
+    <#
+    .SYNOPSIS
+        Converts one role assignment or eligibility schedule, as Resource Manager returns it, into a
+        flat row: scope, role ID and name, tier, principal, and a state of Eligible, EligiblePermanent,
+        Activated, ActiveTimeBound or ActivePermanent.
+    .EXAMPLE
+        # $schedule is one item from a roleEligibilitySchedules list.
+        ConvertTo-PaAzRow -Schedule $schedule -Kind Eligibility -TierMap (Get-PaTierMap)
+    #>
+
     <# One schedule from Resource Manager as a row. Keys on properties.roleDefinitionId, never on display names. #>
     param($Schedule, [ValidateSet('Assignment', 'Eligibility')][string]$Kind, $TierMap)
     $p = $Schedule.properties
@@ -308,6 +374,11 @@ function Get-PaAzPimState {
         are de-duplicated by id and Inherited rows skipped, as in Chapter 01.
     .OUTPUTS
         @{ Assignments; Eligibilities; Policies; Evidence }
+    .EXAMPLE
+        # Read every scope and governed role in the desired state.
+        $desired = Read-PaAzDesiredState -Path tests/fixtures/ch06/desired.json
+        $map = Get-PaAzTierMap -Desired $desired
+        $state = Get-PaAzPimState -Client $client -Scope $desired.scopes -RoleId $desired.governedRoles -TierMap $map
     #>
     [CmdletBinding()]
     param(
@@ -348,6 +419,9 @@ function Read-PaAzDesiredState {
         The reviewed desired state (JSON): scopes, governed roles, the control-plane subscriptions,
         per-tier PIM settings, the eligible assignments, and the standing exceptions with an owner.
         Malformed input throws; nothing is assumed.
+    .EXAMPLE
+        $desired = Read-PaAzDesiredState -Path tests/fixtures/ch06/desired.json
+        $desired.scopes
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -380,6 +454,15 @@ function Read-PaAzDesiredState {
 }
 
 function Get-PaAzTierMap {
+    <#
+    .SYNOPSIS
+        Returns Chapter 01's tier map (from -Path, or the default) with the desired state's
+        control-plane subscription IDs added, so any governed role at those subscriptions is Tier 0.
+    .EXAMPLE
+        $desired = Read-PaAzDesiredState -Path tests/fixtures/ch06/desired.json
+        $map = Get-PaAzTierMap -Desired $desired
+    #>
+
     <# Chapter 01's tier map, with the desired state's control-plane subscriptions (any privileged role there is T0). #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Desired, [string]$Path)
@@ -397,6 +480,17 @@ function Get-PaAzTierSettings {
 # ----------------------------------------------------------------------------- policy rules
 
 function Get-PaAzRuleWant {
+    <#
+    .SYNOPSIS
+        Returns, for one tier's settings from the desired state, the managed fields of each role
+        management policy rule the plan sets (expiration, enablement, authentication context and
+        approval), keyed by rule id.
+    .EXAMPLE
+        # The rule fields Tier 0 policies should have.
+        $desired = Read-PaAzDesiredState -Path tests/fixtures/ch06/desired.json
+        Get-PaAzRuleWant -Settings $desired.settings['T0']
+    #>
+
     <# The managed fields of each policy rule for one tier's settings. Design guidance: Book 04, Appendix B. #>
     param($Settings)
     $endUser = @($Settings.endUserEnabledRules)
@@ -413,6 +507,17 @@ function Get-PaAzRuleWant {
 }
 
 function Get-PaAzRuleHave {
+    <#
+    .SYNOPSIS
+        Returns the managed fields of one policy rule as Resource Manager returns it, in the shape
+        Get-PaAzRuleWant uses, so the two can be compared. A rule type the plan doesn't manage
+        returns an empty hashtable.
+    .EXAMPLE
+        # The current activation maximum of a policy read by Get-PaAzPimState.
+        $rule = @($state.Policies[0].Rules | Where-Object id -EQ 'Expiration_EndUser_Assignment')[0]
+        (Get-PaAzRuleHave -Rule $rule).maximumDuration
+    #>
+
     <# The same managed fields, read from a rule as Resource Manager returns it. #>
     param($Rule)
     switch ($Rule.ruleType) {
@@ -470,6 +575,15 @@ function Set-PaAzRuleFields {
 # ----------------------------------------------------------------------------- the plan
 
 function New-PaAzRequestName {
+    <#
+    .SYNOPSIS
+        Returns a GUID derived from a SHA-256 hash of the run ID and an operation key, so a dry run
+        and its apply with the same run ID send the same request names.
+    .EXAMPLE
+        # The same inputs always give the same GUID.
+        New-PaAzRequestName -RunId lab -Key 'EligibilityAdd|/subscriptions/11111111-1111-4111-8111-111111111111|8e3af657-a8ff-443c-a75c-2fe8c4bcb635|a1000000-0000-4000-8000-000000000001'
+    #>
+
     <# A GUID derived from the run id and the operation, so a dry run and its apply send the same names. #>
     param([string]$RunId, [string]$Key)
     $b = [byte[]]([Security.Cryptography.SHA256]::HashData([Text.Encoding]::UTF8.GetBytes("$RunId|$Key"))[0..15])
@@ -492,6 +606,10 @@ function New-PaAzPlan {
         diff and the findings. Sends nothing.
     .PARAMETER CallerPrincipalId
         The object ID the apply runs as. Its own standing assignments are never planned for removal.
+    .EXAMPLE
+        # Plan against the state read by Get-PaAzPimState, then show the diff.
+        $plan = New-PaAzPlan -State $state -Desired $desired -CallerPrincipalId c3000000-0000-4000-8000-000000000003 -RunId lab -TierMap $map
+        $plan.Diff
     #>
     [CmdletBinding()]
     param(
@@ -630,6 +748,9 @@ function Invoke-PaAzPlan {
         Turn a plan into requests. A dry run by default: the requests are returned and nothing is
         sent. With -Apply, each is sent in order through an azure-pim-apply client, and the run
         stops at the first error.
+    .EXAMPLE
+        # Dry run: returns the requests with Sent = $false and sends nothing.
+        $requests = @(Invoke-PaAzPlan -Plan $plan -Client $client)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Plan, [Parameter(Mandatory)]$Client, [switch]$Apply)
@@ -645,6 +766,15 @@ function Invoke-PaAzPlan {
 }
 
 function Export-PaAzRun {
+    <#
+    .SYNOPSIS
+        Writes each entry of -Files to -OutputPath (.txt entries as lines, the rest as JSON), then
+        manifest.json with each file's SHA-256, the task, mode, cloud, the task's Azure roles and
+        every request the client recorded. Returns the manifest file.
+    .EXAMPLE
+        Export-PaAzRun -OutputPath out/ch06 -Files @{ 'diff.txt' = @($plan.Diff); 'findings.json' = @($plan.Findings) } -Client $client -Mode Fixture
+    #>
+
     <# Write the run's files and a manifest with the SHA-256 of each, the mode, the cloud and every request sent. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$OutputPath, [Parameter(Mandatory)][hashtable]$Files, [Parameter(Mandatory)]$Client, [string]$Mode = 'Fixture', [bool]$Applied = $false, [string]$TenantId)

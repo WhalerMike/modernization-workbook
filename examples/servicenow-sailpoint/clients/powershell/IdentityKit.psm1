@@ -57,6 +57,13 @@ $script:RecordFields = @('sys_id', 'number', 'state', 'u_system', 'u_account_id'
 # ---------------------------------------------------------------------------
 
 function Get-KitEnvValue {
+    <#
+    .SYNOPSIS
+    Return a named setting from the -Environment hashtable when one is given, otherwise
+    from the process environment variable of that name.
+    .EXAMPLE
+    Get-KitEnvValue -Name 'SAILPOINT_ACCESS_TOKEN' -Environment @{ SAILPOINT_ACCESS_TOKEN = 'token-from-vault' }
+    #>
     [OutputType([string])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Name, [hashtable]$Environment)
@@ -69,6 +76,9 @@ function Get-KitConfig {
     .SYNOPSIS
     Merge defaults, an optional JSON config file, then environment variables (env wins).
     A secret key found in the file is refused.
+    .EXAMPLE
+    # From the kit root: the example file supplies the non-secret settings.
+    $cfg = Get-KitConfig -Path ./config/config.example.json
     #>
     [OutputType([hashtable])]
     [CmdletBinding()]
@@ -93,6 +103,13 @@ function Get-KitConfig {
 }
 
 function Get-KitIscBaseUrl {
+    <#
+    .SYNOPSIS
+    Return the SailPoint ISC API base URL: SAILPOINT_API_BASE when set, otherwise
+    https://{SAILPOINT_TENANT}.api.identitynow.com.
+    .EXAMPLE
+    Get-KitIscBaseUrl -Config @{ SAILPOINT_TENANT = 'example' }   # https://example.api.identitynow.com
+    #>
     [OutputType([string])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][hashtable]$Config)
@@ -102,6 +119,13 @@ function Get-KitIscBaseUrl {
 }
 
 function Get-KitSnBaseUrl {
+    <#
+    .SYNOPSIS
+    Return the ServiceNow instance base URL: SN_BASE_URL when set, otherwise
+    https://{SN_INSTANCE}.service-now.com.
+    .EXAMPLE
+    Get-KitSnBaseUrl -Config @{ SN_INSTANCE = 'contoso' }   # https://contoso.service-now.com
+    #>
     [OutputType([string])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][hashtable]$Config)
@@ -111,7 +135,12 @@ function Get-KitSnBaseUrl {
 }
 
 function Get-KitGraphEndpoint {
-    <# .SYNOPSIS Returns @(loginRoot, graphRoot) for GRAPH_CLOUD (Global, USGov, USGovDoD). #>
+    <#
+    .SYNOPSIS
+    Returns @(loginRoot, graphRoot) for GRAPH_CLOUD (Global, USGov, USGovDoD).
+    .EXAMPLE
+    (Get-KitGraphEndpoint -Config @{ GRAPH_CLOUD = 'USGov' })[1]   # https://graph.microsoft.us
+    #>
     [OutputType([string[]])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][hashtable]$Config)
@@ -127,6 +156,13 @@ function Get-KitGraphEndpoint {
 # ---------------------------------------------------------------------------
 
 function Get-KitStatusCode {
+    <#
+    .SYNOPSIS
+    Return the HTTP status code from a failed web request's error record, or 0 when the
+    error carries no response.
+    .EXAMPLE
+    try { Invoke-RestMethod -Uri 'https://example.api.identitynow.com/v3/accounts/missing' } catch { Get-KitStatusCode -ErrorRecord $_ }
+    #>
     [OutputType([int])]
     [CmdletBinding()]
     param([Parameter(Mandatory)]$ErrorRecord)
@@ -136,7 +172,12 @@ function Get-KitStatusCode {
 }
 
 function ConvertFrom-KitRetryAfter {
-    <# .SYNOPSIS Seconds to wait from a Retry-After header (delta seconds or HTTP date). #>
+    <#
+    .SYNOPSIS
+    Seconds to wait from a Retry-After header (delta seconds or HTTP date).
+    .EXAMPLE
+    try { Invoke-RestMethod -Uri 'https://graph.microsoft.com/v1.0/users' } catch { ConvertFrom-KitRetryAfter -Response $_.Exception.Response -Default 2 }
+    #>
     [OutputType([double])]
     [CmdletBinding()]
     param($Response, [double]$Default = 5)
@@ -152,6 +193,9 @@ function Invoke-KitRequest {
     <#
     .SYNOPSIS
     Invoke-RestMethod with retries on 429 and 503 that honor Retry-After.
+    .EXAMPLE
+    $cfg = Get-KitConfig -Path ./config/config.example.json
+    Invoke-KitRequest -Method GET -Uri 'https://contoso.service-now.com/api/now/table/u_identity_finding?sysparm_limit=1' -Headers (Get-KitSnHeader -Config $cfg)
     #>
     [OutputType([object])]
     [CmdletBinding()]
@@ -185,6 +229,12 @@ function Invoke-KitRequest {
 }
 
 function ConvertTo-KitJsonBody {
+    <#
+    .SYNOPSIS
+    Convert an object to compact JSON (depth 20) for a request body.
+    .EXAMPLE
+    ConvertTo-KitJsonBody -InputObject @{ indices = @('identities'); query = @{ query = '*' } }
+    #>
     [OutputType([string])]
     [CmdletBinding()]
     param([Parameter(Mandatory)]$InputObject)
@@ -200,6 +250,9 @@ function Get-KitIscHeader {
     .SYNOPSIS
     Bearer header for ISC: SAILPOINT_ACCESS_TOKEN (from a vault), else client credentials
     at https://{tenant}.api.identitynow.com/oauth/token.
+    .EXAMPLE
+    # Reads SAILPOINT_ACCESS_TOKEN, or SAILPOINT_CLIENT_SECRET, from the environment.
+    $ih = Get-KitIscHeader -Config (Get-KitConfig -Path ./config/config.example.json)
     #>
     [OutputType([hashtable])]
     [CmdletBinding()]
@@ -222,6 +275,9 @@ function Get-KitSnHeader {
     .SYNOPSIS
     Auth header for ServiceNow: SN_ACCESS_TOKEN, OAuth client credentials at
     /oauth_token.do, or basic (SN_USERNAME + SN_PASSWORD).
+    .EXAMPLE
+    # Reads SN_ACCESS_TOKEN, SN_CLIENT_SECRET or SN_PASSWORD from the environment.
+    $sn = Get-KitSnHeader -Config (Get-KitConfig -Path ./config/config.example.json)
     #>
     [OutputType([hashtable])]
     [CmdletBinding()]
@@ -244,6 +300,12 @@ function Get-KitSnHeader {
 }
 
 function ConvertTo-KitBase64Url {
+    <#
+    .SYNOPSIS
+    Encode bytes as base64url without padding, the encoding a JWT uses.
+    .EXAMPLE
+    ConvertTo-KitBase64Url -Bytes ([Text.Encoding]::UTF8.GetBytes('{"alg":"PS256"}'))
+    #>
     [OutputType([string])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][byte[]]$Bytes)
@@ -255,6 +317,9 @@ function ConvertTo-KitClientAssertion {
     .SYNOPSIS
     Certificate-signed JWT client assertion for the Microsoft identity platform:
     PS256, x5t#S256 header, aud/iss/sub/jti/nbf/exp claims.
+    .EXAMPLE
+    $cert = Get-KitGraphCertificate -Config @{ GRAPH_CERT_PATH = './graph-client.pem' }
+    ConvertTo-KitClientAssertion -Certificate $cert -ClientId '00000000-0000-0000-0000-000000000000' -Audience 'https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token'
     #>
     [OutputType([string])]
     [CmdletBinding()]
@@ -280,6 +345,14 @@ function ConvertTo-KitClientAssertion {
 }
 
 function Get-KitGraphCertificate {
+    <#
+    .SYNOPSIS
+    Return the Microsoft Graph client certificate: from Cert:\CurrentUser\My by
+    GRAPH_CERT_THUMBPRINT, else from the PEM file (certificate and key) at GRAPH_CERT_PATH,
+    else $null.
+    .EXAMPLE
+    $cert = Get-KitGraphCertificate -Config @{ GRAPH_CERT_PATH = './graph-client.pem' }
+    #>
     [OutputType([System.Security.Cryptography.X509Certificates.X509Certificate2])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][hashtable]$Config)
@@ -298,6 +371,9 @@ function Get-KitGraphHeader {
     Bearer header for Microsoft Graph via client credentials. Certificate preferred
     (GRAPH_CERT_THUMBPRINT in CurrentUser\My, or GRAPH_CERT_PATH PEM); GRAPH_CLIENT_SECRET
     is the fallback; GRAPH_ACCESS_TOKEN skips acquisition.
+    .EXAMPLE
+    # Set GRAPH_TENANT_ID and GRAPH_CLIENT_ID, plus GRAPH_CERT_PATH or GRAPH_CERT_THUMBPRINT.
+    $gh = Get-KitGraphHeader -Config (Get-KitConfig -Path ./config/config.example.json)
     #>
     [OutputType([hashtable])]
     [CmdletBinding()]
@@ -332,7 +408,12 @@ function Get-KitGraphHeader {
 # ---------------------------------------------------------------------------
 
 function Get-KitGraphPaged {
-    <# .SYNOPSIS Follow @odata.nextLink as an opaque URL until the last page. #>
+    <#
+    .SYNOPSIS
+    Follow @odata.nextLink as an opaque URL until the last page.
+    .EXAMPLE
+    $users = @(Get-KitGraphPaged -Uri 'https://graph.microsoft.com/v1.0/users?$select=id,employeeId,accountEnabled&$top=999' -Headers $gh)
+    #>
     [OutputType([object])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Uri, [hashtable]$Headers = @{})
@@ -345,7 +426,12 @@ function Get-KitGraphPaged {
 }
 
 function Get-KitIscSearchPaged {
-    <# .SYNOPSIS POST /v3/search with searchAfter paging, sorted on id. #>
+    <#
+    .SYNOPSIS
+    POST /v3/search with searchAfter paging, sorted on id.
+    .EXAMPLE
+    $ids = @(Get-KitIscSearchPaged -BaseUrl 'https://example.api.identitynow.com' -Headers $ih -Body @{ indices = @('identities'); query = @{ query = '*' } })
+    #>
     [OutputType([object], [object[]])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$BaseUrl, [hashtable]$Headers = @{},
@@ -362,7 +448,12 @@ function Get-KitIscSearchPaged {
 }
 
 function Get-KitIscListPaged {
-    <# .SYNOPSIS GET list APIs such as /v3/accounts with limit/offset paging. #>
+    <#
+    .SYNOPSIS
+    GET list APIs such as /v3/accounts with limit/offset paging.
+    .EXAMPLE
+    $orphans = @(Get-KitIscListPaged -Uri 'https://example.api.identitynow.com/v3/accounts' -Headers $ih -Filters 'uncorrelated eq true')
+    #>
     [OutputType([object], [object[]])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Uri, [hashtable]$Headers = @{}, [string]$Filters, [int]$Limit = 250)
@@ -378,7 +469,12 @@ function Get-KitIscListPaged {
 }
 
 function Get-KitSnTablePaged {
-    <# .SYNOPSIS GET /api/now/table/{table} with sysparm_offset and sysparm_limit. #>
+    <#
+    .SYNOPSIS
+    GET /api/now/table/{table} with sysparm_offset and sysparm_limit.
+    .EXAMPLE
+    Get-KitSnTablePaged -BaseUrl 'https://contoso.service-now.com' -Table 'u_identity_finding' -Headers $sn -Query 'active=true' -Fields 'sys_id', 'number', 'state'
+    #>
     [OutputType([object], [object[]])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$BaseUrl, [Parameter(Mandatory)][string]$Table, [hashtable]$Headers = @{},
@@ -400,7 +496,12 @@ function Get-KitSnTablePaged {
 # ---------------------------------------------------------------------------
 
 function ConvertTo-KitCanonicalJson {
-    <# .SYNOPSIS Compact JSON with object keys sorted, for hashing. #>
+    <#
+    .SYNOPSIS
+    Compact JSON with object keys sorted, for hashing.
+    .EXAMPLE
+    ConvertTo-KitCanonicalJson -InputObject ([ordered]@{ b = 2; a = 1 })   # {"a":1,"b":2}
+    #>
     [OutputType([string])]
     [CmdletBinding()]
     param([AllowNull()]$InputObject)
@@ -430,6 +531,13 @@ function ConvertTo-KitCanonicalJson {
 }
 
 function Get-KitSha256 {
+    <#
+    .SYNOPSIS
+    Return the lowercase hex SHA-256 of an object's canonical JSON, so the same content
+    hashes the same whatever its key order.
+    .EXAMPLE
+    Get-KitSha256 -InputObject ([ordered]@{ a = 1; b = 2 })
+    #>
     [OutputType([string])]
     [CmdletBinding()]
     param([AllowNull()]$InputObject)
@@ -439,6 +547,12 @@ function Get-KitSha256 {
 }
 
 function Get-KitUtcNow {
+    <#
+    .SYNOPSIS
+    Return the current UTC time as an ISO 8601 string to the second, such as 2026-10-24T12:00:00Z.
+    .EXAMPLE
+    $detectedAt = Get-KitUtcNow
+    #>
     [OutputType([string])]
     [CmdletBinding()]
     param()
@@ -450,7 +564,12 @@ function Get-KitUtcNow {
 # ---------------------------------------------------------------------------
 
 function Import-KitHrCsv {
-    <# .SYNOPSIS HR extract keyed on employeeId. Required columns: employeeId, status. #>
+    <#
+    .SYNOPSIS
+    HR extract keyed on employeeId. Required columns: employeeId, status.
+    .EXAMPLE
+    $hr = Import-KitHrCsv -Path ./tests/fixtures/hr_extract.csv
+    #>
     [OutputType([System.Collections.Specialized.OrderedDictionary])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -468,6 +587,14 @@ function Import-KitHrCsv {
 }
 
 function Get-KitHrState {
+    <#
+    .SYNOPSIS
+    Map an HR record's status to 'active' (active, leave, on leave, loa), 'terminated'
+    (terminated, separated, inactive, retired, deceased) or 'unknown'.
+    .EXAMPLE
+    $hr = Import-KitHrCsv -Path ./tests/fixtures/hr_extract.csv
+    Get-KitHrState -Record $hr['E1002']   # terminated
+    #>
     [OutputType([string])]
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Record)
@@ -478,6 +605,15 @@ function Get-KitHrState {
 }
 
 function New-KitFindingObject {
+    <#
+    .SYNOPSIS
+    Build one drift finding as an ordered dictionary, with severity and priority from the
+    drift class and a 16-character finding_id hashed from class, system, employee id, object
+    id and attribute.
+    .EXAMPLE
+    New-KitFindingObject -DriftClass 'attribute_drift' -System 'entra' -EmployeeId 'E1001' -ObjectId '00000000-0000-0000-0000-000000001001' -ObjectName 'alice@contoso.example' -Attribute 'department' -Expected 'Finance' -Observed 'Sales' -Evidence @{} -DetectedAt (Get-KitUtcNow)
+    #>
+
     # Builds an in-memory object only; it changes no system state.
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '',
         Justification = 'Constructs an in-memory object; no state outside the process changes.')]
@@ -507,6 +643,12 @@ function New-KitFindingObject {
 }
 
 function Test-KitHasProperty {
+    <#
+    .SYNOPSIS
+    Return $true when a dictionary has the key, or an object has the property, named -Name.
+    .EXAMPLE
+    Test-KitHasProperty -Object @{ department = 'Finance' } -Name 'department'   # True
+    #>
     [OutputType([bool])]
     [CmdletBinding()]
     param($Object, [string]$Name)
@@ -516,6 +658,14 @@ function Test-KitHasProperty {
 }
 
 function Get-KitIscEmployeeId {
+    <#
+    .SYNOPSIS
+    Return an ISC identity's HR key: the named attribute at the top level, else under
+    .attributes, else an empty string.
+    .EXAMPLE
+    $ids = Get-Content -LiteralPath ./tests/fixtures/isc_identities.json -Raw | ConvertFrom-Json
+    Get-KitIscEmployeeId -Identity $ids[0] -Attribute 'employeeNumber'   # E1000
+    #>
     [OutputType([string])]
     [CmdletBinding()]
     param($Identity, [string]$Attribute)
@@ -528,6 +678,14 @@ function Get-KitIscEmployeeId {
 }
 
 function Copy-KitDictionary {
+    <#
+    .SYNOPSIS
+    Return a shallow ordered copy of a dictionary (empty for $null), so a finding's evidence
+    can be extended without changing the original.
+    .EXAMPLE
+    $ev = Copy-KitDictionary -Source (Get-KitHrEvidence -Record $hr['E1001'])
+    $ev.query = 'GET /v1.0/users (employeeId join)'
+    #>
     [OutputType([System.Collections.Specialized.OrderedDictionary])]
     [CmdletBinding()]
     param([System.Collections.IDictionary]$Source)
@@ -537,6 +695,14 @@ function Copy-KitDictionary {
 }
 
 function Get-KitHrEvidence {
+    <#
+    .SYNOPSIS
+    Return @{ hr_record = ... } with the HR columns a finding cites as evidence:
+    employeeId, status, department, managerEmployeeId, displayName and email, when present.
+    .EXAMPLE
+    $hr = Import-KitHrCsv -Path ./tests/fixtures/hr_extract.csv
+    Get-KitHrEvidence -Record $hr['E1001']
+    #>
     [OutputType([System.Collections.Specialized.OrderedDictionary])]
     [CmdletBinding()]
     param($Record)
@@ -552,6 +718,11 @@ function Get-KitIdentityDriftFinding {
     .SYNOPSIS
     Compute Book 03 drift findings. Returns @{ findings; computed; not_computed }.
     Pass $null for an input to skip the classes that need it.
+    .EXAMPLE
+    $hr = Import-KitHrCsv -Path ./tests/fixtures/hr_extract.csv
+    $users = (Get-Content -LiteralPath ./tests/fixtures/graph_users.json -Raw | ConvertFrom-Json).value
+    $opt = Get-Content -LiteralPath ./tests/fixtures/drift_options.json -Raw | ConvertFrom-Json -AsHashtable
+    $result = Get-KitIdentityDriftFinding -Hr $hr -GraphUsers $users -Options $opt
     #>
     [OutputType([System.Collections.Specialized.OrderedDictionary])]
     [CmdletBinding()]
@@ -714,7 +885,12 @@ function Get-KitIdentityDriftFinding {
 }
 
 function Export-KitDriftResult {
-    <# .SYNOPSIS Write the result as JSON and the findings as CSV. #>
+    <#
+    .SYNOPSIS
+    Write the result as JSON and the findings as CSV.
+    .EXAMPLE
+    Export-KitDriftResult -Result $result -JsonPath ./identity-drift.json -CsvPath ./identity-drift.csv
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][System.Collections.IDictionary]$Result, [Parameter(Mandatory)][string]$JsonPath,
         [Parameter(Mandatory)][string]$CsvPath)
@@ -732,7 +908,12 @@ function Export-KitDriftResult {
 }
 
 function ConvertTo-KitServiceNowPayload {
-    <# .SYNOPSIS The identity-finding data contract the Scripted REST resource accepts. #>
+    <#
+    .SYNOPSIS
+    The identity-finding data contract the Scripted REST resource accepts.
+    .EXAMPLE
+    ConvertTo-KitServiceNowPayload -Finding $result.findings[0] | ConvertTo-Json -Depth 10
+    #>
     [OutputType([System.Collections.Specialized.OrderedDictionary])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][System.Collections.IDictionary]$Finding)
@@ -756,7 +937,13 @@ function ConvertTo-KitServiceNowPayload {
 }
 
 function Send-KitFindingToServiceNow {
-    <# .SYNOPSIS POST findings to the Scripted REST endpoint. Dry run unless -Apply. #>
+    <#
+    .SYNOPSIS
+    POST findings to the Scripted REST endpoint. Dry run unless -Apply.
+    .EXAMPLE
+    # Lists what it would send; add -Apply to POST.
+    Send-KitFindingToServiceNow -Finding $result.findings -Config $cfg -Headers (Get-KitSnHeader -Config $cfg)
+    #>
     [OutputType([pscustomobject])]
     [CmdletBinding(SupportsShouldProcess)]
     param([Parameter(Mandatory)][object[]]$Finding, [Parameter(Mandatory)][hashtable]$Config,
@@ -781,6 +968,13 @@ function Send-KitFindingToServiceNow {
 # ---------------------------------------------------------------------------
 
 function ConvertFrom-KitTimestamp {
+    <#
+    .SYNOPSIS
+    Parse a ServiceNow 'yyyy-MM-dd HH:mm:ss' value or an ISO 8601 string as UTC; returns
+    $null when the value is empty or can't be parsed.
+    .EXAMPLE
+    ConvertFrom-KitTimestamp -Value '2026-10-24 12:00:00'
+    #>
     [OutputType([datetime])]
     [CmdletBinding()]
     param([string]$Value)
@@ -793,6 +987,13 @@ function ConvertFrom-KitTimestamp {
 }
 
 function Get-KitAwaitingRecord {
+    <#
+    .SYNOPSIS
+    List the records in a ServiceNow table whose state is SN_STATE_AWAITING_VERIFICATION,
+    ordered by last update, with the fields the re-read needs.
+    .EXAMPLE
+    $records = @(Get-KitAwaitingRecord -Config $cfg -Headers $sn -Table $cfg.SN_FINDING_TABLE)
+    #>
     [OutputType([object])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][hashtable]$Config, [hashtable]$Headers = @{}, [Parameter(Mandatory)][string]$Table)
@@ -801,7 +1002,12 @@ function Get-KitAwaitingRecord {
 }
 
 function Get-KitSubjectState {
-    <# .SYNOPSIS Re-read the record's subject from its system of record. #>
+    <#
+    .SYNOPSIS
+    Re-read the record's subject from its system of record.
+    .EXAMPLE
+    $obs = Get-KitSubjectState -Record $records[0] -Config $cfg -IscHeaders $ih -GraphHeaders $gh
+    #>
     [OutputType([System.Collections.Specialized.OrderedDictionary])]
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Record, [Parameter(Mandatory)][hashtable]$Config, [hashtable]$IscHeaders, [hashtable]$GraphHeaders)
@@ -844,6 +1050,12 @@ function Get-KitSubjectState {
 }
 
 function Get-KitValueList {
+    <#
+    .SYNOPSIS
+    Return a value as an array of strings, or an empty array for $null.
+    .EXAMPLE
+    Get-KitValueList -Value @('CN=Finance', 'CN=Staff')
+    #>
     [OutputType([object[]])]
     [CmdletBinding()]
     param($Value)
@@ -852,7 +1064,13 @@ function Get-KitValueList {
 }
 
 function Compare-KitIntendedState {
-    <# .SYNOPSIS Returns the differences; an empty array means the intended state holds. #>
+    <#
+    .SYNOPSIS
+    Returns the differences; an empty array means the intended state holds.
+    .EXAMPLE
+    Compare-KitIntendedState -Intended @{ disabled = $true } -Observation @{ exists = $true; observed = [pscustomobject]@{ disabled = $false } }
+    # disabled: intended True, observed False
+    #>
     [OutputType([string[]])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][System.Collections.IDictionary]$Intended, [Parameter(Mandatory)][System.Collections.IDictionary]$Observation)
@@ -884,7 +1102,12 @@ function Compare-KitIntendedState {
 }
 
 function Test-KitStaleRead {
-    <# .SYNOPSIS True when the ISC copy predates the start of waiting and the grace period has not ended. #>
+    <#
+    .SYNOPSIS
+    True when the ISC copy predates the start of waiting and the grace period has not ended.
+    .EXAMPLE
+    Test-KitStaleRead -Record $records[0] -Observation $obs -Now ([datetime]::UtcNow) -Grace ([timespan]::FromHours(24))
+    #>
     [OutputType([bool])]
     [CmdletBinding()]
     param($Record, [System.Collections.IDictionary]$Observation, [datetime]$Now, [timespan]$Grace)
@@ -897,6 +1120,13 @@ function Test-KitStaleRead {
 }
 
 function ConvertTo-KitEvidence {
+    <#
+    .SYNOPSIS
+    Build the re-read evidence record: record number, system and query, check time, intended
+    state, SHA-256 of what was observed, whether it matched, the differences and the checker.
+    .EXAMPLE
+    ConvertTo-KitEvidence -Record $records[0] -Intended @{ disabled = $true } -Observation $obs -Differences @() -CheckedAt (Get-KitUtcNow) -CheckerIdentity 'reread-client'
+    #>
     [OutputType([System.Collections.Specialized.OrderedDictionary])]
     [CmdletBinding()]
     param($Record, $Intended, $Observation, [string[]]$Differences, [string]$CheckedAt, [string]$CheckerIdentity)
@@ -913,6 +1143,9 @@ function Invoke-KitReReadVerification {
     .SYNOPSIS
     Re-read each record awaiting verification; close on match (with evidence), reopen on
     mismatch, leave alone when the ISC copy is stale. Dry run unless -Apply.
+    .EXAMPLE
+    # Prints what it would do; add -Apply to close or reopen records.
+    Invoke-KitReReadVerification -Record $records -Config $cfg -SnHeaders $sn -IscHeaders $ih -GraphHeaders $gh -Table 'u_identity_finding'
     #>
     [OutputType([pscustomobject])]
     [CmdletBinding(SupportsShouldProcess)]

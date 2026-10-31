@@ -26,6 +26,13 @@ $script:DrGraphHosts = [ordered]@{
 }
 
 function New-DrFinding {
+    <#
+    .SYNOPSIS
+        Creates one finding row (Severity, Rule, Group, Issue, Detail), the shape the linter and the
+        library tests return.
+    .EXAMPLE
+        New-DrFinding -Severity Warn -Rule 'DR-07' -Group 'Analysts, all organizations' -Issue 'Slow operator' -Detail '-match'
+    #>
     param(
         [Parameter(Mandatory)][ValidateSet('Finding', 'Warn', 'Info')][string]$Severity,
         [Parameter(Mandatory)][string]$Rule,
@@ -39,6 +46,14 @@ function New-DrFinding {
 #region Parser
 
 function Get-DrTokens {
+    <#
+    .SYNOPSIS
+        Splits a dynamic membership rule into tokens: parentheses, brackets, commas, strings, operators
+        (without the leading hyphen) and words such as property paths and literals.
+    .EXAMPLE
+        Get-DrTokens -Rule '(user.userType -eq "Member")'
+    #>
+
     <# Tokens: ( ) [ ] , strings, operators (-eq or eq), property paths, literals. #>
     param([Parameter(Mandatory)][AllowEmptyString()][string]$Rule)
     $tokens = [Collections.Generic.List[object]]::new()
@@ -76,6 +91,14 @@ function Get-DrTokens {
 }
 
 function ConvertFrom-DrRule {
+    <#
+    .SYNOPSIS
+        Parses a dynamic membership rule into a tree of nodes, with Learn's precedence: comparisons,
+        then -not, -and, -or. Throws when the rule doesn't parse.
+    .EXAMPLE
+        ConvertFrom-DrRule -Rule '(user.accountEnabled -eq true) -and (user.extensionAttribute12 -eq "ANALYST")'
+    #>
+
     <#
     Parse a rule into a tree. Precedence follows Learn: comparisons, then -not, then -and, then -or.
     Nodes: @{ Kind = 'or'|'and'; Items }, @{ Kind = 'not'; Item }, @{ Kind = 'cmp'; Property; Op; Value },
@@ -165,6 +188,14 @@ function ConvertFrom-DrRule {
 }
 
 function Get-DrRuleNodes {
+    <#
+    .SYNOPSIS
+        Returns every node of a parsed rule tree, depth first, starting with the root.
+    .EXAMPLE
+        Get-DrRuleNodes -Tree (ConvertFrom-DrRule -Rule '(user.userType -eq "Member") -and (user.extensionAttribute10 -eq "FIN-LED")') |
+            Where-Object Kind -EQ 'cmp'
+    #>
+
     <# Every node in a tree, depth first. #>
     param([Parameter(Mandatory)]$Tree)
     $Tree
@@ -175,6 +206,14 @@ function Get-DrRuleNodes {
 }
 
 function Get-DrRuleObjectType {
+    <#
+    .SYNOPSIS
+        Returns user, device, mixed or none, from the property prefixes a parsed rule reads. A direct
+        reports rule is a user rule.
+    .EXAMPLE
+        Get-DrRuleObjectType -Tree (ConvertFrom-DrRule -Rule '(device.deviceOSType -eq "Windows")')   # device
+    #>
+
     <# 'user', 'device', 'mixed' or 'none', from the property prefixes the rule reads. #>
     param([Parameter(Mandatory)]$Tree)
     if ($Tree.Kind -eq 'directReports') { return 'user' }
@@ -257,6 +296,15 @@ function Test-DrNode {
 }
 
 function Test-DrMember {
+    <#
+    .SYNOPSIS
+        Returns whether one fixture object satisfies a rule, by the offline evaluator. An object whose
+        objectType differs from the rule's type is never a member.
+    .EXAMPLE
+        $pop = Get-Content ./tests/fixtures/population.json -Raw | ConvertFrom-Json
+        Test-DrMember -Rule '(user.extensionAttribute12 -eq "ANALYST")' -Object ($pop | Where-Object key -EQ 'u01')
+    #>
+
     <# Whether one fixture object satisfies a rule, by the offline evaluator. #>
     param([Parameter(Mandatory)][string]$Rule, [Parameter(Mandatory)]$Object)
     $tree = ConvertFrom-DrRule -Rule $Rule
@@ -267,6 +315,14 @@ function Test-DrMember {
 }
 
 function Get-DrMembers {
+    <#
+    .SYNOPSIS
+        Returns the key of every population object a rule selects, by the offline evaluator.
+    .EXAMPLE
+        $pop = Get-Content ./tests/fixtures/population.json -Raw | ConvertFrom-Json
+        Get-DrMembers -Rule 'Direct Reports for "00000000-0000-0000-0001-000000000009"' -Population $pop
+    #>
+
     <# The keys of every population object a rule selects. #>
     param([Parameter(Mandatory)][string]$Rule, [Parameter(Mandatory)][object[]]$Population)
     @($Population | Where-Object { Test-DrMember -Rule $Rule -Object $_ } | ForEach-Object { "$(Get-DrPropertyValue $_ 'key')" })
@@ -277,6 +333,14 @@ function Get-DrMembers {
 #region Library and linter
 
 function Get-DrLibrary {
+    <#
+    .SYNOPSIS
+        Reads every rules/*.json file in name order and adds its file name. Throws when displayName,
+        kind, membershipRule or owner is missing, or kind isn't user or device.
+    .EXAMPLE
+        Get-DrLibrary -Path ./rules
+    #>
+
     <# Every rules/*.json file, with its file name. Required: displayName, kind, membershipRule, owner. #>
     param([Parameter(Mandatory)][string]$Path)
     foreach ($f in Get-ChildItem -LiteralPath $Path -Filter '*.json' | Sort-Object Name) {
@@ -297,6 +361,14 @@ function Get-DrTopLevelTerms {
 }
 
 function Test-DrRule {
+    <#
+    .SYNOPSIS
+        Lints one dynamic membership rule and returns finding rows for rules DR-01 to DR-10, such as
+        a parse error, a missing guard, a display-name attribute or a slow operator.
+    .EXAMPLE
+        Test-DrRule -Rule '(user.department -eq "Finance")' -Kind user -Group 'Finance staff'
+    #>
+
     <#
     Lint one rule. Rules:
       DR-01 Finding  the rule doesn't parse (or is empty)
@@ -362,6 +434,15 @@ function Test-DrRule {
 
 function Invoke-DrLibraryTest {
     <#
+    .SYNOPSIS
+        Lints every rule in the library and runs each rule's membership tests against the population.
+        Returns finding rows; DR-11 is a failed test.
+    .EXAMPLE
+        $pop = Get-Content ./tests/fixtures/population.json -Raw | ConvertFrom-Json
+        Invoke-DrLibraryTest -Library (Get-DrLibrary -Path ./rules) -Population $pop
+    #>
+
+    <#
     Lint every rule in the library and run its tests against the population: each test names a
     population key and the expected membership. Returns finding rows; DR-11 is a failed test.
     #>
@@ -383,6 +464,16 @@ function Invoke-DrLibraryTest {
 
 function Compare-DrRule {
     <#
+    .SYNOPSIS
+        Shadow diff offline: returns who a proposed rule adds and removes compared with the current
+        rule, over a fixture population, with both member counts.
+    .EXAMPLE
+        $pop = Get-Content ./tests/fixtures/population.json -Raw | ConvertFrom-Json
+        Compare-DrRule -Current '(user.extensionAttribute10 -eq "FIN-LED")' `
+            -Proposed '(user.extensionAttribute10 -eq "FIN-LED") -and (user.extensionAttribute11 -ne "CTR")' -Population $pop
+    #>
+
+    <#
     Shadow diff offline: who a proposed rule adds and removes compared with the current rule, over
     the fixture population. VK-DG-04 does the same against live groups.
     #>
@@ -402,6 +493,14 @@ function Compare-DrRule {
 #region Pause and resume
 
 function Get-DrGraphEndpoint {
+    <#
+    .SYNOPSIS
+        Returns the Microsoft Graph host for a cloud: Global, USGov or USGovDoD. An unknown name
+        throws; there is no default.
+    .EXAMPLE
+        Get-DrGraphEndpoint -Cloud USGov   # https://graph.microsoft.us
+    #>
+
     <# Learn's Graph host for a cloud. An unknown name throws; there is no silent default. #>
     param([Parameter(Mandatory)][string]$Cloud)
     $k = $script:DrGraphHosts.Keys | Where-Object { $_ -ieq $Cloud.Trim() }
@@ -410,6 +509,15 @@ function Get-DrGraphEndpoint {
 }
 
 function Get-DrDynamicCollections {
+    <#
+    .SYNOPSIS
+        Lists every dynamic group and dynamic administrative unit with its processing state, through
+        the Graph script block in -Invoke, following @odata.nextLink.
+    .EXAMPLE
+        $invoke = { param($Method, $Uri, $Body, $Headers) Invoke-MgGraphRequest -Method $Method -Uri $Uri -Body $Body -Headers $Headers }
+        Get-DrDynamicCollections -Invoke $invoke -Endpoint (Get-DrGraphEndpoint -Cloud USGov)
+    #>
+
     <# Every dynamic group and dynamic administrative unit, with its processing state, through $Invoke. #>
     param([Parameter(Mandatory)][scriptblock]$Invoke, [Parameter(Mandatory)][string]$Endpoint)
     $sources = @(
@@ -429,6 +537,15 @@ function Get-DrDynamicCollections {
 }
 
 function New-DrPauseManifest {
+    <#
+    .SYNOPSIS
+        Records every dynamic group and administrative unit with its processing state before anything
+        is paused, so a later resume touches only what the incident paused.
+    .EXAMPLE
+        $invoke = { param($Method, $Uri, $Body, $Headers) Invoke-MgGraphRequest -Method $Method -Uri $Uri -Body $Body -Headers $Headers }
+        $m = New-DrPauseManifest -Invoke $invoke -Cloud USGov -Reason 'Drill'
+    #>
+
     <#
     Record every dynamic collection's processing state before anything is paused. The manifest is
     what makes a safe resume possible: Learn's resume samples act on whatever is paused.
@@ -461,6 +578,16 @@ function Set-DrState {
 
 function Invoke-DrPause {
     <#
+    .SYNOPSIS
+        Pauses the collections that were On when the manifest was taken, except those in -Except, and
+        records each in the manifest. Without -Apply it only returns what it would pause.
+    .EXAMPLE
+        # $m and $invoke as in the New-DrPauseManifest example
+        Invoke-DrPause -Manifest $m -Invoke $invoke            # dry run: what would pause
+        Invoke-DrPause -Manifest $m -Invoke $invoke -Apply
+    #>
+
+    <#
     Pause the collections that were On when the manifest was taken, except those listed in -Except.
     Without -Apply it only reports what it would pause. Each pause is recorded in the manifest.
     #>
@@ -481,6 +608,15 @@ function Invoke-DrPause {
 }
 
 function Invoke-DrResume {
+    <#
+    .SYNOPSIS
+        Resumes only collections this manifest paused: the -Ids given at any time, otherwise the next
+        -BatchSize after -WaitHours have passed. Without -Apply it only returns what it would resume.
+    .EXAMPLE
+        # $criticalIds: object IDs of the groups whose library files say critical
+        Invoke-DrResume -Manifest $m -Invoke $invoke -Ids $criticalIds -Apply
+    #>
+
     <#
     Resume only collections this manifest paused, never one that was already paused before.
     -Ids resumes named (critical) collections at any time. Otherwise the next -BatchSize collections

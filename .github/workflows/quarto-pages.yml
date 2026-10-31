@@ -42,6 +42,12 @@ jobs:
           cp assets/reference-mslearn.docx docs/compliance/day2-kit/reference-mslearn.docx
           cp assets/reference-mslearn.docx docs/compliance/day2-kit/assets/reference-mslearn.docx
 
+      - name: Generate command reference
+        # docs/reference/commands.md includes the generated body, and Quarto
+        # resolves includes before any pre-render script runs. It goes before
+        # the site map, whose `quarto inspect` needs every include to exist.
+        run: python3 scripts/command_reference.py
+
       - name: Generate site map
         # Quarto resolves the include in sitemap.qmd before any pre-render
         # script runs, so the tree must exist before the first render.

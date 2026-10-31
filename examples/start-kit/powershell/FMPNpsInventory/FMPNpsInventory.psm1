@@ -136,6 +136,14 @@ function Get-FMPNpsItem {
 }
 
 function ConvertFrom-FMPNpsConstraint {
+    <#
+    .SYNOPSIS
+        Returns the group SIDs and NAS port types named in a network policy's conditions
+        (its msNPConstraint values).
+    .EXAMPLE
+        (ConvertFrom-FMPNpsConstraint -Constraint 'MATCH("NAS-Port-Type=^17$")').PortTypes
+    .DESCRIPTION
+    #>
     # Group SIDs and NAS port types from a policy's conditions (msNPConstraint values).
     param([string[]]$Constraint)
     $sids = [System.Collections.Generic.List[string]]::new()
@@ -163,6 +171,12 @@ function ConvertFrom-FMPNpsConfig {
     .PARAMETER Thumbprints
         Thumbprints of the server's certificates; a policy whose EAP settings contain one
         is reported as using that certificate.
+    .EXAMPLE
+        $key = [byte[]]::new(32); [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($key)
+        $p = ConvertFrom-FMPNpsConfig -Xml (Get-Content -Raw D:\Exports\nps01.xml) -Server nps01.contoso.example -Key $key
+        $p.Clients | Format-Table Name, Address, SecretLength, RequireMessageAuthenticator
+
+        Parses an Export-NpsConfiguration file. Each client shows its secret's length, never the secret.
     #>
     [CmdletBinding()]
     param(
@@ -278,6 +292,10 @@ function Get-FMPNpsServer {
     .DESCRIPTION
         The group holds Routing and Remote Access servers too, so membership marks a
         candidate; reading its configuration confirms NPS.
+    .EXAMPLE
+        Get-FMPNpsServer -Forest contoso.example
+    .EXAMPLE
+        Get-FMPNpsServer -Domain contoso.example, child.contoso.example
     #>
     [CmdletBinding()]
     param([string[]]$Domain, [string]$Forest)
@@ -350,6 +368,8 @@ function Get-FMPNpsHardeningEvent {
         KB5040268's NPS events from the System log: 4418 (request dropped), 4419 (would be
         dropped by limitProxyState), 4420 (response would be dropped by requireMsgAuth) and
         4421 (the settings are in Disable or Audit mode, logged at service start).
+    .EXAMPLE
+        Get-FMPNpsHardeningEvent -ComputerName nps01.contoso.example -Since (Get-Date).AddDays(-30)
     #>
     param([Parameter(Mandatory)][string]$ComputerName, [Parameter(Mandatory)][datetime]$Since)
     $events = @()
@@ -389,6 +409,13 @@ function Get-FMPNpsFinding {
     <#
     .SYNOPSIS
         The findings Book 09 Chapter 07 asks the inventory to surface, from parsed results.
+    .EXAMPLE
+        $p = ConvertFrom-FMPNpsConfig -Xml (Get-Content -Raw D:\Exports\nps01.xml) -Server nps01.contoso.example -Key $key
+        Get-FMPNpsFinding -Clients $p.Clients -Policies (@($p.NetworkPolicies) + @($p.ConnectionRequestPolicies)) -RemoteServers $p.RemoteServers
+
+        Checks one parsed configuration for short secrets, clients that don't require
+        Message-Authenticator and policies that allow weak methods. Invoke-FMPNpsInventory calls
+        it with every server's results.
     #>
     param(
         [object[]]$Servers = @(), [object[]]$Clients = @(), [object[]]$Policies = @(), [object[]]$RemoteServers = @(),

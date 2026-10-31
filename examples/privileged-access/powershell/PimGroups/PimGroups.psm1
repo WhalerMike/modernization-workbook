@@ -29,6 +29,14 @@ $script:RoleAssignableLimit = 500   # Learn: at most 500 role-assignable groups 
 # ----------------------------------------------------------------------------- calls and permissions
 
 function Get-PaPgCall {
+    <#
+    .SYNOPSIS
+        Returns the Chapter 05 calls declared in config/calls-ch05.json, or only those for one task
+        when -Task is given. Each call carries its id, method, path and Graph permissions.
+    .EXAMPLE
+        Get-PaPgCall -Task pim-groups-read | Select-Object id, method, permissions
+    #>
+
     <# The calls declared for Chapter 05, optionally for one task. #>
     [CmdletBinding()]
     param([ValidateSet('pim-groups-read', 'pim-groups-apply')][string]$Task)
@@ -38,6 +46,15 @@ function Get-PaPgCall {
 }
 
 function Get-PaPgRequiredPermission {
+    <#
+    .SYNOPSIS
+        Returns the union of the Graph application permissions a task's declared calls need, as
+        GraphPermissions, so the app that runs it can be granted only those.
+    .EXAMPLE
+        # Read permissions only; no ReadWrite permission appears for the read task.
+        (Get-PaPgRequiredPermission -Task pim-groups-read).GraphPermissions
+    #>
+
     <# The union of a task's Graph application permissions. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][ValidateSet('pim-groups-read', 'pim-groups-apply')][string]$Task)
@@ -45,6 +62,15 @@ function Get-PaPgRequiredPermission {
 }
 
 function Get-PaPgPolicySetting {
+    <#
+    .SYNOPSIS
+        Reads the PIM for Groups policy settings the program sets on PRV groups, by access (member
+        or owner) and tier, from config/prv-group-policy.json or -Path. Returns a hashtable.
+    .EXAMPLE
+        # The member settings for Tier 0 groups.
+        $policy = Get-PaPgPolicySetting
+        $policy.member.T0
+    #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path $script:ConfigRoot 'prv-group-policy.json'))
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
@@ -58,6 +84,10 @@ function New-PaPgClient {
         A client for one Chapter 05 task in one cloud. -Invoke is { param($Method, $Uri, $Body) }
         returning the parsed body as a hashtable: New-PaPgFixtureInvoker's fake, or
         New-PaPgLiveInvoker. The read task can only GET.
+    .EXAMPLE
+        # A read client over the fictional tenant: no sign-in, nothing sent to a tenant.
+        $fake = New-PaPgFixtureInvoker -Path tests/fixtures/ch05/tenant.json -Cloud gcc -Now 2026-10-30
+        $client = New-PaPgClient -Cloud gcc -Task pim-groups-read -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param(
@@ -93,6 +123,16 @@ function Assert-PaPgHost {
 }
 
 function Invoke-PaPgList {
+    <#
+    .SYNOPSIS
+        Sends GET for a declared Chapter 05 call and returns every item from every page, following
+        @odata.nextLink only on the cloud's own Graph host. Each request is added to the client's
+        Evidence.
+    .EXAMPLE
+        # Every role-assignable group in the tenant.
+        Invoke-PaPgList -Client $client -CallId groups-list -Query '$filter=isAssignableToRole eq true'
+    #>
+
     <# GET a declared collection, following @odata.nextLink on the cloud's own Graph host only. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string]$CallId, [hashtable]$Bind = @{}, [string]$Query)
@@ -122,6 +162,11 @@ function New-PaPgFixtureInvoker {
         way Learn says PIM checks them: a known group and access ID, a documented action, and
         under an expiration rule an end date after the fake's clock and within the policy's
         maximum. Anything else gets the fake's 400. -Now is the fake's clock.
+    .EXAMPLE
+        # A writer over the fictional tenant; the fake records each write in .Writes.
+        $fake = New-PaPgFixtureInvoker -Path tests/fixtures/ch05/tenant.json -Cloud gcc -Now 2026-10-30
+        $client = New-PaPgClient -Cloud gcc -Task pim-groups-apply -Invoke $fake.Invoke
+        $fake.Writes
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [string]$Cloud = 'gcc', [int]$PageSize = 2, [datetime]$Now = [datetime]'2026-10-30T12:00:00Z')
@@ -134,6 +179,16 @@ function New-PaPgFixtureInvoker {
 }
 
 function Invoke-PaPgFake {
+    <#
+    .SYNOPSIS
+        The fake Graph behind New-PaPgFixtureInvoker. Answers one request from the fixture tenant in
+        -State, records it in State.Calls (and writes in State.Writes) and returns the response body
+        as a hashtable. Throws a 400 for a request the fake refuses.
+    .EXAMPLE
+        # Usually reached through the invoker's .Invoke; called directly here to list role-assignable groups.
+        $fake = New-PaPgFixtureInvoker -Path tests/fixtures/ch05/tenant.json
+        Invoke-PaPgFake -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/groups?$filter=isAssignableToRole eq true'
+    #>
     param($State, [string]$Method, [string]$Uri, $Body)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri })
     $u = [Uri]$Uri
@@ -231,6 +286,10 @@ function New-PaPgLiveInvoker {
         The live invoker, through Invoke-MgGraphRequest. Refuses to start if the Graph session is in
         another cloud. Sign in first with Connect-MgGraph -Environment <GraphEnvironment> as an app
         holding only the permissions Get-PaPgRequiredPermission lists for the task.
+    .EXAMPLE
+        # GCC uses the Global Graph environment: sign in, then make a read client on the live invoker.
+        Connect-MgGraph -Environment Global
+        $client = New-PaPgClient -Cloud gcc -Task pim-groups-read -Invoke (New-PaPgLiveInvoker -Cloud gcc)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud)
@@ -254,6 +313,9 @@ function Read-PaPrvGroupConfig {
         displayName, id (absent for a group still to be created), tier, holds (entraRole,
         azureRole or other), and member and owner lists of active and eligible entries
         (principalId, principalName, principalType, endDateTime, ticket). Malformed input throws.
+    .EXAMPLE
+        $config = Read-PaPrvGroupConfig -Path tests/fixtures/ch05/inputs/prv-groups.json
+        $config.groups | Select-Object displayName, tier, holds
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -300,6 +362,10 @@ function Test-PaPrvGroupConfig {
         Checks the desired state itself, before any tenant read: the pre-merge review of the file.
         PA-PG-01 naming, PA-PG-05 group or service principal holders, PA-PG-06 entries with no
         end, PA-PG-07 owners, PA-PG-08 the policy settings for each tier used.
+    .EXAMPLE
+        # Review the desired state file before any tenant read.
+        $config = Read-PaPrvGroupConfig -Path tests/fixtures/ch05/inputs/prv-groups.json
+        Test-PaPrvGroupConfig -Config $config -PolicySetting (Get-PaPgPolicySetting) -AsOf 2026-10-30
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Config, [Parameter(Mandatory)]$PolicySetting, [datetime]$AsOf = [datetime]::UtcNow)
@@ -346,6 +412,10 @@ function Get-PaPgTenantState {
         Reads the role-assignable groups, the PRV-named groups, and for each managed group its
         eligibility and assignment schedules and its member and owner policy assignments with
         their rules. Only declared GETs.
+    .EXAMPLE
+        # $client from New-PaPgClient, $config from Read-PaPrvGroupConfig.
+        $state = Get-PaPgTenantState -Client $client -Config $config
+        $state.Groups.Keys
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)]$Config)
@@ -399,6 +469,9 @@ function Test-PaPgTenant {
     <#
     .SYNOPSIS
         The tenant's findings: PA-PG-02 to PA-PG-09 against Learn's limits and the desired state.
+    .EXAMPLE
+        # $state from Get-PaPgTenantState.
+        Test-PaPgTenant -State $state -Config $config -PolicySetting (Get-PaPgPolicySetting)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$State, [Parameter(Mandatory)]$Config, [Parameter(Mandatory)]$PolicySetting, [int]$RoleAssignableWarnAt = 450)
@@ -459,6 +532,10 @@ function New-PaPgRuleSet {
     .SYNOPSIS
         The five rules the program sets on a PIM for Groups policy, in the shapes Learn's
         "Update rules in PIM" examples use, from one tier's settings.
+    .EXAMPLE
+        # The member rules for a Tier 0 group, approved by the Tier 0 approver group.
+        $policy = Get-PaPgPolicySetting
+        New-PaPgRuleSet -Setting $policy.member.T0 -ApproverGroupId '5a000000-0000-4000-8000-0000000000a0'
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Setting, [string]$ApproverGroupId)
@@ -495,6 +572,17 @@ function Get-PaPgRuleView {
 }
 
 function Compare-PaPgPolicy {
+    <#
+    .SYNOPSIS
+        Compares a tenant policy and its rules (-Current) with a rule set from New-PaPgRuleSet, and
+        returns one object per managed rule whose reviewed settings differ: RuleId, Current, Desired
+        and the desired rule as Body.
+    .EXAMPLE
+        # $pa is one member policy assignment read by Get-PaPgTenantState.
+        $policy = Get-PaPgPolicySetting
+        Compare-PaPgPolicy -Current $pa.policy -Desired (New-PaPgRuleSet -Setting $policy.member.T1 -ApproverGroupId '5a000000-0000-4000-8000-0000000000a1')
+    #>
+
     <# The managed rules whose reviewed settings differ between the tenant and the desired rule set. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Current, [Parameter(Mandatory)][object[]]$Desired)
@@ -527,6 +615,10 @@ function New-PaPimGroupPlan {
         then policy rules (so the rules are in force before anyone is granted), then schedule
         requests (adds and updates before removals). Each operation carries its call, method, URI,
         body and least-privileged permission, and a diff line. Nothing is sent.
+    .EXAMPLE
+        # $state from Get-PaPgTenantState, $config from Read-PaPrvGroupConfig.
+        $plan = New-PaPimGroupPlan -State $state -Config $config -PolicySetting (Get-PaPgPolicySetting) -Cloud gcc -AsOf 2026-10-30
+        $plan.Operations | ForEach-Object Diff
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$State, [Parameter(Mandatory)]$Config, [Parameter(Mandatory)]$PolicySetting, [Parameter(Mandatory)][string]$Cloud, [datetime]$AsOf = [datetime]::UtcNow)
@@ -594,6 +686,9 @@ function Test-PaPgPlanGuard {
         policy losing approval or its approvers; G2 a permanent or open-ended grant; G3 a group
         approving itself; G4 an eligible owner left with no active owner; G5 a group or an eligible
         service principal as a holder; G6 more removals than -MaxRemovals; G7 a self-service action.
+    .EXAMPLE
+        # An empty result means -Apply may proceed.
+        Test-PaPgPlanGuard -Plan $plan -Config $config -MaxRemovals 5
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Plan, [Parameter(Mandatory)]$Config, [int]$MaxRemovals = 5)
@@ -631,6 +726,11 @@ function Invoke-PaPgPlan {
         Without -Apply, a dry run: returns each operation as 'DryRun' and sends nothing. With
         -Apply, refuses if any guard fails, then sends each operation in order through declared
         write calls on the cloud's own host, and stops at the first error.
+    .EXAMPLE
+        # Dry run through an apply client: each operation comes back as DryRun, and nothing is sent.
+        $writer = New-PaPgClient -Cloud gcc -Task pim-groups-apply -Invoke { throw 'A dry run sends nothing' }
+        $run = Invoke-PaPgPlan -Plan $plan -Config $config -Client $writer
+        $run.Guards
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Plan, [Parameter(Mandatory)]$Config, [Parameter(Mandatory)]$Client, [switch]$Apply, [int]$MaxRemovals = 5)
@@ -655,6 +755,15 @@ function Invoke-PaPgPlan {
 }
 
 function Export-PaPgRun {
+    <#
+    .SYNOPSIS
+        Writes each entry of -Files to -OutputPath (strings as they are, the rest as JSON), then
+        manifest.json with each file's SHA-256, the task, mode, cloud, the task's Graph permissions
+        and every request in -Evidence. Returns the manifest file.
+    .EXAMPLE
+        Export-PaPgRun -OutputPath out/pim-groups -Task pim-groups-read -Cloud gcc -Mode Fixture -Evidence $client.Evidence -Files @{ 'plan.json' = $plan }
+    #>
+
     <# Writes the run's files and a manifest with each file's SHA-256, the cloud, the mode and every request. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$OutputPath, [Parameter(Mandatory)][hashtable]$Files, [Parameter(Mandatory)][string]$Cloud,

@@ -22,6 +22,11 @@ an error.
 
 The client refuses any HTTP method other than GET, except the sign-in and
 sign-out calls Cisco documents. It never changes the fabric.
+
+Example (from the kit root; copy config/config.example.json to config/config.json
+and edit it first, and set the credential environment variables it names):
+
+  python python/sdwan_evidence.py --config config/config.json
 """
 
 from __future__ import annotations

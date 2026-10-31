@@ -135,6 +135,8 @@ function Get-FMPTransactionCatalog {
     .SYNOPSIS
         Reads and checks a transaction catalog CSV. Capture paths are resolved against the
         catalog's folder. Each row carries the problems found in it.
+    .EXAMPLE
+        Get-FMPTransactionCatalog -Path D:\Profiles\TransactionCatalog.csv | Where-Object Problems
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -495,6 +497,10 @@ function Measure-FMPTcpRoundTrip {
         The round-trip time to a TCP port, from TCP connection setup: the median of -Count
         connects, each closed at once without sending anything. Run it from where the
         application runs (today's figure) or will run (the target figure).
+    .EXAMPLE
+        Measure-FMPTcpRoundTrip -ComputerName sql01.contoso.example -Port 1433 -Count 10
+
+        Run from the application host for CurrentRttMs, and from the target location for TargetRttMs.
     #>
     [CmdletBinding()]
     param(
@@ -542,6 +548,11 @@ function Get-FMPTransactionProfile {
           ReducedOverBudget  measured after reduction, still over budget                  Blocked
           Reduced            measured after reduction, within budget                      Pass
           WithinBudget       baseline already within budget; nothing to reduce            Pass
+    .EXAMPLE
+        $catalog = @(Get-FMPTransactionCatalog -Path D:\Profiles\TransactionCatalog.csv)
+        $m = @(ConvertFrom-FMPPacketCapture -Path D:\Profiles\captures\payroll-submit-baseline.tsv -ServerAddress 10.0.20.15 -ServerPort 1433 `
+            -Application Payroll -Transaction 'Submit timesheet' -Phase Baseline)
+        $profiles = @(Get-FMPTransactionProfile -Catalog $catalog -Measurements $m)
     #>
     [CmdletBinding()]
     param([object[]]$Catalog = @(), [object[]]$Measurements = @())
@@ -601,6 +612,10 @@ function Test-FMPSeparationGate {
     .SYNOPSIS
         Book 01 Chapter 11's "profiled and reduced" check, per application: it passes only
         when every listed transaction passes.
+    .EXAMPLE
+        Test-FMPSeparationGate -Profiles $profiles
+
+        $profiles comes from Get-FMPTransactionProfile. One row per application.
     #>
     [CmdletBinding()]
     param([object[]]$Profiles = @())
@@ -622,6 +637,10 @@ function Get-FMPTransactionFinding {
     <#
     .SYNOPSIS
         What the profiles show that a reviewer must act on before approving a separation.
+    .EXAMPLE
+        Get-FMPTransactionFinding -Profiles $profiles -Catalog $catalog -Measurements $m
+
+        Uses the catalog, measurements and profiles from the Get-FMPTransactionProfile example.
     #>
     [CmdletBinding()]
     param([object[]]$Profiles = @(), [object[]]$Catalog = @(), [object[]]$Measurements = @(), [object[]]$Errors = @())

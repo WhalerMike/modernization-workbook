@@ -87,6 +87,10 @@ function Get-FMPGlobalCatalogAttributeSet {
     .SYNOPSIS
         For each LDAP attribute, whether the schema defines it and puts it in the Global
         Catalog's partial attribute set.
+    .EXAMPLE
+        Get-FMPGlobalCatalogAttributeSet -Attribute employeeID, employeeType, department, manager -Forest contoso.example
+
+        Shows which of these attributes a Global Catalog read returns in this forest.
     #>
     [CmdletBinding()]
     param(
@@ -145,6 +149,9 @@ function Get-FMPAttributeSurvey {
     .OUTPUTS
         AttributeSurvey\ad-user-export.csv, FillRate.csv, ValueQuality.csv, SlotUsage.csv,
         GcCoverage.csv, AttributeSurvey.json
+    .EXAMPLE
+        Get-FMPAttributeSurvey -OutputPath D:\Assessment\run1 -KeyPattern '^MP\d{7}$' -UpnSuffix contoso.example `
+            -CodeListPath D:\Inputs\code-lists.csv
     #>
     [CmdletBinding()]
     param(
@@ -398,6 +405,15 @@ function Get-FMPWaveList {
         adminCount stays set after an account leaves a protected group.
     .OUTPUTS
         Waves\waves.csv, wave-summary.csv, wave-exclusions.csv, WaveSummary.json
+    .EXAMPLE
+        Get-FMPWaveList -OutputPath D:\Assessment\run1 -WavePlanPath D:\Inputs\wave-plan.csv -OwnershipPath D:\Inputs\asset-ownership.csv
+
+        Reads D:\Assessment\run1\AttributeSurvey\ad-user-export.csv, which Get-FMPAttributeSurvey
+        wrote, and places users and their devices in the planned waves.
+    .EXAMPLE
+        Get-FMPWaveList -OutputPath D:\Assessment\run1 -GroupBy City
+
+        With no wave plan: one candidate wave per value of the City column.
     #>
     [CmdletBinding()]
     param(

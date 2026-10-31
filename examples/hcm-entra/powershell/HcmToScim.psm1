@@ -25,13 +25,24 @@ $script:Inv = [System.Globalization.CultureInfo]::InvariantCulture
 # ------------------------------------------------------------------ configuration
 
 function Get-HcmMapping {
+    <#
+    .SYNOPSIS
+        Read the field mapping file (config/mapping.json) into a hashtable.
+    .EXAMPLE
+        $map = Get-HcmMapping -Path ./config/mapping.json
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
     return Get-Content -LiteralPath $Path -Raw -Encoding utf8 | ConvertFrom-Json -AsHashtable
 }
 
 function Test-HcmSettings {
-    <# Merge defaults, refuse secrets, and check formats. Returns the merged settings. #>
+    <#
+    .SYNOPSIS
+        Merge defaults, refuse secrets, and check formats. Returns the merged settings.
+    .EXAMPLE
+        Test-HcmSettings -Settings @{ default_utc_offset = '-05:00'; max_disables_per_run = 10 }
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][hashtable]$Settings)
     foreach ($key in $Settings.Keys) {
@@ -64,6 +75,13 @@ function Test-HcmSettings {
 }
 
 function Get-HcmSettings {
+    <#
+    .SYNOPSIS
+        Read a settings JSON file and return it merged with the defaults and checked by
+        Test-HcmSettings. A key that looks like a secret is refused.
+    .EXAMPLE
+        $cfg = Get-HcmSettings -Path ./config/settings.example.json
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
     $raw = Get-Content -LiteralPath $Path -Raw -Encoding utf8 | ConvertFrom-Json -AsHashtable
@@ -71,6 +89,14 @@ function Get-HcmSettings {
 }
 
 function Test-HcmEndpoint {
+    <#
+    .SYNOPSIS
+        Return the endpoint unchanged when it is an https Microsoft Graph /bulkUpload URL for one
+        provisioning job (graph.microsoft.com, graph.microsoft.us or dod-graph.microsoft.us);
+        otherwise throw.
+    .EXAMPLE
+        Test-HcmEndpoint -Endpoint (Get-HcmSettings -Path ./config/settings.example.json).endpoint
+    #>
     [CmdletBinding()]
     param([AllowEmptyString()][string]$Endpoint)
     if ($Endpoint -cnotmatch $script:EndpointPattern) {
@@ -102,8 +128,13 @@ function ConvertTo-HcmJsonString([string]$s) {
 }
 
 function ConvertTo-HcmCanonicalJson {
-    <# Sorted keys (ordinal), no whitespace, UTF-8 characters kept: matches Python's
-       json.dumps(sort_keys=True, separators=(',', ':'), ensure_ascii=False). #>
+    <#
+    .SYNOPSIS
+        Convert a value to canonical JSON: sorted keys (ordinal), no whitespace, UTF-8 characters
+        kept. Matches Python's json.dumps(sort_keys=True, separators=(',', ':'), ensure_ascii=False).
+    .EXAMPLE
+        ConvertTo-HcmCanonicalJson -Value ([ordered]@{ b = 1; a = @($true, $null) })   # {"a":[true,null],"b":1}
+    #>
     [CmdletBinding()]
     param([AllowNull()]$Value)
     if ($null -eq $Value) { return 'null' }
@@ -124,6 +155,12 @@ function ConvertTo-HcmCanonicalJson {
 }
 
 function Get-HcmSha256 {
+    <#
+    .SYNOPSIS
+        Return the lowercase hex SHA-256 of a value's canonical JSON.
+    .EXAMPLE
+        Get-HcmSha256 -Value $result.Batches[0]
+    #>
     [CmdletBinding()]
     param([AllowNull()]$Value)
     $bytes = [System.Text.Encoding]::UTF8.GetBytes((ConvertTo-HcmCanonicalJson $Value))
@@ -131,7 +168,12 @@ function Get-HcmSha256 {
 }
 
 function ConvertTo-HcmUtcIso {
-    <# '2026-11-02' + '05:00' + '-05:00' -> '2026-11-02T10:00:00Z' #>
+    <#
+    .SYNOPSIS
+        Combine a date, a local time and a UTC offset into a UTC timestamp (yyyy-MM-ddTHH:mm:ssZ).
+    .EXAMPLE
+        ConvertTo-HcmUtcIso -Date '2026-11-02' -LocalTime '05:00' -Offset '-05:00'   # 2026-11-02T10:00:00Z
+    #>
     [CmdletBinding()]
     param([string]$Date, [string]$LocalTime, [string]$Offset)
     $dto = [DateTimeOffset]::ParseExact("$Date $LocalTime $Offset", 'yyyy-MM-dd HH:mm zzz', $script:Inv)
@@ -147,7 +189,14 @@ function Get-Cell($Row, [string]$Name) {
 }
 
 function ConvertTo-HcmScimOperation {
-    <# Validate one extract row and build its SCIM bulk operation. Fail closed. #>
+    <#
+    .SYNOPSIS
+        Validate one extract row and build its SCIM bulk operation. Fail closed: a row with any
+        problem comes back quarantined, with its reasons and no operation.
+    .EXAMPLE
+        $rows = @(Import-Csv -LiteralPath ./tests/fixtures/hcm_extract_sample.csv -Encoding utf8)
+        ConvertTo-HcmScimOperation -Row $rows[0] -Mapping $map -Settings $cfg -AsOf ([datetime]'2026-10-25')
+    #>
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]$Row,
@@ -267,6 +316,15 @@ function ConvertTo-HcmScimOperation {
 # ------------------------------------------------------------------ the run
 
 function Convert-HcmExtract {
+    <#
+    .SYNOPSIS
+        Convert all extract rows into SCIM bulk request batches: validate each row, settle duplicates
+        (a separation wins), order leavers first and managers before their reports, and hold the run
+        when disables or calls exceed the limits in the settings.
+    .EXAMPLE
+        $rows = @(Import-Csv -LiteralPath ./tests/fixtures/hcm_extract_sample.csv -Encoding utf8)
+        $result = Convert-HcmExtract -Rows $rows -Mapping $map -Settings $cfg -AsOf ([datetime]'2026-10-25')
+    #>
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)][object[]]$Rows,
@@ -338,7 +396,13 @@ function Convert-HcmExtract {
 }
 
 function Get-HcmReport {
-    <# Operational report: person key and payload hash only, never the payload. #>
+    <#
+    .SYNOPSIS
+        Build the operational report from a conversion result: person key and payload hash only,
+        never the payload.
+    .EXAMPLE
+        Get-HcmReport -Result $result | ConvertTo-Json -Depth 8
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Result)
     $counts = [ordered]@{}
@@ -354,7 +418,13 @@ function Get-HcmReport {
 }
 
 function Get-HcmQuarantineEntry {
-    <# Quarantine contract (Book 03, Appendix A). Contains personal data: write it only to the access-controlled audit store. #>
+    <#
+    .SYNOPSIS
+        Return the quarantine entries (Book 03, Appendix A) from a conversion result. They contain
+        personal data: write them only to the access-controlled audit store.
+    .EXAMPLE
+        @(Get-HcmQuarantineEntry -Result $result) | ConvertTo-Json -Depth 12 -AsArray
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Result)
     foreach ($o in $Result.Outcomes) {
@@ -365,15 +435,26 @@ function Get-HcmQuarantineEntry {
 }
 
 function Get-HcmFileSha256 {
-    <# sha256 of a file's bytes, so the manifest names the exact extract and mapping used. #>
+    <#
+    .SYNOPSIS
+        Return the SHA-256 of a file's bytes, so the manifest names the exact extract and mapping used.
+    .EXAMPLE
+        Get-HcmFileSha256 -Path ./tests/fixtures/hcm_extract_sample.csv
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
     return [Convert]::ToHexString([System.Security.Cryptography.SHA256]::HashData([IO.File]::ReadAllBytes($Path))).ToLowerInvariant()
 }
 
 function Get-HcmProvenance {
-    <# The run's provenance manifest: which inputs produced which batches, by hash and person key.
-       No names and no payloads. Each batch_sha256 matches apply-results.json for that batch. #>
+    <#
+    .SYNOPSIS
+        Build the run's provenance manifest: which inputs produced which batches, by hash and
+        person key. No names and no payloads; each batch_sha256 matches apply-results.json for
+        that batch.
+    .EXAMPLE
+        Get-HcmProvenance -Result $result -AsOf ([datetime]'2026-10-25') -ExtractSha256 (Get-HcmFileSha256 -Path ./tests/fixtures/hcm_extract_sample.csv) -MappingSha256 (Get-HcmFileSha256 -Path ./config/mapping.json)
+    #>
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]$Result,
@@ -410,7 +491,14 @@ function Invoke-HcmDefaultPost {
 }
 
 function Invoke-HcmBulkUpload {
-    <# POST each batch; pace below the documented limit; honor Retry-After on 429 and 503. #>
+    <#
+    .SYNOPSIS
+        POST each batch to the provisioning job's /bulkUpload endpoint, paced below the documented
+        limit, honoring Retry-After on 429 and 503. Stops at the first batch that isn't accepted (202).
+    .EXAMPLE
+        # The token is obtained outside the kit. -WhatIf lists the calls without sending them.
+        Invoke-HcmBulkUpload -Batches $result.Batches -Endpoint $cfg.endpoint -Token $env:HCM_ENTRA_BEARER_TOKEN -Settings $cfg -WhatIf
+    #>
     [CmdletBinding(SupportsShouldProcess)]
     param(
         [Parameter(Mandatory)][object[]]$Batches,

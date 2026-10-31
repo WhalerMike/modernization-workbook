@@ -11,6 +11,8 @@ Everything here is free to download. The kits and the Word editions are rebuilt 
 
 ## Kits
 
+Every command in these kits is listed, with what it does and the pages that teach it, in the [Command Reference](reference/commands.md).
+
 | Kit | What's in it | Download |
 |---|---|---|
 | **Start Kit** — read-only estate assessment | PowerShell scripts that count the forest, the SQL Server estate, and RADIUS and NPS, with a one-page summary traced to its sources. Read-only by policy; unit-tested against fixtures, not proven against a live estate. Every script also comes as a `.txt` copy for Copilot and mail systems that block `.ps1` files. See [Book 00, Chapter 08](books/b00-orientation/08-pre-flight-and-assessment.md). | [start-kit.zip](../downloads/start-kit.zip), rebuilt on every site deploy from [`examples/start-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit) |

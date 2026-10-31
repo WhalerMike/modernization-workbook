@@ -48,6 +48,14 @@ $script:Activity = @{
 # ----------------------------------------------------------------------------- calls and permissions
 
 function Get-PaEvidenceCall {
+    <#
+    .SYNOPSIS
+        Returns the calls declared in config/calls-ch08.json (the directory audit read), optionally
+        only the one with -Id.
+    .EXAMPLE
+        (Get-PaEvidenceCall -Id directory-audits).permissions
+    #>
+
     <# This chapter's declared calls, from config/calls-ch08.json. #>
     [CmdletBinding()]
     param([string]$Id)
@@ -61,6 +69,9 @@ function Get-PaEvidencePermission {
     .SYNOPSIS
         The Graph permissions and Azure roles a task needs: pim-audit (this chapter's call), or
         evidence-run, the union of the inventory, emergency-access and pim-audit tasks.
+    .EXAMPLE
+        # The Graph scopes for a whole evidence run.
+        (Get-PaEvidencePermission -Task evidence-run).GraphPermissions
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][ValidateSet('pim-audit', 'evidence-run')][string]$Task)
@@ -87,6 +98,10 @@ function New-PaAuditReader {
     .SYNOPSIS
         A read-only client for the pim-audit task: the PrivilegedAccess reader's shape with this
         chapter's call list, so Invoke-PaList enforces the same rules.
+    .EXAMPLE
+        # An audit reader over the fictional tenant and audit log.
+        $fake = New-PaEvidenceFixtureInvoker -Path tests/fixtures/tenant.json -AuditPath tests/fixtures/ch08/audit.json
+        $reader = New-PaAuditReader -Cloud gcc -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][scriptblock]$Invoke)
@@ -107,6 +122,9 @@ function New-PaEvidenceFixtureInvoker {
         The PrivilegedAccess fake, plus a fake directory audit log served from -AuditPath (a JSON
         file with a 'directoryAudits' array in Graph's shape). It filters by the four terms the
         example sends and refuses any other, serves pages of -PageSize, and records every call.
+    .EXAMPLE
+        $fake = New-PaEvidenceFixtureInvoker -Path tests/fixtures/tenant.json -AuditPath tests/fixtures/ch08/audit.json -Cloud gcc
+        $fake.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][string]$AuditPath, [int]$PageSize = 2, [string]$Cloud = 'gcc')
@@ -134,6 +152,16 @@ function ConvertTo-PaUtc {
 }
 
 function Invoke-PaAuditFake {
+    <#
+    .SYNOPSIS
+        The fake directory audit log's request handler: records the call, filters -State.Audits by
+        the window, service and activity terms the example sends (any other term throws), and
+        returns one page with a next link. New-PaEvidenceFixtureInvoker routes the audit path to it.
+    .EXAMPLE
+        # The first page of the fictional audit log, unfiltered.
+        $fake = New-PaEvidenceFixtureInvoker -Path tests/fixtures/tenant.json -AuditPath tests/fixtures/ch08/audit.json
+        Invoke-PaAuditFake -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/auditLogs/directoryAudits'
+    #>
     param($State, [string]$Method, [string]$Uri)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri })
     if ($Method -ne 'GET') { throw "The fake refuses $Method" }
@@ -173,6 +201,10 @@ function ConvertTo-PaAuditEvent {
     .SYNOPSIS
         One directoryAudit item as an evidence row: IDs, the activity and its class, the role and
         the principal it targets, and the PIM request ID from additionalDetails. No names.
+    .EXAMPLE
+        # The fictional audit items as evidence rows.
+        $items = (Get-Content tests/fixtures/ch08/audit.json -Raw | ConvertFrom-Json -AsHashtable -Depth 50).directoryAudits
+        $items | ForEach-Object { ConvertTo-PaAuditEvent -Item $_ }
     #>
     param([Parameter(Mandatory)]$Item)
     $init = Get-PaHashValue $Item 'initiatedBy'
@@ -223,6 +255,9 @@ function Get-PaPimAuditEvent {
         filtered, paged GETs; events are
         de-duplicated by ID and sorted by time. Refuses a window that starts more than 30 days
         before -AsOf, because the log no longer holds all of it.
+    .EXAMPLE
+        # One day of PIM audit events from the fictional log.
+        $events = Get-PaPimAuditEvent -Reader $reader -Since 2026-10-28T06:00:00Z -Until 2026-10-29T06:00:00Z
     #>
     [CmdletBinding()]
     param(
@@ -268,6 +303,8 @@ function Get-PaActivationRequest {
         Group the events into activation requests by roleAssignmentRequestId, as Learn's page
         advises. An event without the request ID joins the request of another event that shares
         its correlation ID, as Learn's full-cycle query does.
+    .EXAMPLE
+        Get-PaActivationRequest -Events $events | Select-Object RequestId, Tier, States
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Events, $TierMap = (Get-PaTierMap))
@@ -312,6 +349,10 @@ function Test-PaPimAudit {
         setting changed in PIM. Issues carry role names and object IDs, never people's names.
     .OUTPUTS
         @{ Findings; Requests; Summary }
+    .EXAMPLE
+        # Findings and summary for the same window the events were read for.
+        $audit = Test-PaPimAudit -Events $events -Since 2026-10-28T06:00:00Z -Until 2026-10-29T06:00:00Z
+        $audit.Findings
     #>
     [CmdletBinding()]
     param(
@@ -384,6 +425,9 @@ function Export-PaAuditRun {
         Write the audit evidence (events.json, requests.json, summary.json, findings.json) and a
         manifest in the same shape as Export-PaRun's: task, mode, cloud, tenant, permissions, every
         request sent, and the SHA-256 of each file.
+    .EXAMPLE
+        Export-PaAuditRun -OutputPath out/pim-audit -Events $events -Audit $audit -Cloud gcc `
+            -TenantId 11111111-1111-4111-8111-111111111111 -Evidence $reader.Evidence -Mode Fixture
     #>
     [CmdletBinding()]
     param(
@@ -421,6 +465,15 @@ function Export-PaAuditRun {
 }
 
 function Get-PaRunId {
+    <#
+    .SYNOPSIS
+        Returns a sortable run ID built from the as-of time in UTC and the mode, for example
+        2026-10-29T0600Z-fixture.
+    .EXAMPLE
+        # 2026-10-29T0600Z-fixture
+        Get-PaRunId -AsOf 2026-10-29T06:00:00Z -Mode Fixture
+    #>
+
     <# A sortable run ID from the as-of time and the mode, for example 2026-10-29T0600Z-fixture. #>
     param([Parameter(Mandatory)][datetime]$AsOf, [Parameter(Mandatory)][string]$Mode)
     "$($AsOf.ToUniversalTime().ToString('yyyy-MM-ddTHHmm'))Z-$($Mode.ToLowerInvariant())"
@@ -432,6 +485,11 @@ function Write-PaRunIndex {
         run.json: the run's ID, as-of time, cloud, tenant, mode, audit window, and for each task its
         status (OK or Error, with the message) and the SHA-256 of its manifest. A task that failed
         has no folder: the comparison treats its findings as unverified, never as resolved.
+    .EXAMPLE
+        # Index a run folder whose pim-audit task has written its manifest.
+        $tasks = [ordered]@{ 'pim-audit' = @{ Folder = 'pim-audit'; Status = 'OK' } }
+        Write-PaRunIndex -RunPath out/runs/2026-10-29T0600Z-fixture -RunId 2026-10-29T0600Z-fixture -AsOf 2026-10-29T06:00:00Z `
+            -Cloud gcc -TenantId 11111111-1111-4111-8111-111111111111 -Mode Fixture -Since 2026-10-28T06:00:00Z -Until 2026-10-29T06:00:00Z -Tasks $tasks
     #>
     [CmdletBinding()]
     param(

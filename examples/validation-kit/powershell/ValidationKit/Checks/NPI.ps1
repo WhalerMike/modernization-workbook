@@ -46,6 +46,16 @@ function Get-VkHumanOwnerCount {
 }
 
 function Invoke-VkNpi01 {
+    <#
+    .SYNOPSIS
+        Implements VK-NPI-01: lists app registrations and this tenant's service principals with
+        fewer than MinOwners (default 2) human owners.
+    .EXAMPLE
+        # From the kit folder: against the fictional "fail" fixture tenant (no sign-in).
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkNpi01 -Context $ctx
+    .DESCRIPTION
+    #>
     <# VK-NPI-01. Application registrations and this tenant's service principals with fewer than MinOwners human owners. #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-NPI-01' $Context {
@@ -65,6 +75,15 @@ function Invoke-VkNpi01 {
 }
 
 function Invoke-VkNpi02 {
+    <#
+    .SYNOPSIS
+        Implements VK-NPI-02: lists client secrets and certificates that have expired or expire
+        within ExpiringDays, and those valid longer than MaxSecretDays or MaxCertificateDays.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -Option @{ ExpiringDays = 30 }
+        Invoke-VkNpi02 -Context $ctx
+    .DESCRIPTION
+    #>
     <# VK-NPI-02. Secrets and certificates expiring within ExpiringDays (or expired), and lifetimes over MaxSecretDays or MaxCertificateDays. #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-NPI-02' $Context {
@@ -96,6 +115,15 @@ function Invoke-VkNpi02 {
 
 function Invoke-VkNpi03 {
     <#
+    .SYNOPSIS
+        Implements VK-NPI-03: lists apps that hold a client secret, unless secret-exceptions.csv
+        records why the app must keep one.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkNpi03 -Context $ctx
+    .DESCRIPTION
+    #>
+    <#
     VK-NPI-03. Apps holding client secrets. Whether a certificate or federated credential is
     possible is a judgment the kit can't make, so every app with a secret is listed unless
     secret-exceptions.csv (AppId, Reason) records why it must keep one. An app that already has
@@ -124,6 +152,15 @@ function Invoke-VkNpi03 {
 }
 
 function Invoke-VkNpi04 {
+    <#
+    .SYNOPSIS
+        Implements VK-NPI-04: lists single-tenant service principals that no enabled Conditional
+        Access policy for workload identities includes, or that one excludes.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkNpi04 -Context $ctx
+    .DESCRIPTION
+    #>
     <#
     VK-NPI-04. Single-tenant service principals (registered here, sign-in audience AzureADMyOrg)
     that no enabled Conditional Access policy for workload identities includes, or that one
@@ -160,6 +197,15 @@ function Invoke-VkNpi04 {
 }
 
 function Invoke-VkNpi05 {
+    <#
+    .SYNOPSIS
+        Implements VK-NPI-05: lists service principals holding a high-privilege Microsoft Graph
+        application permission or any Entra directory role, as Warn rows for a least-privilege review.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkNpi05 -Context $ctx | Select-Object -ExpandProperty Details
+    .DESCRIPTION
+    #>
     <#
     VK-NPI-05. Service principals holding a Microsoft Graph application permission on the
     high-privilege list (config/high-privilege-graph-roles.json), or any Entra directory role.
@@ -201,6 +247,16 @@ function Invoke-VkNpi05 {
 }
 
 function Invoke-VkNpi06 {
+    <#
+    .SYNOPSIS
+        Implements VK-NPI-06: lists AD service accounts that are user objects rather than gMSAs or
+        dMSAs, flagging passwords that never expire, passwords older than MaxPasswordAgeDays, and SPNs.
+    .EXAMPLE
+        # In fixture mode it reads adServiceAccounts.json; live, it reads AD unless -SkipAD.
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkNpi06 -Context $ctx
+    .DESCRIPTION
+    #>
     <#
     VK-NPI-06. AD accounts used as service accounts (a servicePrincipalName, or a name starting
     with ServiceAccountNameHint) that are user objects rather than gMSAs or dMSAs, with their
@@ -244,6 +300,16 @@ function Invoke-VkNpi06 {
 
 function Invoke-VkNpi07 {
     <#
+    .SYNOPSIS
+        Implements VK-NPI-07: inventories managed identities and their Azure role assignments;
+        Owner, Contributor or User Access Administrator at subscription or management group scope
+        is a Warn row for review.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkNpi07 -Context $ctx
+    .DESCRIPTION
+    #>
+    <#
     VK-NPI-07. Managed identities (Graph) and their Azure role assignments (Resource Graph), as
     an inventory. Owner, Contributor or User Access Administrator at subscription or management
     group scope is a Warn row for review.
@@ -275,6 +341,15 @@ function Invoke-VkNpi07 {
 
 function Invoke-VkNpi08 {
     <#
+    .SYNOPSIS
+        Implements VK-NPI-08: lists agent identities (Microsoft Entra Agent ID) with no sponsor.
+        NotApplicable when the tenant exposes no agent identities.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkNpi08 -Context $ctx
+    .DESCRIPTION
+    #>
+    <#
     VK-NPI-08. Agent identities (Microsoft Entra Agent ID) with no sponsor. The list needs
     AgentIdentity.Read.All; Learn lists only AgentIdentity.ReadWrite.All (application) for the
     per-agent sponsors call, so the kit doesn't request it: it asks for sponsors through $expand
@@ -299,6 +374,16 @@ function Invoke-VkNpi08 {
 }
 
 function Invoke-VkNpi09 {
+    <#
+    .SYNOPSIS
+        Implements VK-NPI-09 (optional, preview): lists this tenant's application service
+        principals with no sign-in in SpInactiveDays days, from Graph's beta sign-in activity report.
+        NotApplicable without -IncludePreview, and in GCC High and DoD.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -IncludePreview
+        Invoke-VkNpi09 -Context $ctx
+    .DESCRIPTION
+    #>
     <#
     VK-NPI-09 (optional, preview). This tenant's application service principals with no sign-in,
     as client or resource, delegated or app-only, in SpInactiveDays days, from Graph's beta

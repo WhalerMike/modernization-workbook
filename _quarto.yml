@@ -6,6 +6,8 @@ project:
     - scripts/generate_sitemap.py
     # Fills the Chapters, Pages and Last updated columns of the books table.
     - scripts/generate_book_metrics.py
+    # Lists every command in examples/ from the commands' own help.
+    - scripts/command_reference.py
   # Writes forwarding pages for removed or merged URLs (scripts/redirects.yml).
   post-render: scripts/write_redirects.py
   output-dir: _site
@@ -24,6 +26,8 @@ project:
     - "docs/presentations/**/*.md"
     - "docs/inspiration/**/*.md"
     - "docs/about/**/*.md"
+    # The Command Reference, generated from the example kits' help.
+    - "docs/reference/**/*.md"
     # Research under review: published in its own area, labeled, kept out of
     # the books (see docs/research/index.md and assets/research-banner.lua).
     - "docs/research/**/*.md"
@@ -139,6 +143,8 @@ website:
         text: "Videos"
       - href: docs/downloads.md
         text: "Downloads"
+      - href: docs/reference/commands.md
+        text: "Commands"
       - href: docs/research/index.md
         text: "Research"
       - text: "About"

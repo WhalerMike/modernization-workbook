@@ -33,6 +33,14 @@ $script:DriftPriority = @{ 'NPI-AI-07' = 'P2'; 'NPI-AI-21' = 'P1'; 'NPI-AI-22' =
 # ----------------------------------------------------------------------------- configuration
 
 function Get-NpiAgentConfig {
+    <#
+    .SYNOPSIS
+        Reads the Chapter 09 configuration and returns the call list, the program's rules and
+        the D-N6 capability table as hashtables, with the folder they were read from.
+    .EXAMPLE
+        (Get-NpiAgentConfig).Rules.desiredCaPolicies
+    #>
+
     <# The call list, the program's rules and the D-N6 capability table, as hashtables. #>
     [CmdletBinding()]
     param([string]$ConfigRoot = $script:ConfigRoot)
@@ -41,6 +49,14 @@ function Get-NpiAgentConfig {
 }
 
 function Get-NpiAgentCall {
+    <#
+    .SYNOPSIS
+        Returns the declared Chapter 09 calls, narrowed to one task (agent-id or
+        agent-ca-apply) with -Task.
+    .EXAMPLE
+        Get-NpiAgentCall -Task agent-ca-apply | ForEach-Object { '{0} {1}' -f $_.method, $_.path }
+    #>
+
     <# The Chapter 09 calls, optionally for one task. #>
     [CmdletBinding()]
     param([ValidateSet('agent-id', 'agent-ca-apply')][string]$Task)
@@ -50,6 +66,14 @@ function Get-NpiAgentCall {
 }
 
 function Get-NpiAgentRequiredPermission {
+    <#
+    .SYNOPSIS
+        Returns the Graph permissions, methods and API versions a Chapter 09 task needs, the
+        union of its declared calls.
+    .EXAMPLE
+        Get-NpiAgentRequiredPermission -Task agent-id
+    #>
+
     <# The union of a Chapter 09 task's calls: Graph permissions and methods. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][ValidateSet('agent-id', 'agent-ca-apply')][string]$Task)
@@ -68,6 +92,9 @@ function Get-NpiAgentCapability {
         D-N6 for one cloud: Mode 'AgentId' where agent identities are available, else 'Fallback'
         (service principals and managed identities under the same governance), with the stage and
         watch flag of each capability.
+    .EXAMPLE
+        # Mode says whether the checks run on agent identities or on the fallback service principals.
+        (Get-NpiAgentCapability -Cloud gcc).Mode
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud)
@@ -86,6 +113,9 @@ function New-NpiAgentReader {
     .SYNOPSIS
         A read-only client for the agent-id task, shaped like NpiCore's reader so Invoke-NpiList and
         Invoke-NpiGetOne page and host-check its GETs, but holding this chapter's calls.
+    .EXAMPLE
+        $fake = New-NpiAgentFixtureInvoker -Path tests/fixtures/ch09/agent-estate.json -Cloud gcc
+        $reader = New-NpiAgentReader -Cloud gcc -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][scriptblock]$Invoke)
@@ -107,6 +137,9 @@ function Import-NpiAgentRuns {
     .SYNOPSIS
         Chapter 01's register and Chapter 02's sponsor fields, each checked against its own manifest,
         and the ownership run checked against the register it was made from.
+    .EXAMPLE
+        # out/inventory and out/ownership were written by Invoke-NpiInventory.ps1 and Invoke-NpiOwnership.ps1.
+        $runs = Import-NpiAgentRuns -RegisterRun out/inventory -OwnershipRun out/ownership
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$RegisterRun, [Parameter(Mandatory)][string]$OwnershipRun)
@@ -122,6 +155,16 @@ function Import-NpiAgentRuns {
 }
 
 function Import-NpiAgentInputs {
+    <#
+    .SYNOPSIS
+        Reads the reviewed input files in -InputPath (AI use case inventory, handshakes, creation
+        setting, sponsor events and confirmations, pipeline changes) and returns each one, with the
+        SHA-256 of every file found in Hashes. A missing file comes back empty.
+    .EXAMPLE
+        $inputs = Import-NpiAgentInputs -InputPath tests/fixtures/ch09/inputs
+        $inputs.Hashes
+    #>
+
     <# The reviewed input files kept with the records, and their SHA-256 for the manifest. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$InputPath)
@@ -158,6 +201,9 @@ function Read-NpiAgentEstate {
         authorization policy, the agent Conditional Access policies (beta), the Lifecycle Workflows
         and their tasks, the credential audit events, and the directory roles of each fallback
         service principal named in the inventory.
+    .EXAMPLE
+        # $reader from New-NpiAgentReader, $inputs from Import-NpiAgentInputs.
+        $estate = Read-NpiAgentEstate -Reader $reader -Capability (Get-NpiAgentCapability -Cloud gcc) -AsOf ([datetime]'2026-10-30') -Inventory $inputs.Inventory
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Reader, [Parameter(Mandatory)]$Capability, [Parameter(Mandatory)][datetime]$AsOf, [object[]]$Inventory = @(), [int]$AuditLookbackDays = 30)
@@ -204,6 +250,16 @@ function Read-NpiAgentEstate {
 # ----------------------------------------------------------------------------- helpers for the rules
 
 function Get-NpiBusinessDayDeadline {
+    <#
+    .SYNOPSIS
+        Returns the date that is -Days business days after -Start, skipping Saturdays, Sundays
+        and the holidays given as yyyy-MM-dd strings.
+    .EXAMPLE
+        # Returns 2026-10-26: ten business days, skipping the federal holiday on 2026-10-12.
+        $holidays = (Get-NpiAgentConfig).Rules.federalHolidays
+        Get-NpiBusinessDayDeadline -Start ([datetime]'2026-10-09') -Days 10 -Holidays $holidays
+    #>
+
     <# The date N business days after Start, skipping Saturdays, Sundays and the listed holidays. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][datetime]$Start, [Parameter(Mandatory)][int]$Days, [string[]]$Holidays = @())
@@ -258,9 +314,13 @@ function Test-NpiAgentApproved {
 
 function Get-NpiAgentCredentialKind {
     <#
+    .SYNOPSIS
     The blueprint's credential, in the program's order: ManagedIdentity (a federated credential
     whose issuer is this tenant's own login endpoint), Federation (any other issuer), Certificate,
     Secret, or None. Every kind present is returned; the first is the best.
+    .EXAMPLE
+        # $estate from Read-NpiAgentEstate, $runs from Import-NpiAgentRuns; the first kind is the best.
+        Get-NpiAgentCredentialKind -Blueprint $estate.Blueprints[0] -TenantId $runs.TenantId -LoginHost 'https://login.microsoftonline.com'
     #>
     param($Blueprint, [string]$TenantId, [string]$LoginHost)
     $kinds = [Collections.Generic.List[string]]::new()
@@ -280,6 +340,10 @@ function Test-NpiAgentCaPolicyShape {
         'Unapproved': all agent identities, all resources, Block, report-only, and approved agents
         excluded only by the custom security attribute filter. Kind 'HighRisk': all agent
         identities, all resources, Block, report-only, agent risk high. Returns the problems.
+    .EXAMPLE
+        # No output: the reviewed policy file meets the design.
+        $policy = Get-Content -LiteralPath config/agent-ca-ch09/block-unapproved-agents.json -Raw | ConvertFrom-Json -AsHashtable
+        Test-NpiAgentCaPolicyShape -Policy $policy -Kind Unapproved -ApprovalRule (Get-NpiAgentConfig).Rules.approvalAttribute
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Policy, [Parameter(Mandatory)][ValidateSet('Unapproved', 'HighRisk')][string]$Kind, $ApprovalRule)
@@ -314,6 +378,9 @@ function Test-NpiAgentId {
         Check the AI identities against the program's rules and return @{ Identities (the sponsor
         fields Chapter 02 recorded, filled); Findings NPI-AI-01 to NPI-AI-23 with stable IDs;
         OrphanCandidates for Chapter 02's orphan rule; Capability }.
+    .EXAMPLE
+        $result = Test-NpiAgentId -Reader $reader -Estate $estate -Inputs $inputs -Runs $runs -Capability (Get-NpiAgentCapability -Cloud gcc) -AsOf ([datetime]'2026-10-30')
+        $result.Findings | Group-Object Rule | Select-Object Name, Count
     #>
     [CmdletBinding()]
     param(
@@ -595,6 +662,9 @@ function New-NpiAgentCaPlan {
         policy of that name, InPlace or Differs where it has one. Nothing here writes. Refuses a
         reviewed policy file that isn't report-only Block, and a cloud where D-N6 says agent
         Conditional Access isn't available.
+    .EXAMPLE
+        $plan = New-NpiAgentCaPlan -Estate $estate -Cloud gcc -TenantId $runs.TenantId -AsOf ([datetime]'2026-10-30')
+        $plan.actions | Format-Table Policy, Action, Reason
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Estate, [Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [Parameter(Mandatory)][datetime]$AsOf)
@@ -625,6 +695,9 @@ function New-NpiAgentCaWriter {
         The only code in this chapter that can write. Its calls are the agent-ca-apply task's: re-read
         the policies, then POST a report-only Block policy. A live run is a person, delegated, with
         Conditional Access Administrator.
+    .EXAMPLE
+        $fake = New-NpiAgentFixtureInvoker -Path tests/fixtures/ch09/agent-estate.json -Cloud gcc -AllowWrite
+        $writer = New-NpiAgentCaWriter -Cloud gcc -TenantId $runs.TenantId -Invoke $fake.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [Parameter(Mandatory)][scriptblock]$Invoke)
@@ -638,6 +711,10 @@ function Invoke-NpiAgentCaPlan {
         tenant or cloud, older than seven days, or with a body that isn't report-only Block. Before
         each POST it re-reads the policies and skips if one with that name now exists. Without
         -Apply it reports WouldSend.
+    .EXAMPLE
+        # A dry run: without -Apply each create comes back as WouldSend.
+        $sha = Get-NpiFileHash -Path out/agent-id/agent-ca-plan.json
+        Invoke-NpiAgentCaPlan -Writer $writer -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -AsOf ([datetime]'2026-10-30')
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Writer, [Parameter(Mandatory)][string]$PlanPath, [Parameter(Mandatory)][string]$ApprovedSha256, [Parameter(Mandatory)][datetime]$AsOf, [switch]$Apply)
@@ -675,6 +752,8 @@ function Export-NpiAgentRun {
     .SYNOPSIS
         Write a run's files and a manifest with the task, cloud, tenant, D-N6 mode, the permissions
         the task holds, every request, the SHA-256 of each file, and of each input.
+    .EXAMPLE
+        Export-NpiAgentRun -OutputPath out/agent-id -Task agent-id -Cloud gcc -Mode Fixture -TenantId $runs.TenantId -AsOf '2026-10-30' -Evidence $reader.Evidence -Files @{ 'findings.json' = @($result.Findings); 'agent-ca-plan.json' = $plan }
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$OutputPath, [Parameter(Mandatory)][ValidateSet('agent-id', 'agent-ca-apply')][string]$Task, [Parameter(Mandatory)][hashtable]$Files,
@@ -701,6 +780,10 @@ function New-NpiAgentFixtureInvoker {
         blueprint, add a federated credential or a password, add inheritable permissions, create a
         Conditional Access policy) and changes the estate so a test can check the result. Every
         call is recorded in .Calls.
+    .EXAMPLE
+        $fake = New-NpiAgentFixtureInvoker -Path tests/fixtures/ch09/agent-estate.json -Cloud gcc
+        $reader = New-NpiAgentReader -Cloud gcc -Invoke $fake.Invoke
+        $fake.Calls | Select-Object Method, Uri
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [string]$Cloud = 'gcc', [int]$PageSize = 2, [switch]$AllowWrite)
@@ -713,6 +796,16 @@ function New-NpiAgentFixtureInvoker {
 }
 
 function Invoke-NpiAgentFake {
+    <#
+    .SYNOPSIS
+        The request handler behind New-NpiAgentFixtureInvoker: answers one Graph request from the
+        fixture estate in -State, applies a POST it accepts when writes are allowed, records the call
+        in State.Calls, and throws as Graph would for a request it refuses. Normally called through
+        the invoker's .Invoke script block.
+    .EXAMPLE
+        $fake = New-NpiAgentFixtureInvoker -Path tests/fixtures/ch09/agent-estate.json
+        Invoke-NpiAgentFake -State $fake -Method GET -Uri 'https://graph.microsoft.com/v1.0/policies/authorizationPolicy'
+    #>
     param($State, [string]$Method, [string]$Uri, $Body, $Headers)
     $State.Calls.Add([pscustomobject]@{ Method = $Method; Uri = $Uri; Body = $Body })
     $g = $State.Estate

@@ -7,7 +7,19 @@
     example).
 #>
 
+# ---- VK-SYNC-01 ----
 function Invoke-VkSync01 {
+    <#
+    .SYNOPSIS
+        Implements VK-SYNC-01: compares the coded slots in an AD sample export (ad-slot-export.csv)
+        with the same slots in Entra ID, joined on employeeId, and fails on any difference.
+        NotApplicable without the export.
+    .EXAMPLE
+        # From the kit folder: against the fictional "fail" fixture tenant (no sign-in).
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkSync01 -Context $ctx | Select-Object -ExpandProperty Details
+    .DESCRIPTION
+    #>
     <#
     VK-SYNC-01. The coded slots for a sample of users, as AD holds them (ad-slot-export.csv:
     EmployeeId and one column per coded slot, such as extensionAttribute10), compared with the
@@ -68,6 +80,16 @@ function Invoke-VkSync01 {
 $script:VkOnPremSyncUri = '/v1.0/directory/onPremisesSynchronization'
 
 function Invoke-VkSync02 {
+    <#
+    .SYNOPSIS
+        Implements VK-SYNC-02 (optional): fails when the tenant doesn't block soft match or cloud
+        object takeover through hard match, or warns while an approved matching window
+        (MatchWindowOpenUntil) is open. Prefers an administrator's export (onprem-sync-export.json).
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -Option @{ MatchWindowOpenUntil = '2026-10-31' }
+        Invoke-VkSync02 -Context $ctx
+    .DESCRIPTION
+    #>
     <#
     VK-SYNC-02 (optional). Whether the tenant blocks soft match (blockSoftMatchEnabled) and
     cloud object takeover through hard match (blockCloudObjectTakeoverThroughHardMatchEnabled).
@@ -142,6 +164,17 @@ function Get-VkParityValue {
 }
 
 function Invoke-VkSync03 {
+    <#
+    .SYNOPSIS
+        Implements VK-SYNC-03: sync parity for the estate. Joins the Start Kit's AD export
+        (ad-user-export.csv) to Entra ID on the on-premises SID and fails on users missing from
+        either side, a DoNotSync user in Entra ID, and attribute differences. NotApplicable without
+        the export.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkSync03 -Context $ctx | Select-Object -ExpandProperty Details
+    .DESCRIPTION
+    #>
     <#
     VK-SYNC-03. Sync parity for the whole estate: the Start Kit's AD export (ad-user-export.csv
     from Get-FMPAttributeSurvey) against Entra ID, joined on the on-premises SID

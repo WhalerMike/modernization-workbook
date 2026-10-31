@@ -47,12 +47,28 @@ function ConvertTo-NpiKrbDate {
 # ----------------------------------------------------------------------------- the call list
 
 function Get-NpiKrbCallList {
+    <#
+    .SYNOPSIS
+        Reads Chapter 06's call list (config/calls-ch06.json unless -Path names another file) and
+        returns it as a hashtable of tasks and calls.
+    .EXAMPLE
+        # List the tasks Chapter 06 declares.
+        (Get-NpiKrbCallList).tasks.Keys
+    #>
     [CmdletBinding()]
     param([string]$Path = $script:CallsPath)
     Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
 }
 
 function Get-NpiKrbCall {
+    <#
+    .SYNOPSIS
+        Returns the calls in Chapter 06's call list as an array, narrowed to those declared for
+        -Task and to the call with ID -Id when either is given.
+    .EXAMPLE
+        # The cmdlets the read-only task may run.
+        Get-NpiKrbCall -Task kerberos-island | ForEach-Object { $_.cmdlet }
+    #>
     [CmdletBinding()]
     param([string]$Task, [string]$Id)
     $calls = @((Get-NpiKrbCallList).calls)
@@ -62,6 +78,14 @@ function Get-NpiKrbCall {
 }
 
 function Get-NpiKrbTask {
+    <#
+    .SYNOPSIS
+        Returns one task's declaration from Chapter 06's call list, such as its mode (read or
+        write). Throws if the task isn't declared.
+    .EXAMPLE
+        # Confirm the apply task is declared as a write task.
+        (Get-NpiKrbTask -Task kerberos-apply).mode
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Task)
     $t = (Get-NpiKrbCallList).tasks
@@ -70,6 +94,15 @@ function Get-NpiKrbTask {
 }
 
 function Get-NpiKrbRequiredRight {
+    <#
+    .SYNOPSIS
+        Returns the Active Directory rights, cmdlets and methods that a Chapter 06 task's declared
+        calls need, combined into one object.
+    .EXAMPLE
+        # What the read-only Kerberos task must be granted in AD.
+        Get-NpiKrbRequiredRight -Task kerberos-island
+    .DESCRIPTION
+    #>
     <# The union of a task's calls: Active Directory rights and cmdlets. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Task)
@@ -90,6 +123,10 @@ function New-NpiKrbReader {
     .SYNOPSIS
         A read-only Active Directory client for the kerberos-island task. -AdInvoke is
         { param($Cmdlet, [hashtable]$Params) } and returns AD objects. A write task can't have a reader.
+    .EXAMPLE
+        # A reader over the fake Active Directory built from the fixtures.
+        $fake = New-NpiKrbFixtureAdInvoker -EstatePath tests/fixtures/estate.json -KerberosPath tests/fixtures/ch06/ad-kerberos.json
+        $reader = New-NpiKrbReader -AdInvoke $fake.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][scriptblock]$AdInvoke, [string]$Task = 'kerberos-island')
@@ -99,6 +136,18 @@ function New-NpiKrbReader {
 }
 
 function Invoke-NpiKrbAdRead {
+    <#
+    .SYNOPSIS
+        Runs one declared Get-AD* read through a reader (or writer) client, records it in the
+        client's Evidence and returns the AD objects. The cmdlet comes from the call list; an
+        undeclared call or one that isn't a Get-AD* read throws.
+    .EXAMPLE
+        # Read every managed service account from the fake AD.
+        $fake = New-NpiKrbFixtureAdInvoker -EstatePath tests/fixtures/estate.json -KerberosPath tests/fixtures/ch06/ad-kerberos.json
+        $reader = New-NpiKrbReader -AdInvoke $fake.Invoke
+        Invoke-NpiKrbAdRead -Client $reader -CallId krb-service-accounts -Params @{ Filter = '*' }
+    .DESCRIPTION
+    #>
     <# Run a declared Get-AD* read; the cmdlet comes from the call list, never from the caller. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string]$CallId, [hashtable]$Params = @{})
@@ -113,6 +162,15 @@ function Invoke-NpiKrbAdRead {
 # ----------------------------------------------------------------------------- inputs
 
 function Import-NpiKrbRegister {
+    <#
+    .SYNOPSIS
+        Reads Chapter 01's register from a run folder and returns @{ Rows; Manifest; Sha256 }.
+        Throws if register.json's SHA-256 isn't the one manifest.json records.
+    .EXAMPLE
+        # Load Chapter 01's fixture run from out/inventory.
+        $register = Import-NpiKrbRegister -RunPath out/inventory
+    .DESCRIPTION
+    #>
     <# Chapter 01's register, refused unless its SHA-256 is the one its run manifest records. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$RunPath)
@@ -130,6 +188,10 @@ function Import-NpiKrbInput {
     .SYNOPSIS
         The three reviewed inputs: kerberos-dispositions.csv, password-retrievers.json and
         end-state.json, each with its SHA-256. A missing input throws: there is no default end state.
+    .EXAMPLE
+        # Load the reviewed inputs from the Chapter 06 fixtures.
+        $inputs = Import-NpiKrbInput -InputPath tests/fixtures/ch06/inputs
+        $inputs.EndState.d11.decision
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$InputPath)
@@ -161,6 +223,11 @@ function Get-NpiKdsRootKeyState {
         The KDS root key prerequisite, read-only: whether a root key exists and when it became
         usable (msKds-UseStartTime), never the key data. Ready once the earliest key has been usable
         for 10 hours (Learn: domain controllers wait up to 10 hours for replication).
+    .EXAMPLE
+        # Check the KDS root key in the fake AD.
+        $fake = New-NpiKrbFixtureAdInvoker -EstatePath tests/fixtures/estate.json -KerberosPath tests/fixtures/ch06/ad-kerberos.json
+        $reader = New-NpiKrbReader -AdInvoke $fake.Invoke
+        Get-NpiKdsRootKeyState -Client $reader -Domain corp.contoso.example -AsOf '2026-10-30T12:00:00Z'
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Client, [Parameter(Mandatory)][string]$Domain, [Parameter(Mandatory)][datetime]$AsOf, [string]$CallId = 'krb-kds-root-keys')
@@ -173,6 +240,16 @@ function Get-NpiKdsRootKeyState {
 }
 
 function Get-NpiKrbScope {
+    <#
+    .SYNOPSIS
+        Returns the register rows this chapter covers: AD rows that are enabled traditional accounts
+        with at least one SPN, and every MSA, gMSA and dMSA.
+    .EXAMPLE
+        # The Kerberos accounts in Chapter 01's register.
+        $register = Import-NpiKrbRegister -RunPath out/inventory
+        Get-NpiKrbScope -Rows $register.Rows | Select-Object Name, Type
+    .DESCRIPTION
+    #>
     <# The register's Kerberos accounts: enabled traditional accounts with an SPN, MSAs, gMSAs and dMSAs. #>
     param([object[]]$Rows)
     @($Rows | Where-Object { $_.Source -eq 'AD' -and (($_.Type -eq 'Traditional' -and $_.Enabled -eq $true -and [int]$_.SpnCount -gt 0) -or $_.Type -in 'MSA', 'gMSA', 'dMSA') })
@@ -184,6 +261,12 @@ function Read-NpiKrbDomain {
         Everything the plan reads from the domain, through the reader: the KDS root key state, the
         managed service accounts with their retrievers and dMSA migration state, the accounts to be
         superseded, the domain controllers and the hosts named for a dMSA.
+    .EXAMPLE
+        # Read the fake domain for the fixture register and dispositions.
+        $fake = New-NpiKrbFixtureAdInvoker -EstatePath tests/fixtures/estate.json -KerberosPath tests/fixtures/ch06/ad-kerberos.json
+        $reader = New-NpiKrbReader -AdInvoke $fake.Invoke
+        $inputs = Import-NpiKrbInput -InputPath tests/fixtures/ch06/inputs
+        $state = Read-NpiKrbDomain -Reader $reader -Rows $register.Rows -Dispositions $inputs.Dispositions -Domain corp.contoso.example -AsOf '2026-10-30T12:00:00Z'
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Reader, [Parameter(Mandatory)][object[]]$Rows, [Parameter(Mandatory)][object[]]$Dispositions, [Parameter(Mandatory)][string]$Domain, [Parameter(Mandatory)][datetime]$AsOf)
@@ -231,6 +314,10 @@ function Test-NpiKerberosIsland {
         list for the program's SPN retirement (P4.6) and the reconciliation of every gMSA and dMSA
         with the provisional end state (D11). Returns @{ Findings; Plan; IslandList; Reconciliation }.
         Findings NPI-KRB-01 to NPI-KRB-09, each with a stable ID (rule:account). Nothing here writes.
+    .EXAMPLE
+        # Check the accounts and build the plan from what Read-NpiKrbDomain returned.
+        $r = Test-NpiKerberosIsland -Rows $register.Rows -Domain $state -Inputs $inputs -AsOf '2026-10-30T12:00:00Z' -DomainName corp.contoso.example -Cloud gcc -TenantId $register.Manifest.tenantId -RegisterSha256 $register.Sha256
+        $r.Plan.actions | Format-Table Account, Action, Write
     #>
     [CmdletBinding()]
     param(
@@ -445,6 +532,10 @@ function New-NpiKrbWriter {
     .SYNOPSIS
         The writer for kerberos-apply: the only object in this chapter that can run New-, Set-,
         Start-, Complete- or Disable- cmdlets, and only the calls calls-ch06.json declares for it.
+    .EXAMPLE
+        # A writer over the fake AD, which accepts writes only with -AllowWrite.
+        $fake = New-NpiKrbFixtureAdInvoker -EstatePath tests/fixtures/estate.json -KerberosPath tests/fixtures/ch06/ad-kerberos.json -AllowWrite
+        $writer = New-NpiKrbWriter -TenantId c0ffee00-0000-4000-8000-000000000001 -Domain corp.contoso.example -AdInvoke $fake.Invoke
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$TenantId, [Parameter(Mandatory)][string]$Domain, [Parameter(Mandatory)][scriptblock]$AdInvoke)
@@ -461,6 +552,18 @@ function ConvertTo-NpiKrbHashtable {
 }
 
 function Assert-NpiKrbPlannedWrite {
+    <#
+    .SYNOPSIS
+        Throws unless a plan action is a write declared for kerberos-apply, with the declared
+        cmdlet, only that call's allowed parameters and the values its rule requires. A Remove-,
+        Uninstall-, Undo-, Reset- or Clear- cmdlet always throws. Returns nothing when the action
+        passes.
+    .EXAMPLE
+        # Check every write in a saved Kerberos plan before anything runs.
+        $plan = Get-Content -LiteralPath out/kerberos/kerberos-plan.json -Raw | ConvertFrom-Json
+        foreach ($a in @($plan.actions | Where-Object Write)) { Assert-NpiKrbPlannedWrite -Writer $writer -Action $a }
+    #>
+
     # Every write is a declared kerberos-apply call, with its cmdlet and only its allowed parameters.
     param($Writer, $Action)
     if ("$($Action.Cmdlet)" -match $script:NeverSent) { throw "Action $($Action.ActionId): $($Action.Cmdlet) is never run; the old account is never deleted or unlinked by this code." }
@@ -506,6 +609,11 @@ function Invoke-NpiKrbPlan {
         every precheck, and runs nothing. With -Apply it runs only the plan's writes, only if the plan
         file's SHA-256 is the one the reviewer approved, the plan is for this tenant and domain and
         no older than seven days, and each precheck still holds.
+    .EXAMPLE
+        # A dry run of the reviewed plan against the fake AD; add -Apply to run the writes.
+        $sha = (Get-FileHash -Algorithm SHA256 -LiteralPath out/kerberos/kerberos-plan.json).Hash
+        $run = Invoke-NpiKrbPlan -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -Writer $writer -AsOf '2026-10-30T12:00:00Z'
+        $run.Results | Format-Table Outcome, Action, Account
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$PlanPath, [Parameter(Mandatory)][string]$ApprovedSha256, [Parameter(Mandatory)]$Writer, [Parameter(Mandatory)][datetime]$AsOf, [switch]$Apply)
@@ -564,6 +672,16 @@ function Invoke-NpiKrbPlan {
 # ----------------------------------------------------------------------------- the run
 
 function Export-NpiKrbRun {
+    <#
+    .SYNOPSIS
+        Writes each entry of -Files into -OutputPath (CSV for a .csv name, JSON otherwise) plus a
+        manifest.json with the task's AD rights, every request and each file's SHA-256, and returns
+        the manifest file.
+    .EXAMPLE
+        # Write the findings and island list from Test-NpiKerberosIsland with a manifest.
+        Export-NpiKrbRun -OutputPath out/kerberos -Task kerberos-island -Cloud gcc -TenantId $register.Manifest.tenantId -Domain corp.contoso.example -AsOf '2026-10-30' -Evidence $reader.Evidence -Files @{ 'findings.json' = @($r.Findings); 'island-list.csv' = @($r.IslandList) }
+    .DESCRIPTION
+    #>
     <# Write a run's files and a manifest: task, mode, cloud, tenant, domain, as-of, the AD rights the task holds, every read and write, and each file's SHA-256. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$OutputPath, [Parameter(Mandatory)][string]$Task, [Parameter(Mandatory)][hashtable]$Files, [Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId,
@@ -592,6 +710,10 @@ function New-NpiKrbLiveAdInvoker {
     .SYNOPSIS
         The live Active Directory invoker: only the cmdlets calls-ch06.json declares for -Task, against
         -Server, with the ActiveDirectory module. Removes, uninstalls, undoes and resets never run.
+    .EXAMPLE
+        # Live, read only: needs the ActiveDirectory module and a domain account with the task's rights.
+        $ad = New-NpiKrbLiveAdInvoker -Server corp.contoso.example -Task kerberos-island
+        $reader = New-NpiKrbReader -AdInvoke $ad
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Server, [Parameter(Mandatory)][ValidateSet('kerberos-island', 'kerberos-apply')][string]$Task)
@@ -614,6 +736,10 @@ function New-NpiKrbFixtureAdInvoker {
         only, and never msKds-RootKeyData), Get-ADServiceAccount, Get-ADUser, Get-ADDomainController,
         Get-ADComputer. Writes only with -AllowWrite: New-ADServiceAccount, Set-ADServiceAccount,
         Start- and Complete-ADServiceAccountMigration, Disable-ADAccount. Every call is recorded.
+    .EXAMPLE
+        # The fake AD, then the cmdlets it received after a run.
+        $fake = New-NpiKrbFixtureAdInvoker -EstatePath tests/fixtures/estate.json -KerberosPath tests/fixtures/ch06/ad-kerberos.json
+        $fake.Calls | Select-Object Cmdlet
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$EstatePath, [Parameter(Mandatory)][string]$KerberosPath, [switch]$AllowWrite)
@@ -650,6 +776,17 @@ function ConvertTo-NpiKrbFakeAccount {
 }
 
 function Invoke-NpiKrbFakeAd {
+    <#
+    .SYNOPSIS
+        The fake Active Directory's dispatcher: records the cmdlet and parameters in the state's
+        Calls, then answers the cmdlet from the fixture state, or throws for a cmdlet it doesn't
+        serve and for a write when the state doesn't allow writes. New-NpiKrbFixtureAdInvoker's
+        Invoke calls it.
+    .EXAMPLE
+        # Ask the fake directly for its domain controllers.
+        $fake = New-NpiKrbFixtureAdInvoker -EstatePath tests/fixtures/estate.json -KerberosPath tests/fixtures/ch06/ad-kerberos.json
+        Invoke-NpiKrbFakeAd -State $fake -Cmdlet Get-ADDomainController -Params @{ Filter = '*' }
+    #>
     param($State, [string]$Cmdlet, [hashtable]$Params)
     $State.Calls.Add([pscustomobject]@{ Cmdlet = $Cmdlet; Params = $Params })
     $ad = $State.Estate.ad; $x = $State.Extra

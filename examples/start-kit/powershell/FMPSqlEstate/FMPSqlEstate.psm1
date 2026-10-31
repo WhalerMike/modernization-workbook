@@ -96,6 +96,10 @@ function Get-FMPSqlQueryCatalog {
     <#
     .SYNOPSIS
         Returns the T-SQL the kit can send, for review. Every statement is a SELECT.
+    .EXAMPLE
+        (Get-FMPSqlQueryCatalog).GetEnumerator() | Format-List Name, Value
+
+        Prints every statement the kit can send, for review before a run with -QueryInstances.
     #>
     [CmdletBinding()]
     param()
@@ -107,6 +111,10 @@ function Test-FMPSelectOnly {
     .SYNOPSIS
         True when a T-SQL batch is a single SELECT (or WITH ... SELECT) that can't change
         anything: no DML, DDL, EXEC, SELECT INTO, procedures, OPENROWSET or second statement.
+    .EXAMPLE
+        Test-FMPSelectOnly -Query 'SELECT name, type_desc FROM sys.server_principals'
+
+        Returns True. 'SELECT * INTO t FROM x' or a batch with a second statement returns False.
     #>
     [CmdletBinding()]
     [OutputType([bool])]
@@ -162,6 +170,9 @@ function Get-FMPSqlSessionCounter {
         counters, with the server's clock. SELECT-only; needs VIEW SERVER STATE (2022 and
         later: VIEW SERVER PERFORMANCE STATE). Filtering is left to the caller, so no
         caller-supplied text is ever put into the T-SQL.
+    .EXAMPLE
+        $cs = Get-FMPSqlConnectionString -ServerName sql01.contoso.example -InstanceName HR
+        (Get-FMPSqlSessionCounter -ConnectionString $cs).Connections | Format-Table
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$ConnectionString)
@@ -176,6 +187,10 @@ function Get-FMPSqlConnectionString {
     <#
     .SYNOPSIS
         A read-intent, Windows-integrated connection string for one instance.
+    .EXAMPLE
+        Get-FMPSqlConnectionString -ServerName sql01.contoso.example -InstanceName SALES
+    .EXAMPLE
+        Get-FMPSqlConnectionString -ServerName sql01.contoso.example -Port 1433 -TrustServerCertificate
     #>
     [CmdletBinding()]
     param(
@@ -192,6 +207,13 @@ function Get-FMPSqlConnectionString {
 }
 
 function Get-FMPSqlVersionName {
+    <#
+    .SYNOPSIS
+        Returns the SQL Server release name for a product version, such as '2022' for 16.0.4135.4
+        or '2008 R2' for 10.50.6000.34; 'Unknown' when the version is missing or unreadable.
+    .EXAMPLE
+        Get-FMPSqlVersionName -Version '16.0.4135.4'
+    #>
     [CmdletBinding()]
     param([AllowNull()][string]$Version)
     if (-not $Version) { return 'Unknown' }
@@ -208,6 +230,10 @@ function ConvertFrom-FMPSqlSpn {
     .SYNOPSIS
         Parses one MSSQLSvc SPN. MSSQLSvc/<host>:<port> is a TCP registration,
         MSSQLSvc/<host>:<instance> a named instance, and MSSQLSvc/<host> the default instance.
+    .EXAMPLE
+        ConvertFrom-FMPSqlSpn -Spn 'MSSQLSvc/sql01.contoso.example:1433'
+
+        A TCP registration on port 1433. A non-SQL SPN such as HTTP/web.contoso.example returns nothing.
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Spn)
@@ -250,6 +276,8 @@ function Get-FMPSqlSpnInstance {
     .DESCRIPTION
         Default read rights: servicePrincipalName is readable by authenticated users. The
         query runs against each domain in turn, the same coverage as setspn -T * -F -Q.
+    .EXAMPLE
+        Get-FMPSqlSpnInstance -Domain contoso.example, child.contoso.example
     #>
     [CmdletBinding()]
     param([string[]]$Domain)
@@ -288,6 +316,9 @@ function Get-FMPSqlDirectoryCandidate {
         computers allowed to retrieve a matching gMSA's password. Default read rights.
         Returns @{ Hosts; ServiceAccounts }. Host-level only: the directory doesn't say
         which instances a host runs.
+    .EXAMPLE
+        $dir = Get-FMPSqlDirectoryCandidate -Domain contoso.example -NameHint sql
+        $dir.Hosts
     #>
     [CmdletBinding()]
     param(
@@ -352,6 +383,10 @@ function ConvertFrom-FMPSqlBrowserResponse {
     .SYNOPSIS
         Parses an [MC-SQLR] SVR_RESP: 0x05, a two-byte little-endian length, then
         "ServerName;X;InstanceName;Y;IsClustered;No;Version;15.0.2000.5;tcp;1433;;" per instance.
+    .EXAMPLE
+        $text = 'ServerName;SQL02;InstanceName;REPORTS;IsClustered;No;Version;15.0.2000.5;tcp;50123;;'
+        $bytes = [byte[]](@(0x05, ($text.Length % 256), [math]::Floor($text.Length / 256)) + [System.Text.Encoding]::ASCII.GetBytes($text))
+        ConvertFrom-FMPSqlBrowserResponse -Bytes $bytes -QueriedHost sql02.contoso.example
     #>
     [CmdletBinding()]
     param(
@@ -415,6 +450,8 @@ function Find-FMPSqlBrowserInstance {
         installed, Find-DbaInstance runs instead (it adds TCP-port, SPN and DNS probes).
         Neither logs in to SQL Server. Probe traffic can trip intrusion detection: tell
         security operations the window first.
+    .EXAMPLE
+        Find-FMPSqlBrowserInstance -ComputerName sql01.contoso.example, sql02.contoso.example -TimeoutMs 1500
     #>
     [CmdletBinding()]
     param(
@@ -453,6 +490,10 @@ function Get-FMPSqlInstanceDetail {
     .DESCRIPTION
         Each query runs on its own; a query the login can't run is recorded in QueryErrors and
         the rest still run. If the connection fails, QueryStatus is 'Query Failed'.
+    .EXAMPLE
+        Get-FMPSqlInstanceDetail -ServerName sql01.contoso.example -InstanceName HR
+
+        Runs the SELECT-only queries over Windows authentication with ApplicationIntent=ReadOnly.
     #>
     [CmdletBinding()]
     param(
@@ -551,6 +592,10 @@ function Get-FMPSqlClassification {
         uptime can't prove disuse). Otherwise SQL Server 2022 (16) or later is retain and an
         earlier engine is consolidate. No version, review. Human judgment confirms or
         overrides every row; the dependency lens isn't automated.
+    .EXAMPLE
+        Get-FMPSqlClassification -Major 15 -LastUserAccess '2025-01-10' -EngineStartTime '2025-06-14' -AsOf '2026-10-13'
+
+        Returns retire: no user database touched in 400 days, and the engine up longer than that.
     #>
     [CmdletBinding()]
     param(
@@ -584,6 +629,12 @@ function Merge-FMPSqlEstate {
         they report the same port; SourceNotes says what differs. Directory candidates are
         host-level: they confirm a host, and a candidate host no other signal confirms is
         returned in CandidateHosts, not counted as an instance.
+    .EXAMPLE
+        $spn = @(Get-FMPSqlSpnInstance -Domain contoso.example)
+        $dir = Get-FMPSqlDirectoryCandidate -Domain contoso.example
+        $net = @(Find-FMPSqlBrowserInstance -ComputerName sql01.contoso.example)
+        $merged = Merge-FMPSqlEstate -SpnRecords $spn -DirectoryHosts $dir.Hosts -NetworkRecords $net
+        $merged.Instances | Format-Table ServerName, InstanceName, DiscoveryMethod, SourcesAgree
     #>
     [CmdletBinding()]
     param(
@@ -722,6 +773,10 @@ function Get-FMPSqlEstateSummary {
     .SYNOPSIS
         Counts over the fused inventory: total, by version, edition, domain, authentication
         mode, source agreement, signal and first-pass classification.
+    .EXAMPLE
+        Get-FMPSqlEstateSummary -Instances $merged.Instances -CandidateHosts $merged.CandidateHosts -ServiceAccounts $dir.ServiceAccounts
+
+        Counts over the output of Merge-FMPSqlEstate, as Invoke-FMPSqlEstateDiscovery computes them.
     #>
     [CmdletBinding()]
     param(

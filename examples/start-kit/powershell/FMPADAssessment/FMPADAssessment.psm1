@@ -24,6 +24,11 @@ function Test-FMPPrerequisites {
     <#
     .SYNOPSIS
         Checks PowerShell, the RSAT modules, forest connectivity and the output root.
+    .EXAMPLE
+        Test-FMPPrerequisites -OutputPath D:\Assessment | Format-Table Check, Status, Detail -AutoSize
+
+        One row per check. Resolve every FAIL row (no ActiveDirectory module, no forest
+        connection) before running the assessment.
     #>
     [CmdletBinding()]
     param([string]$OutputPath)
@@ -72,6 +77,10 @@ function Test-FMPReadAccess {
         Each probe makes one small read. Readable items need nothing; the rest are the Tier B
         list, each with the narrow right Book 01 Chapter 10 and Book 02 Chapters 07 and 08
         name. Writes Preflight\ReadAccess.json and Preflight\DelegationRequest.md.
+    .EXAMPLE
+        Test-FMPReadAccess -OutputPath D:\Assessment\run1 -Domain contoso.example
+
+        Probes what this account can read and writes the gaps to Preflight\DelegationRequest.md.
     #>
     [CmdletBinding()]
     param(
@@ -147,6 +156,10 @@ function Get-FMPForestTopology {
         Captures forest, domains, DCs, sites, site links, subnets and operations master roles.
     .OUTPUTS
         ForestTopology.json plus Domains\AllDomains.json and Domains\DomainControllers.json.
+    .EXAMPLE
+        Get-FMPForestTopology -OutputPath D:\Assessment\run1 -Domain contoso.example
+
+        Run against the forest root domain, as Invoke-FMPADAssessment does.
     #>
     [CmdletBinding()]
     param(
@@ -306,6 +319,8 @@ function Get-FMPOUHierarchy {
         Extracts the OU tree, flat list, GPO links, delegations and a text rendering.
     .OUTPUTS
         OUHierarchy.json, OUFlatList.csv, OUFlatExport.json, OUGPOLinks.json, OUDelegations.json, OUTreeVisual.txt
+    .EXAMPLE
+        Get-FMPOUHierarchy -OutputPath D:\Assessment\run1 -Domain child.contoso.example
     #>
     [CmdletBinding()]
     param(
@@ -378,6 +393,12 @@ function Export-FMPGPOSettings {
         Decomposes GPO XML reports into settings grouped by configuration area.
     .OUTPUTS
         GPOSettingsDecomposed.json
+    .EXAMPLE
+        Export-FMPGPOSettings -GPOSettingsPath D:\Assessment\run1\contoso.example\GPOs\GPOSettings `
+                              -OutputPath D:\Assessment\run1\contoso.example\GPOs
+
+        Decomposes the XML reports a GPO inventory already saved again, without contacting a
+        domain controller.
     #>
     [CmdletBinding()]
     param(
@@ -455,6 +476,8 @@ function Get-FMPGPOInventory {
         No native GPO backup: Backup-GPO needs delegated backup rights and writes a second
         copy of SYSVOL content, so the kit leaves it to the directory team as an
         administrator-run export. The XML reports carry every setting the classification needs.
+    .EXAMPLE
+        Get-FMPGPOInventory -OutputPath D:\Assessment\run1 -Domain contoso.example
     #>
     [CmdletBinding()]
     param(
@@ -572,6 +595,8 @@ function Get-FMPDNSAssessment {
         as NotReadable and the rest of the assessment still runs.
     .OUTPUTS
         DNSInventory.json, DNSHealthReport.json, DNSRecordInventory.json
+    .EXAMPLE
+        Get-FMPDNSAssessment -OutputPath D:\Assessment\run1 -Domain contoso.example -DnsServer dc01.contoso.example -StaleThresholdDays 90
     #>
     [CmdletBinding()]
     param(
@@ -789,6 +814,10 @@ function Get-FMPPKIAssessment {
         Services object, a directory read, rather than certutil -ca.cert, which writes a file.
     .OUTPUTS
         PKIInventory.json, PKISecurityReport.json, <CA name>.cer
+    .EXAMPLE
+        Get-FMPPKIAssessment -OutputPath D:\Assessment\run1 -Domain contoso.example
+
+        Run against the forest root domain, as Invoke-FMPADAssessment does.
     #>
     [CmdletBinding()]
     param(
@@ -861,6 +890,8 @@ function Get-FMPComputerInventory {
         Computer objects, OS classification, staleness and Kerberos delegation.
     .OUTPUTS
         ComputerInventory.json, ComputersByOS.csv, StaleComputers.csv, DelegationReport.csv
+    .EXAMPLE
+        Get-FMPComputerInventory -OutputPath D:\Assessment\run1 -Domain contoso.example -StaleThresholdDays 90
     #>
     [CmdletBinding()]
     param(
@@ -958,6 +989,8 @@ function Get-FMPUserInventory {
         UserInventory.json, PrivilegedUsers.csv, AdminCountReport.csv, ServiceAccounts.csv,
         UserDelegationReport.csv, PrivilegedDelegable.csv,
         ServiceAccounts\MSAInventory.json, ServiceAccounts\gMSAInventory.json
+    .EXAMPLE
+        Get-FMPUserInventory -OutputPath D:\Assessment\run1 -Domain contoso.example -StaleThresholdDays 90
     #>
     [CmdletBinding()]
     param(
@@ -1071,6 +1104,8 @@ function Get-FMPGroupInventory {
         Groups with category, scope, member counts, empty flag and circular nesting.
     .OUTPUTS
         GroupInventory.json, CircularGroups.json
+    .EXAMPLE
+        Get-FMPGroupInventory -OutputPath D:\Assessment\run1 -Domain contoso.example
     #>
     [CmdletBinding()]
     param(
@@ -1121,6 +1156,8 @@ function Get-FMPTrustMap {
         domain administrator credentials, so it runs separately under just-in-time elevation.
     .OUTPUTS
         TrustMap.json
+    .EXAMPLE
+        Get-FMPTrustMap -OutputPath D:\Assessment\run1 -Domain contoso.example
     #>
     [CmdletBinding()]
     param(
@@ -1196,6 +1233,8 @@ function Get-FMPSchemaExtensions {
         the common product extensions it recognizes.
     .OUTPUTS
         Schema\SchemaExtensions.json
+    .EXAMPLE
+        Get-FMPSchemaExtensions -OutputPath D:\Assessment\run1 -Domain contoso.example
     #>
     [CmdletBinding()]
     param(
@@ -1257,6 +1296,11 @@ function Get-FMPDHCPInventory {
         be read is recorded with the error and the run continues.
     .OUTPUTS
         DHCP\DHCPInventory.json, DHCP\DHCPScopes.csv, DHCP\DHCPReservations.csv
+    .EXAMPLE
+        Get-FMPDHCPInventory -OutputPath D:\Assessment\run1 -Domain contoso.example -DhcpServer dhcp01.contoso.example
+
+        Tier B. Reads only the named server; without -DhcpServer it reads every server authorized
+        in the forest.
     #>
     [CmdletBinding()]
     param(
@@ -1318,6 +1362,8 @@ function Get-FMPKerberosSpnMap {
         the program's Spec1-D1.5 script in Book 06 Runbook R02. Default read rights.
     .OUTPUTS
         Kerberos\KerberosSpnMap.json, SpnByServiceClass.csv, SpnDuplicates.csv, SpnOrphans.csv
+    .EXAMPLE
+        Get-FMPKerberosSpnMap -OutputPath D:\Assessment\run1 -Domain contoso.example, child.contoso.example -RootDomain contoso.example -OrphanDays 180
     #>
     [CmdletBinding()]
     param(
@@ -1413,6 +1459,10 @@ function Get-FMPLdapBindingEvent {
         "16 LDAP Interface Events" diagnostic level to 2; the kit never changes it.
     .OUTPUTS
         Ldap\LdapBindings.json, Ldap\LdapBindingClients.csv
+    .EXAMPLE
+        Get-FMPLdapBindingEvent -OutputPath D:\Assessment\run1 -Domain contoso.example -Days 7
+
+        Tier B: needs Event Log Readers on the domain controllers.
     #>
     [CmdletBinding()]
     param(
@@ -1588,6 +1638,10 @@ function Get-FMPStartKitSummary {
         Reads only the run's own output, so it can be re-run offline. A count whose source
         file is missing is reported as 'not collected', never as zero. Writes
         Summary\StartKitSummary.json and Summary\StartKitSummary.md.
+    .EXAMPLE
+        Get-FMPStartKitSummary -RunPath D:\Assessment\2026-10-13-0200-host-tierA
+
+        Rebuilds Summary\StartKitSummary.md and .json for an earlier run, from its files alone.
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$RunPath)

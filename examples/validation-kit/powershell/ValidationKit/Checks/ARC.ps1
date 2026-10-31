@@ -52,6 +52,16 @@ function Get-VkTag {
 }
 
 function Invoke-VkArc01 {
+    <#
+    .SYNOPSIS
+        Implements VK-ARC-01: lists Arc-enabled servers missing a tag the tag taxonomy requires
+        (tag-taxonomy.json), or carrying a value it doesn't allow.
+    .EXAMPLE
+        # From the kit folder: against the fictional "fail" fixture tenant (no sign-in).
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkArc01 -Context $ctx
+    .DESCRIPTION
+    #>
     <# VK-ARC-01. Tags required by tag-taxonomy.json (required, and allowed values per tag) missing or invalid on each Arc server. #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-ARC-01' $Context {
@@ -81,6 +91,15 @@ function Invoke-VkArc01 {
 
 function Invoke-VkArc02 {
     <#
+    .SYNOPSIS
+        Implements VK-ARC-02: lists Arc machines that are Disconnected or Expired, or run an agent
+        older than MinSupportedAgentVersion.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -Option @{ MinSupportedAgentVersion = '1.58' }
+        Invoke-VkArc02 -Context $ctx
+    .DESCRIPTION
+    #>
+    <#
     VK-ARC-02. Machines Disconnected or Expired, and agents older than MinSupportedAgentVersion.
     Microsoft supports only agent versions released within the last year (release notes); the
     default 1.58 is the program's reading of that window on October 29, 2026 (1.69 was released
@@ -107,6 +126,16 @@ function Invoke-VkArc02 {
 }
 
 function Invoke-VkArc03 {
+    <#
+    .SYNOPSIS
+        Implements VK-ARC-03: per Arc server, the Azure Policy states of the baseline assignment
+        (BaselineAssignmentName). A server that is NonCompliant, or has no state, fails it;
+        NotApplicable until the assignment is named.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -Option @{ BaselineAssignmentName = 'server-baseline' }
+        Invoke-VkArc03 -Context $ctx
+    .DESCRIPTION
+    #>
     <# VK-ARC-03. Per server, the policy states of the baseline assignment (BaselineAssignmentName): NonCompliant, or no state at all. #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-ARC-03' $Context {
@@ -132,6 +161,15 @@ function Invoke-VkArc03 {
 }
 
 function Invoke-VkArc04 {
+    <#
+    .SYNOPSIS
+        Implements VK-ARC-04: lists servers in the CMDB export (cmdb.csv) that are neither
+        Arc-enabled nor assigned to tier 2, 3 or 4: the CM-8 inventory gap.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkArc04 -Context $ctx
+    .DESCRIPTION
+    #>
     <#
     VK-ARC-04. Every server in the CMDB export (cmdb.csv: Name, Tier, Owner) is either Arc-enabled
     or assigned to tier 2, 3 or 4 of the guide's strategy for what neither tool reaches. One that
@@ -189,6 +227,15 @@ function Test-VkDynamicScope {
 
 function Invoke-VkArc05 {
     <#
+    .SYNOPSIS
+        Implements VK-ARC-05: lists Arc servers that no Update Manager schedule covers, or that
+        have no patch assessment in the last PatchAssessmentDays days.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkArc05 -Context $ctx
+    .DESCRIPTION
+    #>
+    <#
     VK-ARC-05. Each Arc server is in an Update Manager schedule, by a resource-level
     configuration assignment or a dynamic scope, and has a patch assessment from the last
     PatchAssessmentDays days. Resource Graph keeps assessment results for 7 days, so a longer
@@ -242,6 +289,16 @@ function Test-VkScopeCovers {
 }
 
 function Invoke-VkArc06 {
+    <#
+    .SYNOPSIS
+        Implements VK-ARC-06: reviews role assignments on Arc scopes. Fails on Owner or Contributor
+        outside break-glass.csv, active admin or login roles with no PIM eligibility, onboarding
+        grants with no open wave, and users assigned where groups are expected.
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkArc06 -Context $ctx | Select-Object -ExpandProperty Details
+    .DESCRIPTION
+    #>
     <#
     VK-ARC-06. Role assignments on Arc scopes (each machine, its resource group, its subscription),
     from Resource Graph, with PIM eligibility from Get-AzRoleEligibilitySchedule per subscription.
@@ -309,6 +366,15 @@ function Invoke-VkArc06 {
 $script:VkArgGuestAssignments = "guestconfigurationresources | where type =~ 'microsoft.guestconfiguration/guestconfigurationassignments' | project id = tolower(id), name, machineId = tolower(tostring(properties.targetResourceId)), assignmentType = tostring(properties.guestConfiguration.assignmentType), complianceStatus = tostring(properties.complianceStatus)"
 
 function Invoke-VkArc07 {
+    <#
+    .SYNOPSIS
+        Implements VK-ARC-07: lists servers whose configuration owner isn't machine configuration
+        but which carry an enforcing machine configuration assignment (two tools on one setting).
+    .EXAMPLE
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkArc07 -Context $ctx
+    .DESCRIPTION
+    #>
     <#
     VK-ARC-07. Two tools on one setting: a server whose configuration owner (cmdb.csv config_owner,
     else its ConfigOwner tag) isn't machine configuration, but which carries a machine
