@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.162
+The rest of the gaps are about safety.
+
+2
+00:00:02.162 --> 00:00:05.894
+Nothing in the samples reads
+before writing, offers a dry run,
+
+3
+00:00:05.894 --> 00:00:09.551
+or reads back afterward, and
+nothing checks for the lockout.
+
+4
+00:00:09.551 --> 00:00:13.873
+The tutorial asks for a year of
+eligibility, twice what the program allows
+
+5
+00:00:13.873 --> 00:00:17.913
+for that tier, and for permissions
+far broader than the request needs.
+
+6
+00:00:17.913 --> 00:00:20.363
+Its clean-up would
+delete the wrong object.
+
+7
+00:00:20.363 --> 00:00:22.842
+So the verdict is clear:
+keep Learn's read,
+
+8
+00:00:22.842 --> 00:00:27.725
+its rule shapes and its write permission,
+but don't run the samples as published.
+
+9
+00:00:27.725 --> 00:00:29.980
+Let's look at what the
+code builds instead.

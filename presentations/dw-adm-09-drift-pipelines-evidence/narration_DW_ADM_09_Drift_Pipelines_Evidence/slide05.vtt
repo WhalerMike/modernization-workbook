@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.612
+Here's what Learn gives you:
+one page with three workflows.
+
+2
+00:00:03.612 --> 00:00:06.545
+One signs in and runs
+a single Azure command,
+
+3
+00:00:06.545 --> 00:00:10.375
+one adds PowerShell, and one
+signs in to Azure Government.
+
+4
+00:00:10.375 --> 00:00:13.061
+Each job asks for exactly one permission,
+
+5
+00:00:13.061 --> 00:00:17.800
+the right to request a sign-in token,
+and keeps its identifiers in secrets.
+
+6
+00:00:17.800 --> 00:00:19.116
+Before any of it works,
+
+7
+00:00:19.116 --> 00:00:23.063
+the app needs a federated credential
+that trusts the repository.
+
+8
+00:00:23.063 --> 00:00:26.133
+Those workflows only
+exist inside the web page,
+
+9
+00:00:26.133 --> 00:00:30.227
+so the repository pins the page
+and the action's own definition,
+
+10
+00:00:30.227 --> 00:00:34.400
+and a linter checks each workflow
+offline against twelve rules.
+
+11
+00:00:34.400 --> 00:00:36.600
+Nothing runs, nothing signs in.

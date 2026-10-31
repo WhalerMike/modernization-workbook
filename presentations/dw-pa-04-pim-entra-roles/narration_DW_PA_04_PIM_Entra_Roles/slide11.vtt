@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.875
+Reading and writing are different jobs
+here, with different permissions.
+
+2
+00:00:03.875 --> 00:00:08.650
+Every read uses a read-only permission,
+and the client refuses anything but a
+
+3
+00:00:08.650 --> 00:00:13.425
+read unless it was built for writing,
+which only happens when you ask to apply.
+
+4
+00:00:13.425 --> 00:00:17.320
+Rule updates and new eligibility
+need two write permissions;
+
+5
+00:00:17.320 --> 00:00:21.063
+removing a standing assignment
+is a third task with its own.
+
+6
+00:00:21.063 --> 00:00:25.156
+Learn's PowerShell guide and the
+tutorial ask for broader permissions,
+
+7
+00:00:25.156 --> 00:00:28.487
+so the code follows the narrower
+reference pages instead.
+
+8
+00:00:28.487 --> 00:00:32.450
+And a test makes sure the dry run's
+app never holds a write permission.

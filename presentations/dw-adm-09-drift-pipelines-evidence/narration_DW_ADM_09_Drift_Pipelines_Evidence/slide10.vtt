@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.713
+Every difference between runs
+lands in one of five results.
+
+2
+00:00:03.713 --> 00:00:06.337
+New and changed findings open issues.
+
+3
+00:00:06.337 --> 00:00:09.963
+A change only in the detail is
+recorded but opens nothing.
+
+4
+00:00:09.963 --> 00:00:14.463
+A finding is resolved only when its
+check actually read the tenant this run.
+
+5
+00:00:14.463 --> 00:00:18.522
+And anything from a check that
+errored or didn't run is unverified,
+
+6
+00:00:18.522 --> 00:00:20.401
+so earlier findings stay open.
+
+7
+00:00:20.401 --> 00:00:23.608
+Each finding has a fingerprint
+that's the same every run,
+
+8
+00:00:23.608 --> 00:00:25.700
+so there are never duplicate issues.
+
+9
+00:00:25.700 --> 00:00:28.986
+Issues carry object identifiers,
+not people's names,
+
+10
+00:00:28.986 --> 00:00:33.170
+because the tracker has a wider
+audience than the evidence store.

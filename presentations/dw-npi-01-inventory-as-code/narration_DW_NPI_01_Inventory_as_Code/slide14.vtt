@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.250
+Lab 1 needs only a laptop with PowerShell
+7 and Pester: no tenant, no domain.
+
+2
+00:00:06.250 --> 00:00:09.295
+First, run Learn's own
+samples against the stand-ins,
+
+3
+00:00:09.295 --> 00:00:12.920
+and read the test for the
+delegated managed service account:
+
+4
+00:00:12.920 --> 00:00:16.400
+Microsoft's command returns it,
+and nothing says what it is.
+
+5
+00:00:16.400 --> 00:00:20.913
+Second, list what the inventory needs,
+and notice that nothing can write.
+
+6
+00:00:20.913 --> 00:00:24.525
+Third, run the inventory
+over the fictional estate.
+
+7
+00:00:24.525 --> 00:00:27.796
+You get thirty-five identities,
+eight of them high risk,
+
+8
+00:00:27.796 --> 00:00:32.738
+a set of findings and warnings, and three
+accounts handed to the Data Platform plan.
+
+9
+00:00:32.738 --> 00:00:34.250
+Next, we read them.

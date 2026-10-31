@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.562
+Why does this chapter matter?
+
+2
+00:00:01.562 --> 00:00:06.131
+Because the program gives every setting
+one owning tool, and every server
+
+3
+00:00:06.131 --> 00:00:10.550
+one patching tool, and both are
+recorded in the configuration database.
+
+4
+00:00:10.550 --> 00:00:12.275
+Arc doesn't change any of that.
+
+5
+00:00:12.275 --> 00:00:15.536
+What it does is turn the
+server into an Azure resource,
+
+6
+00:00:15.536 --> 00:00:19.463
+and from then on, tags tell Azure's
+tools which servers are theirs.
+
+7
+00:00:19.463 --> 00:00:22.812
+Those tags are written once,
+at the moment of connection.
+
+8
+00:00:22.812 --> 00:00:27.437
+So the onboarding run is the one place
+owners get read, checked and carried.
+
+9
+00:00:27.437 --> 00:00:32.230
+Connect a server without them, and it
+belongs to whichever tool reaches it first.

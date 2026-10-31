@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.325
+Now read the plan the
+way a reviewer would.
+
+2
+00:00:02.325 --> 00:00:05.131
+Three standing assignments
+become eligible,
+
+3
+00:00:05.131 --> 00:00:09.487
+each with a matching removal, and
+two declared groups gain eligibility.
+
+4
+00:00:09.487 --> 00:00:14.338
+Seventy policy rules change, but a policy
+that's already right isn't touched.
+
+5
+00:00:14.338 --> 00:00:18.596
+The findings tell the rest: the
+automation's own access is left alone,
+
+6
+00:00:18.596 --> 00:00:23.462
+a root-scope elevation is flagged, a
+pipeline's service principal is reported,
+
+7
+00:00:23.462 --> 00:00:27.188
+not converted, and one subscription
+would have four owners.
+
+8
+00:00:27.188 --> 00:00:31.800
+Then apply against the fake, and a
+fresh read shows nothing left to change.
+
+9
+00:00:31.800 --> 00:00:36.890
+Finally, watch the code refuse an undeclared
+write and a scope it doesn't govern.

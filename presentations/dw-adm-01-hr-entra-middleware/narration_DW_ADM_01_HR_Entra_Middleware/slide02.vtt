@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Why does this chapter matter so much?
+
+2
+00:00:02.150 --> 00:00:04.925
+Because the provisioning
+service is obedient.
+
+3
+00:00:04.925 --> 00:00:09.135
+It owns the mapping to directory
+attributes, the matching and the write,
+
+4
+00:00:09.135 --> 00:00:13.487
+and Microsoft deliberately keeps the
+comparison logic out of the client.
+
+5
+00:00:13.487 --> 00:00:17.010
+That means everything before
+the post belongs to you:
+
+6
+00:00:17.010 --> 00:00:21.013
+what gets sent, in what order, how
+fast, and what record you keep.
+
+7
+00:00:21.013 --> 00:00:23.312
+And the endpoint is asynchronous.
+
+8
+00:00:23.312 --> 00:00:26.617
+An accepted response only
+means the batch was staged,
+
+9
+00:00:26.617 --> 00:00:31.349
+not that anyone was written, so reading
+the logs afterwards is part of the job.
+
+10
+00:00:31.349 --> 00:00:32.830
+Next, which cloud.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.225
+Lab 1 runs on a laptop with
+Chapter 1's inventory in place.
+
+2
+00:00:04.225 --> 00:00:06.709
+First, Learn's script
+against the stand-ins:
+
+3
+00:00:06.709 --> 00:00:11.606
+read the test where all three application
+permission removals come back not found,
+
+4
+00:00:11.606 --> 00:00:14.800
+because the script named
+the wrong service principal.
+
+5
+00:00:14.800 --> 00:00:19.563
+Then list the permissions each task
+needs, which match the table we just saw.
+
+6
+00:00:19.563 --> 00:00:24.115
+Then run the sweep over a fictional
+estate: eleven service principals,
+
+7
+00:00:24.115 --> 00:00:27.883
+twenty grants, three handed to
+the Privileged Access plan,
+
+8
+00:00:27.883 --> 00:00:30.474
+and an owner review that isn't closed yet.
+
+9
+00:00:30.474 --> 00:00:34.270
+Two agent identities are skipped,
+because they're Chapter 9's.

@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.587
+Beta APIs can change or disappear, and
+Learn says not to use them in production.
+
+2
+00:00:05.587 --> 00:00:08.882
+But sometimes the only place
+a property lives is beta,
+
+3
+00:00:08.882 --> 00:00:11.801
+like the Autopilot status
+this workbook needs.
+
+4
+00:00:11.801 --> 00:00:13.632
+So beta calls must be declared,
+
+5
+00:00:13.632 --> 00:00:17.589
+they're read through a wrapper that
+turns a missing shape into "not
+
+6
+00:00:17.589 --> 00:00:21.913
+evaluated" rather than a failed run,
+and the stage is always in the output.
+
+7
+00:00:21.913 --> 00:00:24.331
+The Autopilot case also shows two Learn
+
+8
+00:00:24.331 --> 00:00:27.263
+pages disagreeing about
+the government clouds.
+
+9
+00:00:27.263 --> 00:00:29.512
+The code follows the stricter one,
+
+10
+00:00:29.512 --> 00:00:33.120
+because an API that answers
+isn't a feature you can use.

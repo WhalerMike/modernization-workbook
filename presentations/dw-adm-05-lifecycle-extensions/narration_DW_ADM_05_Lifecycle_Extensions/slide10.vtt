@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.887
+The tooling is one script
+with five commands.
+
+2
+00:00:02.887 --> 00:00:07.093
+Lint applies twelve rules to any
+definition, including Microsoft's,
+
+3
+00:00:07.093 --> 00:00:10.471
+and one of them adds up every
+possible retry wait so the
+
+4
+00:00:10.471 --> 00:00:13.775
+callback can't arrive after
+the workflow has given up.
+
+5
+00:00:13.775 --> 00:00:16.284
+Run plays a definition against the fakes,
+
+6
+00:00:16.284 --> 00:00:19.163
+with failures and repeat
+deliveries on demand.
+
+7
+00:00:19.163 --> 00:00:22.400
+Build refuses to write anything
+while there's a finding.
+
+8
+00:00:22.400 --> 00:00:26.989
+And the two checks compare what's
+really in the tenant with the registry,
+
+9
+00:00:26.989 --> 00:00:29.089
+including Book 03's leaver order:
+
+10
+00:00:29.089 --> 00:00:33.600
+block the account and revoke its tokens
+first, then run the custom task.
+
+11
+00:00:33.600 --> 00:00:36.890
+A failed revocation shouldn't
+stop the cleanup after it.

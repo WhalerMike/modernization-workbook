@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.988
+What comes out is one row per assignment,
+with everything a reviewer needs on it:
+
+2
+00:00:04.988 --> 00:00:08.787
+which plane, which role and tier,
+which scope, what state it's in,
+
+3
+00:00:08.787 --> 00:00:12.738
+when it ends, and whether it
+arrived directly or through a group.
+
+4
+00:00:12.738 --> 00:00:16.350
+The subtle part is counting
+each assignment exactly once.
+
+5
+00:00:16.350 --> 00:00:20.989
+Microsoft returns group-delivered
+assignments as their own active rows,
+
+6
+00:00:20.989 --> 00:00:24.412
+but the code expands the group
+itself, so it skips those.
+
+7
+00:00:24.412 --> 00:00:28.143
+And Azure returns the same
+schedule from more than one scope,
+
+8
+00:00:28.143 --> 00:00:31.650
+so the code removes duplicates
+and skips inherited rows.
+
+9
+00:00:31.650 --> 00:00:33.260
+Next, the findings.

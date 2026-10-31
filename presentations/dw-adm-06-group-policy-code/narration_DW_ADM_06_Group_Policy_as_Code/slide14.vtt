@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.850
+Lab 1 runs on a laptop with no tenant.
+
+2
+00:00:02.850 --> 00:00:06.863
+First you run the validation kit's
+gate against its failing fixture,
+
+3
+00:00:06.863 --> 00:00:09.300
+and see three real findings and a warning.
+
+4
+00:00:09.300 --> 00:00:13.158
+Then comes the revealing step:
+you run Microsoft's own import
+
+5
+00:00:13.158 --> 00:00:17.325
+sample twice against the fake Graph,
+and the policy appears twice.
+
+6
+00:00:17.325 --> 00:00:22.137
+The call log shows two creates and not
+a single read; the script never looked.
+
+7
+00:00:22.137 --> 00:00:27.060
+Then you build the move plan, and the
+eleven rows show every kind of disposition,
+
+8
+00:00:27.060 --> 00:00:31.075
+including a hibernate setting
+where two old policies disagree.
+
+9
+00:00:31.075 --> 00:00:33.380
+Next, the lint and the sync.

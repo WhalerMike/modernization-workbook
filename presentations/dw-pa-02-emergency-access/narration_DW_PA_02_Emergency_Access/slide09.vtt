@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.800
+One rule needs a closer look.
+
+2
+00:00:01.800 --> 00:00:04.605
+Learn says to exclude
+the emergency accounts
+
+3
+00:00:04.605 --> 00:00:07.337
+from policies that block
+or restrict sign-in.
+
+4
+00:00:07.337 --> 00:00:10.093
+Deciding which policies
+do that is a judgment,
+
+5
+00:00:10.093 --> 00:00:14.950
+and the code shouldn't make judgments, so
+it checks every enforced policy instead.
+
+6
+00:00:14.950 --> 00:00:17.566
+The sources also disagree in two places,
+
+7
+00:00:17.566 --> 00:00:22.163
+and the chapter records both so nobody
+quietly loosens the code later.
+
+8
+00:00:22.163 --> 00:00:26.400
+Report-only policies are reported
+as information, not failures.
+
+9
+00:00:26.400 --> 00:00:31.231
+And whether the accounts belong to
+individuals is something Graph can't see,
+
+10
+00:00:31.231 --> 00:00:33.820
+so the program's position stays Book 04's.

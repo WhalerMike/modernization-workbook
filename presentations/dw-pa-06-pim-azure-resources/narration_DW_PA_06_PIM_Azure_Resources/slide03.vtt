@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Next, which cloud.
+
+2
+00:00:01.413 --> 00:00:06.371
+This estate's tenant is GCC on the
+worldwide endpoints, with commercial Azure,
+
+3
+00:00:06.371 --> 00:00:11.175
+so every call in this chapter goes to
+the commercial Resource Manager host.
+
+4
+00:00:11.175 --> 00:00:14.378
+GCC High and Department
+of Defense subscriptions
+
+5
+00:00:14.378 --> 00:00:17.275
+live in Azure Government,
+which has its own host.
+
+6
+00:00:17.275 --> 00:00:21.283
+The licensing PIM needs is
+available in all of these clouds,
+
+7
+00:00:21.283 --> 00:00:25.619
+but notice the honest gap: no page
+the chapter read states the PIM
+
+8
+00:00:25.619 --> 00:00:30.200
+Resource Manager API's availability
+in Azure Government outright.
+
+9
+00:00:30.200 --> 00:00:32.975
+So the code makes you name
+the cloud every time,
+
+10
+00:00:32.975 --> 00:00:35.810
+and refuses a file written
+for a different one.

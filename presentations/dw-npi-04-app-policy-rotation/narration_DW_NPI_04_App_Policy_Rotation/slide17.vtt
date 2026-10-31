@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.388
+Each of these dangers has a guard in
+the code, not a reminder in a runbook.
+
+2
+00:00:04.388 --> 00:00:09.173
+The most dangerous is the quiet one: an
+update that forgets a restriction and
+
+3
+00:00:09.173 --> 00:00:14.338
+switches it off, so the writer re-reads the
+live policy and refuses anything looser.
+
+4
+00:00:14.338 --> 00:00:18.476
+A retroactive start date breaks
+rotations on the very day they're due.
+
+5
+00:00:18.476 --> 00:00:22.212
+A certificate that replaces the
+old one takes the workload down.
+
+6
+00:00:22.212 --> 00:00:26.788
+And an unattended app that can update
+every application is a standing risk,
+
+7
+00:00:26.788 --> 00:00:29.150
+so writes are always a signed-in person.
+
+8
+00:00:29.150 --> 00:00:32.520
+Notice the pattern: each
+guard runs every time.

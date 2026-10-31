@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.812
+This is the heart of the chapter.
+
+2
+00:00:01.812 --> 00:00:05.612
+The request shapes are good, and
+the plan copies them exactly.
+
+3
+00:00:05.612 --> 00:00:09.724
+But run as published, the samples
+go wrong in instructive ways.
+
+4
+00:00:09.724 --> 00:00:14.438
+The first example is titled an ownership
+request and actually grants membership.
+
+5
+00:00:14.438 --> 00:00:17.004
+Its comment and its dates disagree,
+
+6
+00:00:17.004 --> 00:00:21.163
+and the dates are from 2023, so
+today the fake refuses them.
+
+7
+00:00:21.163 --> 00:00:25.225
+Nothing reads the tenant first,
+so a second run grants twice.
+
+8
+00:00:25.225 --> 00:00:29.275
+And one sample is a user's
+self-activation, not an admin's.
+
+9
+00:00:29.275 --> 00:00:34.010
+So the verdict: keep the shapes, take
+everything else from the reviewed file.

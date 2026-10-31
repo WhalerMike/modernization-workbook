@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:10.824
+This is Chapter 5: workload identity
+federation and managed identities.
+
+4
+00:00:10.824 --> 00:00:15.463
+It's where service accounts actually
+get converted: a managed identity first,
+
+5
+00:00:15.463 --> 00:00:18.362
+then a federated credential,
+then a certificate,
+
+6
+00:00:18.362 --> 00:00:22.275
+with a thirty-day parallel run
+before the old account is disabled.
+
+7
+00:00:22.275 --> 00:00:26.978
+We'll start from Microsoft's own samples,
+see what they accept in silence,
+
+8
+00:00:26.978 --> 00:00:29.927
+then walk the checks,
+the token exchange test,
+
+9
+00:00:29.927 --> 00:00:33.275
+the plan and its write path,
+two labs and the dangers.
+
+10
+00:00:33.275 --> 00:00:38.500
+One note before we begin: the code is
+illustrative, tested against fixtures.

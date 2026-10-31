@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.162
+So what does the inventory actually read?
+
+2
+00:00:02.162 --> 00:00:06.773
+On the Microsoft Entra side: the role
+definitions, so every row gets a name;
+
+3
+00:00:06.773 --> 00:00:11.306
+the active assignments, with whether
+each one is assigned or activated,
+
+4
+00:00:11.306 --> 00:00:15.609
+direct or through a group, and when
+it ends; the eligible assignments,
+
+5
+00:00:15.609 --> 00:00:19.988
+with their expiration; and the
+members of each role-assignable group.
+
+6
+00:00:19.988 --> 00:00:23.445
+On the Azure side, two Resource
+Manager collections give
+
+7
+00:00:23.445 --> 00:00:27.050
+active and eligible role
+schedules for each scope you name.
+
+8
+00:00:27.050 --> 00:00:30.713
+Everything is on the stable,
+generally available versions.
+
+9
+00:00:30.713 --> 00:00:32.830
+Next, where the tier comes from.

@@ -13,6 +13,10 @@ One shared kit so every Federal Modernization Workbook book's 15-minute presenta
 | `build_narrated.ps1` | Copies the deck, embeds each slide's audio, sets slide timings, drops the backup slides, embeds the captions (through `a11y_fix.py`), and can export an MP4 (PowerPoint on Windows) |
 | `a11y_fix.py` | The accessibility pass, run on every built deck: author and presenter name, decorative marking for icons and textless shapes, table header rows, alt text on narration audio, and (with `--captions`) PowerPoint closed-caption tracks |
 | `a11y_check.py` | Checks every deck (or the ones named) against the rules below; exits 1 on any problem |
+| `devwb.js` | The layout for the developer-workbook chapter tours (`presentations/dw-*/`): each tour's `build.js` passes its slides as data, and `devwb.js` lays them out, fits the text, reads the chapter's front matter and footnotes, and writes the notes (narration, Detail part, the cited footnotes in full) and the backup section. It refuses a deck with a missing part, an unknown footnote name, an over-long title or narration, or an agency or out-of-scope term |
+| `qa_export.ps1` | Exports each deck's slides to PNG through PowerPoint and reports text that overflows its box, sits too low or overlaps another box; exits 1 on any problem |
+| `export_mp4.ps1` | Exports a narrated deck to MP4 in a fresh PowerPoint, for when `build_narrated.ps1 -Video` stalls |
+| `link_tours.py` | Writes each developer-workbook tour's README and links the tours from the chapter pages, the workbook landing pages and the Presentations page, between `tour:begin` / `tour:end` markers |
 
 ## Build a book's deck
 
@@ -27,6 +31,20 @@ python presentations/_build/a11y_check.py
 ```
 
 Python needs `edge-tts`, `mutagen`, `python-pptx` and `lxml`. Narration is regenerated only for slides whose MP3 is missing or has no sentence timings, so delete a slide's MP3 after changing its notes. `build_narrated.ps1` refuses to start while PowerPoint is open (it would attach to that window and close it), and needs the deck folder as an absolute path.
+
+## Build a developer-workbook chapter tour
+
+```bash
+source /c/tmp/deckenv.sh                 # NODE_PATH and APPLY_THEME
+DATECODE="2026-10-31 10:16 ET" node presentations/dw-pa-02-emergency-access/build.js   # Eastern time from PowerShell
+python presentations/_build/narrate.py presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access.pptx
+python presentations/_build/captions.py presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access.pptx
+powershell -File presentations/_build/qa_export.ps1 -Deck <abs path>\DW_PA_02_Emergency_Access.pptx -Out <folder for PNGs>
+powershell -File presentations/_build/build_narrated.ps1 -Dir <abs path>\presentations\dw-pa-02-emergency-access -Base DW_PA_02_Emergency_Access
+powershell -File presentations/_build/export_mp4.ps1 -Src <abs path>\DW_PA_02_Emergency_Access_Narrated.pptx -Mp4 <abs path>\DW_PA_02_Emergency_Access_Narrated.mp4
+```
+
+Upload the MP4 to the videos release, run `scripts/generate_video_manifest.py --verify` and then without `--verify`, and finally `presentations/_build/link_tours.py "<recording date>"`. A tour runs about eleven minutes: a title slide and about seventeen content slides in Why, What, Who and How order. Rebuild and re-record a tour when its chapter changes.
 
 ## Accessibility (Section 508 / WCAG 2.1 AA)
 

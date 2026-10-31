@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.340
+The evidence comes from the
+service principal sign-in logs,
+
+2
+00:00:03.340 --> 00:00:04.750
+and there are three traps.
+
+3
+00:00:04.750 --> 00:00:07.987
+Without the right filter you
+only get interactive sign-ins.
+
+4
+00:00:07.987 --> 00:00:10.825
+Without a Conditional
+Access read permission,
+
+5
+00:00:10.825 --> 00:00:13.299
+the policy results are silently left out.
+
+6
+00:00:13.299 --> 00:00:15.671
+And without a special request header,
+
+7
+00:00:15.671 --> 00:00:19.037
+the report-only results come
+back as an unknown value.
+
+8
+00:00:19.037 --> 00:00:23.000
+The reader handles all three,
+and throws rather than guessing.
+
+9
+00:00:23.000 --> 00:00:25.125
+It gives each principal a status,
+
+10
+00:00:25.125 --> 00:00:28.588
+and a ring is ready when
+everyone's clear for two weeks.
+
+11
+00:00:28.588 --> 00:00:32.740
+Once enforced, a block alert
+goes to security operations.

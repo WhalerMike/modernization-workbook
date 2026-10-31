@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.738
+Three facts shape the code.
+
+2
+00:00:01.738 --> 00:00:06.931
+First, the version: the generally available
+release covers every PIM resource type,
+
+3
+00:00:06.931 --> 00:00:09.716
+and the code pins it, even
+though one of Learn's
+
+4
+00:00:09.716 --> 00:00:12.275
+how-to pages still shows an older preview.
+
+5
+00:00:12.275 --> 00:00:13.937
+When Learn's pages disagree,
+
+6
+00:00:13.937 --> 00:00:18.200
+the chapter follows the stricter one
+and writes the disagreement down.
+
+7
+00:00:18.200 --> 00:00:20.400
+Second, settings don't inherit.
+
+8
+00:00:20.400 --> 00:00:24.600
+A resource group under a governed
+subscription keeps its defaults,
+
+9
+00:00:24.600 --> 00:00:26.700
+so the file has to list every scope.
+
+10
+00:00:26.700 --> 00:00:30.037
+Third, only users and
+groups can be eligible.
+
+11
+00:00:30.037 --> 00:00:34.300
+A pipeline's service principal can't
+activate, so it can't be converted.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.612
+Lab 2 moves to a test tenant and a
+test subscription, never production.
+
+2
+00:00:04.612 --> 00:00:06.929
+You give a reader app nothing but Reader,
+
+3
+00:00:06.929 --> 00:00:11.141
+write a small desired state with one
+hand-made standing Owner to convert,
+
+4
+00:00:11.141 --> 00:00:15.424
+and plan live, comparing what the code
+read with what the admin center shows.
+
+5
+00:00:15.424 --> 00:00:18.691
+Then you grant the write role
+for a single day, apply,
+
+6
+00:00:18.691 --> 00:00:22.113
+and activate as the test user
+to see the approval flow.
+
+7
+00:00:22.113 --> 00:00:26.801
+There's also a small experiment to settle
+an open question about the narrower role.
+
+8
+00:00:26.801 --> 00:00:29.468
+And to back it out, wait
+five minutes first:
+
+9
+00:00:29.468 --> 00:00:32.830
+Learn says a new assignment
+can't be removed sooner.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.530
+Each of these dangers is a way a check can
+
+2
+00:00:02.530 --> 00:00:05.537
+quietly stop being evidence,
+and each has a guard.
+
+3
+00:00:05.537 --> 00:00:09.969
+The most tempting is creating a standing
+Global Administrator so a check
+
+4
+00:00:09.969 --> 00:00:14.037
+can run on a timer; the guard is an
+optional check that reads an export.
+
+5
+00:00:14.037 --> 00:00:17.471
+The most dangerous is a failed
+read that reports a pass;
+
+6
+00:00:17.471 --> 00:00:20.524
+the wrapper turns every
+exception into an error.
+
+7
+00:00:20.524 --> 00:00:24.503
+Others are subtler: a missing
+property read as on, a fixture that
+
+8
+00:00:24.503 --> 00:00:28.863
+matches the code instead of the
+service, a warning that never expires.
+
+9
+00:00:28.863 --> 00:00:32.380
+Notice that every guard is
+built in, not remembered.

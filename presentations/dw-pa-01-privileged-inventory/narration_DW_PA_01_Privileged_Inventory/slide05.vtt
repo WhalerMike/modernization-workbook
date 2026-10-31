@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.488
+Where does the tier come from?
+
+2
+00:00:01.488 --> 00:00:02.901
+Not from Microsoft.
+
+3
+00:00:02.901 --> 00:00:07.986
+Microsoft does label some roles as
+privileged, but that label is still a preview,
+
+4
+00:00:07.986 --> 00:00:09.990
+read through the beta endpoint,
+
+5
+00:00:09.990 --> 00:00:13.150
+so the program treats it as
+an input, not the answer.
+
+6
+00:00:13.150 --> 00:00:16.114
+The tiers live in a small
+file the program owns,
+
+7
+00:00:16.114 --> 00:00:21.000
+keyed by each role's template identifier,
+which is the same in every tenant.
+
+8
+00:00:21.000 --> 00:00:26.375
+Any role that isn't in the file is reported
+as unclassified, never assumed safe.
+
+9
+00:00:26.375 --> 00:00:31.850
+Azure roles get their tier from Book 04's
+placement table, by role and by scope.
+
+10
+00:00:31.850 --> 00:00:34.010
+Both are labeled design guidance.

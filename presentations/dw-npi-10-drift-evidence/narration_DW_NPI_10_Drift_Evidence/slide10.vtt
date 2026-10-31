@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.813
+Here's what the security
+officer actually receives.
+
+2
+00:00:02.813 --> 00:00:07.540
+Each run is packaged with a summary
+that carries rule IDs and fingerprints
+
+3
+00:00:07.540 --> 00:00:11.962
+but no names, and a checksum file
+anyone can verify with a standard tool.
+
+4
+00:00:11.962 --> 00:00:15.488
+Before packaging, the run
+itself is checked end to end.
+
+5
+00:00:15.488 --> 00:00:20.447
+Each package records the previous package's
+hash, so the packages form a chain,
+
+6
+00:00:20.447 --> 00:00:24.088
+and a replaced package or a
+missing day shows up as a break.
+
+7
+00:00:24.088 --> 00:00:27.140
+Then a period summary
+verifies every package,
+
+8
+00:00:27.140 --> 00:00:31.237
+checks for gaps, and maps findings
+to each control as evidence.
+
+9
+00:00:31.237 --> 00:00:34.920
+The assessor, not the
+code, decides each control.

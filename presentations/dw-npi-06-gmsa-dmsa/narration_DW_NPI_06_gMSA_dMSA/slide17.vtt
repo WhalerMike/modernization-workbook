@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.425
+Each of these failures
+has a guard in the code.
+
+2
+00:00:02.425 --> 00:00:05.547
+The biggest is the one the
+chapter is built around:
+
+3
+00:00:05.547 --> 00:00:10.268
+an account left behind when A D retires,
+and the guard is the reconciliation,
+
+4
+00:00:10.268 --> 00:00:13.237
+rerun whenever the
+end-state decision changes.
+
+5
+00:00:13.237 --> 00:00:17.852
+Others are about the migration itself:
+completing too early, on a host that
+
+6
+00:00:17.852 --> 00:00:22.088
+can't use the new account, or deleting
+the old one so there's no way back.
+
+7
+00:00:22.088 --> 00:00:25.710
+Then the quieter ones: reading
+the root key as a secret,
+
+8
+00:00:25.710 --> 00:00:30.074
+widening retrievers by hand, or
+a plan that changed after review.
+
+9
+00:00:30.074 --> 00:00:32.810
+Each guard is a rule that runs every time.

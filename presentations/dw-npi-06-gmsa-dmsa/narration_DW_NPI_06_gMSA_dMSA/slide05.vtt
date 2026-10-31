@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.537
+This is where the
+stand-ins earn their keep.
+
+2
+00:00:02.537 --> 00:00:06.688
+The creation steps are fine, and
+the code keeps them as its model.
+
+3
+00:00:06.688 --> 00:00:10.696
+But the root key check uses a
+command that returns the key itself,
+
+4
+00:00:10.696 --> 00:00:15.838
+the secret every managed password comes
+from, so the code reads only its start time.
+
+5
+00:00:15.838 --> 00:00:19.751
+The backdated key is meant for
+a test lab, not production.
+
+6
+00:00:19.751 --> 00:00:22.977
+And one step sets the migration
+state with a parameter
+
+7
+00:00:22.977 --> 00:00:26.275
+the command simply doesn't
+have, so as published it fails.
+
+8
+00:00:26.275 --> 00:00:28.671
+Placeholder names that change from step to
+
+9
+00:00:28.671 --> 00:00:31.250
+step are replaced by
+names from reviewed data.

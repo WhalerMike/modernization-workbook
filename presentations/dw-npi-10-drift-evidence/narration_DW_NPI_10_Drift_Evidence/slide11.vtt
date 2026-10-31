@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:04.900
+Developers and pipeline engineers
+own the scheduled checks.
+
+3
+00:00:04.900 --> 00:00:09.087
+The identity governance officer owns
+the review cycle and the evidence,
+
+4
+00:00:09.087 --> 00:00:10.762
+and signs the period summary.
+
+5
+00:00:10.762 --> 00:00:12.920
+And the security officer receives it,
+
+6
+00:00:12.920 --> 00:00:16.887
+verifies it with nothing more than
+a checksum tool, and signs the gate.
+
+7
+00:00:16.887 --> 00:00:19.075
+The permissions are deliberately small.
+
+8
+00:00:19.075 --> 00:00:22.454
+This chapter adds only the
+audit log read; the whole run,
+
+9
+00:00:22.454 --> 00:00:26.508
+together with Chapters 1 and 2,
+needs four Graph read permissions,
+
+10
+00:00:26.508 --> 00:00:30.563
+Reader on the managed identities,
+and the default directory read.
+
+11
+00:00:30.563 --> 00:00:31.750
+None of it can write.

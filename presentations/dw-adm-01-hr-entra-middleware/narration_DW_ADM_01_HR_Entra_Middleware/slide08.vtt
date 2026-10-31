@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+The second half is
+about running it safely.
+
+2
+00:00:02.588 --> 00:00:07.206
+The sample has no pacing of its own, it
+only reaches the worldwide endpoint,
+
+3
+00:00:07.206 --> 00:00:11.749
+and its sign-in asks for a permission
+that can change any app in the tenant.
+
+4
+00:00:11.749 --> 00:00:15.424
+It also gives every operation
+a fresh random identifier,
+
+5
+00:00:15.424 --> 00:00:20.662
+so the same input never produces the same
+batch, and its only record is the console.
+
+6
+00:00:20.662 --> 00:00:24.291
+The verdict is balanced: keep
+using the sample where it's strong,
+
+7
+00:00:24.291 --> 00:00:27.849
+for checking mappings, extending
+the schema and reading logs,
+
+8
+00:00:27.849 --> 00:00:30.988
+and send production data
+through the hardened client.
+
+9
+00:00:30.988 --> 00:00:33.310
+Or contribute these changes upstream.

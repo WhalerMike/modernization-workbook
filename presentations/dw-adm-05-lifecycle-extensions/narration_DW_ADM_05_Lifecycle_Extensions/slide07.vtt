@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.350
+One row needs a word.
+
+2
+00:00:01.350 --> 00:00:05.514
+The page prints a placeholder for
+the value that identifies Lifecycle
+
+3
+00:00:05.514 --> 00:00:09.113
+Workflows as the caller, and
+copying it would block every call.
+
+4
+00:00:09.113 --> 00:00:13.259
+The chapter traces the real value:
+the page's own bearer-token row,
+
+5
+00:00:13.259 --> 00:00:16.779
+the page's history, Microsoft's
+token claims reference,
+
+6
+00:00:16.779 --> 00:00:21.863
+and the docs repository's list of known
+values all point to the same identifier.
+
+7
+00:00:21.863 --> 00:00:26.488
+The code uses it, a test pins it, and
+Lab 2 still checks it in the tenant.
+
+8
+00:00:26.488 --> 00:00:29.725
+That leads to the verdict: keep
+Learn's shape and trigger,
+
+9
+00:00:29.725 --> 00:00:33.580
+but don't run it as published for
+a leaver's credential revocation.

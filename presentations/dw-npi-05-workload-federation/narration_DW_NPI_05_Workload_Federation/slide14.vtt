@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.188
+Lab 1 needs only a laptop with PowerShell
+7 and Pester; no tenant, no network.
+
+2
+00:00:06.188 --> 00:00:09.563
+First you run Microsoft's own
+samples against the fakes.
+
+3
+00:00:09.563 --> 00:00:14.056
+Find the test that creates a credential
+with Graph's sample and then exchanges
+
+4
+00:00:14.056 --> 00:00:18.412
+a token with a different subject: the
+create succeeds and the exchange fails.
+
+5
+00:00:18.412 --> 00:00:20.775
+That's the whole risk, in one test.
+
+6
+00:00:20.775 --> 00:00:25.140
+Then you list what each task needs,
+and build the plan from the fixtures:
+
+7
+00:00:25.140 --> 00:00:28.752
+eight conversions in two waves,
+two failed exchange tests,
+
+8
+00:00:28.752 --> 00:00:31.837
+and twenty actions, of
+which only four would write.
+
+9
+00:00:31.837 --> 00:00:34.940
+The plan's hash is the same on every run.

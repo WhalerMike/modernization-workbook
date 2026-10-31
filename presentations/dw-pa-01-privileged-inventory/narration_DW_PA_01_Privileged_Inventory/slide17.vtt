@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.288
+Every danger here has a guard in the code,
+
+2
+00:00:02.288 --> 00:00:05.612
+and most of them are about
+something quietly going missing.
+
+3
+00:00:05.612 --> 00:00:09.900
+The worst is an active-only
+inventory: as the project succeeds,
+
+4
+00:00:09.900 --> 00:00:13.599
+the list shrinks, and the gate
+passes on an empty table.
+
+5
+00:00:13.599 --> 00:00:17.638
+Close behind are a group counted
+as one person, a member dropped
+
+6
+00:00:17.638 --> 00:00:21.987
+because its name couldn't be read,
+and an exceptions list nobody owns.
+
+7
+00:00:21.987 --> 00:00:26.850
+Notice the one honest gap: service principals
+in a group aren't returned at all.
+
+8
+00:00:26.850 --> 00:00:29.703
+And remember the inventory
+itself is sensitive,
+
+9
+00:00:29.703 --> 00:00:32.260
+because it names every privileged holder.

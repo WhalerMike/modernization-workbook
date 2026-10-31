@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.074
+Rotation works the same
+way: read everything,
+
+2
+00:00:03.074 --> 00:00:06.425
+then give each certificate
+exactly one next step.
+
+3
+00:00:06.425 --> 00:00:09.537
+A certificate far from
+expiry is left alone.
+
+4
+00:00:09.537 --> 00:00:11.987
+One that's due waits
+for an owner's approval,
+
+5
+00:00:11.987 --> 00:00:15.837
+and an approval only counts if it's
+recent and from an enabled owner.
+
+6
+00:00:15.837 --> 00:00:19.726
+Approved, it's renewed in Key
+Vault using the vault's own policy.
+
+7
+00:00:19.726 --> 00:00:24.563
+The new certificate is attached beside
+the old one, the owner confirms the
+
+8
+00:00:24.563 --> 00:00:29.163
+workload uses it, a week of overlap
+runs, and only then does the old one go.
+
+9
+00:00:29.163 --> 00:00:31.050
+Secrets aren't rotated at all.
+
+10
+00:00:31.050 --> 00:00:32.810
+They're flagged for replacement.

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.824
+Each run becomes an evidence package: the
+kit's run as written, the drift report,
+
+2
+00:00:04.824 --> 00:00:09.151
+the latest provenance from the other
+kits, a manifest, and a list of file
+
+3
+00:00:09.151 --> 00:00:13.850
+hashes the security officer can check
+with a standard tool and nothing else.
+
+4
+00:00:13.850 --> 00:00:18.956
+Each manifest records the hash of the
+previous one, so the packages form a chain:
+
+5
+00:00:18.956 --> 00:00:22.412
+a replaced package or a missing
+day shows up as a break.
+
+6
+00:00:22.412 --> 00:00:24.338
+The packager doesn't sign, though.
+
+7
+00:00:24.338 --> 00:00:27.101
+Locked retention stops
+changes after the fact,
+
+8
+00:00:27.101 --> 00:00:31.920
+and signing with a key the pipeline holds
+is a choice left to the security officer.

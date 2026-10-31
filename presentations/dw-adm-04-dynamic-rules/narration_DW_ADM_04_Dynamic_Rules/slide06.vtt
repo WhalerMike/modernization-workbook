@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.936
+The scripts only exist
+inside Learn's pages,
+
+2
+00:00:02.936 --> 00:00:06.703
+so the repository pins the
+pages themselves, unmodified,
+
+3
+00:00:06.703 --> 00:00:11.513
+at a known commit, with hashes a test
+checks and a weekly watch for changes.
+
+4
+00:00:11.513 --> 00:00:15.466
+Then a small harness pulls each
+script out of its pinned page
+
+5
+00:00:15.466 --> 00:00:19.262
+at test time and runs it, as
+published, against a fake tenant.
+
+6
+00:00:19.262 --> 00:00:22.958
+Only the things it calls
+outside itself are swapped out:
+
+7
+00:00:22.958 --> 00:00:27.137
+the prompts, the screen output,
+the sleep, and four Graph cmdlets.
+
+8
+00:00:27.137 --> 00:00:30.257
+That way you can watch
+Microsoft's own scripts behave,
+
+9
+00:00:30.257 --> 00:00:32.100
+instead of taking them on trust.
+
+10
+00:00:32.100 --> 00:00:33.430
+Here's what that showed.

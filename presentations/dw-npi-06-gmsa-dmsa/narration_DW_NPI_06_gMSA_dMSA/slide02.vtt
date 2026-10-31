@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.463
+Why does this chapter have
+an end date built in?
+
+2
+00:00:02.463 --> 00:00:07.074
+Because a group managed service account
+only works while A D is in charge.
+
+3
+00:00:07.074 --> 00:00:12.083
+The program decides early whether A D is
+retired or kept as a dated Kerberos island,
+
+4
+00:00:12.083 --> 00:00:16.134
+and the risk register is blunt:
+anything still running under one of
+
+5
+00:00:16.134 --> 00:00:20.700
+these accounts loses its credential
+when the last domain controller goes.
+
+6
+00:00:20.700 --> 00:00:23.012
+So converting isn't the finish line.
+
+7
+00:00:23.012 --> 00:00:26.859
+Every account must end up
+moving to a workload identity,
+
+8
+00:00:26.859 --> 00:00:29.200
+retiring, or on a dated island list.
+
+9
+00:00:29.200 --> 00:00:33.580
+The program adds four rules of its
+own, labeled as design guidance,
+
+10
+00:00:33.580 --> 00:00:36.410
+and the strictest is simple: never delete.

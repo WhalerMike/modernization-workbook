@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.975
+The example is two Python files, one
+sample workflow and two test files.
+
+2
+00:00:04.975 --> 00:00:08.413
+The workflow has two jobs with
+a deliberate wall between them.
+
+3
+00:00:08.413 --> 00:00:13.350
+The first can read the tenant: it signs
+in, gets a Graph token for the right host,
+
+4
+00:00:13.350 --> 00:00:18.837
+runs the validation kit, compares with the
+previous package and writes new evidence.
+
+5
+00:00:18.837 --> 00:00:23.262
+The second can write to the issue
+tracker, but has no Azure access at all.
+
+6
+00:00:23.262 --> 00:00:27.050
+So the identity that reads the
+tenant never writes to the tracker.
+
+7
+00:00:27.050 --> 00:00:32.640
+One check is delegated only, so it's
+honestly listed as unverified on every run.

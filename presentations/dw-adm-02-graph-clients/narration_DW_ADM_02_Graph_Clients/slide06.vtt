@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.762
+Here's what Microsoft gives you.
+
+2
+00:00:01.762 --> 00:00:06.743
+Learn's page on national clouds for the
+Graph SDKs names the three things a client
+
+3
+00:00:06.743 --> 00:00:09.568
+has to change per cloud:
+where it gets its token,
+
+4
+00:00:09.568 --> 00:00:13.062
+where Graph lives, and any
+scope that names the Graph host.
+
+5
+00:00:13.062 --> 00:00:15.862
+Its example connects to GCC High.
+
+6
+00:00:15.862 --> 00:00:18.876
+Other Learn pages cover
+paging and throttling.
+
+7
+00:00:18.876 --> 00:00:23.826
+The Python examples live in Microsoft's
+snippets repository, so the workbook
+
+8
+00:00:23.826 --> 00:00:28.463
+pins an unmodified copy of the two files
+it uses, with a hash a test checks.
+
+9
+00:00:28.463 --> 00:00:32.044
+A test then runs them against
+stand-ins that record exactly
+
+10
+00:00:32.044 --> 00:00:35.260
+what they'd sign in to,
+without signing in to anything.

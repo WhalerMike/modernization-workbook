@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.275
+What does the code add?
+
+2
+00:00:01.275 --> 00:00:06.082
+Its own module, building on Chapter 1's
+core, and unlike the earlier read paths,
+
+3
+00:00:06.082 --> 00:00:10.050
+this one can write Conditional
+Access, so it's careful about how.
+
+4
+00:00:10.050 --> 00:00:14.500
+The two policies, the named location
+and the alert are reviewed files.
+
+5
+00:00:14.500 --> 00:00:20.014
+The scope file is the record Gate 5 asks
+for: who's in, by object ID and ring,
+
+6
+00:00:20.014 --> 00:00:24.387
+who's out and what covers them
+instead, and the decisions.
+
+7
+00:00:24.387 --> 00:00:26.898
+Each policy is rendered once per ring,
+
+8
+00:00:26.898 --> 00:00:32.230
+so enforcing one ring changes one policy
+and leaves the next one in report-only.

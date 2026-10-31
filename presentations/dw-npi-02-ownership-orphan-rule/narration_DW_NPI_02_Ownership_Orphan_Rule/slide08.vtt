@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.400
+Then there's what the
+samples don't cover at all.
+
+2
+00:00:02.400 --> 00:00:05.637
+They'll add any object as
+an owner, a bot included.
+
+3
+00:00:05.637 --> 00:00:09.015
+The reference they set is free
+text, even though Learn's own
+
+4
+00:00:09.015 --> 00:00:12.463
+guidance says to point at the
+service management database.
+
+5
+00:00:12.463 --> 00:00:16.463
+They say nothing about directory service
+accounts, which is half the gate.
+
+6
+00:00:16.463 --> 00:00:20.550
+And there's no orphan rule, no
+disable and no claim window.
+
+7
+00:00:20.550 --> 00:00:25.667
+So the verdict: keep Learn's query and its
+owner requests as the model for the reads
+
+8
+00:00:25.667 --> 00:00:30.250
+and for the one write that adds an owner,
+but don't use the query as the check.
+
+9
+00:00:30.250 --> 00:00:33.340
+It counts the wrong owners,
+on the wrong object.

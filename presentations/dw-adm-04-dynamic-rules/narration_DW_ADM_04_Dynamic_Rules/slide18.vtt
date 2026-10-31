@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:05.875
+Every group has a file with an owner and
+tests for someone in and someone out.
+
+3
+00:00:05.875 --> 00:00:10.025
+The pull request check passes, with
+its diff in front of the reviewer.
+
+4
+00:00:10.025 --> 00:00:15.120
+Every rule starts with the two guards,
+avoids memberOf and display-name attributes,
+
+5
+00:00:15.120 --> 00:00:18.000
+and makes a written
+decision about empty slots.
+
+6
+00:00:18.000 --> 00:00:21.900
+The offline evaluator agrees
+with Graph's for every test.
+
+7
+00:00:21.900 --> 00:00:26.437
+And the incident runbook takes its record
+before pausing and resumes from it.
+
+8
+00:00:26.437 --> 00:00:30.863
+Next, Chapter 5 builds Lifecycle
+Workflows custom extensions.
+
+9
+00:00:30.863 --> 00:00:32.020
+Thanks for watching.

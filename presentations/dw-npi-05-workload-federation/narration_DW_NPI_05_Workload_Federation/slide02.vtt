@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.775
+Why does this chapter exist?
+
+2
+00:00:01.775 --> 00:00:03.612
+Because of one quiet failure.
+
+3
+00:00:03.612 --> 00:00:08.137
+A federated credential with the wrong
+subject is created without any error.
+
+4
+00:00:08.137 --> 00:00:12.516
+Nothing complains until the day the
+workload tries to exchange its token,
+
+5
+00:00:12.516 --> 00:00:15.962
+and for GitHub, Learn says even
+that fails without an error.
+
+6
+00:00:15.962 --> 00:00:18.701
+The plan's risk register
+names exactly this,
+
+7
+00:00:18.701 --> 00:00:23.188
+and its answer is to test every exchange
+before the parallel run starts.
+
+8
+00:00:23.188 --> 00:00:25.525
+That test is the center of the chapter.
+
+9
+00:00:25.525 --> 00:00:28.208
+The order of conversion comes from Book 2:
+
+10
+00:00:28.208 --> 00:00:32.785
+managed identities where the host
+is in Azure, federated credentials
+
+11
+00:00:32.785 --> 00:00:37.180
+where the host speaks O I D C,
+certificates only where neither works.

@@ -1,0 +1,847 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.038
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.038 --> 00:00:05.688
+Building Privileged Access.
+
+3
+00:00:05.688 --> 00:00:09.238
+This is Chapter 6: PIM
+for Azure resources.
+
+4
+00:00:09.238 --> 00:00:13.240
+Standing Owner and Contributor are
+what an attacker hopes to find,
+
+5
+00:00:13.240 --> 00:00:17.314
+so this chapter makes those roles
+eligible, time-bound and approved,
+
+6
+00:00:17.314 --> 00:00:20.588
+and holds the settings as
+reviewed code at every scope.
+
+7
+00:00:20.588 --> 00:00:25.496
+We'll start from Learn's walkthroughs
+and Microsoft's own request examples,
+
+8
+00:00:25.496 --> 00:00:28.346
+see what they leave to
+you, then walk the plan,
+
+9
+00:00:28.346 --> 00:00:31.275
+the dry run, the apply,
+two labs and the dangers.
+
+10
+00:00:31.275 --> 00:00:36.780
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+11
+00:00:40.530 --> 00:00:41.680
+Why does this matter?
+
+12
+00:00:41.680 --> 00:00:44.792
+Because a standing Owner is
+privilege that's always on.
+
+13
+00:00:44.792 --> 00:00:47.889
+Nobody has to activate it,
+approve it, or explain it,
+
+14
+00:00:47.889 --> 00:00:51.817
+so an attacker who takes the
+account doesn't have to wait either.
+
+15
+00:00:51.817 --> 00:00:54.910
+The fix is the one you
+already know from Entra roles:
+
+16
+00:00:54.910 --> 00:00:57.781
+make the role eligible,
+time-bound and approved.
+
+17
+00:00:57.781 --> 00:01:01.555
+What's different in Azure is that
+every scope keeps its own rules.
+
+18
+00:01:01.555 --> 00:01:06.358
+The chapter governs the three roles the
+plan names, Owner, Contributor and User
+
+19
+00:01:06.358 --> 00:01:11.880
+Access Administrator, with Microsoft's
+ceiling of three subscription owners on top.
+
+20
+00:01:15.630 --> 00:01:16.993
+Next, which cloud.
+
+21
+00:01:16.993 --> 00:01:21.951
+This estate's tenant is GCC on the
+worldwide endpoints, with commercial Azure,
+
+22
+00:01:21.951 --> 00:01:26.755
+so every call in this chapter goes to
+the commercial Resource Manager host.
+
+23
+00:01:26.755 --> 00:01:29.957
+GCC High and Department
+of Defense subscriptions
+
+24
+00:01:29.957 --> 00:01:32.855
+live in Azure Government,
+which has its own host.
+
+25
+00:01:32.855 --> 00:01:36.863
+The licensing PIM needs is
+available in all of these clouds,
+
+26
+00:01:36.863 --> 00:01:41.199
+but notice the honest gap: no page
+the chapter read states the PIM
+
+27
+00:01:41.199 --> 00:01:45.780
+Resource Manager API's availability
+in Azure Government outright.
+
+28
+00:01:45.780 --> 00:01:48.555
+So the code makes you name
+the cloud every time,
+
+29
+00:01:48.555 --> 00:01:51.690
+and refuses a file written
+for a different one.
+
+30
+00:01:55.440 --> 00:01:57.301
+Here's the first thing to know:
+
+31
+00:01:57.301 --> 00:02:00.790
+PIM for Azure resources isn't
+in Microsoft Graph at all.
+
+32
+00:02:00.790 --> 00:02:03.658
+Entra roles and groups
+are managed through Graph,
+
+33
+00:02:03.658 --> 00:02:08.065
+but Azure resources go through Resource
+Manager, with no Graph permissions.
+
+34
+00:02:08.065 --> 00:02:11.982
+Three resource types do the work:
+one for eligible assignments,
+
+35
+00:02:11.982 --> 00:02:16.577
+one for active assignments and activations,
+and one for the role settings.
+
+36
+00:02:16.577 --> 00:02:21.403
+The schedules they produce are the same
+lists Chapter 1's inventory already reads.
+
+37
+00:02:21.403 --> 00:02:25.896
+And there's a deadline: the old
+beta endpoint stops returning data
+
+38
+00:02:25.896 --> 00:02:30.750
+at the end of October 2026, so the
+chapter uses only the current API.
+
+39
+00:02:34.500 --> 00:02:36.188
+Three facts shape the code.
+
+40
+00:02:36.188 --> 00:02:41.381
+First, the version: the generally available
+release covers every PIM resource type,
+
+41
+00:02:41.381 --> 00:02:44.166
+and the code pins it, even
+though one of Learn's
+
+42
+00:02:44.166 --> 00:02:46.725
+how-to pages still shows an older preview.
+
+43
+00:02:46.725 --> 00:02:48.387
+When Learn's pages disagree,
+
+44
+00:02:48.387 --> 00:02:52.650
+the chapter follows the stricter one
+and writes the disagreement down.
+
+45
+00:02:52.650 --> 00:02:54.850
+Second, settings don't inherit.
+
+46
+00:02:54.850 --> 00:02:59.050
+A resource group under a governed
+subscription keeps its defaults,
+
+47
+00:02:59.050 --> 00:03:01.150
+so the file has to list every scope.
+
+48
+00:03:01.150 --> 00:03:04.487
+Third, only users and
+groups can be eligible.
+
+49
+00:03:04.487 --> 00:03:09.050
+A pipeline's service principal can't
+activate, so it can't be converted.
+
+50
+00:03:12.800 --> 00:03:14.512
+Here's what Microsoft gives you.
+
+51
+00:03:14.512 --> 00:03:17.509
+Learn has three walkthroughs, one per job:
+
+52
+00:03:17.509 --> 00:03:21.387
+eligible access, active
+access, and the role settings.
+
+53
+00:03:21.387 --> 00:03:24.927
+Together they show how to
+list, grant, remove, activate,
+
+54
+00:03:24.927 --> 00:03:30.075
+and patch a role's rules, and which errors
+come back when a request breaks a rule.
+
+55
+00:03:30.075 --> 00:03:32.988
+Their source isn't public,
+so they can't be pinned.
+
+56
+00:03:32.988 --> 00:03:37.380
+But Microsoft's request and response
+examples for the same calls are,
+
+57
+00:03:37.380 --> 00:03:41.926
+so the repository pins six of them,
+unmodified, with hashes a test checks.
+
+58
+00:03:41.926 --> 00:03:45.683
+A stand-in Resource Manager then
+replays them through the code,
+
+59
+00:03:45.683 --> 00:03:48.570
+and nothing signs in
+or leaves the machine.
+
+60
+00:03:52.320 --> 00:03:55.358
+Replaying the examples
+turns up some real traps.
+
+61
+00:03:55.358 --> 00:03:58.688
+The list examples show
+one page for one person,
+
+62
+00:03:58.688 --> 00:04:01.669
+but a busy subscription spans many pages.
+
+63
+00:04:01.669 --> 00:04:04.959
+One example's role ID and
+its friendly name disagree,
+
+64
+00:04:04.959 --> 00:04:08.707
+so code that trusts the name
+files a row under the wrong role.
+
+65
+00:04:08.707 --> 00:04:12.675
+Another example says "assigned",
+but it's really an activation,
+
+66
+00:04:12.675 --> 00:04:15.770
+and read naively it looks
+like standing access.
+
+67
+00:04:15.770 --> 00:04:20.458
+The scope is written three different
+ways, which quietly breaks any diff.
+
+68
+00:04:20.458 --> 00:04:23.192
+And the sample eligibility lasts a year,
+
+69
+00:04:23.192 --> 00:04:26.671
+with no justification,
+longer than any tier allows.
+
+70
+00:04:26.671 --> 00:04:29.150
+Each of these is pinned by a test.
+
+71
+00:04:32.900 --> 00:04:37.425
+The rest of the gaps aren't mistakes,
+they're things the examples never try to do.
+
+72
+00:04:37.425 --> 00:04:40.426
+They show one rule patched
+at one subscription,
+
+73
+00:04:40.426 --> 00:04:43.888
+but settings don't inherit,
+so every scope needs its own.
+
+74
+00:04:43.888 --> 00:04:47.975
+Nothing in them finds standing Owner,
+which is the whole point of the project.
+
+75
+00:04:47.975 --> 00:04:52.587
+Every write is a request you send by
+hand, with nothing to review first.
+
+76
+00:04:52.587 --> 00:04:55.438
+And every request goes
+to the commercial host.
+
+77
+00:04:55.438 --> 00:04:59.614
+So the verdict: use the walkthroughs
+as the procedure and the examples
+
+78
+00:04:59.614 --> 00:05:03.650
+as the contract for shapes, but
+don't drive the estate from them.
+
+79
+00:05:07.400 --> 00:05:08.338
+Now the code.
+
+80
+00:05:08.338 --> 00:05:13.067
+It's a second module that imports
+Chapter 1's and changes nothing in it,
+
+81
+00:05:13.067 --> 00:05:16.801
+so every read is declared,
+paged to the end, and recorded.
+
+82
+00:05:16.801 --> 00:05:18.788
+The call list has two tasks.
+
+83
+00:05:18.788 --> 00:05:20.538
+Reading needs only Reader.
+
+84
+00:05:20.538 --> 00:05:24.302
+Writing needs User Access
+Administrator, which can manage role
+
+85
+00:05:24.302 --> 00:05:28.563
+assignments but can't change the
+resources themselves, the way Owner can.
+
+86
+00:05:28.563 --> 00:05:32.772
+There's one more candidate, the
+role-based access control administrator,
+
+87
+00:05:32.772 --> 00:05:34.737
+which holds the same write action.
+
+88
+00:05:34.737 --> 00:05:38.882
+But the PIM pages name only Owner
+and User Access Administrator,
+
+89
+00:05:38.882 --> 00:05:43.630
+so the code takes the stricter
+reading until a lab proves otherwise.
+
+90
+00:05:47.380 --> 00:05:50.505
+The heart of the configuration
+is one reviewed file.
+
+91
+00:05:50.505 --> 00:05:55.257
+It names the scopes, the roles, who's
+eligible, and the settings for each tier,
+
+92
+00:05:55.257 --> 00:05:57.439
+taken from Book 04's role settings:
+
+93
+00:05:57.439 --> 00:06:02.269
+shorter activations and tighter
+eligibility for the most sensitive tier,
+
+94
+00:06:02.269 --> 00:06:07.255
+approval by a named group, and a
+justification and ticket on every activation.
+
+95
+00:06:07.255 --> 00:06:10.005
+Those values are the
+program's design guidance.
+
+96
+00:06:10.005 --> 00:06:13.855
+The loader also refuses what
+Learn or the program rules out.
+
+97
+00:06:13.855 --> 00:06:16.454
+The subtle one is authentication context:
+
+98
+00:06:16.454 --> 00:06:21.207
+Learn says to create its Conditional
+Access policy before you point PIM at it,
+
+99
+00:06:21.207 --> 00:06:24.330
+so the file can't use it
+until that's confirmed.
+
+100
+00:06:28.080 --> 00:06:31.353
+The read is straightforward:
+at each governed scope,
+
+101
+00:06:31.353 --> 00:06:34.093
+both schedule lists and
+one policy per role.
+
+102
+00:06:34.093 --> 00:06:38.431
+A schedule counts as permanently
+active only when it's assigned,
+
+103
+00:06:38.431 --> 00:06:41.379
+never ends, isn't an
+activation, and is direct.
+
+104
+00:06:41.379 --> 00:06:43.330
+The plan is where order matters.
+
+105
+00:06:43.330 --> 00:06:48.093
+Policies go first, because a request
+that breaks the policy is refused.
+
+106
+00:06:48.093 --> 00:06:50.304
+New eligible assignments go second.
+
+107
+00:06:50.304 --> 00:06:52.676
+And standing access is removed last,
+
+108
+00:06:52.676 --> 00:06:55.917
+so nobody loses a role
+before they can activate it.
+
+109
+00:06:55.917 --> 00:06:59.960
+Anything eligible that the file
+doesn't mention is reported,
+
+110
+00:06:59.960 --> 00:07:04.210
+not removed: taking access away
+is its own reviewed change.
+
+111
+00:07:07.960 --> 00:07:12.635
+The plan also reports what it found, and
+just as important, what it won't touch.
+
+112
+00:07:12.635 --> 00:07:16.310
+Standing privileged roles outside
+owned exceptions are findings.
+
+113
+00:07:16.310 --> 00:07:21.097
+A service principal is reported, never
+converted, because it can't activate.
+
+114
+00:07:21.097 --> 00:07:23.986
+Root-scope elevation is
+flagged for removal.
+
+115
+00:07:23.986 --> 00:07:27.982
+The identity running the plan
+never plans away its own access;
+
+116
+00:07:27.982 --> 00:07:30.647
+that's decided last, from another session.
+
+117
+00:07:30.647 --> 00:07:34.510
+And a subscription that would end up
+with more than three owners is flagged.
+
+118
+00:07:34.510 --> 00:07:37.588
+Writing, meanwhile, is
+hard to do by accident:
+
+119
+00:07:37.588 --> 00:07:42.205
+it's a dry run unless you ask to
+apply, and every run leaves evidence,
+
+120
+00:07:42.205 --> 00:07:46.060
+including the state as read,
+which is your back-out.
+
+121
+00:07:49.810 --> 00:07:50.872
+Who is this for?
+
+122
+00:07:50.872 --> 00:07:53.169
+The platform engineers who own the Azure
+
+123
+00:07:53.169 --> 00:07:56.073
+management group hierarchy
+write and keep the file.
+
+124
+00:07:56.073 --> 00:08:00.266
+The identity engineers and the
+information system security officers
+
+125
+00:08:00.266 --> 00:08:04.459
+review every change before it's applied,
+by reading the diff and the plan.
+
+126
+00:08:04.459 --> 00:08:08.500
+The eligible holders are people
+and groups, licensed for PIM,
+
+127
+00:08:08.500 --> 00:08:12.298
+who'll now activate with a
+reason, a ticket and an approval.
+
+128
+00:08:12.298 --> 00:08:17.552
+And the automation itself runs with as
+little as possible: Reader for the dry run,
+
+129
+00:08:17.552 --> 00:08:21.770
+User Access Administrator held only
+for a day or so for the apply,
+
+130
+00:08:21.770 --> 00:08:25.000
+never Owner, and no
+Graph permissions at all.
+
+131
+00:08:28.750 --> 00:08:32.800
+Lab 1 runs on a laptop, with
+no tenant and no network.
+
+132
+00:08:32.800 --> 00:08:37.263
+First you replay Microsoft's own
+examples, and the six tests pass.
+
+133
+00:08:37.263 --> 00:08:42.112
+Read the second one: Microsoft's assignment
+example is really an activation.
+
+134
+00:08:42.112 --> 00:08:45.849
+Next, ask the code which
+roles each task needs.
+
+135
+00:08:45.849 --> 00:08:47.638
+Owner isn't needed for anything.
+
+136
+00:08:47.638 --> 00:08:51.475
+Then plan against a small
+fictional estate, as a dry run.
+
+137
+00:08:51.475 --> 00:08:56.668
+It reads the schedules and policies, plans
+eleven policy updates, five new eligible
+
+138
+00:08:56.668 --> 00:09:01.862
+assignments and three removals, and writes
+nineteen requests without sending one.
+
+139
+00:09:01.862 --> 00:09:03.610
+Let's read what it planned.
+
+140
+00:09:07.360 --> 00:09:09.635
+Now read the plan the
+way a reviewer would.
+
+141
+00:09:09.635 --> 00:09:12.441
+Three standing assignments
+become eligible,
+
+142
+00:09:12.441 --> 00:09:16.797
+each with a matching removal, and
+two declared groups gain eligibility.
+
+143
+00:09:16.797 --> 00:09:21.648
+Seventy policy rules change, but a policy
+that's already right isn't touched.
+
+144
+00:09:21.648 --> 00:09:25.906
+The findings tell the rest: the
+automation's own access is left alone,
+
+145
+00:09:25.906 --> 00:09:30.772
+a root-scope elevation is flagged, a
+pipeline's service principal is reported,
+
+146
+00:09:30.772 --> 00:09:34.498
+not converted, and one subscription
+would have four owners.
+
+147
+00:09:34.498 --> 00:09:39.110
+Then apply against the fake, and a
+fresh read shows nothing left to change.
+
+148
+00:09:39.110 --> 00:09:44.500
+Finally, watch the code refuse an undeclared
+write and a scope it doesn't govern.
+
+149
+00:09:48.250 --> 00:09:52.812
+Lab 2 moves to a test tenant and a
+test subscription, never production.
+
+150
+00:09:52.812 --> 00:09:55.129
+You give a reader app nothing but Reader,
+
+151
+00:09:55.129 --> 00:09:59.341
+write a small desired state with one
+hand-made standing Owner to convert,
+
+152
+00:09:59.341 --> 00:10:03.624
+and plan live, comparing what the code
+read with what the admin center shows.
+
+153
+00:10:03.624 --> 00:10:06.891
+Then you grant the write role
+for a single day, apply,
+
+154
+00:10:06.891 --> 00:10:10.313
+and activate as the test user
+to see the approval flow.
+
+155
+00:10:10.313 --> 00:10:15.001
+There's also a small experiment to settle
+an open question about the narrower role.
+
+156
+00:10:15.001 --> 00:10:17.668
+And to back it out, wait
+five minutes first:
+
+157
+00:10:17.668 --> 00:10:21.330
+Learn says a new assignment
+can't be removed sooner.
+
+158
+00:10:25.080 --> 00:10:29.378
+Every danger here is a way a well-meant
+change goes wrong in production,
+
+159
+00:10:29.378 --> 00:10:31.230
+and each has a guard in the code.
+
+160
+00:10:31.230 --> 00:10:35.316
+The worst is order: remove
+standing Owner before the eligible
+
+161
+00:10:35.316 --> 00:10:39.242
+role exists and someone loses
+access in the middle of a task.
+
+162
+00:10:39.242 --> 00:10:44.405
+Close behind is the automation removing
+its own access halfway through a run.
+
+163
+00:10:44.405 --> 00:10:48.980
+Others are quieter: a resource group
+nobody listed keeps its defaults, an
+
+164
+00:10:48.980 --> 00:10:52.716
+authentication context points
+at a policy that isn't there,
+
+165
+00:10:52.716 --> 00:10:54.393
+or a typo lands unreviewed.
+
+166
+00:10:54.393 --> 00:10:56.836
+The pattern is the same as before:
+
+167
+00:10:56.836 --> 00:11:00.830
+a dry run by default, and
+rules that run every time.
+
+168
+00:11:04.580 --> 00:11:05.930
+Here's what done looks like.
+
+169
+00:11:05.930 --> 00:11:08.954
+On the estate side: every
+governed scope is listed,
+
+170
+00:11:08.954 --> 00:11:13.822
+and you've written down what isn't; each
+role's settings match the tier everywhere,
+
+171
+00:11:13.822 --> 00:11:18.763
+and a fresh read after the apply shows
+nothing left; no standing privileged roles
+
+172
+00:11:18.763 --> 00:11:23.705
+remain outside owned exceptions; and no
+subscription has more than three owners.
+
+173
+00:11:23.705 --> 00:11:28.797
+On the run side: the right roles, held
+briefly, the right cloud, a reviewer who read
+
+174
+00:11:28.797 --> 00:11:33.967
+the plan before the apply, and pinned
+examples still matching what was reviewed.
+
+175
+00:11:33.967 --> 00:11:37.968
+Next, Chapter 7 reviews who
+holds these privileged roles.
+
+176
+00:11:37.968 --> 00:11:39.140
+Thanks for watching.

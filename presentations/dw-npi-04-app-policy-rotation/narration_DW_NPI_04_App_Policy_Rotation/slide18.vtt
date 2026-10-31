@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:05.497
+On the policy side: a reviewed file
+with an approved effective date,
+
+3
+00:00:05.497 --> 00:00:10.414
+the tenant default matching it on both
+object types with no warning in the admin
+
+4
+00:00:10.414 --> 00:00:12.798
+center, every app policy accounted for,
+
+5
+00:00:12.798 --> 00:00:16.225
+every exception dated, and
+every registered app locked.
+
+6
+00:00:16.225 --> 00:00:19.562
+On the rotation side: every
+certificate bound to a vault,
+
+7
+00:00:19.562 --> 00:00:24.567
+every rotation approved and overlapped,
+every plan approved by someone other than
+
+8
+00:00:24.567 --> 00:00:29.137
+the person who applied it, and the pinned
+samples still the ones you reviewed.
+
+9
+00:00:29.137 --> 00:00:31.614
+Next, Chapter 5 replaces those flagged
+
+10
+00:00:31.614 --> 00:00:34.787
+secrets with federation
+and managed identities.
+
+11
+00:00:34.787 --> 00:00:35.950
+Thanks for watching.

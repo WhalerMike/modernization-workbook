@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.714
+Each of these dangers ends the same way:
+
+2
+00:00:02.714 --> 00:00:07.125
+a leaver whose access isn't really
+gone, or a record that says it is.
+
+3
+00:00:07.125 --> 00:00:11.152
+The quietest are the callback
+problems: no callback on failure,
+
+4
+00:00:11.152 --> 00:00:15.025
+a callback that claims success,
+or one sent to the wrong cloud.
+
+5
+00:00:15.025 --> 00:00:17.872
+Others are about trust: a forged payload,
+
+6
+00:00:17.872 --> 00:00:22.100
+a broad permission, or a
+bearer-token extension left behind.
+
+7
+00:00:22.100 --> 00:00:24.798
+And some are about order:
+doing the work twice,
+
+8
+00:00:24.798 --> 00:00:28.225
+or running the custom task
+before the account is blocked.
+
+9
+00:00:28.225 --> 00:00:33.600
+Notice the pattern again: each guard is a
+lint rule or a check that runs every time.

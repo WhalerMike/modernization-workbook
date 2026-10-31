@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Here's the check.
+
+2
+00:00:01.112 --> 00:00:03.713
+It reads each owner and each nominee once,
+
+3
+00:00:03.713 --> 00:00:06.695
+with a single call and a
+single read permission,
+
+4
+00:00:06.695 --> 00:00:11.513
+so it can tell a member from a guest and
+an enabled account from a disabled one.
+
+5
+00:00:11.513 --> 00:00:13.274
+Then it applies nine rules.
+
+6
+00:00:13.274 --> 00:00:17.877
+The findings are the ones that block the
+gate: no valid human owner, only one,
+
+7
+00:00:17.877 --> 00:00:22.706
+a missing reference, a reference that
+points at nothing or at a retired record,
+
+8
+00:00:22.706 --> 00:00:25.875
+and a directory account
+with no application owner.
+
+9
+00:00:25.875 --> 00:00:29.063
+Guests, bots and disabled
+owners are warnings.
+
+10
+00:00:29.063 --> 00:00:33.380
+And anything that might be a person
+isn't checked until someone confirms it.

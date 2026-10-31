@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+What Learn says about the engine is
+what makes this worth the trouble.
+
+2
+00:00:03.550 --> 00:00:08.225
+The rule language is small and precise,
+so a parser can follow it exactly.
+
+3
+00:00:08.225 --> 00:00:12.195
+Comparisons ignore case, so a
+lower-case code still matches,
+
+4
+00:00:12.195 --> 00:00:14.950
+and the HR side has to
+keep its codes clean.
+
+5
+00:00:14.950 --> 00:00:19.041
+Processing runs one tenant at a
+time and can take more than a day,
+
+6
+00:00:19.041 --> 00:00:21.638
+so a mistake doesn't undo itself quickly.
+
+7
+00:00:21.638 --> 00:00:25.027
+The memberOf operator is a
+preview that ends in November,
+
+8
+00:00:25.027 --> 00:00:26.975
+after which those groups freeze.
+
+9
+00:00:26.975 --> 00:00:30.666
+And agents' user accounts
+are included unless excluded,
+
+10
+00:00:30.666 --> 00:00:33.940
+with no documented property
+to exclude them yet.

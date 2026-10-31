@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:06.149
+On the cloud side: an explicit cloud
+name that fails on anything unknown,
+
+3
+00:00:06.149 --> 00:00:09.209
+no government hosts in
+the GCC configuration,
+
+4
+00:00:09.209 --> 00:00:12.670
+the right authority and
+scope for every credential,
+
+5
+00:00:12.670 --> 00:00:17.500
+one token per resource, and the token
+never leaving the cloud's Graph host.
+
+6
+00:00:17.500 --> 00:00:22.333
+On the run side: every call declared
+with its least privileged permission,
+
+7
+00:00:22.333 --> 00:00:24.393
+an app that holds exactly those,
+
+8
+00:00:24.393 --> 00:00:28.988
+paging and retries done Microsoft's
+way, and beta declared and labeled.
+
+9
+00:00:28.988 --> 00:00:33.525
+Next, Chapter 3 uses these rules
+to write a validation kit check.
+
+10
+00:00:33.525 --> 00:00:34.680
+Thanks for watching.

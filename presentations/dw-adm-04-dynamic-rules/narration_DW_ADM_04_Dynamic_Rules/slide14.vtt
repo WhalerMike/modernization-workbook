@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.188
+Lab 1 needs only a laptop
+with PowerShell 7 and Pester.
+
+2
+00:00:04.188 --> 00:00:07.976
+First you run Learn's own pause
+and resume scripts against a fake
+
+3
+00:00:07.976 --> 00:00:11.550
+tenant with two groups, one of
+them already paused for review.
+
+4
+00:00:11.550 --> 00:00:15.875
+After the resume, both are on:
+the held group came back to life.
+
+5
+00:00:15.875 --> 00:00:20.050
+Try an unknown cloud name and
+you'll see it sign in to worldwide.
+
+6
+00:00:20.050 --> 00:00:24.925
+Then you lint Book 3's table and evaluate
+a rule over the fictional people.
+
+7
+00:00:24.925 --> 00:00:27.666
+The disabled account
+and the guest stay out,
+
+8
+00:00:27.666 --> 00:00:30.770
+and the lower-case code gets
+in, just as Learn says.

@@ -1,0 +1,788 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:09.362
+This is Chapter 4: dynamic rules as code.
+
+4
+00:00:09.362 --> 00:00:13.413
+A dynamic membership rule is
+access policy written as one line,
+
+5
+00:00:13.413 --> 00:00:16.216
+so the chapter treats
+it like code: reviewed,
+
+6
+00:00:16.216 --> 00:00:20.188
+tested against people you can
+name, and diffed before it ships.
+
+7
+00:00:20.188 --> 00:00:25.210
+We'll look at what Microsoft's engine and
+samples give you, what they leave out,
+
+8
+00:00:25.210 --> 00:00:28.398
+then the rule library, the
+linter, the shadow diff,
+
+9
+00:00:28.398 --> 00:00:31.188
+the incident path, two
+labs and the dangers.
+
+10
+00:00:31.188 --> 00:00:36.710
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+11
+00:00:40.460 --> 00:00:42.697
+Why treat a one-line rule as code?
+
+12
+00:00:42.697 --> 00:00:46.810
+Because in this migration,
+access follows the HR record.
+
+13
+00:00:46.810 --> 00:00:49.685
+HR values land in a few coded attributes,
+
+14
+00:00:49.685 --> 00:00:54.998
+and dynamic rules read them to decide
+who gets access, licenses and policy.
+
+15
+00:00:54.998 --> 00:00:58.615
+Every rule that grants access
+starts with two guards:
+
+16
+00:00:58.615 --> 00:01:01.985
+the account is enabled, and
+it's a member, not a guest.
+
+17
+00:01:01.985 --> 00:01:06.635
+The validation kit from Chapter 3 already
+checks the rules live in a tenant.
+
+18
+00:01:06.635 --> 00:01:10.302
+This chapter moves those checks
+earlier, into the pull request,
+
+19
+00:01:10.302 --> 00:01:14.260
+so a bad rule is caught before
+the engine starts moving people.
+
+20
+00:01:18.010 --> 00:01:21.510
+What Learn says about the engine is
+what makes this worth the trouble.
+
+21
+00:01:21.510 --> 00:01:26.185
+The rule language is small and precise,
+so a parser can follow it exactly.
+
+22
+00:01:26.185 --> 00:01:30.155
+Comparisons ignore case, so a
+lower-case code still matches,
+
+23
+00:01:30.155 --> 00:01:32.910
+and the HR side has to
+keep its codes clean.
+
+24
+00:01:32.910 --> 00:01:37.001
+Processing runs one tenant at a
+time and can take more than a day,
+
+25
+00:01:37.001 --> 00:01:39.598
+so a mistake doesn't undo itself quickly.
+
+26
+00:01:39.598 --> 00:01:42.987
+The memberOf operator is a
+preview that ends in November,
+
+27
+00:01:42.987 --> 00:01:44.935
+after which those groups freeze.
+
+28
+00:01:44.935 --> 00:01:48.626
+And agents' user accounts
+are included unless excluded,
+
+29
+00:01:48.626 --> 00:01:52.200
+with no documented property
+to exclude them yet.
+
+30
+00:01:55.950 --> 00:01:58.537
+Which cloud you're in
+matters here in a quiet way.
+
+31
+00:01:58.537 --> 00:02:01.407
+Learn's incident samples
+ask you for the cloud,
+
+32
+00:02:01.407 --> 00:02:06.389
+but if they don't recognize your answer,
+they fall back to the worldwide endpoint,
+
+33
+00:02:06.389 --> 00:02:10.013
+so a GCC High tenant could be
+signed in to as the wrong cloud.
+
+34
+00:02:10.013 --> 00:02:14.688
+The chapter's code uses the same hosts
+but refuses a cloud name it doesn't know.
+
+35
+00:02:14.688 --> 00:02:18.765
+Graph's own rule evaluator is
+a beta, delegated-only action,
+
+36
+00:02:18.765 --> 00:02:22.926
+listed for the global service
+and the US Government clouds.
+
+37
+00:02:22.926 --> 00:02:25.697
+And the memberOf preview
+is public cloud only,
+
+38
+00:02:25.697 --> 00:02:29.060
+which is one more reason
+the library doesn't use it.
+
+39
+00:02:32.810 --> 00:02:34.460
+So what does Microsoft give you?
+
+40
+00:02:34.460 --> 00:02:38.716
+For writing rules: a syntax page
+with every property and operator,
+
+41
+00:02:38.716 --> 00:02:41.160
+and a page on writing efficient rules.
+
+42
+00:02:41.160 --> 00:02:44.026
+There's no sample library
+of rules or tests;
+
+43
+00:02:44.026 --> 00:02:47.548
+the closest thing is Graph's
+evaluator, which is beta.
+
+44
+00:02:47.548 --> 00:02:52.029
+For running the engine, there's more:
+five PowerShell samples for an incident,
+
+45
+00:02:52.029 --> 00:02:55.372
+when a rule change starts moving
+people you didn't intend.
+
+46
+00:02:55.372 --> 00:02:59.848
+You pause processing, then resume
+it in order, critical groups first.
+
+47
+00:02:59.848 --> 00:03:03.290
+Each script works in two
+phases, asks before it acts,
+
+48
+00:03:03.290 --> 00:03:06.520
+and asks only for the
+permissions it needs.
+
+49
+00:03:10.270 --> 00:03:13.156
+The scripts only exist
+inside Learn's pages,
+
+50
+00:03:13.156 --> 00:03:16.923
+so the repository pins the
+pages themselves, unmodified,
+
+51
+00:03:16.923 --> 00:03:21.733
+at a known commit, with hashes a test
+checks and a weekly watch for changes.
+
+52
+00:03:21.733 --> 00:03:25.686
+Then a small harness pulls each
+script out of its pinned page
+
+53
+00:03:25.686 --> 00:03:29.482
+at test time and runs it, as
+published, against a fake tenant.
+
+54
+00:03:29.482 --> 00:03:33.178
+Only the things it calls
+outside itself are swapped out:
+
+55
+00:03:33.178 --> 00:03:37.357
+the prompts, the screen output,
+the sleep, and four Graph cmdlets.
+
+56
+00:03:37.357 --> 00:03:40.477
+That way you can watch
+Microsoft's own scripts behave,
+
+57
+00:03:40.477 --> 00:03:42.320
+instead of taking them on trust.
+
+58
+00:03:42.320 --> 00:03:43.950
+Here's what that showed.
+
+59
+00:03:47.700 --> 00:03:49.462
+This is the heart of the chapter.
+
+60
+00:03:49.462 --> 00:03:53.975
+Learn's pause script does its job well,
+and the code keeps it as the model.
+
+61
+00:03:53.975 --> 00:03:56.325
+But it records nothing
+about what it paused.
+
+62
+00:03:56.325 --> 00:03:59.934
+So when you resume, Learn's script
+turns on every paused group,
+
+63
+00:03:59.934 --> 00:04:04.337
+including one that was deliberately
+frozen before the incident started.
+
+64
+00:04:04.337 --> 00:04:08.310
+It also falls back to the worldwide
+cloud on an answer it doesn't know,
+
+65
+00:04:08.310 --> 00:04:10.863
+and nothing makes you
+wait before resuming.
+
+66
+00:04:10.863 --> 00:04:12.650
+The verdict: during recovery,
+
+67
+00:04:12.650 --> 00:04:16.300
+the questions are what did we
+pause, and what was already off.
+
+68
+00:04:16.300 --> 00:04:18.260
+Only a record answers them.
+
+69
+00:04:22.010 --> 00:04:23.910
+Here's what a rule looks like as code.
+
+70
+00:04:23.910 --> 00:04:28.487
+Each group is one small file: a name,
+whether it holds users or devices,
+
+71
+00:04:28.487 --> 00:04:33.880
+an owner who approves changes, a flag saying
+whether it's critical in an incident,
+
+72
+00:04:33.880 --> 00:04:37.885
+the rule itself with its two guards
+at the top, and a few tests.
+
+73
+00:04:37.885 --> 00:04:42.813
+The tests name people in a fictional
+population built to trip every guard:
+
+74
+00:04:42.813 --> 00:04:46.690
+someone disabled, a guest who
+copied an organization code,
+
+75
+00:04:46.690 --> 00:04:49.760
+a worker with an empty
+type, a code in lower case.
+
+76
+00:04:49.760 --> 00:04:54.060
+If the rule ever lets the wrong
+person in, a test says so.
+
+77
+00:04:57.810 --> 00:05:01.335
+To test rules without a tenant,
+the code needs to read them.
+
+78
+00:05:01.335 --> 00:05:06.123
+The parser follows the grammar on
+Learn's syntax page: the operators,
+
+79
+00:05:06.123 --> 00:05:10.997
+lists, collections, nulls, escaped
+quotes and the order of precedence.
+
+80
+00:05:10.997 --> 00:05:13.426
+It even accepts the en dash that some of
+
+81
+00:05:13.426 --> 00:05:16.310
+Learn's own examples
+print instead of a hyphen.
+
+82
+00:05:16.310 --> 00:05:20.994
+The evaluator then checks a parsed
+rule against one fictional person,
+
+83
+00:05:20.994 --> 00:05:23.498
+ignoring case, just as the engine does.
+
+84
+00:05:23.498 --> 00:05:28.648
+It's honest about its limits: anything it
+can't evaluate faithfully, it refuses.
+
+85
+00:05:28.648 --> 00:05:33.530
+It's a test tool, not the engine,
+and Lab 2 checks it against Graph's.
+
+86
+00:05:37.280 --> 00:05:40.017
+The linter is where the
+guards become enforceable.
+
+87
+00:05:40.017 --> 00:05:43.040
+Its most important check
+is that the two guards sit
+
+88
+00:05:43.040 --> 00:05:45.918
+at the top of the rule,
+ANDed with everything else.
+
+89
+00:05:45.918 --> 00:05:48.784
+A guard tucked inside an
+"or" protects nothing,
+
+90
+00:05:48.784 --> 00:05:52.968
+yet a simple text search would still
+find it and call the rule fine.
+
+91
+00:05:52.968 --> 00:05:56.356
+That's why the linter works on
+the parsed rule, not the text.
+
+92
+00:05:56.356 --> 00:05:59.680
+Another check is subtler:
+"not equal to contractor"
+
+93
+00:05:59.680 --> 00:06:02.842
+also lets in someone whose
+worker type is empty.
+
+94
+00:06:02.842 --> 00:06:05.970
+The linter flags it,
+and the owner decides.
+
+95
+00:06:09.720 --> 00:06:13.445
+The best proof a linter is useful
+is that it finds something real.
+
+96
+00:06:13.445 --> 00:06:18.320
+Run against Book 3's own table of
+rule patterns, it found three things.
+
+97
+00:06:18.320 --> 00:06:21.796
+One pattern had no guest guard,
+so a guest with a matching
+
+98
+00:06:21.796 --> 00:06:25.045
+employer name could have
+qualified; that's now fixed.
+
+99
+00:06:25.045 --> 00:06:27.536
+Another let in a worker
+with an empty type,
+
+100
+00:06:27.536 --> 00:06:31.345
+and the owner decided that shouldn't
+count, so it gained a clause.
+
+101
+00:06:31.345 --> 00:06:34.481
+And the direct reports rule
+can't carry guards at all,
+
+102
+00:06:34.481 --> 00:06:39.660
+because Learn says it can't be combined
+with anything, so the linter just notes it.
+
+103
+00:06:43.410 --> 00:06:45.385
+Two more pieces finish the code.
+
+104
+00:06:45.385 --> 00:06:50.391
+The shadow diff runs the old rule and
+the new one over the fictional population
+
+105
+00:06:50.391 --> 00:06:55.397
+and lists exactly who a change adds and
+who it removes, right in the pull request.
+
+106
+00:06:55.397 --> 00:06:58.560
+The same idea runs live
+in the validation kit.
+
+107
+00:06:58.560 --> 00:07:02.286
+The pause manifest is the record
+Learn's samples leave out:
+
+108
+00:07:02.286 --> 00:07:06.168
+before anything is paused, it
+writes down every group's state,
+
+109
+00:07:06.168 --> 00:07:10.360
+then pauses only what was on, and
+later resumes only what it paused.
+
+110
+00:07:10.360 --> 00:07:14.880
+Seventy tests cover all of it,
+with no tenant and no network.
+
+111
+00:07:18.630 --> 00:07:19.692
+Who is this for?
+
+112
+00:07:19.692 --> 00:07:23.393
+Developers build and maintain
+the library and its checks.
+
+113
+00:07:23.393 --> 00:07:26.099
+Identity engineers own the group library,
+
+114
+00:07:26.099 --> 00:07:29.967
+and every rule file names the
+owner who approves its changes.
+
+115
+00:07:29.967 --> 00:07:34.204
+Reviewers approve each change, with
+the shadow diff in front of them.
+
+116
+00:07:34.204 --> 00:07:36.805
+And each step asks for the least it needs.
+
+117
+00:07:36.805 --> 00:07:41.092
+Creating groups needs group write rights
+with the Groups Administrator role.
+
+118
+00:07:41.092 --> 00:07:45.579
+Testing a rule with Graph needs only
+read rights when you supply the rule.
+
+119
+00:07:45.579 --> 00:07:48.504
+Pausing administrative
+units is the heavier one:
+
+120
+00:07:48.504 --> 00:07:51.500
+it needs the Privileged
+Role Administrator.
+
+121
+00:07:55.250 --> 00:07:59.388
+Lab 1 needs only a laptop
+with PowerShell 7 and Pester.
+
+122
+00:07:59.388 --> 00:08:03.176
+First you run Learn's own pause
+and resume scripts against a fake
+
+123
+00:08:03.176 --> 00:08:06.750
+tenant with two groups, one of
+them already paused for review.
+
+124
+00:08:06.750 --> 00:08:11.075
+After the resume, both are on:
+the held group came back to life.
+
+125
+00:08:11.075 --> 00:08:15.250
+Try an unknown cloud name and
+you'll see it sign in to worldwide.
+
+126
+00:08:15.250 --> 00:08:20.125
+Then you lint Book 3's table and evaluate
+a rule over the fictional people.
+
+127
+00:08:20.125 --> 00:08:22.866
+The disabled account
+and the guest stay out,
+
+128
+00:08:22.866 --> 00:08:26.270
+and the lower-case code gets
+in, just as Learn says.
+
+129
+00:08:30.020 --> 00:08:32.382
+Now the part that makes
+the case for all this.
+
+130
+00:08:32.382 --> 00:08:37.608
+Run the pull request check and it
+passes cleanly: six rules, no findings.
+
+131
+00:08:37.608 --> 00:08:40.524
+Then break a rule on purpose
+by deleting the clause
+
+132
+00:08:40.524 --> 00:08:43.371
+that keeps out empty worker
+types, and run it again.
+
+133
+00:08:43.371 --> 00:08:45.070
+Three things fire at once.
+
+134
+00:08:45.070 --> 00:08:49.604
+The linter flags the empty-slot risk,
+the membership test for the worker with
+
+135
+00:08:49.604 --> 00:08:53.995
+no type fails, and the shadow diff shows
+exactly who the change would let in.
+
+136
+00:08:53.995 --> 00:08:58.640
+Put the clause back, run the whole
+suite, and seventy tests pass.
+
+137
+00:09:02.390 --> 00:09:05.375
+Lab 2 moves to a test
+tenant, never production,
+
+138
+00:09:05.375 --> 00:09:08.603
+with fictional users that
+match the population.
+
+139
+00:09:08.603 --> 00:09:13.640
+You create the groups from the library,
+paused, so they can't move anyone yet.
+
+140
+00:09:13.640 --> 00:09:17.623
+Then the key step: ask Graph's own
+evaluator about every test user,
+
+141
+00:09:17.623 --> 00:09:20.328
+and compare its answer
+with the offline one.
+
+142
+00:09:20.328 --> 00:09:24.228
+Any disagreement is a finding
+against the offline evaluator.
+
+143
+00:09:24.228 --> 00:09:27.552
+Next you turn processing on
+and diff two rules live.
+
+144
+00:09:27.552 --> 00:09:31.205
+Finally you drill an incident:
+take the record, pause,
+
+145
+00:09:31.205 --> 00:09:35.810
+resume the critical groups by
+name, then back everything out.
+
+146
+00:09:39.560 --> 00:09:42.522
+Each of these dangers has a
+guard, and most of them are
+
+147
+00:09:42.522 --> 00:09:45.898
+rules that run every time rather
+than someone remembering.
+
+148
+00:09:45.898 --> 00:09:49.233
+The quietest one is a guard
+hidden inside an "or":
+
+149
+00:09:49.233 --> 00:09:53.973
+the rule looks right, a text search
+agrees, and guests get in anyway.
+
+150
+00:09:53.973 --> 00:09:57.769
+The loudest is a change that moves
+hundreds of people within hours,
+
+151
+00:09:57.769 --> 00:10:00.598
+which is why every change
+carries tests and a diff.
+
+152
+00:10:00.598 --> 00:10:04.297
+After an incident, resuming
+everything is its own danger.
+
+153
+00:10:04.297 --> 00:10:10.220
+And one row stays honestly open: agents'
+accounts, until Learn names the property.
+
+154
+00:10:13.970 --> 00:10:15.320
+Here's what done looks like.
+
+155
+00:10:15.320 --> 00:10:19.795
+Every group has a file with an owner and
+tests for someone in and someone out.
+
+156
+00:10:19.795 --> 00:10:23.945
+The pull request check passes, with
+its diff in front of the reviewer.
+
+157
+00:10:23.945 --> 00:10:29.040
+Every rule starts with the two guards,
+avoids memberOf and display-name attributes,
+
+158
+00:10:29.040 --> 00:10:31.920
+and makes a written
+decision about empty slots.
+
+159
+00:10:31.920 --> 00:10:35.820
+The offline evaluator agrees
+with Graph's for every test.
+
+160
+00:10:35.820 --> 00:10:40.357
+And the incident runbook takes its record
+before pausing and resumes from it.
+
+161
+00:10:40.357 --> 00:10:44.783
+Next, Chapter 5 builds Lifecycle
+Workflows custom extensions.
+
+162
+00:10:44.783 --> 00:10:45.940
+Thanks for watching.

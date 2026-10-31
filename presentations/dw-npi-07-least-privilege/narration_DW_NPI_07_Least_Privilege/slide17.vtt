@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.325
+Each danger here has a guard in the code.
+
+2
+00:00:02.325 --> 00:00:06.366
+The most direct is simply running
+Learn's script against a real tenant,
+
+3
+00:00:06.366 --> 00:00:08.875
+which removes far more
+than anyone planned.
+
+4
+00:00:08.875 --> 00:00:13.758
+Close behind are deleting an app instead of
+a grant, and removing a broad permission
+
+5
+00:00:13.758 --> 00:00:18.287
+before its replacement is in place, which
+takes a workload down in production.
+
+6
+00:00:18.287 --> 00:00:22.955
+Then the subtle ones: a mail scope that
+does nothing while the old grant stays,
+
+7
+00:00:22.955 --> 00:00:27.918
+a narrowing that actually widens, last
+quarter's answer passing as this quarter's,
+
+8
+00:00:27.918 --> 00:00:31.390
+and a permission quietly
+re-granted at the next consent.

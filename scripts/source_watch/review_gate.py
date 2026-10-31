@@ -38,6 +38,10 @@ ROOT = Path(__file__).resolve().parents[2]
 GATED = ["docs/project-plans/developer-workbooks"]
 
 FRONT_MATTER = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.S)
+# The narrated-tour callout or table the tour build writes (presentations/_build/link_tours.py):
+# it starts a line, after a blank line, and is followed by one blank line. A block can't
+# contain another begin marker, so a deleted end marker can't hide the text up to a later block.
+TOUR_BLOCK = re.compile(r"^<!-- tour:begin[^\n]*-->\n(?:(?!<!-- tour:begin).)*?^<!-- tour:end -->\n\n", re.S | re.M)
 FIELD = re.compile(r"^([A-Za-z][\w-]*):\s*(.*?)\s*$", re.M)
 REVIEW_FIELDS = ("review-status", "reviewed-sha256", "last-reviewed")
 
@@ -53,8 +57,11 @@ def split(text: str) -> tuple[str, str]:
 
 def body_sha256(text: str) -> str:
     """sha256 of the body with trailing whitespace on each line and at the end removed,
-    so an editor that trims spaces doesn't reopen a review."""
+    so an editor that trims spaces doesn't reopen a review. A generated tour block, between
+    its begin and end markers, is left out: the tour build adds and updates it on approved
+    pages, and every other line still counts."""
     _, body = split(text)
+    body = TOUR_BLOCK.sub("", body)
     lines = [line.rstrip() for line in body.split("\n")]
     return hashlib.sha256("\n".join(lines).strip().encode("utf-8")).hexdigest()
 

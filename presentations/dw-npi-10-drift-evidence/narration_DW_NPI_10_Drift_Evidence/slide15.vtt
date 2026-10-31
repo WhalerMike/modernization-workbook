@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.888
+Lab 2 uses a test tenant with fictional
+people, and the run only reads.
+
+2
+00:00:04.888 --> 00:00:08.157
+Register a reader with
+exactly the four permissions,
+
+3
+00:00:08.157 --> 00:00:11.500
+run once, and have a second
+person approve the baseline.
+
+4
+00:00:11.500 --> 00:00:16.934
+Then make three changes by hand: a secret
+on an app that already has a certificate,
+
+5
+00:00:16.934 --> 00:00:20.475
+a first secret on an app with
+none, and a consent grant.
+
+6
+00:00:20.475 --> 00:00:24.829
+Run the drift run, and check what
+the fixture assumed against reality,
+
+7
+00:00:24.829 --> 00:00:26.738
+like the exact activity names.
+
+8
+00:00:26.738 --> 00:00:30.099
+Cross-check against Learn's
+own audit log procedure,
+
+9
+00:00:30.099 --> 00:00:32.660
+package and verify, then back it all out.

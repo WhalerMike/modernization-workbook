@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.087
+Each of these dangers has a guard, and most
+of them come back to the same few ideas.
+
+2
+00:00:05.087 --> 00:00:07.897
+One setting, one policy, one owning tool,
+
+3
+00:00:07.897 --> 00:00:12.726
+checked in the pull request, so two
+systems never fight over a value.
+
+4
+00:00:12.726 --> 00:00:15.888
+Read before you write, so
+running twice is harmless.
+
+5
+00:00:15.888 --> 00:00:19.400
+Treat drift as a stop, never
+something to overwrite.
+
+6
+00:00:19.400 --> 00:00:21.975
+Keep the write permission
+for the moment of writing.
+
+7
+00:00:21.975 --> 00:00:23.890
+And because the APIs are beta,
+
+8
+00:00:23.890 --> 00:00:28.438
+keep the pinned tests and run the
+test-tenant lab before each release.
+
+9
+00:00:28.438 --> 00:00:30.699
+When the policies are assigned later,
+
+10
+00:00:30.699 --> 00:00:34.700
+Learn prefers filters over dynamic
+groups that only Intune uses.

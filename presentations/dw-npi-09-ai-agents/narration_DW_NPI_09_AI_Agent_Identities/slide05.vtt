@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.438
+Microsoft gives you more samples
+here than in most chapters.
+
+2
+00:00:03.438 --> 00:00:07.091
+There's a walk-through that
+creates a blueprint with a sponsor,
+
+3
+00:00:07.091 --> 00:00:10.888
+an owner and credentials; samples
+for inheritable permissions;
+
+4
+00:00:10.888 --> 00:00:13.395
+three agent Conditional Access policies;
+
+5
+00:00:13.395 --> 00:00:17.263
+and Graph requests to list
+blueprints, agents and their sponsors.
+
+6
+00:00:17.263 --> 00:00:21.167
+There's also a PowerShell module,
+but the chapter calls Graph
+
+7
+00:00:21.167 --> 00:00:24.837
+directly so every request sits
+in its reviewed call list.
+
+8
+00:00:24.837 --> 00:00:30.547
+Two sets of pages are pinned, eleven files
+in all, and a harness sends every sample,
+
+9
+00:00:30.547 --> 00:00:35.880
+unmodified, to a fake Graph so the
+chapter's own checks can run on the result.

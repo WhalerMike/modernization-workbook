@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.925
+Lab 1 needs only a laptop with
+PowerShell 7 and Pester, and no tenant.
+
+2
+00:00:04.925 --> 00:00:09.174
+First you run Learn's tables exactly
+as published, and one test makes
+
+3
+00:00:09.174 --> 00:00:13.575
+the point plainly: the on-premises
+table never rules out a user account.
+
+4
+00:00:13.575 --> 00:00:18.300
+Then you list what the task needs, two
+read permissions and nothing but reads.
+
+5
+00:00:18.300 --> 00:00:22.800
+Then you run the first two chapters and
+the matrix over the fictional estate.
+
+6
+00:00:22.800 --> 00:00:26.995
+The summary tells you how many
+identities are in scope and proposed,
+
+7
+00:00:26.995 --> 00:00:30.591
+how many owners have decided,
+and that the gate isn't met yet,
+
+8
+00:00:30.591 --> 00:00:33.190
+which is exactly what
+we want to read next.

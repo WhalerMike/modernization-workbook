@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:11.175
+This is Chapter 10, the last one: drift
+and evidence for the security officer.
+
+4
+00:00:11.175 --> 00:00:14.938
+A register approved once proves
+only the day it was approved.
+
+5
+00:00:14.938 --> 00:00:18.046
+The security officer needs
+to know what changed since,
+
+6
+00:00:18.046 --> 00:00:21.500
+who changed it, and that nobody
+edited the record afterwards.
+
+7
+00:00:21.500 --> 00:00:25.847
+We'll start from the Sentinel rule
+Learn links for added credentials,
+
+8
+00:00:25.847 --> 00:00:30.728
+see what it misses, then walk the drift
+run, the approved baseline, the rules, the
+
+9
+00:00:30.728 --> 00:00:35.762
+review cycle, the vintage comparison and
+the hash chain, two labs and the dangers.
+
+10
+00:00:35.762 --> 00:00:40.970
+One note before we begin: the code is
+illustrative, tested against fixtures.

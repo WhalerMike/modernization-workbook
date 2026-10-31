@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.825
+The orphan rule becomes a plan,
+and nothing in the plan writes.
+
+2
+00:00:03.825 --> 00:00:08.700
+Each orphan candidate and each
+claim turns into exactly one action.
+
+3
+00:00:08.700 --> 00:00:12.669
+Most are bookkeeping: waiting
+for the officer's confirmation,
+
+4
+00:00:12.669 --> 00:00:16.171
+a claim window still open, an
+exception with an end date,
+
+5
+00:00:16.171 --> 00:00:19.362
+or a retirement candidate
+once the window closes.
+
+6
+00:00:19.362 --> 00:00:23.194
+Only two actions ever write:
+disabling a confirmed orphan,
+
+7
+00:00:23.194 --> 00:00:25.588
+and adding an owner someone claimed.
+
+8
+00:00:25.588 --> 00:00:26.924
+Here's the clever part.
+
+9
+00:00:26.924 --> 00:00:30.585
+The same inputs always give
+the same plan, byte for byte,
+
+10
+00:00:30.585 --> 00:00:33.513
+so a reviewer doesn't
+approve a description.
+
+11
+00:00:33.513 --> 00:00:34.920
+They approve a hash.

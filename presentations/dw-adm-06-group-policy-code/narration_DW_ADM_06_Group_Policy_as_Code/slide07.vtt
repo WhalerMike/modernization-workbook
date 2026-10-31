@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.238
+The rest of the gaps are about the record.
+
+2
+00:00:02.238 --> 00:00:06.828
+The import quietly edits the file
+before sending it, so what reached the
+
+3
+00:00:06.828 --> 00:00:11.575
+tenant isn't what anyone reviewed; the
+example refuses such a file instead.
+
+4
+00:00:11.575 --> 00:00:14.463
+The import leaves nothing
+for the security officer.
+
+5
+00:00:14.463 --> 00:00:19.469
+The export stamps each file with the time,
+so Git can never show a change, and it
+
+6
+00:00:19.469 --> 00:00:20.819
+drops the scope tags,
+
+7
+00:00:20.819 --> 00:00:24.951
+so a re-imported policy is visible
+to the wrong administrators.
+
+8
+00:00:24.951 --> 00:00:27.475
+And neither script knows
+who owns a setting.
+
+9
+00:00:27.475 --> 00:00:30.732
+The verdict: keep Microsoft's
+create call as the model,
+
+10
+00:00:30.732 --> 00:00:34.270
+and let the sync ask what's
+already there before it writes.

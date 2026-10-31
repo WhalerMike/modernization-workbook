@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.811
+The plan compares the
+files with the tenant,
+
+2
+00:00:02.811 --> 00:00:06.263
+property by property, and
+gives each policy one action.
+
+3
+00:00:06.263 --> 00:00:07.688
+Two details matter.
+
+4
+00:00:07.688 --> 00:00:10.610
+A new policy is always
+created report-only,
+
+5
+00:00:10.610 --> 00:00:15.451
+even if its ring is approved for
+enforcement; it turns on in the next run.
+
+6
+00:00:15.451 --> 00:00:19.862
+And a policy someone made by hand in
+the portal is reported, never deleted.
+
+7
+00:00:19.862 --> 00:00:23.675
+Run as the read task, the client
+simply can't send a write.
+
+8
+00:00:23.675 --> 00:00:27.225
+Run as the apply task, it
+refuses on any finding.
+
+9
+00:00:27.225 --> 00:00:30.758
+Rollback follows Book 4: take
+the ring off the record,
+
+10
+00:00:30.758 --> 00:00:33.460
+and its policies go back to report-only.

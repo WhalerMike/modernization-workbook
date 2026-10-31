@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.250
+Now the checked build.
+
+2
+00:00:01.250 --> 00:00:04.492
+It runs offline, passes,
+and gives one reminder:
+
+3
+00:00:04.492 --> 00:00:08.075
+the switch for Arc-enabled
+servers defaults to off.
+
+4
+00:00:08.075 --> 00:00:11.625
+Build it a second time and compare
+the two provenance records.
+
+5
+00:00:11.625 --> 00:00:16.138
+The cleaned file's hash matches across
+builds; the package hashes don't.
+
+6
+00:00:16.138 --> 00:00:20.174
+That's exactly why you publish the
+bytes you checked, and never rebuild.
+
+7
+00:00:20.174 --> 00:00:25.067
+Then break it on purpose: reuse a version,
+mistype the mode's capital letter,
+
+8
+00:00:25.067 --> 00:00:29.638
+or enforce without the owner tag, and
+each one fails for its own reason.
+
+9
+00:00:29.638 --> 00:00:32.380
+Run the tests, and sixty-five pass.

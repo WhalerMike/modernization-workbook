@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:09.274
+This is Chapter 2: ownership
+and the orphan rule.
+
+4
+00:00:09.274 --> 00:00:14.134
+An account nobody will own is the one
+nobody will notice when it's misused, so
+
+5
+00:00:14.134 --> 00:00:19.150
+the rule for it is decided once, written
+down, and run by code a reviewer has read.
+
+6
+00:00:19.150 --> 00:00:23.537
+We'll start from Learn's own Graph
+samples for finding ownerless apps,
+
+7
+00:00:23.537 --> 00:00:27.617
+see what they miss, then walk the
+ownership check, the orphan rule
+
+8
+00:00:27.617 --> 00:00:31.850
+as a reviewed plan, the separate
+write path, two labs and the dangers.
+
+9
+00:00:31.850 --> 00:00:37.060
+One note before we begin: the code is
+illustrative, tested against fixtures.

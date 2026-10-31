@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.595
+Then you lint the library against
+the plan, and the only thing it
+
+2
+00:00:03.595 --> 00:00:07.550
+reports is that hibernate conflict,
+with the decision that settled it.
+
+3
+00:00:07.550 --> 00:00:11.905
+The dry run says one policy will be
+created and one is already in place,
+
+4
+00:00:11.905 --> 00:00:15.725
+and applying it creates exactly
+that one and writes a record.
+
+5
+00:00:15.725 --> 00:00:18.607
+Point it at another cloud
+and the host changes;
+
+6
+00:00:18.607 --> 00:00:21.262
+give it a name it doesn't
+know and it refuses.
+
+7
+00:00:21.262 --> 00:00:24.808
+Then break something on purpose:
+change one value in a file,
+
+8
+00:00:24.808 --> 00:00:28.650
+and the sync reports drift and
+refuses to write anything at all.
+
+9
+00:00:28.650 --> 00:00:31.150
+Run the tests, and forty-six pass.

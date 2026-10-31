@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.575
+To test rules without a tenant,
+the code needs to read them.
+
+2
+00:00:03.575 --> 00:00:08.363
+The parser follows the grammar on
+Learn's syntax page: the operators,
+
+3
+00:00:08.363 --> 00:00:13.237
+lists, collections, nulls, escaped
+quotes and the order of precedence.
+
+4
+00:00:13.237 --> 00:00:15.666
+It even accepts the en dash that some of
+
+5
+00:00:15.666 --> 00:00:18.550
+Learn's own examples
+print instead of a hyphen.
+
+6
+00:00:18.550 --> 00:00:23.234
+The evaluator then checks a parsed
+rule against one fictional person,
+
+7
+00:00:23.234 --> 00:00:25.738
+ignoring case, just as the engine does.
+
+8
+00:00:25.738 --> 00:00:30.888
+It's honest about its limits: anything it
+can't evaluate faithfully, it refuses.
+
+9
+00:00:30.888 --> 00:00:35.470
+It's a test tool, not the engine,
+and Lab 2 checks it against Graph's.

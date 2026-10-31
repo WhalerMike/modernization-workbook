@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.662
+Each account becomes exactly one action.
+
+2
+00:00:02.662 --> 00:00:04.899
+The group account path is: create it,
+
+3
+00:00:04.899 --> 00:00:09.370
+wait while the server owner installs
+it and switches the service over,
+
+4
+00:00:09.370 --> 00:00:13.225
+run in parallel for thirty days,
+then disable the old account.
+
+5
+00:00:13.225 --> 00:00:16.534
+The delegated path is: create
+it, start the migration,
+
+6
+00:00:16.534 --> 00:00:19.612
+wait the full twenty-eight
+days, then complete it,
+
+7
+00:00:19.612 --> 00:00:24.537
+which disables the old account and moves
+its service principal names across.
+
+8
+00:00:24.537 --> 00:00:26.888
+Anything else is recorded with a reason.
+
+9
+00:00:26.888 --> 00:00:30.648
+And because the same inputs
+always produce the same file,
+
+10
+00:00:30.648 --> 00:00:33.500
+byte for byte, a reviewer
+approves one hash.

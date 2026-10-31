@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.525
+A quick grounding in
+what these accounts are.
+
+2
+00:00:02.525 --> 00:00:06.536
+A group managed service account is
+a domain account whose password the
+
+3
+00:00:06.536 --> 00:00:10.750
+domain controllers manage and rotate,
+and which several servers can fetch.
+
+4
+00:00:10.750 --> 00:00:13.967
+The delegated kind is new
+in Windows Server 2025:
+
+5
+00:00:13.967 --> 00:00:18.954
+it takes over from an old-style service
+account, and once the move completes,
+
+6
+00:00:18.954 --> 00:00:23.137
+the old password stops working
+and the old account is disabled.
+
+7
+00:00:23.137 --> 00:00:26.575
+Book 2's matrix says which
+target each account gets.
+
+8
+00:00:26.575 --> 00:00:31.050
+And because everything here is an Active
+Directory command against the domain,
+
+9
+00:00:31.050 --> 00:00:34.300
+the cloud choice doesn't change
+anything in this chapter.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.925
+Which Azure?
+
+2
+00:00:00.925 --> 00:00:02.450
+This is easy to get wrong.
+
+3
+00:00:02.450 --> 00:00:07.849
+The estate is a Microsoft 365 GCC tenant,
+and Learn says GCC uses the public
+
+4
+00:00:07.849 --> 00:00:13.425
+directory, which can't be associated
+with an Azure Government subscription.
+
+5
+00:00:13.425 --> 00:00:16.850
+So the estate's Arc servers go
+to a commercial subscription,
+
+6
+00:00:16.850 --> 00:00:21.113
+using the agent's default cloud and
+the commercial endpoints on the slide.
+
+7
+00:00:21.113 --> 00:00:23.984
+GCC High and Defense
+tenants are different:
+
+8
+00:00:23.984 --> 00:00:29.088
+they use the government directory, Azure
+Government, and the dot U S endpoints.
+
+9
+00:00:29.088 --> 00:00:32.040
+The code guards both
+directions, as we'll see.

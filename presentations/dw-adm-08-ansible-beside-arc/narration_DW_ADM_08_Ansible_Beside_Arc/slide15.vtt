@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.500
+Now the kit's own path.
+
+2
+00:00:01.500 --> 00:00:04.194
+Plan wave zero, and
+it's ready: one server,
+
+3
+00:00:04.194 --> 00:00:08.150
+with its exact tag string
+written to a file you can review.
+
+4
+00:00:08.150 --> 00:00:12.647
+Dry-run the wave with the role-based
+playbook, and it prints what that server would
+
+5
+00:00:12.647 --> 00:00:17.212
+get, including the restored database default,
+while the connect itself is skipped.
+
+6
+00:00:17.212 --> 00:00:19.312
+Then break the export on purpose.
+
+7
+00:00:19.312 --> 00:00:23.137
+Put a production server into the
+pilot wave, and the plan stops.
+
+8
+00:00:23.137 --> 00:00:26.462
+Misspell a patch owner,
+and the inventory refuses.
+
+9
+00:00:26.462 --> 00:00:29.887
+Clear one owner, and that server
+is blocked with its reason.
+
+10
+00:00:29.887 --> 00:00:32.640
+Run the suite, and ninety tests pass.

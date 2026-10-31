@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+Paging and throttling are
+where clients quietly break.
+
+2
+00:00:03.550 --> 00:00:07.188
+When Graph returns a next link,
+the client follows it to the end,
+
+3
+00:00:07.188 --> 00:00:11.467
+and it sends the same headers on every
+page, because Learn says they aren't
+
+4
+00:00:11.467 --> 00:00:15.675
+carried forward by default, and an
+advanced query changes without them.
+
+5
+00:00:15.675 --> 00:00:19.787
+When Graph says slow down, the
+client waits as long as it's told.
+
+6
+00:00:19.787 --> 00:00:23.976
+When it isn't told, which really
+happens for Conditional Access,
+
+7
+00:00:23.976 --> 00:00:25.426
+it backs off, with a cap.
+
+8
+00:00:25.426 --> 00:00:30.800
+It also marks its requests as low priority,
+so background reads give way to people.
+
+9
+00:00:30.800 --> 00:00:34.800
+And inside a batch, it retries
+throttled items itself.

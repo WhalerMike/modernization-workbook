@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:04.552
+Developers who build any code
+in this workbook that calls
+
+3
+00:00:04.552 --> 00:00:08.063
+Graph or Resource Manager, and
+the reviewers who approve it.
+
+4
+00:00:08.063 --> 00:00:12.157
+You'll want to read Python or PowerShell,
+and know what an access token is;
+
+5
+00:00:12.157 --> 00:00:14.587
+you don't need a tenant
+until the second lab.
+
+6
+00:00:14.587 --> 00:00:17.372
+The reviewer's question
+is always the same:
+
+7
+00:00:17.372 --> 00:00:20.713
+which calls, with which
+permissions, in which cloud.
+
+8
+00:00:20.713 --> 00:00:22.224
+The call list answers it.
+
+9
+00:00:22.224 --> 00:00:25.622
+And the app registration
+itself is part of the answer:
+
+10
+00:00:25.622 --> 00:00:29.945
+exactly the task's permissions, a
+certificate or a managed identity,
+
+11
+00:00:29.945 --> 00:00:33.240
+never a secret, registered
+in the tenant's own cloud.

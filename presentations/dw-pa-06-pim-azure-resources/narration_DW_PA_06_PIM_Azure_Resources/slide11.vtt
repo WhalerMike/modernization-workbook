@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.323
+The read is straightforward:
+at each governed scope,
+
+2
+00:00:03.323 --> 00:00:06.063
+both schedule lists and
+one policy per role.
+
+3
+00:00:06.063 --> 00:00:10.401
+A schedule counts as permanently
+active only when it's assigned,
+
+4
+00:00:10.401 --> 00:00:13.349
+never ends, isn't an
+activation, and is direct.
+
+5
+00:00:13.349 --> 00:00:15.300
+The plan is where order matters.
+
+6
+00:00:15.300 --> 00:00:20.063
+Policies go first, because a request
+that breaks the policy is refused.
+
+7
+00:00:20.063 --> 00:00:22.274
+New eligible assignments go second.
+
+8
+00:00:22.274 --> 00:00:24.646
+And standing access is removed last,
+
+9
+00:00:24.646 --> 00:00:27.887
+so nobody loses a role
+before they can activate it.
+
+10
+00:00:27.887 --> 00:00:31.930
+Anything eligible that the file
+doesn't mention is reported,
+
+11
+00:00:31.930 --> 00:00:35.880
+not removed: taking access away
+is its own reviewed change.

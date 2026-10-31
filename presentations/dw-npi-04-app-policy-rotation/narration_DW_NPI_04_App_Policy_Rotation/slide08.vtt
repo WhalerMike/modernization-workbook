@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.550
+The certificate samples
+have a sharper problem.
+
+2
+00:00:02.550 --> 00:00:07.809
+Learn's first example for adding a
+certificate replaces every certificate the app
+
+3
+00:00:07.809 --> 00:00:12.687
+had, so the old one vanishes the instant
+the new one lands, with no overlap at all.
+
+4
+00:00:12.687 --> 00:00:16.901
+The Key Vault example asks for six
+months, which is just over the cap.
+
+5
+00:00:16.901 --> 00:00:21.133
+And none of the samples ever puts
+the renewed certificate on the app,
+
+6
+00:00:21.133 --> 00:00:23.400
+asks the owner, or removes the old one.
+
+7
+00:00:23.400 --> 00:00:27.883
+So the verdict is: keep the version
+one requests as models for the writes,
+
+8
+00:00:27.883 --> 00:00:30.220
+and don't run any of them as published.

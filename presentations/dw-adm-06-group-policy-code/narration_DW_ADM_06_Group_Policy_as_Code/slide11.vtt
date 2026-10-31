@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.325
+Now the heart of the sync:
+it diffs before it writes.
+
+2
+00:00:03.325 --> 00:00:07.564
+It reads the tenant's policies,
+normalizes both sides so harmless
+
+3
+00:00:07.564 --> 00:00:12.038
+formatting differences don't count,
+and gives each policy one action.
+
+4
+00:00:12.038 --> 00:00:13.387
+New ones get created.
+
+5
+00:00:13.387 --> 00:00:15.137
+Matching ones are left alone.
+
+6
+00:00:15.137 --> 00:00:19.799
+Anything that has drifted, or appears
+twice, stops the whole release.
+
+7
+00:00:19.799 --> 00:00:22.913
+By default it's a dry run
+with read-only permission;
+
+8
+00:00:22.913 --> 00:00:25.875
+only with the apply switch
+does it ask for write.
+
+9
+00:00:25.875 --> 00:00:30.037
+And it never updates or deletes,
+even though Graph allows both.
+
+10
+00:00:30.037 --> 00:00:33.471
+A policy that differs from Git
+is a question for a person,
+
+11
+00:00:33.471 --> 00:00:35.260
+not something to overwrite.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.930
+Now the code, in two pieces: a PowerShell
+run that reads the tenant, and new
+
+2
+00:00:04.930 --> 00:00:10.388
+Python files beside the first workbook's
+drift pipeline, which stays unchanged.
+
+3
+00:00:10.388 --> 00:00:12.212
+The design has three parts.
+
+4
+00:00:12.212 --> 00:00:15.226
+Chapters 1 and 2 describe
+the tenant's state.
+
+5
+00:00:15.226 --> 00:00:18.125
+The audit read describes
+the events in a window.
+
+6
+00:00:18.125 --> 00:00:21.712
+And comparing with the last
+run turns state into drift.
+
+7
+00:00:21.712 --> 00:00:23.866
+Chain those windows with no gaps,
+
+8
+00:00:23.866 --> 00:00:27.137
+and you have every elevation
+in the period, in code.
+
+9
+00:00:27.137 --> 00:00:31.774
+Each run writes one folder, with
+a run file that records the cloud,
+
+10
+00:00:31.774 --> 00:00:35.260
+tenant, window and a hash
+of each task's manifest.

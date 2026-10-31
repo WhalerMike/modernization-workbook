@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.075
+Here's where a group's
+privileged state actually lives.
+
+2
+00:00:03.075 --> 00:00:07.975
+Not in the members list: eligible members
+don't appear there until they activate.
+
+3
+00:00:07.975 --> 00:00:13.033
+Instead there are separate collections for
+eligible and active schedules, filtered
+
+4
+00:00:13.033 --> 00:00:17.450
+by group, and two policies per group
+whose IDs you only learn by reading them.
+
+5
+00:00:17.450 --> 00:00:20.088
+A few facts shape everything that follows.
+
+6
+00:00:20.088 --> 00:00:22.897
+A group joins PIM the
+first time you touch it,
+
+7
+00:00:22.897 --> 00:00:26.487
+its policy IDs change when it
+does, and it can never leave.
+
+8
+00:00:26.487 --> 00:00:29.035
+And access packages are deferred to later,
+
+9
+00:00:29.035 --> 00:00:32.300
+with one warning about expiry
+dates carried forward.

@@ -1,0 +1,846 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:09.762
+This is Chapter 3: the
+migration path matrix as code.
+
+4
+00:00:09.762 --> 00:00:14.512
+Every service account and app needs a
+decision before anything is converted,
+
+5
+00:00:14.512 --> 00:00:19.559
+and this chapter turns the book's matrix
+into reviewed data and code that proposes
+
+6
+00:00:19.559 --> 00:00:24.087
+a target, checks the owner's choice,
+sequences the waves and checks the gate.
+
+7
+00:00:24.087 --> 00:00:26.852
+We'll start from Learn's
+own decision tables,
+
+8
+00:00:26.852 --> 00:00:30.999
+see what they leave out, then walk
+the code, two labs and the dangers.
+
+9
+00:00:30.999 --> 00:00:36.520
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+10
+00:00:40.270 --> 00:00:41.782
+Why does this chapter matter?
+
+11
+00:00:41.782 --> 00:00:46.220
+Because three different things get blurred
+together, and the code keeps them apart.
+
+12
+00:00:46.220 --> 00:00:49.183
+The matrix proposes a
+target for each account,
+
+13
+00:00:49.183 --> 00:00:53.082
+based on what it is, where it runs
+and what credential it holds.
+
+14
+00:00:53.082 --> 00:00:56.276
+The application owner
+decides, and may disagree,
+
+15
+00:00:56.276 --> 00:00:58.671
+as long as the reason is on the record.
+
+16
+00:00:58.671 --> 00:01:02.585
+And the security officer's gate
+checks that every account has both,
+
+17
+00:01:02.585 --> 00:01:05.645
+that the riskiest go first,
+and that there's a way back.
+
+18
+00:01:05.645 --> 00:01:09.908
+Treat a proposal as a decision and
+you convert accounts nobody agreed to.
+
+19
+00:01:09.908 --> 00:01:12.800
+First, which cloud this runs against.
+
+20
+00:01:16.550 --> 00:01:17.450
+Which cloud?
+
+21
+00:01:17.450 --> 00:01:20.517
+Most of this chapter never
+touches a cloud at all:
+
+22
+00:01:20.517 --> 00:01:24.963
+the matrix is offline logic over the
+files from the first two chapters.
+
+23
+00:01:24.963 --> 00:01:28.530
+It makes just two reads,
+both to Microsoft Graph,
+
+24
+00:01:28.530 --> 00:01:33.651
+and for a GCC tenant like this
+estate's, that's the worldwide endpoint.
+
+25
+00:01:33.651 --> 00:01:36.325
+The higher government clouds
+have their own hosts.
+
+26
+00:01:36.325 --> 00:01:38.928
+One open question is the licensing trial:
+
+27
+00:01:38.928 --> 00:01:42.908
+Learn says there's no free trial
+in the Azure Government clouds,
+
+28
+00:01:42.908 --> 00:01:45.893
+but a GCC tenant signs in
+to the worldwide cloud,
+
+29
+00:01:45.893 --> 00:01:49.950
+so the chapter leaves it as something
+to check in the test tenant.
+
+30
+00:01:49.950 --> 00:01:52.100
+Now, what Microsoft gives you.
+
+31
+00:01:55.850 --> 00:01:57.719
+Here's what Microsoft gives you,
+
+32
+00:01:57.719 --> 00:02:00.738
+and its order of preference
+is one the matrix keeps.
+
+33
+00:02:00.738 --> 00:02:04.772
+On premises, a group managed
+service account whenever possible,
+
+34
+00:02:04.772 --> 00:02:07.588
+and a plain user account
+only as a last resort.
+
+35
+00:02:07.588 --> 00:02:12.557
+In the cloud, a managed identity if the
+service runs in Azure and supports one,
+
+36
+00:02:12.557 --> 00:02:15.950
+a service principal otherwise,
+never a user account.
+
+37
+00:02:15.950 --> 00:02:20.730
+Windows Server adds the delegated managed
+service account, which has real limits:
+
+38
+00:02:20.730 --> 00:02:25.300
+you can't move a managed service account
+onto one, and delegation stops working.
+
+39
+00:02:25.300 --> 00:02:28.900
+Learn turns this into two
+decision tables, but no code.
+
+40
+00:02:28.900 --> 00:02:31.961
+So the repository pins
+the pages unmodified,
+
+41
+00:02:31.961 --> 00:02:36.610
+and a small harness evaluates
+each table exactly as published.
+
+42
+00:02:40.360 --> 00:02:43.248
+This is the heart of the
+chapter, in two parts.
+
+43
+00:02:43.248 --> 00:02:45.498
+Learn's ordering is kept as the model.
+
+44
+00:02:45.498 --> 00:02:49.786
+But the on-premises table has no column
+for the delegated managed service
+
+45
+00:02:49.786 --> 00:02:53.723
+account at all, so the best target on
+a new domain never comes out of it.
+
+46
+00:02:53.723 --> 00:02:56.849
+It admits a plain user
+account in every situation,
+
+47
+00:02:56.849 --> 00:02:59.060
+so it never tells you to move off one.
+
+48
+00:02:59.060 --> 00:03:00.598
+It has no way to say retire,
+
+49
+00:03:00.598 --> 00:03:04.698
+so an orphaned or disabled account
+would just get a new account type.
+
+50
+00:03:04.698 --> 00:03:08.710
+And it decides on facts like server
+counts that no register holds.
+
+51
+00:03:08.710 --> 00:03:12.720
+The code fills each gap,
+and a test pins every row.
+
+52
+00:03:16.470 --> 00:03:18.232
+The cloud side has gaps too.
+
+53
+00:03:18.232 --> 00:03:22.215
+The table recommends a managed
+identity if the service supports one,
+
+54
+00:03:22.215 --> 00:03:26.757
+but leaves you to find out whether it does,
+so the code makes that a required fact.
+
+55
+00:03:26.757 --> 00:03:30.568
+It offers a service principal
+only certificates and secrets,
+
+56
+00:03:30.568 --> 00:03:33.258
+missing federation,
+which the book prefers.
+
+57
+00:03:33.258 --> 00:03:37.892
+It happily recommends a service principal
+for a multitenant app, without saying that
+
+58
+00:03:37.892 --> 00:03:42.332
+Conditional Access can't cover one, so you
+could license something and buy nothing.
+
+59
+00:03:42.332 --> 00:03:44.433
+And nothing records a decision at all.
+
+60
+00:03:44.433 --> 00:03:49.207
+The verdict: Learn's tables define
+preference, but they aren't the matrix.
+
+61
+00:03:49.207 --> 00:03:50.780
+Let's look at the code.
+
+62
+00:03:54.530 --> 00:03:55.855
+So what does the code add?
+
+63
+00:03:55.855 --> 00:03:59.845
+One module and an entry script,
+built on the module from Chapter 2,
+
+64
+00:03:59.845 --> 00:04:02.705
+and changing nothing in
+the earlier chapters.
+
+65
+00:04:02.705 --> 00:04:05.505
+What matters most is who keeps each input.
+
+66
+00:04:05.505 --> 00:04:08.907
+The matrix itself belongs
+to identity engineering
+
+67
+00:04:08.907 --> 00:04:11.755
+and changes only in a
+reviewed pull request.
+
+68
+00:04:11.755 --> 00:04:14.155
+The application owners keep two files:
+
+69
+00:04:14.155 --> 00:04:18.130
+where each workload runs, and what
+they decided for each account.
+
+70
+00:04:18.130 --> 00:04:20.315
+The waves, the program's dates and the
+
+71
+00:04:20.315 --> 00:04:23.155
+licensing decision each
+have their own keeper.
+
+72
+00:04:23.155 --> 00:04:27.025
+And the earlier chapters' outputs
+are refused if their hashes don't
+
+73
+00:04:27.025 --> 00:04:31.670
+match the manifests, so nobody decides
+on evidence the reviewer never saw.
+
+74
+00:04:35.420 --> 00:04:37.057
+Here's how a proposal is made.
+
+75
+00:04:37.057 --> 00:04:41.189
+First, scope: some accounts belong
+to another plan, some are covered by
+
+76
+00:04:41.189 --> 00:04:45.683
+their app registration, and some are
+out of scope with a reason written down.
+
+77
+00:04:45.683 --> 00:04:50.312
+Then retirement comes first: if
+Chapter 2 found an account unowned,
+
+78
+00:04:50.312 --> 00:04:53.932
+or it's already disabled,
+the proposal is to retire it.
+
+79
+00:04:53.932 --> 00:04:57.791
+Otherwise, the first matrix row
+that matches the account's type,
+
+80
+00:04:57.791 --> 00:05:01.057
+where it runs and its
+credential proposes the target.
+
+81
+00:05:01.057 --> 00:05:05.104
+And each proposal carries Learn's
+cautions, like the fact that an Arc
+
+82
+00:05:05.104 --> 00:05:09.940
+server's managed identity is shared by
+every app its administrators allow.
+
+83
+00:05:13.690 --> 00:05:17.011
+The decision check reads
+each owner's row and turns
+
+84
+00:05:17.011 --> 00:05:20.490
+what's missing or wrong into
+findings with stable IDs.
+
+85
+00:05:20.490 --> 00:05:23.340
+In plain terms: every
+account needs a decision;
+
+86
+00:05:23.340 --> 00:05:28.440
+every account needs enough facts for a
+proposal; the target has to fit the decision,
+
+87
+00:05:28.440 --> 00:05:31.590
+and Learn's delegated
+account limits are enforced;
+
+88
+00:05:31.590 --> 00:05:34.665
+an owner who departs from
+the matrix has to say why;
+
+89
+00:05:34.665 --> 00:05:36.615
+anything kept needs an end date,
+
+90
+00:05:36.615 --> 00:05:41.340
+and anything kept on Kerberos needs an
+owner for its service principal name;
+
+91
+00:05:41.340 --> 00:05:44.715
+high-risk accounts go first;
+every wave needs a way back;
+
+92
+00:05:44.715 --> 00:05:47.265
+and the licensing scope has to make sense.
+
+93
+00:05:47.265 --> 00:05:50.010
+The exact wording is on the slide.
+
+94
+00:05:53.760 --> 00:05:57.724
+A conversion with no way back turns
+a failed change into an outage,
+
+95
+00:05:57.724 --> 00:06:00.660
+so the waves get as much
+attention as the targets.
+
+96
+00:06:00.660 --> 00:06:05.096
+Every rollback owner and service
+principal name owner is looked up once,
+
+97
+00:06:05.096 --> 00:06:09.310
+and counts only if they're an enabled
+member, the same rule as Chapter 2.
+
+98
+00:06:09.310 --> 00:06:12.414
+An account the owner didn't
+place in a wave is proposed
+
+99
+00:06:12.414 --> 00:06:15.660
+for the first wave if it's
+high-risk, the second otherwise.
+
+100
+00:06:15.660 --> 00:06:19.289
+And each wave's rollback is
+assembled from its members' targets,
+
+101
+00:06:19.289 --> 00:06:22.847
+including Learn's own undo for
+a delegated account migration,
+
+102
+00:06:22.847 --> 00:06:26.220
+which keeps the old account
+rather than deleting it.
+
+103
+00:06:29.970 --> 00:06:34.270
+The licensing decision belongs to the
+chief information security officer,
+
+104
+00:06:34.270 --> 00:06:36.045
+and the code makes it checkable.
+
+105
+00:06:36.045 --> 00:06:40.192
+Premium adds things like Conditional
+Access for workload identities,
+
+106
+00:06:40.192 --> 00:06:43.425
+but that only covers
+single-tenant service principals:
+
+107
+00:06:43.425 --> 00:06:46.307
+not managed identities,
+and not multitenant apps.
+
+108
+00:06:46.307 --> 00:06:50.747
+So the code works out who could be covered
+today and who will leave or join after
+
+109
+00:06:50.747 --> 00:06:53.616
+conversion, reads the
+tenant's subscriptions once,
+
+110
+00:06:53.616 --> 00:06:56.007
+and checks the decision file against both.
+
+111
+00:06:56.007 --> 00:06:58.232
+It never buys or assigns anything.
+
+112
+00:06:58.232 --> 00:07:01.450
+Then the gate check reports
+Gate 2's five criteria,
+
+113
+00:07:01.450 --> 00:07:04.432
+and the gate is met only
+when no finding is open.
+
+114
+00:07:04.432 --> 00:07:05.880
+Who's involved?
+
+115
+00:07:09.630 --> 00:07:10.618
+Who's this for?
+
+116
+00:07:10.618 --> 00:07:13.068
+Developers build the decision records.
+
+117
+00:07:13.068 --> 00:07:17.304
+Identity engineers propose the
+targets and keep the matrix itself.
+
+118
+00:07:17.304 --> 00:07:20.042
+The application owners make the real call,
+
+119
+00:07:20.042 --> 00:07:23.405
+account by account, and say
+where each workload runs.
+
+120
+00:07:23.405 --> 00:07:27.386
+The chief information security
+officer decides the licensing scope,
+
+121
+00:07:27.386 --> 00:07:30.680
+and the security officer for
+the system approves the gate.
+
+122
+00:07:30.680 --> 00:07:35.087
+As for the tenant, the code asks for
+very little: two read permissions,
+
+123
+00:07:35.087 --> 00:07:40.650
+one to look up the owners and one to read
+the subscriptions, and it only ever reads.
+
+124
+00:07:44.400 --> 00:07:49.275
+Lab 1 needs only a laptop with
+PowerShell 7 and Pester, and no tenant.
+
+125
+00:07:49.275 --> 00:07:53.524
+First you run Learn's tables exactly
+as published, and one test makes
+
+126
+00:07:53.524 --> 00:07:57.925
+the point plainly: the on-premises
+table never rules out a user account.
+
+127
+00:07:57.925 --> 00:08:02.650
+Then you list what the task needs, two
+read permissions and nothing but reads.
+
+128
+00:08:02.650 --> 00:08:07.150
+Then you run the first two chapters and
+the matrix over the fictional estate.
+
+129
+00:08:07.150 --> 00:08:11.345
+The summary tells you how many
+identities are in scope and proposed,
+
+130
+00:08:11.345 --> 00:08:14.941
+how many owners have decided,
+and that the gate isn't met yet,
+
+131
+00:08:14.941 --> 00:08:17.840
+which is exactly what
+we want to read next.
+
+132
+00:08:21.590 --> 00:08:24.327
+Reading the output is
+where the rules turn real.
+
+133
+00:08:24.327 --> 00:08:26.883
+Six accounts are proposed for retirement,
+
+134
+00:08:26.883 --> 00:08:29.803
+the orphans and the disabled
+ones from Chapter 2.
+
+135
+00:08:29.803 --> 00:08:33.751
+Others go to delegated or group
+managed accounts, some are kept,
+
+136
+00:08:33.751 --> 00:08:37.852
+and one app has no proposal because
+nobody recorded where it runs.
+
+137
+00:08:37.852 --> 00:08:41.809
+The findings tell the story: a
+high-risk account scheduled too late,
+
+138
+00:08:41.809 --> 00:08:45.910
+a Kerberos account kept with no
+owner for its service principal name,
+
+139
+00:08:45.910 --> 00:08:48.860
+an owner who overrode the
+matrix but gave a reason,
+
+140
+00:08:48.860 --> 00:08:54.120
+and two apps on the licensing list that
+Conditional Access can't actually protect.
+
+141
+00:08:57.870 --> 00:08:59.170
+Next, the waves.
+
+142
+00:08:59.170 --> 00:09:02.745
+The first wave has a named rollback
+owner and a clear way back.
+
+143
+00:09:02.745 --> 00:09:07.657
+The second has an empty owner, which is
+exactly why it drew a finding a moment ago.
+
+144
+00:09:07.657 --> 00:09:12.649
+Then the licensing scope: six apps could
+be covered by Conditional Access today,
+
+145
+00:09:12.649 --> 00:09:14.616
+but only four after conversion,
+
+146
+00:09:14.616 --> 00:09:18.246
+because one moves to a managed
+identity and one is retired.
+
+147
+00:09:18.246 --> 00:09:21.557
+That's the kind of thing you'd want
+to know before buying licenses.
+
+148
+00:09:21.557 --> 00:09:26.107
+Finally, run the whole suite:
+five hundred thirteen tests pass,
+
+149
+00:09:26.107 --> 00:09:29.850
+and the run made just
+three requests, all reads.
+
+150
+00:09:33.600 --> 00:09:36.894
+Lab 2 moves to a test tenant
+with fictional people,
+
+151
+00:09:36.894 --> 00:09:39.625
+never production, and it still only reads.
+
+152
+00:09:39.625 --> 00:09:42.069
+You grant the same two read permissions,
+
+153
+00:09:42.069 --> 00:09:45.625
+write a small set of inputs for
+the test accounts, and run it.
+
+154
+00:09:45.625 --> 00:09:49.985
+Then come two checks the chapter
+couldn't settle from the documentation:
+
+155
+00:09:49.985 --> 00:09:54.709
+what the license read actually shows in
+a GCC tenant, including whether a trial
+
+156
+00:09:54.709 --> 00:09:59.650
+appears, and which identities the Conditional
+Access screen really lets you pick.
+
+157
+00:09:59.650 --> 00:10:04.350
+Record both, discard the draft
+policy, and back everything out.
+
+158
+00:10:08.100 --> 00:10:10.575
+Each of these dangers
+has a guard in the code.
+
+159
+00:10:10.575 --> 00:10:15.312
+The biggest is treating the matrix's
+proposal as the owner's decision, so they
+
+160
+00:10:15.312 --> 00:10:20.125
+live in separate files, and the check
+flags every account until its owner signs.
+
+161
+00:10:20.125 --> 00:10:23.550
+A guess about where a workload
+runs gets no proposal at all.
+
+162
+00:10:23.550 --> 00:10:27.575
+Learn's limits on delegated accounts
+are enforced, not just noted.
+
+163
+00:10:27.575 --> 00:10:31.913
+Kerberos accounts can't be kept
+forever, high-risk accounts can't wait,
+
+164
+00:10:31.913 --> 00:10:34.425
+and no wave goes ahead without a way back.
+
+165
+00:10:34.425 --> 00:10:38.144
+And this code never deletes
+anything: retirement still goes
+
+166
+00:10:38.144 --> 00:10:42.450
+through Chapter 2's rule and the
+reviewed decommission process.
+
+167
+00:10:46.200 --> 00:10:47.550
+Here's what done looks like.
+
+168
+00:10:47.550 --> 00:10:52.087
+Every account has a proposal, or a
+finding that names the missing fact.
+
+169
+00:10:52.087 --> 00:10:54.385
+Every account has its owner's decision,
+
+170
+00:10:54.385 --> 00:10:57.113
+with any departure from
+the matrix explained.
+
+171
+00:10:57.113 --> 00:10:58.944
+Nothing kept lives forever,
+
+172
+00:10:58.944 --> 00:11:02.925
+and every Kerberos keep has an
+owner and an accepted end date.
+
+173
+00:11:02.925 --> 00:11:06.342
+The high-risk accounts go first,
+every wave has a way back,
+
+174
+00:11:06.342 --> 00:11:10.725
+and the licensing scope holds only
+identities it can actually protect.
+
+175
+00:11:10.725 --> 00:11:12.474
+With every account decided,
+
+176
+00:11:12.474 --> 00:11:17.037
+Chapter 4 moves on to app management
+policies and certificate rotation.
+
+177
+00:11:17.037 --> 00:11:18.190
+Thanks for watching.

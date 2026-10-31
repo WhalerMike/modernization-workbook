@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.525
+This is the chapter's verified-facts
+table, the calls the check depends on.
+
+2
+00:00:04.525 --> 00:00:06.976
+The read needs only a read permission,
+
+3
+00:00:06.976 --> 00:00:11.562
+but only a Global Administrator can
+make it, and only as a signed-in user.
+
+4
+00:00:11.562 --> 00:00:14.962
+The fix needs the matching write
+permission and the same role.
+
+5
+00:00:14.962 --> 00:00:18.640
+The kit's one exception to
+read-only, the rule evaluation,
+
+6
+00:00:18.640 --> 00:00:22.238
+is still in beta, and that's
+labeled wherever it appears.
+
+7
+00:00:22.238 --> 00:00:27.282
+Underneath it all, the shared reader
+does two things every Graph client must:
+
+8
+00:00:27.282 --> 00:00:31.125
+it follows the next page link
+as given until there isn't one,
+
+9
+00:00:31.125 --> 00:00:34.150
+and when Graph says slow
+down, it waits as told.

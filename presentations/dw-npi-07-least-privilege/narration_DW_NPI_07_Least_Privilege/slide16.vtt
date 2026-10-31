@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.500
+Lab 2 uses a test tenant and subscription,
+never production, with fictional people.
+
+2
+00:00:05.500 --> 00:00:10.006
+You create a broad grant and an
+over-scoped managed identity on purpose,
+
+3
+00:00:10.006 --> 00:00:14.588
+then sweep with read-only permissions
+and confirm both findings appear.
+
+4
+00:00:14.588 --> 00:00:16.892
+An owner decision of remove goes in,
+
+5
+00:00:16.892 --> 00:00:21.263
+a second person approves the plan's
+hash, and you apply it as a person.
+
+6
+00:00:21.263 --> 00:00:24.231
+You also try the script's
+original request shape once,
+
+7
+00:00:24.231 --> 00:00:26.525
+and write down what Graph really answers.
+
+8
+00:00:26.525 --> 00:00:27.840
+After a few minutes,
+
+9
+00:00:27.840 --> 00:00:31.950
+the grant is gone and the audit
+log shows a person as the actor.
+
+10
+00:00:31.950 --> 00:00:33.480
+Then restore everything.

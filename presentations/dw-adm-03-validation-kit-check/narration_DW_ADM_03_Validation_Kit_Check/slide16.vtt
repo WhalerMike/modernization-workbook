@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.325
+Lab 2 uses a test tenant that
+already syncs from Active Directory.
+
+2
+00:00:04.325 --> 00:00:08.369
+The export is the only step that
+needs a Global Administrator:
+
+3
+00:00:08.369 --> 00:00:11.700
+they sign in, save the response
+to a file, and sign out.
+
+4
+00:00:11.700 --> 00:00:16.300
+Read that file before you take it;
+it's configuration, not personal data.
+
+5
+00:00:16.300 --> 00:00:20.082
+Then anyone runs the check on
+the export, without signing in,
+
+6
+00:00:20.082 --> 00:00:23.400
+and the evidence says the
+result came from the input.
+
+7
+00:00:23.400 --> 00:00:25.303
+Compare it line by line with the file,
+
+8
+00:00:25.303 --> 00:00:29.425
+because that's how you catch a response
+shape that differs from Learn's example.
+
+9
+00:00:29.425 --> 00:00:33.580
+Then delete the export; the
+run's manifest is the evidence.

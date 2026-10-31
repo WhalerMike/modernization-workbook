@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.412
+The first thing the
+build adds is a cleaner.
+
+2
+00:00:02.412 --> 00:00:05.883
+It rewrites the compiled file
+into one canonical form:
+
+3
+00:00:05.883 --> 00:00:09.815
+it strips out who built it and
+when, keeps source references in
+
+4
+00:00:09.815 --> 00:00:13.901
+the short form Microsoft's own
+sample uses, and sorts everything.
+
+5
+00:00:13.901 --> 00:00:18.488
+Compile three times and you get three
+different files, but one cleaned file.
+
+6
+00:00:18.488 --> 00:00:23.600
+A test confirms the cleaned file means the
+same thing to the desired state engine.
+
+7
+00:00:23.600 --> 00:00:28.382
+Then the package check opens the zip
+in memory and applies seven rules,
+
+8
+00:00:28.382 --> 00:00:32.230
+from its layout and size to
+secrets and module versions.

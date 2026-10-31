@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.163
+Here's the function.
+
+2
+00:00:01.163 --> 00:00:04.959
+It reads the export if there is
+one, otherwise it asks Graph,
+
+3
+00:00:04.959 --> 00:00:09.626
+and if the tenant has no sync object at
+all, it says the check doesn't apply.
+
+4
+00:00:09.626 --> 00:00:12.000
+The important part is
+the wrapper around it.
+
+5
+00:00:12.000 --> 00:00:17.316
+Every check runs inside the same body
+wrapper, which looks up the catalog entry,
+
+6
+00:00:17.316 --> 00:00:21.650
+records every read, and turns any
+exception into an error result.
+
+7
+00:00:21.650 --> 00:00:25.038
+That means a read that throws
+can never come back as a pass.
+
+8
+00:00:25.038 --> 00:00:29.988
+So resist the urge to catch exceptions
+inside your check to make it more robust.
+
+9
+00:00:29.988 --> 00:00:32.740
+That's exactly how a
+check passes while blind.

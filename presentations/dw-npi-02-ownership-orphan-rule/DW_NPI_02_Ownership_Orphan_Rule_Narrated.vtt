@@ -1,0 +1,787 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:09.274
+This is Chapter 2: ownership
+and the orphan rule.
+
+4
+00:00:09.274 --> 00:00:14.134
+An account nobody will own is the one
+nobody will notice when it's misused, so
+
+5
+00:00:14.134 --> 00:00:19.150
+the rule for it is decided once, written
+down, and run by code a reviewer has read.
+
+6
+00:00:19.150 --> 00:00:23.537
+We'll start from Learn's own Graph
+samples for finding ownerless apps,
+
+7
+00:00:23.537 --> 00:00:27.617
+see what they miss, then walk the
+ownership check, the orphan rule
+
+8
+00:00:27.617 --> 00:00:31.850
+as a reviewed plan, the separate
+write path, two labs and the dangers.
+
+9
+00:00:31.850 --> 00:00:37.360
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+10
+00:00:41.110 --> 00:00:43.672
+Why does ownership come
+before everything else?
+
+11
+00:00:43.672 --> 00:00:46.435
+Because an owner isn't
+just a name on a form.
+
+12
+00:00:46.435 --> 00:00:49.738
+An owner can add a credential
+to an app and act as it,
+
+13
+00:00:49.738 --> 00:00:52.960
+so an app nobody owns is
+an app nobody is watching.
+
+14
+00:00:52.960 --> 00:00:56.884
+The plan's second gate asks that
+every non-person identity be owned,
+
+15
+00:00:56.884 --> 00:01:00.380
+and that the ones nobody claims
+are disabled, never deleted,
+
+16
+00:01:00.380 --> 00:01:03.448
+with a thirty-day window
+for someone to step forward.
+
+17
+00:01:03.448 --> 00:01:07.728
+Learn points the same way: at least
+two owners, a reference to a team
+
+18
+00:01:07.728 --> 00:01:12.850
+record that outlives any one person,
+and a short list reviewed regularly.
+
+19
+00:01:16.600 --> 00:01:17.500
+Which cloud?
+
+20
+00:01:17.500 --> 00:01:19.202
+For this estate, a GCC tenant,
+
+21
+00:01:19.202 --> 00:01:24.307
+every Graph read and write goes to the
+worldwide endpoint, and the three Graph calls
+
+22
+00:01:24.307 --> 00:01:29.338
+this chapter writes with are all listed
+for the government service levels as well.
+
+23
+00:01:29.338 --> 00:01:33.680
+The code takes the host from its cloud
+table and checks it on every request,
+
+24
+00:01:33.680 --> 00:01:38.237
+which matters because Learn's tutorial
+simply hard-codes the worldwide host.
+
+25
+00:01:38.237 --> 00:01:43.341
+On the directory side, the disables go only
+to the domain you name, and one detail
+
+26
+00:01:43.341 --> 00:01:48.960
+to remember: the disable command won't work
+against a read-only domain controller.
+
+27
+00:01:52.710 --> 00:01:53.772
+So what's the rule?
+
+28
+00:01:53.772 --> 00:01:56.433
+Learn is permissive: a service principal's
+
+29
+00:01:56.433 --> 00:01:59.473
+owners can be users or
+other service principals.
+
+30
+00:01:59.473 --> 00:02:03.322
+The program is stricter, and
+this is labeled design guidance.
+
+31
+00:02:03.322 --> 00:02:08.672
+Every app needs two human owners who are
+enabled members, not guests and not bots.
+
+32
+00:02:08.672 --> 00:02:11.555
+Its reference has to
+point at a real record in
+
+33
+00:02:11.555 --> 00:02:14.360
+the system inventory,
+not a line of free text.
+
+34
+00:02:14.360 --> 00:02:17.860
+And every directory service
+account needs an application owner.
+
+35
+00:02:17.860 --> 00:02:21.542
+Active Directory has no owners
+attribute the code can trust,
+
+36
+00:02:21.542 --> 00:02:25.000
+so that owner comes from a
+file kept with the record.
+
+37
+00:02:28.750 --> 00:02:30.450
+Now the orphan rule itself.
+
+38
+00:02:30.450 --> 00:02:34.696
+The plan's decision, owned by the
+chief information security officer,
+
+39
+00:02:34.696 --> 00:02:38.868
+is to disable first, once the
+identity governance officer confirms,
+
+40
+00:02:38.868 --> 00:02:41.550
+then give the office
+thirty days to claim it.
+
+41
+00:02:41.550 --> 00:02:43.440
+Book 04 runs the other way round,
+
+42
+00:02:43.440 --> 00:02:47.800
+and the chapter keeps that difference
+open rather than quietly picking.
+
+43
+00:02:47.800 --> 00:02:51.150
+Learn agrees on the shape:
+disable, don't delete.
+
+44
+00:02:51.150 --> 00:02:53.675
+It offers two reversible switches.
+
+45
+00:02:53.675 --> 00:02:56.612
+One deactivates the
+registration everywhere,
+
+46
+00:02:56.612 --> 00:02:59.550
+but its procedure is still
+on the beta endpoint.
+
+47
+00:02:59.550 --> 00:03:03.457
+The other disables sign-in in this
+tenant on the stable endpoint,
+
+48
+00:03:03.457 --> 00:03:05.650
+and that's the one the code uses.
+
+49
+00:03:09.400 --> 00:03:12.550
+Microsoft's starting point
+here is a Graph tutorial.
+
+50
+00:03:12.550 --> 00:03:16.531
+It gives a query for service
+principals with no owner or just one,
+
+51
+00:03:16.531 --> 00:03:20.962
+requests that add an owner, and a
+sample that sets the service reference.
+
+52
+00:03:20.962 --> 00:03:26.099
+As before, those samples exist only
+inside the page, so the repository pins
+
+53
+00:03:26.099 --> 00:03:31.488
+its source unchanged, with hashes a test
+checks and a weekly watch for changes.
+
+54
+00:03:31.488 --> 00:03:36.304
+The harness then reads each request straight
+out of the page and sends it to a fake
+
+55
+00:03:36.304 --> 00:03:38.533
+Graph, which behaves like the real one,
+
+56
+00:03:38.533 --> 00:03:43.420
+right down to refusing an advanced query
+that's missing its required header.
+
+57
+00:03:47.170 --> 00:03:50.507
+Sending the samples to the fake
+shows the problem quickly.
+
+58
+00:03:50.507 --> 00:03:53.646
+The query's shape is right,
+so it's kept as the model.
+
+59
+00:03:53.646 --> 00:03:58.091
+But most of what it calls ownerless
+is noise: managed identities,
+
+60
+00:03:58.091 --> 00:04:02.370
+which have no owners to add, a
+third party's app, and Graph itself.
+
+61
+00:04:02.370 --> 00:04:05.564
+It checks the service principal,
+when the owners who matter
+
+62
+00:04:05.564 --> 00:04:08.758
+are the ones on the registration,
+where the credentials live.
+
+63
+00:04:08.758 --> 00:04:12.295
+It counts a guest or a bot as
+an owner, just like a person.
+
+64
+00:04:12.295 --> 00:04:15.132
+And it labels a simple read
+with a write permission.
+
+65
+00:04:15.132 --> 00:04:17.610
+Each of these is pinned by a test.
+
+66
+00:04:21.360 --> 00:04:23.710
+Then there's what the
+samples don't cover at all.
+
+67
+00:04:23.710 --> 00:04:26.947
+They'll add any object as
+an owner, a bot included.
+
+68
+00:04:26.947 --> 00:04:30.325
+The reference they set is free
+text, even though Learn's own
+
+69
+00:04:30.325 --> 00:04:33.773
+guidance says to point at the
+service management database.
+
+70
+00:04:33.773 --> 00:04:37.773
+They say nothing about directory service
+accounts, which is half the gate.
+
+71
+00:04:37.773 --> 00:04:41.860
+And there's no orphan rule, no
+disable and no claim window.
+
+72
+00:04:41.860 --> 00:04:46.977
+So the verdict: keep Learn's query and its
+owner requests as the model for the reads
+
+73
+00:04:46.977 --> 00:04:51.560
+and for the one write that adds an owner,
+but don't use the query as the check.
+
+74
+00:04:51.560 --> 00:04:54.950
+It counts the wrong owners,
+on the wrong object.
+
+75
+00:04:58.700 --> 00:04:59.762
+Here's the check.
+
+76
+00:04:59.762 --> 00:05:02.363
+It reads each owner and each nominee once,
+
+77
+00:05:02.363 --> 00:05:05.345
+with a single call and a
+single read permission,
+
+78
+00:05:05.345 --> 00:05:10.163
+so it can tell a member from a guest and
+an enabled account from a disabled one.
+
+79
+00:05:10.163 --> 00:05:11.924
+Then it applies nine rules.
+
+80
+00:05:11.924 --> 00:05:16.527
+The findings are the ones that block the
+gate: no valid human owner, only one,
+
+81
+00:05:16.527 --> 00:05:21.356
+a missing reference, a reference that
+points at nothing or at a retired record,
+
+82
+00:05:21.356 --> 00:05:24.525
+and a directory account
+with no application owner.
+
+83
+00:05:24.525 --> 00:05:27.713
+Guests, bots and disabled
+owners are warnings.
+
+84
+00:05:27.713 --> 00:05:32.330
+And anything that might be a person
+isn't checked until someone confirms it.
+
+85
+00:05:36.080 --> 00:05:39.855
+The orphan rule becomes a plan,
+and nothing in the plan writes.
+
+86
+00:05:39.855 --> 00:05:44.730
+Each orphan candidate and each
+claim turns into exactly one action.
+
+87
+00:05:44.730 --> 00:05:48.699
+Most are bookkeeping: waiting
+for the officer's confirmation,
+
+88
+00:05:48.699 --> 00:05:52.201
+a claim window still open, an
+exception with an end date,
+
+89
+00:05:52.201 --> 00:05:55.392
+or a retirement candidate
+once the window closes.
+
+90
+00:05:55.392 --> 00:05:59.224
+Only two actions ever write:
+disabling a confirmed orphan,
+
+91
+00:05:59.224 --> 00:06:01.618
+and adding an owner someone claimed.
+
+92
+00:06:01.618 --> 00:06:02.954
+Here's the clever part.
+
+93
+00:06:02.954 --> 00:06:06.615
+The same inputs always give
+the same plan, byte for byte,
+
+94
+00:06:06.615 --> 00:06:09.543
+so a reviewer doesn't
+approve a description.
+
+95
+00:06:09.543 --> 00:06:11.250
+They approve a hash.
+
+96
+00:06:15.000 --> 00:06:19.588
+This is the only code in the example that
+can write, and it's built to refuse.
+
+97
+00:06:19.588 --> 00:06:23.620
+It won't run unless the plan's hash
+is the one the reviewer approved,
+
+98
+00:06:23.620 --> 00:06:27.801
+the plan belongs to this tenant and
+cloud, and it's less than a week old.
+
+99
+00:06:27.801 --> 00:06:30.162
+It can only send a body that disables,
+
+100
+00:06:30.162 --> 00:06:33.075
+or one that adds an owner,
+and it never deletes.
+
+101
+00:06:33.075 --> 00:06:37.112
+Before each write it looks again,
+and skips if an owner has appeared.
+
+102
+00:06:37.112 --> 00:06:39.611
+And it runs only as a
+person, never an app,
+
+103
+00:06:39.611 --> 00:06:44.138
+because the permission it needs could
+let an app act as every other app.
+
+104
+00:06:44.138 --> 00:06:46.670
+Disabling is never automatic.
+
+105
+00:06:50.420 --> 00:06:51.470
+Who's involved?
+
+106
+00:06:51.470 --> 00:06:53.208
+Developers build the code.
+
+107
+00:06:53.208 --> 00:06:58.177
+The identity governance officer confirms
+every orphan before anything is disabled,
+
+108
+00:06:58.177 --> 00:07:01.957
+and the chief information security
+officer owns the rule itself.
+
+109
+00:07:01.957 --> 00:07:05.780
+Application owners and security
+officers review the results,
+
+110
+00:07:05.780 --> 00:07:08.058
+and a second person approves the plan.
+
+111
+00:07:08.058 --> 00:07:10.493
+The inputs are deliberately plain files,
+
+112
+00:07:10.493 --> 00:07:13.572
+each kept by the people who
+actually know the answer:
+
+113
+00:07:13.572 --> 00:07:18.226
+application owners for directory accounts,
+the system inventory for records,
+
+114
+00:07:18.226 --> 00:07:23.095
+the governance officer for confirmations,
+and the offices that claim an identity.
+
+115
+00:07:23.095 --> 00:07:25.690
+You don't need a tenant until Lab 2.
+
+116
+00:07:29.440 --> 00:07:34.302
+Lab 1 runs on a laptop, using the
+register you built in Chapter 1's lab.
+
+117
+00:07:34.302 --> 00:07:38.108
+First, send Learn's samples to
+the fake, and read the test that
+
+118
+00:07:38.108 --> 00:07:42.302
+drops the required header: the fake
+refuses it, just as Graph would.
+
+119
+00:07:42.302 --> 00:07:45.803
+Second, list what each task
+needs, and notice the split:
+
+120
+00:07:45.803 --> 00:07:50.577
+the check needs one read permission,
+and only the write path asks for more.
+
+121
+00:07:50.577 --> 00:07:53.341
+Third, run the check and build the plan.
+
+122
+00:07:53.341 --> 00:07:57.341
+Twenty-two identities are checked,
+seven are orphan candidates,
+
+123
+00:07:57.341 --> 00:08:01.040
+and the plan has ten actions,
+only three of which would write.
+
+124
+00:08:01.040 --> 00:08:04.510
+Run it again, and the
+plan's hash is the same.
+
+125
+00:08:08.260 --> 00:08:09.585
+Now read what it found.
+
+126
+00:08:09.585 --> 00:08:11.810
+Two apps have no valid owner at all.
+
+127
+00:08:11.810 --> 00:08:16.107
+Four have only one, and the other
+"owner" turns out to be a bot,
+
+128
+00:08:16.107 --> 00:08:18.210
+a guest, or someone who's left.
+
+129
+00:08:18.210 --> 00:08:22.609
+Several references are missing, free
+text, or point at a retired record,
+
+130
+00:08:22.609 --> 00:08:26.098
+and five directory accounts
+have no application owner.
+
+131
+00:08:26.098 --> 00:08:27.983
+The plan shows the rule at work:
+
+132
+00:08:27.983 --> 00:08:33.036
+one account disabled last month and never
+claimed is now a retirement candidate,
+
+133
+00:08:33.036 --> 00:08:37.185
+another's window is still open, and
+a claim naming a guest is refused.
+
+134
+00:08:37.185 --> 00:08:40.110
+Then you dry-run the plan,
+apply it to the fake,
+
+135
+00:08:40.110 --> 00:08:43.240
+and watch an unapproved hash get refused.
+
+136
+00:08:46.990 --> 00:08:51.290
+Lab 2 moves to a test tenant and
+a test domain, never production.
+
+137
+00:08:51.290 --> 00:08:55.872
+You create two deliberate orphans, an
+app with no owners and a service account
+
+138
+00:08:55.872 --> 00:09:00.240
+with no application owner, and run the
+check with a single read permission.
+
+139
+00:09:00.240 --> 00:09:01.428
+Both should show up.
+
+140
+00:09:01.428 --> 00:09:04.644
+Then you do what the governance
+officer would: confirm them,
+
+141
+00:09:04.644 --> 00:09:07.203
+and have a second person
+approve the plan's hash.
+
+142
+00:09:07.203 --> 00:09:11.215
+Only then do you sign in as
+a person, dry-run, and apply.
+
+143
+00:09:11.215 --> 00:09:14.176
+The admin center shows
+the app as deactivated,
+
+144
+00:09:14.176 --> 00:09:17.215
+the account is disabled,
+and you record the date.
+
+145
+00:09:17.215 --> 00:09:19.660
+Then put everything back the way it was.
+
+146
+00:09:23.410 --> 00:09:25.198
+Every danger here has a guard.
+
+147
+00:09:25.198 --> 00:09:29.934
+The quiet one is counting the wrong owners,
+a guest, a bot or someone who's left,
+
+148
+00:09:29.934 --> 00:09:33.372
+so the gate passes on people
+who can't answer for the app.
+
+149
+00:09:33.372 --> 00:09:37.884
+The loud ones are a disable on a guess
+and a delete, and the code answers both:
+
+150
+00:09:37.884 --> 00:09:42.322
+nothing is disabled without the
+officer's confirmation and a fresh look,
+
+151
+00:09:42.322 --> 00:09:44.097
+and there is simply no delete.
+
+152
+00:09:44.097 --> 00:09:46.468
+A plan changed after review won't run,
+
+153
+00:09:46.468 --> 00:09:49.786
+and the write path can't
+send anything but a disable.
+
+154
+00:09:49.786 --> 00:09:55.200
+Notice, again, that each guard is a
+rule the code enforces every time.
+
+155
+00:09:58.950 --> 00:10:00.300
+Here's what done looks like.
+
+156
+00:10:00.300 --> 00:10:03.573
+Every app has two owners who
+are real, enabled people,
+
+157
+00:10:03.573 --> 00:10:06.313
+or a finding with someone
+assigned to fix it.
+
+158
+00:10:06.313 --> 00:10:08.652
+Every reference points at a live record,
+
+159
+00:10:08.652 --> 00:10:12.837
+and every directory account has an
+application owner or is a candidate.
+
+160
+00:10:12.837 --> 00:10:16.875
+No orphan was disabled without the
+governance officer's confirmation.
+
+161
+00:10:16.875 --> 00:10:21.387
+The plan's hash was approved by someone
+other than the person who applied it,
+
+162
+00:10:21.387 --> 00:10:24.662
+the write ran as a person, and
+every disable has its date.
+
+163
+00:10:24.662 --> 00:10:26.019
+With owners in place,
+
+164
+00:10:26.019 --> 00:10:30.250
+Chapter 3 turns each account's
+candidate target into a decision.
+
+165
+00:10:30.250 --> 00:10:31.420
+Thanks for watching.

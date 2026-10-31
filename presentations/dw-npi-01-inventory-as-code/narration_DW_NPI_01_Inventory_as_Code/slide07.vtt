@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.937
+Now Microsoft's starting point.
+
+2
+00:00:01.937 --> 00:00:05.895
+Learn's service account series is
+Microsoft's procedure for this read:
+
+3
+00:00:05.895 --> 00:00:08.420
+a few PowerShell commands
+for user accounts,
+
+4
+00:00:08.420 --> 00:00:11.286
+managed service accounts
+and service principals,
+
+5
+00:00:11.286 --> 00:00:14.083
+a page that says what to
+record about each account,
+
+6
+00:00:14.083 --> 00:00:18.450
+and a script that exports every app
+registration's secrets and certificates.
+
+7
+00:00:18.450 --> 00:00:23.997
+Those commands live only inside web pages,
+so the repository pins the pages' source,
+
+8
+00:00:23.997 --> 00:00:28.550
+unchanged, with hashes a test checks
+and a weekly watch for changes.
+
+9
+00:00:28.550 --> 00:00:31.327
+A harness then runs them
+exactly as published,
+
+10
+00:00:31.327 --> 00:00:34.250
+against stand-ins built
+from a fictional estate.
+
+11
+00:00:34.250 --> 00:00:36.940
+Nothing is installed,
+and nothing signs in.

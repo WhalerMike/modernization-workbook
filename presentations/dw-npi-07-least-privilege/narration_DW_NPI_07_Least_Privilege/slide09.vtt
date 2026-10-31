@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.825
+Two pieces sit between
+the check and the plan.
+
+2
+00:00:02.825 --> 00:00:06.636
+First, the escalation class:
+a handful of permissions
+
+3
+00:00:06.636 --> 00:00:10.100
+that let an app grant itself
+more, or act as others.
+
+4
+00:00:10.100 --> 00:00:14.409
+Any app holding one is handed off
+whole to the Privileged Access plan,
+
+5
+00:00:14.409 --> 00:00:16.450
+with everything it holds listed.
+
+6
+00:00:16.450 --> 00:00:19.987
+Second, the quarterly owner
+review: one row per grant,
+
+7
+00:00:19.987 --> 00:00:24.100
+sent to the owners, and only
+answers dated this quarter count.
+
+8
+00:00:24.100 --> 00:00:26.466
+It closes when every row is decided and
+
+9
+00:00:26.466 --> 00:00:29.350
+nothing approved for
+removal is still granted.
+
+10
+00:00:29.350 --> 00:00:33.094
+Access reviews for privileged apps
+belong to the other workbook,
+
+11
+00:00:33.094 --> 00:00:35.380
+and the chapter treats them as preview.

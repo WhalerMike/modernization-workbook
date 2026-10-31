@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:02.487
+Developers build it.
+
+3
+00:00:02.487 --> 00:00:06.825
+The identity governance officer keeps
+the handshakes and confirms orphans.
+
+4
+00:00:06.825 --> 00:00:11.606
+The Chief AI Officer's staff keep the
+use-case inventory, security operations
+
+5
+00:00:11.606 --> 00:00:15.938
+own the drift findings, and the
+security officers review the evidence.
+
+6
+00:00:15.938 --> 00:00:19.300
+The read task holds ten read
+permissions and nothing
+
+7
+00:00:19.300 --> 00:00:22.050
+that ends in read-write;
+a test enforces that.
+
+8
+00:00:22.050 --> 00:00:25.894
+A person running it also needs a
+reader role for custom attributes,
+
+9
+00:00:25.894 --> 00:00:29.388
+and the agent administrator role
+unless they own the agents.
+
+10
+00:00:29.388 --> 00:00:34.510
+The write task holds only the policy
+permissions, in a person's signed-in session.

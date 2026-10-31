@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.038
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.038 --> 00:00:05.688
+Building Privileged Access.
+
+3
+00:00:05.688 --> 00:00:10.913
+This is Chapter 8, the last one:
+evidence and drift for the ISSO.
+
+4
+00:00:10.913 --> 00:00:14.662
+An inventory taken once only
+proves the day it was taken.
+
+5
+00:00:14.662 --> 00:00:19.051
+The ISSO needs every day of the
+period, every elevation in it,
+
+6
+00:00:19.051 --> 00:00:22.724
+and a record nobody could
+have edited afterwards.
+
+7
+00:00:22.724 --> 00:00:27.606
+We'll start from Learn's audit queries
+for PIM, see what they leave out, then
+
+8
+00:00:27.606 --> 00:00:32.650
+walk the run, the comparison, the package,
+the period, two labs and the dangers.
+
+9
+00:00:32.650 --> 00:00:37.850
+One note before we begin: the code is
+illustrative, tested against fixtures.

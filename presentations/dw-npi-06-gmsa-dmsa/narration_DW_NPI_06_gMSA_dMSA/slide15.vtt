@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.050
+Next you read the island list and
+the reconciliation side by side.
+
+2
+00:00:04.050 --> 00:00:07.761
+Two rows aren't ready for
+hand-off, so the flag stays false,
+
+3
+00:00:07.761 --> 00:00:10.988
+which is the point: an
+incomplete list never goes.
+
+4
+00:00:10.988 --> 00:00:12.313
+Then the write path.
+
+5
+00:00:12.313 --> 00:00:16.525
+A dry run with the approved hash
+reports the four writes it would send.
+
+6
+00:00:16.525 --> 00:00:20.590
+Applying it to the fake sends them,
+and the results tell the operator
+
+7
+00:00:20.590 --> 00:00:24.437
+what comes next, such as installing
+each new account on its hosts.
+
+8
+00:00:24.437 --> 00:00:28.701
+Finally you pass a hash nobody
+approved, and it refuses outright.
+
+9
+00:00:28.701 --> 00:00:32.180
+The full suite is five hundred
+thirteen passing tests.

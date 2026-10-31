@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.812
+This is the heart of the chapter.
+
+2
+00:00:01.812 --> 00:00:05.095
+Run against the fixture tenant,
+Learn's sample lists the
+
+3
+00:00:05.095 --> 00:00:08.450
+active assignments well, so
+that part is kept as the model.
+
+4
+00:00:08.450 --> 00:00:10.630
+But it can't see eligibility at all,
+
+5
+00:00:10.630 --> 00:00:15.067
+and under PIM eligibility is where
+almost every human holder ends up,
+
+6
+00:00:15.067 --> 00:00:20.438
+so an active-only list shrinks as the project
+succeeds and stops being an inventory.
+
+7
+00:00:20.438 --> 00:00:24.114
+It also makes one call per
+role, never asks for every page,
+
+8
+00:00:24.114 --> 00:00:28.988
+and treats a group as a single holder,
+so the people behind it are invisible.
+
+9
+00:00:28.988 --> 00:00:31.540
+Each of those misses is pinned by a test.

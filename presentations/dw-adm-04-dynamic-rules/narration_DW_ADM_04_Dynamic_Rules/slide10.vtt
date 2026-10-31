@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.787
+The linter is where the
+guards become enforceable.
+
+2
+00:00:02.787 --> 00:00:05.810
+Its most important check
+is that the two guards sit
+
+3
+00:00:05.810 --> 00:00:08.688
+at the top of the rule,
+ANDed with everything else.
+
+4
+00:00:08.688 --> 00:00:11.554
+A guard tucked inside an
+"or" protects nothing,
+
+5
+00:00:11.554 --> 00:00:15.738
+yet a simple text search would still
+find it and call the rule fine.
+
+6
+00:00:15.738 --> 00:00:19.126
+That's why the linter works on
+the parsed rule, not the text.
+
+7
+00:00:19.126 --> 00:00:22.450
+Another check is subtler:
+"not equal to contractor"
+
+8
+00:00:22.450 --> 00:00:25.612
+also lets in someone whose
+worker type is empty.
+
+9
+00:00:25.612 --> 00:00:28.440
+The linter flags it,
+and the owner decides.

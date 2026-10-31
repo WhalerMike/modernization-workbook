@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.344
+Lab 2 moves to a test tenant
+with fictional people,
+
+2
+00:00:03.344 --> 00:00:06.075
+never production, and it still only reads.
+
+3
+00:00:06.075 --> 00:00:08.519
+You grant the same two read permissions,
+
+4
+00:00:08.519 --> 00:00:12.075
+write a small set of inputs for
+the test accounts, and run it.
+
+5
+00:00:12.075 --> 00:00:16.435
+Then come two checks the chapter
+couldn't settle from the documentation:
+
+6
+00:00:16.435 --> 00:00:21.159
+what the license read actually shows in
+a GCC tenant, including whether a trial
+
+7
+00:00:21.159 --> 00:00:26.100
+appears, and which identities the Conditional
+Access screen really lets you pick.
+
+8
+00:00:26.100 --> 00:00:30.500
+Record both, discard the draft
+policy, and back everything out.

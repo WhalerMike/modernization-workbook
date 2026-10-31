@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.588
+So what does the example add?
+
+2
+00:00:01.588 --> 00:00:05.821
+Two clients, one in Python and one
+in PowerShell, that read the same
+
+3
+00:00:05.821 --> 00:00:10.212
+mapping file and produce exactly
+the same output for the same input.
+
+4
+00:00:10.212 --> 00:00:13.525
+The Python one needs nothing
+beyond the standard library.
+
+5
+00:00:13.525 --> 00:00:16.654
+One mapping file holds the
+column map, the code lists,
+
+6
+00:00:16.654 --> 00:00:20.512
+the worker types and the length
+limits, and a settings file holds
+
+7
+00:00:20.512 --> 00:00:24.587
+the non-secret knobs, like the
+disable threshold and the call budget.
+
+8
+00:00:24.587 --> 00:00:27.987
+The payload itself keeps the
+shape of Learn's own examples.
+
+9
+00:00:27.987 --> 00:00:29.860
+Let's look at the rules it applies.

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Now the code.
+
+2
+00:00:00.988 --> 00:00:04.639
+The chapter adds its own module,
+its own list of allowed calls,
+
+3
+00:00:04.639 --> 00:00:09.313
+and an entry script, and borrows nothing
+from Chapter 1 except the cloud table.
+
+4
+00:00:09.313 --> 00:00:14.104
+Everything is driven by one reviewed
+file: for each group, who may be a
+
+5
+00:00:14.104 --> 00:00:19.324
+member or owner, whether active or
+eligible, until when, and on which ticket.
+
+6
+00:00:19.324 --> 00:00:24.397
+A second file sets the activation policy
+per tier, and it's labeled design guidance:
+
+7
+00:00:24.397 --> 00:00:29.469
+shorter activation and approval for the
+top tiers, longer eligibility lower down,
+
+8
+00:00:29.469 --> 00:00:33.020
+and one-hour owner activation
+with approval everywhere.

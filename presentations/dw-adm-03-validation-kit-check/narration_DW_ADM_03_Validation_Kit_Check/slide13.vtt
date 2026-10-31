@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:03.690
+Developers and engineers extend the kit,
+
+3
+00:00:03.690 --> 00:00:06.813
+and they need PowerShell
+and the basics of Pester.
+
+4
+00:00:06.813 --> 00:00:09.010
+Security officers read the results,
+
+5
+00:00:09.010 --> 00:00:13.112
+and the catalog tells them up front
+what access a live run would take.
+
+6
+00:00:13.112 --> 00:00:15.853
+A Global Administrator
+appears exactly once,
+
+7
+00:00:15.853 --> 00:00:19.963
+to save the export while they're
+already signed in for something else.
+
+8
+00:00:19.963 --> 00:00:22.850
+Nothing in the kit itself
+ever runs with that role.
+
+9
+00:00:22.850 --> 00:00:26.915
+And when a finding needs fixing,
+the identity team makes the change,
+
+10
+00:00:26.915 --> 00:00:29.650
+from the change record,
+under change control.
+
+11
+00:00:29.650 --> 00:00:31.680
+The check only ever reports.

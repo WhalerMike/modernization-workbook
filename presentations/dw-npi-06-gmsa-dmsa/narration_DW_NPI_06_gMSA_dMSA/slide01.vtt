@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:10.223
+This is Chapter 6: group and
+delegated managed service accounts,
+
+4
+00:00:10.223 --> 00:00:11.850
+and the Kerberos island.
+
+5
+00:00:11.850 --> 00:00:15.679
+These accounts are good credentials
+with a known expiry date,
+
+6
+00:00:15.679 --> 00:00:20.108
+the day the last domain controller is
+demoted, so the chapter makes sure
+
+7
+00:00:20.108 --> 00:00:24.162
+every one of them moves, retires, or
+sits on a dated list before then.
+
+8
+00:00:24.162 --> 00:00:28.258
+We'll start from Learn's own
+procedures, see what they leave out,
+
+9
+00:00:28.258 --> 00:00:33.075
+then walk the plan, the island list, the
+write path, two labs and the dangers.
+
+10
+00:00:33.075 --> 00:00:38.280
+One note before we begin: the code is
+illustrative, tested against fixtures.

@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.513
+On the write side, each policy is one
+file in Git, and the file has two halves.
+
+2
+00:00:05.513 --> 00:00:09.072
+The policy half is exactly
+the body Graph will receive,
+
+3
+00:00:09.072 --> 00:00:13.026
+in the shape Learn documents, so
+what's reviewed is what's sent.
+
+4
+00:00:13.026 --> 00:00:17.981
+The other half is the record: who approves
+a change, which tool owns these settings,
+
+5
+00:00:17.981 --> 00:00:22.937
+which old policies they came from, and a
+decision record for every single setting.
+
+6
+00:00:22.937 --> 00:00:27.588
+The setting identifiers in the two sample
+files come from Learn's own examples,
+
+7
+00:00:27.588 --> 00:00:30.450
+and the chapter's advice
+is to export one from the
+
+8
+00:00:30.450 --> 00:00:33.580
+admin center and compare
+before trusting any other.

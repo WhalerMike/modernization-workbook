@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.964
+Here's what Microsoft itself
+says about these tools,
+
+2
+00:00:02.964 --> 00:00:05.200
+and it's why a pipeline is worth building.
+
+3
+00:00:05.200 --> 00:00:09.725
+Group Policy analytics reads your exports
+and tells you which settings have an
+
+4
+00:00:09.725 --> 00:00:11.577
+equivalent, but only for Windows,
+
+5
+00:00:11.577 --> 00:00:14.525
+and it only parses some
+settings, and only in English.
+
+6
+00:00:14.525 --> 00:00:18.654
+The Migrate button is called best
+effort; Learn tells you not to move
+
+7
+00:00:18.654 --> 00:00:23.225
+everything without review, and it simply
+stops when two policies disagree.
+
+8
+00:00:23.225 --> 00:00:25.029
+And everything in Graph here,
+
+9
+00:00:25.029 --> 00:00:29.238
+both the analytics reports and the
+settings catalog itself, is beta.
+
+10
+00:00:29.238 --> 00:00:31.575
+Supported, but liable to change.
+
+11
+00:00:31.575 --> 00:00:33.050
+Next, which cloud.

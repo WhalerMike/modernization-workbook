@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.562
+Why does this chapter matter?
+
+2
+00:00:01.562 --> 00:00:04.337
+Because a stolen secret
+works from anywhere,
+
+3
+00:00:04.337 --> 00:00:08.537
+and Conditional Access is how you
+pin a workload to its own networks.
+
+4
+00:00:08.537 --> 00:00:11.406
+Learn is short and firm
+about what it can do:
+
+5
+00:00:11.406 --> 00:00:16.487
+block from outside known ranges, or on
+risk, and blocking is the only control.
+
+6
+00:00:16.487 --> 00:00:20.740
+Four limits then decide the whole
+scope: you need the premium license,
+
+7
+00:00:20.740 --> 00:00:24.620
+only single-tenant apps are
+covered, managed identities aren't,
+
+8
+00:00:24.620 --> 00:00:28.275
+and a policy assigned through
+a group simply isn't enforced.
+
+9
+00:00:28.275 --> 00:00:32.590
+For this estate, everything goes
+to the worldwide Graph endpoint.

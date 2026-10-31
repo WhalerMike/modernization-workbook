@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.225
+There's exactly one way a check reads
+tenant data, and that's on purpose.
+
+2
+00:00:04.225 --> 00:00:08.450
+In a fixture run, the data path
+reads a file from the fixture folder.
+
+3
+00:00:08.450 --> 00:00:10.975
+Live, it calls Graph with the address.
+
+4
+00:00:10.975 --> 00:00:13.638
+And an export comes in
+through the input reader.
+
+5
+00:00:13.638 --> 00:00:18.199
+All three are logged the same way, so
+when a reviewer opens the evidence,
+
+6
+00:00:18.199 --> 00:00:22.525
+they can tell from the evidence
+alone which path a result came from:
+
+7
+00:00:22.525 --> 00:00:26.537
+a fixture, a live tenant, or a
+file a Global Administrator saved.
+
+8
+00:00:26.537 --> 00:00:28.607
+That matters for this check above all,
+
+9
+00:00:28.607 --> 00:00:32.880
+because the path is what tells you
+whether the powerful role was ever needed.

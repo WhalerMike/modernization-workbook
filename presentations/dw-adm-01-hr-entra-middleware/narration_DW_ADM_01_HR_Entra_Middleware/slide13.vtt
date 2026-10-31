@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:05.413
+Developers who own the H R integration,
+comfortable in PowerShell or
+
+3
+00:00:05.413 --> 00:00:09.788
+Python and familiar with SCIM, but they
+don't need to know the H R product.
+
+4
+00:00:09.788 --> 00:00:14.599
+The engineers who review it, who should be
+able to say where every rule came from.
+
+5
+00:00:14.599 --> 00:00:18.488
+And the security officer, who
+needs records rather than a screen.
+
+6
+00:00:18.488 --> 00:00:20.876
+The permissions are the other half of who.
+
+7
+00:00:20.876 --> 00:00:24.187
+The sender gets one upload
+permission and nothing else;
+
+8
+00:00:24.187 --> 00:00:26.563
+reading the logs is a separate identity.
+
+9
+00:00:26.563 --> 00:00:30.254
+And note that two Learn pages
+name different log permissions,
+
+10
+00:00:30.254 --> 00:00:33.220
+so try the narrower one
+first in your test tenant.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.308
+Lab 2 moves to a test tenant
+with fictional people,
+
+2
+00:00:03.308 --> 00:00:05.612
+never production, and it only reads.
+
+3
+00:00:05.612 --> 00:00:10.454
+You register the app in the tenant's own
+cloud with a certificate, grant exactly
+
+4
+00:00:10.454 --> 00:00:14.850
+the five permissions plus Reader on a
+test subscription, sign in, and run.
+
+5
+00:00:14.850 --> 00:00:18.181
+Then comes the useful part:
+download the admin center's
+
+6
+00:00:18.181 --> 00:00:21.363
+list of assignments, as
+Learn describes, and compare.
+
+7
+00:00:21.363 --> 00:00:24.049
+Every active row should
+be in the inventory,
+
+8
+00:00:24.049 --> 00:00:28.675
+and the inventory should also hold the
+eligible rows the download can't see.
+
+9
+00:00:28.675 --> 00:00:32.740
+Check the two assumptions the fixture
+made, then back everything out.

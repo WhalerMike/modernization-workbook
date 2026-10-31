@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.762
+Here's what Microsoft gives you.
+
+2
+00:00:01.762 --> 00:00:05.799
+The admin center can create an
+extension and a new Logic App together.
+
+3
+00:00:05.799 --> 00:00:10.732
+For an existing Logic App, Learn publishes
+one workflow definition to paste in:
+
+4
+00:00:10.732 --> 00:00:14.374
+a trigger that describes what
+Lifecycle Workflows sends,
+
+5
+00:00:14.374 --> 00:00:18.850
+one callback action, and a gap in the
+middle labelled "add your logic here".
+
+6
+00:00:18.850 --> 00:00:23.563
+That's Microsoft's only sample; a
+search found no template anywhere else.
+
+7
+00:00:23.563 --> 00:00:28.993
+Because it lives only inside a web page,
+the repository pins the page with checked
+
+8
+00:00:28.993 --> 00:00:34.099
+hashes, and a tiny interpreter runs the
+definition, unchanged, against fakes.
+
+9
+00:00:34.099 --> 00:00:35.860
+So you see what it really does.

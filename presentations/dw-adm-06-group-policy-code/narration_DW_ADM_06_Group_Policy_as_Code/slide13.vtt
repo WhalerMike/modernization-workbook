@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:06.497
+The developers and Intune engineers who
+build the library, the reviewers who approve
+
+3
+00:00:06.497 --> 00:00:11.438
+each file, and the owner named in every
+file, who approves changes to that policy.
+
+4
+00:00:11.438 --> 00:00:15.063
+The roles follow the same
+least-privilege line as the code.
+
+5
+00:00:15.063 --> 00:00:18.543
+Importing a policy object
+for analysis needs an Intune
+
+6
+00:00:18.543 --> 00:00:22.025
+administrator or a role with
+two specific permissions.
+
+7
+00:00:22.025 --> 00:00:26.300
+Reading, planning and the dry run
+need only a read-only operator.
+
+8
+00:00:26.300 --> 00:00:29.110
+Only the final apply needs
+the built-in role that
+
+9
+00:00:29.110 --> 00:00:32.470
+manages configuration profiles,
+with write permission.

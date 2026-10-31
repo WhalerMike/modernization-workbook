@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.638
+This is the only code in the example that
+can write, and it's built to refuse.
+
+2
+00:00:04.638 --> 00:00:08.670
+It won't run unless the plan's hash
+is the one the reviewer approved,
+
+3
+00:00:08.670 --> 00:00:12.851
+the plan belongs to this tenant and
+cloud, and it's less than a week old.
+
+4
+00:00:12.851 --> 00:00:15.212
+It can only send a body that disables,
+
+5
+00:00:15.212 --> 00:00:18.125
+or one that adds an owner,
+and it never deletes.
+
+6
+00:00:18.125 --> 00:00:22.162
+Before each write it looks again,
+and skips if an owner has appeared.
+
+7
+00:00:22.162 --> 00:00:24.661
+And it runs only as a
+person, never an app,
+
+8
+00:00:24.661 --> 00:00:29.188
+because the permission it needs could
+let an app act as every other app.
+
+9
+00:00:29.188 --> 00:00:31.420
+Disabling is never automatic.

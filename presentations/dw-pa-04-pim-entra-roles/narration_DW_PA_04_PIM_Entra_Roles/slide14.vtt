@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.037
+Lab 1 needs only a laptop: PowerShell
+7 and Pester, no tenant and no network.
+
+2
+00:00:06.037 --> 00:00:10.451
+First you send Learn's own samples to
+the fake and watch thirteen tests pass,
+
+3
+00:00:10.451 --> 00:00:13.939
+including the one that shows
+the samples applying cleanly
+
+4
+00:00:13.939 --> 00:00:17.000
+and still leaving a role six
+rules away from its file.
+
+5
+00:00:17.000 --> 00:00:22.150
+Then you list each task's permissions,
+and see that a dry run needs only reads.
+
+6
+00:00:22.150 --> 00:00:26.339
+Finally you dry-run the pilot
+wave: nine roles, no findings,
+
+7
+00:00:26.339 --> 00:00:32.450
+a plan of rule updates, eligibility requests
+and two conversions, and nothing sent.

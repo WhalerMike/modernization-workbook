@@ -1,0 +1,816 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:10.637
+This is Chapter 4: app management
+policies and certificate rotation.
+
+4
+00:00:10.637 --> 00:00:12.524
+The chapter does two jobs.
+
+5
+00:00:12.524 --> 00:00:16.845
+It holds the tenant's rules for app
+credentials in a reviewed file that can be
+
+6
+00:00:16.845 --> 00:00:20.479
+compared and applied without ever
+loosening, and it rotates app
+
+7
+00:00:20.479 --> 00:00:24.525
+certificates through Key Vault, with
+an owner's approval and an overlap.
+
+8
+00:00:24.525 --> 00:00:28.470
+We'll start from Microsoft's own
+samples, see what they leave out,
+
+9
+00:00:28.470 --> 00:00:31.125
+then walk the code, the
+labs and the dangers.
+
+10
+00:00:31.125 --> 00:00:36.640
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+11
+00:00:40.390 --> 00:00:41.902
+Why does this chapter matter?
+
+12
+00:00:41.902 --> 00:00:44.402
+Because both of its subjects fail quietly.
+
+13
+00:00:44.402 --> 00:00:47.963
+A tenant policy that someone
+set once in the portal can't
+
+14
+00:00:47.963 --> 00:00:51.602
+be reviewed or compared, so
+nobody notices when it drifts.
+
+15
+00:00:51.602 --> 00:00:56.202
+And a certificate that nobody rotates is
+simply an outage waiting for its date.
+
+16
+00:00:56.202 --> 00:00:59.205
+So the chapter turns the
+policy into a reviewed file,
+
+17
+00:00:59.205 --> 00:01:03.603
+compared with the tenant and applied
+through a path that can only tighten it.
+
+18
+00:01:03.603 --> 00:01:07.046
+And it turns rotation into
+a plan: raised early,
+
+19
+00:01:07.046 --> 00:01:11.940
+approved by an owner, renewed,
+overlapped, and only then cleaned up.
+
+20
+00:01:11.940 --> 00:01:13.780
+Let's see where it runs.
+
+21
+00:01:17.530 --> 00:01:18.893
+Next, which cloud.
+
+22
+00:01:18.893 --> 00:01:22.556
+This chapter talks to two
+services, so it needs two hosts.
+
+23
+00:01:22.556 --> 00:01:26.398
+The policy and application
+calls go to Microsoft Graph,
+
+24
+00:01:26.398 --> 00:01:31.493
+and for a GCC tenant like this estate's,
+that's the worldwide Graph endpoint.
+
+25
+00:01:31.493 --> 00:01:36.724
+The certificates live in Key Vault, and
+because GCC's estate uses commercial Azure,
+
+26
+00:01:36.724 --> 00:01:39.692
+the vault sits on the
+commercial vault domain.
+
+27
+00:01:39.692 --> 00:01:42.838
+GCC High and DoD have
+their own hosts for both,
+
+28
+00:01:42.838 --> 00:01:47.854
+and every policy page the chapter
+calls lists the US Government clouds.
+
+29
+00:01:47.854 --> 00:01:52.820
+The code never guesses: you pass the
+cloud, and it builds both hosts from it.
+
+30
+00:01:56.570 --> 00:01:58.395
+Before the code, the model.
+
+31
+00:01:58.395 --> 00:02:00.783
+Learn describes two kinds of policy.
+
+32
+00:02:00.783 --> 00:02:04.789
+There's one tenant default, which
+always exists and starts switched off,
+
+33
+00:02:04.789 --> 00:02:07.505
+with separate restrictions
+for apps that live in
+
+34
+00:02:07.505 --> 00:02:10.221
+the tenant and apps
+provisioned from elsewhere.
+
+35
+00:02:10.221 --> 00:02:13.393
+And there are app-specific
+policies, one per app at most,
+
+36
+00:02:13.393 --> 00:02:16.495
+which override the default
+for whatever they define.
+
+37
+00:02:16.495 --> 00:02:20.169
+Restrictions only bite on apps
+created after a date you choose,
+
+38
+00:02:20.169 --> 00:02:23.420
+and they never stop an existing
+app from getting tokens.
+
+39
+00:02:23.420 --> 00:02:25.745
+They just refuse the
+change that breaks them.
+
+40
+00:02:25.745 --> 00:02:30.520
+Beta adds more restriction types, but
+this chapter stays on version one.
+
+41
+00:02:34.270 --> 00:02:38.632
+Here are the program's own rules, and
+most of them are labeled design guidance.
+
+42
+00:02:38.632 --> 00:02:43.017
+New apps can't use secrets, and their
+certificates are capped at a hundred and
+
+43
+00:02:43.017 --> 00:02:45.593
+eighty days, set on both
+object types because
+
+44
+00:02:45.593 --> 00:02:47.820
+the admin center expects them to match.
+
+45
+00:02:47.820 --> 00:02:50.211
+An app that truly can't use a certificate
+
+46
+00:02:50.211 --> 00:02:52.820
+gets a time-limited
+exception with a record.
+
+47
+00:02:52.820 --> 00:02:55.182
+Older apps get a year while they're fixed.
+
+48
+00:02:55.182 --> 00:02:57.832
+Every registered app
+gets the property lock.
+
+49
+00:02:57.832 --> 00:02:59.658
+No extra license is needed.
+
+50
+00:02:59.658 --> 00:03:03.340
+And rotation joins Key Vault,
+which can renew a certificate,
+
+51
+00:03:03.340 --> 00:03:07.160
+to the app registration, which
+renews nothing on its own.
+
+52
+00:03:10.910 --> 00:03:14.257
+Here's what Microsoft gives
+you: five Learn sources that,
+
+53
+00:03:14.257 --> 00:03:16.585
+between them, hold the whole procedure.
+
+54
+00:03:16.585 --> 00:03:19.575
+There's the request that
+turns on the tenant default,
+
+55
+00:03:19.575 --> 00:03:24.233
+the pair that create and assign an app
+policy, Learn's configuration walkthrough,
+
+56
+00:03:24.233 --> 00:03:28.335
+the request that adds a certificate to
+an app, and the Key Vault examples.
+
+57
+00:03:28.335 --> 00:03:33.539
+Those samples only live inside web pages,
+so the repository pins their sources,
+
+58
+00:03:33.539 --> 00:03:37.198
+unmodified and hashed, with
+a weekly watch for changes.
+
+59
+00:03:37.198 --> 00:03:42.572
+Then a harness sends each request,
+exactly as written, to a fake Graph.
+
+60
+00:03:42.572 --> 00:03:45.620
+That's how you find out
+what each one really does.
+
+61
+00:03:49.370 --> 00:03:51.612
+This is where the samples get interesting,
+
+62
+00:03:51.612 --> 00:03:54.558
+because run as published,
+several of them would hurt you.
+
+63
+00:03:54.558 --> 00:03:57.574
+The tenant update's start
+dates reach back years,
+
+64
+00:03:57.574 --> 00:04:01.270
+so it would refuse the next
+normal certificate on an old app.
+
+65
+00:04:01.270 --> 00:04:03.258
+Its body isn't even strict.
+
+66
+00:04:03.258 --> 00:04:07.558
+Learn's own procedure updates only
+two restrictions, and since an update
+
+67
+00:04:07.558 --> 00:04:12.145
+replaces the whole collection, anything
+it forgets is silently switched off.
+
+68
+00:04:12.145 --> 00:04:14.755
+The assignment sample sends a placeholder,
+
+69
+00:04:14.755 --> 00:04:17.945
+and the tutorial uses a
+property version one refuses.
+
+70
+00:04:17.945 --> 00:04:23.530
+The code keeps the good shape and fixes
+each of these, and a test pins every row.
+
+71
+00:04:27.280 --> 00:04:29.780
+The certificate samples
+have a sharper problem.
+
+72
+00:04:29.780 --> 00:04:35.039
+Learn's first example for adding a
+certificate replaces every certificate the app
+
+73
+00:04:35.039 --> 00:04:39.917
+had, so the old one vanishes the instant
+the new one lands, with no overlap at all.
+
+74
+00:04:39.917 --> 00:04:44.131
+The Key Vault example asks for six
+months, which is just over the cap.
+
+75
+00:04:44.131 --> 00:04:48.363
+And none of the samples ever puts
+the renewed certificate on the app,
+
+76
+00:04:48.363 --> 00:04:50.630
+asks the owner, or removes the old one.
+
+77
+00:04:50.630 --> 00:04:55.113
+So the verdict is: keep the version
+one requests as models for the writes,
+
+78
+00:04:55.113 --> 00:04:57.750
+and don't run any of them as published.
+
+79
+00:05:01.500 --> 00:05:02.825
+So what does the code add?
+
+80
+00:05:02.825 --> 00:05:08.000
+One module, two scripts that only read, and
+a single separate script that can write.
+
+81
+00:05:08.000 --> 00:05:12.275
+What drives it is a handful of small
+files, each with a clear keeper.
+
+82
+00:05:12.275 --> 00:05:17.542
+Identity engineering owns the reviewed
+policy file and the rotation settings,
+
+83
+00:05:17.542 --> 00:05:20.575
+like how early to raise
+and how long to overlap.
+
+84
+00:05:20.575 --> 00:05:23.462
+Application owners keep
+three simple records:
+
+85
+00:05:23.462 --> 00:05:27.682
+which vault holds each app's
+certificate, who approved each rotation,
+
+86
+00:05:27.682 --> 00:05:31.087
+and who confirmed the workload
+signs in with the new one.
+
+87
+00:05:31.087 --> 00:05:35.640
+Every rotation carries one
+request ID from start to finish.
+
+88
+00:05:39.390 --> 00:05:41.290
+Here's how the policy side works.
+
+89
+00:05:41.290 --> 00:05:43.604
+The code reads the tenant's default,
+
+90
+00:05:43.604 --> 00:05:47.515
+every app policy and what it's
+assigned to, and each app's lock.
+
+91
+00:05:47.515 --> 00:05:52.052
+Then it compares, restriction by
+restriction, on both object types.
+
+92
+00:05:52.052 --> 00:05:55.441
+Where the tenant is weaker,
+it adds the program's rule.
+
+93
+00:05:55.441 --> 00:05:57.724
+Where the tenant is already stricter,
+
+94
+00:05:57.724 --> 00:06:01.628
+or holds something the file doesn't
+mention, it keeps the tenant's.
+
+95
+00:06:01.628 --> 00:06:06.766
+That merged body is the key: an update
+can never drop or loosen anything.
+
+96
+00:06:06.766 --> 00:06:08.442
+The plan then turns the diff,
+
+97
+00:06:08.442 --> 00:06:12.810
+the exceptions and the locks into
+actions, and nothing in it writes.
+
+98
+00:06:16.560 --> 00:06:19.584
+Rotation works the same
+way: read everything,
+
+99
+00:06:19.584 --> 00:06:22.935
+then give each certificate
+exactly one next step.
+
+100
+00:06:22.935 --> 00:06:26.047
+A certificate far from
+expiry is left alone.
+
+101
+00:06:26.047 --> 00:06:28.497
+One that's due waits
+for an owner's approval,
+
+102
+00:06:28.497 --> 00:06:32.347
+and an approval only counts if it's
+recent and from an enabled owner.
+
+103
+00:06:32.347 --> 00:06:36.236
+Approved, it's renewed in Key
+Vault using the vault's own policy.
+
+104
+00:06:36.236 --> 00:06:41.073
+The new certificate is attached beside
+the old one, the owner confirms the
+
+105
+00:06:41.073 --> 00:06:45.673
+workload uses it, a week of overlap
+runs, and only then does the old one go.
+
+106
+00:06:45.673 --> 00:06:47.560
+Secrets aren't rotated at all.
+
+107
+00:06:47.560 --> 00:06:49.620
+They're flagged for replacement.
+
+108
+00:06:53.370 --> 00:06:57.258
+Only one script in this chapter can
+write, and it's built to say no.
+
+109
+00:06:57.258 --> 00:07:01.928
+It won't run a plan unless the plan's
+hash matches the one a reviewer approved,
+
+110
+00:07:01.928 --> 00:07:05.920
+and the plan is for this tenant, this
+cloud, and less than a week old.
+
+111
+00:07:05.920 --> 00:07:10.584
+Every request body is checked against
+what's allowed: the policy can't loosen,
+
+112
+00:07:10.584 --> 00:07:13.027
+an attach adds exactly one certificate,
+
+113
+00:07:13.027 --> 00:07:16.432
+and the Key Vault request can't
+change the vault's policy.
+
+114
+00:07:16.432 --> 00:07:21.383
+Just before each write, it re-reads the
+target and skips anything that changed.
+
+115
+00:07:21.383 --> 00:07:26.260
+And a live run is always a signed-in
+person, never an unattended app.
+
+116
+00:07:30.010 --> 00:07:31.072
+Who is this for?
+
+117
+00:07:31.072 --> 00:07:32.061
+Four groups.
+
+118
+00:07:32.061 --> 00:07:33.447
+Developers build it.
+
+119
+00:07:33.447 --> 00:07:36.985
+Identity engineers run it
+and keep the reviewed files.
+
+120
+00:07:36.985 --> 00:07:42.373
+Application owners approve each rotation
+and confirm their workloads still sign in.
+
+121
+00:07:42.373 --> 00:07:45.459
+And the I S S Os review the evidence.
+
+122
+00:07:45.459 --> 00:07:49.850
+The permissions are split cleanly:
+the reads hold only read permissions,
+
+123
+00:07:49.850 --> 00:07:53.435
+and anything that writes is
+delegated to a signed-in person.
+
+124
+00:07:53.435 --> 00:07:56.758
+That matters, because an
+unattended app with permission to
+
+125
+00:07:56.758 --> 00:08:00.285
+update every application could
+add a credential to all of them.
+
+126
+00:08:00.285 --> 00:08:05.610
+Microsoft does offer a self-rolling key
+option, but it skips the owner's approval.
+
+127
+00:08:09.360 --> 00:08:13.522
+Lab 1 needs only a laptop,
+PowerShell 7 and Pester.
+
+128
+00:08:13.522 --> 00:08:17.777
+First you send Microsoft's samples to
+the fakes, and the tests show what you'd
+
+129
+00:08:17.777 --> 00:08:19.149
+otherwise take on trust,
+
+130
+00:08:19.149 --> 00:08:22.648
+including Learn's own update
+quietly dropping a restriction.
+
+131
+00:08:22.648 --> 00:08:25.586
+Then you compare the
+policy and build its plan.
+
+132
+00:08:25.586 --> 00:08:28.767
+It finds six restrictions
+to add, one to change,
+
+133
+00:08:28.767 --> 00:08:31.697
+and one to keep exactly
+as the tenant has it.
+
+134
+00:08:31.697 --> 00:08:36.847
+You dry-run the plan, apply it to the
+fake, and then try a hash nobody approved.
+
+135
+00:08:36.847 --> 00:08:38.386
+The script refuses.
+
+136
+00:08:38.386 --> 00:08:40.790
+Next, the rotation half.
+
+137
+00:08:44.540 --> 00:08:47.902
+The rotation plan is where
+the design becomes concrete.
+
+138
+00:08:47.902 --> 00:08:50.903
+Each fictional app is at a
+different point in its life.
+
+139
+00:08:50.903 --> 00:08:54.827
+One is due and freshly approved,
+so it's renewed in Key Vault.
+
+140
+00:08:54.827 --> 00:08:57.041
+One was already renewed by the vault,
+
+141
+00:08:57.041 --> 00:09:00.065
+so the new certificate is
+attached beside the old.
+
+142
+00:09:00.065 --> 00:09:04.940
+One has been verified and has finished
+its overlap, so its old certificate goes.
+
+143
+00:09:04.940 --> 00:09:09.190
+And three apps still use secrets,
+which are flagged for replacement.
+
+144
+00:09:09.190 --> 00:09:14.690
+Apply it to the fake, run the full suite,
+and five hundred thirteen tests pass.
+
+145
+00:09:18.440 --> 00:09:22.816
+Lab 2 moves to a test tenant and a test
+vault, never production, and it's built
+
+146
+00:09:22.816 --> 00:09:27.765
+to answer the open questions the chapter
+couldn't settle from documentation alone.
+
+147
+00:09:27.765 --> 00:09:32.212
+You read and plan with read-only rights,
+keep the policy as it was before,
+
+148
+00:09:32.212 --> 00:09:36.890
+then apply as a signed-in administrator
+and check the admin center agrees.
+
+149
+00:09:36.890 --> 00:09:39.140
+You try to break the policy on purpose.
+
+150
+00:09:39.140 --> 00:09:42.545
+Then you carry one certificate
+through a full rotation,
+
+151
+00:09:42.545 --> 00:09:45.728
+recording what Graph and
+Key Vault actually return.
+
+152
+00:09:45.728 --> 00:09:50.920
+Finally, because this code never
+loosens a policy, a person backs it out.
+
+153
+00:09:54.670 --> 00:09:59.008
+Each of these dangers has a guard in
+the code, not a reminder in a runbook.
+
+154
+00:09:59.008 --> 00:10:03.793
+The most dangerous is the quiet one: an
+update that forgets a restriction and
+
+155
+00:10:03.793 --> 00:10:08.958
+switches it off, so the writer re-reads the
+live policy and refuses anything looser.
+
+156
+00:10:08.958 --> 00:10:13.096
+A retroactive start date breaks
+rotations on the very day they're due.
+
+157
+00:10:13.096 --> 00:10:16.832
+A certificate that replaces the
+old one takes the workload down.
+
+158
+00:10:16.832 --> 00:10:21.408
+And an unattended app that can update
+every application is a standing risk,
+
+159
+00:10:21.408 --> 00:10:23.770
+so writes are always a signed-in person.
+
+160
+00:10:23.770 --> 00:10:27.440
+Notice the pattern: each
+guard runs every time.
+
+161
+00:10:31.190 --> 00:10:32.540
+Here's what done looks like.
+
+162
+00:10:32.540 --> 00:10:36.637
+On the policy side: a reviewed file
+with an approved effective date,
+
+163
+00:10:36.637 --> 00:10:41.554
+the tenant default matching it on both
+object types with no warning in the admin
+
+164
+00:10:41.554 --> 00:10:43.938
+center, every app policy accounted for,
+
+165
+00:10:43.938 --> 00:10:47.365
+every exception dated, and
+every registered app locked.
+
+166
+00:10:47.365 --> 00:10:50.702
+On the rotation side: every
+certificate bound to a vault,
+
+167
+00:10:50.702 --> 00:10:55.707
+every rotation approved and overlapped,
+every plan approved by someone other than
+
+168
+00:10:55.707 --> 00:11:00.277
+the person who applied it, and the pinned
+samples still the ones you reviewed.
+
+169
+00:11:00.277 --> 00:11:02.754
+Next, Chapter 5 replaces those flagged
+
+170
+00:11:02.754 --> 00:11:05.927
+secrets with federation
+and managed identities.
+
+171
+00:11:05.927 --> 00:11:07.090
+Thanks for watching.

@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.612
+Why does this need code at all?
+
+2
+00:00:01.612 --> 00:00:04.426
+Because the operator
+side is already written,
+
+3
+00:00:04.426 --> 00:00:07.683
+in Book 5's sunset program
+and the Intune track's gates,
+
+4
+00:00:07.683 --> 00:00:11.089
+and what's missing is the
+software for two of those steps:
+
+5
+00:00:11.089 --> 00:00:14.938
+importing the policies for
+analysis, and building the library.
+
+6
+00:00:14.938 --> 00:00:18.313
+Two rules from those pages
+shape everything that follows.
+
+7
+00:00:18.313 --> 00:00:22.588
+Every setting has exactly one
+owning policy and one owning tool,
+
+8
+00:00:22.588 --> 00:00:25.412
+so the library only
+holds what Intune owns.
+
+9
+00:00:25.412 --> 00:00:28.132
+And policies are built
+with no assignments;
+
+10
+00:00:28.132 --> 00:00:30.851
+assigning them is a
+separate, reviewed step.
+
+11
+00:00:30.851 --> 00:00:33.790
+Let's see what Microsoft's
+tools say about the stakes.

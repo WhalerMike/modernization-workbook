@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.070
+The third rule is the token check,
+
+2
+00:00:02.070 --> 00:00:04.988
+and it runs before a live
+job makes a single call.
+
+3
+00:00:04.988 --> 00:00:09.000
+An app-only token lists its
+application permissions in one claim,
+
+4
+00:00:09.000 --> 00:00:11.899
+so the Python client reads
+it from its own token.
+
+5
+00:00:11.899 --> 00:00:14.637
+If a permission is missing, the run stops.
+
+6
+00:00:14.637 --> 00:00:17.400
+If there's one the task
+doesn't use, it warns,
+
+7
+00:00:17.400 --> 00:00:20.650
+because an unused permission
+is still exposure.
+
+8
+00:00:20.650 --> 00:00:23.684
+PowerShell is trickier,
+since the Graph SDK
+
+9
+00:00:23.684 --> 00:00:26.887
+signs in for you and never
+hands over the token.
+
+10
+00:00:26.887 --> 00:00:30.580
+It turns out the session's context
+reports the same permissions,
+
+11
+00:00:30.580 --> 00:00:33.980
+read from the same claim, so
+the module checks that instead.

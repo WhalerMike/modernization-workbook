@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.525
+Lab 2 moves to a test tenant with
+fictional records, never production.
+
+2
+00:00:04.525 --> 00:00:08.857
+You create the provisioning app, extend
+its schema with Microsoft's sample,
+
+3
+00:00:08.857 --> 00:00:11.791
+and give the sender one
+upload permission through
+
+4
+00:00:11.791 --> 00:00:14.725
+a managed identity or a
+certificate, never a secret.
+
+5
+00:00:14.725 --> 00:00:17.063
+Start the job with its safety nets on:
+
+6
+00:00:17.063 --> 00:00:21.037
+the notification email and
+accidental-deletion prevention.
+
+7
+00:00:21.037 --> 00:00:24.313
+Then send five records and
+get one accepted batch.
+
+8
+00:00:24.313 --> 00:00:27.512
+The step people skip is
+the next one: reconcile.
+
+9
+00:00:27.512 --> 00:00:31.937
+Every person key in the manifest should
+show up in the provisioning logs.
+
+10
+00:00:31.937 --> 00:00:33.220
+Then back it all out.

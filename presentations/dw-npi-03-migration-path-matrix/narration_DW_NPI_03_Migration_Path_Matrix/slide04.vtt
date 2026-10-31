@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.919
+Here's what Microsoft gives you,
+
+2
+00:00:01.919 --> 00:00:04.938
+and its order of preference
+is one the matrix keeps.
+
+3
+00:00:04.938 --> 00:00:08.972
+On premises, a group managed
+service account whenever possible,
+
+4
+00:00:08.972 --> 00:00:11.788
+and a plain user account
+only as a last resort.
+
+5
+00:00:11.788 --> 00:00:16.757
+In the cloud, a managed identity if the
+service runs in Azure and supports one,
+
+6
+00:00:16.757 --> 00:00:20.150
+a service principal otherwise,
+never a user account.
+
+7
+00:00:20.150 --> 00:00:24.930
+Windows Server adds the delegated managed
+service account, which has real limits:
+
+8
+00:00:24.930 --> 00:00:29.500
+you can't move a managed service account
+onto one, and delegation stops working.
+
+9
+00:00:29.500 --> 00:00:33.100
+Learn turns this into two
+decision tables, but no code.
+
+10
+00:00:33.100 --> 00:00:36.161
+So the repository pins
+the pages unmodified,
+
+11
+00:00:36.161 --> 00:00:40.510
+and a small harness evaluates
+each table exactly as published.

@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.830
+Every check in the kit
+has the same five parts,
+
+2
+00:00:02.830 --> 00:00:06.888
+and once you see them, adding a
+check is mostly filling in a pattern.
+
+3
+00:00:06.888 --> 00:00:11.175
+There's a catalog entry that says what
+the check is and what access it needs.
+
+4
+00:00:11.175 --> 00:00:13.600
+A function, named from the check's ID.
+
+5
+00:00:13.600 --> 00:00:15.950
+A read through the kit's single data path.
+
+6
+00:00:15.950 --> 00:00:19.588
+Rows that turn what was read
+into findings and a status.
+
+7
+00:00:19.588 --> 00:00:23.022
+And fixtures with tests, so
+the check has to pass clean
+
+8
+00:00:23.022 --> 00:00:26.300
+data and fail planted
+problems, with an exact count.
+
+9
+00:00:26.300 --> 00:00:31.087
+The README's permission table mirrors the
+catalog, and a test keeps them in step.
+
+10
+00:00:31.087 --> 00:00:32.500
+Let's build each part.

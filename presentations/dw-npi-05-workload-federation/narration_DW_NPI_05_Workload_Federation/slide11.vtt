@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.600
+Nothing in the plan writes.
+
+2
+00:00:01.600 --> 00:00:07.258
+Each conversion gets actions, and only three
+of them ever write: create an identity,
+
+3
+00:00:07.258 --> 00:00:12.000
+create a credential, and disable the
+legacy account, all after review.
+
+4
+00:00:12.000 --> 00:00:14.659
+Everything else is a record or a status,
+
+5
+00:00:14.659 --> 00:00:17.900
+from awaiting cutover to
+day fifteen of thirty.
+
+6
+00:00:17.900 --> 00:00:20.994
+A changed credential is
+never edited in place;
+
+7
+00:00:20.994 --> 00:00:23.762
+it gets a new name and
+its own parallel run.
+
+8
+00:00:23.762 --> 00:00:28.248
+The evidence for a clean run comes from
+the beta sign-in log, the only place that
+
+9
+00:00:28.248 --> 00:00:33.225
+shows managed identity and service principal
+sign-ins and which credential was used.
+
+10
+00:00:33.225 --> 00:00:38.140
+The plan is hashed, so the same inputs
+give the same plan, byte for byte.

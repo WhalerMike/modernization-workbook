@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.725
+Lab 2 runs one real review,
+end to end, in a test tenant.
+
+2
+00:00:04.725 --> 00:00:08.575
+Pick a role nobody really holds,
+never Global Administrator.
+
+3
+00:00:08.575 --> 00:00:11.100
+Two apps keep reading and writing apart.
+
+4
+00:00:11.100 --> 00:00:14.008
+You plan as the reader,
+then a second person reads
+
+5
+00:00:14.008 --> 00:00:16.988
+the request bodies before
+you apply as the writer.
+
+6
+00:00:16.988 --> 00:00:20.801
+Then you act as a reviewer:
+approve a test user with a reason,
+
+7
+00:00:20.801 --> 00:00:23.025
+and close the review so it applies.
+
+8
+00:00:23.025 --> 00:00:27.025
+Read the evidence back, and your
+decision is there with its result.
+
+9
+00:00:27.025 --> 00:00:30.012
+The Azure step is optional,
+because it's preview.
+
+10
+00:00:30.012 --> 00:00:34.300
+To back out, export the evidence
+first, then delete by hand.

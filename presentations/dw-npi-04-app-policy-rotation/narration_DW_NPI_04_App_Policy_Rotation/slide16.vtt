@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.426
+Lab 2 moves to a test tenant and a test
+vault, never production, and it's built
+
+2
+00:00:04.426 --> 00:00:09.375
+to answer the open questions the chapter
+couldn't settle from documentation alone.
+
+3
+00:00:09.375 --> 00:00:13.822
+You read and plan with read-only rights,
+keep the policy as it was before,
+
+4
+00:00:13.822 --> 00:00:18.500
+then apply as a signed-in administrator
+and check the admin center agrees.
+
+5
+00:00:18.500 --> 00:00:20.750
+You try to break the policy on purpose.
+
+6
+00:00:20.750 --> 00:00:24.155
+Then you carry one certificate
+through a full rotation,
+
+7
+00:00:24.155 --> 00:00:27.338
+recording what Graph and
+Key Vault actually return.
+
+8
+00:00:27.338 --> 00:00:32.230
+Finally, because this code never
+loosens a policy, a person backs it out.

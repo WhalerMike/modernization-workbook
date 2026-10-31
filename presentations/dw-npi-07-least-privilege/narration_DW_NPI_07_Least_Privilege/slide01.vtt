@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:09.812
+This is Chapter 7: least
+privilege for service principals.
+
+4
+00:00:09.812 --> 00:00:14.989
+A permission nobody reviews stays forever,
+so this chapter's sweep reads every
+
+5
+00:00:14.989 --> 00:00:20.087
+grant, asks its owner once a quarter, and
+removes only what a reviewer approved.
+
+6
+00:00:20.087 --> 00:00:23.610
+We'll start from Learn's own
+review-and-revoke script,
+
+7
+00:00:23.610 --> 00:00:28.199
+see why it shouldn't be run as published,
+then walk the sweep, the rules,
+
+8
+00:00:28.199 --> 00:00:32.787
+the owner review, the plan and its
+write path, two labs and the dangers.
+
+9
+00:00:32.787 --> 00:00:37.990
+One note before we begin: the code is
+illustrative, tested against fixtures.

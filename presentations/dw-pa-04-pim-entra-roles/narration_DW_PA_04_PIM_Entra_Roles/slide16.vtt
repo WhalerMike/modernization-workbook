@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.462
+Lab 2 moves to a test tenant, never
+production, and works one role.
+
+2
+00:00:04.462 --> 00:00:08.143
+First the prerequisites:
+the emergency accounts pass,
+
+3
+00:00:08.143 --> 00:00:12.151
+and the activation gate's policy
+is truly on, not report-only.
+
+4
+00:00:12.151 --> 00:00:15.338
+You create the approver
+group and the role's group,
+
+5
+00:00:15.338 --> 00:00:17.437
+and two apps, a reader and a writer.
+
+6
+00:00:17.437 --> 00:00:21.088
+Dry-run as the reader and review
+the plan with a second person,
+
+7
+00:00:21.088 --> 00:00:24.300
+then apply as the writer
+and expect zero differences.
+
+8
+00:00:24.300 --> 00:00:29.600
+Next, convert one standing assignment the
+safe way, after a confirmed activation.
+
+9
+00:00:29.600 --> 00:00:33.790
+And finally, restore the rules
+from the saved copy and clean up.

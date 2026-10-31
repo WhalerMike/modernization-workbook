@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.826
+The chapter records three
+places where sources disagree,
+
+2
+00:00:03.826 --> 00:00:06.500
+so nobody quietly loosens the code later.
+
+3
+00:00:06.500 --> 00:00:10.710
+The biggest is the type of the Graph
+token: the reference page says one thing,
+
+4
+00:00:10.710 --> 00:00:13.018
+a troubleshooting article says another,
+
+5
+00:00:13.018 --> 00:00:15.938
+and the module's own source
+sides with the reference.
+
+6
+00:00:15.938 --> 00:00:20.038
+The pipeline passes the safer form
+and confirms it in the second lab.
+
+7
+00:00:20.038 --> 00:00:23.599
+The other two are small: a
+trailing slash on the issuer,
+
+8
+00:00:23.599 --> 00:00:26.350
+and how a pull-request subject is spelled.
+
+9
+00:00:26.350 --> 00:00:31.420
+The action version and the one preview
+feature, which isn't used, are on the slide.

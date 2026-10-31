@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.988
+Now the fixtures tell their stories.
+
+2
+00:00:01.988 --> 00:00:06.781
+One credential copies the sample's
+trailing slash and gets the environment's
+
+3
+00:00:06.781 --> 00:00:10.750
+letter case wrong, so it fails
+three ways, including the exchange.
+
+4
+00:00:10.750 --> 00:00:14.212
+Another copies the template's
+stray space in the audience.
+
+5
+00:00:14.212 --> 00:00:17.738
+A credential someone added in
+the portal shows up as a warning.
+
+6
+00:00:17.738 --> 00:00:21.696
+One conversion has run forty clean
+days with the owner's approval,
+
+7
+00:00:21.696 --> 00:00:23.895
+so it's the single disable in the plan,
+
+8
+00:00:23.895 --> 00:00:28.000
+while another's old secret was still
+signing in weeks after cutover.
+
+9
+00:00:28.000 --> 00:00:31.997
+Then you dry-run with the approved
+hash, apply to the fake in order,
+
+10
+00:00:31.997 --> 00:00:34.850
+and watch a hash nobody
+approved get refused.

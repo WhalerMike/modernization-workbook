@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.858
+The inventory script turns each owner
+into an Ansible group and an Azure tag,
+
+2
+00:00:04.858 --> 00:00:06.842
+using the Arc track's spellings;
+
+3
+00:00:06.842 --> 00:00:11.650
+the validation kit compares them without
+caring about case or punctuation.
+
+4
+00:00:11.650 --> 00:00:13.450
+Three rules fail closed.
+
+5
+00:00:13.450 --> 00:00:16.230
+An owner name it doesn't
+recognize stops the run,
+
+6
+00:00:16.230 --> 00:00:20.650
+because a typo would quietly drop a
+server out of the group that protects it.
+
+7
+00:00:20.650 --> 00:00:22.700
+A wave that isn't a number stops it.
+
+8
+00:00:22.700 --> 00:00:25.637
+And a server is only a
+candidate if its record is
+
+9
+00:00:25.637 --> 00:00:28.650
+complete and its tags are
+values Arc will accept.
+
+10
+00:00:28.650 --> 00:00:31.850
+Otherwise it's blocked, with
+the reason written down.

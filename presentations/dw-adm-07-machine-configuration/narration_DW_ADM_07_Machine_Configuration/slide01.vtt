@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:10.050
+This is Chapter 7: machine
+configuration packages.
+
+4
+00:00:10.050 --> 00:00:13.524
+Learn's cmdlets will build you a
+package and a policy definition,
+
+5
+00:00:13.524 --> 00:00:17.063
+but nothing in them says whether
+this is the package you reviewed,
+
+6
+00:00:17.063 --> 00:00:19.947
+whether it leaks details of
+the machine that built it,
+
+7
+00:00:19.947 --> 00:00:22.700
+or whether it will reach
+servers another tool owns.
+
+8
+00:00:22.700 --> 00:00:24.587
+That check is the pipeline's job.
+
+9
+00:00:24.587 --> 00:00:27.881
+We'll follow Learn's procedure
+and Microsoft's sample,
+
+10
+00:00:27.881 --> 00:00:31.999
+see what they leave out, then walk
+the build, two labs and the dangers.
+
+11
+00:00:31.999 --> 00:00:37.200
+One note before we begin: the code is
+illustrative, tested against fixtures.

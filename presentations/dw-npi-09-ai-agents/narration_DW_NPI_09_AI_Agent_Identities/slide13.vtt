@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.813
+Lab 1 runs on a laptop, with
+Chapters 1 and 2's output in place.
+
+2
+00:00:04.813 --> 00:00:09.799
+First, send Learn's samples to the fake,
+and read the one test that matters most:
+
+3
+00:00:09.799 --> 00:00:14.074
+the block-all-agents policy has
+no exclusion for approved agents.
+
+4
+00:00:14.074 --> 00:00:19.471
+Then list each task's permissions, and
+read the decision table for each cloud:
+
+5
+00:00:19.471 --> 00:00:24.438
+agent mode in the worldwide and G C C
+clouds, fallback in the higher ones.
+
+6
+00:00:24.438 --> 00:00:26.267
+Then run the check in G C C.
+
+7
+00:00:26.267 --> 00:00:29.375
+Eight AI identities, twenty-two findings,
+
+8
+00:00:29.375 --> 00:00:34.370
+four of them top priority, and two
+orphan candidates for Chapter 2.

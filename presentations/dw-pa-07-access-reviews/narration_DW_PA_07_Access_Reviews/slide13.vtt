@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:02.938
+Developers build the pipeline.
+
+3
+00:00:02.938 --> 00:00:06.438
+The identity governance officer
+owns the reviews themselves.
+
+4
+00:00:06.438 --> 00:00:09.263
+And the ISSO reads the results.
+
+5
+00:00:09.263 --> 00:00:13.776
+The permissions split the same way:
+the plan and evidence jobs only read,
+
+6
+00:00:13.776 --> 00:00:16.912
+so they hold the read
+permission and Azure Reader.
+
+7
+00:00:16.912 --> 00:00:21.760
+Only the apply identity can write, with
+User Access Administrator for Azure,
+
+8
+00:00:21.760 --> 00:00:24.376
+the narrower of the two roles Learn names.
+
+9
+00:00:24.376 --> 00:00:27.837
+Learn's pages disagree on
+which role can create a review,
+
+10
+00:00:27.837 --> 00:00:31.300
+so the chapter follows the PIM
+page and applies as an app.
+
+11
+00:00:31.300 --> 00:00:35.400
+A test keeps each task's permissions
+exactly what its calls need.

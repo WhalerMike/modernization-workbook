@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.212
+Lab 1 needs only a laptop,
+PowerShell 7 and Pester.
+
+2
+00:00:04.212 --> 00:00:08.467
+First you send Microsoft's samples to
+the fakes, and the tests show what you'd
+
+3
+00:00:08.467 --> 00:00:09.839
+otherwise take on trust,
+
+4
+00:00:09.839 --> 00:00:13.338
+including Learn's own update
+quietly dropping a restriction.
+
+5
+00:00:13.338 --> 00:00:16.276
+Then you compare the
+policy and build its plan.
+
+6
+00:00:16.276 --> 00:00:19.457
+It finds six restrictions
+to add, one to change,
+
+7
+00:00:19.457 --> 00:00:22.387
+and one to keep exactly
+as the tenant has it.
+
+8
+00:00:22.387 --> 00:00:27.537
+You dry-run the plan, apply it to the
+fake, and then try a hash nobody approved.
+
+9
+00:00:27.537 --> 00:00:29.076
+The script refuses.
+
+10
+00:00:29.076 --> 00:00:31.180
+Next, the rotation half.

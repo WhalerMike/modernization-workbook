@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.537
+Lab 1 runs on a laptop
+with Python and no tenant.
+
+2
+00:00:03.537 --> 00:00:06.289
+First, lint Learn's three
+samples as published:
+
+3
+00:00:06.289 --> 00:00:11.067
+the first two have several findings each,
+unpinned actions and latest versions
+
+4
+00:00:11.067 --> 00:00:15.338
+among them, and the Government sample
+fails because it isn't valid at all.
+
+5
+00:00:15.338 --> 00:00:18.413
+Then lint the chapter's own
+workflow, and it's clean.
+
+6
+00:00:18.413 --> 00:00:21.747
+Print the Defense cloud's
+profile to see its hosts,
+
+7
+00:00:21.747 --> 00:00:24.838
+and try a cloud name that
+doesn't exist: refused.
+
+8
+00:00:24.838 --> 00:00:28.699
+Then record the first day's run
+as a baseline and package it.
+
+9
+00:00:28.699 --> 00:00:32.590
+Note the manifest hash; the next
+package will point back to it.

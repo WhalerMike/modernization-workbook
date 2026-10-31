@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.013
+Lab 1 needs only a laptop:
+PowerShell 7 and Pester, no tenant.
+
+2
+00:00:05.013 --> 00:00:09.585
+You run the tests on Microsoft's template
+as published, list the permissions for
+
+3
+00:00:09.585 --> 00:00:14.226
+reading and for applying, and run the
+pre-merge check on the repository's own files.
+
+4
+00:00:14.226 --> 00:00:19.275
+It passes with the five expected warnings;
+a real finding would fail the pipeline.
+
+5
+00:00:19.275 --> 00:00:23.363
+Then the revealing step: run the
+same check on Microsoft's template.
+
+6
+00:00:23.363 --> 00:00:28.493
+It comes back with two findings and two
+warnings, the missing emergency exclusion,
+
+7
+00:00:28.493 --> 00:00:31.360
+the display text, the
+plain multifactor grant,
+
+8
+00:00:31.360 --> 00:00:33.980
+and twelve of the fourteen roles missing.

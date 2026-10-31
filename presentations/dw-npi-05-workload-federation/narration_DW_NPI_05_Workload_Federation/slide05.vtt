@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.762
+Here's what Microsoft gives you.
+
+2
+00:00:01.762 --> 00:00:05.741
+Two Learn pages walk through
+creating a federated credential,
+
+3
+00:00:05.741 --> 00:00:10.333
+one for an app registration and one
+for a user-assigned managed identity,
+
+4
+00:00:10.333 --> 00:00:14.924
+with samples in the command line,
+PowerShell, a template and raw requests.
+
+5
+00:00:14.924 --> 00:00:17.480
+Graph's reference has
+its own create request,
+
+6
+00:00:17.480 --> 00:00:20.725
+and the managed identity
+reference has worked examples.
+
+7
+00:00:20.725 --> 00:00:25.443
+All of that lives only inside web pages,
+so the repository pins the sources
+
+8
+00:00:25.443 --> 00:00:27.841
+unmodified, with hashes a test checks,
+
+9
+00:00:27.841 --> 00:00:31.012
+and a weekly watch that
+reports upstream changes.
+
+10
+00:00:31.012 --> 00:00:33.992
+A harness then runs every
+sample against fakes,
+
+11
+00:00:33.992 --> 00:00:36.500
+so you can see what each one really does.

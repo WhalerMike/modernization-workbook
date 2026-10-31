@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.888
+Lab 1 runs on a laptop, with the fixture's
+date fixed at the end of October.
+
+2
+00:00:04.888 --> 00:00:09.083
+First you run the tests on Learn's
+sample as published, and read the one
+
+3
+00:00:09.083 --> 00:00:13.351
+where the fake Graph refuses it,
+because its state is just display text.
+
+4
+00:00:13.351 --> 00:00:15.500
+Then list what each task needs.
+
+5
+00:00:15.500 --> 00:00:19.050
+Then run the pre-merge check
+on the repository's own files,
+
+6
+00:00:19.050 --> 00:00:22.525
+which passes cleanly; a finding
+would fail the pipeline.
+
+7
+00:00:22.525 --> 00:00:26.398
+And then the instructive step: run
+the same check on Learn's sample,
+
+8
+00:00:26.398 --> 00:00:31.340
+and it reports five findings, one for each
+of the dangers we walked through earlier.

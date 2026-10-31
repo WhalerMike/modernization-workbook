@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.237
+Once the differences are known, the plan
+turns them into requests in a fixed order:
+
+2
+00:00:05.237 --> 00:00:09.185
+create any missing groups, then
+set the policy rules so they're
+
+3
+00:00:09.185 --> 00:00:13.288
+in force before anyone is granted,
+then grants, and removals last.
+
+4
+00:00:13.288 --> 00:00:17.612
+Each request carries its permission
+and a line of diff a reviewer can read.
+
+5
+00:00:17.612 --> 00:00:19.838
+Nothing is sent unless you ask for it.
+
+6
+00:00:19.838 --> 00:00:25.068
+And even then, seven guards can refuse the
+whole run: losing approval on a top tier,
+
+7
+00:00:25.068 --> 00:00:27.922
+a permanent grant, a
+group approving itself,
+
+8
+00:00:27.922 --> 00:00:33.380
+or suddenly removing more people than
+expected, which usually means a broken file.

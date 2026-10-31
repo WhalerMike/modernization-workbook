@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.475
+The rest of the gaps
+are the dangerous ones.
+
+2
+00:00:02.475 --> 00:00:05.840
+The template doesn't exclude
+the emergency access group,
+
+3
+00:00:05.840 --> 00:00:10.637
+and those accounts must stay out of every
+policy that blocks or restricts sign-in.
+
+4
+00:00:10.637 --> 00:00:14.624
+It carries no state, so nothing
+tells you to start in report-only.
+
+5
+00:00:14.624 --> 00:00:19.412
+It has no authentication context, so
+the activation gate isn't there at all.
+
+6
+00:00:19.412 --> 00:00:22.835
+And it's just a read: nothing
+compares it with the tenant,
+
+7
+00:00:22.835 --> 00:00:25.725
+so a policy edited in
+the portal drifts unseen.
+
+8
+00:00:25.725 --> 00:00:28.920
+The verdict: keep the template's
+targeting as the model,
+
+9
+00:00:28.920 --> 00:00:30.890
+and never create it as published.

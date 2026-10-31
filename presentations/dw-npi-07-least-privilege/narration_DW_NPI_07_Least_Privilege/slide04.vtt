@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Here's Microsoft's starting point.
+
+2
+00:00:01.925 --> 00:00:05.742
+Learn's review page has a PowerShell
+script that finds one app,
+
+3
+00:00:05.742 --> 00:00:09.484
+removes all of its delegated
+grants, then tries to remove all
+
+4
+00:00:09.484 --> 00:00:13.600
+of its application permissions,
+plus the matching Graph requests.
+
+5
+00:00:13.600 --> 00:00:16.742
+A separate tutorial shows
+how to grant and revoke,
+
+6
+00:00:16.742 --> 00:00:20.038
+which the second lab uses
+to restore what it removes.
+
+7
+00:00:20.038 --> 00:00:22.706
+As in earlier chapters, the page is pinned
+
+8
+00:00:22.706 --> 00:00:26.001
+unmodified with checked
+hashes and a weekly watch.
+
+9
+00:00:26.001 --> 00:00:29.575
+The harness then runs the
+script exactly as published,
+
+10
+00:00:29.575 --> 00:00:33.150
+against stand-ins that follow
+Learn's own API contract.
+
+11
+00:00:33.150 --> 00:00:35.710
+That contract is where
+things get interesting.

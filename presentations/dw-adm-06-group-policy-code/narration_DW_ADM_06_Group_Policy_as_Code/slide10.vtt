@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.850
+The linter is where the
+program's own rules live.
+
+2
+00:00:02.850 --> 00:00:04.975
+Four rules carry most of the weight.
+
+3
+00:00:04.975 --> 00:00:08.013
+Only settings Intune
+owns go in the library.
+
+4
+00:00:08.013 --> 00:00:10.312
+No setting may appear in two policies,
+
+5
+00:00:10.312 --> 00:00:13.725
+which is exactly the conflict
+a peer reviewer hunts for.
+
+6
+00:00:13.725 --> 00:00:15.962
+Every setting needs a decision record.
+
+7
+00:00:15.962 --> 00:00:20.131
+And anything that isn't a clean
+candidate from the plan raises a warning,
+
+8
+00:00:20.131 --> 00:00:23.663
+so a setting added by hand is a
+choice someone made on purpose.
+
+9
+00:00:23.663 --> 00:00:27.381
+One more rule watches for secrets,
+because Learn says anyone
+
+10
+00:00:27.381 --> 00:00:30.876
+who can read device configuration
+can read those values.
+
+11
+00:00:30.876 --> 00:00:32.160
+Then comes the diff.

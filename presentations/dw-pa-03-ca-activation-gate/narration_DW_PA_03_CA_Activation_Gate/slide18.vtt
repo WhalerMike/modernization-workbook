@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:05.783
+On the file side: the check runs on
+every pull request with no findings,
+
+3
+00:00:05.783 --> 00:00:11.013
+every file carries the emergency exclusion,
+the administrator policy covers all
+
+4
+00:00:11.013 --> 00:00:16.088
+fourteen roles, and the activation gate
+is switched on before anyone selects it.
+
+5
+00:00:16.088 --> 00:00:19.611
+On the run side: every plan
+was read as a dry run first,
+
+6
+00:00:19.611 --> 00:00:24.058
+every new policy landed in
+report-only, each enforcement was its
+
+7
+00:00:24.058 --> 00:00:28.337
+own reviewed change, and only
+the pipeline holds write access.
+
+8
+00:00:28.337 --> 00:00:34.162
+Next, Chapter 4 builds PIM for Microsoft
+Entra roles as code, and selects this gate.
+
+9
+00:00:34.162 --> 00:00:35.330
+Thanks for watching.

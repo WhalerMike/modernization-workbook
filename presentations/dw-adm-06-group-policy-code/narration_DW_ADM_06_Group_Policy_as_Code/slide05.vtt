@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.250
+Microsoft does give you a starting point.
+
+2
+00:00:02.250 --> 00:00:06.206
+Learn's Intune migration guide
+points to its Graph samples,
+
+3
+00:00:06.206 --> 00:00:09.597
+and their settings catalog
+folder has two scripts:
+
+4
+00:00:09.597 --> 00:00:14.037
+one exports every policy to a file,
+one imports a file as a new policy.
+
+5
+00:00:14.037 --> 00:00:16.554
+Learn is candid that
+they change your tenant,
+
+6
+00:00:16.554 --> 00:00:19.412
+come as-is, and should be
+tried somewhere safe first.
+
+7
+00:00:19.412 --> 00:00:23.547
+The repository keeps an unmodified
+copy, with hashes a test checks,
+
+8
+00:00:23.547 --> 00:00:27.080
+and a harness that runs both
+scripts against a fake Graph,
+
+9
+00:00:27.080 --> 00:00:30.763
+replacing only the commands
+they call outside themselves.
+
+10
+00:00:30.763 --> 00:00:34.940
+Notice what's absent: no sample
+reads the analytics through Graph.

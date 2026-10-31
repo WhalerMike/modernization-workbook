@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.484
+The register then becomes
+findings, nine rules,
+
+2
+00:00:03.484 --> 00:00:08.150
+each with a stable ID so the same
+gap keeps its name from run to run.
+
+3
+00:00:08.150 --> 00:00:11.475
+Only one is a hard finding:
+a high-risk identity.
+
+4
+00:00:11.475 --> 00:00:15.237
+The rest are warnings to act on,
+like a stale lead to confirm,
+
+5
+00:00:15.237 --> 00:00:18.372
+an app with fewer than two
+owners, a client secret,
+
+6
+00:00:18.372 --> 00:00:23.075
+consent granted for everyone, or an
+account that might really be a person.
+
+7
+00:00:23.075 --> 00:00:28.443
+The run writes a manifest with the tenant,
+every request and a hash of every file,
+
+8
+00:00:28.443 --> 00:00:32.325
+and Chapter 2 refuses a register
+whose hash doesn't match.
+
+9
+00:00:32.325 --> 00:00:35.330
+All of it is covered by
+tests that need no network.

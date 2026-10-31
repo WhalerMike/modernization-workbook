@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+So what does the code add?
+
+2
+00:00:01.375 --> 00:00:03.812
+A single new module and one entry script,
+
+3
+00:00:03.812 --> 00:00:08.612
+which builds a plan by default and only
+writes when you hand it an approved plan.
+
+4
+00:00:08.612 --> 00:00:13.099
+It reuses the shared cloud table and
+hashing from the earlier chapters
+
+5
+00:00:13.099 --> 00:00:16.976
+but keeps its own client and
+fakes, so nothing earlier changes.
+
+6
+00:00:16.976 --> 00:00:18.237
+Two files drive it.
+
+7
+00:00:18.237 --> 00:00:23.013
+The conversion file, kept by identity
+engineering and reviewed with the application
+
+8
+00:00:23.013 --> 00:00:25.771
+owners, says what each
+legacy credential becomes
+
+9
+00:00:25.771 --> 00:00:28.125
+and which workload will present the token.
+
+10
+00:00:28.125 --> 00:00:30.397
+And the cutover log, kept by the owner,
+
+11
+00:00:30.397 --> 00:00:34.630
+records when each workload switched
+and who approved the disable.

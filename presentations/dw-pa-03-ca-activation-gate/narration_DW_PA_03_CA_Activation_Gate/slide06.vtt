@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.807
+This is the heart of the chapter:
+
+2
+00:00:01.807 --> 00:00:05.725
+what happens if you create Microsoft's
+template exactly as published.
+
+3
+00:00:05.725 --> 00:00:08.638
+The targeting is good, so
+it's kept as the model.
+
+4
+00:00:08.638 --> 00:00:11.321
+But the published example
+lists only two roles
+
+5
+00:00:11.321 --> 00:00:13.799
+where Learn's own
+procedure wants fourteen.
+
+6
+00:00:13.799 --> 00:00:16.839
+It grants plain multifactor
+sign-in instead of the
+
+7
+00:00:16.839 --> 00:00:20.313
+phishing-resistant strength,
+and the two can't be combined.
+
+8
+00:00:20.313 --> 00:00:24.717
+And it excludes a line of display text
+where an object identifier belongs,
+
+9
+00:00:24.717 --> 00:00:28.400
+which the admin center would
+replace for you, but a script won't.
+
+10
+00:00:28.400 --> 00:00:30.580
+Each of these is pinned by a test.

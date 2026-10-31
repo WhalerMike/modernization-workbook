@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.588
+So what does the example add?
+
+2
+00:00:01.588 --> 00:00:04.610
+One configuration, which
+audits that old protocol
+
+3
+00:00:04.610 --> 00:00:07.562
+versions are explicitly
+switched off on servers.
+
+4
+00:00:07.562 --> 00:00:12.343
+It's audit only, and a server with no
+explicit setting counts as non-compliant,
+
+5
+00:00:12.343 --> 00:00:16.137
+on purpose, because the baseline
+wants the setting on record.
+
+6
+00:00:16.137 --> 00:00:20.337
+A module of checks, and a build script
+that runs the whole thing offline.
+
+7
+00:00:20.337 --> 00:00:22.678
+The heart of it is the release registry:
+
+8
+00:00:22.678 --> 00:00:25.312
+the reviewed record of
+what's in production.
+
+9
+00:00:25.312 --> 00:00:29.952
+It fixes the policy identifier forever,
+the mode, the published version,
+
+10
+00:00:29.952 --> 00:00:34.250
+the identity, and the owner tag that
+keeps other tools' servers out.

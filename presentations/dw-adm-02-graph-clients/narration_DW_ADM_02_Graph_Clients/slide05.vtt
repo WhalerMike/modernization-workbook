@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.488
+This chapter is the reference
+for clients that already exist.
+
+2
+00:00:03.488 --> 00:00:06.000
+Chapters 1, 3 and 4 were written first,
+
+3
+00:00:06.000 --> 00:00:10.524
+and each has its own Graph client
+that follows part of the pattern.
+
+4
+00:00:10.524 --> 00:00:12.889
+They name the clouds two different ways:
+
+5
+00:00:12.889 --> 00:00:16.900
+the program's short names, and
+Learn's PowerShell environment names.
+
+6
+00:00:16.900 --> 00:00:20.150
+That's fine, because the
+table maps one to the other.
+
+7
+00:00:20.150 --> 00:00:21.912
+What isn't fine is a default.
+
+8
+00:00:21.912 --> 00:00:25.333
+A cloud name a client doesn't
+recognize has to stop the run,
+
+9
+00:00:25.333 --> 00:00:28.825
+because quietly falling back
+to worldwide is exactly how
+
+10
+00:00:28.825 --> 00:00:32.090
+a government run ends up
+talking to the wrong service.

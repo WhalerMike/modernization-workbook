@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.412
+Now read the findings, and each
+rule shows up in a realistic shape.
+
+2
+00:00:04.412 --> 00:00:09.024
+A mail automation app holds the broad
+directory permission with no exception.
+
+3
+00:00:09.024 --> 00:00:12.188
+A connector's exception
+quietly ended last month.
+
+4
+00:00:12.188 --> 00:00:14.746
+A mail permission is "scoped" in Exchange,
+
+5
+00:00:14.746 --> 00:00:18.776
+but the unscoped grant is still
+there, so the scope does nothing.
+
+6
+00:00:18.776 --> 00:00:21.269
+A batch machine's managed
+identity holds roles
+
+7
+00:00:21.269 --> 00:00:23.700
+at the subscription and
+the management group.
+
+8
+00:00:23.700 --> 00:00:27.175
+Three apps can grant themselves
+more, so they're handed off.
+
+9
+00:00:27.175 --> 00:00:30.920
+And in the review, one answer
+from July doesn't count any more,
+
+10
+00:00:30.920 --> 00:00:32.590
+because it's a new quarter.

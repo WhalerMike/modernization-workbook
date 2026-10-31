@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.537
+Two design choices protect the evidence.
+
+2
+00:00:02.537 --> 00:00:05.400
+First, no names reach the issue tracker.
+
+3
+00:00:05.400 --> 00:00:10.634
+Issue titles come from a fixed catalog,
+bodies carry object IDs and fingerprints,
+
+4
+00:00:10.634 --> 00:00:14.462
+and a test checks that no name
+from either run slips through.
+
+5
+00:00:14.462 --> 00:00:17.438
+Names stay in the
+access-controlled evidence store.
+
+6
+00:00:17.438 --> 00:00:21.274
+Second, each package records
+the hash of the one before it,
+
+7
+00:00:21.274 --> 00:00:23.151
+so the packages form a chain.
+
+8
+00:00:23.151 --> 00:00:27.150
+Replace a package, or skip a day,
+and the chain breaks visibly.
+
+9
+00:00:27.150 --> 00:00:31.033
+There's no signature; the hashes
+plus storage that can't be
+
+10
+00:00:31.033 --> 00:00:35.470
+edited or deleted do that job, and
+signing stays the ISSO's choice.

@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+The rest of the gaps are about
+the cloud and the record.
+
+2
+00:00:03.088 --> 00:00:07.818
+The role's token is for commercial Resource
+Manager, which is right for this estate,
+
+3
+00:00:07.818 --> 00:00:10.740
+so the role-based playbook
+refuses any other cloud,
+
+4
+00:00:10.740 --> 00:00:13.662
+and a separate playbook
+handles Azure Government.
+
+5
+00:00:13.662 --> 00:00:17.245
+The token is briefly visible
+on the server's command line;
+
+6
+00:00:17.245 --> 00:00:20.675
+the chapter accepts that,
+since tokens are short-lived.
+
+7
+00:00:20.675 --> 00:00:23.253
+Nothing checks the region
+against the cloud,
+
+8
+00:00:23.253 --> 00:00:27.225
+nothing is written down, and Learn's
+setup installs whatever's newest.
+
+9
+00:00:27.225 --> 00:00:32.210
+The verdict: use Microsoft's role,
+unchanged, and put the checks around it.

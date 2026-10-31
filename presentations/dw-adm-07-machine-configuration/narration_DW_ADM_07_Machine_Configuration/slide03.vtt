@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.450
+Here's Learn's model, in three parts.
+
+2
+00:00:02.450 --> 00:00:04.963
+A package says what the
+machine should look like.
+
+3
+00:00:04.963 --> 00:00:09.263
+A policy definition points at that
+package by its address and its hash.
+
+4
+00:00:09.263 --> 00:00:14.359
+And when the definition is assigned, every
+machine in scope gets a guest assignment:
+
+5
+00:00:14.359 --> 00:00:18.200
+the agent downloads the package,
+evaluates it and reports back.
+
+6
+00:00:18.200 --> 00:00:21.510
+Each assignment is one of
+three types: audit only,
+
+7
+00:00:21.510 --> 00:00:25.400
+apply once and report drift,
+or apply and keep correcting.
+
+8
+00:00:25.400 --> 00:00:28.413
+The spelling is case sensitive,
+which will matter later.
+
+9
+00:00:28.413 --> 00:00:32.014
+Custom content for audit and
+apply is generally available,
+
+10
+00:00:32.014 --> 00:00:34.580
+with minimum agent versions on the slide.

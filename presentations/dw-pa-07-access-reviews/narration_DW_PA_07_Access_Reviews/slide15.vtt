@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.900
+The second half of the lab
+is where it gets convincing.
+
+2
+00:00:02.900 --> 00:00:05.937
+Run the example's checks on
+Learn's own request body,
+
+3
+00:00:05.937 --> 00:00:10.637
+and it fails on the fallback reviewer,
+the missing instructions and auto-apply.
+
+4
+00:00:10.637 --> 00:00:14.026
+Apply in the fake, and only
+the two planned writes go out;
+
+5
+00:00:14.026 --> 00:00:16.587
+everything else is skipped with a reason.
+
+6
+00:00:16.587 --> 00:00:19.795
+Read the evidence, and every
+kind of problem turns up,
+
+7
+00:00:19.795 --> 00:00:23.675
+from an overdue review to an
+emergency account that was denied.
+
+8
+00:00:23.675 --> 00:00:28.237
+Then try to switch the Global
+Administrator series to deny on silence:
+
+9
+00:00:28.237 --> 00:00:30.740
+the apply refuses, and nothing is sent.

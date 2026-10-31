@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+So what does the code add?
+
+2
+00:00:01.375 --> 00:00:05.100
+A module of its own, building
+on Book 4's appendix script,
+
+3
+00:00:05.100 --> 00:00:08.411
+with one reviewed file per
+role, twenty-two in all,
+
+4
+00:00:08.411 --> 00:00:12.550
+so a reviewer reads a change to
+a file as a change to the tenant.
+
+5
+00:00:12.550 --> 00:00:17.429
+Approvers appear by alias, and a small
+bindings file per tenant turns each
+
+6
+00:00:17.429 --> 00:00:22.388
+alias into a real group, so the same
+files serve a test tenant and production.
+
+7
+00:00:22.388 --> 00:00:24.550
+Every file sits inside bounds.
+
+8
+00:00:24.550 --> 00:00:29.487
+Where Learn's pages disagree on the longest
+activation, the code takes the stricter
+
+9
+00:00:29.487 --> 00:00:34.200
+eight hours, and the owner capped standing
+active assignments at fifteen days.

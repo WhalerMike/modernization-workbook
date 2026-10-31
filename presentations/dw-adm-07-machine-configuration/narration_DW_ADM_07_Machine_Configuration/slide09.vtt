@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.498
+Running the current
+module also turned up a
+
+2
+00:00:02.498 --> 00:00:05.013
+few places where it
+differs from Learn's text.
+
+3
+00:00:05.013 --> 00:00:07.364
+The file names, a
+parameter's shape and the
+
+4
+00:00:07.364 --> 00:00:10.338
+package contents aren't
+quite what Learn describes.
+
+5
+00:00:10.338 --> 00:00:14.700
+The package works either way, and the
+test pins what the module actually does.
+
+6
+00:00:14.700 --> 00:00:16.200
+The bigger one is a role.
+
+7
+00:00:16.200 --> 00:00:20.750
+An enforcing definition grants its
+remediation identity a role named
+
+8
+00:00:20.750 --> 00:00:25.300
+only by an identifier that Learn's
+built-in roles reference doesn't list.
+
+9
+00:00:25.300 --> 00:00:27.825
+Microsoft's own role tables name it.
+
+10
+00:00:27.825 --> 00:00:29.264
+So before relying on it,
+
+11
+00:00:29.264 --> 00:00:33.120
+read the role in a test subscription
+and record what it can do.

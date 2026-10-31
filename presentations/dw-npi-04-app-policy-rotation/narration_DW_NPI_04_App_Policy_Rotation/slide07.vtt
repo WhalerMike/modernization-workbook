@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.292
+This is where the samples get interesting,
+
+2
+00:00:02.292 --> 00:00:05.238
+because run as published,
+several of them would hurt you.
+
+3
+00:00:05.238 --> 00:00:08.254
+The tenant update's start
+dates reach back years,
+
+4
+00:00:08.254 --> 00:00:11.950
+so it would refuse the next
+normal certificate on an old app.
+
+5
+00:00:11.950 --> 00:00:13.938
+Its body isn't even strict.
+
+6
+00:00:13.938 --> 00:00:18.238
+Learn's own procedure updates only
+two restrictions, and since an update
+
+7
+00:00:18.238 --> 00:00:22.825
+replaces the whole collection, anything
+it forgets is silently switched off.
+
+8
+00:00:22.825 --> 00:00:25.435
+The assignment sample sends a placeholder,
+
+9
+00:00:25.435 --> 00:00:28.625
+and the tutorial uses a
+property version one refuses.
+
+10
+00:00:28.625 --> 00:00:33.910
+The code keeps the good shape and fixes
+each of these, and a test pins every row.

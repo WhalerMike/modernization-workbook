@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.387
+Sending the samples to the fake
+shows the problem quickly.
+
+2
+00:00:03.387 --> 00:00:06.526
+The query's shape is right,
+so it's kept as the model.
+
+3
+00:00:06.526 --> 00:00:10.971
+But most of what it calls ownerless
+is noise: managed identities,
+
+4
+00:00:10.971 --> 00:00:15.250
+which have no owners to add, a
+third party's app, and Graph itself.
+
+5
+00:00:15.250 --> 00:00:18.444
+It checks the service principal,
+when the owners who matter
+
+6
+00:00:18.444 --> 00:00:21.638
+are the ones on the registration,
+where the credentials live.
+
+7
+00:00:21.638 --> 00:00:25.175
+It counts a guest or a bot as
+an owner, just like a person.
+
+8
+00:00:25.175 --> 00:00:28.012
+And it labels a simple read
+with a write permission.
+
+9
+00:00:28.012 --> 00:00:30.190
+Each of these is pinned by a test.

@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.118
+Running the samples against the
+fake Graph shows what they do well,
+
+2
+00:00:04.118 --> 00:00:07.963
+and the example keeps that: the
+same create call, the same filter,
+
+3
+00:00:07.963 --> 00:00:11.513
+the same paging, and policies
+created with no assignments.
+
+4
+00:00:11.513 --> 00:00:13.125
+The gaps are about safety.
+
+5
+00:00:13.125 --> 00:00:15.962
+The import always calls
+the worldwide host.
+
+6
+00:00:15.962 --> 00:00:18.788
+It writes with whatever session
+you happen to have open.
+
+7
+00:00:18.788 --> 00:00:20.163
+There's no dry run.
+
+8
+00:00:20.163 --> 00:00:23.774
+And if you run it twice, you get
+two policies with the same name,
+
+9
+00:00:23.774 --> 00:00:26.301
+because it never looks
+at the tenant first.
+
+10
+00:00:26.301 --> 00:00:28.825
+Each of those gaps is pinned by a test.
+
+11
+00:00:28.825 --> 00:00:31.010
+There are more, on the record side.

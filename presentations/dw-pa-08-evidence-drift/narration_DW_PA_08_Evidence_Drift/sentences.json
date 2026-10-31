@@ -1,0 +1,573 @@
+{
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Privileged Access."
+  ],
+  [
+   5.688,
+   5.225,
+   "This is Chapter 8, the last one: evidence and drift for the I S S O."
+  ],
+  [
+   10.912,
+   3.75,
+   "An inventory taken once only proves the day it was taken."
+  ],
+  [
+   14.662,
+   8.062,
+   "The I S S O needs every day of the period, every elevation in it, and a record nobody could have edited afterwards."
+  ],
+  [
+   22.725,
+   9.925,
+   "We'll start from Learn's audit queries for pim, see what they leave out, then walk the run, the comparison, the package, the period, two labs and the dangers."
+  ],
+  [
+   32.65,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.725,
+   "Why does this chapter exist?"
+  ],
+  [
+   1.775,
+   10.238,
+   "Because the program's last gates ask for things a single snapshot can't give: a Tier 0 drift handled as an incident, and evidence for every elevation in the period."
+  ],
+  [
+   12.012,
+   3.25,
+   "Book 04 already says what goes in the package."
+  ],
+  [
+   15.262,
+   3.038,
+   "Learn supplies the two facts the design turns on."
+  ],
+  [
+   18.3,
+   6.312,
+   "First, the audit log only keeps thirty days, so evidence has to be collected before it ages out."
+  ],
+  [
+   24.613,
+   7.013,
+   "Second, one activation can show up under several correlation I D's, but its request I D never changes."
+  ],
+  [
+   31.625,
+   2.3,
+   "That request I D becomes the key."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   4.6,
+   "The new read in this chapter is the directory audit log in Microsoft Graph."
+  ],
+  [
+   6.013,
+   8.2,
+   "This estate's G C C tenant uses the worldwide Graph endpoint, and its Azure reads go to the commercial Resource Manager host."
+  ],
+  [
+   14.213,
+   11.425,
+   "G C C High and the Department of Defense clouds have their own Graph hosts, and Learn lists the audit A P I as available in both government levels, with pim available everywhere too."
+  ],
+  [
+   25.637,
+   7.675,
+   "As in every chapter, the cloud is a required choice with no default, and the reader refuses to send a token anywhere else."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.712,
+   "Here's what Microsoft gives you."
+  ],
+  [
+   1.762,
+   15.113,
+   "Learn's audit history page shows pim's own audit view, says it covers thirty days, and gives three sample queries: one for role activations, one that follows a single request, and one that follows a whole cycle from activation to deactivation."
+  ],
+  [
+   16.875,
+   6.487,
+   "Learn's activity list names every event pim logs, and its security operations guide says what to watch."
+  ],
+  [
+   23.363,
+   9.537,
+   "The queries only exist in the web page, so the repository pins it, unmodified, and the tests run all three over a set of fictional audit rows."
+  ],
+  [
+   32.9,
+   2.15,
+   "It's a test, not a query engine."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.037,
+   "Running the queries over fictional rows shows exactly what they catch."
+  ],
+  [
+   4.088,
+   3.325,
+   "The first query finds the activations, which is good."
+  ],
+  [
+   7.412,
+   7.725,
+   "But it also sweeps in two role assignments made outside pim, so a standing Tier 0 assignment looks like just another activation."
+  ],
+  [
+   15.137,
+   4.9,
+   "It misses deactivations and the setting change Learn says to always alert on."
+  ],
+  [
+   20.038,
+   8.025,
+   "And the second query, copied with its placeholder, doesn't select one request at all; it returns everything with a request I D."
+  ],
+  [
+   28.062,
+   8.312,
+   "Given a real I D, though, the queries show the key idea: one request, three correlation I D's, one activation."
+  ],
+  [
+   36.375,
+   1.275,
+   "The code keeps that."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.788,
+   "The bigger gaps are about scale and proof."
+  ],
+  [
+   2.837,
+   11.35,
+   "The queries look at one request at a time, with no window, no tier, and no check that anyone approved it, and \"every elevation in the period\" can't be shown one request at a time."
+  ],
+  [
+   14.188,
+   5.8,
+   "They also only run in Log Analytics, which needs a workspace before any evidence exists."
+  ],
+  [
+   19.988,
+   6.287,
+   "And they stop at the query: nothing compares, packages or hands anything to the I S S O."
+  ],
+  [
+   26.275,
+   9.613,
+   "So the verdict: keep Learn's request I D as the key and its activity names as the vocabulary, but don't treat the first query as evidence of elevation."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   10.338,
+   "Now the code, in two pieces: a PowerShell run that reads the tenant, and new Python files beside the first workbook's drift pipeline, which stays unchanged."
+  ],
+  [
+   10.387,
+   1.825,
+   "The design has three parts."
+  ],
+  [
+   12.213,
+   3.013,
+   "Chapters 1 and 2 describe the tenant's state."
+  ],
+  [
+   15.225,
+   2.9,
+   "The audit read describes the events in a window."
+  ],
+  [
+   18.125,
+   3.587,
+   "And comparing with the last run turns state into drift."
+  ],
+  [
+   21.712,
+   5.425,
+   "Chain those windows with no gaps, and you have every elevation in the period, in code."
+  ],
+  [
+   27.137,
+   8.05,
+   "Each run writes one folder, with a run file that records the cloud, tenant, window and a hash of each task's manifest."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   10.15,
+   "The audit read asks Graph's directory audit log for one window at a time: everything pim logged, plus the role assignments the directory logs when someone goes around pim."
+  ],
+  [
+   10.2,
+   10.325,
+   "It goes through the same careful reader as Chapter 1, refuses a window older than the log keeps, and starts each window where the last one ended, so no hour goes unread."
+  ],
+  [
+   20.525,
+   2.325,
+   "It keeps I D's and drops names."
+  ],
+  [
+   22.85,
+   9.575,
+   "Then four checks: a role assigned outside pim, a sensitive activation with no approval, someone approving their own request, and a pim setting changed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   8.025,
+   "Learn's pages disagree in two places that matter here, and the chapter writes both down so nobody quietly loosens the code later."
+  ],
+  [
+   8.075,
+   6.112,
+   "They name pim's logging service differently, so the code asks for both names and removes duplicates."
+  ],
+  [
+   14.188,
+   2.525,
+   "And they disagree on where approvals are logged."
+  ],
+  [
+   16.712,
+   6.7,
+   "The code reads pim's service, so if an approval only shows up somewhere else, the no-approval check fires anyway."
+  ],
+  [
+   23.413,
+   5.188,
+   "That's deliberate: it fails closed, giving a false finding rather than a missed one."
+  ],
+  [
+   28.6,
+   4.2,
+   "The lab in a test tenant then records which way each one really goes."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.775,
+   "The comparison is where state becomes drift."
+  ],
+  [
+   2.825,
+   9.9,
+   "Before it compares anything, it checks both runs: every file against its manifest, the same tenant, cloud and mode, and a current run that's actually later."
+  ],
+  [
+   12.725,
+   2.075,
+   "Then every difference gets a result."
+  ],
+  [
+   14.8,
+   2.075,
+   "Two of them are careful by design."
+  ],
+  [
+   16.875,
+   7.375,
+   "A task that failed this time is unverified, not resolved, so a permissions error can't make yesterday's findings vanish."
+  ],
+  [
+   24.25,
+   7.213,
+   "And activations are left out of assignment drift, because they come and go within hours and the audit already records them."
+  ],
+  [
+   31.462,
+   4.525,
+   "Any Tier 0 change is an incident, as Book 04 says."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.487,
+   "Two design choices protect the evidence."
+  ],
+  [
+   2.538,
+   2.862,
+   "First, no names reach the issue tracker."
+  ],
+  [
+   5.4,
+   9.062,
+   "Issue titles come from a fixed catalog, bodies carry object I D's and fingerprints, and a test checks that no name from either run slips through."
+  ],
+  [
+   14.463,
+   2.975,
+   "Names stay in the access-controlled evidence store."
+  ],
+  [
+   17.438,
+   5.713,
+   "Second, each package records the hash of the one before it, so the packages form a chain."
+  ],
+  [
+   23.15,
+   4.0,
+   "Replace a package, or skip a day, and the chain breaks visibly."
+  ],
+  [
+   27.15,
+   8.262,
+   "There's no signature; the hashes plus storage that can't be edited or deleted do that job, and signing stays the I S S O's choice."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.413,
+   "This is the deliverable."
+  ],
+  [
+   1.462,
+   10.6,
+   "For any period, the code verifies every package, checks the chain, confirms the windows cover the whole period with no gap, and writes a summary laid out against Gate 4."
+  ],
+  [
+   12.062,
+   14.325,
+   "It's clear about who decides what: the authorizing official accepts residual standing privilege, the I S S O judges the elevations, and one criterion, retiring old group policy settings, simply isn't a privileged read."
+  ],
+  [
+   26.387,
+   7.237,
+   "The sample workflow runs daily with a federated sign-in and no secret, and assembles last month's period on the first."
+  ],
+  [
+   33.625,
+   3.0,
+   "Six-hourly runs need only a shorter schedule."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.062,
+   "Who is this for?"
+  ],
+  [
+   1.113,
+   3.8,
+   "Developers and pipeline engineers own the scheduled checks."
+  ],
+  [
+   4.912,
+   8.762,
+   "The I S S O and the identity governance officers receive the evidence, and they can check every package with nothing more than a standard hashing tool."
+  ],
+  [
+   13.675,
+   6.987,
+   "The governance officer signs the period summary, and the authorizing official accepts whatever standing privilege remains."
+  ],
+  [
+   20.663,
+   6.5,
+   "The reader app holds nine Graph permissions, and not one of them can write, plus Reader on each Azure scope."
+  ],
+  [
+   27.163,
+   4.513,
+   "It signs in with a certificate or a federated credential, never a secret."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.8,
+   "Lab 1 runs on a laptop with no tenant."
+  ],
+  [
+   2.85,
+   3.85,
+   "First, run Learn's queries over the fictional audit rows."
+  ],
+  [
+   6.7,
+   7.2,
+   "Eight tests pass, and the third shows the trap: two of the rows the first query returns are assignments made outside pim."
+  ],
+  [
+   13.9,
+   2.325,
+   "Next, list the run's permissions."
+  ],
+  [
+   16.225,
+   2.4,
+   "There are nine, and none of them can write."
+  ],
+  [
+   18.625,
+   2.888,
+   "Then run two days against the fictional tenant."
+  ],
+  [
+   21.512,
+   8.387,
+   "The second day has three Tier 0 findings: a role assigned outside pim, an activation nobody approved, and a changed role setting."
+  ],
+  [
+   29.9,
+   3.925,
+   "Open the events file, and you'll see I D's, not names."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   7.463,
+   "The second half of the lab follows the evidence all the way to the I S S O. Compare day one, and it's the baseline."
+  ],
+  [
+   7.513,
+   5.312,
+   "Compare day two, and six incidents appear, while six old findings resolve."
+  ],
+  [
+   12.825,
+   6.1,
+   "Draft the issues, and a search for the fictional domain finds nothing: no names reach the tracker."
+  ],
+  [
+   18.925,
+   3.962,
+   "Package day two, chained to day one, and it verifies."
+  ],
+  [
+   22.887,
+   6.662,
+   "Assemble the period, and the Gate 4 table shows two criteria not met, which is exactly right for this tenant."
+  ],
+  [
+   29.55,
+   4.575,
+   "Finally, edit one file or swap the days, and the checks refuse."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.938,
+   "Lab 2 uses a test tenant, never production, and the run only reads."
+  ],
+  [
+   4.987,
+   9.613,
+   "You register the reader app with the nine permissions, make one test activation of a low-tier role, and run the evidence twice, once before and once after."
+  ],
+  [
+   14.6,
+   8.875,
+   "Then comes the real point of the lab: checking what the fixtures assumed, like which service name pim's events carry and whether the request I D is filled in."
+  ],
+  [
+   23.475,
+   6.838,
+   "Cross-check against pim's own audit view, as Learn describes, then compare and package the two runs."
+  ],
+  [
+   30.312,
+   3.688,
+   "Back it out, and in production, lock the retention policy."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.663,
+   "Every danger here is a way evidence can lie."
+  ],
+  [
+   2.712,
+   6.862,
+   "The quietest is a failed read that looks like a fix: a permissions error, and yesterday's findings simply vanish."
+  ],
+  [
+   9.575,
+   3.875,
+   "The code marks the task as an error and keeps those findings open."
+  ],
+  [
+   13.45,
+   5.338,
+   "Close behind is a day nobody read, which would let a gate pass on the days that were."
+  ],
+  [
+   18.788,
+   7.65,
+   "Others are about trust: names leaking into the tracker, a run edited or swapped, a package quietly replaced."
+  ],
+  [
+   26.438,
+   6.412,
+   "And one is about attention: count every activation as drift, and people stop reading the incident queue."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   13.113,
+   "On the run side: all three tasks succeed, the reader holds exactly nine read-only permissions and no secret, every window picks up where the last one ended, and every Tier 0 incident has a record."
+  ],
+  [
+   14.512,
+   12.125,
+   "On the evidence side: no names in the tracker, every package verifies with a standard hashing tool, the chain is unbroken, the storage is locked, and the period summary is signed and accepted."
+  ],
+  [
+   26.637,
+   4.838,
+   "That's the last chapter; the workbook index lists all eight if you want to go back."
+  ],
+  [
+   31.475,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

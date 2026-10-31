@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.667
+Lab 2 needs a test subscription
+and a server you can throw away,
+
+2
+00:00:03.667 --> 00:00:06.787
+because local testing changes
+the machine it runs on.
+
+3
+00:00:06.787 --> 00:00:09.233
+First you test the package on that server:
+
+4
+00:00:09.233 --> 00:00:13.262
+it should fail on a default build
+and pass once both settings are off.
+
+5
+00:00:13.262 --> 00:00:16.212
+That's what proves the agent
+accepts the cleaned file.
+
+6
+00:00:16.212 --> 00:00:21.600
+Then you upload the exact package from Lab
+1, never a rebuild, and check its hash.
+
+7
+00:00:21.600 --> 00:00:23.825
+Machines read it with their own identity.
+
+8
+00:00:23.825 --> 00:00:27.734
+Publish, assign with Arc servers
+included, read the result,
+
+9
+00:00:27.734 --> 00:00:31.940
+and back it all out, including
+any leftover guest assignments.

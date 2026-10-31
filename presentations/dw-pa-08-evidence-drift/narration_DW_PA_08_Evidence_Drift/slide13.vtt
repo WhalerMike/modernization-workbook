@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:04.913
+Developers and pipeline engineers
+own the scheduled checks.
+
+3
+00:00:04.913 --> 00:00:08.972
+The ISSO and the identity governance
+officers receive the evidence,
+
+4
+00:00:08.972 --> 00:00:13.674
+and they can check every package with
+nothing more than a standard hashing tool.
+
+5
+00:00:13.674 --> 00:00:16.403
+The governance officer
+signs the period summary,
+
+6
+00:00:16.403 --> 00:00:20.662
+and the authorizing official accepts
+whatever standing privilege remains.
+
+7
+00:00:20.662 --> 00:00:23.460
+The reader app holds
+nine Graph permissions,
+
+8
+00:00:23.460 --> 00:00:27.163
+and not one of them can write,
+plus Reader on each Azure scope.
+
+9
+00:00:27.163 --> 00:00:31.730
+It signs in with a certificate or a
+federated credential, never a secret.

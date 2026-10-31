@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.903
+Here's what Microsoft
+gives you: four procedures,
+
+2
+00:00:02.903 --> 00:00:07.325
+covering the delegated account
+walk-through, its limits, the group account
+
+3
+00:00:07.325 --> 00:00:12.175
+walk-through, and the one-time root key that
+every managed password is derived from.
+
+4
+00:00:12.175 --> 00:00:16.915
+These procedures live only inside web
+pages, so the repository pins their
+
+5
+00:00:16.915 --> 00:00:21.812
+source unmodified, with hashes a test
+checks and a weekly watch for changes.
+
+6
+00:00:21.812 --> 00:00:25.560
+Then a harness runs each PowerShell
+block exactly as published,
+
+7
+00:00:25.560 --> 00:00:29.874
+against stand-ins that accept only
+the parameters the real commands have.
+
+8
+00:00:29.874 --> 00:00:33.190
+That last detail matters,
+as you'll see in a moment.

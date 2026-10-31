@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.525
+Each of these dangers
+has a guard in the code.
+
+2
+00:00:02.525 --> 00:00:05.068
+The headline one is
+still the wrong subject,
+
+3
+00:00:05.068 --> 00:00:09.025
+caught by the claims check and the
+exchange test before any cutover.
+
+4
+00:00:09.025 --> 00:00:12.513
+Others are small: a trailing
+slash, a stray space,
+
+5
+00:00:12.513 --> 00:00:15.375
+a subject guessed instead of captured.
+
+6
+00:00:15.375 --> 00:00:19.288
+Some are about timing, like
+creating credentials in parallel,
+
+7
+00:00:19.288 --> 00:00:21.513
+or using one before it's propagated.
+
+8
+00:00:21.513 --> 00:00:25.399
+And some are about keeping your
+way back: the code never deletes,
+
+9
+00:00:25.399 --> 00:00:29.062
+so the rollback, re-enabling
+the old account, always remains.
+
+10
+00:00:29.062 --> 00:00:32.660
+Notice that writes stay with a
+person, never a standing app.

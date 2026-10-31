@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.112
+Who is this for?
+
+2
+00:00:01.112 --> 00:00:04.617
+Developers build it, and
+identity engineers and the I
+
+3
+00:00:04.617 --> 00:00:08.201
+S S O's review every Conditional
+Access change it makes.
+
+4
+00:00:08.201 --> 00:00:11.338
+The permissions split
+cleanly into two tasks.
+
+5
+00:00:11.338 --> 00:00:13.605
+Reading needs three read permissions,
+
+6
+00:00:13.605 --> 00:00:17.288
+and the code picks narrower ones
+than the obvious broad choice.
+
+7
+00:00:17.288 --> 00:00:21.288
+Applying adds exactly two write
+permissions, and nothing else.
+
+8
+00:00:21.288 --> 00:00:24.997
+Learn notes a known issue that may
+ask for more consent on create,
+
+9
+00:00:24.997 --> 00:00:27.726
+and the test-tenant lab
+records whether it does.
+
+10
+00:00:27.726 --> 00:00:31.850
+A test keeps each task's permissions
+equal to the calls it makes.

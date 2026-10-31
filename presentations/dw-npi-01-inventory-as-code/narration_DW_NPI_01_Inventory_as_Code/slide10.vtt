@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.475
+So what does the code build?
+
+2
+00:00:01.475 --> 00:00:05.488
+It starts with one reader that every
+chapter in this workbook shares.
+
+3
+00:00:05.488 --> 00:00:09.273
+Its script blocks are the only
+things that touch the network,
+
+4
+00:00:09.273 --> 00:00:12.075
+a live one for real runs
+and a fake one for labs.
+
+5
+00:00:12.075 --> 00:00:14.292
+And it enforces five simple rules:
+
+6
+00:00:14.292 --> 00:00:18.569
+it makes only the calls the
+configuration declares, it only reads,
+
+7
+00:00:18.569 --> 00:00:21.499
+it sends the token only
+to the cloud's own host,
+
+8
+00:00:21.499 --> 00:00:25.775
+it checks it's signed in to the right
+tenant, and it reads every page.
+
+9
+00:00:25.775 --> 00:00:30.620
+The fake hands back tiny pages on purpose,
+so paging gets tested everywhere.

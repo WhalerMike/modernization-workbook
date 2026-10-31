@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.812
+This is the heart of the chapter.
+
+2
+00:00:01.812 --> 00:00:06.862
+Run Microsoft's sample on the book's
+nineteen-row fixture and it sends all nineteen.
+
+3
+00:00:06.862 --> 00:00:11.649
+That's not a bug; it's a converter, and
+Learn says validation is something you add.
+
+4
+00:00:11.649 --> 00:00:16.321
+But look at what gets through: a blank
+key, a pending worker sent as active,
+
+5
+00:00:16.321 --> 00:00:20.675
+the same person twice, a future hire
+who could sign in before day one.
+
+6
+00:00:20.675 --> 00:00:25.540
+The hardened client refuses nine of those
+rows, sends leavers first and managers
+
+7
+00:00:25.540 --> 00:00:29.825
+before their reports, and holds a run
+that would disable too many people.
+
+8
+00:00:29.825 --> 00:00:31.900
+There's a second half to this table.

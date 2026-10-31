@@ -1,0 +1,583 @@
+{
+ "1": [
+  [
+   0.05,
+   5.862,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Non-Person Identity."
+  ],
+  [
+   5.912,
+   4.912,
+   "This is Chapter 5: workload identity federation and managed identities."
+  ],
+  [
+   10.825,
+   11.45,
+   "It's where service accounts actually get converted: a managed identity first, then a federated credential, then a certificate, with a thirty-day parallel run before the old account is disabled."
+  ],
+  [
+   22.275,
+   11.0,
+   "We'll start from Microsoft's own samples, see what they accept in silence, then walk the checks, the token exchange test, the plan and its write path, two labs and the dangers."
+  ],
+  [
+   33.275,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.725,
+   "Why does this chapter exist?"
+  ],
+  [
+   1.775,
+   1.837,
+   "Because of one quiet failure."
+  ],
+  [
+   3.612,
+   4.525,
+   "A federated credential with the wrong subject is created without any error."
+  ],
+  [
+   8.137,
+   7.825,
+   "Nothing complains until the day the workload tries to exchange its token, and for GitHub, Learn says even that fails without an error."
+  ],
+  [
+   15.963,
+   7.225,
+   "The plan's risk register names exactly this, and its answer is to test every exchange before the parallel run starts."
+  ],
+  [
+   23.188,
+   2.337,
+   "That test is the center of the chapter."
+  ],
+  [
+   25.525,
+   11.6,
+   "The order of conversion comes from Book 2: managed identities where the host is in Azure, federated credentials where the host speaks O I D C, certificates only where neither works."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   10.175,
+   "This chapter talks to three hosts: Microsoft Graph for app registrations and sign-ins, Resource Manager for managed identities, and the sign-in host for tokens."
+  ],
+  [
+   11.588,
+   6.388,
+   "The estate is a G C C tenant with commercial Azure, so all three are the worldwide endpoints."
+  ],
+  [
+   17.975,
+   6.463,
+   "G C C High and the Defense Department clouds have their own hosts, and the code switches only for those."
+  ],
+  [
+   24.438,
+   10.425,
+   "One gap worth knowing: the managed identity pages the chapter read don't say whether they're available in Azure Government, which is fine here because this estate's Azure is commercial."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.837,
+   "So what is a federated credential?"
+  ],
+  [
+   1.887,
+   4.612,
+   "It's a trust you put on an app registration or a user-assigned managed identity."
+  ],
+  [
+   6.5,
+   14.463,
+   "The workload, say a GitHub workflow or a Kubernetes pod, presents a token from its own issuer, and Microsoft Entra swaps it for an access token, but only if three values match: the issuer, the subject and the audience."
+  ],
+  [
+   20.962,
+   4.338,
+   "The match is exact, down to the letter case, with no wildcards."
+  ],
+  [
+   25.3,
+   3.112,
+   "A system-assigned identity can't hold one at all."
+  ],
+  [
+   28.413,
+   7.612,
+   "And managed identities, the first choice in the order, get their access from Azure role assignments, which this chapter records."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.712,
+   "Here's what Microsoft gives you."
+  ],
+  [
+   1.762,
+   13.162,
+   "Two Learn pages walk through creating a federated credential, one for an app registration and one for a user-assigned managed identity, with samples in the command line, PowerShell, a template and raw requests."
+  ],
+  [
+   14.925,
+   5.8,
+   "Graph's reference has its own create request, and the managed identity reference has worked examples."
+  ],
+  [
+   20.725,
+   10.287,
+   "All of that lives only inside web pages, so the repository pins the sources unmodified, with hashes a test checks, and a weekly watch that reports upstream changes."
+  ],
+  [
+   31.012,
+   5.425,
+   "A harness then runs every sample against fakes, so you can see what each one really does."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.762,
+   "This is the heart of the chapter."
+  ],
+  [
+   1.812,
+   4.537,
+   "Run against the fakes, Microsoft's samples show the risk on their own terms."
+  ],
+  [
+   6.35,
+   3.3,
+   "Graph happily creates a credential with any subject."
+  ],
+  [
+   9.65,
+   7.7,
+   "Learn's samples don't even agree on the GitHub issuer: one has a trailing slash and the others don't, and the match is exact."
+  ],
+  [
+   17.35,
+   5.013,
+   "One template defaults the audience with a stray leading space, so it can never match."
+  ],
+  [
+   22.363,
+   3.875,
+   "And two Learn pages give two different pull request subjects."
+  ],
+  [
+   26.238,
+   7.475,
+   "So the code checks each credential against what the workload will really present, and derives a subject only when the format is certain."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.237,
+   "The rest of the gap table is about everything around the write."
+  ],
+  [
+   3.288,
+   7.225,
+   "The samples hard-code worldwide hosts, use a preview version, and in one case send a request with no version at all."
+  ],
+  [
+   10.512,
+   5.888,
+   "They create one credential at a time by hand, so nothing notices a credential someone added in the portal."
+  ],
+  [
+   16.4,
+   2.538,
+   "They don't check the limits Learn itself states."
+  ],
+  [
+   18.938,
+   6.213,
+   "And they stop at creation: no record of the identity's roles, no parallel run, no disable."
+  ],
+  [
+   25.15,
+   8.525,
+   "The verdict: use the samples as the model for the three writes, but not as the conversion, because they accept the wrong subject in silence."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.325,
+   "So what does the code add?"
+  ],
+  [
+   1.375,
+   7.237,
+   "A single new module and one entry script, which builds a plan by default and only writes when you hand it an approved plan."
+  ],
+  [
+   8.613,
+   8.363,
+   "It reuses the shared cloud table and hashing from the earlier chapters but keeps its own client and fakes, so nothing earlier changes."
+  ],
+  [
+   16.975,
+   1.262,
+   "Two files drive it."
+  ],
+  [
+   18.238,
+   9.887,
+   "The conversion file, kept by identity engineering and reviewed with the application owners, says what each legacy credential becomes and which workload will present the token."
+  ],
+  [
+   28.125,
+   6.438,
+   "And the cutover log, kept by the owner, records when each workload switched and who approved the disable."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.337,
+   "Here are the nine rules the planner applies."
+  ],
+  [
+   2.388,
+   9.3,
+   "Before any of them, it reads each app registration, identity, role assignment and legacy account, plus sign-ins once a cutover is recorded."
+  ],
+  [
+   11.688,
+   10.537,
+   "Most rules come straight from Learn: the subject, issuer and audience must match exactly, names must follow the rules, and no parent may go past twenty credentials."
+  ],
+  [
+   22.225,
+   9.35,
+   "Three are the program's own and labeled that way: the conversion order, a warning for credentials nobody reviewed, and the thresholds for a clean parallel run."
+  ],
+  [
+   31.575,
+   2.888,
+   "And the failed exchange test is its own finding."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.837,
+   "Two pieces make the check real."
+  ],
+  [
+   1.887,
+   4.725,
+   "First, the code works out what the workload's issuer will actually put in its token."
+  ],
+  [
+   6.612,
+   8.15,
+   "For GitHub it uses Learn's three formats, for environments, branches and tags, and for Kubernetes the service account format."
+  ],
+  [
+   14.762,
+   8.05,
+   "Anything it can't be sure of, like a pull request, or GitHub's newer immutable format, has to be captured from a real test run."
+  ],
+  [
+   22.812,
+   6.888,
+   "Second, it builds the real token request and sends it to a fake endpoint that matches the way Learn describes."
+  ],
+  [
+   29.7,
+   6.138,
+   "It doesn't check signatures, so it proves the credential matches what you recorded, not what the issuer sends."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.55,
+   "Nothing in the plan writes."
+  ],
+  [
+   1.6,
+   10.4,
+   "Each conversion gets actions, and only three of them ever write: create an identity, create a credential, and disable the legacy account, all after review."
+  ],
+  [
+   12.0,
+   5.9,
+   "Everything else is a record or a status, from awaiting cutover to day fifteen of thirty."
+  ],
+  [
+   17.9,
+   5.862,
+   "A changed credential is never edited in place; it gets a new name and its own parallel run."
+  ],
+  [
+   23.762,
+   9.463,
+   "The evidence for a clean run comes from the beta sign-in log, the only place that shows managed identity and service principal sign-ins and which credential was used."
+  ],
+  [
+   33.225,
+   4.85,
+   "The plan is hashed, so the same inputs give the same plan, byte for byte."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.075,
+   "Writing is a separate path, and it's deliberately hard to misuse."
+  ],
+  [
+   4.125,
+   7.0,
+   "It runs only against a plan whose hash a reviewer approved, for this tenant and cloud, and no older than a week."
+  ],
+  [
+   11.125,
+   8.062,
+   "Every credential is checked again against the plan's recorded claims, so a hand-edited plan can't sneak through, and it never deletes anything."
+  ],
+  [
+   19.188,
+   3.013,
+   "It runs as a person, not an unattended app."
+  ],
+  [
+   22.2,
+   9.012,
+   "Before each write it looks again, and it sends one write at a time, identity first, because Learn says parallel creates under one identity fail."
+  ],
+  [
+   31.212,
+   3.987,
+   "A new credential also needs a few minutes to propagate before it works."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.062,
+   "Who is this for?"
+  ],
+  [
+   1.113,
+   1.387,
+   "Developers build it."
+  ],
+  [
+   2.5,
+   3.9,
+   "Identity engineers run the waves and keep the conversion file."
+  ],
+  [
+   6.4,
+   6.575,
+   "And the application owners switch each workload, keep the cutover log, and approve every disable."
+  ],
+  [
+   12.975,
+   1.812,
+   "The access is split in two."
+  ],
+  [
+   14.787,
+   4.237,
+   "The read path is an app with read-only permissions and the Reader role."
+  ],
+  [
+   19.025,
+   11.512,
+   "The write path is only ever a person, signed in with their own roles, because a standing app with the right to add credentials to any application is exactly what this program is trying to remove."
+  ],
+  [
+   30.538,
+   5.412,
+   "For the identity's credential, the code picks the narrower built-in role over Contributor."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.138,
+   "Lab 1 needs only a laptop with PowerShell 7 and Pester; no tenant, no network."
+  ],
+  [
+   6.188,
+   3.375,
+   "First you run Microsoft's own samples against the fakes."
+  ],
+  [
+   9.562,
+   8.85,
+   "Find the test that creates a credential with Graph's sample and then exchanges a token with a different subject: the create succeeds and the exchange fails."
+  ],
+  [
+   18.413,
+   2.362,
+   "That's the whole risk, in one test."
+  ],
+  [
+   20.775,
+   11.062,
+   "Then you list what each task needs, and build the plan from the fixtures: eight conversions in two waves, two failed exchange tests, and twenty actions, of which only four would write."
+  ],
+  [
+   31.837,
+   3.038,
+   "The plan's hash is the same on every run."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.938,
+   "Now the fixtures tell their stories."
+  ],
+  [
+   1.988,
+   8.762,
+   "One credential copies the sample's trailing slash and gets the environment's letter case wrong, so it fails three ways, including the exchange."
+  ],
+  [
+   10.75,
+   3.462,
+   "Another copies the template's stray space in the audience."
+  ],
+  [
+   14.213,
+   3.525,
+   "A credential someone added in the portal shows up as a warning."
+  ],
+  [
+   17.738,
+   10.262,
+   "One conversion has run forty clean days with the owner's approval, so it's the single disable in the plan, while another's old secret was still signing in weeks after cutover."
+  ],
+  [
+   28.0,
+   6.787,
+   "Then you dry-run with the approved hash, apply to the fake in order, and watch a hash nobody approved get refused."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   3.25,
+   "Lab 2 moves to a test tenant, never production."
+  ],
+  [
+   3.3,
+   8.75,
+   "You set up one small conversion: a test app with a secret, a test service account, and a test repository whose workflow signs in to Azure."
+  ],
+  [
+   12.05,
+   10.812,
+   "The key step is capturing the claims: have the workflow print the decoded issuer and subject of its token, never the token itself, because that's the truth the check compares against."
+  ],
+  [
+   22.863,
+   6.95,
+   "Then plan, get a second person to approve the hash, apply, and watch a real exchange land in the sign-in log."
+  ],
+  [
+   29.812,
+   5.938,
+   "Try a wrong subject on purpose, run the parallel run forward, and back it all out by hand."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.475,
+   "Each of these dangers has a guard in the code."
+  ],
+  [
+   2.525,
+   6.5,
+   "The headline one is still the wrong subject, caught by the claims check and the exchange test before any cutover."
+  ],
+  [
+   9.025,
+   6.35,
+   "Others are small: a trailing slash, a stray space, a subject guessed instead of captured."
+  ],
+  [
+   15.375,
+   6.138,
+   "Some are about timing, like creating credentials in parallel, or using one before it's propagated."
+  ],
+  [
+   21.512,
+   7.55,
+   "And some are about keeping your way back: the code never deletes, so the rollback, re-enabling the old account, always remains."
+  ],
+  [
+   29.062,
+   3.538,
+   "Notice that writes stay with a person, never a standing app."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   2.95,
+   "Every conversion followed the order or says why."
+  ],
+  [
+   4.35,
+   7.513,
+   "Every federated credential was checked against claims captured from a real run, and passed its exchange test, before cutover."
+  ],
+  [
+   11.863,
+   2.775,
+   "Nothing sits in the tenant that nobody reviewed."
+  ],
+  [
+   14.637,
+   3.663,
+   "The plan was approved by someone other than the person who applied it."
+  ],
+  [
+   18.3,
+   8.512,
+   "Every parallel run had thirty clean days, every disable has the owner's approval, and nothing was deleted, so the way back is still open."
+  ],
+  [
+   26.812,
+   7.45,
+   "Next, Chapter 6 turns to group managed service accounts, delegated managed service accounts, and the Kerberos island."
+  ],
+  [
+   34.263,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.700
+So what does Microsoft give you?
+
+2
+00:00:01.700 --> 00:00:05.956
+For writing rules: a syntax page
+with every property and operator,
+
+3
+00:00:05.956 --> 00:00:08.400
+and a page on writing efficient rules.
+
+4
+00:00:08.400 --> 00:00:11.266
+There's no sample library
+of rules or tests;
+
+5
+00:00:11.266 --> 00:00:14.788
+the closest thing is Graph's
+evaluator, which is beta.
+
+6
+00:00:14.788 --> 00:00:19.269
+For running the engine, there's more:
+five PowerShell samples for an incident,
+
+7
+00:00:19.269 --> 00:00:22.612
+when a rule change starts moving
+people you didn't intend.
+
+8
+00:00:22.612 --> 00:00:27.088
+You pause processing, then resume
+it in order, critical groups first.
+
+9
+00:00:27.088 --> 00:00:30.530
+Each script works in two
+phases, asks before it acts,
+
+10
+00:00:30.530 --> 00:00:33.460
+and asks only for the
+permissions it needs.

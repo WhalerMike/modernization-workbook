@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.775
+Lab 1 needs only a laptop, with
+Python and PowerShell, and no tenant.
+
+2
+00:00:04.775 --> 00:00:08.311
+First you run Microsoft's own
+snippets against the stand-ins,
+
+3
+00:00:08.311 --> 00:00:12.413
+and read the test that proves the
+Python credential gets no authority.
+
+4
+00:00:12.413 --> 00:00:17.349
+Then you print the endpoints for this
+estate, and see that nothing for GCC is
+
+5
+00:00:17.349 --> 00:00:21.887
+a dot-u-s host, and that a misspelled
+cloud name is an error, not a default.
+
+6
+00:00:21.887 --> 00:00:24.718
+Then you list a task's
+permissions from its calls,
+
+7
+00:00:24.718 --> 00:00:26.912
+and try a call the task never declared.
+
+8
+00:00:26.912 --> 00:00:29.350
+It's refused before anything is sent.

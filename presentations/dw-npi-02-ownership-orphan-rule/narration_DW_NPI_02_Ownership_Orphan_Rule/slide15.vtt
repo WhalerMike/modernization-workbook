@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.350
+Lab 2 moves to a test tenant and
+a test domain, never production.
+
+2
+00:00:04.350 --> 00:00:08.932
+You create two deliberate orphans, an
+app with no owners and a service account
+
+3
+00:00:08.932 --> 00:00:13.300
+with no application owner, and run the
+check with a single read permission.
+
+4
+00:00:13.300 --> 00:00:14.488
+Both should show up.
+
+5
+00:00:14.488 --> 00:00:17.704
+Then you do what the governance
+officer would: confirm them,
+
+6
+00:00:17.704 --> 00:00:20.263
+and have a second person
+approve the plan's hash.
+
+7
+00:00:20.263 --> 00:00:24.275
+Only then do you sign in as
+a person, dry-run, and apply.
+
+8
+00:00:24.275 --> 00:00:27.236
+The admin center shows
+the app as deactivated,
+
+9
+00:00:27.236 --> 00:00:30.275
+the account is disabled,
+and you record the date.
+
+10
+00:00:30.275 --> 00:00:32.420
+Then put everything back the way it was.

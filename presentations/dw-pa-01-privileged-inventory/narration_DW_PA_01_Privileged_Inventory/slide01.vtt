@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.038
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.038 --> 00:00:05.688
+Building Privileged Access.
+
+3
+00:00:05.688 --> 00:00:09.101
+This is Chapter 1: privileged
+inventory as code.
+
+4
+00:00:09.101 --> 00:00:14.205
+You can't make privilege just-in-time until
+you can list it: who holds which role,
+
+5
+00:00:14.205 --> 00:00:16.598
+at which scope, standing or eligible,
+
+6
+00:00:16.598 --> 00:00:19.550
+directly or through a
+group, and in which tier.
+
+7
+00:00:19.550 --> 00:00:23.780
+We'll start from Microsoft's own
+samples for listing role assignments,
+
+8
+00:00:23.780 --> 00:00:26.187
+see what they miss, then build the reader,
+
+9
+00:00:26.187 --> 00:00:30.125
+the rows and the findings, and finish
+with two labs and the dangers.
+
+10
+00:00:30.125 --> 00:00:35.330
+One note before we begin: the code is
+illustrative, tested against fixtures.

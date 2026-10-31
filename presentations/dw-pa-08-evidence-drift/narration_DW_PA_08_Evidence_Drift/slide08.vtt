@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.285
+The audit read asks Graph's directory
+audit log for one window at a time:
+
+2
+00:00:04.285 --> 00:00:07.279
+everything PIM logged,
+plus the role assignments
+
+3
+00:00:07.279 --> 00:00:10.200
+the directory logs when
+someone goes around PIM.
+
+4
+00:00:10.200 --> 00:00:13.513
+It goes through the same
+careful reader as Chapter 1,
+
+5
+00:00:13.513 --> 00:00:16.133
+refuses a window older than the log keeps,
+
+6
+00:00:16.133 --> 00:00:20.525
+and starts each window where the last
+one ended, so no hour goes unread.
+
+7
+00:00:20.525 --> 00:00:22.850
+It keeps IDs and drops names.
+
+8
+00:00:22.850 --> 00:00:27.599
+Then four checks: a role assigned
+outside PIM, a sensitive activation with
+
+9
+00:00:27.599 --> 00:00:32.500
+no approval, someone approving their
+own request, and a PIM setting changed.

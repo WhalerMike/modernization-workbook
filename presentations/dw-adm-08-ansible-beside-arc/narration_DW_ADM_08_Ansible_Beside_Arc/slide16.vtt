@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.157
+Lab 2 connects one
+disposable server for real,
+
+2
+00:00:03.157 --> 00:00:07.900
+in a commercial test subscription in
+the GCC tenant, never production.
+
+3
+00:00:07.900 --> 00:00:12.687
+The control node runs somewhere with a
+managed identity, so no secret is stored.
+
+4
+00:00:12.687 --> 00:00:17.123
+Prepare a resource group, grant the
+onboarding role to that identity
+
+5
+00:00:17.123 --> 00:00:21.013
+and nothing else, and describe
+the one server in a tiny export.
+
+6
+00:00:21.013 --> 00:00:26.450
+Then the same three commands every
+wave uses: plan, dry run, connect.
+
+7
+00:00:26.450 --> 00:00:28.453
+Check the agent says connected,
+
+8
+00:00:28.453 --> 00:00:32.150
+the tags match the database,
+and the validation kit agrees.
+
+9
+00:00:32.150 --> 00:00:35.450
+Then back it out in Learn's
+order, and file the records.

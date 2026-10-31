@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.800
+The sample's main idea
+is its mapping file.
+
+2
+00:00:02.800 --> 00:00:07.423
+Each SCIM attribute names a column in
+your extract, or a tiny script that
+
+3
+00:00:07.423 --> 00:00:12.125
+computes the value, like turning a
+worker status into active or inactive.
+
+4
+00:00:12.125 --> 00:00:15.360
+Learn is careful to say this
+only maps the file to SCIM;
+
+5
+00:00:15.360 --> 00:00:19.037
+mapping SCIM to the directory
+stays in the provisioning app.
+
+6
+00:00:19.037 --> 00:00:22.933
+And because a link to a sample's
+main branch changes under you,
+
+7
+00:00:22.933 --> 00:00:28.075
+the repository keeps an unmodified, hashed
+copy, with a weekly watch on upstream.
+
+8
+00:00:28.075 --> 00:00:32.300
+A new version becomes a decision
+someone reviews, never a surprise.

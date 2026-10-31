@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.887
+Two pieces make the check real.
+
+2
+00:00:01.887 --> 00:00:06.612
+First, the code works out what the workload's
+issuer will actually put in its token.
+
+3
+00:00:06.612 --> 00:00:10.447
+For GitHub it uses Learn's
+three formats, for environments,
+
+4
+00:00:10.447 --> 00:00:14.762
+branches and tags, and for Kubernetes
+the service account format.
+
+5
+00:00:14.762 --> 00:00:17.883
+Anything it can't be sure
+of, like a pull request,
+
+6
+00:00:17.883 --> 00:00:22.812
+or GitHub's newer immutable format, has
+to be captured from a real test run.
+
+7
+00:00:22.812 --> 00:00:26.140
+Second, it builds the real
+token request and sends it
+
+8
+00:00:26.140 --> 00:00:29.700
+to a fake endpoint that matches
+the way Learn describes.
+
+9
+00:00:29.700 --> 00:00:32.872
+It doesn't check signatures,
+so it proves the credential
+
+10
+00:00:32.872 --> 00:00:35.900
+matches what you recorded,
+not what the issuer sends.

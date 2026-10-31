@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.350
+Now the code itself.
+
+2
+00:00:01.350 --> 00:00:04.266
+Everything about a cloud
+comes from one table:
+
+3
+00:00:04.266 --> 00:00:07.643
+ask for a cloud by name and
+you get its token authority,
+
+4
+00:00:07.643 --> 00:00:12.325
+its Graph host and its Resource Manager
+host, and anything else is an error.
+
+5
+00:00:12.325 --> 00:00:15.263
+The client won't send its
+token to any other host.
+
+6
+00:00:15.263 --> 00:00:18.313
+Then there's the call list,
+one entry per Graph call,
+
+7
+00:00:18.313 --> 00:00:23.225
+with the least privileged permission from
+the API page and the tasks that use it.
+
+8
+00:00:23.225 --> 00:00:26.527
+Two rules follow: a task
+can make only its own calls,
+
+9
+00:00:26.527 --> 00:00:30.313
+and its permissions are exactly
+the union of those calls.
+
+10
+00:00:30.313 --> 00:00:33.260
+Add one without the other,
+and the build fails.

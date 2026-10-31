@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Now the code.
+
+2
+00:00:00.988 --> 00:00:05.886
+This chapter adds its own module,
+its own call list, an entry script,
+
+3
+00:00:05.886 --> 00:00:10.875
+and the policy files themselves, one
+file per object, as Book 04 asks.
+
+4
+00:00:10.875 --> 00:00:14.817
+There are the two authentication
+contexts, the custom strength,
+
+5
+00:00:14.817 --> 00:00:18.462
+the five administrator policies,
+and the two gate policies,
+
+6
+00:00:18.462 --> 00:00:21.512
+one for activation and
+one for protected actions.
+
+7
+00:00:21.512 --> 00:00:26.662
+The activation gate demands the strength
+and a compliant device, every single time.
+
+8
+00:00:26.662 --> 00:00:31.503
+Placeholders resolve from a per-tenant map,
+except the strength, which is looked up
+
+9
+00:00:31.503 --> 00:00:36.050
+by name in the tenant, so a policy can
+never point at a strength that isn't there.

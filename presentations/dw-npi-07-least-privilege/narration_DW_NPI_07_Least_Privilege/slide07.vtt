@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.275
+What does the code add?
+
+2
+00:00:01.275 --> 00:00:05.603
+A module, two entry scripts, one
+that only reads and one that writes,
+
+3
+00:00:05.603 --> 00:00:09.530
+its own call list, and a reviewed
+list of what counts as broad,
+
+4
+00:00:09.530 --> 00:00:12.175
+with Learn's replacement for each class.
+
+5
+00:00:12.175 --> 00:00:17.318
+Three small files carry the human decisions:
+exceptions from the security office,
+
+6
+00:00:17.318 --> 00:00:21.100
+the owners' quarterly answers,
+and the Azure scopes to look at.
+
+7
+00:00:21.100 --> 00:00:25.190
+The sweep then reads every
+service principal in the register:
+
+8
+00:00:25.190 --> 00:00:29.441
+its roles on every resource, not
+just Graph, its delegated grants,
+
+9
+00:00:29.441 --> 00:00:33.612
+its directory roles, and for a
+managed identity, its Azure roles.
+
+10
+00:00:33.612 --> 00:00:35.690
+Every grant gets a stable key.

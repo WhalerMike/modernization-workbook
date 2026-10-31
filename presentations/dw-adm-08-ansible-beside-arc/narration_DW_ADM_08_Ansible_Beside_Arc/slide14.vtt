@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.531
+Lab 1 runs on a Linux control node
+with no subscription, and after setup
+
+2
+00:00:04.531 --> 00:00:09.013
+every outbound request goes to a dead
+local proxy, so nothing can leave.
+
+3
+00:00:09.013 --> 00:00:11.883
+Use a disposable node,
+because one step runs
+
+4
+00:00:11.883 --> 00:00:15.074
+Microsoft's role as root
+against the node itself.
+
+5
+00:00:15.074 --> 00:00:18.907
+First, look at what the database
+export becomes: four candidates,
+
+6
+00:00:18.907 --> 00:00:22.812
+and the Amazon-hosted server tagged
+with Ansible for both owners.
+
+7
+00:00:22.812 --> 00:00:26.575
+Then run Microsoft's role,
+unchanged, in check mode.
+
+8
+00:00:26.575 --> 00:00:31.406
+It fails, and the verbose output shows
+why: check mode skipped the version check,
+
+9
+00:00:31.406 --> 00:00:34.800
+so the role concluded the
+agent was already installed.

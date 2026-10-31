@@ -1,0 +1,543 @@
+{
+ "1": [
+  [
+   0.05,
+   5.862,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Non-Person Identity."
+  ],
+  [
+   5.912,
+   3.85,
+   "This is Chapter 3: the migration path matrix as code."
+  ],
+  [
+   9.762,
+   14.325,
+   "Every service account and app needs a decision before anything is converted, and this chapter turns the book's matrix into reviewed data and code that proposes a target, checks the owner's choice, sequences the waves and checks the gate."
+  ],
+  [
+   24.087,
+   6.912,
+   "We'll start from Learn's own decision tables, see what they leave out, then walk the code, two labs and the dangers."
+  ],
+  [
+   31.0,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.512,
+   "Why does this chapter matter?"
+  ],
+  [
+   1.562,
+   4.438,
+   "Because three different things get blurred together, and the code keeps them apart."
+  ],
+  [
+   6.0,
+   6.862,
+   "The matrix proposes a target for each account, based on what it is, where it runs and what credential it holds."
+  ],
+  [
+   12.863,
+   5.588,
+   "The application owner decides, and may disagree, as long as the reason is on the record."
+  ],
+  [
+   18.45,
+   6.975,
+   "And the security officer's gate checks that every account has both, that the riskiest go first, and that there's a way back."
+  ],
+  [
+   25.425,
+   4.263,
+   "Treat a proposal as a decision and you convert accounts nobody agreed to."
+  ],
+  [
+   29.688,
+   2.538,
+   "First, which cloud this runs against."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   0.9,
+   "Which cloud?"
+  ],
+  [
+   0.95,
+   7.513,
+   "Most of this chapter never touches a cloud at all: the matrix is offline logic over the files from the first two chapters."
+  ],
+  [
+   8.463,
+   8.688,
+   "It makes just two reads, both to Microsoft Graph, and for a G C C tenant like this estate's, that's the worldwide endpoint."
+  ],
+  [
+   17.15,
+   2.675,
+   "The higher government clouds have their own hosts."
+  ],
+  [
+   19.825,
+   13.625,
+   "One open question is the licensing trial: Learn says there's no free trial in the Azure Government clouds, but a G C C tenant signs in to the worldwide cloud, so the chapter leaves it as something to check in the test tenant."
+  ],
+  [
+   33.45,
+   1.8,
+   "Now, what Microsoft gives you."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.888,
+   "Here's what Microsoft gives you, and its order of preference is one the matrix keeps."
+  ],
+  [
+   4.938,
+   6.85,
+   "On premises, a group managed service account whenever possible, and a plain user account only as a last resort."
+  ],
+  [
+   11.787,
+   8.363,
+   "In the cloud, a managed identity if the service runs in Azure and supports one, a service principal otherwise, never a user account."
+  ],
+  [
+   20.15,
+   9.35,
+   "Windows Server adds the delegated managed service account, which has real limits: you can't move a managed service account onto one, and delegation stops working."
+  ],
+  [
+   29.5,
+   3.6,
+   "Learn turns this into two decision tables, but no code."
+  ],
+  [
+   33.1,
+   7.362,
+   "So the repository pins the pages unmodified, and a small harness evaluates each table exactly as published."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.888,
+   "This is the heart of the chapter, in two parts."
+  ],
+  [
+   2.938,
+   2.25,
+   "Learn's ordering is kept as the model."
+  ],
+  [
+   5.188,
+   8.225,
+   "But the on-premises table has no column for the delegated managed service account at all, so the best target on a new domain never comes out of it."
+  ],
+  [
+   13.412,
+   5.338,
+   "It admits a plain user account in every situation, so it never tells you to move off one."
+  ],
+  [
+   18.75,
+   5.638,
+   "It has no way to say retire, so an orphaned or disabled account would just get a new account type."
+  ],
+  [
+   24.387,
+   4.013,
+   "And it decides on facts like server counts that no register holds."
+  ],
+  [
+   28.4,
+   3.65,
+   "The code fills each gap, and a test pins every row."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.762,
+   "The cloud side has gaps too."
+  ],
+  [
+   1.812,
+   8.525,
+   "The table recommends a managed identity if the service supports one, but leaves you to find out whether it does, so the code makes that a required fact."
+  ],
+  [
+   10.338,
+   6.5,
+   "It offers a service principal only certificates and secrets, missing federation, which the book prefers."
+  ],
+  [
+   16.837,
+   9.075,
+   "It happily recommends a service principal for a multitenant app, without saying that Conditional Access can't cover one, so you could license something and buy nothing."
+  ],
+  [
+   25.913,
+   2.1,
+   "And nothing records a decision at all."
+  ],
+  [
+   28.012,
+   4.775,
+   "The verdict: Learn's tables define preference, but they aren't the matrix."
+  ],
+  [
+   32.788,
+   1.2,
+   "Let's look at the code."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.325,
+   "So what does the code add?"
+  ],
+  [
+   1.375,
+   6.85,
+   "One module and an entry script, built on the module from Chapter 2, and changing nothing in the earlier chapters."
+  ],
+  [
+   8.225,
+   2.8,
+   "What matters most is who keeps each input."
+  ],
+  [
+   11.025,
+   6.25,
+   "The matrix itself belongs to identity engineering and changes only in a reviewed pull request."
+  ],
+  [
+   17.275,
+   6.375,
+   "The application owners keep two files: where each workload runs, and what they decided for each account."
+  ],
+  [
+   23.65,
+   5.025,
+   "The waves, the program's dates and the licensing decision each have their own keeper."
+  ],
+  [
+   28.675,
+   8.162,
+   "And the earlier chapters' outputs are refused if their hashes don't match the manifests, so nobody decides on evidence the reviewer never saw."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.637,
+   "Here's how a proposal is made."
+  ],
+  [
+   1.688,
+   8.625,
+   "First, scope: some accounts belong to another plan, some are covered by their app registration, and some are out of scope with a reason written down."
+  ],
+  [
+   10.312,
+   8.25,
+   "Then retirement comes first: if Chapter 2 found an account unowned, or it's already disabled, the proposal is to retire it."
+  ],
+  [
+   18.562,
+   7.125,
+   "Otherwise, the first matrix row that matches the account's type, where it runs and its credential proposes the target."
+  ],
+  [
+   25.688,
+   8.525,
+   "And each proposal carries Learn's cautions, like the fact that an Arc server's managed identity is shared by every app its administrators allow."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.8,
+   "The decision check reads each owner's row and turns what's missing or wrong into findings with stable I D's."
+  ],
+  [
+   6.85,
+   26.775,
+   "In plain terms: every account needs a decision; every account needs enough facts for a proposal; the target has to fit the decision, and Learn's delegated account limits are enforced; an owner who departs from the matrix has to say why; anything kept needs an end date, and anything kept on Kerberos needs an owner for its service principal name; high-risk accounts go first; every wave needs a way back; and the licensing scope has to make sense."
+  ],
+  [
+   33.625,
+   2.388,
+   "The exact wording is on the slide."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.9,
+   "A conversion with no way back turns a failed change into an outage, so the waves get as much attention as the targets."
+  ],
+  [
+   6.95,
+   8.65,
+   "Every rollback owner and service principal name owner is looked up once, and counts only if they're an enabled member, the same rule as Chapter 2."
+  ],
+  [
+   15.6,
+   6.35,
+   "An account the owner didn't place in a wave is proposed for the first wave if it's high-risk, the second otherwise."
+  ],
+  [
+   21.95,
+   10.188,
+   "And each wave's rollback is assembled from its members' targets, including Learn's own undo for a delegated account migration, which keeps the old account rather than deleting it."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.075,
+   "The licensing decision belongs to the chief information security officer, and the code makes it checkable."
+  ],
+  [
+   6.125,
+   10.262,
+   "Premium adds things like Conditional Access for workload identities, but that only covers single-tenant service principals: not managed identities, and not multitenant apps."
+  ],
+  [
+   16.387,
+   9.7,
+   "So the code works out who could be covered today and who will leave or join after conversion, reads the tenant's subscriptions once, and checks the decision file against both."
+  ],
+  [
+   26.087,
+   2.225,
+   "It never buys or assigns anything."
+  ],
+  [
+   28.312,
+   6.2,
+   "Then the gate check reports Gate 2's five criteria, and the gate is met only when no finding is open."
+  ],
+  [
+   34.513,
+   1.1,
+   "Who's involved?"
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.988,
+   "Who's this for?"
+  ],
+  [
+   1.038,
+   2.45,
+   "Developers build the decision records."
+  ],
+  [
+   3.487,
+   4.237,
+   "Identity engineers propose the targets and keep the matrix itself."
+  ],
+  [
+   7.725,
+   6.1,
+   "The application owners make the real call, account by account, and say where each workload runs."
+  ],
+  [
+   13.825,
+   7.275,
+   "The chief information security officer decides the licensing scope, and the security officer for the system approves the gate."
+  ],
+  [
+   21.1,
+   9.6,
+   "As for the tenant, the code asks for very little: two read permissions, one to look up the owners and one to read the subscriptions, and it only ever reads."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.875,
+   "Lab 1 needs only a laptop with PowerShell 7 and Pester, and no tenant."
+  ],
+  [
+   4.925,
+   8.65,
+   "First you run Learn's tables exactly as published, and one test makes the point plainly: the on-premises table never rules out a user account."
+  ],
+  [
+   13.575,
+   4.725,
+   "Then you list what the task needs, two read permissions and nothing but reads."
+  ],
+  [
+   18.3,
+   4.5,
+   "Then you run the first two chapters and the matrix over the fictional estate."
+  ],
+  [
+   22.8,
+   10.338,
+   "The summary tells you how many identities are in scope and proposed, how many owners have decided, and that the gate isn't met yet, which is exactly what we want to read next."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.737,
+   "Reading the output is where the rules turn real."
+  ],
+  [
+   2.788,
+   5.475,
+   "Six accounts are proposed for retirement, the orphans and the disabled ones from Chapter 2."
+  ],
+  [
+   8.262,
+   8.05,
+   "Others go to delegated or group managed accounts, some are kept, and one app has no proposal because nobody recorded where it runs."
+  ],
+  [
+   16.312,
+   15.9,
+   "The findings tell the story: a high-risk account scheduled too late, a Kerberos account kept with no owner for its service principal name, an owner who overrode the matrix but gave a reason, and two apps on the licensing list that Conditional Access can't actually protect."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.3,
+   "Next, the waves."
+  ],
+  [
+   1.35,
+   3.575,
+   "The first wave has a named rollback owner and a clear way back."
+  ],
+  [
+   4.925,
+   4.912,
+   "The second has an empty owner, which is exactly why it drew a finding a moment ago."
+  ],
+  [
+   9.838,
+   10.588,
+   "Then the licensing scope: six apps could be covered by Conditional Access today, but only four after conversion, because one moves to a managed identity and one is retired."
+  ],
+  [
+   20.425,
+   3.312,
+   "That's the kind of thing you'd want to know before buying licenses."
+  ],
+  [
+   23.738,
+   7.938,
+   "Finally, run the whole suite: five hundred thirteen tests pass, and the run made just three requests, all reads."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   6.025,
+   "Lab 2 moves to a test tenant with fictional people, never production, and it still only reads."
+  ],
+  [
+   6.075,
+   6.0,
+   "You grant the same two read permissions, write a small set of inputs for the test accounts, and run it."
+  ],
+  [
+   12.075,
+   14.025,
+   "Then come two checks the chapter couldn't settle from the documentation: what the license read actually shows in a G C C tenant, including whether a trial appears, and which identities the Conditional Access screen really lets you pick."
+  ],
+  [
+   26.1,
+   4.338,
+   "Record both, discard the draft policy, and back everything out."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.475,
+   "Each of these dangers has a guard in the code."
+  ],
+  [
+   2.525,
+   9.55,
+   "The biggest is treating the matrix's proposal as the owner's decision, so they liv in separate files, and the check flags every account until its owner signs."
+  ],
+  [
+   12.075,
+   3.425,
+   "A guess about where a workload runs gets no proposal at all."
+  ],
+  [
+   15.5,
+   4.025,
+   "Learn's limits on delegated accounts are enforced, not just noted."
+  ],
+  [
+   19.525,
+   6.85,
+   "Kerberos accounts can't be kept forever, high-risk accounts can't wait, and no wave goes ahead without a way back."
+  ],
+  [
+   26.375,
+   7.662,
+   "And this code never deletes anything: retirement still goes through Chapter 2's rule and the reviewed decommission process."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   4.537,
+   "Every account has a proposal, or a finding that names the missing fact."
+  ],
+  [
+   5.938,
+   5.025,
+   "Every account has its owner's decision, with any departure from the matrix explained."
+  ],
+  [
+   10.963,
+   5.812,
+   "Nothing kept lives forever, and every Kerberos keep has an owner and an accepted end date."
+  ],
+  [
+   16.775,
+   7.8,
+   "The high-risk accounts go first, every wave has a way back, and the licensing scope holds only identities it can actually protect."
+  ],
+  [
+   24.575,
+   6.312,
+   "With every account decided, Chapter 4 moves on to app management policies and certificate rotation."
+  ],
+  [
+   30.887,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

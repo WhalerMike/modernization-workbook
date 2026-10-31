@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.725
+Before anything touches a server, the
+wave plan runs on the control node alone.
+
+2
+00:00:04.725 --> 00:00:09.292
+You give it a wave number, and it
+writes down exactly what it intends:
+
+3
+00:00:09.292 --> 00:00:13.195
+every ready server, every
+blocked one, the resource group,
+
+4
+00:00:13.195 --> 00:00:16.600
+region, cloud, both owners
+and the exact tag string.
+
+5
+00:00:16.600 --> 00:00:21.252
+It refuses to go on if there's no wave,
+if a region belongs to the other cloud,
+
+6
+00:00:21.252 --> 00:00:26.137
+if a production server has slipped into
+a pilot wave, or if an owner is missing.
+
+7
+00:00:26.137 --> 00:00:29.200
+Both onboarding playbooks
+start with this plan,
+
+8
+00:00:29.200 --> 00:00:32.330
+so if the plan stops, no
+server is contacted at all.

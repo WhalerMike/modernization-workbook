@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.075
+Reading the findings is
+where the rules become real.
+
+2
+00:00:03.075 --> 00:00:05.075
+One fictional account passes.
+
+3
+00:00:05.075 --> 00:00:07.245
+The other fails five different ways,
+
+4
+00:00:07.245 --> 00:00:11.513
+from the wrong domain to an expiring
+Global Administrator assignment.
+
+5
+00:00:11.513 --> 00:00:14.417
+Three enforced policies
+don't exclude the accounts,
+
+6
+00:00:14.417 --> 00:00:18.200
+and someone who shouldn't be there
+is sitting in the exclusion group.
+
+7
+00:00:18.200 --> 00:00:21.923
+Then the offline match finds
+all five emergency events,
+
+8
+00:00:21.923 --> 00:00:26.212
+where the sample found two, and
+ignores an ordinary user's sign-in.
+
+9
+00:00:26.212 --> 00:00:30.675
+Finally you try to feed it a user name
+instead of an ID, and it refuses.
+
+10
+00:00:30.675 --> 00:00:34.220
+Run the whole suite, and three
+hundred thirty tests pass.

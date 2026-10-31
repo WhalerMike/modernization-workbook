@@ -7178,6 +7178,2285 @@
   ]
  },
  {
+  "id": "DW_NPI_01_Inventory_as_Code_Narrated",
+  "title": "Building Non-Person Identity, Chapter 01 — Non-Person Identity Inventory as Code: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_01_Inventory_as_Code_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code_Narrated.vtt",
+  "deck": "presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 01: Non-Person Identity Inventory as Code"
+   ],
+   [
+    40,
+    "Why the inventory comes first"
+   ],
+   [
+    76,
+    "Which cloud and which directory, for this read"
+   ],
+   [
+    115,
+    "What the register has to hold"
+   ],
+   [
+    153,
+    "Two directory reads, nine Graph, one Resource Manager"
+   ],
+   [
+    191,
+    "Risk, candidate target and stale lead: the program's"
+   ],
+   [
+    229,
+    "What Learn gives you, and the pinned copies"
+   ],
+   [
+    270,
+    "What the samples miss in Active Directory"
+   ],
+   [
+    308,
+    "What the samples miss in Entra, and the verdict"
+   ],
+   [
+    347,
+    "The reader: five rules every call obeys"
+   ],
+   [
+    381,
+    "The register: one row, the same columns, every type"
+   ],
+   [
+    422,
+    "The findings, the manifest and the tests"
+   ],
+   [
+    461,
+    "Who builds it, who runs it, what it may read"
+   ],
+   [
+    500,
+    "Lab 1: Learn's samples, the permissions, the run"
+   ],
+   [
+    538,
+    "Lab 1: the eight HIGH rows, the guards, the hand-off"
+   ],
+   [
+    575,
+    "Lab 2: a test tenant and a test domain"
+   ],
+   [
+    612,
+    "Dangers, and the guard for each"
+   ],
+   [
+    649,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_NPI_02_Ownership_Orphan_Rule_Narrated",
+  "title": "Building Non-Person Identity, Chapter 02 — Ownership and the Orphan Rule: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_02_Ownership_Orphan_Rule_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-npi-02-ownership-orphan-rule/DW_NPI_02_Ownership_Orphan_Rule_Narrated.vtt",
+  "deck": "presentations/dw-npi-02-ownership-orphan-rule/DW_NPI_02_Ownership_Orphan_Rule_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-02-ownership-orphan-rule/DW_NPI_02_Ownership_Orphan_Rule_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 02: Ownership and the Orphan Rule"
+   ],
+   [
+    41,
+    "Why ownership is the gate"
+   ],
+   [
+    76,
+    "Which cloud, for this check and these writes"
+   ],
+   [
+    112,
+    "The rule the code holds: stricter than Learn's"
+   ],
+   [
+    148,
+    "The orphan rule: disable first, never delete"
+   ],
+   [
+    189,
+    "Learn's Graph samples, pinned and sent to a fake"
+   ],
+   [
+    227,
+    "What the query counts wrong"
+   ],
+   [
+    261,
+    "What the samples leave out entirely, and the verdict"
+   ],
+   [
+    298,
+    "The check: nine rules, NPI-OWN-01 to NPI-OWN-09"
+   ],
+   [
+    336,
+    "The orphan rule as a plan nothing in it writes"
+   ],
+   [
+    374,
+    "The separate write path, and why it's a person"
+   ],
+   [
+    410,
+    "Who keeps each input, and who decides"
+   ],
+   [
+    449,
+    "Lab 1: samples, permissions, the check and the plan"
+   ],
+   [
+    488,
+    "Lab 1: the findings, the plan, and a refused hash"
+   ],
+   [
+    526,
+    "Lab 2: two test orphans, confirmed and disabled"
+   ],
+   [
+    563,
+    "Dangers, and the guard for each"
+   ],
+   [
+    598,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_NPI_03_Migration_Path_Matrix_Narrated",
+  "title": "Building Non-Person Identity, Chapter 03 — The Migration Path Matrix as Code: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_03_Migration_Path_Matrix_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narrated.vtt",
+  "deck": "presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 03: The Migration Path Matrix as Code"
+   ],
+   [
+    40,
+    "Three things to keep apart: proposal, decision, gate"
+   ],
+   [
+    76,
+    "Which cloud: Graph hosts, licenses and the trial"
+   ],
+   [
+    115,
+    "What Learn gives: a preference order and two tables"
+   ],
+   [
+    160,
+    "What Learn's tables miss: dMSA, retire, the facts"
+   ],
+   [
+    196,
+    "What they miss: federation, coverage, a record"
+   ],
+   [
+    234,
+    "The code and the inputs it reads"
+   ],
+   [
+    275,
+    "The proposal: scope first, then the matrix rows"
+   ],
+   [
+    313,
+    "The decision check: nine rules, NPI-MAT-01 to -09"
+   ],
+   [
+    353,
+    "Waves and their rollback (N2.2)"
+   ],
+   [
+    389,
+    "The Workload ID Premium scope (D-N4) and Gate 2"
+   ],
+   [
+    429,
+    "Who proposes, decides, approves, and what it reads"
+   ],
+   [
+    464,
+    "Lab 1: Learn's tables, then the matrix run"
+   ],
+   [
+    501,
+    "Lab 1: reading the proposals and the findings"
+   ],
+   [
+    537,
+    "Lab 1: the waves, the D-N4 scope, the tests"
+   ],
+   [
+    573,
+    "Lab 2: a test tenant, read only"
+   ],
+   [
+    608,
+    "Dangers, and the guard for each"
+   ],
+   [
+    646,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_NPI_04_App_Policy_Rotation_Narrated",
+  "title": "Building Non-Person Identity, Chapter 04 — App Management Policies and Certificate Rotation: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_04_App_Policy_Rotation_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-npi-04-app-policy-rotation/DW_NPI_04_App_Policy_Rotation_Narrated.vtt",
+  "deck": "presentations/dw-npi-04-app-policy-rotation/DW_NPI_04_App_Policy_Rotation_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-04-app-policy-rotation/DW_NPI_04_App_Policy_Rotation_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 04: App Policies and Certificate Rotation"
+   ],
+   [
+    40,
+    "Why a reviewed policy and a planned rotation"
+   ],
+   [
+    77,
+    "Which cloud: Graph and Key Vault hosts"
+   ],
+   [
+    116,
+    "What an app management policy is"
+   ],
+   [
+    154,
+    "The program's rules: policy, lock, license, rotation"
+   ],
+   [
+    190,
+    "Microsoft's samples, pinned and sent to fakes"
+   ],
+   [
+    229,
+    "What the policy samples leave to you"
+   ],
+   [
+    267,
+    "What the certificate and Key Vault samples leave"
+   ],
+   [
+    301,
+    "The code and the inputs it reads"
+   ],
+   [
+    339,
+    "The policy: compare, merge, plan"
+   ],
+   [
+    376,
+    "Rotation: one step per certificate"
+   ],
+   [
+    413,
+    "The separate write path, and what it refuses"
+   ],
+   [
+    449,
+    "Who builds, runs, approves and reviews"
+   ],
+   [
+    489,
+    "Lab 1: the samples, then the policy plan"
+   ],
+   [
+    524,
+    "Lab 1: the rotation plan, applied to the fake"
+   ],
+   [
+    558,
+    "Lab 2: a test tenant and a test key vault"
+   ],
+   [
+    594,
+    "Dangers, and the guard for each"
+   ],
+   [
+    631,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_NPI_05_Workload_Federation_Narrated",
+  "title": "Building Non-Person Identity, Chapter 05 — Workload Identity Federation and Managed Identities: narrated tour",
+  "group": "developer",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_05_Workload_Federation_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-npi-05-workload-federation/DW_NPI_05_Workload_Federation_Narrated.vtt",
+  "deck": "presentations/dw-npi-05-workload-federation/DW_NPI_05_Workload_Federation_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-05-workload-federation/DW_NPI_05_Workload_Federation_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 05: Workload Federation and Managed Identities"
+   ],
+   [
+    42,
+    "Why the token exchange test comes first"
+   ],
+   [
+    83,
+    "Which cloud: Graph, Resource Manager, sign-in"
+   ],
+   [
+    122,
+    "What a federated credential is, and its rules"
+   ],
+   [
+    162,
+    "Learn's samples, pinned and sent to fakes"
+   ],
+   [
+    203,
+    "What the samples accept in silence"
+   ],
+   [
+    240,
+    "What the samples leave to you"
+   ],
+   [
+    278,
+    "The code: one module, a reviewed file, a cutover log"
+   ],
+   [
+    317,
+    "The checks: nine rules, NPI-WIF-01 to NPI-WIF-09"
+   ],
+   [
+    355,
+    "What the workload presents, and the exchange test"
+   ],
+   [
+    395,
+    "The plan: actions, and the evidence for a clean run"
+   ],
+   [
+    437,
+    "The separate write path: an approved hash, one at a time"
+   ],
+   [
+    477,
+    "Who builds it, who runs it, what it may touch"
+   ],
+   [
+    517,
+    "Lab 1: Microsoft's samples, then the plan"
+   ],
+   [
+    556,
+    "Lab 1: findings, conversions, dry run and apply"
+   ],
+   [
+    594,
+    "Lab 2: a test tenant, a real token, a real disable"
+   ],
+   [
+    634,
+    "Dangers, and the guard for each"
+   ],
+   [
+    671,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_NPI_06_gMSA_dMSA_Narrated",
+  "title": "Building Non-Person Identity, Chapter 06 — gMSAs, dMSAs and the Kerberos Island: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_06_gMSA_dMSA_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-npi-06-gmsa-dmsa/DW_NPI_06_gMSA_dMSA_Narrated.vtt",
+  "deck": "presentations/dw-npi-06-gmsa-dmsa/DW_NPI_06_gMSA_dMSA_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-06-gmsa-dmsa/DW_NPI_06_gMSA_dMSA_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 06: gMSAs, dMSAs and the Kerberos Island"
+   ],
+   [
+    42,
+    "Why every gMSA and dMSA needs an end date"
+   ],
+   [
+    82,
+    "What gMSAs and dMSAs are, and where the code runs"
+   ],
+   [
+    120,
+    "Learn's four procedures, pinned and run"
+   ],
+   [
+    158,
+    "What the procedures leave to you: the key and the steps"
+   ],
+   [
+    193,
+    "What they leave to you: limits, waits and deletes"
+   ],
+   [
+    230,
+    "The code and its four reviewed inputs"
+   ],
+   [
+    265,
+    "The check: nine rules, NPI-KRB-01 to NPI-KRB-09"
+   ],
+   [
+    306,
+    "The plan: one action per account"
+   ],
+   [
+    343,
+    "The island list and the reconciliation"
+   ],
+   [
+    381,
+    "The separate write path, and its refusals"
+   ],
+   [
+    417,
+    "Who builds, runs and reviews it, and with what rights"
+   ],
+   [
+    456,
+    "Lab 1: Learn's procedures, then the check"
+   ],
+   [
+    491,
+    "Lab 1: reading the findings and the plan"
+   ],
+   [
+    528,
+    "Lab 1: the island list, a dry run and a refusal"
+   ],
+   [
+    565,
+    "Lab 2: a test domain, a real migration"
+   ],
+   [
+    603,
+    "Dangers, and the guard for each"
+   ],
+   [
+    640,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_NPI_07_Least_Privilege_Narrated",
+  "title": "Building Non-Person Identity, Chapter 07 — Least Privilege for Service Principals: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_07_Least_Privilege_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege_Narrated.vtt",
+  "deck": "presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 07: Least Privilege for Service Principals"
+   ],
+   [
+    41,
+    "What an app can reach, and which cloud reads it"
+   ],
+   [
+    80,
+    "The program's rules: review, justify, narrow, hand off"
+   ],
+   [
+    118,
+    "Learn's review-and-revoke script, pinned and run"
+   ],
+   [
+    157,
+    "What the script gets wrong: removals and targets"
+   ],
+   [
+    197,
+    "What the script misses: reads, roles and hosts"
+   ],
+   [
+    237,
+    "The code, its inputs and the sweep"
+   ],
+   [
+    276,
+    "The check: nine rules, NPI-LP-01 to NPI-LP-09"
+   ],
+   [
+    314,
+    "The hand-off and the quarterly owner review"
+   ],
+   [
+    353,
+    "The plan: one action per broad grant or decision"
+   ],
+   [
+    394,
+    "The separate write path, and why it's a person"
+   ],
+   [
+    430,
+    "Who answers the review, and what each task may hold"
+   ],
+   [
+    464,
+    "Lab 1: Learn's script, then the sweep"
+   ],
+   [
+    502,
+    "Lab 1: the findings, the hand-off and the review"
+   ],
+   [
+    539,
+    "Lab 1: the plan, a dry run and a refusal"
+   ],
+   [
+    578,
+    "Lab 2: a test tenant, one real removal"
+   ],
+   [
+    615,
+    "Dangers, and the guard for each"
+   ],
+   [
+    651,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_NPI_08_Workload_CA_Narrated",
+  "title": "Building Non-Person Identity, Chapter 08 — Conditional Access for Workload Identities: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_08_Workload_CA_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-npi-08-workload-ca/DW_NPI_08_Workload_CA_Narrated.vtt",
+  "deck": "presentations/dw-npi-08-workload-ca/DW_NPI_08_Workload_CA_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-08-workload-ca/DW_NPI_08_Workload_CA_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 08: Conditional Access for Workload Identities"
+   ],
+   [
+    43,
+    "What workload Conditional Access can and can't do"
+   ],
+   [
+    80,
+    "The program's two policies and its two decisions"
+   ],
+   [
+    120,
+    "Learn's sample JSON, pinned and checked"
+   ],
+   [
+    157,
+    "What the sample leaves to you: values and targets"
+   ],
+   [
+    196,
+    "What it leaves to you: risk, evidence, scope, rings"
+   ],
+   [
+    229,
+    "The code and its reviewed files, one policy per ring"
+   ],
+   [
+    265,
+    "The pre-merge and tenant check: NPI-WCA-01 to -09"
+   ],
+   [
+    305,
+    "The plan, the dry run and the writes"
+   ],
+   [
+    342,
+    "Enforcement, ring by ring: five conditions"
+   ],
+   [
+    379,
+    "The sign-in reader, its summary and the block alert"
+   ],
+   [
+    416,
+    "Who owns the policies, and what each task may hold"
+   ],
+   [
+    456,
+    "Lab 1: Learn's sample, then the pre-merge check"
+   ],
+   [
+    491,
+    "Lab 1: the plan and the sign-in summary"
+   ],
+   [
+    530,
+    "Lab 1: apply twice, enforce Ring 1, read the alert"
+   ],
+   [
+    568,
+    "Lab 2: a test tenant, report-only, then one ring"
+   ],
+   [
+    605,
+    "Dangers, and the guard for each"
+   ],
+   [
+    642,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_NPI_09_AI_Agent_Identities_Narrated",
+  "title": "Building Non-Person Identity, Chapter 09 — AI Agent Identities: narrated tour",
+  "group": "developer",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_09_AI_Agent_Identities_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-npi-09-ai-agents/DW_NPI_09_AI_Agent_Identities_Narrated.vtt",
+  "deck": "presentations/dw-npi-09-ai-agents/DW_NPI_09_AI_Agent_Identities_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-09-ai-agents/DW_NPI_09_AI_Agent_Identities_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 09: AI Agent Identities"
+   ],
+   [
+    47,
+    "What Agent ID is, and why its blueprint matters"
+   ],
+   [
+    86,
+    "Release stage by cloud, and D-N6 as data"
+   ],
+   [
+    127,
+    "The program's rules, N6.1 to N6.7"
+   ],
+   [
+    166,
+    "Learn's Agent ID samples, pinned and sent to a fake"
+   ],
+   [
+    206,
+    "What the samples leave out: reads and sponsors"
+   ],
+   [
+    241,
+    "What they leave out: secrets, inheritance, CA"
+   ],
+   [
+    280,
+    "The code, its inputs and what it reads"
+   ],
+   [
+    319,
+    "The checks, part 1: creation, handshake, sponsors"
+   ],
+   [
+    356,
+    "The checks, part 2: privilege, sponsors, CA, drift"
+   ],
+   [
+    394,
+    "The agent CA plan and the separate write path"
+   ],
+   [
+    430,
+    "Who keeps the records, and what each task may hold"
+   ],
+   [
+    469,
+    "Lab 1: Learn's samples, D-N6, then the check"
+   ],
+   [
+    507,
+    "Lab 1: reading the findings and the sponsor fields"
+   ],
+   [
+    546,
+    "Lab 1: the GCC High fallback, a dry run, a refusal"
+   ],
+   [
+    585,
+    "Lab 2: a test tenant, one governed agent"
+   ],
+   [
+    624,
+    "Dangers, and the guard for each"
+   ],
+   [
+    662,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_NPI_10_Drift_Evidence_Narrated",
+  "title": "Building Non-Person Identity, Chapter 10 — Drift and Evidence for the ISSO: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_10_Drift_Evidence_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-npi-10-drift-evidence/DW_NPI_10_Drift_Evidence_Narrated.vtt",
+  "deck": "presentations/dw-npi-10-drift-evidence/DW_NPI_10_Drift_Evidence_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-10-drift-evidence/DW_NPI_10_Drift_Evidence_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 10: Drift and Evidence for the ISSO"
+   ],
+   [
+    44,
+    "What the evidence has to show"
+   ],
+   [
+    85,
+    "Learn's facts, the cloud and the other chapters"
+   ],
+   [
+    125,
+    "Microsoft's Sentinel rule, pinned and run offline"
+   ],
+   [
+    167,
+    "What the rule misses: initiators, keys, targets"
+   ],
+   [
+    203,
+    "What it misses: the pipeline, names and scope"
+   ],
+   [
+    239,
+    "The run, the approved baseline and the reads"
+   ],
+   [
+    279,
+    "The drift rules: NPI-DRF-01 to NPI-DRF-09"
+   ],
+   [
+    318,
+    "The review cycle and the annual vintage comparison"
+   ],
+   [
+    357,
+    "The package, the chain and what the ISSO receives"
+   ],
+   [
+    396,
+    "Who runs it, who signs it, and what it may read"
+   ],
+   [
+    432,
+    "Lab 1: the rule, then two days of runs"
+   ],
+   [
+    469,
+    "Lab 1: reading the drift and the vintage"
+   ],
+   [
+    508,
+    "Lab 1: package, verify, the period, then break it"
+   ],
+   [
+    549,
+    "Lab 2: a test tenant, three changes to see"
+   ],
+   [
+    585,
+    "Dangers, and the guard for each"
+   ],
+   [
+    623,
+    "Done when: the checklist, and the workbook's end"
+   ]
+  ]
+ },
+ {
+  "id": "DW_PA_01_Privileged_Inventory_Narrated",
+  "title": "Building Privileged Access, Chapter 01 — Privileged Inventory as Code: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_PA_01_Privileged_Inventory_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory_Narrated.vtt",
+  "deck": "presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 01: Privileged Inventory as Code"
+   ],
+   [
+    39,
+    "Why the inventory comes first"
+   ],
+   [
+    77,
+    "Which cloud: Graph and Resource Manager hosts"
+   ],
+   [
+    117,
+    "What the inventory reads: five collections"
+   ],
+   [
+    154,
+    "The tier comes from the program, not Microsoft"
+   ],
+   [
+    192,
+    "Learn's samples, pinned and run against stand-ins"
+   ],
+   [
+    234,
+    "What the samples miss: eligibility, paging, groups"
+   ],
+   [
+    269,
+    "What the samples miss: names, clouds, Azure"
+   ],
+   [
+    306,
+    "The reader and its four rules"
+   ],
+   [
+    341,
+    "The rows: one per assignment, counted once"
+   ],
+   [
+    378,
+    "The findings: nine rules, PA-INV-01 to PA-INV-09"
+   ],
+   [
+    418,
+    "The manifest, the tests, and one known gap"
+   ],
+   [
+    454,
+    "Who builds it, who reviews it, what it may read"
+   ],
+   [
+    492,
+    "Lab 1: run Learn's samples and the inventory offline"
+   ],
+   [
+    529,
+    "Lab 1: reading the findings and the refusals"
+   ],
+   [
+    567,
+    "Lab 2: a test tenant, read-only, cross-checked"
+   ],
+   [
+    604,
+    "Dangers, and the guard for each"
+   ],
+   [
+    640,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_PA_02_Emergency_Access_Narrated",
+  "title": "Building Privileged Access, Chapter 02 — Emergency Access Accounts as Code: narrated tour",
+  "group": "developer",
+  "minutes": 10,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_PA_02_Emergency_Access_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narrated.vtt",
+  "deck": "presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 02: Emergency Access Accounts as Code"
+   ],
+   [
+    39,
+    "Why the emergency accounts come first"
+   ],
+   [
+    77,
+    "Which cloud: Graph host, alert subscription, methods"
+   ],
+   [
+    115,
+    "Microsoft's standard for emergency access accounts"
+   ],
+   [
+    151,
+    "Learn's sample alert, pinned and run offline"
+   ],
+   [
+    187,
+    "What the sample misses, and what the code adds"
+   ],
+   [
+    222,
+    "The code: four commands and two input files"
+   ],
+   [
+    259,
+    "The check: ten rules, PA-EA-01 to PA-EA-10"
+   ],
+   [
+    296,
+    "Every enforced policy, and where the sources differ"
+   ],
+   [
+    334,
+    "The alert: three legs and a reviewed template"
+   ],
+   [
+    375,
+    "Who builds it, who runs it, what it may read"
+   ],
+   [
+    409,
+    "Lab 1: run Learn's queries and the check offline"
+   ],
+   [
+    444,
+    "Lab 1: reading the findings and the guards"
+   ],
+   [
+    482,
+    "Lab 2: a test tenant, a real query, a drill"
+   ],
+   [
+    517,
+    "Dangers, and the guard for each"
+   ],
+   [
+    554,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_PA_03_CA_Activation_Gate_Narrated",
+  "title": "Building Privileged Access, Chapter 03 — Conditional Access for Administrators and the Activation Gate: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_PA_03_CA_Activation_Gate_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-pa-03-ca-activation-gate/DW_PA_03_CA_Activation_Gate_Narrated.vtt",
+  "deck": "presentations/dw-pa-03-ca-activation-gate/DW_PA_03_CA_Activation_Gate_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-03-ca-activation-gate/DW_PA_03_CA_Activation_Gate_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 03: Conditional Access and the Activation Gate"
+   ],
+   [
+    40,
+    "The first writes to a tenant: what Book 04 asks"
+   ],
+   [
+    78,
+    "Learn sets the order: the gate before PIM selects it"
+   ],
+   [
+    114,
+    "Which cloud: Graph v1.0 on the worldwide host"
+   ],
+   [
+    151,
+    "Microsoft's template for administrators, pinned"
+   ],
+   [
+    192,
+    "What the template misses: roles, strength, IDs"
+   ],
+   [
+    227,
+    "What the template misses: exclusion, state, gate"
+   ],
+   [
+    261,
+    "The code and the policy files"
+   ],
+   [
+    301,
+    "The pre-merge check: PA-CA-01 to PA-CA-09"
+   ],
+   [
+    342,
+    "Report-only policies and the emergency exclusion"
+   ],
+   [
+    381,
+    "The plan, the dry run and the writes"
+   ],
+   [
+    420,
+    "Where Learn's pages differ, recorded"
+   ],
+   [
+    457,
+    "Who builds it, who reviews it, what it may do"
+   ],
+   [
+    493,
+    "Lab 1: check the template and the files offline"
+   ],
+   [
+    531,
+    "Lab 1: plan, dry run, and three applies to the fake"
+   ],
+   [
+    568,
+    "Lab 2: a test tenant, report-only, then the gate"
+   ],
+   [
+    605,
+    "Dangers, and the guard for each"
+   ],
+   [
+    640,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_PA_04_PIM_Entra_Roles_Narrated",
+  "title": "Building Privileged Access, Chapter 04 — PIM for Microsoft Entra Roles as Code: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_PA_04_PIM_Entra_Roles_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-pa-04-pim-entra-roles/DW_PA_04_PIM_Entra_Roles_Narrated.vtt",
+  "deck": "presentations/dw-pa-04-pim-entra-roles/DW_PA_04_PIM_Entra_Roles_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-04-pim-entra-roles/DW_PA_04_PIM_Entra_Roles_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 04: PIM for Microsoft Entra Roles as Code"
+   ],
+   [
+    40,
+    "Why role settings become code, in a fixed order"
+   ],
+   [
+    78,
+    "Which cloud: Graph v1.0 on the worldwide host"
+   ],
+   [
+    118,
+    "Settings are per role, and Graph calls them rules"
+   ],
+   [
+    154,
+    "The authentication context: its policy, then PIM"
+   ],
+   [
+    194,
+    "Learn's two samples, pinned and sent to a fake"
+   ],
+   [
+    231,
+    "What the rules sample leaves to you"
+   ],
+   [
+    267,
+    "What the tutorial leaves to you, and the verdict"
+   ],
+   [
+    301,
+    "The code: one reviewed file per role, inside bounds"
+   ],
+   [
+    339,
+    "The checks: PA-PIM-01 to PA-PIM-09"
+   ],
+   [
+    375,
+    "The calls, and a permission for each task"
+   ],
+   [
+    412,
+    "The diff, the plan, the read-back, the conversion"
+   ],
+   [
+    451,
+    "Who builds it, who owns it, who reviews it"
+   ],
+   [
+    487,
+    "Lab 1: Learn's samples, permissions, a dry run"
+   ],
+   [
+    524,
+    "Lab 1: reading the diff, the block and the apply"
+   ],
+   [
+    561,
+    "Lab 2: one role in a test tenant, then back out"
+   ],
+   [
+    598,
+    "Dangers, and the guard for each"
+   ],
+   [
+    633,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_PA_05_PIM_for_Groups_Narrated",
+  "title": "Building Privileged Access, Chapter 05 — PIM for Groups and the PRV Groups: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_PA_05_PIM_for_Groups_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narrated.vtt",
+  "deck": "presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 05: PIM for Groups and the PRV Groups"
+   ],
+   [
+    38,
+    "Why the PRV groups need to be code"
+   ],
+   [
+    75,
+    "Which cloud: Graph hosts and availability"
+   ],
+   [
+    110,
+    "Two independent features meet in a PRV group"
+   ],
+   [
+    145,
+    "Where a group's PIM state lives in Graph"
+   ],
+   [
+    182,
+    "Microsoft's samples, pinned and sent to a fake"
+   ],
+   [
+    219,
+    "What the samples leave to you"
+   ],
+   [
+    257,
+    "The code, the reviewed file and the tier policy"
+   ],
+   [
+    294,
+    "Activation limits and the authentication context"
+   ],
+   [
+    330,
+    "The findings: PA-PG-01 to PA-PG-09"
+   ],
+   [
+    369,
+    "The plan, the dry run, -Apply and seven guards"
+   ],
+   [
+    406,
+    "Where Learn's pages differ, recorded on purpose"
+   ],
+   [
+    443,
+    "Who builds it, and the least privilege per call"
+   ],
+   [
+    481,
+    "Lab 1: Microsoft's samples, then a dry run"
+   ],
+   [
+    517,
+    "Lab 1: findings, the diff, a guard and -Apply"
+   ],
+   [
+    555,
+    "Lab 2: a test tenant, lab groups, two apps"
+   ],
+   [
+    592,
+    "Dangers, and the guard for each"
+   ],
+   [
+    629,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_PA_06_PIM_Azure_Resources_Narrated",
+  "title": "Building Privileged Access, Chapter 06 — PIM for Azure Resources: narrated tour",
+  "group": "developer",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_PA_06_PIM_Azure_Resources_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-pa-06-pim-azure-resources/DW_PA_06_PIM_Azure_Resources_Narrated.vtt",
+  "deck": "presentations/dw-pa-06-pim-azure-resources/DW_PA_06_PIM_Azure_Resources_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-06-pim-azure-resources/DW_PA_06_PIM_Azure_Resources_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 06: PIM for Azure Resources"
+   ],
+   [
+    40,
+    "Why standing Azure roles have to go"
+   ],
+   [
+    75,
+    "Which cloud: the Resource Manager host"
+   ],
+   [
+    115,
+    "Resource Manager, not Graph: three resource types"
+   ],
+   [
+    154,
+    "The version, the scopes and who can be eligible"
+   ],
+   [
+    192,
+    "Microsoft's sample: walkthroughs and pinned examples"
+   ],
+   [
+    232,
+    "What the examples get wrong if read naively"
+   ],
+   [
+    272,
+    "What the examples leave out entirely"
+   ],
+   [
+    307,
+    "The code: a call list with least-privileged roles"
+   ],
+   [
+    347,
+    "The desired state: settings by tier, and its refusals"
+   ],
+   [
+    388,
+    "The read and the plan, in the order it must run"
+   ],
+   [
+    427,
+    "Findings, and an apply that is off by default"
+   ],
+   [
+    469,
+    "Who owns it, who reviews it, what it runs as"
+   ],
+   [
+    508,
+    "Lab 1: replay the examples and plan a dry run"
+   ],
+   [
+    547,
+    "Lab 1: reading the plan, applying, the refusals"
+   ],
+   [
+    588,
+    "Lab 2: a test subscription, a live plan, a back-out"
+   ],
+   [
+    625,
+    "Dangers, and the guard for each"
+   ],
+   [
+    664,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_PA_07_Access_Reviews_Narrated",
+  "title": "Building Privileged Access, Chapter 07 — Access Reviews of Privileged Roles: narrated tour",
+  "group": "developer",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_PA_07_Access_Reviews_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-pa-07-access-reviews/DW_PA_07_Access_Reviews_Narrated.vtt",
+  "deck": "presentations/dw-pa-07-access-reviews/DW_PA_07_Access_Reviews_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-07-access-reviews/DW_PA_07_Access_Reviews_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 07: Access Reviews of Privileged Roles"
+   ],
+   [
+    43,
+    "Why reviews, and why as code"
+   ],
+   [
+    82,
+    "What it costs, and which cloud it runs in"
+   ],
+   [
+    123,
+    "Learn's tutorial, pinned and run against a fake"
+   ],
+   [
+    162,
+    "What the tutorial leaves to you: the review itself"
+   ],
+   [
+    202,
+    "What it leaves to you: evidence, targets, permission"
+   ],
+   [
+    237,
+    "The reviewed file: seven series in the fixture"
+   ],
+   [
+    277,
+    "The bodies: built only from Learn's documented shapes"
+   ],
+   [
+    318,
+    "The checks: PA-AR-01 to PA-AR-14"
+   ],
+   [
+    356,
+    "PA-AR-06: the one guard that changes the setting"
+   ],
+   [
+    395,
+    "The dry run, the diff, and -Apply"
+   ],
+   [
+    431,
+    "The evidence: decisions read back for the ISSO"
+   ],
+   [
+    471,
+    "Who owns the reviews, and least privilege per call"
+   ],
+   [
+    510,
+    "Lab 1: run the tutorial and the dry run offline"
+   ],
+   [
+    550,
+    "Lab 1: Learn's body, the apply, the evidence"
+   ],
+   [
+    585,
+    "Lab 2: one real review, closed and read back"
+   ],
+   [
+    623,
+    "Dangers, and the guard for each"
+   ],
+   [
+    660,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_PA_08_Evidence_Drift_Narrated",
+  "title": "Building Privileged Access, Chapter 08 — Evidence and Drift for the ISSO: narrated tour",
+  "group": "developer",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_PA_08_Evidence_Drift_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift_Narrated.vtt",
+  "deck": "presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 08: Evidence and Drift for the ISSO"
+   ],
+   [
+    41,
+    "What the evidence has to show"
+   ],
+   [
+    79,
+    "Which cloud: the audit read's Graph host"
+   ],
+   [
+    117,
+    "Learn's PIM audit page and its three queries"
+   ],
+   [
+    156,
+    "What the queries find, and what they mix up"
+   ],
+   [
+    198,
+    "What the queries leave out entirely"
+   ],
+   [
+    237,
+    "The run: state, events, and one folder per run"
+   ],
+   [
+    277,
+    "The audit read, and what it flags"
+   ],
+   [
+    313,
+    "Where Learn's pages differ, and why it fails closed"
+   ],
+   [
+    350,
+    "Compare, by fingerprint; Tier 0 drift is an incident"
+   ],
+   [
+    390,
+    "No names in the tracker; packages in a hash chain"
+   ],
+   [
+    430,
+    "The period the ISSO receives, and the schedule"
+   ],
+   [
+    470,
+    "Who runs it, who receives it, what it may read"
+   ],
+   [
+    506,
+    "Lab 1: Learn's queries and two days of runs"
+   ],
+   [
+    544,
+    "Lab 1: compare, package, the period, a break"
+   ],
+   [
+    582,
+    "Lab 2: a test tenant, one activation, read twice"
+   ],
+   [
+    620,
+    "Dangers, and the guard for each"
+   ],
+   [
+    657,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_ADM_01_HR_Entra_Middleware_Narrated",
+  "title": "Building the Attribute-Driven Migration, Chapter 01 — The HR-to-Entra Middleware: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_ADM_01_HR_Entra_Middleware_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware_Narrated.vtt",
+  "deck": "presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 01: The HR-to-Entra Middleware"
+   ],
+   [
+    37,
+    "Why the payload is where the record stays true"
+   ],
+   [
+    74,
+    "Which cloud: the Graph host and the token authority"
+   ],
+   [
+    107,
+    "Where the middleware sits, and what it writes"
+   ],
+   [
+    145,
+    "Microsoft's sample: CSV2SCIM and its five modes"
+   ],
+   [
+    182,
+    "The mapping file, and the pinned copy"
+   ],
+   [
+    219,
+    "What the sample leaves to you: the record"
+   ],
+   [
+    255,
+    "What it leaves to you: pacing, clouds and evidence"
+   ],
+   [
+    292,
+    "The code: two equivalent clients, one mapping"
+   ],
+   [
+    326,
+    "Validate, fail closed, and send the whole record"
+   ],
+   [
+    365,
+    "Order, batch and hold; pace, retry and stop"
+   ],
+   [
+    403,
+    "The provenance manifest and the tests"
+   ],
+   [
+    439,
+    "Who builds it, and what each identity may do"
+   ],
+   [
+    476,
+    "Lab 1: Microsoft's sample, then the hardened client"
+   ],
+   [
+    512,
+    "Lab 1: compare, break it, hold it, test it"
+   ],
+   [
+    548,
+    "Lab 2: a test tenant, five records, reconciled"
+   ],
+   [
+    586,
+    "Dangers, and the guard for each"
+   ],
+   [
+    620,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_ADM_02_Graph_Clients_Narrated",
+  "title": "Building the Attribute-Driven Migration, Chapter 02 — Graph Clients for the Government Clouds: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_ADM_02_Graph_Clients_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-adm-02-graph-clients/DW_ADM_02_Graph_Clients_Narrated.vtt",
+  "deck": "presentations/dw-adm-02-graph-clients/DW_ADM_02_Graph_Clients_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-02-graph-clients/DW_ADM_02_Graph_Clients_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 02: Graph Clients for the Government Clouds"
+   ],
+   [
+    44,
+    "Why one client pattern, and why it comes first"
+   ],
+   [
+    81,
+    "Which cloud is which: four clouds, two sets of hosts"
+   ],
+   [
+    120,
+    "What GCC with commercial Azure means for the code"
+   ],
+   [
+    161,
+    "The clients this chapter is the reference for"
+   ],
+   [
+    197,
+    "Microsoft's national cloud snippets, pinned"
+   ],
+   [
+    236,
+    "What the snippets leave to you: cloud and credentials"
+   ],
+   [
+    272,
+    "What they leave to you: permissions, paging, beta"
+   ],
+   [
+    310,
+    "One table of endpoints, and every call declared"
+   ],
+   [
+    347,
+    "The token check before a live run"
+   ],
+   [
+    385,
+    "Paging and throttling the way Learn documents"
+   ],
+   [
+    424,
+    "Beta without depending on it"
+   ],
+   [
+    461,
+    "Who builds it, who reviews it, and what it may hold"
+   ],
+   [
+    498,
+    "Lab 1: Learn's snippets, the endpoints, the call list"
+   ],
+   [
+    531,
+    "Lab 1: beta, PowerShell, and the test suites"
+   ],
+   [
+    568,
+    "Lab 2: a test tenant and one permission"
+   ],
+   [
+    605,
+    "Dangers, and the guard for each"
+   ],
+   [
+    644,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_ADM_03_Validation_Kit_Check_Narrated",
+  "title": "Building the Attribute-Driven Migration, Chapter 03 — Writing a Validation Kit Check: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_ADM_03_Validation_Kit_Check_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check_Narrated.vtt",
+  "deck": "presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 03: Writing a Validation Kit Check"
+   ],
+   [
+    40,
+    "Why this check: soft match and hard match takeover"
+   ],
+   [
+    79,
+    "Which cloud: the Graph host and the read's reach"
+   ],
+   [
+    114,
+    "The anatomy of a check: five parts"
+   ],
+   [
+    151,
+    "The catalog entry, and the lesson in it"
+   ],
+   [
+    184,
+    "When the only supported role is Global Administrator"
+   ],
+   [
+    220,
+    "The function, and the wrapper every check shares"
+   ],
+   [
+    257,
+    "One data path, and evidence of which path was used"
+   ],
+   [
+    294,
+    "Rows and outcome: three severities, unsafe defaults"
+   ],
+   [
+    331,
+    "Fixtures and tests: both directions, exact counts"
+   ],
+   [
+    371,
+    "The safety tests, and why the fix stays out"
+   ],
+   [
+    407,
+    "Verified facts: the calls behind the check"
+   ],
+   [
+    445,
+    "Who extends the kit, who runs what, with which role"
+   ],
+   [
+    481,
+    "Lab 1: run the check on the fixtures"
+   ],
+   [
+    516,
+    "Lab 1: scope, default run, and a planted mistake"
+   ],
+   [
+    553,
+    "Lab 2: an export from a test tenant"
+   ],
+   [
+    590,
+    "Dangers, and the guard for each"
+   ],
+   [
+    627,
+    "Done when: the reviewer's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_ADM_04_Dynamic_Rules_Narrated",
+  "title": "Building the Attribute-Driven Migration, Chapter 04 — Dynamic Rules as Code: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_ADM_04_Dynamic_Rules_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-adm-04-dynamic-rules/DW_ADM_04_Dynamic_Rules_Narrated.vtt",
+  "deck": "presentations/dw-adm-04-dynamic-rules/DW_ADM_04_Dynamic_Rules_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-04-dynamic-rules/DW_ADM_04_Dynamic_Rules_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 04: Dynamic Rules as Code"
+   ],
+   [
+    40,
+    "Why a dynamic rule is code"
+   ],
+   [
+    77,
+    "What Learn says about the engine sets the stakes"
+   ],
+   [
+    115,
+    "Which cloud: sign-in, evaluator and memberOf"
+   ],
+   [
+    152,
+    "What Learn gives you: syntax, and five samples"
+   ],
+   [
+    190,
+    "The pinned copy, run against a fake tenant"
+   ],
+   [
+    227,
+    "What the samples leave to you"
+   ],
+   [
+    261,
+    "One file per group, with an owner and tests"
+   ],
+   [
+    297,
+    "Parse and evaluate offline, as Learn's grammar says"
+   ],
+   [
+    337,
+    "The linter: guards on the parsed tree"
+   ],
+   [
+    369,
+    "What the linter found in Book 03's own table"
+   ],
+   [
+    403,
+    "The shadow diff, the pause manifest and the tests"
+   ],
+   [
+    438,
+    "Who owns the rules, and what each step may do"
+   ],
+   [
+    475,
+    "Lab 1: Learn's samples and the rules, offline"
+   ],
+   [
+    509,
+    "Lab 1: the pull request check, broken on purpose"
+   ],
+   [
+    542,
+    "Lab 2: a test tenant, Graph's evaluator, a drill"
+   ],
+   [
+    579,
+    "Dangers, and the guard for each"
+   ],
+   [
+    613,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_ADM_05_Lifecycle_Extensions_Narrated",
+  "title": "Building the Attribute-Driven Migration, Chapter 05 — Lifecycle Workflows Custom Extensions: narrated tour",
+  "group": "developer",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_ADM_05_Lifecycle_Extensions_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-adm-05-lifecycle-extensions/DW_ADM_05_Lifecycle_Extensions_Narrated.vtt",
+  "deck": "presentations/dw-adm-05-lifecycle-extensions/DW_ADM_05_Lifecycle_Extensions_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-05-lifecycle-extensions/DW_ADM_05_Lifecycle_Extensions_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 05: Lifecycle Workflows Custom Extensions"
+   ],
+   [
+    42,
+    "Where the extensions sit, and Learn's contract"
+   ],
+   [
+    88,
+    "Which cloud: Graph host, Azure Resource Manager, license"
+   ],
+   [
+    129,
+    "Learn's Logic App definition, pinned and run"
+   ],
+   [
+    169,
+    "What it leaves to you: cloud, path and status"
+   ],
+   [
+    207,
+    "What it leaves to you: failure, repeats and secrets"
+   ],
+   [
+    241,
+    "The appid value, and the verdict"
+   ],
+   [
+    279,
+    "One Logic App per integration, in four steps"
+   ],
+   [
+    316,
+    "Idempotency, the callback path and the registry"
+   ],
+   [
+    355,
+    "Five commands, and Book 03's leaver order"
+   ],
+   [
+    396,
+    "Authorization, built from the registry and checked"
+   ],
+   [
+    435,
+    "Where Learn's pages disagree, and what the code does"
+   ],
+   [
+    472,
+    "Who builds it, approves it, and what it needs"
+   ],
+   [
+    509,
+    "Lab 1: Learn's definition, then the program's"
+   ],
+   [
+    546,
+    "Lab 1: failures, the build and the read-backs"
+   ],
+   [
+    583,
+    "Lab 2: a test tenant, a real run, a failure drill"
+   ],
+   [
+    619,
+    "Dangers, and the guard for each"
+   ],
+   [
+    657,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_ADM_06_Group_Policy_as_Code_Narrated",
+  "title": "Building the Attribute-Driven Migration, Chapter 06 — Moving Group Policy as Code: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_ADM_06_Group_Policy_as_Code_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-adm-06-group-policy-code/DW_ADM_06_Group_Policy_as_Code_Narrated.vtt",
+  "deck": "presentations/dw-adm-06-group-policy-code/DW_ADM_06_Group_Policy_as_Code_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-06-group-policy-code/DW_ADM_06_Group_Policy_as_Code_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 06: Moving Group Policy as Code"
+   ],
+   [
+    39,
+    "Analytics finds the landing zone; it doesn't decide"
+   ],
+   [
+    77,
+    "What Learn says about the tools sets the stakes"
+   ],
+   [
+    114,
+    "Which cloud: Graph host and Intune instance"
+   ],
+   [
+    153,
+    "Microsoft's settings catalog samples, pinned"
+   ],
+   [
+    192,
+    "What the samples get right, and the write gaps"
+   ],
+   [
+    227,
+    "The record gaps, and the verdict"
+   ],
+   [
+    265,
+    "Read: the VK-INT-07 gate and the move plan"
+   ],
+   [
+    303,
+    "Write: one reviewed file per policy"
+   ],
+   [
+    340,
+    "Lint: ten rules, four that carry the program"
+   ],
+   [
+    376,
+    "Diff, then create only what is missing"
+   ],
+   [
+    416,
+    "Verified calls, beta stage and open questions"
+   ],
+   [
+    453,
+    "Who builds it, who approves it, which roles"
+   ],
+   [
+    489,
+    "Lab 1: the gate, the sample twice, the plan"
+   ],
+   [
+    527,
+    "Lab 1: lint, dry run, apply, break it on purpose"
+   ],
+   [
+    562,
+    "Lab 2: a test tenant, a real import, Migrate"
+   ],
+   [
+    603,
+    "Dangers, and the guard for each"
+   ],
+   [
+    642,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_ADM_07_Machine_Configuration_Narrated",
+  "title": "Building the Attribute-Driven Migration, Chapter 07 — Machine Configuration Packages: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_ADM_07_Machine_Configuration_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-adm-07-machine-configuration/DW_ADM_07_Machine_Configuration_Narrated.vtt",
+  "deck": "presentations/dw-adm-07-machine-configuration/DW_ADM_07_Machine_Configuration_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-07-machine-configuration/DW_ADM_07_Machine_Configuration_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 07: Machine Configuration Packages"
+   ],
+   [
+    41,
+    "Why the build needs checks between Learn's steps"
+   ],
+   [
+    79,
+    "Learn's model: package, definition, guest assignment"
+   ],
+   [
+    118,
+    "Which cloud: endpoints, package access and cost"
+   ],
+   [
+    157,
+    "What Learn gives you: the procedure, step by step"
+   ],
+   [
+    193,
+    "Learn's three don'ts, and the pinned sample"
+   ],
+   [
+    231,
+    "What the cmdlets leave to you: the package"
+   ],
+   [
+    266,
+    "What the cmdlets leave to you: the definition"
+   ],
+   [
+    304,
+    "Where 4.12.0 differs from Learn's text"
+   ],
+   [
+    341,
+    "The code and the release registry"
+   ],
+   [
+    380,
+    "Clean the MOF, then check the package"
+   ],
+   [
+    416,
+    "Check the definition, and record what shipped"
+   ],
+   [
+    455,
+    "Who writes baselines, who reviews, which roles"
+   ],
+   [
+    491,
+    "Lab 1: follow Learn by hand, and see the gaps"
+   ],
+   [
+    528,
+    "Lab 1: the checked build, and breaking it"
+   ],
+   [
+    564,
+    "Lab 2: a test subscription and a disposable server"
+   ],
+   [
+    600,
+    "Dangers, and the guard for each"
+   ],
+   [
+    638,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_ADM_08_Ansible_Beside_Arc_Narrated",
+  "title": "Building the Attribute-Driven Migration, Chapter 08 — Ansible Beside Arc: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_ADM_08_Ansible_Beside_Arc_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-adm-08-ansible-beside-arc/DW_ADM_08_Ansible_Beside_Arc_Narrated.vtt",
+  "deck": "presentations/dw-adm-08-ansible-beside-arc/DW_ADM_08_Ansible_Beside_Arc_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-08-ansible-beside-arc/DW_ADM_08_Ansible_Beside_Arc_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 08: Ansible Beside Arc"
+   ],
+   [
+    42,
+    "Why the owners travel with every connect"
+   ],
+   [
+    78,
+    "Who reads the tags after the connect"
+   ],
+   [
+    115,
+    "Which Azure: a GCC estate goes to commercial"
+   ],
+   [
+    151,
+    "What Learn gives you: the azure_arc role"
+   ],
+   [
+    191,
+    "The pinned role, and what Learn's page doesn't say"
+   ],
+   [
+    228,
+    "What the role leaves to you: owners and waves"
+   ],
+   [
+    266,
+    "What the role leaves to you: cloud and record"
+   ],
+   [
+    302,
+    "First, the patch_owner column"
+   ],
+   [
+    341,
+    "The inventory: owners to groups and tags"
+   ],
+   [
+    377,
+    "The wave plan, written before anything runs"
+   ],
+   [
+    414,
+    "Onboarding with Microsoft's role, gated"
+   ],
+   [
+    452,
+    "Who runs it, and the least role that onboards"
+   ],
+   [
+    488,
+    "Lab 1: the inventory, and the role's failed dry run"
+   ],
+   [
+    526,
+    "Lab 1: plan, dry-run and break the CMDB"
+   ],
+   [
+    563,
+    "Lab 2: one disposable server, connected for real"
+   ],
+   [
+    602,
+    "Dangers, and the guard for each"
+   ],
+   [
+    641,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
+  "id": "DW_ADM_09_Drift_Pipelines_Evidence_Narrated",
+  "title": "Building the Attribute-Driven Migration, Chapter 09 — Drift Pipelines and Evidence to the ISSO: narrated tour",
+  "group": "developer",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_ADM_09_Drift_Pipelines_Evidence_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-adm-09-drift-pipelines-evidence/DW_ADM_09_Drift_Pipelines_Evidence_Narrated.vtt",
+  "deck": "presentations/dw-adm-09-drift-pipelines-evidence/DW_ADM_09_Drift_Pipelines_Evidence_Narrated.pptx",
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-adm-09-drift-pipelines-evidence/DW_ADM_09_Drift_Pipelines_Evidence_Narration_Script.md",
+  "chapters": [
+   [
+    0,
+    "Chapter 09: Drift Pipelines and Evidence to the ISSO"
+   ],
+   [
+    44,
+    "From spot check to continuous monitoring"
+   ],
+   [
+    82,
+    "Why GitHub Actions"
+   ],
+   [
+    122,
+    "Which cloud: authority, Graph host, audience"
+   ],
+   [
+    161,
+    "Learn's sample workflows, pinned and linted"
+   ],
+   [
+    201,
+    "What the samples leave to you: schedule and pins"
+   ],
+   [
+    238,
+    "What the samples leave to you: subject and scope"
+   ],
+   [
+    276,
+    "The workflow: one job reads, one job writes"
+   ],
+   [
+    312,
+    "Compare: refuse what can't be compared"
+   ],
+   [
+    349,
+    "Five results, fingerprints, and no names"
+   ],
+   [
+    386,
+    "The evidence package and its hash chain"
+   ],
+   [
+    422,
+    "Where the sources differ, and release stage"
+   ],
+   [
+    458,
+    "Who owns the pipeline, who receives the evidence"
+   ],
+   [
+    494,
+    "Lab 1: lint the samples, record a baseline"
+   ],
+   [
+    531,
+    "Lab 1: the next day, issues, chain, tamper"
+   ],
+   [
+    569,
+    "Lab 2: a test tenant, a federated credential"
+   ],
+   [
+    608,
+    "Dangers, and the guard for each"
+   ],
+   [
+    645,
+    "Done when: the chapter's checklist"
+   ]
+  ]
+ },
+ {
   "id": "HR_Driven_Identity_AnyAgency_Narrated",
   "title": "HR-Driven Identity: interview talk, detailed deck",
   "group": "interview",

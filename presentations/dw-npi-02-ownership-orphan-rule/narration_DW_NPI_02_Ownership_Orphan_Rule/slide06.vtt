@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.200
+Microsoft's starting point
+here is a Graph tutorial.
+
+2
+00:00:03.200 --> 00:00:07.181
+It gives a query for service
+principals with no owner or just one,
+
+3
+00:00:07.181 --> 00:00:11.612
+requests that add an owner, and a
+sample that sets the service reference.
+
+4
+00:00:11.612 --> 00:00:16.749
+As before, those samples exist only
+inside the page, so the repository pins
+
+5
+00:00:16.749 --> 00:00:22.138
+its source unchanged, with hashes a test
+checks and a weekly watch for changes.
+
+6
+00:00:22.138 --> 00:00:26.954
+The harness then reads each request straight
+out of the page and sends it to a fake
+
+7
+00:00:26.954 --> 00:00:29.183
+Graph, which behaves like the real one,
+
+8
+00:00:29.183 --> 00:00:33.770
+right down to refusing an advanced query
+that's missing its required header.

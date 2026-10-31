@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.225
+Next, run the same estate as
+if it lived in G C C High.
+
+2
+00:00:04.225 --> 00:00:09.037
+The code switches to fallback mode and
+sends no agent identity read at all.
+
+3
+00:00:09.037 --> 00:00:13.995
+The one ordinary service principal gets
+the same credential and permission findings
+
+4
+00:00:13.995 --> 00:00:18.334
+it got before, and three records that
+name agent identities become findings,
+
+5
+00:00:18.334 --> 00:00:20.400
+because that cloud doesn't have them.
+
+6
+00:00:20.400 --> 00:00:24.632
+Back in G C C, the dry run
+would send exactly one request:
+
+7
+00:00:24.632 --> 00:00:29.537
+a report-only high-risk policy,
+since the other already exists.
+
+8
+00:00:29.537 --> 00:00:32.491
+Applying it to the fake
+creates it report-only,
+
+9
+00:00:32.491 --> 00:00:34.970
+and a hash nobody approved is refused.

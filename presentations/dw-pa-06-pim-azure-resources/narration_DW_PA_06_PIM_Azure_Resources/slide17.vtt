@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.348
+Every danger here is a way a well-meant
+change goes wrong in production,
+
+2
+00:00:04.348 --> 00:00:06.200
+and each has a guard in the code.
+
+3
+00:00:06.200 --> 00:00:10.286
+The worst is order: remove
+standing Owner before the eligible
+
+4
+00:00:10.286 --> 00:00:14.212
+role exists and someone loses
+access in the middle of a task.
+
+5
+00:00:14.212 --> 00:00:19.375
+Close behind is the automation removing
+its own access halfway through a run.
+
+6
+00:00:19.375 --> 00:00:23.950
+Others are quieter: a resource group
+nobody listed keeps its defaults, an
+
+7
+00:00:23.950 --> 00:00:27.686
+authentication context points
+at a policy that isn't there,
+
+8
+00:00:27.686 --> 00:00:29.363
+or a typo lands unreviewed.
+
+9
+00:00:29.363 --> 00:00:31.806
+The pattern is the same as before:
+
+10
+00:00:31.806 --> 00:00:35.500
+a dry run by default, and
+rules that run every time.

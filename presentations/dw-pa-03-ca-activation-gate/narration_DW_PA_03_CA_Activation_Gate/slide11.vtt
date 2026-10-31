@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.612
+Here's how a change actually
+reaches the tenant.
+
+2
+00:00:02.612 --> 00:00:06.387
+The code reads the tenant's
+policies, contexts and strengths,
+
+3
+00:00:06.387 --> 00:00:11.067
+then compares each file with what's
+there, property by property, but only the
+
+4
+00:00:11.067 --> 00:00:15.899
+properties the file sets, so the noise
+Graph returns doesn't look like a change.
+
+5
+00:00:15.899 --> 00:00:17.364
+It plans in Learn's order,
+
+6
+00:00:17.364 --> 00:00:21.025
+the contexts and strength before
+the policies that use them.
+
+7
+00:00:21.025 --> 00:00:24.975
+Every plan line gets an action,
+and nothing is ever deleted.
+
+8
+00:00:24.975 --> 00:00:28.087
+Without the apply switch, it
+can't send a write at all.
+
+9
+00:00:28.087 --> 00:00:30.914
+With it, it still refuses
+if the check found a
+
+10
+00:00:30.914 --> 00:00:34.270
+problem or a policy lacks
+the emergency exclusion.

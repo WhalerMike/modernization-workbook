@@ -1,0 +1,868 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:10.824
+This is Chapter 5: workload identity
+federation and managed identities.
+
+4
+00:00:10.824 --> 00:00:15.463
+It's where service accounts actually
+get converted: a managed identity first,
+
+5
+00:00:15.463 --> 00:00:18.362
+then a federated credential,
+then a certificate,
+
+6
+00:00:18.362 --> 00:00:22.275
+with a thirty-day parallel run
+before the old account is disabled.
+
+7
+00:00:22.275 --> 00:00:26.978
+We'll start from Microsoft's own samples,
+see what they accept in silence,
+
+8
+00:00:26.978 --> 00:00:29.927
+then walk the checks,
+the token exchange test,
+
+9
+00:00:29.927 --> 00:00:33.275
+the plan and its write path,
+two labs and the dangers.
+
+10
+00:00:33.275 --> 00:00:38.800
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+11
+00:00:42.550 --> 00:00:44.275
+Why does this chapter exist?
+
+12
+00:00:44.275 --> 00:00:46.112
+Because of one quiet failure.
+
+13
+00:00:46.112 --> 00:00:50.637
+A federated credential with the wrong
+subject is created without any error.
+
+14
+00:00:50.637 --> 00:00:55.016
+Nothing complains until the day the
+workload tries to exchange its token,
+
+15
+00:00:55.016 --> 00:00:58.462
+and for GitHub, Learn says even
+that fails without an error.
+
+16
+00:00:58.462 --> 00:01:01.201
+The plan's risk register
+names exactly this,
+
+17
+00:01:01.201 --> 00:01:05.688
+and its answer is to test every exchange
+before the parallel run starts.
+
+18
+00:01:05.688 --> 00:01:08.025
+That test is the center of the chapter.
+
+19
+00:01:08.025 --> 00:01:10.708
+The order of conversion comes from Book 2:
+
+20
+00:01:10.708 --> 00:01:15.285
+managed identities where the host
+is in Azure, federated credentials
+
+21
+00:01:15.285 --> 00:01:19.980
+where the host speaks O I D C,
+certificates only where neither works.
+
+22
+00:01:23.730 --> 00:01:25.093
+Next, which cloud.
+
+23
+00:01:25.093 --> 00:01:30.064
+This chapter talks to three hosts:
+Microsoft Graph for app registrations and
+
+24
+00:01:30.064 --> 00:01:35.268
+sign-ins, Resource Manager for managed
+identities, and the sign-in host for tokens.
+
+25
+00:01:35.268 --> 00:01:38.721
+The estate is a G C C tenant
+with commercial Azure,
+
+26
+00:01:38.721 --> 00:01:41.656
+so all three are the worldwide endpoints.
+
+27
+00:01:41.656 --> 00:01:45.782
+G C C High and the Defense Department
+clouds have their own hosts,
+
+28
+00:01:45.782 --> 00:01:48.118
+and the code switches only for those.
+
+29
+00:01:48.118 --> 00:01:52.882
+One gap worth knowing: the managed identity
+pages the chapter read don't say whether
+
+30
+00:01:52.882 --> 00:01:55.091
+they're available in Azure Government,
+
+31
+00:01:55.091 --> 00:01:58.900
+which is fine here because this
+estate's Azure is commercial.
+
+32
+00:02:02.650 --> 00:02:04.487
+So what is a federated credential?
+
+33
+00:02:04.487 --> 00:02:09.099
+It's a trust you put on an app registration
+or a user-assigned managed identity.
+
+34
+00:02:09.099 --> 00:02:12.862
+The workload, say a GitHub
+workflow or a Kubernetes pod,
+
+35
+00:02:12.862 --> 00:02:18.296
+presents a token from its own issuer, and
+Microsoft Entra swaps it for an access
+
+36
+00:02:18.296 --> 00:02:23.563
+token, but only if three values match:
+the issuer, the subject and the audience.
+
+37
+00:02:23.563 --> 00:02:27.900
+The match is exact, down to the
+letter case, with no wildcards.
+
+38
+00:02:27.900 --> 00:02:31.012
+A system-assigned identity
+can't hold one at all.
+
+39
+00:02:31.012 --> 00:02:34.203
+And managed identities, the
+first choice in the order,
+
+40
+00:02:34.203 --> 00:02:39.000
+get their access from Azure role
+assignments, which this chapter records.
+
+41
+00:02:42.750 --> 00:02:44.462
+Here's what Microsoft gives you.
+
+42
+00:02:44.462 --> 00:02:48.441
+Two Learn pages walk through
+creating a federated credential,
+
+43
+00:02:48.441 --> 00:02:53.033
+one for an app registration and one
+for a user-assigned managed identity,
+
+44
+00:02:53.033 --> 00:02:57.624
+with samples in the command line,
+PowerShell, a template and raw requests.
+
+45
+00:02:57.624 --> 00:03:00.180
+Graph's reference has
+its own create request,
+
+46
+00:03:00.180 --> 00:03:03.425
+and the managed identity
+reference has worked examples.
+
+47
+00:03:03.425 --> 00:03:08.143
+All of that lives only inside web pages,
+so the repository pins the sources
+
+48
+00:03:08.143 --> 00:03:10.541
+unmodified, with hashes a test checks,
+
+49
+00:03:10.541 --> 00:03:13.712
+and a weekly watch that
+reports upstream changes.
+
+50
+00:03:13.712 --> 00:03:16.692
+A harness then runs every
+sample against fakes,
+
+51
+00:03:16.692 --> 00:03:19.500
+so you can see what each one really does.
+
+52
+00:03:23.250 --> 00:03:25.012
+This is the heart of the chapter.
+
+53
+00:03:25.012 --> 00:03:29.549
+Run against the fakes, Microsoft's
+samples show the risk on their own terms.
+
+54
+00:03:29.549 --> 00:03:32.850
+Graph happily creates a
+credential with any subject.
+
+55
+00:03:32.850 --> 00:03:36.263
+Learn's samples don't even
+agree on the GitHub issuer:
+
+56
+00:03:36.263 --> 00:03:40.550
+one has a trailing slash and the
+others don't, and the match is exact.
+
+57
+00:03:40.550 --> 00:03:44.328
+One template defaults the audience
+with a stray leading space,
+
+58
+00:03:44.328 --> 00:03:45.563
+so it can never match.
+
+59
+00:03:45.563 --> 00:03:49.438
+And two Learn pages give two
+different pull request subjects.
+
+60
+00:03:49.438 --> 00:03:53.976
+So the code checks each credential against
+what the workload will really present,
+
+61
+00:03:53.976 --> 00:03:57.270
+and derives a subject only
+when the format is certain.
+
+62
+00:04:01.020 --> 00:04:04.257
+The rest of the gap table is
+about everything around the write.
+
+63
+00:04:04.257 --> 00:04:08.185
+The samples hard-code worldwide
+hosts, use a preview version,
+
+64
+00:04:08.185 --> 00:04:11.483
+and in one case send a request
+with no version at all.
+
+65
+00:04:11.483 --> 00:04:13.947
+They create one credential
+at a time by hand,
+
+66
+00:04:13.947 --> 00:04:17.370
+so nothing notices a credential
+someone added in the portal.
+
+67
+00:04:17.370 --> 00:04:19.908
+They don't check the limits
+Learn itself states.
+
+68
+00:04:19.908 --> 00:04:24.168
+And they stop at creation: no
+record of the identity's roles,
+
+69
+00:04:24.168 --> 00:04:26.121
+no parallel run, no disable.
+
+70
+00:04:26.121 --> 00:04:29.926
+The verdict: use the samples as
+the model for the three writes,
+
+71
+00:04:29.926 --> 00:04:35.010
+but not as the conversion, because they
+accept the wrong subject in silence.
+
+72
+00:04:38.760 --> 00:04:40.085
+So what does the code add?
+
+73
+00:04:40.085 --> 00:04:42.522
+A single new module and one entry script,
+
+74
+00:04:42.522 --> 00:04:47.322
+which builds a plan by default and only
+writes when you hand it an approved plan.
+
+75
+00:04:47.322 --> 00:04:51.809
+It reuses the shared cloud table and
+hashing from the earlier chapters
+
+76
+00:04:51.809 --> 00:04:55.686
+but keeps its own client and
+fakes, so nothing earlier changes.
+
+77
+00:04:55.686 --> 00:04:56.947
+Two files drive it.
+
+78
+00:04:56.947 --> 00:05:01.723
+The conversion file, kept by identity
+engineering and reviewed with the application
+
+79
+00:05:01.723 --> 00:05:04.481
+owners, says what each
+legacy credential becomes
+
+80
+00:05:04.481 --> 00:05:06.835
+and which workload will present the token.
+
+81
+00:05:06.835 --> 00:05:09.107
+And the cutover log, kept by the owner,
+
+82
+00:05:09.107 --> 00:05:13.640
+records when each workload switched
+and who approved the disable.
+
+83
+00:05:17.390 --> 00:05:19.727
+Here are the nine rules
+the planner applies.
+
+84
+00:05:19.727 --> 00:05:23.797
+Before any of them, it reads
+each app registration, identity,
+
+85
+00:05:23.797 --> 00:05:29.028
+role assignment and legacy account, plus
+sign-ins once a cutover is recorded.
+
+86
+00:05:29.028 --> 00:05:34.257
+Most rules come straight from Learn: the
+subject, issuer and audience must match
+
+87
+00:05:34.257 --> 00:05:39.565
+exactly, names must follow the rules, and
+no parent may go past twenty credentials.
+
+88
+00:05:39.565 --> 00:05:44.276
+Three are the program's own and labeled
+that way: the conversion order, a warning
+
+89
+00:05:44.276 --> 00:05:48.915
+for credentials nobody reviewed, and
+the thresholds for a clean parallel run.
+
+90
+00:05:48.915 --> 00:05:52.150
+And the failed exchange
+test is its own finding.
+
+91
+00:05:55.900 --> 00:05:57.737
+Two pieces make the check real.
+
+92
+00:05:57.737 --> 00:06:02.462
+First, the code works out what the workload's
+issuer will actually put in its token.
+
+93
+00:06:02.462 --> 00:06:06.297
+For GitHub it uses Learn's
+three formats, for environments,
+
+94
+00:06:06.297 --> 00:06:10.612
+branches and tags, and for Kubernetes
+the service account format.
+
+95
+00:06:10.612 --> 00:06:13.733
+Anything it can't be sure
+of, like a pull request,
+
+96
+00:06:13.733 --> 00:06:18.662
+or GitHub's newer immutable format, has
+to be captured from a real test run.
+
+97
+00:06:18.662 --> 00:06:21.990
+Second, it builds the real
+token request and sends it
+
+98
+00:06:21.990 --> 00:06:25.550
+to a fake endpoint that matches
+the way Learn describes.
+
+99
+00:06:25.550 --> 00:06:28.722
+It doesn't check signatures,
+so it proves the credential
+
+100
+00:06:28.722 --> 00:06:32.050
+matches what you recorded,
+not what the issuer sends.
+
+101
+00:06:35.800 --> 00:06:37.350
+Nothing in the plan writes.
+
+102
+00:06:37.350 --> 00:06:43.008
+Each conversion gets actions, and only three
+of them ever write: create an identity,
+
+103
+00:06:43.008 --> 00:06:47.750
+create a credential, and disable the
+legacy account, all after review.
+
+104
+00:06:47.750 --> 00:06:50.409
+Everything else is a record or a status,
+
+105
+00:06:50.409 --> 00:06:53.650
+from awaiting cutover to
+day fifteen of thirty.
+
+106
+00:06:53.650 --> 00:06:56.744
+A changed credential is
+never edited in place;
+
+107
+00:06:56.744 --> 00:06:59.512
+it gets a new name and
+its own parallel run.
+
+108
+00:06:59.512 --> 00:07:03.998
+The evidence for a clean run comes from
+the beta sign-in log, the only place that
+
+109
+00:07:03.998 --> 00:07:08.975
+shows managed identity and service principal
+sign-ins and which credential was used.
+
+110
+00:07:08.975 --> 00:07:14.190
+The plan is hashed, so the same inputs
+give the same plan, byte for byte.
+
+111
+00:07:17.940 --> 00:07:22.015
+Writing is a separate path, and
+it's deliberately hard to misuse.
+
+112
+00:07:22.015 --> 00:07:25.833
+It runs only against a plan
+whose hash a reviewer approved,
+
+113
+00:07:25.833 --> 00:07:29.015
+for this tenant and cloud,
+and no older than a week.
+
+114
+00:07:29.015 --> 00:07:33.046
+Every credential is checked again
+against the plan's recorded claims,
+
+115
+00:07:33.046 --> 00:07:37.077
+so a hand-edited plan can't sneak
+through, and it never deletes anything.
+
+116
+00:07:37.077 --> 00:07:40.091
+It runs as a person,
+not an unattended app.
+
+117
+00:07:40.091 --> 00:07:44.130
+Before each write it looks again,
+and it sends one write at a time,
+
+118
+00:07:44.130 --> 00:07:49.102
+identity first, because Learn says
+parallel creates under one identity fail.
+
+119
+00:07:49.102 --> 00:07:53.450
+A new credential also needs a few
+minutes to propagate before it works.
+
+120
+00:07:57.200 --> 00:07:58.262
+Who is this for?
+
+121
+00:07:58.262 --> 00:07:59.650
+Developers build it.
+
+122
+00:07:59.650 --> 00:08:03.550
+Identity engineers run the waves
+and keep the conversion file.
+
+123
+00:08:03.550 --> 00:08:06.920
+And the application owners
+switch each workload,
+
+124
+00:08:06.920 --> 00:08:10.125
+keep the cutover log, and
+approve every disable.
+
+125
+00:08:10.125 --> 00:08:11.937
+The access is split in two.
+
+126
+00:08:11.937 --> 00:08:16.174
+The read path is an app with read-only
+permissions and the Reader role.
+
+127
+00:08:16.174 --> 00:08:20.135
+The write path is only ever a person,
+signed in with their own roles,
+
+128
+00:08:20.135 --> 00:08:23.947
+because a standing app with the
+right to add credentials to any
+
+129
+00:08:23.947 --> 00:08:27.687
+application is exactly what this
+program is trying to remove.
+
+130
+00:08:27.687 --> 00:08:29.516
+For the identity's credential,
+
+131
+00:08:29.516 --> 00:08:33.450
+the code picks the narrower
+built-in role over Contributor.
+
+132
+00:08:37.200 --> 00:08:43.338
+Lab 1 needs only a laptop with PowerShell
+7 and Pester; no tenant, no network.
+
+133
+00:08:43.338 --> 00:08:46.713
+First you run Microsoft's own
+samples against the fakes.
+
+134
+00:08:46.713 --> 00:08:51.206
+Find the test that creates a credential
+with Graph's sample and then exchanges
+
+135
+00:08:51.206 --> 00:08:55.562
+a token with a different subject: the
+create succeeds and the exchange fails.
+
+136
+00:08:55.562 --> 00:08:57.925
+That's the whole risk, in one test.
+
+137
+00:08:57.925 --> 00:09:02.290
+Then you list what each task needs,
+and build the plan from the fixtures:
+
+138
+00:09:02.290 --> 00:09:05.902
+eight conversions in two waves,
+two failed exchange tests,
+
+139
+00:09:05.902 --> 00:09:08.987
+and twenty actions, of
+which only four would write.
+
+140
+00:09:08.987 --> 00:09:12.390
+The plan's hash is the same on every run.
+
+141
+00:09:16.140 --> 00:09:18.078
+Now the fixtures tell their stories.
+
+142
+00:09:18.078 --> 00:09:22.871
+One credential copies the sample's
+trailing slash and gets the environment's
+
+143
+00:09:22.871 --> 00:09:26.840
+letter case wrong, so it fails
+three ways, including the exchange.
+
+144
+00:09:26.840 --> 00:09:30.302
+Another copies the template's
+stray space in the audience.
+
+145
+00:09:30.302 --> 00:09:33.828
+A credential someone added in
+the portal shows up as a warning.
+
+146
+00:09:33.828 --> 00:09:37.786
+One conversion has run forty clean
+days with the owner's approval,
+
+147
+00:09:37.786 --> 00:09:39.985
+so it's the single disable in the plan,
+
+148
+00:09:39.985 --> 00:09:44.090
+while another's old secret was still
+signing in weeks after cutover.
+
+149
+00:09:44.090 --> 00:09:48.087
+Then you dry-run with the approved
+hash, apply to the fake in order,
+
+150
+00:09:48.087 --> 00:09:51.240
+and watch a hash nobody
+approved get refused.
+
+151
+00:09:54.990 --> 00:09:58.240
+Lab 2 moves to a test
+tenant, never production.
+
+152
+00:09:58.240 --> 00:10:01.852
+You set up one small conversion:
+a test app with a secret,
+
+153
+00:10:01.852 --> 00:10:06.990
+a test service account, and a test
+repository whose workflow signs in to Azure.
+
+154
+00:10:06.990 --> 00:10:09.182
+The key step is capturing the claims:
+
+155
+00:10:09.182 --> 00:10:13.273
+have the workflow print the decoded
+issuer and subject of its token,
+
+156
+00:10:13.273 --> 00:10:17.802
+never the token itself, because that's
+the truth the check compares against.
+
+157
+00:10:17.802 --> 00:10:21.113
+Then plan, get a second
+person to approve the hash,
+
+158
+00:10:21.113 --> 00:10:24.753
+apply, and watch a real exchange
+land in the sign-in log.
+
+159
+00:10:24.753 --> 00:10:26.873
+Try a wrong subject on purpose,
+
+160
+00:10:26.873 --> 00:10:31.050
+run the parallel run forward,
+and back it all out by hand.
+
+161
+00:10:34.800 --> 00:10:37.275
+Each of these dangers
+has a guard in the code.
+
+162
+00:10:37.275 --> 00:10:39.818
+The headline one is
+still the wrong subject,
+
+163
+00:10:39.818 --> 00:10:43.775
+caught by the claims check and the
+exchange test before any cutover.
+
+164
+00:10:43.775 --> 00:10:47.263
+Others are small: a trailing
+slash, a stray space,
+
+165
+00:10:47.263 --> 00:10:50.125
+a subject guessed instead of captured.
+
+166
+00:10:50.125 --> 00:10:54.038
+Some are about timing, like
+creating credentials in parallel,
+
+167
+00:10:54.038 --> 00:10:56.263
+or using one before it's propagated.
+
+168
+00:10:56.263 --> 00:11:00.149
+And some are about keeping your
+way back: the code never deletes,
+
+169
+00:11:00.149 --> 00:11:03.812
+so the rollback, re-enabling
+the old account, always remains.
+
+170
+00:11:03.812 --> 00:11:07.710
+Notice that writes stay with a
+person, never a standing app.
+
+171
+00:11:11.460 --> 00:11:12.810
+Here's what done looks like.
+
+172
+00:11:12.810 --> 00:11:15.760
+Every conversion followed
+the order or says why.
+
+173
+00:11:15.760 --> 00:11:20.600
+Every federated credential was checked
+against claims captured from a real run,
+
+174
+00:11:20.600 --> 00:11:23.273
+and passed its exchange
+test, before cutover.
+
+175
+00:11:23.273 --> 00:11:26.048
+Nothing sits in the tenant
+that nobody reviewed.
+
+176
+00:11:26.048 --> 00:11:29.710
+The plan was approved by someone
+other than the person who applied it.
+
+177
+00:11:29.710 --> 00:11:34.864
+Every parallel run had thirty clean days,
+every disable has the owner's approval,
+
+178
+00:11:34.864 --> 00:11:38.222
+and nothing was deleted, so
+the way back is still open.
+
+179
+00:11:38.222 --> 00:11:41.755
+Next, Chapter 6 turns to group
+managed service accounts,
+
+180
+00:11:41.755 --> 00:11:45.672
+delegated managed service
+accounts, and the Kerberos island.
+
+181
+00:11:45.672 --> 00:11:46.830
+Thanks for watching.

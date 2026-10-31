@@ -1,0 +1,633 @@
+{
+ "1": [
+  [
+   0.05,
+   6.237,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building the Attribute-Driven Migration."
+  ],
+  [
+   6.287,
+   3.763,
+   "This is Chapter 7: machine configuration packages."
+  ],
+  [
+   10.05,
+   12.65,
+   "Learn's cmdlets will build you a package and a policy definition, but nothing in them says whether this is the package you reviewed, whether it leaks details of the machine that built it, or whether it will reach servers another tool owns."
+  ],
+  [
+   22.7,
+   1.887,
+   "That check is the pipeline's job."
+  ],
+  [
+   24.587,
+   7.412,
+   "We'll follow Learn's procedure and Microsoft's sample, see what they leave out, then walk the build, two labs and the dangers."
+  ],
+  [
+   32.0,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.425,
+   "Why does a package need a pipeline around it?"
+  ],
+  [
+   2.475,
+   3.575,
+   "Because three questions go unanswered by Microsoft's tools."
+  ],
+  [
+   6.05,
+   2.6,
+   "Is the package going out the one somebody reviewed?"
+  ],
+  [
+   8.65,
+   6.263,
+   "Does it carry details of the person and machine that built it, into a file every server can read?"
+  ],
+  [
+   14.912,
+   4.4,
+   "And will an enforcing policy reach servers that another tool is supposed to own?"
+  ],
+  [
+   19.312,
+   8.025,
+   "On the Arc track, every setting has exactly one owning tool, recorded in the configuration database and mirrored in a tag."
+  ],
+  [
+   27.337,
+   7.162,
+   "For the settings machine configuration owns, the code is a desired state configuration, and Azure Policy delivers it."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.4,
+   "Here's Learn's model, in three parts."
+  ],
+  [
+   2.45,
+   2.513,
+   "A package says what the machine should look like."
+  ],
+  [
+   4.963,
+   4.3,
+   "A policy definition points at that package by its address and its hash."
+  ],
+  [
+   9.262,
+   8.938,
+   "And when the definition is assigned, every machine in scope gets a guest assignment: the agent downloads the package, evaluates it and reports back."
+  ],
+  [
+   18.2,
+   7.2,
+   "Each assignment is one of three types: audit only, apply once and report drift, or apply and keep correcting."
+  ],
+  [
+   25.4,
+   3.013,
+   "The spelling is case sensitive, which will matter later."
+  ],
+  [
+   28.413,
+   6.1,
+   "Custom content for audit and apply is generally available, with minimum agent versions on the slide."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.325,
+   "Which cloud matters here in three ways."
+  ],
+  [
+   2.375,
+   9.062,
+   "The endpoints differ: servers in Azure Government reach a government machine configuration host, with regional endpoints in the U S Gov regions."
+  ],
+  [
+   11.438,
+   10.6,
+   "The way machines read the package matters: the build uses each machine's own system identity, because Learn says a user-assigned identity doesn't work for Arc-enabled servers."
+  ],
+  [
+   22.038,
+   10.45,
+   "And cost: for Arc-enabled Windows servers with the right licensing, it's included, but that activation isn't offered in two of the U S Gov regions, so plan to buy it there."
+  ],
+  [
+   32.487,
+   2.987,
+   "This estate's servers report to commercial Azure."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.425,
+   "Learn documents the whole procedure, one page per step, and the build follows it exactly."
+  ],
+  [
+   5.475,
+   5.35,
+   "You set up an authoring environment, write a desired state configuration and compile it."
+  ],
+  [
+   10.825,
+   3.775,
+   "You package it, and test it with the same agent the servers run."
+  ],
+  [
+   14.6,
+   7.338,
+   "You publish the package to storage, optionally sign it, and generate a policy definition that records the package's hash."
+  ],
+  [
+   21.938,
+   2.288,
+   "Then you publish the definition to Azure."
+  ],
+  [
+   24.225,
+   3.513,
+   "That's eight steps and eight commands, all on the slide."
+  ],
+  [
+   27.738,
+   1.8,
+   "The build replaces none of them."
+  ],
+  [
+   29.538,
+   1.675,
+   "What it adds goes between them."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.812,
+   "Learn is clear about three things you must not do."
+  ],
+  [
+   2.862,
+   1.925,
+   "Don't put secrets in a package."
+  ],
+  [
+   4.787,
+   2.0,
+   "Don't exceed a hundred megabytes."
+  ],
+  [
+   6.787,
+   12.262,
+   "And when you release a new version, give the package a new name but keep the same policy identifier, raise the version, and let the hash be recomputed; change only the address and the agent rejects it."
+  ],
+  [
+   19.05,
+   5.287,
+   "The repository also pins Microsoft's sample project, with hashes a test checks."
+  ],
+  [
+   24.337,
+   7.425,
+   "It's five years older than the module the chapter uses, and two things in it no longer hold, including a renamed cmdlet."
+  ],
+  [
+   31.762,
+   2.237,
+   "Its compiled file still packages."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.213,
+   "Running Learn's commands offline shows what they don't do, and the first set of gaps is about the package itself."
+  ],
+  [
+   6.263,
+   7.438,
+   "The compiled file records who built it, on which machine, and where, and that file goes to storage the whole fleet can read."
+  ],
+  [
+   13.7,
+   10.375,
+   "Compiling twice gives different bytes, and so does packaging twice, so a reviewer can't tell a real change from noise, and a rebuilt package won't match the reviewed hash."
+  ],
+  [
+   24.075,
+   1.8,
+   "Nothing scans for secrets."
+  ],
+  [
+   25.875,
+   1.788,
+   "And module versions float."
+  ],
+  [
+   27.663,
+   3.487,
+   "Each gap has a fix in the example, pinned by a test."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.087,
+   "The second set of gaps is in the policy definition."
+  ],
+  [
+   3.138,
+   9.088,
+   "The cmdlet accepts whatever identifier and version you give it, so a fresh identifier quietly creates a second definition instead of updating the first."
+  ],
+  [
+   12.225,
+   5.237,
+   "An enforcing definition reaches every machine in scope, whoever owns the setting."
+  ],
+  [
+   17.462,
+   4.763,
+   "The switch that includes Arc-enabled servers defaults to off, and nothing tells you."
+  ],
+  [
+   22.225,
+   3.25,
+   "And Learn's storage token example lasts three years."
+  ],
+  [
+   25.475,
+   5.612,
+   "The verdict is simple: Learn's procedure is the procedure, and the build replaces none of it."
+  ],
+  [
+   31.087,
+   3.237,
+   "It cleans, checks and records in between the steps."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.963,
+   "Running the current module also turned up a few places where it differs from Learn's text."
+  ],
+  [
+   5.013,
+   5.325,
+   "The file names, a parameter's shape and the package contents aren't quite what Learn describes."
+  ],
+  [
+   10.338,
+   4.362,
+   "The package works either way, and the test pins what the module actually does."
+  ],
+  [
+   14.7,
+   1.5,
+   "The bigger one is a role."
+  ],
+  [
+   16.2,
+   9.1,
+   "An enforcing definition grants its remediation identity a role named only by an identifier that Learn's built-in roles reference doesn't list."
+  ],
+  [
+   25.3,
+   2.525,
+   "Microsoft's own role tables name it."
+  ],
+  [
+   27.825,
+   5.225,
+   "So before relying on it, read the role in a test subscription and record what it can do."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.538,
+   "So what does the example add?"
+  ],
+  [
+   1.587,
+   5.975,
+   "One configuration, which audits that old protocol versions are explicitly switched off on servers."
+  ],
+  [
+   7.562,
+   8.575,
+   "It's audit only, and a server with no explicit setting counts as non-compliant, on purpose, because the baseline wants the setting on record."
+  ],
+  [
+   16.137,
+   4.2,
+   "A module of checks, and a build script that runs the whole thing offline."
+  ],
+  [
+   20.337,
+   4.975,
+   "The heart of it is the release registry: the reviewed record of what's in production."
+  ],
+  [
+   25.312,
+   8.887,
+   "It fixes the policy identifier forever, the mode, the published version, the identity, and the owner tag that keeps other tools' servers out."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.362,
+   "The first thing the build adds is a cleaner."
+  ],
+  [
+   2.413,
+   11.488,
+   "It rewrites the compiled file into one canonical form: it strips out who built it and when, keeps source references in the short form Microsoft's own sample uses, and sorts everything."
+  ],
+  [
+   13.9,
+   4.588,
+   "Compile three times and you get three different files, but one cleaned file."
+  ],
+  [
+   18.488,
+   5.112,
+   "A test confirms the cleaned file means the same thing to the desired state engine."
+  ],
+  [
+   23.6,
+   8.575,
+   "Then the package check opens the zip in memory and applies seven rules, from its layout and size to secrets and module versions."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.338,
+   "Next the build checks the definition against the package and the registry, with nine rules."
+  ],
+  [
+   5.388,
+   9.713,
+   "The one that catches the most is the hash check: an enforcing definition carries the package hash in four places, and every copy must match this exact package."
+  ],
+  [
+   15.1,
+   3.95,
+   "So a hand edit or a rebuild fails here, not on a server."
+  ],
+  [
+   19.05,
+   2.263,
+   "Then the build writes a provenance record."
+  ],
+  [
+   21.312,
+   2.087,
+   "Notice there are two kinds of hash."
+  ],
+  [
+   23.4,
+   5.275,
+   "The cleaned file's hash is reproducible, so a reviewer can rebuild and match it."
+  ],
+  [
+   28.675,
+   6.1,
+   "The package hash identifies the bytes that shipped, so the security officer can match the published file."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.988,
+   "Who's this for?"
+  ],
+  [
+   1.038,
+   7.787,
+   "The developers and platform engineers who write server baselines for the Arc track, and the engineers and security officers who review them."
+  ],
+  [
+   8.825,
+   7.975,
+   "You'll want to be comfortable in PowerShell and know what a desired state configuration is; the chapter covers the parts of Azure Policy you need."
+  ],
+  [
+   16.8,
+   1.962,
+   "The roles are few and narrow."
+  ],
+  [
+   18.762,
+   3.562,
+   "Publishing a definition needs the policy contributor role."
+  ],
+  [
+   22.325,
+   5.912,
+   "Machines read the package with their own identity and a read-only storage role, never a token."
+  ],
+  [
+   28.238,
+   4.1,
+   "And the remediation role is the one to confirm before you rely on it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.7,
+   "Lab 1 runs on a Windows laptop and never signs in, uploads or installs the agent."
+  ],
+  [
+   5.75,
+   3.562,
+   "You save the pinned modules to a folder rather than installing them."
+  ],
+  [
+   9.312,
+   7.025,
+   "Then you follow Learn's steps by hand: compile once, package twice, and you get two different hashes from the same file."
+  ],
+  [
+   16.337,
+   5.362,
+   "Open the compiled file and you'll find your own user name, computer name and folder path."
+  ],
+  [
+   21.7,
+   1.788,
+   "The checks catch exactly that."
+  ],
+  [
+   23.488,
+   9.225,
+   "Then you run Microsoft's old sample with the current module: it still packages, its cmdlet has been renamed, and its published file is already clean."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.2,
+   "Now the checked build."
+  ],
+  [
+   1.25,
+   6.825,
+   "It runs offline, passes, and gives one reminder: the switch for Arc-enabled servers defaults to off."
+  ],
+  [
+   8.075,
+   3.55,
+   "Build it a second time and compare the two provenance records."
+  ],
+  [
+   11.625,
+   4.513,
+   "The cleaned file's hash matches across builds; the package hashes don't."
+  ],
+  [
+   16.137,
+   4.037,
+   "That's exactly why you publish the bytes you checked, and never rebuild."
+  ],
+  [
+   20.175,
+   9.463,
+   "Then break it on purpose: reuse a version, mistype the mode's capital letter, or enforce without the owner tag, and each one fails for its own reason."
+  ],
+  [
+   29.637,
+   2.675,
+   "Run the tests, and sixty-five pass."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   6.737,
+   "Lab 2 needs a test subscription and a server you can throw away, because local testing changes the machine it runs on."
+  ],
+  [
+   6.787,
+   6.475,
+   "First you test the package on that server: it should fail on a default build and pass once both settings are off."
+  ],
+  [
+   13.262,
+   2.95,
+   "That's what proves the agent accepts the cleaned file."
+  ],
+  [
+   16.212,
+   5.388,
+   "Then you upload the exact package from Lab 1, never a rebuild, and check its hash."
+  ],
+  [
+   21.6,
+   2.225,
+   "Machines read it with their own identity."
+  ],
+  [
+   23.825,
+   8.062,
+   "Publish, assign with Arc servers included, read the result, and back it all out, including any leftover guest assignments."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   4.225,
+   "Every danger here has a guard, and they cluster around a few ideas."
+  ],
+  [
+   4.275,
+   6.275,
+   "One owning tool per setting, enforced by a tag filter at build time and checked again after assignment."
+  ],
+  [
+   10.55,
+   5.088,
+   "Never rebuild at release time: publish the bytes you checked, and match their hash."
+  ],
+  [
+   15.637,
+   3.35,
+   "Keep build-host details and secrets out of the package."
+  ],
+  [
+   18.988,
+   3.962,
+   "Use the machine's own identity rather than a long-lived token."
+  ],
+  [
+   22.95,
+   2.6,
+   "Remember the Arc switch is off by default."
+  ],
+  [
+   25.55,
+   8.162,
+   "And if signing is required, sign first, then generate the definition from the signed file, so the hash is the one that ships."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   4.625,
+   "The configuration and its registry entry arrive in the same pull request."
+  ],
+  [
+   6.025,
+   2.925,
+   "The build used the pinned modules and found nothing."
+  ],
+  [
+   8.95,
+   3.938,
+   "Anyone can rebuild the commit and match the cleaned file's hash."
+  ],
+  [
+   12.887,
+   6.85,
+   "The package was tested on a throwaway server, and the published file's hash matches the record and the definition everywhere."
+  ],
+  [
+   19.738,
+   9.387,
+   "No long-lived token, the owner tag filter on anything that enforces, Arc servers included where they belong, and the records filed as evidence."
+  ],
+  [
+   29.125,
+   3.062,
+   "Next, Chapter 8 puts Ansible beside Arc."
+  ],
+  [
+   32.188,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

@@ -1,0 +1,578 @@
+{
+ "1": [
+  [
+   0.05,
+   6.237,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building the Attribute-Driven Migration."
+  ],
+  [
+   6.287,
+   4.213,
+   "This is Chapter 5: Lifecycle Workflows custom extensions."
+  ],
+  [
+   10.5,
+   7.537,
+   "A custom task extension hands a leaver, a joiner or a mover to code you wrote, and then waits for that code to say what happened."
+  ],
+  [
+   18.038,
+   5.25,
+   "The chapter makes sure it always says, says the truth, and says it to the right cloud."
+  ],
+  [
+   23.288,
+   10.488,
+   "We'll start from the Logic App definition Microsoft publishes, see what it leaves to you, walk the program's Logic App, registry and tools, then two labs and the dangers."
+  ],
+  [
+   33.775,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.512,
+   "Why does this chapter matter?"
+  ],
+  [
+   1.562,
+   8.0,
+   "Book 03 splits the work: provisioning creates accounts, and Lifecycle Workflows act on accounts that already exist."
+  ],
+  [
+   9.562,
+   11.988,
+   "The built-in tasks handle the account itself, but everything else in a leaver, the piv credential, the devices, the servers, goes through a custom task extension, which is code you write."
+  ],
+  [
+   21.55,
+   10.05,
+   "Book 03 also sets three rules: one reusable Logic App per integration, block the account first, and make custom tasks safe to repeat."
+  ],
+  [
+   31.6,
+   8.0,
+   "Learn sets the contract on the other side: how the Logic App is started, how long the workflow waits, and how the answer comes back."
+  ],
+  [
+   39.6,
+   1.525,
+   "Let's see where that runs."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.413,
+   "Now, which cloud."
+  ],
+  [
+   1.462,
+   15.15,
+   "The callback goes to Microsoft Graph, and the host depends on the tenant: a G C C tenant like this estate's keeps the worldwide endpoint, while G C C High and D O D each have their own, and a token for one cloud won't work in another."
+  ],
+  [
+   16.613,
+   1.988,
+   "The Logic App's side matters too."
+  ],
+  [
+   18.6,
+   4.438,
+   "Learn documents the proof-of-possession policy only for commercial Azure."
+  ],
+  [
+   23.038,
+   4.812,
+   "For Azure Government it gives nothing, so the builder refuses rather than guess."
+  ],
+  [
+   27.85,
+   6.938,
+   "Licensing and availability are covered in all the U S clouds, and the tenant limits are the same everywhere."
+  ],
+  [
+   34.788,
+   2.212,
+   "Next, Microsoft's own sample."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.712,
+   "Here's what Microsoft gives you."
+  ],
+  [
+   1.762,
+   4.037,
+   "The admin center can create an extension and a new Logic App together."
+  ],
+  [
+   5.8,
+   13.05,
+   "For an existing Logic App, Learn publishes one workflow definition to paste in: a trigger that describes what Lifecycle Workflows sends, one callback action, and a gap in the middle labelled \"add your logic here\"."
+  ],
+  [
+   18.85,
+   4.713,
+   "That's Microsoft's only sample; a search found no template anywhere else."
+  ],
+  [
+   23.562,
+   10.537,
+   "Because it lives only inside a web page, the repository pins the page with checked hashes, and a tiny interpreter runs the definition, unchanged, against fakes."
+  ],
+  [
+   34.1,
+   1.688,
+   "So you see what it really does."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.737,
+   "Running Learn's definition against the fakes shows what it gets right and what it leaves to you."
+  ],
+  [
+   4.787,
+   6.888,
+   "It gets the identity right: no secret, just the Logic App's managed identity, and the program keeps that."
+  ],
+  [
+   11.675,
+   8.725,
+   "But the callback is hard-wired to the worldwide cloud and the beta endpoint, so in G C C High or D O D it simply never arrives."
+  ],
+  [
+   20.4,
+   6.662,
+   "It trusts whatever path it's handed, which means a forged payload could aim that identity's token anywhere."
+  ],
+  [
+   27.062,
+   4.225,
+   "And it always says the work completed, even when the revocation failed."
+  ],
+  [
+   31.288,
+   2.862,
+   "Each of those has a fix, pinned by a test."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.188,
+   "The second half of the gap table is about what happens once you add real work."
+  ],
+  [
+   4.237,
+   7.588,
+   "If your added step fails, Learn's definition sends nothing, so the workflow sits there for the whole wait before it calls the task failed."
+  ],
+  [
+   11.825,
+   2.763,
+   "There's no protection against doing the work twice."
+  ],
+  [
+   14.588,
+   5.3,
+   "The subject's name, email and manager land in run history for anyone who can read it."
+  ],
+  [
+   19.887,
+   7.625,
+   "The retries are implicit, and the authorization policy is typed by hand, with a placeholder value that would block every call."
+  ],
+  [
+   27.512,
+   2.925,
+   "The program's definition closes each one."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.3,
+   "One row needs a word."
+  ],
+  [
+   1.35,
+   7.763,
+   "The page prints a placeholder for the value that identifies Lifecycle Workflows as the caller, and copying it would block every call."
+  ],
+  [
+   9.113,
+   12.75,
+   "The chapter traces the real value: the page's own bearer-token row, the page's history, Microsoft's token claims reference, and the docs repository's list of known values all point to the same identifier."
+  ],
+  [
+   21.863,
+   4.625,
+   "The code uses it, a test pins it, and Lab 2 still checks it in the tenant."
+  ],
+  [
+   26.488,
+   7.037,
+   "That leads to the verdict: keep Learn's shape and trigger, but don't run it as published for a leaver's credential revocation."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.4,
+   "Now the program's code."
+  ],
+  [
+   1.45,
+   13.025,
+   "There's one Logic App definition, and every integration deploys the same one; what changes is data, four parameters: the Graph host for the cloud, the downstream system and its audience, and which workflows it serves."
+  ],
+  [
+   14.475,
+   1.938,
+   "Each run goes in four steps."
+  ],
+  [
+   16.413,
+   7.75,
+   "First it checks the request, and if the callback path isn't the resume path for this very task, it stops and sends nothing at all."
+  ],
+  [
+   24.163,
+   8.938,
+   "Then it looks up the operation, calls the downstream system with bounded retries, and always calls back, telling the truth about whether the work succeeded."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.163,
+   "Two ideas hold the design together."
+  ],
+  [
+   2.212,
+   1.9,
+   "The first is idempotency."
+  ],
+  [
+   4.112,
+   6.213,
+   "The key isn't a Microsoft feature; it's a promise the downstream system makes to do the work once per key."
+  ],
+  [
+   10.325,
+   11.137,
+   "That matters because the same task can arrive twice: the extension may retry its call, a workflow can be rerun, and Book 03 resumes a partial leaver where it stopped."
+  ],
+  [
+   21.462,
+   7.062,
+   "The second is the registry: one reviewed entry per integration, holding every value the deployment needs."
+  ],
+  [
+   28.525,
+   6.225,
+   "Its extension settings have sensible defaults, and the builder refuses anything outside Learn's ranges."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.837,
+   "The tooling is one script with five commands."
+  ],
+  [
+   2.888,
+   10.887,
+   "Lint applies twelve rules to any definition, including Microsoft's, and one of them adds up every possible retry wait so the callback can't arrive after the workflow has given up."
+  ],
+  [
+   13.775,
+   5.388,
+   "Run plays a definition against the fakes, with failures and repeat deliveries on demand."
+  ],
+  [
+   19.163,
+   3.237,
+   "Build refuses to write anything while there's a finding."
+  ],
+  [
+   22.4,
+   11.2,
+   "And the two checks compare what's really in the tenant with the registry, including Book 03's leaver order: block the account and revoke its tokens first, then run the custom task."
+  ],
+  [
+   33.6,
+   3.225,
+   "A failed revocation shouldn't stop the cleanup after it."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.662,
+   "Authorization is where hand-typed settings usually drift, so the builder writes it from the registry."
+  ],
+  [
+   5.713,
+   7.838,
+   "On the Logic App, shared access signatures are switched off and Learn's proof-of-possession policy goes in with Learn's exact claims."
+  ],
+  [
+   13.55,
+   8.8,
+   "On the extension, the code asks for proof-of-possession, following Learn's security guidance even though one example still shows the older bearer type."
+  ],
+  [
+   22.35,
+   8.287,
+   "And the identity stays small: because the Logic App is an authorized app on the extension, it can call back with no Graph permission at all."
+  ],
+  [
+   30.637,
+   3.462,
+   "The tenant-wide alternative is what Learn advises against."
+  ],
+  [
+   34.1,
+   1.35,
+   "Now, who does this work?"
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.3,
+   "Learn says several things differently on different pages, and the chapter writes each one down so nobody quietly loosens the code later."
+  ],
+  [
+   8.35,
+   4.375,
+   "The wait range differs between pages, so the code takes the narrower one."
+  ],
+  [
+   12.725,
+   3.9,
+   "The workflow limit differs, so the chapter plans for the lower one."
+  ],
+  [
+   16.625,
+   4.513,
+   "Even the identifier for the custom task differs, within a single page."
+  ],
+  [
+   21.137,
+   8.363,
+   "In each case the code picks the safer or better-supported reading, and where it matters, Lab 2 reads back what the tenant actually does."
+  ],
+  [
+   29.5,
+   1.538,
+   "That's the end of the code."
+  ],
+  [
+   31.038,
+   1.4,
+   "Now, who's involved."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.062,
+   "Who is this for?"
+  ],
+  [
+   1.113,
+   8.475,
+   "Developers and identity engineers who build the integrations behind joiners, movers and leavers, and the reviewers who approve each one."
+  ],
+  [
+   9.588,
+   4.725,
+   "You'll want to read jay-son and Python, and you don't need a tenant until Lab 2."
+  ],
+  [
+   14.312,
+   1.575,
+   "The roles are worth noticing."
+  ],
+  [
+   15.887,
+   10.15,
+   "Creating an extension takes the Lifecycle Workflows administrator role plus a contributor role on the Logic App's resource group; the operator role isn't enough."
+  ],
+  [
+   26.038,
+   7.55,
+   "The Logic App itself needs no Graph permission to call back, and its downstream access should be as narrow as the target allows."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.662,
+   "Lab 1 needs only Python on a laptop: no tenant, no network."
+  ],
+  [
+   4.713,
+   2.138,
+   "You start with Microsoft's definition."
+  ],
+  [
+   6.85,
+   9.762,
+   "The linter finds eight problems, and when you run it for a G C C High tenant, the callback heads to the worldwide cloud and the task fails at the end of the wait."
+  ],
+  [
+   16.613,
+   6.062,
+   "Switch the cloud to worldwide and it completes, which is exactly why the problem is easy to miss."
+  ],
+  [
+   22.675,
+   10.287,
+   "Then the program's definition: a clean lint, and a G C C High run that survives two transient failures, does the work once, and calls back to the right cloud."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.388,
+   "The second half of Lab 1 is about watching the guards work."
+  ],
+  [
+   3.438,
+   4.162,
+   "Shorten the wait and the linter warns that retries could outlast it."
+  ],
+  [
+   7.6,
+   6.537,
+   "Make the downstream fail every time, and the task is reported failed straight away instead of an hour later."
+  ],
+  [
+   14.137,
+   3.95,
+   "Deliver the same task twice, and the work still happens once."
+  ],
+  [
+   18.087,
+   5.338,
+   "Then build the deployment files, and watch the builder refuse when you point it at Azure Government."
+  ],
+  [
+   23.425,
+   4.1,
+   "Break the leaver order in a fixture and the workflow check catches it."
+  ],
+  [
+   27.525,
+   2.5,
+   "Finally, fifty-five tests pass."
+  ],
+  [
+   30.025,
+   2.763,
+   "Remember, though: fakes aren't a tenant."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   3.25,
+   "Lab 2 moves to a test tenant, never production."
+  ],
+  [
+   3.3,
+   11.725,
+   "You let the admin center create the extension and Logic App the way Learn describes, then record exactly what it made and compare it with what the builder would have written; any difference is a finding against the builder."
+  ],
+  [
+   15.025,
+   7.287,
+   "Then you swap in the program's definition, build a small leaver workflow in the right order, and run it for one fictional user."
+  ],
+  [
+   22.312,
+   3.1,
+   "That run also confirms the real callback path."
+  ],
+  [
+   25.413,
+   4.963,
+   "Finally, drill the failure: the task should fail within minutes, not an hour."
+  ],
+  [
+   30.375,
+   1.475,
+   "Then back everything out."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   7.075,
+   "Each of these dangers ends the same way: a leaver whose access isn't really gone, or a record that says it is."
+  ],
+  [
+   7.125,
+   7.9,
+   "The quietest are the callback problems: no callback on failure, a callback that claims success, or one sent to the wrong cloud."
+  ],
+  [
+   15.025,
+   7.075,
+   "Others are about trust: a forged payload, a broad permission, or a bearer-token extension left behind."
+  ],
+  [
+   22.1,
+   6.125,
+   "And some are about order: doing the work twice, or running the custom task before the account is blocked."
+  ],
+  [
+   28.225,
+   5.325,
+   "Notice the pattern again: each guard is a lint rule or a check that runs every time."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   8.6,
+   "Each integration has one reviewed registry entry, one Logic App and one identity, and the deployed pieces came from the builder with a clean lint."
+  ],
+  [
+   10.0,
+   11.713,
+   "The extension uses proof-of-possession and waits for an answer; shared access signatures are off; and the callback host matches the tenant's cloud, which for this estate means the worldwide endpoint."
+  ],
+  [
+   21.712,
+   8.812,
+   "Then the proofs: a repeat delivery did the work once, a forced failure reported back within minutes, and every leaver blocks the account first."
+  ],
+  [
+   30.525,
+   3.325,
+   "Next, Chapter 6 moves Group Policy as code."
+  ],
+  [
+   33.85,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

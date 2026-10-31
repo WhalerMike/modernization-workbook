@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.038
+Who's this for?
+
+2
+00:00:01.038 --> 00:00:05.697
+The developers and platform engineers who
+write server baselines for the Arc track,
+
+3
+00:00:05.697 --> 00:00:08.825
+and the engineers and security
+officers who review them.
+
+4
+00:00:08.825 --> 00:00:12.846
+You'll want to be comfortable in
+PowerShell and know what a desired state
+
+5
+00:00:12.846 --> 00:00:16.800
+configuration is; the chapter covers
+the parts of Azure Policy you need.
+
+6
+00:00:16.800 --> 00:00:18.762
+The roles are few and narrow.
+
+7
+00:00:18.762 --> 00:00:22.324
+Publishing a definition needs
+the policy contributor role.
+
+8
+00:00:22.324 --> 00:00:25.592
+Machines read the package
+with their own identity
+
+9
+00:00:25.592 --> 00:00:28.237
+and a read-only storage
+role, never a token.
+
+10
+00:00:28.237 --> 00:00:32.400
+And the remediation role is the one
+to confirm before you rely on it.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.175
+The program adds its rules on
+top, marked as design guidance.
+
+2
+00:00:04.175 --> 00:00:06.662
+Owners review every grant each quarter.
+
+3
+00:00:06.662 --> 00:00:11.774
+No broad tenant-wide permission stands
+without a written, dated justification.
+
+4
+00:00:11.774 --> 00:00:15.932
+Where Learn documents a narrower
+replacement, like selected sites,
+
+5
+00:00:15.932 --> 00:00:18.307
+or scoped mail access, that's the target,
+
+6
+00:00:18.307 --> 00:00:22.613
+and for mail the old unscoped grant
+has to go or the scope means nothing.
+
+7
+00:00:22.613 --> 00:00:26.913
+Managed identities get Azure roles at
+the resource, not the subscription.
+
+8
+00:00:26.913 --> 00:00:30.750
+Privileged service principals belong
+to the Privileged Access plan.
+
+9
+00:00:30.750 --> 00:00:33.650
+And the code removes
+a grant, never an app.

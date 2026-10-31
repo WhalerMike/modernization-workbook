@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:10.637
+This is Chapter 4: app management
+policies and certificate rotation.
+
+4
+00:00:10.637 --> 00:00:12.524
+The chapter does two jobs.
+
+5
+00:00:12.524 --> 00:00:16.845
+It holds the tenant's rules for app
+credentials in a reviewed file that can be
+
+6
+00:00:16.845 --> 00:00:20.479
+compared and applied without ever
+loosening, and it rotates app
+
+7
+00:00:20.479 --> 00:00:24.525
+certificates through Key Vault, with
+an owner's approval and an overlap.
+
+8
+00:00:24.525 --> 00:00:28.470
+We'll start from Microsoft's own
+samples, see what they leave out,
+
+9
+00:00:28.470 --> 00:00:31.125
+then walk the code, the
+labs and the dangers.
+
+10
+00:00:31.125 --> 00:00:36.340
+One note before we begin: the code is
+illustrative, tested against fixtures.

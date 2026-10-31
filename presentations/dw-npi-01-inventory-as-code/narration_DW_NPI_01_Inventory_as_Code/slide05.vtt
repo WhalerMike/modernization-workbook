@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.458
+Put together, the register reads two
+collections from Active Directory,
+
+2
+00:00:04.458 --> 00:00:07.250
+nine from Graph, and one
+from Resource Manager.
+
+3
+00:00:07.250 --> 00:00:10.413
+The slide shows each read
+and why it was chosen.
+
+4
+00:00:10.413 --> 00:00:12.194
+The pattern is worth noticing:
+
+5
+00:00:12.194 --> 00:00:16.899
+one server-side query for the user accounts
+instead of reading every user three
+
+6
+00:00:16.899 --> 00:00:20.392
+times, owners and credentials
+read where they actually live,
+
+7
+00:00:20.392 --> 00:00:23.529
+on the app registration, and
+Graph's own app roles read
+
+8
+00:00:23.529 --> 00:00:26.737
+so a permission shows up by
+name rather than as a number.
+
+9
+00:00:26.737 --> 00:00:30.522
+And one read that people forget:
+a user-assigned identity's
+
+10
+00:00:30.522 --> 00:00:34.510
+federated credentials live in
+Resource Manager, not in Graph.

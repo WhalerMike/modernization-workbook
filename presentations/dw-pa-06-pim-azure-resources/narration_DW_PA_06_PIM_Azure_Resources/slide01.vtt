@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.038
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.038 --> 00:00:05.688
+Building Privileged Access.
+
+3
+00:00:05.688 --> 00:00:09.238
+This is Chapter 6: PIM
+for Azure resources.
+
+4
+00:00:09.238 --> 00:00:13.240
+Standing Owner and Contributor are
+what an attacker hopes to find,
+
+5
+00:00:13.240 --> 00:00:17.314
+so this chapter makes those roles
+eligible, time-bound and approved,
+
+6
+00:00:17.314 --> 00:00:20.588
+and holds the settings as
+reviewed code at every scope.
+
+7
+00:00:20.588 --> 00:00:25.496
+We'll start from Learn's walkthroughs
+and Microsoft's own request examples,
+
+8
+00:00:25.496 --> 00:00:28.346
+see what they leave to
+you, then walk the plan,
+
+9
+00:00:28.346 --> 00:00:31.275
+the dry run, the apply,
+two labs and the dangers.
+
+10
+00:00:31.275 --> 00:00:36.480
+One note before we begin: the code is
+illustrative, tested against fixtures.

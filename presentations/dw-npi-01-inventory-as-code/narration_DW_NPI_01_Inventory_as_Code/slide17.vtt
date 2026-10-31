@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.525
+Each of these dangers
+has a guard in the code.
+
+2
+00:00:02.525 --> 00:00:06.661
+The two that hurt people most: a
+person mistaken for a service account,
+
+3
+00:00:06.661 --> 00:00:11.087
+which the orphan rule could disable,
+and a stale account retired on a guess,
+
+4
+00:00:11.087 --> 00:00:14.062
+which breaks the job that
+only runs once a quarter.
+
+5
+00:00:14.062 --> 00:00:19.099
+The code flags the first, and never disables
+or deletes anything for the second.
+
+6
+00:00:19.099 --> 00:00:24.001
+Others are quieter: a broad permission
+granted just to make it work, the wrong
+
+7
+00:00:24.001 --> 00:00:26.491
+cloud, throttling on credential reads,
+
+8
+00:00:26.491 --> 00:00:29.525
+and the register itself
+as a map for an attacker.
+
+9
+00:00:29.525 --> 00:00:32.760
+Notice the guards are rules
+and tests, not memory.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.911
+Here's the first thing to know:
+
+2
+00:00:01.911 --> 00:00:05.400
+PIM for Azure resources isn't
+in Microsoft Graph at all.
+
+3
+00:00:05.400 --> 00:00:08.268
+Entra roles and groups
+are managed through Graph,
+
+4
+00:00:08.268 --> 00:00:12.675
+but Azure resources go through Resource
+Manager, with no Graph permissions.
+
+5
+00:00:12.675 --> 00:00:16.592
+Three resource types do the work:
+one for eligible assignments,
+
+6
+00:00:16.592 --> 00:00:21.187
+one for active assignments and activations,
+and one for the role settings.
+
+7
+00:00:21.187 --> 00:00:26.013
+The schedules they produce are the same
+lists Chapter 1's inventory already reads.
+
+8
+00:00:26.013 --> 00:00:30.506
+And there's a deadline: the old
+beta endpoint stops returning data
+
+9
+00:00:30.506 --> 00:00:35.060
+at the end of October 2026, so the
+chapter uses only the current API.

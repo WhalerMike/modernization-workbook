@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.362
+Lab 1 needs nothing but a laptop: PowerShell
+7 and Pester, no tenant and no network.
+
+2
+00:00:06.362 --> 00:00:10.077
+First you run Learn's own queries
+over the fictional export,
+
+3
+00:00:10.077 --> 00:00:13.793
+and the tests show what you'd
+otherwise have to take on trust:
+
+4
+00:00:13.793 --> 00:00:16.674
+of five emergency events,
+the sample finds two.
+
+5
+00:00:16.674 --> 00:00:21.113
+Then you list the six permissions, and
+run the check against a fictional tenant.
+
+6
+00:00:21.113 --> 00:00:25.238
+It reports nine findings, no
+warnings and one informational item,
+
+7
+00:00:25.238 --> 00:00:27.988
+and it writes the alert
+template for review.
+
+8
+00:00:27.988 --> 00:00:30.310
+Next, let's read those findings.

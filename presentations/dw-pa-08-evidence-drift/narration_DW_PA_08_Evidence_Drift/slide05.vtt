@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Running the queries over fictional
+rows shows exactly what they catch.
+
+2
+00:00:04.087 --> 00:00:07.413
+The first query finds the
+activations, which is good.
+
+3
+00:00:07.413 --> 00:00:11.017
+But it also sweeps in two role
+assignments made outside PIM,
+
+4
+00:00:11.017 --> 00:00:15.137
+so a standing Tier 0 assignment
+looks like just another activation.
+
+5
+00:00:15.137 --> 00:00:20.037
+It misses deactivations and the setting
+change Learn says to always alert on.
+
+6
+00:00:20.037 --> 00:00:23.296
+And the second query, copied
+with its placeholder,
+
+7
+00:00:23.296 --> 00:00:28.063
+doesn't select one request at all; it
+returns everything with a request ID.
+
+8
+00:00:28.063 --> 00:00:32.218
+Given a real ID, though, the
+queries show the key idea:
+
+9
+00:00:32.218 --> 00:00:36.374
+one request, three correlation
+IDs, one activation.
+
+10
+00:00:36.374 --> 00:00:37.700
+The code keeps that.

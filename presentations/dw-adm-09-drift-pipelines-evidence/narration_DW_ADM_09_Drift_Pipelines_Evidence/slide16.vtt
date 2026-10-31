@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.644
+Lab 2 uses a test tenant,
+
+2
+00:00:01.644 --> 00:00:06.425
+a test subscription and a private
+test repository, never production.
+
+3
+00:00:06.425 --> 00:00:11.126
+Register an app and give it a federated
+credential that trusts exactly one
+
+4
+00:00:11.126 --> 00:00:14.613
+environment in the repository;
+Learn warns that a wrong
+
+5
+00:00:14.613 --> 00:00:18.025
+subject is accepted silently
+and only fails at sign-in.
+
+6
+00:00:18.025 --> 00:00:22.123
+Grant only the reads, and write
+access to one evidence container
+
+7
+00:00:22.123 --> 00:00:26.375
+whose retention policy stays unlocked,
+so the lab can be cleaned up.
+
+8
+00:00:26.375 --> 00:00:31.675
+Run it by hand to set the baseline, make
+one change, run again, and check the chain.
+
+9
+00:00:31.675 --> 00:00:34.780
+Then let the schedule run,
+and back everything out.

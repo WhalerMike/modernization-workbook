@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.300
+Lab 2 moves to a test
+tenant, never production.
+
+2
+00:00:03.300 --> 00:00:06.525
+You send the three log
+categories to a test workspace,
+
+3
+00:00:06.525 --> 00:00:11.437
+register a reader app with exactly the six
+permissions, and run the check for real.
+
+4
+00:00:11.437 --> 00:00:15.887
+Then the important step: paste the query
+into the workspace and run it by hand,
+
+5
+00:00:15.887 --> 00:00:19.913
+because an error that names a table
+tells you the logs aren't arriving.
+
+6
+00:00:19.913 --> 00:00:22.487
+After that you deploy
+the reviewed template,
+
+7
+00:00:22.487 --> 00:00:26.313
+sign in once with a test emergency
+account, and watch the alert land.
+
+8
+00:00:26.313 --> 00:00:29.799
+Record the drill, and the
+ninety-day finding clears.
+
+9
+00:00:29.799 --> 00:00:31.340
+Then back everything out.

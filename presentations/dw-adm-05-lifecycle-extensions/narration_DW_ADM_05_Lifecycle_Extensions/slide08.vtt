@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+Now the program's code.
+
+2
+00:00:01.450 --> 00:00:06.139
+There's one Logic App definition, and
+every integration deploys the same one;
+
+3
+00:00:06.139 --> 00:00:10.158
+what changes is data, four parameters:
+the Graph host for the cloud,
+
+4
+00:00:10.158 --> 00:00:14.475
+the downstream system and its audience,
+and which workflows it serves.
+
+5
+00:00:14.475 --> 00:00:16.413
+Each run goes in four steps.
+
+6
+00:00:16.413 --> 00:00:20.212
+First it checks the request, and
+if the callback path isn't the
+
+7
+00:00:20.212 --> 00:00:24.163
+resume path for this very task, it
+stops and sends nothing at all.
+
+8
+00:00:24.163 --> 00:00:28.841
+Then it looks up the operation, calls the
+downstream system with bounded retries,
+
+9
+00:00:28.841 --> 00:00:33.170
+and always calls back, telling the
+truth about whether the work succeeded.

@@ -1,0 +1,846 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.038
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.038 --> 00:00:05.688
+Building Privileged Access.
+
+3
+00:00:05.688 --> 00:00:09.626
+This is Chapter 7: access
+reviews of privileged roles.
+
+4
+00:00:09.626 --> 00:00:14.263
+Eligibility only ever grows unless
+someone confirms it on a calendar,
+
+5
+00:00:14.263 --> 00:00:19.222
+so this chapter makes the reviews code:
+one file says who reviews which role
+
+6
+00:00:19.222 --> 00:00:24.100
+and when, a dry run shows the change,
+and the decisions come back as evidence.
+
+7
+00:00:24.100 --> 00:00:28.536
+We'll start from Learn's tutorial
+for reviewing administrative roles,
+
+8
+00:00:28.536 --> 00:00:31.366
+see what it leaves to you,
+then walk the series,
+
+9
+00:00:31.366 --> 00:00:34.425
+the checks, the evidence,
+two labs and the dangers.
+
+10
+00:00:34.425 --> 00:00:39.920
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+11
+00:00:43.670 --> 00:00:44.920
+Why reviews at all?
+
+12
+00:00:44.920 --> 00:00:49.407
+The approval gate from the earlier
+chapters controls when privilege is used.
+
+13
+00:00:49.407 --> 00:00:52.407
+Reviews control who keeps
+the right to use it.
+
+14
+00:00:52.407 --> 00:00:55.332
+Without them, eligibility only grows.
+
+15
+00:00:55.332 --> 00:00:59.685
+Book 04 sets the schedule: the
+most sensitive tier every month,
+
+16
+00:00:59.685 --> 00:01:04.720
+the rest every quarter, with access
+removed when reviewers stay silent.
+
+17
+00:01:04.720 --> 00:01:05.932
+And why as code?
+
+18
+00:01:05.932 --> 00:01:08.445
+Because a review set up by hand drifts.
+
+19
+00:01:08.445 --> 00:01:11.193
+Someone leaves, a duration gets shortened,
+
+20
+00:01:11.193 --> 00:01:14.333
+auto-apply is switched off
+once and never back on.
+
+21
+00:01:14.333 --> 00:01:19.030
+In code, every series has a
+file, a diff and a reviewer.
+
+22
+00:01:22.780 --> 00:01:26.930
+Two practical questions next: what
+does it cost, and where does it run.
+
+23
+00:01:26.930 --> 00:01:30.242
+Access reviews belong
+to Entra ID Governance.
+
+24
+00:01:30.242 --> 00:01:33.776
+Learn's tutorial says the P2
+license or Governance will do,
+
+25
+00:01:33.776 --> 00:01:38.855
+but the licensing page asks for Governance
+for everyone who reviews or is reviewed,
+
+26
+00:01:38.855 --> 00:01:41.505
+so the program budgets
+for the stricter one.
+
+27
+00:01:41.505 --> 00:01:44.852
+As for the cloud, this
+estate's GCC tenant uses the
+
+28
+00:01:44.852 --> 00:01:48.617
+worldwide Graph endpoint,
+and its Azure is commercial.
+
+29
+00:01:48.617 --> 00:01:52.679
+The Graph review APIs are listed
+for the government clouds too.
+
+30
+00:01:52.679 --> 00:01:56.158
+The Azure role reviews,
+though, run on a preview API,
+
+31
+00:01:56.158 --> 00:02:00.160
+and their government
+availability isn't confirmed.
+
+32
+00:02:03.910 --> 00:02:05.622
+Here's what Microsoft gives you.
+
+33
+00:02:05.622 --> 00:02:09.417
+Learn's tutorial walks through
+the whole life of one review:
+
+34
+00:02:09.417 --> 00:02:12.825
+create a recurring review
+of one administrator role,
+
+35
+00:02:12.825 --> 00:02:17.317
+list its instances and decisions,
+approve one person and deny another,
+
+36
+00:02:17.317 --> 00:02:21.422
+apply the decisions, pull a history
+report, and delete the review.
+
+37
+00:02:21.422 --> 00:02:25.259
+It also makes a useful point:
+one review covers one role.
+
+38
+00:02:25.259 --> 00:02:28.262
+The requests only exist
+inside the web page,
+
+39
+00:02:28.262 --> 00:02:33.598
+so the repository pins the page's source,
+unmodified, with hashes a test checks.
+
+40
+00:02:33.598 --> 00:02:36.964
+Then the tests send the tutorial's
+request to a fake Graph,
+
+41
+00:02:36.964 --> 00:02:39.250
+so you can see what it really does.
+
+42
+00:02:43.000 --> 00:02:46.763
+Run against the fake, the tutorial
+shows its limits quickly.
+
+43
+00:02:46.763 --> 00:02:51.356
+It sends a create request every time
+without reading first, so run it twice
+
+44
+00:02:51.356 --> 00:02:55.875
+and you get two reviews with the same
+name, and your evidence splits in two.
+
+45
+00:02:55.875 --> 00:02:58.295
+It names a single person as reviewer,
+
+46
+00:02:58.295 --> 00:03:01.763
+with no fallback, so one
+departure stalls the review.
+
+47
+00:03:01.763 --> 00:03:06.404
+It sets no default decision and no
+auto-apply, so silence keeps privilege,
+
+48
+00:03:06.404 --> 00:03:10.350
+and a denial changes nothing
+until someone applies it by hand.
+
+49
+00:03:10.350 --> 00:03:14.900
+And its schedule, one day every
+three months, isn't the program's.
+
+50
+00:03:14.900 --> 00:03:18.790
+The code keeps the tutorial's
+scope and fixes the rest.
+
+51
+00:03:22.540 --> 00:03:25.590
+The rest of the gaps are
+about evidence and permission.
+
+52
+00:03:25.590 --> 00:03:28.649
+The tutorial gives
+reviewers no instructions,
+
+53
+00:03:28.649 --> 00:03:31.315
+though the API marks that field required.
+
+54
+00:03:31.315 --> 00:03:35.329
+It collects evidence by writing a
+report and handing you a link that
+
+55
+00:03:35.329 --> 00:03:39.415
+expires in a day, and its report may
+not even include the review it made.
+
+56
+00:03:39.415 --> 00:03:42.783
+It never touches Azure roles
+or the privileged groups,
+
+57
+00:03:42.783 --> 00:03:44.878
+two of the program's three targets.
+
+58
+00:03:44.878 --> 00:03:48.540
+And it uses the write permission
+for everything, even reads.
+
+59
+00:03:48.540 --> 00:03:51.830
+So the verdict: keep the
+tutorial's scope as the model,
+
+60
+00:03:51.830 --> 00:03:53.940
+but don't run it as published.
+
+61
+00:03:57.690 --> 00:03:58.628
+Now the code.
+
+62
+00:03:58.628 --> 00:04:03.250
+It's a new module, and unlike the earlier
+chapters, it can write to a tenant,
+
+63
+00:04:03.250 --> 00:04:08.341
+but only with the apply switch, only what
+the dry run listed, and it never deletes.
+
+64
+00:04:08.341 --> 00:04:10.590
+One file holds every series.
+
+65
+00:04:10.590 --> 00:04:14.566
+Each has a managed name prefix,
+a kind, a tier, a cadence,
+
+66
+00:04:14.566 --> 00:04:18.727
+reviewers, a fallback and
+instructions for reviewers.
+
+67
+00:04:18.727 --> 00:04:22.257
+The fixture's seven series
+follow Book 04's schedule:
+
+68
+00:04:22.257 --> 00:04:26.690
+role reviews, reviews of the
+privileged groups, and one Azure role.
+
+69
+00:04:26.690 --> 00:04:31.390
+Notice the first row: Global
+Administrator makes no change on silence.
+
+70
+00:04:31.390 --> 00:04:33.320
+We'll see why in a moment.
+
+71
+00:04:37.070 --> 00:04:41.107
+Each request body is built only
+from shapes Learn documents.
+
+72
+00:04:41.107 --> 00:04:43.308
+A role series reviews users.
+
+73
+00:04:43.308 --> 00:04:46.693
+The groups that hold the role
+aren't reviewed inside it;
+
+74
+00:04:46.693 --> 00:04:50.381
+each gets its own membership
+series, which matches Book 04's
+
+75
+00:04:50.381 --> 00:04:54.520
+pairing of every role review with
+a review of its privileged group.
+
+76
+00:04:54.520 --> 00:04:58.545
+Group reviews cover the group's
+members, a feature still in preview.
+
+77
+00:04:58.545 --> 00:05:02.397
+Azure role reviews go to Resource
+Manager on a preview version,
+
+78
+00:05:02.397 --> 00:05:06.620
+and their reviewers must be people
+or service principals, not groups.
+
+79
+00:05:06.620 --> 00:05:10.369
+One honest gap: Learn's
+request table doesn't list some
+
+80
+00:05:10.369 --> 00:05:14.400
+fields the code sets, so Lab
+2 checks they take effect.
+
+81
+00:05:18.150 --> 00:05:21.825
+These are the checks the code
+runs on every body it builds,
+
+82
+00:05:21.825 --> 00:05:24.562
+and on any Graph body,
+including Learn's own.
+
+83
+00:05:24.562 --> 00:05:28.903
+Some come straight from Learn: an
+empty reviewer list is a self-review,
+
+84
+00:05:28.903 --> 00:05:32.863
+reviewers need instructions, a
+monthly review can't run longer
+
+85
+00:05:32.863 --> 00:05:36.975
+than twenty-seven days, and Azure
+series can't use group reviewers.
+
+86
+00:05:36.975 --> 00:05:41.448
+Others are the program's design:
+auto-apply on, justification required,
+
+87
+00:05:41.448 --> 00:05:44.379
+the right cadence per
+tier, no duplicate names,
+
+88
+00:05:44.379 --> 00:05:47.850
+and every privileged group
+paired with its own review.
+
+89
+00:05:47.850 --> 00:05:52.480
+One rule, about the emergency
+accounts, deserves its own slide.
+
+90
+00:05:56.230 --> 00:06:00.857
+This is the one place the code deliberately
+overrides the program's own setting,
+
+91
+00:06:00.857 --> 00:06:03.030
+and it ties straight back to Chapter 2.
+
+92
+00:06:03.030 --> 00:06:06.705
+The emergency accounts hold
+Global Administrator permanently.
+
+93
+00:06:06.705 --> 00:06:11.831
+A monthly review of that role, set to remove
+access on silence with auto-apply on,
+
+94
+00:06:11.831 --> 00:06:15.617
+would quietly remove them the
+first month reviewers miss.
+
+95
+00:06:15.617 --> 00:06:19.605
+Learn itself warns that the
+combination can revoke all access.
+
+96
+00:06:19.605 --> 00:06:22.550
+So that one series makes
+no change on silence,
+
+97
+00:06:22.550 --> 00:06:27.167
+and anything left unreviewed turns
+into an evidence finding instead.
+
+98
+00:06:27.167 --> 00:06:31.860
+Every other series still removes
+access when reviewers stay silent.
+
+99
+00:06:35.610 --> 00:06:39.916
+The dry run reads the tenant first,
+matches each series by name,
+
+100
+00:06:39.916 --> 00:06:45.235
+and compares only what the file sets,
+ignoring defaults Graph adds on its own.
+
+101
+00:06:45.235 --> 00:06:46.860
+Each series gets an action.
+
+102
+00:06:46.860 --> 00:06:48.148
+New ones are created.
+
+103
+00:06:48.148 --> 00:06:52.036
+Changed settings are updated in
+place, for future reviews only.
+
+104
+00:06:52.036 --> 00:06:55.389
+But if the scope changes,
+Learn's update API won't take it,
+
+105
+00:06:55.389 --> 00:06:59.264
+so the code marks it for replacement
+and leaves that to a person,
+
+106
+00:06:59.264 --> 00:07:03.735
+because deleting a review deletes its
+decisions, and those are evidence.
+
+107
+00:07:03.735 --> 00:07:08.160
+And the apply refuses to run at
+all while the plan has any finding.
+
+108
+00:07:11.910 --> 00:07:15.341
+Reviews only matter if you
+can prove they happened,
+
+109
+00:07:15.341 --> 00:07:19.098
+so the last piece reads every
+decision back, for the ISSO.
+
+110
+00:07:19.098 --> 00:07:23.406
+Each decision becomes a row: who
+was reviewed, what was decided,
+
+111
+00:07:23.406 --> 00:07:26.785
+by whom, when, and whether
+it was actually applied.
+
+112
+00:07:26.785 --> 00:07:31.802
+Then come the checks an assessor cares
+about: a series that's missing or overdue,
+
+113
+00:07:31.802 --> 00:07:36.278
+a denial that didn't take effect,
+silence deciding for a sensitive role,
+
+114
+00:07:36.278 --> 00:07:40.214
+approvals with no reason, someone
+reviewing their own access,
+
+115
+00:07:40.214 --> 00:07:44.073
+a burst of identical clicks,
+and an emergency account denied.
+
+116
+00:07:44.073 --> 00:07:47.820
+The rows name people, so
+treat the folder as evidence.
+
+117
+00:07:51.570 --> 00:07:52.632
+Who is this for?
+
+118
+00:07:52.632 --> 00:07:54.458
+Developers build the pipeline.
+
+119
+00:07:54.458 --> 00:07:57.958
+The identity governance officer
+owns the reviews themselves.
+
+120
+00:07:57.958 --> 00:08:00.783
+And the ISSO reads the results.
+
+121
+00:08:00.783 --> 00:08:05.296
+The permissions split the same way:
+the plan and evidence jobs only read,
+
+122
+00:08:05.296 --> 00:08:08.432
+so they hold the read
+permission and Azure Reader.
+
+123
+00:08:08.432 --> 00:08:13.280
+Only the apply identity can write, with
+User Access Administrator for Azure,
+
+124
+00:08:13.280 --> 00:08:15.896
+the narrower of the two roles Learn names.
+
+125
+00:08:15.896 --> 00:08:19.357
+Learn's pages disagree on
+which role can create a review,
+
+126
+00:08:19.357 --> 00:08:22.820
+so the chapter follows the PIM
+page and applies as an app.
+
+127
+00:08:22.820 --> 00:08:27.220
+A test keeps each task's permissions
+exactly what its calls need.
+
+128
+00:08:30.970 --> 00:08:33.770
+Lab 1 runs on a laptop with no tenant.
+
+129
+00:08:33.770 --> 00:08:36.820
+First, run Learn's
+tutorial against the fake.
+
+130
+00:08:36.820 --> 00:08:39.905
+Eleven tests pass, and the
+third one shows the trap:
+
+131
+00:08:39.905 --> 00:08:44.570
+send the tutorial's request twice, and
+you get two reviews with the same name.
+
+132
+00:08:44.570 --> 00:08:47.006
+Next, list each task's permissions:
+
+133
+00:08:47.006 --> 00:08:51.182
+reads for planning and evidence,
+writes only for the apply.
+
+134
+00:08:51.182 --> 00:08:52.432
+Then the dry run.
+
+135
+00:08:52.432 --> 00:08:56.354
+It finds one series to create,
+two to update, one to replace,
+
+136
+00:08:56.354 --> 00:09:00.694
+three already right, and one
+somebody made by hand in the portal.
+
+137
+00:09:00.694 --> 00:09:01.870
+Nothing is sent.
+
+138
+00:09:01.870 --> 00:09:07.000
+Only two writes would go out, because the
+Azure update needs the preview switch.
+
+139
+00:09:10.750 --> 00:09:13.600
+The second half of the lab
+is where it gets convincing.
+
+140
+00:09:13.600 --> 00:09:16.637
+Run the example's checks on
+Learn's own request body,
+
+141
+00:09:16.637 --> 00:09:21.337
+and it fails on the fallback reviewer,
+the missing instructions and auto-apply.
+
+142
+00:09:21.337 --> 00:09:24.726
+Apply in the fake, and only
+the two planned writes go out;
+
+143
+00:09:24.726 --> 00:09:27.287
+everything else is skipped with a reason.
+
+144
+00:09:27.287 --> 00:09:30.495
+Read the evidence, and every
+kind of problem turns up,
+
+145
+00:09:30.495 --> 00:09:34.375
+from an overdue review to an
+emergency account that was denied.
+
+146
+00:09:34.375 --> 00:09:38.937
+Then try to switch the Global
+Administrator series to deny on silence:
+
+147
+00:09:38.937 --> 00:09:41.740
+the apply refuses, and nothing is sent.
+
+148
+00:09:45.490 --> 00:09:50.165
+Lab 2 runs one real review,
+end to end, in a test tenant.
+
+149
+00:09:50.165 --> 00:09:54.015
+Pick a role nobody really holds,
+never Global Administrator.
+
+150
+00:09:54.015 --> 00:09:56.540
+Two apps keep reading and writing apart.
+
+151
+00:09:56.540 --> 00:09:59.448
+You plan as the reader,
+then a second person reads
+
+152
+00:09:59.448 --> 00:10:02.428
+the request bodies before
+you apply as the writer.
+
+153
+00:10:02.428 --> 00:10:06.241
+Then you act as a reviewer:
+approve a test user with a reason,
+
+154
+00:10:06.241 --> 00:10:08.465
+and close the review so it applies.
+
+155
+00:10:08.465 --> 00:10:12.465
+Read the evidence back, and your
+decision is there with its result.
+
+156
+00:10:12.465 --> 00:10:15.452
+The Azure step is optional,
+because it's preview.
+
+157
+00:10:15.452 --> 00:10:20.040
+To back out, export the evidence
+first, then delete by hand.
+
+158
+00:10:23.790 --> 00:10:27.978
+Each of these dangers is a review
+that looks fine and quietly isn't.
+
+159
+00:10:27.978 --> 00:10:31.322
+The worst ties back to Chapter
+2: a setting that removes
+
+160
+00:10:31.322 --> 00:10:34.815
+the emergency accounts the
+first month nobody responds.
+
+161
+00:10:34.815 --> 00:10:38.815
+Close behind are self-reviews,
+reviews with nobody to step in,
+
+162
+00:10:38.815 --> 00:10:42.815
+and denials that never take
+effect because auto-apply is off.
+
+163
+00:10:42.815 --> 00:10:47.136
+Some are traps of the API itself:
+a scope that can't change in place,
+
+164
+00:10:47.136 --> 00:10:49.990
+or a delete that takes
+the evidence with it.
+
+165
+00:10:49.990 --> 00:10:52.041
+And one the code can't fix alone:
+
+166
+00:10:52.041 --> 00:10:56.750
+a user denied an Azure role still
+sits in the group that grants it.
+
+167
+00:11:00.500 --> 00:11:01.850
+Here's what done looks like.
+
+168
+00:11:01.850 --> 00:11:06.689
+Every privileged role, every privileged
+group, and every privileged Azure role at
+
+169
+00:11:06.689 --> 00:11:09.750
+the control-plane subscriptions
+has its own series,
+
+170
+00:11:09.750 --> 00:11:11.600
+and none of them is a self-review.
+
+171
+00:11:11.600 --> 00:11:14.658
+The cadence matches the
+tier, auto-apply is on,
+
+172
+00:11:14.658 --> 00:11:19.038
+and only the emergency accounts'
+series keeps access on silence.
+
+173
+00:11:19.038 --> 00:11:23.544
+The identities hold only what their
+task needs, preview Azure series wait
+
+174
+00:11:23.544 --> 00:11:28.125
+for the lab, and every closed review
+has its decisions in the evidence store.
+
+175
+00:11:28.125 --> 00:11:33.987
+Next, Chapter 8 brings it all together:
+evidence and drift, for the ISSO.
+
+176
+00:11:33.987 --> 00:11:35.150
+Thanks for watching.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.751
+Before anything is planned,
+
+2
+00:00:01.751 --> 00:00:05.300
+the code reads the tenant and
+checks it against nine rules.
+
+3
+00:00:05.300 --> 00:00:09.883
+Some come straight from Learn: only
+role-assignable groups can hold a role, PIM
+
+4
+00:00:09.883 --> 00:00:12.533
+can't manage dynamic or
+synchronized groups,
+
+5
+00:00:12.533 --> 00:00:14.825
+and there's a hard limit of five hundred.
+
+6
+00:00:14.825 --> 00:00:19.928
+Others are the program's design, and
+they're labeled that way: no nesting at all,
+
+7
+00:00:19.928 --> 00:00:24.141
+every entry has an end and a ticket,
+no owners on tier zero groups,
+
+8
+00:00:24.141 --> 00:00:27.300
+and anything the file
+doesn't grant is a finding.
+
+9
+00:00:27.300 --> 00:00:30.912
+One subtle one is the owner
+trap, which we'll see in the lab.
+
+10
+00:00:30.912 --> 00:00:34.510
+Activations are ignored, since
+they aren't standing state.

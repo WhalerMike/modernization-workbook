@@ -1,0 +1,608 @@
+{
+ "1": [
+  [
+   0.05,
+   5.862,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Non-Person Identity."
+  ],
+  [
+   5.912,
+   4.125,
+   "This is Chapter 8: Conditional Access for workload identities."
+  ],
+  [
+   10.037,
+   5.95,
+   "A stolen client secret works from anywhere, unless something says where the workload is allowed to be."
+  ],
+  [
+   15.988,
+   4.862,
+   "So that place is written down, reviewed, and enforced one ring at a time."
+  ],
+  [
+   20.85,
+   13.65,
+   "We'll start from Learn's own sample policy, see why Graph would refuse it as published, then walk the scope file, the checks, the plan, enforcement by ring, the sign-in reader and the alert, two labs and the dangers."
+  ],
+  [
+   34.5,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.512,
+   "Why does this chapter matter?"
+  ],
+  [
+   1.562,
+   6.975,
+   "Because a stolen secret works from anywhere, and Conditional Access is how you pin a workload to its own networks."
+  ],
+  [
+   8.537,
+   7.95,
+   "Learn is short and firm about what it can do: block from outside known ranges, or on risk, and blocking is the only control."
+  ],
+  [
+   16.488,
+   11.787,
+   "Four limits then decide the whole scope: you need the premium license, only single-tenant apps are covered, managed identities aren't, and a policy assigned through a group simply isn't enforced."
+  ],
+  [
+   28.275,
+   4.263,
+   "For this estate, everything goes to the worldwide Graph endpoint."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.525,
+   "The program's design comes from Book 4: two policies."
+  ],
+  [
+   3.575,
+   4.4,
+   "One blocks workloads from anywhere except their named egress ranges."
+  ],
+  [
+   7.975,
+   4.162,
+   "The other blocks them when Microsoft's risk detection marks them high."
+  ],
+  [
+   12.137,
+   5.625,
+   "They roll out report-only first, then ring by ring, and they're never deleted on rollback."
+  ],
+  [
+   17.762,
+   1.488,
+   "Two decisions frame it."
+  ],
+  [
+   19.25,
+   3.7,
+   "The licensing decision covers the top-tier single-tenant apps."
+  ],
+  [
+   22.95,
+   6.963,
+   "The enforcement decision is the security chief's: enforce, wait longer, or enforce with dated exclusions."
+  ],
+  [
+   29.913,
+   5.912,
+   "And don't worry when the risk policy reports nothing; that's normal until something is actually risky."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.875,
+   "Here's Microsoft's starting point."
+  ],
+  [
+   1.925,
+   12.05,
+   "Learn's page gives portal steps for both kinds of policy, says to save them report-only first, tells you where to read the results, and ends with one sample policy in jay-son for the beta Graph endpoint."
+  ],
+  [
+   13.975,
+   5.412,
+   "The repository searched Microsoft's sample repositories and found nothing else to start from."
+  ],
+  [
+   19.387,
+   13.625,
+   "So the page is pinned, unmodified, with checked hashes and a weekly watch, and its one jay-son block is extracted and sent to a fake Graph and to the program's own pre-merge check, exactly as if someone had committed it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.062,
+   "The sample's shape is right, and the code keeps it as the model for the location policy."
+  ],
+  [
+   5.112,
+   1.788,
+   "But the values aren't values."
+  ],
+  [
+   6.9,
+   9.55,
+   "The state field is literally the text \"enabled or disabled\", and the service principal I D is a placeholder in brackets, so Graph refuses it outright."
+  ],
+  [
+   16.45,
+   3.062,
+   "Worse, the easy ways to fill it in are dangerous."
+  ],
+  [
+   19.512,
+   4.875,
+   "One option covers every service principal in the tenant, reviewed or not."
+  ],
+  [
+   24.387,
+   3.875,
+   "Another trusts every network you've marked trusted for people, too."
+  ],
+  [
+   28.262,
+   6.438,
+   "The code allows only reviewed object I D's and one dedicated, untrusted named location."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.825,
+   "The rest of the gaps are about what a program needs around one policy."
+  ],
+  [
+   3.875,
+   3.462,
+   "A field the stable A P I marks required is missing."
+  ],
+  [
+   7.338,
+   2.663,
+   "There's no jay-son at all for the risk policy."
+  ],
+  [
+   10.0,
+   5.463,
+   "The results liv only in the admin center, where a pipeline can't keep them as evidence."
+  ],
+  [
+   15.463,
+   3.487,
+   "There's no record of who's in scope, who's out, and why."
+  ],
+  [
+   18.95,
+   6.287,
+   "And there are no rings and no alert, so enforcement is all or nothing and nobody hears about a block."
+  ],
+  [
+   25.238,
+   4.388,
+   "So the verdict: keep the sample's shape, and don't create it as published."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.225,
+   "What does the code add?"
+  ],
+  [
+   1.275,
+   8.775,
+   "Its own module, building on Chapter 1's core, and unlike the earlier read paths, this one can write Conditional Access, so it's careful about how."
+  ],
+  [
+   10.05,
+   4.45,
+   "The two policies, the named location and the alert are reviewed files."
+  ],
+  [
+   14.5,
+   9.887,
+   "The scope file is the record Gate 5 asks for: who's in, by object I D and ring, who's out and what covers them instead, and the decisions."
+  ],
+  [
+   24.387,
+   7.775,
+   "Each policy is rendered once per ring, so enforcing one ring changes one policy and leaves the next one in report-only."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   7.912,
+   "There are two checks: one reads only files and runs on every pull request, the other runs against the tenant on every plan."
+  ],
+  [
+   7.963,
+   12.775,
+   "Most of the nine rules come straight from Learn's limits: assign by object I D, never by group; no managed identities; single-tenant apps only; and an object I D that really is the enterprise application."
+  ],
+  [
+   20.738,
+   14.662,
+   "The program adds its own: the licensing decision must be recorded, every policy file stays report-only and block-only, egress ranges stay narrow, and enforcement needs the security chief's decision and a reviewed sign-in summary."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.213,
+   "The plan compares the files with the tenant, property by property, and gives each policy one action."
+  ],
+  [
+   6.263,
+   1.425,
+   "Two details matter."
+  ],
+  [
+   7.688,
+   7.763,
+   "A new policy is always created report-only, even if its ring is approved for enforcement; it turns on in the next run."
+  ],
+  [
+   15.45,
+   4.412,
+   "And a policy someone made by hand in the portal is reported, never deleted."
+  ],
+  [
+   19.863,
+   3.812,
+   "Run as the read task, the client simply can't send a write."
+  ],
+  [
+   23.675,
+   3.55,
+   "Run as the apply task, it refuses on any finding."
+  ],
+  [
+   27.225,
+   6.162,
+   "Rollback follows Book 4: take the ring off the record, and its policies go back to report-only."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   9.725,
+   "Turning a policy on is the moment a production job can stop, so the code asks for five things at once, or the ring stays held in report-only with the reason written down."
+  ],
+  [
+   9.775,
+   2.95,
+   "The security chief's decision must mark the ring."
+  ],
+  [
+   12.725,
+   2.913,
+   "The change must explicitly allow enforcement."
+  ],
+  [
+   15.637,
+   3.525,
+   "A reviewed sign-in summary must be cited by its hash."
+  ],
+  [
+   19.163,
+   2.25,
+   "That summary must show the ring ready."
+  ],
+  [
+   21.413,
+   3.038,
+   "And every earlier ring must already be enforced."
+  ],
+  [
+   24.45,
+   8.312,
+   "Exclusions are allowed, but each one has an owner, a reason and an end date, and it drops out by itself when that date arrives."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.7,
+   "The evidence comes from the service principal sign-in logs, and there are three traps."
+  ],
+  [
+   4.75,
+   3.237,
+   "Without the right filter you only get interactive sign-ins."
+  ],
+  [
+   7.987,
+   5.312,
+   "Without a Conditional Access read permission, the policy results are silently left out."
+  ],
+  [
+   13.3,
+   5.737,
+   "And without a special request header, the report-only results come back as an unknown value."
+  ],
+  [
+   19.038,
+   3.962,
+   "The reader handles all three, and throws rather than guessing."
+  ],
+  [
+   23.0,
+   5.588,
+   "It gives each principal a status, and a ring is ready when everyone's clear for two weeks."
+  ],
+  [
+   28.587,
+   4.088,
+   "Once enforced, a block alert goes to security operations."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   1.387,
+   "Developers build it."
+  ],
+  [
+   2.487,
+   2.712,
+   "Identity engineers own the policies."
+  ],
+  [
+   5.2,
+   7.963,
+   "Application owners have workloads in scope, and the security officer and security operations review results and receive the alert."
+  ],
+  [
+   13.162,
+   2.163,
+   "Three tasks split the permissions."
+  ],
+  [
+   15.325,
+   3.15,
+   "Reading needs only policy and application read."
+  ],
+  [
+   18.475,
+   9.35,
+   "Reading sign-ins needs the audit log permission plus the narrowest of the three ways to see policy results; Learn doesn't rank them, so the chapter picked by name."
+  ],
+  [
+   27.825,
+   8.262,
+   "Only the apply task holds the write permission, and a test keeps every task's permissions equal to its calls, with no delete anywhere."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.838,
+   "Lab 1 runs on a laptop, with the fixture's date fixed at the end of October."
+  ],
+  [
+   4.888,
+   8.463,
+   "First you run the tests on Learn's sample as published, and read the one where the fake Graph refuses it, because its state is just display text."
+  ],
+  [
+   13.35,
+   2.15,
+   "Then list what each task needs."
+  ],
+  [
+   15.5,
+   7.025,
+   "Then run the pre-merge check on the repository's own files, which passes cleanly; a finding would fail the pipeline."
+  ],
+  [
+   22.525,
+   8.75,
+   "And then the instructive step: run the same check on Learn's sample, and it reports five findings, one for each of the dangers we walked through earlier."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.65,
+   "Next, plan against the fictional tenant, sending nothing."
+  ],
+  [
+   3.7,
+   4.763,
+   "The named location is missing its I P version six range, so it's an update."
+  ],
+  [
+   8.463,
+   3.875,
+   "Ring 1's location policy already exists and matches."
+  ],
+  [
+   12.338,
+   1.413,
+   "Three policies are new."
+  ],
+  [
+   13.75,
+   6.475,
+   "And a policy someone made in the portal, covering every service principal, is reported but left alone."
+  ],
+  [
+   20.225,
+   1.675,
+   "Then read the sign-ins."
+  ],
+  [
+   21.9,
+   1.938,
+   "Ring 1 is clear and ready."
+  ],
+  [
+   23.837,
+   7.612,
+   "In Ring 2, a deploy bot signed in from an address outside the egress ranges, so it would be blocked, and that ring isn't ready."
+  ],
+  [
+   31.45,
+   2.712,
+   "Notice that no user sign-ins come back at all."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.663,
+   "Now apply the plan to the fake, twice."
+  ],
+  [
+   2.712,
+   11.95,
+   "The first run sends four requests, and the second sends none, because everything already matches; and every workload policy is report-only, while an unrelated user policy is untouched."
+  ],
+  [
+   14.662,
+   1.75,
+   "Then try to enforce Ring 1."
+  ],
+  [
+   16.413,
+   7.25,
+   "Record the decision and the summary's hash, and plan without the enforcement switch: the ring is held, with the reason."
+  ],
+  [
+   23.663,
+   7.188,
+   "Add the switch and the summary, and the location policy turns on, while the brand-new risk policy waits for the next run."
+  ],
+  [
+   30.85,
+   2.975,
+   "Change one byte of the summary, and it's held again."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.325,
+   "Lab 2 uses a test tenant with a Premium trial, never production."
+  ],
+  [
+   4.375,
+   7.425,
+   "You write a scope with one test app, by its enterprise application I D, and an egress range of exactly one address."
+  ],
+  [
+   11.8,
+   2.6,
+   "A reading app plans with read permissions only."
+  ],
+  [
+   14.4,
+   5.662,
+   "Then you add the write permission, apply twice, and confirm everything landed report-only."
+  ],
+  [
+   20.062,
+   5.225,
+   "Generate sign-ins from inside and outside the range, and read them with a separate reader."
+  ],
+  [
+   25.288,
+   6.463,
+   "After two clear weeks, enforce Ring 1 in its own change, and watch the outside sign-in get blocked."
+  ],
+  [
+   31.75,
+   1.212,
+   "Then back it all out."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   11.95,
+   "Several of these dangers are quiet ones: a policy that looks configured and enforces nothing, because the app was assigned through a group, or by the registration's I D instead of the enterprise app's."
+  ],
+  [
+   12.0,
+   5.713,
+   "Others are loud: switching a policy straight on, so a workload that moved stops at once."
+  ],
+  [
+   17.712,
+   8.2,
+   "And some hide in the evidence: report-only results that never came back, so the summary looks clean, or a block nobody hears about."
+  ],
+  [
+   25.913,
+   6.225,
+   "Then the slow ones: a lapsed license, so a fix can't ship, and a write permission left lying around."
+  ],
+  [
+   32.138,
+   1.075,
+   "Each has a guard."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   2.263,
+   "The licensing decision is recorded."
+  ],
+  [
+   3.663,
+   11.1,
+   "Every in-scope app is top-tier, single-tenant, listed by its enterprise application I D, in exactly one ring, and everything out of scope names the control that covers it instead."
+  ],
+  [
+   14.762,
+   4.625,
+   "The egress location holds only the workload ranges and isn't trusted."
+  ],
+  [
+   19.387,
+   2.225,
+   "Every policy started report-only."
+  ],
+  [
+   21.613,
+   7.438,
+   "Each ring was enforced in its own change, on two clean weeks of reviewed evidence, with the alert already in place."
+  ],
+  [
+   29.05,
+   3.612,
+   "Next, Chapter 9 takes on A I agent identities."
+  ],
+  [
+   32.663,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

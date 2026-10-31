@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.356
+The dry run reads the tenant first,
+matches each series by name,
+
+2
+00:00:04.356 --> 00:00:09.675
+and compares only what the file sets,
+ignoring defaults Graph adds on its own.
+
+3
+00:00:09.675 --> 00:00:11.300
+Each series gets an action.
+
+4
+00:00:11.300 --> 00:00:12.588
+New ones are created.
+
+5
+00:00:12.588 --> 00:00:16.476
+Changed settings are updated in
+place, for future reviews only.
+
+6
+00:00:16.476 --> 00:00:19.829
+But if the scope changes,
+Learn's update API won't take it,
+
+7
+00:00:19.829 --> 00:00:23.704
+so the code marks it for replacement
+and leaves that to a person,
+
+8
+00:00:23.704 --> 00:00:28.175
+because deleting a review deletes its
+decisions, and those are evidence.
+
+9
+00:00:28.175 --> 00:00:32.300
+And the apply refuses to run at
+all while the plan has any finding.

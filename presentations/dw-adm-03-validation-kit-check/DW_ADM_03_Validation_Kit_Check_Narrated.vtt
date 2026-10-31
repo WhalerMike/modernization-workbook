@@ -1,0 +1,821 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:09.762
+This is Chapter 3: writing
+a validation kit check.
+
+4
+00:00:09.762 --> 00:00:13.787
+A check is only evidence if it can't
+change what it measures, can't pass
+
+5
+00:00:13.787 --> 00:00:18.100
+when it failed to look, and asks for no
+more access than the question needs.
+
+6
+00:00:18.100 --> 00:00:22.752
+We'll build one new check end to end,
+on soft match and hard match takeover,
+
+7
+00:00:22.752 --> 00:00:27.325
+and along the way meet a read that
+only a Global Administrator can make.
+
+8
+00:00:27.325 --> 00:00:31.625
+Then the tests, the safety
+rules, two labs and the dangers.
+
+9
+00:00:31.625 --> 00:00:37.140
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+10
+00:00:40.890 --> 00:00:41.878
+Why this check?
+
+11
+00:00:41.878 --> 00:00:45.737
+Gate 3 of the implementation guide
+maps attributes through sync,
+
+12
+00:00:45.737 --> 00:00:49.882
+and before the first user from Active
+Directory lands in a tenant that
+
+13
+00:00:49.882 --> 00:00:54.241
+already has cloud accounts, the sync
+engine has to decide who matches whom.
+
+14
+00:00:54.241 --> 00:00:56.977
+It can join on an email
+address or user name,
+
+15
+00:00:56.977 --> 00:01:00.965
+which is soft match, or on the
+source anchor, which is hard match.
+
+16
+00:01:00.965 --> 00:01:05.890
+Left open, either one lets an on-premises
+object take over a cloud account.
+
+17
+00:01:05.890 --> 00:01:10.603
+Microsoft says keep both blocked except
+during an approved matching window.
+
+18
+00:01:10.603 --> 00:01:14.040
+So the question is simple, which
+makes it a good first check.
+
+19
+00:01:14.040 --> 00:01:15.870
+It also hides a lesson.
+
+20
+00:01:19.620 --> 00:01:20.983
+Next, which cloud.
+
+21
+00:01:20.983 --> 00:01:24.958
+The kit reads Microsoft Graph, and
+the host depends on the tenant.
+
+22
+00:01:24.958 --> 00:01:29.781
+A GCC tenant sits on the worldwide
+endpoints, so it reads the same Graph
+
+23
+00:01:29.781 --> 00:01:34.770
+host as a commercial tenant; GCC High
+and the Defense cloud have their own.
+
+24
+00:01:34.770 --> 00:01:38.355
+The sync read this chapter needs
+is available in all of them,
+
+25
+00:01:38.355 --> 00:01:39.745
+at version one point oh.
+
+26
+00:01:39.745 --> 00:01:41.935
+And the kit holds the line on hosts:
+
+27
+00:01:41.935 --> 00:01:46.235
+if Graph hands back a next page
+that points anywhere other than the
+
+28
+00:01:46.235 --> 00:01:50.810
+cloud's own Graph host, the kit
+refuses it, so the token never leaves.
+
+29
+00:01:54.560 --> 00:01:57.340
+Every check in the kit
+has the same five parts,
+
+30
+00:01:57.340 --> 00:02:01.398
+and once you see them, adding a
+check is mostly filling in a pattern.
+
+31
+00:02:01.398 --> 00:02:05.685
+There's a catalog entry that says what
+the check is and what access it needs.
+
+32
+00:02:05.685 --> 00:02:08.110
+A function, named from the check's ID.
+
+33
+00:02:08.110 --> 00:02:10.460
+A read through the kit's single data path.
+
+34
+00:02:10.460 --> 00:02:14.098
+Rows that turn what was read
+into findings and a status.
+
+35
+00:02:14.098 --> 00:02:17.532
+And fixtures with tests, so
+the check has to pass clean
+
+36
+00:02:17.532 --> 00:02:20.810
+data and fail planted
+problems, with an exact count.
+
+37
+00:02:20.810 --> 00:02:25.597
+The README's permission table mirrors the
+catalog, and a test keeps them in step.
+
+38
+00:02:25.597 --> 00:02:27.310
+Let's build each part.
+
+39
+00:02:31.060 --> 00:02:34.235
+Here's the catalog entry,
+and the lesson hiding in it.
+
+40
+00:02:34.235 --> 00:02:37.936
+The read itself is innocent:
+get the tenant's sync settings,
+
+41
+00:02:37.936 --> 00:02:41.097
+with a read-only permission
+that sounds harmless.
+
+42
+00:02:41.097 --> 00:02:44.548
+But Learn lists no application
+permission for it at all,
+
+43
+00:02:44.548 --> 00:02:49.648
+and for a signed-in user it names exactly
+one supported role, Global Administrator.
+
+44
+00:02:49.648 --> 00:02:51.856
+So a check that only reads, run live,
+
+45
+00:02:51.856 --> 00:02:55.047
+would need the most powerful
+role in the tenant.
+
+46
+00:02:55.047 --> 00:02:58.385
+Being read-only is necessary,
+but it isn't enough.
+
+47
+00:02:58.385 --> 00:03:01.260
+The next slide shows what
+the check does about it.
+
+48
+00:03:05.010 --> 00:03:07.235
+So the check does three
+things differently.
+
+49
+00:03:07.235 --> 00:03:10.097
+It's optional: it never
+runs unless you name it.
+
+50
+00:03:10.097 --> 00:03:14.915
+It prefers an export: a Global Administrator
+who's already signed in for other
+
+51
+00:03:14.915 --> 00:03:17.173
+reasons saves the response to a file,
+
+52
+00:03:17.173 --> 00:03:20.635
+and the kit reads the file
+without ever needing the role.
+
+53
+00:03:20.635 --> 00:03:23.352
+And it says so, in plain
+words in the catalog,
+
+54
+00:03:23.352 --> 00:03:28.398
+so a security officer knows what a live
+run would demand before anyone tries it.
+
+55
+00:03:28.398 --> 00:03:32.769
+The program's design guidance follows
+from that: never create a standing
+
+56
+00:03:32.769 --> 00:03:37.200
+Global Administrator identity just
+so a check can run on a schedule.
+
+57
+00:03:40.950 --> 00:03:42.063
+Here's the function.
+
+58
+00:03:42.063 --> 00:03:45.859
+It reads the export if there is
+one, otherwise it asks Graph,
+
+59
+00:03:45.859 --> 00:03:50.526
+and if the tenant has no sync object at
+all, it says the check doesn't apply.
+
+60
+00:03:50.526 --> 00:03:52.900
+The important part is
+the wrapper around it.
+
+61
+00:03:52.900 --> 00:03:58.216
+Every check runs inside the same body
+wrapper, which looks up the catalog entry,
+
+62
+00:03:58.216 --> 00:04:02.550
+records every read, and turns any
+exception into an error result.
+
+63
+00:04:02.550 --> 00:04:05.938
+That means a read that throws
+can never come back as a pass.
+
+64
+00:04:05.938 --> 00:04:10.888
+So resist the urge to catch exceptions
+inside your check to make it more robust.
+
+65
+00:04:10.888 --> 00:04:13.940
+That's exactly how a
+check passes while blind.
+
+66
+00:04:17.690 --> 00:04:21.865
+There's exactly one way a check reads
+tenant data, and that's on purpose.
+
+67
+00:04:21.865 --> 00:04:26.090
+In a fixture run, the data path
+reads a file from the fixture folder.
+
+68
+00:04:26.090 --> 00:04:28.615
+Live, it calls Graph with the address.
+
+69
+00:04:28.615 --> 00:04:31.278
+And an export comes in
+through the input reader.
+
+70
+00:04:31.278 --> 00:04:35.839
+All three are logged the same way, so
+when a reviewer opens the evidence,
+
+71
+00:04:35.839 --> 00:04:40.165
+they can tell from the evidence
+alone which path a result came from:
+
+72
+00:04:40.165 --> 00:04:44.177
+a fixture, a live tenant, or a
+file a Global Administrator saved.
+
+73
+00:04:44.177 --> 00:04:46.247
+That matters for this check above all,
+
+74
+00:04:46.247 --> 00:04:50.820
+because the path is what tells you
+whether the powerful role was ever needed.
+
+75
+00:04:54.570 --> 00:04:55.608
+Now the rows.
+
+76
+00:04:55.608 --> 00:04:58.907
+A block that's off is a
+finding, and the check fails.
+
+77
+00:04:58.907 --> 00:05:01.418
+But if there's an
+approved matching window,
+
+78
+00:05:01.418 --> 00:05:05.220
+the same state is a warning: someone
+should look, it isn't a failure.
+
+79
+00:05:05.220 --> 00:05:08.062
+The window is a date, so
+the day after it closes,
+
+80
+00:05:08.062 --> 00:05:12.595
+the warning turns back into a finding
+without anyone editing anything.
+
+81
+00:05:12.595 --> 00:05:15.108
+Soft match on user name is just context,
+
+82
+00:05:15.108 --> 00:05:18.720
+since Microsoft says it can't
+be turned off once enabled.
+
+83
+00:05:18.720 --> 00:05:23.507
+And one rule matters more than it
+looks: a missing value is read as off.
+
+84
+00:05:23.507 --> 00:05:28.080
+If the response shape changes, you
+get a finding, not a silent pass.
+
+85
+00:05:31.830 --> 00:05:34.118
+A check is tested in both directions.
+
+86
+00:05:34.118 --> 00:05:37.663
+The fixtures are a fictional
+tenant in two states:
+
+87
+00:05:37.663 --> 00:05:40.517
+one with both blocks
+on, one with both off.
+
+88
+00:05:40.517 --> 00:05:44.824
+Each copies the shape of Learn's example
+response, with one extra property
+
+89
+00:05:44.824 --> 00:05:48.918
+the check shouldn't read, so a check
+that reads the wrong one gets caught.
+
+90
+00:05:48.918 --> 00:05:52.584
+Adding the check to the
+table-driven test is a single line,
+
+91
+00:05:52.584 --> 00:05:56.642
+and that line buys four tests,
+including an exact failure count.
+
+92
+00:05:56.642 --> 00:06:00.318
+Then a short block covers what's
+particular to this check:
+
+93
+00:06:00.318 --> 00:06:03.055
+the window, the export,
+and the empty tenant.
+
+94
+00:06:03.055 --> 00:06:07.380
+With the README and catalog
+updated, the whole suite passes.
+
+95
+00:06:11.130 --> 00:06:15.155
+The safety tests are why you can trust
+a new check without re-proving it.
+
+96
+00:06:15.155 --> 00:06:19.779
+They parse every script in the kit and
+fail the build on anything that could
+
+97
+00:06:19.779 --> 00:06:24.030
+change state, and every Graph call has
+to say, literally, that it's a read.
+
+98
+00:06:24.030 --> 00:06:25.847
+There's one pinned exception,
+
+99
+00:06:25.847 --> 00:06:29.330
+a beta action that evaluates
+a rule and changes nothing.
+
+100
+00:06:29.330 --> 00:06:33.029
+Because this check reads only
+through the shared data path,
+
+101
+00:06:33.029 --> 00:06:35.067
+it passes those tests untouched.
+
+102
+00:06:35.067 --> 00:06:38.918
+And the fix for a finding is a write,
+so it never goes in the check.
+
+103
+00:06:38.918 --> 00:06:43.900
+It goes in the change record, run by
+the identity team under change control.
+
+104
+00:06:47.650 --> 00:06:52.125
+This is the chapter's verified-facts
+table, the calls the check depends on.
+
+105
+00:06:52.125 --> 00:06:54.576
+The read needs only a read permission,
+
+106
+00:06:54.576 --> 00:06:59.162
+but only a Global Administrator can
+make it, and only as a signed-in user.
+
+107
+00:06:59.162 --> 00:07:02.562
+The fix needs the matching write
+permission and the same role.
+
+108
+00:07:02.562 --> 00:07:06.240
+The kit's one exception to
+read-only, the rule evaluation,
+
+109
+00:07:06.240 --> 00:07:09.838
+is still in beta, and that's
+labeled wherever it appears.
+
+110
+00:07:09.838 --> 00:07:14.882
+Underneath it all, the shared reader
+does two things every Graph client must:
+
+111
+00:07:14.882 --> 00:07:18.725
+it follows the next page link
+as given until there isn't one,
+
+112
+00:07:18.725 --> 00:07:22.050
+and when Graph says slow
+down, it waits as told.
+
+113
+00:07:25.800 --> 00:07:26.850
+Who's involved?
+
+114
+00:07:26.850 --> 00:07:29.440
+Developers and engineers extend the kit,
+
+115
+00:07:29.440 --> 00:07:32.563
+and they need PowerShell
+and the basics of Pester.
+
+116
+00:07:32.563 --> 00:07:34.760
+Security officers read the results,
+
+117
+00:07:34.760 --> 00:07:38.862
+and the catalog tells them up front
+what access a live run would take.
+
+118
+00:07:38.862 --> 00:07:41.603
+A Global Administrator
+appears exactly once,
+
+119
+00:07:41.603 --> 00:07:45.713
+to save the export while they're
+already signed in for something else.
+
+120
+00:07:45.713 --> 00:07:48.600
+Nothing in the kit itself
+ever runs with that role.
+
+121
+00:07:48.600 --> 00:07:52.665
+And when a finding needs fixing,
+the identity team makes the change,
+
+122
+00:07:52.665 --> 00:07:55.400
+from the change record,
+under change control.
+
+123
+00:07:55.400 --> 00:07:57.730
+The check only ever reports.
+
+124
+00:08:01.480 --> 00:08:06.767
+Lab 1 runs on a laptop with PowerShell
+7 and Pester; nothing signs in.
+
+125
+00:08:06.767 --> 00:08:11.571
+First you run the new check against the
+failing fixture and see a failure with a
+
+126
+00:08:11.571 --> 00:08:14.526
+count of two: two findings,
+one informational row,
+
+127
+00:08:14.526 --> 00:08:16.743
+and one read logged from the fixture.
+
+128
+00:08:16.743 --> 00:08:19.549
+Then you open a matching
+window that ends tomorrow,
+
+129
+00:08:19.549 --> 00:08:21.354
+and the result becomes a warning.
+
+130
+00:08:21.354 --> 00:08:25.005
+Move the date a day past the
+window, and it's a failure again.
+
+131
+00:08:25.005 --> 00:08:27.541
+Finally you hand it a small export file,
+
+132
+00:08:27.541 --> 00:08:32.330
+and the evidence shows the result
+came from the input, not from Graph.
+
+133
+00:08:36.080 --> 00:08:38.805
+The rest of Lab 1 shows the guardrails.
+
+134
+00:08:38.805 --> 00:08:42.899
+You ask the kit what a live run would
+need, and it prints the permission
+
+135
+00:08:42.899 --> 00:08:46.705
+and names the Global Administrator
+role, before anyone signs in.
+
+136
+00:08:46.705 --> 00:08:49.517
+You confirm the check isn't
+part of a default run.
+
+137
+00:08:49.517 --> 00:08:51.593
+You run the kit's whole test suite.
+
+138
+00:08:51.593 --> 00:08:54.595
+And then the best step:
+you deliberately break the
+
+139
+00:08:54.595 --> 00:08:57.379
+check so it reads a property
+that doesn't exist.
+
+140
+00:08:57.379 --> 00:09:01.519
+The failing fixture still fails,
+but now the passing one fails too,
+
+141
+00:09:01.519 --> 00:09:03.818
+because a missing value reads as off.
+
+142
+00:09:03.818 --> 00:09:06.343
+That's the unsafe default doing its job.
+
+143
+00:09:06.343 --> 00:09:09.380
+Put it back, and you've
+seen every outcome.
+
+144
+00:09:13.130 --> 00:09:17.405
+Lab 2 uses a test tenant that
+already syncs from Active Directory.
+
+145
+00:09:17.405 --> 00:09:21.449
+The export is the only step that
+needs a Global Administrator:
+
+146
+00:09:21.449 --> 00:09:24.780
+they sign in, save the response
+to a file, and sign out.
+
+147
+00:09:24.780 --> 00:09:29.380
+Read that file before you take it;
+it's configuration, not personal data.
+
+148
+00:09:29.380 --> 00:09:33.162
+Then anyone runs the check on
+the export, without signing in,
+
+149
+00:09:33.162 --> 00:09:36.480
+and the evidence says the
+result came from the input.
+
+150
+00:09:36.480 --> 00:09:38.383
+Compare it line by line with the file,
+
+151
+00:09:38.383 --> 00:09:42.505
+because that's how you catch a response
+shape that differs from Learn's example.
+
+152
+00:09:42.505 --> 00:09:46.960
+Then delete the export; the
+run's manifest is the evidence.
+
+153
+00:09:50.710 --> 00:09:53.190
+Each of these dangers is a way a check can
+
+154
+00:09:53.190 --> 00:09:56.197
+quietly stop being evidence,
+and each has a guard.
+
+155
+00:09:56.197 --> 00:10:00.629
+The most tempting is creating a standing
+Global Administrator so a check
+
+156
+00:10:00.629 --> 00:10:04.697
+can run on a timer; the guard is an
+optional check that reads an export.
+
+157
+00:10:04.697 --> 00:10:08.131
+The most dangerous is a failed
+read that reports a pass;
+
+158
+00:10:08.131 --> 00:10:11.184
+the wrapper turns every
+exception into an error.
+
+159
+00:10:11.184 --> 00:10:15.163
+Others are subtler: a missing
+property read as on, a fixture that
+
+160
+00:10:15.163 --> 00:10:19.523
+matches the code instead of the
+service, a warning that never expires.
+
+161
+00:10:19.523 --> 00:10:23.340
+Notice that every guard is
+built in, not remembered.
+
+162
+00:10:27.090 --> 00:10:30.115
+Here's what a reviewer checks
+before a new check ships.
+
+163
+00:10:30.115 --> 00:10:32.528
+The name, function and track agree.
+
+164
+00:10:32.528 --> 00:10:36.683
+The catalog names the least privilege
+and the role straight from Learn,
+
+165
+00:10:36.683 --> 00:10:40.839
+and if that role is privileged, the
+check is optional and reads an export.
+
+166
+00:10:40.839 --> 00:10:43.707
+It reads only through
+the shared data path,
+
+167
+00:10:43.707 --> 00:10:47.803
+hides no failed read, and treats
+every missing control as off.
+
+168
+00:10:47.803 --> 00:10:51.885
+Its fixtures follow Learn's shape,
+its tests cover every status,
+
+169
+00:10:51.885 --> 00:10:55.890
+the README knows about it, and
+the safety tests pass untouched.
+
+170
+00:10:55.890 --> 00:10:59.215
+Next up is Chapter 4,
+dynamic rules as code.
+
+171
+00:10:59.215 --> 00:11:00.380
+Thanks for watching.

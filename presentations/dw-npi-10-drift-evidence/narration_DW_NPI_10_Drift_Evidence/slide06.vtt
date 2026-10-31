@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.450
+The other gaps are about
+noise, privacy and scope.
+
+2
+00:00:03.450 --> 00:00:06.032
+The rule knows nothing about the pipeline,
+
+3
+00:00:06.032 --> 00:00:10.312
+so every legitimate rotation alerts,
+and soon nobody reads the alerts.
+
+4
+00:00:10.312 --> 00:00:13.287
+It parses only the first key in an event.
+
+5
+00:00:13.287 --> 00:00:16.937
+It carries people's names into
+the alert, wherever that goes.
+
+6
+00:00:16.937 --> 00:00:20.810
+And it needs a Sentinel workspace
+before any evidence exists,
+
+7
+00:00:20.810 --> 00:00:24.151
+while covering only one of
+the plan's five drift items.
+
+8
+00:00:24.151 --> 00:00:27.775
+So the verdict: use the rule's
+activity names and its key
+
+9
+00:00:27.775 --> 00:00:31.630
+comparison as the model, and
+don't use it as the drift check.

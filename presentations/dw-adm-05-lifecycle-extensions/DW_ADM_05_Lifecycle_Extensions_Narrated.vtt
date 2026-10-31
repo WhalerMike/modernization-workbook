@@ -1,0 +1,830 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:10.500
+This is Chapter 5: Lifecycle
+Workflows custom extensions.
+
+4
+00:00:10.500 --> 00:00:15.052
+A custom task extension hands a leaver,
+a joiner or a mover to code you wrote,
+
+5
+00:00:15.052 --> 00:00:18.037
+and then waits for that
+code to say what happened.
+
+6
+00:00:18.037 --> 00:00:20.467
+The chapter makes sure it always says,
+
+7
+00:00:20.467 --> 00:00:23.288
+says the truth, and says
+it to the right cloud.
+
+8
+00:00:23.288 --> 00:00:27.328
+We'll start from the Logic App
+definition Microsoft publishes,
+
+9
+00:00:27.328 --> 00:00:30.668
+see what it leaves to you,
+walk the program's Logic App,
+
+10
+00:00:30.668 --> 00:00:33.776
+registry and tools, then
+two labs and the dangers.
+
+11
+00:00:33.776 --> 00:00:39.280
+One note before we begin: the code is
+illustrative, tested against fixtures.
+
+12
+00:00:43.030 --> 00:00:44.542
+Why does this chapter matter?
+
+13
+00:00:44.542 --> 00:00:48.375
+Book 03 splits the work:
+provisioning creates accounts,
+
+14
+00:00:48.375 --> 00:00:52.542
+and Lifecycle Workflows act on
+accounts that already exist.
+
+15
+00:00:52.542 --> 00:00:57.611
+The built-in tasks handle the account
+itself, but everything else in a leaver,
+
+16
+00:00:57.611 --> 00:01:00.507
+the PIV credential, the
+devices, the servers,
+
+17
+00:01:00.507 --> 00:01:04.530
+goes through a custom task
+extension, which is code you write.
+
+18
+00:01:04.530 --> 00:01:09.884
+Book 03 also sets three rules: one
+reusable Logic App per integration,
+
+19
+00:01:09.884 --> 00:01:14.580
+block the account first, and make
+custom tasks safe to repeat.
+
+20
+00:01:14.580 --> 00:01:18.965
+Learn sets the contract on the other
+side: how the Logic App is started,
+
+21
+00:01:18.965 --> 00:01:22.580
+how long the workflow waits,
+and how the answer comes back.
+
+22
+00:01:22.580 --> 00:01:24.460
+Let's see where that runs.
+
+23
+00:01:28.210 --> 00:01:29.623
+Now, which cloud.
+
+24
+00:01:29.623 --> 00:01:34.588
+The callback goes to Microsoft Graph,
+and the host depends on the tenant:
+
+25
+00:01:34.588 --> 00:01:39.806
+a GCC tenant like this estate's keeps
+the worldwide endpoint, while GCC High
+
+26
+00:01:39.806 --> 00:01:44.772
+and DoD each have their own, and a token
+for one cloud won't work in another.
+
+27
+00:01:44.772 --> 00:01:46.761
+The Logic App's side matters too.
+
+28
+00:01:46.761 --> 00:01:51.198
+Learn documents the proof-of-possession
+policy only for commercial Azure.
+
+29
+00:01:51.198 --> 00:01:56.010
+For Azure Government it gives nothing, so
+the builder refuses rather than guess.
+
+30
+00:01:56.010 --> 00:01:59.952
+Licensing and availability are
+covered in all the US clouds,
+
+31
+00:01:59.952 --> 00:02:02.948
+and the tenant limits
+are the same everywhere.
+
+32
+00:02:02.948 --> 00:02:05.520
+Next, Microsoft's own sample.
+
+33
+00:02:09.270 --> 00:02:10.982
+Here's what Microsoft gives you.
+
+34
+00:02:10.982 --> 00:02:15.019
+The admin center can create an
+extension and a new Logic App together.
+
+35
+00:02:15.019 --> 00:02:19.952
+For an existing Logic App, Learn publishes
+one workflow definition to paste in:
+
+36
+00:02:19.952 --> 00:02:23.594
+a trigger that describes what
+Lifecycle Workflows sends,
+
+37
+00:02:23.594 --> 00:02:28.070
+one callback action, and a gap in the
+middle labelled "add your logic here".
+
+38
+00:02:28.070 --> 00:02:32.783
+That's Microsoft's only sample; a
+search found no template anywhere else.
+
+39
+00:02:32.783 --> 00:02:38.213
+Because it lives only inside a web page,
+the repository pins the page with checked
+
+40
+00:02:38.213 --> 00:02:43.319
+hashes, and a tiny interpreter runs the
+definition, unchanged, against fakes.
+
+41
+00:02:43.319 --> 00:02:45.380
+So you see what it really does.
+
+42
+00:02:49.130 --> 00:02:51.438
+Running Learn's definition
+against the fakes
+
+43
+00:02:51.438 --> 00:02:53.867
+shows what it gets right
+and what it leaves to you.
+
+44
+00:02:53.867 --> 00:02:56.357
+It gets the identity right: no secret,
+
+45
+00:02:56.357 --> 00:03:00.755
+just the Logic App's managed
+identity, and the program keeps that.
+
+46
+00:03:00.755 --> 00:03:06.275
+But the callback is hard-wired to the
+worldwide cloud and the beta endpoint,
+
+47
+00:03:06.275 --> 00:03:09.480
+so in GCC High or DoD it
+simply never arrives.
+
+48
+00:03:09.480 --> 00:03:11.701
+It trusts whatever path it's handed,
+
+49
+00:03:11.701 --> 00:03:16.142
+which means a forged payload could
+aim that identity's token anywhere.
+
+50
+00:03:16.142 --> 00:03:20.367
+And it always says the work completed,
+even when the revocation failed.
+
+51
+00:03:20.367 --> 00:03:23.580
+Each of those has a fix, pinned by a test.
+
+52
+00:03:27.330 --> 00:03:31.518
+The second half of the gap table is about
+what happens once you add real work.
+
+53
+00:03:31.518 --> 00:03:34.798
+If your added step fails,
+Learn's definition sends nothing,
+
+54
+00:03:34.798 --> 00:03:39.105
+so the workflow sits there for the whole
+wait before it calls the task failed.
+
+55
+00:03:39.105 --> 00:03:41.868
+There's no protection
+against doing the work twice.
+
+56
+00:03:41.868 --> 00:03:44.558
+The subject's name, email and manager land
+
+57
+00:03:44.558 --> 00:03:47.168
+in run history for anyone who can read it.
+
+58
+00:03:47.168 --> 00:03:51.535
+The retries are implicit, and the
+authorization policy is typed by hand,
+
+59
+00:03:51.535 --> 00:03:54.792
+with a placeholder value
+that would block every call.
+
+60
+00:03:54.792 --> 00:03:58.080
+The program's definition closes each one.
+
+61
+00:04:01.830 --> 00:04:03.130
+One row needs a word.
+
+62
+00:04:03.130 --> 00:04:07.294
+The page prints a placeholder for
+the value that identifies Lifecycle
+
+63
+00:04:07.294 --> 00:04:10.893
+Workflows as the caller, and
+copying it would block every call.
+
+64
+00:04:10.893 --> 00:04:15.039
+The chapter traces the real value:
+the page's own bearer-token row,
+
+65
+00:04:15.039 --> 00:04:18.559
+the page's history, Microsoft's
+token claims reference,
+
+66
+00:04:18.559 --> 00:04:23.643
+and the docs repository's list of known
+values all point to the same identifier.
+
+67
+00:04:23.643 --> 00:04:28.268
+The code uses it, a test pins it, and
+Lab 2 still checks it in the tenant.
+
+68
+00:04:28.268 --> 00:04:31.505
+That leads to the verdict: keep
+Learn's shape and trigger,
+
+69
+00:04:31.505 --> 00:04:35.660
+but don't run it as published for
+a leaver's credential revocation.
+
+70
+00:04:39.410 --> 00:04:40.810
+Now the program's code.
+
+71
+00:04:40.810 --> 00:04:45.499
+There's one Logic App definition, and
+every integration deploys the same one;
+
+72
+00:04:45.499 --> 00:04:49.518
+what changes is data, four parameters:
+the Graph host for the cloud,
+
+73
+00:04:49.518 --> 00:04:53.835
+the downstream system and its audience,
+and which workflows it serves.
+
+74
+00:04:53.835 --> 00:04:55.773
+Each run goes in four steps.
+
+75
+00:04:55.773 --> 00:04:59.572
+First it checks the request, and
+if the callback path isn't the
+
+76
+00:04:59.572 --> 00:05:03.523
+resume path for this very task, it
+stops and sends nothing at all.
+
+77
+00:05:03.523 --> 00:05:08.201
+Then it looks up the operation, calls the
+downstream system with bounded retries,
+
+78
+00:05:08.201 --> 00:05:12.830
+and always calls back, telling the
+truth about whether the work succeeded.
+
+79
+00:05:16.580 --> 00:05:18.743
+Two ideas hold the design together.
+
+80
+00:05:18.743 --> 00:05:20.642
+The first is idempotency.
+
+81
+00:05:20.642 --> 00:05:22.663
+The key isn't a Microsoft feature;
+
+82
+00:05:22.663 --> 00:05:26.855
+it's a promise the downstream system
+makes to do the work once per key.
+
+83
+00:05:26.855 --> 00:05:32.382
+That matters because the same task can
+arrive twice: the extension may retry its
+
+84
+00:05:32.382 --> 00:05:34.308
+call, a workflow can be rerun,
+
+85
+00:05:34.308 --> 00:05:37.992
+and Book 03 resumes a partial
+leaver where it stopped.
+
+86
+00:05:37.992 --> 00:05:42.213
+The second is the registry: one
+reviewed entry per integration,
+
+87
+00:05:42.213 --> 00:05:45.054
+holding every value the deployment needs.
+
+88
+00:05:45.054 --> 00:05:47.917
+Its extension settings
+have sensible defaults,
+
+89
+00:05:47.917 --> 00:05:51.630
+and the builder refuses anything
+outside Learn's ranges.
+
+90
+00:05:55.380 --> 00:05:58.217
+The tooling is one script
+with five commands.
+
+91
+00:05:58.217 --> 00:06:02.423
+Lint applies twelve rules to any
+definition, including Microsoft's,
+
+92
+00:06:02.423 --> 00:06:05.801
+and one of them adds up every
+possible retry wait so the
+
+93
+00:06:05.801 --> 00:06:09.105
+callback can't arrive after
+the workflow has given up.
+
+94
+00:06:09.105 --> 00:06:11.614
+Run plays a definition against the fakes,
+
+95
+00:06:11.614 --> 00:06:14.493
+with failures and repeat
+deliveries on demand.
+
+96
+00:06:14.493 --> 00:06:17.730
+Build refuses to write anything
+while there's a finding.
+
+97
+00:06:17.730 --> 00:06:22.319
+And the two checks compare what's
+really in the tenant with the registry,
+
+98
+00:06:22.319 --> 00:06:24.419
+including Book 03's leaver order:
+
+99
+00:06:24.419 --> 00:06:28.930
+block the account and revoke its tokens
+first, then run the custom task.
+
+100
+00:06:28.930 --> 00:06:32.520
+A failed revocation shouldn't
+stop the cleanup after it.
+
+101
+00:06:36.270 --> 00:06:39.573
+Authorization is where hand-typed
+settings usually drift,
+
+102
+00:06:39.573 --> 00:06:41.932
+so the builder writes
+it from the registry.
+
+103
+00:06:41.932 --> 00:06:45.707
+On the Logic App, shared access
+signatures are switched off and
+
+104
+00:06:45.707 --> 00:06:49.771
+Learn's proof-of-possession policy
+goes in with Learn's exact claims.
+
+105
+00:06:49.771 --> 00:06:54.028
+On the extension, the code asks for
+proof-of-possession, following Learn's
+
+106
+00:06:54.028 --> 00:06:58.570
+security guidance even though one example
+still shows the older bearer type.
+
+107
+00:06:58.570 --> 00:07:02.713
+And the identity stays small: because
+the Logic App is an authorized
+
+108
+00:07:02.713 --> 00:07:06.857
+app on the extension, it can call
+back with no Graph permission at all.
+
+109
+00:07:06.857 --> 00:07:10.319
+The tenant-wide alternative is
+what Learn advises against.
+
+110
+00:07:10.319 --> 00:07:12.040
+Now, who does this work?
+
+111
+00:07:15.790 --> 00:07:19.389
+Learn says several things
+differently on different pages,
+
+112
+00:07:19.389 --> 00:07:24.090
+and the chapter writes each one down so
+nobody quietly loosens the code later.
+
+113
+00:07:24.090 --> 00:07:28.465
+The wait range differs between pages,
+so the code takes the narrower one.
+
+114
+00:07:28.465 --> 00:07:32.365
+The workflow limit differs, so the
+chapter plans for the lower one.
+
+115
+00:07:32.365 --> 00:07:36.878
+Even the identifier for the custom
+task differs, within a single page.
+
+116
+00:07:36.878 --> 00:07:41.020
+In each case the code picks the
+safer or better-supported reading,
+
+117
+00:07:41.020 --> 00:07:45.240
+and where it matters, Lab 2 reads
+back what the tenant actually does.
+
+118
+00:07:45.240 --> 00:07:46.778
+That's the end of the code.
+
+119
+00:07:46.778 --> 00:07:48.540
+Now, who's involved.
+
+120
+00:07:52.290 --> 00:07:53.352
+Who is this for?
+
+121
+00:07:53.352 --> 00:07:58.260
+Developers and identity engineers who
+build the integrations behind joiners,
+
+122
+00:07:58.260 --> 00:08:01.828
+movers and leavers, and the
+reviewers who approve each one.
+
+123
+00:08:01.828 --> 00:08:06.553
+You'll want to read JSON and Python,
+and you don't need a tenant until Lab 2.
+
+124
+00:08:06.553 --> 00:08:08.127
+The roles are worth noticing.
+
+125
+00:08:08.127 --> 00:08:13.202
+Creating an extension takes the Lifecycle
+Workflows administrator role plus a
+
+126
+00:08:13.202 --> 00:08:18.277
+contributor role on the Logic App's resource
+group; the operator role isn't enough.
+
+127
+00:08:18.277 --> 00:08:21.835
+The Logic App itself needs no
+Graph permission to call back,
+
+128
+00:08:21.835 --> 00:08:26.190
+and its downstream access should
+be as narrow as the target allows.
+
+129
+00:08:29.940 --> 00:08:34.602
+Lab 1 needs only Python on a
+laptop: no tenant, no network.
+
+130
+00:08:34.602 --> 00:08:36.741
+You start with Microsoft's definition.
+
+131
+00:08:36.741 --> 00:08:41.311
+The linter finds eight problems, and
+when you run it for a GCC High tenant,
+
+132
+00:08:41.311 --> 00:08:46.502
+the callback heads to the worldwide cloud
+and the task fails at the end of the wait.
+
+133
+00:08:46.502 --> 00:08:49.534
+Switch the cloud to
+worldwide and it completes,
+
+134
+00:08:49.534 --> 00:08:52.565
+which is exactly why the
+problem is easy to miss.
+
+135
+00:08:52.565 --> 00:08:57.667
+Then the program's definition: a clean
+lint, and a GCC High run that survives
+
+136
+00:08:57.667 --> 00:09:03.210
+two transient failures, does the work
+once, and calls back to the right cloud.
+
+137
+00:09:06.960 --> 00:09:10.348
+The second half of Lab 1 is
+about watching the guards work.
+
+138
+00:09:10.348 --> 00:09:14.510
+Shorten the wait and the linter
+warns that retries could outlast it.
+
+139
+00:09:14.510 --> 00:09:16.739
+Make the downstream fail every time,
+
+140
+00:09:16.739 --> 00:09:21.047
+and the task is reported failed
+straight away instead of an hour later.
+
+141
+00:09:21.047 --> 00:09:24.997
+Deliver the same task twice,
+and the work still happens once.
+
+142
+00:09:24.997 --> 00:09:26.755
+Then build the deployment files,
+
+143
+00:09:26.755 --> 00:09:30.335
+and watch the builder refuse when
+you point it at Azure Government.
+
+144
+00:09:30.335 --> 00:09:34.435
+Break the leaver order in a fixture
+and the workflow check catches it.
+
+145
+00:09:34.435 --> 00:09:36.935
+Finally, fifty-five tests pass.
+
+146
+00:09:36.935 --> 00:09:40.070
+Remember, though: fakes aren't a tenant.
+
+147
+00:09:43.820 --> 00:09:47.070
+Lab 2 moves to a test
+tenant, never production.
+
+148
+00:09:47.070 --> 00:09:51.515
+You let the admin center create the extension
+and Logic App the way Learn describes,
+
+149
+00:09:51.515 --> 00:09:55.187
+then record exactly what it made
+and compare it with what the builder
+
+150
+00:09:55.187 --> 00:09:58.795
+would have written; any difference
+is a finding against the builder.
+
+151
+00:09:58.795 --> 00:10:01.248
+Then you swap in the program's definition,
+
+152
+00:10:01.248 --> 00:10:06.082
+build a small leaver workflow in the right
+order, and run it for one fictional user.
+
+153
+00:10:06.082 --> 00:10:09.182
+That run also confirms
+the real callback path.
+
+154
+00:10:09.182 --> 00:10:14.146
+Finally, drill the failure: the task
+should fail within minutes, not an hour.
+
+155
+00:10:14.146 --> 00:10:15.990
+Then back everything out.
+
+156
+00:10:19.740 --> 00:10:22.404
+Each of these dangers ends the same way:
+
+157
+00:10:22.404 --> 00:10:26.815
+a leaver whose access isn't really
+gone, or a record that says it is.
+
+158
+00:10:26.815 --> 00:10:30.842
+The quietest are the callback
+problems: no callback on failure,
+
+159
+00:10:30.842 --> 00:10:34.715
+a callback that claims success,
+or one sent to the wrong cloud.
+
+160
+00:10:34.715 --> 00:10:37.562
+Others are about trust: a forged payload,
+
+161
+00:10:37.562 --> 00:10:41.790
+a broad permission, or a
+bearer-token extension left behind.
+
+162
+00:10:41.790 --> 00:10:44.488
+And some are about order:
+doing the work twice,
+
+163
+00:10:44.488 --> 00:10:47.915
+or running the custom task
+before the account is blocked.
+
+164
+00:10:47.915 --> 00:10:53.590
+Notice the pattern again: each guard is a
+lint rule or a check that runs every time.
+
+165
+00:10:57.340 --> 00:10:58.690
+Here's what done looks like.
+
+166
+00:10:58.690 --> 00:11:03.532
+Each integration has one reviewed registry
+entry, one Logic App and one identity,
+
+167
+00:11:03.532 --> 00:11:07.290
+and the deployed pieces came from
+the builder with a clean lint.
+
+168
+00:11:07.290 --> 00:11:11.027
+The extension uses proof-of-possession
+and waits for an answer;
+
+169
+00:11:11.027 --> 00:11:15.913
+shared access signatures are off; and the
+callback host matches the tenant's cloud,
+
+170
+00:11:15.913 --> 00:11:19.003
+which for this estate means
+the worldwide endpoint.
+
+171
+00:11:19.003 --> 00:11:23.256
+Then the proofs: a repeat delivery
+did the work once, a forced failure
+
+172
+00:11:23.256 --> 00:11:27.814
+reported back within minutes, and
+every leaver blocks the account first.
+
+173
+00:11:27.814 --> 00:11:31.140
+Next, Chapter 6 moves
+Group Policy as code.
+
+174
+00:11:31.140 --> 00:11:32.310
+Thanks for watching.

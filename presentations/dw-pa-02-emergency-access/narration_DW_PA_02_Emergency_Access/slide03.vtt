@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Next, which cloud.
+
+2
+00:00:01.413 --> 00:00:05.338
+The check reads Microsoft Graph,
+and the host depends on the tenant.
+
+3
+00:00:05.338 --> 00:00:10.012
+For a GCC tenant like this estate's,
+that's the worldwide Graph endpoint,
+
+4
+00:00:10.012 --> 00:00:14.363
+and the alert sits in Azure Monitor
+in a commercial subscription.
+
+5
+00:00:14.363 --> 00:00:16.884
+The template the code
+writes names no host,
+
+6
+00:00:16.884 --> 00:00:20.558
+so the same file could deploy in
+Azure Government for GCC High,
+
+7
+00:00:20.558 --> 00:00:25.025
+although the chapter flags that full
+availability there wasn't confirmed.
+
+8
+00:00:25.025 --> 00:00:29.302
+And the two sign-in methods Learn
+wants for these accounts, passkeys and
+
+9
+00:00:29.302 --> 00:00:34.080
+certificate-based authentication, are
+available in every one of these clouds.

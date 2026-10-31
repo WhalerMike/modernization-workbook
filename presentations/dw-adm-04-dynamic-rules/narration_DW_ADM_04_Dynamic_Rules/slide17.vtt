@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.012
+Each of these dangers has a
+guard, and most of them are
+
+2
+00:00:03.012 --> 00:00:06.388
+rules that run every time rather
+than someone remembering.
+
+3
+00:00:06.388 --> 00:00:09.723
+The quietest one is a guard
+hidden inside an "or":
+
+4
+00:00:09.723 --> 00:00:14.463
+the rule looks right, a text search
+agrees, and guests get in anyway.
+
+5
+00:00:14.463 --> 00:00:18.259
+The loudest is a change that moves
+hundreds of people within hours,
+
+6
+00:00:18.259 --> 00:00:21.088
+which is why every change
+carries tests and a diff.
+
+7
+00:00:21.088 --> 00:00:24.787
+After an incident, resuming
+everything is its own danger.
+
+8
+00:00:24.787 --> 00:00:30.410
+And one row stays honestly open: agents'
+accounts, until Learn names the property.

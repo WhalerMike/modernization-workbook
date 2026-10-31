@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.038
+Why this check?
+
+2
+00:00:01.038 --> 00:00:04.897
+Gate 3 of the implementation guide
+maps attributes through sync,
+
+3
+00:00:04.897 --> 00:00:09.042
+and before the first user from Active
+Directory lands in a tenant that
+
+4
+00:00:09.042 --> 00:00:13.401
+already has cloud accounts, the sync
+engine has to decide who matches whom.
+
+5
+00:00:13.401 --> 00:00:16.137
+It can join on an email
+address or user name,
+
+6
+00:00:16.137 --> 00:00:20.125
+which is soft match, or on the
+source anchor, which is hard match.
+
+7
+00:00:20.125 --> 00:00:25.050
+Left open, either one lets an on-premises
+object take over a cloud account.
+
+8
+00:00:25.050 --> 00:00:29.763
+Microsoft says keep both blocked except
+during an approved matching window.
+
+9
+00:00:29.763 --> 00:00:33.200
+So the question is simple, which
+makes it a good first check.
+
+10
+00:00:33.200 --> 00:00:34.730
+It also hides a lesson.

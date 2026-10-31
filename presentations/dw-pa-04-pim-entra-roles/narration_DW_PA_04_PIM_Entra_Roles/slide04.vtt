@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.963
+Here's the shape of what we're managing.
+
+2
+00:00:01.963 --> 00:00:04.920
+Every Microsoft Entra role
+has its own settings,
+
+3
+00:00:04.920 --> 00:00:09.800
+independent of every other role, and every
+assignment of that role follows them.
+
+4
+00:00:09.800 --> 00:00:14.819
+In Graph, each role gets one policy,
+and each policy holds seventeen rules
+
+5
+00:00:14.819 --> 00:00:19.837
+with fixed names, grouped into
+activation, assignment and notification.
+
+6
+00:00:19.837 --> 00:00:24.619
+This chapter manages the seven activation
+and assignment rules that Book 4 lists,
+
+7
+00:00:24.619 --> 00:00:29.050
+the ones on the slide, and deliberately
+leaves the notification rules alone.
+
+8
+00:00:29.050 --> 00:00:32.810
+Each of those seven becomes a
+few lines in a reviewed file.

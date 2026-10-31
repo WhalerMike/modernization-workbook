@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+So what does the code add?
+
+2
+00:00:01.375 --> 00:00:05.838
+Four commands and an entry script,
+added to the module from Chapter 1.
+
+3
+00:00:05.838 --> 00:00:08.226
+One checks the accounts
+against the standard.
+
+4
+00:00:08.226 --> 00:00:11.287
+One writes the alert query
+from the account IDs.
+
+5
+00:00:11.287 --> 00:00:15.387
+One wraps that query in a deployable
+template, without deploying it.
+
+6
+00:00:15.387 --> 00:00:20.900
+And one runs the same match over exported
+rows, so you can review a drill offline.
+
+7
+00:00:20.900 --> 00:00:24.869
+Two small files drive it: one
+names the accounts and their
+
+8
+00:00:24.869 --> 00:00:28.838
+exclusion group by object ID,
+and one records every drill.
+
+9
+00:00:28.838 --> 00:00:32.660
+It reuses Chapter 1's reader,
+so it only ever reads.

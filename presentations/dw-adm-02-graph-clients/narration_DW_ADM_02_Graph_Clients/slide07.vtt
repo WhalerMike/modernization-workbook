@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.907
+Running the snippets against the
+stand-ins shows what they leave to you,
+
+2
+00:00:03.907 --> 00:00:06.587
+and the first half is about
+cloud and credentials.
+
+3
+00:00:06.587 --> 00:00:08.858
+The surprise is the Python credential:
+
+4
+00:00:08.858 --> 00:00:13.327
+on the same page where the other languages
+set the government authority, the
+
+5
+00:00:13.327 --> 00:00:18.150
+Python example doesn't, and Python's identity
+library defaults to the public cloud.
+
+6
+00:00:18.150 --> 00:00:22.375
+Copy it for GCC High and the
+app signs in to the wrong cloud.
+
+7
+00:00:22.375 --> 00:00:25.680
+There's also nothing for the
+Department of Defense cloud,
+
+8
+00:00:25.680 --> 00:00:29.126
+a certificate snippet that
+hard-codes the worldwide scope,
+
+9
+00:00:29.126 --> 00:00:32.210
+and a client secret, which is
+just a password in a file.

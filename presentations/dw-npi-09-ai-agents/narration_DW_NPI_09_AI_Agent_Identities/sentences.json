@@ -1,0 +1,543 @@
+{
+ "1": [
+  [
+   0.05,
+   5.862,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Non-Person Identity."
+  ],
+  [
+   5.912,
+   3.263,
+   "This is Chapter 9: A I agent identities."
+  ],
+  [
+   9.175,
+   15.825,
+   "An agent can act at a speed no person can, so the questions the program asks of every identity, who answers for it, what it holds, how it proves itself and when it ends, are asked before it exists, written down, and checked by code every week."
+  ],
+  [
+   25.0,
+   13.725,
+   "We'll cover what's generally available and what's still preview, the program's decision as data, Learn's samples and their gaps, the rules, the sponsor checks, the agent Conditional Access plan, two labs and the dangers."
+  ],
+  [
+   38.725,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.05,
+   "Why does this chapter come with so many questions up front?"
+  ],
+  [
+   3.1,
+   5.237,
+   "Because an agent works at machine speed, so whatever it can reach, it reaches fast."
+  ],
+  [
+   8.338,
+   2.513,
+   "Microsoft's answer is Agent I D."
+  ],
+  [
+   10.85,
+   6.763,
+   "A blueprint holds the credentials and creates the agent identities, which hold the permissions and show up in the logs."
+  ],
+  [
+   17.613,
+   9.963,
+   "That structure has a sharp edge: the blueprint gets tokens on behalf of every agent under it, so one compromised blueprint credential is every agent at once."
+  ],
+  [
+   27.575,
+   6.763,
+   "The platform became generally available in April; the extra security features need Agent 365."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.725,
+   "Before any code, you need to know what's actually available, because the pieces are at different stages."
+  ],
+  [
+   5.775,
+   2.513,
+   "The core objects are generally available."
+  ],
+  [
+   8.287,
+   7.975,
+   "Conditional Access for agents and agent risk are preview, and the Graph properties for agent policies exist only in beta."
+  ],
+  [
+   16.262,
+   6.862,
+   "In this estate's G C C cloud, the documented subset is listed, mostly for delegated access."
+  ],
+  [
+   23.125,
+   3.288,
+   "In the higher government clouds, nothing is published yet."
+  ],
+  [
+   26.413,
+   10.312,
+   "So the program's decision is held as data: in G C C the code reads agent identities, and elsewhere it falls back to applying the same rules to service principals."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   9.475,
+   "Here are the program's rules, from Book 17, each held as a finding with a stable I D. Creation is closed, so an agent can't just appear."
+  ],
+  [
+   9.525,
+   6.388,
+   "Every production agent has a reviewed handshake before it exists, naming who answers for it and what it may do."
+  ],
+  [
+   15.912,
+   4.487,
+   "Credentials prefer a managed identity, and never a production secret."
+  ],
+  [
+   20.4,
+   6.888,
+   "Inheritance never hands every future grant to every agent, and no agent holds a standing privileged role."
+  ],
+  [
+   27.288,
+   5.312,
+   "Sponsors are real employees, and a transfer has ten business days to be confirmed."
+  ],
+  [
+   32.6,
+   2.688,
+   "And drift is watched, with priorities."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.388,
+   "Microsoft gives you more samples here than in most chapters."
+  ],
+  [
+   3.438,
+   13.825,
+   "There's a walk-through that creates a blueprint with a sponsor, an owner and credentials; samples for inheritable permissions; three agent Conditional Access policies; and Graph requests to list blueprints, agents and their sponsors."
+  ],
+  [
+   17.262,
+   7.575,
+   "There's also a PowerShell module, but the chapter calls Graph directly so every request sits in its reviewed call list."
+  ],
+  [
+   24.837,
+   10.988,
+   "Two sets of pages are pinned, eleven files in all, and a harness sends every sample, unmodified, to a fake Graph so the chapter's own checks can run on the result."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.288,
+   "The list requests are a good model, but they stop short."
+  ],
+  [
+   3.337,
+   5.963,
+   "They read one page, and a page holds at most a hundred agents, so a bigger tenant is half-read."
+  ],
+  [
+   9.3,
+   2.25,
+   "They hard-code the worldwide host."
+  ],
+  [
+   11.55,
+   10.2,
+   "The agent sponsor request returns I D's only, and names only a write permission for what is a read, so the code expands sponsors on the list under a read permission instead."
+  ],
+  [
+   21.75,
+   8.012,
+   "And the blueprint sample makes the same person sponsor and owner, meaning whoever decides an agent should exist also holds its keys."
+  ],
+  [
+   29.762,
+   1.337,
+   "The code flags that."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.112,
+   "The rest of the gaps are about safety."
+  ],
+  [
+   2.163,
+   6.912,
+   "The blueprint sample adds a password next to the managed identity, which Learn itself doesn't recommend for production."
+  ],
+  [
+   9.075,
+   6.938,
+   "The inheritance sample starts with allow-all, so every future grant to the blueprint quietly reaches every agent."
+  ],
+  [
+   16.012,
+   5.65,
+   "The pages disagree on a path and a limit, so the code follows the A P I reference."
+  ],
+  [
+   21.663,
+   6.562,
+   "And the block-all-agents policy has no exclusion, so if you enforced it, you'd block the approved agents too."
+  ],
+  [
+   28.225,
+   6.662,
+   "So the verdict: use the reads and the credential model, and never enforce that block without its exclusion."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.225,
+   "What does the code add?"
+  ],
+  [
+   1.275,
+   9.025,
+   "Its own module, a read-only entry script and a separate write path, plus the decision table, the program's rules and two reviewed policies."
+  ],
+  [
+   10.3,
+   3.362,
+   "It builds on Chapters 1 and 2 and changes neither."
+  ],
+  [
+   13.662,
+   14.062,
+   "The inputs are where accountability lives: the Chief A I Officer's use-case inventory, the handshake records, H R's mover and leaver events with each new sponsor's confirmation, and the change board's approved credential changes."
+  ],
+  [
+   27.725,
+   6.987,
+   "One setting has no Graph property at all, so a person reads it in the admin center and records the reading with a date."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.438,
+   "There are twenty-three rules, so let's take them in two halves."
+  ],
+  [
+   3.487,
+   4.263,
+   "The first half covers how an agent comes to exist and who answers for it."
+  ],
+  [
+   7.75,
+   3.85,
+   "Creation must be closed, with a recent reading to prove it."
+  ],
+  [
+   11.6,
+   6.537,
+   "Every identity with a record needs a complete handshake, made before the agent was created, not after."
+  ],
+  [
+   18.137,
+   10.0,
+   "Every agent needs a real sponsor, an enabled employee, plus a group, and a technical owner who isn't the sponsor, and the directory must agree with the record."
+  ],
+  [
+   28.137,
+   5.287,
+   "Then the credential rules: no production secrets, and a certificate only with a reason."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.987,
+   "The second half is about what an agent holds and how it's watched."
+  ],
+  [
+   4.037,
+   12.425,
+   "Inheritance and directory roles come first: any directory role is a finding unless it's recorded with an end date, because Microsoft's list of roles an agent may hold includes some the program counts as privileged."
+  ],
+  [
+   16.462,
+   11.463,
+   "Then the sponsor clock: ten business days, counted around federal holidays, and an unconfirmed transfer means the agent is orphaned and goes to Chapter 2's rule, where a person decides."
+  ],
+  [
+   27.925,
+   5.338,
+   "Then the two policies, the approval attribute, and the three top-priority drift checks."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.812,
+   "The only thing this chapter ever writes is the two agent policies, report-only."
+  ],
+  [
+   4.862,
+   9.55,
+   "The plan compares the reviewed files with the tenant, and where the program's decision says agent Conditional Access isn't published, it simply marks them not available."
+  ],
+  [
+   14.412,
+   9.562,
+   "The write path refuses unless the plan is the approved one, recent, and for this tenant, and every write creates a report-only block policy and nothing else."
+  ],
+  [
+   23.975,
+   4.013,
+   "It runs as a person with the Conditional Access administrator role."
+  ],
+  [
+   27.988,
+   4.5,
+   "And it never turns a policy on; that waits until the feature leaves preview."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   1.387,
+   "Developers build it."
+  ],
+  [
+   2.487,
+   4.338,
+   "The identity governance officer keeps the handshakes and confirms orphans."
+  ],
+  [
+   6.825,
+   9.113,
+   "The Chief A I Officer's staff keep the use-case inventory, security operations own the drift findings, and the security officers review the evidence."
+  ],
+  [
+   15.938,
+   6.112,
+   "The read task holds ten read permissions and nothing that ends in read-write; a test enforces that."
+  ],
+  [
+   22.05,
+   7.338,
+   "A person running it also needs a reader role for custom attributes, and the agent administrator role unless they own the agents."
+  ],
+  [
+   29.387,
+   5.062,
+   "The write task holds only the policy permissions, in a person's signed-in session."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.763,
+   "Lab 1 runs on a laptop, with Chapters 1 and 2's output in place."
+  ],
+  [
+   4.812,
+   9.262,
+   "First, send Learn's samples to the fake, and read the one test that matters most: the block-all-agents policy has no exclusion for approved agents."
+  ],
+  [
+   14.075,
+   10.363,
+   "Then list each task's permissions, and read the decision table for each cloud: agent mode in the worldwide and G C C clouds, fallback in the higher ones."
+  ],
+  [
+   24.438,
+   9.875,
+   "Then run the check in G C C. Eight A I identities, twenty-two findings, four of them top priority, and two orphan candidates for Chapter 2."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.987,
+   "Reading the findings, the fictional tenant shows almost every way this can go wrong."
+  ],
+  [
+   5.037,
+   8.8,
+   "One agent's handshake is incomplete and was reviewed a month after the agent already existed, and it holds a mail administrator role with no end date."
+  ],
+  [
+   13.838,
+   7.037,
+   "Its blueprint has a secret, inherits every Graph role, and had a secret added outside any change window."
+  ],
+  [
+   20.875,
+   5.312,
+   "Another agent's sponsor left and nobody confirmed a new one in time, so it's orphaned."
+  ],
+  [
+   26.188,
+   5.412,
+   "There's a shadow agent nobody declared, and a piloted system with no identity at all."
+  ],
+  [
+   31.6,
+   3.05,
+   "One agent passes everything, which is the target."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.175,
+   "Next, run the same estate as if it lived in G C C High."
+  ],
+  [
+   4.225,
+   4.812,
+   "The code switches to fallback mode and sends no agent identity read at all."
+  ],
+  [
+   9.037,
+   11.363,
+   "The one ordinary service principal gets the same credential and permission findings it got before, and three records that name agent identities become findings, because that cloud doesn't have them."
+  ],
+  [
+   20.4,
+   9.137,
+   "Back in G C C, the dry run would send exactly one request: a report-only high-risk policy, since the other already exists."
+  ],
+  [
+   29.538,
+   5.362,
+   "Applying it to the fake creates it report-only, and a hash nobody approved is refused."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.8,
+   "Lab 2 uses a licensed test tenant with fictional people, never production."
+  ],
+  [
+   4.85,
+   7.237,
+   "Read the blueprint-creation setting yourself, since there's no Graph property for it, set it to No, and record the reading."
+  ],
+  [
+   12.088,
+   11.325,
+   "Then build one properly governed agent from Learn's sample: a sponsor who isn't the owner, a managed identity credential, a handshake, an inventory row, and the approval attribute."
+  ],
+  [
+   23.413,
+   10.2,
+   "Run the check with read permissions only, compare the policy shape with one made in the admin center, apply the plan as a person, and confirm both policies are report-only."
+  ],
+  [
+   33.612,
+   1.675,
+   "Then remove it all by hand."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.837,
+   "Agents make every familiar danger faster."
+  ],
+  [
+   2.888,
+   4.7,
+   "Open creation means whoever builds an agent becomes its sponsor and owner."
+  ],
+  [
+   7.588,
+   4.9,
+   "A secret on a blueprint isn't one credential, it's every agent made from it."
+  ],
+  [
+   12.488,
+   5.175,
+   "Allow-all inheritance turns one future grant into a grant to every agent."
+  ],
+  [
+   17.663,
+   4.025,
+   "A sponsor who leaves unnoticed leaves an agent nobody answers for."
+  ],
+  [
+   21.688,
+   9.238,
+   "And preview features bring their own risks: enforcing a policy on a feature that can still change, or assuming the higher government clouds have objects they don't."
+  ],
+  [
+   30.925,
+   2.875,
+   "Each danger has a guard that runs every week."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   3.075,
+   "Creation is closed and the reading is recent."
+  ],
+  [
+   4.475,
+   7.737,
+   "Every production agent had its handshake reviewed before it existed, with a real employee sponsor, a group, and a separate owner."
+  ],
+  [
+   12.213,
+   7.412,
+   "No production blueprint holds a secret, nothing inherits every role, and no agent holds a standing directory role."
+  ],
+  [
+   19.625,
+   4.625,
+   "Every sponsor transfer was confirmed on time, or handed to the orphan rule."
+  ],
+  [
+   24.25,
+   5.425,
+   "Both policies are report-only and reviewed, and no top-priority drift is open."
+  ],
+  [
+   29.675,
+   5.65,
+   "Next, Chapter 10 brings it all together: drift and evidence for the security officer."
+  ],
+  [
+   35.325,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

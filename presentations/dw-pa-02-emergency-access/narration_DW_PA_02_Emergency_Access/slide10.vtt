@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Now the alert.
+
+2
+00:00:01.088 --> 00:00:05.758
+The query has three legs: interactive
+sign-ins, non-interactive sign-ins,
+
+3
+00:00:05.758 --> 00:00:10.349
+and audit events where an emergency
+account is the actor or the target.
+
+4
+00:00:10.349 --> 00:00:14.973
+It deliberately doesn't use a fuzzy
+union, because if a table never arrives,
+
+5
+00:00:14.973 --> 00:00:18.762
+a fuzzy union returns nothing,
+and silence looks like safety.
+
+6
+00:00:18.762 --> 00:00:23.248
+The template keeps Learn's settings,
+severity zero and any result fires,
+
+7
+00:00:23.248 --> 00:00:27.125
+and checks that it points at a
+real workspace and action group.
+
+8
+00:00:27.125 --> 00:00:30.625
+It deploys nothing; that's
+the reviewed pipeline's job.
+
+9
+00:00:30.625 --> 00:00:32.870
+And remember the two prerequisites:
+
+10
+00:00:32.870 --> 00:00:36.220
+the logs have to be sent, and
+the license has to be there.

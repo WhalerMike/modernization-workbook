@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Why does this chapter matter so much?
+
+2
+00:00:02.150 --> 00:00:05.896
+Because every other chapter's
+code talks to Graph or to Azure,
+
+3
+00:00:05.896 --> 00:00:09.417
+and a client that gets the cloud
+wrong, or asks for too much,
+
+4
+00:00:09.417 --> 00:00:12.488
+carries that mistake into
+everything built on it.
+
+5
+00:00:12.488 --> 00:00:17.289
+So the goal is a client that reaches the
+right cloud, asks for the right token,
+
+6
+00:00:17.289 --> 00:00:22.400
+makes only the calls it declares, and pages
+and retries the way Microsoft says to.
+
+7
+00:00:22.400 --> 00:00:27.012
+Just as important, for each rule in the
+code you should be able to say whether
+
+8
+00:00:27.012 --> 00:00:31.400
+it's Microsoft's contract, Microsoft's
+sample, or the program's own design.
+
+9
+00:00:31.400 --> 00:00:33.100
+Let's start with the clouds.

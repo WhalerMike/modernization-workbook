@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.950
+Here's what a rule looks like as code.
+
+2
+00:00:01.950 --> 00:00:06.527
+Each group is one small file: a name,
+whether it holds users or devices,
+
+3
+00:00:06.527 --> 00:00:11.920
+an owner who approves changes, a flag saying
+whether it's critical in an incident,
+
+4
+00:00:11.920 --> 00:00:15.925
+the rule itself with its two guards
+at the top, and a few tests.
+
+5
+00:00:15.925 --> 00:00:20.853
+The tests name people in a fictional
+population built to trip every guard:
+
+6
+00:00:20.853 --> 00:00:24.730
+someone disabled, a guest who
+copied an organization code,
+
+7
+00:00:24.730 --> 00:00:27.800
+a worker with an empty
+type, a code in lower case.
+
+8
+00:00:27.800 --> 00:00:31.800
+If the rule ever lets the wrong
+person in, a test says so.

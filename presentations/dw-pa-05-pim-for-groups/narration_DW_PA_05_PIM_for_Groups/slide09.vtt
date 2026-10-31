@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.925
+Two details in the policy
+deserve a closer look.
+
+2
+00:00:02.925 --> 00:00:06.753
+Learn's pages disagree on how
+long an activation may last:
+
+3
+00:00:06.753 --> 00:00:10.662
+one says eight hours at most,
+another says up to twenty-four.
+
+4
+00:00:10.662 --> 00:00:14.537
+The code takes the stricter
+reading and flags anything longer.
+
+5
+00:00:14.537 --> 00:00:19.149
+Then there's the authentication context
+from Chapter 3, which isn't built yet.
+
+6
+00:00:19.149 --> 00:00:23.544
+When it arrives, it only forces a
+fresh sign-in on every activation
+
+7
+00:00:23.544 --> 00:00:27.613
+if its policy says so, and even
+then there's a ten-minute window.
+
+8
+00:00:27.613 --> 00:00:32.330
+Learn also disagrees on whether it's preview,
+so the chapter treats it as preview.

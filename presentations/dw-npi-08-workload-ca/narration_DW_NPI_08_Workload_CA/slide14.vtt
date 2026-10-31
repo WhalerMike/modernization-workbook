@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.700
+Next, plan against the fictional
+tenant, sending nothing.
+
+2
+00:00:03.700 --> 00:00:08.463
+The named location is missing its
+IPv6 range, so it's an update.
+
+3
+00:00:08.463 --> 00:00:12.338
+Ring 1's location policy
+already exists and matches.
+
+4
+00:00:12.338 --> 00:00:13.751
+Three policies are new.
+
+5
+00:00:13.751 --> 00:00:16.246
+And a policy someone made in the portal,
+
+6
+00:00:16.246 --> 00:00:20.225
+covering every service principal,
+is reported but left alone.
+
+7
+00:00:20.225 --> 00:00:21.900
+Then read the sign-ins.
+
+8
+00:00:21.900 --> 00:00:23.838
+Ring 1 is clear and ready.
+
+9
+00:00:23.838 --> 00:00:28.497
+In Ring 2, a deploy bot signed in from
+an address outside the egress ranges,
+
+10
+00:00:28.497 --> 00:00:31.449
+so it would be blocked,
+and that ring isn't ready.
+
+11
+00:00:31.449 --> 00:00:34.220
+Notice that no user
+sign-ins come back at all.

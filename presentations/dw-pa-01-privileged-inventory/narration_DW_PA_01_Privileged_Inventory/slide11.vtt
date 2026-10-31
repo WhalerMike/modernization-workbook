@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.587
+Test-PaInventory turns those rows
+into the nine findings on the slide.
+
+2
+00:00:04.587 --> 00:00:09.360
+Two thresholds come straight from Learn:
+fewer than five Global Administrators,
+
+3
+00:00:09.360 --> 00:00:12.138
+and no more than three
+owners on a subscription.
+
+4
+00:00:12.138 --> 00:00:14.117
+Learn also backs the biggest one,
+
+5
+00:00:14.117 --> 00:00:18.665
+standing privilege in the top tiers
+outside a short, owned exceptions list,
+
+6
+00:00:18.665 --> 00:00:22.259
+and the root-scope finding,
+because elevating access hands
+
+7
+00:00:22.259 --> 00:00:26.000
+someone User Access Administrator
+over every subscription.
+
+8
+00:00:26.000 --> 00:00:31.045
+The rest are the program's own design,
+labeled that way: roles assigned straight
+
+9
+00:00:31.045 --> 00:00:36.070
+to people, badly named groups, unmapped
+roles, and eligibility that never ends.

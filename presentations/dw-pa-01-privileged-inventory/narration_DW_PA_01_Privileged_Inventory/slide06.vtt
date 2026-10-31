@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.388
+Microsoft's starting point is Learn's
+page on listing role assignments.
+
+2
+00:00:04.388 --> 00:00:09.101
+It covers the admin center, PowerShell
+and Graph itself, and its all-roles
+
+3
+00:00:09.101 --> 00:00:14.363
+sample reads every role definition, then
+lists each role's assignments one by one.
+
+4
+00:00:14.363 --> 00:00:18.060
+For Azure, Learn says there's no
+single command for both kinds,
+
+5
+00:00:18.060 --> 00:00:21.388
+so you list eligible and
+active schedules separately.
+
+6
+00:00:21.388 --> 00:00:26.375
+Those samples only live inside the web
+page, so the repository pins the page's
+
+7
+00:00:26.375 --> 00:00:31.524
+source unmodified, checks its hash in a
+test, and watches for upstream changes.
+
+8
+00:00:31.524 --> 00:00:36.562
+A harness then runs the samples,
+exactly as published, against stand-ins.
+
+9
+00:00:36.562 --> 00:00:37.820
+Nothing signs in.

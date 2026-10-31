@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.775
+The best proof a linter is useful
+is that it finds something real.
+
+2
+00:00:03.775 --> 00:00:08.650
+Run against Book 3's own table of
+rule patterns, it found three things.
+
+3
+00:00:08.650 --> 00:00:12.126
+One pattern had no guest guard,
+so a guest with a matching
+
+4
+00:00:12.126 --> 00:00:15.375
+employer name could have
+qualified; that's now fixed.
+
+5
+00:00:15.375 --> 00:00:17.866
+Another let in a worker
+with an empty type,
+
+6
+00:00:17.866 --> 00:00:21.675
+and the owner decided that shouldn't
+count, so it gained a clause.
+
+7
+00:00:21.675 --> 00:00:24.811
+And the direct reports rule
+can't carry guards at all,
+
+8
+00:00:24.811 --> 00:00:29.690
+because Learn says it can't be combined
+with anything, so the linter just notes it.

@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.850
+Lab 1 runs on a laptop with no tenant.
+
+2
+00:00:02.850 --> 00:00:05.900
+First, run Learn's
+tutorial against the fake.
+
+3
+00:00:05.900 --> 00:00:08.985
+Eleven tests pass, and the
+third one shows the trap:
+
+4
+00:00:08.985 --> 00:00:13.650
+send the tutorial's request twice, and
+you get two reviews with the same name.
+
+5
+00:00:13.650 --> 00:00:16.086
+Next, list each task's permissions:
+
+6
+00:00:16.086 --> 00:00:20.262
+reads for planning and evidence,
+writes only for the apply.
+
+7
+00:00:20.262 --> 00:00:21.512
+Then the dry run.
+
+8
+00:00:21.512 --> 00:00:25.434
+It finds one series to create,
+two to update, one to replace,
+
+9
+00:00:25.434 --> 00:00:29.774
+three already right, and one
+somebody made by hand in the portal.
+
+10
+00:00:29.774 --> 00:00:30.950
+Nothing is sent.
+
+11
+00:00:30.950 --> 00:00:35.780
+Only two writes would go out, because the
+Azure update needs the preview switch.

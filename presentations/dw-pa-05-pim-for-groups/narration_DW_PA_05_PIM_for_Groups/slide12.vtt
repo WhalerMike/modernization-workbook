@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.426
+Learn isn't always consistent with
+itself, and the chapter writes down
+
+2
+00:00:04.426 --> 00:00:08.500
+every place it isn't, so a later edit
+doesn't quietly loosen the code.
+
+3
+00:00:08.500 --> 00:00:10.513
+Activation length is one.
+
+4
+00:00:10.513 --> 00:00:15.501
+Whether PIM for Groups is generally
+available or still beta is another:
+
+5
+00:00:15.501 --> 00:00:18.799
+the API pages say one thing,
+a how-to says another.
+
+6
+00:00:18.799 --> 00:00:22.661
+The permissions for role-assignable
+groups differ between pages,
+
+7
+00:00:22.661 --> 00:00:24.837
+and the Lab 2 run is how you settle that.
+
+8
+00:00:24.837 --> 00:00:29.954
+Even the obvious PowerShell cmdlet
+disagrees with its own API page,
+
+9
+00:00:29.954 --> 00:00:32.570
+so the code calls the API directly.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.550
+Checking the samples offline shows
+what they do well, and the pipeline
+
+2
+00:00:04.550 --> 00:00:08.663
+keeps all of it: the same sign-in,
+the same secrets, the single grant.
+
+3
+00:00:08.663 --> 00:00:10.952
+What they leave out starts with timing:
+
+4
+00:00:10.952 --> 00:00:15.175
+they run when someone pushes a commit,
+and drift doesn't wait for a commit.
+
+5
+00:00:15.175 --> 00:00:18.447
+Their actions are referenced
+by tags that can be moved,
+
+6
+00:00:18.447 --> 00:00:23.100
+and an older major version at that, so
+the pipeline pins each action to a commit.
+
+7
+00:00:23.100 --> 00:00:24.558
+Tool versions say latest,
+
+8
+00:00:24.558 --> 00:00:28.238
+so the tool that produced the
+evidence could change unreviewed.
+
+9
+00:00:28.238 --> 00:00:32.540
+And the US Government sample,
+copied as is, doesn't even parse.

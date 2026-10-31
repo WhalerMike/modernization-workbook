@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Next, which cloud.
+
+2
+00:00:01.413 --> 00:00:05.388
+The kit reads Microsoft Graph, and
+the host depends on the tenant.
+
+3
+00:00:05.388 --> 00:00:10.211
+A GCC tenant sits on the worldwide
+endpoints, so it reads the same Graph
+
+4
+00:00:10.211 --> 00:00:15.200
+host as a commercial tenant; GCC High
+and the Defense cloud have their own.
+
+5
+00:00:15.200 --> 00:00:18.785
+The sync read this chapter needs
+is available in all of them,
+
+6
+00:00:18.785 --> 00:00:20.175
+at version one point oh.
+
+7
+00:00:20.175 --> 00:00:22.365
+And the kit holds the line on hosts:
+
+8
+00:00:22.365 --> 00:00:26.665
+if Graph hands back a next page
+that points anywhere other than the
+
+9
+00:00:26.665 --> 00:00:30.940
+cloud's own Graph host, the kit
+refuses it, so the token never leaves.

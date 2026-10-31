@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.438
+The second half of Lab 1 is
+about watching the guards work.
+
+2
+00:00:03.438 --> 00:00:07.600
+Shorten the wait and the linter
+warns that retries could outlast it.
+
+3
+00:00:07.600 --> 00:00:09.829
+Make the downstream fail every time,
+
+4
+00:00:09.829 --> 00:00:14.137
+and the task is reported failed
+straight away instead of an hour later.
+
+5
+00:00:14.137 --> 00:00:18.087
+Deliver the same task twice,
+and the work still happens once.
+
+6
+00:00:18.087 --> 00:00:19.845
+Then build the deployment files,
+
+7
+00:00:19.845 --> 00:00:23.425
+and watch the builder refuse when
+you point it at Azure Government.
+
+8
+00:00:23.425 --> 00:00:27.525
+Break the leaver order in a fixture
+and the workflow check catches it.
+
+9
+00:00:27.525 --> 00:00:30.025
+Finally, fifty-five tests pass.
+
+10
+00:00:30.025 --> 00:00:32.860
+Remember, though: fakes aren't a tenant.

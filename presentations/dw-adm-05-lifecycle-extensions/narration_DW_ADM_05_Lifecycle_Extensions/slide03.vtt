@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.463
+Now, which cloud.
+
+2
+00:00:01.463 --> 00:00:06.428
+The callback goes to Microsoft Graph,
+and the host depends on the tenant:
+
+3
+00:00:06.428 --> 00:00:11.646
+a GCC tenant like this estate's keeps
+the worldwide endpoint, while GCC High
+
+4
+00:00:11.646 --> 00:00:16.612
+and DoD each have their own, and a token
+for one cloud won't work in another.
+
+5
+00:00:16.612 --> 00:00:18.601
+The Logic App's side matters too.
+
+6
+00:00:18.601 --> 00:00:23.038
+Learn documents the proof-of-possession
+policy only for commercial Azure.
+
+7
+00:00:23.038 --> 00:00:27.850
+For Azure Government it gives nothing, so
+the builder refuses rather than guess.
+
+8
+00:00:27.850 --> 00:00:31.792
+Licensing and availability are
+covered in all the US clouds,
+
+9
+00:00:31.792 --> 00:00:34.788
+and the tenant limits
+are the same everywhere.
+
+10
+00:00:34.788 --> 00:00:37.060
+Next, Microsoft's own sample.

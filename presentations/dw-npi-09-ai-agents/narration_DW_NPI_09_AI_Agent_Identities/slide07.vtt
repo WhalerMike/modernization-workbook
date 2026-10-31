@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.162
+The rest of the gaps are about safety.
+
+2
+00:00:02.162 --> 00:00:06.003
+The blueprint sample adds a password
+next to the managed identity,
+
+3
+00:00:06.003 --> 00:00:09.075
+which Learn itself doesn't
+recommend for production.
+
+4
+00:00:09.075 --> 00:00:11.880
+The inheritance sample
+starts with allow-all,
+
+5
+00:00:11.880 --> 00:00:16.013
+so every future grant to the
+blueprint quietly reaches every agent.
+
+6
+00:00:16.013 --> 00:00:21.662
+The pages disagree on a path and a limit,
+so the code follows the API reference.
+
+7
+00:00:21.662 --> 00:00:24.715
+And the block-all-agents
+policy has no exclusion,
+
+8
+00:00:24.715 --> 00:00:28.225
+so if you enforced it, you'd
+block the approved agents too.
+
+9
+00:00:28.225 --> 00:00:31.594
+So the verdict: use the reads
+and the credential model,
+
+10
+00:00:31.594 --> 00:00:34.940
+and never enforce that
+block without its exclusion.

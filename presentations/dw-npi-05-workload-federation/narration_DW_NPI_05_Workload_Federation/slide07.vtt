@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.287
+The rest of the gap table is
+about everything around the write.
+
+2
+00:00:03.287 --> 00:00:07.215
+The samples hard-code worldwide
+hosts, use a preview version,
+
+3
+00:00:07.215 --> 00:00:10.513
+and in one case send a request
+with no version at all.
+
+4
+00:00:10.513 --> 00:00:12.977
+They create one credential
+at a time by hand,
+
+5
+00:00:12.977 --> 00:00:16.400
+so nothing notices a credential
+someone added in the portal.
+
+6
+00:00:16.400 --> 00:00:18.938
+They don't check the limits
+Learn itself states.
+
+7
+00:00:18.938 --> 00:00:23.198
+And they stop at creation: no
+record of the identity's roles,
+
+8
+00:00:23.198 --> 00:00:25.151
+no parallel run, no disable.
+
+9
+00:00:25.151 --> 00:00:28.956
+The verdict: use the samples as
+the model for the three writes,
+
+10
+00:00:28.956 --> 00:00:33.740
+but not as the conversion, because they
+accept the wrong subject in silence.

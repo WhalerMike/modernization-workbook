@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.664
+The sample's shape is right,
+
+2
+00:00:01.664 --> 00:00:05.112
+and the code keeps it as the
+model for the location policy.
+
+3
+00:00:05.112 --> 00:00:06.900
+But the values aren't values.
+
+4
+00:00:06.900 --> 00:00:11.755
+The state field is literally the text
+"enabled or disabled", and the service
+
+5
+00:00:11.755 --> 00:00:16.450
+principal ID is a placeholder in
+brackets, so Graph refuses it outright.
+
+6
+00:00:16.450 --> 00:00:19.512
+Worse, the easy ways to
+fill it in are dangerous.
+
+7
+00:00:19.512 --> 00:00:24.387
+One option covers every service
+principal in the tenant, reviewed or not.
+
+8
+00:00:24.387 --> 00:00:28.262
+Another trusts every network you've
+marked trusted for people, too.
+
+9
+00:00:28.262 --> 00:00:32.705
+The code allows only reviewed
+object IDs and one dedicated,
+
+10
+00:00:32.705 --> 00:00:34.750
+untrusted named location.

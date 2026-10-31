@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.940
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:03.940 --> 00:00:06.287
+Building the Attribute-Driven Migration.
+
+3
+00:00:06.287 --> 00:00:10.162
+This is Chapter 2: Graph clients
+for the government clouds.
+
+4
+00:00:10.162 --> 00:00:15.558
+Every piece of code in this workbook that
+calls Microsoft Graph should follow one
+
+5
+00:00:15.558 --> 00:00:20.717
+pattern: know which cloud it's in, send its
+token nowhere else, ask for no more than
+
+6
+00:00:20.717 --> 00:00:25.875
+each call needs, and keep working when
+Graph says slow down or a beta API changes.
+
+7
+00:00:25.875 --> 00:00:30.347
+We'll sort out which cloud is which,
+run Microsoft's own snippets to see
+
+8
+00:00:30.347 --> 00:00:34.975
+what they leave out, walk the client's
+rules, then two labs and the dangers.
+
+9
+00:00:34.975 --> 00:00:40.180
+One note before we begin: the code is
+illustrative, tested against fixtures.

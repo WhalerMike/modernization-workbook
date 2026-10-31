@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.295
+Running Learn's commands offline
+shows what they don't do,
+
+2
+00:00:03.295 --> 00:00:06.263
+and the first set of gaps is
+about the package itself.
+
+3
+00:00:06.263 --> 00:00:09.754
+The compiled file records who
+built it, on which machine,
+
+4
+00:00:09.754 --> 00:00:13.701
+and where, and that file goes to
+storage the whole fleet can read.
+
+5
+00:00:13.701 --> 00:00:17.941
+Compiling twice gives different
+bytes, and so does packaging twice,
+
+6
+00:00:17.941 --> 00:00:20.894
+so a reviewer can't tell
+a real change from noise,
+
+7
+00:00:20.894 --> 00:00:24.075
+and a rebuilt package won't
+match the reviewed hash.
+
+8
+00:00:24.075 --> 00:00:25.875
+Nothing scans for secrets.
+
+9
+00:00:25.875 --> 00:00:27.663
+And module versions float.
+
+10
+00:00:27.663 --> 00:00:31.200
+Each gap has a fix in the
+example, pinned by a test.

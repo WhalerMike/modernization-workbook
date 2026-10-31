@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:06.025
+The configuration and its registry
+entry arrive in the same pull request.
+
+3
+00:00:06.025 --> 00:00:08.950
+The build used the pinned
+modules and found nothing.
+
+4
+00:00:08.950 --> 00:00:12.888
+Anyone can rebuild the commit and
+match the cleaned file's hash.
+
+5
+00:00:12.888 --> 00:00:15.348
+The package was tested
+on a throwaway server,
+
+6
+00:00:15.348 --> 00:00:19.737
+and the published file's hash matches
+the record and the definition everywhere.
+
+7
+00:00:19.737 --> 00:00:24.189
+No long-lived token, the owner tag
+filter on anything that enforces,
+
+8
+00:00:24.189 --> 00:00:29.125
+Arc servers included where they belong,
+and the records filed as evidence.
+
+9
+00:00:29.125 --> 00:00:32.187
+Next, Chapter 8 puts Ansible beside Arc.
+
+10
+00:00:32.187 --> 00:00:33.340
+Thanks for watching.

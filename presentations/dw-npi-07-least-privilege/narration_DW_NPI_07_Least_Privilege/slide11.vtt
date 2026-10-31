@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.350
+As in the last chapter, writing is a
+separate script with strict refusals.
+
+2
+00:00:04.350 --> 00:00:06.552
+The plan must be the approved one,
+
+3
+00:00:06.552 --> 00:00:09.813
+for this tenant and cloud,
+and less than a week old.
+
+4
+00:00:09.813 --> 00:00:14.241
+It can only delete one kind of thing,
+a role assignment through its resource,
+
+5
+00:00:14.241 --> 00:00:16.599
+and it can only shrink a delegated grant.
+
+6
+00:00:16.599 --> 00:00:20.625
+And it runs as a person, signed in
+with the right administrator role.
+
+7
+00:00:20.625 --> 00:00:21.687
+Why not an app?
+
+8
+00:00:21.687 --> 00:00:24.317
+Because the permissions
+it needs are exactly
+
+9
+00:00:24.317 --> 00:00:26.876
+the escalation permissions
+the sweep flags.
+
+10
+00:00:26.876 --> 00:00:31.420
+Before each write it re-reads the
+target, and skips anything that changed.

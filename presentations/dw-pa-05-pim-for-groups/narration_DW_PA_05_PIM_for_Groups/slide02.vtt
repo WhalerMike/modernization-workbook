@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:05.375
+Because the program never hands a
+privileged role to a person directly.
+
+3
+00:00:05.375 --> 00:00:08.375
+It hands it to a group
+with the tier in its name,
+
+4
+00:00:08.375 --> 00:00:11.375
+so the tier shows up in
+every review and alert.
+
+5
+00:00:11.375 --> 00:00:15.659
+That means the group itself is now
+the privilege: whoever adds a member,
+
+6
+00:00:15.659 --> 00:00:20.387
+or changes the activation policy, has
+effectively changed who holds the role.
+
+7
+00:00:20.387 --> 00:00:22.787
+Chapter 1 already reads these groups.
+
+8
+00:00:22.787 --> 00:00:25.418
+This chapter writes them,
+from a reviewed file,
+
+9
+00:00:25.418 --> 00:00:28.740
+and because people can still
+change membership around it,
+
+10
+00:00:28.740 --> 00:00:33.290
+the code reads the tenant first and treats
+anything it didn't put there as drift.

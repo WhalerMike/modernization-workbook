@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.463
+Run as published, the script
+has two opposite problems.
+
+2
+00:00:03.463 --> 00:00:05.174
+First, it's indiscriminate:
+
+3
+00:00:05.174 --> 00:00:09.999
+it removes every delegated grant and
+tries every application permission,
+
+4
+00:00:09.999 --> 00:00:12.567
+with no list of what to
+keep and no dry run,
+
+5
+00:00:12.567 --> 00:00:16.925
+so a permission someone formally
+approved goes along with the rest.
+
+6
+00:00:16.925 --> 00:00:19.233
+Second, on Learn's own API contract,
+
+7
+00:00:19.233 --> 00:00:24.508
+its application permission removals miss
+entirely: it passes the app's own ID
+
+8
+00:00:24.508 --> 00:00:29.700
+where the reference says the resource
+belongs, so all three answer not found.
+
+9
+00:00:29.700 --> 00:00:32.440
+The code keeps the requests as its model,
+
+10
+00:00:32.440 --> 00:00:35.830
+and adds the keep list,
+the decisions and the plan.

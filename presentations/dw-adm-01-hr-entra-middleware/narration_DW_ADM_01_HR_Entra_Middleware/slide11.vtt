@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.350
+Next, the order and the speed.
+
+2
+00:00:02.350 --> 00:00:06.595
+Leavers go first, so a departing
+mover never briefly gains access,
+
+3
+00:00:06.595 --> 00:00:10.762
+and managers go before their
+reports so the references resolve.
+
+4
+00:00:10.762 --> 00:00:15.672
+Two guards hold the whole run until a
+person confirms it: too many disables, or
+
+5
+00:00:15.672 --> 00:00:21.049
+more calls than the daily budget, which
+follows Microsoft's tenant quota by license.
+
+6
+00:00:21.049 --> 00:00:24.331
+On speed, two Learn pages
+disagree on the rate limit,
+
+7
+00:00:24.331 --> 00:00:28.394
+so the client paces to the stricter
+one, honors the retry header,
+
+8
+00:00:28.394 --> 00:00:32.300
+and stops at the first failure
+rather than retrying in a loop.
+
+9
+00:00:32.300 --> 00:00:34.340
+Next, the record it keeps.

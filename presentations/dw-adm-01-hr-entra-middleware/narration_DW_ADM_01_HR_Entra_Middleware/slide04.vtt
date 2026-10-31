@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.362
+Here's the whole pipeline on one slide.
+
+2
+00:00:02.362 --> 00:00:06.050
+An H R extract comes in as a C S V file.
+
+3
+00:00:06.050 --> 00:00:10.469
+The middleware validates it, normalizes
+it, orders it, batches it and
+
+4
+00:00:10.469 --> 00:00:15.125
+paces the calls, then posts bulk
+requests to the provisioning endpoint.
+
+5
+00:00:15.125 --> 00:00:17.175
+Along the way it writes four files.
+
+6
+00:00:17.175 --> 00:00:22.200
+Three of them carry only keys and hashes,
+so they can live in the evidence store.
+
+7
+00:00:22.200 --> 00:00:26.244
+The quarantine file holds the
+refused rows, real personal data,
+
+8
+00:00:26.244 --> 00:00:29.588
+so it goes only to the
+access-controlled audit store.
+
+9
+00:00:29.588 --> 00:00:33.740
+Keep those four files in
+mind; the labs read every one.

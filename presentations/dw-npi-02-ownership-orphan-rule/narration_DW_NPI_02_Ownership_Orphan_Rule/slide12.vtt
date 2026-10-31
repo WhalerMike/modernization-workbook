@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:02.838
+Developers build the code.
+
+3
+00:00:02.838 --> 00:00:07.807
+The identity governance officer confirms
+every orphan before anything is disabled,
+
+4
+00:00:07.807 --> 00:00:11.587
+and the chief information security
+officer owns the rule itself.
+
+5
+00:00:11.587 --> 00:00:15.410
+Application owners and security
+officers review the results,
+
+6
+00:00:15.410 --> 00:00:17.688
+and a second person approves the plan.
+
+7
+00:00:17.688 --> 00:00:20.123
+The inputs are deliberately plain files,
+
+8
+00:00:20.123 --> 00:00:23.202
+each kept by the people who
+actually know the answer:
+
+9
+00:00:23.202 --> 00:00:27.856
+application owners for directory accounts,
+the system inventory for records,
+
+10
+00:00:27.856 --> 00:00:32.725
+the governance officer for confirmations,
+and the offices that claim an identity.
+
+11
+00:00:32.725 --> 00:00:35.020
+You don't need a tenant until Lab 2.

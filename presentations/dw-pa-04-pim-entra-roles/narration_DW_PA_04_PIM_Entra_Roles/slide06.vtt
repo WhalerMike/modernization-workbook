@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.012
+Microsoft gives you two samples.
+
+2
+00:00:02.012 --> 00:00:05.991
+One shows how to find a role's
+policy and then update its rules,
+
+3
+00:00:05.991 --> 00:00:08.776
+six requests, each
+carrying the right type.
+
+4
+00:00:08.776 --> 00:00:13.614
+The other is a tutorial that makes a
+group eligible for a role and has a member
+
+5
+00:00:13.614 --> 00:00:16.456
+activate it, which is
+exactly Book 4's pattern:
+
+6
+00:00:16.456 --> 00:00:19.375
+roles are eligible to a
+group, never to a person.
+
+7
+00:00:19.375 --> 00:00:22.199
+Those samples live only inside web pages,
+
+8
+00:00:22.199 --> 00:00:27.675
+so the repository pins the pages' source,
+unmodified, with hashes a test checks.
+
+9
+00:00:27.675 --> 00:00:30.818
+Then a harness sends every
+request to a fake Graph,
+
+10
+00:00:30.818 --> 00:00:32.950
+so you can see what they really do.
