@@ -87,7 +87,7 @@ Agencies that already copy DNS records into each cloud provider should change th
 ### Target operating model
 
 - The DDI policy plane holds the system of record for zones, forwarding rules, IPAM data and security policy.
-- Cloud DNS services (Route 53, Azure Private DNS, Google Cloud DNS and others) become synchronized targets or forwarding destinations rather than independently authored sources. Self-managed DNS servers in a cloud, such as BIND, are held to the same rule; the research page [Cloud DNS on AWS and Azure](../../research/cloud-dns-resolvers-infoblox-bind.md) (in review) gives an alignment checklist.
+- Cloud DNS services (Route 53, Azure Private DNS, Google Cloud DNS and others) become synchronized targets or forwarding destinations rather than independently authored sources. Self-managed DNS servers in a cloud, such as BIND, are held to the same rule; the research page [Cloud DNS on AWS, Azure and Oracle Cloud](../../research/cloud-dns-resolvers-infoblox-bind.md) (in review) gives an alignment checklist.
 - SD-WAN redirect-dns and other edge interceptors point at network-addressable resolvers inside the governed path.
 - AD DNS is inventoried and either coexists during the transition or is migrated; Entra ID does not inherit SRV, LDAP or Kerberos records (Chapter 04 and Book 02's [hidden migration surface](../b02-identity/04-the-hidden-migration-surface.md)).
 

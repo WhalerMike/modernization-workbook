@@ -1,7 +1,7 @@
-# Verification — Cloud DNS on AWS and Azure: Native Resolvers, Infoblox and BIND (research)
+# Verification — Cloud DNS on AWS, Azure and Oracle Cloud: Native Resolvers, Infoblox and BIND (research)
 
 File: `docs/research/cloud-dns-resolvers-infoblox-bind.md`
-Verified: 2026-10-29
+Verified: 2026-10-29; Oracle Cloud added 2026-10-31
 
 Method:
 - AWS Developer Guide, VPC User Guide, GovCloud User Guide, General Reference, What's New and the FedRAMP services-in-scope page were fetched on 2026-10-29. The load-bearing AWS quotes were re-checked against the raw HTML with curl: the DNSSEC validation note (DO and CD bits ignored), the 1,024 PPS link-local quota, the GovCloud Route 53 page ("Route 53 Resolver delegation is not available"; "answered from within FedRAMP boundary"), and the FedRAMP page's Class C and Class D columns, the Amazon Route 53 row and the "generally available features" sentence.
@@ -118,7 +118,8 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 ## What couldn't be verified (marked *confirm* on the page)
 
 - Route 53 Resolver delegation in GovCloud: AWS's GovCloud User Guide and its April 8, 2026 announcement conflict.
-- Route 53 Resolver query logging and VPC Resolver DNSSEC validation in GovCloud: no AWS page states either.
+- VPC Resolver DNSSEC validation in GovCloud: no AWS page states it. (Resolver query logging in GovCloud was confirmed on 2026-10-31; see claim 98.)
+- Oracle: private resolver logging in the government realm; whether the VCN resolver passes DNSSEC data to a resolver behind it.
 - DNS Firewall Advanced protections other than dictionary DGA in GovCloud.
 - Azure DNS Private Resolver and DNS resolver policy availability by Azure Government region: the region table omits Azure Government; only price meters are evidence.
 - Whether the Azure DNS Private Resolver validates DNSSEC.
@@ -129,3 +130,26 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 ## Corrections to other sources noted on the page
 
 - CISA *Encrypted DNS Implementation Guidance* (April 2024), Appendix A.3.1: BIND upstream encryption is supported in 9.20 (`forwarders ... tls`); `recursion no` disables recursive service rather than root-hint use.
+
+## Addition, October 31, 2026: Oracle Cloud added; one AWS item closed
+
+Oracle Cloud Infrastructure was added in Part 1 (a new subsection), in the meeting points, Part 2, Part 3 and Part 5, because the HR platform runs on Oracle Cloud. Oracle pages were fetched with curl and searched as text on 2026-10-31: "Private DNS", "Creating a Resolver Rule", "Troubleshooting DNS", "DNS in a Virtual Cloud Network" and "Oracle Cloud Infrastructure US Government Cloud with FedRAMP Authorization". The FedRAMP Marketplace JSON was parsed for every Oracle entry; dataset `last_change` 2026-10-31. Facts already verified in Book 08 Chapter 07 on 2026-10-30 (PD-3 to PD-5, PD-16, PD-17, PD-24 to PD-26) were reused and re-read where cited.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 98 | Route 53 Resolver query logging available in GovCloud since September 2020; the "confirm" removed | Part 1 GovCloud table, status | verified (carried from Book 08 Ch07 PD-21) | cdns-r53-gov-qlog |
+| 99 | VCN resolver on 169.254.169.254; views in order, default view, rules, internet; "performs recursion to the internet and DNSSEC validation for DNSSEC-signed zones" | Part 1 OCI, Part 3 | verified (page text) | cdns-oci-pdns |
+| 100 | A view can be used by any number of resolvers and shares private DNS data across VCNs in the same region; split horizon | Part 1 OCI | verified | cdns-oci-pdns |
+| 101 | Cross-VCN resolution via listening and forwarding endpoints over LPG or RPG, same or other region | Part 1 OCI | verified | cdns-oci-pdns |
+| 102 | Listening endpoint one IP; forwarding endpoint two; UDP/TCP 53 security rules | Part 1 OCI | verified | cdns-oci-pdns |
+| 103 | 50 rules per resolver; condition CIDR, domain (up to 10) or None (matches any); forward only | Part 1 OCI, meeting points | verified (page text) | cdns-oci-rules |
+| 104 | First match ends processing; unreachable target ends it; match ends resolution even if NXDOMAIN; 169.254.169.254 must be in custom DHCP list; stale cache 30 s TTL up to 24 h | Part 1 OCI, Part 3 | verified (page text) | cdns-oci-trouble |
+| 105 | Custom resolver DHCP option, up to three DNS servers; `oraclevcn.com` names | Part 1 OCI, Part 3 | verified (page text) | cdns-oci-vcndns |
+| 106 | No native DNS-layer policy for private DNS; Traffic Management public only | Answer in brief, Part 1, Part 2 | verified (Oracle states public only; absence of a DNS firewall carried from Book 08 PD-5) | cdns-oci-tm, cdns-oci-pdns |
+| 107 | OCI's catch-all rule is the only way agency policy reaches a VCN | Meeting points | inference (labelled) | — |
+| 108 | Private resolver logs documented for commercial realms only; government realm **confirm** | Part 1 OCI, status | verified (carried from Book 08 PD-16) | cdns-oci-log |
+| 109 | US Government Cloud: FedRAMP High, DISA IL4; us-langley-1 and us-luke-1, realm OC2; can't subscribe to commercial regions; DNS API private only | Part 1 OCI | verified (page text) | cdns-oci-gov |
+| 110 | Marketplace: OCI-Government Cloud FR1900048743 Class D High, JAB, 2020-10-01; Fusion Cloud F1603257882 Class C Moderate; no commercial OCI infrastructure entry | Part 1 OCI | verified (JSON parsed; all seven Oracle entries listed) | cdns-oci-mkt |
+| 111 | Moderate systems on OCI infrastructure inherit from the Government Cloud's High authorization; commercial OCI needs its own authorization basis | Part 1 OCI | inference (labelled) | — |
+| 112 | No Oracle page describes signing private zones; whether the VCN resolver passes DNSSEC data downstream **confirm** | Part 3 | verified as absence (no such text on the Private DNS page) | cdns-oci-pdns |
+| 113 | BIND in a VCN forwards `oraclevcn.com` and private views to 169.254.169.254; Autonomous Database private endpoint names | Part 3 | design, built on cdns-oci-vcndns, cdns-oci-trouble and Book 08 PD-25 | — |
