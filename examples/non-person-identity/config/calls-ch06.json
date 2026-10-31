@@ -1,0 +1,157 @@
+{
+  "_comment": "Chapter 06: every Active Directory cmdlet NpiKerberosIsland runs, with the Active Directory right from the Learn page for that cmdlet or procedure, read on October 30, 2026 (research gaps, rows 51 to 59, where Learn names no minimum). Same schema as calls.json. The read task runs only Get-AD* cmdlets; the writes belong to kerberos-apply only and are sent only by Invoke-NpiKrbPlan -Apply, after a reviewer approves the plan's SHA-256. No call removes, uninstalls, undoes or resets anything: the old account is never deleted. 'allowedParams' lists the only parameters a write may carry. tests/NpiKerberosIsland.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls.",
+  "tasks": {
+    "kerberos-island": {
+      "mode": "read",
+      "chapter": "06",
+      "graphPermissions": [],
+      "azureRoles": [],
+      "adRights": [
+        "Delegated read of msKds-ProvRootKey objects in CN=Master Root Keys (List Contents; Read msKds-UseStartTime and msKds-CreateTime, never msKds-RootKeyData): the class's default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM only",
+        "Read (default for authenticated domain users)"
+      ]
+    },
+    "kerberos-apply": {
+      "mode": "write",
+      "chapter": "06",
+      "graphPermissions": [],
+      "azureRoles": [],
+      "adRights": [
+        "Create msDS-GroupManagedServiceAccount objects: Domain Admins or Enterprise Admins, or a delegated create right",
+        "Delegated right to disable accounts in the account's OU",
+        "Delegated read of msKds-ProvRootKey objects in CN=Master Root Keys (List Contents; Read msKds-UseStartTime and msKds-CreateTime, never msKds-RootKeyData): the class's default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM only",
+        "Domain Admins or Enterprise Admins, or equivalent permissions, to create or migrate to a dMSA, against a read-write domain controller",
+        "Read (default for authenticated domain users)",
+        "Write msDS-GroupMSAMembership on the managed service account"
+      ],
+      "delegatedOnly": true,
+      "delegatedRole": "A person signed in to the domain with the rights above, never a scheduled job or a service account"
+    }
+  },
+  "calls": [
+    {
+      "id": "krb-kds-root-keys",
+      "api": "ad",
+      "method": "READ",
+      "cmdlet": "Get-ADObject",
+      "adRight": "Delegated read of msKds-ProvRootKey objects in CN=Master Root Keys (List Contents; Read msKds-UseStartTime and msKds-CreateTime, never msKds-RootKeyData): the class's default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM only",
+      "stage": "GA",
+      "tasks": ["kerberos-island", "kerberos-apply"],
+      "learn": "https://learn.microsoft.com/windows/win32/adschema/c-mskds-provrootkey",
+      "note": "Learn's check is Get-KdsRootKey, which returns the root key value itself. This read asks only whether a key exists and when it became usable (msKds-UseStartTime), from the container Learn's KDS page names. Research gaps, row 52."
+    },
+    {
+      "id": "krb-service-accounts",
+      "api": "ad",
+      "method": "READ",
+      "cmdlet": "Get-ADServiceAccount",
+      "adRight": "Read (default for authenticated domain users)",
+      "stage": "GA",
+      "tasks": ["kerberos-island", "kerberos-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-adserviceaccount",
+      "note": "Reads PrincipalsAllowedToRetrieveManagedPassword, msDS-DelegatedMSAState and msDS-ManagedAccountPrecededByLink. Whether a default read returns the retrievers is open (research gaps, row 53)."
+    },
+    {
+      "id": "krb-superseded-user",
+      "api": "ad",
+      "method": "READ",
+      "cmdlet": "Get-ADUser",
+      "adRight": "Read (default for authenticated domain users)",
+      "stage": "GA",
+      "tasks": ["kerberos-island", "kerberos-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-aduser",
+      "note": "The distinguished name Start-ADServiceAccountMigration needs for -SupersededAccount, and the account's state before a disable."
+    },
+    {
+      "id": "krb-domain-controllers",
+      "api": "ad",
+      "method": "READ",
+      "cmdlet": "Get-ADDomainController",
+      "adRight": "Read (default for authenticated domain users)",
+      "stage": "GA",
+      "tasks": ["kerberos-island", "kerberos-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-addomaincontroller",
+      "note": "A dMSA needs at least one Windows Server 2025 domain controller (Learn, dMSA FAQ)."
+    },
+    {
+      "id": "krb-host-computers",
+      "api": "ad",
+      "method": "READ",
+      "cmdlet": "Get-ADComputer",
+      "adRight": "Read (default for authenticated domain users)",
+      "stage": "GA",
+      "tasks": ["kerberos-island", "kerberos-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-adcomputer",
+      "note": "Every host that uses the account must run an operating system that supports dMSA before a migration (Learn, dMSA overview and FAQ)."
+    },
+    {
+      "id": "krb-new-gmsa",
+      "api": "ad",
+      "method": "WRITE",
+      "cmdlet": "New-ADServiceAccount",
+      "adRight": "Create msDS-GroupManagedServiceAccount objects: Domain Admins or Enterprise Admins, or a delegated create right",
+      "allowedParams": ["Name", "DNSHostName", "PrincipalsAllowedToRetrieveManagedPassword", "KerberosEncryptionType"],
+      "stage": "GA",
+      "tasks": ["kerberos-apply"],
+      "learn": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts"
+    },
+    {
+      "id": "krb-new-dmsa",
+      "api": "ad",
+      "method": "WRITE",
+      "cmdlet": "New-ADServiceAccount",
+      "adRight": "Domain Admins or Enterprise Admins, or equivalent permissions, to create or migrate to a dMSA, against a read-write domain controller",
+      "allowedParams": ["Name", "DNSHostName", "CreateDelegatedServiceAccount", "KerberosEncryptionType"],
+      "stage": "GA (Windows Server 2025)",
+      "tasks": ["kerberos-apply"],
+      "learn": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa"
+    },
+    {
+      "id": "krb-set-retrievers",
+      "api": "ad",
+      "method": "WRITE",
+      "cmdlet": "Set-ADServiceAccount",
+      "adRight": "Write msDS-GroupMSAMembership on the managed service account",
+      "allowedParams": ["Identity", "PrincipalsAllowedToRetrieveManagedPassword"],
+      "stage": "GA",
+      "tasks": ["kerberos-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/set-adserviceaccount",
+      "note": "The parameter sets msDS-GroupMSAMembership. Learn names no minimum right for it (research gaps, row 53)."
+    },
+    {
+      "id": "krb-start-migration",
+      "api": "ad",
+      "method": "WRITE",
+      "cmdlet": "Start-ADServiceAccountMigration",
+      "adRight": "Domain Admins or Enterprise Admins, or equivalent permissions, to create or migrate to a dMSA, against a read-write domain controller",
+      "allowedParams": ["Identity", "SupersededAccount"],
+      "stage": "GA (Windows Server 2025)",
+      "tasks": ["kerberos-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/start-adserviceaccountmigration"
+    },
+    {
+      "id": "krb-complete-migration",
+      "api": "ad",
+      "method": "WRITE",
+      "cmdlet": "Complete-ADServiceAccountMigration",
+      "adRight": "Domain Admins or Enterprise Admins, or equivalent permissions, to create or migrate to a dMSA, against a read-write domain controller",
+      "allowedParams": ["Identity", "SupersededAccount"],
+      "stage": "GA (Windows Server 2025)",
+      "tasks": ["kerberos-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/complete-adserviceaccountmigration",
+      "note": "Disables the superseded account and moves its SPNs to the dMSA (Learn, dMSA overview). Learn: never delete the original account."
+    },
+    {
+      "id": "krb-disable-superseded",
+      "api": "ad",
+      "method": "WRITE",
+      "cmdlet": "Disable-ADAccount",
+      "adRight": "Delegated right to disable accounts in the account's OU",
+      "allowedParams": ["Identity"],
+      "stage": "GA",
+      "tasks": ["kerberos-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/disable-adaccount",
+      "note": "The old account after a clean 30-day parallel run on its gMSA. Disabled, never deleted."
+    }
+  ]
+}

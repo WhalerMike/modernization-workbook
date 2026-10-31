@@ -631,6 +631,50 @@
         "DW"
       ],
       "source": "Commits to the Learn source page that holds the HTTP samples for finding ownerless service principals, assigning owners and setting serviceManagementReference, which examples/third_party/graph-applications-tutorial-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 02). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "windows-server-dmsa-setup-page-commits",
+      "name": "Learn's Setting up delegated Managed Service Accounts (MicrosoftDocs/windowsserverdocs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/windowsserverdocs",
+      "path": "WindowsServerDocs/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the PowerShell procedure for creating a dMSA and starting, completing, undoing and resetting its migration, which examples/third_party/windows-server-msa-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 06). A new commit means: review it, rerun examples/non-person-identity/tests/KerberosIslandSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "windows-server-dmsa-overview-page-commits",
+      "name": "Learn's Delegated Managed Service Accounts overview (MicrosoftDocs/windowsserverdocs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/windowsserverdocs",
+      "path": "WindowsServerDocs/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that states the dMSA migration's limits (no MSA or gMSA to dMSA, two ticket lifetimes before completing, unconstrained delegation), which examples/third_party/windows-server-msa-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 06). A new commit means: review it, rerun examples/non-person-identity/tests/KerberosIslandSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "windows-server-gmsa-manage-page-commits",
+      "name": "Learn's Manage group Managed Service Accounts (MicrosoftDocs/windowsserverdocs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/windowsserverdocs",
+      "path": "WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the gMSA procedure (New-ADServiceAccount with PrincipalsAllowedToRetrieveManagedPassword, Install-ADServiceAccount), which examples/third_party/windows-server-msa-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 06). A new commit means: review it, rerun examples/non-person-identity/tests/KerberosIslandSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "windows-server-kds-root-key-page-commits",
+      "name": "Learn's Create a Key Distribution Service (KDS) root key (MicrosoftDocs/windowsserverdocs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/windowsserverdocs",
+      "path": "WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page for the KDS root key prerequisite (the 10-hour replication wait, the container it lives in), which examples/third_party/windows-server-msa-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 06). A new commit means: review it, rerun examples/non-person-identity/tests/KerberosIslandSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "_comment": "Chapter 06's additions to the fictional estate (tests/fixtures/estate.json, corp.contoso.example), served with it by New-NpiKrbFixtureAdInvoker: the forest's KDS root keys (msKds-UseStartTime and msKds-CreateTime only; no key data), the domain controllers and member hosts with their operating systems, and the dMSA migration state of the existing managed service accounts. Invented names and dates; nothing here is a real domain.",
+  "configurationDn": "CN=Configuration,DC=corp,DC=contoso,DC=example",
+  "kdsRootKeys": [
+    { "Name": "c0ffee00-0000-4000-8000-0000000000d1", "msKds-UseStartTime": "2024-03-01T02:00:00Z", "msKds-CreateTime": "2024-03-01T12:00:00Z" }
+  ],
+  "domainControllers": [
+    { "Name": "DC01", "HostName": "dc01.corp.contoso.example", "OperatingSystem": "Windows Server 2022 Datacenter", "IsReadOnly": false },
+    { "Name": "DC02", "HostName": "dc02.corp.contoso.example", "OperatingSystem": "Windows Server 2025 Datacenter", "IsReadOnly": false }
+  ],
+  "computers": [
+    { "Name": "HR01", "DistinguishedName": "CN=HR01,OU=Servers,DC=corp,DC=contoso,DC=example", "OperatingSystem": "Windows Server 2025 Standard" },
+    { "Name": "WEB01", "DistinguishedName": "CN=WEB01,OU=Servers,DC=corp,DC=contoso,DC=example", "OperatingSystem": "Windows Server 2022 Standard" },
+    { "Name": "WEB02", "DistinguishedName": "CN=WEB02,OU=Servers,DC=corp,DC=contoso,DC=example", "OperatingSystem": "Windows Server 2022 Standard" },
+    { "Name": "WEB03", "DistinguishedName": "CN=WEB03,OU=Servers,DC=corp,DC=contoso,DC=example", "OperatingSystem": "Windows Server 2025 Standard" },
+    { "Name": "INTRA01", "DistinguishedName": "CN=INTRA01,OU=Servers,DC=corp,DC=contoso,DC=example", "OperatingSystem": "Windows Server 2022 Standard" },
+    { "Name": "INTRA02", "DistinguishedName": "CN=INTRA02,OU=Servers,DC=corp,DC=contoso,DC=example", "OperatingSystem": "Windows Server 2022 Standard" },
+    { "Name": "PRINT01", "DistinguishedName": "CN=PRINT01,OU=Servers,DC=corp,DC=contoso,DC=example", "OperatingSystem": "Windows Server 2019 Standard" },
+    { "Name": "OPS01", "DistinguishedName": "CN=OPS01,OU=Servers,DC=corp,DC=contoso,DC=example", "OperatingSystem": "Windows Server 2022 Standard" }
+  ],
+  "serviceAccountState": {
+    "dmsa-hrsync$": {
+      "msDS-DelegatedMSAState": 1,
+      "msDS-ManagedAccountPrecededByLink": "CN=svc-hrsync,OU=Service Accounts,DC=corp,DC=contoso,DC=example"
+    }
+  }
+}
