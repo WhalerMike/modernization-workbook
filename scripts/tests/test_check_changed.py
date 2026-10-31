@@ -224,6 +224,16 @@ class NonSiteTasks(unittest.TestCase):
     def test_project_plans(self):
         self.assertIn("project-plans", cc.non_site_tasks(mods("data/project-plans/network-access.yaml")))
 
+    def test_revisions(self):
+        for path in ("data/editions.yml", "data/edition-assets/edition-2026.10.json", "scripts/cut_edition.py",
+                     "docs/about/archive.md", "docs/books/b02-identity/index.md",
+                     "docs/books/guides/effective-meetings.md",
+                     "docs/project-plans/developer-workbooks/privileged-access/index.md"):
+            self.assertIn("revisions", cc.non_site_tasks(mods(path)), path)
+        for path in ("docs/books/b02-identity/01-why-identity.md", "docs/books/guides/_verification/x.md",
+                     "docs/project-plans/developer-workbooks/index.md"):
+            self.assertNotIn("revisions", cc.non_site_tasks(mods(path)), path)
+
     def test_authorities_spine(self):
         for path in ("data/federal-compliance-compliance-spine.yml", "scripts/render_authorities_table.py",
                      "docs/compliance/Vol_I_Book_07_Network_Enforcement_Substrate.md"):

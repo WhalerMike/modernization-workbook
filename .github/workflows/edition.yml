@@ -1,0 +1,75 @@
+name: Edition files
+
+# Builds an edition's Word editions and kit zips from its tagged commit and
+# attaches them to the edition's Release. Runs when scripts/cut_edition.py
+# publishes an `edition-*` Release, or by hand for an existing edition tag.
+# Only adds files: an upload whose name is already on the Release fails, so a
+# rerun never replaces what an edition published. The decks, narration audio
+# and videos are built on a workstation (PowerPoint, neural voice) and
+# uploaded by cut_edition.py.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Edition tag, for example edition-2026.10"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: edition-${{ github.event.release.tag_name || inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  attach:
+    if: startsWith(github.event.release.tag_name || inputs.tag, 'edition-')
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout the edition
+        uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ env.TAG }}
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y librsvg2-bin python3-yaml
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Build the Word editions
+        # The same bundles the site publishes under downloads/ (scripts/bundles.yml).
+        run: python3 scripts/build_bundles.py --out _edition
+
+      - name: Build the kit zips
+        run: |
+          python3 scripts/build_start_kit_zip.py --out _edition
+          for kit in copilot-agent-pack app-modernization ansible validation-kit; do
+            python3 scripts/build_start_kit_zip.py --kit "$kit" --out _edition
+          done
+
+      - name: Attach them to the Release
+        run: |
+          have=$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name')
+          new=()
+          for f in _edition/*.docx _edition/*.zip; do
+            name=$(basename "$f")
+            if grep -qxF "$name" <<<"$have"; then
+              echo "already on the Release, left as it is: $name"
+            else
+              new+=("$f")
+            fi
+          done
+          if [ ${#new[@]} -gt 0 ]; then
+            gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" "${new[@]}"
+          fi
+          echo "Attached ${#new[@]} files to $TAG." >> "$GITHUB_STEP_SUMMARY"
+          echo "Record them: python scripts/cut_edition.py --refresh-assets $TAG" >> "$GITHUB_STEP_SUMMARY"

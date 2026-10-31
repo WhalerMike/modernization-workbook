@@ -89,6 +89,32 @@ class Gate(unittest.TestCase):
             self.page.write_text(edited, encoding="utf-8")
             self.assertEqual(len(rg.waiting(self.root)), 1, edited)
 
+    def test_the_generated_revision_history_doesnt_reopen_it_but_any_other_edit_does(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+        import generate_revisions as gr
+
+        footnoted = PAGE.replace("Body text.", "Body text.[^a]") + "\n[^a]: A note.\n"
+        for page in (PAGE, footnoted):
+            self.page.write_text(page, encoding="utf-8")
+            self.page.write_text(rg.approve(self.page, dt.date(2026, 11, 2)), encoding="utf-8")
+            approved = self.page.read_text(encoding="utf-8")
+
+            def section(words):
+                return f"{gr.REV_START}\n\n## Version and revision history {{#version-history}}\n\n{words}\n\n{gr.REV_END}\n"
+
+            with_history = gr.place(approved, section("Not in an edition yet."))
+            self.assertIn(gr.REV_END, with_history)
+            self.page.write_text(with_history, encoding="utf-8")
+            self.assertEqual(rg.waiting(self.root), [], "adding the section")
+            self.page.write_text(gr.place(with_history, section("| 1.0 | 2026.10 | First edition |")), encoding="utf-8")
+            self.assertEqual(rg.waiting(self.root), [], "regenerating it for a new edition")
+            for edited in (with_history.replace("Body text.", "Body text, edited."),   # outside the markers
+                           with_history.replace(gr.REV_END + "\n", gr.REV_END + "\n\nSlipped in.\n"),
+                           with_history.replace(gr.REV_START, "Before it.\n\n" + gr.REV_START),
+                           with_history.replace(gr.REV_END, "<!-- revisions:ended -->")):  # a broken marker hides nothing
+                self.page.write_text(edited, encoding="utf-8")
+                self.assertEqual(len(rg.waiting(self.root)), 1, edited)
+
     def test_approving_twice_keeps_one_set_of_fields(self):
         once = rg.approve(self.page, dt.date(2026, 11, 2))
         self.page.write_text(once, encoding="utf-8")

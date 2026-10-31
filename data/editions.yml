@@ -1,0 +1,56 @@
+# Editions of the Federal Modernization Workbook, oldest first.
+#
+# An edition is a git tag `edition-YYYY.MM` (a second cut in one month is
+# `edition-YYYY.MM.N`) and a GitHub Release carrying that edition's built
+# files. Cut one with scripts/cut_edition.py (see CONTRIBUTING.md, "Editions
+# and the archive"); it drafts the entry below from the merged pull requests.
+# Edit the summary and the change lines by hand; keep each line short.
+#
+# scripts/generate_revisions.py writes, from this file, each book's "Version
+# and revision history" section and the Archive page (docs/about/archive.md).
+# Its --check runs in the pull request checks.
+#
+# Entry shape:
+#
+#   - id: edition-2026.10
+#     date: 2026-10-31
+#     commit: <the tagged commit>
+#     summary: One or two sentences on what this edition is.
+#     units:                       # each book, guide or developer workbook that changed
+#       b02-identity:              # its folder; guides/<name>, developer-workbooks/<name>
+#         changes:
+#           - Chapter 07 rewritten for the new sync client (#123)
+#         version: "2.0"           # optional: start a new major version
+#
+# The Release's file list is in data/edition-assets/<id>.json
+# (`python scripts/cut_edition.py --refresh-assets <id>`).
+
+editions: []
+# (scripts/cut_edition.py adds each new edition at the end of the list above.)
+
+# Releases that aren't editions (kits, video sets), listed on the Archive page.
+releases:
+  - tag: helpdesk-entra-kit-v1.6.2
+    title: Help Desk / Cloud Services Entra ID Operations Kit v1.6.2
+    date: 2026-10-27
+    kind: Kit (current version)
+  - tag: helpdesk-entra-kit-v1.6.1
+    title: Help Desk / Cloud Services Entra ID Operations Kit v1.6.1
+    date: 2026-10-27
+    kind: Kit (superseded by v1.6.2)
+  - tag: helpdesk-entra-kit-v1.6
+    title: Help Desk / Cloud Services Entra ID Operations Kit v1.6
+    date: 2026-10-27
+    kind: Kit (superseded by v1.6.2)
+  - tag: videos-2026-10-23
+    title: Narrated presentation videos (October 23, 2026, intent-first narration)
+    date: 2026-10-24
+    kind: Videos (MP4s the Videos page streams)
+  - tag: videos-2026-10-22
+    title: Narrated presentation videos (October 2026)
+    date: 2026-10-22
+    kind: Videos (superseded by videos-2026-10-23)
+  - tag: hr-identity-interview-2026-10-20
+    title: "HR-Driven Identity interview: narrated videos (2026-10-20)"
+    date: 2026-10-20
+    kind: Videos
