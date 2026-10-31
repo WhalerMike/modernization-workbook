@@ -1,0 +1,20 @@
+{
+  "displayName": "NPI-AGENT-02 Block high-risk agent identities (report-only, watch item)",
+  "conditions": {
+    "clientApplications": {
+      "includeAgentIdServicePrincipals": ["All"],
+      "excludeAgentIdServicePrincipals": [],
+      "agentIdServicePrincipalFilter": null
+    },
+    "applications": {
+      "includeApplications": ["All"],
+      "excludeApplications": []
+    },
+    "agentIdRiskLevels": "high"
+  },
+  "grantControls": {
+    "operator": "AND",
+    "builtInControls": ["block"]
+  },
+  "state": "enabledForReportingButNotEnforced"
+}

@@ -675,6 +675,303 @@
         "DW"
       ],
       "source": "Commits to the Learn source page for the KDS root key prerequisite (the 10-hour replication wait, the container it lives in), which examples/third_party/windows-server-msa-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 06). A new commit means: review it, rerun examples/non-person-identity/tests/KerberosIslandSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-wif-create-trust-app-commits",
+      "name": "Learn's Configure an app to trust an external identity provider (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/workload-id/workload-identity-federation-create-trust.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Azure CLI, Azure PowerShell and az rest samples for creating a federated identity credential on an app registration, which examples/third_party/entra-wif-create-trust-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 05). A new commit means: review it, rerun examples/non-person-identity/tests/NpiFederationSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-wif-create-trust-uami-commits",
+      "name": "Learn's Configure a user-assigned managed identity to trust an external identity provider (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the REST request and ARM template for creating a federated identity credential on a user-assigned managed identity, which examples/third_party/entra-wif-create-trust-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 05). A new commit means: review it, rerun examples/non-person-identity/tests/NpiFederationSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-wif-considerations-include-commits",
+      "name": "Learn's federated credential configuration considerations include (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/workload-id/includes/federated-credential-configuration-considerations.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the include both federated credential pages share for the 20-credential limit, the name rules and the subject that is accepted at creation and fails only at token exchange, which examples/third_party/entra-wif-create-trust-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 05). A new commit means: review it, rerun examples/non-person-identity/tests/NpiFederationSamples.Tests.ps1 and NpiFederation.Tests.ps1, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-fic-create-page-commits",
+      "name": "Learn's Microsoft Graph Create federatedIdentityCredential reference (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/federatedidentitycredential-post.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Graph reference page that holds the HTTP sample for creating a federated identity credential on an application, which examples/third_party/graph-fic-create-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 05). A new commit means: review it, rerun examples/non-person-identity/tests/NpiFederationSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "msi-fic-rest-examples-commits",
+      "name": "Microsoft's REST examples for Managed Identity, 2024-11-30 (Azure/azure-rest-api-specs commits)",
+      "type": "github_commits",
+      "repo": "Azure/azure-rest-api-specs",
+      "path": "specification/msi/resource-manager/Microsoft.ManagedIdentity/ManagedIdentity/stable/2024-11-30/examples",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the folder that holds Microsoft's request and response examples for user-assigned managed identities and their federated identity credentials, three of which examples/third_party/msi-fic-rest-examples pins at one commit (developer workbook Building Non-Person Identity, Chapter 05). A new commit means: review it, rerun examples/non-person-identity/tests/NpiFederationSamples.Tests.ps1 against the new examples, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-tenant-app-policy-update-commits",
+      "name": "Learn's Update tenantAppManagementPolicy (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/tenantappmanagementpolicy-update.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the v1.0 HTTP sample for the tenant default app management policy, which examples/third_party/graph-app-credential-policy-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-app-policy-create-commits",
+      "name": "Learn's Create appManagementPolicy (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/appmanagementpolicy-post.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the v1.0 HTTP sample for creating an app management policy, which examples/third_party/graph-app-credential-policy-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-app-policy-assign-commits",
+      "name": "Learn's Assign appliesTo for app management policies (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/appmanagementpolicy-post-appliesto.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the v1.0 HTTP samples for assigning an app management policy to an application or service principal, which examples/third_party/graph-app-credential-policy-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-add-certificate-howto-commits",
+      "name": "Learn's Add a certificate to an app by using Microsoft Graph (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "concepts/applications-how-to-add-certificate.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the HTTP samples for adding a certificate to an application's keyCredentials, which examples/third_party/graph-app-credential-policy-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-app-management-policies-page-commits",
+      "name": "Learn's Configure restrictions on how applications can be configured (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/enterprise-apps/configure-app-management-policies.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn procedure for app management policies (tenant-wide restrictions, exceptions, the admin center's expected state), which examples/third_party/entra-app-management-policies-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "az-keyvault-add-certificate-help-commits",
+      "name": "Az.KeyVault Add-AzKeyVaultCertificate help (Azure/azure-powershell commits)",
+      "type": "github_commits",
+      "repo": "Azure/azure-powershell",
+      "path": "src/KeyVault/KeyVault/help/Add-AzKeyVaultCertificate.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the help page Learn's Add-AzKeyVaultCertificate reference is generated from, whose example 1 examples/third_party/az-keyvault-certificate-help pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "az-keyvault-set-certificate-policy-help-commits",
+      "name": "Az.KeyVault Set-AzKeyVaultCertificatePolicy help (Azure/azure-powershell commits)",
+      "type": "github_commits",
+      "repo": "Azure/azure-powershell",
+      "path": "src/KeyVault/KeyVault/help/Set-AzKeyVaultCertificatePolicy.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the help page Learn's Set-AzKeyVaultCertificatePolicy reference is generated from, whose example 1 examples/third_party/az-keyvault-certificate-help pins at one commit (developer workbook Building Non-Person Identity, Chapter 04). A new commit means: review it, rerun examples/non-person-identity/tests/NpiCredentialPolicy.Tests.ps1 on the new copy, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-service-accounts-onprem-choice-page-commits",
+      "name": "Learn's Securing on-premises service accounts (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/architecture/service-accounts-on-premises.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the table 'Choose the right type of service account', which examples/third_party/entra-service-account-choice-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 03). A new commit means: review it, rerun examples/non-person-identity/tests/NpiMatrix.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-service-accounts-cloud-choice-page-commits",
+      "name": "Learn's Securing cloud-based service accounts (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/architecture/secure-service-accounts.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the table of managed identity, service principal and user account by service hosting, which examples/third_party/entra-service-account-choice-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 03). A new commit means: review it, rerun examples/non-person-identity/tests/NpiMatrix.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-workload-id-faq-page-commits",
+      "name": "Learn's Frequently asked questions about Microsoft Entra Workload ID (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/workload-id/workload-identities-faqs.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds Workload ID's Free and Premium capability table and its licensing answers, which examples/third_party/entra-service-account-choice-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 03, decision D-N4). A new commit means: review it, rerun examples/non-person-identity/tests/NpiMatrix.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "npi-agent-create-blueprint-page-commits",
+      "name": "Learn's Create an agent identity blueprint (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/agent-id/create-blueprint.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the HTTP samples for creating an agent identity blueprint with a sponsor and owner, adding a managed identity as its federated identity credential, and adding a password, which examples/third_party/entra-agent-id-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 09). A new commit means: review it, rerun examples/non-person-identity/tests/NpiAgentId.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "npi-agent-inheritable-permissions-page-commits",
+      "name": "Learn's Configure inheritable permissions for agent identity blueprints (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/agent-id/configure-inheritable-permissions-blueprints.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the inheritablePermissions samples (allAllowed, none, update and delete), which examples/third_party/entra-agent-id-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 09). A new commit means: review it, rerun examples/non-person-identity/tests/NpiAgentId.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "npi-agent-disable-page-commits",
+      "name": "Learn's Disable agent identities in your tenant (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/agent-id/disable-agent-identities.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Microsoft Graph bodies of the three agent Conditional Access policies, which examples/third_party/entra-agent-id-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 09). A new commit means: review it, rerun examples/non-person-identity/tests/NpiAgentId.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "npi-graph-agentidentityblueprint-list-page-commits",
+      "name": "Microsoft Graph API reference agentidentityblueprint-list (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/agentidentityblueprint-list.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Graph API reference page agentidentityblueprint-list.md, whose HTTP request sample the chapter runs against its fake, which examples/third_party/graph-agent-id-api-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 09). A new commit means: review it, rerun examples/non-person-identity/tests/NpiAgentId.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "npi-graph-agentidentityblueprint-list-permissions-commits",
+      "name": "Microsoft Graph permissions table for agentidentityblueprint-list (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/includes/permissions/agentidentityblueprint-list-permissions.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the generated least-privileged permissions table that agentidentityblueprint-list.md includes, which examples/third_party/graph-agent-id-api-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 09). A new commit means: review it, rerun examples/non-person-identity/tests/NpiAgentId.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "npi-graph-agentidentity-list-page-commits",
+      "name": "Microsoft Graph API reference agentidentity-list (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/agentidentity-list.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Graph API reference page agentidentity-list.md, whose HTTP request sample the chapter runs against its fake, which examples/third_party/graph-agent-id-api-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 09). A new commit means: review it, rerun examples/non-person-identity/tests/NpiAgentId.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "npi-graph-agentidentity-list-permissions-commits",
+      "name": "Microsoft Graph permissions table for agentidentity-list (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/includes/permissions/agentidentity-list-permissions.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the generated least-privileged permissions table that agentidentity-list.md includes, which examples/third_party/graph-agent-id-api-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 09). A new commit means: review it, rerun examples/non-person-identity/tests/NpiAgentId.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "npi-graph-agentidentityblueprint-list-sponsors-page-commits",
+      "name": "Microsoft Graph API reference agentidentityblueprint-list-sponsors (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/agentidentityblueprint-list-sponsors.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Graph API reference page agentidentityblueprint-list-sponsors.md, whose HTTP request sample the chapter runs against its fake, which examples/third_party/graph-agent-id-api-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 09). A new commit means: review it, rerun examples/non-person-identity/tests/NpiAgentId.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "npi-graph-agentidentityblueprint-list-sponsors-permissions-commits",
+      "name": "Microsoft Graph permissions table for agentidentityblueprint-list-sponsors (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/includes/permissions/agentidentityblueprint-list-sponsors-permissions.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the generated least-privileged permissions table that agentidentityblueprint-list-sponsors.md includes, which examples/third_party/graph-agent-id-api-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 09). A new commit means: review it, rerun examples/non-person-identity/tests/NpiAgentId.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "npi-graph-agentidentity-list-sponsors-page-commits",
+      "name": "Microsoft Graph API reference agentidentity-list-sponsors (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/agentidentity-list-sponsors.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Graph API reference page agentidentity-list-sponsors.md, whose HTTP request sample the chapter runs against its fake, which examples/third_party/graph-agent-id-api-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 09). A new commit means: review it, rerun examples/non-person-identity/tests/NpiAgentId.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "npi-graph-agentidentity-list-sponsors-permissions-commits",
+      "name": "Microsoft Graph permissions table for agentidentity-list-sponsors (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/includes/permissions/agentidentity-list-sponsors-permissions.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the generated least-privileged permissions table that agentidentity-list-sponsors.md includes, which examples/third_party/graph-agent-id-api-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 09). A new commit means: review it, rerun examples/non-person-identity/tests/NpiAgentId.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-review-app-permissions-page-commits",
+      "name": "Learn's Review permissions granted to enterprise applications (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/enterprise-apps/manage-application-permissions.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Microsoft Graph PowerShell script and HTTP requests that review and revoke an application's delegated and application permissions, which examples/third_party/entra-review-app-permissions-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 07). A new commit means: review it, rerun examples/non-person-identity/tests/NpiLeastPrivilegeSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     }
   ]
 }

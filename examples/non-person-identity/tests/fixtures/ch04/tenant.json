@@ -1,0 +1,342 @@
+{
+  "_comment": "Chapter 04's fictional tenant (contoso.example): the default app management policy as it stands before the program's policy, one app management policy nobody reviewed, each app registration's creation date, app instance lock and credentials (the fresh read the rotation uses), and one key vault with three certificates. Users and owners come from ../estate.json, the shared estate. Certificates are fakes: 'key' and 'cer' are base64 of a text record (thumbprint, dates, subject) that only the fakes read; customKeyIdentifier and x5t carry the thumbprint.",
+  "estate": "../estate.json",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "asOf": "2026-10-30T12:00:00Z",
+  "defaultAppManagementPolicy": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "displayName": "Default app management tenant policy",
+    "description": "Default tenant policy that enforces app management restrictions on applications and service principals.",
+    "isEnabled": false,
+    "applicationRestrictions": {
+      "passwordCredentials": [
+        {
+          "restrictionType": "customPasswordAddition",
+          "state": "enabled",
+          "maxLifetime": null,
+          "restrictForAppsCreatedAfterDateTime": "2024-01-01T00:00:00Z"
+        }
+      ],
+      "keyCredentials": []
+    },
+    "servicePrincipalRestrictions": {
+      "passwordCredentials": [],
+      "keyCredentials": []
+    }
+  },
+  "appManagementPolicies": [
+    {
+      "id": "7e000000-0000-4000-8000-000000000001",
+      "displayName": "Vendor portal legacy exception",
+      "description": "Created in the admin center in 2025; no record.",
+      "isEnabled": true,
+      "restrictions": {
+        "passwordCredentials": [
+          {
+            "restrictionType": "passwordLifetime",
+            "state": "enabled",
+            "maxLifetime": "P365D",
+            "restrictForAppsCreatedAfterDateTime": "2015-01-01T00:00:00Z"
+          }
+        ],
+        "keyCredentials": []
+      },
+      "appliesTo": [
+        "0a000000-0000-4000-8000-000000000005"
+      ]
+    }
+  ],
+  "applications": {
+    "0a000000-0000-4000-8000-000000000001": {
+      "displayName": "Payroll Export",
+      "createdDateTime": "2023-05-01T00:00:00Z",
+      "servicePrincipalLockConfiguration": null,
+      "keyCredentials": [],
+      "passwordCredentials": [
+        {
+          "keyId": "9c000000-0000-4000-8000-000000000001",
+          "displayName": "prod",
+          "startDateTime": "2026-03-01T00:00:00Z",
+          "endDateTime": "2027-03-01T00:00:00Z",
+          "hint": "abc"
+        }
+      ]
+    },
+    "0a000000-0000-4000-8000-000000000002": {
+      "displayName": "HR Connector",
+      "createdDateTime": "2024-02-10T00:00:00Z",
+      "servicePrincipalLockConfiguration": {
+        "isEnabled": true,
+        "allProperties": true,
+        "credentialsWithUsageVerify": null,
+        "credentialsWithUsageSign": null,
+        "tokenEncryptionKeyId": null
+      },
+      "keyCredentials": [
+        {
+          "keyId": "9c000000-0000-4000-8000-000000000002",
+          "displayName": "CN=hr-connector.contoso.example",
+          "type": "AsymmetricX509Cert",
+          "usage": "Verify",
+          "startDateTime": "2026-01-15T00:00:00Z",
+          "endDateTime": "2027-01-15T00:00:00Z",
+          "customKeyIdentifier": "cg2hvEUOil03tKqmqN9ba97kw1Q=",
+          "key": "TlBJLUZBS0UtQ0VSVDt0aHVtYnByaW50PTcyMERBMUJDNDUwRThBNUQzN0I0QUFBNkE4REY1QjZCREVFNEMzNTQ7bmJmPTIwMjYtMDEtMTVUMDA6MDA6MDBaO2V4cD0yMDI3LTAxLTE1VDAwOjAwOjAwWjtzdWJqZWN0PUNOPWhyLWNvbm5lY3Rvci5jb250b3NvLmV4YW1wbGU="
+        },
+        {
+          "keyId": "9c000000-0000-4000-8000-000000000012",
+          "displayName": "CN=hr-connector.contoso.example",
+          "type": "AsymmetricX509Cert",
+          "usage": "Verify",
+          "startDateTime": "2026-10-20T00:00:00Z",
+          "endDateTime": "2027-04-18T00:00:00Z",
+          "customKeyIdentifier": "PupU6OoWoLFqekY9wsqEkZqX1X0=",
+          "key": "TlBJLUZBS0UtQ0VSVDt0aHVtYnByaW50PTNFRUE1NEU4RUExNkEwQjE2QTdBNDYzREMyQ0E4NDkxOUE5N0Q1N0Q7bmJmPTIwMjYtMTAtMjBUMDA6MDA6MDBaO2V4cD0yMDI3LTA0LTE4VDAwOjAwOjAwWjtzdWJqZWN0PUNOPWhyLWNvbm5lY3Rvci5jb250b3NvLmV4YW1wbGU="
+        }
+      ],
+      "passwordCredentials": []
+    },
+    "0a000000-0000-4000-8000-000000000003": {
+      "displayName": "Legacy Reports",
+      "createdDateTime": "2019-08-01T00:00:00Z",
+      "servicePrincipalLockConfiguration": {
+        "isEnabled": false,
+        "allProperties": false,
+        "credentialsWithUsageVerify": null,
+        "credentialsWithUsageSign": null,
+        "tokenEncryptionKeyId": null
+      },
+      "keyCredentials": [
+        {
+          "keyId": "9c000000-0000-4000-8000-000000000004",
+          "displayName": "CN=legacy-reports",
+          "type": "AsymmetricX509Cert",
+          "usage": "Verify",
+          "startDateTime": "2025-06-30T00:00:00Z",
+          "endDateTime": "2027-06-30T00:00:00Z",
+          "customKeyIdentifier": "BTzeI07BQJdcDsu+KOULUSryYnU=",
+          "key": "TlBJLUZBS0UtQ0VSVDt0aHVtYnByaW50PTA1M0NERTIzNEVDMTQwOTc1QzBFQ0JCRTI4RTUwQjUxMkFGMjYyNzU7bmJmPTIwMjUtMDYtMzBUMDA6MDA6MDBaO2V4cD0yMDI3LTA2LTMwVDAwOjAwOjAwWjtzdWJqZWN0PUNOPWxlZ2FjeS1yZXBvcnRz"
+        }
+      ],
+      "passwordCredentials": [
+        {
+          "keyId": "9c000000-0000-4000-8000-000000000003",
+          "displayName": "old",
+          "startDateTime": "2023-12-31T00:00:00Z",
+          "endDateTime": "2025-12-31T00:00:00Z",
+          "hint": "abc"
+        }
+      ]
+    },
+    "0a000000-0000-4000-8000-000000000004": {
+      "displayName": "Build Pipeline",
+      "createdDateTime": "2025-03-03T00:00:00Z",
+      "servicePrincipalLockConfiguration": null,
+      "keyCredentials": [],
+      "passwordCredentials": []
+    },
+    "0a000000-0000-4000-8000-000000000005": {
+      "displayName": "Vendor Portal",
+      "createdDateTime": "2025-11-20T00:00:00Z",
+      "servicePrincipalLockConfiguration": {
+        "isEnabled": true,
+        "allProperties": false,
+        "credentialsWithUsageVerify": true,
+        "credentialsWithUsageSign": false,
+        "tokenEncryptionKeyId": false
+      },
+      "keyCredentials": [
+        {
+          "keyId": "9c000000-0000-4000-8000-000000000005",
+          "displayName": "CN=vendor-portal.contoso.example",
+          "type": "AsymmetricX509Cert",
+          "usage": "Verify",
+          "startDateTime": "2025-12-01T00:00:00Z",
+          "endDateTime": "2026-12-01T00:00:00Z",
+          "customKeyIdentifier": "mTOpDzXBvG7zsHRU38QY8wACvKc=",
+          "key": "TlBJLUZBS0UtQ0VSVDt0aHVtYnByaW50PTk5MzNBOTBGMzVDMUJDNkVGM0IwNzQ1NERGQzQxOEYzMDAwMkJDQTc7bmJmPTIwMjUtMTItMDFUMDA6MDA6MDBaO2V4cD0yMDI2LTEyLTAxVDAwOjAwOjAwWjtzdWJqZWN0PUNOPXZlbmRvci1wb3J0YWwuY29udG9zby5leGFtcGxl"
+        }
+      ],
+      "passwordCredentials": []
+    },
+    "0a000000-0000-4000-8000-000000000006": {
+      "displayName": "Mail Automation",
+      "createdDateTime": "2023-09-12T00:00:00Z",
+      "servicePrincipalLockConfiguration": null,
+      "keyCredentials": [],
+      "passwordCredentials": [
+        {
+          "keyId": "9c000000-0000-4000-8000-000000000006",
+          "displayName": "automation",
+          "startDateTime": "2026-05-01T00:00:00Z",
+          "endDateTime": "2027-05-01T00:00:00Z",
+          "hint": "abc"
+        }
+      ]
+    },
+    "0a000000-0000-4000-8000-000000000007": {
+      "displayName": "Deploy Bot",
+      "createdDateTime": "2026-07-01T00:00:00Z",
+      "servicePrincipalLockConfiguration": {
+        "isEnabled": true,
+        "allProperties": true,
+        "credentialsWithUsageVerify": null,
+        "credentialsWithUsageSign": null,
+        "tokenEncryptionKeyId": null
+      },
+      "keyCredentials": [
+        {
+          "keyId": "9c000000-0000-4000-8000-000000000007",
+          "displayName": "CN=deploy-bot.contoso.example",
+          "type": "AsymmetricX509Cert",
+          "usage": "Verify",
+          "startDateTime": "2026-02-01T00:00:00Z",
+          "endDateTime": "2027-02-01T00:00:00Z",
+          "customKeyIdentifier": "HvqNhyCFpL+ZCIJ9l4ktF0hElSM=",
+          "key": "TlBJLUZBS0UtQ0VSVDt0aHVtYnByaW50PTFFRkE4RDg3MjA4NUE0QkY5OTA4ODI3RDk3ODkyRDE3NDg0NDk1MjM7bmJmPTIwMjYtMDItMDFUMDA6MDA6MDBaO2V4cD0yMDI3LTAyLTAxVDAwOjAwOjAwWjtzdWJqZWN0PUNOPWRlcGxveS1ib3QuY29udG9zby5leGFtcGxl"
+        }
+      ],
+      "passwordCredentials": []
+    },
+    "0a000000-0000-4000-8000-000000000008": {
+      "displayName": "Benefits Agent Blueprint",
+      "createdDateTime": "2026-06-15T00:00:00Z",
+      "servicePrincipalLockConfiguration": null,
+      "keyCredentials": [],
+      "passwordCredentials": []
+    }
+  },
+  "keyVaults": {
+    "kv-npi-contoso": {
+      "certificates": {
+        "hr-connector": {
+          "policy": {
+            "x509_props": {
+              "subject": "CN=hr-connector.contoso.example",
+              "validity_months": 5
+            },
+            "issuer": {
+              "name": "Self"
+            },
+            "key_props": {
+              "kty": "RSA",
+              "key_size": 2048,
+              "exportable": false,
+              "reuse_key": false
+            },
+            "lifetime_actions": [
+              {
+                "trigger": {
+                  "days_before_expiry": 60
+                },
+                "action": {
+                  "action_type": "AutoRenew"
+                }
+              }
+            ]
+          },
+          "versions": [
+            {
+              "version": "1d6b0000000000000000000000000001",
+              "x5t": "cg2hvEUOil03tKqmqN9ba97kw1Q",
+              "cer": "TlBJLUZBS0UtQ0VSVDt0aHVtYnByaW50PTcyMERBMUJDNDUwRThBNUQzN0I0QUFBNkE4REY1QjZCREVFNEMzNTQ7bmJmPTIwMjYtMDEtMTVUMDA6MDA6MDBaO2V4cD0yMDI3LTAxLTE1VDAwOjAwOjAwWjtzdWJqZWN0PUNOPWhyLWNvbm5lY3Rvci5jb250b3NvLmV4YW1wbGU=",
+              "nbf": "2026-01-15T00:00:00Z",
+              "exp": "2027-01-15T00:00:00Z",
+              "subject": "CN=hr-connector.contoso.example"
+            },
+            {
+              "version": "1d6b0000000000000000000000000002",
+              "x5t": "PupU6OoWoLFqekY9wsqEkZqX1X0",
+              "cer": "TlBJLUZBS0UtQ0VSVDt0aHVtYnByaW50PTNFRUE1NEU4RUExNkEwQjE2QTdBNDYzREMyQ0E4NDkxOUE5N0Q1N0Q7bmJmPTIwMjYtMTAtMjBUMDA6MDA6MDBaO2V4cD0yMDI3LTA0LTE4VDAwOjAwOjAwWjtzdWJqZWN0PUNOPWhyLWNvbm5lY3Rvci5jb250b3NvLmV4YW1wbGU=",
+              "nbf": "2026-10-20T00:00:00Z",
+              "exp": "2027-04-18T00:00:00Z",
+              "subject": "CN=hr-connector.contoso.example"
+            }
+          ]
+        },
+        "vendor-portal": {
+          "policy": {
+            "x509_props": {
+              "subject": "CN=vendor-portal.contoso.example",
+              "validity_months": 5
+            },
+            "issuer": {
+              "name": "Self"
+            },
+            "key_props": {
+              "kty": "RSA",
+              "key_size": 2048,
+              "exportable": false,
+              "reuse_key": false
+            },
+            "lifetime_actions": [
+              {
+                "trigger": {
+                  "days_before_expiry": 45
+                },
+                "action": {
+                  "action_type": "AutoRenew"
+                }
+              }
+            ]
+          },
+          "versions": [
+            {
+              "version": "1d6b0000000000000000000000000003",
+              "x5t": "mTOpDzXBvG7zsHRU38QY8wACvKc",
+              "cer": "TlBJLUZBS0UtQ0VSVDt0aHVtYnByaW50PTk5MzNBOTBGMzVDMUJDNkVGM0IwNzQ1NERGQzQxOEYzMDAwMkJDQTc7bmJmPTIwMjUtMTItMDFUMDA6MDA6MDBaO2V4cD0yMDI2LTEyLTAxVDAwOjAwOjAwWjtzdWJqZWN0PUNOPXZlbmRvci1wb3J0YWwuY29udG9zby5leGFtcGxl",
+              "nbf": "2025-12-01T00:00:00Z",
+              "exp": "2026-12-01T00:00:00Z",
+              "subject": "CN=vendor-portal.contoso.example"
+            }
+          ]
+        },
+        "deploy-bot": {
+          "policy": {
+            "x509_props": {
+              "subject": "CN=deploy-bot.contoso.example",
+              "validity_months": 5
+            },
+            "issuer": {
+              "name": "Self"
+            },
+            "key_props": {
+              "kty": "RSA",
+              "key_size": 2048,
+              "exportable": false,
+              "reuse_key": false
+            },
+            "lifetime_actions": [
+              {
+                "trigger": {
+                  "days_before_expiry": 100
+                },
+                "action": {
+                  "action_type": "AutoRenew"
+                }
+              }
+            ]
+          },
+          "versions": [
+            {
+              "version": "1d6b0000000000000000000000000004",
+              "x5t": "HvqNhyCFpL-ZCIJ9l4ktF0hElSM",
+              "cer": "TlBJLUZBS0UtQ0VSVDt0aHVtYnByaW50PTFFRkE4RDg3MjA4NUE0QkY5OTA4ODI3RDk3ODkyRDE3NDg0NDk1MjM7bmJmPTIwMjYtMDItMDFUMDA6MDA6MDBaO2V4cD0yMDI3LTAyLTAxVDAwOjAwOjAwWjtzdWJqZWN0PUNOPWRlcGxveS1ib3QuY29udG9zby5leGFtcGxl",
+              "nbf": "2026-02-01T00:00:00Z",
+              "exp": "2027-02-01T00:00:00Z",
+              "subject": "CN=deploy-bot.contoso.example"
+            },
+            {
+              "version": "1d6b0000000000000000000000000005",
+              "x5t": "JtdqcS2-KQ4_lI2tgsjiBIl29U8",
+              "cer": "TlBJLUZBS0UtQ0VSVDt0aHVtYnByaW50PTI2RDc2QTcxMkRCRTI5MEUzRjk0OERBRDgyQzhFMjA0ODk3NkY1NEY7bmJmPTIwMjYtMTAtMjVUMDA6MDA6MDBaO2V4cD0yMDI3LTA0LTIzVDAwOjAwOjAwWjtzdWJqZWN0PUNOPWRlcGxveS1ib3QuY29udG9zby5leGFtcGxl",
+              "nbf": "2026-10-25T00:00:00Z",
+              "exp": "2027-04-23T00:00:00Z",
+              "subject": "CN=deploy-bot.contoso.example"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

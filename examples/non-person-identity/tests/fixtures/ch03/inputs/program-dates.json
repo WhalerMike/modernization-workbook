@@ -1,0 +1,5 @@
+{
+  "_comment": "Fictional dates for the lab. In a real run these come from the program master schedule: D08 (end dates for legacy authentication and NTLM) bounds an account kept on Kerberos (N3.6), and G5 (AD retired) bounds every account kept in Active Directory (N7.3).",
+  "d08LegacyAuthEndDate": "2027-06-30",
+  "g5AdRetired": "2027-09-30"
+}

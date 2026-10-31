@@ -1,0 +1,11 @@
+Key,Decision,NewScope,Replacement,DecidedBy,DecidedOn
+app:5b000000-0000-4000-8000-000000000006:ar-01,Remove,,,alice@contoso.example,2026-10-20
+app:5b000000-0000-4000-8000-000000000006:ar-02,Keep,,,alice@contoso.example,2026-10-20
+app:5b000000-0000-4000-8000-000000000002:ar-10,Remove,,Sites.Selected,alice@contoso.example,2026-10-21
+app:5b000000-0000-4000-8000-000000000002:ar-11,Keep,,,alice@contoso.example,2026-10-21
+app:5b000000-0000-4000-8000-000000000005:ar-12,Keep,,,erin@contoso.example,2026-10-22
+app:5b000000-0000-4000-8000-000000000001:ar-03,Keep,,,bob@contoso.example,2026-10-19
+grant:og-01,Narrow,User.Read,,erin@contoso.example,2026-10-22
+grant:og-02,Keep,,,bob@contoso.example,2026-10-19
+azure:ra000000-0000-4000-8000-000000000001,Remove,,,gina@contoso.example,2026-10-23
+app:5b000000-0000-4000-8000-000000000013:ar-04,Keep,,,gina@contoso.example,2026-07-15
