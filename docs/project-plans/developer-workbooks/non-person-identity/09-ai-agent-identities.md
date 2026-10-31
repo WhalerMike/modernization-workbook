@@ -389,7 +389,7 @@ Where Learn's pages differ: List agentIdentity sponsors names a write permission
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 08 — Conditional Access for Workload Identities](08-conditional-access-for-workload-identities.md) · [Workbook index](index.md) · [Next: Chapter 10 — Drift and Evidence for the ISSO →](10-drift-and-evidence.md)
+← Previous: Chapter 08 — Conditional Access for Workload Identities · [Workbook index](index.md) · Next: Chapter 10 — Drift and Evidence for the ISSO →
 :::
 
 [^np09-agent-sps]: Microsoft Learn, "Agent identities, service principals, and applications," key differences, <https://learn.microsoft.com/entra/agent-id/agent-service-principals> (accessed Oct 30, 2026).
