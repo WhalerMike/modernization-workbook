@@ -1,0 +1,35 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's page 'Manage Microsoft Entra applications using Microsoft Graph', as its source in microsoftgraph/microsoft-graph-docs-contrib: the HTTP samples for finding ownerless service principals, assigning owners to an application and a service principal, and setting serviceManagementReference exist only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn samples: Manage Microsoft Entra applications using Microsoft Graph (owners and serviceManagementReference)",
+  "upstream_repo": "https://github.com/microsoftgraph/microsoft-graph-docs-contrib",
+  "upstream_path": "concepts/tutorial-applications-basics.md",
+  "commit": "a69303123e9701eecbf56568d152ece936a97f1e",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2026-07-03 (commit 315abdcef4ad417ffe6767e45d4dd4cd5281f41d)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: Creative Commons Attribution 4.0 International (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/graph/tutorial-applications-basics",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "tutorial-applications-basics.md": "concepts/tutorial-applications-basics.md"
+  },
+  "not_copied": [
+    "The SDK snippet include files the page references (includes/snippets/*/v1/tutorial-application-basics-*.md): generated per language from the HTTP samples, which are inline in the page and are what the tests run.",
+    "The API reference pages for Add owner and List owners, which the chapter cites; everything else in microsoftgraph/microsoft-graph-docs-contrib."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 18650,
+      "sha256": "7183ef9749eb9b75e710a81a4c812a9405cc184f087500581a973e5929ac3f5e"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "tutorial-applications-basics.md": {
+      "bytes": 35181,
+      "sha256": "713547e7583102a9e7d7b5d212fb2dc0653535f60f7533d966ce2cc83cf7aa1a"
+    }
+  }
+}

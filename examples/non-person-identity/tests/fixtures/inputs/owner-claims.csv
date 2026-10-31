@@ -1,0 +1,4 @@
+IdentityId,NomineeUpn,ClaimedBy,ClaimedOn
+app:1a000000-0000-4000-8000-000000000002,gina@contoso.example,HR systems office,2026-10-29
+app:1a000000-0000-4000-8000-000000000004,dave_partner.example#EXT#@contosoexample.onmicrosoft.com,Build team,2026-10-29
+ad:ad000000-0000-4000-8000-000000000004,carol@contoso.example,Integration office,2026-10-29

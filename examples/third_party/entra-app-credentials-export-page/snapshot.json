@@ -1,0 +1,35 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's page 'PowerShell sample: Export secrets and certificates for app registrations', as its source in MicrosoftDocs/entra-docs: the Microsoft Graph PowerShell script exists only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn sample: Export secrets and certificates for app registrations (Microsoft Graph PowerShell)",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/identity/enterprise-apps/scripts/powershell-export-all-app-registrations-secrets-and-certs.md",
+  "commit": "7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2026-02-19 (commit fe5d18454cbfc71fb368a411dab8c905fdfad285)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: MIT (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/identity/enterprise-apps/scripts/powershell-export-all-app-registrations-secrets-and-certs",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "powershell-export-all-app-registrations-secrets-and-certs.md": "docs/identity/enterprise-apps/scripts/powershell-export-all-app-registrations-secrets-and-certs.md"
+  },
+  "not_copied": [
+    "The sibling script pages (export enterprise apps' secrets and certificates, export apps with expiring secrets, export apps with secrets beyond the required date): the chapter starts from the all-app-registrations script and links the others.",
+    "The include file the page references (includes/azure-docs-pr/quickstarts-free-trial-note.md) and everything else in MicrosoftDocs/entra-docs."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "powershell-export-all-app-registrations-secrets-and-certs.md": {
+      "bytes": 7546,
+      "sha256": "51e125de077c4915a6e1c8c0cd50543e32c830c6744da437dabc06229bc9f46a"
+    }
+  }
+}

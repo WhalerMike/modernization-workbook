@@ -576,6 +576,61 @@
         "DW"
       ],
       "source": "Commits to the Learn source page of the PIM tutorial that makes a role-assignable group eligible for a Microsoft Entra role, which examples/third_party/graph-pim-rules-pages pins at one commit (developer workbook Building Privileged Access, Chapter 04). A new commit means: review it, rerun examples/privileged-access/tests/PimEntraRoles.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-service-accounts-user-page-commits",
+      "name": "Learn's Secure user-based service accounts in Active Directory (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/architecture/service-accounts-user-on-premises.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Get-ADObject and Get-ADUser commands for finding user accounts used as service accounts, which examples/third_party/entra-service-account-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 01). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-service-accounts-gmsa-page-commits",
+      "name": "Learn's Secure group managed service accounts (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/architecture/service-accounts-group-managed.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Get-ADServiceAccount commands for finding managed service accounts, which examples/third_party/entra-service-account-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 01). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-service-accounts-principal-page-commits",
+      "name": "Learn's Securing service principals in Microsoft Entra ID (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/architecture/service-accounts-principal.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Get-MgServicePrincipal commands for finding service principals, which examples/third_party/entra-service-account-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 01). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-app-credentials-export-page-commits",
+      "name": "Learn's Export secrets and certificates for app registrations script (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/enterprise-apps/scripts/powershell-export-all-app-registrations-secrets-and-certs.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Microsoft Graph PowerShell script exporting every app registration's secrets and certificates with its owners, which examples/third_party/entra-app-credentials-export-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 01). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-applications-tutorial-page-commits",
+      "name": "Learn's Manage Microsoft Entra applications using Microsoft Graph (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "concepts/tutorial-applications-basics.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the HTTP samples for finding ownerless service principals, assigning owners and setting serviceManagementReference, which examples/third_party/graph-applications-tutorial-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 02). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     }
   ]
 }
