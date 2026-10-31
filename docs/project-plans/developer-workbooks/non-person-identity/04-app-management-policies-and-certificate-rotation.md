@@ -241,7 +241,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Diff: 6 Add, 1 Change, 1 KeepExisting
    Findings: 12 Finding, 1 Warn, 1 Info
    Policy plan: 10 actions, 8 of them writes (1 AssignAppPolicy, 1 CreateAppPolicy, 5 LockApp, 1 PatchDefaultPolicy); nothing sent
-   Plan SHA-256: 02f1f032dd4ec9841701282decfdb0f9a4746a186e1bbe1c132b7200f7be3816
+   Plan SHA-256: 2d4c419a05b7792470e59a5969f94f1b6452cba079a47595336c4d451cbfa809
    ```
 
    The plan's hash is the same on every run with these inputs.
@@ -288,7 +288,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
      WouldSend LockApp              PATCH https://graph.microsoft.com/v1.0/applications/0a000000-0000-4000-8000-000000000006
    ```
 
-   Then `Apply: 8 Sent`, and the refusal: `The plan's SHA-256 is 02f1f032…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+   Then `Apply: 8 Sent`, and the refusal: `The plan's SHA-256 is 2d4c419a…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 6. **Build the rotation plan:**
 
@@ -300,7 +300,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Rotation: 7 app registrations read; 7 steps
    Findings: 2 Finding, 0 Warn, 3 Info; 0 requests for owners
    Rotation plan: 3 writes (1 AttachNewCertificate, 1 RemoveOldCertificate, 1 RenewInKeyVault); nothing sent
-   Plan SHA-256: ec683719ede03009827bd16fbe3e3bb164a7776e41e95e79623ebc3e419b6c12
+   Plan SHA-256: d54726465dddc6ccdf03d9df2137e77e31547e9aade890d11bd7053653fa0d8f
    ```
 
 7. **Read the plan:**
@@ -346,7 +346,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 512 tests passing across the example, this chapter's 51 among them; `out/policy/manifest.json` listing the reads with `Application.Read.All` and `Policy.Read.All` and the SHA-256 of the register, the reviewed file and the default policy as read; `out/rotation-apply/manifest.json` listing the prechecks, the two PATCHes, the Key Vault create and its poll. Delete `out` when you're done.
+**Expected result:** 513 tests passing across the example, this chapter's 51 among them; `out/policy/manifest.json` listing the reads with `Application.Read.All` and `Policy.Read.All` and the SHA-256 of the register, the reviewed file and the default policy as read; `out/rotation-apply/manifest.json` listing the prechecks, the two PATCHes, the Key Vault create and its poll. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 

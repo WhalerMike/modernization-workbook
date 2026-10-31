@@ -30,7 +30,7 @@ The code behind the project plan's task A3.2, "Azure privileged roles eligible t
 
 ## The context the code depends on
 
-PIM for Azure resources isn't in Microsoft Graph. Learn says PIM for Microsoft Entra roles and PIM for Groups are managed through Graph, and PIM for Azure resources through Azure Resource Manager, with no Graph permissions at all: the caller needs at least Owner or User Access Administrator on the resource it administers.[^pa06-pim-apis] The same page calls this third iteration of the PIM APIs the final one, generally available for Azure resources, and says the older `/beta/privilegedAccess/azureResources` endpoint is deprecated and stops returning data on October 28, 2026.[^pa06-pim-apis] Code written against the old endpoint has already stopped working. This chapter uses only the current one.
+PIM for Azure resources isn't in Microsoft Graph. Learn says PIM for Microsoft Entra roles and PIM for Groups are managed through Graph, and PIM for Azure resources through Azure Resource Manager, with no Graph permissions at all: the caller needs at least Owner or User Access Administrator on the resource it administers.[^pa06-pim-apis] The same page calls this third iteration of the PIM APIs the final one, generally available for Azure resources, and says the older `/beta/privilegedAccess/azureResources` endpoint is deprecated and stops returning data on October 28, 2026.[^pa06-pim-apis] By that date, code written against the old endpoint no longer gets data; Learn's page still says "will stop", so check it before you rely on this. This chapter uses only the current one.
 
 Three resource types under `Microsoft.Authorization` do the work:
 

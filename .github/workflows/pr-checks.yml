@@ -6,7 +6,9 @@ name: Pull request checks
 # build scripts, an included file, a listing page, the video manifest, or
 # renames or deletes a page, or edits more than 25 pages, runs the deploy
 # workflow's full build (without deploying). Changes the site doesn't publish
-# run only the checks that apply to them. Read-only: no Pages, no secrets.
+# run only the checks that apply to them. A change to an example kit runs
+# that kit's Pester and pytest suites (scripts/run_example_tests.py), on
+# Linux. Read-only: no Pages, no secrets.
 
 on:
   pull_request:
@@ -43,7 +45,19 @@ jobs:
           filter: blob:none
 
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y librsvg2-bin python3-yaml python3-jsonschema
+        # pytest and the packages the example kits' Python suites import.
+        run: >-
+          sudo apt-get update && sudo apt-get install -y librsvg2-bin python3-yaml python3-jsonschema
+          python3-pytest python3-cryptography python3-requests
+
+      - name: Pester 5
+        # pwsh is on the runner image; the example kits' Pester suites need Pester 5 or later.
+        shell: pwsh
+        run: |
+          if (-not (Get-Module -ListAvailable Pester | Where-Object Version -ge '5.0.0')) {
+            Install-Module Pester -MinimumVersion 5.5.0 -Scope CurrentUser -Force -SkipPublisherCheck
+          }
+          (Get-Module -ListAvailable Pester | Sort-Object Version -Descending | Select-Object -First 1).Version.ToString()
 
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2

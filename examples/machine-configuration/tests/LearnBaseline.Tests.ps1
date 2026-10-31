@@ -13,12 +13,17 @@
 BeforeDiscovery {
     $kit = Resolve-Path (Join-Path $PSScriptRoot '..')
     $required = Import-PowerShellDataFile (Join-Path $kit 'RequiredModules.psd1')
-    $paths = @($env:MC_MODULE_PATH) + ($env:PSModulePath -split [IO.Path]::PathSeparator) | Where-Object { $_ }
+    # Ask PowerShell, as Import-Module will: a folder named for the version isn't enough (a CI
+    # runner can have one it can't load), and a module path this user can't read counts as absent.
+    $saved = $env:PSModulePath
+    if ($env:MC_MODULE_PATH) { $env:PSModulePath = $env:MC_MODULE_PATH + [IO.Path]::PathSeparator + $env:PSModulePath }
     $script:HasModules = $true
     foreach ($m in $required.Keys) {
-        $found = $paths | Where-Object { Test-Path (Join-Path $_ "$m/$($required[$m])") }
+        $spec = @{ ModuleName = $m; RequiredVersion = $required[$m] }
+        $found = try { Get-Module -ListAvailable -FullyQualifiedName $spec -ErrorAction SilentlyContinue } catch { $null }
         if (-not $found) { $script:HasModules = $false }
     }
+    $env:PSModulePath = $saved
 }
 
 Describe 'Learn baseline (GuestConfiguration 4.12.0)' -Skip:(-not $script:HasModules) {

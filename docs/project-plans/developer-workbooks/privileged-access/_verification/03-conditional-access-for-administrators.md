@@ -38,6 +38,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 24 | Every policy file carries the exclusion whatever its state; named instruments exempt; create report-only; enforce only with `-AllowEnforce`; no delete; strengths not updated | The code | restated-as-design (labeled) | — |
 | 25 | Lab 1 outputs (7 passed; both permission lists; 0/5/0; four template rows; the plan lines and actions; 6, 3, 0 sent and the report-only state; 113 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 26 | Lab 2 behavior (Graph accepts the files; report-only results; the enforcement run) | Lab 2 | not run against a tenant; research gaps, rows 32 and 35 | — |
+| 27 | Create or update authenticationContextClassReference (v1.0): national cloud table lists global, US Government L4 and L5; the page notes the same known consent issue as the policy methods; `AuthenticationContext.ReadWrite.All` still least privileged | Which cloud; least privilege; facts | updated October 31, 2026: the full page was read; the facts row's "—" became "L4 and L5", the known consent issue was added there and in the least-privilege paragraph, and the page joined the Which cloud citations. No permission change; the call list is unchanged. The other 21 Learn pages cited in the chapter were reread and still hold, so their access dates stay October 30, 2026 | Learn, Create or Update authenticationContextClassReference, October 31, 2026 |
 
 ## Carry-forward ledger
 

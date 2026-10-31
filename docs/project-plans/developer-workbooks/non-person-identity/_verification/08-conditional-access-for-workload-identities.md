@@ -43,6 +43,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 29 | Per-ring policies; 14-day window; /16 and /32 limits; enforcement record; exclusions; alert cadence and triage | Code sections | restated-as-design (labeled) | — |
 | 30 | Lab 1 outputs (9 passed and 39 not run; permissions; 0/0/0; five Findings on the sample; 0/0/2 and the plan table; 14 GETs; the sign-in summary and its hash; 4 then 0 sent; Held, then the Ring 1 enforcement; the alert query; 145 tests) | Lab 1 | verified by running the commands as written, October 30, 2026 | local run |
 | 31 | Lab 2 behavior (v1.0 accepts the policies; `clientAppTypes`; the results Graph records; the permission returns the results; AADSTS53003 on enforcement; the alert query) | Lab 2 | not run against a tenant; rows 71, 72, 74, 77 and 79 | — |
+| 32 | Lab 1 rerun after NpiCore's JSON writer switched to LF on every platform: the summary hash | Lab 1 | updated by running the commands as written; the counts and findings didn't change | local run, October 31, 2026 |
 
 ## Carry-forward ledger
 

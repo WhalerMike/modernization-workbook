@@ -188,6 +188,30 @@ class NonSiteTasks(unittest.TestCase):
         t = cc.non_site_tasks(mods("scripts/build_start_kit_zip.py"))
         self.assertEqual(t["kits"], ["start-kit", "copilot-agent-pack", "app-modernization", "ansible"])
 
+    def test_example_tests_run_for_each_changed_kit(self):
+        t = cc.non_site_tasks(mods("examples/privileged-access/PaCore/PaCore.psm1", "examples/hcm-entra/README.md",
+                                   "examples/privileged-access/tests/AzurePim.Tests.ps1"))
+        self.assertEqual(t["example-tests"], ["privileged-access", "hcm-entra"])
+
+    def test_example_tests_skip_folders_without_tests(self):
+        t = cc.non_site_tasks(mods("examples/third_party/csv2scim/README.md", "examples/README.md"))
+        self.assertNotIn("example-tests", t)
+
+    def test_every_kit_is_tested_when_the_runner_or_workflow_changes(self):
+        for path in ("scripts/run_example_tests.py", ".github/workflows/pr-checks.yml"):
+            self.assertEqual(cc.non_site_tasks(mods(path))["example-tests"], ["*"], path)
+
+    def test_the_runner_adds_the_kits_that_test_a_kits_output(self):
+        import run_example_tests as ret
+        self.assertEqual(ret.expand(["non-person-identity", "privileged-access"]),
+                         ["non-person-identity", "drift-pipeline", "privileged-access"])
+
+    def test_every_windows_only_test_file_exists(self):
+        import run_example_tests as ret
+        for kit, (files, _why) in ret.WINDOWS_ONLY.items():
+            for f in files:
+                self.assertTrue((ret.EXAMPLES / kit / f).is_file(), f"{kit}/{f}")
+
     def test_project_plans(self):
         self.assertIn("project-plans", cc.non_site_tasks(mods("data/project-plans/network-access.yaml")))
 

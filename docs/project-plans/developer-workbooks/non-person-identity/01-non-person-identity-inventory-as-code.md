@@ -240,7 +240,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 512 tests passing, every row of the gap table seen with your own eyes, and `out/inventory/manifest.json` listing 36 requests: 34 GETs and 2 AD reads. Keep `out/inventory` for Chapter 02's lab; delete `out` when you're done with both.
+**Expected result:** 513 tests passing, every row of the gap table seen with your own eyes, and `out/inventory/manifest.json` listing 36 requests: 34 GETs and 2 AD reads. Keep `out/inventory` for Chapter 02's lab; delete `out` when you're done with both.
 
 ## Lab 2: test tenant
 

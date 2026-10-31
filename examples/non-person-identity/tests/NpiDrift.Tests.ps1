@@ -352,12 +352,11 @@ Describe 'Chapter 10: the run folder' {
         Test-Path (Join-Path $bad '2026-10-30T0600Z-fixture/inventory') | Should -BeFalse
     }
     It 'matches the two runs examples/drift-pipeline keeps as fixtures, file for file' {
-        # The kept runs were written on Windows, where Chapters 01 and 02 write CRLF; compare the JSON, not the line endings.
+        # Byte for byte: every file is LF on every platform. The manifests and run.json record when they were written, so they're left out.
         $kept = Join-Path $script:Root '../drift-pipeline/tests/fixtures/npi-runs'
-        $norm = { param($p) $t = [IO.File]::ReadAllText($p); if ($t.Trim()) { $t | ConvertFrom-Json -Depth 50 | ConvertTo-Json -Depth 50 -Compress } else { '' } }
         foreach ($day in '2026-10-29T0600Z-fixture', '2026-10-30T0600Z-fixture') {
-            foreach ($f in 'drift/findings.json', 'drift/events.json', 'drift/chapter-findings.json', 'drift/review-cycle.json', 'drift/summary.json', 'inventory/register.json', 'inventory/findings.json', 'ownership/ownership.json', 'ownership/findings.json') {
-                (& $norm (Join-Path $script:Tmp "runs/$day/$f")) | Should -Be (& $norm (Join-Path $kept "$day/$f")) -Because "$day/$f"
+            foreach ($f in 'drift/findings.json', 'drift/events.json', 'drift/chapter-findings.json', 'drift/review-cycle.json', 'drift/summary.json', 'drift/signin-activity.json', 'drift/baseline-candidate.json', 'inventory/register.json', 'inventory/findings.json', 'ownership/ownership.json', 'ownership/findings.json', 'ownership/orphan-plan.json') {
+                (Get-NpiFileHash -Path (Join-Path $script:Tmp "runs/$day/$f")) | Should -Be (Get-NpiFileHash -Path (Join-Path $kept "$day/$f")) -Because "$day/$f"
             }
         }
     }

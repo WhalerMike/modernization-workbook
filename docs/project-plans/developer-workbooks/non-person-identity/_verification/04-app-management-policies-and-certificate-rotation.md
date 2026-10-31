@@ -48,6 +48,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 26 | The writer's guards (approved hash, tenant, cloud, task, seven days, bodies, never loosen, empty Key Vault body, delegated only, prechecks) | Write path; Dangers | restated-as-design (labeled) | — |
 | 27 | Lab 1 outputs (19 passed and 32 not run; permissions; 6 Add, 1 Change, 1 KeepExisting; 12/1/1; 10 actions, 8 writes; both plan hashes; dry runs; applies; the refusal; 7 steps, 3 writes; 148 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 28 | Lab 2 behavior (role sufficiency, `state` read back, admin center, Key Vault Reader, thumbprint match, `keyId` kept, `-ResourceId`) | Lab 2 | not run against a tenant or vault; rows 32, 33, 35 to 38 | — |
+| 29 | Lab 1 rerun after NpiCore's JSON writer switched to LF on every platform: the plan hashes | Lab 1 | updated by running the commands as written; the counts and findings didn't change | local run, October 31, 2026 |
 
 ## Carry-forward ledger
 

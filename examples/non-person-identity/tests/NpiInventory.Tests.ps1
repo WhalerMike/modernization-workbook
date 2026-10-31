@@ -244,6 +244,9 @@ Describe 'The run and its manifest' {
         foreach ($k in $script:Manifest.files.Keys) { (Get-FileHash (Join-Path $script:Out $k) -Algorithm SHA256).Hash.ToLowerInvariant() | Should -Be $script:Manifest.files[$k] }
         @($script:Manifest.files.Keys | Sort-Object) | Should -Be @('data-platform-handoff.csv', 'findings.json', 'register.csv', 'register.json')
     }
+    It 'writes LF line endings on every platform, so the hashes match across platforms' {
+        foreach ($k in @($script:Manifest.files.Keys) + 'manifest.json') { [IO.File]::ReadAllText((Join-Path $script:Out $k)).Contains("`r") | Should -BeFalse -Because $k }
+    }
     It 'lists every request and AD read, every one a GET or a READ' {
         @($script:Manifest.requests | Where-Object { $_.method -notin 'GET', 'READ' }).Count | Should -Be 0
         @($script:Manifest.requests | Where-Object { $_.method -eq 'READ' }).Count | Should -Be 2

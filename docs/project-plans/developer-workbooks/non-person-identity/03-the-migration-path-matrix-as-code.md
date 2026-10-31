@@ -255,7 +255,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    Invoke-Pester -Path tests
    ```
 
-**Expected result:** 512 tests passing, and `out/matrix/manifest.json` listing three requests, all GET: two user reads (the SPN owner and the rollback owner) and one read of the subscriptions. Delete `out` when you're done: it names accounts and owners.
+**Expected result:** 513 tests passing, and `out/matrix/manifest.json` listing three requests, all GET: two user reads (the SPN owner and the rollback owner) and one read of the subscriptions. Delete `out` when you're done: it names accounts and owners.
 
 ## Lab 2: test tenant
 

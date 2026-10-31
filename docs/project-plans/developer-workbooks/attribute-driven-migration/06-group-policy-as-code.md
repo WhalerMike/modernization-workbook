@@ -95,7 +95,7 @@ The read side has two parts.
 
 **VK-INT-07 is the gate.** The validation kit's check reads `groupPolicyMigrationReports` and fails on any GPO targeted in Active Directory whose migration readiness isn't `complete`, and on any GPO in `gpo-scope.csv` that was never imported ([Chapter 03](03-writing-a-validation-kit-check.md) explains the kit). It works per GPO. It doesn't read the settings.
 
-**`Get-GpcMovePlan` works per setting.** It reads each report's `groupPolicySettingMappings` and returns one row per setting: the GPO, the setting, its value, its scope (`device` or `user`), and the Intune setting definition ID.[^c06-gpsm] Then it gives each row a disposition:
+**`Get-GpcMovePlan` works per setting.** It reads each report's `groupPolicySettingMappings` and returns one row per setting: the GPO, the setting, its value, its scope (`device` or `user`; Learn also lists `unknown`, which the plan keeps as is), and the Intune setting definition ID.[^c06-gpsm] Then it gives each row a disposition:
 
 | Disposition | When | What happens next |
 |---|---|---|
@@ -252,7 +252,7 @@ When the policies are assigned later, Learn's guidance applies: use an assignmen
 | List Group Policy analytics reports | `GET /beta/deviceManagement/groupPolicyMigrationReports`; beta; least privileged `DeviceManagementConfiguration.Read.All`, delegated and application; global, US Government L4 and L5 | [^c06-gpmr-list] |
 | Report properties | `migrationReadiness`: `none`, `partial`, `complete`, `error`, `notApplicable`; `targetedInActiveDirectory`; supported-setting counts; relationships `groupPolicySettingMappings` and `unsupportedGroupPolicyExtensions` | [^c06-gpmr] |
 | List setting mappings | `GET …/groupPolicyMigrationReports/{id}/groupPolicySettingMappings`; beta; `DeviceManagementConfiguration.Read.All`; global, L4 and L5 | [^c06-gpsm-list] |
-| Mapping properties | `mdmSupportedState`: `unknown`, `supported`, `unsupported`, `deprecated`; `settingScope`: `device`, `user`; `intuneSettingDefinitionId`; `settingType` includes `appLockerRuleCollection` and `windowsFirewallSettings` | [^c06-gpsm] |
+| Mapping properties | `mdmSupportedState`: `unknown`, `supported`, `unsupported`, `deprecated`; `settingScope`: `unknown`, `device`, `user`; `intuneSettingDefinitionId`; `settingType` includes `appLockerRuleCollection` and `windowsFirewallSettings` | [^c06-gpsm] |
 | List settings catalog policies | `GET /beta/deviceManagement/configurationPolicies`; `DeviceManagementConfiguration.Read.All` least privileged; global, L4 and L5 | [^c06-cp-list] |
 | List a policy's settings | `GET /beta/deviceManagement/configurationPolicies/{id}/settings`; `DeviceManagementConfiguration.Read.All` | [^c06-settings-list] |
 | Create a settings catalog policy | `POST /beta/deviceManagement/configurationPolicies`; `DeviceManagementConfiguration.ReadWrite.All` least privileged; `201 Created`; global, L4 and L5 | [^c06-cp-create] |
@@ -312,7 +312,7 @@ Two things Learn doesn't say yet, recorded so a later edit doesn't assume them, 
 [^c06-gpmr-list]: Microsoft Learn, "List groupPolicyMigrationReports" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-grouppolicymigrationreport-list?view=graph-rest-beta> (accessed Oct 30, 2026).
 [^c06-gpmr]: Microsoft Learn, "groupPolicyMigrationReport resource type" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/resources/intune-gpanalyticsservice-grouppolicymigrationreport?view=graph-rest-beta> (accessed Oct 30, 2026).
 [^c06-gpsm-list]: Microsoft Learn, "List groupPolicySettingMappings" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-grouppolicysettingmapping-list?view=graph-rest-beta> (accessed Oct 30, 2026).
-[^c06-gpsm]: Microsoft Learn, "groupPolicySettingMapping resource type" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/resources/intune-gpanalyticsservice-grouppolicysettingmapping?view=graph-rest-beta> (accessed Oct 30, 2026).
+[^c06-gpsm]: Microsoft Learn, "groupPolicySettingMapping resource type" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/resources/intune-gpanalyticsservice-grouppolicysettingmapping?view=graph-rest-beta> (accessed Oct 31, 2026).
 [^c06-cp-create]: Microsoft Learn, "Create deviceManagementConfigurationPolicy" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationpolicy-create?view=graph-rest-beta> (accessed Oct 30, 2026).
 [^c06-cp-list]: Microsoft Learn, "List deviceManagementConfigurationPolicies" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationpolicy-list?view=graph-rest-beta> (accessed Oct 30, 2026).
 [^c06-setting-update]: Microsoft Learn, "Update deviceManagementConfigurationSetting" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationsetting-update?view=graph-rest-beta> (accessed Oct 30, 2026).

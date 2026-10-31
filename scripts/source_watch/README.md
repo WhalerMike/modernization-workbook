@@ -37,7 +37,7 @@ Each page then falls into one of five classes:
 | Class | Meaning |
 |---|---|
 | unchanged | The fingerprint matches, or differs by less than the threshold. Not reported. |
-| changed | The page's text changed by at least the threshold (2% of its paragraphs by default). Also: learn.microsoft.com's `ms.date` moved, or a PDF or other file's sha256 changed. |
+| changed | The page's text changed by at least the threshold (2% of its paragraphs by default). Also: learn.microsoft.com's `ms.date` moved; a Learn page's source file has a new commit and any paragraph changed; a GitHub file or folder cited at a branch has a new commit; or a PDF or other file's sha256 changed. |
 | moved | The URL now answers with a permanent redirect (301/308) to a different address than last week. |
 | gone | 404 or 410. |
 | blocked | 401, 403, 429 or another 4xx, or no answer two runs in a row. Reported once, when it starts, under "Needs manual check". Never week after week. |
@@ -48,6 +48,24 @@ How a page is fingerprinted:
   reviewed it) and `updated_at` meta tags, plus the paragraph hashes below.
   A moved `ms.date` is always reported. A new `updated_at` on its own is
   not, because Microsoft republishes pages without changing their content.
+  Each page also names the file it is built from and the commit it was
+  built at (`original_content_git_url`, `git_commit_id`), and the watcher
+  keeps both. The commit moves whenever the file does, even when the
+  author leaves `ms.date` alone, so a page with a new commit is reported
+  when any paragraph changed, however few: a one-sentence edit to a long
+  page falls under the 2% threshold. A new commit with no visible change
+  (metadata, a comment) isn't reported. Text a page pulls in from a shared
+  include file doesn't move the page's own commit; the paragraph check
+  still catches that.
+- **GitHub files cited at a branch** (`/blob/main/...`, `/tree/main/...`),
+  such as CISA's SCuBA baselines. The newest commit that touched the
+  file or folder is looked up through the GitHub API on each run. A new
+  commit is reported as a change; the same commit means the file didn't
+  change, so a difference in GitHub's own page around it isn't reported.
+  A URL pinned to a commit or a tag (`/blob/v2.0.0/...`) can't change and
+  gets no lookup; new releases come from the release feeds. A ref that
+  looks like a version (`v2.0.0`, `1.8.0`) is taken as a tag, anything
+  else as a branch.
 - **Other HTML.** The main text: `<main>` or `<article>` if the page has one,
   else the whole body. Scripts, styles, navigation, headers, footers and
   asides are removed, then the tags, and whitespace is collapsed. Lines that
@@ -131,6 +149,15 @@ label is `source-watch`. The issue has four sections:
    - *Changed*: `+7 / -2 of 140 paragraphs (6.4%)`, the new `ms.date` for a
      Microsoft Learn page, and up to three added paragraphs, quoted. A
      source cited in several chapters is quoted under the first one only.
+     When git can say more, the entry links the comparison on GitHub,
+     lists the commits that touched the source file with their messages,
+     and quotes up to 12 added (`+`) and removed (`-`) lines in place of
+     the paragraphs. That works for a GitHub file and for a Learn page
+     whose source repository has a public copy (`MicrosoftDocs/entra-docs`
+     for `entra-docs-pr`). On October 31, 2026, 359 of the 404 Learn pages
+     the developer workbooks cite had one. For the rest (Intune's
+     `memdocs-pr`, the REST API reference), the entry says the source
+     isn't public and quotes the paragraphs as before.
      For a PDF, the old and new sizes. Read the passage the footnote
      supports and decide whether the chapter still holds.
    - *Moved*: the new address. Check it is the same document, then update
@@ -224,6 +251,7 @@ Files:
 |---|---|
 | `citations.py` | Extracts the footnoted URLs and maps each to book, chapter and footnote. Reads the books list from `docs/books/index.md`. |
 | `netfetch.py` | HTTP: the generic User-Agent, per-host pacing, retries and the redirect record. |
+| `gitsource.py` | Git history from the GitHub API: a Learn page's source repository and its public copy, a cited branch's latest commit, and the commits and changed lines between two commits. Called with the workflow's token. |
 | `watch.py` | Fingerprints and classifies each source, polls the feeds, and writes the state and results. |
 | `feeds.py` | The feed readers and the topic matching. |
 | `report.py` | Renders the Markdown digest and opens the issue. |

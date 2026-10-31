@@ -35,6 +35,9 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 21 | Role template IDs | `config/tiers.json` | carried forward from Book 04, Appendix B | Book 04 |
 | 22 | Lab 1 outputs (9 passed; permission list; 30 rows and tier counts; 10/7/1; the Finding rows; two error texts; 24 requests; 78 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
 | 23 | Lab 2 behavior (admin center CSV contains every active row; expanded principal carries a type; Azure schedules appear once) | Lab 2 | not run against a tenant; rows 2 and 3 of research-gaps.md | — |
+| 24 | `Get-MgRoleManagementDirectoryRoleAssignment` has `-All` ("List all pages", default off) and `-PageSize` | Gap table; Verified facts paragraph | updated October 31, 2026: the full reference page shows `-All`, which the October 30 excerpt didn't; row 19's question narrowed (what a call without `-All` returns is inferred from the default, not stated) | Learn, Get-MgRoleManagementDirectoryRoleAssignment, October 31, 2026 |
+| 25 | List group members on v1.0 doesn't return service principal members (known issue); workarounds are beta or `$expand=members`, and `$expand` on directory-object relationships returns at most 20 objects with no next link | Verified facts paragraph and table; Dangers | updated October 31, 2026: new claim; the example's v1.0 member read misses service principal members of a role-assignable group, so the "never drops a member" guard doesn't cover them | Learn, List group members; Known issues in Microsoft Graph, October 31, 2026 |
+| 26 | List group members available in US Government L4 and L5 | Verified facts | updated October 31, 2026: the national cloud table was read; the row said "Not read for this chapter" | Learn, List group members, October 31, 2026 |
 
 ## Carry-forward ledger
 

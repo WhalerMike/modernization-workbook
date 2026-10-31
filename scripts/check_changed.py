@@ -263,10 +263,18 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
                                                              "scripts/check_evidence_maps.py"):
             add("evidence-maps", p)
         if p in ("scripts/check_changed.py", "scripts/check_evidence_maps.py", "scripts/check_neutrality.py",
-                 ".github/workflows/pr-checks.yml") or p.startswith("scripts/tests/"):
+                 "scripts/run_example_tests.py", ".github/workflows/pr-checks.yml") or p.startswith("scripts/tests/"):
             add("unit-tests", p)
     import check_neutrality
+    import run_example_tests
 
+    tested = set(run_example_tests.kits())
+    for p in every:
+        parts = p.split("/")
+        if len(parts) > 2 and parts[0] == "examples" and parts[1] in tested:
+            add("example-tests", parts[1])
+    if any(p in ("scripts/run_example_tests.py", ".github/workflows/pr-checks.yml") for p in every):
+        tasks["example-tests"] = ["*"]              # the runner or the workflow changed: every kit's tests
     for p in live:
         if check_neutrality.in_scope(p):
             add("neutrality", p)
@@ -1044,6 +1052,10 @@ class Checker:
             every_file = t["neutrality"] == ["*"]
             steps.append(("Agency neutrality" + (" (every file)" if every_file else f" ({len(t['neutrality'])} file(s))"),
                           self.simple([PY, "scripts/check_neutrality.py"] + ([] if every_file else t["neutrality"]))))
+        if "example-tests" in t:
+            every_kit = t["example-tests"] == ["*"]
+            steps.append(("Example kit tests" + (" (every kit)" if every_kit else f" ({', '.join(t['example-tests'])})"),
+                          self.simple([PY, "scripts/run_example_tests.py"] + (["--all"] if every_kit else t["example-tests"]))))
         if "unit-tests" in t:
             steps.append(("Unit tests (scripts/tests)", self.simple([PY, "-m", "unittest", "discover", "-s", "scripts/tests", "-v"])))
         return steps

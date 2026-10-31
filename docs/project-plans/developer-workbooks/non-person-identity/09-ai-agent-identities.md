@@ -32,7 +32,7 @@ The checks and the plan behind the project plan's Phase 6 and Gate 6, "AI identi
 
 ### What Microsoft Entra Agent ID is, and its stage
 
-Agent ID gives AI agents their own identities: an **agent identity blueprint** holds the credentials and creates **agent identities**, special single-tenant service principals that hold the permissions and appear in the logs; the blueprint acquires tokens on their behalf, so a compromise of its credential affects every agent under it.[^np09-agent-sps] Learn says Agent ID is available for all Microsoft Entra customers, and that extending Entra's security features to agents (Conditional Access, ID Protection, governance) requires Microsoft Agent 365.[^np09-whatis] The platform became generally available in April 2026 and sponsor lifecycle workflows in May 2026 ([Book 17, Chapter 04](../../../books/b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds)). The pieces this chapter uses are at different stages:
+Agent ID gives AI agents their own identities: an **agent identity blueprint** holds the credentials and creates **agent identities**, special single-tenant service principals that hold the permissions and appear in the logs; the blueprint acquires tokens on their behalf, so a compromise of its credential affects every agent under it.[^np09-agent-sps] Learn says Agent ID is available for all Microsoft Entra customers, and that extending Entra's security features to agents (Conditional Access, ID Protection, governance) requires Microsoft Agent 365.[^np09-whatis] Learn's release notes list the Agent ID platform as generally available in April 2026,[^np09-ga] and sponsor lifecycle workflows followed in May 2026 ([Book 17, Chapter 04](../../../books/b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds)). The pieces this chapter uses are at different stages:
 
 | Capability | Release stage | GCC | GCC High, DoD |
 |---|---|---|---|
@@ -222,7 +222,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    AI identities: 8 checked (4 AgentIdentity, 3 AgentIdentityBlueprint, 1 ServicePrincipal); Chapter 02 sponsor fields filled: 2 of 2
    Findings: 22 Finding (4 P1, 2 P2), 6 Warn, 4 Info. Orphan candidates for Chapter 02: 2
    Agent CA plan: Unapproved InPlace, HighRisk Create; nothing sent
-   Plan SHA-256: 64d649cf262c76c474c0f49ba699b2df02918d565c1279ae4187db2eb267785a
+   Plan SHA-256: 754fda6b79d55b514ea438039da2ca764e14dc98a88f0c70a60f4ac9762ce450
    ```
 
    The plan's hash is the same on every run with these inputs.
@@ -269,7 +269,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    AI identities: 1 checked (1 ServicePrincipal); Chapter 02 sponsor fields filled: 0 of 2
    Findings: 7 Finding (2 P1, 0 P2), 1 Warn, 2 Info. Orphan candidates for Chapter 02: 0
    Agent CA plan: Unapproved NotAvailable, HighRisk NotAvailable; nothing sent
-   Plan SHA-256: 8ad4b483cabba44ee75ed095550405e0f77bc97b5a96f256715b6a5e7a071de6
+   Plan SHA-256: 11f0e34d16a6bba70be08161df5c42a70f1a6899b28b30a50e2c8d5fff3d7cfe
    ```
 
    No agent identity read is sent (`out/agent-id-gcchigh/manifest.json` lists none). Correspondence Drafting gets the same credential and permission findings as in GCC; three records that name agent identities become NPI-AI-03 findings, because the cloud has none.
@@ -293,7 +293,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
    ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-x
    ```
 
-   `Apply: 1 Sent`, with `Created ca000000-0000-4000-8000-000000000103 report-only; review its report-only results before any change of state`; then the refusal, `The plan's SHA-256 is 64d649cf…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+   `Apply: 1 Sent`, with `Created ca000000-0000-4000-8000-000000000103 report-only; review its report-only results before any change of state`; then the refusal, `The plan's SHA-256 is 754fda6b…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 10. **Run the tests:**
 
@@ -301,7 +301,7 @@ You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-ide
     Invoke-Pester -Path tests
     ```
 
-**Expected result:** 512 tests passing, and `out/agent-id/manifest.json` listing 45 requests, the D-N6 mode, the SHA-256 of the register, of Chapter 02's sponsor fields and of each input. Delete `out` when you're done.
+**Expected result:** 513 tests passing, and `out/agent-id/manifest.json` listing 45 requests, the D-N6 mode, the SHA-256 of the register, of Chapter 02's sponsor fields and of each input. Delete `out` when you're done.
 
 ## Lab 2: test tenant
 
@@ -394,6 +394,7 @@ Where Learn's pages differ: List agentIdentity sponsors names a write permission
 
 [^np09-agent-sps]: Microsoft Learn, "Agent identities, service principals, and applications," key differences, <https://learn.microsoft.com/entra/agent-id/agent-service-principals> (accessed Oct 30, 2026).
 [^np09-whatis]: Microsoft Learn, "What is Microsoft Entra Agent ID?," how to get started, <https://learn.microsoft.com/entra/agent-id/what-is-microsoft-entra-agent-id> (accessed Oct 30, 2026).
+[^np09-ga]: Microsoft Learn, "Microsoft Entra releases and announcements," April 2026, General Availability - Microsoft Entra Agent ID platform, <https://learn.microsoft.com/entra/fundamentals/whats-new#april-2026>, and "What's new in Microsoft Entra Agent ID," <https://learn.microsoft.com/entra/agent-id/whats-new-agent-id> (both accessed Oct 31, 2026). The older overview at `entra/agent-id/identity-professional/microsoft-entra-agent-identities-for-ai-agents` carried a preview notice; that address now opens the current overview, which has none.
 [^np09-create-blueprint]: Microsoft Learn, "Create an agent identity blueprint," prerequisites; create; configure credentials, <https://learn.microsoft.com/entra/agent-id/create-blueprint> (accessed Oct 30, 2026).
 [^np09-a365-sd]: Microsoft Learn, "Microsoft Agent 365" service description, feature availability (GCC column) and FedRAMP note, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-agent-365/microsoft-agent-365> (accessed Oct 30, 2026).
 [^np09-a365-overview]: Microsoft Learn, "Overview of Microsoft Agent 365," availability and prerequisites, <https://learn.microsoft.com/microsoft-agent-365/overview> (accessed Oct 30, 2026).
