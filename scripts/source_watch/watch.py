@@ -618,6 +618,7 @@ def main() -> int:
         "feed_items": feed_items,
         "feed_errors": feed_errors,
         "review_due": review_dates.due(now.date()),
+        "lifecycle_due": review_dates.lifecycle_due(now.date()),
         "review_gate": review_gate.waiting(),
         "books": citations.books(),
         "chapters": citations.chapter_titles(cited),

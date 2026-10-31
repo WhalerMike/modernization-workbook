@@ -98,6 +98,15 @@ and says when it's overdue, and the Research page lists it in a Reviewed
 column. Run `python scripts/source_watch/review_dates.py` to see what's
 due now.
 
+**Lifecycle review dates.** Other published pages may carry
+`lifecycle_review: YYYY-MM-DD` in their front matter, the date by which the
+page should be checked again. Once that date has passed, the page is listed
+in the issue every week until someone checks it and moves the date. Pages
+under a folder or file starting with `_`, and the research pages (which
+have their own date, above), are skipped, and a page without the field is
+never listed. On October 31, 2026, 366 published pages had the field; the
+first 17 come due on November 22, 2026. The same command lists them.
+
 **Gated pages awaiting review.** Some pages are held behind a review
 gate: today, the developer workbooks under Projects
 (`docs/project-plans/developer-workbooks/`). Their citations are watched like
@@ -199,7 +208,7 @@ next run then opens a new "baseline established" issue.
 ```sh
 python scripts/source_watch/citations.py                      # counts
 python scripts/source_watch/citations.py --json               # url -> citations
-python scripts/source_watch/review_dates.py                    # research pages due for review
+python scripts/source_watch/review_dates.py                    # research pages due for review, pages past their lifecycle review date
 
 # Check 60 sources, mixed across hosts, into a scratch state file; print the report.
 python scripts/source_watch/watch.py --state /tmp/sw.json --no-feeds --dry-run --limit 60
@@ -227,7 +236,7 @@ Files:
 | `watch.py` | Fingerprints and classifies each source, polls the feeds, and writes the state and results. |
 | `feeds.py` | The feed readers and the topic matching. |
 | `report.py` | Renders the Markdown digest and opens the issue. |
-| `review_dates.py` | Lists the research pages due for review (`last-reviewed` older than 90 days, or missing). |
+| `review_dates.py` | Lists the research pages due for review (`last-reviewed` older than 90 days, or missing), and the pages whose `lifecycle_review` date has passed. |
 | `data/source-watch/config.json` | Threshold, concurrency, timeouts, per-host delays and skipped hosts. |
 | `data/source-watch/feeds.json` | The feeds and the topic → book map. |
 | `source-watch-state` branch | `data/source-watch/state.json`: per-source fingerprints and per-feed seen ids. Kept off main, because every push to main redeploys the site. |
