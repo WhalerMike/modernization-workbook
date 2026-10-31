@@ -6,10 +6,12 @@ BeforeAll {
     Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPSqlEstate') -Force
     Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPNpsInventory') -Force
     Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPTransactionProfile') -Force
+    Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPAttributeSurvey') -Force
     Register-KitAdMocks -ModuleName FMPADAssessment
     Register-KitAdMocks -ModuleName FMPSqlEstate
     Register-KitSqlMocks
     Register-KitNpsMocks
+    Register-KitSurveyMocks
     Mock -ModuleName FMPADAssessment Get-FMPCAEditFlags { 'EditFlags REG_DWORD = 1' }
     # The run script itself reads the forest and the DC that serves each domain.
     Mock Get-ADForest { $global:FMPFix.forest }
@@ -29,7 +31,7 @@ Describe 'Invoke-FMPStartKit.ps1' {
     }
     It 'completes every step' {
         @($manifest.Steps | Where-Object Status -ne 'Completed' | ForEach-Object { "$($_.Step): $($_.Error)" }) | Should -BeNullOrEmpty
-        @($manifest.Steps).Count | Should -Be 26
+        @($manifest.Steps).Count | Should -Be 28
     }
     It 'records provenance: who, when, where, with what' {
         $manifest.ReadOnly | Should -BeTrue
@@ -44,7 +46,7 @@ Describe 'Invoke-FMPStartKit.ps1' {
         $manifest.ModuleVersions.FMPTransactionProfile | Should -Be '1.0.0'
         $manifest.ModuleVersions.FMPSqlEstate | Should -Be '1.1.0'
         $manifest.Parameters.TransactionCatalog | Should -BeTrue
-        $manifest.KitVersion | Should -Be '1.2.0'
+        $manifest.KitVersion | Should -Be '1.3.0'
     }
     It 'hashes every file in the run, and the hashes match' {
         $files = @(Get-ChildItem -Path $runDir.FullName -Recurse -File | Where-Object Name -ne 'AssessmentManifest.json')
@@ -75,6 +77,15 @@ Describe 'Invoke-FMPStartKit.ps1' {
         $s.Counts.SeparationGatePassing | Should -Be 1
         $s.Counts.SeparationGateBlocked | Should -Be 2
         Get-Content -Raw (Join-Path $runDir.FullName 'Summary\StartKitSummary.md') | Should -Match 'Transaction profiles by status'
+    }
+    It 'carries the attribute survey and the waves into the one-page summary' {
+        $s = Get-Content -Raw (Join-Path $runDir.FullName 'Summary\StartKitSummary.json') | ConvertFrom-Json
+        $s.Counts.SurveyedUsers | Should -Be 10
+        $s.Counts.DuplicatePersonKeys | Should -Be 1
+        $s.Counts.Waves | Should -BeGreaterThan 0
+        Join-Path $runDir.FullName 'AttributeSurvey\ad-user-export.csv' | Should -Exist
+        Join-Path $runDir.FullName 'Waves\waves.csv' | Should -Exist
+        Get-Content -Raw (Join-Path $runDir.FullName 'Summary\StartKitSummary.md') | Should -Match 'Enterprise person key \(employeeID\) fill rate'
     }
     It 'writes nothing outside -OutputPath' {
         @(Get-ChildItem -Path $TestDrive -Force | Where-Object Name -ne 'assess') | Should -BeNullOrEmpty

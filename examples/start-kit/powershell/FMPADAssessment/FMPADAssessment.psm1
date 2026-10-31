@@ -1631,6 +1631,8 @@ function Get-FMPStartKitSummary {
     $nps = Read-FMPJsonFile (Join-Path (Join-Path $root 'NPS') 'NpsSummary.json')
     $tx = Read-FMPJsonFile (Join-Path (Join-Path $root 'transaction-profiles') 'TransactionSummary.json')
     $txRead = $tx -and $tx.Status -eq 'Read'
+    $attr = Read-FMPJsonFile (Join-Path (Join-Path $root 'AttributeSurvey') 'AttributeSurvey.json')
+    $waves = Read-FMPJsonFile (Join-Path (Join-Path $root 'Waves') 'WaveSummary.json')
 
     # Unconstrained delegation outside the domain controllers, which are expected to have it.
     $users = @($domainDirs | ForEach-Object { Read-FMPJsonFile (Join-Path (Join-Path $_.FullName 'Objects') 'UserInventory.json') } | ForEach-Object { $_ })
@@ -1700,6 +1702,14 @@ function Get-FMPStartKitSummary {
         ProfiledTransactions = if ($txRead) { $tx.Transactions } elseif ($tx) { 'no catalog' } else { $nc }
         SeparationGatePassing = if ($txRead) { $tx.ApplicationsPassing } elseif ($tx) { 'no catalog' } else { $nc }
         SeparationGateBlocked = if ($txRead) { $tx.ApplicationsBlocked } elseif ($tx) { 'no catalog' } else { $nc }
+        SurveyedUsers      = if ($attr) { $attr.Population } else { $nc }
+        PersonKeyFill      = if ($attr) { "$($attr.KeyFillPercent)%" } else { $nc }
+        DuplicatePersonKeys = if ($attr) { $attr.DuplicateKeys } else { $nc }
+        AttributeQualityFindings = if ($attr) { $attr.QualityFindings } else { $nc }
+        FreeExtensionSlots = if ($attr) { @($attr.FreeSlots).Count } else { $nc }
+        Waves              = if ($waves) { $waves.Waves } else { $nc }
+        WaveUsers          = if ($waves) { $waves.Users } else { $nc }
+        WaveExclusions     = if ($waves) { $waves.Excluded } else { $nc }
     }
     $byOs = if ($haveComputers) { Get-FMPCountTable -Rows $computers -Property OperatingSystem } else { $null }
     $summary = [ordered]@{
@@ -1715,6 +1725,8 @@ function Get-FMPStartKitSummary {
         SqlBySourcesAgree = if ($sql) { $sql.BySourcesAgree } else { $null }
         NpsFindingsBySeverity = if ($nps) { $nps.FindingsBySeverity } else { $null }
         TransactionsByStatus = if ($txRead) { $tx.ByStatus } else { $null }
+        AttributeFindingsByRule = if ($attr) { $attr.FindingsByRule } else { $null }
+        WaveExclusionsByReason = if ($waves) { $waves.ExcludedByReason } else { $null }
     }
     $path = Initialize-FMPPath -Path (Join-Path $root 'Summary')
     Write-FMPJson -InputObject $summary -Path (Join-Path $path 'StartKitSummary.json') -Depth 5
@@ -1736,6 +1748,12 @@ function Get-FMPStartKitSummary {
         ProfiledApplications = 'Applications with transaction profiles'; ProfiledTransactions = 'Transactions profiled'
         SeparationGatePassing = 'Applications clear to leave their data (every transaction profiled and within budget)'
         SeparationGateBlocked = 'Applications that must stay with their data for now'
+        SurveyedUsers = 'Users surveyed for attributes (enabled, not service accounts)'
+        PersonKeyFill = 'Enterprise person key (employeeID) fill rate'
+        DuplicatePersonKeys = 'Person keys held by more than one account'
+        AttributeQualityFindings = 'Attribute value-quality findings'
+        FreeExtensionSlots = 'Free extension attribute slots (of 15)'
+        Waves = 'Migration waves'; WaveUsers = 'Users placed in a wave'; WaveExclusions = 'Users and assets left out of every wave'
     }
     $md = @('# Start Kit summary', '', "Forest: $($summary.Forest). Generated $($summary.GeneratedUtc) UTC. Read-only run; counts come from this run's own files.", '',
         '| Item | Count |', '|---|---|')
@@ -1756,6 +1774,8 @@ function Get-FMPStartKitSummary {
     $md += & $table 'Do the discovery signals agree?' $summary.SqlBySourcesAgree
     $md += & $table 'RADIUS and NPS findings by severity' $summary.NpsFindingsBySeverity
     $md += & $table 'Transaction profiles by status' $summary.TransactionsByStatus
+    $md += & $table 'Attribute value-quality findings by rule' $summary.AttributeFindingsByRule
+    $md += & $table 'Wave exclusions by reason' $summary.WaveExclusionsByReason
     $md += @('', '## Unconstrained delegation (domain controllers excluded)', '',
         'Each one can impersonate any user who authenticates to it, to any service. Move it to constrained or resource-based constrained delegation (Book 02 Chapter 08; Book 06 Runbook R06).', '',
         '| Name | Kind | Runs SQL Server |', '|---|---|---|')
