@@ -10,11 +10,12 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
 aliases:
   - /docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html
+review-status: approved
+reviewed-sha256: f683caf50a02d807b5c936fff8d1cde2f17fe49147ce3dc1a27b1e705a031530
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 04 — Dynamic Rules as Code
 
 *A dynamic rule is access policy written as a one-line expression. Treat it as code: review it, test it against people you can name, see whom a change adds and removes before it ships, and know how to stop the engine safely when one goes wrong.*

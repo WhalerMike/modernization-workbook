@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: d65c0eb4d6f6fc50f2725aaa261c0fea49675a44eab4e1f2d7db9a4dd3fc46da
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 06 — gMSAs, dMSAs and the Kerberos Island
 
 *A gMSA is a good credential with a known expiry date: the day the last domain controller is demoted. The code's job is to make sure every one of them is gone, or on a dated list, before that day.*

@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 6856638ba133e48453823a12b7c730eeb8ccc8047cabea8013680326d5aa0c2d
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 09 — AI Agent Identities
 
 *An agent can act at a speed no person can, so the questions the program asks of every identity (who answers for it, what it holds, how it proves itself, when it ends) are asked before it exists, written down, and checked by code every week.*

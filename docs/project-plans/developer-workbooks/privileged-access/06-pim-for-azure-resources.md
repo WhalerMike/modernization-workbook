@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: f1306d05b9dc3f68dfa128efaf2d30e3dd3d8dbc6e3055f32468fb8d22a73034
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 06 — PIM for Azure Resources
 
 *An Owner who never has to activate is an Owner an attacker never has to wait for. In Azure the fix is the same as in Entra: eligible, time-bound, approved. The difference is that every scope keeps its own rules.*

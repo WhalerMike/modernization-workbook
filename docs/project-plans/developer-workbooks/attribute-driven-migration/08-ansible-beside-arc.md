@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 0244331f34b679371b14a868d2b2019cd34ca56291cc68dac5be4f009b551b1b
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 08 — Ansible Beside Arc
 
 *Microsoft's role connects a server to Azure Arc. It doesn't know which tool owns the server's settings, which tool patches it, or which wave it belongs to. The CMDB knows, and the inventory has to carry that to every connect.*

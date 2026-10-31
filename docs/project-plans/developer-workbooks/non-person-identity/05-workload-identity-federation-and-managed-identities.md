@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 6748012742c4679a21460a05dda562b18c67ccc013819865ee046c7e9654104e
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 05 — Workload Identity Federation and Managed Identities
 
 *A federated credential with the wrong subject is accepted the day it's created and fails the day the workload depends on it, so the check belongs before the cutover, in code a reviewer has read.*

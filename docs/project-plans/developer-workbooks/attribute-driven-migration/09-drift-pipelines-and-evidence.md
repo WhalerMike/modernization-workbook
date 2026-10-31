@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 7e9f6b2da7f10a9c737f926633e4461c4c3d8c950874a5e2054e9a31b43a5605
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 09 — Drift Pipelines and Evidence to the ISSO
 
 *A check that runs when someone remembers is a spot check. A check that runs every day, says what moved since yesterday, and leaves evidence nobody can edit afterwards is continuous monitoring.*

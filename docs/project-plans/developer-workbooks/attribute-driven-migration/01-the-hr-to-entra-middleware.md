@@ -10,11 +10,12 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
 aliases:
   - /docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.html
+review-status: approved
+reviewed-sha256: db8eaf6d931064518adf17fd07f8974d11ed1cfb058ad323dc7bb498c3d59164
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 01 — The HR-to-Entra Middleware
 
 *Start from Microsoft's sample, then add only what it leaves to you: the provisioning service will do whatever the payload says, so the code that builds the payload is where the HR record stays true.*

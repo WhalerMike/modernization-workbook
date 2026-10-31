@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 796247f55963ccd50fafa3560b3f6bd555eb8a791fc7069a125be1f291ec6d37
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 04 — PIM for Microsoft Entra Roles as Code
 
 *A role setting someone changed in the portal is a control nobody reviewed. Hold each role's settings in a file, compare the file with the tenant, and change the tenant only from the file.*

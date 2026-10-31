@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 8df34cfa54523c2ef649e6924d7aa46fb76f90437e60c752ef0a0bcbda83f2d9
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 02 — Ownership and the Orphan Rule
 
 *An account nobody will own is the one nobody will notice when it's misused, so the rule for it is decided once, written down, and run by code a reviewer has read.*

@@ -10,11 +10,12 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
 aliases:
   - /docs/books/b19-developer-workbook/07-machine-configuration-packages.html
+review-status: approved
+reviewed-sha256: a17dd15ec30af93f2bdbb2903293158e95d16cfa414b74430769dd3178888184
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 07 — Machine Configuration Packages
 
 *Learn's cmdlets build a package and a policy definition; nothing in them says whether this package is the one you reviewed, whether it leaks the build host, or whether it will reach servers another tool owns. That check is the pipeline's job.*

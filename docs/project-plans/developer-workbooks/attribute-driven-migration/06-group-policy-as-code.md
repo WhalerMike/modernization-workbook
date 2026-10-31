@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: b8c4e2b8a8143c71b7c68190022470ff2fa86316bd00392259bd472cea503d70
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 06 — Moving Group Policy as Code
 
 *Group Policy analytics tells you which settings Intune can take. It doesn't tell you which ones should move, who owns them, or what is already in the tenant. Those are the pipeline's questions.*

@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: c440789141ea2c283abf9b27b77fb8d858b7bbda7a1cdcfd0880fcc2dc5e7b08
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 02 — Graph Clients for the Government Clouds
 
 *A Graph client has to know which cloud it is in, send its token nowhere else, ask for no more than each call needs, and keep working when Graph says "slow down" or a beta API changes under it.*

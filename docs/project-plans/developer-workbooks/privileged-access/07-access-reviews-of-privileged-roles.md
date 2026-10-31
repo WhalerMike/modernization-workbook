@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: c2da7b3186c05834b537cd1bcc75072766aab805d498dd98d533a2578573bb13
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 07 — Access Reviews of Privileged Roles
 
 *Eligibility only grows unless someone confirms it on a calendar, so the reviews are code: one file says who reviews which role and when, a dry run shows the change, and the decisions come back as evidence.*

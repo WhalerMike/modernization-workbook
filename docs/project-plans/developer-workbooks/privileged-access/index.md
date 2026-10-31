@@ -18,9 +18,10 @@ listing:
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 9feacf1fa045ef3aed318a5d6df8da560c8b7de0112f6d4fe4ed21a13cc62e43
+last-reviewed: 2026-10-31
 ---
-
 # Building Privileged Access {.unnumbered}
 
 *A developer workbook for the Privileged Access & Administrative Identity project*

@@ -10,9 +10,10 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 3300291fc37684b0747cd71c83825cbe6a4c42ea8566b11bf30a0c717276b68c
+last-reviewed: 2026-10-31
 ---
-
 # Chapter 05 — PIM for Groups and the PRV Groups
 
 *A role reaches a person through a PRV group, so whoever controls the group's members, owners and policy controls the role. That control belongs in a reviewed file, not in the admin center.*
