@@ -376,7 +376,7 @@ Where Learn's pages differ: the dMSA set-up page sets `msDS-DelegatedMSAState` w
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 05 — Workload Identity Federation and Managed Identities](05-workload-identity-federation-and-managed-identities.md) · [Workbook index](index.md) · [Next: Chapter 07 — Least Privilege for Service Principals →](07-least-privilege-for-service-principals.md)
+← Previous: Chapter 05 — Workload Identity Federation and Managed Identities · [Workbook index](index.md) · Next: Chapter 07 — Least Privilege for Service Principals →
 :::
 
 [^np06-gmsa-manage]: Microsoft Learn, "Manage group Managed Service Accounts," prerequisites; create a gMSA; install a gMSA, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts> (accessed Oct 30, 2026).
