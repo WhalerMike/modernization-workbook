@@ -16,6 +16,11 @@ Some kits' suites also run when another kit changes, because they test that
 kit's output: the drift pipeline's tests read evidence runs that
 non-person-identity and privileged-access write (see ALSO).
 
+A few test files exercise Windows-only cmdlets (Get-Acl, Get-WinEvent) and
+are left out on other platforms, by name and with the reason printed (see
+WINDOWS_ONLY). Everything else runs everywhere. Python never writes
+bytecode here, so no `__pycache__` lands in a pinned third-party copy.
+
 Needs pwsh with Pester 5 for the Pester suites, and pytest (plus the packages
 the kits import: cryptography, PyYAML, requests) for the Python ones. A
 missing pwsh or pytest fails the run rather than skipping it, so a check
@@ -41,9 +46,18 @@ ALSO = {
     "privileged-access": ["drift-pipeline"],
 }
 
+# Kit -> (test files that need Windows, relative to the kit; why).
+WINDOWS_ONLY = {
+    "start-kit": (
+        ["tests/powershell/ADAssessment.Tests.ps1", "tests/powershell/NpsInventory.Tests.ps1",
+         "tests/powershell/SqlEstate.Tests.ps1", "tests/powershell/StartKit.Tests.ps1"],
+        "mock Get-Acl and Get-WinEvent, which exist only in Windows PowerShell's modules",
+    ),
+}
+
 PESTER = (
     "$ErrorActionPreference = 'Stop'; Import-Module Pester -MinimumVersion 5.0; "
-    "$c = New-PesterConfiguration; $c.Run.Path = '{path}'; $c.Run.Exit = $true; "
+    "$c = New-PesterConfiguration; $c.Run.Path = @({paths}); $c.Run.Exit = $true; "
     "$c.Output.Verbosity = 'Normal'; Invoke-Pester -Configuration $c"
 )
 
@@ -78,10 +92,23 @@ def expand(selected: list[str]) -> list[str]:
     return out
 
 
-def command(kind: str, path: str) -> list[str] | None:
+def excluded(kit: str) -> list[str]:
+    """The kit's test files to leave out on this platform."""
+    return [] if sys.platform == "win32" else WINDOWS_ONLY.get(kit, ([], ""))[0]
+
+
+def command(kit: str, kind: str, path: str) -> list[str] | None:
     if kind == "pester":
         pwsh = shutil.which("pwsh")
-        return [pwsh, "-NoProfile", "-NonInteractive", "-Command", PESTER.format(path=path)] if pwsh else None
+        if not pwsh:
+            return None
+        if not excluded(kit):
+            paths = f"'{path}'"
+        else:  # name the files to run, leaving out the Windows-only ones
+            skip = set(excluded(kit))
+            files = sorted(f.relative_to(EXAMPLES / kit).as_posix() for f in (EXAMPLES / kit / path).glob("*.Tests.ps1"))
+            paths = ", ".join(f"'{f}'" for f in files if f not in skip)
+        return [pwsh, "-NoProfile", "-NonInteractive", "-Command", PESTER.format(paths=paths)]
     return [sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", path]
 
 
@@ -89,16 +116,19 @@ def run(selected: list[str]) -> int:
     actions = "GITHUB_ACTIONS" in os.environ  # fold each suite's output in the log
     failed = []
     for kit in expand(selected):
+        skip = excluded(kit)
+        if skip:
+            print(f"{kit}: left out on {sys.platform}, because they {WINDOWS_ONLY[kit][1]}: {', '.join(skip)}", flush=True)
         for kind, path in suites(kit):
             name = f"{kit}: {path} ({kind})"
-            cmd = command(kind, path)
+            cmd = command(kit, kind, path)
             print(f"::group::{name}" if actions else f"== {name}", flush=True)
             start = time.monotonic()
             if cmd is None:
                 code = 127
                 print("pwsh not found", flush=True)
             else:
-                code = subprocess.run(cmd, cwd=EXAMPLES / kit).returncode
+                code = subprocess.run(cmd, cwd=EXAMPLES / kit, env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"}).returncode
             took = round(time.monotonic() - start)
             if actions:
                 print("::endgroup::", flush=True)

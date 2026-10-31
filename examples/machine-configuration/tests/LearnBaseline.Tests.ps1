@@ -16,7 +16,8 @@ BeforeDiscovery {
     $paths = @($env:MC_MODULE_PATH) + ($env:PSModulePath -split [IO.Path]::PathSeparator) | Where-Object { $_ }
     $script:HasModules = $true
     foreach ($m in $required.Keys) {
-        $found = $paths | Where-Object { Test-Path (Join-Path $_ "$m/$($required[$m])") }
+        # A module path this user can't read (on a CI runner, another user's home) throws; count it as not found.
+        $found = $paths | Where-Object { try { Test-Path (Join-Path $_ "$m/$($required[$m])") } catch { $false } }
         if (-not $found) { $script:HasModules = $false }
     }
 }

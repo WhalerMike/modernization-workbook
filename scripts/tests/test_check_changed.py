@@ -206,6 +206,12 @@ class NonSiteTasks(unittest.TestCase):
         self.assertEqual(ret.expand(["non-person-identity", "privileged-access"]),
                          ["non-person-identity", "drift-pipeline", "privileged-access"])
 
+    def test_every_windows_only_test_file_exists(self):
+        import run_example_tests as ret
+        for kit, (files, _why) in ret.WINDOWS_ONLY.items():
+            for f in files:
+                self.assertTrue((ret.EXAMPLES / kit / f).is_file(), f"{kit}/{f}")
+
     def test_project_plans(self):
         self.assertIn("project-plans", cc.non_site_tasks(mods("data/project-plans/network-access.yaml")))
 
