@@ -10,8 +10,10 @@ tiers_adopted: []
 lifecycle_review: 2027-04-01
 aliases:
   - /docs/books/guides/attribute-driven-migration-implementation.html
+review-status: approved
+reviewed-sha256: d1eeb85937a5e7e1f80d301cd1be5314864983f4c4a2976d9c4f0446222832d5
+last-reviewed: 2026-10-31
 ---
-
 # Attribute-Driven Migration: An Implementation Guide
 
 *The four tracks each have their own guide; this one builds what they all read: one schema, one writer per attribute, attributes proven before anything trusts them, and an OU tree that controls nothing by the time AD goes.*
