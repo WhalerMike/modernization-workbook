@@ -80,3 +80,33 @@ jobs:
           args=(--base "origin/$BASE_REF" --committed-only)
           if [ "$FORCE_FULL" = "true" ]; then args+=(--force-full); fi
           python3 scripts/check_changed.py "${args[@]}"
+
+      - name: Keep the rendered pages
+        # The CHANGED and FULL tiers render into _site/. Keep it for a week, so the pages
+        # can be looked at without a local render. The Word bundles and kit zips are left out.
+        id: rendered
+        if: always() && hashFiles('_site/**/*.html') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-pages
+          path: |
+            _site
+            !_site/downloads
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Link the rendered pages
+        if: always() && steps.rendered.outputs.artifact-url != ''
+        env:
+          ARTIFACT_URL: ${{ steps.rendered.outputs.artifact-url }}
+        run: |
+          pages=$(cd _site && find . -name '*.html' -not -path './site_libs/*' | sed 's|^\./||' | sort)
+          n=$(printf '%s\n' "$pages" | grep -c . || true)
+          {
+            echo "## Rendered pages"
+            echo
+            echo "[Download the rendered pages]($ARTIFACT_URL) ($n page(s), kept 7 days). Unzip it and open a page in a browser."
+            echo
+            printf '%s\n' "$pages" | head -50 | sed 's|^|- `|; s|$|`|'
+            if [ "$n" -gt 50 ]; then echo "- … and $((n - 50)) more"; fi
+          } >> "$GITHUB_STEP_SUMMARY"
