@@ -1,0 +1,35 @@
+{
+  "_comment": "A pinned, unmodified copy of Learn's page 'Review permissions granted to enterprise applications', as its source in MicrosoftDocs/entra-docs: the Microsoft Graph PowerShell and Microsoft Entra PowerShell scripts and the Microsoft Graph HTTP requests that review and revoke an application's delegated and application permissions exist only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn samples: Review permissions granted to enterprise applications (Microsoft Graph PowerShell and HTTP)",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/identity/enterprise-apps/manage-application-permissions.md",
+  "commit": "7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "2026-02-19 (commit fe5d18454cbfc71fb368a411dab8c905fdfad285)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: MIT (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/identity/enterprise-apps/manage-application-permissions",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "manage-application-permissions.md": "docs/identity/enterprise-apps/manage-application-permissions.md"
+  },
+  "not_copied": [
+    "The zone pivot definitions (zone_pivot_groups enterprise-apps-all) and the screenshot under media/manage-application-permissions/: the scripts and requests are inline in the page.",
+    "The sibling page Restore revoked permissions granted to applications, and Microsoft Graph's Grant or revoke API permissions programmatically tutorial, which the chapter cites; everything else in MicrosoftDocs/entra-docs."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "manage-application-permissions.md": {
+      "bytes": 12584,
+      "sha256": "be5a110a926e48af5facfab05bbe04aaf23cdb4250ac5405feda2b3c93400951"
+    }
+  }
+}
