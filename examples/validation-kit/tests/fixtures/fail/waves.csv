@@ -1,0 +1,7 @@
+WaveId,ObjectType,Name,UserPrincipalName,EmployeeId,Domain,MatchedOn
+W1,User,alice,alice@contoso.example,E1001,contoso.example,extensionAttribute10=ORG-A
+W1,User,dave,dave@contoso.example,,contoso.example,extensionAttribute10=ORG-B
+W1,User,frank,frank@contoso.example,,contoso.example,extensionAttribute10=ORG-C
+W1,Device,LT-0001,alice@contoso.example,E1001,,owner alice
+W2,User,bob,bob@contoso.example,,contoso.example,extensionAttribute10=ORG-A
+W3,User,nobody,nobody@contoso.example,E7777,contoso.example,extensionAttribute10=ORG-Z
