@@ -98,13 +98,37 @@ def event_block(e: dict, footnotes: list[str], cited: str = "", first_at: str = 
             detail.append(f"ms.date {e['ms_date'][0][:10]} → {e['ms_date'][1][:10]}")
         if e.get("updated_at"):
             detail.append(f"updated_at → {e['updated_at'][1][:10]}")
-        if first_at and e.get("excerpts"):
-            detail.append(f"added text quoted under {first_at}")
+        git = e.get("git") or {}
+        if first_at and (e.get("excerpts") or git.get("lines")):
+            detail.append(f"changes quoted under {first_at}")
         lines.append("  - " + "; ".join(d for d in detail if d))
-        if not first_at:
+        if git:
+            lines += git_lines(git, e.get("git_commit", ["", ""]), quote_lines=not first_at)
+        if not first_at and not git.get("lines"):
             for x in e.get("excerpts", []):
                 lines.append(f"  > {x}")
     return "\n".join(lines)
+
+
+def git_lines(git: dict, commits: list[str], quote_lines: bool = True, max_commits: int = 5) -> list[str]:
+    """The source file's history for one change (see gitsource.py): its commits and changed lines."""
+    where = f"`{git['repo']}/{git['path']}`" if git.get("path") else f"`{git['repo']}`"
+    moved = f"{commits[0][:12]} → {commits[1][:12]}"
+    if git.get("status") == "not public":
+        return [f"  - Source file {where} has a new commit ({moved}); its repository isn't public, "
+                "so the change can't be shown line by line."]
+    if git.get("status") != "ok":
+        return [f"  - Source file {where} has a new commit ({moved}); GitHub didn't answer."]
+    shown = git.get("commits", [])[:max_commits]
+    more = len(git.get("commits", [])) - len(shown)
+    msgs = "; ".join(f"{md(c['message'][:120])} ({c['date']})" for c in shown) or "no commit messages"
+    out = [f"  - Source: [{where}]({git['compare_url']}): {msgs}" + (f"; and {more} more" if more > 0 else "")]
+    if quote_lines and git.get("lines"):
+        out += ["", "    ```diff"] + [f"    {line[:300]}" for line in git["lines"]]
+        if git.get("more_lines"):
+            out.append(f"    … {git['more_lines']} more changed line(s): see the comparison")
+        out += ["    ```", ""]
+    return out
 
 
 def source_blocks(results: dict) -> list[tuple[str, str, str]]:
