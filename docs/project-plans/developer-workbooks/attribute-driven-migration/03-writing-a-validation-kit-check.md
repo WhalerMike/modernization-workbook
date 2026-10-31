@@ -13,7 +13,7 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.html
 review-status: approved
-reviewed-sha256: 1cb918f50d3ebb8f34d7701b20257897d0f15a8f3a0b997bb9e72f542505d88d
+reviewed-sha256: 0091d476131a1d51d79498f156bce26b32f7c7b8d9a1e176f7ee12045af9a7c3
 last-reviewed: 2026-10-31
 ---
 # Chapter 03 — Writing a Validation Kit Check
