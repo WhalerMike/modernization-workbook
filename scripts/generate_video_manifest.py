@@ -17,6 +17,11 @@ YouTube ID (from data/youtube-ids.json), and the players embed it from
 youtube-nocookie.com instead, keeping the MP4 as the download. Each video
 also lists its slides as chapters, so the players can jump to any slide.
 
+The narrated decks are on the current edition's Release, not in git
+(scripts/deck_assets.py), so each video's "deck" is that Release URL, and the
+chapters, read from the narrated deck's slide timings when the deck is here,
+are kept in data/video-chapters.json for builds without the decks (CI).
+
     python scripts/generate_video_manifest.py            # write both files
     python scripts/generate_video_manifest.py --check    # exit 1 if either is stale
     python scripts/generate_video_manifest.py --verify   # also confirm every MP4 is on the release (needs gh),
@@ -35,6 +40,10 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import deck_assets  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 PRES = ROOT / "presentations"
 OUT_JSON = ROOT / "docs" / "presentations" / "videos.json"
@@ -44,6 +53,8 @@ OUT_LIB = ROOT / "docs" / "presentations" / "_video-library.md"
 DURATIONS = ROOT / "data" / "video-durations.json"
 # Workbook video id -> YouTube video id, for the videos on the channel.
 YOUTUBE = ROOT / "data" / "youtube-ids.json"
+# Workbook video id -> chapters, from the narrated decks when they were last here.
+CHAPTERS = ROOT / "data" / "video-chapters.json"
 REPO = "WhalerMike/modernization-workbook"
 RELEASE = "videos-2026-10-23"
 BASE = f"https://github.com/{REPO}/releases/download/{RELEASE}"
@@ -148,6 +159,7 @@ def chapters_of(deck: Path, script: Path) -> list[list] | None:
 def collect() -> list[dict]:
     seconds = json.loads(DURATIONS.read_text(encoding="utf-8")) if DURATIONS.exists() else {}
     youtube = json.loads(YOUTUBE.read_text(encoding="utf-8")) if YOUTUBE.exists() else {}
+    cached = json.loads(CHAPTERS.read_text(encoding="utf-8")) if CHAPTERS.exists() else {}
     videos = []
     for vtt in sorted(PRES.glob("*/*_Narrated.vtt")):
         vid = vtt.stem
@@ -164,9 +176,9 @@ def collect() -> list[dict]:
                 "mp4": f"{BASE}/{vid}.mp4",
                 "youtube": youtube.get(vid),
                 "vtt": f"{rel}/{vtt.name}",
-                "deck": f"{rel}/{deck.name}" if deck.exists() else None,
+                "deck": deck_assets.url(f"{rel}/{deck.name}"),
                 "script": f"{GH}/{rel}/{script.name}" if script.exists() else None,
-                "chapters": chapters_of(deck, script),
+                "chapters": chapters_of(deck, script) if deck.exists() else cached.get(vid),
             }
         )
     unknown = sorted(set(youtube) - {v["id"] for v in videos})
@@ -192,7 +204,7 @@ def library(videos: list[dict]) -> str:
             if v["youtube"]:
                 extra.append(f"[YouTube](https://www.youtube.com/watch?v={v['youtube']})")
             if v["deck"]:
-                extra.append(f"[Narrated deck](../../{v['deck']})")
+                extra.append(f"[Narrated deck]({v['deck']})")
             if v["script"]:
                 extra.append(f"[Script]({v['script']})")
             lines.append(f"| [▶ {v['title']}](watch.html?v={v['id']}) | {v['minutes']} min | {' · '.join(extra)} |")
@@ -227,6 +239,8 @@ def main() -> int:
     files = {
         OUT_JSON: json.dumps(videos, indent=1, ensure_ascii=False) + "\n",
         OUT_LIB: library(videos),
+        CHAPTERS: json.dumps({v["id"]: v["chapters"] for v in videos if v["chapters"]}, indent=1,
+                             ensure_ascii=False, sort_keys=True) + "\n",
     }
     stale = [p for p, text in files.items() if not p.exists() or p.read_bytes() != text.encode("utf-8")]
     if args.check:

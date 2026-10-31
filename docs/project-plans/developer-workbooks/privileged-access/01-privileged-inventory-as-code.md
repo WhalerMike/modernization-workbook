@@ -29,7 +29,7 @@ The read behind the project plan's Gate 0, "standing administrative privilege in
 ## Narrated tour
 {{< fmw-video DW_PA_01_Privileged_Inventory_Narrated >}}
 
-[Deck](../../../../presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory.pptx) · [Narrated deck](../../../../presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_PA_01_Privileged_Inventory.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/DW_PA_01_Privileged_Inventory_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory_Narrated.vtt). Recorded on October 31, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

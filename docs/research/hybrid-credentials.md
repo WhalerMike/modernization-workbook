@@ -21,8 +21,8 @@ It builds on [Book 07 — PKI & Certificates](../books/b07-pki/index.md), which 
 
 | Edition | File |
 |---|---|
-| Deck | [Research_Hybrid_Credentials.pptx](../../presentations/research-hybrid-credentials/Research_Hybrid_Credentials.pptx) |
-| Narrated, self-running (about 11 minutes, captions) | [Research_Hybrid_Credentials_Narrated.pptx](../../presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narrated.pptx) |
+| Deck | [Research_Hybrid_Credentials.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/Research_Hybrid_Credentials.pptx) |
+| Narrated, self-running (about 11 minutes, captions) | [Research_Hybrid_Credentials_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/Research_Hybrid_Credentials_Narrated.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narrated.vtt) |
 
 ## The answer in brief

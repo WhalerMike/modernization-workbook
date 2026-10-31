@@ -91,6 +91,8 @@ python scripts/cut_edition.py edition-2026.10 --summary "One or two sentences on
 4. When the workflow finishes, run `python scripts/cut_edition.py --refresh-assets edition-2026.10` to record the Word editions too.
 5. Edit the drafted change lines in `data/editions.yml` if they need it (one short line each), run `python scripts/generate_revisions.py`, and open a pull request with `data/editions.yml`, `data/edition-assets/` and the regenerated pages.
 
+**Decks and narration audio.** The built decks and the narration MP3s are not in git; each edition's Release carries them, and `data/deck-assets.json` lists them (see [presentations/_build/README.md](presentations/_build/README.md)). Cut an edition with `--decks` after `python scripts/deck_assets.py fetch --all`, so it carries every deck: it packs them, uploads them, checks the Release holds each file byte for byte (`deck_assets.py verify`), and points every deck link at the new edition (`deck_assets.py links`). The pull request checks run `deck_assets.py links --check`, which fails on a link to a deck path in the repository or to a Release file not in that edition's recorded list.
+
 An edition is never changed after it is published. A correction goes in the next edition, or a reissue in the same month (`edition-2026.10.1`). Deleting a Release or an asset needs the maintainer's explicit approval.
 
 The repository's history still holds every deck and narration file committed before they moved to Releases. Rewriting history to drop them is written up, as an option only, in [`docs/project-management/history-rewrite-option.md`](docs/project-management/history-rewrite-option.md).

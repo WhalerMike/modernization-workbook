@@ -2,7 +2,7 @@
 
 **Status: an option for the maintainer to decide. Nothing here has been done.**
 
-The generated decks (`.pptx`) and narration audio (`.mp3`) now leave git and are published as edition Release assets (see "Editions and the archive" in [CONTRIBUTING.md](../../CONTRIBUTING.md)). That stops the repository growing with every rebuild, but it doesn't shrink it: every version ever committed stays in git's history, and every clone downloads it.
+Since edition 2026.10 the generated decks (`.pptx`) and narration audio (`.mp3`) are no longer in git; they are published as edition Release assets (see "Editions and the archive" in [CONTRIBUTING.md](../../CONTRIBUTING.md)). That stops the repository growing with every rebuild, but it doesn't shrink it: every version ever committed stays in git's history, and every clone downloads it.
 
 ## What the history holds
 

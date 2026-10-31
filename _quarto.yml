@@ -30,9 +30,8 @@ project:
     # Sample project plans, generated from data/project-plans/ by
     # scripts/project_plans/build.py (see docs/project-plans/index.md).
     - "docs/project-plans/**/*.md"
-  # Slide decks are published so the Presentations page can link them.
+  # The decks are on the current edition's Release (scripts/deck_assets.py), not the site.
   resources:
-    - "presentations/**/*.pptx"
     - "presentations/start-here/Start_Here_720p.mp4"
     - "presentations/start-here/Start_Here_Narrated.vtt"
     - "presentations/start-here/Start_Here_poster.png"

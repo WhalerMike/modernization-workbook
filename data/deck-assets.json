@@ -1,0 +1,2057 @@
+{
+ "edition": "edition-2026.10",
+ "files": [
+  {
+   "path": "presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1.pptx",
+   "asset": "Attribute_Driven_Migration_Deeper_Dive_Part_1.pptx",
+   "size": 240301,
+   "sha256": "1d37d947e052ca86088ad43c2f6d969a996518092b4cf256a37938edce74f3a0"
+  },
+  {
+   "path": "presentations/attribute-driven-migration-deeper-dive-part-1/Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated.pptx",
+   "asset": "Attribute_Driven_Migration_Deeper_Dive_Part_1_Narrated.pptx",
+   "size": 5371188,
+   "sha256": "d9a89b6af863dda7fc274000dcf3f8901b896b7e6be31e541012688efd0ee1bd"
+  },
+  {
+   "path": "presentations/attribute-driven-migration-deeper-dive-part-1/narration_Attribute_Driven_Migration_Deeper_Dive_Part_1",
+   "asset": "Attribute_Driven_Migration_Deeper_Dive_Part_1_narration_audio.zip",
+   "size": 5099176,
+   "sha256": "08dd386a3c0a55c2842ed07b4dd3d9f0ca335f96dc219721bb7c68ffee075707",
+   "members": 17
+  },
+  {
+   "path": "presentations/attribute-driven-migration-deeper-dive-part-2/Attribute_Driven_Migration_Deeper_Dive_Part_2.pptx",
+   "asset": "Attribute_Driven_Migration_Deeper_Dive_Part_2.pptx",
+   "size": 236492,
+   "sha256": "066f189a27969de148ef954ccaea4b61980ddbef817133aad2791dfb8efe2d89"
+  },
+  {
+   "path": "presentations/attribute-driven-migration-deeper-dive-part-2/Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated.pptx",
+   "asset": "Attribute_Driven_Migration_Deeper_Dive_Part_2_Narrated.pptx",
+   "size": 5881964,
+   "sha256": "cd78aaaa9c97f9b59e7f0b0d5d0b6fac537f3162078da6ed820325d5d9945ac6"
+  },
+  {
+   "path": "presentations/attribute-driven-migration-deeper-dive-part-2/narration_Attribute_Driven_Migration_Deeper_Dive_Part_2",
+   "asset": "Attribute_Driven_Migration_Deeper_Dive_Part_2_narration_audio.zip",
+   "size": 5614342,
+   "sha256": "5038c5f1af690412e7195b12bac1d5a257c8fd6ddb774f85b8c5b8b09f5d0ed2",
+   "members": 16
+  },
+  {
+   "path": "presentations/attribute-driven-migration-deeper-dive-part-3/Attribute_Driven_Migration_Deeper_Dive_Part_3.pptx",
+   "asset": "Attribute_Driven_Migration_Deeper_Dive_Part_3.pptx",
+   "size": 249114,
+   "sha256": "254304f25500ea15482009725c90e1d2f0283c1b6944c5926f9d05b727e4c469"
+  },
+  {
+   "path": "presentations/attribute-driven-migration-deeper-dive-part-3/Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated.pptx",
+   "asset": "Attribute_Driven_Migration_Deeper_Dive_Part_3_Narrated.pptx",
+   "size": 5464024,
+   "sha256": "4643713304e4f27652c1b080cd83d780f8734d7ba0946961dbc64da7049b1ce6"
+  },
+  {
+   "path": "presentations/attribute-driven-migration-deeper-dive-part-3/narration_Attribute_Driven_Migration_Deeper_Dive_Part_3",
+   "asset": "Attribute_Driven_Migration_Deeper_Dive_Part_3_narration_audio.zip",
+   "size": 5187592,
+   "sha256": "b0cc17a05af3ac5da4d91294cfa001e81e05697566bf7950fb7d0ca3ca201738",
+   "members": 17
+  },
+  {
+   "path": "presentations/attribute-driven-migration-technical-part-1/Attribute_Driven_Migration_Technical_Part_1.pptx",
+   "asset": "Attribute_Driven_Migration_Technical_Part_1.pptx",
+   "size": 1803183,
+   "sha256": "71b4cff0e5c981483315775d32d8a04b757156528adc9f6134c43c7be86af42e"
+  },
+  {
+   "path": "presentations/attribute-driven-migration-technical-part-1/Attribute_Driven_Migration_Technical_Part_1_Narrated.pptx",
+   "asset": "Attribute_Driven_Migration_Technical_Part_1_Narrated.pptx",
+   "size": 7565837,
+   "sha256": "3b60ce725ca678ee253f8e6cc20ccfac322d02deeb208797c03eba1e4d700e15"
+  },
+  {
+   "path": "presentations/attribute-driven-migration-technical-part-1/narration_Attribute_Driven_Migration_Technical_Part_1",
+   "asset": "Attribute_Driven_Migration_Technical_Part_1_narration_audio.zip",
+   "size": 5725758,
+   "sha256": "5f5fd216918d670203a1f9a7bb43c7f09294f2b3a52f292df2e3eb3b1767453e",
+   "members": 28
+  },
+  {
+   "path": "presentations/attribute-driven-migration-technical-part-2/Attribute_Driven_Migration_Technical_Part_2.pptx",
+   "asset": "Attribute_Driven_Migration_Technical_Part_2.pptx",
+   "size": 1131027,
+   "sha256": "7afc10ad23abaad49844337013bd736133dbfd2e19156e5649d1f2039d1d5fa4"
+  },
+  {
+   "path": "presentations/attribute-driven-migration-technical-part-2/Attribute_Driven_Migration_Technical_Part_2_Narrated.pptx",
+   "asset": "Attribute_Driven_Migration_Technical_Part_2_Narrated.pptx",
+   "size": 7130383,
+   "sha256": "3b2281d0a0412c413f7eb1990a8abbc1bfbfb7b47c5d4220f1ed36a415749395"
+  },
+  {
+   "path": "presentations/attribute-driven-migration-technical-part-2/narration_Attribute_Driven_Migration_Technical_Part_2",
+   "asset": "Attribute_Driven_Migration_Technical_Part_2_narration_audio.zip",
+   "size": 5962062,
+   "sha256": "1663a7994f6a8c5134e105bd7213419966a6b3f6051e88d62f5d2f29ddb51ad3",
+   "members": 28
+  },
+  {
+   "path": "presentations/b00-orientation-executive/B00_Orientation_Executive.pptx",
+   "asset": "B00_Orientation_Executive.pptx",
+   "size": 426519,
+   "sha256": "d0790ec139ff3d1d3802aed4cc89c1b84388e4c24379b35a96c0491a8e96b1f9"
+  },
+  {
+   "path": "presentations/b00-orientation-executive/B00_Orientation_Executive_Narrated.pptx",
+   "asset": "B00_Orientation_Executive_Narrated.pptx",
+   "size": 8633606,
+   "sha256": "0ad6b1658a100319c6b3d33d7b6adeaada827ce4fd96f1f0d235903b7a99d3fb"
+  },
+  {
+   "path": "presentations/b00-orientation-executive/narration_B00_Orientation_Executive",
+   "asset": "B00_Orientation_Executive_narration_audio.zip",
+   "size": 8280974,
+   "sha256": "0d03db39aa50ad44afd49506f55b59e2f76705ab9c90a0a6176b400f0870cea4",
+   "members": 20
+  },
+  {
+   "path": "presentations/b00-orientation/B00_Orientation.pptx",
+   "asset": "B00_Orientation.pptx",
+   "size": 332152,
+   "sha256": "18a258cad3dceb97023527f8ad01a8ee8b2bff45b034eea2780ec5e0af105f08"
+  },
+  {
+   "path": "presentations/b00-orientation/B00_Orientation_Narrated.pptx",
+   "asset": "B00_Orientation_Narrated.pptx",
+   "size": 4691030,
+   "sha256": "1ab78d409347f09485f6a729bfb2597eb12b9ced609d298e8e7b51d137ac93da"
+  },
+  {
+   "path": "presentations/b00-orientation/narration_B00_Orientation",
+   "asset": "B00_Orientation_narration_audio.zip",
+   "size": 4353652,
+   "sha256": "31145faadc72bff8c2cd3b66a1361bca61ee61ee45d45ec8a5db080767fd9839",
+   "members": 13
+  },
+  {
+   "path": "presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive.pptx",
+   "asset": "B01_Transformation_Arc_Executive.pptx",
+   "size": 454034,
+   "sha256": "ba24799239519136251af86008a4fe37155917a8ffc8fcc35ae71e8ed8c30bec"
+  },
+  {
+   "path": "presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narrated.pptx",
+   "asset": "B01_Transformation_Arc_Executive_Narrated.pptx",
+   "size": 9057314,
+   "sha256": "75a7fa1c67104951a86f7acba62cd5b70bd4cf2969115086a2add6c8c28d41e4"
+  },
+  {
+   "path": "presentations/b01-transformation-arc-executive/narration_B01_Transformation_Arc_Executive",
+   "asset": "B01_Transformation_Arc_Executive_narration_audio.zip",
+   "size": 8669622,
+   "sha256": "47bf4c91c41cd4e65b4479e9b3923506eed3accc48adbce89a029e08ecc3e00b",
+   "members": 20
+  },
+  {
+   "path": "presentations/b01-transformation-arc/B01_Transformation_Arc.pptx",
+   "asset": "B01_Transformation_Arc.pptx",
+   "size": 389315,
+   "sha256": "8a1d1f16298b11b33af0d9b63e41eb2eecc9b5ee57c87cfebf37cea7be7cd426"
+  },
+  {
+   "path": "presentations/b01-transformation-arc/B01_Transformation_Arc_Narrated.pptx",
+   "asset": "B01_Transformation_Arc_Narrated.pptx",
+   "size": 5427369,
+   "sha256": "09df7573ecaf32fe43f8fff741b4ce713312235f024c73e51d53973548321689"
+  },
+  {
+   "path": "presentations/b01-transformation-arc/narration_B01_Transformation_Arc",
+   "asset": "B01_Transformation_Arc_narration_audio.zip",
+   "size": 5053610,
+   "sha256": "c5fc8c5ef75c5cb6600b5495d88c0ac34892234f59bc876e8661c31584bf36f7",
+   "members": 17
+  },
+  {
+   "path": "presentations/b02-identity-executive/B02_Identity_Executive.pptx",
+   "asset": "B02_Identity_Executive.pptx",
+   "size": 2325631,
+   "sha256": "0afb1ed00e0bb2934b5ecfc7c2f74e4bb6ac173088a4012a29b7310169f71427"
+  },
+  {
+   "path": "presentations/b02-identity-executive/B02_Identity_Executive_Narrated.pptx",
+   "asset": "B02_Identity_Executive_Narrated.pptx",
+   "size": 7593704,
+   "sha256": "f69e6ea1dbbfa339aa48f5cdc817653f32955df30cc1dea95a4ab59eafe8477a"
+  },
+  {
+   "path": "presentations/b02-identity-executive/narration_B02_Identity_Executive",
+   "asset": "B02_Identity_Executive_narration_audio.zip",
+   "size": 5306946,
+   "sha256": "7bdc6e53c1f6a2fdf4082197ac4172b4c87aa17c96fa40d9cfbd72cddde23184",
+   "members": 19
+  },
+  {
+   "path": "presentations/b02-identity-technical/B02_Identity_Technical.pptx",
+   "asset": "B02_Identity_Technical.pptx",
+   "size": 348375,
+   "sha256": "9a2e6343b71d762e4c996fef4f4928228f70b397d63f7d67f9b9cae7e13abb2c"
+  },
+  {
+   "path": "presentations/b02-identity-technical/B02_Identity_Technical_Narrated.pptx",
+   "asset": "B02_Identity_Technical_Narrated.pptx",
+   "size": 8231209,
+   "sha256": "fc154b274726a6de6b39f9fe05e616468f462ce351e102c3ce3699512f9db049"
+  },
+  {
+   "path": "presentations/b02-identity-technical/narration_B02_Identity_Technical",
+   "asset": "B02_Identity_Technical_narration_audio.zip",
+   "size": 7838954,
+   "sha256": "0907786de0c12597a3ad8f689407a32160f18d78ff92446c35f32e5d89568b97",
+   "members": 29
+  },
+  {
+   "path": "presentations/b02-identity/B02_Identity.pptx",
+   "asset": "B02_Identity.pptx",
+   "size": 309008,
+   "sha256": "41a533fca1c6ddf101cb57d1b1d575d6a72764d7f8b303da5a4f2fa1225cedbe"
+  },
+  {
+   "path": "presentations/b02-identity/B02_Identity_Narrated.pptx",
+   "asset": "B02_Identity_Narrated.pptx",
+   "size": 4229877,
+   "sha256": "af0f4fe80e7e40cd7371180bdcb02422a099c7abb1366aa5ed709e9bd7daffe9"
+  },
+  {
+   "path": "presentations/b02-identity/narration_B02_Identity",
+   "asset": "B02_Identity_narration_audio.zip",
+   "size": 3918694,
+   "sha256": "5be5d9c8c7316062e6475d2e4427422aae278cae23a389f3f3fc094c3a734041",
+   "members": 12
+  },
+  {
+   "path": "presentations/b03-hr-identity-executive/B03_HR_Identity_Executive.pptx",
+   "asset": "B03_HR_Identity_Executive.pptx",
+   "size": 2000088,
+   "sha256": "7f21e700babdc5512034191049f779efec82c0402e933a70481b95dfc7888f55"
+  },
+  {
+   "path": "presentations/b03-hr-identity-executive/B03_HR_Identity_Executive_Narrated.pptx",
+   "asset": "B03_HR_Identity_Executive_Narrated.pptx",
+   "size": 7176885,
+   "sha256": "10cb6cc8555dfb8af2082ec8efae4c11b61640f8c70b2419829dafae2399edd6"
+  },
+  {
+   "path": "presentations/b03-hr-identity-executive/narration_B03_HR_Identity_Executive",
+   "asset": "B03_HR_Identity_Executive_narration_audio.zip",
+   "size": 5225844,
+   "sha256": "a5924d1015d8cd3222175542275af6d9edef19c80c959ca19c95e76023c34998",
+   "members": 19
+  },
+  {
+   "path": "presentations/b03-hr-identity-technical/B03_HR_Identity_Technical.pptx",
+   "asset": "B03_HR_Identity_Technical.pptx",
+   "size": 988519,
+   "sha256": "79afc6f33864a4d03d303046c9aa214e8951bc06be3c6a2fcdf4ec9463aea866"
+  },
+  {
+   "path": "presentations/b03-hr-identity-technical/B03_HR_Identity_Technical_Narrated.pptx",
+   "asset": "B03_HR_Identity_Technical_Narrated.pptx",
+   "size": 8079101,
+   "sha256": "65a1b533139301cd0a6dccca52c39a6089b712a20f640ff9381cf71cb9de99e0"
+  },
+  {
+   "path": "presentations/b03-hr-identity-technical/narration_B03_HR_Identity_Technical",
+   "asset": "B03_HR_Identity_Technical_narration_audio.zip",
+   "size": 7048790,
+   "sha256": "3e896f28e9153252db05cb90d49ea6ee979a3c0b34420fed3ed2551e521ea15b",
+   "members": 32
+  },
+  {
+   "path": "presentations/b03-hr-identity/B03_HR_Identity.pptx",
+   "asset": "B03_HR_Identity.pptx",
+   "size": 283785,
+   "sha256": "85351b470701efaf39f74a213bb499bc3aaf85943b0abb663294e7f6909a2df5"
+  },
+  {
+   "path": "presentations/b03-hr-identity/B03_HR_Identity_Narrated.pptx",
+   "asset": "B03_HR_Identity_Narrated.pptx",
+   "size": 4205053,
+   "sha256": "4c6f063d233bded0602c74a130d9fb4907e2c1460184b485647dd21b8e76b03e"
+  },
+  {
+   "path": "presentations/b03-hr-identity/narration_B03_HR_Identity",
+   "asset": "B03_HR_Identity_narration_audio.zip",
+   "size": 3914302,
+   "sha256": "704f18744f3b351b26c526eede294e16284b6b5525c7258646c4e5fc3c2766d8",
+   "members": 12
+  },
+  {
+   "path": "presentations/b04-access-executive/B04_Access_Executive.pptx",
+   "asset": "B04_Access_Executive.pptx",
+   "size": 1995629,
+   "sha256": "c60f16aa5dd6f5e51724a83f54fb7b3169a34c33548417de7b3a7a8383cb5c90"
+  },
+  {
+   "path": "presentations/b04-access-executive/B04_Access_Executive_Narrated.pptx",
+   "asset": "B04_Access_Executive_Narrated.pptx",
+   "size": 7112203,
+   "sha256": "2744fa5a32792b31af86287b6409ad0c60465e96b2857c7d61466aa0704675bd"
+  },
+  {
+   "path": "presentations/b04-access-executive/narration_B04_Access_Executive",
+   "asset": "B04_Access_Executive_narration_audio.zip",
+   "size": 5176118,
+   "sha256": "35370792279d3c9b7b15d08ac17e4836f732f3c83b612ec1d02453e66e8a4287",
+   "members": 19
+  },
+  {
+   "path": "presentations/b04-access-technical/B04_Access_Technical.pptx",
+   "asset": "B04_Access_Technical.pptx",
+   "size": 426143,
+   "sha256": "5be289f486bb9b07d3b2bdce23dc84778623c9508d27e5f7dfbd7e6df0750b59"
+  },
+  {
+   "path": "presentations/b04-access-technical/B04_Access_Technical_Narrated.pptx",
+   "asset": "B04_Access_Technical_Narrated.pptx",
+   "size": 7931708,
+   "sha256": "7df8e2635ccc612ba4906be4068bdda49586fd6ebc6c7b63b9c55d313abd143a"
+  },
+  {
+   "path": "presentations/b04-access-technical/narration_B04_Access_Technical",
+   "asset": "B04_Access_Technical_narration_audio.zip",
+   "size": 7525478,
+   "sha256": "a852537d7cb3c70fe9c5137c247b406de5ea5a39f9947e7b879805cb02b1002d",
+   "members": 28
+  },
+  {
+   "path": "presentations/b04-access/B04_Access.pptx",
+   "asset": "B04_Access.pptx",
+   "size": 272612,
+   "sha256": "780568a491caef9f14f62accf25219adb0248d19dba035806ee1118b413d4934"
+  },
+  {
+   "path": "presentations/b04-access/B04_Access_Narrated.pptx",
+   "asset": "B04_Access_Narrated.pptx",
+   "size": 3385501,
+   "sha256": "ae6e3c947609472251a777f0c77b66eb2faf88efb483dffcede2988fb62bcbe0"
+  },
+  {
+   "path": "presentations/b04-access/narration_B04_Access",
+   "asset": "B04_Access_narration_audio.zip",
+   "size": 3119166,
+   "sha256": "92c808e2e92fa3177ed6a908aca3a38fb0768407b1139153f0dca3feb4800f60",
+   "members": 10
+  },
+  {
+   "path": "presentations/b05-devices-executive/B05_Devices_Executive.pptx",
+   "asset": "B05_Devices_Executive.pptx",
+   "size": 1916829,
+   "sha256": "456df0db9e3900c88cc967026d3ee76cb711a6b5f4e37fecd97f8be9c8f1495c"
+  },
+  {
+   "path": "presentations/b05-devices-executive/B05_Devices_Executive_Narrated.pptx",
+   "asset": "B05_Devices_Executive_Narrated.pptx",
+   "size": 7495772,
+   "sha256": "ae28399aaab195aad159abb9add3e0c66049ecad8e1c214cf7c0ea1afc43cf5b"
+  },
+  {
+   "path": "presentations/b05-devices-executive/narration_B05_Devices_Executive",
+   "asset": "B05_Devices_Executive_narration_audio.zip",
+   "size": 5627344,
+   "sha256": "32cc0af7e1384ee1eda8bbee2f3acee09151a4bd2c7276c6ceae94ad3e6ce334",
+   "members": 21
+  },
+  {
+   "path": "presentations/b05-devices-technical/B05_Devices_Technical.pptx",
+   "asset": "B05_Devices_Technical.pptx",
+   "size": 329445,
+   "sha256": "d0ec12e79e5429ed3b7102a3ce44e21c792d8254f2fec42f30d3a0ab737e93d9"
+  },
+  {
+   "path": "presentations/b05-devices-technical/B05_Devices_Technical_Narrated.pptx",
+   "asset": "B05_Devices_Technical_Narrated.pptx",
+   "size": 9184946,
+   "sha256": "bc4cb7e769826f0dd72c77e89e0fef7c54a1b502dfdb03eb8ef2520d3579e94b"
+  },
+  {
+   "path": "presentations/b05-devices-technical/narration_B05_Devices_Technical",
+   "asset": "B05_Devices_Technical_narration_audio.zip",
+   "size": 8802022,
+   "sha256": "af9ef06483e0141d67578b8d81ee8f13e70d0c26eccb3e169732f7fe798a7a3a",
+   "members": 32
+  },
+  {
+   "path": "presentations/b05-devices/B05_Devices.pptx",
+   "asset": "B05_Devices.pptx",
+   "size": 282382,
+   "sha256": "537e40a3403173ea6769895dd2cd41cdcf9c9295e104c091d80592b7581f5e95"
+  },
+  {
+   "path": "presentations/b05-devices/B05_Devices_Narrated.pptx",
+   "asset": "B05_Devices_Narrated.pptx",
+   "size": 4385733,
+   "sha256": "2686a8bf4012f9d9a4dba2a5a6f090545ff4b73069d2b1c9e0de7b41f84b35b8"
+  },
+  {
+   "path": "presentations/b05-devices/narration_B05_Devices",
+   "asset": "B05_Devices_narration_audio.zip",
+   "size": 4102124,
+   "sha256": "6f420a33c79e00065ed09a6d5ed2382eb2495ceb4f4b8ddebc1f154fb447ad43",
+   "members": 13
+  },
+  {
+   "path": "presentations/b06-data-platform-executive/B06_Data_Platform_Executive.pptx",
+   "asset": "B06_Data_Platform_Executive.pptx",
+   "size": 2922223,
+   "sha256": "f53ae8fc06ebe92509fe1635c8610b39fc2170a2e71dfc54b3fb53060bebbe5b"
+  },
+  {
+   "path": "presentations/b06-data-platform-executive/B06_Data_Platform_Executive_Narrated.pptx",
+   "asset": "B06_Data_Platform_Executive_Narrated.pptx",
+   "size": 8037477,
+   "sha256": "c41cc5b0b050fe4d20e5c7b3c6cefa4f89a3a2b33b5c3a5d2bf563be268555a9"
+  },
+  {
+   "path": "presentations/b06-data-platform-executive/narration_B06_Data_Platform_Executive",
+   "asset": "B06_Data_Platform_Executive_narration_audio.zip",
+   "size": 5168062,
+   "sha256": "39a4a9a4c92a8a877de4ad2c606f50587796403ebfc40b59c70d068d9fd18fa5",
+   "members": 20
+  },
+  {
+   "path": "presentations/b06-data-platform-technical/B06_Data_Platform_Technical.pptx",
+   "asset": "B06_Data_Platform_Technical.pptx",
+   "size": 356579,
+   "sha256": "21195d6302b0726ca00072ab0dccab3471f1c2f7652888425258a6638a4c4d7a"
+  },
+  {
+   "path": "presentations/b06-data-platform-technical/B06_Data_Platform_Technical_Narrated.pptx",
+   "asset": "B06_Data_Platform_Technical_Narrated.pptx",
+   "size": 7822842,
+   "sha256": "c6b64b37ac00ecc384f5be8296fbceccbe5d1382fde75019bd6500e0d358affa"
+  },
+  {
+   "path": "presentations/b06-data-platform-technical/narration_B06_Data_Platform_Technical",
+   "asset": "B06_Data_Platform_Technical_narration_audio.zip",
+   "size": 7435438,
+   "sha256": "948e959cd3e3ffb57833f73c1f2e3cfb23a299207ab65e03f48b26cff3c99bb6",
+   "members": 28
+  },
+  {
+   "path": "presentations/b06-data-platform/B06_Data_Platform.pptx",
+   "asset": "B06_Data_Platform.pptx",
+   "size": 273973,
+   "sha256": "a15e8dd57ad7d46e8a83272ffe89cdcb0366cde95b31b8373b5e3591d054d758"
+  },
+  {
+   "path": "presentations/b06-data-platform/B06_Data_Platform_Narrated.pptx",
+   "asset": "B06_Data_Platform_Narrated.pptx",
+   "size": 3909153,
+   "sha256": "45666bde44612e2b6c43438ba7b067771117d902495912068f461cd15b62440d"
+  },
+  {
+   "path": "presentations/b06-data-platform/narration_B06_Data_Platform",
+   "asset": "B06_Data_Platform_narration_audio.zip",
+   "size": 3639588,
+   "sha256": "d5704f3ebf6c65fa10c57d4bcb2995dbc8b60ec1a1dac2ef882de41e3fdaaeae",
+   "members": 11
+  },
+  {
+   "path": "presentations/b07-pki-executive/B07_PKI_Executive.pptx",
+   "asset": "B07_PKI_Executive.pptx",
+   "size": 2780667,
+   "sha256": "f7e3fe32b29687fde9194c669040602a48dc367a24bc93761fb138f8adbf9feb"
+  },
+  {
+   "path": "presentations/b07-pki-executive/B07_PKI_Executive_Narrated.pptx",
+   "asset": "B07_PKI_Executive_Narrated.pptx",
+   "size": 7355001,
+   "sha256": "c80f9654423dda2a7888477b0ef98e2fcd775e67a46d393d3f35d02270aed502"
+  },
+  {
+   "path": "presentations/b07-pki-executive/narration_B07_PKI_Executive",
+   "asset": "B07_PKI_Executive_narration_audio.zip",
+   "size": 4615690,
+   "sha256": "52bfeb952ec9322a2c69019e084dc978b04c020e78db0b43cd1f199ea5ab843c",
+   "members": 18
+  },
+  {
+   "path": "presentations/b07-pki-technical/B07_PKI_Technical.pptx",
+   "asset": "B07_PKI_Technical.pptx",
+   "size": 353386,
+   "sha256": "90b0641da2403541c03e06f3e7365b7bed028a51d8c97b4a51927724b612653a"
+  },
+  {
+   "path": "presentations/b07-pki-technical/B07_PKI_Technical_Narrated.pptx",
+   "asset": "B07_PKI_Technical_Narrated.pptx",
+   "size": 8512095,
+   "sha256": "9dba24ea150b206c477e02717170ba7ba19064a3fa29c9f4d9c39f845ea1e080"
+  },
+  {
+   "path": "presentations/b07-pki-technical/narration_B07_PKI_Technical",
+   "asset": "B07_PKI_Technical_narration_audio.zip",
+   "size": 8119762,
+   "sha256": "afa5ebe458c1768b79707c6e012f50ac951128e7cde5d18406cae0027016e025",
+   "members": 30
+  },
+  {
+   "path": "presentations/b07-pki/B07_PKI.pptx",
+   "asset": "B07_PKI.pptx",
+   "size": 335991,
+   "sha256": "f0e86414bee8760cbf6e0dedea9c1e85b32a08899e9a68bdbe18ee47aabcbc19"
+  },
+  {
+   "path": "presentations/b07-pki/B07_PKI_Narrated.pptx",
+   "asset": "B07_PKI_Narrated.pptx",
+   "size": 4774294,
+   "sha256": "4a3bc26a0272c981f6a81e7388149c2af3eb039e69987e8e54d222b1cb9153fd"
+  },
+  {
+   "path": "presentations/b07-pki/narration_B07_PKI",
+   "asset": "B07_PKI_narration_audio.zip",
+   "size": 4450644,
+   "sha256": "db664f3ba456a74a58870b93a056979d14bf8dee9616f69f3bfa9fb909de7396",
+   "members": 13
+  },
+  {
+   "path": "presentations/b08-ddi-executive/B08_DDI_Executive.pptx",
+   "asset": "B08_DDI_Executive.pptx",
+   "size": 1914054,
+   "sha256": "59a6af99f8245bde0eb9f245afeb8c3f9b0c10d6a741610217d8ffc31d1fa45f"
+  },
+  {
+   "path": "presentations/b08-ddi-executive/B08_DDI_Executive_Narrated.pptx",
+   "asset": "B08_DDI_Executive_Narrated.pptx",
+   "size": 6757485,
+   "sha256": "eaddbfee0ac762410fc21b038d2b4f687020cdcfc5331403505c170bf5660713"
+  },
+  {
+   "path": "presentations/b08-ddi-executive/narration_B08_DDI_Executive",
+   "asset": "B08_DDI_Executive_narration_audio.zip",
+   "size": 4885556,
+   "sha256": "4b33f8e6628bae4667db0840f7972932858265ea92d8279333b8730429413b51",
+   "members": 19
+  },
+  {
+   "path": "presentations/b08-ddi-technical/B08_DDI_Technical.pptx",
+   "asset": "B08_DDI_Technical.pptx",
+   "size": 352166,
+   "sha256": "4f278797f7d67dcb3f1eed724342c4092a792a9e024324850071d66faf4b96c4"
+  },
+  {
+   "path": "presentations/b08-ddi-technical/B08_DDI_Technical_Narrated.pptx",
+   "asset": "B08_DDI_Technical_Narrated.pptx",
+   "size": 8374105,
+   "sha256": "93d12319d296a3abc7256f7b79a9c24dcf6c3c029ac515822407ab35ff30d43b"
+  },
+  {
+   "path": "presentations/b08-ddi-technical/narration_B08_DDI_Technical",
+   "asset": "B08_DDI_Technical_narration_audio.zip",
+   "size": 7979208,
+   "sha256": "3adb987a93057dbcb499aa08f8501684e0c71262dbdb8c756073929565758d6b",
+   "members": 29
+  },
+  {
+   "path": "presentations/b08-ddi/B08_DDI.pptx",
+   "asset": "B08_DDI.pptx",
+   "size": 338598,
+   "sha256": "3e061fc7ddbc81bf2f453836d333be4433e0c10643c7893165c1e6177808df7c"
+  },
+  {
+   "path": "presentations/b08-ddi/B08_DDI_Narrated.pptx",
+   "asset": "B08_DDI_Narrated.pptx",
+   "size": 4961509,
+   "sha256": "1a7aa2d465538b78c303f9acab194a3c484a57b39fed319af07a4f36c0c4ad57"
+  },
+  {
+   "path": "presentations/b08-ddi/narration_B08_DDI",
+   "asset": "B08_DDI_narration_audio.zip",
+   "size": 4628474,
+   "sha256": "30fae67b0e48f70117657972b8c9af1153ed453909a953554e35b717ab123060",
+   "members": 14
+  },
+  {
+   "path": "presentations/b09-network-executive/B09_Network_Executive.pptx",
+   "asset": "B09_Network_Executive.pptx",
+   "size": 365348,
+   "sha256": "4346dda7c980c481bcc58a557b8d842f3f7ba78ae82c3c8332bc5315df6bcfc6"
+  },
+  {
+   "path": "presentations/b09-network-executive/B09_Network_Executive_Narrated.pptx",
+   "asset": "B09_Network_Executive_Narrated.pptx",
+   "size": 8121148,
+   "sha256": "90cbfb92255cfeee048e0602d667b81c109661f99400c53008a1c623bb696ef3"
+  },
+  {
+   "path": "presentations/b09-network-executive/narration_B09_Network_Executive",
+   "asset": "B09_Network_Executive_narration_audio.zip",
+   "size": 7780630,
+   "sha256": "4baf65326678a706fea70256997213c1dd6ab67973e79e19bb50aca6404f77a9",
+   "members": 16
+  },
+  {
+   "path": "presentations/b09-network-technical/B09_Network_Technical.pptx",
+   "asset": "B09_Network_Technical.pptx",
+   "size": 650430,
+   "sha256": "3017366fe864d9cd9bc066fb0ea8c68b03f5b54c8c1e6b80ad5c1e0f8a5c8631"
+  },
+  {
+   "path": "presentations/b09-network-technical/B09_Network_Technical_Narrated.pptx",
+   "asset": "B09_Network_Technical_Narrated.pptx",
+   "size": 7514026,
+   "sha256": "11f7f8b27c465ad91a5f15548ff5cf37801061857c4aa32ee66620a28158136c"
+  },
+  {
+   "path": "presentations/b09-network-technical/narration_B09_Network_Technical",
+   "asset": "B09_Network_Technical_narration_audio.zip",
+   "size": 6818566,
+   "sha256": "1716ad856d64bfc2b0c2515c86018061458596df88ef2e11d0854c9243fdb00a",
+   "members": 32
+  },
+  {
+   "path": "presentations/b09-network/B09_Network.pptx",
+   "asset": "B09_Network.pptx",
+   "size": 357704,
+   "sha256": "1863af2c6cf00450298fc7c1d832b85f060bf1efe1715894dbd2e84d4077784d"
+  },
+  {
+   "path": "presentations/b09-network/B09_Network_Narrated.pptx",
+   "asset": "B09_Network_Narrated.pptx",
+   "size": 5048356,
+   "sha256": "79a31a4660fe8c5b499828db7a2c8a2a5f080e037afd2a3878cb159b343191d7"
+  },
+  {
+   "path": "presentations/b09-network/narration_B09_Network",
+   "asset": "B09_Network_narration_audio.zip",
+   "size": 4715416,
+   "sha256": "dffc31a9a7d48b78e37436fc32450e115d7027412a491530b6bfbd51b3a3bfaa",
+   "members": 15
+  },
+  {
+   "path": "presentations/b09-sdwan-executive/B09_SDWAN_Executive.pptx",
+   "asset": "B09_SDWAN_Executive.pptx",
+   "size": 843041,
+   "sha256": "de25184aa6a7696a21f9638afc156ab55dd97bfe5662b915e8dce76397f3eac8"
+  },
+  {
+   "path": "presentations/b09-sdwan-executive/B09_SDWAN_Executive_Narrated.pptx",
+   "asset": "B09_SDWAN_Executive_Narrated.pptx",
+   "size": 3355980,
+   "sha256": "793d00ab127afe5a922b804e20d61d17416c22c422742398da12fc4b6fae9052"
+  },
+  {
+   "path": "presentations/b09-sdwan-executive/narration_B09_SDWAN_Executive",
+   "asset": "B09_SDWAN_Executive_narration_audio.zip",
+   "size": 2489806,
+   "sha256": "b8a618b0b472db03d98dbe67c77f206214f6eae0dfcb1f3728e5b76e8fce57f7",
+   "members": 12
+  },
+  {
+   "path": "presentations/b09-sdwan-technical/B09_SDWAN_Technical.pptx",
+   "asset": "B09_SDWAN_Technical.pptx",
+   "size": 2032692,
+   "sha256": "2283bca643dfec31058f505ffecad0018e9e769e4eb2ff31c7a4b00c70792a89"
+  },
+  {
+   "path": "presentations/b09-sdwan-technical/B09_SDWAN_Technical_Narrated.pptx",
+   "asset": "B09_SDWAN_Technical_Narrated.pptx",
+   "size": 8483386,
+   "sha256": "f21b6154217b5dfb53b950db3c66ae0096e2f3355b20b498c05b0a0892003b4e"
+  },
+  {
+   "path": "presentations/b09-sdwan-technical/narration_B09_SDWAN_Technical",
+   "asset": "B09_SDWAN_Technical_narration_audio.zip",
+   "size": 6408456,
+   "sha256": "f353233b78c1c4891f309d91f6881df86458a36a64c2f06b0c5c70feaf75d335",
+   "members": 31
+  },
+  {
+   "path": "presentations/b10-cloud-boundary-executive/B10_Cloud_Boundary_Executive.pptx",
+   "asset": "B10_Cloud_Boundary_Executive.pptx",
+   "size": 354388,
+   "sha256": "728bf2fd8bb74fb68a97c9743b5b7e9bb883fdfc5ef5199ab8d7015fb499f7ce"
+  },
+  {
+   "path": "presentations/b10-cloud-boundary-executive/B10_Cloud_Boundary_Executive_Narrated.pptx",
+   "asset": "B10_Cloud_Boundary_Executive_Narrated.pptx",
+   "size": 7864282,
+   "sha256": "ee284333a5a023feb629d712ce0fccfefe233b1b998799829ac6ca78f3fe96e7"
+  },
+  {
+   "path": "presentations/b10-cloud-boundary-executive/narration_B10_Cloud_Boundary_Executive",
+   "asset": "B10_Cloud_Boundary_Executive_narration_audio.zip",
+   "size": 7536198,
+   "sha256": "27ed32720d6e43f26377eb894112e5a681c7f1a00409839c9f5bede920d1e393",
+   "members": 16
+  },
+  {
+   "path": "presentations/b10-cloud-boundary-technical/B10_Cloud_Boundary_Technical.pptx",
+   "asset": "B10_Cloud_Boundary_Technical.pptx",
+   "size": 2642607,
+   "sha256": "5ab2d437fa76ce2194fa53351b1e3e72d6339a511cd59895f1e920e017e55fc0"
+  },
+  {
+   "path": "presentations/b10-cloud-boundary-technical/B10_Cloud_Boundary_Technical_Narrated.pptx",
+   "asset": "B10_Cloud_Boundary_Technical_Narrated.pptx",
+   "size": 9214681,
+   "sha256": "68af28694f79317f4dbd77461f631af8b5120a0ead2981edeefc23e49324c664"
+  },
+  {
+   "path": "presentations/b10-cloud-boundary-technical/narration_B10_Cloud_Boundary_Technical",
+   "asset": "B10_Cloud_Boundary_Technical_narration_audio.zip",
+   "size": 6533174,
+   "sha256": "0fab8049b37473703865e7baa87bb026e3a22baf272a9c4327bfa831ef419b84",
+   "members": 32
+  },
+  {
+   "path": "presentations/b10-cloud-boundary/B10_Cloud_Boundary.pptx",
+   "asset": "B10_Cloud_Boundary.pptx",
+   "size": 332976,
+   "sha256": "392cf49137bb0cb5fd7a183d6e3d1452feb00791b42217d09b22524100a87ae0"
+  },
+  {
+   "path": "presentations/b10-cloud-boundary/B10_Cloud_Boundary_Narrated.pptx",
+   "asset": "B10_Cloud_Boundary_Narrated.pptx",
+   "size": 4942276,
+   "sha256": "e09c55b96ef091b820b703ae60fd1f4519d74bc1d07462b749e07ee86edbc335"
+  },
+  {
+   "path": "presentations/b10-cloud-boundary/narration_B10_Cloud_Boundary",
+   "asset": "B10_Cloud_Boundary_narration_audio.zip",
+   "size": 4624618,
+   "sha256": "9977abf693faf857a1f9a7a7a77137b7e7f3eff015bf23aba372413bfd607845",
+   "members": 15
+  },
+  {
+   "path": "presentations/b11-zero-trust-executive/B11_Zero_Trust_Executive.pptx",
+   "asset": "B11_Zero_Trust_Executive.pptx",
+   "size": 354884,
+   "sha256": "ded974836d54a6818ecc57592a1be3c696b0e0f35134adb797f335e96a23ce75"
+  },
+  {
+   "path": "presentations/b11-zero-trust-executive/B11_Zero_Trust_Executive_Narrated.pptx",
+   "asset": "B11_Zero_Trust_Executive_Narrated.pptx",
+   "size": 8309373,
+   "sha256": "940c4e34351a543f6811d28cc83fdc7bb41fec285b9695f39e3aa32c6b1da0b3"
+  },
+  {
+   "path": "presentations/b11-zero-trust-executive/narration_B11_Zero_Trust_Executive",
+   "asset": "B11_Zero_Trust_Executive_narration_audio.zip",
+   "size": 7988518,
+   "sha256": "4bb56ffd3d692eac3e240806d42745457a0d4fa592e931449faad34290ee930b",
+   "members": 16
+  },
+  {
+   "path": "presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical.pptx",
+   "asset": "B11_Zero_Trust_Technical.pptx",
+   "size": 2137033,
+   "sha256": "a478f1b72f683ae331c19a7e00fd933d3de4dbe52dc2abe14a032a3942a2aad4"
+  },
+  {
+   "path": "presentations/b11-zero-trust-technical/B11_Zero_Trust_Technical_Narrated.pptx",
+   "asset": "B11_Zero_Trust_Technical_Narrated.pptx",
+   "size": 8518285,
+   "sha256": "d0569dc94b04736ddba6d04971a0c6d91f7667d74458564975099607a974d601"
+  },
+  {
+   "path": "presentations/b11-zero-trust-technical/narration_B11_Zero_Trust_Technical",
+   "asset": "B11_Zero_Trust_Technical_narration_audio.zip",
+   "size": 6341686,
+   "sha256": "54166bcafbdcfbfe7b40114033065c7320dfe9651233ee20aca0ceda1081d7af",
+   "members": 32
+  },
+  {
+   "path": "presentations/b11-zero-trust/B11_Zero_Trust.pptx",
+   "asset": "B11_Zero_Trust.pptx",
+   "size": 334543,
+   "sha256": "db4de0022a6ba3bf56d2a211ab5ae3034d67ef04405b30d551e242bcdfa51530"
+  },
+  {
+   "path": "presentations/b11-zero-trust/B11_Zero_Trust_Narrated.pptx",
+   "asset": "B11_Zero_Trust_Narrated.pptx",
+   "size": 5050799,
+   "sha256": "4b7192fd58e77052179dd32dabeb72906855202858e939031201a1ea2a66e3f1"
+  },
+  {
+   "path": "presentations/b11-zero-trust/narration_B11_Zero_Trust",
+   "asset": "B11_Zero_Trust_narration_audio.zip",
+   "size": 4718958,
+   "sha256": "cdc840cf95f5fe73018f23ae2f2fee76e358aecee1572024b13cd4c9b1873a40",
+   "members": 14
+  },
+  {
+   "path": "presentations/b12-security-operations-executive/B12_Security_Operations_Executive.pptx",
+   "asset": "B12_Security_Operations_Executive.pptx",
+   "size": 1729678,
+   "sha256": "aae539811a6e54e7e1967dd267e743dd390262afd8847a48027cd4ec3c7041a7"
+  },
+  {
+   "path": "presentations/b12-security-operations-executive/B12_Security_Operations_Executive_Narrated.pptx",
+   "asset": "B12_Security_Operations_Executive_Narrated.pptx",
+   "size": 6472586,
+   "sha256": "72fcba4daab10696d6e5b6e826e0d284ddb23d4610596791f6bf3801bcb9ff9c"
+  },
+  {
+   "path": "presentations/b12-security-operations-executive/narration_B12_Security_Operations_Executive",
+   "asset": "B12_Security_Operations_Executive_narration_audio.zip",
+   "size": 4784356,
+   "sha256": "4c5c98fc2e1b35b33596f500f1a61f4f21e9aec5b1040ad92251e3070f69d6ad",
+   "members": 19
+  },
+  {
+   "path": "presentations/b12-security-operations-technical/B12_Security_Operations_Technical.pptx",
+   "asset": "B12_Security_Operations_Technical.pptx",
+   "size": 844548,
+   "sha256": "f04304899fefe2f2d895c8687fb15c6150e2aed01ab0a3e8dacd4e61543f25d2"
+  },
+  {
+   "path": "presentations/b12-security-operations-technical/B12_Security_Operations_Technical_Narrated.pptx",
+   "asset": "B12_Security_Operations_Technical_Narrated.pptx",
+   "size": 7063687,
+   "sha256": "aa3c599599390cc3c9666f7f9e7bffef29fcd2f5052ac3428577634b7df3efc5"
+  },
+  {
+   "path": "presentations/b12-security-operations-technical/narration_B12_Security_Operations_Technical",
+   "asset": "B12_Security_Operations_Technical_narration_audio.zip",
+   "size": 6173206,
+   "sha256": "50196afb33e4f2514fb079d4b95fffc71f33cbb269bb0e38230ade0a8ccad87f",
+   "members": 32
+  },
+  {
+   "path": "presentations/b12-security-operations/B12_Security_Operations.pptx",
+   "asset": "B12_Security_Operations.pptx",
+   "size": 338715,
+   "sha256": "9310df0ff274a5a62ebc2f782480d04487aa5c56af33d460286bfe44bd53dd81"
+  },
+  {
+   "path": "presentations/b12-security-operations/B12_Security_Operations_Narrated.pptx",
+   "asset": "B12_Security_Operations_Narrated.pptx",
+   "size": 4853467,
+   "sha256": "f3f67371db1747dbf0785c750ef33b93e7fd527d16e3b4d0db3cd1b54057880a"
+  },
+  {
+   "path": "presentations/b12-security-operations/narration_B12_Security_Operations",
+   "asset": "B12_Security_Operations_narration_audio.zip",
+   "size": 4532010,
+   "sha256": "c50df7f26e65670cb00de1d7b6ac4daffb6cbec7bfaad582f22deaeca1387563",
+   "members": 14
+  },
+  {
+   "path": "presentations/b13-governance-executive/B13_Governance_Executive.pptx",
+   "asset": "B13_Governance_Executive.pptx",
+   "size": 2264907,
+   "sha256": "8f06fcd04cd91462e9cfa686223e3b668004e28546ddf8c447e9de49f8274af4"
+  },
+  {
+   "path": "presentations/b13-governance-executive/B13_Governance_Executive_Narrated.pptx",
+   "asset": "B13_Governance_Executive_Narrated.pptx",
+   "size": 7209877,
+   "sha256": "678048a240503d7de4cd6debc1d0bedd3f2f056b24965121ae1f67a73fe90c04"
+  },
+  {
+   "path": "presentations/b13-governance-executive/narration_B13_Governance_Executive",
+   "asset": "B13_Governance_Executive_narration_audio.zip",
+   "size": 4986190,
+   "sha256": "cbb7337867e50b7926a41da977cba67c38078b4cdba82b794e6b781ceb5ef001",
+   "members": 19
+  },
+  {
+   "path": "presentations/b13-governance-technical/B13_Governance_Technical.pptx",
+   "asset": "B13_Governance_Technical.pptx",
+   "size": 2981868,
+   "sha256": "3e6372a45aa5f30a587bc1034a0ba694e549ba29cb203d0a1a4265f0a3619dfc"
+  },
+  {
+   "path": "presentations/b13-governance-technical/B13_Governance_Technical_Narrated.pptx",
+   "asset": "B13_Governance_Technical_Narrated.pptx",
+   "size": 9563034,
+   "sha256": "75dcbfe5fbce21c7471cadf9a63af4626b1de9cdcfb6e9cfb65448b60f4969cf"
+  },
+  {
+   "path": "presentations/b13-governance-technical/narration_B13_Governance_Technical",
+   "asset": "B13_Governance_Technical_narration_audio.zip",
+   "size": 6536230,
+   "sha256": "e43759f4dbf680829ad413e07e8c8cac5e91f0fe79e8b6625a5f345abdda01ab",
+   "members": 32
+  },
+  {
+   "path": "presentations/b13-governance/B13_Governance.pptx",
+   "asset": "B13_Governance.pptx",
+   "size": 334788,
+   "sha256": "6ee4eaba6dc72dbe6be5abea0b739c85818abff623ddf07c92285a6d4efa8a69"
+  },
+  {
+   "path": "presentations/b13-governance/B13_Governance_Narrated.pptx",
+   "asset": "B13_Governance_Narrated.pptx",
+   "size": 4846201,
+   "sha256": "d7d6ba46ce13f15488b109c68a715aa5c6abbe86cd847ca07a38247733abfe09"
+  },
+  {
+   "path": "presentations/b13-governance/narration_B13_Governance",
+   "asset": "B13_Governance_narration_audio.zip",
+   "size": 4534638,
+   "sha256": "560bfbb792550759555c358c71850a35300ed45fa6d56d51cb62fc277ba911ef",
+   "members": 14
+  },
+  {
+   "path": "presentations/b13-ticket-to-machine/B13_Ticket_to_Machine.pptx",
+   "asset": "B13_Ticket_to_Machine.pptx",
+   "size": 516354,
+   "sha256": "4f31f1d10ccc098987d5a8327dd69a026413bb52fe01edc1f33d3679913858e5"
+  },
+  {
+   "path": "presentations/b13-ticket-to-machine/B13_Ticket_to_Machine_Narrated.pptx",
+   "asset": "B13_Ticket_to_Machine_Narrated.pptx",
+   "size": 4191672,
+   "sha256": "1c88ffd11b86dfec9134e2aee9de6e6d90173e064f2d7d875ca4c569d7da38b5"
+  },
+  {
+   "path": "presentations/b13-ticket-to-machine/narration_B13_Ticket_to_Machine",
+   "asset": "B13_Ticket_to_Machine_narration_audio.zip",
+   "size": 3646696,
+   "sha256": "dc4b7a76df703ed15155709f76146ae3bf1a4c677b03a598505d74026233b4c2",
+   "members": 17
+  },
+  {
+   "path": "presentations/b14-compliance-executive/B14_Compliance_Executive.pptx",
+   "asset": "B14_Compliance_Executive.pptx",
+   "size": 2150396,
+   "sha256": "dad6f9609874707d54acde47120a4e38222dc9082488e7b097bd989d804d6a15"
+  },
+  {
+   "path": "presentations/b14-compliance-executive/B14_Compliance_Executive_Narrated.pptx",
+   "asset": "B14_Compliance_Executive_Narrated.pptx",
+   "size": 7248940,
+   "sha256": "2a72972c359826a20b97e105d19392faa45ec36bb98f026a63341724ae187576"
+  },
+  {
+   "path": "presentations/b14-compliance-executive/narration_B14_Compliance_Executive",
+   "asset": "B14_Compliance_Executive_narration_audio.zip",
+   "size": 5147326,
+   "sha256": "9cfd90ce003a8ab1bfecd0f720ad7b007da989c89d0808902f4eabab2703e2c9",
+   "members": 19
+  },
+  {
+   "path": "presentations/b14-compliance/B14_Compliance.pptx",
+   "asset": "B14_Compliance.pptx",
+   "size": 320173,
+   "sha256": "ebce6728a5baccaece18c19c280b46f037a13e83f14c1fd68d8cd66e7982388c"
+  },
+  {
+   "path": "presentations/b14-compliance/B14_Compliance_Narrated.pptx",
+   "asset": "B14_Compliance_Narrated.pptx",
+   "size": 4324411,
+   "sha256": "527c7d739d8888a09e8a8ce69d0683db8e3e7a6aec7456110d069553948217f2"
+  },
+  {
+   "path": "presentations/b14-compliance/narration_B14_Compliance",
+   "asset": "B14_Compliance_narration_audio.zip",
+   "size": 4026746,
+   "sha256": "445ae5c769d59ffa0e90aec76827775cf1fea967c909d0c329c8452f92dd5329",
+   "members": 13
+  },
+  {
+   "path": "presentations/b15-day2-operations-executive/B15_Day2_Operations_Executive.pptx",
+   "asset": "B15_Day2_Operations_Executive.pptx",
+   "size": 2014590,
+   "sha256": "d2885d682bf33f0d4ec1ae0b115e42e5b0ed1e14bc7f31d8f7c3ff07030c716a"
+  },
+  {
+   "path": "presentations/b15-day2-operations-executive/B15_Day2_Operations_Executive_Narrated.pptx",
+   "asset": "B15_Day2_Operations_Executive_Narrated.pptx",
+   "size": 6502570,
+   "sha256": "000bebc36c39ba8efe02e2f981b09e2c7aa1e26b7128b70302bf7f869bcedbcf"
+  },
+  {
+   "path": "presentations/b15-day2-operations-executive/narration_B15_Day2_Operations_Executive",
+   "asset": "B15_Day2_Operations_Executive_narration_audio.zip",
+   "size": 4526410,
+   "sha256": "97554994b622190945ef537a6e11864cf70f231f90a775f44a40900d93a1ed37",
+   "members": 18
+  },
+  {
+   "path": "presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical.pptx",
+   "asset": "B15_Day2_Operations_Technical.pptx",
+   "size": 860611,
+   "sha256": "8cee79235c2d352c0e6ec141cd7072ec8053c1577c345d683a633d25ccc45855"
+  },
+  {
+   "path": "presentations/b15-day2-operations-technical/B15_Day2_Operations_Technical_Narrated.pptx",
+   "asset": "B15_Day2_Operations_Technical_Narrated.pptx",
+   "size": 7556485,
+   "sha256": "ac7cf3faef76a7dbed6c554ff326c32f515424e57fc79f5a63fc4ab1439a0f4e"
+  },
+  {
+   "path": "presentations/b15-day2-operations-technical/narration_B15_Day2_Operations_Technical",
+   "asset": "B15_Day2_Operations_Technical_narration_audio.zip",
+   "size": 6653808,
+   "sha256": "d99ec40e38b6104c976ec27033cf891ddb081361e80da8c46a471ad1e8febe12",
+   "members": 29
+  },
+  {
+   "path": "presentations/b15-day2-operations/B15_Day2_Operations.pptx",
+   "asset": "B15_Day2_Operations.pptx",
+   "size": 334970,
+   "sha256": "c27c5b13aa223bc4f4772d17ee4da6e75697ae2403834d3bf9928cb32f1a60b9"
+  },
+  {
+   "path": "presentations/b15-day2-operations/B15_Day2_Operations_Narrated.pptx",
+   "asset": "B15_Day2_Operations_Narrated.pptx",
+   "size": 4441843,
+   "sha256": "8320630d4f9996498ace73a9be3da280ca95881c71ade8e3bc6a107c774206c8"
+  },
+  {
+   "path": "presentations/b15-day2-operations/narration_B15_Day2_Operations",
+   "asset": "B15_Day2_Operations_narration_audio.zip",
+   "size": 4125660,
+   "sha256": "e66643a9b260289d7d731a716d0f9b49c49346fdb1aca9ceba1ab043d9f95528",
+   "members": 13
+  },
+  {
+   "path": "presentations/b15-inhouse-automation-executive/B15_InHouse_Automation_Executive.pptx",
+   "asset": "B15_InHouse_Automation_Executive.pptx",
+   "size": 343661,
+   "sha256": "f1854472c0611aa511c3cbe570bd621379930d5cdd1d72a0c781199899cbf1d6"
+  },
+  {
+   "path": "presentations/b15-inhouse-automation-executive/B15_InHouse_Automation_Executive_Narrated.pptx",
+   "asset": "B15_InHouse_Automation_Executive_Narrated.pptx",
+   "size": 3331153,
+   "sha256": "5b57f72af783f809c307ce07ddd7b393f1986fcf043a9e5b917f33d3615754a6"
+  },
+  {
+   "path": "presentations/b15-inhouse-automation-executive/narration_B15_InHouse_Automation_Executive",
+   "asset": "B15_InHouse_Automation_Executive_narration_audio.zip",
+   "size": 2958550,
+   "sha256": "1e6af4e3fa56dc71c13bef5ae4ef138061c928212fb2e6137958ebd10f58be1b",
+   "members": 12
+  },
+  {
+   "path": "presentations/b16-people-executive/B16_People_Executive.pptx",
+   "asset": "B16_People_Executive.pptx",
+   "size": 2090239,
+   "sha256": "ebb24a8a15eea9a6848cddcf5cb16fd60f8bd5d7fcdfaae554856a61f875c693"
+  },
+  {
+   "path": "presentations/b16-people-executive/B16_People_Executive_Narrated.pptx",
+   "asset": "B16_People_Executive_Narrated.pptx",
+   "size": 6802310,
+   "sha256": "7d5348214c0ba98623a5aad9ae7959e301c6088c977a15228215973fbab331b0"
+  },
+  {
+   "path": "presentations/b16-people-executive/narration_B16_People_Executive",
+   "asset": "B16_People_Executive_narration_audio.zip",
+   "size": 4782438,
+   "sha256": "52f2761852470c46de67992f283ed6402a7f2f24c04d6928fca50a8fd7a70cb0",
+   "members": 20
+  },
+  {
+   "path": "presentations/b16-people/B16_People.pptx",
+   "asset": "B16_People.pptx",
+   "size": 338282,
+   "sha256": "988fc64c8a50553fdec456cf2200b29db4ae2e687178d25213962ac5162bd489"
+  },
+  {
+   "path": "presentations/b16-people/B16_People_Narrated.pptx",
+   "asset": "B16_People_Narrated.pptx",
+   "size": 4543682,
+   "sha256": "c8642c43248d3731197d243af314ba8d5883e5b01700ef18a53be16890f8ce20"
+  },
+  {
+   "path": "presentations/b16-people/narration_B16_People",
+   "asset": "B16_People_narration_audio.zip",
+   "size": 4209374,
+   "sha256": "58982459f2da64ecead132184977c463e747e9f65c4ca951ea41b94020044399",
+   "members": 14
+  },
+  {
+   "path": "presentations/b17-ai-identity-executive/B17_AI_Identity_Executive.pptx",
+   "asset": "B17_AI_Identity_Executive.pptx",
+   "size": 1923224,
+   "sha256": "aeb93e3fc2c9ccb7f37b30f4b4914a00875e700aa32328326be9a462a90586dd"
+  },
+  {
+   "path": "presentations/b17-ai-identity-executive/B17_AI_Identity_Executive_Narrated.pptx",
+   "asset": "B17_AI_Identity_Executive_Narrated.pptx",
+   "size": 6766818,
+   "sha256": "07b0306b2aad4fc9205680b1e3248e07ce0db9e3f22867584a6d59e4fbd013e5"
+  },
+  {
+   "path": "presentations/b17-ai-identity-executive/narration_B17_AI_Identity_Executive",
+   "asset": "B17_AI_Identity_Executive_narration_audio.zip",
+   "size": 4881658,
+   "sha256": "ee31aa4e4b1a41784d7bfad18bc1ae4be7b8a30f994c8613f6eb8dd7416f4f38",
+   "members": 18
+  },
+  {
+   "path": "presentations/b17-ai-identity-technical/B17_AI_Identity_Technical.pptx",
+   "asset": "B17_AI_Identity_Technical.pptx",
+   "size": 2492616,
+   "sha256": "4be1fdb393cd39ae3714dfbe8b1f35fe6adbd867444ff6647f57e76bff4dc372"
+  },
+  {
+   "path": "presentations/b17-ai-identity-technical/B17_AI_Identity_Technical_Narrated.pptx",
+   "asset": "B17_AI_Identity_Technical_Narrated.pptx",
+   "size": 9308142,
+   "sha256": "e0e93a7c580443b05dd144f29b1ffb8e4724557933e2ac29012f7bfba39c4bec"
+  },
+  {
+   "path": "presentations/b17-ai-identity-technical/narration_B17_AI_Identity_Technical",
+   "asset": "B17_AI_Identity_Technical_narration_audio.zip",
+   "size": 6767990,
+   "sha256": "667d074194d022d3a7419c315c6696ba945c6a6553ebf118de1e850633274d82",
+   "members": 32
+  },
+  {
+   "path": "presentations/b17-ai-identity/B17_AI_Identity.pptx",
+   "asset": "B17_AI_Identity.pptx",
+   "size": 327925,
+   "sha256": "d99287be653e7bf93ac3d6568c2590f4217788750296b5daaeaaf1d0b8e919a1"
+  },
+  {
+   "path": "presentations/b17-ai-identity/B17_AI_Identity_Narrated.pptx",
+   "asset": "B17_AI_Identity_Narrated.pptx",
+   "size": 4680292,
+   "sha256": "087034ea09073c32920d525ea82b1f7ecf43dcc208f052c92e4b559743d1259a"
+  },
+  {
+   "path": "presentations/b17-ai-identity/narration_B17_AI_Identity",
+   "asset": "B17_AI_Identity_narration_audio.zip",
+   "size": 4361434,
+   "sha256": "4e1d6a4f9f58bbe61b30d193cc62a3a4c08c0cff9007b83f38918e535689199a",
+   "members": 14
+  },
+  {
+   "path": "presentations/b18-application-modernization-executive/B18_Application_Modernization_Executive.pptx",
+   "asset": "B18_Application_Modernization_Executive.pptx",
+   "size": 2101085,
+   "sha256": "04868abf1aa8b3da93aae012173f50e97e38f8f0835b7381eec14734edb7bfbe"
+  },
+  {
+   "path": "presentations/b18-application-modernization-executive/B18_Application_Modernization_Executive_Narrated.pptx",
+   "asset": "B18_Application_Modernization_Executive_Narrated.pptx",
+   "size": 6700738,
+   "sha256": "a6ea29014b102dd8aa6533ef3fba5898c90124275e31002da59c03a9e2b892d7"
+  },
+  {
+   "path": "presentations/b18-application-modernization-executive/narration_B18_Application_Modernization_Executive",
+   "asset": "B18_Application_Modernization_Executive_narration_audio.zip",
+   "size": 4656910,
+   "sha256": "9deb031d42142c685008718c93937bfc1c9eede3718caf0215840650c9248878",
+   "members": 20
+  },
+  {
+   "path": "presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical.pptx",
+   "asset": "B18_Application_Modernization_Technical.pptx",
+   "size": 2296405,
+   "sha256": "da971d2f8ba5ccf8abebd94fc903371e1f1671666e8e3e874f1ad6170db349ea"
+  },
+  {
+   "path": "presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narrated.pptx",
+   "asset": "B18_Application_Modernization_Technical_Narrated.pptx",
+   "size": 9026901,
+   "sha256": "013aa88ef10f9843e18d6ae7ba0984b1acec339c761b7596789e3b44844b43f3"
+  },
+  {
+   "path": "presentations/b18-application-modernization-technical/narration_B18_Application_Modernization_Technical",
+   "asset": "B18_Application_Modernization_Technical_narration_audio.zip",
+   "size": 6684178,
+   "sha256": "a0db471fb2c7d67cfe1df0e5c4e288e481dd5e07167fe84ba2ccea8bed1f364a",
+   "members": 34
+  },
+  {
+   "path": "presentations/b18-application-modernization/B18_Application_Modernization.pptx",
+   "asset": "B18_Application_Modernization.pptx",
+   "size": 878722,
+   "sha256": "475647a77589585a8c68d90183f0f05cd4024667fcfe8b1eddf11c5c37f61003"
+  },
+  {
+   "path": "presentations/b18-application-modernization/B18_Application_Modernization_Narrated.pptx",
+   "asset": "B18_Application_Modernization_Narrated.pptx",
+   "size": 3983977,
+   "sha256": "68c6a3a3cf5842b53dfd5083de52a701528f38faf3802fbaa9784a3cef9b0f6d"
+  },
+  {
+   "path": "presentations/b18-application-modernization/narration_B18_Application_Modernization",
+   "asset": "B18_Application_Modernization_narration_audio.zip",
+   "size": 3115616,
+   "sha256": "462cc365c8e5f61f061a25c2301d84464f01276307ae27bcd80050600a14b050",
+   "members": 13
+  },
+  {
+   "path": "presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware.pptx",
+   "asset": "DW_ADM_01_HR_Entra_Middleware.pptx",
+   "size": 259827,
+   "sha256": "1c1ec6ac90b963eb5986adc49d8108069040e48c48494d0407c2455320eb5691"
+  },
+  {
+   "path": "presentations/dw-adm-01-hr-entra-middleware/DW_ADM_01_HR_Entra_Middleware_Narrated.pptx",
+   "asset": "DW_ADM_01_HR_Entra_Middleware_Narrated.pptx",
+   "size": 3798208,
+   "sha256": "7a475cc8f14ec27cd083508c8d6b2442f58d07303cad4325aad71959f24e0be1"
+  },
+  {
+   "path": "presentations/dw-adm-01-hr-entra-middleware/narration_DW_ADM_01_HR_Entra_Middleware",
+   "asset": "DW_ADM_01_HR_Entra_Middleware_narration_audio.zip",
+   "size": 3514234,
+   "sha256": "e3cd002c13427aa5833b348bb1c2fdbbb83a3069ed255442376fa47ce63ca364",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-adm-02-graph-clients/DW_ADM_02_Graph_Clients.pptx",
+   "asset": "DW_ADM_02_Graph_Clients.pptx",
+   "size": 247812,
+   "sha256": "99a3a29859c195404fe9bbffc603f46c485e8d8d34df04e91e04f3fbda906f29"
+  },
+  {
+   "path": "presentations/dw-adm-02-graph-clients/DW_ADM_02_Graph_Clients_Narrated.pptx",
+   "asset": "DW_ADM_02_Graph_Clients_Narrated.pptx",
+   "size": 3940995,
+   "sha256": "7157a3a79011d20092e7cbf3644520a877a39bb04402047e3041a4c0aa6feff0"
+  },
+  {
+   "path": "presentations/dw-adm-02-graph-clients/narration_DW_ADM_02_Graph_Clients",
+   "asset": "DW_ADM_02_Graph_Clients_narration_audio.zip",
+   "size": 3671122,
+   "sha256": "cb969cc9a11ec99b3592cb2e240d5bf957363eb433e867d90f2c72d4c7800cae",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check.pptx",
+   "asset": "DW_ADM_03_Validation_Kit_Check.pptx",
+   "size": 282588,
+   "sha256": "238eb6afed26a1639fd67ca000e73a528bf88bce00f2c9444b789b2942fab269"
+  },
+  {
+   "path": "presentations/dw-adm-03-validation-kit-check/DW_ADM_03_Validation_Kit_Check_Narrated.pptx",
+   "asset": "DW_ADM_03_Validation_Kit_Check_Narrated.pptx",
+   "size": 3867806,
+   "sha256": "e3c28a31d77f2cc80e163848732e9c6bfb1d6b5e69005c73dd240b72980513b5"
+  },
+  {
+   "path": "presentations/dw-adm-03-validation-kit-check/narration_DW_ADM_03_Validation_Kit_Check",
+   "asset": "DW_ADM_03_Validation_Kit_Check_narration_audio.zip",
+   "size": 3557470,
+   "sha256": "72fe2aa43440e403b9ce1ea6ce9204e846228d58e84ba193ed3a4f08bfe63d1e",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-adm-04-dynamic-rules/DW_ADM_04_Dynamic_Rules.pptx",
+   "asset": "DW_ADM_04_Dynamic_Rules.pptx",
+   "size": 256235,
+   "sha256": "9a96c82ce8a593f92eddcd897685db8407b0c4a5c0d590fd107bafff8a297cee"
+  },
+  {
+   "path": "presentations/dw-adm-04-dynamic-rules/DW_ADM_04_Dynamic_Rules_Narrated.pptx",
+   "asset": "DW_ADM_04_Dynamic_Rules_Narrated.pptx",
+   "size": 3751984,
+   "sha256": "56ccf2b54867c6af1cfb29361e7b882665ecb54302bab6b28c33fb4103684fcb"
+  },
+  {
+   "path": "presentations/dw-adm-04-dynamic-rules/narration_DW_ADM_04_Dynamic_Rules",
+   "asset": "DW_ADM_04_Dynamic_Rules_narration_audio.zip",
+   "size": 3470530,
+   "sha256": "2884e620dee6d58a3174d97a237aa5f0368828d45bfaf78e6f00383b62158dde",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-adm-05-lifecycle-extensions/DW_ADM_05_Lifecycle_Extensions.pptx",
+   "asset": "DW_ADM_05_Lifecycle_Extensions.pptx",
+   "size": 252582,
+   "sha256": "407c900e0b4a2ba991395977b7f1d3c70010578a19a1060041b5f316d71e0390"
+  },
+  {
+   "path": "presentations/dw-adm-05-lifecycle-extensions/DW_ADM_05_Lifecycle_Extensions_Narrated.pptx",
+   "asset": "DW_ADM_05_Lifecycle_Extensions_Narrated.pptx",
+   "size": 4028360,
+   "sha256": "c0354aea0bb0550ef706d06f2affbb036add3dc2ecdbd81712a7e1587ee7d5ea"
+  },
+  {
+   "path": "presentations/dw-adm-05-lifecycle-extensions/narration_DW_ADM_05_Lifecycle_Extensions",
+   "asset": "DW_ADM_05_Lifecycle_Extensions_narration_audio.zip",
+   "size": 3748990,
+   "sha256": "41975fb80ebf4f0105ea757c2626b0182b5f514693129a703b963ae931fc53d5",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-adm-06-group-policy-code/DW_ADM_06_Group_Policy_as_Code.pptx",
+   "asset": "DW_ADM_06_Group_Policy_as_Code.pptx",
+   "size": 249228,
+   "sha256": "3c6f19ebb0856a0a2e15b21f4d802b8f2c9247f4c7d338ab569019576398935f"
+  },
+  {
+   "path": "presentations/dw-adm-06-group-policy-code/DW_ADM_06_Group_Policy_as_Code_Narrated.pptx",
+   "asset": "DW_ADM_06_Group_Policy_as_Code_Narrated.pptx",
+   "size": 3933247,
+   "sha256": "88ecd9c7ade8d67e4869324abf45e57e238bce5d1a06fb2500be0350d782b170"
+  },
+  {
+   "path": "presentations/dw-adm-06-group-policy-code/narration_DW_ADM_06_Group_Policy_as_Code",
+   "asset": "DW_ADM_06_Group_Policy_as_Code_narration_audio.zip",
+   "size": 3653806,
+   "sha256": "3afb8d0aa0740f7c665337d503bff9fefa63d346231091ba0f3ba84918eeb3a1",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-adm-07-machine-configuration/DW_ADM_07_Machine_Configuration.pptx",
+   "asset": "DW_ADM_07_Machine_Configuration.pptx",
+   "size": 256287,
+   "sha256": "76b3a9bef60dea3155854a5ad42bbd98884557c63e0e0be58dc1cd7abf4e1e34"
+  },
+  {
+   "path": "presentations/dw-adm-07-machine-configuration/DW_ADM_07_Machine_Configuration_Narrated.pptx",
+   "asset": "DW_ADM_07_Machine_Configuration_Narrated.pptx",
+   "size": 3912267,
+   "sha256": "882339c8d762a37a4e38295b7e101b12603b3310ebde9d848c47a369b3c94047"
+  },
+  {
+   "path": "presentations/dw-adm-07-machine-configuration/narration_DW_ADM_07_Machine_Configuration",
+   "asset": "DW_ADM_07_Machine_Configuration_narration_audio.zip",
+   "size": 3626338,
+   "sha256": "4aa03d2cc62c963687f460275b547b087ed0e821681b244a589419d998024cae",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-adm-08-ansible-beside-arc/DW_ADM_08_Ansible_Beside_Arc.pptx",
+   "asset": "DW_ADM_08_Ansible_Beside_Arc.pptx",
+   "size": 247258,
+   "sha256": "1e57b65e91741814ed61ecf28221f777660e8dc7353fe3799cf81dd45ed7ad4c"
+  },
+  {
+   "path": "presentations/dw-adm-08-ansible-beside-arc/DW_ADM_08_Ansible_Beside_Arc_Narrated.pptx",
+   "asset": "DW_ADM_08_Ansible_Beside_Arc_Narrated.pptx",
+   "size": 3928551,
+   "sha256": "849e9952fea3276a16f221b19e1618e1927b9ae18ab47323f1700c7fd89e973d"
+  },
+  {
+   "path": "presentations/dw-adm-08-ansible-beside-arc/narration_DW_ADM_08_Ansible_Beside_Arc",
+   "asset": "DW_ADM_08_Ansible_Beside_Arc_narration_audio.zip",
+   "size": 3656614,
+   "sha256": "03a595b28e30204466b9c9f6401fb4908d2ec320363249923a2eb77d0160b4f4",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-adm-09-drift-pipelines-evidence/DW_ADM_09_Drift_Pipelines_Evidence.pptx",
+   "asset": "DW_ADM_09_Drift_Pipelines_Evidence.pptx",
+   "size": 257843,
+   "sha256": "299752910b2fee0e389723d95c06a8a3d1f680ab9ad7eb8853c75e5fd1b6d1e6"
+  },
+  {
+   "path": "presentations/dw-adm-09-drift-pipelines-evidence/DW_ADM_09_Drift_Pipelines_Evidence_Narrated.pptx",
+   "asset": "DW_ADM_09_Drift_Pipelines_Evidence_Narrated.pptx",
+   "size": 3951714,
+   "sha256": "16185ed6081b95f4fd23a36d01023f38707fe92b302baf327bb5f9bb8bcd3dd5"
+  },
+  {
+   "path": "presentations/dw-adm-09-drift-pipelines-evidence/narration_DW_ADM_09_Drift_Pipelines_Evidence",
+   "asset": "DW_ADM_09_Drift_Pipelines_Evidence_narration_audio.zip",
+   "size": 3665326,
+   "sha256": "6cde58ec06978edc92a8b0c40d272e24987605b178138c85ff4477ca5ef4fff7",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code.pptx",
+   "asset": "DW_NPI_01_Inventory_as_Code.pptx",
+   "size": 243608,
+   "sha256": "ec33d619b8febc59b42b9719aaaa7bbb731fbdfa594f7e5d25517d5d0128be68"
+  },
+  {
+   "path": "presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code_Narrated.pptx",
+   "asset": "DW_NPI_01_Inventory_as_Code_Narrated.pptx",
+   "size": 3979748,
+   "sha256": "5cfa73e0c8060657d1c9a691187827f3a6abd6536f539abeeae52c9d41c509c4"
+  },
+  {
+   "path": "presentations/dw-npi-01-inventory-as-code/narration_DW_NPI_01_Inventory_as_Code",
+   "asset": "DW_NPI_01_Inventory_as_Code_narration_audio.zip",
+   "size": 3705394,
+   "sha256": "7d9e38a54d4e91c9d24c18f2e82a087a0f07622d772f99a971d271325adf03b3",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-npi-02-ownership-orphan-rule/DW_NPI_02_Ownership_Orphan_Rule.pptx",
+   "asset": "DW_NPI_02_Ownership_Orphan_Rule.pptx",
+   "size": 240778,
+   "sha256": "37a4d1136f3610fa196e51e20f1930d217db14b05052a57a86497fc6a9761beb"
+  },
+  {
+   "path": "presentations/dw-npi-02-ownership-orphan-rule/DW_NPI_02_Ownership_Orphan_Rule_Narrated.pptx",
+   "asset": "DW_NPI_02_Ownership_Orphan_Rule_Narrated.pptx",
+   "size": 3680666,
+   "sha256": "6ded968ece90cc3d0402b5fce286fd06e6cb8055c29a4be468d448945b7a02ed"
+  },
+  {
+   "path": "presentations/dw-npi-02-ownership-orphan-rule/narration_DW_NPI_02_Ownership_Orphan_Rule",
+   "asset": "DW_NPI_02_Ownership_Orphan_Rule_narration_audio.zip",
+   "size": 3407564,
+   "sha256": "4744c481d5bb5f6dd7a13943aaa18cc8a373b8342964798ae6fd8137d5eca24b",
+   "members": 17
+  },
+  {
+   "path": "presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix.pptx",
+   "asset": "DW_NPI_03_Migration_Path_Matrix.pptx",
+   "size": 254256,
+   "sha256": "2abe1b291cdf46f8fd701b815b11014e0d8ee9208960b8ed6abcd6fb7046c44d"
+  },
+  {
+   "path": "presentations/dw-npi-03-migration-path-matrix/DW_NPI_03_Migration_Path_Matrix_Narrated.pptx",
+   "asset": "DW_NPI_03_Migration_Path_Matrix_Narrated.pptx",
+   "size": 3944773,
+   "sha256": "92b77f720049e8e94b106efd2d37235fe2e6fef52b05a711d1e8962d67f73331"
+  },
+  {
+   "path": "presentations/dw-npi-03-migration-path-matrix/narration_DW_NPI_03_Migration_Path_Matrix",
+   "asset": "DW_NPI_03_Migration_Path_Matrix_narration_audio.zip",
+   "size": 3664498,
+   "sha256": "aac4af0bba33846f0082d85b07b25967274c3baf67871f70bc8374c1feb0c352",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-npi-04-app-policy-rotation/DW_NPI_04_App_Policy_Rotation.pptx",
+   "asset": "DW_NPI_04_App_Policy_Rotation.pptx",
+   "size": 271476,
+   "sha256": "62d425fa3d3db1bbb0d8b0fec4737fcc673af3dc0c3c28d10ffd561396300ee8"
+  },
+  {
+   "path": "presentations/dw-npi-04-app-policy-rotation/DW_NPI_04_App_Policy_Rotation_Narrated.pptx",
+   "asset": "DW_NPI_04_App_Policy_Rotation_Narrated.pptx",
+   "size": 3895229,
+   "sha256": "a96719dd27f7bb214b7b6906b9a56f5d4c3492ede9e39a99f4d458b0c255ce96"
+  },
+  {
+   "path": "presentations/dw-npi-04-app-policy-rotation/narration_DW_NPI_04_App_Policy_Rotation",
+   "asset": "DW_NPI_04_App_Policy_Rotation_narration_audio.zip",
+   "size": 3597754,
+   "sha256": "c3853fa6485f7aa7fb279d4ce88619d8273eee80cbc1f266ab597d09e0cd2b0f",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-npi-05-workload-federation/DW_NPI_05_Workload_Federation.pptx",
+   "asset": "DW_NPI_05_Workload_Federation.pptx",
+   "size": 263271,
+   "sha256": "035d689517bd408c9002f2951e50d12d52e95a0ae098448e74a031ebd5bd2295"
+  },
+  {
+   "path": "presentations/dw-npi-05-workload-federation/DW_NPI_05_Workload_Federation_Narrated.pptx",
+   "asset": "DW_NPI_05_Workload_Federation_Narrated.pptx",
+   "size": 4122129,
+   "sha256": "5075b92134fdc1b022f7765f62480a847e748f4ae5a3e4a20c722894e6e3e544"
+  },
+  {
+   "path": "presentations/dw-npi-05-workload-federation/narration_DW_NPI_05_Workload_Federation",
+   "asset": "DW_NPI_05_Workload_Federation_narration_audio.zip",
+   "size": 3836218,
+   "sha256": "51363da318623cc88f3ada2124b5c47eedc1972dcb1435c0fb0fbdf2156e7e5b",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-npi-06-gmsa-dmsa/DW_NPI_06_gMSA_dMSA.pptx",
+   "asset": "DW_NPI_06_gMSA_dMSA.pptx",
+   "size": 246039,
+   "sha256": "dbb56970c75e205c94070413dd76521c331cd528e2cabee9cfd605b1b5304059"
+  },
+  {
+   "path": "presentations/dw-npi-06-gmsa-dmsa/DW_NPI_06_gMSA_dMSA_Narrated.pptx",
+   "asset": "DW_NPI_06_gMSA_dMSA_Narrated.pptx",
+   "size": 3916251,
+   "sha256": "02ed2291ba7c93a3b62784c4fec4a7d164c3c307423714b9986c2bc1e0314043"
+  },
+  {
+   "path": "presentations/dw-npi-06-gmsa-dmsa/narration_DW_NPI_06_gMSA_dMSA",
+   "asset": "DW_NPI_06_gMSA_dMSA_narration_audio.zip",
+   "size": 3641026,
+   "sha256": "4042e32d39859ac25618ee01b8323d42e914768827543b3061e1dcca5864fb07",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege.pptx",
+   "asset": "DW_NPI_07_Least_Privilege.pptx",
+   "size": 262159,
+   "sha256": "69f365ce34171f033250c8364602791f6ac7fbc3fa2b258e92e8537662e59bb5"
+  },
+  {
+   "path": "presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege_Narrated.pptx",
+   "asset": "DW_NPI_07_Least_Privilege_Narrated.pptx",
+   "size": 3996917,
+   "sha256": "412b0dca3491d18d7b6ab384b60ec80403c1c2d326d4706765d9c87245cbe503"
+  },
+  {
+   "path": "presentations/dw-npi-07-least-privilege/narration_DW_NPI_07_Least_Privilege",
+   "asset": "DW_NPI_07_Least_Privilege_narration_audio.zip",
+   "size": 3704458,
+   "sha256": "a93ba1bd5c0b57b51db1af30dddc13daa2823da2471fbef9485ee68239465075",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-npi-08-workload-ca/DW_NPI_08_Workload_CA.pptx",
+   "asset": "DW_NPI_08_Workload_CA.pptx",
+   "size": 265334,
+   "sha256": "a6e9c17cb71e1bd944504df8642aebbffbea6c4a892b14423bb9d36562dc8269"
+  },
+  {
+   "path": "presentations/dw-npi-08-workload-ca/DW_NPI_08_Workload_CA_Narrated.pptx",
+   "asset": "DW_NPI_08_Workload_CA_Narrated.pptx",
+   "size": 3946713,
+   "sha256": "78b2ff4de5a5a07811756ce937f8cf3094c5abf8443a1083169048e423bcd123"
+  },
+  {
+   "path": "presentations/dw-npi-08-workload-ca/narration_DW_NPI_08_Workload_CA",
+   "asset": "DW_NPI_08_Workload_CA_narration_audio.zip",
+   "size": 3651610,
+   "sha256": "b8bf6a461843da6780fd66ca3de1c56670864dfca8e68fd8ce5ea37888dbc687",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-npi-09-ai-agents/DW_NPI_09_AI_Agent_Identities.pptx",
+   "asset": "DW_NPI_09_AI_Agent_Identities.pptx",
+   "size": 274214,
+   "sha256": "54f80cf22eedd9ec87a59da8ef76413b66b28dfbfaab0ce244563dc6de826f53"
+  },
+  {
+   "path": "presentations/dw-npi-09-ai-agents/DW_NPI_09_AI_Agent_Identities_Narrated.pptx",
+   "asset": "DW_NPI_09_AI_Agent_Identities_Narrated.pptx",
+   "size": 4088433,
+   "sha256": "b3069f12b5dba732d53606b9e5daec9f5c68f808eb7c64e79a48ffad19088fe9"
+  },
+  {
+   "path": "presentations/dw-npi-09-ai-agents/narration_DW_NPI_09_AI_Agent_Identities",
+   "asset": "DW_NPI_09_AI_Agent_Identities_narration_audio.zip",
+   "size": 3788122,
+   "sha256": "6e70be3d6b2577c9e8314f29781656dbe8423c3598ca447d9216a2e3986697bb",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-npi-10-drift-evidence/DW_NPI_10_Drift_Evidence.pptx",
+   "asset": "DW_NPI_10_Drift_Evidence.pptx",
+   "size": 248796,
+   "sha256": "9841cfd00d7c85d75454cc1e15cb4004bacd2a16c36c85217b570c488ebb3bff"
+  },
+  {
+   "path": "presentations/dw-npi-10-drift-evidence/DW_NPI_10_Drift_Evidence_Narrated.pptx",
+   "asset": "DW_NPI_10_Drift_Evidence_Narrated.pptx",
+   "size": 3847969,
+   "sha256": "6f705a3b169fcea0849feced798f0325975692d69615d6b53d1289fabb2351e2"
+  },
+  {
+   "path": "presentations/dw-npi-10-drift-evidence/narration_DW_NPI_10_Drift_Evidence",
+   "asset": "DW_NPI_10_Drift_Evidence_narration_audio.zip",
+   "size": 3566878,
+   "sha256": "455a8d10d674154aeb9374f545ac1ace4e885af321bf931c01d463c5cf23d428",
+   "members": 17
+  },
+  {
+   "path": "presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory.pptx",
+   "asset": "DW_PA_01_Privileged_Inventory.pptx",
+   "size": 253903,
+   "sha256": "25dc6dbde0ebf238d36ab6b07f439e3636bd50c782a3673f56a7c1e9293c5d27"
+  },
+  {
+   "path": "presentations/dw-pa-01-privileged-inventory/DW_PA_01_Privileged_Inventory_Narrated.pptx",
+   "asset": "DW_PA_01_Privileged_Inventory_Narrated.pptx",
+   "size": 3921225,
+   "sha256": "e70276bb472649d9271f99c2e71fb48e7ba1de017b1fad25a04887b2df28ba12"
+  },
+  {
+   "path": "presentations/dw-pa-01-privileged-inventory/narration_DW_PA_01_Privileged_Inventory",
+   "asset": "DW_PA_01_Privileged_Inventory_narration_audio.zip",
+   "size": 3637786,
+   "sha256": "82015ceba1cce7d74a1b800dd8484c4349f374937b7e4502026b9243e195f62c",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access.pptx",
+   "asset": "DW_PA_02_Emergency_Access.pptx",
+   "size": 243849,
+   "sha256": "116eee980bee7c082e5cec8debbbbd6af53ad88ed5b8765356fc08f549ea03ad"
+  },
+  {
+   "path": "presentations/dw-pa-02-emergency-access/DW_PA_02_Emergency_Access_Narrated.pptx",
+   "asset": "DW_PA_02_Emergency_Access_Narrated.pptx",
+   "size": 3433327,
+   "sha256": "b6d214cd7f81d5b53e2b9a81bace55e40499564996dcb118b35615367cc525b0"
+  },
+  {
+   "path": "presentations/dw-pa-02-emergency-access/narration_DW_PA_02_Emergency_Access",
+   "asset": "DW_PA_02_Emergency_Access_narration_audio.zip",
+   "size": 3166998,
+   "sha256": "fe7712ddbe6cd5dd2b4fdec27ace49bd02d7e5f8791b2405e37c851325a595fa",
+   "members": 16
+  },
+  {
+   "path": "presentations/dw-pa-03-ca-activation-gate/DW_PA_03_CA_Activation_Gate.pptx",
+   "asset": "DW_PA_03_CA_Activation_Gate.pptx",
+   "size": 252127,
+   "sha256": "4cd95b8fa5254dab8441c5e52ea9e1842304309324456e68a56d33d6e6ed1a5a"
+  },
+  {
+   "path": "presentations/dw-pa-03-ca-activation-gate/DW_PA_03_CA_Activation_Gate_Narrated.pptx",
+   "asset": "DW_PA_03_CA_Activation_Gate_Narrated.pptx",
+   "size": 3931300,
+   "sha256": "ea405fe793a0849b29f01b9e96cc76b91d660ee010cdd79c02f797a19afdbaba"
+  },
+  {
+   "path": "presentations/dw-pa-03-ca-activation-gate/narration_DW_PA_03_CA_Activation_Gate",
+   "asset": "DW_PA_03_CA_Activation_Gate_narration_audio.zip",
+   "size": 3650530,
+   "sha256": "fc0e297b92ffd0ddd43a903e4115391f89e31acc9ba2a46b0090d224d462ff4a",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-pa-04-pim-entra-roles/DW_PA_04_PIM_Entra_Roles.pptx",
+   "asset": "DW_PA_04_PIM_Entra_Roles.pptx",
+   "size": 252791,
+   "sha256": "fbe4b4c0b1e4ec475273814f0dbaadee09bf0c8ae79e0ff003567e87dbeaf1da"
+  },
+  {
+   "path": "presentations/dw-pa-04-pim-entra-roles/DW_PA_04_PIM_Entra_Roles_Narrated.pptx",
+   "asset": "DW_PA_04_PIM_Entra_Roles_Narrated.pptx",
+   "size": 3888644,
+   "sha256": "b685f09248dddf2a26952e5c4ab249f8599e49d98fa781c4a9eca3ae401bb13a"
+  },
+  {
+   "path": "presentations/dw-pa-04-pim-entra-roles/narration_DW_PA_04_PIM_Entra_Roles",
+   "asset": "DW_PA_04_PIM_Entra_Roles_narration_audio.zip",
+   "size": 3606214,
+   "sha256": "737d24224aad2e7a21ef545c417193e0178962b47e67a2f3c34e3a8574d61b54",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups.pptx",
+   "asset": "DW_PA_05_PIM_for_Groups.pptx",
+   "size": 254096,
+   "sha256": "fd09657fa91b8c78539282459fcbd0fa9549aa2aa1e44634c3554ceb848e185b"
+  },
+  {
+   "path": "presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narrated.pptx",
+   "asset": "DW_PA_05_PIM_for_Groups_Narrated.pptx",
+   "size": 3859808,
+   "sha256": "822c006317d5c974ea856158ef7cd43e8fd92d3f558a71ed0e0779b6579fc230"
+  },
+  {
+   "path": "presentations/dw-pa-05-pim-for-groups/narration_DW_PA_05_PIM_for_Groups",
+   "asset": "DW_PA_05_PIM_for_Groups_narration_audio.zip",
+   "size": 3575074,
+   "sha256": "a4170a5eb20c186a00efb331f287c035bcd45d4b13baf36c5c03c22c28baf205",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-pa-06-pim-azure-resources/DW_PA_06_PIM_Azure_Resources.pptx",
+   "asset": "DW_PA_06_PIM_Azure_Resources.pptx",
+   "size": 267184,
+   "sha256": "e7966cfa4052179bea9e66d4e179fd516033f2ea0949fc6abdb13a0ecab8636b"
+  },
+  {
+   "path": "presentations/dw-pa-06-pim-azure-resources/DW_PA_06_PIM_Azure_Resources_Narrated.pptx",
+   "asset": "DW_PA_06_PIM_Azure_Resources_Narrated.pptx",
+   "size": 4086009,
+   "sha256": "9266464995746d1a60e37f18ab867928c6f16245a2f41812a3c691d0513715e1"
+  },
+  {
+   "path": "presentations/dw-pa-06-pim-azure-resources/narration_DW_PA_06_PIM_Azure_Resources",
+   "asset": "DW_PA_06_PIM_Azure_Resources_narration_audio.zip",
+   "size": 3789958,
+   "sha256": "8fe1890030633873f2f9a674b407c89533c82489ed77bca9d0d991a9bf755593",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-pa-07-access-reviews/DW_PA_07_Access_Reviews.pptx",
+   "asset": "DW_PA_07_Access_Reviews.pptx",
+   "size": 250433,
+   "sha256": "5aff512e7572ea3299ad3b2d71365ae0c94a3a331d6598b4685c7870ea0a85d8"
+  },
+  {
+   "path": "presentations/dw-pa-07-access-reviews/DW_PA_07_Access_Reviews_Narrated.pptx",
+   "asset": "DW_PA_07_Access_Reviews_Narrated.pptx",
+   "size": 4047040,
+   "sha256": "cc5ec0d309615f1714c94d5d08cef0477f69dc253f753eef5881d7d1067f7ca9"
+  },
+  {
+   "path": "presentations/dw-pa-07-access-reviews/narration_DW_PA_07_Access_Reviews",
+   "asset": "DW_PA_07_Access_Reviews_narration_audio.zip",
+   "size": 3766018,
+   "sha256": "aa11ba21ea55456f223c19397844ca4887e5790113946033e9454254ea83dc89",
+   "members": 18
+  },
+  {
+   "path": "presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift.pptx",
+   "asset": "DW_PA_08_Evidence_Drift.pptx",
+   "size": 255233,
+   "sha256": "bc0b9bbd5761eff994a0d34b687803ae19713fd214af3391d9d1aa02551ec087"
+  },
+  {
+   "path": "presentations/dw-pa-08-evidence-drift/DW_PA_08_Evidence_Drift_Narrated.pptx",
+   "asset": "DW_PA_08_Evidence_Drift_Narrated.pptx",
+   "size": 4028444,
+   "sha256": "31ac03eae0558ff45769ea2a188e60fce3c05e3ffd4fa94032ecbaaa215f32d0"
+  },
+  {
+   "path": "presentations/dw-pa-08-evidence-drift/narration_DW_PA_08_Evidence_Drift",
+   "asset": "DW_PA_08_Evidence_Drift_narration_audio.zip",
+   "size": 3736210,
+   "sha256": "b09046d061a84a202bfc542df43e77748ccc210559ca01c381b92e5f49b38e8b",
+   "members": 18
+  },
+  {
+   "path": "presentations/guide-ansible-technical/Guide_Ansible_Technical.pptx",
+   "asset": "Guide_Ansible_Technical.pptx",
+   "size": 328807,
+   "sha256": "96b0847d71f7e4b576d8eddcd643ab8490d8f7cc6ce28a675eaec5566ffe821e"
+  },
+  {
+   "path": "presentations/guide-ansible-technical/Guide_Ansible_Technical_Narrated.pptx",
+   "asset": "Guide_Ansible_Technical_Narrated.pptx",
+   "size": 6543926,
+   "sha256": "1c3657282398a1013e148f2d44c65ddc3bfe0726ff1b7cd0373f760e1f7ccc42"
+  },
+  {
+   "path": "presentations/guide-ansible-technical/narration_Guide_Ansible_Technical",
+   "asset": "Guide_Ansible_Technical_narration_audio.zip",
+   "size": 6170052,
+   "sha256": "09ecfbd1882c2f1e3a4ed621a3866236a1719abff9366c5cd5024c5d00025cdb",
+   "members": 29
+  },
+  {
+   "path": "presentations/guide-effective-meetings/Guide_Effective_Meetings.pptx",
+   "asset": "Guide_Effective_Meetings.pptx",
+   "size": 525259,
+   "sha256": "fab94849294a7ab81922b307155363fbe11ead4b80bf80f5df204a3eb6beb4df"
+  },
+  {
+   "path": "presentations/guide-effective-meetings/Guide_Effective_Meetings_Narrated.pptx",
+   "asset": "Guide_Effective_Meetings_Narrated.pptx",
+   "size": 4920116,
+   "sha256": "5da4e5f4869f1dcb19fe1a06f42829e071c8f9f5286e1cd2f6399b16480cb02d"
+  },
+  {
+   "path": "presentations/guide-effective-meetings/narration_Guide_Effective_Meetings",
+   "asset": "Guide_Effective_Meetings_narration_audio.zip",
+   "size": 4477942,
+   "sha256": "67df6290b96fc82ab12237b61283b3c08c9d31457b361b247ad8bc4be8a29eca",
+   "members": 22
+  },
+  {
+   "path": "presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency.pptx",
+   "asset": "HR_Driven_Identity_AnyAgency.pptx",
+   "size": 380102,
+   "sha256": "3710f2f2c63822c4bf4d128880153d9eb914826d3196f3b0cef3be9bb1ebef1d"
+  },
+  {
+   "path": "presentations/hr-driven-identity-interview/HR_Driven_Identity_AnyAgency_Narrated.pptx",
+   "asset": "HR_Driven_Identity_AnyAgency_Narrated.pptx",
+   "size": 5921126,
+   "sha256": "53a649f1a0437d39a3a3d703ecc1b5d5c4334e9000e90ba211d661557b887e3f"
+  },
+  {
+   "path": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Contractor_Source_AnyAgency.pptx",
+   "asset": "HR_Driven_Identity_Contractor_Source_AnyAgency.pptx",
+   "size": 207974,
+   "sha256": "a5776197a515be225d375fdfe7ff5c7aac4412ae6931739369e8287b2605734f"
+  },
+  {
+   "path": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.pptx",
+   "asset": "HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.pptx",
+   "size": 3720559,
+   "sha256": "87c73c21b937dff5380b76a99d0ec25c79780246df67c34ff9178ebe0f3bab44"
+  },
+  {
+   "path": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Exec_AnyAgency.pptx",
+   "asset": "HR_Driven_Identity_Exec_AnyAgency.pptx",
+   "size": 537267,
+   "sha256": "4b89468b1662da945338b8cd365016986ed240c74796cdf842960380d6cdda2e"
+  },
+  {
+   "path": "presentations/hr-driven-identity-interview/HR_Driven_Identity_Exec_AnyAgency_Narrated.pptx",
+   "asset": "HR_Driven_Identity_Exec_AnyAgency_Narrated.pptx",
+   "size": 4454296,
+   "sha256": "b50650e8b9cd472ce5d9dac518d384f801e206508b4d96068857d790d608cdbe"
+  },
+  {
+   "path": "presentations/hr-driven-identity-interview/narration_HR_Driven_Identity_AnyAgency",
+   "asset": "HR_Driven_Identity_AnyAgency_narration_audio.zip",
+   "size": 5521062,
+   "sha256": "0781ec15c5cb62b5d01552071ad6f9ea49c269c11f69a266452bb3f4f83e4f25",
+   "members": 16
+  },
+  {
+   "path": "presentations/hr-driven-identity-interview/narration_HR_Driven_Identity_Contractor_Source_AnyAgency",
+   "asset": "HR_Driven_Identity_Contractor_Source_AnyAgency_narration_audio.zip",
+   "size": 3489474,
+   "sha256": "93e4cb640a9e9d1b0cf4423b2165d562c7e79e3a8b8b227b4b5f89e92b221f10",
+   "members": 7
+  },
+  {
+   "path": "presentations/hr-driven-identity-interview/narration_HR_Driven_Identity_Exec_AnyAgency",
+   "asset": "HR_Driven_Identity_Exec_AnyAgency_narration_audio.zip",
+   "size": 4163008,
+   "sha256": "c5c32116a497b7732fb11b1c8a25f39729674fadd65b7a67e38238a9c57d7925",
+   "members": 9
+  },
+  {
+   "path": "presentations/research-cisco-sdwan/Research_Cisco_SDWAN.pptx",
+   "asset": "Research_Cisco_SDWAN.pptx",
+   "size": 976853,
+   "sha256": "00149ec0ebdccb93600767bd86625d14cb6b1dc6d7918fcde2b15aea619da24f"
+  },
+  {
+   "path": "presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narrated.pptx",
+   "asset": "Research_Cisco_SDWAN_Narrated.pptx",
+   "size": 6597663,
+   "sha256": "346977adf1a2aabecfbedd0c4c60ad4d36b793348ee8b612494dc1decf5ef1b0"
+  },
+  {
+   "path": "presentations/research-cisco-sdwan/narration_Research_Cisco_SDWAN",
+   "asset": "Research_Cisco_SDWAN_narration_audio.zip",
+   "size": 5594022,
+   "sha256": "ccbef27163887df0e7582965c23961b3ba8148bfe73d13de58c13fe9e31fe793",
+   "members": 20
+  },
+  {
+   "path": "presentations/research-cyberark-clm/Research_CyberArk_CLM.pptx",
+   "asset": "Research_CyberArk_CLM.pptx",
+   "size": 1278191,
+   "sha256": "517c0adaaf3e42ce404a169847e8eab243831e939b10196182ccb71f99c8ca3c"
+  },
+  {
+   "path": "presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.pptx",
+   "asset": "Research_CyberArk_CLM_Narrated.pptx",
+   "size": 7750226,
+   "sha256": "cc65a6d60ce20502242ab018745a403fae88624e81a0bacca4ed32b29a0da0ac"
+  },
+  {
+   "path": "presentations/research-cyberark-clm/narration_Research_CyberArk_CLM",
+   "asset": "Research_CyberArk_CLM_narration_audio.zip",
+   "size": 6435418,
+   "sha256": "94c075bb6d1e8676cb1afe97896cd3c523a68c0ca6a5a5ff244822e4b16a26ec",
+   "members": 34
+  },
+  {
+   "path": "presentations/research-ddi-requirements/B08_DDI_Requirements.pptx",
+   "asset": "B08_DDI_Requirements.pptx",
+   "size": 291677,
+   "sha256": "71ae210a3690f14efbf2b51910870cd512a389444904e62413f0c14bdca58b46"
+  },
+  {
+   "path": "presentations/research-ddi-requirements/B08_DDI_Requirements_Narrated.pptx",
+   "asset": "B08_DDI_Requirements_Narrated.pptx",
+   "size": 4812713,
+   "sha256": "82752989db4a8616220efb4715736324b2bce6f2f8b3cc5296d57758006226d3"
+  },
+  {
+   "path": "presentations/research-ddi-requirements/narration_B08_DDI_Requirements",
+   "asset": "B08_DDI_Requirements_narration_audio.zip",
+   "size": 4506470,
+   "sha256": "9b7a2a26e6a111e0f4498c22dd345fe666723ec034a452d941ff38709528dc2a",
+   "members": 16
+  },
+  {
+   "path": "presentations/research-device-naming/Research_Device_Naming.pptx",
+   "asset": "Research_Device_Naming.pptx",
+   "size": 232262,
+   "sha256": "274546e5ce1844e6c54aeadf59e0e49de108aa36f5ec58039e3171ad5721d14b"
+  },
+  {
+   "path": "presentations/research-device-naming/Research_Device_Naming_Narrated.pptx",
+   "asset": "Research_Device_Naming_Narrated.pptx",
+   "size": 3700398,
+   "sha256": "b4257ebf1dec7603230d9ec43c95a6e677d4dedc415811dd1d9b360868bca6da"
+  },
+  {
+   "path": "presentations/research-device-naming/narration_Research_Device_Naming",
+   "asset": "Research_Device_Naming_narration_audio.zip",
+   "size": 3459018,
+   "sha256": "71e43a1244a24de1421714fd8f2641290bbf5fa99240e7ef6699d3c5425663ab",
+   "members": 13
+  },
+  {
+   "path": "presentations/research-hr-identity-dns/Research_HR_Identity_DNS.pptx",
+   "asset": "Research_HR_Identity_DNS.pptx",
+   "size": 223890,
+   "sha256": "49f616386f61a593d9e923fa1c9f72dfd420b024812ad1371a2b196a773789b4"
+  },
+  {
+   "path": "presentations/research-hr-identity-dns/Research_HR_Identity_DNS_Narrated.pptx",
+   "asset": "Research_HR_Identity_DNS_Narrated.pptx",
+   "size": 3451506,
+   "sha256": "691a1ace5499457d0aa88bd35dac28d04b01ee4984fe43119d112288fe89a85b"
+  },
+  {
+   "path": "presentations/research-hr-identity-dns/narration_Research_HR_Identity_DNS",
+   "asset": "Research_HR_Identity_DNS_narration_audio.zip",
+   "size": 3227926,
+   "sha256": "d298fd46a700df38351bdd7454ac6b1ba7553480e171a5ced057ee0e236702b2",
+   "members": 12
+  },
+  {
+   "path": "presentations/research-hybrid-credentials/Research_Hybrid_Credentials.pptx",
+   "asset": "Research_Hybrid_Credentials.pptx",
+   "size": 1080032,
+   "sha256": "ba7a945a7f3f15946239027bd22ab6141a820871981dee3998b1244e136212dc"
+  },
+  {
+   "path": "presentations/research-hybrid-credentials/Research_Hybrid_Credentials_Narrated.pptx",
+   "asset": "Research_Hybrid_Credentials_Narrated.pptx",
+   "size": 4769515,
+   "sha256": "87310433a58a61889dc82a9c05892e7b061e2367bb8d6bb04099953a28da52fe"
+  },
+  {
+   "path": "presentations/research-hybrid-credentials/narration_Research_Hybrid_Credentials",
+   "asset": "Research_Hybrid_Credentials_narration_audio.zip",
+   "size": 3664612,
+   "sha256": "02de616c79282975d49c5e8eafb297146c6f03cf2a63c5ae034d4a3f7f7fbe2b",
+   "members": 17
+  },
+  {
+   "path": "presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive.pptx",
+   "asset": "Infoblox_DDI_Federal_Deep_Dive.pptx",
+   "size": 354709,
+   "sha256": "256789c84198488bad343e55cba034b2ac22a4f7c590efd2c0c11fbb8eb95fc6"
+  },
+  {
+   "path": "presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx",
+   "asset": "Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx",
+   "size": 9449561,
+   "sha256": "b4e774e09c989e6de818cf514fd8a74918725e3c55ce7d093ad49510cb25ce8b"
+  },
+  {
+   "path": "presentations/research-infoblox-ddi/narration_Infoblox_DDI_Federal_Deep_Dive",
+   "asset": "Infoblox_DDI_Federal_Deep_Dive_narration_audio.zip",
+   "size": 9048478,
+   "sha256": "afe3df4921bcc5f58418b1ba929b7671a4d2e24018a96200452a8b2a137e2c5e",
+   "members": 34
+  },
+  {
+   "path": "presentations/research-infoblox-impl/Research_Infoblox_Impl.pptx",
+   "asset": "Research_Infoblox_Impl.pptx",
+   "size": 307127,
+   "sha256": "91c6a5ab8e395899aa557955c25ccb3eb4df4422a60c4720d1cff636561a983e"
+  },
+  {
+   "path": "presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.pptx",
+   "asset": "Research_Infoblox_Impl_Narrated.pptx",
+   "size": 7477875,
+   "sha256": "b3c73f18061ea4aec3b492163ea531351f9ad3ba6263dd3e562247f1c1ac269c"
+  },
+  {
+   "path": "presentations/research-infoblox-impl/narration_Research_Infoblox_Impl",
+   "asset": "Research_Infoblox_Impl_narration_audio.zip",
+   "size": 7139978,
+   "sha256": "8ff82ae7ed8f193840b08a6180822772f0d28e8210ee80cb64d92af8712df634",
+   "members": 29
+  },
+  {
+   "path": "presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud.pptx",
+   "asset": "Research_Trinzic_MultiCloud.pptx",
+   "size": 194364,
+   "sha256": "4ee6bb30c23ca67f0f65424f6c6b2870250d2f01d2e6ee674ace5dc307e7b73b"
+  },
+  {
+   "path": "presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narrated.pptx",
+   "asset": "Research_Trinzic_MultiCloud_Narrated.pptx",
+   "size": 3066021,
+   "sha256": "9a7c4ed96e4193a65667ac02fba6e66fd83f038bc14a5ec06aba62f2c5353967"
+  },
+  {
+   "path": "presentations/research-trinzic-multicloud/narration_Research_Trinzic_MultiCloud",
+   "asset": "Research_Trinzic_MultiCloud_narration_audio.zip",
+   "size": 2862178,
+   "sha256": "42f2e9298b3aaa7223708fe7f6f17abb839d3fdc26ebcec839b676e88dbaabb3",
+   "members": 10
+  },
+  {
+   "path": "presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint.pptx",
+   "asset": "Research_TTM_ServiceNow_SailPoint.pptx",
+   "size": 405319,
+   "sha256": "9bd2a0b9e047e0744b9ae8ae54e4033446ed0bfac9b0c97b18f63e7312873d30"
+  },
+  {
+   "path": "presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated.pptx",
+   "asset": "Research_TTM_ServiceNow_SailPoint_Narrated.pptx",
+   "size": 3866018,
+   "sha256": "7a57ddcf74ed0ff98892651ee68e547c4d23db053cf7095f0a65612a7a82613b"
+  },
+  {
+   "path": "presentations/research-ttm-servicenow-sailpoint/narration_Research_TTM_ServiceNow_SailPoint",
+   "asset": "Research_TTM_ServiceNow_SailPoint_narration_audio.zip",
+   "size": 3437416,
+   "sha256": "41bbaaa601d8666bf26053145c811049694f945387fe6f6d0b36330d388fc4ec",
+   "members": 13
+  },
+  {
+   "path": "presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks.pptx",
+   "asset": "Start_02_First_Four_Weeks.pptx",
+   "size": 587516,
+   "sha256": "63106f10ef1f5211d0cc886e8c3cf72dd536c2fab08f928563742e3ae8f2818a"
+  },
+  {
+   "path": "presentations/start-02-first-four-weeks/Start_02_First_Four_Weeks_Narrated.pptx",
+   "asset": "Start_02_First_Four_Weeks_Narrated.pptx",
+   "size": 2618242,
+   "sha256": "ba3cae43d0cff538450298abc1833e39a3adfde3be9f57d4e752ff363a13fb3b"
+  },
+  {
+   "path": "presentations/start-02-first-four-weeks/narration_Start_02_First_Four_Weeks",
+   "asset": "Start_02_First_Four_Weeks_narration_audio.zip",
+   "size": 2010692,
+   "sha256": "6c16754a6864250506106828b4b527fd95570115dec0451b161d367cbc0ebb5d",
+   "members": 11
+  },
+  {
+   "path": "presentations/start-03-foundation-to-g1/Start_03_Foundation_to_G1.pptx",
+   "asset": "Start_03_Foundation_to_G1.pptx",
+   "size": 323395,
+   "sha256": "9231d993ea741479037e12294a105cb5f9759c76a836394aedef1fb422b26bcc"
+  },
+  {
+   "path": "presentations/start-03-foundation-to-g1/Start_03_Foundation_to_G1_Narrated.pptx",
+   "asset": "Start_03_Foundation_to_G1_Narrated.pptx",
+   "size": 2373548,
+   "sha256": "2c5b6ad4649e771570c443f2d6492d848e478d622530dfa6c0e75c30613bb9da"
+  },
+  {
+   "path": "presentations/start-03-foundation-to-g1/narration_Start_03_Foundation_to_G1",
+   "asset": "Start_03_Foundation_to_G1_narration_audio.zip",
+   "size": 2035146,
+   "sha256": "8a48cb90f6053f066739df6ff1959d2d4755915ed965ad4e8ae5f43f8ca47fd7",
+   "members": 10
+  },
+  {
+   "path": "presentations/start-04-making-the-case/Start_04_Making_the_Case.pptx",
+   "asset": "Start_04_Making_the_Case.pptx",
+   "size": 395934,
+   "sha256": "3f720f3cbe5130a43a67dc603a2f2e2aec9cfd4e645f91ff60703af20202589c"
+  },
+  {
+   "path": "presentations/start-04-making-the-case/Start_04_Making_the_Case_Narrated.pptx",
+   "asset": "Start_04_Making_the_Case_Narrated.pptx",
+   "size": 2358837,
+   "sha256": "9407c179de466ffa8bbe2a423b67685ef173ff5855727fe9c972b02ebf7f40fb"
+  },
+  {
+   "path": "presentations/start-04-making-the-case/narration_Start_04_Making_the_Case",
+   "asset": "Start_04_Making_the_Case_narration_audio.zip",
+   "size": 1941958,
+   "sha256": "1ff4261dc8418238508d51449e02e211a861a99d50f4fb1fb6264a542c581f2f",
+   "members": 10
+  },
+  {
+   "path": "presentations/start-here/Start_Here.pptx",
+   "asset": "Start_Here.pptx",
+   "size": 534738,
+   "sha256": "d6c07855b3bb1a6225dc1637c2dabcefae42873026086ac04d9140faa65beafa"
+  },
+  {
+   "path": "presentations/start-here/Start_Here_Narrated.pptx",
+   "asset": "Start_Here_Narrated.pptx",
+   "size": 2522648,
+   "sha256": "3cfffa8d491d6340bc39d8c13765c3a77355f5c2dfb422ca7944053774e378a5"
+  },
+  {
+   "path": "presentations/start-here/narration_Start_Here",
+   "asset": "Start_Here_narration_audio.zip",
+   "size": 1963278,
+   "sha256": "1bb17424d2a094d1c7e2ee78346ac9ad7368eaf5da6438441ccbde63437d7552",
+   "members": 10
+  }
+ ]
+}

@@ -19,8 +19,8 @@ last-reviewed: 2026-10-23
 
 | Edition | File |
 |---|---|
-| Deck | [Research_CyberArk_CLM.pptx](../../presentations/research-cyberark-clm/Research_CyberArk_CLM.pptx) |
-| Narrated, self-running (about 20 minutes, captions) | [Research_CyberArk_CLM_Narrated.pptx](../../presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.pptx) |
+| Deck | [Research_CyberArk_CLM.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/Research_CyberArk_CLM.pptx) |
+| Narrated, self-running (about 20 minutes, captions) | [Research_CyberArk_CLM_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/Research_CyberArk_CLM_Narrated.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cyberark-clm/Research_CyberArk_CLM_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.vtt) |
 
 ## What it covers

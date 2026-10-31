@@ -11,7 +11,10 @@ holding the edition's built files. This script:
      decks); the first edition gets one line per unit instead;
   2. creates the Release (and with it the tag) on origin/main, not marked as
      the repository's latest release, so the kit releases keep that label;
-  3. uploads the files named with --asset (globs are fine);
+  3. uploads the files named with --asset (globs are fine) and, with --decks,
+     every deck and narration-audio zip (scripts/deck_assets.py pack), then
+     checks the Release holds them byte for byte and points every deck link
+     at the new edition (deck_assets.py verify and links);
   4. writes the entry into data/editions.yml, the Release's file list into
      data/edition-assets/<id>.json, and regenerates the revision histories
      and the Archive page (scripts/generate_revisions.py).
@@ -23,7 +26,7 @@ from the tagged commit and attaches them. When it finishes, run
 on a branch and open a pull request.
 
     python scripts/cut_edition.py edition-2026.10 --summary "..." --dry-run
-    python scripts/cut_edition.py edition-2026.10 --summary "..." --asset "out/*.pptx" --asset "out/*.zip"
+    python scripts/cut_edition.py edition-2026.10 --summary "..." --decks
     python scripts/cut_edition.py --refresh-assets edition-2026.10
 
 Needs git, the GitHub CLI (`gh`, signed in with rights to publish releases),
@@ -37,6 +40,7 @@ import argparse
 import datetime as dt
 import glob
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -44,6 +48,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import deck_assets as da  # noqa: E402
 import generate_revisions as gr  # noqa: E402
 
 ROOT = gr.ROOT
@@ -153,6 +158,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("edition", nargs="?", help="edition-YYYY.MM or edition-YYYY.MM.N")
     ap.add_argument("--summary", help="one or two sentences on what this edition is")
     ap.add_argument("--asset", action="append", default=[], help="a file or glob to attach (repeatable)")
+    ap.add_argument("--decks", action="store_true",
+                    help="attach every deck and narration-audio zip (fetch them first: deck_assets.py fetch --all)")
     ap.add_argument("--date", help="the edition's date (default: today)")
     ap.add_argument("--dry-run", action="store_true", help="print the entry and the plan; change nothing")
     ap.add_argument("--refresh-assets", metavar="EDITION", help="record an existing Release's file list and regenerate")
@@ -181,6 +188,14 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit(f"cut_edition: {date} is before {previous}")
     drafted = draft_units(previous, commit, units)
     files = expand(args.asset)
+    staging = ROOT / "_edition-decks"
+    if args.decks and args.dry_run:
+        print(f"cut_edition: --decks would attach {len(da.local_decks())} decks and {len(da.local_audio())} audio zips")
+    elif args.decks:
+        if staging.exists():
+            shutil.rmtree(staging)
+        files += da.pack(staging)
+        expand([str(f) for f in files])          # the same name and count guards over the lot
     entry = entry_text(eid, date, commit, args.summary, drafted)
 
     print(f"cut_edition: {eid} on origin/main {commit[:12]}, since {previous or 'the start'}: "
@@ -202,6 +217,10 @@ def main(argv: list[str] | None = None) -> int:
         print(f"cut_edition: uploaded {i + len(batch)} of {len(files)}")
     record(entry)
     refresh_assets(eid)
+    if args.decks:
+        da.verify(eid)
+        da.links(check=False)
+        shutil.rmtree(staging)
     code = gr.main([])
     print(f"cut_edition: done. Edit the change lines for {eid} in data/editions.yml if you like, wait for the "
           f"'Edition files' workflow to attach the Word editions, run `python scripts/cut_edition.py "

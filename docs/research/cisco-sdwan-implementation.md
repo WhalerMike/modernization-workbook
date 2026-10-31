@@ -27,8 +27,8 @@ This guide names one product to make Book 09's vendor-neutral design concrete. I
 | Edition | File |
 |---|---|
 | Video (MP4, 1080p, about 16 minutes) | [Research_Cisco_SDWAN_Narrated.mp4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_Cisco_SDWAN_Narrated.mp4) |
-| Narrated, self-running deck (about 16 minutes, captions) | [Research_Cisco_SDWAN_Narrated.pptx](../../presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narrated.pptx) |
-| Deck, for presenting live | [Research_Cisco_SDWAN.pptx](../../presentations/research-cisco-sdwan/Research_Cisco_SDWAN.pptx) |
+| Narrated, self-running deck (about 16 minutes, captions) | [Research_Cisco_SDWAN_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/Research_Cisco_SDWAN_Narrated.pptx) |
+| Deck, for presenting live | [Research_Cisco_SDWAN.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/Research_Cisco_SDWAN.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cisco-sdwan/Research_Cisco_SDWAN_Narrated.vtt) |
 
 ## What it covers

@@ -27,8 +27,8 @@ The loop in Book 13 has five steps: test, detect drift, raise a typed task, actu
 | Edition | File |
 |---|---|
 | Video (MP4, 1080p, about 10 minutes) | [Research_TTM_ServiceNow_SailPoint_Narrated.mp4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Research_TTM_ServiceNow_SailPoint_Narrated.mp4) |
-| Narrated, self-running deck (about 10 minutes, captions) | [Research_TTM_ServiceNow_SailPoint_Narrated.pptx](../../presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated.pptx) |
-| Deck, for presenting live | [Research_TTM_ServiceNow_SailPoint.pptx](../../presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint.pptx) |
+| Narrated, self-running deck (about 10 minutes, captions) | [Research_TTM_ServiceNow_SailPoint_Narrated.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/Research_TTM_ServiceNow_SailPoint_Narrated.pptx) |
+| Deck, for presenting live | [Research_TTM_ServiceNow_SailPoint.pptx](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.10/Research_TTM_ServiceNow_SailPoint.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated.vtt) |
 
 The vendor-neutral original has its own narrated deck, linked from [Book 13, Appendix B](../books/b13-governance/appendix-b-ticket-to-machine-reference.md).

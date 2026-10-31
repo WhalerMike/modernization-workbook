@@ -18,6 +18,19 @@ One shared kit so every Federal Modernization Workbook book's 15-minute presenta
 | `export_mp4.ps1` | Exports a narrated deck to MP4 in a fresh PowerPoint, for when `build_narrated.ps1 -Video` stalls |
 | `link_tours.py` | Writes each developer-workbook tour's README and links the tours from the chapter pages, the workbook landing pages and the Presentations page, between `tour:begin` / `tour:end` markers |
 
+## Decks and audio live on the edition's Release, not in git
+
+The built decks (`*.pptx`, plain and narrated) and the narration audio (`narration_<Base>/*.mp3`) are not committed. Each edition's GitHub Release carries them: every deck as itself, and each narration folder's MP3s as one zip, `<Base>_narration_audio.zip`. `data/deck-assets.json` lists every file, its asset, its size and sha256, and the edition that holds it. Git keeps everything they are built from: `build.js`, `narration.json`, `durations.json`, `sentences.json`, the caption tracks, the scripts and the READMEs. The site's deck links point at the current edition's Release (`scripts/deck_assets.py links`).
+
+Before rebuilding a deck, put its built files back, so `narrate.py` reuses the existing audio instead of generating it again:
+
+```bash
+python scripts/deck_assets.py fetch presentations/b02-identity      # one folder
+python scripts/deck_assets.py fetch --all                           # every deck and audio folder (about 715 MB)
+```
+
+A new or rebuilt deck reaches the site with the next edition: fetch every deck first (`fetch --all`), so the edition carries them all, then `python scripts/cut_edition.py <edition> --summary "..." --decks` (a correction between monthly editions is a reissue, `edition-YYYY.MM.N`). It uploads the decks and audio zips, checks the Release holds them byte for byte, and points every deck link at the new edition. See "Editions and the archive" in [CONTRIBUTING.md](../../CONTRIBUTING.md).
+
 ## Build a book's deck
 
 ```powershell
@@ -44,7 +57,7 @@ powershell -File presentations/_build/build_narrated.ps1 -Dir <abs path>\present
 powershell -File presentations/_build/export_mp4.ps1 -Src <abs path>\DW_PA_02_Emergency_Access_Narrated.pptx -Mp4 <abs path>\DW_PA_02_Emergency_Access_Narrated.mp4
 ```
 
-Upload the MP4 to the videos release, run `scripts/generate_video_manifest.py --verify` and then without `--verify`, and finally `presentations/_build/link_tours.py "<recording date>"`. A tour runs about eleven minutes: a title slide and about seventeen content slides in Why, What, Who and How order. Rebuild and re-record a tour when its chapter changes.
+Upload the MP4 to the videos release, run `scripts/generate_video_manifest.py --verify` and then without `--verify` (with the narrated deck here, it also refreshes the video's chapters in `data/video-chapters.json`), and finally `presentations/_build/link_tours.py "<recording date>"`. A new tour's deck links point at its folder until an edition carries the deck; the deck link check reports them until then. A tour runs about eleven minutes: a title slide and about seventeen content slides in Why, What, Who and How order. Rebuild and re-record a tour when its chapter changes.
 
 ## Accessibility (Section 508 / WCAG 2.1 AA)
 

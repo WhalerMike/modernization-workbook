@@ -30,6 +30,14 @@ def insert_marked(md: str, pos: int, content: str) -> str:
     assert md[pos - 2:pos] == "\n\n", "a tour block goes after a blank line"
     return md[:pos] + BEGIN + "\n\n" + content.strip("\n") + "\n\n" + END + "\n\n" + md[pos:]
 durs = json.loads((ROOT / "data/video-durations.json").read_text(encoding="utf-8"))
+sys.path.insert(0, str(ROOT / "scripts"))
+import deck_assets  # noqa: E402
+
+
+def deck(path: str, up: str) -> str:
+    """A deck's link: its file on the current edition's Release (scripts/deck_assets.py), or, for a deck
+    not published yet, its path here, which the deck link check reports until the next edition carries it."""
+    return deck_assets.url(path) or up + path
 
 
 def write(p: Path, text: str):
@@ -83,7 +91,7 @@ The title slide carries the Date Code of the build and the chapter's review stat
 ## Narrated tour
 {{{{< fmw-video {vid} >}}}}
 
-[Deck]({up}{rel}/{base}.pptx) · [Narrated deck]({up}{rel}/{vid}.pptx) ({length}captions) · [Script]({GH}/{rel}/{base}_Narration_Script.md) · [Captions]({GH}/{rel}/{vid}.vtt). Recorded on {DATE} from the approved chapter.
+[Deck]({deck(f'{rel}/{base}.pptx', up)}) · [Narrated deck]({deck(f'{rel}/{vid}.pptx', up)}) ({length}captions) · [Script]({GH}/{rel}/{base}_Narration_Script.md) · [Captions]({GH}/{rel}/{vid}.vtt). Recorded on {DATE} from the approved chapter.
 :::
 """
     i = md.index("## In this chapter")
@@ -106,7 +114,8 @@ for wb, rows in tours.items():
              "| # | Chapter | Watch | Length | Deck | Narrated deck |", "|---|---|---|---|---|---|"]
     for nn, title, fname, rel, base, vid, mins in rows:
         lines.append(f"| {nn} | [{title}]({fname}) | [▶ Watch](../../../presentations/watch.html?v={vid}) · [MP4]({REL}/{vid}.mp4) | "
-                     f"{f'{mins} min' if mins else '—'} | [{base}.pptx](../../../../{rel}/{base}.pptx) | [Narrated](../../../../{rel}/{vid}.pptx) |")
+                     f"{f'{mins} min' if mins else '—'} | [{base}.pptx]({deck(f'{rel}/{base}.pptx', '../../../../')}) | "
+                     f"[Narrated]({deck(f'{rel}/{vid}.pptx', '../../../../')}) |")
     block = "\n".join(lines)
     k = md.find("\n## ", md.index("## Chapters") + 5)
     md = insert_marked(md, k + 1, block)
@@ -127,7 +136,7 @@ for wb, rows in tours.items():
     out += [f"### {WB[wb][1]}", "", "| Chapter | Deck | Narrated | Script and captions |", "|---|---|---|---|"]
     for nn, title, fname, rel, base, vid, mins in rows:
         page = f"../project-plans/developer-workbooks/{WB[wb][0]}/{fname}"
-        out.append(f"| [{nn} — {title}]({page}) | [Deck](../../{rel}/{base}.pptx) | [Narrated](../../{rel}/{vid}.pptx) "
+        out.append(f"| [{nn} — {title}]({page}) | [Deck]({deck(f'{rel}/{base}.pptx', '../../')}) | [Narrated]({deck(f'{rel}/{vid}.pptx', '../../')}) "
                    f"({f'about {mins} min, ' if mins else ''}captions) · [▶ Watch](watch.html?v={vid}) · [MP4]({REL}/{vid}.mp4) | "
                    f"[Script]({GH}/{rel}/{base}_Narration_Script.md) · [Captions]({GH}/{rel}/{vid}.vtt) |")
     out += ["", f": {WB[wb][1]}, chapter tours {{.striped .hover}}", ""]
