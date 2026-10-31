@@ -21,7 +21,7 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/books/b19-developer-workbook/index.html
 review-status: approved
-reviewed-sha256: b42e187db0a5f471c8e127643d6ef403e9cf9e3350d53d3fe7786d8a707090e8
+reviewed-sha256: e5ee4f9e430dc8a405aa62a536cd8212cac552be5c485b7aee3395a0397f1273
 last-reviewed: 2026-10-31
 ---
 # Building the Attribute-Driven Migration {.unnumbered}
