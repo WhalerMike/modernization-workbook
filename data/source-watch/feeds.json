@@ -631,6 +631,17 @@
         "DW"
       ],
       "source": "Commits to the Learn source page that holds the HTTP samples for finding ownerless service principals, assigning owners and setting serviceManagementReference, which examples/third_party/graph-applications-tutorial-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 02). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-review-app-permissions-page-commits",
+      "name": "Learn's Review permissions granted to enterprise applications (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/enterprise-apps/manage-application-permissions.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Microsoft Graph PowerShell script and HTTP requests that review and revoke an application's delegated and application permissions, which examples/third_party/entra-review-app-permissions-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 07). A new commit means: review it, rerun examples/non-person-identity/tests/NpiLeastPrivilegeSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     }
   ]
 }

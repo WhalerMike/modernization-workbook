@@ -1,0 +1,120 @@
+{
+  "_comment": "Chapter 07's calls (least privilege for service principals), with the least-privileged Microsoft Graph permission or Azure role from the Learn page for each call, read on October 30, 2026. Same schema as calls.json; kept in its own file so chapters written in parallel don't collide. A task may make only its own calls. tests/NpiLeastPrivilege.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls, or when the read task declares anything but GET.",
+  "tasks": {
+    "least-privilege": {
+      "mode": "read",
+      "chapter": "07",
+      "graphPermissions": ["Application.Read.All", "Directory.Read.All", "RoleManagement.Read.Directory"],
+      "azureRoles": ["Reader"],
+      "adRights": []
+    },
+    "least-privilege-apply": {
+      "mode": "write",
+      "chapter": "07",
+      "graphPermissions": ["AppRoleAssignment.ReadWrite.All", "Application.Read.All", "DelegatedPermissionGrant.ReadWrite.All", "Directory.Read.All"],
+      "azureRoles": [],
+      "adRights": [],
+      "delegatedOnly": true,
+      "delegatedRole": "Privileged Role Administrator"
+    }
+  },
+  "calls": [
+    {
+      "id": "graph-lp-app-role-assignments",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{id}/appRoleAssignments",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["least-privilege", "least-privilege-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0",
+      "note": "The application permissions a client service principal holds, on every resource, not only Microsoft Graph. The writer re-reads it before each removal."
+    },
+    {
+      "id": "graph-lp-oauth2-grants",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{id}/oauth2PermissionGrants",
+      "permissions": ["Directory.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["least-privilege", "least-privilege-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-list-oauth2permissiongrants?view=graph-rest-1.0",
+      "note": "Learn names Directory.Read.All as least privileged; the same read Chapter 01 makes tenant-wide, made here for one client at a time."
+    },
+    {
+      "id": "graph-lp-resource-sp",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{id}",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["least-privilege"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0",
+      "note": "Each resource service principal once, for its appRoles and oauth2PermissionScopes, so app role IDs become permission names."
+    },
+    {
+      "id": "graph-lp-directory-role-assignments",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleAssignments",
+      "permissions": ["RoleManagement.Read.Directory"],
+      "stage": "v1.0",
+      "tasks": ["least-privilege"],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0",
+      "note": "Filtered on principalId, one service principal at a time. A service principal in any directory role is handed to the Privileged Access plan (A3.4)."
+    },
+    {
+      "id": "arm-lp-role-assignments",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2022-04-01",
+      "path": "{scope}/providers/Microsoft.Authorization/roleAssignments",
+      "azureRole": "Reader",
+      "stage": "GA",
+      "tasks": ["least-privilege"],
+      "learn": "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-list-rest",
+      "note": "With $filter=assignedTo('{objectId}') for each managed identity, at each scope in azure-scopes.csv. Reader includes Microsoft.Authorization/*/read."
+    },
+    {
+      "id": "arm-lp-role-definition",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2022-04-01",
+      "path": "{roleDefinitionId}",
+      "azureRole": "Reader",
+      "stage": "GA",
+      "tasks": ["least-privilege"],
+      "learn": "https://learn.microsoft.com/azure/role-based-access-control/role-definitions-list",
+      "note": "Each role definition once, so a role assignment's roleDefinitionId becomes a role name."
+    },
+    {
+      "id": "graph-lp-app-role-remove",
+      "api": "graph",
+      "method": "DELETE",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{resourceId}/appRoleAssignedTo/{appRoleAssignmentId}",
+      "permissions": ["AppRoleAssignment.ReadWrite.All"],
+      "stage": "v1.0",
+      "tasks": ["least-privilege-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0",
+      "note": "Removes one app role assignment through the RESOURCE service principal, as Learn recommends. Never deletes a service principal or an application. Privileged Role Administrator is the least privileged role Learn lists for Microsoft Graph app roles; Application.ReadWrite.All doesn't manage app role assignments exposed by Microsoft Graph."
+    },
+    {
+      "id": "graph-lp-grant-narrow",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/oauth2PermissionGrants/{id}",
+      "permissions": ["DelegatedPermissionGrant.ReadWrite.All"],
+      "allowedBody": { "scope": "a non-empty subset of the grant's current scopes" },
+      "stage": "v1.0",
+      "tasks": ["least-privilege-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0",
+      "note": "Narrows a delegated grant's scope. The body overwrites the scope list, so the writer sends the whole kept list and nothing else."
+    }
+  ]
+}

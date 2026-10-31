@@ -1,0 +1,75 @@
+{
+  "_comment": "Chapter 07's fictional estate for contoso.example: the app role assignments, delegated grants, directory role assignments and Azure role assignments of the service principals in tests/fixtures/estate.json (same object IDs), with the resource service principals that name them. Invented IDs; no real people or agencies. Served by New-NpiLpFixtureInvoker. Read as of 2026-10-30.",
+  "tenantId": "c0ffee00-0000-4000-8000-000000000001",
+  "graph": {
+    "resourceServicePrincipals": [
+      { "id": "5b000000-0000-4000-8000-000000000010", "appId": "00000003-0000-0000-c000-000000000000", "displayName": "Microsoft Graph",
+        "appRoles": [
+          { "id": "a0000000-0000-4000-8000-000000000001", "value": "Directory.ReadWrite.All" },
+          { "id": "a0000000-0000-4000-8000-000000000002", "value": "Mail.Send" },
+          { "id": "a0000000-0000-4000-8000-000000000003", "value": "User.Read.All" },
+          { "id": "a0000000-0000-4000-8000-000000000004", "value": "Application.ReadWrite.OwnedBy" },
+          { "id": "a0000000-0000-4000-8000-000000000005", "value": "Mail.ReadWrite" },
+          { "id": "a0000000-0000-4000-8000-000000000006", "value": "Application.ReadWrite.All" },
+          { "id": "a0000000-0000-4000-8000-000000000007", "value": "RoleManagement.ReadWrite.Directory" },
+          { "id": "a0000000-0000-4000-8000-000000000008", "value": "Sites.FullControl.All" },
+          { "id": "a0000000-0000-4000-8000-000000000009", "value": "Sites.Selected" },
+          { "id": "a0000000-0000-4000-8000-00000000000a", "value": "Group.Read.All" }
+        ],
+        "oauth2PermissionScopes": [
+          { "id": "b0000000-0000-4000-8000-000000000001", "value": "User.Read" },
+          { "id": "b0000000-0000-4000-8000-000000000002", "value": "Mail.Read" },
+          { "id": "b0000000-0000-4000-8000-000000000003", "value": "Files.Read" }
+        ] },
+      { "id": "5b000000-0000-4000-8000-000000000020", "appId": "00000002-0000-0ff1-ce00-000000000000", "displayName": "Office 365 Exchange Online",
+        "appRoles": [ { "id": "a1000000-0000-4000-8000-000000000001", "value": "full_access_as_app" } ],
+        "oauth2PermissionScopes": [] }
+    ],
+    "appRoleAssignments": [
+      { "id": "ar-01", "principalId": "5b000000-0000-4000-8000-000000000006", "principalType": "ServicePrincipal", "principalDisplayName": "Mail Automation", "resourceId": "5b000000-0000-4000-8000-000000000010", "resourceDisplayName": "Microsoft Graph", "appRoleId": "a0000000-0000-4000-8000-000000000001" },
+      { "id": "ar-02", "principalId": "5b000000-0000-4000-8000-000000000006", "principalType": "ServicePrincipal", "principalDisplayName": "Mail Automation", "resourceId": "5b000000-0000-4000-8000-000000000010", "resourceDisplayName": "Microsoft Graph", "appRoleId": "a0000000-0000-4000-8000-000000000002" },
+      { "id": "ar-07", "principalId": "5b000000-0000-4000-8000-000000000006", "principalType": "ServicePrincipal", "principalDisplayName": "Mail Automation", "resourceId": "5b000000-0000-4000-8000-000000000010", "resourceDisplayName": "Microsoft Graph", "appRoleId": "a0000000-0000-4000-8000-000000000005" },
+      { "id": "ar-03", "principalId": "5b000000-0000-4000-8000-000000000001", "principalType": "ServicePrincipal", "principalDisplayName": "Payroll Export", "resourceId": "5b000000-0000-4000-8000-000000000010", "resourceDisplayName": "Microsoft Graph", "appRoleId": "a0000000-0000-4000-8000-000000000003" },
+      { "id": "ar-04", "principalId": "5b000000-0000-4000-8000-000000000013", "principalType": "ServicePrincipal", "principalDisplayName": "vm-batch01", "resourceId": "5b000000-0000-4000-8000-000000000010", "resourceDisplayName": "Microsoft Graph", "appRoleId": "a0000000-0000-4000-8000-000000000003" },
+      { "id": "ar-05", "principalId": "5b000000-0000-4000-8000-000000000004", "principalType": "ServicePrincipal", "principalDisplayName": "Build Pipeline", "resourceId": "5b000000-0000-4000-8000-000000000010", "resourceDisplayName": "Microsoft Graph", "appRoleId": "a0000000-0000-4000-8000-000000000004" },
+      { "id": "ar-08", "principalId": "5b000000-0000-4000-8000-000000000004", "principalType": "ServicePrincipal", "principalDisplayName": "Build Pipeline", "resourceId": "5b000000-0000-4000-8000-000000000010", "resourceDisplayName": "Microsoft Graph", "appRoleId": "a0000000-0000-4000-8000-000000000007" },
+      { "id": "ar-09", "principalId": "5b000000-0000-4000-8000-000000000007", "principalType": "ServicePrincipal", "principalDisplayName": "Deploy Bot", "resourceId": "5b000000-0000-4000-8000-000000000010", "resourceDisplayName": "Microsoft Graph", "appRoleId": "a0000000-0000-4000-8000-000000000006" },
+      { "id": "ar-10", "principalId": "5b000000-0000-4000-8000-000000000002", "principalType": "ServicePrincipal", "principalDisplayName": "HR Connector", "resourceId": "5b000000-0000-4000-8000-000000000010", "resourceDisplayName": "Microsoft Graph", "appRoleId": "a0000000-0000-4000-8000-000000000008" },
+      { "id": "ar-11", "principalId": "5b000000-0000-4000-8000-000000000002", "principalType": "ServicePrincipal", "principalDisplayName": "HR Connector", "resourceId": "5b000000-0000-4000-8000-000000000010", "resourceDisplayName": "Microsoft Graph", "appRoleId": "a0000000-0000-4000-8000-000000000009" },
+      { "id": "ar-12", "principalId": "5b000000-0000-4000-8000-000000000005", "principalType": "ServicePrincipal", "principalDisplayName": "Vendor Portal", "resourceId": "5b000000-0000-4000-8000-000000000020", "resourceDisplayName": "Office 365 Exchange Online", "appRoleId": "a1000000-0000-4000-8000-000000000001" },
+      { "id": "ar-13", "principalId": "5b000000-0000-4000-8000-000000000003", "principalType": "ServicePrincipal", "principalDisplayName": "Legacy Reports", "resourceId": "5b000000-0000-4000-8000-000000000010", "resourceDisplayName": "Microsoft Graph", "appRoleId": "a0000000-0000-4000-8000-0000000000ff" },
+      { "id": "ar-14", "principalId": "5a000000-0000-4000-8000-000000000003", "principalType": "User", "principalDisplayName": "Carol Diaz", "resourceId": "5b000000-0000-4000-8000-000000000001", "resourceDisplayName": "Payroll Export", "appRoleId": "00000000-0000-0000-0000-000000000000" }
+    ],
+    "oauth2PermissionGrants": [
+      { "id": "og-01", "clientId": "5b000000-0000-4000-8000-000000000011", "consentType": "AllPrincipals", "principalId": null, "resourceId": "5b000000-0000-4000-8000-000000000010", "scope": "User.Read Mail.Read" },
+      { "id": "og-02", "clientId": "5b000000-0000-4000-8000-000000000001", "consentType": "Principal", "principalId": "5a000000-0000-4000-8000-000000000001", "resourceId": "5b000000-0000-4000-8000-000000000010", "scope": "Files.Read" },
+      { "id": "og-03", "clientId": "5b000000-0000-4000-8000-000000000006", "consentType": "Principal", "principalId": "5a000000-0000-4000-8000-000000000001", "resourceId": "5b000000-0000-4000-8000-000000000010", "scope": "User.Read" }
+    ],
+    "directoryRoleAssignments": [
+      { "id": "dr-01", "principalId": "5b000000-0000-4000-8000-000000000007", "roleDefinitionId": "158c047a-c907-4556-b7ef-446551a6b5f7", "directoryScopeId": "/" },
+      { "id": "dr-02", "principalId": "5a000000-0000-4000-8000-000000000001", "roleDefinitionId": "88d8e3e3-8f55-4a1e-953a-9b9898b8876b", "directoryScopeId": "/" }
+    ]
+  },
+  "azure": {
+    "roleAssignments": [
+      { "id": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleAssignments/ra000000-0000-4000-8000-000000000001", "name": "ra000000-0000-4000-8000-000000000001", "type": "Microsoft.Authorization/roleAssignments",
+        "properties": { "principalId": "5b000000-0000-4000-8000-000000000013", "principalType": "ServicePrincipal", "scope": "/subscriptions/11111111-1111-4111-8111-111111111111", "roleDefinitionId": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1" } },
+      { "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-batch/providers/Microsoft.Authorization/roleAssignments/ra000000-0000-4000-8000-000000000002", "name": "ra000000-0000-4000-8000-000000000002", "type": "Microsoft.Authorization/roleAssignments",
+        "properties": { "principalId": "5b000000-0000-4000-8000-000000000013", "principalType": "ServicePrincipal", "scope": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-batch", "roleDefinitionId": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7" } },
+      { "id": "/providers/Microsoft.Management/managementGroups/mg-contoso/providers/Microsoft.Authorization/roleAssignments/ra000000-0000-4000-8000-000000000003", "name": "ra000000-0000-4000-8000-000000000003", "type": "Microsoft.Authorization/roleAssignments",
+        "properties": { "principalId": "5b000000-0000-4000-8000-000000000013", "principalType": "ServicePrincipal", "scope": "/providers/Microsoft.Management/managementGroups/mg-contoso", "roleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7" } },
+      { "id": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleAssignments/ra000000-0000-4000-8000-000000000004", "name": "ra000000-0000-4000-8000-000000000004", "type": "Microsoft.Authorization/roleAssignments",
+        "properties": { "principalId": "5b000000-0000-4000-8000-000000000014", "principalType": "ServicePrincipal", "scope": "/subscriptions/11111111-1111-4111-8111-111111111111", "roleDefinitionId": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c" } },
+      { "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.KeyVault/vaults/kv-deploy/providers/Microsoft.Authorization/roleAssignments/ra000000-0000-4000-8000-000000000005", "name": "ra000000-0000-4000-8000-000000000005", "type": "Microsoft.Authorization/roleAssignments",
+        "properties": { "principalId": "5b000000-0000-4000-8000-000000000014", "principalType": "ServicePrincipal", "scope": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-identity/providers/Microsoft.KeyVault/vaults/kv-deploy", "roleDefinitionId": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleDefinitions/4633458b-17de-408a-b874-0445c86b69e6" } },
+      { "id": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleAssignments/ra000000-0000-4000-8000-000000000006", "name": "ra000000-0000-4000-8000-000000000006", "type": "Microsoft.Authorization/roleAssignments",
+        "properties": { "principalId": "5a000000-0000-4000-8000-000000000001", "principalType": "User", "scope": "/subscriptions/11111111-1111-4111-8111-111111111111", "roleDefinitionId": "/subscriptions/11111111-1111-4111-8111-111111111111/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7" } }
+    ],
+    "roleDefinitions": {
+      "acdd72a7-3385-48ef-bd42-f606fba81ae7": { "roleName": "Reader", "type": "BuiltInRole" },
+      "b24988ac-6180-42a0-ab88-20f7382dd24c": { "roleName": "Contributor", "type": "BuiltInRole" },
+      "2a2b9908-6ea1-4ae2-8e65-a410df84e7d1": { "roleName": "Storage Blob Data Reader", "type": "BuiltInRole" },
+      "4633458b-17de-408a-b874-0445c86b69e6": { "roleName": "Key Vault Secrets User", "type": "BuiltInRole" }
+    }
+  }
+}
