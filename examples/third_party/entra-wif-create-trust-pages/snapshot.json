@@ -1,0 +1,45 @@
+{
+  "_comment": "A pinned, unmodified copy of two Learn pages' source, 'Configure an app to trust an external identity provider' and 'Configure a user-assigned managed identity to trust an external identity provider', with the include both pages share for the federated credential rules: the az CLI, Azure PowerShell, az rest, REST and ARM template samples for federated identity credentials exist only inside these pages. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn samples: federated identity credentials on an app registration and on a user-assigned managed identity",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/workload-id/workload-identity-federation-create-trust.md, docs/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity.md, docs/workload-id/includes/federated-credential-configuration-considerations.md",
+  "commit": "d75a90ea1b07d0d2007cfab256c1ad02653d1e35",
+  "commit_date": "2026-02-25",
+  "files_last_changed": "2026-02-25 (commit d75a90ea1b07d0d2007cfab256c1ad02653d1e35, the last commit to all three files); unchanged at the repository's head on 2026-10-30 (commit 7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: Creative Commons Attribution 4.0 International (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/workload-id/workload-identity-federation-create-trust",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "workload-identity-federation-create-trust.md": "docs/workload-id/workload-identity-federation-create-trust.md",
+    "workload-identity-federation-create-trust-user-assigned-managed-identity.md": "docs/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity.md",
+    "includes/federated-credential-configuration-considerations.md": "docs/workload-id/includes/federated-credential-configuration-considerations.md"
+  },
+  "not_copied": [
+    "The pages' screenshots (docs/workload-id/media) and the reusable Azure CLI include (docs/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md), which hold no sample.",
+    "The considerations page (workload-identity-federation-considerations.md) and the flexible federated credential pages, which the chapter cites and links rather than runs; everything else in MicrosoftDocs/entra-docs."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "includes/federated-credential-configuration-considerations.md": {
+      "bytes": 3242,
+      "sha256": "81be10423a7b2a8be997cbe9878f5f9e1fc32dcd95cc289a826f4e7bc6225510"
+    },
+    "workload-identity-federation-create-trust-user-assigned-managed-identity.md": {
+      "bytes": 33148,
+      "sha256": "60b25d4de8f207701fc30341e10d35584d1f1c2c67209c63838955b962639601"
+    },
+    "workload-identity-federation-create-trust.md": {
+      "bytes": 36404,
+      "sha256": "88aa2424fffb87ae3a9a9e6edf2298cf24fa4ab912b51fb1e0bc5ceb677493dc"
+    }
+  }
+}

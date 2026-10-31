@@ -633,6 +633,61 @@
       "source": "Commits to the Learn source page that holds the HTTP samples for finding ownerless service principals, assigning owners and setting serviceManagementReference, which examples/third_party/graph-applications-tutorial-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 02). A new commit means: review it, rerun examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
     },
     {
+      "id": "entra-wif-create-trust-app-commits",
+      "name": "Learn's Configure an app to trust an external identity provider (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/workload-id/workload-identity-federation-create-trust.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the Azure CLI, Azure PowerShell and az rest samples for creating a federated identity credential on an app registration, which examples/third_party/entra-wif-create-trust-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 05). A new commit means: review it, rerun examples/non-person-identity/tests/NpiFederationSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-wif-create-trust-uami-commits",
+      "name": "Learn's Configure a user-assigned managed identity to trust an external identity provider (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Learn source page that holds the REST request and ARM template for creating a federated identity credential on a user-assigned managed identity, which examples/third_party/entra-wif-create-trust-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 05). A new commit means: review it, rerun examples/non-person-identity/tests/NpiFederationSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "entra-wif-considerations-include-commits",
+      "name": "Learn's federated credential configuration considerations include (MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/workload-id/includes/federated-credential-configuration-considerations.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the include both federated credential pages share for the 20-credential limit, the name rules and the subject that is accepted at creation and fails only at token exchange, which examples/third_party/entra-wif-create-trust-pages pins at one commit (developer workbook Building Non-Person Identity, Chapter 05). A new commit means: review it, rerun examples/non-person-identity/tests/NpiFederationSamples.Tests.ps1 and NpiFederation.Tests.ps1, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "graph-fic-create-page-commits",
+      "name": "Learn's Microsoft Graph Create federatedIdentityCredential reference (microsoftgraph/microsoft-graph-docs-contrib commits)",
+      "type": "github_commits",
+      "repo": "microsoftgraph/microsoft-graph-docs-contrib",
+      "path": "api-reference/v1.0/api/federatedidentitycredential-post.md",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the Graph reference page that holds the HTTP sample for creating a federated identity credential on an application, which examples/third_party/graph-fic-create-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 05). A new commit means: review it, rerun examples/non-person-identity/tests/NpiFederationSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "msi-fic-rest-examples-commits",
+      "name": "Microsoft's REST examples for Managed Identity, 2024-11-30 (Azure/azure-rest-api-specs commits)",
+      "type": "github_commits",
+      "repo": "Azure/azure-rest-api-specs",
+      "path": "specification/msi/resource-manager/Microsoft.ManagedIdentity/ManagedIdentity/stable/2024-11-30/examples",
+      "books": [
+        "DW"
+      ],
+      "source": "Commits to the folder that holds Microsoft's request and response examples for user-assigned managed identities and their federated identity credentials, three of which examples/third_party/msi-fic-rest-examples pins at one commit (developer workbook Building Non-Person Identity, Chapter 05). A new commit means: review it, rerun examples/non-person-identity/tests/NpiFederationSamples.Tests.ps1 against the new examples, and update the snapshot only in a reviewed pull request."
+    },
+    {
       "id": "graph-tenant-app-policy-update-commits",
       "name": "Learn's Update tenantAppManagementPolicy (microsoftgraph/microsoft-graph-docs-contrib commits)",
       "type": "github_commits",

@@ -1,0 +1,40 @@
+{
+  "_comment": "A pinned, unmodified copy of Microsoft's request and response examples for the Managed Identity REST API (Microsoft.ManagedIdentity 2024-11-30), the examples Learn's REST reference pages render for creating a federated identity credential on a user-assigned managed identity and for creating and reading the identity. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Microsoft REST examples: Managed Identity 2024-11-30 (federated identity credential create, identity create and get)",
+  "upstream_repo": "https://github.com/Azure/azure-rest-api-specs",
+  "upstream_path": "specification/msi/resource-manager/Microsoft.ManagedIdentity/ManagedIdentity/stable/2024-11-30/examples",
+  "commit": "37886acc4980d7ac8753fafe90619cae296eb477",
+  "commit_date": "2025-09-12",
+  "files_last_changed": "2025-09-12 (commit 37886acc4980d7ac8753fafe90619cae296eb477, the last commit to the three examples); unchanged at the repository's head on 2026-10-30",
+  "retrieved": "2026-10-30",
+  "license": "MIT (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/rest/api/managedidentity/federated-identity-credentials/create-or-update",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "FederatedIdentityCredentialCreate.json": "specification/msi/resource-manager/Microsoft.ManagedIdentity/ManagedIdentity/stable/2024-11-30/examples/FederatedIdentityCredentialCreate.json",
+    "IdentityCreate.json": "specification/msi/resource-manager/Microsoft.ManagedIdentity/ManagedIdentity/stable/2024-11-30/examples/IdentityCreate.json",
+    "IdentityGet.json": "specification/msi/resource-manager/Microsoft.ManagedIdentity/ManagedIdentity/stable/2024-11-30/examples/IdentityGet.json"
+  },
+  "not_copied": [
+    "The other nine examples in the same folder (delete, list, update, operations, the system-assigned identity read): Chapter 05 sends only the federated credential PUT, the identity PUT and the identity GET these three show.",
+    "The OpenAPI files themselves, the preview API versions (2025-05-31-preview, which adds claimsMatchingExpression) and every other API version: the chapter cites the Learn REST reference pages rendered from them."
+  ],
+  "files": {
+    "FederatedIdentityCredentialCreate.json": {
+      "bytes": 1918,
+      "sha256": "94ef4632da8dd745985d045d949a88bed97cbe7842bf4b9ad554795822737c76"
+    },
+    "IdentityCreate.json": {
+      "bytes": 1725,
+      "sha256": "8bae924c78c4b72c7d087e7e780739060220b1127cc7f81b9aa9eedd84d904d8"
+    },
+    "IdentityGet.json": {
+      "bytes": 933,
+      "sha256": "26cb6a3391909db100982585a1a9f53ee4bc4cbfea4ba9bafdb717ebe20a81e8"
+    },
+    "LICENSE": {
+      "bytes": 1076,
+      "sha256": "b37363bf2295aa0acde60ce78a60034a71a0955075fc01aa09cc23eadff44436"
+    }
+  }
+}

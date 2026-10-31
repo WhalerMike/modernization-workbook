@@ -1,0 +1,35 @@
+{
+  "_comment": "A pinned, unmodified copy of the Microsoft Graph reference page 'Create federatedIdentityCredential' (v1.0), as its source in microsoftgraph/microsoft-graph-docs-contrib: the HTTP request sample that creates a federated identity credential on an application exists only inside this page. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn sample: Microsoft Graph Create federatedIdentityCredential (v1.0)",
+  "upstream_repo": "https://github.com/microsoftgraph/microsoft-graph-docs-contrib",
+  "upstream_path": "api-reference/v1.0/api/federatedidentitycredential-post.md",
+  "commit": "08b242e8a85a03db4c4d1f41564cfc81632d5cd1",
+  "commit_date": "2025-12-04",
+  "files_last_changed": "2025-12-04 (commit 08b242e8a85a03db4c4d1f41564cfc81632d5cd1, the last commit to the page); unchanged at the repository's head on 2026-10-30",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: Creative Commons Attribution 4.0 International (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/graph/api/application-post-federatedidentitycredentials?view=graph-rest-1.0",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "federatedidentitycredential-post.md": "api-reference/v1.0/api/federatedidentitycredential-post.md"
+  },
+  "not_copied": [
+    "The permissions include and the SDK snippet includes the page references (includes/permissions, includes/snippets): generated from the HTTP sample, which is inline in the page and is what the tests run.",
+    "The List, Get and Update reference pages for federatedIdentityCredential, which the chapter cites; everything else in microsoftgraph/microsoft-graph-docs-contrib."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 18650,
+      "sha256": "7183ef9749eb9b75e710a81a4c812a9405cc184f087500581a973e5929ac3f5e"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "federatedidentitycredential-post.md": {
+      "bytes": 7681,
+      "sha256": "0b643761fe61c16e7eb366287a274237ac7d20dfe6c0d96b5383d878c0798e61"
+    }
+  }
+}
