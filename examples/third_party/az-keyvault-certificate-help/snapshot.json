@@ -1,0 +1,42 @@
+{
+  "_comment": "A pinned, unmodified copy of two Az.KeyVault cmdlet help pages, as their source in Azure/azure-powershell, from which the Learn reference pages are generated: Add-AzKeyVaultCertificate (example 1 creates a self-signed certificate from a policy) and Set-AzKeyVaultCertificatePolicy (example 1 sets a certificate policy). Learn's tutorial 'Configure certificate autorotation in Key Vault' isn't published in a public MicrosoftDocs repository (it left MicrosoftDocs/azure-docs in August 2024), so its source can't be pinned; these examples are the closest public Microsoft source for creating and renewing a Key Vault certificate from PowerShell. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Microsoft samples: Az.KeyVault Add-AzKeyVaultCertificate and Set-AzKeyVaultCertificatePolicy (example 1)",
+  "upstream_repo": "https://github.com/Azure/azure-powershell",
+  "upstream_path": "src/KeyVault/KeyVault/help/Add-AzKeyVaultCertificate.md",
+  "also_upstream_path": [
+    "src/KeyVault/KeyVault/help/Set-AzKeyVaultCertificatePolicy.md"
+  ],
+  "commit": "3c18cdad2344172de6c9c9b08cb030cf20432dbc",
+  "commit_date": "2026-10-29",
+  "files_last_changed": "Add-AzKeyVaultCertificate.md 2024-04-23 (commit 78f546b8b062d8f9c8e24abffeeb7275b1923253); Set-AzKeyVaultCertificatePolicy.md 2024-09-24 (commit abbe9c2adeb67ff5f3c82c0c009beff228ef64e1); LICENSE.txt 2024-06-19 (commit 2cc54e95952bcfa4215d63d020d5f48c8e9d1c96)",
+  "retrieved": "2026-10-30",
+  "license": "Microsoft Software License Terms for Microsoft Azure PowerShell (LICENSE, copied from the repository root's LICENSE.txt).",
+  "documented_at": "https://learn.microsoft.com/powershell/module/az.keyvault/add-azkeyvaultcertificate",
+  "also_documented_at": [
+    "https://learn.microsoft.com/powershell/module/az.keyvault/set-azkeyvaultcertificatepolicy",
+    "https://learn.microsoft.com/azure/key-vault/certificates/tutorial-rotate-certificates"
+  ],
+  "path_map": {
+    "LICENSE": "LICENSE.txt (repository root)",
+    "Add-AzKeyVaultCertificate.md": "src/KeyVault/KeyVault/help/Add-AzKeyVaultCertificate.md",
+    "Set-AzKeyVaultCertificatePolicy.md": "src/KeyVault/KeyVault/help/Set-AzKeyVaultCertificatePolicy.md"
+  },
+  "not_copied": [
+    "The other Az.KeyVault help pages and the cmdlets' code; the versioned copies Learn renders from MicrosoftDocs/azure-docs-powershell (azps-16.4.0), which add front matter to the same text.",
+    "Learn's tutorial 'Configure certificate autorotation in Key Vault', whose source isn't in a public repository; the chapter cites it."
+  ],
+  "files": {
+    "Add-AzKeyVaultCertificate.md": {
+      "bytes": 8184,
+      "sha256": "db95cb636f1cd29081a140c94d90870edce17674772a1352f21d3853e477017a"
+    },
+    "LICENSE": {
+      "bytes": 22325,
+      "sha256": "1b1ad0ae1b6fd3e416cfff1d4524e85ee3750b1a80a37b7580e88591d980ab2b"
+    },
+    "Set-AzKeyVaultCertificatePolicy.md": {
+      "bytes": 13345,
+      "sha256": "125e6482f5f82263cda7a4fe4e8e3d9bb2537217fb78657fcc0bfe5da5666094"
+    }
+  }
+}

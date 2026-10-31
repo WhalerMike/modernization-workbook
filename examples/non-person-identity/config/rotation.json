@@ -1,0 +1,9 @@
+{
+  "_comment": "Design guidance: the program's certificate rotation rules (Chapter 04; Book 04, Chapter 05, 'Governing app registrations', stage 4). A rotation is raised raiseDays before the certificate expires and needs the approval of an owner who is an enabled member; the new certificate is added beside the old one; the old one is removed only after the owner records a verification and overlapDays have passed since the new one started. New certificates for apps created on or after the policy's effective date may last maxLifetimeDays (the policy's 180-day cap); older apps, while they are remediated, legacyMaxLifetimeDays (Book 02's annual rotation). Change this file only in a reviewed pull request.",
+  "raiseDays": 60,
+  "overlapDays": 7,
+  "approvalValidDays": 30,
+  "maxLifetimeDays": 180,
+  "legacyMaxLifetimeDays": 365,
+  "maxPlanAgeDays": 7
+}

@@ -1,0 +1,436 @@
+---
+title: "Chapter 09 — AI Agent Identities"
+description: "Govern AI agent identities as code, starting from Learn's own Microsoft Entra Agent ID samples (pinned in the repository) for creating a blueprint and its credentials, inheritable permissions, the agent Conditional Access policies and the Graph list requests, and adding what they leave to you: creation closed and read back, the production handshake as a reviewed record, no secret on a production blueprint, no allAllowed role inheritance and no standing privileged role, the sponsor fields Chapter 02 recorded filled and checked, the ten-business-day sponsor confirmation rule, agent block policies in report-only through a separate reviewed write path, the AI drift checks, and decision D-N6 as data, with service principals and managed identities under the same governance where agent identities aren't available."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-non-person-identity
+part: How
+series-order: 9
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-04-01
+review-status: pending
+---
+
+# Chapter 09 — AI Agent Identities
+
+*An agent can act at a speed no person can, so the questions the program asks of every identity (who answers for it, what it holds, how it proves itself, when it ends) are asked before it exists, written down, and checked by code every week.*
+
+::: {.callout-note}
+## In this chapter
+The checks and the plan behind the project plan's Phase 6 and Gate 6, "AI identities governed." You start with Learn's own Microsoft Entra Agent ID samples (creating a blueprint with a sponsor, owner and credential, inheritable permissions, the agent Conditional Access policies and the Graph list requests), which the repository keeps as pinned copies, and you send them to a fake Graph to see what they do and what they leave out. Then you use `examples/non-person-identity` for the rest: creation closed (N6.1), the production handshake as a reviewed record (N6.2), agent credentials (N6.3), least privilege (N6.4), the sponsor mover and leaver rule (N6.5), agent Conditional Access in report-only (N6.6) and the AI drift checks (N6.7), with decision D-N6 as data. Most of what this chapter touches is new or in preview, and every capability below carries its release stage and its US Government availability. Lab 1 runs on a laptop with no tenant; Lab 2 uses a test tenant.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can check, from code, every AI identity the program knows about against the plan's tasks N6.1 to N6.7, fill in and verify the sponsor fields Chapter 02 recorded for N1.2, hand orphaned agents to Chapter 02's orphan rule, and produce the two agent Conditional Access policies as a reviewed, report-only plan. You can say, for each rule, whether it is Learn's, Learn's sample, or the program's design, and which capabilities it depends on in the target cloud.
+
+**Audience.** Developers who build the project's AI identity code, the identity governance officer, the Chief AI Officer's staff who keep the AI use-case inventory, security operations, who own the drift findings, and the ISSOs who review the evidence. You should read PowerShell 7 and know Chapters 01 and 02. You don't need a tenant until Lab 2.
+
+## The context the code depends on
+
+### What Microsoft Entra Agent ID is, and its stage
+
+Agent ID gives AI agents their own identities: an **agent identity blueprint** holds the credentials and creates **agent identities**, special single-tenant service principals that hold the permissions and appear in the logs; the blueprint acquires tokens on their behalf, so a compromise of its credential affects every agent under it.[^np09-agent-sps] Learn says Agent ID is available for all Microsoft Entra customers, and that extending Entra's security features to agents (Conditional Access, ID Protection, governance) requires Microsoft Agent 365.[^np09-whatis] The platform became generally available in April 2026 and sponsor lifecycle workflows in May 2026 ([Book 17, Chapter 04](../../../books/b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds)). The pieces this chapter uses are at different stages:
+
+| Capability | Release stage | GCC | GCC High, DoD |
+|---|---|---|---|
+| Blueprints, agent identities, sponsors and owners (Graph v1.0) | GA; the admin center wizards are labeled preview[^np09-create-blueprint] | Agent registry, access packages and sponsor lifecycle policies listed as available[^np09-a365-sd] | Not published: no Agent ID entry on Entra's Azure Government list[^np09-feature] |
+| Conditional Access for agent identities | Preview (the policy builder's label); Block is the only grant and agent risk the only condition[^np09-ca-target] | Listed "for agents with delegated access"; app-only agent policies not listed[^np09-a365-sd] | Not published |
+| Agent risk, ID Protection for agents | Preview; Entra ID P2 during the preview[^np09-manage] | Listed with Conditional Access, delegated access[^np09-a365-sd] | Not published |
+| Agent Conditional Access properties in Graph | Beta only[^np09-graph-whatsnew] | — | — |
+| Sponsor tasks in Lifecycle Workflows | GA (May 2026, [Book 17, Chapter 05](../../../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#release-stage-and-government-cloud-availability)); Agent 365 or Microsoft 365 E7[^np09-sponsor-tasks] | Listed as available[^np09-a365-sd] | Not published (Lifecycle Workflows exist there; the agent tasks need Agent 365)[^np09-licensing] |
+
+Agent 365's service description says it meets all FedRAMP High controls its assessor reviewed and that final authorization is pending.[^np09-a365-sd] GCC uses the worldwide endpoints, `graph.microsoft.com` and `login.microsoftonline.com`; GCC High and DoD use `graph.microsoft.us` and `dod-graph.microsoft.us`.[^np09-deployments]
+
+### Decision D-N6 as data
+
+The plan's D-N6 (the CIO, with the Chief AI Officer) sets which AI identity capabilities the program builds on: agent identities where generally available in the agency's cloud, with GCC's documented subset; service principals and managed identities under the same governance where agent identities aren't available; preview capabilities as watch items. The code holds it as data, `config/agent-id-capabilities-ch09.json`, with each cloud's stage and the Learn page that states it, and status *Proposed* until the decision is made (research gaps, row 86). In `gcc` and `global` the code runs in **AgentId** mode and reads blueprints and agent identities. In `gcchigh` and `dod` it runs in **Fallback** mode: it sends no agent identity read, and the same rules run on the service principals and managed identities the inventory names, with sponsors from the inventory record, because the directory has nowhere to put one ([Book 17, Chapter 05](../../../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#where-the-agent-features-arent-available)). Preview capabilities are reported, never enforced. *Design guidance.*
+
+### The program's rules the code holds
+
+The design is Book 17's, Chapters 04 to 07 and 10. The code holds these rules (*Design guidance*), each as a finding with a stable ID:
+
+- **Creation closed (N6.1).** **Users can create agent blueprints** is set to No, so only Agent ID Developer and Agent ID Administrator can create one,[^np09-delegate] [^np09-create-blueprint] and **Users can register applications** stays No, so an agent can't arrive as an ordinary app registration. Learn's planning guidance says not to use a service principal for an AI agent,[^np09-plan-arch] so an agent on an app registration is routed to the blueprint path or carries a recorded D-N6 fallback reason ([Book 17, Chapter 06](../../../books/b17-ai-identity/06-credentials-and-least-privilege.md#admin-consent-and-the-scuba-consent-baseline)).
+- **The production handshake (N6.2)** is a reviewed record, made before the agent identity exists: blueprint, federal sponsor and sponsoring group, a technical owner who isn't the sponsor, the consented permissions, the Conditional Access policies that cover it, its placement, its use case in the AI use-case inventory, its access mode, the reviewer and the date. Learn's best practices describe the same handshake ([Book 17, Chapter 05](../../../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#creation)).
+- **Credentials (N6.3).** A managed identity as the blueprint's federated credential, else federation, else a certificate; Learn recommends the managed identity for production and says secrets aren't recommended there.[^np09-create-blueprint] No production blueprint holds a client secret ([Book 17, Chapter 06](../../../books/b17-ai-identity/06-credentials-and-least-privilege.md#no-stored-secrets)).
+- **Least privilege (N6.4).** The access mode is chosen first; inheritance is never `allAllowed` for application roles, because that makes any future grant to the blueprint a grant to every agent;[^np09-inherit-proc] no AI identity holds a standing privileged role. Microsoft blocks some roles and permissions for agents,[^np09-authz] and that is a floor, not least privilege ([Book 17, Chapter 06](../../../books/b17-ai-identity/06-credentials-and-least-privilege.md#privileged-roles-for-ai-none-standing)).
+- **Sponsors (N1.2, N6.5).** A federal employee mastered in HR, a small sponsoring group, a technical owner who isn't the sponsor and a matching inventory record. When a sponsor moves or leaves, the sponsorship tasks run in the HR-driven workflows, and the new sponsor confirms within **ten business days**; an unconfirmed transfer makes the agent orphaned ([Book 17, Chapter 05](../../../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#when-the-sponsor-moves-or-leaves)).
+- **Conditional Access (N6.6).** Two agent policies in report-only: block all agent identities except those approved by a custom security attribute, which only the handshake sets; and block high-risk agents, a preview watch item ([Book 17, Chapter 06](../../../books/b17-ai-identity/06-credentials-and-least-privilege.md#the-token-subject-decides-which-policy-applies)). Learn's own pattern is the same: block all agent identities, exclude approved ones by custom security attribute, start in report-only.[^np09-ca-autonomous]
+- **Drift (N6.7).** An agentic system with no governed identity, a shadow AI identity, an AI identity with no accountable human, and a credential added outside the pipeline ([Book 17, Chapter 07](../../../books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md#drift-comparing-what-was-declared-with-what-is-observed)), with the priorities Book 17 pins: P1, P1, P2 and P1.
+
+## Start with Microsoft's sample
+
+### What Microsoft gives you
+
+Learn's *Create an agent identity blueprint* has HTTP samples that create a blueprint with a sponsor and owner, add a managed identity as its federated identity credential, add a password, set an identifier URI and create the blueprint principal.[^np09-create-blueprint] *Configure inheritable permissions for agent identity blueprints* has samples that add, change and delete inheritable scopes and roles.[^np09-inherit-proc] *Disable agent identities in your tenant* has the Microsoft Graph bodies of three agent Conditional Access policies, report-only.[^np09-disable] The Graph API reference has a request sample for listing blueprints, agent identities and each one's sponsors.[^np09-bp-list] [^np09-ai-list] [^np09-bp-sponsors] [^np09-ai-sponsors] Microsoft Entra PowerShell also has Agent ID cmdlets, such as `Get-EntraAgentIdentity` and `New-EntraAgentIdentityBlueprint`;[^np09-entra-ps] this chapter calls Graph directly with the API reference's paths, so every request is in its call list.
+
+### The pinned copies
+
+The samples exist only inside Learn pages, so the repository pins the pages' sources, unmodified: [`examples/third_party/entra-agent-id-pages`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/third_party/entra-agent-id-pages), three pages from MicrosoftDocs/entra-docs at commit `7f78b50` (October 30, 2026), MIT;[^np09-src-entra] and [`examples/third_party/graph-agent-id-api-pages`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/third_party/graph-agent-id-api-pages), four API reference pages and the generated permission tables they include, from microsoftgraph/microsoft-graph-docs-contrib at commit `bb35043`, code MIT and documentation Creative Commons Attribution 4.0.[^np09-src-graph] Each `snapshot.json` records every file's SHA-256 and its git blob hash, checked against the upstream tree, and a unit test checks the hashes. The weekly source watch reports new commits to each of the eleven upstream files. Updating a copy is a reviewed pull request.
+
+`tests/AgentIdSampleHarness.ps1` finds each HTTP sample in the page source, parses the method, URL, headers and body, and sends it unmodified to the chapter's fake Graph (placeholders such as `<id>` are the only thing replaced, with fixture values). The fake serves the fictional tenant and accepts the samples' writes so a test can run the chapter's checks on the result.
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/NpiAgentId.Tests.ps1`.
+
+| Learn's sample, as published | Why it matters | What `examples/non-person-identity` adds |
+|---|---|---|
+| Lists blueprints and agent identities, one object type each | — | Kept as the model for the reads, every page followed |
+| Reads one page; Learn's maximum is 100 objects a page[^np09-ai-list] | A tenant with more agents than one page is half-read | Every next link followed, only on the cloud's own host |
+| Hard-codes `graph.microsoft.com` | The host is wrong for GCC High and DoD | The host from the cloud table, checked on every request |
+| List agentIdentity sponsors returns directory objects with an ID only, and names only the application permission `AgentIdentity.ReadWrite.All` | A write permission for a read, and no way to tell who the sponsor is | Sponsors read with `$expand=sponsors($select=id)` on the list, under `AgentIdentity.Read.All`, then each person read once (research gaps, row 82) |
+| List agentIdentityBlueprint sponsors names `Application.Read.All`, where the blueprint's other reads name `AgentIdentityBlueprint.Read.All` | Two least-privileged permissions for one object | Both declared, each on its own call (row 83) |
+| Creates a blueprint with the same person as sponsor and owner | The person who decides the agent should exist would hold its keys | NPI-AI-09 on any blueprint or agent whose sponsor is also its owner |
+| Adds a managed identity as the federated credential, and a password | Learn recommends the first for production and not the second[^np09-create-blueprint] | Credential kind read from the blueprint; a secret on a production blueprint is NPI-AI-10 |
+| Configures inheritable permissions first with `allAllowed` for scopes and roles | Every future grant becomes every agent's | NPI-AI-13: `allAllowed` roles a finding, `allAllowed` scopes a warning |
+| Puts the type cast before the blueprint's ID; the API reference puts it after; allows 50 resource apps where *Manage agent identities* says 10 | Two paths and two limits for one property[^np09-inherit-proc] [^np09-manage] | The API reference's path (row 84) |
+| Updates and deletes with `PATCH` and `DELETE` | Changes this chapter never makes | The only write is a report-only `POST`; `PATCH`, `PUT` and `DELETE` are never sent |
+| *Block agent identity authentication* blocks every agent identity, with no exclusion | Enforced, it blocks the approved agents too | The reviewed policy excludes approved agents by the custom security attribute; NPI-AI-18 checks its shape |
+| Nothing about sponsors' lifecycle, the inventory, the handshake, standing roles, workflows or drift | Most of Phase 6 | NPI-AI-01 to NPI-AI-23, below |
+
+**The verdict.** Use Learn's list requests as the model for the reads, its managed identity credential as the model for N6.3, and its report-only block policy as the start of N6.6. Don't use the create and inheritance samples as written for production, and don't enforce the block policy without the exclusion.
+
+## The code: what `examples/non-person-identity` adds
+
+This chapter's code is `powershell/NpiAgentId/NpiAgentId.psm1`, two entry scripts (`Invoke-NpiAgentId.ps1`, which only reads, and `Invoke-NpiAgentCaAction.ps1`, the write path), its own call list `config/calls-ch09.json`, the D-N6 table `config/agent-id-capabilities-ch09.json`, the program's rules `config/agent-rules-ch09.json`, and the two reviewed policies in `config/agent-ca-ch09/`. It imports NpiCore and NpiOwnership and changes neither: the cloud table and the paged, host-checked reader drive this chapter's own calls.
+
+### The inputs
+
+| File | Who keeps it | What it holds |
+|---|---|---|
+| Chapter 01's and Chapter 02's run folders | The pipeline | The register and `ai-sponsor-fields.json`, each checked against its manifest, and the ownership run checked against the register it was made from |
+| `ai-use-case-inventory.csv` | The Chief AI Officer's staff | `UseCaseId`, `Name`, `Classification`, `Stage`, `RecordId`, `IdentityType`, `IdentityObjectId`, `BlueprintAppId`, `FederalSponsorUpn`, `SponsoringGroupId`, `TechnicalOwnerUpn`, `Placement` |
+| `handshakes.json` | The identity governance officer | One reviewed record per production identity: the fields of N6.2, `Environment`, `CredentialPlan`, `TimeBoundRoles` with end dates, and a `FallbackReason` where D-N6 applies |
+| `creation-setting.json` | Identity engineering | The reading of **Users can create agent blueprints**: value, who read it, when, where, the evidence |
+| `sponsor-events.csv`, `sponsor-confirmations.csv` | HR, through the identity governance office | Sponsors' mover and leaver events; each new sponsor's confirmation, by agent |
+| `pipeline-changes.csv` | The change board | Approved credential changes with their windows |
+
+### The reads
+
+`Read-NpiAgentEstate` reads, through a reader for the `agent-id` task: the authorization policy; in AgentId mode, the blueprints with their sponsors, owners, federated credentials and inheritable permissions, and the agent identities with their sponsors (expanded), owners, custom security attributes, app role assignments and active directory roles; and, in both modes, the beta Conditional Access policies, the Lifecycle Workflows and their tasks, the last 30 days of application-management audit events, and the directory roles of each service principal the inventory names. Learn documents no Graph property for **Users can create agent blueprints** (the authorization policy's `defaultUserRolePermissions` has `allowedToCreateApps`, not a blueprint setting), so that setting comes from a dated reading a person makes in the admin center (research gaps, row 81).[^np09-authz-policy]
+
+### The checks
+
+| Rule | Severity | What it flags | Plan |
+|---|---|---|---|
+| NPI-AI-01 | Finding | **Users can create agent blueprints** not read as No in the last 90 days | N6.1 |
+| NPI-AI-02 | Finding | Users can register applications, or user consent beyond the low-risk policy | N6.1 |
+| NPI-AI-03 | Warn / Info | An agent on an ordinary service principal where agent identities are available, with no recorded D-N6 fallback reason (Info in a fallback cloud; Finding when a record names an agent identity the cloud doesn't have) | N6.1, D-N6 |
+| NPI-AI-04 | Finding | An AI identity with a record but no handshake | N6.2 |
+| NPI-AI-05 | Finding | A handshake that is incomplete, names another blueprint, placement or use case, or makes the sponsor the technical owner | N6.2 |
+| NPI-AI-06 | Finding | An agent identity created before its handshake was reviewed | N6.2 |
+| NPI-AI-07 | Finding (P2) / Warn | No accountable human: no sponsor who is an enabled member employee; no sponsoring group (Warn) | N1.2, N6.7 |
+| NPI-AI-08 | Finding | The record and the directory name different sponsors or groups | N1.2 |
+| NPI-AI-09 | Finding | No technical owner, or the sponsor is also the owner | N1.2 |
+| NPI-AI-10 | Finding / Info | A client secret on a production blueprint or on the app registration of a fallback service principal (Info on a blueprint tagged Development or Test) | N6.3 |
+| NPI-AI-11 | Warn | A production blueprint whose best credential is a certificate | N6.3 |
+| NPI-AI-12 | Finding | No access mode in the handshake | N6.4 |
+| NPI-AI-13 | Finding / Warn | Inheritable roles `allAllowed` (Finding); inheritable scopes `allAllowed` (Warn) | N6.4 |
+| NPI-AI-14 | Finding / Info | An active directory role with no end date recorded in the handshake (Info when time-bound and recorded) | N6.4 |
+| NPI-AI-15 | Warn / Finding | An application permission outside the handshake's consent list, or on an on-behalf-of agent; a high-privilege Graph permission on a fallback service principal (Finding) | N6.4 |
+| NPI-AI-16 | Finding / Info | A sponsor's move or leave unconfirmed after ten business days: an orphaned agent (Info, with the due date, inside the window) | N6.5 |
+| NPI-AI-17 | Finding | No enabled mover or leaver workflow with the transfer and manager email tasks | N6.5 |
+| NPI-AI-18 | Finding / Warn | The block-unapproved policy missing or changed; enforced while preview (Warn) | N6.6 |
+| NPI-AI-19 | Warn | The high-risk block missing or changed: a preview watch item | N6.6 |
+| NPI-AI-20 | Finding / Warn | The approval attribute without a complete handshake (Finding); a complete handshake without the attribute (Warn) | N6.6 |
+| NPI-AI-21 | Finding (P1) | An agentic system, deployed or piloted, with no governed identity | N6.7 |
+| NPI-AI-22 | Finding (P1) | A shadow AI identity: an agent identity or blueprint no record or handshake names | N6.7 |
+| NPI-AI-23 | Finding (P1) | A credential added to an AI identity with no matching change record | N6.7 |
+
+Every finding has a stable ID, `<rule>:<object>`, as in Chapter 02. Two rules need comment.
+
+**The ten business days.** `Get-NpiBusinessDayDeadline` counts weekdays that aren't federal holidays from the event's effective date; the holiday list is in `agent-rules-ch09.json`. A leaver on October 9, 2026 is due on October 26, because October 12 is a holiday. The confirmation comes from the program's record, because the Lifecycle Workflows task makes the manager the sponsor without asking ([Book 17, Chapter 05](../../../books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md#when-the-sponsor-moves-or-leaves); research gaps, row 87). An orphaned agent goes to `orphan-candidates.json` for Chapter 02's rule: the identity governance officer confirms, then a person disables. Disabling is never automatic.
+
+**Standing privileged roles.** Learn marks privileged roles with `isPrivileged`, on beta and in preview,[^np09-privileged] and doesn't publish the full list of roles an agent may hold.[^np09-authz] The code doesn't decide which roles are privileged: any active directory role on an AI identity is a finding unless the handshake records it with an end date and an approval (research gaps, row 88).
+
+### The sponsor fields
+
+Chapter 02 recorded four empty fields for every AI identity it found. This chapter fills them in `ai-identities.json` (federal sponsor, sponsoring group, technical owner, inventory record, plus the use case, handshake, access mode, approval and sponsor state) for every agent identity, blueprint and fallback service principal, and checks them with NPI-AI-07 to NPI-AI-09. A sponsor counts only if the person is an enabled member whose `employeeType` is `Employee`; that attribute as the HR marker is the program's assumption (research gaps, row 89).
+
+### The agent Conditional Access plan and the separate write path
+
+`New-NpiAgentCaPlan` compares the two reviewed policies with the tenant's: `Create` where there's none of that name, `InPlace` or `Differs` where there is, `NotAvailable` where D-N6 says agent Conditional Access isn't published. It refuses a reviewed file that isn't report-only Block. The plan is written as `agent-ca-plan.json` with the tenant, cloud and date, and the run prints its SHA-256.
+
+`Invoke-NpiAgentCaAction.ps1` is the only code in this chapter that writes. It refuses to run unless the plan's SHA-256 is the approved one, the plan is for this tenant and cloud and no more than seven days old, every write is a `POST` to the cloud's own beta Conditional Access endpoint with state `enabledForReportingButNotEnforced` and Block alone, and a live run is a person signed in, delegated, with Conditional Access Administrator. Before each write it re-reads the policies and skips if one of that name appeared since review. Without `-Apply` it reports `WouldSend`. It never turns a policy on: that is a decision for when the agent targets leave preview in the agency's cloud.
+
+| Task | Calls | Permissions or role |
+|---|---|---|
+| `agent-id` (read) | 16 GETs: the authorization policy; blueprints, their sponsors, owners, federated credentials and inheritable permissions; agent identities, their owners, attributes, app role assignments; role assignments; users; Conditional Access policies (beta); workflows and their tasks; directory audits | `AgentIdentity.Read.All`, `AgentIdentityBlueprint.Read.All`, `Application.Read.All`, `AuditLog.Read.All`, `CustomSecAttributeAssignment.Read.All`, `LifecycleWorkflows-Workflow.Read.All`, `LifecycleWorkflows-Workflow.ReadBasic.All`, `Policy.Read.All`, `RoleManagement.Read.Directory`, `User.Read.All`; a person running it needs Attribute Assignment Reader to see the attributes[^np09-csa] |
+| `agent-ca-apply` (write, delegated only) | Re-read the policies (beta); `POST /identity/conditionalAccess/policies` (beta) | `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`; Conditional Access Administrator[^np09-ca-create] |
+
+### The tests
+
+Pester 5 under PowerShell 7. This chapter's are in `tests/NpiAgentId.Tests.ps1`, 62 tests: 13 send Learn's pinned samples to the fake as published; 49 cover the call list and its least-privilege test (each task's declaration equal to the union of its calls, the read task GET only and holding nothing that ends in `ReadWrite`), D-N6 in each cloud, the inputs and their manifests, every rule, the business-day count, stable IDs, the plan and its deterministic hash, the writer's refusals, dry run, `-Apply`, the precheck, and the entry scripts.
+
+::: {.callout-important}
+## Illustrative code
+The commands below send Learn's pinned samples to a fake and run the example against a fictional tenant. `-Apply` in Lab 1 changes only the fake, in memory. Agent targeting in Conditional Access and agent risk are preview; agent identities aren't published for GCC High or DoD. Review the code, and run Lab 2 in a test tenant, before it reads a real one.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-identity`, with Chapter 01's `out/inventory` and Chapter 02's `out/ownership` in place (Lab 1 of [Chapter 02](02-ownership-and-the-orphan-rule.md#lab-1-fixtures-no-tenant), step 3).
+
+1. **Send Learn's samples to the fake:**
+
+   ```powershell
+   Invoke-Pester -Path tests/NpiAgentId.Tests.ps1 -FullNameFilter '*Learn*' -Output None -PassThru |
+       Select-Object PassedCount, FailedCount, NotRunCount
+   ```
+
+   `PassedCount 13`, `FailedCount 0`, `NotRunCount 49`. Read the test for *Block agent identity authentication*: the shape check finds one problem in Learn's body, "no exclusion for approved agents".
+
+2. **List what each task needs:**
+
+   ```powershell
+   Import-Module ./powershell/NpiAgentId/NpiAgentId.psm1
+   foreach ($t in 'agent-id', 'agent-ca-apply') { $p = Get-NpiAgentRequiredPermission -Task $t; "$t : " + ($p.GraphPermissions -join ', ') }
+   ```
+
+   ```text
+   agent-id : AgentIdentity.Read.All, AgentIdentityBlueprint.Read.All, Application.Read.All, AuditLog.Read.All, CustomSecAttributeAssignment.Read.All, LifecycleWorkflows-Workflow.Read.All, LifecycleWorkflows-Workflow.ReadBasic.All, Policy.Read.All, RoleManagement.Read.Directory, User.Read.All
+   agent-ca-apply : Policy.Read.All, Policy.ReadWrite.ConditionalAccess
+   ```
+
+3. **Read D-N6 for each cloud:**
+
+   ```powershell
+   'global','gcc','gcchigh','dod' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
+       [pscustomobject]@{ Cloud = $_; Mode = $c.Mode; AgentIdentities = $c.AgentIdentities.stage; AgentCA = $c.AgentConditionalAccess.stage; SponsorWorkflows = $c.SponsorWorkflows.stage } } | Format-Table
+   ```
+
+   ```text
+   Cloud   Mode     AgentIdentities AgentCA                        SponsorWorkflows
+   -----   ----     --------------- -------                        ----------------
+   global  AgentId  GA (April 2026) Preview (policy builder label) GA (May 2026)
+   gcc     AgentId  GA (April 2026) Preview (policy builder label) GA (May 2026)
+   gcchigh Fallback Not published   Not published                  Not published
+   dod     Fallback Not published   Not published                  Not published
+   ```
+
+4. **Check the AI identities and build the plan:**
+
+   ```powershell
+   ./Invoke-NpiAgentId.ps1 -Cloud gcc -RegisterRun out/inventory -OwnershipRun out/ownership -FixturePath tests/fixtures/ch09/agent-estate.json -InputPath tests/fixtures/ch09/inputs -OutputPath out/agent-id
+   ```
+
+   ```text
+   D-N6 (Proposed): AgentId mode in cloud 'gcc'; agent Conditional Access Preview (policy builder label); agent risk Preview
+   AI identities: 8 checked (4 AgentIdentity, 3 AgentIdentityBlueprint, 1 ServicePrincipal); Chapter 02 sponsor fields filled: 2 of 2
+   Findings: 22 Finding (4 P1, 2 P2), 6 Warn, 4 Info. Orphan candidates for Chapter 02: 2
+   Agent CA plan: Unapproved InPlace, HighRisk Create; nothing sent
+   Plan SHA-256: 64d649cf262c76c474c0f49ba699b2df02918d565c1279ae4187db2eb267785a
+   ```
+
+   The plan's hash is the same on every run with these inputs.
+
+5. **Read the findings:**
+
+   ```powershell
+   Get-Content out/agent-id/findings.json -Raw | ConvertFrom-Json | Where-Object Severity -eq 'Finding' | Group-Object Rule | Format-Table Name, Count
+   ```
+
+   NPI-AI-05, -06, -12 and -14 once each, all on Case Triage Agent: its handshake lacks a sponsoring group, Conditional Access coverage and an access mode, names the sponsor as technical owner, was reviewed a month after the agent was created, and the agent holds Exchange Administrator with no end date. NPI-AI-07 twice (P2: Sandbox Helper and Pilot Sandbox Blueprint, whose only sponsor is a contractor), NPI-AI-08 once (Records Search: the record names Bob, the directory Carol), NPI-AI-09 four times, NPI-AI-10 twice (Case Triage Blueprint's secret; Correspondence Drafting's app registration), NPI-AI-13 once (Case Triage Blueprint inherits all Graph roles), NPI-AI-15 once (Correspondence Drafting holds `Directory.ReadWrite.All`), NPI-AI-16 once (Records Search: Bob left on October 9 and nobody confirmed by October 26), NPI-AI-17 once (the mover workflow has no transfer task), NPI-AI-20 once (Sandbox Helper carries the approval attribute with no handshake), and the P1 drift: NPI-AI-21 (Claims Summarizer, piloted, no identity), NPI-AI-22 twice (Sandbox Helper and Pilot Sandbox Blueprint) and NPI-AI-23 (a secret added to Case Triage Blueprint on October 20 by a person, outside any change window). Benefits Q&A Agent and its blueprint pass every rule.
+
+6. **Read the sponsor fields Chapter 02 recorded, filled:**
+
+   ```powershell
+   Get-Content out/agent-id/ai-identities.json -Raw | ConvertFrom-Json | Format-Table Name, FederalSponsor, TechnicalOwner, InventoryRecord, Handshake, SponsorState
+   ```
+
+   ```text
+   Name                     FederalSponsor        TechnicalOwner        InventoryRecord Handshake      SponsorState
+   ----                     --------------        --------------        --------------- ---------      ------------
+   Benefits Q&A Agent       erin@contoso.example  alice@contoso.example CMDB-4001       HS-001         None
+   Case Triage Agent        carol@contoso.example carol@contoso.example CMDB-4002       HS-002         AwaitingConfirmation until 2026-11-10
+   Records Search Agent     carol@contoso.example alice@contoso.example CMDB-4003       HS-003         Orphaned
+   Sandbox Helper                                 alice@contoso.example                                None
+   Benefits Agent Blueprint erin@contoso.example  alice@contoso.example CMDB-4001       HS-001; HS-003
+   Case Triage Blueprint    carol@contoso.example carol@contoso.example CMDB-4002       HS-002
+   Pilot Sandbox Blueprint                        alice@contoso.example
+   Correspondence Drafting  erin@contoso.example  alice@contoso.example CMDB-1100       HS-004         None
+   ```
+
+7. **Run the D-N6 fallback in GCC High** (Chapters 01 and 02 again, in that cloud):
+
+   ```powershell
+   ./Invoke-NpiInventory.ps1 -Cloud gcchigh -FixturePath tests/fixtures/estate.json -OutputPath out/inventory-gcchigh
+   ./Invoke-NpiOwnership.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership-gcchigh
+   ./Invoke-NpiAgentId.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -OwnershipRun out/ownership-gcchigh -FixturePath tests/fixtures/ch09/agent-estate.json -InputPath tests/fixtures/ch09/inputs -OutputPath out/agent-id-gcchigh
+   ```
+
+   The last command prints:
+
+   ```text
+   D-N6 (Proposed): Fallback mode in cloud 'gcchigh'; agent Conditional Access Not published; agent risk Not published
+   AI identities: 1 checked (1 ServicePrincipal); Chapter 02 sponsor fields filled: 0 of 2
+   Findings: 7 Finding (2 P1, 0 P2), 1 Warn, 2 Info. Orphan candidates for Chapter 02: 0
+   Agent CA plan: Unapproved NotAvailable, HighRisk NotAvailable; nothing sent
+   Plan SHA-256: 8ad4b483cabba44ee75ed095550405e0f77bc97b5a96f256715b6a5e7a071de6
+   ```
+
+   No agent identity read is sent (`out/agent-id-gcchigh/manifest.json` lists none). Correspondence Drafting gets the same credential and permission findings as in GCC; three records that name agent identities become NPI-AI-03 findings, because the cloud has none.
+
+8. **Dry-run the agent Conditional Access plan with its approved hash:**
+
+   ```powershell
+   $sha = (Get-FileHash out/agent-id/agent-ca-plan.json -Algorithm SHA256).Hash.ToLower()
+   ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-dryrun
+   ```
+
+   ```text
+   DryRun: 1 WouldSend
+     WouldSend HighRisk POST https://graph.microsoft.com/beta/identity/conditionalAccess/policies
+   ```
+
+9. **Apply it to the fake, then try a hash nobody approved:**
+
+   ```powershell
+   ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-apply -Apply
+   ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-x
+   ```
+
+   `Apply: 1 Sent`, with `Created ca000000-0000-4000-8000-000000000103 report-only; review its report-only results before any change of state`; then the refusal, `The plan's SHA-256 is 64d649cf…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+
+10. **Run the tests:**
+
+    ```powershell
+    Invoke-Pester -Path tests
+    ```
+
+**Expected result:** 159 tests passing, and `out/agent-id/manifest.json` listing 45 requests, the D-N6 mode, the SHA-256 of the register, of Chapter 02's sponsor fields and of each input. Delete `out` when you're done.
+
+## Lab 2: test tenant
+
+Use a test tenant in the worldwide or GCC cloud, never production, with fictional people, licensed for Agent 365 (or Microsoft 365 E7) with Entra ID P1, and P2 for agent risk.[^np09-ca-agents] [^np09-manage] Run Chapters 01 and 02's Lab 2 first (`out/inventory-test`, `out/ownership-test`).
+
+1. **Read and record the creation setting.** In the admin center, **Entra ID** > **Users** > **User settings**, read **Users can create agent blueprints** as at least a Cloud Application Administrator,[^np09-delegate] set it to No in the test tenant, and record the reading in `creation-setting.json`.
+2. **Make one governed agent.** With Agent ID Developer, create a test blueprint from Learn's Graph sample with a sponsor who is not the owner, add a managed identity as its federated credential, create its principal and one agent identity,[^np09-create-blueprint] write its handshake record and inventory row, and set the approval attribute (`AgentAttributes`, `AgentApprovalStatus`, `Production_Approved`) as an Attribute Assignment Administrator.[^np09-ca-autonomous]
+3. **Run the check** with an app holding only the `agent-id` permissions:
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+   ./Invoke-NpiAgentId.ps1 -Cloud gcc -RegisterRun out/inventory-test -OwnershipRun out/ownership-test -InputPath <inputs> -OutputPath out/agent-id-test
+   ```
+
+   Confirm that `$expand=sponsors` returns sponsors under `AgentIdentity.Read.All` (research gaps, row 82), and that `agent-ca-plan.json` lists both policies as `Create`.
+4. **Check the policy JSON against the admin center.** Create the block-unapproved policy once in the admin center, report-only, read it back from the beta endpoint, and compare the `agentIdServicePrincipalFilter` rule and the property's location with `config/agent-ca-ch09/` (row 85). Delete that hand-made policy.
+5. **Dry-run, then apply,** signed in as a person with Conditional Access Administrator:
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Policy.Read.All, Policy.ReadWrite.ConditionalAccess
+   ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id-test/agent-ca-plan.json -ApprovedSha256 <sha> -OutputPath out/agent-ca-test
+   ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id-test/agent-ca-plan.json -ApprovedSha256 <sha> -OutputPath out/agent-ca-test-apply -Apply
+   ```
+
+   The two policies appear as **Report-only**. Review their report-only results for the test agent.
+6. **Back it out.** As a person in the admin center: delete the two policies, remove the attribute, disable then delete the test agent identity and blueprint, set the creation setting back if the tenant needs it, and delete the `out` folders: they name people. The code deletes nothing.
+
+## Verified facts
+
+| Item | Value | US Government clouds | Stage | Source |
+|---|---|---|---|---|
+| Users can create agent blueprints | Admin center user setting; default: users can create blueprints; No restricts to Agent ID Developer and Agent ID Administrator | — | GA | [^np09-delegate] [^np09-create-blueprint] |
+| Authorization policy | `GET /policies/authorizationPolicy`, `Policy.Read.All`; `allowedToCreateApps` is **Users can register applications**; no blueprint property on v1.0 or beta | L4 and L5 | v1.0 | [^np09-authz-policy] |
+| List blueprints | `GET /applications/microsoft.graph.agentIdentityBlueprint`; `AgentIdentityBlueprint.Read.All`; nonowners need Agent ID Administrator, delegated | Not stated on the page | v1.0 | [^np09-bp-list] |
+| Blueprint sponsors; owners | Sponsors: `Application.Read.All`; owners: `AgentIdentityBlueprint.Read.All` | Owners: L4 and L5; sponsors: not stated | v1.0 | [^np09-bp-sponsors] [^np09-bp-owners] |
+| Blueprint credentials | Managed identity as federated credential recommended for production; secrets and certificates not recommended for production; Agent ID Administrator needed to add a secret or certificate | — | v1.0; admin center wizard preview | [^np09-create-blueprint] |
+| Inheritable permissions | `GET /applications/{id}/microsoft.graph.agentIdentityBlueprint/inheritablePermissions`, `AgentIdentityBlueprint.Read.All`; `allAllowed` includes future grants; 50 resource apps (procedure) or 10 (*Manage agent identities*) | — | v1.0 | [^np09-inherit-list] [^np09-inherit-proc] [^np09-manage] |
+| List agent identities | `GET /servicePrincipals/microsoft.graph.agentIdentity`; `AgentIdentity.Read.All`; page size 100; `agentIdentityBlueprintId`, `servicePrincipalType` `ServiceIdentity` | Not stated | v1.0 | [^np09-ai-list] [^np09-ai-resource] |
+| Agent identity sponsors; owners | Sponsors: application `AgentIdentity.ReadWrite.All` only, delegated not supported; owners: `AgentIdentity.Read.All` | Not stated | v1.0 | [^np09-ai-sponsors] [^np09-ai-owners] |
+| Custom security attributes | `$select=customSecurityAttributes`; `CustomSecAttributeAssignment.Read.All` and `Application.Read.All`; Attribute Assignment Reader | — | v1.0 | [^np09-csa] |
+| App role assignments | `GET /servicePrincipals/{id}/appRoleAssignments`, `Application.Read.All` | L4 and L5 | v1.0 | [^np09-approles] |
+| Directory role assignments | `GET /roleManagement/directory/roleAssignments`, `RoleManagement.Read.Directory`; `isPrivileged` on role definitions is beta, preview | L4 and L5 | v1.0; `isPrivileged` beta | [^np09-roles] [^np09-privileged] |
+| Roles and permissions blocked for agents | Global Administrator, Privileged Role Administrator, User Administrator; `Application.ReadWrite.All`, `RoleManagement.ReadWrite.All`, `User.ReadWrite.All`, `Directory.AccessAsUser.All` among others; no role-assignable groups | — | — | [^np09-authz] |
+| Conditional Access for agents | Block only; agent risk the only condition for agent identities; not applied when a blueprint gets a Graph token to create agents; Agent 365 with Entra ID P1, or E7 | GCC: delegated access listed; GCC High, DoD: not published | Preview | [^np09-ca-agents] [^np09-ca-target] [^np09-a365-sd] |
+| Agent CA properties | `includeAgentIdServicePrincipals`, `excludeAgentIdServicePrincipals`, `agentIdServicePrincipalFilter`, `agentIdRiskLevels` | — | Beta | [^np09-graph-whatsnew] [^np09-disable] |
+| Read and create CA policies | List: `Policy.Read.All`; create: `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`; Conditional Access Administrator | L4 and L5 | v1.0 (agent properties beta) | [^np09-ca-list] [^np09-ca-create] |
+| ID Protection for agents | Risky agents report; `riskyAgents`, `agentRiskDetections`; detections kept 90 days; Entra ID P2 during preview | GCC: delegated access listed | Preview | [^np09-risky] [^np09-manage] |
+| Sponsor tasks | Transfer agent identity sponsorships to manager `b8f4c3d5-9e7a-4b1c-8f2d-6a5e8b9c7f4a`; manager email `b8c4e1f9-3a7d-4b2e-9c5f-8d6a9b1c2e3f`; cosponsor email `ad3b85cd-75b1-43e7-b4b9-0e52faba3944`; mover and leaver only; Agent 365 or E7 | GCC: listed | GA | [^np09-lcw-tasks] [^np09-sponsor-tasks] [^np09-a365-sd] |
+| List workflows; tasks | `LifecycleWorkflows-Workflow.ReadBasic.All`; tasks `LifecycleWorkflows-Workflow.Read.All` | L4 and L5 | v1.0 | [^np09-lcw-list] |
+| Directory audits | `AuditLog.Read.All`; agent objects under the base type's activities, with `agentType` on targets | L4 and L5 | v1.0 | [^np09-audit] [^np09-logs] |
+| Agent 365 | GCC column: registry, access packages, sponsor lifecycle policies, CA and identity protection for delegated access available; Purview audit and DLP for agents not; FedRAMP High authorization pending | GCC only | GA for the commercial segment (May 1, 2026) | [^np09-a365-sd] [^np09-a365-overview] |
+
+Where Learn's pages differ: List agentIdentity sponsors names a write permission for a read, while the agent identity's other reads name `AgentIdentity.Read.All` (research gaps, row 82); the blueprint's sponsor page names `Application.Read.All` where its other reads name `AgentIdentityBlueprint.Read.All` (row 83); the inheritable permissions procedure and *Manage agent identities* give different limits and the procedure and API reference different paths (row 84); and Graph's change log puts the agent properties on `conditionalAccessApplications` while Learn's sample puts them under `clientApplications` (row 85). The code follows the stricter reading or the API reference, and Lab 2 confirms.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| Anyone can create a blueprint | Agents arrive with whoever built them as sponsor and owner | NPI-AI-01 on a reading older than 90 days or not No; NPI-AI-02 on app registrations |
+| An agent created before anyone reviewed it | An identity with access and no record | NPI-AI-04 and NPI-AI-06; NPI-AI-22 for one nobody declared |
+| The approval attribute set outside the handshake | The block policy lets an unreviewed agent through | NPI-AI-20; the attribute is checked against a complete handshake |
+| A secret on a production blueprint | One leaked secret is every agent made from it | NPI-AI-10; NPI-AI-23 when a credential appears outside a change window |
+| `allAllowed` role inheritance | A later grant to the blueprint reaches every agent at once | NPI-AI-13 |
+| A standing privileged role | An administrator that can't be asked for MFA | NPI-AI-14 unless time-bound and recorded |
+| A sponsor leaves and nobody notices | An agent nobody answers for | NPI-AI-16 after ten business days; orphan candidates to Chapter 02; NPI-AI-17 if the workflows lack the tasks |
+| A preview policy enforced | Agents blocked on a feature that can change, or not available in the cloud | Report-only only; NPI-AI-18 warns on an enforced policy; the writer refuses any other state; `NotAvailable` where D-N6 says so |
+| A block policy with no exclusion | Every approved agent blocked when enforced | The reviewed policy's shape is checked, in the plan and in the tenant |
+| Agent features assumed in GCC High or DoD | Code that reads objects the cloud doesn't have | D-N6 as data; Fallback mode sends no agent read and applies the same rules to service principals |
+| A plan changed after review | Different policies from the ones approved | Approved SHA-256, tenant, cloud, seven days, body checks, re-read before write |
+| An unattended app that writes Conditional Access | A standing permission to change every policy | The write path is delegated only, Conditional Access Administrator; the read path holds no `ReadWrite` permission |
+
+## Checklist
+
+- [ ] **Users can create agent blueprints** read as No within 90 days, and **Users can register applications** is No.
+- [ ] Every production agent identity has a complete, reviewed handshake dated before it was created, and its approval attribute matches the handshake.
+- [ ] Every AI identity has a sponsor who is an enabled employee, a sponsoring group, a technical owner who isn't the sponsor and a record that names the same people.
+- [ ] No production blueprint, or fallback app registration, holds a client secret; every certificate has a recorded reason.
+- [ ] No blueprint inherits application roles with `allAllowed`; no AI identity holds a directory role without a recorded end date.
+- [ ] The mover and leaver workflows carry the sponsor transfer and email tasks, and every transfer was confirmed within ten business days or handed to Chapter 02's orphan rule.
+- [ ] Both agent policies exist in report-only and their report-only results were reviewed; none is enforced while preview.
+- [ ] No open P1 AI drift finding (NPI-AI-21, -22, -23).
+- [ ] D-N6 is decided, and the capability table matches the decision and the agency's cloud.
+- [ ] The plan's SHA-256 was approved by someone other than the person who applies it, and the write path ran as a person with Conditional Access Administrator.
+- [ ] The pinned Learn pages match their manifests, and every upstream commit since the pin has been reviewed.
+
+::: {.callout-tip}
+## Continue the book
+← Previous: Chapter 08 — Conditional Access for Workload Identities · [Workbook index](index.md) · Next: Chapter 10 — Drift and Evidence for the ISSO →
+:::
+
+[^np09-agent-sps]: Microsoft Learn, "Agent identities, service principals, and applications," key differences, <https://learn.microsoft.com/entra/agent-id/agent-service-principals> (accessed Oct 30, 2026).
+[^np09-whatis]: Microsoft Learn, "What is Microsoft Entra Agent ID?," how to get started, <https://learn.microsoft.com/entra/agent-id/what-is-microsoft-entra-agent-id> (accessed Oct 30, 2026).
+[^np09-create-blueprint]: Microsoft Learn, "Create an agent identity blueprint," prerequisites; create; configure credentials, <https://learn.microsoft.com/entra/agent-id/create-blueprint> (accessed Oct 30, 2026).
+[^np09-a365-sd]: Microsoft Learn, "Microsoft Agent 365" service description, feature availability (GCC column) and FedRAMP note, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-agent-365/microsoft-agent-365> (accessed Oct 30, 2026).
+[^np09-a365-overview]: Microsoft Learn, "Overview of Microsoft Agent 365," availability and prerequisites, <https://learn.microsoft.com/microsoft-agent-365/overview> (accessed Oct 30, 2026).
+[^np09-feature]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
+[^np09-ca-target]: Microsoft Learn, "Target agent identities in Microsoft Entra Conditional Access policies," conditions, <https://learn.microsoft.com/entra/identity/conditional-access/howto-target-agent-identities> (accessed Oct 30, 2026).
+[^np09-manage]: Microsoft Learn, "Manage agent identities in your organization," inheritable permissions; sponsor oversight; detect and remediate agent risk, <https://learn.microsoft.com/entra/agent-id/manage-agent-identities-admin> (accessed Oct 30, 2026).
+[^np09-graph-whatsnew]: Microsoft Learn, "Microsoft Graph what's new history," November 2025, identity and sign-in (preview), <https://learn.microsoft.com/graph/whats-new-earlier> (accessed Oct 30, 2026).
+[^np09-sponsor-tasks]: Microsoft Learn, "Agent identity sponsor tasks in Lifecycle Workflows," <https://learn.microsoft.com/entra/id-governance/agent-sponsor-tasks> (accessed Oct 30, 2026).
+[^np09-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals," features by license, <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals> (accessed Oct 30, 2026).
+[^np09-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
+[^np09-delegate]: Microsoft Learn, "Delegate app registration permissions in Microsoft Entra ID," restrict who can create applications and agents, <https://learn.microsoft.com/entra/identity/role-based-access-control/delegate-app-roles> (accessed Oct 30, 2026).
+[^np09-plan-arch]: Microsoft Learn, "Plan your agent identity architecture," step 1, <https://learn.microsoft.com/entra/agent-id/how-to-plan-agent-identity-architecture> (accessed Oct 30, 2026).
+[^np09-inherit-proc]: Microsoft Learn, "Configure inheritable permissions for agent identity blueprints," inheritance patterns and limitations, <https://learn.microsoft.com/entra/agent-id/configure-inheritable-permissions-blueprints> (accessed Oct 30, 2026).
+[^np09-authz]: Microsoft Learn, "Authorization in Microsoft Entra Agent ID," role assignments; Graph permissions, <https://learn.microsoft.com/entra/agent-id/authorization-agent-id> (accessed Oct 30, 2026).
+[^np09-ca-autonomous]: Microsoft Learn, "Secure autonomous agents with Conditional Access," allow only specific agents; block high-risk agent identities, <https://learn.microsoft.com/entra/identity/conditional-access/policy-autonomous-agents> (accessed Oct 30, 2026).
+[^np09-disable]: Microsoft Learn, "Disable agent identities in your tenant," Conditional Access policies and blocking creation, <https://learn.microsoft.com/entra/agent-id/disable-agent-identities> (accessed Oct 30, 2026).
+[^np09-bp-list]: Microsoft Learn, "List agentIdentityBlueprint objects," <https://learn.microsoft.com/graph/api/agentidentityblueprint-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-ai-list]: Microsoft Learn, "List agentIdentity objects," <https://learn.microsoft.com/graph/api/agentidentity-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-bp-sponsors]: Microsoft Learn, "List agentIdentityBlueprint sponsors," <https://learn.microsoft.com/graph/api/agentidentityblueprint-list-sponsors?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-ai-sponsors]: Microsoft Learn, "List agentIdentity sponsors," <https://learn.microsoft.com/graph/api/agentidentity-list-sponsors?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-bp-owners]: Microsoft Learn, "List agentIdentityBlueprint owners," <https://learn.microsoft.com/graph/api/agentidentityblueprint-list-owners?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-ai-owners]: Microsoft Learn, "List agentIdentity owners," <https://learn.microsoft.com/graph/api/agentidentity-list-owners?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-ai-resource]: Microsoft Learn, "agentIdentity resource type," <https://learn.microsoft.com/graph/api/resources/agentidentity?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-inherit-list]: Microsoft Learn, "List inheritablePermission objects," <https://learn.microsoft.com/graph/api/agentidentityblueprint-list-inheritablepermissions?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-authz-policy]: Microsoft Learn, "Get authorizationPolicy," <https://learn.microsoft.com/graph/api/authorizationpolicy-get?view=graph-rest-1.0>, and "defaultUserRolePermissions resource type" (v1.0 and beta), <https://learn.microsoft.com/graph/api/resources/defaultuserrolepermissions?view=graph-rest-beta> (accessed Oct 30, 2026).
+[^np09-csa]: Microsoft Learn, "Manage custom security attribute assignments," prerequisites, <https://learn.microsoft.com/graph/custom-security-attributes-examples> (accessed Oct 30, 2026).
+[^np09-approles]: Microsoft Learn, "List appRoleAssignments granted to a service principal," <https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-roles]: Microsoft Learn, "List unifiedRoleAssignments," <https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-privileged]: Microsoft Learn, "Privileged roles and permissions in Microsoft Entra ID (preview)," <https://learn.microsoft.com/entra/identity/role-based-access-control/privileged-roles-permissions> (accessed Oct 30, 2026).
+[^np09-ca-agents]: Microsoft Learn, "Conditional Access for agents," requirements and licensing; boundaries and limitations, <https://learn.microsoft.com/entra/identity/conditional-access/agent-id> (accessed Oct 30, 2026).
+[^np09-ca-list]: Microsoft Learn, "List policies" (conditionalAccessRoot), <https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-ca-create]: Microsoft Learn, "Create conditionalAccessPolicy," <https://learn.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-risky]: Microsoft Learn, "ID Protection for agents," <https://learn.microsoft.com/entra/id-protection/concept-risky-agents> (accessed Oct 30, 2026).
+[^np09-lcw-tasks]: Microsoft Learn, "Lifecycle Workflow built-in tasks," supported tasks and task details, <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-tasks> (accessed Oct 30, 2026).
+[^np09-lcw-list]: Microsoft Learn, "List workflows," <https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-workflows?view=graph-rest-1.0>, and "List tasks (in Lifecycle Workflows)," <https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-task?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-audit]: Microsoft Learn, "List directoryAudits," <https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
+[^np09-logs]: Microsoft Learn, "Microsoft Entra Agent ID logs," audit logs and agentType, <https://learn.microsoft.com/entra/agent-id/sign-in-audit-logs-agents> (accessed Oct 30, 2026).
+[^np09-entra-ps]: Microsoft Learn, "Get-EntraAgentIdentity" (Microsoft.Entra.Applications), <https://learn.microsoft.com/powershell/module/microsoft.entra.applications/get-entraagentidentity?view=entra-powershell> (accessed Oct 30, 2026).
+[^np09-src-entra]: Microsoft, MicrosoftDocs/entra-docs, `docs/agent-id/create-blueprint.md`, `configure-inheritable-permissions-blueprints.md` and `disable-agent-identities.md` at commit `7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4` (October 30, 2026), MIT License, <https://github.com/MicrosoftDocs/entra-docs/tree/7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4/docs/agent-id> (accessed Oct 30, 2026); pinned copy in `examples/third_party/entra-agent-id-pages`.
+[^np09-src-graph]: Microsoft, microsoftgraph/microsoft-graph-docs-contrib, `api-reference/v1.0/api/agentidentityblueprint-list.md`, `agentidentity-list.md`, `agentidentityblueprint-list-sponsors.md`, `agentidentity-list-sponsors.md` and their `includes/permissions` tables at commit `bb35043c742d4406d73ccae904c05fbfca7c7428` (October 31, 2026, UTC), code MIT License, documentation Creative Commons Attribution 4.0, <https://github.com/microsoftgraph/microsoft-graph-docs-contrib/tree/bb35043c742d4406d73ccae904c05fbfca7c7428/api-reference/v1.0> (accessed Oct 30, 2026); pinned copy in `examples/third_party/graph-agent-id-api-pages`.

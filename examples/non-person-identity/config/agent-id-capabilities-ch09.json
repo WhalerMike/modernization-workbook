@@ -1,0 +1,32 @@
+{
+  "_comment": "Decision D-N6 as data: which AI identity capabilities the program builds on, per cloud, with the release stage and US Government availability Learn gave on October 30, 2026. 'available' false means the agent-id reads aren't sent in that cloud and the D-N6 fallback applies: service principals and managed identities under the same governance. A capability whose stage is preview is a watch item: the code reports it, never enforces it. Status Proposed until the CIO, with the Chief AI Officer, decides; a change to this file is a reviewed pull request. Design guidance.",
+  "decision": "D-N6",
+  "status": "Proposed",
+  "owner": "CIO, with the Chief AI Officer",
+  "clouds": {
+    "global": {
+      "agentIdentities": { "available": true, "stage": "GA (April 2026)", "source": "https://learn.microsoft.com/entra/agent-id/what-is-microsoft-entra-agent-id" },
+      "agentConditionalAccess": { "available": true, "stage": "Preview (policy builder label)", "watch": true, "source": "https://learn.microsoft.com/entra/identity/conditional-access/agent-id" },
+      "agentRisk": { "available": true, "stage": "Preview", "watch": true, "source": "https://learn.microsoft.com/entra/id-protection/concept-risky-agents" },
+      "sponsorWorkflows": { "available": true, "stage": "GA (May 2026)", "source": "https://learn.microsoft.com/entra/id-governance/agent-sponsor-tasks" }
+    },
+    "gcc": {
+      "agentIdentities": { "available": true, "stage": "GA (April 2026)", "note": "GCC uses the worldwide endpoints; Agent 365's service description lists the registry, access packages and sponsor lifecycle policies as available in GCC", "source": "https://learn.microsoft.com/office365/servicedescriptions/microsoft-agent-365/microsoft-agent-365" },
+      "agentConditionalAccess": { "available": "delegated access only", "stage": "Preview (policy builder label)", "watch": true, "note": "The service description lists Conditional Access for agents in GCC 'for agents with delegated access'; app-only agent identity policies aren't listed (research gaps, row 86)", "source": "https://learn.microsoft.com/office365/servicedescriptions/microsoft-agent-365/microsoft-agent-365" },
+      "agentRisk": { "available": "delegated access only", "stage": "Preview", "watch": true, "source": "https://learn.microsoft.com/office365/servicedescriptions/microsoft-agent-365/microsoft-agent-365" },
+      "sponsorWorkflows": { "available": true, "stage": "GA (May 2026)", "source": "https://learn.microsoft.com/office365/servicedescriptions/microsoft-agent-365/microsoft-agent-365" }
+    },
+    "gcchigh": {
+      "agentIdentities": { "available": false, "stage": "Not published", "note": "No Agent ID entry on Entra's feature availability list for Azure Government; Agent 365's service description covers GCC only", "source": "https://learn.microsoft.com/entra/identity/authentication/feature-availability" },
+      "agentConditionalAccess": { "available": false, "stage": "Not published", "watch": true, "source": "https://learn.microsoft.com/entra/identity/authentication/feature-availability" },
+      "agentRisk": { "available": false, "stage": "Not published", "watch": true, "source": "https://learn.microsoft.com/entra/identity/authentication/feature-availability" },
+      "sponsorWorkflows": { "available": false, "stage": "Not published", "note": "Lifecycle Workflows exist in GCC High; the agent sponsor tasks need Agent 365 or Microsoft 365 E7", "source": "https://learn.microsoft.com/entra/id-governance/licensing-fundamentals" }
+    },
+    "dod": {
+      "agentIdentities": { "available": false, "stage": "Not published", "source": "https://learn.microsoft.com/entra/identity/authentication/feature-availability" },
+      "agentConditionalAccess": { "available": false, "stage": "Not published", "watch": true, "source": "https://learn.microsoft.com/entra/identity/authentication/feature-availability" },
+      "agentRisk": { "available": false, "stage": "Not published", "watch": true, "source": "https://learn.microsoft.com/entra/identity/authentication/feature-availability" },
+      "sponsorWorkflows": { "available": false, "stage": "Not published", "source": "https://learn.microsoft.com/entra/id-governance/licensing-fundamentals" }
+    }
+  }
+}

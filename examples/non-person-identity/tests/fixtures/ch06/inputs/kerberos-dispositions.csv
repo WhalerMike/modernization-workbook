@@ -1,0 +1,7 @@
+SamAccountName,Disposition,Target,NewAccount,Workload,Hosts,SpnOwnerUpn,EndDate,Reference,HostChangedOn,MigrationStartedOn
+svc-hrsync,Convert,dMSA,dmsa-hrsync$,Service,HR01,hr-apps.owner@contoso.example,2027-06-30,,,2026-09-20
+svc-webfront,Convert,dMSA,dmsa-webfront$,IisAppPool,WEB03,web.owner@contoso.example,2027-06-30,,,
+svc-intranet,Convert,gMSA,gmsa-intranet$,IisAppPool,INTRA01;INTRA02,,2028-12-31,,,
+msa-print01$,Convert,gMSA,gmsa-print$,ScheduledTask,PRINT01,print.owner@contoso.example,2027-06-30,,,
+gmsa-web$,Island,,,Service,WEB01;WEB02,web.owner@contoso.example,2027-09-30,,,
+gmsa-ops$,WorkloadIdentity,,,ScheduledTask,OPS01,ops.owner@contoso.example,2027-03-31,Chapter 05: user-assigned managed identity mi-ops-automation,,

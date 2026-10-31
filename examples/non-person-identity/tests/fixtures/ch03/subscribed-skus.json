@@ -1,0 +1,35 @@
+{
+  "_comment": "A fictional GET /v1.0/subscribedSkus response for contoso.example, in the shape of Learn's example: one Microsoft 365 E5 subscription and one Microsoft Entra Workload ID subscription (skuPartNumber, skuId and service plan IDs from Learn's 'Product names and service plan identifiers for licensing'). Account and subscription IDs are invented.",
+  "value": [
+    {
+      "accountName": "Contoso Example",
+      "accountId": "c0ffee00-0000-4000-8000-000000000001",
+      "appliesTo": "User",
+      "capabilityStatus": "Enabled",
+      "consumedUnits": 9,
+      "id": "c0ffee00-0000-4000-8000-000000000001_06ebc4ee-1bb5-47dd-8120-11324bc54e06",
+      "prepaidUnits": { "enabled": 25, "lockedOut": 0, "suspended": 0, "warning": 0 },
+      "servicePlans": [
+        { "servicePlanId": "eec0eb4f-6444-4f95-aba0-50c24d67f998", "servicePlanName": "AAD_PREMIUM_P2", "provisioningStatus": "Success", "appliesTo": "User" }
+      ],
+      "skuId": "06ebc4ee-1bb5-47dd-8120-11324bc54e06",
+      "skuPartNumber": "SPE_E5",
+      "subscriptionIds": ["dd000000-0000-4000-8000-000000000001"]
+    },
+    {
+      "accountName": "Contoso Example",
+      "accountId": "c0ffee00-0000-4000-8000-000000000001",
+      "appliesTo": "Company",
+      "capabilityStatus": "Enabled",
+      "consumedUnits": 0,
+      "id": "c0ffee00-0000-4000-8000-000000000001_52cdf00e-8303-4223-a749-ff69a13e2dd0",
+      "prepaidUnits": { "enabled": 2, "lockedOut": 0, "suspended": 0, "warning": 0 },
+      "servicePlans": [
+        { "servicePlanId": "7dc0e92d-bf15-401d-907e-0884efe7c760", "servicePlanName": "AAD_WRKLDID_P2", "provisioningStatus": "Success", "appliesTo": "Company" }
+      ],
+      "skuId": "52cdf00e-8303-4223-a749-ff69a13e2dd0",
+      "skuPartNumber": "Workload_Identities_P2",
+      "subscriptionIds": ["dd000000-0000-4000-8000-000000000002"]
+    }
+  ]
+}

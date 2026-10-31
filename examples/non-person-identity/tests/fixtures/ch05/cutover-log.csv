@@ -1,0 +1,4 @@
+ConversionId,CutoverOn,RecordedBy,DisableApprovedBy,DisabledOn
+conv-01,2026-09-20,hr-systems@contoso.example,hr-systems@contoso.example,
+conv-07,2026-10-15,batch-ops@contoso.example,,
+conv-08,2026-09-01,reporting@contoso.example,reporting@contoso.example,

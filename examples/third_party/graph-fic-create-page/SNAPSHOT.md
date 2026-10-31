@@ -1,0 +1,13 @@
+# Create federatedIdentityCredential: a pinned copy of the Graph reference page
+
+This folder is an unmodified copy of the Microsoft Learn source for the Microsoft Graph reference page [Create federatedIdentityCredential](https://learn.microsoft.com/graph/api/application-post-federatedidentitycredentials?view=graph-rest-1.0) (v1.0). It holds Microsoft's HTTP request sample that creates a federated identity credential on an application, with the page's required properties and limits. It comes from [microsoftgraph/microsoft-graph-docs-contrib](https://github.com/microsoftgraph/microsoft-graph-docs-contrib/blob/08b242e8a85a03db4c4d1f41564cfc81632d5cd1/api-reference/v1.0/api/federatedidentitycredential-post.md) at commit `08b242e8a85a03db4c4d1f41564cfc81632d5cd1` (December 4, 2025), the last commit to the page; it was unchanged at the repository's head on October 30, 2026. The repository's code license (`LICENSE-CODE`) is MIT; its documentation license (`LICENSE`) is Creative Commons Attribution 4.0 International.
+
+**Why the page, not just the sample.** The HTTP sample exists only inside this page; the SDK snippets it includes are generated from it. `examples/non-person-identity/tests/FederationSampleHarness.ps1` parses the sample, unmodified, at test time and sends it to NpiFederation's fake Microsoft Graph, then exchanges a test assertion against the fake token endpoint. Nothing is installed and nothing signs in. The [developer workbook *Building Non-Person Identity*, Chapter 05](../../../docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md) links Learn rather than quoting the page.
+
+**How it stays honest.**
+
+- `snapshot.json` records the upstream repository, path, commit, dates, licenses and the size and SHA-256 of every file here. Each file's git blob hash was checked against the upstream tree at that commit before the manifest was written. `scripts/tests/test_third_party_snapshots.py` fails if any file is changed, added or removed.
+- The weekly source watch follows commits to the upstream page (`graph-fic-create-page-commits` in `data/source-watch/feeds.json`) and reports each one in its issue under DW (developer workbooks).
+- To move to a newer upstream commit: review the upstream change, copy the page from that commit, regenerate `snapshot.json`, rerun `examples/non-person-identity/tests/NpiFederationSamples.Tests.ps1` and the Chapter 05 labs, and open a pull request. Never edit the files here; changes the program needs go in `examples/non-person-identity`.
+
+These files keep their upstream bytes, line endings included, so the hashes match the upstream commit.

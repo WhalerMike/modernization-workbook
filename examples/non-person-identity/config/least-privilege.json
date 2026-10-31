@@ -1,0 +1,50 @@
+{
+  "_comment": "Chapter 07's reviewed list (Design guidance): the permissions the program treats as broad and tenant-wide, the narrower replacement Microsoft Learn documents for each class, the permissions that let an app grant itself more (escalation: handed to the Privileged Access plan, A3.4), the delegated scopes that are broad when consented for all users, and the Azure roles Learn calls privileged administrator roles. A change to this file is a reviewed change: the list is the program's position, the Learn page for each replacement is in 'replacements'.",
+  "resources": {
+    "00000003-0000-0000-c000-000000000000": "Microsoft Graph",
+    "00000002-0000-0ff1-ce00-000000000000": "Office 365 Exchange Online",
+    "00000003-0000-0ff1-ce00-000000000000": "Office 365 SharePoint Online"
+  },
+  "broadApplicationPermissions": [
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "Directory.ReadWrite.All", "class": "Directory" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "User.ReadWrite.All", "class": "Directory" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "Group.ReadWrite.All", "class": "Directory" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "Application.ReadWrite.All", "class": "Escalation" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "AppRoleAssignment.ReadWrite.All", "class": "Escalation" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "DelegatedPermissionGrant.ReadWrite.All", "class": "Escalation" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "RoleManagement.ReadWrite.Directory", "class": "Escalation" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "Mail.Read", "class": "Mail" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "Mail.ReadWrite", "class": "Mail" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "Mail.Send", "class": "Mail" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "Calendars.ReadWrite", "class": "Mail" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "Contacts.ReadWrite", "class": "Mail" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "MailboxSettings.ReadWrite", "class": "Mail" },
+    { "resourceAppId": "00000002-0000-0ff1-ce00-000000000000", "value": "full_access_as_app", "class": "Mail" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "Sites.FullControl.All", "class": "Sites" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "Sites.ReadWrite.All", "class": "Sites" },
+    { "resourceAppId": "00000003-0000-0000-c000-000000000000", "value": "Files.ReadWrite.All", "class": "Sites" },
+    { "resourceAppId": "00000003-0000-0ff1-ce00-000000000000", "value": "Sites.FullControl.All", "class": "Sites" }
+  ],
+  "broadDelegatedScopes": [
+    "Directory.AccessAsUser.All", "Directory.ReadWrite.All", "Mail.Read", "Mail.ReadWrite", "Mail.Send", "Files.ReadWrite.All", "Sites.ReadWrite.All", "Sites.FullControl.All"
+  ],
+  "replacements": {
+    "Directory": { "proposal": "The resource-specific permission the app's own calls need, read from each API's Learn page (for example User.ReadWrite.All or Group.ReadWrite.All in place of Directory.ReadWrite.All, or narrower)", "learn": "https://learn.microsoft.com/graph/permissions-reference" },
+    "Escalation": { "proposal": "Handed to the Privileged Access plan (A3.4); for an app that manages only its own apps, Application.ReadWrite.OwnedBy", "learn": "https://learn.microsoft.com/graph/permissions-reference" },
+    "Mail": { "proposal": "Exchange Online RBAC for Applications with a management scope, then remove this Microsoft Entra grant (the two are a union, so the scope does nothing while the grant stays)", "learn": "https://learn.microsoft.com/exchange/permissions-exo/application-rbac" },
+    "Sites": { "proposal": "Sites.Selected, or Lists, ListItems or Files .SelectedOperations.Selected, granted on the sites or items the app needs", "learn": "https://learn.microsoft.com/graph/permissions-selected-overview" }
+  },
+  "mailControls": {
+    "ExchangeRbacScope": "RBAC for Applications in Exchange Online, with a management scope",
+    "ApplicationAccessPolicy": "An Exchange application access policy (legacy: replaced by RBAC for Applications)"
+  },
+  "privilegedAzureRoles": ["Owner", "Contributor", "Reservations Administrator", "Role Based Access Control Administrator", "User Access Administrator"],
+  "directoryRoleNames": {
+    "62e90394-69f5-4237-9190-012177145e10": "Global Administrator",
+    "e8611ab8-c189-46e8-94e1-60213ab1f814": "Privileged Role Administrator",
+    "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3": "Application Administrator",
+    "158c047a-c907-4556-b7ef-446551a6b5f7": "Cloud Application Administrator",
+    "9360feb5-f418-4baa-8175-e2a00bac4301": "Directory Writers",
+    "88d8e3e3-8f55-4a1e-953a-9b9898b8876b": "Directory Readers"
+  }
+}

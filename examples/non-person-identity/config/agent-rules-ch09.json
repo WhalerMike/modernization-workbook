@@ -1,0 +1,19 @@
+{
+  "_comment": "Chapter 09: the program's rules for AI identities as reviewed data (Design guidance), from Book 17, Chapters 05 to 07, and the project plan's Phase 6. The attribute names follow Learn's own example (attribute set AgentAttributes, attribute AgentApprovalStatus); the value is the program's. The holiday list is the federal holidays the ten-business-day rule skips. A change here is a reviewed pull request.",
+  "creationSettingMaxAgeDays": 90,
+  "allowedUserConsentPolicies": ["ManagePermissionGrantsForSelf.microsoft-user-default-low"],
+  "sponsor": { "employeeType": "Employee", "requireGroup": true },
+  "approvalAttribute": { "set": "AgentAttributes", "name": "AgentApprovalStatus", "value": "Production_Approved" },
+  "handshakeFields": ["BlueprintAppId", "SponsorUpn", "SponsoringGroupId", "TechnicalOwnerUpn", "Consent", "CaPolicies", "Placement", "UseCaseId", "AccessMode", "ReviewedBy", "ReviewedOn"],
+  "accessModes": ["OnBehalfOf", "AppOnly", "AgentUser"],
+  "confirmationBusinessDays": 10,
+  "federalHolidays": ["2026-01-01", "2026-01-19", "2026-02-16", "2026-05-25", "2026-06-19", "2026-07-03", "2026-09-07", "2026-10-12", "2026-11-11", "2026-11-26", "2026-12-25", "2027-01-01", "2027-01-18", "2027-02-15"],
+  "sponsorTaskDefinitions": {
+    "transferToManager": "b8f4c3d5-9e7a-4b1c-8f2d-6a5e8b9c7f4a",
+    "emailManager": "b8c4e1f9-3a7d-4b2e-9c5f-8d6a9b1c2e3f",
+    "emailCosponsors": "ad3b85cd-75b1-43e7-b4b9-0e52faba3944"
+  },
+  "credentialAuditActivities": ["Update application – Certificates and secrets management", "Add service principal credentials"],
+  "auditLookbackDays": 30,
+  "desiredCaPolicies": ["agent-ca-ch09/block-unapproved-agents.json", "agent-ca-ch09/block-high-risk-agents.json"]
+}

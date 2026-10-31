@@ -1,0 +1,60 @@
+{
+  "_comment": "A pinned, unmodified copy of four Microsoft Graph Learn pages, as their source in microsoftgraph/microsoft-graph-docs-contrib: 'Update tenantAppManagementPolicy', 'Create appManagementPolicy' and 'Assign appliesTo' (the v1.0 HTTP samples for the tenant default app management policy and app-specific policies) and 'Add a certificate to an app by using Microsoft Graph' (the PATCH of keyCredentials that adds a certificate, with and without keeping the existing one). The samples exist only inside these pages. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn samples: Microsoft Graph app management policies (v1.0) and adding a certificate to an app",
+  "upstream_repo": "https://github.com/microsoftgraph/microsoft-graph-docs-contrib",
+  "upstream_path": "api-reference/v1.0/api/tenantappmanagementpolicy-update.md",
+  "also_upstream_path": [
+    "api-reference/v1.0/api/appmanagementpolicy-post.md",
+    "api-reference/v1.0/api/appmanagementpolicy-post-appliesto.md",
+    "concepts/applications-how-to-add-certificate.md"
+  ],
+  "commit": "bb35043c742d4406d73ccae904c05fbfca7c7428",
+  "commit_date": "2026-10-31 (00:42 UTC; October 30 in US time zones)",
+  "files_last_changed": "tenantappmanagementpolicy-update.md 2026-06-06 (commit a4fb34faad02086224a4bf6b309c53bf7ccf3cef); appmanagementpolicy-post.md 2025-09-09 (commit 21bf110fb70c0998dd87f6f3676969afd2bd03de); appmanagementpolicy-post-appliesto.md 2025-10-24 (commit c5bdea5b2d849451be9b260f1f9bbf3d27997198); applications-how-to-add-certificate.md 2025-08-29 (commit 6f6ea4bab1b8a507923b8178639518bcb61ba882)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: Creative Commons Attribution 4.0 International (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/graph/api/tenantappmanagementpolicy-update?view=graph-rest-1.0",
+  "also_documented_at": [
+    "https://learn.microsoft.com/graph/api/appmanagementpolicy-post?view=graph-rest-1.0",
+    "https://learn.microsoft.com/graph/api/appmanagementpolicy-post-appliesto?view=graph-rest-1.0",
+    "https://learn.microsoft.com/graph/applications-how-to-add-certificate"
+  ],
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "tenantappmanagementpolicy-update.md": "api-reference/v1.0/api/tenantappmanagementpolicy-update.md",
+    "appmanagementpolicy-post.md": "api-reference/v1.0/api/appmanagementpolicy-post.md",
+    "appmanagementpolicy-post-appliesto.md": "api-reference/v1.0/api/appmanagementpolicy-post-appliesto.md",
+    "applications-how-to-add-certificate.md": "concepts/applications-how-to-add-certificate.md"
+  },
+  "not_copied": [
+    "The SDK snippet include files the pages reference (includes/snippets/*): generated per language from the HTTP samples, which are inline in the pages and are what the tests run.",
+    "The beta versions of these pages, the Get, List and List appliesTo pages, the resource pages and the application addKey and removeKey pages, which the chapter cites; everything else in microsoftgraph/microsoft-graph-docs-contrib."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 18650,
+      "sha256": "7183ef9749eb9b75e710a81a4c812a9405cc184f087500581a973e5929ac3f5e"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "applications-how-to-add-certificate.md": {
+      "bytes": 13095,
+      "sha256": "776b010fdb74cda10378f74f37a5855653c955316c29c74b4b4e20760bda59b4"
+    },
+    "appmanagementpolicy-post-appliesto.md": {
+      "bytes": 6660,
+      "sha256": "acb09ba43db3cd5deb5612956109500fafff3faf22d15c78c65cc191562efb34"
+    },
+    "appmanagementpolicy-post.md": {
+      "bytes": 9255,
+      "sha256": "a909e17d99ec5c8e94d7868c93dc04560fbedff830ff2aeb292e9b9df8fdc1ae"
+    },
+    "tenantappmanagementpolicy-update.md": {
+      "bytes": 7512,
+      "sha256": "ccb1f0fa0b8f044fe3ba0149195e50297626695de942ed4b00ee6deba8a1dd06"
+    }
+  }
+}
