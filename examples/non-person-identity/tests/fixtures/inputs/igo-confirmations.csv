@@ -1,0 +1,6 @@
+IdentityId,Decision,ConfirmedBy,ConfirmedOn,DisabledOn,ExceptionEnds
+app:1a000000-0000-4000-8000-000000000003,Disable,igo@contoso.example,2026-10-27,,
+ad:ad000000-0000-4000-8000-000000000003,Disable,igo@contoso.example,2026-10-28,,
+ad:ad000000-0000-4000-8000-000000000005,Disable,igo@contoso.example,2026-09-10,2026-09-12,
+ad:ad000000-0000-4000-8000-000000000006,Disable,igo@contoso.example,2026-10-15,2026-10-16,
+ad:ad000000-0000-4000-8000-000000000024,Exception,igo@contoso.example,2026-10-20,,2026-12-31

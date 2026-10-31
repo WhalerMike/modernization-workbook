@@ -1,0 +1,9 @@
+RecordId,Name,Status,IsAI
+CMDB-1042,Payroll,Active,false
+CMDB-1100,Mail automation,Active,false
+CMDB-1300,Deploy bot,Active,false
+CMDB-1500,Web front end,Active,false
+CMDB-1600,Print service,Active,false
+CMDB-2001,Vendor portal,Retired,false
+CMDB-3001,SQL Server production,Active,false
+CMDB-4001,Benefits Q&A agent,Active,true

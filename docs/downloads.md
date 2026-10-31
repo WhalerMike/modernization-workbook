@@ -64,6 +64,7 @@ Draft, held for review page by page; see [Developer Workbooks](project-plans/dev
 |---|---|
 | [Building the Attribute-Driven Migration](project-plans/developer-workbooks/attribute-driven-migration/index.md) | [building-the-attribute-driven-migration-bundle.docx](../downloads/building-the-attribute-driven-migration-bundle.docx) |
 | [Building Privileged Access](project-plans/developer-workbooks/privileged-access/index.md) | [building-privileged-access-bundle.docx](../downloads/building-privileged-access-bundle.docx) |
+| [Building Non-Person Identity](project-plans/developer-workbooks/non-person-identity/index.md) | [building-non-person-identity-bundle.docx](../downloads/building-non-person-identity-bundle.docx) |
 
 ## Videos and presentations
 

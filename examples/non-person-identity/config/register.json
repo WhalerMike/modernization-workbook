@@ -1,0 +1,32 @@
+{
+  "_comment": "Design guidance: the program's classification rules for the non-person identity register (Chapter 01). Thresholds and lists come from Book 02, Chapter 09 (90-day stale lead, 365-day password age), the project plan (HIGH = password never expires or over-privileged) and Book 06 (SQL Server's SPNs). Change them in a reviewed pull request; the run records this file's SHA-256 in its manifest.",
+  "staleDays": 90,
+  "passwordAgeHighDays": 365,
+  "namingPatterns": ["svc-*", "svc_*", "sa-*"],
+  "descriptionPattern": "*service account*",
+  "privilegedAdGroups": [
+    "Domain Admins",
+    "Enterprise Admins",
+    "Schema Admins",
+    "Administrators",
+    "Account Operators",
+    "Backup Operators",
+    "Server Operators",
+    "Print Operators"
+  ],
+  "highPrivilegeGraphAppRoles": [
+    "Directory.ReadWrite.All",
+    "Application.ReadWrite.All",
+    "AppRoleAssignment.ReadWrite.All",
+    "RoleManagement.ReadWrite.Directory",
+    "User.ReadWrite.All",
+    "Group.ReadWrite.All",
+    "Mail.ReadWrite",
+    "Sites.FullControl.All"
+  ],
+  "microsoftGraphAppId": "00000003-0000-0000-c000-000000000000",
+  "dataPlatform": {
+    "spnPrefixes": ["MSSQLSvc/"],
+    "namePatterns": ["svc-sql*", "gmsa-sql*", "*ldapbind*"]
+  }
+}

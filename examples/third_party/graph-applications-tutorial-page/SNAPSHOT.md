@@ -1,0 +1,13 @@
+# Manage Microsoft Entra applications using Microsoft Graph: a pinned copy of Learn's samples
+
+This folder is an unmodified copy of the Microsoft Learn source page for [Manage Microsoft Entra applications using Microsoft Graph](https://learn.microsoft.com/graph/tutorial-applications-basics). It holds Microsoft's HTTP samples for finding service principals with no owner or one owner, assigning an owner to an application and to a service principal, and setting an application's `serviceManagementReference`, among others. It comes from [microsoftgraph/microsoft-graph-docs-contrib](https://github.com/microsoftgraph/microsoft-graph-docs-contrib/blob/a69303123e9701eecbf56568d152ece936a97f1e/concepts/tutorial-applications-basics.md) at commit `a69303123e9701eecbf56568d152ece936a97f1e` (October 30, 2026); the page last changed on July 3, 2026. The repository's code license (`LICENSE-CODE`) is MIT; its documentation license (`LICENSE`) is Creative Commons Attribution 4.0 International.
+
+**Why the page, not just the samples.** The HTTP samples exist only inside this Learn page; the SDK snippets it includes are generated from them. Pinning the page byte for byte keeps the copy checkable against upstream. `examples/non-person-identity/tests/LearnSampleHarness.ps1` parses the HTTP samples, unmodified, at test time and sends them to a fake Microsoft Graph. Nothing is installed and nothing signs in. The [developer workbook *Building Non-Person Identity*, Chapter 02](../../../docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md) links Learn rather than quoting the page.
+
+**How it stays honest.**
+
+- `snapshot.json` records the upstream repository, path, commit, dates, licenses and the size and SHA-256 of every file here. Each file's git blob hash was checked against the upstream tree at that commit before the manifest was written. `scripts/tests/test_third_party_snapshots.py` fails if any file is changed, added or removed.
+- The weekly source watch follows commits to the upstream page (`graph-applications-tutorial-page-commits` in `data/source-watch/feeds.json`) and reports each one in its issue under DW (developer workbooks).
+- To move to a newer upstream commit: review the upstream change, copy the page from that commit, regenerate `snapshot.json`, rerun `examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1` and the Chapter 02 labs, and open a pull request. Never edit the files here; changes the program needs go in `examples/non-person-identity`.
+
+These files keep their upstream bytes, line endings included, so the hashes match the upstream commit.

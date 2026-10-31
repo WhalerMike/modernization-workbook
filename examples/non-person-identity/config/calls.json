@@ -1,0 +1,222 @@
+{
+  "_comment": "Every call the non-person identity example makes, with the least-privileged Microsoft Graph permission, Azure role or Active Directory right from the Learn page for that call, read on October 30, 2026. A task may make only its own calls. 'tasks' declares what each task needs; tests/NpiInventory.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls, or when a read task declares anything but GET and Get-AD* cmdlets.",
+  "tasks": {
+    "inventory": {
+      "mode": "read",
+      "chapter": "01",
+      "graphPermissions": ["Application.Read.All", "Directory.Read.All"],
+      "azureRoles": ["Reader"],
+      "adRights": ["Read (default for authenticated domain users)"]
+    },
+    "ownership": {
+      "mode": "read",
+      "chapter": "02",
+      "graphPermissions": ["User.Read.All"],
+      "azureRoles": [],
+      "adRights": []
+    },
+    "orphan-apply": {
+      "mode": "write",
+      "chapter": "02",
+      "graphPermissions": ["Application.Read.All", "Application.ReadWrite.All", "Directory.Read.All", "User.Read.All"],
+      "azureRoles": [],
+      "adRights": ["Delegated right to disable accounts in the account's OU", "Read (default for authenticated domain users)"],
+      "delegatedOnly": true,
+      "delegatedRole": "Cloud Application Administrator"
+    }
+  },
+  "calls": [
+    {
+      "id": "ad-service-users",
+      "api": "ad",
+      "method": "READ",
+      "cmdlet": "Get-ADUser",
+      "adRight": "Read (default for authenticated domain users)",
+      "stage": "GA",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-aduser",
+      "note": "One LDAP query for user objects that match any of Learn's service account criteria (an SPN, delegation, a password that never expires) or the naming convention, instead of three -Filter * reads of every user."
+    },
+    {
+      "id": "ad-managed-service-accounts",
+      "api": "ad",
+      "method": "READ",
+      "cmdlet": "Get-ADServiceAccount",
+      "adRight": "Read (default for authenticated domain users)",
+      "stage": "GA",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-adserviceaccount"
+    },
+    {
+      "id": "graph-applications",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/graph/api/application-list?view=graph-rest-1.0"
+    },
+    {
+      "id": "graph-application-owners",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications/{id}/owners",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["inventory", "orphan-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/application-list-owners?view=graph-rest-1.0",
+      "note": "Without permission to read users, owners come back with id and @odata.type only, which is all the count needs."
+    },
+    {
+      "id": "graph-application-fics",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/applications/{id}/federatedIdentityCredentials",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/graph/api/federatedidentitycredential-list?view=graph-rest-1.0",
+      "note": "The List page names Application.Read.All; the Get page and the Get-MgApplicationFederatedIdentityCredential cmdlet page name Application.ReadWrite.OwnedBy and Application.ReadWrite.All (research gaps, row 4)."
+    },
+    {
+      "id": "graph-service-principals",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-list?view=graph-rest-1.0"
+    },
+    {
+      "id": "graph-service-principal-owners",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{id}/owners",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["inventory", "orphan-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0"
+    },
+    {
+      "id": "graph-resource-sp",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals(appId='{appId}')",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0",
+      "note": "Reads Microsoft Graph's own service principal for its appRoles, so app role IDs become permission names."
+    },
+    {
+      "id": "graph-app-role-assigned-to",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{id}/appRoleAssignedTo",
+      "permissions": ["Application.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0"
+    },
+    {
+      "id": "graph-oauth2-grants",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/oauth2PermissionGrants",
+      "permissions": ["Directory.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/graph/api/oauth2permissiongrant-list?view=graph-rest-1.0",
+      "note": "Learn names Directory.Read.All as least privileged for listing delegated permission grants; it's the broadest permission the inventory holds, and the only reason it holds it."
+    },
+    {
+      "id": "arm-uami-fics",
+      "api": "arm",
+      "method": "GET",
+      "apiVersion": "2024-11-30",
+      "path": "{resourceId}/federatedIdentityCredentials",
+      "azureRole": "Reader",
+      "stage": "GA",
+      "tasks": ["inventory"],
+      "learn": "https://learn.microsoft.com/rest/api/managedidentity/federated-identity-credentials/list"
+    },
+    {
+      "id": "graph-user",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/users/{id}",
+      "permissions": ["User.Read.All"],
+      "stage": "v1.0",
+      "tasks": ["ownership", "orphan-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0",
+      "note": "Reads userType and accountEnabled, which aren't basic properties, to tell members from guests and enabled from disabled owners."
+    },
+    {
+      "id": "graph-sp-disable",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/servicePrincipals/{id}",
+      "permissions": ["Application.ReadWrite.All"],
+      "allowedBody": { "accountEnabled": false },
+      "stage": "v1.0",
+      "tasks": ["orphan-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-update?view=graph-rest-1.0",
+      "note": "Delegated Application.ReadWrite.All is the least-privileged delegated permission; the application permission Application.ReadWrite.OwnedBy reaches only service principals the caller owns, which an orphan by definition isn't."
+    },
+    {
+      "id": "graph-app-owner-add",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/applications/{id}/owners/$ref",
+      "permissions": ["Application.ReadWrite.All", "Directory.Read.All"],
+      "allowedBody": { "@odata.id": "directoryObjects" },
+      "stage": "v1.0",
+      "tasks": ["orphan-apply"],
+      "learn": "https://learn.microsoft.com/graph/api/application-post-owners?view=graph-rest-1.0",
+      "note": "Learn: Application.ReadWrite.OwnedBy isn't sufficient to add another owner."
+    },
+    {
+      "id": "ad-recheck-user",
+      "api": "ad",
+      "method": "READ",
+      "cmdlet": "Get-ADUser",
+      "adRight": "Read (default for authenticated domain users)",
+      "stage": "GA",
+      "tasks": ["orphan-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-aduser"
+    },
+    {
+      "id": "ad-recheck-service-account",
+      "api": "ad",
+      "method": "READ",
+      "cmdlet": "Get-ADServiceAccount",
+      "adRight": "Read (default for authenticated domain users)",
+      "stage": "GA",
+      "tasks": ["orphan-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-adserviceaccount"
+    },
+    {
+      "id": "ad-disable-account",
+      "api": "ad",
+      "method": "WRITE",
+      "cmdlet": "Disable-ADAccount",
+      "adRight": "Delegated right to disable accounts in the account's OU",
+      "stage": "GA",
+      "tasks": ["orphan-apply"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/disable-adaccount"
+    }
+  ]
+}

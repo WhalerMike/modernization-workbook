@@ -1,0 +1,53 @@
+{
+  "_comment": "A pinned, unmodified copy of three Learn pages, as their source in MicrosoftDocs/entra-docs: 'Secure user-based service accounts in Active Directory' (Get-ADObject and Get-ADUser commands that find user accounts used as service accounts), 'Secure group managed service accounts' (Get-ADServiceAccount commands that find MSAs and gMSAs) and 'Securing service principals in Microsoft Entra ID' (Get-MgServicePrincipal commands). The commands exist only inside these pages. Never edit these files: update the snapshot by copying a newer upstream commit and regenerating this manifest in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn samples: finding on-premises service accounts and service principals (Active Directory PowerShell and Microsoft Graph PowerShell)",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "upstream_path": "docs/architecture/service-accounts-user-on-premises.md",
+  "also_upstream_path": [
+    "docs/architecture/service-accounts-group-managed.md",
+    "docs/architecture/service-accounts-principal.md"
+  ],
+  "commit": "7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4",
+  "commit_date": "2026-10-30",
+  "files_last_changed": "All three pages: 2026-02-25 (commit 3e7bfc8000ef8389e948449892e4ab7044ab6efc)",
+  "retrieved": "2026-10-30",
+  "license": "Code: MIT (LICENSE-CODE). Documentation: MIT (LICENSE). Both copied from the repository root.",
+  "documented_at": "https://learn.microsoft.com/entra/architecture/service-accounts-user-on-premises",
+  "also_documented_at": [
+    "https://learn.microsoft.com/entra/architecture/service-accounts-group-managed",
+    "https://learn.microsoft.com/entra/architecture/service-accounts-principal"
+  ],
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "LICENSE-CODE": "LICENSE-CODE (repository root)",
+    "service-accounts-user-on-premises.md": "docs/architecture/service-accounts-user-on-premises.md",
+    "service-accounts-group-managed.md": "docs/architecture/service-accounts-group-managed.md",
+    "service-accounts-principal.md": "docs/architecture/service-accounts-principal.md"
+  },
+  "not_copied": [
+    "The other pages in Learn's service account series (Securing on-premises service accounts, Govern on-premises service accounts, Secure standalone managed service accounts, Secure on-premises computer accounts, Governing Microsoft Entra service accounts): they hold no discovery commands the chapter runs; the chapter links them.",
+    "Everything else in MicrosoftDocs/entra-docs, including the pages' screenshots and include files; the chapter links Learn rather than quoting it."
+  ],
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "LICENSE-CODE": {
+      "bytes": 1090,
+      "sha256": "91f7258203fd43ba6d6f7f72b644eaedee9e3430f035c053beb6f34052f045e2"
+    },
+    "service-accounts-group-managed.md": {
+      "bytes": 6340,
+      "sha256": "46fdb5265264bb6dc064b5060a553352d67aa06f7c08778d79755e34a4e7f2b0"
+    },
+    "service-accounts-principal.md": {
+      "bytes": 8397,
+      "sha256": "a94d3da9cb5f5b1487b46b790ef6185a601dbd7b9dd4075248c3c9ea57fafe7b"
+    },
+    "service-accounts-user-on-premises.md": {
+      "bytes": 6470,
+      "sha256": "e018e417a60ea4ee19244cf4fb1bda7a84a96975cffed644f4333bbf708de5f9"
+    }
+  }
+}

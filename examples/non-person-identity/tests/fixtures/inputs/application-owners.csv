@@ -1,0 +1,11 @@
+SamAccountName,OwnerUpn,ApplicationRecord
+svc-hrsync,alice@contoso.example,CMDB-1042
+svc-sqlprod,bob@contoso.example,CMDB-3001
+svc-backup,frank@contoso.example,CMDB-1500
+svc-webfront,erin@contoso.example,CMDB-1500
+svc-intranet,erin@contoso.example,CMDB-1500
+svc-ldapbind,gina@contoso.example,CMDB-1700
+gmsa-web$,erin@contoso.example,CMDB-1500
+gmsa-sql$,bob@contoso.example,CMDB-3001
+msa-print01$,gina@contoso.example,CMDB-1600
+dmsa-hrsync$,alice@contoso.example,CMDB-1042

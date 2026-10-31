@@ -1,0 +1,13 @@
+# Export secrets and certificates for app registrations: a pinned copy of Learn's script
+
+This folder is an unmodified copy of the Microsoft Learn source page for [PowerShell sample: Export secrets and certificates for app registrations](https://learn.microsoft.com/entra/identity/enterprise-apps/scripts/powershell-export-all-app-registrations-secrets-and-certs). It holds Microsoft's Microsoft Graph PowerShell script that lists every secret and certificate on every app registration with the app's owners, and writes them to a CSV file. It comes from [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs/blob/7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4/docs/identity/enterprise-apps/scripts/powershell-export-all-app-registrations-secrets-and-certs.md) at commit `7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4` (October 30, 2026); the page last changed on February 19, 2026. The repository's code license (`LICENSE-CODE`) and documentation license (`LICENSE`) are both MIT.
+
+**Why the page, not just the script.** The script exists only inside this Learn page. Pinning the page byte for byte keeps the copy checkable against upstream. `examples/non-person-identity/tests/LearnSampleHarness.ps1` extracts the script, unmodified, at test time and runs it against stand-ins for `Connect-MgGraph`, `Get-MgApplication`, `Get-MgApplicationOwner` and `Read-Host`. Nothing is installed and nothing signs in. The [developer workbook *Building Non-Person Identity*, Chapter 01](../../../docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md) links Learn rather than quoting the page.
+
+**How it stays honest.**
+
+- `snapshot.json` records the upstream repository, path, commit, dates, licenses and the size and SHA-256 of every file here. Each file's git blob hash was checked against the upstream tree at that commit before the manifest was written. `scripts/tests/test_third_party_snapshots.py` fails if any file is changed, added or removed.
+- The weekly source watch follows commits to the upstream page (`entra-app-credentials-export-page-commits` in `data/source-watch/feeds.json`) and reports each one in its issue under DW (developer workbooks).
+- To move to a newer upstream commit: review the upstream change, copy the page from that commit, regenerate `snapshot.json`, rerun `examples/non-person-identity/tests/MicrosoftSamples.Tests.ps1` and the Chapter 01 labs, and open a pull request. Never edit the files here; changes the program needs go in `examples/non-person-identity`.
+
+These files keep their upstream bytes, line endings included, so the hashes match the upstream commit.
