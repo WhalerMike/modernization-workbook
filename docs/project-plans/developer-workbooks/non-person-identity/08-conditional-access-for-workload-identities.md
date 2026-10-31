@@ -398,7 +398,7 @@ Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 07 — Least Privilege for Service Principals](07-least-privilege-for-service-principals.md) · [Workbook index](index.md) · [Next: Chapter 09 — AI Agent Identities →](09-ai-agent-identities.md)
+← Previous: Chapter 07 — Least Privilege for Service Principals · [Workbook index](index.md) · Next: Chapter 09 — AI Agent Identities →
 :::
 
 [^np08-wid]: Microsoft Learn, "Conditional Access for workload identities," overview, implementation, roll back, sign-in logs, reference, <https://learn.microsoft.com/entra/identity/conditional-access/workload-identity> (accessed Oct 30, 2026).
