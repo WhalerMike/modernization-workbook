@@ -57,6 +57,8 @@ powershell -File presentations/_build/build_narrated.ps1 -Dir <abs path>\present
 powershell -File presentations/_build/export_mp4.ps1 -Src <abs path>\DW_PA_02_Emergency_Access_Narrated.pptx -Mp4 <abs path>\DW_PA_02_Emergency_Access_Narrated.mp4
 ```
 
+A tour's Lab 1 slides show what the kit really prints: `{ terminal: "NN-k", lines: "1,17-23,33" }` draws capture `NN-k` (Chapter NN's k-th command block) from `data/kit-captures/<workbook>/` as a terminal window, with any skipped lines shown as "…". `python scripts/kit_captures.py <workbook> --images --pages` runs each chapter's Lab 1 commands on the fixtures, writes the captures and puts the same output on the chapter pages as terminal images; the tiered check fails when a capture no longer matches the kit. Only Ticket-to-Machine (`ttm`) is captured so far.
+
 Upload the MP4 to the videos release, run `scripts/generate_video_manifest.py --verify` and then without `--verify` (with the narrated deck here, it also refreshes the video's chapters in `data/video-chapters.json`), and finally `presentations/_build/link_tours.py "<recording date>"`. A new tour's deck links point at its folder on GitHub until an edition carries the deck, and a tour whose video isn't on the videos release yet gets no player, Watch or MP4 link, so the link checks pass in between; a workbook recorded on another day takes its own date (`link_tours.py "October 31, 2026" ttm="November 1, 2026"`). A tour runs about eleven minutes: a title slide and about seventeen content slides in Why, What, Who and How order. Rebuild and re-record a tour when its chapter changes.
 
 ## Accessibility (Section 508 / WCAG 2.1 AA)
