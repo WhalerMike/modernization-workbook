@@ -197,9 +197,25 @@ cd ../drift-pipeline && python -m pytest tests -q
 
    It exits 2.
 
-3. **Read the findings.** `out/ch07/runs/2026-11-01T0600Z/lifecycle/findings.json` holds 14 Findings: LD-01 for worker `100104`, who has no account; LD-02 for `drew.park` and `harper.vu`, terminated in HR and enabled, and for contractor `bailey.ortiz`, past the earliest end; LD-03 for `print.kiosk` (its exception has no owner) and `old.temp`, but not for `svc.scanner`, whose exception has one; five LD-04, Chapter 01's four second writers and its forbidden delete; LD-05 for card `100303`; LD-06 for cards `900002` and `900011`. The six Warns are five LD-07 and one LD-08 for the mover's review, still open. `run.json` records the four chapter outputs by manifest SHA-256, for example `"writers": {"manifestSha256": "a2e59910…", "task": "writers-scan"}`.
+3. **Read the findings:**
 
-4. **Write the next day's run** with the same inputs and the window `--since 2026-11-01 --until 2026-11-02`, into `out/ch07/runs/2026-11-02T0600Z`. It prints the same metrics and `Lifecycle drift: 14 Finding, 6 Warn, 0 Info`.
+   ```bash
+   python -c "import json; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open('out/ch07/runs/2026-11-01T0600Z/lifecycle/findings.json'))]"
+   ```
+
+   `out/ch07/runs/2026-11-01T0600Z/lifecycle/findings.json` holds 14 Findings: LD-01 for worker `100104`, who has no account; LD-02 for `drew.park` and `harper.vu`, terminated in HR and enabled, and for contractor `bailey.ortiz`, past the earliest end; LD-03 for `print.kiosk` (its exception has no owner) and `old.temp`, but not for `svc.scanner`, whose exception has one; five LD-04, Chapter 01's four second writers and its forbidden delete; LD-05 for card `100303`; LD-06 for cards `900002` and `900011`. The six Warns are five LD-07 and one LD-08 for the mover's review, still open. `run.json` records the four chapter outputs by manifest SHA-256, for example `"writers": {"manifestSha256": "a2e59910…", "task": "writers-scan"}`.
+
+4. **Write the next day's run,** with the same inputs and the window `--since 2026-11-01 --until 2026-11-02`, into `out/ch07/runs/2026-11-02T0600Z`:
+
+   ```bash
+   python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors out/ch02/extract/decisions.json \
+       --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv \
+       --derivation tests/fixtures/ch07/derivation.json --writers out/ch01 --readiness out/ch03/readiness --residual out/ch04/residual \
+       --timing out/ch06 --config config/drift.json --since 2026-11-01 --until 2026-11-02 --cloud gcc \
+       --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out out/ch07/runs/2026-11-02T0600Z
+   ```
+
+   It prints the same metrics and `Lifecycle drift: 14 Finding, 6 Warn, 0 Info`.
 
 5. **Package both, chained, and verify:**
 
@@ -216,7 +232,13 @@ cd ../drift-pipeline && python -m pytest tests -q
    {"evidence_manifest_sha256": "2892017a07f7214696c1048cfa40e6ccb14927f7c7bdc85cc23cac1a8be739c9", "files": 6, "run_id": "2026-11-02T0600Z"}
    ```
 
-   The first package opens all 20 counted findings; the second opens none and closes none, because the inputs didn't change. Your hashes match these only if your fixtures are the committed ones. `cd out/ch07/evidence/2026-11-02T0600Z && sha256sum -c SHA256SUMS` reports every file `OK`, which is the check the ISSO runs.
+   The first package opens all 20 counted findings; the second opens none and closes none, because the inputs didn't change. Your hashes match these only if your fixtures are the committed ones. Check the second package's files, which is the check the ISSO runs (the parentheses keep you in `examples/hr-lifecycle`):
+
+   ```bash
+   (cd out/ch07/evidence/2026-11-02T0600Z && sha256sum -c SHA256SUMS)
+   ```
+
+   It reports every file `OK`.
 
 6. **Assemble the period:**
 
@@ -237,18 +259,53 @@ cd ../drift-pipeline && python -m pytest tests -q
    cd ../drift-pipeline && python -m pytest tests -q
    ```
 
-**Expected result:** `57 passed`, then `142 passed`. Delete `out` when you're done; it holds fictional names.
+**Expected result:** `57 passed`, then `142 passed`. Delete `out` when you're done; it holds fictional names. The tests left you in `examples/drift-pipeline`:
+
+```bash
+cd ../hr-lifecycle && rm -rf out
+```
 
 ## Lab 2: test tenant
 
-Not run by the authors. Use a test tenant in the worldwide or GCC cloud, never production.
+Not run by the authors. Use a test tenant in the worldwide or GCC cloud, never production. Work in `examples/hr-lifecycle`. You'll replace: `<graph-token>` (a bearer token for `graph.microsoft.com` issued to the reader app), `<tenant-id>` (the test tenant's ID), `<hr-export-csv>`, `<exceptions-csv>`, `<cards-csv>` and `<derivation-json>` (the test tenant's HR export, exceptions, card export and derivation file, in the layouts of the files in `tests/fixtures/ch07`), `<since>` and `<until>` (the run's window, `yyyy-mm-dd`) and `<run-id>` (the run's name, such as `2026-11-05T0600Z`).
 
-1. **Export the workforce users.** Register a reader app with a certificate or a federated credential and grant only the two permissions `python python/graph_export.py --task drift-read --list` prints, with admin consent. Get a token for `graph.microsoft.com` and run `python python/graph_export.py --task drift-read --cloud gcc --out exports/drift`.
-2. **Run Chapters 01 to 06 against the test tenant's exports**, as each chapter's Lab 2 describes, each into its own new folder.
-3. **Write a run** with `--users exports/drift/workforce-users.json`, the test tenant's ID and `--mode tenant`. Read every finding against the test tenant before going on.
+1. **Export the workforce users.** Register a reader app with a certificate or a federated credential and grant only the two permissions this command prints, with admin consent:
+
+   ```bash
+   python python/graph_export.py --task drift-read --list
+   ```
+
+   Get a token for `graph.microsoft.com` and export:
+
+   ```bash
+   export HRLC_GRAPH_TOKEN='<graph-token>'
+   python python/graph_export.py --task drift-read --cloud gcc --out exports/drift
+   ```
+
+2. **Run Chapters 01 to 06 against the test tenant's exports**, as each chapter's Lab 2 describes, each into its own new folder. Keep the folders those labs write (stop before their back-out steps): the next step reads `out/ch01-test`, `out/ch02-test-extract`, `out/ch03/readiness-test`, `out/ch04/residual-test` and `out/separation-test`.
+3. **Write a run** with `--users exports/drift/workforce-users.json`, the test tenant's ID and `--mode tenant`:
+
+   ```bash
+   python python/lifecycle_drift.py run --hr <hr-export-csv> --contractors out/ch02-test-extract/decisions.json \
+       --users exports/drift/workforce-users.json --exceptions <exceptions-csv> --cards <cards-csv> \
+       --derivation <derivation-json> --writers out/ch01-test --readiness out/ch03/readiness-test --residual out/ch04/residual-test \
+       --timing out/separation-test --config config/drift.json --since <since> --until <until> --cloud gcc \
+       --tenant-id <tenant-id> --mode tenant --out out/ch07-test/runs/<run-id>
+   ```
+
+   Read every finding against the test tenant before going on:
+
+   ```bash
+   python -c "import json; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open('out/ch07-test/runs/<run-id>/lifecycle/findings.json'))]"
+   ```
+
 4. **Schedule it.** Add the run, `package` and the upload to Book 19, Chapter 09's workflow ([its Lab 2](../../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md#lab-2-test-tenant-and-test-subscription)), signing in with the federated credential and no secret. Write packages to a test storage container outside the directory with immutability set, and pass `--previous-manifest` from the last package each time (*design guidance*).
 5. **Assemble a period** after a few runs and check that a skipped day shows as a coverage gap.
-6. **Back it out.** Remove the schedule, delete the reader app, its credential and its consent, delete the test container if you created it for the lab, and delete the local `exports` and `out` folders.
+6. **Back it out.** Remove the schedule, delete the reader app, its credential and its consent, and delete the test container if you created it for the lab. Then delete the local `exports` and `out` folders:
+
+   ```bash
+   rm -rf exports out
+   ```
 
 ## Verified facts
 

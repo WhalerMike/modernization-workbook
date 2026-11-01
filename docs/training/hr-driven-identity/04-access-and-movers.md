@@ -139,7 +139,13 @@ python -m pytest tests -q
     Written to out/ch04/residual (residual-review.csv goes to the manager of record)
     ```
 
-    Open `out/ch04/residual/residual-review.csv`: one requested package and two groups outside packages. The Finding is RV-02: the review is still open 13 days after the move, past the program's ten.
+    Print the review sheet:
+
+    ```bash
+    cat out/ch04/residual/residual-review.csv
+    ```
+
+    It holds one requested package and two groups outside packages. The Finding is RV-02: the review is still open 13 days after the move, past the program's ten.
 
 6. Run the tests:
 
@@ -147,7 +153,11 @@ python -m pytest tests -q
     python -m pytest tests -q
     ```
 
-    Expect `57 passed`. Delete `out/ch04` when you're done.
+    Expect `57 passed`. Delete `out/ch04` when you're done:
+
+    ```bash
+    rm -rf out/ch04
+    ```
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)
 

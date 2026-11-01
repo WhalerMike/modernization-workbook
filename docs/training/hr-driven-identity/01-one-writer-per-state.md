@@ -146,7 +146,11 @@ python -m pytest tests -q
     python -m pytest tests -q
     ```
 
-    Expect `57 passed`. Delete `out` when you're done.
+    Expect `57 passed`. Delete `out` when you're done:
+
+    ```bash
+    rm -rf out
+    ```
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)
 

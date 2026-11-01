@@ -63,13 +63,6 @@ CHAPTERS: dict[str, dict] = {
     "npi-07": {"needs": ["01"]}, "npi-09": {"needs": ["01", "02"]},
     "npi-10": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
     "pa-08": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
-    # Step 4 gives the next day's run in prose: step 2's command with the next window and folder.
-    "hr-07": {"hidden": {3: (
-        "python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors out/ch02/extract/decisions.json"
-        " --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv"
-        " --derivation tests/fixtures/ch07/derivation.json --writers out/ch01 --readiness out/ch03/readiness --residual out/ch04/residual"
-        " --timing out/ch06 --config config/drift.json --since 2026-11-01 --until 2026-11-02 --cloud gcc"
-        " --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out out/ch07/runs/2026-11-02T0600Z")}},
 }
 OUT = ROOT / "data" / "kit-captures"
 GH = "https://github.com/WhalerMike/modernization-workbook/blob/main"

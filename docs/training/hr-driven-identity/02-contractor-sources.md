@@ -149,7 +149,13 @@ python -m pytest tests -q
     python python/contractor_source.py review --rules config/contractor-rules.json --out out/ch02/review
     ```
 
-    Expect `Review settings written to out/ch02/review/assignment-policy-review.json for review; nothing was sent`. Open the file: `expirationBehavior` is `removeAccess`, the primary reviewer is the requestor's manager at level 1, and the recurrence is `absoluteMonthly` with interval 6.
+    Expect `Review settings written to out/ch02/review/assignment-policy-review.json for review; nothing was sent`. Print the file:
+
+    ```bash
+    python -c "import json; print(json.dumps(json.load(open('out/ch02/review/assignment-policy-review.json')), indent=2))"
+    ```
+
+    `expirationBehavior` is `removeAccess`, the primary reviewer is the requestor's manager at level 1, and the recurrence is `absoluteMonthly` with interval 6.
 
 7. Run the tests:
 
@@ -157,7 +163,11 @@ python -m pytest tests -q
     python -m pytest tests -q
     ```
 
-    Expect `57 passed`. Delete `out` when you're done.
+    Expect `57 passed`. Delete `out` when you're done:
+
+    ```bash
+    rm -rf out
+    ```
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)
 

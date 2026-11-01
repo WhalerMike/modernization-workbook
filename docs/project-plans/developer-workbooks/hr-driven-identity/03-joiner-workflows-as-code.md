@@ -220,7 +220,15 @@ python -m pytest tests -q
 
    The exit code is 2: a Warn counts as well as a Finding.
 
-   The day-one workflow in the tenant requests a different package, so it gets a new version; its body in `out/ch03/plan/bodies/day-one.json` is wrapped in `workflow` for `createNewVersion`. The employee leaver doesn't exist yet, so it gets a create. The Warn is JW-15 for `Onboard Marketing (legacy)`, a workflow made in the portal that no file defines. Try the same plan on the broken folder: it stops with an error, because those files have Findings.
+   The day-one workflow in the tenant requests a different package, so it gets a new version; its body in `out/ch03/plan/bodies/day-one.json` is wrapped in `workflow` for `createNewVersion`. The employee leaver doesn't exist yet, so it gets a create. The Warn is JW-15 for `Onboard Marketing (legacy)`, a workflow made in the portal that no file defines. Try the same plan on the broken folder: it stops with an error, because those files have Findings, and exits 1:
+
+   ```bash
+   python python/joiner_workflows.py plan tests/fixtures/ch03/bad-workflows --current tests/fixtures/ch03/workflows.json --out out/ch03/plan-bad
+   ```
+
+   ```text
+   error: the files have lint findings; fix them before planning
+   ```
 
 5. **Measure day one:**
 
@@ -243,19 +251,89 @@ python -m pytest tests -q
    python -m pytest tests -q
    ```
 
-**Expected result:** 57 tests passing. Delete `out/ch03` when you're done.
+**Expected result:** 57 tests passing. Delete `out/ch03` when you're done:
+
+```bash
+rm -rf out/ch03
+```
 
 ## Lab 2: test tenant
 
-*Not run by the authors.* Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID Governance trial or test licenses, never production, and test users whose hire date is a few days away.
+*Not run by the authors.* Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID Governance trial or test licenses, never production, and test users whose hire date is a few days away. Work in `examples/hr-lifecycle`. You'll need `my-hires.csv`: the test hires, in the layout of `tests/fixtures/ch03/hr-hires.csv`. You'll replace: `<graph-token>` (a bearer token for `graph.microsoft.com` issued to the reader app), `<tenant-id>` (the test tenant's ID), `<file>` (a body file the plan wrote, such as `pre-hire.json`), `<workflow-id>` (the ID of the workflow in the tenant), `<prehire-workflow-id>` (the pre-hire workflow's ID) and `<start-date>` (the test hire's start date and time, such as `2026-11-09T08:00:00Z`).
 
-1. **Export.** Register a reader app with a certificate, grant `LifecycleWorkflows-Workflow.Read.All` with admin consent, put a token for it in `HRLC_GRAPH_TOKEN`, and run `python python/graph_export.py --task joiner-plan --cloud gcc --out exports/joiner`.
-2. **Plan.** Edit one file (for example the pre-hire offset), then run `plan` with `--current exports/joiner/workflows.json`. Review `plan.json` and the bodies.
-3. **Send one change.** As a Lifecycle Workflows Administrator, with Graph PowerShell: a create with `New-MgIdentityGovernanceLifecycleWorkflow -BodyParameter (Get-Content out/ch03/plan/bodies/<file> -Raw | ConvertFrom-Json -AsHashtable)`, or a new version with `New-MgIdentityGovernanceLifecycleWorkflowNewVersion -WorkflowId <id> -BodyParameter ...`.[^hw03-cmdlets] Leave scheduling off until the next step is done.
-4. **Set the execution limit** in the admin center under the workflow's **Settings**, with the value from `_program.executionLimit`, as Learn's procedure describes.[^hw03-limits] Read it back with the validation kit's VK-HR-06.
+1. **Export.** Register a reader app with a certificate and grant `LifecycleWorkflows-Workflow.Read.All` with admin consent. Then put a token for it in `HRLC_GRAPH_TOKEN` and export:
+
+   ```bash
+   export HRLC_GRAPH_TOKEN='<graph-token>'
+   python python/graph_export.py --task joiner-plan --cloud gcc --out exports/joiner
+   ```
+
+2. **Plan.** Edit one file and plan against the export. The first command is the example edit: it moves the pre-hire workflow's trigger from seven days before the hire date to five:
+
+   ```bash
+   python -c "import json; p='config/workflows/pre-hire.json'; d=json.load(open(p)); d['executionConditions']['trigger']['offsetInDays'] = -5; json.dump(d, open(p, 'w'), indent=2)"
+   python python/joiner_workflows.py plan config/workflows --current exports/joiner/workflows.json --out out/ch03/plan
+   ```
+
+   Review `plan.json` and the bodies.
+3. **Send one change.** As a Lifecycle Workflows Administrator, with Graph PowerShell, send a create, or a new version.[^hw03-cmdlets] Sign in:
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes LifecycleWorkflows-Workflow.ReadWrite.All
+   ```
+
+   For a create:
+
+   ```powershell
+   New-MgIdentityGovernanceLifecycleWorkflow -BodyParameter (Get-Content out/ch03/plan/bodies/<file> -Raw | ConvertFrom-Json -AsHashtable)
+   ```
+
+   For a new version:
+
+   ```powershell
+   New-MgIdentityGovernanceLifecycleWorkflowNewVersion -WorkflowId <workflow-id> -BodyParameter (Get-Content out/ch03/plan/bodies/<file> -Raw | ConvertFrom-Json -AsHashtable)
+   ```
+
+   Leave scheduling off until the next step is done.
+4. **Set the execution limit** in the admin center under the workflow's **Settings**, with the value from `_program.executionLimit`, as Learn's procedure describes.[^hw03-limits] Read it back with the validation kit's VK-HR-06, in PowerShell 7:
+
+   ```powershell
+   ../validation-kit/Invoke-ValidationKit.ps1 -OutputPath out/ch03-vk -CheckId VK-HR-06
+   ```
+
 5. **Check the pass.** Confirm the tenant's Temporary Access Pass policy allows the file's lifetime and one-time use;[^hw03-tap] run the pre-hire workflow on demand for one test user with no methods; confirm the manager's mailbox receives the pass.
-6. **Measure.** On the test hire's start date, export the users, the pre-hire results and the onboarding assignments (`--task joiner-readiness`) and run `readiness`.
-7. **Back it out.** Delete a workflow the lab created with `Remove-MgIdentityGovernanceLifecycleWorkflow -WorkflowId <id>` (it can be restored for 30 days);[^hw03-remove] for a new version, send the previous file's body as a further version; remove the reader app, its permission and certificate, and delete `exports` and `out/ch03`.
+6. **Measure.** On the test hire's start date, export the users, the pre-hire results and the onboarding assignments, and run `readiness`:
+
+   ```bash
+   python python/graph_export.py --task joiner-readiness --cloud gcc --param workflowId=<prehire-workflow-id> --out exports/readiness
+   python python/joiner_workflows.py readiness --hires my-hires.csv --users exports/readiness/hire-users.json \
+       --prehire-results exports/readiness/joiner-results.json --assignments exports/readiness/joiner-assignments.json \
+       --workflows config/workflows --as-of <start-date> --cloud gcc --out out/ch03/readiness-test
+   ```
+
+7. **Back it out.** Delete a workflow the lab created (it can be restored for 30 days):[^hw03-remove]
+
+   ```powershell
+   Remove-MgIdentityGovernanceLifecycleWorkflow -WorkflowId <workflow-id>
+   ```
+
+   For a new version, send the previous file's body as a further version. Put the file back, export the workflows again and plan against the new export, then send the body:
+
+   ```bash
+   git checkout -- config/workflows/pre-hire.json
+   python python/graph_export.py --task joiner-plan --cloud gcc --out exports/joiner-after
+   python python/joiner_workflows.py plan config/workflows --current exports/joiner-after/workflows.json --out out/ch03/plan-restore
+   ```
+
+   ```powershell
+   New-MgIdentityGovernanceLifecycleWorkflowNewVersion -WorkflowId <workflow-id> -BodyParameter (Get-Content out/ch03/plan-restore/bodies/<file> -Raw | ConvertFrom-Json -AsHashtable)
+   ```
+
+   Remove the reader app, its permission and certificate, and delete `exports` and `out/ch03`:
+
+   ```bash
+   rm -rf exports out/ch03 out/ch03-vk
+   ```
 
 ## Verified facts
 

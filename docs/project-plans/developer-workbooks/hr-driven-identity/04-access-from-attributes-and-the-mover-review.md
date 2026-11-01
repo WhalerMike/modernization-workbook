@@ -200,7 +200,7 @@ python -m pytest tests -q
      MS-01 Finding: Shared drives (legacy): AUTO via group membership
    ```
 
-   Run Learn's own script too; this scan is the same test in the pipeline, over the export `graph_export.py` writes.
+   Learn publishes its own script for the same test, which runs against a tenant (Lab 2 runs both); this scan is the same test in the pipeline, over the export `graph_export.py` writes.
 
 5. **List a mover's residual:**
 
@@ -217,6 +217,10 @@ python -m pytest tests -q
 
    Jordan moved from ORG-100 to ORG-210 on October 19. `residual.json` shows the Program Operations baseline *removed by rule after grace* on October 26, the Infrastructure Services baseline *kept by rule*, the two packages' app groups *package-managed* and the ORG-210 dynamic group *rule-managed*. The review sheet holds the other three:
 
+   ```bash
+   cat out/ch04/residual/residual-review.csv
+   ```
+
    ```text
    item,kind,via,class
    Grants reporting workspace,access package,REQUEST Grants reporting,requested: review
@@ -232,17 +236,81 @@ python -m pytest tests -q
    python -m pytest tests -q
    ```
 
-**Expected result:** 57 tests passing. Delete `out/ch04` when you're done.
+**Expected result:** 57 tests passing. Delete `out/ch04` when you're done:
+
+```bash
+rm -rf out/ch04
+```
 
 ## Lab 2: test tenant
 
-*Not run by the authors.* Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID Governance trial or test licenses, never production, two test access packages and three test users with coded attributes.
+*Not run by the authors.* Use a test tenant in the worldwide or GCC cloud with Microsoft Entra ID Governance trial or test licenses, never production, two test access packages and three test users with coded attributes. Work in `examples/hr-lifecycle`. You'll need `my-mover.json`: the moved test user, in the layout of `tests/fixtures/ch04/mover.json`. You'll replace: `<graph-token>` (a bearer token for `graph.microsoft.com` issued to the reader app), `<test-user-id>` (the moved test user's object ID), `<tenant-id>` (the test tenant's ID), `<test-package-id>` (your test access package's ID), `<policy-id>` (the ID of the policy step 2 creates), `<before-run-id>` (the run folder the validation kit wrote before the move), `<now>` (the current time, such as `2026-11-05T12:00:00Z`), `<review-completed>` (when the test manager completed the review) and `<later>` (a time after the review's interval).
 
-1. **Export.** Register a reader app with a certificate, grant `EntitlementManagement.Read.All` and `User.Read.All` with admin consent, put a token in `HRLC_GRAPH_TOKEN`, and run `python python/graph_export.py --task access-read --cloud gcc --param userId=<test-user-id> --out exports/access`. Run `memberof-scan` on `exports/access/assignment-policies.json`, and Learn's read-only script beside it; the two lists must match.
-2. **Create one policy.** Point a copy of `auto-program-operations.json` at your test package, lint it, strip `_program` and send it as an Identity Governance Administrator with `New-MgEntitlementManagementAssignmentPolicy -BodyParameter ...`.[^hw04-cmdlets] Wait several minutes, as Learn says, and confirm the matching test users receive assignments.
-3. **Move a test user.** Change the user's organization code through the pipeline (never by hand: [Chapter 01](01-the-writer-register-as-code.md)), wait for the grace period you set (use `PT1H` in the test copy), and confirm the old assignment is removed and the new one created. Run VK-DG-05 against the snapshot you took before the move.
-4. **Run the residual.** Export the user's assignments and memberships again and run `residual`. Give the sheet to the test manager, record the review's completion in the mover file, and run it again for the interval.
-5. **Back it out.** Remove the test policy with `Remove-MgEntitlementManagementAssignmentPolicy -AccessPackageAssignmentPolicyId <id>`,[^hw04-remove] choosing in the portal whether its assignments are removed, as the guide's rollback says; restore the test user's code through the pipeline; remove the reader app, its permissions and certificate; delete `exports` and `out/ch04`.
+1. **Export.** Register a reader app with a certificate, grant `EntitlementManagement.Read.All` and `User.Read.All` with admin consent, put a token in `HRLC_GRAPH_TOKEN`, export and scan:
+
+   ```bash
+   export HRLC_GRAPH_TOKEN='<graph-token>'
+   python python/graph_export.py --task access-read --cloud gcc --param userId=<test-user-id> --out exports/access
+   python python/access_assignment.py memberof-scan --policies exports/access/assignment-policies.json
+   ```
+
+   Run Learn's read-only script beside it; the two lists must match.
+2. **Create one policy.** The first two commands write a copy of `auto-program-operations.json` pointed at your test package, with a grace period of `PT1H` for the test; the third lints the copy, and the fourth writes its body without `_program`:
+
+   ```bash
+   mkdir -p my-access
+   python -c "import json; d=json.load(open('config/access/auto-program-operations.json')); d['accessPackage']['id'] = '<test-package-id>'; d['automaticRequestSettings']['gracePeriodBeforeAccessRemoval'] = 'PT1H'; json.dump(d, open('my-access/auto-program-operations.json', 'w'), indent=2)"
+   python python/access_assignment.py lint my-access --population tests/fixtures/ch04/population.json
+   python -c "import json; d=json.load(open('my-access/auto-program-operations.json')); d.pop('_program'); json.dump(d, open('my-access-body.json', 'w'), indent=2)"
+   ```
+
+   Send it as an Identity Governance Administrator with `New-MgEntitlementManagementAssignmentPolicy`,[^hw04-cmdlets] in PowerShell 7:
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes EntitlementManagement.ReadWrite.All
+   New-MgEntitlementManagementAssignmentPolicy -BodyParameter (Get-Content my-access-body.json -Raw | ConvertFrom-Json -AsHashtable)
+   ```
+
+   Wait several minutes, as Learn says, and confirm the matching test users receive assignments.
+3. **Move a test user.** Take the validation kit's snapshot first:
+
+   ```powershell
+   ../validation-kit/Invoke-ValidationKit.ps1 -OutputPath out/ch04-vk-before -CheckId VK-DG-05
+   ```
+
+   Change the user's organization code through the pipeline (never by hand: [Chapter 01](01-the-writer-register-as-code.md)), wait for the grace period you set (`PT1H` in the test copy), and confirm the old assignment is removed and the new one created. Run VK-DG-05 against the snapshot you took before the move:
+
+   ```powershell
+   ../validation-kit/Invoke-ValidationKit.ps1 -OutputPath out/ch04-vk-after -CheckId VK-DG-05 -InputPath out/ch04-vk-before/<before-run-id>/Snapshot
+   ```
+
+4. **Run the residual.** Export the user's assignments and memberships again and run `residual`:
+
+   ```bash
+   python python/graph_export.py --task access-read --cloud gcc --param userId=<test-user-id> --out exports/access-after
+   python python/access_assignment.py residual --mover my-mover.json --assignments exports/access-after/mover-assignments.json \
+       --memberships exports/access-after/mover-memberships.json --policies my-access --as-of <now> --cloud gcc --out out/ch04/residual-test
+   ```
+
+   Give the sheet to the test manager. Record the review's completion in the mover file, and run it again for the interval:
+
+   ```bash
+   python -c "import json; p='my-mover.json'; d=json.load(open(p)); d['reviewCompletedDateTime'] = '<review-completed>'; json.dump(d, open(p, 'w'), indent=2)"
+   python python/access_assignment.py residual --mover my-mover.json --assignments exports/access-after/mover-assignments.json \
+       --memberships exports/access-after/mover-memberships.json --policies my-access --as-of <later> --cloud gcc --out out/ch04/residual-test-2
+   ```
+
+5. **Back it out.** Remove the test policy with `Remove-MgEntitlementManagementAssignmentPolicy`,[^hw04-remove] choosing in the portal whether its assignments are removed, as the guide's rollback says:
+
+   ```powershell
+   Remove-MgEntitlementManagementAssignmentPolicy -AccessPackageAssignmentPolicyId <policy-id>
+   ```
+
+   Restore the test user's code through the pipeline; remove the reader app, its permissions and certificate; delete `exports` and `out/ch04`, with the lab's policy copy and kit runs:
+
+   ```bash
+   rm -rf exports out/ch04 out/ch04-vk-before out/ch04-vk-after my-access my-access-body.json
+   ```
 
 ## Verified facts
 

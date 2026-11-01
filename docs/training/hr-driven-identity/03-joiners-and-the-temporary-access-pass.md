@@ -133,7 +133,13 @@ python -m pytest tests -q
     Plan written to out/ch03/plan/plan.json; nothing was sent
     ```
 
-    The Warn is JW-15 for `Onboard Marketing (legacy)`, a portal-made workflow no file defines. Now try the same plan on `tests/fixtures/ch03/bad-workflows`: it stops with `error: the files have lint findings; fix them before planning`.
+    The Warn is JW-15 for `Onboard Marketing (legacy)`, a portal-made workflow no file defines. Now try the same plan on the broken folder:
+
+    ```bash
+    python python/joiner_workflows.py plan tests/fixtures/ch03/bad-workflows --current tests/fixtures/ch03/workflows.json --out out/ch03/plan-bad
+    ```
+
+    It stops with `error: the files have lint findings; fix them before planning`.
 
 5. Measure day one:
 
@@ -154,7 +160,11 @@ python -m pytest tests -q
     python -m pytest tests -q
     ```
 
-    Expect `57 passed`. Delete `out/ch03` when you're done.
+    Expect `57 passed`. Delete `out/ch03` when you're done:
+
+    ```bash
+    rm -rf out/ch03
+    ```
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)
 
