@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in three modules, the Ticket-to-Machine learning path in seven, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -16,11 +16,21 @@ listing:
     sort: "title asc"
     sort-ui: false
     filter-ui: false
+  - id: training-ttm
+    contents:
+      - "ticket-to-machine/[0-9][0-9]-*.md"
+    type: table
+    fields: [title, research-status, last-reviewed, description]
+    field-display-names: *names
+    sort: "series-order asc"
+    sort-ui: false
+    filter-ui: false
   - id: training-external
     contents:
       - "*.md"
       - "!index.md"
       - "!ms-automation-*.md"
+      - "!ticket-to-machine/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -44,6 +54,13 @@ Work through the three modules in order. Module 1 sets up what the other two use
 3. [Module 3: Intune through Microsoft Graph](ms-automation-intune.md): reading and evidencing devices, compliance and configuration.
 
 ::: {#training-microsoft}
+:::
+
+## Ticket-to-Machine learning path
+
+[Learning path: Ticket-to-Machine on ServiceNow and SailPoint](ticket-to-machine/index.md) teaches you to build, test and evidence Book 13's Ticket-to-Machine loop on ServiceNow and SailPoint Identity Security Cloud, in seven modules mapped to the example guide's gates and the developer workbook's chapters. Each module has a lab on fixtures with no tenant, a pointer to a lab in your own test instance, and a knowledge check. Start with the path page for the roles, prerequisites and what you need for the labs.
+
+::: {#training-ttm}
 :::
 
 ## External learning paths

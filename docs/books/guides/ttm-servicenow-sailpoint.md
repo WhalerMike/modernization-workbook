@@ -52,6 +52,7 @@ This guide owns the order of work and the gates. It links to the pages that hold
 | **The order of work on ServiceNow and SailPoint, the gates, the federal evidence per gate, availability and rollback** | **This guide** |
 | The code for Pass 1 (drift to a typed task, re-read before close, drift reconciliation), its permissions and its tests | The [integration kit page](snow-sailpoint-integration-kit.md) and the kit's [README on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint) |
 | Building the kit step by step, as a developer | The developer workbook, [*Building Ticket-to-Machine*](../../project-plans/developer-workbooks/ticket-to-machine/index.md) |
+| Learning it in order, with exercises and knowledge checks | The training path, [*Learning path: Ticket-to-Machine on ServiceNow and SailPoint*](../../training/ticket-to-machine/index.md) |
 | Building the ServiceNow side in-house when there's no identity governance product | [Book 15, Chapter 13](../b15-day2-operations/13-building-day-two-automation-in-house.md#the-no-funding-path) |
 
 : What this guide owns and what it hands off {.striped .hover}
@@ -231,7 +232,7 @@ This gate closes gaps 2 and 4 on paper before anything is connected. Every later
 
 ::: {.callout-important}
 ## Validate (G2 Writers and approvers)
-- **No automated check yet.** The kit's planned Pass 2 adds a read-only check that flags any attribute with two writers ([Pass 2](snow-sailpoint-integration-kit.md#planned-for-pass-2)).
+- **Automated (read-only):** `writer_check.py` compares the Entra inbound provisioning mappings with SailPoint's provisioning policies and flags any attribute with two writers ([developer workbook, Chapter 08](../../project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.md)). It reads exports; it doesn't check approver systems or lanes.
 - **Manual:** every HR-mastered attribute has exactly one writer in the attribute map; every authority class has exactly one approver system; every change class has a lane and a change-record type; the decisions are merged in the record.
 - **Rollback:** re-decide by a reviewed change; the record keeps the history.
 :::
@@ -435,7 +436,7 @@ Once the loop runs, it runs on Book 13's tempo: P1 halts, P2 one hour, P3 24 hou
 
 ::: {.callout-important}
 ## Validate (G7 Tempo and evidence)
-- **No automated check yet** for the evidence export or the measures; both are planned for Pass 2.
+- **Automated (read-only):** `evidence_export.py` writes one Book 13 evidence record per closed finding, checks the response window, and writes and verifies a hash-chained manifest ([developer workbook, Chapter 07](../../project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.md)); `drift_compare.py` classifies findings across two runs as new, persisting or resolved ([Chapter 06](../../project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.md)). The five measures have no automated check yet.
 - **Manual:** the scheduled runs have run for a month with outputs kept; the five measures are reported once; the first monthly evidence package is assembled end to end and accepted by the ISSO.
 - **Rollback:** stop the schedules; the records stay.
 :::
