@@ -375,7 +375,7 @@ python python/workflow_lint.py workflow/pa-evidence.yml
     python -m pytest tests -q
     ```
 
-**Expected result:** the first Pester run passes 32 tests, the second runs every chapter's tests and should pass them all, and pytest passes 115.
+**Expected result:** the first Pester run passes 32 tests, the second runs every chapter's tests and should pass them all, and pytest passes 142.
 
 When you're done, delete `out` in both folders, in `examples/privileged-access`, then in `examples/drift-pipeline`:
 
